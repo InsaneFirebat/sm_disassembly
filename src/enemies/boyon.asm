@@ -287,41 +287,33 @@ RTL_A288D9:
 
 
 Spritemap_Boyon_Idle_0:
-    dw $0001,$C3F8                                                       ;A288DA;
-    db $F8                                                               ;A288DE;
-    dw $2100                                                             ;A288DF;
+    dw $0001                                                             ;A288DA;
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Boyon_Idle_1:
-    dw $0001,$C3F8                                                       ;A288E1;
-    db $F8                                                               ;A288E5;
-    dw $2102                                                             ;A288E6;
+    dw $0001                                                             ;A288E1;
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $102)
 
 Spritemap_Boyon_Idle_2:
-    dw $0001,$C3F8                                                       ;A288E8;
-    db $F8                                                               ;A288EC;
-    dw $2104                                                             ;A288ED;
+    dw $0001                                                             ;A288E8;
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $104)
 
 Spritemap_Boyon_Bouncing_0:
-    dw $0001,$C3F8                                                       ;A288EF;
-    db $F8                                                               ;A288F3;
-    dw $2106                                                             ;A288F4;
+    dw $0001                                                             ;A288EF;
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $106)
 
 Spritemap_Boyon_Bouncing_1:
-    dw $0001,$C3F8                                                       ;A288F6;
-    db $F8                                                               ;A288FA;
-    dw $2108                                                             ;A288FB;
+    dw $0001                                                             ;A288F6;
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $108)
 
 Spritemap_Boyon_Bouncing_2:
-    dw $0001,$C3F8                                                       ;A288FD;
-    db $F8                                                               ;A28901;
-    dw $210A                                                             ;A28902;
+    dw $0001                                                             ;A288FD;
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_Boyon_Bouncing_3:
-    dw $0001,$C3F8                                                       ;A28904;
-    db $F8                                                               ;A28908;
-    dw $210C                                                             ;A28909;
+    dw $0001                                                             ;A28904;
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $10C)
 
 UNUSED_Spritemap_Boyon_A2890B:
-    dw $0001,$C3F8                                                       ;A2890B;
-    db $F8                                                               ;A2890F;
-    dw $210E                                                             ;A28910;
+    dw $0001                                                             ;A2890B;
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $10E)
