@@ -2415,6628 +2415,4092 @@ SamusSpritemapTableIndices_BottomHalf:
     dw $067A,$0679,$067A,$0679,$067A                                     ;92964D;
 
 SamusSpritemaps_9657:
-    dw $0002,$C3FB                                                       ;929657;
-    db $F8                                                               ;92965B;
-    dw $2800,$C3FB                                                       ;92965C;
-    db $F0                                                               ;929660;
-    dw $2802                                                             ;929661;
+    dw $0002                                                             ;929657;
+    %spritemapEntry(1, $43FB, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FB, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9663:
-    dw $0002,$C3FB                                                       ;929663;
-    db $F7                                                               ;929667;
-    dw $2800,$C3FB                                                       ;929668;
-    db $EF                                                               ;92966C;
-    dw $2802                                                             ;92966D;
+    dw $0002                                                             ;929663;
+    %spritemapEntry(1, $43FB, $F7, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FB, $EF, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_966F:
-    dw $0003,$C3FF                                                       ;92966F;
-    db $F7                                                               ;929673;
-    dw $2800,$0007                                                       ;929674;
-    db $EF                                                               ;929678;
-    dw $2804,$C3F7                                                       ;929679;
-    db $EF                                                               ;92967D;
-    dw $2802                                                             ;92967E;
+    dw $0003                                                             ;92966F;
+    %spritemapEntry(1, $43FF, $F7, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $07, $EF, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43F7, $EF, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9680:
-    dw $0003,$0008                                                       ;929680;
-    db $EE                                                               ;929684;
-    dw $2804,$C200                                                       ;929685;
-    db $F6                                                               ;929689;
-    dw $2800,$C3F8                                                       ;92968A;
-    db $EE                                                               ;92968E;
-    dw $2802                                                             ;92968F;
+    dw $0003                                                             ;929680;
+    %spritemapEntry(0, $08, $EE, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $4200, $F6, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $EE, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9691:
-    dw $0002,$C3F9                                                       ;929691;
-    db $F7                                                               ;929695;
-    dw $2800,$C3F9                                                       ;929696;
-    db $EF                                                               ;92969A;
-    dw $2802                                                             ;92969B;
+    dw $0002                                                             ;929691;
+    %spritemapEntry(1, $43F9, $F7, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $EF, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_969D:
-    dw $0003,$C3FE                                                       ;92969D;
-    db $EF                                                               ;9296A1;
-    dw $2800,$C3F6                                                       ;9296A2;
-    db $F7                                                               ;9296A6;
-    dw $2802,$C3F6                                                       ;9296A7;
-    db $EF                                                               ;9296AB;
-    dw $2804                                                             ;9296AC;
+    dw $0003                                                             ;92969D;
+    %spritemapEntry(1, $43FE, $EF, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F6, $F7, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F6, $EF, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_96AE:
-    dw $0002,$C3F5                                                       ;9296AE;
-    db $F8                                                               ;9296B2;
-    dw $2800,$C3F5                                                       ;9296B3;
-    db $F0                                                               ;9296B7;
-    dw $2802                                                             ;9296B8;
+    dw $0002                                                             ;9296AE;
+    %spritemapEntry(1, $43F5, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F5, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_96BA:
-    dw $0002,$C3F5                                                       ;9296BA;
-    db $F7                                                               ;9296BE;
-    dw $2800,$C3F5                                                       ;9296BF;
-    db $EF                                                               ;9296C3;
-    dw $2802                                                             ;9296C4;
+    dw $0002                                                             ;9296BA;
+    %spritemapEntry(1, $43F5, $F7, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F5, $EF, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_96C6:
-    dw $0003,$C3F1                                                       ;9296C6;
-    db $F7                                                               ;9296CA;
-    dw $2800,$C3F9                                                       ;9296CB;
-    db $EF                                                               ;9296CF;
-    dw $2802,$C3F1                                                       ;9296D0;
-    db $EF                                                               ;9296D4;
-    dw $2804                                                             ;9296D5;
+    dw $0003                                                             ;9296C6;
+    %spritemapEntry(1, $43F1, $F7, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $EF, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F1, $EF, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_96D7:
-    dw $0003,$C3F0                                                       ;9296D7;
-    db $F6                                                               ;9296DB;
-    dw $2800,$C3F0                                                       ;9296DC;
-    db $EE                                                               ;9296E0;
-    dw $2802,$C3F8                                                       ;9296E1;
-    db $EE                                                               ;9296E5;
-    dw $2804                                                             ;9296E6;
+    dw $0003                                                             ;9296D7;
+    %spritemapEntry(1, $43F0, $F6, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $EE, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $EE, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_96E8:
-    dw $0002,$C3F7                                                       ;9296E8;
-    db $F7                                                               ;9296EC;
-    dw $2800,$C3F7                                                       ;9296ED;
-    db $EF                                                               ;9296F1;
-    dw $2802                                                             ;9296F2;
+    dw $0002                                                             ;9296E8;
+    %spritemapEntry(1, $43F7, $F7, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F7, $EF, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_96F4:
-    dw $0003,$C3FA                                                       ;9296F4;
-    db $F7                                                               ;9296F8;
-    dw $2800,$0002                                                       ;9296F9;
-    db $EF                                                               ;9296FD;
-    dw $2804,$C3F2                                                       ;9296FE;
-    db $EF                                                               ;929702;
-    dw $2802                                                             ;929703;
+    dw $0003                                                             ;9296F4;
+    %spritemapEntry(1, $43FA, $F7, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $02, $EF, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43F2, $EF, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9705:
-    dw $0006,$01FD                                                       ;929705;
-    db $FB                                                               ;929709;
-    dw $2802,$0005                                                       ;92970A;
-    db $F3                                                               ;92970E;
-    dw $2803,$01FD                                                       ;92970F;
-    db $F3                                                               ;929713;
-    dw $2804,$000B                                                       ;929714;
-    db $01                                                               ;929718;
-    dw $2805,$0007                                                       ;929719;
-    db $FD                                                               ;92971D;
-    dw $2806,$C3FA                                                       ;92971E;
-    db $F0                                                               ;929722;
-    dw $2800                                                             ;929723;
+    dw $0006                                                             ;929705;
+    %spritemapEntry(0, $1FD, $FB, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $05, $F3, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FD, $F3, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $0B, $01, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $07, $FD, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43FA, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9725:
-    dw $0006,$01ED                                                       ;929725;
-    db $01                                                               ;929729;
-    dw $6802,$01F1                                                       ;92972A;
-    db $FD                                                               ;92972E;
-    dw $6803,$01FC                                                       ;92972F;
-    db $FB                                                               ;929733;
-    dw $2804,$01F4                                                       ;929734;
-    db $F3                                                               ;929738;
-    dw $2805,$01FC                                                       ;929739;
-    db $F3                                                               ;92973D;
-    dw $2806,$C3F6                                                       ;92973E;
-    db $F0                                                               ;929742;
-    dw $2800                                                             ;929743;
+    dw $0006                                                             ;929725;
+    %spritemapEntry(0, $1ED, $01, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1F1, $FD, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1FC, $FB, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F4, $F3, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1FC, $F3, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F6, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9745:
-    dw $0005,$0006                                                       ;929745;
-    db $01                                                               ;929749;
-    dw $2804,$C3FE                                                       ;92974A;
-    db $F1                                                               ;92974E;
-    dw $2800,$C3F6                                                       ;92974F;
-    db $F1                                                               ;929753;
-    dw $2802,$000D                                                       ;929754;
-    db $03                                                               ;929758;
-    dw $2805,$0009                                                       ;929759;
-    db $FF                                                               ;92975D;
-    dw $2806                                                             ;92975E;
+    dw $0005                                                             ;929745;
+    %spritemapEntry(0, $06, $01, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43FE, $F1, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F6, $F1, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $0D, $03, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $09, $FF, 0, 0, 2, 4, $06)
 
 SamusSpritemaps_9760:
-    dw $0005,$01EF                                                       ;929760;
-    db $FF                                                               ;929764;
-    dw $6804,$01F0                                                       ;929765;
-    db $01                                                               ;929769;
-    dw $2805,$C3F0                                                       ;92976A;
-    db $F1                                                               ;92976E;
-    dw $2800,$01EB                                                       ;92976F;
-    db $03                                                               ;929773;
-    dw $6806,$C3F8                                                       ;929774;
-    db $F1                                                               ;929778;
-    dw $2802                                                             ;929779;
+    dw $0005                                                             ;929760;
+    %spritemapEntry(0, $1EF, $FF, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F0, $01, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F0, $F1, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EB, $03, 0, 1, 2, 4, $06)
+    %spritemapEntry(1, $43F8, $F1, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_977B:
-    dw $0005,$0001                                                       ;92977B;
-    db $00                                                               ;92977F;
-    dw $2802,$01F9                                                       ;929780;
-    db $00                                                               ;929784;
-    dw $2803,$C3F9                                                       ;929785;
-    db $F0                                                               ;929789;
-    dw $2800,$000A                                                       ;92978A;
-    db $FD                                                               ;92978E;
-    dw $2804,$0002                                                       ;92978F;
-    db $FD                                                               ;929793;
-    dw $2805                                                             ;929794;
+    dw $0005                                                             ;92977B;
+    %spritemapEntry(0, $01, $00, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F9, $00, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F9, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $0A, $FD, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $02, $FD, 0, 0, 2, 4, $05)
 
 SamusSpritemaps_9796:
-    dw $0005,$01FF                                                       ;929796;
-    db $00                                                               ;92979A;
-    dw $2802,$01F7                                                       ;92979B;
-    db $00                                                               ;92979F;
-    dw $2803,$C3F7                                                       ;9297A0;
-    db $F0                                                               ;9297A4;
-    dw $2800,$01EE                                                       ;9297A5;
-    db $FD                                                               ;9297A9;
-    dw $6804,$01F6                                                       ;9297AA;
-    db $FD                                                               ;9297AE;
-    dw $6805                                                             ;9297AF;
+    dw $0005                                                             ;929796;
+    %spritemapEntry(0, $1FF, $00, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F7, $00, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F7, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EE, $FD, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FD, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_97B1:
-    dw $0004,$000A,$04EE                                                 ;9297B1;
-    db $68                                                               ;9297B7;
-    dw $C3FF,$00F1                                                       ;9297B8;
-    db $28                                                               ;9297BC;
-    dw $000E,$05EA                                                       ;9297BD;
-    db $68                                                               ;9297C1;
-    dw $C3F7,$02F1                                                       ;9297C2;
-    db $28                                                               ;9297C6;
+    dw $0004                                                             ;9297B1;
+    %spritemapEntry(0, $0A, $EE, 0, 1, 2, 4, $04)
+    %spritemapEntry(1, $43FF, $F1, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $0E, $EA, 0, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F7, $F1, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_97C7:
-    dw $0004,$01EA                                                       ;9297C7;
-    db $E9                                                               ;9297CB;
-    dw $2804,$C3F1                                                       ;9297CC;
-    db $F1                                                               ;9297D0;
-    dw $2800,$01EE                                                       ;9297D1;
-    db $ED                                                               ;9297D5;
-    dw $2805,$C3F9                                                       ;9297D6;
-    db $F1                                                               ;9297DA;
-    dw $2802                                                             ;9297DB;
+    dw $0004                                                             ;9297C7;
+    %spritemapEntry(0, $1EA, $E9, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43F1, $F1, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EE, $ED, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F9, $F1, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_97DD:
-    dw $0003,$C3FF                                                       ;9297DD;
-    db $F8                                                               ;9297E1;
-    dw $2800,$0007                                                       ;9297E2;
-    db $F0                                                               ;9297E6;
-    dw $2804,$C3F7                                                       ;9297E7;
-    db $F0                                                               ;9297EB;
-    dw $2802                                                             ;9297EC;
+    dw $0003                                                             ;9297DD;
+    %spritemapEntry(1, $43FF, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $07, $F0, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43F7, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_97EE:
-    dw $0003,$C3F1                                                       ;9297EE;
-    db $F8                                                               ;9297F2;
-    dw $2800,$C3F9                                                       ;9297F3;
-    db $F0                                                               ;9297F7;
-    dw $2802,$C3F1                                                       ;9297F8;
-    db $F0                                                               ;9297FC;
-    dw $2804                                                             ;9297FD;
+    dw $0003                                                             ;9297EE;
+    %spritemapEntry(1, $43F1, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F1, $F0, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_97FF:
-    dw $0005,$01F9                                                       ;9297FF;
-    db $F9                                                               ;929803;
-    dw $2802,$01F9                                                       ;929804;
-    db $F1                                                               ;929808;
-    dw $2803,$01FE                                                       ;929809;
-    db $E1                                                               ;92980D;
-    dw $2804,$01FE                                                       ;92980E;
-    db $E9                                                               ;929812;
-    dw $2805,$C3F9                                                       ;929813;
-    db $F1                                                               ;929817;
-    dw $2800                                                             ;929818;
+    dw $0005                                                             ;9297FF;
+    %spritemapEntry(0, $1F9, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F9, $F1, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FE, $E1, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FE, $E9, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F9, $F1, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_981A:
-    dw $0005,$01FF                                                       ;92981A;
-    db $F9                                                               ;92981E;
-    dw $2802,$01FF                                                       ;92981F;
-    db $F1                                                               ;929823;
-    dw $2803,$01FA                                                       ;929824;
-    db $E1                                                               ;929828;
-    dw $6804,$C3F7                                                       ;929829;
-    db $F1                                                               ;92982D;
-    dw $2800,$01FA                                                       ;92982E;
-    db $E9                                                               ;929832;
-    dw $6805                                                             ;929833;
+    dw $0005                                                             ;92981A;
+    %spritemapEntry(0, $1FF, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FF, $F1, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FA, $E1, 0, 1, 2, 4, $04)
+    %spritemapEntry(1, $43F7, $F1, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1FA, $E9, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_9835:
-    dw $0003,$C3FF                                                       ;929835;
-    db $EE                                                               ;929839;
-    dw $2800,$01F7                                                       ;92983A;
-    db $FE                                                               ;92983E;
-    dw $2804,$C3F7                                                       ;92983F;
-    db $EE                                                               ;929843;
-    dw $2802                                                             ;929844;
+    dw $0003                                                             ;929835;
+    %spritemapEntry(1, $43FF, $EE, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1F7, $FE, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43F7, $EE, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9846:
-    dw $0003,$C3F1                                                       ;929846;
-    db $EE                                                               ;92984A;
-    dw $2800,$0001                                                       ;92984B;
-    db $FE                                                               ;92984F;
-    dw $2804,$C3F9                                                       ;929850;
-    db $EE                                                               ;929854;
-    dw $2802                                                             ;929855;
+    dw $0003                                                             ;929846;
+    %spritemapEntry(1, $43F1, $EE, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $01, $FE, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43F9, $EE, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9857:
-    dw $0005,$000C                                                       ;929857;
-    db $EA                                                               ;92985B;
-    dw $6802,$01FD                                                       ;92985C;
-    db $F8                                                               ;929860;
-    dw $2803,$01FD                                                       ;929861;
-    db $F0                                                               ;929865;
-    dw $2804,$0008                                                       ;929866;
-    db $EE                                                               ;92986A;
-    dw $6805,$C3FB                                                       ;92986B;
-    db $F0                                                               ;92986F;
-    dw $2800                                                             ;929870;
+    dw $0005                                                             ;929857;
+    %spritemapEntry(0, $0C, $EA, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1FD, $F8, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FD, $F0, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $08, $EE, 0, 1, 2, 4, $05)
+    %spritemapEntry(1, $43FB, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9872:
-    dw $0006,$01FB                                                       ;929872;
-    db $FB                                                               ;929876;
-    dw $2802,$01FB                                                       ;929877;
-    db $F3                                                               ;92987B;
-    dw $2803,$01F3                                                       ;92987C;
-    db $F3                                                               ;929880;
-    dw $2804,$01EC                                                       ;929881;
-    db $EA                                                               ;929885;
-    dw $2805,$01F0                                                       ;929886;
-    db $EE                                                               ;92988A;
-    dw $2806,$C3F5                                                       ;92988B;
-    db $F0                                                               ;92988F;
-    dw $2800                                                             ;929890;
+    dw $0006                                                             ;929872;
+    %spritemapEntry(0, $1FB, $FB, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FB, $F3, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F3, $F3, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1EC, $EA, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F0, $EE, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F5, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9892:
-    dw $0005,$01F7                                                       ;929892;
-    db $F1                                                               ;929896;
-    dw $6806,$01F3                                                       ;929897;
-    db $F5                                                               ;92989B;
-    dw $6807,$C3F3                                                       ;92989C;
-    db $F0                                                               ;9298A0;
-    dw $2800,$C3FB                                                       ;9298A1;
-    db $E8                                                               ;9298A5;
-    dw $2802,$C3FB                                                       ;9298A6;
-    db $F0                                                               ;9298AA;
-    dw $2804                                                             ;9298AB;
+    dw $0005                                                             ;929892;
+    %spritemapEntry(0, $1F7, $F1, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1F3, $F5, 0, 1, 2, 4, $07)
+    %spritemapEntry(1, $43F3, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FB, $E8, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43FB, $F0, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_98AD:
-    dw $0005,$0004                                                       ;9298AD;
-    db $F4                                                               ;9298B1;
-    dw $6806,$0000                                                       ;9298B2;
-    db $F8                                                               ;9298B6;
-    dw $6807,$C3F5                                                       ;9298B7;
-    db $E8                                                               ;9298BB;
-    dw $6800,$C3FD                                                       ;9298BC;
-    db $F0                                                               ;9298C0;
-    dw $6802,$C3F5                                                       ;9298C1;
-    db $F0                                                               ;9298C5;
-    dw $6804                                                             ;9298C6;
+    dw $0005                                                             ;9298AD;
+    %spritemapEntry(0, $04, $F4, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $00, $F8, 0, 1, 2, 4, $07)
+    %spritemapEntry(1, $43F5, $E8, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43FD, $F0, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F5, $F0, 0, 1, 2, 4, $04)
 
 SamusSpritemaps_98C8:
-    dw $0007,$01F5                                                       ;9298C8;
-    db $F3                                                               ;9298CC;
-    dw $2802,$01FD                                                       ;9298CD;
-    db $F3                                                               ;9298D1;
-    dw $2803,$01E7                                                       ;9298D2;
-    db $FB                                                               ;9298D6;
-    dw $6804,$C3F6                                                       ;9298D7;
-    db $F0                                                               ;9298DB;
-    dw $2800,$01EF                                                       ;9298DC;
-    db $FB                                                               ;9298E0;
-    dw $6805,$01FE                                                       ;9298E1;
-    db $00                                                               ;9298E5;
-    dw $2806,$01F6                                                       ;9298E6;
-    db $00                                                               ;9298EA;
-    dw $2807                                                             ;9298EB;
+    dw $0007                                                             ;9298C8;
+    %spritemapEntry(0, $1F5, $F3, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FD, $F3, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1E7, $FB, 0, 1, 2, 4, $04)
+    %spritemapEntry(1, $43F6, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EF, $FB, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1FE, $00, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1F6, $00, 0, 0, 2, 4, $07)
 
 SamusSpritemaps_98ED:
-    dw $0007,$01FD                                                       ;9298ED;
-    db $FB                                                               ;9298F1;
-    dw $2802,$0004                                                       ;9298F2;
-    db $F3                                                               ;9298F6;
-    dw $2803,$01FC                                                       ;9298F7;
-    db $F3                                                               ;9298FB;
-    dw $2804,$0011                                                       ;9298FC;
-    db $FB                                                               ;929900;
-    dw $2805,$0002                                                       ;929901;
-    db $00                                                               ;929905;
-    dw $2806,$C3FA                                                       ;929906;
-    db $F0                                                               ;92990A;
-    dw $2800,$0009                                                       ;92990B;
-    db $FB                                                               ;92990F;
-    dw $2807                                                             ;929910;
+    dw $0007                                                             ;9298ED;
+    %spritemapEntry(0, $1FD, $FB, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $04, $F3, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FC, $F3, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $11, $FB, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $02, $00, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43FA, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $09, $FB, 0, 0, 2, 4, $07)
 
 SamusSpritemaps_9912:
-    dw $0004,$C3F9                                                       ;929912;
-    db $F8                                                               ;929916;
-    dw $2800,$C3F9                                                       ;929917;
-    db $F0                                                               ;92991B;
-    dw $2802,$000A                                                       ;92991C;
-    db $FE                                                               ;929920;
-    dw $2804,$0002                                                       ;929921;
-    db $FE                                                               ;929925;
-    dw $2805                                                             ;929926;
+    dw $0004                                                             ;929912;
+    %spritemapEntry(1, $43F9, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $0A, $FE, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $02, $FE, 0, 0, 2, 4, $05)
 
 SamusSpritemaps_9928:
-    dw $0004,$C3F7                                                       ;929928;
-    db $F8                                                               ;92992C;
-    dw $2800,$C3F7                                                       ;92992D;
-    db $F0                                                               ;929931;
-    dw $2802,$01EE                                                       ;929932;
-    db $FE                                                               ;929936;
-    dw $6804,$01F6                                                       ;929937;
-    db $FE                                                               ;92993B;
-    dw $6805                                                             ;92993C;
+    dw $0004                                                             ;929928;
+    %spritemapEntry(1, $43F7, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F7, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1EE, $FE, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FE, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_993E:
-    dw $0004,$01F4                                                       ;92993E;
-    db $E8                                                               ;929942;
-    dw $2806,$C3FC                                                       ;929943;
-    db $E8                                                               ;929947;
-    dw $2800,$C3FC                                                       ;929948;
-    db $F0                                                               ;92994C;
-    dw $2802,$C3F4                                                       ;92994D;
-    db $F0                                                               ;929951;
-    dw $2804                                                             ;929952;
+    dw $0004                                                             ;92993E;
+    %spritemapEntry(0, $1F4, $E8, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43FC, $E8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FC, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F4, $F0, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_9954:
-    dw $0005,$01F4                                                       ;929954;
-    db $00                                                               ;929958;
-    dw $2806,$0004                                                       ;929959;
-    db $F8                                                               ;92995D;
-    dw $2807,$C3FC                                                       ;92995E;
-    db $E8                                                               ;929962;
-    dw $2800,$C3F4                                                       ;929963;
-    db $E8                                                               ;929967;
-    dw $2802,$C3F4                                                       ;929968;
-    db $F0                                                               ;92996C;
-    dw $2804                                                             ;92996D;
+    dw $0005                                                             ;929954;
+    %spritemapEntry(0, $1F4, $00, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $04, $F8, 0, 0, 2, 4, $07)
+    %spritemapEntry(1, $43FC, $E8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F4, $E8, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F4, $F0, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_996F:
-    dw $0001,$01F8                                                       ;92996F;
-    db $F8                                                               ;929973;
-    dw $2C00                                                             ;929974;
+    dw $0001                                                             ;92996F;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 6, $00)
 
 SamusSpritemaps_9976:
-    dw $0002,$C3FF                                                       ;929976;
-    db $F0                                                               ;92997A;
-    dw $6800,$C3F0                                                       ;92997B;
-    db $F0                                                               ;92997F;
-    dw $2800                                                             ;929980;
+    dw $0002                                                             ;929976;
+    %spritemapEntry(1, $43FF, $F0, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9982:
-    dw $0004,$0004                                                       ;929982;
-    db $E8                                                               ;929986;
-    dw $2804,$01FC                                                       ;929987;
-    db $E8                                                               ;92998B;
-    dw $2805,$C3FC                                                       ;92998C;
-    db $F0                                                               ;929990;
-    dw $2800,$C3F4                                                       ;929991;
-    db $F0                                                               ;929995;
-    dw $2802                                                             ;929996;
+    dw $0004                                                             ;929982;
+    %spritemapEntry(0, $04, $E8, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FC, $E8, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43FC, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F4, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9998:
-    dw $0004,$01F5                                                       ;929998;
-    db $E8                                                               ;92999C;
-    dw $6804,$01FD                                                       ;92999D;
-    db $E8                                                               ;9299A1;
-    dw $6805,$C3F2                                                       ;9299A2;
-    db $F0                                                               ;9299A6;
-    dw $2800,$C3FA                                                       ;9299A7;
-    db $F0                                                               ;9299AB;
-    dw $2802                                                             ;9299AC;
+    dw $0004                                                             ;929998;
+    %spritemapEntry(0, $1F5, $E8, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1FD, $E8, 0, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F2, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FA, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_99AE:
-    dw $0006,$01F3                                                       ;9299AE;
-    db $E8                                                               ;9299B2;
-    dw $2802,$0003                                                       ;9299B3;
-    db $E8                                                               ;9299B7;
-    dw $2803,$01FB                                                       ;9299B8;
-    db $E8                                                               ;9299BC;
-    dw $2804,$0003                                                       ;9299BD;
-    db $F8                                                               ;9299C1;
-    dw $2805,$0003                                                       ;9299C2;
-    db $F0                                                               ;9299C6;
-    dw $2806,$C3F3                                                       ;9299C7;
-    db $F0                                                               ;9299CB;
-    dw $2800                                                             ;9299CC;
+    dw $0006                                                             ;9299AE;
+    %spritemapEntry(0, $1F3, $E8, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $03, $E8, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FB, $E8, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $03, $F8, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $03, $F0, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F3, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_99CE:
-    dw $0005,$0004                                                       ;9299CE;
-    db $E8                                                               ;9299D2;
-    dw $2802,$01FC                                                       ;9299D3;
-    db $E8                                                               ;9299D7;
-    dw $2803,$01F4                                                       ;9299D8;
-    db $F8                                                               ;9299DC;
-    dw $2804,$01F4                                                       ;9299DD;
-    db $F0                                                               ;9299E1;
-    dw $2805,$C3FC                                                       ;9299E2;
-    db $F0                                                               ;9299E6;
-    dw $2800                                                             ;9299E7;
+    dw $0005                                                             ;9299CE;
+    %spritemapEntry(0, $04, $E8, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FC, $E8, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F4, $F8, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F4, $F0, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43FC, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_99E9:
-    dw $0004,$0004                                                       ;9299E9;
-    db $E8                                                               ;9299ED;
-    dw $2806,$C3F4                                                       ;9299EE;
-    db $E8                                                               ;9299F2;
-    dw $2800,$C3F4                                                       ;9299F3;
-    db $F0                                                               ;9299F7;
-    dw $2802,$C3FC                                                       ;9299F8;
-    db $F0                                                               ;9299FC;
-    dw $2804                                                             ;9299FD;
+    dw $0004                                                             ;9299E9;
+    %spritemapEntry(0, $04, $E8, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F4, $E8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F4, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43FC, $F0, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_99FF:
-    dw $0006,$01E2                                                       ;9299FF;
-    db $F4                                                               ;929A03;
-    dw $6804,$01EA                                                       ;929A04;
-    db $F4                                                               ;929A08;
-    dw $6805,$C3EC                                                       ;929A09;
-    db $F0                                                               ;929A0D;
-    dw $2800,$0004                                                       ;929A0E;
-    db $08                                                               ;929A12;
-    dw $2806,$0004                                                       ;929A13;
-    db $00                                                               ;929A17;
-    dw $2807,$C3FC                                                       ;929A18;
-    db $F0                                                               ;929A1C;
-    dw $2802                                                             ;929A1D;
+    dw $0006                                                             ;9299FF;
+    %spritemapEntry(0, $1E2, $F4, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1EA, $F4, 0, 1, 2, 4, $05)
+    %spritemapEntry(1, $43EC, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $04, $08, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $04, $00, 0, 0, 2, 4, $07)
+    %spritemapEntry(1, $43FC, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9A1F:
-    dw $0006,$0015                                                       ;929A1F;
-    db $F4                                                               ;929A23;
-    dw $2804,$000D                                                       ;929A24;
-    db $F4                                                               ;929A28;
-    dw $2805,$01F4                                                       ;929A29;
-    db $08                                                               ;929A2D;
-    dw $2806,$01F4                                                       ;929A2E;
-    db $00                                                               ;929A32;
-    dw $2807,$C204                                                       ;929A33;
-    db $F0                                                               ;929A37;
-    dw $2800,$C3F4                                                       ;929A38;
-    db $F0                                                               ;929A3C;
-    dw $2802                                                             ;929A3D;
+    dw $0006                                                             ;929A1F;
+    %spritemapEntry(0, $15, $F4, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $0D, $F4, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F4, $08, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1F4, $00, 0, 0, 2, 4, $07)
+    %spritemapEntry(1, $4204, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F4, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9A3F:
-    dw $0002,$C3FA                                                       ;929A3F;
-    db $F8                                                               ;929A43;
-    dw $2800,$C3FA                                                       ;929A44;
-    db $F0                                                               ;929A48;
-    dw $2802                                                             ;929A49;
+    dw $0002                                                             ;929A3F;
+    %spritemapEntry(1, $43FA, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FA, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9A4B:
-    dw $0002,$C3F8                                                       ;929A4B;
-    db $F8                                                               ;929A4F;
-    dw $2800,$C3F8                                                       ;929A50;
-    db $F0                                                               ;929A54;
-    dw $2802                                                             ;929A55;
+    dw $0002                                                             ;929A4B;
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9A57:
-    dw $0002,$C3F6                                                       ;929A57;
-    db $F8                                                               ;929A5B;
-    dw $2800,$C3F6                                                       ;929A5C;
-    db $F0                                                               ;929A60;
-    dw $2802                                                             ;929A61;
+    dw $0002                                                             ;929A57;
+    %spritemapEntry(1, $43F6, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F6, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9A63:
-    dw $0002,$C3F8                                                       ;929A63;
-    db $F8                                                               ;929A67;
-    dw $2800,$C3F8                                                       ;929A68;
-    db $F0                                                               ;929A6C;
-    dw $2802                                                             ;929A6D;
+    dw $0002                                                             ;929A63;
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9A6F:
-    dw $0002,$C3FC                                                       ;929A6F;
-    db $F0                                                               ;929A73;
-    dw $2800,$C3F4                                                       ;929A74;
-    db $F0                                                               ;929A78;
-    dw $2802                                                             ;929A79;
+    dw $0002                                                             ;929A6F;
+    %spritemapEntry(1, $43FC, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F4, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9A7B:
-    dw $0002,$C3FC                                                       ;929A7B;
-    db $F0                                                               ;929A7F;
-    dw $2800,$C204                                                       ;929A80;
-    db $F0                                                               ;929A84;
-    dw $2802                                                             ;929A85;
+    dw $0002                                                             ;929A7B;
+    %spritemapEntry(1, $43FC, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $4204, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9A87:
-    dw $0002,$C3F4                                                       ;929A87;
-    db $F0                                                               ;929A8B;
-    dw $6800,$C3EC                                                       ;929A8C;
-    db $F0                                                               ;929A90;
-    dw $6802                                                             ;929A91;
+    dw $0002                                                             ;929A87;
+    %spritemapEntry(1, $43F4, $F0, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43EC, $F0, 0, 1, 2, 4, $02)
 
 SamusSpritemaps_9A93:
-    dw $0005,$01ED                                                       ;929A93;
-    db $F8                                                               ;929A97;
-    dw $6806,$01F1                                                       ;929A98;
-    db $F4                                                               ;929A9C;
-    dw $6807,$C200                                                       ;929A9D;
-    db $F8                                                               ;929AA1;
-    dw $6800,$C3F0                                                       ;929AA2;
-    db $F0                                                               ;929AA6;
-    dw $6802,$C200                                                       ;929AA7;
-    db $F0                                                               ;929AAB;
-    dw $6804                                                             ;929AAC;
+    dw $0005                                                             ;929A93;
+    %spritemapEntry(0, $1ED, $F8, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1F1, $F4, 0, 1, 2, 4, $07)
+    %spritemapEntry(1, $4200, $F8, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $F0, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $04)
 
 SamusSpritemaps_9AAE:
-    dw $0005,$01F6                                                       ;929AAE;
-    db $FC                                                               ;929AB2;
-    dw $6806,$01F2                                                       ;929AB3;
-    db $00                                                               ;929AB7;
-    dw $6807,$C3F0                                                       ;929AB8;
-    db $F8                                                               ;929ABC;
-    dw $2800,$C200                                                       ;929ABD;
-    db $F0                                                               ;929AC1;
-    dw $2802,$C3F0                                                       ;929AC2;
-    db $F0                                                               ;929AC6;
-    dw $2804                                                             ;929AC7;
+    dw $0005                                                             ;929AAE;
+    %spritemapEntry(0, $1F6, $FC, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1F2, $00, 0, 1, 2, 4, $07)
+    %spritemapEntry(1, $43F0, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $4200, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_9AC9:
-    dw $0001,$01F8                                                       ;929AC9;
-    db $F8                                                               ;929ACD;
-    dw $3800                                                             ;929ACE;
+    dw $0001                                                             ;929AC9;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 4, $00)
 
 SamusSpritemaps_9AD0:
-    dw $0001,$01F8                                                       ;929AD0;
-    db $F8                                                               ;929AD4;
-    dw $3800                                                             ;929AD5;
+    dw $0001                                                             ;929AD0;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 4, $00)
 
 SamusSpritemaps_9AD7:
-    dw $0006,$01F8                                                       ;929AD7;
-    db $00                                                               ;929ADB;
-    dw $2802,$0004                                                       ;929ADC;
-    db $E8                                                               ;929AE0;
-    dw $2803,$01FC                                                       ;929AE1;
-    db $E8                                                               ;929AE5;
-    dw $2804,$0004                                                       ;929AE6;
-    db $F8                                                               ;929AEA;
-    dw $2805,$0004                                                       ;929AEB;
-    db $F0                                                               ;929AEF;
-    dw $2806,$C3F4                                                       ;929AF0;
-    db $F0                                                               ;929AF4;
-    dw $2800                                                             ;929AF5;
+    dw $0006                                                             ;929AD7;
+    %spritemapEntry(0, $1F8, $00, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $04, $E8, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FC, $E8, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $04, $F8, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $04, $F0, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F4, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9AF7:
-    dw $0006,$01F7                                                       ;929AF7;
-    db $00                                                               ;929AFB;
-    dw $2802,$01F6                                                       ;929AFC;
-    db $E8                                                               ;929B00;
-    dw $6803,$01FE                                                       ;929B01;
-    db $E8                                                               ;929B05;
-    dw $6804,$01F3                                                       ;929B06;
-    db $F8                                                               ;929B0A;
-    dw $2805,$01F3                                                       ;929B0B;
-    db $F0                                                               ;929B0F;
-    dw $2806,$C3FB                                                       ;929B10;
-    db $F0                                                               ;929B14;
-    dw $2800                                                             ;929B15;
+    dw $0006                                                             ;929AF7;
+    %spritemapEntry(0, $1F7, $00, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F6, $E8, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1FE, $E8, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F3, $F8, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F3, $F0, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43FB, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9B17:
-    dw $0004,$01FF                                                       ;929B17;
-    db $05                                                               ;929B1B;
-    dw $E804,$01FF                                                       ;929B1C;
-    db $0D                                                               ;929B20;
-    dw $E805,$C3F8                                                       ;929B21;
-    db $F0                                                               ;929B25;
-    dw $2800,$C3F8                                                       ;929B26;
-    db $F8                                                               ;929B2A;
-    dw $2802                                                             ;929B2B;
+    dw $0004                                                             ;929B17;
+    %spritemapEntry(0, $1FF, $05, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $1FF, $0D, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9B2D:
-    dw $0004,$01F8                                                       ;929B2D;
-    db $05                                                               ;929B31;
-    dw $A804,$01F8                                                       ;929B32;
-    db $0D                                                               ;929B36;
-    dw $A805,$C3F8                                                       ;929B37;
-    db $F0                                                               ;929B3B;
-    dw $2800,$C3F8                                                       ;929B3C;
-    db $F8                                                               ;929B40;
-    dw $2802                                                             ;929B41;
+    dw $0004                                                             ;929B2D;
+    %spritemapEntry(0, $1F8, $05, 1, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F8, $0D, 1, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9B43:
-    dw $0004,$C3F4                                                       ;929B43;
-    db $F0                                                               ;929B47;
-    dw $2800,$000C                                                       ;929B48;
-    db $08                                                               ;929B4C;
-    dw $2804,$000C                                                       ;929B4D;
-    db $00                                                               ;929B51;
-    dw $2805,$C204                                                       ;929B52;
-    db $F0                                                               ;929B56;
-    dw $2802                                                             ;929B57;
+    dw $0004                                                             ;929B43;
+    %spritemapEntry(1, $43F4, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $0C, $08, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $0C, $00, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $4204, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9B59:
-    dw $0004,$C3FC                                                       ;929B59;
-    db $F0                                                               ;929B5D;
-    dw $2800,$01EC                                                       ;929B5E;
-    db $08                                                               ;929B62;
-    dw $2804,$01EC                                                       ;929B63;
-    db $00                                                               ;929B67;
-    dw $2805,$C3EC                                                       ;929B68;
-    db $F0                                                               ;929B6C;
-    dw $2802                                                             ;929B6D;
+    dw $0004                                                             ;929B59;
+    %spritemapEntry(1, $43FC, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EC, $08, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1EC, $00, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43EC, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9B6F:
-    dw $0003,$0001                                                       ;929B6F;
-    db $FE                                                               ;929B73;
-    dw $2802,$01F9                                                       ;929B74;
-    db $FE                                                               ;929B78;
-    dw $2803,$C3F7                                                       ;929B79;
-    db $F0                                                               ;929B7D;
-    dw $2800                                                             ;929B7E;
+    dw $0003                                                             ;929B6F;
+    %spritemapEntry(0, $01, $FE, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F9, $FE, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F7, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9B80:
-    dw $0002,$C3F9                                                       ;929B80;
-    db $F8                                                               ;929B84;
-    dw $2800,$C3F9                                                       ;929B85;
-    db $F0                                                               ;929B89;
-    dw $2802                                                             ;929B8A;
+    dw $0002                                                             ;929B80;
+    %spritemapEntry(1, $43F9, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9B8C:
-    dw $0004,$01FE                                                       ;929B8C;
-    db $03                                                               ;929B90;
-    dw $2804,$01FA                                                       ;929B91;
-    db $FF                                                               ;929B95;
-    dw $2805,$C3F7                                                       ;929B96;
-    db $F8                                                               ;929B9A;
-    dw $2800,$C3F7                                                       ;929B9B;
-    db $F0                                                               ;929B9F;
-    dw $2802                                                             ;929BA0;
+    dw $0004                                                             ;929B8C;
+    %spritemapEntry(0, $1FE, $03, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FA, $FF, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F7, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F7, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9BA2:
-    dw $0002,$C3F9                                                       ;929BA2;
-    db $F8                                                               ;929BA6;
-    dw $2800,$C3F9                                                       ;929BA7;
-    db $F0                                                               ;929BAB;
-    dw $2802                                                             ;929BAC;
+    dw $0002                                                             ;929BA2;
+    %spritemapEntry(1, $43F9, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9BAE:
-    dw $0003,$01FB                                                       ;929BAE;
-    db $00                                                               ;929BB2;
-    dw $2802,$01F7                                                       ;929BB3;
-    db $FC                                                               ;929BB7;
-    dw $2803,$C3F7                                                       ;929BB8;
-    db $F0                                                               ;929BBC;
-    dw $2800                                                             ;929BBD;
+    dw $0003                                                             ;929BAE;
+    %spritemapEntry(0, $1FB, $00, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F7, $FC, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F7, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9BBF:
-    dw $0002,$C3F9                                                       ;929BBF;
-    db $F8                                                               ;929BC3;
-    dw $2800,$C3F9                                                       ;929BC4;
-    db $F0                                                               ;929BC8;
-    dw $2802                                                             ;929BC9;
+    dw $0002                                                             ;929BBF;
+    %spritemapEntry(1, $43F9, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_9BCB:
-    dw $0006,$01FD                                                       ;929BCB;
-    db $F9                                                               ;929BCF;
-    dw $2802,$0005                                                       ;929BD0;
-    db $F1                                                               ;929BD4;
-    dw $2803,$01FD                                                       ;929BD5;
-    db $F1                                                               ;929BD9;
-    dw $2804,$000B                                                       ;929BDA;
-    db $00                                                               ;929BDE;
-    dw $2805,$0007                                                       ;929BDF;
-    db $FC                                                               ;929BE3;
-    dw $2806,$C3FA                                                       ;929BE4;
-    db $EF                                                               ;929BE8;
-    dw $2800                                                             ;929BE9;
+    dw $0006                                                             ;929BCB;
+    %spritemapEntry(0, $1FD, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $05, $F1, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FD, $F1, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $0B, $00, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $07, $FC, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43FA, $EF, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9BEB:
-    dw $0006,$01F1                                                       ;929BEB;
-    db $FC                                                               ;929BEF;
-    dw $6802,$01ED                                                       ;929BF0;
-    db $00                                                               ;929BF4;
-    dw $6803,$01FC                                                       ;929BF5;
-    db $F9                                                               ;929BF9;
-    dw $2804,$01F4                                                       ;929BFA;
-    db $F1                                                               ;929BFE;
-    dw $2805,$01FC                                                       ;929BFF;
-    db $F1                                                               ;929C03;
-    dw $2806,$C3F6                                                       ;929C04;
-    db $EF                                                               ;929C08;
-    dw $2800                                                             ;929C09;
+    dw $0006                                                             ;929BEB;
+    %spritemapEntry(0, $1F1, $FC, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1ED, $00, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1FC, $F9, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F4, $F1, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1FC, $F1, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F6, $EF, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9C0B:
-    dw $0005,$01F9                                                       ;929C0B;
-    db $F0                                                               ;929C0F;
-    dw $6802,$0001                                                       ;929C10;
-    db $F0                                                               ;929C14;
-    dw $6803,$C3F9                                                       ;929C15;
-    db $F8                                                               ;929C19;
-    dw $2800,$000A                                                       ;929C1A;
-    db $FD                                                               ;929C1E;
-    dw $2804,$0002                                                       ;929C1F;
-    db $FD                                                               ;929C23;
-    dw $2805                                                             ;929C24;
+    dw $0005                                                             ;929C0B;
+    %spritemapEntry(0, $1F9, $F0, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $01, $F0, 0, 1, 2, 4, $03)
+    %spritemapEntry(1, $43F9, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $0A, $FD, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $02, $FD, 0, 0, 2, 4, $05)
 
 SamusSpritemaps_9C26:
-    dw $0005,$01F9                                                       ;929C26;
-    db $F0                                                               ;929C2A;
-    dw $6802,$0001                                                       ;929C2B;
-    db $F0                                                               ;929C2F;
-    dw $6803,$C3F9                                                       ;929C30;
-    db $F8                                                               ;929C34;
-    dw $2800,$000A                                                       ;929C35;
-    db $FD                                                               ;929C39;
-    dw $2804,$0002                                                       ;929C3A;
-    db $FD                                                               ;929C3E;
-    dw $2805                                                             ;929C3F;
+    dw $0005                                                             ;929C26;
+    %spritemapEntry(0, $1F9, $F0, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $01, $F0, 0, 1, 2, 4, $03)
+    %spritemapEntry(1, $43F9, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $0A, $FD, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $02, $FD, 0, 0, 2, 4, $05)
 
 SamusSpritemaps_9C41:
-    dw $0005,$01F9                                                       ;929C41;
-    db $F0                                                               ;929C45;
-    dw $6802,$0001                                                       ;929C46;
-    db $F0                                                               ;929C4A;
-    dw $6803,$C3F9                                                       ;929C4B;
-    db $F8                                                               ;929C4F;
-    dw $2800,$000A                                                       ;929C50;
-    db $FD                                                               ;929C54;
-    dw $2804,$0002                                                       ;929C55;
-    db $FD                                                               ;929C59;
-    dw $2805                                                             ;929C5A;
+    dw $0005                                                             ;929C41;
+    %spritemapEntry(0, $1F9, $F0, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $01, $F0, 0, 1, 2, 4, $03)
+    %spritemapEntry(1, $43F9, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $0A, $FD, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $02, $FD, 0, 0, 2, 4, $05)
 
 SamusSpritemaps_9C5C:
-    dw $0005,$01F9                                                       ;929C5C;
-    db $F0                                                               ;929C60;
-    dw $6802,$0001                                                       ;929C61;
-    db $F0                                                               ;929C65;
-    dw $6803,$C3F9                                                       ;929C66;
-    db $F8                                                               ;929C6A;
-    dw $2800,$000A                                                       ;929C6B;
-    db $FD                                                               ;929C6F;
-    dw $2804,$0002                                                       ;929C70;
-    db $FD                                                               ;929C74;
-    dw $2805                                                             ;929C75;
+    dw $0005                                                             ;929C5C;
+    %spritemapEntry(0, $1F9, $F0, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $01, $F0, 0, 1, 2, 4, $03)
+    %spritemapEntry(1, $43F9, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $0A, $FD, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $02, $FD, 0, 0, 2, 4, $05)
 
 SamusSpritemaps_9C77:
-    dw $0005,$01F7                                                       ;929C77;
-    db $F0                                                               ;929C7B;
-    dw $2802,$01FF                                                       ;929C7C;
-    db $F0                                                               ;929C80;
-    dw $2803,$C3F7                                                       ;929C81;
-    db $F8                                                               ;929C85;
-    dw $2800,$01EE                                                       ;929C86;
-    db $FD                                                               ;929C8A;
-    dw $6804,$01F6                                                       ;929C8B;
-    db $FD                                                               ;929C8F;
-    dw $6805                                                             ;929C90;
+    dw $0005                                                             ;929C77;
+    %spritemapEntry(0, $1F7, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FF, $F0, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F7, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EE, $FD, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FD, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_9C92:
-    dw $0005,$01F7                                                       ;929C92;
-    db $F0                                                               ;929C96;
-    dw $2802,$01FF                                                       ;929C97;
-    db $F0                                                               ;929C9B;
-    dw $2803,$C3F7                                                       ;929C9C;
-    db $F8                                                               ;929CA0;
-    dw $2800,$01EE                                                       ;929CA1;
-    db $FD                                                               ;929CA5;
-    dw $6804,$01F6                                                       ;929CA6;
-    db $FD                                                               ;929CAA;
-    dw $6805                                                             ;929CAB;
+    dw $0005                                                             ;929C92;
+    %spritemapEntry(0, $1F7, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FF, $F0, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F7, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EE, $FD, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FD, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_9CAD:
-    dw $0005,$01FF                                                       ;929CAD;
-    db $F0                                                               ;929CB1;
-    dw $2802,$01F7                                                       ;929CB2;
-    db $F0                                                               ;929CB6;
-    dw $2803,$C3F7                                                       ;929CB7;
-    db $F8                                                               ;929CBB;
-    dw $2800,$01EE                                                       ;929CBC;
-    db $FD                                                               ;929CC0;
-    dw $6804,$01F6                                                       ;929CC1;
-    db $FD                                                               ;929CC5;
-    dw $6805                                                             ;929CC6;
+    dw $0005                                                             ;929CAD;
+    %spritemapEntry(0, $1FF, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F7, $F0, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F7, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EE, $FD, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FD, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_9CC8:
-    dw $0005,$01FF                                                       ;929CC8;
-    db $F0                                                               ;929CCC;
-    dw $2802,$01F7                                                       ;929CCD;
-    db $F0                                                               ;929CD1;
-    dw $2803,$C3F7                                                       ;929CD2;
-    db $F8                                                               ;929CD6;
-    dw $2800,$01EE                                                       ;929CD7;
-    db $FD                                                               ;929CDB;
-    dw $6804,$01F6                                                       ;929CDC;
-    db $FD                                                               ;929CE0;
-    dw $6805                                                             ;929CE1;
+    dw $0005                                                             ;929CC8;
+    %spritemapEntry(0, $1FF, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F7, $F0, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F7, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EE, $FD, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FD, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_9CE3:
-    dw $0005,$000C                                                       ;929CE3;
-    db $E9                                                               ;929CE7;
-    dw $6802,$01FD                                                       ;929CE8;
-    db $F6                                                               ;929CEC;
-    dw $2803,$01FD                                                       ;929CED;
-    db $EE                                                               ;929CF1;
-    dw $2804,$0008                                                       ;929CF2;
-    db $ED                                                               ;929CF6;
-    dw $6805,$C3FB                                                       ;929CF7;
-    db $EF                                                               ;929CFB;
-    dw $2800                                                             ;929CFC;
+    dw $0005                                                             ;929CE3;
+    %spritemapEntry(0, $0C, $E9, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1FD, $F6, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FD, $EE, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $08, $ED, 0, 1, 2, 4, $05)
+    %spritemapEntry(1, $43FB, $EF, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9CFE:
-    dw $0006,$01FB                                                       ;929CFE;
-    db $F9                                                               ;929D02;
-    dw $2802,$01FB                                                       ;929D03;
-    db $F1                                                               ;929D07;
-    dw $2803,$01F3                                                       ;929D08;
-    db $F1                                                               ;929D0C;
-    dw $2804,$01EC                                                       ;929D0D;
-    db $E9                                                               ;929D11;
-    dw $2805,$01F0                                                       ;929D12;
-    db $ED                                                               ;929D16;
-    dw $2806,$C3F5                                                       ;929D17;
-    db $EF                                                               ;929D1B;
-    dw $2800                                                             ;929D1C;
+    dw $0006                                                             ;929CFE;
+    %spritemapEntry(0, $1FB, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FB, $F1, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F3, $F1, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1EC, $E9, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F0, $ED, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F5, $EF, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9D1E:
-    dw $0007,$01F5                                                       ;929D1E;
-    db $F1                                                               ;929D22;
-    dw $2802,$01FD                                                       ;929D23;
-    db $F1                                                               ;929D27;
-    dw $2803,$01E7                                                       ;929D28;
-    db $FA                                                               ;929D2C;
-    dw $6804,$C3F6                                                       ;929D2D;
-    db $EF                                                               ;929D31;
-    dw $2800,$01EF                                                       ;929D32;
-    db $FA                                                               ;929D36;
-    dw $6805,$01FE                                                       ;929D37;
-    db $FF                                                               ;929D3B;
-    dw $2806,$01F6                                                       ;929D3C;
-    db $FF                                                               ;929D40;
-    dw $2807                                                             ;929D41;
+    dw $0007                                                             ;929D1E;
+    %spritemapEntry(0, $1F5, $F1, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FD, $F1, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1E7, $FA, 0, 1, 2, 4, $04)
+    %spritemapEntry(1, $43F6, $EF, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EF, $FA, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1FE, $FF, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1F6, $FF, 0, 0, 2, 4, $07)
 
 SamusSpritemaps_9D43:
-    dw $0007,$01FC                                                       ;929D43;
-    db $F9                                                               ;929D47;
-    dw $2802,$0004                                                       ;929D48;
-    db $F1                                                               ;929D4C;
-    dw $2803,$01FC                                                       ;929D4D;
-    db $F1                                                               ;929D51;
-    dw $2804,$0011                                                       ;929D52;
-    db $FA                                                               ;929D56;
-    dw $2805,$0002                                                       ;929D57;
-    db $FF                                                               ;929D5B;
-    dw $2806,$C3FA                                                       ;929D5C;
-    db $EF                                                               ;929D60;
-    dw $2800,$0009                                                       ;929D61;
-    db $FA                                                               ;929D65;
-    dw $2807                                                             ;929D66;
+    dw $0007                                                             ;929D43;
+    %spritemapEntry(0, $1FC, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $04, $F1, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FC, $F1, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $11, $FA, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $02, $FF, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43FA, $EF, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $09, $FA, 0, 0, 2, 4, $07)
 
 SamusSpritemaps_9D68:
-    dw $0007,$01F5                                                       ;929D68;
-    db $F1                                                               ;929D6C;
-    dw $2802,$01FD                                                       ;929D6D;
-    db $F1                                                               ;929D71;
-    dw $2803,$01E7                                                       ;929D72;
-    db $F9                                                               ;929D76;
-    dw $6804,$C3F6                                                       ;929D77;
-    db $EE                                                               ;929D7B;
-    dw $2800,$01EF                                                       ;929D7C;
-    db $F9                                                               ;929D80;
-    dw $6805,$01FE                                                       ;929D81;
-    db $FE                                                               ;929D85;
-    dw $2806,$01F6                                                       ;929D86;
-    db $FE                                                               ;929D8A;
-    dw $2807                                                             ;929D8B;
+    dw $0007                                                             ;929D68;
+    %spritemapEntry(0, $1F5, $F1, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FD, $F1, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1E7, $F9, 0, 1, 2, 4, $04)
+    %spritemapEntry(1, $43F6, $EE, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EF, $F9, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1FE, $FE, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1F6, $FE, 0, 0, 2, 4, $07)
 
 SamusSpritemaps_9D8D:
-    dw $0007,$01FC                                                       ;929D8D;
-    db $F9                                                               ;929D91;
-    dw $2802,$0004                                                       ;929D92;
-    db $F1                                                               ;929D96;
-    dw $2803,$01FC                                                       ;929D97;
-    db $F1                                                               ;929D9B;
-    dw $2804,$0011                                                       ;929D9C;
-    db $F9                                                               ;929DA0;
-    dw $2805,$0002                                                       ;929DA1;
-    db $FE                                                               ;929DA5;
-    dw $2806,$C3FA                                                       ;929DA6;
-    db $EE                                                               ;929DAA;
-    dw $2800,$0009                                                       ;929DAB;
-    db $F9                                                               ;929DAF;
-    dw $2807                                                             ;929DB0;
+    dw $0007                                                             ;929D8D;
+    %spritemapEntry(0, $1FC, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $04, $F1, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FC, $F1, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $11, $F9, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $02, $FE, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43FA, $EE, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $09, $F9, 0, 0, 2, 4, $07)
 
 SamusSpritemaps_9DB2:
-    dw $0005,$000C                                                       ;929DB2;
-    db $E8                                                               ;929DB6;
-    dw $6802,$01FD                                                       ;929DB7;
-    db $F6                                                               ;929DBB;
-    dw $2803,$01FD                                                       ;929DBC;
-    db $EE                                                               ;929DC0;
-    dw $2804,$0008                                                       ;929DC1;
-    db $EC                                                               ;929DC5;
-    dw $6805,$C3FB                                                       ;929DC6;
-    db $EE                                                               ;929DCA;
-    dw $2800                                                             ;929DCB;
+    dw $0005                                                             ;929DB2;
+    %spritemapEntry(0, $0C, $E8, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1FD, $F6, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FD, $EE, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $08, $EC, 0, 1, 2, 4, $05)
+    %spritemapEntry(1, $43FB, $EE, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9DCD:
-    dw $0006,$01FB                                                       ;929DCD;
-    db $F9                                                               ;929DD1;
-    dw $2802,$01FB                                                       ;929DD2;
-    db $F1                                                               ;929DD6;
-    dw $2803,$01F3                                                       ;929DD7;
-    db $F1                                                               ;929DDB;
-    dw $2804,$01EC                                                       ;929DDC;
-    db $E8                                                               ;929DE0;
-    dw $2805,$01F0                                                       ;929DE1;
-    db $EC                                                               ;929DE5;
-    dw $2806,$C3F5                                                       ;929DE6;
-    db $EE                                                               ;929DEA;
-    dw $2800                                                             ;929DEB;
+    dw $0006                                                             ;929DCD;
+    %spritemapEntry(0, $1FB, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FB, $F1, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F3, $F1, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1EC, $E8, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F0, $EC, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F5, $EE, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9DED:
-    dw $0006,$01FD                                                       ;929DED;
-    db $F9                                                               ;929DF1;
-    dw $2802,$0005                                                       ;929DF2;
-    db $F1                                                               ;929DF6;
-    dw $2803,$01FD                                                       ;929DF7;
-    db $F1                                                               ;929DFB;
-    dw $2804,$000B                                                       ;929DFC;
-    db $FF                                                               ;929E00;
-    dw $2805,$0007                                                       ;929E01;
-    db $FB                                                               ;929E05;
-    dw $2806,$C3FA                                                       ;929E06;
-    db $EE                                                               ;929E0A;
-    dw $2800                                                             ;929E0B;
+    dw $0006                                                             ;929DED;
+    %spritemapEntry(0, $1FD, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $05, $F1, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FD, $F1, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $0B, $FF, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $07, $FB, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43FA, $EE, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9E0D:
-    dw $0006,$01F1                                                       ;929E0D;
-    db $FB                                                               ;929E11;
-    dw $6802,$01FC                                                       ;929E12;
-    db $F9                                                               ;929E16;
-    dw $2803,$01F4                                                       ;929E17;
-    db $F1                                                               ;929E1B;
-    dw $2804,$01FC                                                       ;929E1C;
-    db $F1                                                               ;929E20;
-    dw $2805,$01ED                                                       ;929E21;
-    db $FF                                                               ;929E25;
-    dw $6806,$C3F6                                                       ;929E26;
-    db $EE                                                               ;929E2A;
-    dw $2800                                                             ;929E2B;
+    dw $0006                                                             ;929E0D;
+    %spritemapEntry(0, $1F1, $FB, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1FC, $F9, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F4, $F1, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FC, $F1, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1ED, $FF, 0, 1, 2, 4, $06)
+    %spritemapEntry(1, $43F6, $EE, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9E2D:
-    dw $0005,$0001                                                       ;929E2D;
-    db $FF                                                               ;929E31;
-    dw $2802,$01F9                                                       ;929E32;
-    db $FF                                                               ;929E36;
-    dw $2803,$C3F9                                                       ;929E37;
-    db $EF                                                               ;929E3B;
-    dw $2800,$000A                                                       ;929E3C;
-    db $FC                                                               ;929E40;
-    dw $2804,$0002                                                       ;929E41;
-    db $FC                                                               ;929E45;
-    dw $2805                                                             ;929E46;
+    dw $0005                                                             ;929E2D;
+    %spritemapEntry(0, $01, $FF, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F9, $FF, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F9, $EF, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $0A, $FC, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $02, $FC, 0, 0, 2, 4, $05)
 
 SamusSpritemaps_9E48:
-    dw $0005,$01FF                                                       ;929E48;
-    db $FF                                                               ;929E4C;
-    dw $2802,$01F7                                                       ;929E4D;
-    db $FF                                                               ;929E51;
-    dw $2803,$C3F7                                                       ;929E52;
-    db $EF                                                               ;929E56;
-    dw $2800,$01EE                                                       ;929E57;
-    db $FC                                                               ;929E5B;
-    dw $6804,$01F6                                                       ;929E5C;
-    db $FC                                                               ;929E60;
-    dw $6805                                                             ;929E61;
+    dw $0005                                                             ;929E48;
+    %spritemapEntry(0, $1FF, $FF, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F7, $FF, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F7, $EF, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EE, $FC, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FC, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_9E63:
-    dw $0006,$0005                                                       ;929E63;
-    db $F7                                                               ;929E67;
-    dw $2802,$01FD                                                       ;929E68;
-    db $F7                                                               ;929E6C;
-    dw $2803,$01F9                                                       ;929E6D;
-    db $F5                                                               ;929E71;
-    dw $2804,$01F9                                                       ;929E72;
-    db $F7                                                               ;929E76;
-    dw $6805,$01F9                                                       ;929E77;
-    db $EF                                                               ;929E7B;
-    dw $6806,$C3FA                                                       ;929E7C;
-    db $F0                                                               ;929E80;
-    dw $6800                                                             ;929E81;
+    dw $0006                                                             ;929E63;
+    %spritemapEntry(0, $05, $F7, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FD, $F7, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F9, $F5, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F9, $F7, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1F9, $EF, 0, 1, 2, 4, $06)
+    %spritemapEntry(1, $43FA, $F0, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_9E83:
-    dw $0005,$0005                                                       ;929E83;
-    db $EF                                                               ;929E87;
-    dw $2802,$01FD                                                       ;929E88;
-    db $EF                                                               ;929E8C;
-    dw $2803,$01F9                                                       ;929E8D;
-    db $F6                                                               ;929E91;
-    dw $6804,$01F9                                                       ;929E92;
-    db $EE                                                               ;929E96;
-    dw $6805,$C3FA                                                       ;929E97;
-    db $F0                                                               ;929E9B;
-    dw $6800                                                             ;929E9C;
+    dw $0005                                                             ;929E83;
+    %spritemapEntry(0, $05, $EF, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FD, $EF, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F9, $F6, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F9, $EE, 0, 1, 2, 4, $05)
+    %spritemapEntry(1, $43FA, $F0, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_9E9E:
-    dw $0005,$01FD                                                       ;929E9E;
-    db $F6                                                               ;929EA2;
-    dw $2802,$01F5                                                       ;929EA3;
-    db $F6                                                               ;929EA7;
-    dw $2803,$01FE                                                       ;929EA8;
-    db $F7                                                               ;929EAC;
-    dw $2804,$01FE                                                       ;929EAD;
-    db $EF                                                               ;929EB1;
-    dw $2805,$C3F6                                                       ;929EB2;
-    db $F0                                                               ;929EB6;
-    dw $2800                                                             ;929EB7;
+    dw $0005                                                             ;929E9E;
+    %spritemapEntry(0, $1FD, $F6, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F5, $F6, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FE, $F7, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FE, $EF, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F6, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9EB9:
-    dw $0005,$01F9                                                       ;929EB9;
-    db $F0                                                               ;929EBD;
-    dw $2802,$01F1                                                       ;929EBE;
-    db $F0                                                               ;929EC2;
-    dw $2803,$01FE                                                       ;929EC3;
-    db $F6                                                               ;929EC7;
-    dw $2804,$01FE                                                       ;929EC8;
-    db $EE                                                               ;929ECC;
-    dw $2805,$C3F6                                                       ;929ECD;
-    db $F0                                                               ;929ED1;
-    dw $2800                                                             ;929ED2;
+    dw $0005                                                             ;929EB9;
+    %spritemapEntry(0, $1F9, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F1, $F0, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FE, $F6, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FE, $EE, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F6, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9ED4:
-    dw $0006,$01FE                                                       ;929ED4;
-    db $F4                                                               ;929ED8;
-    dw $2802,$01F6                                                       ;929ED9;
-    db $F4                                                               ;929EDD;
-    dw $2803,$01F2                                                       ;929EDE;
-    db $02                                                               ;929EE2;
-    dw $2804,$01FA                                                       ;929EE3;
-    db $02                                                               ;929EE7;
-    dw $2805,$01FA                                                       ;929EE8;
-    db $FA                                                               ;929EEC;
-    dw $2806,$C3F6                                                       ;929EED;
-    db $F2                                                               ;929EF1;
-    dw $2800                                                             ;929EF2;
+    dw $0006                                                             ;929ED4;
+    %spritemapEntry(0, $1FE, $F4, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F6, $F4, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F2, $02, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FA, $02, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1FA, $FA, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F6, $F2, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9EF4:
-    dw $0006,$01FD                                                       ;929EF4;
-    db $F5                                                               ;929EF8;
-    dw $2802,$01F5                                                       ;929EF9;
-    db $F5                                                               ;929EFD;
-    dw $2803,$01F3                                                       ;929EFE;
-    db $03                                                               ;929F02;
-    dw $2804,$01FB                                                       ;929F03;
-    db $03                                                               ;929F07;
-    dw $2805,$01FB                                                       ;929F08;
-    db $FB                                                               ;929F0C;
-    dw $2806,$C3F6                                                       ;929F0D;
-    db $F3                                                               ;929F11;
-    dw $2800                                                             ;929F12;
+    dw $0006                                                             ;929EF4;
+    %spritemapEntry(0, $1FD, $F5, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F5, $F5, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F3, $03, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FB, $03, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1FB, $FB, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F6, $F3, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9F14:
-    dw $0006,$01FC                                                       ;929F14;
-    db $F6                                                               ;929F18;
-    dw $2802,$01F4                                                       ;929F19;
-    db $F6                                                               ;929F1D;
-    dw $2803,$01F4                                                       ;929F1E;
-    db $04                                                               ;929F22;
-    dw $2804,$01FC                                                       ;929F23;
-    db $04                                                               ;929F27;
-    dw $2805,$01FC                                                       ;929F28;
-    db $FC                                                               ;929F2C;
-    dw $2806,$C3F6                                                       ;929F2D;
-    db $F4                                                               ;929F31;
-    dw $2800                                                             ;929F32;
+    dw $0006                                                             ;929F14;
+    %spritemapEntry(0, $1FC, $F6, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F4, $F6, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F4, $04, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FC, $04, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F6, $F4, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9F34:
-    dw $0007,$0000                                                       ;929F34;
-    db $00                                                               ;929F38;
-    dw $2802,$0004                                                       ;929F39;
-    db $04                                                               ;929F3D;
-    dw $2803,$01FE                                                       ;929F3E;
-    db $02                                                               ;929F42;
-    dw $6804,$01FA                                                       ;929F43;
-    db $F4                                                               ;929F47;
-    dw $6805,$0002                                                       ;929F48;
-    db $F4                                                               ;929F4C;
-    dw $6806,$01FE                                                       ;929F4D;
-    db $FA                                                               ;929F51;
-    dw $6807,$C3FA                                                       ;929F52;
-    db $F2                                                               ;929F56;
-    dw $6800                                                             ;929F57;
+    dw $0007                                                             ;929F34;
+    %spritemapEntry(0, $00, $00, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $04, $04, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FE, $02, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1FA, $F4, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $02, $F4, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1FE, $FA, 0, 1, 2, 4, $07)
+    %spritemapEntry(1, $43FA, $F2, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_9F59:
-    dw $0007,$01FF                                                       ;929F59;
-    db $01                                                               ;929F5D;
-    dw $2802,$0003                                                       ;929F5E;
-    db $05                                                               ;929F62;
-    dw $2803,$01FB                                                       ;929F63;
-    db $F5                                                               ;929F67;
-    dw $6804,$0003                                                       ;929F68;
-    db $F5                                                               ;929F6C;
-    dw $6805,$01FD                                                       ;929F6D;
-    db $03                                                               ;929F71;
-    dw $6806,$01FD                                                       ;929F72;
-    db $FB                                                               ;929F76;
-    dw $6807,$C3FA                                                       ;929F77;
-    db $F3                                                               ;929F7B;
-    dw $6800                                                             ;929F7C;
+    dw $0007                                                             ;929F59;
+    %spritemapEntry(0, $1FF, $01, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $03, $05, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FB, $F5, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $03, $F5, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1FD, $03, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1FD, $FB, 0, 1, 2, 4, $07)
+    %spritemapEntry(1, $43FA, $F3, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_9F7E:
-    dw $0007,$01FE                                                       ;929F7E;
-    db $02                                                               ;929F82;
-    dw $2802,$0002                                                       ;929F83;
-    db $06                                                               ;929F87;
-    dw $2803,$01FC                                                       ;929F88;
-    db $F6                                                               ;929F8C;
-    dw $6804,$0004                                                       ;929F8D;
-    db $F6                                                               ;929F91;
-    dw $6805,$01FC                                                       ;929F92;
-    db $04                                                               ;929F96;
-    dw $6806,$01FC                                                       ;929F97;
-    db $FC                                                               ;929F9B;
-    dw $6807,$C3FA                                                       ;929F9C;
-    db $F4                                                               ;929FA0;
-    dw $6800                                                             ;929FA1;
+    dw $0007                                                             ;929F7E;
+    %spritemapEntry(0, $1FE, $02, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $02, $06, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FC, $F6, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $04, $F6, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1FC, $04, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 4, $07)
+    %spritemapEntry(1, $43FA, $F4, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_9FA3:
-    dw $0006,$01FE                                                       ;929FA3;
-    db $F4                                                               ;929FA7;
-    dw $2802,$01F6                                                       ;929FA8;
-    db $F4                                                               ;929FAC;
-    dw $2803,$01F2                                                       ;929FAD;
-    db $02                                                               ;929FB1;
-    dw $2804,$01FA                                                       ;929FB2;
-    db $02                                                               ;929FB6;
-    dw $2805,$01FA                                                       ;929FB7;
-    db $FA                                                               ;929FBB;
-    dw $2806,$C3F6                                                       ;929FBC;
-    db $F2                                                               ;929FC0;
-    dw $2800                                                             ;929FC1;
+    dw $0006                                                             ;929FA3;
+    %spritemapEntry(0, $1FE, $F4, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F6, $F4, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F2, $02, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FA, $02, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1FA, $FA, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F6, $F2, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9FC3:
-    dw $0006,$01FD                                                       ;929FC3;
-    db $F5                                                               ;929FC7;
-    dw $2802,$01F5                                                       ;929FC8;
-    db $F5                                                               ;929FCC;
-    dw $2803,$01F3                                                       ;929FCD;
-    db $03                                                               ;929FD1;
-    dw $2804,$01FB                                                       ;929FD2;
-    db $03                                                               ;929FD6;
-    dw $2805,$01FB                                                       ;929FD7;
-    db $FB                                                               ;929FDB;
-    dw $2806,$C3F6                                                       ;929FDC;
-    db $F3                                                               ;929FE0;
-    dw $2800                                                             ;929FE1;
+    dw $0006                                                             ;929FC3;
+    %spritemapEntry(0, $1FD, $F5, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F5, $F5, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F3, $03, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FB, $03, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1FB, $FB, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F6, $F3, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_9FE3:
-    dw $0006,$01FC                                                       ;929FE3;
-    db $F6                                                               ;929FE7;
-    dw $2802,$01F4                                                       ;929FE8;
-    db $F6                                                               ;929FEC;
-    dw $2803,$01F4                                                       ;929FED;
-    db $04                                                               ;929FF1;
-    dw $2804,$01FC                                                       ;929FF2;
-    db $04                                                               ;929FF6;
-    dw $2805,$01FC                                                       ;929FF7;
-    db $FC                                                               ;929FFB;
-    dw $2806,$C3F6                                                       ;929FFC;
-    db $F4                                                               ;92A000;
-    dw $2800                                                             ;92A001;
+    dw $0006                                                             ;929FE3;
+    %spritemapEntry(0, $1FC, $F6, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F4, $F6, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F4, $04, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FC, $04, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F6, $F4, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A003:
-    dw $0007,$0000                                                       ;92A003;
-    db $00                                                               ;92A007;
-    dw $2802,$0004                                                       ;92A008;
-    db $04                                                               ;92A00C;
-    dw $2803,$01FA                                                       ;92A00D;
-    db $F4                                                               ;92A011;
-    dw $6804,$0002                                                       ;92A012;
-    db $F4                                                               ;92A016;
-    dw $6805,$01FE                                                       ;92A017;
-    db $02                                                               ;92A01B;
-    dw $6806,$01FE                                                       ;92A01C;
-    db $FA                                                               ;92A020;
-    dw $6807,$C3FA                                                       ;92A021;
-    db $F2                                                               ;92A025;
-    dw $6800                                                             ;92A026;
+    dw $0007                                                             ;92A003;
+    %spritemapEntry(0, $00, $00, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $04, $04, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FA, $F4, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $02, $F4, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1FE, $02, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1FE, $FA, 0, 1, 2, 4, $07)
+    %spritemapEntry(1, $43FA, $F2, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_A028:
-    dw $0007,$01FF                                                       ;92A028;
-    db $01                                                               ;92A02C;
-    dw $2802,$0003                                                       ;92A02D;
-    db $05                                                               ;92A031;
-    dw $2803,$01FB                                                       ;92A032;
-    db $F5                                                               ;92A036;
-    dw $6804,$0003                                                       ;92A037;
-    db $F5                                                               ;92A03B;
-    dw $6805,$01FD                                                       ;92A03C;
-    db $03                                                               ;92A040;
-    dw $6806,$01FD                                                       ;92A041;
-    db $FB                                                               ;92A045;
-    dw $6807,$C3FA                                                       ;92A046;
-    db $F3                                                               ;92A04A;
-    dw $6800                                                             ;92A04B;
+    dw $0007                                                             ;92A028;
+    %spritemapEntry(0, $1FF, $01, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $03, $05, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FB, $F5, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $03, $F5, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1FD, $03, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1FD, $FB, 0, 1, 2, 4, $07)
+    %spritemapEntry(1, $43FA, $F3, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_A04D:
-    dw $0007,$01FE                                                       ;92A04D;
-    db $02                                                               ;92A051;
-    dw $2802,$0002                                                       ;92A052;
-    db $06                                                               ;92A056;
-    dw $2803,$01FC                                                       ;92A057;
-    db $F6                                                               ;92A05B;
-    dw $6804,$0004                                                       ;92A05C;
-    db $F6                                                               ;92A060;
-    dw $6805,$01FC                                                       ;92A061;
-    db $04                                                               ;92A065;
-    dw $6806,$01FC                                                       ;92A066;
-    db $FC                                                               ;92A06A;
-    dw $6807,$C3FA                                                       ;92A06B;
-    db $F4                                                               ;92A06F;
-    dw $6800                                                             ;92A070;
+    dw $0007                                                             ;92A04D;
+    %spritemapEntry(0, $1FE, $02, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $02, $06, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1FC, $F6, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $04, $F6, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1FC, $04, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 4, $07)
+    %spritemapEntry(1, $43FA, $F4, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_A072:
-    dw $0004,$C3F9                                                       ;92A072;
-    db $F8                                                               ;92A076;
-    dw $2800,$C3F9                                                       ;92A077;
-    db $F0                                                               ;92A07B;
-    dw $2802,$000A                                                       ;92A07C;
-    db $FD                                                               ;92A080;
-    dw $2804,$0002                                                       ;92A081;
-    db $FD                                                               ;92A085;
-    dw $2805                                                             ;92A086;
+    dw $0004                                                             ;92A072;
+    %spritemapEntry(1, $43F9, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $0A, $FD, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $02, $FD, 0, 0, 2, 4, $05)
 
 SamusSpritemaps_A088:
-    dw $0004,$C3F9                                                       ;92A088;
-    db $F8                                                               ;92A08C;
-    dw $2800,$C3F9                                                       ;92A08D;
-    db $F0                                                               ;92A091;
-    dw $2802,$000A                                                       ;92A092;
-    db $FD                                                               ;92A096;
-    dw $2804,$0002                                                       ;92A097;
-    db $FD                                                               ;92A09B;
-    dw $2805                                                             ;92A09C;
+    dw $0004                                                             ;92A088;
+    %spritemapEntry(1, $43F9, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $0A, $FD, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $02, $FD, 0, 0, 2, 4, $05)
 
 SamusSpritemaps_A09E:
-    dw $0004,$C3F9                                                       ;92A09E;
-    db $F8                                                               ;92A0A2;
-    dw $2800,$C3F9                                                       ;92A0A3;
-    db $F0                                                               ;92A0A7;
-    dw $2802,$000A                                                       ;92A0A8;
-    db $FD                                                               ;92A0AC;
-    dw $2804,$0002                                                       ;92A0AD;
-    db $FD                                                               ;92A0B1;
-    dw $2805                                                             ;92A0B2;
+    dw $0004                                                             ;92A09E;
+    %spritemapEntry(1, $43F9, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $0A, $FD, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $02, $FD, 0, 0, 2, 4, $05)
 
 SamusSpritemaps_A0B4:
-    dw $0004,$C3F7                                                       ;92A0B4;
-    db $F8                                                               ;92A0B8;
-    dw $2800,$C3F7                                                       ;92A0B9;
-    db $F0                                                               ;92A0BD;
-    dw $2802,$01EE                                                       ;92A0BE;
-    db $FD                                                               ;92A0C2;
-    dw $6804,$01F6                                                       ;92A0C3;
-    db $FD                                                               ;92A0C7;
-    dw $6805                                                             ;92A0C8;
+    dw $0004                                                             ;92A0B4;
+    %spritemapEntry(1, $43F7, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F7, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1EE, $FD, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FD, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_A0CA:
-    dw $0004,$C3F7                                                       ;92A0CA;
-    db $F8                                                               ;92A0CE;
-    dw $2800,$C3F7                                                       ;92A0CF;
-    db $F0                                                               ;92A0D3;
-    dw $2802,$01EE                                                       ;92A0D4;
-    db $FD                                                               ;92A0D8;
-    dw $6804,$01F6                                                       ;92A0D9;
-    db $FD                                                               ;92A0DD;
-    dw $6805                                                             ;92A0DE;
+    dw $0004                                                             ;92A0CA;
+    %spritemapEntry(1, $43F7, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F7, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1EE, $FD, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FD, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_A0E0:
-    dw $0004,$C3F7                                                       ;92A0E0;
-    db $F8                                                               ;92A0E4;
-    dw $2800,$C3F7                                                       ;92A0E5;
-    db $F0                                                               ;92A0E9;
-    dw $2802,$01EE                                                       ;92A0EA;
-    db $FD                                                               ;92A0EE;
-    dw $6804,$01F6                                                       ;92A0EF;
-    db $FD                                                               ;92A0F3;
-    dw $6805                                                             ;92A0F4;
+    dw $0004                                                             ;92A0E0;
+    %spritemapEntry(1, $43F7, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F7, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1EE, $FD, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FD, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_A0F6:
-    dw $0005,$0001                                                       ;92A0F6;
-    db $00                                                               ;92A0FA;
-    dw $2802,$01F9                                                       ;92A0FB;
-    db $00                                                               ;92A0FF;
-    dw $2803,$C3F9                                                       ;92A100;
-    db $F0                                                               ;92A104;
-    dw $2800,$000A                                                       ;92A105;
-    db $FD                                                               ;92A109;
-    dw $2804,$0002                                                       ;92A10A;
-    db $FD                                                               ;92A10E;
-    dw $2805                                                             ;92A10F;
+    dw $0005                                                             ;92A0F6;
+    %spritemapEntry(0, $01, $00, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F9, $00, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F9, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $0A, $FD, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $02, $FD, 0, 0, 2, 4, $05)
 
 SamusSpritemaps_A111:
-    dw $0005,$01FF                                                       ;92A111;
-    db $00                                                               ;92A115;
-    dw $2802,$01F7                                                       ;92A116;
-    db $00                                                               ;92A11A;
-    dw $2803,$C3F7                                                       ;92A11B;
-    db $F0                                                               ;92A11F;
-    dw $2800,$01EE                                                       ;92A120;
-    db $FD                                                               ;92A124;
-    dw $6804,$01F6                                                       ;92A125;
-    db $FD                                                               ;92A129;
-    dw $6805                                                             ;92A12A;
+    dw $0005                                                             ;92A111;
+    %spritemapEntry(0, $1FF, $00, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F7, $00, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F7, $F0, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EE, $FD, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FD, 0, 1, 2, 4, $05)
 
 SamusSpritemaps_A12C:
-    dw $0001,$01F8                                                       ;92A12C;
-    db $F8                                                               ;92A130;
-    dw $3000                                                             ;92A131;
+    dw $0001                                                             ;92A12C;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 0, $00)
 
 SamusSpritemaps_A133:
-    dw $0001,$01F8                                                       ;92A133;
-    db $F8                                                               ;92A137;
-    dw $3800                                                             ;92A138;
+    dw $0001                                                             ;92A133;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 4, $00)
 
 SamusSpritemaps_A13A:
-    dw $0009,$0004                                                       ;92A13A;
-    db $10                                                               ;92A13E;
-    dw $3800,$0004                                                       ;92A13F;
-    db $08                                                               ;92A143;
-    dw $3801,$01FC                                                       ;92A144;
-    db $08                                                               ;92A148;
-    dw $3802,$01FC                                                       ;92A149;
-    db $00                                                               ;92A14D;
-    dw $3803,$01FC                                                       ;92A14E;
-    db $F8                                                               ;92A152;
-    dw $3804,$0004                                                       ;92A153;
-    db $F0                                                               ;92A157;
-    dw $3805,$01FC                                                       ;92A158;
-    db $F0                                                               ;92A15C;
-    dw $3806,$01F4                                                       ;92A15D;
-    db $F0                                                               ;92A161;
-    dw $3807,$01F4                                                       ;92A162;
-    db $E8                                                               ;92A166;
-    dw $3810                                                             ;92A167;
+    dw $0009                                                             ;92A13A;
+    %spritemapEntry(0, $04, $10, 0, 0, 3, 4, $00)
+    %spritemapEntry(0, $04, $08, 0, 0, 3, 4, $01)
+    %spritemapEntry(0, $1FC, $08, 0, 0, 3, 4, $02)
+    %spritemapEntry(0, $1FC, $00, 0, 0, 3, 4, $03)
+    %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 4, $04)
+    %spritemapEntry(0, $04, $F0, 0, 0, 3, 4, $05)
+    %spritemapEntry(0, $1FC, $F0, 0, 0, 3, 4, $06)
+    %spritemapEntry(0, $1F4, $F0, 0, 0, 3, 4, $07)
+    %spritemapEntry(0, $1F4, $E8, 0, 0, 3, 4, $10)
 
 SamusSpritemaps_A169:
-    dw $0007,$0004                                                       ;92A169;
-    db $00                                                               ;92A16D;
-    dw $3800,$01FC                                                       ;92A16E;
-    db $00                                                               ;92A172;
-    dw $3801,$01F4                                                       ;92A173;
-    db $00                                                               ;92A177;
-    dw $3802,$0004                                                       ;92A178;
-    db $F8                                                               ;92A17C;
-    dw $3803,$01FC                                                       ;92A17D;
-    db $F8                                                               ;92A181;
-    dw $3804,$01F4                                                       ;92A182;
-    db $F8                                                               ;92A186;
-    dw $3805,$01F4                                                       ;92A187;
-    db $F0                                                               ;92A18B;
-    dw $3806                                                             ;92A18C;
+    dw $0007                                                             ;92A169;
+    %spritemapEntry(0, $04, $00, 0, 0, 3, 4, $00)
+    %spritemapEntry(0, $1FC, $00, 0, 0, 3, 4, $01)
+    %spritemapEntry(0, $1F4, $00, 0, 0, 3, 4, $02)
+    %spritemapEntry(0, $04, $F8, 0, 0, 3, 4, $03)
+    %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 4, $04)
+    %spritemapEntry(0, $1F4, $F8, 0, 0, 3, 4, $05)
+    %spritemapEntry(0, $1F4, $F0, 0, 0, 3, 4, $06)
 
 SamusSpritemaps_A18E:
-    dw $000B,$01FC                                                       ;92A18E;
-    db $10                                                               ;92A192;
-    dw $3800,$01F4                                                       ;92A193;
-    db $10                                                               ;92A197;
-    dw $3801,$01FC                                                       ;92A198;
-    db $08                                                               ;92A19C;
-    dw $3802,$01F4                                                       ;92A19D;
-    db $08                                                               ;92A1A1;
-    dw $3803,$0004                                                       ;92A1A2;
-    db $00                                                               ;92A1A6;
-    dw $3804,$01FC                                                       ;92A1A7;
-    db $00                                                               ;92A1AB;
-    dw $3805,$0004                                                       ;92A1AC;
-    db $F8                                                               ;92A1B0;
-    dw $3806,$01FC                                                       ;92A1B1;
-    db $F8                                                               ;92A1B5;
-    dw $3807,$01FC                                                       ;92A1B6;
-    db $F0                                                               ;92A1BA;
-    dw $3810,$0004                                                       ;92A1BB;
-    db $E8                                                               ;92A1BF;
-    dw $3811,$01FC                                                       ;92A1C0;
-    db $E8                                                               ;92A1C4;
-    dw $3812                                                             ;92A1C5;
+    dw $000B                                                             ;92A18E;
+    %spritemapEntry(0, $1FC, $10, 0, 0, 3, 4, $00)
+    %spritemapEntry(0, $1F4, $10, 0, 0, 3, 4, $01)
+    %spritemapEntry(0, $1FC, $08, 0, 0, 3, 4, $02)
+    %spritemapEntry(0, $1F4, $08, 0, 0, 3, 4, $03)
+    %spritemapEntry(0, $04, $00, 0, 0, 3, 4, $04)
+    %spritemapEntry(0, $1FC, $00, 0, 0, 3, 4, $05)
+    %spritemapEntry(0, $04, $F8, 0, 0, 3, 4, $06)
+    %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 4, $07)
+    %spritemapEntry(0, $1FC, $F0, 0, 0, 3, 4, $10)
+    %spritemapEntry(0, $04, $E8, 0, 0, 3, 4, $11)
+    %spritemapEntry(0, $1FC, $E8, 0, 0, 3, 4, $12)
 
 SamusSpritemaps_A1C7:
-    dw $000F,$01FC                                                       ;92A1C7;
-    db $10                                                               ;92A1CB;
-    dw $3800,$01F4                                                       ;92A1CC;
-    db $10                                                               ;92A1D0;
-    dw $3801,$01FC                                                       ;92A1D1;
-    db $08                                                               ;92A1D5;
-    dw $3802,$01F4                                                       ;92A1D6;
-    db $08                                                               ;92A1DA;
-    dw $3803,$0004                                                       ;92A1DB;
-    db $00                                                               ;92A1DF;
-    dw $3804,$01FC                                                       ;92A1E0;
-    db $00                                                               ;92A1E4;
-    dw $3805,$01F4                                                       ;92A1E5;
-    db $00                                                               ;92A1E9;
-    dw $3806,$0004                                                       ;92A1EA;
-    db $F8                                                               ;92A1EE;
-    dw $3807,$01FC                                                       ;92A1EF;
-    db $F8                                                               ;92A1F3;
-    dw $3810,$01F4                                                       ;92A1F4;
-    db $F8                                                               ;92A1F8;
-    dw $3811,$0004                                                       ;92A1F9;
-    db $F0                                                               ;92A1FD;
-    dw $3812,$01FC                                                       ;92A1FE;
-    db $F0                                                               ;92A202;
-    dw $3813,$01F4                                                       ;92A203;
-    db $F0                                                               ;92A207;
-    dw $3814,$0004                                                       ;92A208;
-    db $E8                                                               ;92A20C;
-    dw $3815,$01FC                                                       ;92A20D;
-    db $E8                                                               ;92A211;
-    dw $3816                                                             ;92A212;
+    dw $000F                                                             ;92A1C7;
+    %spritemapEntry(0, $1FC, $10, 0, 0, 3, 4, $00)
+    %spritemapEntry(0, $1F4, $10, 0, 0, 3, 4, $01)
+    %spritemapEntry(0, $1FC, $08, 0, 0, 3, 4, $02)
+    %spritemapEntry(0, $1F4, $08, 0, 0, 3, 4, $03)
+    %spritemapEntry(0, $04, $00, 0, 0, 3, 4, $04)
+    %spritemapEntry(0, $1FC, $00, 0, 0, 3, 4, $05)
+    %spritemapEntry(0, $1F4, $00, 0, 0, 3, 4, $06)
+    %spritemapEntry(0, $04, $F8, 0, 0, 3, 4, $07)
+    %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 4, $10)
+    %spritemapEntry(0, $1F4, $F8, 0, 0, 3, 4, $11)
+    %spritemapEntry(0, $04, $F0, 0, 0, 3, 4, $12)
+    %spritemapEntry(0, $1FC, $F0, 0, 0, 3, 4, $13)
+    %spritemapEntry(0, $1F4, $F0, 0, 0, 3, 4, $14)
+    %spritemapEntry(0, $04, $E8, 0, 0, 3, 4, $15)
+    %spritemapEntry(0, $1FC, $E8, 0, 0, 3, 4, $16)
 
 SamusSpritemaps_A214:
-    dw $0008,$01FC                                                       ;92A214;
-    db $10                                                               ;92A218;
-    dw $3800,$01FC                                                       ;92A219;
-    db $08                                                               ;92A21D;
-    dw $3801,$01FC                                                       ;92A21E;
-    db $00                                                               ;92A222;
-    dw $3802,$0004                                                       ;92A223;
-    db $F8                                                               ;92A227;
-    dw $3803,$01F4                                                       ;92A228;
-    db $F8                                                               ;92A22C;
-    dw $3804,$0004                                                       ;92A22D;
-    db $F0                                                               ;92A231;
-    dw $3805,$01F4                                                       ;92A232;
-    db $F0                                                               ;92A236;
-    dw $3806,$0004                                                       ;92A237;
-    db $E8                                                               ;92A23B;
-    dw $3807                                                             ;92A23C;
+    dw $0008                                                             ;92A214;
+    %spritemapEntry(0, $1FC, $10, 0, 0, 3, 4, $00)
+    %spritemapEntry(0, $1FC, $08, 0, 0, 3, 4, $01)
+    %spritemapEntry(0, $1FC, $00, 0, 0, 3, 4, $02)
+    %spritemapEntry(0, $04, $F8, 0, 0, 3, 4, $03)
+    %spritemapEntry(0, $1F4, $F8, 0, 0, 3, 4, $04)
+    %spritemapEntry(0, $04, $F0, 0, 0, 3, 4, $05)
+    %spritemapEntry(0, $1F4, $F0, 0, 0, 3, 4, $06)
+    %spritemapEntry(0, $04, $E8, 0, 0, 3, 4, $07)
 
 SamusSpritemaps_A23E:
-    dw $000A,$01FC                                                       ;92A23E;
-    db $10                                                               ;92A242;
-    dw $3800,$0004                                                       ;92A243;
-    db $08                                                               ;92A247;
-    dw $3801,$01FC                                                       ;92A248;
-    db $08                                                               ;92A24C;
-    dw $3802,$0004                                                       ;92A24D;
-    db $00                                                               ;92A251;
-    dw $3803,$01FC                                                       ;92A252;
-    db $00                                                               ;92A256;
-    dw $3804,$0004                                                       ;92A257;
-    db $F0                                                               ;92A25B;
-    dw $3805,$01FC                                                       ;92A25C;
-    db $F0                                                               ;92A260;
-    dw $3806,$01F4                                                       ;92A261;
-    db $F0                                                               ;92A265;
-    dw $3807,$0004                                                       ;92A266;
-    db $E8                                                               ;92A26A;
-    dw $3810,$01FC                                                       ;92A26B;
-    db $E8                                                               ;92A26F;
-    dw $3811                                                             ;92A270;
+    dw $000A                                                             ;92A23E;
+    %spritemapEntry(0, $1FC, $10, 0, 0, 3, 4, $00)
+    %spritemapEntry(0, $04, $08, 0, 0, 3, 4, $01)
+    %spritemapEntry(0, $1FC, $08, 0, 0, 3, 4, $02)
+    %spritemapEntry(0, $04, $00, 0, 0, 3, 4, $03)
+    %spritemapEntry(0, $1FC, $00, 0, 0, 3, 4, $04)
+    %spritemapEntry(0, $04, $F0, 0, 0, 3, 4, $05)
+    %spritemapEntry(0, $1FC, $F0, 0, 0, 3, 4, $06)
+    %spritemapEntry(0, $1F4, $F0, 0, 0, 3, 4, $07)
+    %spritemapEntry(0, $04, $E8, 0, 0, 3, 4, $10)
+    %spritemapEntry(0, $1FC, $E8, 0, 0, 3, 4, $11)
 
 SamusSpritemaps_A272:
-    dw $000B,$01F4                                                       ;92A272;
-    db $10                                                               ;92A276;
-    dw $3800,$0004                                                       ;92A277;
-    db $08                                                               ;92A27B;
-    dw $3801,$01FC                                                       ;92A27C;
-    db $08                                                               ;92A280;
-    dw $3802,$01F4                                                       ;92A281;
-    db $08                                                               ;92A285;
-    dw $3803,$0004                                                       ;92A286;
-    db $00                                                               ;92A28A;
-    dw $3804,$01FC                                                       ;92A28B;
-    db $00                                                               ;92A28F;
-    dw $3805,$01F4                                                       ;92A290;
-    db $00                                                               ;92A294;
-    dw $3806,$01F4                                                       ;92A295;
-    db $F0                                                               ;92A299;
-    dw $3807,$0004                                                       ;92A29A;
-    db $E8                                                               ;92A29E;
-    dw $3810,$01FC                                                       ;92A29F;
-    db $E8                                                               ;92A2A3;
-    dw $3811,$01F4                                                       ;92A2A4;
-    db $E8                                                               ;92A2A8;
-    dw $3812                                                             ;92A2A9;
+    dw $000B                                                             ;92A272;
+    %spritemapEntry(0, $1F4, $10, 0, 0, 3, 4, $00)
+    %spritemapEntry(0, $04, $08, 0, 0, 3, 4, $01)
+    %spritemapEntry(0, $1FC, $08, 0, 0, 3, 4, $02)
+    %spritemapEntry(0, $1F4, $08, 0, 0, 3, 4, $03)
+    %spritemapEntry(0, $04, $00, 0, 0, 3, 4, $04)
+    %spritemapEntry(0, $1FC, $00, 0, 0, 3, 4, $05)
+    %spritemapEntry(0, $1F4, $00, 0, 0, 3, 4, $06)
+    %spritemapEntry(0, $1F4, $F0, 0, 0, 3, 4, $07)
+    %spritemapEntry(0, $04, $E8, 0, 0, 3, 4, $10)
+    %spritemapEntry(0, $1FC, $E8, 0, 0, 3, 4, $11)
+    %spritemapEntry(0, $1F4, $E8, 0, 0, 3, 4, $12)
 
 SamusSpritemaps_A2AB:
-    dw $0007,$0004                                                       ;92A2AB;
-    db $08                                                               ;92A2AF;
-    dw $3800,$01F4                                                       ;92A2B0;
-    db $08                                                               ;92A2B4;
-    dw $3801,$01F4                                                       ;92A2B5;
-    db $00                                                               ;92A2B9;
-    dw $3802,$0004                                                       ;92A2BA;
-    db $F8                                                               ;92A2BE;
-    dw $3803,$0004                                                       ;92A2BF;
-    db $E8                                                               ;92A2C3;
-    dw $3804,$01FC                                                       ;92A2C4;
-    db $E8                                                               ;92A2C8;
-    dw $3805,$01F4                                                       ;92A2C9;
-    db $E8                                                               ;92A2CD;
-    dw $3806                                                             ;92A2CE;
+    dw $0007                                                             ;92A2AB;
+    %spritemapEntry(0, $04, $08, 0, 0, 3, 4, $00)
+    %spritemapEntry(0, $1F4, $08, 0, 0, 3, 4, $01)
+    %spritemapEntry(0, $1F4, $00, 0, 0, 3, 4, $02)
+    %spritemapEntry(0, $04, $F8, 0, 0, 3, 4, $03)
+    %spritemapEntry(0, $04, $E8, 0, 0, 3, 4, $04)
+    %spritemapEntry(0, $1FC, $E8, 0, 0, 3, 4, $05)
+    %spritemapEntry(0, $1F4, $E8, 0, 0, 3, 4, $06)
 
 SamusSpritemaps_A2D0:
-    dw $0003,$0011                                                       ;92A2D0;
-    db $FA                                                               ;92A2D4;
-    dw $2802,$0009                                                       ;92A2D5;
-    db $FA                                                               ;92A2D9;
-    dw $2803,$C3FA                                                       ;92A2DA;
-    db $F0                                                               ;92A2DE;
-    dw $2800                                                             ;92A2DF;
+    dw $0003                                                             ;92A2D0;
+    %spritemapEntry(0, $11, $FA, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $09, $FA, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43FA, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A2E1:
-    dw $0003,$0011                                                       ;92A2E1;
-    db $F9                                                               ;92A2E5;
-    dw $2802,$0009                                                       ;92A2E6;
-    db $F9                                                               ;92A2EA;
-    dw $2803,$C3FA                                                       ;92A2EB;
-    db $EF                                                               ;92A2EF;
-    dw $2800                                                             ;92A2F0;
+    dw $0003                                                             ;92A2E1;
+    %spritemapEntry(0, $11, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $09, $F9, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43FA, $EF, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A2F2:
-    dw $0004,$0011                                                       ;92A2F2;
-    db $F9                                                               ;92A2F6;
-    dw $2802,$0009                                                       ;92A2F7;
-    db $F9                                                               ;92A2FB;
-    dw $2803,$0007                                                       ;92A2FC;
-    db $F7                                                               ;92A300;
-    dw $2804,$C3F7                                                       ;92A301;
-    db $EF                                                               ;92A305;
-    dw $2800                                                             ;92A306;
+    dw $0004                                                             ;92A2F2;
+    %spritemapEntry(0, $11, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $09, $F9, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $07, $F7, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43F7, $EF, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A308:
-    dw $0005,$0011                                                       ;92A308;
-    db $F8                                                               ;92A30C;
-    dw $2802,$0009                                                       ;92A30D;
-    db $F8                                                               ;92A311;
-    dw $2803,$0005                                                       ;92A312;
-    db $EE                                                               ;92A316;
-    dw $2804,$0005                                                       ;92A317;
-    db $F6                                                               ;92A31B;
-    dw $2805,$C3F5                                                       ;92A31C;
-    db $EE                                                               ;92A320;
-    dw $2800                                                             ;92A321;
+    dw $0005                                                             ;92A308;
+    %spritemapEntry(0, $11, $F8, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $09, $F8, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $05, $EE, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $05, $F6, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F5, $EE, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A323:
-    dw $0003,$0011                                                       ;92A323;
-    db $F9                                                               ;92A327;
-    dw $2802,$0009                                                       ;92A328;
-    db $F9                                                               ;92A32C;
-    dw $2803,$C3FA                                                       ;92A32D;
-    db $EF                                                               ;92A331;
-    dw $2800                                                             ;92A332;
+    dw $0003                                                             ;92A323;
+    %spritemapEntry(0, $11, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $09, $F9, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43FA, $EF, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A334:
-    dw $0004,$0011                                                       ;92A334;
-    db $F9                                                               ;92A338;
-    dw $2802,$0009                                                       ;92A339;
-    db $F9                                                               ;92A33D;
-    dw $2803,$000A                                                       ;92A33E;
-    db $F7                                                               ;92A342;
-    dw $2804,$C3FA                                                       ;92A343;
-    db $EF                                                               ;92A347;
-    dw $2800                                                             ;92A348;
+    dw $0004                                                             ;92A334;
+    %spritemapEntry(0, $11, $F9, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $09, $F9, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $0A, $F7, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43FA, $EF, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A34A:
-    dw $0005,$01EF                                                       ;92A34A;
-    db $FA                                                               ;92A34E;
-    dw $6802,$01E7                                                       ;92A34F;
-    db $FA                                                               ;92A353;
-    dw $6803,$01FE                                                       ;92A354;
-    db $00                                                               ;92A358;
-    dw $2804,$01F6                                                       ;92A359;
-    db $00                                                               ;92A35D;
-    dw $2805,$C3F6                                                       ;92A35E;
-    db $F0                                                               ;92A362;
-    dw $2800                                                             ;92A363;
+    dw $0005                                                             ;92A34A;
+    %spritemapEntry(0, $1EF, $FA, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1E7, $FA, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1FE, $00, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $00, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F6, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A365:
-    dw $0005,$01EF                                                       ;92A365;
-    db $F9                                                               ;92A369;
-    dw $6802,$01E7                                                       ;92A36A;
-    db $F9                                                               ;92A36E;
-    dw $6803,$01FE                                                       ;92A36F;
-    db $FF                                                               ;92A373;
-    dw $2804,$01F6                                                       ;92A374;
-    db $FF                                                               ;92A378;
-    dw $2805,$C3F6                                                       ;92A379;
-    db $EF                                                               ;92A37D;
-    dw $2800                                                             ;92A37E;
+    dw $0005                                                             ;92A365;
+    %spritemapEntry(0, $1EF, $F9, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1E7, $F9, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1FE, $FF, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FF, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F6, $EF, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A380:
-    dw $0006,$01EE                                                       ;92A380;
-    db $F7                                                               ;92A384;
-    dw $2802,$01FE                                                       ;92A385;
-    db $FF                                                               ;92A389;
-    dw $2803,$01F6                                                       ;92A38A;
-    db $FF                                                               ;92A38E;
-    dw $2804,$C3F6                                                       ;92A38F;
-    db $EF                                                               ;92A393;
-    dw $2800,$01EF                                                       ;92A394;
-    db $F9                                                               ;92A398;
-    dw $6805,$01E7                                                       ;92A399;
-    db $F9                                                               ;92A39D;
-    dw $6806                                                             ;92A39E;
+    dw $0006                                                             ;92A380;
+    %spritemapEntry(0, $1EE, $F7, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FE, $FF, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F6, $FF, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43F6, $EF, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1EF, $F9, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1E7, $F9, 0, 1, 2, 4, $06)
 
 SamusSpritemaps_A3A0:
-    dw $0006,$01EE                                                       ;92A3A0;
-    db $F6                                                               ;92A3A4;
-    dw $2802,$01EF                                                       ;92A3A5;
-    db $F8                                                               ;92A3A9;
-    dw $6803,$01E7                                                       ;92A3AA;
-    db $F8                                                               ;92A3AE;
-    dw $6804,$01FE                                                       ;92A3AF;
-    db $FE                                                               ;92A3B3;
-    dw $2805,$01F6                                                       ;92A3B4;
-    db $FE                                                               ;92A3B8;
-    dw $2806,$C3F6                                                       ;92A3B9;
-    db $EE                                                               ;92A3BD;
-    dw $2800                                                             ;92A3BE;
+    dw $0006                                                             ;92A3A0;
+    %spritemapEntry(0, $1EE, $F6, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1EF, $F8, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1E7, $F8, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1FE, $FE, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F6, $FE, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43F6, $EE, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A3C0:
-    dw $0005,$01EF                                                       ;92A3C0;
-    db $F9                                                               ;92A3C4;
-    dw $6802,$01E7                                                       ;92A3C5;
-    db $F9                                                               ;92A3C9;
-    dw $6803,$01FE                                                       ;92A3CA;
-    db $FF                                                               ;92A3CE;
-    dw $2804,$01F6                                                       ;92A3CF;
-    db $FF                                                               ;92A3D3;
-    dw $2805,$C3F6                                                       ;92A3D4;
-    db $EF                                                               ;92A3D8;
-    dw $2800                                                             ;92A3D9;
+    dw $0005                                                             ;92A3C0;
+    %spritemapEntry(0, $1EF, $F9, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1E7, $F9, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1FE, $FF, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $FF, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F6, $EF, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A3DB:
-    dw $0007,$01EF                                                       ;92A3DB;
-    db $F9                                                               ;92A3DF;
-    dw $6802,$01E7                                                       ;92A3E0;
-    db $F9                                                               ;92A3E4;
-    dw $6803,$0006                                                       ;92A3E5;
-    db $FF                                                               ;92A3E9;
-    dw $2804,$01FE                                                       ;92A3EA;
-    db $FF                                                               ;92A3EE;
-    dw $2805,$01F6                                                       ;92A3EF;
-    db $F7                                                               ;92A3F3;
-    dw $2806,$01F6                                                       ;92A3F4;
-    db $EF                                                               ;92A3F8;
-    dw $2807,$C3FE                                                       ;92A3F9;
-    db $EF                                                               ;92A3FD;
-    dw $2800                                                             ;92A3FE;
+    dw $0007                                                             ;92A3DB;
+    %spritemapEntry(0, $1EF, $F9, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1E7, $F9, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $06, $FF, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FE, $FF, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F6, $F7, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1F6, $EF, 0, 0, 2, 4, $07)
+    %spritemapEntry(1, $43FE, $EF, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A400:
-    dw $0005,$0011                                                       ;92A400;
-    db $F8                                                               ;92A404;
-    dw $2802,$0009                                                       ;92A405;
-    db $F8                                                               ;92A409;
-    dw $2803,$000A                                                       ;92A40A;
-    db $F6                                                               ;92A40E;
-    dw $2804,$000A                                                       ;92A40F;
-    db $EE                                                               ;92A413;
-    dw $2805,$C3FA                                                       ;92A414;
-    db $EE                                                               ;92A418;
-    dw $2800                                                             ;92A419;
+    dw $0005                                                             ;92A400;
+    %spritemapEntry(0, $11, $F8, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $09, $F8, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $0A, $F6, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $0A, $EE, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43FA, $EE, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A41B:
-    dw $0007,$01EF                                                       ;92A41B;
-    db $F8                                                               ;92A41F;
-    dw $6802,$01E7                                                       ;92A420;
-    db $F8                                                               ;92A424;
-    dw $6803,$0006                                                       ;92A425;
-    db $FE                                                               ;92A429;
-    dw $2804,$01FE                                                       ;92A42A;
-    db $FE                                                               ;92A42E;
-    dw $2805,$01F6                                                       ;92A42F;
-    db $F6                                                               ;92A433;
-    dw $2806,$01F6                                                       ;92A434;
-    db $EE                                                               ;92A438;
-    dw $2807,$C3FE                                                       ;92A439;
-    db $EE                                                               ;92A43D;
-    dw $2800                                                             ;92A43E;
+    dw $0007                                                             ;92A41B;
+    %spritemapEntry(0, $1EF, $F8, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1E7, $F8, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $06, $FE, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FE, $FE, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F6, $F6, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1F6, $EE, 0, 0, 2, 4, $07)
+    %spritemapEntry(1, $43FE, $EE, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A440:
-    dw $0003,$0011                                                       ;92A440;
-    db $FA                                                               ;92A444;
-    dw $2802,$0009                                                       ;92A445;
-    db $FA                                                               ;92A449;
-    dw $2803,$C3FA                                                       ;92A44A;
-    db $F0                                                               ;92A44E;
-    dw $2800                                                             ;92A44F;
+    dw $0003                                                             ;92A440;
+    %spritemapEntry(0, $11, $FA, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $09, $FA, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43FA, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A451:
-    dw $0005,$01EF                                                       ;92A451;
-    db $FA                                                               ;92A455;
-    dw $6802,$01E7                                                       ;92A456;
-    db $FA                                                               ;92A45A;
-    dw $6803,$01FE                                                       ;92A45B;
-    db $00                                                               ;92A45F;
-    dw $2804,$01F6                                                       ;92A460;
-    db $00                                                               ;92A464;
-    dw $2805,$C3F6                                                       ;92A465;
-    db $F0                                                               ;92A469;
-    dw $2800                                                             ;92A46A;
+    dw $0005                                                             ;92A451;
+    %spritemapEntry(0, $1EF, $FA, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1E7, $FA, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1FE, $00, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $00, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F6, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_A46C:
-    dw $0004,$001C                                                       ;92A46C;
-    db $FD                                                               ;92A470;
-    dw $2804,$0014                                                       ;92A471;
-    db $FD                                                               ;92A475;
-    dw $2805,$C205                                                       ;92A476;
-    db $F6                                                               ;92A47A;
-    dw $2800,$C200                                                       ;92A47B;
-    db $F8                                                               ;92A47F;
-    dw $2802                                                             ;92A480;
+    dw $0004                                                             ;92A46C;
+    %spritemapEntry(0, $1C, $FD, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $14, $FD, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $4205, $F6, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $4200, $F8, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_A482:
-    dw $0004,$001B                                                       ;92A482;
-    db $F7                                                               ;92A486;
-    dw $2804,$0013                                                       ;92A487;
-    db $F7                                                               ;92A48B;
-    dw $2805,$C204                                                       ;92A48C;
-    db $F4                                                               ;92A490;
-    dw $2800,$C3FF                                                       ;92A491;
-    db $F6                                                               ;92A495;
-    dw $2802                                                             ;92A496;
+    dw $0004                                                             ;92A482;
+    %spritemapEntry(0, $1B, $F7, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $13, $F7, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $4204, $F4, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FF, $F6, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_A498:
-    dw $0003,$C210                                                       ;92A498;
-    db $F1                                                               ;92A49C;
-    dw $2800,$C204                                                       ;92A49D;
-    db $F3                                                               ;92A4A1;
-    dw $2802,$C3FF                                                       ;92A4A2;
-    db $F5                                                               ;92A4A6;
-    dw $2804                                                             ;92A4A7;
+    dw $0003                                                             ;92A498;
+    %spritemapEntry(1, $4210, $F1, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $4204, $F3, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43FF, $F5, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_A4A9:
-    dw $0003,$C202                                                       ;92A4A9;
-    db $EF                                                               ;92A4AD;
-    dw $2800,$C20E                                                       ;92A4AE;
-    db $ED                                                               ;92A4B2;
-    dw $2802,$C3FF                                                       ;92A4B3;
-    db $F2                                                               ;92A4B7;
-    dw $2804                                                             ;92A4B8;
+    dw $0003                                                             ;92A4A9;
+    %spritemapEntry(1, $4202, $EF, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $420E, $ED, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43FF, $F2, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_A4BA:
-    dw $0003,$C20C                                                       ;92A4BA;
-    db $E5                                                               ;92A4BE;
-    dw $2800,$C202                                                       ;92A4BF;
-    db $EF                                                               ;92A4C3;
-    dw $2802,$C3FF                                                       ;92A4C4;
-    db $F2                                                               ;92A4C8;
-    dw $2804                                                             ;92A4C9;
+    dw $0003                                                             ;92A4BA;
+    %spritemapEntry(1, $420C, $E5, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $4202, $EF, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43FF, $F2, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_A4CB:
-    dw $0003,$C209                                                       ;92A4CB;
-    db $E5                                                               ;92A4CF;
-    dw $2800,$C201                                                       ;92A4D0;
-    db $EF                                                               ;92A4D4;
-    dw $2802,$C3FF                                                       ;92A4D5;
-    db $F2                                                               ;92A4D9;
-    dw $2804                                                             ;92A4DA;
+    dw $0003                                                             ;92A4CB;
+    %spritemapEntry(1, $4209, $E5, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $4201, $EF, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43FF, $F2, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_A4DC:
-    dw $0003,$C207                                                       ;92A4DC;
-    db $E3                                                               ;92A4E0;
-    dw $2800,$C201                                                       ;92A4E1;
-    db $ED                                                               ;92A4E5;
-    dw $2802,$C3FE                                                       ;92A4E6;
-    db $F1                                                               ;92A4EA;
-    dw $2804                                                             ;92A4EB;
+    dw $0003                                                             ;92A4DC;
+    %spritemapEntry(1, $4207, $E3, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $4201, $ED, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43FE, $F1, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_A4ED:
-    dw $0004,$0004                                                       ;92A4ED;
-    db $E6                                                               ;92A4F1;
-    dw $2804,$0004                                                       ;92A4F2;
-    db $DE                                                               ;92A4F6;
-    dw $2805,$C3FD                                                       ;92A4F7;
-    db $EC                                                               ;92A4FB;
-    dw $2800,$C3FB                                                       ;92A4FC;
-    db $F0                                                               ;92A500;
-    dw $2802                                                             ;92A501;
+    dw $0004                                                             ;92A4ED;
+    %spritemapEntry(0, $04, $E6, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $04, $DE, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43FD, $EC, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FB, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_A503:
-    dw $0004,$01FD                                                       ;92A503;
-    db $E5                                                               ;92A507;
-    dw $2804,$01FD                                                       ;92A508;
-    db $DD                                                               ;92A50C;
-    dw $2805,$C3F6                                                       ;92A50D;
-    db $EC                                                               ;92A511;
-    dw $2800,$C3F8                                                       ;92A512;
-    db $F0                                                               ;92A516;
-    dw $2802                                                             ;92A517;
+    dw $0004                                                             ;92A503;
+    %spritemapEntry(0, $1FD, $E5, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FD, $DD, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F6, $EC, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_A519:
-    dw $0004,$01F8                                                       ;92A519;
-    db $E6                                                               ;92A51D;
-    dw $6804,$01F8                                                       ;92A51E;
-    db $DE                                                               ;92A522;
-    dw $6805,$C3F3                                                       ;92A523;
-    db $EC                                                               ;92A527;
-    dw $2800,$C3F7                                                       ;92A528;
-    db $F0                                                               ;92A52C;
-    dw $2802                                                             ;92A52D;
+    dw $0004                                                             ;92A519;
+    %spritemapEntry(0, $1F8, $E6, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F8, $DE, 0, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F3, $EC, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F7, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_A52F:
-    dw $0003,$C3EE                                                       ;92A52F;
-    db $E2                                                               ;92A533;
-    dw $6800,$C3F3                                                       ;92A534;
-    db $ED                                                               ;92A538;
-    dw $2802,$C3F5                                                       ;92A539;
-    db $F1                                                               ;92A53D;
-    dw $2804                                                             ;92A53E;
+    dw $0003                                                             ;92A52F;
+    %spritemapEntry(1, $43EE, $E2, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F3, $ED, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F5, $F1, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_A540:
-    dw $0003,$C3E8                                                       ;92A540;
-    db $E4                                                               ;92A544;
-    dw $6800,$C3F0                                                       ;92A545;
-    db $EF                                                               ;92A549;
-    dw $2802,$C3F2                                                       ;92A54A;
-    db $F2                                                               ;92A54E;
-    dw $2804                                                             ;92A54F;
+    dw $0003                                                             ;92A540;
+    %spritemapEntry(1, $43E8, $E4, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $EF, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F2, $F2, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_A551:
-    dw $0003,$C3E3                                                       ;92A551;
-    db $E5                                                               ;92A555;
-    dw $6800,$C3EE                                                       ;92A556;
-    db $EF                                                               ;92A55A;
-    dw $2802,$C3F2                                                       ;92A55B;
-    db $F2                                                               ;92A55F;
-    dw $2804                                                             ;92A560;
+    dw $0003                                                             ;92A551;
+    %spritemapEntry(1, $43E3, $E5, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43EE, $EF, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F2, $F2, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_A562:
-    dw $0003,$C3E0                                                       ;92A562;
-    db $E9                                                               ;92A566;
-    dw $6800,$C3EB                                                       ;92A567;
-    db $F2                                                               ;92A56B;
-    dw $2802,$C3F1                                                       ;92A56C;
-    db $F3                                                               ;92A570;
-    dw $2804                                                             ;92A571;
+    dw $0003                                                             ;92A562;
+    %spritemapEntry(1, $43E0, $E9, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43EB, $F2, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F1, $F3, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_A573:
-    dw $0003,$C3E0                                                       ;92A573;
-    db $EF                                                               ;92A577;
-    dw $6800,$C3EB                                                       ;92A578;
-    db $F4                                                               ;92A57C;
-    dw $2802,$C3F1                                                       ;92A57D;
-    db $F3                                                               ;92A581;
-    dw $2804                                                             ;92A582;
+    dw $0003                                                             ;92A573;
+    %spritemapEntry(1, $43E0, $EF, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43EB, $F4, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F1, $F3, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_A584:
-    dw $0004,$01DD                                                       ;92A584;
-    db $F7                                                               ;92A588;
-    dw $6804,$01E5                                                       ;92A589;
-    db $F7                                                               ;92A58D;
-    dw $6805,$C3EB                                                       ;92A58E;
-    db $F9                                                               ;92A592;
-    dw $2800,$C3F0                                                       ;92A593;
-    db $F7                                                               ;92A597;
-    dw $2802                                                             ;92A598;
+    dw $0004                                                             ;92A584;
+    %spritemapEntry(0, $1DD, $F7, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1E5, $F7, 0, 1, 2, 4, $05)
+    %spritemapEntry(1, $43EB, $F9, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $F7, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_A59A:
-    dw $0004,$01DC                                                       ;92A59A;
-    db $FC                                                               ;92A59E;
-    dw $6804,$01E4                                                       ;92A59F;
-    db $FC                                                               ;92A5A3;
-    dw $6805,$C3EB                                                       ;92A5A4;
-    db $F9                                                               ;92A5A8;
-    dw $2800,$C3F0                                                       ;92A5A9;
-    db $F8                                                               ;92A5AD;
-    dw $2802                                                             ;92A5AE;
+    dw $0004                                                             ;92A59A;
+    %spritemapEntry(0, $1DC, $FC, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1E4, $FC, 0, 1, 2, 4, $05)
+    %spritemapEntry(1, $43EB, $F9, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $F8, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_A5B0:
-    dw $0008,$0001                                                       ;92A5B0;
-    db $FB                                                               ;92A5B4;
-    dw $2804,$0001                                                       ;92A5B5;
-    db $F3                                                               ;92A5B9;
-    dw $2805,$C3F1                                                       ;92A5BA;
-    db $F3                                                               ;92A5BE;
-    dw $2800,$C3F0                                                       ;92A5BF;
-    db $F8                                                               ;92A5C3;
-    dw $6802,$01DC                                                       ;92A5C4;
-    db $FC                                                               ;92A5C8;
-    dw $6806,$01E4                                                       ;92A5C9;
-    db $FC                                                               ;92A5CD;
-    dw $6807,$01EB                                                       ;92A5CE;
-    db $02                                                               ;92A5D2;
-    dw $2814,$01EB                                                       ;92A5D3;
-    db $FA                                                               ;92A5D7;
-    dw $2815                                                             ;92A5D8;
+    dw $0008                                                             ;92A5B0;
+    %spritemapEntry(0, $01, $FB, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $01, $F3, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F1, $F3, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $F8, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1DC, $FC, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1E4, $FC, 0, 1, 2, 4, $07)
+    %spritemapEntry(0, $1EB, $02, 0, 0, 2, 4, $14)
+    %spritemapEntry(0, $1EB, $FA, 0, 0, 2, 4, $15)
 
 SamusSpritemaps_A5DA:
-    dw $0008,$01DC                                                       ;92A5DA;
-    db $F8                                                               ;92A5DE;
-    dw $6804,$01E4                                                       ;92A5DF;
-    db $F8                                                               ;92A5E3;
-    dw $6805,$0001                                                       ;92A5E4;
-    db $FA                                                               ;92A5E8;
-    dw $2806,$0001                                                       ;92A5E9;
-    db $F2                                                               ;92A5ED;
-    dw $2807,$C3F1                                                       ;92A5EE;
-    db $F2                                                               ;92A5F2;
-    dw $2800,$C3F0                                                       ;92A5F3;
-    db $F7                                                               ;92A5F7;
-    dw $6802,$01EB                                                       ;92A5F8;
-    db $00                                                               ;92A5FC;
-    dw $2814,$01EB                                                       ;92A5FD;
-    db $F8                                                               ;92A601;
-    dw $2815                                                             ;92A602;
+    dw $0008                                                             ;92A5DA;
+    %spritemapEntry(0, $1DC, $F8, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1E4, $F8, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $01, $FA, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $01, $F2, 0, 0, 2, 4, $07)
+    %spritemapEntry(1, $43F1, $F2, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $F7, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1EB, $00, 0, 0, 2, 4, $14)
+    %spritemapEntry(0, $1EB, $F8, 0, 0, 2, 4, $15)
 
 SamusSpritemaps_A604:
-    dw $000A,$0005                                                       ;92A604;
-    db $FA                                                               ;92A608;
-    dw $2804,$0005                                                       ;92A609;
-    db $F2                                                               ;92A60D;
-    dw $2805,$C3F5                                                       ;92A60E;
-    db $F2                                                               ;92A612;
-    dw $2800,$C3F1                                                       ;92A613;
-    db $F5                                                               ;92A617;
-    dw $6802,$01E0                                                       ;92A618;
-    db $F8                                                               ;92A61C;
-    dw $6806,$01E8                                                       ;92A61D;
-    db $F8                                                               ;92A621;
-    dw $6807,$01E0                                                       ;92A622;
-    db $F0                                                               ;92A626;
-    dw $6814,$01E8                                                       ;92A627;
-    db $F0                                                               ;92A62B;
-    dw $6815,$01EB                                                       ;92A62C;
-    db $FD                                                               ;92A630;
-    dw $2816,$01EB                                                       ;92A631;
-    db $F5                                                               ;92A635;
-    dw $2817                                                             ;92A636;
+    dw $000A                                                             ;92A604;
+    %spritemapEntry(0, $05, $FA, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $05, $F2, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F5, $F2, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F1, $F5, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1E0, $F8, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1E8, $F8, 0, 1, 2, 4, $07)
+    %spritemapEntry(0, $1E0, $F0, 0, 1, 2, 4, $14)
+    %spritemapEntry(0, $1E8, $F0, 0, 1, 2, 4, $15)
+    %spritemapEntry(0, $1EB, $FD, 0, 0, 2, 4, $16)
+    %spritemapEntry(0, $1EB, $F5, 0, 0, 2, 4, $17)
 
 SamusSpritemaps_A638:
-    dw $000A,$0005                                                       ;92A638;
-    db $F9                                                               ;92A63C;
-    dw $2804,$0005                                                       ;92A63D;
-    db $F1                                                               ;92A641;
-    dw $2805,$C3F5                                                       ;92A642;
-    db $F1                                                               ;92A646;
-    dw $2800,$C3F1                                                       ;92A647;
-    db $F4                                                               ;92A64B;
-    dw $6802,$01E0                                                       ;92A64C;
-    db $F5                                                               ;92A650;
-    dw $6806,$01E8                                                       ;92A651;
-    db $F5                                                               ;92A655;
-    dw $6807,$01E0                                                       ;92A656;
-    db $ED                                                               ;92A65A;
-    dw $6814,$01E8                                                       ;92A65B;
-    db $ED                                                               ;92A65F;
-    dw $6815,$01EB                                                       ;92A660;
-    db $FB                                                               ;92A664;
-    dw $2816,$01EB                                                       ;92A665;
-    db $F3                                                               ;92A669;
-    dw $2817                                                             ;92A66A;
+    dw $000A                                                             ;92A638;
+    %spritemapEntry(0, $05, $F9, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $05, $F1, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F5, $F1, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F1, $F4, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1E0, $F5, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1E8, $F5, 0, 1, 2, 4, $07)
+    %spritemapEntry(0, $1E0, $ED, 0, 1, 2, 4, $14)
+    %spritemapEntry(0, $1E8, $ED, 0, 1, 2, 4, $15)
+    %spritemapEntry(0, $1EB, $FB, 0, 0, 2, 4, $16)
+    %spritemapEntry(0, $1EB, $F3, 0, 0, 2, 4, $17)
 
 SamusSpritemaps_A66C:
-    dw $0009,$01FD                                                       ;92A66C;
-    db $FE                                                               ;92A670;
-    dw $2804,$C3F5                                                       ;92A671;
-    db $EE                                                               ;92A675;
-    dw $2800,$C3F0                                                       ;92A676;
-    db $F2                                                               ;92A67A;
-    dw $6802,$01E2                                                       ;92A67B;
-    db $EC                                                               ;92A67F;
-    dw $6805,$01EA                                                       ;92A680;
-    db $EC                                                               ;92A684;
-    dw $6806,$01E2                                                       ;92A685;
-    db $E4                                                               ;92A689;
-    dw $6807,$01EA                                                       ;92A68A;
-    db $E4                                                               ;92A68E;
-    dw $6814,$01F4                                                       ;92A68F;
-    db $EE                                                               ;92A693;
-    dw $2815,$01EC                                                       ;92A694;
-    db $EE                                                               ;92A698;
-    dw $2816                                                             ;92A699;
+    dw $0009                                                             ;92A66C;
+    %spritemapEntry(0, $1FD, $FE, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43F5, $EE, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $F2, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1E2, $EC, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1EA, $EC, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1E2, $E4, 0, 1, 2, 4, $07)
+    %spritemapEntry(0, $1EA, $E4, 0, 1, 2, 4, $14)
+    %spritemapEntry(0, $1F4, $EE, 0, 0, 2, 4, $15)
+    %spritemapEntry(0, $1EC, $EE, 0, 0, 2, 4, $16)
 
 SamusSpritemaps_A69B:
-    dw $0009,$01FE                                                       ;92A69B;
-    db $FE                                                               ;92A69F;
-    dw $2804,$C3F6                                                       ;92A6A0;
-    db $EE                                                               ;92A6A4;
-    dw $2800,$C3F2                                                       ;92A6A5;
-    db $F1                                                               ;92A6A9;
-    dw $6802,$01F6                                                       ;92A6AA;
-    db $ED                                                               ;92A6AE;
-    dw $2805,$01EE                                                       ;92A6AF;
-    db $ED                                                               ;92A6B3;
-    dw $2806,$01ED                                                       ;92A6B4;
-    db $EB                                                               ;92A6B8;
-    dw $6807,$01E5                                                       ;92A6B9;
-    db $EB                                                               ;92A6BD;
-    dw $6814,$01E5                                                       ;92A6BE;
-    db $E3                                                               ;92A6C2;
-    dw $6815,$01ED                                                       ;92A6C3;
-    db $E3                                                               ;92A6C7;
-    dw $6816                                                             ;92A6C8;
+    dw $0009                                                             ;92A69B;
+    %spritemapEntry(0, $1FE, $FE, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43F6, $EE, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F2, $F1, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1F6, $ED, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1EE, $ED, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1ED, $EB, 0, 1, 2, 4, $07)
+    %spritemapEntry(0, $1E5, $EB, 0, 1, 2, 4, $14)
+    %spritemapEntry(0, $1E5, $E3, 0, 1, 2, 4, $15)
+    %spritemapEntry(0, $1ED, $E3, 0, 1, 2, 4, $16)
 
 SamusSpritemaps_A6CA:
-    dw $0009,$01E9                                                       ;92A6CA;
-    db $E9                                                               ;92A6CE;
-    dw $6804,$01FE                                                       ;92A6CF;
-    db $FE                                                               ;92A6D3;
-    dw $2805,$C3F6                                                       ;92A6D4;
-    db $EE                                                               ;92A6D8;
-    dw $2800,$C3F2                                                       ;92A6D9;
-    db $F1                                                               ;92A6DD;
-    dw $6802,$01F1                                                       ;92A6DE;
-    db $E9                                                               ;92A6E2;
-    dw $6806,$01E9                                                       ;92A6E3;
-    db $E1                                                               ;92A6E7;
-    dw $6807,$01F1                                                       ;92A6E8;
-    db $E1                                                               ;92A6EC;
-    dw $6814,$01F6                                                       ;92A6ED;
-    db $EC                                                               ;92A6F1;
-    dw $2815,$01EE                                                       ;92A6F2;
-    db $EC                                                               ;92A6F6;
-    dw $2816                                                             ;92A6F7;
+    dw $0009                                                             ;92A6CA;
+    %spritemapEntry(0, $1E9, $E9, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1FE, $FE, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F6, $EE, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F2, $F1, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1F1, $E9, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1E9, $E1, 0, 1, 2, 4, $07)
+    %spritemapEntry(0, $1F1, $E1, 0, 1, 2, 4, $14)
+    %spritemapEntry(0, $1F6, $EC, 0, 0, 2, 4, $15)
+    %spritemapEntry(0, $1EE, $EC, 0, 0, 2, 4, $16)
 
 SamusSpritemaps_A6F9:
-    dw $0008,$0000                                                       ;92A6F9;
-    db $02                                                               ;92A6FD;
-    dw $2804,$01F8                                                       ;92A6FE;
-    db $02                                                               ;92A702;
-    dw $2805,$C3F8                                                       ;92A703;
-    db $F2                                                               ;92A707;
-    dw $2800,$C3F6                                                       ;92A708;
-    db $F0                                                               ;92A70C;
-    dw $6802,$01F8                                                       ;92A70D;
-    db $EB                                                               ;92A711;
-    dw $2806,$01F0                                                       ;92A712;
-    db $EB                                                               ;92A716;
-    dw $2807,$01F5                                                       ;92A717;
-    db $E5                                                               ;92A71B;
-    dw $6814,$01F5                                                       ;92A71C;
-    db $DD                                                               ;92A720;
-    dw $6815                                                             ;92A721;
+    dw $0008                                                             ;92A6F9;
+    %spritemapEntry(0, $00, $02, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F8, $02, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F8, $F2, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F6, $F0, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1F8, $EB, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1F0, $EB, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $1F5, $E5, 0, 1, 2, 4, $14)
+    %spritemapEntry(0, $1F5, $DD, 0, 1, 2, 4, $15)
 
 SamusSpritemaps_A723:
-    dw $0008,$01FF                                                       ;92A723;
-    db $03                                                               ;92A727;
-    dw $2804,$01F7                                                       ;92A728;
-    db $03                                                               ;92A72C;
-    dw $2805,$C3F7                                                       ;92A72D;
-    db $F3                                                               ;92A731;
-    dw $2800,$C3F9                                                       ;92A732;
-    db $F1                                                               ;92A736;
-    dw $6802,$01FC                                                       ;92A737;
-    db $E4                                                               ;92A73B;
-    dw $2806,$01FC                                                       ;92A73C;
-    db $DC                                                               ;92A740;
-    dw $2807,$01FD                                                       ;92A741;
-    db $EB                                                               ;92A745;
-    dw $2814,$01F5                                                       ;92A746;
-    db $EB                                                               ;92A74A;
-    dw $2815                                                             ;92A74B;
+    dw $0008                                                             ;92A723;
+    %spritemapEntry(0, $1FF, $03, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F7, $03, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F7, $F3, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $F1, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1FC, $E4, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1FC, $DC, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $1FD, $EB, 0, 0, 2, 4, $14)
+    %spritemapEntry(0, $1F5, $EB, 0, 0, 2, 4, $15)
 
 SamusSpritemaps_A74D:
-    dw $0008,$01FF                                                       ;92A74D;
-    db $01                                                               ;92A751;
-    dw $2804,$01F7                                                       ;92A752;
-    db $01                                                               ;92A756;
-    dw $2805,$C3F7                                                       ;92A757;
-    db $F1                                                               ;92A75B;
-    dw $2800,$C3FA                                                       ;92A75C;
-    db $F0                                                               ;92A760;
-    dw $6802,$0002                                                       ;92A761;
-    db $E5                                                               ;92A765;
-    dw $2806,$0002                                                       ;92A766;
-    db $DD                                                               ;92A76A;
-    dw $2807,$0003                                                       ;92A76B;
-    db $EB                                                               ;92A76F;
-    dw $2814,$01FB                                                       ;92A770;
-    db $EB                                                               ;92A774;
-    dw $2815                                                             ;92A775;
+    dw $0008                                                             ;92A74D;
+    %spritemapEntry(0, $1FF, $01, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F7, $01, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F7, $F1, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FA, $F0, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $02, $E5, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $02, $DD, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $03, $EB, 0, 0, 2, 4, $14)
+    %spritemapEntry(0, $1FB, $EB, 0, 0, 2, 4, $15)
 
 SamusSpritemaps_A777:
-    dw $0009,$000B                                                       ;92A777;
-    db $E8                                                               ;92A77B;
-    dw $2804,$01F1                                                       ;92A77C;
-    db $FC                                                               ;92A780;
-    dw $2805,$C3F9                                                       ;92A781;
-    db $F4                                                               ;92A785;
-    dw $2800,$C3FB                                                       ;92A786;
-    db $F0                                                               ;92A78A;
-    dw $6802,$0003                                                       ;92A78B;
-    db $E8                                                               ;92A78F;
-    dw $2806,$000B                                                       ;92A790;
-    db $E0                                                               ;92A794;
-    dw $2807,$0003                                                       ;92A795;
-    db $E0                                                               ;92A799;
-    dw $2814,$0005                                                       ;92A79A;
-    db $EB                                                               ;92A79E;
-    dw $2815,$01FD                                                       ;92A79F;
-    db $EB                                                               ;92A7A3;
-    dw $2816                                                             ;92A7A4;
+    dw $0009                                                             ;92A777;
+    %spritemapEntry(0, $0B, $E8, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F1, $FC, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F9, $F4, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FB, $F0, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $03, $E8, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $0B, $E0, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $03, $E0, 0, 0, 2, 4, $14)
+    %spritemapEntry(0, $05, $EB, 0, 0, 2, 4, $15)
+    %spritemapEntry(0, $1FD, $EB, 0, 0, 2, 4, $16)
 
 SamusSpritemaps_A7A6:
-    dw $000A,$0010                                                       ;92A7A6;
-    db $EA                                                               ;92A7AA;
-    dw $2804,$0008                                                       ;92A7AB;
-    db $EA                                                               ;92A7AF;
-    dw $2805,$0010                                                       ;92A7B0;
-    db $E2                                                               ;92A7B4;
-    dw $2806,$0008                                                       ;92A7B5;
-    db $E2                                                               ;92A7B9;
-    dw $2807,$01F1                                                       ;92A7BA;
-    db $FD                                                               ;92A7BE;
-    dw $2814,$01F1                                                       ;92A7BF;
-    db $F5                                                               ;92A7C3;
-    dw $2815,$C3F9                                                       ;92A7C4;
-    db $F5                                                               ;92A7C8;
-    dw $2800,$C3FD                                                       ;92A7C9;
-    db $F2                                                               ;92A7CD;
-    dw $6802,$0008                                                       ;92A7CE;
-    db $ED                                                               ;92A7D2;
-    dw $2816,$0000                                                       ;92A7D3;
-    db $ED                                                               ;92A7D7;
-    dw $2817                                                             ;92A7D8;
+    dw $000A                                                             ;92A7A6;
+    %spritemapEntry(0, $10, $EA, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $08, $EA, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $10, $E2, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $08, $E2, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $1F1, $FD, 0, 0, 2, 4, $14)
+    %spritemapEntry(0, $1F1, $F5, 0, 0, 2, 4, $15)
+    %spritemapEntry(1, $43F9, $F5, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FD, $F2, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $08, $ED, 0, 0, 2, 4, $16)
+    %spritemapEntry(0, $00, $ED, 0, 0, 2, 4, $17)
 
 SamusSpritemaps_A7DA:
-    dw $000A,$01F1                                                       ;92A7DA;
-    db $FD                                                               ;92A7DE;
-    dw $2804,$01F1                                                       ;92A7DF;
-    db $F5                                                               ;92A7E3;
-    dw $2805,$C3F9                                                       ;92A7E4;
-    db $F5                                                               ;92A7E8;
-    dw $2800,$C3FD                                                       ;92A7E9;
-    db $F2                                                               ;92A7ED;
-    dw $6802,$0013                                                       ;92A7EE;
-    db $EC                                                               ;92A7F2;
-    dw $2806,$000B                                                       ;92A7F3;
-    db $EC                                                               ;92A7F7;
-    dw $2807,$0013                                                       ;92A7F8;
-    db $E4                                                               ;92A7FC;
-    dw $2814,$000B                                                       ;92A7FD;
-    db $E4                                                               ;92A801;
-    dw $2815,$0009                                                       ;92A802;
-    db $EE                                                               ;92A806;
-    dw $2816,$0001                                                       ;92A807;
-    db $EE                                                               ;92A80B;
-    dw $2817                                                             ;92A80C;
+    dw $000A                                                             ;92A7DA;
+    %spritemapEntry(0, $1F1, $FD, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F1, $F5, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F9, $F5, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FD, $F2, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $13, $EC, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $0B, $EC, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $13, $E4, 0, 0, 2, 4, $14)
+    %spritemapEntry(0, $0B, $E4, 0, 0, 2, 4, $15)
+    %spritemapEntry(0, $09, $EE, 0, 0, 2, 4, $16)
+    %spritemapEntry(0, $01, $EE, 0, 0, 2, 4, $17)
 
 SamusSpritemaps_A80E:
-    dw $000A,$01F4                                                       ;92A80E;
-    db $FC                                                               ;92A812;
-    dw $2804,$01F4                                                       ;92A813;
-    db $F4                                                               ;92A817;
-    dw $2805,$C3FC                                                       ;92A818;
-    db $F4                                                               ;92A81C;
-    dw $2800,$C3FE                                                       ;92A81D;
-    db $F4                                                               ;92A821;
-    dw $6802,$0016                                                       ;92A822;
-    db $F3                                                               ;92A826;
-    dw $2806,$000E                                                       ;92A827;
-    db $F3                                                               ;92A82B;
-    dw $2807,$0016                                                       ;92A82C;
-    db $EB                                                               ;92A830;
-    dw $2814,$000E                                                       ;92A831;
-    db $EB                                                               ;92A835;
-    dw $2815,$000A                                                       ;92A836;
-    db $F6                                                               ;92A83A;
-    dw $2816,$000A                                                       ;92A83B;
-    db $EE                                                               ;92A83F;
-    dw $2817                                                             ;92A840;
+    dw $000A                                                             ;92A80E;
+    %spritemapEntry(0, $1F4, $FC, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F4, $F4, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43FC, $F4, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FE, $F4, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $16, $F3, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $0E, $F3, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $16, $EB, 0, 0, 2, 4, $14)
+    %spritemapEntry(0, $0E, $EB, 0, 0, 2, 4, $15)
+    %spritemapEntry(0, $0A, $F6, 0, 0, 2, 4, $16)
+    %spritemapEntry(0, $0A, $EE, 0, 0, 2, 4, $17)
 
 SamusSpritemaps_A842:
-    dw $000A,$01F4                                                       ;92A842;
-    db $FC                                                               ;92A846;
-    dw $2804,$01F4                                                       ;92A847;
-    db $F4                                                               ;92A84B;
-    dw $2805,$C3FC                                                       ;92A84C;
-    db $F4                                                               ;92A850;
-    dw $2800,$C3FE                                                       ;92A851;
-    db $F4                                                               ;92A855;
-    dw $6802,$0017                                                       ;92A856;
-    db $F7                                                               ;92A85A;
-    dw $2806,$000F                                                       ;92A85B;
-    db $F7                                                               ;92A85F;
-    dw $2807,$0017                                                       ;92A860;
-    db $EF                                                               ;92A864;
-    dw $2814,$000F                                                       ;92A865;
-    db $EF                                                               ;92A869;
-    dw $2815,$000B                                                       ;92A86A;
-    db $F8                                                               ;92A86E;
-    dw $2816,$000B                                                       ;92A86F;
-    db $F0                                                               ;92A873;
-    dw $2817                                                             ;92A874;
+    dw $000A                                                             ;92A842;
+    %spritemapEntry(0, $1F4, $FC, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F4, $F4, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43FC, $F4, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FE, $F4, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $17, $F7, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $0F, $F7, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $17, $EF, 0, 0, 2, 4, $14)
+    %spritemapEntry(0, $0F, $EF, 0, 0, 2, 4, $15)
+    %spritemapEntry(0, $0B, $F8, 0, 0, 2, 4, $16)
+    %spritemapEntry(0, $0B, $F0, 0, 0, 2, 4, $17)
 
 SamusSpritemaps_A876:
-    dw $0009,$C3FE                                                       ;92A876;
-    db $F3                                                               ;92A87A;
-    dw $2800,$01F6                                                       ;92A87B;
-    db $FB                                                               ;92A87F;
-    dw $2804,$01F6                                                       ;92A880;
-    db $F3                                                               ;92A884;
-    dw $2805,$01F6                                                       ;92A885;
-    db $EB                                                               ;92A889;
-    dw $2806,$C3FF                                                       ;92A88A;
-    db $F7                                                               ;92A88E;
-    dw $6802,$000E                                                       ;92A88F;
-    db $FA                                                               ;92A893;
-    dw $2807,$000E                                                       ;92A894;
-    db $F9                                                               ;92A898;
-    dw $A814,$001C                                                       ;92A899;
-    db $F7                                                               ;92A89D;
-    dw $2815,$0014                                                       ;92A89E;
-    db $F7                                                               ;92A8A2;
-    dw $2816                                                             ;92A8A3;
+    dw $0009                                                             ;92A876;
+    %spritemapEntry(1, $43FE, $F3, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1F6, $FB, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $F3, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F6, $EB, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43FF, $F7, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $0E, $FA, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $0E, $F9, 1, 0, 2, 4, $14)
+    %spritemapEntry(0, $1C, $F7, 0, 0, 2, 4, $15)
+    %spritemapEntry(0, $14, $F7, 0, 0, 2, 4, $16)
 
 SamusSpritemaps_A8A5:
-    dw $0009,$C3FE                                                       ;92A8A5;
-    db $F4                                                               ;92A8A9;
-    dw $2800,$01F6                                                       ;92A8AA;
-    db $FC                                                               ;92A8AE;
-    dw $2804,$01F6                                                       ;92A8AF;
-    db $F4                                                               ;92A8B3;
-    dw $2805,$01F6                                                       ;92A8B4;
-    db $EC                                                               ;92A8B8;
-    dw $2806,$C3FF                                                       ;92A8B9;
-    db $F8                                                               ;92A8BD;
-    dw $6802,$001C                                                       ;92A8BE;
-    db $FC                                                               ;92A8C2;
-    dw $2807,$0014                                                       ;92A8C3;
-    db $FC                                                               ;92A8C7;
-    dw $2814,$000E                                                       ;92A8C8;
-    db $FD                                                               ;92A8CC;
-    dw $2815,$000E                                                       ;92A8CD;
-    db $F5                                                               ;92A8D1;
-    dw $2816                                                             ;92A8D2;
+    dw $0009                                                             ;92A8A5;
+    %spritemapEntry(1, $43FE, $F4, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1F6, $FC, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F6, $F4, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F6, $EC, 0, 0, 2, 4, $06)
+    %spritemapEntry(1, $43FF, $F8, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1C, $FC, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $14, $FC, 0, 0, 2, 4, $14)
+    %spritemapEntry(0, $0E, $FD, 0, 0, 2, 4, $15)
+    %spritemapEntry(0, $0E, $F5, 0, 0, 2, 4, $16)
 
 SamusSpritemaps_A8D4:
-    dw $0004,$01DC                                                       ;92A8D4;
-    db $FB                                                               ;92A8D8;
-    dw $E804,$01E4                                                       ;92A8D9;
-    db $FB                                                               ;92A8DD;
-    dw $E805,$C3EB                                                       ;92A8DE;
-    db $FA                                                               ;92A8E2;
-    dw $E800,$C3F0                                                       ;92A8E3;
-    db $F8                                                               ;92A8E7;
-    dw $E802                                                             ;92A8E8;
+    dw $0004                                                             ;92A8D4;
+    %spritemapEntry(0, $1DC, $FB, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $1E4, $FB, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43EB, $FA, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $F8, 1, 1, 2, 4, $02)
 
 SamusSpritemaps_A8EA:
-    dw $0004,$01DD                                                       ;92A8EA;
-    db $01                                                               ;92A8EE;
-    dw $E804,$01E5                                                       ;92A8EF;
-    db $01                                                               ;92A8F3;
-    dw $E805,$C3EC                                                       ;92A8F4;
-    db $FC                                                               ;92A8F8;
-    dw $E800,$C3F1                                                       ;92A8F9;
-    db $FA                                                               ;92A8FD;
-    dw $E802                                                             ;92A8FE;
+    dw $0004                                                             ;92A8EA;
+    %spritemapEntry(0, $1DD, $01, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $1E5, $01, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43EC, $FC, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F1, $FA, 1, 1, 2, 4, $02)
 
 SamusSpritemaps_A900:
-    dw $0003,$C3E0                                                       ;92A900;
-    db $FF                                                               ;92A904;
-    dw $E800,$C3EC                                                       ;92A905;
-    db $FD                                                               ;92A909;
-    dw $E802,$C3F1                                                       ;92A90A;
-    db $FB                                                               ;92A90E;
-    dw $E804                                                             ;92A90F;
+    dw $0003                                                             ;92A900;
+    %spritemapEntry(1, $43E0, $FF, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43EC, $FD, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F1, $FB, 1, 1, 2, 4, $04)
 
 SamusSpritemaps_A911:
-    dw $0003,$C3EE                                                       ;92A911;
-    db $01                                                               ;92A915;
-    dw $E800,$C3E2                                                       ;92A916;
-    db $03                                                               ;92A91A;
-    dw $E802,$C3F1                                                       ;92A91B;
-    db $FE                                                               ;92A91F;
-    dw $E804                                                             ;92A920;
+    dw $0003                                                             ;92A911;
+    %spritemapEntry(1, $43EE, $01, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43E2, $03, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F1, $FE, 1, 1, 2, 4, $04)
 
 SamusSpritemaps_A922:
-    dw $0003,$C3E4                                                       ;92A922;
-    db $0B                                                               ;92A926;
-    dw $E800,$C3EE                                                       ;92A927;
-    db $01                                                               ;92A92B;
-    dw $E802,$C3F1                                                       ;92A92C;
-    db $FE                                                               ;92A930;
-    dw $E804                                                             ;92A931;
+    dw $0003                                                             ;92A922;
+    %spritemapEntry(1, $43E4, $0B, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43EE, $01, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F1, $FE, 1, 1, 2, 4, $04)
 
 SamusSpritemaps_A933:
-    dw $0003,$C3E7                                                       ;92A933;
-    db $0B                                                               ;92A937;
-    dw $E800,$C3EF                                                       ;92A938;
-    db $01                                                               ;92A93C;
-    dw $E802,$C3F1                                                       ;92A93D;
-    db $FE                                                               ;92A941;
-    dw $E804                                                             ;92A942;
+    dw $0003                                                             ;92A933;
+    %spritemapEntry(1, $43E7, $0B, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43EF, $01, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F1, $FE, 1, 1, 2, 4, $04)
 
 SamusSpritemaps_A944:
-    dw $0003,$C3E9                                                       ;92A944;
-    db $0D                                                               ;92A948;
-    dw $E800,$C3EF                                                       ;92A949;
-    db $03                                                               ;92A94D;
-    dw $E802,$C3F2                                                       ;92A94E;
-    db $FF                                                               ;92A952;
-    dw $E804                                                             ;92A953;
+    dw $0003                                                             ;92A944;
+    %spritemapEntry(1, $43E9, $0D, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43EF, $03, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F2, $FF, 1, 1, 2, 4, $04)
 
 SamusSpritemaps_A955:
-    dw $0004,$01F4                                                       ;92A955;
-    db $12                                                               ;92A959;
-    dw $E804,$01F4                                                       ;92A95A;
-    db $1A                                                               ;92A95E;
-    dw $E805,$C3F3                                                       ;92A95F;
-    db $04                                                               ;92A963;
-    dw $E800,$C3F5                                                       ;92A964;
-    db $00                                                               ;92A968;
-    dw $E802                                                             ;92A969;
+    dw $0004                                                             ;92A955;
+    %spritemapEntry(0, $1F4, $12, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F4, $1A, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F3, $04, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F5, $00, 1, 1, 2, 4, $02)
 
 SamusSpritemaps_A96B:
-    dw $0004,$01FB                                                       ;92A96B;
-    db $13                                                               ;92A96F;
-    dw $E804,$01FB                                                       ;92A970;
-    db $1B                                                               ;92A974;
-    dw $E805,$C3FA                                                       ;92A975;
-    db $04                                                               ;92A979;
-    dw $E800,$C3F8                                                       ;92A97A;
-    db $00                                                               ;92A97E;
-    dw $E802                                                             ;92A97F;
+    dw $0004                                                             ;92A96B;
+    %spritemapEntry(0, $1FB, $13, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $1FB, $1B, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43FA, $04, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $00, 1, 1, 2, 4, $02)
 
 SamusSpritemaps_A981:
-    dw $0004,$0000                                                       ;92A981;
-    db $12                                                               ;92A985;
-    dw $A804,$0000                                                       ;92A986;
-    db $1A                                                               ;92A98A;
-    dw $A805,$C3FD                                                       ;92A98B;
-    db $04                                                               ;92A98F;
-    dw $E800,$C3F9                                                       ;92A990;
-    db $00                                                               ;92A994;
-    dw $E802                                                             ;92A995;
+    dw $0004                                                             ;92A981;
+    %spritemapEntry(0, $00, $12, 1, 0, 2, 4, $04)
+    %spritemapEntry(0, $00, $1A, 1, 0, 2, 4, $05)
+    %spritemapEntry(1, $43FD, $04, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F9, $00, 1, 1, 2, 4, $02)
 
 SamusSpritemaps_A997:
-    dw $0003,$C202                                                       ;92A997;
-    db $0E                                                               ;92A99B;
-    dw $A800,$C3FD                                                       ;92A99C;
-    db $03                                                               ;92A9A0;
-    dw $E802,$C3FB                                                       ;92A9A1;
-    db $FF                                                               ;92A9A5;
-    dw $E804                                                             ;92A9A6;
+    dw $0003                                                             ;92A997;
+    %spritemapEntry(1, $4202, $0E, 1, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FD, $03, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $43FB, $FF, 1, 1, 2, 4, $04)
 
 SamusSpritemaps_A9A8:
-    dw $0003,$C208                                                       ;92A9A8;
-    db $0C                                                               ;92A9AC;
-    dw $A800,$C200                                                       ;92A9AD;
-    db $01                                                               ;92A9B1;
-    dw $E802,$C3FE                                                       ;92A9B2;
-    db $FE                                                               ;92A9B6;
-    dw $E804                                                             ;92A9B7;
+    dw $0003                                                             ;92A9A8;
+    %spritemapEntry(1, $4208, $0C, 1, 0, 2, 4, $00)
+    %spritemapEntry(1, $4200, $01, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $43FE, $FE, 1, 1, 2, 4, $04)
 
 SamusSpritemaps_A9B9:
-    dw $0003,$C20D                                                       ;92A9B9;
-    db $0B                                                               ;92A9BD;
-    dw $A800,$C202                                                       ;92A9BE;
-    db $01                                                               ;92A9C2;
-    dw $E802,$C3FE                                                       ;92A9C3;
-    db $FE                                                               ;92A9C7;
-    dw $E804                                                             ;92A9C8;
+    dw $0003                                                             ;92A9B9;
+    %spritemapEntry(1, $420D, $0B, 1, 0, 2, 4, $00)
+    %spritemapEntry(1, $4202, $01, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $43FE, $FE, 1, 1, 2, 4, $04)
 
 SamusSpritemaps_A9CA:
-    dw $0003,$C210                                                       ;92A9CA;
-    db $07                                                               ;92A9CE;
-    dw $A800,$C205                                                       ;92A9CF;
-    db $FE                                                               ;92A9D3;
-    dw $E802,$C3FF                                                       ;92A9D4;
-    db $FD                                                               ;92A9D8;
-    dw $E804                                                             ;92A9D9;
+    dw $0003                                                             ;92A9CA;
+    %spritemapEntry(1, $4210, $07, 1, 0, 2, 4, $00)
+    %spritemapEntry(1, $4205, $FE, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $43FF, $FD, 1, 1, 2, 4, $04)
 
 SamusSpritemaps_A9DB:
-    dw $0003,$C210                                                       ;92A9DB;
-    db $01                                                               ;92A9DF;
-    dw $A800,$C205                                                       ;92A9E0;
-    db $FC                                                               ;92A9E4;
-    dw $E802,$C3FF                                                       ;92A9E5;
-    db $FD                                                               ;92A9E9;
-    dw $E804                                                             ;92A9EA;
+    dw $0003                                                             ;92A9DB;
+    %spritemapEntry(1, $4210, $01, 1, 0, 2, 4, $00)
+    %spritemapEntry(1, $4205, $FC, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $43FF, $FD, 1, 1, 2, 4, $04)
 
 SamusSpritemaps_A9EC:
-    dw $0004,$001B                                                       ;92A9EC;
-    db $01                                                               ;92A9F0;
-    dw $A804,$0013                                                       ;92A9F1;
-    db $01                                                               ;92A9F5;
-    dw $A805,$C205                                                       ;92A9F6;
-    db $F7                                                               ;92A9FA;
-    dw $E800,$C200                                                       ;92A9FB;
-    db $F9                                                               ;92A9FF;
-    dw $E802                                                             ;92AA00;
+    dw $0004                                                             ;92A9EC;
+    %spritemapEntry(0, $1B, $01, 1, 0, 2, 4, $04)
+    %spritemapEntry(0, $13, $01, 1, 0, 2, 4, $05)
+    %spritemapEntry(1, $4205, $F7, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $4200, $F9, 1, 1, 2, 4, $02)
 
 SamusSpritemaps_AA02:
-    dw $0004,$001C                                                       ;92AA02;
-    db $FC                                                               ;92AA06;
-    dw $A804,$0014                                                       ;92AA07;
-    db $FC                                                               ;92AA0B;
-    dw $A805,$C205                                                       ;92AA0C;
-    db $F7                                                               ;92AA10;
-    dw $E800,$C200                                                       ;92AA11;
-    db $F8                                                               ;92AA15;
-    dw $E802                                                             ;92AA16;
+    dw $0004                                                             ;92AA02;
+    %spritemapEntry(0, $1C, $FC, 1, 0, 2, 4, $04)
+    %spritemapEntry(0, $14, $FC, 1, 0, 2, 4, $05)
+    %spritemapEntry(1, $4205, $F7, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $4200, $F8, 1, 1, 2, 4, $02)
 
 SamusSpritemaps_AA18:
-    dw $0008,$01F7                                                       ;92AA18;
-    db $FD                                                               ;92AA1C;
-    dw $E804,$01F7                                                       ;92AA1D;
-    db $05                                                               ;92AA21;
-    dw $E805,$C3FF                                                       ;92AA22;
-    db $FD                                                               ;92AA26;
-    dw $E800,$C200                                                       ;92AA27;
-    db $F8                                                               ;92AA2B;
-    dw $A802,$001C                                                       ;92AA2C;
-    db $FC                                                               ;92AA30;
-    dw $A806,$0014                                                       ;92AA31;
-    db $FC                                                               ;92AA35;
-    dw $A807,$000D                                                       ;92AA36;
-    db $F6                                                               ;92AA3A;
-    dw $E814,$000D                                                       ;92AA3B;
-    db $FE                                                               ;92AA3F;
-    dw $E815                                                             ;92AA40;
+    dw $0008                                                             ;92AA18;
+    %spritemapEntry(0, $1F7, $FD, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F7, $05, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43FF, $FD, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $4200, $F8, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $1C, $FC, 1, 0, 2, 4, $06)
+    %spritemapEntry(0, $14, $FC, 1, 0, 2, 4, $07)
+    %spritemapEntry(0, $0D, $F6, 1, 1, 2, 4, $14)
+    %spritemapEntry(0, $0D, $FE, 1, 1, 2, 4, $15)
 
 SamusSpritemaps_AA42:
-    dw $0008,$001C                                                       ;92AA42;
-    db $00                                                               ;92AA46;
-    dw $A804,$0014                                                       ;92AA47;
-    db $00                                                               ;92AA4B;
-    dw $A805,$01F7                                                       ;92AA4C;
-    db $FE                                                               ;92AA50;
-    dw $E806,$01F7                                                       ;92AA51;
-    db $06                                                               ;92AA55;
-    dw $E807,$C3FF                                                       ;92AA56;
-    db $FE                                                               ;92AA5A;
-    dw $E800,$C200                                                       ;92AA5B;
-    db $F9                                                               ;92AA5F;
-    dw $A802,$000D                                                       ;92AA60;
-    db $F8                                                               ;92AA64;
-    dw $E814,$000D                                                       ;92AA65;
-    db $00                                                               ;92AA69;
-    dw $E815                                                             ;92AA6A;
+    dw $0008                                                             ;92AA42;
+    %spritemapEntry(0, $1C, $00, 1, 0, 2, 4, $04)
+    %spritemapEntry(0, $14, $00, 1, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F7, $FE, 1, 1, 2, 4, $06)
+    %spritemapEntry(0, $1F7, $06, 1, 1, 2, 4, $07)
+    %spritemapEntry(1, $43FF, $FE, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $4200, $F9, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $0D, $F8, 1, 1, 2, 4, $14)
+    %spritemapEntry(0, $0D, $00, 1, 1, 2, 4, $15)
 
 SamusSpritemaps_AA6C:
-    dw $000A,$01F3                                                       ;92AA6C;
-    db $FE                                                               ;92AA70;
-    dw $E804,$01F3                                                       ;92AA71;
-    db $06                                                               ;92AA75;
-    dw $E805,$C3FB                                                       ;92AA76;
-    db $FE                                                               ;92AA7A;
-    dw $E800,$C3FF                                                       ;92AA7B;
-    db $FB                                                               ;92AA7F;
-    dw $A802,$0018                                                       ;92AA80;
-    db $00                                                               ;92AA84;
-    dw $A806,$0010                                                       ;92AA85;
-    db $00                                                               ;92AA89;
-    dw $A807,$0018                                                       ;92AA8A;
-    db $08                                                               ;92AA8E;
-    dw $A814,$0010                                                       ;92AA8F;
-    db $08                                                               ;92AA93;
-    dw $A815,$000D                                                       ;92AA94;
-    db $FB                                                               ;92AA98;
-    dw $E816,$000D                                                       ;92AA99;
-    db $03                                                               ;92AA9D;
-    dw $E817                                                             ;92AA9E;
+    dw $000A                                                             ;92AA6C;
+    %spritemapEntry(0, $1F3, $FE, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F3, $06, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43FB, $FE, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43FF, $FB, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $18, $00, 1, 0, 2, 4, $06)
+    %spritemapEntry(0, $10, $00, 1, 0, 2, 4, $07)
+    %spritemapEntry(0, $18, $08, 1, 0, 2, 4, $14)
+    %spritemapEntry(0, $10, $08, 1, 0, 2, 4, $15)
+    %spritemapEntry(0, $0D, $FB, 1, 1, 2, 4, $16)
+    %spritemapEntry(0, $0D, $03, 1, 1, 2, 4, $17)
 
 SamusSpritemaps_AAA0:
-    dw $000A,$01F3                                                       ;92AAA0;
-    db $FF                                                               ;92AAA4;
-    dw $E804,$01F3                                                       ;92AAA5;
-    db $07                                                               ;92AAA9;
-    dw $E805,$C3FB                                                       ;92AAAA;
-    db $FF                                                               ;92AAAE;
-    dw $E800,$C3FF                                                       ;92AAAF;
-    db $FC                                                               ;92AAB3;
-    dw $A802,$0018                                                       ;92AAB4;
-    db $03                                                               ;92AAB8;
-    dw $A806,$0010                                                       ;92AAB9;
-    db $03                                                               ;92AABD;
-    dw $A807,$0018                                                       ;92AABE;
-    db $0B                                                               ;92AAC2;
-    dw $A814,$0010                                                       ;92AAC3;
-    db $0B                                                               ;92AAC7;
-    dw $A815,$000D                                                       ;92AAC8;
-    db $FD                                                               ;92AACC;
-    dw $E816,$000D                                                       ;92AACD;
-    db $05                                                               ;92AAD1;
-    dw $E817                                                             ;92AAD2;
+    dw $000A                                                             ;92AAA0;
+    %spritemapEntry(0, $1F3, $FF, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F3, $07, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43FB, $FF, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43FF, $FC, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $18, $03, 1, 0, 2, 4, $06)
+    %spritemapEntry(0, $10, $03, 1, 0, 2, 4, $07)
+    %spritemapEntry(0, $18, $0B, 1, 0, 2, 4, $14)
+    %spritemapEntry(0, $10, $0B, 1, 0, 2, 4, $15)
+    %spritemapEntry(0, $0D, $FD, 1, 1, 2, 4, $16)
+    %spritemapEntry(0, $0D, $05, 1, 1, 2, 4, $17)
 
 SamusSpritemaps_AAD4:
-    dw $0009,$01FB                                                       ;92AAD4;
-    db $FA                                                               ;92AAD8;
-    dw $E804,$C3FB                                                       ;92AAD9;
-    db $02                                                               ;92AADD;
-    dw $E800,$C200                                                       ;92AADE;
-    db $FE                                                               ;92AAE2;
-    dw $A802,$0016                                                       ;92AAE3;
-    db $0C                                                               ;92AAE7;
-    dw $A805,$000E                                                       ;92AAE8;
-    db $0C                                                               ;92AAEC;
-    dw $A806,$0016                                                       ;92AAED;
-    db $14                                                               ;92AAF1;
-    dw $A807,$000E                                                       ;92AAF2;
-    db $14                                                               ;92AAF6;
-    dw $A814,$0004                                                       ;92AAF7;
-    db $0A                                                               ;92AAFB;
-    dw $E815,$000C                                                       ;92AAFC;
-    db $0A                                                               ;92AB00;
-    dw $E816                                                             ;92AB01;
+    dw $0009                                                             ;92AAD4;
+    %spritemapEntry(0, $1FB, $FA, 1, 1, 2, 4, $04)
+    %spritemapEntry(1, $43FB, $02, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $4200, $FE, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $16, $0C, 1, 0, 2, 4, $05)
+    %spritemapEntry(0, $0E, $0C, 1, 0, 2, 4, $06)
+    %spritemapEntry(0, $16, $14, 1, 0, 2, 4, $07)
+    %spritemapEntry(0, $0E, $14, 1, 0, 2, 4, $14)
+    %spritemapEntry(0, $04, $0A, 1, 1, 2, 4, $15)
+    %spritemapEntry(0, $0C, $0A, 1, 1, 2, 4, $16)
 
 SamusSpritemaps_AB03:
-    dw $0009,$01FA                                                       ;92AB03;
-    db $FA                                                               ;92AB07;
-    dw $E804,$C3FA                                                       ;92AB08;
-    db $02                                                               ;92AB0C;
-    dw $E800,$C3FE                                                       ;92AB0D;
-    db $FF                                                               ;92AB11;
-    dw $A802,$0002                                                       ;92AB12;
-    db $0B                                                               ;92AB16;
-    dw $E805,$000A                                                       ;92AB17;
-    db $0B                                                               ;92AB1B;
-    dw $E806,$000B                                                       ;92AB1C;
-    db $0D                                                               ;92AB20;
-    dw $A807,$0013                                                       ;92AB21;
-    db $0D                                                               ;92AB25;
-    dw $A814,$0013                                                       ;92AB26;
-    db $15                                                               ;92AB2A;
-    dw $A815,$000B                                                       ;92AB2B;
-    db $15                                                               ;92AB2F;
-    dw $A816                                                             ;92AB30;
+    dw $0009                                                             ;92AB03;
+    %spritemapEntry(0, $1FA, $FA, 1, 1, 2, 4, $04)
+    %spritemapEntry(1, $43FA, $02, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43FE, $FF, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $02, $0B, 1, 1, 2, 4, $05)
+    %spritemapEntry(0, $0A, $0B, 1, 1, 2, 4, $06)
+    %spritemapEntry(0, $0B, $0D, 1, 0, 2, 4, $07)
+    %spritemapEntry(0, $13, $0D, 1, 0, 2, 4, $14)
+    %spritemapEntry(0, $13, $15, 1, 0, 2, 4, $15)
+    %spritemapEntry(0, $0B, $15, 1, 0, 2, 4, $16)
 
 SamusSpritemaps_AB32:
-    dw $0009,$000F                                                       ;92AB32;
-    db $0F                                                               ;92AB36;
-    dw $A804,$01FA                                                       ;92AB37;
-    db $FA                                                               ;92AB3B;
-    dw $E805,$C3FA                                                       ;92AB3C;
-    db $02                                                               ;92AB40;
-    dw $E800,$C3FE                                                       ;92AB41;
-    db $FF                                                               ;92AB45;
-    dw $A802,$0007                                                       ;92AB46;
-    db $0F                                                               ;92AB4A;
-    dw $A806,$000F                                                       ;92AB4B;
-    db $17                                                               ;92AB4F;
-    dw $A807,$0007                                                       ;92AB50;
-    db $17                                                               ;92AB54;
-    dw $A814,$0002                                                       ;92AB55;
-    db $0C                                                               ;92AB59;
-    dw $E815,$000A                                                       ;92AB5A;
-    db $0C                                                               ;92AB5E;
-    dw $E816                                                             ;92AB5F;
+    dw $0009                                                             ;92AB32;
+    %spritemapEntry(0, $0F, $0F, 1, 0, 2, 4, $04)
+    %spritemapEntry(0, $1FA, $FA, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43FA, $02, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43FE, $FF, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $07, $0F, 1, 0, 2, 4, $06)
+    %spritemapEntry(0, $0F, $17, 1, 0, 2, 4, $07)
+    %spritemapEntry(0, $07, $17, 1, 0, 2, 4, $14)
+    %spritemapEntry(0, $02, $0C, 1, 1, 2, 4, $15)
+    %spritemapEntry(0, $0A, $0C, 1, 1, 2, 4, $16)
 
 SamusSpritemaps_AB61:
-    dw $0008,$01F8                                                       ;92AB61;
-    db $F6                                                               ;92AB65;
-    dw $E804,$0000                                                       ;92AB66;
-    db $F6                                                               ;92AB6A;
-    dw $E805,$C3F8                                                       ;92AB6B;
-    db $FE                                                               ;92AB6F;
-    dw $E800,$C3FA                                                       ;92AB70;
-    db $00                                                               ;92AB74;
-    dw $A802,$0000                                                       ;92AB75;
-    db $0D                                                               ;92AB79;
-    dw $E806,$0008                                                       ;92AB7A;
-    db $0D                                                               ;92AB7E;
-    dw $E807,$0003                                                       ;92AB7F;
-    db $13                                                               ;92AB83;
-    dw $A814,$0003                                                       ;92AB84;
-    db $1B                                                               ;92AB88;
-    dw $A815                                                             ;92AB89;
+    dw $0008                                                             ;92AB61;
+    %spritemapEntry(0, $1F8, $F6, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $00, $F6, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F8, $FE, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43FA, $00, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $00, $0D, 1, 1, 2, 4, $06)
+    %spritemapEntry(0, $08, $0D, 1, 1, 2, 4, $07)
+    %spritemapEntry(0, $03, $13, 1, 0, 2, 4, $14)
+    %spritemapEntry(0, $03, $1B, 1, 0, 2, 4, $15)
 
 SamusSpritemaps_AB8B:
-    dw $0008,$01F9                                                       ;92AB8B;
-    db $F5                                                               ;92AB8F;
-    dw $E804,$0001                                                       ;92AB90;
-    db $F5                                                               ;92AB94;
-    dw $E805,$C3F9                                                       ;92AB95;
-    db $FD                                                               ;92AB99;
-    dw $E800,$C3F7                                                       ;92AB9A;
-    db $FF                                                               ;92AB9E;
-    dw $A802,$01FC                                                       ;92AB9F;
-    db $14                                                               ;92ABA3;
-    dw $E806,$01FC                                                       ;92ABA4;
-    db $1C                                                               ;92ABA8;
-    dw $E807,$01FB                                                       ;92ABA9;
-    db $0D                                                               ;92ABAD;
-    dw $E814,$0003                                                       ;92ABAE;
-    db $0D                                                               ;92ABB2;
-    dw $E815                                                             ;92ABB3;
+    dw $0008                                                             ;92AB8B;
+    %spritemapEntry(0, $1F9, $F5, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $01, $F5, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F9, $FD, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F7, $FF, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $1FC, $14, 1, 1, 2, 4, $06)
+    %spritemapEntry(0, $1FC, $1C, 1, 1, 2, 4, $07)
+    %spritemapEntry(0, $1FB, $0D, 1, 1, 2, 4, $14)
+    %spritemapEntry(0, $03, $0D, 1, 1, 2, 4, $15)
 
 SamusSpritemaps_ABB5:
-    dw $0008,$01F9                                                       ;92ABB5;
-    db $F7                                                               ;92ABB9;
-    dw $E804,$0001                                                       ;92ABBA;
-    db $F7                                                               ;92ABBE;
-    dw $E805,$C3F9                                                       ;92ABBF;
-    db $FF                                                               ;92ABC3;
-    dw $E800,$C3F6                                                       ;92ABC4;
-    db $00                                                               ;92ABC8;
-    dw $A802,$01F6                                                       ;92ABC9;
-    db $13                                                               ;92ABCD;
-    dw $E806,$01F6                                                       ;92ABCE;
-    db $1B                                                               ;92ABD2;
-    dw $E807,$01F5                                                       ;92ABD3;
-    db $0D                                                               ;92ABD7;
-    dw $E814,$01FD                                                       ;92ABD8;
-    db $0D                                                               ;92ABDC;
-    dw $E815                                                             ;92ABDD;
+    dw $0008                                                             ;92ABB5;
+    %spritemapEntry(0, $1F9, $F7, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $01, $F7, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F9, $FF, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F6, $00, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F6, $13, 1, 1, 2, 4, $06)
+    %spritemapEntry(0, $1F6, $1B, 1, 1, 2, 4, $07)
+    %spritemapEntry(0, $1F5, $0D, 1, 1, 2, 4, $14)
+    %spritemapEntry(0, $1FD, $0D, 1, 1, 2, 4, $15)
 
 SamusSpritemaps_ABDF:
-    dw $0009,$01ED                                                       ;92ABDF;
-    db $10                                                               ;92ABE3;
-    dw $E804,$0007                                                       ;92ABE4;
-    db $FC                                                               ;92ABE8;
-    dw $E805,$C3F7                                                       ;92ABE9;
-    db $FC                                                               ;92ABED;
-    dw $E800,$C3F5                                                       ;92ABEE;
-    db $00                                                               ;92ABF2;
-    dw $A802,$01F5                                                       ;92ABF3;
-    db $10                                                               ;92ABF7;
-    dw $E806,$01ED                                                       ;92ABF8;
-    db $18                                                               ;92ABFC;
-    dw $E807,$01F5                                                       ;92ABFD;
-    db $18                                                               ;92AC01;
-    dw $E814,$01F3                                                       ;92AC02;
-    db $0D                                                               ;92AC06;
-    dw $E815,$01FB                                                       ;92AC07;
-    db $0D                                                               ;92AC0B;
-    dw $E816                                                             ;92AC0C;
+    dw $0009                                                             ;92ABDF;
+    %spritemapEntry(0, $1ED, $10, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $07, $FC, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F7, $FC, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F5, $00, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F5, $10, 1, 1, 2, 4, $06)
+    %spritemapEntry(0, $1ED, $18, 1, 1, 2, 4, $07)
+    %spritemapEntry(0, $1F5, $18, 1, 1, 2, 4, $14)
+    %spritemapEntry(0, $1F3, $0D, 1, 1, 2, 4, $15)
+    %spritemapEntry(0, $1FB, $0D, 1, 1, 2, 4, $16)
 
 SamusSpritemaps_AC0E:
-    dw $000A,$01E8                                                       ;92AC0E;
-    db $0E                                                               ;92AC12;
-    dw $E804,$01F0                                                       ;92AC13;
-    db $0E                                                               ;92AC17;
-    dw $E805,$01E8                                                       ;92AC18;
-    db $16                                                               ;92AC1C;
-    dw $E806,$01F0                                                       ;92AC1D;
-    db $16                                                               ;92AC21;
-    dw $E807,$0007                                                       ;92AC22;
-    db $FB                                                               ;92AC26;
-    dw $E814,$0007                                                       ;92AC27;
-    db $03                                                               ;92AC2B;
-    dw $E815,$C3F7                                                       ;92AC2C;
-    db $FB                                                               ;92AC30;
-    dw $E800,$C3F3                                                       ;92AC31;
-    db $FE                                                               ;92AC35;
-    dw $A802,$01F0                                                       ;92AC36;
-    db $0B                                                               ;92AC3A;
-    dw $E816,$01F8                                                       ;92AC3B;
-    db $0B                                                               ;92AC3F;
-    dw $E817                                                             ;92AC40;
+    dw $000A                                                             ;92AC0E;
+    %spritemapEntry(0, $1E8, $0E, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F0, $0E, 1, 1, 2, 4, $05)
+    %spritemapEntry(0, $1E8, $16, 1, 1, 2, 4, $06)
+    %spritemapEntry(0, $1F0, $16, 1, 1, 2, 4, $07)
+    %spritemapEntry(0, $07, $FB, 1, 1, 2, 4, $14)
+    %spritemapEntry(0, $07, $03, 1, 1, 2, 4, $15)
+    %spritemapEntry(1, $43F7, $FB, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F3, $FE, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F0, $0B, 1, 1, 2, 4, $16)
+    %spritemapEntry(0, $1F8, $0B, 1, 1, 2, 4, $17)
 
 SamusSpritemaps_AC42:
-    dw $000A,$0007                                                       ;92AC42;
-    db $FB                                                               ;92AC46;
-    dw $E804,$0007                                                       ;92AC47;
-    db $03                                                               ;92AC4B;
-    dw $E805,$C3F7                                                       ;92AC4C;
-    db $FB                                                               ;92AC50;
-    dw $E800,$C3F3                                                       ;92AC51;
-    db $FE                                                               ;92AC55;
-    dw $A802,$01E5                                                       ;92AC56;
-    db $0C                                                               ;92AC5A;
-    dw $E806,$01ED                                                       ;92AC5B;
-    db $0C                                                               ;92AC5F;
-    dw $E807,$01E5                                                       ;92AC60;
-    db $14                                                               ;92AC64;
-    dw $E814,$01ED                                                       ;92AC65;
-    db $14                                                               ;92AC69;
-    dw $E815,$01EF                                                       ;92AC6A;
-    db $0A                                                               ;92AC6E;
-    dw $E816,$01F7                                                       ;92AC6F;
-    db $0A                                                               ;92AC73;
-    dw $E817                                                             ;92AC74;
+    dw $000A                                                             ;92AC42;
+    %spritemapEntry(0, $07, $FB, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $07, $03, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F7, $FB, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F3, $FE, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $1E5, $0C, 1, 1, 2, 4, $06)
+    %spritemapEntry(0, $1ED, $0C, 1, 1, 2, 4, $07)
+    %spritemapEntry(0, $1E5, $14, 1, 1, 2, 4, $14)
+    %spritemapEntry(0, $1ED, $14, 1, 1, 2, 4, $15)
+    %spritemapEntry(0, $1EF, $0A, 1, 1, 2, 4, $16)
+    %spritemapEntry(0, $1F7, $0A, 1, 1, 2, 4, $17)
 
 SamusSpritemaps_AC76:
-    dw $000A,$0004                                                       ;92AC76;
-    db $FC                                                               ;92AC7A;
-    dw $E804,$0004                                                       ;92AC7B;
-    db $04                                                               ;92AC7F;
-    dw $E805,$C3F4                                                       ;92AC80;
-    db $FC                                                               ;92AC84;
-    dw $E800,$C3F2                                                       ;92AC85;
-    db $FC                                                               ;92AC89;
-    dw $A802,$01E2                                                       ;92AC8A;
-    db $05                                                               ;92AC8E;
-    dw $E806,$01EA                                                       ;92AC8F;
-    db $05                                                               ;92AC93;
-    dw $E807,$01E2                                                       ;92AC94;
-    db $0D                                                               ;92AC98;
-    dw $E814,$01EA                                                       ;92AC99;
-    db $0D                                                               ;92AC9D;
-    dw $E815,$01EE                                                       ;92AC9E;
-    db $02                                                               ;92ACA2;
-    dw $E816,$01EE                                                       ;92ACA3;
-    db $0A                                                               ;92ACA7;
-    dw $E817                                                             ;92ACA8;
+    dw $000A                                                             ;92AC76;
+    %spritemapEntry(0, $04, $FC, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $04, $04, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F4, $FC, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F2, $FC, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $1E2, $05, 1, 1, 2, 4, $06)
+    %spritemapEntry(0, $1EA, $05, 1, 1, 2, 4, $07)
+    %spritemapEntry(0, $1E2, $0D, 1, 1, 2, 4, $14)
+    %spritemapEntry(0, $1EA, $0D, 1, 1, 2, 4, $15)
+    %spritemapEntry(0, $1EE, $02, 1, 1, 2, 4, $16)
+    %spritemapEntry(0, $1EE, $0A, 1, 1, 2, 4, $17)
 
 SamusSpritemaps_ACAA:
-    dw $000A,$0004                                                       ;92ACAA;
-    db $FC                                                               ;92ACAE;
-    dw $E804,$0004                                                       ;92ACAF;
-    db $04                                                               ;92ACB3;
-    dw $E805,$C3F4                                                       ;92ACB4;
-    db $FC                                                               ;92ACB8;
-    dw $E800,$C3F2                                                       ;92ACB9;
-    db $FC                                                               ;92ACBD;
-    dw $A802,$01E1                                                       ;92ACBE;
-    db $01                                                               ;92ACC2;
-    dw $E806,$01E9                                                       ;92ACC3;
-    db $01                                                               ;92ACC7;
-    dw $E807,$01E1                                                       ;92ACC8;
-    db $09                                                               ;92ACCC;
-    dw $E814,$01E9                                                       ;92ACCD;
-    db $09                                                               ;92ACD1;
-    dw $E815,$01ED                                                       ;92ACD2;
-    db $00                                                               ;92ACD6;
-    dw $E816,$01ED                                                       ;92ACD7;
-    db $08                                                               ;92ACDB;
-    dw $E817                                                             ;92ACDC;
+    dw $000A                                                             ;92ACAA;
+    %spritemapEntry(0, $04, $FC, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $04, $04, 1, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F4, $FC, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F2, $FC, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $1E1, $01, 1, 1, 2, 4, $06)
+    %spritemapEntry(0, $1E9, $01, 1, 1, 2, 4, $07)
+    %spritemapEntry(0, $1E1, $09, 1, 1, 2, 4, $14)
+    %spritemapEntry(0, $1E9, $09, 1, 1, 2, 4, $15)
+    %spritemapEntry(0, $1ED, $00, 1, 1, 2, 4, $16)
+    %spritemapEntry(0, $1ED, $08, 1, 1, 2, 4, $17)
 
 SamusSpritemaps_ACDE:
-    dw $0009,$C3F2                                                       ;92ACDE;
-    db $FD                                                               ;92ACE2;
-    dw $E800,$0002                                                       ;92ACE3;
-    db $FD                                                               ;92ACE7;
-    dw $E804,$0002                                                       ;92ACE8;
-    db $05                                                               ;92ACEC;
-    dw $E805,$0002                                                       ;92ACED;
-    db $0D                                                               ;92ACF1;
-    dw $E806,$C3F1                                                       ;92ACF2;
-    db $F9                                                               ;92ACF6;
-    dw $A802,$01EA                                                       ;92ACF7;
-    db $FE                                                               ;92ACFB;
-    dw $E807,$01EA                                                       ;92ACFC;
-    db $FF                                                               ;92AD00;
-    dw $6814,$01DC                                                       ;92AD01;
-    db $01                                                               ;92AD05;
-    dw $E815,$01E4                                                       ;92AD06;
-    db $01                                                               ;92AD0A;
-    dw $E816                                                             ;92AD0B;
+    dw $0009                                                             ;92ACDE;
+    %spritemapEntry(1, $43F2, $FD, 1, 1, 2, 4, $00)
+    %spritemapEntry(0, $02, $FD, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $02, $05, 1, 1, 2, 4, $05)
+    %spritemapEntry(0, $02, $0D, 1, 1, 2, 4, $06)
+    %spritemapEntry(1, $43F1, $F9, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $1EA, $FE, 1, 1, 2, 4, $07)
+    %spritemapEntry(0, $1EA, $FF, 0, 1, 2, 4, $14)
+    %spritemapEntry(0, $1DC, $01, 1, 1, 2, 4, $15)
+    %spritemapEntry(0, $1E4, $01, 1, 1, 2, 4, $16)
 
 SamusSpritemaps_AD0D:
-    dw $0009,$C3F2                                                       ;92AD0D;
-    db $FC                                                               ;92AD11;
-    dw $E800,$0002                                                       ;92AD12;
-    db $FC                                                               ;92AD16;
-    dw $E804,$0002                                                       ;92AD17;
-    db $04                                                               ;92AD1B;
-    dw $E805,$0002                                                       ;92AD1C;
-    db $0C                                                               ;92AD20;
-    dw $E806,$C3F1                                                       ;92AD21;
-    db $F8                                                               ;92AD25;
-    dw $A802,$01DC                                                       ;92AD26;
-    db $FC                                                               ;92AD2A;
-    dw $E807,$01E4                                                       ;92AD2B;
-    db $FC                                                               ;92AD2F;
-    dw $E814,$01EA                                                       ;92AD30;
-    db $FB                                                               ;92AD34;
-    dw $E815,$01EA                                                       ;92AD35;
-    db $03                                                               ;92AD39;
-    dw $E816                                                             ;92AD3A;
+    dw $0009                                                             ;92AD0D;
+    %spritemapEntry(1, $43F2, $FC, 1, 1, 2, 4, $00)
+    %spritemapEntry(0, $02, $FC, 1, 1, 2, 4, $04)
+    %spritemapEntry(0, $02, $04, 1, 1, 2, 4, $05)
+    %spritemapEntry(0, $02, $0C, 1, 1, 2, 4, $06)
+    %spritemapEntry(1, $43F1, $F8, 1, 0, 2, 4, $02)
+    %spritemapEntry(0, $1DC, $FC, 1, 1, 2, 4, $07)
+    %spritemapEntry(0, $1E4, $FC, 1, 1, 2, 4, $14)
+    %spritemapEntry(0, $1EA, $FB, 1, 1, 2, 4, $15)
+    %spritemapEntry(0, $1EA, $03, 1, 1, 2, 4, $16)
 
 SamusSpritemaps_AD3C:
-    dw $0002,$C3F8                                                       ;92AD3C;
-    db $10                                                               ;92AD40;
-    dw $2808,$C3F8                                                       ;92AD41;
-    db $00                                                               ;92AD45;
-    dw $280A                                                             ;92AD46;
+    dw $0002                                                             ;92AD3C;
+    %spritemapEntry(1, $43F8, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_AD48:
-    dw $0005,$C3F3                                                       ;92AD48;
-    db $07                                                               ;92AD4C;
-    dw $2808,$C3FB                                                       ;92AD4D;
-    db $FF                                                               ;92AD51;
-    dw $280A,$01EB                                                       ;92AD52;
-    db $0F                                                               ;92AD56;
-    dw $280C,$01F3                                                       ;92AD57;
-    db $17                                                               ;92AD5B;
-    dw $280D,$0003                                                       ;92AD5C;
-    db $0F                                                               ;92AD60;
-    dw $280E                                                             ;92AD61;
+    dw $0005                                                             ;92AD48;
+    %spritemapEntry(1, $43F3, $07, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FB, $FF, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1EB, $0F, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F3, $17, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $03, $0F, 0, 0, 2, 4, $0E)
 
 SamusSpritemaps_AD63:
-    dw $0004,$C3F0                                                       ;92AD63;
-    db $FF                                                               ;92AD67;
-    dw $2808,$C200                                                       ;92AD68;
-    db $0F                                                               ;92AD6C;
-    dw $280A,$C3F8                                                       ;92AD6D;
-    db $FF                                                               ;92AD71;
-    dw $280C,$0008                                                       ;92AD72;
-    db $07                                                               ;92AD76;
-    dw $280E                                                             ;92AD77;
+    dw $0004                                                             ;92AD63;
+    %spritemapEntry(1, $43F0, $FF, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $0F, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F8, $FF, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $08, $07, 0, 0, 2, 4, $0E)
 
 SamusSpritemaps_AD79:
-    dw $0002,$C3F7                                                       ;92AD79;
-    db $10                                                               ;92AD7D;
-    dw $2808,$C3F7                                                       ;92AD7E;
-    db $00                                                               ;92AD82;
-    dw $280A                                                             ;92AD83;
+    dw $0002                                                             ;92AD79;
+    %spritemapEntry(1, $43F7, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F7, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_AD85:
-    dw $0006,$C3F3                                                       ;92AD85;
-    db $07                                                               ;92AD89;
-    dw $2808,$C3FB                                                       ;92AD8A;
-    db $FF                                                               ;92AD8E;
-    dw $280A,$01F3                                                       ;92AD8F;
-    db $FF                                                               ;92AD93;
-    dw $280C,$01EB                                                       ;92AD94;
-    db $0F                                                               ;92AD98;
-    dw $280D,$01F3                                                       ;92AD99;
-    db $17                                                               ;92AD9D;
-    dw $280E,$0003                                                       ;92AD9E;
-    db $0F                                                               ;92ADA2;
-    dw $280F                                                             ;92ADA3;
+    dw $0006                                                             ;92AD85;
+    %spritemapEntry(1, $43F3, $07, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FB, $FF, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1F3, $FF, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1EB, $0F, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $1F3, $17, 0, 0, 2, 4, $0E)
+    %spritemapEntry(0, $03, $0F, 0, 0, 2, 4, $0F)
 
 SamusSpritemaps_ADA5:
-    dw $0004,$C3EF                                                       ;92ADA5;
-    db $FF                                                               ;92ADA9;
-    dw $2808,$C3FF                                                       ;92ADAA;
-    db $0F                                                               ;92ADAE;
-    dw $280A,$C3F7                                                       ;92ADAF;
-    db $FF                                                               ;92ADB3;
-    dw $280C,$01F7                                                       ;92ADB4;
-    db $0F                                                               ;92ADB8;
-    dw $280E                                                             ;92ADB9;
+    dw $0004                                                             ;92ADA5;
+    %spritemapEntry(1, $43EF, $FF, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FF, $0F, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F7, $FF, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F7, $0F, 0, 0, 2, 4, $0E)
 
 SamusSpritemaps_ADBB:
-    dw $0003,$C3F1                                                       ;92ADBB;
-    db $10                                                               ;92ADBF;
-    dw $2808,$C3F9                                                       ;92ADC0;
-    db $10                                                               ;92ADC4;
-    dw $280A,$C3F9                                                       ;92ADC5;
-    db $00                                                               ;92ADC9;
-    dw $280C                                                             ;92ADCA;
+    dw $0003                                                             ;92ADBB;
+    %spritemapEntry(1, $43F1, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F9, $10, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F9, $00, 0, 0, 2, 4, $0C)
 
 SamusSpritemaps_ADCC:
-    dw $0002,$C3EF                                                       ;92ADCC;
-    db $00                                                               ;92ADD0;
-    dw $2808,$C3F7                                                       ;92ADD1;
-    db $00                                                               ;92ADD5;
-    dw $280A                                                             ;92ADD6;
+    dw $0002                                                             ;92ADCC;
+    %spritemapEntry(1, $43EF, $00, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F7, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_ADD8:
-    dw $0004,$C3FB                                                       ;92ADD8;
-    db $00                                                               ;92ADDC;
-    dw $2808,$C3F3                                                       ;92ADDD;
-    db $10                                                               ;92ADE1;
-    dw $280A,$01F3                                                       ;92ADE2;
-    db $08                                                               ;92ADE6;
-    dw $280C,$0003                                                       ;92ADE7;
-    db $10                                                               ;92ADEB;
-    dw $280D                                                             ;92ADEC;
+    dw $0004                                                             ;92ADD8;
+    %spritemapEntry(1, $43FB, $00, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F3, $10, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1F3, $08, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $03, $10, 0, 0, 2, 4, $0D)
 
 SamusSpritemaps_ADEE:
-    dw $0006,$C3FF                                                       ;92ADEE;
-    db $06                                                               ;92ADF2;
-    dw $2808,$C3F7                                                       ;92ADF3;
-    db $FE                                                               ;92ADF7;
-    dw $280A,$000F                                                       ;92ADF8;
-    db $0F                                                               ;92ADFC;
-    dw $280C,$01EF                                                       ;92ADFD;
-    db $0E                                                               ;92AE01;
-    dw $280D,$01EF                                                       ;92AE02;
-    db $06                                                               ;92AE06;
-    dw $280E,$0007                                                       ;92AE07;
-    db $16                                                               ;92AE0B;
-    dw $280F                                                             ;92AE0C;
+    dw $0006                                                             ;92ADEE;
+    %spritemapEntry(1, $43FF, $06, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F7, $FE, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $0F, $0F, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1EF, $0E, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $1EF, $06, 0, 0, 2, 4, $0E)
+    %spritemapEntry(0, $07, $16, 0, 0, 2, 4, $0F)
 
 SamusSpritemaps_AE0E:
-    dw $0004,$01FB                                                       ;92AE0E;
-    db $18                                                               ;92AE12;
-    dw $280C,$C3FB                                                       ;92AE13;
-    db $00                                                               ;92AE17;
-    dw $2808,$C3F3                                                       ;92AE18;
-    db $08                                                               ;92AE1C;
-    dw $280A,$01F3                                                       ;92AE1D;
-    db $18                                                               ;92AE21;
-    dw $280D                                                             ;92AE22;
+    dw $0004                                                             ;92AE0E;
+    %spritemapEntry(0, $1FB, $18, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43FB, $00, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F3, $08, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1F3, $18, 0, 0, 2, 4, $0D)
 
 SamusSpritemaps_AE24:
-    dw $0006,$C3FE                                                       ;92AE24;
-    db $06                                                               ;92AE28;
-    dw $2808,$C3F6                                                       ;92AE29;
-    db $FE                                                               ;92AE2D;
-    dw $280A,$000E                                                       ;92AE2E;
-    db $0F                                                               ;92AE32;
-    dw $280C,$0006                                                       ;92AE33;
-    db $16                                                               ;92AE37;
-    dw $280D,$01EE                                                       ;92AE38;
-    db $0E                                                               ;92AE3C;
-    dw $280E,$01EE                                                       ;92AE3D;
-    db $06                                                               ;92AE41;
-    dw $280F                                                             ;92AE42;
+    dw $0006                                                             ;92AE24;
+    %spritemapEntry(1, $43FE, $06, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F6, $FE, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $0E, $0F, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $06, $16, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $1EE, $0E, 0, 0, 2, 4, $0E)
+    %spritemapEntry(0, $1EE, $06, 0, 0, 2, 4, $0F)
 
 SamusSpritemaps_AE44:
-    dw $0008,$01F0                                                       ;92AE44;
-    db $08                                                               ;92AE48;
-    dw $280C,$01F0                                                       ;92AE49;
-    db $00                                                               ;92AE4D;
-    dw $280D,$01F4                                                       ;92AE4E;
-    db $18                                                               ;92AE52;
-    dw $280E,$01F4                                                       ;92AE53;
-    db $10                                                               ;92AE57;
-    dw $280F,$01F4                                                       ;92AE58;
-    db $08                                                               ;92AE5C;
-    dw $281C,$01F4                                                       ;92AE5D;
-    db $00                                                               ;92AE61;
-    dw $281D,$C3FC                                                       ;92AE62;
-    db $10                                                               ;92AE66;
-    dw $2808,$C3FC                                                       ;92AE67;
-    db $00                                                               ;92AE6B;
-    dw $280A                                                             ;92AE6C;
+    dw $0008                                                             ;92AE44;
+    %spritemapEntry(0, $1F0, $08, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F0, $00, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $1F4, $18, 0, 0, 2, 4, $0E)
+    %spritemapEntry(0, $1F4, $10, 0, 0, 2, 4, $0F)
+    %spritemapEntry(0, $1F4, $08, 0, 0, 2, 4, $1C)
+    %spritemapEntry(0, $1F4, $00, 0, 0, 2, 4, $1D)
+    %spritemapEntry(1, $43FC, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FC, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_AE6E:
-    dw $0008,$01F0                                                       ;92AE6E;
-    db $08                                                               ;92AE72;
-    dw $280C,$01F0                                                       ;92AE73;
-    db $00                                                               ;92AE77;
-    dw $280D,$01F4                                                       ;92AE78;
-    db $18                                                               ;92AE7C;
-    dw $280E,$01F4                                                       ;92AE7D;
-    db $10                                                               ;92AE81;
-    dw $280F,$01F4                                                       ;92AE82;
-    db $08                                                               ;92AE86;
-    dw $281C,$01F4                                                       ;92AE87;
-    db $00                                                               ;92AE8B;
-    dw $281D,$C3FC                                                       ;92AE8C;
-    db $10                                                               ;92AE90;
-    dw $2808,$C3FC                                                       ;92AE91;
-    db $00                                                               ;92AE95;
-    dw $280A                                                             ;92AE96;
+    dw $0008                                                             ;92AE6E;
+    %spritemapEntry(0, $1F0, $08, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F0, $00, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $1F4, $18, 0, 0, 2, 4, $0E)
+    %spritemapEntry(0, $1F4, $10, 0, 0, 2, 4, $0F)
+    %spritemapEntry(0, $1F4, $08, 0, 0, 2, 4, $1C)
+    %spritemapEntry(0, $1F4, $00, 0, 0, 2, 4, $1D)
+    %spritemapEntry(1, $43FC, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FC, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_AE98:
-    dw $0003,$C3F1                                                       ;92AE98;
-    db $10                                                               ;92AE9C;
-    dw $2808,$C3F9                                                       ;92AE9D;
-    db $10                                                               ;92AEA1;
-    dw $280A,$C3F9                                                       ;92AEA2;
-    db $00                                                               ;92AEA6;
-    dw $280C                                                             ;92AEA7;
+    dw $0003                                                             ;92AE98;
+    %spritemapEntry(1, $43F1, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F9, $10, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F9, $00, 0, 0, 2, 4, $0C)
 
 SamusSpritemaps_AEA9:
-    dw $0003,$C3F1                                                       ;92AEA9;
-    db $10                                                               ;92AEAD;
-    dw $2808,$C3F9                                                       ;92AEAE;
-    db $10                                                               ;92AEB2;
-    dw $280A,$C3F9                                                       ;92AEB3;
-    db $00                                                               ;92AEB7;
-    dw $280C                                                             ;92AEB8;
+    dw $0003                                                             ;92AEA9;
+    %spritemapEntry(1, $43F1, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F9, $10, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F9, $00, 0, 0, 2, 4, $0C)
 
 SamusSpritemaps_AEBA:
-    dw $0003,$C3FF                                                       ;92AEBA;
-    db $10                                                               ;92AEBE;
-    dw $6808,$C3F7                                                       ;92AEBF;
-    db $10                                                               ;92AEC3;
-    dw $680A,$C3F7                                                       ;92AEC4;
-    db $00                                                               ;92AEC8;
-    dw $680C                                                             ;92AEC9;
+    dw $0003                                                             ;92AEBA;
+    %spritemapEntry(1, $43FF, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F7, $10, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F7, $00, 0, 1, 2, 4, $0C)
 
 SamusSpritemaps_AECB:
-    dw $0004,$01FB                                                       ;92AECB;
-    db $0F                                                               ;92AECF;
-    dw $280A,$01F3                                                       ;92AED0;
-    db $0F                                                               ;92AED4;
-    dw $280B,$01EB                                                       ;92AED5;
-    db $0F                                                               ;92AED9;
-    dw $280C,$C3F3                                                       ;92AEDA;
-    db $FF                                                               ;92AEDE;
-    dw $2808                                                             ;92AEDF;
+    dw $0004                                                             ;92AECB;
+    %spritemapEntry(0, $1FB, $0F, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1F3, $0F, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1EB, $0F, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43F3, $FF, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_AEE1:
-    dw $0004,$01FD                                                       ;92AEE1;
-    db $0F                                                               ;92AEE5;
-    dw $780A,$0005                                                       ;92AEE6;
-    db $0F                                                               ;92AEEA;
-    dw $680B,$000D                                                       ;92AEEB;
-    db $0F                                                               ;92AEEF;
-    dw $680C,$C3FD                                                       ;92AEF0;
-    db $FF                                                               ;92AEF4;
-    dw $6808                                                             ;92AEF5;
+    dw $0004                                                             ;92AEE1;
+    %spritemapEntry(0, $1FD, $0F, 0, 1, 3, 4, $0A)
+    %spritemapEntry(0, $05, $0F, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $0D, $0F, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43FD, $FF, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_AEF7:
-    dw $0003,$C3FE                                                       ;92AEF7;
-    db $08                                                               ;92AEFB;
-    dw $2808,$C3F6                                                       ;92AEFC;
-    db $00                                                               ;92AF00;
-    dw $280A,$0006                                                       ;92AF01;
-    db $00                                                               ;92AF05;
-    dw $280C                                                             ;92AF06;
+    dw $0003                                                             ;92AEF7;
+    %spritemapEntry(1, $43FE, $08, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F6, $00, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $06, $00, 0, 0, 2, 4, $0C)
 
 SamusSpritemaps_AF08:
-    dw $0003,$C3F2                                                       ;92AF08;
-    db $08                                                               ;92AF0C;
-    dw $6808,$C3FA                                                       ;92AF0D;
-    db $00                                                               ;92AF11;
-    dw $680A,$01F2                                                       ;92AF12;
-    db $00                                                               ;92AF16;
-    dw $680C                                                             ;92AF17;
+    dw $0003                                                             ;92AF08;
+    %spritemapEntry(1, $43F2, $08, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FA, $00, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1F2, $00, 0, 1, 2, 4, $0C)
 
 SamusSpritemaps_AF19:
-    dw $0003,$01F6                                                       ;92AF19;
-    db $10                                                               ;92AF1D;
-    dw $680C,$C3FE                                                       ;92AF1E;
-    db $10                                                               ;92AF22;
-    dw $6808,$C3F6                                                       ;92AF23;
-    db $00                                                               ;92AF27;
-    dw $680A                                                             ;92AF28;
+    dw $0003                                                             ;92AF19;
+    %spritemapEntry(0, $1F6, $10, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43FE, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F6, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_AF2A:
-    dw $0003,$0002                                                       ;92AF2A;
-    db $10                                                               ;92AF2E;
-    dw $280C,$C3F2                                                       ;92AF2F;
-    db $10                                                               ;92AF33;
-    dw $2808,$C3FA                                                       ;92AF34;
-    db $00                                                               ;92AF38;
-    dw $280A                                                             ;92AF39;
+    dw $0003                                                             ;92AF2A;
+    %spritemapEntry(0, $02, $10, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43F2, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FA, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_AF3B:
-    dw $0003,$01F1                                                       ;92AF3B;
-    db $08                                                               ;92AF3F;
-    dw $280A,$01F1                                                       ;92AF40;
-    db $00                                                               ;92AF44;
-    dw $280B,$C3F9                                                       ;92AF45;
-    db $00                                                               ;92AF49;
-    dw $2808                                                             ;92AF4A;
+    dw $0003                                                             ;92AF3B;
+    %spritemapEntry(0, $1F1, $08, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1F1, $00, 0, 0, 2, 4, $0B)
+    %spritemapEntry(1, $43F9, $00, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_AF4C:
-    dw $0003,$0007                                                       ;92AF4C;
-    db $08                                                               ;92AF50;
-    dw $680A,$0007                                                       ;92AF51;
-    db $00                                                               ;92AF55;
-    dw $680B,$C3F7                                                       ;92AF56;
-    db $00                                                               ;92AF5A;
-    dw $6808                                                             ;92AF5B;
+    dw $0003                                                             ;92AF4C;
+    %spritemapEntry(0, $07, $08, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $07, $00, 0, 1, 2, 4, $0B)
+    %spritemapEntry(1, $43F7, $00, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_AF5D:
-    dw $0002,$C3EC                                                       ;92AF5D;
-    db $00                                                               ;92AF61;
-    dw $2808,$C3F4                                                       ;92AF62;
-    db $00                                                               ;92AF66;
-    dw $280A                                                             ;92AF67;
+    dw $0002                                                             ;92AF5D;
+    %spritemapEntry(1, $43EC, $00, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F4, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_AF69:
-    dw $0002,$C204                                                       ;92AF69;
-    db $00                                                               ;92AF6D;
-    dw $2808,$C3FC                                                       ;92AF6E;
-    db $00                                                               ;92AF72;
-    dw $280A                                                             ;92AF73;
+    dw $0002                                                             ;92AF69;
+    %spritemapEntry(1, $4204, $00, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FC, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_AF75:
-    dw $0004,$01E8                                                       ;92AF75;
-    db $10                                                               ;92AF79;
-    dw $680C,$01E8                                                       ;92AF7A;
-    db $08                                                               ;92AF7E;
-    dw $680D,$C3F0                                                       ;92AF7F;
-    db $00                                                               ;92AF83;
-    dw $6808,$C200                                                       ;92AF84;
-    db $00                                                               ;92AF88;
-    dw $680A                                                             ;92AF89;
+    dw $0004                                                             ;92AF75;
+    %spritemapEntry(0, $1E8, $10, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1E8, $08, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F0, $00, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_AF8B:
-    dw $0004,$0010                                                       ;92AF8B;
-    db $10                                                               ;92AF8F;
-    dw $280C,$0010                                                       ;92AF90;
-    db $08                                                               ;92AF94;
-    dw $280D,$C200                                                       ;92AF95;
-    db $00                                                               ;92AF99;
-    dw $2808,$C3F0                                                       ;92AF9A;
-    db $00                                                               ;92AF9E;
-    dw $280A                                                             ;92AF9F;
+    dw $0004                                                             ;92AF8B;
+    %spritemapEntry(0, $10, $10, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $10, $08, 0, 0, 2, 4, $0D)
+    %spritemapEntry(1, $4200, $00, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_AFA1:
-    dw $0003,$C3FF                                                       ;92AFA1;
-    db $10                                                               ;92AFA5;
-    dw $6808,$C3F7                                                       ;92AFA6;
-    db $10                                                               ;92AFAA;
-    dw $680A,$C3F7                                                       ;92AFAB;
-    db $00                                                               ;92AFAF;
-    dw $680C                                                             ;92AFB0;
+    dw $0003                                                             ;92AFA1;
+    %spritemapEntry(1, $43FF, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F7, $10, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F7, $00, 0, 1, 2, 4, $0C)
 
 SamusSpritemaps_AFB2:
-    dw $0002,$C3F4                                                       ;92AFB2;
-    db $00                                                               ;92AFB6;
-    dw $2808,$C3FC                                                       ;92AFB7;
-    db $00                                                               ;92AFBB;
-    dw $280A                                                             ;92AFBC;
+    dw $0002                                                             ;92AFB2;
+    %spritemapEntry(1, $43F4, $00, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FC, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_AFBE:
-    dw $0002,$C3FC                                                       ;92AFBE;
-    db $00                                                               ;92AFC2;
-    dw $2808,$C3F4                                                       ;92AFC3;
-    db $00                                                               ;92AFC7;
-    dw $280A                                                             ;92AFC8;
+    dw $0002                                                             ;92AFBE;
+    %spritemapEntry(1, $43FC, $00, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F4, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_AFCA:
-    dw $0004,$01F0                                                       ;92AFCA;
-    db $18                                                               ;92AFCE;
-    dw $680C,$01F0                                                       ;92AFCF;
-    db $10                                                               ;92AFD3;
-    dw $680D,$C3F8                                                       ;92AFD4;
-    db $10                                                               ;92AFD8;
-    dw $6808,$C3F8                                                       ;92AFD9;
-    db $00                                                               ;92AFDD;
-    dw $680A                                                             ;92AFDE;
+    dw $0004                                                             ;92AFCA;
+    %spritemapEntry(0, $1F0, $18, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1F0, $10, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F8, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_AFE0:
-    dw $0002,$C3F8                                                       ;92AFE0;
-    db $00                                                               ;92AFE4;
-    dw $2808,$C3F8                                                       ;92AFE5;
-    db $10                                                               ;92AFE9;
-    dw $280A                                                             ;92AFEA;
+    dw $0002                                                             ;92AFE0;
+    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $10, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_AFEC:
-    dw $0001,$C3F9                                                       ;92AFEC;
-    db $00                                                               ;92AFF0;
-    dw $2808                                                             ;92AFF1;
+    dw $0001                                                             ;92AFEC;
+    %spritemapEntry(1, $43F9, $00, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_AFF3:
-    dw $0004,$01F2                                                       ;92AFF3;
-    db $18                                                               ;92AFF7;
-    dw $280C,$01F2                                                       ;92AFF8;
-    db $10                                                               ;92AFFC;
-    dw $280D,$C3FA                                                       ;92AFFD;
-    db $10                                                               ;92B001;
-    dw $2808,$C3FA                                                       ;92B002;
-    db $00                                                               ;92B006;
-    dw $280A                                                             ;92B007;
+    dw $0004                                                             ;92AFF3;
+    %spritemapEntry(0, $1F2, $18, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F2, $10, 0, 0, 2, 4, $0D)
+    %spritemapEntry(1, $43FA, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FA, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B009:
-    dw $0002,$C3FA                                                       ;92B009;
-    db $0F                                                               ;92B00D;
-    dw $6808,$C3FA                                                       ;92B00E;
-    db $FF                                                               ;92B012;
-    dw $680A                                                             ;92B013;
+    dw $0002                                                             ;92B009;
+    %spritemapEntry(1, $43FA, $0F, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FA, $FF, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B015:
-    dw $0002,$C3FA                                                       ;92B015;
-    db $0F                                                               ;92B019;
-    dw $6808,$C3FA                                                       ;92B01A;
-    db $FF                                                               ;92B01E;
-    dw $680A                                                             ;92B01F;
+    dw $0002                                                             ;92B015;
+    %spritemapEntry(1, $43FA, $0F, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FA, $FF, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B021:
-    dw $0004,$01F2                                                       ;92B021;
-    db $15                                                               ;92B025;
-    dw $280C,$01F2                                                       ;92B026;
-    db $0D                                                               ;92B02A;
-    dw $280D,$C3FA                                                       ;92B02B;
-    db $0D                                                               ;92B02F;
-    dw $2808,$C3FA                                                       ;92B030;
-    db $FD                                                               ;92B034;
-    dw $280A                                                             ;92B035;
+    dw $0004                                                             ;92B021;
+    %spritemapEntry(0, $1F2, $15, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F2, $0D, 0, 0, 2, 4, $0D)
+    %spritemapEntry(1, $43FA, $0D, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FA, $FD, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B037:
-    dw $0004,$0006                                                       ;92B037;
-    db $15                                                               ;92B03B;
-    dw $680C,$0006                                                       ;92B03C;
-    db $0D                                                               ;92B040;
-    dw $680D,$C3F6                                                       ;92B041;
-    db $0D                                                               ;92B045;
-    dw $6808,$C3F6                                                       ;92B046;
-    db $FD                                                               ;92B04A;
-    dw $680A                                                             ;92B04B;
+    dw $0004                                                             ;92B037;
+    %spritemapEntry(0, $06, $15, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $06, $0D, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F6, $0D, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F6, $FD, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B04D:
-    dw $0006,$0008                                                       ;92B04D;
-    db $10                                                               ;92B051;
-    dw $280A,$0008                                                       ;92B052;
-    db $08                                                               ;92B056;
-    dw $280B,$0000                                                       ;92B057;
-    db $10                                                               ;92B05B;
-    dw $280C,$01F8                                                       ;92B05C;
-    db $10                                                               ;92B060;
-    dw $280D,$0008                                                       ;92B061;
-    db $00                                                               ;92B065;
-    dw $280E,$C3F8                                                       ;92B066;
-    db $00                                                               ;92B06A;
-    dw $2808                                                             ;92B06B;
+    dw $0006                                                             ;92B04D;
+    %spritemapEntry(0, $08, $10, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $08, $08, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $00, $10, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F8, $10, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $08, $00, 0, 0, 2, 4, $0E)
+    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B06D:
-    dw $0006,$01F0                                                       ;92B06D;
-    db $10                                                               ;92B071;
-    dw $680A,$01F0                                                       ;92B072;
-    db $08                                                               ;92B076;
-    dw $680B,$01F8                                                       ;92B077;
-    db $10                                                               ;92B07B;
-    dw $680C,$0000                                                       ;92B07C;
-    db $10                                                               ;92B080;
-    dw $680D,$01F0                                                       ;92B081;
-    db $00                                                               ;92B085;
-    dw $680E,$C3F8                                                       ;92B086;
-    db $00                                                               ;92B08A;
-    dw $6808                                                             ;92B08B;
+    dw $0006                                                             ;92B06D;
+    %spritemapEntry(0, $1F0, $10, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1F0, $08, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1F8, $10, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $00, $10, 0, 1, 2, 4, $0D)
+    %spritemapEntry(0, $1F0, $00, 0, 1, 2, 4, $0E)
+    %spritemapEntry(1, $43F8, $00, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B08D:
-    dw $0003,$0009                                                       ;92B08D;
-    db $02                                                               ;92B091;
-    dw $680C,$C3F9                                                       ;92B092;
-    db $08                                                               ;92B096;
-    dw $6808,$C3F9                                                       ;92B097;
-    db $00                                                               ;92B09B;
-    dw $680A                                                             ;92B09C;
+    dw $0003                                                             ;92B08D;
+    %spritemapEntry(0, $09, $02, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F9, $08, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F9, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B09E:
-    dw $0003,$01EF                                                       ;92B09E;
-    db $02                                                               ;92B0A2;
-    dw $280C,$C3F7                                                       ;92B0A3;
-    db $08                                                               ;92B0A7;
-    dw $2808,$C3F7                                                       ;92B0A8;
-    db $00                                                               ;92B0AC;
-    dw $280A                                                             ;92B0AD;
+    dw $0003                                                             ;92B09E;
+    %spritemapEntry(0, $1EF, $02, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43F7, $08, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F7, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B0AF:
-    dw $0002,$C3FC                                                       ;92B0AF;
-    db $10                                                               ;92B0B3;
-    dw $6808,$C3FC                                                       ;92B0B4;
-    db $00                                                               ;92B0B8;
-    dw $680A                                                             ;92B0B9;
+    dw $0002                                                             ;92B0AF;
+    %spritemapEntry(1, $43FC, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FC, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B0BB:
-    dw $0002,$C3F4                                                       ;92B0BB;
-    db $10                                                               ;92B0BF;
-    dw $2808,$C3F4                                                       ;92B0C0;
-    db $00                                                               ;92B0C4;
-    dw $280A                                                             ;92B0C5;
+    dw $0002                                                             ;92B0BB;
+    %spritemapEntry(1, $43F4, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F4, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B0C7:
-    dw $0005,$0004                                                       ;92B0C7;
-    db $0F                                                               ;92B0CB;
-    dw $280A,$01F4                                                       ;92B0CC;
-    db $10                                                               ;92B0D0;
-    dw $280B,$01FC                                                       ;92B0D1;
-    db $17                                                               ;92B0D5;
-    dw $280C,$01FC                                                       ;92B0D6;
-    db $0F                                                               ;92B0DA;
-    dw $280D,$C3FC                                                       ;92B0DB;
-    db $FF                                                               ;92B0DF;
-    dw $2808                                                             ;92B0E0;
+    dw $0005                                                             ;92B0C7;
+    %spritemapEntry(0, $04, $0F, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1F4, $10, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1FC, $17, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1FC, $0F, 0, 0, 2, 4, $0D)
+    %spritemapEntry(1, $43FC, $FF, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B0E2:
-    dw $0005,$01F4                                                       ;92B0E2;
-    db $0F                                                               ;92B0E6;
-    dw $680A,$0004                                                       ;92B0E7;
-    db $10                                                               ;92B0EB;
-    dw $680B,$01FC                                                       ;92B0EC;
-    db $17                                                               ;92B0F0;
-    dw $680C,$01FC                                                       ;92B0F1;
-    db $0F                                                               ;92B0F5;
-    dw $680D,$C3F4                                                       ;92B0F6;
-    db $FF                                                               ;92B0FA;
-    dw $6808                                                             ;92B0FB;
+    dw $0005                                                             ;92B0E2;
+    %spritemapEntry(0, $1F4, $0F, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $04, $10, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1FC, $17, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1FC, $0F, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F4, $FF, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B0FD:
-    dw $0001,$01F8                                                       ;92B0FD;
-    db $F8                                                               ;92B101;
-    dw $2C08                                                             ;92B102;
+    dw $0001                                                             ;92B0FD;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 6, $08)
 
 SamusSpritemaps_B104:
-    dw $0006,$01FA                                                       ;92B104;
-    db $10                                                               ;92B108;
-    dw $680A,$0002                                                       ;92B109;
-    db $10                                                               ;92B10D;
-    dw $680B,$01F2                                                       ;92B10E;
-    db $10                                                               ;92B112;
-    dw $680C,$01F2                                                       ;92B113;
-    db $08                                                               ;92B117;
-    dw $680D,$01F2                                                       ;92B118;
-    db $00                                                               ;92B11C;
-    dw $680E,$C3FA                                                       ;92B11D;
-    db $00                                                               ;92B121;
-    dw $6808                                                             ;92B122;
+    dw $0006                                                             ;92B104;
+    %spritemapEntry(0, $1FA, $10, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $02, $10, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1F2, $10, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1F2, $08, 0, 1, 2, 4, $0D)
+    %spritemapEntry(0, $1F2, $00, 0, 1, 2, 4, $0E)
+    %spritemapEntry(1, $43FA, $00, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B124:
-    dw $0006,$01FE                                                       ;92B124;
-    db $10                                                               ;92B128;
-    dw $280A,$01F6                                                       ;92B129;
-    db $10                                                               ;92B12D;
-    dw $280B,$0006                                                       ;92B12E;
-    db $10                                                               ;92B132;
-    dw $280C,$0006                                                       ;92B133;
-    db $08                                                               ;92B137;
-    dw $280D,$0006                                                       ;92B138;
-    db $00                                                               ;92B13C;
-    dw $280E,$C3F6                                                       ;92B13D;
-    db $00                                                               ;92B141;
-    dw $2808                                                             ;92B142;
+    dw $0006                                                             ;92B124;
+    %spritemapEntry(0, $1FE, $10, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1F6, $10, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $06, $10, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $06, $08, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $06, $00, 0, 0, 2, 4, $0E)
+    %spritemapEntry(1, $43F6, $00, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B144:
-    dw $0007,$000C                                                       ;92B144;
-    db $01                                                               ;92B148;
-    dw $280A,$0004                                                       ;92B149;
-    db $02                                                               ;92B14D;
-    dw $280B,$01FC                                                       ;92B14E;
-    db $10                                                               ;92B152;
-    dw $280C,$01F4                                                       ;92B153;
-    db $10                                                               ;92B157;
-    dw $280D,$01F4                                                       ;92B158;
-    db $08                                                               ;92B15C;
-    dw $280E,$000C                                                       ;92B15D;
-    db $00                                                               ;92B161;
-    dw $280F,$C3FC                                                       ;92B162;
-    db $00                                                               ;92B166;
-    dw $2808                                                             ;92B167;
+    dw $0007                                                             ;92B144;
+    %spritemapEntry(0, $0C, $01, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $04, $02, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1FC, $10, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F4, $10, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $1F4, $08, 0, 0, 2, 4, $0E)
+    %spritemapEntry(0, $0C, $00, 0, 0, 2, 4, $0F)
+    %spritemapEntry(1, $43FC, $00, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B169:
-    dw $0005,$01FC                                                       ;92B169;
-    db $10                                                               ;92B16D;
-    dw $680A,$0004                                                       ;92B16E;
-    db $10                                                               ;92B172;
-    dw $680B,$0004                                                       ;92B173;
-    db $08                                                               ;92B177;
-    dw $680C,$01EC                                                       ;92B178;
-    db $00                                                               ;92B17C;
-    dw $680D,$C3F4                                                       ;92B17D;
-    db $00                                                               ;92B181;
-    dw $6808                                                             ;92B182;
+    dw $0005                                                             ;92B169;
+    %spritemapEntry(0, $1FC, $10, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $04, $10, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $04, $08, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1EC, $00, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F4, $00, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B184:
-    dw $0003,$C3F8                                                       ;92B184;
-    db $0F                                                               ;92B188;
-    dw $2808,$0008                                                       ;92B189;
-    db $0F                                                               ;92B18D;
-    dw $280C,$C3F8                                                       ;92B18E;
-    db $FF                                                               ;92B192;
-    dw $280A                                                             ;92B193;
+    dw $0003                                                             ;92B184;
+    %spritemapEntry(1, $43F8, $0F, 0, 0, 2, 4, $08)
+    %spritemapEntry(0, $08, $0F, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $FF, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B195:
-    dw $0003,$C3F8                                                       ;92B195;
-    db $0F                                                               ;92B199;
-    dw $2808,$0008                                                       ;92B19A;
-    db $0F                                                               ;92B19E;
-    dw $280C,$C3F8                                                       ;92B19F;
-    db $FF                                                               ;92B1A3;
-    dw $280A                                                             ;92B1A4;
+    dw $0003                                                             ;92B195;
+    %spritemapEntry(1, $43F8, $0F, 0, 0, 2, 4, $08)
+    %spritemapEntry(0, $08, $0F, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $FF, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B1A6:
-    dw $0003,$C3F8                                                       ;92B1A6;
-    db $0F                                                               ;92B1AA;
-    dw $6808,$01F0                                                       ;92B1AB;
-    db $0F                                                               ;92B1AF;
-    dw $680C,$C3F8                                                       ;92B1B0;
-    db $FF                                                               ;92B1B4;
-    dw $680A                                                             ;92B1B5;
+    dw $0003                                                             ;92B1A6;
+    %spritemapEntry(1, $43F8, $0F, 0, 1, 2, 4, $08)
+    %spritemapEntry(0, $1F0, $0F, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $FF, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B1B7:
-    dw $0003,$C3F8                                                       ;92B1B7;
-    db $0F                                                               ;92B1BB;
-    dw $6808,$01F0                                                       ;92B1BC;
-    db $0F                                                               ;92B1C0;
-    dw $680C,$C3F8                                                       ;92B1C1;
-    db $FF                                                               ;92B1C5;
-    dw $680A                                                             ;92B1C6;
+    dw $0003                                                             ;92B1B7;
+    %spritemapEntry(1, $43F8, $0F, 0, 1, 2, 4, $08)
+    %spritemapEntry(0, $1F0, $0F, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $FF, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B1C8:
-    dw $0005,$01F6                                                       ;92B1C8;
-    db $10                                                               ;92B1CC;
-    dw $680C,$01F6                                                       ;92B1CD;
-    db $08                                                               ;92B1D1;
-    dw $680D,$01F6                                                       ;92B1D2;
-    db $00                                                               ;92B1D6;
-    dw $680E,$C3FE                                                       ;92B1D7;
-    db $08                                                               ;92B1DB;
-    dw $6808,$C3FE                                                       ;92B1DC;
-    db $00                                                               ;92B1E0;
-    dw $680A                                                             ;92B1E1;
+    dw $0005                                                             ;92B1C8;
+    %spritemapEntry(0, $1F6, $10, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1F6, $08, 0, 1, 2, 4, $0D)
+    %spritemapEntry(0, $1F6, $00, 0, 1, 2, 4, $0E)
+    %spritemapEntry(1, $43FE, $08, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FE, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B1E3:
-    dw $0005,$0002                                                       ;92B1E3;
-    db $10                                                               ;92B1E7;
-    dw $280C,$0002                                                       ;92B1E8;
-    db $08                                                               ;92B1EC;
-    dw $280D,$0002                                                       ;92B1ED;
-    db $00                                                               ;92B1F1;
-    dw $280E,$C3F2                                                       ;92B1F2;
-    db $08                                                               ;92B1F6;
-    dw $2808,$C3F2                                                       ;92B1F7;
-    db $00                                                               ;92B1FB;
-    dw $280A                                                             ;92B1FC;
+    dw $0005                                                             ;92B1E3;
+    %spritemapEntry(0, $02, $10, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $02, $08, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $02, $00, 0, 0, 2, 4, $0E)
+    %spritemapEntry(1, $43F2, $08, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F2, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B1FE:
-    dw $0004,$C3FD                                                       ;92B1FE;
-    db $08                                                               ;92B202;
-    dw $6808,$01F8                                                       ;92B203;
-    db $18                                                               ;92B207;
-    dw $680C,$01F5                                                       ;92B208;
-    db $10                                                               ;92B20C;
-    dw $680D,$C3FD                                                       ;92B20D;
-    db $00                                                               ;92B211;
-    dw $680A                                                             ;92B212;
+    dw $0004                                                             ;92B1FE;
+    %spritemapEntry(1, $43FD, $08, 0, 1, 2, 4, $08)
+    %spritemapEntry(0, $1F8, $18, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1F5, $10, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43FD, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B214:
-    dw $0004,$C3F3                                                       ;92B214;
-    db $08                                                               ;92B218;
-    dw $2808,$0000                                                       ;92B219;
-    db $18                                                               ;92B21D;
-    dw $280C,$0003                                                       ;92B21E;
-    db $10                                                               ;92B222;
-    dw $280D,$C3F3                                                       ;92B223;
-    db $00                                                               ;92B227;
-    dw $280A                                                             ;92B228;
+    dw $0004                                                             ;92B214;
+    %spritemapEntry(1, $43F3, $08, 0, 0, 2, 4, $08)
+    %spritemapEntry(0, $00, $18, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $03, $10, 0, 0, 2, 4, $0D)
+    %spritemapEntry(1, $43F3, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B22A:
-    dw $0002,$C3FA                                                       ;92B22A;
-    db $10                                                               ;92B22E;
-    dw $6808,$C3FA                                                       ;92B22F;
-    db $00                                                               ;92B233;
-    dw $680A                                                             ;92B234;
+    dw $0002                                                             ;92B22A;
+    %spritemapEntry(1, $43FA, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FA, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B236:
-    dw $0002,$0004                                                       ;92B236;
-    db $08                                                               ;92B23A;
-    dw $280A,$C3F4                                                       ;92B23B;
-    db $00                                                               ;92B23F;
-    dw $2808                                                             ;92B240;
+    dw $0002                                                             ;92B236;
+    %spritemapEntry(0, $04, $08, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F4, $00, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B242:
-    dw $0002,$01F4                                                       ;92B242;
-    db $08                                                               ;92B246;
-    dw $680A,$C3FC                                                       ;92B247;
-    db $00                                                               ;92B24B;
-    dw $6808                                                             ;92B24C;
+    dw $0002                                                             ;92B242;
+    %spritemapEntry(0, $1F4, $08, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43FC, $00, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B24E:
-    dw $0006,$C3F1                                                       ;92B24E;
-    db $08                                                               ;92B252;
-    dw $7808,$C200                                                       ;92B253;
-    db $08                                                               ;92B257;
-    dw $3808,$C3F0                                                       ;92B258;
-    db $F8                                                               ;92B25C;
-    dw $380A,$C200                                                       ;92B25D;
-    db $F8                                                               ;92B261;
-    dw $380C,$C3F1                                                       ;92B262;
-    db $E8                                                               ;92B266;
-    dw $780E,$C200                                                       ;92B267;
-    db $E8                                                               ;92B26B;
-    dw $380E                                                             ;92B26C;
+    dw $0006                                                             ;92B24E;
+    %spritemapEntry(1, $43F1, $08, 0, 1, 3, 4, $08)
+    %spritemapEntry(1, $4200, $08, 0, 0, 3, 4, $08)
+    %spritemapEntry(1, $43F0, $F8, 0, 0, 3, 4, $0A)
+    %spritemapEntry(1, $4200, $F8, 0, 0, 3, 4, $0C)
+    %spritemapEntry(1, $43F1, $E8, 0, 1, 3, 4, $0E)
+    %spritemapEntry(1, $4200, $E8, 0, 0, 3, 4, $0E)
 
 SamusSpritemaps_B26E:
-    dw $0006,$C3F1                                                       ;92B26E;
-    db $08                                                               ;92B272;
-    dw $7808,$C3F1                                                       ;92B273;
-    db $E8                                                               ;92B277;
-    dw $780A,$C3F0                                                       ;92B278;
-    db $F8                                                               ;92B27C;
-    dw $380C,$C200                                                       ;92B27D;
-    db $08                                                               ;92B281;
-    dw $3808,$C200                                                       ;92B282;
-    db $F8                                                               ;92B286;
-    dw $380E,$C200                                                       ;92B287;
-    db $E8                                                               ;92B28B;
-    dw $380A                                                             ;92B28C;
+    dw $0006                                                             ;92B26E;
+    %spritemapEntry(1, $43F1, $08, 0, 1, 3, 4, $08)
+    %spritemapEntry(1, $43F1, $E8, 0, 1, 3, 4, $0A)
+    %spritemapEntry(1, $43F0, $F8, 0, 0, 3, 4, $0C)
+    %spritemapEntry(1, $4200, $08, 0, 0, 3, 4, $08)
+    %spritemapEntry(1, $4200, $F8, 0, 0, 3, 4, $0E)
+    %spritemapEntry(1, $4200, $E8, 0, 0, 3, 4, $0A)
 
 SamusSpritemaps_B28E:
-    dw $0001,$01F8                                                       ;92B28E;
-    db $F8                                                               ;92B292;
-    dw $3008                                                             ;92B293;
+    dw $0001                                                             ;92B28E;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 0, $08)
 
 SamusSpritemaps_B295:
-    dw $0004,$01F1                                                       ;92B295;
-    db $18                                                               ;92B299;
-    dw $280C,$01F1                                                       ;92B29A;
-    db $10                                                               ;92B29E;
-    dw $280D,$C3F9                                                       ;92B29F;
-    db $10                                                               ;92B2A3;
-    dw $2808,$C3F9                                                       ;92B2A4;
-    db $00                                                               ;92B2A8;
-    dw $280A                                                             ;92B2A9;
+    dw $0004                                                             ;92B295;
+    %spritemapEntry(0, $1F1, $18, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F1, $10, 0, 0, 2, 4, $0D)
+    %spritemapEntry(1, $43F9, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F9, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B2AB:
-    dw $0004,$0007                                                       ;92B2AB;
-    db $18                                                               ;92B2AF;
-    dw $680C,$0007                                                       ;92B2B0;
-    db $10                                                               ;92B2B4;
-    dw $680D,$C3F7                                                       ;92B2B5;
-    db $10                                                               ;92B2B9;
-    dw $6808,$C3F7                                                       ;92B2BA;
-    db $00                                                               ;92B2BE;
-    dw $680A                                                             ;92B2BF;
+    dw $0004                                                             ;92B2AB;
+    %spritemapEntry(0, $07, $18, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $07, $10, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F7, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F7, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B2C1:
-    dw $0002,$C3F8                                                       ;92B2C1;
-    db $10                                                               ;92B2C5;
-    dw $6808,$C3F8                                                       ;92B2C6;
-    db $00                                                               ;92B2CA;
-    dw $680A                                                             ;92B2CB;
+    dw $0002                                                             ;92B2C1;
+    %spritemapEntry(1, $43F8, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B2CD:
-    dw $0005,$C3FD                                                       ;92B2CD;
-    db $07                                                               ;92B2D1;
-    dw $6808,$C3F5                                                       ;92B2D2;
-    db $FF                                                               ;92B2D6;
-    dw $680A,$000D                                                       ;92B2D7;
-    db $0F                                                               ;92B2DB;
-    dw $680C,$0005                                                       ;92B2DC;
-    db $17                                                               ;92B2E0;
-    dw $680D,$01F5                                                       ;92B2E1;
-    db $0F                                                               ;92B2E5;
-    dw $680E                                                             ;92B2E6;
+    dw $0005                                                             ;92B2CD;
+    %spritemapEntry(1, $43FD, $07, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F5, $FF, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $0D, $0F, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $05, $17, 0, 1, 2, 4, $0D)
+    %spritemapEntry(0, $1F5, $0F, 0, 1, 2, 4, $0E)
 
 SamusSpritemaps_B2E8:
-    dw $0004,$C200                                                       ;92B2E8;
-    db $FF                                                               ;92B2EC;
-    dw $6808,$C3F0                                                       ;92B2ED;
-    db $0F                                                               ;92B2F1;
-    dw $680A,$C3F8                                                       ;92B2F2;
-    db $FF                                                               ;92B2F6;
-    dw $680C,$01F0                                                       ;92B2F7;
-    db $07                                                               ;92B2FB;
-    dw $680E                                                             ;92B2FC;
+    dw $0004                                                             ;92B2E8;
+    %spritemapEntry(1, $4200, $FF, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $0F, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F8, $FF, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1F0, $07, 0, 1, 2, 4, $0E)
 
 SamusSpritemaps_B2FE:
-    dw $0002,$C3F9                                                       ;92B2FE;
-    db $10                                                               ;92B302;
-    dw $6808,$C3F9                                                       ;92B303;
-    db $00                                                               ;92B307;
-    dw $680A                                                             ;92B308;
+    dw $0002                                                             ;92B2FE;
+    %spritemapEntry(1, $43F9, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F9, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B30A:
-    dw $0006,$C3FD                                                       ;92B30A;
-    db $07                                                               ;92B30E;
-    dw $6808,$C3F5                                                       ;92B30F;
-    db $FF                                                               ;92B313;
-    dw $680A,$0005                                                       ;92B314;
-    db $FF                                                               ;92B318;
-    dw $680C,$000D                                                       ;92B319;
-    db $0F                                                               ;92B31D;
-    dw $680D,$0005                                                       ;92B31E;
-    db $17                                                               ;92B322;
-    dw $680E,$01F5                                                       ;92B323;
-    db $0F                                                               ;92B327;
-    dw $680F                                                             ;92B328;
+    dw $0006                                                             ;92B30A;
+    %spritemapEntry(1, $43FD, $07, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F5, $FF, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $05, $FF, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $0D, $0F, 0, 1, 2, 4, $0D)
+    %spritemapEntry(0, $05, $17, 0, 1, 2, 4, $0E)
+    %spritemapEntry(0, $1F5, $0F, 0, 1, 2, 4, $0F)
 
 SamusSpritemaps_B32A:
-    dw $0004,$C201                                                       ;92B32A;
-    db $FF                                                               ;92B32E;
-    dw $6808,$C3F1                                                       ;92B32F;
-    db $0F                                                               ;92B333;
-    dw $680A,$C3F9                                                       ;92B334;
-    db $FF                                                               ;92B338;
-    dw $680C,$0001                                                       ;92B339;
-    db $0F                                                               ;92B33D;
-    dw $680E                                                             ;92B33E;
+    dw $0004                                                             ;92B32A;
+    %spritemapEntry(1, $4201, $FF, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F1, $0F, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F9, $FF, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $01, $0F, 0, 1, 2, 4, $0E)
 
 SamusSpritemaps_B340:
-    dw $0003,$C3FF                                                       ;92B340;
-    db $10                                                               ;92B344;
-    dw $6808,$C3F7                                                       ;92B345;
-    db $10                                                               ;92B349;
-    dw $680A,$C3F7                                                       ;92B34A;
-    db $00                                                               ;92B34E;
-    dw $680C                                                             ;92B34F;
+    dw $0003                                                             ;92B340;
+    %spritemapEntry(1, $43FF, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F7, $10, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F7, $00, 0, 1, 2, 4, $0C)
 
 SamusSpritemaps_B351:
-    dw $0002,$C201                                                       ;92B351;
-    db $00                                                               ;92B355;
-    dw $6808,$C3F9                                                       ;92B356;
-    db $00                                                               ;92B35A;
-    dw $680A                                                             ;92B35B;
+    dw $0002                                                             ;92B351;
+    %spritemapEntry(1, $4201, $00, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F9, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B35D:
-    dw $0004,$C3F5                                                       ;92B35D;
-    db $00                                                               ;92B361;
-    dw $6808,$C3FD                                                       ;92B362;
-    db $10                                                               ;92B366;
-    dw $680A,$0005                                                       ;92B367;
-    db $08                                                               ;92B36B;
-    dw $680C,$01F5                                                       ;92B36C;
-    db $10                                                               ;92B370;
-    dw $680D                                                             ;92B371;
+    dw $0004                                                             ;92B35D;
+    %spritemapEntry(1, $43F5, $00, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FD, $10, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $05, $08, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1F5, $10, 0, 1, 2, 4, $0D)
 
 SamusSpritemaps_B373:
-    dw $0006,$C3F1                                                       ;92B373;
-    db $06                                                               ;92B377;
-    dw $6808,$C3F9                                                       ;92B378;
-    db $FE                                                               ;92B37C;
-    dw $680A,$01E9                                                       ;92B37D;
-    db $0F                                                               ;92B381;
-    dw $680C,$0009                                                       ;92B382;
-    db $0E                                                               ;92B386;
-    dw $680D,$0009                                                       ;92B387;
-    db $06                                                               ;92B38B;
-    dw $680E,$01F1                                                       ;92B38C;
-    db $16                                                               ;92B390;
-    dw $680F                                                             ;92B391;
+    dw $0006                                                             ;92B373;
+    %spritemapEntry(1, $43F1, $06, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F9, $FE, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1E9, $0F, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $09, $0E, 0, 1, 2, 4, $0D)
+    %spritemapEntry(0, $09, $06, 0, 1, 2, 4, $0E)
+    %spritemapEntry(0, $1F1, $16, 0, 1, 2, 4, $0F)
 
 SamusSpritemaps_B393:
-    dw $0004,$01FD                                                       ;92B393;
-    db $18                                                               ;92B397;
-    dw $680C,$C3F5                                                       ;92B398;
-    db $00                                                               ;92B39C;
-    dw $6808,$C3FD                                                       ;92B39D;
-    db $08                                                               ;92B3A1;
-    dw $680A,$0005                                                       ;92B3A2;
-    db $18                                                               ;92B3A6;
-    dw $680D                                                             ;92B3A7;
+    dw $0004                                                             ;92B393;
+    %spritemapEntry(0, $1FD, $18, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F5, $00, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FD, $08, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $05, $18, 0, 1, 2, 4, $0D)
 
 SamusSpritemaps_B3A9:
-    dw $0006,$C3F2                                                       ;92B3A9;
-    db $06                                                               ;92B3AD;
-    dw $6808,$C3FA                                                       ;92B3AE;
-    db $FE                                                               ;92B3B2;
-    dw $680A,$01EA                                                       ;92B3B3;
-    db $0F                                                               ;92B3B7;
-    dw $680C,$01F2                                                       ;92B3B8;
-    db $16                                                               ;92B3BC;
-    dw $680D,$000A                                                       ;92B3BD;
-    db $0E                                                               ;92B3C1;
-    dw $680E,$000A                                                       ;92B3C2;
-    db $06                                                               ;92B3C6;
-    dw $680F                                                             ;92B3C7;
+    dw $0006                                                             ;92B3A9;
+    %spritemapEntry(1, $43F2, $06, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FA, $FE, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1EA, $0F, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1F2, $16, 0, 1, 2, 4, $0D)
+    %spritemapEntry(0, $0A, $0E, 0, 1, 2, 4, $0E)
+    %spritemapEntry(0, $0A, $06, 0, 1, 2, 4, $0F)
 
 SamusSpritemaps_B3C9:
-    dw $0004,$0008                                                       ;92B3C9;
-    db $18                                                               ;92B3CD;
-    dw $280C,$0008                                                       ;92B3CE;
-    db $10                                                               ;92B3D2;
-    dw $280D,$C3F8                                                       ;92B3D3;
-    db $10                                                               ;92B3D7;
-    dw $2808,$C3F8                                                       ;92B3D8;
-    db $00                                                               ;92B3DC;
-    dw $280A                                                             ;92B3DD;
+    dw $0004                                                             ;92B3C9;
+    %spritemapEntry(0, $08, $18, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $08, $10, 0, 0, 2, 4, $0D)
+    %spritemapEntry(1, $43F8, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B3DF:
-    dw $0001,$01F8                                                       ;92B3DF;
-    db $F8                                                               ;92B3E3;
-    dw $3C08                                                             ;92B3E4;
+    dw $0001                                                             ;92B3DF;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 6, $08)
 
 SamusSpritemaps_B3E6:
-    dw $0001,$01F8                                                       ;92B3E6;
-    db $F8                                                               ;92B3EA;
-    dw $3C08                                                             ;92B3EB;
+    dw $0001                                                             ;92B3E6;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 6, $08)
 
 SamusSpritemaps_B3ED:
-    dw $0004,$0006                                                       ;92B3ED;
-    db $18                                                               ;92B3F1;
-    dw $680C,$0006                                                       ;92B3F2;
-    db $10                                                               ;92B3F6;
-    dw $680D,$C3F6                                                       ;92B3F7;
-    db $10                                                               ;92B3FB;
-    dw $6808,$C3F6                                                       ;92B3FC;
-    db $00                                                               ;92B400;
-    dw $680A                                                             ;92B401;
+    dw $0004                                                             ;92B3ED;
+    %spritemapEntry(0, $06, $18, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $06, $10, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F6, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F6, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B403:
-    dw $0002,$C3F6                                                       ;92B403;
-    db $0F                                                               ;92B407;
-    dw $2808,$C3F6                                                       ;92B408;
-    db $FF                                                               ;92B40C;
-    dw $280A                                                             ;92B40D;
+    dw $0002                                                             ;92B403;
+    %spritemapEntry(1, $43F6, $0F, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F6, $FF, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B40F:
-    dw $0002,$C3F6                                                       ;92B40F;
-    db $0F                                                               ;92B413;
-    dw $2808,$C3F6                                                       ;92B414;
-    db $FF                                                               ;92B418;
-    dw $280A                                                             ;92B419;
+    dw $0002                                                             ;92B40F;
+    %spritemapEntry(1, $43F6, $0F, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F6, $FF, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B41B:
-    dw $0003,$01E8                                                       ;92B41B;
-    db $04                                                               ;92B41F;
-    dw $280A,$01E8                                                       ;92B420;
-    db $FC                                                               ;92B424;
-    dw $280B,$C3F0                                                       ;92B425;
-    db $FC                                                               ;92B429;
-    dw $2808                                                             ;92B42A;
+    dw $0003                                                             ;92B41B;
+    %spritemapEntry(0, $1E8, $04, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1E8, $FC, 0, 0, 2, 4, $0B)
+    %spritemapEntry(1, $43F0, $FC, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B42C:
-    dw $0006,$01E9                                                       ;92B42C;
-    db $0D                                                               ;92B430;
-    dw $280A,$01E9                                                       ;92B431;
-    db $05                                                               ;92B435;
-    dw $280B,$01E9                                                       ;92B436;
-    db $FD                                                               ;92B43A;
-    dw $280C,$01F9                                                       ;92B43B;
-    db $0D                                                               ;92B43F;
-    dw $280D,$01F1                                                       ;92B440;
-    db $0D                                                               ;92B444;
-    dw $280E,$C3F1                                                       ;92B445;
-    db $FD                                                               ;92B449;
-    dw $2808                                                             ;92B44A;
+    dw $0006                                                             ;92B42C;
+    %spritemapEntry(0, $1E9, $0D, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1E9, $05, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1E9, $FD, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F9, $0D, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $1F1, $0D, 0, 0, 2, 4, $0E)
+    %spritemapEntry(1, $43F1, $FD, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B44C:
-    dw $0003,$C3E9                                                       ;92B44C;
-    db $07                                                               ;92B450;
-    dw $2808,$01E9                                                       ;92B451;
-    db $FF                                                               ;92B455;
-    dw $280C,$C3F1                                                       ;92B456;
-    db $FF                                                               ;92B45A;
-    dw $280A                                                             ;92B45B;
+    dw $0003                                                             ;92B44C;
+    %spritemapEntry(1, $43E9, $07, 0, 0, 2, 4, $08)
+    %spritemapEntry(0, $1E9, $FF, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43F1, $FF, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B45D:
-    dw $0004,$01F8                                                       ;92B45D;
-    db $10                                                               ;92B461;
-    dw $280A,$01F0                                                       ;92B462;
-    db $10                                                               ;92B466;
-    dw $280B,$01F0                                                       ;92B467;
-    db $08                                                               ;92B46B;
-    dw $280C,$C3F8                                                       ;92B46C;
-    db $00                                                               ;92B470;
-    dw $2808                                                             ;92B471;
+    dw $0004                                                             ;92B45D;
+    %spritemapEntry(0, $1F8, $10, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1F0, $10, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1F0, $08, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B473:
-    dw $0005,$0003                                                       ;92B473;
-    db $10                                                               ;92B477;
-    dw $280A,$01FB                                                       ;92B478;
-    db $10                                                               ;92B47C;
-    dw $280B,$01F3                                                       ;92B47D;
-    db $10                                                               ;92B481;
-    dw $280C,$01F3                                                       ;92B482;
-    db $08                                                               ;92B486;
-    dw $280D,$C3FB                                                       ;92B487;
-    db $00                                                               ;92B48B;
-    dw $2808                                                             ;92B48C;
+    dw $0005                                                             ;92B473;
+    %spritemapEntry(0, $03, $10, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1FB, $10, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1F3, $10, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F3, $08, 0, 0, 2, 4, $0D)
+    %spritemapEntry(1, $43FB, $00, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B48E:
-    dw $0005,$01F5                                                       ;92B48E;
-    db $08                                                               ;92B492;
-    dw $280A,$0005                                                       ;92B493;
-    db $10                                                               ;92B497;
-    dw $280B,$01FD                                                       ;92B498;
-    db $10                                                               ;92B49C;
-    dw $280C,$01F5                                                       ;92B49D;
-    db $10                                                               ;92B4A1;
-    dw $280D,$C3FD                                                       ;92B4A2;
-    db $00                                                               ;92B4A6;
-    dw $2808                                                             ;92B4A7;
+    dw $0005                                                             ;92B48E;
+    %spritemapEntry(0, $1F5, $08, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $05, $10, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1FD, $10, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F5, $10, 0, 0, 2, 4, $0D)
+    %spritemapEntry(1, $43FD, $00, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B4A9:
-    dw $0003,$0005                                                       ;92B4A9;
-    db $10                                                               ;92B4AD;
-    dw $280A,$01FD                                                       ;92B4AE;
-    db $10                                                               ;92B4B2;
-    dw $280B,$C3FD                                                       ;92B4B3;
-    db $00                                                               ;92B4B7;
-    dw $2808                                                             ;92B4B8;
+    dw $0003                                                             ;92B4A9;
+    %spritemapEntry(0, $05, $10, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1FD, $10, 0, 0, 2, 4, $0B)
+    %spritemapEntry(1, $43FD, $00, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B4BA:
-    dw $0004,$000F                                                       ;92B4BA;
-    db $0F                                                               ;92B4BE;
-    dw $280A,$0007                                                       ;92B4BF;
-    db $0F                                                               ;92B4C3;
-    dw $280B,$01FF                                                       ;92B4C4;
-    db $FF                                                               ;92B4C8;
-    dw $280C,$C207                                                       ;92B4C9;
-    db $FF                                                               ;92B4CD;
-    dw $2808                                                             ;92B4CE;
+    dw $0004                                                             ;92B4BA;
+    %spritemapEntry(0, $0F, $0F, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $07, $0F, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1FF, $FF, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $4207, $FF, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B4D0:
-    dw $0004,$0007                                                       ;92B4D0;
-    db $0B                                                               ;92B4D4;
-    dw $280A,$000F                                                       ;92B4D5;
-    db $0B                                                               ;92B4D9;
-    dw $280B,$000F                                                       ;92B4DA;
-    db $03                                                               ;92B4DE;
-    dw $280C,$C3FF                                                       ;92B4DF;
-    db $FB                                                               ;92B4E3;
-    dw $2808                                                             ;92B4E4;
+    dw $0004                                                             ;92B4D0;
+    %spritemapEntry(0, $07, $0B, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $0F, $0B, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $0F, $03, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43FF, $FB, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B4E6:
-    dw $0005,$0008                                                       ;92B4E6;
-    db $08                                                               ;92B4EA;
-    dw $280A,$0010                                                       ;92B4EB;
-    db $F8                                                               ;92B4EF;
-    dw $280B,$0010                                                       ;92B4F0;
-    db $08                                                               ;92B4F4;
-    dw $280C,$0010                                                       ;92B4F5;
-    db $00                                                               ;92B4F9;
-    dw $280D,$C200                                                       ;92B4FA;
-    db $F8                                                               ;92B4FE;
-    dw $2808                                                             ;92B4FF;
+    dw $0005                                                             ;92B4E6;
+    %spritemapEntry(0, $08, $08, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $10, $F8, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $10, $08, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $10, $00, 0, 0, 2, 4, $0D)
+    %spritemapEntry(1, $4200, $F8, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B501:
-    dw $0003,$0010                                                       ;92B501;
-    db $08                                                               ;92B505;
-    dw $200C,$C210                                                       ;92B506;
-    db $F8                                                               ;92B50A;
-    dw $2808,$C200                                                       ;92B50B;
-    db $F8                                                               ;92B50F;
-    dw $280A                                                             ;92B510;
+    dw $0003                                                             ;92B501;
+    %spritemapEntry(0, $10, $08, 0, 0, 2, 0, $0C)
+    %spritemapEntry(1, $4210, $F8, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F8, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B512:
-    dw $0002,$C3F8                                                       ;92B512;
-    db $10                                                               ;92B516;
-    dw $2808,$C3F8                                                       ;92B517;
-    db $00                                                               ;92B51B;
-    dw $280A                                                             ;92B51C;
+    dw $0002                                                             ;92B512;
+    %spritemapEntry(1, $43F8, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B51E:
-    dw $0002,$C3F8                                                       ;92B51E;
-    db $10                                                               ;92B522;
-    dw $2808,$C3F8                                                       ;92B523;
-    db $00                                                               ;92B527;
-    dw $280A                                                             ;92B528;
+    dw $0002                                                             ;92B51E;
+    %spritemapEntry(1, $43F8, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B52A:
-    dw $0002,$C3F0                                                       ;92B52A;
-    db $F9                                                               ;92B52E;
-    dw $2808,$C3E0                                                       ;92B52F;
-    db $F9                                                               ;92B533;
-    dw $280A                                                             ;92B534;
+    dw $0002                                                             ;92B52A;
+    %spritemapEntry(1, $43F0, $F9, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43E0, $F9, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B536:
-    dw $0004,$01E1                                                       ;92B536;
-    db $0F                                                               ;92B53A;
-    dw $280A,$01E1                                                       ;92B53B;
-    db $07                                                               ;92B53F;
-    dw $280B,$01F9                                                       ;92B540;
-    db $FF                                                               ;92B544;
-    dw $280C,$C3E9                                                       ;92B545;
-    db $FF                                                               ;92B549;
-    dw $2808                                                             ;92B54A;
+    dw $0004                                                             ;92B536;
+    %spritemapEntry(0, $1E1, $0F, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1E1, $07, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1F9, $FF, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43E9, $FF, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_B54C:
-    dw $0002,$C3E9                                                       ;92B54C;
-    db $07                                                               ;92B550;
-    dw $2808,$C3F1                                                       ;92B551;
-    db $FF                                                               ;92B555;
-    dw $280A                                                             ;92B556;
+    dw $0002                                                             ;92B54C;
+    %spritemapEntry(1, $43E9, $07, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F1, $FF, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B558:
-    dw $0002,$C3EB                                                       ;92B558;
-    db $0F                                                               ;92B55C;
-    dw $2808,$C3F3                                                       ;92B55D;
-    db $FF                                                               ;92B561;
-    dw $280A                                                             ;92B562;
+    dw $0002                                                             ;92B558;
+    %spritemapEntry(1, $43EB, $0F, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F3, $FF, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B564:
-    dw $0004,$01F3                                                       ;92B564;
-    db $07                                                               ;92B568;
-    dw $280A,$C3F3                                                       ;92B569;
-    db $0F                                                               ;92B56D;
-    dw $2808,$01FB                                                       ;92B56E;
-    db $07                                                               ;92B572;
-    dw $280B,$01FB                                                       ;92B573;
-    db $FF                                                               ;92B577;
-    dw $280C                                                             ;92B578;
+    dw $0004                                                             ;92B564;
+    %spritemapEntry(0, $1F3, $07, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F3, $0F, 0, 0, 2, 4, $08)
+    %spritemapEntry(0, $1FB, $07, 0, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1FB, $FF, 0, 0, 2, 4, $0C)
 
 SamusSpritemaps_B57A:
-    dw $0002,$C3F9                                                       ;92B57A;
-    db $10                                                               ;92B57E;
-    dw $2808,$C3F9                                                       ;92B57F;
-    db $00                                                               ;92B583;
-    dw $280A                                                             ;92B584;
+    dw $0002                                                             ;92B57A;
+    %spritemapEntry(1, $43F9, $10, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F9, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B586:
-    dw $0002,$C3FD                                                       ;92B586;
-    db $0E                                                               ;92B58A;
-    dw $2808,$C3FD                                                       ;92B58B;
-    db $FE                                                               ;92B58F;
-    dw $280A                                                             ;92B590;
+    dw $0002                                                             ;92B586;
+    %spritemapEntry(1, $43FD, $0E, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FD, $FE, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B592:
-    dw $0002,$C207                                                       ;92B592;
-    db $0F                                                               ;92B596;
-    dw $2808,$C3FF                                                       ;92B597;
-    db $FF                                                               ;92B59B;
-    dw $280A                                                             ;92B59C;
+    dw $0002                                                             ;92B592;
+    %spritemapEntry(1, $4207, $0F, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FF, $FF, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B59E:
-    dw $0004,$0018                                                       ;92B59E;
-    db $10                                                               ;92B5A2;
-    dw $280C,$0018                                                       ;92B5A3;
-    db $08                                                               ;92B5A7;
-    dw $280D,$C208                                                       ;92B5A8;
-    db $08                                                               ;92B5AC;
-    dw $2808,$C200                                                       ;92B5AD;
-    db $00                                                               ;92B5B1;
-    dw $280A                                                             ;92B5B2;
+    dw $0004                                                             ;92B59E;
+    %spritemapEntry(0, $18, $10, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $18, $08, 0, 0, 2, 4, $0D)
+    %spritemapEntry(1, $4208, $08, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B5B4:
-    dw $0002,$C20F                                                       ;92B5B4;
-    db $04                                                               ;92B5B8;
-    dw $2808,$C3FF                                                       ;92B5B9;
-    db $FC                                                               ;92B5BD;
-    dw $280A                                                             ;92B5BE;
+    dw $0002                                                             ;92B5B4;
+    %spritemapEntry(1, $420F, $04, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FF, $FC, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B5C0:
-    dw $0002,$C200                                                       ;92B5C0;
-    db $F8                                                               ;92B5C4;
-    dw $E808,$C210                                                       ;92B5C5;
-    db $F8                                                               ;92B5C9;
-    dw $E80A                                                             ;92B5CA;
+    dw $0002                                                             ;92B5C0;
+    %spritemapEntry(1, $4200, $F8, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $4210, $F8, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B5CC:
-    dw $0003,$0010                                                       ;92B5CC;
-    db $F4                                                               ;92B5D0;
-    dw $E80A,$0010                                                       ;92B5D1;
-    db $FC                                                               ;92B5D5;
-    dw $E80B,$C200                                                       ;92B5D6;
-    db $F4                                                               ;92B5DA;
-    dw $E808                                                             ;92B5DB;
+    dw $0003                                                             ;92B5CC;
+    %spritemapEntry(0, $10, $F4, 1, 1, 2, 4, $0A)
+    %spritemapEntry(0, $10, $FC, 1, 1, 2, 4, $0B)
+    %spritemapEntry(1, $4200, $F4, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_B5DD:
-    dw $0006,$000F                                                       ;92B5DD;
-    db $EB                                                               ;92B5E1;
-    dw $E80A,$000F                                                       ;92B5E2;
-    db $F3                                                               ;92B5E6;
-    dw $E80B,$000F                                                       ;92B5E7;
-    db $FB                                                               ;92B5EB;
-    dw $E80C,$01FF                                                       ;92B5EC;
-    db $EB                                                               ;92B5F0;
-    dw $E80D,$0007                                                       ;92B5F1;
-    db $EB                                                               ;92B5F5;
-    dw $E80E,$C3FF                                                       ;92B5F6;
-    db $F3                                                               ;92B5FA;
-    dw $E808                                                             ;92B5FB;
+    dw $0006                                                             ;92B5DD;
+    %spritemapEntry(0, $0F, $EB, 1, 1, 2, 4, $0A)
+    %spritemapEntry(0, $0F, $F3, 1, 1, 2, 4, $0B)
+    %spritemapEntry(0, $0F, $FB, 1, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1FF, $EB, 1, 1, 2, 4, $0D)
+    %spritemapEntry(0, $07, $EB, 1, 1, 2, 4, $0E)
+    %spritemapEntry(1, $43FF, $F3, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_B5FD:
-    dw $0003,$C207                                                       ;92B5FD;
-    db $E9                                                               ;92B601;
-    dw $E808,$000F                                                       ;92B602;
-    db $F9                                                               ;92B606;
-    dw $E80C,$C3FF                                                       ;92B607;
-    db $F1                                                               ;92B60B;
-    dw $E80A                                                             ;92B60C;
+    dw $0003                                                             ;92B5FD;
+    %spritemapEntry(1, $4207, $E9, 1, 1, 2, 4, $08)
+    %spritemapEntry(0, $0F, $F9, 1, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43FF, $F1, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B60E:
-    dw $0004,$0000                                                       ;92B60E;
-    db $E8                                                               ;92B612;
-    dw $E80A,$0008                                                       ;92B613;
-    db $E8                                                               ;92B617;
-    dw $E80B,$0008                                                       ;92B618;
-    db $F0                                                               ;92B61C;
-    dw $E80C,$C3F8                                                       ;92B61D;
-    db $F0                                                               ;92B621;
-    dw $E808                                                             ;92B622;
+    dw $0004                                                             ;92B60E;
+    %spritemapEntry(0, $00, $E8, 1, 1, 2, 4, $0A)
+    %spritemapEntry(0, $08, $E8, 1, 1, 2, 4, $0B)
+    %spritemapEntry(0, $08, $F0, 1, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $F0, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_B624:
-    dw $0005,$01F5                                                       ;92B624;
-    db $E8                                                               ;92B628;
-    dw $E80A,$01FD                                                       ;92B629;
-    db $E8                                                               ;92B62D;
-    dw $E80B,$0005                                                       ;92B62E;
-    db $E8                                                               ;92B632;
-    dw $E80C,$0005                                                       ;92B633;
-    db $F0                                                               ;92B637;
-    dw $E80D,$C3F5                                                       ;92B638;
-    db $F0                                                               ;92B63C;
-    dw $E808                                                             ;92B63D;
+    dw $0005                                                             ;92B624;
+    %spritemapEntry(0, $1F5, $E8, 1, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1FD, $E8, 1, 1, 2, 4, $0B)
+    %spritemapEntry(0, $05, $E8, 1, 1, 2, 4, $0C)
+    %spritemapEntry(0, $05, $F0, 1, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F5, $F0, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_B63F:
-    dw $0005,$0003                                                       ;92B63F;
-    db $F0                                                               ;92B643;
-    dw $E80A,$01F3                                                       ;92B644;
-    db $E8                                                               ;92B648;
-    dw $E80B,$01FB                                                       ;92B649;
-    db $E8                                                               ;92B64D;
-    dw $E80C,$0003                                                       ;92B64E;
-    db $E8                                                               ;92B652;
-    dw $E80D,$C3F3                                                       ;92B653;
-    db $F0                                                               ;92B657;
-    dw $E808                                                             ;92B658;
+    dw $0005                                                             ;92B63F;
+    %spritemapEntry(0, $03, $F0, 1, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1F3, $E8, 1, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1FB, $E8, 1, 1, 2, 4, $0C)
+    %spritemapEntry(0, $03, $E8, 1, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F3, $F0, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_B65A:
-    dw $0003,$01F3                                                       ;92B65A;
-    db $E8                                                               ;92B65E;
-    dw $E80A,$01FB                                                       ;92B65F;
-    db $E8                                                               ;92B663;
-    dw $E80B,$C3F3                                                       ;92B664;
-    db $F0                                                               ;92B668;
-    dw $E808                                                             ;92B669;
+    dw $0003                                                             ;92B65A;
+    %spritemapEntry(0, $1F3, $E8, 1, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1FB, $E8, 1, 1, 2, 4, $0B)
+    %spritemapEntry(1, $43F3, $F0, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_B66B:
-    dw $0004,$01E9                                                       ;92B66B;
-    db $E9                                                               ;92B66F;
-    dw $E80A,$01F1                                                       ;92B670;
-    db $E9                                                               ;92B674;
-    dw $E80B,$01F9                                                       ;92B675;
-    db $F9                                                               ;92B679;
-    dw $E80C,$C3E9                                                       ;92B67A;
-    db $F1                                                               ;92B67E;
-    dw $E808                                                             ;92B67F;
+    dw $0004                                                             ;92B66B;
+    %spritemapEntry(0, $1E9, $E9, 1, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1F1, $E9, 1, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1F9, $F9, 1, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43E9, $F1, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_B681:
-    dw $0004,$01F1                                                       ;92B681;
-    db $ED                                                               ;92B685;
-    dw $E80A,$01E9                                                       ;92B686;
-    db $ED                                                               ;92B68A;
-    dw $E80B,$01E9                                                       ;92B68B;
-    db $F5                                                               ;92B68F;
-    dw $E80C,$C3F1                                                       ;92B690;
-    db $F5                                                               ;92B694;
-    dw $E808                                                             ;92B695;
+    dw $0004                                                             ;92B681;
+    %spritemapEntry(0, $1F1, $ED, 1, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1E9, $ED, 1, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1E9, $F5, 1, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F1, $F5, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_B697:
-    dw $0005,$01F0                                                       ;92B697;
-    db $F0                                                               ;92B69B;
-    dw $E80A,$01E8                                                       ;92B69C;
-    db $00                                                               ;92B6A0;
-    dw $E80B,$01E8                                                       ;92B6A1;
-    db $F0                                                               ;92B6A5;
-    dw $E80C,$01E8                                                       ;92B6A6;
-    db $F8                                                               ;92B6AA;
-    dw $E80D,$C3F0                                                       ;92B6AB;
-    db $F8                                                               ;92B6AF;
-    dw $E808                                                             ;92B6B0;
+    dw $0005                                                             ;92B697;
+    %spritemapEntry(0, $1F0, $F0, 1, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1E8, $00, 1, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1E8, $F0, 1, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1E8, $F8, 1, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F0, $F8, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_B6B2:
-    dw $0003,$01E8                                                       ;92B6B2;
-    db $F0                                                               ;92B6B6;
-    dw $E80C,$C3E0                                                       ;92B6B7;
-    db $F8                                                               ;92B6BB;
-    dw $E808,$C3F0                                                       ;92B6BC;
-    db $F8                                                               ;92B6C0;
-    dw $E80A                                                             ;92B6C1;
+    dw $0003                                                             ;92B6B2;
+    %spritemapEntry(0, $1E8, $F0, 1, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43E0, $F8, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F8, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B6C3:
-    dw $0002,$C3F8                                                       ;92B6C3;
-    db $E0                                                               ;92B6C7;
-    dw $E808,$C3F8                                                       ;92B6C8;
-    db $F0                                                               ;92B6CC;
-    dw $E80A                                                             ;92B6CD;
+    dw $0002                                                             ;92B6C3;
+    %spritemapEntry(1, $43F8, $E0, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $F0, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B6CF:
-    dw $0002,$C3F8                                                       ;92B6CF;
-    db $E0                                                               ;92B6D3;
-    dw $E808,$C3F8                                                       ;92B6D4;
-    db $F0                                                               ;92B6D8;
-    dw $E80A                                                             ;92B6D9;
+    dw $0002                                                             ;92B6CF;
+    %spritemapEntry(1, $43F8, $E0, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $F0, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B6DB:
-    dw $0002,$C200                                                       ;92B6DB;
-    db $F7                                                               ;92B6DF;
-    dw $E808,$C210                                                       ;92B6E0;
-    db $F7                                                               ;92B6E4;
-    dw $E80A                                                             ;92B6E5;
+    dw $0002                                                             ;92B6DB;
+    %spritemapEntry(1, $4200, $F7, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $4210, $F7, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B6E7:
-    dw $0004,$0017                                                       ;92B6E7;
-    db $E9                                                               ;92B6EB;
-    dw $E80A,$0017                                                       ;92B6EC;
-    db $F1                                                               ;92B6F0;
-    dw $E80B,$01FF                                                       ;92B6F1;
-    db $F9                                                               ;92B6F5;
-    dw $E80C,$C207                                                       ;92B6F6;
-    db $F1                                                               ;92B6FA;
-    dw $E808                                                             ;92B6FB;
+    dw $0004                                                             ;92B6E7;
+    %spritemapEntry(0, $17, $E9, 1, 1, 2, 4, $0A)
+    %spritemapEntry(0, $17, $F1, 1, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1FF, $F9, 1, 1, 2, 4, $0C)
+    %spritemapEntry(1, $4207, $F1, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_B6FD:
-    dw $0002,$C207                                                       ;92B6FD;
-    db $E9                                                               ;92B701;
-    dw $E808,$C3FF                                                       ;92B702;
-    db $F1                                                               ;92B706;
-    dw $E80A                                                             ;92B707;
+    dw $0002                                                             ;92B6FD;
+    %spritemapEntry(1, $4207, $E9, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FF, $F1, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B709:
-    dw $0002,$C205                                                       ;92B709;
-    db $E1                                                               ;92B70D;
-    dw $E808,$C3FD                                                       ;92B70E;
-    db $F1                                                               ;92B712;
-    dw $E80A                                                             ;92B713;
+    dw $0002                                                             ;92B709;
+    %spritemapEntry(1, $4205, $E1, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FD, $F1, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B715:
-    dw $0004,$0005                                                       ;92B715;
-    db $F1                                                               ;92B719;
-    dw $E80A,$C3FD                                                       ;92B71A;
-    db $E1                                                               ;92B71E;
-    dw $E808,$01FD                                                       ;92B71F;
-    db $F1                                                               ;92B723;
-    dw $E80B,$01FD                                                       ;92B724;
-    db $F9                                                               ;92B728;
-    dw $E80C                                                             ;92B729;
+    dw $0004                                                             ;92B715;
+    %spritemapEntry(0, $05, $F1, 1, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43FD, $E1, 1, 1, 2, 4, $08)
+    %spritemapEntry(0, $1FD, $F1, 1, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1FD, $F9, 1, 1, 2, 4, $0C)
 
 SamusSpritemaps_B72B:
-    dw $0002,$C3F7                                                       ;92B72B;
-    db $E0                                                               ;92B72F;
-    dw $E808,$C3F7                                                       ;92B730;
-    db $F0                                                               ;92B734;
-    dw $E80A                                                             ;92B735;
+    dw $0002                                                             ;92B72B;
+    %spritemapEntry(1, $43F7, $E0, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F7, $F0, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B737:
-    dw $0002,$C3F3                                                       ;92B737;
-    db $E2                                                               ;92B73B;
-    dw $E808,$C3F3                                                       ;92B73C;
-    db $F2                                                               ;92B740;
-    dw $E80A                                                             ;92B741;
+    dw $0002                                                             ;92B737;
+    %spritemapEntry(1, $43F3, $E2, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F3, $F2, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B743:
-    dw $0002,$C3E9                                                       ;92B743;
-    db $E1                                                               ;92B747;
-    dw $E808,$C3F1                                                       ;92B748;
-    db $F1                                                               ;92B74C;
-    dw $E80A                                                             ;92B74D;
+    dw $0002                                                             ;92B743;
+    %spritemapEntry(1, $43E9, $E1, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F1, $F1, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B74F:
-    dw $0002,$C3E1                                                       ;92B74F;
-    db $EC                                                               ;92B753;
-    dw $E808,$C3F1                                                       ;92B754;
-    db $F4                                                               ;92B758;
-    dw $E80A                                                             ;92B759;
+    dw $0002                                                             ;92B74F;
+    %spritemapEntry(1, $43E1, $EC, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F1, $F4, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_B75B:
-    dw $0002,$C3F0                                                       ;92B75B;
-    db $F8                                                               ;92B75F;
-    dw $2808,$C3E0                                                       ;92B760;
-    db $F8                                                               ;92B764;
-    dw $280A                                                             ;92B765;
+    dw $0002                                                             ;92B75B;
+    %spritemapEntry(1, $43F0, $F8, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43E0, $F8, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_B767:
-    dw $0003,$0010                                                       ;92B767;
-    db $04                                                               ;92B76B;
-    dw $680A,$0010                                                       ;92B76C;
-    db $FC                                                               ;92B770;
-    dw $680B,$C200                                                       ;92B771;
-    db $FC                                                               ;92B775;
-    dw $6808                                                             ;92B776;
+    dw $0003                                                             ;92B767;
+    %spritemapEntry(0, $10, $04, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $10, $FC, 0, 1, 2, 4, $0B)
+    %spritemapEntry(1, $4200, $FC, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B778:
-    dw $0006,$000F                                                       ;92B778;
-    db $0D                                                               ;92B77C;
-    dw $680A,$000F                                                       ;92B77D;
-    db $05                                                               ;92B781;
-    dw $680B,$000F                                                       ;92B782;
-    db $FD                                                               ;92B786;
-    dw $680C,$01FF                                                       ;92B787;
-    db $0D                                                               ;92B78B;
-    dw $680D,$0007                                                       ;92B78C;
-    db $0D                                                               ;92B790;
-    dw $680E,$C3FF                                                       ;92B791;
-    db $FD                                                               ;92B795;
-    dw $6808                                                             ;92B796;
+    dw $0006                                                             ;92B778;
+    %spritemapEntry(0, $0F, $0D, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $0F, $05, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $0F, $FD, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1FF, $0D, 0, 1, 2, 4, $0D)
+    %spritemapEntry(0, $07, $0D, 0, 1, 2, 4, $0E)
+    %spritemapEntry(1, $43FF, $FD, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B798:
-    dw $0003,$C207                                                       ;92B798;
-    db $07                                                               ;92B79C;
-    dw $6808,$000F                                                       ;92B79D;
-    db $FF                                                               ;92B7A1;
-    dw $680C,$C3FF                                                       ;92B7A2;
-    db $FF                                                               ;92B7A6;
-    dw $680A                                                             ;92B7A7;
+    dw $0003                                                             ;92B798;
+    %spritemapEntry(1, $4207, $07, 0, 1, 2, 4, $08)
+    %spritemapEntry(0, $0F, $FF, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43FF, $FF, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B7A9:
-    dw $0004,$0000                                                       ;92B7A9;
-    db $10                                                               ;92B7AD;
-    dw $680A,$0008                                                       ;92B7AE;
-    db $10                                                               ;92B7B2;
-    dw $680B,$0008                                                       ;92B7B3;
-    db $08                                                               ;92B7B7;
-    dw $680C,$C3F8                                                       ;92B7B8;
-    db $00                                                               ;92B7BC;
-    dw $6808                                                             ;92B7BD;
+    dw $0004                                                             ;92B7A9;
+    %spritemapEntry(0, $00, $10, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $08, $10, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $08, $08, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $00, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B7BF:
-    dw $0005,$01F5                                                       ;92B7BF;
-    db $10                                                               ;92B7C3;
-    dw $680A,$01FD                                                       ;92B7C4;
-    db $10                                                               ;92B7C8;
-    dw $680B,$0005                                                       ;92B7C9;
-    db $10                                                               ;92B7CD;
-    dw $680C,$0005                                                       ;92B7CE;
-    db $08                                                               ;92B7D2;
-    dw $680D,$C3F5                                                       ;92B7D3;
-    db $00                                                               ;92B7D7;
-    dw $6808                                                             ;92B7D8;
+    dw $0005                                                             ;92B7BF;
+    %spritemapEntry(0, $1F5, $10, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1FD, $10, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $05, $10, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $05, $08, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F5, $00, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B7DA:
-    dw $0005,$0003                                                       ;92B7DA;
-    db $08                                                               ;92B7DE;
-    dw $680A,$01F3                                                       ;92B7DF;
-    db $10                                                               ;92B7E3;
-    dw $680B,$01FB                                                       ;92B7E4;
-    db $10                                                               ;92B7E8;
-    dw $680C,$0003                                                       ;92B7E9;
-    db $10                                                               ;92B7ED;
-    dw $680D,$C3F3                                                       ;92B7EE;
-    db $00                                                               ;92B7F2;
-    dw $6808                                                             ;92B7F3;
+    dw $0005                                                             ;92B7DA;
+    %spritemapEntry(0, $03, $08, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1F3, $10, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1FB, $10, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $03, $10, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F3, $00, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B7F5:
-    dw $0003,$01F3                                                       ;92B7F5;
-    db $10                                                               ;92B7F9;
-    dw $680A,$01FB                                                       ;92B7FA;
-    db $10                                                               ;92B7FE;
-    dw $680B,$C3F3                                                       ;92B7FF;
-    db $00                                                               ;92B803;
-    dw $6808                                                             ;92B804;
+    dw $0003                                                             ;92B7F5;
+    %spritemapEntry(0, $1F3, $10, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1FB, $10, 0, 1, 2, 4, $0B)
+    %spritemapEntry(1, $43F3, $00, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B806:
-    dw $0004,$01E9                                                       ;92B806;
-    db $0F                                                               ;92B80A;
-    dw $680A,$01F1                                                       ;92B80B;
-    db $0F                                                               ;92B80F;
-    dw $680B,$01F9                                                       ;92B810;
-    db $FF                                                               ;92B814;
-    dw $680C,$C3E9                                                       ;92B815;
-    db $FF                                                               ;92B819;
-    dw $6808                                                             ;92B81A;
+    dw $0004                                                             ;92B806;
+    %spritemapEntry(0, $1E9, $0F, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1F1, $0F, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1F9, $FF, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43E9, $FF, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B81C:
-    dw $0004,$01F1                                                       ;92B81C;
-    db $0B                                                               ;92B820;
-    dw $680A,$01E9                                                       ;92B821;
-    db $0B                                                               ;92B825;
-    dw $680B,$01E9                                                       ;92B826;
-    db $03                                                               ;92B82A;
-    dw $680C,$C3F1                                                       ;92B82B;
-    db $FB                                                               ;92B82F;
-    dw $6808                                                             ;92B830;
+    dw $0004                                                             ;92B81C;
+    %spritemapEntry(0, $1F1, $0B, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1E9, $0B, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1E9, $03, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F1, $FB, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B832:
-    dw $0005,$01F0                                                       ;92B832;
-    db $08                                                               ;92B836;
-    dw $680A,$01E8                                                       ;92B837;
-    db $F8                                                               ;92B83B;
-    dw $680B,$01E8                                                       ;92B83C;
-    db $08                                                               ;92B840;
-    dw $680C,$01E8                                                       ;92B841;
-    db $00                                                               ;92B845;
-    dw $680D,$C3F0                                                       ;92B846;
-    db $F8                                                               ;92B84A;
-    dw $6808                                                             ;92B84B;
+    dw $0005                                                             ;92B832;
+    %spritemapEntry(0, $1F0, $08, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1E8, $F8, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1E8, $08, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1E8, $00, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43F0, $F8, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B84D:
-    dw $0003,$01E8                                                       ;92B84D;
-    db $08                                                               ;92B851;
-    dw $600C,$C3E0                                                       ;92B852;
-    db $F8                                                               ;92B856;
-    dw $6808,$C3F0                                                       ;92B857;
-    db $F8                                                               ;92B85B;
-    dw $680A                                                             ;92B85C;
+    dw $0003                                                             ;92B84D;
+    %spritemapEntry(0, $1E8, $08, 0, 1, 2, 0, $0C)
+    %spritemapEntry(1, $43E0, $F8, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F8, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B85E:
-    dw $0002,$C3F8                                                       ;92B85E;
-    db $10                                                               ;92B862;
-    dw $6808,$C3F8                                                       ;92B863;
-    db $00                                                               ;92B867;
-    dw $680A                                                             ;92B868;
+    dw $0002                                                             ;92B85E;
+    %spritemapEntry(1, $43F8, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B86A:
-    dw $0002,$C3F8                                                       ;92B86A;
-    db $10                                                               ;92B86E;
-    dw $6808,$C3F8                                                       ;92B86F;
-    db $00                                                               ;92B873;
-    dw $680A                                                             ;92B874;
+    dw $0002                                                             ;92B86A;
+    %spritemapEntry(1, $43F8, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B876:
-    dw $0002,$C200                                                       ;92B876;
-    db $F9                                                               ;92B87A;
-    dw $6808,$C210                                                       ;92B87B;
-    db $F9                                                               ;92B87F;
-    dw $680A                                                             ;92B880;
+    dw $0002                                                             ;92B876;
+    %spritemapEntry(1, $4200, $F9, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $4210, $F9, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B882:
-    dw $0004,$0017                                                       ;92B882;
-    db $0F                                                               ;92B886;
-    dw $680A,$0017                                                       ;92B887;
-    db $07                                                               ;92B88B;
-    dw $680B,$01FF                                                       ;92B88C;
-    db $FF                                                               ;92B890;
-    dw $680C,$C207                                                       ;92B891;
-    db $FF                                                               ;92B895;
-    dw $6808                                                             ;92B896;
+    dw $0004                                                             ;92B882;
+    %spritemapEntry(0, $17, $0F, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $17, $07, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1FF, $FF, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $4207, $FF, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_B898:
-    dw $0002,$C207                                                       ;92B898;
-    db $07                                                               ;92B89C;
-    dw $6808,$C3FF                                                       ;92B89D;
-    db $FF                                                               ;92B8A1;
-    dw $680A                                                             ;92B8A2;
+    dw $0002                                                             ;92B898;
+    %spritemapEntry(1, $4207, $07, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FF, $FF, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B8A4:
-    dw $0002,$C205                                                       ;92B8A4;
-    db $0F                                                               ;92B8A8;
-    dw $6808,$C3FD                                                       ;92B8A9;
-    db $FF                                                               ;92B8AD;
-    dw $680A                                                             ;92B8AE;
+    dw $0002                                                             ;92B8A4;
+    %spritemapEntry(1, $4205, $0F, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FD, $FF, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B8B0:
-    dw $0004,$0005                                                       ;92B8B0;
-    db $07                                                               ;92B8B4;
-    dw $680A,$C3FD                                                       ;92B8B5;
-    db $0F                                                               ;92B8B9;
-    dw $6808,$01FD                                                       ;92B8BA;
-    db $07                                                               ;92B8BE;
-    dw $680B,$01FD                                                       ;92B8BF;
-    db $FF                                                               ;92B8C3;
-    dw $680C                                                             ;92B8C4;
+    dw $0004                                                             ;92B8B0;
+    %spritemapEntry(0, $05, $07, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43FD, $0F, 0, 1, 2, 4, $08)
+    %spritemapEntry(0, $1FD, $07, 0, 1, 2, 4, $0B)
+    %spritemapEntry(0, $1FD, $FF, 0, 1, 2, 4, $0C)
 
 SamusSpritemaps_B8C6:
-    dw $0002,$C3F7                                                       ;92B8C6;
-    db $10                                                               ;92B8CA;
-    dw $6808,$C3F7                                                       ;92B8CB;
-    db $00                                                               ;92B8CF;
-    dw $680A                                                             ;92B8D0;
+    dw $0002                                                             ;92B8C6;
+    %spritemapEntry(1, $43F7, $10, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F7, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B8D2:
-    dw $0002,$C3F3                                                       ;92B8D2;
-    db $0E                                                               ;92B8D6;
-    dw $6808,$C3F3                                                       ;92B8D7;
-    db $FE                                                               ;92B8DB;
-    dw $680A                                                             ;92B8DC;
+    dw $0002                                                             ;92B8D2;
+    %spritemapEntry(1, $43F3, $0E, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F3, $FE, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B8DE:
-    dw $0002,$C3E9                                                       ;92B8DE;
-    db $0F                                                               ;92B8E2;
-    dw $6808,$C3F1                                                       ;92B8E3;
-    db $FF                                                               ;92B8E7;
-    dw $680A                                                             ;92B8E8;
+    dw $0002                                                             ;92B8DE;
+    %spritemapEntry(1, $43E9, $0F, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F1, $FF, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B8EA:
-    dw $0004,$01E0                                                       ;92B8EA;
-    db $10                                                               ;92B8EE;
-    dw $680C,$01E0                                                       ;92B8EF;
-    db $08                                                               ;92B8F3;
-    dw $680D,$C3E8                                                       ;92B8F4;
-    db $08                                                               ;92B8F8;
-    dw $6808,$C3F0                                                       ;92B8F9;
-    db $00                                                               ;92B8FD;
-    dw $680A                                                             ;92B8FE;
+    dw $0004                                                             ;92B8EA;
+    %spritemapEntry(0, $1E0, $10, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1E0, $08, 0, 1, 2, 4, $0D)
+    %spritemapEntry(1, $43E8, $08, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B900:
-    dw $0002,$C3E1                                                       ;92B900;
-    db $04                                                               ;92B904;
-    dw $6808,$C3F1                                                       ;92B905;
-    db $FC                                                               ;92B909;
-    dw $680A                                                             ;92B90A;
+    dw $0002                                                             ;92B900;
+    %spritemapEntry(1, $43E1, $04, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F1, $FC, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_B90C:
-    dw $0002,$C3F0                                                       ;92B90C;
-    db $F8                                                               ;92B910;
-    dw $A808,$C3E0                                                       ;92B911;
-    db $F8                                                               ;92B915;
-    dw $A80A                                                             ;92B916;
+    dw $0002                                                             ;92B90C;
+    %spritemapEntry(1, $43F0, $F8, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43E0, $F8, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_B918:
-    dw $0003,$01E8                                                       ;92B918;
-    db $F4                                                               ;92B91C;
-    dw $A80A,$01E8                                                       ;92B91D;
-    db $FC                                                               ;92B921;
-    dw $A80B,$C3F0                                                       ;92B922;
-    db $F4                                                               ;92B926;
-    dw $A808                                                             ;92B927;
+    dw $0003                                                             ;92B918;
+    %spritemapEntry(0, $1E8, $F4, 1, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1E8, $FC, 1, 0, 2, 4, $0B)
+    %spritemapEntry(1, $43F0, $F4, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_B929:
-    dw $0006,$01E9                                                       ;92B929;
-    db $EB                                                               ;92B92D;
-    dw $A80A,$01E9                                                       ;92B92E;
-    db $F3                                                               ;92B932;
-    dw $A80B,$01E9                                                       ;92B933;
-    db $FB                                                               ;92B937;
-    dw $A80C,$01F9                                                       ;92B938;
-    db $EB                                                               ;92B93C;
-    dw $A80D,$01F1                                                       ;92B93D;
-    db $EB                                                               ;92B941;
-    dw $A80E,$C3F1                                                       ;92B942;
-    db $F3                                                               ;92B946;
-    dw $A808                                                             ;92B947;
+    dw $0006                                                             ;92B929;
+    %spritemapEntry(0, $1E9, $EB, 1, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1E9, $F3, 1, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1E9, $FB, 1, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F9, $EB, 1, 0, 2, 4, $0D)
+    %spritemapEntry(0, $1F1, $EB, 1, 0, 2, 4, $0E)
+    %spritemapEntry(1, $43F1, $F3, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_B949:
-    dw $0003,$C3E9                                                       ;92B949;
-    db $E9                                                               ;92B94D;
-    dw $A808,$01E9                                                       ;92B94E;
-    db $F9                                                               ;92B952;
-    dw $A80C,$C3F1                                                       ;92B953;
-    db $F1                                                               ;92B957;
-    dw $A80A                                                             ;92B958;
+    dw $0003                                                             ;92B949;
+    %spritemapEntry(1, $43E9, $E9, 1, 0, 2, 4, $08)
+    %spritemapEntry(0, $1E9, $F9, 1, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43F1, $F1, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_B95A:
-    dw $0004,$01F8                                                       ;92B95A;
-    db $E8                                                               ;92B95E;
-    dw $A80A,$01F0                                                       ;92B95F;
-    db $E8                                                               ;92B963;
-    dw $A80B,$01F0                                                       ;92B964;
-    db $F0                                                               ;92B968;
-    dw $A80C,$C3F8                                                       ;92B969;
-    db $F0                                                               ;92B96D;
-    dw $A808                                                             ;92B96E;
+    dw $0004                                                             ;92B95A;
+    %spritemapEntry(0, $1F8, $E8, 1, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1F0, $E8, 1, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1F0, $F0, 1, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $F0, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_B970:
-    dw $0005,$0003                                                       ;92B970;
-    db $E8                                                               ;92B974;
-    dw $A80A,$01FB                                                       ;92B975;
-    db $E8                                                               ;92B979;
-    dw $A80B,$01F3                                                       ;92B97A;
-    db $E8                                                               ;92B97E;
-    dw $A80C,$01F3                                                       ;92B97F;
-    db $F0                                                               ;92B983;
-    dw $A80D,$C3FB                                                       ;92B984;
-    db $F0                                                               ;92B988;
-    dw $A808                                                             ;92B989;
+    dw $0005                                                             ;92B970;
+    %spritemapEntry(0, $03, $E8, 1, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1FB, $E8, 1, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1F3, $E8, 1, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F3, $F0, 1, 0, 2, 4, $0D)
+    %spritemapEntry(1, $43FB, $F0, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_B98B:
-    dw $0005,$01F5                                                       ;92B98B;
-    db $F0                                                               ;92B98F;
-    dw $A80A,$0005                                                       ;92B990;
-    db $E8                                                               ;92B994;
-    dw $A80B,$01FD                                                       ;92B995;
-    db $E8                                                               ;92B999;
-    dw $A80C,$01F5                                                       ;92B99A;
-    db $E8                                                               ;92B99E;
-    dw $A80D,$C3FD                                                       ;92B99F;
-    db $F0                                                               ;92B9A3;
-    dw $A808                                                             ;92B9A4;
+    dw $0005                                                             ;92B98B;
+    %spritemapEntry(0, $1F5, $F0, 1, 0, 2, 4, $0A)
+    %spritemapEntry(0, $05, $E8, 1, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1FD, $E8, 1, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F5, $E8, 1, 0, 2, 4, $0D)
+    %spritemapEntry(1, $43FD, $F0, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_B9A6:
-    dw $0003,$0005                                                       ;92B9A6;
-    db $E8                                                               ;92B9AA;
-    dw $A80A,$01FD                                                       ;92B9AB;
-    db $E8                                                               ;92B9AF;
-    dw $A80B,$C3FD                                                       ;92B9B0;
-    db $F0                                                               ;92B9B4;
-    dw $A808                                                             ;92B9B5;
+    dw $0003                                                             ;92B9A6;
+    %spritemapEntry(0, $05, $E8, 1, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1FD, $E8, 1, 0, 2, 4, $0B)
+    %spritemapEntry(1, $43FD, $F0, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_B9B7:
-    dw $0004,$000F                                                       ;92B9B7;
-    db $E9                                                               ;92B9BB;
-    dw $A80A,$0007                                                       ;92B9BC;
-    db $E9                                                               ;92B9C0;
-    dw $A80B,$01FF                                                       ;92B9C1;
-    db $F9                                                               ;92B9C5;
-    dw $A80C,$C207                                                       ;92B9C6;
-    db $F1                                                               ;92B9CA;
-    dw $A808                                                             ;92B9CB;
+    dw $0004                                                             ;92B9B7;
+    %spritemapEntry(0, $0F, $E9, 1, 0, 2, 4, $0A)
+    %spritemapEntry(0, $07, $E9, 1, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1FF, $F9, 1, 0, 2, 4, $0C)
+    %spritemapEntry(1, $4207, $F1, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_B9CD:
-    dw $0004,$0007                                                       ;92B9CD;
-    db $ED                                                               ;92B9D1;
-    dw $A80A,$000F                                                       ;92B9D2;
-    db $ED                                                               ;92B9D6;
-    dw $A80B,$000F                                                       ;92B9D7;
-    db $F5                                                               ;92B9DB;
-    dw $A80C,$C3FF                                                       ;92B9DC;
-    db $F5                                                               ;92B9E0;
-    dw $A808                                                             ;92B9E1;
+    dw $0004                                                             ;92B9CD;
+    %spritemapEntry(0, $07, $ED, 1, 0, 2, 4, $0A)
+    %spritemapEntry(0, $0F, $ED, 1, 0, 2, 4, $0B)
+    %spritemapEntry(0, $0F, $F5, 1, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43FF, $F5, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_B9E3:
-    dw $0005,$0008                                                       ;92B9E3;
-    db $F0                                                               ;92B9E7;
-    dw $A80A,$0010                                                       ;92B9E8;
-    db $00                                                               ;92B9EC;
-    dw $A80B,$0010                                                       ;92B9ED;
-    db $F0                                                               ;92B9F1;
-    dw $A80C,$0010                                                       ;92B9F2;
-    db $F8                                                               ;92B9F6;
-    dw $A80D,$C200                                                       ;92B9F7;
-    db $F8                                                               ;92B9FB;
-    dw $A808                                                             ;92B9FC;
+    dw $0005                                                             ;92B9E3;
+    %spritemapEntry(0, $08, $F0, 1, 0, 2, 4, $0A)
+    %spritemapEntry(0, $10, $00, 1, 0, 2, 4, $0B)
+    %spritemapEntry(0, $10, $F0, 1, 0, 2, 4, $0C)
+    %spritemapEntry(0, $10, $F8, 1, 0, 2, 4, $0D)
+    %spritemapEntry(1, $4200, $F8, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_B9FE:
-    dw $0003,$0010                                                       ;92B9FE;
-    db $F0                                                               ;92BA02;
-    dw $A80C,$C210                                                       ;92BA03;
-    db $F8                                                               ;92BA07;
-    dw $A808,$C200                                                       ;92BA08;
-    db $F8                                                               ;92BA0C;
-    dw $A80A                                                             ;92BA0D;
+    dw $0003                                                             ;92B9FE;
+    %spritemapEntry(0, $10, $F0, 1, 0, 2, 4, $0C)
+    %spritemapEntry(1, $4210, $F8, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F8, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BA0F:
-    dw $0002,$C3F8                                                       ;92BA0F;
-    db $E0                                                               ;92BA13;
-    dw $A808,$C3F8                                                       ;92BA14;
-    db $F0                                                               ;92BA18;
-    dw $A80A                                                             ;92BA19;
+    dw $0002                                                             ;92BA0F;
+    %spritemapEntry(1, $43F8, $E0, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $F0, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BA1B:
-    dw $0002,$C3F8                                                       ;92BA1B;
-    db $E0                                                               ;92BA1F;
-    dw $A808,$C3F8                                                       ;92BA20;
-    db $F0                                                               ;92BA24;
-    dw $A80A                                                             ;92BA25;
+    dw $0002                                                             ;92BA1B;
+    %spritemapEntry(1, $43F8, $E0, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F8, $F0, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BA27:
-    dw $0002,$C3F0                                                       ;92BA27;
-    db $F7                                                               ;92BA2B;
-    dw $A808,$C3E0                                                       ;92BA2C;
-    db $F7                                                               ;92BA30;
-    dw $A80A                                                             ;92BA31;
+    dw $0002                                                             ;92BA27;
+    %spritemapEntry(1, $43F0, $F7, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43E0, $F7, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BA33:
-    dw $0004,$01E1                                                       ;92BA33;
-    db $E9                                                               ;92BA37;
-    dw $A80A,$01E1                                                       ;92BA38;
-    db $F1                                                               ;92BA3C;
-    dw $A80B,$01F9                                                       ;92BA3D;
-    db $F9                                                               ;92BA41;
-    dw $A80C,$C3E9                                                       ;92BA42;
-    db $F1                                                               ;92BA46;
-    dw $A808                                                             ;92BA47;
+    dw $0004                                                             ;92BA33;
+    %spritemapEntry(0, $1E1, $E9, 1, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1E1, $F1, 1, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1F9, $F9, 1, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43E9, $F1, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_BA49:
-    dw $0002,$C3E9                                                       ;92BA49;
-    db $E9                                                               ;92BA4D;
-    dw $A808,$C3F1                                                       ;92BA4E;
-    db $F1                                                               ;92BA52;
-    dw $A80A                                                             ;92BA53;
+    dw $0002                                                             ;92BA49;
+    %spritemapEntry(1, $43E9, $E9, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F1, $F1, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BA55:
-    dw $0002,$C3EB                                                       ;92BA55;
-    db $E1                                                               ;92BA59;
-    dw $A808,$C3F3                                                       ;92BA5A;
-    db $F1                                                               ;92BA5E;
-    dw $A80A                                                             ;92BA5F;
+    dw $0002                                                             ;92BA55;
+    %spritemapEntry(1, $43EB, $E1, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F3, $F1, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BA61:
-    dw $0004,$01F3                                                       ;92BA61;
-    db $F1                                                               ;92BA65;
-    dw $A80A,$C3F3                                                       ;92BA66;
-    db $E1                                                               ;92BA6A;
-    dw $A808,$01FB                                                       ;92BA6B;
-    db $F1                                                               ;92BA6F;
-    dw $A80B,$01FB                                                       ;92BA70;
-    db $F9                                                               ;92BA74;
-    dw $A80C                                                             ;92BA75;
+    dw $0004                                                             ;92BA61;
+    %spritemapEntry(0, $1F3, $F1, 1, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F3, $E1, 1, 0, 2, 4, $08)
+    %spritemapEntry(0, $1FB, $F1, 1, 0, 2, 4, $0B)
+    %spritemapEntry(0, $1FB, $F9, 1, 0, 2, 4, $0C)
 
 SamusSpritemaps_BA77:
-    dw $0002,$C3F9                                                       ;92BA77;
-    db $E0                                                               ;92BA7B;
-    dw $A808,$C3F9                                                       ;92BA7C;
-    db $F0                                                               ;92BA80;
-    dw $A80A                                                             ;92BA81;
+    dw $0002                                                             ;92BA77;
+    %spritemapEntry(1, $43F9, $E0, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F9, $F0, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BA83:
-    dw $0002,$C3FD                                                       ;92BA83;
-    db $E2                                                               ;92BA87;
-    dw $A808,$C3FD                                                       ;92BA88;
-    db $F2                                                               ;92BA8C;
-    dw $A80A                                                             ;92BA8D;
+    dw $0002                                                             ;92BA83;
+    %spritemapEntry(1, $43FD, $E2, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FD, $F2, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BA8F:
-    dw $0002,$C207                                                       ;92BA8F;
-    db $E1                                                               ;92BA93;
-    dw $A808,$C3FF                                                       ;92BA94;
-    db $F1                                                               ;92BA98;
-    dw $A80A                                                             ;92BA99;
+    dw $0002                                                             ;92BA8F;
+    %spritemapEntry(1, $4207, $E1, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FF, $F1, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BA9B:
-    dw $0002,$C20F                                                       ;92BA9B;
-    db $EC                                                               ;92BA9F;
-    dw $A808,$C3FF                                                       ;92BAA0;
-    db $F4                                                               ;92BAA4;
-    dw $A80A                                                             ;92BAA5;
+    dw $0002                                                             ;92BA9B;
+    %spritemapEntry(1, $420F, $EC, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43FF, $F4, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BAA7:
-    dw $0002,$C200                                                       ;92BAA7;
-    db $F8                                                               ;92BAAB;
-    dw $6808,$C210                                                       ;92BAAC;
-    db $F8                                                               ;92BAB0;
-    dw $680A                                                             ;92BAB1;
+    dw $0002                                                             ;92BAA7;
+    %spritemapEntry(1, $4200, $F8, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $4210, $F8, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_BAB3:
-    dw $0002,$01F8                                                       ;92BAB3;
-    db $F8                                                               ;92BAB7;
-    dw $2802,$C3F8                                                       ;92BAB8;
-    db $F8                                                               ;92BABC;
-    dw $2800                                                             ;92BABD;
+    dw $0002                                                             ;92BAB3;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_BABF:
-    dw $0002,$01F8                                                       ;92BABF;
-    db $F8                                                               ;92BAC3;
-    dw $2802,$C3F8                                                       ;92BAC4;
-    db $F8                                                               ;92BAC8;
-    dw $6800                                                             ;92BAC9;
+    dw $0002                                                             ;92BABF;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_BACB:
-    dw $0002,$01F8                                                       ;92BACB;
-    db $F8                                                               ;92BACF;
-    dw $2802,$C3F8                                                       ;92BAD0;
-    db $F8                                                               ;92BAD4;
-    dw $E800                                                             ;92BAD5;
+    dw $0002                                                             ;92BACB;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F8, 1, 1, 2, 4, $00)
 
 SamusSpritemaps_BAD7:
-    dw $0002,$01F8                                                       ;92BAD7;
-    db $F8                                                               ;92BADB;
-    dw $2802,$C3F8                                                       ;92BADC;
-    db $F8                                                               ;92BAE0;
-    dw $A800                                                             ;92BAE1;
+    dw $0002                                                             ;92BAD7;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F8, 1, 0, 2, 4, $00)
 
 SamusSpritemaps_BAE3:
-    dw $0005,$01F8                                                       ;92BAE3;
-    db $F8                                                               ;92BAE7;
-    dw $2800,$0000                                                       ;92BAE8;
-    db $FF                                                               ;92BAEC;
-    dw $2801,$01F8                                                       ;92BAED;
-    db $FF                                                               ;92BAF1;
-    dw $2802,$0000                                                       ;92BAF2;
-    db $F7                                                               ;92BAF6;
-    dw $2803,$01F8                                                       ;92BAF7;
-    db $F7                                                               ;92BAFB;
-    dw $2804                                                             ;92BAFC;
+    dw $0005                                                             ;92BAE3;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $00, $FF, 0, 0, 2, 4, $01)
+    %spritemapEntry(0, $1F8, $FF, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $00, $F7, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F8, $F7, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_BAFE:
-    dw $0002,$01F8                                                       ;92BAFE;
-    db $F8                                                               ;92BB02;
-    dw $2802,$C3F8                                                       ;92BB03;
-    db $F9                                                               ;92BB07;
-    dw $2800                                                             ;92BB08;
+    dw $0002                                                             ;92BAFE;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F9, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_BB0A:
-    dw $0002,$01F8                                                       ;92BB0A;
-    db $F8                                                               ;92BB0E;
-    dw $2802,$C3F8                                                       ;92BB0F;
-    db $F7                                                               ;92BB13;
-    dw $A800                                                             ;92BB14;
+    dw $0002                                                             ;92BB0A;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F7, 1, 0, 2, 4, $00)
 
 SamusSpritemaps_BB16:
-    dw $0002,$01F8                                                       ;92BB16;
-    db $F8                                                               ;92BB1A;
-    dw $2802,$C3F8                                                       ;92BB1B;
-    db $F9                                                               ;92BB1F;
-    dw $6800                                                             ;92BB20;
+    dw $0002                                                             ;92BB16;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F9, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_BB22:
-    dw $0002,$C3F8                                                       ;92BB22;
-    db $00                                                               ;92BB26;
-    dw $2800,$C3F8                                                       ;92BB27;
-    db $F0                                                               ;92BB2B;
-    dw $2802                                                             ;92BB2C;
+    dw $0002                                                             ;92BB22;
+    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_BB2E:
-    dw $0004,$C200                                                       ;92BB2E;
-    db $F1                                                               ;92BB32;
-    dw $2800,$C3F0                                                       ;92BB33;
-    db $01                                                               ;92BB37;
-    dw $2802,$C200                                                       ;92BB38;
-    db $01                                                               ;92BB3C;
-    dw $2804,$C3F0                                                       ;92BB3D;
-    db $F1                                                               ;92BB41;
-    dw $2806                                                             ;92BB42;
+    dw $0004                                                             ;92BB2E;
+    %spritemapEntry(1, $4200, $F1, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $01, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $4200, $01, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43F0, $F1, 0, 0, 2, 4, $06)
 
 SamusSpritemaps_BB44:
-    dw $0002,$C200                                                       ;92BB44;
-    db $F8                                                               ;92BB48;
-    dw $2800,$C3F0                                                       ;92BB49;
-    db $F8                                                               ;92BB4D;
-    dw $2802                                                             ;92BB4E;
+    dw $0002                                                             ;92BB44;
+    %spritemapEntry(1, $4200, $F8, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $F8, 0, 0, 2, 4, $02)
 
 SamusSpritemaps_BB50:
-    dw $0004,$C201                                                       ;92BB50;
-    db $01                                                               ;92BB54;
-    dw $E800,$C3F1                                                       ;92BB55;
-    db $F1                                                               ;92BB59;
-    dw $E802,$C3F1                                                       ;92BB5A;
-    db $01                                                               ;92BB5E;
-    dw $E804,$C201                                                       ;92BB5F;
-    db $F1                                                               ;92BB63;
-    dw $E806                                                             ;92BB64;
+    dw $0004                                                             ;92BB50;
+    %spritemapEntry(1, $4201, $01, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F1, $F1, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F1, $01, 1, 1, 2, 4, $04)
+    %spritemapEntry(1, $4201, $F1, 1, 1, 2, 4, $06)
 
 SamusSpritemaps_BB66:
-    dw $0002,$C3F8                                                       ;92BB66;
-    db $F0                                                               ;92BB6A;
-    dw $E800,$C3F8                                                       ;92BB6B;
-    db $00                                                               ;92BB6F;
-    dw $E802                                                             ;92BB70;
+    dw $0002                                                             ;92BB66;
+    %spritemapEntry(1, $43F8, $F0, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $00, 1, 1, 2, 4, $02)
 
 SamusSpritemaps_BB72:
-    dw $0004,$C3F1                                                       ;92BB72;
-    db $FF                                                               ;92BB76;
-    dw $E800,$C201                                                       ;92BB77;
-    db $EF                                                               ;92BB7B;
-    dw $E802,$C201                                                       ;92BB7C;
-    db $FF                                                               ;92BB80;
-    dw $E804,$C3F1                                                       ;92BB81;
-    db $EF                                                               ;92BB85;
-    dw $E806                                                             ;92BB86;
+    dw $0004                                                             ;92BB72;
+    %spritemapEntry(1, $43F1, $FF, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $4201, $EF, 1, 1, 2, 4, $02)
+    %spritemapEntry(1, $4201, $FF, 1, 1, 2, 4, $04)
+    %spritemapEntry(1, $43F1, $EF, 1, 1, 2, 4, $06)
 
 SamusSpritemaps_BB88:
-    dw $0002,$C3F0                                                       ;92BB88;
-    db $F8                                                               ;92BB8C;
-    dw $E800,$C200                                                       ;92BB8D;
-    db $F8                                                               ;92BB91;
-    dw $E802                                                             ;92BB92;
+    dw $0002                                                             ;92BB88;
+    %spritemapEntry(1, $43F0, $F8, 1, 1, 2, 4, $00)
+    %spritemapEntry(1, $4200, $F8, 1, 1, 2, 4, $02)
 
 SamusSpritemaps_BB94:
-    dw $0004,$C3EF                                                       ;92BB94;
-    db $EE                                                               ;92BB98;
-    dw $2800,$C3FF                                                       ;92BB99;
-    db $FE                                                               ;92BB9D;
-    dw $2802,$C3EF                                                       ;92BB9E;
-    db $FE                                                               ;92BBA2;
-    dw $2804,$C3FF                                                       ;92BBA3;
-    db $EE                                                               ;92BBA7;
-    dw $2806                                                             ;92BBA8;
+    dw $0004                                                             ;92BB94;
+    %spritemapEntry(1, $43EF, $EE, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FF, $FE, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43EF, $FE, 0, 0, 2, 4, $04)
+    %spritemapEntry(1, $43FF, $EE, 0, 0, 2, 4, $06)
 
 SamusSpritemaps_BBAA:
-    dw $000A,$01F8                                                       ;92BBAA;
-    db $0A                                                               ;92BBAE;
-    dw $2800,$01F0                                                       ;92BBAF;
-    db $0A                                                               ;92BBB3;
-    dw $2801,$000A                                                       ;92BBB4;
-    db $00                                                               ;92BBB8;
-    dw $2802,$01EE                                                       ;92BBB9;
-    db $00                                                               ;92BBBD;
-    dw $2803,$000A                                                       ;92BBBE;
-    db $F6                                                               ;92BBC2;
-    dw $2804,$01EE                                                       ;92BBC3;
-    db $F8                                                               ;92BBC7;
-    dw $2805,$000A                                                       ;92BBC8;
-    db $EE                                                               ;92BBCC;
-    dw $2806,$0000                                                       ;92BBCD;
-    db $EE                                                               ;92BBD1;
-    dw $2807,$01F8                                                       ;92BBD2;
-    db $EE                                                               ;92BBD6;
-    dw $2810,$01EE                                                       ;92BBD7;
-    db $F0                                                               ;92BBDB;
-    dw $2811                                                             ;92BBDC;
+    dw $000A                                                             ;92BBAA;
+    %spritemapEntry(0, $1F8, $0A, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1F0, $0A, 0, 0, 2, 4, $01)
+    %spritemapEntry(0, $0A, $00, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1EE, $00, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $0A, $F6, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1EE, $F8, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $0A, $EE, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $00, $EE, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $1F8, $EE, 0, 0, 2, 4, $10)
+    %spritemapEntry(0, $1EE, $F0, 0, 0, 2, 4, $11)
 
 SamusSpritemaps_BBDE:
-    dw $000B,$0000                                                       ;92BBDE;
-    db $08                                                               ;92BBE2;
-    dw $2800,$01F8                                                       ;92BBE3;
-    db $08                                                               ;92BBE7;
-    dw $2801,$01F0                                                       ;92BBE8;
-    db $08                                                               ;92BBEC;
-    dw $2802,$0008                                                       ;92BBED;
-    db $00                                                               ;92BBF1;
-    dw $2803,$01F0                                                       ;92BBF2;
-    db $00                                                               ;92BBF6;
-    dw $2804,$0008                                                       ;92BBF7;
-    db $F8                                                               ;92BBFB;
-    dw $2805,$01F0                                                       ;92BBFC;
-    db $F6                                                               ;92BC00;
-    dw $2806,$0008                                                       ;92BC01;
-    db $F0                                                               ;92BC05;
-    dw $2807,$0000                                                       ;92BC06;
-    db $F0                                                               ;92BC0A;
-    dw $2810,$01F8                                                       ;92BC0B;
-    db $EE                                                               ;92BC0F;
-    dw $2811,$01F0                                                       ;92BC10;
-    db $EE                                                               ;92BC14;
-    dw $2812                                                             ;92BC15;
+    dw $000B                                                             ;92BBDE;
+    %spritemapEntry(0, $00, $08, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $1F8, $08, 0, 0, 2, 4, $01)
+    %spritemapEntry(0, $1F0, $08, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $08, $00, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $1F0, $00, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $08, $F8, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $1F0, $F6, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $08, $F0, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $00, $F0, 0, 0, 2, 4, $10)
+    %spritemapEntry(0, $1F8, $EE, 0, 0, 2, 4, $11)
+    %spritemapEntry(0, $1F0, $EE, 0, 0, 2, 4, $12)
 
 SamusSpritemaps_BC17:
-    dw $000B,$000A                                                       ;92BC17;
-    db $08                                                               ;92BC1B;
-    dw $2800,$0002                                                       ;92BC1C;
-    db $08                                                               ;92BC20;
-    dw $2801,$01F8                                                       ;92BC21;
-    db $08                                                               ;92BC25;
-    dw $2802,$01F0                                                       ;92BC26;
-    db $08                                                               ;92BC2A;
-    dw $2803,$000A                                                       ;92BC2B;
-    db $00                                                               ;92BC2F;
-    dw $2804,$01EE                                                       ;92BC30;
-    db $00                                                               ;92BC34;
-    dw $2805,$000A                                                       ;92BC35;
-    db $F6                                                               ;92BC39;
-    dw $2806,$01EE                                                       ;92BC3A;
-    db $F8                                                               ;92BC3E;
-    dw $2807,$000A                                                       ;92BC3F;
-    db $EE                                                               ;92BC43;
-    dw $2810,$01F8                                                       ;92BC44;
-    db $EE                                                               ;92BC48;
-    dw $2811,$01F0                                                       ;92BC49;
-    db $EE                                                               ;92BC4D;
-    dw $2812                                                             ;92BC4E;
+    dw $000B                                                             ;92BC17;
+    %spritemapEntry(0, $0A, $08, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $02, $08, 0, 0, 2, 4, $01)
+    %spritemapEntry(0, $1F8, $08, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F0, $08, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $0A, $00, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1EE, $00, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $0A, $F6, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1EE, $F8, 0, 0, 2, 4, $07)
+    %spritemapEntry(0, $0A, $EE, 0, 0, 2, 4, $10)
+    %spritemapEntry(0, $1F8, $EE, 0, 0, 2, 4, $11)
+    %spritemapEntry(0, $1F0, $EE, 0, 0, 2, 4, $12)
 
 SamusSpritemaps_BC50:
-    dw $0008,$0008                                                       ;92BC50;
-    db $08                                                               ;92BC54;
-    dw $2800,$0000                                                       ;92BC55;
-    db $08                                                               ;92BC59;
-    dw $2801,$01F8                                                       ;92BC5A;
-    db $08                                                               ;92BC5E;
-    dw $2802,$01F0                                                       ;92BC5F;
-    db $08                                                               ;92BC63;
-    dw $2803,$0008                                                       ;92BC64;
-    db $00                                                               ;92BC68;
-    dw $2804,$0008                                                       ;92BC69;
-    db $F0                                                               ;92BC6D;
-    dw $2805,$0000                                                       ;92BC6E;
-    db $F0                                                               ;92BC72;
-    dw $2806,$01F0                                                       ;92BC73;
-    db $F0                                                               ;92BC77;
-    dw $2807                                                             ;92BC78;
+    dw $0008                                                             ;92BC50;
+    %spritemapEntry(0, $08, $08, 0, 0, 2, 4, $00)
+    %spritemapEntry(0, $00, $08, 0, 0, 2, 4, $01)
+    %spritemapEntry(0, $1F8, $08, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F0, $08, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $08, $00, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $08, $F0, 0, 0, 2, 4, $05)
+    %spritemapEntry(0, $00, $F0, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1F0, $F0, 0, 0, 2, 4, $07)
 
 SamusSpritemaps_BC7A:
-    dw $0001,$01F8                                                       ;92BC7A;
-    db $F8                                                               ;92BC7E;
-    dw $1000                                                             ;92BC7F;
+    dw $0001                                                             ;92BC7A;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 1, 0, $00)
 
 SamusSpritemaps_BC81:
-    dw $0001,$01F8                                                       ;92BC81;
-    db $F8                                                               ;92BC85;
-    dw $3800                                                             ;92BC86;
+    dw $0001                                                             ;92BC81;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 4, $00)
 
 SamusSpritemaps_BC88:
-    dw $0002,$0007                                                       ;92BC88;
-    db $FC                                                               ;92BC8C;
-    dw $2802,$C3F7                                                       ;92BC8D;
-    db $F9                                                               ;92BC91;
-    dw $2800                                                             ;92BC92;
+    dw $0002                                                             ;92BC88;
+    %spritemapEntry(0, $07, $FC, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F7, $F9, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_BC94:
-    dw $0002,$01FD                                                       ;92BC94;
-    db $07                                                               ;92BC98;
-    dw $2802,$C3F8                                                       ;92BC99;
-    db $F7                                                               ;92BC9D;
-    dw $2800                                                             ;92BC9E;
+    dw $0002                                                             ;92BC94;
+    %spritemapEntry(0, $1FD, $07, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F7, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_BCA0:
-    dw $0003,$0000                                                       ;92BCA0;
-    db $05                                                               ;92BCA4;
-    dw $2802,$01F8                                                       ;92BCA5;
-    db $05                                                               ;92BCA9;
-    dw $2803,$C3F8                                                       ;92BCAA;
-    db $F5                                                               ;92BCAE;
-    dw $2800                                                             ;92BCAF;
+    dw $0003                                                             ;92BCA0;
+    %spritemapEntry(0, $00, $05, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F8, $05, 0, 0, 2, 4, $03)
+    %spritemapEntry(1, $43F8, $F5, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_BCB1:
-    dw $0005,$0000                                                       ;92BCB1;
-    db $0A                                                               ;92BCB5;
-    dw $2802,$01F8                                                       ;92BCB6;
-    db $0A                                                               ;92BCBA;
-    dw $2803,$0000                                                       ;92BCBB;
-    db $02                                                               ;92BCBF;
-    dw $2804,$01F8                                                       ;92BCC0;
-    db $02                                                               ;92BCC4;
-    dw $2805,$C3F8                                                       ;92BCC5;
-    db $F2                                                               ;92BCC9;
-    dw $2800                                                             ;92BCCA;
+    dw $0005                                                             ;92BCB1;
+    %spritemapEntry(0, $00, $0A, 0, 0, 2, 4, $02)
+    %spritemapEntry(0, $1F8, $0A, 0, 0, 2, 4, $03)
+    %spritemapEntry(0, $00, $02, 0, 0, 2, 4, $04)
+    %spritemapEntry(0, $1F8, $02, 0, 0, 2, 4, $05)
+    %spritemapEntry(1, $43F8, $F2, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_BCCC:
-    dw $0003,$01F8                                                       ;92BCCC;
-    db $05                                                               ;92BCD0;
-    dw $6802,$0000                                                       ;92BCD1;
-    db $05                                                               ;92BCD5;
-    dw $6803,$C3F8                                                       ;92BCD6;
-    db $F5                                                               ;92BCDA;
-    dw $6800                                                             ;92BCDB;
+    dw $0003                                                             ;92BCCC;
+    %spritemapEntry(0, $1F8, $05, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $00, $05, 0, 1, 2, 4, $03)
+    %spritemapEntry(1, $43F8, $F5, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_BCDD:
-    dw $0005,$01F8                                                       ;92BCDD;
-    db $0A                                                               ;92BCE1;
-    dw $6802,$0000                                                       ;92BCE2;
-    db $0A                                                               ;92BCE6;
-    dw $6803,$01F8                                                       ;92BCE7;
-    db $02                                                               ;92BCEB;
-    dw $6804,$0000                                                       ;92BCEC;
-    db $02                                                               ;92BCF0;
-    dw $6805,$C3F8                                                       ;92BCF1;
-    db $F2                                                               ;92BCF5;
-    dw $6800                                                             ;92BCF6;
+    dw $0005                                                             ;92BCDD;
+    %spritemapEntry(0, $1F8, $0A, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $00, $0A, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1F8, $02, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $00, $02, 0, 1, 2, 4, $05)
+    %spritemapEntry(1, $43F8, $F2, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_BCF8:
-    dw $0002,$01F8                                                       ;92BCF8;
-    db $F8                                                               ;92BCFC;
-    dw $6802,$C3F8                                                       ;92BCFD;
-    db $F8                                                               ;92BD01;
-    dw $6800                                                             ;92BD02;
+    dw $0002                                                             ;92BCF8;
+    %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_BD04:
-    dw $0002,$01F8                                                       ;92BD04;
-    db $F8                                                               ;92BD08;
-    dw $6802,$C3F8                                                       ;92BD09;
-    db $F8                                                               ;92BD0D;
-    dw $2800                                                             ;92BD0E;
+    dw $0002                                                             ;92BD04;
+    %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_BD10:
-    dw $0002,$01F8                                                       ;92BD10;
-    db $F8                                                               ;92BD14;
-    dw $6802,$C3F8                                                       ;92BD15;
-    db $F8                                                               ;92BD19;
-    dw $A800                                                             ;92BD1A;
+    dw $0002                                                             ;92BD10;
+    %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F8, 1, 0, 2, 4, $00)
 
 SamusSpritemaps_BD1C:
-    dw $0002,$01F8                                                       ;92BD1C;
-    db $F8                                                               ;92BD20;
-    dw $6802,$C3F8                                                       ;92BD21;
-    db $F8                                                               ;92BD25;
-    dw $E800                                                             ;92BD26;
+    dw $0002                                                             ;92BD1C;
+    %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F8, 1, 1, 2, 4, $00)
 
 SamusSpritemaps_BD28:
-    dw $0005,$01F8                                                       ;92BD28;
-    db $F8                                                               ;92BD2C;
-    dw $6800,$01F8                                                       ;92BD2D;
-    db $FF                                                               ;92BD31;
-    dw $6801,$0000                                                       ;92BD32;
-    db $FF                                                               ;92BD36;
-    dw $6802,$01F8                                                       ;92BD37;
-    db $F7                                                               ;92BD3B;
-    dw $6803,$0000                                                       ;92BD3C;
-    db $F7                                                               ;92BD40;
-    dw $6804                                                             ;92BD41;
+    dw $0005                                                             ;92BD28;
+    %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 4, $00)
+    %spritemapEntry(0, $1F8, $FF, 0, 1, 2, 4, $01)
+    %spritemapEntry(0, $00, $FF, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1F8, $F7, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $00, $F7, 0, 1, 2, 4, $04)
 
 SamusSpritemaps_BD43:
-    dw $0002,$01F8                                                       ;92BD43;
-    db $F8                                                               ;92BD47;
-    dw $6802,$C3F8                                                       ;92BD48;
-    db $F9                                                               ;92BD4C;
-    dw $6800                                                             ;92BD4D;
+    dw $0002                                                             ;92BD43;
+    %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F9, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_BD4F:
-    dw $0002,$01F8                                                       ;92BD4F;
-    db $F8                                                               ;92BD53;
-    dw $6802,$C3F8                                                       ;92BD54;
-    db $F7                                                               ;92BD58;
-    dw $E800                                                             ;92BD59;
+    dw $0002                                                             ;92BD4F;
+    %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F7, 1, 1, 2, 4, $00)
 
 SamusSpritemaps_BD5B:
-    dw $0002,$01F8                                                       ;92BD5B;
-    db $F8                                                               ;92BD5F;
-    dw $6802,$C3F8                                                       ;92BD60;
-    db $F9                                                               ;92BD64;
-    dw $2800                                                             ;92BD65;
+    dw $0002                                                             ;92BD5B;
+    %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $F9, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_BD67:
-    dw $0002,$C3F8                                                       ;92BD67;
-    db $00                                                               ;92BD6B;
-    dw $6800,$C3F8                                                       ;92BD6C;
-    db $F0                                                               ;92BD70;
-    dw $6802                                                             ;92BD71;
+    dw $0002                                                             ;92BD67;
+    %spritemapEntry(1, $43F8, $00, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $F0, 0, 1, 2, 4, $02)
 
 SamusSpritemaps_BD73:
-    dw $0004,$C3F0                                                       ;92BD73;
-    db $F1                                                               ;92BD77;
-    dw $6800,$C200                                                       ;92BD78;
-    db $01                                                               ;92BD7C;
-    dw $6802,$C3F0                                                       ;92BD7D;
-    db $01                                                               ;92BD81;
-    dw $6804,$C200                                                       ;92BD82;
-    db $F1                                                               ;92BD86;
-    dw $6806                                                             ;92BD87;
+    dw $0004                                                             ;92BD73;
+    %spritemapEntry(1, $43F0, $F1, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $4200, $01, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F0, $01, 0, 1, 2, 4, $04)
+    %spritemapEntry(1, $4200, $F1, 0, 1, 2, 4, $06)
 
 SamusSpritemaps_BD89:
-    dw $0002,$C3F0                                                       ;92BD89;
-    db $F8                                                               ;92BD8D;
-    dw $6800,$C200                                                       ;92BD8E;
-    db $F8                                                               ;92BD92;
-    dw $6802                                                             ;92BD93;
+    dw $0002                                                             ;92BD89;
+    %spritemapEntry(1, $43F0, $F8, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $4200, $F8, 0, 1, 2, 4, $02)
 
 SamusSpritemaps_BD95:
-    dw $0004,$C3EF                                                       ;92BD95;
-    db $01                                                               ;92BD99;
-    dw $A800,$C3FF                                                       ;92BD9A;
-    db $F1                                                               ;92BD9E;
-    dw $A802,$C3FF                                                       ;92BD9F;
-    db $01                                                               ;92BDA3;
-    dw $A804,$C3EF                                                       ;92BDA4;
-    db $F1                                                               ;92BDA8;
-    dw $A806                                                             ;92BDA9;
+    dw $0004                                                             ;92BD95;
+    %spritemapEntry(1, $43EF, $01, 1, 0, 2, 4, $00)
+    %spritemapEntry(1, $43FF, $F1, 1, 0, 2, 4, $02)
+    %spritemapEntry(1, $43FF, $01, 1, 0, 2, 4, $04)
+    %spritemapEntry(1, $43EF, $F1, 1, 0, 2, 4, $06)
 
 SamusSpritemaps_BDAB:
-    dw $0002,$C3F8                                                       ;92BDAB;
-    db $F0                                                               ;92BDAF;
-    dw $A800,$C3F8                                                       ;92BDB0;
-    db $00                                                               ;92BDB4;
-    dw $A802                                                             ;92BDB5;
+    dw $0002                                                             ;92BDAB;
+    %spritemapEntry(1, $43F8, $F0, 1, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $00, 1, 0, 2, 4, $02)
 
 SamusSpritemaps_BDB7:
-    dw $0004,$C3FF                                                       ;92BDB7;
-    db $FF                                                               ;92BDBB;
-    dw $A800,$C3EF                                                       ;92BDBC;
-    db $EF                                                               ;92BDC0;
-    dw $A802,$C3EF                                                       ;92BDC1;
-    db $FF                                                               ;92BDC5;
-    dw $A804,$C3FF                                                       ;92BDC6;
-    db $EF                                                               ;92BDCA;
-    dw $A806                                                             ;92BDCB;
+    dw $0004                                                             ;92BDB7;
+    %spritemapEntry(1, $43FF, $FF, 1, 0, 2, 4, $00)
+    %spritemapEntry(1, $43EF, $EF, 1, 0, 2, 4, $02)
+    %spritemapEntry(1, $43EF, $FF, 1, 0, 2, 4, $04)
+    %spritemapEntry(1, $43FF, $EF, 1, 0, 2, 4, $06)
 
 SamusSpritemaps_BDCD:
-    dw $0002,$C200                                                       ;92BDCD;
-    db $F8                                                               ;92BDD1;
-    dw $A800,$C3F0                                                       ;92BDD2;
-    db $F8                                                               ;92BDD6;
-    dw $A802                                                             ;92BDD7;
+    dw $0002                                                             ;92BDCD;
+    %spritemapEntry(1, $4200, $F8, 1, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F0, $F8, 1, 0, 2, 4, $02)
 
 SamusSpritemaps_BDD9:
-    dw $0004,$C201                                                       ;92BDD9;
-    db $EE                                                               ;92BDDD;
-    dw $6800,$C3F1                                                       ;92BDDE;
-    db $FE                                                               ;92BDE2;
-    dw $6802,$C201                                                       ;92BDE3;
-    db $FE                                                               ;92BDE7;
-    dw $6804,$C3F1                                                       ;92BDE8;
-    db $EE                                                               ;92BDEC;
-    dw $6806                                                             ;92BDED;
+    dw $0004                                                             ;92BDD9;
+    %spritemapEntry(1, $4201, $EE, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F1, $FE, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $4201, $FE, 0, 1, 2, 4, $04)
+    %spritemapEntry(1, $43F1, $EE, 0, 1, 2, 4, $06)
 
 SamusSpritemaps_BDEF:
-    dw $000A,$0000                                                       ;92BDEF;
-    db $0A                                                               ;92BDF3;
-    dw $6800,$0008                                                       ;92BDF4;
-    db $0A                                                               ;92BDF8;
-    dw $6801,$01EE                                                       ;92BDF9;
-    db $00                                                               ;92BDFD;
-    dw $6802,$000A                                                       ;92BDFE;
-    db $00                                                               ;92BE02;
-    dw $6803,$01EE                                                       ;92BE03;
-    db $F6                                                               ;92BE07;
-    dw $6804,$000A                                                       ;92BE08;
-    db $F8                                                               ;92BE0C;
-    dw $6805,$01EE                                                       ;92BE0D;
-    db $EE                                                               ;92BE11;
-    dw $6806,$01F8                                                       ;92BE12;
-    db $EE                                                               ;92BE16;
-    dw $6807,$0000                                                       ;92BE17;
-    db $EE                                                               ;92BE1B;
-    dw $6810,$000A                                                       ;92BE1C;
-    db $F0                                                               ;92BE20;
-    dw $6811                                                             ;92BE21;
+    dw $000A                                                             ;92BDEF;
+    %spritemapEntry(0, $00, $0A, 0, 1, 2, 4, $00)
+    %spritemapEntry(0, $08, $0A, 0, 1, 2, 4, $01)
+    %spritemapEntry(0, $1EE, $00, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $0A, $00, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1EE, $F6, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $0A, $F8, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1EE, $EE, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1F8, $EE, 0, 1, 2, 4, $07)
+    %spritemapEntry(0, $00, $EE, 0, 1, 2, 4, $10)
+    %spritemapEntry(0, $0A, $F0, 0, 1, 2, 4, $11)
 
 SamusSpritemaps_BE23:
-    dw $000B,$01F8                                                       ;92BE23;
-    db $08                                                               ;92BE27;
-    dw $6800,$0000                                                       ;92BE28;
-    db $08                                                               ;92BE2C;
-    dw $6801,$0008                                                       ;92BE2D;
-    db $08                                                               ;92BE31;
-    dw $6802,$01F0                                                       ;92BE32;
-    db $00                                                               ;92BE36;
-    dw $6803,$0008                                                       ;92BE37;
-    db $00                                                               ;92BE3B;
-    dw $6804,$01F0                                                       ;92BE3C;
-    db $F8                                                               ;92BE40;
-    dw $6805,$0008                                                       ;92BE41;
-    db $F6                                                               ;92BE45;
-    dw $6806,$01F0                                                       ;92BE46;
-    db $F0                                                               ;92BE4A;
-    dw $6807,$01F8                                                       ;92BE4B;
-    db $F0                                                               ;92BE4F;
-    dw $6810,$0000                                                       ;92BE50;
-    db $EE                                                               ;92BE54;
-    dw $6811,$0008                                                       ;92BE55;
-    db $EE                                                               ;92BE59;
-    dw $6812                                                             ;92BE5A;
+    dw $000B                                                             ;92BE23;
+    %spritemapEntry(0, $1F8, $08, 0, 1, 2, 4, $00)
+    %spritemapEntry(0, $00, $08, 0, 1, 2, 4, $01)
+    %spritemapEntry(0, $08, $08, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $1F0, $00, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $08, $00, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F0, $F8, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $08, $F6, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $1F0, $F0, 0, 1, 2, 4, $07)
+    %spritemapEntry(0, $1F8, $F0, 0, 1, 2, 4, $10)
+    %spritemapEntry(0, $00, $EE, 0, 1, 2, 4, $11)
+    %spritemapEntry(0, $08, $EE, 0, 1, 2, 4, $12)
 
 SamusSpritemaps_BE5C:
-    dw $000B,$01EE                                                       ;92BE5C;
-    db $08                                                               ;92BE60;
-    dw $6800,$01F6                                                       ;92BE61;
-    db $08                                                               ;92BE65;
-    dw $6801,$0000                                                       ;92BE66;
-    db $08                                                               ;92BE6A;
-    dw $6802,$0008                                                       ;92BE6B;
-    db $08                                                               ;92BE6F;
-    dw $6803,$01EE                                                       ;92BE70;
-    db $00                                                               ;92BE74;
-    dw $6804,$000A                                                       ;92BE75;
-    db $00                                                               ;92BE79;
-    dw $6805,$01EE                                                       ;92BE7A;
-    db $F6                                                               ;92BE7E;
-    dw $6806,$000A                                                       ;92BE7F;
-    db $F8                                                               ;92BE83;
-    dw $6807,$01EE                                                       ;92BE84;
-    db $EE                                                               ;92BE88;
-    dw $6810,$0000                                                       ;92BE89;
-    db $EE                                                               ;92BE8D;
-    dw $6811,$0008                                                       ;92BE8E;
-    db $EE                                                               ;92BE92;
-    dw $6812                                                             ;92BE93;
+    dw $000B                                                             ;92BE5C;
+    %spritemapEntry(0, $1EE, $08, 0, 1, 2, 4, $00)
+    %spritemapEntry(0, $1F6, $08, 0, 1, 2, 4, $01)
+    %spritemapEntry(0, $00, $08, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $08, $08, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1EE, $00, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $0A, $00, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1EE, $F6, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $0A, $F8, 0, 1, 2, 4, $07)
+    %spritemapEntry(0, $1EE, $EE, 0, 1, 2, 4, $10)
+    %spritemapEntry(0, $00, $EE, 0, 1, 2, 4, $11)
+    %spritemapEntry(0, $08, $EE, 0, 1, 2, 4, $12)
 
 SamusSpritemaps_BE95:
-    dw $0008,$01F0                                                       ;92BE95;
-    db $08                                                               ;92BE99;
-    dw $6800,$01F8                                                       ;92BE9A;
-    db $08                                                               ;92BE9E;
-    dw $6801,$0000                                                       ;92BE9F;
-    db $08                                                               ;92BEA3;
-    dw $6802,$0008                                                       ;92BEA4;
-    db $08                                                               ;92BEA8;
-    dw $6803,$01F0                                                       ;92BEA9;
-    db $00                                                               ;92BEAD;
-    dw $6804,$01F0                                                       ;92BEAE;
-    db $F0                                                               ;92BEB2;
-    dw $6805,$01F8                                                       ;92BEB3;
-    db $F0                                                               ;92BEB7;
-    dw $6806,$0008                                                       ;92BEB8;
-    db $F0                                                               ;92BEBC;
-    dw $6807                                                             ;92BEBD;
+    dw $0008                                                             ;92BE95;
+    %spritemapEntry(0, $1F0, $08, 0, 1, 2, 4, $00)
+    %spritemapEntry(0, $1F8, $08, 0, 1, 2, 4, $01)
+    %spritemapEntry(0, $00, $08, 0, 1, 2, 4, $02)
+    %spritemapEntry(0, $08, $08, 0, 1, 2, 4, $03)
+    %spritemapEntry(0, $1F0, $00, 0, 1, 2, 4, $04)
+    %spritemapEntry(0, $1F0, $F0, 0, 1, 2, 4, $05)
+    %spritemapEntry(0, $1F8, $F0, 0, 1, 2, 4, $06)
+    %spritemapEntry(0, $08, $F0, 0, 1, 2, 4, $07)
 
 SamusSpritemaps_BEBF:
-    dw $0001,$01F8                                                       ;92BEBF;
-    db $F8                                                               ;92BEC3;
-    dw $3000                                                             ;92BEC4;
+    dw $0001                                                             ;92BEBF;
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 0, $00)
 
 SamusSpritemaps_BEC6:
-    dw $0002,$C200                                                       ;92BEC6;
-    db $00                                                               ;92BECA;
-    dw $E808,$C3F0                                                       ;92BECB;
-    db $F0                                                               ;92BECF;
-    dw $2808                                                             ;92BED0;
+    dw $0002                                                             ;92BEC6;
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_BED2:
-    dw $0004,$C3F0                                                       ;92BED2;
-    db $F0                                                               ;92BED6;
-    dw $2808,$C200                                                       ;92BED7;
-    db $F0                                                               ;92BEDB;
-    dw $680A,$C200                                                       ;92BEDC;
-    db $00                                                               ;92BEE0;
-    dw $E808,$C3F0                                                       ;92BEE1;
-    db $00                                                               ;92BEE5;
-    dw $A80A                                                             ;92BEE6;
+    dw $0004                                                             ;92BED2;
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BEE8:
-    dw $0002,$C3F0                                                       ;92BEE8;
-    db $00                                                               ;92BEEC;
-    dw $E808,$C200                                                       ;92BEED;
-    db $F0                                                               ;92BEF1;
-    dw $2808                                                             ;92BEF2;
+    dw $0002                                                             ;92BEE8;
+    %spritemapEntry(1, $43F0, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_BEF4:
-    dw $0004,$C200                                                       ;92BEF4;
-    db $00                                                               ;92BEF8;
-    dw $6808,$C3F0                                                       ;92BEF9;
-    db $F0                                                               ;92BEFD;
-    dw $A808,$C3F0                                                       ;92BEFE;
-    db $00                                                               ;92BF02;
-    dw $A80A,$C200                                                       ;92BF03;
-    db $F0                                                               ;92BF07;
-    dw $680A                                                             ;92BF08;
+    dw $0004                                                             ;92BEF4;
+    %spritemapEntry(1, $4200, $00, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_BF0A:
-    dw $0002,$C200                                                       ;92BF0A;
-    db $00                                                               ;92BF0E;
-    dw $E808,$C3F0                                                       ;92BF0F;
-    db $F0                                                               ;92BF13;
-    dw $2808                                                             ;92BF14;
+    dw $0002                                                             ;92BF0A;
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_BF16:
-    dw $0004,$C200                                                       ;92BF16;
-    db $F0                                                               ;92BF1A;
-    dw $6808,$C3F0                                                       ;92BF1B;
-    db $00                                                               ;92BF1F;
-    dw $A808,$C3F0                                                       ;92BF20;
-    db $F0                                                               ;92BF24;
-    dw $280A,$C200                                                       ;92BF25;
-    db $00                                                               ;92BF29;
-    dw $E80A                                                             ;92BF2A;
+    dw $0004                                                             ;92BF16;
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_BF2C:
-    dw $0002,$C3F0                                                       ;92BF2C;
-    db $00                                                               ;92BF30;
-    dw $E808,$C200                                                       ;92BF31;
-    db $F0                                                               ;92BF35;
-    dw $2808                                                             ;92BF36;
+    dw $0002                                                             ;92BF2C;
+    %spritemapEntry(1, $43F0, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_BF38:
-    dw $0004,$C3F0                                                       ;92BF38;
-    db $00                                                               ;92BF3C;
-    dw $A808,$C200                                                       ;92BF3D;
-    db $F0                                                               ;92BF41;
-    dw $6808,$C200                                                       ;92BF42;
-    db $00                                                               ;92BF46;
-    dw $680A,$C3F0                                                       ;92BF47;
-    db $F0                                                               ;92BF4B;
-    dw $A80A                                                             ;92BF4C;
+    dw $0004                                                             ;92BF38;
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F0, $F0, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BF4E:
-    dw $0004,$C200                                                       ;92BF4E;
-    db $00                                                               ;92BF52;
-    dw $E808,$C3F0                                                       ;92BF53;
-    db $F0                                                               ;92BF57;
-    dw $2808,$C3F0                                                       ;92BF58;
-    db $00                                                               ;92BF5C;
-    dw $A808,$C200                                                       ;92BF5D;
-    db $F0                                                               ;92BF61;
-    dw $6808                                                             ;92BF62;
+    dw $0004                                                             ;92BF4E;
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_BF64:
-    dw $0004,$C3F0                                                       ;92BF64;
-    db $00                                                               ;92BF68;
-    dw $A808,$C200                                                       ;92BF69;
-    db $F0                                                               ;92BF6D;
-    dw $6808,$C200                                                       ;92BF6E;
-    db $00                                                               ;92BF72;
-    dw $E80A,$C3F0                                                       ;92BF73;
-    db $F0                                                               ;92BF77;
-    dw $280A                                                             ;92BF78;
+    dw $0004                                                             ;92BF64;
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_BF7A:
-    dw $0004,$C3F0                                                       ;92BF7A;
-    db $00                                                               ;92BF7E;
-    dw $A808,$C200                                                       ;92BF7F;
-    db $F0                                                               ;92BF83;
-    dw $6808,$C200                                                       ;92BF84;
-    db $00                                                               ;92BF88;
-    dw $E808,$C3F0                                                       ;92BF89;
-    db $F0                                                               ;92BF8D;
-    dw $2808                                                             ;92BF8E;
+    dw $0004                                                             ;92BF7A;
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_BF90:
-    dw $0004,$C200                                                       ;92BF90;
-    db $00                                                               ;92BF94;
-    dw $E808,$C3F0                                                       ;92BF95;
-    db $F0                                                               ;92BF99;
-    dw $2808,$C200                                                       ;92BF9A;
-    db $F0                                                               ;92BF9E;
-    dw $680A,$C3F0                                                       ;92BF9F;
-    db $00                                                               ;92BFA3;
-    dw $A80A                                                             ;92BFA4;
+    dw $0004                                                             ;92BF90;
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BFA6:
-    dw $0004,$C200                                                       ;92BFA6;
-    db $00                                                               ;92BFAA;
-    dw $E808,$C3F0                                                       ;92BFAB;
-    db $F0                                                               ;92BFAF;
-    dw $2808,$C200                                                       ;92BFB0;
-    db $F0                                                               ;92BFB4;
-    dw $6808,$C3F0                                                       ;92BFB5;
-    db $00                                                               ;92BFB9;
-    dw $A808                                                             ;92BFBA;
+    dw $0004                                                             ;92BFA6;
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_BFBC:
-    dw $0004,$C200                                                       ;92BFBC;
-    db $F0                                                               ;92BFC0;
-    dw $6808,$C3F0                                                       ;92BFC1;
-    db $00                                                               ;92BFC5;
-    dw $A808,$C200                                                       ;92BFC6;
-    db $00                                                               ;92BFCA;
-    dw $E80A,$C3F0                                                       ;92BFCB;
-    db $F0                                                               ;92BFCF;
-    dw $280A                                                             ;92BFD0;
+    dw $0004                                                             ;92BFBC;
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_BFD2:
-    dw $0004,$C3F0                                                       ;92BFD2;
-    db $00                                                               ;92BFD6;
-    dw $A808,$C200                                                       ;92BFD7;
-    db $F0                                                               ;92BFDB;
-    dw $6808,$C3F0                                                       ;92BFDC;
-    db $F0                                                               ;92BFE0;
-    dw $2808,$C200                                                       ;92BFE1;
-    db $00                                                               ;92BFE5;
-    dw $E808                                                             ;92BFE6;
+    dw $0004                                                             ;92BFD2;
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_BFE8:
-    dw $0004,$C200                                                       ;92BFE8;
-    db $00                                                               ;92BFEC;
-    dw $E808,$C3F0                                                       ;92BFED;
-    db $F0                                                               ;92BFF1;
-    dw $2808,$C200                                                       ;92BFF2;
-    db $F0                                                               ;92BFF6;
-    dw $680A,$C3F0                                                       ;92BFF7;
-    db $00                                                               ;92BFFB;
-    dw $A80A                                                             ;92BFFC;
+    dw $0004                                                             ;92BFE8;
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_BFFE:
-    dw $0004,$C3F0                                                       ;92BFFE;
-    db $F0                                                               ;92C002;
-    dw $2808,$C200                                                       ;92C003;
-    db $00                                                               ;92C007;
-    dw $E808,$C3F0                                                       ;92C008;
-    db $00                                                               ;92C00C;
-    dw $A80A,$C200                                                       ;92C00D;
-    db $F0                                                               ;92C011;
-    dw $680A                                                             ;92C012;
+    dw $0004                                                             ;92BFFE;
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_C014:
-    dw $0002,$C3F0                                                       ;92C014;
-    db $00                                                               ;92C018;
-    dw $A808,$C200                                                       ;92C019;
-    db $F0                                                               ;92C01D;
-    dw $6808                                                             ;92C01E;
+    dw $0002                                                             ;92C014;
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_C020:
-    dw $0004,$C200                                                       ;92C020;
-    db $F0                                                               ;92C024;
-    dw $6808,$C3F0                                                       ;92C025;
-    db $F0                                                               ;92C029;
-    dw $280A,$C3F0                                                       ;92C02A;
-    db $00                                                               ;92C02E;
-    dw $A808,$C200                                                       ;92C02F;
-    db $00                                                               ;92C033;
-    dw $E80A                                                             ;92C034;
+    dw $0004                                                             ;92C020;
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_C036:
-    dw $0002,$C200                                                       ;92C036;
-    db $00                                                               ;92C03A;
-    dw $A808,$C3F0                                                       ;92C03B;
-    db $F0                                                               ;92C03F;
-    dw $6808                                                             ;92C040;
+    dw $0002                                                             ;92C036;
+    %spritemapEntry(1, $4200, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_C042:
-    dw $0004,$C3F0                                                       ;92C042;
-    db $00                                                               ;92C046;
-    dw $2808,$C200                                                       ;92C047;
-    db $F0                                                               ;92C04B;
-    dw $E808,$C200                                                       ;92C04C;
-    db $00                                                               ;92C050;
-    dw $E80A,$C3F0                                                       ;92C051;
-    db $F0                                                               ;92C055;
-    dw $280A                                                             ;92C056;
+    dw $0004                                                             ;92C042;
+    %spritemapEntry(1, $43F0, $00, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_C058:
-    dw $0002,$C3F0                                                       ;92C058;
-    db $00                                                               ;92C05C;
-    dw $A808,$C200                                                       ;92C05D;
-    db $F0                                                               ;92C061;
-    dw $6808                                                             ;92C062;
+    dw $0002                                                             ;92C058;
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_C064:
-    dw $0004,$C3F0                                                       ;92C064;
-    db $F0                                                               ;92C068;
-    dw $2808,$C200                                                       ;92C069;
-    db $00                                                               ;92C06D;
-    dw $E808,$C200                                                       ;92C06E;
-    db $F0                                                               ;92C072;
-    dw $680A,$C3F0                                                       ;92C073;
-    db $00                                                               ;92C077;
-    dw $A80A                                                             ;92C078;
+    dw $0004                                                             ;92C064;
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_C07A:
-    dw $0002,$C200                                                       ;92C07A;
-    db $00                                                               ;92C07E;
-    dw $A808,$C3F0                                                       ;92C07F;
-    db $F0                                                               ;92C083;
-    dw $6808                                                             ;92C084;
+    dw $0002                                                             ;92C07A;
+    %spritemapEntry(1, $4200, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_C086:
-    dw $0004,$C200                                                       ;92C086;
-    db $00                                                               ;92C08A;
-    dw $E808,$C3F0                                                       ;92C08B;
-    db $F0                                                               ;92C08F;
-    dw $2808,$C3F0                                                       ;92C090;
-    db $00                                                               ;92C094;
-    dw $280A,$C200                                                       ;92C095;
-    db $F0                                                               ;92C099;
-    dw $E80A                                                             ;92C09A;
+    dw $0004                                                             ;92C086;
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $F0, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_C09C:
-    dw $0004,$C3F0                                                       ;92C09C;
-    db $00                                                               ;92C0A0;
-    dw $A808,$C200                                                       ;92C0A1;
-    db $F0                                                               ;92C0A5;
-    dw $6808,$C200                                                       ;92C0A6;
-    db $00                                                               ;92C0AA;
-    dw $E808,$C3F0                                                       ;92C0AB;
-    db $F0                                                               ;92C0AF;
-    dw $2808                                                             ;92C0B0;
+    dw $0004                                                             ;92C09C;
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
 
 SamusSpritemaps_C0B2:
-    dw $0004,$C200                                                       ;92C0B2;
-    db $00                                                               ;92C0B6;
-    dw $E808,$C3F0                                                       ;92C0B7;
-    db $F0                                                               ;92C0BB;
-    dw $2808,$C3F0                                                       ;92C0BC;
-    db $00                                                               ;92C0C0;
-    dw $A80A,$C200                                                       ;92C0C1;
-    db $F0                                                               ;92C0C5;
-    dw $680A                                                             ;92C0C6;
+    dw $0004                                                             ;92C0B2;
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_C0C8:
-    dw $0004,$C200                                                       ;92C0C8;
-    db $00                                                               ;92C0CC;
-    dw $E808,$C3F0                                                       ;92C0CD;
-    db $F0                                                               ;92C0D1;
-    dw $2808,$C3F0                                                       ;92C0D2;
-    db $00                                                               ;92C0D6;
-    dw $A808,$C200                                                       ;92C0D7;
-    db $F0                                                               ;92C0DB;
-    dw $6808                                                             ;92C0DC;
+    dw $0004                                                             ;92C0C8;
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
 
 SamusSpritemaps_C0DE:
-    dw $0004,$C3F0                                                       ;92C0DE;
-    db $00                                                               ;92C0E2;
-    dw $A808,$C200                                                       ;92C0E3;
-    db $F0                                                               ;92C0E7;
-    dw $6808,$C3F0                                                       ;92C0E8;
-    db $F0                                                               ;92C0EC;
-    dw $280A,$C200                                                       ;92C0ED;
-    db $00                                                               ;92C0F1;
-    dw $E80A                                                             ;92C0F2;
+    dw $0004                                                             ;92C0DE;
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_C0F4:
-    dw $0004,$C3F0                                                       ;92C0F4;
-    db $00                                                               ;92C0F8;
-    dw $A808,$C200                                                       ;92C0F9;
-    db $F0                                                               ;92C0FD;
-    dw $6808,$C3F0                                                       ;92C0FE;
-    db $F0                                                               ;92C102;
-    dw $2808,$C200                                                       ;92C103;
-    db $00                                                               ;92C107;
-    dw $E808                                                             ;92C108;
+    dw $0004                                                             ;92C0F4;
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
 
 SamusSpritemaps_C10A:
-    dw $0004,$C3F0                                                       ;92C10A;
-    db $F0                                                               ;92C10E;
-    dw $2808,$C200                                                       ;92C10F;
-    db $00                                                               ;92C113;
-    dw $E808,$C3F0                                                       ;92C114;
-    db $00                                                               ;92C118;
-    dw $A80A,$C200                                                       ;92C119;
-    db $F0                                                               ;92C11D;
-    dw $680A                                                             ;92C11E;
+    dw $0004                                                             ;92C10A;
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_C120:
-    dw $0004,$C200                                                       ;92C120;
-    db $00                                                               ;92C124;
-    dw $E808,$C3F0                                                       ;92C125;
-    db $F0                                                               ;92C129;
-    dw $2808,$C200                                                       ;92C12A;
-    db $F0                                                               ;92C12E;
-    dw $6808,$C3F0                                                       ;92C12F;
-    db $00                                                               ;92C133;
-    dw $A808                                                             ;92C134;
+    dw $0004                                                             ;92C120;
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
 
 SamusSpritemaps_C136:
-    dw $0004,$C3F0                                                       ;92C136;
-    db $00                                                               ;92C13A;
-    dw $A808,$C200                                                       ;92C13B;
-    db $F0                                                               ;92C13F;
-    dw $6808,$C3F0                                                       ;92C140;
-    db $F0                                                               ;92C144;
-    dw $280A,$C200                                                       ;92C145;
-    db $00                                                               ;92C149;
-    dw $E80A                                                             ;92C14A;
+    dw $0004                                                             ;92C136;
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_C14C:
-    dw $0004,$C3F0                                                       ;92C14C;
-    db $F0                                                               ;92C150;
-    dw $2808,$C200                                                       ;92C151;
-    db $00                                                               ;92C155;
-    dw $E808,$C3F0                                                       ;92C156;
-    db $00                                                               ;92C15A;
-    dw $A80A,$C200                                                       ;92C15B;
-    db $F0                                                               ;92C15F;
-    dw $680A                                                             ;92C160;
+    dw $0004                                                             ;92C14C;
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_C162:
-    dw $0005,$0000                                                       ;92C162;
-    db $F8                                                               ;92C166;
-    dw $2806,$01F8                                                       ;92C167;
-    db $F8                                                               ;92C16B;
-    dw $2807,$C3F8                                                       ;92C16C;
-    db $08                                                               ;92C170;
-    dw $6800,$C3F8                                                       ;92C171;
-    db $F8                                                               ;92C175;
-    dw $6802,$C3F8                                                       ;92C176;
-    db $E8                                                               ;92C17A;
-    dw $2804                                                             ;92C17B;
+    dw $0005                                                             ;92C162;
+    %spritemapEntry(0, $00, $F8, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 4, $07)
+    %spritemapEntry(1, $43F8, $08, 0, 1, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $E8, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_C17D:
-    dw $0005,$0000                                                       ;92C17D;
-    db $F8                                                               ;92C181;
-    dw $2806,$01F8                                                       ;92C182;
-    db $F8                                                               ;92C186;
-    dw $2807,$C3F8                                                       ;92C187;
-    db $08                                                               ;92C18B;
-    dw $2800,$C3F8                                                       ;92C18C;
-    db $F8                                                               ;92C190;
-    dw $2802,$C3F8                                                       ;92C191;
-    db $E8                                                               ;92C195;
-    dw $2804                                                             ;92C196;
+    dw $0005                                                             ;92C17D;
+    %spritemapEntry(0, $00, $F8, 0, 0, 2, 4, $06)
+    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 4, $07)
+    %spritemapEntry(1, $43F8, $08, 0, 0, 2, 4, $00)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $E8, 0, 0, 2, 4, $04)
 
 SamusSpritemaps_C198:
-    dw $0007,$C3F8                                                       ;92C198;
-    db $EC                                                               ;92C19C;
-    dw $2C00,$0000                                                       ;92C19D;
-    db $0C                                                               ;92C1A1;
-    dw $2C02,$01F8                                                       ;92C1A2;
-    db $0C                                                               ;92C1A6;
-    dw $2C03,$0000                                                       ;92C1A7;
-    db $04                                                               ;92C1AB;
-    dw $2C04,$01F8                                                       ;92C1AC;
-    db $04                                                               ;92C1B0;
-    dw $2C05,$0000                                                       ;92C1B1;
-    db $FC                                                               ;92C1B5;
-    dw $2C06,$01F8                                                       ;92C1B6;
-    db $FC                                                               ;92C1BA;
-    dw $2C07                                                             ;92C1BB;
+    dw $0007                                                             ;92C198;
+    %spritemapEntry(1, $43F8, $EC, 0, 0, 2, 6, $00)
+    %spritemapEntry(0, $00, $0C, 0, 0, 2, 6, $02)
+    %spritemapEntry(0, $1F8, $0C, 0, 0, 2, 6, $03)
+    %spritemapEntry(0, $00, $04, 0, 0, 2, 6, $04)
+    %spritemapEntry(0, $1F8, $04, 0, 0, 2, 6, $05)
+    %spritemapEntry(0, $00, $FC, 0, 0, 2, 6, $06)
+    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 6, $07)
 
 SamusSpritemaps_C1BD:
-    dw $0007,$C3F8                                                       ;92C1BD;
-    db $EB                                                               ;92C1C1;
-    dw $2C00,$0000                                                       ;92C1C2;
-    db $0B                                                               ;92C1C6;
-    dw $2C02,$01F8                                                       ;92C1C7;
-    db $0B                                                               ;92C1CB;
-    dw $2C03,$0000                                                       ;92C1CC;
-    db $03                                                               ;92C1D0;
-    dw $2C04,$01F8                                                       ;92C1D1;
-    db $03                                                               ;92C1D5;
-    dw $2C05,$0000                                                       ;92C1D6;
-    db $FB                                                               ;92C1DA;
-    dw $2C06,$01F8                                                       ;92C1DB;
-    db $FB                                                               ;92C1DF;
-    dw $2C07                                                             ;92C1E0;
+    dw $0007                                                             ;92C1BD;
+    %spritemapEntry(1, $43F8, $EB, 0, 0, 2, 6, $00)
+    %spritemapEntry(0, $00, $0B, 0, 0, 2, 6, $02)
+    %spritemapEntry(0, $1F8, $0B, 0, 0, 2, 6, $03)
+    %spritemapEntry(0, $00, $03, 0, 0, 2, 6, $04)
+    %spritemapEntry(0, $1F8, $03, 0, 0, 2, 6, $05)
+    %spritemapEntry(0, $00, $FB, 0, 0, 2, 6, $06)
+    %spritemapEntry(0, $1F8, $FB, 0, 0, 2, 6, $07)
 
 SamusSpritemaps_C1E2:
-    dw $0007,$C3F8                                                       ;92C1E2;
-    db $EA                                                               ;92C1E6;
-    dw $2C00,$0000                                                       ;92C1E7;
-    db $0A                                                               ;92C1EB;
-    dw $2C02,$01F8                                                       ;92C1EC;
-    db $0A                                                               ;92C1F0;
-    dw $2C03,$0000                                                       ;92C1F1;
-    db $02                                                               ;92C1F5;
-    dw $2C04,$01F8                                                       ;92C1F6;
-    db $02                                                               ;92C1FA;
-    dw $2C05,$0000                                                       ;92C1FB;
-    db $FA                                                               ;92C1FF;
-    dw $2C06,$01F8                                                       ;92C200;
-    db $FA                                                               ;92C204;
-    dw $2C07                                                             ;92C205;
+    dw $0007                                                             ;92C1E2;
+    %spritemapEntry(1, $43F8, $EA, 0, 0, 2, 6, $00)
+    %spritemapEntry(0, $00, $0A, 0, 0, 2, 6, $02)
+    %spritemapEntry(0, $1F8, $0A, 0, 0, 2, 6, $03)
+    %spritemapEntry(0, $00, $02, 0, 0, 2, 6, $04)
+    %spritemapEntry(0, $1F8, $02, 0, 0, 2, 6, $05)
+    %spritemapEntry(0, $00, $FA, 0, 0, 2, 6, $06)
+    %spritemapEntry(0, $1F8, $FA, 0, 0, 2, 6, $07)
 
 SamusSpritemaps_C207:
-    dw $0007,$C3F8                                                       ;92C207;
-    db $EC                                                               ;92C20B;
-    dw $6C00,$01F8                                                       ;92C20C;
-    db $0C                                                               ;92C210;
-    dw $6C02,$0000                                                       ;92C211;
-    db $0C                                                               ;92C215;
-    dw $6C03,$01F8                                                       ;92C216;
-    db $04                                                               ;92C21A;
-    dw $6C04,$0000                                                       ;92C21B;
-    db $04                                                               ;92C21F;
-    dw $6C05,$01F8                                                       ;92C220;
-    db $FC                                                               ;92C224;
-    dw $6C06,$0000                                                       ;92C225;
-    db $FC                                                               ;92C229;
-    dw $6C07                                                             ;92C22A;
+    dw $0007                                                             ;92C207;
+    %spritemapEntry(1, $43F8, $EC, 0, 1, 2, 6, $00)
+    %spritemapEntry(0, $1F8, $0C, 0, 1, 2, 6, $02)
+    %spritemapEntry(0, $00, $0C, 0, 1, 2, 6, $03)
+    %spritemapEntry(0, $1F8, $04, 0, 1, 2, 6, $04)
+    %spritemapEntry(0, $00, $04, 0, 1, 2, 6, $05)
+    %spritemapEntry(0, $1F8, $FC, 0, 1, 2, 6, $06)
+    %spritemapEntry(0, $00, $FC, 0, 1, 2, 6, $07)
 
 SamusSpritemaps_C22C:
-    dw $0007,$C3F8                                                       ;92C22C;
-    db $EB                                                               ;92C230;
-    dw $6C00,$01F8                                                       ;92C231;
-    db $0B                                                               ;92C235;
-    dw $6C02,$0000                                                       ;92C236;
-    db $0B                                                               ;92C23A;
-    dw $6C03,$01F8                                                       ;92C23B;
-    db $03                                                               ;92C23F;
-    dw $6C04,$0000                                                       ;92C240;
-    db $03                                                               ;92C244;
-    dw $6C05,$01F8                                                       ;92C245;
-    db $FB                                                               ;92C249;
-    dw $6C06,$0000                                                       ;92C24A;
-    db $FB                                                               ;92C24E;
-    dw $6C07                                                             ;92C24F;
+    dw $0007                                                             ;92C22C;
+    %spritemapEntry(1, $43F8, $EB, 0, 1, 2, 6, $00)
+    %spritemapEntry(0, $1F8, $0B, 0, 1, 2, 6, $02)
+    %spritemapEntry(0, $00, $0B, 0, 1, 2, 6, $03)
+    %spritemapEntry(0, $1F8, $03, 0, 1, 2, 6, $04)
+    %spritemapEntry(0, $00, $03, 0, 1, 2, 6, $05)
+    %spritemapEntry(0, $1F8, $FB, 0, 1, 2, 6, $06)
+    %spritemapEntry(0, $00, $FB, 0, 1, 2, 6, $07)
 
 SamusSpritemaps_C251:
-    dw $0007,$C3F8                                                       ;92C251;
-    db $EA                                                               ;92C255;
-    dw $6C00,$01F8                                                       ;92C256;
-    db $0A                                                               ;92C25A;
-    dw $6C02,$0000                                                       ;92C25B;
-    db $0A                                                               ;92C25F;
-    dw $6C03,$01F8                                                       ;92C260;
-    db $02                                                               ;92C264;
-    dw $6C04,$0000                                                       ;92C265;
-    db $02                                                               ;92C269;
-    dw $6C05,$01F8                                                       ;92C26A;
-    db $FA                                                               ;92C26E;
-    dw $6C06,$0000                                                       ;92C26F;
-    db $FA                                                               ;92C273;
-    dw $6C07                                                             ;92C274;
+    dw $0007                                                             ;92C251;
+    %spritemapEntry(1, $43F8, $EA, 0, 1, 2, 6, $00)
+    %spritemapEntry(0, $1F8, $0A, 0, 1, 2, 6, $02)
+    %spritemapEntry(0, $00, $0A, 0, 1, 2, 6, $03)
+    %spritemapEntry(0, $1F8, $02, 0, 1, 2, 6, $04)
+    %spritemapEntry(0, $00, $02, 0, 1, 2, 6, $05)
+    %spritemapEntry(0, $1F8, $FA, 0, 1, 2, 6, $06)
+    %spritemapEntry(0, $00, $FA, 0, 1, 2, 6, $07)
 
 SamusSpritemaps_C276:
-    dw $0004,$C200                                                       ;92C276;
-    db $00                                                               ;92C27A;
-    dw $FC08,$C3F0                                                       ;92C27B;
-    db $00                                                               ;92C27F;
-    dw $BC08,$C200                                                       ;92C280;
-    db $F0                                                               ;92C284;
-    dw $7C08,$C3F0                                                       ;92C285;
-    db $F0                                                               ;92C289;
-    dw $3C08                                                             ;92C28A;
+    dw $0004                                                             ;92C276;
+    %spritemapEntry(1, $4200, $00, 1, 1, 3, 6, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 3, 6, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 3, 6, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 3, 6, $08)
 
 SamusSpritemaps_C28C:
-    dw $0010,$C200                                                       ;92C28C;
-    db $00                                                               ;92C290;
-    dw $FC08,$C210                                                       ;92C291;
-    db $00                                                               ;92C295;
-    dw $FC0A,$C200                                                       ;92C296;
-    db $10                                                               ;92C29A;
-    dw $FC0C,$C210                                                       ;92C29B;
-    db $10                                                               ;92C29F;
-    dw $FC0E,$C3F0                                                       ;92C2A0;
-    db $00                                                               ;92C2A4;
-    dw $BC08,$C3E0                                                       ;92C2A5;
-    db $00                                                               ;92C2A9;
-    dw $BC0A,$C3F0                                                       ;92C2AA;
-    db $10                                                               ;92C2AE;
-    dw $BC0C,$C3E0                                                       ;92C2AF;
-    db $10                                                               ;92C2B3;
-    dw $BC0E,$C200                                                       ;92C2B4;
-    db $F0                                                               ;92C2B8;
-    dw $7C08,$C210                                                       ;92C2B9;
-    db $F0                                                               ;92C2BD;
-    dw $7C0A,$C200                                                       ;92C2BE;
-    db $E0                                                               ;92C2C2;
-    dw $7C0C,$C210                                                       ;92C2C3;
-    db $E0                                                               ;92C2C7;
-    dw $7C0E,$C3E0                                                       ;92C2C8;
-    db $E0                                                               ;92C2CC;
-    dw $3C0E,$C3E0                                                       ;92C2CD;
-    db $F0                                                               ;92C2D1;
-    dw $3C0A,$C3F0                                                       ;92C2D2;
-    db $E0                                                               ;92C2D6;
-    dw $3C0C,$C3F0                                                       ;92C2D7;
-    db $F0                                                               ;92C2DB;
-    dw $3C08                                                             ;92C2DC;
+    dw $0010                                                             ;92C28C;
+    %spritemapEntry(1, $4200, $00, 1, 1, 3, 6, $08)
+    %spritemapEntry(1, $4210, $00, 1, 1, 3, 6, $0A)
+    %spritemapEntry(1, $4200, $10, 1, 1, 3, 6, $0C)
+    %spritemapEntry(1, $4210, $10, 1, 1, 3, 6, $0E)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 3, 6, $08)
+    %spritemapEntry(1, $43E0, $00, 1, 0, 3, 6, $0A)
+    %spritemapEntry(1, $43F0, $10, 1, 0, 3, 6, $0C)
+    %spritemapEntry(1, $43E0, $10, 1, 0, 3, 6, $0E)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 3, 6, $08)
+    %spritemapEntry(1, $4210, $F0, 0, 1, 3, 6, $0A)
+    %spritemapEntry(1, $4200, $E0, 0, 1, 3, 6, $0C)
+    %spritemapEntry(1, $4210, $E0, 0, 1, 3, 6, $0E)
+    %spritemapEntry(1, $43E0, $E0, 0, 0, 3, 6, $0E)
+    %spritemapEntry(1, $43E0, $F0, 0, 0, 3, 6, $0A)
+    %spritemapEntry(1, $43F0, $E0, 0, 0, 3, 6, $0C)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 3, 6, $08)
 
 SamusSpritemaps_C2DE:
-    dw $0010,$C200                                                       ;92C2DE;
-    db $00                                                               ;92C2E2;
-    dw $FC08,$C210                                                       ;92C2E3;
-    db $00                                                               ;92C2E7;
-    dw $FC0A,$C200                                                       ;92C2E8;
-    db $10                                                               ;92C2EC;
-    dw $FC0C,$C210                                                       ;92C2ED;
-    db $10                                                               ;92C2F1;
-    dw $FC0E,$C3F0                                                       ;92C2F2;
-    db $00                                                               ;92C2F6;
-    dw $BC08,$C3E0                                                       ;92C2F7;
-    db $00                                                               ;92C2FB;
-    dw $BC0A,$C3F0                                                       ;92C2FC;
-    db $10                                                               ;92C300;
-    dw $BC0C,$C3E0                                                       ;92C301;
-    db $10                                                               ;92C305;
-    dw $BC0E,$C200                                                       ;92C306;
-    db $F0                                                               ;92C30A;
-    dw $7C08,$C210                                                       ;92C30B;
-    db $F0                                                               ;92C30F;
-    dw $7C0A,$C200                                                       ;92C310;
-    db $E0                                                               ;92C314;
-    dw $7C0C,$C210                                                       ;92C315;
-    db $E0                                                               ;92C319;
-    dw $7C0E,$C3F0                                                       ;92C31A;
-    db $F0                                                               ;92C31E;
-    dw $3C08,$C3E0                                                       ;92C31F;
-    db $F0                                                               ;92C323;
-    dw $3C0A,$C3F0                                                       ;92C324;
-    db $E0                                                               ;92C328;
-    dw $3C0C,$C3E0                                                       ;92C329;
-    db $E0                                                               ;92C32D;
-    dw $3C0E                                                             ;92C32E;
+    dw $0010                                                             ;92C2DE;
+    %spritemapEntry(1, $4200, $00, 1, 1, 3, 6, $08)
+    %spritemapEntry(1, $4210, $00, 1, 1, 3, 6, $0A)
+    %spritemapEntry(1, $4200, $10, 1, 1, 3, 6, $0C)
+    %spritemapEntry(1, $4210, $10, 1, 1, 3, 6, $0E)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 3, 6, $08)
+    %spritemapEntry(1, $43E0, $00, 1, 0, 3, 6, $0A)
+    %spritemapEntry(1, $43F0, $10, 1, 0, 3, 6, $0C)
+    %spritemapEntry(1, $43E0, $10, 1, 0, 3, 6, $0E)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 3, 6, $08)
+    %spritemapEntry(1, $4210, $F0, 0, 1, 3, 6, $0A)
+    %spritemapEntry(1, $4200, $E0, 0, 1, 3, 6, $0C)
+    %spritemapEntry(1, $4210, $E0, 0, 1, 3, 6, $0E)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 3, 6, $08)
+    %spritemapEntry(1, $43E0, $F0, 0, 0, 3, 6, $0A)
+    %spritemapEntry(1, $43F0, $E0, 0, 0, 3, 6, $0C)
+    %spritemapEntry(1, $43E0, $E0, 0, 0, 3, 6, $0E)
 
 SamusSpritemaps_C330:
-    dw $0004,$C200                                                       ;92C330;
-    db $F0                                                               ;92C334;
-    dw $2808,$C3F0                                                       ;92C335;
-    db $00                                                               ;92C339;
-    dw $280A,$C3F8                                                       ;92C33A;
-    db $00                                                               ;92C33E;
-    dw $280C,$C3F8                                                       ;92C33F;
-    db $F0                                                               ;92C343;
-    dw $280E                                                             ;92C344;
+    dw $0004                                                             ;92C330;
+    %spritemapEntry(1, $4200, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 4, $0E)
 
 SamusSpritemaps_C346:
-    dw $000A,$C201                                                       ;92C346;
-    db $04                                                               ;92C34A;
-    dw $2808,$C3F1                                                       ;92C34B;
-    db $F4                                                               ;92C34F;
-    dw $280A,$01F9                                                       ;92C350;
-    db $0C                                                               ;92C354;
-    dw $280C,$01F1                                                       ;92C355;
-    db $EC                                                               ;92C359;
-    dw $280D,$0001                                                       ;92C35A;
-    db $EC                                                               ;92C35E;
-    dw $280E,$01F9                                                       ;92C35F;
-    db $EC                                                               ;92C363;
-    dw $280F,$0009                                                       ;92C364;
-    db $FC                                                               ;92C368;
-    dw $281C,$0001                                                       ;92C369;
-    db $FC                                                               ;92C36D;
-    dw $281D,$0001                                                       ;92C36E;
-    db $F4                                                               ;92C372;
-    dw $281E,$01F9                                                       ;92C373;
-    db $04                                                               ;92C377;
-    dw $281F                                                             ;92C378;
+    dw $000A                                                             ;92C346;
+    %spritemapEntry(1, $4201, $04, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F1, $F4, 0, 0, 2, 4, $0A)
+    %spritemapEntry(0, $1F9, $0C, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1F1, $EC, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $01, $EC, 0, 0, 2, 4, $0E)
+    %spritemapEntry(0, $1F9, $EC, 0, 0, 2, 4, $0F)
+    %spritemapEntry(0, $09, $FC, 0, 0, 2, 4, $1C)
+    %spritemapEntry(0, $01, $FC, 0, 0, 2, 4, $1D)
+    %spritemapEntry(0, $01, $F4, 0, 0, 2, 4, $1E)
+    %spritemapEntry(0, $1F9, $04, 0, 0, 2, 4, $1F)
 
 SamusSpritemaps_C37A:
-    dw $0004,$C200                                                       ;92C37A;
-    db $00                                                               ;92C37E;
-    dw $2808,$C3F0                                                       ;92C37F;
-    db $F0                                                               ;92C383;
-    dw $280A,$C3F0                                                       ;92C384;
-    db $F8                                                               ;92C388;
-    dw $280C,$C200                                                       ;92C389;
-    db $F8                                                               ;92C38D;
-    dw $280E                                                             ;92C38E;
+    dw $0004                                                             ;92C37A;
+    %spritemapEntry(1, $4200, $00, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F0, $F8, 0, 0, 2, 4, $0C)
+    %spritemapEntry(1, $4200, $F8, 0, 0, 2, 4, $0E)
 
 SamusSpritemaps_C390:
-    dw $000A,$01FC                                                       ;92C390;
-    db $F0                                                               ;92C394;
-    dw $E80C,$01F4                                                       ;92C395;
-    db $F8                                                               ;92C399;
-    dw $E80D,$01FC                                                       ;92C39A;
-    db $F8                                                               ;92C39E;
-    dw $E80E,$0004                                                       ;92C39F;
-    db $00                                                               ;92C3A3;
-    dw $E80F,$000C                                                       ;92C3A4;
-    db $00                                                               ;92C3A8;
-    dw $E81C,$01EC                                                       ;92C3A9;
-    db $F8                                                               ;92C3AD;
-    dw $E81D,$01EC                                                       ;92C3AE;
-    db $00                                                               ;92C3B2;
-    dw $E81E,$01EC                                                       ;92C3B3;
-    db $08                                                               ;92C3B7;
-    dw $E81F,$C3F4                                                       ;92C3B8;
-    db $00                                                               ;92C3BC;
-    dw $E808,$C204                                                       ;92C3BD;
-    db $F0                                                               ;92C3C1;
-    dw $E80A                                                             ;92C3C2;
+    dw $000A                                                             ;92C390;
+    %spritemapEntry(0, $1FC, $F0, 1, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1F4, $F8, 1, 1, 2, 4, $0D)
+    %spritemapEntry(0, $1FC, $F8, 1, 1, 2, 4, $0E)
+    %spritemapEntry(0, $04, $00, 1, 1, 2, 4, $0F)
+    %spritemapEntry(0, $0C, $00, 1, 1, 2, 4, $1C)
+    %spritemapEntry(0, $1EC, $F8, 1, 1, 2, 4, $1D)
+    %spritemapEntry(0, $1EC, $00, 1, 1, 2, 4, $1E)
+    %spritemapEntry(0, $1EC, $08, 1, 1, 2, 4, $1F)
+    %spritemapEntry(1, $43F4, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $4204, $F0, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_C3C4:
-    dw $0004,$C3F0                                                       ;92C3C4;
-    db $00                                                               ;92C3C8;
-    dw $E808,$C200                                                       ;92C3C9;
-    db $F0                                                               ;92C3CD;
-    dw $E80A,$C3F8                                                       ;92C3CE;
-    db $F0                                                               ;92C3D2;
-    dw $E80C,$C3F8                                                       ;92C3D3;
-    db $00                                                               ;92C3D7;
-    dw $E80E                                                             ;92C3D8;
+    dw $0004                                                             ;92C3C4;
+    %spritemapEntry(1, $43F0, $00, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 1, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F8, $F0, 1, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $00, 1, 1, 2, 4, $0E)
 
 SamusSpritemaps_C3DA:
-    dw $000A,$01F0                                                       ;92C3DA;
-    db $FC                                                               ;92C3DE;
-    dw $E80C,$01F8                                                       ;92C3DF;
-    db $FC                                                               ;92C3E3;
-    dw $E80D,$01F8                                                       ;92C3E4;
-    db $04                                                               ;92C3E8;
-    dw $E80E,$0008                                                       ;92C3E9;
-    db $0C                                                               ;92C3ED;
-    dw $E80F,$0000                                                       ;92C3EE;
-    db $EC                                                               ;92C3F2;
-    dw $E81C,$0000                                                       ;92C3F3;
-    db $F4                                                               ;92C3F7;
-    dw $E81D,$01F8                                                       ;92C3F8;
-    db $0C                                                               ;92C3FC;
-    dw $E81E,$0000                                                       ;92C3FD;
-    db $0C                                                               ;92C401;
-    dw $E81F,$C3F0                                                       ;92C402;
-    db $EC                                                               ;92C406;
-    dw $E808,$C200                                                       ;92C407;
-    db $FC                                                               ;92C40B;
-    dw $E80A                                                             ;92C40C;
+    dw $000A                                                             ;92C3DA;
+    %spritemapEntry(0, $1F0, $FC, 1, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1F8, $FC, 1, 1, 2, 4, $0D)
+    %spritemapEntry(0, $1F8, $04, 1, 1, 2, 4, $0E)
+    %spritemapEntry(0, $08, $0C, 1, 1, 2, 4, $0F)
+    %spritemapEntry(0, $00, $EC, 1, 1, 2, 4, $1C)
+    %spritemapEntry(0, $00, $F4, 1, 1, 2, 4, $1D)
+    %spritemapEntry(0, $1F8, $0C, 1, 1, 2, 4, $1E)
+    %spritemapEntry(0, $00, $0C, 1, 1, 2, 4, $1F)
+    %spritemapEntry(1, $43F0, $EC, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $FC, 1, 1, 2, 4, $0A)
 
 SamusSpritemaps_C40E:
-    dw $0004,$C3F0                                                       ;92C40E;
-    db $F0                                                               ;92C412;
-    dw $E808,$C200                                                       ;92C413;
-    db $00                                                               ;92C417;
-    dw $E80A,$C200                                                       ;92C418;
-    db $F8                                                               ;92C41C;
-    dw $E80C,$C3F0                                                       ;92C41D;
-    db $F8                                                               ;92C421;
-    dw $E80E                                                             ;92C422;
+    dw $0004                                                             ;92C40E;
+    %spritemapEntry(1, $43F0, $F0, 1, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 1, 1, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $F8, 1, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F0, $F8, 1, 1, 2, 4, $0E)
 
 SamusSpritemaps_C424:
-    dw $000A,$01FC                                                       ;92C424;
-    db $00                                                               ;92C428;
-    dw $280C,$01FC                                                       ;92C429;
-    db $08                                                               ;92C42D;
-    dw $280D,$0004                                                       ;92C42E;
-    db $00                                                               ;92C432;
-    dw $280E,$01F4                                                       ;92C433;
-    db $F8                                                               ;92C437;
-    dw $280F,$01EC                                                       ;92C438;
-    db $F8                                                               ;92C43C;
-    dw $281C,$000C                                                       ;92C43D;
-    db $00                                                               ;92C441;
-    dw $281D,$000C                                                       ;92C442;
-    db $F8                                                               ;92C446;
-    dw $281E,$000C                                                       ;92C447;
-    db $F0                                                               ;92C44B;
-    dw $281F,$C3FC                                                       ;92C44C;
-    db $F0                                                               ;92C450;
-    dw $2808,$C3EC                                                       ;92C451;
-    db $00                                                               ;92C455;
-    dw $280A                                                             ;92C456;
+    dw $000A                                                             ;92C424;
+    %spritemapEntry(0, $1FC, $00, 0, 0, 2, 4, $0C)
+    %spritemapEntry(0, $1FC, $08, 0, 0, 2, 4, $0D)
+    %spritemapEntry(0, $04, $00, 0, 0, 2, 4, $0E)
+    %spritemapEntry(0, $1F4, $F8, 0, 0, 2, 4, $0F)
+    %spritemapEntry(0, $1EC, $F8, 0, 0, 2, 4, $1C)
+    %spritemapEntry(0, $0C, $00, 0, 0, 2, 4, $1D)
+    %spritemapEntry(0, $0C, $F8, 0, 0, 2, 4, $1E)
+    %spritemapEntry(0, $0C, $F0, 0, 0, 2, 4, $1F)
+    %spritemapEntry(1, $43FC, $F0, 0, 0, 2, 4, $08)
+    %spritemapEntry(1, $43EC, $00, 0, 0, 2, 4, $0A)
 
 SamusSpritemaps_C458:
-    dw $0004,$C3F0                                                       ;92C458;
-    db $F0                                                               ;92C45C;
-    dw $6808,$C200                                                       ;92C45D;
-    db $00                                                               ;92C461;
-    dw $680A,$C3F8                                                       ;92C462;
-    db $00                                                               ;92C466;
-    dw $680C,$C3F8                                                       ;92C467;
-    db $F0                                                               ;92C46B;
-    dw $680E                                                             ;92C46C;
+    dw $0004                                                             ;92C458;
+    %spritemapEntry(1, $43F0, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $00, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $43F8, $00, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $F0, 0, 1, 2, 4, $0E)
 
 SamusSpritemaps_C46E:
-    dw $000A,$C3EF                                                       ;92C46E;
-    db $04                                                               ;92C472;
-    dw $6808,$C3FF                                                       ;92C473;
-    db $F4                                                               ;92C477;
-    dw $680A,$01FF                                                       ;92C478;
-    db $0C                                                               ;92C47C;
-    dw $680C,$0007                                                       ;92C47D;
-    db $EC                                                               ;92C481;
-    dw $680D,$01F7                                                       ;92C482;
-    db $EC                                                               ;92C486;
-    dw $680E,$01FF                                                       ;92C487;
-    db $EC                                                               ;92C48B;
-    dw $680F,$01EF                                                       ;92C48C;
-    db $FC                                                               ;92C490;
-    dw $681C,$01F7                                                       ;92C491;
-    db $FC                                                               ;92C495;
-    dw $681D,$01F7                                                       ;92C496;
-    db $F4                                                               ;92C49A;
-    dw $681E,$01FF                                                       ;92C49B;
-    db $04                                                               ;92C49F;
-    dw $681F                                                             ;92C4A0;
+    dw $000A                                                             ;92C46E;
+    %spritemapEntry(1, $43EF, $04, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $43FF, $F4, 0, 1, 2, 4, $0A)
+    %spritemapEntry(0, $1FF, $0C, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $07, $EC, 0, 1, 2, 4, $0D)
+    %spritemapEntry(0, $1F7, $EC, 0, 1, 2, 4, $0E)
+    %spritemapEntry(0, $1FF, $EC, 0, 1, 2, 4, $0F)
+    %spritemapEntry(0, $1EF, $FC, 0, 1, 2, 4, $1C)
+    %spritemapEntry(0, $1F7, $FC, 0, 1, 2, 4, $1D)
+    %spritemapEntry(0, $1F7, $F4, 0, 1, 2, 4, $1E)
+    %spritemapEntry(0, $1FF, $04, 0, 1, 2, 4, $1F)
 
 SamusSpritemaps_C4A2:
-    dw $0004,$C3F0                                                       ;92C4A2;
-    db $00                                                               ;92C4A6;
-    dw $6808,$C200                                                       ;92C4A7;
-    db $F0                                                               ;92C4AB;
-    dw $680A,$C200                                                       ;92C4AC;
-    db $F8                                                               ;92C4B0;
-    dw $680C,$C3F0                                                       ;92C4B1;
-    db $F8                                                               ;92C4B5;
-    dw $680E                                                             ;92C4B6;
+    dw $0004                                                             ;92C4A2;
+    %spritemapEntry(1, $43F0, $00, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $4200, $F0, 0, 1, 2, 4, $0A)
+    %spritemapEntry(1, $4200, $F8, 0, 1, 2, 4, $0C)
+    %spritemapEntry(1, $43F0, $F8, 0, 1, 2, 4, $0E)
 
 SamusSpritemaps_C4B8:
-    dw $000A,$01FC                                                       ;92C4B8;
-    db $F0                                                               ;92C4BC;
-    dw $A80C,$0004                                                       ;92C4BD;
-    db $F8                                                               ;92C4C1;
-    dw $A80D,$01FC                                                       ;92C4C2;
-    db $F8                                                               ;92C4C6;
-    dw $A80E,$01F4                                                       ;92C4C7;
-    db $00                                                               ;92C4CB;
-    dw $A80F,$01EC                                                       ;92C4CC;
-    db $00                                                               ;92C4D0;
-    dw $A81C,$000C                                                       ;92C4D1;
-    db $F8                                                               ;92C4D5;
-    dw $A81D,$000C                                                       ;92C4D6;
-    db $00                                                               ;92C4DA;
-    dw $A81E,$000C                                                       ;92C4DB;
-    db $08                                                               ;92C4DF;
-    dw $A81F,$C3FC                                                       ;92C4E0;
-    db $00                                                               ;92C4E4;
-    dw $A808,$C3EC                                                       ;92C4E5;
-    db $F0                                                               ;92C4E9;
-    dw $A80A                                                             ;92C4EA;
+    dw $000A                                                             ;92C4B8;
+    %spritemapEntry(0, $1FC, $F0, 1, 0, 2, 4, $0C)
+    %spritemapEntry(0, $04, $F8, 1, 0, 2, 4, $0D)
+    %spritemapEntry(0, $1FC, $F8, 1, 0, 2, 4, $0E)
+    %spritemapEntry(0, $1F4, $00, 1, 0, 2, 4, $0F)
+    %spritemapEntry(0, $1EC, $00, 1, 0, 2, 4, $1C)
+    %spritemapEntry(0, $0C, $F8, 1, 0, 2, 4, $1D)
+    %spritemapEntry(0, $0C, $00, 1, 0, 2, 4, $1E)
+    %spritemapEntry(0, $0C, $08, 1, 0, 2, 4, $1F)
+    %spritemapEntry(1, $43FC, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43EC, $F0, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_C4EC:
-    dw $0004,$C200                                                       ;92C4EC;
-    db $00                                                               ;92C4F0;
-    dw $A808,$C3F0                                                       ;92C4F1;
-    db $F0                                                               ;92C4F5;
-    dw $A80A,$C3F8                                                       ;92C4F6;
-    db $F0                                                               ;92C4FA;
-    dw $A80C,$C3F8                                                       ;92C4FB;
-    db $00                                                               ;92C4FF;
-    dw $A80E                                                             ;92C500;
+    dw $0004                                                             ;92C4EC;
+    %spritemapEntry(1, $4200, $00, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $F0, 1, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F8, $F0, 1, 0, 2, 4, $0C)
+    %spritemapEntry(1, $43F8, $00, 1, 0, 2, 4, $0E)
 
 SamusSpritemaps_C502:
-    dw $000A,$0008                                                       ;92C502;
-    db $FC                                                               ;92C506;
-    dw $A80C,$0000                                                       ;92C507;
-    db $FC                                                               ;92C50B;
-    dw $A80D,$0000                                                       ;92C50C;
-    db $04                                                               ;92C510;
-    dw $A80E,$01F0                                                       ;92C511;
-    db $0C                                                               ;92C515;
-    dw $A80F,$01F8                                                       ;92C516;
-    db $EC                                                               ;92C51A;
-    dw $A81C,$01F8                                                       ;92C51B;
-    db $F4                                                               ;92C51F;
-    dw $A81D,$0000                                                       ;92C520;
-    db $0C                                                               ;92C524;
-    dw $A81E,$01F8                                                       ;92C525;
-    db $0C                                                               ;92C529;
-    dw $A81F,$C200                                                       ;92C52A;
-    db $EC                                                               ;92C52E;
-    dw $A808,$C3F0                                                       ;92C52F;
-    db $FC                                                               ;92C533;
-    dw $A80A                                                             ;92C534;
+    dw $000A                                                             ;92C502;
+    %spritemapEntry(0, $08, $FC, 1, 0, 2, 4, $0C)
+    %spritemapEntry(0, $00, $FC, 1, 0, 2, 4, $0D)
+    %spritemapEntry(0, $00, $04, 1, 0, 2, 4, $0E)
+    %spritemapEntry(0, $1F0, $0C, 1, 0, 2, 4, $0F)
+    %spritemapEntry(0, $1F8, $EC, 1, 0, 2, 4, $1C)
+    %spritemapEntry(0, $1F8, $F4, 1, 0, 2, 4, $1D)
+    %spritemapEntry(0, $00, $0C, 1, 0, 2, 4, $1E)
+    %spritemapEntry(0, $1F8, $0C, 1, 0, 2, 4, $1F)
+    %spritemapEntry(1, $4200, $EC, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $FC, 1, 0, 2, 4, $0A)
 
 SamusSpritemaps_C536:
-    dw $0004,$C200                                                       ;92C536;
-    db $F0                                                               ;92C53A;
-    dw $A808,$C3F0                                                       ;92C53B;
-    db $00                                                               ;92C53F;
-    dw $A80A,$C3F0                                                       ;92C540;
-    db $F8                                                               ;92C544;
-    dw $A80C,$C200                                                       ;92C545;
-    db $F8                                                               ;92C549;
-    dw $A80E                                                             ;92C54A;
+    dw $0004                                                             ;92C536;
+    %spritemapEntry(1, $4200, $F0, 1, 0, 2, 4, $08)
+    %spritemapEntry(1, $43F0, $00, 1, 0, 2, 4, $0A)
+    %spritemapEntry(1, $43F0, $F8, 1, 0, 2, 4, $0C)
+    %spritemapEntry(1, $4200, $F8, 1, 0, 2, 4, $0E)
 
 SamusSpritemaps_C54C:
-    dw $000A,$01FC                                                       ;92C54C;
-    db $00                                                               ;92C550;
-    dw $680C,$01FC                                                       ;92C551;
-    db $08                                                               ;92C555;
-    dw $680D,$01F4                                                       ;92C556;
-    db $00                                                               ;92C55A;
-    dw $680E,$0004                                                       ;92C55B;
-    db $F8                                                               ;92C55F;
-    dw $680F,$000C                                                       ;92C560;
-    db $F8                                                               ;92C564;
-    dw $681C,$01EC                                                       ;92C565;
-    db $00                                                               ;92C569;
-    dw $681D,$01EC                                                       ;92C56A;
-    db $F8                                                               ;92C56E;
-    dw $681E,$01EC                                                       ;92C56F;
-    db $F0                                                               ;92C573;
-    dw $681F,$C3F4                                                       ;92C574;
-    db $F0                                                               ;92C578;
-    dw $6808,$C204                                                       ;92C579;
-    db $00                                                               ;92C57D;
-    dw $680A                                                             ;92C57E;
+    dw $000A                                                             ;92C54C;
+    %spritemapEntry(0, $1FC, $00, 0, 1, 2, 4, $0C)
+    %spritemapEntry(0, $1FC, $08, 0, 1, 2, 4, $0D)
+    %spritemapEntry(0, $1F4, $00, 0, 1, 2, 4, $0E)
+    %spritemapEntry(0, $04, $F8, 0, 1, 2, 4, $0F)
+    %spritemapEntry(0, $0C, $F8, 0, 1, 2, 4, $1C)
+    %spritemapEntry(0, $1EC, $00, 0, 1, 2, 4, $1D)
+    %spritemapEntry(0, $1EC, $F8, 0, 1, 2, 4, $1E)
+    %spritemapEntry(0, $1EC, $F0, 0, 1, 2, 4, $1F)
+    %spritemapEntry(1, $43F4, $F0, 0, 1, 2, 4, $08)
+    %spritemapEntry(1, $4204, $00, 0, 1, 2, 4, $0A)
 
 SamusSpritemaps_C580:
-    dw $0009,$0000                                                       ;92C580;
-    db $10                                                               ;92C584;
-    dw $2841,$01F8                                                       ;92C585;
-    db $10                                                               ;92C589;
-    dw $2840,$0008                                                       ;92C58A;
-    db $10                                                               ;92C58E;
-    dw $2842,$0008                                                       ;92C58F;
-    db $08                                                               ;92C593;
-    dw $2832,$0008                                                       ;92C594;
-    db $00                                                               ;92C598;
-    dw $2822,$0008                                                       ;92C599;
-    db $F8                                                               ;92C59D;
-    dw $2812,$0008                                                       ;92C59E;
-    db $F0                                                               ;92C5A2;
-    dw $2802,$C3F8                                                       ;92C5A3;
-    db $00                                                               ;92C5A7;
-    dw $2820,$C3F8                                                       ;92C5A8;
-    db $F0                                                               ;92C5AC;
-    dw $2800                                                             ;92C5AD;
+    dw $0009                                                             ;92C580;
+    %spritemapEntry(0, $00, $10, 0, 0, 2, 4, $41)
+    %spritemapEntry(0, $1F8, $10, 0, 0, 2, 4, $40)
+    %spritemapEntry(0, $08, $10, 0, 0, 2, 4, $42)
+    %spritemapEntry(0, $08, $08, 0, 0, 2, 4, $32)
+    %spritemapEntry(0, $08, $00, 0, 0, 2, 4, $22)
+    %spritemapEntry(0, $08, $F8, 0, 0, 2, 4, $12)
+    %spritemapEntry(0, $08, $F0, 0, 0, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 4, $20)
+    %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 4, $00)
 
 SamusSpritemaps_C5AF:
-    dw $0016,$01FD                                                       ;92C5AF;
-    db $F0                                                               ;92C5B3;
-    dw $281F,$0003                                                       ;92C5B4;
-    db $F6                                                               ;92C5B8;
-    dw $280F,$01FB                                                       ;92C5B9;
-    db $F9                                                               ;92C5BD;
-    dw $280F,$01F7                                                       ;92C5BE;
-    db $F7                                                               ;92C5C2;
-    dw $285F,$0007                                                       ;92C5C3;
-    db $0B                                                               ;92C5C7;
-    dw $284E,$01FF                                                       ;92C5C8;
-    db $0F                                                               ;92C5CC;
-    dw $285F,$01F7                                                       ;92C5CD;
-    db $F2                                                               ;92C5D1;
-    dw $287F,$01F9                                                       ;92C5D2;
-    db $EF                                                               ;92C5D6;
-    dw $286C,$01F9                                                       ;92C5D7;
-    db $EC                                                               ;92C5DB;
-    dw $282F,$01FD                                                       ;92C5DC;
-    db $E9                                                               ;92C5E0;
-    dw $281F,$0006                                                       ;92C5E1;
-    db $F2                                                               ;92C5E5;
-    dw $2808,$01F9                                                       ;92C5E6;
-    db $05                                                               ;92C5EA;
-    dw $2858,$0002                                                       ;92C5EB;
-    db $FD                                                               ;92C5EF;
-    dw $2838,$0001                                                       ;92C5F0;
-    db $06                                                               ;92C5F4;
-    dw $284B,$01F8                                                       ;92C5F5;
-    db $0A                                                               ;92C5F9;
-    dw $2E43,$01F8                                                       ;92C5FA;
-    db $02                                                               ;92C5FE;
-    dw $2E33,$01F8                                                       ;92C5FF;
-    db $FA                                                               ;92C603;
-    dw $2E23,$01F8                                                       ;92C604;
-    db $F2                                                               ;92C608;
-    dw $2E13,$01F8                                                       ;92C609;
-    db $EA                                                               ;92C60D;
-    dw $2E03,$C200                                                       ;92C60E;
-    db $0A                                                               ;92C612;
-    dw $2E44,$C200                                                       ;92C613;
-    db $FA                                                               ;92C617;
-    dw $2E24,$C200                                                       ;92C618;
-    db $EA                                                               ;92C61C;
-    dw $2E04                                                             ;92C61D;
+    dw $0016                                                             ;92C5AF;
+    %spritemapEntry(0, $1FD, $F0, 0, 0, 2, 4, $1F)
+    %spritemapEntry(0, $03, $F6, 0, 0, 2, 4, $0F)
+    %spritemapEntry(0, $1FB, $F9, 0, 0, 2, 4, $0F)
+    %spritemapEntry(0, $1F7, $F7, 0, 0, 2, 4, $5F)
+    %spritemapEntry(0, $07, $0B, 0, 0, 2, 4, $4E)
+    %spritemapEntry(0, $1FF, $0F, 0, 0, 2, 4, $5F)
+    %spritemapEntry(0, $1F7, $F2, 0, 0, 2, 4, $7F)
+    %spritemapEntry(0, $1F9, $EF, 0, 0, 2, 4, $6C)
+    %spritemapEntry(0, $1F9, $EC, 0, 0, 2, 4, $2F)
+    %spritemapEntry(0, $1FD, $E9, 0, 0, 2, 4, $1F)
+    %spritemapEntry(0, $06, $F2, 0, 0, 2, 4, $08)
+    %spritemapEntry(0, $1F9, $05, 0, 0, 2, 4, $58)
+    %spritemapEntry(0, $02, $FD, 0, 0, 2, 4, $38)
+    %spritemapEntry(0, $01, $06, 0, 0, 2, 4, $4B)
+    %spritemapEntry(0, $1F8, $0A, 0, 0, 2, 7, $43)
+    %spritemapEntry(0, $1F8, $02, 0, 0, 2, 7, $33)
+    %spritemapEntry(0, $1F8, $FA, 0, 0, 2, 7, $23)
+    %spritemapEntry(0, $1F8, $F2, 0, 0, 2, 7, $13)
+    %spritemapEntry(0, $1F8, $EA, 0, 0, 2, 7, $03)
+    %spritemapEntry(1, $4200, $0A, 0, 0, 2, 7, $44)
+    %spritemapEntry(1, $4200, $FA, 0, 0, 2, 7, $24)
+    %spritemapEntry(1, $4200, $EA, 0, 0, 2, 7, $04)
 
 SamusSpritemaps_C61F:
-    dw $001A,$0003                                                       ;92C61F;
-    db $E7                                                               ;92C623;
-    dw $281F,$0001                                                       ;92C624;
-    db $11                                                               ;92C628;
-    dw $284F,$01FF                                                       ;92C629;
-    db $0A                                                               ;92C62D;
-    dw $284E,$01F9                                                       ;92C62E;
-    db $07                                                               ;92C632;
-    dw $2883,$0000                                                       ;92C633;
-    db $04                                                               ;92C637;
-    dw $2883,$0006                                                       ;92C638;
-    db $F0                                                               ;92C63C;
-    dw $2883,$000C                                                       ;92C63D;
-    db $EB                                                               ;92C641;
-    dw $2808,$0007                                                       ;92C642;
-    db $07                                                               ;92C646;
-    dw $6858,$01F7                                                       ;92C647;
-    db $FF                                                               ;92C64B;
-    dw $284B,$01F3                                                       ;92C64C;
-    db $F6                                                               ;92C650;
-    dw $2838,$01F3                                                       ;92C651;
-    db $EE                                                               ;92C655;
-    dw $287F,$01F6                                                       ;92C656;
-    db $E9                                                               ;92C65A;
-    dw $286C,$01FB                                                       ;92C65B;
-    db $E7                                                               ;92C65F;
-    dw $282F,$01F8                                                       ;92C660;
-    db $F1                                                               ;92C664;
-    dw $283F,$01F5                                                       ;92C665;
-    db $07                                                               ;92C669;
-    dw $2893,$01F8                                                       ;92C66A;
-    db $0E                                                               ;92C66E;
-    dw $2873,$0006                                                       ;92C66F;
-    db $0F                                                               ;92C673;
-    dw $2883,$0009                                                       ;92C674;
-    db $01                                                               ;92C678;
-    dw $284F,$0008                                                       ;92C679;
-    db $F8                                                               ;92C67D;
-    dw $285F,$0008                                                       ;92C67E;
-    db $10                                                               ;92C682;
-    dw $2E68,$0000                                                       ;92C683;
-    db $10                                                               ;92C687;
-    dw $2E67,$0008                                                       ;92C688;
-    db $F0                                                               ;92C68C;
-    dw $2E28,$0008                                                       ;92C68D;
-    db $E8                                                               ;92C691;
-    dw $2E18,$C3F8                                                       ;92C692;
-    db $E0                                                               ;92C696;
-    dw $2E06,$C3F8                                                       ;92C697;
-    db $00                                                               ;92C69B;
-    dw $2E46,$C3F8                                                       ;92C69C;
-    db $F0                                                               ;92C6A0;
-    dw $2E26                                                             ;92C6A1;
+    dw $001A                                                             ;92C61F;
+    %spritemapEntry(0, $03, $E7, 0, 0, 2, 4, $1F)
+    %spritemapEntry(0, $01, $11, 0, 0, 2, 4, $4F)
+    %spritemapEntry(0, $1FF, $0A, 0, 0, 2, 4, $4E)
+    %spritemapEntry(0, $1F9, $07, 0, 0, 2, 4, $83)
+    %spritemapEntry(0, $00, $04, 0, 0, 2, 4, $83)
+    %spritemapEntry(0, $06, $F0, 0, 0, 2, 4, $83)
+    %spritemapEntry(0, $0C, $EB, 0, 0, 2, 4, $08)
+    %spritemapEntry(0, $07, $07, 0, 1, 2, 4, $58)
+    %spritemapEntry(0, $1F7, $FF, 0, 0, 2, 4, $4B)
+    %spritemapEntry(0, $1F3, $F6, 0, 0, 2, 4, $38)
+    %spritemapEntry(0, $1F3, $EE, 0, 0, 2, 4, $7F)
+    %spritemapEntry(0, $1F6, $E9, 0, 0, 2, 4, $6C)
+    %spritemapEntry(0, $1FB, $E7, 0, 0, 2, 4, $2F)
+    %spritemapEntry(0, $1F8, $F1, 0, 0, 2, 4, $3F)
+    %spritemapEntry(0, $1F5, $07, 0, 0, 2, 4, $93)
+    %spritemapEntry(0, $1F8, $0E, 0, 0, 2, 4, $73)
+    %spritemapEntry(0, $06, $0F, 0, 0, 2, 4, $83)
+    %spritemapEntry(0, $09, $01, 0, 0, 2, 4, $4F)
+    %spritemapEntry(0, $08, $F8, 0, 0, 2, 4, $5F)
+    %spritemapEntry(0, $08, $10, 0, 0, 2, 7, $68)
+    %spritemapEntry(0, $00, $10, 0, 0, 2, 7, $67)
+    %spritemapEntry(0, $08, $F0, 0, 0, 2, 7, $28)
+    %spritemapEntry(0, $08, $E8, 0, 0, 2, 7, $18)
+    %spritemapEntry(1, $43F8, $E0, 0, 0, 2, 7, $06)
+    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 7, $46)
+    %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 7, $26)
 
 SamusSpritemaps_C6A3:
-    dw $0018,$000B                                                       ;92C6A3;
-    db $DD                                                               ;92C6A7;
-    dw $283F,$0001                                                       ;92C6A8;
-    db $17                                                               ;92C6AC;
-    dw $284F,$01F7                                                       ;92C6AD;
-    db $E0                                                               ;92C6B1;
-    dw $282F,$01F1                                                       ;92C6B2;
-    db $E1                                                               ;92C6B6;
-    dw $286C,$000F                                                       ;92C6B7;
-    db $E6                                                               ;92C6BB;
-    dw $281F,$01EE                                                       ;92C6BC;
-    db $FA                                                               ;92C6C0;
-    dw $286F,$01ED                                                       ;92C6C1;
-    db $F2                                                               ;92C6C5;
-    dw $284E,$01EE                                                       ;92C6C6;
-    db $07                                                               ;92C6CA;
-    dw $2893,$01F1                                                       ;92C6CB;
-    db $10                                                               ;92C6CF;
-    dw $2873,$000D                                                       ;92C6D0;
-    db $10                                                               ;92C6D4;
-    dw $2883,$000C                                                       ;92C6D5;
-    db $02                                                               ;92C6D9;
-    dw $286F,$0010                                                       ;92C6DA;
-    db $FB                                                               ;92C6DE;
-    dw $284F,$000A                                                       ;92C6DF;
-    db $F1                                                               ;92C6E3;
-    dw $285F,$01ED                                                       ;92C6E4;
-    db $E8                                                               ;92C6E8;
-    dw $287F,$01F3                                                       ;92C6E9;
-    db $ED                                                               ;92C6ED;
-    dw $283F,$0008                                                       ;92C6EE;
-    db $FA                                                               ;92C6F2;
-    dw $2E3B,$0008                                                       ;92C6F3;
-    db $F2                                                               ;92C6F7;
-    dw $2E2B,$0008                                                       ;92C6F8;
-    db $12                                                               ;92C6FC;
-    dw $2E6B,$0000                                                       ;92C6FD;
-    db $12                                                               ;92C701;
-    dw $2E6A,$0008                                                       ;92C702;
-    db $EA                                                               ;92C706;
-    dw $2E1B,$0008                                                       ;92C707;
-    db $E2                                                               ;92C70B;
-    dw $2E0B,$C3F8                                                       ;92C70C;
-    db $02                                                               ;92C710;
-    dw $2E49,$C3F8                                                       ;92C711;
-    db $F2                                                               ;92C715;
-    dw $2E29,$C3F8                                                       ;92C716;
-    db $E2                                                               ;92C71A;
-    dw $2E09                                                             ;92C71B;
+    dw $0018                                                             ;92C6A3;
+    %spritemapEntry(0, $0B, $DD, 0, 0, 2, 4, $3F)
+    %spritemapEntry(0, $01, $17, 0, 0, 2, 4, $4F)
+    %spritemapEntry(0, $1F7, $E0, 0, 0, 2, 4, $2F)
+    %spritemapEntry(0, $1F1, $E1, 0, 0, 2, 4, $6C)
+    %spritemapEntry(0, $0F, $E6, 0, 0, 2, 4, $1F)
+    %spritemapEntry(0, $1EE, $FA, 0, 0, 2, 4, $6F)
+    %spritemapEntry(0, $1ED, $F2, 0, 0, 2, 4, $4E)
+    %spritemapEntry(0, $1EE, $07, 0, 0, 2, 4, $93)
+    %spritemapEntry(0, $1F1, $10, 0, 0, 2, 4, $73)
+    %spritemapEntry(0, $0D, $10, 0, 0, 2, 4, $83)
+    %spritemapEntry(0, $0C, $02, 0, 0, 2, 4, $6F)
+    %spritemapEntry(0, $10, $FB, 0, 0, 2, 4, $4F)
+    %spritemapEntry(0, $0A, $F1, 0, 0, 2, 4, $5F)
+    %spritemapEntry(0, $1ED, $E8, 0, 0, 2, 4, $7F)
+    %spritemapEntry(0, $1F3, $ED, 0, 0, 2, 4, $3F)
+    %spritemapEntry(0, $08, $FA, 0, 0, 2, 7, $3B)
+    %spritemapEntry(0, $08, $F2, 0, 0, 2, 7, $2B)
+    %spritemapEntry(0, $08, $12, 0, 0, 2, 7, $6B)
+    %spritemapEntry(0, $00, $12, 0, 0, 2, 7, $6A)
+    %spritemapEntry(0, $08, $EA, 0, 0, 2, 7, $1B)
+    %spritemapEntry(0, $08, $E2, 0, 0, 2, 7, $0B)
+    %spritemapEntry(1, $43F8, $02, 0, 0, 2, 7, $49)
+    %spritemapEntry(1, $43F8, $F2, 0, 0, 2, 7, $29)
+    %spritemapEntry(1, $43F8, $E2, 0, 0, 2, 7, $09)
 
 SamusSpritemaps_C71D:
-    dw $0019,$000C                                                       ;92C71D;
-    db $D8                                                               ;92C721;
-    dw $283F,$0003                                                       ;92C722;
-    db $1E                                                               ;92C726;
-    dw $284F,$01F3                                                       ;92C727;
-    db $DA                                                               ;92C72B;
-    dw $282F,$01E9                                                       ;92C72C;
-    db $DE                                                               ;92C730;
-    dw $286C,$0011                                                       ;92C731;
-    db $15                                                               ;92C735;
-    dw $2883,$0014                                                       ;92C736;
-    db $04                                                               ;92C73A;
-    dw $286F,$0015                                                       ;92C73B;
-    db $F2                                                               ;92C73F;
-    dw $285F,$0012                                                       ;92C740;
-    db $E1                                                               ;92C744;
-    dw $281F,$01E5                                                       ;92C745;
-    db $FE                                                               ;92C749;
-    dw $286F,$01E3                                                       ;92C74A;
-    db $EA                                                               ;92C74E;
-    dw $287F,$0018                                                       ;92C74F;
-    db $FC                                                               ;92C753;
-    dw $284F,$01F0                                                       ;92C754;
-    db $14                                                               ;92C758;
-    dw $2873,$01E8                                                       ;92C759;
-    db $0C                                                               ;92C75D;
-    dw $2893,$01E8                                                       ;92C75E;
-    db $F4                                                               ;92C762;
-    dw $284E,$01F0                                                       ;92C763;
-    db $EC                                                               ;92C767;
-    dw $283F,$0000                                                       ;92C768;
-    db $14                                                               ;92C76C;
-    dw $2E6D,$0008                                                       ;92C76D;
-    db $14                                                               ;92C771;
-    dw $2E6E,$0008                                                       ;92C772;
-    db $0C                                                               ;92C776;
-    dw $2E5E,$0008                                                       ;92C777;
-    db $FC                                                               ;92C77B;
-    dw $2E3E,$0008                                                       ;92C77C;
-    db $F4                                                               ;92C780;
-    dw $2E2E,$0008                                                       ;92C781;
-    db $EC                                                               ;92C785;
-    dw $2E1E,$0008                                                       ;92C786;
-    db $E4                                                               ;92C78A;
-    dw $2E0E,$C3F8                                                       ;92C78B;
-    db $04                                                               ;92C78F;
-    dw $2E4C,$C3F8                                                       ;92C790;
-    db $F4                                                               ;92C794;
-    dw $2E2C,$C3F8                                                       ;92C795;
-    db $E4                                                               ;92C799;
-    dw $2E0C                                                             ;92C79A;
+    dw $0019                                                             ;92C71D;
+    %spritemapEntry(0, $0C, $D8, 0, 0, 2, 4, $3F)
+    %spritemapEntry(0, $03, $1E, 0, 0, 2, 4, $4F)
+    %spritemapEntry(0, $1F3, $DA, 0, 0, 2, 4, $2F)
+    %spritemapEntry(0, $1E9, $DE, 0, 0, 2, 4, $6C)
+    %spritemapEntry(0, $11, $15, 0, 0, 2, 4, $83)
+    %spritemapEntry(0, $14, $04, 0, 0, 2, 4, $6F)
+    %spritemapEntry(0, $15, $F2, 0, 0, 2, 4, $5F)
+    %spritemapEntry(0, $12, $E1, 0, 0, 2, 4, $1F)
+    %spritemapEntry(0, $1E5, $FE, 0, 0, 2, 4, $6F)
+    %spritemapEntry(0, $1E3, $EA, 0, 0, 2, 4, $7F)
+    %spritemapEntry(0, $18, $FC, 0, 0, 2, 4, $4F)
+    %spritemapEntry(0, $1F0, $14, 0, 0, 2, 4, $73)
+    %spritemapEntry(0, $1E8, $0C, 0, 0, 2, 4, $93)
+    %spritemapEntry(0, $1E8, $F4, 0, 0, 2, 4, $4E)
+    %spritemapEntry(0, $1F0, $EC, 0, 0, 2, 4, $3F)
+    %spritemapEntry(0, $00, $14, 0, 0, 2, 7, $6D)
+    %spritemapEntry(0, $08, $14, 0, 0, 2, 7, $6E)
+    %spritemapEntry(0, $08, $0C, 0, 0, 2, 7, $5E)
+    %spritemapEntry(0, $08, $FC, 0, 0, 2, 7, $3E)
+    %spritemapEntry(0, $08, $F4, 0, 0, 2, 7, $2E)
+    %spritemapEntry(0, $08, $EC, 0, 0, 2, 7, $1E)
+    %spritemapEntry(0, $08, $E4, 0, 0, 2, 7, $0E)
+    %spritemapEntry(1, $43F8, $04, 0, 0, 2, 7, $4C)
+    %spritemapEntry(1, $43F8, $F4, 0, 0, 2, 7, $2C)
+    %spritemapEntry(1, $43F8, $E4, 0, 0, 2, 7, $0C)
 
 SamusSpritemaps_C79C:
-    dw $0019,$01DD                                                       ;92C79C;
-    db $E1                                                               ;92C7A0;
-    dw $287F,$01E0                                                       ;92C7A1;
-    db $DC                                                               ;92C7A5;
-    dw $287F,$0003                                                       ;92C7A6;
-    db $25                                                               ;92C7AA;
-    dw $2873,$01EA                                                       ;92C7AB;
-    db $D3                                                               ;92C7AF;
-    dw $282F,$001D                                                       ;92C7B0;
-    db $FB                                                               ;92C7B4;
-    dw $2873,$01DF                                                       ;92C7B5;
-    db $FF                                                               ;92C7B9;
-    dw $6883,$0019                                                       ;92C7BA;
-    db $08                                                               ;92C7BE;
-    dw $286F,$01E2                                                       ;92C7BF;
-    db $12                                                               ;92C7C3;
-    dw $2893,$01EF                                                       ;92C7C4;
-    db $19                                                               ;92C7C8;
-    dw $2873,$0013                                                       ;92C7C9;
-    db $19                                                               ;92C7CD;
-    dw $2883,$0018                                                       ;92C7CE;
-    db $F0                                                               ;92C7D2;
-    dw $285F,$01D9                                                       ;92C7D3;
-    db $ED                                                               ;92C7D7;
-    dw $287F,$01E4                                                       ;92C7D8;
-    db $F4                                                               ;92C7DC;
-    dw $284E,$0018                                                       ;92C7DD;
-    db $DC                                                               ;92C7E1;
-    dw $281F,$01E8                                                       ;92C7E2;
-    db $EC                                                               ;92C7E6;
-    dw $683F,$0000                                                       ;92C7E7;
-    db $14                                                               ;92C7EB;
-    dw $2E74,$0000                                                       ;92C7EC;
-    db $0C                                                               ;92C7F0;
-    dw $2E64,$01F8                                                       ;92C7F1;
-    db $0C                                                               ;92C7F5;
-    dw $2E63,$0008                                                       ;92C7F6;
-    db $FC                                                               ;92C7FA;
-    dw $2E82,$0008                                                       ;92C7FB;
-    db $EC                                                               ;92C7FF;
-    dw $2E62,$0008                                                       ;92C800;
-    db $E4                                                               ;92C804;
-    dw $2E52,$0000                                                       ;92C805;
-    db $E4                                                               ;92C809;
-    dw $2E51,$01F8                                                       ;92C80A;
-    db $E4                                                               ;92C80E;
-    dw $2E50,$C3F8                                                       ;92C80F;
-    db $FC                                                               ;92C813;
-    dw $2E80,$C3F8                                                       ;92C814;
-    db $EC                                                               ;92C818;
-    dw $2E60                                                             ;92C819;
+    dw $0019                                                             ;92C79C;
+    %spritemapEntry(0, $1DD, $E1, 0, 0, 2, 4, $7F)
+    %spritemapEntry(0, $1E0, $DC, 0, 0, 2, 4, $7F)
+    %spritemapEntry(0, $03, $25, 0, 0, 2, 4, $73)
+    %spritemapEntry(0, $1EA, $D3, 0, 0, 2, 4, $2F)
+    %spritemapEntry(0, $1D, $FB, 0, 0, 2, 4, $73)
+    %spritemapEntry(0, $1DF, $FF, 0, 1, 2, 4, $83)
+    %spritemapEntry(0, $19, $08, 0, 0, 2, 4, $6F)
+    %spritemapEntry(0, $1E2, $12, 0, 0, 2, 4, $93)
+    %spritemapEntry(0, $1EF, $19, 0, 0, 2, 4, $73)
+    %spritemapEntry(0, $13, $19, 0, 0, 2, 4, $83)
+    %spritemapEntry(0, $18, $F0, 0, 0, 2, 4, $5F)
+    %spritemapEntry(0, $1D9, $ED, 0, 0, 2, 4, $7F)
+    %spritemapEntry(0, $1E4, $F4, 0, 0, 2, 4, $4E)
+    %spritemapEntry(0, $18, $DC, 0, 0, 2, 4, $1F)
+    %spritemapEntry(0, $1E8, $EC, 0, 1, 2, 4, $3F)
+    %spritemapEntry(0, $00, $14, 0, 0, 2, 7, $74)
+    %spritemapEntry(0, $00, $0C, 0, 0, 2, 7, $64)
+    %spritemapEntry(0, $1F8, $0C, 0, 0, 2, 7, $63)
+    %spritemapEntry(0, $08, $FC, 0, 0, 2, 7, $82)
+    %spritemapEntry(0, $08, $EC, 0, 0, 2, 7, $62)
+    %spritemapEntry(0, $08, $E4, 0, 0, 2, 7, $52)
+    %spritemapEntry(0, $00, $E4, 0, 0, 2, 7, $51)
+    %spritemapEntry(0, $1F8, $E4, 0, 0, 2, 7, $50)
+    %spritemapEntry(1, $43F8, $FC, 0, 0, 2, 7, $80)
+    %spritemapEntry(1, $43F8, $EC, 0, 0, 2, 7, $60)
 
 SamusSpritemaps_C81B:
-    dw $0008,$000E                                                       ;92C81B;
-    db $F4                                                               ;92C81F;
-    dw $2E9C,$000E                                                       ;92C820;
-    db $EC                                                               ;92C824;
-    dw $2E8C,$01FE                                                       ;92C825;
-    db $14                                                               ;92C829;
-    dw $2E99,$C3F6                                                       ;92C82A;
-    db $04                                                               ;92C82E;
-    dw $2E78,$01F6                                                       ;92C82F;
-    db $FC                                                               ;92C833;
-    dw $2E94,$01F6                                                       ;92C834;
-    db $F4                                                               ;92C838;
-    dw $2E84,$C3FE                                                       ;92C839;
-    db $F4                                                               ;92C83D;
-    dw $2E85,$C3FE                                                       ;92C83E;
-    db $E4                                                               ;92C842;
-    dw $2E65                                                             ;92C843;
+    dw $0008                                                             ;92C81B;
+    %spritemapEntry(0, $0E, $F4, 0, 0, 2, 7, $9C)
+    %spritemapEntry(0, $0E, $EC, 0, 0, 2, 7, $8C)
+    %spritemapEntry(0, $1FE, $14, 0, 0, 2, 7, $99)
+    %spritemapEntry(1, $43F6, $04, 0, 0, 2, 7, $78)
+    %spritemapEntry(0, $1F6, $FC, 0, 0, 2, 7, $94)
+    %spritemapEntry(0, $1F6, $F4, 0, 0, 2, 7, $84)
+    %spritemapEntry(1, $43FE, $F4, 0, 0, 2, 7, $85)
+    %spritemapEntry(1, $43FE, $E4, 0, 0, 2, 7, $65)
 
 SamusSpritemaps_C845:
-    dw $000B,$01F6                                                       ;92C845;
-    db $F4                                                               ;92C849;
-    dw $2E98,$0006                                                       ;92C84A;
-    db $FC                                                               ;92C84E;
-    dw $2E96,$01FE                                                       ;92C84F;
-    db $FC                                                               ;92C853;
-    dw $2E95,$0006                                                       ;92C854;
-    db $E4                                                               ;92C858;
-    dw $2E7B,$01FE                                                       ;92C859;
-    db $E4                                                               ;92C85D;
-    dw $2E7A,$000E                                                       ;92C85E;
-    db $F4                                                               ;92C862;
-    dw $2E9C,$000E                                                       ;92C863;
-    db $EC                                                               ;92C867;
-    dw $2E8C,$C3FE                                                       ;92C868;
-    db $EC                                                               ;92C86C;
-    dw $2E8A,$01FE                                                       ;92C86D;
-    db $14                                                               ;92C871;
-    dw $2E99,$C3F6                                                       ;92C872;
-    db $04                                                               ;92C876;
-    dw $2E78,$01F6                                                       ;92C877;
-    db $FC                                                               ;92C87B;
-    dw $2E94                                                             ;92C87C;
+    dw $000B                                                             ;92C845;
+    %spritemapEntry(0, $1F6, $F4, 0, 0, 2, 7, $98)
+    %spritemapEntry(0, $06, $FC, 0, 0, 2, 7, $96)
+    %spritemapEntry(0, $1FE, $FC, 0, 0, 2, 7, $95)
+    %spritemapEntry(0, $06, $E4, 0, 0, 2, 7, $7B)
+    %spritemapEntry(0, $1FE, $E4, 0, 0, 2, 7, $7A)
+    %spritemapEntry(0, $0E, $F4, 0, 0, 2, 7, $9C)
+    %spritemapEntry(0, $0E, $EC, 0, 0, 2, 7, $8C)
+    %spritemapEntry(1, $43FE, $EC, 0, 0, 2, 7, $8A)
+    %spritemapEntry(0, $1FE, $14, 0, 0, 2, 7, $99)
+    %spritemapEntry(1, $43F6, $04, 0, 0, 2, 7, $78)
+    %spritemapEntry(0, $1F6, $FC, 0, 0, 2, 7, $94)
 
 SamusSpritemaps_C87E:
-    dw $000B,$01FE                                                       ;92C87E;
-    db $FC                                                               ;92C882;
-    dw $2E95,$0006                                                       ;92C883;
-    db $FC                                                               ;92C887;
-    dw $2E96,$01F6                                                       ;92C888;
-    db $F4                                                               ;92C88C;
-    dw $2E7C,$0006                                                       ;92C88D;
-    db $E4                                                               ;92C891;
-    dw $2E7E,$01FE                                                       ;92C892;
-    db $E4                                                               ;92C896;
-    dw $2E7D,$000E                                                       ;92C897;
-    db $F4                                                               ;92C89B;
-    dw $2E9F,$000E                                                       ;92C89C;
-    db $EC                                                               ;92C8A0;
-    dw $2E8F,$C3FE                                                       ;92C8A1;
-    db $EC                                                               ;92C8A5;
-    dw $2E8D,$01FE                                                       ;92C8A6;
-    db $14                                                               ;92C8AA;
-    dw $2E99,$C3F6                                                       ;92C8AB;
-    db $04                                                               ;92C8AF;
-    dw $2E78,$01F6                                                       ;92C8B0;
-    db $FC                                                               ;92C8B4;
-    dw $2E94                                                             ;92C8B5;
+    dw $000B                                                             ;92C87E;
+    %spritemapEntry(0, $1FE, $FC, 0, 0, 2, 7, $95)
+    %spritemapEntry(0, $06, $FC, 0, 0, 2, 7, $96)
+    %spritemapEntry(0, $1F6, $F4, 0, 0, 2, 7, $7C)
+    %spritemapEntry(0, $06, $E4, 0, 0, 2, 7, $7E)
+    %spritemapEntry(0, $1FE, $E4, 0, 0, 2, 7, $7D)
+    %spritemapEntry(0, $0E, $F4, 0, 0, 2, 7, $9F)
+    %spritemapEntry(0, $0E, $EC, 0, 0, 2, 7, $8F)
+    %spritemapEntry(1, $43FE, $EC, 0, 0, 2, 7, $8D)
+    %spritemapEntry(0, $1FE, $14, 0, 0, 2, 7, $99)
+    %spritemapEntry(1, $43F6, $04, 0, 0, 2, 7, $78)
+    %spritemapEntry(0, $1F6, $FC, 0, 0, 2, 7, $94)
 
 SamusSpritemaps_C8B7:
-    dw $0009,$01F8                                                       ;92C8B7;
-    db $10                                                               ;92C8BB;
-    dw $6841,$0000                                                       ;92C8BC;
-    db $10                                                               ;92C8C0;
-    dw $6840,$01F0                                                       ;92C8C1;
-    db $10                                                               ;92C8C5;
-    dw $6842,$01F0                                                       ;92C8C6;
-    db $08                                                               ;92C8CA;
-    dw $6832,$01F0                                                       ;92C8CB;
-    db $00                                                               ;92C8CF;
-    dw $6822,$01F0                                                       ;92C8D0;
-    db $F8                                                               ;92C8D4;
-    dw $6812,$01F0                                                       ;92C8D5;
-    db $F0                                                               ;92C8D9;
-    dw $6802,$C3F8                                                       ;92C8DA;
-    db $00                                                               ;92C8DE;
-    dw $6820,$C3F8                                                       ;92C8DF;
-    db $F0                                                               ;92C8E3;
-    dw $6800                                                             ;92C8E4;
+    dw $0009                                                             ;92C8B7;
+    %spritemapEntry(0, $1F8, $10, 0, 1, 2, 4, $41)
+    %spritemapEntry(0, $00, $10, 0, 1, 2, 4, $40)
+    %spritemapEntry(0, $1F0, $10, 0, 1, 2, 4, $42)
+    %spritemapEntry(0, $1F0, $08, 0, 1, 2, 4, $32)
+    %spritemapEntry(0, $1F0, $00, 0, 1, 2, 4, $22)
+    %spritemapEntry(0, $1F0, $F8, 0, 1, 2, 4, $12)
+    %spritemapEntry(0, $1F0, $F0, 0, 1, 2, 4, $02)
+    %spritemapEntry(1, $43F8, $00, 0, 1, 2, 4, $20)
+    %spritemapEntry(1, $43F8, $F0, 0, 1, 2, 4, $00)
 
 SamusSpritemaps_C8E6:
-    dw $0016,$01FB                                                       ;92C8E6;
-    db $F0                                                               ;92C8EA;
-    dw $681F,$01F5                                                       ;92C8EB;
-    db $F6                                                               ;92C8EF;
-    dw $680F,$01FD                                                       ;92C8F0;
-    db $F9                                                               ;92C8F4;
-    dw $680F,$0001                                                       ;92C8F5;
-    db $F7                                                               ;92C8F9;
-    dw $685F,$01F1                                                       ;92C8FA;
-    db $0B                                                               ;92C8FE;
-    dw $684E,$01F9                                                       ;92C8FF;
-    db $0F                                                               ;92C903;
-    dw $685F,$0001                                                       ;92C904;
-    db $F2                                                               ;92C908;
-    dw $687F,$01FF                                                       ;92C909;
-    db $EF                                                               ;92C90D;
-    dw $686C,$01FF                                                       ;92C90E;
-    db $EC                                                               ;92C912;
-    dw $682F,$01FB                                                       ;92C913;
-    db $E9                                                               ;92C917;
-    dw $681F,$01F2                                                       ;92C918;
-    db $F2                                                               ;92C91C;
-    dw $6808,$01FF                                                       ;92C91D;
-    db $05                                                               ;92C921;
-    dw $6858,$01F6                                                       ;92C922;
-    db $FD                                                               ;92C926;
-    dw $6838,$01F7                                                       ;92C927;
-    db $06                                                               ;92C92B;
-    dw $684B,$0000                                                       ;92C92C;
-    db $0A                                                               ;92C930;
-    dw $6E43,$0000                                                       ;92C931;
-    db $02                                                               ;92C935;
-    dw $6E33,$0000                                                       ;92C936;
-    db $FA                                                               ;92C93A;
-    dw $6E23,$0000                                                       ;92C93B;
-    db $F2                                                               ;92C93F;
-    dw $6E13,$0000                                                       ;92C940;
-    db $EA                                                               ;92C944;
-    dw $6E03,$C3F0                                                       ;92C945;
-    db $0A                                                               ;92C949;
-    dw $6E44,$C3F0                                                       ;92C94A;
-    db $FA                                                               ;92C94E;
-    dw $6E24,$C3F0                                                       ;92C94F;
-    db $EA                                                               ;92C953;
-    dw $6E04                                                             ;92C954;
+    dw $0016                                                             ;92C8E6;
+    %spritemapEntry(0, $1FB, $F0, 0, 1, 2, 4, $1F)
+    %spritemapEntry(0, $1F5, $F6, 0, 1, 2, 4, $0F)
+    %spritemapEntry(0, $1FD, $F9, 0, 1, 2, 4, $0F)
+    %spritemapEntry(0, $01, $F7, 0, 1, 2, 4, $5F)
+    %spritemapEntry(0, $1F1, $0B, 0, 1, 2, 4, $4E)
+    %spritemapEntry(0, $1F9, $0F, 0, 1, 2, 4, $5F)
+    %spritemapEntry(0, $01, $F2, 0, 1, 2, 4, $7F)
+    %spritemapEntry(0, $1FF, $EF, 0, 1, 2, 4, $6C)
+    %spritemapEntry(0, $1FF, $EC, 0, 1, 2, 4, $2F)
+    %spritemapEntry(0, $1FB, $E9, 0, 1, 2, 4, $1F)
+    %spritemapEntry(0, $1F2, $F2, 0, 1, 2, 4, $08)
+    %spritemapEntry(0, $1FF, $05, 0, 1, 2, 4, $58)
+    %spritemapEntry(0, $1F6, $FD, 0, 1, 2, 4, $38)
+    %spritemapEntry(0, $1F7, $06, 0, 1, 2, 4, $4B)
+    %spritemapEntry(0, $00, $0A, 0, 1, 2, 7, $43)
+    %spritemapEntry(0, $00, $02, 0, 1, 2, 7, $33)
+    %spritemapEntry(0, $00, $FA, 0, 1, 2, 7, $23)
+    %spritemapEntry(0, $00, $F2, 0, 1, 2, 7, $13)
+    %spritemapEntry(0, $00, $EA, 0, 1, 2, 7, $03)
+    %spritemapEntry(1, $43F0, $0A, 0, 1, 2, 7, $44)
+    %spritemapEntry(1, $43F0, $FA, 0, 1, 2, 7, $24)
+    %spritemapEntry(1, $43F0, $EA, 0, 1, 2, 7, $04)
 
 SamusSpritemaps_C956:
-    dw $001A,$01F5                                                       ;92C956;
-    db $E7                                                               ;92C95A;
-    dw $681F,$01F7                                                       ;92C95B;
-    db $11                                                               ;92C95F;
-    dw $684F,$01F9                                                       ;92C960;
-    db $0A                                                               ;92C964;
-    dw $684E,$01FF                                                       ;92C965;
-    db $07                                                               ;92C969;
-    dw $6883,$01F8                                                       ;92C96A;
-    db $04                                                               ;92C96E;
-    dw $6883,$01F2                                                       ;92C96F;
-    db $F0                                                               ;92C973;
-    dw $6883,$01EC                                                       ;92C974;
-    db $EB                                                               ;92C978;
-    dw $6808,$01F1                                                       ;92C979;
-    db $07                                                               ;92C97D;
-    dw $2858,$0001                                                       ;92C97E;
-    db $FF                                                               ;92C982;
-    dw $684B,$0005                                                       ;92C983;
-    db $F6                                                               ;92C987;
-    dw $6838,$0005                                                       ;92C988;
-    db $EE                                                               ;92C98C;
-    dw $687F,$0002                                                       ;92C98D;
-    db $E9                                                               ;92C991;
-    dw $686C,$01FD                                                       ;92C992;
-    db $E7                                                               ;92C996;
-    dw $682F,$0000                                                       ;92C997;
-    db $F1                                                               ;92C99B;
-    dw $683F,$0003                                                       ;92C99C;
-    db $07                                                               ;92C9A0;
-    dw $6893,$0000                                                       ;92C9A1;
-    db $0E                                                               ;92C9A5;
-    dw $6873,$01F2                                                       ;92C9A6;
-    db $0F                                                               ;92C9AA;
-    dw $6883,$01EF                                                       ;92C9AB;
-    db $01                                                               ;92C9AF;
-    dw $684F,$01F0                                                       ;92C9B0;
-    db $F8                                                               ;92C9B4;
-    dw $685F,$01F0                                                       ;92C9B5;
-    db $10                                                               ;92C9B9;
-    dw $6E68,$01F8                                                       ;92C9BA;
-    db $10                                                               ;92C9BE;
-    dw $6E67,$01F0                                                       ;92C9BF;
-    db $F0                                                               ;92C9C3;
-    dw $6E28,$01F0                                                       ;92C9C4;
-    db $E8                                                               ;92C9C8;
-    dw $6E18,$C3F8                                                       ;92C9C9;
-    db $E0                                                               ;92C9CD;
-    dw $6E06,$C3F8                                                       ;92C9CE;
-    db $00                                                               ;92C9D2;
-    dw $6E46,$C3F8                                                       ;92C9D3;
-    db $F0                                                               ;92C9D7;
-    dw $6E26                                                             ;92C9D8;
+    dw $001A                                                             ;92C956;
+    %spritemapEntry(0, $1F5, $E7, 0, 1, 2, 4, $1F)
+    %spritemapEntry(0, $1F7, $11, 0, 1, 2, 4, $4F)
+    %spritemapEntry(0, $1F9, $0A, 0, 1, 2, 4, $4E)
+    %spritemapEntry(0, $1FF, $07, 0, 1, 2, 4, $83)
+    %spritemapEntry(0, $1F8, $04, 0, 1, 2, 4, $83)
+    %spritemapEntry(0, $1F2, $F0, 0, 1, 2, 4, $83)
+    %spritemapEntry(0, $1EC, $EB, 0, 1, 2, 4, $08)
+    %spritemapEntry(0, $1F1, $07, 0, 0, 2, 4, $58)
+    %spritemapEntry(0, $01, $FF, 0, 1, 2, 4, $4B)
+    %spritemapEntry(0, $05, $F6, 0, 1, 2, 4, $38)
+    %spritemapEntry(0, $05, $EE, 0, 1, 2, 4, $7F)
+    %spritemapEntry(0, $02, $E9, 0, 1, 2, 4, $6C)
+    %spritemapEntry(0, $1FD, $E7, 0, 1, 2, 4, $2F)
+    %spritemapEntry(0, $00, $F1, 0, 1, 2, 4, $3F)
+    %spritemapEntry(0, $03, $07, 0, 1, 2, 4, $93)
+    %spritemapEntry(0, $00, $0E, 0, 1, 2, 4, $73)
+    %spritemapEntry(0, $1F2, $0F, 0, 1, 2, 4, $83)
+    %spritemapEntry(0, $1EF, $01, 0, 1, 2, 4, $4F)
+    %spritemapEntry(0, $1F0, $F8, 0, 1, 2, 4, $5F)
+    %spritemapEntry(0, $1F0, $10, 0, 1, 2, 7, $68)
+    %spritemapEntry(0, $1F8, $10, 0, 1, 2, 7, $67)
+    %spritemapEntry(0, $1F0, $F0, 0, 1, 2, 7, $28)
+    %spritemapEntry(0, $1F0, $E8, 0, 1, 2, 7, $18)
+    %spritemapEntry(1, $43F8, $E0, 0, 1, 2, 7, $06)
+    %spritemapEntry(1, $43F8, $00, 0, 1, 2, 7, $46)
+    %spritemapEntry(1, $43F8, $F0, 0, 1, 2, 7, $26)
 
 SamusSpritemaps_C9DA:
-    dw $0018,$01ED                                                       ;92C9DA;
-    db $DD                                                               ;92C9DE;
-    dw $683F,$01F7                                                       ;92C9DF;
-    db $17                                                               ;92C9E3;
-    dw $684F,$0001                                                       ;92C9E4;
-    db $E0                                                               ;92C9E8;
-    dw $682F,$0007                                                       ;92C9E9;
-    db $E1                                                               ;92C9ED;
-    dw $686C,$01E9                                                       ;92C9EE;
-    db $E6                                                               ;92C9F2;
-    dw $681F,$000A                                                       ;92C9F3;
-    db $FA                                                               ;92C9F7;
-    dw $686F,$000B                                                       ;92C9F8;
-    db $F2                                                               ;92C9FC;
-    dw $684E,$000A                                                       ;92C9FD;
-    db $07                                                               ;92CA01;
-    dw $6893,$0007                                                       ;92CA02;
-    db $10                                                               ;92CA06;
-    dw $6873,$01EB                                                       ;92CA07;
-    db $10                                                               ;92CA0B;
-    dw $6883,$01EC                                                       ;92CA0C;
-    db $02                                                               ;92CA10;
-    dw $686F,$01E8                                                       ;92CA11;
-    db $FB                                                               ;92CA15;
-    dw $684F,$01EE                                                       ;92CA16;
-    db $F1                                                               ;92CA1A;
-    dw $685F,$000B                                                       ;92CA1B;
-    db $E8                                                               ;92CA1F;
-    dw $687F,$0005                                                       ;92CA20;
-    db $ED                                                               ;92CA24;
-    dw $683F,$01F0                                                       ;92CA25;
-    db $FA                                                               ;92CA29;
-    dw $6E3B,$01F0                                                       ;92CA2A;
-    db $F2                                                               ;92CA2E;
-    dw $6E2B,$01F0                                                       ;92CA2F;
-    db $12                                                               ;92CA33;
-    dw $6E6B,$01F8                                                       ;92CA34;
-    db $12                                                               ;92CA38;
-    dw $6E6A,$01F0                                                       ;92CA39;
-    db $EA                                                               ;92CA3D;
-    dw $6E1B,$01F0                                                       ;92CA3E;
-    db $E2                                                               ;92CA42;
-    dw $6E0B,$C3F8                                                       ;92CA43;
-    db $02                                                               ;92CA47;
-    dw $6E49,$C3F8                                                       ;92CA48;
-    db $F2                                                               ;92CA4C;
-    dw $6E29,$C3F8                                                       ;92CA4D;
-    db $E2                                                               ;92CA51;
-    dw $6E09                                                             ;92CA52;
+    dw $0018                                                             ;92C9DA;
+    %spritemapEntry(0, $1ED, $DD, 0, 1, 2, 4, $3F)
+    %spritemapEntry(0, $1F7, $17, 0, 1, 2, 4, $4F)
+    %spritemapEntry(0, $01, $E0, 0, 1, 2, 4, $2F)
+    %spritemapEntry(0, $07, $E1, 0, 1, 2, 4, $6C)
+    %spritemapEntry(0, $1E9, $E6, 0, 1, 2, 4, $1F)
+    %spritemapEntry(0, $0A, $FA, 0, 1, 2, 4, $6F)
+    %spritemapEntry(0, $0B, $F2, 0, 1, 2, 4, $4E)
+    %spritemapEntry(0, $0A, $07, 0, 1, 2, 4, $93)
+    %spritemapEntry(0, $07, $10, 0, 1, 2, 4, $73)
+    %spritemapEntry(0, $1EB, $10, 0, 1, 2, 4, $83)
+    %spritemapEntry(0, $1EC, $02, 0, 1, 2, 4, $6F)
+    %spritemapEntry(0, $1E8, $FB, 0, 1, 2, 4, $4F)
+    %spritemapEntry(0, $1EE, $F1, 0, 1, 2, 4, $5F)
+    %spritemapEntry(0, $0B, $E8, 0, 1, 2, 4, $7F)
+    %spritemapEntry(0, $05, $ED, 0, 1, 2, 4, $3F)
+    %spritemapEntry(0, $1F0, $FA, 0, 1, 2, 7, $3B)
+    %spritemapEntry(0, $1F0, $F2, 0, 1, 2, 7, $2B)
+    %spritemapEntry(0, $1F0, $12, 0, 1, 2, 7, $6B)
+    %spritemapEntry(0, $1F8, $12, 0, 1, 2, 7, $6A)
+    %spritemapEntry(0, $1F0, $EA, 0, 1, 2, 7, $1B)
+    %spritemapEntry(0, $1F0, $E2, 0, 1, 2, 7, $0B)
+    %spritemapEntry(1, $43F8, $02, 0, 1, 2, 7, $49)
+    %spritemapEntry(1, $43F8, $F2, 0, 1, 2, 7, $29)
+    %spritemapEntry(1, $43F8, $E2, 0, 1, 2, 7, $09)
 
 SamusSpritemaps_CA54:
-    dw $0019,$01EC                                                       ;92CA54;
-    db $D8                                                               ;92CA58;
-    dw $683F,$01F5                                                       ;92CA59;
-    db $1E                                                               ;92CA5D;
-    dw $684F,$0005                                                       ;92CA5E;
-    db $DA                                                               ;92CA62;
-    dw $682F,$000F                                                       ;92CA63;
-    db $DE                                                               ;92CA67;
-    dw $686C,$01E7                                                       ;92CA68;
-    db $15                                                               ;92CA6C;
-    dw $6883,$01E4                                                       ;92CA6D;
-    db $04                                                               ;92CA71;
-    dw $686F,$01E3                                                       ;92CA72;
-    db $F2                                                               ;92CA76;
-    dw $685F,$01E6                                                       ;92CA77;
-    db $E1                                                               ;92CA7B;
-    dw $681F,$0013                                                       ;92CA7C;
-    db $FE                                                               ;92CA80;
-    dw $686F,$0015                                                       ;92CA81;
-    db $EA                                                               ;92CA85;
-    dw $687F,$01E0                                                       ;92CA86;
-    db $FC                                                               ;92CA8A;
-    dw $684F,$0008                                                       ;92CA8B;
-    db $14                                                               ;92CA8F;
-    dw $6873,$0010                                                       ;92CA90;
-    db $0C                                                               ;92CA94;
-    dw $6893,$0010                                                       ;92CA95;
-    db $F4                                                               ;92CA99;
-    dw $684E,$0008                                                       ;92CA9A;
-    db $EC                                                               ;92CA9E;
-    dw $683F,$01F8                                                       ;92CA9F;
-    db $14                                                               ;92CAA3;
-    dw $6E6D,$01F0                                                       ;92CAA4;
-    db $14                                                               ;92CAA8;
-    dw $6E6E,$01F0                                                       ;92CAA9;
-    db $0C                                                               ;92CAAD;
-    dw $6E5E,$01F0                                                       ;92CAAE;
-    db $FC                                                               ;92CAB2;
-    dw $6E3E,$01F0                                                       ;92CAB3;
-    db $F4                                                               ;92CAB7;
-    dw $6E2E,$01F0                                                       ;92CAB8;
-    db $EC                                                               ;92CABC;
-    dw $6E1E,$01F0                                                       ;92CABD;
-    db $E4                                                               ;92CAC1;
-    dw $6E0E,$C3F8                                                       ;92CAC2;
-    db $04                                                               ;92CAC6;
-    dw $6E4C,$C3F8                                                       ;92CAC7;
-    db $F4                                                               ;92CACB;
-    dw $6E2C,$C3F8                                                       ;92CACC;
-    db $E4                                                               ;92CAD0;
-    dw $6E0C                                                             ;92CAD1;
+    dw $0019                                                             ;92CA54;
+    %spritemapEntry(0, $1EC, $D8, 0, 1, 2, 4, $3F)
+    %spritemapEntry(0, $1F5, $1E, 0, 1, 2, 4, $4F)
+    %spritemapEntry(0, $05, $DA, 0, 1, 2, 4, $2F)
+    %spritemapEntry(0, $0F, $DE, 0, 1, 2, 4, $6C)
+    %spritemapEntry(0, $1E7, $15, 0, 1, 2, 4, $83)
+    %spritemapEntry(0, $1E4, $04, 0, 1, 2, 4, $6F)
+    %spritemapEntry(0, $1E3, $F2, 0, 1, 2, 4, $5F)
+    %spritemapEntry(0, $1E6, $E1, 0, 1, 2, 4, $1F)
+    %spritemapEntry(0, $13, $FE, 0, 1, 2, 4, $6F)
+    %spritemapEntry(0, $15, $EA, 0, 1, 2, 4, $7F)
+    %spritemapEntry(0, $1E0, $FC, 0, 1, 2, 4, $4F)
+    %spritemapEntry(0, $08, $14, 0, 1, 2, 4, $73)
+    %spritemapEntry(0, $10, $0C, 0, 1, 2, 4, $93)
+    %spritemapEntry(0, $10, $F4, 0, 1, 2, 4, $4E)
+    %spritemapEntry(0, $08, $EC, 0, 1, 2, 4, $3F)
+    %spritemapEntry(0, $1F8, $14, 0, 1, 2, 7, $6D)
+    %spritemapEntry(0, $1F0, $14, 0, 1, 2, 7, $6E)
+    %spritemapEntry(0, $1F0, $0C, 0, 1, 2, 7, $5E)
+    %spritemapEntry(0, $1F0, $FC, 0, 1, 2, 7, $3E)
+    %spritemapEntry(0, $1F0, $F4, 0, 1, 2, 7, $2E)
+    %spritemapEntry(0, $1F0, $EC, 0, 1, 2, 7, $1E)
+    %spritemapEntry(0, $1F0, $E4, 0, 1, 2, 7, $0E)
+    %spritemapEntry(1, $43F8, $04, 0, 1, 2, 7, $4C)
+    %spritemapEntry(1, $43F8, $F4, 0, 1, 2, 7, $2C)
+    %spritemapEntry(1, $43F8, $E4, 0, 1, 2, 7, $0C)
 
 SamusSpritemaps_CAD3:
-    dw $0019,$001B                                                       ;92CAD3;
-    db $E1                                                               ;92CAD7;
-    dw $687F,$0018                                                       ;92CAD8;
-    db $DC                                                               ;92CADC;
-    dw $687F,$01F5                                                       ;92CADD;
-    db $25                                                               ;92CAE1;
-    dw $6873,$000E                                                       ;92CAE2;
-    db $D3                                                               ;92CAE6;
-    dw $682F,$01DB                                                       ;92CAE7;
-    db $FB                                                               ;92CAEB;
-    dw $6873,$0019                                                       ;92CAEC;
-    db $FF                                                               ;92CAF0;
-    dw $2883,$01DF                                                       ;92CAF1;
-    db $08                                                               ;92CAF5;
-    dw $686F,$0016                                                       ;92CAF6;
-    db $12                                                               ;92CAFA;
-    dw $6893,$0009                                                       ;92CAFB;
-    db $19                                                               ;92CAFF;
-    dw $6873,$01E5                                                       ;92CB00;
-    db $19                                                               ;92CB04;
-    dw $6883,$01E0                                                       ;92CB05;
-    db $F0                                                               ;92CB09;
-    dw $685F,$001F                                                       ;92CB0A;
-    db $ED                                                               ;92CB0E;
-    dw $687F,$0014                                                       ;92CB0F;
-    db $F4                                                               ;92CB13;
-    dw $684E,$01E0                                                       ;92CB14;
-    db $DC                                                               ;92CB18;
-    dw $681F,$0010                                                       ;92CB19;
-    db $EC                                                               ;92CB1D;
-    dw $283F,$01F8                                                       ;92CB1E;
-    db $14                                                               ;92CB22;
-    dw $6E74,$01F8                                                       ;92CB23;
-    db $0C                                                               ;92CB27;
-    dw $6E64,$0000                                                       ;92CB28;
-    db $0C                                                               ;92CB2C;
-    dw $6E63,$01F0                                                       ;92CB2D;
-    db $FC                                                               ;92CB31;
-    dw $6E82,$01F0                                                       ;92CB32;
-    db $EC                                                               ;92CB36;
-    dw $6E62,$01F0                                                       ;92CB37;
-    db $E4                                                               ;92CB3B;
-    dw $6E52,$01F8                                                       ;92CB3C;
-    db $E4                                                               ;92CB40;
-    dw $6E51,$0000                                                       ;92CB41;
-    db $E4                                                               ;92CB45;
-    dw $6E50,$C3F8                                                       ;92CB46;
-    db $FC                                                               ;92CB4A;
-    dw $6E80,$C3F8                                                       ;92CB4B;
-    db $EC                                                               ;92CB4F;
-    dw $6E60                                                             ;92CB50;
+    dw $0019                                                             ;92CAD3;
+    %spritemapEntry(0, $1B, $E1, 0, 1, 2, 4, $7F)
+    %spritemapEntry(0, $18, $DC, 0, 1, 2, 4, $7F)
+    %spritemapEntry(0, $1F5, $25, 0, 1, 2, 4, $73)
+    %spritemapEntry(0, $0E, $D3, 0, 1, 2, 4, $2F)
+    %spritemapEntry(0, $1DB, $FB, 0, 1, 2, 4, $73)
+    %spritemapEntry(0, $19, $FF, 0, 0, 2, 4, $83)
+    %spritemapEntry(0, $1DF, $08, 0, 1, 2, 4, $6F)
+    %spritemapEntry(0, $16, $12, 0, 1, 2, 4, $93)
+    %spritemapEntry(0, $09, $19, 0, 1, 2, 4, $73)
+    %spritemapEntry(0, $1E5, $19, 0, 1, 2, 4, $83)
+    %spritemapEntry(0, $1E0, $F0, 0, 1, 2, 4, $5F)
+    %spritemapEntry(0, $1F, $ED, 0, 1, 2, 4, $7F)
+    %spritemapEntry(0, $14, $F4, 0, 1, 2, 4, $4E)
+    %spritemapEntry(0, $1E0, $DC, 0, 1, 2, 4, $1F)
+    %spritemapEntry(0, $10, $EC, 0, 0, 2, 4, $3F)
+    %spritemapEntry(0, $1F8, $14, 0, 1, 2, 7, $74)
+    %spritemapEntry(0, $1F8, $0C, 0, 1, 2, 7, $64)
+    %spritemapEntry(0, $00, $0C, 0, 1, 2, 7, $63)
+    %spritemapEntry(0, $1F0, $FC, 0, 1, 2, 7, $82)
+    %spritemapEntry(0, $1F0, $EC, 0, 1, 2, 7, $62)
+    %spritemapEntry(0, $1F0, $E4, 0, 1, 2, 7, $52)
+    %spritemapEntry(0, $1F8, $E4, 0, 1, 2, 7, $51)
+    %spritemapEntry(0, $00, $E4, 0, 1, 2, 7, $50)
+    %spritemapEntry(1, $43F8, $FC, 0, 1, 2, 7, $80)
+    %spritemapEntry(1, $43F8, $EC, 0, 1, 2, 7, $60)
 
 SamusSpritemaps_CB52:
-    dw $0008,$01EA                                                       ;92CB52;
-    db $F4                                                               ;92CB56;
-    dw $6E9C,$01EA                                                       ;92CB57;
-    db $EC                                                               ;92CB5B;
-    dw $6E8C,$01FA                                                       ;92CB5C;
-    db $14                                                               ;92CB60;
-    dw $6E99,$C3FA                                                       ;92CB61;
-    db $04                                                               ;92CB65;
-    dw $6E78,$0002                                                       ;92CB66;
-    db $FC                                                               ;92CB6A;
-    dw $6E94,$0002                                                       ;92CB6B;
-    db $F4                                                               ;92CB6F;
-    dw $6E84,$C3F2                                                       ;92CB70;
-    db $F4                                                               ;92CB74;
-    dw $6E85,$C3F2                                                       ;92CB75;
-    db $E4                                                               ;92CB79;
-    dw $6E65                                                             ;92CB7A;
+    dw $0008                                                             ;92CB52;
+    %spritemapEntry(0, $1EA, $F4, 0, 1, 2, 7, $9C)
+    %spritemapEntry(0, $1EA, $EC, 0, 1, 2, 7, $8C)
+    %spritemapEntry(0, $1FA, $14, 0, 1, 2, 7, $99)
+    %spritemapEntry(1, $43FA, $04, 0, 1, 2, 7, $78)
+    %spritemapEntry(0, $02, $FC, 0, 1, 2, 7, $94)
+    %spritemapEntry(0, $02, $F4, 0, 1, 2, 7, $84)
+    %spritemapEntry(1, $43F2, $F4, 0, 1, 2, 7, $85)
+    %spritemapEntry(1, $43F2, $E4, 0, 1, 2, 7, $65)
 
 SamusSpritemaps_CB7C:
-    dw $000B,$0002                                                       ;92CB7C;
-    db $F4                                                               ;92CB80;
-    dw $6E98,$01F2                                                       ;92CB81;
-    db $FC                                                               ;92CB85;
-    dw $6E96,$01FA                                                       ;92CB86;
-    db $FC                                                               ;92CB8A;
-    dw $6E95,$01F2                                                       ;92CB8B;
-    db $E4                                                               ;92CB8F;
-    dw $6E7B,$01FA                                                       ;92CB90;
-    db $E4                                                               ;92CB94;
-    dw $6E7A,$01EA                                                       ;92CB95;
-    db $F4                                                               ;92CB99;
-    dw $6E9C,$01EA                                                       ;92CB9A;
-    db $EC                                                               ;92CB9E;
-    dw $6E8C,$C3F2                                                       ;92CB9F;
-    db $EC                                                               ;92CBA3;
-    dw $6E8A,$01FA                                                       ;92CBA4;
-    db $14                                                               ;92CBA8;
-    dw $6E99,$C3FA                                                       ;92CBA9;
-    db $04                                                               ;92CBAD;
-    dw $6E78,$0002                                                       ;92CBAE;
-    db $FC                                                               ;92CBB2;
-    dw $6E94                                                             ;92CBB3;
+    dw $000B                                                             ;92CB7C;
+    %spritemapEntry(0, $02, $F4, 0, 1, 2, 7, $98)
+    %spritemapEntry(0, $1F2, $FC, 0, 1, 2, 7, $96)
+    %spritemapEntry(0, $1FA, $FC, 0, 1, 2, 7, $95)
+    %spritemapEntry(0, $1F2, $E4, 0, 1, 2, 7, $7B)
+    %spritemapEntry(0, $1FA, $E4, 0, 1, 2, 7, $7A)
+    %spritemapEntry(0, $1EA, $F4, 0, 1, 2, 7, $9C)
+    %spritemapEntry(0, $1EA, $EC, 0, 1, 2, 7, $8C)
+    %spritemapEntry(1, $43F2, $EC, 0, 1, 2, 7, $8A)
+    %spritemapEntry(0, $1FA, $14, 0, 1, 2, 7, $99)
+    %spritemapEntry(1, $43FA, $04, 0, 1, 2, 7, $78)
+    %spritemapEntry(0, $02, $FC, 0, 1, 2, 7, $94)
 
 SamusSpritemaps_CBB5:
-    dw $000B,$01FA                                                       ;92CBB5;
-    db $FC                                                               ;92CBB9;
-    dw $6E95,$01F2                                                       ;92CBBA;
-    db $FC                                                               ;92CBBE;
-    dw $6E96,$0002                                                       ;92CBBF;
-    db $F4                                                               ;92CBC3;
-    dw $6E7C,$01F2                                                       ;92CBC4;
-    db $E4                                                               ;92CBC8;
-    dw $6E7E,$01FA                                                       ;92CBC9;
-    db $E4                                                               ;92CBCD;
-    dw $6E7D,$01EA                                                       ;92CBCE;
-    db $F4                                                               ;92CBD2;
-    dw $6E9F,$01EA                                                       ;92CBD3;
-    db $EC                                                               ;92CBD7;
-    dw $6E8F,$C3F2                                                       ;92CBD8;
-    db $EC                                                               ;92CBDC;
-    dw $6E8D,$01FA                                                       ;92CBDD;
-    db $14                                                               ;92CBE1;
-    dw $6E99,$C3FA                                                       ;92CBE2;
-    db $04                                                               ;92CBE6;
-    dw $6E78,$0002                                                       ;92CBE7;
-    db $FC                                                               ;92CBEB;
-    dw $6E94                                                             ;92CBEC;
+    dw $000B                                                             ;92CBB5;
+    %spritemapEntry(0, $1FA, $FC, 0, 1, 2, 7, $95)
+    %spritemapEntry(0, $1F2, $FC, 0, 1, 2, 7, $96)
+    %spritemapEntry(0, $02, $F4, 0, 1, 2, 7, $7C)
+    %spritemapEntry(0, $1F2, $E4, 0, 1, 2, 7, $7E)
+    %spritemapEntry(0, $1FA, $E4, 0, 1, 2, 7, $7D)
+    %spritemapEntry(0, $1EA, $F4, 0, 1, 2, 7, $9F)
+    %spritemapEntry(0, $1EA, $EC, 0, 1, 2, 7, $8F)
+    %spritemapEntry(1, $43F2, $EC, 0, 1, 2, 7, $8D)
+    %spritemapEntry(0, $1FA, $14, 0, 1, 2, 7, $99)
+    %spritemapEntry(1, $43FA, $04, 0, 1, 2, 7, $78)
+    %spritemapEntry(0, $02, $FC, 0, 1, 2, 7, $94)
 
 SamusTopTiles_Set0_CBEE:
     dl SamusTiles_Top_Set0_Entry0                                        ;92CBEE;

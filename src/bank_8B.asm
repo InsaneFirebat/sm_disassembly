@@ -13301,7 +13301,7 @@ InstList_CinematicSpriteObjects_CompletedSuccessfully_0:
     dw $0008                                                             ;8BEC13;
     dw EndingSequenceSpritemaps_COMPLETESUCCESS                          ;8BEC15;
     dw $0008                                                             ;8BEC17;
-    dw EkndingSequenceSpritemaps_COMPLETESUCCESSF                        ;8BEC19;
+    dw EndingSequenceSpritemaps_COMPLETESUCCESSF                        ;8BEC19;
     dw $0008                                                             ;8BEC1B;
     dw EndingSequenceSpritemaps_COMPLETESUCCESSFU                        ;8BEC1D;
     dw $0008                                                             ;8BEC1F;
