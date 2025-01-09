@@ -12796,9 +12796,9 @@ GameOptions_SpecialSettings_ToggleSetting:
     RTS                                                                  ;82F0AD;
 
 
-SpecialSettingRAMAddresses:
-    dw $09EA                                                             ;82F0AE;
-    dw $09E4                                                             ;82F0B0;
+SpecialSettingRAMAddresses:                                              ;82F0AE;
+    dw $09EA ; Icon cancel flag
+    dw $09E4 ; Moonwalk flag
 
 GameOptions_SpecialSettings_End:
     STZ.W $099E                                                          ;82F0B2;
@@ -12883,25 +12883,18 @@ Set_SpecialSetting_Highlights:
 
 .iconCancelManualRow0:
     dw $01E0                                                             ;82F149;
-
 .iconCancelManualRow1:
     dw $0220                                                             ;82F14B;
-
 .moonwalkOnRow0:
     dw $0360                                                             ;82F14D;
-
 .moonwalkOnRow1:
     dw $03A0                                                             ;82F14F;
-
 .iconCancelAutoRow0:
     dw $01EE                                                             ;82F151;
-
 .iconCancelAutoRow1:
     dw $022E                                                             ;82F153;
-
 .moonwalkOffRow0:
     dw $036E                                                             ;82F155;
-
 .moonwalkOffRow1:
     dw $03AE                                                             ;82F157;
 
@@ -13014,9 +13007,12 @@ GameOptionsMenu_7_ControllerSettings:
     RTS                                                                  ;82F203;
 
 
-.inputs:
-    dw $0020,$0020,$0020,$0020,$0010,$0010,$0010,$0010                   ;82F204;
-    dw $0010,$0010,$4000,$0040,$0040,$0080,$0080,$0080                   ;82F214;
+.inputs:                                                                 ;82F204;
+    dw $0020,$0020,$0020,$0020 ; L
+    dw $0010,$0010,$0010,$0010,$0010,$0010 ; R
+    dw $4000 ; Y
+    dw $0040,$0040 ; X
+    dw $0080,$0080,$0080 ; A
 
 GameOptions_ControllerSettings_ResetToDefault:
     LDA.B $8F                                                            ;82F224;
@@ -13149,24 +13145,32 @@ PreInstruction_MenuSelectionMissile:
 
 .OptionsMenu_X:
     dw $0018                                                             ;82F307;
-
-.OptionsMenu_Y:
-    dw $0038,$0018,$0058,$0018,$0070,$0018,$0090,$0018                   ;82F309;
-    dw $00B0                                                             ;82F319;
+.OptionsMenu_Y:                                                          ;82F309;
+    dw       $0038
+    dw $0018,$0058
+    dw $0018,$0070
+    dw $0018,$0090
+    dw $0018,$00B0
 
 .ControllerSettings_X:
     dw $0028                                                             ;82F31B;
-
-.ControllerSettings_Y:
-    dw $0030,$0028,$0048,$0028,$0060,$0028,$0078,$0028                   ;82F31D;
-    dw $0090,$0028,$00A8,$0028,$00C0,$0028,$00B8,$0028                   ;82F32D;
-    dw $00D0                                                             ;82F33D;
+.ControllerSettings_Y:                                                   ;82F31D;
+    dw       $0030
+    dw $0028,$0048
+    dw $0028,$0060
+    dw $0028,$0078
+    dw $0028,$0090
+    dw $0028,$00A8
+    dw $0028,$00C0
+    dw $0028,$00B8
+    dw $0028,$00D0
 
 .SpecialSettings_X:
     dw $0010                                                             ;82F33F;
-
-.SpecialSettings_Y:
-    dw $0040,$0010,$0070,$0010,$00A0                                     ;82F341;
+.SpecialSettings_Y:                                                      ;82F341;
+    dw       $0040
+    dw $0010,$0070
+    dw $0010,$00A0                                     
 
 Setup_BorderAround_OPTION_MODE:
     LDA.W #$007C                                                         ;82F34B;
@@ -13329,78 +13333,58 @@ PreInstruction_FileSelectMenu_SamusHelmet:
 
 
 InstList_GameOptionsMenu_MenuSelectionMissile:
-    dw $0008                                                             ;82F442;
-    dw TitleMenuSpritemaps_34_MenuSelectionMissile_0                     ;82F444;
-    dw $0008                                                             ;82F446;
-    dw TitleMenuSpritemaps_35_MenuSelectionMissile_1                     ;82F448;
-    dw $0008                                                             ;82F44A;
-    dw TitleMenuSpritemaps_36_MenuSelectionMissile_2                     ;82F44C;
-    dw $0008                                                             ;82F44E;
-    dw TitleMenuSpritemaps_37_MenuSelectionMissile_3                     ;82F450;
+    dw $0008,TitleMenuSpritemaps_34_MenuSelectionMissile_0               ;82F442;
+    dw $0008,TitleMenuSpritemaps_35_MenuSelectionMissile_1               ;82F446;
+    dw $0008,TitleMenuSpritemaps_36_MenuSelectionMissile_2               ;82F44A;
+    dw $0008,TitleMenuSpritemaps_37_MenuSelectionMissile_3               ;82F44E;
     dw Instruction_GameOptionsMenu_GotoY                                 ;82F452;
     dw InstList_GameOptionsMenu_MenuSelectionMissile                     ;82F454;
 
 InstList_GameOptionsMenu_FileSelectMenu_SamusHelmet:
-    dw $0090                                                             ;82F456;
-    dw TitleMenuSpritemaps_2C_FileSelectMenu_SamusHelmet_0               ;82F458;
-    dw $0006                                                             ;82F45A;
-    dw TitleMenuSpritemaps_2D_FileSelectMenu_SamusHelmet_1               ;82F45C;
-    dw $0008                                                             ;82F45E;
-    dw TitleMenuSpritemaps_2E_FileSelectMenu_SamusHelmet_2               ;82F460;
-    dw $0001                                                             ;82F462;
-    dw TitleMenuSpritemaps_2F_FileSelectMenu_SamusHelmet_3               ;82F464;
-    dw $0002                                                             ;82F466;
-    dw TitleMenuSpritemaps_30_FileSelectMenu_SamusHelmet_4               ;82F468;
-    dw $0004                                                             ;82F46A;
-    dw TitleMenuSpritemaps_31_FileSelectMenu_SamusHelmet_5               ;82F46C;
-    dw $0002                                                             ;82F46E;
-    dw TitleMenuSpritemaps_32_FileSelectMenu_SamusHelmet_6               ;82F470;
-    dw $0001                                                             ;82F472;
-    dw TitleMenuSpritemaps_33_FileSelectMenu_SamusHelmet_7               ;82F474;
-    dw $009F                                                             ;82F476;
-    dw TitleMenuSpritemaps_2E_FileSelectMenu_SamusHelmet_2               ;82F478;
+    dw $0090,TitleMenuSpritemaps_2C_FileSelectMenu_SamusHelmet_0         ;82F456;
+    dw $0006,TitleMenuSpritemaps_2D_FileSelectMenu_SamusHelmet_1         ;82F45A;
+    dw $0008,TitleMenuSpritemaps_2E_FileSelectMenu_SamusHelmet_2         ;82F45E;
+    dw $0001,TitleMenuSpritemaps_2F_FileSelectMenu_SamusHelmet_3         ;82F462;
+    dw $0002,TitleMenuSpritemaps_30_FileSelectMenu_SamusHelmet_4         ;82F466;
+    dw $0004,TitleMenuSpritemaps_31_FileSelectMenu_SamusHelmet_5         ;82F46A;
+    dw $0002,TitleMenuSpritemaps_32_FileSelectMenu_SamusHelmet_6         ;82F46E;
+    dw $0001,TitleMenuSpritemaps_33_FileSelectMenu_SamusHelmet_7         ;82F472;
+    dw $009F,TitleMenuSpritemaps_2E_FileSelectMenu_SamusHelmet_2         ;82F476;
     dw Instruction_GameOptionsMenu_GotoY                                 ;82F47A;
     dw InstList_GameOptionsMenu_FileSelectMenu_SamusHelmet               ;82F47C;
 
 InstList_GameOptionsMenu_BorderAround_OPTIONS_MODE_0:
-    dw $0002                                                             ;82F47E;
-    dw TitleMenuSpritemaps_4B_BorderAround_OPTIONS_MODE                  ;82F480;
+    dw $0002,TitleMenuSpritemaps_4B_BorderAround_OPTIONS_MODE            ;82F47E;
     dw Instruction_GameOptionsMenu_PreInstruction_inY                    ;82F482;
     dw PreInstruction_BorderAround_OPTIONS_MODE                          ;82F484;
 
 InstList_GameOptionsMenu_BorderAround_OPTIONS_MODE_1:
-    dw $0090                                                             ;82F486;
-    dw TitleMenuSpritemaps_4B_BorderAround_OPTIONS_MODE                  ;82F488;
+    dw $0090,TitleMenuSpritemaps_4B_BorderAround_OPTIONS_MODE            ;82F486;
     dw Instruction_GameOptionsMenu_GotoY                                 ;82F48A;
     dw InstList_GameOptionsMenu_BorderAround_OPTIONS_MODE_1              ;82F48C;
 
 InstList_GameOptionsMenu_BorderAround_CTRL_SETTING_MODE_0:
-    dw $0002                                                             ;82F48E;
-    dw TitleMenuSpritemaps_49_BorderAround_CONTROLLER_SETTING_MODE       ;82F490;
+    dw $0002,TitleMenuSpritemaps_49_BorderAround_CONTROLLER_SETTING_MODE ;82F48E;
     dw Instruction_GameOptionsMenu_PreInstruction_inY                    ;82F492;
     dw PreInstruction_BorderAround_CONTRLLER_SETTING_MODE                ;82F494;
 
 InstList_GameOptionsMenu_BorderAround_CTRL_SETTING_MODE_1:
-    dw $0090                                                             ;82F496;
-    dw TitleMenuSpritemaps_49_BorderAround_CONTROLLER_SETTING_MODE       ;82F498;
+    dw $0090,TitleMenuSpritemaps_49_BorderAround_CONTROLLER_SETTING_MODE ;82F496;
     dw Instruction_GameOptionsMenu_GotoY                                 ;82F49A;
     dw InstList_GameOptionsMenu_BorderAround_CTRL_SETTING_MODE_1         ;82F49C;
 
 InstList_GameOptionsMenu_BorderAround_SPECIAL_SETTING_MODE_0:
-    dw $0002                                                             ;82F49E;
-    dw TitleMenuSpritemaps_4D_BorderAround_SPECIAL_SETTING_MODE          ;82F4A0;
+    dw $0002,TitleMenuSpritemaps_4D_BorderAround_SPECIAL_SETTING_MODE    ;82F49E;
     dw Instruction_GameOptionsMenu_PreInstruction_inY                    ;82F4A2;
     dw PreInstruction_BorderAround_SPECIAL_SETTING_MODE                  ;82F4A4;
 
 InstList_GameOptionsMenu_BorderAround_SPECIAL_SETTING_MODE_1:
-    dw $0090                                                             ;82F4A6;
-    dw TitleMenuSpritemaps_4D_BorderAround_SPECIAL_SETTING_MODE          ;82F4A8;
+    dw $0090,TitleMenuSpritemaps_4D_BorderAround_SPECIAL_SETTING_MODE    ;82F4A6;
     dw Instruction_GameOptionsMenu_GotoY                                 ;82F4AA;
     dw InstList_GameOptionsMenu_BorderAround_SPECIAL_SETTING_MODE_1      ;82F4AC;
 
 InstList_GameOptionsMenu_BorderAround_SAMUS_DATA:
-    dw $0090                                                             ;82F4AE;
-    dw TitleMenuSpritemaps_48_BorderAround_SAMUS_DATA                    ;82F4B0;
+    dw $0090,TitleMenuSpritemaps_48_BorderAround_SAMUS_DATA              ;82F4AE;
     dw Instruction_GameOptionsMenu_GotoY                                 ;82F4B2;
     dw InstList_GameOptionsMenu_BorderAround_SAMUS_DATA                  ;82F4B4;
 
@@ -13515,14 +13499,14 @@ GameOptionsMenu_ControllerBindings:
     RTS                                                                  ;82F549;
 
 
-Configurable_Controller_Binding_RAM_Addresses:
-    dw $09B2                                                             ;82F54A; Shot
-    dw $09B4                                                             ;82F54C; Jump
-    dw $09B6                                                             ;82F54E; Run
-    dw $09BA                                                             ;82F550; Item Select
-    dw $09B8                                                             ;82F552; Item Cancel
-    dw $09BE                                                             ;82F554; Angle Up
-    dw $09BC                                                             ;82F556; Angle Down
+Configurable_Controller_Binding_RAM_Addresses:                           ;82F54A;
+    dw $09B2 ; Shot
+    dw $09B4 ; Jump
+    dw $09B6 ; Run
+    dw $09BA ; Item Select
+    dw $09B8 ; Item Cancel
+    dw $09BE ; Angle Up
+    dw $09BC ; Angle Down
 
 Save_GameOptionsMenu_ControllerBindings:
     LDX.W #$0000                                                         ;82F558;
@@ -13548,8 +13532,15 @@ Save_GameOptionsMenu_ControllerBindings:
 
 
 Controller_Input_Bitmasks:
-    dw $0040,$0080,$8000,$2000,$4000,$0020,$0010,$0200                   ;82F575; X
-    dw $0100                                                             ;82F585; Right
+    dw $0040 ; X
+    dw $0080 ; A
+    dw $8000 ; B
+    dw $2000 ; Select
+    dw $4000 ; Y
+    dw $0020 ; L
+    dw $0010 ; R
+    dw $0200 ; Left
+    dw $0100 ; Right
 
 Draw_GameOptionsMenu_ControllerBindings:
     LDX.W #$0000                                                         ;82F587;
@@ -13587,15 +13578,15 @@ Draw_GameOptionsMenu_ControllerBindings:
     BEQ .shoulderButton                                                  ;82F5D5;
     LDA.W ButtonTilemaps_OFF                                             ;82F5D7;
     STA.L $7E352E                                                        ;82F5DA;
-    LDA.W ButtonTilemaps_OFF2                                            ;82F5DE;
+    LDA.W ButtonTilemaps_OFF+$2                                          ;82F5DE;
     STA.L $7E3530                                                        ;82F5E1;
-    LDA.W ButtonTilemaps_OFF4                                            ;82F5E5;
+    LDA.W ButtonTilemaps_OFF+$4                                          ;82F5E5;
     STA.L $7E3532                                                        ;82F5E8;
-    LDA.W ButtonTilemaps_OFF6                                            ;82F5EC;
+    LDA.W ButtonTilemaps_OFF+$6                                          ;82F5EC;
     STA.L $7E356E                                                        ;82F5EF;
-    LDA.W ButtonTilemaps_OFF8                                            ;82F5F3;
+    LDA.W ButtonTilemaps_OFF+$8                                          ;82F5F3;
     STA.L $7E3570                                                        ;82F5F6;
-    LDA.W ButtonTilemaps_OFFA                                            ;82F5FA;
+    LDA.W ButtonTilemaps_OFF+$A                                          ;82F5FA;
     STA.L $7E3572                                                        ;82F5FD;
 
 .shoulderButton:
@@ -13606,15 +13597,15 @@ Draw_GameOptionsMenu_ControllerBindings:
     BEQ .return                                                          ;82F60C;
     LDA.W ButtonTilemaps_OFF                                             ;82F60E;
     STA.L $7E35EE                                                        ;82F611;
-    LDA.W ButtonTilemaps_OFF2                                            ;82F615;
+    LDA.W ButtonTilemaps_OFF+$2                                          ;82F615;
     STA.L $7E35F0                                                        ;82F618;
-    LDA.W ButtonTilemaps_OFF4                                            ;82F61C;
+    LDA.W ButtonTilemaps_OFF+$4                                          ;82F61C;
     STA.L $7E35F2                                                        ;82F61F;
-    LDA.W ButtonTilemaps_OFF6                                            ;82F623;
+    LDA.W ButtonTilemaps_OFF+$6                                          ;82F623;
     STA.L $7E362E                                                        ;82F626;
-    LDA.W ButtonTilemaps_OFF8                                            ;82F62A;
+    LDA.W ButtonTilemaps_OFF+$8                                          ;82F62A;
     STA.L $7E3630                                                        ;82F62D;
-    LDA.W ButtonTilemaps_OFFA                                            ;82F631;
+    LDA.W ButtonTilemaps_OFF+$A                                          ;82F631;
     STA.L $7E3632                                                        ;82F634;
 
 .return:
@@ -13635,44 +13626,37 @@ ControllerButton_TilemapPointers:
     dw ButtonTilemaps_OFF                                                ;82F655;
     dw ButtonTilemaps_OFF                                                ;82F657;
 
-ButtonTilemaps_X:
-    dw $0093,$C0A3,$000F,$00A3,$C093,$000F                               ;82F659;
+ButtonTilemaps_X:                                                        ;82F659;
+    dw $0093,$C0A3,$000F
+    dw $00A3,$C093,$000F                               
 
-ButtonTilemaps_A:
-    dw $0090,$4090,$000F,$00A0,$40A0,$000F                               ;82F665;
+ButtonTilemaps_A:                                                        ;82F665;
+    dw $0090,$4090,$000F
+    dw $00A0,$40A0,$000F                               
 
-ButtonTilemaps_B:
-    dw $0091,$0092,$000F,$00A1,$00A2,$000F                               ;82F671;
+ButtonTilemaps_B:                                                        ;82F671;
+    dw $0091,$0092,$000F
+    dw $00A1,$00A2,$000F                               
 
-ButtonTilemaps_Select:
-    dw $0095,$0096,$0097,$00A5,$00A6,$00A7                               ;82F67D;
+ButtonTilemaps_Select:                                                   ;82F67D;
+    dw $0095,$0096,$0097
+    dw $00A5,$00A6,$00A7                               
 
-ButtonTilemaps_Y:
-    dw $0094,$4094,$000F,$00A4,$40A4,$000F                               ;82F689;
+ButtonTilemaps_Y:                                                        ;82F689;
+    dw $0094,$4094,$000F
+    dw $00A4,$40A4,$000F                               
 
-ButtonTilemaps_L:
-    dw $009A,$009B,$409A,$809A,$00AB,$C09A                               ;82F695;
+ButtonTilemaps_L:                                                        ;82F695;
+    dw $009A,$009B,$409A
+    dw $809A,$00AB,$C09A                               
 
-ButtonTilemaps_R:
-    dw $009A,$009C,$409A,$809A,$00AC,$C09A                               ;82F6A1;
+ButtonTilemaps_R:                                                        ;82F6A1;
+    dw $009A,$009C,$409A
+    dw $809A,$00AC,$C09A                               
 
-ButtonTilemaps_OFF:
-    dw $0000                                                             ;82F6AD;
-
-ButtonTilemaps_OFF2:
-    dw $000E                                                             ;82F6AF;
-
-ButtonTilemaps_OFF4:
-    dw $000E                                                             ;82F6B1;
-
-ButtonTilemaps_OFF6:
-    dw $0010                                                             ;82F6B3;
-
-ButtonTilemaps_OFF8:
-    dw $001F                                                             ;82F6B5;
-
-ButtonTilemaps_OFFA:
-    dw $001F                                                             ;82F6B7;
+ButtonTilemaps_OFF:                                                      ;82F6AD;
+    dw $0000,$000E,$000E
+    dw $0010,$001F,$001F
 
 GameOptions_ControllerSettings_SetBinding:
     LDX.W #$000C                                                         ;82F6B9;
