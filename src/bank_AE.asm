@@ -47,8 +47,8 @@ incbin "../data/Tiles_Mella.bin" ; $400 bytes
 Tiles_Menu:
 incbin "../data/Tiles_Menu.bin" ; $400 bytes
 
-Tiles_DesgeegaLarge:
-incbin "../data/Tiles_DesgeegaLarge.bin" ; $400 bytes
+Tiles_DessgeegaLarge:
+incbin "../data/Tiles_DessgeegaLarge.bin" ; $400 bytes
 
 Tiles_Geruta:
 incbin "../data/Tiles_Geruta.bin" ; $400 bytes

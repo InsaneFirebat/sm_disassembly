@@ -10465,9 +10465,9 @@ EnemyHeaders_Sidehopper:
     dw EnemyVulnerabilities_Default                                      ;A0D97B;
     dw EnemyName_Sidehopper                                              ;A0D97D;
 
-EnemyHeaders_Desgeega:
+EnemyHeaders_Dessgeega:
     dw $0400                                                             ;A0D97F;
-    dw Palette_Desgeega                                                  ;A0D981;
+    dw Palette_Dessgeega                                                 ;A0D981;
     dw $0078,$0050,$0010,$000D                                           ;A0D983;
     db $A3,$00                                                           ;A0D98B;
     dw $005F,$0000                                                       ;A0D98D;
@@ -10485,11 +10485,11 @@ EnemyHeaders_Desgeega:
     dw CommonA3_NormalEnemyTouchAI                                       ;A0D9AF;
     dw CommonA3_NormalEnemyShotAI                                        ;A0D9B1;
     dw $0000                                                             ;A0D9B3;
-    dl Tiles_Desgeega                                                    ;A0D9B5;
+    dl Tiles_Dessgeega                                                   ;A0D9B5;
     db $05                                                               ;A0D9B8;
-    dw EnemyDropChances_Desgeega                                         ;A0D9B9;
+    dw EnemyDropChances_Dessgeega                                        ;A0D9B9;
     dw EnemyVulnerabilities_Default                                      ;A0D9BB;
-    dw EnemyName_Desgeega                                                ;A0D9BD;
+    dw EnemyName_Dessgeega                                               ;A0D9BD;
 
 EnemyHeaders_SidehopperLarge:
     dw $0600                                                             ;A0D9BF;
@@ -10543,9 +10543,9 @@ EnemyHeaders_SidehopperTourian:
     dw EnemyVulnerabilities_SidehopperTourian                            ;A0DA3B;
     dw EnemyName_SidehopperLarge_SidehopperTourian                       ;A0DA3D;
 
-EnemyHeaders_DesgeegaLarge:
+EnemyHeaders_DessgeegaLarge:
     dw $0400                                                             ;A0DA3F;
-    dw Palette_DesgeegaLarge                                             ;A0DA41;
+    dw Palette_DessgeegaLarge                                            ;A0DA41;
     dw $0320,$00A0,$0018,$0014                                           ;A0DA43;
     db $A3,$00                                                           ;A0DA4B;
     dw $0030,$0000                                                       ;A0DA4D;
@@ -10563,11 +10563,11 @@ EnemyHeaders_DesgeegaLarge:
     dw CommonA3_NormalEnemyTouchAI                                       ;A0DA6F;
     dw CommonA3_NormalEnemyShotAI                                        ;A0DA71;
     dw $0000                                                             ;A0DA73;
-    dl Tiles_DesgeegaLarge                                               ;A0DA75;
+    dl Tiles_DessgeegaLarge                                              ;A0DA75;
     db $05                                                               ;A0DA78;
-    dw EnemyDropChances_DesgeegaLarge                                    ;A0DA79;
-    dw EnemyVulnerabilities_DesgeegaLarge                                ;A0DA7B;
-    dw EnemyName_DesgeegaLarge                                           ;A0DA7D;
+    dw EnemyDropChances_DessgeegaLarge                                   ;A0DA79;
+    dw EnemyVulnerabilities_DessgeegaLarge                               ;A0DA7B;
+    dw EnemyName_DessgeegaLarge                                          ;A0DA7D;
 
 EnemyHeaders_Zoa:
     dw $0400                                                             ;A0DA7F;

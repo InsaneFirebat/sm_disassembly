@@ -798,7 +798,7 @@ EnemySets_PurpleFarming:
 EnemySets_IceBeamGate:
     dw EnemyHeaders_ShutterGrowing                                       ;B486D5;
     dw $0001                                                             ;B486D7;
-    dw EnemyHeaders_Desgeega                                             ;B486D9;
+    dw EnemyHeaders_Dessgeega                                            ;B486D9;
     dw $0002                                                             ;B486DB;
     dw EnemyHeaders_Mella                                                ;B486DD;
     dw $0003                                                             ;B486DF;
@@ -863,7 +863,7 @@ EnemySets_NorfairMap:
     db "NO2_09 "                                                         ;B4875E;
 
 EnemySets_MickeyMouse:
-    dw EnemyHeaders_DesgeegaLarge                                        ;B48765;
+    dw EnemyHeaders_DessgeegaLarge                                       ;B48765;
     dw $0001                                                             ;B48767;
     dw EnemyHeaders_Multiviola                                           ;B48769;
     dw $0002,$FFFF                                                       ;B4876B;
@@ -1073,7 +1073,7 @@ EnemySets_Amphitheatre:
 EnemySets_CathedralEntrance:
     dw EnemyHeaders_Sova                                                 ;B4892B;
     dw $0001                                                             ;B4892D;
-    dw EnemyHeaders_Desgeega                                             ;B4892F;
+    dw EnemyHeaders_Dessgeega                                            ;B4892F;
     dw $0002,$FFFF                                                       ;B48931;
     db $00                                                               ;B48935;
     db "NO2_01 "                                                         ;B48936;
@@ -1117,7 +1117,7 @@ EnemySets_CrumbleShaft:
 EnemySets_Wasteland:
     dw EnemyHeaders_Hibashi                                              ;B4898B;
     dw $0001                                                             ;B4898D;
-    dw EnemyHeaders_DesgeegaLarge                                        ;B4898F;
+    dw EnemyHeaders_DessgeegaLarge                                       ;B4898F;
     dw $0002                                                             ;B48991;
     dw EnemyHeaders_ShutterShootable                                     ;B48993;
     dw $0003                                                             ;B48995;
@@ -11504,9 +11504,9 @@ EnemyName_Boyon:
     dw DebugEnemyPopulationData_Boyon                                    ;B4DDF5;
     dw $0007                                                             ;B4DDF7;
 
-EnemyName_DesgeegaLarge:
+EnemyName_DessgeegaLarge:
     db "DESSGEEGA "                                                      ;B4DDF9;
-    dw DebugEnemyPopulationData_DesgeegaLarge                            ;B4DE03;
+    dw DebugEnemyPopulationData_DessgeegaLarge                           ;B4DE03;
     dw $0008                                                             ;B4DE05;
 
 EnemyName_GoldenTorizo:
@@ -11774,9 +11774,9 @@ EnemyName_MiniKraid:
     dw DebugEnemyPopulationData_MiniKraid                                ;B4E0E9;
     dw $003D                                                             ;B4E0EB;
 
-EnemyName_Desgeega:
+EnemyName_Dessgeega:
     db "SDEATH    "                                                      ;B4E0ED;
-    dw DebugEnemyPopulationData_Desgeega                                 ;B4E0F7;
+    dw DebugEnemyPopulationData_Dessgeega                                ;B4E0F7;
     dw $003E                                                             ;B4E0F9;
 
 EnemyName_ShutterGrowing:
@@ -12002,8 +12002,8 @@ DebugEnemyPopulationData_Boyon:
     dw $00E8,$00A8,$0000,$2000,$0000,$0103,$0020,$FFFF                   ;B4E38A;
     db $00                                                               ;B4E39A;
 
-DebugEnemyPopulationData_DesgeegaLarge:
-    dw EnemyHeaders_DesgeegaLarge                                        ;B4E39B;
+DebugEnemyPopulationData_DessgeegaLarge:
+    dw EnemyHeaders_DessgeegaLarge                                       ;B4E39B;
     dw $0100,$0100,$0000,$2000,$0000,$8000,$0000,$FFFF                   ;B4E39D;
     db $01                                                               ;B4E3AD;
 
@@ -12323,8 +12323,8 @@ DebugEnemyPopulationData_MiniKraid:
     dw $0100,$0100,$0000,$2800,$0000,$0000,$0000,$FFFF                   ;B4E91C;
     db $01                                                               ;B4E92C;
 
-DebugEnemyPopulationData_Desgeega:
-    dw EnemyHeaders_Desgeega                                             ;B4E92D;
+DebugEnemyPopulationData_Dessgeega:
+    dw EnemyHeaders_Dessgeega                                            ;B4E92D;
     dw $0100,$0100,$0000,$2000,$0000,$0001,$0000,$FFFF                   ;B4E92F;
     db $01                                                               ;B4E93F;
 
@@ -12520,7 +12520,7 @@ EnemyVulnerabilities_Default:
     db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02   ;B4EC1C;
     db $02,$02,$02,$02,$02,$02                                           ;B4EC2C;
 
-EnemyVulnerabilities_DesgeegaLarge:
+EnemyVulnerabilities_DessgeegaLarge:
     db $00,$00,$00,$00,$01,$01,$01,$01,$02,$02,$02,$02,$02,$02,$02,$02   ;B4EC32;
     db $02,$02,$02,$02,$02,$02                                           ;B4EC42;
 
@@ -12881,7 +12881,7 @@ EnemyDropChances_KihunterRed_KihunterRedWings:
 EnemyDropChances_PirateGoldNinja:
     db $00,$96,$05,$00,$64,$00                                           ;B4F284;
 
-EnemyDropChances_DesgeegaLarge:
+EnemyDropChances_DessgeegaLarge:
     db $50,$14,$32,$5F,$05,$05                                           ;B4F28A;
 
 EnemyDropChances_PirateRedWall:
@@ -12923,7 +12923,7 @@ EnemyDropChances_Bull:
 EnemyDropChances_Sciser:
     db $01,$64,$00,$00,$00,$9A                                           ;B4F2D8;
 
-EnemyDropChances_Desgeega:
+EnemyDropChances_Dessgeega:
     db $01,$00,$00,$00,$00,$FE                                           ;B4F2DE;
 
 EnemyDropChances_Fireflea:

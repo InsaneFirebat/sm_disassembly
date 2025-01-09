@@ -17,8 +17,8 @@ incbin "../data/Tiles_Boulder.bin" ; $1000 bytes
 Tiles_Sidehopper:
 incbin "../data/Tiles_Sidehopper.bin" ; $400 bytes
 
-Tiles_Desgeega:
-incbin "../data/Tiles_Desgeega.bin" ; $400 bytes
+Tiles_Dessgeega:
+incbin "../data/Tiles_Dessgeega.bin" ; $400 bytes
 
 Tiles_NoobTubeCrack:
 incbin "../data/Tiles_NoobTubeCrack.bin" ; $1800 bytes

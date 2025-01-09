@@ -5131,26 +5131,26 @@ InstList_Sidehopper_Landed_UpsideDown:
 InstListPointers_Sidehopper_Landed_UpsideUp:
     dw InstList_Sidehopper_Landed_UpsideUp                               ;A3AAC2;
     dw InstList_SidehopperLarge_Landed_UpsideUp                          ;A3AAC4;
-    dw InstList_DesgeegaLarge_Landed_UpsideUp                            ;A3AAC6;
-    dw InstList_Desgeega_Landed_UpsideUp                                 ;A3AAC8;
+    dw InstList_DessgeegaLarge_Landed_UpsideUp                           ;A3AAC6;
+    dw InstList_Dessgeega_Landed_UpsideUp                                ;A3AAC8;
 
 InstListPointers_Sidehopper_Landed_UpsideDown:
     dw InstList_Sidehopper_Landed_UpsideDown                             ;A3AACA;
     dw InstList_SidehopperLarge_Landed_UpsideDown                        ;A3AACC;
-    dw InstList_DesgeegaLarge_Landed_UpsideDown                          ;A3AACE;
-    dw InstList_Desgeega_Landed_UpsideDown                               ;A3AAD0;
+    dw InstList_DessgeegaLarge_Landed_UpsideDown                         ;A3AACE;
+    dw InstList_Dessgeega_Landed_UpsideDown                              ;A3AAD0;
 
 InstListPointers_Sidehopper_Hopping_UpsideUp:
     dw InstList_Sidehopper_Hopping_UpsideUp                              ;A3AAD2;
     dw InstList_SidehopperLarge_Hopping_UpsideUp                         ;A3AAD4;
-    dw InstList_DesgeegaLarge_Hopping_UpsideUp                           ;A3AAD6;
-    dw InstList_Desgeega_Hopping_UpsideUp                                ;A3AAD8;
+    dw InstList_DessgeegaLarge_Hopping_UpsideUp                          ;A3AAD6;
+    dw InstList_Dessgeega_Hopping_UpsideUp                               ;A3AAD8;
 
 InstListPointers_Sidehopper_Hopping_UpsideDown:
     dw InstList_Sidehopper_Hopping_UpsideDown                            ;A3AADA;
     dw InstList_SidehopperLarge_Hopping_UpsideDown                       ;A3AADC;
-    dw InstList_DesgeegaLarge_Hopping_UpsideDown                         ;A3AADE;
-    dw InstList_Desgeega_Hopping_UpsideDown                              ;A3AAE0;
+    dw InstList_DessgeegaLarge_Hopping_UpsideDown                        ;A3AADE;
+    dw InstList_Dessgeega_Hopping_UpsideDown                             ;A3AAE0;
 
 HopFunctionPointers_Sidehopper:
     dw Function_Hopper_SmallHop                                          ;A3AAE2;
@@ -5788,45 +5788,45 @@ Spritemap_Sidehopper_5:
     db $FC                                                               ;A3AF82;
     dw $A10C                                                             ;A3AF83;
 
-Palette_Desgeega:
+Palette_Dessgeega:
     dw $3800,$72FA,$55B0,$2845,$1801,$6210,$496B,$38C6                   ;A3AF85;
     dw $2C63,$241F,$1C17,$142F,$0C47,$03E0,$02A0,$0140                   ;A3AF95;
 
-InstList_Desgeega_Hopping_UpsideUp:
+InstList_Dessgeega_Hopping_UpsideUp:
     dw Instruction_Common_EnableOffScreenProcessing                      ;A3AFA5;
     dw $0001                                                             ;A3AFA7;
-    dw Spritemap_Desgeega_2                                              ;A3AFA9;
+    dw Spritemap_Dessgeega_2                                             ;A3AFA9;
     dw Instruction_Common_Sleep                                          ;A3AFAB;
 
-InstList_Desgeega_Landed_UpsideUp:
+InstList_Dessgeega_Landed_UpsideUp:
     dw Instruction_Common_DisableOffScreenProcessing                     ;A3AFAD;
     dw $0002                                                             ;A3AFAF;
-    dw Spritemap_Desgeega_0                                              ;A3AFB1;
+    dw Spritemap_Dessgeega_0                                             ;A3AFB1;
     dw $0005                                                             ;A3AFB3;
-    dw Spritemap_Desgeega_1                                              ;A3AFB5;
+    dw Spritemap_Dessgeega_1                                             ;A3AFB5;
     dw $0002                                                             ;A3AFB7;
-    dw Spritemap_Desgeega_0                                              ;A3AFB9;
+    dw Spritemap_Dessgeega_0                                             ;A3AFB9;
     dw $0003                                                             ;A3AFBB;
-    dw Spritemap_Desgeega_1                                              ;A3AFBD;
+    dw Spritemap_Dessgeega_1                                             ;A3AFBD;
     dw Instruction_Hopper_ReadyToHop                                     ;A3AFBF;
     dw Instruction_Common_Sleep                                          ;A3AFC1;
 
-InstList_Desgeega_Hopping_UpsideDown:
+InstList_Dessgeega_Hopping_UpsideDown:
     dw Instruction_Common_EnableOffScreenProcessing                      ;A3AFC3;
     dw $0001                                                             ;A3AFC5;
-    dw Spritemap_Desgeega_5                                              ;A3AFC7;
+    dw Spritemap_Dessgeega_5                                             ;A3AFC7;
     dw Instruction_Common_Sleep                                          ;A3AFC9;
 
-InstList_Desgeega_Landed_UpsideDown:
+InstList_Dessgeega_Landed_UpsideDown:
     dw Instruction_Common_DisableOffScreenProcessing                     ;A3AFCB;
     dw $0002                                                             ;A3AFCD;
-    dw Spritemap_Desgeega_3                                              ;A3AFCF;
+    dw Spritemap_Dessgeega_3                                             ;A3AFCF;
     dw $0005                                                             ;A3AFD1;
-    dw Spritemap_Desgeega_4                                              ;A3AFD3;
+    dw Spritemap_Dessgeega_4                                             ;A3AFD3;
     dw $0002                                                             ;A3AFD5;
-    dw Spritemap_Desgeega_3                                              ;A3AFD7;
+    dw Spritemap_Dessgeega_3                                             ;A3AFD7;
     dw $0003                                                             ;A3AFD9;
-    dw Spritemap_Desgeega_4                                              ;A3AFDB;
+    dw Spritemap_Dessgeega_4                                             ;A3AFDB;
     dw Instruction_Hopper_ReadyToHop                                     ;A3AFDD;
     dw Instruction_Common_Sleep                                          ;A3AFDF;
 
@@ -5838,7 +5838,7 @@ RTL_A3AFE2:
     RTL                                                                  ;A3AFE2;
 
 
-Spritemap_Desgeega_0:
+Spritemap_Dessgeega_0:
     dw $0005,$81F8                                                       ;A3AFE3;
     db $F3                                                               ;A3AFE7;
     dw $2100,$8004                                                       ;A3AFE8;
@@ -5851,7 +5851,7 @@ Spritemap_Desgeega_0:
     db $FC                                                               ;A3AFFB;
     dw $2104                                                             ;A3AFFC;
 
-Spritemap_Desgeega_1:
+Spritemap_Dessgeega_1:
     dw $0005,$81F8                                                       ;A3AFFE;
     db $F5                                                               ;A3B002;
     dw $2102,$8004                                                       ;A3B003;
@@ -5864,7 +5864,7 @@ Spritemap_Desgeega_1:
     db $FC                                                               ;A3B016;
     dw $2108                                                             ;A3B017;
 
-Spritemap_Desgeega_2:
+Spritemap_Dessgeega_2:
     dw $0005,$81F8                                                       ;A3B019;
     db $EF                                                               ;A3B01D;
     dw $2100,$8004                                                       ;A3B01E;
@@ -5877,7 +5877,7 @@ Spritemap_Desgeega_2:
     db $F4                                                               ;A3B031;
     dw $210C                                                             ;A3B032;
 
-Spritemap_Desgeega_3:
+Spritemap_Dessgeega_3:
     dw $0005,$81F8                                                       ;A3B034;
     db $FD                                                               ;A3B038;
     dw $A100,$8004                                                       ;A3B039;
@@ -5890,7 +5890,7 @@ Spritemap_Desgeega_3:
     db $F4                                                               ;A3B04C;
     dw $A104                                                             ;A3B04D;
 
-Spritemap_Desgeega_4:
+Spritemap_Dessgeega_4:
     dw $0005,$81F8                                                       ;A3B04F;
     db $FB                                                               ;A3B053;
     dw $A102,$8004                                                       ;A3B054;
@@ -5903,7 +5903,7 @@ Spritemap_Desgeega_4:
     db $F4                                                               ;A3B067;
     dw $A108                                                             ;A3B068;
 
-Spritemap_Desgeega_5:
+Spritemap_Dessgeega_5:
     dw $0005,$81F8                                                       ;A3B06A;
     db $01                                                               ;A3B06E;
     dw $A100,$8004                                                       ;A3B06F;
@@ -6084,7 +6084,7 @@ Spritemap_SidehopperTourian_5:
     db $05                                                               ;A3B214;
     dw $A110                                                             ;A3B215;
 
-Palette_DesgeegaLarge:
+Palette_DessgeegaLarge:
     dw $3800,$72FA                                                       ;A3B217;
     db $B0                                                               ;A3B21B;
     dw $4555,$0128                                                       ;A3B21C;
@@ -6099,45 +6099,45 @@ Palette_DesgeegaLarge:
     db $02                                                               ;A3B234;
     dw $0140                                                             ;A3B235;
 
-InstList_DesgeegaLarge_Hopping_UpsideUp:
+InstList_DessgeegaLarge_Hopping_UpsideUp:
     dw Instruction_Common_EnableOffScreenProcessing                      ;A3B237;
     dw $0001                                                             ;A3B239;
-    dw Spritemap_DesgeegaLarge_2                                         ;A3B23B;
+    dw Spritemap_DessgeegaLarge_2                                        ;A3B23B;
     dw Instruction_CommonA3_Sleep                                        ;A3B23D;
 
-InstList_DesgeegaLarge_Landed_UpsideUp:
+InstList_DessgeegaLarge_Landed_UpsideUp:
     dw Instruction_Common_DisableOffScreenProcessing                     ;A3B23F;
     dw $0002                                                             ;A3B241;
-    dw Spritemap_DesgeegaLarge_0                                         ;A3B243;
+    dw Spritemap_DessgeegaLarge_0                                        ;A3B243;
     dw $0005                                                             ;A3B245;
-    dw Spritemap_DesgeegaLarge_1                                         ;A3B247;
+    dw Spritemap_DessgeegaLarge_1                                        ;A3B247;
     dw $0002                                                             ;A3B249;
-    dw Spritemap_DesgeegaLarge_0                                         ;A3B24B;
+    dw Spritemap_DessgeegaLarge_0                                        ;A3B24B;
     dw $0003                                                             ;A3B24D;
-    dw Spritemap_DesgeegaLarge_1                                         ;A3B24F;
+    dw Spritemap_DessgeegaLarge_1                                        ;A3B24F;
     dw Instruction_Hopper_ReadyToHop                                     ;A3B251;
     dw Instruction_Common_Sleep                                          ;A3B253;
 
-InstList_DesgeegaLarge_Hopping_UpsideDown:
+InstList_DessgeegaLarge_Hopping_UpsideDown:
     dw Instruction_Common_EnableOffScreenProcessing                      ;A3B255;
     dw $0001                                                             ;A3B257;
-    dw Spritemap_DesgeegaLarge_5                                         ;A3B259;
+    dw Spritemap_DessgeegaLarge_5                                        ;A3B259;
     dw Instruction_Common_Sleep                                          ;A3B25B;
 
-InstList_DesgeegaLarge_Landed_UpsideDown:
+InstList_DessgeegaLarge_Landed_UpsideDown:
     dw Instruction_Common_DisableOffScreenProcessing                     ;A3B25D;
     dw $0002                                                             ;A3B25F;
-    dw Spritemap_DesgeegaLarge_3                                         ;A3B261;
+    dw Spritemap_DessgeegaLarge_3                                        ;A3B261;
     dw $0005                                                             ;A3B263;
-    dw Spritemap_DesgeegaLarge_4                                         ;A3B265;
+    dw Spritemap_DessgeegaLarge_4                                        ;A3B265;
     dw $0002                                                             ;A3B267;
-    dw Spritemap_DesgeegaLarge_3                                         ;A3B269;
+    dw Spritemap_DessgeegaLarge_3                                        ;A3B269;
     dw $0003                                                             ;A3B26B;
-    dw Spritemap_DesgeegaLarge_4                                         ;A3B26D;
+    dw Spritemap_DessgeegaLarge_4                                        ;A3B26D;
     dw Instruction_Hopper_ReadyToHop                                     ;A3B26F;
     dw Instruction_Common_Sleep                                          ;A3B271;
 
-Spritemap_DesgeegaLarge_0:
+Spritemap_DessgeegaLarge_0:
     dw $0009,$C3F8                                                       ;A3B273;
     db $F5                                                               ;A3B277;
     dw $2100,$C3E5                                                       ;A3B278;
@@ -6158,7 +6158,7 @@ Spritemap_DesgeegaLarge_0:
     db $ED                                                               ;A3B29F;
     dw $210C                                                             ;A3B2A0;
 
-Spritemap_DesgeegaLarge_1:
+Spritemap_DessgeegaLarge_1:
     dw $0009,$C3F8                                                       ;A3B2A2;
     db $F6                                                               ;A3B2A6;
     dw $2102,$C20A                                                       ;A3B2A7;
@@ -6179,7 +6179,7 @@ Spritemap_DesgeegaLarge_1:
     db $EE                                                               ;A3B2CE;
     dw $210A                                                             ;A3B2CF;
 
-Spritemap_DesgeegaLarge_2:
+Spritemap_DessgeegaLarge_2:
     dw $000B,$C3F8                                                       ;A3B2D1;
     db $F0                                                               ;A3B2D5;
     dw $2100,$C20B                                                       ;A3B2D6;
@@ -6204,7 +6204,7 @@ Spritemap_DesgeegaLarge_2:
     db $04                                                               ;A3B307;
     dw $2108                                                             ;A3B308;
 
-Spritemap_DesgeegaLarge_3:
+Spritemap_DessgeegaLarge_3:
     dw $0009,$C3F8                                                       ;A3B30A;
     db $FB                                                               ;A3B30E;
     dw $A100,$C3E5                                                       ;A3B30F;
@@ -6225,7 +6225,7 @@ Spritemap_DesgeegaLarge_3:
     db $0B                                                               ;A3B336;
     dw $A10C                                                             ;A3B337;
 
-Spritemap_DesgeegaLarge_4:
+Spritemap_DessgeegaLarge_4:
     dw $0009,$C3F8                                                       ;A3B339;
     db $FA                                                               ;A3B33D;
     dw $A102,$C20A                                                       ;A3B33E;
@@ -6246,7 +6246,7 @@ Spritemap_DesgeegaLarge_4:
     db $0A                                                               ;A3B365;
     dw $A10A                                                             ;A3B366;
 
-Spritemap_DesgeegaLarge_5:
+Spritemap_DessgeegaLarge_5:
     dw $000B,$C3F8                                                       ;A3B368;
     db $04                                                               ;A3B36C;
     dw $A100,$C20B                                                       ;A3B36D;
