@@ -8716,9 +8716,9 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     SEP #$20                                                             ;8FC15B;
     PHA                                                                  ;8FC15D;
     LDA.W $07A5                                                          ;8FC15E;
-    STA.W $4202                                                          ;8FC161;
+    STA.W HW_WRMPYA                                                      ;8FC161;
     PLA                                                                  ;8FC164;
-    STA.W $4203                                                          ;8FC165;
+    STA.W HW_WRMPYB                                                      ;8FC165;
     REP #$20                                                             ;8FC168;
     LDA.B $12                                                            ;8FC16A;
     LSR A                                                                ;8FC16C;
@@ -8726,7 +8726,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     LSR A                                                                ;8FC16E;
     LSR A                                                                ;8FC16F;
     CLC                                                                  ;8FC170;
-    ADC.W $4216                                                          ;8FC171;
+    ADC.W HW_RDMPY                                                       ;8FC171;
     ASL A                                                                ;8FC174;
     TAX                                                                  ;8FC175;
     LDA.L $7F0002,X                                                      ;8FC176;

@@ -768,7 +768,7 @@ def dump_rom(rom_data, output_path):
     dump(0xAC_9800, 0x0400, "Tiles_Tripper.bin")
     dump(0xAC_9C00, 0x0E00, "Tiles_SporeSpawn.bin")
     dump(0xAC_AA00, 0x0C00, "Tiles_Phantoon.bin")
-    dump(0xAC_B600, 0x0400, "Tiles_Boyon.bin")
+    dump(0xAC_B600, 0x0400, "BoyonGfx.bin")
     dump(0xAC_BA00, 0x0400, "Tiles_Shutter.bin")
     dump(0xAC_BE00, 0x1200, "Tiles_Chozo.bin")
     dump(0xAC_D000, 0x0400, "Tiles_Stoke.bin")

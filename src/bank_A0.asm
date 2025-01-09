@@ -6149,16 +6149,16 @@ EightBitSineMultiplication_A0B0DA:
     LDA.W SineCosineTables_8bitSine,Y                                    ;A0B0E9;
     AND.W #$00FF                                                         ;A0B0EC;
     SEP #$20                                                             ;A0B0EF;
-    STA.W $4202                                                          ;A0B0F1;
+    STA.W HW_WRMPYA                                                      ;A0B0F1;
     LDA.W $0E32                                                          ;A0B0F4;
-    STA.W $4203                                                          ;A0B0F7;
+    STA.W HW_WRMPYB                                                      ;A0B0F7;
     NOP                                                                  ;A0B0FA;
     NOP                                                                  ;A0B0FB;
     NOP                                                                  ;A0B0FC;
     NOP                                                                  ;A0B0FD;
     NOP                                                                  ;A0B0FE;
     REP #$20                                                             ;A0B0FF;
-    LDA.W $4216                                                          ;A0B101;
+    LDA.W HW_RDMPY                                                       ;A0B101;
     XBA                                                                  ;A0B104;
     PHA                                                                  ;A0B105;
     AND.W #$00FF                                                         ;A0B106;
@@ -6413,47 +6413,47 @@ Multiplication_32bit_A0B6FF:
     REP #$20                                                             ;A0B702;
     SEP #$10                                                             ;A0B704;
     LDX.B $26                                                            ;A0B706;
-    STX.W $4202                                                          ;A0B708;
+    STX.W HW_WRMPYA                                                      ;A0B708;
     LDX.B $28                                                            ;A0B70B;
-    STX.W $4203                                                          ;A0B70D;
+    STX.W HW_WRMPYB                                                      ;A0B70D;
     NOP                                                                  ;A0B710;
     NOP                                                                  ;A0B711;
     NOP                                                                  ;A0B712;
-    LDA.W $4216                                                          ;A0B713;
+    LDA.W HW_RDMPY                                                       ;A0B713;
     STA.B $2A                                                            ;A0B716;
     LDX.B $27                                                            ;A0B718;
-    STX.W $4202                                                          ;A0B71A;
+    STX.W HW_WRMPYA                                                      ;A0B71A;
     LDX.B $29                                                            ;A0B71D;
-    STX.W $4203                                                          ;A0B71F;
+    STX.W HW_WRMPYB                                                      ;A0B71F;
     NOP                                                                  ;A0B722;
     NOP                                                                  ;A0B723;
     NOP                                                                  ;A0B724;
-    LDX.W $4216                                                          ;A0B725;
+    LDX.W HW_RDMPY                                                       ;A0B725;
     STX.B $2C                                                            ;A0B728;
     LDY.W $4217                                                          ;A0B72A;
     LDX.B $27                                                            ;A0B72D;
-    STX.W $4202                                                          ;A0B72F;
+    STX.W HW_WRMPYA                                                      ;A0B72F;
     LDX.B $28                                                            ;A0B732;
-    STX.W $4203                                                          ;A0B734;
+    STX.W HW_WRMPYB                                                      ;A0B734;
     NOP                                                                  ;A0B737;
     NOP                                                                  ;A0B738;
     LDA.B $2B                                                            ;A0B739;
     CLC                                                                  ;A0B73B;
-    ADC.W $4216                                                          ;A0B73C;
+    ADC.W HW_RDMPY                                                       ;A0B73C;
     STA.B $2B                                                            ;A0B73F;
     BCC .carryClear                                                      ;A0B741;
     INY                                                                  ;A0B743;
 
 .carryClear:
     LDX.B $26                                                            ;A0B744;
-    STX.W $4202                                                          ;A0B746;
+    STX.W HW_WRMPYA                                                      ;A0B746;
     LDX.B $29                                                            ;A0B749;
-    STX.W $4203                                                          ;A0B74B;
+    STX.W HW_WRMPYB                                                      ;A0B74B;
     NOP                                                                  ;A0B74E;
     NOP                                                                  ;A0B74F;
     LDA.B $2B                                                            ;A0B750;
     CLC                                                                  ;A0B752;
-    ADC.W $4216                                                          ;A0B753;
+    ADC.W HW_RDMPY                                                       ;A0B753;
     STA.B $2B                                                            ;A0B756;
     BCC .carryClearAgain                                                 ;A0B758;
     INY                                                                  ;A0B75A;
@@ -6944,9 +6944,9 @@ CalculateTheBlockContainingAPixelPosition:
     LSR A                                                                ;A0BB74;
     LSR A                                                                ;A0BB75;
     SEP #$20                                                             ;A0BB76;
-    STA.W $4202                                                          ;A0BB78;
+    STA.W HW_WRMPYA                                                      ;A0BB78;
     LDA.W $07A5                                                          ;A0BB7B;
-    STA.W $4203                                                          ;A0BB7E;
+    STA.W HW_WRMPYB                                                      ;A0BB7E;
     REP #$20                                                             ;A0BB81;
     LDA.B $06,S                                                          ;A0BB83;
     LSR A                                                                ;A0BB85;
@@ -6954,7 +6954,7 @@ CalculateTheBlockContainingAPixelPosition:
     LSR A                                                                ;A0BB87;
     LSR A                                                                ;A0BB88;
     CLC                                                                  ;A0BB89;
-    ADC.W $4216                                                          ;A0BB8A;
+    ADC.W HW_RDMPY                                                       ;A0BB8A;
     STA.W $0DC4                                                          ;A0BB8D;
     LDA.B $02,S                                                          ;A0BB90;
     STA.B $06,S                                                          ;A0BB92;
@@ -7025,9 +7025,9 @@ CheckForHorizontalSolidBlockCollision:
     LSR A                                                                ;A0BBEF;
     LSR A                                                                ;A0BBF0;
     SEP #$20                                                             ;A0BBF1;
-    STA.W $4202                                                          ;A0BBF3;
+    STA.W HW_WRMPYA                                                      ;A0BBF3;
     LDA.W $07A5                                                          ;A0BBF6;
-    STA.W $4203                                                          ;A0BBF9;
+    STA.W HW_WRMPYB                                                      ;A0BBF9;
     REP #$20                                                             ;A0BBFC;
     LDA.W $0F7C,X                                                        ;A0BBFE;
     CLC                                                                  ;A0BC01;
@@ -7054,7 +7054,7 @@ CheckForHorizontalSolidBlockCollision:
     LSR A                                                                ;A0BC20;
     LSR A                                                                ;A0BC21;
     CLC                                                                  ;A0BC22;
-    ADC.W $4216                                                          ;A0BC23;
+    ADC.W HW_RDMPY                                                       ;A0BC23;
     ASL A                                                                ;A0BC26;
     TAX                                                                  ;A0BC27;
 
@@ -7159,9 +7159,9 @@ CheckForVerticalSolidBlockCollision:
     LSR A                                                                ;A0BCBF;
     LSR A                                                                ;A0BCC0;
     SEP #$20                                                             ;A0BCC1;
-    STA.W $4202                                                          ;A0BCC3;
+    STA.W HW_WRMPYA                                                      ;A0BCC3;
     LDA.W $07A5                                                          ;A0BCC6;
-    STA.W $4203                                                          ;A0BCC9;
+    STA.W HW_WRMPYB                                                      ;A0BCC9;
     REP #$20                                                             ;A0BCCC;
     LDA.W $0F7A,X                                                        ;A0BCCE;
     SEC                                                                  ;A0BCD1;
@@ -7171,7 +7171,7 @@ CheckForVerticalSolidBlockCollision:
     LSR A                                                                ;A0BCD7;
     LSR A                                                                ;A0BCD8;
     CLC                                                                  ;A0BCD9;
-    ADC.W $4216                                                          ;A0BCDA;
+    ADC.W HW_RDMPY                                                       ;A0BCDA;
     ASL A                                                                ;A0BCDD;
     TAX                                                                  ;A0BCDE;
 
@@ -7258,9 +7258,9 @@ UNUSED_MoveEnemyRight_NoBlockCollisionReactions_A0BD26:
     LSR A                                                                ;A0BD58;
     LSR A                                                                ;A0BD59;
     SEP #$20                                                             ;A0BD5A;
-    STA.W $4202                                                          ;A0BD5C;
+    STA.W HW_WRMPYA                                                      ;A0BD5C;
     LDA.W $07A5                                                          ;A0BD5F;
-    STA.W $4203                                                          ;A0BD62;
+    STA.W HW_WRMPYB                                                      ;A0BD62;
     REP #$20                                                             ;A0BD65;
     LDA.B $1C                                                            ;A0BD67;
     LSR A                                                                ;A0BD69;
@@ -7295,7 +7295,7 @@ UNUSED_MoveEnemyRight_NoBlockCollisionReactions_A0BD26:
     LSR A                                                                ;A0BD99;
     LSR A                                                                ;A0BD9A;
     CLC                                                                  ;A0BD9B;
-    ADC.W $4216                                                          ;A0BD9C;
+    ADC.W HW_RDMPY                                                       ;A0BD9C;
     ASL A                                                                ;A0BD9F;
     TAX                                                                  ;A0BDA0;
 
@@ -7415,9 +7415,9 @@ UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6:
     LSR A                                                                ;A0BE51;
     LSR A                                                                ;A0BE52;
     SEP #$20                                                             ;A0BE53;
-    STA.W $4202                                                          ;A0BE55;
+    STA.W HW_WRMPYA                                                      ;A0BE55;
     LDA.W $07A5                                                          ;A0BE58;
-    STA.W $4203                                                          ;A0BE5B;
+    STA.W HW_WRMPYB                                                      ;A0BE5B;
     REP #$20                                                             ;A0BE5E;
     LDA.W $0F7A,X                                                        ;A0BE60;
     SEC                                                                  ;A0BE63;
@@ -7427,7 +7427,7 @@ UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6:
     LSR A                                                                ;A0BE69;
     LSR A                                                                ;A0BE6A;
     CLC                                                                  ;A0BE6B;
-    ADC.W $4216                                                          ;A0BE6C;
+    ADC.W HW_RDMPY                                                       ;A0BE6C;
     ASL A                                                                ;A0BE6F;
     TAX                                                                  ;A0BE70;
 
@@ -7519,9 +7519,9 @@ UNUSED_CheckForHorizontalSolidBlockCollision_A0BEBF:
     LSR A                                                                ;A0BEF1;
     LSR A                                                                ;A0BEF2;
     SEP #$20                                                             ;A0BEF3;
-    STA.W $4202                                                          ;A0BEF5;
+    STA.W HW_WRMPYA                                                      ;A0BEF5;
     LDA.W $07A5                                                          ;A0BEF8;
-    STA.W $4203                                                          ;A0BEFB;
+    STA.W HW_WRMPYB                                                      ;A0BEFB;
     REP #$20                                                             ;A0BEFE;
     LDA.B $1C                                                            ;A0BF00;
     LSR A                                                                ;A0BF02;
@@ -7556,7 +7556,7 @@ UNUSED_CheckForHorizontalSolidBlockCollision_A0BEBF:
     LSR A                                                                ;A0BF32;
     LSR A                                                                ;A0BF33;
     CLC                                                                  ;A0BF34;
-    ADC.W $4216                                                          ;A0BF35;
+    ADC.W HW_RDMPY                                                       ;A0BF35;
     ASL A                                                                ;A0BF38;
     TAX                                                                  ;A0BF39;
 
@@ -7671,9 +7671,9 @@ CheckForVerticalSolidBlockCollision_SkreeMetaree:
     LSR A                                                                ;A0BFE5;
     LSR A                                                                ;A0BFE6;
     SEP #$20                                                             ;A0BFE7;
-    STA.W $4202                                                          ;A0BFE9;
+    STA.W HW_WRMPYA                                                      ;A0BFE9;
     LDA.W $07A5                                                          ;A0BFEC;
-    STA.W $4203                                                          ;A0BFEF;
+    STA.W HW_WRMPYB                                                      ;A0BFEF;
     REP #$20                                                             ;A0BFF2;
     LDA.W $0F7A,X                                                        ;A0BFF4;
     SEC                                                                  ;A0BFF7;
@@ -7683,7 +7683,7 @@ CheckForVerticalSolidBlockCollision_SkreeMetaree:
     LSR A                                                                ;A0BFFD;
     LSR A                                                                ;A0BFFE;
     CLC                                                                  ;A0BFFF;
-    ADC.W $4216                                                          ;A0C000;
+    ADC.W HW_RDMPY                                                       ;A0C000;
     ASL A                                                                ;A0C003;
     TAX                                                                  ;A0C004;
 
@@ -8468,7 +8468,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_NonSquare:
     LSR A                                                                ;A0C53D;
     LSR A                                                                ;A0C53E;
     LSR A                                                                ;A0C53F;
-    CMP.W $4216                                                          ;A0C540;
+    CMP.W HW_RDMPY                                                       ;A0C540;
     BEQ +                                                                ;A0C543;
     CLC                                                                  ;A0C545;
     RTS                                                                  ;A0C546;
@@ -8537,7 +8537,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_NonSquare:
     LSR A                                                                ;A0C5B2;
     LSR A                                                                ;A0C5B3;
     LSR A                                                                ;A0C5B4;
-    CMP.W $4216                                                          ;A0C5B5;
+    CMP.W HW_RDMPY                                                       ;A0C5B5;
     BEQ +                                                                ;A0C5B8;
     CLC                                                                  ;A0C5BA;
     RTS                                                                  ;A0C5BB;
@@ -8730,9 +8730,9 @@ MoveEnemyRightBy_14_12_Common:
     LSR A                                                                ;A0C6DE;
     LSR A                                                                ;A0C6DF;
     SEP #$20                                                             ;A0C6E0;
-    STA.W $4202                                                          ;A0C6E2;
+    STA.W HW_WRMPYA                                                      ;A0C6E2;
     LDA.W $07A5                                                          ;A0C6E5;
-    STA.W $4203                                                          ;A0C6E8;
+    STA.W HW_WRMPYB                                                      ;A0C6E8;
     REP #$20                                                             ;A0C6EB;
     LDA.W $0F7C,X                                                        ;A0C6ED;
     CLC                                                                  ;A0C6F0;
@@ -8759,7 +8759,7 @@ MoveEnemyRightBy_14_12_Common:
     LSR A                                                                ;A0C70F;
     LSR A                                                                ;A0C710;
     CLC                                                                  ;A0C711;
-    ADC.W $4216                                                          ;A0C712;
+    ADC.W HW_RDMPY                                                       ;A0C712;
     ASL A                                                                ;A0C715;
     TAX                                                                  ;A0C716;
 
@@ -8892,9 +8892,9 @@ MoveEnemyDownBy_14_12_BranchEntry:
     LSR A                                                                ;A0C7D2;
     LSR A                                                                ;A0C7D3;
     SEP #$20                                                             ;A0C7D4;
-    STA.W $4202                                                          ;A0C7D6;
+    STA.W HW_WRMPYA                                                      ;A0C7D6;
     LDA.W $07A5                                                          ;A0C7D9;
-    STA.W $4203                                                          ;A0C7DC;
+    STA.W HW_WRMPYB                                                      ;A0C7DC;
     REP #$20                                                             ;A0C7DF;
     LDA.W $0F7A,X                                                        ;A0C7E1;
     SEC                                                                  ;A0C7E4;
@@ -8904,7 +8904,7 @@ MoveEnemyDownBy_14_12_BranchEntry:
     LSR A                                                                ;A0C7EA;
     LSR A                                                                ;A0C7EB;
     CLC                                                                  ;A0C7EC;
-    ADC.W $4216                                                          ;A0C7ED;
+    ADC.W HW_RDMPY                                                       ;A0C7ED;
     ASL A                                                                ;A0C7F0;
     TAX                                                                  ;A0C7F1;
 
@@ -9267,7 +9267,7 @@ EnemyHeaders:
     dw $0400                                                             ;A0CEBF;
 
   .palette:
-    dw Palette_Boyon                                                     ;A0CEC1;
+    dw BoyonPal                                                          ;A0CEC1;
 
   .health:
     dw $03E8                                                             ;A0CEC3;
@@ -9294,7 +9294,7 @@ EnemyHeaders:
     dw $0000                                                             ;A0CECF;
 
   .initAI:
-    dw InitAI_Boyon                                                      ;A0CED1;
+    dw BoyonInit                                                         ;A0CED1;
 
   .numberOfParts:
     dw $0001                                                             ;A0CED3;
@@ -9303,7 +9303,7 @@ EnemyHeaders:
     dw $0000                                                             ;A0CED5;
 
   .mainAI:
-    dw MainAI_Boyon                                                      ;A0CED7;
+    dw BoyonMain                                                         ;A0CED7;
 
   .grappleAI:
     dw CommonA2_GrappleAI_CancelGrappleBeam                              ;A0CED9;
@@ -9342,7 +9342,7 @@ EnemyHeaders:
     dw $0000                                                             ;A0CEF3;
 
   .tileData:
-    dl Tiles_Boyon                                                       ;A0CEF5;
+    dl BoyonGfx                                                          ;A0CEF5;
 
   .layer:
     db $05                                                               ;A0CEF8;

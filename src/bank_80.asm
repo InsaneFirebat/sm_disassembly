@@ -192,21 +192,21 @@ IncY_OverflowCheck_overflow:
 GenerateRandomNumber:
     SEP #$20                                                             ;808111;
     LDA.W $05E5                                                          ;808113;
-    STA.W $4202                                                          ;808116;
+    STA.W HW_WRMPYA                                                      ;808116;
     LDA.B #$05                                                           ;808119;
-    STA.W $4203                                                          ;80811B;
+    STA.W HW_WRMPYB                                                      ;80811B;
     NOP                                                                  ;80811E; A = [random number low] * 5
     REP #$20                                                             ;80811F;
-    LDA.W $4216                                                          ;808121; A += ([random number high] * 5 + 1) * 100h
+    LDA.W HW_RDMPY                                                       ;808121; A += ([random number high] * 5 + 1) * 100h
     PHA                                                                  ;808124;
     SEP #$20                                                             ;808125;
     LDA.W $05E6                                                          ;808127;
-    STA.W $4202                                                          ;80812A;
+    STA.W HW_WRMPYA                                                      ;80812A;
     LDA.B #$05                                                           ;80812D;
-    STA.W $4203                                                          ;80812F;
+    STA.W HW_WRMPYB                                                      ;80812F;
     XBA                                                                  ;808132;
     NOP                                                                  ;808133;
-    LDA.W $4216                                                          ;808134; A += ([random number high] * 5 + 1) * 100h
+    LDA.W HW_RDMPY                                                       ;808134; A += ([random number high] * 5 + 1) * 100h
     SEC                                                                  ;808137;
     ADC.B $02,S                                                          ;808138;
     STA.B $02,S                                                          ;80813A;
@@ -486,37 +486,37 @@ A_Y_16bit_UnsignedMultiplication:
     STZ.W $05F3                                                          ;8082E0; Result = 0
     SEP #$10                                                             ;8082E3;
     LDY.W $05EB                                                          ;8082E5;
-    STY.W $4202                                                          ;8082E8;
+    STY.W HW_WRMPYA                                                      ;8082E8;
     LDY.W $05E9                                                          ;8082EB;
-    STY.W $4203                                                          ;8082EE;
+    STY.W HW_WRMPYB                                                      ;8082EE;
     NOP                                                                  ;8082F1; Result = ac
     NOP                                                                  ;8082F2;
     NOP                                                                  ;8082F3;
-    LDA.W $4216                                                          ;8082F4;
+    LDA.W HW_RDMPY                                                       ;8082F4;
     STA.W $05F1                                                          ;8082F7;
     LDY.W $05EA                                                          ;8082FA;
-    STY.W $4203                                                          ;8082FD;
+    STY.W HW_WRMPYB                                                      ;8082FD;
     NOP                                                                  ;808300;
     LDA.W $05F2                                                          ;808301; Result += bc * 100h
     CLC                                                                  ;808304;
-    ADC.W $4216                                                          ;808305;
+    ADC.W HW_RDMPY                                                       ;808305;
     STA.W $05F2                                                          ;808308;
     LDY.W $05EC                                                          ;80830B;
-    STY.W $4202                                                          ;80830E;
+    STY.W HW_WRMPYA                                                      ;80830E;
     LDY.W $05E9                                                          ;808311;
-    STY.W $4203                                                          ;808314;
+    STY.W HW_WRMPYB                                                      ;808314;
     NOP                                                                  ;808317; Result += ad * 100h
     LDA.W $05F2                                                          ;808318;
     CLC                                                                  ;80831B;
-    ADC.W $4216                                                          ;80831C;
+    ADC.W HW_RDMPY                                                       ;80831C;
     STA.W $05F2                                                          ;80831F;
     LDY.W $05EA                                                          ;808322;
-    STY.W $4203                                                          ;808325;
+    STY.W HW_WRMPYB                                                      ;808325;
     NOP                                                                  ;808328;
     NOP                                                                  ;808329;
     LDA.W $05F3                                                          ;80832A; Result += bd * 10000h
     CLC                                                                  ;80832D;
-    ADC.W $4216                                                          ;80832E;
+    ADC.W HW_RDMPY                                                       ;80832E;
     STA.W $05F3                                                          ;808331;
     REP #$30                                                             ;808334;
     PLX                                                                  ;808336;
@@ -1141,8 +1141,8 @@ Initialise_CPU_IO_Registers:
     STA.W $4200                                                          ;80875F; Enable auto-joypad read
     STA.B $84                                                            ;808762;
     STZ.W $4201                                                          ;808764; Joypad programmable IO port = 0
-    STZ.W $4202                                                          ;808767;
-    STZ.W $4203                                                          ;80876A; Multiplication operands = 0
+    STZ.W HW_WRMPYA                                                      ;808767;
+    STZ.W HW_WRMPYB                                                      ;80876A; Multiplication operands = 0
     STZ.W $4204                                                          ;80876D;
     STZ.W $4205                                                          ;808770; Division operands = 0 (causes harmless division by zero)
     STZ.W $4206                                                          ;808773;
@@ -3767,7 +3767,7 @@ HandleHUDTilemap_PausedAndRunning:
     REP #$20                                                             ;809BA7;
     LDA.W $4214                                                          ;809BA9;
     STA.B $14                                                            ;809BAC;
-    LDA.W $4216                                                          ;809BAE;
+    LDA.W HW_RDMPY                                                       ;809BAE;
     STA.B $12                                                            ;809BB1;
     LDA.W $09C4                                                          ;809BB3;
     STA.W $4204                                                          ;809BB6;
@@ -3999,7 +3999,7 @@ DrawThreeHUDDigits:
     STA.L $7EC608,X                                                      ;809D8F;
     INX                                                                  ;809D93;
     INX                                                                  ;809D94;
-    LDA.W $4216                                                          ;809D95;
+    LDA.W HW_RDMPY                                                       ;809D95;
 
 DrawTwoHUDDigits:
     STA.W $4204                                                          ;809D98;
@@ -4016,7 +4016,7 @@ DrawTwoHUDDigits:
     TAY                                                                  ;809DAC;
     LDA.B [$00],Y                                                        ;809DAD;
     STA.L $7EC608,X                                                      ;809DAF;
-    LDA.W $4216                                                          ;809DB3;
+    LDA.W HW_RDMPY                                                       ;809DB3;
     ASL A                                                                ;809DB6;
     TAY                                                                  ;809DB7;
     LDA.B [$00],Y                                                        ;809DB8;
@@ -4626,20 +4626,20 @@ CalculateLayer2XPosition:
     CMP.B #$01                                                           ;80A304;
     BEQ .return                                                          ;80A306;
     AND.B #$FE                                                           ;80A308;
-    STA.W $4202                                                          ;80A30A;
+    STA.W HW_WRMPYA                                                      ;80A30A;
     LDA.W $0911                                                          ;80A30D;
-    STA.W $4203                                                          ;80A310;
+    STA.W HW_WRMPYB                                                      ;80A310;
     STZ.W $0934                                                          ;80A313;
     PHA                                                                  ;80A316;
     PLA                                                                  ;80A317;
     LDA.W $4217                                                          ;80A318;
     STA.W $0933                                                          ;80A31B;
     LDA.W $0912                                                          ;80A31E;
-    STA.W $4203                                                          ;80A321;
+    STA.W HW_WRMPYB                                                      ;80A321;
     REP #$20                                                             ;80A324;
     LDA.W $0933                                                          ;80A326;
     CLC                                                                  ;80A329;
-    ADC.W $4216                                                          ;80A32A;
+    ADC.W HW_RDMPY                                                       ;80A32A;
     TAY                                                                  ;80A32D;
 
 .scrollReturn:
@@ -4666,20 +4666,20 @@ CalculateLayer2YPosition:
     CMP.B #$01                                                           ;80A345;
     BEQ .return                                                          ;80A347;
     AND.B #$FE                                                           ;80A349;
-    STA.W $4202                                                          ;80A34B;
+    STA.W HW_WRMPYA                                                      ;80A34B;
     LDA.W $0915                                                          ;80A34E;
-    STA.W $4203                                                          ;80A351;
+    STA.W HW_WRMPYB                                                      ;80A351;
     STZ.W $0934                                                          ;80A354;
     PHA                                                                  ;80A357;
     PLA                                                                  ;80A358;
     LDA.W $4217                                                          ;80A359;
     STA.W $0933                                                          ;80A35C;
     LDA.W $0916                                                          ;80A35F;
-    STA.W $4203                                                          ;80A362;
+    STA.W HW_WRMPYB                                                      ;80A362;
     REP #$20                                                             ;80A365;
     LDA.W $0933                                                          ;80A367;
     CLC                                                                  ;80A36A;
-    ADC.W $4216                                                          ;80A36B;
+    ADC.W HW_RDMPY                                                       ;80A36B;
     TAY                                                                  ;80A36E;
 
 .scrollReturn:
@@ -4968,14 +4968,14 @@ HandleScrollZones_HorizontalAutoscrolling:
     ADC.W #$0080                                                         ;80A559;
     XBA                                                                  ;80A55C;
     SEP #$20                                                             ;80A55D;
-    STA.W $4202                                                          ;80A55F;
+    STA.W HW_WRMPYA                                                      ;80A55F;
     LDA.W $07A9                                                          ;80A562;
-    STA.W $4203                                                          ;80A565;
+    STA.W HW_WRMPYB                                                      ;80A565;
     REP #$20                                                             ;80A568;
     LDA.W $0912                                                          ;80A56A;
     AND.W #$00FF                                                         ;80A56D;
     CLC                                                                  ;80A570;
-    ADC.W $4216                                                          ;80A571;
+    ADC.W HW_RDMPY                                                       ;80A571;
     TAX                                                                  ;80A574;
     LDA.L $7ECD20,X                                                      ;80A575;
     AND.W #$00FF                                                         ;80A579;
@@ -4997,15 +4997,15 @@ HandleScrollZones_HorizontalAutoscrolling:
     ADC.W #$0080                                                         ;80A5A1;
     XBA                                                                  ;80A5A4;
     SEP #$20                                                             ;80A5A5;
-    STA.W $4202                                                          ;80A5A7;
+    STA.W HW_WRMPYA                                                      ;80A5A7;
     LDA.W $07A9                                                          ;80A5AA;
-    STA.W $4203                                                          ;80A5AD;
+    STA.W HW_WRMPYB                                                      ;80A5AD;
     REP #$20                                                             ;80A5B0;
     LDA.W $093A                                                          ;80A5B2;
     INC A                                                                ;80A5B5;
     AND.W #$00FF                                                         ;80A5B6;
     CLC                                                                  ;80A5B9;
-    ADC.W $4216                                                          ;80A5BA;
+    ADC.W HW_RDMPY                                                       ;80A5BA;
     TAX                                                                  ;80A5BD;
     LDA.L $7ECD20,X                                                      ;80A5BE;
     AND.W #$00FF                                                         ;80A5C2;
@@ -5045,14 +5045,14 @@ HandleScrollZones_HorizontalAutoscrolling:
     ADC.W #$0080                                                         ;80A602;
     XBA                                                                  ;80A605;
     SEP #$20                                                             ;80A606;
-    STA.W $4202                                                          ;80A608;
+    STA.W HW_WRMPYA                                                      ;80A608;
     LDA.W $07A9                                                          ;80A60B;
-    STA.W $4203                                                          ;80A60E;
+    STA.W HW_WRMPYB                                                      ;80A60E;
     REP #$20                                                             ;80A611;
     LDA.W $093A                                                          ;80A613;
     AND.W #$00FF                                                         ;80A616;
     CLC                                                                  ;80A619;
-    ADC.W $4216                                                          ;80A61A;
+    ADC.W HW_RDMPY                                                       ;80A61A;
     TAX                                                                  ;80A61D;
     LDA.L $7ECD20,X                                                      ;80A61E;
     AND.W #$00FF                                                         ;80A622;
@@ -5111,14 +5111,14 @@ HandleScrollZones_ScrollingRight:
     ADC.W #$0080                                                         ;80A675;
     XBA                                                                  ;80A678;
     SEP #$20                                                             ;80A679;
-    STA.W $4202                                                          ;80A67B;
+    STA.W HW_WRMPYA                                                      ;80A67B;
     LDA.W $07A9                                                          ;80A67E;
-    STA.W $4203                                                          ;80A681;
+    STA.W HW_WRMPYB                                                      ;80A681;
     REP #$20                                                             ;80A684;
     LDA.W $0912                                                          ;80A686;
     AND.W #$00FF                                                         ;80A689;
     SEC                                                                  ;80A68C;
-    ADC.W $4216                                                          ;80A68D;
+    ADC.W HW_RDMPY                                                       ;80A68D;
     TAX                                                                  ;80A690;
     LDA.L $7ECD20,X                                                      ;80A691;
     AND.W #$00FF                                                         ;80A695;
@@ -5169,14 +5169,14 @@ HandleScrollZones_ScrollingLeft:
     ADC.W #$0080                                                         ;80A6E7;
     XBA                                                                  ;80A6EA;
     SEP #$20                                                             ;80A6EB;
-    STA.W $4202                                                          ;80A6ED;
+    STA.W HW_WRMPYA                                                      ;80A6ED;
     LDA.W $07A9                                                          ;80A6F0;
-    STA.W $4203                                                          ;80A6F3;
+    STA.W HW_WRMPYB                                                      ;80A6F3;
     REP #$20                                                             ;80A6F6;
     LDA.W $0912                                                          ;80A6F8;
     AND.W #$00FF                                                         ;80A6FB;
     CLC                                                                  ;80A6FE;
-    ADC.W $4216                                                          ;80A6FF;
+    ADC.W HW_RDMPY                                                       ;80A6FF;
     TAX                                                                  ;80A702;
     LDA.L $7ECD20,X                                                      ;80A703;
     AND.W #$00FF                                                         ;80A707;
@@ -5219,9 +5219,9 @@ HandleScrollZones_VerticalAutoscrolling:
     LDY.W #$0000                                                         ;80A746;
     SEP #$20                                                             ;80A749;
     LDA.W $0916                                                          ;80A74B;
-    STA.W $4202                                                          ;80A74E;
+    STA.W HW_WRMPYA                                                      ;80A74E;
     LDA.W $07A9                                                          ;80A751;
-    STA.W $4203                                                          ;80A754;
+    STA.W HW_WRMPYB                                                      ;80A754;
     REP #$20                                                             ;80A757;
     LDA.W $0911                                                          ;80A759;
     CLC                                                                  ;80A75C;
@@ -5229,7 +5229,7 @@ HandleScrollZones_VerticalAutoscrolling:
     XBA                                                                  ;80A760;
     AND.W #$00FF                                                         ;80A761;
     CLC                                                                  ;80A764;
-    ADC.W $4216                                                          ;80A765;
+    ADC.W HW_RDMPY                                                       ;80A765;
     STA.B $14                                                            ;80A768;
     TAX                                                                  ;80A76A;
     LDA.L $7ECD20,X                                                      ;80A76B;
@@ -5255,9 +5255,9 @@ HandleScrollZones_VerticalAutoscrolling:
 
   + SEP #$20                                                             ;80A799;
     LDA.W $0916                                                          ;80A79B;
-    STA.W $4202                                                          ;80A79E;
+    STA.W HW_WRMPYA                                                      ;80A79E;
     LDA.W $07A9                                                          ;80A7A1;
-    STA.W $4203                                                          ;80A7A4;
+    STA.W HW_WRMPYB                                                      ;80A7A4;
     REP #$20                                                             ;80A7A7;
     LDA.W $0911                                                          ;80A7A9;
     CLC                                                                  ;80A7AC;
@@ -5265,7 +5265,7 @@ HandleScrollZones_VerticalAutoscrolling:
     XBA                                                                  ;80A7B0;
     AND.W #$00FF                                                         ;80A7B1;
     CLC                                                                  ;80A7B4;
-    ADC.W $4216                                                          ;80A7B5;
+    ADC.W HW_RDMPY                                                       ;80A7B5;
     TAX                                                                  ;80A7B8;
     LDA.L $7ECD20,X                                                      ;80A7B9;
     AND.W #$00FF                                                         ;80A7BD;
@@ -5285,9 +5285,9 @@ HandleScrollZones_VerticalAutoscrolling:
     SEP #$20                                                             ;80A7E1;
     LDA.W $093A                                                          ;80A7E3;
     INC A                                                                ;80A7E6;
-    STA.W $4202                                                          ;80A7E7;
+    STA.W HW_WRMPYA                                                      ;80A7E7;
     LDA.W $07A9                                                          ;80A7EA;
-    STA.W $4203                                                          ;80A7ED;
+    STA.W HW_WRMPYB                                                      ;80A7ED;
     REP #$20                                                             ;80A7F0;
     LDA.W $0911                                                          ;80A7F2;
     CLC                                                                  ;80A7F5;
@@ -5295,7 +5295,7 @@ HandleScrollZones_VerticalAutoscrolling:
     XBA                                                                  ;80A7F9;
     AND.W #$00FF                                                         ;80A7FA;
     CLC                                                                  ;80A7FD;
-    ADC.W $4216                                                          ;80A7FE;
+    ADC.W HW_RDMPY                                                       ;80A7FE;
     TAX                                                                  ;80A801;
     LDA.L $7ECD20,X                                                      ;80A802;
     AND.W #$00FF                                                         ;80A806;
@@ -5338,9 +5338,9 @@ HandleScrollZones_VerticalAutoscrolling:
     STA.W $0939                                                          ;80A84D;
     SEP #$20                                                             ;80A850;
     LDA.W $093A                                                          ;80A852;
-    STA.W $4202                                                          ;80A855;
+    STA.W HW_WRMPYA                                                      ;80A855;
     LDA.W $07A9                                                          ;80A858;
-    STA.W $4203                                                          ;80A85B;
+    STA.W HW_WRMPYB                                                      ;80A85B;
     REP #$20                                                             ;80A85E;
     LDA.W $0911                                                          ;80A860;
     CLC                                                                  ;80A863;
@@ -5348,7 +5348,7 @@ HandleScrollZones_VerticalAutoscrolling:
     XBA                                                                  ;80A867;
     AND.W #$00FF                                                         ;80A868;
     CLC                                                                  ;80A86B;
-    ADC.W $4216                                                          ;80A86C;
+    ADC.W HW_RDMPY                                                       ;80A86C;
     TAX                                                                  ;80A86F;
     LDA.L $7ECD20,X                                                      ;80A870;
     AND.W #$00FF                                                         ;80A874;
@@ -5390,9 +5390,9 @@ HandleScrollZones_ScrollingDown:
     LDY.W #$0000                                                         ;80A8A3;
     SEP #$20                                                             ;80A8A6;
     LDA.W $0916                                                          ;80A8A8;
-    STA.W $4202                                                          ;80A8AB;
+    STA.W HW_WRMPYA                                                      ;80A8AB;
     LDA.W $07A9                                                          ;80A8AE;
-    STA.W $4203                                                          ;80A8B1;
+    STA.W HW_WRMPYB                                                      ;80A8B1;
     REP #$20                                                             ;80A8B4;
     LDA.W $0911                                                          ;80A8B6;
     CLC                                                                  ;80A8B9;
@@ -5400,7 +5400,7 @@ HandleScrollZones_ScrollingDown:
     XBA                                                                  ;80A8BD;
     AND.W #$00FF                                                         ;80A8BE;
     CLC                                                                  ;80A8C1;
-    ADC.W $4216                                                          ;80A8C2;
+    ADC.W HW_RDMPY                                                       ;80A8C2;
     STA.B $14                                                            ;80A8C5;
     TAX                                                                  ;80A8C7;
     LDA.L $7ECD20,X                                                      ;80A8C8;
@@ -5481,9 +5481,9 @@ HandleScrollZones_ScrollingUp:
 
   + SEP #$20                                                             ;80A95E;
     LDA.W $0916                                                          ;80A960;
-    STA.W $4202                                                          ;80A963;
+    STA.W HW_WRMPYA                                                      ;80A963;
     LDA.W $07A9                                                          ;80A966;
-    STA.W $4203                                                          ;80A969;
+    STA.W HW_WRMPYB                                                      ;80A969;
     REP #$20                                                             ;80A96C;
     LDA.W $0911                                                          ;80A96E;
     CLC                                                                  ;80A971;
@@ -5491,7 +5491,7 @@ HandleScrollZones_ScrollingUp:
     XBA                                                                  ;80A975;
     AND.W #$00FF                                                         ;80A976;
     CLC                                                                  ;80A979;
-    ADC.W $4216                                                          ;80A97A;
+    ADC.W HW_RDMPY                                                       ;80A97A;
     TAX                                                                  ;80A97D;
     LDA.L $7ECD20,X                                                      ;80A97E;
     AND.W #$00FF                                                         ;80A982;
@@ -5557,14 +5557,14 @@ UpdateLevelBackgroundDataColumn:
   + PHP                                                                  ;80A9E4;
     SEP #$20                                                             ;80A9E5;
     LDA.W $07A5                                                          ;80A9E7;
-    STA.W $4202                                                          ;80A9EA;
+    STA.W HW_WRMPYA                                                      ;80A9EA;
     LDA.W $0992                                                          ;80A9ED;
-    STA.W $4203                                                          ;80A9F0;
+    STA.W HW_WRMPYB                                                      ;80A9F0;
     PHB                                                                  ;80A9F3;
     REP #$30                                                             ;80A9F4;
     LDA.W $0990                                                          ;80A9F6;
     CLC                                                                  ;80A9F9;
-    ADC.W $4216                                                          ;80A9FA;
+    ADC.W HW_RDMPY                                                       ;80A9FA;
     ASL A                                                                ;80A9FD;
     CLC                                                                  ;80A9FE;
     ADC.W #$0002                                                         ;80A9FF;
@@ -5587,16 +5587,16 @@ UpdateLevelBackgroundDataColumn:
     SEP #$20                                                             ;80AA22;
     LDA.W $0996                                                          ;80AA24;
     AND.B #$0F                                                           ;80AA27;
-    STA.W $4202                                                          ;80AA29;
+    STA.W HW_WRMPYA                                                      ;80AA29;
     LDA.B #$40                                                           ;80AA2C;
-    STA.W $4203                                                          ;80AA2E;
+    STA.W HW_WRMPYB                                                      ;80AA2E;
     REP #$20                                                             ;80AA31;
     LDA.W $0994                                                          ;80AA33;
     AND.W #$001F                                                         ;80AA36;
     STA.W $0935                                                          ;80AA39;
     ASL A                                                                ;80AA3C;
     CLC                                                                  ;80AA3D;
-    ADC.W $4216                                                          ;80AA3E;
+    ADC.W HW_RDMPY                                                       ;80AA3E;
     STA.W $0933                                                          ;80AA41;
     LDA.W #$5000                                                         ;80AA44;
     LDY.W $0935                                                          ;80AA47;
@@ -5754,14 +5754,14 @@ UpdateBackgroundLevelDataRow:
   + PHP                                                                  ;80AB7E;
     SEP #$20                                                             ;80AB7F;
     LDA.W $07A5                                                          ;80AB81;
-    STA.W $4202                                                          ;80AB84;
+    STA.W HW_WRMPYA                                                      ;80AB84;
     LDA.W $0992                                                          ;80AB87;
-    STA.W $4203                                                          ;80AB8A;
+    STA.W HW_WRMPYB                                                      ;80AB8A;
     PHB                                                                  ;80AB8D;
     REP #$30                                                             ;80AB8E;
     LDA.W $0990                                                          ;80AB90;
     CLC                                                                  ;80AB93;
-    ADC.W $4216                                                          ;80AB94;
+    ADC.W HW_RDMPY                                                       ;80AB94;
     ASL A                                                                ;80AB97;
     CLC                                                                  ;80AB98;
     ADC.W #$0002                                                         ;80AB99;
@@ -5790,16 +5790,16 @@ UpdateBackgroundLevelDataRow:
     SEP #$20                                                             ;80ABC8;
     LDA.W $0996                                                          ;80ABCA;
     AND.B #$0F                                                           ;80ABCD;
-    STA.W $4202                                                          ;80ABCF;
+    STA.W HW_WRMPYA                                                      ;80ABCF;
     LDA.B #$40                                                           ;80ABD2;
-    STA.W $4203                                                          ;80ABD4;
+    STA.W HW_WRMPYB                                                      ;80ABD4;
     REP #$20                                                             ;80ABD7;
     LDA.W $0994                                                          ;80ABD9;
     AND.W #$001F                                                         ;80ABDC;
     STA.W $0935                                                          ;80ABDF;
     ASL A                                                                ;80ABE2;
     CLC                                                                  ;80ABE3;
-    ADC.W $4216                                                          ;80ABE4;
+    ADC.W HW_RDMPY                                                       ;80ABE4;
     STA.W $0933                                                          ;80ABE7;
     LDA.W #$5400                                                         ;80ABEA;
     STA.W $0937                                                          ;80ABED;
@@ -5826,7 +5826,7 @@ UpdateBackgroundLevelDataRow:
     SBC.W $098E                                                          ;80AC19;
 
   + CLC                                                                  ;80AC1C;
-    ADC.W $4216                                                          ;80AC1D;
+    ADC.W HW_RDMPY                                                       ;80AC1D;
     STA.W $096A,X                                                        ;80AC20;
     LDA.W #$C948                                                         ;80AC23; $7E
     LDY.W #$0000                                                         ;80AC26;

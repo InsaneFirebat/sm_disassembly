@@ -220,8 +220,8 @@ InitialiseCPURegistersForGameplay:
     STA.W $4200                                                          ;8281A9;
     STA.B $84                                                            ;8281AC;
     STZ.W $4201                                                          ;8281AE;
-    STZ.W $4202                                                          ;8281B1;
-    STZ.W $4203                                                          ;8281B4;
+    STZ.W HW_WRMPYA                                                      ;8281B1;
+    STZ.W HW_WRMPYB                                                      ;8281B4;
     STZ.W $4204                                                          ;8281B7;
     STZ.W $4205                                                          ;8281BA;
     STZ.W $4206                                                          ;8281BD;
@@ -2004,7 +2004,7 @@ Load_EquipmentScreen_ReserveHealth_Tilemap:
     STA.B $2A                                                            ;828F91;
     LDA.W $4215                                                          ;828F93;
     STA.B $2B                                                            ;828F96;
-    LDA.W $4216                                                          ;828F98;
+    LDA.W HW_RDMPY                                                       ;828F98;
     STA.W $4204                                                          ;828F9B;
     LDA.W $4217                                                          ;828F9E;
     STA.W $4205                                                          ;828FA1;
@@ -2018,7 +2018,7 @@ Load_EquipmentScreen_ReserveHealth_Tilemap:
     NOP                                                                  ;828FAF;
     NOP                                                                  ;828FB0;
     NOP                                                                  ;828FB1;
-    LDA.W $4216                                                          ;828FB2;
+    LDA.W HW_RDMPY                                                       ;828FB2;
     CLC                                                                  ;828FB5;
     ADC.W #$0804                                                         ;828FB6;
     STA.L $7E3B14                                                        ;828FB9;
@@ -6152,7 +6152,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     NOP                                                                  ;82B2E6;
     NOP                                                                  ;82B2E7;
     NOP                                                                  ;82B2E8;
-    LDA.W $4216                                                          ;82B2E9;
+    LDA.W HW_RDMPY                                                       ;82B2E9;
     STA.B $32                                                            ;82B2EC;
     LDA.W $4214                                                          ;82B2EE;
     STA.B $2A                                                            ;82B2F1;
@@ -6177,7 +6177,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     STY.B $34                                                            ;82B313;
 
 .empty:
-    LDA.W $4216                                                          ;82B315;
+    LDA.W HW_RDMPY                                                       ;82B315;
     BEQ .loopEmptyTanks                                                  ;82B318;
     STA.W $4204                                                          ;82B31A;
     SEP #$20                                                             ;82B31D;
@@ -6196,7 +6196,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     TAX                                                                  ;82B331;
     CMP.W #$0007                                                         ;82B332;
     BPL +                                                                ;82B335;
-    LDA.W $4216                                                          ;82B337;
+    LDA.W HW_RDMPY                                                       ;82B337;
     BEQ +                                                                ;82B33A;
     LDA.W $05B5                                                          ;82B33C;
     BIT.W #$0004                                                         ;82B33F;
@@ -6264,7 +6264,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     NOP                                                                  ;82B3B4;
     NOP                                                                  ;82B3B5;
     NOP                                                                  ;82B3B6;
-    LDA.W $4216                                                          ;82B3B7;
+    LDA.W HW_RDMPY                                                       ;82B3B7;
     CLC                                                                  ;82B3BA;
     ADC.W #$0804                                                         ;82B3BB;
     STA.L $7E3B14                                                        ;82B3BE;
@@ -10253,18 +10253,18 @@ CalculateTheAth_TransitionalColorComponent_fromXtoY:
 
   + XBA                                                                  ;82DAC5;
     AND.W #$FF00                                                         ;82DAC6;
-    STA.L $004204                                                        ;82DAC9;
+    STA.L HW_WRDIV                                                       ;82DAC9;
     SEP #$21                                                             ;82DACD;
     LDA.W $C402                                                          ;82DACF;
     SBC.B $14                                                            ;82DAD2;
     INC A                                                                ;82DAD4;
-    STA.L $004206                                                        ;82DAD5;
+    STA.L HW_WRDIVB                                                      ;82DAD5;
     REP #$20                                                             ;82DAD9;
     XBA                                                                  ;82DADB;
     XBA                                                                  ;82DADC;
     NOP                                                                  ;82DADD;
     NOP                                                                  ;82DADE;
-    LDA.L $004214                                                        ;82DADF;
+    LDA.L HW_RDDIV                                                       ;82DADF;
     BIT.B $12                                                            ;82DAE3;
     BPL +                                                                ;82DAE5;
     EOR.W #$FFFF                                                         ;82DAE7;
@@ -10810,14 +10810,14 @@ Load_Room_Header:
     JSL.L Room_State_Checking_Handler                                    ;82DED3;
     SEP #$20                                                             ;82DED7;
     LDA.W $07A5                                                          ;82DED9;
-    STA.W $4202                                                          ;82DEDC;
+    STA.W HW_WRMPYA                                                      ;82DEDC;
     LDA.W $07A7                                                          ;82DEDF;
-    STA.W $4203                                                          ;82DEE2;
+    STA.W HW_WRMPYB                                                      ;82DEE2;
     REP #$20                                                             ;82DEE5;
     NOP                                                                  ;82DEE7;
     NOP                                                                  ;82DEE8;
     NOP                                                                  ;82DEE9;
-    LDA.W $4216                                                          ;82DEEA;
+    LDA.W HW_RDMPY                                                       ;82DEEA;
     ASL A                                                                ;82DEED;
     STA.W $07B9                                                          ;82DEEE;
     RTS                                                                  ;82DEF1;
@@ -12208,14 +12208,14 @@ CheckIfColoredDoorcapWasSpawned_SwitchDoorPLMInstruction:
     SEI                                                                  ;82E91F;
     SEP #$20                                                             ;82E920;
     LDA.L $830005,X                                                      ;82E922;
-    STA.W $4202                                                          ;82E926;
+    STA.W HW_WRMPYA                                                      ;82E926;
     LDA.W $07A5                                                          ;82E929;
-    STA.W $4203                                                          ;82E92C;
+    STA.W HW_WRMPYB                                                      ;82E92C;
     LDA.L $830004,X                                                      ;82E92F;
     REP #$20                                                             ;82E933;
     AND.W #$00FF                                                         ;82E935;
     CLC                                                                  ;82E938;
-    ADC.W $4216                                                          ;82E939;
+    ADC.W HW_RDMPY                                                       ;82E939;
     ASL A                                                                ;82E93C;
     CLI                                                                  ;82E93D;
     LDX.W #$004E                                                         ;82E93E;

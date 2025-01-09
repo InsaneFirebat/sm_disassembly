@@ -155,7 +155,7 @@ Calculate_PLM_Block_Coordinates:
     NOP                                                                  ;8482A6;
     LDA.W $4214                                                          ;8482A7;
     STA.W $1C2B                                                          ;8482AA;
-    LDA.W $4216                                                          ;8482AD;
+    LDA.W HW_RDMPY                                                       ;8482AD;
     STA.W $1C29                                                          ;8482B0;
     RTL                                                                  ;8482B3;
 
@@ -377,15 +377,15 @@ Spawn_Hardcoded_PLM:
     TYX                                                                  ;8483FB;
     LDY.W #$0002                                                         ;8483FC;
     LDA.B ($06,S),Y                                                      ;8483FF;
-    STA.W $4202                                                          ;848401;
+    STA.W HW_WRMPYA                                                      ;848401;
     LDA.W $07A5                                                          ;848404;
-    STA.W $4203                                                          ;848407;
+    STA.W HW_WRMPYB                                                      ;848407;
     LDY.W #$0001                                                         ;84840A;
     LDA.B ($06,S),Y                                                      ;84840D;
     REP #$20                                                             ;84840F;
     AND.W #$00FF                                                         ;848411;
     CLC                                                                  ;848414;
-    ADC.W $4216                                                          ;848415;
+    ADC.W HW_RDMPY                                                       ;848415;
     ASL A                                                                ;848418;
     STA.W $1C87,X                                                        ;848419;
     LDY.W #$0003                                                         ;84841C;
@@ -455,14 +455,14 @@ Spawn_Room_PLM:
 .found:
     SEP #$20                                                             ;848482;
     LDA.L $8F0003,X                                                      ;848484;
-    STA.W $4202                                                          ;848488;
+    STA.W HW_WRMPYA                                                      ;848488;
     LDA.W $07A5                                                          ;84848B;
-    STA.W $4203                                                          ;84848E;
+    STA.W HW_WRMPYB                                                      ;84848E;
     LDA.L $8F0002,X                                                      ;848491;
     REP #$20                                                             ;848495;
     AND.W #$00FF                                                         ;848497;
     CLC                                                                  ;84849A;
-    ADC.W $4216                                                          ;84849B;
+    ADC.W HW_RDMPY                                                       ;84849B;
     ASL A                                                                ;84849E;
     STA.W $1C87,Y                                                        ;84849F;
     LDA.L $8F0004,X                                                      ;8484A2;
@@ -581,9 +581,9 @@ UNUSED_Spawn_Enemy_PLM_84853E:
     LSR A                                                                ;84855B;
     LSR A                                                                ;84855C;
     SEP #$20                                                             ;84855D;
-    STA.W $4202                                                          ;84855F;
+    STA.W HW_WRMPYA                                                      ;84855F;
     LDA.W $07A5                                                          ;848562;
-    STA.W $4203                                                          ;848565;
+    STA.W HW_WRMPYB                                                      ;848565;
     REP #$20                                                             ;848568;
     LDA.W $0F7A,Y                                                        ;84856A;
     LSR A                                                                ;84856D;
@@ -591,7 +591,7 @@ UNUSED_Spawn_Enemy_PLM_84853E:
     LSR A                                                                ;84856F;
     LSR A                                                                ;848570;
     CLC                                                                  ;848571;
-    ADC.W $4216                                                          ;848572;
+    ADC.W HW_RDMPY                                                       ;848572;
     ASL A                                                                ;848575;
     STA.W $1C87,X                                                        ;848576;
     PLA                                                                  ;848579;
@@ -2028,7 +2028,7 @@ DrawPLM:
     LDA.B $1A                                                            ;848E5F;
     AND.W #$000F                                                         ;848E61;
     ORA.W #$4000                                                         ;848E64;
-    STA.W $4202                                                          ;848E67;
+    STA.W HW_WRMPYA                                                      ;848E67;
     LDA.B $18                                                            ;848E6A;
     AND.W #$001F                                                         ;848E6C;
     CMP.W #$0010                                                         ;848E6F;
@@ -2036,7 +2036,7 @@ DrawPLM:
     ASL A                                                                ;848E74;
     CLC                                                                  ;848E75;
     ADC.B $09                                                            ;848E76;
-    ADC.W $4216                                                          ;848E78;
+    ADC.W HW_RDMPY                                                       ;848E78;
     PHA                                                                  ;848E7B;
     LDA.W $091D                                                          ;848E7C;
     AND.W #$0100                                                         ;848E7F;
@@ -2052,7 +2052,7 @@ DrawPLM:
     ASL A                                                                ;848E8C;
     CLC                                                                  ;848E8D;
     ADC.B $0C                                                            ;848E8E;
-    ADC.W $4216                                                          ;848E90;
+    ADC.W HW_RDMPY                                                       ;848E90;
     PHA                                                                  ;848E93;
     LDA.W $091D                                                          ;848E94;
     AND.W #$0100                                                         ;848E97;
@@ -2532,7 +2532,7 @@ Calculate_PLMDrawTilemap_VRAMDestination:
     LDA.B $1A                                                            ;8491DC;
     AND.W #$000F                                                         ;8491DE;
     ORA.W #$4000                                                         ;8491E1;
-    STA.W $4202                                                          ;8491E4;
+    STA.W HW_WRMPYA                                                      ;8491E4;
     LDA.B $18                                                            ;8491E7;
     AND.W #$001F                                                         ;8491E9;
     CMP.W #$0010                                                         ;8491EC;
@@ -2540,7 +2540,7 @@ Calculate_PLMDrawTilemap_VRAMDestination:
     ASL A                                                                ;8491F1;
     CLC                                                                  ;8491F2;
     ADC.B $09                                                            ;8491F3;
-    ADC.W $4216                                                          ;8491F5;
+    ADC.W HW_RDMPY                                                       ;8491F5;
     PHA                                                                  ;8491F8;
     LDA.W $091D                                                          ;8491F9;
     AND.W #$0100                                                         ;8491FC;
@@ -2556,7 +2556,7 @@ Calculate_PLMDrawTilemap_VRAMDestination:
     ASL A                                                                ;849209;
     CLC                                                                  ;84920A;
     ADC.B $0C                                                            ;84920B;
-    ADC.W $4216                                                          ;84920D;
+    ADC.W HW_RDMPY                                                       ;84920D;
     PHA                                                                  ;849210;
     LDA.W $091D                                                          ;849211;
     AND.W #$0100                                                         ;849214;
@@ -10745,14 +10745,14 @@ PreInstruction_DeletePLM_SpawnTriggerBlockIf_4_8_IsBlankAir:
     PHX                                                                  ;84D15C;
     SEP #$20                                                             ;84D15D;
     LDA.B #$08                                                           ;84D15F;
-    STA.W $4202                                                          ;84D161;
+    STA.W HW_WRMPYA                                                      ;84D161;
     LDA.W $07A5                                                          ;84D164;
-    STA.W $4203                                                          ;84D167;
+    STA.W HW_WRMPYB                                                      ;84D167;
     LDA.B #$04                                                           ;84D16A;
     REP #$20                                                             ;84D16C;
     AND.W #$00FF                                                         ;84D16E;
     CLC                                                                  ;84D171;
-    ADC.W $4216                                                          ;84D172;
+    ADC.W HW_RDMPY                                                       ;84D172;
     ASL A                                                                ;84D175;
     TAX                                                                  ;84D176;
     LDA.L $7F0002,X                                                      ;84D177;

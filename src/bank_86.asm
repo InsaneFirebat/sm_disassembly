@@ -1211,7 +1211,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
     LSR A                                                                ;86876C;
     LSR A                                                                ;86876D;
     LSR A                                                                ;86876E;
-    CMP.W $4216                                                          ;86876F;
+    CMP.W HW_RDMPY                                                       ;86876F;
     BEQ +                                                                ;868772;
     CLC                                                                  ;868774;
     RTS                                                                  ;868775;
@@ -1281,7 +1281,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
     LSR A                                                                ;8687E0;
     LSR A                                                                ;8687E1;
     LSR A                                                                ;8687E2;
-    CMP.W $4216                                                          ;8687E3;
+    CMP.W HW_RDMPY                                                       ;8687E3;
     BEQ +                                                                ;8687E6;
     CLC                                                                  ;8687E8;
     RTS                                                                  ;8687E9;
@@ -1449,9 +1449,9 @@ Move_EnemyProjectile_Horizontally:
     LSR A                                                                ;8688F9;
     LSR A                                                                ;8688FA;
     SEP #$20                                                             ;8688FB;
-    STA.W $4202                                                          ;8688FD;
+    STA.W HW_WRMPYA                                                      ;8688FD;
     LDA.W $07A5                                                          ;868900;
-    STA.W $4203                                                          ;868903;
+    STA.W HW_WRMPYB                                                      ;868903;
     REP #$20                                                             ;868906;
     LDA.W $1A27,X                                                        ;868908;
     CLC                                                                  ;86890B;
@@ -1478,7 +1478,7 @@ Move_EnemyProjectile_Horizontally:
     LSR A                                                                ;868928;
     LSR A                                                                ;868929;
     CLC                                                                  ;86892A;
-    ADC.W $4216                                                          ;86892B;
+    ADC.W HW_RDMPY                                                       ;86892B;
     ASL A                                                                ;86892E;
     TAX                                                                  ;86892F;
 
@@ -1591,9 +1591,9 @@ Move_EnemyProjectile_Vertically:
     LSR A                                                                ;8689D6;
     LSR A                                                                ;8689D7;
     SEP #$20                                                             ;8689D8;
-    STA.W $4202                                                          ;8689DA;
+    STA.W HW_WRMPYA                                                      ;8689DA;
     LDA.W $07A5                                                          ;8689DD;
-    STA.W $4203                                                          ;8689E0;
+    STA.W HW_WRMPYB                                                      ;8689E0;
     REP #$20                                                             ;8689E3;
     LDA.W $1A4B,X                                                        ;8689E5;
     SEC                                                                  ;8689E8;
@@ -1603,7 +1603,7 @@ Move_EnemyProjectile_Vertically:
     LSR A                                                                ;8689ED;
     LSR A                                                                ;8689EE;
     CLC                                                                  ;8689EF;
-    ADC.W $4216                                                          ;8689F0;
+    ADC.W HW_RDMPY                                                       ;8689F0;
     ASL A                                                                ;8689F3;
     TAX                                                                  ;8689F4;
 
@@ -4119,27 +4119,27 @@ Calculate_XY_ComponentsOf_RadiusA_AngleY:
 DoSomeMathWithSineAndPi_869BF3:
     SEP #$20                                                             ;869BF3;
     LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;869BF5;
-    STA.W $4202                                                          ;869BF9;
+    STA.W HW_WRMPYA                                                      ;869BF9;
     LDA.B $18                                                            ;869BFC;
-    STA.W $4203                                                          ;869BFE;
+    STA.W HW_WRMPYB                                                      ;869BFE;
     NOP                                                                  ;869C01;
     NOP                                                                  ;869C02;
     NOP                                                                  ;869C03;
     REP #$20                                                             ;869C04;
-    LDA.W $4216                                                          ;869C06;
+    LDA.W HW_RDMPY                                                       ;869C06;
     XBA                                                                  ;869C09;
     AND.W #$00FF                                                         ;869C0A;
     STA.B $12                                                            ;869C0D;
     SEP #$20                                                             ;869C0F;
     LDA.L SineCosineTables_8bitSine_SignExtended+1,X                     ;869C11;
-    STA.W $4202                                                          ;869C15;
+    STA.W HW_WRMPYA                                                      ;869C15;
     LDA.B $18                                                            ;869C18;
-    STA.W $4203                                                          ;869C1A;
+    STA.W HW_WRMPYB                                                      ;869C1A;
     NOP                                                                  ;869C1D;
     NOP                                                                  ;869C1E;
     NOP                                                                  ;869C1F;
     REP #$20                                                             ;869C20;
-    LDA.W $4216                                                          ;869C22;
+    LDA.W HW_RDMPY                                                       ;869C22;
     CLC                                                                  ;869C25;
     ADC.B $12                                                            ;869C26;
     RTS                                                                  ;869C28;
@@ -9637,40 +9637,40 @@ Math_16bitUnsignedMultiplication_86C29B:
     REP #$20                                                             ;86C29B;
     SEP #$10                                                             ;86C29D;
     LDX.B $26                                                            ;86C29F;
-    STX.W $4202                                                          ;86C2A1;
+    STX.W HW_WRMPYA                                                      ;86C2A1;
     LDX.B $28                                                            ;86C2A4;
-    STX.W $4203                                                          ;86C2A6;
+    STX.W HW_WRMPYB                                                      ;86C2A6;
     XBA                                                                  ;86C2A9;
     NOP                                                                  ;86C2AA;
-    LDA.W $4216                                                          ;86C2AB;
+    LDA.W HW_RDMPY                                                       ;86C2AB;
     STA.B $2A                                                            ;86C2AE;
     LDX.B $27                                                            ;86C2B0;
-    STX.W $4202                                                          ;86C2B2;
+    STX.W HW_WRMPYA                                                      ;86C2B2;
     LDX.B $29                                                            ;86C2B5;
-    STX.W $4203                                                          ;86C2B7;
+    STX.W HW_WRMPYB                                                      ;86C2B7;
     XBA                                                                  ;86C2BA;
     NOP                                                                  ;86C2BB;
-    LDX.W $4216                                                          ;86C2BC;
+    LDX.W HW_RDMPY                                                       ;86C2BC;
     STX.B $2C                                                            ;86C2BF;
     LDY.W $4217                                                          ;86C2C1;
     LDX.B $27                                                            ;86C2C4;
-    STX.W $4202                                                          ;86C2C6;
+    STX.W HW_WRMPYA                                                      ;86C2C6;
     LDX.B $28                                                            ;86C2C9;
-    STX.W $4203                                                          ;86C2CB;
+    STX.W HW_WRMPYB                                                      ;86C2CB;
     LDA.B $2B                                                            ;86C2CE;
     CLC                                                                  ;86C2D0;
-    ADC.W $4216                                                          ;86C2D1;
+    ADC.W HW_RDMPY                                                       ;86C2D1;
     STA.B $2B                                                            ;86C2D4;
     BCC +                                                                ;86C2D6;
     INY                                                                  ;86C2D8;
 
   + LDX.B $26                                                            ;86C2D9;
-    STX.W $4202                                                          ;86C2DB;
+    STX.W HW_WRMPYA                                                      ;86C2DB;
     LDX.B $29                                                            ;86C2DE;
-    STX.W $4203                                                          ;86C2E0;
+    STX.W HW_WRMPYB                                                      ;86C2E0;
     LDA.B $2B                                                            ;86C2E3;
     CLC                                                                  ;86C2E5;
-    ADC.W $4216                                                          ;86C2E6;
+    ADC.W HW_RDMPY                                                       ;86C2E6;
     STA.B $2B                                                            ;86C2E9;
     BCC +                                                                ;86C2EB;
     INY                                                                  ;86C2ED;
@@ -16120,7 +16120,7 @@ Random_Drop_Routine:
     LDA.L $7EF3C8,X                                                      ;86F118;
     TAX                                                                  ;86F11C;
     STA.W $0E28                                                          ;86F11D;
-    LDA.L EnemyHeaders_dropChances-(EnemyHeaders&$00FFFF),X              ;86F120; $A0003A
+    LDA.L EnemyHeader.dropChances,X                                      ;86F120; $A0003A
     TAX                                                                  ;86F124;
     BNE .enemyHasDrops                                                   ;86F125;
     JMP.W .returnNothing                                                 ;86F127;
@@ -16228,13 +16228,13 @@ Random_Drop_Routine:
     LSR.B $16                                                            ;86F1E8;
     BCC .nextMinorDrop                                                   ;86F1EA;
     LDA.B $14                                                            ;86F1EC;
-    STA.W $4202                                                          ;86F1EE;
+    STA.W HW_WRMPYA                                                      ;86F1EE;
     LDA.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X      ;86F1F1; $B40000
-    STA.W $4203                                                          ;86F1F5;
+    STA.W HW_WRMPYB                                                      ;86F1F5;
     PHY                                                                  ;86F1F8;
     NOP                                                                  ;86F1F9;
     NOP                                                                  ;86F1FA;
-    LDY.W $4216                                                          ;86F1FB;
+    LDY.W HW_RDMPY                                                       ;86F1FB;
     STY.W $4204                                                          ;86F1FE;
     LDA.B $12                                                            ;86F201;
     STA.W $4206                                                          ;86F203;

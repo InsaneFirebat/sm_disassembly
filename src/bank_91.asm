@@ -6572,14 +6572,14 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     LSR A                                                                ;91CC6B;
     XBA                                                                  ;91CC6C;
     ORA.W $07A5                                                          ;91CC6D;
-    STA.W $4202                                                          ;91CC70;
+    STA.W HW_WRMPYA                                                      ;91CC70;
     LDA.W $0911                                                          ;91CC73;
     LSR A                                                                ;91CC76;
     LSR A                                                                ;91CC77;
     LSR A                                                                ;91CC78;
     LSR A                                                                ;91CC79;
     CLC                                                                  ;91CC7A;
-    ADC.W $4216                                                          ;91CC7B;
+    ADC.W HW_RDMPY                                                       ;91CC7B;
     STA.B $22                                                            ;91CC7E;
     STZ.B $16                                                            ;91CC80;
     LDA.W #$0010                                                         ;91CC82;
@@ -6835,7 +6835,7 @@ CalculateBlockCoordinates:
     NOP                                                                  ;91CE45;
     LDA.W $4214                                                          ;91CE46;
     STA.B $2C                                                            ;91CE49;
-    LDA.W $4216                                                          ;91CE4B;
+    LDA.W HW_RDMPY                                                       ;91CE4B;
     STA.B $2A                                                            ;91CE4E;
     RTS                                                                  ;91CE50;
 
@@ -6844,12 +6844,12 @@ GetBlockTypeAndBTS:
     LDA.B $2C                                                            ;91CE51;
     XBA                                                                  ;91CE53;
     ORA.W $07A5                                                          ;91CE54;
-    STA.W $4202                                                          ;91CE57;
+    STA.W HW_WRMPYA                                                      ;91CE57;
     NOP                                                                  ;91CE5A;
     NOP                                                                  ;91CE5B;
     LDA.B $2A                                                            ;91CE5C;
     CLC                                                                  ;91CE5E;
-    ADC.W $4216                                                          ;91CE5F;
+    ADC.W HW_RDMPY                                                       ;91CE5F;
     TAX                                                                  ;91CE62;
     LDA.L $7F6402,X                                                      ;91CE63;
     AND.W #$00FF                                                         ;91CE67;

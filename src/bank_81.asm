@@ -3666,7 +3666,7 @@ Draw_FileSelection_Health:
     REP #$20                                                             ;81A0B9;
     LDA.W $4214                                                          ;81A0BB;
     STA.B $14                                                            ;81A0BE;
-    LDA.W $4216                                                          ;81A0C0;
+    LDA.W HW_RDMPY                                                       ;81A0C0;
     STA.B $12                                                            ;81A0C3;
     LDA.W $09C4                                                          ;81A0C5;
     STA.W $4204                                                          ;81A0C8;
@@ -3726,7 +3726,7 @@ Draw_FileSelection_Health:
     REP #$20                                                             ;81A125;
     LDA.W $4214                                                          ;81A127;
     STA.B $14                                                            ;81A12A;
-    LDA.W $4216                                                          ;81A12C;
+    LDA.W HW_RDMPY                                                       ;81A12C;
     STA.B $12                                                            ;81A12F;
     LDX.B $1A                                                            ;81A131;
     LDA.B $12                                                            ;81A133;
@@ -3756,7 +3756,7 @@ Draw_FileSelection_Time:
     PLA                                                                  ;81A162;
     REP #$20                                                             ;81A163;
     LDX.B $1A                                                            ;81A165;
-    LDA.W $4216                                                          ;81A167;
+    LDA.W HW_RDMPY                                                       ;81A167;
     CLC                                                                  ;81A16A;
     ADC.W #$2060                                                         ;81A16B;
     ORA.W $0F96                                                          ;81A16E;
@@ -3783,7 +3783,7 @@ Draw_FileSelection_Time:
     PLA                                                                  ;81A1A0;
     REP #$20                                                             ;81A1A1;
     LDX.B $1A                                                            ;81A1A3;
-    LDA.W $4216                                                          ;81A1A5;
+    LDA.W HW_RDMPY                                                       ;81A1A5;
     CLC                                                                  ;81A1A8;
     ADC.W #$2060                                                         ;81A1A9;
     ORA.W $0F96                                                          ;81A1AC;
