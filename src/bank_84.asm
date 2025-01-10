@@ -36,41 +36,25 @@ GoldenTorizo_HealthBasedPalette_Handling:
     RTL                                                                  ;848031;
 
 
-.palette1:
-    dw $1000,$56BA,$41B2,$1447,$0403,$4E15,$3570,$24CB                   ;848032;
-    dw $1868,$6F7F,$51F8,$410E,$031F,$01DA,$00F5,$0C63                   ;848042;
-    dw $1000,$56DB,$39D3,$1047,$0403,$4636,$2D91,$20EC                   ;848052;
-    dw $1489,$6F9B,$5215,$3D2C,$133B,$0DF6,$0CF2,$0C63                   ;848062;
-    dw $1000,$52FB,$31F4,$1067,$0402,$3E76,$25B2,$192D                   ;848072;
-    dw $10A9,$6F96,$5251,$396A,$2756,$1A13,$190F,$0863                   ;848082;
-    dw $1000,$531C,$2A15,$0C67,$0402,$3697,$1DD3,$154E                   ;848092;
-    dw $0CCA,$6FB2,$526E,$3588,$3772,$262F,$250C,$0863                   ;8480A2;
-    dw $1000,$4F5C,$1E56,$0888,$0001,$2EB8,$1A13,$116F                   ;8480B2;
-    dw $0CEB,$73AD,$4EAA,$35A6,$4B8D,$364B,$3509,$0443                   ;8480C2;
-    dw $1000,$4F7D,$1677,$0488,$0001,$26D9,$1234,$0D90                   ;8480D2;
-    dw $090C,$73C9,$4EC7,$31C4,$5BA9,$4267,$4106,$0443                   ;8480E2;
-    dw $1000,$4B9D,$0E98,$04A8,$0000,$1F19,$0A55,$05D1                   ;8480F2;
-    dw $052C,$73C4,$4F03,$2E02,$6FC4,$4E84,$4D23,$0043                   ;848102;
-    dw $0000,$4BBE,$06B9,$00A8,$0000,$173A,$0276,$01F2                   ;848112;
-    dw $014D,$73E0,$4F20,$2A20,$7FE0,$5AA0,$5920,$0043                   ;848122;
+.palette1:                                                               ;848032;
+    dw $1000,$56BA,$41B2,$1447,$0403,$4E15,$3570,$24CB,$1868,$6F7F,$51F8,$410E,$031F,$01DA,$00F5,$0C63 ; 0..7FFh
+    dw $1000,$56DB,$39D3,$1047,$0403,$4636,$2D91,$20EC,$1489,$6F9B,$5215,$3D2C,$133B,$0DF6,$0CF2,$0C63 ; 800h..FFFh
+    dw $1000,$52FB,$31F4,$1067,$0402,$3E76,$25B2,$192D,$10A9,$6F96,$5251,$396A,$2756,$1A13,$190F,$0863 ; 1000h..17FFh
+    dw $1000,$531C,$2A15,$0C67,$0402,$3697,$1DD3,$154E,$0CCA,$6FB2,$526E,$3588,$3772,$262F,$250C,$0863 ; 1800h..1FFFh
+    dw $1000,$4F5C,$1E56,$0888,$0001,$2EB8,$1A13,$116F,$0CEB,$73AD,$4EAA,$35A6,$4B8D,$364B,$3509,$0443 ; 2000h..27FFh
+    dw $1000,$4F7D,$1677,$0488,$0001,$26D9,$1234,$0D90,$090C,$73C9,$4EC7,$31C4,$5BA9,$4267,$4106,$0443 ; 2800h..2FFFh
+    dw $1000,$4B9D,$0E98,$04A8,$0000,$1F19,$0A55,$05D1,$052C,$73C4,$4F03,$2E02,$6FC4,$4E84,$4D23,$0043 ; 3000h..37FFh
+    dw $0000,$4BBE,$06B9,$00A8,$0000,$173A,$0276,$01F2,$014D,$73E0,$4F20,$2A20,$7FE0,$5AA0,$5920,$0043 ; 3800h+
 
-.palette2:
-    dw $1000,$4215,$2D0D,$0002,$0000,$3970,$20CB,$0C26                   ;848132;
-    dw $0403,$463A,$28B3,$1809,$6F7F,$51FD,$4113,$0C63                   ;848142;
-    dw $1000,$4236,$252E,$0002,$0000,$3191,$1CEC,$0C47                   ;848152;
-    dw $0424,$4656,$28D0,$1428,$6F7B,$51F9,$40F0,$0C63                   ;848162;
-    dw $1000,$3E56,$214F,$0002,$0000,$29D1,$190D,$0888                   ;848172;
-    dw $0424,$4693,$290E,$1046,$6F76,$4DF5,$40EE,$0842                   ;848182;
-    dw $1000,$3E77,$1970,$0002,$0000,$21F2,$152E,$08A9                   ;848192;
-    dw $0445,$46AF,$292B,$0C65,$6F72,$4DF1,$40CB,$0842                   ;8481A2;
-    dw $1000,$3AB7,$15B1,$0003,$0000,$1A13,$0D6E,$04CA                   ;8481B2;
-    dw $0066,$4ACB,$2568,$0C84,$6B4D,$4A0C,$44C8,$0421                   ;8481C2;
-    dw $1000,$3AD8,$0DD2,$0003,$0000,$1234,$098F,$04EB                   ;8481D2;
-    dw $0087,$4AE7,$2585,$08A3,$6B49,$4A08,$44A5,$0421                   ;8481E2;
-    dw $1000,$36F8,$09F3,$0003,$0000,$0A74,$05B0,$012C                   ;8481F2;
-    dw $0087,$4B24,$25C3,$04C1,$6B44,$4604,$44A3,$0000                   ;848202;
-    dw $1000,$3719,$0214,$0003,$0000,$0295,$01D1,$014D                   ;848212;
-    dw $00A8,$4B40,$25E0,$00E0,$6B40,$4600,$4480,$0000                   ;848222;
+.palette2:                                                               ;848132;
+    dw $1000,$4215,$2D0D,$0002,$0000,$3970,$20CB,$0C26,$0403,$463A,$28B3,$1809,$6F7F,$51FD,$4113,$0C63 ; 0..7FFh
+    dw $1000,$4236,$252E,$0002,$0000,$3191,$1CEC,$0C47,$0424,$4656,$28D0,$1428,$6F7B,$51F9,$40F0,$0C63 ; 800h..FFFh
+    dw $1000,$3E56,$214F,$0002,$0000,$29D1,$190D,$0888,$0424,$4693,$290E,$1046,$6F76,$4DF5,$40EE,$0842 ; 1000h..17FFh
+    dw $1000,$3E77,$1970,$0002,$0000,$21F2,$152E,$08A9,$0445,$46AF,$292B,$0C65,$6F72,$4DF1,$40CB,$0842 ; 1800h..1FFFh
+    dw $1000,$3AB7,$15B1,$0003,$0000,$1A13,$0D6E,$04CA,$0066,$4ACB,$2568,$0C84,$6B4D,$4A0C,$44C8,$0421 ; 2000h..27FFh
+    dw $1000,$3AD8,$0DD2,$0003,$0000,$1234,$098F,$04EB,$0087,$4AE7,$2585,$08A3,$6B49,$4A08,$44A5,$0421 ; 2800h..2FFFh
+    dw $1000,$36F8,$09F3,$0003,$0000,$0A74,$05B0,$012C,$0087,$4B24,$25C3,$04C1,$6B44,$4604,$44A3,$0000 ; 3000h..37FFh
+    dw $1000,$3719,$0214,$0003,$0000,$0295,$01D1,$014D,$00A8,$4B40,$25E0,$00E0,$6B40,$4600,$4480,$0000 ; 3800h+
 
 Load_Room_PLM_Graphics:
     PHP                                                                  ;848232;
@@ -997,15 +981,13 @@ Instruction_PLM_LoadItemPLMGFX:
     LDX.W $1C27                                                          ;8487C9;
     RTS                                                                  ;8487CC;
 
-
 .VRAMAddresses:
     dw $3E00,$3E80,$3F00,$3F80                                           ;8487CD;
-
 .tileTableIndices:
     dw $0470,$0480,$0490,$04A0                                           ;8487D5;
-
 .startingTileNumbers:
     dw $03E0,$03E8,$03F0,$03F8                                           ;8487DD;
+
 
 Instruction_PLM_TransferBytesToVRAM:
     LDX.W $0330                                                          ;8487E5;
@@ -1894,12 +1876,13 @@ RTS_848D97:
 
 
 UNUSED_InstList_PLM_DefaultPLM_848D98:
-    dw $1000                                                             ;848D98;
-    dw InstList_PLM_DefaultPLMDrawInstruction                            ;848D9A;
+    dw $1000,InstList_PLM_DefaultPLMDrawInstruction                      ;848D98;
     dw Instruction_PLM_GotoY                                             ;848D9C;
     dw UNUSED_InstList_PLM_DefaultPLM_848D98                             ;848D9E;
 
 InstList_PLM_DefaultPLMDrawInstruction:
+; Note that this is an invalid draw instruction
+; Used by instruction list $8D98: Unused. Default PLM instruction list
     dw $0180,$0000,$0000                                                 ;848DA0;
 
 UNUSED_DrawPLM_Custom_DrawInstPointer_TilemapBaseAddr_848DA6:
@@ -2597,39 +2580,50 @@ PartiallySetupVRAMWriteTableEntries_SingleScrnPLMDrawTilemap:
 
 
 DrawInst_UnusedBlueBrinstarFaceBlock:
-    dw $0001,$817E,$0000                                                 ;84924D;
+    dw $0001,$817E                                                       ;84924D;
+    dw $0000
 
 DrawInst_CrateriaMainStreetEscape:
-    dw $0002,$00FF,$00FF,$0000                                           ;849253;
+    dw $0002,$00FF,$00FF                                                 ;849253;
+    dw $0000
 
 DrawInst_CrittersEscapeBlock_0:
-    dw $8003,$8053,$8053,$8053,$0000                                     ;84925B;
+    dw $8003,$8053,$8053,$8053                                           ;84925B;
+    dw $0000
 
 DrawInst_CrittersEscapeBlock_1:
-    dw $8003,$8054,$8054,$8054,$0000                                     ;849265;
+    dw $8003,$8054,$8054,$8054                                           ;849265;
+    dw $0000
 
 DrawInst_CrittersEscapeBlock_2:
-    dw $8003,$8055,$8055,$8055,$0000                                     ;84926F;
+    dw $8003,$8055,$8055,$8055                                           ;84926F;
+    dw $0000
 
 DrawInst_CrittersEscapeBlock_3:
-    dw $8003,$80FF,$80FF,$80FF,$0000                                     ;849279;
+    dw $8003,$80FF,$80FF,$80FF                                           ;849279;
+    dw $0000
 
 DrawInst_OldTourianEscapeShaftBlocks:
     dw $8003,$00FF,$00FF,$00FF                                           ;849283;
     db $01,$00                                                           ;84928B;
-    dw $8003,$00FF,$00FF,$00FF,$0000                                     ;84928D;
+    dw $8003,$00FF,$00FF,$00FF                                           ;84928D;
+    dw $0000
 
 DrawInst_CrumbleAccessToTourianElevator_0:
-    dw $0004,$00FF,$00FF,$00FF,$00FF,$0000                               ;849297;
+    dw $0004,$00FF,$00FF,$00FF,$00FF                                     ;849297;
+    dw $0000
 
 DrawInst_CrumbleAccessToTourianElevator_1:
-    dw $0004,$0053,$0053,$0053,$0053,$0000                               ;8492A3;
+    dw $0004,$0053,$0053,$0053,$0053                                     ;8492A3;
+    dw $0000
 
 DrawInst_CrumbleAccessToTourianElevator_2:
-    dw $0004,$0054,$0054,$0054,$0054,$0000                               ;8492AF;
+    dw $0004,$0054,$0054,$0054,$0054                                     ;8492AF;
+    dw $0000
 
 DrawInst_CrumbleAccessToTourianElevator_3:
-    dw $0004,$0055,$0055,$0055,$0055,$0000                               ;8492BB;
+    dw $0004,$0055,$0055,$0055,$0055                                     ;8492BB;
+    dw $0000
 
 DrawInst_ClearAccessToTourianElevator:
     dw $0004,$00FF,$00FF,$00FF,$00FF                                     ;8492C7;
@@ -2642,50 +2636,64 @@ DrawInst_ClearAccessToTourianElevator:
     db $00,$04                                                           ;8492F5;
     dw $0004,$00FF,$00FF,$00FF,$00FF                                     ;8492F7;
     db $00,$05                                                           ;849301;
-    dw $0004,$00FF,$00FF,$00FF,$00FF,$0000                               ;849303;
+    dw $0004,$00FF,$00FF,$00FF,$00FF                                     ;849303;
+    dw $0000
 
 DrawInst_ClearBotwoonWall:
     dw $8009,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF                   ;84930F;
-    dw $00FF,$00FF,$0000                                                 ;84931F;
+    dw $00FF,$00FF
+    dw $0000                                                 ;84931F;
 
 UNUSED_DrawInst_849325:
     dw $8009,$8053,$8053,$8053,$8053,$8053,$8053,$8053                   ;849325;
-    dw $8053,$8053,$0000                                                 ;849335;
+    dw $8053,$8053
+    dw $0000                                                 ;849335;
 
 UNUSED_DrawInst_84933B:
     dw $8009,$8054,$8054,$8054,$8054,$8054,$8054,$8054                   ;84933B;
-    dw $8054,$8054,$0000                                                 ;84934B;
+    dw $8054,$8054
+    dw $0000                                                 ;84934B;
 
 UNUSED_DrawInst_849351:
     dw $8009,$0055,$0055,$0055,$0055,$0055,$0055,$0055                   ;849351;
-    dw $0055,$0055,$0000                                                 ;849361;
+    dw $0055,$0055
+    dw $0000                                                 ;849361;
 
 DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube:
-    dw $0001,$8180,$0000                                                 ;849367;
+    dw $0001,$8180
+    dw $0000                                                 ;849367;
 
 DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_0:
-    dw $0001,$8181,$0000                                                 ;84936D;
+    dw $0001,$8181
+    dw $0000                                                 ;84936D;
 
 DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_1:
-    dw $0001,$0182,$0000                                                 ;849373;
+    dw $0001,$0182
+    dw $0000                                                 ;849373;
 
 UNUSED_DrawInst_SetKraidCeilingBlockToBackground1_849379:
-    dw $0001,$013C,$0000                                                 ;849379;
+    dw $0001,$013C
+    dw $0000                                                 ;849379;
 
 DrawInst_SetKraidCeilingBlockToBackground2:
-    dw $0001,$0131,$0000                                                 ;84937F;
+    dw $0001,$0131
+    dw $0000                                                 ;84937F;
 
 DrawInst_SetKraidCeilingBlockToBackground3:
-    dw $0001,$0130,$0000                                                 ;849385;
+    dw $0001,$0130
+    dw $0000                                                 ;849385;
 
 UNUSED_DrawInst_84938B:
-    dw $0001,$011C,$0000                                                 ;84938B;
+    dw $0001,$011C
+    dw $0000                                                 ;84938B;
 
 DrawInst_CrumbleKraidSpikeBlocks_0:
-    dw $0001,$0111,$0000                                                 ;849391;
+    dw $0001,$0111
+    dw $0000                                                 ;849391;
 
 DrawInst_CrumbleKraidSpikeBlocks_1:
-    dw $0001,$0110,$0000                                                 ;849397;
+    dw $0001,$0110
+    dw $0000                                                 ;849397;
 
 DrawInst_ClearKraidCeiling:
     dw $000F,$013C,$0131,$0130,$0131,$0130,$0131,$0130                   ;84939D;
@@ -2695,143 +2703,178 @@ DrawInst_ClearKraidCeiling:
 DrawInst_ClearKraidSpikeBlocks:
     dw $0016,$0111,$0110,$0111,$0110,$0111,$0110,$0111                   ;8493BF;
     dw $0110,$0111,$0110,$0111,$0110,$0111,$0110,$0111                   ;8493CF;
-    dw $0110,$0111,$0110,$0111,$0110,$0111,$0110,$0000                   ;8493DF;
+    dw $0110,$0111,$0110,$0111,$0110,$0111,$0110                         ;8493DF;
+    dw $0000
 
 DrawInst_DrawPhantoonsDoorDuringBossFight:
     dw $8004,$95C1,$95E1,$9DE1,$9DC1                                     ;8493EF;
     db $01,$00                                                           ;8493F9;
-    dw $8004,$C5C0,$D5E0,$DDE0,$DDC0,$0000                               ;8493FB;
+    dw $8004,$C5C0,$D5E0,$DDE0,$DDC0                                     ;8493FB;
+    dw $0000
 
 DrawInst_RestorePhantoonsDoorDuringBossFight:
-    dw $8004,$9440,$9460,$9C60,$9C40,$0000                               ;849407;
+    dw $8004,$9440,$9460,$9C60,$9C40                                     ;849407;
+    dw $0000
 
 DrawInst_ClearSporeSpawnCeiling:
     dw $0002,$00FF,$00FF                                                 ;849413;
     db $00,$01                                                           ;849419;
-    dw $0002,$00FF,$00FF,$0000                                           ;84941B;
+    dw $0002,$00FF,$00FF                                                 ;84941B;
+    dw $0000
 
 DrawInst_CrumbleSporeSpawnCeiling_0:
     dw $0002,$0053,$0053                                                 ;849423;
     db $00,$01                                                           ;849429;
-    dw $0002,$0053,$0053,$0000                                           ;84942B;
+    dw $0002,$0053,$0053                                                 ;84942B;
+    dw $0000
 
 DrawInst_CrumbleSporeSpawnCeiling_1:
     dw $0002,$0054,$0054                                                 ;849433;
     db $00,$01                                                           ;849439;
-    dw $0002,$0054,$0054,$0000                                           ;84943B;
+    dw $0002,$0054,$0054                                                 ;84943B;
+    dw $0000
 
 DrawInst_CrumbleSporeSpawnCeiling_2:
     dw $0002,$0055,$0055                                                 ;849443;
     db $00,$01                                                           ;849449;
-    dw $0002,$0055,$0055,$0000                                           ;84944B;
+    dw $0002,$0055,$0055                                                 ;84944B;
+    dw $0000
 
 UNUSED_DrawInst_849453:
     dw $8002,$00FF,$12FB                                                 ;849453;
     db $00,$FE                                                           ;849459;
-    dw $8002,$1AFB,$00FF,$0000                                           ;84945B;
+    dw $8002,$1AFB,$00FF                                                 ;84945B;
+    dw $0000
 
 UNUSED_DrawInst_849463:
     dw $8002,$80FF,$82FB                                                 ;849463;
     db $00,$FE                                                           ;849469;
-    dw $8002,$8AFB,$80FF,$0000                                           ;84946B;
+    dw $8002,$8AFB,$80FF                                                 ;84946B;
+    dw $0000
 
 DrawInst_EscapeRoom1Gate_0:
-    dw $8004,$80FF,$80FF,$80FF,$80FF,$0000                               ;849473;
+    dw $8004,$80FF,$80FF,$80FF,$80FF                                     ;849473;
+    dw $0000
 
 DrawInst_EscapeRoom1Gate_1:
-    dw $8004,$830F,$80FF,$80FF,$830F,$0000                               ;84947F;
+    dw $8004,$830F,$80FF,$80FF,$830F                                     ;84947F;
+    dw $0000
 
 DrawInst_EscapeRoom1Gate_2:
-    dw $8004,$830F,$8AE8,$82E8,$830F,$0000                               ;84948B;
+    dw $8004,$830F,$8AE8,$82E8,$830F                                     ;84948B;
+    dw $0000
 
 UNUSED_DrawInst_849497:
-    dw $0001,$00FF,$0000                                                 ;849497;
+    dw $0001,$00FF                                                       ;849497;
+    dw $0000
 
 UNUSED_DrawInst_84949D:
-    dw $0001,$80FF,$0000                                                 ;84949D;
+    dw $0001,$80FF                                                       ;84949D;
+    dw $0000
 
 DrawInst_FillMotherBrainsWall:
     dw $8002,$8340,$830F                                                 ;8494A3;
     db $00,$FF                                                           ;8494A9;
-    dw $8001,$8B0F,$0000                                                 ;8494AB;
+    dw $8001,$8B0F                                                       ;8494AB;
+    dw $0000
 
 DrawInst_MotherBrainsRoomEscapeDoor:
     dw $8004,$9222,$D1AF,$D1D0,$D220                                     ;8494B1;
     db $01,$00                                                           ;8494BB;
-    dw $8004,$0223,$01EB,$01D0,$0221,$0000                               ;8494BD;
+    dw $8004,$0223,$01EB,$01D0,$0221                                     ;8494BD;
+    dw $0000
 
 UNUSED_DrawInst_8494C9:
     dw $000D,$8044,$8044,$8044,$8044,$8044,$8044,$8044                   ;8494C9;
-    dw $8044,$8044,$8044,$8044,$8044,$8044,$0000                         ;8494D9;
+    dw $8044,$8044,$8044,$8044,$8044,$8044                               ;8494D9;
+    dw $0000
 
 UNUSED_DrawInst_8494E7:
     dw $000D,$8044,$8044,$8044,$8044,$8044,$8044,$8044                   ;8494E7;
-    dw $8044,$8044,$8044,$8044,$8044,$8044,$0000                         ;8494F7;
+    dw $8044,$8044,$8044,$8044,$8044,$8044                               ;8494F7;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRow2:
     dw $000D,$1241,$1242,$12FC,$12FC,$12FC,$1243,$1244                   ;849505;
-    dw $12FC,$1245,$1642,$1241,$1241,$1246,$0000                         ;849515;
+    dw $12FC,$1245,$1642,$1241,$1241,$1246                               ;849515;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRow3:
     dw $000D,$09EF,$01B2,$01E5,$01E5,$01E6,$01E5,$01E5                   ;849523;
-    dw $01E5,$01E5,$05B2,$09EF,$09EF,$01B2,$0000                         ;849533;
+    dw $01E5,$01E5,$05B2,$09EF,$09EF,$01B2                               ;849533;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRow4:
     dw $000D,$01B1,$01D2,$01C6,$01C7,$00FF,$0206,$0207                   ;849541;
-    dw $00FF,$01A6,$09CA,$060C,$05B1,$0A09,$0000                         ;849551;
+    dw $00FF,$01A6,$09CA,$060C,$05B1,$0A09                               ;849551;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRow5:
     dw $000D,$01D1,$01F2,$01A4,$01E7,$01A4,$0226,$0227                   ;84955F;
-    dw $01A5,$01A4,$020D,$0E09,$01B1,$01AB,$0000                         ;84956F;
+    dw $01A5,$01A4,$020D,$0E09,$01B1,$01AB                               ;84956F;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRow6:
     dw $000D,$01B1,$0212,$01C4,$01C9,$01C4,$0206,$0207                   ;84957D;
-    dw $01C5,$01C4,$0628,$01AC,$01EC,$01EC,$0000                         ;84958D;
+    dw $01C5,$01C4,$0628,$01AC,$01EC,$01EC                               ;84958D;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRow7:
     dw $000D,$01B1,$0A0C,$05CA,$0DC7,$01AA,$01A8,$01A8                   ;84959B;
-    dw $01A8,$01A8,$0628,$01AB,$01CD,$01CD,$0000                         ;8495AB;
+    dw $01A8,$01A8,$0628,$01AB,$01CD,$01CD                               ;8495AB;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRow8:
     dw $000D,$01D1,$01D0,$05EA,$00FF,$00FF,$0206,$0207                   ;8495B9;
-    dw $00FF,$01A7,$0A0D,$0609,$01EB,$01D0,$0000                         ;8495C9;
+    dw $00FF,$01A7,$0A0D,$0609,$01EB,$01D0                               ;8495C9;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRow9:
     dw $000D,$01EB,$01EB,$05EA,$00FF,$00FF,$0206,$0207                   ;8495D7;
-    dw $00FF,$01A6,$00FF,$0A2C,$0609,$01AE,$0000                         ;8495E7;
+    dw $00FF,$01A6,$00FF,$0A2C,$0609,$01AE                               ;8495E7;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRowA:
     dw $000D,$01EC,$01AF,$05EA,$05C7,$05C6,$0206,$0207                   ;8495F5;
-    dw $01A8,$01A6,$01A8,$01A8,$05D2,$01AE,$0000                         ;849605;
+    dw $01A8,$01A6,$01A8,$01A8,$05D2,$01AE                               ;849605;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRowB:
     dw $000D,$01AC,$01AF,$01B2,$05E7,$01E5,$0226,$0227                   ;849613;
-    dw $01E5,$01A6,$01E6,$01E5,$05B2,$01CD,$0000                         ;849623;
+    dw $01E5,$01A6,$01E6,$01E5,$05B2,$01CD                               ;849623;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRowC:
     dw $000D,$060C,$01EF,$01B2,$01E5,$01E6,$01E5,$01E5                   ;849631;
-    dw $01E6,$01E5,$01E5,$01E5,$05B2,$01EF,$0000                         ;849641;
+    dw $01E6,$01E5,$01E5,$01E5,$05B2,$01EF                               ;849641;
+    dw $0000
 
 DrawInst_MotherBrainsBackgroundRowD:
     dw $000D,$1248,$1249,$124A,$124B,$1339,$124C,$124D                   ;84964F;
-    dw $1339,$124E,$1339,$1339,$124F,$1249,$0000                         ;84965F;
+    dw $1339,$124E,$1339,$1339,$124F,$1249                               ;84965F;
+    dw $0000
 
 UNUSED_DrawInst_94966D:
     dw $000D,$8319,$8319,$8319,$8319,$8319,$8319,$8319                   ;84966D;
-    dw $8319,$8319,$8319,$8319,$8319,$8319,$0000                         ;84967D;
+    dw $8319,$8319,$8319,$8319,$8319,$8319                               ;84967D;
+    dw $0000
 
 UNUSED_DrawInst_94968B:
     dw $000D,$8044,$8044,$8044,$8044,$8044,$8044,$8044                   ;84968B;
-    dw $8044,$8044,$8044,$8044,$8044,$8044,$0000                         ;84969B;
+    dw $8044,$8044,$8044,$8044,$8044,$8044                               ;84969B;
+    dw $0000
 
 DrawInst_ClearCeilingBlockInMotherBrainsRoom:
-    dw $8002,$12FC,$00FF,$0000                                           ;8496A9;
+    dw $8002,$12FC,$00FF                                                 ;8496A9;
+    dw $0000
 
 DrawInst_ClearCeilingTubeInMotherBrainsRoom:
-    dw $8005,$12FC,$00FF,$00FF,$00FF,$00FF,$0000                         ;8496B1;
+    dw $8005,$12FC,$00FF,$00FF,$00FF,$00FF                               ;8496B1;
+    dw $0000
 
 DrawInst_ClearMotherBrainsBottomMiddleSideTube:
-    dw $8004,$00FF,$00FF,$00FF,$1339,$0000                               ;8496BF;
+    dw $8004,$00FF,$00FF,$00FF,$1339                                     ;8496BF;
+    dw $0000
 
 DrawInst_ClearMotherBrainsBottomMiddleTubes:
     dw $8007,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF,$1339                   ;8496CB;
@@ -2842,47 +2885,56 @@ DrawInst_ClearMotherBrainsBottomMiddleTubes:
 DrawInst_ClearMotherBrainsBottomLeftTube:
     dw $8005,$00FF,$00FF,$00FF,$00FF,$1339                               ;8496EF;
     db $01,$00                                                           ;8496FB;
-    dw $0001,$00FF,$0000                                                 ;8496FD;
+    dw $0001,$00FF                                                       ;8496FD;
+    dw $0000
 
 DrawInst_ClearMotherBrainsBottomRightTube:
     dw $8005,$00FF,$00FF,$00FF,$00FF,$1339                               ;849703;
     db $FF,$00                                                           ;84970F;
-    dw $0001,$00FF,$0000                                                 ;849711;
+    dw $0001,$00FF                                                       ;849711;
+    dw $0000
 
 DrawInst_MotherBrainsGlass_0:
-    dw $0001,$C6C0,$0000                                                 ;849717;
+    dw $0001,$C6C0                                                       ;849717;
+    dw $0000
 
 DrawInst_MotherBrainsGlass_1:
     dw $8004,$C2C7,$D2C9,$DAC9,$5AC7                                     ;84971D;
     db $FF,$01                                                           ;849727;
-    dw $8002,$D2C8,$DAC8,$0000                                           ;849729;
+    dw $8002,$D2C8,$DAC8                                                 ;849729;
+    dw $0000
 
 DrawInst_MotherBrainsGlass_2:
     dw $8004,$C2C7,$D2CB,$DACB,$5AC7                                     ;849731;
     db $FF,$01                                                           ;84973B;
-    dw $8002,$D2CA,$DACA,$0000                                           ;84973D;
+    dw $8002,$D2CA,$DACA                                                 ;84973D;
+    dw $0000
 
 DrawInst_MotherBrainsGlass_3:
-    dw $8003,$C2C7,$02CC,$0ACC,$0000                                     ;849745;
+    dw $8003,$C2C7,$02CC,$0ACC                                           ;849745;
+    dw $0000
 
 DrawInst_MotherBrainsGlass_4:
     dw $0001,$C2C7                                                       ;84974F;
     db $FD,$00                                                           ;849753;
     dw $8004,$82CD,$86C9,$8EC9,$8ACD                                     ;849755;
     db $FE,$01                                                           ;84975F;
-    dw $8002,$86C8,$8EC8,$0000                                           ;849761;
+    dw $8002,$86C8,$8EC8                                                 ;849761;
+    dw $0000
 
 DrawInst_MotherBrainsGlass_5:
     dw $0001,$C2C7                                                       ;849769;
     db $FD,$01                                                           ;84976D;
     dw $8003,$86CB,$8ECB,$8ACD                                           ;84976F;
     db $FE,$01                                                           ;849777;
-    dw $8002,$86CA,$8ECA,$0000                                           ;849779;
+    dw $8002,$86CA,$8ECA                                                 ;849779;
+    dw $0000
 
 DrawInst_MotherBrainsGlass_6:
     dw $0001,$C2C7                                                       ;849781;
     db $FD,$01                                                           ;849785;
-    dw $8002,$06CC,$0ECC,$0000                                           ;849787;
+    dw $8002,$06CC,$0ECC                                                 ;849787;
+    dw $0000
 
 DrawInst_MotherBrainsGlass_7:
     dw $8004,$C2CE,$02CF,$0ACF,$5ACE                                     ;84978F;
@@ -2891,7 +2943,8 @@ DrawInst_MotherBrainsGlass_7:
     db $FE,$01                                                           ;8497A5;
     dw $8002,$D6D0,$DED0                                                 ;8497A7;
     db $FF,$01                                                           ;8497AD;
-    dw $8002,$D2D0,$DAD0,$0000                                           ;8497AF;
+    dw $8002,$D2D0,$DAD0                                                 ;8497AF;
+    dw $0000
 
 DrawInst_MotherBrainsGlass_8:
     dw $8004,$C2CE,$00FF,$00FF,$5ACE                                     ;8497B7;
@@ -2900,7 +2953,8 @@ DrawInst_MotherBrainsGlass_8:
     db $FE,$00                                                           ;8497CD;
     dw $8004,$52C2,$D2C3,$DAC3,$D2C4                                     ;8497CF;
     db $FF,$00                                                           ;8497D9;
-    dw $8004,$56C2,$D6C3,$DEC3,$D6C4,$0000                               ;8497DB;
+    dw $8004,$56C2,$D6C3,$DEC3,$D6C4                                     ;8497DB;
+    dw $0000
 
 DrawInst_MotherBrainsGlass_9:
     dw $8004,$00FF,$00FF,$00FF,$00FF                                     ;8497E7;
@@ -2909,17 +2963,20 @@ DrawInst_MotherBrainsGlass_9:
     db $FE,$00                                                           ;8497FD;
     dw $8004,$02D2,$02D3,$0AD3,$02D4                                     ;8497FF;
     db $FF,$00                                                           ;849809;
-    dw $8004,$06D2,$06D3,$0ED3,$06D4,$0000                               ;84980B;
+    dw $8004,$06D2,$06D3,$0ED3,$06D4                                     ;84980B;
+    dw $0000
 
 UNUSED_DrawInst_849817:
     dw $8004,$00FF,$00FF,$00FF,$00FF,$00FD,$8004,$00FF                   ;849817;
     dw $00FF,$00FF,$00FF,$00FE,$8004,$00FF,$00FF,$00FF                   ;849827;
-    dw $00FF,$00FF,$8004,$00FF,$00FF,$00FF,$00FF,$0000                   ;849837;
+    dw $00FF,$00FF,$8004,$00FF,$00FF,$00FF,$00FF                         ;849837;
+    dw $0000
 
 UNUSED_DrawInst_849847:
     dw $8004,$00FF,$00FF,$00FF,$00FF,$00FF,$8004,$0172                   ;849847;
     dw $0173,$0173,$0172,$00FE,$8004,$0172,$0173,$0173                   ;849857;
-    dw $0172,$00FD,$8004,$00FF,$00FF,$00FF,$00FF,$0000                   ;849867;
+    dw $0172,$00FD,$8004,$00FF,$00FF,$00FF,$00FF                         ;849867;
+    dw $0000
 
 DrawInst_BombTorizosCrumblingChozo_0:
     dw $0002,$8065,$8066                                                 ;849877;
@@ -2928,7 +2985,8 @@ DrawInst_BombTorizosCrumblingChozo_0:
     db $00,$FF                                                           ;849883;
     dw $0002,$8045,$8046                                                 ;849885;
     db $FF,$01                                                           ;84988B;
-    dw $0003,$8047,$8048,$8049,$0000                                     ;84988D;
+    dw $0003,$8047,$8048,$8049                                           ;84988D;
+    dw $0000
 
 UNUSED_DrawInst_849897:
     dw $0001,$0001,$0000                                                 ;849897;
@@ -2937,16 +2995,20 @@ DrawInst_BombTorizosCrumblingChozo_1:
     dw $0002,$00FF,$00FF,$00FE,$0002,$00FF,$00FF,$01FE                   ;84989D;
     dw $0004,$00FF,$00FF,$00FF,$00FF,$FEFE,$0004,$00FF                   ;8498AD;
     dw $00FF,$00FF,$00FF,$FFFE,$0004,$00FF,$00FF,$00FF                   ;8498BD;
-    dw $00FF,$0000                                                       ;8498CD;
+    dw $00FF                                                             ;8498CD;
+    dw $0000
 
 DrawInst_NoobTube_0:
-    dw $0001,$C540,$0000                                                 ;8498D1;
+    dw $0001,$C540                                                       ;8498D1;
+    dw $0000
 
 DrawInst_NoobTube_1:
-    dw $0001,$8540,$0000                                                 ;8498D7;
+    dw $0001,$8540                                                       ;8498D7;
+    dw $0000
 
 DrawInst_NoobTube_2:
-    dw $0001,$8141,$0000                                                 ;8498DD;
+    dw $0001,$8141                                                       ;8498DD;
+    dw $0000
 
 DrawInst_NoobTube_3:
     dw $000C,$8141,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF                   ;8498E3;
@@ -2959,7 +3021,8 @@ DrawInst_NoobTube_3:
     dw $00FF,$00FF,$00FF,$00FF,$0723                                     ;84992B;
     db $00,$03                                                           ;849935;
     dw $000C,$0B23,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF                   ;849937;
-    dw $00FF,$00FF,$00FF,$00FF,$0F23,$0000                               ;849947;
+    dw $00FF,$00FF,$00FF,$00FF,$0F23                                     ;849947;
+    dw $0000
 
 DrawInst_NoobTube_4:
     dw $0001,$0141                                                       ;849953;
@@ -2968,7 +3031,8 @@ DrawInst_NoobTube_4:
     dw $00FF,$00FF,$00FF,$00FF,$0F22                                     ;849969;
     db $00,$05                                                           ;849973;
     dw $000C,$814E,$814F,$00FF,$00FF,$00FF,$00FF,$00FF                   ;849975;
-    dw $00FF,$00FF,$00FF,$854F,$854E,$0000                               ;849985;
+    dw $00FF,$00FF,$00FF,$854F,$854E                                     ;849985;
+    dw $0000
 
 DrawInst_NoobTube_5:
     dw $000C,$8141,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF                   ;849991;
@@ -2978,7 +3042,8 @@ DrawInst_NoobTube_5:
     dw $00FF,$00FF,$00FF,$00FF,$0722                                     ;8499BD;
     db $00,$02                                                           ;8499C7;
     dw $000C,$0323,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF                   ;8499C9;
-    dw $00FF,$00FF,$00FF,$00FF,$0723,$0000                               ;8499D9;
+    dw $00FF,$00FF,$00FF,$00FF,$0723                                     ;8499D9;
+    dw $0000
 
 DrawInst_NoobTube_6:
     dw $0001,$0141                                                       ;8499E5;
@@ -2990,7 +3055,8 @@ DrawInst_NoobTube_6:
     dw $00FF,$00FF,$00FF,$00FF,$0F22                                     ;849A17;
     db $00,$05                                                           ;849A21;
     dw $000C,$814E,$814F,$00FF,$00FF,$00FF,$00FF,$00FF                   ;849A23;
-    dw $00FF,$00FF,$00FF,$854F,$854E,$0000                               ;849A33;
+    dw $00FF,$00FF,$00FF,$854F,$854E                                     ;849A33;
+    dw $0000
 
 DrawInst_SaveStation_0:
     dw $0002,$B859,$8C59                                                 ;849A3F;
@@ -3003,7 +3069,8 @@ DrawInst_SaveStation_0:
     db $00,$FC                                                           ;849A5D;
     dw $0002,$005B,$045B                                                 ;849A5F;
     db $00,$FB                                                           ;849A65;
-    dw $0002,$8059,$8459,$0000                                           ;849A67;
+    dw $0002,$8059,$8459                                                 ;849A67;
+    dw $0000
 
 DrawInst_SaveStation_1:
     dw $0002,$8859,$8C59                                                 ;849A6F;
@@ -3016,7 +3083,8 @@ DrawInst_SaveStation_1:
     db $00,$FC                                                           ;849A8D;
     dw $0002,$005B,$045B                                                 ;849A8F;
     db $00,$FB                                                           ;849A95;
-    dw $0002,$8059,$8459,$0000                                           ;849A97;
+    dw $0002,$8059,$8459                                                 ;849A97;
+    dw $0000
 
 DrawInst_SaveStation_2:
     dw $0002,$885A,$8C5A                                                 ;849A9F;
@@ -3029,50 +3097,61 @@ DrawInst_SaveStation_2:
     db $00,$FC                                                           ;849ABD;
     dw $0002,$005C,$045C                                                 ;849ABF;
     db $00,$FB                                                           ;849AC5;
-    dw $0002,$805A,$845A,$0000                                           ;849AC7;
+    dw $0002,$805A,$845A                                                 ;849AC7;
+    dw $0000
 
 UNUSED_DrawInst_Draw13BlankAirTiles_849ACF:
     dw $000D,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF                   ;849ACF;
-    dw $00FF,$00FF,$00FF,$00FF,$00FF,$00FF,$0000                         ;849ADF;
+    dw $00FF,$00FF,$00FF,$00FF,$00FF,$00FF                               ;849ADF;
+    dw $0000
 
 UNUSED_DrawInst_Draw13BlankSolidTiles_849AED:
     dw $000D,$80FF,$80FF,$80FF,$80FF,$80FF,$80FF,$80FF                   ;849AED;
-    dw $80FF,$80FF,$80FF,$80FF,$80FF,$80FF,$0000                         ;849AFD;
+    dw $80FF,$80FF,$80FF,$80FF,$80FF,$80FF                               ;849AFD;
+    dw $0000
 
 UNUSED_DrawInst_LowerNorfair2x2ChozoShotBlock_849B0B:
     dw $0002,$C64A,$524A                                                 ;849B0B;
     db $00,$01                                                           ;849B11;
-    dw $0002,$D66A,$D26A,$0000                                           ;849B13;
+    dw $0002,$D66A,$D26A                                                 ;849B13;
+    dw $0000
 
 UNUSED_DrawInst_LowerNorfair2x2ChozoShotBlock_849B1B:
     dw $0002,$8053,$8053                                                 ;849B1B;
     db $00,$01                                                           ;849B21;
-    dw $0002,$8053,$8053,$0000                                           ;849B23;
+    dw $0002,$8053,$8053                                                 ;849B23;
+    dw $0000
 
 UNUSED_DrawInst_LowerNorfair2x2ChozoShotBlock_849B2B:
     dw $0002,$8054,$8054                                                 ;849B2B;
     db $00,$01                                                           ;849B31;
-    dw $0002,$8054,$8054,$0000                                           ;849B33;
+    dw $0002,$8054,$8054                                                 ;849B33;
+    dw $0000
 
 UNUSED_DrawInst_LowerNorfair2x2ChozoShotBlock_849B3B:
     dw $0002,$0055,$0055                                                 ;849B3B;
     db $00,$01                                                           ;849B41;
-    dw $0002,$0055,$0055,$0000                                           ;849B43;
+    dw $0002,$0055,$0055                                                 ;849B43;
+    dw $0000
 
 UNUSED_DrawInst_LowerNorfair2x2ChozoShotBlock_849B4B:
     dw $0002,$00FF,$00FF                                                 ;849B4B;
     db $00,$01                                                           ;849B51;
-    dw $0002,$00FF,$00FF,$0000                                           ;849B53;
+    dw $0002,$00FF,$00FF                                                 ;849B53;
+    dw $0000
 
 DrawInst_ClearCrocomiresBridge:
     dw $000A,$0080,$0080,$0080,$0080,$0080,$0080,$0080                   ;849B5B;
-    dw $0080,$0080,$0080,$0000                                           ;849B6B;
+    dw $0080,$0080,$0080                                                 ;849B6B;
+    dw $0000
 
 DrawInst_CrumbleABlockOfCrocomiresBridge:
-    dw $0001,$810B,$0000                                                 ;849B73;
+    dw $0001,$810B                                                       ;849B73;
+    dw $0000
 
 DrawInst_ClearABlockOfCrocomiresBridge:
-    dw $0001,$0080,$0000                                                 ;849B79;
+    dw $0001,$0080                                                       ;849B79;
+    dw $0000
 
 DrawInst_ClearCrocomireInvisibleWall_0:
     dw $8008,$0080,$0107,$0127,$0107,$0127,$0147,$0080                   ;849B7F;
@@ -3082,7 +3161,8 @@ DrawInst_ClearCrocomireInvisibleWall_0:
     dw $0080                                                             ;849BA3;
     db $02,$00                                                           ;849BA5;
     dw $8008,$0080,$0109,$0129,$0109,$0129,$0149,$0080                   ;849BA7;
-    dw $0080,$0000                                                       ;849BB7;
+    dw $0080                                                             ;849BB7;
+    dw $0000
 
 DrawInst_ClearCrocomireInvisibleWall_1:
     dw $8008,$8080,$8107,$8127,$8107,$8127,$8147,$8080                   ;849BBB;
@@ -3092,94 +3172,124 @@ DrawInst_ClearCrocomireInvisibleWall_1:
     dw $8080                                                             ;849BDF;
     db $02,$00                                                           ;849BE1;
     dw $8008,$8080,$8109,$8129,$8109,$8129,$8149,$8080                   ;849BE3;
-    dw $8080,$0000                                                       ;849BF3;
+    dw $8080                                                             ;849BF3;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingLeft_0:
-    dw $8004,$84AA,$84CC,$8CCC,$8CAA,$0000                               ;849BF7;
+    dw $8004,$84AA,$84CC,$8CCC,$8CAA                                     ;849BF7;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingLeft_1:
-    dw $8002,$84CC,$8CCC,$0000                                           ;849C03;
+    dw $8002,$84CC,$8CCC                                                 ;849C03;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingLeft_2:
-    dw $8002,$84CB,$8CCB,$0000                                           ;849C0B;
+    dw $8002,$84CB,$8CCB                                                 ;849C0B;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingLeft_3:
-    dw $8002,$C4CA,$DCCA,$0000                                           ;849C13;
+    dw $8002,$C4CA,$DCCA                                                 ;849C13;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingLeft_4:
-    dw $8002,$84CD,$8CCD,$0000                                           ;849C1B;
+    dw $8002,$84CD,$8CCD                                                 ;849C1B;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingLeft_5:
-    dw $8002,$84CA,$8CCA,$0000                                           ;849C23;
+    dw $8002,$84CA,$8CCA                                                 ;849C23;
+    dw $0000
 
 DrawInst_EyeDoorFacingLeft_0:
-    dw $0001,$A4AA,$0000                                                 ;849C2B;
+    dw $0001,$A4AA                                                       ;849C2B;
+    dw $0000
 
 DrawInst_EyeDoorFacingLeft_1:
-    dw $0001,$A4AB,$0000                                                 ;849C31;
+    dw $0001,$A4AB                                                       ;849C31;
+    dw $0000
 
 DrawInst_EyeDoorFacingLeft_2:
-    dw $0001,$A4AC,$0000                                                 ;849C37;
+    dw $0001,$A4AC                                                       ;849C37;
+    dw $0000
 
 DrawInst_EyeDoorBottomFacingLeft_0:
-    dw $0001,$ACAA,$0000                                                 ;849C3D;
+    dw $0001,$ACAA                                                       ;849C3D;
+    dw $0000
 
 DrawInst_EyeDoorBottomFacingLeft_1:
-    dw $0001,$ACAB,$0000                                                 ;849C43;
+    dw $0001,$ACAB                                                       ;849C43;
+    dw $0000
 
 DrawInst_EyeDoorBottomFacingLeft_2:
-    dw $0001,$ACAC,$0000                                                 ;849C49;
+    dw $0001,$ACAC                                                       ;849C49;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingRight_0:
-    dw $8004,$80AA,$80CC,$88CC,$88AA,$0000                               ;849C4F;
+    dw $8004,$80AA,$80CC,$88CC,$88AA                                     ;849C4F;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingRight_1:
-    dw $8002,$80CC,$88CC,$0000                                           ;849C5B;
+    dw $8002,$80CC,$88CC                                                 ;849C5B;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingRight_2:
-    dw $8002,$80CB,$88CB,$0000                                           ;849C63;
+    dw $8002,$80CB,$88CB                                                 ;849C63;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingRight_3:
-    dw $8002,$C0CA,$D8CA,$0000                                           ;849C6B;
+    dw $8002,$C0CA,$D8CA                                                 ;849C6B;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingRight_4:
-    dw $8002,$80CD,$88CD,$0000                                           ;849C73;
+    dw $8002,$80CD,$88CD                                                 ;849C73;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingRight_5:
-    dw $8002,$80CA,$88CA,$0000                                           ;849C7B;
+    dw $8002,$80CA,$88CA                                                 ;849C7B;
+    dw $0000
 
 DrawInst_EyeDoorFacingRight_0:
-    dw $0001,$A0AA,$0000                                                 ;849C83;
+    dw $0001,$A0AA                                                       ;849C83;
+    dw $0000
 
 DrawInst_EyeDoorFacingRight_1:
-    dw $0001,$A0AB,$0000                                                 ;849C89;
+    dw $0001,$A0AB                                                       ;849C89;
+    dw $0000
 
 DrawInst_EyeDoorFacingRight_2:
-    dw $0001,$A0AC,$0000                                                 ;849C8F;
+    dw $0001,$A0AC                                                       ;849C8F;
+    dw $0000
 
 DrawInst_EyeDoorBottomFacingRight_0:
-    dw $0001,$A8AA,$0000                                                 ;849C95;
+    dw $0001,$A8AA                                                       ;849C95;
+    dw $0000
 
 DrawInst_EyeDoorBottomFacingRight_1:
-    dw $0001,$A8AB,$0000                                                 ;849C9B;
+    dw $0001,$A8AB                                                       ;849C9B;
+    dw $0000
 
 DrawInst_EyeDoorBottomFacingRight_2:
-    dw $0001,$A8AC,$0000                                                 ;849CA1;
+    dw $0001,$A8AC                                                       ;849CA1;
+    dw $0000
 
 UNUSED_DrawInst_AlternateLowerNorfairChozoHand_849CA7:
-    dw $0001,$C0FF,$0000                                                 ;849CA7;
+    dw $0001,$C0FF                                                       ;849CA7;
+    dw $0000
 
 UNUSED_DrawInst_849CAD:
-    dw $0001,$8053,$0000                                                 ;849CAD;
+    dw $0001,$8053                                                       ;849CAD;
+    dw $0000
 
 UNUSED_DrawInst_849CB3:
-    dw $0001,$8054,$0000                                                 ;849CB3;
+    dw $0001,$8054                                                       ;849CB3;
+    dw $0000
 
 UNUSED_DrawInst_849CB9:
-    dw $0001,$0055,$0000                                                 ;849CB9;
+    dw $0001,$0055                                                       ;849CB9;
+    dw $0000
 
 UNUSED_DrawInst_AlternateLowerNorfairChozoHand_849CBF:
-    dw $0001,$00FF,$0000                                                 ;849CBF;
+    dw $0001,$00FF                                                       ;849CBF;
+    dw $0000
 
 DrawInst_ClearSlopeAccessForWreckedShipChozo:
     dw $000E,$012B,$012B,$012B,$012B,$012B,$012B,$012B                   ;849CC5;
@@ -3192,7 +3302,8 @@ DrawInst_ClearSlopeAccessForWreckedShipChozo:
     db $05,$07                                                           ;849D01;
     dw $0001,$01BB                                                       ;849D03;
     db $05,$08                                                           ;849D07;
-    dw $0001,$11BB,$0000                                                 ;849D09;
+    dw $0001,$11BB                                                       ;849D09;
+    dw $0000
 
 DrawInst_BlockSlopeAccessForWreckedShipChozo:
     dw $000E,$A12B,$A12B,$A12B,$A12B,$A12B,$A12B,$A12B                   ;849D0F;
@@ -3205,701 +3316,860 @@ DrawInst_BlockSlopeAccessForWreckedShipChozo:
     db $05,$07                                                           ;849D4B;
     dw $0001,$81BB                                                       ;849D4D;
     db $05,$08                                                           ;849D51;
-    dw $0001,$81BB,$0000                                                 ;849D53;
+    dw $0001,$81BB                                                       ;849D53;
+    dw $0000
 
 UNUSED_DrawInst_WreckedShip3x4ChozoBombBlock_0_849D59:
     dw $8004,$C171,$D171,$D171,$D171                                     ;849D59;
     db $FF,$00                                                           ;849D63;
     dw $8004,$8102,$8102,$8102,$8102                                     ;849D65;
     db $FE,$00                                                           ;849D6F;
-    dw $8004,$8560,$8560,$8560,$8560,$0000                               ;849D71;
+    dw $8004,$8560,$8560,$8560,$8560                                     ;849D71;
+    dw $0000
 
 UNUSED_DrawInst_WreckedShip3x4ChozoBombBlock_1_849D7D:
     dw $8004,$8053,$8053,$8053,$8053                                     ;849D7D;
     db $FF,$00                                                           ;849D87;
     dw $8004,$8053,$8053,$8053,$8053                                     ;849D89;
     db $FE,$00                                                           ;849D93;
-    dw $8004,$8053,$8053,$8053,$8053,$0000                               ;849D95;
+    dw $8004,$8053,$8053,$8053,$8053                                     ;849D95;
+    dw $0000
 
 UNUSED_DrawInst_WreckedShip3x4ChozoBombBlock_2_849DA1:
     dw $8004,$0054,$0054,$0054,$0054                                     ;849DA1;
     db $FF,$00                                                           ;849DAB;
     dw $8004,$0054,$0054,$0054,$0054                                     ;849DAD;
     db $FE,$00                                                           ;849DB7;
-    dw $8004,$0054,$0054,$0054,$0054,$0000                               ;849DB9;
+    dw $8004,$0054,$0054,$0054,$0054                                     ;849DB9;
+    dw $0000
 
 UNUSED_DrawInst_WreckedShip3x4ChozoBombBlock_3_849DC5:
     dw $8004,$8055,$8055,$8055,$8055                                     ;849DC5;
     db $FF,$00                                                           ;849DCF;
     dw $8004,$8055,$8055,$8055,$8055                                     ;849DD1;
     db $FE,$00                                                           ;849DDB;
-    dw $8004,$8055,$8055,$8055,$8055,$0000                               ;849DDD;
+    dw $8004,$8055,$8055,$8055,$8055                                     ;849DDD;
+    dw $0000
 
 UNUSED_DrawInst_WreckedShip3x4ChozoBombBlock_4_849DE9:
     dw $8004,$00FF,$00FF,$00FF,$00FF                                     ;849DE9;
     db $FF,$00                                                           ;849DF3;
     dw $8004,$D0FF,$D0FF,$D0FF,$30FF                                     ;849DF5;
     db $FE,$00                                                           ;849DFF;
-    dw $8004,$D0FF,$D0FF,$D0FF,$30FF,$0000                               ;849E01;
+    dw $8004,$D0FF,$D0FF,$D0FF,$30FF                                     ;849E01;
+    dw $0000
 
 DrawInst_BrinstarFloorPlant_0:
     dw $0002,$35A1,$85A0                                                 ;849E0D;
     db $FE,$00                                                           ;849E13;
     dw $0002,$81A0,$51A1                                                 ;849E15;
     db $FE,$FF                                                           ;849E1B;
-    dw $0004,$2180,$2181,$2581,$2580,$0000                               ;849E1D;
+    dw $0004,$2180,$2181,$2581,$2580                                     ;849E1D;
+    dw $0000
 
 UNUSED_DrawInst_849E29:
     dw $0002,$05A1,$85A0                                                 ;849E29;
     db $FE,$00                                                           ;849E2F;
     dw $0002,$81A0,$01A1                                                 ;849E31;
     db $FE,$FF                                                           ;849E37;
-    dw $0004,$2180,$2181,$2581,$2580,$0000                               ;849E39;
+    dw $0004,$2180,$2181,$2581,$2580                                     ;849E39;
+    dw $0000
 
 DrawInst_BrinstarFloorPlant_1:
     dw $0002,$05A3,$85A2                                                 ;849E45;
     db $FE,$00                                                           ;849E4B;
     dw $0002,$81A2,$01A3                                                 ;849E4D;
     db $FE,$FF                                                           ;849E53;
-    dw $0004,$2182,$2183,$2583,$2582,$0000                               ;849E55;
+    dw $0004,$2182,$2183,$2583,$2582                                     ;849E55;
+    dw $0000
 
 DrawInst_BrinstarFloorPlant_2:
     dw $0002,$05A5,$85A4                                                 ;849E61;
     db $FE,$00                                                           ;849E67;
     dw $0002,$81A4,$01A5                                                 ;849E69;
     db $FE,$FF                                                           ;849E6F;
-    dw $0004,$2184,$2185,$2585,$2584,$0000                               ;849E71;
+    dw $0004,$2184,$2185,$2585,$2584                                     ;849E71;
+    dw $0000
 
 DrawInst_BrinstarFloorPlant_3:
     dw $0002,$05A7,$85A6                                                 ;849E7D;
     db $FE,$00                                                           ;849E83;
     dw $0002,$81A6,$01A7                                                 ;849E85;
     db $FE,$FF                                                           ;849E8B;
-    dw $0004,$2186,$2187,$2587,$2586,$0000                               ;849E8D;
+    dw $0004,$2186,$2187,$2587,$2586                                     ;849E8D;
+    dw $0000
 
 DrawInst_BrinstarCeilingPlant_0:
     dw $0002,$3DA1,$8DA0                                                 ;849E99;
     db $FE,$00                                                           ;849E9F;
     dw $0002,$89A0,$59A1                                                 ;849EA1;
     db $FE,$01                                                           ;849EA7;
-    dw $0004,$2980,$2981,$2D81,$2D80,$0000                               ;849EA9;
+    dw $0004,$2980,$2981,$2D81,$2D80                                     ;849EA9;
+    dw $0000
 
 UNUSED_DrawInst_849EB5:
     dw $0002,$0DA1,$8DA0                                                 ;849EB5;
     db $FE,$00                                                           ;849EBB;
     dw $0002,$89A0,$09A1                                                 ;849EBD;
     db $FE,$01                                                           ;849EC3;
-    dw $0004,$2980,$2981,$2D81,$2D80,$0000                               ;849EC5;
+    dw $0004,$2980,$2981,$2D81,$2D80                                     ;849EC5;
+    dw $0000
 
 DrawInst_BrinstarCeilingPlant_1:
     dw $0002,$0DA3,$8DA2                                                 ;849ED1;
     db $FE,$00                                                           ;849ED7;
     dw $0002,$89A2,$09A3                                                 ;849ED9;
     db $FE,$01                                                           ;849EDF;
-    dw $0004,$2982,$2983,$2D83,$2D82,$0000                               ;849EE1;
+    dw $0004,$2982,$2983,$2D83,$2D82                                     ;849EE1;
+    dw $0000
 
 DrawInst_BrinstarCeilingPlant_2:
     dw $0002,$0DA5,$8DA4                                                 ;849EED;
     db $FE,$00                                                           ;849EF3;
     dw $0002,$89A4,$09A5                                                 ;849EF5;
     db $FE,$01                                                           ;849EFB;
-    dw $0004,$2984,$2985,$2D85,$2D84,$0000                               ;849EFD;
+    dw $0004,$2984,$2985,$2D85,$2D84                                     ;849EFD;
+    dw $0000
 
 DrawInst_BrinstarCeilingPlant_3:
     dw $0002,$0DA7,$8DA6                                                 ;849F09;
     db $FE,$00                                                           ;849F0F;
     dw $0002,$89A6,$09A7                                                 ;849F11;
     db $FE,$01                                                           ;849F17;
-    dw $0004,$2986,$2987,$2D87,$2D86,$0000                               ;849F19;
+    dw $0004,$2986,$2987,$2D87,$2D86                                     ;849F19;
+    dw $0000
 
 DrawInst_MapStation_0:
     dw $0001,$810C                                                       ;849F25;
     db $FF,$00                                                           ;849F29;
-    dw $0001,$810B,$0000                                                 ;849F2B;
+    dw $0001,$810B                                                       ;849F2B;
+    dw $0000
 
 DrawInst_MapStation_1:
     dw $0001,$812C                                                       ;849F31;
     db $FF,$00                                                           ;849F35;
-    dw $0001,$812B,$0000                                                 ;849F37;
+    dw $0001,$812B                                                       ;849F37;
+    dw $0000
 
 DrawInst_MapStation_2:
     dw $0001,$814C                                                       ;849F3D;
     db $FF,$00                                                           ;849F41;
-    dw $0001,$814B,$0000                                                 ;849F43;
+    dw $0001,$814B                                                       ;849F43;
+    dw $0000
 
 DrawInst_MapStationRightAccess_0:
     dw $0001,$8128                                                       ;849F49;
     db $FD,$00                                                           ;849F4D;
-    dw $0001,$8528,$0000                                                 ;849F4F;
+    dw $0001,$8528                                                       ;849F4F;
+    dw $0000
 
 DrawInst_MapStationRightAccess_1:
-    dw $0001,$8129,$0000                                                 ;849F55;
+    dw $0001,$8129                                                       ;849F55;
+    dw $0000
 
 DrawInst_MapStationLeftAccess_0:
     dw $0001,$8528                                                       ;849F5B;
     db $03,$00                                                           ;849F5F;
-    dw $0001,$8128,$0000                                                 ;849F61;
+    dw $0001,$8128                                                       ;849F61;
+    dw $0000
 
 DrawInst_MapStationLeftAccess_1:
-    dw $0001,$8529,$0000                                                 ;849F67;
+    dw $0001,$8529                                                       ;849F67;
+    dw $0000
 
 DrawInst_EnergyStation_0:
     dw $0001,$80C4                                                       ;849F6D;
     db $00,$FF                                                           ;849F71;
-    dw $0001,$10A4,$0000                                                 ;849F73;
+    dw $0001,$10A4                                                       ;849F73;
+    dw $0000
 
 DrawInst_EnergyStation_1:
     dw $0001,$80C5                                                       ;849F79;
     db $00,$FF                                                           ;849F7D;
-    dw $0001,$10A5,$0000                                                 ;849F7F;
+    dw $0001,$10A5                                                       ;849F7F;
+    dw $0000
 
 DrawInst_EnergyStation_2:
     dw $0001,$80C6                                                       ;849F85;
     db $00,$FF                                                           ;849F89;
-    dw $0001,$10A6,$0000                                                 ;849F8B;
+    dw $0001,$10A6                                                       ;849F8B;
+    dw $0000
 
 DrawInst_MissileStation_0:
     dw $0001,$80C7                                                       ;849F91;
     db $00,$FF                                                           ;849F95;
-    dw $0001,$10A7,$0000                                                 ;849F97;
+    dw $0001,$10A7                                                       ;849F97;
+    dw $0000
 
 DrawInst_MissileStation_1:
     dw $0001,$80C8                                                       ;849F9D;
     db $00,$FF                                                           ;849FA1;
-    dw $0001,$10A8,$0000                                                 ;849FA3;
+    dw $0001,$10A8                                                       ;849FA3;
+    dw $0000
 
 DrawInst_MissileStation_2:
     dw $0001,$80C9                                                       ;849FA9;
     db $00,$FF                                                           ;849FAD;
-    dw $0001,$10A9,$0000                                                 ;849FAF;
+    dw $0001,$10A9                                                       ;849FAF;
+    dw $0000
 
 DrawInst_EnergyMissileStationRightAccess_0:
-    dw $0001,$B4C3,$0000                                                 ;849FB5;
+    dw $0001,$B4C3                                                       ;849FB5;
+    dw $0000
 
 DrawInst_EnergyMissileStationRightAccess_1:
-    dw $0001,$84C1,$0000                                                 ;849FBB;
+    dw $0001,$84C1                                                       ;849FBB;
+    dw $0000
 
 DrawInst_EnergyMissileStationLeftAccess_0:
-    dw $0001,$B0C3,$0000                                                 ;849FC1;
+    dw $0001,$B0C3                                                       ;849FC1;
+    dw $0000
 
 DrawInst_EnergyMissileStationLeftAccess_1:
-    dw $0001,$80C1,$0000                                                 ;849FC7;
+    dw $0001,$80C1                                                       ;849FC7;
+    dw $0000
 
 DrawInst_DraygonCannonShieldRight_0:
     dw $0002,$C514,$0513                                                 ;849FCD;
     db $00,$01                                                           ;849FD3;
-    dw $0002,$D534,$0533,$0000                                           ;849FD5;
+    dw $0002,$D534,$0533                                                 ;849FD5;
+    dw $0000
 
 DrawInst_DraygonCannonShieldRight_1:
     dw $0002,$C516,$0515                                                 ;849FDD;
     db $00,$01                                                           ;849FE3;
-    dw $0002,$D536,$0535,$0000                                           ;849FE5;
+    dw $0002,$D536,$0535                                                 ;849FE5;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonShieldDownRight_0_849FED:
     dw $0002,$C510,$550F                                                 ;849FED;
     db $00,$01                                                           ;849FF3;
-    dw $0002,$D530,$D52F,$0000                                           ;849FF5;
+    dw $0002,$D530,$D52F                                                 ;849FF5;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonShieldDownRight_1_849FFD:
     dw $0002,$C512,$5511                                                 ;849FFD;
     db $00,$01                                                           ;84A003;
-    dw $0002,$D532,$D531,$0000                                           ;84A005;
+    dw $0002,$D532,$D531                                                 ;84A005;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonShieldUpRight_0_84A00D:
     dw $0002,$CD30,$5D2F                                                 ;84A00D;
     db $00,$01                                                           ;84A013;
-    dw $0002,$DD10,$DD0F,$0000                                           ;84A015;
+    dw $0002,$DD10,$DD0F                                                 ;84A015;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonShieldUpRight_1_84A01D:
     dw $0002,$CD32,$5D31                                                 ;84A01D;
     db $00,$01                                                           ;84A023;
-    dw $0002,$DD12,$DD11,$0000                                           ;84A025;
+    dw $0002,$DD12,$DD11                                                 ;84A025;
+    dw $0000
 
 DrawInst_DraygonCannonRight_0:
     dw $0002,$A580,$00FF                                                 ;84A02D;
     db $00,$01                                                           ;84A033;
-    dw $0002,$A5A0,$00FF,$0000                                           ;84A035;
+    dw $0002,$A5A0,$00FF                                                 ;84A035;
+    dw $0000
 
 DrawInst_DraygonCannonRight_1:
     dw $0002,$A581,$00FF                                                 ;84A03D;
     db $00,$01                                                           ;84A043;
-    dw $0002,$A5A1,$00FF,$0000                                           ;84A045;
+    dw $0002,$A5A1,$00FF                                                 ;84A045;
+    dw $0000
 
 DrawInst_DraygonCannonRight_2:
     dw $0002,$A582,$00FF                                                 ;84A04D;
     db $00,$01                                                           ;84A053;
-    dw $0002,$A5A2,$00FF,$0000                                           ;84A055;
+    dw $0002,$A5A2,$00FF                                                 ;84A055;
+    dw $0000
 
 DrawInst_DraygonCannonRight_3:
     dw $0002,$A583,$00FF                                                 ;84A05D;
     db $00,$01                                                           ;84A063;
-    dw $0002,$A5A3,$00FF,$0000                                           ;84A065;
+    dw $0002,$A5A3,$00FF                                                 ;84A065;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonDownRight_0_84A06D:
     dw $0002,$A5A5,$A5A4                                                 ;84A06D;
     db $00,$01                                                           ;84A073;
-    dw $0002,$A5C5,$05C4,$0000                                           ;84A075;
+    dw $0002,$A5C5,$05C4                                                 ;84A075;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonDownRight_1_84A07D:
     dw $0002,$A5A7,$A5A6                                                 ;84A07D;
     db $00,$01                                                           ;84A083;
-    dw $0002,$A5C7,$05C6,$0000                                           ;84A085;
+    dw $0002,$A5C7,$05C6                                                 ;84A085;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonDownRight_2_84A08D:
     dw $0002,$A5A9,$A5A8                                                 ;84A08D;
     db $00,$01                                                           ;84A093;
-    dw $0002,$A5C9,$05C8,$0000                                           ;84A095;
+    dw $0002,$A5C9,$05C8                                                 ;84A095;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonDownRight_3_84A09D:
     dw $0002,$A5AB,$A5AA                                                 ;84A09D;
     db $00,$01                                                           ;84A0A3;
-    dw $0002,$A5CB,$05CA,$0000                                           ;84A0A5;
+    dw $0002,$A5CB,$05CA                                                 ;84A0A5;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonUpRight_0_84A0AD:
     dw $0002,$ADC5,$0DC4                                                 ;84A0AD;
     db $00,$01                                                           ;84A0B3;
-    dw $0002,$ADA5,$ADA4,$0000                                           ;84A0B5;
+    dw $0002,$ADA5,$ADA4                                                 ;84A0B5;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonUpRight_1_84A0BD:
     dw $0002,$ADC7,$0DC6                                                 ;84A0BD;
     db $00,$01                                                           ;84A0C3;
-    dw $0002,$ADA7,$ADA6,$0000                                           ;84A0C5;
+    dw $0002,$ADA7,$ADA6                                                 ;84A0C5;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonUpRight_2_84A0CD:
     dw $0002,$ADC9,$0DC8                                                 ;84A0CD;
     db $00,$01                                                           ;84A0D3;
-    dw $0002,$ADA9,$ADA8,$0000                                           ;84A0D5;
+    dw $0002,$ADA9,$ADA8                                                 ;84A0D5;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonUpRight_3_84A0DD:
     dw $0002,$ADCB,$0DCA                                                 ;84A0DD;
     db $00,$01                                                           ;84A0E3;
-    dw $0002,$ADAB,$ADAA,$0000                                           ;84A0E5;
+    dw $0002,$ADAB,$ADAA                                                 ;84A0E5;
+    dw $0000
 
 DrawInst_DraygonCannonShieldLeft_0:
     dw $0001,$C114                                                       ;84A0ED;
     db $FF,$00                                                           ;84A0F1;
     dw $0001,$0113                                                       ;84A0F3;
     db $FF,$01                                                           ;84A0F7;
-    dw $0002,$0133,$D134,$0000                                           ;84A0F9;
+    dw $0002,$0133,$D134                                                 ;84A0F9;
+    dw $0000
 
 DrawInst_DraygonCannonShieldLeft_1:
     dw $0001,$C116                                                       ;84A101;
     db $FF,$00                                                           ;84A105;
     dw $0001,$0115                                                       ;84A107;
     db $FF,$01                                                           ;84A10B;
-    dw $0002,$0135,$D136,$0000                                           ;84A10D;
+    dw $0002,$0135,$D136                                                 ;84A10D;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonShieldDownLeft_0_84A115:
     dw $0001,$C110                                                       ;84A115;
     db $FF,$00                                                           ;84A119;
     dw $0001,$510F                                                       ;84A11B;
     db $FF,$01                                                           ;84A11F;
-    dw $0002,$D12F,$D130,$0000                                           ;84A121;
+    dw $0002,$D12F,$D130                                                 ;84A121;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonShieldDownLeft_1_84A129:
     dw $0001,$C112                                                       ;84A129;
     db $FF,$00                                                           ;84A12D;
     dw $0001,$5111                                                       ;84A12F;
     db $FF,$01                                                           ;84A133;
-    dw $0002,$D131,$D132,$0000                                           ;84A135;
+    dw $0002,$D131,$D132                                                 ;84A135;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonShieldUpLeft_0_84A13D:
     dw $0001,$C930                                                       ;84A13D;
     db $FF,$00                                                           ;84A141;
     dw $0001,$592F                                                       ;84A143;
     db $FF,$01                                                           ;84A147;
-    dw $0002,$D90F,$D910,$0000                                           ;84A149;
+    dw $0002,$D90F,$D910                                                 ;84A149;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonShieldUpLeft_1_84A151:
     dw $0001,$C932                                                       ;84A151;
     db $FF,$00                                                           ;84A155;
     dw $0001,$5931                                                       ;84A157;
     db $FF,$01                                                           ;84A15B;
-    dw $0002,$D911,$D912,$0000                                           ;84A15D;
+    dw $0002,$D911,$D912                                                 ;84A15D;
+    dw $0000
 
 DrawInst_DraygonCannonLeft_0:
     dw $0001,$A180                                                       ;84A165;
     db $FF,$00                                                           ;84A169;
     dw $0001,$00FF                                                       ;84A16B;
     db $FF,$01                                                           ;84A16F;
-    dw $0002,$00FF,$A1A0,$0000                                           ;84A171;
+    dw $0002,$00FF,$A1A0                                                 ;84A171;
+    dw $0000
 
 DrawInst_DraygonCannonLeft_1:
     dw $0001,$A181                                                       ;84A179;
     db $FF,$00                                                           ;84A17D;
     dw $0001,$00FF                                                       ;84A17F;
     db $FF,$01                                                           ;84A183;
-    dw $0002,$00FF,$A1A1,$0000                                           ;84A185;
+    dw $0002,$00FF,$A1A1                                                 ;84A185;
+    dw $0000
 
 DrawInst_DraygonCannonLeft_2:
     dw $0001,$A182                                                       ;84A18D;
     db $FF,$00                                                           ;84A191;
     dw $0001,$00FF                                                       ;84A193;
     db $FF,$01                                                           ;84A197;
-    dw $0002,$00FF,$A1A2,$0000                                           ;84A199;
+    dw $0002,$00FF,$A1A2                                                 ;84A199;
+    dw $0000
 
 DrawInst_DraygonCannonLeft_3:
     dw $0001,$A183                                                       ;84A1A1;
     db $FF,$00                                                           ;84A1A5;
     dw $0001,$00FF                                                       ;84A1A7;
     db $FF,$01                                                           ;84A1AB;
-    dw $0002,$00FF,$A1A3,$0000                                           ;84A1AD;
+    dw $0002,$00FF,$A1A3                                                 ;84A1AD;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonDownLeft_0_84A1B5:
     dw $0001,$A1A5                                                       ;84A1B5;
     db $FF,$00                                                           ;84A1B9;
     dw $0001,$A1A4                                                       ;84A1BB;
     db $FF,$01                                                           ;84A1BF;
-    dw $0002,$01C4,$A1C5,$0000                                           ;84A1C1;
+    dw $0002,$01C4,$A1C5                                                 ;84A1C1;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonDownLeft_1_84A1C9:
     dw $0001,$A1A7                                                       ;84A1C9;
     db $FF,$00                                                           ;84A1CD;
     dw $0001,$A1A6                                                       ;84A1CF;
     db $FF,$01                                                           ;84A1D3;
-    dw $0002,$01C6,$A1C7,$0000                                           ;84A1D5;
+    dw $0002,$01C6,$A1C7                                                 ;84A1D5;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonDownLeft_2_84A1DD:
     dw $0001,$A1A9                                                       ;84A1DD;
     db $FF,$00                                                           ;84A1E1;
     dw $0001,$A1A8                                                       ;84A1E3;
     db $FF,$01                                                           ;84A1E7;
-    dw $0002,$01C8,$A1C9,$0000                                           ;84A1E9;
+    dw $0002,$01C8,$A1C9                                                 ;84A1E9;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonDownLeft_3_84A1F1:
     dw $0001,$A1AB                                                       ;84A1F1;
     db $FF,$00                                                           ;84A1F5;
     dw $0001,$A1AA                                                       ;84A1F7;
     db $FF,$01                                                           ;84A1FB;
-    dw $0002,$01CA,$A1CB,$0000                                           ;84A1FD;
+    dw $0002,$01CA,$A1CB                                                 ;84A1FD;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonUpLeft_0_84A205:
     dw $0001,$A9C5                                                       ;84A205;
     db $FF,$00                                                           ;84A209;
     dw $0001,$09C4                                                       ;84A20B;
     db $FF,$01                                                           ;84A20F;
-    dw $0002,$A9A4,$A9A5,$0000                                           ;84A211;
+    dw $0002,$A9A4,$A9A5                                                 ;84A211;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonUpLeft_1_84A219:
     dw $0001,$A9C7                                                       ;84A219;
     db $FF,$00                                                           ;84A21D;
     dw $0001,$09C6                                                       ;84A21F;
     db $FF,$01                                                           ;84A223;
-    dw $0002,$A9A6,$A9A7,$0000                                           ;84A225;
+    dw $0002,$A9A6,$A9A7                                                 ;84A225;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonUpLeft_2_84A22D:
     dw $0001,$A9C9                                                       ;84A22D;
     db $FF,$00                                                           ;84A231;
     dw $0001,$09C8                                                       ;84A233;
     db $FF,$01                                                           ;84A237;
-    dw $0002,$A9A8,$A9A9,$0000                                           ;84A239;
+    dw $0002,$A9A8,$A9A9                                                 ;84A239;
+    dw $0000
 
 UNUSED_DrawInst_DraygonCannonUpLeft_3_84A241:
     dw $0001,$A9CB                                                       ;84A241;
     db $FF,$00                                                           ;84A245;
     dw $0001,$09CA                                                       ;84A247;
     db $FF,$01                                                           ;84A24B;
-    dw $0002,$A9AA,$A9AB,$0000                                           ;84A24D;
+    dw $0002,$A9AA,$A9AB                                                 ;84A24D;
+    dw $0000
 
 UNUSED_DrawInst_84A255:
-    dw $8002,$2330,$2350,$0000                                           ;84A255;
+    dw $8002,$2330,$2350                                                 ;84A255;
+    dw $0000
 
 UNUSED_DrawInst_84A25D:
-    dw $8002,$2331,$2351,$0000                                           ;84A25D;
+    dw $8002,$2331,$2351                                                 ;84A25D;
+    dw $0000
 
 UNUSED_DrawInst_84A265:
-    dw $8002,$2332,$2352,$0000                                           ;84A265;
+    dw $8002,$2332,$2352                                                 ;84A265;
+    dw $0000
 
 UNUSED_DrawInst_84A26D:
-    dw $8002,$2333,$2353,$0000                                           ;84A26D;
+    dw $8002,$2333,$2353                                                 ;84A26D;
+    dw $0000
 
 UNUSED_DrawInst_84A275:
     dw $8002,$2330,$2350                                                 ;84A275;
     db $FF,$00                                                           ;84A27B;
-    dw $8002,$2330,$2350,$0000                                           ;84A27D;
+    dw $8002,$2330,$2350                                                 ;84A27D;
+    dw $0000
 
 UNUSED_DrawInst_84A285:
     dw $8002,$2331,$2351                                                 ;84A285;
     db $FF,$00                                                           ;84A28B;
-    dw $8002,$2331,$2351,$0000                                           ;84A28D;
+    dw $8002,$2331,$2351                                                 ;84A28D;
+    dw $0000
 
 UNUSED_DrawInst_84A295:
     dw $8002,$2332,$2352                                                 ;84A295;
     db $FF,$00                                                           ;84A29B;
-    dw $8002,$2332,$2352,$0000                                           ;84A29D;
+    dw $8002,$2332,$2352                                                 ;84A29D;
+    dw $0000
 
 UNUSED_DrawInst_84A2A5:
     dw $8002,$2333,$2353                                                 ;84A2A5;
     db $FF,$00                                                           ;84A2AB;
-    dw $8002,$2333,$2353,$0000                                           ;84A2AD;
+    dw $8002,$2333,$2353                                                 ;84A2AD;
+    dw $0000
 
 DrawInst_ItemChozoOrb:
-    dw $0001,$00FF,$0000                                                 ;84A2B5;
+    dw $0001,$00FF                                                       ;84A2B5;
+    dw $0000
 
 UNUSED_DrawInst_84A2BB:
-    dw $0001,$805D,$0000                                                 ;84A2BB;
+    dw $0001,$805D                                                       ;84A2BB;
+    dw $0000
 
 UNUSED_DrawInst_84A2C1:
-    dw $0001,$805E,$0000                                                 ;84A2C1;
+    dw $0001,$805E                                                       ;84A2C1;
+    dw $0000
 
 DrawInst_ItemOrb_0:
-    dw $0001,$C072,$0000                                                 ;84A2C7;
+    dw $0001,$C072                                                       ;84A2C7;
+    dw $0000
 
 DrawInst_ItemOrb_1:
-    dw $0001,$C073,$0000                                                 ;84A2CD;
+    dw $0001,$C073                                                       ;84A2CD;
+    dw $0000
 
 DrawInst_ItemOrb_2:
-    dw $0001,$C074,$0000                                                 ;84A2D3;
+    dw $0001,$C074                                                       ;84A2D3;
+    dw $0000
 
 DrawInst_ItemOrbBurst:
-    dw $0001,$8075,$0000                                                 ;84A2D9;
+    dw $0001,$8075                                                       ;84A2D9;
+    dw $0000
 
 DrawInst_EnergyTank_0:
-    dw $0001,$B04A,$0000                                                 ;84A2DF;
+    dw $0001,$B04A                                                       ;84A2DF;
+    dw $0000
 
 DrawInst_EnergyTank_1:
-    dw $0001,$B04B,$0000                                                 ;84A2E5;
+    dw $0001,$B04B                                                       ;84A2E5;
+    dw $0000
 
 DrawInst_MissileTank_0:
-    dw $0001,$B04C,$0000                                                 ;84A2EB;
+    dw $0001,$B04C                                                       ;84A2EB;
+    dw $0000
 
 DrawInst_MissileTank_1:
-    dw $0001,$B04D,$0000                                                 ;84A2F1;
+    dw $0001,$B04D                                                       ;84A2F1;
+    dw $0000
 
 DrawInst_SuperMissileTank_0:
-    dw $0001,$B04E,$0000                                                 ;84A2F7;
+    dw $0001,$B04E                                                       ;84A2F7;
+    dw $0000
 
 DrawInst_SuperMissileTank_1:
-    dw $0001,$B04F,$0000                                                 ;84A2FD;
+    dw $0001,$B04F                                                       ;84A2FD;
+    dw $0000
 
 DrawInst_PowerBombTank_0:
-    dw $0001,$B050,$0000                                                 ;84A303;
+    dw $0001,$B050                                                       ;84A303;
+    dw $0000
 
 DrawInst_PowerBombTank_1:
-    dw $0001,$B051,$0000                                                 ;84A309;
+    dw $0001,$B051                                                       ;84A309;
+    dw $0000
 
 DrawInst_DrawItemFrame0_0:
-    dw $0001,$B08E,$0000                                                 ;84A30F;
+    dw $0001,$B08E                                                       ;84A30F;
+    dw $0000
 
 DrawInst_DrawItemFrame1_0:
-    dw $0001,$B08F,$0000                                                 ;84A315;
+    dw $0001,$B08F                                                       ;84A315;
+    dw $0000
 
 DrawInst_DrawItemFrame0_1:
-    dw $0001,$B090,$0000                                                 ;84A31B;
+    dw $0001,$B090                                                       ;84A31B;
+    dw $0000
 
 DrawInst_DrawItemFrame1_1:
-    dw $0001,$B091,$0000                                                 ;84A321;
+    dw $0001,$B091                                                       ;84A321;
+    dw $0000
 
 DrawInst_DrawItemFrame0_2:
-    dw $0001,$B092,$0000                                                 ;84A327;
+    dw $0001,$B092                                                       ;84A327;
+    dw $0000
 
 DrawInst_DrawItemFrame1_2:
-    dw $0001,$B093,$0000                                                 ;84A32D;
+    dw $0001,$B093                                                       ;84A32D;
+    dw $0000
 
 DrawInst_DrawItemFrame0_3:
-    dw $0001,$B094,$0000                                                 ;84A333;
+    dw $0001,$B094                                                       ;84A333;
+    dw $0000
 
 DrawInst_DrawItemFrame1_3:
-    dw $0001,$B095,$0000                                                 ;84A339;
+    dw $0001,$B095                                                       ;84A339;
+    dw $0000
 
 DrawInst_84A33F:
-    dw $0001,$8052,$0000                                                 ;84A33F;
+    dw $0001,$8052                                                       ;84A33F;
+    dw $0000
 
 DrawInst_Respawn1x1_0:
-    dw $0001,$0053,$0000                                                 ;84A345;
+    dw $0001,$0053                                                       ;84A345;
+    dw $0000
 
 DrawInst_Respawn1x1_1:
-    dw $0001,$0054,$0000                                                 ;84A34B;
+    dw $0001,$0054                                                       ;84A34B;
+    dw $0000
 
 DrawInst_Respawn1x1_2:
-    dw $0001,$0055,$0000                                                 ;84A351;
+    dw $0001,$0055                                                       ;84A351;
+    dw $0000
 
 DrawInst_Respawn1x1_3:
-    dw $0001,$00FF,$0000                                                 ;84A357;
+    dw $0001,$00FF                                                       ;84A357;
+    dw $0000
 
 DrawInst_Respawn2x1_0:
-    dw $0002,$0053,$0053,$0000                                           ;84A35D;
+    dw $0002,$0053,$0053                                                 ;84A35D;
+    dw $0000
 
 DrawInst_Respawn2x1_1:
-    dw $0002,$0054,$0054,$0000                                           ;84A365;
+    dw $0002,$0054,$0054                                                 ;84A365;
+    dw $0000
 
 DrawInst_Respawn2x1_2:
-    dw $0002,$0055,$0055,$0000                                           ;84A36D;
+    dw $0002,$0055,$0055                                                 ;84A36D;
+    dw $0000
 
 DrawInst_Respawn2x1_3:
-    dw $0002,$00FF,$00FF,$0000                                           ;84A375;
+    dw $0002,$00FF,$00FF                                                 ;84A375;
+    dw $0000
 
 DrawInst_Respawn1x2_0:
-    dw $8002,$0053,$0053,$0000                                           ;84A37D;
+    dw $8002,$0053,$0053                                                 ;84A37D;
+    dw $0000
 
 DrawInst_Respawn1x2_1:
-    dw $8002,$0054,$0054,$0000                                           ;84A385;
+    dw $8002,$0054,$0054                                                 ;84A385;
+    dw $0000
 
 DrawInst_Respawn1x2_2:
-    dw $8002,$0055,$0055,$0000                                           ;84A38D;
+    dw $8002,$0055,$0055                                                 ;84A38D;
+    dw $0000
 
 DrawInst_Respawn1x2_3:
-    dw $8002,$00FF,$00FF,$0000                                           ;84A395;
+    dw $8002,$00FF,$00FF                                                 ;84A395;
+    dw $0000
 
 DrawInst_Respawn2x2_0:
     dw $0002,$0053,$0053                                                 ;84A39D;
     db $00,$01                                                           ;84A3A3;
-    dw $0002,$0053,$0053,$0000                                           ;84A3A5;
+    dw $0002,$0053,$0053                                                 ;84A3A5;
+    dw $0000
 
 DrawInst_Respawn2x2_1:
     dw $0002,$0054,$0054                                                 ;84A3AD;
     db $00,$01                                                           ;84A3B3;
-    dw $0002,$0054,$0054,$0000                                           ;84A3B5;
+    dw $0002,$0054,$0054                                                 ;84A3B5;
+    dw $0000
 
 DrawInst_Respawn2x2_2:
     dw $0002,$0055,$0055                                                 ;84A3BD;
     db $00,$01                                                           ;84A3C3;
-    dw $0002,$0055,$0055,$0000                                           ;84A3C5;
+    dw $0002,$0055,$0055                                                 ;84A3C5;
+    dw $0000
 
 DrawInst_Respawn2x2_3:
     dw $0002,$00FF,$00FF                                                 ;84A3CD;
     db $00,$01                                                           ;84A3D3;
-    dw $0002,$00FF,$00FF,$0000                                           ;84A3D5;
+    dw $0002,$00FF,$00FF                                                 ;84A3D5;
+    dw $0000
 
 DrawInst_ItemShotBlock_0:
-    dw $0001,$8053,$0000                                                 ;84A3DD;
+    dw $0001,$8053                                                       ;84A3DD;
+    dw $0000
 
 DrawInst_ItemShotBlock_1:
-    dw $0001,$8054,$0000                                                 ;84A3E3;
+    dw $0001,$8054                                                       ;84A3E3;
+    dw $0000
 
 DrawInst_ItemShotBlock_2:
-    dw $0001,$8055,$0000                                                 ;84A3E9;
+    dw $0001,$8055                                                       ;84A3E9;
+    dw $0000
 
 UNUSED_DrawInst_84A3EF:
-    dw $0001,$80FF,$0000                                                 ;84A3EF;
+    dw $0001,$80FF                                                       ;84A3EF;
+    dw $0000
 
 UNUSED_DrawInst_84A3F5:
-    dw $0002,$8053,$8053,$0000                                           ;84A3F5;
+    dw $0002,$8053,$8053                                                 ;84A3F5;
+    dw $0000
 
 UNUSED_DrawInst_84A3FD:
-    dw $0002,$8054,$8054,$0000                                           ;84A3FD;
+    dw $0002,$8054,$8054                                                 ;84A3FD;
+    dw $0000
 
 UNUSED_DrawInst_84A405:
-    dw $0002,$8055,$8055,$0000                                           ;84A405;
+    dw $0002,$8055,$8055                                                 ;84A405;
+    dw $0000
 
 UNUSED_DrawInst_84A40D:
-    dw $0002,$80FF,$80FF,$0000                                           ;84A40D;
+    dw $0002,$80FF,$80FF                                                 ;84A40D;
+    dw $0000
 
 UNUSED_DrawInst_84A415:
-    dw $8002,$8053,$8053,$0000                                           ;84A415;
+    dw $8002,$8053,$8053                                                 ;84A415;
+    dw $0000
 
 UNUSED_DrawInst_84A41D:
-    dw $8002,$8054,$8054,$0000                                           ;84A41D;
+    dw $8002,$8054,$8054                                                 ;84A41D;
+    dw $0000
 
 UNUSED_DrawInst_84A425:
-    dw $8002,$8055,$8055,$0000                                           ;84A425;
+    dw $8002,$8055,$8055                                                 ;84A425;
+    dw $0000
 
 UNUSED_DrawInst_84A42D:
-    dw $8002,$80FF,$80FF,$0000                                           ;84A42D;
+    dw $8002,$80FF,$80FF                                                 ;84A42D;
+    dw $0000
 
 UNUSED_DrawInst_84A435:
     dw $0002,$8053,$8053                                                 ;84A435;
     db $00,$01                                                           ;84A43B;
-    dw $0002,$8053,$8053,$0000                                           ;84A43D;
+    dw $0002,$8053,$8053                                                 ;84A43D;
+    dw $0000
 
 UNUSED_DrawInst_84A445:
     dw $0002,$8054,$8054                                                 ;84A445;
     db $00,$01                                                           ;84A44B;
-    dw $0002,$8054,$8054,$0000                                           ;84A44D;
+    dw $0002,$8054,$8054                                                 ;84A44D;
+    dw $0000
 
 UNUSED_DrawInst_84A455:
     dw $0002,$8055,$8055                                                 ;84A455;
     db $00,$01                                                           ;84A45B;
-    dw $0002,$8055,$8055,$0000                                           ;84A45D;
+    dw $0002,$8055,$8055                                                 ;84A45D;
+    dw $0000
 
 UNUSED_DrawInst_84A465:
     dw $0002,$80FF,$80FF                                                 ;84A465;
     db $00,$01                                                           ;84A46B;
-    dw $0002,$80FF,$80FF,$0000                                           ;84A46D;
+    dw $0002,$80FF,$80FF                                                 ;84A46D;
+    dw $0000
 
 UNUSED_DrawInst_1x1ShotBlock_84A475:
-    dw $0001,$C052,$0000                                                 ;84A475;
+    dw $0001,$C052                                                       ;84A475;
+    dw $0000
 
 DrawInst_2x1RespawningShotBlock:
-    dw $0002,$C096,$5097,$0000                                           ;84A47B;
+    dw $0002,$C096,$5097                                                 ;84A47B;
+    dw $0000
 
 DrawInst_1x2RespawningShotBlock:
-    dw $8002,$C098,$D0B8,$0000                                           ;84A483;
+    dw $8002,$C098,$D0B8                                                 ;84A483;
+    dw $0000
 
 DrawInst_2x2RespawningShotBlock:
     dw $0002,$C099,$509A                                                 ;84A48B;
     db $00,$01                                                           ;84A491;
-    dw $0002,$D0B9,$D0BA,$0000                                           ;84A493;
+    dw $0002,$D0B9,$D0BA                                                 ;84A493;
+    dw $0000
 
 DrawInst_1x1RespawningCrumbleBlock:
-    dw $0001,$B0BC,$0000                                                 ;84A49B;
+    dw $0001,$B0BC                                                       ;84A49B;
+    dw $0000
 
 DrawInst_2x1RespawningCrumbleBlock:
-    dw $0002,$B0BC,$50BC,$0000                                           ;84A4A1;
+    dw $0002,$B0BC,$50BC                                                 ;84A4A1;
+    dw $0000
 
 DrawInst_1x2RespawningCrumbleBlock:
-    dw $8002,$B0BC,$D0BC,$0000                                           ;84A4A9;
+    dw $8002,$B0BC,$D0BC                                                 ;84A4A9;
+    dw $0000
 
 DrawInst_2x2RespawningCrumbleBlock:
     dw $0002,$B0BC,$50BC                                                 ;84A4B1;
     db $00,$01                                                           ;84A4B7;
-    dw $0002,$D0BC,$D0BC,$0000                                           ;84A4B9;
+    dw $0002,$D0BC,$D0BC                                                 ;84A4B9;
+    dw $0000
 
 UNUSED_DrawInst_84A4C1:
-    dw $0001,$F058,$0000                                                 ;84A4C1;
+    dw $0001,$F058                                                       ;84A4C1;
+    dw $0000
 
 DrawInst_2x1RespawningBombBlock:
-    dw $0002,$F058,$5058,$0000                                           ;84A4C7;
+    dw $0002,$F058,$5058                                                 ;84A4C7;
+    dw $0000
 
 DrawInst_1x2RespawningBombBlock:
-    dw $8002,$F058,$D058,$0000                                           ;84A4CF;
+    dw $8002,$F058,$D058                                                 ;84A4CF;
+    dw $0000
 
 DrawInst_2x2RespawningBombBlock:
     dw $0002,$F058,$5058                                                 ;84A4D7;
     db $00,$01                                                           ;84A4DD;
-    dw $0002,$D058,$D058,$0000                                           ;84A4DF;
+    dw $0002,$D058,$D058                                                 ;84A4DF;
+    dw $0000
 
 UNUSED_DrawInst_PowerBombBlockBombed_84A4E7:
-    dw $0001,$C057,$0000                                                 ;84A4E7;
+    dw $0001,$C057                                                       ;84A4E7;
+    dw $0000
 
 UNUSED_DrawInst_SuperMissileBlockBombed_84A4ED:
-    dw $0001,$C09F,$0000                                                 ;84A4ED;
+    dw $0001,$C09F                                                       ;84A4ED;
+    dw $0000
 
 DrawInst_BombReactionSpeedBlock:
-    dw $0001,$B0B6,$0000                                                 ;84A4F3;
+    dw $0001,$B0B6                                                       ;84A4F3;
+    dw $0000
 
 DrawInst_BreakableGrappleBlock_0:
-    dw $0001,$E0B7,$0000                                                 ;84A4F9;
+    dw $0001,$E0B7                                                       ;84A4F9;
+    dw $0000
 
 DrawInst_BreakableGrappleBlock_1:
-    dw $0001,$0053,$0000                                                 ;84A4FF;
+    dw $0001,$0053                                                       ;84A4FF;
+    dw $0000
 
 DrawInst_BreakableGrappleBlock_2:
-    dw $0001,$0054,$0000                                                 ;84A505;
+    dw $0001,$0054                                                       ;84A505;
+    dw $0000
 
 DrawInst_BreakableGrappleBlock_3:
-    dw $0001,$0055,$0000                                                 ;84A50B;
+    dw $0001,$0055                                                       ;84A50B;
+    dw $0000
 
 DrawInst_BreakableGrappleBlock_4:
-    dw $0001,$00FF,$0000                                                 ;84A511;
+    dw $0001,$00FF                                                       ;84A511;
+    dw $0000
 
 DrawInst_DownwardsGateOpen:
-    dw $8005,$C0D6,$00FF,$00FF,$00FF,$00FF,$0000                         ;84A517;
+    dw $8005,$C0D6,$00FF,$00FF,$00FF,$00FF                               ;84A517;
+    dw $0000
 
 DrawInst_DownwardsGateOpenClosed_0:
-    dw $8005,$C0D7,$C0FF,$00FF,$00FF,$00FF,$0000                         ;84A525;
+    dw $8005,$C0D7,$C0FF,$00FF,$00FF,$00FF                               ;84A525;
+    dw $0000
 
 DrawInst_DownwardsGateOpenClosed_1:
-    dw $8005,$C0D7,$C0FF,$C0FF,$00FF,$00FF,$0000                         ;84A533;
+    dw $8005,$C0D7,$C0FF,$C0FF,$00FF,$00FF                               ;84A533;
+    dw $0000
 
 DrawInst_DownwardsGateOpenClosed_2:
-    dw $8005,$C0D7,$C0FF,$C0FF,$C0FF,$00FF,$0000                         ;84A541;
+    dw $8005,$C0D7,$C0FF,$C0FF,$C0FF,$00FF                               ;84A541;
+    dw $0000
 
 DrawInst_DownwardsGateOpenClosed_3:
-    dw $8005,$C0D7,$C0FF,$C0FF,$C0FF,$C0FF,$0000                         ;84A54F;
+    dw $8005,$C0D7,$C0FF,$C0FF,$C0FF,$C0FF                               ;84A54F;
+    dw $0000
 
 DrawInst_DownwardsGateClosed:
-    dw $8005,$C0D6,$C0FF,$C0FF,$C0FF,$C0FF,$0000                         ;84A55D;
+    dw $8005,$C0D6,$C0FF,$C0FF,$C0FF,$C0FF                               ;84A55D;
+    dw $0000
 
 DrawInst_UpwardsGateOpen:
     dw $8001,$C0D6,$FC00,$8004,$00FF,$00FF,$00FF,$00FF                   ;84A56B;
@@ -3908,397 +4178,504 @@ DrawInst_UpwardsGateOpen:
 DrawInst_UpwardsGateOpenClosed_0:
     dw $8001,$C0D7                                                       ;84A57D;
     db $00,$FC                                                           ;84A581;
-    dw $8004,$00FF,$00FF,$00FF,$80FF,$0000                               ;84A583;
+    dw $8004,$00FF,$00FF,$00FF,$80FF                                     ;84A583;
+    dw $0000
 
 DrawInst_UpwardsGateOpenClosed_1:
     dw $8001,$C0D7                                                       ;84A58F;
     db $00,$FC                                                           ;84A593;
-    dw $8004,$00FF,$00FF,$C0FF,$C0FF,$0000                               ;84A595;
+    dw $8004,$00FF,$00FF,$C0FF,$C0FF                                     ;84A595;
+    dw $0000
 
 DrawInst_UpwardsGateOpenClosed_2:
     dw $8001,$C0D7                                                       ;84A5A1;
     db $00,$FC                                                           ;84A5A5;
-    dw $8004,$00FF,$C0FF,$C0FF,$C0FF,$0000                               ;84A5A7;
+    dw $8004,$00FF,$C0FF,$C0FF,$C0FF                                     ;84A5A7;
+    dw $0000
 
 DrawInst_UpwardsGateOpenClosed_3:
     dw $8001,$C0D7                                                       ;84A5B3;
     db $00,$FC                                                           ;84A5B7;
-    dw $8004,$C0FF,$C0FF,$C0FF,$C0FF,$0000                               ;84A5B9;
+    dw $8004,$C0FF,$C0FF,$C0FF,$C0FF                                     ;84A5B9;
+    dw $0000
 
 DrawInst_UpwardsGateClosed:
     dw $8001,$C0D6                                                       ;84A5C5;
     db $00,$FC                                                           ;84A5C9;
-    dw $8004,$C0FF,$C0FF,$C0FF,$C0FF,$0000                               ;84A5CB;
+    dw $8004,$C0FF,$C0FF,$C0FF,$C0FF                                     ;84A5CB;
+    dw $0000
 
 DrawInst_GateShotblockDownwardsBlueLeft:
     dw $0001,$80D6                                                       ;84A5D7;
     db $FF,$00                                                           ;84A5DB;
-    dw $0001,$C0DB,$0000                                                 ;84A5DD;
+    dw $0001,$C0DB                                                       ;84A5DD;
+    dw $0000
 
 DrawInst_GateShotblockDownwardsBlueRight:
-    dw $0002,$80D6,$C4DB,$0000                                           ;84A5E3;
+    dw $0002,$80D6,$C4DB                                                 ;84A5E3;
+    dw $0000
 
 DrawInst_GateShotblockDownwardsRedLeft:
     dw $0001,$80D6                                                       ;84A5EB;
     db $FF,$00                                                           ;84A5EF;
-    dw $0001,$C0DA,$0000                                                 ;84A5F1;
+    dw $0001,$C0DA                                                       ;84A5F1;
+    dw $0000
 
 DrawInst_GateShotblockDownwardsRedRight:
-    dw $0002,$80D6,$C4DA,$0000                                           ;84A5F7;
+    dw $0002,$80D6,$C4DA                                                 ;84A5F7;
+    dw $0000
 
 DrawInst_GateShotblockDownwardsGreenLeft:
     dw $0001,$80D6                                                       ;84A5FF;
     db $FF,$00                                                           ;84A603;
-    dw $0001,$C0D9,$0000                                                 ;84A605;
+    dw $0001,$C0D9                                                       ;84A605;
+    dw $0000
 
 DrawInst_GateShotblockDownwardsGreenRight:
-    dw $0002,$80D6,$C4D9,$0000                                           ;84A60B;
+    dw $0002,$80D6,$C4D9                                                 ;84A60B;
+    dw $0000
 
 DrawInst_GateShotblockDownwardsYellowLeft:
     dw $0001,$80D6                                                       ;84A613;
     db $FF,$00                                                           ;84A617;
-    dw $0001,$C0D8,$0000                                                 ;84A619;
+    dw $0001,$C0D8                                                       ;84A619;
+    dw $0000
 
 DrawInst_GateShotblockDownwardsYellowRight:
-    dw $0002,$80D6,$C4D8,$0000                                           ;84A61F;
+    dw $0002,$80D6,$C4D8                                                 ;84A61F;
+    dw $0000
 
 DrawInst_GateShotblockUpwardsBlueLeft:
     dw $0001,$88D6                                                       ;84A627;
     db $FF,$00                                                           ;84A62B;
-    dw $0001,$C8DB,$0000                                                 ;84A62D;
+    dw $0001,$C8DB                                                       ;84A62D;
+    dw $0000
 
 DrawInst_GateShotblockUpwardsBlueRight:
-    dw $0002,$88D6,$CCDB,$0000                                           ;84A633;
+    dw $0002,$88D6,$CCDB                                                 ;84A633;
+    dw $0000
 
 DrawInst_GateShotblockUpwardsRedLeft:
     dw $0001,$88D6                                                       ;84A63B;
     db $FF,$00                                                           ;84A63F;
-    dw $0001,$C8DA,$0000                                                 ;84A641;
+    dw $0001,$C8DA                                                       ;84A641;
+    dw $0000
 
 DrawInst_GateShotblockUpwardsRedRight:
-    dw $0002,$88D6,$CCDA,$0000                                           ;84A647;
+    dw $0002,$88D6,$CCDA                                                 ;84A647;
+    dw $0000
 
 DrawInst_GateShotblockUpwardsGreenLeft:
     dw $0001,$88D6                                                       ;84A64F;
     db $FF,$00                                                           ;84A653;
-    dw $0001,$C8D9,$0000                                                 ;84A655;
+    dw $0001,$C8D9                                                       ;84A655;
+    dw $0000
 
 DrawInst_GateShotblockUpwardsGreenRight:
-    dw $0002,$88D6,$CCD9,$0000                                           ;84A65B;
+    dw $0002,$88D6,$CCD9                                                 ;84A65B;
+    dw $0000
 
 DrawInst_GateShotblockUpwardsYellowLeft:
     dw $0001,$88D6                                                       ;84A663;
     db $FF,$00                                                           ;84A667;
-    dw $0001,$C8D8,$0000                                                 ;84A669;
+    dw $0001,$C8D8                                                       ;84A669;
+    dw $0000
 
 DrawInst_GateShotblockUpwardsYellowRight:
-    dw $0002,$88D6,$CCD8,$0000                                           ;84A66F;
+    dw $0002,$88D6,$CCD8                                                 ;84A66F;
+    dw $0000
 
 DrawInst_DoorFacingLeft_A677:
-    dw $8004,$0082,$00A2,$08A2,$0882,$0000                               ;84A677;
+    dw $8004,$0082,$00A2,$08A2,$0882                                     ;84A677;
+    dw $0000
 
 DrawInst_DoorFacingRight_A683:
-    dw $8004,$0482,$04A2,$0CA2,$0C82,$0000                               ;84A683;
+    dw $8004,$0482,$04A2,$0CA2,$0C82                                     ;84A683;
+    dw $0000
 
 DrawInst_DoorFacingUp_A68F:
-    dw $0004,$0484,$0483,$0083,$0084,$0000                               ;84A68F;
+    dw $0004,$0484,$0483,$0083,$0084                                     ;84A68F;
+    dw $0000
 
 DrawInst_DoorFacingDown_A69B:
-    dw $0004,$0C84,$0C83,$0883,$0884,$0000                               ;84A69B;
+    dw $0004,$0C84,$0C83,$0883,$0884                                     ;84A69B;
+    dw $0000
 
 DrawInst_GreyDoorFacingLeft_0:
-    dw $8004,$C0AE,$D0CE,$D8CE,$D8AE,$0000                               ;84A6A7;
+    dw $8004,$C0AE,$D0CE,$D8CE,$D8AE                                     ;84A6A7;
+    dw $0000
 
 DrawInst_GreyDoorFacingLeft_1:
-    dw $8004,$80AF,$80CF,$88CF,$88AF,$0000                               ;84A6B3;
+    dw $8004,$80AF,$80CF,$88CF,$88AF                                     ;84A6B3;
+    dw $0000
 
 DrawInst_GreyDoorFacingLeft_2:
-    dw $8004,$80B0,$80D0,$88D0,$88B0,$0000                               ;84A6BF;
+    dw $8004,$80B0,$80D0,$88D0,$88B0                                     ;84A6BF;
+    dw $0000
 
 DrawInst_GreyDoorFacingLeft_3:
-    dw $8004,$80B1,$00D1,$08D1,$88B1,$0000                               ;84A6CB;
+    dw $8004,$80B1,$00D1,$08D1,$88B1                                     ;84A6CB;
+    dw $0000
 
 DrawInst_GreyDoorFacingRight_0:
-    dw $8004,$C4AE,$D4CE,$DCCE,$DCAE,$0000                               ;84A6D7;
+    dw $8004,$C4AE,$D4CE,$DCCE,$DCAE                                     ;84A6D7;
+    dw $0000
 
 DrawInst_GreyDoorFacingRight_1:
-    dw $8004,$84AF,$84CF,$8CCF,$8CAF,$0000                               ;84A6E3;
+    dw $8004,$84AF,$84CF,$8CCF,$8CAF                                     ;84A6E3;
+    dw $0000
 
 DrawInst_GreyDoorFacingRight_2:
-    dw $8004,$84B0,$84D0,$8CD0,$8CB0,$0000                               ;84A6EF;
+    dw $8004,$84B0,$84D0,$8CD0,$8CB0                                     ;84A6EF;
+    dw $0000
 
 DrawInst_GreyDoorFacingRight_3:
-    dw $8004,$84B1,$84D1,$8CD1,$8CB1,$0000                               ;84A6FB;
+    dw $8004,$84B1,$84D1,$8CD1,$8CB1                                     ;84A6FB;
+    dw $0000
 
 DrawInst_GreyDoorFacingUp_0:
-    dw $0004,$C4B3,$54B2,$50B2,$50B3,$0000                               ;84A707;
+    dw $0004,$C4B3,$54B2,$50B2,$50B3                                     ;84A707;
+    dw $0000
 
 DrawInst_GreyDoorFacingUp_1:
-    dw $0004,$84D3,$84D2,$80D2,$80D3,$0000                               ;84A713;
+    dw $0004,$84D3,$84D2,$80D2,$80D3                                     ;84A713;
+    dw $0000
 
 DrawInst_GreyDoorFacingUp_2:
-    dw $0004,$84B5,$84B4,$80B4,$80B5,$0000                               ;84A71F;
+    dw $0004,$84B5,$84B4,$80B4,$80B5                                     ;84A71F;
+    dw $0000
 
 DrawInst_GreyDoorFacingUp_3:
-    dw $0004,$84D5,$84D4,$80D4,$80D5,$0000                               ;84A72B;
+    dw $0004,$84D5,$84D4,$80D4,$80D5                                     ;84A72B;
+    dw $0000
 
 DrawInst_GreyDoorFacingDown_0:
-    dw $0004,$CCB3,$5CB2,$58B2,$58B3,$0000                               ;84A737;
+    dw $0004,$CCB3,$5CB2,$58B2,$58B3                                     ;84A737;
+    dw $0000
 
 DrawInst_GreyDoorFacingDown_1:
-    dw $0004,$8CD3,$8CD2,$88D2,$88D3,$0000                               ;84A743;
+    dw $0004,$8CD3,$8CD2,$88D2,$88D3                                     ;84A743;
+    dw $0000
 
 DrawInst_GreyDoorFacingDown_2:
-    dw $0004,$8CB5,$8CB4,$88B4,$88B5,$0000                               ;84A74F;
+    dw $0004,$8CB5,$8CB4,$88B4,$88B5                                     ;84A74F;
+    dw $0000
 
 DrawInst_GreyDoorFacingDown_3:
-    dw $0004,$8CD5,$0CD4,$08D4,$88D5,$0000                               ;84A75B;
+    dw $0004,$8CD5,$0CD4,$08D4,$88D5                                     ;84A75B;
+    dw $0000
 
 DrawInst_YellowDoorFacingLeft_0:
-    dw $8004,$C000,$D020,$D820,$D800,$0000                               ;84A767;
+    dw $8004,$C000,$D020,$D820,$D800                                     ;84A767;
+    dw $0000
 
 DrawInst_YellowDoorFacingLeft_1:
-    dw $8004,$8001,$8021,$8821,$8801,$0000                               ;84A773;
+    dw $8004,$8001,$8021,$8821,$8801                                     ;84A773;
+    dw $0000
 
 DrawInst_YellowDoorFacingLeft_2:
-    dw $8004,$8002,$8022,$8822,$8802,$0000                               ;84A77F;
+    dw $8004,$8002,$8022,$8822,$8802                                     ;84A77F;
+    dw $0000
 
 DrawInst_YellowDoorFacingLeft_3:
-    dw $8004,$8003,$0023,$0823,$8803,$0000                               ;84A78B;
+    dw $8004,$8003,$0023,$0823,$8803                                     ;84A78B;
+    dw $0000
 
 DrawInst_YellowDoorFacingRight_0:
-    dw $8004,$C400,$D420,$DC20,$DC00,$0000                               ;84A797;
+    dw $8004,$C400,$D420,$DC20,$DC00                                     ;84A797;
+    dw $0000
 
 DrawInst_YellowDoorFacingRight_1:
-    dw $8004,$8401,$8421,$8C21,$8C01,$0000                               ;84A7A3;
+    dw $8004,$8401,$8421,$8C21,$8C01                                     ;84A7A3;
+    dw $0000
 
 DrawInst_YellowDoorFacingRight_2:
-    dw $8004,$8402,$8422,$8C22,$8C02,$0000                               ;84A7AF;
+    dw $8004,$8402,$8422,$8C22,$8C02                                     ;84A7AF;
+    dw $0000
 
 DrawInst_YellowDoorFacingRight_3:
-    dw $8004,$8403,$8423,$8C23,$8C03,$0000                               ;84A7BB;
+    dw $8004,$8403,$8423,$8C23,$8C03                                     ;84A7BB;
+    dw $0000
 
 DrawInst_YellowDoorFacingUp_0:
-    dw $0004,$C411,$5410,$5010,$5011,$0000                               ;84A7C7;
+    dw $0004,$C411,$5410,$5010,$5011                                     ;84A7C7;
+    dw $0000
 
 DrawInst_YellowDoorFacingUp_1:
-    dw $0004,$8431,$8430,$8030,$8031,$0000                               ;84A7D3;
+    dw $0004,$8431,$8430,$8030,$8031                                     ;84A7D3;
+    dw $0000
 
 DrawInst_YellowDoorFacingUp_2:
-    dw $0004,$8413,$8412,$8012,$8013,$0000                               ;84A7DF;
+    dw $0004,$8413,$8412,$8012,$8013                                     ;84A7DF;
+    dw $0000
 
 DrawInst_YellowDoorFacingUp_3:
-    dw $0004,$8433,$8432,$8032,$8033,$0000                               ;84A7EB;
+    dw $0004,$8433,$8432,$8032,$8033                                     ;84A7EB;
+    dw $0000
 
 DrawInst_YellowDoorFacingDown_0:
-    dw $0004,$CC11,$5C10,$5810,$5811,$0000                               ;84A7F7;
+    dw $0004,$CC11,$5C10,$5810,$5811                                     ;84A7F7;
+    dw $0000
 
 DrawInst_YellowDoorFacingDown_1:
-    dw $0004,$8C31,$8C30,$8830,$8831,$0000                               ;84A803;
+    dw $0004,$8C31,$8C30,$8830,$8831                                     ;84A803;
+    dw $0000
 
 DrawInst_YellowDoorFacingDown_2:
-    dw $0004,$8C13,$8C12,$8812,$8813,$0000                               ;84A80F;
+    dw $0004,$8C13,$8C12,$8812,$8813                                     ;84A80F;
+    dw $0000
 
 DrawInst_YellowDoorFacingDown_3:
-    dw $0004,$8C33,$0C32,$0832,$8833,$0000                               ;84A81B;
+    dw $0004,$8C33,$0C32,$0832,$8833                                     ;84A81B;
+    dw $0000
 
 DrawInst_GreenDoorFacingLeft_0:
-    dw $8004,$C004,$D024,$D824,$D804,$0000                               ;84A827;
+    dw $8004,$C004,$D024,$D824,$D804                                     ;84A827;
+    dw $0000
 
 DrawInst_GreenDoorFacingLeft_1:
-    dw $8004,$8005,$8025,$8825,$8805,$0000                               ;84A833;
+    dw $8004,$8005,$8025,$8825,$8805                                     ;84A833;
+    dw $0000
 
 DrawInst_GreenDoorFacingLeft_2:
-    dw $8004,$8006,$8026,$8826,$8806,$0000                               ;84A83F;
+    dw $8004,$8006,$8026,$8826,$8806                                     ;84A83F;
+    dw $0000
 
 DrawInst_GreenDoorFacingLeft_3:
-    dw $8004,$8007,$0027,$0827,$8807,$0000                               ;84A84B;
+    dw $8004,$8007,$0027,$0827,$8807                                     ;84A84B;
+    dw $0000
 
 DrawInst_GreenDoorFacingRight_0:
-    dw $8004,$C404,$D424,$DC24,$DC04,$0000                               ;84A857;
+    dw $8004,$C404,$D424,$DC24,$DC04                                     ;84A857;
+    dw $0000
 
 DrawInst_GreenDoorFacingRight_1:
-    dw $8004,$8405,$8425,$8C25,$8C05,$0000                               ;84A863;
+    dw $8004,$8405,$8425,$8C25,$8C05                                     ;84A863;
+    dw $0000
 
 DrawInst_GreenDoorFacingRight_2:
-    dw $8004,$8406,$8426,$8C26,$8C06,$0000                               ;84A86F;
+    dw $8004,$8406,$8426,$8C26,$8C06                                     ;84A86F;
+    dw $0000
 
 DrawInst_GreenDoorFacingRight_3:
-    dw $8004,$8407,$0427,$0C27,$8C07,$0000                               ;84A87B;
+    dw $8004,$8407,$0427,$0C27,$8C07                                     ;84A87B;
+    dw $0000
 
 DrawInst_GreenDoorFacingUp_0:
-    dw $0004,$C415,$5414,$5014,$5015,$0000                               ;84A887;
+    dw $0004,$C415,$5414,$5014,$5015                                     ;84A887;
+    dw $0000
 
 DrawInst_GreenDoorFacingUp_1:
-    dw $0004,$8435,$8434,$8034,$8035,$0000                               ;84A893;
+    dw $0004,$8435,$8434,$8034,$8035                                     ;84A893;
+    dw $0000
 
 DrawInst_GreenDoorFacingUp_2:
-    dw $0004,$8417,$8416,$8016,$8017,$0000                               ;84A89F;
+    dw $0004,$8417,$8416,$8016,$8017                                     ;84A89F;
+    dw $0000
 
 DrawInst_GreenDoorFacingUp_3:
-    dw $0004,$8437,$8436,$8036,$8037,$0000                               ;84A8AB;
+    dw $0004,$8437,$8436,$8036,$8037                                     ;84A8AB;
+    dw $0000
 
 DrawInst_GreenDoorFacingDown_0:
-    dw $0004,$CC15,$5C14,$5814,$5815,$0000                               ;84A8B7;
+    dw $0004,$CC15,$5C14,$5814,$5815                                     ;84A8B7;
+    dw $0000
 
 DrawInst_GreenDoorFacingDown_1:
-    dw $0004,$8C35,$8C34,$8834,$8835,$0000                               ;84A8C3;
+    dw $0004,$8C35,$8C34,$8834,$8835                                     ;84A8C3;
+    dw $0000
 
 DrawInst_GreenDoorFacingDown_2:
-    dw $0004,$8C17,$8C16,$8816,$8817,$0000                               ;84A8CF;
+    dw $0004,$8C17,$8C16,$8816,$8817                                     ;84A8CF;
+    dw $0000
 
 DrawInst_GreenDoorFacingDown_3:
-    dw $0004,$8C37,$8C36,$8836,$8837,$0000                               ;84A8DB;
+    dw $0004,$8C37,$8C36,$8836,$8837                                     ;84A8DB;
+    dw $0000
 
 DrawInst_RedDoorFacingLeft_0:
-    dw $8004,$C008,$D028,$D828,$D808,$0000                               ;84A8E7;
+    dw $8004,$C008,$D028,$D828,$D808                                     ;84A8E7;
+    dw $0000
 
 DrawInst_RedDoorFacingLeft_1:
-    dw $8004,$8009,$8029,$8829,$8809,$0000                               ;84A8F3;
+    dw $8004,$8009,$8029,$8829,$8809                                     ;84A8F3;
+    dw $0000
 
 DrawInst_RedDoorFacingLeft_2:
-    dw $8004,$800A,$802A,$882A,$880A,$0000                               ;84A8FF;
+    dw $8004,$800A,$802A,$882A,$880A                                     ;84A8FF;
+    dw $0000
 
 DrawInst_RedDoorFacingLeft_3:
-    dw $8004,$800B,$002B,$082B,$880B,$0000                               ;84A90B;
+    dw $8004,$800B,$002B,$082B,$880B                                     ;84A90B;
+    dw $0000
 
 DrawInst_RedDoorFacingRight_0:
-    dw $8004,$C408,$D428,$DC28,$DC08,$0000                               ;84A917;
+    dw $8004,$C408,$D428,$DC28,$DC08                                     ;84A917;
+    dw $0000
 
 DrawInst_RedDoorFacingRight_1:
-    dw $8004,$8409,$8429,$8C29,$8C09,$0000                               ;84A923;
+    dw $8004,$8409,$8429,$8C29,$8C09                                     ;84A923;
+    dw $0000
 
 DrawInst_RedDoorFacingRight_2:
-    dw $8004,$840A,$842A,$8C2A,$8C0A,$0000                               ;84A92F;
+    dw $8004,$840A,$842A,$8C2A,$8C0A                                     ;84A92F;
+    dw $0000
 
 DrawInst_RedDoorFacingRight_3:
-    dw $8004,$840B,$042B,$0C2B,$8C0B,$0000                               ;84A93B;
+    dw $8004,$840B,$042B,$0C2B,$8C0B                                     ;84A93B;
+    dw $0000
 
 DrawInst_RedDoorFacingUp_0:
-    dw $0004,$C419,$5418,$5018,$5019,$0000                               ;84A947;
+    dw $0004,$C419,$5418,$5018,$5019                                     ;84A947;
+    dw $0000
 
 DrawInst_RedDoorFacingUp_1:
-    dw $0004,$8439,$8438,$8038,$8039,$0000                               ;84A953;
+    dw $0004,$8439,$8438,$8038,$8039                                     ;84A953;
+    dw $0000
 
 DrawInst_RedDoorFacingUp_2:
-    dw $0004,$841B,$841A,$801A,$801B,$0000                               ;84A95F;
+    dw $0004,$841B,$841A,$801A,$801B                                     ;84A95F;
+    dw $0000
 
 DrawInst_RedDoorFacingUp_3:
-    dw $0004,$843B,$843A,$803A,$803B,$0000                               ;84A96B;
+    dw $0004,$843B,$843A,$803A,$803B                                     ;84A96B;
+    dw $0000
 
 DrawInst_RedDoorFacingDown_0:
-    dw $0004,$CC19,$5C18,$5818,$5819,$0000                               ;84A977;
+    dw $0004,$CC19,$5C18,$5818,$5819                                     ;84A977;
+    dw $0000
 
 DrawInst_RedDoorFacingDown_1:
-    dw $0004,$8C39,$8C38,$8838,$8839,$0000                               ;84A983;
+    dw $0004,$8C39,$8C38,$8838,$8839                                     ;84A983;
+    dw $0000
 
 DrawInst_RedDoorFacingDown_2:
-    dw $0004,$8C1B,$8C1A,$881A,$881B,$0000                               ;84A98F;
+    dw $0004,$8C1B,$8C1A,$881A,$881B                                     ;84A98F;
+    dw $0000
 
 DrawInst_RedDoorFacingDown_3:
-    dw $0004,$8C3B,$8C3A,$883A,$883B,$0000                               ;84A99B;
+    dw $0004,$8C3B,$8C3A,$883A,$883B                                     ;84A99B;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingLeft:
-    dw $8004,$800C,$D02C,$D82C,$D80C,$0000                               ;84A9A7;
+    dw $8004,$800C,$D02C,$D82C,$D80C                                     ;84A9A7;
+    dw $0000
 
 DrawInst_DoorFacingLeft_A9B3:
-    dw $8004,$C00C,$D02C,$D82C,$D80C,$0000                               ;84A9B3;
+    dw $8004,$C00C,$D02C,$D82C,$D80C                                     ;84A9B3;
+    dw $0000
 
 DrawInst_BlueDoorFacingLeft_0:
-    dw $8004,$800D,$802D,$882D,$880D,$0000                               ;84A9BF;
+    dw $8004,$800D,$802D,$882D,$880D                                     ;84A9BF;
+    dw $0000
 
 DrawInst_BlueDoorFacingLeft_1:
-    dw $8004,$800E,$802E,$882E,$880E,$0000                               ;84A9CB;
+    dw $8004,$800E,$802E,$882E,$880E                                     ;84A9CB;
+    dw $0000
 
 DrawInst_BlueDoorFacingLeft_2:
-    dw $8004,$800F,$002F,$082F,$880F,$0000                               ;84A9D7;
+    dw $8004,$800F,$002F,$082F,$880F                                     ;84A9D7;
+    dw $0000
 
 DrawInst_EyeDoorEyeFacingRight:
-    dw $8004,$840C,$D42C,$DC2C,$DC0C,$0000                               ;84A9E3;
+    dw $8004,$840C,$D42C,$DC2C,$DC0C                                     ;84A9E3;
+    dw $0000
 
 DrawInst_DoorFacingRight_A9EF:
-    dw $8004,$C40C,$D42C,$DC2C,$DC0C,$0000                               ;84A9EF;
+    dw $8004,$C40C,$D42C,$DC2C,$DC0C                                     ;84A9EF;
+    dw $0000
 
 DrawInst_BlueDoorFacingRight_0:
-    dw $8004,$840D,$842D,$8C2D,$8C0D,$0000                               ;84A9FB;
+    dw $8004,$840D,$842D,$8C2D,$8C0D                                     ;84A9FB;
+    dw $0000
 
 DrawInst_BlueDoorFacingRight_1:
-    dw $8004,$840E,$842E,$8C2E,$8C0E,$0000                               ;84AA07;
+    dw $8004,$840E,$842E,$8C2E,$8C0E                                     ;84AA07;
+    dw $0000
 
 DrawInst_BlueDoorFacingRight_2:
-    dw $8004,$840F,$042F,$0C2F,$8C0F,$0000                               ;84AA13;
+    dw $8004,$840F,$042F,$0C2F,$8C0F                                     ;84AA13;
+    dw $0000
 
 UNUSED_DrawInst_84AA1F:
-    dw $0004,$841D,$541C,$501C,$501D,$0000                               ;84AA1F;
+    dw $0004,$841D,$541C,$501C,$501D                                     ;84AA1F;
+    dw $0000
 
 DrawInst_DoorFacingUp_AA2B:
-    dw $0004,$C41D,$541C,$501C,$501D,$0000                               ;84AA2B;
+    dw $0004,$C41D,$541C,$501C,$501D                                     ;84AA2B;
+    dw $0000
 
 DrawInst_BlueDoorFacingUp_0:
-    dw $0004,$843D,$843C,$803C,$803D,$0000                               ;84AA37;
+    dw $0004,$843D,$843C,$803C,$803D                                     ;84AA37;
+    dw $0000
 
 DrawInst_BlueDoorFacingUp_1:
-    dw $0004,$841F,$841E,$801E,$801F,$0000                               ;84AA43;
+    dw $0004,$841F,$841E,$801E,$801F                                     ;84AA43;
+    dw $0000
 
 DrawInst_BlueDoorFacingUp_2:
-    dw $0004,$843F,$843E,$803E,$803F,$0000                               ;84AA4F;
+    dw $0004,$843F,$843E,$803E,$803F                                     ;84AA4F;
+    dw $0000
 
 UNUSED_DrawInst_84AA5B:
-    dw $0004,$8C1D,$5C1C,$581C,$581D,$0000                               ;84AA5B;
+    dw $0004,$8C1D,$5C1C,$581C,$581D                                     ;84AA5B;
+    dw $0000
 
 DrawInst_DoorFacingDown_AA67:
-    dw $0004,$CC1D,$5C1C,$581C,$581D,$0000                               ;84AA67;
+    dw $0004,$CC1D,$5C1C,$581C,$581D                                     ;84AA67;
+    dw $0000
 
 DrawInst_BlueDoorFacingDown_0:
-    dw $0004,$8C3D,$8C3C,$883C,$883D,$0000                               ;84AA73;
+    dw $0004,$8C3D,$8C3C,$883C,$883D                                     ;84AA73;
+    dw $0000
 
 DrawInst_BlueDoorFacingDown_1:
-    dw $0004,$8C1F,$8C1E,$881E,$881F,$0000                               ;84AA7F;
+    dw $0004,$8C1F,$8C1E,$881E,$881F                                     ;84AA7F;
+    dw $0000
 
 DrawInst_BlueDoorFacingDown_2:
-    dw $0004,$8C3F,$8C3E,$883E,$883F,$0000                               ;84AA8B;
+    dw $0004,$8C3F,$8C3E,$883E,$883F                                     ;84AA8B;
+    dw $0000
 
 DrawInst_ElevatorPlatform_0:
     dw $0001,$8085                                                       ;84AA97;
     db $03,$00                                                           ;84AA9B;
     dw $0001,$8485                                                       ;84AA9D;
     db $00,$01                                                           ;84AAA1;
-    dw $0004,$8088,$8089,$8489,$8488,$0000                               ;84AAA3;
+    dw $0004,$8088,$8089,$8489,$8488                                     ;84AAA3;
+    dw $0000
 
 DrawInst_ElevatorPlatform_1:
     dw $0001,$8086                                                       ;84AAAF;
     db $03,$00                                                           ;84AAB3;
     dw $0001,$8486                                                       ;84AAB5;
     db $00,$01                                                           ;84AAB9;
-    dw $0004,$808A,$808B,$848B,$848A,$0000                               ;84AABB;
+    dw $0004,$808A,$808B,$848B,$848A                                     ;84AABB;
+    dw $0000
 
 DrawInst_ElevatorPlatform_2:
     dw $0001,$8087                                                       ;84AAC7;
     db $03,$00                                                           ;84AACB;
     dw $0001,$8487                                                       ;84AACD;
     db $00,$01                                                           ;84AAD1;
-    dw $0004,$808C,$808D,$848D,$848C,$0000                               ;84AAD3;
+    dw $0004,$808C,$808D,$848D,$848C                                     ;84AAD3;
+    dw $0000
+
 
 UNUSED_InstList_PLM_DrawEmptyTile_84AADF:
-    dw $0001                                                             ;84AADF;
-    dw DrawInst_ItemChozoOrb                                             ;84AAE1;
+    dw $0001,DrawInst_ItemChozoOrb                                       ;84AADF;
 
 InstList_PLM_Delete:
     dw Instruction_PLM_Delete                                            ;84AAE3;
 
 InstList_PLM_CrumbleAccessToTourianElevator_0:
-    dw Instruction_PLM_TimerEqualsY_8Bit                                 ;84AAE5;
-    db $06                                                               ;84AAE7;
+    dw Instruction_PLM_TimerEqualsY_8Bit : db $06                        ;84AAE5;
 
 InstList_PLM_CrumbleAccessToTourianElevator_1:
-    dw $0004                                                             ;84AAE8;
-    dw DrawInst_CrumbleAccessToTourianElevator_1                         ;84AAEA;
-    dw $0004                                                             ;84AAEC;
-    dw DrawInst_CrumbleAccessToTourianElevator_2                         ;84AAEE;
-    dw $0004                                                             ;84AAF0;
-    dw DrawInst_CrumbleAccessToTourianElevator_3                         ;84AAF2;
-    dw $0004                                                             ;84AAF4;
-    dw DrawInst_CrumbleAccessToTourianElevator_0                         ;84AAF6;
+    dw $0004,DrawInst_CrumbleAccessToTourianElevator_1                   ;84AAE8;
+    dw $0004,DrawInst_CrumbleAccessToTourianElevator_2                   ;84AAEC;
+    dw $0004,DrawInst_CrumbleAccessToTourianElevator_3                   ;84AAF0;
+    dw $0004,DrawInst_CrumbleAccessToTourianElevator_0                   ;84AAF4;
     dw Instruction_PLM_MovePLMDown1Block_84AB00                          ;84AAF8;
     dw Instruction_PLM_DecrementTimer_GotoYIfNonZero                     ;84AAFA;
     dw InstList_PLM_CrumbleAccessToTourianElevator_1                     ;84AAFC;
@@ -4314,28 +4691,22 @@ Instruction_PLM_MovePLMDown1Block_84AB00:
 
 
 InstList_PLM_ClearAccessToTourianElevator:
-    dw $0001                                                             ;84AB0C;
-    dw DrawInst_ClearAccessToTourianElevator                             ;84AB0E;
+    dw $0001,DrawInst_ClearAccessToTourianElevator                       ;84AB0C;
     dw Instruction_PLM_Delete                                            ;84AB10;
 
 InstList_PLM_CrumbleSporeSpawnCeiling:
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AB12;
-    db $0A                                                               ;84AB14;
-    dw $0004                                                             ;84AB15;
-    dw DrawInst_CrumbleSporeSpawnCeiling_0                               ;84AB17;
-    dw $0004                                                             ;84AB19;
-    dw DrawInst_CrumbleSporeSpawnCeiling_1                               ;84AB1B;
-    dw $0004                                                             ;84AB1D;
-    dw DrawInst_CrumbleSporeSpawnCeiling_2                               ;84AB1F;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $0A                   ;84AB12;
+    dw $0004,DrawInst_CrumbleSporeSpawnCeiling_0                         ;84AB15;
+    dw $0004,DrawInst_CrumbleSporeSpawnCeiling_1                         ;84AB19;
+    dw $0004,DrawInst_CrumbleSporeSpawnCeiling_2                         ;84AB1D;
 
 InstList_PLM_ClearSporeSpawnCeiling:
-    dw $0004                                                             ;84AB21;
-    dw DrawInst_ClearSporeSpawnCeiling                                   ;84AB23;
+    dw $0004,DrawInst_ClearSporeSpawnCeiling                             ;84AB21;
     dw Instruction_PLM_Delete                                            ;84AB25;
+
 
 RTS_84AB27:
     RTS                                                                  ;84AB27;
-
 
 Setup_CrumbleBotwoonWall_Wait40Frames:
     TYX                                                                  ;84AB28;
@@ -4345,31 +4716,25 @@ Setup_CrumbleBotwoonWall_Wait40Frames:
 
 
 InstList_PLM_CrumbleBotwoonWall_0:
-    dw Instruction_PLM_TimerEqualsY_8Bit                                 ;84AB31;
-    db $09                                                               ;84AB33;
+    dw Instruction_PLM_TimerEqualsY_8Bit : db $09                        ;84AB31;
     dw Instruction_PLM_Scroll_0_1_Blue                                   ;84AB34;
 
 InstList_PLM_CrumbleBotwoonWall_1:
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AB36;
-    db $0A                                                               ;84AB38;
-    dw $0004                                                             ;84AB39;
-    dw DrawInst_Respawn1x1_0                                             ;84AB3B;
-    dw $0004                                                             ;84AB3D;
-    dw DrawInst_Respawn1x1_1                                             ;84AB3F;
-    dw $0004                                                             ;84AB41;
-    dw DrawInst_Respawn1x1_2                                             ;84AB43;
-    dw $0004                                                             ;84AB45;
-    dw DrawInst_Respawn1x1_3                                             ;84AB47;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $0A                   ;84AB36;
+    dw $0004,DrawInst_Respawn1x1_0                                       ;84AB39;
+    dw $0004,DrawInst_Respawn1x1_1                                       ;84AB3D;
+    dw $0004,DrawInst_Respawn1x1_2                                       ;84AB41;
+    dw $0004,DrawInst_Respawn1x1_3                                       ;84AB45;
     dw Instruction_PLM_MovePLMDown1Block                                 ;84AB49;
     dw Instruction_PLM_DecrementTimer_GotoYIfNonZero                     ;84AB4B;
     dw InstList_PLM_CrumbleBotwoonWall_1                                 ;84AB4D;
     dw Instruction_PLM_Delete                                            ;84AB4F;
 
+
 Instruction_PLM_Scroll_0_1_Blue:
     LDA.W #$0101                                                         ;84AB51;
     STA.L $7ECD20                                                        ;84AB54;
     RTS                                                                  ;84AB58;
-
 
 Instruction_PLM_MovePLMDown1Block:
     LDA.W $1C87,X                                                        ;84AB59;
@@ -4381,80 +4746,58 @@ Instruction_PLM_MovePLMDown1Block:
 
 
 InstList_PLM_ClearBotwoonWall:
-    dw $0001                                                             ;84AB67;
-    dw DrawInst_ClearBotwoonWall                                         ;84AB69;
+    dw $0001,DrawInst_ClearBotwoonWall                                   ;84AB67;
     dw Instruction_PLM_Delete                                            ;84AB6B;
 
 InstList_PLM_CrumbleKraidCeilingBlockIntoBackground1:
-    dw $0003                                                             ;84AB6D;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube         ;84AB6F;
-    dw $0003                                                             ;84AB71;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_0                 ;84AB73;
-    dw $0003                                                             ;84AB75;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_1                 ;84AB77;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube   ;84AB6D;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_0           ;84AB71;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_1           ;84AB75;
 
 InstList_PLM_SetKraidCeilingBlockToBackground1:
-    dw $0003                                                             ;84AB79;
-    dw UNUSED_DrawInst_SetKraidCeilingBlockToBackground1_849379          ;84AB7B;
+    dw $0003,UNUSED_DrawInst_SetKraidCeilingBlockToBackground1_849379    ;84AB79;
     dw Instruction_PLM_Delete                                            ;84AB7D;
 
 InstList_PLM_CrumbleKraidCeilingBlockIntoBackground2:
-    dw $0003                                                             ;84AB7F;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube         ;84AB81;
-    dw $0003                                                             ;84AB83;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_0                 ;84AB85;
-    dw $0003                                                             ;84AB87;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_1                 ;84AB89;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube   ;84AB7F;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_0           ;84AB83;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_1           ;84AB87;
 
 InstList_PLM_SetKraidCeilingBlockToBackground2:
-    dw $0003                                                             ;84AB8B;
-    dw DrawInst_SetKraidCeilingBlockToBackground2                        ;84AB8D;
+    dw $0003,DrawInst_SetKraidCeilingBlockToBackground2                  ;84AB8B;
     dw Instruction_PLM_Delete                                            ;84AB8F;
 
 InstList_PLM_CrumbleKraidCeilingBlockIntoBackground3:
-    dw $0003                                                             ;84AB91;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube         ;84AB93;
-    dw $0003                                                             ;84AB95;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_0                 ;84AB97;
-    dw $0003                                                             ;84AB99;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_1                 ;84AB9B;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube   ;84AB91;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_0           ;84AB95;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_1           ;84AB99;
 
 InstList_PLM_SetKraidCeilingBlockToBackground3:
-    dw $0003                                                             ;84AB9D;
-    dw DrawInst_SetKraidCeilingBlockToBackground3                        ;84AB9F;
+    dw $0003,DrawInst_SetKraidCeilingBlockToBackground3                  ;84AB9D;
     dw Instruction_PLM_Delete                                            ;84ABA1;
 
 InstList_PLM_ClearKraidCeiling:
-    dw $0001                                                             ;84ABA3;
-    dw DrawInst_ClearKraidCeiling                                        ;84ABA5;
+    dw $0001,DrawInst_ClearKraidCeiling                                  ;84ABA3;
     dw Instruction_PLM_Delete                                            ;84ABA7;
 
 InstList_PLM_CrumbleKraidSpikeBlocks_0:
-    dw Instruction_PLM_TimerEqualsY_8Bit                                 ;84ABA9;
-    db $0B                                                               ;84ABAB;
+    dw Instruction_PLM_TimerEqualsY_8Bit : db $0B                        ;84ABA9;
 
 InstList_PLM_CrumbleKraidSpikeBlocks_1:
-    dw $0003                                                             ;84ABAC;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube         ;84ABAE;
-    dw $0003                                                             ;84ABB0;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_0                 ;84ABB2;
-    dw $0003                                                             ;84ABB4;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_1                 ;84ABB6;
-    dw $0003                                                             ;84ABB8;
-    dw DrawInst_CrumbleKraidSpikeBlocks_0                                ;84ABBA;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube   ;84ABAC;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_0           ;84ABB0;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_1           ;84ABB4;
+    dw $0003,DrawInst_CrumbleKraidSpikeBlocks_0                          ;84ABB8;
     dw Instruction_PLM_MovePLMRight1Block                                ;84ABBC;
-    dw $0003                                                             ;84ABBE;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube         ;84ABC0;
-    dw $0003                                                             ;84ABC2;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_0                 ;84ABC4;
-    dw $0003                                                             ;84ABC6;
-    dw DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_1                 ;84ABC8;
-    dw $0003                                                             ;84ABCA;
-    dw DrawInst_CrumbleKraidSpikeBlocks_1                                ;84ABCC;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube   ;84ABBE;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_0           ;84ABC2;
+    dw $0003,DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_1           ;84ABC6;
+    dw $0003,DrawInst_CrumbleKraidSpikeBlocks_1                          ;84ABCA;
     dw Instruction_PLM_MovePLMRight1Block                                ;84ABCE;
     dw Instruction_PLM_DecrementTimer_GotoYIfNonZero                     ;84ABD0;
     dw InstList_PLM_CrumbleKraidSpikeBlocks_1                            ;84ABD2;
     dw Instruction_PLM_Delete                                            ;84ABD4;
+
 
 Instruction_PLM_MovePLMRight1Block:
     INC.W $1C87,X                                                        ;84ABD6;
@@ -4463,147 +4806,118 @@ Instruction_PLM_MovePLMRight1Block:
 
 
 InstList_PLM_ClearKraidSpikeBlocks:
-    dw $0001                                                             ;84ABDD;
-    dw DrawInst_ClearKraidSpikeBlocks                                    ;84ABDF;
+    dw $0001,DrawInst_ClearKraidSpikeBlocks                              ;84ABDD;
     dw Instruction_PLM_Delete                                            ;84ABE1;
 
 UNUSED_InstList_PLM_84ABE3:
-    dw $0001                                                             ;84ABE3;
-    dw UNUSED_DrawInst_849453                                            ;84ABE5;
+    dw $0001,UNUSED_DrawInst_849453                                      ;84ABE3;
     dw Instruction_PLM_Delete                                            ;84ABE7;
 
 UNUSED_InstList_PLM_84ABE9:
-    dw $0001                                                             ;84ABE9;
-    dw UNUSED_DrawInst_849463                                            ;84ABEB;
+    dw $0001,UNUSED_DrawInst_849463                                      ;84ABE9;
     dw Instruction_PLM_Delete                                            ;84ABED;
 
 UNUSED_InstList_PLM_84ABEF_0:
-    dw $0018                                                             ;84ABEF;
-    dw DrawInst_EscapeRoom1Gate_0                                        ;84ABF1;
+    dw $0018,DrawInst_EscapeRoom1Gate_0                                  ;84ABEF;
 
 UNUSED_InstList_PLM_84ABF3_1:
-    dw $0001                                                             ;84ABF3;
-    dw DrawInst_EscapeRoom1Gate_2                                        ;84ABF5;
+    dw $0001,DrawInst_EscapeRoom1Gate_2                                  ;84ABF3;
     dw Instruction_PLM_Delete                                            ;84ABF7;
 
 UNUSED_InstList_PLM_84ABF9:
-    dw $0001                                                             ;84ABF9;
-    dw UNUSED_DrawInst_849497                                            ;84ABFB;
+    dw $0001,UNUSED_DrawInst_849497                                      ;84ABF9;
     dw Instruction_PLM_Delete                                            ;84ABFD;
 
 UNUSED_PLM_InstList_84ABFF:
-    dw $0001                                                             ;84ABFF;
-    dw UNUSED_DrawInst_84949D                                            ;84AC01;
+    dw $0001,UNUSED_DrawInst_84949D                                      ;84ABFF;
     dw Instruction_PLM_Delete                                            ;84AC03;
 
 InstList_PLM_FillMotherBrainsWall:
-    dw $0001                                                             ;84AC05;
-    dw DrawInst_FillMotherBrainsWall                                     ;84AC07;
+    dw $0001,DrawInst_FillMotherBrainsWall                               ;84AC05;
     dw Instruction_PLM_Delete                                            ;84AC09;
 
 InstList_PLM_MotherBrainsRoomEscapeDoor:
-    dw $0001                                                             ;84AC0B;
-    dw DrawInst_MotherBrainsRoomEscapeDoor                               ;84AC0D;
+    dw $0001,DrawInst_MotherBrainsRoomEscapeDoor                         ;84AC0B;
     dw Instruction_PLM_Delete                                            ;84AC0F;
 
 InstList_PLM_MotherBrainsBackgroundRow2:
-    dw $0001                                                             ;84AC11;
-    dw DrawInst_MotherBrainsBackgroundRow2                               ;84AC13;
+    dw $0001,DrawInst_MotherBrainsBackgroundRow2                         ;84AC11;
     dw Instruction_PLM_Delete                                            ;84AC15;
 
 InstList_PLM_MotherBrainsBackgroundRow3:
-    dw $0001                                                             ;84AC17;
-    dw DrawInst_MotherBrainsBackgroundRow3                               ;84AC19;
+    dw $0001,DrawInst_MotherBrainsBackgroundRow3                         ;84AC17;
     dw Instruction_PLM_Delete                                            ;84AC1B;
 
 InstList_PLM_MotherBrainsBackgroundRow4:
-    dw $0001                                                             ;84AC1D;
-    dw DrawInst_MotherBrainsBackgroundRow4                               ;84AC1F;
+    dw $0001,DrawInst_MotherBrainsBackgroundRow4                         ;84AC1D;
     dw Instruction_PLM_Delete                                            ;84AC21;
 
 InstList_PLM_MotherBrainsBackgroundRow5:
-    dw $0001                                                             ;84AC23;
-    dw DrawInst_MotherBrainsBackgroundRow5                               ;84AC25;
+    dw $0001,DrawInst_MotherBrainsBackgroundRow5                         ;84AC23;
     dw Instruction_PLM_Delete                                            ;84AC27;
 
 InstList_PLM_MotherBrainsBackgroundRow6:
-    dw $0001                                                             ;84AC29;
-    dw DrawInst_MotherBrainsBackgroundRow6                               ;84AC2B;
+    dw $0001,DrawInst_MotherBrainsBackgroundRow6                         ;84AC29;
     dw Instruction_PLM_Delete                                            ;84AC2D;
 
 InstList_PLM_MotherBrainsBackgroundRow7:
-    dw $0001                                                             ;84AC2F;
-    dw DrawInst_MotherBrainsBackgroundRow7                               ;84AC31;
+    dw $0001,DrawInst_MotherBrainsBackgroundRow7                         ;84AC2F;
     dw Instruction_PLM_Delete                                            ;84AC33;
 
 InstList_PLM_MotherBrainsBackgroundRow8:
-    dw $0001                                                             ;84AC35;
-    dw DrawInst_MotherBrainsBackgroundRow8                               ;84AC37;
+    dw $0001,DrawInst_MotherBrainsBackgroundRow8                         ;84AC35;
     dw Instruction_PLM_Delete                                            ;84AC39;
 
 InstList_PLM_MotherBrainsBackgroundRow9:
-    dw $0001                                                             ;84AC3B;
-    dw DrawInst_MotherBrainsBackgroundRow9                               ;84AC3D;
+    dw $0001,DrawInst_MotherBrainsBackgroundRow9                         ;84AC3B;
     dw Instruction_PLM_Delete                                            ;84AC3F;
 
 InstList_PLM_MotherBrainsBackgroundRowA:
-    dw $0001                                                             ;84AC41;
-    dw DrawInst_MotherBrainsBackgroundRowA                               ;84AC43;
+    dw $0001,DrawInst_MotherBrainsBackgroundRowA                         ;84AC41;
     dw Instruction_PLM_Delete                                            ;84AC45;
 
 InstList_PLM_MotherBrainsBackgroundRowB:
-    dw $0001                                                             ;84AC47;
-    dw DrawInst_MotherBrainsBackgroundRowB                               ;84AC49;
+    dw $0001,DrawInst_MotherBrainsBackgroundRowB                         ;84AC47;
     dw Instruction_PLM_Delete                                            ;84AC4B;
 
 InstList_PLM_MotherBrainsBackgroundRowC:
-    dw $0001                                                             ;84AC4D;
-    dw DrawInst_MotherBrainsBackgroundRowC                               ;84AC4F;
+    dw $0001,DrawInst_MotherBrainsBackgroundRowC                         ;84AC4D;
     dw Instruction_PLM_Delete                                            ;84AC51;
 
 InstList_PLM_MotherBrainsBackgroundRowD:
-    dw $0001                                                             ;84AC53;
-    dw DrawInst_MotherBrainsBackgroundRowD                               ;84AC55;
+    dw $0001,DrawInst_MotherBrainsBackgroundRowD                         ;84AC53;
     dw Instruction_PLM_Delete                                            ;84AC57;
 
 UNUSED_InstList_PLM_84AC59:
-    dw $0001                                                             ;84AC59;
-    dw UNUSED_DrawInst_94966D                                            ;84AC5B;
+    dw $0001,UNUSED_DrawInst_94966D                                      ;84AC59;
     dw Instruction_PLM_Delete                                            ;84AC5D;
 
 UNUSED_InstList_PLM_84AC5F:
-    dw $0001                                                             ;84AC5F;
-    dw UNUSED_DrawInst_94968B                                            ;84AC61;
+    dw $0001,UNUSED_DrawInst_94968B                                      ;84AC5F;
     dw Instruction_PLM_Delete                                            ;84AC63;
 
 InstList_PLM_ClearCeilingBlockInMotherBrainsRoom:
-    dw $0001                                                             ;84AC65;
-    dw DrawInst_ClearCeilingBlockInMotherBrainsRoom                      ;84AC67;
+    dw $0001,DrawInst_ClearCeilingBlockInMotherBrainsRoom                ;84AC65;
     dw Instruction_PLM_Delete                                            ;84AC69;
 
 InstList_PLM_ClearCeilingTubeInMotherBrainsRoom:
-    dw $0001                                                             ;84AC6B;
-    dw DrawInst_ClearCeilingTubeInMotherBrainsRoom                       ;84AC6D;
+    dw $0001,DrawInst_ClearCeilingTubeInMotherBrainsRoom                 ;84AC6B;
     dw Instruction_PLM_Delete                                            ;84AC6F;
 
 InstList_PLM_ClearMotherBrainsBottomMiddleSideTube:
-    dw $0001                                                             ;84AC71;
-    dw DrawInst_ClearMotherBrainsBottomMiddleSideTube                    ;84AC73;
+    dw $0001,DrawInst_ClearMotherBrainsBottomMiddleSideTube              ;84AC71;
     dw Instruction_PLM_Delete                                            ;84AC75;
 
 InstList_PLM_ClearMotherBrainsBottomMiddleTubes:
-    dw $0001                                                             ;84AC77;
-    dw DrawInst_ClearMotherBrainsBottomMiddleTubes                       ;84AC79;
+    dw $0001,DrawInst_ClearMotherBrainsBottomMiddleTubes                 ;84AC77;
     dw Instruction_PLM_Delete                                            ;84AC7B;
 
 InstList_PLM_ClearMotherBrainsBottomLeftTube:
-    dw $0001                                                             ;84AC7D;
-    dw DrawInst_ClearMotherBrainsBottomLeftTube                          ;84AC7F;
+    dw $0001,DrawInst_ClearMotherBrainsBottomLeftTube                    ;84AC7D;
     dw Instruction_PLM_Delete                                            ;84AC81;
 
 InstList_PLM_ClearMotherBrainsBottomRightTube:
-    dw $0001                                                             ;84AC83;
-    dw DrawInst_ClearMotherBrainsBottomRightTube                         ;84AC85;
+    dw $0001,DrawInst_ClearMotherBrainsBottomRightTube                   ;84AC83;
     dw Instruction_PLM_Delete                                            ;84AC87;
 
 PreInst_PLM_PositionSamus_GiveAtLeast10FramesOfInvincibility:
@@ -4636,80 +4950,55 @@ Instruction_PLM_GiveSamus30FramesOfInvincibility:
 InstList_PLM_BrinstarFloorPlant_0:
     dw Instruction_PLM_PreInstruction_inY                                ;84ACB8;
     dw PreInst_PLM_PositionSamus_GiveAtLeast10FramesOfInvincibility      ;84ACBA;
-    dw Instruction_PLM_TimerEqualsY_8Bit                                 ;84ACBC;
-    db $04                                                               ;84ACBE;
+    dw Instruction_PLM_TimerEqualsY_8Bit : db $04                        ;84ACBC;
 
 InstList_PLM_BrinstarFloorPlant_1:
-    dw $0005                                                             ;84ACBF;
-    dw DrawInst_BrinstarFloorPlant_2                                     ;84ACC1;
-    dw $0005                                                             ;84ACC3;
-    dw DrawInst_BrinstarFloorPlant_1                                     ;84ACC5;
-    dw $0005                                                             ;84ACC7;
-    dw DrawInst_BrinstarFloorPlant_2                                     ;84ACC9;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84ACCB;
-    db $31                                                               ;84ACCD;
+    dw $0005,DrawInst_BrinstarFloorPlant_2                               ;84ACBF;
+    dw $0005,DrawInst_BrinstarFloorPlant_1                               ;84ACC3;
+    dw $0005,DrawInst_BrinstarFloorPlant_2                               ;84ACC7;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $31                   ;84ACCB;
     dw Instruction_PLM_Deal2DamageToSamus                                ;84ACCE;
-    dw $0005                                                             ;84ACD0;
-    dw DrawInst_BrinstarFloorPlant_3                                     ;84ACD2;
-    dw $0005                                                             ;84ACD4;
-    dw DrawInst_BrinstarFloorPlant_2                                     ;84ACD6;
-    dw $0005                                                             ;84ACD8;
-    dw DrawInst_BrinstarFloorPlant_1                                     ;84ACDA;
-    dw $0005                                                             ;84ACDC;
-    dw DrawInst_BrinstarFloorPlant_2                                     ;84ACDE;
+    dw $0005,DrawInst_BrinstarFloorPlant_3                               ;84ACD0;
+    dw $0005,DrawInst_BrinstarFloorPlant_2                               ;84ACD4;
+    dw $0005,DrawInst_BrinstarFloorPlant_1                               ;84ACD8;
+    dw $0005,DrawInst_BrinstarFloorPlant_2                               ;84ACDC;
     dw Instruction_PLM_Deal2DamageToSamus                                ;84ACE0;
-    dw $0005                                                             ;84ACE2;
-    dw DrawInst_BrinstarFloorPlant_3                                     ;84ACE4;
+    dw $0005,DrawInst_BrinstarFloorPlant_3                               ;84ACE2;
     dw Instruction_PLM_DecrementTimer_GotoYIfNonZero                     ;84ACE6;
     dw InstList_PLM_BrinstarFloorPlant_1                                 ;84ACE8;
     dw Instruction_PLM_GiveSamus30FramesOfInvincibility                  ;84ACEA;
     dw Instruction_PLM_ClearPreInstruction                               ;84ACEC;
-    dw $0060                                                             ;84ACEE;
-    dw DrawInst_BrinstarFloorPlant_3                                     ;84ACF0;
-    dw $0001                                                             ;84ACF2;
-    dw DrawInst_BrinstarFloorPlant_0                                     ;84ACF4;
+    dw $0060,DrawInst_BrinstarFloorPlant_3                               ;84ACEE;
+    dw $0001,DrawInst_BrinstarFloorPlant_0                               ;84ACF2;
     dw Instruction_PLM_Delete                                            ;84ACF6;
 
 InstList_PLM_BrinstarCeilingPlant_0:
     dw Instruction_PLM_PreInstruction_inY                                ;84ACF8;
     dw PreInst_PLM_PositionSamus_GiveAtLeast10FramesOfInvincibility      ;84ACFA;
-    dw Instruction_PLM_TimerEqualsY_8Bit                                 ;84ACFC;
-    db $08                                                               ;84ACFE;
+    dw Instruction_PLM_TimerEqualsY_8Bit : db $08                        ;84ACFC;
 
 InstList_PLM_BrinstarCeilingPlant_1:
-    dw $0005                                                             ;84ACFF;
-    dw DrawInst_BrinstarCeilingPlant_2                                   ;84AD01;
-    dw $0005                                                             ;84AD03;
-    dw DrawInst_BrinstarCeilingPlant_1                                   ;84AD05;
-    dw $0005                                                             ;84AD07;
-    dw DrawInst_BrinstarCeilingPlant_2                                   ;84AD09;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AD0B;
-    db $31                                                               ;84AD0D;
+    dw $0005,DrawInst_BrinstarCeilingPlant_2                             ;84ACFF;
+    dw $0005,DrawInst_BrinstarCeilingPlant_1                             ;84AD03;
+    dw $0005,DrawInst_BrinstarCeilingPlant_2                             ;84AD07;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $31                   ;84AD0B;
     dw Instruction_PLM_Deal2DamageToSamus                                ;84AD0E;
-    dw $0005                                                             ;84AD10;
-    dw DrawInst_BrinstarCeilingPlant_3                                   ;84AD12;
-    dw $0005                                                             ;84AD14;
-    dw DrawInst_BrinstarCeilingPlant_2                                   ;84AD16;
-    dw $0005                                                             ;84AD18;
-    dw DrawInst_BrinstarCeilingPlant_1                                   ;84AD1A;
-    dw $0005                                                             ;84AD1C;
-    dw DrawInst_BrinstarCeilingPlant_2                                   ;84AD1E;
+    dw $0005,DrawInst_BrinstarCeilingPlant_3                             ;84AD10;
+    dw $0005,DrawInst_BrinstarCeilingPlant_2                             ;84AD14;
+    dw $0005,DrawInst_BrinstarCeilingPlant_1                             ;84AD18;
+    dw $0005,DrawInst_BrinstarCeilingPlant_2                             ;84AD1C;
     dw Instruction_PLM_Deal2DamageToSamus                                ;84AD20;
-    dw $0005                                                             ;84AD22;
-    dw DrawInst_BrinstarCeilingPlant_3                                   ;84AD24;
+    dw $0005,DrawInst_BrinstarCeilingPlant_3                             ;84AD22;
     dw Instruction_PLM_DecrementTimer_GotoYIfNonZero                     ;84AD26;
     dw InstList_PLM_BrinstarCeilingPlant_1                               ;84AD28;
     dw Instruction_PLM_GiveSamus30FramesOfInvincibility                  ;84AD2A;
     dw Instruction_PLM_ClearPreInstruction                               ;84AD2C;
-    dw $0060                                                             ;84AD2E;
-    dw DrawInst_BrinstarCeilingPlant_3                                   ;84AD30;
-    dw $0001                                                             ;84AD32;
-    dw DrawInst_BrinstarCeilingPlant_0                                   ;84AD34;
+    dw $0060,DrawInst_BrinstarCeilingPlant_3                             ;84AD2E;
+    dw $0001,DrawInst_BrinstarCeilingPlant_0                             ;84AD32;
     dw Instruction_PLM_Delete                                            ;84AD36;
 
 InstList_PLM_WreckedShipEntranceTreadmillFromWest_0:
-    dw Instruction_PLM_GotoY_ifBossBitsSet                               ;84AD38;
-    db $01                                                               ;84AD3A;
+    dw Instruction_PLM_GotoY_ifBossBitsSet : db $01                      ;84AD38;
     dw InstList_PLM_WreckedShipEntranceTreadmillFromWest_1               ;84AD3B;
     dw Instruction_PLM_Delete                                            ;84AD3D;
 
@@ -4724,8 +5013,7 @@ Instruction_PLM_Draw38TilesOfBlankRightwardsTreadmill:
 
 
 InstList_PLM_WreckedShipEntranceTreadmillFromEast_0:
-    dw Instruction_PLM_GotoY_ifBossBitsSet                               ;84AD4D;
-    db $01                                                               ;84AD4F;
+    dw Instruction_PLM_GotoY_ifBossBitsSet : db $01                      ;84AD4D;
     dw InstList_PLM_WreckedShipEntranceTreadmillFromEast_1               ;84AD50;
     dw Instruction_PLM_Delete                                            ;84AD52;
 
@@ -4744,59 +5032,39 @@ InstList_PLM_MapStation_0:
     dw InstList_PLM_MapStation_2                                         ;84AD64;
 
 InstList_PLM_MapStation_1:
-    dw $0006                                                             ;84AD66;
-    dw DrawInst_MapStation_0                                             ;84AD68;
-    dw $0006                                                             ;84AD6A;
-    dw DrawInst_MapStation_1                                             ;84AD6C;
-    dw $0006                                                             ;84AD6E;
-    dw DrawInst_MapStation_2                                             ;84AD70;
+    dw $0006,DrawInst_MapStation_0                                       ;84AD66;
+    dw $0006,DrawInst_MapStation_1                                       ;84AD6A;
+    dw $0006,DrawInst_MapStation_2                                       ;84AD6E;
     dw Instruction_PLM_GotoY                                             ;84AD72;
     dw InstList_PLM_MapStation_1                                         ;84AD74;
 
 InstList_PLM_MapStation_2:
-    dw $0002                                                             ;84AD76;
-    dw DrawInst_MapStation_0                                             ;84AD78;
-    dw $0002                                                             ;84AD7A;
-    dw DrawInst_MapStation_1                                             ;84AD7C;
-    dw $0002                                                             ;84AD7E;
-    dw DrawInst_MapStation_2                                             ;84AD80;
+    dw $0002,DrawInst_MapStation_0                                       ;84AD76;
+    dw $0002,DrawInst_MapStation_1                                       ;84AD7A;
+    dw $0002,DrawInst_MapStation_2                                       ;84AD7E;
     dw Instruction_PLM_GotoY                                             ;84AD82;
     dw InstList_PLM_MapStation_2                                         ;84AD84;
 
 InstList_PLM_MapStationRightAccess:
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AD86;
-    db $37                                                               ;84AD88;
-    dw $0006                                                             ;84AD89;
-    dw DrawInst_MapStationRightAccess_0                                  ;84AD8B;
-    dw $0060                                                             ;84AD8D;
-    dw DrawInst_MapStationRightAccess_1                                  ;84AD8F;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $37                   ;84AD86;
+    dw $0006,DrawInst_MapStationRightAccess_0                            ;84AD89;
+    dw $0060,DrawInst_MapStationRightAccess_1                            ;84AD8D;
     dw Instruction_PLM_Activate_MapStation                               ;84AD91;
-    dw $0006                                                             ;84AD93;
-    dw DrawInst_MapStationRightAccess_1                                  ;84AD95;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AD97;
-    db $38                                                               ;84AD99;
-    dw $0006                                                             ;84AD9A;
-    dw DrawInst_MapStationRightAccess_1                                  ;84AD9C;
-    dw $0006                                                             ;84AD9E;
-    dw DrawInst_MapStationRightAccess_0                                  ;84ADA0;
+    dw $0006,DrawInst_MapStationRightAccess_1                            ;84AD93;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $38                   ;84AD97;
+    dw $0006,DrawInst_MapStationRightAccess_1                            ;84AD9A;
+    dw $0006,DrawInst_MapStationRightAccess_0                            ;84AD9E;
     dw Instruction_PLM_Delete                                            ;84ADA2;
 
 InstList_PLM_MapStationLeftAccess:
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84ADA4;
-    db $37                                                               ;84ADA6;
-    dw $0006                                                             ;84ADA7;
-    dw DrawInst_MapStationLeftAccess_0                                   ;84ADA9;
-    dw $0060                                                             ;84ADAB;
-    dw DrawInst_MapStationLeftAccess_1                                   ;84ADAD;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $37                   ;84ADA4;
+    dw $0006,DrawInst_MapStationLeftAccess_0                             ;84ADA7;
+    dw $0060,DrawInst_MapStationLeftAccess_1                             ;84ADAB;
     dw Instruction_PLM_Activate_MapStation                               ;84ADAF;
-    dw $0006                                                             ;84ADB1;
-    dw DrawInst_MapStationLeftAccess_1                                   ;84ADB3;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84ADB5;
-    db $38                                                               ;84ADB7;
-    dw $0006                                                             ;84ADB8;
-    dw DrawInst_MapStationLeftAccess_1                                   ;84ADBA;
-    dw $0006                                                             ;84ADBC;
-    dw DrawInst_MapStationLeftAccess_0                                   ;84ADBE;
+    dw $0006,DrawInst_MapStationLeftAccess_1                             ;84ADB1;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $38                   ;84ADB5;
+    dw $0006,DrawInst_MapStationLeftAccess_1                             ;84ADB8;
+    dw $0006,DrawInst_MapStationLeftAccess_0                             ;84ADBC;
     dw Instruction_PLM_Delete                                            ;84ADC0;
 
 InstList_PLM_EnergyStation_0:
@@ -4804,28 +5072,21 @@ InstList_PLM_EnergyStation_0:
     dw InstList_PLM_EnergyStation_2                                      ;84ADC4;
 
 InstList_PLM_EnergyStation_1:
-    dw $0006                                                             ;84ADC6;
-    dw DrawInst_EnergyStation_0                                          ;84ADC8;
-    dw $0006                                                             ;84ADCA;
-    dw DrawInst_EnergyStation_1                                          ;84ADCC;
-    dw $0006                                                             ;84ADCE;
-    dw DrawInst_EnergyStation_2                                          ;84ADD0;
+    dw $0006,DrawInst_EnergyStation_0                                    ;84ADC6;
+    dw $0006,DrawInst_EnergyStation_1                                    ;84ADCA;
+    dw $0006,DrawInst_EnergyStation_2                                    ;84ADCE;
     dw Instruction_PLM_GotoY                                             ;84ADD2;
     dw InstList_PLM_EnergyStation_1                                      ;84ADD4;
 
 InstList_PLM_EnergyStation_2:
     dw Instruction_PLM_GotoY_EnableMovementIfSamusEnergyIsFull           ;84ADD6;
     dw InstList_PLM_EnergyStation_4                                      ;84ADD8;
-    dw Instruction_PLM_TimerEqualsY_8Bit                                 ;84ADDA;
-    db $10                                                               ;84ADDC;
+    dw Instruction_PLM_TimerEqualsY_8Bit : db $10                        ;84ADDA;
 
 InstList_PLM_EnergyStation_3:
-    dw $0002                                                             ;84ADDD;
-    dw DrawInst_EnergyStation_0                                          ;84ADDF;
-    dw $0002                                                             ;84ADE1;
-    dw DrawInst_EnergyStation_1                                          ;84ADE3;
-    dw $0002                                                             ;84ADE5;
-    dw DrawInst_EnergyStation_2                                          ;84ADE7;
+    dw $0002,DrawInst_EnergyStation_0                                    ;84ADDD;
+    dw $0002,DrawInst_EnergyStation_1                                    ;84ADE1;
+    dw $0002,DrawInst_EnergyStation_2                                    ;84ADE5;
     dw Instruction_PLM_DecrementTimer_GotoYIfNonZero                     ;84ADE9;
     dw InstList_PLM_EnergyStation_3                                      ;84ADEB;
 
@@ -4836,21 +5097,14 @@ InstList_PLM_EnergyStation_4:
 InstList_PLM_EnergyStationRightAccess_0:
     dw Instruction_PLM_GotoY_EnableMovementIfSamusEnergyIsFull           ;84ADF1;
     dw InstList_PLM_EnergyStationRightAccess_1                           ;84ADF3;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84ADF5;
-    db $37                                                               ;84ADF7;
-    dw $0006                                                             ;84ADF8;
-    dw DrawInst_EnergyMissileStationRightAccess_0                        ;84ADFA;
-    dw $0060                                                             ;84ADFC;
-    dw DrawInst_EnergyMissileStationRightAccess_1                        ;84ADFE;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $37                   ;84ADF5;
+    dw $0006,DrawInst_EnergyMissileStationRightAccess_0                  ;84ADF8;
+    dw $0060,DrawInst_EnergyMissileStationRightAccess_1                  ;84ADFC;
     dw Instruction_PLM_Activate_EnergyStation                            ;84AE00;
-    dw $0006                                                             ;84AE02;
-    dw DrawInst_EnergyMissileStationRightAccess_1                        ;84AE04;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AE06;
-    db $38                                                               ;84AE08;
-    dw $0006                                                             ;84AE09;
-    dw DrawInst_EnergyMissileStationRightAccess_1                        ;84AE0B;
-    dw $0006                                                             ;84AE0D;
-    dw DrawInst_EnergyMissileStationRightAccess_0                        ;84AE0F;
+    dw $0006,DrawInst_EnergyMissileStationRightAccess_1                  ;84AE02;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $38                   ;84AE06;
+    dw $0006,DrawInst_EnergyMissileStationRightAccess_1                  ;84AE09;
+    dw $0006,DrawInst_EnergyMissileStationRightAccess_0                  ;84AE0D;
 
 InstList_PLM_EnergyStationRightAccess_1:
     dw Instruction_PLM_Delete                                            ;84AE11;
@@ -4858,21 +5112,14 @@ InstList_PLM_EnergyStationRightAccess_1:
 InstList_PLM_EnergyStationLeftAccess_0:
     dw Instruction_PLM_GotoY_EnableMovementIfSamusEnergyIsFull           ;84AE13;
     dw InstList_PLM_EnergyStationLeftAccess_1                            ;84AE15;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AE17;
-    db $37                                                               ;84AE19;
-    dw $0006                                                             ;84AE1A;
-    dw DrawInst_EnergyMissileStationLeftAccess_0                         ;84AE1C;
-    dw $0060                                                             ;84AE1E;
-    dw DrawInst_EnergyMissileStationLeftAccess_1                         ;84AE20;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $37                   ;84AE17;
+    dw $0006,DrawInst_EnergyMissileStationLeftAccess_0                   ;84AE1A;
+    dw $0060,DrawInst_EnergyMissileStationLeftAccess_1                   ;84AE1E;
     dw Instruction_PLM_Activate_EnergyStation                            ;84AE22;
-    dw $0006                                                             ;84AE24;
-    dw DrawInst_EnergyMissileStationLeftAccess_1                         ;84AE26;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AE28;
-    db $38                                                               ;84AE2A;
-    dw $0006                                                             ;84AE2B;
-    dw DrawInst_EnergyMissileStationLeftAccess_1                         ;84AE2D;
-    dw $0006                                                             ;84AE2F;
-    dw DrawInst_EnergyMissileStationLeftAccess_0                         ;84AE31;
+    dw $0006,DrawInst_EnergyMissileStationLeftAccess_1                   ;84AE24;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $38                   ;84AE28;
+    dw $0006,DrawInst_EnergyMissileStationLeftAccess_1                   ;84AE2B;
+    dw $0006,DrawInst_EnergyMissileStationLeftAccess_0                   ;84AE2F;
 
 InstList_PLM_EnergyStationLeftAccess_1:
     dw Instruction_PLM_Delete                                            ;84AE33;
@@ -4899,28 +5146,21 @@ InstList_PLM_MissileStation_0:
     dw InstList_PLM_MissileStation_2                                     ;84AE4E;
 
 InstList_PLM_MissileStation_1:
-    dw $0006                                                             ;84AE50;
-    dw DrawInst_MissileStation_0                                         ;84AE52;
-    dw $0006                                                             ;84AE54;
-    dw DrawInst_MissileStation_1                                         ;84AE56;
-    dw $0006                                                             ;84AE58;
-    dw DrawInst_MissileStation_2                                         ;84AE5A;
+    dw $0006,DrawInst_MissileStation_0                                   ;84AE50;
+    dw $0006,DrawInst_MissileStation_1                                   ;84AE54;
+    dw $0006,DrawInst_MissileStation_2                                   ;84AE58;
     dw Instruction_PLM_GotoY                                             ;84AE5C;
     dw InstList_PLM_MissileStation_1                                     ;84AE5E;
 
 InstList_PLM_MissileStation_2:
     dw Instruction_PLM_GotoY_EnableMovementIfSamusMissilesAreFull        ;84AE60;
     dw InstList_PLM_MissileStation_4                                     ;84AE62;
-    dw Instruction_PLM_TimerEqualsY_8Bit                                 ;84AE64;
-    db $10                                                               ;84AE66;
+    dw Instruction_PLM_TimerEqualsY_8Bit : db $10                        ;84AE64;
 
 InstList_PLM_MissileStation_3:
-    dw $0003                                                             ;84AE67;
-    dw DrawInst_MissileStation_0                                         ;84AE69;
-    dw $0003                                                             ;84AE6B;
-    dw DrawInst_MissileStation_1                                         ;84AE6D;
-    dw $0003                                                             ;84AE6F;
-    dw DrawInst_MissileStation_2                                         ;84AE71;
+    dw $0003,DrawInst_MissileStation_0                                   ;84AE67;
+    dw $0003,DrawInst_MissileStation_1                                   ;84AE6B;
+    dw $0003,DrawInst_MissileStation_2                                   ;84AE6F;
     dw Instruction_PLM_DecrementTimer_GotoYIfNonZero                     ;84AE73;
     dw InstList_PLM_MissileStation_3                                     ;84AE75;
 
@@ -4931,21 +5171,14 @@ InstList_PLM_MissileStation_4:
 InstList_PLM_MissileStationRightAccess_0:
     dw Instruction_PLM_GotoY_EnableMovementIfSamusMissilesAreFull        ;84AE7B;
     dw InstList_PLM_MissileStationRightAccess_1                          ;84AE7D;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AE7F;
-    db $37                                                               ;84AE81;
-    dw $0006                                                             ;84AE82;
-    dw DrawInst_EnergyMissileStationRightAccess_0                        ;84AE84;
-    dw $0060                                                             ;84AE86;
-    dw DrawInst_EnergyMissileStationRightAccess_1                        ;84AE88;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $37                   ;84AE7F;
+    dw $0006,DrawInst_EnergyMissileStationRightAccess_0                  ;84AE82;
+    dw $0060,DrawInst_EnergyMissileStationRightAccess_1                  ;84AE86;
     dw Instruction_PLM_Activate_MissileStation                           ;84AE8A;
-    dw $0006                                                             ;84AE8C;
-    dw DrawInst_EnergyMissileStationRightAccess_1                        ;84AE8E;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AE90;
-    db $38                                                               ;84AE92;
-    dw $0006                                                             ;84AE93;
-    dw DrawInst_EnergyMissileStationRightAccess_1                        ;84AE95;
-    dw $0006                                                             ;84AE97;
-    dw DrawInst_EnergyMissileStationRightAccess_0                        ;84AE99;
+    dw $0006,DrawInst_EnergyMissileStationRightAccess_1                  ;84AE8C;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $38                   ;84AE90;
+    dw $0006,DrawInst_EnergyMissileStationRightAccess_1                  ;84AE93;
+    dw $0006,DrawInst_EnergyMissileStationRightAccess_0                  ;84AE97;
 
 InstList_PLM_MissileStationRightAccess_1:
     dw Instruction_PLM_Delete                                            ;84AE9B;
@@ -4953,21 +5186,14 @@ InstList_PLM_MissileStationRightAccess_1:
 InstList_PLM_MissileStationLeftAccess_0:
     dw Instruction_PLM_GotoY_EnableMovementIfSamusMissilesAreFull        ;84AE9D;
     dw InstList_PLM_MissileStationLeftAccess_1                           ;84AE9F;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AEA1;
-    db $37                                                               ;84AEA3;
-    dw $0006                                                             ;84AEA4;
-    dw DrawInst_EnergyMissileStationLeftAccess_0                         ;84AEA6;
-    dw $0060                                                             ;84AEA8;
-    dw DrawInst_EnergyMissileStationLeftAccess_1                         ;84AEAA;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $37                   ;84AEA1;
+    dw $0006,DrawInst_EnergyMissileStationLeftAccess_0                   ;84AEA4;
+    dw $0060,DrawInst_EnergyMissileStationLeftAccess_1                   ;84AEA8;
     dw Instruction_PLM_Activate_MissileStation                           ;84AEAC;
-    dw $0006                                                             ;84AEAE;
-    dw DrawInst_EnergyMissileStationLeftAccess_1                         ;84AEB0;
-    dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84AEB2;
-    db $38                                                               ;84AEB4;
-    dw $0006                                                             ;84AEB5;
-    dw DrawInst_EnergyMissileStationLeftAccess_1                         ;84AEB7;
-    dw $0006                                                             ;84AEB9;
-    dw DrawInst_EnergyMissileStationLeftAccess_0                         ;84AEBB;
+    dw $0006,DrawInst_EnergyMissileStationLeftAccess_1                   ;84AEAE;
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $38                   ;84AEB2;
+    dw $0006,DrawInst_EnergyMissileStationLeftAccess_1                   ;84AEB5;
+    dw $0006,DrawInst_EnergyMissileStationLeftAccess_0                   ;84AEB9;
 
 InstList_PLM_MissileStationLeftAccess_1:
     dw Instruction_PLM_Delete                                            ;84AEBD;
@@ -4993,38 +5219,22 @@ InstList_PLM_Nothing_84AED6:
     dw Instruction_PLM_Delete                                            ;84AED6;
 
 InstList_PLM_Nothing_84AED8:
-    dw $0010                                                             ;84AED8;
-    dw UNUSED_DrawInst_84A255                                            ;84AEDA;
-    dw $0010                                                             ;84AEDC;
-    dw UNUSED_DrawInst_84A25D                                            ;84AEDE;
-    dw $0010                                                             ;84AEE0;
-    dw UNUSED_DrawInst_84A265                                            ;84AEE2;
-    dw $0010                                                             ;84AEE4;
-    dw UNUSED_DrawInst_84A26D                                            ;84AEE6;
-    dw $0012                                                             ;84AEE8;
-    dw UNUSED_DrawInst_84A255                                            ;84AEEA;
-    dw $0012                                                             ;84AEEC;
-    dw UNUSED_DrawInst_84A25D                                            ;84AEEE;
-    dw $0012                                                             ;84AEF0;
-    dw UNUSED_DrawInst_84A265                                            ;84AEF2;
-    dw $0012                                                             ;84AEF4;
-    dw UNUSED_DrawInst_84A26D                                            ;84AEF6;
-    dw $0014                                                             ;84AEF8;
-    dw UNUSED_DrawInst_84A255                                            ;84AEFA;
-    dw $0014                                                             ;84AEFC;
-    dw UNUSED_DrawInst_84A25D                                            ;84AEFE;
-    dw $0014                                                             ;84AF00;
-    dw UNUSED_DrawInst_84A265                                            ;84AF02;
-    dw $0014                                                             ;84AF04;
-    dw UNUSED_DrawInst_84A26D                                            ;84AF06;
-    dw $0012                                                             ;84AF08;
-    dw UNUSED_DrawInst_84A255                                            ;84AF0A;
-    dw $0012                                                             ;84AF0C;
-    dw UNUSED_DrawInst_84A25D                                            ;84AF0E;
-    dw $0012                                                             ;84AF10;
-    dw UNUSED_DrawInst_84A265                                            ;84AF12;
-    dw $0012                                                             ;84AF14;
-    dw UNUSED_DrawInst_84A26D                                            ;84AF16;
+    dw $0010,UNUSED_DrawInst_84A255                                      ;84AED8;
+    dw $0010,UNUSED_DrawInst_84A25D                                      ;84AEDC;
+    dw $0010,UNUSED_DrawInst_84A265                                      ;84AEE0;
+    dw $0010,UNUSED_DrawInst_84A26D                                      ;84AEE4;
+    dw $0012,UNUSED_DrawInst_84A255                                      ;84AEE8;
+    dw $0012,UNUSED_DrawInst_84A25D                                      ;84AEEC;
+    dw $0012,UNUSED_DrawInst_84A265                                      ;84AEF0;
+    dw $0012,UNUSED_DrawInst_84A26D                                      ;84AEF4;
+    dw $0014,UNUSED_DrawInst_84A255                                      ;84AEF8;
+    dw $0014,UNUSED_DrawInst_84A25D                                      ;84AEFC;
+    dw $0014,UNUSED_DrawInst_84A265                                      ;84AF00;
+    dw $0014,UNUSED_DrawInst_84A26D                                      ;84AF04;
+    dw $0012,UNUSED_DrawInst_84A255                                      ;84AF08;
+    dw $0012,UNUSED_DrawInst_84A25D                                      ;84AF0C;
+    dw $0012,UNUSED_DrawInst_84A265                                      ;84AF10;
+    dw $0012,UNUSED_DrawInst_84A26D                                      ;84AF14;
     dw Instruction_PLM_GotoY                                             ;84AF18;
     dw InstList_PLM_Nothing_84AED8                                       ;84AF1A;
 
@@ -5032,62 +5242,51 @@ InstList_PLM_Nothing_84AF1C:
     dw Instruction_PLM_Delete                                            ;84AF1C;
 
 InstList_PLM_Nothing_84AF1E:
-    dw $0010                                                             ;84AF1E;
-    dw UNUSED_DrawInst_84A275                                            ;84AF20;
-    dw $0010                                                             ;84AF22;
-    dw UNUSED_DrawInst_84A285                                            ;84AF24;
-    dw $0010                                                             ;84AF26;
-    dw UNUSED_DrawInst_84A295                                            ;84AF28;
-    dw $0010                                                             ;84AF2A;
-    dw UNUSED_DrawInst_84A2A5                                            ;84AF2C;
-    dw $0012                                                             ;84AF2E;
-    dw UNUSED_DrawInst_84A275                                            ;84AF30;
-    dw $0012                                                             ;84AF32;
-    dw UNUSED_DrawInst_84A285                                            ;84AF34;
-    dw $0012                                                             ;84AF36;
-    dw UNUSED_DrawInst_84A295                                            ;84AF38;
-    dw $0012                                                             ;84AF3A;
-    dw UNUSED_DrawInst_84A2A5                                            ;84AF3C;
-    dw $0014                                                             ;84AF3E;
-    dw UNUSED_DrawInst_84A275                                            ;84AF40;
-    dw $0014                                                             ;84AF42;
-    dw UNUSED_DrawInst_84A285                                            ;84AF44;
-    dw $0014                                                             ;84AF46;
-    dw UNUSED_DrawInst_84A295                                            ;84AF48;
-    dw $0014                                                             ;84AF4A;
-    dw UNUSED_DrawInst_84A2A5                                            ;84AF4C;
-    dw $0012                                                             ;84AF4E;
-    dw UNUSED_DrawInst_84A275                                            ;84AF50;
-    dw $0012                                                             ;84AF52;
-    dw UNUSED_DrawInst_84A285                                            ;84AF54;
-    dw $0012                                                             ;84AF56;
-    dw UNUSED_DrawInst_84A295                                            ;84AF58;
-    dw $0012                                                             ;84AF5A;
-    dw UNUSED_DrawInst_84A2A5                                            ;84AF5C;
+    dw $0010,UNUSED_DrawInst_84A275                                      ;84AF1E;
+    dw $0010,UNUSED_DrawInst_84A285                                      ;84AF22;
+    dw $0010,UNUSED_DrawInst_84A295                                      ;84AF26;
+    dw $0010,UNUSED_DrawInst_84A2A5                                      ;84AF2A;
+    dw $0012,UNUSED_DrawInst_84A275                                      ;84AF2E;
+    dw $0012,UNUSED_DrawInst_84A285                                      ;84AF32;
+    dw $0012,UNUSED_DrawInst_84A295                                      ;84AF36;
+    dw $0012,UNUSED_DrawInst_84A2A5                                      ;84AF3A;
+    dw $0014,UNUSED_DrawInst_84A275                                      ;84AF3E;
+    dw $0014,UNUSED_DrawInst_84A285                                      ;84AF42;
+    dw $0014,UNUSED_DrawInst_84A295                                      ;84AF46;
+    dw $0014,UNUSED_DrawInst_84A2A5                                      ;84AF4A;
+    dw $0012,UNUSED_DrawInst_84A275                                      ;84AF4E;
+    dw $0012,UNUSED_DrawInst_84A285                                      ;84AF52;
+    dw $0012,UNUSED_DrawInst_84A295                                      ;84AF56;
+    dw $0012,UNUSED_DrawInst_84A2A5                                      ;84AF5A;
     dw Instruction_PLM_GotoY                                             ;84AF5E;
     dw InstList_PLM_Nothing_84AF1E                                       ;84AF60;
 
 DrawInst_Debug_ScrollPLM:
-    dw $0001,$3074,$0000                                                 ;84AF62;
+    dw $0001,$3074                                                       ;84AF62;
+    dw $0000
 
 UNUSED_DrawInst_Debug_SolidScrollPLM_84AF68:
-    dw $0001,$B074,$0000                                                 ;84AF68;
+    dw $0001,$B074                                                       ;84AF68;
+    dw $0000
 
 DrawInst_Debug_LeftwardsExtension:
-    dw $0001,$5011,$0000                                                 ;84AF6E;
+    dw $0001,$5011                                                       ;84AF6E;
+    dw $0000
 
 DrawInst_Debug_RightwardsExtension:
-    dw $0001,$5411,$0000                                                 ;84AF74;
+    dw $0001,$5411                                                       ;84AF74;
+    dw $0000
 
 DrawInst_Debug_UpwardsExtension:
-    dw $0001,$D800,$0000                                                 ;84AF7A;
+    dw $0001,$D800                                                       ;84AF7A;
+    dw $0000
 
 DrawInst_Debug_DownwardsExtension:
-    dw $0001,$D000,$0000                                                 ;84AF80;
+    dw $0001,$D000                                                       ;84AF80;
+    dw $0000
 
 InstList_PLM_ScrollPLM_0:
-    dw $0001                                                             ;84AF86;
-    dw DrawInst_Debug_ScrollPLM                                          ;84AF88;
+    dw $0001,DrawInst_Debug_ScrollPLM                                    ;84AF86;
 
 InstList_PLM_ScrollPLM_1:
     dw Instruction_PLM_Sleep                                             ;84AF8A;
@@ -5096,8 +5295,7 @@ InstList_PLM_ScrollPLM_1:
     dw InstList_PLM_ScrollPLM_1                                          ;84AF90;
 
 InstList_PLM_SolidScrollPLM_0:
-    dw $0001                                                             ;84AF92;
-    dw UNUSED_DrawInst_Debug_SolidScrollPLM_84AF68                       ;84AF94;
+    dw $0001,UNUSED_DrawInst_Debug_SolidScrollPLM_84AF68                 ;84AF92;
 
 InstList_PLM_SolidScrollPLM_1:
     dw Instruction_PLM_Sleep                                             ;84AF96;
@@ -5106,79 +5304,61 @@ InstList_PLM_SolidScrollPLM_1:
     dw InstList_PLM_SolidScrollPLM_1                                     ;84AF9C;
 
 InstList_PLM_Debug_LeftwardsExtension:
-    dw $0001                                                             ;84AF9E;
-    dw DrawInst_Debug_LeftwardsExtension                                 ;84AFA0;
+    dw $0001,DrawInst_Debug_LeftwardsExtension                           ;84AF9E;
     dw Instruction_PLM_Delete                                            ;84AFA2;
 
 InstList_PLM_Debug_RightwardsExtension:
-    dw $0001                                                             ;84AFA4;
-    dw DrawInst_Debug_RightwardsExtension                                ;84AFA6;
+    dw $0001,DrawInst_Debug_RightwardsExtension                          ;84AFA4;
     dw Instruction_PLM_Delete                                            ;84AFA8;
 
 InstList_PLM_Debug_UpwardsExtension:
-    dw $0001                                                             ;84AFAA;
-    dw DrawInst_Debug_UpwardsExtension                                   ;84AFAC;
+    dw $0001,DrawInst_Debug_UpwardsExtension                             ;84AFAA;
     dw Instruction_PLM_Delete                                            ;84AFAE;
 
 InstList_PLM_Debug_DownwardsExtension:
-    dw $0001                                                             ;84AFB0;
-    dw DrawInst_Debug_DownwardsExtension                                 ;84AFB2;
+    dw $0001,DrawInst_Debug_DownwardsExtension                           ;84AFB0;
     dw Instruction_PLM_Delete                                            ;84AFB4;
 
 InstList_PLM_ElevatorPlatform:
-    dw $0004                                                             ;84AFB6;
-    dw DrawInst_ElevatorPlatform_0                                       ;84AFB8;
-    dw $0004                                                             ;84AFBA;
-    dw DrawInst_ElevatorPlatform_1                                       ;84AFBC;
-    dw $0004                                                             ;84AFBE;
-    dw DrawInst_ElevatorPlatform_2                                       ;84AFC0;
-    dw $0004                                                             ;84AFC2;
-    dw DrawInst_ElevatorPlatform_1                                       ;84AFC4;
+    dw $0004,DrawInst_ElevatorPlatform_0                                 ;84AFB6;
+    dw $0004,DrawInst_ElevatorPlatform_1                                 ;84AFBA;
+    dw $0004,DrawInst_ElevatorPlatform_2                                 ;84AFBE;
+    dw $0004,DrawInst_ElevatorPlatform_1                                 ;84AFC2;
     dw Instruction_PLM_GotoY                                             ;84AFC6;
     dw InstList_PLM_ElevatorPlatform                                     ;84AFC8;
 
 InstList_PLM_ClearCrocomiresBridge:
-    dw $0001                                                             ;84AFCA;
-    dw DrawInst_ClearCrocomiresBridge                                    ;84AFCC;
+    dw $0001,DrawInst_ClearCrocomiresBridge                              ;84AFCA;
     dw Instruction_PLM_Delete                                            ;84AFCE;
 
 InstList_PLM_CrumbleABlockOfCrocomiresBridge:
-    dw $0001                                                             ;84AFD0;
-    dw DrawInst_CrumbleABlockOfCrocomiresBridge                          ;84AFD2;
+    dw $0001,DrawInst_CrumbleABlockOfCrocomiresBridge                    ;84AFD0;
     dw Instruction_PLM_Delete                                            ;84AFD4;
 
 InstList_PLM_ClearABlockOfCrocomiresBridge:
-    dw $0001                                                             ;84AFD6;
-    dw DrawInst_ClearABlockOfCrocomiresBridge                            ;84AFD8;
+    dw $0001,DrawInst_ClearABlockOfCrocomiresBridge                      ;84AFD6;
     dw Instruction_PLM_Delete                                            ;84AFDA;
 
 InstList_PLM_ClearCrocomiresInvisibleWall:
-    dw $0001                                                             ;84AFDC;
-    dw DrawInst_ClearCrocomireInvisibleWall_0                            ;84AFDE;
+    dw $0001,DrawInst_ClearCrocomireInvisibleWall_0                      ;84AFDC;
     dw Instruction_PLM_Delete                                            ;84AFE0;
 
 InstList_PLM_CreateCrocomiresInvisibleWall:
-    dw $0001                                                             ;84AFE2;
-    dw DrawInst_ClearCrocomireInvisibleWall_1                            ;84AFE4;
+    dw $0001,DrawInst_ClearCrocomireInvisibleWall_1                      ;84AFE2;
     dw Instruction_PLM_Delete                                            ;84AFE6;
 
 InstList_PLM_SaveStation_0:
-    dw $0001                                                             ;84AFE8;
-    dw DrawInst_SaveStation_0                                            ;84AFEA;
+    dw $0001,DrawInst_SaveStation_0                                      ;84AFE8;
     dw Instruction_PLM_Sleep                                             ;84AFEC;
     dw Instruction_PLM_GotoY_or_ActivateSaveStation                      ;84AFEE;
     dw InstList_PLM_SaveStation_2                                        ;84AFF0;
     dw Instruction_PLM_PlaceSamusOnSaveStation                           ;84AFF2;
-    dw Instruction_PLM_QueueSound_Y_Lib1_Max6                            ;84AFF4;
-    db $2E                                                               ;84AFF6;
-    dw Instruction_PLM_TimerEqualsY_8Bit                                 ;84AFF7;
-    db $15                                                               ;84AFF9;
+    dw Instruction_PLM_QueueSound_Y_Lib1_Max6 : db $2E                   ;84AFF4;
+    dw Instruction_PLM_TimerEqualsY_8Bit : db $15                        ;84AFF7;
 
 InstList_PLM_SaveStation_1:
-    dw $0004                                                             ;84AFFA;
-    dw DrawInst_SaveStation_2                                            ;84AFFC;
-    dw $0004                                                             ;84AFFE;
-    dw DrawInst_SaveStation_1                                            ;84B000;
+    dw $0004,DrawInst_SaveStation_2                                      ;84AFFA;
+    dw $0004,DrawInst_SaveStation_1                                      ;84AFFE;
     dw Instruction_PLM_DecrementTimer_GotoYIfNonZero                     ;84B002;
     dw InstList_PLM_SaveStation_1                                        ;84B004;
     dw Instruction_PLM_DisplayGameSavedMessageBox                        ;84B006;
@@ -5221,10 +5401,12 @@ Instruction_PLM_EnableMovement_SetSaveStationUsed:
 
 
 UNUSED_InstList_PLM_Draw13BlankAirTiles_84B03E:
-    dw $0001,$9ACF,$86BC                                                 ;84B03E;
+    dw $0001,UNUSED_DrawInst_Draw13BlankAirTiles_849ACF                  ;84B03E;
+    dw Instruction_PLM_Delete                                            ;84B042;
 
 UNUSED_InstList_PLM_Draw13BlankSolidTiles_84B044:
-    dw $0001,$9AED,$86BC                                                 ;84B044;
+    dw $0001,UNUSED_DrawInst_Draw13BlankSolidTiles_849AED                ;84B044;
+    dw Instruction_PLM_Delete                                            ;84B048;
 
 Setup_WreckedShipEntranceTreadmill:
     LDX.W $1C87,Y                                                        ;84B04A;
@@ -5834,25 +6016,25 @@ InsideReaction_QuicksandSurface_SamusIsGrounded:
     STZ.W $0B2E                                                          ;84B44A;
     STZ.W $0B5A                                                          ;84B44D;
     STZ.W $0B5C                                                          ;84B450;
-    LDA.W QuicksandSurface_InsideReaction_withoutGrav_distanceOnGround,Y ;84B453;
+    LDA.W QuicksandSurface_InsideReaction_distanceOnGround,Y             ;84B453;
     STA.W $0B5B                                                          ;84B456;
 
-InsideReaction_QuicksandSurface_SamusIsGrounded_return:
+  .return
     RTS                                                                  ;84B459;
 
 
 InsideReaction_QuicksandSurface_SamusIsMovingUp:
-    LDA.W QuicksandSurface_InsideReaction_withoutGrav_maxVelocity,Y      ;84B45A;
+    LDA.W QuicksandSurface_InsideReaction_maxVelocity,Y                  ;84B45A;
     CMP.W $0B2D                                                          ;84B45D;
     BCS +                                                                ;84B460;
     STZ.W $0B2C                                                          ;84B462;
     STZ.W $0B2E                                                          ;84B465;
-    LDA.W QuicksandSurface_InsideReaction_withoutGrav_maxVelocity,Y      ;84B468;
+    LDA.W QuicksandSurface_InsideReaction_maxVelocity,Y                  ;84B468;
     STA.W $0B2D                                                          ;84B46B;
 
   + STZ.W $0B5A                                                          ;84B46E;
     STZ.W $0B5C                                                          ;84B471;
-    LDA.W QuicksandSurface_InsideReaction_withoutGrav_distanceInAir,Y    ;84B474;
+    LDA.W QuicksandSurface_InsideReaction_distanceInAir,Y                ;84B474;
     STA.W $0B5B                                                          ;84B477;
     RTS                                                                  ;84B47A;
 
@@ -5860,29 +6042,23 @@ InsideReaction_QuicksandSurface_SamusIsMovingUp:
 InsideReaction_QuicksandSurface_SamusIsMovingDown:
     STZ.W $0B5A                                                          ;84B47B;
     STZ.W $0B5C                                                          ;84B47E;
-    LDA.W QuicksandSurface_InsideReaction_withoutGrav_distanceInAir,Y    ;84B481;
+    LDA.W QuicksandSurface_InsideReaction_distanceInAir,Y                ;84B481;
     STA.W $0B5B                                                          ;84B484;
     STZ.W $0AF4                                                          ;84B487;
     RTS                                                                  ;84B48A;
 
 
-QuicksandSurface_InsideReaction_withoutGrav_distanceInAir:
-    dw $0200                                                             ;84B48B;
+QuicksandSurface_InsideReaction:
+;        _________ Without gravity suit
+;       |      ___ With gravity suit
+;       |     |
+  .distanceInAir:
+    dw $0200,$0200                                                       ;84B48B;
+  .distanceOnGround:
+    dw $0120,$0100                                                       ;84B48F;
+  .maxVelocity:
+    dw $0280,$0380                                                       ;84B493;
 
-QuicksandSurface_InsideReaction_withGrav_distanceInAir:
-    dw $0200                                                             ;84B48D;
-
-QuicksandSurface_InsideReaction_withoutGrav_distanceOnGround:
-    dw $0120                                                             ;84B48F;
-
-QuicksandSurface_InsideReaction_withGrav_distanceOnGround:
-    dw $0100                                                             ;84B491;
-
-QuicksandSurface_InsideReaction_withoutGrav_maxVelocity:
-    dw $0280                                                             ;84B493;
-
-QuicksandSurface_InsideReaction_withGrav_maxVelocity:
-    dw $0380                                                             ;84B495;
 
 Setup_Inside_SubmergingQuicksand:
     STZ.W $0AF4                                                          ;84B497;
@@ -5963,7 +6139,7 @@ CollisionReaction_QuicksandSurface_SamusIsGrounded:
     LDA.W $0A6E                                                          ;84B512;
     CMP.W #$0001                                                         ;84B515;
     BEQ CollisionReaction_QuicksandSurface_QuicksandSpeedBoosting        ;84B518;
-    LDA.W QuicksandSurface_MaxSinkingSpeed_withoutGravity,Y              ;84B51A;
+    LDA.W QuicksandSurface_MaxSinkingSpeed,Y                             ;84B51A;
     CMP.B $13                                                            ;84B51D;
     BCS +                                                                ;84B51F;
     STA.B $13                                                            ;84B521;
@@ -5996,11 +6172,11 @@ CollisionReaction_QuicksandSurface_QuicksandSpeedBoosting:
     RTS                                                                  ;84B53C;
 
 
-QuicksandSurface_MaxSinkingSpeed_withoutGravity:
-    dw $0030                                                             ;84B53D;
-
-QuicksandSurface_MaxSinkingSpeed_withGravity:
-    dw $0030                                                             ;84B53F;
+QuicksandSurface_MaxSinkingSpeed:
+;        _________ Without gravity suit
+;       |      ___ With gravity suit
+;       |     |
+    dw $0030,$0030                                                       ;84B53D;
 
 Setup_Collision_SubmergingQuicksand:
     STZ.W $0B2C                                                          ;84B541;
@@ -6475,8 +6651,7 @@ PLMEntries_clearAccessToTourianElevator:
     dw InstList_PLM_ClearAccessToTourianElevator                         ;84B779;
 
 InstList_drawPhantoonsDoorDuringBossFight:
-    dw $0001                                                             ;84B77B;
-    dw DrawInst_DrawPhantoonsDoorDuringBossFight                         ;84B77D;
+    dw $0001,DrawInst_DrawPhantoonsDoorDuringBossFight                   ;84B77B;
     dw Instruction_PLM_Delete                                            ;84B77F;
 
 PLMEntries_drawPhantoonsDoorDuringBossFight:
@@ -6484,8 +6659,7 @@ PLMEntries_drawPhantoonsDoorDuringBossFight:
     dw InstList_drawPhantoonsDoorDuringBossFight                         ;84B783;
 
 InstList_restorePhantoonsDoorDuringBossFight:
-    dw $0001                                                             ;84B785;
-    dw DrawInst_RestorePhantoonsDoorDuringBossFight                      ;84B787;
+    dw $0001,DrawInst_RestorePhantoonsDoorDuringBossFight                ;84B785;
     dw Instruction_PLM_Delete                                            ;84B789;
 
 PLMEntries_restorePhantoonsDoorDuringBossFight:
@@ -6652,15 +6826,19 @@ PreInst_PLM_AdvanceLavaAsSamusMovesLeft_SetLavaquakeEvent:
     JSL.L MarkEvent_inA                                                  ;84B871;
     RTS                                                                  ;84B875;
 
-
-.targetSamusXpos:
+;        _______________ Target Samus X position
+;       |      _________ Maximum FX Y position
+;       |     |      ___ FX Y velocity
+;       |     |     |
+  .targetSamusXpos
     dw $072B                                                             ;84B876;
-
-.maxFXYpos:
-    dw $01BF                                                             ;84B878;
-
-.FXYVelocity:
-    dw $FF50,$050A,$0167,$FF20,$0244,$0100,$FF20,$8000                   ;84B87A;
+  .maxFXYpos
+    dw       $01BF                                                       ;84B878;
+  .FXYVelocity
+    dw             $FF50                                                 ;84B87A;
+    dw $050A,$0167,$FF20
+    dw $0244,$0100,$FF20
+    dw $8000
 
 InstList_PLM_SpeedBoosterEscape:
     dw Instruction_PLM_PreInstruction_inY                                ;84B88A;

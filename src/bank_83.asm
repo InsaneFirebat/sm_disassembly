@@ -1,7 +1,23 @@
 
 org $838000
 
-
+; FX format
+;        _____________________________ 0: Door pointer
+;       |      _______________________ 2: Base Y position
+;       |     |      _________________ 4: Target Y position
+;       |     |     |      ___________ 6: Y velocity
+;       |     |     |     |
+;       dddd, bbbb, tttt, vvvv
+;        _____________________________ 8: Timer
+;       |    _________________________ 9: Type (foreground layer 3)
+;       |   |    _____________________ Ah: Default layer blending configuration (FX A)
+;       |   |   |    _________________ Bh: FX layer 3 layer blending configuration (FX B)
+;       |   |   |   |    _____________ Ch: FX liquid options (FX C)
+;       |   |   |   |   |    _________ Dh: Palette FX bitset
+;       |   |   |   |   |   |    _____ Eh: Animated tiles bitset
+;       |   |   |   |   |   |   |    _ Fh: Palette blend
+;       |   |   |   |   |   |   |   |
+;       tt, ff, AA, BB, CC, pp, aa, bb
 FXHeader_LandingSite_State3:
     dw $0000,$FFFF,$FFFF,$0000                                           ;838000;
     db $00,$00,$02,$02,$00,$06,$00,$00                                   ;838008;
@@ -663,6 +679,19 @@ FXHeader_LNSave:
     dw $0000,$FFFF,$FFFF,$0000                                           ;8388EC;
     db $00,$02,$02,$1E,$01,$00,$00,$02                                   ;8388F4;
 
+
+; Door header format
+;        _____________________________ 0: Destination room header pointer (bank $8F)
+;       |     ________________________ 2: Elevator properties
+;       |    |   _____________________ 3: Direction
+;       |    |  |   __________________ 4: Doorcap X position in blocks
+;       |    |  |  |   _______________ 5: Doorcap Y position in blocks
+;       |    |  |  |  |   ____________ 6: X screen
+;       |    |  |  |  |  |   _________ 7: Y screen
+;       |    |  |  |  |  |  |   ______ 8: Distance from door to spawn Samus
+;       |    |  |  |  |  |  |  |     _ Ah: Custom door ASM to execute (bank $8F)
+;       |    |  |  |  |  |  |  |    |
+;       rrrr ee oo xx yy XX YY dddd aaaa
 Door_VariousRooms_Elevator:
     db $00,$00                                                           ;8388FC;
 
@@ -2626,6 +2655,24 @@ Door_LNSave_0:
     db $00,$05,$0E,$36,$00,$03                                           ;839AB8;
     dw $8000,$0000                                                       ;839ABE;
 
+
+; FX format
+;        _____________________________ 0: Door pointer
+;       |      _______________________ 2: Base Y position
+;       |     |      _________________ 4: Target Y position
+;       |     |     |      ___________ 6: Y velocity
+;       |     |     |     |
+;       dddd, bbbb, tttt, vvvv
+;        _____________________________ 8: Timer
+;       |    _________________________ 9: Type (foreground layer 3)
+;       |   |    _____________________ Ah: Default layer blending configuration (FX A)
+;       |   |   |    _________________ Bh: FX layer 3 layer blending configuration (FX B)
+;       |   |   |   |    _____________ Ch: FX liquid options (FX C)
+;       |   |   |   |   |    _________ Dh: Palette FX bitset
+;       |   |   |   |   |   |    _____ Eh: Animated tiles bitset
+;       |   |   |   |   |   |   |    _ Fh: Palette blend
+;       |   |   |   |   |   |   |   |
+;       tt, ff, AA, BB, CC, pp, aa, bb
 FXHeader_BowlingAlley_State1:
     dw $0000,$01B0,$FFFF,$0000                                           ;839AC2;
     db $00,$00,$02,$02,$00,$01,$0B,$00                                   ;839ACA;
@@ -3091,6 +3138,19 @@ FXHeader_Debug_MotherBrain_State2:
 Door_MaridiaElev_3_TourianFirst_2:
     dw $0000                                                             ;83A18A;
 
+
+; Door header format
+;        _____________________________ 0: Destination room header pointer (bank $8F)
+;       |     ________________________ 2: Elevator properties
+;       |    |   _____________________ 3: Direction
+;       |    |  |   __________________ 4: Doorcap X position in blocks
+;       |    |  |  |   _______________ 5: Doorcap Y position in blocks
+;       |    |  |  |  |   ____________ 6: X screen
+;       |    |  |  |  |  |   _________ 7: Y screen
+;       |    |  |  |  |  |  |   ______ 8: Distance from door to spawn Samus
+;       |    |  |  |  |  |  |  |     _ Ah: Custom door ASM to execute (bank $8F)
+;       |    |  |  |  |  |  |  |    |
+;       rrrr ee oo xx yy XX YY dddd aaaa
 Door_BowlingAlley_0:
     dw RoomHeader_WestOcean                                              ;83A18C;
     db $40,$05,$7E,$16,$07,$01                                           ;83A18E;
@@ -4231,25 +4291,28 @@ UNUSED_Door_Debug_3_83ABE5:
     dw $0000                                                             ;83ABEE;
 
 FXType_Tilemap_Pointers:
-    dw $0000                                                             ;83ABF0;
-    dw FX_Layer3_Tilemaps_lava                                           ;83ABF2;
-    dw FX_Layer3_Tilemaps_acid                                           ;83ABF4;
-    dw FX_Layer3_Tilemaps_water                                          ;83ABF6;
-    dw FX_Layer3_Tilemaps_spores                                         ;83ABF8;
-    dw FX_Layer3_Tilemaps_rain                                           ;83ABFA;
-    dw FX_Layer3_Tilemaps_fog                                            ;83ABFC;
+; This table is too short, it's missing the entries for 28h/2Ah/2Ch (Ceres Ridley/elevator / haze)
+; This is fine, because those rooms disabled layer 3 anyway, but it does mean garbage is loaded to VRAM from pointers in the following table
+; In bank $8A
+    dw $0000                                                             ;83ABF0; 0: None
+    dw FX_Layer3_Tilemaps_lava                                           ;83ABF2; 2: Lava
+    dw FX_Layer3_Tilemaps_acid                                           ;83ABF4; 4: Acid
+    dw FX_Layer3_Tilemaps_water                                          ;83ABF6; 6: Water
+    dw FX_Layer3_Tilemaps_spores                                         ;83ABF8; 8: Spores
+    dw FX_Layer3_Tilemaps_rain                                           ;83ABFA; Ah: Rain
+    dw FX_Layer3_Tilemaps_fog                                            ;83ABFC; Ch: Fog
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;83ABFE;
     dw $0000,$0000,$0000,$0000                                           ;83AC0E;
-    dw FX_Layer3_Tilemaps_water                                          ;83AC16;
+    dw FX_Layer3_Tilemaps_water                                          ;83AC16; 26h: Tourian entrance statue
 
 FXType_Function_Pointers:
-    dw RTL_88B278                                                        ;83AC18;
-    dw FXType_2_Lava                                                     ;83AC1A;
-    dw FXType_4_Acid                                                     ;83AC1C;
-    dw FXType_6_Water                                                    ;83AC1E;
-    dw FXType_8_Spores                                                   ;83AC20;
-    dw FXType_A_Rain                                                     ;83AC22;
-    dw FXType_C_Fog                                                      ;83AC24;
+    dw RTL_88B278                                                        ;83AC18; ; 0: None
+    dw FXType_2_Lava                                                     ;83AC1A; ; 2: Lava
+    dw FXType_4_Acid                                                     ;83AC1C; ; 4: Acid
+    dw FXType_6_Water                                                    ;83AC1E; ; 6: Water
+    dw FXType_8_Spores                                                   ;83AC20; ; 8: Spores
+    dw FXType_A_Rain                                                     ;83AC22; ; Ah: Rain
+    dw FXType_C_Fog                                                      ;83AC24; ; Ch: Fog
     dw RTL_88B278                                                        ;83AC26;
     dw RTL_88B278                                                        ;83AC28;
     dw RTL_88B278                                                        ;83AC2A;
@@ -4259,15 +4322,17 @@ FXType_Function_Pointers:
     dw RTL_88B278                                                        ;83AC32;
     dw RTL_88B278                                                        ;83AC34;
     dw RTL_88B278                                                        ;83AC36;
-    dw FXType_20_ScrollingSky_RoomSetupASM_ScrollingSkyLand              ;83AC38;
-    dw FXType_20_22_ScrollingSky                                         ;83AC3A;
-    dw FXType_24_Fireflea                                                ;83AC3C;
-    dw FXType_26_TourianEntranceStatue                                   ;83AC3E;
-    dw FXType_28_CeresRidley                                             ;83AC40;
-    dw FXType_2A_CeresElevator                                           ;83AC42;
-    dw FXType_2C_CeresHaze                                               ;83AC44;
+    dw FXType_20_ScrollingSky_RoomSetupASM_ScrollingSkyLand              ;83AC38; ; 20h: Scrolling sky
+    dw FXType_20_22_ScrollingSky                                         ;83AC3A; ; 22h: Unused
+    dw FXType_24_Fireflea                                                ;83AC3C; ; 24h: Fireflea
+    dw FXType_26_TourianEntranceStatue                                   ;83AC3E; ; 26h: Tourian entrance statue
+    dw FXType_28_CeresRidley                                             ;83AC40; ; 28h: Ceres Ridley
+    dw FXType_2A_CeresElevator                                           ;83AC42; ; 2Ah: Ceres elevator
+    dw FXType_2C_CeresHaze                                               ;83AC44; ; 2Ch: Ceres haze
 
 AreaSpecific_PaletteFXObjectList_Pointers:
+; Loaded by $89:AB82
+; Indexed by area index
     dw Crateria_PaletteFXObjectList                                      ;83AC46;
     dw Brinstar_PaletteFXObjectList                                      ;83AC48;
     dw Norfair_PaletteFXObjectList                                       ;83AC4A;
@@ -4278,6 +4343,8 @@ AreaSpecific_PaletteFXObjectList_Pointers:
     dw Debug_PaletteFXObjectList                                         ;83AC54;
 
 AreaSpecific_AnimatedTilesObjectList_Pointers:
+; Loaded by $89:AB82
+; Indexed by area index
     dw Crateria_AnimatedTilesObjectList                                  ;83AC56;
     dw Brinstar_AnimatedTilesObjectList                                  ;83AC58;
     dw Norfair_AnimatedTilesObjectList                                   ;83AC5A;
