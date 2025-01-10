@@ -4344,9 +4344,9 @@ UNUSED_HandleProjectileDamageAndSound:
 
 .notPlasmaOrCharge:
     LDX.W $0F78                                                          ;A7B288;
-    LDA.L $A0003C,X                                                      ;A7B28B;
+    LDA.L EnemyHeader.vulnerabilities,X                                  ;A7B28B;
     BNE .vulnerabilities                                                 ;A7B28F;
-    LDA.W #EnemyVulnerabilities                                          ;A7B291;
+    LDA.W #AllEnemyVulnerabilities                                       ;A7B291;
 
 .vulnerabilities:
     STA.B $14                                                            ;A7B294;
@@ -4357,7 +4357,7 @@ UNUSED_HandleProjectileDamageAndSound:
     CLC                                                                  ;A7B2A0;
     ADC.B $14                                                            ;A7B2A1;
     TAX                                                                  ;A7B2A3;
-    LDA.L $B40000,X                                                      ;A7B2A4;
+    LDA.L EnemyVulnerabilities.beams,X                                   ;A7B2A4;
     BRA .determinedVulnerability                                         ;A7B2A8;
 
 
@@ -4373,7 +4373,7 @@ UNUSED_HandleProjectileDamageAndSound:
     CLC                                                                  ;A7B2B8;
     ADC.B $14                                                            ;A7B2B9;
     TAX                                                                  ;A7B2BB;
-    LDA.L $B4000B,X                                                      ;A7B2BC;
+    LDA.L EnemyVulnerabilities.missile-1,X                               ;A7B2BC;
     BRA .determinedVulnerability                                         ;A7B2C0;
 
 
@@ -4381,7 +4381,7 @@ UNUSED_HandleProjectileDamageAndSound:
     CMP.W #$0300                                                         ;A7B2C2;
     BNE .notPowerBomb                                                    ;A7B2C5;
     LDX.B $14                                                            ;A7B2C7;
-    LDA.L $B4000E,X                                                      ;A7B2C9;
+    LDA.L EnemyVulnerabilities.bomb,X                                    ;A7B2C9;
     BRA .determinedVulnerability                                         ;A7B2CD;
 
 
@@ -4389,7 +4389,7 @@ UNUSED_HandleProjectileDamageAndSound:
     CMP.W #$0500                                                         ;A7B2CF;
     BNE .return                                                          ;A7B2D2;
     LDX.B $14                                                            ;A7B2D4;
-    LDA.L $B4000F,X                                                      ;A7B2D6;
+    LDA.L EnemyVulnerabilities.powerBomb,X                               ;A7B2D6;
 
 .determinedVulnerability:
     AND.W #$00FF                                                         ;A7B2DA;
@@ -4432,7 +4432,7 @@ UNUSED_HandleProjectileDamageAndSound:
 
 .tripleDamageEnd:
     LDX.W $0F78                                                          ;A7B329;
-    LDA.L $A0000E,X                                                      ;A7B32C;
+    LDA.L EnemyHeader.cry,X                                              ;A7B32C;
     JSL.L QueueSound_Lib2_Max6                                           ;A7B330;
 
 .return:

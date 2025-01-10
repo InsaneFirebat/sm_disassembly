@@ -2942,7 +2942,7 @@ AreaMapPointers:
     dl MapTilemaps_wreckedShip                                           ;829653;
     dl MapTilemaps_maridia                                               ;829656;
     dl MapTilemaps_tourian                                               ;829659;
-    dl UNUSED_MapTilemaps_ceres_B5E000                                   ;82965C;
+    dl MapTilemaps_colony                                                ;82965C;
 
 AreaLabelTilemaps_pointers:
     dw AreaLabelTilemaps_crateria                                        ;82965F;
@@ -2951,7 +2951,7 @@ AreaLabelTilemaps_pointers:
     dw AreaLabelTilemaps_wreckedShip                                     ;829665;
     dw AreaLabelTilemaps_maridia                                         ;829667;
     dw AreaLabelTilemaps_tourianDebug                                    ;829669;
-    dw AreaLabelTilemaps_ceres                                           ;82966B;
+    dw AreaLabelTilemaps_colony                                          ;82966B;
     dw AreaLabelTilemaps_tourianDebug                                    ;82966D;
 
 AreaLabelTilemaps_crateria:
@@ -2972,7 +2972,7 @@ AreaLabelTilemaps_maridia:
 AreaLabelTilemaps_tourianDebug:
     dw $2801,$2801,$3843,$383E,$3844,$3841,$3838,$3830,$383D,$2801,$2801,$2801 ;8296E7;
 
-AreaLabelTilemaps_ceres:
+AreaLabelTilemaps_colony:
     dw $2801,$2801,$2801,$3832,$383E,$383B,$383E,$383D,$3848,$2801,$2801,$2801 ;8296FF;
 
 MapData_pointers:
@@ -2982,7 +2982,7 @@ MapData_pointers:
     dw MapData_wreckedShip                                               ;82971D;
     dw MapData_maridia                                                   ;82971F;
     dw MapData_tourianDebug                                              ;829721;
-    dw MapData_ceres                                                     ;829723;
+    dw MapData_colony                                                    ;829723;
     dw MapData_tourianDebug                                              ;829725;
 
 MapData_crateria:
@@ -3381,7 +3381,7 @@ MapData_tourianDebug:
     db                 $00,$00,$00,$00
     db                 $00,$00,$00,$00
 
-MapData_ceres:
+MapData_colony:
     db $00,$00,$00,$00                                                   ;829D27;
     db $00,$00,$00,$00
     db $00,$00,$00,$00
@@ -8618,7 +8618,7 @@ MapIcon_PositionTablePointers:
     dw WreckedShip_MapIconPositions_bossIcons                            ;82C7D1; Wrecked Ship
     dw Maridia_MapIconPositions_bossIcons                                ;82C7D3; Maridia
     dw $0000                                                             ;82C7D5; Tourian
-    dw Ceres_MapIconPositions_bossIcons                                  ;82C7D7; Ceres
+    dw Colony_MapIconPositions_bossIcons                                 ;82C7D7; Colony
     dw $0000                                                             ;82C7D9; Debug
 
   .missileStations
@@ -8628,7 +8628,7 @@ MapIcon_PositionTablePointers:
     dw $0000                                                             ;82C7E1; Wrecked Ship
     dw Maridia_MapIconPositions_missileStations                          ;82C7E3; Maridia
     dw $0000                                                             ;82C7E5; Tourian
-    dw $0000                                                             ;82C7E7; Ceres
+    dw $0000                                                             ;82C7E7; Colony
     dw $0000                                                             ;82C7E9; Debug
 
   .energyStations
@@ -8638,7 +8638,7 @@ MapIcon_PositionTablePointers:
     dw $0000                                                             ;82C7F1; Wrecked Ship
     dw Maridia_MapIconPositions_energyStations                           ;82C7F3; Maridia
     dw Tourian_MapIconPositions_energyStations                           ;82C7F5; Tourian
-    dw $0000                                                             ;82C7F7; Ceres
+    dw $0000                                                             ;82C7F7; Colony
     dw $0000                                                             ;82C7F9; Debug
 
   .mapStations
@@ -8648,7 +8648,7 @@ MapIcon_PositionTablePointers:
     dw WreckedShip_MapIconPositions_mapStations                          ;82C801; Wrecked Ship
     dw Maridia_MapIconPositions_mapStations                              ;82C803; Maridia
     dw Tourian_MapIconPositions_mapStations                              ;82C805; Tourian
-    dw $0000                                                             ;82C807; Ceres
+    dw $0000                                                             ;82C807; Colony
     dw $0000                                                             ;82C809; Debug
 
   .savePoints
@@ -8658,7 +8658,7 @@ MapIcon_PositionTablePointers:
     dw WreckedShip_MapIconPositions_savePoints                           ;82C811; Wrecked Ship
     dw Maridia_MapIconPositions_savePoints                               ;82C813; Maridia
     dw Tourian_MapIconPositions_savePoints                               ;82C815; Tourian
-    dw $0000                                                             ;82C817; Ceres
+    dw $0000                                                             ;82C817; Colony
     dw $0000                                                             ;82C819; Debug
 
   .debugElevatorMarkers
@@ -8668,7 +8668,7 @@ MapIcon_PositionTablePointers:
     dw WreckedShip_MapIconPositions_debugElevatorMarkers                 ;82C821; Wrecked Ship
     dw Maridia_MapIconPositions_debugElevatorMarkers                     ;82C823; Maridia
     dw Tourian_MapIconPositions_debugElevatorMarkers                     ;82C825; Tourian
-    dw $0000                                                             ;82C827; Ceres
+    dw $0000                                                             ;82C827; Colony
     dw $0000                                                             ;82C829; Debug
 
   .debugSavePoints
@@ -8678,7 +8678,7 @@ MapIcon_PositionTablePointers:
     dw WreckedShip_MapIconPositions_debugSavePoints                      ;82C831; Wrecked Ship
     dw Maridia_MapIconPositions_debugSavePoints                          ;82C833; Maridia
     dw Tourian_MapIconPositions_debugSavePoints                          ;82C835; Tourian
-    dw $0000                                                             ;82C837; Ceres
+    dw $0000                                                             ;82C837; Colony
     dw $0000                                                             ;82C839; Debug
 
 Crateria_MapIconPositions:
@@ -8793,7 +8793,7 @@ Tourian_MapIconPositions:
   .debugSavePoints
     dw $0088,$0050, $0068,$00C0, $FFFF                                   ;82CA91;
 
-Ceres_MapIconPositions:
+Colony_MapIconPositions:
   .bossIcons
     dw $00A0,$0088, $FFFF                                                ;82CA9B;
   .missileStations
@@ -10441,20 +10441,20 @@ Load_EnemyGFX_to_VRAM:
     TXY                                                                  ;82DFDB;
 
 .loop:
-    LDA.L $B40000,X                                                      ;82DFDC;
+    LDA.L EnemySetEntry.pId,X                                            ;82DFDC;
     CMP.W #$FFFF                                                         ;82DFE0;
     BEQ .return                                                          ;82DFE3;
     TAX                                                                  ;82DFE5;
-    LDA.L $A00036,X                                                      ;82DFE6;
+    LDA.L EnemyHeader.pGfx,X                                             ;82DFE6;
     STA.W $05C0                                                          ;82DFEA;
-    LDA.L $A00037,X                                                      ;82DFED;
+    LDA.L EnemyHeader.pGfx+1,X                                           ;82DFED;
     STA.W $05C1                                                          ;82DFF1;
-    LDA.L $A00000,X                                                      ;82DFF4;
+    LDA.L EnemyHeader.gfxSize,X                                          ;82DFF4;
     BMI +                                                                ;82DFF8;
     STA.W $05C3                                                          ;82DFFA;
     LDA.B $12                                                            ;82DFFD;
     STA.W $05BE                                                          ;82DFFF;
-    LDA.L $A00000,X                                                      ;82E002;
+    LDA.L EnemyHeader.gfxSize,X                                          ;82E002;
     LSR A                                                                ;82E006;
     CLC                                                                  ;82E007;
     ADC.B $12                                                            ;82E008;
@@ -10465,7 +10465,7 @@ Load_EnemyGFX_to_VRAM:
   + AND.W #$7FFF                                                         ;82E00E;
     STA.W $05C3                                                          ;82E011;
     TYX                                                                  ;82E014;
-    LDA.L $B40002,X                                                      ;82E015;
+    LDA.L EnemySetEntry.properties,X                                     ;82E015;
     AND.W #$F000                                                         ;82E019;
     LSR A                                                                ;82E01C;
     LSR A                                                                ;82E01D;
@@ -11970,7 +11970,7 @@ Load_Level_Scroll_and_CRE_Data:
     PLB                                                                  ;82EADA;
     LDA.W $079F                                                          ;82EADB;
     CMP.W #$0006                                                         ;82EADE;
-    BEQ .inCeres                                                         ;82EAE1;
+    BEQ .inColony                                                        ;82EAE1;
     LDA.W $07B3                                                          ;82EAE3;
     BIT.W #$0002                                                         ;82EAE6;
     BEQ +                                                                ;82EAE9;
@@ -11990,7 +11990,7 @@ Load_Level_Scroll_and_CRE_Data:
     BRA +                                                                ;82EB0D;
 
 
-.inCeres:
+.inColony:
     LDA.W $07C1                                                          ;82EB0F;
     STA.B $48                                                            ;82EB12;
     LDA.W $07C0                                                          ;82EB14;

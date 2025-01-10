@@ -361,7 +361,7 @@ SRAMMapData_tourian:
     db         $5A
     db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
-SRAMMapData_ceres:
+SRAMMapData_colony:
     db     $2D                                                           ;8182C6;
     db     $31
     db     $35
@@ -378,7 +378,7 @@ MapRoomPointers:
     dw SRAMMapData_wreckedShip                                           ;8182DC;
     dw SRAMMapData_maridia                                               ;8182DE;
     dw SRAMMapData_tourian                                               ;8182E0;
-    dw SRAMMapData_ceres                                                 ;8182E2;
+    dw SRAMMapData_colony                                                ;8182E2;
 
 LoadMap:
     PHB                                                                  ;8182E4;

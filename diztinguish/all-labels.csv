@@ -650,7 +650,7 @@ $8181E6,8487398,SRAMMapData_norfair,,USED
 $818236,8487478,SRAMMapData_wreckedShip,,USED
 $818256,8487510,SRAMMapData_maridia,,USED
 $8182A6,8487590,SRAMMapData_tourian,,USED
-$8182C6,8487622,SRAMMapData_ceres,,USED
+$8182C6,8487622,SRAMMapData_colony,,USED
 $8182D6,8487638,MapRoomPointers,,USED
 $8182E4,8487652,LoadMap,,USED
 $8182F0,8487664,.loopTilesExplored,,USED
@@ -1396,7 +1396,7 @@ $82969F,8558239,AreaLabelTilemaps_norfair,,USED
 $8296B7,8558263,AreaLabelTilemaps_wreckedShip,,USED
 $8296CF,8558287,AreaLabelTilemaps_maridia,,USED
 $8296E7,8558311,AreaLabelTilemaps_tourianDebug,,USED
-$8296FF,8558335,AreaLabelTilemaps_ceres,,USED
+$8296FF,8558335,AreaLabelTilemaps_colony,,USED
 $829717,8558359,MapData_pointers,,USED
 $829727,8558375,MapData_crateria,,USED
 $829827,8558631,MapData_brinstar,,USED
@@ -1404,7 +1404,7 @@ $829927,8558887,MapData_norfair,,USED
 $829A27,8559143,MapData_wreckedShip,,USED
 $829B27,8559399,MapData_maridia,,USED
 $829C27,8559655,MapData_tourianDebug,,USED
-$829D27,8559911,MapData_ceres,,USED
+$829D27,8559911,MapData_colony,,USED
 $829E27,8560167,SetupMapScrollingForPauseMenu,,USED
 $829E63,8560227,.Xscroll,,USED
 $829E74,8560244,.Yscroll,,USED
@@ -36371,7 +36371,7 @@ $B5A000,11902976,MapTilemaps_norfair,,USED
 $B5B000,11907072,MapTilemaps_wreckedShip,,USED
 $B5C000,11911168,MapTilemaps_maridia,,USED
 $B5D000,11915264,MapTilemaps_tourian,,USED
-$B5E000,11919360,UNUSED_MapTilemaps_ceres_B5E000,,USED
+$B5E000,11919360,MapTilemaps_colony,,USED
 $B5F000,11923456,Freespace_BankB5_F000,,USED
 $B68000,11960320,Tiles_PauseScreen_BG1_BG2,,USED
 $B6C000,11976704,Tiles_Menu_PauseScreen_Sprites,,USED

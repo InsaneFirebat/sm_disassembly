@@ -524,9 +524,9 @@ EnemyShot_SpacePirate_GoldNinjaIsVulnerable:
     LDX.W $0E54                                                          ;B287E9;
     LDA.W EnemyData.pId,X                                                ;B287EC;
     TAX                                                                  ;B287EF;
-    LDA.L $A0003C,X                                                      ;B287F0;
+    LDA.L EnemyHeader.vulnerabilities,X                                  ;B287F0;
     BNE .zeroVuln                                                        ;B287F4;
-    LDA.W #EnemyVulnerabilities                                          ;B287F6;
+    LDA.W #AllEnemyVulnerabilities                                       ;B287F6;
 
 .zeroVuln:
     STA.B $14                                                            ;B287F9;

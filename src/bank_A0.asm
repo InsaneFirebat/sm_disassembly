@@ -4137,12 +4137,12 @@ Process_Enemy_PowerBomb_Interaction:
     CMP.W #EnemyHeaders_Respawn                                          ;A0A333;
     BEQ .next                                                            ;A0A336;
     TAX                                                                  ;A0A338;
-    LDA.L $A0003C,X                                                      ;A0A339;
+    LDA.L EnemyHeader.vulnerabilities,X                                  ;A0A339;
     BNE +                                                                ;A0A33D;
     LDA.W #EnemyVulnerabilities_Default                                  ;A0A33F;
 
   + TAX                                                                  ;A0A342;
-    LDA.L $B4000F,X                                                      ;A0A343;
+    LDA.L EnemyVulnerabilities.powerBomb,X                               ;A0A343;
     AND.W #$007F                                                         ;A0A347;
     BEQ .next                                                            ;A0A34A;
     LDX.W $0E54                                                          ;A0A34C;
@@ -4349,7 +4349,7 @@ NormalEnemyTouchAI_NoDeathCheck:
 
 .notNormal:
     CLC                                                                  ;A0A4A9;
-    ADC.W #$000F                                                         ;A0A4AA;
+    ADC.W #EnemyVulnerabilities.speedBooster-1                           ;A0A4AA;
     STA.B $14                                                            ;A0A4AD;
     LDY.W #$01F4                                                         ;A0A4AF;
     LDA.W $0A6E                                                          ;A0A4B2;
@@ -4378,7 +4378,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     LDX.W $0E54                                                          ;A0A4E2;
     LDA.W EnemyData.pId,X                                                ;A0A4E5;
     TAX                                                                  ;A0A4E8;
-    LDA.L $A0003C,X                                                      ;A0A4E9;
+    LDA.L EnemyHeader.vulnerabilities,X                                  ;A0A4E9;
     BNE .nonZero                                                         ;A0A4ED;
     LDA.W #EnemyVulnerabilities_Default                                  ;A0A4EF;
 
@@ -4386,7 +4386,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     CLC                                                                  ;A0A4F2;
     ADC.B $14                                                            ;A0A4F3;
     TAX                                                                  ;A0A4F5;
-    LDA.L $B40000,X                                                      ;A0A4F6;
+    LDA.L EnemyVulnerabilities.all,X                                     ;A0A4F6;
     STA.W $0E40                                                          ;A0A4FA;
     AND.W #$007F                                                         ;A0A4FD;
     STA.W $0E32                                                          ;A0A500;
@@ -4414,7 +4414,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     LDX.W $0E54                                                          ;A0A524; >_<
     LDA.W EnemyData.pId,X                                                ;A0A527;
     TAX                                                                  ;A0A52A;
-    LDA.L $A0000D,X                                                      ;A0A52B;
+    LDA.L EnemyHeader.stunnedTime,X                                      ;A0A52B;
     AND.W #$00FF                                                         ;A0A52F;
     BNE .hurtTimerNotExpired                                             ;A0A532;
     LDA.W #$0004                                                         ;A0A534;
@@ -4491,13 +4491,13 @@ NormalEnemyPowerBombAI_NoDeathCheck:
     LDX.W $0E54                                                          ;A0A5C1;
     LDA.W EnemyData.pId,X                                                ;A0A5C4;
     TAX                                                                  ;A0A5C7;
-    LDA.L $A0003C,X                                                      ;A0A5C8;
+    LDA.L EnemyHeader.vulnerabilities,X                                  ;A0A5C8;
     BNE .XNonZero                                                        ;A0A5CC;
     LDA.W #EnemyVulnerabilities_Default                                  ;A0A5CE;
 
 .XNonZero:
     TAX                                                                  ;A0A5D1;
-    LDA.L $B4000F,X                                                      ;A0A5D2;
+    LDA.L EnemyVulnerabilities.powerBomb,X                               ;A0A5D2;
     AND.W #$00FF                                                         ;A0A5D6;
     CMP.W #$00FF                                                         ;A0A5D9;
     BEQ .return                                                          ;A0A5DC;
@@ -4519,7 +4519,7 @@ NormalEnemyPowerBombAI_NoDeathCheck:
     LDX.W $0E54                                                          ;A0A605;
     LDA.W EnemyData.pId,X                                                ;A0A608;
     TAX                                                                  ;A0A60B;
-    LDA.L $A0000D,X                                                      ;A0A60C;
+    LDA.L EnemyHeader.stunnedTime,X                                      ;A0A60C;
     AND.W #$00FF                                                         ;A0A610;
     BNE .ANonZero                                                        ;A0A613;
     LDA.W #$0004                                                         ;A0A615;
@@ -4647,7 +4647,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     LDX.W $0E54                                                          ;A0A6F0;
     LDA.W EnemyData.pId,X                                                ;A0A6F3;
     TAX                                                                  ;A0A6F6;
-    LDA.L $A0003C,X                                                      ;A0A6F7;
+    LDA.L EnemyHeader.vulnerabilities,X                                  ;A0A6F7;
     BNE .nonZero                                                         ;A0A6FB;
     LDA.W #EnemyVulnerabilities_Default                                  ;A0A6FD;
 
@@ -4661,7 +4661,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     CLC                                                                  ;A0A70E;
     ADC.B $14                                                            ;A0A70F;
     TAX                                                                  ;A0A711;
-    LDA.L $B40000,X                                                      ;A0A712;
+    LDA.L EnemyVulnerabilities.beams,X                                   ;A0A712;
     AND.W #$00FF                                                         ;A0A716;
     STA.W $0E40                                                          ;A0A719;
     AND.W #$007F                                                         ;A0A71C;
@@ -4677,7 +4677,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     BIT.W #$0010                                                         ;A0A72F;
     BEQ .calculateDamage                                                 ;A0A732;
     LDX.B $14                                                            ;A0A734;
-    LDA.L $B40013,X                                                      ;A0A736;
+    LDA.L EnemyVulnerabilities.chargeBeam,X                              ;A0A736;
     AND.W #$00FF                                                         ;A0A73A;
     CMP.W #$00FF                                                         ;A0A73D;
     BEQ .noDamage                                                        ;A0A740;
@@ -4709,7 +4709,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     CLC                                                                  ;A0A771;
     ADC.B $14                                                            ;A0A772;
     TAX                                                                  ;A0A774;
-    LDA.L $B4000B,X                                                      ;A0A775;
+    LDA.L EnemyVulnerabilities.missile-1,X                               ;A0A775;
     AND.W #$007F                                                         ;A0A779;
     STA.W $0E32                                                          ;A0A77C;
     BRA .calculateDamage                                                 ;A0A77F;
@@ -4719,7 +4719,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     CMP.W #$0500                                                         ;A0A781;
     BNE .checkPowerBomb                                                  ;A0A784;
     LDX.B $14                                                            ;A0A786;
-    LDA.L $B4000E,X                                                      ;A0A788;
+    LDA.L EnemyVulnerabilities.bomb,X                                    ;A0A788;
     AND.W #$007F                                                         ;A0A78C;
     STA.W $0E32                                                          ;A0A78F;
     BRA .calculateDamage                                                 ;A0A792;
@@ -4729,7 +4729,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     CMP.W #$0300                                                         ;A0A794;
     BNE .noDamage                                                        ;A0A797;
     LDX.B $14                                                            ;A0A799;
-    LDA.L $B4000F,X                                                      ;A0A79B;
+    LDA.L EnemyVulnerabilities.powerBomb,X                               ;A0A79B;
     AND.W #$007F                                                         ;A0A79F;
     STA.W $0E32                                                          ;A0A7A2;
     JMP.W .calculateDamage                                               ;A0A7A5;
@@ -4790,7 +4790,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     LDX.W $0E54                                                          ;A0A80C;
     LDA.W EnemyData.pId,X                                                ;A0A80F;
     TAX                                                                  ;A0A812;
-    LDA.L $A0000D,X                                                      ;A0A813;
+    LDA.L EnemyHeader.stunnedTime,X                                      ;A0A813;
     AND.W #$00FF                                                         ;A0A817;
     BNE +                                                                ;A0A81A;
     LDA.W #$0004                                                         ;A0A81C;
@@ -4808,7 +4808,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     PHY                                                                  ;A0A838;
     LDA.W EnemyData.pId,X                                                ;A0A839;
     TAX                                                                  ;A0A83C;
-    LDA.L $A0000E,X                                                      ;A0A83D;
+    LDA.L EnemyHeader.cry,X                                              ;A0A83D;
     BEQ .setEnemyHit                                                     ;A0A841;
     JSL.L QueueSound_Lib2_Max3                                           ;A0A843;
 
@@ -9801,7 +9801,7 @@ EnemyHeaders_Geruta:
     dw $0000                                                             ;A0D333;
     dl Tiles_Geruta                                                      ;A0D335;
     db $05                                                               ;A0D338;
-    dw EnemyDropChances_smallEnergy                                      ;A0D339;
+    dw EnemyDropChances_Geruta                                           ;A0D339;
     dw EnemyVulnerabilities_Geruta                                       ;A0D33B;
     dw EnemyName_Geruta                                                  ;A0D33D;
 

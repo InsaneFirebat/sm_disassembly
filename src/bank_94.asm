@@ -2253,7 +2253,7 @@ SamusBlockCollisionReaction_Special_PLMTable_tourian:
     dw PLMEntries_nothing                                                ;949295;
     dw PLMEntries_nothing                                                ;949297;
 
-SamusBlockCollisionReaction_Special_PLMTable_ceres:
+SamusBlockCollisionReaction_Special_PLMTable_colony:
     dw PLMEntries_nothing                                                ;949299;
     dw PLMEntries_nothing                                                ;94929B;
     dw PLMEntries_nothing                                                ;94929D;
@@ -2296,7 +2296,7 @@ SamusBlockCollisionReaction_Special_PLMTable_AirPointers:
     dw SamusBlockCollisionReaction_Special_PLMTable_wreckedShip          ;9492DF;
     dw SamusBlockCollisionReaction_Special_PLMTable_maridia              ;9492E1;
     dw SamusBlockCollisionReaction_Special_PLMTable_tourian              ;9492E3;
-    dw SamusBlockCollisionReaction_Special_PLMTable_ceres                ;9492E5;
+    dw SamusBlockCollisionReaction_Special_PLMTable_colony               ;9492E5;
     dw SamusBlockCollisionReaction_Special_PLMTable_debug                ;9492E7;
 
 SamusBlockCollisionReaction_Special_PLMTable_BlockPointers:
@@ -2306,7 +2306,7 @@ SamusBlockCollisionReaction_Special_PLMTable_BlockPointers:
     dw SamusBlockCollisionReaction_Special_PLMTable_wreckedShip          ;9492EF;
     dw SamusBlockCollisionReaction_Special_PLMTable_maridia              ;9492F1;
     dw SamusBlockCollisionReaction_Special_PLMTable_tourian              ;9492F3;
-    dw SamusBlockCollisionReaction_Special_PLMTable_ceres                ;9492F5;
+    dw SamusBlockCollisionReaction_Special_PLMTable_colony               ;9492F5;
     dw SamusBlockCollisionReaction_Special_PLMTable_debug                ;9492F7;
 
 SamusBlockCollisionReaction_Horizontal_BombableAir:
@@ -3548,7 +3548,7 @@ BlockInsideReaction_SpecialAir_PLMTable_tourian:
     dw PLMEntries_nothing                                                ;949AC2;
     dw PLMEntries_nothing                                                ;949AC4;
 
-BlockInsideReaction_SpecialAir_PLMTable_ceres:
+BlockInsideReaction_SpecialAir_PLMTable_colony:
     dw PLMEntries_nothing                                                ;949AC6;
     dw PLMEntries_nothing                                                ;949AC8;
     dw PLMEntries_nothing                                                ;949ACA;
@@ -3591,7 +3591,7 @@ BlockInsideReaction_SpecialAir_PLMTable_Pointers:
     dw BlockInsideReaction_SpecialAir_PLMTable_wreckedShip               ;949B0C;
     dw BlockInsideReaction_SpecialAir_PLMTable_maridia                   ;949B0E;
     dw BlockInsideReaction_SpecialAir_PLMTable_tourian                   ;949B10;
-    dw BlockInsideReaction_SpecialAir_PLMTable_ceres                     ;949B12;
+    dw BlockInsideReaction_SpecialAir_PLMTable_colony                    ;949B12;
     dw BlockInsideReaction_SpecialAir_PLMTable_debug                     ;949B14;
 
 BlockInsideReaction_SpecialAir:
@@ -4071,7 +4071,7 @@ BlockBombedReaction_SpecialBlock_PLMTable_tourian:
     dw PLMEntries_nothing                                                ;949E20;
     dw PLMEntries_nothing                                                ;949E22;
 
-BlockBombedReaction_SpecialBlock_PLMTable_ceres:
+BlockBombedReaction_SpecialBlock_PLMTable_colony:
     dw PLMEntries_nothing                                                ;949E24;
     dw PLMEntries_nothing                                                ;949E26;
     dw PLMEntries_nothing                                                ;949E28;
@@ -4098,7 +4098,7 @@ BlockBombedReaction_SpecialBlock_PLMTable_areaPointers:
     dw BlockBombedReaction_SpecialBlock_PLMTable_wreckedShip             ;949E4A;
     dw BlockBombedReaction_SpecialBlock_PLMTable_maridia                 ;949E4C;
     dw BlockBombedReaction_SpecialBlock_PLMTable_tourian                 ;949E4E;
-    dw BlockBombedReaction_SpecialBlock_PLMTable_ceres                   ;949E50;
+    dw BlockBombedReaction_SpecialBlock_PLMTable_colony                  ;949E50;
     dw BlockBombedReaction_SpecialBlock_PLMTable_debug                   ;949E52;
 
 RTS_949E54:
@@ -4299,7 +4299,7 @@ BlockBombShotGrappledReaction_Shootable_PLMTable_tourian:
     dw PLMEntries_nothing                                                ;949FA2;
     dw PLMEntries_nothing                                                ;949FA4;
 
-BlockBombShotGrappledReaction_Shootable_PLMTable_ceres:
+BlockBombShotGrappledReaction_Shootable_PLMTable_colony:
     dw PLMEntries_nothing                                                ;949FA6;
     dw PLMEntries_nothing                                                ;949FA8;
     dw PLMEntries_nothing                                                ;949FAA;
@@ -4326,7 +4326,7 @@ BlockBombShotGrappledReaction_Shootable_PLMTable_areaPointer:
     dw BlockBombShotGrappledReaction_Shootable_PLMTable_wreckedShip      ;949FCC;
     dw BlockBombShotGrappledReaction_Shootable_PLMTable_maridia          ;949FCE;
     dw BlockBombShotGrappledReaction_Shootable_PLMTable_tourian          ;949FD0;
-    dw BlockBombShotGrappledReaction_Shootable_PLMTable_ceres            ;949FD2;
+    dw BlockBombShotGrappledReaction_Shootable_PLMTable_colony           ;949FD2;
     dw BlockBombShotGrappledReaction_Shootable_PLMTable_debug            ;949FD4;
 
 BlockShotBombedGrappledReaction_BombableAir:

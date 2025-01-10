@@ -2,6 +2,7 @@
 org $B48000
 
 
+EnemySets:
 EnemySets_Draygon_1_MotherBrain_2:
     dw $FFFF                                                             ;B48000;
     db "SF1_10 "                                                         ;B48002;
@@ -12515,7 +12516,7 @@ DebugEnemyPopulationData_RobotNoPower:
     db $01                                                               ;B4EC1B;
 
 
-EnemyVulnerabilities:
+AllEnemyVulnerabilities:
 EnemyVulnerabilities_Default:
     db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02   ;B4EC1C;
     db $02,$02,$02,$02,$02,$02                                           ;B4EC2C;
@@ -12790,7 +12791,7 @@ EnemyVulnerabilities_MotherBrainBody:
 
 
 EnemyDropChances_Geruta:
-EnemyDropChances:
+AllEnemyDropChances:
   .smallEnergy:
     db $3C                                                               ;B4F1F4;
 

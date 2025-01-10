@@ -16151,9 +16151,9 @@ Random_Drop_Routine:
     SEP #$20                                                             ;86F154;
     LDA.W $0E1A                                                          ;86F156;
     BEQ .noHealthBomb                                                    ;86F159;
-    LDA.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X      ;86F15B; $B40000
+    LDA.L EnemyDropChances.smallEnergy,X                                 ;86F15B; $B40000
     CLC                                                                  ;86F15F;
-    ADC.L EnemyDropChances_bigEnergy-(EnemyDropChances&$00FFFF),X        ;86F160; $B40001
+    ADC.L EnemyDropChances.bigEnergy,X                                   ;86F160; $B40001
     STA.B $12                                                            ;86F164;
     LDA.B #$03                                                           ;86F166;
     STA.B $16                                                            ;86F168;
@@ -16161,7 +16161,7 @@ Random_Drop_Routine:
 
 
 .noHealthBomb:
-    LDA.L $B40003,X                                                      ;86F16D;
+    LDA.L EnemyDropChances.nothing,X                                     ;86F16D; $B40003
     STA.B $12                                                            ;86F171;
     LDA.B #$08                                                           ;86F173;
     STA.B $16                                                            ;86F175;
@@ -16175,8 +16175,8 @@ Random_Drop_Routine:
 .energyAllowed:
     LDA.B $12                                                            ;86F187;
     CLC                                                                  ;86F189;
-    ADC.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X      ;86F18A; $B40000
-    ADC.L EnemyDropChances_bigEnergy-(EnemyDropChances&$00FFFF),X        ;86F18E; $B40001
+    ADC.L EnemyDropChances.smallEnergy,X                                 ;86F18A; $B40000
+    ADC.L EnemyDropChances.bigEnergy,X                                   ;86F18E; $B40001
     STA.B $12                                                            ;86F192;
     LDA.B $16                                                            ;86F194;
     ORA.B #$03                                                           ;86F196;
@@ -16188,7 +16188,7 @@ Random_Drop_Routine:
     BEQ .checkSuperMissiles                                              ;86F1A0;
     LDA.B $12                                                            ;86F1A2;
     CLC                                                                  ;86F1A4;
-    ADC.L EnemyDropChances_missiles-(EnemyDropChances&$00FFFF),X         ;86F1A5; $B40002
+    ADC.L EnemyDropChances.missiles,X                                    ;86F1A5; $B40002
     STA.B $12                                                            ;86F1A9;
     LDA.B $16                                                            ;86F1AB;
     ORA.B #$04                                                           ;86F1AD;
@@ -16200,7 +16200,7 @@ Random_Drop_Routine:
     BEQ .checkPowerBombs                                                 ;86F1B7;
     LDA.B $14                                                            ;86F1B9;
     SEC                                                                  ;86F1BB;
-    SBC.L EnemyDropChances_superMissiles-(EnemyDropChances&$00FFFF),X    ;86F1BC; $B40004
+    SBC.L EnemyDropChances.superMissiles,X                               ;86F1BC; $B40004
     STA.B $14                                                            ;86F1C0;
     LDA.B $16                                                            ;86F1C2;
     ORA.B #$10                                                           ;86F1C4;
@@ -16212,7 +16212,7 @@ Random_Drop_Routine:
     BEQ .dropChancesPooled                                               ;86F1CE;
     LDA.B $14                                                            ;86F1D0;
     SEC                                                                  ;86F1D2;
-    SBC.L EnemyDropChances_powerBombs-(EnemyDropChances&$00FFFF),X       ;86F1D3; $B40005
+    SBC.L EnemyDropChances.powerBombs,X                                  ;86F1D3; $B40005
     STA.B $14                                                            ;86F1D7;
     LDA.B $16                                                            ;86F1D9;
     ORA.B #$20                                                           ;86F1DB;
@@ -16229,7 +16229,7 @@ Random_Drop_Routine:
     BCC .nextMinorDrop                                                   ;86F1EA;
     LDA.B $14                                                            ;86F1EC;
     STA.W HW_WRMPYA                                                      ;86F1EE;
-    LDA.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X      ;86F1F1; $B40000
+    LDA.L EnemyDropChances.smallEnergy,X                                 ;86F1F1; $B40000
     STA.W HW_WRMPYB                                                      ;86F1F5;
     PHY                                                                  ;86F1F8;
     NOP                                                                  ;86F1F9;
@@ -16274,7 +16274,7 @@ Random_Drop_Routine:
     LSR.B $16                                                            ;86F230;
     BCC .nextMajorDrop                                                   ;86F232;
     REP #$20                                                             ;86F234;
-    LDA.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X      ;86F236; $B40000
+    LDA.L EnemyDropChances.smallEnergy,X                                 ;86F236; $B40000
     AND.W #$00FF                                                         ;86F23A;
     CLC                                                                  ;86F23D;
     ADC.B $18                                                            ;86F23E;

@@ -46,7 +46,7 @@ struct EnemyData $0F78 ; TODO change hardcoded address
   .health: skip 2 ; $0F8C
   .pSpritemap: skip 2 ; $0F8E
   .loopCounter: skip 2 ; $0F90
-  .pInstList: skip 2 ; $0F92
+  .pInstList: skip 2 ; $0F92, also an init param only when initializing the enemy
   .instTimer: skip 2 ; $0F94
   .palette: skip 2 ; $0F96
   .gfxOffset: skip 2 ; $0F98
@@ -65,4 +65,41 @@ struct EnemyData $0F78 ; TODO change hardcoded address
   .work5: skip 2 ; $0FB2
   .initParam0: skip 2 ; $0FB4
   .initParam1: skip 2 ; $0FB6
+endstruct
+
+struct EnemySetEntry EnemySets&$FF0000
+  .pId: skip 2
+  .properties: skip 2
+endstruct
+
+; Vulnerability format:
+;     v = f000dddd
+;     If v = FFh:
+;         Freeze, no damage
+;     Else:
+;         d: Damage multiplier * 2
+;         f: Does not freeze
+struct EnemyVulnerabilities AllEnemyVulnerabilities&$FF0000
+  .all:
+  .beams: skip 12 ; $00
+  .missile: skip 1 ; $0C
+  .superMissile: skip 1 ; $0D
+  .bomb: skip 1 ; $0E
+  .powerBomb: skip 1 ; $0F
+  .speedBooster: skip 1 ; $10
+  .shinespark: skip 1 ; $11
+  .screwAttack: skip 1 ; $12
+  .chargeBeam: skip 1 ; $13
+  .sudoScrew: skip 1 ; $14
+  .unused15: skip 1 ; $15
+endstruct
+
+; They must add up to 255
+struct EnemyDropChances AllEnemyDropChances&$FF0000
+  .smallEnergy: skip 1
+  .bigEnergy: skip 1
+  .missiles: skip 1
+  .nothing: skip 1
+  .superMissiles: skip 1
+  .powerBombs: skip 1
 endstruct

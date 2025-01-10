@@ -7373,7 +7373,7 @@ LoadStationListPointers:
     dw LoadStations_WreckedShip                                          ;80C4BB;
     dw LoadStations_Maridia                                              ;80C4BD;
     dw LoadStations_Tourian                                              ;80C4BF;
-    dw LoadStations_Ceres                                                ;80C4C1;
+    dw LoadStations_Colony                                               ;80C4C1;
     dw LoadStations_Debug                                                ;80C4C3;
 
 LoadStations_Crateria:
@@ -7856,7 +7856,7 @@ LoadStations_Tourian:
     dw $0000,$0000,$0000,$0080,$0000                                     ;80CB21;
 
 
-LoadStations_Ceres:
+LoadStations_Colony:
     dw RoomHeader_CeresElev                                              ;80CB2B;
     dw Door_FallingTile_0                                                ;80CB2D;
     dw $0000,$0000,$0000,$0048,$0000                                     ;80CB2F;
