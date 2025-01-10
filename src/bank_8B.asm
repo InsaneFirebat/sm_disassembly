@@ -2320,15 +2320,15 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
     STZ.W $4201                                                          ;8B9172;
     STZ.W HW_WRMPYA                                                      ;8B9175;
     STZ.W HW_WRMPYB                                                      ;8B9178;
-    STZ.W $4204                                                          ;8B917B;
+    STZ.W HW_WRDIV                                                       ;8B917B;
     STZ.W $4205                                                          ;8B917E;
-    STZ.W $4206                                                          ;8B9181;
+    STZ.W HW_WRDIVB                                                      ;8B9181;
     STZ.W $4207                                                          ;8B9184;
     STZ.W $4208                                                          ;8B9187;
     STZ.W $4209                                                          ;8B918A;
     STZ.W $420A                                                          ;8B918D;
-    STZ.W $420B                                                          ;8B9190;
-    STZ.W $420C                                                          ;8B9193;
+    STZ.W HW_MDMAEN                                                      ;8B9190;
+    STZ.W HW_HDMAEN                                                      ;8B9193;
     STZ.B $85                                                            ;8B9196;
     LDA.B #$01                                                           ;8B9198;
     STA.W $420D                                                          ;8B919A;
@@ -2446,7 +2446,7 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
     dl $7F5000                                                           ;8B92BC;
     dw $4000                                                             ;8B92BF;
     LDA.B #$02                                                           ;8B92C1;
-    STA.W $420B                                                          ;8B92C3;
+    STA.W HW_MDMAEN                                                      ;8B92C3;
     LDA.B #$80                                                           ;8B92C6;
     STA.B $51                                                            ;8B92C8;
     REP #$30                                                             ;8B92CA;
@@ -3919,7 +3919,7 @@ Load_Title_Sequence_Graphics:
     dl $7F0000                                                           ;8B9C02;
     dw $4000                                                             ;8B9C05;
     LDA.B #$02                                                           ;8B9C07;
-    STA.W $420B                                                          ;8B9C09;
+    STA.W HW_MDMAEN                                                      ;8B9C09;
     REP #$10                                                             ;8B9C0C;
     STZ.W $2115                                                          ;8B9C0E;
     STZ.W $2116                                                          ;8B9C11;
@@ -3943,7 +3943,7 @@ Load_Title_Sequence_Graphics:
     dl $7F4000                                                           ;8B9C3A;
     dw $1000                                                             ;8B9C3D;
     LDA.B #$02                                                           ;8B9C3F;
-    STA.W $420B                                                          ;8B9C41;
+    STA.W HW_MDMAEN                                                      ;8B9C41;
     LDA.B #$00                                                           ;8B9C44;
     STA.W $2116                                                          ;8B9C46;
     LDA.B #$60                                                           ;8B9C49;
@@ -3955,7 +3955,7 @@ Load_Title_Sequence_Graphics:
     dl $7F5000                                                           ;8B9C5A;
     dw $4000                                                             ;8B9C5D;
     LDA.B #$02                                                           ;8B9C5F;
-    STA.W $420B                                                          ;8B9C61;
+    STA.W HW_MDMAEN                                                      ;8B9C61;
     REP #$30                                                             ;8B9C64;
     LDA.W #$0100                                                         ;8B9C66;
     STA.W $211B                                                          ;8B9C69;
@@ -5028,7 +5028,7 @@ CinematicFunction_Intro_Initial:
     dl $7F0000                                                           ;8BA46C;
     dw $8000                                                             ;8BA46F;
     LDA.B #$02                                                           ;8BA471;
-    STA.W $420B                                                          ;8BA473;
+    STA.W HW_MDMAEN                                                      ;8BA473;
     LDA.B #$00                                                           ;8BA476;
     STA.W $2116                                                          ;8BA478;
     LDA.B #$40                                                           ;8BA47B;
@@ -5040,7 +5040,7 @@ CinematicFunction_Intro_Initial:
     dl $7F8000                                                           ;8BA48C;
     dw $0900                                                             ;8BA48F;
     LDA.B #$02                                                           ;8BA491;
-    STA.W $420B                                                          ;8BA493;
+    STA.W HW_MDMAEN                                                      ;8BA493;
     LDA.B #$00                                                           ;8BA496;
     STA.W $2116                                                          ;8BA498;
     LDA.B #$48                                                           ;8BA49B;
@@ -5052,7 +5052,7 @@ CinematicFunction_Intro_Initial:
     dl $7F9000                                                           ;8BA4AC;
     dw $0800                                                             ;8BA4AF;
     LDA.B #$02                                                           ;8BA4B1;
-    STA.W $420B                                                          ;8BA4B3;
+    STA.W HW_MDMAEN                                                      ;8BA4B3;
     LDA.B #$00                                                           ;8BA4B6;
     STA.W $2116                                                          ;8BA4B8;
     LDA.B #$4C                                                           ;8BA4BB;
@@ -5064,7 +5064,7 @@ CinematicFunction_Intro_Initial:
     dl $7FE000                                                           ;8BA4CC;
     dw $0800                                                             ;8BA4CF;
     LDA.B #$02                                                           ;8BA4D1;
-    STA.W $420B                                                          ;8BA4D3;
+    STA.W HW_MDMAEN                                                      ;8BA4D3;
     LDA.B #$00                                                           ;8BA4D6;
     STA.W $2116                                                          ;8BA4D8;
     LDA.B #$50                                                           ;8BA4DB;
@@ -5076,7 +5076,7 @@ CinematicFunction_Intro_Initial:
     dl $7F9800                                                           ;8BA4EC;
     dw $2000                                                             ;8BA4EF;
     LDA.B #$02                                                           ;8BA4F1;
-    STA.W $420B                                                          ;8BA4F3;
+    STA.W HW_MDMAEN                                                      ;8BA4F3;
     LDA.B #$00                                                           ;8BA4F6;
     STA.W $2116                                                          ;8BA4F8;
     LDA.B #$60                                                           ;8BA4FB;
@@ -5088,7 +5088,7 @@ CinematicFunction_Intro_Initial:
     dl Tiles_Standard_Sprite_0                                           ;8BA50C;
     dw $2000                                                             ;8BA50F;
     LDA.B #$02                                                           ;8BA511;
-    STA.W $420B                                                          ;8BA513;
+    STA.W HW_MDMAEN                                                      ;8BA513;
     LDA.B #$00                                                           ;8BA516;
     STA.W $2116                                                          ;8BA518;
     LDA.B #$6E                                                           ;8BA51B;
@@ -5100,7 +5100,7 @@ CinematicFunction_Intro_Initial:
     dl $7FB800                                                           ;8BA52C;
     dw $2400                                                             ;8BA52F;
     LDA.B #$02                                                           ;8BA531;
-    STA.W $420B                                                          ;8BA533;
+    STA.W HW_MDMAEN                                                      ;8BA533;
     REP #$30                                                             ;8BA536;
     LDA.W #Tiles_Font2_BG3>>8&$FF00                                      ;8BA538;
     STA.B $48                                                            ;8BA53B;
@@ -5282,7 +5282,7 @@ CinematicFunction_Intro_SetupIntroTextPage1:
     dl $7E4000                                                           ;8BA68C;
     dw $0600                                                             ;8BA68F;
     LDA.B #$02                                                           ;8BA691;
-    STA.W $420B                                                          ;8BA693;
+    STA.W HW_MDMAEN                                                      ;8BA693;
     LDA.B #$16                                                           ;8BA696;
     STA.W $212C                                                          ;8BA698;
     STA.B $69                                                            ;8BA69B;
@@ -7764,7 +7764,7 @@ CinematicFunction_FlyToCeres_Initial:
     dl $7F0000                                                           ;8BBD07;
     dw $4000                                                             ;8BBD0A;
     LDA.B #$02                                                           ;8BBD0C;
-    STA.W $420B                                                          ;8BBD0E;
+    STA.W HW_MDMAEN                                                      ;8BBD0E;
     REP #$10                                                             ;8BBD11;
     STZ.W $2115                                                          ;8BBD13;
     STZ.W $2116                                                          ;8BBD16;
@@ -7788,7 +7788,7 @@ CinematicFunction_FlyToCeres_Initial:
     dl $7F4000                                                           ;8BBD3F;
     dw $0300                                                             ;8BBD42;
     LDA.B #$02                                                           ;8BBD44;
-    STA.W $420B                                                          ;8BBD46;
+    STA.W HW_MDMAEN                                                      ;8BBD46;
     LDA.B #$00                                                           ;8BBD49;
     STA.W $2116                                                          ;8BBD4B;
     LDA.B #$60                                                           ;8BBD4E;
@@ -7800,7 +7800,7 @@ CinematicFunction_FlyToCeres_Initial:
     dl $7F5000                                                           ;8BBD5F;
     dw $4000                                                             ;8BBD62;
     LDA.B #$02                                                           ;8BBD64;
-    STA.W $420B                                                          ;8BBD66;
+    STA.W HW_MDMAEN                                                      ;8BBD66;
     REP #$30                                                             ;8BBD69;
     LDA.W #$0100                                                         ;8BBD6B;
     STA.W $211B                                                          ;8BBD6E;
@@ -8334,7 +8334,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     dl $7F0000                                                           ;8BC19F;
     dw $4000                                                             ;8BC1A2;
     LDA.B #$02                                                           ;8BC1A4;
-    STA.W $420B                                                          ;8BC1A6;
+    STA.W HW_MDMAEN                                                      ;8BC1A6;
     REP #$10                                                             ;8BC1A9;
     STZ.W $2115                                                          ;8BC1AB;
     STZ.W $2116                                                          ;8BC1AE;
@@ -8358,7 +8358,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     dl $7F4600                                                           ;8BC1D7;
     dw $0600                                                             ;8BC1DA;
     LDA.B #$02                                                           ;8BC1DC;
-    STA.W $420B                                                          ;8BC1DE;
+    STA.W HW_MDMAEN                                                      ;8BC1DE;
     LDA.B #$00                                                           ;8BC1E1;
     STA.W $2116                                                          ;8BC1E3;
     LDA.B #$60                                                           ;8BC1E6;
@@ -8370,7 +8370,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     dl $7F5000                                                           ;8BC1F7;
     dw $4000                                                             ;8BC1FA;
     LDA.B #$02                                                           ;8BC1FC;
-    STA.W $420B                                                          ;8BC1FE;
+    STA.W HW_MDMAEN                                                      ;8BC1FE;
     LDA.B #$00                                                           ;8BC201;
     STA.W $2116                                                          ;8BC203;
     LDA.B #$60                                                           ;8BC206;
@@ -8382,7 +8382,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     dl Tiles_Standard_Sprite_0                                           ;8BC217;
     dw $1A00                                                             ;8BC21A;
     LDA.B #$02                                                           ;8BC21C;
-    STA.W $420B                                                          ;8BC21E;
+    STA.W HW_MDMAEN                                                      ;8BC21E;
     REP #$30                                                             ;8BC221;
     LDA.W #$0100                                                         ;8BC223;
     STA.W $211B                                                          ;8BC226;
@@ -8956,7 +8956,7 @@ CinematicFunction_FlyToZebes_Initial:
     dl $7F4300                                                           ;8BC6E7;
     dw $0300                                                             ;8BC6EA;
     LDA.B #$02                                                           ;8BC6EC;
-    STA.W $420B                                                          ;8BC6EE;
+    STA.W HW_MDMAEN                                                      ;8BC6EE;
     LDA.B #$00                                                           ;8BC6F1;
     STA.W $2116                                                          ;8BC6F3;
     LDA.B #$5C                                                           ;8BC6F6;
@@ -8968,7 +8968,7 @@ CinematicFunction_FlyToZebes_Initial:
     dl $7F9000                                                           ;8BC707;
     dw $0800                                                             ;8BC70A;
     LDA.B #$02                                                           ;8BC70C;
-    STA.W $420B                                                          ;8BC70E;
+    STA.W HW_MDMAEN                                                      ;8BC70E;
     LDA.B #$00                                                           ;8BC711;
     STA.W $2116                                                          ;8BC713;
     LDA.B #$60                                                           ;8BC716;
@@ -8980,7 +8980,7 @@ CinematicFunction_FlyToZebes_Initial:
     dl $7F5000                                                           ;8BC727;
     dw $4000                                                             ;8BC72A;
     LDA.B #$02                                                           ;8BC72C;
-    STA.W $420B                                                          ;8BC72E;
+    STA.W HW_MDMAEN                                                      ;8BC72E;
     REP #$30                                                             ;8BC731;
     LDA.W #$0100                                                         ;8BC733;
     STA.W $211B                                                          ;8BC736;
@@ -10614,7 +10614,7 @@ CinematicFunction_Ending_Setup:
     dl $7F8000                                                           ;8BD4FF;
     dw $4000                                                             ;8BD502;
     LDA.B #$02                                                           ;8BD504;
-    STA.W $420B                                                          ;8BD506;
+    STA.W HW_MDMAEN                                                      ;8BD506;
     LDA.B #$00                                                           ;8BD509;
     STA.W $2116                                                          ;8BD50B;
     LDA.B #$20                                                           ;8BD50E;
@@ -10626,7 +10626,7 @@ CinematicFunction_Ending_Setup:
     dl $7F8000                                                           ;8BD51F;
     dw $4000                                                             ;8BD522;
     LDA.B #$02                                                           ;8BD524;
-    STA.W $420B                                                          ;8BD526;
+    STA.W HW_MDMAEN                                                      ;8BD526;
     LDA.B #$00                                                           ;8BD529;
     STA.W $2116                                                          ;8BD52B;
     LDA.B #$60                                                           ;8BD52E;
@@ -10638,7 +10638,7 @@ CinematicFunction_Ending_Setup:
     dl $7F4000                                                           ;8BD53F;
     dw $4000                                                             ;8BD542;
     LDA.B #$02                                                           ;8BD544;
-    STA.W $420B                                                          ;8BD546;
+    STA.W HW_MDMAEN                                                      ;8BD546;
     LDA.B #$00                                                           ;8BD549;
     STA.W $2116                                                          ;8BD54B;
     LDA.B #$00                                                           ;8BD54E;
@@ -10650,7 +10650,7 @@ CinematicFunction_Ending_Setup:
     dl $7F0000                                                           ;8BD55F;
     dw $4000                                                             ;8BD562;
     LDA.B #$02                                                           ;8BD564;
-    STA.W $420B                                                          ;8BD566;
+    STA.W HW_MDMAEN                                                      ;8BD566;
     REP #$30                                                             ;8BD569;
     LDA.W #Tiles_Zebes_Explosion>>8&$FF00                                ;8BD56B;
     STA.B $48                                                            ;8BD56E;
@@ -10850,7 +10850,7 @@ CineFunc_Ending_ZebesDestruction1_CloudsOnTopBottom_Setup:
     dl $7E2000                                                           ;8BD749;
     dw $4000                                                             ;8BD74C;
     LDA.B #$02                                                           ;8BD74E;
-    STA.W $420B                                                          ;8BD750;
+    STA.W HW_MDMAEN                                                      ;8BD750;
     LDA.B #$00                                                           ;8BD753;
     STA.W $2116                                                          ;8BD755;
     LDA.B #$20                                                           ;8BD758;
@@ -10862,7 +10862,7 @@ CineFunc_Ending_ZebesDestruction1_CloudsOnTopBottom_Setup:
     dl $7E2000                                                           ;8BD769;
     dw $4000                                                             ;8BD76C;
     LDA.B #$02                                                           ;8BD76E;
-    STA.W $420B                                                          ;8BD770;
+    STA.W HW_MDMAEN                                                      ;8BD770;
     REP #$30                                                             ;8BD773;
     LDA.W #Tiles_Grey_Clouds_during_Zebes_Explosion_Mode7>>8&$FF00       ;8BD775;
     STA.B $48                                                            ;8BD778;
@@ -10882,7 +10882,7 @@ CineFunc_Ending_ZebesDestruction1_CloudsOnTopBottom_Setup:
     dl $7E2000                                                           ;8BD79E;
     dw $4000                                                             ;8BD7A1;
     LDA.B #$02                                                           ;8BD7A3;
-    STA.W $420B                                                          ;8BD7A5;
+    STA.W HW_MDMAEN                                                      ;8BD7A5;
     REP #$30                                                             ;8BD7A8;
     JSL.L Clear_PaletteFXObjects                                         ;8BD7AA;
     JSR.W Clear_CinematicSpriteObjects                                   ;8BD7AE;
@@ -10961,7 +10961,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7E6000                                                           ;8BD84F;
     dw $4000                                                             ;8BD852;
     LDA.B #$02                                                           ;8BD854;
-    STA.W $420B                                                          ;8BD856;
+    STA.W HW_MDMAEN                                                      ;8BD856;
     LDA.B #$00                                                           ;8BD859;
     STA.W $2116                                                          ;8BD85B;
     LDA.B #$20                                                           ;8BD85E;
@@ -10973,7 +10973,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7E6000                                                           ;8BD86F;
     dw $4000                                                             ;8BD872;
     LDA.B #$02                                                           ;8BD874;
-    STA.W $420B                                                          ;8BD876;
+    STA.W HW_MDMAEN                                                      ;8BD876;
     REP #$30                                                             ;8BD879;
     LDA.W #Tiles_Big_Zebes_during_Zebes_Explosion>>8&$FF00               ;8BD87B;
     STA.B $48                                                            ;8BD87E;
@@ -10993,7 +10993,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7E6000                                                           ;8BD8A4;
     dw $4000                                                             ;8BD8A7;
     LDA.B #$02                                                           ;8BD8A9;
-    STA.W $420B                                                          ;8BD8AB;
+    STA.W HW_MDMAEN                                                      ;8BD8AB;
     LDA.B #$00                                                           ;8BD8AE;
     STA.W $2116                                                          ;8BD8B0;
     LDA.B #$40                                                           ;8BD8B3;
@@ -11005,7 +11005,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7F8000                                                           ;8BD8C4;
     dw $6000                                                             ;8BD8C7;
     LDA.B #$02                                                           ;8BD8C9;
-    STA.W $420B                                                          ;8BD8CB;
+    STA.W HW_MDMAEN                                                      ;8BD8CB;
     LDA.B #$00                                                           ;8BD8CE;
     STA.W $2116                                                          ;8BD8D0;
     LDA.B #$70                                                           ;8BD8D3;
@@ -11017,7 +11017,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7FE000                                                           ;8BD8E4;
     dw $0800                                                             ;8BD8E7;
     LDA.B #$02                                                           ;8BD8E9;
-    STA.W $420B                                                          ;8BD8EB;
+    STA.W HW_MDMAEN                                                      ;8BD8EB;
     LDA.B #$00                                                           ;8BD8EE;
     STA.W $2116                                                          ;8BD8F0;
     LDA.B #$74                                                           ;8BD8F3;
@@ -11029,7 +11029,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7FE800                                                           ;8BD904;
     dw $0800                                                             ;8BD907;
     LDA.B #$02                                                           ;8BD909;
-    STA.W $420B                                                          ;8BD90B;
+    STA.W HW_MDMAEN                                                      ;8BD90B;
     LDA.B #$00                                                           ;8BD90E;
     STA.W $2116                                                          ;8BD910;
     LDA.B #$78                                                           ;8BD913;
@@ -11041,7 +11041,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7FF000                                                           ;8BD924;
     dw $0800                                                             ;8BD927;
     LDA.B #$02                                                           ;8BD929;
-    STA.W $420B                                                          ;8BD92B;
+    STA.W HW_MDMAEN                                                      ;8BD92B;
     LDA.B #$00                                                           ;8BD92E;
     STA.W $2116                                                          ;8BD930;
     LDA.B #$7C                                                           ;8BD933;
@@ -11053,7 +11053,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7FF800                                                           ;8BD944;
     dw $0800                                                             ;8BD947;
     LDA.B #$02                                                           ;8BD949;
-    STA.W $420B                                                          ;8BD94B;
+    STA.W HW_MDMAEN                                                      ;8BD94B;
     LDA.B #$00                                                           ;8BD94E;
     STA.W $2116                                                          ;8BD950;
     LDA.B #$50                                                           ;8BD953;
@@ -11065,7 +11065,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7EA000                                                           ;8BD964;
     dw $1000                                                             ;8BD967;
     LDA.B #$02                                                           ;8BD969;
-    STA.W $420B                                                          ;8BD96B;
+    STA.W HW_MDMAEN                                                      ;8BD96B;
     LDA.B #$02                                                           ;8BD96E;
     STA.B $52                                                            ;8BD970;
     REP #$30                                                             ;8BD972;
@@ -11714,7 +11714,7 @@ CinematicFunction_Credits_Setup:
     dl $7FE800                                                           ;8BDF3C;
     dw $0100                                                             ;8BDF3F;
     LDA.B #$02                                                           ;8BDF41;
-    STA.W $420B                                                          ;8BDF43;
+    STA.W HW_MDMAEN                                                      ;8BDF43;
     LDA.B #$00                                                           ;8BDF46;
     STA.W $2116                                                          ;8BDF48;
     LDA.B #$24                                                           ;8BDF4B;
@@ -11726,7 +11726,7 @@ CinematicFunction_Credits_Setup:
     dl $7FF000                                                           ;8BDF5C;
     dw $0800                                                             ;8BDF5F;
     LDA.B #$02                                                           ;8BDF61;
-    STA.W $420B                                                          ;8BDF63;
+    STA.W HW_MDMAEN                                                      ;8BDF63;
     LDA.B #$00                                                           ;8BDF66;
     STA.W $2116                                                          ;8BDF68;
     LDA.B #$40                                                           ;8BDF6B;
@@ -11738,7 +11738,7 @@ CinematicFunction_Credits_Setup:
     dl $7FC000                                                           ;8BDF7C;
     dw $1000                                                             ;8BDF7F;
     LDA.B #$02                                                           ;8BDF81;
-    STA.W $420B                                                          ;8BDF83;
+    STA.W HW_MDMAEN                                                      ;8BDF83;
     LDA.B #$00                                                           ;8BDF86;
     STA.W $2116                                                          ;8BDF88;
     LDA.B #$60                                                           ;8BDF8B;
@@ -11750,7 +11750,7 @@ CinematicFunction_Credits_Setup:
     dl $7E6000                                                           ;8BDF9C;
     dw $4000                                                             ;8BDF9F;
     LDA.B #$02                                                           ;8BDFA1;
-    STA.W $420B                                                          ;8BDFA3;
+    STA.W HW_MDMAEN                                                      ;8BDFA3;
     LDA.B #$00                                                           ;8BDFA6;
     STA.W $2116                                                          ;8BDFA8;
     LDA.B #$50                                                           ;8BDFAB;
@@ -11762,7 +11762,7 @@ CinematicFunction_Credits_Setup:
     dl $7F0000                                                           ;8BDFBC;
     dw $2000                                                             ;8BDFBF;
     LDA.B #$02                                                           ;8BDFC1;
-    STA.W $420B                                                          ;8BDFC3;
+    STA.W HW_MDMAEN                                                      ;8BDFC3;
     LDA.B #$00                                                           ;8BDFC6;
     STA.W $2116                                                          ;8BDFC8;
     LDA.B #$4C                                                           ;8BDFCB;
@@ -11774,7 +11774,7 @@ CinematicFunction_Credits_Setup:
     dl $7FE000                                                           ;8BDFDC;
     dw $0800                                                             ;8BDFDF;
     LDA.B #$02                                                           ;8BDFE1;
-    STA.W $420B                                                          ;8BDFE3;
+    STA.W HW_MDMAEN                                                      ;8BDFE3;
     REP #$30                                                             ;8BDFE6;
     LDA.W #Tiles_PostCredits_SuperMetroid_Icon>>8&$FF00                  ;8BDFE8;
     STA.B $48                                                            ;8BDFEB;
@@ -11803,7 +11803,7 @@ CinematicFunction_Credits_Setup:
     dl $7E2000                                                           ;8BE02A;
     dw $4000                                                             ;8BE02D;
     LDA.B #$02                                                           ;8BE02F;
-    STA.W $420B                                                          ;8BE031;
+    STA.W HW_MDMAEN                                                      ;8BE031;
     BRA +                                                                ;8BE034;
 
 
@@ -11820,7 +11820,7 @@ CinematicFunction_Credits_Setup:
     dl $7F0000                                                           ;8BE04E;
     dw $4000                                                             ;8BE051;
     LDA.B #$02                                                           ;8BE053;
-    STA.W $420B                                                          ;8BE055;
+    STA.W HW_MDMAEN                                                      ;8BE055;
 
   + REP #$30                                                             ;8BE058;
     LDA.W #$0100                                                         ;8BE05A;
@@ -12616,10 +12616,10 @@ Instruction_DrawItemPercentageCount:
     LDA.W .tankValuesEnergy,X                                            ;8BE634;
     TAY                                                                  ;8BE637;
     LDA.W $0000,Y                                                        ;8BE638;
-    STA.W $4204                                                          ;8BE63B;
+    STA.W HW_WRDIV                                                       ;8BE63B;
     SEP #$20                                                             ;8BE63E;
     LDA.W .tankValuesEnergyDivisor,X                                     ;8BE640;
-    STA.W $4206                                                          ;8BE643;
+    STA.W HW_WRDIVB                                                      ;8BE643;
     NOP                                                                  ;8BE646;
     NOP                                                                  ;8BE647;
     NOP                                                                  ;8BE648;
@@ -12660,10 +12660,10 @@ Instruction_DrawItemPercentageCount:
     DEX                                                                  ;8BE67A;
     BPL .loopBeams                                                       ;8BE67B;
     LDA.B $12                                                            ;8BE67D;
-    STA.W $4204                                                          ;8BE67F;
+    STA.W HW_WRDIV                                                       ;8BE67F;
     SEP #$20                                                             ;8BE682;
     LDA.B #$0A                                                           ;8BE684;
-    STA.W $4206                                                          ;8BE686;
+    STA.W HW_WRDIVB                                                      ;8BE686;
     NOP                                                                  ;8BE689;
     NOP                                                                  ;8BE68A;
     NOP                                                                  ;8BE68B;
@@ -12673,12 +12673,12 @@ Instruction_DrawItemPercentageCount:
     NOP                                                                  ;8BE68F;
     REP #$20                                                             ;8BE690;
     LDA.W $4214                                                          ;8BE692;
-    STA.W $4204                                                          ;8BE695;
+    STA.W HW_WRDIV                                                       ;8BE695;
     LDA.W HW_RDMPY                                                       ;8BE698;
     STA.B $16                                                            ;8BE69B;
     SEP #$20                                                             ;8BE69D;
     LDA.B #$0A                                                           ;8BE69F;
-    STA.W $4206                                                          ;8BE6A1;
+    STA.W HW_WRDIVB                                                      ;8BE6A1;
     NOP                                                                  ;8BE6A4;
     NOP                                                                  ;8BE6A5;
     NOP                                                                  ;8BE6A6;
@@ -14514,10 +14514,10 @@ Instruction_CinematicSpriteObject_SpawnClearTime:
     LDY.W #CinematicSpriteObjectDefinitions_ClearTime                    ;8BF3CF;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BF3D2;
     LDA.W $09E0                                                          ;8BF3D5;
-    STA.W $4204                                                          ;8BF3D8;
+    STA.W HW_WRDIV                                                       ;8BF3D8;
     SEP #$20                                                             ;8BF3DB;
     LDA.B #$0A                                                           ;8BF3DD;
-    STA.W $4206                                                          ;8BF3DF;
+    STA.W HW_WRDIVB                                                      ;8BF3DF;
     NOP                                                                  ;8BF3E2;
     NOP                                                                  ;8BF3E3;
     NOP                                                                  ;8BF3E4;
@@ -14531,10 +14531,10 @@ Instruction_CinematicSpriteObject_SpawnClearTime:
     LDA.W HW_RDMPY                                                       ;8BF3F1;
     STA.W $0DEE                                                          ;8BF3F4;
     LDA.W $09DE                                                          ;8BF3F7;
-    STA.W $4204                                                          ;8BF3FA;
+    STA.W HW_WRDIV                                                       ;8BF3FA;
     SEP #$20                                                             ;8BF3FD;
     LDA.B #$0A                                                           ;8BF3FF;
-    STA.W $4206                                                          ;8BF401;
+    STA.W HW_WRDIVB                                                      ;8BF401;
     NOP                                                                  ;8BF404;
     NOP                                                                  ;8BF405;
     NOP                                                                  ;8BF406;

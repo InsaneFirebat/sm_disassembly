@@ -1506,7 +1506,7 @@ LoadInitialMenuTiles:
     dl Tiles_Menu_BG1_BG2                                                ;818DF4;
     dw $5600                                                             ;818DF7;
     LDA.B #$02                                                           ;818DF9;
-    STA.W $420B                                                          ;818DFB;
+    STA.W HW_MDMAEN                                                      ;818DFB;
     LDA.B #$00                                                           ;818DFE;
     STA.W $2116                                                          ;818E00;
     LDA.B #$30                                                           ;818E03;
@@ -1518,7 +1518,7 @@ LoadInitialMenuTiles:
     dl Tiles_PauseScreen_BG1_BG2                                         ;818E14;
     dw $2000                                                             ;818E17;
     LDA.B #$02                                                           ;818E19;
-    STA.W $420B                                                          ;818E1B;
+    STA.W HW_MDMAEN                                                      ;818E1B;
     LDA.B #$00                                                           ;818E1E;
     STA.W $2116                                                          ;818E20;
     LDA.B #$60                                                           ;818E23;
@@ -1530,7 +1530,7 @@ LoadInitialMenuTiles:
     dl Tiles_Menu_PauseScreen_Sprites                                    ;818E34;
     dw $2000                                                             ;818E37;
     LDA.B #$02                                                           ;818E39;
-    STA.W $420B                                                          ;818E3B;
+    STA.W HW_MDMAEN                                                      ;818E3B;
     LDA.B #$00                                                           ;818E3E;
     STA.W $2116                                                          ;818E40;
     LDA.B #$40                                                           ;818E43;
@@ -1542,7 +1542,7 @@ LoadInitialMenuTiles:
     dl Tiles_Beta_Minimap_Area_Select_BG3                                ;818E54;
     dw $0600                                                             ;818E57;
     LDA.B #$02                                                           ;818E59;
-    STA.W $420B                                                          ;818E5B;
+    STA.W HW_MDMAEN                                                      ;818E5B;
     PLP                                                                  ;818E5E;
     RTS                                                                  ;818E5F;
 
@@ -1750,7 +1750,7 @@ DebugGameOverMenu_Index5_Continue:
     dl Tiles_Standard_BG3                                                ;819096;
     dw $2000                                                             ;819099;
     LDA.B #$02                                                           ;81909B;
-    STA.W $420B                                                          ;81909D;
+    STA.W HW_MDMAEN                                                      ;81909D;
     REP #$30                                                             ;8190A0;
     LDA.W #$0010                                                         ;8190A2;
     STA.W $0998                                                          ;8190A5;
@@ -3655,10 +3655,10 @@ Draw_FileSelection_Health:
     ADC.W #$0008                                                         ;81A0A4;
     TAX                                                                  ;81A0A7;
     LDA.W $09C2                                                          ;81A0A8;
-    STA.W $4204                                                          ;81A0AB;
+    STA.W HW_WRDIV                                                       ;81A0AB;
     SEP #$20                                                             ;81A0AE;
     LDA.B #$64                                                           ;81A0B0;
-    STA.W $4206                                                          ;81A0B2;
+    STA.W HW_WRDIVB                                                      ;81A0B2;
     PHA                                                                  ;81A0B5;
     PLA                                                                  ;81A0B6;
     PHA                                                                  ;81A0B7;
@@ -3669,10 +3669,10 @@ Draw_FileSelection_Health:
     LDA.W HW_RDMPY                                                       ;81A0C0;
     STA.B $12                                                            ;81A0C3;
     LDA.W $09C4                                                          ;81A0C5;
-    STA.W $4204                                                          ;81A0C8;
+    STA.W HW_WRDIV                                                       ;81A0C8;
     SEP #$20                                                             ;81A0CB;
     LDA.B #$64                                                           ;81A0CD;
-    STA.W $4206                                                          ;81A0CF;
+    STA.W HW_WRDIVB                                                      ;81A0CF;
     PHA                                                                  ;81A0D2;
     PLA                                                                  ;81A0D3;
     PHA                                                                  ;81A0D4;
@@ -3715,10 +3715,10 @@ Draw_FileSelection_Health:
 .etanksDrawn:
     LDX.B $1A                                                            ;81A113;
     LDA.B $12                                                            ;81A115;
-    STA.W $4204                                                          ;81A117;
+    STA.W HW_WRDIV                                                       ;81A117;
     SEP #$20                                                             ;81A11A;
     LDA.B #$0A                                                           ;81A11C;
-    STA.W $4206                                                          ;81A11E;
+    STA.W HW_WRDIVB                                                      ;81A11E;
     PHA                                                                  ;81A121;
     PLA                                                                  ;81A122;
     PHA                                                                  ;81A123;
@@ -3746,10 +3746,10 @@ Draw_FileSelection_Time:
     BNE .return                                                          ;81A14E;
     STX.B $1A                                                            ;81A150;
     LDA.W $09E0                                                          ;81A152;
-    STA.W $4204                                                          ;81A155;
+    STA.W HW_WRDIV                                                       ;81A155;
     SEP #$20                                                             ;81A158;
     LDA.B #$0A                                                           ;81A15A;
-    STA.W $4206                                                          ;81A15C;
+    STA.W HW_WRDIVB                                                      ;81A15C;
     PHA                                                                  ;81A15F;
     PLA                                                                  ;81A160;
     PHA                                                                  ;81A161;
@@ -3773,10 +3773,10 @@ Draw_FileSelection_Time:
     LDY.W #Tilemap_FileSelect_colon                                      ;81A18A;
     JSR.W Load_Tilemap_in_Y_to_X_Coordinates                             ;81A18D;
     LDA.W $09DE                                                          ;81A190;
-    STA.W $4204                                                          ;81A193;
+    STA.W HW_WRDIV                                                       ;81A193;
     SEP #$20                                                             ;81A196;
     LDA.B #$0A                                                           ;81A198;
-    STA.W $4206                                                          ;81A19A;
+    STA.W HW_WRDIVB                                                      ;81A19A;
     PHA                                                                  ;81A19D;
     PLA                                                                  ;81A19E;
     PHA                                                                  ;81A19F;
@@ -4278,7 +4278,7 @@ FileSelectMap_Index4_13_PrepareTransitionToAreaSelectMap:
     JSR.W Setup_Initial_ExpandingSquareTransition_HDMA                   ;81A5DD;
     LDA.B #$0C                                                           ;81A5E0;
     STA.B $85                                                            ;81A5E2;
-    STA.W $420C                                                          ;81A5E4;
+    STA.W HW_HDMAEN                                                      ;81A5E4;
     JSR.W Config_Window1_ExpandingSquareTransition                       ;81A5E7;
     STZ.W $18B0                                                          ;81A5EA;
     STZ.W $18B1                                                          ;81A5ED;
@@ -4972,7 +4972,7 @@ FileSelectMap_Index7_AreaSelectMapToRoomSelectMap:
     JSR.W Setup_FileSelectMap_ExpandingSquareTransition_HDMA             ;81AB90;
     LDA.B #$0C                                                           ;81AB93;
     STA.B $85                                                            ;81AB95;
-    STA.W $420C                                                          ;81AB97;
+    STA.W HW_HDMAEN                                                      ;81AB97;
     REP #$20                                                             ;81AB9A;
     INC.W $0727                                                          ;81AB9C;
     LDA.W #$003B                                                         ;81AB9F;
@@ -5617,7 +5617,7 @@ FileSelectMap_Index14_PrepContractSquareTransToAreaSelect:
     SEP #$20                                                             ;81B087;
     LDA.B #$0C                                                           ;81B089;
     STA.B $85                                                            ;81B08B;
-    STA.W $420C                                                          ;81B08D;
+    STA.W HW_HDMAEN                                                      ;81B08D;
     LDA.B #$32                                                           ;81B090;
     STA.B $60                                                            ;81B092;
     STA.W $2123                                                          ;81B094;

@@ -44,8 +44,8 @@ SpawnEnemyProjectileY_ParameterA_XGraphics:
     STA.W $1993                                                          ;86802B;
     PHK                                                                  ;86802E;
     PLB                                                                  ;86802F;
-    LDA.W $0F96,X                                                        ;868030;
-    ORA.W $0F98,X                                                        ;868033;
+    LDA.W EnemyData.palette,X                                            ;868030;
+    ORA.W EnemyData.gfxOffset,X                                          ;868033;
     PHA                                                                  ;868036;
     TYX                                                                  ;868037;
     LDY.W #$0022                                                         ;868038;
@@ -1201,10 +1201,10 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
 
 
   + LDX.W $0DC4                                                          ;868758;
-    STX.W $4204                                                          ;86875B;
+    STX.W HW_WRDIV                                                       ;86875B;
     SEP #$20                                                             ;86875E;
     LDA.W $07A5                                                          ;868760;
-    STA.W $4206                                                          ;868763;
+    STA.W HW_WRDIVB                                                      ;868763;
     REP #$20                                                             ;868766;
     LDA.W $1A4B,Y                                                        ;868768;
     LSR A                                                                ;86876B;
@@ -1271,10 +1271,10 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
 
 .up:
     LDX.W $0DC4                                                          ;8687CC;
-    STX.W $4204                                                          ;8687CF;
+    STX.W HW_WRDIV                                                       ;8687CF;
     SEP #$20                                                             ;8687D2;
     LDA.W $07A5                                                          ;8687D4;
-    STA.W $4206                                                          ;8687D7;
+    STA.W HW_WRDIVB                                                      ;8687D7;
     REP #$20                                                             ;8687DA;
     LDA.W $1A4B,Y                                                        ;8687DC;
     LSR A                                                                ;8687DF;
@@ -1659,20 +1659,20 @@ Move_EnemyProjectile_Vertically:
 UNUSED_EnemyProjectile_868A39:
     JSL.L GenerateRandomNumber                                           ;868A39;
     LDX.W $0E54                                                          ;868A3D;
-    LDA.W $0F7E,X                                                        ;868A40;
+    LDA.W EnemyData.yPosition,X                                          ;868A40;
     CLC                                                                  ;868A43;
     ADC.W #$000C                                                         ;868A44;
     STA.W $1A93,Y                                                        ;868A47;
     ADC.W #$0048                                                         ;868A4A;
     STA.W $19DF,Y                                                        ;868A4D;
-    LDA.W $0FAE,X                                                        ;868A50;
+    LDA.W EnemyData.work3,X                                              ;868A50;
     STA.W $1ADB,Y                                                        ;868A53;
     LDA.W $05E5                                                          ;868A56;
     AND.W #$001F                                                         ;868A59;
     SEC                                                                  ;868A5C;
     SBC.W #$0010                                                         ;868A5D;
     CLC                                                                  ;868A60;
-    ADC.W $0F7A,X                                                        ;868A61;
+    ADC.W EnemyData.xPosition,X                                          ;868A61;
     STA.W $1A4B,Y                                                        ;868A64;
     LDA.W $1ADC,Y                                                        ;868A67;
     AND.W #$0006                                                         ;868A6A;
@@ -1740,13 +1740,13 @@ InstList_MetalSkreeParticle:
 
 InitAI_EnemyProjectile_MetalSkreeParticle_DownRight:
     LDX.W $0E54                                                          ;868ACD;
-    LDA.W $0F7E,X                                                        ;868AD0;
+    LDA.W EnemyData.yPosition,X                                          ;868AD0;
     SEC                                                                  ;868AD3;
     SBC.W #$0000                                                         ;868AD4;
     STA.W $1A93,Y                                                        ;868AD7;
     LDA.W #$FCFF                                                         ;868ADA;
     STA.W $1ADB,Y                                                        ;868ADD;
-    LDA.W $0F7A,X                                                        ;868AE0;
+    LDA.W EnemyData.xPosition,X                                          ;868AE0;
     CLC                                                                  ;868AE3;
     ADC.W #$0006                                                         ;868AE4;
     STA.W $1A4B,Y                                                        ;868AE7;
@@ -1757,13 +1757,13 @@ InitAI_EnemyProjectile_MetalSkreeParticle_DownRight:
 
 InitAI_EnemyProjectile_MetalSkreeParticle_UpRight:
     LDX.W $0E54                                                          ;868AF1;
-    LDA.W $0F7E,X                                                        ;868AF4;
+    LDA.W EnemyData.yPosition,X                                          ;868AF4;
     SEC                                                                  ;868AF7;
     SBC.W #$0000                                                         ;868AF8;
     STA.W $1A93,Y                                                        ;868AFB;
     LDA.W #$FBFF                                                         ;868AFE;
     STA.W $1ADB,Y                                                        ;868B01;
-    LDA.W $0F7A,X                                                        ;868B04;
+    LDA.W EnemyData.xPosition,X                                          ;868B04;
     CLC                                                                  ;868B07;
     ADC.W #$0006                                                         ;868B08;
     STA.W $1A4B,Y                                                        ;868B0B;
@@ -1774,13 +1774,13 @@ InitAI_EnemyProjectile_MetalSkreeParticle_UpRight:
 
 InitAI_EnemyProjectile_MetalSkreeParticle_DownLeft:
     LDX.W $0E54                                                          ;868B15;
-    LDA.W $0F7E,X                                                        ;868B18;
+    LDA.W EnemyData.yPosition,X                                          ;868B18;
     SEC                                                                  ;868B1B;
     SBC.W #$0000                                                         ;868B1C;
     STA.W $1A93,Y                                                        ;868B1F;
     LDA.W #$FCFF                                                         ;868B22;
     STA.W $1ADB,Y                                                        ;868B25;
-    LDA.W $0F7A,X                                                        ;868B28;
+    LDA.W EnemyData.xPosition,X                                          ;868B28;
     CLC                                                                  ;868B2B;
     ADC.W #$FFFA                                                         ;868B2C;
     STA.W $1A4B,Y                                                        ;868B2F;
@@ -1791,13 +1791,13 @@ InitAI_EnemyProjectile_MetalSkreeParticle_DownLeft:
 
 InitAI_EnemyProjectile_MetalSkreeParticle_UpLeft:
     LDX.W $0E54                                                          ;868B39;
-    LDA.W $0F7E,X                                                        ;868B3C;
+    LDA.W EnemyData.yPosition,X                                          ;868B3C;
     SEC                                                                  ;868B3F;
     SBC.W #$0000                                                         ;868B40;
     STA.W $1A93,Y                                                        ;868B43;
     LDA.W #$FBFF                                                         ;868B46;
     STA.W $1ADB,Y                                                        ;868B49;
-    LDA.W $0F7A,X                                                        ;868B4C;
+    LDA.W EnemyData.xPosition,X                                          ;868B4C;
     CLC                                                                  ;868B4F;
     ADC.W #$FFFA                                                         ;868B50;
     STA.W $1A4B,Y                                                        ;868B53;
@@ -2526,11 +2526,11 @@ InitAI_EnemyProjectile_CrocomiresProjectile:
     STA.W $1AB7,Y                                                        ;869029;
     LDA.W #$0001                                                         ;86902C;
     STA.W $1ADB,Y                                                        ;86902F;
-    LDA.W $0F7A,X                                                        ;869032;
+    LDA.W EnemyData.xPosition,X                                          ;869032;
     SEC                                                                  ;869035;
     SBC.W #$0020                                                         ;869036;
     STA.W $1A4B,Y                                                        ;869039;
-    LDA.W $0F7E,X                                                        ;86903C;
+    LDA.W EnemyData.yPosition,X                                          ;86903C;
     SEC                                                                  ;86903F;
     SBC.W #$0010                                                         ;869040;
     STA.W $1A93,Y                                                        ;869043;
@@ -4221,11 +4221,11 @@ InstList_EnemyProjectile_Shot_KraidRockSpit:
 InitAI_EnemyProjectile_KraidRockSpit:
     PHX                                                                  ;869CA3;
     LDX.W $0E54                                                          ;869CA4;
-    LDA.W $0F7A,X                                                        ;869CA7;
+    LDA.W EnemyData.xPosition,X                                          ;869CA7;
     CLC                                                                  ;869CAA;
     ADC.W #$0010                                                         ;869CAB;
     STA.W $1A4B,Y                                                        ;869CAE;
-    LDA.W $0F7E,X                                                        ;869CB1;
+    LDA.W EnemyData.yPosition,X                                          ;869CB1;
     SEC                                                                  ;869CB4;
     SBC.W #$0060                                                         ;869CB5;
     STA.W $1A93,Y                                                        ;869CB8;
@@ -4280,7 +4280,7 @@ Instruction_EnemyProjectile_KraidRisingRocks:
   + TXA                                                                  ;869D21;
     LDX.W $0E54                                                          ;869D22;
     CLC                                                                  ;869D25;
-    ADC.W $0F7A,X                                                        ;869D26;
+    ADC.W EnemyData.xPosition,X                                          ;869D26;
     STA.W $1A4B,Y                                                        ;869D29;
     LDA.W #$01B0                                                         ;869D2C;
     STA.W $1A93,Y                                                        ;869D2F;
@@ -4402,11 +4402,11 @@ InstList_EnemyProjectile_MiniKraidSpikes_Right:
 InitAI_EnemyProjectile_MiniKraidSpit:
     PHX                                                                  ;869DEC;
     LDX.W $0E54                                                          ;869DED;
-    LDA.W $0F7A,X                                                        ;869DF0;
+    LDA.W EnemyData.xPosition,X                                          ;869DF0;
     CLC                                                                  ;869DF3;
     ADC.L $7E7804,X                                                      ;869DF4;
     STA.W $1A4B,Y                                                        ;869DF8;
-    LDA.W $0F7E,X                                                        ;869DFB;
+    LDA.W EnemyData.yPosition,X                                          ;869DFB;
     SEC                                                                  ;869DFE;
     SBC.W #$0010                                                         ;869DFF;
     STA.W $1A93,Y                                                        ;869E02;
@@ -4464,9 +4464,9 @@ InitAI_EnemyProjectile_MiniKraidSpikes_Common:
     LDA.W .data,X                                                        ;869E59;
     STA.B $12                                                            ;869E5C;
     LDX.W $0E54                                                          ;869E5E;
-    LDA.W $0F7A,X                                                        ;869E61;
+    LDA.W EnemyData.xPosition,X                                          ;869E61;
     STA.W $1A4B,Y                                                        ;869E64;
-    LDA.W $0F7E,X                                                        ;869E67;
+    LDA.W EnemyData.yPosition,X                                          ;869E67;
     CLC                                                                  ;869E6A;
     ADC.B $12                                                            ;869E6B;
     STA.W $1A93,Y                                                        ;869E6D;
@@ -4515,21 +4515,21 @@ InstList_EnemyProjectile_AlcoonFireball:
 InitAI_EnemyProjectile_AlcoonFireball:
     PHX                                                                  ;869EB2;
     LDX.W $0E54                                                          ;869EB3;
-    LDA.W $0F7E,X                                                        ;869EB6;
+    LDA.W EnemyData.yPosition,X                                          ;869EB6;
     SEC                                                                  ;869EB9;
     SBC.W #$000C                                                         ;869EBA;
     STA.W $1A93,Y                                                        ;869EBD;
     LDA.W #$FC00                                                         ;869EC0;
     STA.W $1AB7,Y                                                        ;869EC3;
-    LDA.W $0F7A,X                                                        ;869EC6;
+    LDA.W EnemyData.xPosition,X                                          ;869EC6;
     SEC                                                                  ;869EC9;
     SBC.W #$0010                                                         ;869ECA;
     STA.W $1A4B,Y                                                        ;869ECD;
-    LDA.W $0FAE,X                                                        ;869ED0;
+    LDA.W EnemyData.work3,X                                              ;869ED0;
     BMI +                                                                ;869ED3;
     LDA.W #$0400                                                         ;869ED5;
     STA.W $1AB7,Y                                                        ;869ED8;
-    LDA.W $0F7A,X                                                        ;869EDB;
+    LDA.W EnemyData.xPosition,X                                          ;869EDB;
     CLC                                                                  ;869EDE;
     ADC.W #$0010                                                         ;869EDF;
     STA.W $1A4B,Y                                                        ;869EE2;
@@ -4719,13 +4719,13 @@ InitAI_EnemyProjectile_Pirate_MotherBrain_Laser:
     LDA.B $14                                                            ;86A027;
     STA.W $1A93,Y                                                        ;86A029;
     LDX.W $0E54                                                          ;86A02C;
-    LDA.W $0F78,X                                                        ;86A02F;
+    LDA.W EnemyData.pId,X                                                ;86A02F;
     TAX                                                                  ;86A032;
     LDA.L $A00006,X                                                      ;86A033;
     ORA.W #$1000                                                         ;86A037;
     STA.W $1BD7,Y                                                        ;86A03A;
     LDX.W $0E54                                                          ;86A03D;
-    LDA.W $0FB4,X                                                        ;86A040;
+    LDA.W EnemyData.initParam0,X                                         ;86A040;
     STA.W $1AFF,Y                                                        ;86A043;
     LDA.W #$0067                                                         ;86A046;
     JSL.L QueueSound_Lib2_Max6                                           ;86A049;
@@ -5596,11 +5596,11 @@ InitAI_EnemyProjectile_BombTorizoContinuousDrool:
     STA.W $1B47,Y                                                        ;86A5E5;
     JSL.L GenerateRandomNumber                                           ;86A5E8;
     LDX.W $0E54                                                          ;86A5EC;
-    LDA.W $0F7E,X                                                        ;86A5EF;
+    LDA.W EnemyData.yPosition,X                                          ;86A5EF;
     CLC                                                                  ;86A5F2;
     ADC.W #$FFFB                                                         ;86A5F3;
     STA.W $1A93,Y                                                        ;86A5F6;
-    BIT.W $0FB4,X                                                        ;86A5F9;
+    BIT.W EnemyData.initParam0,X                                         ;86A5F9;
     BVC .checkLeft                                                       ;86A5FC;
     LDA.W $05E5                                                          ;86A5FE;
     AND.W #$01FE                                                         ;86A601;
@@ -5633,9 +5633,9 @@ InitAI_EnemyProjectile_BombTorizoContinuousDrool:
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X                 ;86A628;
     STA.W $1ADB,Y                                                        ;86A62C;
     LDX.W $0E54                                                          ;86A62F;
-    BIT.W $0FB4,X                                                        ;86A632;
+    BIT.W EnemyData.initParam0,X                                         ;86A632;
     BMI .move                                                            ;86A635;
-    LDA.W $0F7A,X                                                        ;86A637;
+    LDA.W EnemyData.xPosition,X                                          ;86A637;
     CLC                                                                  ;86A63A;
     ADC.W #$FFF8                                                         ;86A63B;
     STA.W $1A4B,Y                                                        ;86A63E;
@@ -5643,7 +5643,7 @@ InitAI_EnemyProjectile_BombTorizoContinuousDrool:
 
 
 .move:
-    LDA.W $0F7A,X                                                        ;86A642;
+    LDA.W EnemyData.xPosition,X                                          ;86A642;
     CLC                                                                  ;86A645;
     ADC.W #$0008                                                         ;86A646;
     STA.W $1A4B,Y                                                        ;86A649;
@@ -5668,7 +5668,7 @@ InitAI_EnemyProjectile_BombTorizoInitialDrool:
     LDA.W $05E5                                                          ;86A66A;
     AND.W #$0003                                                         ;86A66D;
     CLC                                                                  ;86A670;
-    ADC.W $0F7E,X                                                        ;86A671;
+    ADC.W EnemyData.yPosition,X                                          ;86A671;
     ADC.W #$FFFB                                                         ;86A674;
     STA.W $1A93,Y                                                        ;86A677;
     LDA.W $05E5                                                          ;86A67A;
@@ -5678,10 +5678,10 @@ InitAI_EnemyProjectile_BombTorizoInitialDrool:
     JSL.L GenerateRandomNumber                                           ;86A686;
     LDA.W $05E5                                                          ;86A68A;
     AND.W #$0003                                                         ;86A68D;
-    BIT.W $0FB4,X                                                        ;86A690;
+    BIT.W EnemyData.initParam0,X                                         ;86A690;
     BVC .notTurning                                                      ;86A693;
     CLC                                                                  ;86A695;
-    ADC.W $0F7A,X                                                        ;86A696;
+    ADC.W EnemyData.xPosition,X                                          ;86A696;
     STA.W $1A4B,Y                                                        ;86A699;
     LDA.W #$0000                                                         ;86A69C;
     STA.W $1AB7,Y                                                        ;86A69F;
@@ -5691,7 +5691,7 @@ InitAI_EnemyProjectile_BombTorizoInitialDrool:
 .notTurning:
     BMI .facingRight                                                     ;86A6A3;
     CLC                                                                  ;86A6A5;
-    ADC.W $0F7A,X                                                        ;86A6A6;
+    ADC.W EnemyData.xPosition,X                                          ;86A6A6;
     ADC.W #$FFF8                                                         ;86A6A9;
     STA.W $1A4B,Y                                                        ;86A6AC;
     LDA.W #$0000                                                         ;86A6AF;
@@ -5701,7 +5701,7 @@ InitAI_EnemyProjectile_BombTorizoInitialDrool:
 
 .facingRight:
     CLC                                                                  ;86A6B6;
-    ADC.W $0F7A,X                                                        ;86A6B7;
+    ADC.W EnemyData.xPosition,X                                          ;86A6B7;
     ADC.W #$0008                                                         ;86A6BA;
     STA.W $1A4B,Y                                                        ;86A6BD;
     LDA.W #$0000                                                         ;86A6C0;
@@ -5736,11 +5736,11 @@ UNUSED_InitAI_EnemyProjectile_BombTorizo_86A6C7:
 
 InitAI_EnemyProjectile_BombTorizoExplosiveSwipe:
     LDX.W $0E54                                                          ;86A6F6;
-    LDA.W $0F7A,X                                                        ;86A6F9;
+    LDA.W EnemyData.xPosition,X                                          ;86A6F9;
     STA.B $12                                                            ;86A6FC;
-    LDA.W $0F7E,X                                                        ;86A6FE;
+    LDA.W EnemyData.yPosition,X                                          ;86A6FE;
     STA.B $14                                                            ;86A701;
-    BIT.W $0FB4,X                                                        ;86A703;
+    BIT.W EnemyData.initParam0,X                                         ;86A703;
     BMI .facingRight                                                     ;86A706;
     LDX.W $1993                                                          ;86A708;
     LDA.W .Xpositions,X                                                  ;86A70B;
@@ -5845,11 +5845,11 @@ InitAI_EnemyProj_BombTorizoChozoBreaking:
 
 InitAI_EnemyProjectile_BombTorizoLowHealthExplosion:
     LDX.W $0E54                                                          ;86A81B;
-    LDA.W $0F7A,X                                                        ;86A81E;
+    LDA.W EnemyData.xPosition,X                                          ;86A81E;
     STA.W $1A4B,Y                                                        ;86A821;
-    LDA.W $0F7E,X                                                        ;86A824;
+    LDA.W EnemyData.yPosition,X                                          ;86A824;
     STA.W $1A93,Y                                                        ;86A827;
-    BIT.W $0FB4,X                                                        ;86A82A;
+    BIT.W EnemyData.initParam0,X                                         ;86A82A;
     BMI .facingRight                                                     ;86A82D;
     INC.W $1993                                                          ;86A82F;
     INC.W $1993                                                          ;86A832;
@@ -5879,10 +5879,10 @@ InitAI_EnemyProjectile_BombTorizoLowHealthExplosion:
 
 InitAI_EnemyProjectile_TorizoDeathExplosion:
     LDX.W $0E54                                                          ;86A871;
-    LDA.W $0F7A,X                                                        ;86A874;
+    LDA.W EnemyData.xPosition,X                                          ;86A874;
     STA.W $1A4B,Y                                                        ;86A877;
     STA.W $1AFF,Y                                                        ;86A87A;
-    LDA.W $0F7E,X                                                        ;86A87D;
+    LDA.W EnemyData.yPosition,X                                          ;86A87D;
     STA.W $1A93,Y                                                        ;86A880;
     STA.W $1B23,Y                                                        ;86A883;
     RTS                                                                  ;86A886;
@@ -6327,11 +6327,11 @@ InitAI_EnemyProjectile_TorizoChozoOrbs_Egg_EyeBeam_Common:
 
 InitAI_EnemyProjectile_BombTorizoChozoOrbs:
     LDX.W $0E54                                                          ;86ABEB;
-    LDA.W $0F7A,X                                                        ;86ABEE;
+    LDA.W EnemyData.xPosition,X                                          ;86ABEE;
     STA.B $12                                                            ;86ABF1;
-    LDA.W $0F7E,X                                                        ;86ABF3;
+    LDA.W EnemyData.yPosition,X                                          ;86ABF3;
     STA.B $14                                                            ;86ABF6;
-    BIT.W $0FB4,X                                                        ;86ABF8;
+    BIT.W EnemyData.initParam0,X                                         ;86ABF8;
     BMI .facingRight                                                     ;86ABFB;
     LDX.W #.left                                                         ;86ABFD;
     BRA .gotoCommon                                                      ;86AC00;
@@ -6372,13 +6372,13 @@ UNUSED_InitializeTorizoChozoOrbToTargetSamus:
     ASL A                                                                ;86AC44;
     STA.W $1ADB,Y                                                        ;86AC45;
     LDX.W $0E54                                                          ;86AC48;
-    LDA.W $0F7E,X                                                        ;86AC4B;
+    LDA.W EnemyData.yPosition,X                                          ;86AC4B;
     CLC                                                                  ;86AC4E;
     ADC.W #$FFD8                                                         ;86AC4F;
     STA.W $1A93,Y                                                        ;86AC52;
-    BIT.W $0FB4,X                                                        ;86AC55;
+    BIT.W EnemyData.initParam0,X                                         ;86AC55;
     BMI .facingRight                                                     ;86AC58;
-    LDA.W $0F7A,X                                                        ;86AC5A;
+    LDA.W EnemyData.xPosition,X                                          ;86AC5A;
     CLC                                                                  ;86AC5D;
     ADC.W #$FFE5                                                         ;86AC5E;
     STA.W $1A4B,Y                                                        ;86AC61;
@@ -6388,7 +6388,7 @@ UNUSED_InitializeTorizoChozoOrbToTargetSamus:
 
 
 .facingRight:
-    LDA.W $0F7A,X                                                        ;86AC6B;
+    LDA.W EnemyData.xPosition,X                                          ;86AC6B;
     CLC                                                                  ;86AC6E;
     ADC.W #$001B                                                         ;86AC6F;
     STA.W $1A4B,Y                                                        ;86AC72;
@@ -6399,11 +6399,11 @@ UNUSED_InitializeTorizoChozoOrbToTargetSamus:
 
 InitAI_EnemyProjectile_GoldenTorizosChozoOrbs:
     LDX.W $0E54                                                          ;86AC7C;
-    LDA.W $0F7A,X                                                        ;86AC7F;
+    LDA.W EnemyData.xPosition,X                                          ;86AC7F;
     STA.B $12                                                            ;86AC82;
-    LDA.W $0F7E,X                                                        ;86AC84;
+    LDA.W EnemyData.yPosition,X                                          ;86AC84;
     STA.B $14                                                            ;86AC87;
-    BIT.W $0FB4,X                                                        ;86AC89;
+    BIT.W EnemyData.initParam0,X                                         ;86AC89;
     BMI .facingRight                                                     ;86AC8C;
     LDX.W #.left                                                         ;86AC8E;
     BRA .gotoCommon                                                      ;86AC91;
@@ -6655,13 +6655,13 @@ InitAI_EnemyProjectile_TorizoSonicBoom:
     LDA.W #$0014                                                         ;86AE29;
 
   + CLC                                                                  ;86AE2C;
-    ADC.W $0F7E,X                                                        ;86AE2D;
+    ADC.W EnemyData.yPosition,X                                          ;86AE2D;
     STA.W $1A93,Y                                                        ;86AE30;
     LDA.W #$0000                                                         ;86AE33;
     STA.W $1ADB,Y                                                        ;86AE36;
-    BIT.W $0FB4,X                                                        ;86AE39;
+    BIT.W EnemyData.initParam0,X                                         ;86AE39;
     BMI .facingRight                                                     ;86AE3C;
-    LDA.W $0F7A,X                                                        ;86AE3E;
+    LDA.W EnemyData.xPosition,X                                          ;86AE3E;
     CLC                                                                  ;86AE41;
     ADC.W #$FFE0                                                         ;86AE42;
     STA.W $1A4B,Y                                                        ;86AE45;
@@ -6673,7 +6673,7 @@ InitAI_EnemyProjectile_TorizoSonicBoom:
 
 
 .facingRight:
-    LDA.W $0F7A,X                                                        ;86AE55;
+    LDA.W EnemyData.xPosition,X                                          ;86AE55;
     CLC                                                                  ;86AE58;
     ADC.W #$0020                                                         ;86AE59;
     STA.W $1A4B,Y                                                        ;86AE5C;
@@ -6770,11 +6770,11 @@ UNUSED_InstList_EnemyProj_SpikeClearingExplosions_86AEDC:
 
 InitAI_EnemyProj_WreckedShipChozoSpikeClearingFootsteps:
     LDX.W $0E54                                                          ;86AEFC;
-    LDA.W $0F7A,X                                                        ;86AEFF;
+    LDA.W EnemyData.xPosition,X                                          ;86AEFF;
     CLC                                                                  ;86AF02;
     ADC.W $1993                                                          ;86AF03;
     STA.W $1A4B,Y                                                        ;86AF06;
-    LDA.W $0F7E,X                                                        ;86AF09;
+    LDA.W EnemyData.yPosition,X                                          ;86AF09;
     CLC                                                                  ;86AF0C;
     ADC.W #$001C                                                         ;86AF0D;
     STA.W $1A93,Y                                                        ;86AF10;
@@ -6819,11 +6819,11 @@ InitAI_EnemyProjectile_TourianStatueDustClouds:
 
 InitAI_EnemyProjectile_TorizoLandingDustCloud_RightFoot:
     LDX.W $0E54                                                          ;86AF50;
-    LDA.W $0F7E,X                                                        ;86AF53;
+    LDA.W EnemyData.yPosition,X                                          ;86AF53;
     CLC                                                                  ;86AF56;
     ADC.W #$0030                                                         ;86AF57;
     STA.W $1A93,Y                                                        ;86AF5A;
-    LDA.W $0F7A,X                                                        ;86AF5D;
+    LDA.W EnemyData.xPosition,X                                          ;86AF5D;
     CLC                                                                  ;86AF60;
     ADC.W #$0018                                                         ;86AF61;
     STA.W $1A4B,Y                                                        ;86AF64;
@@ -6892,11 +6892,11 @@ InstList_EnemyProjectile_TorizoLandingDustCloud_LeftFoot:
 
 InitAI_EnemyProjectile_TorizoLandingDustCloud_LeftFoot:
     LDX.W $0E54                                                          ;86AFCD;
-    LDA.W $0F7E,X                                                        ;86AFD0;
+    LDA.W EnemyData.yPosition,X                                          ;86AFD0;
     CLC                                                                  ;86AFD3;
     ADC.W #$0030                                                         ;86AFD4;
     STA.W $1A93,Y                                                        ;86AFD7;
-    LDA.W $0F7A,X                                                        ;86AFDA;
+    LDA.W EnemyData.xPosition,X                                          ;86AFDA;
     SEC                                                                  ;86AFDD;
     SBC.W #$0018                                                         ;86AFDE;
     STA.W $1A4B,Y                                                        ;86AFE1;
@@ -6923,16 +6923,16 @@ EnemyProjectile_TorizoLandingDustCloud_LeftFoot:
 
 InitAI_EnemyProjectile_GoldenTorizoEgg:
     LDX.W $0E54                                                          ;86B001;
-    LDA.W $0F7A,X                                                        ;86B004;
+    LDA.W EnemyData.xPosition,X                                          ;86B004;
     STA.B $12                                                            ;86B007;
-    LDA.W $0F7E,X                                                        ;86B009;
+    LDA.W EnemyData.yPosition,X                                          ;86B009;
     STA.B $14                                                            ;86B00C;
     LDA.L GenerateRandomNumber                                           ;86B00E; >_<
     AND.W #$001F                                                         ;86B012;
     CLC                                                                  ;86B015;
     ADC.W #$0040                                                         ;86B016;
     STA.W $1B23,Y                                                        ;86B019;
-    LDA.W $0FB4,X                                                        ;86B01C;
+    LDA.W EnemyData.initParam0,X                                         ;86B01C;
     STA.W $1AFF,Y                                                        ;86B01F;
     BMI .right                                                           ;86B022;
     LDX.W #.leftwards                                                    ;86B024;
@@ -7210,11 +7210,11 @@ InitAI_EnemyProjectile_GoldenTorizoSuperMissile:
     LDA.W $0E54                                                          ;86B1CE;
     STA.W $1AFF,Y                                                        ;86B1D1;
     TAX                                                                  ;86B1D4;
-    LDA.W $0F7A,X                                                        ;86B1D5;
+    LDA.W EnemyData.xPosition,X                                          ;86B1D5;
     STA.B $12                                                            ;86B1D8;
-    LDA.W $0F7E,X                                                        ;86B1DA;
+    LDA.W EnemyData.yPosition,X                                          ;86B1DA;
     STA.B $14                                                            ;86B1DD;
-    BIT.W $0FB4,X                                                        ;86B1DF;
+    BIT.W EnemyData.initParam0,X                                         ;86B1DF;
     BMI .facingRight                                                     ;86B1E2;
     LDX.W #$0000                                                         ;86B1E4;
     BRA +                                                                ;86B1E7;
@@ -7245,11 +7245,11 @@ InitAI_EnemyProjectile_GoldenTorizoSuperMissile:
 
 PreInstruction_EnemyProjectile_GoldenTorizoSuperMissile_Held:
     LDY.W $1AFF,X                                                        ;86B20D;
-    LDA.W $0F7A,Y                                                        ;86B210;
+    LDA.W EnemyData.xPosition,Y                                          ;86B210;
     STA.B $12                                                            ;86B213;
-    LDA.W $0F7E,Y                                                        ;86B215;
+    LDA.W EnemyData.yPosition,Y                                          ;86B215;
     STA.B $14                                                            ;86B218;
-    LDA.W $0FB4,Y                                                        ;86B21A;
+    LDA.W EnemyData.initParam0,Y                                         ;86B21A;
     BMI .facingRight                                                     ;86B21D;
     LDA.W #$FFE0                                                         ;86B21F;
     BRA +                                                                ;86B222;
@@ -7414,11 +7414,11 @@ EnemyProjectile_GoldenTorizoSuperMissile:
 
 InitAI_EnemyProjectile_GoldenTorizoEyeBeam:
     LDX.W $0E54                                                          ;86B328;
-    LDA.W $0F7A,X                                                        ;86B32B;
+    LDA.W EnemyData.xPosition,X                                          ;86B32B;
     STA.B $12                                                            ;86B32E;
-    LDA.W $0F7E,X                                                        ;86B330;
+    LDA.W EnemyData.yPosition,X                                          ;86B330;
     STA.B $14                                                            ;86B333;
-    BIT.W $0FB4,X                                                        ;86B335;
+    BIT.W EnemyData.initParam0,X                                         ;86B335;
     BMI .facingRight                                                     ;86B338;
     LDX.W #.leftwards                                                    ;86B33A;
     BRA +                                                                ;86B33D;
@@ -7435,7 +7435,7 @@ InitAI_EnemyProjectile_GoldenTorizoEyeBeam:
     CLC                                                                  ;86B350;
     ADC.W #$00C0                                                         ;86B351;
     LDX.W $0E54                                                          ;86B354;
-    BIT.W $0FB4,X                                                        ;86B357;
+    BIT.W EnemyData.initParam0,X                                         ;86B357;
     BMI .facingRight2                                                    ;86B35A;
     CLC                                                                  ;86B35C;
     ADC.W #$0080                                                         ;86B35D;
@@ -7694,15 +7694,15 @@ InstList_EnemyProjectile_DragonFireball_Falling_Right:
 
 InitAI_EnemyProjectile_DragonFireball:
     LDX.W $0E54                                                          ;86B4EF;
-    LDA.W $0F7E,X                                                        ;86B4F2;
+    LDA.W EnemyData.yPosition,X                                          ;86B4F2;
     SEC                                                                  ;86B4F5;
     SBC.W #$001C                                                         ;86B4F6;
     STA.W $1A93,Y                                                        ;86B4F9;
     LDA.W #$FC3F                                                         ;86B4FC;
     STA.W $1ADB,Y                                                        ;86B4FF;
-    BIT.W $0FA8,X                                                        ;86B502;
+    BIT.W EnemyData.work0,X                                              ;86B502;
     BPL .pointer                                                         ;86B505;
-    LDA.W $0F7A,X                                                        ;86B507;
+    LDA.W EnemyData.xPosition,X                                          ;86B507;
     CLC                                                                  ;86B50A;
     ADC.W #$FFF4                                                         ;86B50B;
     STA.W $1A4B,Y                                                        ;86B50E;
@@ -7714,7 +7714,7 @@ InitAI_EnemyProjectile_DragonFireball:
 
 
 .pointer:
-    LDA.W $0F7A,X                                                        ;86B51E;
+    LDA.W EnemyData.xPosition,X                                          ;86B51E;
     CLC                                                                  ;86B521;
     ADC.W #$000C                                                         ;86B522;
     STA.W $1A4B,Y                                                        ;86B525;
@@ -8619,13 +8619,13 @@ InstList_EnemyProjectile_PuromiBody:
 
 InitAI_EnemyProjectile_PuromiBody:
     LDX.W $0E54                                                          ;86BB92;
-    LDA.W $0F7A,X                                                        ;86BB95;
+    LDA.W EnemyData.xPosition,X                                          ;86BB95;
     STA.W $1A4B,Y                                                        ;86BB98;
-    LDA.W $0F7C,X                                                        ;86BB9B;
+    LDA.W EnemyData.xSubPosition,X                                       ;86BB9B;
     STA.W $1A27,Y                                                        ;86BB9E;
-    LDA.W $0F7E,X                                                        ;86BBA1;
+    LDA.W EnemyData.yPosition,X                                          ;86BBA1;
     STA.W $1A93,Y                                                        ;86BBA4;
-    LDA.W $0F80,X                                                        ;86BBA7;
+    LDA.W EnemyData.ySubPosition,X                                       ;86BBA7;
     STA.W $1A6F,Y                                                        ;86BBAA;
     PHX                                                                  ;86BBAD;
     LDA.L $7E8014,X                                                      ;86BBAE;
@@ -8668,13 +8668,13 @@ InitAI_EnemyProjectile_NorfairLavaquakeRocks:
     LDA.W $1995                                                          ;86BBED;
     STA.W $1AB7,Y                                                        ;86BBF0;
     LDX.W $0E54                                                          ;86BBF3;
-    LDA.W $0F7A,X                                                        ;86BBF6;
+    LDA.W EnemyData.xPosition,X                                          ;86BBF6;
     STA.W $1A4B,Y                                                        ;86BBF9;
-    LDA.W $0F7C,X                                                        ;86BBFC;
+    LDA.W EnemyData.xSubPosition,X                                       ;86BBFC;
     STA.W $1A27,Y                                                        ;86BBFF;
-    LDA.W $0F7E,X                                                        ;86BC02;
+    LDA.W EnemyData.yPosition,X                                          ;86BC02;
     STA.W $1A93,Y                                                        ;86BC05;
-    LDA.W $0F80,X                                                        ;86BC08;
+    LDA.W EnemyData.ySubPosition,X                                       ;86BC08;
     STA.W $1A6F,Y                                                        ;86BC0B;
     RTS                                                                  ;86BC0E;
 
@@ -8927,11 +8927,11 @@ InitAI_EnemyProjectile_ShaktoolsAttack_Middle_Back:
 
 InitAI_EnemyProjectile_ShaktoolsAttack_Front:
     LDX.W $0E54                                                          ;86BDA2;
-    LDA.W $0F7A,X                                                        ;86BDA5;
+    LDA.W EnemyData.xPosition,X                                          ;86BDA5;
     STA.W $1A4B,Y                                                        ;86BDA8;
-    LDA.W $0F7E,X                                                        ;86BDAB;
+    LDA.W EnemyData.yPosition,X                                          ;86BDAB;
     STA.W $1A93,Y                                                        ;86BDAE;
-    LDA.W $0FAE,X                                                        ;86BDB1;
+    LDA.W EnemyData.work3,X                                              ;86BDB1;
     AND.W #$00FF                                                         ;86BDB4;
     ASL A                                                                ;86BDB7;
     TAX                                                                  ;86BDB8;
@@ -9525,7 +9525,7 @@ Check_for_Bomb_Collision_with_Rectangle:
 
 
 Check_for_Enemy_Collision_with_Rectangle:
-    LDA.W $0F7A,X                                                        ;86C209;
+    LDA.W EnemyData.xPosition,X                                          ;86C209;
     SEC                                                                  ;86C20C;
     SBC.B $12                                                            ;86C20D;
     BPL +                                                                ;86C20F;
@@ -9533,12 +9533,12 @@ Check_for_Enemy_Collision_with_Rectangle:
     INC A                                                                ;86C214;
 
   + SEC                                                                  ;86C215;
-    SBC.W $0F82,X                                                        ;86C216;
+    SBC.W EnemyData.xHitboxRadius,X                                      ;86C216;
     BCC +                                                                ;86C219;
     CMP.B $16                                                            ;86C21B;
     BCS .returnNoCollision                                               ;86C21D;
 
-  + LDA.W $0F7E,X                                                        ;86C21F;
+  + LDA.W EnemyData.yPosition,X                                          ;86C21F;
     SEC                                                                  ;86C222;
     SBC.B $14                                                            ;86C223;
     BPL +                                                                ;86C225;
@@ -9546,7 +9546,7 @@ Check_for_Enemy_Collision_with_Rectangle:
     INC A                                                                ;86C22A;
 
   + SEC                                                                  ;86C22B;
-    SBC.W $0F84,X                                                        ;86C22C;
+    SBC.W EnemyData.yHitboxRadius,X                                      ;86C22C;
     BCC .returnCollision                                                 ;86C22F;
     CMP.B $18                                                            ;86C231;
     BCC .returnCollision                                                 ;86C233;
@@ -9766,14 +9766,14 @@ Handle_OnionRing_Collision_with_BabyMetroid:
     TAX                                                                  ;86C391;
     LDA.W #$0010                                                         ;86C392;
     STA.L $7E780C,X                                                      ;86C395;
-    LDA.W $0F8C,X                                                        ;86C399;
+    LDA.W EnemyData.health,X                                             ;86C399;
     SEC                                                                  ;86C39C;
     SBC.W #$0050                                                         ;86C39D;
     BPL .storeHealth                                                     ;86C3A0;
     LDA.W #$0000                                                         ;86C3A2;
 
 .storeHealth:
-    STA.W $0F8C,X                                                        ;86C3A5;
+    STA.W EnemyData.health,X                                             ;86C3A5;
     RTS                                                                  ;86C3A8;
 
 
@@ -9782,7 +9782,7 @@ Check_for_Collision_with_BabyMetroid:
     LDA.L $7E7854                                                        ;86C3AA;
     BEQ .return                                                          ;86C3AE;
     TAY                                                                  ;86C3B0;
-    LDA.W $0F8C,Y                                                        ;86C3B1;
+    LDA.W EnemyData.health,Y                                             ;86C3B1;
     BEQ .delete                                                          ;86C3B4;
     PHX                                                                  ;86C3B6;
     JSR.W Setup_Variables_for_EnemyProjectile_Collision_Detection        ;86C3B7;
@@ -11361,7 +11361,7 @@ InitAI_EnemyProjectile_KiHunterAcidSpit_Left:
     LDX.W $0E54                                                          ;86CF91;
     LDA.W #$FD00                                                         ;86CF94;
     STA.W $1AB7,Y                                                        ;86CF97;
-    LDA.W $0F7A,X                                                        ;86CF9A;
+    LDA.W EnemyData.xPosition,X                                          ;86CF9A;
     SEC                                                                  ;86CF9D;
     SBC.W #$0016                                                         ;86CF9E;
     STA.W $1A4B,Y                                                        ;86CFA1;
@@ -11373,7 +11373,7 @@ InitAI_EnemyProjectile_KiHunterAcidSpit_Right:
     LDX.W $0E54                                                          ;86CFA7;
     LDA.W #$0300                                                         ;86CFAA;
     STA.W $1AB7,Y                                                        ;86CFAD;
-    LDA.W $0F7A,X                                                        ;86CFB0;
+    LDA.W EnemyData.xPosition,X                                          ;86CFB0;
     CLC                                                                  ;86CFB3;
     ADC.W #$0016                                                         ;86CFB4;
     STA.W $1A4B,Y                                                        ;86CFB7;
@@ -11381,7 +11381,7 @@ InitAI_EnemyProjectile_KiHunterAcidSpit_Right:
 InitAI_EnemyProjectile_KiHunterAcidSpit__Common:
     LDA.W #$0000                                                         ;86CFBA;
     STA.W $1ADB,Y                                                        ;86CFBD;
-    LDA.W $0F7E,X                                                        ;86CFC0;
+    LDA.W EnemyData.yPosition,X                                          ;86CFC0;
     SEC                                                                  ;86CFC3;
     SBC.W #$0010                                                         ;86CFC4;
     STA.W $1A93,Y                                                        ;86CFC7;
@@ -11516,9 +11516,9 @@ InitAI_EnemyProjectile_KagoBug:
     LDA.W $0E54                                                          ;86D088;
     STA.W $1B23,Y                                                        ;86D08B;
     TAX                                                                  ;86D08E;
-    LDA.W $0F7A,X                                                        ;86D08F;
+    LDA.W EnemyData.xPosition,X                                          ;86D08F;
     STA.W $1A4B,Y                                                        ;86D092;
-    LDA.W $0F7E,X                                                        ;86D095;
+    LDA.W EnemyData.yPosition,X                                          ;86D095;
     STA.W $1A93,Y                                                        ;86D098;
     LDA.W $05E5                                                          ;86D09B;
     AND.W #$0007                                                         ;86D09E;
@@ -11647,7 +11647,7 @@ Instruction_EnemyProjectile_KagoBug_StartJumping:
     PHX                                                                  ;86D177;
     LDA.W $1B23,X                                                        ;86D178;
     TAX                                                                  ;86D17B;
-    LDA.W $0F7A,X                                                        ;86D17C;
+    LDA.W EnemyData.xPosition,X                                          ;86D17C;
     PLX                                                                  ;86D17F;
     SEC                                                                  ;86D180;
     SBC.W $1A4B,X                                                        ;86D181;
@@ -11724,7 +11724,7 @@ Enable_KagoBug_Collision_with_SamusProj_IfFarEnoughFromKago:
     PHY                                                                  ;86D1E5;
     LDA.W $1B23,X                                                        ;86D1E6;
     TAY                                                                  ;86D1E9;
-    LDA.W $0F7A,Y                                                        ;86D1EA;
+    LDA.W EnemyData.xPosition,Y                                          ;86D1EA;
     SEC                                                                  ;86D1ED;
     SBC.W $1A4B,X                                                        ;86D1EE;
     BPL .enable                                                          ;86D1F1;
@@ -11772,9 +11772,9 @@ InitAI_EnemyProjectile_PowampSpike:
     STA.W $1AB7,Y                                                        ;86D246;
     STA.W $1ADB,Y                                                        ;86D249;
     LDX.W $0E54                                                          ;86D24C;
-    LDA.W $0F7A,X                                                        ;86D24F;
+    LDA.W EnemyData.xPosition,X                                          ;86D24F;
     STA.W $1A4B,Y                                                        ;86D252;
-    LDA.W $0F7E,X                                                        ;86D255;
+    LDA.W EnemyData.yPosition,X                                          ;86D255;
     STA.W $1A93,Y                                                        ;86D258;
     LDA.W $1993                                                          ;86D25B;
     STA.W $1AFF,Y                                                        ;86D25E;
@@ -11883,7 +11883,7 @@ InstList_EnemyProjectile_WreckedShipRobotLaser_1:
 InitAI_EnemyProjectile_WreckedShipRobotLaser_DownLeft_Right:
     PHX                                                                  ;86D30C;
     LDX.W $0E54                                                          ;86D30D;
-    LDA.W $0FA8,X                                                        ;86D310;
+    LDA.W EnemyData.work0,X                                              ;86D310;
     PHP                                                                  ;86D313;
     STA.W $1AB7,Y                                                        ;86D314;
     BPL .pointlessBranch                                                 ;86D317;
@@ -11902,7 +11902,7 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_DownLeft_Right:
 InitAI_EnemyProjectile_WreckedShipRobotLaser_Horizontal:
     PHX                                                                  ;86D32E;
     LDX.W $0E54                                                          ;86D32F;
-    LDA.W $0FA8,X                                                        ;86D332;
+    LDA.W EnemyData.work0,X                                              ;86D332;
     PHP                                                                  ;86D335;
     STA.W $1AB7,Y                                                        ;86D336;
     LDA.W #$0000                                                         ;86D339;
@@ -11913,7 +11913,7 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_Horizontal:
 InitAI_EnemyProjectile_WreckedShipRobotLaser_UpLeft_Right:
     PHX                                                                  ;86D341;
     LDX.W $0E54                                                          ;86D342;
-    LDA.W $0FA8,X                                                        ;86D345;
+    LDA.W EnemyData.work0,X                                              ;86D345;
     PHP                                                                  ;86D348;
     STA.W $1AB7,Y                                                        ;86D349;
     BMI .pointlessBranch                                                 ;86D34C;
@@ -11926,11 +11926,11 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_UpLeft_Right:
     STA.W $1ADB,Y                                                        ;86D358;
 
 InitAI_EnemyProjectile_WreckedShipRobotLaser_Common:
-    LDA.W $0F7E,X                                                        ;86D35B;
+    LDA.W EnemyData.yPosition,X                                          ;86D35B;
     SEC                                                                  ;86D35E;
     SBC.W #$0010                                                         ;86D35F;
     STA.W $1A93,Y                                                        ;86D362;
-    LDA.W $0F7A,X                                                        ;86D365;
+    LDA.W EnemyData.xPosition,X                                          ;86D365;
     PLP                                                                  ;86D368;
     BMI .subtract                                                        ;86D369;
     CLC                                                                  ;86D36B;
@@ -11946,26 +11946,26 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_Common:
     LDA.W #$0000                                                         ;86D378;
     STA.W $1A6F,Y                                                        ;86D37B;
     STA.W $1A27,Y                                                        ;86D37E;
-    LDA.W $0F7A,X                                                        ;86D381;
+    LDA.W EnemyData.xPosition,X                                          ;86D381;
     CLC                                                                  ;86D384;
-    ADC.W $0F82,X                                                        ;86D385;
+    ADC.W EnemyData.xHitboxRadius,X                                      ;86D385;
     CMP.W $0911                                                          ;86D388;
     BMI .return                                                          ;86D38B;
-    LDA.W $0F7A,X                                                        ;86D38D;
+    LDA.W EnemyData.xPosition,X                                          ;86D38D;
     SEC                                                                  ;86D390;
-    SBC.W $0F82,X                                                        ;86D391;
+    SBC.W EnemyData.xHitboxRadius,X                                      ;86D391;
     SEC                                                                  ;86D394;
     SBC.W #$0101                                                         ;86D395;
     CMP.W $0911                                                          ;86D398;
     BPL .return                                                          ;86D39B;
-    LDA.W $0F7E,X                                                        ;86D39D;
+    LDA.W EnemyData.yPosition,X                                          ;86D39D;
     CLC                                                                  ;86D3A0;
-    ADC.W $0F84,X                                                        ;86D3A1;
+    ADC.W EnemyData.yHitboxRadius,X                                      ;86D3A1;
     CMP.W $0915                                                          ;86D3A4;
     BMI .return                                                          ;86D3A7;
-    LDA.W $0F7E,X                                                        ;86D3A9;
+    LDA.W EnemyData.yPosition,X                                          ;86D3A9;
     SEC                                                                  ;86D3AC;
-    SBC.W $0F84,X                                                        ;86D3AD;
+    SBC.W EnemyData.yHitboxRadius,X                                      ;86D3AD;
     SEC                                                                  ;86D3B0;
     SBC.W #$00E0                                                         ;86D3B1;
     BPL .return                                                          ;86D3B4;
@@ -12825,13 +12825,13 @@ InitAI_EnemyProjectile_CacatacSpike:
     LDA.W CacatacSpike_InstListPointers,X                                ;86D999;
     STA.W $1B47,Y                                                        ;86D99C;
     LDX.W $0E54                                                          ;86D99F;
-    LDA.W $0F7A,X                                                        ;86D9A2;
+    LDA.W EnemyData.xPosition,X                                          ;86D9A2;
     STA.W $1A4B,Y                                                        ;86D9A5;
-    LDA.W $0F7C,X                                                        ;86D9A8;
+    LDA.W EnemyData.xSubPosition,X                                       ;86D9A8;
     STA.W $1A27,Y                                                        ;86D9AB;
-    LDA.W $0F7E,X                                                        ;86D9AE;
+    LDA.W EnemyData.yPosition,X                                          ;86D9AE;
     STA.W $1A93,Y                                                        ;86D9B1;
-    LDA.W $0F80,X                                                        ;86D9B4;
+    LDA.W EnemyData.ySubPosition,X                                       ;86D9B4;
     STA.W $1A6F,Y                                                        ;86D9B7;
     LDA.W #$FE00                                                         ;86D9BA;
     STA.W $1ADB,Y                                                        ;86D9BD;
@@ -13065,15 +13065,15 @@ UNUSED_InitAI_EnemyProjectile_StokeProjectile_86DB18:
     STA.W $1AFF,Y                                                        ;86DB2F;
 
 .move:
-    LDA.W $0F7A,X                                                        ;86DB32;
+    LDA.W EnemyData.xPosition,X                                          ;86DB32;
     STA.W $1A4B,Y                                                        ;86DB35;
-    LDA.W $0F7C,X                                                        ;86DB38;
+    LDA.W EnemyData.xSubPosition,X                                       ;86DB38;
     STA.W $1A27,Y                                                        ;86DB3B;
-    LDA.W $0F7E,X                                                        ;86DB3E;
+    LDA.W EnemyData.yPosition,X                                          ;86DB3E;
     CLC                                                                  ;86DB41;
     ADC.W #$0002                                                         ;86DB42;
     STA.W $1A93,Y                                                        ;86DB45;
-    LDA.W $0F80,X                                                        ;86DB48;
+    LDA.W EnemyData.ySubPosition,X                                       ;86DB48;
     STA.W $1A6F,Y                                                        ;86DB4B;
     LDA.W #$FF00                                                         ;86DB4E;
     STA.W $1ADB,Y                                                        ;86DB51;
@@ -13474,15 +13474,15 @@ InitAI_EnemyProjectile_NamiFuneFireball:
     STA.W $1AFF,Y                                                        ;86DEF3;
 
 .setPosition:
-    LDA.W $0F7A,X                                                        ;86DEF6;
+    LDA.W EnemyData.xPosition,X                                          ;86DEF6;
     STA.W $1A4B,Y                                                        ;86DEF9;
-    LDA.W $0F7C,X                                                        ;86DEFC;
+    LDA.W EnemyData.xSubPosition,X                                       ;86DEFC;
     STA.W $1A27,Y                                                        ;86DEFF;
-    LDA.W $0F7E,X                                                        ;86DF02;
+    LDA.W EnemyData.yPosition,X                                          ;86DF02;
     STA.W $1A93,Y                                                        ;86DF05;
-    LDA.W $0F80,X                                                        ;86DF08;
+    LDA.W EnemyData.ySubPosition,X                                       ;86DF08;
     STA.W $1A6F,Y                                                        ;86DF0B;
-    LDA.W $0FB4,X                                                        ;86DF0E;
+    LDA.W EnemyData.initParam0,X                                         ;86DF0E;
     AND.W #$000F                                                         ;86DF11;
     BEQ .Fune                                                            ;86DF14;
     LDA.W $1A93,Y                                                        ;86DF16;
@@ -13491,7 +13491,7 @@ InitAI_EnemyProjectile_NamiFuneFireball:
     STA.W $1A93,Y                                                        ;86DF1D;
 
 .Fune:
-    LDA.W $0FB6,X                                                        ;86DF20;
+    LDA.W EnemyData.initParam1,X                                         ;86DF20;
     AND.W #$00FF                                                         ;86DF23;
     ASL A                                                                ;86DF26;
     ASL A                                                                ;86DF27;
@@ -13643,15 +13643,15 @@ InitAI_EnemyProjectile_MagdolliteFlame:
     STA.W $1AFF,Y                                                        ;86E01D;
 
 .notRight:
-    LDA.W $0F7A,X                                                        ;86E020;
+    LDA.W EnemyData.xPosition,X                                          ;86E020;
     STA.W $1A4B,Y                                                        ;86E023;
-    LDA.W $0F7C,X                                                        ;86E026;
+    LDA.W EnemyData.xSubPosition,X                                       ;86E026;
     STA.W $1A27,Y                                                        ;86E029;
-    LDA.W $0F7E,X                                                        ;86E02C;
+    LDA.W EnemyData.yPosition,X                                          ;86E02C;
     CLC                                                                  ;86E02F;
     ADC.W #$0002                                                         ;86E030;
     STA.W $1A93,Y                                                        ;86E033;
-    LDA.W $0F80,X                                                        ;86E036;
+    LDA.W EnemyData.ySubPosition,X                                       ;86E036;
     STA.W $1A6F,Y                                                        ;86E039;
     LDA.W #$FD00                                                         ;86E03C;
     STA.W $1ADB,Y                                                        ;86E03F;
@@ -15359,9 +15359,9 @@ InstList_EnemyProjectile_BotwoonsSpit:
 InitAI_EnemyProjectile_BotwoonsSpit:
     PHX                                                                  ;86EBC6;
     LDX.W $0E54                                                          ;86EBC7;
-    LDA.W $0F7A,X                                                        ;86EBCA;
+    LDA.W EnemyData.xPosition,X                                          ;86EBCA;
     STA.W $1A4B,Y                                                        ;86EBCD;
-    LDA.W $0F7E,X                                                        ;86EBD0;
+    LDA.W EnemyData.yPosition,X                                          ;86EBD0;
     STA.W $1A93,Y                                                        ;86EBD3;
     LDA.W #InstList_EnemyProjectile_BotwoonsSpit                         ;86EBD6;
     STA.W $1B47,Y                                                        ;86EBD9;
@@ -15446,13 +15446,13 @@ InstList_EnemyProjectile_YappingMawsBody_FacingUp:
 
 InitAI_EnemyProjectile_YappingMawsBody:
     LDX.W $0E54                                                          ;86EC62;
-    LDA.W $0F7A,X                                                        ;86EC65;
+    LDA.W EnemyData.xPosition,X                                          ;86EC65;
     STA.W $1A4B,Y                                                        ;86EC68;
-    LDA.W $0F7E,X                                                        ;86EC6B;
+    LDA.W EnemyData.yPosition,X                                          ;86EC6B;
     STA.W $1A93,Y                                                        ;86EC6E;
     LDA.W #InstList_EnemyProjectile_YappingMawsBody_FacingUp             ;86EC71;
     STA.W $1B47,Y                                                        ;86EC74;
-    LDA.W $0FB6,X                                                        ;86EC77;
+    LDA.W EnemyData.initParam1,X                                         ;86EC77;
     BNE .facingUp                                                        ;86EC7A;
     LDA.W #InstList_EnemyProjectile_YappingMawsBody_FacingDown           ;86EC7C;
     STA.W $1B47,Y                                                        ;86EC7F;
@@ -15913,13 +15913,13 @@ InitAI_EnemyProjectile_EnemyDeathExplosion:
     PHY                                                                  ;86EF8A;
     TYX                                                                  ;86EF8B;
     LDY.W $0E54                                                          ;86EF8C;
-    LDA.W $0F7A,Y                                                        ;86EF8F;
+    LDA.W EnemyData.xPosition,Y                                          ;86EF8F;
     STA.W $1A4B,X                                                        ;86EF92;
-    LDA.W $0F7E,Y                                                        ;86EF95;
+    LDA.W EnemyData.yPosition,Y                                          ;86EF95;
     STA.W $1A93,X                                                        ;86EF98;
     LDA.W $0E54                                                          ;86EF9B;
     STA.L $7EF410,X                                                      ;86EF9E;
-    LDA.W $0F86,Y                                                        ;86EFA2;
+    LDA.W EnemyData.properties,Y                                         ;86EFA2;
     BIT.W #$4000                                                         ;86EFA5;
     BEQ .noRespawn                                                       ;86EFA8;
     LDA.W $0E54                                                          ;86EFAA;
@@ -15927,7 +15927,7 @@ InitAI_EnemyProjectile_EnemyDeathExplosion:
     STA.L $7EF410,X                                                      ;86EFB0;
 
 .noRespawn:
-    LDA.W $0F78,Y                                                        ;86EFB4;
+    LDA.W EnemyData.pId,Y                                                ;86EFB4;
     STA.L $7EF3C8,X                                                      ;86EFB7;
     LDA.W #$0000                                                         ;86EFBB;
     STA.W $19BB,X                                                        ;86EFBE;
@@ -16235,9 +16235,9 @@ Random_Drop_Routine:
     NOP                                                                  ;86F1F9;
     NOP                                                                  ;86F1FA;
     LDY.W HW_RDMPY                                                       ;86F1FB;
-    STY.W $4204                                                          ;86F1FE;
+    STY.W HW_WRDIV                                                       ;86F1FE;
     LDA.B $12                                                            ;86F201;
-    STA.W $4206                                                          ;86F203;
+    STA.W HW_WRDIVB                                                      ;86F203;
     PLY                                                                  ;86F206;
     NOP                                                                  ;86F207;
     REP #$20                                                             ;86F208;
@@ -16321,58 +16321,58 @@ Respawn_Enemy:
     TAX                                                                  ;86F277;
     LDY.W $0E54                                                          ;86F278;
     LDA.L $A10000,X                                                      ;86F27B;
-    STA.W $0F78,Y                                                        ;86F27F;
+    STA.W EnemyData.pId,Y                                                ;86F27F;
     LDA.L $A10002,X                                                      ;86F282;
-    STA.W $0F7A,Y                                                        ;86F286;
+    STA.W EnemyData.xPosition,Y                                          ;86F286;
     LDA.L $A10004,X                                                      ;86F289;
-    STA.W $0F7E,Y                                                        ;86F28D;
+    STA.W EnemyData.yPosition,Y                                          ;86F28D;
     LDA.L $A10006,X                                                      ;86F290;
-    STA.W $0F92,Y                                                        ;86F294;
+    STA.W EnemyData.pInstList,Y                                          ;86F294;
     LDA.L $A10008,X                                                      ;86F297;
-    STA.W $0F86,Y                                                        ;86F29B;
+    STA.W EnemyData.properties,Y                                         ;86F29B;
     LDA.L $A1000A,X                                                      ;86F29E;
-    STA.W $0F88,Y                                                        ;86F2A2;
+    STA.W EnemyData.properties2,Y                                        ;86F2A2;
     LDA.L $A1000C,X                                                      ;86F2A5;
-    STA.W $0FB4,Y                                                        ;86F2A9;
+    STA.W EnemyData.initParam0,Y                                         ;86F2A9;
     LDA.L $A1000E,X                                                      ;86F2AC;
-    STA.W $0FB6,Y                                                        ;86F2B0;
+    STA.W EnemyData.initParam1,Y                                         ;86F2B0;
     PHX                                                                  ;86F2B3;
     TYX                                                                  ;86F2B4;
     LDA.L $7E7008,X                                                      ;86F2B5;
-    STA.W $0F96,X                                                        ;86F2B9;
+    STA.W EnemyData.palette,X                                            ;86F2B9;
     LDA.L $7E7006,X                                                      ;86F2BC;
-    STA.W $0F98,X                                                        ;86F2C0;
+    STA.W EnemyData.gfxOffset,X                                          ;86F2C0;
     PLX                                                                  ;86F2C3;
     LDA.W #$0000                                                         ;86F2C4;
-    STA.W $0F9E,Y                                                        ;86F2C7;
-    STA.W $0F9C,Y                                                        ;86F2CA;
-    STA.W $0FA0,Y                                                        ;86F2CD;
-    STA.W $0F90,Y                                                        ;86F2D0;
-    STA.W $0FA4,Y                                                        ;86F2D3;
-    STA.W $0FA8,Y                                                        ;86F2D6;
-    STA.W $0FAA,Y                                                        ;86F2D9;
-    STA.W $0FAC,Y                                                        ;86F2DC;
-    STA.W $0FAE,Y                                                        ;86F2DF;
-    STA.W $0FB0,Y                                                        ;86F2E2;
-    STA.W $0FB2,Y                                                        ;86F2E5;
+    STA.W EnemyData.freezeTimer,Y                                        ;86F2C7;
+    STA.W EnemyData.flashTimer,Y                                         ;86F2CA;
+    STA.W EnemyData.invincibilityTimer,Y                                 ;86F2CD;
+    STA.W EnemyData.loopCounter,Y                                        ;86F2D0;
+    STA.W EnemyData.frameCounter,Y                                       ;86F2D3;
+    STA.W EnemyData.work0,Y                                              ;86F2D6;
+    STA.W EnemyData.work1,Y                                              ;86F2D9;
+    STA.W EnemyData.work2,Y                                              ;86F2DC;
+    STA.W EnemyData.work3,Y                                              ;86F2DF;
+    STA.W EnemyData.work4,Y                                              ;86F2E2;
+    STA.W EnemyData.work5,Y                                              ;86F2E5;
     LDA.W #$0001                                                         ;86F2E8;
-    STA.W $0F94,Y                                                        ;86F2EB;
+    STA.W EnemyData.instTimer,Y                                          ;86F2EB;
     LDX.W $0E54                                                          ;86F2EE;
-    LDA.W $0F78,X                                                        ;86F2F1;
+    LDA.W EnemyData.pId,X                                                ;86F2F1;
     TAX                                                                  ;86F2F4;
     LDA.W $0012,X                                                        ;86F2F5;
     STA.W $1784                                                          ;86F2F8;
     LDA.W $0008,X                                                        ;86F2FB;
-    STA.W $0F82,Y                                                        ;86F2FE;
+    STA.W EnemyData.xHitboxRadius,Y                                      ;86F2FE;
     LDA.W $000A,X                                                        ;86F301;
-    STA.W $0F84,Y                                                        ;86F304;
+    STA.W EnemyData.yHitboxRadius,Y                                      ;86F304;
     LDA.W $0004,X                                                        ;86F307;
-    STA.W $0F8C,Y                                                        ;86F30A;
+    STA.W EnemyData.health,Y                                             ;86F30A;
     LDA.W $0039,X                                                        ;86F30D;
     AND.W #$00FF                                                         ;86F310;
-    STA.W $0F9A,Y                                                        ;86F313;
+    STA.W EnemyData.layer,Y                                              ;86F313;
     LDA.W $000C,X                                                        ;86F316;
-    STA.W $0FA6,Y                                                        ;86F319;
+    STA.W EnemyData.bank,Y                                               ;86F319;
     STA.W $1786                                                          ;86F31C;
     JSL.L .executeEnemyInitAI                                            ;86F31F;
     PLY                                                                  ;86F323;
@@ -16383,7 +16383,7 @@ Respawn_Enemy:
 
 .executeEnemyInitAI:
     LDX.W $0E54                                                          ;86F327;
-    LDA.W $0FA6,X                                                        ;86F32A;
+    LDA.W EnemyData.bank,X                                               ;86F32A;
     STA.W $1786                                                          ;86F32D;
     XBA                                                                  ;86F330;
     PHA                                                                  ;86F331;
@@ -16449,15 +16449,15 @@ InitAI_EnemyProjectile_FallingSpark:
     LDX.W $0E54                                                          ;86F391;
     LDA.W #InstList_EnemyProjectile_FallingSpark_Falling                 ;86F394;
     STA.W $1B47,Y                                                        ;86F397;
-    LDA.W $0F7A,X                                                        ;86F39A;
+    LDA.W EnemyData.xPosition,X                                          ;86F39A;
     STA.W $1A4B,Y                                                        ;86F39D;
-    LDA.W $0F7C,X                                                        ;86F3A0;
+    LDA.W EnemyData.xSubPosition,X                                       ;86F3A0;
     STA.W $1A27,Y                                                        ;86F3A3;
-    LDA.W $0F7E,X                                                        ;86F3A6;
+    LDA.W EnemyData.yPosition,X                                          ;86F3A6;
     CLC                                                                  ;86F3A9;
     ADC.W #$0008                                                         ;86F3AA;
     STA.W $1A93,Y                                                        ;86F3AD;
-    LDA.W $0F80,X                                                        ;86F3B0;
+    LDA.W EnemyData.ySubPosition,X                                       ;86F3B0;
     STA.W $1A6F,Y                                                        ;86F3B3;
     LDA.W #$0000                                                         ;86F3B6;
     STA.W $1AB7,Y                                                        ;86F3B9;

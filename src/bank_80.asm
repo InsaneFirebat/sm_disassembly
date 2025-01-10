@@ -615,7 +615,7 @@ UNUSED_UpdateCGRAM_808395:
     LDX.B #$00                                                           ;8083B1;
     STX.W $2121                                                          ;8083B3;
     LDX.B #$02                                                           ;8083B6;
-    STX.W $420B                                                          ;8083B8;
+    STX.W HW_MDMAEN                                                      ;8083B8;
     PLP                                                                  ;8083BB;
     RTL                                                                  ;8083BC;
 
@@ -997,7 +997,7 @@ NTSC_PAL_SRAM_MappingCheck:
     dl Tiles_Menu_BG1_BG2                                                ;808639;
     dw $4000                                                             ;80863C;
     LDA.B #$02                                                           ;80863E;
-    STA.W $420B                                                          ;808640;
+    STA.W HW_MDMAEN                                                      ;808640;
     LDA.B #$00                                                           ;808643;
     STA.W $2116                                                          ;808645;
     LDA.B #$40                                                           ;808648;
@@ -1009,14 +1009,14 @@ NTSC_PAL_SRAM_MappingCheck:
     dl Tilemap_FailedRegionCheck                                         ;808659;
     dw $1000                                                             ;80865C;
     LDA.B #$02                                                           ;80865E;
-    STA.W $420B                                                          ;808660;
+    STA.W HW_MDMAEN                                                      ;808660;
     STZ.W $2121                                                          ;808663;
     JSL.L SetupHDMATransfer                                              ;808666; Set up a (H)DMA transfer
     db $01,$00,$22                                                       ;80866A; CGRAM = [$8E:E400..E5FF] (menu palettes)
     dl Menu_Palettes                                                     ;80866D;
     dw $0200                                                             ;808670;
     LDA.B #$02                                                           ;808672;
-    STA.W $420B                                                          ;808674;
+    STA.W HW_MDMAEN                                                      ;808674;
     STZ.W $2131                                                          ;808677; Disable colour math
     STZ.W $212D                                                          ;80867A; Disable subscreen
     LDA.B #$01                                                           ;80867D;
@@ -1101,7 +1101,7 @@ NTSC_PAL_SRAM_MappingCheck:
     dl Tiles_Menu_BG1_BG2                                                ;808703;
     dw $4000                                                             ;808706;
     LDA.B #$02                                                           ;808708;
-    STA.W $420B                                                          ;80870A;
+    STA.W HW_MDMAEN                                                      ;80870A;
     LDA.B #$00                                                           ;80870D;
     STA.W $2116                                                          ;80870F;
     LDA.B #$40                                                           ;808712;
@@ -1113,14 +1113,14 @@ NTSC_PAL_SRAM_MappingCheck:
     dl Tilemap_FailedSRAMMappingCheck                                    ;808723;
     dw $1000                                                             ;808726;
     LDA.B #$02                                                           ;808728;
-    STA.W $420B                                                          ;80872A;
+    STA.W HW_MDMAEN                                                      ;80872A;
     STZ.W $2121                                                          ;80872D;
     JSL.L SetupHDMATransfer                                              ;808730; Set up a (H)DMA transfer
     db $01,$00,$22                                                       ;808734; CGRAM = [$8E:E400..E5FF] (menu palettes)
     dl Menu_Palettes                                                     ;808737;
     dw $0200                                                             ;80873A;
     LDA.B #$02                                                           ;80873C;
-    STA.W $420B                                                          ;80873E;
+    STA.W HW_MDMAEN                                                      ;80873E;
     STZ.W $2131                                                          ;808741; Disable colour math
     STZ.W $212D                                                          ;808744; Disable subscreen
     LDA.B #$01                                                           ;808747;
@@ -1143,15 +1143,15 @@ Initialise_CPU_IO_Registers:
     STZ.W $4201                                                          ;808764; Joypad programmable IO port = 0
     STZ.W HW_WRMPYA                                                      ;808767;
     STZ.W HW_WRMPYB                                                      ;80876A; Multiplication operands = 0
-    STZ.W $4204                                                          ;80876D;
+    STZ.W HW_WRDIV                                                       ;80876D;
     STZ.W $4205                                                          ;808770; Division operands = 0 (causes harmless division by zero)
-    STZ.W $4206                                                          ;808773;
+    STZ.W HW_WRDIVB                                                      ;808773;
     STZ.W $4207                                                          ;808776;
     STZ.W $4208                                                          ;808779; IRQ h-counter target = 0
     STZ.W $4209                                                          ;80877C;
     STZ.W $420A                                                          ;80877F; IRQ v-counter target = 0
-    STZ.W $420B                                                          ;808782; Disable all DMA channels
-    STZ.W $420C                                                          ;808785;
+    STZ.W HW_MDMAEN                                                      ;808782; Disable all DMA channels
+    STZ.W HW_HDMAEN                                                      ;808785;
     STZ.B $85                                                            ;808788; Disable all HDMA channels
     LDA.B #$01                                                           ;80878A;
     STA.W $420D                                                          ;80878C; Enable FastROM
@@ -1689,7 +1689,7 @@ ProcessMode7Transfers:
     LDA.W $0006,X                                                        ;808BFD;
     STA.W $2121                                                          ;808C00;
     LDA.B #$02                                                           ;808C03;
-    STA.W $420B                                                          ;808C05;
+    STA.W HW_MDMAEN                                                      ;808C05;
     REP #$21                                                             ;808C08; carry clear
     TXA                                                                  ;808C0A;
     ADC.W #$0007                                                         ;808C0B;
@@ -1716,7 +1716,7 @@ ProcessMode7Transfers:
     LDA.W $0008,X                                                        ;808C37;
     STA.W $2115                                                          ;808C3A;
     LDA.B #$02                                                           ;808C3D;
-    STA.W $420B                                                          ;808C3F;
+    STA.W HW_MDMAEN                                                      ;808C3F;
     REP #$21                                                             ;808C42;
     TXA                                                                  ;808C44;
     ADC.W #$0009                                                         ;808C45;
@@ -1741,7 +1741,7 @@ ProcessMode7Transfers:
     LDA.W $0008,X                                                        ;808C6E;
     STA.W $2115                                                          ;808C71;
     LDA.B #$02                                                           ;808C74;
-    STA.W $420B                                                          ;808C76;
+    STA.W HW_MDMAEN                                                      ;808C76;
     REP #$21                                                             ;808C79; clear carry
     TXA                                                                  ;808C7B;
     ADC.W #$0009                                                         ;808C7C;
@@ -1777,7 +1777,7 @@ HandleVRAMWriteTable_ScrollingDMAs:
     STX.W $2116                                                          ;808CB5;
     SEP #$20                                                             ;808CB8;
     LDA.B #$02                                                           ;808CBA;
-    STA.W $420B                                                          ;808CBC;
+    STA.W HW_MDMAEN                                                      ;808CBC;
     REP #$20                                                             ;808CBF;
     TYA                                                                  ;808CC1;
     CLC                                                                  ;808CC2;
@@ -1813,14 +1813,14 @@ ExecuteHorizontalScrollingDMAs:
     LDX.W $0956                                                          ;808CFC;
     STX.W $4315                                                          ;808CFF;
     LDA.B #$02                                                           ;808D02;
-    STA.W $420B                                                          ;808D04;
+    STA.W HW_MDMAEN                                                      ;808D04;
     INY                                                                  ;808D07;
     STY.W $2116                                                          ;808D08;
     STX.W $4315                                                          ;808D0B;
     LDX.W #$C908                                                         ;808D0E; $7EC908
     STX.W $4312                                                          ;808D11;
     LDA.B #$02                                                           ;808D14;
-    STA.W $420B                                                          ;808D16;
+    STA.W HW_MDMAEN                                                      ;808D16;
     LDX.W $095E                                                          ;808D19;
     STX.W $4312                                                          ;808D1C;
     LDX.W $0958                                                          ;808D1F;
@@ -1829,14 +1829,14 @@ ExecuteHorizontalScrollingDMAs:
     LDY.W $095C                                                          ;808D27;
     STY.W $2116                                                          ;808D2A;
     LDA.B #$02                                                           ;808D2D;
-    STA.W $420B                                                          ;808D2F;
+    STA.W HW_MDMAEN                                                      ;808D2F;
     INY                                                                  ;808D32;
     STY.W $2116                                                          ;808D33;
     STX.W $4315                                                          ;808D36;
     LDX.W $0960                                                          ;808D39;
     STX.W $4312                                                          ;808D3C;
     LDA.B #$02                                                           ;808D3F;
-    STA.W $420B                                                          ;808D41;
+    STA.W HW_MDMAEN                                                      ;808D41;
 
 .BG2:
     LDA.W $097E                                                          ;808D44;
@@ -1853,14 +1853,14 @@ ExecuteHorizontalScrollingDMAs:
     LDX.W $0972                                                          ;808D63;
     STX.W $4315                                                          ;808D66;
     LDA.B #$02                                                           ;808D69;
-    STA.W $420B                                                          ;808D6B;
+    STA.W HW_MDMAEN                                                      ;808D6B;
     INY                                                                  ;808D6E;
     STY.W $2116                                                          ;808D6F;
     STX.W $4315                                                          ;808D72;
     LDX.W #$CA10                                                         ;808D75; $7ECA10
     STX.W $4312                                                          ;808D78;
     LDA.B #$02                                                           ;808D7B;
-    STA.W $420B                                                          ;808D7D;
+    STA.W HW_MDMAEN                                                      ;808D7D;
     LDX.W $097A                                                          ;808D80;
     STX.W $4312                                                          ;808D83;
     LDX.W $0974                                                          ;808D86;
@@ -1869,14 +1869,14 @@ ExecuteHorizontalScrollingDMAs:
     LDY.W $0978                                                          ;808D8E;
     STY.W $2116                                                          ;808D91;
     LDA.B #$02                                                           ;808D94;
-    STA.W $420B                                                          ;808D96;
+    STA.W HW_MDMAEN                                                      ;808D96;
     INY                                                                  ;808D99;
     STY.W $2116                                                          ;808D9A;
     STX.W $4315                                                          ;808D9D;
     LDX.W $097C                                                          ;808DA0;
     STX.W $4312                                                          ;808DA3;
     LDA.B #$02                                                           ;808DA6;
-    STA.W $420B                                                          ;808DA8;
+    STA.W HW_MDMAEN                                                      ;808DA8;
 
 .return:
     RTS                                                                  ;808DAB;
@@ -1899,7 +1899,7 @@ ExecuteVerticalScrollingDMAs:
     LDX.W $0964                                                          ;808DD0;
     STX.W $4315                                                          ;808DD3;
     LDA.B #$02                                                           ;808DD6;
-    STA.W $420B                                                          ;808DD8;
+    STA.W HW_MDMAEN                                                      ;808DD8;
     REP #$20                                                             ;808DDB;
     TYA                                                                  ;808DDD;
     ORA.W #$0020                                                         ;808DDE;
@@ -1909,7 +1909,7 @@ ExecuteVerticalScrollingDMAs:
     LDX.W #$C98C                                                         ;808DE9; $7E
     STX.W $4312                                                          ;808DEC;
     LDA.B #$02                                                           ;808DEF;
-    STA.W $420B                                                          ;808DF1;
+    STA.W HW_MDMAEN                                                      ;808DF1;
     LDX.W $096C                                                          ;808DF4;
     STX.W $4312                                                          ;808DF7;
     LDX.W $0966                                                          ;808DFA;
@@ -1918,7 +1918,7 @@ ExecuteVerticalScrollingDMAs:
     LDY.W $096A                                                          ;808E02;
     STY.W $2116                                                          ;808E05;
     LDA.B #$02                                                           ;808E08;
-    STA.W $420B                                                          ;808E0A;
+    STA.W HW_MDMAEN                                                      ;808E0A;
     REP #$20                                                             ;808E0D;
     TYA                                                                  ;808E0F;
     ORA.W #$0020                                                         ;808E10;
@@ -1928,7 +1928,7 @@ ExecuteVerticalScrollingDMAs:
     LDX.W $096E                                                          ;808E1B;
     STX.W $4312                                                          ;808E1E;
     LDA.B #$02                                                           ;808E21;
-    STA.W $420B                                                          ;808E23;
+    STA.W HW_MDMAEN                                                      ;808E23;
 
 .BG2:
     LDA.W $098C                                                          ;808E26;
@@ -1945,7 +1945,7 @@ ExecuteVerticalScrollingDMAs:
     LDX.W $0980                                                          ;808E45;
     STX.W $4315                                                          ;808E48;
     LDA.B #$02                                                           ;808E4B;
-    STA.W $420B                                                          ;808E4D;
+    STA.W HW_MDMAEN                                                      ;808E4D;
     REP #$20                                                             ;808E50;
     TYA                                                                  ;808E52;
     ORA.W #$0020                                                         ;808E53;
@@ -1955,7 +1955,7 @@ ExecuteVerticalScrollingDMAs:
     LDX.W #$CA94                                                         ;808E5E; $7E
     STX.W $4312                                                          ;808E61;
     LDA.B #$02                                                           ;808E64;
-    STA.W $420B                                                          ;808E66;
+    STA.W HW_MDMAEN                                                      ;808E66;
     LDX.W $0988                                                          ;808E69;
     STX.W $4312                                                          ;808E6C;
     LDX.W $0982                                                          ;808E6F;
@@ -1964,7 +1964,7 @@ ExecuteVerticalScrollingDMAs:
     LDY.W $0986                                                          ;808E77;
     STY.W $2116                                                          ;808E7A;
     LDA.B #$02                                                           ;808E7D;
-    STA.W $420B                                                          ;808E7F;
+    STA.W HW_MDMAEN                                                      ;808E7F;
     SEP #$02                                                             ;808E82;
     BEQ .continue                                                        ;808E84;
 
@@ -1982,7 +1982,7 @@ ExecuteVerticalScrollingDMAs:
     LDX.W $098A                                                          ;808E96;
     STX.W $4312                                                          ;808E99;
     LDA.B #$02                                                           ;808E9C;
-    STA.W $420B                                                          ;808E9E;
+    STA.W HW_MDMAEN                                                      ;808E9E;
 
 .return:
     RTS                                                                  ;808EA1;
@@ -2021,7 +2021,7 @@ HandleVRAMReadTable:
     STZ.W $4319                                                          ;808EDE;
     SEP #$20                                                             ;808EE1;
     LDA.B #$02                                                           ;808EE3;
-    STA.W $420B                                                          ;808EE5;
+    STA.W HW_MDMAEN                                                      ;808EE5;
     TXA                                                                  ;808EE8;
     CLC                                                                  ;808EE9;
     ADC.B #$09                                                           ;808EEA;
@@ -2709,7 +2709,7 @@ UpdateOAM_CGRAM:
     LDX.B #$00                                                           ;80936B;
     STX.W $2121                                                          ;80936D;
     LDX.B #$03                                                           ;809370;
-    STX.W $420B                                                          ;809372;
+    STX.W HW_MDMAEN                                                      ;809372;
     RTS                                                                  ;809375;
 
 
@@ -2743,7 +2743,7 @@ TransferSamusTilesToVRAM:
     STA.B $14                                                            ;8093AF;
     INY                                                                  ;8093B1;
     INY                                                                  ;8093B2;
-    STX.W $420B                                                          ;8093B3;
+    STX.W HW_MDMAEN                                                      ;8093B3;
     LDA.W #$6100                                                         ;8093B6;
     STA.W $2116                                                          ;8093B9;
     LDA.B $14                                                            ;8093BC;
@@ -2751,7 +2751,7 @@ TransferSamusTilesToVRAM:
     LDA.B ($3C),Y                                                        ;8093C1;
     BEQ .bottom                                                          ;8093C3;
     STA.W $4315                                                          ;8093C5;
-    STX.W $420B                                                          ;8093C8;
+    STX.W HW_MDMAEN                                                      ;8093C8;
 
 .bottom:
     LDY.W $071E                                                          ;8093CB;
@@ -2776,7 +2776,7 @@ TransferSamusTilesToVRAM:
     STA.B $14                                                            ;8093F8;
     INY                                                                  ;8093FA;
     INY                                                                  ;8093FB;
-    STX.W $420B                                                          ;8093FC;
+    STX.W HW_MDMAEN                                                      ;8093FC;
     LDA.W #$6180                                                         ;8093FF;
     STA.W $2116                                                          ;809402;
     LDA.B $14                                                            ;809405;
@@ -2784,7 +2784,7 @@ TransferSamusTilesToVRAM:
     LDA.B ($3C),Y                                                        ;80940A;
     BEQ .return                                                          ;80940C;
     STA.W $4315                                                          ;80940E;
-    STX.W $420B                                                          ;809411;
+    STX.W HW_MDMAEN                                                      ;809411;
 
 .return:
     PLB                                                                  ;809414;
@@ -2817,7 +2817,7 @@ ProcessAnimatedTilesObjectVRAMTransfers:
     LDY.B #$80                                                           ;809446;
     STY.W $2115                                                          ;809448;
     LDY.B #$01                                                           ;80944B;
-    STY.W $420B                                                          ;80944D;
+    STY.W HW_MDMAEN                                                      ;80944D;
     STZ.W $1F25,X                                                        ;809450;
 
 .next:
@@ -3050,7 +3050,7 @@ NMI:
     SEP #$10                                                             ;8095D8;
     REP #$20                                                             ;8095DA;
     LDX.B $85                                                            ;8095DC;
-    STX.W $420C                                                          ;8095DE;
+    STX.W HW_HDMAEN                                                      ;8095DE;
     JSL.L ReadControllerInput                                            ;8095E1;
     LDX.B #$00                                                           ;8095E5;
     STX.W $05B4                                                          ;8095E7;
@@ -3115,7 +3115,7 @@ ExecuteDoorTransitionVRAMUpdate:
     LDA.B #$80                                                           ;809657;
     STA.W $2115                                                          ;809659;
     LDA.B #$02                                                           ;80965C;
-    STA.W $420B                                                          ;80965E;
+    STA.W HW_MDMAEN                                                      ;80965E;
     LDA.B #$80                                                           ;809661;
     TRB.W $05BD                                                          ;809663;
     LDA.B #$0F                                                           ;809666;
@@ -3639,7 +3639,7 @@ InitialiseHUD_GameLoading:
     dw $0040                                                             ;809A95;
     SEP #$20                                                             ;809A97;
     LDA.B #$02                                                           ;809A99;
-    STA.W $420B                                                          ;809A9B;
+    STA.W HW_MDMAEN                                                      ;809A9B;
     REP #$20                                                             ;809A9E;
     LDX.W #$0000                                                         ;809AA0;
 
@@ -3756,10 +3756,10 @@ HandleHUDTilemap_PausedAndRunning:
     BEQ .handleSamusMissiles                                             ;809B91;
     STA.W $0A06                                                          ;809B93;
     LDA.W $09C2                                                          ;809B96;
-    STA.W $4204                                                          ;809B99;
+    STA.W HW_WRDIV                                                       ;809B99;
     SEP #$20                                                             ;809B9C;
     LDA.B #$64                                                           ;809B9E;
-    STA.W $4206                                                          ;809BA0;
+    STA.W HW_WRDIVB                                                      ;809BA0;
     PHA                                                                  ;809BA3;
     PLA                                                                  ;809BA4;
     PHA                                                                  ;809BA5;
@@ -3770,10 +3770,10 @@ HandleHUDTilemap_PausedAndRunning:
     LDA.W HW_RDMPY                                                       ;809BAE;
     STA.B $12                                                            ;809BB1;
     LDA.W $09C4                                                          ;809BB3;
-    STA.W $4204                                                          ;809BB6;
+    STA.W HW_WRDIV                                                       ;809BB6;
     SEP #$20                                                             ;809BB9;
     LDA.B #$64                                                           ;809BBB;
-    STA.W $4206                                                          ;809BBD;
+    STA.W HW_WRDIVB                                                      ;809BBD;
     PHA                                                                  ;809BC0;
     PLA                                                                  ;809BC1;
     PHA                                                                  ;809BC2;
@@ -3983,10 +3983,10 @@ ToggleHUDItemHighlight:
     dw $002E                                                             ;809D76; X-ray
 
 DrawThreeHUDDigits:
-    STA.W $4204                                                          ;809D78;
+    STA.W HW_WRDIV                                                       ;809D78;
     SEP #$20                                                             ;809D7B;
     LDA.B #$64                                                           ;809D7D;
-    STA.W $4206                                                          ;809D7F;
+    STA.W HW_WRDIVB                                                      ;809D7F;
     PHA                                                                  ;809D82;
     PLA                                                                  ;809D83;
     PHA                                                                  ;809D84;
@@ -4002,10 +4002,10 @@ DrawThreeHUDDigits:
     LDA.W HW_RDMPY                                                       ;809D95;
 
 DrawTwoHUDDigits:
-    STA.W $4204                                                          ;809D98;
+    STA.W HW_WRDIV                                                       ;809D98;
     SEP #$20                                                             ;809D9B;
     LDA.B #$0A                                                           ;809D9D;
-    STA.W $4206                                                          ;809D9F;
+    STA.W HW_WRDIVB                                                      ;809D9F;
     PHA                                                                  ;809DA2;
     PLA                                                                  ;809DA3;
     PHA                                                                  ;809DA4;
@@ -4337,7 +4337,7 @@ StartGameplay:
     PLB                                                                  ;80A07E;
     REP #$30                                                             ;80A07F;
     SEI                                                                  ;80A081;
-    STZ.W $420B                                                          ;80A082;
+    STZ.W HW_MDMAEN                                                      ;80A082;
     STZ.W $07E9                                                          ;80A085;
     STZ.W $07F3                                                          ;80A088;
     STZ.W $07F5                                                          ;80A08B;
@@ -4420,7 +4420,7 @@ ResumeGameplay:
     PLB                                                                  ;80A14C;
     REP #$30                                                             ;80A14D;
     SEI                                                                  ;80A14F;
-    STZ.W $420B                                                          ;80A150;
+    STZ.W HW_MDMAEN                                                      ;80A150;
     JSL.L DisableNMI                                                     ;80A153;
     JSL.L DisableHVCounterInterrupts                                     ;80A157;
     JSL.L Load_CRETiles_TilesetTiles_and_TilesetPalette_DB_8F            ;80A15B;
@@ -4552,7 +4552,7 @@ ClearBG2Tilemap:
     LDA.B #$00                                                           ;80A262;
     STA.W $2115                                                          ;80A264;
     LDA.B #$02                                                           ;80A267;
-    STA.W $420B                                                          ;80A269;
+    STA.W HW_MDMAEN                                                      ;80A269;
     REP #$20                                                             ;80A26C;
     LDA.W #$4800                                                         ;80A26E;
     STA.W $2116                                                          ;80A271;
@@ -4568,7 +4568,7 @@ ClearBG2Tilemap:
     LDA.B #$80                                                           ;80A28E;
     STA.W $2115                                                          ;80A290;
     LDA.B #$02                                                           ;80A293;
-    STA.W $420B                                                          ;80A295;
+    STA.W HW_MDMAEN                                                      ;80A295;
     PLP                                                                  ;80A298;
     RTL                                                                  ;80A299;
 
@@ -4593,7 +4593,7 @@ ClearFXTilemap:
     LDA.B #$00                                                           ;80A2BF;
     STA.W $2115                                                          ;80A2C1;
     LDA.B #$02                                                           ;80A2C4;
-    STA.W $420B                                                          ;80A2C6;
+    STA.W HW_MDMAEN                                                      ;80A2C6;
     REP #$20                                                             ;80A2C9;
     LDA.W #$5880                                                         ;80A2CB;
     STA.W $2116                                                          ;80A2CE;
@@ -4609,7 +4609,7 @@ ClearFXTilemap:
     LDA.B #$80                                                           ;80A2EB;
     STA.W $2115                                                          ;80A2ED;
     LDA.B #$02                                                           ;80A2F0;
-    STA.W $420B                                                          ;80A2F2;
+    STA.W HW_MDMAEN                                                      ;80A2F2;
     PLP                                                                  ;80A2F5;
     RTL                                                                  ;80A2F6;
 
@@ -6370,7 +6370,7 @@ UNUSED_SetupRotatingMode7Background_80B032:
     LDA.B #$98                                                           ;80B060;
     STA.W $4314                                                          ;80B062;
     LDA.B #$02                                                           ;80B065;
-    STA.W $420B                                                          ;80B067;
+    STA.W HW_MDMAEN                                                      ;80B067;
     STZ.W $2115                                                          ;80B06A;
     STZ.W $2116                                                          ;80B06D;
     STZ.W $2117                                                          ;80B070;

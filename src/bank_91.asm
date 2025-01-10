@@ -6821,11 +6821,11 @@ LoadRevealedBlockCommand:
 CalculateBlockCoordinates:
     SEP #$20                                                             ;91CE2C;
     LDA.B $24                                                            ;91CE2E;
-    STA.W $4204                                                          ;91CE30;
+    STA.W HW_WRDIV                                                       ;91CE30;
     LDA.B $25                                                            ;91CE33;
     STA.W $4205                                                          ;91CE35;
     LDA.W $07A5                                                          ;91CE38;
-    STA.W $4206                                                          ;91CE3B;
+    STA.W HW_WRDIVB                                                      ;91CE3B;
     REP #$20                                                             ;91CE3E;
     NOP                                                                  ;91CE40;
     NOP                                                                  ;91CE41;

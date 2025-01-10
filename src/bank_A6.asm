@@ -107,7 +107,7 @@ NOPNOP_A68069:
 
 Instruction_CommonA6_Enemy0FB2_InY:
     LDA.W $0000,Y                                                        ;A6806B;
-    STA.W $0FB2,X                                                        ;A6806E;
+    STA.W EnemyData.work5,X                                              ;A6806E;
     INY                                                                  ;A68071;
     INY                                                                  ;A68072;
     RTL                                                                  ;A68073;
@@ -115,7 +115,7 @@ Instruction_CommonA6_Enemy0FB2_InY:
 
 Instruction_CommonA6_SetEnemy0FB2ToRTS:
     LDA.W #RTS_A6807B                                                    ;A68074;
-    STA.W $0FB2,X                                                        ;A68077;
+    STA.W EnemyData.work5,X                                              ;A68077;
     RTL                                                                  ;A6807A;
 
 
@@ -124,9 +124,9 @@ RTS_A6807B:
 
 
 Instruction_CommonA6_DeleteEnemy:
-    LDA.W $0F86,X                                                        ;A6807C;
+    LDA.W EnemyData.properties,X                                         ;A6807C;
     ORA.W #$0200                                                         ;A6807F;
-    STA.W $0F86,X                                                        ;A68082;
+    STA.W EnemyData.properties,X                                         ;A68082;
     PLA                                                                  ;A68085;
     PEA.W ProcessEnemyInstructions_return-1                              ;A68086;
     RTL                                                                  ;A68089;
@@ -237,7 +237,7 @@ Instruction_CommonA6_GotoY_PlusY:
 
 
 Instruction_CommonA6_DecrementTimer_GotoYIfNonZero:
-    DEC.W $0F90,X                                                        ;A68108;
+    DEC.W EnemyData.loopCounter,X                                        ;A68108;
     BNE Instruction_CommonA6_GotoY                                       ;A6810B;
     INY                                                                  ;A6810D;
     INY                                                                  ;A6810E;
@@ -245,7 +245,7 @@ Instruction_CommonA6_DecrementTimer_GotoYIfNonZero:
 
 
 Instruction_CommonA6_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W $0F90,X                                                        ;A68110;
+    DEC.W EnemyData.loopCounter,X                                        ;A68110;
     BNE Instruction_CommonA6_GotoY                                       ;A68113;
     INY                                                                  ;A68115;
     INY                                                                  ;A68116;
@@ -254,7 +254,7 @@ Instruction_CommonA6_DecrementTimer_GotoYIfNonZero_duplicate:
 
 Instruction_CommonA6_DecrementTimer_GotoY_PlusY_IfNonZero:
     SEP #$20                                                             ;A68118;
-    DEC.W $0F90,X                                                        ;A6811A;
+    DEC.W EnemyData.loopCounter,X                                        ;A6811A;
     REP #$20                                                             ;A6811D;
     BNE Instruction_CommonA6_GotoY_PlusY                                 ;A6811F;
     INY                                                                  ;A68121;
@@ -263,7 +263,7 @@ Instruction_CommonA6_DecrementTimer_GotoY_PlusY_IfNonZero:
 
 Instruction_CommonA6_TimerInY:
     LDA.W $0000,Y                                                        ;A68123;
-    STA.W $0F90,X                                                        ;A68126;
+    STA.W EnemyData.loopCounter,X                                        ;A68126;
     INY                                                                  ;A68129;
     INY                                                                  ;A6812A;
     RTL                                                                  ;A6812B;
@@ -279,7 +279,7 @@ Instruction_CommonA6_Sleep:
     DEY                                                                  ;A6812F;
     DEY                                                                  ;A68130;
     TYA                                                                  ;A68131;
-    STA.W $0F92,X                                                        ;A68132;
+    STA.W EnemyData.pInstList,X                                          ;A68132;
     PLA                                                                  ;A68135;
     PEA.W ProcessEnemyInstructions_return-1                              ;A68136;
     RTL                                                                  ;A68139;
@@ -287,11 +287,11 @@ Instruction_CommonA6_Sleep:
 
 Instruction_CommonA6_WaitYFrames:
     LDA.W $0000,Y                                                        ;A6813A;
-    STA.W $0F94,X                                                        ;A6813D;
+    STA.W EnemyData.instTimer,X                                          ;A6813D;
     INY                                                                  ;A68140;
     INY                                                                  ;A68141;
     TYA                                                                  ;A68142;
-    STA.W $0F92,X                                                        ;A68143;
+    STA.W EnemyData.pInstList,X                                          ;A68143;
     PLA                                                                  ;A68146;
     PEA.W ProcessEnemyInstructions_return-1                              ;A68147;
     RTL                                                                  ;A6814A;
@@ -321,16 +321,16 @@ Instruction_CommonA6_TransferYBytesInYToVRAM:
 
 
 Instruction_CommonA6_EnableOffScreenProcessing:
-    LDA.W $0F86,X                                                        ;A68173;
+    LDA.W EnemyData.properties,X                                         ;A68173;
     ORA.W #$0800                                                         ;A68176;
-    STA.W $0F86,X                                                        ;A68179;
+    STA.W EnemyData.properties,X                                         ;A68179;
     RTL                                                                  ;A6817C;
 
 
 Instruction_CommonA6_DisableOffScreenProcessing:
-    LDA.W $0F86,X                                                        ;A6817D;
+    LDA.W EnemyData.properties,X                                         ;A6817D;
     AND.W #$F7FF                                                         ;A68180;
-    STA.W $0F86,X                                                        ;A68183;
+    STA.W EnemyData.properties,X                                         ;A68183;
     RTL                                                                  ;A68186;
 
 
@@ -468,19 +468,19 @@ BounceSpeedTableIndices:
 
 InitAI_Boulder:
     LDX.W $0E54                                                          ;A686F5;
-    STZ.W $0FAC,X                                                        ;A686F8;
+    STZ.W EnemyData.work2,X                                              ;A686F8;
     LDA.W #$0000                                                         ;A686FB;
-    STA.W $0FAA,X                                                        ;A686FE;
+    STA.W EnemyData.work1,X                                              ;A686FE;
     LDA.W #$0002                                                         ;A68701;
-    STA.W $0FAE,X                                                        ;A68704;
+    STA.W EnemyData.work3,X                                              ;A68704;
     LDA.W #Function_Boulder_WaitForSamusToGetNear                        ;A68707;
-    STA.W $0FA8,X                                                        ;A6870A;
-    LDA.W $0F7A,X                                                        ;A6870D;
+    STA.W EnemyData.work0,X                                              ;A6870A;
+    LDA.W EnemyData.xPosition,X                                          ;A6870D;
     STA.L $7E7808,X                                                      ;A68710;
-    LDA.W $0F7E,X                                                        ;A68714;
+    LDA.W EnemyData.yPosition,X                                          ;A68714;
     STA.L $7E780A,X                                                      ;A68717;
     STA.L $7E7806,X                                                      ;A6871B;
-    LDA.W $0F80,X                                                        ;A6871F;
+    LDA.W EnemyData.ySubPosition,X                                       ;A6871F;
     STA.L $7E7804,X                                                      ;A68722;
     LDA.W $0FB7,X                                                        ;A68726;
     AND.W #$00FF                                                         ;A68729;
@@ -493,32 +493,32 @@ InitAI_Boulder:
     INC A                                                                ;A68738;
     CLC                                                                  ;A68739;
     ADC.L $7E780A,X                                                      ;A6873A;
-    STA.W $0F7E,X                                                        ;A6873E;
-    LDA.W $0FB6,X                                                        ;A68741;
+    STA.W EnemyData.yPosition,X                                          ;A6873E;
+    LDA.W EnemyData.initParam1,X                                         ;A68741;
     AND.W #$00FF                                                         ;A68744;
     EOR.W #$FFFF                                                         ;A68747;
     INC A                                                                ;A6874A;
     STA.L $7E7800,X                                                      ;A6874B;
-    LDA.W $0F92,X                                                        ;A6874F;
+    LDA.W EnemyData.pInstList,X                                          ;A6874F;
     AND.W #$00FF                                                         ;A68752;
     STA.L $7E780C,X                                                      ;A68755;
     LDA.W #InstList_Boulder_FacingLeft                                   ;A68759;
-    STA.W $0F92,X                                                        ;A6875C;
+    STA.W EnemyData.pInstList,X                                          ;A6875C;
     LDA.W $0FB5,X                                                        ;A6875F;
     AND.W #$00FF                                                         ;A68762;
-    STA.W $0FB0,X                                                        ;A68765;
+    STA.W EnemyData.work4,X                                              ;A68765;
     BNE .left                                                            ;A68768;
     LDA.L $7E7800,X                                                      ;A6876A;
     EOR.W #$FFFF                                                         ;A6876E;
     INC A                                                                ;A68771;
     STA.L $7E7800,X                                                      ;A68772;
     LDA.W #InstList_Boulder_FacingRight                                  ;A68776;
-    STA.W $0F92,X                                                        ;A68779;
+    STA.W EnemyData.pInstList,X                                          ;A68779;
 
 .left:
     LDA.W #$0002                                                         ;A6877C;
     STA.L $7E7802,X                                                      ;A6877F;
-    LDA.W $0FB4,X                                                        ;A68783;
+    LDA.W EnemyData.initParam0,X                                         ;A68783;
     AND.W #$00FF                                                         ;A68786;
     BEQ .return                                                          ;A68789;
     LDA.W #$0005                                                         ;A6878B;
@@ -540,18 +540,18 @@ Function_Boulder_WaitForSamusToGetNear:
     BMI .return                                                          ;A687A1;
     CMP.L $7E780C,X                                                      ;A687A3;
     BPL .return                                                          ;A687A7;
-    LDA.W $0FB0,X                                                        ;A687A9;
+    LDA.W EnemyData.work4,X                                              ;A687A9;
     BNE .left                                                            ;A687AC;
     JSL.L Get_SamusX_minus_EnemyX                                        ;A687AE;
     BMI .return                                                          ;A687B2;
     CMP.L $7E7800,X                                                      ;A687B4;
     BPL .return                                                          ;A687B8;
     LDA.W #Function_Boulder_Falling                                      ;A687BA;
-    STA.W $0FA8,X                                                        ;A687BD;
+    STA.W EnemyData.work0,X                                              ;A687BD;
     LDA.L $7E780E,X                                                      ;A687C0;
     BEQ .return                                                          ;A687C4;
     LDA.W #Function_Boulder_Rolling                                      ;A687C6;
-    STA.W $0FA8,X                                                        ;A687C9;
+    STA.W EnemyData.work0,X                                              ;A687C9;
     BRA .return                                                          ;A687CC;
 
 
@@ -561,11 +561,11 @@ Function_Boulder_WaitForSamusToGetNear:
     CMP.L $7E7800,X                                                      ;A687D4;
     BMI .return                                                          ;A687D8;
     LDA.W #Function_Boulder_Falling                                      ;A687DA;
-    STA.W $0FA8,X                                                        ;A687DD;
+    STA.W EnemyData.work0,X                                              ;A687DD;
     LDA.L $7E780E,X                                                      ;A687E0;
     BEQ .return                                                          ;A687E4;
     LDA.W #Function_Boulder_Rolling                                      ;A687E6;
-    STA.W $0FA8,X                                                        ;A687E9;
+    STA.W EnemyData.work0,X                                              ;A687E9;
 
 .return:
     RTS                                                                  ;A687EC;
@@ -573,7 +573,7 @@ Function_Boulder_WaitForSamusToGetNear:
 
 Function_Boulder_Falling:
     LDX.W $0E54                                                          ;A687ED;
-    LDA.W $0FAC,X                                                        ;A687F0;
+    LDA.W EnemyData.work2,X                                              ;A687F0;
     AND.W #$FF00                                                         ;A687F3;
     XBA                                                                  ;A687F6;
     ASL A                                                                ;A687F7;
@@ -581,27 +581,27 @@ Function_Boulder_Falling:
     ASL A                                                                ;A687F9;
     TAY                                                                  ;A687FA;
     JSR.W MoveBoulderVertically                                          ;A687FB;
-    LDA.W $0F7E,X                                                        ;A687FE;
+    LDA.W EnemyData.yPosition,X                                          ;A687FE;
     CMP.L $7E780A,X                                                      ;A68801;
     BMI .notReachedTarget                                                ;A68805;
     LDA.L $7E780A,X                                                      ;A68807;
-    STA.W $0F7E,X                                                        ;A6880B;
+    STA.W EnemyData.yPosition,X                                          ;A6880B;
     LDA.W #Function_Boulder_Bounce_Rising                                ;A6880E;
-    STA.W $0FA8,X                                                        ;A68811;
+    STA.W EnemyData.work0,X                                              ;A68811;
     LDA.W #$2000                                                         ;A68814;
-    STA.W $0FAC,X                                                        ;A68817;
+    STA.W EnemyData.work2,X                                              ;A68817;
     BRA .return                                                          ;A6881A;
 
 
 .notReachedTarget:
-    LDA.W $0FAC,X                                                        ;A6881C;
+    LDA.W EnemyData.work2,X                                              ;A6881C;
     CLC                                                                  ;A6881F;
     ADC.W #$0100                                                         ;A68820;
-    STA.W $0FAC,X                                                        ;A68823;
+    STA.W EnemyData.work2,X                                              ;A68823;
     CMP.W #$5000                                                         ;A68826;
     BMI .return                                                          ;A68829;
     LDA.W #$5000                                                         ;A6882B;
-    STA.W $0FAC,X                                                        ;A6882E;
+    STA.W EnemyData.work2,X                                              ;A6882E;
 
 .return:
     RTS                                                                  ;A68831;
@@ -609,7 +609,7 @@ Function_Boulder_Falling:
 
 Function_Boulder_Bounce_Rising:
     LDX.W $0E54                                                          ;A68832;
-    LDA.W $0FAC,X                                                        ;A68835;
+    LDA.W EnemyData.work2,X                                              ;A68835;
     AND.W #$FF00                                                         ;A68838;
     XBA                                                                  ;A6883B;
     ASL A                                                                ;A6883C;
@@ -621,26 +621,26 @@ Function_Boulder_Bounce_Rising:
     INC A                                                                ;A68842;
     TAY                                                                  ;A68843;
     JSR.W MoveBoulderVertically                                          ;A68844;
-    LDA.W $0FAC,X                                                        ;A68847;
+    LDA.W EnemyData.work2,X                                              ;A68847;
     SEC                                                                  ;A6884A;
     SBC.W #$0100                                                         ;A6884B;
-    STA.W $0FAC,X                                                        ;A6884E;
+    STA.W EnemyData.work2,X                                              ;A6884E;
     BPL .negativeSpeedTableIndex                                         ;A68851;
-    STZ.W $0FAC,X                                                        ;A68853;
+    STZ.W EnemyData.work2,X                                              ;A68853;
     LDA.W #Function_Boulder_Bounce_Falling                               ;A68856;
-    STA.W $0FA8,X                                                        ;A68859;
+    STA.W EnemyData.work0,X                                              ;A68859;
     BRA .return                                                          ;A6885C;
 
 
 .negativeSpeedTableIndex:
-    LDA.W $0FAA,X                                                        ;A6885E;
+    LDA.W EnemyData.work1,X                                              ;A6885E;
     AND.W #$FF00                                                         ;A68861;
     XBA                                                                  ;A68864;
     ASL A                                                                ;A68865;
     ASL A                                                                ;A68866;
     ASL A                                                                ;A68867;
     TAY                                                                  ;A68868;
-    LDA.W $0FB0,X                                                        ;A68869;
+    LDA.W EnemyData.work4,X                                              ;A68869;
     BEQ .right                                                           ;A6886C;
     INY                                                                  ;A6886E;
     INY                                                                  ;A6886F;
@@ -649,14 +649,14 @@ Function_Boulder_Bounce_Rising:
 
 .right:
     JSR.W MoveBoulderHorizontally                                        ;A68872;
-    LDA.W $0FAA,X                                                        ;A68875;
+    LDA.W EnemyData.work1,X                                              ;A68875;
     CLC                                                                  ;A68878;
     ADC.W #$0020                                                         ;A68879;
-    STA.W $0FAA,X                                                        ;A6887C;
+    STA.W EnemyData.work1,X                                              ;A6887C;
     CMP.W #$5000                                                         ;A6887F;
     BMI .return                                                          ;A68882;
     LDA.W #$5000                                                         ;A68884;
-    STA.W $0FAA,X                                                        ;A68887;
+    STA.W EnemyData.work1,X                                              ;A68887;
 
 .return:
     RTS                                                                  ;A6888A;
@@ -664,7 +664,7 @@ Function_Boulder_Bounce_Rising:
 
 Function_Boulder_Bounce_Falling:
     LDX.W $0E54                                                          ;A6888B;
-    LDA.W $0FAC,X                                                        ;A6888E;
+    LDA.W EnemyData.work2,X                                              ;A6888E;
     AND.W #$FF00                                                         ;A68891;
     XBA                                                                  ;A68894;
     ASL A                                                                ;A68895;
@@ -679,15 +679,15 @@ Function_Boulder_Bounce_Falling:
     BCC .noCollision                                                     ;A688A7;
     LDA.W #$0042                                                         ;A688A9;
     JSL.L QueueSound_Lib2_Max6                                           ;A688AC;
-    LDA.W $0FB0,X                                                        ;A688B0;
+    LDA.W EnemyData.work4,X                                              ;A688B0;
     CMP.W #$0002                                                         ;A688B3;
     BNE .right                                                           ;A688B6;
-    LDA.W $0F86,X                                                        ;A688B8;
+    LDA.W EnemyData.properties,X                                         ;A688B8;
     ORA.W #$0200                                                         ;A688BB;
-    STA.W $0F86,X                                                        ;A688BE;
-    LDA.W $0F7A,X                                                        ;A688C1;
+    STA.W EnemyData.properties,X                                         ;A688BE;
+    LDA.W EnemyData.xPosition,X                                          ;A688C1;
     STA.B $12                                                            ;A688C4;
-    LDA.W $0F7E,X                                                        ;A688C6;
+    LDA.W EnemyData.yPosition,X                                          ;A688C6;
     STA.B $14                                                            ;A688C9;
     LDA.W #$0011                                                         ;A688CB;
     LDY.W #EnemyProjectile_MiscDust                                      ;A688CE;
@@ -699,37 +699,37 @@ Function_Boulder_Bounce_Falling:
 
 .right:
     LDA.W #Function_Boulder_Bounce_Rising                                ;A688DE;
-    STA.W $0FA8,X                                                        ;A688E1;
-    LDA.W $0FAE,X                                                        ;A688E4;
+    STA.W EnemyData.work0,X                                              ;A688E1;
+    LDA.W EnemyData.work3,X                                              ;A688E4;
     DEC A                                                                ;A688E7;
     ASL A                                                                ;A688E8;
     TAY                                                                  ;A688E9;
     LDA.W BounceSpeedTableIndices+2,Y                                    ;A688EA;
-    STA.W $0FAC,X                                                        ;A688ED;
-    DEC.W $0FAE,X                                                        ;A688F0;
+    STA.W EnemyData.work2,X                                              ;A688ED;
+    DEC.W EnemyData.work3,X                                              ;A688F0;
     BPL .return                                                          ;A688F3;
-    LDA.W $0F7E,X                                                        ;A688F5;
+    LDA.W EnemyData.yPosition,X                                          ;A688F5;
     STA.L $7E7806,X                                                      ;A688F8;
-    LDA.W $0F80,X                                                        ;A688FC;
+    LDA.W EnemyData.ySubPosition,X                                       ;A688FC;
     STA.L $7E7804,X                                                      ;A688FF;
     LDA.W #Function_Boulder_Rolling                                      ;A68903;
-    STA.W $0FA8,X                                                        ;A68906;
+    STA.W EnemyData.work0,X                                              ;A68906;
     BRA .return                                                          ;A68909;
 
 
 .noCollision:
-    LDA.W $0FAC,X                                                        ;A6890B;
+    LDA.W EnemyData.work2,X                                              ;A6890B;
     CLC                                                                  ;A6890E;
     ADC.W #$0100                                                         ;A6890F;
-    STA.W $0FAC,X                                                        ;A68912;
-    LDA.W $0FAA,X                                                        ;A68915;
+    STA.W EnemyData.work2,X                                              ;A68912;
+    LDA.W EnemyData.work1,X                                              ;A68915;
     AND.W #$FF00                                                         ;A68918;
     XBA                                                                  ;A6891B;
     ASL A                                                                ;A6891C;
     ASL A                                                                ;A6891D;
     ASL A                                                                ;A6891E;
     TAY                                                                  ;A6891F;
-    LDA.W $0FB0,X                                                        ;A68920;
+    LDA.W EnemyData.work4,X                                              ;A68920;
     BEQ ..right                                                          ;A68923;
     INY                                                                  ;A68925;
     INY                                                                  ;A68926;
@@ -738,14 +738,14 @@ Function_Boulder_Bounce_Falling:
 
 ..right:
     JSR.W MoveBoulderHorizontally                                        ;A68929;
-    LDA.W $0FAA,X                                                        ;A6892C;
+    LDA.W EnemyData.work1,X                                              ;A6892C;
     CLC                                                                  ;A6892F;
     ADC.W #$0020                                                         ;A68930;
-    STA.W $0FAA,X                                                        ;A68933;
+    STA.W EnemyData.work1,X                                              ;A68933;
     CMP.W #$5000                                                         ;A68936;
     BMI .return                                                          ;A68939;
     LDA.W #$5000                                                         ;A6893B;
-    STA.W $0FAA,X                                                        ;A6893E;
+    STA.W EnemyData.work1,X                                              ;A6893E;
 
 .return:
     RTS                                                                  ;A68941;
@@ -753,7 +753,7 @@ Function_Boulder_Bounce_Falling:
 
 Function_Boulder_Rolling:
     LDX.W $0E54                                                          ;A68942;
-    LDA.W $0FAA,X                                                        ;A68945;
+    LDA.W EnemyData.work1,X                                              ;A68945;
     AND.W #$FF00                                                         ;A68948;
     XBA                                                                  ;A6894B;
     ASL A                                                                ;A6894C;
@@ -769,11 +769,11 @@ Function_Boulder_Rolling:
     PHY                                                                  ;A6895F;
     JSL.L MoveEnemyDownBy_14_12                                          ;A68960;
     PLY                                                                  ;A68964;
-    LDA.W $0F7E,X                                                        ;A68965;
+    LDA.W EnemyData.yPosition,X                                          ;A68965;
     SEC                                                                  ;A68968;
     SBC.L $7E7802,X                                                      ;A68969;
-    STA.W $0F7E,X                                                        ;A6896D;
-    LDA.W $0FB0,X                                                        ;A68970;
+    STA.W EnemyData.yPosition,X                                          ;A6896D;
+    LDA.W EnemyData.work4,X                                              ;A68970;
     BEQ .right                                                           ;A68973;
     INY                                                                  ;A68975;
     INY                                                                  ;A68976;
@@ -787,17 +787,17 @@ Function_Boulder_Rolling:
     STA.B $14                                                            ;A68981;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A68983;
     BCC .notCollidedWithWall                                             ;A68987;
-    LDA.W $0F86,X                                                        ;A68989;
+    LDA.W EnemyData.properties,X                                         ;A68989;
     ORA.W #$0100                                                         ;A6898C;
     ORA.W #$0200                                                         ;A6898F;
-    STA.W $0F86,X                                                        ;A68992;
+    STA.W EnemyData.properties,X                                         ;A68992;
     LDA.W #Function_Boulder_LoadEnemyIndex                               ;A68995;
-    STA.W $0FA8,X                                                        ;A68998;
+    STA.W EnemyData.work0,X                                              ;A68998;
     LDA.W #$0042                                                         ;A6899B;
     JSL.L QueueSound_Lib2_Max6                                           ;A6899E;
-    LDA.W $0F7A,X                                                        ;A689A2;
+    LDA.W EnemyData.xPosition,X                                          ;A689A2;
     STA.B $12                                                            ;A689A5;
-    LDA.W $0F7E,X                                                        ;A689A7;
+    LDA.W EnemyData.yPosition,X                                          ;A689A7;
     STA.B $14                                                            ;A689AA;
     LDA.W #$0011                                                         ;A689AC;
     LDY.W #EnemyProjectile_MiscDust                                      ;A689AF;
@@ -808,28 +808,28 @@ Function_Boulder_Rolling:
 
 
 .notCollidedWithWall:
-    LDA.W $0FAA,X                                                        ;A689BF;
+    LDA.W EnemyData.work1,X                                              ;A689BF;
     CLC                                                                  ;A689C2;
     ADC.W #$0040                                                         ;A689C3;
-    STA.W $0FAA,X                                                        ;A689C6;
+    STA.W EnemyData.work1,X                                              ;A689C6;
     CMP.W #$4000                                                         ;A689C9;
     BMI +                                                                ;A689CC;
     LDA.W #$4000                                                         ;A689CE;
-    STA.W $0FAA,X                                                        ;A689D1;
+    STA.W EnemyData.work1,X                                              ;A689D1;
 
-  + LDA.W $0F7E,X                                                        ;A689D4;
+  + LDA.W EnemyData.yPosition,X                                          ;A689D4;
     CMP.L $7E7806,X                                                      ;A689D7;
     BNE .return                                                          ;A689DB;
-    LDA.W $0F80,X                                                        ;A689DD;
+    LDA.W EnemyData.ySubPosition,X                                       ;A689DD;
     CMP.L $7E7804,X                                                      ;A689E0;
     BNE .return                                                          ;A689E4;
     LDA.W #$0000                                                         ;A689E6;
     STA.L $7E7802,X                                                      ;A689E9;
 
 .return:
-    LDA.W $0F7E,X                                                        ;A689ED;
+    LDA.W EnemyData.yPosition,X                                          ;A689ED;
     STA.L $7E7806,X                                                      ;A689F0;
-    LDA.W $0F80,X                                                        ;A689F4;
+    LDA.W EnemyData.ySubPosition,X                                       ;A689F4;
     STA.L $7E7804,X                                                      ;A689F7;
     RTS                                                                  ;A689FB;
 
@@ -841,49 +841,49 @@ Function_Boulder_LoadEnemyIndex:
 
 MoveBoulderHorizontally:
     LDX.W $0E54                                                          ;A68A00;
-    LDA.W $0F7C,X                                                        ;A68A03;
+    LDA.W EnemyData.xSubPosition,X                                       ;A68A03;
     CLC                                                                  ;A68A06;
     ADC.W CommonA6EnemySpeeds_QuadraticallyIncreasing,Y                  ;A68A07;
     BCC +                                                                ;A68A0A;
-    INC.W $0F7A,X                                                        ;A68A0C;
+    INC.W EnemyData.xPosition,X                                          ;A68A0C;
 
-  + STA.W $0F7C,X                                                        ;A68A0F;
-    LDA.W $0F7A,X                                                        ;A68A12;
+  + STA.W EnemyData.xSubPosition,X                                       ;A68A0F;
+    LDA.W EnemyData.xPosition,X                                          ;A68A12;
     CLC                                                                  ;A68A15;
     ADC.W CommonA6EnemySpeeds_QuadraticallyIncreasing+2,Y                ;A68A16;
-    STA.W $0F7A,X                                                        ;A68A19;
+    STA.W EnemyData.xPosition,X                                          ;A68A19;
     RTS                                                                  ;A68A1C;
 
 
 UNUSED_MoveBoulderHorizontallyWithLinearSpeedTable_A68A1D:
     LDX.W $0E54                                                          ;A68A1D;
-    LDA.W $0F7C,X                                                        ;A68A20;
+    LDA.W EnemyData.xSubPosition,X                                       ;A68A20;
     CLC                                                                  ;A68A23;
     ADC.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A68A24;
     BCC +                                                                ;A68A27;
-    INC.W $0F7A,X                                                        ;A68A29;
+    INC.W EnemyData.xPosition,X                                          ;A68A29;
 
-  + STA.W $0F7C,X                                                        ;A68A2C;
-    LDA.W $0F7A,X                                                        ;A68A2F;
+  + STA.W EnemyData.xSubPosition,X                                       ;A68A2C;
+    LDA.W EnemyData.xPosition,X                                          ;A68A2F;
     CLC                                                                  ;A68A32;
     ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A68A33;
-    STA.W $0F7A,X                                                        ;A68A36;
+    STA.W EnemyData.xPosition,X                                          ;A68A36;
     RTS                                                                  ;A68A39;
 
 
 MoveBoulderVertically:
     LDX.W $0E54                                                          ;A68A3A;
-    LDA.W $0F80,X                                                        ;A68A3D;
+    LDA.W EnemyData.ySubPosition,X                                       ;A68A3D;
     CLC                                                                  ;A68A40;
     ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A68A41;
     BCC +                                                                ;A68A44;
-    INC.W $0F7E,X                                                        ;A68A46;
+    INC.W EnemyData.yPosition,X                                          ;A68A46;
 
-  + STA.W $0F80,X                                                        ;A68A49;
-    LDA.W $0F7E,X                                                        ;A68A4C;
+  + STA.W EnemyData.ySubPosition,X                                       ;A68A49;
+    LDA.W EnemyData.yPosition,X                                          ;A68A4C;
     CLC                                                                  ;A68A4F;
     ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A68A50;
-    STA.W $0F7E,X                                                        ;A68A53;
+    STA.W EnemyData.yPosition,X                                          ;A68A53;
     RTS                                                                  ;A68A56;
 
 
@@ -996,10 +996,10 @@ InstList_Kzan:
 InitAI_KzanTop:
     LDX.W $0E54                                                          ;A68B2F;
     LDA.W #InstList_Kzan                                                 ;A68B32;
-    STA.W $0F92,X                                                        ;A68B35;
+    STA.W EnemyData.pInstList,X                                          ;A68B35;
     LDA.W #Function_Kzan_WaitingToFall                                   ;A68B38;
-    STA.W $0FA8,X                                                        ;A68B3B;
-    LDA.W $0FB4,X                                                        ;A68B3E;
+    STA.W EnemyData.work0,X                                              ;A68B3B;
+    LDA.W EnemyData.initParam0,X                                         ;A68B3E;
     AND.W #$00FF                                                         ;A68B41;
     ASL A                                                                ;A68B44;
     ASL A                                                                ;A68B45;
@@ -1012,43 +1012,43 @@ InitAI_KzanTop:
     STA.B $14                                                            ;A68B54;
     LDX.W $0E54                                                          ;A68B56;
     LDA.B $14                                                            ;A68B59;
-    STA.W $0FB0,X                                                        ;A68B5B;
+    STA.W EnemyData.work4,X                                              ;A68B5B;
     LDA.B $12                                                            ;A68B5E;
-    STA.W $0FB2,X                                                        ;A68B60;
-    LDA.W $0FB6,X                                                        ;A68B63;
+    STA.W EnemyData.work5,X                                              ;A68B60;
+    LDA.W EnemyData.initParam1,X                                         ;A68B63;
     AND.W #$FF00                                                         ;A68B66;
     XBA                                                                  ;A68B69;
     CLC                                                                  ;A68B6A;
-    ADC.W $0F7E,X                                                        ;A68B6B;
-    STA.W $0FAE,X                                                        ;A68B6E;
-    LDA.W $0F7E,X                                                        ;A68B71;
-    STA.W $0FAC,X                                                        ;A68B74;
-    LDA.W $0FB6,X                                                        ;A68B77;
+    ADC.W EnemyData.yPosition,X                                          ;A68B6B;
+    STA.W EnemyData.work3,X                                              ;A68B6E;
+    LDA.W EnemyData.yPosition,X                                          ;A68B71;
+    STA.W EnemyData.work2,X                                              ;A68B74;
+    LDA.W EnemyData.initParam1,X                                         ;A68B77;
     AND.W #$00FF                                                         ;A68B7A;
     STA.L $7E7800,X                                                      ;A68B7D;
-    STA.W $0FAA,X                                                        ;A68B81;
+    STA.W EnemyData.work1,X                                              ;A68B81;
     RTL                                                                  ;A68B84;
 
 
 InitAI_KzanBottom:
     LDX.W $0E54                                                          ;A68B85;
     LDA.W $0F3A,X                                                        ;A68B88;
-    STA.W $0F7A,X                                                        ;A68B8B;
+    STA.W EnemyData.xPosition,X                                          ;A68B8B;
     LDA.W $0F3E,X                                                        ;A68B8E;
     CLC                                                                  ;A68B91;
     ADC.W #$000C                                                         ;A68B92;
-    STA.W $0F7E,X                                                        ;A68B95;
+    STA.W EnemyData.yPosition,X                                          ;A68B95;
     RTL                                                                  ;A68B98;
 
 
 MainAI_KzanBottom:
     LDX.W $0E54                                                          ;A68B99; Same as init AI
     LDA.W $0F3A,X                                                        ;A68B9C;
-    STA.W $0F7A,X                                                        ;A68B9F;
+    STA.W EnemyData.xPosition,X                                          ;A68B9F;
     LDA.W $0F3E,X                                                        ;A68BA2;
     CLC                                                                  ;A68BA5;
     ADC.W #$000C                                                         ;A68BA6;
-    STA.W $0F7E,X                                                        ;A68BA9;
+    STA.W EnemyData.yPosition,X                                          ;A68BA9;
     RTL                                                                  ;A68BAC;
 
 
@@ -1061,19 +1061,19 @@ MainAI_KzanTop:
 Function_Kzan_WaitingToFall:
     PHX                                                                  ;A68BB4;
     LDX.W $0E54                                                          ;A68BB5;
-    DEC.W $0FAA,X                                                        ;A68BB8;
-    LDA.W $0FAA,X                                                        ;A68BBB;
+    DEC.W EnemyData.work1,X                                              ;A68BB8;
+    LDA.W EnemyData.work1,X                                              ;A68BBB;
     BNE .return                                                          ;A68BBE;
     LDA.L $7E7800,X                                                      ;A68BC0;
-    STA.W $0FAA,X                                                        ;A68BC4;
-    LDA.W $0FB4,X                                                        ;A68BC7;
+    STA.W EnemyData.work1,X                                              ;A68BC4;
+    LDA.W EnemyData.initParam0,X                                         ;A68BC7;
     AND.W #$00FF                                                         ;A68BCA;
     ASL A                                                                ;A68BCD;
     ASL A                                                                ;A68BCE;
     ASL A                                                                ;A68BCF;
     STA.L $7E7804,X                                                      ;A68BD0;
     LDA.W #Function_Kzan_Falling                                         ;A68BD4;
-    STA.W $0FA8,X                                                        ;A68BD7;
+    STA.W EnemyData.work0,X                                              ;A68BD7;
 
 .return:
     PLX                                                                  ;A68BDA;
@@ -1083,7 +1083,7 @@ Function_Kzan_WaitingToFall:
 Function_Kzan_Falling:
     PHX                                                                  ;A68BDC;
     LDX.W $0E54                                                          ;A68BDD;
-    LDA.W $0F7E,X                                                        ;A68BE0;
+    LDA.W EnemyData.yPosition,X                                          ;A68BE0;
     STA.L $7E7802,X                                                      ;A68BE3;
     LDA.L $7E7804,X                                                      ;A68BE7;
     TAX                                                                  ;A68BEB;
@@ -1093,22 +1093,22 @@ Function_Kzan_Falling:
     STA.B $12                                                            ;A68BF4;
     LDX.W $0E54                                                          ;A68BF6;
     JSL.L MoveEnemyY_plus_12_14                                          ;A68BF9;
-    LDA.W $0F7E,X                                                        ;A68BFD;
-    CMP.W $0FAE,X                                                        ;A68C00;
+    LDA.W EnemyData.yPosition,X                                          ;A68BFD;
+    CMP.W EnemyData.work3,X                                              ;A68C00;
     BMI .notReachedTarget                                                ;A68C03;
     LDA.W #$0040                                                         ;A68C05;
     STA.L $7E7806,X                                                      ;A68C08;
     LDA.W #Function_Kzan_WaitingToRise                                   ;A68C0C;
-    STA.W $0FA8,X                                                        ;A68C0F;
-    LDA.W $0FAE,X                                                        ;A68C12;
-    STA.W $0F7E,X                                                        ;A68C15;
+    STA.W EnemyData.work0,X                                              ;A68C0F;
+    LDA.W EnemyData.work3,X                                              ;A68C12;
+    STA.W EnemyData.yPosition,X                                          ;A68C15;
     LDA.W #$001B                                                         ;A68C18;
     JSL.L QueueSound_Lib2_Max6                                           ;A68C1B;
 
 .notReachedTarget:
     JSL.L CheckIfKzanIsTouchingSamusFromBelow                            ;A68C1F;
     BEQ .notTouchingSamusFromBelow                                       ;A68C23;
-    LDA.W $0F7E,X                                                        ;A68C25;
+    LDA.W EnemyData.yPosition,X                                          ;A68C25;
     SEC                                                                  ;A68C28;
     SBC.L $7E7802,X                                                      ;A68C29;
     CLC                                                                  ;A68C2D;
@@ -1138,32 +1138,32 @@ Function_Kzan_WaitingToRise:
 
 .timerExpired:
     LDA.W #Function_Kzan_Rising                                          ;A68C56;
-    STA.W $0FA8,X                                                        ;A68C59;
+    STA.W EnemyData.work0,X                                              ;A68C59;
     RTS                                                                  ;A68C5C;
 
 
 Function_Kzan_Rising:
     PHX                                                                  ;A68C5D;
     LDX.W $0E54                                                          ;A68C5E;
-    LDA.W $0F7E,X                                                        ;A68C61;
+    LDA.W EnemyData.yPosition,X                                          ;A68C61;
     STA.L $7E7802,X                                                      ;A68C64;
     LDA.W #$8000                                                         ;A68C68;
     STA.B $12                                                            ;A68C6B;
     LDA.W #$0000                                                         ;A68C6D;
     STA.B $14                                                            ;A68C70;
     JSL.L MoveEnemyY_minus_12_14                                         ;A68C72;
-    LDA.W $0F7E,X                                                        ;A68C76;
-    CMP.W $0FAC,X                                                        ;A68C79;
+    LDA.W EnemyData.yPosition,X                                          ;A68C76;
+    CMP.W EnemyData.work2,X                                              ;A68C79;
     BPL .notReachedTarget                                                ;A68C7C;
     LDA.W #Function_Kzan_WaitingToFall                                   ;A68C7E;
-    STA.W $0FA8,X                                                        ;A68C81;
-    LDA.W $0FAC,X                                                        ;A68C84;
-    STA.W $0F7E,X                                                        ;A68C87;
+    STA.W EnemyData.work0,X                                              ;A68C81;
+    LDA.W EnemyData.work2,X                                              ;A68C84;
+    STA.W EnemyData.yPosition,X                                          ;A68C87;
 
 .notReachedTarget:
     JSL.L CheckIfKzanIsTouchingSamusFromBelow                            ;A68C8A;
     BEQ .notTouchingSamusFromBelow                                       ;A68C8E;
-    LDA.W $0F7E,X                                                        ;A68C90;
+    LDA.W EnemyData.yPosition,X                                          ;A68C90;
     SEC                                                                  ;A68C93;
     SBC.L $7E7802,X                                                      ;A68C94;
     CLC                                                                  ;A68C98;
@@ -1178,7 +1178,7 @@ Function_Kzan_Rising:
 CheckIfKzanIsTouchingSamusFromBelow:
     LDA.W $0AF6                                                          ;A68CA1;
     SEC                                                                  ;A68CA4;
-    SBC.W $0F7A,X                                                        ;A68CA5;
+    SBC.W EnemyData.xPosition,X                                          ;A68CA5;
     BPL +                                                                ;A68CA8;
     EOR.W #$FFFF                                                         ;A68CAA;
     INC A                                                                ;A68CAD;
@@ -1186,7 +1186,7 @@ CheckIfKzanIsTouchingSamusFromBelow:
   + SEC                                                                  ;A68CAE;
     SBC.W $0AFE                                                          ;A68CAF;
     BCC .YPosition                                                       ;A68CB2;
-    CMP.W $0F82,X                                                        ;A68CB4;
+    CMP.W EnemyData.xHitboxRadius,X                                      ;A68CB4;
     BCC .YPosition                                                       ;A68CB7;
     LDA.W #$0000                                                         ;A68CB9;
     RTL                                                                  ;A68CBC;
@@ -1197,14 +1197,14 @@ CheckIfKzanIsTouchingSamusFromBelow:
     CLC                                                                  ;A68CC0;
     ADC.W #$0005                                                         ;A68CC1;
     SEC                                                                  ;A68CC4;
-    SBC.W $0F7E,X                                                        ;A68CC5;
+    SBC.W EnemyData.yPosition,X                                          ;A68CC5;
     BPL .returnNotTouchingSamus                                          ;A68CC8;
     EOR.W #$FFFF                                                         ;A68CCA;
     INC A                                                                ;A68CCD;
     SEC                                                                  ;A68CCE;
     SBC.W $0B00                                                          ;A68CCF;
     BCC .returnTouchingSamus                                             ;A68CD2;
-    CMP.W $0F84,X                                                        ;A68CD4;
+    CMP.W EnemyData.yHitboxRadius,X                                      ;A68CD4;
     BEQ .returnTouchingSamus                                             ;A68CD7;
     BCC .returnTouchingSamus                                             ;A68CD9;
 
@@ -1463,7 +1463,7 @@ Hibashi_XOffset_15:
 
 Instruction_Hibashi_ActivityFrame0:
     LDX.W $0E54                                                          ;A68E13;
-    LDA.W $0FAE,X                                                        ;A68E16;
+    LDA.W EnemyData.work3,X                                              ;A68E16;
     SEC                                                                  ;A68E19;
     SBC.W Hibashi_YOffset_0                                              ;A68E1A;
     STA.W $0FBE,X                                                        ;A68E1D;
@@ -1476,7 +1476,7 @@ Instruction_Hibashi_ActivityFrame0:
 
 Instruction_Hibashi_ActivityFrame1:
     LDX.W $0E54                                                          ;A68E2D;
-    LDA.W $0FAE,X                                                        ;A68E30;
+    LDA.W EnemyData.work3,X                                              ;A68E30;
     SEC                                                                  ;A68E33;
     SBC.W Hibashi_YOffset_1                                              ;A68E34;
     STA.W $0FBE,X                                                        ;A68E37;
@@ -1487,7 +1487,7 @@ Instruction_Hibashi_ActivityFrame1:
 
 Instruction_Hibashi_ActivityFrame2:
     LDX.W $0E54                                                          ;A68E41;
-    LDA.W $0FAE,X                                                        ;A68E44;
+    LDA.W EnemyData.work3,X                                              ;A68E44;
     SEC                                                                  ;A68E47;
     SBC.W Hibashi_YOffset_2                                              ;A68E48;
     STA.W $0FBE,X                                                        ;A68E4B;
@@ -1498,7 +1498,7 @@ Instruction_Hibashi_ActivityFrame2:
 
 Instruction_Hibashi_ActivityFrame3:
     LDX.W $0E54                                                          ;A68E55;
-    LDA.W $0FAE,X                                                        ;A68E58;
+    LDA.W EnemyData.work3,X                                              ;A68E58;
     SEC                                                                  ;A68E5B;
     SBC.W Hibashi_YOffset_3                                              ;A68E5C;
     STA.W $0FBE,X                                                        ;A68E5F;
@@ -1509,7 +1509,7 @@ Instruction_Hibashi_ActivityFrame3:
 
 Instruction_Hibashi_ActivityFrame4:
     LDX.W $0E54                                                          ;A68E69;
-    LDA.W $0FAE,X                                                        ;A68E6C;
+    LDA.W EnemyData.work3,X                                              ;A68E6C;
     SEC                                                                  ;A68E6F;
     SBC.W Hibashi_YOffset_4                                              ;A68E70;
     STA.W $0FBE,X                                                        ;A68E73;
@@ -1520,7 +1520,7 @@ Instruction_Hibashi_ActivityFrame4:
 
 Instruction_Hibashi_ActivityFrame5:
     LDX.W $0E54                                                          ;A68E7D;
-    LDA.W $0FAE,X                                                        ;A68E80;
+    LDA.W EnemyData.work3,X                                              ;A68E80;
     SEC                                                                  ;A68E83;
     SBC.W Hibashi_YOffset_5                                              ;A68E84;
     STA.W $0FBE,X                                                        ;A68E87;
@@ -1531,7 +1531,7 @@ Instruction_Hibashi_ActivityFrame5:
 
 Instruction_Hibashi_ActivityFrame6:
     LDX.W $0E54                                                          ;A68E91;
-    LDA.W $0FAE,X                                                        ;A68E94;
+    LDA.W EnemyData.work3,X                                              ;A68E94;
     SEC                                                                  ;A68E97;
     SBC.W Hibashi_YOffset_6                                              ;A68E98;
     STA.W $0FBE,X                                                        ;A68E9B;
@@ -1542,7 +1542,7 @@ Instruction_Hibashi_ActivityFrame6:
 
 Instruction_Hibashi_ActivityFrame7:
     LDX.W $0E54                                                          ;A68EA5;
-    LDA.W $0FAE,X                                                        ;A68EA8;
+    LDA.W EnemyData.work3,X                                              ;A68EA8;
     SEC                                                                  ;A68EAB;
     SBC.W Hibashi_YOffset_7                                              ;A68EAC;
     STA.W $0FBE,X                                                        ;A68EAF;
@@ -1553,7 +1553,7 @@ Instruction_Hibashi_ActivityFrame7:
 
 Instruction_Hibashi_ActivityFrame8:
     LDX.W $0E54                                                          ;A68EB9;
-    LDA.W $0FAE,X                                                        ;A68EBC;
+    LDA.W EnemyData.work3,X                                              ;A68EBC;
     SEC                                                                  ;A68EBF;
     SBC.W Hibashi_YOffset_8                                              ;A68EC0;
     STA.W $0FBE,X                                                        ;A68EC3;
@@ -1564,7 +1564,7 @@ Instruction_Hibashi_ActivityFrame8:
 
 Instruction_Hibashi_ActivityFrame9:
     LDX.W $0E54                                                          ;A68ECD;
-    LDA.W $0FAE,X                                                        ;A68ED0;
+    LDA.W EnemyData.work3,X                                              ;A68ED0;
     SEC                                                                  ;A68ED3;
     SBC.W Hibashi_YOffset_9                                              ;A68ED4;
     STA.W $0FBE,X                                                        ;A68ED7;
@@ -1575,7 +1575,7 @@ Instruction_Hibashi_ActivityFrame9:
 
 Instruction_Hibashi_ActivityFrameA:
     LDX.W $0E54                                                          ;A68EE1;
-    LDA.W $0FAE,X                                                        ;A68EE4;
+    LDA.W EnemyData.work3,X                                              ;A68EE4;
     SEC                                                                  ;A68EE7;
     SBC.W Hibashi_YOffset_A                                              ;A68EE8;
     STA.W $0FBE,X                                                        ;A68EEB;
@@ -1586,7 +1586,7 @@ Instruction_Hibashi_ActivityFrameA:
 
 Instruction_Hibashi_ActivityFrameB:
     LDX.W $0E54                                                          ;A68EF5;
-    LDA.W $0FAE,X                                                        ;A68EF8;
+    LDA.W EnemyData.work3,X                                              ;A68EF8;
     SEC                                                                  ;A68EFB;
     SBC.W Hibashi_YOffset_B                                              ;A68EFC;
     STA.W $0FBE,X                                                        ;A68EFF;
@@ -1597,7 +1597,7 @@ Instruction_Hibashi_ActivityFrameB:
 
 Instruction_Hibashi_ActivityFrameC:
     LDX.W $0E54                                                          ;A68F09;
-    LDA.W $0FAE,X                                                        ;A68F0C;
+    LDA.W EnemyData.work3,X                                              ;A68F0C;
     SEC                                                                  ;A68F0F;
     SBC.W Hibashi_YOffset_C                                              ;A68F10;
     STA.W $0FBE,X                                                        ;A68F13;
@@ -1608,7 +1608,7 @@ Instruction_Hibashi_ActivityFrameC:
 
 Instruction_Hibashi_ActivityFrameD:
     LDX.W $0E54                                                          ;A68F1D;
-    LDA.W $0FAE,X                                                        ;A68F20;
+    LDA.W EnemyData.work3,X                                              ;A68F20;
     SEC                                                                  ;A68F23;
     SBC.W Hibashi_YOffset_D                                              ;A68F24;
     STA.W $0FBE,X                                                        ;A68F27;
@@ -1619,7 +1619,7 @@ Instruction_Hibashi_ActivityFrameD:
 
 Instruction_Hibashi_ActivityFrameE:
     LDX.W $0E54                                                          ;A68F31;
-    LDA.W $0FAE,X                                                        ;A68F34;
+    LDA.W EnemyData.work3,X                                              ;A68F34;
     SEC                                                                  ;A68F37;
     SBC.W Hibashi_YOffset_E                                              ;A68F38;
     STA.W $0FBE,X                                                        ;A68F3B;
@@ -1630,7 +1630,7 @@ Instruction_Hibashi_ActivityFrameE:
 
 Instruction_Hibashi_ActivityFrameF:
     LDX.W $0E54                                                          ;A68F45;
-    LDA.W $0FAE,X                                                        ;A68F48;
+    LDA.W EnemyData.work3,X                                              ;A68F48;
     SEC                                                                  ;A68F4B;
     SBC.W Hibashi_YOffset_F                                              ;A68F4C;
     STA.W $0FBE,X                                                        ;A68F4F;
@@ -1641,7 +1641,7 @@ Instruction_Hibashi_ActivityFrameF:
 
 Instruction_Hibashi_ActivityFrame10:
     LDX.W $0E54                                                          ;A68F59;
-    LDA.W $0FAE,X                                                        ;A68F5C;
+    LDA.W EnemyData.work3,X                                              ;A68F5C;
     SEC                                                                  ;A68F5F;
     SBC.W Hibashi_YOffset_10                                             ;A68F60;
     STA.W $0FBE,X                                                        ;A68F63;
@@ -1652,7 +1652,7 @@ Instruction_Hibashi_ActivityFrame10:
 
 Instruction_Hibashi_ActivityFrame11:
     LDX.W $0E54                                                          ;A68F6D;
-    LDA.W $0FAE,X                                                        ;A68F70;
+    LDA.W EnemyData.work3,X                                              ;A68F70;
     SEC                                                                  ;A68F73;
     SBC.W Hibashi_YOffset_11                                             ;A68F74;
     STA.W $0FBE,X                                                        ;A68F77;
@@ -1663,7 +1663,7 @@ Instruction_Hibashi_ActivityFrame11:
 
 Instruction_Hibashi_ActivityFrame12:
     LDX.W $0E54                                                          ;A68F81;
-    LDA.W $0FAE,X                                                        ;A68F84;
+    LDA.W EnemyData.work3,X                                              ;A68F84;
     SEC                                                                  ;A68F87;
     SBC.W Hibashi_YOffset_12                                             ;A68F88;
     STA.W $0FBE,X                                                        ;A68F8B;
@@ -1674,7 +1674,7 @@ Instruction_Hibashi_ActivityFrame12:
 
 Instruction_Hibashi_ActivityFrame13:
     LDX.W $0E54                                                          ;A68F95;
-    LDA.W $0FAE,X                                                        ;A68F98;
+    LDA.W EnemyData.work3,X                                              ;A68F98;
     SEC                                                                  ;A68F9B;
     SBC.W Hibashi_YOffset_13                                             ;A68F9C;
     STA.W $0FBE,X                                                        ;A68F9F;
@@ -1685,7 +1685,7 @@ Instruction_Hibashi_ActivityFrame13:
 
 Instruction_Hibashi_ActivityFrame14:
     LDX.W $0E54                                                          ;A68FA9;
-    LDA.W $0FAE,X                                                        ;A68FAC;
+    LDA.W EnemyData.work3,X                                              ;A68FAC;
     SEC                                                                  ;A68FAF;
     SBC.W Hibashi_YOffset_14                                             ;A68FB0;
     STA.W $0FBE,X                                                        ;A68FB3;
@@ -1696,7 +1696,7 @@ Instruction_Hibashi_ActivityFrame14:
 
 Instruction_Hibashi_ActivityFrame15:
     LDX.W $0E54                                                          ;A68FBD;
-    LDA.W $0FAE,X                                                        ;A68FC0;
+    LDA.W EnemyData.work3,X                                              ;A68FC0;
     SEC                                                                  ;A68FC3;
     SBC.W Hibashi_YOffset_15                                             ;A68FC4;
     STA.W $0FBE,X                                                        ;A68FC7;
@@ -1708,15 +1708,15 @@ Instruction_Hibashi_ActivityFrame15:
 Instruction_Hibashi_FinishActivity:
     LDX.W $0E54                                                          ;A68FD1;
     LDA.W #$0001                                                         ;A68FD4;
-    STA.W $0FAC,X                                                        ;A68FD7;
+    STA.W EnemyData.work2,X                                              ;A68FD7;
     LDA.W #$0000                                                         ;A68FDA;
     STA.W $0FC2,X                                                        ;A68FDD;
     STA.W $0FC4,X                                                        ;A68FE0;
-    LDA.W $0FAE,X                                                        ;A68FE3;
-    STA.W $0F7E,X                                                        ;A68FE6;
-    LDA.W $0F86,X                                                        ;A68FE9;
+    LDA.W EnemyData.work3,X                                              ;A68FE3;
+    STA.W EnemyData.yPosition,X                                          ;A68FE6;
+    LDA.W EnemyData.properties,X                                         ;A68FE9;
     ORA.W #$0100                                                         ;A68FEC;
-    STA.W $0F86,X                                                        ;A68FEF;
+    STA.W EnemyData.properties,X                                         ;A68FEF;
     LDA.W $0FC6,X                                                        ;A68FF2;
     ORA.W #$0400                                                         ;A68FF5;
     STA.W $0FC6,X                                                        ;A68FF8;
@@ -1726,17 +1726,17 @@ Instruction_Hibashi_FinishActivity:
 InitAI_Hibashi:
     LDX.W $0E54                                                          ;A68FFC;
     LDA.W #InstList_Hibashi_HitboxPart                                   ;A68FFF;
-    STA.W $0F92,X                                                        ;A69002;
-    LDA.W $0FB6,X                                                        ;A69005;
+    STA.W EnemyData.pInstList,X                                          ;A69002;
+    LDA.W EnemyData.initParam1,X                                         ;A69005;
     BNE .return                                                          ;A69008;
     LDA.W #InstList_Hibashi_GraphicsPart                                 ;A6900A;
-    STA.W $0F92,X                                                        ;A6900D;
+    STA.W EnemyData.pInstList,X                                          ;A6900D;
     LDA.W #Function_Hibashi_Inactive                                     ;A69010;
-    STA.W $0FA8,X                                                        ;A69013;
-    LDA.W $0F7E,X                                                        ;A69016;
-    STA.W $0FAE,X                                                        ;A69019;
+    STA.W EnemyData.work0,X                                              ;A69013;
+    LDA.W EnemyData.yPosition,X                                          ;A69016;
+    STA.W EnemyData.work3,X                                              ;A69019;
     LDA.W #$0000                                                         ;A6901C;
-    STA.W $0F82,X                                                        ;A6901F;
+    STA.W EnemyData.xHitboxRadius,X                                      ;A6901F;
 
 .return:
     RTL                                                                  ;A69022;
@@ -1744,7 +1744,7 @@ InitAI_Hibashi:
 
 MainAI_Hibashi:
     LDX.W $0E54                                                          ;A69023;
-    LDA.W $0FB6,X                                                        ;A69026;
+    LDA.W EnemyData.initParam1,X                                         ;A69026;
     BNE .return                                                          ;A69029;
     JSR.W ($0FA8,X)                                                      ;A6902B;
 
@@ -1754,19 +1754,19 @@ MainAI_Hibashi:
 
 Function_Hibashi_Inactive:
     LDX.W $0E54                                                          ;A6902F;
-    DEC.W $0FAA,X                                                        ;A69032;
+    DEC.W EnemyData.work1,X                                              ;A69032;
     BPL .return                                                          ;A69035;
     LDA.W #Function_Hibashi_Active                                       ;A69037;
-    STA.W $0FA8,X                                                        ;A6903A;
-    STZ.W $0FAC,X                                                        ;A6903D;
+    STA.W EnemyData.work0,X                                              ;A6903A;
+    STZ.W EnemyData.work2,X                                              ;A6903D;
     LDA.W #$0001                                                         ;A69040;
-    STA.W $0F94,X                                                        ;A69043;
-    STZ.W $0F90,X                                                        ;A69046;
+    STA.W EnemyData.instTimer,X                                          ;A69043;
+    STZ.W EnemyData.loopCounter,X                                        ;A69046;
     LDA.W #InstList_Hibashi_GraphicsPart                                 ;A69049;
-    STA.W $0F92,X                                                        ;A6904C;
-    LDA.W $0F86,X                                                        ;A6904F;
+    STA.W EnemyData.pInstList,X                                          ;A6904C;
+    LDA.W EnemyData.properties,X                                         ;A6904F;
     AND.W #$FEFF                                                         ;A69052;
-    STA.W $0F86,X                                                        ;A69055;
+    STA.W EnemyData.properties,X                                         ;A69055;
     LDA.W $0FC6,X                                                        ;A69058;
     AND.W #$FBFF                                                         ;A6905B;
     STA.W $0FC6,X                                                        ;A6905E;
@@ -1777,15 +1777,15 @@ Function_Hibashi_Inactive:
 
 Function_Hibashi_Active:
     LDX.W $0E54                                                          ;A69062;
-    LDA.W $0FAC,X                                                        ;A69065;
+    LDA.W EnemyData.work2,X                                              ;A69065;
     BEQ .return                                                          ;A69068;
-    LDA.W $0FB4,X                                                        ;A6906A;
-    STA.W $0FAA,X                                                        ;A6906D;
-    LDA.W $0F86,X                                                        ;A69070;
+    LDA.W EnemyData.initParam0,X                                         ;A6906A;
+    STA.W EnemyData.work1,X                                              ;A6906D;
+    LDA.W EnemyData.properties,X                                         ;A69070;
     ORA.W #$0100                                                         ;A69073;
-    STA.W $0F86,X                                                        ;A69076;
+    STA.W EnemyData.properties,X                                         ;A69076;
     LDA.W #Function_Hibashi_Inactive                                     ;A69079;
-    STA.W $0FA8,X                                                        ;A6907C;
+    STA.W EnemyData.work0,X                                              ;A6907C;
 
 .return:
     RTS                                                                  ;A6907F;
@@ -2287,23 +2287,23 @@ InstList_Puromi:
 InitAI_Puromi:
     LDX.W $0E54                                                          ;A694C4;
     LDA.W #InstList_Puromi                                               ;A694C7;
-    STA.W $0F92,X                                                        ;A694CA;
-    LDA.W $0FB4,X                                                        ;A694CD;
+    STA.W EnemyData.pInstList,X                                          ;A694CA;
+    LDA.W EnemyData.initParam0,X                                         ;A694CD;
     AND.W #$00FF                                                         ;A694D0;
-    STA.W $0FAC,X                                                        ;A694D3;
+    STA.W EnemyData.work2,X                                              ;A694D3;
     LDA.W $0FB5,X                                                        ;A694D6;
     AND.W #$00FF                                                         ;A694D9;
-    STA.W $0FAE,X                                                        ;A694DC;
-    LDA.W $0FB6,X                                                        ;A694DF;
+    STA.W EnemyData.work3,X                                              ;A694DC;
+    LDA.W EnemyData.initParam1,X                                         ;A694DF;
     AND.W #$00FF                                                         ;A694E2;
-    STA.W $0FB0,X                                                        ;A694E5;
+    STA.W EnemyData.work4,X                                              ;A694E5;
     LDA.W $0FB7,X                                                        ;A694E8;
     AND.W #$00FF                                                         ;A694EB;
-    STA.W $0FB2,X                                                        ;A694EE;
-    STA.W $0FAA,X                                                        ;A694F1;
+    STA.W EnemyData.work5,X                                              ;A694EE;
+    STA.W EnemyData.work1,X                                              ;A694F1;
     LDA.W #Function_Puromi_Inactive                                      ;A694F4;
-    STA.W $0FA8,X                                                        ;A694F7;
-    LDA.W $0FB0,X                                                        ;A694FA;
+    STA.W EnemyData.work0,X                                              ;A694F7;
+    LDA.W EnemyData.work4,X                                              ;A694FA;
     ASL A                                                                ;A694FD;
     ASL A                                                                ;A694FE;
     TAY                                                                  ;A694FF;
@@ -2320,12 +2320,12 @@ InitAI_Puromi:
     STA.L $7E8020,X                                                      ;A69523;
     LDA.W .fallingExplosionAngle_clockwise,Y                             ;A69527;
     STA.L $7E801E,X                                                      ;A6952A;
-    LDA.W $0FAC,X                                                        ;A6952E;
+    LDA.W EnemyData.work2,X                                              ;A6952E;
     ASL A                                                                ;A69531;
     ASL A                                                                ;A69532;
     ASL A                                                                ;A69533;
     TAY                                                                  ;A69534;
-    LDA.W $0FB0,X                                                        ;A69535;
+    LDA.W EnemyData.work4,X                                              ;A69535;
     BNE .firingUp                                                        ;A69538;
     INY                                                                  ;A6953A;
     INY                                                                  ;A6953B;
@@ -2337,26 +2337,26 @@ InitAI_Puromi:
     STA.L $7E800A,X                                                      ;A69541;
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A69545;
     STA.L $7E8008,X                                                      ;A69548;
-    LDA.W $0F7A,X                                                        ;A6954C;
+    LDA.W EnemyData.xPosition,X                                          ;A6954C;
     STA.L $7E800C,X                                                      ;A6954F;
-    LDA.W $0F7E,X                                                        ;A69553;
+    LDA.W EnemyData.yPosition,X                                          ;A69553;
     STA.L $7E800E,X                                                      ;A69556;
-    LDA.W $0FAE,X                                                        ;A6955A;
+    LDA.W EnemyData.work3,X                                              ;A6955A;
     STA.W $0E32                                                          ;A6955D;
     LDA.L $7E8006,X                                                      ;A69560;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A69564;
     CLC                                                                  ;A69568;
     ADC.L $7E800C,X                                                      ;A69569;
     STA.L $7E8010,X                                                      ;A6956D;
-    STA.W $0F7A,X                                                        ;A69571;
-    LDA.W $0FAE,X                                                        ;A69574;
+    STA.W EnemyData.xPosition,X                                          ;A69571;
+    LDA.W EnemyData.work3,X                                              ;A69574;
     STA.W $0E32                                                          ;A69577;
     LDA.L $7E8006,X                                                      ;A6957A;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A6957E;
     CLC                                                                  ;A69582;
     ADC.L $7E800E,X                                                      ;A69583;
     STA.L $7E8012,X                                                      ;A69587;
-    STA.W $0F7E,X                                                        ;A6958B;
+    STA.W EnemyData.yPosition,X                                          ;A6958B;
     LDA.W #$0008                                                         ;A6958E;
     STA.L $7E8014,X                                                      ;A69591;
 
@@ -2374,14 +2374,14 @@ InitAI_Puromi:
 
 .loopSpirteObjects:
     LDX.W $0E54                                                          ;A695B4;
-    LDA.W $0F7A,X                                                        ;A695B7;
+    LDA.W EnemyData.xPosition,X                                          ;A695B7;
     STA.B $12                                                            ;A695BA;
-    LDA.W $0F7E,X                                                        ;A695BC;
+    LDA.W EnemyData.yPosition,X                                          ;A695BC;
     STA.B $14                                                            ;A695BF;
     LDA.W #$002B                                                         ;A695C1;
     STA.B $16                                                            ;A695C4;
-    LDA.W $0F96,X                                                        ;A695C6;
-    ORA.W $0F98,X                                                        ;A695C9;
+    LDA.W EnemyData.palette,X                                            ;A695C6;
+    ORA.W EnemyData.gfxOffset,X                                          ;A695C9;
     STA.L $7E8028,X                                                      ;A695CC;
     STA.B $18                                                            ;A695D0;
     JSL.L Create_Sprite_Object                                           ;A695D2;
@@ -2445,14 +2445,14 @@ MainAI_Puromi:
 
 Function_Puromi_Inactive:
     LDX.W $0E54                                                          ;A69615;
-    DEC.W $0FAA,X                                                        ;A69618;
+    DEC.W EnemyData.work1,X                                              ;A69618;
     BPL .return                                                          ;A6961B;
-    LDA.W $0FB2,X                                                        ;A6961D;
-    STA.W $0FAA,X                                                        ;A69620;
+    LDA.W EnemyData.work5,X                                              ;A6961D;
+    STA.W EnemyData.work1,X                                              ;A69620;
     LDA.L $7E8006,X                                                      ;A69623;
     STA.L $7E8002,X                                                      ;A69627;
     LDA.W #Function_Puromi_Active                                        ;A6962B;
-    STA.W $0FA8,X                                                        ;A6962E;
+    STA.W EnemyData.work0,X                                              ;A6962E;
     LDA.W #$0000                                                         ;A69631;
     STA.L $7E8026,X                                                      ;A69634;
     STA.L $7E7810,X                                                      ;A69638;
@@ -2471,9 +2471,9 @@ Function_Puromi_Inactive:
     STA.L $7E783A,X                                                      ;A6966C;
     STA.L $7E783C,X                                                      ;A69670;
     STA.L $7E783E,X                                                      ;A69674;
-    LDA.W $0F86,X                                                        ;A69678;
+    LDA.W EnemyData.properties,X                                         ;A69678;
     ORA.W #$0800                                                         ;A6967B;
-    STA.W $0F86,X                                                        ;A6967E;
+    STA.W EnemyData.properties,X                                         ;A6967E;
 
 .return:
     RTS                                                                  ;A69681;
@@ -2481,7 +2481,7 @@ Function_Puromi_Inactive:
 
 Function_Puromi_Active:
     LDX.W $0E54                                                          ;A69682;
-    LDA.W $0FAE,X                                                        ;A69685;
+    LDA.W EnemyData.work3,X                                              ;A69685;
     STA.W $0E32                                                          ;A69688;
     LDA.L $7E8002,X                                                      ;A6968B;
     JSR.W CheckExplosionCondition                                        ;A6968F;
@@ -2490,18 +2490,18 @@ Function_Puromi_Active:
     CMP.L $7E8026,X                                                      ;A69695;
     BEQ .matchingExplosionReason                                         ;A69699;
     LDX.W $0E54                                                          ;A6969B;
-    LDA.W $0F7A,X                                                        ;A6969E;
+    LDA.W EnemyData.xPosition,X                                          ;A6969E;
     STA.B $12                                                            ;A696A1;
-    LDA.W $0F7E,X                                                        ;A696A3;
+    LDA.W EnemyData.yPosition,X                                          ;A696A3;
     STA.B $14                                                            ;A696A6;
     LDA.W #$002E                                                         ;A696A8;
     STA.B $16                                                            ;A696AB;
     LDA.L $7E8028,X                                                      ;A696AD;
     STA.B $18                                                            ;A696B1;
     JSL.L Create_Sprite_Object                                           ;A696B3;
-    LDA.W $0F7A,X                                                        ;A696B7;
+    LDA.W EnemyData.xPosition,X                                          ;A696B7;
     STA.B $12                                                            ;A696BA;
-    LDA.W $0F7E,X                                                        ;A696BC;
+    LDA.W EnemyData.yPosition,X                                          ;A696BC;
     STA.B $14                                                            ;A696BF;
     LDA.B $1A                                                            ;A696C1;
     CLC                                                                  ;A696C3;
@@ -2520,13 +2520,13 @@ Function_Puromi_Active:
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A696E2;
     CLC                                                                  ;A696E6;
     ADC.L $7E800C,X                                                      ;A696E7;
-    STA.W $0F7A,X                                                        ;A696EB;
+    STA.W EnemyData.xPosition,X                                          ;A696EB;
     LDA.L $7E8002,X                                                      ;A696EE;
     JSR.W ClampAngle_CheckInactivityCondition                            ;A696F2;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A696F5;
     CLC                                                                  ;A696F9;
     ADC.L $7E800E,X                                                      ;A696FA;
-    STA.W $0F7E,X                                                        ;A696FE;
+    STA.W EnemyData.yPosition,X                                          ;A696FE;
     JSR.W HandlePuromiProjectiles                                        ;A69701;
     JSR.W HandlePuromiSpriteObjects                                      ;A69704;
     CLC                                                                  ;A69707;
@@ -2619,10 +2619,10 @@ HandlePuromiProjectiles:
   + LDA.B $1C                                                            ;A697D5;
     BEQ .return                                                          ;A697D7;
     LDA.W #Function_Puromi_Inactive                                      ;A697D9;
-    STA.W $0FA8,X                                                        ;A697DC;
-    LDA.W $0F86,X                                                        ;A697DF;
+    STA.W EnemyData.work0,X                                              ;A697DC;
+    LDA.W EnemyData.properties,X                                         ;A697DF;
     AND.W #$F7FF                                                         ;A697E2;
-    STA.W $0F86,X                                                        ;A697E5;
+    STA.W EnemyData.properties,X                                         ;A697E5;
 
 .return:
     RTS                                                                  ;A697E8;
@@ -2722,7 +2722,7 @@ ClampAngle_CheckInactivityCondition:
     PHA                                                                  ;A698AE;
     LDX.W $0E54                                                          ;A698AF;
     STZ.B $1C                                                            ;A698B2;
-    LDA.W $0FB0,X                                                        ;A698B4;
+    LDA.W EnemyData.work4,X                                              ;A698B4;
     BNE .notClockwise                                                    ;A698B7;
     PLA                                                                  ;A698B9;
     CMP.L $7E801C,X                                                      ;A698BA;
@@ -2761,7 +2761,7 @@ CheckExplosionCondition:
     PHX                                                                  ;A698E7;
     PHA                                                                  ;A698E8;
     LDX.W $0E54                                                          ;A698E9;
-    LDA.W $0FB0,X                                                        ;A698EC;
+    LDA.W EnemyData.work4,X                                              ;A698EC;
     BNE .notClockwise                                                    ;A698EF;
     PLA                                                                  ;A698F1;
     CMP.L $7E801E,X                                                      ;A698F2;
@@ -3014,8 +3014,8 @@ InitAI_MiniKraid:
     AND.W #$0003                                                         ;A69A5E;
     CLC                                                                  ;A69A61;
     ADC.W #$0002                                                         ;A69A62;
-    STA.W $0FAE,X                                                        ;A69A65;
-    STA.W $0FB0,X                                                        ;A69A68;
+    STA.W EnemyData.work3,X                                              ;A69A65;
+    STA.W EnemyData.work4,X                                              ;A69A68;
     CLC                                                                  ;A69A6B;
     ADC.W #$0040                                                         ;A69A6C;
     STA.L $7E7806,X                                                      ;A69A6F;
@@ -3027,28 +3027,28 @@ InitAI_MiniKraid:
     STA.L $7E780A,X                                                      ;A69A7F;
     LDA.W #$0000                                                         ;A69A83;
     STA.L $7E780E,X                                                      ;A69A86;
-    LDA.W $0F86,X                                                        ;A69A8A;
+    LDA.W EnemyData.properties,X                                         ;A69A8A;
     ORA.W #$2000                                                         ;A69A8D;
-    STA.W $0F86,X                                                        ;A69A90;
+    STA.W EnemyData.properties,X                                         ;A69A90;
     LDA.W #$0001                                                         ;A69A93;
-    STA.W $0F94,X                                                        ;A69A96;
-    STZ.W $0F90,X                                                        ;A69A99;
+    STA.W EnemyData.instTimer,X                                          ;A69A96;
+    STZ.W EnemyData.loopCounter,X                                        ;A69A99;
     LDA.W #$FFFC                                                         ;A69A9C;
-    STA.W $0FAA,X                                                        ;A69A9F;
-    STA.W $0FAC,X                                                        ;A69AA2;
+    STA.W EnemyData.work1,X                                              ;A69A9F;
+    STA.W EnemyData.work2,X                                              ;A69AA2;
     LDY.W #InstList_MiniKraid_StepForwards_FacingLeft                    ;A69AA5;
-    LDA.W $0F7A,X                                                        ;A69AA8;
+    LDA.W EnemyData.xPosition,X                                          ;A69AA8;
     SEC                                                                  ;A69AAB;
     SBC.W $0AF6                                                          ;A69AAC;
     BPL .keepLeft                                                        ;A69AAF;
     LDA.W #$0004                                                         ;A69AB1;
-    STA.W $0FAA,X                                                        ;A69AB4;
-    STA.W $0FAC,X                                                        ;A69AB7;
+    STA.W EnemyData.work1,X                                              ;A69AB4;
+    STA.W EnemyData.work2,X                                              ;A69AB7;
     LDY.W #InstList_MiniKraid_StepForwards_FacingRight                   ;A69ABA;
 
 .keepLeft:
     TYA                                                                  ;A69ABD;
-    STA.W $0F92,X                                                        ;A69ABE;
+    STA.W EnemyData.pInstList,X                                          ;A69ABE;
     RTL                                                                  ;A69AC1;
 
 
@@ -3092,7 +3092,7 @@ HandleMiniKraidSpike:
     PLX                                                                  ;A69B00;
     STA.L $7E780C,X                                                      ;A69B01;
     LDY.W #EnemyProjectile_MiniKraidSpikes_Left                          ;A69B05;
-    LDA.W $0FAC,X                                                        ;A69B08;
+    LDA.W EnemyData.work2,X                                              ;A69B08;
     BMI .keepLeft                                                        ;A69B0B;
     LDY.W #EnemyProjectile_MiniKraidSpikes_Right                         ;A69B0D;
 
@@ -3111,42 +3111,42 @@ HandleMiniKraidSpike:
 Instruction_MiniKraid_Move:
     PHY                                                                  ;A69B26;
     LDX.W $0E54                                                          ;A69B27;
-    LDA.W $0FB0,X                                                        ;A69B2A;
+    LDA.W EnemyData.work4,X                                              ;A69B2A;
     BEQ +                                                                ;A69B2D;
-    DEC.W $0FB0,X                                                        ;A69B2F;
+    DEC.W EnemyData.work4,X                                              ;A69B2F;
 
-  + DEC.W $0FAE,X                                                        ;A69B32;
+  + DEC.W EnemyData.work3,X                                              ;A69B32;
     BNE .nonZeroCounter                                                  ;A69B35;
     LDA.W $05E5                                                          ;A69B37;
     AND.W #$0003                                                         ;A69B3A;
     CLC                                                                  ;A69B3D;
     ADC.W #$0007                                                         ;A69B3E;
-    STA.W $0FAE,X                                                        ;A69B41;
+    STA.W EnemyData.work3,X                                              ;A69B41;
     BRA .negateEnemyXVelocity                                            ;A69B44;
 
 
 .nonZeroCounter:
-    LDA.W $0FAA,X                                                        ;A69B46;
+    LDA.W EnemyData.work1,X                                              ;A69B46;
     STA.B $14                                                            ;A69B49;
     STZ.B $12                                                            ;A69B4B;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A69B4D;
     BCC .noCollision                                                     ;A69B51;
 
 .negateEnemyXVelocity:
-    LDA.W $0FAA,X                                                        ;A69B53;
+    LDA.W EnemyData.work1,X                                              ;A69B53;
     EOR.W #$FFFF                                                         ;A69B56;
     INC A                                                                ;A69B59;
-    STA.W $0FAA,X                                                        ;A69B5A;
+    STA.W EnemyData.work1,X                                              ;A69B5A;
 
 .noCollision:
     LDA.W #$FFFC                                                         ;A69B5D;
-    STA.W $0FAC,X                                                        ;A69B60;
-    LDA.W $0F7A,X                                                        ;A69B63;
+    STA.W EnemyData.work2,X                                              ;A69B60;
+    LDA.W EnemyData.xPosition,X                                          ;A69B63;
     SEC                                                                  ;A69B66;
     SBC.W $0AF6                                                          ;A69B67;
     BPL .return                                                          ;A69B6A;
     LDA.W #$0004                                                         ;A69B6C;
-    STA.W $0FAC,X                                                        ;A69B6F;
+    STA.W EnemyData.work2,X                                              ;A69B6F;
 
 .return:
     PLY                                                                  ;A69B72;
@@ -3155,25 +3155,25 @@ Instruction_MiniKraid_Move:
 
 Instruction_MiniKraid_ChooseAction:
     LDX.W $0E54                                                          ;A69B74;
-    LDA.W $0FB0,X                                                        ;A69B77;
+    LDA.W EnemyData.work4,X                                              ;A69B77;
     BNE .step                                                            ;A69B7A;
     LDA.W $05E5                                                          ;A69B7C;
     AND.W #$0003                                                         ;A69B7F;
     CLC                                                                  ;A69B82;
     ADC.W #$0003                                                         ;A69B83;
-    STA.W $0FB0,X                                                        ;A69B86;
+    STA.W EnemyData.work4,X                                              ;A69B86;
     LDY.W #InstList_MiniKraid_FireSpit_FacingRight                       ;A69B89;
-    LDA.W $0FAC,X                                                        ;A69B8C;
+    LDA.W EnemyData.work2,X                                              ;A69B8C;
     BPL .return                                                          ;A69B8F;
     LDY.W #InstList_MiniKraid_FireSpit_FacingLeft                        ;A69B91;
     RTL                                                                  ;A69B94;
 
 
 .step:
-    LDA.W $0FAC,X                                                        ;A69B95;
+    LDA.W EnemyData.work2,X                                              ;A69B95;
     BMI .left                                                            ;A69B98;
     LDY.W #InstList_MiniKraid_StepForwards_FacingRight                   ;A69B9A;
-    LDA.W $0FAA,X                                                        ;A69B9D;
+    LDA.W EnemyData.work1,X                                              ;A69B9D;
     BPL .return                                                          ;A69BA0;
     LDY.W #InstList_MiniKraid_StepBackwards_FacingRight                  ;A69BA2;
 
@@ -3183,7 +3183,7 @@ Instruction_MiniKraid_ChooseAction:
 
 .left:
     LDY.W #InstList_MiniKraid_StepForwards_FacingLeft                    ;A69BA6;
-    LDA.W $0FAA,X                                                        ;A69BA9;
+    LDA.W EnemyData.work1,X                                              ;A69BA9;
     BMI .return                                                          ;A69BAC;
     LDY.W #InstList_MiniKraid_StepBackwards_FacingLeft                   ;A69BAE;
     RTL                                                                  ;A69BB1;
@@ -3237,9 +3237,9 @@ Instruction_MiniKraid_FireSpitRight:
 
 UNUSED_PowerBombReaction_MiniKraid_A69C0B:
     LDX.W $0E54                                                          ;A69C0B;
-    LDA.W $0F7A,X                                                        ;A69C0E;
+    LDA.W EnemyData.xPosition,X                                          ;A69C0E;
     STA.L $7EF434                                                        ;A69C11;
-    LDA.W $0F7E,X                                                        ;A69C15;
+    LDA.W EnemyData.yPosition,X                                          ;A69C15;
     STA.L $7EF436                                                        ;A69C18;
     JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A69C1C;
     BRA Reaction_MiniKraid_Common                                        ;A69C20;
@@ -3247,9 +3247,9 @@ UNUSED_PowerBombReaction_MiniKraid_A69C0B:
 
 EnemyTouch_MiniKraid:
     LDX.W $0E54                                                          ;A69C22;
-    LDA.W $0F7A,X                                                        ;A69C25;
+    LDA.W EnemyData.xPosition,X                                          ;A69C25;
     STA.L $7EF434                                                        ;A69C28;
-    LDA.W $0F7E,X                                                        ;A69C2C;
+    LDA.W EnemyData.yPosition,X                                          ;A69C2C;
     STA.L $7EF436                                                        ;A69C2F;
     JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A69C33;
     BRA Reaction_MiniKraid_Common                                        ;A69C37;
@@ -3257,9 +3257,9 @@ EnemyTouch_MiniKraid:
 
 EnemyShot_PowerBombReaction_MiniKraid:
     LDX.W $0E54                                                          ;A69C39;
-    LDA.W $0F7A,X                                                        ;A69C3C;
+    LDA.W EnemyData.xPosition,X                                          ;A69C3C;
     STA.L $7EF434                                                        ;A69C3F;
-    LDA.W $0F7E,X                                                        ;A69C43;
+    LDA.W EnemyData.yPosition,X                                          ;A69C43;
     STA.L $7EF436                                                        ;A69C46;
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A69C4A;
     BRA Reaction_MiniKraid_Common                                        ;A69C4E; >.<
@@ -3267,7 +3267,7 @@ EnemyShot_PowerBombReaction_MiniKraid:
 
 Reaction_MiniKraid_Common:
     LDX.W $0E54                                                          ;A69C50;
-    LDA.W $0F8C,X                                                        ;A69C53;
+    LDA.W EnemyData.health,X                                             ;A69C53;
     BNE .return                                                          ;A69C56;
     LDA.W #$0003                                                         ;A69C58;
     JSL.L EnemyDeath                                                     ;A69C5B;
@@ -7892,14 +7892,14 @@ SpawnRidleyExplosions:
 InitAI_RidleyExplosion:
     LDX.W $0E54                                                          ;A6C696;
     LDA.W #$0001                                                         ;A6C699;
-    STA.W $0F94,X                                                        ;A6C69C;
-    STZ.W $0F90,X                                                        ;A6C69F;
-    STZ.W $0F98,X                                                        ;A6C6A2;
+    STA.W EnemyData.instTimer,X                                          ;A6C69C;
+    STZ.W EnemyData.loopCounter,X                                        ;A6C69F;
+    STZ.W EnemyData.gfxOffset,X                                          ;A6C6A2;
     LDA.W #$0E00                                                         ;A6C6A5;
-    STA.W $0F96,X                                                        ;A6C6A8;
-    LDY.W $0FB4,X                                                        ;A6C6AB;
+    STA.W EnemyData.palette,X                                            ;A6C6A8;
+    LDY.W EnemyData.initParam0,X                                         ;A6C6AB;
     LDA.W .lifetimes,Y                                                   ;A6C6AE;
-    STA.W $0FB2,X                                                        ;A6C6B1;
+    STA.W EnemyData.work5,X                                              ;A6C6B1;
     JSL.L GenerateRandomNumber                                           ;A6C6B4;
     AND.W #$0130                                                         ;A6C6B8;
     BIT.W $05E5                                                          ;A6C6BB;
@@ -7907,8 +7907,8 @@ InitAI_RidleyExplosion:
     EOR.W #$FFFF                                                         ;A6C6C0;
     INC A                                                                ;A6C6C3;
 
-  + STA.W $0FAA,X                                                        ;A6C6C4;
-    STZ.W $0FAC,X                                                        ;A6C6C7;
+  + STA.W EnemyData.work1,X                                              ;A6C6C4;
+    STZ.W EnemyData.work2,X                                              ;A6C6C7;
     TYX                                                                  ;A6C6CA;
     JMP.W (.initPointers,X)                                              ;A6C6CB;
 
@@ -7934,75 +7934,75 @@ InitAI_RidleyExplosion:
 RidleyExplosionInitialization_0:
     LDX.W $0E54                                                          ;A6C6FE;
     LDA.L $7E202C                                                        ;A6C701;
-    STA.W $0F7A,X                                                        ;A6C705;
+    STA.W EnemyData.xPosition,X                                          ;A6C705;
     LDA.L $7E202E                                                        ;A6C708;
-    STA.W $0F7E,X                                                        ;A6C70C;
+    STA.W EnemyData.yPosition,X                                          ;A6C70C;
     LDA.W #InstList_RidleyTail_Large                                     ;A6C70F;
-    STA.W $0F92,X                                                        ;A6C712;
+    STA.W EnemyData.pInstList,X                                          ;A6C712;
     RTL                                                                  ;A6C715;
 
 
 RidleyExplosionInitialization_2:
     LDX.W $0E54                                                          ;A6C716;
     LDA.L $7E2040                                                        ;A6C719;
-    STA.W $0F7A,X                                                        ;A6C71D;
+    STA.W EnemyData.xPosition,X                                          ;A6C71D;
     LDA.L $7E2042                                                        ;A6C720;
-    STA.W $0F7E,X                                                        ;A6C724;
+    STA.W EnemyData.yPosition,X                                          ;A6C724;
     LDA.W #InstList_RidleyTail_Large                                     ;A6C727;
-    STA.W $0F92,X                                                        ;A6C72A;
+    STA.W EnemyData.pInstList,X                                          ;A6C72A;
     RTL                                                                  ;A6C72D;
 
 
 RidleyExplosionInitialization_4:
     LDX.W $0E54                                                          ;A6C72E;
     LDA.L $7E2054                                                        ;A6C731;
-    STA.W $0F7A,X                                                        ;A6C735;
+    STA.W EnemyData.xPosition,X                                          ;A6C735;
     LDA.L $7E2056                                                        ;A6C738;
-    STA.W $0F7E,X                                                        ;A6C73C;
+    STA.W EnemyData.yPosition,X                                          ;A6C73C;
     LDA.W #InstList_RidleyTail_Medium                                    ;A6C73F;
-    STA.W $0F92,X                                                        ;A6C742;
+    STA.W EnemyData.pInstList,X                                          ;A6C742;
     RTL                                                                  ;A6C745;
 
 
 RidleyExplosionInitialization_6:
     LDX.W $0E54                                                          ;A6C746;
     LDA.L $7E2068                                                        ;A6C749;
-    STA.W $0F7A,X                                                        ;A6C74D;
+    STA.W EnemyData.xPosition,X                                          ;A6C74D;
     LDA.L $7E206A                                                        ;A6C750;
-    STA.W $0F7E,X                                                        ;A6C754;
+    STA.W EnemyData.yPosition,X                                          ;A6C754;
     LDA.W #InstList_RidleyTail_Medium                                    ;A6C757;
-    STA.W $0F92,X                                                        ;A6C75A;
+    STA.W EnemyData.pInstList,X                                          ;A6C75A;
     RTL                                                                  ;A6C75D;
 
 
 RidleyExplosionInitialization_8:
     LDX.W $0E54                                                          ;A6C75E;
     LDA.L $7E207C                                                        ;A6C761;
-    STA.W $0F7A,X                                                        ;A6C765;
+    STA.W EnemyData.xPosition,X                                          ;A6C765;
     LDA.L $7E207E                                                        ;A6C768;
-    STA.W $0F7E,X                                                        ;A6C76C;
+    STA.W EnemyData.yPosition,X                                          ;A6C76C;
     LDA.W #InstList_RidleyTail_Small                                     ;A6C76F;
-    STA.W $0F92,X                                                        ;A6C772;
+    STA.W EnemyData.pInstList,X                                          ;A6C772;
     RTL                                                                  ;A6C775;
 
 
 RidleyExplosionInitialization_A:
     LDX.W $0E54                                                          ;A6C776;
     LDA.L $7E2090                                                        ;A6C779;
-    STA.W $0F7A,X                                                        ;A6C77D;
+    STA.W EnemyData.xPosition,X                                          ;A6C77D;
     LDA.L $7E2092                                                        ;A6C780;
-    STA.W $0F7E,X                                                        ;A6C784;
+    STA.W EnemyData.yPosition,X                                          ;A6C784;
     LDA.W #InstList_RidleyTail_Small                                     ;A6C787;
-    STA.W $0F92,X                                                        ;A6C78A;
+    STA.W EnemyData.pInstList,X                                          ;A6C78A;
     RTL                                                                  ;A6C78D;
 
 
 RidleyExplosionInitialization_C:
     LDX.W $0E54                                                          ;A6C78E;
     LDA.L $7E20A4                                                        ;A6C791;
-    STA.W $0F7A,X                                                        ;A6C795;
+    STA.W EnemyData.xPosition,X                                          ;A6C795;
     LDA.L $7E20A6                                                        ;A6C798;
-    STA.W $0F7E,X                                                        ;A6C79C;
+    STA.W EnemyData.yPosition,X                                          ;A6C79C;
     LDA.L $7E20A2                                                        ;A6C79F;
     CLC                                                                  ;A6C7A3;
     ADC.L $7E208E                                                        ;A6C7A4;
@@ -8014,7 +8014,7 @@ RidleyExplosionInitialization_C:
     LSR A                                                                ;A6C7B1;
     TAY                                                                  ;A6C7B2;
     LDA.W .instListPointers,Y                                            ;A6C7B3;
-    STA.W $0F92,X                                                        ;A6C7B6;
+    STA.W EnemyData.pInstList,X                                          ;A6C7B6;
     RTL                                                                  ;A6C7B9;
 
 
@@ -8047,13 +8047,13 @@ RidleyExplosionInitialization_E:
     LDA.W .XOffsetFromRidleyXPosition,Y                                  ;A6C7E9;
     CLC                                                                  ;A6C7EC;
     ADC.W $0F7A                                                          ;A6C7ED;
-    STA.W $0F7A,X                                                        ;A6C7F0;
+    STA.W EnemyData.xPosition,X                                          ;A6C7F0;
     LDA.W #$0000                                                         ;A6C7F3;
     CLC                                                                  ;A6C7F6;
     ADC.W $0F7E                                                          ;A6C7F7;
-    STA.W $0F7E,X                                                        ;A6C7FA;
+    STA.W EnemyData.yPosition,X                                          ;A6C7FA;
     LDA.W .instListPointer,Y                                             ;A6C7FD;
-    STA.W $0F92,X                                                        ;A6C800;
+    STA.W EnemyData.pInstList,X                                          ;A6C800;
     RTL                                                                  ;A6C803;
 
 
@@ -8075,13 +8075,13 @@ RidleyExplosionInitialization_10:
     LDA.W .XOffsetFromRidleyXPosition,Y                                  ;A6C81B;
     CLC                                                                  ;A6C81E;
     ADC.W $0F7A                                                          ;A6C81F;
-    STA.W $0F7A,X                                                        ;A6C822;
+    STA.W EnemyData.xPosition,X                                          ;A6C822;
     LDA.W #$0016                                                         ;A6C825;
     CLC                                                                  ;A6C828;
     ADC.W $0F7E                                                          ;A6C829;
-    STA.W $0F7E,X                                                        ;A6C82C;
+    STA.W EnemyData.yPosition,X                                          ;A6C82C;
     LDA.W .instListPointer,Y                                             ;A6C82F;
-    STA.W $0F92,X                                                        ;A6C832;
+    STA.W EnemyData.pInstList,X                                          ;A6C832;
     RTL                                                                  ;A6C835;
 
 
@@ -8103,13 +8103,13 @@ RidleyExplosionInitialization_12:
     LDA.W .XOffsetFromRidleyXPosition,Y                                  ;A6C84D;
     CLC                                                                  ;A6C850;
     ADC.W $0F7A                                                          ;A6C851;
-    STA.W $0F7A,X                                                        ;A6C854;
+    STA.W EnemyData.xPosition,X                                          ;A6C854;
     LDA.W #$FFE8                                                         ;A6C857;
     CLC                                                                  ;A6C85A;
     ADC.W $0F7E                                                          ;A6C85B;
-    STA.W $0F7E,X                                                        ;A6C85E;
+    STA.W EnemyData.yPosition,X                                          ;A6C85E;
     LDA.W .instListPointer,Y                                             ;A6C861;
-    STA.W $0F92,X                                                        ;A6C864;
+    STA.W EnemyData.pInstList,X                                          ;A6C864;
     RTL                                                                  ;A6C867;
 
 
@@ -8131,13 +8131,13 @@ RidleyExplosionInitialization_14:
     LDA.W .XOffsetFromRidleyXPosition,Y                                  ;A6C87F;
     CLC                                                                  ;A6C882;
     ADC.W $0F7A                                                          ;A6C883;
-    STA.W $0F7A,X                                                        ;A6C886;
+    STA.W EnemyData.xPosition,X                                          ;A6C886;
     LDA.W #$0000                                                         ;A6C889;
     CLC                                                                  ;A6C88C;
     ADC.W $0F7E                                                          ;A6C88D;
-    STA.W $0F7E,X                                                        ;A6C890;
+    STA.W EnemyData.yPosition,X                                          ;A6C890;
     LDA.W .instListPointer,Y                                             ;A6C893;
-    STA.W $0F92,X                                                        ;A6C896;
+    STA.W EnemyData.pInstList,X                                          ;A6C896;
     RTL                                                                  ;A6C899;
 
 
@@ -8159,13 +8159,13 @@ RidleyExplosionInitialization_16:
     LDA.W .XOffsetFromRidleyXPosition,Y                                  ;A6C8B1;
     CLC                                                                  ;A6C8B4;
     ADC.W $0F7A                                                          ;A6C8B5;
-    STA.W $0F7A,X                                                        ;A6C8B8;
+    STA.W EnemyData.xPosition,X                                          ;A6C8B8;
     LDA.W #$0007                                                         ;A6C8BB;
     CLC                                                                  ;A6C8BE;
     ADC.W $0F7E                                                          ;A6C8BF;
-    STA.W $0F7E,X                                                        ;A6C8C2;
+    STA.W EnemyData.yPosition,X                                          ;A6C8C2;
     LDA.W .instListPointer,Y                                             ;A6C8C5;
-    STA.W $0F92,X                                                        ;A6C8C8;
+    STA.W EnemyData.pInstList,X                                          ;A6C8C8;
     RTL                                                                  ;A6C8CB;
 
 
@@ -8179,7 +8179,7 @@ RidleyExplosionInitialization_16:
 MainAI_RidleyExplosion:
     LDX.W $0E54                                                          ;A6C8D4;
     JSR.W HandleFlickering                                               ;A6C8D7;
-    LDA.W $0FAA,X                                                        ;A6C8DA;
+    LDA.W EnemyData.work1,X                                              ;A6C8DA;
     BPL +                                                                ;A6C8DD;
     EOR.W #$FFFF                                                         ;A6C8DF;
     INC A                                                                ;A6C8E2;
@@ -8189,18 +8189,18 @@ MainAI_RidleyExplosion:
     BPL +                                                                ;A6C8E7;
     LDA.W #$0000                                                         ;A6C8E9;
 
-  + BIT.W $0FAA,X                                                        ;A6C8EC;
+  + BIT.W EnemyData.work1,X                                              ;A6C8EC;
     BPL +                                                                ;A6C8EF;
     EOR.W #$FFFF                                                         ;A6C8F1;
     INC A                                                                ;A6C8F4;
 
-  + STA.W $0FAA,X                                                        ;A6C8F5;
-    LDA.W $0FAC,X                                                        ;A6C8F8;
+  + STA.W EnemyData.work1,X                                              ;A6C8F5;
+    LDA.W EnemyData.work2,X                                              ;A6C8F8;
     CLC                                                                  ;A6C8FB;
     ADC.W #$0004                                                         ;A6C8FC;
-    STA.W $0FAC,X                                                        ;A6C8FF;
+    STA.W EnemyData.work2,X                                              ;A6C8FF;
     JSL.L MoveEnemyAccordingToVelocity                                   ;A6C902;
-    DEC.W $0FB2,X                                                        ;A6C906;
+    DEC.W EnemyData.work5,X                                              ;A6C906;
     BPL .return                                                          ;A6C909;
     LDA.W #$0000                                                         ;A6C90B;
     JML.L EnemyDeath                                                     ;A6C90E;
@@ -8211,20 +8211,20 @@ MainAI_RidleyExplosion:
 
 
 HandleFlickering:
-    LDA.W $0FA4,X                                                        ;A6C913;
+    LDA.W EnemyData.frameCounter,X                                       ;A6C913;
     AND.W #$0001                                                         ;A6C916;
-    STA.W $0FA4,X                                                        ;A6C919;
+    STA.W EnemyData.frameCounter,X                                       ;A6C919;
     BEQ .visible                                                         ;A6C91C;
-    LDA.W $0F86,X                                                        ;A6C91E;
+    LDA.W EnemyData.properties,X                                         ;A6C91E;
     ORA.W #$0100                                                         ;A6C921;
-    STA.W $0F86,X                                                        ;A6C924;
+    STA.W EnemyData.properties,X                                         ;A6C924;
     RTS                                                                  ;A6C927;
 
 
 .visible:
-    LDA.W $0F86,X                                                        ;A6C928;
+    LDA.W EnemyData.properties,X                                         ;A6C928;
     AND.W #$FEFF                                                         ;A6C92B;
-    STA.W $0F86,X                                                        ;A6C92E;
+    STA.W EnemyData.properties,X                                         ;A6C92E;
     RTS                                                                  ;A6C931;
 
 
@@ -9679,7 +9679,7 @@ UNUSED_CheckIfAllTailPartsAreMoving_A6D431:
 
 DealSuitAdjustedEnemyDamageToSamus:
     LDX.W $0E54                                                          ;A6D453;
-    LDA.W $0F78,X                                                        ;A6D456;
+    LDA.W EnemyData.pId,X                                                ;A6D456;
     TAX                                                                  ;A6D459;
     LDA.L $A00006,X                                                      ;A6D45A;
     JSL.L Suit_Damage_Division                                           ;A6D45E;
@@ -9814,17 +9814,17 @@ AccelerateRidleyTowardDesiredXYPosition:
     AND.W #$00FF                                                         ;A6D52B;
     STA.B $18                                                            ;A6D52E;
     JSR.W AccelerateRidleyTowardDesiredXPosition                         ;A6D530;
-    LDA.W $0F7E,X                                                        ;A6D533;
+    LDA.W EnemyData.yPosition,X                                          ;A6D533;
     SEC                                                                  ;A6D536;
     SBC.B $14                                                            ;A6D537;
     BEQ .return                                                          ;A6D539;
     BPL .belowTarget                                                     ;A6D53B;
     EOR.W #$FFFF                                                         ;A6D53D;
     INC A                                                                ;A6D540;
-    STA.W $4204                                                          ;A6D541;
+    STA.W HW_WRDIV                                                       ;A6D541;
     SEP #$20                                                             ;A6D544;
     LDA.B $18                                                            ;A6D546;
-    STA.W $4206                                                          ;A6D548;
+    STA.W HW_WRDIVB                                                      ;A6D548;
     REP #$20                                                             ;A6D54B;
     XBA                                                                  ;A6D54D;
     XBA                                                                  ;A6D54E;
@@ -9835,7 +9835,7 @@ AccelerateRidleyTowardDesiredXYPosition:
     INC A                                                                ;A6D556;
 
   + STA.B $16                                                            ;A6D557;
-    LDA.W $0FAC,X                                                        ;A6D559;
+    LDA.W EnemyData.work2,X                                              ;A6D559;
     BPL +                                                                ;A6D55C;
     CLC                                                                  ;A6D55E;
     ADC.B $1A                                                            ;A6D55F;
@@ -9848,17 +9848,17 @@ AccelerateRidleyTowardDesiredXYPosition:
     BMI +                                                                ;A6D56C;
     LDA.W #$0500                                                         ;A6D56E;
 
-  + STA.W $0FAC,X                                                        ;A6D571;
+  + STA.W EnemyData.work2,X                                              ;A6D571;
 
 .return:
     RTS                                                                  ;A6D574;
 
 
 .belowTarget:
-    STA.W $4204                                                          ;A6D575;
+    STA.W HW_WRDIV                                                       ;A6D575;
     SEP #$20                                                             ;A6D578;
     LDA.B $18                                                            ;A6D57A;
-    STA.W $4206                                                          ;A6D57C;
+    STA.W HW_WRDIVB                                                      ;A6D57C;
     REP #$20                                                             ;A6D57F;
     XBA                                                                  ;A6D581;
     XBA                                                                  ;A6D582;
@@ -9869,7 +9869,7 @@ AccelerateRidleyTowardDesiredXYPosition:
     INC A                                                                ;A6D58A;
 
   + STA.B $16                                                            ;A6D58B;
-    LDA.W $0FAC,X                                                        ;A6D58D;
+    LDA.W EnemyData.work2,X                                              ;A6D58D;
     BMI +                                                                ;A6D590;
     SEC                                                                  ;A6D592;
     SBC.B $1A                                                            ;A6D593;
@@ -9882,22 +9882,22 @@ AccelerateRidleyTowardDesiredXYPosition:
     BPL +                                                                ;A6D5A0;
     LDA.W #$FB00                                                         ;A6D5A2;
 
-  + STA.W $0FAC,X                                                        ;A6D5A5;
+  + STA.W EnemyData.work2,X                                              ;A6D5A5;
     RTS                                                                  ;A6D5A8;
 
 
 AccelerateRidleyTowardDesiredXPosition:
-    LDA.W $0F7A,X                                                        ;A6D5A9;
+    LDA.W EnemyData.xPosition,X                                          ;A6D5A9;
     SEC                                                                  ;A6D5AC;
     SBC.B $12                                                            ;A6D5AD;
     BEQ .return                                                          ;A6D5AF;
     BPL .rightOfTarget                                                   ;A6D5B1;
     EOR.W #$FFFF                                                         ;A6D5B3;
     INC A                                                                ;A6D5B6;
-    STA.W $4204                                                          ;A6D5B7;
+    STA.W HW_WRDIV                                                       ;A6D5B7;
     SEP #$20                                                             ;A6D5BA;
     LDA.B $18                                                            ;A6D5BC;
-    STA.W $4206                                                          ;A6D5BE;
+    STA.W HW_WRDIVB                                                      ;A6D5BE;
     REP #$20                                                             ;A6D5C1;
     XBA                                                                  ;A6D5C3;
     XBA                                                                  ;A6D5C4;
@@ -9908,7 +9908,7 @@ AccelerateRidleyTowardDesiredXPosition:
     INC A                                                                ;A6D5CC;
 
   + STA.B $16                                                            ;A6D5CD;
-    LDA.W $0FAA,X                                                        ;A6D5CF;
+    LDA.W EnemyData.work1,X                                              ;A6D5CF;
     BPL +                                                                ;A6D5D2;
     CLC                                                                  ;A6D5D4;
     ADC.B $1A                                                            ;A6D5D5;
@@ -9921,17 +9921,17 @@ AccelerateRidleyTowardDesiredXPosition:
     BMI +                                                                ;A6D5E2;
     LDA.W #$0500                                                         ;A6D5E4;
 
-  + STA.W $0FAA,X                                                        ;A6D5E7;
+  + STA.W EnemyData.work1,X                                              ;A6D5E7;
 
 .return:
     RTS                                                                  ;A6D5EA;
 
 
 .rightOfTarget:
-    STA.W $4204                                                          ;A6D5EB;
+    STA.W HW_WRDIV                                                       ;A6D5EB;
     SEP #$20                                                             ;A6D5EE;
     LDA.B $18                                                            ;A6D5F0;
-    STA.W $4206                                                          ;A6D5F2;
+    STA.W HW_WRDIVB                                                      ;A6D5F2;
     REP #$20                                                             ;A6D5F5;
     XBA                                                                  ;A6D5F7;
     XBA                                                                  ;A6D5F8;
@@ -9942,7 +9942,7 @@ AccelerateRidleyTowardDesiredXPosition:
     INC A                                                                ;A6D600;
 
   + STA.B $16                                                            ;A6D601;
-    LDA.W $0FAA,X                                                        ;A6D603;
+    LDA.W EnemyData.work1,X                                              ;A6D603;
     BMI +                                                                ;A6D606;
     SEC                                                                  ;A6D608;
     SBC.B $1A                                                            ;A6D609;
@@ -9955,7 +9955,7 @@ AccelerateRidleyTowardDesiredXPosition:
     BPL +                                                                ;A6D616;
     LDA.W #$FB00                                                         ;A6D618;
 
-  + STA.W $0FAA,X                                                        ;A6D61B;
+  + STA.W EnemyData.work1,X                                              ;A6D61B;
     RTS                                                                  ;A6D61E;
 
 
@@ -9967,17 +9967,17 @@ AccelerateCeresRidleyTowardDesiredXY:
     AND.W #$00FF                                                         ;A6D632;
     STA.B $18                                                            ;A6D635;
     JSR.W CalculateRidleyXSpeed                                          ;A6D637;
-    LDA.W $0F7E,X                                                        ;A6D63A;
+    LDA.W EnemyData.yPosition,X                                          ;A6D63A;
     SEC                                                                  ;A6D63D;
     SBC.B $14                                                            ;A6D63E;
     BEQ .return                                                          ;A6D640;
     BPL .positive                                                        ;A6D642;
     EOR.W #$FFFF                                                         ;A6D644;
     INC A                                                                ;A6D647;
-    STA.W $4204                                                          ;A6D648;
+    STA.W HW_WRDIV                                                       ;A6D648;
     SEP #$20                                                             ;A6D64B;
     LDA.B $18                                                            ;A6D64D;
-    STA.W $4206                                                          ;A6D64F;
+    STA.W HW_WRDIVB                                                      ;A6D64F;
     REP #$20                                                             ;A6D652;
     XBA                                                                  ;A6D654;
     XBA                                                                  ;A6D655;
@@ -9988,7 +9988,7 @@ AccelerateCeresRidleyTowardDesiredXY:
     INC A                                                                ;A6D65D;
 
   + STA.B $16                                                            ;A6D65E;
-    LDA.W $0FAC,X                                                        ;A6D660;
+    LDA.W EnemyData.work2,X                                              ;A6D660;
     BPL .moveDown                                                        ;A6D663;
     ADC.B $16                                                            ;A6D665;
     ADC.B $16                                                            ;A6D667;
@@ -10000,17 +10000,17 @@ AccelerateCeresRidleyTowardDesiredXY:
     LDA.W #$0500                                                         ;A6D670;
 
 .storeYSpeed:
-    STA.W $0FAC,X                                                        ;A6D673;
+    STA.W EnemyData.work2,X                                              ;A6D673;
 
 .return:
     RTS                                                                  ;A6D676;
 
 
 .positive:
-    STA.W $4204                                                          ;A6D677;
+    STA.W HW_WRDIV                                                       ;A6D677;
     SEP #$20                                                             ;A6D67A;
     LDA.B $18                                                            ;A6D67C;
-    STA.W $4206                                                          ;A6D67E;
+    STA.W HW_WRDIVB                                                      ;A6D67E;
     REP #$20                                                             ;A6D681;
     XBA                                                                  ;A6D683;
     XBA                                                                  ;A6D684;
@@ -10021,7 +10021,7 @@ AccelerateCeresRidleyTowardDesiredXY:
     INC A                                                                ;A6D68C;
 
   + STA.B $16                                                            ;A6D68D;
-    LDA.W $0FAC,X                                                        ;A6D68F;
+    LDA.W EnemyData.work2,X                                              ;A6D68F;
     BMI .movingUp                                                        ;A6D692;
     SBC.B $16                                                            ;A6D694;
     SBC.B $16                                                            ;A6D696;
@@ -10032,22 +10032,22 @@ AccelerateCeresRidleyTowardDesiredXY:
     BPL +                                                                ;A6D69D;
     LDA.W #$FB00                                                         ;A6D69F;
 
-  + STA.W $0FAC,X                                                        ;A6D6A2;
+  + STA.W EnemyData.work2,X                                              ;A6D6A2;
     RTS                                                                  ;A6D6A5;
 
 
 CalculateRidleyXSpeed:
-    LDA.W $0F7A,X                                                        ;A6D6A6;
+    LDA.W EnemyData.xPosition,X                                          ;A6D6A6;
     SEC                                                                  ;A6D6A9;
     SBC.B $12                                                            ;A6D6AA;
     BEQ .return                                                          ;A6D6AC;
     BPL .moveLeft                                                        ;A6D6AE;
     EOR.W #$FFFF                                                         ;A6D6B0;
     INC A                                                                ;A6D6B3;
-    STA.W $4204                                                          ;A6D6B4;
+    STA.W HW_WRDIV                                                       ;A6D6B4;
     SEP #$20                                                             ;A6D6B7;
     LDA.B $18                                                            ;A6D6B9;
-    STA.W $4206                                                          ;A6D6BB;
+    STA.W HW_WRDIVB                                                      ;A6D6BB;
     REP #$20                                                             ;A6D6BE;
     XBA                                                                  ;A6D6C0;
     XBA                                                                  ;A6D6C1;
@@ -10058,7 +10058,7 @@ CalculateRidleyXSpeed:
     INC A                                                                ;A6D6C9;
 
   + STA.B $16                                                            ;A6D6CA;
-    LDA.W $0FAA,X                                                        ;A6D6CC;
+    LDA.W EnemyData.work1,X                                              ;A6D6CC;
     BPL .movingRight                                                     ;A6D6CF;
     ADC.B $16                                                            ;A6D6D1;
     ADC.B $16                                                            ;A6D6D3;
@@ -10069,17 +10069,17 @@ CalculateRidleyXSpeed:
     BMI +                                                                ;A6D6DA;
     LDA.W #$0500                                                         ;A6D6DC;
 
-  + STA.W $0FAA,X                                                        ;A6D6DF;
+  + STA.W EnemyData.work1,X                                              ;A6D6DF;
 
 .return:
     RTS                                                                  ;A6D6E2;
 
 
 .moveLeft:
-    STA.W $4204                                                          ;A6D6E3;
+    STA.W HW_WRDIV                                                       ;A6D6E3;
     SEP #$20                                                             ;A6D6E6;
     LDA.B $18                                                            ;A6D6E8;
-    STA.W $4206                                                          ;A6D6EA;
+    STA.W HW_WRDIVB                                                      ;A6D6EA;
     REP #$20                                                             ;A6D6ED;
     XBA                                                                  ;A6D6EF;
     XBA                                                                  ;A6D6F0;
@@ -10090,7 +10090,7 @@ CalculateRidleyXSpeed:
     INC A                                                                ;A6D6F8;
 
   + STA.B $16                                                            ;A6D6F9;
-    LDA.W $0FAA,X                                                        ;A6D6FB;
+    LDA.W EnemyData.work1,X                                              ;A6D6FB;
     BMI .movingLeft                                                      ;A6D6FE;
     SBC.B $16                                                            ;A6D700;
     SBC.B $16                                                            ;A6D702;
@@ -10101,7 +10101,7 @@ CalculateRidleyXSpeed:
     BPL +                                                                ;A6D709;
     LDA.W #$FB00                                                         ;A6D70B;
 
-  + STA.W $0FAA,X                                                        ;A6D70E;
+  + STA.W EnemyData.work1,X                                              ;A6D70E;
     RTS                                                                  ;A6D711;
 
 
@@ -10120,30 +10120,30 @@ UNUSED_A6D722:
 
 
 UNUSED_A6D734:
-    LDA.W $0F7E,X                                                        ;A6D734;
+    LDA.W EnemyData.yPosition,X                                          ;A6D734;
     SEC                                                                  ;A6D737;
     SBC.B $14                                                            ;A6D738;
     BPL .unknown                                                         ;A6D73A;
-    LDA.W $0FAC,X                                                        ;A6D73C;
+    LDA.W EnemyData.work2,X                                              ;A6D73C;
     CLC                                                                  ;A6D73F;
     ADC.B $16                                                            ;A6D740;
     CMP.W #$0500                                                         ;A6D742;
     BMI +                                                                ;A6D745;
     LDA.W #$0500                                                         ;A6D747;
 
-  + STA.W $0FAC,X                                                        ;A6D74A;
+  + STA.W EnemyData.work2,X                                              ;A6D74A;
     AND.W #$FF00                                                         ;A6D74D;
     XBA                                                                  ;A6D750;
     BPL +                                                                ;A6D751;
     ORA.W #$FF00                                                         ;A6D753;
 
   + CLC                                                                  ;A6D756;
-    ADC.W $0F7E,X                                                        ;A6D757;
+    ADC.W EnemyData.yPosition,X                                          ;A6D757;
     CMP.B $14                                                            ;A6D75A;
     BMI .returnUpper                                                     ;A6D75C;
-    STZ.W $0FAC,X                                                        ;A6D75E;
+    STZ.W EnemyData.work2,X                                              ;A6D75E;
     LDA.B $14                                                            ;A6D761;
-    STA.W $0F7E,X                                                        ;A6D763;
+    STA.W EnemyData.yPosition,X                                          ;A6D763;
     INC.B $1C                                                            ;A6D766;
 
 .returnUpper:
@@ -10151,28 +10151,28 @@ UNUSED_A6D734:
 
 
 .unknown:
-    LDA.W $0FAC,X                                                        ;A6D769;
+    LDA.W EnemyData.work2,X                                              ;A6D769;
     SEC                                                                  ;A6D76C;
     SBC.B $16                                                            ;A6D76D;
     CMP.W #$FB00                                                         ;A6D76F;
     BPL +                                                                ;A6D772;
     LDA.W #$FB00                                                         ;A6D774;
 
-  + STA.W $0FAC,X                                                        ;A6D777;
+  + STA.W EnemyData.work2,X                                              ;A6D777;
     AND.W #$FF00                                                         ;A6D77A;
     XBA                                                                  ;A6D77D;
     BPL +                                                                ;A6D77E;
     ORA.W #$FF00                                                         ;A6D780;
 
   + CLC                                                                  ;A6D783;
-    ADC.W $0F7E,X                                                        ;A6D784;
+    ADC.W EnemyData.yPosition,X                                          ;A6D784;
     CMP.B $14                                                            ;A6D787;
     BEQ +                                                                ;A6D789;
     BPL .returnLower                                                     ;A6D78B;
 
-  + STZ.W $0FAC,X                                                        ;A6D78D;
+  + STZ.W EnemyData.work2,X                                              ;A6D78D;
     LDA.B $14                                                            ;A6D790;
-    STA.W $0F7E,X                                                        ;A6D792;
+    STA.W EnemyData.yPosition,X                                          ;A6D792;
     INC.B $1C                                                            ;A6D795;
 
 .returnLower:
@@ -10180,32 +10180,32 @@ UNUSED_A6D734:
 
 
 UNUSED_A6D798:
-    LDA.W $0F7A,X                                                        ;A6D798;
+    LDA.W EnemyData.xPosition,X                                          ;A6D798;
     SEC                                                                  ;A6D79B;
     SBC.B $12                                                            ;A6D79C;
     BPL .unknown                                                         ;A6D79E;
     EOR.W #$FFFF                                                         ;A6D7A0;
     INC A                                                                ;A6D7A3;
-    LDA.W $0FAA,X                                                        ;A6D7A4;
+    LDA.W EnemyData.work1,X                                              ;A6D7A4;
     CLC                                                                  ;A6D7A7;
     ADC.B $16                                                            ;A6D7A8;
     CMP.W #$0500                                                         ;A6D7AA;
     BMI +                                                                ;A6D7AD;
     LDA.W #$0500                                                         ;A6D7AF;
 
-  + STA.W $0FAA,X                                                        ;A6D7B2;
+  + STA.W EnemyData.work1,X                                              ;A6D7B2;
     AND.W #$FF00                                                         ;A6D7B5;
     XBA                                                                  ;A6D7B8;
     BPL +                                                                ;A6D7B9;
     ORA.W #$FF00                                                         ;A6D7BB;
 
   + CLC                                                                  ;A6D7BE;
-    ADC.W $0F7A,X                                                        ;A6D7BF;
+    ADC.W EnemyData.xPosition,X                                          ;A6D7BF;
     CMP.B $12                                                            ;A6D7C2;
     BMI .returnUpper                                                     ;A6D7C4;
-    STZ.W $0FAA,X                                                        ;A6D7C6;
+    STZ.W EnemyData.work1,X                                              ;A6D7C6;
     LDA.B $12                                                            ;A6D7C9;
-    STA.W $0F7A,X                                                        ;A6D7CB;
+    STA.W EnemyData.xPosition,X                                          ;A6D7CB;
     INC.B $1C                                                            ;A6D7CE;
 
 .returnUpper:
@@ -10213,28 +10213,28 @@ UNUSED_A6D798:
 
 
 .unknown:
-    LDA.W $0FAA,X                                                        ;A6D7D1;
+    LDA.W EnemyData.work1,X                                              ;A6D7D1;
     SEC                                                                  ;A6D7D4;
     SBC.B $16                                                            ;A6D7D5;
     CMP.W #$FB00                                                         ;A6D7D7;
     BPL +                                                                ;A6D7DA;
     LDA.W #$FB00                                                         ;A6D7DC;
 
-  + STA.W $0FAA,X                                                        ;A6D7DF;
+  + STA.W EnemyData.work1,X                                              ;A6D7DF;
     AND.W #$FF00                                                         ;A6D7E2;
     XBA                                                                  ;A6D7E5;
     BPL +                                                                ;A6D7E6;
     ORA.W #$FF00                                                         ;A6D7E8;
 
   + CLC                                                                  ;A6D7EB;
-    ADC.W $0F7A,X                                                        ;A6D7EC;
+    ADC.W EnemyData.xPosition,X                                          ;A6D7EC;
     CMP.B $12                                                            ;A6D7EF;
     BEQ +                                                                ;A6D7F1;
     BPL .returnLower                                                     ;A6D7F3;
 
-  + STZ.W $0FAA,X                                                        ;A6D7F5;
+  + STZ.W EnemyData.work1,X                                              ;A6D7F5;
     LDA.B $12                                                            ;A6D7F8;
-    STA.W $0F7A,X                                                        ;A6D7FA;
+    STA.W EnemyData.xPosition,X                                          ;A6D7FA;
     INC.B $1C                                                            ;A6D7FD;
 
 .returnLower:
@@ -10303,7 +10303,7 @@ HandleMovementAndMainBodyWallCollisions:
     LDA.W #$0000                                                         ;A6D86B;
     STA.L $7E783E                                                        ;A6D86E;
     LDX.W $0E54                                                          ;A6D872;
-    LDA.W $0FAA,X                                                        ;A6D875;
+    LDA.W EnemyData.work1,X                                              ;A6D875;
     SEP #$20                                                             ;A6D878;
     CLC                                                                  ;A6D87A;
     ADC.W $0F7D,X                                                        ;A6D87B;
@@ -10315,13 +10315,13 @@ HandleMovementAndMainBodyWallCollisions:
     ORA.W #$FF00                                                         ;A6D889;
 
 .checkLeftWall:
-    ADC.W $0F7A,X                                                        ;A6D88C;
+    ADC.W EnemyData.xPosition,X                                          ;A6D88C;
     CMP.L $7E8004                                                        ;A6D88F;
     BPL .checkRightWall                                                  ;A6D893;
     JSR.W CeresRidleyRoomShaking                                         ;A6D895;
     LDA.L $7E8004                                                        ;A6D898;
-    STA.W $0F7A,X                                                        ;A6D89C;
-    STZ.W $0FAA,X                                                        ;A6D89F;
+    STA.W EnemyData.xPosition,X                                          ;A6D89C;
+    STZ.W EnemyData.work1,X                                              ;A6D89F;
     LDA.W #$0001                                                         ;A6D8A2;
     STA.L $7E783E                                                        ;A6D8A5;
     BRA .getYSpeed                                                       ;A6D8A9;
@@ -10330,15 +10330,15 @@ HandleMovementAndMainBodyWallCollisions:
 .checkRightWall:
     CMP.L $7E8006                                                        ;A6D8AB;
     BMI +                                                                ;A6D8AF;
-    STZ.W $0FAA,X                                                        ;A6D8B1;
+    STZ.W EnemyData.work1,X                                              ;A6D8B1;
     LDA.W #$0002                                                         ;A6D8B4;
     STA.L $7E783E                                                        ;A6D8B7;
     LDA.L $7E8006                                                        ;A6D8BB;
 
-  + STA.W $0F7A,X                                                        ;A6D8BF;
+  + STA.W EnemyData.xPosition,X                                          ;A6D8BF;
 
 .getYSpeed:
-    LDA.W $0FAC,X                                                        ;A6D8C2;
+    LDA.W EnemyData.work2,X                                              ;A6D8C2;
     SEP #$20                                                             ;A6D8C5;
     CLC                                                                  ;A6D8C7;
     ADC.W $0F81,X                                                        ;A6D8C8;
@@ -10350,12 +10350,12 @@ HandleMovementAndMainBodyWallCollisions:
     ORA.W #$FF00                                                         ;A6D8D6;
 
 .checkTopWall:
-    ADC.W $0F7E,X                                                        ;A6D8D9;
+    ADC.W EnemyData.yPosition,X                                          ;A6D8D9;
     CMP.L $7E8000                                                        ;A6D8DC;
     BPL .checkBottomWall                                                 ;A6D8E0;
     LDA.L $7E8000                                                        ;A6D8E2;
-    STA.W $0F7E,X                                                        ;A6D8E6;
-    STZ.W $0FAC,X                                                        ;A6D8E9;
+    STA.W EnemyData.yPosition,X                                          ;A6D8E6;
+    STZ.W EnemyData.work2,X                                              ;A6D8E9;
     LDA.L $7E783E                                                        ;A6D8EC;
     LDA.W #$0004                                                         ;A6D8F0;
     STA.L $7E783E                                                        ;A6D8F3;
@@ -10365,14 +10365,14 @@ HandleMovementAndMainBodyWallCollisions:
 .checkBottomWall:
     CMP.L $7E8002                                                        ;A6D8F8;
     BMI .done                                                            ;A6D8FC;
-    STZ.W $0FAC,X                                                        ;A6D8FE;
+    STZ.W EnemyData.work2,X                                              ;A6D8FE;
     LDA.L $7E783E                                                        ;A6D901;
     LDA.W #$0008                                                         ;A6D905;
     STA.L $7E783E                                                        ;A6D908;
     LDA.L $7E8002                                                        ;A6D90C;
 
 .done:
-    STA.W $0F7E,X                                                        ;A6D910;
+    STA.W EnemyData.yPosition,X                                          ;A6D910;
     RTS                                                                  ;A6D913;
 
 
@@ -10380,14 +10380,14 @@ CeresRidleyRoomShaking:
     LDA.W $079F                                                          ;A6D914;
     CMP.W #$0002                                                         ;A6D917;
     BEQ .return                                                          ;A6D91A;
-    LDA.W $0FAA,X                                                        ;A6D91C;
+    LDA.W EnemyData.work1,X                                              ;A6D91C;
     BPL .movingRight                                                     ;A6D91F;
     EOR.W #$FFFF                                                         ;A6D921;
     INC A                                                                ;A6D924;
 
 .movingRight:
     STA.B $12                                                            ;A6D925;
-    LDA.W $0FAC,X                                                        ;A6D927;
+    LDA.W EnemyData.work2,X                                              ;A6D927;
     BPL .movingDown                                                      ;A6D92A;
     EOR.W #$FFFF                                                         ;A6D92C;
     INC A                                                                ;A6D92F;
@@ -11316,7 +11316,7 @@ UNUSED_RidleyDamagesSamus_A6DF66:
     LDX.W $0E54                                                          ;A6DF79;
     LDA.W $0AF6                                                          ;A6DF7C;
     SEC                                                                  ;A6DF7F;
-    SBC.W $0F7A,X                                                        ;A6DF80;
+    SBC.W EnemyData.xPosition,X                                          ;A6DF80;
     BMI .left                                                            ;A6DF83;
     INY                                                                  ;A6DF85;
 
@@ -11408,11 +11408,11 @@ UNUSED_ProjectileCollision_A6E01B:
     LDX.W $0E54                                                          ;A6E01B;
     LDA.W $0B64                                                          ;A6E01E;
     SEC                                                                  ;A6E021;
-    SBC.W $0F7A,X                                                        ;A6E022;
+    SBC.W EnemyData.xPosition,X                                          ;A6E022;
     STA.B $12                                                            ;A6E025;
     LDA.W $0B78                                                          ;A6E027;
     SEC                                                                  ;A6E02A;
-    SBC.W $0F7E,X                                                        ;A6E02B;
+    SBC.W EnemyData.yPosition,X                                          ;A6E02B;
     STA.B $14                                                            ;A6E02E;
     JSL.L CalculateAngleOf_12_14_Offset                                  ;A6E030;
     SEC                                                                  ;A6E034;
@@ -11437,23 +11437,23 @@ UNUSED_ProjectileCollision_A6E01B:
     JSL.L Math_86C26C                                                    ;A6E058;
     STA.B $12                                                            ;A6E05C;
     LDX.W $0E54                                                          ;A6E05E;
-    EOR.W $0FAA,X                                                        ;A6E061;
+    EOR.W EnemyData.work1,X                                              ;A6E061;
     BPL +                                                                ;A6E064;
     LDA.B $12                                                            ;A6E066;
     CLC                                                                  ;A6E068;
-    ADC.W $0FAA,X                                                        ;A6E069;
-    STA.W $0FAA,X                                                        ;A6E06C;
+    ADC.W EnemyData.work1,X                                              ;A6E069;
+    STA.W EnemyData.work1,X                                              ;A6E06C;
 
   + PLA                                                                  ;A6E06F;
     JSL.L Math_86C272                                                    ;A6E070;
     STA.B $12                                                            ;A6E074;
     LDX.W $0E54                                                          ;A6E076;
-    EOR.W $0FAC,X                                                        ;A6E079;
+    EOR.W EnemyData.work2,X                                              ;A6E079;
     BPL .return                                                          ;A6E07C;
     LDA.B $12                                                            ;A6E07E;
     CLC                                                                  ;A6E080;
-    ADC.W $0FAC,X                                                        ;A6E081;
-    STA.W $0FAC,X                                                        ;A6E084;
+    ADC.W EnemyData.work2,X                                              ;A6E081;
+    STA.W EnemyData.work2,X                                              ;A6E084;
 
 .return:
     RTS                                                                  ;A6E087;
@@ -12986,29 +12986,29 @@ Spritemap_Ridley_FacingRight_Torso:
 
 InitAI_CeresSteam:
     LDX.W $0E54                                                          ;A6EFB1;
-    STZ.W $0F98,X                                                        ;A6EFB4;
-    LDA.W $0F86,X                                                        ;A6EFB7;
+    STZ.W EnemyData.gfxOffset,X                                          ;A6EFB4;
+    LDA.W EnemyData.properties,X                                         ;A6EFB7;
     ORA.W #$2000                                                         ;A6EFBA;
-    STA.W $0F86,X                                                        ;A6EFBD;
-    LDA.W $0F88,X                                                        ;A6EFC0;
+    STA.W EnemyData.properties,X                                         ;A6EFBD;
+    LDA.W EnemyData.properties2,X                                        ;A6EFC0;
     ORA.W #$0004                                                         ;A6EFC3;
-    STA.W $0F88,X                                                        ;A6EFC6;
+    STA.W EnemyData.properties2,X                                        ;A6EFC6;
     LDA.W #$0001                                                         ;A6EFC9;
-    STA.W $0F94,X                                                        ;A6EFCC;
-    STZ.W $0F90,X                                                        ;A6EFCF;
+    STA.W EnemyData.instTimer,X                                          ;A6EFCC;
+    STZ.W EnemyData.loopCounter,X                                        ;A6EFCF;
     LDA.W #$0A00                                                         ;A6EFD2;
-    STA.W $0F96,X                                                        ;A6EFD5;
+    STA.W EnemyData.palette,X                                            ;A6EFD5;
     JSL.L GenerateRandomNumber                                           ;A6EFD8;
     AND.W #$001F                                                         ;A6EFDC;
     INC A                                                                ;A6EFDF;
-    STA.W $0FAE,X                                                        ;A6EFE0;
-    LDA.W $0FB4,X                                                        ;A6EFE3;
+    STA.W EnemyData.work3,X                                              ;A6EFE0;
+    LDA.W EnemyData.initParam0,X                                         ;A6EFE3;
     ASL A                                                                ;A6EFE6;
     TAY                                                                  ;A6EFE7;
     LDA.W InitAI_CeresSteam_instListPointers,Y                           ;A6EFE8;
-    STA.W $0F92,X                                                        ;A6EFEB;
+    STA.W EnemyData.pInstList,X                                          ;A6EFEB;
     LDA.W InitAI_CeresSteam_initialFunctionPointers,Y                    ;A6EFEE;
-    STA.W $0FA8,X                                                        ;A6EFF1;
+    STA.W EnemyData.work0,X                                              ;A6EFF1;
 
 InitAI_CeresSteam_return:
     RTL                                                                  ;A6EFF4;
@@ -13033,24 +13033,24 @@ InitAI_CeresSteam_initialFunctionPointers:
 MainAI_CeresSteam:
     LDX.W $0E54                                                          ;A6F00D;
     LDA.W #$7FFF                                                         ;A6F010;
-    STA.W $0F8C,X                                                        ;A6F013;
+    STA.W EnemyData.health,X                                             ;A6F013;
     JMP.W ($0FA8,X)                                                      ;A6F016;
 
 
 Func_CeresSteam_CalculateGraphicalOffsetInRotatingElevRoom:
-    LDA.W $0F7A,X                                                        ;A6F019;
+    LDA.W EnemyData.xPosition,X                                          ;A6F019;
     STA.B $12                                                            ;A6F01C;
-    LDA.W $0F7E,X                                                        ;A6F01E;
+    LDA.W EnemyData.yPosition,X                                          ;A6F01E;
     STA.B $14                                                            ;A6F021;
     JSL.L Calculate_CeresSteamPosition_InRotatingElevatorRoom            ;A6F023;
     LDX.W $0E54                                                          ;A6F027;
     LDA.B $12                                                            ;A6F02A;
     SEC                                                                  ;A6F02C;
-    SBC.W $0F7A,X                                                        ;A6F02D;
+    SBC.W EnemyData.xPosition,X                                          ;A6F02D;
     STA.L $7E7010,X                                                      ;A6F030;
     LDA.B $14                                                            ;A6F034;
     SEC                                                                  ;A6F036;
-    SBC.W $0F7E,X                                                        ;A6F037;
+    SBC.W EnemyData.yPosition,X                                          ;A6F037;
     STA.L $7E7012,X                                                      ;A6F03A;
     RTL                                                                  ;A6F03E;
 
@@ -13058,7 +13058,7 @@ Func_CeresSteam_CalculateGraphicalOffsetInRotatingElevRoom:
 EnemyTouch_CeresSteam:
     LDX.W $0E54                                                          ;A6F03F;
     LDA.W #$7FFF                                                         ;A6F042;
-    STA.W $0F8C,X                                                        ;A6F045;
+    STA.W EnemyData.health,X                                             ;A6F045;
     JSL.L NormalEnemyTouchAI                                             ;A6F048;
     RTL                                                                  ;A6F04C;
 
@@ -13192,14 +13192,14 @@ InstList_CeresSteam_Right_2:
     dw InstList_CeresSteam_Right_1                                       ;A6F11B;
 
 Instruction_CeresSteam_SetToIntangibleAndInvisible:
-    LDA.W $0F86,X                                                        ;A6F11D;
+    LDA.W EnemyData.properties,X                                         ;A6F11D;
     ORA.W #$0500                                                         ;A6F120;
-    STA.W $0F86,X                                                        ;A6F123;
+    STA.W EnemyData.properties,X                                         ;A6F123;
     RTL                                                                  ;A6F126;
 
 
 Instruction_CeresSteam_DecActivationTimer_Decide_GotoYOrY2:
-    DEC.W $0FAE,X                                                        ;A6F127;
+    DEC.W EnemyData.work3,X                                              ;A6F127;
     BEQ .gotoY2                                                          ;A6F12A;
     LDA.W $0000,Y                                                        ;A6F12C;
     TAY                                                                  ;A6F12F;
@@ -13211,10 +13211,10 @@ Instruction_CeresSteam_DecActivationTimer_Decide_GotoYOrY2:
     TAY                                                                  ;A6F134; fallthrough to Instruction_CeresSteam_SetToTangibleAndVisible
 
 Instruction_CeresSteam_SetToTangibleAndVisible:
-    LDA.W $0F86,X                                                        ;A6F135;
+    LDA.W EnemyData.properties,X                                         ;A6F135;
     AND.W #$FBFF                                                         ;A6F138; >.< #$FAFF
     AND.W #$FEFF                                                         ;A6F13B;
-    STA.W $0F86,X                                                        ;A6F13E;
+    STA.W EnemyData.properties,X                                         ;A6F13E;
     RTL                                                                  ;A6F141;
 
 
@@ -13861,7 +13861,7 @@ InstList_CeresDoor_RidleyEscapeMode7RightWall_1:
     dw InstList_CeresDoor_RidleyEscapeMode7RightWall_1                   ;A6F63C;
 
 Inst_CeresDoor_GotoYIfSamusIsNotWithing30Pixels:
-    LDA.W $0F7A,X                                                        ;A6F63E;
+    LDA.W EnemyData.xPosition,X                                          ;A6F63E;
     SEC                                                                  ;A6F641;
     SBC.W $0AF6                                                          ;A6F642;
     BPL +                                                                ;A6F645;
@@ -13870,7 +13870,7 @@ Inst_CeresDoor_GotoYIfSamusIsNotWithing30Pixels:
 
   + CMP.W #$0030                                                         ;A6F64B;
     BCS Inst_CeresDoor_GotoYIfSamusIsNotWithin30Pixels_gotoY             ;A6F64E;
-    LDA.W $0F7E,X                                                        ;A6F650;
+    LDA.W EnemyData.yPosition,X                                          ;A6F650;
     SEC                                                                  ;A6F653;
     SBC.W $0AFA                                                          ;A6F654;
     BPL +                                                                ;A6F657;
@@ -13919,39 +13919,39 @@ SetElevatorRoomToRotateIfRidleyHasEscaped:
 
 
 Instruction_CeresDoor_SetAsIntangible:
-    LDA.W $0F86,X                                                        ;A6F68B;
+    LDA.W EnemyData.properties,X                                         ;A6F68B;
     ORA.W #$0400                                                         ;A6F68E;
-    STA.W $0F86,X                                                        ;A6F691;
+    STA.W EnemyData.properties,X                                         ;A6F691;
     RTL                                                                  ;A6F694;
 
 
 Instruction_CeresDoor_SetAsTangible:
-    LDA.W $0F86,X                                                        ;A6F695;
+    LDA.W EnemyData.properties,X                                         ;A6F695;
     AND.W #$FBFF                                                         ;A6F698;
-    STA.W $0F86,X                                                        ;A6F69B;
+    STA.W EnemyData.properties,X                                         ;A6F69B;
     RTL                                                                  ;A6F69E;
 
 
 Instruction_CeresDoor_SetDrawnByRidleyFlag:
     LDA.W #$0001                                                         ;A6F69F;
-    STA.W $0FAA,X                                                        ;A6F6A2;
+    STA.W EnemyData.work1,X                                              ;A6F6A2;
     RTL                                                                  ;A6F6A5;
 
 
 Instruction_CeresDoor_SetAsInvisible:
-    LDA.W $0F86,X                                                        ;A6F6A6;
+    LDA.W EnemyData.properties,X                                         ;A6F6A6;
     ORA.W #$0100                                                         ;A6F6A9;
-    STA.W $0F86,X                                                        ;A6F6AC;
+    STA.W EnemyData.properties,X                                         ;A6F6AC;
     RTL                                                                  ;A6F6AF;
 
 
 Instruction_CeresDoor_SetAsVisible_ClearDrawnByRidleyFlag:
-    STZ.W $0FAA,X                                                        ;A6F6B0; fallthrough to Instruction_CeresDoor_SetAsVisible
+    STZ.W EnemyData.work1,X                                              ;A6F6B0; fallthrough to Instruction_CeresDoor_SetAsVisible
 
 Instruction_CeresDoor_SetAsVisible:
-    LDA.W $0F86,X                                                        ;A6F6B3;
+    LDA.W EnemyData.properties,X                                         ;A6F6B3;
     AND.W #$FEFF                                                         ;A6F6B6;
-    STA.W $0F86,X                                                        ;A6F6B9;
+    STA.W EnemyData.properties,X                                         ;A6F6B9;
     RTL                                                                  ;A6F6BC;
 
 
@@ -13964,25 +13964,25 @@ Instruction_CeresDoor_QueueOpeningSFX:
 InitAI_CeresDoor:
     LDX.W $0E54                                                          ;A6F6C5;
     LDA.W #Spritemap_CeresDoor_Placeholder                               ;A6F6C8;
-    STA.W $0F8E,X                                                        ;A6F6CB;
+    STA.W EnemyData.pSpritemap,X                                         ;A6F6CB;
     LDA.W #$0001                                                         ;A6F6CE;
-    STA.W $0F94,X                                                        ;A6F6D1;
-    STZ.W $0F90,X                                                        ;A6F6D4;
-    STZ.W $0F98,X                                                        ;A6F6D7;
+    STA.W EnemyData.instTimer,X                                          ;A6F6D1;
+    STZ.W EnemyData.loopCounter,X                                        ;A6F6D4;
+    STZ.W EnemyData.gfxOffset,X                                          ;A6F6D7;
     LDA.W #$0400                                                         ;A6F6DA;
-    STA.W $0F96,X                                                        ;A6F6DD;
-    LDA.W $0FB4,X                                                        ;A6F6E0;
+    STA.W EnemyData.palette,X                                            ;A6F6DD;
+    LDA.W EnemyData.initParam0,X                                         ;A6F6E0;
     ASL A                                                                ;A6F6E3;
     TAY                                                                  ;A6F6E4;
     LDA.W .functionPointers,Y                                            ;A6F6E5;
-    STA.W $0FA8,X                                                        ;A6F6E8;
+    STA.W EnemyData.work0,X                                              ;A6F6E8;
     LDA.W InstListPointers_CeresDoor,Y                                   ;A6F6EB;
-    STA.W $0F92,X                                                        ;A6F6EE;
-    STZ.W $0FAA,X                                                        ;A6F6F1;
+    STA.W EnemyData.pInstList,X                                          ;A6F6EE;
+    STZ.W EnemyData.work1,X                                              ;A6F6F1;
     JSR.W LoadRotatingElevatorRoomPreExplosioNDoorOverlayTilesIfNeeded   ;A6F6F4;
     LDA.W $093F                                                          ;A6F6F7;
     BNE .escapeSequence                                                  ;A6F6FA;
-    LDA.W $0FB4,X                                                        ;A6F6FC;
+    LDA.W EnemyData.initParam0,X                                         ;A6F6FC;
     CMP.W #$0003                                                         ;A6F6FF;
     BNE .notRidleysRoom                                                  ;A6F702;
     LDY.W #Palette_CeresDoor_BeforeEscape+2                              ;A6F704;
@@ -14002,7 +14002,7 @@ InitAI_CeresDoor:
 
 .merge:
     LDA.W #$0E00                                                         ;A6F71A;
-    STA.W $0F96,X                                                        ;A6F71D;
+    STA.W EnemyData.palette,X                                            ;A6F71D;
     LDX.W #$01E2                                                         ;A6F720;
     LDA.W #$000F                                                         ;A6F723;
     JSL.L WriteAColorsFromYToTargetColorIndexX                           ;A6F726;
@@ -14019,7 +14019,7 @@ InitAI_CeresDoor:
     dw Function_CeresDoor_RidleyEscapeMode7Wall                          ;A6F737;
 
 LoadRotatingElevatorRoomPreExplosioNDoorOverlayTilesIfNeeded:
-    LDA.W $0FB4,X                                                        ;A6F739;
+    LDA.W EnemyData.initParam0,X                                         ;A6F739;
     CMP.W #$0002                                                         ;A6F73C;
     BNE .return                                                          ;A6F73F;
     LDY.W $0330                                                          ;A6F741;
@@ -14089,7 +14089,7 @@ Function_CeresDoor_RidleyEscapeMode7Wall:
     LSR A                                                                ;A6F7AF;
     BCC .return                                                          ;A6F7B0;
     LDA.W #$0E00                                                         ;A6F7B2;
-    STA.W $0F96,X                                                        ;A6F7B5;
+    STA.W EnemyData.palette,X                                            ;A6F7B5;
     JSL.L Instruction_CeresDoor_SetAsVisible                             ;A6F7B8;
 
 .return:
@@ -14102,9 +14102,9 @@ Function_CeresDoor_RotatingElevatorRoom_Default:
     CMP.W #$0002                                                         ;A6F7C4;
     BCC .return                                                          ;A6F7C7;
     LDA.W #Function_CeresDoor_RotatingElevatorRoom_Rumbling_Explosions   ;A6F7C9;
-    STA.W $0FA8,X                                                        ;A6F7CC;
+    STA.W EnemyData.work0,X                                              ;A6F7CC;
     LDA.W #$0030                                                         ;A6F7CF;
-    STA.W $0FAE,X                                                        ;A6F7D2;
+    STA.W EnemyData.work3,X                                              ;A6F7D2;
     STZ.W $0FB0                                                          ;A6F7D5;
     STZ.W $0FB2                                                          ;A6F7D8;
 
@@ -14113,13 +14113,13 @@ Function_CeresDoor_RotatingElevatorRoom_Default:
 
 
 Function_CeresDoor_RotatingElevatorRoom_Rumbling_Explosions:
-    DEC.W $0FAE,X                                                        ;A6F7DC;
+    DEC.W EnemyData.work3,X                                              ;A6F7DC;
     BPL .enemyRumbleTimerNotExpired                                      ;A6F7DF;
-    LDA.W $0F86,X                                                        ;A6F7E1;
+    LDA.W EnemyData.properties,X                                         ;A6F7E1;
     ORA.W #$0100                                                         ;A6F7E4;
-    STA.W $0F86,X                                                        ;A6F7E7;
+    STA.W EnemyData.properties,X                                         ;A6F7E7;
     LDA.W #Function_CeresDoor_RotatingElevatorRoom_ElevatorAnimations    ;A6F7EA;
-    STA.W $0FA8,X                                                        ;A6F7ED;
+    STA.W EnemyData.work0,X                                              ;A6F7ED;
     JMP.W SetElevatorRoomToRotateIfRidleyHasEscaped                      ;A6F7F0;
 
 
@@ -14140,11 +14140,11 @@ Function_CeresDoor_RotatingElevatorRoom_Rumbling_Explosions:
     TAY                                                                  ;A6F80E;
     LDA.W .XOffset,Y                                                     ;A6F80F;
     CLC                                                                  ;A6F812;
-    ADC.W $0F7A,X                                                        ;A6F813;
+    ADC.W EnemyData.xPosition,X                                          ;A6F813;
     STA.B $12                                                            ;A6F816;
     LDA.W .YOffset,Y                                                     ;A6F818;
     CLC                                                                  ;A6F81B;
-    ADC.W $0F7E,X                                                        ;A6F81C;
+    ADC.W EnemyData.yPosition,X                                          ;A6F81C;
     STA.B $14                                                            ;A6F81F;
     LDY.W #$0003                                                         ;A6F821;
     JSL.L GenerateRandomNumber                                           ;A6F824;
@@ -14503,25 +14503,25 @@ Spritemap_CeresDoor_RidleyEscapeMode7RightWall:
 
 InitAI_Zebetite:
     LDX.W $0E54                                                          ;A6FB72;
-    LDA.W $0F86,X                                                        ;A6FB75;
+    LDA.W EnemyData.properties,X                                         ;A6FB75;
     ORA.W #$A000                                                         ;A6FB78;
-    STA.W $0F86,X                                                        ;A6FB7B;
+    STA.W EnemyData.properties,X                                         ;A6FB7B;
     LDA.W #$0001                                                         ;A6FB7E;
-    STA.W $0F94,X                                                        ;A6FB81;
-    STZ.W $0F90,X                                                        ;A6FB84;
+    STA.W EnemyData.instTimer,X                                          ;A6FB81;
+    STZ.W EnemyData.loopCounter,X                                        ;A6FB84;
     LDA.W #$0400                                                         ;A6FB87;
-    STA.W $0F96,X                                                        ;A6FB8A;
+    STA.W EnemyData.palette,X                                            ;A6FB8A;
     LDA.W #$0080                                                         ;A6FB8D;
-    STA.W $0F98,X                                                        ;A6FB90;
-    STZ.W $0FAC,X                                                        ;A6FB93;
+    STA.W EnemyData.gfxOffset,X                                          ;A6FB90;
+    STZ.W EnemyData.work2,X                                              ;A6FB93;
     LDY.W #Function_Zebetite_SpawnBottomZebetiteIfNeeded                 ;A6FB96;
-    LDA.W $0FB4,X                                                        ;A6FB99;
+    LDA.W EnemyData.initParam0,X                                         ;A6FB99;
     BEQ .setFunctionPointer                                              ;A6FB9C;
     LDY.W #Function_Zebetite_WaitForDoorTransitionToFinish               ;A6FB9E;
 
 .setFunctionPointer:
     TYA                                                                  ;A6FBA1;
-    STA.W $0FA8,X                                                        ;A6FBA2;
+    STA.W EnemyData.work0,X                                              ;A6FBA2;
     STZ.B $12                                                            ;A6FBA5;
     LDA.W #$0005                                                         ;A6FBA7;
     JSL.L CheckIfEvent_inA_HasHappened                                   ;A6FBAA;
@@ -14533,12 +14533,12 @@ InitAI_Zebetite:
     JSL.L CheckIfEvent_inA_HasHappened                                   ;A6FBBC;
     ROL.B $12                                                            ;A6FBC0;
     LDA.B $12                                                            ;A6FBC2;
-    STA.W $0FAE,X                                                        ;A6FBC4;
+    STA.W EnemyData.work3,X                                              ;A6FBC4;
     CMP.W #$0004                                                         ;A6FBC7;
     BMI .notAllDestroyed                                                 ;A6FBCA;
-    LDA.W $0F86,X                                                        ;A6FBCC;
+    LDA.W EnemyData.properties,X                                         ;A6FBCC;
     ORA.W #$0200                                                         ;A6FBCF;
-    STA.W $0F86,X                                                        ;A6FBD2;
+    STA.W EnemyData.properties,X                                         ;A6FBD2;
     RTL                                                                  ;A6FBD5;
 
 
@@ -14546,23 +14546,23 @@ InitAI_Zebetite:
     ASL A                                                                ;A6FBD6;
     TAY                                                                  ;A6FBD7;
     LDA.W .multipartFlag,Y                                               ;A6FBD8;
-    STA.W $0FB2,X                                                        ;A6FBDB;
+    STA.W EnemyData.work5,X                                              ;A6FBDB;
     LDA.W .height,Y                                                      ;A6FBDE;
-    STA.W $0F84,X                                                        ;A6FBE1;
+    STA.W EnemyData.yHitboxRadius,X                                      ;A6FBE1;
     LDA.W .instListPointer,Y                                             ;A6FBE4;
-    STA.W $0F92,X                                                        ;A6FBE7;
+    STA.W EnemyData.pInstList,X                                          ;A6FBE7;
     LDA.W .XPosition,Y                                                   ;A6FBEA;
-    STA.W $0F7A,X                                                        ;A6FBED;
-    LDA.W $0FB4,X                                                        ;A6FBF0;
+    STA.W EnemyData.xPosition,X                                          ;A6FBED;
+    LDA.W EnemyData.initParam0,X                                         ;A6FBF0;
     BEQ .zeroParam1                                                      ;A6FBF3;
     LDA.W .YPosition_nonZero,Y                                           ;A6FBF5;
-    STA.W $0F7E,X                                                        ;A6FBF8;
+    STA.W EnemyData.yPosition,X                                          ;A6FBF8;
     RTL                                                                  ;A6FBFB;
 
 
 .zeroParam1:
     LDA.W .YPosition_zero,Y                                              ;A6FBFC;
-    STA.W $0F7E,X                                                        ;A6FBFF;
+    STA.W EnemyData.yPosition,X                                          ;A6FBFF;
     RTL                                                                  ;A6FC02;
 
 
@@ -14591,26 +14591,26 @@ MainAI_Zebetite:
     LDX.W $0E54                                                          ;A6FC33;
     LDA.W $1840                                                          ;A6FC36;
     BNE .function                                                        ;A6FC39;
-    STZ.W $0FA2,X                                                        ;A6FC3B;
+    STZ.W EnemyData.shakeTimer,X                                         ;A6FC3B;
 
 .function:
     JMP.W ($0FA8,X)                                                      ;A6FC3E;
 
 
 Function_Zebetite_SpawnBottomZebetiteIfNeeded:
-    LDA.W $0FB2,X                                                        ;A6FC41;
+    LDA.W EnemyData.work5,X                                              ;A6FC41;
     BPL .notNeeded                                                       ;A6FC44;
     JSR.W SpawnBottomZebetite                                            ;A6FC46;
     LDA.W $0E54                                                          ;A6FC49;
-    STA.W $0FB6,X                                                        ;A6FC4C;
+    STA.W EnemyData.initParam1,X                                         ;A6FC4C;
     TAY                                                                  ;A6FC4F;
     TXA                                                                  ;A6FC50;
     TYX                                                                  ;A6FC51;
-    STA.W $0FB6,X                                                        ;A6FC52;
+    STA.W EnemyData.initParam1,X                                         ;A6FC52;
 
 .notNeeded:
     LDA.W #Function_Zebetite_WaitForDoorTransitionToFinish               ;A6FC55;
-    STA.W $0FA8,X                                                        ;A6FC58; fallthrough to Function_Zebetite_WaitForDoorTransitionToFinish
+    STA.W EnemyData.work0,X                                              ;A6FC58; fallthrough to Function_Zebetite_WaitForDoorTransitionToFinish
 
 Function_Zebetite_WaitForDoorTransitionToFinish:
     LDA.W $0795                                                          ;A6FC5B;
@@ -14620,13 +14620,13 @@ Function_Zebetite_WaitForDoorTransitionToFinish:
 
 .finished:
     LDA.W #Function_Zebetite_Active                                      ;A6FC61;
-    STA.W $0FA8,X                                                        ;A6FC64;
+    STA.W EnemyData.work0,X                                              ;A6FC64;
 
 Function_Zebetite_Active:
     JSR.W HandleZebetitePaletteAnimation                                 ;A6FC67;
     JSR.W SetZebetiteInstList                                            ;A6FC6A;
     LDX.W $0E54                                                          ;A6FC6D;
-    LDA.W $0F8C,X                                                        ;A6FC70;
+    LDA.W EnemyData.health,X                                             ;A6FC70;
     BEQ .destroyed                                                       ;A6FC73;
     CLC                                                                  ;A6FC75;
     ADC.W #$0001                                                         ;A6FC76;
@@ -14634,12 +14634,12 @@ Function_Zebetite_Active:
     BMI +                                                                ;A6FC7C;
     LDA.W #$03E8                                                         ;A6FC7E;
 
-  + STA.W $0F8C,X                                                        ;A6FC81;
+  + STA.W EnemyData.health,X                                             ;A6FC81;
     RTL                                                                  ;A6FC84;
 
 
 .destroyed:
-    LDA.W $0FB4,X                                                        ;A6FC85;
+    LDA.W EnemyData.initParam0,X                                         ;A6FC85;
     BEQ .singlePart                                                      ;A6FC88;
 
 .noMore:
@@ -14650,7 +14650,7 @@ Function_Zebetite_Active:
 .singlePart:
     JSR.W MarkZebetiteDestroyedEvent                                     ;A6FC91;
     LDX.W $0E54                                                          ;A6FC94;
-    LDA.W $0FAE,X                                                        ;A6FC97;
+    LDA.W EnemyData.work3,X                                              ;A6FC97;
     CMP.W #$0004                                                         ;A6FC9A;
     BPL .noMore                                                          ;A6FC9D;
     LDA.W #$0000                                                         ;A6FC9F;
@@ -14661,9 +14661,9 @@ Function_Zebetite_Active:
 
 MarkZebetiteDestroyedEvent:
     LDX.W $0E54                                                          ;A6FCAA;
-    LDA.W $0FAE,X                                                        ;A6FCAD;
+    LDA.W EnemyData.work3,X                                              ;A6FCAD;
     INC A                                                                ;A6FCB0;
-    STA.W $0FAE,X                                                        ;A6FCB1;
+    STA.W EnemyData.work3,X                                              ;A6FCB1;
     STA.B $12                                                            ;A6FCB4;
     LDY.W #$0003                                                         ;A6FCB6;
     ROR.B $12                                                            ;A6FCB9;
@@ -14708,7 +14708,7 @@ SpawnBottomZebetite:
 SetZebetiteInstList:
     LDX.W $0E54                                                          ;A6FD09;
     LDY.W #$0000                                                         ;A6FD0C;
-    LDA.W $0F8C,X                                                        ;A6FD0F;
+    LDA.W EnemyData.health,X                                             ;A6FD0F;
     CMP.W #$0320                                                         ;A6FD12;
     BPL .indexInY                                                        ;A6FD15;
     LDY.W #$0002                                                         ;A6FD17;
@@ -14724,15 +14724,15 @@ SetZebetiteInstList:
 
 .indexInY:
     LDA.W .bigZebetite,Y                                                 ;A6FD32;
-    BIT.W $0FB2,X                                                        ;A6FD35;
+    BIT.W EnemyData.work5,X                                              ;A6FD35;
     BPL .keepBig                                                         ;A6FD38;
     LDA.W .smallZebetite,Y                                               ;A6FD3A;
 
 .keepBig:
-    STA.W $0F92,X                                                        ;A6FD3D;
+    STA.W EnemyData.pInstList,X                                          ;A6FD3D;
     LDA.W #$0001                                                         ;A6FD40;
-    STA.W $0F94,X                                                        ;A6FD43;
-    STZ.W $0F90,X                                                        ;A6FD46;
+    STA.W EnemyData.instTimer,X                                          ;A6FD43;
+    STZ.W EnemyData.loopCounter,X                                        ;A6FD46;
     RTS                                                                  ;A6FD49;
 
 
@@ -14754,7 +14754,7 @@ HandleZebetitePaletteAnimation:
     LDA.L $7EC400                                                        ;A6FD5E;
     BNE .return                                                          ;A6FD62;
     LDX.W $0E54                                                          ;A6FD64;
-    LDA.W $0FB4,X                                                        ;A6FD67;
+    LDA.W EnemyData.initParam0,X                                         ;A6FD67;
     BNE .return                                                          ;A6FD6A;
     LDA.W $0FAC                                                          ;A6FD6C;
     INC A                                                                ;A6FD6F;
@@ -14788,11 +14788,11 @@ EnemyShot_Zebetite:
     PLA                                                                  ;A6FDB4;
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A6FDB5;
     LDX.W $0E54                                                          ;A6FDB9;
-    LDY.W $0FB6,X                                                        ;A6FDBC;
-    LDA.W $0F8C,X                                                        ;A6FDBF;
-    STA.W $0F8C,Y                                                        ;A6FDC2;
-    LDA.W $0F9C,X                                                        ;A6FDC5;
-    STA.W $0F9C,Y                                                        ;A6FDC8;
+    LDY.W EnemyData.initParam1,X                                         ;A6FDBC;
+    LDA.W EnemyData.health,X                                             ;A6FDBF;
+    STA.W EnemyData.health,Y                                             ;A6FDC2;
+    LDA.W EnemyData.flashTimer,X                                         ;A6FDC5;
+    STA.W EnemyData.flashTimer,Y                                         ;A6FDC8;
     RTL                                                                  ;A6FDCB;
 
 

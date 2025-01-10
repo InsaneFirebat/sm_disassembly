@@ -476,8 +476,8 @@ Wait_End_VBlank_Clear_HDMA:
     PHP                                                                  ;88829E;
     SEP #$20                                                             ;88829F;
     JSL.L WaitUntilTheEndOfAVBlank                                       ;8882A1;
-    STZ.W $420B                                                          ;8882A5;
-    STZ.W $420C                                                          ;8882A8;
+    STZ.W HW_MDMAEN                                                      ;8882A5;
+    STZ.W HW_HDMAEN                                                      ;8882A8;
     PLP                                                                  ;8882AB; fallthrough to Delete_HDMA_Objects
 
 Delete_HDMAObjects:

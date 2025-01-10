@@ -11,10 +11,10 @@ PostGrappleCollisionDetection_Horizontal_Slope_NonSquare:
 
 .left:
     LDA.W $0DC4                                                          ;948009;
-    STA.W $4204                                                          ;94800C;
+    STA.W HW_WRDIV                                                       ;94800C;
     SEP #$20                                                             ;94800F;
     LDA.W $07A5                                                          ;948011;
-    STA.W $4206                                                          ;948014;
+    STA.W HW_WRDIVB                                                      ;948014;
     REP #$20                                                             ;948017;
     LDA.W $0AF6                                                          ;948019;
     LSR A                                                                ;94801C;
@@ -79,10 +79,10 @@ PostGrappleCollisionDetection_Horizontal_Slope_NonSquare:
 
 .right:
     LDA.W $0DC4                                                          ;948073;
-    STA.W $4204                                                          ;948076;
+    STA.W HW_WRDIV                                                       ;948076;
     SEP #$20                                                             ;948079;
     LDA.W $07A5                                                          ;94807B;
-    STA.W $4206                                                          ;94807E;
+    STA.W HW_WRDIVB                                                      ;94807E;
     REP #$20                                                             ;948081;
     LDA.W $0AF6                                                          ;948083;
     LSR A                                                                ;948086;
@@ -154,10 +154,10 @@ PostGrappleCollisionDetection_Vertical_Slope_NonSquare:
 
 .up:
     LDA.W $0DC4                                                          ;9480E9;
-    STA.W $4204                                                          ;9480EC;
+    STA.W HW_WRDIV                                                       ;9480EC;
     SEP #$20                                                             ;9480EF;
     LDA.W $07A5                                                          ;9480F1;
-    STA.W $4206                                                          ;9480F4;
+    STA.W HW_WRDIVB                                                      ;9480F4;
     REP #$20                                                             ;9480F7;
     LDA.W $0AF6                                                          ;9480F9;
     LSR A                                                                ;9480FC;
@@ -221,10 +221,10 @@ PostGrappleCollisionDetection_Vertical_Slope_NonSquare:
 
 .down:
     LDA.W $0DC4                                                          ;94814F;
-    STA.W $4204                                                          ;948152;
+    STA.W HW_WRDIV                                                       ;948152;
     SEP #$20                                                             ;948155;
     LDA.W $07A5                                                          ;948157;
-    STA.W $4206                                                          ;94815A;
+    STA.W HW_WRDIVB                                                      ;94815A;
     REP #$20                                                             ;94815D;
     LDA.W $0AF6                                                          ;94815F;
     LSR A                                                                ;948162;
@@ -903,10 +903,10 @@ SamusBlockCollisionDetection_Horizontal_Slope_NonSquare:
 
 UNUSED_948606:
     LDA.W $0DC4                                                          ;948606;
-    STA.W $4204                                                          ;948609;
+    STA.W HW_WRDIV                                                       ;948609;
     SEP #$20                                                             ;94860C;
     LDA.W $07A5                                                          ;94860E;
-    STA.W $4206                                                          ;948611;
+    STA.W HW_WRDIVB                                                      ;948611;
     REP #$20                                                             ;948614;
     LDA.W $0AF6                                                          ;948616;
     LSR A                                                                ;948619;
@@ -980,10 +980,10 @@ UNUSED_948606:
 
 .right:
     LDA.W $0DC4                                                          ;948683;
-    STA.W $4204                                                          ;948686;
+    STA.W HW_WRDIV                                                       ;948686;
     SEP #$20                                                             ;948689;
     LDA.W $07A5                                                          ;94868B;
-    STA.W $4206                                                          ;94868E;
+    STA.W HW_WRDIVB                                                      ;94868E;
     REP #$20                                                             ;948691;
     LDA.W $0AF6                                                          ;948693;
     LSR A                                                                ;948696;
@@ -1064,10 +1064,10 @@ SamusBlockCollisionReaction_Vertical_Slope_NonSquare:
 
 .up:
     LDA.W $0DC4                                                          ;948707;
-    STA.W $4204                                                          ;94870A;
+    STA.W HW_WRDIV                                                       ;94870A;
     SEP #$20                                                             ;94870D;
     LDA.W $07A5                                                          ;94870F;
-    STA.W $4206                                                          ;948712;
+    STA.W HW_WRDIVB                                                      ;948712;
     REP #$20                                                             ;948715;
     LDA.W $0AF6                                                          ;948717;
     LSR A                                                                ;94871A;
@@ -1140,10 +1140,10 @@ SamusBlockCollisionReaction_Vertical_Slope_NonSquare:
 
 .down:
     LDA.W $0DC4                                                          ;948780;
-    STA.W $4204                                                          ;948783;
+    STA.W HW_WRDIV                                                       ;948783;
     SEP #$20                                                             ;948786;
     LDA.W $07A5                                                          ;948788;
-    STA.W $4206                                                          ;94878B;
+    STA.W HW_WRDIVB                                                      ;94878B;
     REP #$20                                                             ;94878E;
     LDA.W $0AF6                                                          ;948790;
     LSR A                                                                ;948793;
@@ -5222,10 +5222,10 @@ BlockShotReaction_Horizontal_Slope_NonSquare:
     LDX.W $0DC4                                                          ;94A545;
     LDY.W $0DDE                                                          ;94A548;
     LDA.W $0DC4                                                          ;94A54B;
-    STA.W $4204                                                          ;94A54E;
+    STA.W HW_WRDIV                                                       ;94A54E;
     SEP #$20                                                             ;94A551;
     LDA.W $07A5                                                          ;94A553;
-    STA.W $4206                                                          ;94A556;
+    STA.W HW_WRDIVB                                                      ;94A556;
     REP #$20                                                             ;94A559;
     LDA.W $0B78,Y                                                        ;94A55B;
     LSR A                                                                ;94A55E;
@@ -5243,10 +5243,10 @@ BlockShotReaction_Vertical_Slope_NonSquare:
     LDX.W $0DC4                                                          ;94A56B;
     LDY.W $0DDE                                                          ;94A56E;
     LDA.W $0DC4                                                          ;94A571;
-    STA.W $4204                                                          ;94A574;
+    STA.W HW_WRDIV                                                       ;94A574;
     SEP #$20                                                             ;94A577;
     LDA.W $07A5                                                          ;94A579;
-    STA.W $4206                                                          ;94A57C;
+    STA.W HW_WRDIVB                                                      ;94A57C;
     REP #$20                                                             ;94A57F;
     LDA.W $0B64,Y                                                        ;94A581;
     LSR A                                                                ;94A584;
@@ -6806,10 +6806,10 @@ DrawGrappleBeam:
     STZ.B $16                                                            ;94B02A;
     LDA.W $0CFE                                                          ;94B02C;
     BMI .return                                                          ;94B02F;
-    STA.W $4204                                                          ;94B031;
+    STA.W HW_WRDIV                                                       ;94B031;
     SEP #$20                                                             ;94B034;
     LDA.B #$08                                                           ;94B036;
-    STA.W $4206                                                          ;94B038;
+    STA.W HW_WRDIVB                                                      ;94B038;
     REP #$20                                                             ;94B03B;
     NOP                                                                  ;94B03D;
     NOP                                                                  ;94B03E;

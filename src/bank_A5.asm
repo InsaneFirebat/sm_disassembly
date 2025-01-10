@@ -107,7 +107,7 @@ NOPNOP_A58069:
 
 Instruction_CommonA5_Enemy0FB2_InY:
     LDA.W $0000,Y                                                        ;A5806B;
-    STA.W $0FB2,X                                                        ;A5806E;
+    STA.W EnemyData.work5,X                                              ;A5806E;
     INY                                                                  ;A58071;
     INY                                                                  ;A58072;
     RTL                                                                  ;A58073;
@@ -115,7 +115,7 @@ Instruction_CommonA5_Enemy0FB2_InY:
 
 Instruction_CommonA5_SetEnemy0FB2ToRTS:
     LDA.W #RTS_A5807B                                                    ;A58074;
-    STA.W $0FB2,X                                                        ;A58077;
+    STA.W EnemyData.work5,X                                              ;A58077;
     RTL                                                                  ;A5807A;
 
 
@@ -124,9 +124,9 @@ RTS_A5807B:
 
 
 Instruction_CommonA5_DeleteEnemy:
-    LDA.W $0F86,X                                                        ;A5807C;
+    LDA.W EnemyData.properties,X                                         ;A5807C;
     ORA.W #$0200                                                         ;A5807F;
-    STA.W $0F86,X                                                        ;A58082;
+    STA.W EnemyData.properties,X                                         ;A58082;
     PLA                                                                  ;A58085;
     PEA.W ProcessEnemyInstructions_return-1                              ;A58086;
     RTL                                                                  ;A58089;
@@ -237,7 +237,7 @@ Instruction_CommonA5_GotoY_PlusY:
 
 
 Instruction_CommonA5_DecrementTimer_GotoYIfNonZero:
-    DEC.W $0F90,X                                                        ;A58108;
+    DEC.W EnemyData.loopCounter,X                                        ;A58108;
     BNE Instruction_CommonA5_GotoY                                       ;A5810B;
     INY                                                                  ;A5810D;
     INY                                                                  ;A5810E;
@@ -245,7 +245,7 @@ Instruction_CommonA5_DecrementTimer_GotoYIfNonZero:
 
 
 Instruction_CommonA5_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W $0F90,X                                                        ;A58110;
+    DEC.W EnemyData.loopCounter,X                                        ;A58110;
     BNE Instruction_CommonA5_GotoY                                       ;A58113;
     INY                                                                  ;A58115;
     INY                                                                  ;A58116;
@@ -254,7 +254,7 @@ Instruction_CommonA5_DecrementTimer_GotoYIfNonZero_duplicate:
 
 Instruction_CommonA5_DecrementTimer_GotoY_PlusY_IfNonZero:
     SEP #$20                                                             ;A58118;
-    DEC.W $0F90,X                                                        ;A5811A;
+    DEC.W EnemyData.loopCounter,X                                        ;A5811A;
     REP #$20                                                             ;A5811D;
     BNE Instruction_CommonA5_GotoY_PlusY                                 ;A5811F;
     INY                                                                  ;A58121;
@@ -263,7 +263,7 @@ Instruction_CommonA5_DecrementTimer_GotoY_PlusY_IfNonZero:
 
 Instruction_CommonA5_TimerInY:
     LDA.W $0000,Y                                                        ;A58123;
-    STA.W $0F90,X                                                        ;A58126;
+    STA.W EnemyData.loopCounter,X                                        ;A58126;
     INY                                                                  ;A58129;
     INY                                                                  ;A5812A;
     RTL                                                                  ;A5812B;
@@ -279,7 +279,7 @@ Instruction_CommonA5_Sleep:
     DEY                                                                  ;A5812F;
     DEY                                                                  ;A58130;
     TYA                                                                  ;A58131;
-    STA.W $0F92,X                                                        ;A58132;
+    STA.W EnemyData.pInstList,X                                          ;A58132;
     PLA                                                                  ;A58135;
     PEA.W ProcessEnemyInstructions_return-1                              ;A58136;
     RTL                                                                  ;A58139;
@@ -287,11 +287,11 @@ Instruction_CommonA5_Sleep:
 
 Instruction_CommonA5_WaitYFrames:
     LDA.W $0000,Y                                                        ;A5813A;
-    STA.W $0F94,X                                                        ;A5813D;
+    STA.W EnemyData.instTimer,X                                          ;A5813D;
     INY                                                                  ;A58140;
     INY                                                                  ;A58141;
     TYA                                                                  ;A58142;
-    STA.W $0F92,X                                                        ;A58143;
+    STA.W EnemyData.pInstList,X                                          ;A58143;
     PLA                                                                  ;A58146;
     PEA.W ProcessEnemyInstructions_return-1                              ;A58147;
     RTL                                                                  ;A5814A;
@@ -321,16 +321,16 @@ Instruction_CommonA5_TransferYBytesInYToVRAM:
 
 
 Instruction_CommonA5_EnableOffScreenProcessing:
-    LDA.W $0F86,X                                                        ;A58173;
+    LDA.W EnemyData.properties,X                                         ;A58173;
     ORA.W #$0800                                                         ;A58176;
-    STA.W $0F86,X                                                        ;A58179;
+    STA.W EnemyData.properties,X                                         ;A58179;
     RTL                                                                  ;A5817C;
 
 
 Instruction_CommonA5_DisableOffScreenProcessing:
-    LDA.W $0F86,X                                                        ;A5817D;
+    LDA.W EnemyData.properties,X                                         ;A5817D;
     AND.W #$F7FF                                                         ;A58180;
-    STA.W $0F86,X                                                        ;A58183;
+    STA.W EnemyData.properties,X                                         ;A58183;
     RTL                                                                  ;A58186;
 
 
@@ -439,7 +439,7 @@ InitAI_DraygonBody:
     LDX.W $0E54                                                          ;A586A3;
     LDA.W #$0700                                                         ;A586A6;
     ASL A                                                                ;A586A9;
-    STA.W $0F96,X                                                        ;A586AA;
+    STA.W EnemyData.palette,X                                            ;A586AA;
     LDA.W #$00A5                                                         ;A586AD;
     STA.W $178E                                                          ;A586B0;
     LDA.W #EnemyGraphicsDrawnHook_Draygon_SetBG2XYScroll                 ;A586B3;
@@ -457,7 +457,7 @@ InitAI_DraygonBody:
     LDA.W #$0400                                                         ;A586D7;
     STA.W $179A                                                          ;A586DA;
     LDA.W #Function_DraygonBody_FightIntro_InitialDelay                  ;A586DD;
-    STA.W $0FA8,X                                                        ;A586E0;
+    STA.W EnemyData.work0,X                                              ;A586E0;
     JSL.L Spawn_DraygonMainScreenLayers_HDMAObject                       ;A586E3;
     LDA.W #$000C                                                         ;A586E7;
     STA.B $A9                                                            ;A586EA;
@@ -681,7 +681,7 @@ Function_DraygonBody_SwoopRight_Descending:
 
 .notIndex68:
     LDA.L $7E9002,X                                                      ;A588CE;
-    STA.W $0F7E,Y                                                        ;A588D2;
+    STA.W EnemyData.yPosition,Y                                          ;A588D2;
     DEC.W $0FAA                                                          ;A588D5;
     DEC.W $0FAA                                                          ;A588D8;
     DEC.W $0FAA                                                          ;A588DB;
@@ -759,7 +759,7 @@ Function_DraygonBody_SwoopRight_Ascending:
 
 .notIndex68:
     LDA.L $7E9002,X                                                      ;A5896B;
-    STA.W $0F7E,Y                                                        ;A5896F;
+    STA.W EnemyData.yPosition,Y                                          ;A5896F;
     INC.W $0FAA                                                          ;A58972;
     INC.W $0FAA                                                          ;A58975;
     INC.W $0FAA                                                          ;A58978;
@@ -838,7 +838,7 @@ Function_DraygonBody_SwoopLeft_Descending:
 
 .notIndex68:
     LDA.L $7E9002,X                                                      ;A58A1D;
-    STA.W $0F7E,Y                                                        ;A58A21;
+    STA.W EnemyData.yPosition,Y                                          ;A58A21;
     DEC.W $0FAA                                                          ;A58A24;
     DEC.W $0FAA                                                          ;A58A27;
     DEC.W $0FAA                                                          ;A58A2A;
@@ -908,7 +908,7 @@ Function_DraygonBody_SwoopLeft_Ascending:
     STA.W $1054                                                          ;A58AAA;
 
   + LDA.L $7E9002,X                                                      ;A58AAD;
-    STA.W $0F7E,Y                                                        ;A58AB1;
+    STA.W EnemyData.yPosition,Y                                          ;A58AB1;
     INC.W $0FAA                                                          ;A58AB4;
     INC.W $0FAA                                                          ;A58AB7;
     INC.W $0FAA                                                          ;A58ABA;
@@ -1497,9 +1497,9 @@ Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
 
 .keepLeft:
     TYA                                                                  ;A58FC2;
-    STA.W $0F92,X                                                        ;A58FC3;
+    STA.W EnemyData.pInstList,X                                          ;A58FC3;
     LDA.W #$0001                                                         ;A58FC6;
-    STA.W $0F94,X                                                        ;A58FC9;
+    STA.W EnemyData.instTimer,X                                          ;A58FC9;
     LDA.W $0F86                                                          ;A58FCC;
     ORA.W #$0400                                                         ;A58FCF;
     STA.W $0F86                                                          ;A58FD2;
@@ -1552,7 +1552,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     CLC                                                                  ;A59039;
     ADC.L $7E780E                                                        ;A5903A;
     STA.W $0F7E                                                          ;A5903E;
-    LDA.W $0FA4,X                                                        ;A59041;
+    LDA.W EnemyData.frameCounter,X                                       ;A59041;
     AND.W #$0007                                                         ;A59044;
     BNE .noFoam                                                          ;A59047;
     LDA.W $0F7A                                                          ;A59049;
@@ -1709,7 +1709,7 @@ Function_DraygonBody_GrabbedSamus_FlyStraightUp:
 
 Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     LDX.W $0E54                                                          ;A59185; >.<
-    LDA.W $0FA4,X                                                        ;A59188;
+    LDA.W EnemyData.frameCounter,X                                       ;A59188;
     AND.W #$000F                                                         ;A5918B;
     BNE .noFoam                                                          ;A5918E;
     LDA.W $0F7A                                                          ;A59190;
@@ -1902,7 +1902,7 @@ HandleDyingDraygonSmoke:
 
 
 HandleShortDraygonBreathBubbles:
-    LDA.W $0FA4,X                                                        ;A5931C;
+    LDA.W EnemyData.frameCounter,X                                       ;A5931C;
     AND.W #$007F                                                         ;A5931F;
     BNE .return                                                          ;A59322;
     LDA.W $0F7A                                                          ;A59324;
@@ -2202,7 +2202,7 @@ Unused_DraygonInstListPointers_A5950D:
 HurtAI_Draygon:
     LDY.W #Palette_Draygon_BG12_5                                        ;A5954D;
     LDX.W $0E54                                                          ;A59550;
-    LDA.W $0F9C,X                                                        ;A59553;
+    LDA.W EnemyData.flashTimer,X                                         ;A59553;
     BIT.W #$0002                                                         ;A59556;
     BEQ .noFlash                                                         ;A59559;
     LDY.W #Palette_Draygon_WhiteFlash                                    ;A5955B;
@@ -2222,7 +2222,7 @@ HurtAI_Draygon:
     DEC.W $060B                                                          ;A59572;
     BNE .loopBG12Palette5                                                ;A59575;
     LDX.W $0E54                                                          ;A59577;
-    LDA.W $0F9C,X                                                        ;A5957A;
+    LDA.W EnemyData.flashTimer,X                                         ;A5957A;
     BIT.W #$0002                                                         ;A5957D;
     BNE .flashing                                                        ;A59580;
     LDA.L $7E781C                                                        ;A59582;
@@ -2244,7 +2244,7 @@ HurtAI_Draygon:
 .flashing:
     LDY.W #Palette_Draygon_Sprite7                                       ;A5959C;
     LDX.W $0E54                                                          ;A5959F;
-    LDA.W $0F9C,X                                                        ;A595A2;
+    LDA.W EnemyData.flashTimer,X                                         ;A595A2;
     BIT.W #$0002                                                         ;A595A5;
     BEQ ..noFlash                                                        ;A595A8;
     LDY.W #Palette_Draygon_WhiteFlash                                    ;A595AA;
@@ -2307,7 +2307,7 @@ PowerBombReaction_Draygon:
 
 DraygonReaction_Common:
     LDX.W $0E54                                                          ;A5960D;
-    LDA.W $0F8C,X                                                        ;A59610;
+    LDA.W EnemyData.health,X                                             ;A59610;
     BEQ .dead                                                            ;A59613;
     JMP.W .notDead                                                       ;A59615;
 
@@ -2424,7 +2424,7 @@ DraygonHealthBasedPaletteHandling:
 
 Instruction_Draygon_FunctionInY:
     LDA.W $0000,Y                                                        ;A59736;
-    STA.W $0FA8,X                                                        ;A59739;
+    STA.W EnemyData.work0,X                                              ;A59739;
     INY                                                                  ;A5973C;
     INY                                                                  ;A5973D;
     RTL                                                                  ;A5973E;
@@ -6742,9 +6742,9 @@ Spritemap_Draygon_5D:
 InitAI_DraygonEye:
     LDX.W $0E54                                                          ;A5C46B;
     LDA.W #InstList_DraygonEye_FacingLeft_Idle                           ;A5C46E;
-    STA.W $0F92,X                                                        ;A5C471;
+    STA.W EnemyData.pInstList,X                                          ;A5C471;
     LDA.W #RTS_A5804B                                                    ;A5C474;
-    STA.W $0FA8,X                                                        ;A5C477;
+    STA.W EnemyData.work0,X                                              ;A5C477;
     RTL                                                                  ;A5C47A;
 
 
@@ -6765,7 +6765,7 @@ MainAI_DraygonEye:
 
 
 Function_DraygonEye_FacingLeft:
-    LDA.W $0FA4,X                                                        ;A5C48D;
+    LDA.W EnemyData.frameCounter,X                                       ;A5C48D;
     AND.W #$007F                                                         ;A5C490;
     BNE .nonZeroCounter                                                  ;A5C493;
     LDA.W $0FBA                                                          ;A5C495;
@@ -6799,7 +6799,7 @@ Function_DraygonEye_FacingLeft:
     SBC.B $14                                                            ;A5C4D2;
     STA.B $14                                                            ;A5C4D4;
     JSL.L CalculateAngleOf_12_14_Offset                                  ;A5C4D6;
-    CMP.W $0FB2,X                                                        ;A5C4DA;
+    CMP.W EnemyData.work5,X                                              ;A5C4DA;
     BEQ .return                                                          ;A5C4DD;
     LDY.W #InstList_DraygonEye_FacingLeft_LookingUp                      ;A5C4DF;
     CMP.W #$0020                                                         ;A5C4E2;
@@ -6816,19 +6816,19 @@ Function_DraygonEye_FacingLeft:
     LDY.W #InstList_DraygonEye_FacingLeft_LookingUp                      ;A5C4FF;
 
 .directionChosen:
-    STA.W $0FB2,X                                                        ;A5C502;
+    STA.W EnemyData.work5,X                                              ;A5C502;
     TYA                                                                  ;A5C505;
-    STA.W $0F92,X                                                        ;A5C506;
+    STA.W EnemyData.pInstList,X                                          ;A5C506;
     LDA.W #$0001                                                         ;A5C509;
-    STA.W $0F94,X                                                        ;A5C50C;
-    STZ.W $0F90,X                                                        ;A5C50F;
+    STA.W EnemyData.instTimer,X                                          ;A5C50C;
+    STZ.W EnemyData.loopCounter,X                                        ;A5C50F;
 
 .return:
     RTS                                                                  ;A5C512;
 
 
 Function_DraygonEye_FacingRight:
-    LDA.W $0FA4,X                                                        ;A5C513;
+    LDA.W EnemyData.frameCounter,X                                       ;A5C513;
     AND.W #$007F                                                         ;A5C516;
     BNE .nonZeroCounter                                                  ;A5C519;
     LDA.W $0F7A                                                          ;A5C51B;
@@ -6862,7 +6862,7 @@ Function_DraygonEye_FacingRight:
     SBC.B $14                                                            ;A5C558;
     STA.B $14                                                            ;A5C55A;
     JSL.L CalculateAngleOf_12_14_Offset                                  ;A5C55C;
-    CMP.W $0FB2,X                                                        ;A5C560;
+    CMP.W EnemyData.work5,X                                              ;A5C560;
     BEQ .return                                                          ;A5C563;
     LDY.W #InstList_DraygonEye_FacingRight_LookingUp                     ;A5C565;
     CMP.W #$0020                                                         ;A5C568;
@@ -6879,12 +6879,12 @@ Function_DraygonEye_FacingRight:
     LDY.W #InstList_DraygonEye_FacingRight_LookingUp                     ;A5C585;
 
 .directionChosen:
-    STA.W $0FB2,X                                                        ;A5C588;
+    STA.W EnemyData.work5,X                                              ;A5C588;
     TYA                                                                  ;A5C58B;
-    STA.W $0F92,X                                                        ;A5C58C;
+    STA.W EnemyData.pInstList,X                                          ;A5C58C;
     LDA.W #$0001                                                         ;A5C58F;
-    STA.W $0F94,X                                                        ;A5C592;
-    STZ.W $0F90,X                                                        ;A5C595;
+    STA.W EnemyData.instTimer,X                                          ;A5C592;
+    STZ.W EnemyData.loopCounter,X                                        ;A5C595;
 
 .return:
     RTS                                                                  ;A5C598;
@@ -6893,10 +6893,10 @@ Function_DraygonEye_FacingRight:
 InitAI_DraygonTail:
     LDX.W $0E54                                                          ;A5C599;
     LDA.W #InstList_DraygonTail_FacingLeft_FakeTailWhip                  ;A5C59C;
-    STA.W $0F92,X                                                        ;A5C59F;
+    STA.W EnemyData.pInstList,X                                          ;A5C59F;
     LDA.W #$0700                                                         ;A5C5A2;
     ASL A                                                                ;A5C5A5;
-    STA.W $0F96,X                                                        ;A5C5A6;
+    STA.W EnemyData.palette,X                                            ;A5C5A6;
     RTL                                                                  ;A5C5A9;
 
 
@@ -6915,12 +6915,12 @@ RTL_A5C5AC:
 InitAI_DraygonArms:
     LDX.W $0E54                                                          ;A5C5AD;
     LDA.W #InstList_DraygonArms_FacingLeft_Idle_0                        ;A5C5B0;
-    STA.W $0F92,X                                                        ;A5C5B3;
+    STA.W EnemyData.pInstList,X                                          ;A5C5B3;
     LDA.W #$0700                                                         ;A5C5B6;
     ASL A                                                                ;A5C5B9;
-    STA.W $0F96,X                                                        ;A5C5BA;
+    STA.W EnemyData.palette,X                                            ;A5C5BA;
     LDA.W #$0002                                                         ;A5C5BD;
-    STA.W $0F9A,X                                                        ;A5C5C0;
+    STA.W EnemyData.layer,X                                              ;A5C5C0;
     RTL                                                                  ;A5C5C3;
 
 
@@ -7840,7 +7840,7 @@ Instruction_SporeSpawn_FunctionInY:
     PHX                                                                  ;A5E8BB;
     LDX.W $0E54                                                          ;A5E8BC;
     LDA.W $0000,Y                                                        ;A5E8BF;
-    STA.W $0FA8,X                                                        ;A5E8C2;
+    STA.W EnemyData.work0,X                                              ;A5E8C2;
     PLX                                                                  ;A5E8C5;
     PLY                                                                  ;A5E8C6;
     INY                                                                  ;A5E8C7;
@@ -8075,17 +8075,17 @@ InitAI_SporeSpawn:
     LDY.W #EnemyProjectile_SporeSpawnStalk                               ;A5EA64;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A5EA67;
     LDX.W $0E54                                                          ;A5EA6B;
-    LDA.W $0F7A,X                                                        ;A5EA6E;
+    LDA.W EnemyData.xPosition,X                                          ;A5EA6E;
     STA.L $7E7808,X                                                      ;A5EA71;
-    LDA.W $0F7E,X                                                        ;A5EA75;
+    LDA.W EnemyData.yPosition,X                                          ;A5EA75;
     SEC                                                                  ;A5EA78;
     SBC.W #$0048                                                         ;A5EA79;
     STA.L $7E780A,X                                                      ;A5EA7C;
-    LDA.W $0F7A,X                                                        ;A5EA80;
-    STA.W $0FAC,X                                                        ;A5EA83;
-    LDA.W $0F7E,X                                                        ;A5EA86;
-    STA.W $0FAE,X                                                        ;A5EA89;
-    STZ.W $0FB2,X                                                        ;A5EA8C;
+    LDA.W EnemyData.xPosition,X                                          ;A5EA80;
+    STA.W EnemyData.work2,X                                              ;A5EA83;
+    LDA.W EnemyData.yPosition,X                                          ;A5EA86;
+    STA.W EnemyData.work3,X                                              ;A5EA89;
+    STZ.W EnemyData.work5,X                                              ;A5EA8C;
     LDX.W $079F                                                          ;A5EA8F;
     LDA.L $7ED828,X                                                      ;A5EA92;
     AND.W #$0002                                                         ;A5EA96;
@@ -8113,13 +8113,13 @@ InitAI_SporeSpawn:
     STA.W $183C                                                          ;A5EACB;
     LDX.W $0E54                                                          ;A5EACE;
     LDA.W #RTS_A5EB1A                                                    ;A5EAD1;
-    STA.W $0FA8,X                                                        ;A5EAD4;
+    STA.W EnemyData.work0,X                                              ;A5EAD4;
     LDA.W #ScrollingFinishedHook_SporeSpawnFight                         ;A5EAD7;
     STA.W $07E9                                                          ;A5EADA;
-    LDA.W $0F7E,X                                                        ;A5EADD;
+    LDA.W EnemyData.yPosition,X                                          ;A5EADD;
     SEC                                                                  ;A5EAE0;
     SBC.W #$0080                                                         ;A5EAE1;
-    STA.W $0F7E,X                                                        ;A5EAE4;
+    STA.W EnemyData.yPosition,X                                          ;A5EAE4;
     LDA.W #$0000                                                         ;A5EAE7;
     LDY.W #EnemyProjectile_SporeSpawnSporeSpawner                        ;A5EAEA;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A5EAED;
@@ -8149,16 +8149,16 @@ RTS_A5EB1A:
 Function_SporeSpawn_Descent:
     JSR.W UpdateSporeSpawnStalkSegmentPositions                          ;A5EB1B;
     LDX.W $0E54                                                          ;A5EB1E;
-    LDA.W $0F7E,X                                                        ;A5EB21;
+    LDA.W EnemyData.yPosition,X                                          ;A5EB21;
     CLC                                                                  ;A5EB24;
     ADC.W #$0001                                                         ;A5EB25;
-    STA.W $0F7E,X                                                        ;A5EB28;
+    STA.W EnemyData.yPosition,X                                          ;A5EB28;
     CMP.W #$0270                                                         ;A5EB2B;
     BMI .descending                                                      ;A5EB2E;
     LDA.W #InstList_SporeSpawn_FightHasStarted                           ;A5EB30;
-    STA.W $0F92,X                                                        ;A5EB33;
+    STA.W EnemyData.pInstList,X                                          ;A5EB33;
     LDA.W #$0001                                                         ;A5EB36;
-    STA.W $0F94,X                                                        ;A5EB39;
+    STA.W EnemyData.instTimer,X                                          ;A5EB39;
 
 .descending:
     LDA.W #$0030                                                         ;A5EB3C;
@@ -8177,8 +8177,8 @@ Function_SporeSpawn_Moving:
     LDA.L $7E7814                                                        ;A5EB5C;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A5EB60;
     CLC                                                                  ;A5EB64;
-    ADC.W $0FAC,X                                                        ;A5EB65;
-    STA.W $0F7A,X                                                        ;A5EB68;
+    ADC.W EnemyData.work2,X                                              ;A5EB65;
+    STA.W EnemyData.xPosition,X                                          ;A5EB68;
     LDA.L $7E7816                                                        ;A5EB6B;
     SEC                                                                  ;A5EB6F;
     SBC.W #$0010                                                         ;A5EB70;
@@ -8189,8 +8189,8 @@ Function_SporeSpawn_Moving:
     ASL A                                                                ;A5EB7E;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A5EB7F;
     CLC                                                                  ;A5EB83;
-    ADC.W $0FAE,X                                                        ;A5EB84;
-    STA.W $0F7E,X                                                        ;A5EB87;
+    ADC.W EnemyData.work3,X                                              ;A5EB84;
+    STA.W EnemyData.yPosition,X                                          ;A5EB87;
     LDA.L $7E7814                                                        ;A5EB8A;
     CLC                                                                  ;A5EB8E;
     ADC.L $7E7818                                                        ;A5EB8F;
@@ -8408,12 +8408,12 @@ EnemyShot_SporeSpawn_Vulnerable:
 
 .notBeam:
     JSL.L NormalEnemyShotAI_NoDeathCheck                                 ;A5ED6D;
-    LDA.W $0F9C,X                                                        ;A5ED71;
+    LDA.W EnemyData.flashTimer,X                                         ;A5ED71;
     BEQ EnemyShot_SporeSpawn                                             ;A5ED74;
     LDA.W #Function_SporeSpawn_Moving                                    ;A5ED76;
-    STA.W $0FA8,X                                                        ;A5ED79;
+    STA.W EnemyData.work0,X                                              ;A5ED79;
     LDY.W #$0002                                                         ;A5ED7C;
-    LDA.W $0F8C,X                                                        ;A5ED7F;
+    LDA.W EnemyData.health,X                                             ;A5ED7F;
     CMP.W #$0190                                                         ;A5ED82;
     BPL .noSpeedUp                                                       ;A5ED85;
     LDA.L $7E7818                                                        ;A5ED87;
@@ -8437,11 +8437,11 @@ EnemyShot_SporeSpawn_Vulnerable:
     LDA.W #$0001                                                         ;A5EDAA;
     STA.L $7E801E                                                        ;A5EDAD;
     LDA.W #InstList_SporeSpawn_CloseAndMove                              ;A5EDB1;
-    STA.W $0F92,X                                                        ;A5EDB4;
+    STA.W EnemyData.pInstList,X                                          ;A5EDB4;
     LDA.W #$0001                                                         ;A5EDB7;
-    STA.W $0F94,X                                                        ;A5EDBA;
+    STA.W EnemyData.instTimer,X                                          ;A5EDBA;
     LDY.W #$0060                                                         ;A5EDBD;
-    LDA.W $0F8C,X                                                        ;A5EDC0;
+    LDA.W EnemyData.health,X                                             ;A5EDC0;
     CMP.W #$0046                                                         ;A5EDC3;
     BMI .paletteChosen                                                   ;A5EDC6;
     LDY.W #$0040                                                         ;A5EDC8;
@@ -8474,17 +8474,17 @@ PowerBombReaction_SporeSpawn:
 
 SporeSpawnReaction_Common:
     LDX.W $0E54                                                          ;A5EDF3;
-    LDA.W $0F8C,X                                                        ;A5EDF6;
+    LDA.W EnemyData.health,X                                             ;A5EDF6;
     BNE .return                                                          ;A5EDF9;
     LDX.W $0E54                                                          ;A5EDFB;
     LDA.W #$0000                                                         ;A5EDFE;
     STA.L $7E781C                                                        ;A5EE01;
-    STZ.W $0FA0,X                                                        ;A5EE05;
-    STZ.W $0F9C,X                                                        ;A5EE08;
-    STZ.W $0F8A,X                                                        ;A5EE0B;
-    LDA.W $0F86,X                                                        ;A5EE0E;
+    STZ.W EnemyData.invincibilityTimer,X                                 ;A5EE05;
+    STZ.W EnemyData.flashTimer,X                                         ;A5EE08;
+    STZ.W EnemyData.ai,X                                                 ;A5EE0B;
+    LDA.W EnemyData.properties,X                                         ;A5EE0E;
     ORA.W #$0400                                                         ;A5EE11;
-    STA.W $0F86,X                                                        ;A5EE14;
+    STA.W EnemyData.properties,X                                         ;A5EE14;
     LDY.W #$001A                                                         ;A5EE17;
     LDA.W #$0000                                                         ;A5EE1A;
 

@@ -222,15 +222,15 @@ InitialiseCPURegistersForGameplay:
     STZ.W $4201                                                          ;8281AE;
     STZ.W HW_WRMPYA                                                      ;8281B1;
     STZ.W HW_WRMPYB                                                      ;8281B4;
-    STZ.W $4204                                                          ;8281B7;
+    STZ.W HW_WRDIV                                                       ;8281B7;
     STZ.W $4205                                                          ;8281BA;
-    STZ.W $4206                                                          ;8281BD;
+    STZ.W HW_WRDIVB                                                      ;8281BD;
     STZ.W $4207                                                          ;8281C0;
     STZ.W $4208                                                          ;8281C3;
     STZ.W $4209                                                          ;8281C6;
     STZ.W $420A                                                          ;8281C9;
-    STZ.W $420B                                                          ;8281CC;
-    STZ.W $420C                                                          ;8281CF;
+    STZ.W HW_MDMAEN                                                      ;8281CC;
+    STZ.W HW_HDMAEN                                                      ;8281CF;
     STZ.B $85                                                            ;8281D2;
     LDA.B #$01                                                           ;8281D4;
     STA.W $420D                                                          ;8281D6;
@@ -370,7 +370,7 @@ Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps:
     dl Tiles_Standard_BG3                                                ;8282FB;
     dw $2000                                                             ;8282FE;
     LDA.B #$02                                                           ;828300;
-    STA.W $420B                                                          ;828302;
+    STA.W HW_MDMAEN                                                      ;828302;
     LDA.B #$00                                                           ;828305;
     STA.W $2116                                                          ;828307;
     LDA.B #$60                                                           ;82830A;
@@ -382,7 +382,7 @@ Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps:
     dl Tiles_Standard_Sprite_0                                           ;82831B;
     dw $4000                                                             ;82831E;
     LDA.B #$02                                                           ;828320;
-    STA.W $420B                                                          ;828322;
+    STA.W HW_MDMAEN                                                      ;828322;
     LDA.B #$00                                                           ;828325;
     STA.W $2116                                                          ;828327;
     LDA.B #$50                                                           ;82832A;
@@ -394,7 +394,7 @@ Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps:
     dl $7E4000                                                           ;82833B;
     dw $1000                                                             ;82833E;
     LDA.B #$02                                                           ;828340;
-    STA.W $420B                                                          ;828342;
+    STA.W HW_MDMAEN                                                      ;828342;
     LDA.B #$00                                                           ;828345;
     STA.W $2116                                                          ;828347;
     LDA.B #$58                                                           ;82834A;
@@ -406,7 +406,7 @@ Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps:
     dl $7E4000                                                           ;82835B;
     dw $0800                                                             ;82835E;
     LDA.B #$02                                                           ;828360;
-    STA.W $420B                                                          ;828362;
+    STA.W HW_MDMAEN                                                      ;828362;
     PLP                                                                  ;828365;
     RTS                                                                  ;828366;
 
@@ -1698,7 +1698,7 @@ GameState_D_Pausing_LoadingPauseScreen:
     SEP #$20                                                             ;828CF9;
     LDA.B #$00                                                           ;828CFB;
     STA.B $85                                                            ;828CFD;
-    STA.W $420C                                                          ;828CFF;
+    STA.W HW_HDMAEN                                                      ;828CFF;
     REP #$20                                                             ;828D02;
     JSL.L Disable_AnimatedTilesObjects                                   ;828D04;
     JSR.W Backup_BG2Tilemap_for_PauseMenu                                ;828D08;
@@ -1761,7 +1761,7 @@ Backup_BG2Tilemap_for_PauseMenu:
     STZ.W $4319                                                          ;828D89;
     STZ.W $431A                                                          ;828D8C;
     LDA.B #$02                                                           ;828D8F;
-    STA.W $420B                                                          ;828D91;
+    STA.W HW_MDMAEN                                                      ;828D91;
     PLP                                                                  ;828D94;
     RTS                                                                  ;828D95;
 
@@ -1781,7 +1781,7 @@ Restore_BG2Tilemap_from_PauseMenu:
     dl $7EDF5C                                                           ;828DB1;
     dw $1000                                                             ;828DB4;
     LDA.B #$02                                                           ;828DB6;
-    STA.W $420B                                                          ;828DB8;
+    STA.W HW_MDMAEN                                                      ;828DB8;
     PLP                                                                  ;828DBB;
     RTS                                                                  ;828DBC;
 
@@ -1882,7 +1882,7 @@ LoadPauseMenuTiles_ClearBG2Tilemap:
     dl Tiles_PauseScreen_BG1_BG2                                         ;828E8E;
     dw $4000                                                             ;828E91;
     LDA.B #$02                                                           ;828E93;
-    STA.W $420B                                                          ;828E95;
+    STA.W HW_MDMAEN                                                      ;828E95;
     LDA.B #$00                                                           ;828E98;
     STA.W $2116                                                          ;828E9A;
     LDA.B #$20                                                           ;828E9D;
@@ -1894,7 +1894,7 @@ LoadPauseMenuTiles_ClearBG2Tilemap:
     dl Tiles_Menu_PauseScreen_Sprites                                    ;828EAE;
     dw $2000                                                             ;828EB1;
     LDA.B #$02                                                           ;828EB3;
-    STA.W $420B                                                          ;828EB5;
+    STA.W HW_MDMAEN                                                      ;828EB5;
     LDA.B #$00                                                           ;828EB8;
     STA.W $2116                                                          ;828EBA;
     LDA.B #$40                                                           ;828EBD;
@@ -1906,7 +1906,7 @@ LoadPauseMenuTiles_ClearBG2Tilemap:
     dl Tiles_Standard_BG3                                                ;828ECE;
     dw $2000                                                             ;828ED1;
     LDA.B #$02                                                           ;828ED3;
-    STA.W $420B                                                          ;828ED5;
+    STA.W HW_MDMAEN                                                      ;828ED5;
     PLP                                                                  ;828ED8;
     RTL                                                                  ;828ED9;
 
@@ -1925,7 +1925,7 @@ LoadPauseScreen_BaseTilemaps:
     dl Tilemap_BG2PauseScreen_BG2RoomSelectMap_0                         ;828EF3;
     dw $0800                                                             ;828EF6;
     LDA.B #$02                                                           ;828EF8;
-    STA.W $420B                                                          ;828EFA;
+    STA.W HW_MDMAEN                                                      ;828EFA;
     LDA.B #$00                                                           ;828EFD;
     STA.W $2181                                                          ;828EFF;
     LDA.B #$34                                                           ;828F02;
@@ -1937,7 +1937,7 @@ LoadPauseScreen_BaseTilemaps:
     dl Tilemap_BG2PauseScreen_BG2RoomSelectMap_1                         ;828F13;
     dw $0400                                                             ;828F16;
     LDA.B #$02                                                           ;828F18;
-    STA.W $420B                                                          ;828F1A;
+    STA.W HW_MDMAEN                                                      ;828F1A;
     LDA.B #$00                                                           ;828F1D;
     STA.W $2181                                                          ;828F1F;
     LDA.B #$38                                                           ;828F22;
@@ -1949,7 +1949,7 @@ LoadPauseScreen_BaseTilemaps:
     dl Tilemap_EquipmentScreen                                           ;828F33;
     dw $0800                                                             ;828F36;
     LDA.B #$02                                                           ;828F38;
-    STA.W $420B                                                          ;828F3A;
+    STA.W HW_MDMAEN                                                      ;828F3A;
     REP #$30                                                             ;828F3D;
     LDY.W #Dummy_Samus_Wireframe_Tilemap                                 ;828F3F;
     LDX.W #$01D8                                                         ;828F42;
@@ -1987,10 +1987,10 @@ Load_EquipmentScreen_ReserveHealth_Tilemap:
     LDA.W $09D4                                                          ;828F73;
     BEQ .return                                                          ;828F76;
     LDA.W $09D6                                                          ;828F78;
-    STA.W $4204                                                          ;828F7B;
+    STA.W HW_WRDIV                                                       ;828F7B;
     SEP #$20                                                             ;828F7E;
     LDA.B #$64                                                           ;828F80;
-    STA.W $4206                                                          ;828F82;
+    STA.W HW_WRDIVB                                                      ;828F82;
     NOP                                                                  ;828F85;
     NOP                                                                  ;828F86;
     NOP                                                                  ;828F87;
@@ -2005,11 +2005,11 @@ Load_EquipmentScreen_ReserveHealth_Tilemap:
     LDA.W $4215                                                          ;828F93;
     STA.B $2B                                                            ;828F96;
     LDA.W HW_RDMPY                                                       ;828F98;
-    STA.W $4204                                                          ;828F9B;
+    STA.W HW_WRDIV                                                       ;828F9B;
     LDA.W $4217                                                          ;828F9E;
     STA.W $4205                                                          ;828FA1;
     LDA.B #$0A                                                           ;828FA4;
-    STA.W $4206                                                          ;828FA6;
+    STA.W HW_WRDIVB                                                      ;828FA6;
     REP #$20                                                             ;828FA9;
     NOP                                                                  ;828FAB;
     NOP                                                                  ;828FAC;
@@ -2595,7 +2595,7 @@ Load_PauseMenuMapTilemap_and_AreaLabel:
     dl $7E4000                                                           ;8293EC;
     dw $1000                                                             ;8293EF;
     LDA.B #$02                                                           ;8293F1;
-    STA.W $420B                                                          ;8293F3;
+    STA.W HW_MDMAEN                                                      ;8293F3;
     LDA.B #$AA                                                           ;8293F6;
     STA.W $2116                                                          ;8293F8;
     LDA.B #$38                                                           ;8293FB;
@@ -2624,7 +2624,7 @@ Load_PauseMenuMapTilemap_and_AreaLabel:
     LDA.B #$82                                                           ;829430;
     STA.W $4314                                                          ;829432;
     LDA.B #$02                                                           ;829435;
-    STA.W $420B                                                          ;829437;
+    STA.W HW_MDMAEN                                                      ;829437;
     PLB                                                                  ;82943A;
     PLP                                                                  ;82943B;
     RTL                                                                  ;82943C;
@@ -4123,7 +4123,7 @@ Clear_Samus_Beam_Tiles:
     dl Tiles_Standard_Sprite_0                                           ;82A2D7;
     dw $1000                                                             ;82A2DA;
     LDA.B #$02                                                           ;82A2DC;
-    STA.W $420B                                                          ;82A2DE;
+    STA.W HW_MDMAEN                                                      ;82A2DE;
     PLP                                                                  ;82A2E1;
     RTS                                                                  ;82A2E2;
 
@@ -5255,7 +5255,7 @@ EquipmentScreen_TransferBG1Tilemap:
     dl $7E3800                                                           ;82AC3E;
     dw $0800                                                             ;82AC41;
     LDA.B #$02                                                           ;82AC43;
-    STA.W $420B                                                          ;82AC45;
+    STA.W HW_MDMAEN                                                      ;82AC45;
     STZ.B $B3                                                            ;82AC48;
     STZ.B $B4                                                            ;82AC4A;
     PLB                                                                  ;82AC4C;
@@ -6125,10 +6125,10 @@ EquipmentScreen_DisplayReserveTankAmount:
     RTS                                                                  ;82B2BA;
 
 
-  + STA.W $4204                                                          ;82B2BB;
+  + STA.W HW_WRDIV                                                       ;82B2BB;
     SEP #$20                                                             ;82B2BE;
     LDA.B #$64                                                           ;82B2C0;
-    STA.W $4206                                                          ;82B2C2;
+    STA.W HW_WRDIVB                                                      ;82B2C2;
     REP #$20                                                             ;82B2C5;
     NOP                                                                  ;82B2C7;
     NOP                                                                  ;82B2C8;
@@ -6140,10 +6140,10 @@ EquipmentScreen_DisplayReserveTankAmount:
     LDA.W $4214                                                          ;82B2CE;
     STA.B $2C                                                            ;82B2D1;
     LDA.W $09D6                                                          ;82B2D3;
-    STA.W $4204                                                          ;82B2D6;
+    STA.W HW_WRDIV                                                       ;82B2D6;
     SEP #$20                                                             ;82B2D9;
     LDA.B #$64                                                           ;82B2DB;
-    STA.W $4206                                                          ;82B2DD;
+    STA.W HW_WRDIVB                                                      ;82B2DD;
     REP #$20                                                             ;82B2E0;
     NOP                                                                  ;82B2E2;
     NOP                                                                  ;82B2E3;
@@ -6179,10 +6179,10 @@ EquipmentScreen_DisplayReserveTankAmount:
 .empty:
     LDA.W HW_RDMPY                                                       ;82B315;
     BEQ .loopEmptyTanks                                                  ;82B318;
-    STA.W $4204                                                          ;82B31A;
+    STA.W HW_WRDIV                                                       ;82B31A;
     SEP #$20                                                             ;82B31D;
     LDA.B #$0E                                                           ;82B31F;
-    STA.W $4206                                                          ;82B321;
+    STA.W HW_WRDIVB                                                      ;82B321;
     REP #$20                                                             ;82B324;
     NOP                                                                  ;82B326;
     NOP                                                                  ;82B327;
@@ -6251,11 +6251,11 @@ EquipmentScreen_DisplayReserveTankAmount:
     JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82B399;
     SEP #$20                                                             ;82B39D;
     LDA.B $32                                                            ;82B39F;
-    STA.W $4204                                                          ;82B3A1;
+    STA.W HW_WRDIV                                                       ;82B3A1;
     LDA.B $33                                                            ;82B3A4;
     STA.W $4205                                                          ;82B3A6;
     LDA.B #$0A                                                           ;82B3A9;
-    STA.W $4206                                                          ;82B3AB;
+    STA.W HW_WRDIVB                                                      ;82B3AB;
     REP #$20                                                             ;82B3AE;
     NOP                                                                  ;82B3B0;
     NOP                                                                  ;82B3B1;
@@ -11773,7 +11773,7 @@ LoadLibraryBackground_LoadingPausing:
     LDA.B #$80                                                           ;82E9A6;
     STA.W $2115                                                          ;82E9A8;
     LDA.B #$02                                                           ;82E9AB;
-    STA.W $420B                                                          ;82E9AD;
+    STA.W HW_MDMAEN                                                      ;82E9AD;
     REP #$20                                                             ;82E9B0;
     TYA                                                                  ;82E9B2;
     CLC                                                                  ;82E9B3;
@@ -11847,7 +11847,7 @@ LoadLibraryBackgroundLP_2_TransferToVRAM:
     LDA.B #$80                                                           ;82EA19;
     STA.W $2115                                                          ;82EA1B;
     LDA.B #$02                                                           ;82EA1E;
-    STA.W $420B                                                          ;82EA20;
+    STA.W HW_MDMAEN                                                      ;82EA20;
     REP #$20                                                             ;82EA23;
     TYA                                                                  ;82EA25;
     CLC                                                                  ;82EA26;
@@ -12175,7 +12175,7 @@ GameOptionsMenu_1_LoadingOptionsMenu:
     dl Zebes_and_Stars_Tilemap                                           ;82EC40;
     dw $0800                                                             ;82EC43;
     LDA.B #$02                                                           ;82EC45;
-    STA.W $420B                                                          ;82EC47;
+    STA.W HW_MDMAEN                                                      ;82EC47;
     REP #$30                                                             ;82EC4A;
     STZ.B $B1                                                            ;82EC4C;
     STZ.B $B3                                                            ;82EC4E;

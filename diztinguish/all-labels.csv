@@ -30655,7 +30655,7 @@ $A98B05,11111173,EnemyPopulations_MotherBrainFallingTubes_BottomMiddleLeft,,USED
 $A98B15,11111189,EnemyPopulations_MotherBrainFallingTubes_BottomMiddleRight,,USED
 $A98B25,11111205,EnemyPopulations_MotherBrainFallingTubes_MainTube,,USED
 $A98B35,11111221,InitAI_MotherBrainTubes,,USED
-$A98B5D,11111261,.XRaidius,,USED
+$A98B5D,11111261,.XRadius,,USED
 $A98B67,11111271,.YRadius,,USED
 $A98B71,11111281,.YPositionThreshold,,USED
 $A98B7B,11111291,.functionPointer,,USED

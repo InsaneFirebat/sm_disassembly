@@ -129,7 +129,7 @@ Initialise_PPU_for_MessageBoxes:
     STZ.W $05F9                                                          ;858145;
     JSR.W Wait_for_Lag_Frame                                             ;858148;
     SEP #$20                                                             ;85814B;
-    STZ.W $420C                                                          ;85814D;
+    STZ.W HW_HDMAEN                                                      ;85814D;
     LDA.B #$19                                                           ;858150;
     STA.W $2121                                                          ;858152;
     LDA.B #$B1                                                           ;858155;
@@ -190,7 +190,7 @@ Initialise_PPU_for_MessageBoxes:
     LDA.B #$80                                                           ;8581E0;
     STA.W $2115                                                          ;8581E2;
     LDA.B #$02                                                           ;8581E5;
-    STA.W $420B                                                          ;8581E7;
+    STA.W HW_MDMAEN                                                      ;8581E7;
     JSL.L HandleMusicQueue                                               ;8581EA;
     JSL.L HandleSounds                                                   ;8581EE;
     RTS                                                                  ;8581F2;
@@ -223,7 +223,7 @@ Clear_MessageBox_BG3Tilemap:
     LDA.B #$80                                                           ;85822C;
     STA.W $2115                                                          ;85822E;
     LDA.B #$02                                                           ;858231;
-    STA.W $420B                                                          ;858233;
+    STA.W HW_MDMAEN                                                      ;858233;
     JSL.L HandleMusicQueue                                               ;858236;
     JSL.L HandleSounds                                                   ;85823A;
     RTS                                                                  ;85823E;
@@ -385,7 +385,7 @@ Setup_PPU_for_Active_MessageBox:
     LDA.B #$80                                                           ;858350;
     STA.W $2115                                                          ;858352;
     LDA.B #$02                                                           ;858355;
-    STA.W $420B                                                          ;858357;
+    STA.W HW_MDMAEN                                                      ;858357;
     JSL.L HandleMusicQueue                                               ;85835A;
     JSL.L HandleSounds                                                   ;85835E;
     RTS                                                                  ;858362;
@@ -426,7 +426,7 @@ Setup_MessageBox_BG3_Yscroll_HDMA:
     JSR.W Write_MessageBox_BG3_Yscroll_HDMA_DataTable                    ;8583BA;
     SEP #$20                                                             ;8583BD;
     LDA.B #$40                                                           ;8583BF;
-    STA.W $420C                                                          ;8583C1;
+    STA.W HW_HDMAEN                                                      ;8583C1;
     RTS                                                                  ;8583C4;
 
 
@@ -649,7 +649,7 @@ Toggle_Save_Confirmation_Selection:
     LDA.B #$80                                                           ;858561;
     STA.W $2115                                                          ;858563;
     LDA.B #$02                                                           ;858566;
-    STA.W $420B                                                          ;858568;
+    STA.W HW_MDMAEN                                                      ;858568;
     JSL.L HandleMusicQueue                                               ;85856B;
     JSL.L HandleSounds                                                   ;85856F;
     RTS                                                                  ;858573;
@@ -765,12 +765,12 @@ Restore_PPU:
     LDA.B #$80                                                           ;858647;
     STA.W $2115                                                          ;858649;
     LDA.B #$02                                                           ;85864C;
-    STA.W $420B                                                          ;85864E;
+    STA.W HW_MDMAEN                                                      ;85864E;
     JSR.W Wait_for_Lag_Frame                                             ;858651;
     SEP #$20                                                             ;858654;
     LDA.L $7E33EA                                                        ;858656;
     STA.B $85                                                            ;85865A;
-    STA.W $420C                                                          ;85865C;
+    STA.W HW_HDMAEN                                                      ;85865C;
     LDA.L $7E33EB                                                        ;85865F;
     STA.B $5B                                                            ;858663;
     LDA.B $69                                                            ;858665;

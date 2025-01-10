@@ -107,7 +107,7 @@ NOPNOP_A98069:
 
 Instruction_CommonA9_Enemy0FB2_InY:
     LDA.W $0000,Y                                                        ;A9806B;
-    STA.W $0FB2,X                                                        ;A9806E;
+    STA.W EnemyData.work5,X                                              ;A9806E;
     INY                                                                  ;A98071;
     INY                                                                  ;A98072;
     RTL                                                                  ;A98073;
@@ -115,7 +115,7 @@ Instruction_CommonA9_Enemy0FB2_InY:
 
 Instruction_CommonA9_SetEnemy0FB2ToRTS:
     LDA.W #RTS_A9807B                                                    ;A98074;
-    STA.W $0FB2,X                                                        ;A98077;
+    STA.W EnemyData.work5,X                                              ;A98077;
     RTL                                                                  ;A9807A;
 
 
@@ -124,9 +124,9 @@ RTS_A9807B:
 
 
 Instruction_CommonA9_DeleteEnemy:
-    LDA.W $0F86,X                                                        ;A9807C;
+    LDA.W EnemyData.properties,X                                         ;A9807C;
     ORA.W #$0200                                                         ;A9807F;
-    STA.W $0F86,X                                                        ;A98082;
+    STA.W EnemyData.properties,X                                         ;A98082;
     PLA                                                                  ;A98085;
     PEA.W ProcessEnemyInstructions_return-1                              ;A98086;
     RTL                                                                  ;A98089;
@@ -237,7 +237,7 @@ Instruction_CommonA9_GotoY_PlusY:
 
 
 Instruction_CommonA9_DecrementTimer_GotoYIfNonZero:
-    DEC.W $0F90,X                                                        ;A98108;
+    DEC.W EnemyData.loopCounter,X                                        ;A98108;
     BNE Instruction_CommonA9_GotoY                                       ;A9810B;
     INY                                                                  ;A9810D;
     INY                                                                  ;A9810E;
@@ -245,7 +245,7 @@ Instruction_CommonA9_DecrementTimer_GotoYIfNonZero:
 
 
 Instruction_CommonA9_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W $0F90,X                                                        ;A98110;
+    DEC.W EnemyData.loopCounter,X                                        ;A98110;
     BNE Instruction_CommonA9_GotoY                                       ;A98113;
     INY                                                                  ;A98115;
     INY                                                                  ;A98116;
@@ -254,7 +254,7 @@ Instruction_CommonA9_DecrementTimer_GotoYIfNonZero_duplicate:
 
 Instruction_CommonA9_DecrementTimer_GotoY_PlusY_IfNonZero:
     SEP #$20                                                             ;A98118;
-    DEC.W $0F90,X                                                        ;A9811A;
+    DEC.W EnemyData.loopCounter,X                                        ;A9811A;
     REP #$20                                                             ;A9811D;
     BNE Instruction_CommonA9_GotoY_PlusY                                 ;A9811F;
     INY                                                                  ;A98121;
@@ -263,7 +263,7 @@ Instruction_CommonA9_DecrementTimer_GotoY_PlusY_IfNonZero:
 
 Instruction_CommonA9_TimerInY:
     LDA.W $0000,Y                                                        ;A98123;
-    STA.W $0F90,X                                                        ;A98126;
+    STA.W EnemyData.loopCounter,X                                        ;A98126;
     INY                                                                  ;A98129;
     INY                                                                  ;A9812A;
     RTL                                                                  ;A9812B;
@@ -279,7 +279,7 @@ Instruction_CommonA9_Sleep:
     DEY                                                                  ;A9812F;
     DEY                                                                  ;A98130;
     TYA                                                                  ;A98131;
-    STA.W $0F92,X                                                        ;A98132;
+    STA.W EnemyData.pInstList,X                                          ;A98132;
     PLA                                                                  ;A98135;
     PEA.W ProcessEnemyInstructions_return-1                              ;A98136;
     RTL                                                                  ;A98139;
@@ -287,11 +287,11 @@ Instruction_CommonA9_Sleep:
 
 Instruction_CommonA9_WaitYFrames:
     LDA.W $0000,Y                                                        ;A9813A;
-    STA.W $0F94,X                                                        ;A9813D;
+    STA.W EnemyData.instTimer,X                                          ;A9813D;
     INY                                                                  ;A98140;
     INY                                                                  ;A98141;
     TYA                                                                  ;A98142;
-    STA.W $0F92,X                                                        ;A98143;
+    STA.W EnemyData.pInstList,X                                          ;A98143;
     PLA                                                                  ;A98146;
     PEA.W ProcessEnemyInstructions_return-1                              ;A98147;
     RTL                                                                  ;A9814A;
@@ -321,16 +321,16 @@ Instruction_CommonA9_TransferYBytesInYToVRAM:
 
 
 Instruction_CommonA9_EnableOffScreenProcessing:
-    LDA.W $0F86,X                                                        ;A98173;
+    LDA.W EnemyData.properties,X                                         ;A98173;
     ORA.W #$0800                                                         ;A98176;
-    STA.W $0F86,X                                                        ;A98179;
+    STA.W EnemyData.properties,X                                         ;A98179;
     RTL                                                                  ;A9817C;
 
 
 Instruction_CommonA9_DisableOffScreenProcessing:
-    LDA.W $0F86,X                                                        ;A9817D;
+    LDA.W EnemyData.properties,X                                         ;A9817D;
     AND.W #$F7FF                                                         ;A98180;
-    STA.W $0F86,X                                                        ;A98183;
+    STA.W EnemyData.properties,X                                         ;A98183;
     RTL                                                                  ;A98186;
 
 
@@ -1025,22 +1025,22 @@ EnemyPopulations_MotherBrainFallingTubes_MainTube:
 
 InitAI_MotherBrainTubes:
     LDX.W $0E54                                                          ;A98B35;
-    LDY.W $0FB4,X                                                        ;A98B38;
-    LDA.W .XRaidius,Y                                                    ;A98B3B;
-    STA.W $0F82,X                                                        ;A98B3E;
+    LDY.W EnemyData.initParam0,X                                         ;A98B38;
+    LDA.W .XRadius,Y                                                    ;A98B3B;
+    STA.W EnemyData.xHitboxRadius,X                                      ;A98B3E;
     LDA.W .YRadius,Y                                                     ;A98B41;
-    STA.W $0F84,X                                                        ;A98B44;
+    STA.W EnemyData.yHitboxRadius,X                                      ;A98B44;
     LDA.W .YPositionThreshold,Y                                          ;A98B47;
-    STA.W $0FAA,X                                                        ;A98B4A;
-    STZ.W $0FAE,X                                                        ;A98B4D;
-    STZ.W $0FB0,X                                                        ;A98B50;
-    STZ.W $0FAC,X                                                        ;A98B53;
+    STA.W EnemyData.work1,X                                              ;A98B4A;
+    STZ.W EnemyData.work3,X                                              ;A98B4D;
+    STZ.W EnemyData.work4,X                                              ;A98B50;
+    STZ.W EnemyData.work2,X                                              ;A98B53;
     LDA.W .functionPointer,Y                                             ;A98B56;
-    STA.W $0FA8,X                                                        ;A98B59;
+    STA.W EnemyData.work0,X                                              ;A98B59;
     RTL                                                                  ;A98B5C;
 
 
-.XRaidius:
+.XRadius:
     dw $0010,$0010,$0008,$0008,$0010                                     ;A98B5D;
 
 .YRadius:
@@ -1061,17 +1061,17 @@ MainAI_MotherBrainTubes:
 
 
 Function_MotherBrainTubes_NonMainTube:
-    LDA.W $0FAC,X                                                        ;A98B88;
+    LDA.W EnemyData.work2,X                                              ;A98B88;
     CLC                                                                  ;A98B8B;
     ADC.W #$0006                                                         ;A98B8C;
-    STA.W $0FAC,X                                                        ;A98B8F;
+    STA.W EnemyData.work2,X                                              ;A98B8F;
     JSR.W AddADividedBy100ToEnemyYPosition                               ;A98B92;
-    LDA.W $0F7E,X                                                        ;A98B95;
-    CMP.W $0FAA,X                                                        ;A98B98;
+    LDA.W EnemyData.yPosition,X                                          ;A98B95;
+    CMP.W EnemyData.work1,X                                              ;A98B98;
     BPL ExplodeMotherBrainTubes                                          ;A98B9B;
 
 HandleFallingTubeSmoke:
-    DEC.W $0FAE,X                                                        ;A98B9D;
+    DEC.W EnemyData.work3,X                                              ;A98B9D;
     BPL HandleFallingTubeSmoke_return                                    ;A98BA0;
     JSR.W SpawnFallingTubeSmoke                                          ;A98BA2;
 
@@ -1080,12 +1080,12 @@ HandleFallingTubeSmoke_return:
 
 
 ExplodeMotherBrainTubes:
-    LDA.W $0F86,X                                                        ;A98BA6;
+    LDA.W EnemyData.properties,X                                         ;A98BA6;
     ORA.W #$0200                                                         ;A98BA9;
-    STA.W $0F86,X                                                        ;A98BAC;
-    LDA.W $0F7A,X                                                        ;A98BAF;
+    STA.W EnemyData.properties,X                                         ;A98BAC;
+    LDA.W EnemyData.xPosition,X                                          ;A98BAF;
     STA.B $12                                                            ;A98BB2;
-    LDA.W $0F7E,X                                                        ;A98BB4;
+    LDA.W EnemyData.yPosition,X                                          ;A98BB4;
     STA.B $14                                                            ;A98BB7;
     LDA.W #$0003                                                         ;A98BB9;
     LDY.W #EnemyProjectile_MiscDust                                      ;A98BBC;
@@ -1096,24 +1096,24 @@ ExplodeMotherBrainTubes:
 
 
 Function_MotherBrainTubes_MainTube_WaitingToFall:
-    DEC.W $0FB6,X                                                        ;A98BCB;
+    DEC.W EnemyData.initParam1,X                                         ;A98BCB;
     BPL HandleFallingTubeSmoke_return                                    ;A98BCE;
     LDA.W #Function_MotherBrainTubes_MainTube_Falling                    ;A98BD0;
-    STA.W $0FA8,X                                                        ;A98BD3; fallthrough to Function_MotherBrainTubes_MainTube_Falling
+    STA.W EnemyData.work0,X                                              ;A98BD3; fallthrough to Function_MotherBrainTubes_MainTube_Falling
 
 
 Function_MotherBrainTubes_MainTube_Falling:
-    LDA.W $0FAC,X                                                        ;A98BD6;
+    LDA.W EnemyData.work2,X                                              ;A98BD6;
     CLC                                                                  ;A98BD9;
     ADC.W #$0006                                                         ;A98BDA;
-    STA.W $0FAC,X                                                        ;A98BDD;
+    STA.W EnemyData.work2,X                                              ;A98BDD;
     JSR.W AddADividedBy100ToEnemyYPosition                               ;A98BE0;
     PHA                                                                  ;A98BE3;
     CMP.W #$00F4                                                         ;A98BE4;
     BMI .lessThanF4                                                      ;A98BE7;
-    LDA.W $0F86,X                                                        ;A98BE9;
+    LDA.W EnemyData.properties,X                                         ;A98BE9;
     ORA.W #$0100                                                         ;A98BEC;
-    STA.W $0F86,X                                                        ;A98BEF;
+    STA.W EnemyData.properties,X                                         ;A98BEF;
 
 .lessThanF4:
     PLA                                                                  ;A98BF2;
@@ -1131,7 +1131,7 @@ Function_MotherBrainTubes_MainTube_Falling:
     JSL.L EnableEarthquakeTypeInAFor20Frames                             ;A98C08;
     STZ.W $18B4                                                          ;A98C0C;
     STZ.W $18B6                                                          ;A98C0F;
-    STZ.W $0FAC,X                                                        ;A98C12;
+    STZ.W EnemyData.work2,X                                              ;A98C12;
     LDA.W #$00C4                                                         ;A98C15;
     STA.W $0FBE                                                          ;A98C18;
     LDA.W #$003B                                                         ;A98C1B;
@@ -1147,16 +1147,16 @@ Function_MotherBrainTubes_MainTube_Falling:
 
 SpawnFallingTubeSmoke:
     LDA.W #$0008                                                         ;A98C36;
-    STA.W $0FAE,X                                                        ;A98C39;
-    LDA.W $0FB0,X                                                        ;A98C3C;
+    STA.W EnemyData.work3,X                                              ;A98C39;
+    LDA.W EnemyData.work4,X                                              ;A98C3C;
     INC A                                                                ;A98C3F;
     AND.W #$0003                                                         ;A98C40;
-    STA.W $0FB0,X                                                        ;A98C43;
+    STA.W EnemyData.work4,X                                              ;A98C43;
     ASL A                                                                ;A98C46;
     TAY                                                                  ;A98C47;
     LDA.W .data,Y                                                        ;A98C48;
     CLC                                                                  ;A98C4B;
-    ADC.W $0F7A,X                                                        ;A98C4C;
+    ADC.W EnemyData.xPosition,X                                          ;A98C4C;
     STA.B $12                                                            ;A98C4F;
     LDA.W #$00D0                                                         ;A98C51;
     STA.B $14                                                            ;A98C54;
@@ -3471,13 +3471,13 @@ Instruction_MotherBrainHead_AimOnionRingsAtBabyMetroid:
     PHY                                                                  ;A99E38;
     LDA.L $7E7854                                                        ;A99E39;
     TAX                                                                  ;A99E3D;
-    LDA.W $0F7A,X                                                        ;A99E3E;
+    LDA.W EnemyData.xPosition,X                                          ;A99E3E;
     SEC                                                                  ;A99E41;
     SBC.W $0FBA                                                          ;A99E42;
     SEC                                                                  ;A99E45;
     SBC.W #$000A                                                         ;A99E46;
     STA.B $12                                                            ;A99E49;
-    LDA.W $0F7E,X                                                        ;A99E4B;
+    LDA.W EnemyData.yPosition,X                                          ;A99E4B;
     SEC                                                                  ;A99E4E;
     SBC.W $0FBE                                                          ;A99E4F;
     SEC                                                                  ;A99E52;
@@ -5894,7 +5894,7 @@ HurtSamus_A9B5E1:
     LDX.W $0E54                                                          ;A9B5F4;
     LDA.W $0AF6                                                          ;A9B5F7;
     SEC                                                                  ;A9B5FA;
-    SBC.W $0F7A,X                                                        ;A9B5FB;
+    SBC.W EnemyData.xPosition,X                                          ;A9B5FB;
     BMI .left                                                            ;A9B5FE;
     INY                                                                  ;A9B600;
 
@@ -7663,7 +7663,7 @@ Function_MotherBrainNeck_HyperBeamRecoil:
 
 MoveEnemyAccordingToVelocity:
     LDX.W $0E54                                                          ;A9C3EF;
-    LDA.W $0FAA,X                                                        ;A9C3F2;
+    LDA.W EnemyData.work1,X                                              ;A9C3F2;
     SEP #$20                                                             ;A9C3F5;
     CLC                                                                  ;A9C3F7;
     ADC.W $0F7D,X                                                        ;A9C3F8;
@@ -7674,9 +7674,9 @@ MoveEnemyAccordingToVelocity:
     BPL +                                                                ;A9C404;
     ORA.W #$FF00                                                         ;A9C406;
 
-  + ADC.W $0F7A,X                                                        ;A9C409;
-    STA.W $0F7A,X                                                        ;A9C40C;
-    LDA.W $0FAC,X                                                        ;A9C40F;
+  + ADC.W EnemyData.xPosition,X                                          ;A9C409;
+    STA.W EnemyData.xPosition,X                                          ;A9C40C;
+    LDA.W EnemyData.work2,X                                              ;A9C40F;
     SEP #$20                                                             ;A9C412;
     CLC                                                                  ;A9C414;
     ADC.W $0F81,X                                                        ;A9C415;
@@ -7687,8 +7687,8 @@ MoveEnemyAccordingToVelocity:
     BPL +                                                                ;A9C421;
     ORA.W #$FF00                                                         ;A9C423;
 
-  + ADC.W $0F7E,X                                                        ;A9C426;
-    STA.W $0F7E,X                                                        ;A9C429;
+  + ADC.W EnemyData.yPosition,X                                          ;A9C426;
+    STA.W EnemyData.yPosition,X                                          ;A9C429;
     RTL                                                                  ;A9C42C;
 
 
@@ -7716,10 +7716,10 @@ SetMotherBrainHeadInstList:
 
 
 SetEnemyInstList:
-    STA.W $0F92,X                                                        ;A9C453;
+    STA.W EnemyData.pInstList,X                                          ;A9C453;
     LDA.W #$0001                                                         ;A9C456;
-    STA.W $0F94,X                                                        ;A9C459;
-    STZ.W $0F90,X                                                        ;A9C45C;
+    STA.W EnemyData.instTimer,X                                          ;A9C459;
+    STZ.W EnemyData.loopCounter,X                                        ;A9C45C;
     RTL                                                                  ;A9C45F;
 
 
@@ -7764,8 +7764,8 @@ UNUSED_AddADividedBy100ToEnemyXPosition_A9C48E:
     BPL +                                                                ;A9C49D;
     ORA.W #$FF00                                                         ;A9C49F;
 
-  + ADC.W $0F7A,X                                                        ;A9C4A2;
-    STA.W $0F7A,X                                                        ;A9C4A5;
+  + ADC.W EnemyData.xPosition,X                                          ;A9C4A2;
+    STA.W EnemyData.xPosition,X                                          ;A9C4A5;
     RTS                                                                  ;A9C4A8;
 
 
@@ -7780,8 +7780,8 @@ AddADividedBy100ToEnemyYPosition:
     BPL +                                                                ;A9C4B8;
     ORA.W #$FF00                                                         ;A9C4BA;
 
-  + ADC.W $0F7E,X                                                        ;A9C4BD;
-    STA.W $0F7E,X                                                        ;A9C4C0;
+  + ADC.W EnemyData.yPosition,X                                          ;A9C4BD;
+    STA.W EnemyData.yPosition,X                                          ;A9C4C0;
     RTS                                                                  ;A9C4C3;
 
 
@@ -8165,33 +8165,33 @@ HandleMotherBrainWalking:
 
 InitAI_BabyMetroidCutscene:
     LDX.W $0E54                                                          ;A9C710;
-    LDA.W $0F86,X                                                        ;A9C713;
+    LDA.W EnemyData.properties,X                                         ;A9C713;
     ORA.W #$3000                                                         ;A9C716;
-    STA.W $0F86,X                                                        ;A9C719;
+    STA.W EnemyData.properties,X                                         ;A9C719;
     LDA.W #$0E00                                                         ;A9C71C;
-    STA.W $0F96,X                                                        ;A9C71F;
+    STA.W EnemyData.palette,X                                            ;A9C71F;
     LDA.W #InstList_BabyMetroid_Initial                                  ;A9C722;
-    STA.W $0F92,X                                                        ;A9C725;
+    STA.W EnemyData.pInstList,X                                          ;A9C725;
     LDA.W #$0001                                                         ;A9C728;
-    STA.W $0F94,X                                                        ;A9C72B;
+    STA.W EnemyData.instTimer,X                                          ;A9C72B;
     STA.L $7E7808,X                                                      ;A9C72E;
-    STZ.W $0F90,X                                                        ;A9C732;
+    STZ.W EnemyData.loopCounter,X                                        ;A9C732;
     LDA.W #$000A                                                         ;A9C735;
-    STA.W $0FB0,X                                                        ;A9C738;
+    STA.W EnemyData.work4,X                                              ;A9C738;
     LDA.W #$00A0                                                         ;A9C73B;
-    STA.W $0F98,X                                                        ;A9C73E;
+    STA.W EnemyData.gfxOffset,X                                          ;A9C73E;
     LDA.W #$0140                                                         ;A9C741;
-    STA.W $0F7A,X                                                        ;A9C744;
+    STA.W EnemyData.xPosition,X                                          ;A9C744;
     LDA.W #$0060                                                         ;A9C747;
-    STA.W $0F7E,X                                                        ;A9C74A;
-    STZ.W $0FAA,X                                                        ;A9C74D;
-    STZ.W $0FAC,X                                                        ;A9C750;
+    STA.W EnemyData.yPosition,X                                          ;A9C74A;
+    STZ.W EnemyData.work1,X                                              ;A9C74D;
+    STZ.W EnemyData.work2,X                                              ;A9C750;
     LDA.W #$0000                                                         ;A9C753;
     STA.L $7E7812,X                                                      ;A9C756;
     LDA.W #Function_BabyMetroidCutscene_DashOntoScreen                   ;A9C75A;
-    STA.W $0FA8,X                                                        ;A9C75D;
+    STA.W EnemyData.work0,X                                              ;A9C75D;
     LDA.W #$00F8                                                         ;A9C760;
-    STA.W $0FB2,X                                                        ;A9C763;
+    STA.W EnemyData.work5,X                                              ;A9C763;
     LDA.W #HandleBabyMetroidCutscenePalette_Normal                       ;A9C766;
     STA.L $7E781E,X                                                      ;A9C769;
     LDY.W #Palette_MotherBrain_BabyMetroid+2                             ;A9C76D;
@@ -8202,7 +8202,7 @@ InitAI_BabyMetroidCutscene:
 
 MainAI_BabyMetroidCutscene:
     LDX.W $0E54                                                          ;A9C779;
-    STZ.W $0FA2,X                                                        ;A9C77C;
+    STZ.W EnemyData.shakeTimer,X                                         ;A9C77C;
     JSR.W ($0FA8,X)                                                      ;A9C77F;
     JSL.L MoveEnemyAccordingToVelocity                                   ;A9C782;
     JSR.W HandleBabyMetroidCutsceneFlashing                              ;A9C786;
@@ -8230,7 +8230,7 @@ HandleBabyMetroidCutsceneFlashing:
 
 .return:
     TYA                                                                  ;A9C7B2;
-    STA.W $0F96,X                                                        ;A9C7B3;
+    STA.W EnemyData.palette,X                                            ;A9C7B3;
     RTS                                                                  ;A9C7B6;
 
 
@@ -8247,7 +8247,7 @@ HandlePlayingBabyMetroidCutsceneCrySFX:
 
 
 Function_BabyMetroidCutscene_DashOntoScreen:
-    DEC.W $0FB2,X                                                        ;A9C7CC;
+    DEC.W EnemyData.work5,X                                              ;A9C7CC;
     BMI .timerExpired                                                    ;A9C7CF;
     RTS                                                                  ;A9C7D1;
 
@@ -8258,9 +8258,9 @@ Function_BabyMetroidCutscene_DashOntoScreen:
     LDA.W #$0A00                                                         ;A9C7D9;
     STA.L $7E7816,X                                                      ;A9C7DC;
     LDA.W #Function_BabyMetroidCutscene_CurveTowardMotherBrainHead       ;A9C7E0;
-    STA.W $0FA8,X                                                        ;A9C7E3;
+    STA.W EnemyData.work0,X                                              ;A9C7E3;
     LDA.W #$000A                                                         ;A9C7E6;
-    STA.W $0FB2,X                                                        ;A9C7E9; fallthrough to Function_BabyMetroidCutscene_CurveTowardMotherBrainHead
+    STA.W EnemyData.work5,X                                              ;A9C7E9; fallthrough to Function_BabyMetroidCutscene_CurveTowardMotherBrainHead
 
 Function_BabyMetroidCutscene_CurveTowardMotherBrainHead:
     LDA.W #$FE80                                                         ;A9C7EC;
@@ -8270,16 +8270,16 @@ Function_BabyMetroidCutscene_CurveTowardMotherBrainHead:
     LDA.W #$0A00                                                         ;A9C7F6;
     STA.B $16                                                            ;A9C7F9;
     JSR.W UpdateBabyMetroidCutsceneSpeedAndAngle                         ;A9C7FB;
-    DEC.W $0FB2,X                                                        ;A9C7FE;
+    DEC.W EnemyData.work5,X                                              ;A9C7FE;
     BMI .timerExpired                                                    ;A9C801;
     RTS                                                                  ;A9C803;
 
 
 .timerExpired:
     LDA.W #Function_BabyMetroidCutscene_GetRightUpInMotherBrainsFace     ;A9C804;
-    STA.W $0FA8,X                                                        ;A9C807;
+    STA.W EnemyData.work0,X                                              ;A9C807;
     LDA.W #$0009                                                         ;A9C80A;
-    STA.W $0FB2,X                                                        ;A9C80D;
+    STA.W EnemyData.work5,X                                              ;A9C80D;
     RTS                                                                  ;A9C810;
 
 
@@ -8300,15 +8300,15 @@ Function_BabyMetroidCutscene_GetRightUpInMotherBrainsFace:
     STA.B $18                                                            ;A9C832;
     JSL.L CheckForEnemyCollisionWithRectangle                            ;A9C834;
     BCC .timerExpired                                                    ;A9C838;
-    DEC.W $0FB2,X                                                        ;A9C83A;
+    DEC.W EnemyData.work5,X                                              ;A9C83A;
     BMI .timerExpired                                                    ;A9C83D;
     RTS                                                                  ;A9C83F;
 
 
 .timerExpired:
-    STA.W $0FA8,X                                                        ;A9C840;
+    STA.W EnemyData.work0,X                                              ;A9C840;
     LDA.W #Function_BabyMetroidCutscene_LatchOntoMotherBrain             ;A9C843;
-    STA.W $0FA8,X                                                        ;A9C846;
+    STA.W EnemyData.work0,X                                              ;A9C846;
     LDA.W #$0001                                                         ;A9C849;
     JSL.L DrainedSamusController                                         ;A9C84C;
     RTS                                                                  ;A9C850;
@@ -8329,7 +8329,7 @@ Function_BabyMetroidCutscene_LatchOntoMotherBrain:
     JSL.L CheckForEnemyCollisionWithRectangle                            ;A9C86C;
     BCS .return                                                          ;A9C870;
     LDA.W #Function_BabyMetroidCutscene_SetMotherBrainToStumbleBack      ;A9C872;
-    STA.W $0FA8,X                                                        ;A9C875;
+    STA.W EnemyData.work0,X                                              ;A9C875;
 
 .return:
     RTS                                                                  ;A9C878;
@@ -8341,7 +8341,7 @@ Function_BabyMetroidCutscene_SetMotherBrainToStumbleBack:
     DEC A                                                                ;A9C87F;
     JSR.W MakeMotherBrainWalkBackwards                                   ;A9C880;
     LDA.W #Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody     ;A9C883;
-    STA.W $0FA8,X                                                        ;A9C886; fallthrough to Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody
+    STA.W EnemyData.work0,X                                              ;A9C886; fallthrough to Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody
 
 Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody:
     LDA.W $0FBA                                                          ;A9C889;
@@ -8359,20 +8359,20 @@ Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody:
 
 
 .reachedTarget:
-    STZ.W $0FAA,X                                                        ;A9C8A4;
-    STZ.W $0FAC,X                                                        ;A9C8A7;
+    STZ.W EnemyData.work1,X                                              ;A9C8A4;
+    STZ.W EnemyData.work2,X                                              ;A9C8A7;
     LDA.W $0FBA                                                          ;A9C8AA;
-    STA.W $0F7A,X                                                        ;A9C8AD;
+    STA.W EnemyData.xPosition,X                                          ;A9C8AD;
     LDA.W $0FBE                                                          ;A9C8B0;
     CLC                                                                  ;A9C8B3;
     ADC.W #$FFE8                                                         ;A9C8B4;
-    STA.W $0F7E,X                                                        ;A9C8B7;
+    STA.W EnemyData.yPosition,X                                          ;A9C8B7;
     LDA.W #InstList_BabyMetroid_DrainingMotherBrain                      ;A9C8BA;
     JSL.L SetEnemyInstList                                               ;A9C8BD;
     LDA.W #Function_BabyMetroidCutscene_WaitForMBToTurnToCorpse          ;A9C8C1;
-    STA.W $0FA8,X                                                        ;A9C8C4;
+    STA.W EnemyData.work0,X                                              ;A9C8C4;
     LDA.W #$0001                                                         ;A9C8C7;
-    STA.W $0FB0,X                                                        ;A9C8CA;
+    STA.W EnemyData.work4,X                                              ;A9C8CA;
     LDA.W #Function_MotherBrainBody_DrainedByBabyMetroid_TakenAback      ;A9C8CD;
     STA.W $0FA8                                                          ;A9C8D0;
     LDA.W #$0040                                                         ;A9C8D3;
@@ -8383,19 +8383,19 @@ Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody:
 
 
 Function_BabyMetroidCutscene_WaitForMBToTurnToCorpse:
-    LDA.W $0FA4,X                                                        ;A9C8E2;
+    LDA.W EnemyData.frameCounter,X                                       ;A9C8E2;
     AND.W #$0006                                                         ;A9C8E5;
     TAY                                                                  ;A9C8E8;
     LDA.W ShakingOffsets_X,Y                                             ;A9C8E9;
     CLC                                                                  ;A9C8EC;
     ADC.W $0FBA                                                          ;A9C8ED;
-    STA.W $0F7A,X                                                        ;A9C8F0;
+    STA.W EnemyData.xPosition,X                                          ;A9C8F0;
     LDA.W ShakingOffsets_Y,Y                                             ;A9C8F3;
     CLC                                                                  ;A9C8F6;
     ADC.W $0FBE                                                          ;A9C8F7;
     CLC                                                                  ;A9C8FA;
     ADC.W #$FFE8                                                         ;A9C8FB;
-    STA.W $0F7E,X                                                        ;A9C8FE;
+    STA.W EnemyData.yPosition,X                                          ;A9C8FE;
     LDA.L $7E783E                                                        ;A9C901;
     BNE .turnedToCorpse                                                  ;A9C905;
     RTS                                                                  ;A9C907;
@@ -8403,20 +8403,20 @@ Function_BabyMetroidCutscene_WaitForMBToTurnToCorpse:
 
 .turnedToCorpse:
     LDA.W #Function_BabyMetroidCutscene_StopDraining                     ;A9C908;
-    STA.W $0FA8,X                                                        ;A9C90B;
+    STA.W EnemyData.work0,X                                              ;A9C90B;
     LDA.W #$0040                                                         ;A9C90E;
-    STA.W $0FB2,X                                                        ;A9C911;
+    STA.W EnemyData.work5,X                                              ;A9C911;
     RTS                                                                  ;A9C914;
 
 
 Function_BabyMetroidCutscene_StopDraining:
     LDA.W $0FBA                                                          ;A9C915;
-    STA.W $0F7A,X                                                        ;A9C918;
+    STA.W EnemyData.xPosition,X                                          ;A9C918;
     LDA.W $0FBE                                                          ;A9C91B;
     CLC                                                                  ;A9C91E;
     ADC.W #$FFE8                                                         ;A9C91F;
-    STA.W $0F7E,X                                                        ;A9C922;
-    DEC.W $0FB2,X                                                        ;A9C925;
+    STA.W EnemyData.yPosition,X                                          ;A9C922;
+    DEC.W EnemyData.work5,X                                              ;A9C925;
     BMI .timerExpired                                                    ;A9C928;
     RTS                                                                  ;A9C92A;
 
@@ -8425,22 +8425,22 @@ Function_BabyMetroidCutscene_StopDraining:
     LDA.W #InstList_BabyMetroid_Initial                                  ;A9C92B;
     JSL.L SetEnemyInstList                                               ;A9C92E;
     LDA.W #$000A                                                         ;A9C932;
-    STA.W $0FB0,X                                                        ;A9C935;
+    STA.W EnemyData.work4,X                                              ;A9C935;
     LDA.W #Function_BabyMetroidCutscene_LetGo_SpawnDustClouds            ;A9C938;
-    STA.W $0FA8,X                                                        ;A9C93B;
+    STA.W EnemyData.work0,X                                              ;A9C93B;
     LDA.W #$0020                                                         ;A9C93E;
-    STA.W $0FB2,X                                                        ;A9C941;
-    STZ.W $0FAA,X                                                        ;A9C944;
-    STZ.W $0FAC,X                                                        ;A9C947;
+    STA.W EnemyData.work5,X                                              ;A9C941;
+    STZ.W EnemyData.work1,X                                              ;A9C944;
+    STZ.W EnemyData.work2,X                                              ;A9C947;
     RTS                                                                  ;A9C94A;
 
 
 Function_BabyMetroidCutscene_LetGo_SpawnDustClouds:
-    DEC.W $0FB2,X                                                        ;A9C94B;
+    DEC.W EnemyData.work5,X                                              ;A9C94B;
     BPL Function_BabyMetroidCutscene_MoveToTheCeiling                    ;A9C94E;
     JSR.W SpawnThreeDustCloudsOnMotherBrainHead                          ;A9C950;
     LDA.W #Function_BabyMetroidCutscene_MoveToTheCeiling                 ;A9C953;
-    STA.W $0FA8,X                                                        ;A9C956; fallthrough to Function_BabyMetroidCutscene_MoveToTheCeiling
+    STA.W EnemyData.work0,X                                              ;A9C956; fallthrough to Function_BabyMetroidCutscene_MoveToTheCeiling
 
 Function_BabyMetroidCutscene_MoveToTheCeiling:
     LDA.W $0FBA                                                          ;A9C959;
@@ -8461,7 +8461,7 @@ Function_BabyMetroidCutscene_MoveToTheCeiling:
     LDA.W #$0004                                                         ;A9C977;
     JSL.L DrainedSamusController                                         ;A9C97A;
     LDA.W #Function_BabyMetroidCutscene_MoveToSamus                      ;A9C97E;
-    STA.W $0FA8,X                                                        ;A9C981;
+    STA.W EnemyData.work0,X                                              ;A9C981;
     LDA.W #BabyMetroidCutscene_MovementTable_CeilingToSamus              ;A9C984;
     STA.L $7E781C,X                                                      ;A9C987;
     RTS                                                                  ;A9C98B;
@@ -8541,7 +8541,7 @@ Function_BabyMetroidCutscene_MoveToSamus:
 
 
 .function:
-    STA.W $0FA8,X                                                        ;A9CA20;
+    STA.W EnemyData.work0,X                                              ;A9CA20;
     RTS                                                                  ;A9CA23;
 
 
@@ -8579,25 +8579,25 @@ Function_BabyMetroidCutscene_HealSamusUpToFullEnergy:
     LDA.W #$0000                                                         ;A9CA7A;
     STA.L $7E7808,X                                                      ;A9CA7D;
     JSR.W HandlePlayingBabyMetroidCutsceneCrySFX                         ;A9CA81;
-    LDA.W $0FA4,X                                                        ;A9CA84;
+    LDA.W EnemyData.frameCounter,X                                       ;A9CA84;
     AND.W #$0006                                                         ;A9CA87;
     TAY                                                                  ;A9CA8A;
     LDA.W ShakingOffsets_X,Y                                             ;A9CA8B;
     CLC                                                                  ;A9CA8E;
     ADC.W $0AF6                                                          ;A9CA8F;
-    STA.W $0F7A,X                                                        ;A9CA92;
+    STA.W EnemyData.xPosition,X                                          ;A9CA92;
     LDA.W ShakingOffsets_Y,Y                                             ;A9CA95;
     CLC                                                                  ;A9CA98;
     ADC.W $0AFA                                                          ;A9CA99;
     SEC                                                                  ;A9CA9C;
     SBC.W #$0014                                                         ;A9CA9D;
-    STA.W $0F7E,X                                                        ;A9CAA0;
+    STA.W EnemyData.yPosition,X                                          ;A9CAA0;
     JSL.L HealSamusDueToBabyMetroid                                      ;A9CAA3;
     BCS .return                                                          ;A9CAA7;
     LDA.W $09D4                                                          ;A9CAA9;
     STA.W $09D6                                                          ;A9CAAC;
     LDA.W #Function_BabyMetroidCutscene_IdleUntilRunOutOfHealth          ;A9CAAF;
-    STA.W $0FA8,X                                                        ;A9CAB2;
+    STA.W EnemyData.work0,X                                              ;A9CAB2;
     LDA.W #.return                                                       ;A9CAB5;
     STA.L $7E781E,X                                                      ;A9CAB8;
 
@@ -8615,29 +8615,29 @@ Function_BabyMetroidCutscene_IdleUntilRunOutOfHealth:
     ASL A                                                                ;A9CACD;
     CLC                                                                  ;A9CACE;
     ADC.W $0AF6                                                          ;A9CACF;
-    STA.W $0F7A,X                                                        ;A9CAD2;
+    STA.W EnemyData.xPosition,X                                          ;A9CAD2;
     LDA.W ShakingOffsets_Y,Y                                             ;A9CAD5;
     ASL A                                                                ;A9CAD8;
     CLC                                                                  ;A9CAD9;
     ADC.W $0AFA                                                          ;A9CADA;
     SEC                                                                  ;A9CADD;
     SBC.W #$0014                                                         ;A9CADE;
-    STA.W $0F7E,X                                                        ;A9CAE1;
+    STA.W EnemyData.yPosition,X                                          ;A9CAE1;
 
 .checkHealth:
-    LDA.W $0F8C,X                                                        ;A9CAE4;
+    LDA.W EnemyData.health,X                                             ;A9CAE4;
     BEQ .zeroHealth                                                      ;A9CAE7;
     RTS                                                                  ;A9CAE9;
 
 
 .zeroHealth:
     LDA.W #$0140                                                         ;A9CAEA;
-    STA.W $0F8C,X                                                        ;A9CAED;
+    STA.W EnemyData.health,X                                             ;A9CAED;
     LDA.W #Function_BabyMetroidCutscene_ReleaseSamus                     ;A9CAF0;
-    STA.W $0FA8,X                                                        ;A9CAF3;
+    STA.W EnemyData.work0,X                                              ;A9CAF3;
     LDA.W #$000A                                                         ;A9CAF6;
-    STA.W $0FB0,X                                                        ;A9CAF9;
-    STZ.W $0FAE,X                                                        ;A9CAFC;
+    STA.W EnemyData.work4,X                                              ;A9CAF9;
+    STZ.W EnemyData.work3,X                                              ;A9CAFC;
     LDA.W #HandleBabyMetroidCutscenePalette_LowHealth                    ;A9CAFF;
     STA.L $7E781E,X                                                      ;A9CB02;
     LDA.W #$0001                                                         ;A9CB06;
@@ -8653,7 +8653,7 @@ Function_BabyMetroidCutscene_ReleaseSamus:
     LDA.W #$0001                                                         ;A9CB1A;
     STA.L $7E7856                                                        ;A9CB1D;
     LDA.W #Function_BabyMetroidCutscene_StaredownMotherBrain             ;A9CB21;
-    STA.W $0FA8,X                                                        ;A9CB24;
+    STA.W EnemyData.work0,X                                              ;A9CB24;
     LDA.W #Function_MBBody_Phase2_PrepareForFinalBabyMetroidAttack       ;A9CB27;
     STA.W $0FA8                                                          ;A9CB2A; fallthrough to Function_BabyMetroidCutscene_StaredownMotherBrain
 
@@ -8676,7 +8676,7 @@ Function_BabyMetroidCutscene_StaredownMotherBrain:
 
 .collision:
     LDA.W #Function_BabyMetroidCutscene_FlyOffScreen                     ;A9CB4F;
-    STA.W $0FA8,X                                                        ;A9CB52;
+    STA.W EnemyData.work0,X                                              ;A9CB52;
     RTS                                                                  ;A9CB55;
 
 
@@ -8697,7 +8697,7 @@ Function_BabyMetroidCutscene_FlyOffScreen:
 
 .collision:
     LDA.W #Function_BabyMetroidCutscene_MoveToFinalChargeStartPosition   ;A9CB74;
-    STA.W $0FA8,X                                                        ;A9CB77;
+    STA.W EnemyData.work0,X                                              ;A9CB77;
     RTS                                                                  ;A9CB7A;
 
 
@@ -8718,13 +8718,13 @@ Function_BabyMetroidCutscene_MoveToFinalChargeStartPosition:
 
 .collision:
     LDA.W #$004F                                                         ;A9CB99;
-    STA.W $0F8C,X                                                        ;A9CB9C;
+    STA.W EnemyData.health,X                                             ;A9CB9C;
     LDA.W #$0000                                                         ;A9CB9F;
     STA.L $7E7856                                                        ;A9CBA2;
     LDA.W #Function_MBBody_Phase2_ExecuteFinalBabyMetroidAttack          ;A9CBA6;
     STA.W $0FA8                                                          ;A9CBA9;
     LDA.W #Function_BabyMetroidCutscene_InitiateFinalCharge              ;A9CBAC;
-    STA.W $0FA8,X                                                        ;A9CBAF;
+    STA.W EnemyData.work0,X                                              ;A9CBAF;
     RTS                                                                  ;A9CBB2;
 
 
@@ -8745,7 +8745,7 @@ Function_BabyMetroidCutscene_InitiateFinalCharge:
 
 .collision:
     LDA.W #Function_BabyMetroidCutscene_FinalCharge                      ;A9CBD1;
-    STA.W $0FA8,X                                                        ;A9CBD4;
+    STA.W EnemyData.work0,X                                              ;A9CBD4;
     RTS                                                                  ;A9CBD7;
 
 
@@ -8758,7 +8758,7 @@ Function_BabyMetroidCutscene_FinalCharge:
     STA.B $14                                                            ;A9CBE4;
     LDY.W #$000C                                                         ;A9CBE6;
     JSR.W GradduallyAccelerateTowardsPoint_1A_400                        ;A9CBE9;
-    LDA.W $0F8C,X                                                        ;A9CBEC;
+    LDA.W EnemyData.health,X                                             ;A9CBEC;
     BEQ .zeroHealth                                                      ;A9CBEF;
     RTS                                                                  ;A9CBF1;
 
@@ -8767,61 +8767,61 @@ Function_BabyMetroidCutscene_FinalCharge:
     LDA.W #Function_BabyMetroidCutscene_PrepareForHyperBeam_return       ;A9CBF2;
     STA.L $7E781E,X                                                      ;A9CBF5;
     LDA.W #$10A0                                                         ;A9CBF9;
-    STA.W $0F98,X                                                        ;A9CBFC;
+    STA.W EnemyData.gfxOffset,X                                          ;A9CBFC;
     LDA.W #$0019                                                         ;A9CBFF;
     JSL.L QueueSound_Lib3_Max6                                           ;A9CC02;
     JSL.L FadeOutBackgroundForBabyMetroidDeathSequence                   ;A9CC06;
     LDA.W #InstList_BabyMetroid_TookFatalBlow                            ;A9CC0A;
     JSL.L SetEnemyInstList                                               ;A9CC0D;
-    STZ.W $0FAA,X                                                        ;A9CC11;
-    STZ.W $0FAC,X                                                        ;A9CC14;
+    STZ.W EnemyData.work1,X                                              ;A9CC11;
+    STZ.W EnemyData.work2,X                                              ;A9CC14;
     LDA.W #RTS_A9C18D                                                    ;A9CC17;
     STA.W $0FA8                                                          ;A9CC1A;
     LDA.W #$0000                                                         ;A9CC1D;
     JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;A9CC20;
     LDA.W #Function_BabyMetroidCutscene_TakeFinalBlow                    ;A9CC24;
-    STA.W $0FA8,X                                                        ;A9CC27;
+    STA.W EnemyData.work0,X                                              ;A9CC27;
     LDA.W #$0010                                                         ;A9CC2A;
-    STA.W $0FB2,X                                                        ;A9CC2D;
-    LDA.W $0F7A,X                                                        ;A9CC30;
+    STA.W EnemyData.work5,X                                              ;A9CC2D;
+    LDA.W EnemyData.xPosition,X                                          ;A9CC30;
     STA.L $7E7820,X                                                      ;A9CC33;
-    LDA.W $0F7E,X                                                        ;A9CC37;
+    LDA.W EnemyData.yPosition,X                                          ;A9CC37;
     STA.L $7E7822,X                                                      ;A9CC3A; fallthrough to Function_BabyMetroidCutscene_TakeFinalBlow
 
 Function_BabyMetroidCutscene_TakeFinalBlow:
     JSR.W ShakeBabyMetroidCutscene                                       ;A9CC3E;
-    DEC.W $0FB2,X                                                        ;A9CC41;
+    DEC.W EnemyData.work5,X                                              ;A9CC41;
     BPL Function_BabyMetroidCutscene_PrepareForHyperBeam_return          ;A9CC44;
     LDA.L $7E7820,X                                                      ;A9CC46;
-    STA.W $0F7A,X                                                        ;A9CC4A;
+    STA.W EnemyData.xPosition,X                                          ;A9CC4A;
     LDA.L $7E7822,X                                                      ;A9CC4D;
-    STA.W $0F7E,X                                                        ;A9CC51;
+    STA.W EnemyData.yPosition,X                                          ;A9CC51;
     LDA.W #Function_BabyMetroidCutscene_PlaySamusTheme                   ;A9CC54;
-    STA.W $0FA8,X                                                        ;A9CC57;
+    STA.W EnemyData.work0,X                                              ;A9CC57;
     LDA.W #$0038                                                         ;A9CC5A;
-    STA.W $0FB2,X                                                        ;A9CC5D; fallthrough to Function_BabyMetroidCutscene_PlaySamusTheme
+    STA.W EnemyData.work5,X                                              ;A9CC5D; fallthrough to Function_BabyMetroidCutscene_PlaySamusTheme
 
 Function_BabyMetroidCutscene_PlaySamusTheme:
-    DEC.W $0FB2,X                                                        ;A9CC60;
+    DEC.W EnemyData.work5,X                                              ;A9CC60;
     BPL Function_BabyMetroidCutscene_PrepareForHyperBeam_return          ;A9CC63;
     LDA.W #$FF48                                                         ;A9CC65;
     JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;A9CC68;
     LDA.W #$0005                                                         ;A9CC6C;
     JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;A9CC6F;
     LDA.W #Function_BabyMetroidCutscene_PrepareForHyperBeam              ;A9CC73;
-    STA.W $0FA8,X                                                        ;A9CC76;
+    STA.W EnemyData.work0,X                                              ;A9CC76;
     LDA.W #$000C                                                         ;A9CC79;
-    STA.W $0FB2,X                                                        ;A9CC7C; fallthrough to Function_BabyMetroidCutscene_PrepareForHyperBeam
+    STA.W EnemyData.work5,X                                              ;A9CC7C; fallthrough to Function_BabyMetroidCutscene_PrepareForHyperBeam
 
 Function_BabyMetroidCutscene_PrepareForHyperBeam:
-    DEC.W $0FB2,X                                                        ;A9CC7F;
+    DEC.W EnemyData.work5,X                                              ;A9CC7F;
     BPL Function_BabyMetroidCutscene_PrepareForHyperBeam_return          ;A9CC82;
     LDA.W #$0019                                                         ;A9CC84;
     JSL.L Run_Samus_Command                                              ;A9CC87;
     LDA.W #SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow     ;A9CC8B;
     STA.L $7E786C                                                        ;A9CC8E;
     LDA.W #Function_BabyMetroidCutscene_DeathSequence                    ;A9CC92;
-    STA.W $0FA8,X                                                        ;A9CC95;
+    STA.W EnemyData.work0,X                                              ;A9CC95;
 
 Function_BabyMetroidCutscene_PrepareForHyperBeam_return:
     RTS                                                                  ;A9CC98;
@@ -8837,13 +8837,13 @@ Function_BabyMetroidCutscene_DeathSequence:
 
 
 .fadedToBlack:
-    LDA.W $0F86,X                                                        ;A9CCAA;
+    LDA.W EnemyData.properties,X                                         ;A9CCAA;
     ORA.W #$0100                                                         ;A9CCAD;
-    STA.W $0F86,X                                                        ;A9CCB0;
+    STA.W EnemyData.properties,X                                         ;A9CCB0;
     LDA.W #Function_BabyMetroidCutscene_UnloadTiles                      ;A9CCB3;
-    STA.W $0FA8,X                                                        ;A9CCB6;
+    STA.W EnemyData.work0,X                                              ;A9CCB6;
     LDA.W #$0080                                                         ;A9CCB9;
-    STA.W $0FB2,X                                                        ;A9CCBC;
+    STA.W EnemyData.work5,X                                              ;A9CCBC;
 
 Function_BabyMetroidCutscene_DeathSequence_return:
     RTS                                                                  ;A9CCBF;
@@ -8851,7 +8851,7 @@ Function_BabyMetroidCutscene_DeathSequence_return:
 
 Function_BabyMetroidCutscene_UnloadTiles:
     JSR.W HandleSamusRainbowPaletteAnimation                             ;A9CCC0;
-    DEC.W $0FB2,X                                                        ;A9CCC3;
+    DEC.W EnemyData.work5,X                                              ;A9CCC3;
     BPL Function_BabyMetroidCutscene_DeathSequence_return                ;A9CCC6;
     PHX                                                                  ;A9CCC8;
     LDX.W #MotherBrainFightSpriteTileTransferEntries_attacks             ;A9CCC9;
@@ -8859,15 +8859,15 @@ Function_BabyMetroidCutscene_UnloadTiles:
     PLX                                                                  ;A9CCCF;
     BCC Function_BabyMetroidCutscene_DeathSequence_return                ;A9CCD0;
     LDA.W #Function_BabyMetroidCutscene_LetSamusRainbowSomeMore          ;A9CCD2;
-    STA.W $0FA8,X                                                        ;A9CCD5;
+    STA.W EnemyData.work0,X                                              ;A9CCD5;
     LDA.W #$00B0                                                         ;A9CCD8;
-    STA.W $0FB2,X                                                        ;A9CCDB; fallthrough to Function_BabyMetroidCutscene_LetSamusRainbowSomeMore
+    STA.W EnemyData.work5,X                                              ;A9CCDB; fallthrough to Function_BabyMetroidCutscene_LetSamusRainbowSomeMore
 
 Function_BabyMetroidCutscene_LetSamusRainbowSomeMore:
-    DEC.W $0FB2,X                                                        ;A9CCDE;
+    DEC.W EnemyData.work5,X                                              ;A9CCDE;
     BPL Function_BabyMetroidCutscene_DeathSequence_return                ;A9CCE1;
     LDA.W #Function_BabyMetroidCutscene_FinalCutscene                    ;A9CCE3;
-    STA.W $0FA8,X                                                        ;A9CCE6;
+    STA.W EnemyData.work0,X                                              ;A9CCE6;
     LDA.W #$0000                                                         ;A9CCE9;
     STA.L $7E802E                                                        ;A9CCEC; fallthrough to Function_BabyMetroidCutscene_FinalCutscene
 
@@ -8886,9 +8886,9 @@ Function_BabyMetroidCutscene_FinalCutscene:
     JSL.L Run_Samus_Command                                              ;A9CD0B;
     LDA.W #$0003                                                         ;A9CD0F;
     JSL.L DrainedSamusController                                         ;A9CD12;
-    LDA.W $0F86,X                                                        ;A9CD16;
+    LDA.W EnemyData.properties,X                                         ;A9CD16;
     ORA.W #$0200                                                         ;A9CD19;
-    STA.W $0F86,X                                                        ;A9CD1C;
+    STA.W EnemyData.properties,X                                         ;A9CD1C;
     LDA.W #$0000                                                         ;A9CD1F;
     STA.L $7E7854                                                        ;A9CD22;
     RTS                                                                  ;A9CD26;
@@ -8901,7 +8901,7 @@ HandleSamusRainbowPaletteAnimation:
 
 
 SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow:
-    LDA.W $0F7E,X                                                        ;A9CD30;
+    LDA.W EnemyData.yPosition,X                                          ;A9CD30;
     CLC                                                                  ;A9CD33;
     ADC.W #$0010                                                         ;A9CD34;
     CMP.W $0AFA                                                          ;A9CD37;
@@ -8935,7 +8935,7 @@ SamusRainbowPaletteFunction_GraduallySlowAnimationDown:
 
 
 FadeBabyMetroidCutsceneToBlack:
-    LDA.W $0F7E,X                                                        ;A9CD69;
+    LDA.W EnemyData.yPosition,X                                          ;A9CD69;
     CMP.W #$0080                                                         ;A9CD6C;
     BMI .returnNotFaded                                                  ;A9CD6F;
     PHB                                                                  ;A9CD71;
@@ -9003,11 +9003,11 @@ HandleBabyMetroidCutsceneDeathExplosions:
     TAY                                                                  ;A9CDD7;
     LDA.W .XOffsets,Y                                                    ;A9CDD8;
     CLC                                                                  ;A9CDDB;
-    ADC.W $0F7A,X                                                        ;A9CDDC;
+    ADC.W EnemyData.xPosition,X                                          ;A9CDDC;
     STA.B $12                                                            ;A9CDDF;
     LDA.W .YOffsets,Y                                                    ;A9CDE1;
     CLC                                                                  ;A9CDE4;
-    ADC.W $0F7E,X                                                        ;A9CDE5;
+    ADC.W EnemyData.yPosition,X                                          ;A9CDE5;
     STA.B $14                                                            ;A9CDE8;
     LDA.W #$0003                                                         ;A9CDEA;
     LDY.W #EnemyProjectile_MiscDust                                      ;A9CDED;
@@ -9026,24 +9026,24 @@ HandleBabyMetroidCutsceneDeathExplosions:
     dw $FFF6,$0013,$0013                                                 ;A9CE1E;
 
 HandleEnemyBlinking:
-    LDA.W $0FA4,X                                                        ;A9CE24;
+    LDA.W EnemyData.frameCounter,X                                       ;A9CE24;
     AND.W #$0001                                                         ;A9CE27;
     BEQ .invisible                                                       ;A9CE2A;
-    LDA.W $0F86,X                                                        ;A9CE2C;
+    LDA.W EnemyData.properties,X                                         ;A9CE2C;
     AND.W #$FEFF                                                         ;A9CE2F;
-    STA.W $0F86,X                                                        ;A9CE32;
+    STA.W EnemyData.properties,X                                         ;A9CE32;
     RTS                                                                  ;A9CE35;
 
 
 .invisible:
-    LDA.W $0F86,X                                                        ;A9CE36;
+    LDA.W EnemyData.properties,X                                         ;A9CE36;
     ORA.W #$0100                                                         ;A9CE39;
-    STA.W $0F86,X                                                        ;A9CE3C;
+    STA.W EnemyData.properties,X                                         ;A9CE3C;
     RTS                                                                  ;A9CE3F;
 
 
 AccelerateBabyMetroidCutsceneDownwards:
-    LDA.W $0FAA,X                                                        ;A9CE40;
+    LDA.W EnemyData.work1,X                                              ;A9CE40;
     BPL +                                                                ;A9CE43;
     EOR.W #$FFFF                                                         ;A9CE45;
     INC A                                                                ;A9CE48;
@@ -9053,23 +9053,23 @@ AccelerateBabyMetroidCutsceneDownwards:
     BPL +                                                                ;A9CE4D;
     LDA.W #$0000                                                         ;A9CE4F;
 
-  + BIT.W $0FAA,X                                                        ;A9CE52;
+  + BIT.W EnemyData.work1,X                                              ;A9CE52;
     BPL +                                                                ;A9CE55;
     EOR.W #$FFFF                                                         ;A9CE57;
     INC A                                                                ;A9CE5A;
 
-  + STA.W $0FAA,X                                                        ;A9CE5B;
-    LDA.W $0FAC,X                                                        ;A9CE5E;
+  + STA.W EnemyData.work1,X                                              ;A9CE5B;
+    LDA.W EnemyData.work2,X                                              ;A9CE5E;
     CLC                                                                  ;A9CE61;
     ADC.W #$0002                                                         ;A9CE62;
-    STA.W $0FAC,X                                                        ;A9CE65;
+    STA.W EnemyData.work2,X                                              ;A9CE65;
     RTS                                                                  ;A9CE68;
 
 
 HandleBabyMetroidCutsceneHealthBasedPalette:
     LDA.L $7E7812,X                                                      ;A9CE69;
     BEQ .return                                                          ;A9CE6D;
-    LDA.W $0F8C,X                                                        ;A9CE6F;
+    LDA.W EnemyData.health,X                                             ;A9CE6F;
     CMP.W #$0A00                                                         ;A9CE72;
     BMI .health80                                                        ;A9CE75;
 
@@ -9123,27 +9123,27 @@ HandleBabyMetroidCutsceneHealthBasedPalette:
 
 
 ShakeBabyMetroidCutscene:
-    LDA.W $0FAC,X                                                        ;A9CEDB;
+    LDA.W EnemyData.work2,X                                              ;A9CEDB;
     CLC                                                                  ;A9CEDE;
     ADC.W #$FFFF                                                         ;A9CEDF;
-    STA.W $0FAC,X                                                        ;A9CEE2;
-    LDA.W $0FA4,X                                                        ;A9CEE5;
+    STA.W EnemyData.work2,X                                              ;A9CEE2;
+    LDA.W EnemyData.frameCounter,X                                       ;A9CEE5;
     AND.W #$0006                                                         ;A9CEE8;
     TAY                                                                  ;A9CEEB;
     LDA.W ShakingOffsets_X,Y                                             ;A9CEEC;
     CLC                                                                  ;A9CEEF;
     ADC.L $7E7820,X                                                      ;A9CEF0;
-    STA.W $0F7A,X                                                        ;A9CEF4;
+    STA.W EnemyData.xPosition,X                                          ;A9CEF4;
     LDA.W ShakingOffsets_Y,Y                                             ;A9CEF7;
     CLC                                                                  ;A9CEFA;
     ADC.L $7E7822,X                                                      ;A9CEFB;
-    STA.W $0F7E,X                                                        ;A9CEFF;
+    STA.W EnemyData.yPosition,X                                          ;A9CEFF;
     RTS                                                                  ;A9CF02;
 
 
 EnemyTouch_BabyMetroidCutscene:
     LDX.W $0E54                                                          ;A9CF03;
-    LDA.W $0FA8,X                                                        ;A9CF06;
+    LDA.W EnemyData.work0,X                                              ;A9CF06;
     CMP.W #Function_BabyMetroidCutscene_LatchOntoSamus                   ;A9CF09;
     BNE .return                                                          ;A9CF0C;
     LDA.W $0AF6                                                          ;A9CF0E;
@@ -9155,10 +9155,10 @@ EnemyTouch_BabyMetroidCutscene:
     LDA.W #$0010                                                         ;A9CF1C;
     JSR.W AccelerateBabyMetroidTowardsPoint                              ;A9CF1F;
     BCC .return                                                          ;A9CF22;
-    STZ.W $0FAA,X                                                        ;A9CF24;
-    STZ.W $0FAC,X                                                        ;A9CF27;
+    STZ.W EnemyData.work1,X                                              ;A9CF24;
+    STZ.W EnemyData.work2,X                                              ;A9CF27;
     LDA.W #Function_BabyMetroidCutscene_HealSamusUpToFullEnergy          ;A9CF2A;
-    STA.W $0FA8,X                                                        ;A9CF2D;
+    STA.W EnemyData.work0,X                                              ;A9CF2D;
 
 .return:
     RTL                                                                  ;A9CF30;
@@ -9219,11 +9219,11 @@ UpdateBabyMetroidCutsceneSpeedAndAngle:
     LDA.L $7E7816,X                                                      ;A9CF85;
     JSL.L Math_86C26C                                                    ;A9CF89;
     LDX.W $0E54                                                          ;A9CF8D;
-    STA.W $0FAA,X                                                        ;A9CF90;
+    STA.W EnemyData.work1,X                                              ;A9CF90;
     LDA.L $7E7816,X                                                      ;A9CF93;
     JSL.L Math_86C272                                                    ;A9CF97;
     LDX.W $0E54                                                          ;A9CF9B;
-    STA.W $0FAC,X                                                        ;A9CF9E;
+    STA.W EnemyData.work2,X                                              ;A9CF9E;
     RTS                                                                  ;A9CFA1;
 
 
@@ -10113,7 +10113,7 @@ HitboxDefinition_CorpseTorizo:
 
 InitAI_CorpseSidehopper:
     LDX.W $0E54                                                          ;A9D7B6;
-    LDA.W $0FB4,X                                                        ;A9D7B9;
+    LDA.W EnemyData.initParam0,X                                         ;A9D7B9;
     TAX                                                                  ;A9D7BC;
     JMP.W (.pointers,X)                                                  ;A9D7BD;
 
@@ -10124,16 +10124,16 @@ InitAI_CorpseSidehopper:
 
 CorpseSidehopperInit_Param1_0_InitiallyAlive:
     LDX.W $0E54                                                          ;A9D7C4;
-    LDA.W $0F86,X                                                        ;A9D7C7;
+    LDA.W EnemyData.properties,X                                         ;A9D7C7;
     AND.W #$7FFF                                                         ;A9D7CA;
     ORA.W #$0800                                                         ;A9D7CD;
-    STA.W $0F86,X                                                        ;A9D7D0;
+    STA.W EnemyData.properties,X                                         ;A9D7D0;
     LDA.W $0F86                                                          ;A9D7D3;
     AND.W #$0100                                                         ;A9D7D6;
     BEQ .visible                                                         ;A9D7D9;
-    LDA.W $0F86,X                                                        ;A9D7DB;
+    LDA.W EnemyData.properties,X                                         ;A9D7DB;
     ORA.W #$0200                                                         ;A9D7DE;
-    STA.W $0F86,X                                                        ;A9D7E1;
+    STA.W EnemyData.properties,X                                         ;A9D7E1;
 
 .visible:
     LDA.W #$0000                                                         ;A9D7E4;
@@ -10143,15 +10143,15 @@ CorpseSidehopperInit_Param1_0_InitiallyAlive:
     LDA.W #$0100                                                         ;A9D7F2;
     STA.L $7E7816,X                                                      ;A9D7F5;
     LDA.W #$01E8                                                         ;A9D7F9;
-    STA.W $0F7A,X                                                        ;A9D7FC;
+    STA.W EnemyData.xPosition,X                                          ;A9D7FC;
     LDA.W #$00B8                                                         ;A9D7FF;
-    STA.W $0F7E,X                                                        ;A9D802;
+    STA.W EnemyData.yPosition,X                                          ;A9D802;
     LDA.W #Function_CorpseSidehopper_Alive_WaitingForActivation          ;A9D805;
-    STA.W $0FA8,X                                                        ;A9D808;
+    STA.W EnemyData.work0,X                                              ;A9D808;
     LDA.W #$0200                                                         ;A9D80B;
-    STA.W $0F96,X                                                        ;A9D80E;
+    STA.W EnemyData.palette,X                                            ;A9D80E;
     LDA.W #$0015                                                         ;A9D811;
-    STA.W $0F84,X                                                        ;A9D814;
+    STA.W EnemyData.yHitboxRadius,X                                      ;A9D814;
     LDA.W #InstList_CorpseSidehopper_Alive_Idle                          ;A9D817;
     JSL.L SetEnemyInstList                                               ;A9D81A;
     LDY.W #CorpseRottingDefinitions_Sidehopper_Param1_0                  ;A9D81E;
@@ -10164,9 +10164,9 @@ CorpseSidehopperInit_Param1_2_InitiallyDead:
     LDA.W #$FFFF                                                         ;A9D828;
     STA.L $7E7810,X                                                      ;A9D82B;
     LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision          ;A9D82F;
-    STA.W $0FA8,X                                                        ;A9D832;
+    STA.W EnemyData.work0,X                                              ;A9D832;
     LDA.W #$0E00                                                         ;A9D835;
-    STA.W $0F96,X                                                        ;A9D838;
+    STA.W EnemyData.palette,X                                            ;A9D838;
     LDA.W #InstList_CorpseSidehopper_Alive_Dead                          ;A9D83B;
     JSL.L SetEnemyInstList                                               ;A9D83E;
     LDY.W #CorpseRottingDefinitions_Sidehopper_Param1_2                  ;A9D842;
@@ -10177,10 +10177,10 @@ CorpseSidehopperInit_Param1_2_InitiallyDead:
 InitAI_CorpseZoomer:
     LDX.W $0E54                                                          ;A9D849;
     LDA.W #$0E00                                                         ;A9D84C;
-    STA.W $0F96,X                                                        ;A9D84F;
+    STA.W EnemyData.palette,X                                            ;A9D84F;
     LDA.W #Function_CorpseZoomer_WaitForSamusCollision                   ;A9D852;
-    STA.W $0FA8,X                                                        ;A9D855;
-    LDY.W $0FB4,X                                                        ;A9D858;
+    STA.W EnemyData.work0,X                                              ;A9D855;
+    LDY.W EnemyData.initParam0,X                                         ;A9D858;
     LDA.W .instListPointers,Y                                            ;A9D85B;
     JSL.L SetEnemyInstList                                               ;A9D85E;
     LDA.W .corpseRottingDefinitionPointers,Y                             ;A9D862;
@@ -10202,10 +10202,10 @@ InitAI_CorpseZoomer:
 InitAI_CorpseRipper:
     LDX.W $0E54                                                          ;A9D876;
     LDA.W #$0E00                                                         ;A9D879;
-    STA.W $0F96,X                                                        ;A9D87C;
+    STA.W EnemyData.palette,X                                            ;A9D87C;
     LDA.W #Function_CorpseRipper_WaitForSamusCollision                   ;A9D87F;
-    STA.W $0FA8,X                                                        ;A9D882;
-    LDY.W $0FB4,X                                                        ;A9D885;
+    STA.W EnemyData.work0,X                                              ;A9D882;
+    LDY.W EnemyData.initParam0,X                                         ;A9D885;
     LDA.W .instListPointers,Y                                            ;A9D888;
     JSL.L SetEnemyInstList                                               ;A9D88B;
     LDA.W .corpseRottingDefinitionPointers,Y                             ;A9D88F;
@@ -10225,10 +10225,10 @@ InitAI_CorpseRipper:
 InitAI_CorpseSkree:
     LDX.W $0E54                                                          ;A9D89F;
     LDA.W #$0E00                                                         ;A9D8A2;
-    STA.W $0F96,X                                                        ;A9D8A5;
+    STA.W EnemyData.palette,X                                            ;A9D8A5;
     LDA.W #Function_CorpseSkree_WaitForSamusCollision                    ;A9D8A8;
-    STA.W $0FA8,X                                                        ;A9D8AB;
-    LDY.W $0FB4,X                                                        ;A9D8AE;
+    STA.W EnemyData.work0,X                                              ;A9D8AB;
+    LDY.W EnemyData.initParam0,X                                         ;A9D8AE;
     LDA.W .instListPointers,Y                                            ;A9D8B1;
     JSL.L SetEnemyInstList                                               ;A9D8B4;
     LDA.W .corpseRottingDefinitionPointers,Y                             ;A9D8B8;
@@ -10270,7 +10270,7 @@ Function_CorpseSidehopper_Alive_WaitingForActivation:
 
 .activate:
     LDA.W #Function_CorpseSidehopper_Hopping                             ;A9D8EB;
-    STA.W $0FA8,X                                                        ;A9D8EE; fallthrough to Function_CorpseSidehopper_Hopping
+    STA.W EnemyData.work0,X                                              ;A9D8EE; fallthrough to Function_CorpseSidehopper_Hopping
 
 Function_CorpseSidehopper_Hopping:
     JSR.W CorpseSidehopperMovement                                       ;A9D8F1;
@@ -10282,7 +10282,7 @@ Function_CorpseSidehopper_Hopping:
     LDA.W #InstList_CorpseSidehopper_Alive_Hopping                       ;A9D902;
     JSL.L SetEnemyInstList                                               ;A9D905;
     LDA.W #.return                                                       ;A9D909;
-    STA.W $0FA8,X                                                        ;A9D90C;
+    STA.W EnemyData.work0,X                                              ;A9D90C;
 
 .return:
     RTS                                                                  ;A9D90F;
@@ -10290,25 +10290,25 @@ Function_CorpseSidehopper_Hopping:
 
 Function_CorpseSidehopper_StartIdling:
     LDA.W #Function_CorpseSidehopper_Idling                              ;A9D910;
-    STA.W $0FA8,X                                                        ;A9D913;
+    STA.W EnemyData.work0,X                                              ;A9D913;
     LDA.W #$0040                                                         ;A9D916;
-    STA.W $0FB2,X                                                        ;A9D919;
+    STA.W EnemyData.work5,X                                              ;A9D919;
     RTS                                                                  ;A9D91C;
 
 
 Function_CorpseSidehopper_Idling:
-    DEC.W $0FB2,X                                                        ;A9D91D;
+    DEC.W EnemyData.work5,X                                              ;A9D91D;
     BPL .return                                                          ;A9D920;
     LDA.L $7E7810,X                                                      ;A9D922;
     BEQ .notDone                                                         ;A9D926;
     LDA.W #Function_CorpseSidehopper_BeingDrained                        ;A9D928;
-    STA.W $0FA8,X                                                        ;A9D92B;
+    STA.W EnemyData.work0,X                                              ;A9D92B;
     RTS                                                                  ;A9D92E;
 
 
 .notDone:
     LDA.W #Function_CorpseSidehopper_Hopping                             ;A9D92F;
-    STA.W $0FA8,X                                                        ;A9D932;
+    STA.W EnemyData.work0,X                                              ;A9D932;
     LDA.W #InstList_CorpseSidehopper_Alive_Idle                          ;A9D935;
     JSL.L SetEnemyInstList                                               ;A9D938;
     LDA.L $7E780C,X                                                      ;A9D93C;
@@ -10343,7 +10343,7 @@ CorpseSidehopperMovement:
     ADC.L $7E7816,X                                                      ;A9D976;
     STA.L $7E7816,X                                                      ;A9D97A;
     STA.B $12                                                            ;A9D97E;
-    LDA.W $0F7A,X                                                        ;A9D980;
+    LDA.W EnemyData.xPosition,X                                          ;A9D980;
     CMP.W #$0220                                                         ;A9D983;
     BMI .lessThan220                                                     ;A9D986;
     LDA.B $12                                                            ;A9D988;
@@ -10373,8 +10373,8 @@ CorpseSidehopperMovement:
     BPL +                                                                ;A9D9B3;
     ORA.W #$FF00                                                         ;A9D9B5;
 
-  + ADC.W $0F7E,X                                                        ;A9D9B8;
-    STA.W $0F7E,X                                                        ;A9D9BB;
+  + ADC.W EnemyData.yPosition,X                                          ;A9D9B8;
+    STA.W EnemyData.yPosition,X                                          ;A9D9BB;
     CMP.W #$00B8                                                         ;A9D9BE;
     BMI .lessThanB8                                                      ;A9D9C1;
     SEC                                                                  ;A9D9C3;
@@ -10388,7 +10388,7 @@ CorpseSidehopperMovement:
 
 CorpseSidehopperMovement_Horizontal:
     STA.B $12                                                            ;A9D9C7;
-    LDA.W $0F7A,X                                                        ;A9D9C9;
+    LDA.W EnemyData.xPosition,X                                          ;A9D9C9;
     CMP.W #$0220                                                         ;A9D9CC;
     BMI .lessThan220                                                     ;A9D9CF;
     LDA.B $12                                                            ;A9D9D1;
@@ -10418,8 +10418,8 @@ CorpseSidehopperMovement_Horizontal:
     BPL +                                                                ;A9D9FC;
     ORA.W #$FF00                                                         ;A9D9FE;
 
-  + ADC.W $0F7A,X                                                        ;A9DA01;
-    STA.W $0F7A,X                                                        ;A9DA04;
+  + ADC.W EnemyData.xPosition,X                                          ;A9DA01;
+    STA.W EnemyData.xPosition,X                                          ;A9DA04;
     RTS                                                                  ;A9DA07;
 
 
@@ -10452,12 +10452,12 @@ Function_CorpseSidehopper_BeingDrained:
     LDA.W #InstList_CorpseSidehopper_Alive_Corpse                        ;A9DA46;
     JSL.L SetEnemyInstList                                               ;A9DA49;
     LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision          ;A9DA4D;
-    STA.W $0FA8,X                                                        ;A9DA50;
-    LDA.W $0F86,X                                                        ;A9DA53;
+    STA.W EnemyData.work0,X                                              ;A9DA50;
+    LDA.W EnemyData.properties,X                                         ;A9DA53;
     ORA.W #$8000                                                         ;A9DA56;
-    STA.W $0F86,X                                                        ;A9DA59;
+    STA.W EnemyData.properties,X                                         ;A9DA59;
     LDA.W #$000C                                                         ;A9DA5C;
-    STA.W $0F84,X                                                        ;A9DA5F;
+    STA.W EnemyData.yHitboxRadius,X                                      ;A9DA5F;
 
 .return:
     RTS                                                                  ;A9DA62;
@@ -10497,7 +10497,7 @@ CorpseCommonAI_WaitForSamusCollision:
 
 .collision:
     TYA                                                                  ;A9DA8A;
-    STA.W $0FA8,X                                                        ;A9DA8B;
+    STA.W EnemyData.work0,X                                              ;A9DA8B;
 
 .return:
     RTS                                                                  ;A9DA8E;
@@ -10522,15 +10522,15 @@ Function_CorpseSkree_PreRotDelay:
     LDY.W #Function_CorpseSkree_Rotting                                  ;A9DA9E;
 
 CorpseCommonAI_PreRotDelay:
-    INC.W $0FAA,X                                                        ;A9DAA1;
-    LDA.W $0FAA,X                                                        ;A9DAA4;
+    INC.W EnemyData.work1,X                                              ;A9DAA1;
+    LDA.W EnemyData.work1,X                                              ;A9DAA4;
     CMP.W #$0010                                                         ;A9DAA7;
     BCC .return                                                          ;A9DAAA;
     TYA                                                                  ;A9DAAC;
-    STA.W $0FA8,X                                                        ;A9DAAD;
-    LDA.W $0F86,X                                                        ;A9DAB0;
+    STA.W EnemyData.work0,X                                              ;A9DAAD;
+    LDA.W EnemyData.properties,X                                         ;A9DAB0;
     ORA.W #$0400                                                         ;A9DAB3;
-    STA.W $0F86,X                                                        ;A9DAB6;
+    STA.W EnemyData.properties,X                                         ;A9DAB6;
 
 .return:
     RTS                                                                  ;A9DAB9;
@@ -10541,7 +10541,7 @@ Function_CorpseSidehopper_Rotting:
     LDX.W $0E54                                                          ;A9DABD;
     BCS .process                                                         ;A9DAC0;
     LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision          ;A9DAC2;
-    STA.W $0FA8,X                                                        ;A9DAC5;
+    STA.W EnemyData.work0,X                                              ;A9DAC5;
 
 .process:
     LDA.L $7E8826,X                                                      ;A9DAC8;
@@ -10554,7 +10554,7 @@ Function_CorpseZoomer_Rotting:
     LDX.W $0E54                                                          ;A9DAD3;
     BCS .process                                                         ;A9DAD6;
     LDA.W #RTS_A9DA63                                                    ;A9DAD8;
-    STA.W $0FA8,X                                                        ;A9DADB;
+    STA.W EnemyData.work0,X                                              ;A9DADB;
 
 .process:
     LDA.L $7E8826,X                                                      ;A9DADE;
@@ -10567,7 +10567,7 @@ Function_CorpseRipper_Rotting:
     LDX.W $0E54                                                          ;A9DAE9;
     BCS .process                                                         ;A9DAEC;
     LDA.W #RTS_A9DA63                                                    ;A9DAEE;
-    STA.W $0FA8,X                                                        ;A9DAF1;
+    STA.W EnemyData.work0,X                                              ;A9DAF1;
 
 .process:
     LDA.L $7E8826,X                                                      ;A9DAF4;
@@ -10580,7 +10580,7 @@ Function_CorpseSkree_Rotting:
     LDX.W $0E54                                                          ;A9DAFF;
     BCS .process                                                         ;A9DB02;
     LDA.W #RTS_A9DA63                                                    ;A9DB04;
-    STA.W $0FA8,X                                                        ;A9DB07;
+    STA.W EnemyData.work0,X                                              ;A9DB07;
 
 .process:
     LDA.L $7E8826,X                                                      ;A9DB0A;
@@ -10737,11 +10737,11 @@ CorpseRotEntryFinishedHook_Normal:
     AND.W #$001A                                                         ;A9DC0C;
     LDX.W $0E54                                                          ;A9DC0F;
     CLC                                                                  ;A9DC12;
-    ADC.W $0F7A,X                                                        ;A9DC13;
+    ADC.W EnemyData.xPosition,X                                          ;A9DC13;
     CLC                                                                  ;A9DC16;
     ADC.W #$FFF2                                                         ;A9DC17;
     STA.B $12                                                            ;A9DC1A;
-    LDA.W $0F7E,X                                                        ;A9DC1C;
+    LDA.W EnemyData.yPosition,X                                          ;A9DC1C;
     CLC                                                                  ;A9DC1F;
     ADC.W #$0010                                                         ;A9DC20;
     STA.B $14                                                            ;A9DC23;
@@ -10845,7 +10845,7 @@ ProcessCorpseRottingVRAMTransfers:
 
 PowerBombReaction_CorpseZoomer:
     LDX.W $0E54                                                          ;A9DCED;
-    LDA.W $0F86,X                                                        ;A9DCF0;
+    LDA.W EnemyData.properties,X                                         ;A9DCF0;
     AND.W #$0400                                                         ;A9DCF3;
     BNE CorpseCommonContactReaction_return                               ;A9DCF6;
 
@@ -10856,7 +10856,7 @@ EnemyTouch_EnemyShot_CorpseZoomer:
 
 PowerBombReaction_CorpseRipper:
     LDX.W $0E54                                                          ;A9DCFD;
-    LDA.W $0F86,X                                                        ;A9DD00;
+    LDA.W EnemyData.properties,X                                         ;A9DD00;
     AND.W #$0400                                                         ;A9DD03;
     BNE CorpseCommonContactReaction_return                               ;A9DD06;
 
@@ -10867,7 +10867,7 @@ EnemyTouch_EnemyShot_CorpseRipper:
 
 PowerBombReaction_CorpseSkree:
     LDX.W $0E54                                                          ;A9DD0D;
-    LDA.W $0F86,X                                                        ;A9DD10;
+    LDA.W EnemyData.properties,X                                         ;A9DD10;
     AND.W #$0400                                                         ;A9DD13;
     BNE CorpseCommonContactReaction_return                               ;A9DD16;
 
@@ -10878,7 +10878,7 @@ EnemyTouch_EnemyShot_CorpseSkree:
 
 EnemyShot_CorpseSidehopper:
     LDX.W $0E54                                                          ;A9DD1D;
-    LDA.W $0F86,X                                                        ;A9DD20;
+    LDA.W EnemyData.properties,X                                         ;A9DD20;
     AND.W #$0400                                                         ;A9DD23;
     BNE CorpseCommonContactReaction_return                               ;A9DD26;
     LDA.L $7E7810,X                                                      ;A9DD28;
@@ -10890,10 +10890,10 @@ CorpseSidehopperContactReaction_Rottable:
 
 CorpseCommonContactReaction:
     LDX.W $0E54                                                          ;A9DD34;
-    STA.W $0FA8,X                                                        ;A9DD37;
-    LDA.W $0F86,X                                                        ;A9DD3A;
+    STA.W EnemyData.work0,X                                              ;A9DD37;
+    LDA.W EnemyData.properties,X                                         ;A9DD3A;
     ORA.W #$0C00                                                         ;A9DD3D;
-    STA.W $0F86,X                                                        ;A9DD40;
+    STA.W EnemyData.properties,X                                         ;A9DD40;
 
 CorpseCommonContactReaction_return:
     RTL                                                                  ;A9DD43;
@@ -12572,7 +12572,7 @@ Instruction_SidehopperCorpse_EndHop:
 
 .setFunctionPointerInY:
     TYA                                                                  ;A9ECDD;
-    STA.W $0FA8,X                                                        ;A9ECDE;
+    STA.W EnemyData.work0,X                                              ;A9ECDE;
     PLY                                                                  ;A9ECE1;
     RTL                                                                  ;A9ECE2;
 
@@ -12830,9 +12830,9 @@ Spritemap_CorpseSidehopper_Alive_2:
     dw $2180                                                             ;A9EEBD;
 
 UNUSED_GetYDividedByA_A9EEBF:
-    STY.W $4204                                                          ;A9EEBF;
+    STY.W HW_WRDIV                                                       ;A9EEBF;
     SEP #$20                                                             ;A9EEC2;
-    STA.W $4206                                                          ;A9EEC4;
+    STA.W HW_WRDIVB                                                      ;A9EEC4;
     REP #$20                                                             ;A9EEC7;
     XBA                                                                  ;A9EEC9;
     XBA                                                                  ;A9EECA;
@@ -12843,28 +12843,28 @@ UNUSED_GetYDividedByA_A9EEBF:
 
 
 CheckForEnemyCollisionWithEnemy:
-    LDA.W $0F82,Y                                                        ;A9EED1;
+    LDA.W EnemyData.xHitboxRadius,Y                                      ;A9EED1;
     CLC                                                                  ;A9EED4;
-    ADC.W $0F82,X                                                        ;A9EED5;
+    ADC.W EnemyData.xHitboxRadius,X                                      ;A9EED5;
     INC A                                                                ;A9EED8;
     STA.B $12                                                            ;A9EED9;
-    LDA.W $0F7A,Y                                                        ;A9EEDB;
+    LDA.W EnemyData.xPosition,Y                                          ;A9EEDB;
     SEC                                                                  ;A9EEDE;
-    SBC.W $0F7A,X                                                        ;A9EEDF;
+    SBC.W EnemyData.xPosition,X                                          ;A9EEDF;
     BPL +                                                                ;A9EEE2;
     EOR.W #$FFFF                                                         ;A9EEE4;
     INC A                                                                ;A9EEE7;
 
   + CMP.B $12                                                            ;A9EEE8;
     BCS .return                                                          ;A9EEEA;
-    LDA.W $0F84,Y                                                        ;A9EEEC;
+    LDA.W EnemyData.yHitboxRadius,Y                                      ;A9EEEC;
     CLC                                                                  ;A9EEEF;
-    ADC.W $0F84,X                                                        ;A9EEF0;
+    ADC.W EnemyData.yHitboxRadius,X                                      ;A9EEF0;
     INC A                                                                ;A9EEF3;
     STA.B $12                                                            ;A9EEF4;
-    LDA.W $0F7E,Y                                                        ;A9EEF6;
+    LDA.W EnemyData.yPosition,Y                                          ;A9EEF6;
     SEC                                                                  ;A9EEF9;
-    SBC.W $0F7E,X                                                        ;A9EEFA;
+    SBC.W EnemyData.yPosition,X                                          ;A9EEFA;
     BPL +                                                                ;A9EEFD;
     EOR.W #$FFFF                                                         ;A9EEFF;
     INC A                                                                ;A9EF02;
@@ -12878,12 +12878,12 @@ CheckForEnemyCollisionWithEnemy:
 CheckForEnemyCollisionWithRectangle:
     LDA.B $16                                                            ;A9EF06;
     CLC                                                                  ;A9EF08;
-    ADC.W $0F82,X                                                        ;A9EF09;
+    ADC.W EnemyData.xHitboxRadius,X                                      ;A9EF09;
     INC A                                                                ;A9EF0C;
     STA.B $1A                                                            ;A9EF0D;
     LDA.B $12                                                            ;A9EF0F;
     SEC                                                                  ;A9EF11;
-    SBC.W $0F7A,X                                                        ;A9EF12;
+    SBC.W EnemyData.xPosition,X                                          ;A9EF12;
     BPL +                                                                ;A9EF15;
     EOR.W #$FFFF                                                         ;A9EF17;
     INC A                                                                ;A9EF1A;
@@ -12892,12 +12892,12 @@ CheckForEnemyCollisionWithRectangle:
     BCS .return                                                          ;A9EF1D;
     LDA.B $18                                                            ;A9EF1F;
     CLC                                                                  ;A9EF21;
-    ADC.W $0F84,X                                                        ;A9EF22;
+    ADC.W EnemyData.yHitboxRadius,X                                      ;A9EF22;
     INC A                                                                ;A9EF25;
     STA.B $1A                                                            ;A9EF26;
     LDA.B $14                                                            ;A9EF28;
     SEC                                                                  ;A9EF2A;
-    SBC.W $0F7E,X                                                        ;A9EF2B;
+    SBC.W EnemyData.yPosition,X                                          ;A9EF2B;
     BPL +                                                                ;A9EF2E;
     EOR.W #$FFFF                                                         ;A9EF30;
     INC A                                                                ;A9EF33;
@@ -12923,31 +12923,31 @@ InitAI_BabyMetroid:
     BPL .loop                                                            ;A9EF48;
     PLB                                                                  ;A9EF4A;
     LDX.W $0E54                                                          ;A9EF4B;
-    LDA.W $0F86,X                                                        ;A9EF4E;
+    LDA.W EnemyData.properties,X                                         ;A9EF4E;
     ORA.W #$3000                                                         ;A9EF51;
-    STA.W $0F86,X                                                        ;A9EF54;
+    STA.W EnemyData.properties,X                                         ;A9EF54;
     LDA.W #$0400                                                         ;A9EF57;
-    STA.W $0F96,X                                                        ;A9EF5A;
+    STA.W EnemyData.palette,X                                            ;A9EF5A;
     LDA.W #InstList_BabyMetroid_Normal                                   ;A9EF5D;
-    STA.W $0F92,X                                                        ;A9EF60;
+    STA.W EnemyData.pInstList,X                                          ;A9EF60;
     LDA.W #$0001                                                         ;A9EF63;
-    STA.W $0F94,X                                                        ;A9EF66;
-    STZ.W $0F90,X                                                        ;A9EF69;
+    STA.W EnemyData.instTimer,X                                          ;A9EF66;
+    STZ.W EnemyData.loopCounter,X                                        ;A9EF69;
     LDA.W #Function_BabyMetroid_WaitForCamera                            ;A9EF6C;
     BIT.W $0911                                                          ;A9EF6F;
     BPL .notLeftDoor                                                     ;A9EF72;
-    LDA.W $0F86,X                                                        ;A9EF74;
+    LDA.W EnemyData.properties,X                                         ;A9EF74;
     ORA.W #$0500                                                         ;A9EF77;
-    STA.W $0F86,X                                                        ;A9EF7A;
+    STA.W EnemyData.properties,X                                         ;A9EF7A;
     LDA.W #Function_BabyMetroid_Disappeared                              ;A9EF7D;
 
 .notLeftDoor:
-    STA.W $0FA8,X                                                        ;A9EF80;
-    STZ.W $0FAA,X                                                        ;A9EF83;
-    STZ.W $0FAC,X                                                        ;A9EF86;
+    STA.W EnemyData.work0,X                                              ;A9EF80;
+    STZ.W EnemyData.work1,X                                              ;A9EF83;
+    STZ.W EnemyData.work2,X                                              ;A9EF86;
     LDA.W #$000A                                                         ;A9EF89;
-    STA.W $0FB0,X                                                        ;A9EF8C;
-    STZ.W $0FB6,X                                                        ;A9EF8F;
+    STA.W EnemyData.work4,X                                              ;A9EF8C;
+    STZ.W EnemyData.initParam1,X                                         ;A9EF8F;
     LDY.W #Palette_CorpseSidehopper                                      ;A9EF92;
     LDX.W #$0120                                                         ;A9EF95;
     LDA.W #$0010                                                         ;A9EF98;
@@ -12965,14 +12965,14 @@ InitAI_BabyMetroid:
 
 PowerBombReaction_BabyMetroid:
     LDX.W $0E54                                                          ;A9EFBA;
-    LDA.W $0FB6,X                                                        ;A9EFBD;
+    LDA.W EnemyData.initParam1,X                                         ;A9EFBD;
     BEQ MainAI_BabyMetroid                                               ;A9EFC0;
     JSR.W SignalBabyMetroidToLeave                                       ;A9EFC2; fallthrough to MainAI_BabyMetroid
 
 MainAI_BabyMetroid:
     LDX.W $0E54                                                          ;A9EFC5;
     LDA.W #$7FFF                                                         ;A9EFC8;
-    STA.W $0F8C,X                                                        ;A9EFCB;
+    STA.W EnemyData.health,X                                             ;A9EFCB;
     JSR.W ($0FA8,X)                                                      ;A9EFCE;
     JSL.L MoveEnemyAccordingToVelocity                                   ;A9EFD1;
     LDA.L $7EC400                                                        ;A9EFD5;
@@ -12984,8 +12984,8 @@ MainAI_BabyMetroid:
 
 
 Function_BabyMetroid_Disappeared:
-    STZ.W $0FAA,X                                                        ;A9EFDF;
-    STZ.W $0FAC,X                                                        ;A9EFE2;
+    STZ.W EnemyData.work1,X                                              ;A9EFDF;
+    STZ.W EnemyData.work2,X                                              ;A9EFE2;
     RTS                                                                  ;A9EFE5;
 
 
@@ -13009,7 +13009,7 @@ Function_BabyMetroid_WaitForCamera:
     dw PLMEntries_createBabyMetroidInvisibleWall                         ;A9F018;
     LDX.W $0E54                                                          ;A9F01A;
     LDA.W #Function_BabyMetroid_LetSidehopperLiveForABit                 ;A9F01D;
-    STA.W $0FA8,X                                                        ;A9F020;
+    STA.W EnemyData.work0,X                                              ;A9F020;
     LDA.W #$0001                                                         ;A9F023;
     STA.L $7E7808,X                                                      ;A9F026;
 
@@ -13019,17 +13019,17 @@ Function_BabyMetroid_WaitForCamera:
 
 Function_BabyMetroid_LetSidehopperLiveForABit:
     LDA.W #Function_BabyMetroid_QueueBattleMusic                         ;A9F02B;
-    STA.W $0FA8,X                                                        ;A9F02E;
+    STA.W EnemyData.work0,X                                              ;A9F02E;
     LDA.W #$01D0                                                         ;A9F031;
-    STA.W $0FB2,X                                                        ;A9F034; fallthrough to Function_BabyMetroid_QueueBattleMusic
+    STA.W EnemyData.work5,X                                              ;A9F034; fallthrough to Function_BabyMetroid_QueueBattleMusic
 
 Function_BabyMetroid_QueueBattleMusic:
-    DEC.W $0FB2,X                                                        ;A9F037;
+    DEC.W EnemyData.work5,X                                              ;A9F037;
     BPL Function_BabyMetroid_RushToMiddleOfRoom_return                   ;A9F03A;
     LDA.W #$0005                                                         ;A9F03C;
     JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;A9F03F;
     LDA.W #Function_BabyMetroid_RushToMiddleOfRoom                       ;A9F043;
-    STA.W $0FA8,X                                                        ;A9F046; fallthrough to Function_BabyMetroid_RushToMiddleOfRoom
+    STA.W EnemyData.work0,X                                              ;A9F046; fallthrough to Function_BabyMetroid_RushToMiddleOfRoom
 
 Function_BabyMetroid_RushToMiddleOfRoom:
     LDA.W #$0248                                                         ;A9F049;
@@ -13044,7 +13044,7 @@ Function_BabyMetroid_RushToMiddleOfRoom:
     JSL.L CheckForEnemyCollisionWithRectangle                            ;A9F060;
     BCS Function_BabyMetroid_RushToMiddleOfRoom_return                   ;A9F064;
     LDA.W #Function_BabyMetroid_RushToSidehopper                         ;A9F066;
-    STA.W $0FA8,X                                                        ;A9F069;
+    STA.W EnemyData.work0,X                                              ;A9F069;
 
 Function_BabyMetroid_RushToMiddleOfRoom_return:
     RTS                                                                  ;A9F06C;
@@ -13066,7 +13066,7 @@ Function_BabyMetroid_RushToSidehopper:
     JSL.L CheckForEnemyCollisionWithEnemy                                ;A9F087;
     BCS .return                                                          ;A9F08B;
     LDA.W #Function_BabyMetroid_LatchOntoSidehopper                      ;A9F08D;
-    STA.W $0FA8,X                                                        ;A9F090;
+    STA.W EnemyData.work0,X                                              ;A9F090;
 
 .return:
     RTS                                                                  ;A9F093;
@@ -13086,53 +13086,53 @@ Function_BabyMetroid_LatchOntoSidehopper:
 
 
 .reachedTarget:
-    STZ.W $0FAA,X                                                        ;A9F0AB;
-    STZ.W $0FAC,X                                                        ;A9F0AE;
+    STZ.W EnemyData.work1,X                                              ;A9F0AB;
+    STZ.W EnemyData.work2,X                                              ;A9F0AE;
     LDA.W $0FBA,X                                                        ;A9F0B1;
-    STA.W $0F7A,X                                                        ;A9F0B4;
+    STA.W EnemyData.xPosition,X                                          ;A9F0B4;
     LDA.W $0FBE,X                                                        ;A9F0B7;
     CLC                                                                  ;A9F0BA;
     ADC.W #$FFE0                                                         ;A9F0BB;
-    STA.W $0F7E,X                                                        ;A9F0BE;
+    STA.W EnemyData.yPosition,X                                          ;A9F0BE;
     LDA.W #InstList_BabyMetroid_LatchedOn                                ;A9F0C1;
-    STA.W $0F92,X                                                        ;A9F0C4;
+    STA.W EnemyData.pInstList,X                                          ;A9F0C4;
     LDA.W #$0001                                                         ;A9F0C7;
-    STA.W $0F94,X                                                        ;A9F0CA;
-    STZ.W $0F90,X                                                        ;A9F0CD;
+    STA.W EnemyData.instTimer,X                                          ;A9F0CA;
+    STZ.W EnemyData.loopCounter,X                                        ;A9F0CD;
     LDA.W #Function_BabyMetroid_DrainingSidehopper                       ;A9F0D0;
-    STA.W $0FA8,X                                                        ;A9F0D3;
+    STA.W EnemyData.work0,X                                              ;A9F0D3;
     LDA.W #$0001                                                         ;A9F0D6;
-    STA.W $0FB0,X                                                        ;A9F0D9;
-    STZ.W $0FB6,X                                                        ;A9F0DC;
+    STA.W EnemyData.work4,X                                              ;A9F0D9;
+    STZ.W EnemyData.initParam1,X                                         ;A9F0DC;
     LDA.W #$0140                                                         ;A9F0DF;
-    STA.W $0FB2,X                                                        ;A9F0E2;
+    STA.W EnemyData.work5,X                                              ;A9F0E2;
     RTS                                                                  ;A9F0E5;
 
 
 Function_BabyMetroid_DrainingSidehopper:
-    LDA.W $0FA4,X                                                        ;A9F0E6;
+    LDA.W EnemyData.frameCounter,X                                       ;A9F0E6;
     AND.W #$0006                                                         ;A9F0E9;
     TAY                                                                  ;A9F0EC;
     LDA.W ShakingOffsets_X,Y                                             ;A9F0ED;
     ADC.W $0FBA,X                                                        ;A9F0F0;
-    STA.W $0F7A,X                                                        ;A9F0F3;
+    STA.W EnemyData.xPosition,X                                          ;A9F0F3;
     LDA.W ShakingOffsets_Y,Y                                             ;A9F0F6;
     CLC                                                                  ;A9F0F9;
     ADC.W $0FBE,X                                                        ;A9F0FA;
     CLC                                                                  ;A9F0FD;
     ADC.W #$FFE0                                                         ;A9F0FE;
-    STA.W $0F7E,X                                                        ;A9F101;
-    DEC.W $0FB2,X                                                        ;A9F104;
+    STA.W EnemyData.yPosition,X                                          ;A9F101;
+    DEC.W EnemyData.work5,X                                              ;A9F104;
     BNE .return                                                          ;A9F107;
     LDA.W #Function_BabyMetroid_MakeSidehopperRottable                   ;A9F109;
-    STA.W $0FA8,X                                                        ;A9F10C;
+    STA.W EnemyData.work0,X                                              ;A9F10C;
     LDA.W #InstList_BabyMetroid_FinishDraining                           ;A9F10F;
-    STA.W $0F92,X                                                        ;A9F112;
+    STA.W EnemyData.pInstList,X                                          ;A9F112;
     LDA.W #$0001                                                         ;A9F115;
-    STA.W $0F94,X                                                        ;A9F118;
-    STZ.W $0F90,X                                                        ;A9F11B;
+    STA.W EnemyData.instTimer,X                                          ;A9F118;
+    STZ.W EnemyData.loopCounter,X                                        ;A9F11B;
     LDA.W #$000A                                                         ;A9F11E;
-    STA.W $0FB0,X                                                        ;A9F121;
+    STA.W EnemyData.work4,X                                              ;A9F121;
 
 .return:
     RTS                                                                  ;A9F124;
@@ -13142,23 +13142,23 @@ Function_BabyMetroid_MakeSidehopperRottable:
     LDA.W #$0001                                                         ;A9F125;
     STA.L $7E7850                                                        ;A9F128;
     LDA.W #Function_BabyMetroid_MoveUp_UnlockCamera                      ;A9F12C;
-    STA.W $0FA8,X                                                        ;A9F12F;
+    STA.W EnemyData.work0,X                                              ;A9F12F;
     LDA.W #$00C0                                                         ;A9F132;
-    STA.W $0FB2,X                                                        ;A9F135; fallthrough to Function_BabyMetroid_MoveUp_UnlockCamera
+    STA.W EnemyData.work5,X                                              ;A9F135; fallthrough to Function_BabyMetroid_MoveUp_UnlockCamera
 
 Function_BabyMetroid_MoveUp_UnlockCamera:
-    LDA.W $0F7A,X                                                        ;A9F138;
+    LDA.W EnemyData.xPosition,X                                          ;A9F138;
     STA.B $12                                                            ;A9F13B;
     LDA.W #$0068                                                         ;A9F13D;
     STA.B $14                                                            ;A9F140;
     LDY.W #$0000                                                         ;A9F142;
     JSR.W GradduallyAccelerateTowardsPoint_1A_400                        ;A9F145;
-    DEC.W $0FB2,X                                                        ;A9F148;
+    DEC.W EnemyData.work5,X                                              ;A9F148;
     BPL .return                                                          ;A9F14B;
     LDA.W #Function_BabyMetroid_StareDownSamus                           ;A9F14D;
-    STA.W $0FA8,X                                                        ;A9F150;
+    STA.W EnemyData.work0,X                                              ;A9F150;
     LDA.W #$0001                                                         ;A9F153;
-    STA.W $0FB6,X                                                        ;A9F156;
+    STA.W EnemyData.initParam1,X                                         ;A9F156;
     LDA.L $7ECD20                                                        ;A9F159;
     ORA.W #$0100                                                         ;A9F15D;
     STA.L $7ECD20                                                        ;A9F160;
@@ -13177,7 +13177,7 @@ Function_BabyMetroid_MoveUp_UnlockCamera:
 
 
 Function_BabyMetroid_StareDownSamus:
-    LDA.W $0F7A,X                                                        ;A9F180;
+    LDA.W EnemyData.xPosition,X                                          ;A9F180;
     SEC                                                                  ;A9F183;
     SBC.W $0AF6                                                          ;A9F184;
     BPL +                                                                ;A9F187;
@@ -13234,7 +13234,7 @@ Function_BabyMetroid_StareDownSamus:
 .done:
     LDX.W $0E54                                                          ;A9F1F0;
     LDA.W #Function_BabyMetroid_LatchOntoSamus                           ;A9F1F3;
-    STA.W $0FA8,X                                                        ;A9F1F6;
+    STA.W EnemyData.work0,X                                              ;A9F1F6;
     RTS                                                                  ;A9F1F9;
 
 
@@ -13272,18 +13272,18 @@ Function_BabyMetroid_DrainingSamus:
     STA.W $0B2E                                                          ;A9F240;
 
 .lessThan4:
-    LDA.W $0FA4,X                                                        ;A9F243;
+    LDA.W EnemyData.frameCounter,X                                       ;A9F243;
     AND.W #$0006                                                         ;A9F246;
     TAY                                                                  ;A9F249;
     LDA.W ShakingOffsets_X,Y                                             ;A9F24A;
     ADC.W $0AF6                                                          ;A9F24D;
-    STA.W $0F7A,X                                                        ;A9F250;
+    STA.W EnemyData.xPosition,X                                          ;A9F250;
     LDA.W ShakingOffsets_Y,Y                                             ;A9F253;
     CLC                                                                  ;A9F256;
     ADC.W #$FFEC                                                         ;A9F257;
     CLC                                                                  ;A9F25A;
     ADC.W $0AFA                                                          ;A9F25B;
-    STA.W $0F7E,X                                                        ;A9F25E;
+    STA.W EnemyData.yPosition,X                                          ;A9F25E;
     JSL.L DamageSamusDueToBabyMetroid                                    ;A9F261;
     RTS                                                                  ;A9F265;
 
@@ -13292,13 +13292,13 @@ Function_BabyMetroid_DrainingSamus:
     STZ.W $0A66                                                          ;A9F266;
     STZ.W $0CD2                                                          ;A9F269;
     LDA.W #Function_BabyMetroid_StartHeelRealization                     ;A9F26C;
-    STA.W $0FA8,X                                                        ;A9F26F;
-    STZ.W $0FAA,X                                                        ;A9F272;
-    STZ.W $0FAC,X                                                        ;A9F275;
+    STA.W EnemyData.work0,X                                              ;A9F26F;
+    STZ.W EnemyData.work1,X                                              ;A9F272;
+    STZ.W EnemyData.work2,X                                              ;A9F275;
     LDA.W #InstList_BabyMetroid_FinishDraining                           ;A9F278;
     JSL.L SetEnemyInstList                                               ;A9F27B;
     LDA.W #$000A                                                         ;A9F27F;
-    STA.W $0FB0,X                                                        ;A9F282;
+    STA.W EnemyData.work4,X                                              ;A9F282;
     LDA.W #$0013                                                         ;A9F285;
     JSL.L Run_Samus_Command                                              ;A9F288;
     LDA.W #$0000                                                         ;A9F28C;
@@ -13312,21 +13312,21 @@ Function_BabyMetroid_DrainingSamus:
 
 Function_BabyMetroid_StartHeelRealization:
     LDA.W #Function_BabyMetroid_HeelRealization                          ;A9F2A2;
-    STA.W $0FA8,X                                                        ;A9F2A5;
+    STA.W EnemyData.work0,X                                              ;A9F2A5;
     LDA.W #$0078                                                         ;A9F2A8;
-    STA.W $0FB2,X                                                        ;A9F2AB; fallthrough to Function_BabyMetroid_HeelRealization
+    STA.W EnemyData.work5,X                                              ;A9F2AB; fallthrough to Function_BabyMetroid_HeelRealization
 
 Function_BabyMetroid_HeelRealization:
-    DEC.W $0FB2,X                                                        ;A9F2AE;
+    DEC.W EnemyData.work5,X                                              ;A9F2AE;
     BMI .timerExpired                                                    ;A9F2B1;
     RTS                                                                  ;A9F2B3;
 
 
 .timerExpired:
     LDA.W #Function_BabyMetroid_BackOffGuiltily                          ;A9F2B4;
-    STA.W $0FA8,X                                                        ;A9F2B7;
+    STA.W EnemyData.work0,X                                              ;A9F2B7;
     LDA.W #$00C0                                                         ;A9F2BA;
-    STA.W $0FB2,X                                                        ;A9F2BD; fallthrough to Function_BabyMetroid_BackOffGuiltily
+    STA.W EnemyData.work5,X                                              ;A9F2BD; fallthrough to Function_BabyMetroid_BackOffGuiltily
 
 Function_BabyMetroid_BackOffGuiltily:
     LDA.W $0AF6                                                          ;A9F2C0;
@@ -13336,7 +13336,7 @@ Function_BabyMetroid_BackOffGuiltily:
     LDX.W $0E54                                                          ;A9F2CA;
     LDY.W #$0000                                                         ;A9F2CD;
     JSR.W GradduallyAccelerateTowardsPoint_1A_400                        ;A9F2D0;
-    DEC.W $0FB2,X                                                        ;A9F2D3;
+    DEC.W EnemyData.work5,X                                              ;A9F2D3;
     BMI .timerExpired                                                    ;A9F2D6;
     RTS                                                                  ;A9F2D8;
 
@@ -13345,14 +13345,14 @@ Function_BabyMetroid_BackOffGuiltily:
     LDA.W #$007D                                                         ;A9F2D9;
     JSL.L QueueSound_Lib2_Max6                                           ;A9F2DC;
     LDA.W #Function_BabyMetroid_GoLeftGuiltily                           ;A9F2E0;
-    STA.W $0FA8,X                                                        ;A9F2E3;
+    STA.W EnemyData.work0,X                                              ;A9F2E3;
     LDA.W #$0058                                                         ;A9F2E6;
-    STA.W $0FB2,X                                                        ;A9F2E9;
+    STA.W EnemyData.work5,X                                              ;A9F2E9;
     LDA.W #InstList_BabyMetroid_LatchedOn                                ;A9F2EC;
-    STA.W $0F92,X                                                        ;A9F2EF;
+    STA.W EnemyData.pInstList,X                                          ;A9F2EF;
     LDA.W #$0001                                                         ;A9F2F2;
-    STA.W $0F94,X                                                        ;A9F2F5;
-    STZ.W $0F90,X                                                        ;A9F2F8; fallthrough to Function_BabyMetroid_GoLeftGuiltily
+    STA.W EnemyData.instTimer,X                                          ;A9F2F5;
+    STZ.W EnemyData.loopCounter,X                                        ;A9F2F8; fallthrough to Function_BabyMetroid_GoLeftGuiltily
 
 Function_BabyMetroid_GoLeftGuiltily:
     LDA.W $0AF6                                                          ;A9F2FB;
@@ -13364,16 +13364,16 @@ Function_BabyMetroid_GoLeftGuiltily:
     LDX.W $0E54                                                          ;A9F309;
     LDY.W #$0000                                                         ;A9F30C;
     JSR.W GradduallyAccelerateTowardsPoint_1A_400                        ;A9F30F;
-    DEC.W $0FB2,X                                                        ;A9F312;
+    DEC.W EnemyData.work5,X                                              ;A9F312;
     BMI .timerExpired                                                    ;A9F315;
     RTS                                                                  ;A9F317;
 
 
 .timerExpired:
     LDA.W #Function_BabyMetroid_GoRightGuiltily                          ;A9F318;
-    STA.W $0FA8,X                                                        ;A9F31B;
+    STA.W EnemyData.work0,X                                              ;A9F31B;
     LDA.W #$0058                                                         ;A9F31E;
-    STA.W $0FB2,X                                                        ;A9F321; fallthrough to Function_BabyMetroid_GoRightGuiltily
+    STA.W EnemyData.work5,X                                              ;A9F321; fallthrough to Function_BabyMetroid_GoRightGuiltily
 
 Function_BabyMetroid_GoRightGuiltily:
     LDA.W $0AF6                                                          ;A9F324;
@@ -13385,7 +13385,7 @@ Function_BabyMetroid_GoRightGuiltily:
     LDX.W $0E54                                                          ;A9F332;
     LDY.W #$0000                                                         ;A9F335;
     JSR.W GradduallyAccelerateTowardsPoint_1A_400                        ;A9F338;
-    DEC.W $0FB2,X                                                        ;A9F33B;
+    DEC.W EnemyData.work5,X                                              ;A9F33B;
     BMI .timerExpired                                                    ;A9F33E;
     RTS                                                                  ;A9F340;
 
@@ -13393,14 +13393,14 @@ Function_BabyMetroid_GoRightGuiltily:
 .timerExpired:
     LDX.W $0E54                                                          ;A9F341;
     LDA.W #Function_BabyMetroid_SamusRecovering                          ;A9F344;
-    STA.W $0FA8,X                                                        ;A9F347;
+    STA.W EnemyData.work0,X                                              ;A9F347;
     LDA.W #$0100                                                         ;A9F34A;
-    STA.W $0FB2,X                                                        ;A9F34D;
+    STA.W EnemyData.work5,X                                              ;A9F34D;
     LDA.W #InstList_BabyMetroid_Remorse                                  ;A9F350;
-    STA.W $0F92,X                                                        ;A9F353;
+    STA.W EnemyData.pInstList,X                                          ;A9F353;
     LDA.W #$0001                                                         ;A9F356;
-    STA.W $0F94,X                                                        ;A9F359;
-    STZ.W $0F90,X                                                        ;A9F35C;
+    STA.W EnemyData.instTimer,X                                          ;A9F359;
+    STZ.W EnemyData.loopCounter,X                                        ;A9F35C;
     RTS                                                                  ;A9F35F;
 
 
@@ -13408,7 +13408,7 @@ Function_BabyMetroid_FleeRemorsefully:
     LDA.W #$0052                                                         ;A9F360;
     JSL.L QueueSound_Lib2_Max6                                           ;A9F363;
     LDA.W #Function_BabyMetroid_Fleeing                                  ;A9F367;
-    STA.W $0FA8,X                                                        ;A9F36A; fallthrough to Function_BabyMetroid_Fleeing
+    STA.W EnemyData.work0,X                                              ;A9F36A; fallthrough to Function_BabyMetroid_Fleeing
 
 Function_BabyMetroid_Fleeing:
     LDA.W #$FF80                                                         ;A9F36D;
@@ -13423,20 +13423,20 @@ Function_BabyMetroid_Fleeing:
     STA.B $18                                                            ;A9F385;
     JSL.L CheckForEnemyCollisionWithRectangle                            ;A9F387;
     BCS .return                                                          ;A9F38B;
-    STZ.W $0FAA,X                                                        ;A9F38D;
-    STZ.W $0FAC,X                                                        ;A9F390;
-    LDA.W $0F86,X                                                        ;A9F393;
+    STZ.W EnemyData.work1,X                                              ;A9F38D;
+    STZ.W EnemyData.work2,X                                              ;A9F390;
+    LDA.W EnemyData.properties,X                                         ;A9F393;
     AND.W #$DEFF                                                         ;A9F396;
-    STA.W $0F86,X                                                        ;A9F399;
+    STA.W EnemyData.properties,X                                         ;A9F399;
     LDA.W #Function_BabyMetroid_Disappeared                              ;A9F39C;
-    STA.W $0FA8,X                                                        ;A9F39F;
+    STA.W EnemyData.work0,X                                              ;A9F39F;
 
 .return:
     RTS                                                                  ;A9F3A2;
 
 
 Function_BabyMetroid_SamusRecovering:
-    DEC.W $0FB2,X                                                        ;A9F3A3;
+    DEC.W EnemyData.work5,X                                              ;A9F3A3;
     BMI .timerExpired                                                    ;A9F3A6;
     JMP.W GraduallyAccelerateTowardSamus                                 ;A9F3A8;
 
@@ -13445,9 +13445,9 @@ Function_BabyMetroid_SamusRecovering:
     LDA.W #$0002                                                         ;A9F3AB;
     JSL.L DrainedSamusController                                         ;A9F3AE;
     LDA.W #$0001                                                         ;A9F3B2;
-    STA.W $0FB6,X                                                        ;A9F3B5;
+    STA.W EnemyData.initParam1,X                                         ;A9F3B5;
     LDA.W #Function_BabyMetroid_Remorse                                  ;A9F3B8;
-    STA.W $0FA8,X                                                        ;A9F3BB; fallthrough to Function_BabyMetroid_Remorse
+    STA.W EnemyData.work0,X                                              ;A9F3BB; fallthrough to Function_BabyMetroid_Remorse
 
 Function_BabyMetroid_Remorse:
     JSR.W GraduallyAccelerateTowardSamus                                 ;A9F3BE;
@@ -13457,19 +13457,19 @@ Function_BabyMetroid_Remorse:
 
 MakeBabyMetroidFlee:
     LDA.W #Function_BabyMetroid_FleeRemorsefully                         ;A9F3C4;
-    STA.W $0FA8,X                                                        ;A9F3C7;
+    STA.W EnemyData.work0,X                                              ;A9F3C7;
     RTS                                                                  ;A9F3CA;
 
 
 SignalBabyMetroidToLeave:
-    LDA.W $0FA8,X                                                        ;A9F3CB;
+    LDA.W EnemyData.work0,X                                              ;A9F3CB;
     CMP.W #Function_BabyMetroid_Remorse                                  ;A9F3CE;
     BEQ MakeBabyMetroidFlee                                              ;A9F3D1;
     RTS                                                                  ;A9F3D3;
 
 
 GraduallyAccelerateTowardSamus:
-    LDA.W $0F7A,X                                                        ;A9F3D4;
+    LDA.W EnemyData.xPosition,X                                          ;A9F3D4;
     SEC                                                                  ;A9F3D7;
     SBC.W $0AF6                                                          ;A9F3D8;
     BPL +                                                                ;A9F3DB;
@@ -13560,17 +13560,17 @@ GradduallyAccelerateTowardsPoint:
     AND.W #$00FF                                                         ;A9F46E;
     STA.B $18                                                            ;A9F471;
     JSR.W GraduallyAccelerateHorizontally                                ;A9F473;
-    LDA.W $0F7E,X                                                        ;A9F476;
+    LDA.W EnemyData.yPosition,X                                          ;A9F476;
     SEC                                                                  ;A9F479;
     SBC.B $14                                                            ;A9F47A;
     BEQ .return                                                          ;A9F47C;
     BPL .up                                                              ;A9F47E;
     EOR.W #$FFFF                                                         ;A9F480;
     INC A                                                                ;A9F483;
-    STA.W $4204                                                          ;A9F484;
+    STA.W HW_WRDIV                                                       ;A9F484;
     SEP #$20                                                             ;A9F487;
     LDA.B $18                                                            ;A9F489;
-    STA.W $4206                                                          ;A9F48B;
+    STA.W HW_WRDIVB                                                      ;A9F48B;
     REP #$20                                                             ;A9F48E;
     XBA                                                                  ;A9F490;
     XBA                                                                  ;A9F491;
@@ -13581,7 +13581,7 @@ GradduallyAccelerateTowardsPoint:
     INC A                                                                ;A9F499;
 
   + STA.B $16                                                            ;A9F49A;
-    LDA.W $0FAC,X                                                        ;A9F49C;
+    LDA.W EnemyData.work2,X                                              ;A9F49C;
     BPL .movingDown                                                      ;A9F49F;
     CLC                                                                  ;A9F4A1;
     ADC.W #$0008                                                         ;A9F4A2;
@@ -13594,17 +13594,17 @@ GradduallyAccelerateTowardsPoint:
     LDA.W #$0500                                                         ;A9F4AE;
 
 .storeDownwardVelocity:
-    STA.W $0FAC,X                                                        ;A9F4B1;
+    STA.W EnemyData.work2,X                                              ;A9F4B1;
 
 .return:
     RTS                                                                  ;A9F4B4;
 
 
 .up:
-    STA.W $4204                                                          ;A9F4B5;
+    STA.W HW_WRDIV                                                       ;A9F4B5;
     SEP #$20                                                             ;A9F4B8;
     LDA.B $18                                                            ;A9F4BA;
-    STA.W $4206                                                          ;A9F4BC;
+    STA.W HW_WRDIVB                                                      ;A9F4BC;
     REP #$20                                                             ;A9F4BF;
     XBA                                                                  ;A9F4C1;
     XBA                                                                  ;A9F4C2;
@@ -13615,7 +13615,7 @@ GradduallyAccelerateTowardsPoint:
     INC A                                                                ;A9F4CA;
 
   + STA.B $16                                                            ;A9F4CB;
-    LDA.W $0FAC,X                                                        ;A9F4CD;
+    LDA.W EnemyData.work2,X                                              ;A9F4CD;
     BMI .movingUp                                                        ;A9F4D0;
     SEC                                                                  ;A9F4D2;
     SBC.W #$0008                                                         ;A9F4D3;
@@ -13628,22 +13628,22 @@ GradduallyAccelerateTowardsPoint:
     LDA.W #$FB00                                                         ;A9F4DF;
 
 .storeUpwardVelocity:
-    STA.W $0FAC,X                                                        ;A9F4E2;
+    STA.W EnemyData.work2,X                                              ;A9F4E2;
     RTS                                                                  ;A9F4E5;
 
 
 GraduallyAccelerateHorizontally:
-    LDA.W $0F7A,X                                                        ;A9F4E6;
+    LDA.W EnemyData.xPosition,X                                          ;A9F4E6;
     SEC                                                                  ;A9F4E9;
     SBC.B $12                                                            ;A9F4EA;
     BEQ .return                                                          ;A9F4EC;
     BPL .left                                                            ;A9F4EE;
     EOR.W #$FFFF                                                         ;A9F4F0;
     INC A                                                                ;A9F4F3;
-    STA.W $4204                                                          ;A9F4F4;
+    STA.W HW_WRDIV                                                       ;A9F4F4;
     SEP #$20                                                             ;A9F4F7;
     LDA.B $18                                                            ;A9F4F9;
-    STA.W $4206                                                          ;A9F4FB;
+    STA.W HW_WRDIVB                                                      ;A9F4FB;
     REP #$20                                                             ;A9F4FE;
     XBA                                                                  ;A9F500;
     XBA                                                                  ;A9F501;
@@ -13654,7 +13654,7 @@ GraduallyAccelerateHorizontally:
     INC A                                                                ;A9F509;
 
   + STA.B $16                                                            ;A9F50A;
-    LDA.W $0FAA,X                                                        ;A9F50C;
+    LDA.W EnemyData.work1,X                                              ;A9F50C;
     BPL .movingRight                                                     ;A9F50F;
     PHA                                                                  ;A9F511;
     JSL.L CheckIfEnemyIsVagulyOnScreen                                   ;A9F512;
@@ -13674,17 +13674,17 @@ GraduallyAccelerateHorizontally:
     LDA.W #$0800                                                         ;A9F528;
 
 .storeRightwardVelocity:
-    STA.W $0FAA,X                                                        ;A9F52B;
+    STA.W EnemyData.work1,X                                              ;A9F52B;
 
 .return:
     RTS                                                                  ;A9F52E;
 
 
 .left:
-    STA.W $4204                                                          ;A9F52F;
+    STA.W HW_WRDIV                                                       ;A9F52F;
     SEP #$20                                                             ;A9F532;
     LDA.B $18                                                            ;A9F534;
-    STA.W $4206                                                          ;A9F536;
+    STA.W HW_WRDIVB                                                      ;A9F536;
     REP #$20                                                             ;A9F539;
     XBA                                                                  ;A9F53B;
     XBA                                                                  ;A9F53C;
@@ -13695,7 +13695,7 @@ GraduallyAccelerateHorizontally:
     INC A                                                                ;A9F544;
 
   + STA.B $16                                                            ;A9F545;
-    LDA.W $0FAA,X                                                        ;A9F547;
+    LDA.W EnemyData.work1,X                                              ;A9F547;
     BMI .movingLeft                                                      ;A9F54A;
     PHA                                                                  ;A9F54C;
     JSL.L CheckIfEnemyIsVagulyOnScreen                                   ;A9F54D;
@@ -13715,7 +13715,7 @@ GraduallyAccelerateHorizontally:
     LDA.W #$F800                                                         ;A9F563;
 
 .storeLeftwardVelocity:
-    STA.W $0FAA,X                                                        ;A9F566;
+    STA.W EnemyData.work1,X                                              ;A9F566;
     RTS                                                                  ;A9F569;
 
 
@@ -13723,7 +13723,7 @@ GradualAccelerationDivisorTable:
     db $10,$0F,$0E,$0D,$0C,$0B,$0A,$09,$08,$07,$06,$05,$04,$03,$02,$01   ;A9F56A;
 
 CheckIfEnemyIsVagulyOnScreen:
-    LDA.W $0F7E,X                                                        ;A9F57A;
+    LDA.W EnemyData.yPosition,X                                          ;A9F57A;
     BMI .returnOffScreen                                                 ;A9F57D;
     CLC                                                                  ;A9F57F;
     ADC.W #$0060                                                         ;A9F580;
@@ -13732,7 +13732,7 @@ CheckIfEnemyIsVagulyOnScreen:
     BMI .returnOffScreen                                                 ;A9F587;
     CMP.W #$01A0                                                         ;A9F589;
     BPL .returnOffScreen                                                 ;A9F58C;
-    LDA.W $0F7A,X                                                        ;A9F58E;
+    LDA.W EnemyData.xPosition,X                                          ;A9F58E;
     BMI .returnOffScreen                                                 ;A9F591;
     CLC                                                                  ;A9F593;
     ADC.W #$0010                                                         ;A9F594;
@@ -13761,29 +13761,29 @@ AccelerateBabyMetroidTowardsPoint:
 
 
 AccelerateBabyMetroidTowardsYPosition:
-    LDA.W $0F7E,X                                                        ;A9F5B5;
+    LDA.W EnemyData.yPosition,X                                          ;A9F5B5;
     SEC                                                                  ;A9F5B8;
     SBC.B $14                                                            ;A9F5B9;
     BEQ .reachedTarget                                                   ;A9F5BB;
     BPL .up                                                              ;A9F5BD;
-    LDA.W $0FAC,X                                                        ;A9F5BF;
+    LDA.W EnemyData.work2,X                                              ;A9F5BF;
     CLC                                                                  ;A9F5C2;
     ADC.B $16                                                            ;A9F5C3;
     CMP.W #$0500                                                         ;A9F5C5;
     BMI +                                                                ;A9F5C8;
     LDA.W #$0500                                                         ;A9F5CA;
 
-  + STA.W $0FAC,X                                                        ;A9F5CD;
+  + STA.W EnemyData.work2,X                                              ;A9F5CD;
     AND.W #$FF00                                                         ;A9F5D0;
     XBA                                                                  ;A9F5D3;
     BPL +                                                                ;A9F5D4;
     ORA.W #$FF00                                                         ;A9F5D6;
 
   + CLC                                                                  ;A9F5D9;
-    ADC.W $0F7E,X                                                        ;A9F5DA;
+    ADC.W EnemyData.yPosition,X                                          ;A9F5DA;
     CMP.B $14                                                            ;A9F5DD;
     BMI .returnUpper                                                     ;A9F5DF;
-    STZ.W $0FAC,X                                                        ;A9F5E1;
+    STZ.W EnemyData.work2,X                                              ;A9F5E1;
     LDA.B $14                                                            ;A9F5E4;
 
 .reachedTarget:
@@ -13794,27 +13794,27 @@ AccelerateBabyMetroidTowardsYPosition:
 
 
 .up:
-    LDA.W $0FAC,X                                                        ;A9F5E9;
+    LDA.W EnemyData.work2,X                                              ;A9F5E9;
     SEC                                                                  ;A9F5EC;
     SBC.B $16                                                            ;A9F5ED;
     CMP.W #$FB00                                                         ;A9F5EF;
     BPL +                                                                ;A9F5F2;
     LDA.W #$FB00                                                         ;A9F5F4;
 
-  + STA.W $0FAC,X                                                        ;A9F5F7;
+  + STA.W EnemyData.work2,X                                              ;A9F5F7;
     AND.W #$FF00                                                         ;A9F5FA;
     XBA                                                                  ;A9F5FD;
     BPL +                                                                ;A9F5FE;
     ORA.W #$FF00                                                         ;A9F600;
 
   + CLC                                                                  ;A9F603;
-    ADC.W $0F7E,X                                                        ;A9F604;
+    ADC.W EnemyData.yPosition,X                                          ;A9F604;
     CMP.B $14                                                            ;A9F607;
     BEQ .resetVelocity                                                   ;A9F609;
     BPL .returnLower                                                     ;A9F60B;
 
 .resetVelocity:
-    STZ.W $0FAC,X                                                        ;A9F60D;
+    STZ.W EnemyData.work2,X                                              ;A9F60D;
     LDA.B $14                                                            ;A9F610;
     INC.B $1C                                                            ;A9F612;
 
@@ -13823,30 +13823,30 @@ AccelerateBabyMetroidTowardsYPosition:
 
 
 AccelerateBabyMetroidTowardsXPosition:
-    LDA.W $0F7A,X                                                        ;A9F615;
+    LDA.W EnemyData.xPosition,X                                          ;A9F615;
     SEC                                                                  ;A9F618;
     SBC.B $12                                                            ;A9F619;
     BPL .left                                                            ;A9F61B;
     EOR.W #$FFFF                                                         ;A9F61D;
     INC A                                                                ;A9F620;
-    LDA.W $0FAA,X                                                        ;A9F621;
+    LDA.W EnemyData.work1,X                                              ;A9F621;
     CLC                                                                  ;A9F624;
     ADC.B $16                                                            ;A9F625;
     CMP.W #$0500                                                         ;A9F627;
     BMI +                                                                ;A9F62A;
     LDA.W #$0500                                                         ;A9F62C;
 
-  + STA.W $0FAA,X                                                        ;A9F62F;
+  + STA.W EnemyData.work1,X                                              ;A9F62F;
     AND.W #$FF00                                                         ;A9F632;
     XBA                                                                  ;A9F635;
     BPL +                                                                ;A9F636;
     ORA.W #$FF00                                                         ;A9F638;
 
   + CLC                                                                  ;A9F63B;
-    ADC.W $0F7A,X                                                        ;A9F63C;
+    ADC.W EnemyData.xPosition,X                                          ;A9F63C;
     CMP.B $12                                                            ;A9F63F;
     BMI .returnUpper                                                     ;A9F641;
-    STZ.W $0FAA,X                                                        ;A9F643;
+    STZ.W EnemyData.work1,X                                              ;A9F643;
     LDA.B $12                                                            ;A9F646;
     INC.B $1C                                                            ;A9F648;
 
@@ -13855,27 +13855,27 @@ AccelerateBabyMetroidTowardsXPosition:
 
 
 .left:
-    LDA.W $0FAA,X                                                        ;A9F64B;
+    LDA.W EnemyData.work1,X                                              ;A9F64B;
     SEC                                                                  ;A9F64E;
     SBC.B $16                                                            ;A9F64F;
     CMP.W #$FB00                                                         ;A9F651;
     BPL +                                                                ;A9F654;
     LDA.W #$FB00                                                         ;A9F656;
 
-  + STA.W $0FAA,X                                                        ;A9F659;
+  + STA.W EnemyData.work1,X                                              ;A9F659;
     AND.W #$FF00                                                         ;A9F65C;
     XBA                                                                  ;A9F65F;
     BPL +                                                                ;A9F660;
     ORA.W #$FF00                                                         ;A9F662;
 
   + CLC                                                                  ;A9F665;
-    ADC.W $0F7A,X                                                        ;A9F666;
+    ADC.W EnemyData.xPosition,X                                          ;A9F666;
     CMP.B $12                                                            ;A9F669;
     BEQ .resetVelocity                                                   ;A9F66B;
     BPL .returnLower                                                     ;A9F66D;
 
 .resetVelocity:
-    STZ.W $0FAA,X                                                        ;A9F66F;
+    STZ.W EnemyData.work1,X                                              ;A9F66F;
     LDA.B $12                                                            ;A9F672;
     INC.B $1C                                                            ;A9F674;
 
@@ -13917,12 +13917,12 @@ HandleBabyMetroidPalette:
 
 
 .timerExpired:
-    LDA.W $0FB0,X                                                        ;A9F6AA;
+    LDA.W EnemyData.work4,X                                              ;A9F6AA;
     STA.W $0FAF,X                                                        ;A9F6AD;
-    LDA.W $0FAE,X                                                        ;A9F6B0;
+    LDA.W EnemyData.work3,X                                              ;A9F6B0;
     INC A                                                                ;A9F6B3;
     AND.B #$07                                                           ;A9F6B4;
-    STA.W $0FAE,X                                                        ;A9F6B6;
+    STA.W EnemyData.work3,X                                              ;A9F6B6;
     REP #$20                                                             ;A9F6B9;
     AND.W #$00FF                                                         ;A9F6BB;
     JSR.W HandleBabyMetroidCrySFX                                        ;A9F6BE;
@@ -13968,7 +13968,7 @@ HandleBabyMetroidCrySFX:
     LDA.W #$0000                                                         ;A9F76D;
     STA.L $7E780A,X                                                      ;A9F770;
     LDA.W #$0072                                                         ;A9F774;
-    LDY.W $0FB0,X                                                        ;A9F777;
+    LDY.W EnemyData.work4,X                                              ;A9F777;
     CPY.W #$000A                                                         ;A9F77A;
     BCS .queueSFX                                                        ;A9F77D;
     LDA.W #$0078                                                         ;A9F77F;
@@ -13984,7 +13984,7 @@ HandleBabyMetroidCrySFX:
 
 EnemyTouch_BabyMetroid:
     LDX.W $0E54                                                          ;A9F789;
-    LDA.W $0FB6,X                                                        ;A9F78C;
+    LDA.W EnemyData.initParam1,X                                         ;A9F78C;
     BEQ .return                                                          ;A9F78F;
     JSR.W SignalBabyMetroidToLeave                                       ;A9F791;
     LDA.W $0A1F                                                          ;A9F794;
@@ -13996,13 +13996,13 @@ EnemyTouch_BabyMetroid:
     BPL .repelled                                                        ;A9F7A5;
 
 .notSpinJumping:
-    LDA.W $0FA8,X                                                        ;A9F7A7;
+    LDA.W EnemyData.work0,X                                              ;A9F7A7;
     CMP.W #Function_BabyMetroid_LatchOntoSamus                           ;A9F7AA;
     BEQ .latchedOntoSamus                                                ;A9F7AD;
     CMP.W #Function_BabyMetroid_StareDownSamus                           ;A9F7AF;
     BNE .return                                                          ;A9F7B2;
     LDA.W #Function_BabyMetroid_LatchOntoSamus                           ;A9F7B4;
-    STA.W $0FA8,X                                                        ;A9F7B7;
+    STA.W EnemyData.work0,X                                              ;A9F7B7;
 
 .return:
     RTL                                                                  ;A9F7BA;
@@ -14020,28 +14020,28 @@ EnemyTouch_BabyMetroid:
     BCC .return                                                          ;A9F7CF;
     LDX.W $0E54                                                          ;A9F7D1;
     LDA.W #InstList_BabyMetroid_LatchedOn                                ;A9F7D4;
-    STA.W $0F92,X                                                        ;A9F7D7;
+    STA.W EnemyData.pInstList,X                                          ;A9F7D7;
     LDA.W #$0001                                                         ;A9F7DA;
-    STA.W $0F94,X                                                        ;A9F7DD;
-    STZ.W $0F90,X                                                        ;A9F7E0;
+    STA.W EnemyData.instTimer,X                                          ;A9F7DD;
+    STZ.W EnemyData.loopCounter,X                                        ;A9F7E0;
     LDA.W #$0001                                                         ;A9F7E3;
-    STA.W $0FB0,X                                                        ;A9F7E6;
-    STZ.W $0FB6,X                                                        ;A9F7E9;
-    STZ.W $0FAA,X                                                        ;A9F7EC;
-    STZ.W $0FAC,X                                                        ;A9F7EF;
+    STA.W EnemyData.work4,X                                              ;A9F7E6;
+    STZ.W EnemyData.initParam1,X                                         ;A9F7E9;
+    STZ.W EnemyData.work1,X                                              ;A9F7EC;
+    STZ.W EnemyData.work2,X                                              ;A9F7EF;
     LDA.W #Function_BabyMetroid_StartDrainingSamus                       ;A9F7F2;
-    STA.W $0FA8,X                                                        ;A9F7F5;
+    STA.W EnemyData.work0,X                                              ;A9F7F5;
     RTL                                                                  ;A9F7F8;
 
 
 .repelled:
     LDA.W $0AF6                                                          ;A9F7F9;
     SEC                                                                  ;A9F7FC;
-    SBC.W $0F7A,X                                                        ;A9F7FD;
+    SBC.W EnemyData.xPosition,X                                          ;A9F7FD;
     STA.B $12                                                            ;A9F800;
     LDA.W $0AFA                                                          ;A9F802;
     SEC                                                                  ;A9F805;
-    SBC.W $0F7E,X                                                        ;A9F806;
+    SBC.W EnemyData.yPosition,X                                          ;A9F806;
     STA.B $14                                                            ;A9F809;
     JSL.L CalculateAngleOf_12_14_Offset                                  ;A9F80B;
     SEC                                                                  ;A9F80F;
@@ -14057,29 +14057,29 @@ EnemyTouch_BabyMetroid:
     JSL.L Math_86C26C                                                    ;A9F824;
     LDX.W $0E54                                                          ;A9F828;
     CLC                                                                  ;A9F82B;
-    ADC.W $0FAA,X                                                        ;A9F82C;
-    STA.W $0FAA,X                                                        ;A9F82F;
+    ADC.W EnemyData.work1,X                                              ;A9F82C;
+    STA.W EnemyData.work1,X                                              ;A9F82F;
     PLA                                                                  ;A9F832;
     JSL.L Math_86C272                                                    ;A9F833;
     LDX.W $0E54                                                          ;A9F837;
     CLC                                                                  ;A9F83A;
-    ADC.W $0FAC,X                                                        ;A9F83B;
-    STA.W $0FAC,X                                                        ;A9F83E;
+    ADC.W EnemyData.work2,X                                              ;A9F83B;
+    STA.W EnemyData.work2,X                                              ;A9F83E;
     RTL                                                                  ;A9F841;
 
 
 EnemyShot_BabyMetroid:
     LDX.W $0E54                                                          ;A9F842;
-    LDA.W $0FB6,X                                                        ;A9F845;
+    LDA.W EnemyData.initParam1,X                                         ;A9F845;
     BEQ .return                                                          ;A9F848;
     JSR.W SignalBabyMetroidToLeave                                       ;A9F84A;
     LDA.W $0B64                                                          ;A9F84D;
     SEC                                                                  ;A9F850;
-    SBC.W $0F7A,X                                                        ;A9F851;
+    SBC.W EnemyData.xPosition,X                                          ;A9F851;
     STA.B $12                                                            ;A9F854;
     LDA.W $0B78                                                          ;A9F856;
     SEC                                                                  ;A9F859;
-    SBC.W $0F7E,X                                                        ;A9F85A;
+    SBC.W EnemyData.yPosition,X                                          ;A9F85A;
     STA.B $14                                                            ;A9F85D;
     JSL.L CalculateAngleOf_12_14_Offset                                  ;A9F85F;
     SEC                                                                  ;A9F863;
@@ -14105,14 +14105,14 @@ EnemyShot_BabyMetroid:
     JSL.L Math_86C26C                                                    ;A9F888;
     LDX.W $0E54                                                          ;A9F88C;
     CLC                                                                  ;A9F88F;
-    ADC.W $0FAA,X                                                        ;A9F890;
-    STA.W $0FAA,X                                                        ;A9F893;
+    ADC.W EnemyData.work1,X                                              ;A9F890;
+    STA.W EnemyData.work1,X                                              ;A9F893;
     PLA                                                                  ;A9F896;
     JSL.L Math_86C272                                                    ;A9F897;
     LDX.W $0E54                                                          ;A9F89B;
     CLC                                                                  ;A9F89E;
-    ADC.W $0FAC,X                                                        ;A9F89F;
-    STA.W $0FAC,X                                                        ;A9F8A2;
+    ADC.W EnemyData.work2,X                                              ;A9F89F;
+    STA.W EnemyData.work2,X                                              ;A9F8A2;
 
 .return:
     RTL                                                                  ;A9F8A5;

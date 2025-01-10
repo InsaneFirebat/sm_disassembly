@@ -2208,7 +2208,7 @@ DebugHandler_7_EnemyDebugger_EnemySpawnDataEditor:
     LDA.W #$0048                                                         ;B49302;
     STA.B $12                                                            ;B49305;
     LDX.W $1846                                                          ;B49307;
-    LDA.W $0F78,X                                                        ;B4930A;
+    LDA.W EnemyData.pId,X                                                ;B4930A;
     TAX                                                                  ;B4930D;
     LDA.L $A0003E,X                                                      ;B4930E;
     BNE .nonZeroName                                                     ;B49312;
@@ -2245,9 +2245,9 @@ DebugHandler_7_EnemyDebugger_EnemySpawnDataEditor:
     BIT.W #$0080                                                         ;B49346;
     BEQ .checkL                                                          ;B49349;
     LDX.W $1846                                                          ;B4934B;
-    LDA.W $0F7A,X                                                        ;B4934E;
+    LDA.W EnemyData.xPosition,X                                          ;B4934E;
     STA.L $7E7020,X                                                      ;B49351;
-    LDA.W $0F7E,X                                                        ;B49355;
+    LDA.W EnemyData.yPosition,X                                          ;B49355;
     STA.L $7E7022,X                                                      ;B49358;
 
 .checkL:
@@ -2551,9 +2551,9 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 
   + LDY.W $1846                                                          ;B49607;
-    LDA.W $0F7A,Y                                                        ;B4960A;
+    LDA.W EnemyData.xPosition,Y                                          ;B4960A;
     STA.W $1868                                                          ;B4960D;
-    LDA.W $0F7E,Y                                                        ;B49610;
+    LDA.W EnemyData.yPosition,Y                                          ;B49610;
     STA.W $186A                                                          ;B49613;
     PHB                                                                  ;B49616;
     PEA.W $B4B4                                                          ;B49617;
@@ -2565,9 +2565,9 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     PLB                                                                  ;B49626;
     LDY.W $1846                                                          ;B49627;
     LDA.W $1868                                                          ;B4962A;
-    STA.W $0F7A,Y                                                        ;B4962D;
+    STA.W EnemyData.xPosition,Y                                          ;B4962D;
     LDA.W $186A                                                          ;B49630;
-    STA.W $0F7E,Y                                                        ;B49633;
+    STA.W EnemyData.yPosition,Y                                          ;B49633;
     PHX                                                                  ;B49636;
     PHY                                                                  ;B49637;
     TYX                                                                  ;B49638;
@@ -3072,7 +3072,7 @@ DebugHandler_0_Default:
     dl Tiles_Debug_PaletteViewer                                         ;B49A07;
     dw $1000                                                             ;B49A0A;
     LDA.B #$02                                                           ;B49A0C;
-    STA.W $420B                                                          ;B49A0E;
+    STA.W HW_MDMAEN                                                      ;B49A0E;
     STZ.W $2100                                                          ;B49A11;
     REP #$20                                                             ;B49A14;
     INC.W $185C                                                          ;B49A16;
@@ -3095,7 +3095,7 @@ DebugHandler_5_EnemyDebugger_Initialize:
     dl Tiles_DebuggerFont                                                ;B49A3A;
     dw $0A00                                                             ;B49A3D;
     LDA.B #$02                                                           ;B49A3F;
-    STA.W $420B                                                          ;B49A41;
+    STA.W HW_MDMAEN                                                      ;B49A41;
     STZ.W $2100                                                          ;B49A44;
     REP #$20                                                             ;B49A47;
     LDA.W #$00C0                                                         ;B49A49;
@@ -3150,9 +3150,9 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     LDA.W $0AF6                                                          ;B49AA2;
     CLC                                                                  ;B49AA5;
     ADC.W #$0020                                                         ;B49AA6;
-    STA.W $0F7A,X                                                        ;B49AA9;
+    STA.W EnemyData.xPosition,X                                          ;B49AA9;
     LDA.W $0AFA                                                          ;B49AAC;
-    STA.W $0F7E,X                                                        ;B49AAF;
+    STA.W EnemyData.yPosition,X                                          ;B49AAF;
 
 .checkX:
     LDX.W $1846                                                          ;B49AB2;
@@ -3167,29 +3167,29 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     JSL.L Debug_MoveEnemyWithDpad_QuarterPixelPerFrame                   ;B49AC2;
 
   + LDX.W $1846                                                          ;B49AC6;
-    LDA.W $0F7A,X                                                        ;B49AC9;
+    LDA.W EnemyData.xPosition,X                                          ;B49AC9;
     CMP.W $0911                                                          ;B49ACC;
     BMI +                                                                ;B49ACF;
     LDA.W $0911                                                          ;B49AD1;
     CLC                                                                  ;B49AD4;
     ADC.W #$0100                                                         ;B49AD5;
-    CMP.W $0F7A,X                                                        ;B49AD8;
+    CMP.W EnemyData.xPosition,X                                          ;B49AD8;
     BMI +                                                                ;B49ADB;
-    LDA.W $0F7E,X                                                        ;B49ADD;
+    LDA.W EnemyData.yPosition,X                                          ;B49ADD;
     CMP.W $0915                                                          ;B49AE0;
     BMI +                                                                ;B49AE3;
     LDA.W $0915                                                          ;B49AE5;
     CLC                                                                  ;B49AE8;
     ADC.W #$0100                                                         ;B49AE9;
-    CMP.W $0F7E,X                                                        ;B49AEC;
+    CMP.W EnemyData.yPosition,X                                          ;B49AEC;
     BMI +                                                                ;B49AEF;
     LDX.W $1846                                                          ;B49AF1;
-    LDA.W $0F7A,X                                                        ;B49AF4;
+    LDA.W EnemyData.xPosition,X                                          ;B49AF4;
     SEC                                                                  ;B49AF7;
     SBC.W $0911                                                          ;B49AF8;
     STA.B $14                                                            ;B49AFB;
     STA.W $0E22                                                          ;B49AFD;
-    LDA.W $0F7E,X                                                        ;B49B00;
+    LDA.W EnemyData.yPosition,X                                          ;B49B00;
     SEC                                                                  ;B49B03;
     SBC.W $0915                                                          ;B49B04;
     STA.B $12                                                            ;B49B07;
@@ -3216,7 +3216,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     LDA.W #$0027                                                         ;B49B39;
     JSL.L Add_Debug_Spritemap_to_OAM                                     ;B49B3C;
     LDX.W $1846                                                          ;B49B40;
-    LDA.W $0F7A,X                                                        ;B49B43;
+    LDA.W EnemyData.xPosition,X                                          ;B49B43;
     STA.W $0E24                                                          ;B49B46;
     LDA.W #$00E0                                                         ;B49B49;
     STA.W $0E20                                                          ;B49B4C;
@@ -3224,7 +3224,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     STA.W $0E22                                                          ;B49B52;
     JSR.W Draw4DigitHexValue                                             ;B49B55;
     LDX.W $1846                                                          ;B49B58;
-    LDA.W $0F7E,X                                                        ;B49B5B;
+    LDA.W EnemyData.yPosition,X                                          ;B49B5B;
     STA.W $0E24                                                          ;B49B5E;
     LDA.W #$00E0                                                         ;B49B61;
     STA.W $0E20                                                          ;B49B64;
@@ -3232,7 +3232,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     STA.W $0E22                                                          ;B49B6A;
     JSR.W Draw4DigitHexValue                                             ;B49B6D;
     LDX.W $1846                                                          ;B49B70;
-    LDA.W $0F8C,X                                                        ;B49B73;
+    LDA.W EnemyData.health,X                                             ;B49B73;
     STA.W $0E24                                                          ;B49B76;
     LDA.W #$00E0                                                         ;B49B79;
     STA.W $0E20                                                          ;B49B7C;
@@ -3253,7 +3253,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     LDA.W #$0048                                                         ;B49BA7;
     STA.B $12                                                            ;B49BAA;
     LDX.W $1846                                                          ;B49BAC;
-    LDA.W $0F78,X                                                        ;B49BAF;
+    LDA.W EnemyData.pId,X                                                ;B49BAF;
     TAX                                                                  ;B49BB2;
     LDA.L $A0003E,X                                                      ;B49BB3;
     BNE .debugName                                                       ;B49BB7;
@@ -3293,7 +3293,7 @@ DebugHandler_A_EnemyDebugger_RAMViewer_0:
     LDA.W #$0029                                                         ;B49BF2;
     JSL.L Add_Debug_Spritemap_to_OAM                                     ;B49BF5;
     LDX.W $1846                                                          ;B49BF9;
-    LDA.W $0FA4,X                                                        ;B49BFC;
+    LDA.W EnemyData.frameCounter,X                                       ;B49BFC;
     STA.W $0E24                                                          ;B49BFF;
     LDA.W #$00E0                                                         ;B49C02;
     STA.W $0E20                                                          ;B49C05;
@@ -3301,7 +3301,7 @@ DebugHandler_A_EnemyDebugger_RAMViewer_0:
     STA.W $0E22                                                          ;B49C0B;
     JSR.W Draw4DigitHexValue                                             ;B49C0E;
     LDX.W $1846                                                          ;B49C11;
-    LDA.W $0F8A,X                                                        ;B49C14;
+    LDA.W EnemyData.ai,X                                                 ;B49C14;
     STA.W $0E24                                                          ;B49C17;
     LDA.W #$00E0                                                         ;B49C1A;
     STA.W $0E20                                                          ;B49C1D;
@@ -3309,7 +3309,7 @@ DebugHandler_A_EnemyDebugger_RAMViewer_0:
     STA.W $0E22                                                          ;B49C23;
     JSR.W Draw4DigitHexValue                                             ;B49C26;
     LDX.W $1846                                                          ;B49C29;
-    LDA.W $0F78,X                                                        ;B49C2C;
+    LDA.W EnemyData.pId,X                                                ;B49C2C;
     STA.W $0E24                                                          ;B49C2F;
     LDA.W #$00E0                                                         ;B49C32;
     STA.W $0E20                                                          ;B49C35;
@@ -3317,7 +3317,7 @@ DebugHandler_A_EnemyDebugger_RAMViewer_0:
     STA.W $0E22                                                          ;B49C3B;
     JSR.W Draw4DigitHexValue                                             ;B49C3E;
     LDX.W $1846                                                          ;B49C41;
-    LDA.W $0FA6,X                                                        ;B49C44;
+    LDA.W EnemyData.bank,X                                               ;B49C44;
     STA.W $0E24                                                          ;B49C47;
     LDA.W #$00E0                                                         ;B49C4A;
     STA.W $0E20                                                          ;B49C4D;
@@ -3346,7 +3346,7 @@ DebugHandler_B_EnemyDebugger_RAMViewer_1:
     LDA.W #$002A                                                         ;B49C7A;
     JSL.L Add_Debug_Spritemap_to_OAM                                     ;B49C7D;
     LDX.W $1846                                                          ;B49C81;
-    LDA.W $0F86,X                                                        ;B49C84;
+    LDA.W EnemyData.properties,X                                         ;B49C84;
     STA.W $0E24                                                          ;B49C87;
     LDA.W #$00E0                                                         ;B49C8A;
     STA.W $0E20                                                          ;B49C8D;
@@ -3354,7 +3354,7 @@ DebugHandler_B_EnemyDebugger_RAMViewer_1:
     STA.W $0E22                                                          ;B49C93;
     JSR.W Draw4DigitHexValue                                             ;B49C96;
     LDX.W $1846                                                          ;B49C99;
-    LDA.W $0F88,X                                                        ;B49C9C;
+    LDA.W EnemyData.properties2,X                                        ;B49C9C;
     STA.W $0E24                                                          ;B49C9F;
     LDA.W #$00E0                                                         ;B49CA2;
     STA.W $0E20                                                          ;B49CA5;
@@ -3362,7 +3362,7 @@ DebugHandler_B_EnemyDebugger_RAMViewer_1:
     STA.W $0E22                                                          ;B49CAB;
     JSR.W Draw4DigitHexValue                                             ;B49CAE;
     LDX.W $1846                                                          ;B49CB1;
-    LDA.W $0F96,X                                                        ;B49CB4;
+    LDA.W EnemyData.palette,X                                            ;B49CB4;
     STA.W $0E24                                                          ;B49CB7;
     LDA.W #$00E0                                                         ;B49CBA;
     STA.W $0E20                                                          ;B49CBD;
@@ -3370,7 +3370,7 @@ DebugHandler_B_EnemyDebugger_RAMViewer_1:
     STA.W $0E22                                                          ;B49CC3;
     JSR.W Draw4DigitHexValue                                             ;B49CC6;
     LDX.W $1846                                                          ;B49CC9;
-    LDA.W $0F98,X                                                        ;B49CCC;
+    LDA.W EnemyData.gfxOffset,X                                          ;B49CCC;
     STA.W $0E24                                                          ;B49CCF;
     LDA.W #$00E0                                                         ;B49CD2;
     STA.W $0E20                                                          ;B49CD5;
@@ -3399,7 +3399,7 @@ DebugHandler_C_EnemyDebugger_RAMViewer_2:
     LDA.W #$002B                                                         ;B49D02;
     JSL.L Add_Debug_Spritemap_to_OAM                                     ;B49D05;
     LDX.W $1846                                                          ;B49D09;
-    LDA.W $0F92,X                                                        ;B49D0C;
+    LDA.W EnemyData.pInstList,X                                          ;B49D0C;
     STA.W $0E24                                                          ;B49D0F;
     LDA.W #$00E0                                                         ;B49D12;
     STA.W $0E20                                                          ;B49D15;
@@ -3407,7 +3407,7 @@ DebugHandler_C_EnemyDebugger_RAMViewer_2:
     STA.W $0E22                                                          ;B49D1B;
     JSR.W Draw4DigitHexValue                                             ;B49D1E;
     LDX.W $1846                                                          ;B49D21;
-    LDA.W $0F94,X                                                        ;B49D24;
+    LDA.W EnemyData.instTimer,X                                          ;B49D24;
     STA.W $0E24                                                          ;B49D27;
     LDA.W #$00E0                                                         ;B49D2A;
     STA.W $0E20                                                          ;B49D2D;
@@ -3415,7 +3415,7 @@ DebugHandler_C_EnemyDebugger_RAMViewer_2:
     STA.W $0E22                                                          ;B49D33;
     JSR.W Draw4DigitHexValue                                             ;B49D36;
     LDX.W $1846                                                          ;B49D39;
-    LDA.W $0F90,X                                                        ;B49D3C;
+    LDA.W EnemyData.loopCounter,X                                        ;B49D3C;
     STA.W $0E24                                                          ;B49D3F;
     LDA.W #$00E0                                                         ;B49D42;
     STA.W $0E20                                                          ;B49D45;
@@ -3423,7 +3423,7 @@ DebugHandler_C_EnemyDebugger_RAMViewer_2:
     STA.W $0E22                                                          ;B49D4B;
     JSR.W Draw4DigitHexValue                                             ;B49D4E;
     LDX.W $1846                                                          ;B49D51;
-    LDA.W $0F8E,X                                                        ;B49D54;
+    LDA.W EnemyData.pSpritemap,X                                         ;B49D54;
     STA.W $0E24                                                          ;B49D57;
     LDA.W #$00E0                                                         ;B49D5A;
     STA.W $0E20                                                          ;B49D5D;
@@ -3452,7 +3452,7 @@ DebugHandler_D_EnemyDebugger_RAMViewer_3:
     LDA.W #$002C                                                         ;B49D8A;
     JSL.L Add_Debug_Spritemap_to_OAM                                     ;B49D8D;
     LDX.W $1846                                                          ;B49D91;
-    LDA.W $0F9C,X                                                        ;B49D94;
+    LDA.W EnemyData.flashTimer,X                                         ;B49D94;
     STA.W $0E24                                                          ;B49D97;
     LDA.W #$00E0                                                         ;B49D9A;
     STA.W $0E20                                                          ;B49D9D;
@@ -3460,7 +3460,7 @@ DebugHandler_D_EnemyDebugger_RAMViewer_3:
     STA.W $0E22                                                          ;B49DA3;
     JSR.W Draw4DigitHexValue                                             ;B49DA6;
     LDX.W $1846                                                          ;B49DA9;
-    LDA.W $0F9E,X                                                        ;B49DAC;
+    LDA.W EnemyData.freezeTimer,X                                        ;B49DAC;
     STA.W $0E24                                                          ;B49DAF;
     LDA.W #$00E0                                                         ;B49DB2;
     STA.W $0E20                                                          ;B49DB5;
@@ -3468,7 +3468,7 @@ DebugHandler_D_EnemyDebugger_RAMViewer_3:
     STA.W $0E22                                                          ;B49DBB;
     JSR.W Draw4DigitHexValue                                             ;B49DBE;
     LDX.W $1846                                                          ;B49DC1;
-    LDA.W $0FA0,X                                                        ;B49DC4;
+    LDA.W EnemyData.invincibilityTimer,X                                 ;B49DC4;
     STA.W $0E24                                                          ;B49DC7;
     LDA.W #$00E0                                                         ;B49DCA;
     STA.W $0E20                                                          ;B49DCD;
@@ -3476,7 +3476,7 @@ DebugHandler_D_EnemyDebugger_RAMViewer_3:
     STA.W $0E22                                                          ;B49DD3;
     JSR.W Draw4DigitHexValue                                             ;B49DD6;
     LDX.W $1846                                                          ;B49DD9;
-    LDA.W $0FA2,X                                                        ;B49DDC;
+    LDA.W EnemyData.shakeTimer,X                                         ;B49DDC;
     STA.W $0E24                                                          ;B49DDF;
     LDA.W #$00E0                                                         ;B49DE2;
     STA.W $0E20                                                          ;B49DE5;
@@ -3505,7 +3505,7 @@ DebugHandler_E_EnemyDebugger_RAMViewer_4:
     LDA.W #$002D                                                         ;B49E12;
     JSL.L Add_Debug_Spritemap_to_OAM                                     ;B49E15;
     LDX.W $1846                                                          ;B49E19;
-    LDA.W $0FA8,X                                                        ;B49E1C;
+    LDA.W EnemyData.work0,X                                              ;B49E1C;
     STA.W $0E24                                                          ;B49E1F;
     LDA.W #$00E0                                                         ;B49E22;
     STA.W $0E20                                                          ;B49E25;
@@ -3513,7 +3513,7 @@ DebugHandler_E_EnemyDebugger_RAMViewer_4:
     STA.W $0E22                                                          ;B49E2B;
     JSR.W Draw4DigitHexValue                                             ;B49E2E;
     LDX.W $1846                                                          ;B49E31;
-    LDA.W $0FAA,X                                                        ;B49E34;
+    LDA.W EnemyData.work1,X                                              ;B49E34;
     STA.W $0E24                                                          ;B49E37;
     LDA.W #$00E0                                                         ;B49E3A;
     STA.W $0E20                                                          ;B49E3D;
@@ -3521,7 +3521,7 @@ DebugHandler_E_EnemyDebugger_RAMViewer_4:
     STA.W $0E22                                                          ;B49E43;
     JSR.W Draw4DigitHexValue                                             ;B49E46;
     LDX.W $1846                                                          ;B49E49;
-    LDA.W $0FAC,X                                                        ;B49E4C;
+    LDA.W EnemyData.work2,X                                              ;B49E4C;
     STA.W $0E24                                                          ;B49E4F;
     LDA.W #$00E0                                                         ;B49E52;
     STA.W $0E20                                                          ;B49E55;
@@ -3529,7 +3529,7 @@ DebugHandler_E_EnemyDebugger_RAMViewer_4:
     STA.W $0E22                                                          ;B49E5B;
     JSR.W Draw4DigitHexValue                                             ;B49E5E;
     LDX.W $1846                                                          ;B49E61;
-    LDA.W $0FAE,X                                                        ;B49E64;
+    LDA.W EnemyData.work3,X                                              ;B49E64;
     STA.W $0E24                                                          ;B49E67;
     LDA.W #$00E0                                                         ;B49E6A;
     STA.W $0E20                                                          ;B49E6D;
@@ -3558,7 +3558,7 @@ DebugHandler_F_EnemyDebugger_RAMViewer_5:
     LDA.W #$002E                                                         ;B49E9A;
     JSL.L Add_Debug_Spritemap_to_OAM                                     ;B49E9D;
     LDX.W $1846                                                          ;B49EA1;
-    LDA.W $0FB0,X                                                        ;B49EA4;
+    LDA.W EnemyData.work4,X                                              ;B49EA4;
     STA.W $0E24                                                          ;B49EA7;
     LDA.W #$00E0                                                         ;B49EAA;
     STA.W $0E20                                                          ;B49EAD;
@@ -3566,7 +3566,7 @@ DebugHandler_F_EnemyDebugger_RAMViewer_5:
     STA.W $0E22                                                          ;B49EB3;
     JSR.W Draw4DigitHexValue                                             ;B49EB6;
     LDX.W $1846                                                          ;B49EB9;
-    LDA.W $0FB2,X                                                        ;B49EBC;
+    LDA.W EnemyData.work5,X                                              ;B49EBC;
     STA.W $0E24                                                          ;B49EBF;
     LDA.W #$00E0                                                         ;B49EC2;
     STA.W $0E20                                                          ;B49EC5;
@@ -3574,7 +3574,7 @@ DebugHandler_F_EnemyDebugger_RAMViewer_5:
     STA.W $0E22                                                          ;B49ECB;
     JSR.W Draw4DigitHexValue                                             ;B49ECE;
     LDX.W $1846                                                          ;B49ED1;
-    LDA.W $0FB4,X                                                        ;B49ED4;
+    LDA.W EnemyData.initParam0,X                                         ;B49ED4;
     STA.W $0E24                                                          ;B49ED7;
     LDA.W #$00E0                                                         ;B49EDA;
     STA.W $0E20                                                          ;B49EDD;
@@ -3582,7 +3582,7 @@ DebugHandler_F_EnemyDebugger_RAMViewer_5:
     STA.W $0E22                                                          ;B49EE3;
     JSR.W Draw4DigitHexValue                                             ;B49EE6;
     LDX.W $1846                                                          ;B49EE9;
-    LDA.W $0FB6,X                                                        ;B49EEC;
+    LDA.W EnemyData.initParam1,X                                         ;B49EEC;
     STA.W $0E24                                                          ;B49EEF;
     LDA.W #$00E0                                                         ;B49EF2;
     STA.W $0E20                                                          ;B49EF5;
@@ -3600,27 +3600,27 @@ Debug_MoveEnemyWithDpad_QuarterPixelPerFrame:
     LDA.B $8D                                                            ;B49F0D;
     BIT.W #$0200                                                         ;B49F0F;
     BEQ .notPressingLeft                                                 ;B49F12;
-    DEC.W $0F7A,X                                                        ;B49F14;
+    DEC.W EnemyData.xPosition,X                                          ;B49F14;
     BRA .checkUp                                                         ;B49F17;
 
 
 .notPressingLeft:
     BIT.W #$0100                                                         ;B49F19;
     BEQ .checkUp                                                         ;B49F1C;
-    INC.W $0F7A,X                                                        ;B49F1E;
+    INC.W EnemyData.xPosition,X                                          ;B49F1E;
 
 .checkUp:
     LDA.B $8D                                                            ;B49F21;
     BIT.W #$0800                                                         ;B49F23;
     BEQ .notPressingUp                                                   ;B49F26;
-    DEC.W $0F7E,X                                                        ;B49F28;
+    DEC.W EnemyData.yPosition,X                                          ;B49F28;
     BRA .return                                                          ;B49F2B;
 
 
 .notPressingUp:
     BIT.W #$0400                                                         ;B49F2D;
     BEQ .return                                                          ;B49F30;
-    INC.W $0F7E,X                                                        ;B49F32;
+    INC.W EnemyData.yPosition,X                                          ;B49F32;
 
 .return:
     RTL                                                                  ;B49F35;
@@ -3630,40 +3630,40 @@ Debug_MoveEnemyWithDpad_4PixelsPerFrame:
     LDA.B $8D                                                            ;B49F36;
     BIT.W #$0200                                                         ;B49F38;
     BEQ .notPressingLeft                                                 ;B49F3B;
-    LDA.W $0F7A,X                                                        ;B49F3D;
+    LDA.W EnemyData.xPosition,X                                          ;B49F3D;
     SEC                                                                  ;B49F40;
     SBC.W #$0004                                                         ;B49F41;
-    STA.W $0F7A,X                                                        ;B49F44;
+    STA.W EnemyData.xPosition,X                                          ;B49F44;
     BRA .checkUp                                                         ;B49F47;
 
 
 .notPressingLeft:
     BIT.W #$0100                                                         ;B49F49;
     BEQ .checkUp                                                         ;B49F4C;
-    LDA.W $0F7A,X                                                        ;B49F4E;
+    LDA.W EnemyData.xPosition,X                                          ;B49F4E;
     CLC                                                                  ;B49F51;
     ADC.W #$0004                                                         ;B49F52;
-    STA.W $0F7A,X                                                        ;B49F55;
+    STA.W EnemyData.xPosition,X                                          ;B49F55;
 
 .checkUp:
     LDA.B $8D                                                            ;B49F58;
     BIT.W #$0800                                                         ;B49F5A;
     BEQ .notPressingUp                                                   ;B49F5D;
-    LDA.W $0F7E,X                                                        ;B49F5F;
+    LDA.W EnemyData.yPosition,X                                          ;B49F5F;
     SEC                                                                  ;B49F62;
     SBC.W #$0004                                                         ;B49F63;
-    STA.W $0F7E,X                                                        ;B49F66;
+    STA.W EnemyData.yPosition,X                                          ;B49F66;
     BRA .return                                                          ;B49F69;
 
 
 .notPressingUp:
     BIT.W #$0400                                                         ;B49F6B;
     BEQ .return                                                          ;B49F6E;
-    INC.W $0F7E,X                                                        ;B49F70;
-    LDA.W $0F7E,X                                                        ;B49F73;
+    INC.W EnemyData.yPosition,X                                          ;B49F70;
+    LDA.W EnemyData.yPosition,X                                          ;B49F73;
     CLC                                                                  ;B49F76;
     ADC.W #$0004                                                         ;B49F77;
-    STA.W $0F7E,X                                                        ;B49F7A;
+    STA.W EnemyData.yPosition,X                                          ;B49F7A;
 
 .return:
     RTL                                                                  ;B49F7D;

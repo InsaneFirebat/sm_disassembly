@@ -142,10 +142,10 @@ UNUSED_Play_Resumed_SpinJumpSound_848278:
 Calculate_PLM_Block_Coordinates:
     LDA.W $1C87,X                                                        ;848290;
     LSR A                                                                ;848293;
-    STA.W $4204                                                          ;848294;
+    STA.W HW_WRDIV                                                       ;848294;
     SEP #$20                                                             ;848297;
     LDA.W $07A5                                                          ;848299;
-    STA.W $4206                                                          ;84829C;
+    STA.W HW_WRDIVB                                                      ;84829C;
     REP #$20                                                             ;84829F;
     NOP                                                                  ;8482A1;
     NOP                                                                  ;8482A2;
@@ -575,7 +575,7 @@ UNUSED_Spawn_Enemy_PLM_84853E:
 
 
 .found:
-    LDA.W $0F7E,Y                                                        ;848556;
+    LDA.W EnemyData.yPosition,Y                                          ;848556;
     LSR A                                                                ;848559;
     LSR A                                                                ;84855A;
     LSR A                                                                ;84855B;
@@ -585,7 +585,7 @@ UNUSED_Spawn_Enemy_PLM_84853E:
     LDA.W $07A5                                                          ;848562;
     STA.W HW_WRMPYB                                                      ;848565;
     REP #$20                                                             ;848568;
-    LDA.W $0F7A,Y                                                        ;84856A;
+    LDA.W EnemyData.xPosition,Y                                          ;84856A;
     LSR A                                                                ;84856D;
     LSR A                                                                ;84856E;
     LSR A                                                                ;84856F;
