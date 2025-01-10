@@ -9801,13 +9801,13 @@ UNUSED_Instruction_Shaktool_Raise1PixelTowardsProj_AAD93F:
 
 
 Instruction_Shaktool_Lower1Pixel:
-    LDA.W $0FA9,X                                                        ;AAD94A;
+    LDA.W EnemyData.work0+1,X                                            ;AAD94A;
     EOR.W #$0080                                                         ;AAD94D;
     JMP.W MoveShaktoolPiece1Pixel                                        ;AAD950;
 
 
 Instruction_Shaktool_Raise1Pixel:
-    LDA.W $0FA9,X                                                        ;AAD953;
+    LDA.W EnemyData.work0+1,X                                            ;AAD953;
 
 MoveShaktoolPiece1Pixel:
     PHX                                                                  ;AAD956;
@@ -10208,7 +10208,7 @@ SetSHaktoolPieceNeighborAngleDeltaDueToBlockCollision:
 
 
 PositionShaktoolPieceRelativeToPreviousPiece:
-    LDA.W $0FAB,X                                                        ;AADC2A;
+    LDA.W EnemyData.work1+1,X                                            ;AADC2A;
     AND.W #$00FF                                                         ;AADC2D;
     ASL A                                                                ;AADC30;
     TAY                                                                  ;AADC31;

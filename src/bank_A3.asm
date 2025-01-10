@@ -519,7 +519,7 @@ MainAI_Waver:
     STA.B $14                                                            ;A38757;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A38759;
     BCC .noWallCollision                                                 ;A3875D;
-    LDA.W $0FA9,X                                                        ;A3875F;
+    LDA.W EnemyData.work0+1,X                                            ;A3875F;
     STA.B $12                                                            ;A38762;
     EOR.W #$FFFF                                                         ;A38764;
     INC A                                                                ;A38767;
@@ -1253,7 +1253,7 @@ SetFirefleaCenter:
 
 
 SetInitialFirefleaAngle:
-    LDA.W $0FB5,X                                                        ;A38D6A;
+    LDA.W EnemyData.initParam0+1,X                                       ;A38D6A;
     AND.W #$00FF                                                         ;A38D6D;
     XBA                                                                  ;A38D70;
     STA.W EnemyData.work3,X                                              ;A38D71;
@@ -1285,7 +1285,7 @@ SetFirefleaSpeed:
 
 
 SetFirefleaRadius:
-    LDA.W $0FB7,X                                                        ;A38D9C;
+    LDA.W EnemyData.initParam1+1,X                                       ;A38D9C;
     AND.W #$00FF                                                         ;A38D9F;
     ASL A                                                                ;A38DA2;
     TAY                                                                  ;A38DA3;
@@ -1350,7 +1350,7 @@ MainAI_Fireflea:
     STA.W EnemyData.yPosition,X                                          ;A38E26;
     LDA.W EnemyData.work3,X                                              ;A38E29;
     CLC                                                                  ;A38E2C;
-    ADC.W $0FA9,X                                                        ;A38E2D;
+    ADC.W EnemyData.work0+1,X                                            ;A38E2D;
     STA.W EnemyData.work3,X                                              ;A38E30;
     RTL                                                                  ;A38E33;
 
@@ -1703,7 +1703,7 @@ InitAI_Skultera:
     STA.W EnemyData.pInstList,X                                          ;A390BB;
     LDA.W #Function_Skultera_SwimmingLeft                                ;A390BE;
     STA.W EnemyData.work0,X                                              ;A390C1;
-    LDA.W $0FB5,X                                                        ;A390C4;
+    LDA.W EnemyData.initParam0+1,X                                       ;A390C4;
     AND.W #$00FF                                                         ;A390C7;
     BNE .keepLeft                                                        ;A390CA;
     LDA.W #InstList_Skultera_SwimmingRight_0                             ;A390CC;
@@ -1729,7 +1729,7 @@ InitAI_Skultera:
     LDA.W EnemyData.initParam1,X                                         ;A390FA;
     AND.W #$00FF                                                         ;A390FD;
     STA.L $7E7800,X                                                      ;A39100;
-    LDA.W $0FB7,X                                                        ;A39104;
+    LDA.W EnemyData.initParam1+1,X                                       ;A39104;
     AND.W #$00FF                                                         ;A39107;
     STA.L $7E7804,X                                                      ;A3910A;
     LDA.W #$0000                                                         ;A3910E;
@@ -3321,7 +3321,7 @@ InitAI_Tripper_Kamer2_Common:
     INC A                                                                ;A39D04;
     STA.W EnemyData.work0,X                                              ;A39D05;
     STZ.W EnemyData.work5,X                                              ;A39D08;
-    LDA.W $0FB7,X                                                        ;A39D0B;
+    LDA.W EnemyData.initParam1+1,X                                       ;A39D0B;
     AND.W #$00FF                                                         ;A39D0E;
     STA.L $7E780A,X                                                      ;A39D11;
     RTL                                                                  ;A39D15;
@@ -3922,7 +3922,7 @@ CalculateMovingForwardSpeeds:
     LDA.W EnemyData.initParam0,X                                         ;A3A183;
     AND.W #$00FF                                                         ;A3A186;
     STA.B $14                                                            ;A3A189;
-    LDA.W $0FB5,X                                                        ;A3A18B;
+    LDA.W EnemyData.initParam0+1,X                                       ;A3A18B;
     AND.W #$00FF                                                         ;A3A18E;
     STA.B $12                                                            ;A3A191;
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name              ;A3A193; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
@@ -3941,7 +3941,7 @@ UNUSED_CalculateMovingForwardVelocities_A3A1B0:
     LDA.W EnemyData.initParam0,X                                         ;A3A1B0;
     AND.W #$00FF                                                         ;A3A1B3;
     STA.W $0E32                                                          ;A3A1B6;
-    LDA.W $0FB5,X                                                        ;A3A1B9;
+    LDA.W EnemyData.initParam0+1,X                                       ;A3A1B9;
     AND.W #$00FF                                                         ;A3A1BC;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A3A1BF;
     LDA.W $0E36                                                          ;A3A1C3;
@@ -3951,7 +3951,7 @@ UNUSED_CalculateMovingForwardVelocities_A3A1B0:
     LDA.W EnemyData.initParam0,X                                         ;A3A1D1;
     AND.W #$00FF                                                         ;A3A1D4;
     STA.W $0E32                                                          ;A3A1D7;
-    LDA.W $0FB5,X                                                        ;A3A1DA;
+    LDA.W EnemyData.initParam0+1,X                                       ;A3A1DA;
     AND.W #$00FF                                                         ;A3A1DD;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A3A1E0;
     LDA.W $0E36                                                          ;A3A1E4;
@@ -3965,7 +3965,7 @@ CalculateMovingLeftVelocities:
     LDA.W EnemyData.initParam0,X                                         ;A3A1F3;
     AND.W #$00FF                                                         ;A3A1F6;
     STA.W $0E32                                                          ;A3A1F9;
-    LDA.W $0FB5,X                                                        ;A3A1FC;
+    LDA.W EnemyData.initParam0+1,X                                       ;A3A1FC;
     SEC                                                                  ;A3A1FF;
     SBC.W #$0020                                                         ;A3A200;
     AND.W #$00FF                                                         ;A3A203;
@@ -3977,7 +3977,7 @@ CalculateMovingLeftVelocities:
     LDA.W EnemyData.initParam0,X                                         ;A3A218;
     AND.W #$00FF                                                         ;A3A21B;
     STA.W $0E32                                                          ;A3A21E;
-    LDA.W $0FB5,X                                                        ;A3A221;
+    LDA.W EnemyData.initParam0+1,X                                       ;A3A221;
     SEC                                                                  ;A3A224;
     SBC.W #$0020                                                         ;A3A225;
     AND.W #$00FF                                                         ;A3A228;
@@ -3993,7 +3993,7 @@ CalculateMovingRightVelocities:
     LDA.W EnemyData.initParam0,X                                         ;A3A23E;
     AND.W #$00FF                                                         ;A3A241;
     STA.W $0E32                                                          ;A3A244;
-    LDA.W $0FB5,X                                                        ;A3A247;
+    LDA.W EnemyData.initParam0+1,X                                       ;A3A247;
     CLC                                                                  ;A3A24A;
     ADC.W #$0020                                                         ;A3A24B;
     AND.W #$00FF                                                         ;A3A24E;
@@ -4005,7 +4005,7 @@ CalculateMovingRightVelocities:
     LDA.W EnemyData.initParam0,X                                         ;A3A263;
     AND.W #$00FF                                                         ;A3A266;
     STA.W $0E32                                                          ;A3A269;
-    LDA.W $0FB5,X                                                        ;A3A26C;
+    LDA.W EnemyData.initParam0+1,X                                       ;A3A26C;
     CLC                                                                  ;A3A26F;
     ADC.W #$0020                                                         ;A3A270;
     AND.W #$00FF                                                         ;A3A273;
@@ -4018,7 +4018,7 @@ CalculateMovingRightVelocities:
 
 
 DetermineFacingForwardInstListIndex:
-    LDA.W $0FB5,X                                                        ;A3A289;
+    LDA.W EnemyData.initParam0+1,X                                       ;A3A289;
     SEC                                                                  ;A3A28C;
     SBC.W #$0030                                                         ;A3A28D;
     AND.W #$00FF                                                         ;A3A290;
@@ -4033,7 +4033,7 @@ DetermineFacingForwardInstListIndex:
 
 
 DetermineFacingLeftInstListIndex:
-    LDA.W $0FB5,X                                                        ;A3A29E;
+    LDA.W EnemyData.initParam0+1,X                                       ;A3A29E;
     SEC                                                                  ;A3A2A1;
     SBC.W #$0030                                                         ;A3A2A2;
     SEC                                                                  ;A3A2A5;
@@ -4050,7 +4050,7 @@ DetermineFacingLeftInstListIndex:
 
 
 DetermineFacingRightInstListIndex:
-    LDA.W $0FB5,X                                                        ;A3A2B7;
+    LDA.W EnemyData.initParam0+1,X                                       ;A3A2B7;
     SEC                                                                  ;A3A2BA;
     SBC.W #$0030                                                         ;A3A2BB;
     CLC                                                                  ;A3A2BE;
@@ -4082,7 +4082,7 @@ Function_Sbug_WaitForSamusToGetNear:
     AND.W #$00FF                                                         ;A3A2E9;
     JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;A3A2EC;
     BEQ .return                                                          ;A3A2F0;
-    LDA.W $0FB7,X                                                        ;A3A2F2;
+    LDA.W EnemyData.initParam1+1,X                                       ;A3A2F2;
     AND.W #$00FF                                                         ;A3A2F5;
     ASL A                                                                ;A3A2F8;
     TAY                                                                  ;A3A2F9;
@@ -4422,7 +4422,7 @@ MoveSbugForward:
     STA.W $0E28                                                          ;A3A58A;
     LDA.L $7E7804,X                                                      ;A3A58D;
     STA.W $0E2A                                                          ;A3A591;
-    LDA.W $0FB5,X                                                        ;A3A594;
+    LDA.W EnemyData.initParam0+1,X                                       ;A3A594;
     AND.W #$00FF                                                         ;A3A597;
     STA.W $0E20                                                          ;A3A59A;
     JSL.L MoveEnemyAccordingToAngleAndXYSpeeds                           ;A3A59D;
@@ -7281,7 +7281,7 @@ InitAI_Bang:
     TAY                                                                  ;A3BAF0;
     LDA.W BangMaxSpeeds,Y                                                ;A3BAF1;
     STA.L $7E7816,X                                                      ;A3BAF4;
-    LDA.W $0FB7,X                                                        ;A3BAF8;
+    LDA.W EnemyData.initParam1+1,X                                       ;A3BAF8;
     AND.W #$00FF                                                         ;A3BAFB;
     ASL A                                                                ;A3BAFE;
     ASL A                                                                ;A3BAFF;
@@ -13972,7 +13972,7 @@ EnemyTouch_Metroid:
     ASL A                                                                ;A3EE23;
     ASL A                                                                ;A3EE24;
     ASL A                                                                ;A3EE25;
-    STA.W $0FA9,X                                                        ;A3EE26;
+    STA.W EnemyData.work0+1,X                                            ;A3EE26;
     LDY.W #$0000                                                         ;A3EE29;
     LDA.W EnemyData.yPosition,X                                          ;A3EE2C;
     SEC                                                                  ;A3EE2F;
@@ -13990,7 +13990,7 @@ EnemyTouch_Metroid:
     ASL A                                                                ;A3EE41;
     ASL A                                                                ;A3EE42;
     ASL A                                                                ;A3EE43;
-    STA.W $0FAD,X                                                        ;A3EE44;
+    STA.W EnemyData.work2+1,X                                            ;A3EE44;
     STZ.W EnemyData.work5,X                                              ;A3EE47;
     LDA.W #InstList_Metroid_ChasingSamus                                 ;A3EE4A;
     STA.W EnemyData.pInstList,X                                          ;A3EE4D;
@@ -14182,7 +14182,7 @@ EnemyShot_Metroid:
     ASL A                                                                ;A3EFC9;
     ASL A                                                                ;A3EFCA;
     ASL A                                                                ;A3EFCB;
-    STA.W $0FA9,X                                                        ;A3EFCC;
+    STA.W EnemyData.work0+1,X                                            ;A3EFCC;
     LDY.W #$0000                                                         ;A3EFCF;
     LDA.W EnemyData.yPosition,X                                          ;A3EFD2;
     SEC                                                                  ;A3EFD5;
@@ -14199,7 +14199,7 @@ EnemyShot_Metroid:
     ASL A                                                                ;A3EFE6;
     ASL A                                                                ;A3EFE7;
     ASL A                                                                ;A3EFE8;
-    STA.W $0FAD,X                                                        ;A3EFE9;
+    STA.W EnemyData.work2+1,X                                            ;A3EFE9;
     STZ.W EnemyData.work5,X                                              ;A3EFEC;
     LDA.W #InstList_Metroid_ChasingSamus                                 ;A3EFEF;
     STA.W EnemyData.pInstList,X                                          ;A3EFF2;

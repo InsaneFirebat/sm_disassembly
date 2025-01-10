@@ -7662,12 +7662,13 @@ Function_MotherBrainNeck_HyperBeamRecoil:
 
 
 MoveEnemyAccordingToVelocity:
+; EnemyData.work1 is X velocity and EnemyData.work2 is Y velocity, both in signed Q8.8 fixed point
     LDX.W $0E54                                                          ;A9C3EF;
     LDA.W EnemyData.work1,X                                              ;A9C3F2;
     SEP #$20                                                             ;A9C3F5;
     CLC                                                                  ;A9C3F7;
-    ADC.W $0F7D,X                                                        ;A9C3F8;
-    STA.W $0F7D,X                                                        ;A9C3FB;
+    ADC.W EnemyData.xSubPosition+1,X                                     ;A9C3F8;
+    STA.W EnemyData.xSubPosition+1,X                                     ;A9C3FB;
     REP #$20                                                             ;A9C3FE;
     AND.W #$FF00                                                         ;A9C400;
     XBA                                                                  ;A9C403;
@@ -7679,8 +7680,8 @@ MoveEnemyAccordingToVelocity:
     LDA.W EnemyData.work2,X                                              ;A9C40F;
     SEP #$20                                                             ;A9C412;
     CLC                                                                  ;A9C414;
-    ADC.W $0F81,X                                                        ;A9C415;
-    STA.W $0F81,X                                                        ;A9C418;
+    ADC.W EnemyData.ySubPosition+1,X                                     ;A9C415;
+    STA.W EnemyData.ySubPosition+1,X                                     ;A9C418;
     REP #$20                                                             ;A9C41B;
     AND.W #$FF00                                                         ;A9C41D;
     XBA                                                                  ;A9C420;
@@ -7756,8 +7757,8 @@ GetSineMathInA_A9C46C:
 UNUSED_AddADividedBy100ToEnemyXPosition_A9C48E:
     SEP #$20                                                             ;A9C48E;
     CLC                                                                  ;A9C490;
-    ADC.W $0F7D,X                                                        ;A9C491;
-    STA.W $0F7D,X                                                        ;A9C494;
+    ADC.W EnemyData.xSubPosition+1,X                                     ;A9C491;
+    STA.W EnemyData.xSubPosition+1,X                                     ;A9C494;
     REP #$20                                                             ;A9C497;
     AND.W #$FF00                                                         ;A9C499;
     XBA                                                                  ;A9C49C;
@@ -7772,8 +7773,8 @@ UNUSED_AddADividedBy100ToEnemyXPosition_A9C48E:
 AddADividedBy100ToEnemyYPosition:
     SEP #$20                                                             ;A9C4A9;
     CLC                                                                  ;A9C4AB;
-    ADC.W $0F81,X                                                        ;A9C4AC;
-    STA.W $0F81,X                                                        ;A9C4AF;
+    ADC.W EnemyData.ySubPosition+1,X                                     ;A9C4AC;
+    STA.W EnemyData.ySubPosition+1,X                                     ;A9C4AF;
     REP #$20                                                             ;A9C4B2;
     AND.W #$FF00                                                         ;A9C4B4;
     XBA                                                                  ;A9C4B7;
@@ -10365,8 +10366,8 @@ CorpseSidehopperMovement:
     LDA.B $12                                                            ;A9D9A2;
     SEP #$20                                                             ;A9D9A4;
     CLC                                                                  ;A9D9A6;
-    ADC.W $0F81,X                                                        ;A9D9A7;
-    STA.W $0F81,X                                                        ;A9D9AA;
+    ADC.W EnemyData.ySubPosition+1,X                                     ;A9D9A7;
+    STA.W EnemyData.ySubPosition+1,X                                     ;A9D9AA;
     REP #$20                                                             ;A9D9AD;
     AND.W #$FF00                                                         ;A9D9AF;
     XBA                                                                  ;A9D9B2;
@@ -10410,8 +10411,8 @@ CorpseSidehopperMovement_Horizontal:
     LDA.B $12                                                            ;A9D9EB;
     SEP #$20                                                             ;A9D9ED;
     CLC                                                                  ;A9D9EF;
-    ADC.W $0F7D,X                                                        ;A9D9F0;
-    STA.W $0F7D,X                                                        ;A9D9F3;
+    ADC.W EnemyData.xSubPosition+1,X                                     ;A9D9F0;
+    STA.W EnemyData.xSubPosition+1,X                                     ;A9D9F3;
     REP #$20                                                             ;A9D9F6;
     AND.W #$FF00                                                         ;A9D9F8;
     XBA                                                                  ;A9D9FB;
@@ -13908,17 +13909,17 @@ HandleBabyMetroidCutscenePalette_LowHealth:
 HandleBabyMetroidPalette:
     LDX.W $0E54                                                          ;A9F699;
     SEP #$20                                                             ;A9F69C;
-    LDA.W $0FAF,X                                                        ;A9F69E;
+    LDA.W EnemyData.work3+1,X                                            ;A9F69E;
     BEQ .timerExpired                                                    ;A9F6A1;
     DEC A                                                                ;A9F6A3;
-    STA.W $0FAF,X                                                        ;A9F6A4;
+    STA.W EnemyData.work3+1,X                                            ;A9F6A4;
     REP #$20                                                             ;A9F6A7;
     RTS                                                                  ;A9F6A9;
 
 
 .timerExpired:
     LDA.W EnemyData.work4,X                                              ;A9F6AA;
-    STA.W $0FAF,X                                                        ;A9F6AD;
+    STA.W EnemyData.work3+1,X                                            ;A9F6AD;
     LDA.W EnemyData.work3,X                                              ;A9F6B0;
     INC A                                                                ;A9F6B3;
     AND.B #$07                                                           ;A9F6B4;

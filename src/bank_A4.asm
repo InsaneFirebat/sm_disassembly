@@ -1971,33 +1971,33 @@ SinkCrocomireDown:
     CLC                                                                  ;A49227;
     ADC.B #$80                                                           ;A49228;
     STA.W EnemyData.work3,X                                              ;A4922A;
-    LDA.W $0FAF,X                                                        ;A4922D;
+    LDA.W EnemyData.work3+1,X                                            ;A4922D;
     ADC.B #$03                                                           ;A49230;
     CMP.B #$30                                                           ;A49232;
     BMI +                                                                ;A49234;
     LDA.B #$30                                                           ;A49236;
 
-  + STA.W $0FAF,X                                                        ;A49238;
+  + STA.W EnemyData.work3+1,X                                            ;A49238;
     CLC                                                                  ;A4923B;
     ADC.W EnemyData.work4,X                                              ;A4923C;
     STA.W EnemyData.work4,X                                              ;A4923F;
-    LDA.W $0FB1,X                                                        ;A49242;
+    LDA.W EnemyData.work4+1,X                                            ;A49242;
     ADC.B #$00                                                           ;A49245;
     CMP.B #$03                                                           ;A49247;
     BMI +                                                                ;A49249;
     LDA.B #$03                                                           ;A4924B;
 
-  + STA.W $0FB1,X                                                        ;A4924D;
+  + STA.W EnemyData.work4+1,X                                            ;A4924D;
     LDA.W EnemyData.work4,X                                              ;A49250;
     CLC                                                                  ;A49253;
-    ADC.W $0FB3,X                                                        ;A49254;
-    STA.W $0FB3,X                                                        ;A49257;
-    LDA.W $0FB1,X                                                        ;A4925A;
+    ADC.W EnemyData.work5+1,X                                            ;A49254;
+    STA.W EnemyData.work5+1,X                                            ;A49257;
+    LDA.W EnemyData.work4+1,X                                            ;A4925A;
     ADC.W EnemyData.yPosition,X                                          ;A4925D;
     STA.W EnemyData.yPosition,X                                          ;A49260;
-    LDA.W $0F7F,X                                                        ;A49263;
+    LDA.W EnemyData.yPosition+1,X                                        ;A49263;
     ADC.B #$00                                                           ;A49266;
-    STA.W $0F7F,X                                                        ;A49268;
+    STA.W EnemyData.yPosition+1,X                                        ;A49268;
     REP #$20                                                             ;A4926B;
     RTS                                                                  ;A4926D;
 

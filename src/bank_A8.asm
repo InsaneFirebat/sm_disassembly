@@ -818,7 +818,7 @@ HandleEvirBody:
 
   + DEC.W EnemyData.work4,X                                              ;A8897D;
     BPL .return                                                          ;A88980;
-    LDA.W $0FB7,X                                                        ;A88982;
+    LDA.W EnemyData.initParam1+1,X                                       ;A88982;
     AND.W #$00FF                                                         ;A88985;
     STA.W EnemyData.work4,X                                              ;A88988;
     LDA.L $7E7800,X                                                      ;A8898B;
@@ -2562,10 +2562,10 @@ InitAI_Fune_Namihe:
 
 .directionDetermined:
     JSR.W SetFuneNamiheInstList                                          ;A89717;
-    LDA.W $0FB7,X                                                        ;A8971A;
+    LDA.W EnemyData.initParam1+1,X                                       ;A8971A;
     AND.W #$00FF                                                         ;A8971D;
     STA.W EnemyData.work2,X                                              ;A89720;
-    LDA.W $0FB5,X                                                        ;A89723;
+    LDA.W EnemyData.initParam0+1,X                                       ;A89723;
     AND.W #$00FF                                                         ;A89726;
     STA.W EnemyData.work5,X                                              ;A89729;
     STZ.W EnemyData.work4,X                                              ;A8972C;
@@ -5612,7 +5612,7 @@ Function_Magdollite_Init_Slave2:
 
 GetMagdolliteSpeeds:
     LDX.W $0E54                                                          ;A8B05E;
-    LDA.W $0FB7,X                                                        ;A8B061;
+    LDA.W EnemyData.initParam1+1,X                                       ;A8B061;
     AND.W #$00FF                                                         ;A8B064;
     ASL A                                                                ;A8B067;
     ASL A                                                                ;A8B068;

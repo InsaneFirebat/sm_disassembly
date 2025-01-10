@@ -2065,7 +2065,7 @@ AddEnemyToDrawingQueue:
 WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
     PHB                                                                  ;A0944A;
     LDX.W $0E54                                                          ;A0944B;
-    LDA.W $0FA5,X                                                        ;A0944E;
+    LDA.W EnemyData.bank-1,X                                        ;A0944E;
     PHA                                                                  ;A09451;
     PLB                                                                  ;A09452;
     PLB                                                                  ;A09453;
@@ -8095,7 +8095,7 @@ ProcessEnemyInstructions:
     BNE .return                                                          ;A0C274;
     DEC.W EnemyData.instTimer,X                                          ;A0C276;
     BNE ProcessEnemyInstructions_noUpdate                                ;A0C279;
-    LDA.W $0FA5,X                                                        ;A0C27B;
+    LDA.W EnemyData.bank-1,X                                        ;A0C27B;
     PHA                                                                  ;A0C27E;
     PLB                                                                  ;A0C27F;
     PLB                                                                  ;A0C280;

@@ -482,7 +482,7 @@ InitAI_Boulder:
     STA.L $7E7806,X                                                      ;A6871B;
     LDA.W EnemyData.ySubPosition,X                                       ;A6871F;
     STA.L $7E7804,X                                                      ;A68722;
-    LDA.W $0FB7,X                                                        ;A68726;
+    LDA.W EnemyData.initParam1+1,X                                       ;A68726;
     AND.W #$00FF                                                         ;A68729;
     BNE .notRolling                                                      ;A6872C;
     LDA.W #$0001                                                         ;A6872E;
@@ -504,7 +504,7 @@ InitAI_Boulder:
     STA.L $7E780C,X                                                      ;A68755;
     LDA.W #InstList_Boulder_FacingLeft                                   ;A68759;
     STA.W EnemyData.pInstList,X                                          ;A6875C;
-    LDA.W $0FB5,X                                                        ;A6875F;
+    LDA.W EnemyData.initParam0+1,X                                       ;A6875F;
     AND.W #$00FF                                                         ;A68762;
     STA.W EnemyData.work4,X                                              ;A68765;
     BNE .left                                                            ;A68768;
@@ -2291,13 +2291,13 @@ InitAI_Puromi:
     LDA.W EnemyData.initParam0,X                                         ;A694CD;
     AND.W #$00FF                                                         ;A694D0;
     STA.W EnemyData.work2,X                                              ;A694D3;
-    LDA.W $0FB5,X                                                        ;A694D6;
+    LDA.W EnemyData.initParam0+1,X                                       ;A694D6;
     AND.W #$00FF                                                         ;A694D9;
     STA.W EnemyData.work3,X                                              ;A694DC;
     LDA.W EnemyData.initParam1,X                                         ;A694DF;
     AND.W #$00FF                                                         ;A694E2;
     STA.W EnemyData.work4,X                                              ;A694E5;
-    LDA.W $0FB7,X                                                        ;A694E8;
+    LDA.W EnemyData.initParam1+1,X                                       ;A694E8;
     AND.W #$00FF                                                         ;A694EB;
     STA.W EnemyData.work5,X                                              ;A694EE;
     STA.W EnemyData.work1,X                                              ;A694F1;
@@ -10306,8 +10306,8 @@ HandleMovementAndMainBodyWallCollisions:
     LDA.W EnemyData.work1,X                                              ;A6D875;
     SEP #$20                                                             ;A6D878;
     CLC                                                                  ;A6D87A;
-    ADC.W $0F7D,X                                                        ;A6D87B;
-    STA.W $0F7D,X                                                        ;A6D87E;
+    ADC.W EnemyData.xSubPosition+1,X                                     ;A6D87B;
+    STA.W EnemyData.xSubPosition+1,X                                     ;A6D87E;
     REP #$20                                                             ;A6D881;
     AND.W #$FF00                                                         ;A6D883;
     XBA                                                                  ;A6D886;
@@ -10341,8 +10341,8 @@ HandleMovementAndMainBodyWallCollisions:
     LDA.W EnemyData.work2,X                                              ;A6D8C2;
     SEP #$20                                                             ;A6D8C5;
     CLC                                                                  ;A6D8C7;
-    ADC.W $0F81,X                                                        ;A6D8C8;
-    STA.W $0F81,X                                                        ;A6D8CB;
+    ADC.W EnemyData.ySubPosition+1,X                                     ;A6D8C8;
+    STA.W EnemyData.ySubPosition+1,X                                     ;A6D8CB;
     REP #$20                                                             ;A6D8CE;
     AND.W #$FF00                                                         ;A6D8D0;
     XBA                                                                  ;A6D8D3;

@@ -1119,7 +1119,7 @@ InitAI_Gamet:
     LDA.W EnemyData.properties,X                                         ;B38B70;
     ORA.W #$0100                                                         ;B38B73;
     STA.W EnemyData.properties,X                                         ;B38B76;
-    LDA.W $0FB7,X                                                        ;B38B79;
+    LDA.W EnemyData.initParam1+1,X                                       ;B38B79;
     AND.W #$00FF                                                         ;B38B7C;
     ASL A                                                                ;B38B7F;
     ASL A                                                                ;B38B80;

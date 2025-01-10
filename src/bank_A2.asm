@@ -3397,7 +3397,7 @@ InitAI_Cacatac:
     LDX.W $0E54                                                          ;A29F48;
     LDA.W #Spritemap_CommonA2_Nothing                                    ;A29F4B;
     STA.W EnemyData.pSpritemap,X                                         ;A29F4E;
-    LDA.W $0FB5,X                                                        ;A29F51;
+    LDA.W EnemyData.initParam0+1,X                                       ;A29F51;
     AND.W #$00FF                                                         ;A29F54;
     BEQ .upsideDown                                                      ;A29F57;
     JSR.W SetCacatacInstList_UpsideUp_Idling                             ;A29F59;
@@ -3426,7 +3426,7 @@ InitAI_Cacatac:
     SEC                                                                  ;A29F88;
     SBC.W CacatacMaxTravelDistances,Y                                    ;A29F89;
     STA.L $7E7800,X                                                      ;A29F8C;
-    LDA.W $0FB7,X                                                        ;A29F90;
+    LDA.W EnemyData.initParam1+1,X                                       ;A29F90;
     AND.W #$00FF                                                         ;A29F93;
     ASL A                                                                ;A29F96;
     ASL A                                                                ;A29F97;
@@ -3513,7 +3513,7 @@ MaybeMakeCacatacAttack:
     BPL .return                                                          ;A2A030;
     LDA.W #RTS_A2A01B                                                    ;A2A032;
     STA.W EnemyData.work5,X                                              ;A2A035;
-    LDA.W $0FB5,X                                                        ;A2A038;
+    LDA.W EnemyData.initParam0+1,X                                       ;A2A038;
     AND.W #$00FF                                                         ;A2A03B;
     BEQ .keepUpsideUp                                                    ;A2A03E;
     JSR.W SetCacatacInstList_UpsideUp_Attacking                          ;A2A040;
@@ -4004,7 +4004,7 @@ InitAI_Owtch:
     STA.W EnemyData.work3,X                                              ;A2A42F;
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2A432;
     STA.W EnemyData.work2,X                                              ;A2A435;
-    LDA.W $0FB7,X                                                        ;A2A438;
+    LDA.W EnemyData.initParam1+1,X                                       ;A2A438;
     AND.W #$00FF                                                         ;A2A43B;
     ASL A                                                                ;A2A43E;
     TAY                                                                  ;A2A43F;
@@ -4016,7 +4016,7 @@ InitAI_Owtch:
     SEC                                                                  ;A2A44E;
     SBC.W OwtchConstants_XDistanceRanges,Y                               ;A2A44F;
     STA.L $7E7802,X                                                      ;A2A452;
-    LDA.W $0FB5,X                                                        ;A2A456;
+    LDA.W EnemyData.initParam0+1,X                                       ;A2A456;
     AND.W #$00FF                                                         ;A2A459;
     ASL A                                                                ;A2A45C;
     TAY                                                                  ;A2A45D;
@@ -4129,7 +4129,7 @@ Function_Owtch_3_Sinking:
     BMI .return                                                          ;A2A526;
     LDA.W #$0002                                                         ;A2A528;
     STA.W EnemyData.work4,X                                              ;A2A52B;
-    LDA.W $0FB5,X                                                        ;A2A52E;
+    LDA.W EnemyData.initParam0+1,X                                       ;A2A52E;
     AND.W #$00FF                                                         ;A2A531;
     ASL A                                                                ;A2A534;
     TAY                                                                  ;A2A535;
@@ -5549,7 +5549,7 @@ MoveFlyAccordingToAngle:
 
 
 MoveFlyAccordingToVelocities:
-    LDA.W $0FA9,X                                                        ;A2B0DC;
+    LDA.W EnemyData.work1-1,X                                        ;A2B0DC;
     AND.W #$FF00                                                         ;A2B0DF;
     CLC                                                                  ;A2B0E2;
     ADC.W EnemyData.xSubPosition,X                                       ;A2B0E3;
@@ -5566,7 +5566,7 @@ MoveFlyAccordingToVelocities:
 
   + ADC.W EnemyData.xPosition,X                                          ;A2B0F7;
     STA.W EnemyData.xPosition,X                                          ;A2B0FA;
-    LDA.W $0FAB,X                                                        ;A2B0FD;
+    LDA.W EnemyData.work2-1,X                                            ;A2B0FD;
     AND.W #$FF00                                                         ;A2B100;
     CLC                                                                  ;A2B103;
     ADC.W EnemyData.ySubPosition,X                                       ;A2B104;
@@ -7478,7 +7478,7 @@ Function_Squeept_Jump:
 
 
 Function_Squeept_Rising:
-    LDA.W $0FAB,X                                                        ;A2BF3E;
+    LDA.W EnemyData.work2-1,X                                            ;A2BF3E;
     AND.W #$FF00                                                         ;A2BF41;
     CLC                                                                  ;A2BF44;
     ADC.W EnemyData.ySubPosition,X                                       ;A2BF45;
@@ -7513,7 +7513,7 @@ Function_Squeept_Rising:
 
 
 Function_Squeept_Flipping:
-    LDA.W $0FAB,X                                                        ;A2BF7C;
+    LDA.W EnemyData.work2-1,X                                            ;A2BF7C;
     AND.W #$FF00                                                         ;A2BF7F;
     CLC                                                                  ;A2BF82;
     ADC.W EnemyData.ySubPosition,X                                       ;A2BF83;
@@ -7548,7 +7548,7 @@ Function_Squeept_Flipping:
 
 
 Function_Squeept_Falling:
-    LDA.W $0FAB,X                                                        ;A2BFBC;
+    LDA.W EnemyData.work2-1,X                                            ;A2BFBC;
     AND.W #$FF00                                                         ;A2BFBF;
     CLC                                                                  ;A2BFC2;
     ADC.W EnemyData.ySubPosition,X                                       ;A2BFC3;
@@ -10735,7 +10735,7 @@ InitAI_Choot:
     STA.L $7E7800,X                                                      ;A2DF88;
     LDA.W EnemyData.yPosition,X                                          ;A2DF8C;
     STA.L $7E7802,X                                                      ;A2DF8F;
-    LDA.W $0FB5,X                                                        ;A2DF93;
+    LDA.W EnemyData.initParam0+1,X                                       ;A2DF93;
     AND.W #$00FF                                                         ;A2DF96;
     ASL A                                                                ;A2DF99;
     TAY                                                                  ;A2DF9A;
@@ -11659,7 +11659,7 @@ Function_Dragon_WaitToRise:
     ROR.W EnemyData.work0,X                                              ;A2E66F;
     TYA                                                                  ;A2E672;
     SEP #$20                                                             ;A2E673;
-    BIT.W $0FA9,X                                                        ;A2E675;
+    BIT.W EnemyData.work0+1,X                                            ;A2E675;
     BMI .facingLeft                                                      ;A2E678;
     LDA.L $7E7800,X                                                      ;A2E67A;
     ORA.B #$01                                                           ;A2E67E;
@@ -12622,7 +12622,7 @@ Init_Shutter_Kamer_Common:
     STA.W EnemyData.work5,X                                              ;A2EE3C;
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2EE3F;
     STA.W EnemyData.work4,X                                              ;A2EE42;
-    LDA.W $0F93,X                                                        ;A2EE45;
+    LDA.W EnemyData.pInstList+1,X                                        ;A2EE45;
     AND.W #$00FF                                                         ;A2EE48;
     STA.L $7E7802,X                                                      ;A2EE4B;
     STA.L $7E8000,X                                                      ;A2EE4F;
@@ -12634,7 +12634,7 @@ Init_Shutter_Kamer_Common:
     ASL A                                                                ;A2EE5F;
     ASL A                                                                ;A2EE60;
     STA.L $7E7810,X                                                      ;A2EE61;
-    LDA.W $0F89,X                                                        ;A2EE65;
+    LDA.W EnemyData.properties2+1,X                                        ;A2EE65;
     AND.W #$00FF                                                         ;A2EE68;
     STA.L $7E7806,X                                                      ;A2EE6B;
     ASL A                                                                ;A2EE6F;
@@ -12647,7 +12647,7 @@ Init_Shutter_Kamer_Common:
     STA.L $7E7808,X                                                      ;A2EE7D;
     ASL A                                                                ;A2EE81;
     STA.L $7E780E,X                                                      ;A2EE82;
-    LDA.W $0FB5,X                                                        ;A2EE86;
+    LDA.W EnemyData.initParam0+1,X                                       ;A2EE86;
     AND.W #$00FF                                                         ;A2EE89;
     STA.L $7E780A,X                                                      ;A2EE8C;
     LDA.W EnemyData.initParam1,X                                         ;A2EE90;
@@ -13010,7 +13010,7 @@ InitializeHorizontalShutter:
     STA.W EnemyData.work5,X                                              ;A2F13B;
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2F13E;
     STA.W EnemyData.work4,X                                              ;A2F141;
-    LDA.W $0F93,X                                                        ;A2F144;
+    LDA.W EnemyData.pInstList+1,X                                        ;A2F144;
     AND.W #$00FF                                                         ;A2F147;
     STA.L $7E7802,X                                                      ;A2F14A;
     EOR.W #$0001                                                         ;A2F14E;
@@ -13023,7 +13023,7 @@ InitializeHorizontalShutter:
     ASL A                                                                ;A2F161;
     ASL A                                                                ;A2F162;
     STA.L $7E7810,X                                                      ;A2F163;
-    LDA.W $0F89,X                                                        ;A2F167;
+    LDA.W EnemyData.properties2+1,X                                        ;A2F167;
     AND.W #$00FF                                                         ;A2F16A;
     STA.L $7E7806,X                                                      ;A2F16D;
     ASL A                                                                ;A2F171;
@@ -13036,7 +13036,7 @@ InitializeHorizontalShutter:
     STA.L $7E7808,X                                                      ;A2F17F;
     ASL A                                                                ;A2F183;
     STA.L $7E780E,X                                                      ;A2F184;
-    LDA.W $0FB5,X                                                        ;A2F188;
+    LDA.W EnemyData.initParam0+1,X                                       ;A2F188;
     AND.W #$00FF                                                         ;A2F18B;
     STA.L $7E780A,X                                                      ;A2F18E;
     LDA.W EnemyData.initParam1,X                                         ;A2F192;
