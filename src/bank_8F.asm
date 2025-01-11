@@ -13887,7 +13887,7 @@ RoomStateCheck_BossIsDead:
 
 
 UNUSED_RoomStateCheck_Morphball_8FE640:
-    LDA.W $09A4                                                          ;8FE640;
+    LDA.W Equipment.collectedItems                                       ;8FE640;
     AND.W #$0004                                                         ;8FE643;
     BEQ +                                                                ;8FE646;
     LDA.W $0000,X                                                        ;8FE648;
@@ -13901,10 +13901,10 @@ UNUSED_RoomStateCheck_Morphball_8FE640:
 
 
 RoomStateCheck_MorphballAndMissiles:
-    LDA.W $09A4                                                          ;8FE652;
+    LDA.W Equipment.collectedItems                                       ;8FE652;
     BIT.W #$0004                                                         ;8FE655;
     BEQ +                                                                ;8FE658;
-    LDA.W $09C8                                                          ;8FE65A;
+    LDA.W Equipment.maxMissiles                                          ;8FE65A;
     BEQ +                                                                ;8FE65D;
     LDA.W $0000,X                                                        ;8FE65F;
     TAX                                                                  ;8FE662;
@@ -13917,7 +13917,7 @@ RoomStateCheck_MorphballAndMissiles:
 
 
 RoomStateCheck_PowerBombs:
-    LDA.W $09D0                                                          ;8FE669;
+    LDA.W Equipment.maxPowerBombs                                        ;8FE669;
     BEQ +                                                                ;8FE66C;
     LDA.W $0000,X                                                        ;8FE66E;
     TAX                                                                  ;8FE671;
@@ -13930,7 +13930,7 @@ RoomStateCheck_PowerBombs:
 
 
 UNUSED_RoomStateCheck_SpeedBooster_8FE678:
-    LDA.W $09A4                                                          ;8FE678;
+    LDA.W Equipment.collectedItems                                       ;8FE678;
     AND.W #$2000                                                         ;8FE67B;
     BEQ +                                                                ;8FE67E;
     LDA.W $0000,X                                                        ;8FE680;

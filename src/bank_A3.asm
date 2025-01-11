@@ -4967,7 +4967,7 @@ EnemyTouch_Mochtroid:
     AND.W #$0007                                                         ;A3A973;
     CMP.W #$0007                                                         ;A3A976;
     BNE .skipSFX                                                         ;A3A979;
-    LDA.W $09C2                                                          ;A3A97B;
+    LDA.W Equipment.currentEnergy                                        ;A3A97B;
     CMP.W #$001E                                                         ;A3A97E;
     BMI .skipSFX                                                         ;A3A981;
     LDA.W #$002D                                                         ;A3A983;
@@ -7412,7 +7412,7 @@ FireChargedBeamAtSamus:
     STA.W $0B78,Y                                                        ;A3BC0F;
     LDA.W $1872                                                          ;A3BC12;
     STA.W $0C04,Y                                                        ;A3BC15;
-    LDA.W $09A6                                                          ;A3BC18;
+    LDA.W Equipment.equippedBeams                                        ;A3BC18;
     AND.W #$000F                                                         ;A3BC1B;
     ORA.W #$0010                                                         ;A3BC1E;
     STA.W $0C18,Y                                                        ;A3BC21;
@@ -14010,7 +14010,7 @@ EnemyTouch_Metroid:
     AND.W #$0007                                                         ;A3EE65;
     CMP.W #$0007                                                         ;A3EE68;
     BNE .skipSFX                                                         ;A3EE6B;
-    LDA.W $09C2                                                          ;A3EE6D;
+    LDA.W Equipment.currentEnergy                                        ;A3EE6D;
     CMP.W #$001E                                                         ;A3EE70;
     BMI .skipSFX                                                         ;A3EE73;
     LDA.W #$002D                                                         ;A3EE75;
@@ -14062,7 +14062,7 @@ DealMetroidContactDamageToSamus:
     SEC                                                                  ;A3EED1;
     SBC.W #$0008                                                         ;A3EED2;
     STA.W $0E32                                                          ;A3EED5;
-    LDA.W $09A2                                                          ;A3EED8;
+    LDA.W Equipment.equippedItems                                        ;A3EED8;
     BIT.W #$0020                                                         ;A3EEDB;
     BNE .gravitySuit                                                     ;A3EEDE;
     LSR A                                                                ;A3EEE0;

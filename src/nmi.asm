@@ -415,25 +415,25 @@ ReadControllerInput:
     EOR.W #$8000                                                         ;809539;
     STA.W $05CF                                                          ;80953C;
     BPL .swapAmmo                                                        ;80953F;
-    LDA.W $09C6                                                          ;809541;
+    LDA.W Equipment.currentMissiles                                      ;809541;
     STA.W $05C9                                                          ;809544;
-    LDA.W $09CA                                                          ;809547;
+    LDA.W Equipment.currentSuperMissiles                                 ;809547;
     STA.W $05CB                                                          ;80954A;
-    LDA.W $09CE                                                          ;80954D;
+    LDA.W Equipment.currentPowerBombs                                    ;80954D;
     STA.W $05CD                                                          ;809550;
-    STZ.W $09C6                                                          ;809553;
-    STZ.W $09CA                                                          ;809556;
-    STZ.W $09CE                                                          ;809559;
+    STZ.W Equipment.currentMissiles                                      ;809553;
+    STZ.W Equipment.currentSuperMissiles                                 ;809556;
+    STZ.W Equipment.currentPowerBombs                                    ;809559;
     BRA .swapEnd                                                         ;80955C;
 
 
 .swapAmmo:
     LDA.W $05C9                                                          ;80955E;
-    STA.W $09C6                                                          ;809561;
+    STA.W Equipment.currentMissiles                                      ;809561;
     LDA.W $05CB                                                          ;809564;
-    STA.W $09CA                                                          ;809567;
+    STA.W Equipment.currentSuperMissiles                                 ;809567;
     LDA.W $05CD                                                          ;80956A;
-    STA.W $09CE                                                          ;80956D;
+    STA.W Equipment.currentPowerBombs                                    ;80956D;
 
 .swapEnd:
     LDA.W $05C7                                                          ;809570;

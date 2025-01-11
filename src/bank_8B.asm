@@ -71,8 +71,8 @@ Setup_PPU_TitleSequence:
     STZ.W $0755                                                          ;8B80A8;
     STZ.W $0757                                                          ;8B80AB;
     STZ.W $0759                                                          ;8B80AE;
-    STZ.W $09D6                                                          ;8B80B1;
-    STZ.W $09D8                                                          ;8B80B4;
+    STZ.W Equipment.currentReserveEnergy                                 ;8B80B1;
+    STZ.W Equipment.currentReserveMissiles                               ;8B80B4;
     STZ.W $198D                                                          ;8B80B7;
     LDA.W #$0100                                                         ;8B80BA;
     STA.W $198F                                                          ;8B80BD;
@@ -4951,8 +4951,8 @@ CinematicFunction_Intro_Initial:
     JSL.L InitializeSamus                                                ;8BA3A8;
     JSL.L Update_Beam_Tiles_and_Palette                                  ;8BA3AC;
     LDA.W #$0384                                                         ;8BA3B0;
-    STA.W $09C8                                                          ;8BA3B3;
-    STA.W $09C6                                                          ;8BA3B6;
+    STA.W Equipment.maxMissiles                                          ;8BA3B3;
+    STA.W Equipment.currentMissiles                                      ;8BA3B6;
     STZ.W $1A57                                                          ;8BA3B9;
     LDA.W #SamusDrawingHandler_Default                                   ;8BA3BC;
     STA.W $0A5C                                                          ;8BA3BF;
@@ -5166,7 +5166,7 @@ CinematicFunction_Intro_HandleDrawingInitialJapanText_Wait60f:
     STA.W $1F51                                                          ;8BA5C5;
     LDA.W #$003C                                                         ;8BA5C8;
     STA.W $1A49                                                          ;8BA5CB;
-    LDA.W $09E2                                                          ;8BA5CE;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BA5CE;
     BEQ .return                                                          ;8BA5D1;
     LDX.W $0330                                                          ;8BA5D3;
     LDA.W #$0100                                                         ;8BA5D6;
@@ -5855,7 +5855,7 @@ PreInst_CinematicSpriteObject_IntroJapanTextNextPageArrow:
 
 Instruction_HandleCreatingJapanText_Page1:
     STZ.W $1BA1                                                          ;8BAE43;
-    LDA.W $09E2                                                          ;8BAE46;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BAE46;
     BEQ .return                                                          ;8BAE49;
     PHB                                                                  ;8BAE4B;
     PEA.W $8B00                                                          ;8BAE4C;
@@ -5873,7 +5873,7 @@ Instruction_HandleCreatingJapanText_Page1:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page1:
     JSR.W Instruction_SetCaretToBlink                                    ;8BAE5B;
-    LDA.W $09E2                                                          ;8BAE5E;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BAE5E;
     BEQ .waitForInput                                                    ;8BAE61;
     PHB                                                                  ;8BAE63;
     PEA.W $8B00                                                          ;8BAE64;
@@ -5893,7 +5893,7 @@ Instruction_SpawnBlinkingMarkers_WaitForInput_Page1:
 
 Instruction_HandleCreatingJapanText_Page2:
     STZ.W $1BA1                                                          ;8BAE79;
-    LDA.W $09E2                                                          ;8BAE7C;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BAE7C;
     BEQ .return                                                          ;8BAE7F;
     PHB                                                                  ;8BAE81;
     PEA.W $8B00                                                          ;8BAE82;
@@ -5911,7 +5911,7 @@ Instruction_HandleCreatingJapanText_Page2:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page2:
     JSR.W Instruction_SetCaretToBlink                                    ;8BAE91;
-    LDA.W $09E2                                                          ;8BAE94;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BAE94;
     BEQ .noJapanText                                                     ;8BAE97;
     PHB                                                                  ;8BAE99;
     PEA.W $8B00                                                          ;8BAE9A;
@@ -5999,7 +5999,7 @@ CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight:
     CPX.W #$0200                                                         ;8BAF3C;
     BMI .loopBTS                                                         ;8BAF3F;
     LDA.W #$0001                                                         ;8BAF41;
-    STA.W $09D2                                                          ;8BAF44;
+    STA.W Equipment.selectedHudItem                                      ;8BAF44;
     LDA.W #SamusCurrentStateHandler_Demo                                 ;8BAF47;
     STA.W $0A42                                                          ;8BAF4A;
     LDA.W #SamusNewStateHandler_IntroDemo                                ;8BAF4D;
@@ -6073,7 +6073,7 @@ CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDiscovery:
     INX                                                                  ;8BAFEB;
     CPX.W #$0300                                                         ;8BAFEC;
     BMI .loopLevelData                                                   ;8BAFEF;
-    STZ.W $09D2                                                          ;8BAFF1;
+    STZ.W Equipment.selectedHudItem                                      ;8BAFF1;
     LDA.W #SamusCurrentStateHandler_Demo                                 ;8BAFF4;
     STA.W $0A42                                                          ;8BAFF7;
     LDA.W #SamusNewStateHandler_IntroDemo                                ;8BAFFA;
@@ -6131,7 +6131,7 @@ Setup_Intro_CrossFade_Into_SamusGameplay:
 
 Instruction_HandleCreatingJapanText_Page3:
     STZ.W $1BA1                                                          ;8BB074;
-    LDA.W $09E2                                                          ;8BB077;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB077;
     BEQ .return                                                          ;8BB07A;
     PHB                                                                  ;8BB07C;
     PEA.W $8B00                                                          ;8BB07D;
@@ -6149,7 +6149,7 @@ Instruction_HandleCreatingJapanText_Page3:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page3:
     JSR.W Instruction_SetCaretToBlink                                    ;8BB08C;
-    LDA.W $09E2                                                          ;8BB08F;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB08F;
     BEQ .waitForInput                                                    ;8BB092;
     PHB                                                                  ;8BB094;
     PEA.W $8B00                                                          ;8BB095;
@@ -6175,7 +6175,7 @@ Instruction_SpawnBlinkingMarkers_WaitForInput_Page3:
 
 Instruction_HandleCreatingJapanText_Page4:
     STZ.W $1BA1                                                          ;8BB0B3;
-    LDA.W $09E2                                                          ;8BB0B6;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB0B6;
     BEQ .return                                                          ;8BB0B9;
     PHB                                                                  ;8BB0BB;
     PEA.W $8B00                                                          ;8BB0BC;
@@ -6193,7 +6193,7 @@ Instruction_HandleCreatingJapanText_Page4:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page4:
     JSR.W Instruction_SetCaretToBlink                                    ;8BB0CB;
-    LDA.W $09E2                                                          ;8BB0CE;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB0CE;
     BEQ .waitForInput                                                    ;8BB0D1;
     PHB                                                                  ;8BB0D3;
     PEA.W $8B00                                                          ;8BB0D4;
@@ -6312,7 +6312,7 @@ SetupIntroCrossFadeIntoScientistCutscene:
 
 Instruction_HandleCreatingJapanText_Page5:
     STZ.W $1BA1                                                          ;8BB19B;
-    LDA.W $09E2                                                          ;8BB19E;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB19E;
     BEQ .return                                                          ;8BB1A1;
     PHB                                                                  ;8BB1A3;
     PEA.W $8B00                                                          ;8BB1A4;
@@ -6330,7 +6330,7 @@ Instruction_HandleCreatingJapanText_Page5:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page5:
     JSR.W Instruction_SetCaretToBlink                                    ;8BB1B3;
-    LDA.W $09E2                                                          ;8BB1B6;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB1B6;
     BEQ .waitForInput                                                    ;8BB1B9;
     PHB                                                                  ;8BB1BB;
     PEA.W $8B00                                                          ;8BB1BC;
@@ -6368,7 +6368,7 @@ CinematicFunction_Intro_WaitForInput_ClearText:
     BEQ .return                                                          ;8BB1E9;
     LDA.W #$007F                                                         ;8BB1EB;
     STA.W $1A4B                                                          ;8BB1EE;
-    LDA.W $09E2                                                          ;8BB1F1;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB1F1;
     BEQ CinematicFunction_Intro_Page6                                    ;8BB1F4;
     LDA.W #CinematicFunction_Intro_Page6                                 ;8BB1F6;
     STA.W $1F51                                                          ;8BB1F9;
@@ -6396,7 +6396,7 @@ CinematicFunction_Intro_Page6:
 
 Instruction_HandleCreatingJapanText_Page6:
     STZ.W $1BA1                                                          ;8BB228;
-    LDA.W $09E2                                                          ;8BB22B;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB22B;
     BEQ .return                                                          ;8BB22E;
     PHB                                                                  ;8BB230;
     PEA.W $8B00                                                          ;8BB231;
@@ -7050,8 +7050,8 @@ CinematicFunction_Intro_Finish:
     LDA.W #CinematicFunction_FlyToCeres_Initial                          ;8BB763;
     STA.W $1F51                                                          ;8BB766;
     JSR.W Recover_Previous_Button_Assignments                            ;8BB769;
-    STZ.W $09C8                                                          ;8BB76C;
-    STZ.W $09C6                                                          ;8BB76F;
+    STZ.W Equipment.maxMissiles                                          ;8BB76C;
+    STZ.W Equipment.currentMissiles                                      ;8BB76F;
 
 .return:
     RTS                                                                  ;8BB772;
@@ -7664,59 +7664,59 @@ PreInstruction_ConfusedBabyMetroid_Dancing:
 
 Reset_Button_Assignments_to_Default:
     LDA.W #$0800                                                         ;8BBC08;
-    STA.W $09AA                                                          ;8BBC0B;
+    STA.W Equipment.upBinding                                            ;8BBC0B;
     LDA.W #$0400                                                         ;8BBC0E;
-    STA.W $09AC                                                          ;8BBC11;
+    STA.W Equipment.downBinding                                          ;8BBC11;
     LDA.W #$0200                                                         ;8BBC14;
-    STA.W $09AE                                                          ;8BBC17;
+    STA.W Equipment.leftBinding                                          ;8BBC17;
     LDA.W #$0100                                                         ;8BBC1A;
-    STA.W $09B0                                                          ;8BBC1D;
-    LDA.W $09B2                                                          ;8BBC20;
+    STA.W Equipment.rightBinding                                         ;8BBC1D;
+    LDA.W Equipment.shootBinding                                         ;8BBC20;
     STA.W $0D82                                                          ;8BBC23;
-    LDA.W $09B4                                                          ;8BBC26;
+    LDA.W Equipment.jumpBinding                                          ;8BBC26;
     STA.W $0D84                                                          ;8BBC29;
-    LDA.W $09B6                                                          ;8BBC2C;
+    LDA.W Equipment.runBinding                                           ;8BBC2C;
     STA.W $0D86                                                          ;8BBC2F;
-    LDA.W $09B8                                                          ;8BBC32;
+    LDA.W Equipment.itemCancelBinding                                    ;8BBC32;
     STA.W $0D88                                                          ;8BBC35;
-    LDA.W $09BA                                                          ;8BBC38;
+    LDA.W Equipment.itemSelectBinding                                    ;8BBC38;
     STA.W $0D8A                                                          ;8BBC3B;
-    LDA.W $09BC                                                          ;8BBC3E;
+    LDA.W Equipment.aimDownBinding                                       ;8BBC3E;
     STA.W $0D8C                                                          ;8BBC41;
-    LDA.W $09BE                                                          ;8BBC44;
+    LDA.W Equipment.aimUpBinding                                         ;8BBC44;
     STA.W $0D8E                                                          ;8BBC47;
     LDA.W #$0040                                                         ;8BBC4A;
-    STA.W $09B2                                                          ;8BBC4D;
+    STA.W Equipment.shootBinding                                         ;8BBC4D;
     LDA.W #$0080                                                         ;8BBC50;
-    STA.W $09B4                                                          ;8BBC53;
+    STA.W Equipment.jumpBinding                                          ;8BBC53;
     LDA.W #$8000                                                         ;8BBC56;
-    STA.W $09B6                                                          ;8BBC59;
+    STA.W Equipment.runBinding                                           ;8BBC59;
     LDA.W #$4000                                                         ;8BBC5C;
-    STA.W $09B8                                                          ;8BBC5F;
+    STA.W Equipment.itemCancelBinding                                    ;8BBC5F;
     LDA.W #$2000                                                         ;8BBC62;
-    STA.W $09BA                                                          ;8BBC65;
+    STA.W Equipment.itemSelectBinding                                    ;8BBC65;
     LDA.W #$0020                                                         ;8BBC68;
-    STA.W $09BC                                                          ;8BBC6B;
+    STA.W Equipment.aimDownBinding                                       ;8BBC6B;
     LDA.W #$0010                                                         ;8BBC6E;
-    STA.W $09BE                                                          ;8BBC71;
+    STA.W Equipment.aimUpBinding                                         ;8BBC71;
     RTS                                                                  ;8BBC74;
 
 
 Recover_Previous_Button_Assignments:
     LDA.W $0D82                                                          ;8BBC75;
-    STA.W $09B2                                                          ;8BBC78;
+    STA.W Equipment.shootBinding                                         ;8BBC78;
     LDA.W $0D84                                                          ;8BBC7B;
-    STA.W $09B4                                                          ;8BBC7E;
+    STA.W Equipment.jumpBinding                                          ;8BBC7E;
     LDA.W $0D86                                                          ;8BBC81;
-    STA.W $09B6                                                          ;8BBC84;
+    STA.W Equipment.runBinding                                           ;8BBC84;
     LDA.W $0D88                                                          ;8BBC87;
-    STA.W $09B8                                                          ;8BBC8A;
+    STA.W Equipment.itemCancelBinding                                    ;8BBC8A;
     LDA.W $0D8A                                                          ;8BBC8D;
-    STA.W $09BA                                                          ;8BBC90;
+    STA.W Equipment.itemSelectBinding                                    ;8BBC90;
     LDA.W $0D8C                                                          ;8BBC93;
-    STA.W $09BC                                                          ;8BBC96;
+    STA.W Equipment.aimDownBinding                                       ;8BBC96;
     LDA.W $0D8E                                                          ;8BBC99;
-    STA.W $09BE                                                          ;8BBC9C;
+    STA.W Equipment.aimUpBinding                                         ;8BBC9C;
     RTS                                                                  ;8BBC9F;
 
 
@@ -8196,7 +8196,7 @@ UNUSED_InitFunc_CinematicSpriteObject_SpaceColonyText_8BC083:
 
 
 Instruction_SkipNextInstructionIfEnglishText:
-    LDA.W $09E2                                                          ;8BC096;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BC096;
     BNE .return                                                          ;8BC099;
     TYA                                                                  ;8BC09B;
     CLC                                                                  ;8BC09C;
@@ -8884,7 +8884,7 @@ CinematicFunction_CeresGoesBoom_FadeOut:
 .gameState25:
     LDA.W #$0000                                                         ;8BC64E;
     JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;8BC651;
-    STZ.W $09D2                                                          ;8BC655;
+    STZ.W Equipment.selectedHudItem                                      ;8BC655;
     STZ.W $0A04                                                          ;8BC658;
     STZ.W $18A8                                                          ;8BC65B;
     STZ.W $18AA                                                          ;8BC65E;
@@ -9310,7 +9310,7 @@ Instruction_FadeInPlanetZebesText:
 
 
 Instruction_SpawnPlanetZebesJapanTextIfNeeded:
-    LDA.W $09E2                                                          ;8BC9AF;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BC9AF;
     BEQ .return                                                          ;8BC9B2;
     PHY                                                                  ;8BC9B4;
     LDY.W #CinematicSpriteObjectDefinitions_PlanetZebesJapanText         ;8BC9B5;
@@ -9494,8 +9494,8 @@ CinematicFunction_FlyToZebes_LoadGameData:
     BPL .loop                                                            ;8BCAF6;
     LDA.W #$0006                                                         ;8BCAF8;
     STA.W $0998                                                          ;8BCAFB;
-    LDA.W $09C4                                                          ;8BCAFE;
-    STA.W $09C2                                                          ;8BCB01;
+    LDA.W Equipment.maxEnergy                                            ;8BCAFE;
+    STA.W Equipment.currentEnergy                                        ;8BCB01;
     RTS                                                                  ;8BCB04;
 
 
@@ -11788,7 +11788,7 @@ CinematicFunction_Credits_Setup:
     STA.B $47                                                            ;8BE001;
     JSL.L Decompression_HardcodedDestination                             ;8BE003;
     dl $7E8000                                                           ;8BE007;
-    LDA.W $09E0                                                          ;8BE00A;
+    LDA.W Equipment.igtHours                                             ;8BE00A;
     CMP.W #$0003                                                         ;8BE00D;
     BPL .gameTimeOver3                                                   ;8BE010;
     SEP #$30                                                             ;8BE012;
@@ -12014,7 +12014,7 @@ CinematicFunction_PostCredits_DeerForce:
 .decTimer:
     LDA.W #$007F                                                         ;8BE1DA;
     STA.W $1A49                                                          ;8BE1DD;
-    LDA.W $09E0                                                          ;8BE1E0;
+    LDA.W Equipment.igtHours                                             ;8BE1E0;
     CMP.W #$0003                                                         ;8BE1E3;
     BMI .bestEnding                                                      ;8BE1E6;
     CMP.W #$000A                                                         ;8BE1E8;
@@ -12085,7 +12085,7 @@ CinematicFunc_PostCredits_IdleSamus_1_CrossFadeOutSamusSuit:
     LDX.W #$0040                                                         ;8BE26D;
     LDY.W #$0010                                                         ;8BE270;
     JSR.W PaletteCrossFading_FadeOutYColorsStartingFromColorIndexX       ;8BE273;
-    LDA.W $09E0                                                          ;8BE276;
+    LDA.W Equipment.igtHours                                             ;8BE276;
     CMP.W #$0003                                                         ;8BE279;
     BMI .lessThan3                                                       ;8BE27C;
     LDX.W #$01C0                                                         ;8BE27E;
@@ -12144,7 +12144,7 @@ CinematicFunction_PostCredits_1994Nintendo:
     BPL .return                                                          ;8BE2E2;
 
 .timerExpired:
-    LDA.W $09E0                                                          ;8BE2E4;
+    LDA.W Equipment.igtHours                                             ;8BE2E4;
     CMP.W #$0003                                                         ;8BE2E7;
     BMI .gameTimeOver10                                                  ;8BE2EA;
     CMP.W #$000A                                                         ;8BE2EC;
@@ -12179,7 +12179,7 @@ CinematicFunc_PostCredits_IdleSamus2_CrossFadeOutSamusSuit:
     LDX.W #$0040                                                         ;8BE31C;
     LDY.W #$0010                                                         ;8BE31F;
     JSR.W PaletteCrossFading_FadeOutYColorsStartingFromColorIndexX       ;8BE322;
-    LDA.W $09E0                                                          ;8BE325;
+    LDA.W Equipment.igtHours                                             ;8BE325;
     CMP.W #$0003                                                         ;8BE328;
     BMI .gameTimeUnder3                                                  ;8BE32B;
     LDX.W #$01C0                                                         ;8BE32D;
@@ -12212,7 +12212,7 @@ CinematicFunction_PostCredits_IdleSamus2:
     LDA.W #RTS_8BDB9D                                                    ;8BE363;
     STA.W $1F51                                                          ;8BE366;
     STZ.W $1A4D                                                          ;8BE369;
-    LDA.W $09E0                                                          ;8BE36C;
+    LDA.W Equipment.igtHours                                             ;8BE36C;
     CMP.W #$0003                                                         ;8BE36F;
     BMI .bestEnding                                                      ;8BE372;
     CMP.W #$000A                                                         ;8BE374;
@@ -12638,7 +12638,7 @@ Instruction_DrawItemPercentageCount:
     LDX.W #$0014                                                         ;8BE65B;
 
 .loopItems:
-    LDA.W $09A4                                                          ;8BE65E;
+    LDA.W Equipment.collectedItems                                       ;8BE65E;
     BIT.W .itemBits,X                                                    ;8BE661;
     BEQ .nextItem                                                        ;8BE664;
     INC.B $12                                                            ;8BE666;
@@ -12650,7 +12650,7 @@ Instruction_DrawItemPercentageCount:
     LDX.W #$0008                                                         ;8BE66C;
 
 .loopBeams:
-    LDA.W $09A8                                                          ;8BE66F;
+    LDA.W Equipment.collectedBeams                                       ;8BE66F;
     BIT.W .beamBits,X                                                    ;8BE672;
     BEQ .nextBeam                                                        ;8BE675;
     INC.B $12                                                            ;8BE677;
@@ -12736,19 +12736,19 @@ Instruction_DrawItemPercentageCount:
 
 
 .tankValuesEnergy:
-    dw $09C4                                                             ;8BE70D;
+    dw Equipment.maxEnergy                                               ;8BE70D;
 
 .tankValuesReserve:
-    dw $09D4                                                             ;8BE70F;
+    dw Equipment.maxReserveEnergy                                        ;8BE70F;
 
 .tankValuesMissiles:
-    dw $09C8                                                             ;8BE711;
+    dw Equipment.maxMissiles                                             ;8BE711;
 
 .tankValuesSuperMissiles:
-    dw $09CC                                                             ;8BE713;
+    dw Equipment.maxSuperMissiles                                        ;8BE713;
 
 .tankValuesPowerBombs:
-    dw $09D0                                                             ;8BE715;
+    dw Equipment.maxPowerBombs                                           ;8BE715;
 
 .tankValuesEnergyDivisor:
     dw $0064                                                             ;8BE717;
@@ -12782,7 +12782,7 @@ TilemapValuesForDecimalDigits_bottomHalf:
 
 Instruction_DrawItemPercentageJapanText:
     PHX                                                                  ;8BE769;
-    LDA.W $09E2                                                          ;8BE76A;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BE76A;
     BEQ .return                                                          ;8BE76D;
     LDX.W #$007E                                                         ;8BE76F;
 
@@ -14513,7 +14513,7 @@ Instruction_CinematicSpriteObject_SpawnClearTime:
     PHY                                                                  ;8BF3CE;
     LDY.W #CinematicSpriteObjectDefinitions_ClearTime                    ;8BF3CF;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BF3D2;
-    LDA.W $09E0                                                          ;8BF3D5;
+    LDA.W Equipment.igtHours                                             ;8BF3D5;
     STA.W HW_WRDIV                                                       ;8BF3D8;
     SEP #$20                                                             ;8BF3DB;
     LDA.B #$0A                                                           ;8BF3DD;
@@ -14530,7 +14530,7 @@ Instruction_CinematicSpriteObject_SpawnClearTime:
     STA.W $0DEC                                                          ;8BF3EE;
     LDA.W HW_RDMPY                                                       ;8BF3F1;
     STA.W $0DEE                                                          ;8BF3F4;
-    LDA.W $09DE                                                          ;8BF3F7;
+    LDA.W Equipment.igtMinutes                                           ;8BF3F7;
     STA.W HW_WRDIV                                                       ;8BF3FA;
     SEP #$20                                                             ;8BF3FD;
     LDA.B #$0A                                                           ;8BF3FF;
@@ -14751,7 +14751,7 @@ Inst_CineSpriteObject_SpawnSuitlessSamus_LettingHairDown:
 
 Instruction_CinematicSpriteObject_SpawnSuitedSamusJump:
     PHY                                                                  ;8BF554;
-    LDA.W $09E0                                                          ;8BF555;
+    LDA.W Equipment.igtHours                                             ;8BF555;
     CMP.W #$000A                                                         ;8BF558;
     BMI .gameTimeUnder10                                                 ;8BF55B;
     LDY.W #CinematicSpriteObjectDefinitions_Jump_Head_Helmet             ;8BF55D;
@@ -14789,7 +14789,7 @@ PreInst_CinematicSpriteObject_SuitedSamus_Jump_Head_Jumping:
 
 
 Instruction_CineSpriteObject_PositionSuitedHeadToPrepareJump:
-    LDA.W $09E0                                                          ;8BF597;
+    LDA.W Equipment.igtHours                                             ;8BF597;
     CMP.W #$000A                                                         ;8BF59A;
     BMI .gameTimeUnder10                                                 ;8BF59D;
     LDA.W #$0076                                                         ;8BF59F;
@@ -14810,7 +14810,7 @@ Instruction_CineSpriteObject_PositionSuitedHeadToPrepareJump:
 
 
 Instruction_CinematicSpriteObject_PositionSamusHeadToJump:
-    LDA.W $09E0                                                          ;8BF5BA;
+    LDA.W Equipment.igtHours                                             ;8BF5BA;
     CMP.W #$000A                                                         ;8BF5BD;
     BMI .gameTimeUnder10                                                 ;8BF5C0;
     LDA.W #$0078                                                         ;8BF5C2;

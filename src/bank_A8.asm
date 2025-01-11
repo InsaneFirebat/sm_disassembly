@@ -1734,7 +1734,7 @@ InitAI_Eye:
 
 MainAI_Eye:
     LDX.W $0E54                                                          ;A890E2;
-    LDA.W $09A4                                                          ;A890E5;
+    LDA.W Equipment.collectedItems                                       ;A890E5;
     BIT.W #$0004                                                         ;A890E8;
     BEQ .return                                                          ;A890EB;
     JMP.W ($0FB2,X)                                                      ;A890ED;
@@ -7475,7 +7475,7 @@ EnemyTouch_Beetom:
     AND.W #$0007                                                         ;A8BE7C;
     CMP.W #$0007                                                         ;A8BE7F;
     BNE +                                                                ;A8BE82;
-    LDA.W $09C2                                                          ;A8BE84;
+    LDA.W Equipment.currentEnergy                                        ;A8BE84;
     CMP.W #$001E                                                         ;A8BE87;
     BMI +                                                                ;A8BE8A;
     LDA.W #$002D                                                         ;A8BE8C;
@@ -12786,7 +12786,7 @@ InitAI_FaceBlock:
     LDA.W #InstList_FaceBlock_FacingForward                              ;A8E831;
     STA.W EnemyData.pInstList,X                                          ;A8E834;
     LDY.W #EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes    ;A8E837;
-    LDA.W $09A4                                                          ;A8E83A;
+    LDA.W Equipment.collectedItems                                       ;A8E83A;
     BIT.W #$0004                                                         ;A8E83D;
     BNE .morphBallCollected                                              ;A8E840;
     LDY.W #RTL_A8804C                                                    ;A8E842;
@@ -12852,7 +12852,7 @@ EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes:
 
 MainAI_FaceBlock:
     LDX.W $0E54                                                          ;A8E8AE;
-    LDA.W $09A4                                                          ;A8E8B1;
+    LDA.W Equipment.collectedItems                                       ;A8E8B1;
     BIT.W #$0004                                                         ;A8E8B4;
     BEQ .return                                                          ;A8E8B7;
     LDY.W #EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes    ;A8E8B9;

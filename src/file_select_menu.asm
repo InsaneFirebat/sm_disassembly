@@ -1583,7 +1583,7 @@ Draw_FileSelection_Health:
     CLC                                                                  ;81A0A3;
     ADC.W #$0008                                                         ;81A0A4;
     TAX                                                                  ;81A0A7;
-    LDA.W $09C2                                                          ;81A0A8;
+    LDA.W Equipment.currentEnergy                                        ;81A0A8;
     STA.W HW_WRDIV                                                       ;81A0AB;
     SEP #$20                                                             ;81A0AE;
     LDA.B #$64                                                           ;81A0B0;
@@ -1597,7 +1597,7 @@ Draw_FileSelection_Health:
     STA.B $14                                                            ;81A0BE;
     LDA.W HW_RDMPY                                                       ;81A0C0;
     STA.B $12                                                            ;81A0C3;
-    LDA.W $09C4                                                          ;81A0C5;
+    LDA.W Equipment.maxEnergy                                            ;81A0C5;
     STA.W HW_WRDIV                                                       ;81A0C8;
     SEP #$20                                                             ;81A0CB;
     LDA.B #$64                                                           ;81A0CD;
@@ -1674,7 +1674,7 @@ Draw_FileSelection_Health:
 Draw_FileSelection_Time:
     BNE .return                                                          ;81A14E;
     STX.B $1A                                                            ;81A150;
-    LDA.W $09E0                                                          ;81A152;
+    LDA.W Equipment.igtHours                                             ;81A152;
     STA.W HW_WRDIV                                                       ;81A155;
     SEP #$20                                                             ;81A158;
     LDA.B #$0A                                                           ;81A15A;
@@ -1701,7 +1701,7 @@ Draw_FileSelection_Time:
     TAX                                                                  ;81A189;
     LDY.W #Tilemap_FileSelect_colon                                      ;81A18A;
     JSR.W Load_Tilemap_in_Y_to_X_Coordinates                             ;81A18D;
-    LDA.W $09DE                                                          ;81A190;
+    LDA.W Equipment.igtMinutes                                           ;81A190;
     STA.W HW_WRDIV                                                       ;81A193;
     SEP #$20                                                             ;81A196;
     LDA.B #$0A                                                           ;81A198;

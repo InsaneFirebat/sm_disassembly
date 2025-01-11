@@ -1666,7 +1666,7 @@ InstList_PaletteFXObject_GoldenTorizoBelly_1:
     dw InstList_PaletteFXObject_GoldenTorizoBelly_1                      ;8DE377;
 
 PreInstruction_PaletteFXObject_SamusInHeat:
-    LDA.W $09A2                                                          ;8DE379;
+    LDA.W Equipment.equippedItems                                        ;8DE379;
     AND.W #$0021                                                         ;8DE37C;
     BNE +                                                                ;8DE37F;
     LDA.W $0A4E                                                          ;8DE381;
@@ -1680,7 +1680,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     BIT.W #$0007                                                         ;8DE397;
     BNE +                                                                ;8DE39A;
     LDA.W #$0046                                                         ;8DE39C;
-    CMP.W $09C2                                                          ;8DE39F;
+    CMP.W Equipment.currentEnergy                                        ;8DE39F;
     BCS +                                                                ;8DE3A2;
     LDA.W #$002D                                                         ;8DE3A4;
     JSL.L QueueSound_Lib3_Max6                                           ;8DE3A7;
@@ -1693,7 +1693,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     TAY                                                                  ;8DE3B7;
     LDA.W #$0001                                                         ;8DE3B8;
     STA.W $1ECD,X                                                        ;8DE3BB;
-    LDA.W $09A2                                                          ;8DE3BE;
+    LDA.W Equipment.equippedItems                                        ;8DE3BE;
     BIT.W #$0020                                                         ;8DE3C1;
     BEQ .checkVaria                                                      ;8DE3C4;
     LDA.W #.InstListPointers_gravity                                     ;8DE3C6;
@@ -1775,7 +1775,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_10                 ;8DE43E;
 
 Setup_PaletteFXObject_Norfair1_Tourian1:
-    LDA.W $09A2                                                          ;8DE440;
+    LDA.W Equipment.equippedItems                                        ;8DE440;
     BIT.W #$0020                                                         ;8DE443;
     BEQ .checkVaria                                                      ;8DE446;
     LDA.W #InstList_PaletteFXObject_SamusInHeat_GravitySuit_0            ;8DE448;

@@ -16135,9 +16135,9 @@ Random_Drop_Routine:
     STA.B $14                                                            ;86F138;
     STZ.B $18                                                            ;86F13A;
     LDY.W #$0001                                                         ;86F13C;
-    LDA.W $09C2                                                          ;86F13F;
+    LDA.W Equipment.currentEnergy                                        ;86F13F;
     CLC                                                                  ;86F142;
-    ADC.W $09D6                                                          ;86F143;
+    ADC.W Equipment.currentReserveEnergy                                 ;86F143;
     CMP.W #$001E                                                         ;86F146;
     BCC .healthBombFlag                                                  ;86F149;
     CMP.W #$0032                                                         ;86F14B;
@@ -16165,11 +16165,11 @@ Random_Drop_Routine:
     STA.B $12                                                            ;86F171;
     LDA.B #$08                                                           ;86F173;
     STA.B $16                                                            ;86F175;
-    LDY.W $09C2                                                          ;86F177;
-    CPY.W $09C4                                                          ;86F17A;
+    LDY.W Equipment.currentEnergy                                        ;86F177;
+    CPY.W Equipment.maxEnergy                                            ;86F17A;
     BNE .energyAllowed                                                   ;86F17D;
-    LDY.W $09D6                                                          ;86F17F;
-    CPY.W $09D4                                                          ;86F182;
+    LDY.W Equipment.currentReserveEnergy                                 ;86F17F;
+    CPY.W Equipment.maxReserveEnergy                                     ;86F182;
     BEQ .fullEnergy                                                      ;86F185;
 
 .energyAllowed:
@@ -16183,8 +16183,8 @@ Random_Drop_Routine:
     STA.B $16                                                            ;86F198;
 
 .fullEnergy:
-    LDY.W $09C6                                                          ;86F19A;
-    CPY.W $09C8                                                          ;86F19D;
+    LDY.W Equipment.currentMissiles                                      ;86F19A;
+    CPY.W Equipment.maxMissiles                                          ;86F19D;
     BEQ .checkSuperMissiles                                              ;86F1A0;
     LDA.B $12                                                            ;86F1A2;
     CLC                                                                  ;86F1A4;
@@ -16195,8 +16195,8 @@ Random_Drop_Routine:
     STA.B $16                                                            ;86F1AF;
 
 .checkSuperMissiles:
-    LDY.W $09CA                                                          ;86F1B1;
-    CPY.W $09CC                                                          ;86F1B4;
+    LDY.W Equipment.currentSuperMissiles                                 ;86F1B1;
+    CPY.W Equipment.maxSuperMissiles                                     ;86F1B4;
     BEQ .checkPowerBombs                                                 ;86F1B7;
     LDA.B $14                                                            ;86F1B9;
     SEC                                                                  ;86F1BB;
@@ -16207,8 +16207,8 @@ Random_Drop_Routine:
     STA.B $16                                                            ;86F1C6;
 
 .checkPowerBombs:
-    LDY.W $09CE                                                          ;86F1C8;
-    CPY.W $09D0                                                          ;86F1CB;
+    LDY.W Equipment.currentPowerBombs                                    ;86F1C8;
+    CPY.W Equipment.maxPowerBombs                                        ;86F1CB;
     BEQ .dropChancesPooled                                               ;86F1CE;
     LDA.B $14                                                            ;86F1D0;
     SEC                                                                  ;86F1D2;

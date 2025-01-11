@@ -1191,7 +1191,7 @@ HandleXrayScope_State0_NoBeam:
     PHP                                                                  ;888732;
     REP #$30                                                             ;888733;
     LDA.B $8B                                                            ;888735;
-    BIT.W $09B6                                                          ;888737;
+    BIT.W Equipment.runBinding                                           ;888737;
     BNE .calculateHDMATable                                              ;88873A;
     LDA.W #$0003                                                         ;88873C;
     STA.W $0A7A                                                          ;88873F;
@@ -1218,7 +1218,7 @@ HandleXrayScope_State1_BeamIsWidening:
     PHP                                                                  ;888754;
     REP #$30                                                             ;888755;
     LDA.B $8B                                                            ;888757;
-    BIT.W $09B6                                                          ;888759;
+    BIT.W Equipment.runBinding                                           ;888759;
     BNE +                                                                ;88875C;
     LDA.W #$0003                                                         ;88875E;
     STA.W $0A7A                                                          ;888761;
@@ -1262,7 +1262,7 @@ HandleXrayScope_State2_FullBeam:
     PHP                                                                  ;8887AB;
     REP #$30                                                             ;8887AC;
     LDA.B $8B                                                            ;8887AE;
-    BIT.W $09B6                                                          ;8887B0;
+    BIT.W Equipment.runBinding                                           ;8887B0;
     BEQ .state3                                                          ;8887B3;
     JSR.W HandleMovingXray_UpDown                                        ;8887B5;
     JSR.W Calculate_Xray_HDMADataTable                                   ;8887B8;
@@ -1281,9 +1281,9 @@ HandleMovingXray_UpDown:
     PHP                                                                  ;8887C5;
     REP #$30                                                             ;8887C6;
     LDA.B $8B                                                            ;8887C8;
-    BIT.W $09AA                                                          ;8887CA;
+    BIT.W Equipment.upBinding                                            ;8887CA;
     BNE .up                                                              ;8887CD;
-    BIT.W $09AC                                                          ;8887CF;
+    BIT.W Equipment.downBinding                                          ;8887CF;
     BNE .down                                                            ;8887D2;
     BRA .return                                                          ;8887D4;
 
@@ -1665,7 +1665,7 @@ HandleXrayScope_State5_DeactivateBeam_Finish:
     BPL .loop                                                            ;888A95;
     LDA.W $0A04                                                          ;888A97;
     BEQ .return                                                          ;888A9A;
-    STZ.W $09D2                                                          ;888A9C;
+    STZ.W Equipment.selectedHudItem                                      ;888A9C;
     STZ.W $0A04                                                          ;888A9F;
 
 .return:
@@ -12651,12 +12651,12 @@ AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToOrange:
 
 
 VariaSuitPickup_Stage3_GiveSamusVariaSuit:
-    LDA.W $09A2                                                          ;88E320;
+    LDA.W Equipment.equippedItems                                        ;88E320;
     ORA.W #$0001                                                         ;88E323;
-    STA.W $09A2                                                          ;88E326;
-    LDA.W $09A4                                                          ;88E329;
+    STA.W Equipment.equippedItems                                        ;88E326;
+    LDA.W Equipment.collectedItems                                       ;88E329;
     ORA.W #$0001                                                         ;88E32C;
-    STA.W $09A4                                                          ;88E32F;
+    STA.W Equipment.collectedItems                                       ;88E32F;
     LDA.W #$009B                                                         ;88E332;
     STA.W $0A1C                                                          ;88E335;
     JSL.L InitializeSamusPose_1                                          ;88E338;
@@ -12676,12 +12676,12 @@ VariaSuitPickup_Stage3_GiveSamusVariaSuit:
 
 
 GravitySuitPickup_Stage3_GiveSamusGravitySuit:
-    LDA.W $09A2                                                          ;88E361;
+    LDA.W Equipment.equippedItems                                        ;88E361;
     ORA.W #$0020                                                         ;88E364;
-    STA.W $09A2                                                          ;88E367;
-    LDA.W $09A4                                                          ;88E36A;
+    STA.W Equipment.equippedItems                                        ;88E367;
+    LDA.W Equipment.collectedItems                                       ;88E36A;
     ORA.W #$0020                                                         ;88E36D;
-    STA.W $09A4                                                          ;88E370;
+    STA.W Equipment.collectedItems                                       ;88E370;
     LDA.W #$009B                                                         ;88E373;
     STA.W $0A1C                                                          ;88E376;
     JSL.L InitializeSamusPose_1                                          ;88E379;

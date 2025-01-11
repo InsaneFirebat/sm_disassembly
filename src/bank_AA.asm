@@ -7130,7 +7130,7 @@ Instruction_Torizo_CallY_OrY2_ForBombTorizoAttack:
     INC A                                                                ;AAC5A7;
     INC A                                                                ;AAC5A8;
     STA.L $7E7800,X                                                      ;AAC5A9;
-    LDA.W $09C6                                                          ;AAC5AD;
+    LDA.W Equipment.currentMissiles                                      ;AAC5AD;
     CMP.W #$0005                                                         ;AAC5B0;
     BCC .spewOrbs                                                        ;AAC5B3;
     LDA.W $0AF6                                                          ;AAC5B5;
@@ -7631,26 +7631,26 @@ InitAI_Torizo:
     CMP.W #$C0C0                                                         ;AAC919; ABXY inputs
     BNE .return                                                          ;AAC91C;
     LDA.W #$02BC                                                         ;AAC91E;
-    STA.W $09C2                                                          ;AAC921;
-    STA.W $09C4                                                          ;AAC924;
+    STA.W Equipment.currentEnergy                                        ;AAC921;
+    STA.W Equipment.maxEnergy                                            ;AAC924;
     LDA.W #$012C                                                         ;AAC927;
-    STA.W $09D4                                                          ;AAC92A;
-    STA.W $09D6                                                          ;AAC92D;
+    STA.W Equipment.maxReserveEnergy                                     ;AAC92A;
+    STA.W Equipment.currentReserveEnergy                                 ;AAC92D;
     LDA.W #$0064                                                         ;AAC930;
-    STA.W $09C6                                                          ;AAC933;
-    STA.W $09C8                                                          ;AAC936;
+    STA.W Equipment.currentMissiles                                      ;AAC933;
+    STA.W Equipment.maxMissiles                                          ;AAC936;
     LDA.W #$0014                                                         ;AAC939;
-    STA.W $09CA                                                          ;AAC93C;
-    STA.W $09CC                                                          ;AAC93F;
+    STA.W Equipment.currentSuperMissiles                                 ;AAC93C;
+    STA.W Equipment.maxSuperMissiles                                     ;AAC93F;
     LDA.W #$0014                                                         ;AAC942;
-    STA.W $09CE                                                          ;AAC945;
-    STA.W $09D0                                                          ;AAC948;
+    STA.W Equipment.currentPowerBombs                                    ;AAC945;
+    STA.W Equipment.maxPowerBombs                                        ;AAC948;
     LDA.W #$F337                                                         ;AAC94B;
-    STA.W $09A2                                                          ;AAC94E;
-    STA.W $09A4                                                          ;AAC951;
+    STA.W Equipment.equippedItems                                        ;AAC94E;
+    STA.W Equipment.collectedItems                                       ;AAC951;
     LDA.W #$100F                                                         ;AAC954;
-    STA.W $09A6                                                          ;AAC957;
-    STA.W $09A8                                                          ;AAC95A;
+    STA.W Equipment.equippedBeams                                        ;AAC957;
+    STA.W Equipment.collectedBeams                                       ;AAC95A;
 
 .return:
     RTL                                                                  ;AAC95D;
@@ -9290,7 +9290,7 @@ Instruction_GoldenTorizo_CallY_OrY2_ForAttack:
     INC A                                                                ;AAD529;
     INC A                                                                ;AAD52A;
     STA.L $7E7800,X                                                      ;AAD52B;
-    LDA.W $09C6                                                          ;AAD52F;
+    LDA.W Equipment.currentMissiles                                      ;AAD52F;
     CMP.W #$0020                                                         ;AAD532;
     BCC .spewOrbs                                                        ;AAD535;
     LDA.W $0AF6                                                          ;AAD537;

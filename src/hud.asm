@@ -179,29 +179,29 @@ InitialiseHUD_GameLoading:
     INX                                                                  ;809AAB;
     CPX.W #$00C0                                                         ;809AAC;
     BNE .loopRows123                                                     ;809AAF;
-    LDA.W $09A2                                                          ;809AB1;
+    LDA.W Equipment.equippedItems                                        ;809AB1;
     BIT.W #$8000                                                         ;809AB4;
     BEQ .grapple                                                         ;809AB7;
     JSL.L AddXrayToHUDTilemap                                            ;809AB9;
 
 .grapple:
-    LDA.W $09A2                                                          ;809ABD;
+    LDA.W Equipment.equippedItems                                        ;809ABD;
     BIT.W #$4000                                                         ;809AC0;
     BEQ .missiles                                                        ;809AC3;
     JSL.L AddGrappleToHUDTilemap                                         ;809AC5;
 
 .missiles:
-    LDA.W $09C8                                                          ;809AC9;
+    LDA.W Equipment.maxMissiles                                          ;809AC9;
     BEQ .superMissiles                                                   ;809ACC;
     JSL.L AddMissilesToHUDTilemap                                        ;809ACE;
 
 .superMissiles:
-    LDA.W $09CC                                                          ;809AD2;
+    LDA.W Equipment.maxSuperMissiles                                     ;809AD2;
     BEQ .powerBombs                                                      ;809AD5;
     JSL.L AddSuperMissilesToHUDTilemap                                   ;809AD7;
 
 .powerBombs:
-    LDA.W $09D0                                                          ;809ADB;
+    LDA.W Equipment.maxPowerBombs                                        ;809ADB;
     BEQ .previous                                                        ;809ADE;
     JSL.L AddPowerBombsToHUDTilemap                                      ;809AE0;
 
@@ -216,28 +216,28 @@ InitialiseHUD_GameLoading:
     STA.B $00                                                            ;809AFA;
     LDA.W #Tilemap_HUDDigits_ammo>>16                                    ;809AFC;
     STA.B $02                                                            ;809AFF;
-    LDA.W $09C8                                                          ;809B01;
+    LDA.W Equipment.maxMissiles                                          ;809B01;
     BEQ .maxSuperMissiles                                                ;809B04;
-    LDA.W $09C6                                                          ;809B06;
+    LDA.W Equipment.currentMissiles                                      ;809B06;
     LDX.W #$0094                                                         ;809B09;
     JSR.W DrawThreeHUDDigits                                             ;809B0C;
 
 .maxSuperMissiles:
-    LDA.W $09CC                                                          ;809B0F;
+    LDA.W Equipment.maxSuperMissiles                                     ;809B0F;
     BEQ .maxPowerBombs                                                   ;809B12;
     LDX.W #$009C                                                         ;809B14;
-    LDA.W $09CA                                                          ;809B17;
+    LDA.W Equipment.currentSuperMissiles                                 ;809B17;
     JSR.W DrawTwoHUDDigits                                               ;809B1A;
 
 .maxPowerBombs:
-    LDA.W $09D0                                                          ;809B1D;
+    LDA.W Equipment.maxPowerBombs                                        ;809B1D;
     BEQ .highlight                                                       ;809B20;
-    LDA.W $09CE                                                          ;809B22;
+    LDA.W Equipment.currentPowerBombs                                    ;809B22;
     LDX.W #$00A2                                                         ;809B25;
     JSR.W DrawTwoHUDDigits                                               ;809B28;
 
 .highlight:
-    LDA.W $09D2                                                          ;809B2B;
+    LDA.W Equipment.selectedHudItem                                      ;809B2B;
     LDX.W #$1000                                                         ;809B2E;
     JSR.W ToggleHUDItemHighlight                                         ;809B31;
     LDA.W $0A0E                                                          ;809B34;
@@ -257,11 +257,11 @@ HandleHUDTilemap_PausedAndRunning:
     SEP #$20                                                             ;809B48;
     STZ.B $02                                                            ;809B4A;
     REP #$30                                                             ;809B4C;
-    LDA.W $09C0                                                          ;809B4E;
+    LDA.W Equipment.reserveTankMode                                      ;809B4E;
     CMP.W #$0001                                                         ;809B51;
     BNE .handleSamusHealth                                               ;809B54;
     LDY.W #Tilemap_HUD_autoReserve                                       ;809B56;
-    LDA.W $09D6                                                          ;809B59;
+    LDA.W Equipment.currentReserveEnergy                                 ;809B59;
     BNE .drawAutoReserve                                                 ;809B5C;
     LDY.W #Tilemap_HUD_emptyAutoReserve                                  ;809B5E;
 
@@ -280,11 +280,11 @@ HandleHUDTilemap_PausedAndRunning:
     STA.L $7EC69A                                                        ;809B87;
 
 .handleSamusHealth:
-    LDA.W $09C2                                                          ;809B8B;
+    LDA.W Equipment.currentEnergy                                        ;809B8B;
     CMP.W $0A06                                                          ;809B8E;
     BEQ .handleSamusMissiles                                             ;809B91;
     STA.W $0A06                                                          ;809B93;
-    LDA.W $09C2                                                          ;809B96;
+    LDA.W Equipment.currentEnergy                                        ;809B96;
     STA.W HW_WRDIV                                                       ;809B99;
     SEP #$20                                                             ;809B9C;
     LDA.B #$64                                                           ;809B9E;
@@ -298,7 +298,7 @@ HandleHUDTilemap_PausedAndRunning:
     STA.B $14                                                            ;809BAC;
     LDA.W HW_RDMPY                                                       ;809BAE;
     STA.B $12                                                            ;809BB1;
-    LDA.W $09C4                                                          ;809BB3;
+    LDA.W Equipment.maxEnergy                                            ;809BB3;
     STA.W HW_WRDIV                                                       ;809BB6;
     SEP #$20                                                             ;809BB9;
     LDA.B #$64                                                           ;809BBB;
@@ -341,9 +341,9 @@ HandleHUDTilemap_PausedAndRunning:
 .handleSamusMissiles:
     LDA.W #Tilemap_HUDDigits_ammo                                        ;809BFB;
     STA.B $00                                                            ;809BFE;
-    LDA.W $09C8                                                          ;809C00;
+    LDA.W Equipment.maxMissiles                                          ;809C00;
     BEQ .handleSuperMissiles                                             ;809C03;
-    LDA.W $09C6                                                          ;809C05;
+    LDA.W Equipment.currentMissiles                                      ;809C05;
     CMP.W $0A08                                                          ;809C08;
     BEQ .handleSuperMissiles                                             ;809C0B;
     STA.W $0A08                                                          ;809C0D;
@@ -351,9 +351,9 @@ HandleHUDTilemap_PausedAndRunning:
     JSR.W DrawThreeHUDDigits                                             ;809C13;
 
 .handleSuperMissiles:
-    LDA.W $09CC                                                          ;809C16;
+    LDA.W Equipment.maxSuperMissiles                                     ;809C16;
     BEQ .handlePowerBombs                                                ;809C19;
-    LDA.W $09CA                                                          ;809C1B;
+    LDA.W Equipment.currentSuperMissiles                                 ;809C1B;
     CMP.W $0A0A                                                          ;809C1E;
     BEQ .handlePowerBombs                                                ;809C21;
     STA.W $0A0A                                                          ;809C23;
@@ -371,9 +371,9 @@ HandleHUDTilemap_PausedAndRunning:
     JSR.W DrawThreeHUDDigits                                             ;809C3C;
 
 .handlePowerBombs:
-    LDA.W $09D0                                                          ;809C3F;
+    LDA.W Equipment.maxPowerBombs                                        ;809C3F;
     BEQ .handleHighlighter                                               ;809C42;
-    LDA.W $09CE                                                          ;809C44;
+    LDA.W Equipment.currentPowerBombs                                    ;809C44;
     CMP.W $0A0C                                                          ;809C47;
     BEQ .handleHighlighter                                               ;809C4A;
     STA.W $0A0C                                                          ;809C4C;
@@ -381,7 +381,7 @@ HandleHUDTilemap_PausedAndRunning:
     JSR.W DrawTwoHUDDigits                                               ;809C52;
 
 .handleHighlighter:
-    LDA.W $09D2                                                          ;809C55;
+    LDA.W Equipment.selectedHudItem                                      ;809C55;
     CMP.W $0A0E                                                          ;809C58;
     BEQ .handleAutoCancel                                                ;809C5B;
     LDX.W #$1000                                                         ;809C5D;
@@ -389,7 +389,7 @@ HandleHUDTilemap_PausedAndRunning:
     LDA.W $0A0E                                                          ;809C63;
     LDX.W #$1400                                                         ;809C66;
     JSR.W ToggleHUDItemHighlight                                         ;809C69;
-    LDA.W $09D2                                                          ;809C6C;
+    LDA.W Equipment.selectedHudItem                                      ;809C6C;
     STA.W $0A0E                                                          ;809C6F;
     LDA.W $0A1F                                                          ;809C72;
     AND.W #$00FF                                                         ;809C75;

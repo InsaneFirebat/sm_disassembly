@@ -4371,7 +4371,7 @@ Function_RidleyCeres_MainAI:
     LDA.L $7E781A                                                        ;A6A6E8;
     CMP.W #$0064                                                         ;A6A6EC;
     BCS .shot100Times                                                    ;A6A6EF;
-    LDA.W $09C2                                                          ;A6A6F1;
+    LDA.W Equipment.currentEnergy                                        ;A6A6F1;
     CMP.W #$001E                                                         ;A6A6F4;
     BPL .SamusNotLowEnergy                                               ;A6A6F7;
     LDA.W #$0000                                                         ;A6A6F9;
@@ -7287,7 +7287,7 @@ PostGetawayFunction_SetupCeresEscapeTimer:
     STA.L $7E803E                                                        ;A6C0D9;
     LDA.W #$0020                                                         ;A6C0DD;
     STA.W $0FB0                                                          ;A6C0E0;
-    LDA.W $09E2                                                          ;A6C0E3;
+    LDA.W Equipment.japaneseSubtitles                                    ;A6C0E3;
     BNE .japanText                                                       ;A6C0E6;
     INC.W $0FB2                                                          ;A6C0E8;
     INC.W $0FB2                                                          ;A6C0EB;
@@ -11667,7 +11667,7 @@ Inst_Ridley_GotoYAndSetTimerTo8IfNotNorfairOrSamusLowEnergy:
     LDA.W $079F                                                          ;A6E4D2;
     CMP.W #$0002                                                         ;A6E4D5;
     BEQ Instruction_Ridley_SkipToNextInstruction                         ;A6E4D8;
-    LDA.W $09C2                                                          ;A6E4DA;
+    LDA.W Equipment.currentEnergy                                        ;A6E4DA;
     CMP.W #$001E                                                         ;A6E4DD;
     BPL Instruction_Ridley_SkipToNextInstruction                         ;A6E4E0;
     LDA.W #$0008                                                         ;A6E4E2;

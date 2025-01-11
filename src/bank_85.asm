@@ -432,13 +432,13 @@ Setup_MessageBox_BG3_Yscroll_HDMA:
 
 DrawShootButton_SetupPPUForLargeMessageBox:
     REP #$30                                                             ;8583C5;
-    LDA.W $09B2                                                          ;8583C7;
+    LDA.W Equipment.shootBinding                                         ;8583C7;
     BRA DrawSpecialButton_SetupPPUForLargeMessageBox                     ;8583CA;
 
 
 DrawRunButton_SetupPPUForLargeMessageBox:
     REP #$30                                                             ;8583CC;
-    LDA.W $09B6                                                          ;8583CE;
+    LDA.W Equipment.runBinding                                           ;8583CE;
 
 DrawSpecialButton_SetupPPUForLargeMessageBox:
     LDY.W #$0000                                                         ;8583D1;

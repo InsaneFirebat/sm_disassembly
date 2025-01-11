@@ -11,10 +11,10 @@ SaveToSRAM:
     AND.W #$0003                                                         ;81800D;
     ASL A                                                                ;818010;
     STA.B $12                                                            ;818011;
-    LDY.W #$005E                                                         ;818013;
+    LDY.W #sizeof(Equipment)-2                                           ;818013;
 
 .loopSamus:
-    LDA.W $09A2,Y                                                        ;818016;
+    LDA.W Equipment.start,Y                                              ;818016;
     STA.W $D7C0,Y                                                        ;818019;
     DEY                                                                  ;81801C;
     DEY                                                                  ;81801D;
@@ -119,11 +119,11 @@ LoadFromSRAM:
     BNE .corrupt                                                         ;8180D9;
 
 .success:
-    LDY.W #$005E                                                         ;8180DB;
+    LDY.W #sizeof(Equipment)-2                                           ;8180DB;
 
 .loopSuccess:
     LDA.W $D7C0,Y                                                        ;8180DE;
-    STA.W $09A2,Y                                                        ;8180E1;
+    STA.W Equipment.start,Y                                              ;8180E1;
     DEY                                                                  ;8180E4;
     DEY                                                                  ;8180E5;
     BPL .loopSuccess                                                     ;8180E6;

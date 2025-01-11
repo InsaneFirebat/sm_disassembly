@@ -1618,7 +1618,7 @@ SquareSlopeDefinitions_Bank94:
 
 UNUSED_DetermineSamusSuitPaletteIndex_948E68:
     LDY.W #$0004                                                         ;948E68;
-    LDA.W $09A2                                                          ;948E6B;
+    LDA.W Equipment.equippedItems                                        ;948E6B;
     BIT.W #$0020                                                         ;948E6E;
     BNE .return                                                          ;948E71;
     DEY                                                                  ;948E73;

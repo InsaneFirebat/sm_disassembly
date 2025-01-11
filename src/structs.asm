@@ -1,3 +1,55 @@
+struct Equipment $09A2 ; TODO change hardcoded address
+  .start:
+  .equippedItems: skip 2 ; $09A2
+  .collectedItems: skip 2 ; $09A4
+  .equippedBeams: skip 2 ; $09A6
+  .collectedBeams: skip 2 ; $09A8
+  .upBinding: skip 2 ; $09AA
+  .downBinding: skip 2 ; $09AC
+  .leftBinding: skip 2 ; $09AE
+  .rightBinding: skip 2 ; $09B0
+  .shootBinding: skip 2 ; $09B2
+  .jumpBinding: skip 2 ; $09B4
+  .runBinding: skip 2 ; $09B6
+  .itemCancelBinding: skip 2 ; $09B8
+  .itemSelectBinding: skip 2 ; $09BA
+  .aimDownBinding: skip 2 ; $09BC
+  .aimUpBinding: skip 2 ; $09BE
+  .reserveTankMode: skip 2 ; $09C0
+  .currentEnergy: skip 2 ; $09C2
+  .maxEnergy: skip 2 ; $09C4
+  .currentMissiles: skip 2 ; $09C6
+  .maxMissiles: skip 2 ; $09C8
+  .currentSuperMissiles: skip 2 ; $09CA
+  .maxSuperMissiles: skip 2 ; $09CC
+  .currentPowerBombs: skip 2 ; $09CE
+  .maxPowerBombs: skip 2 ; $09D0
+  .selectedHudItem: skip 2 ; $09D2
+  .maxReserveEnergy: skip 2 ; $09D4
+  .currentReserveEnergy: skip 2 ; $09D6
+  .currentReserveMissiles: skip 2 ; $09D8
+  .igtFrames: skip 2 ; $09DA
+  .igtSeconds: skip 2 ; $09DC
+  .igtMinutes: skip 2 ; $09DE
+  .igtHours: skip 2 ; $09E0
+  .japaneseSubtitles: skip 2 ; $09E2
+  .moonwalkEnabled: skip 2 ; $09E4
+  .debug_disableSamusPlacementMode: skip 2 ; $09E6
+  .unk09E8: skip 2
+  .itemCancelInDoorTransition: skip 2 ; $09EA
+  .unused09EC: skip 2
+  .unused09EE: skip 2
+  .unused09F0: skip 2
+  .unused09F2: skip 2
+  .unused09F4: skip 2
+  .unused09F6: skip 2
+  .unused09F8: skip 2
+  .unused09FA: skip 2
+  .unused09FC: skip 2
+  .unused09FE: skip 2
+  .unused0A00: skip 2
+endstruct
+
 struct EnemyHeader EnemyHeaders&$FF0000
   .gfxSize: skip 2 ; $00
   .pPal: skip 2 ; $02

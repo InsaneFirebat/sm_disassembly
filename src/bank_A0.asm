@@ -2235,7 +2235,7 @@ NormalEnemyFrozenAI:
     LDA.W EnemyData.freezeTimer,X                                        ;A09586;
     BEQ .unsetFrozenAI                                                   ;A09589;
     DEC.W EnemyData.freezeTimer,X                                        ;A0958B;
-    LDA.W $09A6                                                          ;A0958E;
+    LDA.W Equipment.equippedBeams                                        ;A0958E;
     AND.W #$0002                                                         ;A09591;
     BEQ .unsetFrozenAI                                                   ;A09594;
     LDA.W #$0001                                                         ;A09596;
@@ -4299,7 +4299,7 @@ RinkaDeath:
 
 Suit_Damage_Division:
     STA.B $12                                                            ;A0A45E;
-    LDA.W $09A2                                                          ;A0A460;
+    LDA.W Equipment.equippedItems                                        ;A0A460;
     BIT.W #$0020                                                         ;A0A463;
     BNE .quarterDamage                                                   ;A0A466;
     LSR A                                                                ;A0A468;
@@ -8003,7 +8003,7 @@ UNUSED_CheckIfEnemyIsVerticallyOffScreen_A0C1B1:
 
 
 UNUSED_AssessSamusThreatLevel_A0C1D4:
-    LDA.W $09C4                                                          ;A0C1D4;
+    LDA.W Equipment.maxEnergy                                            ;A0C1D4;
     STA.W HW_WRDIV                                                       ;A0C1D7;
     SEP #$20                                                             ;A0C1DA;
     LDA.B #$03                                                           ;A0C1DC;
@@ -8013,14 +8013,14 @@ UNUSED_AssessSamusThreatLevel_A0C1D4:
     NOP                                                                  ;A0C1E4;
     NOP                                                                  ;A0C1E5;
     LDA.W $4214                                                          ;A0C1E6;
-    CMP.W $09C2                                                          ;A0C1E9;
+    CMP.W Equipment.currentEnergy                                        ;A0C1E9;
     BCC +                                                                ;A0C1EC;
     LDA.W #$0001                                                         ;A0C1EE;
     BRA .store12                                                         ;A0C1F1;
 
 
   + ASL A                                                                ;A0C1F3;
-    CMP.W $09C2                                                          ;A0C1F4;
+    CMP.W Equipment.currentEnergy                                        ;A0C1F4;
     BCC .load3                                                           ;A0C1F7;
     LDA.W #$0002                                                         ;A0C1F9;
     BRA .store12                                                         ;A0C1FC;
@@ -8031,11 +8031,11 @@ UNUSED_AssessSamusThreatLevel_A0C1D4:
 
 .store12:
     STA.B $12                                                            ;A0C201;
-    LDA.W $09A8                                                          ;A0C203;
+    LDA.W Equipment.collectedBeams                                       ;A0C203;
     AND.W #$000F                                                         ;A0C206;
     EOR.W #$FFFF                                                         ;A0C209;
     STA.B $16                                                            ;A0C20C;
-    LDA.W $09A4                                                          ;A0C20E;
+    LDA.W Equipment.collectedItems                                       ;A0C20E;
     EOR.W #$FFFF                                                         ;A0C211;
     STA.B $18                                                            ;A0C214;
     LDA.W #$0000                                                         ;A0C216;
@@ -8072,9 +8072,9 @@ UNUSED_AssessSamusThreatLevel_A0C1D4:
     ADC.W #$0003                                                         ;A0C24E;
 
   + CLC                                                                  ;A0C251;
-    ADC.W $09CA                                                          ;A0C252;
+    ADC.W Equipment.currentSuperMissiles                                 ;A0C252;
     CLC                                                                  ;A0C255;
-    ADC.W $09CE                                                          ;A0C256;
+    ADC.W Equipment.currentPowerBombs                                    ;A0C256;
     STA.B $14                                                            ;A0C259;
     CMP.W #$000B                                                         ;A0C25B;
     BCC .return                                                          ;A0C25E;

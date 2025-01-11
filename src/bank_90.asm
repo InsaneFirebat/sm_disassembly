@@ -209,7 +209,7 @@ Spawn_AirBubbles:
     BEQ .zeroFrameBuffer                                                 ;908191;
     CMP.W #$009B                                                         ;908193;
     BEQ .zeroFrameBuffer                                                 ;908196;
-    LDA.W $09A2                                                          ;908198;
+    LDA.W Equipment.equippedItems                                        ;908198;
     BIT.W #$0020                                                         ;90819B;
     BEQ .return                                                          ;90819E;
 
@@ -236,13 +236,13 @@ AnimateSamus_FX_Lava:
     STZ.W $0B44                                                          ;9081D5;
 
 .zeroSpeedTimer:
-    LDA.W $09A2                                                          ;9081D8;
+    LDA.W Equipment.equippedItems                                        ;9081D8;
     BIT.W #$0020                                                         ;9081DB;
     BNE .gravityEquipped                                                 ;9081DE;
-    LDA.W $09DA                                                          ;9081E0;
+    LDA.W Equipment.igtFrames                                            ;9081E0;
     BIT.W #$0007                                                         ;9081E3;
     BNE .periodicDamage                                                  ;9081E6;
-    LDA.W $09C2                                                          ;9081E8;
+    LDA.W Equipment.currentEnergy                                        ;9081E8;
     CMP.W #$0047                                                         ;9081EB;
     BMI .periodicDamage                                                  ;9081EE;
     LDA.W #$002D                                                         ;9081F0;
@@ -275,10 +275,10 @@ AnimateSamus_FX_Acid:
     BMI AnimateSamus_FX_Lava_goto_AnimateSamus_FX_None                   ;90821C;
     CMP.B $12                                                            ;90821E;
     BPL AnimateSamus_FX_Lava_goto_AnimateSamus_FX_None                   ;908220;
-    LDA.W $09DA                                                          ;908222;
+    LDA.W Equipment.igtFrames                                            ;908222;
     BIT.W #$0007                                                         ;908225;
     BNE +                                                                ;908228;
-    LDA.W $09C2                                                          ;90822A;
+    LDA.W Equipment.currentEnergy                                        ;90822A;
     CMP.W #$0047                                                         ;90822D;
     BMI +                                                                ;908230;
     LDA.W #$002D                                                         ;908232;
@@ -330,7 +330,7 @@ AnimateSamus_SubmergedInLavaAcid:
     STA.W $0AE0                                                          ;9082AB;
     SBC.W #$0006                                                         ;9082AE;
     STA.W $0AE2                                                          ;9082B1;
-    LDA.W $09DA                                                          ;9082B4;
+    LDA.W Equipment.igtFrames                                            ;9082B4;
     BIT.W #$0001                                                         ;9082B7;
     BNE .fullySubmerged                                                  ;9082BA;
     LDA.W #$0010                                                         ;9082BC;
@@ -342,7 +342,7 @@ AnimateSamus_SubmergedInLavaAcid:
     BEQ .zeroBuffer                                                      ;9082C9;
     CMP.W #$009B                                                         ;9082CB;
     BEQ .zeroBuffer                                                      ;9082CE;
-    LDA.W $09A2                                                          ;9082D0;
+    LDA.W Equipment.equippedItems                                        ;9082D0;
     BIT.W #$0020                                                         ;9082D3;
     BEQ .return                                                          ;9082D6;
 
@@ -420,7 +420,7 @@ CLCRTS_908344:
 
 
 AnimDelay_6_GotoBeginningIfSamusNotLowEnergy:
-    LDA.W $09C2                                                          ;908346;
+    LDA.W Equipment.currentEnergy                                        ;908346;
     CMP.W #$001E                                                         ;908349;
     BMI .lowEnergy                                                       ;90834C;
     LDY.W #$0000                                                         ;90834E;
@@ -478,7 +478,7 @@ AnimDelay_9_TransitionToPoseDependingOnItemEquippedAndYSpeed:
     INY                                                                  ;90839A;
     LDA.B [$00],Y                                                        ;90839B;
     STA.B $12                                                            ;90839D;
-    LDA.W $09A2                                                          ;90839F;
+    LDA.W Equipment.equippedItems                                        ;90839F;
     BIT.B $12                                                            ;9083A2;
     BNE .equippedItems                                                   ;9083A4;
     LDA.W $0B2E                                                          ;9083A6;
@@ -559,7 +559,7 @@ UNUSED_AnimDelay_A_TransitionToPoseDependingOnYSpeed_9083F6:
 
 
 AnimDelay_B_SelectAnimDelaySequenceForWallJump:
-    LDA.W $09A2                                                          ;90841D;
+    LDA.W Equipment.equippedItems                                        ;90841D;
     BIT.W #$0020                                                         ;908420;
     BNE .notSubmerged                                                    ;908423;
     JSL.L Get_Samus_BottomTop_Boundary                                   ;908425;
@@ -580,7 +580,7 @@ AnimDelay_B_SelectAnimDelaySequenceForWallJump:
     BMI .submerged                                                       ;908443;
 
 .notSubmerged:
-    LDA.W $09A2                                                          ;908445;
+    LDA.W Equipment.equippedItems                                        ;908445;
     BIT.W #$0008                                                         ;908448;
     BNE .screwAttack                                                     ;90844B;
     BIT.W #$0200                                                         ;90844D;
@@ -625,7 +625,7 @@ UNUSED_AnimDelay_C_TransToPoseDependingOnItemEquipped_90848B:
     INY                                                                  ;90848B;
     LDA.B [$00],Y                                                        ;90848C;
     STA.B $12                                                            ;90848E;
-    LDA.W $09A2                                                          ;908490;
+    LDA.W Equipment.equippedItems                                        ;908490;
     BIT.B $12                                                            ;908493;
     BNE .equippedItems                                                   ;908495;
     INY                                                                  ;908497;
@@ -698,7 +698,7 @@ Handle_NormalAnimationDelay:
     AND.W #$00FF                                                         ;9084F7;
     CMP.W #$0001                                                         ;9084FA;
     BNE .return                                                          ;9084FD;
-    LDA.W $09A2                                                          ;9084FF;
+    LDA.W Equipment.equippedItems                                        ;9084FF;
     BIT.W #$2000                                                         ;908502;
     BEQ .noSpeedBooster                                                  ;908505;
     LDA.W $0B3F                                                          ;908507;
@@ -741,7 +741,7 @@ Handle_SpeedBooster_AnimationDelay:
 
 .checkPressingRun:
     LDA.B $8B                                                            ;908540;
-    BIT.W $09B6                                                          ;908542;
+    BIT.W Equipment.runBinding                                           ;908542;
     BNE .checkMovementType                                               ;908545;
     JMP.W .finish                                                        ;908547;
 
@@ -755,7 +755,7 @@ Handle_SpeedBooster_AnimationDelay:
 
 
 .speedBoosterEquipped:
-    LDA.W $09A2                                                          ;908558;
+    LDA.W Equipment.equippedItems                                        ;908558;
     BIT.W #$2000                                                         ;90855B;
     BNE .speedBoostTimer                                                 ;90855E;
     LDY.W #$0000                                                         ;908560;
@@ -2319,7 +2319,7 @@ Samus_Jumping_Movement:
     CMP.W #$0001                                                         ;908FDF;
     BNE .setFallingEnd                                                   ;908FE2;
     LDA.B $8B                                                            ;908FE4;
-    AND.W $09B4                                                          ;908FE6;
+    AND.W Equipment.jumpBinding                                          ;908FE6;
     BEQ +                                                                ;908FE9;
     LDA.W $0B2E                                                          ;908FEB;
     BPL .setFallingEnd                                                   ;908FEE;
@@ -2376,7 +2376,7 @@ Samus_SpinJumping_Movement:
     CMP.W #$0001                                                         ;909049;
     BNE .setFallingEnd                                                   ;90904C;
     LDA.B $8B                                                            ;90904E;
-    AND.W $09B4                                                          ;909050;
+    AND.W Equipment.jumpBinding                                          ;909050;
     BEQ +                                                                ;909053;
     LDA.W $0B2E                                                          ;909055;
     BPL .setFallingEnd                                                   ;909058;
@@ -3396,7 +3396,7 @@ CalculateVerticalDistanceSamusMovedLastFrame:
 Handle_Samus_XExtraRunSpeed:
     PHP                                                                  ;90973E;
     REP #$30                                                             ;90973F;
-    LDA.W $09A2                                                          ;909741;
+    LDA.W Equipment.equippedItems                                        ;909741;
     BIT.W #$0020                                                         ;909744;
     BNE .gravity                                                         ;909747;
     JSL.L Get_Samus_Bottom_Boundary                                      ;909749;
@@ -3437,13 +3437,13 @@ Handle_Samus_XExtraRunSpeed:
 
 .checkDash:
     LDA.B $8B                                                            ;90977F;
-    AND.W $09B6                                                          ;909781;
+    AND.W Equipment.runBinding                                           ;909781;
     BNE .running                                                         ;909784;
     JMP.W .notRunning                                                    ;909786;
 
 
 .running:
-    LDA.W $09A2                                                          ;909789;
+    LDA.W Equipment.equippedItems                                        ;909789;
     BIT.W #$2000                                                         ;90978C;
     BEQ .noSpeedBooster                                                  ;90978F;
     LDA.W $0B3C                                                          ;909791;
@@ -3605,7 +3605,7 @@ Make_Samus_Jump:
     PHK                                                                  ;9098BE;
     PLB                                                                  ;9098BF;
     REP #$30                                                             ;9098C0;
-    LDA.W $09A2                                                          ;9098C2;
+    LDA.W Equipment.equippedItems                                        ;9098C2;
     BIT.W #$0020                                                         ;9098C5;
     BNE .normalGravity                                                   ;9098C8;
     JSL.L Get_Samus_Bottom_Boundary                                      ;9098CA;
@@ -3639,7 +3639,7 @@ Make_Samus_Jump:
     LDX.W #$0004                                                         ;9098F4;
 
 .merge:
-    LDA.W $09A2                                                          ;9098F7;
+    LDA.W Equipment.equippedItems                                        ;9098F7;
     BIT.W #$0100                                                         ;9098FA;
     BNE .hiJumpEquipped                                                  ;9098FD;
     LDA.W SamusPhysicsConstants_InitialYSubSpeeds_Jumping,X              ;9098FF;
@@ -3655,7 +3655,7 @@ Make_Samus_Jump:
     LDA.W SamusPhysicsConstants_InitialYSpeeds_HiJumpJumping,X           ;909913;
     STA.W $0B2E                                                          ;909916;
 
-  + LDA.W $09A2                                                          ;909919;
+  + LDA.W Equipment.equippedItems                                        ;909919;
     BIT.W #$2000                                                         ;90991C;
     BEQ +                                                                ;90991F;
     LDA.W $0B42                                                          ;909921;
@@ -3685,7 +3685,7 @@ Make_Samus_WallJump:
     PHK                                                                  ;90994B;
     PLB                                                                  ;90994C;
     REP #$30                                                             ;90994D;
-    LDA.W $09A2                                                          ;90994F;
+    LDA.W Equipment.equippedItems                                        ;90994F;
     BIT.W #$0020                                                         ;909952;
     BNE .normalGravity                                                   ;909955;
     JSL.L Get_Samus_Bottom_Boundary                                      ;909957;
@@ -3719,7 +3719,7 @@ Make_Samus_WallJump:
     LDX.W #$0004                                                         ;909981;
 
 .merge:
-    LDA.W $09A2                                                          ;909984;
+    LDA.W Equipment.equippedItems                                        ;909984;
     BIT.W #$0100                                                         ;909987;
     BNE .hiJumpEquipped                                                  ;90998A;
     LDA.W SamusPhysicsConstants_InitialYSubSpeeds_WallJumping,X          ;90998C;
@@ -3735,7 +3735,7 @@ Make_Samus_WallJump:
     LDA.W SamusPhysicsConstants_InitialYSpeeds_HiJumpWallJumping,X       ;9099A0;
     STA.W $0B2E                                                          ;9099A3;
 
-  + LDA.W $09A2                                                          ;9099A6;
+  + LDA.W Equipment.equippedItems                                        ;9099A6;
     BIT.W #$2000                                                         ;9099A9;
     BEQ +                                                                ;9099AC;
     LDA.W $0B42                                                          ;9099AE;
@@ -3765,7 +3765,7 @@ SetSamusYSpeedForKnockback:
     PHK                                                                  ;9099D8;
     PLB                                                                  ;9099D9;
     REP #$30                                                             ;9099DA;
-    LDA.W $09A2                                                          ;9099DC;
+    LDA.W Equipment.equippedItems                                        ;9099DC;
     BIT.W #$0020                                                         ;9099DF;
     BNE .inAir                                                           ;9099E2;
     JSL.L Get_Samus_Bottom_Boundary                                      ;9099E4;
@@ -3815,7 +3815,7 @@ SetSamusYSpeedForKnockback:
 Make_Samus_BombJump:
     PHP                                                                  ;909A2C;
     REP #$30                                                             ;909A2D;
-    LDA.W $09A2                                                          ;909A2F;
+    LDA.W Equipment.equippedItems                                        ;909A2F;
     BIT.W #$0020                                                         ;909A32;
     BNE .normalGravity                                                   ;909A35;
     JSL.L Get_Samus_Bottom_Boundary                                      ;909A37;
@@ -4048,7 +4048,7 @@ CalculateSamusXBaseSpeed_DecelerationDisallowed:
 Determine_SamusXSpeedTable_EntryPointer:
     PHP                                                                  ;909BD1;
     REP #$30                                                             ;909BD2;
-    LDA.W $09A2                                                          ;909BD4;
+    LDA.W Equipment.equippedItems                                        ;909BD4;
     BIT.W #$0020                                                         ;909BD7;
     BNE .gotoSpeedTableSet                                               ;909BDA;
     JSL.L Get_Samus_Bottom_Boundary                                      ;909BDC;
@@ -4101,7 +4101,7 @@ Determine_SamusXSpeedTable_EntryPointer:
 DetermineGrappleSwing_SamusXSpeedTable_EntryPointer:
     PHP                                                                  ;909C21;
     REP #$30                                                             ;909C22;
-    LDA.W $09A2                                                          ;909C24;
+    LDA.W Equipment.equippedItems                                        ;909C24;
     BIT.W #$0020                                                         ;909C27;
     BNE .normalGravity                                                   ;909C2A;
     JSL.L Get_Samus_Bottom_Boundary                                      ;909C2C;
@@ -4140,7 +4140,7 @@ DetermineGrappleSwing_SamusXSpeedTable_EntryPointer:
 
 
 Determine_Samus_YAcceleration:
-    LDA.W $09A2                                                          ;909C5B;
+    LDA.W Equipment.equippedItems                                        ;909C5B;
     BIT.W #$0020                                                         ;909C5E;
     BNE .notSubmerged                                                    ;909C61;
     JSL.L Get_Samus_Bottom_Boundary                                      ;909C63;
@@ -4214,14 +4214,14 @@ Grapple_WallJump_Check:
     JSL.L WallJumpBlockCollisionDetection                                ;909CD8;
     BCC .gotoReturnCarryClear                                            ;909CDC;
     LDA.B $8F                                                            ;909CDE;
-    BIT.W $09B4                                                          ;909CE0;
+    BIT.W Equipment.jumpBinding                                          ;909CE0;
     BNE .returnCarrySet                                                  ;909CE3;
     JMP.W .returnCarryClear                                              ;909CE5;
 
 
 .checkJump:
     LDA.B $8F                                                            ;909CE8;
-    BIT.W $09B4                                                          ;909CEA;
+    BIT.W Equipment.jumpBinding                                          ;909CEA;
     BNE .wallJumpEnemy                                                   ;909CED;
     BRA .returnCarryClear                                                ;909CEF;
 
@@ -4245,14 +4245,14 @@ Grapple_WallJump_Check:
     JSL.L WallJumpBlockCollisionDetection                                ;909D0E;
     BCC .returnCarryClear                                                ;909D12;
     LDA.B $8F                                                            ;909D14;
-    BIT.W $09B4                                                          ;909D16;
+    BIT.W Equipment.jumpBinding                                          ;909D16;
     BNE .returnCarrySet                                                  ;909D19;
     BRA .returnCarryClear                                                ;909D1B;
 
 
 .collisionDetected:
     LDA.B $8F                                                            ;909D1D;
-    BIT.W $09B4                                                          ;909D1F;
+    BIT.W Equipment.jumpBinding                                          ;909D1F;
     BEQ .returnCarryClear                                                ;909D22;
 
 .wallJumpEnemy:
@@ -4393,14 +4393,14 @@ WallJump_Check:
     JSL.L WallJumpBlockCollisionDetection                                ;909DFF;
     BCC .gotoReturnCarryClear                                            ;909E03;
     LDA.B $8F                                                            ;909E05;
-    BIT.W $09B4                                                          ;909E07;
+    BIT.W Equipment.jumpBinding                                          ;909E07;
     BNE .wallJumpBlock                                                   ;909E0A;
     JMP.W .returnCarryClear                                              ;909E0C;
 
 
 .collision:
     LDA.B $8F                                                            ;909E0F;
-    BIT.W $09B4                                                          ;909E11;
+    BIT.W Equipment.jumpBinding                                          ;909E11;
     BNE .wallJumpEnemy                                                   ;909E14;
     BRA .returnCarryClear                                                ;909E16;
 
@@ -4424,14 +4424,14 @@ WallJump_Check:
     JSL.L WallJumpBlockCollisionDetection                                ;909E35;
     BCC .returnCarryClear                                                ;909E39;
     LDA.B $8F                                                            ;909E3B;
-    BIT.W $09B4                                                          ;909E3D;
+    BIT.W Equipment.jumpBinding                                          ;909E3D;
     BNE .wallJumpBlock                                                   ;909E40;
     BRA .returnCarryClear                                                ;909E42;
 
 
 .leftCollisionDetected:
     LDA.B $8F                                                            ;909E44;
-    BIT.W $09B4                                                          ;909E46;
+    BIT.W Equipment.jumpBinding                                          ;909E46;
     BEQ .returnCarryClear                                                ;909E49;
 
 .wallJumpEnemy:
@@ -4770,7 +4770,7 @@ SamusMovement_Standing:
 
 .checkPressingShot:
     LDA.B $8B                                                            ;90A3BA;
-    BIT.W $09B2                                                          ;90A3BC;
+    BIT.W Equipment.shootBinding                                         ;90A3BC;
     BEQ .moveSamus                                                       ;90A3BF;
     LDA.W #$0010                                                         ;90A3C1;
     STA.W $0A94                                                          ;90A3C4;
@@ -4866,7 +4866,7 @@ SamusMovement_SpinJumping:
 .determinedLiquidPhysics:
     LDA.B $12                                                            ;90A46A;
     BNE .liquidPhysics                                                   ;90A46C;
-    LDA.W $09A2                                                          ;90A46E;
+    LDA.W Equipment.equippedItems                                        ;90A46E;
     BIT.W #$0200                                                         ;90A471;
     BNE .spaceJumpEligible                                               ;90A474;
     LDA.W $0A1C                                                          ;90A476;
@@ -4907,7 +4907,7 @@ SamusMovement_SpinJumping:
     ORA.W #$0001                                                         ;90A4B7;
     STA.W $0DFA                                                          ;90A4BA;
     LDA.B $8F                                                            ;90A4BD;
-    AND.W $09B4                                                          ;90A4BF;
+    AND.W Equipment.jumpBinding                                          ;90A4BF;
     BEQ .screwAttackEligible                                             ;90A4C2;
     JSL.L Make_Samus_Jump                                                ;90A4C4;
 
@@ -6064,7 +6064,7 @@ Check_if_Samus_Can_Fire_Beam:
 
 
 Check_if_Samus_Can_Fire_Missile:
-    LDA.W $09D2                                                          ;90AC5A;
+    LDA.W Equipment.selectedHudItem                                      ;90AC5A;
     CMP.W #$0002                                                         ;90AC5D;
     BEQ .superMissile                                                    ;90AC60;
     LDA.W $0CCE                                                          ;90AC62;
@@ -6103,7 +6103,7 @@ Update_Beam_Tiles_and_Palette:
     PHK                                                                  ;90AC8F;
     PLB                                                                  ;90AC90;
     REP #$30                                                             ;90AC91;
-    LDA.W $09A6                                                          ;90AC93;
+    LDA.W Equipment.equippedBeams                                        ;90AC93;
     AND.W #$0FFF                                                         ;90AC96;
     ASL A                                                                ;90AC99;
     TAY                                                                  ;90AC9A;
@@ -6228,9 +6228,9 @@ Reset_Projectile_Data:
     STZ.W $0CCC                                                          ;90AD62;
     STZ.W $0CCE                                                          ;90AD65;
     STZ.W $0CEE                                                          ;90AD68;
-    LDA.W $09EA                                                          ;90AD6B;
+    LDA.W Equipment.itemCancelInDoorTransition                           ;90AD6B;
     BEQ +                                                                ;90AD6E;
-    STZ.W $09D2                                                          ;90AD70;
+    STZ.W Equipment.selectedHudItem                                      ;90AD70;
     STZ.W $0A04                                                          ;90AD73;
 
   + STZ.W $0AB0                                                          ;90AD76;
@@ -7773,12 +7773,12 @@ HUDSelectionHandler_Nothing_PowerBombs:
     STA.W $0DC2                                                          ;90B813;
     LDA.W $0A76                                                          ;90B816;
     BNE +                                                                ;90B819;
-    LDA.W $09A6                                                          ;90B81B;
+    LDA.W Equipment.equippedBeams                                        ;90B81B;
     BIT.W #$1000                                                         ;90B81E;
     BNE .charge                                                          ;90B821;
 
   + LDA.B $8B                                                            ;90B823;
-    AND.W $09B2                                                          ;90B825;
+    AND.W Equipment.shootBinding                                         ;90B825;
     BEQ .return                                                          ;90B828;
     JMP.W Fire_Uncharge_Beam                                             ;90B82A;
 
@@ -7793,7 +7793,7 @@ HUDSelectionHandler_Nothing_PowerBombs:
 
 
   + LDA.B $8B                                                            ;90B83C;
-    AND.W $09B2                                                          ;90B83E;
+    AND.W Equipment.shootBinding                                         ;90B83E;
     BEQ +                                                                ;90B841;
     LDA.W $0CD0                                                          ;90B843;
     CMP.W #$0078                                                         ;90B846;
@@ -7882,7 +7882,7 @@ Fire_Uncharge_Beam:
     LDX.B $14                                                            ;90B8C8;
     LDA.W #$0004                                                         ;90B8CA;
     STA.W $0C90,X                                                        ;90B8CD;
-    LDA.W $09A6                                                          ;90B8D0;
+    LDA.W Equipment.equippedBeams                                        ;90B8D0;
     ORA.W #$8000                                                         ;90B8D3;
     STA.W $0C18,X                                                        ;90B8D6;
     AND.W #$000F                                                         ;90B8D9;
@@ -7892,14 +7892,14 @@ Fire_Uncharge_Beam:
     JSL.L QueueSound                                                     ;90B8E1;
     STZ.W $0DC0                                                          ;90B8E5;
     JSL.L InitializeProjectile                                           ;90B8E8;
-    LDA.W $09A6                                                          ;90B8EC;
+    LDA.W Equipment.equippedBeams                                        ;90B8EC;
     BIT.W #$1000                                                         ;90B8EF;
     BNE .chargeEquippedOrPreviouslyPressedShot                           ;90B8F2;
     LDA.B $8F                                                            ;90B8F4;
-    BIT.W $09B2                                                          ;90B8F6;
+    BIT.W Equipment.shootBinding                                         ;90B8F6;
     BNE .chargeEquippedOrPreviouslyPressedShot                           ;90B8F9;
     LDA.W $0E00                                                          ;90B8FB;
-    BIT.W $09B2                                                          ;90B8FE;
+    BIT.W Equipment.shootBinding                                         ;90B8FE;
     BNE .chargeEquippedOrPreviouslyPressedShot                           ;90B901;
     LDA.W $0C18,X                                                        ;90B903;
     PHA                                                                  ;90B906;
@@ -8013,7 +8013,7 @@ FireChargeBeam:
     LDX.B $14                                                            ;90B9BF;
     LDA.W #$0004                                                         ;90B9C1;
     STA.W $0C90,X                                                        ;90B9C4;
-    LDA.W $09A6                                                          ;90B9C7;
+    LDA.W Equipment.equippedBeams                                        ;90B9C7;
     AND.W #$100F                                                         ;90B9CA;
     ORA.W #$8010                                                         ;90B9CD;
     STA.W $0C18,X                                                        ;90B9D0;
@@ -8684,10 +8684,10 @@ HUDSelectionHandler_Missiles_SuperMissiles:
     PHP                                                                  ;90BE62;
     REP #$30                                                             ;90BE63;
     LDA.B $8F                                                            ;90BE65;
-    BIT.W $09B2                                                          ;90BE67;
+    BIT.W Equipment.shootBinding                                         ;90BE67;
     BNE .checkIfCanFire                                                  ;90BE6A;
     LDA.W $0E00                                                          ;90BE6C;
-    BIT.W $09B2                                                          ;90BE6F;
+    BIT.W Equipment.shootBinding                                         ;90BE6F;
     BNE .checkIfCanFire                                                  ;90BE72;
     PLP                                                                  ;90BE74;
     RTS                                                                  ;90BE75;
@@ -8709,16 +8709,16 @@ HUDSelectionHandler_Missiles_SuperMissiles:
 
 
 .fire:
-    LDA.W $09D2                                                          ;90BE82;
+    LDA.W Equipment.selectedHudItem                                      ;90BE82;
     CMP.W #$0002                                                         ;90BE85;
     BEQ .selectedSupers                                                  ;90BE88;
-    LDA.W $09C6                                                          ;90BE8A;
+    LDA.W Equipment.currentMissiles                                      ;90BE8A;
     BEQ .cannotFire                                                      ;90BE8D;
     BRA .zeroIndex                                                       ;90BE8F;
 
 
 .selectedSupers:
-    LDA.W $09CA                                                          ;90BE91;
+    LDA.W Equipment.currentSuperMissiles                                 ;90BE91;
     BEQ .cannotFire                                                      ;90BE94;
 
 .zeroIndex:
@@ -8742,20 +8742,20 @@ HUDSelectionHandler_Missiles_SuperMissiles:
 
   + LDA.W #$0014                                                         ;90BEB1;
     STA.W $18AC                                                          ;90BEB4;
-    LDA.W $09D2                                                          ;90BEB7;
+    LDA.W Equipment.selectedHudItem                                      ;90BEB7;
     CMP.W #$0002                                                         ;90BEBA;
     BEQ .decSuperCount                                                   ;90BEBD;
-    DEC.W $09C6                                                          ;90BEBF;
+    DEC.W Equipment.currentMissiles                                      ;90BEBF;
     BRA +                                                                ;90BEC2;
 
 
 .decSuperCount:
-    DEC.W $09CA                                                          ;90BEC4;
+    DEC.W Equipment.currentSuperMissiles                                 ;90BEC4;
 
   + LDX.B $14                                                            ;90BEC7;
     LDA.W #$0004                                                         ;90BEC9;
     STA.W $0C90,X                                                        ;90BECC;
-    LDA.W $09D2                                                          ;90BECF;
+    LDA.W Equipment.selectedHudItem                                      ;90BECF;
     PHA                                                                  ;90BED2;
     XBA                                                                  ;90BED3;
     STA.B $12                                                            ;90BED4;
@@ -8797,25 +8797,25 @@ HUDSelectionHandler_Missiles_SuperMissiles:
     STA.W $0CCC                                                          ;90BF1D;
     LDA.W $0A04                                                          ;90BF20;
     BEQ +                                                                ;90BF23;
-    STZ.W $09D2                                                          ;90BF25;
+    STZ.W Equipment.selectedHudItem                                      ;90BF25;
     STZ.W $0A04                                                          ;90BF28;
     BRA .returnLower                                                     ;90BF2B;
 
 
-  + LDA.W $09D2                                                          ;90BF2D;
+  + LDA.W Equipment.selectedHudItem                                      ;90BF2D;
     CMP.W #$0002                                                         ;90BF30;
     BEQ .supersSelected                                                  ;90BF33;
-    LDA.W $09C6                                                          ;90BF35;
+    LDA.W Equipment.currentMissiles                                      ;90BF35;
     BNE .returnLower                                                     ;90BF38;
     BRA .clearHUDSelection                                               ;90BF3A;
 
 
 .supersSelected:
-    LDA.W $09CA                                                          ;90BF3C;
+    LDA.W Equipment.currentSuperMissiles                                 ;90BF3C;
     BNE .returnLower                                                     ;90BF3F;
 
 .clearHUDSelection:
-    STZ.W $09D2                                                          ;90BF41;
+    STZ.W Equipment.selectedHudItem                                      ;90BF41;
 
 .returnLower:
     PLP                                                                  ;90BF44;
@@ -8873,9 +8873,9 @@ HUDSelectionHandler_MorphBall:
     PHP                                                                  ;90BF9D;
     REP #$30                                                             ;90BF9E;
     LDA.B $8B                                                            ;90BFA0;
-    AND.W $09B2                                                          ;90BFA2;
+    AND.W Equipment.shootBinding                                         ;90BFA2;
     BEQ .notPressingShot                                                 ;90BFA5;
-    LDA.W $09D2                                                          ;90BFA7;
+    LDA.W Equipment.selectedHudItem                                      ;90BFA7;
     CMP.W #$0003                                                         ;90BFAA;
     BNE .bomb                                                            ;90BFAD;
     JMP.W .powerBomb                                                     ;90BFAF;
@@ -8951,10 +8951,10 @@ HUDSelectionHandler_MorphBall:
 .inactive:
     JSR.W FireBomb                                                       ;90C023;
     BCC .returnPowerBomb                                                 ;90C026;
-    LDA.W $09CE                                                          ;90C028;
+    LDA.W Equipment.currentPowerBombs                                    ;90C028;
     BEQ .returnFinal                                                     ;90C02B;
     DEC A                                                                ;90C02D;
-    STA.W $09CE                                                          ;90C02E;
+    STA.W Equipment.currentPowerBombs                                    ;90C02E;
     BMI .returnFinal                                                     ;90C031;
     LDA.W #$FFFF                                                         ;90C033;
     STA.W $0CEE                                                          ;90C036;
@@ -8971,7 +8971,7 @@ HUDSelectionHandler_MorphBall:
     DEX                                                                  ;90C049;
 
   + STX.B $14                                                            ;90C04A;
-    LDA.W $09D2                                                          ;90C04C;
+    LDA.W Equipment.selectedHudItem                                      ;90C04C;
     XBA                                                                  ;90C04F;
     STA.B $12                                                            ;90C050;
     LDA.W $0C18,X                                                        ;90C052;
@@ -8998,17 +8998,17 @@ HUDSelectionHandler_MorphBall:
     STA.W $0CCC                                                          ;90C089;
     LDA.W $0A04                                                          ;90C08C;
     BEQ +                                                                ;90C08F;
-    STZ.W $09D2                                                          ;90C091;
+    STZ.W Equipment.selectedHudItem                                      ;90C091;
     STZ.W $0A04                                                          ;90C094;
     BRA .returnFinal                                                     ;90C097;
 
 
-  + LDA.W $09D2                                                          ;90C099;
+  + LDA.W Equipment.selectedHudItem                                      ;90C099;
     CMP.W #$0003                                                         ;90C09C;
     BNE .returnFinal                                                     ;90C09F;
-    LDA.W $09CE                                                          ;90C0A1;
+    LDA.W Equipment.currentPowerBombs                                    ;90C0A1;
     BNE .returnFinal                                                     ;90C0A4;
-    STZ.W $09D2                                                          ;90C0A6;
+    STZ.W Equipment.selectedHudItem                                      ;90C0A6;
 
 .returnFinal:
     PLP                                                                  ;90C0A9;
@@ -9016,7 +9016,7 @@ HUDSelectionHandler_MorphBall:
 
 
 FireBombOrBombSpread:
-    LDA.W $09A2                                                          ;90C0AB;
+    LDA.W Equipment.equippedItems                                        ;90C0AB;
     BIT.W #$1000                                                         ;90C0AE;
     BEQ .return                                                          ;90C0B1;
     LDA.W $0CD0                                                          ;90C0B3;
@@ -9048,7 +9048,7 @@ FireBombOrBombSpread:
 
 FireBomb:
     LDA.B $8F                                                            ;90C0E7;
-    BIT.W $09B2                                                          ;90C0E9;
+    BIT.W Equipment.shootBinding                                         ;90C0E9;
     BEQ .noFire                                                          ;90C0EC;
     LDA.W $0CD2                                                          ;90C0EE;
     BEQ +                                                                ;90C0F1;
@@ -9321,10 +9321,10 @@ FlareAnimationDelays_FlareFastSparks:
 HandleSwitchingHUDSelection:
     PHP                                                                  ;90C4B5;
     REP #$30                                                             ;90C4B6;
-    LDA.W $09D2                                                          ;90C4B8;
+    LDA.W Equipment.selectedHudItem                                      ;90C4B8;
     STA.B $12                                                            ;90C4BB;
     LDA.B $8F                                                            ;90C4BD;
-    BIT.W $09B8                                                          ;90C4BF;
+    BIT.W Equipment.itemCancelBinding                                    ;90C4BF;
     BEQ .notItemCancel                                                   ;90C4C2;
     STZ.W $0A04                                                          ;90C4C4;
     BRA .itemCancel                                                      ;90C4C7;
@@ -9332,7 +9332,7 @@ HandleSwitchingHUDSelection:
 
 .notItemCancel:
     LDA.B $8B                                                            ;90C4C9;
-    BIT.W $09B8                                                          ;90C4CB;
+    BIT.W Equipment.itemCancelBinding                                    ;90C4CB;
     BNE +                                                                ;90C4CE;
     STZ.B $16                                                            ;90C4D0;
     BRA .checkItemSelect                                                 ;90C4D2;
@@ -9343,9 +9343,9 @@ HandleSwitchingHUDSelection:
 
 .checkItemSelect:
     LDA.B $8F                                                            ;90C4D9;
-    BIT.W $09BA                                                          ;90C4DB;
+    BIT.W Equipment.itemSelectBinding                                    ;90C4DB;
     BEQ .itemSelectEnd                                                   ;90C4DE;
-    LDA.W $09D2                                                          ;90C4E0;
+    LDA.W Equipment.selectedHudItem                                      ;90C4E0;
     INC A                                                                ;90C4E3;
     CMP.W #$0006                                                         ;90C4E4;
     BMI .itemCancelEnd                                                   ;90C4E7;
@@ -9354,27 +9354,27 @@ HandleSwitchingHUDSelection:
     LDA.W #$0000                                                         ;90C4E9;
 
 .itemCancelEnd:
-    STA.W $09D2                                                          ;90C4EC;
+    STA.W Equipment.selectedHudItem                                      ;90C4EC;
 
 .loop:
     ASL A                                                                ;90C4EF;
     TAX                                                                  ;90C4F0;
     JSR.W (.pointers,X)                                                  ;90C4F1;
     BCC .checkHoldingItemCancel                                          ;90C4F4;
-    LDA.W $09D2                                                          ;90C4F6;
+    LDA.W Equipment.selectedHudItem                                      ;90C4F6;
     INC A                                                                ;90C4F9;
-    STA.W $09D2                                                          ;90C4FA;
+    STA.W Equipment.selectedHudItem                                      ;90C4FA;
     CMP.W #$0006                                                         ;90C4FD;
     BMI .loop                                                            ;90C500;
     LDA.W #$0000                                                         ;90C502;
-    STA.W $09D2                                                          ;90C505;
+    STA.W Equipment.selectedHudItem                                      ;90C505;
     BRA .loop                                                            ;90C508;
 
 
 .checkHoldingItemCancel:
     LDA.B $16                                                            ;90C50A;
     BEQ .resetAutoCancel                                                 ;90C50C;
-    LDA.W $09D2                                                          ;90C50E;
+    LDA.W Equipment.selectedHudItem                                      ;90C50E;
     STA.W $0A04                                                          ;90C511;
     BRA .itemSelectEnd                                                   ;90C514;
 
@@ -9383,7 +9383,7 @@ HandleSwitchingHUDSelection:
     STZ.W $0A04                                                          ;90C516;
 
 .itemSelectEnd:
-    LDA.W $09D2                                                          ;90C519;
+    LDA.W Equipment.selectedHudItem                                      ;90C519;
     CMP.B $12                                                            ;90C51C;
     BNE .itemChanged                                                     ;90C51E;
     LDA.W $0AAA                                                          ;90C520;
@@ -9423,7 +9423,7 @@ SwitchedToHUDItemHandler_Nothing:
 
 
 SwitchedToHUDItemHandler_Missiles:
-    LDA.W $09C6                                                          ;90C551;
+    LDA.W Equipment.currentMissiles                                      ;90C551;
     BNE .hasMissiles                                                     ;90C554;
     SEC                                                                  ;90C556;
     RTS                                                                  ;90C557;
@@ -9438,7 +9438,7 @@ SwitchedToHUDItemHandler_Missiles:
 
 
 SwitchedToHUDItemHandler_SuperMissiles:
-    LDA.W $09CA                                                          ;90C564;
+    LDA.W Equipment.currentSuperMissiles                                 ;90C564;
     BNE .hasSupers                                                       ;90C567;
     SEC                                                                  ;90C569;
     RTS                                                                  ;90C56A;
@@ -9453,7 +9453,7 @@ SwitchedToHUDItemHandler_SuperMissiles:
 
 
 SwitchedToHUDItemHandler_PowerBombs:
-    LDA.W $09CE                                                          ;90C577;
+    LDA.W Equipment.currentPowerBombs                                    ;90C577;
     BNE .hasPowerBombs                                                   ;90C57A;
     SEC                                                                  ;90C57C;
     RTS                                                                  ;90C57D;
@@ -9468,7 +9468,7 @@ SwitchedToHUDItemHandler_PowerBombs:
 
 
 SwitchedToHUDItemHandler_GrappleBeam:
-    LDA.W $09A2                                                          ;90C58A;
+    LDA.W Equipment.equippedItems                                        ;90C58A;
     BIT.W #$4000                                                         ;90C58D;
     BNE .hasGrappleBeam                                                  ;90C590;
     SEC                                                                  ;90C592;
@@ -9491,7 +9491,7 @@ SwitchedToHUDItemHandler_GrappleBeam:
 
 
 SwitchedToHUDItemHandler_XrayScope:
-    LDA.W $09A2                                                          ;90C5AE;
+    LDA.W Equipment.equippedItems                                        ;90C5AE;
     BIT.W #$8000                                                         ;90C5B1;
     BNE .hasXrayScope                                                    ;90C5B4;
     SEC                                                                  ;90C5B6;
@@ -9535,7 +9535,7 @@ UpdateArmCannonIsOpenState:
     LDA.W $0AAA                                                          ;90C5EB;
     CMP.W #$0002                                                         ;90C5EE;
     BMI .returnCarryClear                                                ;90C5F1;
-    LDA.W $09D2                                                          ;90C5F3;
+    LDA.W Equipment.selectedHudItem                                      ;90C5F3;
     TAX                                                                  ;90C5F6;
     LDA.W ArmCannonOpenFlags,X                                           ;90C5F7;
     AND.W #$00FF                                                         ;90C5FA;
@@ -10347,7 +10347,7 @@ Math_90CC8A:
 
 
 FireSBA:
-    LDA.W $09D2                                                          ;90CCC0;
+    LDA.W Equipment.selectedHudItem                                      ;90CCC0;
     CMP.W #$0003                                                         ;90CCC3;
     BEQ .powerBombsSelected                                              ;90CCC6;
     CLC                                                                  ;90CCC8;
@@ -10355,21 +10355,21 @@ FireSBA:
 
 
 .powerBombsSelected:
-    LDA.W $09A6                                                          ;90CCCA;
+    LDA.W Equipment.equippedBeams                                        ;90CCCA;
     AND.W #$000F                                                         ;90CCCD;
     ASL A                                                                ;90CCD0;
     TAX                                                                  ;90CCD1;
-    LDA.W $09CE                                                          ;90CCD2;
+    LDA.W Equipment.currentPowerBombs                                    ;90CCD2;
     SEC                                                                  ;90CCD5;
     SBC.W CostOfSBAsInPowerBombs,X                                       ;90CCD6;
     BPL +                                                                ;90CCD9;
     LDA.W #$0000                                                         ;90CCDB;
 
-  + STA.W $09CE                                                          ;90CCDE;
+  + STA.W Equipment.currentPowerBombs                                    ;90CCDE;
     JSR.W (.pointers,X)                                                  ;90CCE1;
-    LDA.W $09CE                                                          ;90CCE4;
+    LDA.W Equipment.currentPowerBombs                                    ;90CCE4;
     BNE .return                                                          ;90CCE7;
-    STZ.W $09D2                                                          ;90CCE9;
+    STZ.W Equipment.selectedHudItem                                      ;90CCE9;
     STZ.W $0A04                                                          ;90CCEC;
 
 .return:
@@ -10404,7 +10404,7 @@ FireWaveSBA:
 .loop:
     LDA.W #$0004                                                         ;90CD1D;
     STA.W $0C90,X                                                        ;90CD20;
-    LDA.W $09A6                                                          ;90CD23;
+    LDA.W Equipment.equippedBeams                                        ;90CD23;
     AND.W #$100F                                                         ;90CD26;
     ORA.W #$8010                                                         ;90CD29;
     STA.W $0C18,X                                                        ;90CD2C;
@@ -10469,7 +10469,7 @@ FireIceSBA:
 .loop:
     LDA.W #$0004                                                         ;90CDAD;
     STA.W $0C90,X                                                        ;90CDB0;
-    LDA.W $09A6                                                          ;90CDB3;
+    LDA.W Equipment.equippedBeams                                        ;90CDB3;
     AND.W #$100F                                                         ;90CDB6;
     ORA.W #$8010                                                         ;90CDB9;
     STA.W $0C18,X                                                        ;90CDBC;
@@ -10532,7 +10532,7 @@ FireSpazerSBA:
     STZ.W $0BA0,X                                                        ;90CE3E;
     CPX.W #$0004                                                         ;90CE41;
     BPL .greaterThanEqualTo4                                             ;90CE44;
-    LDA.W $09A6                                                          ;90CE46;
+    LDA.W Equipment.equippedBeams                                        ;90CE46;
     AND.W #$100F                                                         ;90CE49;
     ORA.W #$8010                                                         ;90CE4C;
     STA.W $0C18,X                                                        ;90CE4F;
@@ -10581,7 +10581,7 @@ FirePlasmaSBA:
   + LDX.W #$0006                                                         ;90CEA2;
 
 .loop:
-    LDA.W $09A6                                                          ;90CEA5;
+    LDA.W Equipment.equippedBeams                                        ;90CEA5;
     AND.W #$100F                                                         ;90CEA8;
     ORA.W #$8010                                                         ;90CEAB;
     STA.W $0C18,X                                                        ;90CEAE;
@@ -10831,12 +10831,12 @@ SamusMovementHandler_VerticalShinespark:
     JSR.W UpdateSamusEchoPosition                                        ;90D0BD;
     JSR.W Shinespark_Vertical_Movement                                   ;90D0C0;
     JSR.W EndShinesparkIfCollisionDetectedOrLowEnergy                    ;90D0C3;
-    LDA.W $09C2                                                          ;90D0C6;
+    LDA.W Equipment.currentEnergy                                        ;90D0C6;
     CMP.W #$001E                                                         ;90D0C9;
     BMI .return                                                          ;90D0CC;
-    DEC.W $09C2                                                          ;90D0CE;
+    DEC.W Equipment.currentEnergy                                        ;90D0CE;
     BPL .return                                                          ;90D0D1;
-    STZ.W $09C2                                                          ;90D0D3; >_<
+    STZ.W Equipment.currentEnergy                                        ;90D0D3; >_<
 
 .return:
     RTS                                                                  ;90D0D6;
@@ -10853,12 +10853,12 @@ SamusMovementHandler_DiagonalShinespark:
     JSR.W Shinespark_Horizontal_Movement                                 ;90D0EC;
     JSR.W Shinespark_Vertical_Movement                                   ;90D0EF;
     JSR.W EndShinesparkIfCollisionDetectedOrLowEnergy                    ;90D0F2;
-    LDA.W $09C2                                                          ;90D0F5;
+    LDA.W Equipment.currentEnergy                                        ;90D0F5;
     CMP.W #$001E                                                         ;90D0F8;
     BMI .return                                                          ;90D0FB;
-    DEC.W $09C2                                                          ;90D0FD;
+    DEC.W Equipment.currentEnergy                                        ;90D0FD;
     BPL .return                                                          ;90D100;
-    STZ.W $09C2                                                          ;90D102; >_<
+    STZ.W Equipment.currentEnergy                                        ;90D102; >_<
 
 .return:
     RTS                                                                  ;90D105;
@@ -10874,12 +10874,12 @@ SamusMovementHandler_HorizontalShinespark:
     JSR.W UpdateSamusEchoPosition                                        ;90D118;
     JSR.W Shinespark_Horizontal_Movement                                 ;90D11B;
     JSR.W EndShinesparkIfCollisionDetectedOrLowEnergy                    ;90D11E;
-    LDA.W $09C2                                                          ;90D121;
+    LDA.W Equipment.currentEnergy                                        ;90D121;
     CMP.W #$001E                                                         ;90D124;
     BMI .return                                                          ;90D127;
-    DEC.W $09C2                                                          ;90D129;
+    DEC.W Equipment.currentEnergy                                        ;90D129;
     BPL .return                                                          ;90D12C;
-    STZ.W $09C2                                                          ;90D12E; >_<
+    STZ.W Equipment.currentEnergy                                        ;90D12E; >_<
 
 .return:
     RTS                                                                  ;90D131;
@@ -11091,7 +11091,7 @@ Shinespark_Vertical_Movement:
 
 
 EndShinesparkIfCollisionDetectedOrLowEnergy:
-    LDA.W $09C2                                                          ;90D2BA;
+    LDA.W Equipment.currentEnergy                                        ;90D2BA;
     CMP.W #$001E                                                         ;90D2BD;
     BMI .endShinespark                                                   ;90D2C0;
     LDA.W $0DD0                                                          ;90D2C2;
@@ -11388,7 +11388,7 @@ ProjectilePreInstruction_SpeedEcho:
 
 UNUSED_GrappleBeam_90D525:
     LDA.B $8B                                                            ;90D525;
-    BIT.W $09B2                                                          ;90D527;
+    BIT.W Equipment.shootBinding                                         ;90D527;
     BNE .holdingShot                                                     ;90D52A;
 
 .cancel:
@@ -11456,7 +11456,7 @@ CrystalFlash:
     CMP.W #$0028                                                         ;90D5A8;
     BPL .skipInputCheck                                                  ;90D5AB;
     LDA.W #$0430                                                         ;90D5AD;
-    ORA.W $09B2                                                          ;90D5B0;
+    ORA.W Equipment.shootBinding                                         ;90D5B0;
     STA.B $12                                                            ;90D5B3;
     LDA.B $8B                                                            ;90D5B5;
     CMP.B $12                                                            ;90D5B7;
@@ -11467,18 +11467,18 @@ CrystalFlash:
     BNE .returnCarrySet                                                  ;90D5BE;
     LDA.W $0B2C                                                          ;90D5C0;
     BNE .returnCarrySet                                                  ;90D5C3;
-    LDA.W $09C2                                                          ;90D5C5;
+    LDA.W Equipment.currentEnergy                                        ;90D5C5;
     CMP.W #$0033                                                         ;90D5C8;
     BPL .returnCarrySet                                                  ;90D5CB;
-    LDA.W $09D6                                                          ;90D5CD;
+    LDA.W Equipment.currentReserveEnergy                                 ;90D5CD;
     BNE .returnCarrySet                                                  ;90D5D0;
-    LDA.W $09C6                                                          ;90D5D2;
+    LDA.W Equipment.currentMissiles                                      ;90D5D2;
     CMP.W #$000A                                                         ;90D5D5;
     BMI .returnCarrySet                                                  ;90D5D8;
-    LDA.W $09CA                                                          ;90D5DA;
+    LDA.W Equipment.currentSuperMissiles                                 ;90D5DA;
     CMP.W #$000A                                                         ;90D5DD;
     BMI .returnCarrySet                                                  ;90D5E0;
-    LDA.W $09CE                                                          ;90D5E2;
+    LDA.W Equipment.currentPowerBombs                                    ;90D5E2;
     CMP.W #$000A                                                         ;90D5E5;
     BPL .activate                                                        ;90D5E8;
 
@@ -11607,7 +11607,7 @@ CrystalFlash_DecrementMissiles:
     LDA.W $05B6                                                          ;90D6E3;
     BIT.W #$0007                                                         ;90D6E6;
     BNE .return                                                          ;90D6E9;
-    DEC.W $09C6                                                          ;90D6EB;
+    DEC.W Equipment.currentMissiles                                      ;90D6EB;
     LDA.W #$0032                                                         ;90D6EE;
     JSL.L Restore_A_Energy_ToSamus                                       ;90D6F1;
     DEC.W $0DEC                                                          ;90D6F5;
@@ -11627,7 +11627,7 @@ CrystalFlash_DecrementSuperMissiles:
     LDA.W $05B6                                                          ;90D706;
     BIT.W #$0007                                                         ;90D709;
     BNE .return                                                          ;90D70C;
-    DEC.W $09CA                                                          ;90D70E;
+    DEC.W Equipment.currentSuperMissiles                                 ;90D70E;
     LDA.W #$0032                                                         ;90D711;
     JSL.L Restore_A_Energy_ToSamus                                       ;90D714;
     DEC.W $0DEC                                                          ;90D718;
@@ -11647,7 +11647,7 @@ CrystalFlash_DecrementPowerBombs:
     LDA.W $05B6                                                          ;90D729;
     BIT.W #$0007                                                         ;90D72C;
     BNE .return                                                          ;90D72F;
-    DEC.W $09CE                                                          ;90D731;
+    DEC.W Equipment.currentPowerBombs                                    ;90D731;
     LDA.W #$0032                                                         ;90D734;
     JSL.L Restore_A_Energy_ToSamus                                       ;90D737;
     DEC.W $0DEC                                                          ;90D73B;
@@ -12457,7 +12457,7 @@ HUDSelectionHandler_Standard:
 
 
 .Xray:
-    LDA.W $09D2                                                          ;90DD57;
+    LDA.W Equipment.selectedHudItem                                      ;90DD57;
     ASL A                                                                ;90DD5A;
     TAX                                                                  ;90DD5B;
 
@@ -12536,7 +12536,7 @@ HUDSelectionHandler_SpinWallJump_Knockback_Shinespark_CF_etc:
 
 HUDSelectionHandler_Xray:
     LDA.B $8B                                                            ;90DDC8;
-    BIT.W $09B6                                                          ;90DDCA;
+    BIT.W Equipment.runBinding                                           ;90DDCA;
     BNE .Xray                                                            ;90DDCD;
     JSR.W HUDSelectionHandler_Nothing_PowerBombs                         ;90DDCF;
     RTS                                                                  ;90DDD2;
@@ -13964,7 +13964,7 @@ SamusNewStateHandler_Normal:
     PLP                                                                  ;90E757;
     RTL                                                                  ;90E758;
 
-    LDA.W $09E6                                                          ;90E759; Demo recorder. Remove the three instructions above and set DebugConst_DemoRecorder at $808002 to enable
+    LDA.W Equipment.debug_disableSamusPlacementMode                      ;90E759; Demo recorder. Remove the three instructions above and set DebugConst_DemoRecorder at $808002 to enable
     BNE +                                                                ;90E75C;
     LDA.W $0A78                                                          ;90E75E;
     BNE +                                                                ;90E761;
@@ -13994,24 +13994,24 @@ HandleSamusPlacementModeToggles:
     LDA.B $91                                                            ;90E789;
     BIT.W #$8000                                                         ;90E78B;
     BEQ .pressedB                                                        ;90E78E;
-    LDA.W $09E6                                                          ;90E790;
+    LDA.W Equipment.debug_disableSamusPlacementMode                      ;90E790;
     BEQ .enabled                                                         ;90E793;
     LDA.W #RTS_90E90E                                                    ;90E795;
     STA.W $0A5C                                                          ;90E798;
-    STZ.W $09E6                                                          ;90E79B;
+    STZ.W Equipment.debug_disableSamusPlacementMode                      ;90E79B;
     BRA .return                                                          ;90E79E;
 
 
 .enabled:
     LDA.W #$0001                                                         ;90E7A0;
-    STA.W $09E6                                                          ;90E7A3;
+    STA.W Equipment.debug_disableSamusPlacementMode                      ;90E7A3;
     LDA.W #SamusDrawingHandler_Default                                   ;90E7A6;
     STA.W $0A5C                                                          ;90E7A9;
     BRA .return                                                          ;90E7AC;
 
 
 .pressedB:
-    LDA.W $09E6                                                          ;90E7AE;
+    LDA.W Equipment.debug_disableSamusPlacementMode                      ;90E7AE;
     BNE .return                                                          ;90E7B1;
     LDA.B $91                                                            ;90E7B3;
     BIT.W #$0080                                                         ;90E7B5;
@@ -14258,7 +14258,7 @@ SamusPoseInputHandler_AutoJumpHack:
     CMP.W #$0009                                                         ;90E92E;
     BPL .not1Through9                                                    ;90E931;
     LDA.B $8F                                                            ;90E933;
-    ORA.W $09B4                                                          ;90E935;
+    ORA.W Equipment.jumpBinding                                          ;90E935;
     STA.B $8F                                                            ;90E938;
     STZ.W $0AF4                                                          ;90E93A;
 
@@ -14366,7 +14366,7 @@ HandlePeriodicDamageToSamus:
 
 
 .timeIsNotFrozen:
-    LDA.W $09A2                                                          ;90E9D9;
+    LDA.W Equipment.equippedItems                                        ;90E9D9;
     BIT.W #$0020                                                         ;90E9DC;
     BNE .gravitySuit                                                     ;90E9DF;
     BIT.W #$0001                                                         ;90E9E1;
@@ -14408,12 +14408,12 @@ HandlePeriodicDamageToSamus:
     SEC                                                                  ;90EA1D;
     SBC.W $0A4E                                                          ;90EA1E;
     STA.W $0A4C                                                          ;90EA21;
-    LDA.W $09C2                                                          ;90EA24;
+    LDA.W Equipment.currentEnergy                                        ;90EA24;
     SBC.W $0A50                                                          ;90EA27;
-    STA.W $09C2                                                          ;90EA2A;
+    STA.W Equipment.currentEnergy                                        ;90EA2A;
     BPL .timeIsFrozen                                                    ;90EA2D;
     STZ.W $0A4C                                                          ;90EA2F;
-    STZ.W $09C2                                                          ;90EA32;
+    STZ.W Equipment.currentEnergy                                        ;90EA32;
     STZ.W $0A4E                                                          ;90EA35;
     STZ.W $0A50                                                          ;90EA38;
     PLP                                                                  ;90EA3B;
@@ -14457,7 +14457,7 @@ PauseCheck:
 
 
 LowEnergyCheck:
-    LDA.W $09C2                                                          ;90EA7F;
+    LDA.W Equipment.currentEnergy                                        ;90EA7F;
     CMP.W #$001F                                                         ;90EA82;
     BMI .lowEnergy                                                       ;90EA85;
     LDA.W $0A6A                                                          ;90EA87;
@@ -14492,10 +14492,10 @@ HandleSamus_AutoJumpTimer_HurtFlashCounter_PrevInputEnergy:
     PHP                                                                  ;90EAB3;
     REP #$30                                                             ;90EAB4;
     LDA.B $8B                                                            ;90EAB6;
-    BIT.W $09B4                                                          ;90EAB8;
+    BIT.W Equipment.jumpBinding                                          ;90EAB8;
     BEQ .noJump                                                          ;90EABB;
     LDA.W $0DFE                                                          ;90EABD;
-    BIT.W $09B4                                                          ;90EAC0;
+    BIT.W Equipment.jumpBinding                                          ;90EAC0;
     BEQ .noJump                                                          ;90EAC3;
     INC.W $0AF4                                                          ;90EAC5;
     BRA .previousInput                                                   ;90EAC8;
@@ -14509,7 +14509,7 @@ HandleSamus_AutoJumpTimer_HurtFlashCounter_PrevInputEnergy:
     STA.W $0DFE                                                          ;90EACF;
     LDA.B $8F                                                            ;90EAD2;
     STA.W $0E00                                                          ;90EAD4;
-    LDA.W $09C2                                                          ;90EAD7;
+    LDA.W Equipment.currentEnergy                                        ;90EAD7;
     CMP.W $0A12                                                          ;90EADA;
     BPL .setPreviousEnergy                                               ;90EADD;
     LDA.W $0A48                                                          ;90EADF;
@@ -14522,12 +14522,12 @@ HandleSamus_AutoJumpTimer_HurtFlashCounter_PrevInputEnergy:
     CMP.W #$0007                                                         ;90EAED;
     BMI .setPreviousEnergy                                               ;90EAF0;
     LDA.W $0A12                                                          ;90EAF2;
-    STA.W $09C2                                                          ;90EAF5;
+    STA.W Equipment.currentEnergy                                        ;90EAF5;
     BRA .return                                                          ;90EAF8;
 
 
 .setPreviousEnergy:
-    LDA.W $09C2                                                          ;90EAFA;
+    LDA.W Equipment.currentEnergy                                        ;90EAFA;
     STA.W $0A12                                                          ;90EAFD;
 
 .return:
@@ -14807,7 +14807,7 @@ AlignSamusBottomPositionWithPreviousPose:
 
 
 Determine_SamusSuitPalette_Index:
-    LDA.W $09A2                                                          ;90ECB6;
+    LDA.W Equipment.equippedItems                                        ;90ECB6;
     BIT.W #$0020                                                         ;90ECB9;
     BNE .gravity                                                         ;90ECBC;
     BIT.W #$0001                                                         ;90ECBE;
@@ -14896,15 +14896,15 @@ DemoRecorder_DisplaySamusPositionAsAmmoIfMorphed:
     LSR A                                                                ;90ED39;
     LSR A                                                                ;90ED3A;
     LSR A                                                                ;90ED3B;
-    STA.W $09C6                                                          ;90ED3C;
-    STA.W $09C8                                                          ;90ED3F;
+    STA.W Equipment.currentMissiles                                      ;90ED3C;
+    STA.W Equipment.maxMissiles                                          ;90ED3F;
     LDA.W $0AFA                                                          ;90ED42;
     LSR A                                                                ;90ED45;
     LSR A                                                                ;90ED46;
     LSR A                                                                ;90ED47;
     LSR A                                                                ;90ED48;
-    STA.W $09CA                                                          ;90ED49;
-    STA.W $09CC                                                          ;90ED4C;
+    STA.W Equipment.currentSuperMissiles                                 ;90ED49;
+    STA.W Equipment.maxSuperMissiles                                     ;90ED4C;
 
 .return:
     RTS                                                                  ;90ED4F;
@@ -14915,15 +14915,15 @@ DemoRecorder_DisplaySamusPositionAsAmmoIfMorphed:
     db $00,$01,$01,$01,$00,$00,$00,$00,$00,$00,$00,$00                   ;90ED60;
 
 UNUSED_DisplayInGameTimeAsAmmo_90ED6C:
-    LDA.W $09E0                                                          ;90ED6C;
-    STA.W $09C6                                                          ;90ED6F;
-    STA.W $09C8                                                          ;90ED72;
-    LDA.W $09DE                                                          ;90ED75;
-    STA.W $09CA                                                          ;90ED78;
-    STA.W $09CC                                                          ;90ED7B;
-    LDA.W $09DC                                                          ;90ED7E;
-    STA.W $09CE                                                          ;90ED81;
-    STA.W $09D0                                                          ;90ED84;
+    LDA.W Equipment.igtHours                                             ;90ED6C;
+    STA.W Equipment.currentMissiles                                      ;90ED6F;
+    STA.W Equipment.maxMissiles                                          ;90ED72;
+    LDA.W Equipment.igtMinutes                                           ;90ED75;
+    STA.W Equipment.currentSuperMissiles                                 ;90ED78;
+    STA.W Equipment.maxSuperMissiles                                     ;90ED7B;
+    LDA.W Equipment.igtSeconds                                           ;90ED7E;
+    STA.W Equipment.currentPowerBombs                                    ;90ED81;
+    STA.W Equipment.maxPowerBombs                                        ;90ED84;
     RTS                                                                  ;90ED87;
 
 
@@ -15118,7 +15118,7 @@ UpdateSamusEchoPosition:
     BNE .return                                                          ;90EEF0;
     LDA.W $0AAE                                                          ;90EEF2;
     BMI .return                                                          ;90EEF5;
-    LDA.W $09DA                                                          ;90EEF7;
+    LDA.W Equipment.igtFrames                                            ;90EEF7;
     BIT.W #$0003                                                         ;90EEFA;
     BNE .return                                                          ;90EEFD;
     LDX.W $0AAE                                                          ;90EEFF;
@@ -15543,7 +15543,7 @@ SamusCommand_8_SetupSamusForCeresStart:
 
 
 SamusCommand_9_SetupSamusForZebesStart:
-    LDA.W $09A2                                                          ;90F23C;
+    LDA.W Equipment.equippedItems                                        ;90F23C;
     BIT.W #$0020                                                         ;90F23F;
     BNE .gravity                                                         ;90F242;
     BIT.W #$0001                                                         ;90F244;
@@ -15694,7 +15694,7 @@ SamusCommand_13_DisableSamusBlueFlashing:
 
 
 SamusCommand_14_QueueLowEnergyAndGrappleSFX:
-    LDA.W $09C2                                                          ;90F331;
+    LDA.W Equipment.currentEnergy                                        ;90F331;
     CMP.W #$001F                                                         ;90F334;
     BPL .notLowEnergy                                                    ;90F337;
     LDA.W #$0002                                                         ;90F339;
@@ -15898,7 +15898,7 @@ SamusCommand_1D_ClearSoundsWhenGoingThroughDoor:
 
 .notSpinning:
     LDA.B $8B                                                            ;90F48A;
-    BIT.W $09B2                                                          ;90F48C;
+    BIT.W Equipment.shootBinding                                         ;90F48C;
     BNE .returnCarryClear                                                ;90F48F;
     LDA.W $0CD0                                                          ;90F491;
     CMP.W #$0010                                                         ;90F494;
@@ -15957,7 +15957,7 @@ SamusCommand_1F_KillGrappleBeam:
     STZ.W $0CF8                                                          ;90F4E9;
     STZ.W $0CF6                                                          ;90F4EC;
     STZ.W $0CF4                                                          ;90F4EF;
-    LDA.W $09A6                                                          ;90F4F2;
+    LDA.W Equipment.equippedBeams                                        ;90F4F2;
     JSL.L Load_Beam_Palette_External                                     ;90F4F5;
     LDA.W #GrappleBeamFunction_Inactive                                  ;90F4F9;
     STA.W $0D32                                                          ;90F4FC;
@@ -15975,7 +15975,7 @@ UNUSED_ResumeSounds_90F507:
     CMP.W #$0014                                                         ;90F512;
     BEQ .return                                                          ;90F515;
     LDA.B $8B                                                            ;90F517;
-    BIT.W $09B2                                                          ;90F519;
+    BIT.W Equipment.shootBinding                                         ;90F519;
     BEQ .return                                                          ;90F51C;
     LDA.W $0CD0                                                          ;90F51E;
     CMP.W #$0010                                                         ;90F521;
@@ -16049,7 +16049,7 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
     BMI .negative                                                        ;90F57C;
     BEQ .notSet                                                          ;90F57E;
     LDA.B $8B                                                            ;90F580;
-    BIT.W $09B2                                                          ;90F582;
+    BIT.W Equipment.shootBinding                                         ;90F582;
     BEQ .pressingShot                                                    ;90F585;
     LDA.W #$0041                                                         ;90F587;
     JSL.L QueueSound_Lib1_Max9                                           ;90F58A;
@@ -16088,7 +16088,7 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
     CMP.W #$0010                                                         ;90F5D2;
     BMI .checkDebug                                                      ;90F5D5;
     LDA.B $8B                                                            ;90F5D7;
-    BIT.W $09B2                                                          ;90F5D9;
+    BIT.W Equipment.shootBinding                                         ;90F5D9;
     BEQ .checkDebug                                                      ;90F5DC;
 
 .negative:

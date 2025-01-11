@@ -5450,7 +5450,7 @@ Function_MBBody_Phase3_DeathSequence_StartEscape:
     LDA.W #$0020                                                         ;A9B2BC;
     STA.W $0FB2                                                          ;A9B2BF;
     LDY.W #Function_MBBody_Phase3_DeathSequence_SpawnTimeBombSetJapanText ;A9B2C2;
-    LDA.W $09E2                                                          ;A9B2C5;
+    LDA.W Equipment.japaneseSubtitles                                    ;A9B2C5;
     BNE .keepJapanText                                                   ;A9B2C8;
     LDY.W #Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText   ;A9B2CA;
 
@@ -6399,7 +6399,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam:
     STZ.W $0FB4                                                          ;A9B9BF;
     STZ.W $0FB6                                                          ;A9B9C2;
     LDA.W #$0005                                                         ;A9B9C5;
-    LDY.W $09C2                                                          ;A9B9C8;
+    LDY.W Equipment.currentEnergy                                        ;A9B9C8;
     CPY.W #$02BC                                                         ;A9B9CB;
     BPL .greaterThan2BC                                                  ;A9B9CE;
     LDA.W #$0018                                                         ;A9B9D0;
@@ -6547,7 +6547,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_LowerHead_return:
 Function_MBBody_Phase2_FiringRainbowBeam_DecideNextAction:
     DEC.W $0FB2                                                          ;A9BB06;
     BPL Function_MBBody_Phase2_FiringRainbowBeam_LowerHead_return        ;A9BB09;
-    LDA.W $09C2                                                          ;A9BB0B;
+    LDA.W Equipment.currentEnergy                                        ;A9BB0B;
     CMP.W #$0190                                                         ;A9BB0E;
     BMI .lessThan190                                                     ;A9BB11;
     LDA.W #Function_MotherBrainBody_Phase2_FiringRainbowBeam_ExtendNeck  ;A9BB13;
@@ -6853,7 +6853,7 @@ Function_MBBody_Phase2_FinishSamusOff_GetSamusToLowEnergy:
     ASL A                                                                ;A9BD4C;
     ASL A                                                                ;A9BD4D;
     ADC.W #$0014                                                         ;A9BD4E;
-    CMP.W $09C2                                                          ;A9BD51;
+    CMP.W Equipment.currentEnergy                                        ;A9BD51;
     BPL .done                                                            ;A9BD54;
     LDA.W $05E5                                                          ;A9BD56;
     AND.W #$0FFF                                                         ;A9BD59;
@@ -6863,7 +6863,7 @@ Function_MBBody_Phase2_FinishSamusOff_GetSamusToLowEnergy:
     JSL.L Suit_Damage_Division                                           ;A9BD64;
     CLC                                                                  ;A9BD68;
     ADC.W #$0014                                                         ;A9BD69;
-    CMP.W $09C2                                                          ;A9BD6C;
+    CMP.W Equipment.currentEnergy                                        ;A9BD6C;
     BPL .onionRings                                                      ;A9BD6F;
     LDY.W #InstList_MotherBrainHead_Attacking_Bomb_Phase2                ;A9BD71;
     LDA.W $05E5                                                          ;A9BD74;
@@ -7790,67 +7790,67 @@ DecrementAmmoDueToRainbowBeam:
     LDA.W $0E44                                                          ;A9C4C4;
     AND.W #$0003                                                         ;A9C4C7;
     BNE .superMissiles                                                   ;A9C4CA;
-    LDA.W $09C6                                                          ;A9C4CC;
+    LDA.W Equipment.currentMissiles                                      ;A9C4CC;
     BEQ .superMissiles                                                   ;A9C4CF;
     SEC                                                                  ;A9C4D1;
     SBC.W .decrementValue                                                ;A9C4D2;
     CMP.W #$0001                                                         ;A9C4D5;
     BPL .writeMissiles                                                   ;A9C4D8;
-    LDA.W $09D2                                                          ;A9C4DA;
+    LDA.W Equipment.selectedHudItem                                      ;A9C4DA;
     CMP.W #$0001                                                         ;A9C4DD;
     BNE .resetAutoCancel                                                 ;A9C4E0;
     LDA.W #$0000                                                         ;A9C4E2;
-    STA.W $09D2                                                          ;A9C4E5;
+    STA.W Equipment.selectedHudItem                                      ;A9C4E5;
 
 .resetAutoCancel:
     LDA.W #$0000                                                         ;A9C4E8;
     STA.W $0A04                                                          ;A9C4EB;
 
 .writeMissiles:
-    STA.W $09C6                                                          ;A9C4EE;
+    STA.W Equipment.currentMissiles                                      ;A9C4EE;
 
 .superMissiles:
     LDA.W $0E44                                                          ;A9C4F1;
     AND.W #$0003                                                         ;A9C4F4;
     BNE .powerBombs                                                      ;A9C4F7;
-    LDA.W $09CA                                                          ;A9C4F9;
+    LDA.W Equipment.currentSuperMissiles                                 ;A9C4F9;
     BEQ .powerBombs                                                      ;A9C4FC;
     SEC                                                                  ;A9C4FE;
     SBC.W .decrementValue                                                ;A9C4FF;
     CMP.W #$0001                                                         ;A9C502;
     BPL .writeSuperMissiles                                              ;A9C505;
-    LDA.W $09D2                                                          ;A9C507;
+    LDA.W Equipment.selectedHudItem                                      ;A9C507;
     CMP.W #$0002                                                         ;A9C50A;
     BNE ..resetAutoCancel                                                ;A9C50D;
     LDA.W #$0000                                                         ;A9C50F;
-    STA.W $09D2                                                          ;A9C512;
+    STA.W Equipment.selectedHudItem                                      ;A9C512;
 
 ..resetAutoCancel:
     LDA.W #$0000                                                         ;A9C515;
     STA.W $0A04                                                          ;A9C518;
 
 .writeSuperMissiles:
-    STA.W $09CA                                                          ;A9C51B;
+    STA.W Equipment.currentSuperMissiles                                 ;A9C51B;
 
 .powerBombs:
-    LDA.W $09CE                                                          ;A9C51E;
+    LDA.W Equipment.currentPowerBombs                                    ;A9C51E;
     BEQ .return                                                          ;A9C521;
     SEC                                                                  ;A9C523;
     SBC.W .decrementValue                                                ;A9C524;
     CMP.W #$0001                                                         ;A9C527;
     BPL .writePowerBombs                                                 ;A9C52A;
-    LDA.W $09D2                                                          ;A9C52C;
+    LDA.W Equipment.selectedHudItem                                      ;A9C52C;
     CMP.W #$0003                                                         ;A9C52F;
     BNE ..resetAutoCancel                                                ;A9C532;
     LDA.W #$0000                                                         ;A9C534;
-    STA.W $09D2                                                          ;A9C537;
+    STA.W Equipment.selectedHudItem                                      ;A9C537;
 
 ..resetAutoCancel:
     LDA.W #$0000                                                         ;A9C53A;
     STA.W $0A04                                                          ;A9C53D;
 
 .writePowerBombs:
-    STA.W $09CE                                                          ;A9C540;
+    STA.W Equipment.currentPowerBombs                                    ;A9C540;
 
 .return:
     RTS                                                                  ;A9C543;
@@ -7861,7 +7861,7 @@ DecrementAmmoDueToRainbowBeam:
 
 HandlePlayingGainingLosingIncrementalEnergySFX:
     PHA                                                                  ;A9C546;
-    LDA.W $09C2                                                          ;A9C547;
+    LDA.W Equipment.currentEnergy                                        ;A9C547;
     CMP.W #$0051                                                         ;A9C54A;
     BMI .return                                                          ;A9C54D;
     LDA.W $0E44                                                          ;A9C54F;
@@ -7877,41 +7877,41 @@ HandlePlayingGainingLosingIncrementalEnergySFX:
 
 DamageSamusDueToBabyMetroid:
     LDY.W #$FFFC                                                         ;A9C560;
-    LDA.W $09A2                                                          ;A9C563;
+    LDA.W Equipment.equippedItems                                        ;A9C563;
     LSR A                                                                ;A9C566;
     BCC .varia                                                           ;A9C567;
     LDY.W #$FFFD                                                         ;A9C569;
 
 .varia:
     TYA                                                                  ;A9C56C;
-    ADC.W $09C2                                                          ;A9C56D;
+    ADC.W Equipment.currentEnergy                                        ;A9C56D;
     CMP.W #$0002                                                         ;A9C570;
     BPL .done                                                            ;A9C573;
     CLC                                                                  ;A9C575;
     LDA.W #$0001                                                         ;A9C576;
 
 .done:
-    STA.W $09C2                                                          ;A9C579;
+    STA.W Equipment.currentEnergy                                        ;A9C579;
     RTL                                                                  ;A9C57C;
 
 
 DamageSamusDueToRainbowBeam:
     LDY.W #$FFFE                                                         ;A9C57D;
-    LDA.W $09A2                                                          ;A9C580;
+    LDA.W Equipment.equippedItems                                        ;A9C580;
     LSR A                                                                ;A9C583;
     BCC .varia                                                           ;A9C584;
     LDY.W #$FFFE                                                         ;A9C586;
 
 .varia:
     TYA                                                                  ;A9C589;
-    ADC.W $09C2                                                          ;A9C58A;
+    ADC.W Equipment.currentEnergy                                        ;A9C58A;
     CMP.W #$0001                                                         ;A9C58D;
     BPL .done                                                            ;A9C590;
     CLC                                                                  ;A9C592;
     LDA.W #$0000                                                         ;A9C593;
 
 .done:
-    STA.W $09C2                                                          ;A9C596;
+    STA.W Equipment.currentEnergy                                        ;A9C596;
     PHP                                                                  ;A9C599;
     JSR.W HandlePlayingGainingLosingIncrementalEnergySFX                 ;A9C59A;
     PLP                                                                  ;A9C59D;
@@ -7921,18 +7921,18 @@ DamageSamusDueToRainbowBeam:
 HealSamusDueToBabyMetroid:
     LDA.W #$0001                                                         ;A9C59F;
     CLC                                                                  ;A9C5A2;
-    ADC.W $09C2                                                          ;A9C5A3;
-    CMP.W $09C4                                                          ;A9C5A6;
+    ADC.W Equipment.currentEnergy                                        ;A9C5A3;
+    CMP.W Equipment.maxEnergy                                            ;A9C5A6;
     BMI .notMaxed                                                        ;A9C5A9;
-    LDA.W $09C4                                                          ;A9C5AB;
-    STA.W $09C2                                                          ;A9C5AE;
+    LDA.W Equipment.maxEnergy                                            ;A9C5AB;
+    STA.W Equipment.currentEnergy                                        ;A9C5AE;
     JSR.W HandlePlayingGainingLosingIncrementalEnergySFX                 ;A9C5B1;
     CLC                                                                  ;A9C5B4;
     RTL                                                                  ;A9C5B5;
 
 
 .notMaxed:
-    STA.W $09C2                                                          ;A9C5B6;
+    STA.W Equipment.currentEnergy                                        ;A9C5B6;
     JSR.W HandlePlayingGainingLosingIncrementalEnergySFX                 ;A9C5B9;
     SEC                                                                  ;A9C5BC;
     RTL                                                                  ;A9C5BD;
@@ -8595,8 +8595,8 @@ Function_BabyMetroidCutscene_HealSamusUpToFullEnergy:
     STA.W EnemyData.yPosition,X                                          ;A9CAA0;
     JSL.L HealSamusDueToBabyMetroid                                      ;A9CAA3;
     BCS .return                                                          ;A9CAA7;
-    LDA.W $09D4                                                          ;A9CAA9;
-    STA.W $09D6                                                          ;A9CAAC;
+    LDA.W Equipment.maxReserveEnergy                                     ;A9CAA9;
+    STA.W Equipment.currentReserveEnergy                                 ;A9CAAC;
     LDA.W #Function_BabyMetroidCutscene_IdleUntilRunOutOfHealth          ;A9CAAF;
     STA.W EnemyData.work0,X                                              ;A9CAB2;
     LDA.W #.return                                                       ;A9CAB5;
@@ -13257,7 +13257,7 @@ Function_BabyMetroid_StartDrainingSamus:
     STA.W $0FA8                                                          ;A9F218; fallthrough to Function_BabyMetroid_DrainingSamus
 
 Function_BabyMetroid_DrainingSamus:
-    LDA.W $09C2                                                          ;A9F21B;
+    LDA.W Equipment.currentEnergy                                        ;A9F21B;
     CMP.W #$0002                                                         ;A9F21E;
     BCC .done                                                            ;A9F221;
     LDA.W #$0008                                                         ;A9F223;
