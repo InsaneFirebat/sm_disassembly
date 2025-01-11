@@ -3613,23 +3613,23 @@ HandleDeathSequenceEvirMovement:
     ADC.W #$0040                                                         ;A59FEB;
     BIT.W #$0080                                                         ;A59FEE;
     BEQ +                                                                ;A59FF1;
-    LDA.L $7EF178,X                                                      ;A59FF3;
+    LDA.L SpriteObjects.xSubPosition,X                                   ;A59FF3;
     CLC                                                                  ;A59FF7;
     ADC.W DraygonDeathSequenceEvirSubSpeeds_X,Y                          ;A59FF8;
-    STA.L $7EF178,X                                                      ;A59FFB;
-    LDA.L $7EF0F8,X                                                      ;A59FFF;
+    STA.L SpriteObjects.xSubPosition,X                                   ;A59FFB;
+    LDA.L SpriteObjects.xPosition,X                                      ;A59FFF;
     ADC.W #$0000                                                         ;A5A003;
-    STA.L $7EF0F8,X                                                      ;A5A006;
+    STA.L SpriteObjects.xPosition,X                                      ;A5A006;
     BRA .YPosition                                                       ;A5A00A;
 
 
-  + LDA.L $7EF178,X                                                      ;A5A00C;
+  + LDA.L SpriteObjects.xSubPosition,X                                   ;A5A00C;
     SEC                                                                  ;A5A010;
     SBC.W DraygonDeathSequenceEvirSubSpeeds_X,Y                          ;A5A011;
-    STA.L $7EF178,X                                                      ;A5A014;
-    LDA.L $7EF0F8,X                                                      ;A5A018;
+    STA.L SpriteObjects.xSubPosition,X                                   ;A5A014;
+    LDA.L SpriteObjects.xPosition,X                                      ;A5A018;
     SBC.W $0E24                                                          ;A5A01C;
-    STA.L $7EF0F8,X                                                      ;A5A01F;
+    STA.L SpriteObjects.xPosition,X                                      ;A5A01F;
 
 .YPosition:
     LDA.W DraygonDeathSequenceEvirAngles,Y                               ;A5A023;
@@ -3637,23 +3637,23 @@ HandleDeathSequenceEvirMovement:
     ADC.W #$0080                                                         ;A5A027;
     BIT.W #$0080                                                         ;A5A02A;
     BEQ +                                                                ;A5A02D;
-    LDA.L $7EF278,X                                                      ;A5A02F;
+    LDA.L SpriteObjects.ySubPosition,X                                   ;A5A02F;
     CLC                                                                  ;A5A033;
     ADC.W DraygonDeathSequenceEvirSubSpeeds_Y,Y                          ;A5A034;
-    STA.L $7EF278,X                                                      ;A5A037;
-    LDA.L $7EF1F8,X                                                      ;A5A03B;
+    STA.L SpriteObjects.ySubPosition,X                                   ;A5A037;
+    LDA.L SpriteObjects.yPosition,X                                      ;A5A03B;
     ADC.W #$0000                                                         ;A5A03F;
-    STA.L $7EF1F8,X                                                      ;A5A042;
+    STA.L SpriteObjects.yPosition,X                                      ;A5A042;
     BRA .nextSpriteObject                                                ;A5A046;
 
 
-  + LDA.L $7EF278,X                                                      ;A5A048;
+  + LDA.L SpriteObjects.ySubPosition,X                                   ;A5A048;
     SEC                                                                  ;A5A04C;
     SBC.W DraygonDeathSequenceEvirSubSpeeds_Y,Y                          ;A5A04D;
-    STA.L $7EF278,X                                                      ;A5A050;
-    LDA.L $7EF1F8,X                                                      ;A5A054;
+    STA.L SpriteObjects.ySubPosition,X                                   ;A5A050;
+    LDA.L SpriteObjects.yPosition,X                                      ;A5A054;
     SBC.W #$0000                                                         ;A5A058;
-    STA.L $7EF1F8,X                                                      ;A5A05B;
+    STA.L SpriteObjects.yPosition,X                                      ;A5A05B;
 
 .nextSpriteObject:
     DEX                                                                  ;A5A05F;
@@ -3678,7 +3678,7 @@ SpawnDeathSequenceEvirSpriteObjects:
     LDA.W #$0000                                                         ;A5A071;
 
 .loopClearSpriteObjects:
-    STA.L $7EEF78,X                                                      ;A5A074;
+    STA.L SpriteObjects.pInstList,X                                      ;A5A074;
     DEX                                                                  ;A5A078;
     DEX                                                                  ;A5A079;
     BPL .loopClearSpriteObjects                                          ;A5A07A;
@@ -3731,7 +3731,7 @@ Draygon_ClearSpriteObjects:
     LDA.W #$0000                                                         ;A5A0CB;
 
 .loop:
-    STA.L $7EEF78,X                                                      ;A5A0CE;
+    STA.L SpriteObjects.pInstList,X                                      ;A5A0CE;
     DEX                                                                  ;A5A0D2;
     DEX                                                                  ;A5A0D3;
     BPL .loop                                                            ;A5A0D4;
@@ -3805,14 +3805,14 @@ HandleDraygonFightIntroDance:
     AND.W #$00FF                                                         ;A5A15E;
     JSL.L Sign_Extend_A                                                  ;A5A161;
     CLC                                                                  ;A5A165;
-    ADC.L $7EF0F8,X                                                      ;A5A166;
-    STA.L $7EF0F8,X                                                      ;A5A16A;
+    ADC.L SpriteObjects.xPosition,X                                      ;A5A166;
+    STA.L SpriteObjects.xPosition,X                                      ;A5A16A;
     LDA.W DraygonFightIntroDanceData_KeikoLove+1,Y                       ;A5A16E;
     AND.W #$00FF                                                         ;A5A171;
     JSL.L Sign_Extend_A                                                  ;A5A174;
     CLC                                                                  ;A5A178;
-    ADC.L $7EF1F8,X                                                      ;A5A179;
-    STA.L $7EF1F8,X                                                      ;A5A17D;
+    ADC.L SpriteObjects.yPosition,X                                      ;A5A179;
+    STA.L SpriteObjects.yPosition,X                                      ;A5A17D;
 
 .next:
     DEX                                                                  ;A5A181;
@@ -3831,7 +3831,7 @@ HandleDraygonFightIntroDance:
 
 .deleteSpriteObject:
     LDA.W #$0000                                                         ;A5A196;
-    STA.L $7EEF78,X                                                      ;A5A199;
+    STA.L SpriteObjects.pInstList,X                                      ;A5A199;
     BRA .next                                                            ;A5A19D;
 
 

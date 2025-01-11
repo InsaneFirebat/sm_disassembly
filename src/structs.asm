@@ -155,3 +155,29 @@ struct EnemyDropChances AllEnemyDropChances&$FF0000
   .superMissiles: skip 1
   .powerBombs: skip 1
 endstruct
+
+!SpriteObjectMaxCount = 32
+struct SpriteObjects $7EEF78 ; TODO change hardcoded address
+  .all:
+  .pInstList: skip !SpriteObjectMaxCount*2 ; $7EEF78
+  .unused7EEFB8: skip !SpriteObjectMaxCount*2
+  .instTimer: skip !SpriteObjectMaxCount*2 ; $7EEFF8
+  .unused7EF038: skip !SpriteObjectMaxCount*2
+  .palGfxOffset: skip !SpriteObjectMaxCount*2 ; $7EF078
+  .unused7EF0B8: skip !SpriteObjectMaxCount*2
+  .xPosition: skip !SpriteObjectMaxCount*2 ; $7EF0F8
+  .unused7EF138: skip !SpriteObjectMaxCount*2
+  .xSubPosition: skip !SpriteObjectMaxCount*2 ; $7EF178
+  .unused7EF1B8: skip !SpriteObjectMaxCount*2
+  .yPosition: skip !SpriteObjectMaxCount*2 ; $7EF1F8
+  .unused7EF238: skip !SpriteObjectMaxCount*2
+  .ySubPosition: skip !SpriteObjectMaxCount*2 ; $7EF278
+  .unused7EF2B8: skip !SpriteObjectMaxCount*2
+  .frozen: skip !SpriteObjectMaxCount*2 ; $7EF2F8
+  .unused7EF338: skip !SpriteObjectMaxCount*2
+endstruct
+
+struct SpriteObjectInstruction SpriteObjectRom&$FF0000
+  .timerOrPAsm: skip 2
+  .parameters:
+endstruct

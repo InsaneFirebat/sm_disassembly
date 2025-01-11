@@ -4561,7 +4561,7 @@ EnemyShot_YappingMaw:
     LDA.L $7E880C,X                                                      ;A8A7F6;
     TAX                                                                  ;A8A7FA;
     LDA.W #$0000                                                         ;A8A7FB;
-    STA.L $7EEF78,X                                                      ;A8A7FE;
+    STA.L SpriteObjects.pInstList,X                                      ;A8A7FE;
     PLX                                                                  ;A8A802;
     LDA.W $0A60                                                          ;A8A803;
     CMP.W #SamusPoseInputHandler_Demo                                    ;A8A806;
@@ -4643,18 +4643,18 @@ SetYappingMawBaseFrozenPalette:
     LDA.L $7E880C,X                                                      ;A8A8A2;
     STA.B $14                                                            ;A8A8A6;
     TAX                                                                  ;A8A8A8;
-    LDA.L $7EF078,X                                                      ;A8A8A9;
+    LDA.L SpriteObjects.palGfxOffset,X                                   ;A8A8A9;
     AND.W #$F1FF                                                         ;A8A8AD;
     ORA.B $12                                                            ;A8A8B0;
-    STA.L $7EF078,X                                                      ;A8A8B2;
+    STA.L SpriteObjects.palGfxOffset,X                                   ;A8A8B2;
     LDX.W $0E54                                                          ;A8A8B6;
     LDA.W EnemyData.freezeTimer,X                                        ;A8A8B9;
     BEQ .return                                                          ;A8A8BC;
     LDX.B $14                                                            ;A8A8BE;
-    LDA.L $7EF078,X                                                      ;A8A8C0;
+    LDA.L SpriteObjects.palGfxOffset,X                                   ;A8A8C0;
     AND.W #$F1FF                                                         ;A8A8C4;
     ORA.W #$0C00                                                         ;A8A8C7;
-    STA.L $7EF078,X                                                      ;A8A8CA;
+    STA.L SpriteObjects.palGfxOffset,X                                   ;A8A8CA;
     LDX.W $0E54                                                          ;A8A8CE;
     LDA.W EnemyData.freezeTimer,X                                        ;A8A8D1;
     CMP.W #$005A                                                         ;A8A8D4;
@@ -4662,10 +4662,10 @@ SetYappingMawBaseFrozenPalette:
     BIT.W #$0002                                                         ;A8A8D9;
     BNE .return                                                          ;A8A8DC;
     LDX.B $14                                                            ;A8A8DE;
-    LDA.L $7EF078,X                                                      ;A8A8E0;
+    LDA.L SpriteObjects.palGfxOffset,X                                   ;A8A8E0;
     AND.W #$F1FF                                                         ;A8A8E4;
     ORA.B $12                                                            ;A8A8E7;
-    STA.L $7EF078,X                                                      ;A8A8E9;
+    STA.L SpriteObjects.palGfxOffset,X                                   ;A8A8E9;
 
 .return:
     RTS                                                                  ;A8A8ED;

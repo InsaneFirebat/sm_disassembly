@@ -13584,20 +13584,20 @@ FrozenAI_Metroid:
     LDA.L $7E7800,X                                                      ;A3EAFB;
     TAX                                                                  ;A3EAFF;
     LDA.W #$0C00                                                         ;A3EB00;
-    STA.L $7EF078,X                                                      ;A3EB03;
+    STA.L SpriteObjects.palGfxOffset,X                                   ;A3EB03;
     LDA.W #$0001                                                         ;A3EB07;
-    STA.L $7EF2F8,X                                                      ;A3EB0A;
+    STA.L SpriteObjects.frozen,X                                         ;A3EB0A;
     LDA.W #InstList_SpriteObject_32_MetroidElectricity                   ;A3EB0E;
-    STA.L $7EEF78,X                                                      ;A3EB11;
+    STA.L SpriteObjects.pInstList,X                                      ;A3EB11;
     LDX.W $0E54                                                          ;A3EB15;
     LDA.L $7E7802,X                                                      ;A3EB18;
     TAX                                                                  ;A3EB1C;
     LDA.W #$0C00                                                         ;A3EB1D;
-    STA.L $7EF078,X                                                      ;A3EB20;
+    STA.L SpriteObjects.palGfxOffset,X                                   ;A3EB20;
     LDA.W #$0001                                                         ;A3EB24;
-    STA.L $7EF2F8,X                                                      ;A3EB27;
+    STA.L SpriteObjects.frozen,X                                         ;A3EB27;
     LDA.W #InstList_SpriteObject_34_MetroidShell                         ;A3EB2B;
-    STA.L $7EEF78,X                                                      ;A3EB2E;
+    STA.L SpriteObjects.pInstList,X                                      ;A3EB2E;
     RTL                                                                  ;A3EB32;
 
 
@@ -13612,17 +13612,17 @@ HurtAI_Metroid:
     LDX.W $0E54                                                          ;A3EB46;
     LDA.L $7E7800,X                                                      ;A3EB49;
     TAX                                                                  ;A3EB4D;
-    LDA.L $7EF078,X                                                      ;A3EB4E;
+    LDA.L SpriteObjects.palGfxOffset,X                                   ;A3EB4E;
     AND.W #$F1FF                                                         ;A3EB52;
     ORA.B $12                                                            ;A3EB55;
-    STA.L $7EF078,X                                                      ;A3EB57;
+    STA.L SpriteObjects.palGfxOffset,X                                   ;A3EB57;
     LDX.W $0E54                                                          ;A3EB5B;
     LDA.L $7E7802,X                                                      ;A3EB5E;
     TAX                                                                  ;A3EB62;
-    LDA.L $7EF078,X                                                      ;A3EB63;
+    LDA.L SpriteObjects.palGfxOffset,X                                   ;A3EB63;
     AND.W #$F1FF                                                         ;A3EB67;
     ORA.B $12                                                            ;A3EB6A;
-    STA.L $7EF078,X                                                      ;A3EB6C;
+    STA.L SpriteObjects.palGfxOffset,X                                   ;A3EB6C;
     RTL                                                                  ;A3EB70;
 
 
@@ -13630,15 +13630,15 @@ HurtAI_Metroid:
     LDX.W $0E54                                                          ;A3EB71;
     LDA.L $7E7800,X                                                      ;A3EB74;
     TAX                                                                  ;A3EB78;
-    LDA.L $7EF078,X                                                      ;A3EB79;
+    LDA.L SpriteObjects.palGfxOffset,X                                   ;A3EB79;
     AND.W #$F1FF                                                         ;A3EB7D;
-    STA.L $7EF078,X                                                      ;A3EB80;
+    STA.L SpriteObjects.palGfxOffset,X                                   ;A3EB80;
     LDX.W $0E54                                                          ;A3EB84;
     LDA.L $7E7802,X                                                      ;A3EB87;
     TAX                                                                  ;A3EB8B;
-    LDA.L $7EF078,X                                                      ;A3EB8C;
+    LDA.L SpriteObjects.palGfxOffset,X                                   ;A3EB8C;
     AND.W #$F1FF                                                         ;A3EB90;
-    STA.L $7EF078,X                                                      ;A3EB93;
+    STA.L SpriteObjects.palGfxOffset,X                                   ;A3EB93;
     RTL                                                                  ;A3EB97;
 
 
@@ -13662,13 +13662,13 @@ MainAI_Metroid:
     LDA.L $7E7800,X                                                      ;A3EBBF;
     TAX                                                                  ;A3EBC3;
     LDA.B $12                                                            ;A3EBC4;
-    STA.L $7EF0F8,X                                                      ;A3EBC6;
+    STA.L SpriteObjects.xPosition,X                                      ;A3EBC6;
     LDA.B $14                                                            ;A3EBCA;
-    STA.L $7EF1F8,X                                                      ;A3EBCC;
+    STA.L SpriteObjects.yPosition,X                                      ;A3EBCC;
     LDA.B $18                                                            ;A3EBD0;
-    STA.L $7EF078,X                                                      ;A3EBD2;
+    STA.L SpriteObjects.palGfxOffset,X                                   ;A3EBD2;
     LDA.W #$0000                                                         ;A3EBD6;
-    STA.L $7EF2F8,X                                                      ;A3EBD9;
+    STA.L SpriteObjects.frozen,X                                         ;A3EBD9;
     LDX.W $0E54                                                          ;A3EBDD;
     LDA.W EnemyData.xPosition,X                                          ;A3EBE0;
     STA.B $12                                                            ;A3EBE3;
@@ -13677,13 +13677,13 @@ MainAI_Metroid:
     LDA.L $7E7802,X                                                      ;A3EBEA;
     TAX                                                                  ;A3EBEE;
     LDA.B $12                                                            ;A3EBEF;
-    STA.L $7EF0F8,X                                                      ;A3EBF1;
+    STA.L SpriteObjects.xPosition,X                                      ;A3EBF1;
     LDA.B $14                                                            ;A3EBF5;
-    STA.L $7EF1F8,X                                                      ;A3EBF7;
+    STA.L SpriteObjects.yPosition,X                                      ;A3EBF7;
     LDA.B $18                                                            ;A3EBFB;
-    STA.L $7EF078,X                                                      ;A3EBFD;
+    STA.L SpriteObjects.palGfxOffset,X                                   ;A3EBFD;
     LDA.W #$0000                                                         ;A3EC01;
-    STA.L $7EF2F8,X                                                      ;A3EC04;
+    STA.L SpriteObjects.frozen,X                                         ;A3EC04;
     RTL                                                                  ;A3EC08;
 
 
@@ -14128,12 +14128,12 @@ EnemyShot_Metroid:
     LDA.L $7E7800,X                                                      ;A3EF59;
     TAX                                                                  ;A3EF5D;
     LDA.W #$0000                                                         ;A3EF5E;
-    STA.L $7EEF78,X                                                      ;A3EF61;
+    STA.L SpriteObjects.pInstList,X                                      ;A3EF61;
     LDX.W $0E54                                                          ;A3EF65;
     LDA.L $7E7802,X                                                      ;A3EF68;
     TAX                                                                  ;A3EF6C;
     LDA.W #$0000                                                         ;A3EF6D;
-    STA.L $7EEF78,X                                                      ;A3EF70;
+    STA.L SpriteObjects.pInstList,X                                      ;A3EF70;
     JSL.L MetroidDeathItemDropRoutine                                    ;A3EF74;
 
 .returnUpper:
@@ -14252,12 +14252,12 @@ PowerBombReaction_Metroid:
     LDA.L $7E7800,X                                                      ;A3F055;
     TAX                                                                  ;A3F059;
     LDA.W #$0000                                                         ;A3F05A;
-    STA.L $7EEF78,X                                                      ;A3F05D;
+    STA.L SpriteObjects.pInstList,X                                      ;A3F05D;
     LDX.W $0E54                                                          ;A3F061;
     LDA.L $7E7802,X                                                      ;A3F064;
     TAX                                                                  ;A3F068;
     LDA.W #$0000                                                         ;A3F069;
-    STA.L $7EEF78,X                                                      ;A3F06C;
+    STA.L SpriteObjects.pInstList,X                                      ;A3F06C;
 
 .return:
     RTL                                                                  ;A3F070;
