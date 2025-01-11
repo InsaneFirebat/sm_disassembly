@@ -3,6 +3,9 @@ lorom
 math pri on
 
 incsrc "macros.asm"
+incsrc "hardware_registers.asm"
+incsrc "structs.asm"
+
 incsrc "bank_80.asm"
 incsrc "bank_81.asm"
 incsrc "bank_82.asm"

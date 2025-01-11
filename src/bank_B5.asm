@@ -1550,7 +1550,7 @@ MapTilemaps_tourian:
     dw $001F,$001F,$001F,$001F,$001F,$001F,$001F,$001F                   ;B5DFE0;
     dw $001F,$001F,$001F,$001F,$001F,$001F,$001F,$001F                   ;B5DFF0;
 
-UNUSED_MapTilemaps_ceres_B5E000:
+MapTilemaps_colony:
     dw $001F,$001F,$001F,$001F,$001F,$001F,$001F,$001F                   ;B5E000;
     dw $001F,$001F,$001F,$001F,$001F,$001F,$001F,$001F                   ;B5E010;
     dw $001F,$001F,$001F,$001F,$001F,$001F,$001F,$001F                   ;B5E020;

@@ -1963,7 +1963,7 @@ ProcessEnemyGrappleBeamCollisionResult_HurtSamus:
     LDX.B $12                                                            ;9BB932;
     LDA.L $A00006,X                                                      ;9BB934;
     STA.B $12                                                            ;9BB938;
-    LDA.W $09A2                                                          ;9BB93A;
+    LDA.W Equipment.equippedItems                                        ;9BB93A;
     BIT.W #$0020                                                         ;9BB93D;
     BNE .gravitySuit                                                     ;9BB940;
     LSR A                                                                ;9BB942;
@@ -2567,7 +2567,7 @@ HandleGrappleKick:
     LDA.W $0D30                                                          ;9BBD44;
     BEQ .return                                                          ;9BBD47;
     LDA.B $8F                                                            ;9BBD49;
-    BIT.W $09B4                                                          ;9BBD4B;
+    BIT.W Equipment.jumpBinding                                          ;9BBD4B;
     BEQ .return                                                          ;9BBD4E;
     LDA.W $0D26                                                          ;9BBD50;
     BNE .nonZeroAngularVelocity                                          ;9BBD53;
@@ -3403,10 +3403,10 @@ GrappleBeamHandler:
 
 GrappleBeamFunction_Inactive:
     LDA.B $8F                                                            ;9BC4F0;
-    BIT.W $09B2                                                          ;9BC4F2;
+    BIT.W Equipment.shootBinding                                         ;9BC4F2;
     BNE GrappleBeamFunction_Fire_GotoCancel                              ;9BC4F5;
     LDA.W $0E00                                                          ;9BC4F7;
-    BIT.W $09B2                                                          ;9BC4FA;
+    BIT.W Equipment.shootBinding                                         ;9BC4FA;
     BNE GrappleBeamFunction_Fire_GotoCancel                              ;9BC4FD;
     LDA.W $0CD0                                                          ;9BC4FF;
     BEQ .return                                                          ;9BC502;
@@ -3665,7 +3665,7 @@ UNUSED_CLCRTS_9B7C01:
 
 GrappleBeamFunction_Firing:
     LDA.B $8B                                                            ;9BC703;
-    BIT.W $09B2                                                          ;9BC705;
+    BIT.W Equipment.shootBinding                                         ;9BC705;
     BNE .firing                                                          ;9BC708;
 
 .cancel:
@@ -3719,7 +3719,7 @@ GrappleBeamFunction_Firing:
 
 UNUSED_GrappleBeamFunction_Unfiring_9BC759:
     LDA.B $8B                                                            ;9BC759;
-    BIT.W $09B2                                                          ;9BC75B;
+    BIT.W Equipment.shootBinding                                         ;9BC75B;
     BNE .firing                                                          ;9BC75E;
 
 .cancel:
@@ -3742,7 +3742,7 @@ UNUSED_GrappleBeamFunction_Unfiring_9BC759:
 
 GrappleBeamFunction_Connected_LockedInPlace:
     LDA.B $8B                                                            ;9BC77E;
-    BIT.W $09B2                                                          ;9BC780;
+    BIT.W Equipment.shootBinding                                         ;9BC780;
     BNE .firing                                                          ;9BC783;
 
 .cancel:
@@ -3765,7 +3765,7 @@ GrappleBeamFunction_Connected_LockedInPlace:
 
 GrappleBeamFunction_Connected_Swinging:
     LDA.B $8B                                                            ;9BC79D;
-    BIT.W $09B2                                                          ;9BC79F;
+    BIT.W Equipment.shootBinding                                         ;9BC79F;
     BNE .firing                                                          ;9BC7A2;
 
 .cancel:
@@ -3829,7 +3829,7 @@ GrappleBeamFunction_Connected_Swinging:
 
 GrappleBeamFunction_WallGrab:
     LDA.B $8B                                                            ;9BC814;
-    BIT.W $09B2                                                          ;9BC816;
+    BIT.W Equipment.shootBinding                                         ;9BC816;
     BNE .firing                                                          ;9BC819;
 
 .cancel:
@@ -3900,7 +3900,7 @@ GrappleBeamFunction_HitNothing_Cancel:
     STZ.W $0CDC                                                          ;9BC899;
     STZ.W $0CDE                                                          ;9BC89C;
     STZ.W $0CE0                                                          ;9BC89F;
-    LDA.W $09A6                                                          ;9BC8A2;
+    LDA.W Equipment.equippedBeams                                        ;9BC8A2;
     JSL.L Load_Beam_Palette_External                                     ;9BC8A5;
     LDA.W #GrappleBeamFunction_Inactive                                  ;9BC8A9;
     STA.W $0D32                                                          ;9BC8AC;
@@ -3909,7 +3909,7 @@ GrappleBeamFunction_HitNothing_Cancel:
     JSL.L PostGrappleCollisionDetection                                  ;9BC8B5;
     LDA.W $0A04                                                          ;9BC8B9;
     BEQ .return                                                          ;9BC8BC;
-    STZ.W $09D2                                                          ;9BC8BE;
+    STZ.W Equipment.selectedHudItem                                      ;9BC8BE;
     STZ.W $0A04                                                          ;9BC8C1;
 
 .return:
@@ -4019,7 +4019,7 @@ GrappleBeamFunction_Dropped:
     STZ.W $0CDC                                                          ;9BC98E;
     STZ.W $0CDE                                                          ;9BC991;
     STZ.W $0CE0                                                          ;9BC994;
-    LDA.W $09A6                                                          ;9BC997;
+    LDA.W Equipment.equippedBeams                                        ;9BC997;
     JSL.L Load_Beam_Palette_External                                     ;9BC99A;
     LDA.W #GrappleBeamFunction_Inactive                                  ;9BC99E;
     STA.W $0D32                                                          ;9BC9A1;
@@ -4028,7 +4028,7 @@ GrappleBeamFunction_Dropped:
     JSL.L PostGrappleCollisionDetection                                  ;9BC9AA;
     LDA.W $0A04                                                          ;9BC9AE;
     BEQ .return                                                          ;9BC9B1;
-    STZ.W $09D2                                                          ;9BC9B3;
+    STZ.W Equipment.selectedHudItem                                      ;9BC9B3;
     STZ.W $0A04                                                          ;9BC9B6;
 
 .return:
@@ -4085,7 +4085,7 @@ GrappleBeamFunction_WallJumping:
     STZ.W $0CDC                                                          ;9BCA39;
     STZ.W $0CDE                                                          ;9BCA3C;
     STZ.W $0CE0                                                          ;9BCA3F;
-    LDA.W $09A6                                                          ;9BCA42;
+    LDA.W Equipment.equippedBeams                                        ;9BCA42;
     JSL.L Load_Beam_Palette_External                                     ;9BCA45;
     LDA.W #GrappleBeamFunction_Inactive                                  ;9BCA49;
     STA.W $0D32                                                          ;9BCA4C;
@@ -4094,7 +4094,7 @@ GrappleBeamFunction_WallJumping:
     JSL.L PostGrappleCollisionDetection                                  ;9BCA55;
     LDA.W $0A04                                                          ;9BCA59;
     BEQ .return                                                          ;9BCA5C;
-    STZ.W $09D2                                                          ;9BCA5E;
+    STZ.W Equipment.selectedHudItem                                      ;9BCA5E;
     STZ.W $0A04                                                          ;9BCA61;
 
 .return:
@@ -4283,7 +4283,7 @@ GrappleBeamFunction_ReleasedFromSwing:
     STZ.W $0CDC                                                          ;9BCBCF;
     STZ.W $0CDE                                                          ;9BCBD2;
     STZ.W $0CE0                                                          ;9BCBD5;
-    LDA.W $09A6                                                          ;9BCBD8;
+    LDA.W Equipment.equippedBeams                                        ;9BCBD8;
     JSL.L Load_Beam_Palette_External                                     ;9BCBDB;
     LDA.W #GrappleBeamFunction_Inactive                                  ;9BCBDF;
     STA.W $0D32                                                          ;9BCBE2;
@@ -4292,7 +4292,7 @@ GrappleBeamFunction_ReleasedFromSwing:
     JSL.L PostGrappleCollisionDetection                                  ;9BCBEB;
     LDA.W $0A04                                                          ;9BCBEF;
     BEQ .return                                                          ;9BCBF2;
-    STZ.W $09D2                                                          ;9BCBF4;
+    STZ.W Equipment.selectedHudItem                                      ;9BCBF4;
     STZ.W $0A04                                                          ;9BCBF7;
 
 .return:

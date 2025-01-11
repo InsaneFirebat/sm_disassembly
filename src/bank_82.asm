@@ -220,17 +220,17 @@ InitialiseCPURegistersForGameplay:
     STA.W $4200                                                          ;8281A9;
     STA.B $84                                                            ;8281AC;
     STZ.W $4201                                                          ;8281AE;
-    STZ.W $4202                                                          ;8281B1;
-    STZ.W $4203                                                          ;8281B4;
-    STZ.W $4204                                                          ;8281B7;
+    STZ.W HW_WRMPYA                                                      ;8281B1;
+    STZ.W HW_WRMPYB                                                      ;8281B4;
+    STZ.W HW_WRDIV                                                       ;8281B7;
     STZ.W $4205                                                          ;8281BA;
-    STZ.W $4206                                                          ;8281BD;
+    STZ.W HW_WRDIVB                                                      ;8281BD;
     STZ.W $4207                                                          ;8281C0;
     STZ.W $4208                                                          ;8281C3;
     STZ.W $4209                                                          ;8281C6;
     STZ.W $420A                                                          ;8281C9;
-    STZ.W $420B                                                          ;8281CC;
-    STZ.W $420C                                                          ;8281CF;
+    STZ.W HW_MDMAEN                                                      ;8281CC;
+    STZ.W HW_HDMAEN                                                      ;8281CF;
     STZ.B $85                                                            ;8281D2;
     LDA.B #$01                                                           ;8281D4;
     STA.W $420D                                                          ;8281D6;
@@ -370,7 +370,7 @@ Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps:
     dl Tiles_Standard_BG3                                                ;8282FB;
     dw $2000                                                             ;8282FE;
     LDA.B #$02                                                           ;828300;
-    STA.W $420B                                                          ;828302;
+    STA.W HW_MDMAEN                                                      ;828302;
     LDA.B #$00                                                           ;828305;
     STA.W $2116                                                          ;828307;
     LDA.B #$60                                                           ;82830A;
@@ -382,7 +382,7 @@ Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps:
     dl Tiles_Standard_Sprite_0                                           ;82831B;
     dw $4000                                                             ;82831E;
     LDA.B #$02                                                           ;828320;
-    STA.W $420B                                                          ;828322;
+    STA.W HW_MDMAEN                                                      ;828322;
     LDA.B #$00                                                           ;828325;
     STA.W $2116                                                          ;828327;
     LDA.B #$50                                                           ;82832A;
@@ -394,7 +394,7 @@ Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps:
     dl $7E4000                                                           ;82833B;
     dw $1000                                                             ;82833E;
     LDA.B #$02                                                           ;828340;
-    STA.W $420B                                                          ;828342;
+    STA.W HW_MDMAEN                                                      ;828342;
     LDA.B #$00                                                           ;828345;
     STA.W $2116                                                          ;828347;
     LDA.B #$58                                                           ;82834A;
@@ -406,7 +406,7 @@ Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps:
     dl $7E4000                                                           ;82835B;
     dw $0800                                                             ;82835E;
     LDA.B #$02                                                           ;828360;
-    STA.W $420B                                                          ;828362;
+    STA.W HW_MDMAEN                                                      ;828362;
     PLP                                                                  ;828365;
     RTS                                                                  ;828366;
 
@@ -913,9 +913,9 @@ LoadDemoRoomData:
     CPX.W #$0600                                                         ;828752;
     BMI .loopMapData                                                     ;828755;
     LDA.W #$0000                                                         ;828757;
-    STA.W $09D4                                                          ;82875A;
-    STA.W $09D6                                                          ;82875D;
-    STA.W $09C0                                                          ;828760;
+    STA.W Equipment.maxReserveEnergy                                     ;82875A;
+    STA.W Equipment.currentReserveEnergy                                 ;82875D;
+    STA.W Equipment.reserveTankMode                                      ;828760;
     STA.L $7ED914                                                        ;828763;
     STA.W $05F7                                                          ;828767;
     PLP                                                                  ;82876A;
@@ -1698,7 +1698,7 @@ GameState_D_Pausing_LoadingPauseScreen:
     SEP #$20                                                             ;828CF9;
     LDA.B #$00                                                           ;828CFB;
     STA.B $85                                                            ;828CFD;
-    STA.W $420C                                                          ;828CFF;
+    STA.W HW_HDMAEN                                                      ;828CFF;
     REP #$20                                                             ;828D02;
     JSL.L Disable_AnimatedTilesObjects                                   ;828D04;
     JSR.W Backup_BG2Tilemap_for_PauseMenu                                ;828D08;
@@ -1761,7 +1761,7 @@ Backup_BG2Tilemap_for_PauseMenu:
     STZ.W $4319                                                          ;828D89;
     STZ.W $431A                                                          ;828D8C;
     LDA.B #$02                                                           ;828D8F;
-    STA.W $420B                                                          ;828D91;
+    STA.W HW_MDMAEN                                                      ;828D91;
     PLP                                                                  ;828D94;
     RTS                                                                  ;828D95;
 
@@ -1781,7 +1781,7 @@ Restore_BG2Tilemap_from_PauseMenu:
     dl $7EDF5C                                                           ;828DB1;
     dw $1000                                                             ;828DB4;
     LDA.B #$02                                                           ;828DB6;
-    STA.W $420B                                                          ;828DB8;
+    STA.W HW_MDMAEN                                                      ;828DB8;
     PLP                                                                  ;828DBB;
     RTS                                                                  ;828DBC;
 
@@ -1882,7 +1882,7 @@ LoadPauseMenuTiles_ClearBG2Tilemap:
     dl Tiles_PauseScreen_BG1_BG2                                         ;828E8E;
     dw $4000                                                             ;828E91;
     LDA.B #$02                                                           ;828E93;
-    STA.W $420B                                                          ;828E95;
+    STA.W HW_MDMAEN                                                      ;828E95;
     LDA.B #$00                                                           ;828E98;
     STA.W $2116                                                          ;828E9A;
     LDA.B #$20                                                           ;828E9D;
@@ -1894,7 +1894,7 @@ LoadPauseMenuTiles_ClearBG2Tilemap:
     dl Tiles_Menu_PauseScreen_Sprites                                    ;828EAE;
     dw $2000                                                             ;828EB1;
     LDA.B #$02                                                           ;828EB3;
-    STA.W $420B                                                          ;828EB5;
+    STA.W HW_MDMAEN                                                      ;828EB5;
     LDA.B #$00                                                           ;828EB8;
     STA.W $2116                                                          ;828EBA;
     LDA.B #$40                                                           ;828EBD;
@@ -1906,7 +1906,7 @@ LoadPauseMenuTiles_ClearBG2Tilemap:
     dl Tiles_Standard_BG3                                                ;828ECE;
     dw $2000                                                             ;828ED1;
     LDA.B #$02                                                           ;828ED3;
-    STA.W $420B                                                          ;828ED5;
+    STA.W HW_MDMAEN                                                      ;828ED5;
     PLP                                                                  ;828ED8;
     RTL                                                                  ;828ED9;
 
@@ -1925,7 +1925,7 @@ LoadPauseScreen_BaseTilemaps:
     dl Tilemap_BG2PauseScreen_BG2RoomSelectMap_0                         ;828EF3;
     dw $0800                                                             ;828EF6;
     LDA.B #$02                                                           ;828EF8;
-    STA.W $420B                                                          ;828EFA;
+    STA.W HW_MDMAEN                                                      ;828EFA;
     LDA.B #$00                                                           ;828EFD;
     STA.W $2181                                                          ;828EFF;
     LDA.B #$34                                                           ;828F02;
@@ -1937,7 +1937,7 @@ LoadPauseScreen_BaseTilemaps:
     dl Tilemap_BG2PauseScreen_BG2RoomSelectMap_1                         ;828F13;
     dw $0400                                                             ;828F16;
     LDA.B #$02                                                           ;828F18;
-    STA.W $420B                                                          ;828F1A;
+    STA.W HW_MDMAEN                                                      ;828F1A;
     LDA.B #$00                                                           ;828F1D;
     STA.W $2181                                                          ;828F1F;
     LDA.B #$38                                                           ;828F22;
@@ -1949,7 +1949,7 @@ LoadPauseScreen_BaseTilemaps:
     dl Tilemap_EquipmentScreen                                           ;828F33;
     dw $0800                                                             ;828F36;
     LDA.B #$02                                                           ;828F38;
-    STA.W $420B                                                          ;828F3A;
+    STA.W HW_MDMAEN                                                      ;828F3A;
     REP #$30                                                             ;828F3D;
     LDY.W #Dummy_Samus_Wireframe_Tilemap                                 ;828F3F;
     LDX.W #$01D8                                                         ;828F42;
@@ -1984,13 +1984,13 @@ LoadPauseScreen_BaseTilemaps:
 Load_EquipmentScreen_ReserveHealth_Tilemap:
     PHP                                                                  ;828F70;
     REP #$30                                                             ;828F71;
-    LDA.W $09D4                                                          ;828F73;
+    LDA.W Equipment.maxReserveEnergy                                     ;828F73;
     BEQ .return                                                          ;828F76;
-    LDA.W $09D6                                                          ;828F78;
-    STA.W $4204                                                          ;828F7B;
+    LDA.W Equipment.currentReserveEnergy                                 ;828F78;
+    STA.W HW_WRDIV                                                       ;828F7B;
     SEP #$20                                                             ;828F7E;
     LDA.B #$64                                                           ;828F80;
-    STA.W $4206                                                          ;828F82;
+    STA.W HW_WRDIVB                                                      ;828F82;
     NOP                                                                  ;828F85;
     NOP                                                                  ;828F86;
     NOP                                                                  ;828F87;
@@ -2004,12 +2004,12 @@ Load_EquipmentScreen_ReserveHealth_Tilemap:
     STA.B $2A                                                            ;828F91;
     LDA.W $4215                                                          ;828F93;
     STA.B $2B                                                            ;828F96;
-    LDA.W $4216                                                          ;828F98;
-    STA.W $4204                                                          ;828F9B;
+    LDA.W HW_RDMPY                                                       ;828F98;
+    STA.W HW_WRDIV                                                       ;828F9B;
     LDA.W $4217                                                          ;828F9E;
     STA.W $4205                                                          ;828FA1;
     LDA.B #$0A                                                           ;828FA4;
-    STA.W $4206                                                          ;828FA6;
+    STA.W HW_WRDIVB                                                      ;828FA6;
     REP #$20                                                             ;828FA9;
     NOP                                                                  ;828FAB;
     NOP                                                                  ;828FAC;
@@ -2018,7 +2018,7 @@ Load_EquipmentScreen_ReserveHealth_Tilemap:
     NOP                                                                  ;828FAF;
     NOP                                                                  ;828FB0;
     NOP                                                                  ;828FB1;
-    LDA.W $4216                                                          ;828FB2;
+    LDA.W HW_RDMPY                                                       ;828FB2;
     CLC                                                                  ;828FB5;
     ADC.W #$0804                                                         ;828FB6;
     STA.L $7E3B14                                                        ;828FB9;
@@ -2595,7 +2595,7 @@ Load_PauseMenuMapTilemap_and_AreaLabel:
     dl $7E4000                                                           ;8293EC;
     dw $1000                                                             ;8293EF;
     LDA.B #$02                                                           ;8293F1;
-    STA.W $420B                                                          ;8293F3;
+    STA.W HW_MDMAEN                                                      ;8293F3;
     LDA.B #$AA                                                           ;8293F6;
     STA.W $2116                                                          ;8293F8;
     LDA.B #$38                                                           ;8293FB;
@@ -2624,7 +2624,7 @@ Load_PauseMenuMapTilemap_and_AreaLabel:
     LDA.B #$82                                                           ;829430;
     STA.W $4314                                                          ;829432;
     LDA.B #$02                                                           ;829435;
-    STA.W $420B                                                          ;829437;
+    STA.W HW_MDMAEN                                                      ;829437;
     PLB                                                                  ;82943A;
     PLP                                                                  ;82943B;
     RTL                                                                  ;82943C;
@@ -2942,7 +2942,7 @@ AreaMapPointers:
     dl MapTilemaps_wreckedShip                                           ;829653;
     dl MapTilemaps_maridia                                               ;829656;
     dl MapTilemaps_tourian                                               ;829659;
-    dl UNUSED_MapTilemaps_ceres_B5E000                                   ;82965C;
+    dl MapTilemaps_colony                                                ;82965C;
 
 AreaLabelTilemaps_pointers:
     dw AreaLabelTilemaps_crateria                                        ;82965F;
@@ -2951,7 +2951,7 @@ AreaLabelTilemaps_pointers:
     dw AreaLabelTilemaps_wreckedShip                                     ;829665;
     dw AreaLabelTilemaps_maridia                                         ;829667;
     dw AreaLabelTilemaps_tourianDebug                                    ;829669;
-    dw AreaLabelTilemaps_ceres                                           ;82966B;
+    dw AreaLabelTilemaps_colony                                          ;82966B;
     dw AreaLabelTilemaps_tourianDebug                                    ;82966D;
 
 AreaLabelTilemaps_crateria:
@@ -2972,7 +2972,7 @@ AreaLabelTilemaps_maridia:
 AreaLabelTilemaps_tourianDebug:
     dw $2801,$2801,$3843,$383E,$3844,$3841,$3838,$3830,$383D,$2801,$2801,$2801 ;8296E7;
 
-AreaLabelTilemaps_ceres:
+AreaLabelTilemaps_colony:
     dw $2801,$2801,$2801,$3832,$383E,$383B,$383E,$383D,$3848,$2801,$2801,$2801 ;8296FF;
 
 MapData_pointers:
@@ -2982,7 +2982,7 @@ MapData_pointers:
     dw MapData_wreckedShip                                               ;82971D;
     dw MapData_maridia                                                   ;82971F;
     dw MapData_tourianDebug                                              ;829721;
-    dw MapData_ceres                                                     ;829723;
+    dw MapData_colony                                                    ;829723;
     dw MapData_tourianDebug                                              ;829725;
 
 MapData_crateria:
@@ -3381,7 +3381,7 @@ MapData_tourianDebug:
     db                 $00,$00,$00,$00
     db                 $00,$00,$00,$00
 
-MapData_ceres:
+MapData_colony:
     db $00,$00,$00,$00                                                   ;829D27;
     db $00,$00,$00,$00
     db $00,$00,$00,$00
@@ -3895,7 +3895,7 @@ ResetPauseMenuAnimations:
 
 Load_EquipmentScreen_EquipmentTilemaps:
     REP #$30                                                             ;82A12B;
-    LDA.W $09D4                                                          ;82A12D;
+    LDA.W Equipment.maxReserveEnergy                                     ;82A12D;
     BEQ +                                                                ;82A130;
     LDY.W #$0000                                                         ;82A132;
     LDA.W #EquipmentScreenData_RAMTilemapOffsets_tanks                   ;82A135;
@@ -3932,7 +3932,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
 
 .loopWeapons:
     LDA.W EquipmentScreenData_EquipmentBitmasks_weapons,Y                ;82A180;
-    BIT.W $09A8                                                          ;82A183;
+    BIT.W Equipment.collectedBeams                                       ;82A183;
     BNE +                                                                ;82A186;
     LDX.W #EquipmentScreenTilemaps_blankPlaceholder                      ;82A188;
     LDA.W #$000A                                                         ;82A18B;
@@ -3946,7 +3946,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     STA.B $16                                                            ;82A19B;
     JSR.W Copy_Bytes_from_X_to_7ERAM                                     ;82A19D;
     LDA.W EquipmentScreenData_EquipmentBitmasks_weapons,Y                ;82A1A0;
-    BIT.W $09A6                                                          ;82A1A3;
+    BIT.W Equipment.equippedBeams                                        ;82A1A3;
     BNE .nextWeapon                                                      ;82A1A6;
     LDA.W #$0C00                                                         ;82A1A8;
     STA.B $12                                                            ;82A1AB;
@@ -3990,7 +3990,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
 
 .loopSuitMisc:
     LDA.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,Y              ;82A1EC;
-    BIT.W $09A4                                                          ;82A1EF;
+    BIT.W Equipment.collectedItems                                       ;82A1EF;
     BNE +                                                                ;82A1F2;
     LDX.W #EquipmentScreenTilemaps_blankPlaceholder                      ;82A1F4;
     LDA.W #$0012                                                         ;82A1F7;
@@ -4004,7 +4004,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     STA.B $16                                                            ;82A207;
     JSR.W Copy_Bytes_from_X_to_7ERAM                                     ;82A209;
     LDA.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,Y              ;82A20C;
-    BIT.W $09A2                                                          ;82A20F;
+    BIT.W Equipment.equippedItems                                        ;82A20F;
     BNE .nextSuitMisc                                                    ;82A212;
     LDA.W #$0C00                                                         ;82A214;
     STA.B $12                                                            ;82A217;
@@ -4029,7 +4029,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
 
 .loopBoots:
     LDA.W EquipmentScreenData_EquipmentBitmasks_boots,Y                  ;82A23D;
-    BIT.W $09A4                                                          ;82A240;
+    BIT.W Equipment.collectedItems                                       ;82A240;
     BNE +                                                                ;82A243;
     LDX.W #EquipmentScreenTilemaps_blankPlaceholder                      ;82A245;
     LDA.W #$0012                                                         ;82A248;
@@ -4043,7 +4043,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     LDX.W EquipmentScreenData_PointersEquipmentTIlemaps_boots,Y          ;82A257;
     JSR.W Copy_Bytes_from_X_to_7ERAM                                     ;82A25A;
     LDA.W EquipmentScreenData_EquipmentBitmasks_boots,Y                  ;82A25D;
-    BIT.W $09A2                                                          ;82A260;
+    BIT.W Equipment.equippedItems                                        ;82A260;
     BNE .nextBoots                                                       ;82A263;
     LDA.W #$0C00                                                         ;82A265;
     STA.B $12                                                            ;82A268;
@@ -4123,7 +4123,7 @@ Clear_Samus_Beam_Tiles:
     dl Tiles_Standard_Sprite_0                                           ;82A2D7;
     dw $1000                                                             ;82A2DA;
     LDA.B #$02                                                           ;82A2DC;
-    STA.W $420B                                                          ;82A2DE;
+    STA.W HW_MDMAEN                                                      ;82A2DE;
     PLP                                                                  ;82A2E1;
     RTS                                                                  ;82A2E2;
 
@@ -4316,14 +4316,14 @@ ChangePose_DueTo_EquipmentChange_SpinJumping:
 
 
 .spaceJump:
-    LDA.W $09A2                                                          ;82A446;
+    LDA.W Equipment.equippedItems                                        ;82A446;
     BIT.W #$0020                                                         ;82A449;
     BNE .return                                                          ;82A44C;
     BRA .merge                                                           ;82A44E;
 
 
 .screwAttack:
-    LDA.W $09A2                                                          ;82A450;
+    LDA.W Equipment.equippedItems                                        ;82A450;
     BIT.W #$0008                                                         ;82A453;
     BNE .return                                                          ;82A456;
 
@@ -4353,7 +4353,7 @@ ChangePose_DueTo_EquipmentChange_SpinJumping:
 Change_Pose_due_to_Equipment_Change_MovementTypes_7_9:
     PHP                                                                  ;82A47B;
     REP #$30                                                             ;82A47C;
-    LDA.W $09A2                                                          ;82A47E;
+    LDA.W Equipment.equippedItems                                        ;82A47E;
     BIT.W #$0004                                                         ;82A481;
     BNE .return                                                          ;82A484;
     LDA.W $0A1E                                                          ;82A486;
@@ -4381,7 +4381,7 @@ Change_Pose_due_to_Equipment_Change_MovementTypes_7_9:
 ChangePose_DueTo_EquipmentChange_MorphBall:
     PHP                                                                  ;82A4A9;
     REP #$30                                                             ;82A4AA;
-    LDA.W $09A2                                                          ;82A4AC;
+    LDA.W Equipment.equippedItems                                        ;82A4AC;
     BIT.W #$0002                                                         ;82A4AF;
     BEQ .return                                                          ;82A4B2;
     LDA.W $0A1E                                                          ;82A4B4;
@@ -4409,7 +4409,7 @@ ChangePose_DueTo_EquipmentChange_MorphBall:
 ChangePose_DueTo_EquipmentChange_SpringBall:
     PHP                                                                  ;82A4D7;
     REP #$30                                                             ;82A4D8;
-    LDA.W $09A2                                                          ;82A4DA;
+    LDA.W Equipment.equippedItems                                        ;82A4DA;
     BIT.W #$0002                                                         ;82A4DD;
     BNE .return                                                          ;82A4E0;
     LDA.W $0A1E                                                          ;82A4E2;
@@ -5120,9 +5120,9 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     STA.B $BF                                                            ;82AB50;
     STZ.B $B1                                                            ;82AB52;
     STZ.B $B3                                                            ;82AB54;
-    LDA.W $09D4                                                          ;82AB56;
+    LDA.W Equipment.maxReserveEnergy                                     ;82AB56;
     BEQ .noReserves                                                      ;82AB59;
-    LDA.W $09C0                                                          ;82AB5B;
+    LDA.W Equipment.reserveTankMode                                      ;82AB5B;
     BEQ .noReserves                                                      ;82AB5E;
     LDX.W #EquipmentScreenTilemaps_auto                                  ;82AB60;
     LDY.W #$0082                                                         ;82AB63;
@@ -5159,7 +5159,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     LDA.W ReserveTank_AnimationData                                      ;82ABA4;
     AND.W #$00FF                                                         ;82ABA7;
     STA.W $072F                                                          ;82ABAA;
-    LDA.W $09D4                                                          ;82ABAD;
+    LDA.W Equipment.maxReserveEnergy                                     ;82ABAD;
     BEQ +                                                                ;82ABB0;
     LDA.W #$0000                                                         ;82ABB2;
     STA.W $0755                                                          ;82ABB5;
@@ -5168,7 +5168,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
 
   + LDA.W $0A76                                                          ;82ABBA;
     BNE .noBeams                                                         ;82ABBD;
-    LDA.W $09A8                                                          ;82ABBF;
+    LDA.W Equipment.collectedBeams                                       ;82ABBF;
     LDX.W #$0000                                                         ;82ABC2;
 
 .loopBeams:
@@ -5190,7 +5190,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
 
 
 .noBeams:
-    LDA.W $09A4                                                          ;82ABDE;
+    LDA.W Equipment.collectedItems                                       ;82ABDE;
     LDX.W #$0000                                                         ;82ABE1;
 
 .loopSuitMisc:
@@ -5229,7 +5229,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     STA.W $0755                                                          ;82AC12;
 
 .return:
-    LDA.W $09D6                                                          ;82AC15;
+    LDA.W Equipment.currentReserveEnergy                                 ;82AC15;
     BEQ +                                                                ;82AC18;
     JSR.W EquipmentScreen_GlowingArrow_Solid_On                          ;82AC1A;
     JSR.W EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM       ;82AC1D;
@@ -5255,7 +5255,7 @@ EquipmentScreen_TransferBG1Tilemap:
     dl $7E3800                                                           ;82AC3E;
     dw $0800                                                             ;82AC41;
     LDA.B #$02                                                           ;82AC43;
-    STA.W $420B                                                          ;82AC45;
+    STA.W HW_MDMAEN                                                      ;82AC45;
     STZ.B $B3                                                            ;82AC48;
     STZ.B $B4                                                            ;82AC4A;
     PLB                                                                  ;82AC4C;
@@ -5336,14 +5336,14 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     AND.W #$FF00                                                         ;82ACBF;
     CMP.W #$0100                                                         ;82ACC2;
     BEQ .moveToBeams                                                     ;82ACC5;
-    LDA.W $09C0                                                          ;82ACC7;
+    LDA.W Equipment.reserveTankMode                                      ;82ACC7;
     CMP.W #$0001                                                         ;82ACCA;
     BEQ .moveToBeams                                                     ;82ACCD;
     LDA.W $0755                                                          ;82ACCF;
     CLC                                                                  ;82ACD2;
     ADC.W #$0100                                                         ;82ACD3;
     STA.W $0755                                                          ;82ACD6;
-    LDA.W $09D6                                                          ;82ACD9;
+    LDA.W Equipment.currentReserveEnergy                                 ;82ACD9;
     BEQ .moveToBeams                                                     ;82ACDC;
     LDA.W #$0037                                                         ;82ACDE;
     JSL.L QueueSound_Lib1_Max6                                           ;82ACE1;
@@ -5398,7 +5398,7 @@ EquipmentScreen_Main_Tanks_GlowingArrow:
     dw EquipmentScreen_GlowingArrow_Solid_On                             ;82AD27;
 
 EquipmentScreen_GlowingArrow_Animated:
-    LDA.W $09C0                                                          ;82AD29;
+    LDA.W Equipment.reserveTankMode                                      ;82AD29;
     CMP.W #$0001                                                         ;82AD2C;
     BNE .disableGlow                                                     ;82AD2F;
     LDA.W $05B5                                                          ;82AD31;
@@ -5536,15 +5536,15 @@ EquipmentScreen_Main_Tanks_Mode:
     LDA.B $8F                                                            ;82AE8E;
     BIT.W #$0080                                                         ;82AE90;
     BEQ .return                                                          ;82AE93;
-    LDA.W $09D4                                                          ;82AE95;
+    LDA.W Equipment.maxReserveEnergy                                     ;82AE95;
     BEQ .return                                                          ;82AE98;
     LDA.W #$0037                                                         ;82AE9A;
     JSL.L QueueSound_Lib1_Max6                                           ;82AE9D;
-    LDA.W $09C0                                                          ;82AEA1;
+    LDA.W Equipment.reserveTankMode                                      ;82AEA1;
     CMP.W #$0001                                                         ;82AEA4;
     BNE .manual                                                          ;82AEA7;
     LDA.W #$0002                                                         ;82AEA9;
-    STA.W $09C0                                                          ;82AEAC;
+    STA.W Equipment.reserveTankMode                                      ;82AEAC;
     JSR.W EquipmentScreen_ClearHUDReserveAUTOTilemap                     ;82AEAF;
     PHP                                                                  ;82AEB2;
     REP #$30                                                             ;82AEB3;
@@ -5567,7 +5567,7 @@ EquipmentScreen_Main_Tanks_Mode:
 
 .manual:
     LDA.W #$0001                                                         ;82AED3;
-    STA.W $09C0                                                          ;82AED6;
+    STA.W Equipment.reserveTankMode                                      ;82AED6;
     JSR.W EquipmentScreen_SetHUDReserveAUTOTilemap                       ;82AED9;
     PHP                                                                  ;82AEDC;
     REP #$30                                                             ;82AEDD;
@@ -5593,7 +5593,7 @@ EquipmentScreen_Main_Tanks_Mode:
 
 EquipmentScreen_SetHUDReserveAUTOTilemap:
     LDY.W #Tilemap_HUD_autoReserve                                       ;82AEFD;
-    LDA.W $09D6                                                          ;82AF00;
+    LDA.W Equipment.currentReserveEnergy                                 ;82AF00;
     BNE +                                                                ;82AF03;
     LDY.W #Tilemap_HUD_emptyAutoReserve                                  ;82AF05;
 
@@ -5631,7 +5631,7 @@ EquipmentScreen_Main_Tanks_ReserveTank:
     LDA.B $8F                                                            ;82AF57;
     BIT.W #$0080                                                         ;82AF59;
     BEQ .return                                                          ;82AF5C;
-    LDA.W $09D6                                                          ;82AF5E;
+    LDA.W Equipment.currentReserveEnergy                                 ;82AF5E;
     CLC                                                                  ;82AF61;
     ADC.W #$0007                                                         ;82AF62;
     AND.W #$FFF8                                                         ;82AF65;
@@ -5648,31 +5648,31 @@ EquipmentScreen_Main_Tanks_ReserveTank:
     JSL.L QueueSound_Lib3_Max6                                           ;82AF7D;
 
 .incrementEnergy:
-    LDA.W $09C2                                                          ;82AF81;
+    LDA.W Equipment.currentEnergy                                        ;82AF81;
     CLC                                                                  ;82AF84;
     ADC.W ReserveTank_TransferEnergyPerFrame                             ;82AF85;
-    STA.W $09C2                                                          ;82AF88;
-    CMP.W $09C4                                                          ;82AF8B;
+    STA.W Equipment.currentEnergy                                        ;82AF88;
+    CMP.W Equipment.maxEnergy                                            ;82AF8B;
     BMI .decrementReserve                                                ;82AF8E;
-    LDA.W $09C4                                                          ;82AF90;
-    STA.W $09C2                                                          ;82AF93;
+    LDA.W Equipment.maxEnergy                                            ;82AF90;
+    STA.W Equipment.currentEnergy                                        ;82AF93;
     BRA .emptyReserve                                                    ;82AF96;
 
 
 .decrementReserve:
-    LDA.W $09D6                                                          ;82AF98;
+    LDA.W Equipment.currentReserveEnergy                                 ;82AF98;
     SEC                                                                  ;82AF9B;
     SBC.W ReserveTank_TransferEnergyPerFrame                             ;82AF9C;
-    STA.W $09D6                                                          ;82AF9F;
+    STA.W Equipment.currentReserveEnergy                                 ;82AF9F;
     BEQ .emptyReserve                                                    ;82AFA2;
     BPL .return                                                          ;82AFA4;
-    LDA.W $09C2                                                          ;82AFA6;
+    LDA.W Equipment.currentEnergy                                        ;82AFA6;
     CLC                                                                  ;82AFA9;
-    ADC.W $09D6                                                          ;82AFAA;
-    STA.W $09C2                                                          ;82AFAD;
+    ADC.W Equipment.currentReserveEnergy                                 ;82AFAA;
+    STA.W Equipment.currentEnergy                                        ;82AFAD;
 
 .emptyReserve:
-    STZ.W $09D6                                                          ;82AFB0;
+    STZ.W Equipment.currentReserveEnergy                                 ;82AFB0;
     STZ.W $0757                                                          ;82AFB3;
     JSR.W EquipmentScreen_Disable_EnergyArrowGlow                        ;82AFB6;
     STZ.W $0755                                                          ;82AFB9;
@@ -5686,9 +5686,9 @@ EquipmentScreen_Main_Weapons:
     PHP                                                                  ;82AFBE;
     REP #$30                                                             ;82AFBF;
     JSR.W EquipmentScreen_Main_Weapons_MoveResponse                      ;82AFC1;
-    LDA.W $09A6                                                          ;82AFC4;
+    LDA.W Equipment.equippedBeams                                        ;82AFC4;
     STA.B $24                                                            ;82AFC7;
-    LDA.W $09A8                                                          ;82AFC9;
+    LDA.W Equipment.collectedBeams                                       ;82AFC9;
     BEQ .return                                                          ;82AFCC;
     LDA.W #$000A                                                         ;82AFCE;
     STA.B $18                                                            ;82AFD1;
@@ -5781,7 +5781,7 @@ EquipmentScreen_Main_Weapons_PlasmaSpazerCheck:
     REP #$30                                                             ;82B069;
     LDA.B $24                                                            ;82B06B;
     EOR.W #$FFFF                                                         ;82B06D;
-    AND.W $09A6                                                          ;82B070;
+    AND.W Equipment.equippedBeams                                        ;82B070;
     BIT.W #$0004                                                         ;82B073;
     BNE .spazerToggled                                                   ;82B076;
     BIT.W #$0008                                                         ;82B078;
@@ -5789,11 +5789,11 @@ EquipmentScreen_Main_Weapons_PlasmaSpazerCheck:
     LDA.B $24                                                            ;82B07D;
     BIT.W #$0008                                                         ;82B07F;
     BNE .return                                                          ;82B082;
-    LDA.W $09A6                                                          ;82B084;
+    LDA.W Equipment.equippedBeams                                        ;82B084;
     BIT.W #$0004                                                         ;82B087;
     BEQ .return                                                          ;82B08A;
     AND.W #$FFFB                                                         ;82B08C;
-    STA.W $09A6                                                          ;82B08F;
+    STA.W Equipment.equippedBeams                                        ;82B08F;
     LDA.W EquipmentScreenData_RAMTilemapOffsets_weapons_spazer           ;82B092;
     STA.B $00                                                            ;82B095;
     BRA .merge                                                           ;82B097;
@@ -5803,11 +5803,11 @@ EquipmentScreen_Main_Weapons_PlasmaSpazerCheck:
     LDA.B $24                                                            ;82B099;
     BIT.W #$0004                                                         ;82B09B;
     BNE .return                                                          ;82B09E;
-    LDA.W $09A6                                                          ;82B0A0;
+    LDA.W Equipment.equippedBeams                                        ;82B0A0;
     BIT.W #$0008                                                         ;82B0A3;
     BEQ .return                                                          ;82B0A6;
     AND.W #$FFF7                                                         ;82B0A8;
-    STA.W $09A6                                                          ;82B0AB;
+    STA.W Equipment.equippedBeams                                        ;82B0AB;
     LDA.W EquipmentScreenData_RAMTilemapOffsets_weapons_plasma           ;82B0AE;
     STA.B $00                                                            ;82B0B1;
 
@@ -6014,7 +6014,7 @@ EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM:
 EquipmentScreen_WriteSamusWireframeTilemap:
     PHP                                                                  ;82B20C;
     REP #$30                                                             ;82B20D;
-    LDA.W $09A2                                                          ;82B20F;
+    LDA.W Equipment.equippedItems                                        ;82B20F;
     AND.W #$0101                                                         ;82B212;
     LDX.W #$0000                                                         ;82B215;
 
@@ -6072,9 +6072,9 @@ EquipmentScreen_WriteSamusWireframeTilemap:
 EquipmentScreen_DrawItemSelector:
     PHP                                                                  ;82B267;
     REP #$30                                                             ;82B268;
-    LDA.W $09A8                                                          ;82B26A;
-    ORA.W $09A4                                                          ;82B26D;
-    ORA.W $09D4                                                          ;82B270;
+    LDA.W Equipment.collectedBeams                                       ;82B26A;
+    ORA.W Equipment.collectedItems                                       ;82B26D;
+    ORA.W Equipment.maxReserveEnergy                                     ;82B270;
     BEQ .return                                                          ;82B273;
     LDA.W $0755                                                          ;82B275;
     AND.W #$00FF                                                         ;82B278;
@@ -6119,16 +6119,16 @@ EquipmentScreen_DisplayReserveTankAmount:
     STZ.B $03                                                            ;82B2AD;
     JSR.W EquipmentScreen_Main_DisplayReserves_PaletteSetup              ;82B2AF;
     STZ.B $34                                                            ;82B2B2;
-    LDA.W $09D4                                                          ;82B2B4;
+    LDA.W Equipment.maxReserveEnergy                                     ;82B2B4;
     BNE +                                                                ;82B2B7;
     PLP                                                                  ;82B2B9;
     RTS                                                                  ;82B2BA;
 
 
-  + STA.W $4204                                                          ;82B2BB;
+  + STA.W HW_WRDIV                                                       ;82B2BB;
     SEP #$20                                                             ;82B2BE;
     LDA.B #$64                                                           ;82B2C0;
-    STA.W $4206                                                          ;82B2C2;
+    STA.W HW_WRDIVB                                                      ;82B2C2;
     REP #$20                                                             ;82B2C5;
     NOP                                                                  ;82B2C7;
     NOP                                                                  ;82B2C8;
@@ -6139,11 +6139,11 @@ EquipmentScreen_DisplayReserveTankAmount:
     NOP                                                                  ;82B2CD;
     LDA.W $4214                                                          ;82B2CE;
     STA.B $2C                                                            ;82B2D1;
-    LDA.W $09D6                                                          ;82B2D3;
-    STA.W $4204                                                          ;82B2D6;
+    LDA.W Equipment.currentReserveEnergy                                 ;82B2D3;
+    STA.W HW_WRDIV                                                       ;82B2D6;
     SEP #$20                                                             ;82B2D9;
     LDA.B #$64                                                           ;82B2DB;
-    STA.W $4206                                                          ;82B2DD;
+    STA.W HW_WRDIVB                                                      ;82B2DD;
     REP #$20                                                             ;82B2E0;
     NOP                                                                  ;82B2E2;
     NOP                                                                  ;82B2E3;
@@ -6152,7 +6152,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     NOP                                                                  ;82B2E6;
     NOP                                                                  ;82B2E7;
     NOP                                                                  ;82B2E8;
-    LDA.W $4216                                                          ;82B2E9;
+    LDA.W HW_RDMPY                                                       ;82B2E9;
     STA.B $32                                                            ;82B2EC;
     LDA.W $4214                                                          ;82B2EE;
     STA.B $2A                                                            ;82B2F1;
@@ -6177,12 +6177,12 @@ EquipmentScreen_DisplayReserveTankAmount:
     STY.B $34                                                            ;82B313;
 
 .empty:
-    LDA.W $4216                                                          ;82B315;
+    LDA.W HW_RDMPY                                                       ;82B315;
     BEQ .loopEmptyTanks                                                  ;82B318;
-    STA.W $4204                                                          ;82B31A;
+    STA.W HW_WRDIV                                                       ;82B31A;
     SEP #$20                                                             ;82B31D;
     LDA.B #$0E                                                           ;82B31F;
-    STA.W $4206                                                          ;82B321;
+    STA.W HW_WRDIVB                                                      ;82B321;
     REP #$20                                                             ;82B324;
     NOP                                                                  ;82B326;
     NOP                                                                  ;82B327;
@@ -6196,7 +6196,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     TAX                                                                  ;82B331;
     CMP.W #$0007                                                         ;82B332;
     BPL +                                                                ;82B335;
-    LDA.W $4216                                                          ;82B337;
+    LDA.W HW_RDMPY                                                       ;82B337;
     BEQ +                                                                ;82B33A;
     LDA.W $05B5                                                          ;82B33C;
     BIT.W #$0004                                                         ;82B33F;
@@ -6204,7 +6204,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     INX                                                                  ;82B344;
     INX                                                                  ;82B345;
 
-  + LDA.W $09D6                                                          ;82B346;
+  + LDA.W Equipment.currentReserveEnergy                                 ;82B346;
     CMP.W #$0064                                                         ;82B349;
     BMI +                                                                ;82B34C;
     TXA                                                                  ;82B34E;
@@ -6251,11 +6251,11 @@ EquipmentScreen_DisplayReserveTankAmount:
     JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82B399;
     SEP #$20                                                             ;82B39D;
     LDA.B $32                                                            ;82B39F;
-    STA.W $4204                                                          ;82B3A1;
+    STA.W HW_WRDIV                                                       ;82B3A1;
     LDA.B $33                                                            ;82B3A4;
     STA.W $4205                                                          ;82B3A6;
     LDA.B #$0A                                                           ;82B3A9;
-    STA.W $4206                                                          ;82B3AB;
+    STA.W HW_WRDIVB                                                      ;82B3AB;
     REP #$20                                                             ;82B3AE;
     NOP                                                                  ;82B3B0;
     NOP                                                                  ;82B3B1;
@@ -6264,7 +6264,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     NOP                                                                  ;82B3B4;
     NOP                                                                  ;82B3B5;
     NOP                                                                  ;82B3B6;
-    LDA.W $4216                                                          ;82B3B7;
+    LDA.W HW_RDMPY                                                       ;82B3B7;
     CLC                                                                  ;82B3BA;
     ADC.W #$0804                                                         ;82B3BB;
     STA.L $7E3B14                                                        ;82B3BE;
@@ -6290,7 +6290,7 @@ EquipmentScreen_Main_DisplayReserves_PaletteSetup:
     REP #$30                                                             ;82B3FA;
     LDA.W #$0600                                                         ;82B3FC;
     STA.B $03                                                            ;82B3FF;
-    LDA.W $09D6                                                          ;82B401;
+    LDA.W Equipment.currentReserveEnergy                                 ;82B401;
     BEQ .return                                                          ;82B404;
     DEC.W $072F                                                          ;82B406;
     BEQ .incrementAnimationFrame                                         ;82B409;
@@ -6332,7 +6332,7 @@ EquipmentScreen_Main_DisplayReserves_PaletteSetup:
 EquipmentScreen_MoveToReserveTanks:
     PHP                                                                  ;82B43F;
     REP #$30                                                             ;82B440;
-    LDA.W $09D4                                                          ;82B442;
+    LDA.W Equipment.maxReserveEnergy                                     ;82B442;
     BEQ .return                                                          ;82B445;
     STZ.W $0755                                                          ;82B447;
     LDA.W #$0037                                                         ;82B44A;
@@ -6351,7 +6351,7 @@ EquipmentScreen_MoveLowerOnBeams:
     BNE .cancel                                                          ;82B45C;
 
 .loop:
-    LDA.W $09A8                                                          ;82B45E;
+    LDA.W Equipment.collectedBeams                                       ;82B45E;
     BIT.W EquipmentScreenData_EquipmentBitmasks_weapons,X                ;82B461;
     BNE .found                                                           ;82B464;
     INX                                                                  ;82B466;
@@ -6387,7 +6387,7 @@ EquipmentScreen_MoveHigherOnBeams:
     BNE .cancel                                                          ;82B48F;
 
 .loop:
-    LDA.W $09A8                                                          ;82B491;
+    LDA.W Equipment.collectedBeams                                       ;82B491;
     BIT.W EquipmentScreenData_EquipmentBitmasks_weapons,X                ;82B494;
     BNE .found                                                           ;82B497;
     DEX                                                                  ;82B499;
@@ -6419,7 +6419,7 @@ EquipmentScreen_MoveLowerOnSuitsMisc:
     REP #$30                                                             ;82B4B8;
 
 .loop:
-    LDA.W $09A4                                                          ;82B4BA;
+    LDA.W Equipment.collectedItems                                       ;82B4BA;
     BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X              ;82B4BD;
     BNE +                                                                ;82B4C0;
     INX                                                                  ;82B4C2;
@@ -6450,7 +6450,7 @@ EquipmentScreen_MoveHigherOnSuitsMisc:
     REP #$30                                                             ;82B4E7;
 
 .loop:
-    LDA.W $09A4                                                          ;82B4E9;
+    LDA.W Equipment.collectedItems                                       ;82B4E9;
     BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X              ;82B4EC;
     BNE +                                                                ;82B4EF;
     DEX                                                                  ;82B4F1;
@@ -6480,7 +6480,7 @@ EquipmentScreen_MoveLowerOnBoots:
     REP #$30                                                             ;82B512;
 
 .loop:
-    LDA.W $09A4                                                          ;82B514;
+    LDA.W Equipment.collectedItems                                       ;82B514;
     BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X                  ;82B517;
     BNE +                                                                ;82B51A;
     INX                                                                  ;82B51C;
@@ -6511,7 +6511,7 @@ EquipmentScreen_MoveHigherOnBoots:
     REP #$30                                                             ;82B540;
 
 .loop:
-    LDA.W $09A4                                                          ;82B542;
+    LDA.W Equipment.collectedItems                                       ;82B542;
     BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X                  ;82B545;
     BNE +                                                                ;82B548;
     DEX                                                                  ;82B54A;
@@ -7839,12 +7839,10 @@ EquipmentScreenDataPointers:
 
 
   .equipmentBitmasks:
-;        _____________________ Tanks
-;       |      _______________ Weapons
-;       |     |      _________ Suit/misc
-;       |     |     |      ___ Boots
-;       |     |     |     |
-    dw $0000,$09A6,$09A2,$09A2                                           ;82C03C;
+    dw $0000                                                             ;82C03C; Tanks
+    dw Equipment.equippedBeams                                           ;82C03E; Weapons
+    dw Equipment.equippedItems                                           ;82C040; Suit/misc
+    dw Equipment.equippedItems                                           ;82C042; Boots
 
 
   .listsPointsToEquipmentTilemaps:
@@ -8618,7 +8616,7 @@ MapIcon_PositionTablePointers:
     dw WreckedShip_MapIconPositions_bossIcons                            ;82C7D1; Wrecked Ship
     dw Maridia_MapIconPositions_bossIcons                                ;82C7D3; Maridia
     dw $0000                                                             ;82C7D5; Tourian
-    dw Ceres_MapIconPositions_bossIcons                                  ;82C7D7; Ceres
+    dw Colony_MapIconPositions_bossIcons                                 ;82C7D7; Colony
     dw $0000                                                             ;82C7D9; Debug
 
   .missileStations
@@ -8628,7 +8626,7 @@ MapIcon_PositionTablePointers:
     dw $0000                                                             ;82C7E1; Wrecked Ship
     dw Maridia_MapIconPositions_missileStations                          ;82C7E3; Maridia
     dw $0000                                                             ;82C7E5; Tourian
-    dw $0000                                                             ;82C7E7; Ceres
+    dw $0000                                                             ;82C7E7; Colony
     dw $0000                                                             ;82C7E9; Debug
 
   .energyStations
@@ -8638,7 +8636,7 @@ MapIcon_PositionTablePointers:
     dw $0000                                                             ;82C7F1; Wrecked Ship
     dw Maridia_MapIconPositions_energyStations                           ;82C7F3; Maridia
     dw Tourian_MapIconPositions_energyStations                           ;82C7F5; Tourian
-    dw $0000                                                             ;82C7F7; Ceres
+    dw $0000                                                             ;82C7F7; Colony
     dw $0000                                                             ;82C7F9; Debug
 
   .mapStations
@@ -8648,7 +8646,7 @@ MapIcon_PositionTablePointers:
     dw WreckedShip_MapIconPositions_mapStations                          ;82C801; Wrecked Ship
     dw Maridia_MapIconPositions_mapStations                              ;82C803; Maridia
     dw Tourian_MapIconPositions_mapStations                              ;82C805; Tourian
-    dw $0000                                                             ;82C807; Ceres
+    dw $0000                                                             ;82C807; Colony
     dw $0000                                                             ;82C809; Debug
 
   .savePoints
@@ -8658,7 +8656,7 @@ MapIcon_PositionTablePointers:
     dw WreckedShip_MapIconPositions_savePoints                           ;82C811; Wrecked Ship
     dw Maridia_MapIconPositions_savePoints                               ;82C813; Maridia
     dw Tourian_MapIconPositions_savePoints                               ;82C815; Tourian
-    dw $0000                                                             ;82C817; Ceres
+    dw $0000                                                             ;82C817; Colony
     dw $0000                                                             ;82C819; Debug
 
   .debugElevatorMarkers
@@ -8668,7 +8666,7 @@ MapIcon_PositionTablePointers:
     dw WreckedShip_MapIconPositions_debugElevatorMarkers                 ;82C821; Wrecked Ship
     dw Maridia_MapIconPositions_debugElevatorMarkers                     ;82C823; Maridia
     dw Tourian_MapIconPositions_debugElevatorMarkers                     ;82C825; Tourian
-    dw $0000                                                             ;82C827; Ceres
+    dw $0000                                                             ;82C827; Colony
     dw $0000                                                             ;82C829; Debug
 
   .debugSavePoints
@@ -8678,7 +8676,7 @@ MapIcon_PositionTablePointers:
     dw WreckedShip_MapIconPositions_debugSavePoints                      ;82C831; Wrecked Ship
     dw Maridia_MapIconPositions_debugSavePoints                          ;82C833; Maridia
     dw Tourian_MapIconPositions_debugSavePoints                          ;82C835; Tourian
-    dw $0000                                                             ;82C837; Ceres
+    dw $0000                                                             ;82C837; Colony
     dw $0000                                                             ;82C839; Debug
 
 Crateria_MapIconPositions:
@@ -8793,7 +8791,7 @@ Tourian_MapIconPositions:
   .debugSavePoints
     dw $0088,$0050, $0068,$00C0, $FFFF                                   ;82CA91;
 
-Ceres_MapIconPositions:
+Colony_MapIconPositions:
   .bossIcons
     dw $00A0,$0088, $FFFF                                                ;82CA9B;
   .missileStations
@@ -9750,18 +9748,18 @@ CalculateTheAth_TransitionalColorComponent_fromXtoY:
 
   + XBA                                                                  ;82DAC5;
     AND.W #$FF00                                                         ;82DAC6;
-    STA.L $004204                                                        ;82DAC9;
+    STA.L HW_WRDIV                                                       ;82DAC9;
     SEP #$21                                                             ;82DACD;
     LDA.W $C402                                                          ;82DACF;
     SBC.B $14                                                            ;82DAD2;
     INC A                                                                ;82DAD4;
-    STA.L $004206                                                        ;82DAD5;
+    STA.L HW_WRDIVB                                                      ;82DAD5;
     REP #$20                                                             ;82DAD9;
     XBA                                                                  ;82DADB;
     XBA                                                                  ;82DADC;
     NOP                                                                  ;82DADD;
     NOP                                                                  ;82DADE;
-    LDA.L $004214                                                        ;82DADF;
+    LDA.L HW_RDDIV                                                       ;82DADF;
     BIT.B $12                                                            ;82DAE3;
     BPL +                                                                ;82DAE5;
     EOR.W #$FFFF                                                         ;82DAE7;
@@ -9860,15 +9858,15 @@ Advance_GradualColorChange_ofPaletteX_DividedBy_20:
 HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
     PHP                                                                  ;82DB69;
     REP #$30                                                             ;82DB6A;
-    LDA.W $09C2                                                          ;82DB6C;
+    LDA.W Equipment.currentEnergy                                        ;82DB6C;
     BEQ .zeroEnergy                                                      ;82DB6F;
     BPL .tickGameTime                                                    ;82DB71;
 
 .zeroEnergy:
-    LDA.W $09C0                                                          ;82DB73;
+    LDA.W Equipment.reserveTankMode                                      ;82DB73;
     BIT.W #$0001                                                         ;82DB76;
     BEQ .noAutoReserve                                                   ;82DB79;
-    LDA.W $09D6                                                          ;82DB7B;
+    LDA.W Equipment.currentReserveEnergy                                 ;82DB7B;
     BEQ .noAutoReserve                                                   ;82DB7E;
     LDA.W #$8000                                                         ;82DB80;
     STA.W $0A78                                                          ;82DB83;
@@ -9896,34 +9894,34 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
     STA.W $0998                                                          ;82DBAF;
 
 .tickGameTime:
-    LDA.W $09DA                                                          ;82DBB2;
+    LDA.W Equipment.igtFrames                                            ;82DBB2;
     CLC                                                                  ;82DBB5;
     ADC.W #$0001                                                         ;82DBB6;
-    STA.W $09DA                                                          ;82DBB9;
+    STA.W Equipment.igtFrames                                            ;82DBB9;
     CMP.W #$003C                                                         ;82DBBC;
     BMI .checkGameTime                                                   ;82DBBF;
-    STZ.W $09DA                                                          ;82DBC1;
-    LDA.W $09DC                                                          ;82DBC4;
+    STZ.W Equipment.igtFrames                                            ;82DBC1;
+    LDA.W Equipment.igtSeconds                                           ;82DBC4;
     CLC                                                                  ;82DBC7;
     ADC.W #$0001                                                         ;82DBC8;
-    STA.W $09DC                                                          ;82DBCB;
+    STA.W Equipment.igtSeconds                                           ;82DBCB;
     CMP.W #$003C                                                         ;82DBCE;
     BMI .checkGameTime                                                   ;82DBD1;
-    STZ.W $09DC                                                          ;82DBD3;
-    LDA.W $09DE                                                          ;82DBD6;
+    STZ.W Equipment.igtSeconds                                           ;82DBD3;
+    LDA.W Equipment.igtMinutes                                           ;82DBD6;
     CLC                                                                  ;82DBD9;
     ADC.W #$0001                                                         ;82DBDA;
-    STA.W $09DE                                                          ;82DBDD;
+    STA.W Equipment.igtMinutes                                           ;82DBDD;
     CMP.W #$003C                                                         ;82DBE0;
     BMI .checkGameTime                                                   ;82DBE3;
-    STZ.W $09DE                                                          ;82DBE5;
-    LDA.W $09E0                                                          ;82DBE8;
+    STZ.W Equipment.igtMinutes                                           ;82DBE5;
+    LDA.W Equipment.igtHours                                             ;82DBE8;
     CLC                                                                  ;82DBEB;
     ADC.W #$0001                                                         ;82DBEC;
-    STA.W $09E0                                                          ;82DBEF;
+    STA.W Equipment.igtHours                                             ;82DBEF;
 
 .checkGameTime:
-    LDA.W $09E0                                                          ;82DBF2;
+    LDA.W Equipment.igtHours                                             ;82DBF2;
     CMP.W #$0064                                                         ;82DBF5;
     BPL .capGameTime                                                     ;82DBF8;
     PLP                                                                  ;82DBFA;
@@ -9932,11 +9930,11 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
 
 .capGameTime:
     LDA.W #$003B                                                         ;82DBFC;
-    STA.W $09DA                                                          ;82DBFF;
-    STA.W $09DC                                                          ;82DC02;
-    STA.W $09DE                                                          ;82DC05;
+    STA.W Equipment.igtFrames                                            ;82DBFF;
+    STA.W Equipment.igtSeconds                                           ;82DC02;
+    STA.W Equipment.igtMinutes                                           ;82DC05;
     LDA.W #$0063                                                         ;82DC08;
-    STA.W $09E0                                                          ;82DC0B;
+    STA.W Equipment.igtHours                                             ;82DC0B;
     PLP                                                                  ;82DC0E;
     RTS                                                                  ;82DC0F;
 
@@ -9959,7 +9957,7 @@ GameState_1B_ReserveTankAuto:
 
 
 Reserve_Tank_Auto_Refill:
-    LDA.W $09D6                                                          ;82DC31;
+    LDA.W Equipment.currentReserveEnergy                                 ;82DC31;
     BEQ .return                                                          ;82DC34;
     LDA.W $05B6                                                          ;82DC36;
     BIT.W #$0007                                                         ;82DC39;
@@ -9967,33 +9965,33 @@ Reserve_Tank_Auto_Refill:
     LDA.W #$002D                                                         ;82DC3E;
     JSL.L QueueSound_Lib3_Max3                                           ;82DC41;
 
-  + LDA.W $09C2                                                          ;82DC45;
+  + LDA.W Equipment.currentEnergy                                        ;82DC45;
     CLC                                                                  ;82DC48;
     ADC.W #$0001                                                         ;82DC49;
-    STA.W $09C2                                                          ;82DC4C;
-    CMP.W $09C4                                                          ;82DC4F;
+    STA.W Equipment.currentEnergy                                        ;82DC4C;
+    CMP.W Equipment.maxEnergy                                            ;82DC4F;
     BMI +                                                                ;82DC52;
-    LDA.W $09C4                                                          ;82DC54;
-    STA.W $09C2                                                          ;82DC57;
+    LDA.W Equipment.maxEnergy                                            ;82DC54;
+    STA.W Equipment.currentEnergy                                        ;82DC57;
     BRA .zeroReserve                                                     ;82DC5A;
 
 
-  + LDA.W $09D6                                                          ;82DC5C;
+  + LDA.W Equipment.currentReserveEnergy                                 ;82DC5C;
     SEC                                                                  ;82DC5F;
     SBC.W #$0001                                                         ;82DC60;
-    STA.W $09D6                                                          ;82DC63;
+    STA.W Equipment.currentReserveEnergy                                 ;82DC63;
     BEQ .zeroReserve                                                     ;82DC66;
     BPL .return                                                          ;82DC68;
-    LDA.W $09C2                                                          ;82DC6A;
+    LDA.W Equipment.currentEnergy                                        ;82DC6A;
     CLC                                                                  ;82DC6D;
-    ADC.W $09D6                                                          ;82DC6E;
-    STA.W $09C2                                                          ;82DC71;
+    ADC.W Equipment.currentReserveEnergy                                 ;82DC6E;
+    STA.W Equipment.currentEnergy                                        ;82DC71;
 
 .zeroReserve:
-    STZ.W $09D6                                                          ;82DC74;
+    STZ.W Equipment.currentReserveEnergy                                 ;82DC74;
 
 .return:
-    LDA.W $09D6                                                          ;82DC77;
+    LDA.W Equipment.currentReserveEnergy                                 ;82DC77;
     BNE .notDoneRefilling                                                ;82DC7A;
     SEC                                                                  ;82DC7C;
     RTS                                                                  ;82DC7D;
@@ -10041,7 +10039,7 @@ GameState_13_DeathSequence_Start:
     STZ.W $0DE4                                                          ;82DCC6;
     STZ.W $0DE6                                                          ;82DCC9;
     STZ.W $0DE8                                                          ;82DCCC;
-    STZ.W $09D2                                                          ;82DCCF;
+    STZ.W Equipment.selectedHudItem                                      ;82DCCF;
     STZ.W $0A04                                                          ;82DCD2;
     STZ.W $18A8                                                          ;82DCD5;
     STZ.W $18AA                                                          ;82DCD8;
@@ -10307,14 +10305,14 @@ Load_Room_Header:
     JSL.L Room_State_Checking_Handler                                    ;82DED3;
     SEP #$20                                                             ;82DED7;
     LDA.W $07A5                                                          ;82DED9;
-    STA.W $4202                                                          ;82DEDC;
+    STA.W HW_WRMPYA                                                      ;82DEDC;
     LDA.W $07A7                                                          ;82DEDF;
-    STA.W $4203                                                          ;82DEE2;
+    STA.W HW_WRMPYB                                                      ;82DEE2;
     REP #$20                                                             ;82DEE5;
     NOP                                                                  ;82DEE7;
     NOP                                                                  ;82DEE8;
     NOP                                                                  ;82DEE9;
-    LDA.W $4216                                                          ;82DEEA;
+    LDA.W HW_RDMPY                                                       ;82DEEA;
     ASL A                                                                ;82DEED;
     STA.W $07B9                                                          ;82DEEE;
     RTS                                                                  ;82DEF1;
@@ -10441,20 +10439,20 @@ Load_EnemyGFX_to_VRAM:
     TXY                                                                  ;82DFDB;
 
 .loop:
-    LDA.L $B40000,X                                                      ;82DFDC;
+    LDA.L EnemySetEntry.pId,X                                            ;82DFDC;
     CMP.W #$FFFF                                                         ;82DFE0;
     BEQ .return                                                          ;82DFE3;
     TAX                                                                  ;82DFE5;
-    LDA.L $A00036,X                                                      ;82DFE6;
+    LDA.L EnemyHeader.pGfx,X                                             ;82DFE6;
     STA.W $05C0                                                          ;82DFEA;
-    LDA.L $A00037,X                                                      ;82DFED;
+    LDA.L EnemyHeader.pGfx+1,X                                           ;82DFED;
     STA.W $05C1                                                          ;82DFF1;
-    LDA.L $A00000,X                                                      ;82DFF4;
+    LDA.L EnemyHeader.gfxSize,X                                          ;82DFF4;
     BMI +                                                                ;82DFF8;
     STA.W $05C3                                                          ;82DFFA;
     LDA.B $12                                                            ;82DFFD;
     STA.W $05BE                                                          ;82DFFF;
-    LDA.L $A00000,X                                                      ;82E002;
+    LDA.L EnemyHeader.gfxSize,X                                          ;82E002;
     LSR A                                                                ;82E006;
     CLC                                                                  ;82E007;
     ADC.B $12                                                            ;82E008;
@@ -10465,7 +10463,7 @@ Load_EnemyGFX_to_VRAM:
   + AND.W #$7FFF                                                         ;82E00E;
     STA.W $05C3                                                          ;82E011;
     TYX                                                                  ;82E014;
-    LDA.L $B40002,X                                                      ;82E015;
+    LDA.L EnemySetEntry.properties,X                                     ;82E015;
     AND.W #$F000                                                         ;82E019;
     LSR A                                                                ;82E01C;
     LSR A                                                                ;82E01D;
@@ -11705,14 +11703,14 @@ CheckIfColoredDoorcapWasSpawned_SwitchDoorPLMInstruction:
     SEI                                                                  ;82E91F;
     SEP #$20                                                             ;82E920;
     LDA.L $830005,X                                                      ;82E922;
-    STA.W $4202                                                          ;82E926;
+    STA.W HW_WRMPYA                                                      ;82E926;
     LDA.W $07A5                                                          ;82E929;
-    STA.W $4203                                                          ;82E92C;
+    STA.W HW_WRMPYB                                                      ;82E92C;
     LDA.L $830004,X                                                      ;82E92F;
     REP #$20                                                             ;82E933;
     AND.W #$00FF                                                         ;82E935;
     CLC                                                                  ;82E938;
-    ADC.W $4216                                                          ;82E939;
+    ADC.W HW_RDMPY                                                       ;82E939;
     ASL A                                                                ;82E93C;
     CLI                                                                  ;82E93D;
     LDX.W #$004E                                                         ;82E93E;
@@ -11773,7 +11771,7 @@ LoadLibraryBackground_LoadingPausing:
     LDA.B #$80                                                           ;82E9A6;
     STA.W $2115                                                          ;82E9A8;
     LDA.B #$02                                                           ;82E9AB;
-    STA.W $420B                                                          ;82E9AD;
+    STA.W HW_MDMAEN                                                      ;82E9AD;
     REP #$20                                                             ;82E9B0;
     TYA                                                                  ;82E9B2;
     CLC                                                                  ;82E9B3;
@@ -11847,7 +11845,7 @@ LoadLibraryBackgroundLP_2_TransferToVRAM:
     LDA.B #$80                                                           ;82EA19;
     STA.W $2115                                                          ;82EA1B;
     LDA.B #$02                                                           ;82EA1E;
-    STA.W $420B                                                          ;82EA20;
+    STA.W HW_MDMAEN                                                      ;82EA20;
     REP #$20                                                             ;82EA23;
     TYA                                                                  ;82EA25;
     CLC                                                                  ;82EA26;
@@ -11970,7 +11968,7 @@ Load_Level_Scroll_and_CRE_Data:
     PLB                                                                  ;82EADA;
     LDA.W $079F                                                          ;82EADB;
     CMP.W #$0006                                                         ;82EADE;
-    BEQ .inCeres                                                         ;82EAE1;
+    BEQ .inColony                                                        ;82EAE1;
     LDA.W $07B3                                                          ;82EAE3;
     BIT.W #$0002                                                         ;82EAE6;
     BEQ +                                                                ;82EAE9;
@@ -11990,7 +11988,7 @@ Load_Level_Scroll_and_CRE_Data:
     BRA +                                                                ;82EB0D;
 
 
-.inCeres:
+.inColony:
     LDA.W $07C1                                                          ;82EB0F;
     STA.B $48                                                            ;82EB12;
     LDA.W $07C0                                                          ;82EB14;
@@ -12175,7 +12173,7 @@ GameOptionsMenu_1_LoadingOptionsMenu:
     dl Zebes_and_Stars_Tilemap                                           ;82EC40;
     dw $0800                                                             ;82EC43;
     LDA.B #$02                                                           ;82EC45;
-    STA.W $420B                                                          ;82EC47;
+    STA.W HW_MDMAEN                                                      ;82EC47;
     REP #$30                                                             ;82EC4A;
     STZ.B $B1                                                            ;82EC4C;
     STZ.B $B3                                                            ;82EC4E;
@@ -12393,18 +12391,18 @@ GameOptionsMenu_StartGame:
 
 GameOptionsMenu_OptionsMenu_ToggleLanguageText:
     STZ.W $099E                                                          ;82EDDA;
-    LDA.W $09E2                                                          ;82EDDD;
+    LDA.W Equipment.japaneseSubtitles                                    ;82EDDD;
     BEQ .japaneseText                                                    ;82EDE0;
-    STZ.W $09E2                                                          ;82EDE2;
+    STZ.W Equipment.japaneseSubtitles                                    ;82EDE2;
     BRA Set_Language_Text_Option_Highlight                               ;82EDE5;
 
 
 .japaneseText:
     LDA.W #$0001                                                         ;82EDE7;
-    STA.W $09E2                                                          ;82EDEA;
+    STA.W Equipment.japaneseSubtitles                                    ;82EDEA;
 
 Set_Language_Text_Option_Highlight:
-    LDA.W $09E2                                                          ;82EDED;
+    LDA.W Equipment.japaneseSubtitles                                    ;82EDED;
     BNE .japaneseText                                                    ;82EDF0;
     LDX.W #$0288                                                         ;82EDF2;
     LDY.W #$0018                                                         ;82EDF5;
@@ -12584,7 +12582,7 @@ GameOptionsMenu_5_DissolveOutScreen:
     BEQ .gotoOptionsMenu                                                 ;82EF46;
     BIT.W #$0004                                                         ;82EF48;
     BNE .specialSubmenu                                                  ;82EF4B;
-    LDA.W $09E2                                                          ;82EF4D;
+    LDA.W Equipment.japaneseSubtitles                                    ;82EF4D;
     BNE .japaneseControllerSettings                                      ;82EF50;
     LDX.W #$07FE                                                         ;82EF52;
 
@@ -12620,7 +12618,7 @@ GameOptionsMenu_5_DissolveOutScreen:
 
 
 .specialSubmenu:
-    LDA.W $09E2                                                          ;82EF81;
+    LDA.W Equipment.japaneseSubtitles                                    ;82EF81;
     BNE .japaneseSettings                                                ;82EF84;
     LDX.W #$07FE                                                         ;82EF86;
 
@@ -13023,19 +13021,19 @@ GameOptions_ControllerSettings_ResetToDefault:
 
 .reset:
     LDA.W #$0040                                                         ;82F22C;
-    STA.W $09B2                                                          ;82F22F;
+    STA.W Equipment.shootBinding                                         ;82F22F;
     LDA.W #$0080                                                         ;82F232;
-    STA.W $09B4                                                          ;82F235;
+    STA.W Equipment.jumpBinding                                          ;82F235;
     LDA.W #$8000                                                         ;82F238;
-    STA.W $09B6                                                          ;82F23B;
+    STA.W Equipment.runBinding                                           ;82F23B;
     LDA.W #$4000                                                         ;82F23E;
-    STA.W $09B8                                                          ;82F241;
+    STA.W Equipment.itemCancelBinding                                    ;82F241;
     LDA.W #$2000                                                         ;82F244;
-    STA.W $09BA                                                          ;82F247;
+    STA.W Equipment.itemSelectBinding                                    ;82F247;
     LDA.W #$0010                                                         ;82F24A;
-    STA.W $09BE                                                          ;82F24D;
+    STA.W Equipment.aimUpBinding                                         ;82F24D;
     LDA.W #$0020                                                         ;82F250;
-    STA.W $09BC                                                          ;82F253;
+    STA.W Equipment.aimDownBinding                                       ;82F253;
     JSR.W GameOptionsMenu_ControllerBindings                             ;82F256;
     JSR.W Draw_GameOptionsMenu_ControllerBindings                        ;82F259;
     RTS                                                                  ;82F25C;

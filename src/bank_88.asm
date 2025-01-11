@@ -476,8 +476,8 @@ Wait_End_VBlank_Clear_HDMA:
     PHP                                                                  ;88829E;
     SEP #$20                                                             ;88829F;
     JSL.L WaitUntilTheEndOfAVBlank                                       ;8882A1;
-    STZ.W $420B                                                          ;8882A5;
-    STZ.W $420C                                                          ;8882A8;
+    STZ.W HW_MDMAEN                                                      ;8882A5;
+    STZ.W HW_HDMAEN                                                      ;8882A8;
     PLP                                                                  ;8882AB; fallthrough to Delete_HDMA_Objects
 
 Delete_HDMAObjects:
@@ -1191,7 +1191,7 @@ HandleXrayScope_State0_NoBeam:
     PHP                                                                  ;888732;
     REP #$30                                                             ;888733;
     LDA.B $8B                                                            ;888735;
-    BIT.W $09B6                                                          ;888737;
+    BIT.W Equipment.runBinding                                           ;888737;
     BNE .calculateHDMATable                                              ;88873A;
     LDA.W #$0003                                                         ;88873C;
     STA.W $0A7A                                                          ;88873F;
@@ -1218,7 +1218,7 @@ HandleXrayScope_State1_BeamIsWidening:
     PHP                                                                  ;888754;
     REP #$30                                                             ;888755;
     LDA.B $8B                                                            ;888757;
-    BIT.W $09B6                                                          ;888759;
+    BIT.W Equipment.runBinding                                           ;888759;
     BNE +                                                                ;88875C;
     LDA.W #$0003                                                         ;88875E;
     STA.W $0A7A                                                          ;888761;
@@ -1262,7 +1262,7 @@ HandleXrayScope_State2_FullBeam:
     PHP                                                                  ;8887AB;
     REP #$30                                                             ;8887AC;
     LDA.B $8B                                                            ;8887AE;
-    BIT.W $09B6                                                          ;8887B0;
+    BIT.W Equipment.runBinding                                           ;8887B0;
     BEQ .state3                                                          ;8887B3;
     JSR.W HandleMovingXray_UpDown                                        ;8887B5;
     JSR.W Calculate_Xray_HDMADataTable                                   ;8887B8;
@@ -1281,9 +1281,9 @@ HandleMovingXray_UpDown:
     PHP                                                                  ;8887C5;
     REP #$30                                                             ;8887C6;
     LDA.B $8B                                                            ;8887C8;
-    BIT.W $09AA                                                          ;8887CA;
+    BIT.W Equipment.upBinding                                            ;8887CA;
     BNE .up                                                              ;8887CD;
-    BIT.W $09AC                                                          ;8887CF;
+    BIT.W Equipment.downBinding                                          ;8887CF;
     BNE .down                                                            ;8887D2;
     BRA .return                                                          ;8887D4;
 
@@ -1665,7 +1665,7 @@ HandleXrayScope_State5_DeactivateBeam_Finish:
     BPL .loop                                                            ;888A95;
     LDA.W $0A04                                                          ;888A97;
     BEQ .return                                                          ;888A9A;
-    STZ.W $09D2                                                          ;888A9C;
+    STZ.W Equipment.selectedHudItem                                      ;888A9C;
     STZ.W $0A04                                                          ;888A9F;
 
 .return:
@@ -1992,14 +1992,14 @@ Calculate_PowerBombExplosion_HDMADataTablePointers:
 
 Calculate_PowerBombExplo_HDMADataTables_Scaled_LeftOfScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;888CC6;
-    STA.W $4203                                                          ;888CC9;
+    STA.W HW_WRMPYB                                                      ;888CC9;
     NOP                                                                  ;888CCC;
     NOP                                                                  ;888CCD;
     NOP                                                                  ;888CCE;
     LDA.W $4217                                                          ;888CCF;
     STA.B $14                                                            ;888CD2;
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;888CD4;
-    STA.W $4203                                                          ;888CD7;
+    STA.W HW_WRMPYB                                                      ;888CD7;
     NOP                                                                  ;888CDA;
     LDA.W $0CE6                                                          ;888CDB;
     CLC                                                                  ;888CDE;
@@ -2034,14 +2034,14 @@ Calculate_PowerBombExplo_HDMADataTables_Scaled_LeftOfScreen:
 
 Calculate_PowerBombExplosion_HDMADataTables_Scaled_OnScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;888D04;
-    STA.W $4203                                                          ;888D07;
+    STA.W HW_WRMPYB                                                      ;888D07;
     NOP                                                                  ;888D0A;
     NOP                                                                  ;888D0B;
     NOP                                                                  ;888D0C;
     LDA.W $4217                                                          ;888D0D;
     STA.B $14                                                            ;888D10;
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;888D12;
-    STA.W $4203                                                          ;888D15;
+    STA.W HW_WRMPYB                                                      ;888D15;
     NOP                                                                  ;888D18;
     LDA.W $0CE6                                                          ;888D19;
     CLC                                                                  ;888D1C;
@@ -2076,14 +2076,14 @@ Calculate_PowerBombExplosion_HDMADataTables_Scaled_OnScreen:
 
 Calculate_PowerBombExplo_HDMADataTables_Scaled_RightOfScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;888D46;
-    STA.W $4203                                                          ;888D49;
+    STA.W HW_WRMPYB                                                      ;888D49;
     NOP                                                                  ;888D4C;
     NOP                                                                  ;888D4D;
     NOP                                                                  ;888D4E;
     LDA.W $4217                                                          ;888D4F;
     STA.B $14                                                            ;888D52;
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;888D54;
-    STA.W $4203                                                          ;888D57;
+    STA.W HW_WRMPYB                                                      ;888D57;
     NOP                                                                  ;888D5A;
     LDA.W $0CE6                                                          ;888D5B;
     SEC                                                                  ;888D5E;
@@ -2159,9 +2159,9 @@ PreInstruction_PowerBombExplosion_3_Explosion_Yellow:
     XBA                                                                  ;888E02;
     LDY.B #$60                                                           ;888E03;
     LDA.W $0CEB                                                          ;888E05;
-    STA.W $4202                                                          ;888E08;
+    STA.W HW_WRMPYA                                                      ;888E08;
     LDA.W PowerBombExplosion_ShapeDefinitionTable_Unscaled_topOffset     ;888E0B;
-    STA.W $4203                                                          ;888E0E;
+    STA.W HW_WRMPYB                                                      ;888E0E;
     NOP                                                                  ;888E11;
     NOP                                                                  ;888E12;
     NOP                                                                  ;888E13;
@@ -2407,14 +2407,14 @@ Calculate_PowerBombPreExplosion_HDMAObjectTablePointers:
 
 UNUSED_CalcPowerBombRelatedHDMATables_Scaled_Left_888FBA:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;888FBA;
-    STA.W $4203                                                          ;888FBD;
+    STA.W HW_WRMPYB                                                      ;888FBD;
     NOP                                                                  ;888FC0;
     NOP                                                                  ;888FC1;
     NOP                                                                  ;888FC2;
     LDA.W $4217                                                          ;888FC3;
     STA.B $14                                                            ;888FC6;
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;888FC8;
-    STA.W $4203                                                          ;888FCB;
+    STA.W HW_WRMPYB                                                      ;888FCB;
     NOP                                                                  ;888FCE;
     LDA.W $0CE6                                                          ;888FCF;
     CLC                                                                  ;888FD2;
@@ -2448,14 +2448,14 @@ UNUSED_CalcPowerBombRelatedHDMATables_Scaled_Left_888FBA:
 
 UNUSED_CalcPBRelatedHDMADataTables_Scaled_OnScreen_888FF8:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;888FF8;
-    STA.W $4203                                                          ;888FFB;
+    STA.W HW_WRMPYB                                                      ;888FFB;
     NOP                                                                  ;888FFE;
     NOP                                                                  ;888FFF;
     NOP                                                                  ;889000;
     LDA.W $4217                                                          ;889001;
     STA.B $14                                                            ;889004;
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;889006;
-    STA.W $4203                                                          ;889009;
+    STA.W HW_WRMPYB                                                      ;889009;
     NOP                                                                  ;88900C;
     LDA.W $0CE6                                                          ;88900D;
     CLC                                                                  ;889010;
@@ -2489,14 +2489,14 @@ UNUSED_CalcPBRelatedHDMADataTables_Scaled_OnScreen_888FF8:
 
 UNUSED_CalPBRelatedHDMADataTables_Scaled_OnScreen_88903A:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;88903A;
-    STA.W $4203                                                          ;88903D;
+    STA.W HW_WRMPYB                                                      ;88903D;
     NOP                                                                  ;889040;
     NOP                                                                  ;889041;
     NOP                                                                  ;889042;
     LDA.W $4217                                                          ;889043;
     STA.B $14                                                            ;889046;
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;889048;
-    STA.W $4203                                                          ;88904B;
+    STA.W HW_WRMPYB                                                      ;88904B;
     NOP                                                                  ;88904E;
     LDA.W $0CE6                                                          ;88904F;
     SEC                                                                  ;889052;
@@ -2577,9 +2577,9 @@ PreInstruction_PowerBombExplosion_1_PreExplosion_White:
     XBA                                                                  ;8890F8;
     LDY.B #$60                                                           ;8890F9;
     LDA.W $0CED                                                          ;8890FB;
-    STA.W $4202                                                          ;8890FE;
+    STA.W HW_WRMPYA                                                      ;8890FE;
     LDA.W PowerBombExplosion_ShapeDefinitionTable_Unscaled_topOffset     ;889101;
-    STA.W $4203                                                          ;889104;
+    STA.W HW_WRMPYB                                                      ;889104;
     NOP                                                                  ;889107;
     NOP                                                                  ;889108;
     NOP                                                                  ;889109;
@@ -3320,14 +3320,14 @@ Calculate_CrystalFlash_HDMAObjectTablePointers:
 
 Calculate_CrystalFlash_HDMADataTables_Scaled_LeftOfScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;88A493;
-    STA.W $4203                                                          ;88A496;
+    STA.W HW_WRMPYB                                                      ;88A496;
     NOP                                                                  ;88A499;
     NOP                                                                  ;88A49A;
     NOP                                                                  ;88A49B;
     LDA.W $4217                                                          ;88A49C;
     STA.B $14                                                            ;88A49F;
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;88A4A1;
-    STA.W $4203                                                          ;88A4A4;
+    STA.W HW_WRMPYB                                                      ;88A4A4;
     NOP                                                                  ;88A4A7;
     LDA.W $0CE6                                                          ;88A4A8;
     CLC                                                                  ;88A4AB;
@@ -3362,14 +3362,14 @@ Calculate_CrystalFlash_HDMADataTables_Scaled_LeftOfScreen:
 
 Calculate_CrystalFlash_HDMADataTables_Scaled_OnScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;88A4D1;
-    STA.W $4203                                                          ;88A4D4;
+    STA.W HW_WRMPYB                                                      ;88A4D4;
     NOP                                                                  ;88A4D7;
     NOP                                                                  ;88A4D8;
     NOP                                                                  ;88A4D9;
     LDA.W $4217                                                          ;88A4DA;
     STA.B $14                                                            ;88A4DD;
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;88A4DF;
-    STA.W $4203                                                          ;88A4E2;
+    STA.W HW_WRMPYB                                                      ;88A4E2;
     NOP                                                                  ;88A4E5;
     LDA.W $0CE6                                                          ;88A4E6;
     CLC                                                                  ;88A4E9;
@@ -3403,14 +3403,14 @@ Calculate_CrystalFlash_HDMADataTables_Scaled_OnScreen:
 
 Calculate_CrystalFlash_HDMADataTables_Scaled_RightOfScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;88A513;
-    STA.W $4203                                                          ;88A516;
+    STA.W HW_WRMPYB                                                      ;88A516;
     NOP                                                                  ;88A519;
     NOP                                                                  ;88A51A;
     NOP                                                                  ;88A51B;
     LDA.W $4217                                                          ;88A51C;
     STA.B $14                                                            ;88A51F;
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;88A521;
-    STA.W $4203                                                          ;88A524;
+    STA.W HW_WRMPYB                                                      ;88A524;
     NOP                                                                  ;88A527;
     LDA.W $0CE6                                                          ;88A528;
     SEC                                                                  ;88A52B;
@@ -3466,9 +3466,9 @@ PreInstruction_CrystalFlash_1_Explosion:
     XBA                                                                  ;88A56B;
     LDY.B #$60                                                           ;88A56C;
     LDA.W $0CEB                                                          ;88A56E;
-    STA.W $4202                                                          ;88A571;
+    STA.W HW_WRMPYA                                                      ;88A571;
     LDA.W PowerBombExplosion_ShapeDefinitionTable_Unscaled_topOffset     ;88A574;
-    STA.W $4203                                                          ;88A577;
+    STA.W HW_WRMPYB                                                      ;88A577;
     NOP                                                                  ;88A57A;
     NOP                                                                  ;88A57B;
     NOP                                                                  ;88A57C;
@@ -12651,12 +12651,12 @@ AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToOrange:
 
 
 VariaSuitPickup_Stage3_GiveSamusVariaSuit:
-    LDA.W $09A2                                                          ;88E320;
+    LDA.W Equipment.equippedItems                                        ;88E320;
     ORA.W #$0001                                                         ;88E323;
-    STA.W $09A2                                                          ;88E326;
-    LDA.W $09A4                                                          ;88E329;
+    STA.W Equipment.equippedItems                                        ;88E326;
+    LDA.W Equipment.collectedItems                                       ;88E329;
     ORA.W #$0001                                                         ;88E32C;
-    STA.W $09A4                                                          ;88E32F;
+    STA.W Equipment.collectedItems                                       ;88E32F;
     LDA.W #$009B                                                         ;88E332;
     STA.W $0A1C                                                          ;88E335;
     JSL.L InitializeSamusPose_1                                          ;88E338;
@@ -12676,12 +12676,12 @@ VariaSuitPickup_Stage3_GiveSamusVariaSuit:
 
 
 GravitySuitPickup_Stage3_GiveSamusGravitySuit:
-    LDA.W $09A2                                                          ;88E361;
+    LDA.W Equipment.equippedItems                                        ;88E361;
     ORA.W #$0020                                                         ;88E364;
-    STA.W $09A2                                                          ;88E367;
-    LDA.W $09A4                                                          ;88E36A;
+    STA.W Equipment.equippedItems                                        ;88E367;
+    LDA.W Equipment.collectedItems                                       ;88E36A;
     ORA.W #$0020                                                         ;88E36D;
-    STA.W $09A4                                                          ;88E370;
+    STA.W Equipment.collectedItems                                       ;88E370;
     LDA.W #$009B                                                         ;88E373;
     STA.W $0A1C                                                          ;88E376;
     JSL.L InitializeSamusPose_1                                          ;88E379;
@@ -12935,46 +12935,46 @@ PreInstruction_WavyPhantoon:
 .positive:
     STA.B $12                                                            ;88E5CF;
     SEP #$20                                                             ;88E5D1;
-    STA.W $4202                                                          ;88E5D3;
+    STA.W HW_WRMPYA                                                      ;88E5D3;
     LDA.W $106E                                                          ;88E5D6;
-    STA.W $4203                                                          ;88E5D9;
+    STA.W HW_WRMPYB                                                      ;88E5D9;
     NOP                                                                  ;88E5DC;
     NOP                                                                  ;88E5DD;
     NOP                                                                  ;88E5DE;
     REP #$20                                                             ;88E5DF;
-    LDA.W $4216                                                          ;88E5E1;
+    LDA.W HW_RDMPY                                                       ;88E5E1;
     XBA                                                                  ;88E5E4;
     AND.W #$00FF                                                         ;88E5E5;
     STA.B $16                                                            ;88E5E8;
     SEP #$20                                                             ;88E5EA;
     LDA.B $13                                                            ;88E5EC;
-    STA.W $4202                                                          ;88E5EE;
+    STA.W HW_WRMPYA                                                      ;88E5EE;
     LDA.W $106E                                                          ;88E5F1;
-    STA.W $4203                                                          ;88E5F4;
+    STA.W HW_WRMPYB                                                      ;88E5F4;
     NOP                                                                  ;88E5F7;
     NOP                                                                  ;88E5F8;
     NOP                                                                  ;88E5F9;
     REP #$20                                                             ;88E5FA;
-    LDA.W $4216                                                          ;88E5FC;
+    LDA.W HW_RDMPY                                                       ;88E5FC;
     CLC                                                                  ;88E5FF;
     ADC.B $16                                                            ;88E600;
     STA.B $16                                                            ;88E602;
     SEP #$20                                                             ;88E604;
     LDA.B $12                                                            ;88E606;
-    STA.W $4202                                                          ;88E608;
+    STA.W HW_WRMPYA                                                      ;88E608;
     LDA.W $106F                                                          ;88E60B;
-    STA.W $4203                                                          ;88E60E;
+    STA.W HW_WRMPYB                                                      ;88E60E;
     NOP                                                                  ;88E611;
     NOP                                                                  ;88E612;
     NOP                                                                  ;88E613;
     REP #$20                                                             ;88E614;
-    LDA.W $4216                                                          ;88E616;
+    LDA.W HW_RDMPY                                                       ;88E616;
     STA.B $18                                                            ;88E619;
     SEP #$20                                                             ;88E61B;
     LDA.B $13                                                            ;88E61D;
-    STA.W $4202                                                          ;88E61F;
+    STA.W HW_WRMPYA                                                      ;88E61F;
     LDA.W $106F                                                          ;88E622;
-    STA.W $4203                                                          ;88E625;
+    STA.W HW_WRMPYB                                                      ;88E625;
     REP #$20                                                             ;88E628;
     LDA.B $16                                                            ;88E62A;
     CLC                                                                  ;88E62C;
@@ -13005,46 +13005,46 @@ PreInstruction_WavyPhantoon:
     INC A                                                                ;88E659;
     STA.B $12                                                            ;88E65A;
     SEP #$20                                                             ;88E65C;
-    STA.W $4202                                                          ;88E65E;
+    STA.W HW_WRMPYA                                                      ;88E65E;
     LDA.W $106E                                                          ;88E661;
-    STA.W $4203                                                          ;88E664;
+    STA.W HW_WRMPYB                                                      ;88E664;
     NOP                                                                  ;88E667;
     NOP                                                                  ;88E668;
     NOP                                                                  ;88E669;
     REP #$20                                                             ;88E66A;
-    LDA.W $4216                                                          ;88E66C;
+    LDA.W HW_RDMPY                                                       ;88E66C;
     XBA                                                                  ;88E66F;
     AND.W #$00FF                                                         ;88E670;
     STA.B $16                                                            ;88E673;
     SEP #$20                                                             ;88E675;
     LDA.B $13                                                            ;88E677;
-    STA.W $4202                                                          ;88E679;
+    STA.W HW_WRMPYA                                                      ;88E679;
     LDA.W $106E                                                          ;88E67C;
-    STA.W $4203                                                          ;88E67F;
+    STA.W HW_WRMPYB                                                      ;88E67F;
     NOP                                                                  ;88E682;
     NOP                                                                  ;88E683;
     NOP                                                                  ;88E684;
     REP #$20                                                             ;88E685;
-    LDA.W $4216                                                          ;88E687;
+    LDA.W HW_RDMPY                                                       ;88E687;
     CLC                                                                  ;88E68A;
     ADC.B $16                                                            ;88E68B;
     STA.B $16                                                            ;88E68D;
     SEP #$20                                                             ;88E68F;
     LDA.B $12                                                            ;88E691;
-    STA.W $4202                                                          ;88E693;
+    STA.W HW_WRMPYA                                                      ;88E693;
     LDA.W $106F                                                          ;88E696;
-    STA.W $4203                                                          ;88E699;
+    STA.W HW_WRMPYB                                                      ;88E699;
     NOP                                                                  ;88E69C;
     NOP                                                                  ;88E69D;
     NOP                                                                  ;88E69E;
     REP #$20                                                             ;88E69F;
-    LDA.W $4216                                                          ;88E6A1;
+    LDA.W HW_RDMPY                                                       ;88E6A1;
     STA.B $18                                                            ;88E6A4;
     SEP #$20                                                             ;88E6A6;
     LDA.B $13                                                            ;88E6A8;
-    STA.W $4202                                                          ;88E6AA;
+    STA.W HW_WRMPYA                                                      ;88E6AA;
     LDA.W $106F                                                          ;88E6AD;
-    STA.W $4203                                                          ;88E6B0;
+    STA.W HW_WRMPYB                                                      ;88E6B0;
     REP #$20                                                             ;88E6B3;
     LDA.B $16                                                            ;88E6B5;
     CLC                                                                  ;88E6B7;
@@ -13832,46 +13832,46 @@ PreInstruction_WavySamus:
 
   + STA.B $12                                                            ;88ED02;
     SEP #$20                                                             ;88ED04;
-    STA.W $4202                                                          ;88ED06;
+    STA.W HW_WRMPYA                                                      ;88ED06;
     LDA.W $0D9E                                                          ;88ED09;
-    STA.W $4203                                                          ;88ED0C;
+    STA.W HW_WRMPYB                                                      ;88ED0C;
     NOP                                                                  ;88ED0F;
     NOP                                                                  ;88ED10;
     NOP                                                                  ;88ED11;
     REP #$20                                                             ;88ED12;
-    LDA.W $4216                                                          ;88ED14;
+    LDA.W HW_RDMPY                                                       ;88ED14;
     XBA                                                                  ;88ED17;
     AND.W #$00FF                                                         ;88ED18;
     STA.B $16                                                            ;88ED1B;
     SEP #$20                                                             ;88ED1D;
     LDA.B $13                                                            ;88ED1F;
-    STA.W $4202                                                          ;88ED21;
+    STA.W HW_WRMPYA                                                      ;88ED21;
     LDA.W $0D9E                                                          ;88ED24;
-    STA.W $4203                                                          ;88ED27;
+    STA.W HW_WRMPYB                                                      ;88ED27;
     NOP                                                                  ;88ED2A;
     NOP                                                                  ;88ED2B;
     NOP                                                                  ;88ED2C;
     REP #$20                                                             ;88ED2D;
-    LDA.W $4216                                                          ;88ED2F;
+    LDA.W HW_RDMPY                                                       ;88ED2F;
     CLC                                                                  ;88ED32;
     ADC.B $16                                                            ;88ED33;
     STA.B $16                                                            ;88ED35;
     SEP #$20                                                             ;88ED37;
     LDA.B $12                                                            ;88ED39;
-    STA.W $4202                                                          ;88ED3B;
+    STA.W HW_WRMPYA                                                      ;88ED3B;
     LDA.W $0D9F                                                          ;88ED3E;
-    STA.W $4203                                                          ;88ED41;
+    STA.W HW_WRMPYB                                                      ;88ED41;
     NOP                                                                  ;88ED44;
     NOP                                                                  ;88ED45;
     NOP                                                                  ;88ED46;
     REP #$20                                                             ;88ED47;
-    LDA.W $4216                                                          ;88ED49;
+    LDA.W HW_RDMPY                                                       ;88ED49;
     STA.B $18                                                            ;88ED4C;
     SEP #$20                                                             ;88ED4E;
     LDA.B $13                                                            ;88ED50;
-    STA.W $4202                                                          ;88ED52;
+    STA.W HW_WRMPYA                                                      ;88ED52;
     LDA.W $0D9F                                                          ;88ED55;
-    STA.W $4203                                                          ;88ED58;
+    STA.W HW_WRMPYB                                                      ;88ED58;
     REP #$20                                                             ;88ED5B;
     LDA.B $16                                                            ;88ED5D;
     CLC                                                                  ;88ED5F;
@@ -13902,46 +13902,46 @@ PreInstruction_WavySamus:
     INC A                                                                ;88ED8C;
     STA.B $12                                                            ;88ED8D;
     SEP #$20                                                             ;88ED8F;
-    STA.W $4202                                                          ;88ED91;
+    STA.W HW_WRMPYA                                                      ;88ED91;
     LDA.W $0D9E                                                          ;88ED94;
-    STA.W $4203                                                          ;88ED97;
+    STA.W HW_WRMPYB                                                      ;88ED97;
     NOP                                                                  ;88ED9A;
     NOP                                                                  ;88ED9B;
     NOP                                                                  ;88ED9C;
     REP #$20                                                             ;88ED9D;
-    LDA.W $4216                                                          ;88ED9F;
+    LDA.W HW_RDMPY                                                       ;88ED9F;
     XBA                                                                  ;88EDA2;
     AND.W #$00FF                                                         ;88EDA3;
     STA.B $16                                                            ;88EDA6;
     SEP #$20                                                             ;88EDA8;
     LDA.B $13                                                            ;88EDAA;
-    STA.W $4202                                                          ;88EDAC;
+    STA.W HW_WRMPYA                                                      ;88EDAC;
     LDA.W $0D9E                                                          ;88EDAF;
-    STA.W $4203                                                          ;88EDB2;
+    STA.W HW_WRMPYB                                                      ;88EDB2;
     NOP                                                                  ;88EDB5;
     NOP                                                                  ;88EDB6;
     NOP                                                                  ;88EDB7;
     REP #$20                                                             ;88EDB8;
-    LDA.W $4216                                                          ;88EDBA;
+    LDA.W HW_RDMPY                                                       ;88EDBA;
     CLC                                                                  ;88EDBD;
     ADC.B $16                                                            ;88EDBE;
     STA.B $16                                                            ;88EDC0;
     SEP #$20                                                             ;88EDC2;
     LDA.B $12                                                            ;88EDC4;
-    STA.W $4202                                                          ;88EDC6;
+    STA.W HW_WRMPYA                                                      ;88EDC6;
     LDA.W $0D9F                                                          ;88EDC9;
-    STA.W $4203                                                          ;88EDCC;
+    STA.W HW_WRMPYB                                                      ;88EDCC;
     NOP                                                                  ;88EDCF;
     NOP                                                                  ;88EDD0;
     NOP                                                                  ;88EDD1;
     REP #$20                                                             ;88EDD2;
-    LDA.W $4216                                                          ;88EDD4;
+    LDA.W HW_RDMPY                                                       ;88EDD4;
     STA.B $18                                                            ;88EDD7;
     SEP #$20                                                             ;88EDD9;
     LDA.B $13                                                            ;88EDDB;
-    STA.W $4202                                                          ;88EDDD;
+    STA.W HW_WRMPYA                                                      ;88EDDD;
     LDA.W $0D9F                                                          ;88EDE0;
-    STA.W $4203                                                          ;88EDE3;
+    STA.W HW_WRMPYB                                                      ;88EDE3;
     REP #$20                                                             ;88EDE6;
     LDA.B $16                                                            ;88EDE8;
     CLC                                                                  ;88EDEA;

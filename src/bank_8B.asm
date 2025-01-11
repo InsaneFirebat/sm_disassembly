@@ -71,8 +71,8 @@ Setup_PPU_TitleSequence:
     STZ.W $0755                                                          ;8B80A8;
     STZ.W $0757                                                          ;8B80AB;
     STZ.W $0759                                                          ;8B80AE;
-    STZ.W $09D6                                                          ;8B80B1;
-    STZ.W $09D8                                                          ;8B80B4;
+    STZ.W Equipment.currentReserveEnergy                                 ;8B80B1;
+    STZ.W Equipment.currentReserveMissiles                               ;8B80B4;
     STZ.W $198D                                                          ;8B80B7;
     LDA.W #$0100                                                         ;8B80BA;
     STA.W $198F                                                          ;8B80BD;
@@ -718,47 +718,47 @@ Multiplication_16bitUnsigned_8B85EE:
     PHP                                                                  ;8B85EE;
     SEP #$30                                                             ;8B85EF;
     LDA.B $26                                                            ;8B85F1;
-    STA.W $4202                                                          ;8B85F3;
+    STA.W HW_WRMPYA                                                      ;8B85F3;
     LDA.B $28                                                            ;8B85F6;
-    STA.W $4203                                                          ;8B85F8;
+    STA.W HW_WRMPYB                                                      ;8B85F8;
     NOP                                                                  ;8B85FB;
     NOP                                                                  ;8B85FC;
     NOP                                                                  ;8B85FD;
-    LDA.W $4216                                                          ;8B85FE;
+    LDA.W HW_RDMPY                                                       ;8B85FE;
     STA.B $2C                                                            ;8B8601;
     LDA.W $4217                                                          ;8B8603;
     STA.B $2D                                                            ;8B8606;
     LDA.B $27                                                            ;8B8608;
-    STA.W $4202                                                          ;8B860A;
+    STA.W HW_WRMPYA                                                      ;8B860A;
     LDA.B $28                                                            ;8B860D;
-    STA.W $4203                                                          ;8B860F;
+    STA.W HW_WRMPYB                                                      ;8B860F;
     NOP                                                                  ;8B8612;
     NOP                                                                  ;8B8613;
     NOP                                                                  ;8B8614;
-    LDA.W $4216                                                          ;8B8615;
+    LDA.W HW_RDMPY                                                       ;8B8615;
     STA.B $2E                                                            ;8B8618;
     LDA.W $4217                                                          ;8B861A;
     STA.B $2F                                                            ;8B861D;
     LDA.B $26                                                            ;8B861F;
-    STA.W $4202                                                          ;8B8621;
+    STA.W HW_WRMPYA                                                      ;8B8621;
     LDA.B $29                                                            ;8B8624;
-    STA.W $4203                                                          ;8B8626;
+    STA.W HW_WRMPYB                                                      ;8B8626;
     NOP                                                                  ;8B8629;
     NOP                                                                  ;8B862A;
     NOP                                                                  ;8B862B;
-    LDA.W $4216                                                          ;8B862C;
+    LDA.W HW_RDMPY                                                       ;8B862C;
     STA.B $30                                                            ;8B862F;
     LDA.W $4217                                                          ;8B8631;
     STA.B $31                                                            ;8B8634;
     LDA.B $27                                                            ;8B8636;
-    STA.W $4202                                                          ;8B8638;
+    STA.W HW_WRMPYA                                                      ;8B8638;
     LDA.B $29                                                            ;8B863B;
-    STA.W $4203                                                          ;8B863D;
+    STA.W HW_WRMPYB                                                      ;8B863D;
     NOP                                                                  ;8B8640;
     NOP                                                                  ;8B8641;
     NOP                                                                  ;8B8642;
     REP #$20                                                             ;8B8643;
-    LDA.W $4216                                                          ;8B8645;
+    LDA.W HW_RDMPY                                                       ;8B8645;
     STA.B $2A                                                            ;8B8648;
     LDA.B $2E                                                            ;8B864A;
     CLC                                                                  ;8B864C;
@@ -1203,14 +1203,14 @@ CinematicBGObjects_X_16_TilemapOffsetForTile_12_13:
     STA.W $0014                                                          ;8B894A;
     SEP #$20                                                             ;8B894D;
     LDA.B #$40                                                           ;8B894F;
-    STA.W $4202                                                          ;8B8951;
+    STA.W HW_WRMPYA                                                      ;8B8951;
     LDA.W $0013                                                          ;8B8954;
-    STA.W $4203                                                          ;8B8957;
+    STA.W HW_WRMPYB                                                      ;8B8957;
     NOP                                                                  ;8B895A;
     NOP                                                                  ;8B895B;
     NOP                                                                  ;8B895C;
     REP #$20                                                             ;8B895D;
-    LDA.W $4216                                                          ;8B895F;
+    LDA.W HW_RDMPY                                                       ;8B895F;
     CLC                                                                  ;8B8962;
     ADC.W $0014                                                          ;8B8963;
     STA.W $0016                                                          ;8B8966;
@@ -1325,14 +1325,14 @@ UNUSED_CinematicBGObjects_Mode7TilemapOffsetForTile_8B8A2C:
     STA.W $0014                                                          ;8B8A32;
     SEP #$20                                                             ;8B8A35;
     LDA.B #$80                                                           ;8B8A37;
-    STA.W $4202                                                          ;8B8A39;
+    STA.W HW_WRMPYA                                                      ;8B8A39;
     LDA.W $0013                                                          ;8B8A3C;
-    STA.W $4203                                                          ;8B8A3F;
+    STA.W HW_WRMPYB                                                      ;8B8A3F;
     NOP                                                                  ;8B8A42;
     NOP                                                                  ;8B8A43;
     NOP                                                                  ;8B8A44;
     REP #$20                                                             ;8B8A45;
-    LDA.W $4216                                                          ;8B8A47;
+    LDA.W HW_RDMPY                                                       ;8B8A47;
     CLC                                                                  ;8B8A4A;
     ADC.W $0014                                                          ;8B8A4B;
     STA.W $0016                                                          ;8B8A4E;
@@ -1967,27 +1967,27 @@ UNUSED_CalculateXYComponentsOfRadiusAAngleY_8B8E52:
 UNUSED_Math_8B8EA3:
     SEP #$20                                                             ;8B8EA3;
     LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;8B8EA5;
-    STA.W $4202                                                          ;8B8EA9;
+    STA.W HW_WRMPYA                                                      ;8B8EA9;
     LDA.B $18                                                            ;8B8EAC;
-    STA.W $4203                                                          ;8B8EAE;
+    STA.W HW_WRMPYB                                                      ;8B8EAE;
     NOP                                                                  ;8B8EB1;
     NOP                                                                  ;8B8EB2;
     NOP                                                                  ;8B8EB3;
     REP #$20                                                             ;8B8EB4;
-    LDA.W $4216                                                          ;8B8EB6;
+    LDA.W HW_RDMPY                                                       ;8B8EB6;
     XBA                                                                  ;8B8EB9;
     AND.W #$00FF                                                         ;8B8EBA;
     STA.B $12                                                            ;8B8EBD;
     SEP #$20                                                             ;8B8EBF;
     LDA.L SineCosineTables_8bitSine_SignExtended+1,X                     ;8B8EC1;
-    STA.W $4202                                                          ;8B8EC5;
+    STA.W HW_WRMPYA                                                      ;8B8EC5;
     LDA.B $18                                                            ;8B8EC8;
-    STA.W $4203                                                          ;8B8ECA;
+    STA.W HW_WRMPYB                                                      ;8B8ECA;
     NOP                                                                  ;8B8ECD;
     NOP                                                                  ;8B8ECE;
     NOP                                                                  ;8B8ECF;
     REP #$20                                                             ;8B8ED0;
-    LDA.W $4216                                                          ;8B8ED2;
+    LDA.W HW_RDMPY                                                       ;8B8ED2;
     CLC                                                                  ;8B8ED5;
     ADC.B $12                                                            ;8B8ED6;
     RTS                                                                  ;8B8ED8;
@@ -2318,17 +2318,17 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
     STA.W $4200                                                          ;8B916D;
     STA.B $84                                                            ;8B9170;
     STZ.W $4201                                                          ;8B9172;
-    STZ.W $4202                                                          ;8B9175;
-    STZ.W $4203                                                          ;8B9178;
-    STZ.W $4204                                                          ;8B917B;
+    STZ.W HW_WRMPYA                                                      ;8B9175;
+    STZ.W HW_WRMPYB                                                      ;8B9178;
+    STZ.W HW_WRDIV                                                       ;8B917B;
     STZ.W $4205                                                          ;8B917E;
-    STZ.W $4206                                                          ;8B9181;
+    STZ.W HW_WRDIVB                                                      ;8B9181;
     STZ.W $4207                                                          ;8B9184;
     STZ.W $4208                                                          ;8B9187;
     STZ.W $4209                                                          ;8B918A;
     STZ.W $420A                                                          ;8B918D;
-    STZ.W $420B                                                          ;8B9190;
-    STZ.W $420C                                                          ;8B9193;
+    STZ.W HW_MDMAEN                                                      ;8B9190;
+    STZ.W HW_HDMAEN                                                      ;8B9193;
     STZ.B $85                                                            ;8B9196;
     LDA.B #$01                                                           ;8B9198;
     STA.W $420D                                                          ;8B919A;
@@ -2446,7 +2446,7 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
     dl $7F5000                                                           ;8B92BC;
     dw $4000                                                             ;8B92BF;
     LDA.B #$02                                                           ;8B92C1;
-    STA.W $420B                                                          ;8B92C3;
+    STA.W HW_MDMAEN                                                      ;8B92C3;
     LDA.B #$80                                                           ;8B92C6;
     STA.B $51                                                            ;8B92C8;
     REP #$30                                                             ;8B92CA;
@@ -3417,14 +3417,14 @@ Process_TextGlowObject:
     STA.W $0014                                                          ;8B9861;
     SEP #$20                                                             ;8B9864;
     LDA.B #$40                                                           ;8B9866;
-    STA.W $4202                                                          ;8B9868;
+    STA.W HW_WRMPYA                                                      ;8B9868;
     LDA.W $1A27,X                                                        ;8B986B;
-    STA.W $4203                                                          ;8B986E;
+    STA.W HW_WRMPYB                                                      ;8B986E;
     NOP                                                                  ;8B9871;
     NOP                                                                  ;8B9872;
     NOP                                                                  ;8B9873;
     REP #$20                                                             ;8B9874;
-    LDA.W $4216                                                          ;8B9876;
+    LDA.W HW_RDMPY                                                       ;8B9876;
     CLC                                                                  ;8B9879;
     ADC.W $0014                                                          ;8B987A;
     STA.W $0016                                                          ;8B987D;
@@ -3620,14 +3620,14 @@ Copy_CreditsRow_ToCinematicBGTilemap:
     PHY                                                                  ;8B99CB;
     SEP #$20                                                             ;8B99CC;
     LDA.B #$40                                                           ;8B99CE;
-    STA.W $4202                                                          ;8B99D0;
+    STA.W HW_WRMPYA                                                      ;8B99D0;
     LDA.W $1A01                                                          ;8B99D3;
-    STA.W $4203                                                          ;8B99D6;
+    STA.W HW_WRMPYB                                                      ;8B99D6;
     NOP                                                                  ;8B99D9;
     NOP                                                                  ;8B99DA;
     NOP                                                                  ;8B99DB;
     REP #$20                                                             ;8B99DC;
-    LDA.W $4216                                                          ;8B99DE;
+    LDA.W HW_RDMPY                                                       ;8B99DE;
     TAX                                                                  ;8B99E1;
     LDA.W #$001F                                                         ;8B99E2;
     STA.W $0014                                                          ;8B99E5;
@@ -3919,7 +3919,7 @@ Load_Title_Sequence_Graphics:
     dl $7F0000                                                           ;8B9C02;
     dw $4000                                                             ;8B9C05;
     LDA.B #$02                                                           ;8B9C07;
-    STA.W $420B                                                          ;8B9C09;
+    STA.W HW_MDMAEN                                                      ;8B9C09;
     REP #$10                                                             ;8B9C0C;
     STZ.W $2115                                                          ;8B9C0E;
     STZ.W $2116                                                          ;8B9C11;
@@ -3943,7 +3943,7 @@ Load_Title_Sequence_Graphics:
     dl $7F4000                                                           ;8B9C3A;
     dw $1000                                                             ;8B9C3D;
     LDA.B #$02                                                           ;8B9C3F;
-    STA.W $420B                                                          ;8B9C41;
+    STA.W HW_MDMAEN                                                      ;8B9C41;
     LDA.B #$00                                                           ;8B9C44;
     STA.W $2116                                                          ;8B9C46;
     LDA.B #$60                                                           ;8B9C49;
@@ -3955,7 +3955,7 @@ Load_Title_Sequence_Graphics:
     dl $7F5000                                                           ;8B9C5A;
     dw $4000                                                             ;8B9C5D;
     LDA.B #$02                                                           ;8B9C5F;
-    STA.W $420B                                                          ;8B9C61;
+    STA.W HW_MDMAEN                                                      ;8B9C61;
     REP #$30                                                             ;8B9C64;
     LDA.W #$0100                                                         ;8B9C66;
     STA.W $211B                                                          ;8B9C69;
@@ -4951,8 +4951,8 @@ CinematicFunction_Intro_Initial:
     JSL.L InitializeSamus                                                ;8BA3A8;
     JSL.L Update_Beam_Tiles_and_Palette                                  ;8BA3AC;
     LDA.W #$0384                                                         ;8BA3B0;
-    STA.W $09C8                                                          ;8BA3B3;
-    STA.W $09C6                                                          ;8BA3B6;
+    STA.W Equipment.maxMissiles                                          ;8BA3B3;
+    STA.W Equipment.currentMissiles                                      ;8BA3B6;
     STZ.W $1A57                                                          ;8BA3B9;
     LDA.W #SamusDrawingHandler_Default                                   ;8BA3BC;
     STA.W $0A5C                                                          ;8BA3BF;
@@ -5028,7 +5028,7 @@ CinematicFunction_Intro_Initial:
     dl $7F0000                                                           ;8BA46C;
     dw $8000                                                             ;8BA46F;
     LDA.B #$02                                                           ;8BA471;
-    STA.W $420B                                                          ;8BA473;
+    STA.W HW_MDMAEN                                                      ;8BA473;
     LDA.B #$00                                                           ;8BA476;
     STA.W $2116                                                          ;8BA478;
     LDA.B #$40                                                           ;8BA47B;
@@ -5040,7 +5040,7 @@ CinematicFunction_Intro_Initial:
     dl $7F8000                                                           ;8BA48C;
     dw $0900                                                             ;8BA48F;
     LDA.B #$02                                                           ;8BA491;
-    STA.W $420B                                                          ;8BA493;
+    STA.W HW_MDMAEN                                                      ;8BA493;
     LDA.B #$00                                                           ;8BA496;
     STA.W $2116                                                          ;8BA498;
     LDA.B #$48                                                           ;8BA49B;
@@ -5052,7 +5052,7 @@ CinematicFunction_Intro_Initial:
     dl $7F9000                                                           ;8BA4AC;
     dw $0800                                                             ;8BA4AF;
     LDA.B #$02                                                           ;8BA4B1;
-    STA.W $420B                                                          ;8BA4B3;
+    STA.W HW_MDMAEN                                                      ;8BA4B3;
     LDA.B #$00                                                           ;8BA4B6;
     STA.W $2116                                                          ;8BA4B8;
     LDA.B #$4C                                                           ;8BA4BB;
@@ -5064,7 +5064,7 @@ CinematicFunction_Intro_Initial:
     dl $7FE000                                                           ;8BA4CC;
     dw $0800                                                             ;8BA4CF;
     LDA.B #$02                                                           ;8BA4D1;
-    STA.W $420B                                                          ;8BA4D3;
+    STA.W HW_MDMAEN                                                      ;8BA4D3;
     LDA.B #$00                                                           ;8BA4D6;
     STA.W $2116                                                          ;8BA4D8;
     LDA.B #$50                                                           ;8BA4DB;
@@ -5076,7 +5076,7 @@ CinematicFunction_Intro_Initial:
     dl $7F9800                                                           ;8BA4EC;
     dw $2000                                                             ;8BA4EF;
     LDA.B #$02                                                           ;8BA4F1;
-    STA.W $420B                                                          ;8BA4F3;
+    STA.W HW_MDMAEN                                                      ;8BA4F3;
     LDA.B #$00                                                           ;8BA4F6;
     STA.W $2116                                                          ;8BA4F8;
     LDA.B #$60                                                           ;8BA4FB;
@@ -5088,7 +5088,7 @@ CinematicFunction_Intro_Initial:
     dl Tiles_Standard_Sprite_0                                           ;8BA50C;
     dw $2000                                                             ;8BA50F;
     LDA.B #$02                                                           ;8BA511;
-    STA.W $420B                                                          ;8BA513;
+    STA.W HW_MDMAEN                                                      ;8BA513;
     LDA.B #$00                                                           ;8BA516;
     STA.W $2116                                                          ;8BA518;
     LDA.B #$6E                                                           ;8BA51B;
@@ -5100,7 +5100,7 @@ CinematicFunction_Intro_Initial:
     dl $7FB800                                                           ;8BA52C;
     dw $2400                                                             ;8BA52F;
     LDA.B #$02                                                           ;8BA531;
-    STA.W $420B                                                          ;8BA533;
+    STA.W HW_MDMAEN                                                      ;8BA533;
     REP #$30                                                             ;8BA536;
     LDA.W #Tiles_Font2_BG3>>8&$FF00                                      ;8BA538;
     STA.B $48                                                            ;8BA53B;
@@ -5166,7 +5166,7 @@ CinematicFunction_Intro_HandleDrawingInitialJapanText_Wait60f:
     STA.W $1F51                                                          ;8BA5C5;
     LDA.W #$003C                                                         ;8BA5C8;
     STA.W $1A49                                                          ;8BA5CB;
-    LDA.W $09E2                                                          ;8BA5CE;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BA5CE;
     BEQ .return                                                          ;8BA5D1;
     LDX.W $0330                                                          ;8BA5D3;
     LDA.W #$0100                                                         ;8BA5D6;
@@ -5282,7 +5282,7 @@ CinematicFunction_Intro_SetupIntroTextPage1:
     dl $7E4000                                                           ;8BA68C;
     dw $0600                                                             ;8BA68F;
     LDA.B #$02                                                           ;8BA691;
-    STA.W $420B                                                          ;8BA693;
+    STA.W HW_MDMAEN                                                      ;8BA693;
     LDA.B #$16                                                           ;8BA696;
     STA.W $212C                                                          ;8BA698;
     STA.B $69                                                            ;8BA69B;
@@ -5855,7 +5855,7 @@ PreInst_CinematicSpriteObject_IntroJapanTextNextPageArrow:
 
 Instruction_HandleCreatingJapanText_Page1:
     STZ.W $1BA1                                                          ;8BAE43;
-    LDA.W $09E2                                                          ;8BAE46;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BAE46;
     BEQ .return                                                          ;8BAE49;
     PHB                                                                  ;8BAE4B;
     PEA.W $8B00                                                          ;8BAE4C;
@@ -5873,7 +5873,7 @@ Instruction_HandleCreatingJapanText_Page1:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page1:
     JSR.W Instruction_SetCaretToBlink                                    ;8BAE5B;
-    LDA.W $09E2                                                          ;8BAE5E;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BAE5E;
     BEQ .waitForInput                                                    ;8BAE61;
     PHB                                                                  ;8BAE63;
     PEA.W $8B00                                                          ;8BAE64;
@@ -5893,7 +5893,7 @@ Instruction_SpawnBlinkingMarkers_WaitForInput_Page1:
 
 Instruction_HandleCreatingJapanText_Page2:
     STZ.W $1BA1                                                          ;8BAE79;
-    LDA.W $09E2                                                          ;8BAE7C;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BAE7C;
     BEQ .return                                                          ;8BAE7F;
     PHB                                                                  ;8BAE81;
     PEA.W $8B00                                                          ;8BAE82;
@@ -5911,7 +5911,7 @@ Instruction_HandleCreatingJapanText_Page2:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page2:
     JSR.W Instruction_SetCaretToBlink                                    ;8BAE91;
-    LDA.W $09E2                                                          ;8BAE94;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BAE94;
     BEQ .noJapanText                                                     ;8BAE97;
     PHB                                                                  ;8BAE99;
     PEA.W $8B00                                                          ;8BAE9A;
@@ -5999,7 +5999,7 @@ CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight:
     CPX.W #$0200                                                         ;8BAF3C;
     BMI .loopBTS                                                         ;8BAF3F;
     LDA.W #$0001                                                         ;8BAF41;
-    STA.W $09D2                                                          ;8BAF44;
+    STA.W Equipment.selectedHudItem                                      ;8BAF44;
     LDA.W #SamusCurrentStateHandler_Demo                                 ;8BAF47;
     STA.W $0A42                                                          ;8BAF4A;
     LDA.W #SamusNewStateHandler_IntroDemo                                ;8BAF4D;
@@ -6073,7 +6073,7 @@ CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDiscovery:
     INX                                                                  ;8BAFEB;
     CPX.W #$0300                                                         ;8BAFEC;
     BMI .loopLevelData                                                   ;8BAFEF;
-    STZ.W $09D2                                                          ;8BAFF1;
+    STZ.W Equipment.selectedHudItem                                      ;8BAFF1;
     LDA.W #SamusCurrentStateHandler_Demo                                 ;8BAFF4;
     STA.W $0A42                                                          ;8BAFF7;
     LDA.W #SamusNewStateHandler_IntroDemo                                ;8BAFFA;
@@ -6131,7 +6131,7 @@ Setup_Intro_CrossFade_Into_SamusGameplay:
 
 Instruction_HandleCreatingJapanText_Page3:
     STZ.W $1BA1                                                          ;8BB074;
-    LDA.W $09E2                                                          ;8BB077;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB077;
     BEQ .return                                                          ;8BB07A;
     PHB                                                                  ;8BB07C;
     PEA.W $8B00                                                          ;8BB07D;
@@ -6149,7 +6149,7 @@ Instruction_HandleCreatingJapanText_Page3:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page3:
     JSR.W Instruction_SetCaretToBlink                                    ;8BB08C;
-    LDA.W $09E2                                                          ;8BB08F;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB08F;
     BEQ .waitForInput                                                    ;8BB092;
     PHB                                                                  ;8BB094;
     PEA.W $8B00                                                          ;8BB095;
@@ -6175,7 +6175,7 @@ Instruction_SpawnBlinkingMarkers_WaitForInput_Page3:
 
 Instruction_HandleCreatingJapanText_Page4:
     STZ.W $1BA1                                                          ;8BB0B3;
-    LDA.W $09E2                                                          ;8BB0B6;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB0B6;
     BEQ .return                                                          ;8BB0B9;
     PHB                                                                  ;8BB0BB;
     PEA.W $8B00                                                          ;8BB0BC;
@@ -6193,7 +6193,7 @@ Instruction_HandleCreatingJapanText_Page4:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page4:
     JSR.W Instruction_SetCaretToBlink                                    ;8BB0CB;
-    LDA.W $09E2                                                          ;8BB0CE;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB0CE;
     BEQ .waitForInput                                                    ;8BB0D1;
     PHB                                                                  ;8BB0D3;
     PEA.W $8B00                                                          ;8BB0D4;
@@ -6312,7 +6312,7 @@ SetupIntroCrossFadeIntoScientistCutscene:
 
 Instruction_HandleCreatingJapanText_Page5:
     STZ.W $1BA1                                                          ;8BB19B;
-    LDA.W $09E2                                                          ;8BB19E;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB19E;
     BEQ .return                                                          ;8BB1A1;
     PHB                                                                  ;8BB1A3;
     PEA.W $8B00                                                          ;8BB1A4;
@@ -6330,7 +6330,7 @@ Instruction_HandleCreatingJapanText_Page5:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page5:
     JSR.W Instruction_SetCaretToBlink                                    ;8BB1B3;
-    LDA.W $09E2                                                          ;8BB1B6;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB1B6;
     BEQ .waitForInput                                                    ;8BB1B9;
     PHB                                                                  ;8BB1BB;
     PEA.W $8B00                                                          ;8BB1BC;
@@ -6368,7 +6368,7 @@ CinematicFunction_Intro_WaitForInput_ClearText:
     BEQ .return                                                          ;8BB1E9;
     LDA.W #$007F                                                         ;8BB1EB;
     STA.W $1A4B                                                          ;8BB1EE;
-    LDA.W $09E2                                                          ;8BB1F1;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB1F1;
     BEQ CinematicFunction_Intro_Page6                                    ;8BB1F4;
     LDA.W #CinematicFunction_Intro_Page6                                 ;8BB1F6;
     STA.W $1F51                                                          ;8BB1F9;
@@ -6396,7 +6396,7 @@ CinematicFunction_Intro_Page6:
 
 Instruction_HandleCreatingJapanText_Page6:
     STZ.W $1BA1                                                          ;8BB228;
-    LDA.W $09E2                                                          ;8BB22B;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BB22B;
     BEQ .return                                                          ;8BB22E;
     PHB                                                                  ;8BB230;
     PEA.W $8B00                                                          ;8BB231;
@@ -7050,8 +7050,8 @@ CinematicFunction_Intro_Finish:
     LDA.W #CinematicFunction_FlyToCeres_Initial                          ;8BB763;
     STA.W $1F51                                                          ;8BB766;
     JSR.W Recover_Previous_Button_Assignments                            ;8BB769;
-    STZ.W $09C8                                                          ;8BB76C;
-    STZ.W $09C6                                                          ;8BB76F;
+    STZ.W Equipment.maxMissiles                                          ;8BB76C;
+    STZ.W Equipment.currentMissiles                                      ;8BB76F;
 
 .return:
     RTS                                                                  ;8BB772;
@@ -7664,59 +7664,59 @@ PreInstruction_ConfusedBabyMetroid_Dancing:
 
 Reset_Button_Assignments_to_Default:
     LDA.W #$0800                                                         ;8BBC08;
-    STA.W $09AA                                                          ;8BBC0B;
+    STA.W Equipment.upBinding                                            ;8BBC0B;
     LDA.W #$0400                                                         ;8BBC0E;
-    STA.W $09AC                                                          ;8BBC11;
+    STA.W Equipment.downBinding                                          ;8BBC11;
     LDA.W #$0200                                                         ;8BBC14;
-    STA.W $09AE                                                          ;8BBC17;
+    STA.W Equipment.leftBinding                                          ;8BBC17;
     LDA.W #$0100                                                         ;8BBC1A;
-    STA.W $09B0                                                          ;8BBC1D;
-    LDA.W $09B2                                                          ;8BBC20;
+    STA.W Equipment.rightBinding                                         ;8BBC1D;
+    LDA.W Equipment.shootBinding                                         ;8BBC20;
     STA.W $0D82                                                          ;8BBC23;
-    LDA.W $09B4                                                          ;8BBC26;
+    LDA.W Equipment.jumpBinding                                          ;8BBC26;
     STA.W $0D84                                                          ;8BBC29;
-    LDA.W $09B6                                                          ;8BBC2C;
+    LDA.W Equipment.runBinding                                           ;8BBC2C;
     STA.W $0D86                                                          ;8BBC2F;
-    LDA.W $09B8                                                          ;8BBC32;
+    LDA.W Equipment.itemCancelBinding                                    ;8BBC32;
     STA.W $0D88                                                          ;8BBC35;
-    LDA.W $09BA                                                          ;8BBC38;
+    LDA.W Equipment.itemSelectBinding                                    ;8BBC38;
     STA.W $0D8A                                                          ;8BBC3B;
-    LDA.W $09BC                                                          ;8BBC3E;
+    LDA.W Equipment.aimDownBinding                                       ;8BBC3E;
     STA.W $0D8C                                                          ;8BBC41;
-    LDA.W $09BE                                                          ;8BBC44;
+    LDA.W Equipment.aimUpBinding                                         ;8BBC44;
     STA.W $0D8E                                                          ;8BBC47;
     LDA.W #$0040                                                         ;8BBC4A;
-    STA.W $09B2                                                          ;8BBC4D;
+    STA.W Equipment.shootBinding                                         ;8BBC4D;
     LDA.W #$0080                                                         ;8BBC50;
-    STA.W $09B4                                                          ;8BBC53;
+    STA.W Equipment.jumpBinding                                          ;8BBC53;
     LDA.W #$8000                                                         ;8BBC56;
-    STA.W $09B6                                                          ;8BBC59;
+    STA.W Equipment.runBinding                                           ;8BBC59;
     LDA.W #$4000                                                         ;8BBC5C;
-    STA.W $09B8                                                          ;8BBC5F;
+    STA.W Equipment.itemCancelBinding                                    ;8BBC5F;
     LDA.W #$2000                                                         ;8BBC62;
-    STA.W $09BA                                                          ;8BBC65;
+    STA.W Equipment.itemSelectBinding                                    ;8BBC65;
     LDA.W #$0020                                                         ;8BBC68;
-    STA.W $09BC                                                          ;8BBC6B;
+    STA.W Equipment.aimDownBinding                                       ;8BBC6B;
     LDA.W #$0010                                                         ;8BBC6E;
-    STA.W $09BE                                                          ;8BBC71;
+    STA.W Equipment.aimUpBinding                                         ;8BBC71;
     RTS                                                                  ;8BBC74;
 
 
 Recover_Previous_Button_Assignments:
     LDA.W $0D82                                                          ;8BBC75;
-    STA.W $09B2                                                          ;8BBC78;
+    STA.W Equipment.shootBinding                                         ;8BBC78;
     LDA.W $0D84                                                          ;8BBC7B;
-    STA.W $09B4                                                          ;8BBC7E;
+    STA.W Equipment.jumpBinding                                          ;8BBC7E;
     LDA.W $0D86                                                          ;8BBC81;
-    STA.W $09B6                                                          ;8BBC84;
+    STA.W Equipment.runBinding                                           ;8BBC84;
     LDA.W $0D88                                                          ;8BBC87;
-    STA.W $09B8                                                          ;8BBC8A;
+    STA.W Equipment.itemCancelBinding                                    ;8BBC8A;
     LDA.W $0D8A                                                          ;8BBC8D;
-    STA.W $09BA                                                          ;8BBC90;
+    STA.W Equipment.itemSelectBinding                                    ;8BBC90;
     LDA.W $0D8C                                                          ;8BBC93;
-    STA.W $09BC                                                          ;8BBC96;
+    STA.W Equipment.aimDownBinding                                       ;8BBC96;
     LDA.W $0D8E                                                          ;8BBC99;
-    STA.W $09BE                                                          ;8BBC9C;
+    STA.W Equipment.aimUpBinding                                         ;8BBC9C;
     RTS                                                                  ;8BBC9F;
 
 
@@ -7764,7 +7764,7 @@ CinematicFunction_FlyToCeres_Initial:
     dl $7F0000                                                           ;8BBD07;
     dw $4000                                                             ;8BBD0A;
     LDA.B #$02                                                           ;8BBD0C;
-    STA.W $420B                                                          ;8BBD0E;
+    STA.W HW_MDMAEN                                                      ;8BBD0E;
     REP #$10                                                             ;8BBD11;
     STZ.W $2115                                                          ;8BBD13;
     STZ.W $2116                                                          ;8BBD16;
@@ -7788,7 +7788,7 @@ CinematicFunction_FlyToCeres_Initial:
     dl $7F4000                                                           ;8BBD3F;
     dw $0300                                                             ;8BBD42;
     LDA.B #$02                                                           ;8BBD44;
-    STA.W $420B                                                          ;8BBD46;
+    STA.W HW_MDMAEN                                                      ;8BBD46;
     LDA.B #$00                                                           ;8BBD49;
     STA.W $2116                                                          ;8BBD4B;
     LDA.B #$60                                                           ;8BBD4E;
@@ -7800,7 +7800,7 @@ CinematicFunction_FlyToCeres_Initial:
     dl $7F5000                                                           ;8BBD5F;
     dw $4000                                                             ;8BBD62;
     LDA.B #$02                                                           ;8BBD64;
-    STA.W $420B                                                          ;8BBD66;
+    STA.W HW_MDMAEN                                                      ;8BBD66;
     REP #$30                                                             ;8BBD69;
     LDA.W #$0100                                                         ;8BBD6B;
     STA.W $211B                                                          ;8BBD6E;
@@ -8196,7 +8196,7 @@ UNUSED_InitFunc_CinematicSpriteObject_SpaceColonyText_8BC083:
 
 
 Instruction_SkipNextInstructionIfEnglishText:
-    LDA.W $09E2                                                          ;8BC096;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BC096;
     BNE .return                                                          ;8BC099;
     TYA                                                                  ;8BC09B;
     CLC                                                                  ;8BC09C;
@@ -8334,7 +8334,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     dl $7F0000                                                           ;8BC19F;
     dw $4000                                                             ;8BC1A2;
     LDA.B #$02                                                           ;8BC1A4;
-    STA.W $420B                                                          ;8BC1A6;
+    STA.W HW_MDMAEN                                                      ;8BC1A6;
     REP #$10                                                             ;8BC1A9;
     STZ.W $2115                                                          ;8BC1AB;
     STZ.W $2116                                                          ;8BC1AE;
@@ -8358,7 +8358,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     dl $7F4600                                                           ;8BC1D7;
     dw $0600                                                             ;8BC1DA;
     LDA.B #$02                                                           ;8BC1DC;
-    STA.W $420B                                                          ;8BC1DE;
+    STA.W HW_MDMAEN                                                      ;8BC1DE;
     LDA.B #$00                                                           ;8BC1E1;
     STA.W $2116                                                          ;8BC1E3;
     LDA.B #$60                                                           ;8BC1E6;
@@ -8370,7 +8370,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     dl $7F5000                                                           ;8BC1F7;
     dw $4000                                                             ;8BC1FA;
     LDA.B #$02                                                           ;8BC1FC;
-    STA.W $420B                                                          ;8BC1FE;
+    STA.W HW_MDMAEN                                                      ;8BC1FE;
     LDA.B #$00                                                           ;8BC201;
     STA.W $2116                                                          ;8BC203;
     LDA.B #$60                                                           ;8BC206;
@@ -8382,7 +8382,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     dl Tiles_Standard_Sprite_0                                           ;8BC217;
     dw $1A00                                                             ;8BC21A;
     LDA.B #$02                                                           ;8BC21C;
-    STA.W $420B                                                          ;8BC21E;
+    STA.W HW_MDMAEN                                                      ;8BC21E;
     REP #$30                                                             ;8BC221;
     LDA.W #$0100                                                         ;8BC223;
     STA.W $211B                                                          ;8BC226;
@@ -8884,7 +8884,7 @@ CinematicFunction_CeresGoesBoom_FadeOut:
 .gameState25:
     LDA.W #$0000                                                         ;8BC64E;
     JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;8BC651;
-    STZ.W $09D2                                                          ;8BC655;
+    STZ.W Equipment.selectedHudItem                                      ;8BC655;
     STZ.W $0A04                                                          ;8BC658;
     STZ.W $18A8                                                          ;8BC65B;
     STZ.W $18AA                                                          ;8BC65E;
@@ -8956,7 +8956,7 @@ CinematicFunction_FlyToZebes_Initial:
     dl $7F4300                                                           ;8BC6E7;
     dw $0300                                                             ;8BC6EA;
     LDA.B #$02                                                           ;8BC6EC;
-    STA.W $420B                                                          ;8BC6EE;
+    STA.W HW_MDMAEN                                                      ;8BC6EE;
     LDA.B #$00                                                           ;8BC6F1;
     STA.W $2116                                                          ;8BC6F3;
     LDA.B #$5C                                                           ;8BC6F6;
@@ -8968,7 +8968,7 @@ CinematicFunction_FlyToZebes_Initial:
     dl $7F9000                                                           ;8BC707;
     dw $0800                                                             ;8BC70A;
     LDA.B #$02                                                           ;8BC70C;
-    STA.W $420B                                                          ;8BC70E;
+    STA.W HW_MDMAEN                                                      ;8BC70E;
     LDA.B #$00                                                           ;8BC711;
     STA.W $2116                                                          ;8BC713;
     LDA.B #$60                                                           ;8BC716;
@@ -8980,7 +8980,7 @@ CinematicFunction_FlyToZebes_Initial:
     dl $7F5000                                                           ;8BC727;
     dw $4000                                                             ;8BC72A;
     LDA.B #$02                                                           ;8BC72C;
-    STA.W $420B                                                          ;8BC72E;
+    STA.W HW_MDMAEN                                                      ;8BC72E;
     REP #$30                                                             ;8BC731;
     LDA.W #$0100                                                         ;8BC733;
     STA.W $211B                                                          ;8BC736;
@@ -9310,7 +9310,7 @@ Instruction_FadeInPlanetZebesText:
 
 
 Instruction_SpawnPlanetZebesJapanTextIfNeeded:
-    LDA.W $09E2                                                          ;8BC9AF;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BC9AF;
     BEQ .return                                                          ;8BC9B2;
     PHY                                                                  ;8BC9B4;
     LDY.W #CinematicSpriteObjectDefinitions_PlanetZebesJapanText         ;8BC9B5;
@@ -9494,8 +9494,8 @@ CinematicFunction_FlyToZebes_LoadGameData:
     BPL .loop                                                            ;8BCAF6;
     LDA.W #$0006                                                         ;8BCAF8;
     STA.W $0998                                                          ;8BCAFB;
-    LDA.W $09C4                                                          ;8BCAFE;
-    STA.W $09C2                                                          ;8BCB01;
+    LDA.W Equipment.maxEnergy                                            ;8BCAFE;
+    STA.W Equipment.currentEnergy                                        ;8BCB01;
     RTS                                                                  ;8BCB04;
 
 
@@ -10614,7 +10614,7 @@ CinematicFunction_Ending_Setup:
     dl $7F8000                                                           ;8BD4FF;
     dw $4000                                                             ;8BD502;
     LDA.B #$02                                                           ;8BD504;
-    STA.W $420B                                                          ;8BD506;
+    STA.W HW_MDMAEN                                                      ;8BD506;
     LDA.B #$00                                                           ;8BD509;
     STA.W $2116                                                          ;8BD50B;
     LDA.B #$20                                                           ;8BD50E;
@@ -10626,7 +10626,7 @@ CinematicFunction_Ending_Setup:
     dl $7F8000                                                           ;8BD51F;
     dw $4000                                                             ;8BD522;
     LDA.B #$02                                                           ;8BD524;
-    STA.W $420B                                                          ;8BD526;
+    STA.W HW_MDMAEN                                                      ;8BD526;
     LDA.B #$00                                                           ;8BD529;
     STA.W $2116                                                          ;8BD52B;
     LDA.B #$60                                                           ;8BD52E;
@@ -10638,7 +10638,7 @@ CinematicFunction_Ending_Setup:
     dl $7F4000                                                           ;8BD53F;
     dw $4000                                                             ;8BD542;
     LDA.B #$02                                                           ;8BD544;
-    STA.W $420B                                                          ;8BD546;
+    STA.W HW_MDMAEN                                                      ;8BD546;
     LDA.B #$00                                                           ;8BD549;
     STA.W $2116                                                          ;8BD54B;
     LDA.B #$00                                                           ;8BD54E;
@@ -10650,7 +10650,7 @@ CinematicFunction_Ending_Setup:
     dl $7F0000                                                           ;8BD55F;
     dw $4000                                                             ;8BD562;
     LDA.B #$02                                                           ;8BD564;
-    STA.W $420B                                                          ;8BD566;
+    STA.W HW_MDMAEN                                                      ;8BD566;
     REP #$30                                                             ;8BD569;
     LDA.W #Tiles_Zebes_Explosion>>8&$FF00                                ;8BD56B;
     STA.B $48                                                            ;8BD56E;
@@ -10850,7 +10850,7 @@ CineFunc_Ending_ZebesDestruction1_CloudsOnTopBottom_Setup:
     dl $7E2000                                                           ;8BD749;
     dw $4000                                                             ;8BD74C;
     LDA.B #$02                                                           ;8BD74E;
-    STA.W $420B                                                          ;8BD750;
+    STA.W HW_MDMAEN                                                      ;8BD750;
     LDA.B #$00                                                           ;8BD753;
     STA.W $2116                                                          ;8BD755;
     LDA.B #$20                                                           ;8BD758;
@@ -10862,7 +10862,7 @@ CineFunc_Ending_ZebesDestruction1_CloudsOnTopBottom_Setup:
     dl $7E2000                                                           ;8BD769;
     dw $4000                                                             ;8BD76C;
     LDA.B #$02                                                           ;8BD76E;
-    STA.W $420B                                                          ;8BD770;
+    STA.W HW_MDMAEN                                                      ;8BD770;
     REP #$30                                                             ;8BD773;
     LDA.W #Tiles_Grey_Clouds_during_Zebes_Explosion_Mode7>>8&$FF00       ;8BD775;
     STA.B $48                                                            ;8BD778;
@@ -10882,7 +10882,7 @@ CineFunc_Ending_ZebesDestruction1_CloudsOnTopBottom_Setup:
     dl $7E2000                                                           ;8BD79E;
     dw $4000                                                             ;8BD7A1;
     LDA.B #$02                                                           ;8BD7A3;
-    STA.W $420B                                                          ;8BD7A5;
+    STA.W HW_MDMAEN                                                      ;8BD7A5;
     REP #$30                                                             ;8BD7A8;
     JSL.L Clear_PaletteFXObjects                                         ;8BD7AA;
     JSR.W Clear_CinematicSpriteObjects                                   ;8BD7AE;
@@ -10961,7 +10961,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7E6000                                                           ;8BD84F;
     dw $4000                                                             ;8BD852;
     LDA.B #$02                                                           ;8BD854;
-    STA.W $420B                                                          ;8BD856;
+    STA.W HW_MDMAEN                                                      ;8BD856;
     LDA.B #$00                                                           ;8BD859;
     STA.W $2116                                                          ;8BD85B;
     LDA.B #$20                                                           ;8BD85E;
@@ -10973,7 +10973,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7E6000                                                           ;8BD86F;
     dw $4000                                                             ;8BD872;
     LDA.B #$02                                                           ;8BD874;
-    STA.W $420B                                                          ;8BD876;
+    STA.W HW_MDMAEN                                                      ;8BD876;
     REP #$30                                                             ;8BD879;
     LDA.W #Tiles_Big_Zebes_during_Zebes_Explosion>>8&$FF00               ;8BD87B;
     STA.B $48                                                            ;8BD87E;
@@ -10993,7 +10993,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7E6000                                                           ;8BD8A4;
     dw $4000                                                             ;8BD8A7;
     LDA.B #$02                                                           ;8BD8A9;
-    STA.W $420B                                                          ;8BD8AB;
+    STA.W HW_MDMAEN                                                      ;8BD8AB;
     LDA.B #$00                                                           ;8BD8AE;
     STA.W $2116                                                          ;8BD8B0;
     LDA.B #$40                                                           ;8BD8B3;
@@ -11005,7 +11005,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7F8000                                                           ;8BD8C4;
     dw $6000                                                             ;8BD8C7;
     LDA.B #$02                                                           ;8BD8C9;
-    STA.W $420B                                                          ;8BD8CB;
+    STA.W HW_MDMAEN                                                      ;8BD8CB;
     LDA.B #$00                                                           ;8BD8CE;
     STA.W $2116                                                          ;8BD8D0;
     LDA.B #$70                                                           ;8BD8D3;
@@ -11017,7 +11017,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7FE000                                                           ;8BD8E4;
     dw $0800                                                             ;8BD8E7;
     LDA.B #$02                                                           ;8BD8E9;
-    STA.W $420B                                                          ;8BD8EB;
+    STA.W HW_MDMAEN                                                      ;8BD8EB;
     LDA.B #$00                                                           ;8BD8EE;
     STA.W $2116                                                          ;8BD8F0;
     LDA.B #$74                                                           ;8BD8F3;
@@ -11029,7 +11029,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7FE800                                                           ;8BD904;
     dw $0800                                                             ;8BD907;
     LDA.B #$02                                                           ;8BD909;
-    STA.W $420B                                                          ;8BD90B;
+    STA.W HW_MDMAEN                                                      ;8BD90B;
     LDA.B #$00                                                           ;8BD90E;
     STA.W $2116                                                          ;8BD910;
     LDA.B #$78                                                           ;8BD913;
@@ -11041,7 +11041,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7FF000                                                           ;8BD924;
     dw $0800                                                             ;8BD927;
     LDA.B #$02                                                           ;8BD929;
-    STA.W $420B                                                          ;8BD92B;
+    STA.W HW_MDMAEN                                                      ;8BD92B;
     LDA.B #$00                                                           ;8BD92E;
     STA.W $2116                                                          ;8BD930;
     LDA.B #$7C                                                           ;8BD933;
@@ -11053,7 +11053,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7FF800                                                           ;8BD944;
     dw $0800                                                             ;8BD947;
     LDA.B #$02                                                           ;8BD949;
-    STA.W $420B                                                          ;8BD94B;
+    STA.W HW_MDMAEN                                                      ;8BD94B;
     LDA.B #$00                                                           ;8BD94E;
     STA.W $2116                                                          ;8BD950;
     LDA.B #$50                                                           ;8BD953;
@@ -11065,7 +11065,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     dl $7EA000                                                           ;8BD964;
     dw $1000                                                             ;8BD967;
     LDA.B #$02                                                           ;8BD969;
-    STA.W $420B                                                          ;8BD96B;
+    STA.W HW_MDMAEN                                                      ;8BD96B;
     LDA.B #$02                                                           ;8BD96E;
     STA.B $52                                                            ;8BD970;
     REP #$30                                                             ;8BD972;
@@ -11714,7 +11714,7 @@ CinematicFunction_Credits_Setup:
     dl $7FE800                                                           ;8BDF3C;
     dw $0100                                                             ;8BDF3F;
     LDA.B #$02                                                           ;8BDF41;
-    STA.W $420B                                                          ;8BDF43;
+    STA.W HW_MDMAEN                                                      ;8BDF43;
     LDA.B #$00                                                           ;8BDF46;
     STA.W $2116                                                          ;8BDF48;
     LDA.B #$24                                                           ;8BDF4B;
@@ -11726,7 +11726,7 @@ CinematicFunction_Credits_Setup:
     dl $7FF000                                                           ;8BDF5C;
     dw $0800                                                             ;8BDF5F;
     LDA.B #$02                                                           ;8BDF61;
-    STA.W $420B                                                          ;8BDF63;
+    STA.W HW_MDMAEN                                                      ;8BDF63;
     LDA.B #$00                                                           ;8BDF66;
     STA.W $2116                                                          ;8BDF68;
     LDA.B #$40                                                           ;8BDF6B;
@@ -11738,7 +11738,7 @@ CinematicFunction_Credits_Setup:
     dl $7FC000                                                           ;8BDF7C;
     dw $1000                                                             ;8BDF7F;
     LDA.B #$02                                                           ;8BDF81;
-    STA.W $420B                                                          ;8BDF83;
+    STA.W HW_MDMAEN                                                      ;8BDF83;
     LDA.B #$00                                                           ;8BDF86;
     STA.W $2116                                                          ;8BDF88;
     LDA.B #$60                                                           ;8BDF8B;
@@ -11750,7 +11750,7 @@ CinematicFunction_Credits_Setup:
     dl $7E6000                                                           ;8BDF9C;
     dw $4000                                                             ;8BDF9F;
     LDA.B #$02                                                           ;8BDFA1;
-    STA.W $420B                                                          ;8BDFA3;
+    STA.W HW_MDMAEN                                                      ;8BDFA3;
     LDA.B #$00                                                           ;8BDFA6;
     STA.W $2116                                                          ;8BDFA8;
     LDA.B #$50                                                           ;8BDFAB;
@@ -11762,7 +11762,7 @@ CinematicFunction_Credits_Setup:
     dl $7F0000                                                           ;8BDFBC;
     dw $2000                                                             ;8BDFBF;
     LDA.B #$02                                                           ;8BDFC1;
-    STA.W $420B                                                          ;8BDFC3;
+    STA.W HW_MDMAEN                                                      ;8BDFC3;
     LDA.B #$00                                                           ;8BDFC6;
     STA.W $2116                                                          ;8BDFC8;
     LDA.B #$4C                                                           ;8BDFCB;
@@ -11774,7 +11774,7 @@ CinematicFunction_Credits_Setup:
     dl $7FE000                                                           ;8BDFDC;
     dw $0800                                                             ;8BDFDF;
     LDA.B #$02                                                           ;8BDFE1;
-    STA.W $420B                                                          ;8BDFE3;
+    STA.W HW_MDMAEN                                                      ;8BDFE3;
     REP #$30                                                             ;8BDFE6;
     LDA.W #Tiles_PostCredits_SuperMetroid_Icon>>8&$FF00                  ;8BDFE8;
     STA.B $48                                                            ;8BDFEB;
@@ -11788,7 +11788,7 @@ CinematicFunction_Credits_Setup:
     STA.B $47                                                            ;8BE001;
     JSL.L Decompression_HardcodedDestination                             ;8BE003;
     dl $7E8000                                                           ;8BE007;
-    LDA.W $09E0                                                          ;8BE00A;
+    LDA.W Equipment.igtHours                                             ;8BE00A;
     CMP.W #$0003                                                         ;8BE00D;
     BPL .gameTimeOver3                                                   ;8BE010;
     SEP #$30                                                             ;8BE012;
@@ -11803,7 +11803,7 @@ CinematicFunction_Credits_Setup:
     dl $7E2000                                                           ;8BE02A;
     dw $4000                                                             ;8BE02D;
     LDA.B #$02                                                           ;8BE02F;
-    STA.W $420B                                                          ;8BE031;
+    STA.W HW_MDMAEN                                                      ;8BE031;
     BRA +                                                                ;8BE034;
 
 
@@ -11820,7 +11820,7 @@ CinematicFunction_Credits_Setup:
     dl $7F0000                                                           ;8BE04E;
     dw $4000                                                             ;8BE051;
     LDA.B #$02                                                           ;8BE053;
-    STA.W $420B                                                          ;8BE055;
+    STA.W HW_MDMAEN                                                      ;8BE055;
 
   + REP #$30                                                             ;8BE058;
     LDA.W #$0100                                                         ;8BE05A;
@@ -12014,7 +12014,7 @@ CinematicFunction_PostCredits_DeerForce:
 .decTimer:
     LDA.W #$007F                                                         ;8BE1DA;
     STA.W $1A49                                                          ;8BE1DD;
-    LDA.W $09E0                                                          ;8BE1E0;
+    LDA.W Equipment.igtHours                                             ;8BE1E0;
     CMP.W #$0003                                                         ;8BE1E3;
     BMI .bestEnding                                                      ;8BE1E6;
     CMP.W #$000A                                                         ;8BE1E8;
@@ -12085,7 +12085,7 @@ CinematicFunc_PostCredits_IdleSamus_1_CrossFadeOutSamusSuit:
     LDX.W #$0040                                                         ;8BE26D;
     LDY.W #$0010                                                         ;8BE270;
     JSR.W PaletteCrossFading_FadeOutYColorsStartingFromColorIndexX       ;8BE273;
-    LDA.W $09E0                                                          ;8BE276;
+    LDA.W Equipment.igtHours                                             ;8BE276;
     CMP.W #$0003                                                         ;8BE279;
     BMI .lessThan3                                                       ;8BE27C;
     LDX.W #$01C0                                                         ;8BE27E;
@@ -12144,7 +12144,7 @@ CinematicFunction_PostCredits_1994Nintendo:
     BPL .return                                                          ;8BE2E2;
 
 .timerExpired:
-    LDA.W $09E0                                                          ;8BE2E4;
+    LDA.W Equipment.igtHours                                             ;8BE2E4;
     CMP.W #$0003                                                         ;8BE2E7;
     BMI .gameTimeOver10                                                  ;8BE2EA;
     CMP.W #$000A                                                         ;8BE2EC;
@@ -12179,7 +12179,7 @@ CinematicFunc_PostCredits_IdleSamus2_CrossFadeOutSamusSuit:
     LDX.W #$0040                                                         ;8BE31C;
     LDY.W #$0010                                                         ;8BE31F;
     JSR.W PaletteCrossFading_FadeOutYColorsStartingFromColorIndexX       ;8BE322;
-    LDA.W $09E0                                                          ;8BE325;
+    LDA.W Equipment.igtHours                                             ;8BE325;
     CMP.W #$0003                                                         ;8BE328;
     BMI .gameTimeUnder3                                                  ;8BE32B;
     LDX.W #$01C0                                                         ;8BE32D;
@@ -12212,7 +12212,7 @@ CinematicFunction_PostCredits_IdleSamus2:
     LDA.W #RTS_8BDB9D                                                    ;8BE363;
     STA.W $1F51                                                          ;8BE366;
     STZ.W $1A4D                                                          ;8BE369;
-    LDA.W $09E0                                                          ;8BE36C;
+    LDA.W Equipment.igtHours                                             ;8BE36C;
     CMP.W #$0003                                                         ;8BE36F;
     BMI .bestEnding                                                      ;8BE372;
     CMP.W #$000A                                                         ;8BE374;
@@ -12616,10 +12616,10 @@ Instruction_DrawItemPercentageCount:
     LDA.W .tankValuesEnergy,X                                            ;8BE634;
     TAY                                                                  ;8BE637;
     LDA.W $0000,Y                                                        ;8BE638;
-    STA.W $4204                                                          ;8BE63B;
+    STA.W HW_WRDIV                                                       ;8BE63B;
     SEP #$20                                                             ;8BE63E;
     LDA.W .tankValuesEnergyDivisor,X                                     ;8BE640;
-    STA.W $4206                                                          ;8BE643;
+    STA.W HW_WRDIVB                                                      ;8BE643;
     NOP                                                                  ;8BE646;
     NOP                                                                  ;8BE647;
     NOP                                                                  ;8BE648;
@@ -12638,7 +12638,7 @@ Instruction_DrawItemPercentageCount:
     LDX.W #$0014                                                         ;8BE65B;
 
 .loopItems:
-    LDA.W $09A4                                                          ;8BE65E;
+    LDA.W Equipment.collectedItems                                       ;8BE65E;
     BIT.W .itemBits,X                                                    ;8BE661;
     BEQ .nextItem                                                        ;8BE664;
     INC.B $12                                                            ;8BE666;
@@ -12650,7 +12650,7 @@ Instruction_DrawItemPercentageCount:
     LDX.W #$0008                                                         ;8BE66C;
 
 .loopBeams:
-    LDA.W $09A8                                                          ;8BE66F;
+    LDA.W Equipment.collectedBeams                                       ;8BE66F;
     BIT.W .beamBits,X                                                    ;8BE672;
     BEQ .nextBeam                                                        ;8BE675;
     INC.B $12                                                            ;8BE677;
@@ -12660,10 +12660,10 @@ Instruction_DrawItemPercentageCount:
     DEX                                                                  ;8BE67A;
     BPL .loopBeams                                                       ;8BE67B;
     LDA.B $12                                                            ;8BE67D;
-    STA.W $4204                                                          ;8BE67F;
+    STA.W HW_WRDIV                                                       ;8BE67F;
     SEP #$20                                                             ;8BE682;
     LDA.B #$0A                                                           ;8BE684;
-    STA.W $4206                                                          ;8BE686;
+    STA.W HW_WRDIVB                                                      ;8BE686;
     NOP                                                                  ;8BE689;
     NOP                                                                  ;8BE68A;
     NOP                                                                  ;8BE68B;
@@ -12673,12 +12673,12 @@ Instruction_DrawItemPercentageCount:
     NOP                                                                  ;8BE68F;
     REP #$20                                                             ;8BE690;
     LDA.W $4214                                                          ;8BE692;
-    STA.W $4204                                                          ;8BE695;
-    LDA.W $4216                                                          ;8BE698;
+    STA.W HW_WRDIV                                                       ;8BE695;
+    LDA.W HW_RDMPY                                                       ;8BE698;
     STA.B $16                                                            ;8BE69B;
     SEP #$20                                                             ;8BE69D;
     LDA.B #$0A                                                           ;8BE69F;
-    STA.W $4206                                                          ;8BE6A1;
+    STA.W HW_WRDIVB                                                      ;8BE6A1;
     NOP                                                                  ;8BE6A4;
     NOP                                                                  ;8BE6A5;
     NOP                                                                  ;8BE6A6;
@@ -12689,7 +12689,7 @@ Instruction_DrawItemPercentageCount:
     REP #$20                                                             ;8BE6AB;
     LDA.W $4214                                                          ;8BE6AD;
     STA.B $12                                                            ;8BE6B0;
-    LDA.W $4216                                                          ;8BE6B2;
+    LDA.W HW_RDMPY                                                       ;8BE6B2;
     STA.B $14                                                            ;8BE6B5;
     LDA.B $12                                                            ;8BE6B7;
     BEQ +                                                                ;8BE6B9;
@@ -12736,19 +12736,19 @@ Instruction_DrawItemPercentageCount:
 
 
 .tankValuesEnergy:
-    dw $09C4                                                             ;8BE70D;
+    dw Equipment.maxEnergy                                               ;8BE70D;
 
 .tankValuesReserve:
-    dw $09D4                                                             ;8BE70F;
+    dw Equipment.maxReserveEnergy                                        ;8BE70F;
 
 .tankValuesMissiles:
-    dw $09C8                                                             ;8BE711;
+    dw Equipment.maxMissiles                                             ;8BE711;
 
 .tankValuesSuperMissiles:
-    dw $09CC                                                             ;8BE713;
+    dw Equipment.maxSuperMissiles                                        ;8BE713;
 
 .tankValuesPowerBombs:
-    dw $09D0                                                             ;8BE715;
+    dw Equipment.maxPowerBombs                                           ;8BE715;
 
 .tankValuesEnergyDivisor:
     dw $0064                                                             ;8BE717;
@@ -12782,7 +12782,7 @@ TilemapValuesForDecimalDigits_bottomHalf:
 
 Instruction_DrawItemPercentageJapanText:
     PHX                                                                  ;8BE769;
-    LDA.W $09E2                                                          ;8BE76A;
+    LDA.W Equipment.japaneseSubtitles                                    ;8BE76A;
     BEQ .return                                                          ;8BE76D;
     LDX.W #$007E                                                         ;8BE76F;
 
@@ -13301,7 +13301,7 @@ InstList_CinematicSpriteObjects_CompletedSuccessfully_0:
     dw $0008                                                             ;8BEC13;
     dw EndingSequenceSpritemaps_COMPLETESUCCESS                          ;8BEC15;
     dw $0008                                                             ;8BEC17;
-    dw EkndingSequenceSpritemaps_COMPLETESUCCESSF                        ;8BEC19;
+    dw EndingSequenceSpritemaps_COMPLETESUCCESSF                        ;8BEC19;
     dw $0008                                                             ;8BEC1B;
     dw EndingSequenceSpritemaps_COMPLETESUCCESSFU                        ;8BEC1D;
     dw $0008                                                             ;8BEC1F;
@@ -14513,11 +14513,11 @@ Instruction_CinematicSpriteObject_SpawnClearTime:
     PHY                                                                  ;8BF3CE;
     LDY.W #CinematicSpriteObjectDefinitions_ClearTime                    ;8BF3CF;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BF3D2;
-    LDA.W $09E0                                                          ;8BF3D5;
-    STA.W $4204                                                          ;8BF3D8;
+    LDA.W Equipment.igtHours                                             ;8BF3D5;
+    STA.W HW_WRDIV                                                       ;8BF3D8;
     SEP #$20                                                             ;8BF3DB;
     LDA.B #$0A                                                           ;8BF3DD;
-    STA.W $4206                                                          ;8BF3DF;
+    STA.W HW_WRDIVB                                                      ;8BF3DF;
     NOP                                                                  ;8BF3E2;
     NOP                                                                  ;8BF3E3;
     NOP                                                                  ;8BF3E4;
@@ -14528,13 +14528,13 @@ Instruction_CinematicSpriteObject_SpawnClearTime:
     REP #$20                                                             ;8BF3E9;
     LDA.W $4214                                                          ;8BF3EB;
     STA.W $0DEC                                                          ;8BF3EE;
-    LDA.W $4216                                                          ;8BF3F1;
+    LDA.W HW_RDMPY                                                       ;8BF3F1;
     STA.W $0DEE                                                          ;8BF3F4;
-    LDA.W $09DE                                                          ;8BF3F7;
-    STA.W $4204                                                          ;8BF3FA;
+    LDA.W Equipment.igtMinutes                                           ;8BF3F7;
+    STA.W HW_WRDIV                                                       ;8BF3FA;
     SEP #$20                                                             ;8BF3FD;
     LDA.B #$0A                                                           ;8BF3FF;
-    STA.W $4206                                                          ;8BF401;
+    STA.W HW_WRDIVB                                                      ;8BF401;
     NOP                                                                  ;8BF404;
     NOP                                                                  ;8BF405;
     NOP                                                                  ;8BF406;
@@ -14545,7 +14545,7 @@ Instruction_CinematicSpriteObject_SpawnClearTime:
     REP #$20                                                             ;8BF40B;
     LDA.W $4214                                                          ;8BF40D;
     STA.W $0DF0                                                          ;8BF410;
-    LDA.W $4216                                                          ;8BF413;
+    LDA.W HW_RDMPY                                                       ;8BF413;
     STA.W $0DF2                                                          ;8BF416;
     PLY                                                                  ;8BF419;
     RTS                                                                  ;8BF41A;
@@ -14751,7 +14751,7 @@ Inst_CineSpriteObject_SpawnSuitlessSamus_LettingHairDown:
 
 Instruction_CinematicSpriteObject_SpawnSuitedSamusJump:
     PHY                                                                  ;8BF554;
-    LDA.W $09E0                                                          ;8BF555;
+    LDA.W Equipment.igtHours                                             ;8BF555;
     CMP.W #$000A                                                         ;8BF558;
     BMI .gameTimeUnder10                                                 ;8BF55B;
     LDY.W #CinematicSpriteObjectDefinitions_Jump_Head_Helmet             ;8BF55D;
@@ -14789,7 +14789,7 @@ PreInst_CinematicSpriteObject_SuitedSamus_Jump_Head_Jumping:
 
 
 Instruction_CineSpriteObject_PositionSuitedHeadToPrepareJump:
-    LDA.W $09E0                                                          ;8BF597;
+    LDA.W Equipment.igtHours                                             ;8BF597;
     CMP.W #$000A                                                         ;8BF59A;
     BMI .gameTimeUnder10                                                 ;8BF59D;
     LDA.W #$0076                                                         ;8BF59F;
@@ -14810,7 +14810,7 @@ Instruction_CineSpriteObject_PositionSuitedHeadToPrepareJump:
 
 
 Instruction_CinematicSpriteObject_PositionSamusHeadToJump:
-    LDA.W $09E0                                                          ;8BF5BA;
+    LDA.W Equipment.igtHours                                             ;8BF5BA;
     CMP.W #$000A                                                         ;8BF5BD;
     BMI .gameTimeUnder10                                                 ;8BF5C0;
     LDA.W #$0078                                                         ;8BF5C2;

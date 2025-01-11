@@ -126,10 +126,10 @@ UNUSED_Play_Resumed_SpinJumpSound_848278:
 Calculate_PLM_Block_Coordinates:
     LDA.W $1C87,X                                                        ;848290;
     LSR A                                                                ;848293;
-    STA.W $4204                                                          ;848294;
+    STA.W HW_WRDIV                                                       ;848294;
     SEP #$20                                                             ;848297;
     LDA.W $07A5                                                          ;848299;
-    STA.W $4206                                                          ;84829C;
+    STA.W HW_WRDIVB                                                      ;84829C;
     REP #$20                                                             ;84829F;
     NOP                                                                  ;8482A1;
     NOP                                                                  ;8482A2;
@@ -139,7 +139,7 @@ Calculate_PLM_Block_Coordinates:
     NOP                                                                  ;8482A6;
     LDA.W $4214                                                          ;8482A7;
     STA.W $1C2B                                                          ;8482AA;
-    LDA.W $4216                                                          ;8482AD;
+    LDA.W HW_RDMPY                                                       ;8482AD;
     STA.W $1C29                                                          ;8482B0;
     RTL                                                                  ;8482B3;
 
@@ -361,15 +361,15 @@ Spawn_Hardcoded_PLM:
     TYX                                                                  ;8483FB;
     LDY.W #$0002                                                         ;8483FC;
     LDA.B ($06,S),Y                                                      ;8483FF;
-    STA.W $4202                                                          ;848401;
+    STA.W HW_WRMPYA                                                      ;848401;
     LDA.W $07A5                                                          ;848404;
-    STA.W $4203                                                          ;848407;
+    STA.W HW_WRMPYB                                                      ;848407;
     LDY.W #$0001                                                         ;84840A;
     LDA.B ($06,S),Y                                                      ;84840D;
     REP #$20                                                             ;84840F;
     AND.W #$00FF                                                         ;848411;
     CLC                                                                  ;848414;
-    ADC.W $4216                                                          ;848415;
+    ADC.W HW_RDMPY                                                       ;848415;
     ASL A                                                                ;848418;
     STA.W $1C87,X                                                        ;848419;
     LDY.W #$0003                                                         ;84841C;
@@ -439,14 +439,14 @@ Spawn_Room_PLM:
 .found:
     SEP #$20                                                             ;848482;
     LDA.L $8F0003,X                                                      ;848484;
-    STA.W $4202                                                          ;848488;
+    STA.W HW_WRMPYA                                                      ;848488;
     LDA.W $07A5                                                          ;84848B;
-    STA.W $4203                                                          ;84848E;
+    STA.W HW_WRMPYB                                                      ;84848E;
     LDA.L $8F0002,X                                                      ;848491;
     REP #$20                                                             ;848495;
     AND.W #$00FF                                                         ;848497;
     CLC                                                                  ;84849A;
-    ADC.W $4216                                                          ;84849B;
+    ADC.W HW_RDMPY                                                       ;84849B;
     ASL A                                                                ;84849E;
     STA.W $1C87,Y                                                        ;84849F;
     LDA.L $8F0004,X                                                      ;8484A2;
@@ -559,23 +559,23 @@ UNUSED_Spawn_Enemy_PLM_84853E:
 
 
 .found:
-    LDA.W $0F7E,Y                                                        ;848556;
+    LDA.W EnemyData.yPosition,Y                                          ;848556;
     LSR A                                                                ;848559;
     LSR A                                                                ;84855A;
     LSR A                                                                ;84855B;
     LSR A                                                                ;84855C;
     SEP #$20                                                             ;84855D;
-    STA.W $4202                                                          ;84855F;
+    STA.W HW_WRMPYA                                                      ;84855F;
     LDA.W $07A5                                                          ;848562;
-    STA.W $4203                                                          ;848565;
+    STA.W HW_WRMPYB                                                      ;848565;
     REP #$20                                                             ;848568;
-    LDA.W $0F7A,Y                                                        ;84856A;
+    LDA.W EnemyData.xPosition,Y                                          ;84856A;
     LSR A                                                                ;84856D;
     LSR A                                                                ;84856E;
     LSR A                                                                ;84856F;
     LSR A                                                                ;848570;
     CLC                                                                  ;848571;
-    ADC.W $4216                                                          ;848572;
+    ADC.W HW_RDMPY                                                       ;848572;
     ASL A                                                                ;848575;
     STA.W $1C87,X                                                        ;848576;
     PLA                                                                  ;848579;
@@ -1132,19 +1132,19 @@ Instruction_PLM_SetRoomArg_ItemCollected:
 
 Instruction_PLM_PickUpBeam_DisplayMessageBox:
     LDA.W $0000,Y                                                        ;8488B0;
-    ORA.W $09A8                                                          ;8488B3;
-    STA.W $09A8                                                          ;8488B6;
+    ORA.W Equipment.collectedBeams                                       ;8488B3;
+    STA.W Equipment.collectedBeams                                       ;8488B6;
     LDA.W $0000,Y                                                        ;8488B9;
-    ORA.W $09A6                                                          ;8488BC;
-    STA.W $09A6                                                          ;8488BF;
+    ORA.W Equipment.equippedBeams                                        ;8488BC;
+    STA.W Equipment.equippedBeams                                        ;8488BF;
     LDA.W $0000,Y                                                        ;8488C2;
     ASL A                                                                ;8488C5;
     AND.W #$0008                                                         ;8488C6;
-    TRB.W $09A6                                                          ;8488C9;
+    TRB.W Equipment.equippedBeams                                        ;8488C9;
     LDA.W $0000,Y                                                        ;8488CC;
     LSR A                                                                ;8488CF;
     AND.W #$0004                                                         ;8488D0;
-    TRB.W $09A6                                                          ;8488D3;
+    TRB.W Equipment.equippedBeams                                        ;8488D3;
     PHX                                                                  ;8488D6;
     PHY                                                                  ;8488D7;
     JSL.L Update_Beam_Tiles_and_Palette                                  ;8488D8;
@@ -1162,12 +1162,12 @@ Instruction_PLM_PickUpBeam_DisplayMessageBox:
 
 
 Instruction_PLM_PickUpEquipment_DisplayMessageBox:
-    LDA.W $09A2                                                          ;8488F3;
+    LDA.W Equipment.equippedItems                                        ;8488F3;
     ORA.W $0000,Y                                                        ;8488F6;
-    STA.W $09A2                                                          ;8488F9;
-    LDA.W $09A4                                                          ;8488FC;
+    STA.W Equipment.equippedItems                                        ;8488F9;
+    LDA.W Equipment.collectedItems                                       ;8488FC;
     ORA.W $0000,Y                                                        ;8488FF;
-    STA.W $09A4                                                          ;848902;
+    STA.W Equipment.collectedItems                                       ;848902;
     LDA.W #$0168                                                         ;848905;
     JSL.L Play_Room_Music_Track_After_A_Frames                           ;848908;
     LDA.W $0002,Y                                                        ;84890C;
@@ -1180,12 +1180,12 @@ Instruction_PLM_PickUpEquipment_DisplayMessageBox:
 
 
 Inst_PLM_PickUpEquipment_AddGrappleHUD_DisplayMessageBox:
-    LDA.W $09A2                                                          ;84891A;
+    LDA.W Equipment.equippedItems                                        ;84891A;
     ORA.W $0000,Y                                                        ;84891D;
-    STA.W $09A2                                                          ;848920;
-    LDA.W $09A4                                                          ;848923;
+    STA.W Equipment.equippedItems                                        ;848920;
+    LDA.W Equipment.collectedItems                                       ;848923;
     ORA.W $0000,Y                                                        ;848926;
-    STA.W $09A4                                                          ;848929;
+    STA.W Equipment.collectedItems                                       ;848929;
     JSL.L AddGrappleToHUDTilemap                                         ;84892C;
     LDA.W #$0168                                                         ;848930;
     JSL.L Play_Room_Music_Track_After_A_Frames                           ;848933;
@@ -1197,12 +1197,12 @@ Inst_PLM_PickUpEquipment_AddGrappleHUD_DisplayMessageBox:
 
 
 Inst_PLM_PickUpEquipment_AddXrayToHUD_DisplayMessageBox:
-    LDA.W $09A2                                                          ;848941;
+    LDA.W Equipment.equippedItems                                        ;848941;
     ORA.W $0000,Y                                                        ;848944;
-    STA.W $09A2                                                          ;848947;
-    LDA.W $09A4                                                          ;84894A;
+    STA.W Equipment.equippedItems                                        ;848947;
+    LDA.W Equipment.collectedItems                                       ;84894A;
     ORA.W $0000,Y                                                        ;84894D;
-    STA.W $09A4                                                          ;848950;
+    STA.W Equipment.collectedItems                                       ;848950;
     JSL.L AddXrayToHUDTilemap                                            ;848953;
     LDA.W #$0168                                                         ;848957;
     JSL.L Play_Room_Music_Track_After_A_Frames                           ;84895A;
@@ -1214,11 +1214,11 @@ Inst_PLM_PickUpEquipment_AddXrayToHUD_DisplayMessageBox:
 
 
 Instruction_PLM_CollectHealth_EnergyTank:
-    LDA.W $09C4                                                          ;848968;
+    LDA.W Equipment.maxEnergy                                            ;848968;
     CLC                                                                  ;84896B;
     ADC.W $0000,Y                                                        ;84896C;
-    STA.W $09C4                                                          ;84896F;
-    STA.W $09C2                                                          ;848972;
+    STA.W Equipment.maxEnergy                                            ;84896F;
+    STA.W Equipment.currentEnergy                                        ;848972;
     LDA.W #$0168                                                         ;848975;
     JSL.L Play_Room_Music_Track_After_A_Frames                           ;848978;
     LDA.W #$0001                                                         ;84897C;
@@ -1229,13 +1229,13 @@ Instruction_PLM_CollectHealth_EnergyTank:
 
 
 Instruction_PLM_CollectHealth_ReserveTank:
-    LDA.W $09D4                                                          ;848986;
+    LDA.W Equipment.maxReserveEnergy                                     ;848986;
     CLC                                                                  ;848989;
     ADC.W $0000,Y                                                        ;84898A;
-    STA.W $09D4                                                          ;84898D;
-    LDA.W $09C0                                                          ;848990;
+    STA.W Equipment.maxReserveEnergy                                     ;84898D;
+    LDA.W Equipment.reserveTankMode                                      ;848990;
     BNE .playMusic                                                       ;848993;
-    INC.W $09C0                                                          ;848995;
+    INC.W Equipment.reserveTankMode                                      ;848995;
 
 .playMusic:
     LDA.W #$0168                                                         ;848998;
@@ -1248,14 +1248,14 @@ Instruction_PLM_CollectHealth_ReserveTank:
 
 
 Instruction_PLM_CollectAmmo_MissileTank:
-    LDA.W $09C8                                                          ;8489A9;
+    LDA.W Equipment.maxMissiles                                          ;8489A9;
     CLC                                                                  ;8489AC;
     ADC.W $0000,Y                                                        ;8489AD;
-    STA.W $09C8                                                          ;8489B0;
-    LDA.W $09C6                                                          ;8489B3;
+    STA.W Equipment.maxMissiles                                          ;8489B0;
+    LDA.W Equipment.currentMissiles                                      ;8489B3;
     CLC                                                                  ;8489B6;
     ADC.W $0000,Y                                                        ;8489B7;
-    STA.W $09C6                                                          ;8489BA;
+    STA.W Equipment.currentMissiles                                      ;8489BA;
     JSL.L AddMissilesToHUDTilemap                                        ;8489BD;
     LDA.W #$0168                                                         ;8489C1;
     JSL.L Play_Room_Music_Track_After_A_Frames                           ;8489C4;
@@ -1267,14 +1267,14 @@ Instruction_PLM_CollectAmmo_MissileTank:
 
 
 Instruction_PLM_CollectAmmo_SuperMissileTank:
-    LDA.W $09CC                                                          ;8489D2;
+    LDA.W Equipment.maxSuperMissiles                                     ;8489D2;
     CLC                                                                  ;8489D5;
     ADC.W $0000,Y                                                        ;8489D6;
-    STA.W $09CC                                                          ;8489D9;
-    LDA.W $09CA                                                          ;8489DC;
+    STA.W Equipment.maxSuperMissiles                                     ;8489D9;
+    LDA.W Equipment.currentSuperMissiles                                 ;8489DC;
     CLC                                                                  ;8489DF;
     ADC.W $0000,Y                                                        ;8489E0;
-    STA.W $09CA                                                          ;8489E3;
+    STA.W Equipment.currentSuperMissiles                                 ;8489E3;
     JSL.L AddSuperMissilesToHUDTilemap                                   ;8489E6;
     LDA.W #$0168                                                         ;8489EA;
     JSL.L Play_Room_Music_Track_After_A_Frames                           ;8489ED;
@@ -1286,14 +1286,14 @@ Instruction_PLM_CollectAmmo_SuperMissileTank:
 
 
 Instruction_PLM_CollectAmmo_PowerBombTank:
-    LDA.W $09D0                                                          ;8489FB;
+    LDA.W Equipment.maxPowerBombs                                        ;8489FB;
     CLC                                                                  ;8489FE;
     ADC.W $0000,Y                                                        ;8489FF;
-    STA.W $09D0                                                          ;848A02;
-    LDA.W $09CE                                                          ;848A05;
+    STA.W Equipment.maxPowerBombs                                        ;848A02;
+    LDA.W Equipment.currentPowerBombs                                    ;848A05;
     CLC                                                                  ;848A08;
     ADC.W $0000,Y                                                        ;848A09;
-    STA.W $09CE                                                          ;848A0C;
+    STA.W Equipment.currentPowerBombs                                    ;848A0C;
     JSL.L AddPowerBombsToHUDTilemap                                      ;848A0F;
     LDA.W #$0168                                                         ;848A13;
     JSL.L Play_Room_Music_Track_After_A_Frames                           ;848A16;
@@ -1734,13 +1734,13 @@ Instruction_PLM_Activate_MapStation:
 Instruction_PLM_Activate_EnergyStation:
     PHX                                                                  ;848CAF;
     PHY                                                                  ;848CB0;
-    LDA.W $09C4                                                          ;848CB1;
-    CMP.W $09C2                                                          ;848CB4;
+    LDA.W Equipment.maxEnergy                                            ;848CB1;
+    CMP.W Equipment.currentEnergy                                        ;848CB4;
     BEQ .unlockSamus                                                     ;848CB7;
     LDA.W #$0015                                                         ;848CB9;
     JSL.L MessageBox_Routine                                             ;848CBC;
-    LDA.W $09C4                                                          ;848CC0;
-    STA.W $09C2                                                          ;848CC3;
+    LDA.W Equipment.maxEnergy                                            ;848CC0;
+    STA.W Equipment.currentEnergy                                        ;848CC3;
 
 .unlockSamus:
     LDA.W #$0001                                                         ;848CC6;
@@ -1753,13 +1753,13 @@ Instruction_PLM_Activate_EnergyStation:
 Instruction_PLM_Activate_MissileStation:
     PHX                                                                  ;848CD0;
     PHY                                                                  ;848CD1;
-    LDA.W $09C8                                                          ;848CD2;
-    CMP.W $09C6                                                          ;848CD5;
+    LDA.W Equipment.maxMissiles                                          ;848CD2;
+    CMP.W Equipment.currentMissiles                                      ;848CD5;
     BEQ .unlockSamus                                                     ;848CD8;
     LDA.W #$0016                                                         ;848CDA;
     JSL.L MessageBox_Routine                                             ;848CDD;
-    LDA.W $09C8                                                          ;848CE1;
-    STA.W $09C6                                                          ;848CE4;
+    LDA.W Equipment.maxMissiles                                          ;848CE1;
+    STA.W Equipment.currentMissiles                                      ;848CE4;
 
 .unlockSamus:
     LDA.W #$0001                                                         ;848CE7;
@@ -2011,7 +2011,7 @@ DrawPLM:
     LDA.B $1A                                                            ;848E5F;
     AND.W #$000F                                                         ;848E61;
     ORA.W #$4000                                                         ;848E64;
-    STA.W $4202                                                          ;848E67;
+    STA.W HW_WRMPYA                                                      ;848E67;
     LDA.B $18                                                            ;848E6A;
     AND.W #$001F                                                         ;848E6C;
     CMP.W #$0010                                                         ;848E6F;
@@ -2019,7 +2019,7 @@ DrawPLM:
     ASL A                                                                ;848E74;
     CLC                                                                  ;848E75;
     ADC.B $09                                                            ;848E76;
-    ADC.W $4216                                                          ;848E78;
+    ADC.W HW_RDMPY                                                       ;848E78;
     PHA                                                                  ;848E7B;
     LDA.W $091D                                                          ;848E7C;
     AND.W #$0100                                                         ;848E7F;
@@ -2035,7 +2035,7 @@ DrawPLM:
     ASL A                                                                ;848E8C;
     CLC                                                                  ;848E8D;
     ADC.B $0C                                                            ;848E8E;
-    ADC.W $4216                                                          ;848E90;
+    ADC.W HW_RDMPY                                                       ;848E90;
     PHA                                                                  ;848E93;
     LDA.W $091D                                                          ;848E94;
     AND.W #$0100                                                         ;848E97;
@@ -2515,7 +2515,7 @@ Calculate_PLMDrawTilemap_VRAMDestination:
     LDA.B $1A                                                            ;8491DC;
     AND.W #$000F                                                         ;8491DE;
     ORA.W #$4000                                                         ;8491E1;
-    STA.W $4202                                                          ;8491E4;
+    STA.W HW_WRMPYA                                                      ;8491E4;
     LDA.B $18                                                            ;8491E7;
     AND.W #$001F                                                         ;8491E9;
     CMP.W #$0010                                                         ;8491EC;
@@ -2523,7 +2523,7 @@ Calculate_PLMDrawTilemap_VRAMDestination:
     ASL A                                                                ;8491F1;
     CLC                                                                  ;8491F2;
     ADC.B $09                                                            ;8491F3;
-    ADC.W $4216                                                          ;8491F5;
+    ADC.W HW_RDMPY                                                       ;8491F5;
     PHA                                                                  ;8491F8;
     LDA.W $091D                                                          ;8491F9;
     AND.W #$0100                                                         ;8491FC;
@@ -2539,7 +2539,7 @@ Calculate_PLMDrawTilemap_VRAMDestination:
     ASL A                                                                ;849209;
     CLC                                                                  ;84920A;
     ADC.B $0C                                                            ;84920B;
-    ADC.W $4216                                                          ;84920D;
+    ADC.W HW_RDMPY                                                       ;84920D;
     PHA                                                                  ;849210;
     LDA.W $091D                                                          ;849211;
     AND.W #$0100                                                         ;849214;
@@ -5125,8 +5125,8 @@ InstList_PLM_EnergyStationLeftAccess_1:
     dw Instruction_PLM_Delete                                            ;84AE33;
 
 Instruction_PLM_GotoY_EnableMovementIfSamusEnergyIsFull:
-    LDA.W $09C4                                                          ;84AE35;
-    CMP.W $09C2                                                          ;84AE38;
+    LDA.W Equipment.maxEnergy                                            ;84AE35;
+    CMP.W Equipment.currentEnergy                                        ;84AE38;
     BEQ .fullEnergy                                                      ;84AE3B;
     INY                                                                  ;84AE3D;
     INY                                                                  ;84AE3E;
@@ -5199,8 +5199,8 @@ InstList_PLM_MissileStationLeftAccess_1:
     dw Instruction_PLM_Delete                                            ;84AEBD;
 
 Instruction_PLM_GotoY_EnableMovementIfSamusMissilesAreFull:
-    LDA.W $09C8                                                          ;84AEBF;
-    CMP.W $09C6                                                          ;84AEC2;
+    LDA.W Equipment.maxMissiles                                          ;84AEBF;
+    CMP.W Equipment.currentMissiles                                      ;84AEC2;
     BEQ .missilesFull                                                    ;84AEC5;
     INY                                                                  ;84AEC7;
     INY                                                                  ;84AEC8;
@@ -5739,8 +5739,8 @@ Setup_EnergyStationRightAccess:
     LDA.W $0A1E                                                          ;84B27D;
     AND.W #$0004                                                         ;84B280;
     BEQ .connected                                                       ;84B283;
-    LDA.W $09C2                                                          ;84B285;
-    CMP.W $09C4                                                          ;84B288;
+    LDA.W Equipment.currentEnergy                                        ;84B285;
+    CMP.W Equipment.maxEnergy                                            ;84B288;
     BEQ .connected                                                       ;84B28B;
     LDA.W $1C87,Y                                                        ;84B28D;
     DEC A                                                                ;84B290;
@@ -5766,8 +5766,8 @@ Setup_EnergyStationLeftAccess:
     LDA.W $0A1E                                                          ;84B2B0;
     AND.W #$0008                                                         ;84B2B3;
     BEQ .connected                                                       ;84B2B6;
-    LDA.W $09C2                                                          ;84B2B8;
-    CMP.W $09C4                                                          ;84B2BB;
+    LDA.W Equipment.currentEnergy                                        ;84B2B8;
+    CMP.W Equipment.maxEnergy                                            ;84B2BB;
     BEQ .connected                                                       ;84B2BE;
     LDA.W $1C87,Y                                                        ;84B2C0;
     INC A                                                                ;84B2C3;
@@ -5792,8 +5792,8 @@ Setup_MissileStationRightAccess:
     LDA.W $0A1E                                                          ;84B2E0;
     AND.W #$0004                                                         ;84B2E3;
     BEQ .connected                                                       ;84B2E6;
-    LDA.W $09C6                                                          ;84B2E8;
-    CMP.W $09C8                                                          ;84B2EB;
+    LDA.W Equipment.currentMissiles                                      ;84B2E8;
+    CMP.W Equipment.maxMissiles                                          ;84B2EB;
     BEQ .connected                                                       ;84B2EE;
     LDA.W $1C87,Y                                                        ;84B2F0;
     DEC A                                                                ;84B2F3;
@@ -5819,8 +5819,8 @@ Setup_MissileStationLeftAccess:
     LDA.W $0A1E                                                          ;84B313;
     AND.W #$0008                                                         ;84B316;
     BEQ .connected                                                       ;84B319;
-    LDA.W $09C6                                                          ;84B31B;
-    CMP.W $09C8                                                          ;84B31E;
+    LDA.W Equipment.currentMissiles                                      ;84B31B;
+    CMP.W Equipment.maxMissiles                                          ;84B31E;
     BEQ .connected                                                       ;84B321;
     LDA.W $1C87,Y                                                        ;84B323;
     INC A                                                                ;84B326;
@@ -5990,7 +5990,7 @@ Setup_QuicksandSurface:
     TRB.W $0B48                                                          ;84B41A;
     STZ.W $0B46                                                          ;84B41D;
     LDY.W #$0000                                                         ;84B420;
-    LDA.W $09A2                                                          ;84B423;
+    LDA.W Equipment.equippedItems                                        ;84B423;
     BIT.W #$0020                                                         ;84B426;
     BEQ +                                                                ;84B429;
     LDY.W #$0002                                                         ;84B42B;
@@ -6098,7 +6098,7 @@ Setup_QuicksandSurface_BTS85:
 
 .vertical:
     LDY.W #$0000                                                         ;84B4CE;
-    LDA.W $09A2                                                          ;84B4D1;
+    LDA.W Equipment.equippedItems                                        ;84B4D1;
     BIT.W #$0020                                                         ;84B4D4;
     BEQ +                                                                ;84B4D7;
     LDY.W #$0002                                                         ;84B4D9;
@@ -6753,7 +6753,7 @@ PLMEntries_enableSoundsIn20Frames_F0FramesIfCeres:
     dw InstList_PLM_EnableSoundsIn20Frames_F0FramesIfCeres               ;84B7ED;
 
 PreInst_PLM_WakePLM_StartLavaquakeIfSpeedBoosterCollected:
-    LDA.W $09A4                                                          ;84B7EF;
+    LDA.W Equipment.collectedItems                                       ;84B7EF;
     AND.W #$2000                                                         ;84B7F2;
     BNE .collectedSpeedBooster                                           ;84B7F5;
     LDA.W #$FFFF                                                         ;84B7F7;
@@ -7131,7 +7131,7 @@ InstList_PLM_BombTorizoGreyDoor:
     dw InstList_PLM_BombTorizoGreyDoor_0                                 ;84BA6D;
 
 Instruction_PLM_GotoYIfSamusDoesntHaveBombs:
-    LDA.W $09A4                                                          ;84BA6F;
+    LDA.W Equipment.collectedItems                                       ;84BA6F;
     BIT.W #$1000                                                         ;84BA72;
     BEQ .noBombs                                                         ;84BA75;
     INY                                                                  ;84BA77;
@@ -10923,14 +10923,14 @@ PreInstruction_DeletePLM_SpawnTriggerBlockIf_4_8_IsBlankAir:
     PHX                                                                  ;84D15C;
     SEP #$20                                                             ;84D15D;
     LDA.B #$08                                                           ;84D15F;
-    STA.W $4202                                                          ;84D161;
+    STA.W HW_WRMPYA                                                      ;84D161;
     LDA.W $07A5                                                          ;84D164;
-    STA.W $4203                                                          ;84D167;
+    STA.W HW_WRMPYB                                                      ;84D167;
     LDA.B #$04                                                           ;84D16A;
     REP #$20                                                             ;84D16C;
     AND.W #$00FF                                                         ;84D16E;
     CLC                                                                  ;84D171;
-    ADC.W $4216                                                          ;84D172;
+    ADC.W HW_RDMPY                                                       ;84D172;
     ASL A                                                                ;84D175;
     TAX                                                                  ;84D176;
     LDA.L $7F0002,X                                                      ;84D177;
@@ -10951,7 +10951,7 @@ RTS_84D18E:
 
 
 Setup_Reaction_LowerNorfairChozoHandTrigger:
-    LDA.W $09A4                                                          ;84D18F;
+    LDA.W Equipment.collectedItems                                       ;84D18F;
     AND.W #$0200                                                         ;84D192;
     BEQ .return                                                          ;84D195;
     LDA.W $0B02                                                          ;84D197;
@@ -11162,7 +11162,7 @@ Spawn4MotherBrainsGlassShatteringShardsWithArgA:
 
 
 PreInstruction_PLM_WakePLMIfSamusHasBombs:
-    LDA.W $09A4                                                          ;84D33B;
+    LDA.W Equipment.collectedItems                                       ;84D33B;
     AND.W #$1000                                                         ;84D33E;
     BEQ .return                                                          ;84D341;
     LDA.W #$0001                                                         ;84D343;

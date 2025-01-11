@@ -1460,11 +1460,11 @@ EnemyPopulations_IceBeamGate:
     dw $0408,$0258,$0001,$A800,$0000,$00F0,$000D                         ;A1A334;
     dw EnemyHeaders_ShutterGrowing                                       ;A1A342;
     dw $0608,$0258,$0001,$A800,$0000,$0068,$0010                         ;A1A344;
-    dw EnemyHeaders_Desgeega                                             ;A1A352;
+    dw EnemyHeaders_Dessgeega                                            ;A1A352;
     dw $0104,$03AF,$0000,$2000,$0000,$0000,$0000                         ;A1A354;
-    dw EnemyHeaders_Desgeega                                             ;A1A362;
+    dw EnemyHeaders_Dessgeega                                            ;A1A362;
     dw $0195,$035F,$0000,$2000,$0000,$0001,$0000                         ;A1A364;
-    dw EnemyHeaders_Desgeega                                             ;A1A372;
+    dw EnemyHeaders_Dessgeega                                            ;A1A372;
     dw $0222,$03B2,$0000,$2000,$0000,$0000,$0000                         ;A1A374;
     dw EnemyHeaders_Mella                                                ;A1A382;
     dw $0139,$0374,$0000,$2000,$0000,$0000,$0000                         ;A1A384;
@@ -1556,15 +1556,15 @@ EnemyPopulations_NorfairMap:
     db $00                                                               ;A1A55F;
 
 EnemyPopulations_MickeyMouse:
-    dw EnemyHeaders_DesgeegaLarge                                        ;A1A560;
+    dw EnemyHeaders_DessgeegaLarge                                       ;A1A560;
     dw $03C0,$038B,$0000,$2000,$0000,$0000,$0000                         ;A1A562;
-    dw EnemyHeaders_DesgeegaLarge                                        ;A1A570;
+    dw EnemyHeaders_DessgeegaLarge                                       ;A1A570;
     dw $0357,$038A,$0000,$2000,$0000,$0000,$0000                         ;A1A572;
-    dw EnemyHeaders_DesgeegaLarge                                        ;A1A580;
+    dw EnemyHeaders_DessgeegaLarge                                       ;A1A580;
     dw $01B1,$038B,$0000,$2000,$0000,$0000,$0000                         ;A1A582;
-    dw EnemyHeaders_DesgeegaLarge                                        ;A1A590;
+    dw EnemyHeaders_DessgeegaLarge                                       ;A1A590;
     dw $0105,$0380,$0000,$2000,$0000,$8000,$0000                         ;A1A592;
-    dw EnemyHeaders_DesgeegaLarge                                        ;A1A5A0;
+    dw EnemyHeaders_DessgeegaLarge                                       ;A1A5A0;
     dw $026A,$0381,$0000,$2000,$0000,$8000,$0000                         ;A1A5A2;
     dw EnemyHeaders_Multiviola                                           ;A1A5B0;
     dw $0095,$0377,$0000,$2000,$0000,$000E,$0006                         ;A1A5B2;
@@ -1976,9 +1976,9 @@ EnemyPopulations_CathedralEntrance:
     dw $00F8,$0098,$0003,$2001,$0000,$0003,$0004                         ;A1AFA9;
     dw EnemyHeaders_Sova                                                 ;A1AFB7;
     dw $00B0,$00D8,$0003,$2000,$0000,$0003,$0004                         ;A1AFB9;
-    dw EnemyHeaders_Desgeega                                             ;A1AFC7;
+    dw EnemyHeaders_Dessgeega                                            ;A1AFC7;
     dw $0188,$019F,$0000,$2000,$0000,$0000,$0000                         ;A1AFC9;
-    dw EnemyHeaders_Desgeega                                             ;A1AFD7;
+    dw EnemyHeaders_Dessgeega                                            ;A1AFD7;
     dw $022F,$019E,$0000,$2000,$0000,$0000,$0000,$FFFF                   ;A1AFD9;
     db $06                                                               ;A1AFE9;
 
@@ -2080,13 +2080,13 @@ EnemyPopulations_Wasteland:
     dw $05C0,$00E0,$0000,$2500,$0000,$0008,$0000                         ;A1B25B;
     dw EnemyHeaders_Hibashi                                              ;A1B269;
     dw $05C0,$00E0,$0000,$2100,$0000,$0000,$0001                         ;A1B26B;
-    dw EnemyHeaders_DesgeegaLarge                                        ;A1B279;
+    dw EnemyHeaders_DessgeegaLarge                                       ;A1B279;
     dw $0288,$005A,$0000,$2000,$0000,$8000,$0000                         ;A1B27B;
-    dw EnemyHeaders_DesgeegaLarge                                        ;A1B289;
+    dw EnemyHeaders_DessgeegaLarge                                       ;A1B289;
     dw $0228,$00A8,$0000,$2000,$0000,$0000,$0000                         ;A1B28B;
-    dw EnemyHeaders_DesgeegaLarge                                        ;A1B299;
+    dw EnemyHeaders_DessgeegaLarge                                       ;A1B299;
     dw $02F0,$00A8,$0000,$2000,$0000,$0000,$0000                         ;A1B29B;
-    dw EnemyHeaders_DesgeegaLarge                                        ;A1B2A9;
+    dw EnemyHeaders_DessgeegaLarge                                       ;A1B2A9;
     dw $0138,$0058,$0000,$2000,$0000,$8000,$0000                         ;A1B2AB;
     dw EnemyHeaders_Hibashi                                              ;A1B2B9;
     dw $0540,$00E0,$0000,$2500,$0000,$0000,$0000                         ;A1B2BB;

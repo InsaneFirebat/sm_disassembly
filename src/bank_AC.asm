@@ -23,8 +23,8 @@ incbin "../data/Tiles_SporeSpawn.bin" ; $E00 bytes
 Tiles_Phantoon:
 incbin "../data/Tiles_Phantoon.bin" ; $C00 bytes
 
-Tiles_Boyon:
-incbin "../data/Tiles_Boyon.bin" ; $400 bytes
+BoyonGfx:
+incbin "../data/BoyonGfx.bin" ; $400 bytes
 
 Tiles_Shutter:
 incbin "../data/Tiles_Shutter.bin" ; $400 bytes
