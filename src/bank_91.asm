@@ -146,6 +146,7 @@ NormalSamusPoseInputHandler_Falling:
     RTS                                                                  ;9180BD;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_AutoJumpFromCrouchFall_9180BE:
     LDA.W $0A1C                                                          ;9180BE;
     CMP.W #$0029                                                         ;9180C1;
@@ -186,6 +187,7 @@ UNUSED_AutoJumpFromCrouchFall_9180BE:
 .return:
     PLP                                                                  ;918108;
     RTS                                                                  ;918109;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 NormalSamusPoseInputHandler_MorphBall_Falling:
@@ -951,6 +953,7 @@ Draw_RecordedDemoDuration:
     RTS                                                                  ;9185CD;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_DemoInput_JumpLeft_GiveControlBack_9185CE:
     dw $001E,$0000,$0000,$0001,$0200,$0200,$001A,$0200                   ;9185CE;
     dw $0000,$0001,$0280,$0080,$0034,$0280,$0000,$001E                   ;9185DE;
@@ -965,6 +968,7 @@ Instruction_EndDemoInput_GiveControlBackToPlayer:
     STA.W $0A44                                                          ;918605;
     JSL.L Disable_DemoInput                                              ;918608;
     RTS                                                                  ;91860C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 InstList_DemoInput_BabyMetroidDiscovery_RunningLeft_0:
@@ -1034,6 +1038,7 @@ InstList_DemoInput_OldMotherBrainFight:
     dw $0000,$0001,$0040,$0040,$001D,$0040,$0000,$0046                   ;9186A4;
     dw $0000,$0000                                                       ;9186B4;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_DemoInput_OldMotherBrainFight_9186B8:
     dw $0014,$0000,$0000,$0001,$0200,$0200,$0007,$0200                   ;9186B8;
     dw $0000,$0001,$0280,$0080,$0007,$0280,$0000,$0004                   ;9186C8;
@@ -1066,6 +1071,7 @@ UNUSED_Instruction_EndDemoInputWithSamusFacingLeft_9186FE:
     PLY                                                                  ;918736;
     PLX                                                                  ;918737;
     RTS                                                                  ;918738;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_EndDemoInputWithSamusFacingLeft:
@@ -1093,16 +1099,20 @@ Instruction_EndDemoInputWithSamusFacingLeft:
     RTS                                                                  ;918773;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_DemoInput_Delete_918774:
     dw Instruction_DemoInputObject_Delete                                ;918774;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_DemoInput_Delete:
     dw Instruction_DemoInputObject_Delete                                ;918776;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DemoInputObject_Intro_JumpLeft_GiveControlBack_918778:
     dw RTS_9183BF                                                        ;918778;
     dw RTS_9183BF                                                        ;91877A;
     dw UNUSED_InstList_DemoInput_JumpLeft_GiveControlBack_9185CE         ;91877C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DemoInputObjects_Intro_BabyMetroidDiscovery:
     dw RTS_9183BF                                                        ;91877E;
@@ -1114,10 +1124,12 @@ DemoInputObjects_Intro_OldMotherBrainFight:
     dw RTS_9183BF                                                        ;918786;
     dw InstList_DemoInput_OldMotherBrainFight                            ;918788;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DemoInputObjects_Intro_OldMotherBrainFight_91878A:
     dw RTS_9183BF                                                        ;91878A;
     dw RTS_9183BF                                                        ;91878C;
     dw UNUSED_InstList_DemoInput_OldMotherBrainFight_9186B8              ;91878E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 LoadDemoData:
     LDA.W $1F57                                                          ;918790;
@@ -1634,6 +1646,7 @@ InstList_DemoInput_BrinstarDiagonalRoom:
     dw $0440,$0000,$00DB,$0000,$0000                                     ;9195B0;
     dw Instruction_DemoInputObject_Delete                                ;9195BA;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_DemoInput_9195BC:
     dw $0029,$0000,$0000,$0001,$0200,$0200,$0018,$0200                   ;9195BC;
     dw $0000,$0011,$0000,$0000,$0001,$0080,$0080,$0018                   ;9195CC;
@@ -1646,6 +1659,7 @@ UNUSED_InstList_DemoInput_9195BC:
     dw $0000,$0000,$0001,$0400,$0400,$0005,$0400,$0000                   ;91963C;
     dw $0001,$0600,$0200,$0096,$0000,$0000                               ;91964C;
     dw Instruction_DemoInputObject_Delete                                ;919658;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_DemoInput_PreSporeSpawnHall:
     dw $001B,$0000,$0000,$0001,$0200,$0200,$0005,$0200                   ;91965A;
@@ -1875,10 +1889,12 @@ DemoInputObjects_Title_BrinstarDiagonalRoom:
     dw PreInstruction_DemoInput_Normal                                   ;919EA2;
     dw InstList_DemoInput_BrinstarDiagonalRoom                           ;919EA4;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DemoInputObjects_Title_919EA6:
     dw RTS_9183BF                                                        ;919EA6;
     dw PreInstruction_DemoInput_Normal                                   ;919EA8;
     dw UNUSED_InstList_DemoInput_9195BC                                  ;919EAA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DemoInputObjects_Title_PreSporeSpawnHall:
     dw RTS_9183BF                                                        ;919EAC;
@@ -2382,20 +2398,24 @@ UNUSED_TransitionTable_46_91A7E0:
 UNUSED_TransitionTable_47_91A7F4:
     dw $FFFF                                                             ;91A7F4;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_TransitionTable_PossiblyPartOfAbove_91A7F6:
     dw $0080,$0000,$004B,$0400,$0000,$0035,$0000,$0210                   ;91A7F6;
     dw $0078,$0000,$0220,$0076,$0000,$0240,$004A,$0000                   ;91A806;
     dw $0100,$0009,$0000,$0200,$0025,$0000,$0800,$0003                   ;91A816;
     dw $0000,$0010,$0005,$0000,$0020,$0007,$FFFF                         ;91A826;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 UNUSED_TransitionTable_48_91A834:
     dw $FFFF                                                             ;91A834;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_TransitionTable_PossiblyPartOfAbove_91A836:
     dw $0080,$0000,$004C,$0400,$0000,$0036,$0000,$0120                   ;91A836;
     dw $0077,$0000,$0110,$0075,$0000,$0140,$0049,$0000                   ;91A846;
     dw $0200,$000A,$0000,$0100,$0026,$0000,$0800,$0004                   ;91A856;
     dw $0000,$0010,$0006,$0000,$0020,$0008,$FFFF                         ;91A866;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 TransitionTable_49_75_77_FacingLeft_Moonwalk:
     dw $0400,$0000,$0036,$0080,$0000,$00C0,$0080,$0010                   ;91A874;
@@ -2415,6 +2435,7 @@ TransitionTable_53_FacingRight_Knockback:
 TransitionTable_54_FacingLeft_Knockback:
     dw $0000,$0180,$004F,$FFFF                                           ;91A8EC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_TransitionTable_91A8F4:
     dw $FFFF                                                             ;91A8F4;
 
@@ -2426,6 +2447,7 @@ UNUSED_TransitionTable_91A8F8:
 
 UNUSED_TransitionTable_91A8FA:
     dw $FFFF                                                             ;91A8FA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 UNUSED_TransitionTable_5B_91A8FC:
     dw $0000,$0280,$0066,$FFFF                                           ;91A8FC;
@@ -2914,8 +2936,10 @@ AnimationDelayTable:
 AnimationDelays_09_0A_0B_0C_0D_0E_0F_10_11_12_45_46:
     db $02,$03,$02,$03,$02,$03,$02,$03,$02,$03,$FF                       ;91B20A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_AnimationDelays_91B215:
     db $04,$04,$04,$04,$04,$04,$03,$04,$04,$03,$FF,$0A,$FF               ;91B215;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 AnimationDelays_03_04_85_86:
     db $02,$10,$FE,$01                                                   ;91B222;
@@ -3058,8 +3082,10 @@ AnimationDelays_2D_2E:
 AnimationDelays_53_54:
     db $02,$10,$FE,$01                                                   ;91B36A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_AnimationDelays_91B36E:
     db $06,$06,$06,$08,$FF,$08,$08,$FF,$0A,$FF                           ;91B36E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 AnimationDelays_Various_91B378:
     db $03,$03,$03,$03,$03,$03,$03,$03,$FF,$03,$FE,$0A                   ;91B378;
@@ -9074,6 +9100,7 @@ RTS_91DD31:
     RTS                                                                  ;91DD31;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_91DD32:
     db $01,$00,$00,$01,$00,$00,$01,$00,$00,$01,$01,$00,$01,$00,$01,$00   ;91DD32;
     db $01,$00,$01,$00,$01,$00,$01,$00,$01,$00                           ;91DD42;
@@ -9089,6 +9116,7 @@ UNUSED_SetSamusPaletteToSolidWhite_91DD4C:
     PLB                                                                  ;91DD58;
     PLP                                                                  ;91DD59;
     RTL                                                                  ;91DD5A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Load20BytesOfSamusPaletteInX:
@@ -11155,6 +11183,7 @@ ProspectivePoseCmd_8_KillRunSpeed:
     RTS                                                                  ;91EC9C;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_91EC9D:
     LDA.W $0A1F                                                          ;91EC9D;
     AND.W #$00FF                                                         ;91ECA0;
@@ -11173,6 +11202,7 @@ UNUSED_91EC9D:
 .data:
     db $00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00   ;91ECB4;
     db $00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$00,$00                   ;91ECC4;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProspectivePoseCmd_2_Stop:
     STZ.W $0B4A                                                          ;91ECD0;

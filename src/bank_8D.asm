@@ -77,6 +77,7 @@ EnemyProjSpritemaps_CrocomiresProjectile_3:
     db $F8                                                               ;8D807F;
     dw $30D3                                                             ;8D8080;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_OldCrocomiresProjectile_0_8D8082:
     dw $0004,$0000                                                       ;8D8082;
     db $00                                                               ;8D8086;
@@ -118,6 +119,7 @@ UNUSED_EnemyProjSpritemaps_3_8D80C3:
     dw $0001,$01F8                                                       ;8D80C3;
     db $F8                                                               ;8D80C7;
     dw $317B                                                             ;8D80C8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_RidleysFireball_0:
     dw $0001,$C3F8                                                       ;8D80CA;
@@ -176,6 +178,7 @@ EnemyProjSpritemaps_CrocomiresSpikeWallPieces:
     db $F8                                                               ;8D8119;
     dw $65CC                                                             ;8D811A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_8D811C:
     dw $0004,$0000                                                       ;8D811C;
     db $00                                                               ;8D8120;
@@ -235,6 +238,7 @@ UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_2_8D815E:
     dw $21CE,$01F0                                                       ;8D8195;
     db $F8                                                               ;8D8199;
     dw $21CD                                                             ;8D819A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_PhantoonFlames_0:
     dw $0002,$C3F8                                                       ;8D819C;
@@ -482,6 +486,7 @@ EnemyProjSpritemaps_MotherBrainsBomb_8:
     db $FC                                                               ;8D8345;
     dw $75AF                                                             ;8D8346;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8D8348:
     dw $0001,$01FC                                                       ;8D8348;
     db $FC                                                               ;8D834C;
@@ -496,6 +501,7 @@ UNUSED_EnemyProjSpritemaps_2_8D8356:
     dw $0001,$01FC                                                       ;8D8356;
     db $FC                                                               ;8D835A;
     dw $35E2                                                             ;8D835B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_MotherBrainsRedBeam_0:
     dw $0001,$01FC                                                       ;8D835D;
@@ -628,6 +634,7 @@ EnemyProjSpritemaps_MetareeParticle:
     db $FC                                                               ;8D8439;
     dw $312B                                                             ;8D843A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8D343C:
     dw $0001,$C3F8                                                       ;8D843C;
     db $F8                                                               ;8D8440;
@@ -647,6 +654,7 @@ UNUSED_EnemyProjSpritemaps_3_8D3451:
     dw $0001,$C3F8                                                       ;8D8451;
     db $F2                                                               ;8D8455;
     dw $3A9C                                                             ;8D8456;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_KagoBugs_0:
     dw $0001,$01FC                                                       ;8D8458;
@@ -1276,6 +1284,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_2D:
     db $DC                                                               ;8D8964;
     dw $7BC0                                                             ;8D8965;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_Draygon_0_8D8967:
     dw $0001,$01FC                                                       ;8D8967;
     db $FC                                                               ;8D896B;
@@ -1400,6 +1409,7 @@ UNUSED_EnemyProjSpritemaps_Draygon_8D8A0F:
     dw $0001,$81F8                                                       ;8D8A0F;
     db $F8                                                               ;8D8A13;
     dw $2164                                                             ;8D8A14;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_DraygonGoop_0:
     dw $0001,$81F8                                                       ;8D8A16;
@@ -1421,6 +1431,7 @@ EnemyProjSpritemaps_DraygonGoop_3:
     db $F8                                                               ;8D8A2F;
     dw $114A                                                             ;8D8A30;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_Draygon_0_8D8A32:
     dw $0001,$01FC                                                       ;8D8A32;
     db $FC                                                               ;8D8A36;
@@ -1465,6 +1476,7 @@ UNUSED_EnemyProjSpritemaps_1_8D8A6A:
     dw $0001,$81F8                                                       ;8D8A6A;
     db $F8                                                               ;8D8A6E;
     dw $218E                                                             ;8D8A6F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_DraygonsWallTurretProjectile_0:
     dw $0001,$01FC                                                       ;8D8A71;
@@ -1740,10 +1752,12 @@ EnemyProjSpritemaps_Pirate_MotherBrain_Laser_A:
     db $F8                                                               ;8D8C4A;
     dw $3A60                                                             ;8D8C4B;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_QuestionMark_8D8C4D:
     dw $0001,$C3F8                                                       ;8D8C4D;
     db $F8                                                               ;8D8C51;
     dw $2AE0                                                             ;8D8C52;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 UNUSED_EnemyProjSpritemaps_BombTorizoLowHealthDrool_0_8D8C54:
     dw $0001,$01FC                                                       ;8D8C54;
@@ -1913,10 +1927,12 @@ EnemyProjSpritemaps_TorizoSonicBoom_5:
     db $E8                                                               ;8D8D92;
     dw $6B49                                                             ;8D8D93;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_8D8D95:
     dw $0001,$01FC                                                       ;8D8D95;
     db $FC                                                               ;8D8D99;
     dw $2A5E                                                             ;8D8D9A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_Common_0:
     dw $0001,$01FC                                                       ;8D8D9C;
@@ -2383,10 +2399,12 @@ EnemyProjSpritemaps_EyeDoorSweat_3:
     db $FC                                                               ;8D907C;
     dw $2A2E                                                             ;8D907D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_8D907F:
     dw $0001,$01FC                                                       ;8D907F;
     db $FC                                                               ;8D9083;
     dw $2A2F                                                             ;8D9084;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_TourianStatueUnlockParticleWaterSplash_0:
     dw $0001,$01FC                                                       ;8D9086;
@@ -2638,6 +2656,7 @@ EnemyProjSpritemaps_TourianStatuePhantoon:
     db $DC                                                               ;8D9265;
     dw $2549                                                             ;8D9266;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8D9268:
     dw $0001,$81F9                                                       ;8D9268;
     db $F9                                                               ;8D926C;
@@ -2742,6 +2761,7 @@ UNUSED_EnemyProjSpritemaps_12_8D92FA:
     dw $632A,$8009                                                       ;8D92FF;
     db $F0                                                               ;8D9303;
     dw $232A                                                             ;8D9304;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_PuromiBody_0:
     dw $0001,$81F9                                                       ;8D9306;
@@ -2783,8 +2803,10 @@ EnemyProjSpritemaps_PuromiBody_7:
     db $F8                                                               ;8D933B;
     dw $E322                                                             ;8D933C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_8D933E:
     dw $0000                                                             ;8D933E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_LavaquakeRocks:
     dw $0001,$01FC                                                       ;8D9340;
@@ -3284,6 +3306,7 @@ EnemyProjSpritemaps_MotherBrainExplodedEscapeDoorParticles_7:
     db $F8                                                               ;8D96D0;
     dw $330A                                                             ;8D96D1;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8D96D3:
     dw $0001,$01FC                                                       ;8D96D3;
     db $FC                                                               ;8D96D7;
@@ -3323,6 +3346,7 @@ UNUSED_EnemyProjSpritemaps_7_8D9704:
     dw $0001,$01FC                                                       ;8D9704;
     db $FC                                                               ;8D9708;
     dw $331F                                                             ;8D9709;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_TimeBombSetJapanSet:
     dw $000C,$0008                                                       ;8D970B;
@@ -4275,6 +4299,7 @@ EnemyProjSpritemaps_NoobTubeCrack_5:
     db $D0                                                               ;8D9E26;
     dw $3300                                                             ;8D9E27;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_8D9E29:
     dw $000E,$C200                                                       ;8D9E29;
     db $EF                                                               ;8D9E2D;
@@ -4305,6 +4330,7 @@ UNUSED_EnemyProjSpritemaps_8D9E29:
     dw $3367,$C3D9                                                       ;8D9E6A;
     db $F9                                                               ;8D9E6E;
     dw $3365                                                             ;8D9E6F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_NoobTubeCrack_6:
     dw $000E,$C20C                                                       ;8D9E71;
@@ -5397,10 +5423,12 @@ EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_3:
     db $10                                                               ;8DA7F2;
     dw $3A9C                                                             ;8DA7F3;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_8DA7F5:
     dw $C3F8                                                             ;8DA7F5;
     db $C0                                                               ;8DA7F7;
     dw $3A9C                                                             ;8DA7F8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_4:
     dw $0007,$01FD                                                       ;8DA7FA;
@@ -5592,6 +5620,7 @@ UNUSED_EnemyProjSpritemaps_StokeProjectile_1_8DA955:
     db $FC                                                               ;8DA959;
     dw $311D                                                             ;8DA95A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8DA95C:
     dw $0001,$C3F8                                                       ;8DA95C;
     db $F8                                                               ;8DA960;
@@ -5631,6 +5660,7 @@ UNUSED_EnemyProjSpritemaps_7_8DA98D:
     dw $0001,$01FC                                                       ;8DA98D;
     db $FC                                                               ;8DA991;
     dw $312E                                                             ;8DA992;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_SporeSpawnsStalk:
     dw $0001,$81F8                                                       ;8DA994;
@@ -5667,6 +5697,7 @@ EnemyProjSpritemaps_Spores_2:
     db $FC                                                               ;8DA9C2;
     dw $2F2E                                                             ;8DA9C3;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8DA9C5:
     dw $0018,$8000                                                       ;8DA9C5;
     db $26                                                               ;8DA9C9;
@@ -5768,6 +5799,7 @@ UNUSED_EnemyProjSpritemaps_1_8DA93F:
     dw $2102,$81D0                                                       ;8DAAB2;
     db $C8                                                               ;8DAAB6;
     dw $2100                                                             ;8DAAB7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_Namihe_Fune_Fireball_0:
     dw $0001,$81F8                                                       ;8DAAB9;
@@ -5799,6 +5831,7 @@ EnemyProjSpritemaps_Namihe_Fune_Fireball_5:
     db $F8                                                               ;8DAAE0;
     dw $610E                                                             ;8DAAE1;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8DAAE3:
     dw $0004,$01F8                                                       ;8DAAE3;
     db $00                                                               ;8DAAE7;
@@ -5820,6 +5853,7 @@ UNUSED_EnemyProjSpritemaps_1_8DAAF9:
     dw $212D,$01F8                                                       ;8DAB08;
     db $F8                                                               ;8DAB0C;
     dw $212C                                                             ;8DAB0D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_MagdolliteFlame_0:
     dw $0004,$0000                                                       ;8DAB0F;
@@ -6621,6 +6655,7 @@ EnemyProjSpritemaps_DustCloud_Explosion_3D:
     db $F0                                                               ;8DB103;
     dw $3A74                                                             ;8DB104;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_8DB106:
     dw $0004,$01F8                                                       ;8DB106;
     db $00                                                               ;8DB10A;
@@ -6631,6 +6666,7 @@ UNUSED_EnemyProjSpritemaps_8DB106:
     dw $3A5E,$01F8                                                       ;8DB115;
     db $F8                                                               ;8DB119;
     dw $3A5E                                                             ;8DB11A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_DustCloud_Explosion_3E:
     dw $0001,$01FC                                                       ;8DB11C;
@@ -6667,10 +6703,12 @@ EnemyProjSpritemaps_DustCloud_Explosion_44:
     db $FC                                                               ;8DB14A;
     dw $3A7B                                                             ;8DB14B;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_8DB14D:
     dw $0001,$01FC                                                       ;8DB14D;
     db $FC                                                               ;8DB151;
     dw $3A5F                                                             ;8DB152;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_DustCloud_Explosion_45:
     dw $0001,$01FC                                                       ;8DB154;
@@ -6748,6 +6786,7 @@ EnemyProjSpritemaps_CeresElevatorPad_DustCloud_Explosion_1:
     db $FC                                                               ;8DB1E3;
     dw $3A6D                                                             ;8DB1E4;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_8DB1E6:
     dw $0004,$01F0                                                       ;8DB1E6;
     db $FE                                                               ;8DB1EA;
@@ -6758,6 +6797,7 @@ UNUSED_EnemyProjSpritemaps_8DB1E6:
     dw $3A6F,$01F8                                                       ;8DB1F5;
     db $FE                                                               ;8DB1F9;
     dw $3A6F                                                             ;8DB1FA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_DustCloud_Explosion_4B:
     dw $0001,$81F8                                                       ;8DB1FC;
@@ -6839,6 +6879,7 @@ EnemyProjSpritemaps_Common_Smoke_3:
     db $F0                                                               ;8DB269;
     dw $3A9E                                                             ;8DB26A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8DB26C:
     dw $0001,$01FC                                                       ;8DB26C;
     db $FC                                                               ;8DB270;
@@ -6848,6 +6889,7 @@ UNUSED_EnemyProjSpritemaps_1_8DB273:
     dw $0001,$01FC                                                       ;8DB273;
     db $FC                                                               ;8DB277;
     dw $3A43                                                             ;8DB278;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_MotherBrainsTurretBullets:
     dw $0001,$01FC                                                       ;8DB27A;
@@ -6932,6 +6974,7 @@ EnemyProjSpritemaps_DustCloud_Explosion_62:
     db $FC                                                               ;8DB2FF;
     dw $3A4F                                                             ;8DB300;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8DB302:
     dw $0002,$01FF                                                       ;8DB302;
     db $FC                                                               ;8DB306;
@@ -7059,6 +7102,7 @@ UNUSED_EnemyProjSpritemaps_F_8DB3D9:
     dw $BA67,$01FA                                                       ;8DB3E3;
     db $02                                                               ;8DB3E7;
     dw $BA66                                                             ;8DB3E8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_DustCloud_Explosion_63:
     dw $0001,$01FC                                                       ;8DB3EA;
@@ -7075,10 +7119,12 @@ EnemyProjSpritemaps_DustCloud_Explosion_65:
     db $FC                                                               ;8DB3FC;
     dw $3A3E                                                             ;8DB3FD;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_8DB3FF:
     dw $0001,$01FC                                                       ;8DB3FF;
     db $FC                                                               ;8DB403;
     dw $3A3F                                                             ;8DB404;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_Common_BigExplosion_0:
     dw $0004,$0000                                                       ;8DB406;
@@ -7418,6 +7464,7 @@ EnemyProjSpritemaps_BotwoonsBody_B:
     db $F8                                                               ;8DB67F;
     dw $2166                                                             ;8DB680;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemap_BotwoonsBody_DownFacingLeft_8DB682:
     dw $0001,$81F8                                                       ;8DB682;
     db $F8                                                               ;8DB686;
@@ -7437,6 +7484,7 @@ UNUSED_EnemyProjSpritemap_BotwoonsBody_DownFacingLeft_8DB697:
     dw $0001,$81F8                                                       ;8DB697;
     db $F8                                                               ;8DB69B;
     dw $216E                                                             ;8DB69C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_BotwoonsBody_C:
     dw $0001,$81F8                                                       ;8DB69E;
@@ -7578,6 +7626,7 @@ EnemyProjSpritemaps_BotwoonsBody_27:
     db $F8                                                               ;8DB75F;
     dw $61A2                                                             ;8DB760;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_0_8DB762:
     dw $0001,$81F8                                                       ;8DB762;
     db $F8                                                               ;8DB766;
@@ -7817,6 +7866,7 @@ UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2F_8DB8AB:
     dw $0001,$81F8                                                       ;8DB8AB;
     db $F8                                                               ;8DB8AF;
     dw $41A2                                                             ;8DB8B0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_BotwoonsBody_28:
     dw $0000                                                             ;8DB8B2;
@@ -7856,6 +7906,7 @@ EnemyProjSpritemaps_YappingMawsBody_1:
     db $F8                                                               ;8DB8E2;
     dw $A10A                                                             ;8DB8E3;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_0_8DB8E5:
     dw $0003,$81F0                                                       ;8DB8E5;
     db $00                                                               ;8DB8E9;
@@ -8538,6 +8589,7 @@ UNUSED_EnemyProjSpritemaps_38_8DBDEE:
     dw $BA5D,$0000                                                       ;8DBDF8;
     db $02                                                               ;8DBDFC;
     dw $BA5D                                                             ;8DBDFD;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_EnemyDeathExplosion_0:
     dw $0001,$01FC                                                       ;8DBDFF;
@@ -8599,6 +8651,7 @@ EnemyProjSpritemaps_EnemyDeathExplosion_5:
     db $F0                                                               ;8DBE71;
     dw $3A96                                                             ;8DBE72;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8DBE74:
     dw $0004,$0000                                                       ;8DBE74;
     db $00                                                               ;8DBE78;
@@ -8684,6 +8737,7 @@ UNUSED_EnemyProjSpritemaps_9_8DBF0D:
     dw $0001,$01FC                                                       ;8DBF0D;
     db $FC                                                               ;8DBF11;
     dw $3C3B                                                             ;8DBF12;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_0:
     dw $0001,$01FC                                                       ;8DBF14;
@@ -8705,6 +8759,7 @@ EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_3:
     db $FC                                                               ;8DBF2D;
     dw $307B                                                             ;8DBF2E;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8DBF30:
     dw $0001,$01FC                                                       ;8DBF30;
     db $FC                                                               ;8DBF34;
@@ -8891,6 +8946,7 @@ UNUSED_EnemyProjSpritemaps_1C_8DC05D:
     dw $0001,$01FC                                                       ;8DC05D;
     db $FC                                                               ;8DC061;
     dw $3A40                                                             ;8DC062;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_4:
     dw $0001,$01FC                                                       ;8DC064;
@@ -8950,6 +9006,7 @@ EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_B:
     db $FC                                                               ;8DC0C6;
     dw $3A42                                                             ;8DC0C7;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_Pickup_Bombs_0_8DC0C9:
     dw $0001,$01FC                                                       ;8DC0C9;
     db $FC                                                               ;8DC0CD;
@@ -8985,6 +9042,7 @@ UNUSED_EnemyProjSpritemaps_1_8DC0F1:
     dw $3A58,$01FA                                                       ;8DC0FB;
     db $FD                                                               ;8DC0FF;
     dw $3A57                                                             ;8DC100;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_C:
     dw $0002,$01FD                                                       ;8DC102;
@@ -9000,6 +9058,7 @@ EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_D:
     db $FF                                                               ;8DC117;
     dw $305A                                                             ;8DC118;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8DC11A:
     dw $0003,$01FE                                                       ;8DC11A;
     db $F5                                                               ;8DC11E;
@@ -9056,6 +9115,7 @@ UNUSED_EnemyProjSpritemaps_6_8DC171:
     dw $3A67,$01FA                                                       ;8DC17B;
     db $F6                                                               ;8DC17F;
     dw $3A66                                                             ;8DC180;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_E:
     dw $0002,$01FC                                                       ;8DC182;
@@ -9071,6 +9131,7 @@ EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_F:
     db $00                                                               ;8DC197;
     dw $306A                                                             ;8DC198;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_0_8DC19A:
     dw $0003,$01F6                                                       ;8DC19A;
     db $FE                                                               ;8DC19E;
@@ -9237,6 +9298,7 @@ UNUSED_EnemyProjSpritemaps_E_8DC2AB:
     dw $7AB8,$C3E8                                                       ;8DC2E2;
     db $E8                                                               ;8DC2E6;
     dw $3AB8                                                             ;8DC2E7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_EnemyDeathExplosion_6:
     dw $0004,$8000                                                       ;8DC2E9;
@@ -9685,6 +9747,7 @@ Instruction_PaletteFXObject_ColorIndex_Plus12:
     RTS                                                                  ;8DC5C5;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PaletteFXObject_ColorIndex_Plus1E_8DC5C6:
     TXA                                                                  ;8DC5C6;
     CLC                                                                  ;8DC5C7;
@@ -9693,6 +9756,7 @@ UNUSED_Instruction_PaletteFXObject_ColorIndex_Plus1E_8DC5C6:
     INY                                                                  ;8DC5CC;
     INY                                                                  ;8DC5CD;
     RTS                                                                  ;8DC5CE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_Delete_8DC5CF:
@@ -9709,14 +9773,17 @@ Instruction_PaletteFXObject_PreInstructionInY:
     RTS                                                                  ;8DC5DC;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Inst_PaletteFXObject_ClearPreInstruction_8DC5DD:
     LDA.W #RTS_8DC5E3                                                    ;8DC5DD;
     STA.W $1EAD,X                                                        ;8DC5E0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RTS_8DC5E3:
     RTS                                                                  ;8DC5E3;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Inst_PaletteFXObject_CallExternalFunctionInY_8DC5E4:
     LDA.W $0000,Y                                                        ;8DC5E4;
     STA.B $12                                                            ;8DC5E7;
@@ -9755,6 +9822,7 @@ UNUSED_Inst_PaletteFXObject_CallExternalFuncInYWithA_8DC5FE:
 
 .externalFunction:
     JML.W [$0012]                                                        ;8DC61B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PaletteFXObject_GotoY:
@@ -9763,6 +9831,7 @@ Instruction_PaletteFXObject_GotoY:
     RTS                                                                  ;8DC622;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PaletteFXObject_GotoYPlusY_8DC623:
     STY.B $12                                                            ;8DC623;
     DEY                                                                  ;8DC625;
@@ -9780,6 +9849,7 @@ UNUSED_Instruction_PaletteFXObject_GotoYPlusY_8DC623:
     ADC.B $12                                                            ;8DC635;
     TAY                                                                  ;8DC637;
     RTS                                                                  ;8DC638;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PaletteFXObject_DecrementTimer_GotoYIfNonZero:
@@ -9790,11 +9860,13 @@ Instruction_PaletteFXObject_DecrementTimer_GotoYIfNonZero:
     RTS                                                                  ;8DC640;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Inst_PaletteFXObject_DecTimer_GotoYIfNonZero_8DC641:
     DEC.W $1EDD,X                                                        ;8DC641;
     BNE UNUSED_Instruction_PaletteFXObject_GotoYPlusY_8DC623             ;8DC644;
     INY                                                                  ;8DC646;
     RTS                                                                  ;8DC647;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PaletteFXObject_TimerInY:
@@ -9818,6 +9890,7 @@ Instruction_PaletteFXObject_ColorIndexInY:
     RTS                                                                  ;8DC65D;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PaletteFXObject_QueueMusicTrackInY_8DC65E:
     LDA.W $0000,Y                                                        ;8DC65E;
     AND.W #$00FF                                                         ;8DC661;
@@ -9831,6 +9904,7 @@ UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib1_Max6_8DC66A:
     JSL.L QueueSound_Lib1_Max6                                           ;8DC66D;
     INY                                                                  ;8DC671;
     RTS                                                                  ;8DC672;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib2_Max6_8DC673:
@@ -9840,19 +9914,23 @@ UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib2_Max6_8DC673:
     RTS                                                                  ;8DC67B;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib3_Max6_8DC67C:
     LDA.W $0000,Y                                                        ;8DC67C;
     JSL.L QueueSound_Lib3_Max6                                           ;8DC67F;
     INY                                                                  ;8DC683;
     RTS                                                                  ;8DC684;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RTS_8DC685:
     RTS                                                                  ;8DC685;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_8DC686:
     dw $1000,$C690,$C595,$C61E,$C686,$0180,$0000,$0000                   ;8DC686;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PaletteFXObject_FadeInSuperMetroidTitleLogo:
     dw Instruction_PaletteFXObject_ColorIndexInY                         ;8DC696;
@@ -10594,6 +10672,7 @@ InstList_PaletteFXObject_HyperBeam_1:
     dw Instruction_PaletteFXObject_GotoY                                 ;8DD9CC;
     dw InstList_PaletteFXObject_HyperBeam_1                              ;8DD9CE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PaletteFXObject_8DD9D0:
     dw Instruction_PaletteFXObject_ColorIndexInY                         ;8DD9D0;
     dw $00A0,$0002,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF                   ;8DD9D2;
@@ -10641,6 +10720,7 @@ UNUSED_InstList_PaletteFXObject_8DD9D0:
     dw $4210                                                             ;8DDB5C;
     dw Instruction_PaletteFXObject_Done                                  ;8DDB5E;
     dw Instruction_Delete_8DC5CF                                         ;8DDB60;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PaletteFXObject_SamusLoading_PowerSuit_0:
     dw Instruction_PaletteFXObject_ColorIndexInY                         ;8DDB62;
@@ -10904,9 +10984,11 @@ PaletteFXObjects_FadeInSuperMetroidTitleLogo:
     dw RTS_8DC685                                                        ;8DE194;
     dw InstList_PaletteFXObject_FadeInSuperMetroidTitleLogo              ;8DE196;
 
+if !FEATURE_KEEP_UNREFERENCED
 PaletteFXObjects_FadeInNintendoBootLogoForUnusedCode:
     dw RTS_8DC685                                                        ;8DE198;
     dw InstList_PaletteFXObject_FadeInNintendoBootLogo                   ;8DE19A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PaletteFXObjects_FadeInNintendoCopyright:
     dw RTS_8DC685                                                        ;8DE19C;
@@ -10988,9 +11070,11 @@ PaletteFXObjects_WidePartOfZebesExplosion_Background:
     dw RTS_8DC685                                                        ;8DE1E8;
     dw InstList_PaletteFXObject_WidePartOfZebesExplosion_Background      ;8DE1EA;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PaletteFXObjects_8DE1EC:
     dw RTS_8DC685                                                        ;8DE1EC;
     dw UNUSED_InstList_PaletteFXObject_8DD9D0                            ;8DE1EE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PaletteFXObjects_HyperBeam:
     dw RTS_8DC685                                                        ;8DE1F0;
@@ -11563,6 +11647,7 @@ InstList_PaletteFXObject_WreckedShip1_1:
     dw Instruction_PaletteFXObject_GotoY                                 ;8DEB26;
     dw InstList_PaletteFXObject_WreckedShip1_1                           ;8DEB28;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PreInstruction_PaletteFXObject_WaitUntilAreBossIsDead:
     LDA.W #$0001                                                         ;8DEB2A;
     JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA                   ;8DEB2D;
@@ -11573,6 +11658,7 @@ UNUSED_PreInstruction_PaletteFXObject_WaitUntilAreBossIsDead:
 
 .return:
     RTS                                                                  ;8DEB3A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 InstList_PaletteFXObject_Crateria1_0:
@@ -11649,6 +11735,7 @@ PreInst_PaletteFXObject_RestartCrateria1IfSamusIsntLowEnough:
     RTS                                                                  ;8DEC6D;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PaletteFXObject_DarkLightning_0_8DEC6E:
     dw Instruction_PaletteFXObject_PreInstructionInY                     ;8DEC6E;
     dw UNUSED_PreInst_PalFXObj_RestartDarkLightningIfSamus_8DED84        ;8DEC70;
@@ -11710,6 +11797,7 @@ UNUSED_PreInst_PalFXObj_RestartDarkLightningIfSamus_8DED84:
 
 .return:
     RTS                                                                  ;8DED98;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 InstList_PaletteFXObject_Brinstar1_0:
@@ -12416,9 +12504,11 @@ PaletteFXObjects_Crateria1_Lightning:
     dw RTS_8DC685                                                        ;8DF765;
     dw InstList_PaletteFXObject_Crateria1_0                              ;8DF767;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PaletteFXObjects_DarkLightning_8DF769:
     dw RTS_8DC685                                                        ;8DF769;
     dw UNUSED_InstList_PaletteFXObject_DarkLightning_0_8DEC6E            ;8DF76B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PaletteFXObjects_WreckedShip1_GreenLights:
     dw RTS_8DC685                                                        ;8DF76D;

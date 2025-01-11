@@ -1389,12 +1389,14 @@ GameState_27_EndingAndCredits:
     RTS                                                                  ;828B17;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_IncrementGameState_828B18:
     PHP                                                                  ;828B18;
     REP #$30                                                             ;828B19;
     INC.W $0998                                                          ;828B1B;
     PLP                                                                  ;828B1E;
     RTS                                                                  ;828B1F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 GameState_7_MainGameplayFadingIn:
@@ -4250,6 +4252,7 @@ Clear_PauseMenu_Data:
     RTS                                                                  ;82A3D8;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Change_Pose_Due_to_Equipment_Change:
     PHP                                                                  ;82A3D9;
     REP #$30                                                             ;82A3DA;
@@ -4261,6 +4264,7 @@ UNUSED_Change_Pose_Due_to_Equipment_Change:
     JSL.L LoadSamusSuitPalette                                           ;82A3E7;
     PLP                                                                  ;82A3EB;
     RTS                                                                  ;82A3EC;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 .pointers:
@@ -4938,9 +4942,11 @@ Update_PauseMenu_L_R_Start_VRAMTilemap:
     RTS                                                                  ;82A87C;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Draw_PauseScreen_SpriteAnimation_long:
     JSR.W Draw_PauseScreen_SpriteAnimation                               ;82A87D;
     RTL                                                                  ;82A880;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Draw_PauseScreen_SpriteAnimation:
@@ -6604,6 +6610,7 @@ EquipmentScreen_Main_ButtonResponse:
     RTS                                                                  ;82B5E7;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ConvertAToThreeDecimalDigits:
     PHP                                                                  ;82B5E8;
     REP #$30                                                             ;82B5E9;
@@ -6650,6 +6657,7 @@ UNUSED_ConvertAToThreeDecimalDigits:
 .return:
     PLP                                                                  ;82B629;
     RTS                                                                  ;82B62A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Draw_PauseMenu_during_FadeIn:
@@ -6677,6 +6685,7 @@ Draw_PauseMenu_during_FadeIn:
     RTL                                                                  ;82B64F;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_82B650:
     PHP                                                                  ;82B650;
     PHB                                                                  ;82B651;
@@ -6698,6 +6707,7 @@ UNUSED_82B650:
     PLB                                                                  ;82B66F;
     PLP                                                                  ;82B670;
     RTL                                                                  ;82B671;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Draw_Map_Icons:
@@ -7108,8 +7118,10 @@ Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction:
     RTL                                                                  ;82B931;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_REP30_82B932:
     REP #$30                                                             ;82B932;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Handle_MapScrollArrows:
     PHP                                                                  ;82B934;
@@ -7630,6 +7642,7 @@ Queue_Samus_Movement_SoundEffects:
     RTL                                                                  ;82BE59;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_82BE5A:
     REP #$30                                                             ;82BE5A;
     LDA.W $079F                                                          ;82BE5C;
@@ -7735,6 +7748,7 @@ UNUSED_82BEA3:
 
 .crash:
     BRA .crash                                                           ;82BF02;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ReserveTank_TransferEnergyPerFrame:
@@ -7797,8 +7811,10 @@ EquipmentScreenTilemaps:
 ; oSPRING BALL
     dw $08FF,$0910,$0911,$0912,$0913,$0914,$0915,$0916,$08D4             ;82BFAC;
 
+if !FEATURE_KEEP_UNREFERENCED
   .UNUSED
     dw $0000                                                             ;82BFBE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
   .screwAttack
 ; oSCREW ATTACK
@@ -8564,8 +8580,10 @@ Dummy_Samus_Wireframe_Tilemap:
 AreaSelect_SpritemapBaseIndex:
     dw $0038                                                             ;82C749;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DPadIcon_SpritemapIndex:
     dw $0044                                                             ;82C74B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Map_Elevator_Destinations:
     dw SpritemapIndices_crateria                                         ;82C74D;
@@ -11332,6 +11350,7 @@ DoorTransitionFunction_WaitForMusicQueueClear_and_LoadMusic:
     RTS                                                                  ;82E674;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DoorTransitionFunction:
     JSL.L HandleMusicQueue                                               ;82E675;
     JSL.L Determine_Which_Enemies_to_Process                             ;82E679;
@@ -11349,6 +11368,7 @@ UNUSED_DoorTransitionFunction:
 
 .return:
     RTS                                                                  ;82E6A1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
@@ -13294,6 +13314,7 @@ PreInstruction_BorderAround_SPECIAL_SETTING_MODE:
     RTS                                                                  ;82F403;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PreInstruction_82F404:
     LDA.W $0DE2                                                          ;82F404;
     CMP.W #$0001                                                         ;82F407;
@@ -13305,6 +13326,7 @@ UNUSED_PreInstruction_82F404:
 
 .return:
     RTS                                                                  ;82F418;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_FileSelectMenu_SamusHelmet:
@@ -13400,10 +13422,12 @@ GameOptionsMenu_Objects_MenuSelectionMissile_preInstruction:
 GameOptionsMenu_Objects_MenuSelectionMissile_instructionList:
     dw InstList_GameOptionsMenu_MenuSelectionMissile                     ;82F4BC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_GameOptionsMenu_Objects_FileSelectMenuSamusHelmet_82F4BE:
     dw Setup_FileSelectMenu_SamusHelmet                                  ;82F4BE;
     dw PreInstruction_FileSelectMenu_SamusHelmet                         ;82F4C0;
     dw InstList_GameOptionsMenu_FileSelectMenu_SamusHelmet               ;82F4C2;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 GameOptionsMenu_Objects_OPTION_MODE_Border:
     dw Setup_BorderAround_OPTION_MODE                                    ;82F4C4;

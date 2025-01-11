@@ -169,6 +169,7 @@ Instruction_CommonA8_CallFunctionInY_WithA:
     RTL                                                                  ;A880B4;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA8_CallExternalFunctionInY_A880B5:
     LDA.W $0000,Y                                                        ;A880B5;
     STA.B $12                                                            ;A880B8;
@@ -209,6 +210,7 @@ UNUSED_Inst_CommonA8_CallExternalFunctionInY_WithA_A880CE:
 
 .externalFunction:
     JML.W [$0012]                                                        ;A880EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_CommonA8_GotoY:
@@ -1173,6 +1175,7 @@ Spritemap_Evir_5:
     db $08                                                               ;A88C70;
     dw $2125                                                             ;A88C71;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Evir_A88C73:
     dw $0009,$81FE                                                       ;A88C73;
     db $FB                                                               ;A88C77;
@@ -1193,6 +1196,7 @@ UNUSED_Spritemap_Evir_A88C73:
     dw $2126,$01FE                                                       ;A88C9B;
     db $08                                                               ;A88C9F;
     dw $2125                                                             ;A88CA0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Evir_6:
     dw $0005,$0000                                                       ;A88CA2;
@@ -1257,6 +1261,7 @@ Spritemap_Evir_A:
     db $FC                                                               ;A88D21;
     dw $2124                                                             ;A88D22;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Evir_A88D24:
     dw $0006,$01FE                                                       ;A88D24;
     db $F4                                                               ;A88D28;
@@ -1286,6 +1291,7 @@ UNUSED_Spritemap_Evir_A88D44:
     dw $2121,$01FA                                                       ;A88D5D;
     db $FC                                                               ;A88D61;
     dw $2120                                                             ;A88D62;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Evir_B:
     dw $0004,$0000                                                       ;A88D64;
@@ -1429,6 +1435,7 @@ Spritemap_Evir_12:
     db $08                                                               ;A88E98;
     dw $6125                                                             ;A88E99;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Evir_A88E9B:
     dw $0009,$81F2                                                       ;A88E9B;
     db $FB                                                               ;A88E9F;
@@ -1449,6 +1456,7 @@ UNUSED_Spritemap_Evir_A88E9B:
     dw $6126,$01FA                                                       ;A88EC3;
     db $08                                                               ;A88EC7;
     dw $6125                                                             ;A88EC8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Evir_13:
     dw $0005,$01F8                                                       ;A88ECA;
@@ -1513,6 +1521,7 @@ Spritemap_Evir_17:
     db $F4                                                               ;A88F49;
     dw $6124                                                             ;A88F4A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Evir_A88F4C:
     dw $0006,$01FA                                                       ;A88F4C;
     db $F4                                                               ;A88F50;
@@ -1542,6 +1551,7 @@ UNUSED_Spritemap_Evir_A88F6C:
     dw $6121,$01FE                                                       ;A88F85;
     db $FC                                                               ;A88F89;
     dw $6120                                                             ;A88F8A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_Eye:
     dw $3800,$72B2,$71C7,$2461,$1840,$7A8E,$660B,$4D03                   ;A88F8C;
@@ -2890,6 +2900,7 @@ Palette_Coven:
     dw $3800,$57FF,$42F7,$0929,$00A5,$4F5A,$36B5,$2610                   ;A899AC;
     dw $1DCE,$01DF,$001F,$0018,$000A,$06B9,$00EA,$0045                   ;A899BC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Coven_BlackPalettes_A899CC:
     dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A899CC;
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A899DC;
@@ -2903,6 +2914,7 @@ UNUSED_Coven_BlackPalettes_A899CC:
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A89A5C;
     dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A89A6C;
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A89A7C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Coven:
     dw $0010                                                             ;A89A8C;
@@ -3746,11 +3758,13 @@ YappingMawSamusOffsets_X_UpRight:
 YappingMawSamusOffsets_Y_UpRight:
     dw $FFF8                                                             ;A8A0AD;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_YappingMawSamusOffsets_X_Right_A8A0AF:
     dw $0010                                                             ;A8A0AF;
 
 UNUSED_YappingMawSamusOffsets_Y_Right_A8A0B1:
     dw $0000                                                             ;A8A0B1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 YappingMawSamusOffsets_X_DownRight:
     dw $0008                                                             ;A8A0B3;
@@ -3770,11 +3784,13 @@ YappingMawSamusOffsets_X_DownLeft:
 YappingMawSamusOffsets_Y_DownLeft:
     dw $0008                                                             ;A8A0BD;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_YappingMawSamusOffsets_X_Left_A8A0BF:
     dw $FFF0                                                             ;A8A0BF;
 
 UNUSED_YappingMawSamusOffsets_Y_Left_A8A0C1:
     dw $0000                                                             ;A8A0C1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 YappingMawSamusOffsets_X_UpLeft:
     dw $FFF8                                                             ;A8A0C3;
@@ -5482,6 +5498,7 @@ Instruction_Magdollite_ShiftLeft8Pixels_Up4Pixels_Left_dup:
     RTL                                                                  ;A8AF31;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Magdollite_RestoreXYPositions_A8AF32:
     LDX.W $0E54                                                          ;A8AF32;
     LDA.L $7E7824,X                                                      ;A8AF35;
@@ -5489,6 +5506,7 @@ UNUSED_Magdollite_RestoreXYPositions_A8AF32:
     LDA.L $7E7826,X                                                      ;A8AF3C;
     STA.W $0F7E,X                                                        ;A8AF40;
     RTL                                                                  ;A8AF43;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_Magdollite_SetCooldownTimerTo100:
@@ -6186,10 +6204,12 @@ Spritemap_Magdollite_FacingLeft_WidePillarSection:
     db $F8                                                               ;A8B4C5;
     dw $210E                                                             ;A8B4C6;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Magdollite_Blank_A8B4C8:
     dw $0001,$81F8                                                       ;A8B4C8;
     db $F8                                                               ;A8B4CC;
     dw $210C                                                             ;A8B4CD;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Magdollite_FacingLeft_Head_PokingOutOfLava:
     dw $0003,$0004                                                       ;A8B4CF;
@@ -6268,22 +6288,26 @@ Spritemap_Magdollite_FacingRight_Hand_FingersCurled:
     db $F8                                                               ;A8B55B;
     dw $6100                                                             ;A8B55C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Magdollite_FacingRight_PillarCap_A8B55E:
     dw $0002,$01F8                                                       ;A8B55E;
     db $FC                                                               ;A8B562;
     dw $6125,$0000                                                       ;A8B563;
     db $FC                                                               ;A8B567;
     dw $6124                                                             ;A8B568;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Magdollite_FacingRight_WidePillarSection:
     dw $0001,$81F8                                                       ;A8B56A;
     db $F8                                                               ;A8B56E;
     dw $610E                                                             ;A8B56F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Magdollite_FacingRight_NarrowPillar_A8B571:
     dw $0001,$81F8                                                       ;A8B571;
     db $F8                                                               ;A8B575;
     dw $610C                                                             ;A8B576;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Magdollite_FacingRight_Head_PokingOutOfLava:
     dw $0003,$01F4                                                       ;A8B578;
@@ -6403,9 +6427,11 @@ Palette_Beetom:
     dw $3800,$57FF,$42F7,$158C,$00A5,$4F5A,$36B5,$2610                   ;A8B65E;
     dw $1DCE,$1CDF,$4FE0,$3B20,$2A20,$1097,$6BDF,$042E                   ;A8B66E;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_BeetomEyeColors_A8B67E:
     dw $4FE0,$3B20,$2A20,$3BE0,$2680,$1580,$2740,$11E0                   ;A8B67E;
     dw $00E0,$12A0,$0140,$0040                                           ;A8B68E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Beetom_Crawling_FacingLeft_0:
     dw Instruction_Common_DisableOffScreenProcessing                     ;A8B696;
@@ -6434,6 +6460,7 @@ InstList_Beetom_Hop_FacingLeft:
     dw Spritemap_Beetom_0                                                ;A8B6BC;
     dw Instruction_Common_Sleep                                          ;A8B6BE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Beetom_SmallHop_FacingLeft_A8B6C0:
     dw Instruction_Common_EnableOffScreenProcessing                      ;A8B6C0;
     dw $0004                                                             ;A8B6C2;
@@ -6441,6 +6468,7 @@ UNUSED_InstList_Beetom_SmallHop_FacingLeft_A8B6C0:
     dw $0001                                                             ;A8B6C6;
     dw Spritemap_Beetom_0                                                ;A8B6C8;
     dw Instruction_Common_Sleep                                          ;A8B6CA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Beetom_DrainingSamus_FacingLeft_0:
     dw $0005                                                             ;A8B6CC;
@@ -6492,6 +6520,7 @@ InstList_Beetom_Hop_FacingRight:
     dw Spritemap_Beetom_B                                                ;A8B718;
     dw Instruction_Common_Sleep                                          ;A8B71A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Beetom_SmallHop_FacingRight_A8B71C:
     dw Instruction_Common_EnableOffScreenProcessing                      ;A8B71C;
     dw $0004                                                             ;A8B71E;
@@ -6499,6 +6528,7 @@ UNUSED_InstList_Beetom_SmallHop_FacingRight_A8B71C:
     dw $0001                                                             ;A8B722;
     dw Spritemap_Beetom_B                                                ;A8B724;
     dw Instruction_CommonA8_Sleep                                        ;A8B726;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Beetom_DrainingSamus_FacingRight_0:
     dw $0005                                                             ;A8B728;
@@ -11371,8 +11401,10 @@ InstList_Alcoon_FacingRight_Airborne_LookingForward:
 AlcoonConstants_XThresholdToEmerge:
     dw $0050                                                             ;A8DCC7;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_AlcoonConstants_A8DCC9:
     dw $0040                                                             ;A8DCC9;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 AlcoonConstants_XThresholdToHide:
     dw $0070                                                             ;A8DCCB;
@@ -11773,9 +11805,11 @@ RTL_A8DF9C:
     RTL                                                                  ;A8DF9C;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_NormalEnemyShotAI_A8DF9D:
     JSL.L NormalEnemyShotAI                                              ;A8DF9D;
     RTL                                                                  ;A8DFA1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Spritemap_Alcoon_FacingLeft_FrontFootForward:
@@ -12068,6 +12102,7 @@ Spritemap_Alcoon_FacingRight_LookingUp:
     db $F8                                                               ;A8E211;
     dw $610A                                                             ;A8E212;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Alcoon_FireballProjectile_0_A8E214:
     dw $0001,$01FC                                                       ;A8E214;
     db $FC                                                               ;A8E218;
@@ -12087,11 +12122,13 @@ UNUSED_Spritemap_Alcoon_FireballProjectile_3_A8E229:
     dw $0001,$01FC                                                       ;A8E229;
     db $FC                                                               ;A8E22D;
     dw $212D                                                             ;A8E22E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_Atomic:
     dw $3800,$7FFF,$56E0,$3180,$18C0,$6BC0,$5EC0,$4A20                   ;A8E230;
     dw $35A0,$7FFF,$039C,$0237,$00D1,$03FF,$0237,$00D1                   ;A8E240;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Palettes_Atomic_A8E250:
     dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A8E250;
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A8E260;
@@ -12105,6 +12142,7 @@ UNUSED_Palettes_Atomic_A8E250:
     dw $0011,$7FFF,$039C,$0237,$00D1,$03FF,$0237,$00D1                   ;A8E2E0;
     dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A8E2F0;
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A8E300;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Atomic_SpinningUpRight:
     dw $0008                                                             ;A8E310;
@@ -12307,6 +12345,7 @@ Function_Atomic_MoveRight:
     RTS                                                                  ;A8E480;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Atomic_GetEnemyIndex_A8E481:
     LDX.W $0E54                                                          ;A8E481;
     RTL                                                                  ;A8E484;
@@ -12315,6 +12354,7 @@ UNUSED_Atomic_GetEnemyIndex_A8E481:
 UNUSED_Atomic_GetEnemyIndex_A8E485:
     LDX.W $0E54                                                          ;A8E485;
     RTL                                                                  ;A8E488;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Spritemap_Atomic_0:
@@ -13050,6 +13090,7 @@ InstList_KihunterWings_FacingRight:
     dw Instruction_Common_GotoY                                          ;A8EA6A;
     dw InstList_KihunterWings_FacingRight                                ;A8EA6C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_KihunterWings_Falling_XFlipped_A8EA6E:
     dw $0010                                                             ;A8EA6E;
     dw Spritemap_Kihunter_6                                              ;A8EA70;
@@ -13061,16 +13102,19 @@ UNUSED_InstList_KihunterWings_Falling_XFlipped_A8EA76:
     dw Spritemap_Kihunter_7                                              ;A8EA78;
     dw Instruction_Common_GotoY                                          ;A8EA7A;
     dw UNUSED_InstList_KihunterWings_Falling_XFlipped_A8EA76             ;A8EA7C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_KihunterWings_Falling:
     dw $0001                                                             ;A8EA7E;
     dw Spritemap_Kihunter_E                                              ;A8EA80;
     dw Instruction_Common_Sleep                                          ;A8EA82;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_KihunterWings_Falling_A8EA84:
     dw $0001                                                             ;A8EA84;
     dw Spritemap_Kihunter_F                                              ;A8EA86;
     dw Instruction_Common_Sleep                                          ;A8EA88;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Kihunter_Hop_FacingLeft:
     dw $0008                                                             ;A8EA8A;

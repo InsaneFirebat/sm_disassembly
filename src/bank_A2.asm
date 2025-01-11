@@ -169,6 +169,7 @@ Instruction_CommonA2_CallFunctionInY_WithA:
     RTL                                                                  ;A280B4;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA2_CallExternalFunctionInY_A280B5:
     LDA.W $0000,Y                                                        ;A280B5;
     STA.B $12                                                            ;A280B8;
@@ -209,6 +210,7 @@ UNUSED_Inst_CommonA2_CallExternalFunctionInY_WithA_A280CE:
 
 .externalFunction:
     JML.W [$0012]                                                        ;A280EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_CommonA2_GotoY:
@@ -742,10 +744,12 @@ Spritemap_Boyon_6:
     db $F8                                                               ;A28908;
     dw $210C                                                             ;A28909;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Boyon_A2890B:
     dw $0001,$C3F8                                                       ;A2890B;
     db $F8                                                               ;A2890F;
     dw $210E                                                             ;A28910;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_Stoke:
     dw $3800,$3DB3,$292E,$1486,$1840,$3D92,$38CA,$1C61                   ;A28912;
@@ -1146,6 +1150,7 @@ InstList_BabyTurtle_Spinning:
     dw Instruction_Common_GotoY                                          ;A28BEA;
     dw InstList_BabyTurtle_Spinning                                      ;A28BEC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_A28BEE:
     dw $0010                                                             ;A28BEE;
     dw Spritemap_MamaTurtle_FacingLeft_3                                 ;A28BF0;
@@ -1157,6 +1162,7 @@ UNUSED_InstList_A28BEE:
     dw Spritemap_MamaTurtle_FacingLeft_6                                 ;A28BFC;
     dw Instruction_Common_GotoY                                          ;A28BFE;
     dw UNUSED_InstList_A28BEE                                            ;A28C00;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_MamaTurtle_Spinning:
     dw $0001                                                             ;A28C02;
@@ -1269,6 +1275,7 @@ InstList_BabyTurtle_CrawlingRight:
     dw Spritemap_BabyTurtle_FacingRight_11                               ;A28CC0;
     dw Instruction_BabyTurtle_LoopOrTurnAroundIfMovedTooFar              ;A28CC2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_A28CC4:
     dw $0005                                                             ;A28CC4;
     dw Spritemap_BabyTurtle_FacingRight_12                               ;A28CC6;
@@ -1304,6 +1311,7 @@ UNUSED_InstList_A28CEC:
     dw Spritemap_MamaTurtle_FacingRight_11                               ;A28CFA;
     dw Instruction_CommonA2_GotoY                                        ;A28CFC;
     dw UNUSED_InstList_A28CEC                                            ;A28CFE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_MamaTurtle_FacingRight_EnterShell:
     dw $0001                                                             ;A28D00;
@@ -1949,6 +1957,7 @@ Function_BabyTurtle_Spinning_Unstoppable:
     RTL                                                                  ;A2921C;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_A2921D:
     LDY.W #InstList_BabyTurtle_CrawlingLeft                              ;A2921D;
     LDA.W $0FB0,X                                                        ;A29220;
@@ -1963,6 +1972,7 @@ UNUSED_A2921D:
     LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus                 ;A29232;
     STA.W $0FA8,X                                                        ;A29235;
     RTL                                                                  ;A29238;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Function_BabyTurtle_Spinning_Stoppable:
@@ -2616,6 +2626,7 @@ Spritemap_MamaTurtle_FacingLeft_8:
     db $F0                                                               ;A296FC;
     dw $210C                                                             ;A296FD;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_MamaTurtle_FacingLeft_A296FF:
     dw $000A,$0000                                                       ;A296FF;
     db $08                                                               ;A29703;
@@ -2638,6 +2649,7 @@ UNUSED_Spritemap_MamaTurtle_FacingLeft_A296FF:
     dw $610C,$C3F0                                                       ;A2972C;
     db $EA                                                               ;A29730;
     dw $210C                                                             ;A29731;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_BabyTurtle_FacingRight_B:
     dw $0001,$C3F8                                                       ;A29733;
@@ -2903,6 +2915,7 @@ Spritemap_MamaTurtle_FacingRight_11:
     db $F0                                                               ;A29956;
     dw $610C                                                             ;A29957;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_MamaTurtle_FacingRight_A29959:
     dw $000A,$01F8                                                       ;A29959;
     db $08                                                               ;A2995D;
@@ -2925,6 +2938,7 @@ UNUSED_Spritemap_MamaTurtle_FacingRight_A29959:
     dw $210C,$C200                                                       ;A29986;
     db $EA                                                               ;A2998A;
     dw $610C                                                             ;A2998B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_Puyo:
     dw $3800,$4B9C,$2610,$0CC6,$0C63,$42F7,$2A52,$19AD                   ;A2998D;
@@ -4813,6 +4827,7 @@ RTL_A2A7D7:
     RTL                                                                  ;A2A7D7;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Function_Ship_RiseToYPosition80_Descend:
     LDA.W $0AFA                                                          ;A2A7D8;
     SEC                                                                  ;A2A7DB;
@@ -4837,6 +4852,7 @@ UNUSED_Function_Ship_RiseToYPosition80_Descend:
 
 .return:
     RTL                                                                  ;A2A80B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Function_Ship_LandingOnZebes_Descending:
@@ -5810,12 +5826,14 @@ InstList_Mellow_Mella_Menu:
     dw Instruction_Common_GotoY                                          ;A2B023;
     dw InstList_Mellow_Mella_Menu                                        ;A2B025;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_OldMovementData_A2B027:
     dw $0002,$FFFC,$FFFE,$0004,$0002,$FFFE,$0002,$0004                   ;A2B027;
     dw $0002,$FFFE,$FFFE,$0002,$FFFC,$FFFE,$0002,$0002                   ;A2B037;
     dw $FFFE,$FFFE,$0004,$0002,$FFFC,$FFFE,$0002,$FFFE                   ;A2B047;
     dw $FFFC,$FFFE,$0002,$0002,$FFFE,$0004,$0002,$FFFE                   ;A2B057;
     dw $FFFE,$0002                                                       ;A2B067;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InitAI_Mellow_Mella_Menu:
     LDX.W $0E54                                                          ;A2B06B;
@@ -6174,6 +6192,7 @@ InstList_Multiviola:
     dw Instruction_Common_GotoY                                          ;A2B314;
     dw InstList_Multiviola                                               ;A2B316;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Multiviola_A2B318:
     dw $0002                                                             ;A2B318;
     dw UNUSED_Spritemap_Multiviola_A2B4E2                                ;A2B31A;
@@ -6277,6 +6296,7 @@ UNUSED_InstList_Multiviola_A2B37C:
     dw Spritemap_Common_Nothing                                          ;A2B3DA;
     dw Instruction_Common_GotoY                                          ;A2B3DC;
     dw UNUSED_InstList_Multiviola_A2B37C                                 ;A2B3DE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InitAI_Multiviola:
     LDX.W $0E54                                                          ;A2B3E0;
@@ -6408,6 +6428,7 @@ Spritemap_Multiviola_7:
     db $F8                                                               ;A2B4DF;
     dw $210E                                                             ;A2B4E0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Multiviola_A2B4E2:
     dw $0001,$81F8                                                       ;A2B4E2;
     db $F8                                                               ;A2B4E6;
@@ -6447,6 +6468,7 @@ UNUSED_Spritemap_Multiviola_A2B513:
     dw $0001,$81F8                                                       ;A2B513;
     db $F8                                                               ;A2B517;
     dw $212E                                                             ;A2B518;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Polyp:
     dw $0001                                                             ;A2B51A;
@@ -6883,6 +6905,7 @@ DecrementRinkaCounter:
     RTS                                                                  ;A2B89B;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Rinka_A2B89C:
     LDA.W $0E44                                                          ;A2B89C;
     AND.W #$0003                                                         ;A2B89F;
@@ -6899,6 +6922,7 @@ UNUSED_Rinka_A2B89C:
     ORA.W #$0400                                                         ;A2B8B4;
     STA.W $0F86,X                                                        ;A2B8B7;
     RTS                                                                  ;A2B8BA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 MarkRinkaSpawnPointAvailable:
@@ -7044,6 +7068,7 @@ ContactReaction_Rinka_Common:
     RTL                                                                  ;A2B9A1;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_Rinka_GotoYIfCounterGreaterThan2_A2B9A2:
     LDA.L $7E783C                                                        ;A2B9A2;
     CMP.W #$0003                                                         ;A2B9A6;
@@ -7057,6 +7082,7 @@ UNUSED_Instruction_Rinka_GotoYIfCounterGreaterThan2_A2B9A2:
     LDA.W $0000,Y                                                        ;A2B9AE;
     TAY                                                                  ;A2B9B1;
     RTL                                                                  ;A2B9B2;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_Rinka_SetAsIntangibleAndInvisible:
@@ -7170,6 +7196,7 @@ Palette_Rio:
     dw $3800,$2FFF,$1AF7,$014A,$0063,$275A,$0EB5,$0210                   ;A2BA7B;
     dw $01CE,$03E0,$02E0,$0200,$0100,$7F00,$6DE0,$54E0                   ;A2BA8B;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Rio_Idle_A2BB9B:
     dw $0004                                                             ;A2BA9B;
     dw Spritemap_Rio_0                                                   ;A2BA9D;
@@ -7261,6 +7288,7 @@ UNUSED_InstList_Rio_Swooping_A2BACF:
     dw Spritemap_Rio_7                                                   ;A2BB45;
     dw Instruction_Common_GotoY                                          ;A2BB47;
     dw UNUSED_InstList_Rio_Swooping_A2BACF                               ;A2BB49;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Rio_Idle:
     dw $0004                                                             ;A2BB4B;
@@ -7331,14 +7359,18 @@ InstList_Rio_SwoopCooldown:
 RioConstants_YVelocity:
     dw $0580                                                             ;A2BBBB;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RioConstants_A2BBBD:
     dw $0600                                                             ;A2BBBD;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RioConstants_XVelocity:
     dw $0180                                                             ;A2BBBF;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RioConstants_A2BBC1:
     dw $0200                                                             ;A2BBC1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_Rio_SetAnimationFinishedFlag:
     LDX.W $0E54                                                          ;A2BBC3;
@@ -8144,8 +8176,10 @@ GerutaConstants_swoopYSpeeds:
 GerutaConstants_swoopXSpeed:
     dw $0100                                                             ;A2C1C5;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_GerutaConstants_maybeLeftoverSwoopXSpeed_A2C1C7:
     dw $0100                                                             ;A2C1C7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_Geruta_SetFinishedSwoopStartAnimationFlag:
     LDX.W $0E54                                                          ;A2C1C9;
@@ -8818,20 +8852,26 @@ InstList_Holtz_Flames:
     dw Instruction_Common_GotoY                                          ;A2C6BC;
     dw InstList_Holtz_Flames                                             ;A2C6BE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_HoltzConstants_A2C6C0:
     dw $0000,$0009,$000A,$000B,$000A                                     ;A2C6C0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 HoltzConstants_initialYVelocity:
     dw $0700                                                             ;A2C6CA;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_HoltzConstants_A2C6CC:
     dw $0700                                                             ;A2C6CC;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 HoltzConstants_XSpeed:
     dw $0100                                                             ;A2C6CE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_HoltzConstants_A2C6D0:
     dw $0100                                                             ;A2C6D0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_Holtz_SetAnimationFinishedFlag:
     LDX.W $0E54                                                          ;A2C6D2;
@@ -10025,10 +10065,12 @@ Function_Oum_Rising:
     RTS                                                                  ;A2CFD6;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PlayKetchupBeamSFX_A2CFD7:
     LDA.W #$0063                                                         ;A2CFD7;
     JSL.L QueueSound_Lib2_Max6                                           ;A2CFDA;
     RTS                                                                  ;A2CFDE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 SetOumInstList:
@@ -11343,6 +11385,7 @@ InstList_GRipper_MovingRight:
     dw Instruction_Common_GotoY                                          ;A2E1BF;
     dw InstList_GRipper_MovingRight                                      ;A2E1C1;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_GRipper_FacingLeft_A2E1C3:
     dw $0010                                                             ;A2E1C3;
     dw Spritemap_GRipper_Ripper2_6                                       ;A2E1C5;
@@ -11354,6 +11397,7 @@ UNUSED_InstList_GRipper_FacingRight_A2E1CB:
     dw Spritemap_GRipper_Ripper2_7                                       ;A2E1CD;
     dw Instruction_CommonA2_GotoY                                        ;A2E1CF;
     dw UNUSED_InstList_GRipper_FacingRight_A2E1CB                        ;A2E1D1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InitAI_GRipper:
     LDX.W $0E54                                                          ;A2E1D3;
@@ -11470,16 +11514,19 @@ CheckIfGRipperMovedRightTooFar:
     RTS                                                                  ;A2E29A;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_FrozenAI_GRipper_A2E29B:
     LDX.W $0E54                                                          ;A2E29B;
     JSL.L CommonA2_NormalEnemyFrozenAI                                   ;A2E29E;
     RTL                                                                  ;A2E2A2;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RTL_A2E2A3:
     RTL                                                                  ;A2E2A3;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyShot_A2E2A4:
     JSL.L NormalEnemyShotAI                                              ;A2E2A4;
     LDX.W $0E54                                                          ;A2E2A8;
@@ -11495,6 +11542,7 @@ UNUSED_EnemyShot_A2E2A4:
 
 .return:
     RTL                                                                  ;A2E2BF;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Palette_Ripper2:
@@ -11525,6 +11573,7 @@ InstList_Ripper2_MovingLeft:
     dw Instruction_CommonA2_GotoY                                        ;A2E304;
     dw InstList_Ripper2_MovingLeft                                       ;A2E306;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Ripper2_FacingLeft_A2E308:
     dw $0010                                                             ;A2E308;
     dw Spritemap_GRipper_Ripper2_6                                       ;A2E30A;
@@ -11536,6 +11585,7 @@ UNUSED_InstList_Ripper2_FacingRight_A2E310:
     dw Spritemap_GRipper_Ripper2_7                                       ;A2E312;
     dw Instruction_Common_GotoY                                          ;A2E314;
     dw UNUSED_InstList_Ripper2_FacingRight_A2E310                        ;A2E316;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InitAI_Ripper2:
     LDX.W $0E54                                                          ;A2E318;
@@ -11607,10 +11657,12 @@ MainAI_Ripper2:
     RTL                                                                  ;A2E39F;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_FrozenAI_Ripper2_A2E3A0:
     LDX.W $0E54                                                          ;A2E3A0;
     JSL.L CommonA2_NormalEnemyFrozenAI                                   ;A2E3A3;
     RTL                                                                  ;A2E3A7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RTL_A2E3A8:
@@ -12383,6 +12435,7 @@ InstList_Shutter_GrowthLevel3:
     dw Spritemap_Shutters_40px                                           ;A2E9AC;
     dw Instruction_CommonA2_Sleep                                        ;A2E9AE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Shutter_ShrinkingLoop_A2E9B0:
     dw $0004                                                             ;A2E9B0;
     dw Spritemap_Shutters_40px                                           ;A2E9B2;
@@ -12402,6 +12455,7 @@ UNUSED_InstList_Shutter_ShrinkingLoop_A2E9B0:
     dw UNUSED_Spritemap_Shutters_8px_A2ED38                              ;A2E9CE;
     dw Instruction_Common_GotoY                                          ;A2E9D0;
     dw UNUSED_InstList_Shutter_ShrinkingLoop_A2E9B0                      ;A2E9D2;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_ShutterHorizontal:
     dw $0001                                                             ;A2E9D4;
@@ -12807,33 +12861,39 @@ Function_ShutterGrowing_Growing_Upwards_GrowthLevel3:
     RTS                                                                  ;A2ED32;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Load5_A2ED33:
     LDA.W #$0005                                                         ;A2ED33;
     RTL                                                                  ;A2ED36;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RTL_A2ED37:
     RTL                                                                  ;A2ED37;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Shutters_8px_A2ED38:
     dw $0002,$0000                                                       ;A2ED38;
     db $FC                                                               ;A2ED3C;
     dw $2101,$01F8                                                       ;A2ED3D;
     db $FC                                                               ;A2ED41;
     dw $2100                                                             ;A2ED42;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Shutters_10px:
     dw $0001,$C3F8                                                       ;A2ED44;
     db $F8                                                               ;A2ED48;
     dw $2100                                                             ;A2ED49;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Shutters_18px_A2ED4B:
     dw $0002,$C3F8                                                       ;A2ED4B;
     db $FC                                                               ;A2ED4F;
     dw $2100,$C3F8                                                       ;A2ED50;
     db $F4                                                               ;A2ED54;
     dw $2100                                                             ;A2ED55;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Shutters_20px:
     dw $0002,$C3F8                                                       ;A2ED57;
@@ -12842,6 +12902,7 @@ Spritemap_Shutters_20px:
     db $F0                                                               ;A2ED60;
     dw $2100                                                             ;A2ED61;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Shutters_28px_A2ED63:
     dw $0003,$C3F8                                                       ;A2ED63;
     db $F8                                                               ;A2ED67;
@@ -12850,6 +12911,7 @@ UNUSED_Spritemap_Shutters_28px_A2ED63:
     dw $2100,$C3F8                                                       ;A2ED6D;
     db $EC                                                               ;A2ED71;
     dw $2100                                                             ;A2ED72;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Shutters_30px:
     dw $0003,$C3F8                                                       ;A2ED74;
@@ -12860,6 +12922,7 @@ Spritemap_Shutters_30px:
     db $E8                                                               ;A2ED82;
     dw $2100                                                             ;A2ED83;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Shutters_38px_A2ED85:
     dw $0004,$C3F8                                                       ;A2ED85;
     db $0C                                                               ;A2ED89;
@@ -12870,6 +12933,7 @@ UNUSED_Spritemap_Shutters_38px_A2ED85:
     dw $2100,$C3F8                                                       ;A2ED94;
     db $E4                                                               ;A2ED98;
     dw $2100                                                             ;A2ED99;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Shutters_40px:
     dw $0004,$C3F8                                                       ;A2ED9B;

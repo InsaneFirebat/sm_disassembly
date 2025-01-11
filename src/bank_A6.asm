@@ -169,6 +169,7 @@ Instruction_CommonA6_CallFunctionInY_WithA:
     RTL                                                                  ;A680B4;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA6_CallExternalFunctionInY_A680B5:
     LDA.W $0000,Y                                                        ;A680B5;
     STA.B $12                                                            ;A680B8;
@@ -209,6 +210,7 @@ UNUSED_Inst_CommonA6_CallExternalFunctionInY_WithA_A680CE:
 
 .externalFunction:
     JML.W [$0012]                                                        ;A680EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_CommonA6_GotoY:
@@ -855,6 +857,7 @@ MoveBoulderHorizontally:
     RTS                                                                  ;A68A1C;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MoveBoulderHorizontallyWithLinearSpeedTable_A68A1D:
     LDX.W $0E54                                                          ;A68A1D;
     LDA.W $0F7C,X                                                        ;A68A20;
@@ -869,6 +872,7 @@ UNUSED_MoveBoulderHorizontallyWithLinearSpeedTable_A68A1D:
     ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A68A33;
     STA.W $0F7A,X                                                        ;A68A36;
     RTS                                                                  ;A68A39;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 MoveBoulderVertically:
@@ -2928,10 +2932,12 @@ InstList_MiniKraid_FireSpit_FacingLeft:
     dw Instruction_Common_GotoY                                          ;A699F0;
     dw InstList_MiniKraid_ChooseAction                                   ;A699F2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_MiniKraid_Standing_FacingLeft_A699F4:
     dw $7FFF                                                             ;A699F4;
     dw Spritemap_MiniKraid_FiringSpit_FacingLeft_0                       ;A699F6;
     dw Instruction_Common_Sleep                                          ;A699F8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_MiniKraid_ChooseAction_duplicate_again2:
     dw Instruction_MiniKraid_ChooseAction                                ;A699FA;
@@ -2979,10 +2985,12 @@ InstList_MiniKraid_FireSpit_FacingRight:
     dw Instruction_Common_GotoY                                          ;A69A3E;
     dw InstList_MiniKraid_ChooseAction_duplicate_again2                  ;A69A40;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_MiniKraid_Standing_FacingRight_A69A42:
     dw $7FFF                                                             ;A69A42;
     dw Spritemap_MiniKraid_FiringSpit_FacingRight_0                      ;A69A44;
     dw Instruction_Common_Sleep                                          ;A69A46;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 MiniKraidSpitVelocityTable_leftward_X1:
     dw $FE00                                                             ;A69A48;
@@ -3235,6 +3243,7 @@ Instruction_MiniKraid_FireSpitRight:
     BRA FireMiniKraidSpit_Common                                         ;A69C09;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PowerBombReaction_MiniKraid_A69C0B:
     LDX.W $0E54                                                          ;A69C0B;
     LDA.W $0F7A,X                                                        ;A69C0E;
@@ -3243,6 +3252,7 @@ UNUSED_PowerBombReaction_MiniKraid_A69C0B:
     STA.L $7EF436                                                        ;A69C18;
     JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A69C1C;
     BRA Reaction_MiniKraid_Common                                        ;A69C20;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 EnemyTouch_MiniKraid:
@@ -3767,6 +3777,7 @@ Spritemap_MiniKraid_FiringSpit_FacingRight_2:
     db $FF                                                               ;A6A0DD;
     dw $6140                                                             ;A6A0DE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_MiniKraid_A6A0E0:
     dw $0001,$01FD                                                       ;A6A0E0;
     db $FD                                                               ;A6A0E4;
@@ -3781,6 +3792,7 @@ UNUSED_Spritemap_MiniKraid_A6A0EE:
     dw $0001,$01FC                                                       ;A6A0EE;
     db $FC                                                               ;A6A0F2;
     dw $610F                                                             ;A6A0F3;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InitAI_Ridley:
     LDX.W $079F                                                          ;A6A0F5;
@@ -5398,6 +5410,7 @@ MainAI_Ridley:
     RTL                                                                  ;A6B26E;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Ridley_TrySamusGrab_A6B26F:
     LDA.L $7E783C                                                        ;A6B26F;
     ORA.L $7E7836                                                        ;A6B273;
@@ -5413,6 +5426,7 @@ UNUSED_Ridley_TrySamusGrab_A6B26F:
 
 .gotoGrabSamus:
     JMP.W GrabSamus                                                      ;A6B285;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RidleyHurtAIMaxTimer:
@@ -5865,8 +5879,10 @@ Function_Ridley_USwoop_End:
     RTS                                                                  ;A6B5BD;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_A6B5BE:
     dw $FFE0,$0000,$0020                                                 ;A6B5BE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Function_Ridley_ConsiderTailbouncing:
     LDA.W #$000B                                                         ;A6B5C4;
@@ -6669,8 +6685,10 @@ Function_Ridley_DropSamus:
     RTS                                                                  ;A6BC27;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_A6BC28:
     dw $00B0,$0000,$0050                                                 ;A6BC28;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Function_Ridley_FallBackIntoPositionAfterDroppingSamus:
     DEC.W $0FB2                                                          ;A6BC2E;
@@ -7361,6 +7379,7 @@ DrawEmergencyText:
     dw $3986,$398E,$3986,$3993,$3988,$3986,$398F,$3984                   ;A6C164;
     dw $399A                                                             ;A6C174;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CycleColor_A6C176:
     LDX.W #$0016                                                         ;A6C176;
     LDA.L $7E8032                                                        ;A6C179;
@@ -7378,6 +7397,7 @@ UNUSED_CycleColor_A6C176:
   + AND.W #$001F                                                         ;A6C194;
     STA.L $7EC000,X                                                      ;A6C197;
     RTS                                                                  ;A6C19B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CycleEmergencyTextColors:
@@ -7643,6 +7663,7 @@ TypewriterCeresEscapeJapaneseTextTilemapTransfer_VRAM:
     dl TypewriterCeresEscapeJapanTextTilemap_Line1_Row1                  ;A6C3CF;
     dw $52EA,$0000                                                       ;A6C3D2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_TypewriterCeresEscapeJapanTextTilemapTransfer_A6C3D6:
     dw $0018                                                             ;A6C3D6;
     dl TypewriterCeresEscapeJapanTextTilemap_Line0_Row0                  ;A6C3D8;
@@ -7653,6 +7674,7 @@ UNUSED_TypewriterCeresEscapeJapanTextTilemapTransfer_A6C3D6:
     dw $4ACA,$0016                                                       ;A6C3E9;
     dl TypewriterCeresEscapeJapanTextTilemap_Line1_Row1                  ;A6C3ED;
     dw $4AEA,$0000                                                       ;A6C3F0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 TypewriterCeresEscapeJapanTextTilemap_Line0_Row0:
     dw $3DA0,$3DA1,$3DA2,$3DA3,$3DA4,$3DA5,$3DA6,$3DA7                   ;A6C3F4;
@@ -9610,9 +9632,11 @@ UpdateTailPartRAMFromXToY:
     RTS                                                                  ;A6D3D3;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SetAllTailPartsToNotMoving_A6D3D4:
     LDA.W #$0000                                                         ;A6D3D4;
     BRA SetAllTailPartsToMovingOrNotMoving                               ;A6D3D7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 SetAllTailPartsToMoving:
@@ -9659,6 +9683,7 @@ Update_TailRotationDirection_Angle_DistanceFromRidley:
     RTS                                                                  ;A6D430;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CheckIfAllTailPartsAreMoving_A6D431:
     LDA.L $7E2020                                                        ;A6D431;
     AND.L $7E2034                                                        ;A6D435;
@@ -9675,6 +9700,7 @@ UNUSED_CheckIfAllTailPartsAreMoving_A6D431:
 .allPartsMoving:
     SEC                                                                  ;A6D451;
     RTS                                                                  ;A6D452;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 DealSuitAdjustedEnemyDamageToSamus:
@@ -10108,6 +10134,7 @@ CalculateRidleyXSpeed:
 CeresRidleyAccelerationDivisorIndex:
     db $10,$0F,$0E,$0D,$0C,$0B,$0A,$09,$08,$07,$06,$05,$04,$03,$02,$01   ;A6D712;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_A6D722:
     LDA.W #$0200                                                         ;A6D722;
     STA.B $16                                                            ;A6D725;
@@ -10239,6 +10266,7 @@ UNUSED_A6D798:
 
 .returnLower:
     RTS                                                                  ;A6D7FF;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 UpdateRidleysUSwoopSpeedAndAngle:
@@ -10586,8 +10614,10 @@ RidleyRib_AnimationData:
     dw Tiles_RidleysRibsAndClaws_0                                       ;A6DA85;
     dw Tiles_RidleysRibsAndClaws_3                                       ;A6DA87;
 
+if !FEATURE_KEEP_UNREFERENCED
 RidleyRibAnimationDataPointer:
     dw RidleyRib_AnimationData                                           ;A6DA89; Unused?
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 TransferGraphicsForRidleysClawsHoldingSamusOrBabyMetroid:
     LDX.W #RidleyClawGraphicsPointers_released                           ;A6DA8B;
@@ -10881,6 +10911,7 @@ Spritemap_RidleyTail_Small:
     db $F8                                                               ;A6DCA2;
     dw $31E4                                                             ;A6DCA3;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_RidleyTail_Large_A6DCA5:
     dw $0001,$C3F8                                                       ;A6DCA5;
     db $F8                                                               ;A6DCA9;
@@ -10895,6 +10926,7 @@ UNUSED_Spritemap_RidleyTail_Small_A6DCB3:
     dw $0001,$C3F8                                                       ;A6DCB3;
     db $F8                                                               ;A6DCB7;
     dw $71E4                                                             ;A6DCB8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RidleyTailTipSpritemapPointers:
     dw Spritemap_RidleyTailTip_PointingDown                              ;A6DCBA;
@@ -11235,6 +11267,7 @@ RidleyTail_vs_SamusProjectile_CollisionDetection:
     RTS                                                                  ;A6DF07;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ChangeRidleyProjectileDirection_A6DF08:
     LDA.W $0C04,Y                                                        ;A6DF08;
     AND.W #$000F                                                         ;A6DF0B;
@@ -11257,6 +11290,7 @@ UNUSED_ChangeRidleyProjectileDirection_A6DF08:
 .done:
     STA.W $0C04,Y                                                        ;A6DF25;
     RTS                                                                  ;A6DF28;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 EfficientCollisionDetectionForSamusAt_12_14:
@@ -11301,6 +11335,7 @@ RidleyHitbox_vs_Samus_Collision:
     JMP.W RTL_A6DFB6                                                     ;A6DF5D;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RidleyDamagesSamus_A6DF60:
     JSR.W UNUSED_RidleyDamagesSamus_A6DF66                               ;A6DF60;
     JMP.W RTL_A6DFB6                                                     ;A6DF63;
@@ -11323,6 +11358,7 @@ UNUSED_RidleyDamagesSamus_A6DF66:
 .left:
     STY.W $0A54                                                          ;A6DF86;
     RTS                                                                  ;A6DF89;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 EnemyShot_Ridley:
@@ -11404,6 +11440,7 @@ RidleyTail_vs_Samus_Interaction:
     RTS                                                                  ;A6E01A;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileCollision_A6E01B:
     LDX.W $0E54                                                          ;A6E01B;
     LDA.W $0B64                                                          ;A6E01E;
@@ -11457,6 +11494,7 @@ UNUSED_ProjectileCollision_A6E01B:
 
 .return:
     RTS                                                                  ;A6E087;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 KillProjectilesWithRidleyTailTip:
@@ -11488,6 +11526,7 @@ KillProjectilesWithRidleyTailTip:
     RTS                                                                  ;A6E0C1;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_TailProjectileCollision_A6E0C2:
     LDA.L $7E207C                                                        ;A6E0C2;
     STA.B $12                                                            ;A6E0C6;
@@ -11526,6 +11565,7 @@ UNUSED_TailProjectileCollision_A6E0C2:
     JSR.W RidleyTail_vs_SamusProjectile_CollisionDetection               ;A6E120;
     BCS TailProjectileCollision                                          ;A6E123;
     RTS                                                                  ;A6E125;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 TailProjectileCollision:
@@ -11557,9 +11597,11 @@ Palette_CeresRidleyInit:
     dw $0000,$7E20,$6560,$2060,$1000,$7940,$5D00,$4CA0                   ;A6E16F;
     dw $3CA0,$43FF,$0113,$000F,$175C,$0299,$01D6,$57E0                   ;A6E17F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Palette_Ridley_A6E18F:
     dw $0000,$6BF5,$06E1,$0641,$05A1,$5E5F,$183F,$1014                   ;A6E18F;
     dw $080A,$0404,$4F9F,$3ED8,$2E12,$6F70,$7FFF,$5EE0                   ;A6E19F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_RidleyExplosion_0:
     dw $3800,$56BA,$41B2,$1447,$0403,$4E15,$3570,$24CB                   ;A6E1AF;
@@ -11571,8 +11613,10 @@ Palette_NorfairRidleyInit:
     dw $3800,$6B5A,$5652,$28E7,$1863,$62B5,$4A10,$396B                   ;A6E1CF;
     dw $3129,$43FF,$0113,$000F,$175C,$0299,$01D6,$3BE0                   ;A6E1DF;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Palette_Ridley_A6E1EF:
     dw $3800                                                             ;A6E1EF;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_BabyMetroidCutscene_EndOfInstList:
     dw $6BF5,$06E1,$0641,$05A1,$5E5F,$183F,$1014,$080A                   ;A6E1F1;
@@ -11679,6 +11723,7 @@ Instruction_Ridley_GotoY:
     RTL                                                                  ;A6E4ED;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingBaby_A6E4EE:
     LDA.L $7E7836                                                        ;A6E4EE;
     BNE Instruction_Ridley_GotoY                                         ;A6E4F2;
@@ -11693,6 +11738,7 @@ UNUSED_Instruction_RidleyCeres_GotoYIfHoldingBaby_A6E4F8:
     INY                                                                  ;A6E4FE;
     INY                                                                  ;A6E4FF;
     RTL                                                                  ;A6E500;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Inst_RidleyCeres_UpdateSamusPrevPosition_HeldYDisplacement:
@@ -11781,6 +11827,7 @@ UNUSED_InstList_RidleyCeres_FacingRight_Lunging_A6E576:
     dw ExtendedSpritemap_Ridley_FacingRight                              ;A6E59C;
     dw Instruction_Common_Sleep                                          ;A6E59E;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_RidleyCeres_FacingLeft_A6E5A0:
     dw Instruction_Ridley_GotoYIfNotFacingLeft                           ;A6E5A0;
     dw UNUSED_InstList_RidleyCeres_FacingRight_A6E5FE                    ;A6E5A2;
@@ -11894,6 +11941,7 @@ UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E64E:
     dw $0000,$0002                                                       ;A6E650;
     dw ExtendedSpritemap_Ridley_FacingRight                              ;A6E654;
     dw Instruction_Common_Sleep                                          ;A6E656;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_RidleyCeres_FacingLeft_ExtendLegs:
     dw Instruction_Ridley_GotoYIfNotFacingLeft                           ;A6E658;
@@ -12150,6 +12198,7 @@ InstList_Ridley_FacingRight_Fireballing_1:
     dw ExtendedSpritemap_Ridley_FacingRight                              ;A6E824;
     dw Instruction_Common_Sleep                                          ;A6E826;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SpawnUnusedEnemyProjectiles_A6E828:
     LDA.W #$0000                                                         ;A6E828;
     JSL.L UNUSED_SpawnUnusedEnemyProjectile_A6E840                       ;A6E82B;
@@ -12166,6 +12215,7 @@ UNUSED_SpawnUnusedEnemyProjectile_A6E840:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A6E847;
     PLY                                                                  ;A6E84B;
     RTL                                                                  ;A6E84C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_Ridley_CalculateFireballAngleAndXYSpeeds:
@@ -12528,6 +12578,7 @@ Hitbox_Ridley_FacingLeft_Torso:
     dw RidleyHitbox_vs_Samus_Collision                                   ;A6EB71;
     dw EnemyShot_Ridley                                                  ;A6EB73;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitbox_Ridley_FacingLeft_A6EB75:
     dw $0001,$FFF0,$FFEC,$000C,$0015                                     ;A6EB75;
     dw RidleyHitbox_vs_Samus_Collision                                   ;A6EB7F;
@@ -12537,6 +12588,7 @@ UNUSED_Hitbox_Ridley_FacingLeft_A6EB83:
     dw $0001,$FFF0,$FFEC,$000C,$0015                                     ;A6EB83;
     dw RidleyHitbox_vs_Samus_Collision                                   ;A6EB8D;
     dw EnemyShot_Ridley                                                  ;A6EB8F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitbox_Ridley_FacingForward:
     dw $0002,$FFF0,$FFE0,$0010,$0022                                     ;A6EB91;
@@ -12595,6 +12647,7 @@ Hitbox_Ridley_FacingRight_Torso:
     dw RidleyHitbox_vs_Samus_Collision                                   ;A6EC3B;
     dw EnemyShot_Ridley                                                  ;A6EC3D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitbox_Ridley_FacingRight_A6EC3F:
     dw $0001,$FFF3,$FFEA,$000E,$0015                                     ;A6EC3F;
     dw RidleyHitbox_vs_Samus_Collision                                   ;A6EC49;
@@ -12604,6 +12657,7 @@ UNUSED_Hitbox_Ridley_FacingRight_A6EC4D:
     dw $0001,$FFF3,$FFEA,$000E,$0015                                     ;A6EC4D;
     dw RidleyHitbox_vs_Samus_Collision                                   ;A6EC57;
     dw EnemyShot_Ridley                                                  ;A6EC59;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Ridley_FacingLeft_HeadNeck_MouthClosed:
     dw $000C,$01E4                                                       ;A6EC5B;

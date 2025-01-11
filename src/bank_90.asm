@@ -2097,6 +2097,7 @@ Samus_X_Movement:
     RTS                                                                  ;908E74;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusMovement_908E75:
     PHP                                                                  ;908E75;
     REP #$30                                                             ;908E76;
@@ -2126,6 +2127,7 @@ UNUSED_SamusMovement_908E75:
 .return:
     PLP                                                                  ;908EA7;
     RTS                                                                  ;908EA8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 MoveSamus_Horizontally:
@@ -2762,6 +2764,7 @@ Simple_Samus_Y_Movement_duplicate:
     RTS                                                                  ;9092D5;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MoveSamus_9092D6:
     PHP                                                                  ;9092D6;
     REP #$30                                                             ;9092D7;
@@ -2776,6 +2779,7 @@ UNUSED_MoveSamus_9092D6:
     STA.W $0B14                                                          ;9092E4;
     PLP                                                                  ;9092E7;
     RTS                                                                  ;9092E8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RTS_9092E9:
@@ -3164,6 +3168,7 @@ ScrollingFinishedHook_SporeSpawnFight:
     RTS                                                                  ;909594;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CameraXSpeed_0_909595:
     PHP                                                                  ;909595;
     REP #$30                                                             ;909596;
@@ -3171,6 +3176,7 @@ UNUSED_CameraXSpeed_0_909595:
     STZ.W $0DA2                                                          ;90959B;
     PLP                                                                  ;90959E;
     RTS                                                                  ;90959F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Handle_Horizontal_Scrolling:
@@ -4689,8 +4695,10 @@ UNUSED_SamusMovement_7_90A32D:
     RTS                                                                  ;90A334;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_90A335:
     dw $001E                                                             ;90A335;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusMovementHandler_Normal:
     LDA.W $0A78                                                          ;90A337;
@@ -7336,6 +7344,7 @@ SuperMissileLink_HorizontalBlockCollisionDetection:
     RTS                                                                  ;90B4A5;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ClearLinkedSuperMissileIfSuperMissileExplosion_90B4A6:
     PHP                                                                  ;90B4A6;
     REP #$30                                                             ;90B4A7;
@@ -7359,6 +7368,7 @@ UNUSED_ClearLinkedSuperMissileIfSuperMissileExplosion_90B4A6:
 .return:
     PLP                                                                  ;90B4C7;
     RTL                                                                  ;90B4C8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 InstList_BeamTrail_Empty:
@@ -9196,8 +9206,10 @@ ProjectileCooldowns_Uncharged:
 ProjectileCooldowns_Charged:
     db $1E,$1E,$1E,$1E,$1E,$1E,$1E,$1E,$1E,$1E,$1E,$1E,$00,$00,$00,$00   ;90C264;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Padding_90C274:
     db $00,$00,$00,$00,$00,$00                                           ;90C274;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileCooldowns_NonBeamProjectiles:
     db $00,$0A,$14,$28,$00,$10,$00,$00,$00                               ;90C27A;
@@ -11386,6 +11398,7 @@ ProjectilePreInstruction_SpeedEcho:
     RTS                                                                  ;90D524;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_GrappleBeam_90D525:
     LDA.B $8B                                                            ;90D525;
     BIT.W $09B2                                                          ;90D527;
@@ -11447,6 +11460,7 @@ UNUSED_GrappleBeam_90D525:
     STA.W $0CFA                                                          ;90D59A;
     JSL.L UpdateGrappleBeamStartPositionDuringGrappleFire                ;90D59D;
     RTS                                                                  ;90D5A1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CrystalFlash:
@@ -13374,6 +13388,7 @@ Merge:
     RTS                                                                  ;90E359;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_90E35A:
     PHP                                                                  ;90E35A;
     PHB                                                                  ;90E35B;
@@ -13485,6 +13500,7 @@ UNUSED_ClearSamusSpecialFalling_90E400:
     PLB                                                                  ;90E418;
     PLP                                                                  ;90E419;
     RTL                                                                  ;90E41A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 UNUSED_SamusTimerHackHandler_SpecialFalling_90E41B:
@@ -14684,6 +14700,7 @@ SamusDisplayHandler_ShinesparkCrashCircle:
     RTS                                                                  ;90EC02;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusDisplayHandler_DrawSamusEchoes_90EC03:
     JSR.W SamusDrawingHandler_Default                                    ;90EC03;
     LDX.W #$0002                                                         ;90EC06;
@@ -14700,6 +14717,7 @@ UNUSED_SamusDisplayHandler_DrawSamusEchoes_90EC03:
 
 RTS_90EC13:
     RTS                                                                  ;90EC13;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 SamusDisplayHandler_UsingElevator:
@@ -14875,6 +14893,7 @@ RTS_90ED1E:
     RTS                                                                  ;90ED1E;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_WasteTime_90ED1F:
     LDX.W #$00C8                                                         ;90ED1F;
 
@@ -14882,6 +14901,7 @@ UNUSED_WasteTime_90ED1F:
     DEX                                                                  ;90ED22;
     BPL .loop                                                            ;90ED23;
     RTS                                                                  ;90ED25;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 DemoRecorder_DisplaySamusPositionAsAmmoIfMorphed:
@@ -14914,6 +14934,7 @@ DemoRecorder_DisplaySamusPositionAsAmmoIfMorphed:
     db $00,$00,$00,$00,$01,$00,$00,$01,$01,$01,$00,$00,$00,$00,$00,$00   ;90ED50;
     db $00,$01,$01,$01,$00,$00,$00,$00,$00,$00,$00,$00                   ;90ED60;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DisplayInGameTimeAsAmmo_90ED6C:
     LDA.W $09E0                                                          ;90ED6C;
     STA.W $09C6                                                          ;90ED6F;
@@ -14925,6 +14946,7 @@ UNUSED_DisplayInGameTimeAsAmmo_90ED6C:
     STA.W $09CE                                                          ;90ED81;
     STA.W $09D0                                                          ;90ED84;
     RTS                                                                  ;90ED87;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 FootstepGraphics:
@@ -15139,8 +15161,10 @@ UpdateSamusEchoPosition:
     RTS                                                                  ;90EF1B;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PossiblyFootStepGraphicOffsets_90EF1C:
     dw $000C,$0010                                                       ;90EF1C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Unknown_ShinesparkMovementHandler_Unused_90EF20:
     dw $0010                                                             ;90EF20;
@@ -15176,6 +15200,7 @@ PostGrappleCollisionDetection:
     RTL                                                                  ;90EF5D;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_FireUnknownProjectile27_90EF5E:
     LDA.W #RTS_90E90E                                                    ;90EF5E;
     STA.W $0A58                                                          ;90EF61;
@@ -15309,6 +15334,7 @@ UNUSED_SamusMovementHandler_90F072:
 
 .return:
     RTS                                                                  ;90F083;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Run_Samus_Command:
@@ -15967,6 +15993,7 @@ SamusCommand_1F_KillGrappleBeam:
     RTS                                                                  ;90F506;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ResumeSounds_90F507:
     LDA.W $0A1F                                                          ;90F507;
     AND.W #$00FF                                                         ;90F50A;
@@ -15986,6 +16013,7 @@ UNUSED_ResumeSounds_90F507:
 .return:
     CLC                                                                  ;90F52D;
     RTS                                                                  ;90F52E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 DebugCommandHandler:

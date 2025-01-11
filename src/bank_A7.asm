@@ -169,6 +169,7 @@ Instruction_CommonA7_CallFunctionInY_WithA:
     RTL                                                                  ;A780B4;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA7_CallExternalFunctionInY_A780B5:
     LDA.W $0000,Y                                                        ;A780B5;
     STA.B $12                                                            ;A780B8;
@@ -209,6 +210,7 @@ UNUSED_Inst_CommonA7_CallExternalFunctionInY_WithA_A780CE:
 
 .externalFunction:
     JML.W [$0012]                                                        ;A780EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_CommonA7_GotoY:
@@ -423,9 +425,11 @@ Palette_Kraid:
     dw $3800,$559D,$1816,$100D,$4B9F,$3F37,$36D0,$2E69                   ;A78687;
     dw $2608,$1DA6,$1125,$08C5,$0003,$6318,$7FFF,$0000                   ;A78697;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Palette_Kraid_A786A7:
     dw $3800,$559D,$1816,$100D,$4B9F,$3F37,$36D0,$2E69                   ;A786A7;
     dw $2608,$1DA6,$1125,$08C5,$0003,$6318,$7FFF,$0000                   ;A786B7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_KraidRoomBackground:
     dw $0400,$2D6B,$2D6B,$2D6B,$1986,$14C2,$0840,$0400                   ;A786C7;
@@ -746,6 +750,7 @@ InstList_KraidFoot_KraidIsBig_WalkingBackwards_1:
     dw Instruction_Common_GotoY                                          ;A78939;
     dw InstList_KraidFoot_KraidIsBig_WalkingBackwards_0                  ;A7893B;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_KraidFoot_WalkingBackwards_Fast_A7893D:
     dw Instruction_Kraid_NOP_A7B633                                      ;A7893D;
     dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A7893F;
@@ -838,6 +843,7 @@ UNUSED_InstList_KraidFoot_WalkingBackwards_Fast_A7893D:
     dw ExtendedSpritemap_KraidFoot_1                                     ;A789ED;
     dw Instruction_Common_GotoY                                          ;A789EF;
     dw UNUSED_InstList_KraidFoot_WalkingBackwards_Fast_A7893D            ;A789F1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_KraidArm_Normal_0:
     dw $0006                                                             ;A789F3;
@@ -1015,6 +1021,7 @@ InstList_KraidNail:
     dw Instruction_Common_GotoY                                          ;A78B2A;
     dw InstList_KraidNail                                                ;A78B2C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExtendedSpritemap_KraidArm_A78B2E:
     dw $0002,$0000,$0000                                                 ;A78B2E;
     dw Spritemap_KraidArm_General_A                                      ;A78B34;
@@ -1157,6 +1164,7 @@ UNUSED_ExtendedSpritemap_KraidArm_A78C62:
     dw $0001,$0000,$0000                                                 ;A78C62;
     dw Spritemap_KraidArm_General_B                                      ;A78C68;
     dw Hitbox_KraidArm_10                                                ;A78C6A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemap_KraidLint_KraidIsBig:
     dw $0005,$01F4                                                       ;A78C6C;
@@ -1171,6 +1179,7 @@ ExtendedSpritemap_KraidLint_KraidIsBig:
     db $F8                                                               ;A78C84;
     dw $21A9                                                             ;A78C85;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExtendedSpritemap_KraidFoot_A78C87:
     dw $0001,$0000,$0000                                                 ;A78C87;
     dw UNUSED_Spritemap_KraidFoot_A794DA                                 ;A78C8D;
@@ -1212,6 +1221,7 @@ UNUSED_ExtendedSpritemap_KraidFoot_A78CD9:
     dw $0001,$0000,$0000                                                 ;A78CD9;
     dw UNUSED_Spritemap_KraidFoot_A796CB                                 ;A78CDF;
     dw UNUSED_Hitbox_KraidFoot_A79461                                    ;A78CE1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemap_KraidFoot_0:
     dw $0002,$0008,$0028                                                 ;A78CE3;
@@ -1849,10 +1859,12 @@ Hitbox_KraidLint:
     dw EnemyTouch_KraidArm_KraidFoot_Normal                              ;A792BF;
     dw RTL_A794B5                                                        ;A792C1;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitbox_KraidFoot:
     dw $0001,$FFF8,$FFF8,$0007,$0007                                     ;A792C3;
     dw EnemyTouch_KraidArm_KraidFoot_Normal                              ;A792CD;
     dw RTL_A794B5                                                        ;A792CF;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitbox_KraidArm_0:
     dw $0002,$FFF3,$FFF5,$FFFD,$FFFB                                     ;A792D1;
@@ -1984,10 +1996,12 @@ Hitbox_KraidFoot:
     dw EnemyTouch_KraidArm_KraidFoot_Normal                              ;A7945D;
     dw RTL_A794B5                                                        ;A7945F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitbox_KraidFoot_A79461:
     dw $0001,$FFFE,$FFFD,$0002,$0003                                     ;A79461;
     dw EnemyTouch_KraidArm_KraidFoot_Normal                              ;A7946B;
     dw RTL_A794B5                                                        ;A7946D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitbox_KraidArm_Dying_PreparingToLungeForward_0:
     dw $0001,$FFC0,$FFD0,$FFE0,$FFF0                                     ;A7946F;
@@ -2046,6 +2060,7 @@ EnemyShot_KraidArm:
     RTL                                                                  ;A794C3;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_KraidLint_A794C4:
     dw $0004,$0000                                                       ;A794C4;
     db $08                                                               ;A794C8;
@@ -2061,6 +2076,7 @@ UNUSED_Spritemap_KraidFoot_A794DA:
     dw $0001,$81F8                                                       ;A794DA;
     db $F8                                                               ;A794DE;
     dw $21A9                                                             ;A794DF;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_KraidArm_General_0:
     dw $0001,$81F2                                                       ;A794E1;
@@ -2103,12 +2119,14 @@ Spritemap_KraidArm_General_6:
     db $F4                                                               ;A7951E;
     dw $F12A                                                             ;A7951F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_KraidArm_General_A79521:
     dw $0002,$01FC                                                       ;A79521;
     db $F2                                                               ;A79525;
     dw $F139,$01FC                                                       ;A79526;
     db $FA                                                               ;A7952A;
     dw $F138                                                             ;A7952B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_KraidArm_General_7:
     dw $0002,$01FA                                                       ;A7952D;
@@ -2129,6 +2147,7 @@ Spritemap_KraidArm_General_9:
     db $FE                                                               ;A79549;
     dw $313E                                                             ;A7954A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_KraidArm_General_A7954C:
     dw $0001,$81FC                                                       ;A7954C;
     db $FC                                                               ;A79550;
@@ -2152,6 +2171,7 @@ UNUSED_Spritemap_KraidArm_General_A79566:
     dw $F13E,$01FD                                                       ;A7956B;
     db $F2                                                               ;A7956F;
     dw $713E                                                             ;A79570;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_KraidArm_General_A:
     dw $0001,$81F4                                                       ;A79572;
@@ -2308,6 +2328,7 @@ Spritemap_KraidFoot_4:
     db $FC                                                               ;A796C1;
     dw $31D4                                                             ;A796C2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_KraidFoot_A796C4:
     dw $0001,$81F8                                                       ;A796C4;
     db $F8                                                               ;A796C8;
@@ -2317,6 +2338,7 @@ UNUSED_Spritemap_KraidFoot_A796CB:
     dw $0001,$01FC                                                       ;A796CB;
     db $FC                                                               ;A796CF;
     dw $21D2                                                             ;A796D0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Kraid_Roar_0:
     dw $000A                                                             ;A796D2;
@@ -2661,6 +2683,7 @@ Tilemap_KraidHead_3:
     dw $3C70,$3C71,$3D42,$0338,$0338,$0338,$0338,$0338                   ;A7A3A8;
     dw $0338,$0338,$0338,$0338,$0338,$0338,$0338,$0338                   ;A7A3B8;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExtendedSpritemap_KraidArm_A7A3C8:
     dw $0002,$0000,$0000                                                 ;A7A3C8;
     dw Spritemap_KraidArm_RisingSinking_A                                ;A7A3CE;
@@ -2740,6 +2763,7 @@ UNUSED_ExtendedSpritemap_KraidArm_A7A46A:
     dw $0000,$0000                                                       ;A7A474;
     dw Spritemap_KraidArm_RisingSinking_9                                ;A7A478;
     dw Hitbox_KraidArm_A                                                 ;A7A47A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_KraidArm_RisingSinking_0:
     dw $0001,$81F2                                                       ;A7A47C;
@@ -2806,6 +2830,7 @@ Spritemap_KraidArm_RisingSinking_A:
     db $F4                                                               ;A7A4DF;
     dw $212C                                                             ;A7A4E0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExtendedSpritemap_KraidArm_A7A4E2:
     dw $0001,$0000,$0000                                                 ;A7A4E2;
     dw Spritemap_KraidArm_RisingSinking_D                                ;A7A4E8;
@@ -2820,6 +2845,7 @@ UNUSED_ExtendedSpritemap_KraidArm_A7A4F6:
     dw $0001,$0000,$0000                                                 ;A7A4F6;
     dw Spritemap_KraidArm_RisingSinking_B                                ;A7A4FC;
     dw Hitbox_KraidArm_10                                                ;A7A4FE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_KraidArm_RisingSinking_B:
     dw $0003,$81F4                                                       ;A7A500;
@@ -2935,6 +2961,7 @@ Spritemap_KraidLint_Initial:
     db $08                                                               ;A7A5F7;
     dw $11A9                                                             ;A7A5F8;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_KraidLint_A7A5FA:
     dw $0004,$0000                                                       ;A7A5FA;
     db $08                                                               ;A7A5FE;
@@ -2950,6 +2977,7 @@ UNUSED_Spritemap_KraidLint_A7A610:
     dw $0001,$81F8                                                       ;A7A610;
     db $F8                                                               ;A7A614;
     dw $11A9                                                             ;A7A615;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_KraidNail_0:
     dw $0002,$C3F4                                                       ;A7A617;
@@ -3121,17 +3149,21 @@ KraidLint_InitialFunctionTimers_bottom:
 KraidForwardsSpeed:
     dw $0003                                                             ;A7A91C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_KraidConstant_A7A91E:
     dw $0005                                                             ;A7A91E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 KraidBackwardsSpeed:
     dw $0003                                                             ;A7A920;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_KraidBackwardsFastSpeed_A7A922:
     dw $0004                                                             ;A7A922;
 
 UNUSED_KraidConstant_A7A924:
     dw $0110                                                             ;A7A924;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 KraidLint_XSubSpeed:
     dw $8000                                                             ;A7A926;
@@ -3139,8 +3171,10 @@ KraidLint_XSubSpeed:
 KraidLint_XSpeed:
     dw $0003                                                             ;A7A928;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_REP30_A7A92A:
     REP #$30                                                             ;A7A92A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 CheckIfKraidHasDied:
     PHX                                                                  ;A7A92C;
@@ -4327,6 +4361,7 @@ KraidBody_vs_Projectile_CollisionHandling:
     BRA .hit                                                             ;A7B267;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_HandleProjectileDamageAndSound:
     PHX                                                                  ;A7B269;
     PHY                                                                  ;A7B26A;
@@ -4439,6 +4474,7 @@ UNUSED_HandleProjectileDamageAndSound:
     PLY                                                                  ;A7B334;
     PLX                                                                  ;A7B335;
     RTS                                                                  ;A7B336;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 KraidPaletteHandling:
@@ -4679,6 +4715,7 @@ Instruction_Kraid_XPositionPlus3:
     RTL                                                                  ;A7B682;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_Kraid_MoveRight_A7B683:
     PHX                                                                  ;A7B683;
     PHY                                                                  ;A7B684;
@@ -4712,6 +4749,7 @@ UNUSED_Instruction_Kraid_MoveRight_A7B683:
     LDA.W $0F7A                                                          ;A7B6B7;
     STA.W $10BA                                                          ;A7B6BA;
     BRA .return                                                          ;A7B6BD;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Function_Kraid_KraidShot_InitializeEyeGlowing:
@@ -5441,6 +5479,7 @@ Function_KraidMainLoop_AttackingWithMouthOpen:
 .rockSpitXVelocities:
     dw $FC00,$FC40,$FB40,$FB80,$FB40,$FC00,$FB80,$FC40                   ;A7BC65;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_KraidFoot_LungeForwardIfSamusIsNotInvincible_A7BC75:
     LDA.W $10D2                                                          ;A7BC75;
     CMP.W #InstList_KraidFoot_LungeForward_1                             ;A7BC78;
@@ -5484,6 +5523,7 @@ UNUSED_Kraid_FireLintAfterAFrames_A7BCB5:
     ORA.W #$0100                                                         ;A7BCC8;
     STA.W $0F86,X                                                        ;A7BCCB;
     RTS                                                                  ;A7BCCE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 EnemyTouch_KraidNail:
@@ -5956,6 +5996,7 @@ Function_Kraid_GetBig_ReleaseCamera:
     RTL                                                                  ;A7C0BC;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CrumbleFirstSectionOfKraidsSpikeFloor_A7C0BD:
     JSL.L Spawn_Hardcoded_PLM                                            ;A7C0BD;
     db $06,$1B                                                           ;A7C0C1;
@@ -6025,6 +6066,7 @@ UNUSED_CrumbleFirstSectionOfKraidsSpikeFloor_A7C0BD:
     db $1A,$1B                                                           ;A7C163;
     dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C165;
     RTS                                                                  ;A7C167;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 SpawnPLMToClearTheCeiling:
@@ -6041,6 +6083,7 @@ SpawnPLMToClearTheSpikes:
     RTS                                                                  ;A7C179;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ClearSomeOfTheSpikeBlocks_A7C17A:
     JSL.L Spawn_Hardcoded_PLM                                            ;A7C17A;
     db $0B,$1B                                                           ;A7C17E;
@@ -6091,6 +6134,7 @@ UNUSED_ClearSomeOfTheSpikeBlocks_A7C17A:
     db $1A,$1B                                                           ;A7C1F6;
     dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1F8;
     RTS                                                                  ;A7C1FA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 UnpauseHook_KraidIsDead:
@@ -6375,6 +6419,7 @@ KraidDeath_FadeOutBackground:
     RTL                                                                  ;A7C456;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProcessKraidInstruction_WithNoASMInstructions_A7C457:
     LDA.W $0FAC                                                          ;A7C457;
     BEQ .return                                                          ;A7C45A;
@@ -6419,6 +6464,7 @@ UNUSED_ProcessKraidInstruction_WithNoASMInstructions_A7C457:
 
 .return:
     RTS                                                                  ;A7C4A3;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 KraidDeath_UpdateBG2TilemapTopHalf:
@@ -7098,9 +7144,11 @@ Palette_Phantoon:
     dw $3800,$7FFF,$7EC0,$6DE0,$54E0,$0000,$0000,$0000                   ;A7CA01;
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A7CA11;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Palette_Phantoon_A7CA21:
     dw $0000,$477B,$2E52,$00C6,$0063,$3AB5,$2210,$116B                   ;A7CA21;
     dw $0508,$7FFF,$36B5,$19AD,$0929,$381D,$1814,$000A                   ;A7CA31;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_Phantoon_FadeOutTarget:
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A7CA41;
@@ -7182,6 +7230,7 @@ InstList_Phantoon_Eye_Open:
     dw SetupEyeOpenPhantoonState                                         ;A7CC65;
     dw Instruction_Common_Sleep                                          ;A7CC67;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Phantoon_Eye_Open_IgnoringSamus_A7CC69:
     dw $000A                                                             ;A7CC69;
     dw ExtendedSpritemap_Phantoon_Eye_Opening                            ;A7CC6B;
@@ -7192,6 +7241,7 @@ UNUSED_InstList_Phantoon_Eye_Open_IgnoringSamus_A7CC69:
     dw Instruction_Common_CallFunctionInY                                ;A7CC75;
     dw PlayPhantoonMaterializationSFX                                    ;A7CC77;
     dw Instruction_CommonA7_Sleep                                        ;A7CC79;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Phantoon_Eye_Closed:
     dw $0001                                                             ;A7CC7B;
@@ -7362,8 +7412,10 @@ Phantoon_ReverseFigure8_SpeedCaps_Stage1Max:
 Phantoon_ReverseFigure8_SpeedCaps_Stage2Min:
     dw $0000                                                             ;A7CD8D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Phantoon_A7CD8F:
     dw $8000,$0000,$000B,$8000,$0000,$FFF5                               ;A7CD8F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 WavyPhantoonConstants_Intro_amplitudeDelta:
     dw $0040                                                             ;A7CD9B;
@@ -8446,6 +8498,7 @@ Function_Phantoon_FightIntro_WavyFadeIn:
     RTS                                                                  ;A7D580;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Function_Phantoon_FightIntro_A7D581:
     LDX.W #$01FE                                                         ;A7D581;
     LDA.W #$0000                                                         ;A7D584;
@@ -8458,6 +8511,7 @@ UNUSED_Function_Phantoon_FightIntro_A7D581:
     LDA.W #Function_Phantoon_FightIntro_PickFirstPattern                 ;A7D58F;
     STA.W $0FB2,X                                                        ;A7D592;
     RTS                                                                  ;A7D595;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Function_Phantoon_FightIntro_PickFirstPattern:
@@ -9827,6 +9881,7 @@ ExtendedSpritemap_Phantoon_Eyeball_LookingUpRight:
     dw ExtendedTilemap_Phantoon_Eyeball_LookingUpRight                   ;A7DF79;
     dw Hitbox_Phantoon_0                                                 ;A7DF7B;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExtendedSpritemap_Phantoon_Tentacles_A7DF7D:
     dw $0002,$0000,$0000                                                 ;A7DF7D;
     dw ExtendedTilemap_Phantoon_Tentacle_Left_0                          ;A7DF83;
@@ -9850,6 +9905,7 @@ UNUSED_ExtendedSpritemap_Phantoon_Tentacles_A7DFA1:
     dw $0000,$0000                                                       ;A7DFAB;
     dw ExtendedTilemap_Phantoon_Tentacle_Right_2                         ;A7DFAF;
     dw Hitbox_Phantoon_0                                                 ;A7DFB1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemap_Phantoon_Tentacles_0:
     dw $0002,$0000,$0000                                                 ;A7DFB3;
@@ -9890,19 +9946,23 @@ ExtendedSpritemap_Phantoon_Mouth_SpawningFlame_1:
     dw ExtendedTilemap_Phantoon_Mouth_2                                  ;A7E003;
     dw Hitbox_Phantoon_0                                                 ;A7E005;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExtendedSpritemap_Phantoon_Mouth_SpawningFlame_A7E007:
     dw $0001,$0000,$0000                                                 ;A7E007;
     dw ExtendedTilemap_Phantoon_Mouth_0                                  ;A7E00D;
     dw Hitbox_Phantoon_0                                                 ;A7E00F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RTL_A7E011:
     RTL                                                                  ;A7E011;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitbox_Phantoon_A7E012:
     dw $0001,$FFF7,$FFF0,$0008,$0010                                     ;A7E012;
     dw EnemyTouch_Phantoon                                               ;A7E01C;
     dw EnemyShot_Phantoon                                                ;A7E01E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitbox_Phantoon_0:
     dw $0001,$0000,$0000,$0000,$0000                                     ;A7E020;
@@ -9931,6 +9991,7 @@ Hitbox_Phantoon_2:
     dw EnemyTouch_Phantoon                                               ;A7E076;
     dw EnemyShot_Phantoon                                                ;A7E078;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_PhantoonFlame_A7E07A:
     dw $0002,$81F8                                                       ;A7E07A;
     db $00                                                               ;A7E07E;
@@ -9958,6 +10019,7 @@ UNUSED_Spritemap_PhantoonFlame_A7E09E:
     dw $610C,$81F0                                                       ;A7E0A3;
     db $F8                                                               ;A7E0A7;
     dw $210C                                                             ;A7E0A8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedTilemap_Phantoon_Body:
     dw $FFFE,$2000,$000A,$2338,$2338,$2338,$3D32,$3D33                   ;A7E0AA;
@@ -11608,10 +11670,12 @@ InstList_Dachora_Blinking_FacingLeft:
     dw Instruction_Common_GotoY                                          ;A7F3ED;
     dw InstList_Dachora_Blinking_FacingLeft                              ;A7F3EF;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Dachora_ChargeShinespark_FacingLeft_A7F3F1:
     dw $0001                                                             ;A7F3F1;
     dw Spritemap_Dachora_6                                               ;A7F3F3;
     dw Instruction_Common_Sleep                                          ;A7F3F5;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Dachora_Echo_FacingLeft:
     dw $000A                                                             ;A7F3F7;

@@ -169,6 +169,7 @@ Instruction_CommonB3_CallFunctionInY_WithA:
     RTL                                                                  ;B380B4;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonB3_CallExternalFunctionInY_B380B5:
     LDA.W $0000,Y                                                        ;B380B5;
     STA.B $12                                                            ;B380B8;
@@ -209,6 +210,7 @@ UNUSED_Inst_CommonB3_CallExternalFunctionInY_WithA_B380CE:
 
 .externalFunction:
     JML.W [$0012]                                                        ;B380EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_CommonB3_GotoY:
@@ -443,6 +445,7 @@ UNUSED_InstList_SpinningTurtleEye_Initial_B386A7:
     dw Instruction_Common_GotoY                                          ;B386C7;
     dw UNUSED_InstList_SpinningTurtleEye_Initial_B386A7                  ;B386C9;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_SpinningTurtleEye_B386CB:
     dw $0008                                                             ;B386CB;
     dw UNUSED_Spritemaps_SpinningTurtleEye_8_B3874C                      ;B386CD;
@@ -472,6 +475,7 @@ UNUSED_InstList_SpinningTurtleEye_B386EB:
     dw UNUSED_Spritemaps_SpinningTurtleEye_10_B38784                     ;B386F5;
     dw Instruction_Common_GotoY                                          ;B386F7;
     dw UNUSED_InstList_SpinningTurtleEye_B386EB                          ;B386F9;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 UNUSED_InitAI_SpinningTurtleEye_B386FB:
     LDX.W $0E54                                                          ;B386FB;
@@ -536,6 +540,7 @@ UNUSED_Spritemaps_SpinningTurtleEye_7_B38745:
     db $F8                                                               ;B38749;
     dw $F303                                                             ;B3874A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemaps_SpinningTurtleEye_8_B3874C:
     dw $0001,$01F8                                                       ;B3874C;
     db $F8                                                               ;B38750;
@@ -580,6 +585,7 @@ UNUSED_Spritemaps_SpinningTurtleEye_10_B38784:
     dw $0001,$01F8                                                       ;B38784;
     db $F8                                                               ;B38788;
     dw $330C                                                             ;B38789;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_Zeb:
     dw $3800,$021D,$0015,$0008,$0003,$00BD,$0013,$000E                   ;B3878B;
@@ -1468,9 +1474,11 @@ Function_Gamet_ShootingRight:
     RTS                                                                  ;B38E55;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LoadEnemyIndex_B38E56:
     LDX.W $0E54                                                          ;B38E56;
     RTS                                                                  ;B38E59;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Function_Gamet_ShootDelay:
@@ -2044,6 +2052,7 @@ Spritemaps_Geega_A:
 Spritemaps_Geega_B:
     db $01,$00,$F8,$C3,$F8,$0A,$61                                       ;B392FA;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SpritemapPointers_Geega_B39301:
     dw Spritemaps_Geega_0                                                ;B39301;
     dw Spritemaps_Geega_1                                                ;B39303;
@@ -2057,6 +2066,7 @@ UNUSED_SpritemapPointers_Geega_B39301:
     dw Spritemaps_Geega_9                                                ;B39313;
     dw Spritemaps_Geega_A                                                ;B39315;
     dw Spritemaps_Geega_B                                                ;B39317;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_Botwoon:
     dw $0000,$27E9,$1A66,$1585,$0CA3,$3F9C,$2E97,$1D72                   ;B39319;
@@ -2167,6 +2177,7 @@ InstList_Botwoon_Spit_AimingDownLeft:
     dw Spritemaps_Botwoon_MouthOpen_Priority2_AimingDownLeft             ;B393CB;
     dw Instruction_Common_Sleep                                          ;B393CD;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Botwoon_Spit_AimingDown_FacingLeft_B393CF:
     dw $0020                                                             ;B393CF;
     dw Spritemaps_Botwoon_MouthClosed_Priority2_AimDown_FacingLeft       ;B393D1;
@@ -2176,6 +2187,7 @@ UNUSED_InstList_Botwoon_Spit_AimingDown_FacingLeft_B393CF:
     dw $0010                                                             ;B393D9;
     dw Spritemaps_Botwoon_MouthOpen_Priority2_AimingDown_FacingLeft      ;B393DB;
     dw Instruction_Common_Sleep                                          ;B393DD;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Botwoon_Spit_AimingDown_FacingRight:
     dw $0020                                                             ;B393DF;
@@ -2227,10 +2239,12 @@ InstList_Botwoon_Spit_AimingUp_FacingRight:
     dw Spritemaps_Botwoon_MouthOpen_Priority2_AimingUp_FacingRight       ;B3942B;
     dw Instruction_Common_Sleep                                          ;B3942D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Botwoon_Hidden_AimingUp_FacingLeft_B3942F:
     dw $0001                                                             ;B3942F;
     dw Spritemaps_Botwoon_MouthClosed_Priority0_AimingUp_FacingLeft      ;B39431;
     dw Instruction_Common_Sleep                                          ;B39433;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Botwoon_Hidden_AimingUpLeft:
     dw $0001                                                             ;B39435;
@@ -2247,10 +2261,12 @@ InstList_Botwoon_Hidden_AimingDownLeft:
     dw Spritemaps_Botwoon_MouthClosed_Priority0_AimingDownLeft           ;B39443;
     dw Instruction_Common_Sleep                                          ;B39445;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Botwoon_Hidden_AimingDown_FacingLeft_B39447:
     dw $0001                                                             ;B39447;
     dw Spritemaps_Botwoon_MouthClosed_Priority0_AimDown_FacingLeft       ;B39449;
     dw Instruction_Common_Sleep                                          ;B3944B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Botwoon_Hidden_AimingDown_FacingRight:
     dw $0001                                                             ;B3944D;
@@ -2530,6 +2546,7 @@ MainAI_Botwoon:
     RTL                                                                  ;B39674;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Data_B39675:
     dw $FFFF,$00FF,$01FF                                                 ;B39675;
 
@@ -2567,6 +2584,7 @@ UNUSED_Botwoon_MaybeSpitting_B39396:
   + LDA.W #$0000                                                         ;B396BE;
     STA.L $7E801C,X                                                      ;B396C1;
     RTS                                                                  ;B396C5;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 BotwoonDeathCheck:
@@ -2596,6 +2614,7 @@ SetBotwoonAsIntangible:
     RTS                                                                  ;B396FE;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SetBotwoonBodyProjectilesAsIntangible_B396FF:
     LDY.W #$0022                                                         ;B396FF;
 
@@ -2611,6 +2630,7 @@ UNUSED_SetBotwoonBodyProjectilesAsIntangible_B396FF:
     CPY.W #$000A                                                         ;B39715;
     BPL .loop                                                            ;B39718;
     RTS                                                                  ;B3971A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 BotwoonHealthBasedPalettes:
@@ -5142,6 +5162,7 @@ Spritemaps_Botwoon_MouthClosed_Priority0_AimUp_FacingRight:
     db $E7                                                               ;B3E496;
     dw $4120                                                             ;B3E497;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemaps_Botwoon_MouthOpen_Prio0_UpFaceLeft_B3E499:
     dw $0002,$81F8                                                       ;B3E499;
     db $F8                                                               ;B3E49D;
@@ -5219,6 +5240,7 @@ UNUSED_Spritemaps_Botwoon_MouthOpen_Prio0_UpFaceRight_B3E519:
     dw $4126,$81F8                                                       ;B3E51E;
     db $E8                                                               ;B3E522;
     dw $4124                                                             ;B3E523;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_EtecoonEscape:
     dw $3800,$5F97,$56F2,$2987,$00A0,$6355,$4AB0,$3A0B                   ;B3E525;
@@ -5365,6 +5387,7 @@ Instruction_EtecoonEscape_XPositionPlusY:
     RTL                                                                  ;B3E61C;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_EtecoonEscape_B3E61D:
     dw $0001                                                             ;B3E61D;
     dw Spritemaps_EtecoonEscape_6                                        ;B3E61F;
@@ -5400,6 +5423,7 @@ UNUSED_InstList_EtecoonEscape_B3E63F:
     dw $000C                                                             ;B3E64F;
     dw Spritemaps_EtecoonEscape_B                                        ;B3E651;
     dw Instruction_Common_Sleep                                          ;B3E653;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 MainAI_EtecoonEscape:
     LDX.W $0E54                                                          ;B3E655;

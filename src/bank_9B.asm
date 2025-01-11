@@ -13,6 +13,7 @@ SamusPalettes_DeathSequence_YellowFlash:
     dw $03FF,$03FF,$03FF,$03FF,$03FF,$03FF,$03FF,$03FF                   ;9B9420;
     dw $03FF,$03FF,$03FF,$03FF,$03FF,$03FF,$03FF,$03FF                   ;9B9430;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusPalettes_9B9440:
     dw $3800,$02FF,$0217,$0150,$0089,$00BB,$3A9F,$2A19                   ;9B9440;
     dw $1DB4,$114F,$090B,$3BE0,$033F,$021B,$010E,$0074                   ;9B9450;
@@ -40,11 +41,13 @@ UNUSED_SamusPalettes_9B94E0:
 UNUSED_SamusPalettes_9B9500:
     dw $3800,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF                   ;9B9500;
     dw $7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF                   ;9B9510;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusPalettes_VariaSuit:
     dw $0000,$0108,$02FF,$1405,$3BE0,$21A8,$579F,$4AD2                   ;9B9520;
     dw $3A4E,$00BB,$01BE,$008E,$0252,$1104,$0074,$000D                   ;9B9530;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusPalettes_9B9540:
     dw $14E0,$00CE,$421F,$1405,$3BE0,$21A8,$579F,$4AD2                   ;9B9540;
     dw $3A4E,$00BB,$5914,$30AA,$0216,$1104,$0074,$000D                   ;9B9550;
@@ -92,6 +95,7 @@ UNUSED_SamusPalettes_9B9680:
 UNUSED_SamusPalettes_9B96A0:
     dw $3800,$2BEE,$6BFF,$3FC5,$63E0,$4BE8,$7FFF,$73F2                   ;9B96A0;
     dw $63EE,$2BFB,$7FF4,$5BEA,$2BF6,$3BE4,$2BF4,$2BED                   ;9B96B0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusPalettes_CrystalFlash_0:
     dw $3800,$4210,$4210,$4210,$4210,$4210,$4210,$4210                   ;9B96C0;
@@ -135,6 +139,7 @@ SamusPalettes_CrystalFlash_5:
 SamusPalettes_CrystalFlash_5_bubble:
     dw $7FFF,$77BF,$6F7F,$6B5F,$673F,$7FFF                               ;9B9774;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusPalettes_9B9780:
     dw $0000,$00CE,$421F,$1405,$3BE0,$21A8,$579F,$4AD2                   ;9B9780;
     dw $3A4E,$00BB,$5914,$30AA,$0216,$1104,$0074,$000D                   ;9B9790;
@@ -150,6 +155,7 @@ UNUSED_SamusPalettes_9B97C0:
 UNUSED_SamusPalettes_9B97E0:
     dw $0000,$42DE,$7FFF,$5615,$7BF0,$63B8,$7FFF,$7FFF                   ;9B97E0;
     dw $7BFE,$42BF,$7F1F,$72BA,$43FF,$5314,$427F,$421D                   ;9B97F0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusPalettes_GravitySuit:
     dw $3800,$0108,$421F,$1405,$3BE0,$21A8,$579F,$4AD2                   ;9B9800;
@@ -2111,6 +2117,7 @@ HandleConnectingGrapple_Crouching_AimingLeft:
     BRA HandleConnectingGrapple_StuckInPlace                             ;9BBA2F;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_HandleConnectingGrapple_InAir_AimingRight_9BBA31:
     LDA.W #$00AC                                                         ;9BBA31;
     STA.W $0A2A                                                          ;9BBA34;
@@ -2145,6 +2152,7 @@ UNUSED_HandleConnectingGrapple_InAir_AimingLeft_9BBA59:
     LDA.W #$00AD                                                         ;9BBA59;
     STA.W $0A2A                                                          ;9BBA5C;
     BRA HandleConnectingGrapple_StuckInPlace                             ;9BBA5F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 HandleConnectingGrapple_Swinging:
@@ -3089,8 +3097,10 @@ GrappleBeamFireVelocityTable_Y:
     dw $F40C,$F784,$0000,$087C,$0BF4,$0BF4,$087C,$0000                   ;9BC0EF;
     dw $F784,$F40C                                                       ;9BC0FF;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_9BC103:
     db $80                                                               ;9BC103;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 GrappleBeamFireAngles:
     dw $8000,$A000,$C000,$E000,$0000,$0000,$2000,$4000                   ;9BC104;
@@ -3346,8 +3356,10 @@ GrappleBeamSpecialAngles_grappleFunction:
     dw $8D80,$00B9,$0008,$0010                                           ;9BC484;
     dw GrappleBeamFunction_WallGrab                                      ;9BC48C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_9BC48E:
     db $20,$3A                                                           ;9BC48E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 GrappleBeamHandler:
     PHP                                                                  ;9BC490;
@@ -3658,9 +3670,11 @@ facingLeft:
     RTS                                                                  ;9BC700;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CLCRTS_9B7C01:
     CLC                                                                  ;9BC701;
     RTS                                                                  ;9BC702;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 GrappleBeamFunction_Firing:

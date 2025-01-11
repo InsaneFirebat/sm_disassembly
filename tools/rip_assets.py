@@ -21,12 +21,13 @@
 # SOFTWARE.
 
 import argparse
-from pathlib import Path
 import hashlib
+from pathlib import Path
 import sys
+import zlib
 
 
-SM_NTSC_CRC32 = "D63ED5F8"
+SM_NTSC_CRC32 = 0xD63ED5F8
 SM_NTSC_SHA256 = "12b77c4bc9c1832cee8881244659065ee1d84c70c3d29e6eaf92e6798cc2ca72"
 
 
@@ -56,9 +57,15 @@ def addr_to_lorom_offset(addr):
 
 def rom_valid(rom_data):
     if len(rom_data) != 0x300000: # 3MB
+        print("Unexpected size: " + str(len(rom_data)))
+        return False
+
+    if zlib.crc32(rom_data) != SM_NTSC_CRC32:
+        print("Unexpected CRC32: " + hex(zlib.crc32(rom_data))[2:].upper())
         return False
 
     if hashlib.sha256(rom_data).hexdigest() != SM_NTSC_SHA256:
+        print("Unexpected SHA256: " + hashlib.sha256(rom_data).hexdigest())
         return False
 
     return True
@@ -1380,8 +1387,8 @@ def main():
     if not rom_valid(rom_data):
         print("Invalid ROM. Ensure it's unheadered and the NTSC version:\n"
               "Expected size: 3145728 (3 MB)\n"
-              "CRC32:", SM_NTSC_CRC32, "\n"
-              "SHA256:", SM_NTSC_SHA256,
+              "Expected CRC32:", hex(SM_NTSC_CRC32)[2:].upper(), "\n"
+              "Expected SHA256:", SM_NTSC_SHA256,
               file=sys.stderr)
         sys.exit(1)
 

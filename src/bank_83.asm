@@ -613,9 +613,11 @@ FXHeader_FastPillarsSetup:
     dw $0000,$FFFF,$FFFF,$0000                                           ;8387DC;
     db $00,$04,$02,$1E,$02,$1F,$00,$00                                   ;8387E4;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_FXHeader_8387EC:
     dw $0000,$FFFF,$FFFF,$0000                                           ;8387EC;
     db $00,$04,$02,$1E,$02,$1F,$00,$00                                   ;8387F4;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 FXHeader_MickeyMouse:
     dw $0000,$FFFF,$FFFF,$0000                                           ;8387FC;
@@ -2471,10 +2473,12 @@ Door_FastPillarsSetup_4:
     db $00,$04,$01,$06,$00,$00                                           ;839914;
     dw $8000,$0000                                                       ;83991A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Door_83991E:
     dw RoomHeader_FastPillarsSetup                                       ;83991E;
     db $00,$05,$0E,$06,$00,$00                                           ;839920;
     dw $8000,$0000                                                       ;839926;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Door_MickeyMouse_0:
     dw RoomHeader_FastPillarsSetup                                       ;83992A;
@@ -3113,9 +3117,11 @@ FXHeader_CeresRidley_State0:
     dw $0000,$FFFF,$FFFF,$0000                                           ;83A15E;
     db $00,$28,$02,$02,$00,$00,$00,$00                                   ;83A166;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_FXHeader_83A16E:
     dw $0000,$FFFF,$FFFF,$0000                                           ;83A16E;
     db $00,$2A,$02,$02,$00,$00,$00,$00                                   ;83A176;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 FXHeader_FallingTile_State1:
     dw $FFFF                                                             ;83A17E;
@@ -3862,6 +3868,7 @@ Door_Colosseum_2:
     db $00,$04,$01,$06,$00,$00                                           ;83A7FA;
     dw $8000,$0000                                                       ;83A800;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Door_83A804:
     dw RoomHeader_HalfieClimb                                            ;83A804;
     db $00,$01,$00,$00,$00,$02                                           ;83A806;
@@ -3871,6 +3878,7 @@ UNUSED_Door_83A810:
     dw RoomHeader_MaridiaMissileRefill                                   ;83A810;
     db $00,$04,$01,$06,$00,$00                                           ;83A812;
     dw $8000,$0000                                                       ;83A818;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Door_ThePrecious_MaridiaLoad11:
     dw RoomHeader_ThePrecious                                            ;83A81C;

@@ -357,6 +357,7 @@ Instruction_SamusProjectile_GotoY:
     RTS                                                                  ;93823F;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_SamusProj_GotoY_BasedOnBombTimer_938240:
     REP #$30                                                             ;938240;
     LDA.W $0000,Y                                                        ;938242;
@@ -371,6 +372,7 @@ UNUSED_Instruction_SamusProj_GotoY_BasedOnBombTimer_938240:
     LDA.W $0002,Y                                                        ;93824F;
     TAY                                                                  ;938252;
     RTS                                                                  ;938253;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 DrawProjectiles:
@@ -475,6 +477,7 @@ DrawProjectiles:
     RTL                                                                  ;9382FC;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PartialDrawProjectiles_9282FD:
     PHP                                                                  ;9382FD;
     REP #$30                                                             ;9382FE;
@@ -521,6 +524,7 @@ UNUSED_PartialDrawProjectiles_9282FD:
     JSL.L HandleProjectileTrails                                         ;938347;
     PLP                                                                  ;93834B;
     RTL                                                                  ;93834C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 DrawBombsAndProjectileExplosions:
@@ -1020,8 +1024,10 @@ ProjectileDataTable_NonBeam_MissileExplosion:
 ProjectileDataTable_NonBeam_MissileExplosion_pointer:
     dw InstList_SamusProjectile_MissileExplosion                         ;93867F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileDataTable_NonBeam_BombExplosion_938681:
     dw $0000                                                             ;938681;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileDataTable_NonBeam_BombExplosion_pointer:
     dw InstList_SamusProjectile_BombExplosion                            ;938683;
@@ -1038,8 +1044,10 @@ ProjectileDataTable_NonBeam_SpazerSBA:
     dw $012C                                                             ;93868D;
     dw InstList_SamusProjectile_Spazer_SpazerIce_Up_0                    ;93868F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjDataTable_NonBeam_SuperMissileExplosion_938691:
     dw $0008                                                             ;938691;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileDataTable_NonBeam_SuperMissileExplosion_pointer:
     dw InstList_SamusProjectile_SuperMissileExplosion                    ;938693;
@@ -4220,6 +4228,7 @@ FlareSpritemapTable_IndexOffsets_facingRight:
 FlareSpritemapTable_IndexOffsets_facingLeft:
     dw $0000,$002A,$0030                                                 ;93A22B;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_93A231:
     dw $0001,$01FC                                                       ;93A231;
     db $FC                                                               ;93A235;
@@ -4239,6 +4248,7 @@ UNUSED_ProjectileFlareSpritemaps_93A246:
     dw $0001,$01FC                                                       ;93A246;
     db $FC                                                               ;93A24A;
     dw $3A28                                                             ;93A24B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Power_0:
     dw $0001,$01FC                                                       ;93A24D;
@@ -4280,6 +4290,7 @@ ProjectileFlareSpritemaps_Power_7:
     db $FC                                                               ;93A282;
     dw $AC31                                                             ;93A283;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_93A285:
     dw $0001,$01FC                                                       ;93A285;
     db $FC                                                               ;93A289;
@@ -4431,6 +4442,7 @@ UNUSED_ProjectileFlareSpritemaps_93A376:
     dw $0001,$01FC                                                       ;93A376;
     db $FC                                                               ;93A37A;
     dw $2C3B                                                             ;93A37B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Plasma_PlasmaIce_0:
     dw $0004,$0008                                                       ;93A37D;
@@ -4484,6 +4496,7 @@ ProjectileFlareSpritemaps_Plasma_PlasmaIce_3:
     db $F4                                                               ;93A3E6;
     dw $6C31                                                             ;93A3E7;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_93A3E9:
     dw $0004,$0008                                                       ;93A3E9;
     db $FC                                                               ;93A3ED;
@@ -4862,6 +4875,7 @@ UNUSED_ProjectileFlareSpritemaps_93A6E7:
     dw $7C50,$01F8                                                       ;93A6F6;
     db $F8                                                               ;93A6FA;
     dw $3C50                                                             ;93A6FB;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_FlareSlowSparks_FacingRight_0:
     dw $0003,$0000                                                       ;93A6FD;
@@ -5097,6 +5111,7 @@ ProjectileFlareSpritemaps_BombExplosion_PlasmaSBA_5:
     db $F8                                                               ;93A8BF;
     dw $3A5E                                                             ;93A8C0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_93A8C2:
     dw $0001,$01FC                                                       ;93A8C2;
     db $FC                                                               ;93A8C6;
@@ -5116,6 +5131,7 @@ UNUSED_ProjectileFlareSpritemaps_93A8D7:
     dw $0001,$01FC                                                       ;93A8D7;
     db $FC                                                               ;93A8DB;
     dw $3C3B                                                             ;93A8DC;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_FlareSlowSparks_FacingLeft_0:
     dw $0003,$01F8                                                       ;93A8DE;
@@ -5225,6 +5241,7 @@ ProjectileFlareSpritemaps_FlareFastSparks_FacingLeft_5:
     db $02                                                               ;93A9A7;
     dw $EC5D                                                             ;93A9A8;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_93A9AA:
     dw $0001,$01F7                                                       ;93A9AA;
     db $F7                                                               ;93A9AE;
@@ -5342,6 +5359,7 @@ UNUSED_ProjectileFlareSpritemaps_93AA6E:
     dw $BC63,$01F8                                                       ;93AA7D;
     db $F8                                                               ;93AA81;
     dw $3C63                                                             ;93AA82;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_SuperMissileExplosion_0:
     dw $0004,$0000                                                       ;93AA84;
@@ -5490,10 +5508,12 @@ ProjectileFlareSpritemaps_PowerBomb_2:
     db $FC                                                               ;93ABA9;
     dw $3A7B                                                             ;93ABAA;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_93ABAC:
     dw $0001,$01FC                                                       ;93ABAC;
     db $FC                                                               ;93ABB0;
     dw $3A5F                                                             ;93ABB1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_BeamExplosion_0:
     dw $0001,$01FC                                                       ;93ABB3;
@@ -5549,6 +5569,7 @@ ProjectileFlareSpritemaps_BeamExplosion_5:
     db $F8                                                               ;93AC16;
     dw $3C63                                                             ;93AC17;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_93AC19:
     dw $0004,$01F2                                                       ;93AC19;
     db $FC                                                               ;93AC1D;
@@ -5734,6 +5755,7 @@ UNUSED_ProjectileFlareSpritemaps_93AC3E:
     dw $0001,$01FC                                                       ;93AD3E;
     db $FC                                                               ;93AD42;
     dw $3A42                                                             ;93AD43;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Bomb_0:
     dw $0001,$01FC                                                       ;93AD45;
@@ -5883,6 +5905,7 @@ ProjectileFlareSpritemaps_SuperMissile_7:
     db $02                                                               ;93AE46;
     dw $AA66                                                             ;93AE47;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_93AE49:
     dw $0001,$01FC                                                       ;93AE49;
     db $FC                                                               ;93AE4D;
@@ -5902,6 +5925,7 @@ UNUSED_ProjectileFlareSpritemaps_93AE5E:
     dw $0001,$01FC                                                       ;93AE5E;
     db $FC                                                               ;93AE62;
     dw $3A3F                                                             ;93AE63;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Wave_IceWave_0:
     dw $0001,$01FC                                                       ;93AE65;
@@ -6546,6 +6570,7 @@ ProjectileFlareSpritemaps_ChargedWave_WaveSBA_19:
     db $EE                                                               ;93B365;
     dw $6C33                                                             ;93B366;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_ChargedWave_WaveSBA_93B368:
     dw $0004,$0000                                                       ;93B368;
     db $F8                                                               ;93B36C;
@@ -6567,6 +6592,7 @@ UNUSED_ProjectileFlareSpritemaps_ChargedWave_WaveSBA_93B37E:
     dw $AC33,$01F8                                                       ;93B38D;
     db $F8                                                               ;93B391;
     dw $2C33                                                             ;93B392;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_ChargedWave_WaveSBA_1A:
     dw $0008,$01F8                                                       ;93B394;
@@ -6720,6 +6746,7 @@ ProjectileFlareSpritemaps_ChargedWave_WaveSBA_21:
     db $F8                                                               ;93B4E1;
     dw $2C34                                                             ;93B4E2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_93B4E4:
     dw $0001,$01FC                                                       ;93B4E4;
     db $FC                                                               ;93B4E8;
@@ -6953,6 +6980,7 @@ UNUSED_ProjectileFlareSpritemaps_93B66B:
     dw $0001,$01FC                                                       ;93B66B;
     db $FC                                                               ;93B66F;
     dw $2C30                                                             ;93B670;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_ChargedIceWave_0:
     dw $0004,$0000                                                       ;93B672;
@@ -8380,6 +8408,7 @@ ProjectileFlareSpritemaps_Charged_PW_PIW_1D:
     db $F4                                                               ;93C2F1;
     dw $2C33                                                             ;93C2F2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_PW_PIW_93C2F4:
     dw $0004,$0008                                                       ;93C2F4;
     db $FC                                                               ;93C2F8;
@@ -8466,6 +8495,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_PW_PIW_93C388:
     dw $2C34,$01F0                                                       ;93C3AB;
     db $EC                                                               ;93C3AF;
     dw $2C34                                                             ;93C3B0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_PW_PIW_1E:
     dw $0007,$0014                                                       ;93C3B2;
@@ -8998,6 +9028,7 @@ ProjectileFlareSpritemaps_Charged_PW_PIW_27:
     db $08                                                               ;93C88C;
     dw $2C35                                                             ;93C88D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_PW_PIW_93C88F:
     dw $0004,$01FC                                                       ;93C88F;
     db $08                                                               ;93C893;
@@ -9084,6 +9115,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_PW_PIW_93C923:
     dw $2C37,$01ED                                                       ;93C946;
     db $F8                                                               ;93C94A;
     dw $2C37                                                             ;93C94B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_PW_PIW_28:
     dw $0007,$01FC                                                       ;93C94D;
@@ -9226,6 +9258,7 @@ ProjectileFlareSpritemaps_Charged_PW_PIW_2C:
     db $F4                                                               ;93CA8F;
     dw $2C37                                                             ;93CA90;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_PW_PIW_93CA92:
     dw $0008,$01F0                                                       ;93CA92;
     db $0C                                                               ;93CA96;
@@ -9384,6 +9417,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_PW_PIW_93CBB2:
     dw $6C35,$000C                                                       ;93CBFD;
     db $08                                                               ;93CC01;
     dw $6C35                                                             ;93CC02;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_PW_PIW_2D:
     dw $000C,$01E8                                                       ;93CC04;
@@ -10345,6 +10379,7 @@ ProjectileFlareSpritemaps_S_SI_SW_SIW_10:
     db $F4                                                               ;93D4B1;
     dw $AC31                                                             ;93D4B2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_S_SI_SW_SIW_93D4B4:
     dw $000C,$0009                                                       ;93D4B4;
     db $FA                                                               ;93D4B8;
@@ -10371,6 +10406,7 @@ UNUSED_ProjectileFlareSpritemaps_S_SI_SW_SIW_93D4B4:
     dw $AC32,$01F6                                                       ;93D4EB;
     db $00                                                               ;93D4EF;
     dw $AC31                                                             ;93D4F0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_S_SI_SW_SIW_11:
     dw $0004,$0006                                                       ;93D4F2;
@@ -13234,6 +13270,7 @@ ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_49:
     db $FC                                                               ;93EE22;
     dw $2C30                                                             ;93EE23;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EE25:
     dw $0003,$01F4                                                       ;93EE25;
     db $FC                                                               ;93EE29;
@@ -13253,6 +13290,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EE36:
     dw $2C30,$01F0                                                       ;93EE45;
     db $FC                                                               ;93EE49;
     dw $2C30                                                             ;93EE4A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_4A:
     dw $0002,$0002                                                       ;93EE4C;
@@ -13272,6 +13310,7 @@ ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_4B:
     db $F8                                                               ;93EE6B;
     dw $2C31                                                             ;93EE6C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EE6E:
     dw $0006,$000A                                                       ;93EE6E;
     db $04                                                               ;93EE72;
@@ -13286,6 +13325,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EE6E:
     dw $2C32,$01F2                                                       ;93EE87;
     db $F4                                                               ;93EE8B;
     dw $2C31                                                             ;93EE8C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_4C:
     dw $0001,$01FC                                                       ;93EE8E;
@@ -13299,6 +13339,7 @@ ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_4D:
     db $F8                                                               ;93EE9E;
     dw $2C33                                                             ;93EE9F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EEA1:
     dw $0003,$01FC                                                       ;93EEA1;
     db $F4                                                               ;93EEA5;
@@ -13318,6 +13359,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EEB2:
     dw $2C33,$01FC                                                       ;93EEC1;
     db $F8                                                               ;93EEC5;
     dw $2C33                                                             ;93EEC6;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_4E:
     dw $0002,$01F6                                                       ;93EEC8;
@@ -13364,6 +13406,7 @@ ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_52:
     db $FC                                                               ;93EF1A;
     dw $6C30                                                             ;93EF1B;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EF1D:
     dw $0003,$0004                                                       ;93EF1D;
     db $FC                                                               ;93EF21;
@@ -13383,6 +13426,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EF2E:
     dw $6C30,$0008                                                       ;93EF3D;
     db $FC                                                               ;93EF41;
     dw $6C30                                                             ;93EF42;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_53:
     dw $0002,$01F6                                                       ;93EF44;
@@ -13402,6 +13446,7 @@ ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_54:
     db $00                                                               ;93EF63;
     dw $EC31                                                             ;93EF64;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EF66:
     dw $0006,$01EE                                                       ;93EF66;
     db $F4                                                               ;93EF6A;
@@ -13416,6 +13461,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EF66:
     dw $EC32,$0006                                                       ;93EF7F;
     db $04                                                               ;93EF83;
     dw $EC31                                                             ;93EF84;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_55:
     dw $0001,$01FC                                                       ;93EF86;
@@ -13429,6 +13475,7 @@ ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_56:
     db $00                                                               ;93EF96;
     dw $AC33                                                             ;93EF97;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EF99:
     dw $0003,$01FC                                                       ;93EF99;
     db $04                                                               ;93EF9D;
@@ -13481,6 +13528,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93EFE2:
     dw $EC32,$0006                                                       ;93EFFB;
     db $04                                                               ;93EFFF;
     dw $EC31                                                             ;93F000;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_57:
     dw $0001,$01FC                                                       ;93F002;
@@ -13494,6 +13542,7 @@ ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_58:
     db $FC                                                               ;93F012;
     dw $2C34                                                             ;93F013;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93F015:
     dw $0003,$01F4                                                       ;93F015;
     db $FC                                                               ;93F019;
@@ -13513,6 +13562,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93F026:
     dw $2C34,$01F0                                                       ;93F035;
     db $FC                                                               ;93F039;
     dw $2C34                                                             ;93F03A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_59:
     dw $0002,$01FC                                                       ;93F03C;
@@ -13532,6 +13582,7 @@ ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_5A:
     db $FC                                                               ;93F05B;
     dw $2C35                                                             ;93F05C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93F05E:
     dw $0006,$0004                                                       ;93F05E;
     db $08                                                               ;93F062;
@@ -13546,6 +13597,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93F05E:
     dw $EC35,$01F4                                                       ;93F077;
     db $F8                                                               ;93F07B;
     dw $2C35                                                             ;93F07C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_5B:
     dw $0001,$01FC                                                       ;93F07E;
@@ -13559,6 +13611,7 @@ ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_5C:
     db $F8                                                               ;93F08E;
     dw $2C37                                                             ;93F08F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93F091:
     dw $0003,$01FC                                                       ;93F091;
     db $04                                                               ;93F095;
@@ -13578,6 +13631,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93F0A2:
     dw $2C37,$01FC                                                       ;93F0B1;
     db $F0                                                               ;93F0B5;
     dw $2C37                                                             ;93F0B6;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_5D:
     dw $0002,$01FC                                                       ;93F0B8;
@@ -13597,6 +13651,7 @@ ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_5E:
     db $FC                                                               ;93F0D7;
     dw $6C35                                                             ;93F0D8;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93F0DA:
     dw $0006,$01F4                                                       ;93F0DA;
     db $08                                                               ;93F0DE;
@@ -13611,18 +13666,21 @@ UNUSED_ProjectileFlareSpritemaps_Charged_S_SI_SW_SIW_93F0DA:
     dw $AC35,$0004                                                       ;93F0F3;
     db $F8                                                               ;93F0F7;
     dw $6C35                                                             ;93F0F8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_0:
     dw $0001,$01FC                                                       ;93F0FA;
     db $FC                                                               ;93F0FE;
     dw $2C30                                                             ;93F0FF;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F101:
     dw $0002,$01F8                                                       ;93F101;
     db $FC                                                               ;93F105;
     dw $2C30,$0000                                                       ;93F106;
     db $FC                                                               ;93F10A;
     dw $2C30                                                             ;93F10B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_1:
     dw $0003,$01F4                                                       ;93F10D;
@@ -13633,6 +13691,7 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_1:
     db $FC                                                               ;93F11B;
     dw $2C30                                                             ;93F11C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F11E:
     dw $0004,$01F0                                                       ;93F11E;
     db $FC                                                               ;93F122;
@@ -13656,6 +13715,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F134:
     dw $2C30,$01EC                                                       ;93F148;
     db $FC                                                               ;93F14C;
     dw $2C30                                                             ;93F14D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_2:
     dw $0006,$0010                                                       ;93F14F;
@@ -13694,12 +13754,14 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_4:
     db $FC                                                               ;93F198;
     dw $2C33                                                             ;93F199;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F19B:
     dw $0002,$01FC                                                       ;93F19B;
     db $00                                                               ;93F19F;
     dw $2C33,$01FC                                                       ;93F1A0;
     db $F8                                                               ;93F1A4;
     dw $2C33                                                             ;93F1A5;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_5:
     dw $0003,$01FC                                                       ;93F1A7;
@@ -13710,6 +13772,7 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_5:
     db $F4                                                               ;93F1B5;
     dw $2C33                                                             ;93F1B6;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F1B8:
     dw $0004,$01FC                                                       ;93F1B8;
     db $08                                                               ;93F1BC;
@@ -13733,6 +13796,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F1CE:
     dw $2C33,$01FC                                                       ;93F1E2;
     db $EC                                                               ;93F1E6;
     dw $2C33                                                             ;93F1E7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_6:
     dw $0006,$01FC                                                       ;93F1E9;
@@ -13784,6 +13848,7 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_9:
     db $F8                                                               ;93F24D;
     dw $2C31                                                             ;93F24E;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F250:
     dw $0006,$0008                                                       ;93F250;
     db $04                                                               ;93F254;
@@ -13798,6 +13863,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F250:
     dw $2C32,$01F0                                                       ;93F269;
     db $F4                                                               ;93F26D;
     dw $2C31                                                             ;93F26E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_A:
     dw $0008,$000C                                                       ;93F270;
@@ -13859,6 +13925,7 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_D:
     db $F8                                                               ;93F2ED;
     dw $6C31                                                             ;93F2EE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F2F0:
     dw $0006,$01F0                                                       ;93F2F0;
     db $04                                                               ;93F2F4;
@@ -13873,6 +13940,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F2F0:
     dw $6C32,$0008                                                       ;93F309;
     db $F4                                                               ;93F30D;
     dw $6C31                                                             ;93F30E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_E:
     dw $0008,$01EC                                                       ;93F310;
@@ -13921,12 +13989,14 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_10:
     db $FC                                                               ;93F372;
     dw $2C34                                                             ;93F373;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F375:
     dw $0002,$0000                                                       ;93F375;
     db $FC                                                               ;93F379;
     dw $2C34,$01F8                                                       ;93F37A;
     db $FC                                                               ;93F37E;
     dw $2C34                                                             ;93F37F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_11:
     dw $0003,$0004                                                       ;93F381;
@@ -13937,6 +14007,7 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_11:
     db $FC                                                               ;93F38F;
     dw $2C34                                                             ;93F390;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F392:
     dw $0004,$0008                                                       ;93F392;
     db $FC                                                               ;93F396;
@@ -13960,6 +14031,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F3A8:
     dw $2C34,$01EC                                                       ;93F3BC;
     db $FC                                                               ;93F3C0;
     dw $2C34                                                             ;93F3C1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_12:
     dw $0006,$0010                                                       ;93F3C3;
@@ -13998,12 +14070,14 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_14:
     db $FC                                                               ;93F40C;
     dw $2C37                                                             ;93F40D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F40F:
     dw $0002,$01FC                                                       ;93F40F;
     db $00                                                               ;93F413;
     dw $2C37,$01FC                                                       ;93F414;
     db $F8                                                               ;93F418;
     dw $2C37                                                             ;93F419;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_15:
     dw $0003,$01FC                                                       ;93F41B;
@@ -14014,6 +14088,7 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_15:
     db $F4                                                               ;93F429;
     dw $2C37                                                             ;93F42A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F42C:
     dw $0004,$01FC                                                       ;93F42C;
     db $08                                                               ;93F430;
@@ -14037,6 +14112,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F442:
     dw $2C37,$01FC                                                       ;93F456;
     db $EC                                                               ;93F45A;
     dw $2C37                                                             ;93F45B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_16:
     dw $0006,$01FC                                                       ;93F45D;
@@ -14088,6 +14164,7 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_19:
     db $FC                                                               ;93F4C1;
     dw $2C35                                                             ;93F4C2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F4C4:
     dw $0006,$01FC                                                       ;93F4C4;
     db $F8                                                               ;93F4C8;
@@ -14102,6 +14179,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F4C4:
     dw $2C35,$01F4                                                       ;93F4DD;
     db $F8                                                               ;93F4E1;
     dw $2C35                                                             ;93F4E2;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_1A:
     dw $0008,$0008                                                       ;93F4E4;
@@ -14163,6 +14241,7 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_1D:
     db $FC                                                               ;93F561;
     dw $6C35                                                             ;93F562;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F564:
     dw $0006,$01FC                                                       ;93F564;
     db $F8                                                               ;93F568;
@@ -14177,6 +14256,7 @@ UNUSED_ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_93F564:
     dw $6C35,$0004                                                       ;93F57D;
     db $F8                                                               ;93F581;
     dw $6C35                                                             ;93F582;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_1E:
     dw $0008,$01F0                                                       ;93F584;
@@ -14220,6 +14300,7 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_1F:
     db $F0                                                               ;93F5DF;
     dw $6C35                                                             ;93F5E0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawShinesparkWindupEffectSprite_93F5E2:
     PHP                                                                  ;93F5E2;
     PHB                                                                  ;93F5E3;
@@ -14253,6 +14334,7 @@ UNUSED_DrawShinesparkWindupEffectSprite_93F5E2:
     PLB                                                                  ;93F61A;
     PLP                                                                  ;93F61B;
     RTL                                                                  ;93F61C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Freespace_Bank93_F61D:                                                   ;93F61D;

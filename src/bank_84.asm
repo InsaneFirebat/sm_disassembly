@@ -85,6 +85,7 @@ Clear_Sounds_When_Going_Through_Door:
     RTL                                                                  ;848257;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Clear_SpinJumpSound_GoingThroughDoor_848258:
     LDA.W $0A1E                                                          ;848258;
     AND.W #$FF00                                                         ;84825B;
@@ -99,6 +100,7 @@ UNUSED_Clear_SpinJumpSound_GoingThroughDoor_848258:
 
 .return:
     RTL                                                                  ;84826F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Play_SpinJumpSound_if_SpinJumping:
@@ -107,6 +109,7 @@ Play_SpinJumpSound_if_SpinJumping:
     RTL                                                                  ;848277;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Play_Resumed_SpinJumpSound_848278:
     LDA.W $0A1E                                                          ;848278;
     AND.W #$FF00                                                         ;84827B;
@@ -121,6 +124,7 @@ UNUSED_Play_Resumed_SpinJumpSound_848278:
 
 .return:
     RTL                                                                  ;84828F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Calculate_PLM_Block_Coordinates:
@@ -535,6 +539,7 @@ RTS_84853D:
     RTS                                                                  ;84853D;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spawn_Enemy_PLM_84853E:
     PHB                                                                  ;84853E;
     PHY                                                                  ;84853F;
@@ -601,6 +606,7 @@ UNUSED_Spawn_Enemy_PLM_84853E:
     PLY                                                                  ;8485B0;
     PLB                                                                  ;8485B1;
     RTL                                                                  ;8485B2;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RTS_8485B3:
@@ -807,6 +813,7 @@ RTS_8486D0:
     RTS                                                                  ;8486D0;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_CallFuctionInY_8486D1:
     LDA.W $0000,Y                                                        ;8486D1;
     STA.B $12                                                            ;8486D4;
@@ -843,6 +850,7 @@ UNUSED_Instruction_PLM_CallFuctionInY_withA_8486E8:
 
 .externalFunction:
     JML.W [$0012]                                                        ;848708;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_CallFunctionInY:
@@ -871,6 +879,7 @@ Instruction_PLM_GotoY:
     RTS                                                                  ;848728;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_GotoY_PlusMinusY_848729:
     STY.B $12                                                            ;848729;
     DEY                                                                  ;84872B;
@@ -888,6 +897,7 @@ UNUSED_Instruction_PLM_GotoY_PlusMinusY_848729:
     ADC.B $12                                                            ;84873B;
     TAY                                                                  ;84873D;
     RTS                                                                  ;84873E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_DecrementTimer_GotoYIfNonZero:
@@ -898,11 +908,13 @@ Instruction_PLM_DecrementTimer_GotoYIfNonZero:
     RTS                                                                  ;848746;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_DecrementTimer_GotoYIfNonZero_848747:
     DEC.W $1D77,X                                                        ;848747;
     BNE UNUSED_Instruction_PLM_GotoY_PlusMinusY_848729                   ;84874A;
     INY                                                                  ;84874C;
     RTS                                                                  ;84874D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_TimerEqualsY_8Bit:
@@ -914,12 +926,14 @@ Instruction_PLM_TimerEqualsY_8Bit:
     RTS                                                                  ;848759;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_TimerEqualsY_16Bit_84875A:
     LDA.W $0000,Y                                                        ;84875A;
     STA.W $1D77,X                                                        ;84875D;
     INY                                                                  ;848760;
     INY                                                                  ;848761;
     RTS                                                                  ;848762;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RTS_848763:
@@ -1025,12 +1039,14 @@ Instruction_PLM_GotoY_ifBossBitsSet:
     RTS                                                                  ;848820;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_SetBossBits_848821:
     LDA.W $0000,Y                                                        ;848821;
     AND.W #$00FF                                                         ;848824;
     JSL.L SetBossBitsInAForCurrentArea                                   ;848827;
     INY                                                                  ;84882B;
     RTS                                                                  ;84882C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_GotoY_ifEventIsSet:
@@ -1328,6 +1344,7 @@ Instruction_PLM_Return:
     RTS                                                                  ;848A3F;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_WaitUntil_Enemy0_IsDead_848A40:
     LDA.W $0F86                                                          ;848A40;
     AND.W #$0200                                                         ;848A43;
@@ -1356,6 +1373,7 @@ UNUSED_Instruction_PLM_WaitUntil_Enemy0_IsDead_848A59:
 
 .return:
     RTS                                                                  ;848A71;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_GotoY_ifRoomArg_DoorIsSet:
@@ -1575,12 +1593,14 @@ Instruction_PLM_ProcessSolidScrollUpdate:
     RTS                                                                  ;848BD0;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_QueueMusicTrack_Y_848BD1:
     LDA.W $0000,Y                                                        ;848BD1;
     AND.W #$00FF                                                         ;848BD4;
     JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;848BD7;
     INY                                                                  ;848BDB;
     RTS                                                                  ;848BDC;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_ClearMusicQueue_QueueMusicTrack:
@@ -1627,6 +1647,7 @@ Instruction_PLM_QueueSound_Y_Lib3_Max6:
     RTS                                                                  ;848C21;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_QueueSound_Y_Lib1_Max15_848C22:
     LDA.W $0000,Y                                                        ;848C22;
     JSL.L QueueSound                                                     ;848C25;
@@ -1653,6 +1674,7 @@ UNUSED_Instruction_PLM_QueueSound_Y_Lib1_Max3_848C3D:
     JSL.L QueueSound_Lib1_Max3                                           ;848C40;
     INY                                                                  ;848C44;
     RTS                                                                  ;848C45;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_QueueSound_Y_Lib2_Max3:
@@ -1662,6 +1684,7 @@ Instruction_PLM_QueueSound_Y_Lib2_Max3:
     RTS                                                                  ;848C4E;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_QueueSound_Y_Lib3_Max3_848C4F:
     LDA.W $0000,Y                                                        ;848C4F;
     JSL.L QueueSound_Lib3_Max3                                           ;848C52;
@@ -1695,6 +1718,7 @@ UNUSED_Instruction_PLM_QueueSound_Y_Lib1_Max1_848C73:
     JSL.L QueueSound_Lib1_Max1                                           ;848C76;
     INY                                                                  ;848C7A;
     RTS                                                                  ;848C7B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_QueueSound_Y_Lib2_Max1:
@@ -1704,11 +1728,13 @@ Instruction_PLM_QueueSound_Y_Lib2_Max1:
     RTS                                                                  ;848C84;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_QueueSound_Y_Lib3_Max1_848C85:
     LDA.W $0000,Y                                                        ;848C85;
     JSL.L QueueSound_Lib3_Max1                                           ;848C88;
     INY                                                                  ;848C8C;
     RTS                                                                  ;848C8D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RTS_848C8E:
@@ -1806,10 +1832,12 @@ Instruction_PLM_GotoY_or_ActivateSaveStation:
     RTS                                                                  ;848D38;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_ResumeMusicIn6Seconds_848D39:
     LDA.W #$0168                                                         ;848D39;
     JSL.L Play_Room_Music_Track_After_A_Frames                           ;848D3C;
     RTS                                                                  ;848D40;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_GotoY_ifSamusIsWithin_YColumnsRowsOfPLM:
@@ -1862,6 +1890,7 @@ Instruction_PLM_GotoY_ifSamusIsWithin_YColumnsRowsOfPLM:
     RTS                                                                  ;848D88;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_MovePLMDown1Block_848D89:
     LDA.W $1C87,X                                                        ;848D89;
     CLC                                                                  ;848D8C;
@@ -1869,25 +1898,30 @@ UNUSED_Instruction_PLM_MovePLMDown1Block_848D89:
     ADC.W $07A5                                                          ;848D90;
     STA.W $1C87,X                                                        ;848D93;
     RTS                                                                  ;848D96;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RTS_848D97:
     RTS                                                                  ;848D97;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_DefaultPLM_848D98:
     dw $1000,InstList_PLM_DefaultPLMDrawInstruction                      ;848D98;
     dw Instruction_PLM_GotoY                                             ;848D9C;
     dw UNUSED_InstList_PLM_DefaultPLM_848D98                             ;848D9E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PLM_DefaultPLMDrawInstruction:
 ; Note that this is an invalid draw instruction
 ; Used by instruction list $8D98: Unused. Default PLM instruction list
     dw $0180,$0000,$0000                                                 ;848DA0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawPLM_Custom_DrawInstPointer_TilemapBaseAddr_848DA6:
     JSR.W DrawPLM                                                        ;848DA6;
     RTL                                                                  ;848DA9;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 DrawPLM_HardCoded:
@@ -2579,9 +2613,11 @@ PartiallySetupVRAMWriteTableEntries_SingleScrnPLMDrawTilemap:
     RTS                                                                  ;84924C;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 DrawInst_UnusedBlueBrinstarFaceBlock:
     dw $0001,$817E                                                       ;84924D;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_CrateriaMainStreetEscape:
     dw $0002,$00FF,$00FF                                                 ;849253;
@@ -2644,6 +2680,7 @@ DrawInst_ClearBotwoonWall:
     dw $00FF,$00FF
     dw $0000                                                 ;84931F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_849325:
     dw $8009,$8053,$8053,$8053,$8053,$8053,$8053,$8053                   ;849325;
     dw $8053,$8053
@@ -2658,6 +2695,7 @@ UNUSED_DrawInst_849351:
     dw $8009,$0055,$0055,$0055,$0055,$0055,$0055,$0055                   ;849351;
     dw $0055,$0055
     dw $0000                                                 ;849361;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_CrumbleKraidCeiling_CrumbleKraidSpikes_Elevatube:
     dw $0001,$8180
@@ -2683,9 +2721,11 @@ DrawInst_SetKraidCeilingBlockToBackground3:
     dw $0001,$0130
     dw $0000                                                 ;849385;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_84938B:
     dw $0001,$011C
     dw $0000                                                 ;84938B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_CrumbleKraidSpikeBlocks_0:
     dw $0001,$0111
@@ -2740,6 +2780,7 @@ DrawInst_CrumbleSporeSpawnCeiling_2:
     dw $0002,$0055,$0055                                                 ;84944B;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_849453:
     dw $8002,$00FF,$12FB                                                 ;849453;
     db $00,$FE                                                           ;849459;
@@ -2751,6 +2792,7 @@ UNUSED_DrawInst_849463:
     db $00,$FE                                                           ;849469;
     dw $8002,$8AFB,$80FF                                                 ;84946B;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_EscapeRoom1Gate_0:
     dw $8004,$80FF,$80FF,$80FF,$80FF                                     ;849473;
@@ -2764,6 +2806,7 @@ DrawInst_EscapeRoom1Gate_2:
     dw $8004,$830F,$8AE8,$82E8,$830F                                     ;84948B;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_849497:
     dw $0001,$00FF                                                       ;849497;
     dw $0000
@@ -2771,6 +2814,7 @@ UNUSED_DrawInst_849497:
 UNUSED_DrawInst_84949D:
     dw $0001,$80FF                                                       ;84949D;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_FillMotherBrainsWall:
     dw $8002,$8340,$830F                                                 ;8494A3;
@@ -2784,6 +2828,7 @@ DrawInst_MotherBrainsRoomEscapeDoor:
     dw $8004,$0223,$01EB,$01D0,$0221                                     ;8494BD;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_8494C9:
     dw $000D,$8044,$8044,$8044,$8044,$8044,$8044,$8044                   ;8494C9;
     dw $8044,$8044,$8044,$8044,$8044,$8044                               ;8494D9;
@@ -2793,6 +2838,7 @@ UNUSED_DrawInst_8494E7:
     dw $000D,$8044,$8044,$8044,$8044,$8044,$8044,$8044                   ;8494E7;
     dw $8044,$8044,$8044,$8044,$8044,$8044                               ;8494F7;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_MotherBrainsBackgroundRow2:
     dw $000D,$1241,$1242,$12FC,$12FC,$12FC,$1243,$1244                   ;849505;
@@ -2854,6 +2900,7 @@ DrawInst_MotherBrainsBackgroundRowD:
     dw $1339,$124E,$1339,$1339,$124F,$1249                               ;84965F;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_94966D:
     dw $000D,$8319,$8319,$8319,$8319,$8319,$8319,$8319                   ;84966D;
     dw $8319,$8319,$8319,$8319,$8319,$8319                               ;84967D;
@@ -2863,6 +2910,7 @@ UNUSED_DrawInst_94968B:
     dw $000D,$8044,$8044,$8044,$8044,$8044,$8044,$8044                   ;84968B;
     dw $8044,$8044,$8044,$8044,$8044,$8044                               ;84969B;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_ClearCeilingBlockInMotherBrainsRoom:
     dw $8002,$12FC,$00FF                                                 ;8496A9;
@@ -2972,11 +3020,13 @@ UNUSED_DrawInst_849817:
     dw $00FF,$00FF,$8004,$00FF,$00FF,$00FF,$00FF                         ;849837;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_849847:
     dw $8004,$00FF,$00FF,$00FF,$00FF,$00FF,$8004,$0172                   ;849847;
     dw $0173,$0173,$0172,$00FE,$8004,$0172,$0173,$0173                   ;849857;
     dw $0172,$00FD,$8004,$00FF,$00FF,$00FF,$00FF                         ;849867;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_BombTorizosCrumblingChozo_0:
     dw $0002,$8065,$8066                                                 ;849877;
@@ -2988,8 +3038,10 @@ DrawInst_BombTorizosCrumblingChozo_0:
     dw $0003,$8047,$8048,$8049                                           ;84988D;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_849897:
     dw $0001,$0001,$0000                                                 ;849897;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_BombTorizosCrumblingChozo_1:
     dw $0002,$00FF,$00FF,$00FE,$0002,$00FF,$00FF,$01FE                   ;84989D;
@@ -3100,6 +3152,7 @@ DrawInst_SaveStation_2:
     dw $0002,$805A,$845A                                                 ;849AC7;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_Draw13BlankAirTiles_849ACF:
     dw $000D,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF                   ;849ACF;
     dw $00FF,$00FF,$00FF,$00FF,$00FF,$00FF                               ;849ADF;
@@ -3139,6 +3192,7 @@ UNUSED_DrawInst_LowerNorfair2x2ChozoShotBlock_849B4B:
     db $00,$01                                                           ;849B51;
     dw $0002,$00FF,$00FF                                                 ;849B53;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_ClearCrocomiresBridge:
     dw $000A,$0080,$0080,$0080,$0080,$0080,$0080,$0080                   ;849B5B;
@@ -3271,6 +3325,7 @@ DrawInst_EyeDoorBottomFacingRight_2:
     dw $0001,$A8AC                                                       ;849CA1;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_AlternateLowerNorfairChozoHand_849CA7:
     dw $0001,$C0FF                                                       ;849CA7;
     dw $0000
@@ -3290,6 +3345,7 @@ UNUSED_DrawInst_849CB9:
 UNUSED_DrawInst_AlternateLowerNorfairChozoHand_849CBF:
     dw $0001,$00FF                                                       ;849CBF;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_ClearSlopeAccessForWreckedShipChozo:
     dw $000E,$012B,$012B,$012B,$012B,$012B,$012B,$012B                   ;849CC5;
@@ -3319,6 +3375,7 @@ DrawInst_BlockSlopeAccessForWreckedShipChozo:
     dw $0001,$81BB                                                       ;849D53;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_WreckedShip3x4ChozoBombBlock_0_849D59:
     dw $8004,$C171,$D171,$D171,$D171                                     ;849D59;
     db $FF,$00                                                           ;849D63;
@@ -3358,6 +3415,7 @@ UNUSED_DrawInst_WreckedShip3x4ChozoBombBlock_4_849DE9:
     db $FE,$00                                                           ;849DFF;
     dw $8004,$D0FF,$D0FF,$D0FF,$30FF                                     ;849E01;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_BrinstarFloorPlant_0:
     dw $0002,$35A1,$85A0                                                 ;849E0D;
@@ -3367,6 +3425,7 @@ DrawInst_BrinstarFloorPlant_0:
     dw $0004,$2180,$2181,$2581,$2580                                     ;849E1D;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_849E29:
     dw $0002,$05A1,$85A0                                                 ;849E29;
     db $FE,$00                                                           ;849E2F;
@@ -3374,6 +3433,7 @@ UNUSED_DrawInst_849E29:
     db $FE,$FF                                                           ;849E37;
     dw $0004,$2180,$2181,$2581,$2580                                     ;849E39;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_BrinstarFloorPlant_1:
     dw $0002,$05A3,$85A2                                                 ;849E45;
@@ -3407,6 +3467,7 @@ DrawInst_BrinstarCeilingPlant_0:
     dw $0004,$2980,$2981,$2D81,$2D80                                     ;849EA9;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_849EB5:
     dw $0002,$0DA1,$8DA0                                                 ;849EB5;
     db $FE,$00                                                           ;849EBB;
@@ -3414,6 +3475,7 @@ UNUSED_DrawInst_849EB5:
     db $FE,$01                                                           ;849EC3;
     dw $0004,$2980,$2981,$2D81,$2D80                                     ;849EC5;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_BrinstarCeilingPlant_1:
     dw $0002,$0DA3,$8DA2                                                 ;849ED1;
@@ -3553,6 +3615,7 @@ UNUSED_DrawInst_DraygonCannonShieldDownRight_1_849FFD:
     dw $0002,$D532,$D531                                                 ;84A005;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_DraygonCannonShieldUpRight_0_84A00D:
     dw $0002,$CD30,$5D2F                                                 ;84A00D;
     db $00,$01                                                           ;84A013;
@@ -3564,6 +3627,7 @@ UNUSED_DrawInst_DraygonCannonShieldUpRight_1_84A01D:
     db $00,$01                                                           ;84A023;
     dw $0002,$DD12,$DD11                                                 ;84A025;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_DraygonCannonRight_0:
     dw $0002,$A580,$00FF                                                 ;84A02D;
@@ -3589,6 +3653,7 @@ DrawInst_DraygonCannonRight_3:
     dw $0002,$A5A3,$00FF                                                 ;84A065;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_DraygonCannonDownRight_0_84A06D:
     dw $0002,$A5A5,$A5A4                                                 ;84A06D;
     db $00,$01                                                           ;84A073;
@@ -3636,6 +3701,7 @@ UNUSED_DrawInst_DraygonCannonUpRight_3_84A0DD:
     db $00,$01                                                           ;84A0E3;
     dw $0002,$ADAB,$ADAA                                                 ;84A0E5;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_DraygonCannonShieldLeft_0:
     dw $0001,$C114                                                       ;84A0ED;
@@ -3653,6 +3719,7 @@ DrawInst_DraygonCannonShieldLeft_1:
     dw $0002,$0135,$D136                                                 ;84A10D;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_DraygonCannonShieldDownLeft_0_84A115:
     dw $0001,$C110                                                       ;84A115;
     db $FF,$00                                                           ;84A119;
@@ -3684,6 +3751,7 @@ UNUSED_DrawInst_DraygonCannonShieldUpLeft_1_84A151:
     db $FF,$01                                                           ;84A15B;
     dw $0002,$D911,$D912                                                 ;84A15D;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_DraygonCannonLeft_0:
     dw $0001,$A180                                                       ;84A165;
@@ -3717,6 +3785,7 @@ DrawInst_DraygonCannonLeft_3:
     dw $0002,$00FF,$A1A3                                                 ;84A1AD;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_DraygonCannonDownLeft_0_84A1B5:
     dw $0001,$A1A5                                                       ;84A1B5;
     db $FF,$00                                                           ;84A1B9;
@@ -3820,11 +3889,13 @@ UNUSED_DrawInst_84A2A5:
     db $FF,$00                                                           ;84A2AB;
     dw $8002,$2333,$2353                                                 ;84A2AD;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_ItemChozoOrb:
     dw $0001,$00FF                                                       ;84A2B5;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_84A2BB:
     dw $0001,$805D                                                       ;84A2BB;
     dw $0000
@@ -3832,6 +3903,7 @@ UNUSED_DrawInst_84A2BB:
 UNUSED_DrawInst_84A2C1:
     dw $0001,$805E                                                       ;84A2C1;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_ItemOrb_0:
     dw $0001,$C072                                                       ;84A2C7;
@@ -4001,6 +4073,7 @@ DrawInst_ItemShotBlock_2:
     dw $0001,$8055                                                       ;84A3E9;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_84A3EF:
     dw $0001,$80FF                                                       ;84A3EF;
     dw $0000
@@ -4064,6 +4137,7 @@ UNUSED_DrawInst_84A465:
 UNUSED_DrawInst_1x1ShotBlock_84A475:
     dw $0001,$C052                                                       ;84A475;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_2x1RespawningShotBlock:
     dw $0002,$C096,$5097                                                 ;84A47B;
@@ -4097,9 +4171,11 @@ DrawInst_2x2RespawningCrumbleBlock:
     dw $0002,$D0BC,$D0BC                                                 ;84A4B9;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_84A4C1:
     dw $0001,$F058                                                       ;84A4C1;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_2x1RespawningBombBlock:
     dw $0002,$F058,$5058                                                 ;84A4C7;
@@ -4597,9 +4673,11 @@ DrawInst_BlueDoorFacingRight_2:
     dw $8004,$840F,$042F,$0C2F,$8C0F                                     ;84AA13;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_84AA1F:
     dw $0004,$841D,$541C,$501C,$501D                                     ;84AA1F;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_DoorFacingUp_AA2B:
     dw $0004,$C41D,$541C,$501C,$501D                                     ;84AA2B;
@@ -4617,9 +4695,11 @@ DrawInst_BlueDoorFacingUp_2:
     dw $0004,$843F,$843E,$803E,$803F                                     ;84AA4F;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_84AA5B:
     dw $0004,$8C1D,$5C1C,$581C,$581D                                     ;84AA5B;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_DoorFacingDown_AA67:
     dw $0004,$CC1D,$5C1C,$581C,$581D                                     ;84AA67;
@@ -4662,8 +4742,10 @@ DrawInst_ElevatorPlatform_2:
     dw $0000
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_DrawEmptyTile_84AADF:
     dw $0001,DrawInst_ItemChozoOrb                                       ;84AADF;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PLM_Delete:
     dw Instruction_PLM_Delete                                            ;84AAE3;
@@ -4809,6 +4891,7 @@ InstList_PLM_ClearKraidSpikeBlocks:
     dw $0001,DrawInst_ClearKraidSpikeBlocks                              ;84ABDD;
     dw Instruction_PLM_Delete                                            ;84ABE1;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_84ABE3:
     dw $0001,UNUSED_DrawInst_849453                                      ;84ABE3;
     dw Instruction_PLM_Delete                                            ;84ABE7;
@@ -4831,6 +4914,7 @@ UNUSED_InstList_PLM_84ABF9:
 UNUSED_PLM_InstList_84ABFF:
     dw $0001,UNUSED_DrawInst_84949D                                      ;84ABFF;
     dw Instruction_PLM_Delete                                            ;84AC03;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PLM_FillMotherBrainsWall:
     dw $0001,DrawInst_FillMotherBrainsWall                               ;84AC05;
@@ -4888,6 +4972,7 @@ InstList_PLM_MotherBrainsBackgroundRowD:
     dw $0001,DrawInst_MotherBrainsBackgroundRowD                         ;84AC53;
     dw Instruction_PLM_Delete                                            ;84AC57;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_84AC59:
     dw $0001,UNUSED_DrawInst_94966D                                      ;84AC59;
     dw Instruction_PLM_Delete                                            ;84AC5D;
@@ -4895,6 +4980,7 @@ UNUSED_InstList_PLM_84AC59:
 UNUSED_InstList_PLM_84AC5F:
     dw $0001,UNUSED_DrawInst_94968B                                      ;84AC5F;
     dw Instruction_PLM_Delete                                            ;84AC63;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PLM_ClearCeilingBlockInMotherBrainsRoom:
     dw $0001,DrawInst_ClearCeilingBlockInMotherBrainsRoom                ;84AC65;
@@ -5215,6 +5301,7 @@ Instruction_PLM_GotoY_EnableMovementIfSamusMissilesAreFull:
     RTS                                                                  ;84AED5;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 InstList_PLM_Nothing_84AED6:
     dw Instruction_PLM_Delete                                            ;84AED6;
 
@@ -5260,14 +5347,17 @@ InstList_PLM_Nothing_84AF1E:
     dw $0012,UNUSED_DrawInst_84A2A5                                      ;84AF5A;
     dw Instruction_PLM_GotoY                                             ;84AF5E;
     dw InstList_PLM_Nothing_84AF1E                                       ;84AF60;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_Debug_ScrollPLM:
     dw $0001,$3074                                                       ;84AF62;
     dw $0000
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawInst_Debug_SolidScrollPLM_84AF68:
     dw $0001,$B074                                                       ;84AF68;
     dw $0000
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawInst_Debug_LeftwardsExtension:
     dw $0001,$5011                                                       ;84AF6E;
@@ -5294,8 +5384,10 @@ InstList_PLM_ScrollPLM_1:
     dw Instruction_PLM_GotoY                                             ;84AF8E;
     dw InstList_PLM_ScrollPLM_1                                          ;84AF90;
 
+if !FEATURE_KEEP_UNREFERENCED
 InstList_PLM_SolidScrollPLM_0:
     dw $0001,UNUSED_DrawInst_Debug_SolidScrollPLM_84AF68                 ;84AF92;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PLM_SolidScrollPLM_1:
     dw Instruction_PLM_Sleep                                             ;84AF96;
@@ -5400,6 +5492,7 @@ Instruction_PLM_EnableMovement_SetSaveStationUsed:
     RTS                                                                  ;84B03D;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_Draw13BlankAirTiles_84B03E:
     dw $0001,UNUSED_DrawInst_Draw13BlankAirTiles_849ACF                  ;84B03E;
     dw Instruction_PLM_Delete                                            ;84B042;
@@ -5407,6 +5500,7 @@ UNUSED_InstList_PLM_Draw13BlankAirTiles_84B03E:
 UNUSED_InstList_PLM_Draw13BlankSolidTiles_84B044:
     dw $0001,UNUSED_DrawInst_Draw13BlankSolidTiles_849AED                ;84B044;
     dw Instruction_PLM_Delete                                            ;84B048;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Setup_WreckedShipEntranceTreadmill:
     LDX.W $1C87,Y                                                        ;84B04A;
@@ -5422,6 +5516,7 @@ Setup_WreckedShipEntranceTreadmill:
     RTS                                                                  ;84B05C;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LoadFXEntry_CompletelyBroken_84B05D:
     PHB                                                                  ;84B05D;
     PHA                                                                  ;84B05E;
@@ -5511,6 +5606,7 @@ UNUSED_LoadFXEntry2IfPLMIsInLeftmostScreenColumn_84B0C1:
 .return:
     CLC                                                                  ;84B0DA;
     RTS                                                                  ;84B0DB;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_BrinstarFloorPlant:
@@ -5954,10 +6050,12 @@ Setup_EnemyBreakableBlock:
     RTS                                                                  ;84B3E2;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Setup_TorizoDrool_84B3E3:
     LDY.W #UNUSED_EnemyProjectile_BombTorizo_86A977                      ;84B3E3;
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;84B3E6;
     RTS                                                                  ;84B3EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_IcePhysics:
@@ -6326,9 +6424,11 @@ PLMEntries_collisionReactionClearCarry:
     dw Setup_ClearCarry                                                  ;84B633;
     dw InstList_PLM_Delete                                               ;84B635;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_84B637:
     dw Setup_SetCarry                                                    ;84B637;
     dw InstList_PLM_Delete                                               ;84B639;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_rightwardsExtension:
     dw Setup_RightwardsExtension                                         ;84B63B;
@@ -6366,6 +6466,7 @@ PLMEntries_insideReactionNothing_B65B:
     dw RTS_84B3CF                                                        ;84B65B;
     dw InstList_PLM_Delete                                               ;84B65D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_84B65F:
     dw Setup_DeactivatePLM                                               ;84B65F;
     dw UNUSED_InstList_PLM_84ABE3                                        ;84B661;
@@ -6385,6 +6486,7 @@ UNUSED_PLMEntries_84B66B:
 UNUSED_PLMEntries_84B66F:
     dw Setup_DeactivatePLM                                               ;84B66F;
     dw UNUSED_PLM_InstList_84ABFF                                        ;84B671;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_fillMotherBrainsWall:
     dw Setup_DeactivatePLM                                               ;84B673;
@@ -6442,6 +6544,7 @@ PLMEntries_motherBrainsBackgroundRowD:
     dw Setup_DeactivatePLM                                               ;84B6A7;
     dw InstList_PLM_MotherBrainsBackgroundRowD                           ;84B6A9;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_84B6AB:
     dw Setup_DeactivatePLM                                               ;84B6AB;
     dw UNUSED_InstList_PLM_84AC59                                        ;84B6AD;
@@ -6449,6 +6552,7 @@ UNUSED_PLMEntries_84B6AB:
 UNUSED_PLMEntries_84B6AF:
     dw Setup_DeactivatePLM                                               ;84B6AF;
     dw UNUSED_InstList_PLM_84AC5F                                        ;84B6B1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_clearCeilingBlockInMotherBrainsRoom:
     dw Setup_DeactivatePLM                                               ;84B6B3;
@@ -6518,6 +6622,7 @@ PLMEntries_missileStationLeftAccess:
     dw Setup_MissileStationLeftAccess                                    ;84B6F3;
     dw InstList_PLM_MissileStationLeftAccess_0                           ;84B6F5;
 
+if !FEATURE_KEEP_UNREFERENCED
 PLMEntries_nothing_84B6F7:
     dw Setup_DeactivatePLM                                               ;84B6F7;
     dw InstList_PLM_Nothing_84AED6                                       ;84B6F9;
@@ -6525,6 +6630,7 @@ PLMEntries_nothing_84B6F7:
 PLMEntries_nothing_84B6FB:
     dw Setup_DeactivatePLM                                               ;84B6FB;
     dw InstList_PLM_Nothing_84AF1C                                       ;84B6FD;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_scrollPLMTrigger:
     dw Setup_ScrollBlockTouchPLM                                         ;84B6FF;
@@ -6534,9 +6640,11 @@ PLMEntries_ScrollPLM:
     dw Setup_ScrollPLM                                                   ;84B703;
     dw InstList_PLM_ScrollPLM_0                                          ;84B705;
 
+if !FEATURE_KEEP_UNREFERENCED
 PLMEntries_unusedSolidScrollPLM:
     dw Setup_SolidScrollPLM                                              ;84B707;
     dw InstList_PLM_SolidScrollPLM_0                                     ;84B709;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_elevatorPlatform:
     dw Setup_DeactivatePLM                                               ;84B70B;
@@ -6550,6 +6658,7 @@ PLMEntries_insideReactionQuicksandSurface:
     dw Setup_QuicksandSurface                                            ;84B713;
     dw InstList_PLM_Delete                                               ;84B715;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_84B717:
     dw Setup_QuicksandSurface                                            ;84B717;
     dw InstList_PLM_Delete                                               ;84B719;
@@ -6557,6 +6666,7 @@ UNUSED_PLMEntries_84B717:
 UNUSED_PLMEntries_84B71B:
     dw Setup_QuicksandSurface                                            ;84B71B;
     dw InstList_PLM_Delete                                               ;84B71D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_insideReactionSubmergingQuicksand:
     dw Setup_Inside_SubmergingQuicksand                                  ;84B71F;
@@ -6574,6 +6684,7 @@ PLMEntries_collisionReactionQuicksandSurface:
     dw Setup_QuicksandSurface_BTS85                                      ;84B72B;
     dw InstList_PLM_Delete                                               ;84B72D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_84B72F:
     dw Setup_QuicksandSurface_BTS85                                      ;84B72F;
     dw InstList_PLM_Delete                                               ;84B731;
@@ -6581,6 +6692,7 @@ UNUSED_PLMEntries_84B72F:
 UNUSED_PLMEntries_84B733:
     dw Setup_QuicksandSurface_BTS85                                      ;84B733;
     dw InstList_PLM_Delete                                               ;84B735;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_collisionReactionSubmergingQuicksand:
     dw Setup_Collision_SubmergingQuicksand                               ;84B737;
@@ -6594,9 +6706,11 @@ PLMEntries_collisionReactionSandFallsFast:
     dw Setup_CollisionReaction_SandFalls                                 ;84B73F;
     dw InstList_PLM_Delete                                               ;84B741;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_unusedTorizoDrool_84B743:
     dw UNUSED_Setup_TorizoDrool_84B3E3                                   ;84B743;
     dw InstList_PLM_Delete                                               ;84B745;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_clearCrocomiresBridge:
     dw Setup_DeactivatePLM                                               ;84B747;
@@ -6618,6 +6732,7 @@ PLMEntries_createCrocomireInvisibleWall:
     dw Setup_DeactivatePLM                                               ;84B757;
     dw InstList_PLM_CreateCrocomiresInvisibleWall                        ;84B759;
 
+if !FEATURE_KEEP_UNREFERENCED
 PLMEntries_unusedDraw13BlankAirTiles:
     dw RTS_84B3CF                                                        ;84B75B;
     dw UNUSED_InstList_PLM_Draw13BlankAirTiles_84B03E                    ;84B75D;
@@ -6625,6 +6740,7 @@ PLMEntries_unusedDraw13BlankAirTiles:
 PLMEntries_unusedDraw13BlankSolidTiles:
     dw RTS_84B3CF                                                        ;84B75F;
     dw UNUSED_InstList_PLM_Draw13BlankSolidTiles_84B044                  ;84B761;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_clearBabyMetroidInvisibleWall:
     dw Setup_ClearBabyMetroidInvisibleWall                               ;84B763;
@@ -6682,9 +6798,11 @@ PLMEntries_crumbleBotwoonWall:
     dw Setup_CrumbleBotwoonWall_Wait40Frames                             ;84B79B;
     dw InstList_PLM_CrumbleBotwoonWall_0                                 ;84B79D;
 
+if !FEATURE_KEEP_UNREFERENCED
 PLMEntries_unusedSetKraidCeilingBlockToBackground1:
     dw Setup_DeactivatePLM                                               ;84B79F;
     dw InstList_PLM_SetKraidCeilingBlockToBackground1                    ;84B7A1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_crumbleKraidCeilingBlockIntoBackground1:
     dw Setup_DeactivatePLM                                               ;84B7A3;
@@ -7199,6 +7317,7 @@ InstList_PLM_BombTorizoGreyDoor_5:
     dw DrawInst_DoorFacingRight_A683                                     ;84BACD;
     dw Instruction_PLM_Delete                                            ;84BACF;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Setup_84BAD1:
     LDA.W $1DC8,Y                                                        ;84BAD1;
     AND.W #$007C                                                         ;84BAD4;
@@ -7213,6 +7332,7 @@ UNUSED_Setup_84BAD1:
     LDA.W #$C044                                                         ;84BAED;
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84BAF0;
     RTS                                                                  ;84BAF3;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 PLMEntries_bombTorizoGreyDoor:
@@ -7271,12 +7391,14 @@ InstList_PLM_GateThatClosesDuringEscapeAfterMotherBrain_0:
     dw DrawInst_EscapeRoom1Gate_2                                        ;84BB36;
     dw Instruction_PLM_Delete                                            ;84BB38;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_84BB34:
     dw $0006                                                             ;84BB3A;
     dw DrawInst_EscapeRoom1Gate_1                                        ;84BB3C;
     dw $005E                                                             ;84BB3E;
     dw DrawInst_EscapeRoom1Gate_0                                        ;84BB40;
     dw Instruction_PLM_Delete                                            ;84BB42;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PLM_GateThatClosesDuringEscapeAfterMotherBrain_1:
     dw $0002                                                             ;84BB44;
@@ -9498,6 +9620,7 @@ PLMEntries_gateThatClosesInEscapeRoom1_PLM:
     dw Setup_DeactivatePLM                                               ;84C8D0;
     dw InstList_PLM_GateThatClosesDuringEscapeAfterMotherBrain_1         ;84C8D2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_Draws1x1ShotBlock_84C8D4:
     dw $0001                                                             ;84C8D4;
     dw UNUSED_DrawInst_1x1ShotBlock_84A475                               ;84C8D6;
@@ -9517,6 +9640,7 @@ UNUSED_InstList_PLM_Draws2x2ShotBlock_84C8E6:
     dw $0001                                                             ;84C8E6;
     dw DrawInst_2x2RespawningShotBlock                                   ;84C8E8;
     dw Instruction_PLM_Delete                                            ;84C8EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_BombReaction_PLM_1x1RespawningCrumbleBlock:
     dw $0001                                                             ;84C8EC;
@@ -9538,6 +9662,7 @@ InstList_BombReaction_PLM_2x2RespawningCrumbleBlock:
     dw DrawInst_2x2RespawningCrumbleBlock                                ;84C900;
     dw Instruction_PLM_Delete                                            ;84C902;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_84C904:
     dw $0001                                                             ;84C904;
     dw UNUSED_DrawInst_84A4C1                                            ;84C906;
@@ -9557,6 +9682,7 @@ UNUSED_InstList_PLM_84C916:
     dw $0001                                                             ;84C916;
     dw DrawInst_2x2RespawningBombBlock                                   ;84C918;
     dw Instruction_PLM_Delete                                            ;84C91A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 UNUSED_InstList_PLM_PowerBombBlockBombed_84C91C:
     dw $0001                                                             ;84C91C;
@@ -9573,6 +9699,7 @@ InstList_PLM_BombReaction_SpeedBlock:
     dw DrawInst_BombReactionSpeedBlock                                   ;84C92A;
     dw Instruction_PLM_Delete                                            ;84C92C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_84C92E:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84C92E;
     db $06                                                               ;84C930;
@@ -9592,6 +9719,7 @@ UNUSED_InstList_PLM_84C92E:
     dw DrawInst_Respawn1x1_0                                             ;84C94B;
     dw Instruction_PLM_DrawPLMBlock                                      ;84C94D;
     dw Instruction_PLM_Delete                                            ;84C94F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PLM_RespawningSpeedBlock_SlowerCrumbleAnimation:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1                            ;84C951;
@@ -9653,6 +9781,7 @@ InstList_PLM_RespawningSpeedBlock:
     dw Instruction_PLM_DrawPLMBlock_Clone                                ;84C9B6;
     dw Instruction_PLM_Delete                                            ;84C9B8;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_84C9BA:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max6                            ;84C9BA;
     db $06                                                               ;84C9BC;
@@ -9665,6 +9794,7 @@ UNUSED_InstList_PLM_84C9BA:
     dw $0001                                                             ;84C9C9;
     dw DrawInst_Respawn1x1_3                                             ;84C9CB;
     dw Instruction_PLM_Delete                                            ;84C9CD;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PLM_SpeedBlockSlowerCrumbleAnimation:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1                            ;84C9CF;
@@ -10294,6 +10424,7 @@ InstList_PLM_BreakableGrappleBlock:
     dw DrawInst_BreakableGrappleBlock_4                                  ;84CDBE;
     dw Instruction_PLM_Delete                                            ;84CDC0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Setup_84CDC2:
     LDA.W $0A1C                                                          ;84CDC2;
     CMP.W #$0081                                                         ;84CDC5;
@@ -10316,6 +10447,7 @@ UNUSED_Setup_84CDC2:
     STA.W $1C37,Y                                                        ;84CDE5;
     SEC                                                                  ;84CDE8;
     RTS                                                                  ;84CDE9;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_Collision_RespawningSpeedBoostBlock:
@@ -10579,6 +10711,7 @@ Setup_DraygonsBrokenTurret:
     RTS                                                                  ;84CFEB;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_Draws1x1ShotBlock_84CFEC:
     dw Setup_Reaction_SpeedCrumbleBlock                                  ;84CFEC;
     dw UNUSED_InstList_PLM_Draws1x1ShotBlock_84C8D4                      ;84CFEE;
@@ -10594,6 +10727,7 @@ UNUSED_PLMEntries_Draws2x1ShotBlock_84CFF4:
 UNUSED_PLMEntries_Draws2x2ShotBlock_84CFF8:
     dw Setup_Reaction_SpeedCrumbleBlock                                  ;84CFF8;
     dw UNUSED_InstList_PLM_Draws2x2ShotBlock_84C8E6                      ;84CFFA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_1x1RespawningCrumbleBlock:
     dw Setup_Reaction_SpeedCrumbleBlock                                  ;84CFFC;
@@ -10611,6 +10745,7 @@ PLMEntries_2x2RespawningCrumbleBlock:
     dw Setup_Reaction_SpeedCrumbleBlock                                  ;84D008;
     dw InstList_BombReaction_PLM_2x2RespawningCrumbleBlock               ;84D00A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_84D00C:
     dw Setup_Reaction_SpeedCrumbleBlock                                  ;84D00C;
     dw UNUSED_InstList_PLM_84C904                                        ;84D00E;
@@ -10634,11 +10769,13 @@ UNUSED_PLMEntries_84D01C:
 UNUSED_PLMEntries_84D020:
     dw Setup_Reaction_SpeedCrumbleBlock                                  ;84D020;
     dw UNUSED_InstList_PLM_SuperMissileBlockBombed_84C922                ;84D022;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_BombReaction_SpeedBoostBlock:
     dw Setup_Reaction_SpeedCrumbleBlock                                  ;84D024;
     dw InstList_PLM_BombReaction_SpeedBlock                              ;84D026;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_84D028:
     dw UNUSED_Setup_84CDC2                                               ;84D028;
     dw UNUSED_InstList_PLM_84C92E                                        ;84D02A;
@@ -10646,6 +10783,7 @@ UNUSED_PLMEntries_84D028:
 UNUSED_PLMEntries_84D02C:
     dw UNUSED_Setup_84CDC2                                               ;84D02C;
     dw UNUSED_InstList_PLM_84C9BA                                        ;84D02E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_Collision_BTS82:
     dw Setup_Collision_RespawningSpeedBoostBlock                         ;84D030;
@@ -10835,6 +10973,7 @@ PLMEntries_Grappled_DraygonsBrokenTurret:
     dw Setup_DraygonsBrokenTurret                                        ;84D0E8;
     dw InstList_PLM_GrappleBlock                                         ;84D0EA;
 
+if !FEATURE_KEEP_UNREFERENCED
 InstList_PLM_UnusedBlueBrinstarFaceBlock:
     dw $0001                                                             ;84D0EC;
     dw DrawInst_UnusedBlueBrinstarFaceBlock                              ;84D0EE;
@@ -10843,6 +10982,7 @@ InstList_PLM_UnusedBlueBrinstarFaceBlock:
 PLMEntries_UnusedBlueBrinstarFaceBlock:
     dw Setup_DeactivatePLM                                               ;84D0F2;
     dw InstList_PLM_UnusedBlueBrinstarFaceBlock                          ;84D0F4;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PLM_CrumbleLowerNorfairChozoRoomPlug:
     dw $0004                                                             ;84D0F6;
@@ -10866,6 +11006,7 @@ PLMEntries_CrumbleLowerNorfairChozoRoomPlug:
     dw Setup_CrumbleLowerNorfairChozoRoomPlug                            ;84D113;
     dw InstList_PLM_CrumbleLowerNorfairChozoRoomPlug                     ;84D115;
 
+if !FEATURE_KEEP_UNREFERENCED
 Setup_UnusedShotBlock:
     LDX.W $1C87,Y                                                        ;84D117;
     LDA.W #$C000                                                         ;84D11A;
@@ -10897,6 +11038,7 @@ InstList_PLM_UnusedGrappleBlock:
 PLMEntries_UnusedGrappleBlock:
     dw Setup_UnusedGrappleBlock                                          ;84D13B;
     dw InstList_PLM_UnusedGrappleBlock                                   ;84D13D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PLM_LowerNorfairChozoHand_0:
     dw Instruction_PLM_GotoY_ifEventIsSet                                ;84D13F;
@@ -11271,6 +11413,7 @@ Instruction_PLM_RevertWreckedShipChozosSlopesIntoSpikes:
     RTS                                                                  ;84D408;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PreInst_PLM_GotoToLinkInstructionIfBombed_84D409:
     LDA.W $1D77,X                                                        ;84D409;
     AND.W #$0F00                                                         ;84D40C;
@@ -11384,6 +11527,7 @@ InstList_PLM_UnusedLowerNorfair2x2ChozoShotBlock_84D4B8:
     dw $0001                                                             ;84D4B8;
     dw UNUSED_DrawInst_LowerNorfair2x2ChozoShotBlock_849B4B              ;84D4BA;
     dw Instruction_PLM_Delete                                            ;84D4BC;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RTS_84D4BE:
     RTS                                                                  ;84D4BE;
@@ -11609,6 +11753,7 @@ Setup_Collision_WreckedShipChozoHandTrigger:
     RTS                                                                  ;84D67E;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 Setup_UnusedWreckedShip3x4ChozoBombBlock:
     LDX.W $1C87,Y                                                        ;84D67F;
     LDA.W #$0044                                                         ;84D682;
@@ -11649,6 +11794,7 @@ Setup_UnusedLowerNorfair2x2ChozoShotBlock:
     LDA.W #$D0FF                                                         ;84D6C5;
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84D6C8;
     RTS                                                                  ;84D6CB;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_NoobTube:
@@ -11670,6 +11816,7 @@ PLMEntries_MotherBrainsGlass:
     dw Setup_MotherBrainsGlass                                           ;84D6DE;
     dw InstList_PLM_MotherBrainsGlass_0                                  ;84D6E0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_MotherBrainsGlass_AreaBossDead_84D6E2:
     dw Setup_DeactivatePLM                                               ;84D6E2;
     dw InstList_PLM_UnusedMotherBrainsGlass_AreaBossDead                 ;84D6E4;
@@ -11677,6 +11824,7 @@ UNUSED_PLMEntries_MotherBrainsGlass_AreaBossDead_84D6E2:
 UNUSED_PLMEntries_MotherBrainsGlass_NoGlassState_84D6E6:
     dw Setup_DeactivatePLM                                               ;84D6E6;
     dw InstList_PLM_UnusedMotherBrainsGlass_NoGlassState                 ;84D6E8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_BombTorizosCrumblingChozo:
     dw Setup_BombTorizosCrumblingChozo                                   ;84D6EA;
@@ -11706,6 +11854,7 @@ PLMEntries_BlockSlopeAccessForWreckedShipChozo:
     dw RTS_84D6F7                                                        ;84D6FC;
     dw InstList_PLM_BlockSlopeAccessForWreckedShipChozo                  ;84D6FE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_WreckedShip3x4ChozoShotBlock_84D700:
     dw Setup_UnusedWreckedShip3x4ChozoBombBlock                          ;84D700;
     dw UNUSED_InstList_PLM_WreckedShip3x4ChozoBombBlock_84D426           ;84D702;
@@ -11717,11 +11866,13 @@ UNUSED_PLMEntries_AltLowerNorfairChozoHand_84D704:
 UNUSED_PLMEntries_LowerNorfair2x2ChozoShotBlock_84D708:
     dw Setup_UnusedLowerNorfair2x2ChozoShotBlock                         ;84D708;
     dw InstList_PLM_UnusedLowerNorfair2x2ChozoShotBlock_84D490           ;84D70A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_NoobTube:
     dw Setup_NoobTube                                                    ;84D70C;
     dw InstList_PLM_NoobTube_0                                           ;84D70E;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PreInst_PLM_WakePLMIfSamusIsWithin4Blocks_84D710:
     JSL.L Calculate_PLM_Block_Coordinates                                ;84D710;
     LDA.W $0AF6                                                          ;84D714;
@@ -11761,6 +11912,7 @@ UNUSED_PreInst_PLM_WakePLMIfSamusIsWithin4Blocks_84D710:
 
 .return:
     RTS                                                                  ;84D752;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 PreInstruction_PLM_WakePLMIfRoomArgDoorIsSet:
@@ -12708,6 +12860,7 @@ InstList_PLM_DraygonCannonWithShieldFacingDownRight_2:
 UNUSED_InstList_PLM_DraygonCannonFacingDownRight_0:
     dw Instruction_PLM_DamageDraygonTurretFacingDownRight                ;84DD5A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_DraygonCannonFacingDownRight_1:
     dw $0006                                                             ;84DD5C;
     dw UNUSED_DrawInst_DraygonCannonDownRight_0_84A06D                   ;84DD5E;
@@ -12766,6 +12919,7 @@ UNUSED_InstList_PLM_DraygonCannonFacingUpRight_84DDA5:
     dw UNUSED_DrawInst_DraygonCannonUpRight_3_84A0DD                     ;84DDB3;
     dw Instruction_PLM_GotoY                                             ;84DDB5;
     dw UNUSED_InstList_PLM_DraygonCannonFacingUpRight_84DDA5             ;84DDB7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_PLM_DraygonCannonWithShieldFacingLeft_0:
     dw Instruction_PLM_LinkInstruction_Y                                 ;84DDB9;
@@ -12814,6 +12968,7 @@ InstList_PLM_DraygonCannonFacingLeft_1:
     dw Instruction_PLM_GotoY                                             ;84DDFE;
     dw InstList_PLM_DraygonCannonFacingLeft_1                            ;84DE00;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_DraygonCannonWithShieldFacingDownLeft_84DE02:
     dw Instruction_PLM_LinkInstruction_Y                                 ;84DE02;
     dw UNUSED_InstList_DraygonCannonWithShieldFacingDownLeft_84DE14      ;84DE04;
@@ -12907,6 +13062,7 @@ UNUSED_InstList_PLM_DraygonCannonFacingUpLeft_84DE80:
     dw UNUSED_DrawInst_DraygonCannonUpLeft_3_84A241                      ;84DE8E;
     dw Instruction_PLM_GotoY                                             ;84DE90;
     dw UNUSED_InstList_PLM_DraygonCannonFacingUpLeft_84DE80              ;84DE92;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Setup_DraygonCannonWithShieldFacingRight:
     LDA.W $1DC7,Y                                                        ;84DE94;
@@ -12926,6 +13082,7 @@ Setup_DraygonCannonWithShieldFacingRight:
     RTS                                                                  ;84DEB8;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Setup_DraygonCannonWithShieldFacingDownUpRight_84DEB9:
     LDA.W $1DC7,Y                                                        ;84DEB9;
     STA.W $1E17,Y                                                        ;84DEBC;
@@ -12950,6 +13107,7 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpRight_84DEB9:
     LDA.W #$D0FF                                                         ;84DEE9;
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DEEC;
     RTS                                                                  ;84DEEF;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_DraygonCannonWithShieldFacingLeft:
@@ -12970,6 +13128,7 @@ Setup_DraygonCannonWithShieldFacingLeft:
     RTS                                                                  ;84DF14;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Setup_DraygonCannonWithShieldFacingDownUpLeft_84DF15:
     LDA.W $1DC7,Y                                                        ;84DF15;
     STA.W $1E17,Y                                                        ;84DF18;
@@ -12994,6 +13153,7 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpLeft_84DF15:
     LDA.W #$D0FF                                                         ;84DF45;
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DF48;
     RTS                                                                  ;84DF4B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_DraygonCannon:
@@ -13008,6 +13168,7 @@ PLMEntries_DraygonCannonWithShieldFacingRight:
     dw Setup_DraygonCannonWithShieldFacingRight                          ;84DF59;
     dw InstList_PLM_DraygonCannonWithShieldFacingRight_0                 ;84DF5B;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_DraygonCannonShieldFacingDownRight_84DF5D:
     dw UNUSED_Setup_DraygonCannonWithShieldFacingDownUpRight_84DEB9      ;84DF5D;
     dw InstList_PLM_DraygonCannonWithShieldFacingDownRight_0             ;84DF5F;
@@ -13015,11 +13176,13 @@ UNUSED_PLMEntries_DraygonCannonShieldFacingDownRight_84DF5D:
 UNUSED_PLMEntries_DraygonCannonShieldFacingUpRight_84DF61:
     dw UNUSED_Setup_DraygonCannonWithShieldFacingDownUpRight_84DEB9      ;84DF61;
     dw UNUSED_InstList_DraygonCannonWithShieldFacingUpRight_84DD70       ;84DF63;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_DraygonCannonFacingRight:
     dw Setup_DraygonCannon                                               ;84DF65;
     dw InstList_PLM_DraygonCannonFacingRight_0                           ;84DF67;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_DraygonCannonFacingDownRight_84DF69:
     dw Setup_DraygonCannon                                               ;84DF69;
     dw UNUSED_InstList_PLM_DraygonCannonFacingDownRight_0                ;84DF6B;
@@ -13027,11 +13190,13 @@ UNUSED_PLMEntries_DraygonCannonFacingDownRight_84DF69:
 UNUSED_PLMEntries_DraygonCannonFacingUpRight_84DF6D:
     dw Setup_DraygonCannon                                               ;84DF6D;
     dw UNUSED_InstList_PLM_DraygonCannonFacingUpRight_84DDA3             ;84DF6F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_DraygonCannonWithShieldFacingLeft:
     dw Setup_DraygonCannonWithShieldFacingLeft                           ;84DF71;
     dw InstList_PLM_DraygonCannonWithShieldFacingLeft_0                  ;84DF73;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_DraygonCannonShieldFacingDownLeft_84DF75:
     dw UNUSED_Setup_DraygonCannonWithShieldFacingDownUpLeft_84DF15       ;84DF75;
     dw UNUSED_InstList_DraygonCannonWithShieldFacingDownLeft_84DE02      ;84DF77;
@@ -13039,11 +13204,13 @@ UNUSED_PLMEntries_DraygonCannonShieldFacingDownLeft_84DF75:
 UNUSED_PLMEntries_DraygonCannonWithShieldFacingUpLeft_84DF79:
     dw UNUSED_Setup_DraygonCannonWithShieldFacingDownUpLeft_84DF15       ;84DF79;
     dw UNUSED_InstList_DraygonCannonWithShieldFacingUpLeft_84DE4B        ;84DF7B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_DraygonCannonFacingLeft:
     dw Setup_DraygonCannon                                               ;84DF7D;
     dw InstList_PLM_DraygonCannonFacingLeft_0                            ;84DF7F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_DraygonCannonFacingDownLeft_84DF81:
     dw Setup_DraygonCannon                                               ;84DF81;
     dw UNUSED_InstList_PLM_DraygonCannonFacingDownLeft_84DE35            ;84DF83;
@@ -13051,6 +13218,7 @@ UNUSED_PLMEntries_DraygonCannonFacingDownLeft_84DF81:
 UNUSED_PLMEntries_DraygonCannonFacingUpLeft_84DF85:
     dw Setup_DraygonCannon                                               ;84DF85;
     dw UNUSED_InstList_PLM_DraygonCannonFacingUpLeft_84DE7E              ;84DF87;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PreInstruction_PLM_GotoLinkInstructionIfTriggered:
     LDA.W $1D77,X                                                        ;84DF89;

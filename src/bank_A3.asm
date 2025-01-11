@@ -169,6 +169,7 @@ Instruction_CommonA3_CallFunctionInY_WithA:
     RTL                                                                  ;A380B4;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA3_CallExternalFunctionInY_A380B5:
     LDA.W $0000,Y                                                        ;A380B5;
     STA.B $12                                                            ;A380B8;
@@ -209,6 +210,7 @@ UNUSED_Inst_CommonA3_CallExternalFunctionInY_WithA_A380CE:
 
 .externalFunction:
     JML.W [$0012]                                                        ;A380EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_CommonA3_GotoY:
@@ -791,11 +793,13 @@ MainAI_Metaree:
     JMP.W ($0FAA,X)                                                      ;A3897C;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_FunctionPointers_Metaree_A3897F:
     dw Function_Metaree_Idling                                           ;A3897F;
     dw Function_Metaree_PrepareToLaunchAttack                            ;A38981;
     dw Function_Metaree_LaunchedAttack                                   ;A38983;
     dw Function_Metaree_Burrowing                                        ;A38985;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Function_Metaree_Idling:
     LDX.W $0E54                                                          ;A38987;
@@ -961,6 +965,7 @@ SetMetareeInstListPointer:
     RTS                                                                  ;A38AD1;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Metaree_DataPointers_A38AD2:
     dw UNUSED_Metaree_Data_A38ADC                                        ;A38AD2;
     dw UNUSED_Metaree_Data_A38AE6                                        ;A38AD4;
@@ -982,6 +987,7 @@ UNUSED_Metaree_Data_A38AFA:
 
 UNUSED_Metaree_Data_A38B04:
     dw $0001,$FFFC,$0000,$0002,$000C                                     ;A38B04;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RTL_A38B0E:
     RTL                                                                  ;A38B0E;
@@ -1211,11 +1217,13 @@ InstList_Fireflea:
     dw Instruction_Common_GotoY                                          ;A38CFF;
     dw InstList_Fireflea                                                 ;A38D01;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Fireflea_Data_A38D03:
     dw $1000,$2000,$4000,$6000,$8000,$A000,$C000,$E000                   ;A38D03;
 
 UNUSED_Fireflea_Data_A38D13:
     dw $0001,$2001,$4001,$6001,$8001                                     ;A38D13;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 FirefleaMovementRadii:
     dw $0008,$0010,$0018,$0020,$0028,$0030,$0038,$0040                   ;A38D1D;
@@ -2479,9 +2487,11 @@ InitAI_Sciser:
     JMP.W InitAI_Crawlers_Common                                         ;A396FA;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_GetEnemyIndex_A396FD:
     LDX.W $0E54                                                          ;A396FD;
     RTL                                                                  ;A39700;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RTL_A39701:
@@ -2811,9 +2821,11 @@ InitAI_Zero:
     JMP.W InitAI_Crawlers_Common                                         ;A39952;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_GetEnemyIndex_A39955:
     LDX.W $0E54                                                          ;A39955;
     RTL                                                                  ;A39958;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RTL_A39959:
@@ -3937,6 +3949,7 @@ CalculateMovingForwardSpeeds:
     RTS                                                                  ;A3A1AF;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CalculateMovingForwardVelocities_A3A1B0:
     LDA.W $0FB4,X                                                        ;A3A1B0;
     AND.W #$00FF                                                         ;A3A1B3;
@@ -3959,6 +3972,7 @@ UNUSED_CalculateMovingForwardVelocities_A3A1B0:
     LDA.W $0E38                                                          ;A3A1EB;
     STA.L $7E7804,X                                                      ;A3A1EE;
     RTS                                                                  ;A3A1F2;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CalculateMovingLeftVelocities:
@@ -6487,14 +6501,18 @@ SetZoaInstList:
     RTS                                                                  ;A3B556;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_GetEnemyIndex_A3B557:
     LDX.W $0E54                                                          ;A3B557;
     RTL                                                                  ;A3B55A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_GetEnemyIndex_A3B55B:
     LDX.W $0E54                                                          ;A3B55B;
     RTL                                                                  ;A3B55E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Spritemap_Zoa_0:
@@ -6615,6 +6633,7 @@ InstList_Viola_Normal:
     dw Instruction_Common_GotoY                                          ;A3B627;
     dw InstList_Viola_Normal                                             ;A3B629;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Viola_XFlipped_A3B62B:
     dw $0006                                                             ;A3B62B;
     dw UNUSED_Spritemap_Viola_XFlipped_A3B6C1                            ;A3B62D;
@@ -6646,6 +6665,7 @@ UNUSED_InstList_Viola_XFlipped_A3B62B:
     dw UNUSED_Spritemap_Viola_XFlipped_A3B6C8                            ;A3B661;
     dw Instruction_Common_GotoY                                          ;A3B663;
     dw UNUSED_InstList_Viola_XFlipped_A3B62B                             ;A3B665;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InitialInstListPointers_Viola:
     dw InstList_Viola_UpsideRight                                        ;A3B667;
@@ -6706,6 +6726,7 @@ Spritemap_Viola_Normal_7:
     db $F8                                                               ;A3B6BE;
     dw $210E                                                             ;A3B6BF;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Viola_XFlipped_A3B6C1:
     dw $0001,$81F8                                                       ;A3B6C1;
     db $F8                                                               ;A3B6C5;
@@ -6753,6 +6774,7 @@ UNUSED_CrashIfEnemyInitParamIsNonZero_A3B6F9:
 .crash:
     BNE .crash                                                           ;A3B6FF;
     RTL                                                                  ;A3B701;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Palette_Bang:
@@ -7202,6 +7224,7 @@ InstList_Bang_Electricity_Growth3_4_Growing:
     dw Instruction_Common_GotoY                                          ;A3BA38;
     dw InstList_Bang_Electricity_Growth3_4_Growing                       ;A3BA3A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNSUED_InstList_Bang_Electricity_Growing_A3BA3C:
     dw $0002                                                             ;A3BA3C;
     dw UNUSED_Spritemap_Bang_Electricity_A3C5AE                          ;A3BA3E;
@@ -7233,6 +7256,7 @@ UNSUED_InstList_Bang_Electricity_Growing_A3BA3C:
     dw UNUSED_Spritemap_Bang_Electricity_A3C632                          ;A3BA72;
     dw Instruction_Common_GotoY                                          ;A3BA74;
     dw UNSUED_InstList_Bang_Electricity_Growing_A3BA3C                   ;A3BA76;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_Bang_PlayAcquiredSuitSFX:
     PHY                                                                  ;A3BA78;
@@ -8537,6 +8561,7 @@ Spritemap_Bang_Growth4_Idling_7:
     db $F1                                                               ;A3C482;
     dw $3140                                                             ;A3C483;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Bang_Growth4_Idling_A3C485:
     dw $0001,$C3F8                                                       ;A3C485;
     db $F8                                                               ;A3C489;
@@ -8568,6 +8593,7 @@ UNUSED_Spritemap_Bang_Growth4_Idling_A3C4A9:
     dw $314A,$C3F0                                                       ;A3C4B8;
     db $F1                                                               ;A3C4BC;
     dw $3148                                                             ;A3C4BD;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Bang_Growth4_Idling_8:
     dw $0001,$C3F8                                                       ;A3C4BF;
@@ -8702,6 +8728,7 @@ Spritemap_Bang_Growth4_Growing_A:
     db $F8                                                               ;A3C5AB;
     dw $316C                                                             ;A3C5AC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Bang_Electricity_A3C5AE:
     dw $0002,$0006                                                       ;A3C5AE;
     db $FC                                                               ;A3C5B2;
@@ -8785,6 +8812,7 @@ UNUSED_Spritemap_Bang_Electricity_A3C632:
     dw $3161,$01F5                                                       ;A3C637;
     db $03                                                               ;A3C63B;
     dw $7163                                                             ;A3C63C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_Skree:
     dw $3800,$3F57,$2E4D,$00E2,$0060,$3AB0,$220B,$1166                   ;A3C63E;
@@ -8861,11 +8889,13 @@ MainAI_Skree:
     JMP.W ($0FAA,X)                                                      ;A3C6CA;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_FunctionPointers_Skree_A3C6CD:
     dw Function_Skree_Idling                                             ;A3C6CD;
     dw Function_Skree_PrepareToLaunchAttack                              ;A3C6CF;
     dw Function_Skree_LaunchedAttack                                     ;A3C6D1;
     dw Function_Skree_Burrowing                                          ;A3C6D3;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Function_Skree_Idling:
     LDX.W $0E54                                                          ;A3C6D5;
@@ -9661,6 +9691,7 @@ Instruction_Yard_GoBack4BytesIfHidingOr50PercentChance:
     RTL                                                                  ;A3CC91;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_Yard_A3CC92:
     NOP                                                                  ;A3CC92;
     PHY                                                                  ;A3CC93;
@@ -9675,6 +9706,7 @@ UNUSED_Instruction_Yard_A3CC92:
 .notTurningAround:
     PLY                                                                  ;A3CCA0;
     RTL                                                                  ;A3CCA1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 YardCrawlingSpeeds:
@@ -10526,6 +10558,7 @@ SetYardAirborneInstList:
     dw InstList_Yard_Airborne_FacingRight_0                              ;A3D311;
     dw InstList_Yard_Hidden_UpsideUp_MovingRight                         ;A3D313;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MakeYardFaceSamus_A3D315:
     LDA.L $7E780A,X                                                      ;A3D315;
     BEQ .turningEnabled                                                  ;A3D319;
@@ -10551,6 +10584,7 @@ UNUSED_MakeYardFaceSamus_A3D315:
     CMP.W $0AFA                                                          ;A3D338;
     BCS TurnYardAround                                                   ;A3D33B;
     RTL                                                                  ;A3D33D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 MakeYardFaceSamusHorizontally:
@@ -10700,6 +10734,7 @@ CheckIfSamusIsDirectingTowardsYard:
     RTS                                                                  ;A3D445;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CheckIfYardIsMovingTheDirectionSamusIsFacing_A3D446:
     LDA.W $0FA8,X                                                        ;A3D446;
     BPL .positiveXVelocity                                               ;A3D449;
@@ -10726,6 +10761,7 @@ UNUSED_CheckIfYardIsMovingTheDirectionSamusIsFacing_A3D446:
 .movingOppositeDirection:
     SEC                                                                  ;A3D467;
     RTS                                                                  ;A3D468;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 EnemyShot_Yard:
@@ -11300,12 +11336,14 @@ Spritemap_Yard_3F:
     db $F8                                                               ;A3D881;
     dw $A126                                                             ;A3D882;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Yard_A3D884:
     dw $0002,$C3FB                                                       ;A3D884;
     db $F6                                                               ;A3D888;
     dw $2120,$C3F5                                                       ;A3D889;
     db $F8                                                               ;A3D88D;
     dw $2100                                                             ;A3D88E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_40:
     dw $0002,$C3F5                                                       ;A3D890;
@@ -11328,12 +11366,14 @@ Spritemap_Yard_42:
     db $F6                                                               ;A3D8B1;
     dw $E108                                                             ;A3D8B2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Yard_A3D8B4:
     dw $0002,$C3FA                                                       ;A3D8B4;
     db $FB                                                               ;A3D8B8;
     dw $E124,$C3F8                                                       ;A3D8B9;
     db $F5                                                               ;A3D8BD;
     dw $E108                                                             ;A3D8BE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_43:
     dw $0002,$C3F8                                                       ;A3D8C0;
@@ -11356,12 +11396,14 @@ Spritemap_Yard_45:
     db $F8                                                               ;A3D8E1;
     dw $E100                                                             ;A3D8E2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Yard_A3D8E4:
     dw $0002,$C3F5                                                       ;A3D8E4;
     db $FA                                                               ;A3D8E8;
     dw $E120,$C3FB                                                       ;A3D8E9;
     db $F8                                                               ;A3D8ED;
     dw $E100                                                             ;A3D8EE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_46:
     dw $0002,$C3FB                                                       ;A3D8F0;
@@ -11384,12 +11426,14 @@ Spritemap_Yard_48:
     db $FA                                                               ;A3D911;
     dw $2108                                                             ;A3D912;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Yard_A3D914:
     dw $0002,$C3F6                                                       ;A3D914;
     db $F5                                                               ;A3D918;
     dw $2124,$C3F8                                                       ;A3D919;
     db $FB                                                               ;A3D91D;
     dw $2108                                                             ;A3D91E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_49:
     dw $0002,$C3F8                                                       ;A3D920;
@@ -11460,12 +11504,14 @@ Spritemap_Yard_53:
     db $FA                                                               ;A3D98D;
     dw $2108                                                             ;A3D98E;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Yard_A3D990:
     dw $0002,$C3F5                                                       ;A3D990;
     db $F6                                                               ;A3D994;
     dw $6120,$C3FB                                                       ;A3D995;
     db $F8                                                               ;A3D999;
     dw $6100                                                             ;A3D99A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_54:
     dw $0002,$C3FB                                                       ;A3D99C;
@@ -11488,12 +11534,14 @@ Spritemap_Yard_56:
     db $F6                                                               ;A3D9BD;
     dw $A108                                                             ;A3D9BE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Yard_A3D9C0:
     dw $0002,$C3F6                                                       ;A3D9C0;
     db $FB                                                               ;A3D9C4;
     dw $A124,$C3F8                                                       ;A3D9C5;
     db $F5                                                               ;A3D9C9;
     dw $A108                                                             ;A3D9CA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_57:
     dw $0002,$C3F8                                                       ;A3D9CC;
@@ -11516,12 +11564,14 @@ Spritemap_Yard_59:
     db $F8                                                               ;A3D9ED;
     dw $A100                                                             ;A3D9EE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Yard_A3D9F0:
     dw $0002,$C3FB                                                       ;A3D9F0;
     db $FA                                                               ;A3D9F4;
     dw $A120,$C3F5                                                       ;A3D9F5;
     db $F8                                                               ;A3D9F9;
     dw $A100                                                             ;A3D9FA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_5A:
     dw $0002,$C3F5                                                       ;A3D9FC;
@@ -11544,12 +11594,14 @@ Spritemap_Yard_5C:
     db $FA                                                               ;A3DA1D;
     dw $6108                                                             ;A3DA1E;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Yard_A3DA20:
     dw $0002,$C3FA                                                       ;A3DA20;
     db $F5                                                               ;A3DA24;
     dw $6124,$C3F8                                                       ;A3DA25;
     db $FB                                                               ;A3DA29;
     dw $6108                                                             ;A3DA2A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_5D:
     dw $0002,$C3F8                                                       ;A3DA2C;
@@ -12701,6 +12753,7 @@ Spritemap_Crawlers_UpsideUp_FacingRight_4:
     db $F8                                                               ;A3E353;
     dw $2100                                                             ;A3E354;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Crawlers_UpsideUp_FacingLeft_A3E356:
     dw $0004,$01F5                                                       ;A3E356;
     db $00                                                               ;A3E35A;
@@ -12755,6 +12808,7 @@ UNUSED_Spritemap_Crawlers_UpsideUp_FacingLeft_A3E3AE:
     dw $6102,$81FF                                                       ;A3E3BD;
     db $F8                                                               ;A3E3C1;
     dw $6100                                                             ;A3E3C2;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Crawlers_UpsideLeft_0:
     dw $0004,$0000                                                       ;A3E3C4;
@@ -13565,8 +13619,10 @@ Instruction_Metroid_PlayRandomMetroidSFX:
     RTL                                                                  ;A3EAC5;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 .unused:
     dw $00B4,$00BE,$00C8,$00D2,$00DC,$00E6,$00F0,$00FA                   ;A3EAC6;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 .SFX:
     dw $0050,$0058,$005A,$0050,$0058,$005A,$0058,$005A                   ;A3EAD6;
@@ -14263,6 +14319,7 @@ PowerBombReaction_Metroid:
     RTL                                                                  ;A3F070;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Metroid_Shell_A3F071:
     dw $000A,$0010                                                       ;A3F071;
     db $04                                                               ;A3F075;
@@ -14331,6 +14388,7 @@ UNUSED_Spritemap_Metroid_Shell_A3F0D9:
     dw $2126,$81F0                                                       ;A3F106;
     db $EC                                                               ;A3F10A;
     dw $2106                                                             ;A3F10B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Metroid_Insides_0:
     dw $0008,$0010                                                       ;A3F10D;
@@ -14404,6 +14462,7 @@ Spritemap_Metroid_Insides_3:
     db $F0                                                               ;A3F1A8;
     dw $214A                                                             ;A3F1A9;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Metroid_Electricity_A3F1AB:
     dw $0003,$0000                                                       ;A3F1AB;
     db $EC                                                               ;A3F1AF;
@@ -14599,6 +14658,7 @@ UNUSED_Spritemap_Metroid_Electricity_A3F30A:
     dw $0001,$0000                                                       ;A3F30A;
     db $EC                                                               ;A3F30E;
     dw $217E                                                             ;A3F30F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Freespace_BankA3_F311:                                                   ;A3F311;
 ; $CEF bytes

@@ -901,6 +901,7 @@ SamusBlockCollisionDetection_Horizontal_Slope_NonSquare:
     dw $00F0,$0600,$00F0,$0600,$00F0,$4000,$0080,$4000                   ;9485E8;
     dw $0080,$6000,$0050,$6000,$0050,$6000,$0050                         ;9485F8;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_948606:
     LDA.W $0DC4                                                          ;948606;
     STA.W $4204                                                          ;948609;
@@ -1053,6 +1054,7 @@ UNUSED_948606:
 
 ..gotoSolidShootableGrapple:
     JMP.W SamusBlockCollisionReaction_Horizontal_SolidShootableGrapple   ;9486FB;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 SamusBlockCollisionReaction_Vertical_Slope_NonSquare:
@@ -1356,8 +1358,10 @@ Align_SamusYPosition_WithNonSquareSlope:
     RTL                                                                  ;94891A;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SlopeDefinitions_94891B:
     db $0F,$0E,$0D,$0C,$0B,$0A,$09,$08,$07,$06,$05,$04,$03,$02,$01,$00   ;94891B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SlopeDefinitions_SlopeLeftXOffsetByYPixel:
     db $10,$10,$10,$10,$10,$10,$10,$10,$00,$00,$00,$00,$00,$00,$00,$00   ;94892B;
@@ -1616,6 +1620,7 @@ SquareSlopeDefinitions_Bank94:
     db $00,$00,$80,$80,$00,$80,$00,$80,$00,$00,$00,$80,$00,$80,$80,$80   ;948E54;
     db $80,$80,$80,$80                                                   ;948E64;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DetermineSamusSuitPaletteIndex_948E68:
     LDY.W #$0004                                                         ;948E68;
     LDA.W $09A2                                                          ;948E6B;
@@ -1630,6 +1635,7 @@ UNUSED_DetermineSamusSuitPaletteIndex_948E68:
 
 .return:
     RTS                                                                  ;948E7C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CLCRTS_948E7D:
@@ -3136,6 +3142,7 @@ CLCRTS_9497D8:
     RTS                                                                  ;9497F1;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SomeKindOfUpwardsBoost_9497F2:
     LDA.W $0B36                                                          ;9497F2;
     CMP.W #$0001                                                         ;9497F5;
@@ -3153,6 +3160,7 @@ UNUSED_SomeKindOfUpwardsBoost_9497F2:
     STZ.W $0B2C                                                          ;94980B;
     CLC                                                                  ;94980E;
     RTS                                                                  ;94980F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CLCRTS_949810:

@@ -2,6 +2,7 @@
 org $8C8000
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_TitleSequenceSpritemaps_BetaMetroidLogo_8C8000:
     dw $0025,$0050                                                       ;8C8000;
     db $E8                                                               ;8C8004;
@@ -78,6 +79,7 @@ UNUSED_TitleSequenceSpritemaps_BetaMetroidLogo_8C8000:
     dw $3122,$C3A0                                                       ;8C80B4;
     db $F8                                                               ;8C80B8;
     dw $3120                                                             ;8C80B9;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 TitleSequenceSpritemaps_NintendoBootLogo:
     dw $000E,$C230                                                       ;8C80BB;
@@ -133,6 +135,7 @@ TitleSequenceSpritemaps_NintendoCopyright:
     db $FC                                                               ;8C8134;
     dw $31C1                                                             ;8C8135;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_TitleSequenceSpritemaps_1993RandD1Produce_8C8137:
     dw $001E,$01D4                                                       ;8C8137;
     db $00                                                               ;8C813B;
@@ -626,6 +629,7 @@ UNUSED_TitleSequenceSpritemaps_4x4TileRegion_8C8576:
     dw $34A1,$01F0                                                       ;8C85C1;
     db $F0                                                               ;8C85C5;
     dw $34A0                                                             ;8C85C6;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 TitleSequenceSpritemaps_METR:
     dw $0008,$001C                                                       ;8C85C8;
@@ -669,6 +673,7 @@ TitleSequenceSpritemaps_METRO:
     db $F8                                                               ;8C8623;
     dw $338A                                                             ;8C8624;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_TitleSequenceSpritemaps_DebugNintendoCopyright:
     dw $0011,$0003                                                       ;8C8626;
     db $08                                                               ;8C862A;
@@ -705,6 +710,7 @@ UNUSED_TitleSequenceSpritemaps_DebugNintendoCopyright:
     dw $31C2,$01D8                                                       ;8C8676;
     db $FC                                                               ;8C867A;
     dw $31C1                                                             ;8C867B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 TitleSequenceSpritemaps_METROI:
     dw $000C,$001C                                                       ;8C867D;
@@ -2071,6 +2077,7 @@ SpaceSpritemaps_CeresUnderAttack:
     db $D0                                                               ;8C921C;
     dw $0CE6                                                             ;8C921D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SpaceSpritemaps_SPACECOLONY_8C921F:
     dw $000B,$0028                                                       ;8C921F;
     db $FC                                                               ;8C9223;
@@ -2270,6 +2277,7 @@ UNUSED_SpaceSpritemaps_SPACECOLON_8C939D:
     dw $31EE,$01D0                                                       ;8C93CA;
     db $FC                                                               ;8C93CE;
     dw $31ED                                                             ;8C93CF;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SpaceSpritemaps_CeresPurpleVortexFrame2:
     dw $0021,$0010                                                       ;8C93D1;
@@ -2589,6 +2597,7 @@ SpaceSpritemaps_JapanText_PlanetZebes:
     db $F8                                                               ;8C96C8;
     dw $009F                                                             ;8C96C9;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SpaceSpritemaps_ZebesStars1_8C96CB:
     dw $001D,$01F0                                                       ;8C96CB;
     db $38                                                               ;8C96CF;
@@ -2649,6 +2658,7 @@ UNUSED_SpaceSpritemaps_ZebesStars1_8C96CB:
     dw $0809,$0190                                                       ;8C9757;
     db $88                                                               ;8C975B;
     dw $0800                                                             ;8C975C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SpaceSpritemaps_ZebesStars2:
     dw $000C,$0038                                                       ;8C975E;

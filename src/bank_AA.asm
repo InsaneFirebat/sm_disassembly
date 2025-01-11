@@ -169,6 +169,7 @@ Instruction_CommonAA_CallFunctionInY_WithA:
     RTL                                                                  ;AA80B4;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonAA_CallExternalFunctionInY_AA80B5:
     LDA.W $0000,Y                                                        ;AA80B5;
     STA.B $12                                                            ;AA80B8;
@@ -209,6 +210,7 @@ UNUSED_Inst_CommonAA_CallExternalFunctionInY_WithA_AA80CE:
 
 .externalFunction:
     JML.W [$0012]                                                        ;AA80EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_CommonAA_GotoY:
@@ -472,10 +474,12 @@ ExtendedSpritemap_Torizo_Blank:
     dw Spritemap_Torizo_Blank                                            ;AA87D6;
     dw Hitboxes_Torizo_Blank                                             ;AA87D8;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_AA87DA:
     dw $0001,$FFF5,$FFD6,$000A,$0003                                     ;AA87DA;
     dw EnemyTouch_Torizo                                                 ;AA87E4;
     dw EnemyShot_Torizo_Normal                                           ;AA87E6;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_0:
     dw $0001,$FFF0,$FFE5,$0010,$001B                                     ;AA87E8;
@@ -523,50 +527,62 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_8:
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_9:
     dw $0000                                                             ;AA885A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA885C:
     dw $0001,$FFF0,$0027,$FFFF,$0037                                     ;AA885C;
     dw EnemyTouch_Torizo                                                 ;AA8866;
     dw RTL_AAC9C1                                                        ;AA8868;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_A:
     dw $0000                                                             ;AA886A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA886C:
     dw $0001,$FFE0,$0029,$FFF3,$0040                                     ;AA886C;
     dw EnemyTouch_Torizo                                                 ;AA8876;
     dw RTL_AAC9C1                                                        ;AA8878;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_B:
     dw $0000                                                             ;AA887A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA887C:
     dw $0001,$FFD8,$001C,$FFEC,$0030                                     ;AA887C;
     dw EnemyTouch_Torizo                                                 ;AA8886;
     dw RTL_AAC9C1                                                        ;AA8888;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_C:
     dw $0000                                                             ;AA888A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA888C:
     dw $0001,$FFC8,$0009,$FFEB,$0014                                     ;AA888C;
     dw EnemyTouch_Torizo                                                 ;AA8896;
     dw RTL_AAC9C1                                                        ;AA8898;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_D:
     dw $0000                                                             ;AA889A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA889C:
     dw $0001,$FFD3,$FFF3,$FFE5,$0003                                     ;AA889C;
     dw EnemyTouch_Torizo                                                 ;AA88A6;
     dw RTL_AAC9C1                                                        ;AA88A8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_E:
     dw $0000                                                             ;AA88AA;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88AC:
     dw $0001,$FFE3,$FFDB,$FFF0,$FFF1                                     ;AA88AC;
     dw EnemyTouch_Torizo                                                 ;AA88B6;
     dw RTL_AAC9C1                                                        ;AA88B8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_F:
     dw $0000                                                             ;AA88BA;
@@ -574,50 +590,62 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_F:
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_10:
     dw $0000                                                             ;AA88BC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88BE:
     dw $0001,$FFEF,$0028,$0000,$0039                                     ;AA88BE;
     dw EnemyTouch_Torizo                                                 ;AA88C8;
     dw RTL_AAC9C1                                                        ;AA88CA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_11:
     dw $0000                                                             ;AA88CC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88CE:
     dw $0001,$FFE6,$0021,$FFF4,$0032                                     ;AA88CE;
     dw EnemyTouch_Torizo                                                 ;AA88D8;
     dw RTL_AAC9C1                                                        ;AA88DA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_12:
     dw $0000                                                             ;AA88DC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88DE:
     dw $0001,$FFDD,$0018,$FFEA,$0025                                     ;AA88DE;
     dw EnemyTouch_Torizo                                                 ;AA88E8;
     dw RTL_AAC9C1                                                        ;AA88EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_13:
     dw $0000                                                             ;AA88EC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88EE:
     dw $0001,$FFCA,$0008,$FFE9,$0012                                     ;AA88EE;
     dw EnemyTouch_Torizo                                                 ;AA88F8;
     dw RTL_AAC9C1                                                        ;AA88FA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_14:
     dw $0000                                                             ;AA88FC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88FE:
     dw $0001,$FFD3,$FFF3,$FFE3,$0000                                     ;AA88FE;
     dw EnemyTouch_Torizo                                                 ;AA8908;
     dw RTL_AAC9C1                                                        ;AA890A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_15:
     dw $0000                                                             ;AA890C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA890E:
     dw $0001,$FFE4,$FFDA,$FFEF,$FFEE                                     ;AA890E;
     dw EnemyTouch_Torizo                                                 ;AA8918;
     dw RTL_AAC9C1                                                        ;AA891A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_16:
     dw $0001,$FFEE,$FFDA,$0007,$0009                                     ;AA891C;
@@ -629,10 +657,12 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_17:
     dw EnemyTouch_Torizo                                                 ;AA8934;
     dw EnemyShot_Torizo_Normal                                           ;AA8936;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA8938:
     dw $0001,$FFF5,$FFD6,$000A,$0007                                     ;AA8938;
     dw EnemyTouch_Torizo                                                 ;AA8942;
     dw EnemyShot_Torizo_Normal                                           ;AA8944;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_0:
     dw $0001,$FFF1,$FFE5,$000D,$001B                                     ;AA8946;
@@ -972,6 +1002,7 @@ Spritemaps_Torizo_B:
     db $FC                                                               ;AA8C22;
     dw $6B6A                                                             ;AA8C23;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemaps_Torizo_AA8C25:
     dw $0001,$81F8                                                       ;AA8C25;
     db $F8                                                               ;AA8C29;
@@ -981,6 +1012,7 @@ UNUSED_Spritemaps_Torizo_AA8C2C:
     dw $0001,$81F8                                                       ;AA8C2C;
     db $F8                                                               ;AA8C30;
     dw $2304                                                             ;AA8C31;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Torizo_C:
     dw $001A,$01E9                                                       ;AA8C33;
@@ -2208,6 +2240,7 @@ Spritemaps_Torizo_2F:
     db $D9                                                               ;AA9763;
     dw $2300                                                             ;AA9764;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemaps_Torizo_AA9766:
     dw $0006,$8000                                                       ;AA9766;
     db $0C                                                               ;AA976A;
@@ -2222,6 +2255,7 @@ UNUSED_Spritemaps_Torizo_AA9766:
     dw $2302,$81F0                                                       ;AA977F;
     db $EC                                                               ;AA9783;
     dw $2300                                                             ;AA9784;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Torizo_30:
     dw $0004,$01EC                                                       ;AA9786;
@@ -2291,6 +2325,7 @@ Spritemaps_Torizo_35:
     db $F4                                                               ;AA980C;
     dw $63C4                                                             ;AA980D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemaps_Torizo_AA980F:
     dw $0013,$01F5                                                       ;AA980F;
     db $10                                                               ;AA9813;
@@ -2438,6 +2473,7 @@ UNUSED_Spritemaps_Torizo_AA992A:
     dw $6B92,$0000                                                       ;AA9943;
     db $F0                                                               ;AA9947;
     dw $6B82                                                             ;AA9948;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Torizo_36:
     dw $001A,$000F                                                       ;AA994A;
@@ -2494,10 +2530,12 @@ Spritemaps_Torizo_36:
     db $E6                                                               ;AA99CB;
     dw $6302                                                             ;AA99CC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemaps_Torizo_UnusedEntry_AA99CE:
     dw $81F8                                                             ;AA99CE;
     db $E6                                                               ;AA99D0;
     dw $6300                                                             ;AA99D1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Torizo_37:
     dw $001A,$81F3                                                       ;AA99D3;
@@ -2831,6 +2869,7 @@ Spritemaps_Torizo_3C:
     db $D9                                                               ;AA9CED;
     dw $6300                                                             ;AA9CEE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemaps_Torizo_AA9CF0:
     dw $0002,$01F8                                                       ;AA9CF0;
     db $FC                                                               ;AA9CF4;
@@ -2866,6 +2905,7 @@ UNUSED_Spritemaps_Torizo_AA9D23:
     dw $2B80,$81F8                                                       ;AA9D2D;
     db $F2                                                               ;AA9D31;
     dw $2B2E                                                             ;AA9D32;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Torizo_3D:
     dw $0016,$000D                                                       ;AA9D34;
@@ -3706,6 +3746,7 @@ Spritemaps_Torizo_59:
     db $D9                                                               ;AAA4C3;
     dw $6300                                                             ;AAA4C4;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemaps_Torizo_AAA4C6:
     dw $0006,$81F0                                                       ;AAA4C6;
     db $0C                                                               ;AAA4CA;
@@ -3725,6 +3766,7 @@ UNUSED_ExtendedSpritemaps_Torizo_AAA4E6:
     dw $0001,$0000,$0000                                                 ;AAA4E6;
     dw Spritemaps_Torizo_7                                               ;AAA4EC;
     dw UNUSED_Hitboxes_Torizo_AA87DA                                     ;AAA4EE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging:
     dw $0001,$0000,$0000                                                 ;AAA4F0;
@@ -4265,6 +4307,7 @@ ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_3:
     dw Spritemaps_Torizo_2A                                              ;AAA9FA;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_15                     ;AAA9FC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExtendedSpritemaps_Torizo_AAA9FE:
     dw $0001,$0000,$0008                                                 ;AAA9FE;
     dw Spritemaps_Torizo_6                                               ;AAAA04;
@@ -4274,6 +4317,7 @@ UNUSED_ExtendedSpritemaps_Torizo_AAAA08:
     dw $0001,$0000,$0008                                                 ;AAAA08;
     dw Spritemaps_Torizo_7                                               ;AAAA0E;
     dw UNUSED_Hitboxes_Torizo_AA87DA                                     ;AAAA10;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0:
     dw $0001,$0000,$0000                                                 ;AAAA12;
@@ -4319,6 +4363,7 @@ ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6:
     dw Spritemaps_Torizo_12                                              ;AAAA6C;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_6                      ;AAAA6E;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExtendedSpritemaps_Torizo_AAAA70:
     dw $0001,$0000,$0000                                                 ;AAAA70;
     dw Spritemaps_Torizo_8                                               ;AAAA76;
@@ -4338,6 +4383,7 @@ UNUSED_ExtendedSpritemaps_Torizo_AAAA8E:
     dw $0001,$0000,$0000                                                 ;AAAA8E;
     dw Spritemaps_Torizo_B                                               ;AAAA94;
     dw Hitboxes_Torizo_Blank                                             ;AAAA96;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_0:
     dw $0004,$000F,$FFE2                                                 ;AAAA98;
@@ -6022,6 +6068,7 @@ InstList_Torizo_FacingLeft_Faceless_Walking_LeftLegMoving:
     dw Instruction_Common_GotoY                                          ;AABD8C;
     dw InstList_Torizo_FacingLeft_Faceless_Walking_RightLegMoving        ;AABD8E;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Torizo_FacingRight_StandUp_AABD90:
     dw Instruction_Torizo_SetSteppedRightWithLeftFootState               ;AABD90;
     dw $0001                                                             ;AABD92;
@@ -6053,6 +6100,7 @@ UNUSED_InstList_Torizo_FacingRight_StandUp_AABD90:
     dw ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_6           ;AABDD2;
     dw Instruction_Common_GotoY                                          ;AABDD4;
     dw InstList_Torizo_FacingRight_Walking_RightLegMoving                ;AABDD6;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_Torizo_FacingRight_TurningRight:
     dw Instruction_Torizo_FunctionInY                                    ;AABDD8;
@@ -7304,6 +7352,7 @@ RTS_AAC6AB:
     RTS                                                                  ;AAC6AB;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Torizo_AAC6AC:
     JSR.W HandleFalling                                                  ;AAC6AC;
     LDA.W #$0600                                                         ;AAC6AF;
@@ -7314,6 +7363,7 @@ UNUSED_Torizo_AAC6AC:
 
 .return:
     RTS                                                                  ;AAC6BE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Function_Torizo_SimpleMovement:
@@ -10595,8 +10645,10 @@ ShaktoolPieceData_initialCurlingNeighborAngleDelta_leftSaw:
 ShaktoolPieceData_zero:
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000                         ;AADEF7;
 
+if !FEATURE_KEEP_UNREFERENCED
 ShaktoolPieceData_unused:
     dw $0000,$0000,$0002,$0004,$0006,$0008,$000A                         ;AADF05;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ShaktoolPieceData_headBobInstListPointer:
     dw InstList_Shaktool_SawHand_HeadBob_PrimaryPiece                    ;AADF13;

@@ -145,6 +145,7 @@ Instruction_AnimatedTilesObject_GotoY:
     RTS                                                                  ;8780BB;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_AnimatedTilesObject_GotoYPlusY_8780BC:
     STY.W $1F49                                                          ;8780BC;
     DEY                                                                  ;8780BF;
@@ -245,6 +246,7 @@ UNUSED_Instruction_AnimatedTilesObject_SetBossBitsY_878133:
     JSL.L SetBossBitsInAForCurrentArea                                   ;878139;
     INY                                                                  ;87813D;
     RTS                                                                  ;87813E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_AnimatedTilesObject_GotoYIfEventYSet:
@@ -270,6 +272,7 @@ Instruction_AnimatedTilesObject_SetEventY:
     RTS                                                                  ;878159;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_AnimatedTilesObject_LockSamus_87815A:
     LDA.W #$0000                                                         ;87815A;
     JSL.L Run_Samus_Command                                              ;87815D;
@@ -280,6 +283,7 @@ UNUSED_Instruction_AnimatedTilesObject_UnlockSamus_878162:
     LDA.W #$0001                                                         ;878162;
     JSL.L Run_Samus_Command                                              ;878165;
     RTS                                                                  ;878169;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 InstList_AnimatedTilesObject_VerticalSpikes:
@@ -446,9 +450,11 @@ UNUSED_AnimatedTilesObjects_FX_unusedCrateriaLava_0_878263:
     dw UNUSED_InstList_AnimatedTilesObject_CrateriaLava_8781A6           ;878263;
     dw $00C0,$0A00                                                       ;878265;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_AnimatedTilesObjects_FX_unusedCrateriaLava_1_878269:
     dw UNUSED_InstList_AnimatedTilesObject_CrateriaLava_8781A6           ;878269;
     dw $00C0,$0640                                                       ;87826B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 AnimatedTilesObjects_FX_wreckedShipScreen:
     dw InstList_AnimatedTilesObject_WreckedShipScreen_0                  ;87826F;
@@ -952,8 +958,10 @@ incbin "../data/AnimatedTiles_WreckedShipScreen_1.bin" ; $80 bytes
 AnimatedTiles_WreckedShipScreen_2:
 incbin "../data/AnimatedTiles_WreckedShipScreen_2.bin" ; $80 bytes
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_AnimatedTiles_X_879064:
 incbin "../data/AnimatedTiles_X_879064.bin" ; $100 bytes
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 AnimatedTiles_MaridiaSandFalling_0:
 incbin "../data/AnimatedTiles_MaridiaSandFalling_0.bin" ; $20 bytes
@@ -979,8 +987,10 @@ incbin "../data/AnimatedTiles_MaridiaSandCeiling_2.bin" ; $40 bytes
 AnimatedTiles_MaridiaSandCeiling_3:
 incbin "../data/AnimatedTiles_MaridiaSandCeiling_3.bin" ; $40 bytes
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_AnimatedTiles_X_8792E4:
 incbin "../data/AnimatedTiles_X_8792E4.bin" ; $80 bytes
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 AnimatedTiles_PhantoonStatue_0:
 incbin "../data/AnimatedTiles_PhantoonStatue_0.bin" ; $80 bytes
@@ -1057,8 +1067,10 @@ incbin "../data/AnimatedTiles_HorizontalSpikes_1.bin" ; $80 bytes
 AnimatedTiles_HorizontalSpikes_2:
 incbin "../data/AnimatedTiles_HorizontalSpikes_2.bin" ; $80 bytes
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_AnimatedTiles_X_879F04:
 incbin "../data/AnimatedTiles_X_879F04.bin" ; $660 bytes
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 AnimatedTiles_Lava_0:
 incbin "../data/AnimatedTiles_Lava_0.bin" ; $40 bytes

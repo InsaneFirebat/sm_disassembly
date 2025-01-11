@@ -169,6 +169,7 @@ Instruction_Common_CallFunctionInY_WithA:
     RTL                                                                  ;A080B4;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_Common_CallExternalFunctionInY_A080B5:
     LDA.W $0000,Y                                                        ;A080B5;
     STA.B $12                                                            ;A080B8;
@@ -209,6 +210,7 @@ UNUSED_Inst_Common_CallExternalFunctionInY_WithA_A080CE:
 
 .externalFunction:
     JML.W [$0012]                                                        ;A080EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_Common_GotoY:
@@ -1188,6 +1190,7 @@ TransferEnemyTilesToVRAM_InitialiseEnemies:
     RTL                                                                  ;A08D39;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LoadEnemyWidthHeightHealthLayerBank_A08D3A:
     PHX                                                                  ;A08D3A;
     PHY                                                                  ;A08D3B;
@@ -1207,6 +1210,7 @@ UNUSED_LoadEnemyWidthHeightHealthLayerBank_A08D3A:
     PLY                                                                  ;A08D61;
     PLX                                                                  ;A08D62;
     RTL                                                                  ;A08D63;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
@@ -1735,6 +1739,7 @@ DecrementSamusHurtTimers_ClearActiveEnemyIndicesLists:
     RTL                                                                  ;A0918A;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LoggingRoutineForASpecificVertcalEnemyReaction_A0918B:
     PHB                                                                  ;A0918B;
     LDA.W $1848                                                          ;A0918C;
@@ -1783,6 +1788,7 @@ UNUSED_LoggingRoutineForASpecificVertcalEnemyReaction_A0918B:
     STA.W $1848                                                          ;A09209;
     PLB                                                                  ;A0920C;
     RTS                                                                  ;A0920D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Spawn_Enemy_Drops:
@@ -2255,6 +2261,7 @@ NormalEnemyFrozenAI:
     RTL                                                                  ;A095AC;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExecuteEnemyAI_A095AD:
     PHB                                                                  ;A095AD;
     PHP                                                                  ;A095AE;
@@ -2385,6 +2392,7 @@ UNUSED_RespawnEnemy_A095F1:
     PLB                                                                  ;A096C5;
     PLB                                                                  ;A096C6;
     JML.W [$1784]                                                        ;A096C7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ProcessExtendedTilemap:
@@ -5281,6 +5289,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     JMP.W .next                                                          ;A0AB81;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 .unused:
     PHA                                                                  ;A0AB84;
     LDX.W $18A6                                                          ;A0AB85;
@@ -5327,6 +5336,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     PLB                                                                  ;A0ABE4;
     PLP                                                                  ;A0ABE5;
     RTL                                                                  ;A0ABE6;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CheckIfEnemyIsTouchingSamusFromBelow:
@@ -5372,6 +5382,7 @@ CheckIfEnemyIsTouchingSamusFromBelow:
     RTL                                                                  ;A0AC28;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CheckIfEnemyIsTouchingSamusFromAbove_A0AC29:
     LDA.W $0AF6                                                          ;A0AC29;
     SEC                                                                  ;A0AC2C;
@@ -5411,6 +5422,7 @@ UNUSED_CheckIfEnemyIsTouchingSamusFromAbove_A0AC29:
 .touching:
     LDA.W #$FFFF                                                         ;A0AC63;
     RTL                                                                  ;A0AC66;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CheckIfEnemyIsTouchingSamus:
@@ -5525,6 +5537,7 @@ CalculateDistanceAndAngleOfSamusFromEnemy:
     RTL                                                                  ;A0AD32;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyVariable_ZeroOrMax_A0AD33:
     PHB                                                                  ;A0AD33;
     SEP #$20                                                             ;A0AD34;
@@ -5574,6 +5587,7 @@ UNUSED_NegateA_A0AD62:
     EOR.W #$FFFF                                                         ;A0AD6B;
     INC A                                                                ;A0AD6E;
     RTL                                                                  ;A0AD6F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CheckIfEnemyCenterIsOnScreen:
@@ -5727,6 +5741,7 @@ notAboveOrBelow:
     RTL                                                                  ;A0AE7B;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ProtoInstructionListHandler_A0AE7C:
     LDX.W $0E54                                                          ;A0AE7C;
     LDA.W $0F78,X                                                        ;A0AE7F;
@@ -5781,6 +5796,7 @@ UNUSED_ProtoInstructionListHandler_A0AE7C:
 .return1:
     LDA.W #$0001                                                         ;A0AED9;
     RTL                                                                  ;A0AEDC;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Get_SamusY_minus_EnemyY:
@@ -5833,6 +5849,7 @@ IsSamusWithinAPixelColumnsOfEnemy:
     RTL                                                                  ;A0AF28;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MoveEnemyX_NoCollision_A0AF29:
     LDA.W $0F7C,X                                                        ;A0AF29;
     CLC                                                                  ;A0AF2C;
@@ -5866,6 +5883,7 @@ UNUSED_MoveEnemy_12_14_A0AF4D:
     dw MoveEnemyX_plus_12_14                                             ;A0AF54;
     dw MoveEnemyY_minus_12_14                                            ;A0AF56;
     dw MoveEnemyY_plus_12_14                                             ;A0AF58;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 MoveEnemyX_minus_12_14:
     LDA.W $0F7C,X                                                        ;A0AF5A;
@@ -5911,6 +5929,7 @@ MoveEnemyY_plus_12_14:
     RTL                                                                  ;A0AFA1;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MoveSamus_ExtraXDisplacement_minus_12_14_A0AFA2:
     LDA.W $0AF8                                                          ;A0AFA2;
     SEC                                                                  ;A0AFA5;
@@ -5953,6 +5972,7 @@ UNUSED_MoveSamus_ExtraYDisplacement_plus_12_14_A0AFD8:
     ADC.B $14                                                            ;A0AFE4;
     STA.W $0B5C                                                          ;A0AFE6;
     RTL                                                                  ;A0AFE9;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Sign_Extend_A:
@@ -5968,12 +5988,14 @@ Sign_Extend_A:
     RTL                                                                  ;A0AFFC;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MultiplyBy10_A0AFFD:
     ASL A                                                                ;A0AFFD;
     ASL A                                                                ;A0AFFE;
     ASL A                                                                ;A0AFFF;
     ASL A                                                                ;A0B000;
     RTL                                                                  ;A0B001;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 MultiplyBy20_A0B002:
@@ -5985,6 +6007,7 @@ MultiplyBy20_A0B002:
     RTL                                                                  ;A0B007;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MultiplyBy30_A0B008:
     ASL A                                                                ;A0B008;
     ASL A                                                                ;A0B009;
@@ -6053,6 +6076,7 @@ UNUSED_XBA_A0B060:
     XBA                                                                  ;A0B063;
     REP #$20                                                             ;A0B064;
     RTL                                                                  ;A0B066;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 NegateA_A0B067:
@@ -6090,6 +6114,7 @@ GetSignedYMinusX_A0B07D:
     RTL                                                                  ;A0B09F;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_GetNegativeA_A0B0A0:
     EOR.W #$FFFF                                                         ;A0B0A0;
     INC A                                                                ;A0B0A3;
@@ -6105,6 +6130,7 @@ UNUSED_SignedA_ZeroCountsAsPositive_A0B0A5:
 
   + LDA.W #$0001                                                         ;A0B0AE;
     RTL                                                                  ;A0B0B1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 EightBitCosineMultiplication_A0B0B2:
@@ -6979,6 +7005,7 @@ CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA:
     RTL                                                                  ;A0BBAC;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CheckIfYDistanceBetweenEnemyAndSamusIsAtLeastA_A0BBAD:
     PHA                                                                  ;A0BBAD;
     LDA.W $0AFA                                                          ;A0BBAE;
@@ -6991,6 +7018,7 @@ UNUSED_CheckIfYDistanceBetweenEnemyAndSamusIsAtLeastA_A0BBAD:
   + CMP.B $01,S                                                          ;A0BBBB;
     PLA                                                                  ;A0BBBD;
     RTL                                                                  ;A0BBBE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CheckForHorizontalSolidBlockCollision:
@@ -7225,6 +7253,7 @@ CheckForVerticalSolidBlockCollision:
     RTL                                                                  ;A0BD25;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MoveEnemyRight_NoBlockCollisionReactions_A0BD26:
     PHB                                                                  ;A0BD26;
     SEP #$20                                                             ;A0BD27;
@@ -7611,6 +7640,7 @@ UNUSED_CheckForHorizontalSolidBlockCollision_A0BEBF:
     SEC                                                                  ;A0BF87;
     PLB                                                                  ;A0BF88;
     RTL                                                                  ;A0BF89;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CheckForVerticalSolidBlockCollision_SkreeMetaree:
@@ -7765,6 +7795,7 @@ CalculateAngleOfSamusFromEnemy:
     JMP.W CalculateAngleOfXYOffset                                       ;A0C07B;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CalculateAngleOfEnemyYFromEnemyX_A0C07E:
     PHP                                                                  ;A0C07E;
     REP #$30                                                             ;A0C07F;
@@ -7777,6 +7808,7 @@ UNUSED_CalculateAngleOfEnemyYFromEnemyX_A0C07E:
     SBC.W $0F7E,X                                                        ;A0C08E;
     STA.B $14                                                            ;A0C091;
     JMP.W CalculateAngleOfXYOffset                                       ;A0C093;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CalculateAngleOfEnemyYFromEnemyX:
@@ -7978,6 +8010,7 @@ CheckIfEnemyIsHorizontallyOffScreen:
     RTL                                                                  ;A0C1B0;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CheckIfEnemyIsVerticallyOffScreen_A0C1B1:
     LDA.W $0F7E,X                                                        ;A0C1B1;
     BMI .offScreen                                                       ;A0C1B4;
@@ -8085,6 +8118,7 @@ UNUSED_AssessSamusThreatLevel_A0C1D4:
 
 .return:
     RTL                                                                  ;A0C269;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ProcessEnemyInstructions:
@@ -8437,8 +8471,10 @@ EnemyBlockCollisionReaction_Horizontal_Slope_NonSquare:
     RTS                                                                  ;A0C49E;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 .unused:
     dw $0000                                                             ;A0C49F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 .adjustedDistanceMult:
     dw $0100,$0000,$0100,$0000,$0100,$0000,$0100,$0000                   ;A0C4A1;
@@ -8825,6 +8861,7 @@ MoveEnemyRightBy_14_12_Common:
     RTL                                                                  ;A0C777;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MoveEnemyDownBy_14_12_A0C778:
     LDA.W #$4000                                                         ;A0C778;
     STA.B $20                                                            ;A0C77B;
@@ -8835,6 +8872,7 @@ UNUSED_MoveEnemyDownBy_14_12_A0C77F:
     LDA.W #$8000                                                         ;A0C77F;
     STA.B $20                                                            ;A0C782;
     BRA MoveEnemyDownBy_14_12_BranchEntry                                ;A0C784;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 MoveEnemyDownBy_14_12:
@@ -9175,6 +9213,7 @@ AlignEnemyYPositionWIthNonSquareSlope:
     RTL                                                                  ;A0C9BE;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CommonEnemyProjectileSpeeds_LinearlyIncreasing_A0C9BF:
     dw $0000,$0000,$0000,$0000,$0000,$1000,$FFFF,$F000                   ;A0C9BF;
     dw $0000,$2000,$FFFF,$E000,$0000,$3000,$FFFF,$D000                   ;A0C9CF;
@@ -9209,6 +9248,7 @@ UNUSED_CommonEnemyProjectileSpeeds_LinearlyIncreasing_A0C9BF:
     dw $0003,$C000,$FFFC,$4000,$0003,$D000,$FFFC,$3000                   ;A0CB9F;
     dw $0003,$E000,$FFFC,$2000,$0003,$F000,$FFFC,$1000                   ;A0CBAF;
     dw $0004,$0000,$FFFC,$0000                                           ;A0CBBF;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 CommonEnemyProjectileSpeeds_QuadraticallyIncreasing:
     dw $0000,$0000,$0000,$0000,$0109,$0000,$FEF7,$FFFF                   ;A0CBC7;
@@ -12973,9 +13013,11 @@ EnemyHeaders_Chozo:
     dw EnemyVulnerabilities_Indestructible                               ;A0F13B;
     dw $0000                                                             ;A0F13D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_BunchOf2s_A0F13F:
     dw $0202,$0202,$0202,$0202,$0202,$0202,$0202,$0202                   ;A0F13F;
     dw $0202,$0202                                                       ;A0F14F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 UNUSED_EnemyHeaders_SpinningTurtleEye_A0F153:
     dw $0200                                                             ;A0F153;

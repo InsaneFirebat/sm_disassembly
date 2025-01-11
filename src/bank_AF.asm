@@ -5,8 +5,10 @@ org $AF8000
 Tiles_Oum:
 incbin "../data/Tiles_Oum.bin" ; $800 bytes
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Tiles_Gravy_AF8800:
 incbin "../data/UNUSED_Tiles_Gravy_AF8800.bin" ; $A00 bytes
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Tiles_Metaree:
 incbin "../data/Tiles_Metaree.bin" ; $600 bytes

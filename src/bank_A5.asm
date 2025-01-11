@@ -169,6 +169,7 @@ Instruction_CommonA5_CallFunctionInY_WithA:
     RTL                                                                  ;A580B4;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA5_CallExternalFunctionInY_A580B5:
     LDA.W $0000,Y                                                        ;A580B5;
     STA.B $12                                                            ;A580B8;
@@ -209,6 +210,7 @@ UNUSED_Inst_CommonA5_CallExternalFunctionInY_WithA_A580CE:
 
 .externalFunction:
     JML.W [$0012]                                                        ;A580EA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_CommonA5_GotoY:
@@ -704,6 +706,7 @@ Function_DraygonBody_SwoopRight_Descending:
     RTS                                                                  ;A58900;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Draygon_FireGoop_A58901:
     LDA.W $05B6                                                          ;A58901;
     AND.W #$000F                                                         ;A58904;
@@ -721,6 +724,7 @@ UNUSED_Draygon_FireGoop_A58901:
 
 .return:
     RTS                                                                  ;A58921;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Function_DraygonBody_SwoopRight_Apex:
@@ -2165,6 +2169,7 @@ Instruction_Draygon_SetInstList_Body_Eye_Tail_Arms:
     RTL                                                                  ;A5950C;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 Unused_DraygonInstListPointers_A5950D:
     dw InstList_DraygonArms_FacingLeft_Idle_0                            ;A5950D;
     dw InstList_DraygonArms_FacingLeft_NearSwoopApex                     ;A5950F;
@@ -2198,6 +2203,7 @@ Unused_DraygonInstListPointers_A5950D:
     dw InstList_DraygonTail_FacingRight_Idle_0                           ;A59547;
     dw Debug_InstList_DraygonTail_FacingRight_FakeTailWhip               ;A59549;
     dw $0000                                                             ;A5954B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 HurtAI_Draygon:
     LDY.W #Palette_Draygon_BG12_5                                        ;A5954D;
@@ -2554,6 +2560,7 @@ InstList_DraygonArms_FacingLeft_Idle_0:
 InstList_DraygonArms_FacingLeft_Idle_1:
     dw Instruction_Common_Sleep                                          ;A59803;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_DraygonArms_A59805:
     dw $0001                                                             ;A59805;
     dw ExtendedSpritemap_Draygon_1D                                      ;A59807;
@@ -2562,6 +2569,7 @@ UNUSED_InstList_DraygonArms_A59805:
     dw $0040                                                             ;A5980D;
     dw ExtendedSpritemap_Draygon_1B                                      ;A5980F;
     dw Instruction_Common_Sleep                                          ;A59811;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_DraygonArms_FacingLeft_NearSwoopApex:
     dw $0001                                                             ;A59813;
@@ -2623,6 +2631,7 @@ InstList_DraygonArms_FacingLeft_Dying:
     dw Instruction_Common_GotoY                                          ;A59877;
     dw InstList_DraygonBody_Dying_0                                      ;A59879;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_DraygonBody_A5987B:
     dw $0005                                                             ;A5987B;
     dw ExtendedSpritemap_Draygon_C                                       ;A5987D;
@@ -2631,6 +2640,7 @@ UNUSED_InstList_DraygonBody_A5987B:
     dw $0005                                                             ;A59883;
     dw ExtendedSpritemap_Draygon_A                                       ;A59885;
     dw Instruction_Common_Sleep                                          ;A59887;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_DraygonBody_FacingLeft_Idle:
     dw Instruction_Draygon_RoomLoadingInterruptCmd_BeginHUDDraw          ;A59889;
@@ -3074,6 +3084,7 @@ InstList_DraygonArms_FacingRight_Idle_0:
 InstList_DraygonArms_FacingRight_Idle_1:
     dw Instruction_Common_Sleep                                          ;A59BF6;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_DraygonArms_A59BF8:
     dw $0001                                                             ;A59BF8;
     dw ExtendedSpritemap_Draygon_4D                                      ;A59BFA;
@@ -3082,6 +3093,7 @@ UNUSED_InstList_DraygonArms_A59BF8:
     dw $0040                                                             ;A59C00;
     dw ExtendedSpritemap_Draygon_4B                                      ;A59C02;
     dw Instruction_Common_Sleep                                          ;A59C04;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_DraygonArms_FacingRight_NearSwoopApex:
     dw $0001                                                             ;A59C06;
@@ -3146,6 +3158,7 @@ InstList_DraygonArms_FacingRight_Dying_0:
 InstList_DraygonBody_FacingRight_Dying_1:
     dw Instruction_Common_Sleep                                          ;A59C6E;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_DraygonBody_A59C70:
     dw $0005                                                             ;A59C70;
     dw ExtendedSpritemap_Draygon_3C                                      ;A59C72;
@@ -3154,6 +3167,7 @@ UNUSED_InstList_DraygonBody_A59C70:
     dw $0005                                                             ;A59C78;
     dw ExtendedSpritemap_Draygon_3A                                      ;A59C7A;
     dw Instruction_Common_Sleep                                          ;A59C7C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_DraygonBody_FacingRight_Idle:
     dw Instruction_Draygon_RoomLoadingInterruptCmd_BeginHUDDraw_dup      ;A59C7E;
@@ -3235,6 +3249,7 @@ InstList_DraygonEye_FacingRight_Idle:
     dw Function_DraygonEye_FacingLeft                                    ;A59D08;
     dw Instruction_Common_Sleep                                          ;A59D0A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_DraygonEye_A59D0C:
     dw $0015                                                             ;A59D0C;
     dw ExtendedSpritemap_Draygon_42                                      ;A59D0E;
@@ -3244,6 +3259,7 @@ UNUSED_InstList_DraygonEye_A59D0C:
     dw ExtendedSpritemap_Draygon_44                                      ;A59D16;
     dw $000A                                                             ;A59D18;
     dw ExtendedSpritemap_Draygon_45                                      ;A59D1A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_DraygonEye_FacingRight_Dying_0:
     dw Instruction_Common_TimerInY                                       ;A59D1C;
@@ -3838,8 +3854,10 @@ HandleDraygonFightIntroDance:
 MovementLatencyForEachEvirSpriteObject:
     dw $FC80,$FD00,$FD80,$FE00                                           ;A5A19F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MovementLatencyForEachEvirSpriteObject_A5A1A7:
     dw $FE80,$FF00,$FF80,$0000                                           ;A5A1A7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DraygonDeathSequenceEvirSubSpeeds_X:
     dw $D4DA                                                             ;A5A1AF;
@@ -6936,6 +6954,7 @@ RTL_A5C5C6:
     RTL                                                                  ;A5C5C6;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DraygonFightIntroDanceData_KeikoLove_A5C5C7:
     db $01,$FF,$01,$00,$00,$FF,$01,$00,$01,$FF,$01,$00,$00,$FF,$01,$00   ;A5C5C7;
     db $01,$FF,$01,$00,$00,$FF,$01,$00,$01,$FF,$00,$FF,$01,$00,$01,$FF   ;A5C5D7;
@@ -7069,6 +7088,7 @@ UNUSED_DraygonFightIntroDanceData_KeikoLove_A5C5C7:
     db $01,$FF,$01,$FF,$01,$00,$01,$FF,$01,$00,$01,$FF,$01,$00,$01,$FF   ;A5CDD7;
     db $01,$00,$00,$FF,$01,$00,$01,$FF,$01,$00,$01,$FF,$01,$00,$01,$FF   ;A5CDE7;
     db $01,$00,$01,$FF,$01,$FF,$01,$00,$01,$FF,$01,$00,$01,$FF,$01,$00   ;A5CDF7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DraygonFightIntroDanceData_KeikoLove:
     db $03,$00,$03,$00,$03,$00,$02,$FF,$03,$00,$03,$FF,$03,$00,$02,$FF   ;A5CE07;
@@ -7350,6 +7370,7 @@ DraygonFightIntroDanceData_KeikoLove_EvirsAlreadyDeleted:
     db $FF,$02,$00,$03,$00,$02,$00,$02,$00,$03,$00,$02,$01,$02,$01,$02   ;A5DF27;
     db $01,$02,$00,$02,$02,$02,$01,$01,$01,$02,$01,$02,$02,$02,$02,$01   ;A5DF37;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DraygonFightIntroDanceData_KeikoLove_A5DF47:
     db $01,$02,$02,$02,$02,$01,$01,$02,$02,$02,$02,$01,$02,$02,$02,$01   ;A5DF47;
     db $02,$02,$02,$02,$02,$01,$02,$02,$01,$02,$02,$01,$02,$02,$02,$02   ;A5DF57;
@@ -7417,6 +7438,7 @@ UNUSED_DraygonFightIntroDanceData_KeikoLove_A5DF47:
     db $02,$00,$01,$00,$02,$00,$02,$00,$01,$00,$02,$00,$01,$00,$02,$00   ;A5E337;
     db $02,$00,$01,$00,$02,$00,$02,$00,$01,$00,$02,$00,$01,$00,$02,$00   ;A5E347;
     db $02,$00                                                           ;A5E357;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_SporeSpawn:
     dw $0000,$3F57,$2E4D,$00E2,$0060,$3AB0,$220B,$1166                   ;A5E359;
@@ -7720,6 +7742,7 @@ InstList_SporeSpawn_DeathSequence_2:
     dw Instruction_SporeSpawn_CallSporeSpawnDeathItemDropRoutine         ;A5E80D;
     dw Instruction_Common_Sleep                                          ;A5E80F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_SporeSpawn_SetMaxXRadiusAndAngles_A5E811:
     LDA.W $0000,Y                                                        ;A5E811;
     STA.L $7E7816                                                        ;A5E814;
@@ -7732,6 +7755,7 @@ UNUSED_Instruction_SporeSpawn_SetMaxXRadiusAndAngles_A5E811:
     ADC.W #$0006                                                         ;A5E828;
     TAY                                                                  ;A5E82B;
     RTL                                                                  ;A5E82C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_SporeSpawn_SetMaxXRadiusAndAngleDelta:
@@ -7746,6 +7770,7 @@ Instruction_SporeSpawn_SetMaxXRadiusAndAngleDelta:
     RTL                                                                  ;A5E83F;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_SporeSpawn_MaxXRadiusInY_A5E840:
     LDA.W $0000,Y                                                        ;A5E840;
     STA.L $7E7816                                                        ;A5E843;
@@ -7780,6 +7805,7 @@ UNUSED_Instruction_SporeSpawn_AngleDeltaPlusY_A5E863:
     INY                                                                  ;A5E86F;
     INY                                                                  ;A5E870;
     RTL                                                                  ;A5E871;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_SporeSpawn_SporeGenerationFlagInY:
@@ -8598,6 +8624,7 @@ ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_7:
     dw Spritemap_SporeSpawn_D                                            ;A5EEF3;
     dw Hitbox_SporeSpawn_D                                               ;A5EEF5;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExtendedSpritemap_SporeSpawn_A5EEF7:
     dw $0001,$0000,$0000                                                 ;A5EEF7;
     dw Spritemap_SporeSpawn_F                                            ;A5EEFD;
@@ -8632,6 +8659,7 @@ UNUSED_ExtendedSpritemap_SporeSpawn_A5EF33:
     dw $0001,$0000,$0000                                                 ;A5EF33;
     dw Spritemap_SporeSpawn_E                                            ;A5EF39;
     dw Hitbox_SporeSpawn_E                                               ;A5EF3B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemap_SporeSpawn_FullyOpen_0:
     dw $0002,$0000,$0000                                                 ;A5EF3D;

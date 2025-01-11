@@ -224,9 +224,11 @@ EnemyPopulations_CrateriaMap:
     dw $FFFF                                                             ;A185A9;
     db $00                                                               ;A185AB;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A185AC:
     dw $FFFF                                                             ;A185AC;
     db $00                                                               ;A185AE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_FinalMissile_1:
     dw $FFFF                                                             ;A185AF;
@@ -239,9 +241,11 @@ EnemyPopulations_Climb_2:
     dw $00C0,$0880,$0000,$2800,$0004,$0000,$0000,$FFFF                   ;A185C4;
     db $02                                                               ;A185D4;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A185D5:
     dw $FFFF                                                             ;A185D5;
     db $00                                                               ;A185D7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_CrateriaSave:
     dw $FFFF                                                             ;A185D8;
@@ -295,9 +299,11 @@ EnemyPopulations_WestOcean:
     dw $0370,$0160,$0000,$A000,$0000,$0001,$0010,$FFFF                   ;A186E6;
     db $07                                                               ;A186F6;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A186F7:
     dw $FFFF                                                             ;A186F7;
     db $00                                                               ;A186F9;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_Parlor_0:
     dw EnemyHeaders_Sbug                                                 ;A186FA;
@@ -362,9 +368,11 @@ EnemyPopulations_CrateriaSuper:
     dw $02B8,$07A8,$0000,$2000,$0000,$0103,$0020,$FFFF                   ;A188A2;
     db $00                                                               ;A188B2;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A188B3:
     dw $FFFF                                                             ;A188B3;
     db $00                                                               ;A188B5;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_PreBowling:
     dw EnemyHeaders_HZoomer                                              ;A188B6;
@@ -953,9 +961,11 @@ EnemyPopulations_RedBrinstarSave:
     dw $FFFF                                                             ;A19669;
     db $00                                                               ;A1966B;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A1966C:
     dw $FFFF                                                             ;A1966C;
     db $00                                                               ;A1966E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_BlueBrinstarETank_0:
     dw EnemyHeaders_Eye                                                  ;A1966F;
@@ -1049,10 +1059,12 @@ EnemyPopulations_WarehouseETank:
     dw $0060,$0098,$0000,$2000,$0000,$0000,$0000,$FFFF                   ;A198C0;
     db $04                                                               ;A198D0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A198D1:
     dw EnemyHeaders_Elevator                                             ;A198D1;
     dw $0080,$00A0,$0000,$2C00,$0000,$0000,$0140,$FFFF                   ;A198D3;
     db $00                                                               ;A198E3;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_WarehouseEntrance:
     dw EnemyHeaders_Elevator                                             ;A198E4;
@@ -1853,9 +1865,11 @@ EnemyPopulations_MagdolliteTunnel:
     dw $023C,$005D,$0000,$2000,$0000,$0030,$0002,$FFFF                   ;A1ACF5;
     db $03                                                               ;A1AD05;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_8FB3EE_A1AD06:
     dw $FFFF                                                             ;A1AD06;
     db $00                                                               ;A1AD08;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_LavaDive:
     dw EnemyHeaders_Namihe                                               ;A1AD09;
@@ -4148,6 +4162,7 @@ EnemyPopulations_TourianRecharge:
     dw $FFFF                                                             ;A1E70B;
     db $00                                                               ;A1E70D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A1E70E:
     dw EnemyHeaders_CorpseZoomer                                         ;A1E70E;
     dw $00F0,$0040,$0000,$A000,$0000,$0000,$0000                         ;A1E710;
@@ -4166,6 +4181,7 @@ UNUSED_EnemyPopulations_A1E70E:
     dw EnemyHeaders_CorpseSkree                                          ;A1E77E;
     dw $0180,$0047,$0000,$A000,$0000,$0004,$0000,$FFFF                   ;A1E780;
     db $00                                                               ;A1E790;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_UpperTourianSave:
     dw $FFFF                                                             ;A1E791;

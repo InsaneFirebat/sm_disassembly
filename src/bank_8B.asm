@@ -357,6 +357,7 @@ Setup_PPU_ZebesDestruction:
     RTS                                                                  ;8B8339;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Setup_PPU_ZebesDestructionSpaceView_8B833A:
     PHP                                                                  ;8B833A;
     SEP #$30                                                             ;8B833B;
@@ -423,6 +424,7 @@ UNUSED_Setup_PPU_ZebesDestructionSpaceView_8B833A:
     STZ.B $B7                                                            ;8B83CF;
     PLP                                                                  ;8B83D1;
     RTS                                                                  ;8B83D2;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_PPU_Credits:
@@ -506,6 +508,7 @@ Setup_PPU_Credits:
     RTS                                                                  ;8B8487;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ModifyMode7TransformAndBG1PosWithController_8B8488:
     PHP                                                                  ;8B8488;
     REP #$30                                                             ;8B8489;
@@ -591,6 +594,7 @@ UNUSED_ModifyMode7TransformAndBG1PosWithController_8B8488:
 .return:
     PLP                                                                  ;8B8516;
     RTS                                                                  ;8B8517;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 HandleMode7TransformMatrixAndBG1Position_NoRotation:
@@ -1218,6 +1222,7 @@ CinematicBGObjects_X_16_TilemapOffsetForTile_12_13:
     RTS                                                                  ;8B896A;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B896B:
     JSR.W UNUSED_CinematicBGObjects_Mode7TilemapOffsetForTile_8B8A2C     ;8B896B;
     LDA.W $0002,Y                                                        ;8B896E;
@@ -1337,6 +1342,7 @@ UNUSED_CinematicBGObjects_Mode7TilemapOffsetForTile_8B8A2C:
     ADC.W $0014                                                          ;8B8A4B;
     STA.W $0016                                                          ;8B8A4E;
     RTS                                                                  ;8B8A51;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Calculate_SamusPosition_InRotatingElevatorRoom:
@@ -1910,6 +1916,7 @@ DrawIntroSprites:
     RTS                                                                  ;8B8E51;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CalculateXYComponentsOfRadiusAAngleY_8B8E52:
     PHP                                                                  ;8B8E52;
     REP #$30                                                             ;8B8E53;
@@ -1991,6 +1998,7 @@ UNUSED_Math_8B8EA3:
     CLC                                                                  ;8B8ED5;
     ADC.B $12                                                            ;8B8ED6;
     RTS                                                                  ;8B8ED8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 MoveUnusedSpritesOffScreen:
@@ -2668,6 +2676,7 @@ CinematicSpriteObject_Instruction_Delete:
     RTS                                                                  ;8B9441;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicSpriteObject_Instruction_Sleep_8B9442:
     REP #$30                                                             ;8B9442;
     DEY                                                                  ;8B9444;
@@ -2676,6 +2685,7 @@ UNUSED_CinematicSpriteObject_Instruction_Sleep_8B9442:
     STA.W $1B1D,X                                                        ;8B9447;
     PLA                                                                  ;8B944A;
     RTS                                                                  ;8B944B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CinematicSpriteObject_Instruction_PreInstructionY:
@@ -2687,6 +2697,7 @@ CinematicSpriteObject_Instruction_PreInstructionY:
     RTS                                                                  ;8B9456;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicSpriteObject_Inst_ClearPreInstruction_8B9457:
     REP #$30                                                             ;8B9457;
     LDA.W #.return                                                       ;8B9459;
@@ -2694,6 +2705,7 @@ UNUSED_CinematicSpriteObject_Inst_ClearPreInstruction_8B9457:
 
   .return
     RTS                                                                  ;8B945F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CinematicSpriteObject_Inst_CallExternalFunctionY_8B9460:
@@ -2738,6 +2750,7 @@ CinematicSpriteObject_Inst_CallExternalFunctionYWithA_8B947E:
     JML.W [$0012]                                                        ;8B949F;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicSpriteObject_Inst_GotoY_8B94A2:
     REP #$30                                                             ;8B94A2;
     STY.W $0012                                                          ;8B94A4;
@@ -2756,6 +2769,7 @@ UNUSED_CinematicSpriteObject_Inst_GotoY_8B94A2:
     ADC.W $0012                                                          ;8B94B7;
     TAY                                                                  ;8B94BA;
     RTS                                                                  ;8B94BB;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CinematicSpriteObject_Instruction_GotoY:
@@ -2774,12 +2788,14 @@ CinematicSpriteObject_Inst_DecrementTimer_GotoYIfNonZero:
     RTS                                                                  ;8B94CC;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicSpriteObject_Inst_DecTimer_GotoY_8B94CD:
     REP #$30                                                             ;8B94CD;
     DEC.W $1B7D,X                                                        ;8B94CF;
     BNE UNUSED_CinematicSpriteObject_Inst_GotoY_8B94A2                   ;8B94D2;
     INY                                                                  ;8B94D4;
     RTS                                                                  ;8B94D5;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CinematicSpriteObject_Instruction_TimerInY:
@@ -2791,9 +2807,11 @@ CinematicSpriteObject_Instruction_TimerInY:
     RTS                                                                  ;8B94E0;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_REP30RTS_8B94E1:
     REP #$30                                                             ;8B94E1;
     RTS                                                                  ;8B94E3;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Spawn_Mode7Objects:
@@ -2894,6 +2912,7 @@ Mode7Objects_Instruction_Delete:
     RTS                                                                  ;8B9571;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Mode7Objects_Instruction_PreInstructionY_8B9572:
     REP #$30                                                             ;8B9572;
     LDA.W $0000,Y                                                        ;8B9574;
@@ -2910,6 +2929,7 @@ UNUSED_Mode7Objects_Instruction_ClearPreInstruction_8B957D:
 
   .return
     RTS                                                                  ;8B9585;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Mode7Objects_Instruction_GotoY:
@@ -3114,6 +3134,7 @@ CinematicBGObject_Instruction_Delete:
     RTS                                                                  ;8B96A2;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicBGObject_Instruction_Sleep_8B96A3:
     REP #$30                                                             ;8B96A3;
     DEY                                                                  ;8B96A5;
@@ -3203,6 +3224,7 @@ UNUSED_CinematicBGObjects_Inst_GotoY_8B9704:
     ADC.W $0012                                                          ;8B9719;
     TAY                                                                  ;8B971C;
     RTS                                                                  ;8B971D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CinematicBGObject_Instruction_GotoY:
@@ -3212,6 +3234,7 @@ CinematicBGObject_Instruction_GotoY:
     RTS                                                                  ;8B9724;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicBGObjects_Inst_DecrementTimer_GotoY_8B9724:
     REP #$30                                                             ;8B9725;
     DEC.W $19E5,X                                                        ;8B9727;
@@ -3241,6 +3264,7 @@ UNUSED_CinematicBGObjects_Inst_TimerInY_8B9738:
 UNUSED_REP30RTS_8B9743:
     REP #$30                                                             ;8B9743;
     RTS                                                                  ;8B9745;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Draw_CinematicSpriteObjects_IntroTitleSequence:
@@ -3819,6 +3843,7 @@ InitFunction_CinematicSpriteObject_SuperMetroidLogoImmediate:
     RTS                                                                  ;8B9B2C;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 InitFunction_CinematicSpriteObject_UnusedNintendoBootLogoImm:
     LDA.W #$0080                                                         ;8B9B2D;
     STA.W $1A7D,Y                                                        ;8B9B30;
@@ -3827,6 +3852,7 @@ InitFunction_CinematicSpriteObject_UnusedNintendoBootLogoImm:
     LDA.W #$0000                                                         ;8B9B39;
     STA.W $1ABD,Y                                                        ;8B9B3C;
     RTS                                                                  ;8B9B3F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 InitFunc_CinematicSpriteObject_NintendoCopyrightImmediate:
@@ -4010,9 +4036,11 @@ PreInstruction_CinematicSpriteObject_1994ScrollingText:
     RTS                                                                  ;8B9CDD;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_REP20RTS_8B9CDE:
     REP #$20                                                             ;8B9CDE;
     RTS                                                                  ;8B9CE0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_TriggerTitleSequenceScene0:
@@ -4257,6 +4285,7 @@ Instruction_FadeInNintendoCopyright:
     RTS                                                                  ;8B9ED5;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 InitFunc_CinematicSpriteObject_UnusedNintendoBootLogo_FadeIn:
     LDA.W #$0080                                                         ;8B9ED6;
     STA.W $1A7D,Y                                                        ;8B9ED9;
@@ -4267,6 +4296,7 @@ InitFunc_CinematicSpriteObject_UnusedNintendoBootLogo_FadeIn:
     LDY.W #PaletteFXObjects_FadeInNintendoBootLogoForUnusedCode          ;8B9EE8;
     JSL.L Spawn_PaletteFXObject                                          ;8B9EEB;
     RTS                                                                  ;8B9EEF;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_UsePalette0_FadeInNintendoCopyright:
@@ -4560,6 +4590,7 @@ InstList_CinematicSpriteObject_SuperMetroidTitleLogo_Immedia:
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BA0CF;
     dw InstList_CinematicSpriteObject_SuperMetroidTitleLogo_Immedia      ;8BA0D1;
 
+if !FEATURE_KEEP_UNREFERENCED
 InstList_CinematicSpriteObject_UnusedNintendoBootLogo_FadeIn:
     dw $0020                                                             ;8BA0D3;
     dw TitleSequenceSpritemaps_NintendoBootLogo                          ;8BA0D5;
@@ -4570,6 +4601,7 @@ InstList_CinematicSpriteObject_UnusedNintendoBootLogo_Immedi:
     dw TitleSequenceSpritemaps_NintendoBootLogo                          ;8BA0DB;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BA0DD;
     dw InstList_CinematicSpriteObject_UnusedNintendoBootLogo_Immedi      ;8BA0DF;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_CinematicSpriteObject_NintendoCopyright_FadeIn:
     dw $0020                                                             ;8BA0E1;
@@ -4603,10 +4635,12 @@ CinematicSpriteObjectDefinitions_TitleSequence:
     dw InitFunc_CinematicSpriteObject_SuperMetroidTitleLogo_FadeIn       ;8BA107;
     dw RTS_8B93D9                                                        ;8BA109;
     dw InstList_CinematicSpriteObject_SuperMetroidTitleLogo_FadeIn       ;8BA10B;
+if !FEATURE_KEEP_UNREFERENCED
   .UnusedNintendoBootLogo_FadeIn
     dw InitFunc_CinematicSpriteObject_UnusedNintendoBootLogo_FadeIn      ;8BA10D;
     dw RTS_8B93D9                                                        ;8BA10F;
     dw InstList_CinematicSpriteObject_UnusedNintendoBootLogo_FadeIn      ;8BA111;
+endif ; !FEATURE_KEEP_UNREFERENCED
   .NintendoCopyright_FadeIn
     dw InitFunc_CinematicSpriteObject_NintendoCopyright_FadeIn           ;8BA113;
     dw RTS_8B93D9                                                        ;8BA115;
@@ -4615,10 +4649,12 @@ CinematicSpriteObjectDefinitions_TitleSequence:
     dw InitFunction_CinematicSpriteObject_SuperMetroidLogoImmediate      ;8BA119;
     dw RTS_8B93D9                                                        ;8BA11B;
     dw InstList_CinematicSpriteObject_SuperMetroidTitleLogo_Immedia      ;8BA11D;
+if !FEATURE_KEEP_UNREFERENCED
   .UnusedNintendoBootLogoImm
     dw InitFunction_CinematicSpriteObject_UnusedNintendoBootLogoImm      ;8BA11F;
     dw RTS_8B93D9                                                        ;8BA121;
     dw InstList_CinematicSpriteObject_UnusedNintendoBootLogo_Immedi      ;8BA123;
+endif ; !FEATURE_KEEP_UNREFERENCED
   .NintendoCopyrightImmediate
     dw InitFunc_CinematicSpriteObject_NintendoCopyrightImmediate         ;8BA125;
     dw RTS_8B93D9                                                        ;8BA127;
@@ -6735,6 +6771,7 @@ PreInstruction_CinematicBGObject_SamusBlinking:
     RTS                                                                  ;8BB4DB;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicBGObject_8BB4DC:
     LDA.W $1B3B                                                          ;8BB4DC;
     CMP.W #InstList_IntroTextCaret_Blink                                 ;8BB4DF;
@@ -6762,6 +6799,7 @@ UNUSED_Instruction_LoadIntroJapanText_NonExistent:
     JSR.W TransferJapanTextTilesToVRAM                                   ;8BB514;
     PLY                                                                  ;8BB517;
     RTS                                                                  ;8BB518;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_EnableCinematicBGTilemapUpdates:
@@ -8185,6 +8223,7 @@ CinematicFunction_FlyToCeres_FlyingIntoCeres:
     RTS                                                                  ;8BC082;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InitFunc_CinematicSpriteObject_SpaceColonyText_8BC083:
     LDA.W #$007C                                                         ;8BC083;
     STA.W $1A7D,Y                                                        ;8BC086;
@@ -8193,6 +8232,7 @@ UNUSED_InitFunc_CinematicSpriteObject_SpaceColonyText_8BC083:
     LDA.W #$0000                                                         ;8BC08F;
     STA.W $1ABD,Y                                                        ;8BC092;
     RTS                                                                  ;8BC095;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_SkipNextInstructionIfEnglishText:
@@ -8216,6 +8256,7 @@ Instruction_FinishFlyToCeres:
     RTS                                                                  ;8BC0B1;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InitFunc_CineSpriteObject_SpaceColonyJapanText_8BC0B2:
     LDA.W #$007C                                                         ;8BC0B2;
     STA.W $1A7D,Y                                                        ;8BC0B5;
@@ -8224,6 +8265,7 @@ UNUSED_InitFunc_CineSpriteObject_SpaceColonyJapanText_8BC0B2:
     LDA.W #$0000                                                         ;8BC0BE;
     STA.W $1ABD,Y                                                        ;8BC0C1;
     RTS                                                                  ;8BC0C4;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CinematicFunction_FlyToCeres_Finish:
@@ -9153,6 +9195,7 @@ PreInstruction_Zebes_SlideSceneAway:
     RTS                                                                  ;8BC896;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InitFunction_CinematicSpriteObject_ZebesStars1_8BC897:
     LDA.W #$0080                                                         ;8BC897;
     STA.W $1A7D,Y                                                        ;8BC89A;
@@ -9161,6 +9204,7 @@ UNUSED_InitFunction_CinematicSpriteObject_ZebesStars1_8BC897:
     LDA.W #$0800                                                         ;8BC8A3;
     STA.W $1ABD,Y                                                        ;8BC8A6;
     RTS                                                                  ;8BC8A9;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 PreInstruction_CinematicSpriteObject_ZebesStars5:
@@ -9719,6 +9763,7 @@ InstList_CinematicSpriteObject_CeresPurpleSpaceVortext:
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCC5F;
     dw InstList_CinematicSpriteObject_CeresPurpleSpaceVortext            ;8BCC61;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_CinematicSpriteObject_SpaceColonyText_8BCC63:
     dw $0100,$0000,$000A                                                 ;8BCC63;
     dw UNUSED_SpaceSpritemaps_S_8C92AA                                   ;8BCC69;
@@ -9758,6 +9803,7 @@ UNUSED_InstList_CineSpriteObject_SpaceColonyJapanText_8BCCA3:
     dw UNUSED_SpaceSpritemaps_JapanText_SPACECOLONY_8C9258               ;8BCCA5;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCCA7;
     dw UNUSED_InstList_CineSpriteObject_SpaceColonyJapanText_8BCCA3      ;8BCCA9;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_CinematicSpriteObject_Zebes:
     dw $000A                                                             ;8BCCAB;
@@ -9765,11 +9811,13 @@ InstList_CinematicSpriteObject_Zebes:
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCCAF;
     dw InstList_CinematicSpriteObject_Zebes                              ;8BCCB1;
 
+if !FEATURE_KEEP_UNREFERENCED
 InstList_CinematicSpriteObject_ZebesStars1:
     dw $000A                                                             ;8BCCB3;
     dw UNUSED_SpaceSpritemaps_ZebesStars1_8C96CB                         ;8BCCB5;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCCB7;
     dw InstList_CinematicSpriteObject_ZebesStars1                        ;8BCCB9;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 InstList_CinematicSpriteObject_PlanetZebesText:
     dw $0040,$0000                                                       ;8BCCBB;
@@ -10080,6 +10128,7 @@ CinematicSpriteObjectDefinitions_CeresPurpleSpaceVortex:
     dw PreInstruction_CinematicSpriteObject_CeresPurpleSpaceVortex       ;8BCE93;
     dw InstList_CinematicSpriteObject_CeresPurpleSpaceVortext            ;8BCE95;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicSpriteObjectDefs_SpaceColonyText_8BCE97:
     dw UNUSED_InitFunc_CinematicSpriteObject_SpaceColonyText_8BC083      ;8BCE97;
     dw RTS_8B93D9                                                        ;8BCE99;
@@ -10089,16 +10138,19 @@ UNUSED_CinematicSpriteObjectDefs_SpaceColonyJapanText_8BCE9D:
     dw UNUSED_InitFunc_CineSpriteObject_SpaceColonyJapanText_8BC0B2      ;8BCE9D;
     dw RTS_8B93D9                                                        ;8BCE9F;
     dw UNUSED_InstList_CineSpriteObject_SpaceColonyJapanText_8BCCA3      ;8BCEA1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 CinematicSpriteObjectDefinitions_Zebes:
     dw InitFunction_CinematicSpriteObject_Zebes                          ;8BCEA3;
     dw PreInstruction_CinematicSpriteObject_Zebes                        ;8BCEA5;
     dw InstList_CinematicSpriteObject_Zebes                              ;8BCEA7;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicSpriteObjectDefinitions_ZebesStars1_8BCEA9:
     dw UNUSED_InitFunction_CinematicSpriteObject_ZebesStars1_8BC897      ;8BCEA9;
     dw PreInstruction_CinematicSpriteObject_ZebesStars5                  ;8BCEAB;
     dw InstList_CinematicSpriteObject_ZebesStars1                        ;8BCEAD;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 CinematicSpriteObjectDefinitions_PlanetZebesText:
     dw InitFunction_CinematicSpriteObject_PlanetZebesText                ;8BCEAF;
@@ -10260,10 +10312,12 @@ CinematicSpriteObjectDefinitions_SpaceColony:
     dw RTS_8B93D9                                                        ;8BCF6B;
     dw CinematicBGObjectInstLists_SpaceColony                            ;8BCF6D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicSpriteObjectDefs_IntroTextPage1_8BCF6F:
     dw RTS_8B93D9                                                        ;8BCF6F;
     dw RTS_8B93D9                                                        ;8BCF71;
     dw CinematicBGObjectInstLists_IntroTextPage1                         ;8BCF73;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 IntroJapanTextData_Page1_TopLine:
     dw $0040,$0011,$0A60,$0B60,$04E0,$0150,$0EF0,$0EF0                   ;8BCF75;
@@ -10448,12 +10502,14 @@ InstList_Mode7Object_Page6:
     dw Instruction_EnableCinematicBGTilemapUpdates_duplicate_again       ;8BD3F1;
     dw Mode7Objects_Instruction_Delete                                   ;8BD3F3;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Mode7Object_D43D_8BD3F5:
     dw UNUSED_Instruction_LoadIntroJapanText_NonExistent                 ;8BD3F5;
     dw $0001                                                             ;8BD3F7;
     dw Mode7_Transfer_Data                                               ;8BD3F9;
     dw Instruction_EnableCinematicBGTilemapUpdates                       ;8BD3FB;
     dw Mode7Objects_Instruction_Delete                                   ;8BD3FD;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Mode7_Transfer_Data:
     db $00,$00                                                           ;8BD3FF;
@@ -10508,10 +10564,12 @@ Mode7Objects_IntroJapanText_Page6:
     dw RTS_8B93D9                                                        ;8BD439;
     dw InstList_Mode7Object_Page6                                        ;8BD43B;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Mode7Objects_8BD43D:
     dw RTS_8B93D9                                                        ;8BD43D;
     dw RTS_8B93D9                                                        ;8BD43F;
     dw UNUSED_InstList_Mode7Object_D43D_8BD3F5                           ;8BD441;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 GameState27_EndingAndCredits:
     PHP                                                                  ;8BD443;

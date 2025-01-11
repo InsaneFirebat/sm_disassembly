@@ -2,6 +2,20 @@
 lorom
 math pri on
 
+; -------------
+; Build options
+; -------------
+
+; Defaults will build vanilla Super Metroid.sfc
+
+!FEATURE_KEEP_UNREFERENCED ?= 1
+
+if !FEATURE_KEEP_UNREFERENCED
+    print "KEEP UNREFERENCED ASSEMBLY"
+else
+    print "REMOVE UNREFERENCED ASSEMBLY"
+endif
+
 incsrc "macros.asm"
 incsrc "bank_80.asm"
 incsrc "bank_81.asm"
@@ -59,3 +73,5 @@ incsrc "bank_B8.asm"
 incsrc "bank_B9..CE.asm"
 incsrc "bank_CF..DE.asm"
 incsrc "bank_DF.asm"
+
+print "Assembly complete. Total bytes written: ", bytes

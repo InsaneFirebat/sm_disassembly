@@ -5,8 +5,10 @@ org $B08000
 Tiles_Debug_PaletteViewer:
 incbin "../data/Tiles_Debug_PaletteViewer.bin" ; $1000 bytes
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Tiles_SolidColor_B09000:
 incbin "../data/UNUSED_Tiles_SolidColor_B09000.bin" ; $400 bytes
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Tiles_Ridley_0:
 incbin "../data/Tiles_Ridley_0.bin" ; $440 bytes

@@ -299,6 +299,7 @@ SetBossBitsInAForCurrentArea:
     RTL                                                                  ;8081BF;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ClearBossBitsInAForCurrentArea_8081C0:
     PHX                                                                  ;8081C0;
     PHY                                                                  ;8081C1;
@@ -314,6 +315,7 @@ UNUSED_ClearBossBitsInAForCurrentArea_8081C0:
     PLY                                                                  ;8081D9;
     PLX                                                                  ;8081DA;
     RTL                                                                  ;8081DB;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CheckIfBossBitsForCurrentAreaMatchAnyBitsInA:
@@ -600,6 +602,7 @@ ClearForceBlankAndWaitForNMI:
     RTL                                                                  ;808394;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_UpdateCGRAM_808395:
     PHP                                                                  ;808395;
     SEP #$10                                                             ;808396;
@@ -673,6 +676,7 @@ UNUSED_WriteYBytesOfATo_7E0000_X_8bit_8083E3:
     PLB                                                                  ;8083F3;
     PLP                                                                  ;8083F4;
     RTL                                                                  ;8083F5;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 WriteYBytesOfATo_7E0000_X_16bit:
@@ -885,6 +889,7 @@ Crash_Handler:
     JML.L Crash_Handler                                                  ;808573; Crash handler, jump to self
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_WaitAFrames_808577:
     PHP                                                                  ;808577;
     PHB                                                                  ;808578;
@@ -900,6 +905,7 @@ UNUSED_WaitAFrames_808577:
     PLB                                                                  ;808589;
     PLP                                                                  ;80858A;
     RTL                                                                  ;80858B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 LoadMirrorOfCurrentAreasMapExplored:
@@ -927,8 +933,10 @@ LoadMirrorOfCurrentAreasMapExplored:
     RTL                                                                  ;8085B5;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Generic_Bitmasks:
     dw $0001,$0002,$0004,$0008,$0010,$0020,$0040,$0080                   ;8085B6;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 MirrorCurrentAreasMapExplored:
     PHP                                                                  ;8085C6;
@@ -1278,6 +1286,7 @@ InitialisePPURegisters:
     RTS                                                                  ;8088B3;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ClearHighRAM_8088B4:
     REP #$30                                                             ;8088B4;
     LDA.W #$0000                                                         ;8088B6;
@@ -1290,6 +1299,7 @@ UNUSED_ClearHighRAM_8088B4:
     JSL.L WriteYBytesOfATo_7F0000_X_16bit                                ;8088CA;
     SEP #$30                                                             ;8088CE;
     RTS                                                                  ;8088D0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 WriteALoadOf_1C2F:
@@ -2139,6 +2149,7 @@ HandleMusicQueue:
     RTL                                                                  ;808FA2;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_QueueMusicDataOrTrack_808FA3:
     PHP                                                                  ;808FA3;
     REP #$30                                                             ;808FA4;
@@ -2157,6 +2168,7 @@ UNUSED_QueueMusicDataOrTrack_808FA3:
     PLX                                                                  ;808FBE;
     PLP                                                                  ;808FBF;
     RTL                                                                  ;808FC0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 QueueMusicDataOrTrack_8FrameDelay:
@@ -4485,6 +4497,7 @@ DisplayViewablePartOfRoom:
     RTL                                                                  ;80A1E2;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_QueueClearingOfBG2Tilemap_80A1E3:
     LDX.W #$0FFE                                                         ;80A1E3;
     LDA.W #$0338                                                         ;80A1E6;
@@ -4508,6 +4521,7 @@ UNUSED_QueueClearingOfBG2Tilemap_80A1E3:
     ADC.W #$0007                                                         ;80A20A;
     STA.W $0330                                                          ;80A20D;
     RTL                                                                  ;80A210;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 QueueClearingOfFXTilemap:
@@ -6347,6 +6361,7 @@ DoorTransitionScrolling_Up:
     RTS                                                                  ;80B031;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SetupRotatingMode7Background_80B032:
     LDA.W #$0001                                                         ;80B032;
     STA.W $0783                                                          ;80B035;
@@ -6450,6 +6465,7 @@ UNUSED_ConfigureMode7RotationMatrix_80B0C2:
 .return:
     PLP                                                                  ;80B0FD;
     RTL                                                                  ;80B0FE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Decompression_HardcodedDestination:

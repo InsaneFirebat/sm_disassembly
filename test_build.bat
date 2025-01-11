@@ -1,17 +1,18 @@
 
 @echo off
 
+set "sfc_src=Super Metroid.sfc"
+if "%~1" neq "" set "sfc_src=%~1"
+
 echo Creating FF file
 python tools/ff_file.py ../SM.sfc
 
 echo Patching FF file with asar
-cd tools
-set START=%TIME%
-asar --no-title-check --symbols=wla --symbols-path=../symbols.sym ../src/main.asm ../SM.sfc
-set END=%TIME%
+set START=%TIME: =0%
+"tools/asar" --no-title-check --symbols=wla --symbols-path=symbols.sym src/main.asm SM.sfc
+set END=%TIME: =0%
 
-cd ..
-fc "SM.sfc" "Super Metroid.sfc"
+fc SM.sfc "%sfc_src%"
 if errorlevel 1 goto error
 
 echo Success! This ROM matches vanilla Super Metroid
@@ -43,10 +44,10 @@ rem Output
 echo DURATION: %DURATION% in centiseconds
 
 endlocal
-
-PAUSE
-exit
+goto done
 
 :error
 echo !! FILE MISMATCH !!
+
+:done
 PAUSE

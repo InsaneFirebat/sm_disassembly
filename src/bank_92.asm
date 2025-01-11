@@ -2239,10 +2239,12 @@ UNUSED_Debug_SamusSpritemap_1_9290F4:
     db $E8                                                               ;929170;
     dw $3145                                                             ;929171;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_929173:
     dw $0001,$0000                                                       ;929173;
     db $00                                                               ;929177;
     dw $3A5F                                                             ;929178;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTileViewer_SamusTopHalf:
     dw $0010,$0018                                                       ;92917A;
@@ -9158,6 +9160,7 @@ SamusTopTiles_Set0_CCB9:
     dl SamusTiles_Top_Set0_Entry1D                                       ;92CCB9;
     dw $0100,$00C0                                                       ;92CCBC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set0_92CCC0:
     dl SamusTiles_Top_Set0_Entry1E                                       ;92CCC0;
     dw $0100,$0040                                                       ;92CCC3;
@@ -9165,14 +9168,17 @@ UNUSED_SamusTopTiles_Set0_92CCC0:
 UNUSED_SamusTopTiles_Set0_92CCC7:
     dl SamusTiles_Top_Set0_Entry1F                                       ;92CCC7;
     dw $0100,$0040                                                       ;92CCCA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 UNUSED_SamusTopTiles_Set1_92CCCE:
     dl SamusTiles_Top_Set1_Entry0                                        ;92CCCE;
     dw $00C0,$0080                                                       ;92CCD1;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set1_92CCD5:
     dl SamusTiles_Top_Set1_Entry1                                        ;92CCD5;
     dw $00C0,$0080                                                       ;92CCD8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set1_CCDC:
     dl SamusTiles_Top_Set1_Entry2                                        ;92CCDC;
@@ -9254,6 +9260,7 @@ SamusTopTiles_Set1_CD61:
     dl SamusTiles_Top_Set1_Entry15                                       ;92CD61;
     dw $0100,$00C0                                                       ;92CD64;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set1_92CD68:
     dl SamusTiles_Top_Set1_Entry16                                       ;92CD68;
     dw $0020,$0000                                                       ;92CD6B;
@@ -9261,6 +9268,7 @@ UNUSED_SamusTopTiles_Set1_92CD68:
 UNUSED_SamusTopTiles_Set1_92CD6F:
     dl SamusTiles_Top_Set1_Entry17                                       ;92CD6F;
     dw $0020,$0000                                                       ;92CD72;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set1_CD76:
     dl SamusTiles_Top_Set1_Entry18                                       ;92CD76;
@@ -9294,9 +9302,11 @@ SamusTopTiles_Set2_CDA7:
     dl SamusTiles_Top_Set2_Entry1                                        ;92CDA7;
     dw $0080,$0080                                                       ;92CDAA;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set2_92CDAE:
     dl SamusTiles_Top_Set2_Entry2                                        ;92CDAE;
     dw $00C0,$0080                                                       ;92CDB1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set2_CDB5:
     dl SamusTiles_Top_Set2_Entry3                                        ;92CDB5;
@@ -9358,6 +9368,7 @@ SamusTopTiles_Set2_CE17:
     dl SamusTiles_Top_Set2_Entry11                                       ;92CE17;
     dw $00E0,$0040                                                       ;92CE1A;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set2_92CE1E:
     dl SamusTiles_Top_Set2_Entry12                                       ;92CE1E;
     dw $0100,$0040                                                       ;92CE21;
@@ -9373,6 +9384,7 @@ UNUSED_SamusTopTiles_Set2_92CE2C:
 UNUSED_SamusTopTiles_Set2_92CE33:
     dl SamusTiles_Top_Set2_Entry15                                       ;92CE33;
     dw $0100,$0040                                                       ;92CE36;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set2_CE3A:
     dl SamusTiles_Top_Set2_Entry16                                       ;92CE3A;
@@ -9478,9 +9490,11 @@ SamusTopTiles_Set3_CEE9:
     dl SamusTiles_Top_Set3_EntryF                                        ;92CEE9;
     dw $00C0,$0080                                                       ;92CEEC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set3_92CEF0:
     dl SamusTiles_Top_Set3_Entry10                                       ;92CEF0;
     dw $00C0,$0080                                                       ;92CEF3;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set4_CEF7:
     dl SamusTiles_Top_Set4_Entry0                                        ;92CEF7;
@@ -9546,9 +9560,11 @@ SamusTopTiles_Set4_CF60:
     dl SamusTiles_Top_Set4_EntryF                                        ;92CF60;
     dw $0100,$00E0                                                       ;92CF63;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set4_92CF67:
     dl SamusTiles_Top_Set4_Entry10                                       ;92CF67;
     dw $0100,$00E0                                                       ;92CF6A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set5_CF6E:
     dl SamusTiles_Top_Set5_Entry0                                        ;92CF6E;
@@ -9614,9 +9630,11 @@ SamusTopTiles_Set5_CFD7:
     dl SamusTiles_Top_Set5_EntryF                                        ;92CFD7;
     dw $00C0,$0080                                                       ;92CFDA;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set5_92CFDE:
     dl SamusTiles_Top_Set5_Entry10                                       ;92CFDE;
     dw $00C0,$0080                                                       ;92CFE1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set6_CFE5:
     dl SamusTiles_Top_Set6_Entry0                                        ;92CFE5;
@@ -9682,9 +9700,11 @@ SamusTopTiles_Set6_D04E:
     dl SamusTiles_Top_Set6_EntryF                                        ;92D04E;
     dw $0100,$00E0                                                       ;92D051;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set6_92D055:
     dl SamusTiles_Top_Set6_Entry10                                       ;92D055;
     dw $0100,$00E0                                                       ;92D058;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set7_D05C:
     dl SamusTiles_Top_Set7_Entry0                                        ;92D05C;
@@ -9770,9 +9790,11 @@ SamusTopTiles_Set8_D0E8:
     dl SamusTiles_Top_Set8_Entry0                                        ;92D0E8;
     dw $0020,$0000                                                       ;92D0EB;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set8_92D0EF:
     dl SamusTiles_Top_Set8_Entry1                                        ;92D0EF;
     dw $0020,$0000                                                       ;92D0F2;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set8_D0F6:
     dl SamusTiles_Top_Set8_Entry2                                        ;92D0F6;
@@ -10062,9 +10084,11 @@ SamusBottomTiles_Set1_D2E7:
     dl SamusTiles_Bottom_Set1_EntryF                                     ;92D2E7;
     dw $00C0,$0040                                                       ;92D2EA;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set1_92D2EE:
     dl SamusTiles_Bottom_Set1_Entry10                                    ;92D2EE;
     dw $0020,$0000                                                       ;92D2F1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set1_D2F5:
     dl SamusTiles_Bottom_Set1_Entry11                                    ;92D2F5;
@@ -10114,9 +10138,11 @@ SamusBottomTiles_Set1_D342:
     dl SamusTiles_Bottom_Set1_Entry1C                                    ;92D342;
     dw $00C0,$0080                                                       ;92D345;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set1_92D349:
     dl SamusTiles_Bottom_Set1_Entry1D                                    ;92D349;
     dw $0080,$0080                                                       ;92D34C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set1_D350:
     dl SamusTiles_Bottom_Set1_Entry1E                                    ;92D350;
@@ -10166,9 +10192,11 @@ SamusBottomTiles_Set2_D39D:
     dl SamusTiles_Bottom_Set2_Entry9                                     ;92D39D;
     dw $00C0,$0040                                                       ;92D3A0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set2_92D3A4:
     dl SamusTiles_Bottom_Set2_EntryA                                     ;92D3A4;
     dw $00A0,$0080                                                       ;92D3A7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set2_D3AB:
     dl SamusTiles_Bottom_Set2_EntryB                                     ;92D3AB;
@@ -10218,9 +10246,11 @@ SamusBottomTiles_Set2_D3F8:
     dl SamusTiles_Bottom_Set2_Entry16                                    ;92D3F8;
     dw $0080,$0080                                                       ;92D3FB;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set2_92D3FF:
     dl SamusTiles_Bottom_Set2_Entry17                                    ;92D3FF;
     dw $0080,$0080                                                       ;92D402;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set4_D406:
     dl SamusTiles_Bottom_Set4_Entry0                                     ;92D406;
@@ -10262,6 +10292,7 @@ SamusBottomTiles_Set4_D445:
     dl SamusTiles_Bottom_Set4_Entry9                                     ;92D445;
     dw $00C0,$0040                                                       ;92D448;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set4_92D44C:
     dl SamusTiles_Bottom_Set4_EntryA                                     ;92D44C;
     dw $00A0,$0080                                                       ;92D44F;
@@ -10273,6 +10304,7 @@ UNUSED_SamusBottomTiles_Set4_92D453:
 UNUSED_SamusBottomTiles_Set4_92D45A:
     dl SamusTiles_Bottom_Set4_EntryC                                     ;92D45A;
     dw $0080,$0080                                                       ;92D45D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set4_D461:
     dl SamusTiles_Bottom_Set4_EntryD                                     ;92D461;
@@ -10310,9 +10342,11 @@ SamusBottomTiles_Set4_D499:
     dl SamusTiles_Bottom_Set4_Entry15                                    ;92D499;
     dw $0080,$0080                                                       ;92D49C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set4_92D4A0:
     dl SamusTiles_Bottom_Set4_Entry16                                    ;92D4A0;
     dw $0080,$0080                                                       ;92D4A3;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set5_D4A7:
     dl SamusTiles_Bottom_Set5_Entry0                                     ;92D4A7;
@@ -10354,9 +10388,11 @@ SamusBottomTiles_Set5_D4E6:
     dl SamusTiles_Bottom_Set5_Entry9                                     ;92D4E6;
     dw $00C0,$0040                                                       ;92D4E9;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set5_92D4ED:
     dl SamusTiles_Bottom_Set5_EntryA                                     ;92D4ED;
     dw $00A0,$0080                                                       ;92D4F0;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set5_D4F4:
     dl SamusTiles_Bottom_Set5_EntryB                                     ;92D4F4;
@@ -10366,9 +10402,11 @@ SamusBottomTiles_Set5_D4FB:
     dl SamusTiles_Bottom_Set5_EntryC                                     ;92D4FB;
     dw $0080,$0080                                                       ;92D4FE;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set5_92D502:
     dl SamusTiles_Bottom_Set5_EntryD                                     ;92D502;
     dw $0080,$0080                                                       ;92D505;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set5_D509:
     dl SamusTiles_Bottom_Set5_EntryE                                     ;92D509;
@@ -10406,9 +10444,11 @@ SamusBottomTiles_Set5_D541:
     dl SamusTiles_Bottom_Set5_Entry16                                    ;92D541;
     dw $0080,$0080                                                       ;92D544;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set5_92D548:
     dl SamusTiles_Bottom_Set5_Entry17                                    ;92D548;
     dw $0080,$0080                                                       ;92D54B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set6_D54F:
     dl SamusTiles_Bottom_Set6_Entry0                                     ;92D54F;
@@ -10450,6 +10490,7 @@ SamusBottomTiles_Set6_D58E:
     dl SamusTiles_Bottom_Set6_Entry9                                     ;92D58E;
     dw $00C0,$0040                                                       ;92D591;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set6_92D595:
     dl SamusTiles_Bottom_Set6_EntryA                                     ;92D595;
     dw $00A0,$0080                                                       ;92D598;
@@ -10461,6 +10502,7 @@ UNUSED_SamusBottomTiles_Set6_92D59C:
 UNUSED_SamusBottomTiles_Set6_92D5A3:
     dl SamusTiles_Bottom_Set6_EntryC                                     ;92D5A3;
     dw $0080,$0080                                                       ;92D5A6;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set6_D5AA:
     dl SamusTiles_Bottom_Set6_EntryD                                     ;92D5AA;
@@ -10510,9 +10552,11 @@ SamusBottomTiles_Set8_D5F7:
     dl SamusTiles_Bottom_Set8_Entry1                                     ;92D5F7;
     dw $0100,$0100                                                       ;92D5FA;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set8_92D5FE:
     dl SamusTiles_Bottom_Set8_Entry2                                     ;92D5FE;
     dw $0020,$0000                                                       ;92D601;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_SetA_D605:
     dl SamusTiles_Bottom_SetA_Entry0                                     ;92D605;
@@ -10614,9 +10658,11 @@ SamusTopTiles_SetB_D6AD:
     dl SamusTiles_Top_SetB_Entry1                                        ;92D6AD;
     dw $0060,$0040                                                       ;92D6B0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_SetB_92D6B4:
     dl SamusTiles_Top_SetB_Entry2                                        ;92D6B4;
     dw $0060,$0040                                                       ;92D6B7;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_SetB_D6BB:
     dl SamusTiles_Top_SetB_Entry3                                        ;92D6BB;
@@ -10638,6 +10684,7 @@ UNUSED_SamusBottomTiles_Set3_92D6D7:
     dl UNUSED_SamusTiles_Bottom_Set3_Entry0_9EE9C0                       ;92D6D7;
     dw $0040,$0040                                                       ;92D6DA;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set3_92D6DE:
     dl UNUSED_SamusTiles_Bottom_Set3_Entry1_9EEA40                       ;92D6DE;
     dw $0080,$0080                                                       ;92D6E1;
@@ -10701,6 +10748,7 @@ UNUSED_SamusBottomTiles_Set3_92D740:
 UNUSED_SamusBottomTiles_Set3_92D747:
     dl UNUSED_SamusTiles_Bottom_Set3_Entry10_9EF5C0                      ;92D747;
     dw $0080,$0080                                                       ;92D74A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_SetC_D74E:
     dl SamusTiles_Top_SetC_Entry0                                        ;92D74E;

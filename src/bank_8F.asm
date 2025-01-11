@@ -2095,8 +2095,10 @@ PLMPopulation_FastPillarsSetup:
     db $08,$1B                                                           ;8F8ECE;
     dw $8000,$0000                                                       ;8F8ED0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMPopulation_8FB3EE:
     dw $0000                                                             ;8F8ED4;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMPopulation_MickeyMouse:
     dw PLMEntries_ScrollPLM                                              ;8F8ED6;
@@ -5266,11 +5268,13 @@ RoomDoors_Statues:
 RoomScrolls_Statues:
     db $01,$00                                                           ;8FA697;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FA699:
     db $00,$02,$01,$01,$80                                               ;8FA699;
 
 UNUSED_RoomPLM_8FA69E:
     db $01,$02,$80                                                       ;8FA69E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomHeader_WarehouseEntrance:
     db $34,$01,$29,$12,$03,$02,$70,$A0,$00                               ;8FA6A1;
@@ -5646,8 +5650,10 @@ RoomScrolls_CrocomireSpeedway:
     db $02,$02,$02,$02,$00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$02   ;8FA964;
     db $02,$02,$02,$02,$02,$00,$02                                       ;8FA974;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FA97B:
     db $19,$02,$26,$02,$80                                               ;8FA97B;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomPLM_CrocomireSpeedway_0:
     db $19,$02,$25,$02,$26,$02,$80                                       ;8FA980;
@@ -5701,11 +5707,13 @@ RoomDoors_Crocomire:
 RoomScrolls_Crocomire:
     db $00,$00,$01,$01,$01,$01,$01,$01                                   ;8FA9D7;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FA9DF:
     db $01,$01,$80                                                       ;8FA9DF;
 
 UNUSED_RoomPLM_8FA9E2:
     db $00,$01,$80                                                       ;8FA9E2;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomHeader_HiJumpBoots:
     db $0B,$02,$07,$06,$01,$01,$70,$A0,$00                               ;8FA9E5;
@@ -6162,6 +6170,7 @@ RoomState_SpeedBooster:
     dw LibBG_Norfair_9_A_SmallPatternBrownPurple_Bright                  ;8FAD3E;
     dw RTS_8F91F6                                                        ;8FAD40;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomState_8FAD42:
     dl LevelData_SpeedBooster                                            ;8FAD42;
     db $09,$00,$03                                                       ;8FAD45;
@@ -6175,6 +6184,7 @@ UNUSED_RoomState_8FAD42:
     dw PLMPopulation_SpeedBooster                                        ;8FAD56;
     dw LibBG_Norfair_9_A_SmallPatternBrownPurple_Bright                  ;8FAD58;
     dw RTS_8F91F6                                                        ;8FAD5A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomDoors_SpeedBooster:
     dw Door_SpeedBooster_0                                               ;8FAD5C;
@@ -6838,8 +6848,10 @@ RoomDoors_AcidStatue:
 RoomScrolls_AcidStatue:
     db $02,$02,$00,$01,$01,$00,$00,$00,$00                               ;8FB210;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FB219:
     db $03,$01,$04,$01,$06,$00,$07,$00,$08,$00,$80                       ;8FB219;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomPLM_AcidStatue_0:
     db $03,$02,$04,$02,$06,$02,$07,$02,$80                               ;8FB224;
@@ -7074,6 +7086,7 @@ RoomPLM_FastPillarsSetup_0:
 RoomPLM_FastPillarsSetup_2:
     db $01,$02,$02,$01,$80                                               ;8FB3DC;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomHeader_8FB3E1:
     db $3D,$02,$1A,$0B,$01,$01,$70,$A0,$00                               ;8FB3E1;
     dw UNUSED_RoomDoors_8FB408                                           ;8FB3EA;
@@ -7095,6 +7108,7 @@ UNUSED_RoomState_8FB3EE:
 
 UNUSED_RoomDoors_8FB408:
     dw UNUSED_Door_83991E                                                ;8FB408;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomHeader_MickeyMouse:
     db $3E,$02,$1A,$09,$04,$04,$70,$A0,$00                               ;8FB40A;
@@ -7636,6 +7650,7 @@ LibBG_Crocomire_State1:
     dl $7E2000                                                           ;8FB85A;
     dw $4800,$1000,$0000                                                 ;8FB85D;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LibBG_Brinstar_1A_Kraid_Lower_8FB863:
     dw $0004                                                             ;8FB863;
     dl Background_Brinstar_1A_Kraid_Lower_1                              ;8FB865;
@@ -7644,6 +7659,7 @@ UNUSED_LibBG_Brinstar_1A_Kraid_Lower_8FB863:
     dw $4800,$0800,$0002                                                 ;8FB86F;
     dl $7E4000                                                           ;8FB875;
     dw $4C00,$0800,$0000                                                 ;8FB878;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 LibBG_Crateria_0_VerticalPatternRocks:
     dw $0004                                                             ;8FB87E;
@@ -7928,6 +7944,7 @@ LibBG_Brinstar_6_SmallPattern_Variety_0:
     dl $7E4000                                                           ;8FBB06;
     dw $4C00,$0800,$0000                                                 ;8FBB09;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LibBG_Brinstar_6_SmallPattern_Variety_1_8FBB0F:
     dw $0004                                                             ;8FBB0F;
     dl Background_Brinstar_6_SmallPattern_Variety_1                      ;8FBB11;
@@ -7945,6 +7962,7 @@ UNUSED_LibBG_Brinstar_6_SmallPattern_Variety_2_8FBB2A:
     dw $4800,$0800,$0002                                                 ;8FBB36;
     dl $7E4000                                                           ;8FBB3C;
     dw $4C00,$0800,$0000                                                 ;8FBB3F;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 LibBG_Brinstar_6_DarkPattern:
     dw $0004                                                             ;8FBB45;
@@ -7973,6 +7991,7 @@ LibBG_Brinstar_7_WideVerticalTower_Brick_0:
     dl $7E4000                                                           ;8FBB8D;
     dw $4C00,$0800,$0000                                                 ;8FBB90;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LibBG_Brinstar_7_WideVerticalTower_Brick_1_8FBB96:
     dw $0004                                                             ;8FBB96;
     dl Background_Brinstar_7_WideVerticalTower_Brick_1                   ;8FBB98;
@@ -7990,6 +8009,7 @@ UNUSED_LibBG_Brinstar_7_WideVerticalTower_Brick_2_8FBBB1:
     dw $4800,$0800,$0002                                                 ;8FBBBD;
     dl $7E4000                                                           ;8FBBC3;
     dw $4C00,$0800,$0000                                                 ;8FBBC6;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 LibBG_Brinstar_7_VerticalTower:
     dw $0004                                                             ;8FBBCC;
@@ -8018,6 +8038,7 @@ LibBG_Brinstar_7_VerticalBrick_0:
     dl $7E4000                                                           ;8FBC14;
     dw $4C00,$0800,$0000                                                 ;8FBC17;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LibBG_Brinstar_7_VerticalBrick_1_8FBC1D:
     dw $0004                                                             ;8FBC1D;
     dl Background_Brinstar_7_VerticalBrick_1                             ;8FBC1F;
@@ -8026,6 +8047,7 @@ UNUSED_LibBG_Brinstar_7_VerticalBrick_1_8FBC1D:
     dw $4800,$0800,$0002                                                 ;8FBC29;
     dl $7E4000                                                           ;8FBC2F;
     dw $4C00,$0800,$0000                                                 ;8FBC32;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 LibBG_Brinstar_7_MechanicalRoom_SpikeFloor:
     dw $0004                                                             ;8FBC38;
@@ -8054,6 +8076,7 @@ LibBG_Brinstar_7_NarrowVerticalTower_Brick_Vines_0:
     dl $7E4000                                                           ;8FBC80;
     dw $4C00,$0800,$0000                                                 ;8FBC83;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LibBG_Brin_7_NarrowVerticalTower_Brick_Vines_1_8FBC89:
     dw $0004                                                             ;8FBC89;
     dl Background_Brinstar_7_NarrowVerticalTower_Brick_Vines_1           ;8FBC8B;
@@ -8062,6 +8085,7 @@ UNUSED_LibBG_Brin_7_NarrowVerticalTower_Brick_Vines_1_8FBC89:
     dw $4800,$0800,$0002                                                 ;8FBC95;
     dl $7E4000                                                           ;8FBC9B;
     dw $4C00,$0800,$0000                                                 ;8FBC9E;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 LibBG_Brinstar_8_NarrowVerticalTower_Brick_Grey_0:
     dw $0004                                                             ;8FBCA4;
@@ -8070,6 +8094,7 @@ LibBG_Brinstar_8_NarrowVerticalTower_Brick_Grey_0:
     dl $7E4000                                                           ;8FBCAD;
     dw $4800,$1000,$0000                                                 ;8FBCB0;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LibBG_Brin_8_NarrowVerticalTower_Brick_Grey_1_8FBCB6:
     dw $0004                                                             ;8FBCB6;
     dl Background_Brinstar_8_NarrowVerticalTower_Brick_Grey_1            ;8FBCB8;
@@ -8087,6 +8112,7 @@ UNUSED_LibBG_Brin_8_NarrowVerticalTower_Brick_Grey_2_8FBCD1:
     dw $4800,$0800,$0002                                                 ;8FBCDD;
     dl $7E4000                                                           ;8FBCE3;
     dw $4C00,$0800,$0000                                                 ;8FBCE6;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 LibBG_Brinstar_7_BlueGridBlocks:
     dw $0004                                                             ;8FBCEC;
@@ -8332,6 +8358,7 @@ LibBG_Norfair_9_A_SmallPatternBrownPurple_0:
     dl $7E4000                                                           ;8FBE6C;
     dw $4C00,$0800,$0000                                                 ;8FBE6F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LibBG_Norfair_9_A_SmallPatternBrownPurple_1_8FBE75:
     dw $0004                                                             ;8FBE75;
     dl Background_Norfair_9_A_SmallPatternBrownPurple_1                  ;8FBE77;
@@ -8340,6 +8367,7 @@ UNUSED_LibBG_Norfair_9_A_SmallPatternBrownPurple_1_8FBE75:
     dw $4800,$0800,$0002                                                 ;8FBE81;
     dl $7E4000                                                           ;8FBE87;
     dw $4C00,$0800,$0000                                                 ;8FBE8A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 LibBG_Norfair_9_HorizontalPatternBrick:
     dw $0004                                                             ;8FBE90;
@@ -8490,6 +8518,7 @@ DoorASM_Scroll_A_Green:
     RTS                                                                  ;8FC004;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DoorASM_Scroll_0_Blue_2_Red_8FC005:
     PHP                                                                  ;8FC005;
     SEP #$20                                                             ;8FC006;
@@ -8499,6 +8528,7 @@ UNUSED_DoorASM_Scroll_0_Blue_2_Red_8FC005:
     STA.L $7ECD22                                                        ;8FC010;
     PLP                                                                  ;8FC014;
     RTS                                                                  ;8FC015;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 DoorASM_Scroll_0_2_Green:
@@ -8805,8 +8835,10 @@ MainASM_ScrollScreenRightInDachoraRoom:
     RTS                                                                  ;8FC208;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_8FC209:
     dw $0051,$0061,$0001,$0002,$0005,$0006                               ;8FC209;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMPopulation_BowlingAlley_State0:
     dw PLMEntries_ScrollPLM                                              ;8FC215;
@@ -10009,6 +10041,7 @@ RoomPLM_BowlingAlley_0:
 RoomPLM_BowlingAlley_3:
     db $04,$00,$05,$02,$0B,$02,$10,$01,$11,$01,$80                       ;8FC9F1;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FC9FC:
     db $05,$01,$80                                                       ;8FC9FC;
 
@@ -10020,6 +10053,7 @@ UNUSED_RoomPLM_8FCA02:
 
 UNUSED_RoomPLM_8FCA05:
     db $04,$00,$80                                                       ;8FCA05;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomHeader_WreckedShipEntrance:
     db $01,$03,$0C,$0E,$04,$01,$70,$A0,$00                               ;8FCA08;
@@ -10105,6 +10139,7 @@ RoomDoors_Attic:
 RoomScrolls_Attic:
     db $02,$02,$02,$02,$02,$02,$02                                       ;8FCA9E;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FCAA5:
     db $00,$01,$80                                                       ;8FCAA5;
 
@@ -10113,6 +10148,7 @@ UNUSED_RoomPLM_8FCAA8:
 
 UNUSED_RoomPLM_8FCAAB:
     db $03,$02,$80                                                       ;8FCAAB;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomHeader_AssemblyLine:
     db $03,$03,$13,$0A,$03,$01,$70,$A0,$00                               ;8FCAAE;
@@ -10394,8 +10430,10 @@ RoomPLM_Basement_0:
 RoomPLM_Basement_1:
     db $03,$00,$80                                                       ;8FCCC5;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FCCC8:
     db $04,$00,$80                                                       ;8FCCC8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomHeader_WreckedShipMap:
     db $09,$03,$0D,$13,$01,$01,$70,$A0,$00                               ;8FCCCB;
@@ -13213,6 +13251,7 @@ LibBG_WreckedShip_4_5_EntranceHall:
     dl $7E4000                                                           ;8FE129;
     dw $4C00,$0800,$0000                                                 ;8FE12C;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LibBG_WreckedShip_4_5_EntranceHall_1_8FE132:
     dw $0004                                                             ;8FE132;
     dl Background_WreckedShip_4_5_EntranceHall_1                         ;8FE134;
@@ -13221,6 +13260,7 @@ UNUSED_LibBG_WreckedShip_4_5_EntranceHall_1_8FE132:
     dw $4800,$0800,$0002                                                 ;8FE13E;
     dl $7E4000                                                           ;8FE144;
     dw $4C00,$0800,$0000                                                 ;8FE147;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 LibBG_WreckedShip_4_5_Columns_Tubes:
     dw $0004                                                             ;8FE14D;
@@ -13450,6 +13490,7 @@ DoorASM_Scroll_A_Red_B_Blue:
     RTS                                                                  ;8FE328;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DoorASM_Scroll_4_Green_8FE329:
     PHP                                                                  ;8FE329;
     SEP #$20                                                             ;8FE32A;
@@ -13468,6 +13509,7 @@ UNUSED_DoorASM_Scroll_4_Green_8FE33A:
     STA.L $7ECD24                                                        ;8FE33F;
     PLP                                                                  ;8FE343;
     RTS                                                                  ;8FE344;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 DoorASM_Scroll_0_Red_4_Blue_duplicate:
@@ -13542,6 +13584,7 @@ DoorASM_Scroll_4_Red_duplicate:
     RTS                                                                  ;8FE3AD;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DoorASM_Scroll_1_Red_8FE3AE:
     PHP                                                                  ;8FE3AE;
     SEP #$20                                                             ;8FE3AF;
@@ -13549,6 +13592,7 @@ UNUSED_DoorASM_Scroll_1_Red_8FE3AE:
     STA.L $7ECD21                                                        ;8FE3B3;
     PLP                                                                  ;8FE3B7;
     RTS                                                                  ;8FE3B8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 DoorASM_Scroll_4_7_Red:
@@ -13824,6 +13868,7 @@ Use_StatePointer_inX:
     RTL                                                                  ;8FE5EA;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomStateCheck_Door_8FE5EB:
     LDA.W $0000,X                                                        ;8FE5EB;
     CMP.W $078D                                                          ;8FE5EE;
@@ -13838,6 +13883,7 @@ UNUSED_RoomStateCheck_Door_8FE5EB:
     INX                                                                  ;8FE5FC;
     INX                                                                  ;8FE5FD;
     RTS                                                                  ;8FE5FE;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RoomStateCheck_MainAreaBossIsDead:
@@ -13886,6 +13932,7 @@ RoomStateCheck_BossIsDead:
     RTS                                                                  ;8FE63F;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomStateCheck_Morphball_8FE640:
     LDA.W $09A4                                                          ;8FE640;
     AND.W #$0004                                                         ;8FE643;
@@ -13898,6 +13945,7 @@ UNUSED_RoomStateCheck_Morphball_8FE640:
   + INX                                                                  ;8FE64F;
     INX                                                                  ;8FE650;
     RTS                                                                  ;8FE651;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RoomStateCheck_MorphballAndMissiles:
@@ -13929,6 +13977,7 @@ RoomStateCheck_PowerBombs:
     RTS                                                                  ;8FE677;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomStateCheck_SpeedBooster_8FE678:
     LDA.W $09A4                                                          ;8FE678;
     AND.W #$2000                                                         ;8FE67B;
@@ -13941,6 +13990,7 @@ UNUSED_RoomStateCheck_SpeedBooster_8FE678:
   + INX                                                                  ;8FE687;
     INX                                                                  ;8FE688;
     RTS                                                                  ;8FE689;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Door_Closing_PLMs:
@@ -14182,6 +14232,7 @@ RoomDoors_Debug:
     dw UNUSED_Door_Debug_2_83ABDA                                        ;8FE857;
     dw UNUSED_Door_Debug_3_83ABE5                                        ;8FE859;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LibraryBackground_8FE85B:
     dw $0002                                                             ;8FE85B;
     dl FX_Layer3_Tilemaps_water                                          ;8FE85D;
@@ -14192,12 +14243,15 @@ UNUSED_LibraryBackground_8FE85B:
     dw $4800,$0800,$0002                                                 ;8FE870;
     dl $7E4000                                                           ;8FE876;
     dw $4C00,$0800,$0000                                                 ;8FE879;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomPLM_Debug:
     db $00,$00                                                           ;8FE87F;
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_UnknownUnreferenced_8FE881:
     dw $009E,$00AD,$0081,$0001,$0004,$0002,$0000                         ;8FE881;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Execute_Room_Setup_ASM:
     PHP                                                                  ;8FE88F;

@@ -249,8 +249,10 @@ Initialise_MessageBox:
     RTS                                                                  ;858257;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_REP30_858258:
     REP #$30                                                             ;858258;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Write_Large_MessageBox_Tilemap:
     LDX.W #$0000                                                         ;85825A;

@@ -1456,8 +1456,10 @@ Debug_GameOverMenu_Index1_Initialise:
     RTS                                                                  ;818DA3;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_818DA4:
     dw $000F                                                             ;818DA4;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Debug_GameOverMenu_Index24_FadeIn:
     REP #$30                                                             ;818DA6;
@@ -2288,8 +2290,10 @@ Initialise_FileSelectMenu_FileCopy:
     RTS                                                                  ;819590;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_REP30_819591:
     REP #$30                                                             ;819591;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 SetInitial_FileCopyClear_MenuSelection:
     LDA.W $0954                                                          ;819593;
@@ -4072,8 +4076,10 @@ FileSelectMap_Index1_GameOptionsToAreaSelectMap_FadeOut:
     RTS                                                                  ;81A3D0;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_REP30_81A3D1:
     REP #$30                                                             ;81A3D1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 LoadActiveAreaMapForegroundColors:
     TXA                                                                  ;81A3D3;
@@ -5396,8 +5402,10 @@ FileSelectMap_IndexA_RoomSelectMap:
     RTS                                                                  ;81AEC7;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_REP30_81AEC8:
     REP #$30                                                             ;81AEC8;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Handle_FileSelectMap_ScrollArrows:
     PHP                                                                  ;81AECA;
