@@ -6502,6 +6502,7 @@ SamusSpritemaps_CBB5:
     %spritemapEntry(1, $43FA, $04, 0, 1, 2, 7, $78)
     %spritemapEntry(0, $02, $FC, 0, 1, 2, 7, $94)
 
+SamusTilesDefinitions:
 SamusTopTiles_Set0_CBEE:
     dl SamusTiles_Top_Set0_Entry0                                        ;92CBEE;
     dw $0080,$0080                                                       ;92CBF1;

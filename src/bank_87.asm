@@ -2,6 +2,7 @@
 org $878000
 
 
+AnimatedTilesObjects:
 Enable_AnimatedTilesObjects:
     PHP                                                                  ;878000;
     REP #$20                                                             ;878001;
