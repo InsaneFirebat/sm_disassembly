@@ -1143,5 +1143,5 @@ LevelData_DebugRoom:
 incbin "../data/LevelData_DebugRoom.bin" ; $3F0 bytes
 check bankcross on
 
-Freespace_BankCE_B22E: 
+Freespace_BankCE_B22E:                                                   ;CEB22E;
 ; $4DD2 bytes

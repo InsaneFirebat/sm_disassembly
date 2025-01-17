@@ -272,5 +272,5 @@ incbin "../data/SamusTiles_Bottom_Set9_Entry6.bin" ; $200 bytes
 SamusTiles_Bottom_Set9_Entry7:
 incbin "../data/SamusTiles_Bottom_Set9_Entry7.bin" ; $200 bytes
 
-Freespace_Bank9C_FA80: 
+Freespace_Bank9C_FA80:                                                   ;9CFA80;
 ; $580 bytes
