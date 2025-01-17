@@ -225,9 +225,7 @@ UpdateHeldInput:
     STZ.W $05DF ; Timed held input = 0
 
 .return:
-    LDA.W $05DF 
-    EOR.W $05E3 
-    AND.W $05DF ; Newly held down timed held input = newly held down timed held input
+    LDA.W $05DF : EOR.W $05E3 : AND.W $05DF ; Newly held down timed held input = newly held down timed held input
     STA.W $05E1 
     PLX : PLB : PLP 
     RTL 

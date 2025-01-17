@@ -9784,27 +9784,21 @@ FlipShaktool:
     LDY.W $0FB0,X 
     LDA.W $106E,Y : EOR.W #$8000 : STA.W $106E,Y 
     LDX.W $112A,Y 
-    LDA.W $0FEA,Y 
-    EOR.W #$8000 
-    AND.W #$FF00 
+    LDA.W $0FEA,Y : EOR.W #$8000 : AND.W #$FF00 
     STA.W $112A,Y 
     TXA 
     EOR.W #$8000 
     AND.W #$FF00 
     STA.W $0FEA,Y 
     LDX.W $10EA,Y 
-    LDA.W $102A,Y 
-    EOR.W #$8000 
-    AND.W #$FF00 
+    LDA.W $102A,Y : EOR.W #$8000 : AND.W #$FF00 
     STA.W $10EA,Y 
     TXA 
     EOR.W #$8000 
     AND.W #$FF00 
     STA.W $102A,Y 
     LDX.W $10AA,Y 
-    LDA.W $106A,Y 
-    EOR.W #$8000 
-    AND.W #$FF00 
+    LDA.W $106A,Y : EOR.W #$8000 : AND.W #$FF00 
     STA.W $10AA,Y 
     TXA 
     EOR.W #$8000 
@@ -9993,9 +9987,7 @@ Function_Shaktool_FinalPiece:
 
 
 .notFullyCurled:
-    LDA.W $0FAA,X 
-    EOR.W $0FA8,X 
-    AND.W #$FF00 
+    LDA.W $0FAA,X : EOR.W $0FA8,X : AND.W #$FF00 
     BNE + 
     JSR.W SetShaktoolPiecesNeighborAngleAndAngleDeltaForCurling 
     LDA.W #$7800 : STA.W $0FAE,X 
@@ -10020,9 +10012,7 @@ Function_Shaktool_FinalPiece:
     LDA.W $0FB4,X : BIT.W #$2000 
     BEQ .curling 
     PLA : PLA : PLA : PLA 
-    LDA.W $0FB4,X 
-    EOR.W #$8000 
-    AND.W #$8FFF 
+    LDA.W $0FB4,X : EOR.W #$8000 : AND.W #$8FFF 
     JSR.W ShaktoolPiecesMovementOptionsInA 
     BRA + 
 

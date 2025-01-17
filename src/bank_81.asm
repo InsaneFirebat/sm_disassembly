@@ -1951,14 +1951,10 @@ Draw_FileCopyClear_SaveFileInfo:
 
 Draw_FileCopyClear_SaveSlotAInfo:
     LDX.W #$0218 
-    LDA.W $0954 
-    EOR.W #$FFFF 
-    AND.W #$0001 
+    LDA.W $0954 : EOR.W #$FFFF : AND.W #$0001 
     JSR.W Draw_FileSelection_Health 
     LDX.W #$0272 
-    LDA.W $0954 
-    EOR.W #$FFFF 
-    AND.W #$0001 
+    LDA.W $0954 : EOR.W #$FFFF : AND.W #$0001 
     JSR.W Draw_FileSelection_Time 
     LDY.W #Tilemap_FileSelect_time 
     LDX.W #($1A<<1)|($8<<6) ; $0234
@@ -1970,14 +1966,10 @@ Draw_FileCopyClear_SaveSlotAInfo:
 
 Draw_FileCopyClear_SaveSlotBInfo:
     LDX.W #$0318 
-    LDA.W $0954 
-    EOR.W #$FFFF 
-    AND.W #$0002 
+    LDA.W $0954 : EOR.W #$FFFF : AND.W #$0002 
     JSR.W Draw_FileSelection_Health 
     LDX.W #$0372 
-    LDA.W $0954 
-    EOR.W #$FFFF 
-    AND.W #$0002 
+    LDA.W $0954 : EOR.W #$FFFF : AND.W #$0002 
     JSR.W Draw_FileSelection_Time 
     LDY.W #Tilemap_FileSelect_time 
     LDX.W #($1A<<1)|($C<<6) ; $0334
@@ -1989,14 +1981,10 @@ Draw_FileCopyClear_SaveSlotBInfo:
 
 Draw_FileCopyClear_SaveSlotCInfo:
     LDX.W #$0418 
-    LDA.W $0954 
-    EOR.W #$FFFF 
-    AND.W #$0004 
+    LDA.W $0954 : EOR.W #$FFFF : AND.W #$0004 
     JSR.W Draw_FileSelection_Health 
     LDX.W #$0472 
-    LDA.W $0954 
-    EOR.W #$FFFF 
-    AND.W #$0004 
+    LDA.W $0954 : EOR.W #$FFFF : AND.W #$0004 
     JSR.W Draw_FileSelection_Time 
     LDY.W #Tilemap_FileSelect_time 
     LDX.W #($1A<<1)|($10<<6) ; $0434

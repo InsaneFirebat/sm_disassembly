@@ -4797,9 +4797,7 @@ EquipmentScreen_Main_Weapons_MoveResponse:
 EquipmentScreen_Main_Weapons_PlasmaSpazerCheck:
     PHP 
     REP #$30 
-    LDA.B $24 
-    EOR.W #$FFFF 
-    AND.W $09A6 
+    LDA.B $24 : EOR.W #$FFFF : AND.W $09A6 
     BIT.W #$0004 
     BNE .spazerToggled 
     BIT.W #$0008 

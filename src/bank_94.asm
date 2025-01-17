@@ -3021,9 +3021,7 @@ SamusBlockInsideHandling:
     TAX 
     JSR.W (BlockInsideReactionPointers,X) 
     LDA.W #$0001 : STA.W $1E73 
-    LDA.W $0AFA 
-    EOR.W $0E02 
-    AND.W #$FFF0 
+    LDA.W $0AFA : EOR.W $0E02 : AND.W #$FFF0 
     BEQ .top 
     LDA.W $0AF6 : STA.B $1A 
     LDA.W $0AFA : STA.B $1C 

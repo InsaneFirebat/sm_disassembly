@@ -471,9 +471,7 @@ MainAI_Waver:
     XBA 
     JSL.L Sign_Extend_A 
     STA.W $0FA8,X 
-    LDA.W $0FB2,X 
-    EOR.W #$0001 
-    AND.W #$0001 
+    LDA.W $0FB2,X : EOR.W #$0001 : AND.W #$0001 
     STA.W $0FB2,X 
     JSR.W SetWaverInstList 
     JMP.W .merge 
