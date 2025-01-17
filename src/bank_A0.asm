@@ -6549,8 +6549,7 @@ MoveEnemyRightBy_14_12_Common:
     TAX 
 
 .loop:
-    LDA.L $7F0002,X 
-    JSR.W EnemyHorizontalBlockReaction 
+    LDA.L $7F0002,X : JSR.W EnemyHorizontalBlockReaction 
     BCS .solid 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
@@ -6650,8 +6649,7 @@ MoveEnemyDownBy_14_12_BranchEntry:
     TAX 
 
 .loop:
-    LDA.L $7F0002,X 
-    JSR.W EnemyVerticalBlockReaction 
+    LDA.L $7F0002,X : JSR.W EnemyVerticalBlockReaction 
     BCS .solid 
     INX #2
     DEC.B $1C 

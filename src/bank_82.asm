@@ -1739,8 +1739,7 @@ ContinueInitializingPauseMenu:
     JSR.W Set_PauseScreen_ButtonLabelPalettes_MapScreen 
     JSR.W Update_PauseMenu_L_R_Start_VRAMTilemap 
     JSR.W DetermineMapScrollLimits 
-    LDA.W #$0080 
-    JSR.W SetupMapScrollingForPauseMenu 
+    LDA.W #$0080 : JSR.W SetupMapScrollingForPauseMenu 
     PLB : PLP 
     RTS 
 
@@ -3762,12 +3761,10 @@ EquipmentScreen_Draw_L_R_Highlight:
     REP #$30 
     LDY.W #$00D0 
     LDX.W #$0018 
-    LDA.W #$0002 
-    JSR.W Draw_PauseScreen_SpriteAnimation 
+    LDA.W #$0002 : JSR.W Draw_PauseScreen_SpriteAnimation 
     LDY.W #$00D0 
     LDX.W #$00E8 
-    LDA.W #$0002 
-    JSR.W Draw_PauseScreen_SpriteAnimation 
+    LDA.W #$0002 : JSR.W Draw_PauseScreen_SpriteAnimation 
     PLP 
     RTS 
 
@@ -5030,8 +5027,7 @@ EquipmentScreen_DrawItemSelector:
     INY #2
     LDA.W $0000,Y 
     TAY 
-    LDA.W #$0003 
-    JSR.W Draw_PauseScreen_SpriteAnimation 
+    LDA.W #$0003 : JSR.W Draw_PauseScreen_SpriteAnimation 
 
 .return:
     PLP 
@@ -5508,26 +5504,20 @@ Draw_Map_Icons:
     REP #$30 
     PHK : PLB 
     LDX.W #MapIcon_PositionTablePointers_bossIcons 
-    LDA.W #$0009 
-    JSR.W Display_Map_Boss_Icons 
+    LDA.W #$0009 : JSR.W Display_Map_Boss_Icons 
     LDA.W #$0E00 : STA.B $03 
     LDX.W #MapIcon_PositionTablePointers_missileStations 
-    LDA.W #$000B 
-    JSR.W Draw_Simple_MapIcons 
+    LDA.W #$000B : JSR.W Draw_Simple_MapIcons 
     LDX.W #MapIcon_PositionTablePointers_energyStations 
-    LDA.W #$000A 
-    JSR.W Draw_Simple_MapIcons 
+    LDA.W #$000A : JSR.W Draw_Simple_MapIcons 
     LDX.W #MapIcon_PositionTablePointers_mapStations 
-    LDA.W #$004E 
-    JSR.W Draw_Simple_MapIcons 
+    LDA.W #$004E : JSR.W Draw_Simple_MapIcons 
     LDA.W #$0400 : STA.B $03 
     LDX.W #MapIcon_PositionTablePointers_savePoints 
-    LDA.W #$0008 
-    JSR.W Draw_SaveStation_MapIcons 
+    LDA.W #$0008 : JSR.W Draw_SaveStation_MapIcons 
     LDA.W $05D1 : BEQ + 
     LDX.W #MapIcon_PositionTablePointers_debugSavePoints 
-    LDA.W #$0008 
-    JSR.W Draw_Simple_MapIcons 
+    LDA.W #$0008 : JSR.W Draw_Simple_MapIcons 
 
   + LDA.W $079F : BNE .return 
     LDA.W #$0E00 : STA.B $03 
@@ -5546,18 +5536,14 @@ Draw_FileSelectMap_Icons:
     PHK : PLB 
     JSR.W Handle_PauseScreen_PaletteAnimation 
     LDX.W #MapIcon_PositionTablePointers_bossIcons 
-    LDA.W #$0009 
-    JSR.W Display_Map_Boss_Icons 
+    LDA.W #$0009 : JSR.W Display_Map_Boss_Icons 
     LDA.W #$0E00 : STA.B $03 
     LDX.W #MapIcon_PositionTablePointers_missileStations 
-    LDA.W #$000B 
-    JSR.W Draw_Simple_MapIcons 
+    LDA.W #$000B : JSR.W Draw_Simple_MapIcons 
     LDX.W #MapIcon_PositionTablePointers_energyStations 
-    LDA.W #$000A 
-    JSR.W Draw_Simple_MapIcons 
+    LDA.W #$000A : JSR.W Draw_Simple_MapIcons 
     LDX.W #MapIcon_PositionTablePointers_mapStations 
-    LDA.W #$004E 
-    JSR.W Draw_Simple_MapIcons 
+    LDA.W #$004E : JSR.W Draw_Simple_MapIcons 
     LDA.W #$0E00 : STA.B $03 
     JSR.W Update_Samus_Position_Indicator_Animation 
     PHA 
@@ -5583,14 +5569,11 @@ Draw_FileSelectMap_Icons:
     LDA.W $05D1 : BEQ + 
     LDA.W #$0600 : STA.B $03 
     LDX.W #MapIcon_PositionTablePointers_savePoints 
-    LDA.W #$000C 
-    JSR.W Draw_Debug_Save_MapIcons 
+    LDA.W #$000C : JSR.W Draw_Debug_Save_MapIcons 
     LDX.W #MapIcon_PositionTablePointers_debugElevatorMarkers 
-    LDA.W #$0017 
-    JSR.W Draw_Debug_Elevator_Map_Icons 
+    LDA.W #$0017 : JSR.W Draw_Debug_Elevator_Map_Icons 
     LDX.W #MapIcon_PositionTablePointers_debugSavePoints 
-    LDA.W #$000C 
-    JSR.W Draw_Simple_MapIcons 
+    LDA.W #$000C : JSR.W Draw_Simple_MapIcons 
 
   + LDA.W $079F : BNE .return 
     LDA.W #$0E00 : STA.B $03 
@@ -8145,8 +8128,7 @@ Advance_GradualColorChange_ofBGPalette6:
     TAY 
     LDA.L $7EC000,X 
     TAX 
-    LDA.L $7EC400 
-    JSR.W CalculateTheAth_TransitionalColor_fromXtoY 
+    LDA.L $7EC400 : JSR.W CalculateTheAth_TransitionalColor_fromXtoY 
     PLX 
     STA.L $7EC000,X 
     INX #2
@@ -8221,8 +8203,7 @@ Advance_GradualColorChange_ofAllPalettes:
     TAY 
     LDA.W $C000,X 
     TAX 
-    LDA.W $C400 
-    JSR.W CalculateTheAth_TransitionalColor_fromXtoY 
+    LDA.W $C400 : JSR.W CalculateTheAth_TransitionalColor_fromXtoY 
     LDX.W $C404 
     STA.W $C000,X 
 
@@ -8242,8 +8223,7 @@ CalculateTheAth_TransitionalColor_fromXtoY:
     TAY 
     LDA.B $03,S : AND.W #$001F 
     TAX 
-    LDA.B $05,S 
-    JSR.W CalculateTheAth_TransitionalColorComponent_fromXtoY 
+    LDA.B $05,S : JSR.W CalculateTheAth_TransitionalColorComponent_fromXtoY 
     STA.B $07,S 
     LDA.B $01,S 
     ASL #3
@@ -8255,8 +8235,7 @@ CalculateTheAth_TransitionalColor_fromXtoY:
     XBA 
     AND.W #$001F 
     TAX 
-    LDA.B $05,S 
-    JSR.W CalculateTheAth_TransitionalColorComponent_fromXtoY 
+    LDA.B $05,S : JSR.W CalculateTheAth_TransitionalColorComponent_fromXtoY 
     ASL #5
     ORA.B $07,S 
     STA.B $07,S 
@@ -8270,8 +8249,7 @@ CalculateTheAth_TransitionalColor_fromXtoY:
     XBA 
     AND.W #$001F 
     TAX 
-    LDA.B $05,S 
-    JSR.W CalculateTheAth_TransitionalColorComponent_fromXtoY 
+    LDA.B $05,S : JSR.W CalculateTheAth_TransitionalColorComponent_fromXtoY 
     ASL #2
     XBA 
     ORA.B $07,S 
@@ -8383,8 +8361,7 @@ Advance_GradualColorChange_ofPaletteX_DividedBy_20:
     TAY 
     LDA.W $C000,X 
     TAX 
-    LDA.W $C400 
-    JSR.W CalculateTheAth_TransitionalColor_fromXtoY 
+    LDA.W $C400 : JSR.W CalculateTheAth_TransitionalColor_fromXtoY 
     LDX.W $C404 
     STA.W $C000,X 
 
@@ -10457,40 +10434,32 @@ Set_Language_Text_Option_Highlight:
     LDA.W $09E2 : BNE .japaneseText 
     LDX.W #$0288 
     LDY.W #$0018 
-    LDA.W #$0000 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0000 : JSR.W Set_GameOptionsMenu_TilePalettes 
     LDX.W #$02C8 
     LDY.W #$0018 
-    LDA.W #$0000 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0000 : JSR.W Set_GameOptionsMenu_TilePalettes 
     LDX.W #$0348 
     LDY.W #$0032 
-    LDA.W #$0400 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0400 : JSR.W Set_GameOptionsMenu_TilePalettes 
     LDX.W #$0388 
     LDY.W #$0032 
-    LDA.W #$0400 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0400 : JSR.W Set_GameOptionsMenu_TilePalettes 
     BRA .return 
 
 
 .japaneseText:
     LDX.W #$0288 
     LDY.W #$0018 
-    LDA.W #$0400 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0400 : JSR.W Set_GameOptionsMenu_TilePalettes 
     LDX.W #$02C8 
     LDY.W #$0018 
-    LDA.W #$0400 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0400 : JSR.W Set_GameOptionsMenu_TilePalettes 
     LDX.W #$0348 
     LDY.W #$0032 
-    LDA.W #$0000 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0000 : JSR.W Set_GameOptionsMenu_TilePalettes 
     LDX.W #$0388 
     LDY.W #$0032 
-    LDA.W #$0000 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0000 : JSR.W Set_GameOptionsMenu_TilePalettes 
 
 .return:
     RTS 
@@ -10822,26 +10791,22 @@ Set_SpecialSetting_Highlights:
     LDA.W .iconCancelManualRow0,X 
     TAX 
     LDY.W #$000C 
-    LDA.W #$0400 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0400 : JSR.W Set_GameOptionsMenu_TilePalettes 
     PLX : PHX 
     LDA.W .iconCancelManualRow1,X 
     TAX 
     LDY.W #$000C 
-    LDA.W #$0400 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0400 : JSR.W Set_GameOptionsMenu_TilePalettes 
     PLX : PHX 
     LDA.W .iconCancelAutoRow0,X 
     TAX 
     LDY.W #$000C 
-    LDA.W #$0000 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0000 : JSR.W Set_GameOptionsMenu_TilePalettes 
     PLX 
     LDA.W .iconCancelAutoRow1,X 
     TAX 
     LDY.W #$000C 
-    LDA.W #$0000 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0000 : JSR.W Set_GameOptionsMenu_TilePalettes 
     RTS 
 
 
@@ -10853,26 +10818,22 @@ Set_SpecialSetting_Highlights:
     LDA.W .iconCancelManualRow0,X 
     TAX 
     LDY.W #$000C 
-    LDA.W #$0000 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0000 : JSR.W Set_GameOptionsMenu_TilePalettes 
     PLX : PHX 
     LDA.W .iconCancelManualRow1,X 
     TAX 
     LDY.W #$000C 
-    LDA.W #$0000 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0000 : JSR.W Set_GameOptionsMenu_TilePalettes 
     PLX : PHX 
     LDA.W .iconCancelAutoRow0,X 
     TAX 
     LDY.W #$000C 
-    LDA.W #$0400 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0400 : JSR.W Set_GameOptionsMenu_TilePalettes 
     PLX 
     LDA.W .iconCancelAutoRow1,X 
     TAX 
     LDY.W #$000C 
-    LDA.W #$0400 
-    JSR.W Set_GameOptionsMenu_TilePalettes 
+    LDA.W #$0400 : JSR.W Set_GameOptionsMenu_TilePalettes 
     RTS 
 
 

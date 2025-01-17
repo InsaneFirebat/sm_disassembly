@@ -4216,8 +4216,7 @@ CinematicFunction_Intro_SetupIntroTextPage1:
     JSR.W Spawn_CinematicSpriteObject_Y 
     LDA.W #$007F : STA.W $1A49 
     LDY.W #CinematicSpriteObjectDefinitions_SamusBlinking 
-    LDA.W #$4C00 
-    JSR.W Spawn_CinematicBGObject 
+    LDA.W #$4C00 : JSR.W Spawn_CinematicBGObject 
     LDA.W #$0008 : STA.W $1997 
     STA.B $B7 
     STA.B $BB 
@@ -4257,8 +4256,7 @@ CineFunc_Intro_WaitForMusicQueue_FadeIn_SpawnIntroTextPage1:
     LDA.W #$0002 : STA.W $0723 
     STA.W $0725 
     LDY.W #CinematicSpriteObjectDefinitions_IntroTextPage1 
-    LDA.W #$4C00 
-    JSR.W Spawn_CinematicBGObject 
+    LDA.W #$4C00 : JSR.W Spawn_CinematicBGObject 
 
 .return:
     RTS 
@@ -5045,8 +5043,7 @@ CinematicFunction_Intro_Page6:
     JSL.L Enable_CinematicBGTilemap_Updates 
     JSR.W Clear_EnglishText_Tilemap 
     LDY.W #CinematicSpriteObjectDefinitions_IntroTextPage6 
-    LDA.W #$4C00 
-    JSR.W Spawn_CinematicBGObject 
+    LDA.W #$4C00 : JSR.W Spawn_CinematicBGObject 
     LDA.W #RTS_8BA390 : STA.W $1F51 
     JSR.W RestIntroTextCaret 
     LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
@@ -5195,32 +5192,28 @@ ClearJapanTextTiles_DisableCinematicBGTilemapUpdates:
 
 CinematicFunction_Intro_Page2:
     LDY.W #CinematicSpriteObjectDefinitions_IntroTextPage2 
-    LDA.W #$4C00 
-    JSR.W Spawn_CinematicBGObject 
+    LDA.W #$4C00 : JSR.W Spawn_CinematicBGObject 
     LDA.W #CinematicFunction_Intro_CrossFadeFromSamusGameplay : STA.W $1F51 
     BRA Setup_Intro_CrossFade_Into_Text 
 
 
 CinematicFunction_Intro_Page3:
     LDY.W #CinematicSpriteObjectDefinitions_IntroTextPage3 
-    LDA.W #$4C00 
-    JSR.W Spawn_CinematicBGObject 
+    LDA.W #$4C00 : JSR.W Spawn_CinematicBGObject 
     LDA.W #CinematicFunction_Intro_CrossFadeFromSamusGameplay : STA.W $1F51 
     BRA Setup_Intro_CrossFade_Into_Text 
 
 
 CinematicFunction_Intro_Page4:
     LDY.W #CinematicSpriteObjectDefinitions_IntroTextPage4 
-    LDA.W #$4C00 
-    JSR.W Spawn_CinematicBGObject 
+    LDA.W #$4C00 : JSR.W Spawn_CinematicBGObject 
     LDA.W #CinematicFunction_Intro_CrossFadeFromScientistCutscene : STA.W $1F51 
     BRA Setup_Intro_CrossFade_Into_Text 
 
 
 CinematicFunction_Intro_Page5:
     LDY.W #CinematicSpriteObjectDefinitions_IntroTextPage5 
-    LDA.W #$4C00 
-    JSR.W Spawn_CinematicBGObject 
+    LDA.W #$4C00 : JSR.W Spawn_CinematicBGObject 
     LDA.W #CinematicFunction_Intro_CrossFadeFromScientistCutscene : STA.W $1F51 
 
 Setup_Intro_CrossFade_Into_Text:
@@ -6212,8 +6205,7 @@ CinematicFunction_FlyToCeres_Initial:
     LDA.W #$5C00 : STA.W $19F5 
     JSL.L EnableNMI 
     LDY.W #CinematicSpriteObjectDefinitions_CeresStars 
-    LDA.W #$0000 
-    JSR.W Spawn_CinematicSpriteObject_Y 
+    LDA.W #$0000 : JSR.W Spawn_CinematicSpriteObject_Y 
     LDA.W #CinematicFunction_FlyToCeres_WaitForMusicQueue_EnableDisplay : STA.W $1F51 
     LDA.W #$FF2D : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0005 
@@ -6263,11 +6255,9 @@ CinematicFunction_FlyToCeres_FlyingIntoCamera:
     LDY.W #CinematicSpriteObjectDefinitions_CeresSmallAsteroids 
     JSR.W Spawn_CinematicSpriteObject_Y 
     LDY.W #CinematicSpriteObjectDefinitions_CeresPurpleSpaceVortex 
-    LDA.W #$0001 
-    JSR.W Spawn_CinematicSpriteObject_Y 
+    LDA.W #$0001 : JSR.W Spawn_CinematicSpriteObject_Y 
     LDY.W #CinematicSpriteObjectDefinitions_CeresStars 
-    LDA.W #$0001 
-    JSR.W Spawn_CinematicSpriteObject_Y 
+    LDA.W #$0001 : JSR.W Spawn_CinematicSpriteObject_Y 
     LDA.W #CinematicFunction_FlyToCeres_FlyingIntoCeres : STA.W $1F51 
     LDY.W #PaletteFXObjects_CutsceneGunshipEngineFlicker 
     JSL.L Spawn_PaletteFXObject 
@@ -6449,8 +6439,7 @@ CinematicFunction_FlyToCeres_FlyingIntoCeres:
     JSL.L Enable_CinematicBGObjects 
     JSL.L Enable_CinematicBGTilemap_Updates 
     LDY.W #CinematicSpriteObjectDefinitions_SpaceColony 
-    LDA.W #$5C00 
-    JSR.W Spawn_CinematicBGObject 
+    LDA.W #$5C00 : JSR.W Spawn_CinematicBGObject 
     LDA.W #RTS_8BA38F : STA.W $1F51 
     RTS 
 
@@ -6640,8 +6629,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     JSR.W Spawn_CinematicSpriteObject_YToIndex12 
     LDY.W #CinematicSpriteObjectDefinitions_CeresPurpleSpaceVortex 
     STZ.B $12 
-    LDA.W #$0000 
-    JSR.W Spawn_CinematicSpriteObject_YToIndex12 
+    LDA.W #$0000 : JSR.W Spawn_CinematicSpriteObject_YToIndex12 
     LDY.W #CinematicSpriteObjectDefinitions_CeresExplosionSpawner 
     JSR.W Spawn_CinematicSpriteObject_Y 
     LDY.W #PaletteFXObjects_CutsceneCeresNavigationLights_BGCeres 
@@ -9536,8 +9524,7 @@ CinematicFunction_Credits_Setup:
     JSL.L Decompression_HardcodedDestination 
     dl $7F0000 
     LDA.W #$007F : JSL.L Clear_CinematicBGObjects_CinematicBGTilemap 
-    LDA.W #$007F 
-    JSR.W Clear_CreditsObject_CinematicBGTilemapInA 
+    LDA.W #$007F : JSR.W Clear_CreditsObject_CinematicBGTilemapInA 
     JSR.W Enable_CreditsObject 
     LDA.W #$0003 : STA.W $0723 
     STA.W $0725 
@@ -10102,8 +10089,7 @@ CinematicFunction_PostCredits_GreyOutSuperMetroidIcon:
     JSR.W Clear_CinematicSpriteObjects 
     PLB 
     LDY.W #CinematicBGObjectDefinitions_PostCredits_ItemPercentage 
-    LDA.W #$4C00 
-    JSR.W Spawn_CinematicBGObject 
+    LDA.W #$4C00 : JSR.W Spawn_CinematicBGObject 
     PLY : PLX 
     RTS 
 
@@ -10305,8 +10291,7 @@ CinematicFunction_PostCredits_ScrollItemPercentageDown:
     CMP.W #$FFB1 
     BPL .return 
     LDY.W #CinematicBGObjectDefinitions_PostCredits_SeeYouNextMission 
-    LDA.W #$4C00 
-    JSR.W Spawn_CinematicBGObject 
+    LDA.W #$4C00 : JSR.W Spawn_CinematicBGObject 
     LDA.W #RTS_8BE7BA : STA.W $1F51 
     JSL.L Write_supermetroid_ToSRAM 
 
@@ -11248,15 +11233,13 @@ CommonInit_ClearTime:
 
 
 InitFunction_CinematicSpriteObject_ClearTime_Hours_TensDigit:
-    LDA.W $0DEC 
-    JSR.W CinematicSpriteObject_InstListPointer_PlusA_Times8 
+    LDA.W $0DEC : JSR.W CinematicSpriteObject_InstListPointer_PlusA_Times8 
     LDA.W #$009C : STA.W $1A7D,Y 
     JMP.W CommonInit_ClearTime 
 
 
 InitFunction_CinematicSpriteObject_ClearTime_Hours_OnesDigit:
-    LDA.W $0DEE 
-    JSR.W CinematicSpriteObject_InstListPointer_PlusA_Times8 
+    LDA.W $0DEE : JSR.W CinematicSpriteObject_InstListPointer_PlusA_Times8 
     LDA.W #$00A4 : STA.W $1A7D,Y 
     JMP.W CommonInit_ClearTime 
 
@@ -11267,15 +11250,13 @@ InitFunction_CinematicSpriteObject_ClearTime_Colon:
 
 
 InitFunction_CineSpriteObject_ClearTime_Minutes_TensDigit:
-    LDA.W $0DF0 
-    JSR.W CinematicSpriteObject_InstListPointer_PlusA_Times8 
+    LDA.W $0DF0 : JSR.W CinematicSpriteObject_InstListPointer_PlusA_Times8 
     LDA.W #$00B4 : STA.W $1A7D,Y 
     JMP.W CommonInit_ClearTime 
 
 
 InitFunction_CineSpriteObject_ClearTime_Minutes_OnesDigit:
-    LDA.W $0DF2 
-    JSR.W CinematicSpriteObject_InstListPointer_PlusA_Times8 
+    LDA.W $0DF2 : JSR.W CinematicSpriteObject_InstListPointer_PlusA_Times8 
     LDA.W #$00BC : STA.W $1A7D,Y 
     JMP.W CommonInit_ClearTime 
 

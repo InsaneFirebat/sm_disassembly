@@ -2681,8 +2681,7 @@ InitAI_Puyo:
     LDX.W $0E54 
     LDA.W #Spritemap_CommonA2_Nothing : STA.W $0F8E,X 
     STZ.W $0FA8,X 
-    LDA.W #InstList_Puyo_GroundedDropping_Fast 
-    JSR.W SetPuyoInstList 
+    LDA.W #InstList_Puyo_GroundedDropping_Fast : JSR.W SetPuyoInstList 
     LDA.W #$0000 : STA.L $7E7800,X 
     LDA.W #Function_Puyo_Grounded : STA.W $0FAE,X 
     LDA.W $0FB4,X : STA.W $0FAC,X 
@@ -3002,8 +3001,7 @@ Function_Puyo_Airborne_Normal_ShortHop:
 
 .inverted:
     LDA.W #$0000 : STA.L $7E7802,X 
-    LDA.W #InstList_Puyo_GroundedDropping_Slow 
-    JSR.W SetPuyoInstList 
+    LDA.W #InstList_Puyo_GroundedDropping_Slow : JSR.W SetPuyoInstList 
 
 .return:
     RTS 
@@ -3017,8 +3015,7 @@ Function_Puyo_Airborne_Normal_BigHop:
 
 .inverted:
     LDA.W #$0000 : STA.L $7E7802,X 
-    LDA.W #InstList_Puyo_GroundedDropping_Medium 
-    JSR.W SetPuyoInstList 
+    LDA.W #InstList_Puyo_GroundedDropping_Medium : JSR.W SetPuyoInstList 
 
 .return:
     RTS 
@@ -3032,8 +3029,7 @@ Function_Puyo_Airborne_Normal_LongHop:
 
 .inverted:
     LDA.W #$0000 : STA.L $7E7802,X 
-    LDA.W #InstList_Puyo_GroundedDropping_Fast 
-    JSR.W SetPuyoInstList 
+    LDA.W #InstList_Puyo_GroundedDropping_Fast : JSR.W SetPuyoInstList 
 
 .return:
     RTS 
@@ -3049,8 +3045,7 @@ Function_Puyo_Airborne_GiantHop:
 
 .inverted:
     LDA.W #$0000 : STA.L $7E7802,X 
-    LDA.W #InstList_Puyo_GroundedDropping_Slow 
-    JSR.W SetPuyoInstList 
+    LDA.W #InstList_Puyo_GroundedDropping_Slow : JSR.W SetPuyoInstList 
 
 .return:
     RTS 
@@ -3083,8 +3078,7 @@ Function_Puyo_Airborne_Dropped:
     LDA.W #$0000 : STA.L $7E7802,X 
     LDA.W #$0003 : STA.L $7E7800,X 
     LDA.W #Function_Puyo_Grounded : STA.W $0FAE,X 
-    LDA.W #InstList_Puyo_GroundedDropping_Slow 
-    JSR.W SetPuyoInstList 
+    LDA.W #InstList_Puyo_GroundedDropping_Slow : JSR.W SetPuyoInstList 
 
 .return:
     RTS 
@@ -6388,8 +6382,7 @@ Function_Rio_WaitForSamusToGetNear:
     INC A 
     STA.W $0FAE,X 
 
-  + LDA.W #InstList_Rio_Swooping_Part1 
-    JSR.W SetRioInstList 
+  + LDA.W #InstList_Rio_Swooping_Part1 : JSR.W SetRioInstList 
     LDA.W #Function_Rio_Swoop_Descending : STA.W $0FAA,X 
     JSL.L CheckIfEnemyCenterIsOnScreen 
     AND.W #$FFFF 
@@ -6407,8 +6400,7 @@ Function_Rio_SwoopCooldown:
 
 .finishedAnimation:
     STZ.W $0FB0,X 
-    LDA.W #InstList_Rio_PostSwoopIdle 
-    JSR.W SetRioInstList 
+    LDA.W #InstList_Rio_PostSwoopIdle : JSR.W SetRioInstList 
     LDA.W #Function_Rio_WaitForSamusToGetNear : STA.W $0FAA,X 
     RTL 
 
@@ -6434,8 +6426,7 @@ Function_Rio_Swoop_Descending:
     BMI .homing 
     LDA.W $0FB0,X : BEQ .return 
     STZ.W $0FB0,X 
-    LDA.W #InstList_Rio_Swooping_Part2 
-    JSR.W SetRioInstList 
+    LDA.W #InstList_Rio_Swooping_Part2 : JSR.W SetRioInstList 
 
 .return:
     RTL 
@@ -6492,8 +6483,7 @@ Function_Rio_Swoop_Ascending:
 
 
 .notCollidedWithBlock:
-    LDA.W #InstList_Rio_SwoopCooldown 
-    JSR.W SetRioInstList 
+    LDA.W #InstList_Rio_SwoopCooldown : JSR.W SetRioInstList 
     LDA.W #Function_Rio_SwoopCooldown : STA.W $0FAA,X 
     RTL 
 
@@ -6774,8 +6764,7 @@ Function_Squeept_Rising:
 
 
 .maxHeight:
-    LDA.W #InstList_Squeept_Flipping_Falling 
-    JSR.W SetSqueeptInstList 
+    LDA.W #InstList_Squeept_Flipping_Falling : JSR.W SetSqueeptInstList 
     LDA.W #Function_Squeept_Flipping : STA.W $0FB2,X 
     RTL 
 
@@ -6829,8 +6818,7 @@ Function_Squeept_Falling:
 .nextJump:
     LDA.W $0FAE,X : STA.W $0F7A,X 
     LDA.W $0FB0,X : STA.W $0F7E,X 
-    LDA.W #InstList_Squeept_Rising 
-    JSR.W SetSqueeptInstList 
+    LDA.W #InstList_Squeept_Rising : JSR.W SetSqueeptInstList 
     LDA.W #Function_Squeept_Jump : STA.W $0FB2,X 
     LDA.W $0F86,X : AND.W #$F7FF : STA.W $0F86,X 
     RTL 
@@ -7188,8 +7176,7 @@ Function_Geruta_Flames:
     LDA.L $7E77C4,X : BPL + 
     LDA.W #InstList_Geruta_Flames_Descending : STA.B $12 
 
-  + LDA.B $12 
-    JSR.W SetGerutaInstList 
+  + LDA.B $12 : JSR.W SetGerutaInstList 
     LDA.W $0F86,X : AND.W #$FEFF : STA.W $0F86,X 
     LDA.W $0F3A,X : STA.W $0F7A,X 
     LDA.W $0F3E,X : CLC : ADC.L $7E77C4,X : STA.W $0F7E,X 
@@ -7204,8 +7191,7 @@ Function_Geruta_Idle:
 
   + LDA.L $7E7802,X : BEQ .return 
     LDA.W #$0000 : STA.L $7E7802,X 
-    LDA.W #InstList_Geruta_Main_Idle 
-    JSR.W SetGerutaInstList 
+    LDA.W #InstList_Geruta_Main_Idle : JSR.W SetGerutaInstList 
 
 .return:
     RTL 
@@ -7227,8 +7213,7 @@ Function_Geruta_Idle:
     STA.W $0FAA,X 
 
 .SamusToTheLeft:
-    LDA.W #InstList_Geruta_Main_Swoop_StartDescending 
-    JSR.W SetGerutaInstList 
+    LDA.W #InstList_Geruta_Main_Swoop_StartDescending : JSR.W SetGerutaInstList 
     LDA.W #Function_Geruta_StartSwoop : STA.W $0FB2,X 
     RTL 
 
@@ -7240,8 +7225,7 @@ Function_Geruta_StartSwoop:
 
 .finishedStartAnimation:
     LDA.W #$0000 : STA.L $7E7802,X 
-    LDA.W #InstList_Geruta_Main_Swoop_Descending 
-    JSR.W SetGerutaInstList 
+    LDA.W #InstList_Geruta_Main_Swoop_Descending : JSR.W SetGerutaInstList 
     LDA.W #Function_Geruta_Swoop_Descending : STA.W $0FB2,X 
     LDA.W #$0065 : JSL.L QueueSound_Lib2_Max6 
     RTL 
@@ -7277,8 +7261,7 @@ Function_Geruta_Swoop_Descending:
 
 .collidedWithBlock:
     LDA.W #$FFFF : STA.W $0FA8,X 
-    LDA.W #InstList_Geruta_Main_Swoop_StartAscending 
-    JSR.W SetGerutaInstList 
+    LDA.W #InstList_Geruta_Main_Swoop_StartAscending : JSR.W SetGerutaInstList 
     LDA.W #Function_Geruta_Swoop_Ascending : STA.W $0FB2,X 
     RTL 
 
@@ -7309,8 +7292,7 @@ Function_Geruta_Swoop_Ascending:
     LDA.W $0FA8,X : SEC : SBC.W #$0020 : STA.W $0FA8,X 
     LDA.L $7E7802,X : BEQ .return 
     LDA.W #$0000 : STA.L $7E7802,X 
-    LDA.W #InstList_Geruta_Main_Swoop_Ascending 
-    JSR.W SetGerutaInstList 
+    LDA.W #InstList_Geruta_Main_Swoop_Ascending : JSR.W SetGerutaInstList 
 
 .return:
     RTL 
@@ -7774,8 +7756,7 @@ Function_Holtz_Idle:
 
 .quarterChancestayIdle:
     LDA.W #$0000 : STA.L $7E7802,X 
-    LDA.W #InstList_Holtz_Idle_0 
-    JSR.W SetHoltzInstList 
+    LDA.W #InstList_Holtz_Idle_0 : JSR.W SetHoltzInstList 
     RTL 
 
 
@@ -7790,8 +7771,7 @@ Function_Holtz_Idle:
     INC A 
     STA.W $0FAE,X 
 
-  + LDA.W #InstList_Holtz_PrepareToSwoop 
-    JSR.W SetHoltzInstList 
+  + LDA.W #InstList_Holtz_PrepareToSwoop : JSR.W SetHoltzInstList 
     LDA.W #Function_Holtz_PrepareToSwoop : STA.W $0FB2,X 
     RTL 
 
@@ -7803,8 +7783,7 @@ Function_Holtz_PrepareToSwoop:
 
 .animationFinished:
     LDA.W #$0000 : STA.L $7E7802,X 
-    LDA.W #InstList_Holtz_Swoop_Descending 
-    JSR.W SetHoltzInstList 
+    LDA.W #InstList_Holtz_Swoop_Descending : JSR.W SetHoltzInstList 
     LDA.W #Function_Holtz_Swoop_Descending : STA.W $0FB2,X 
     RTL 
 
@@ -7839,8 +7818,7 @@ Function_Holtz_Swoop_Descending:
 
 .notCollidedWithBlock:
     LDA.W #$FFFF : STA.W $0FAC,X 
-    LDA.W #InstList_Holtz_Swoop_Ascending_Part1 
-    JSR.W SetHoltzInstList 
+    LDA.W #InstList_Holtz_Swoop_Ascending_Part1 : JSR.W SetHoltzInstList 
     LDA.W #Function_Holtz_Swoop_Ascending : STA.W $0FB2,X 
     LDA.W #$0064 : JSL.L QueueSound_Lib2_Max6 
     RTL 
@@ -7872,16 +7850,14 @@ Function_Holtz_Swoop_Ascending:
     LDA.W $0FAC,X : SEC : SBC.W #$0020 : STA.W $0FAC,X 
     LDA.L $7E7802,X : BEQ .return 
     LDA.W #$0000 : STA.L $7E7802,X 
-    LDA.W #InstList_Holtz_Swoop_Part2_0 
-    JSR.W SetHoltzInstList 
+    LDA.W #InstList_Holtz_Swoop_Part2_0 : JSR.W SetHoltzInstList 
 
 .return:
     RTL 
 
 
 .collidedVertically:
-    LDA.W #InstList_Holtz_SwoopCooldown 
-    JSR.W SetHoltzInstList 
+    LDA.W #InstList_Holtz_SwoopCooldown : JSR.W SetHoltzInstList 
     LDA.W #Function_Holtz_SwoopCooldown : STA.W $0FB2,X 
     RTL 
 
@@ -7893,8 +7869,7 @@ Function_Holtz_SwoopCooldown:
 
 .animationFinished:
     LDA.W #$0000 : STA.L $7E7802,X 
-    LDA.W #InstList_Holtz_SwoopCooldown 
-    JSR.W SetHoltzInstList 
+    LDA.W #InstList_Holtz_SwoopCooldown : JSR.W SetHoltzInstList 
     LDA.W #Function_Holtz_Idle : STA.W $0FB2,X 
     RTL 
 
@@ -9734,8 +9709,7 @@ ChootFallingPatternDataPointers_YDistance:
 
 InitAI_Choot:
     LDX.W $0E54 
-    LDA.W #InstList_Choot_Idle 
-    JSR.W SetChootInstList 
+    LDA.W #InstList_Choot_Idle : JSR.W SetChootInstList 
     LDA.W #Function_Choot_WaitForSamusToGetNear : STA.W $0FA8,X 
     LDA.W $0F7A,X : STA.L $7E7800,X 
     LDA.W $0F7E,X : STA.L $7E7802,X 
@@ -9820,8 +9794,7 @@ Function_Choot_PrepareToJump:
     DEC A 
     STA.L $7E780E,X 
     BPL .return 
-    LDA.W #InstList_Choot_Jumping 
-    JSR.W SetChootInstList 
+    LDA.W #InstList_Choot_Jumping : JSR.W SetChootInstList 
     LDA.W #Function_Choot_Jumping : STA.W $0FA8,X 
 
 .return:
@@ -9849,8 +9822,7 @@ Function_Choot_Jumping:
     LDA.W $0FB4,X : AND.W #$00FF 
     DEC A 
     STA.W $0FAE,X 
-    LDA.W #InstList_Choot_Falling 
-    JSR.W SetChootInstList 
+    LDA.W #InstList_Choot_Falling : JSR.W SetChootInstList 
     LDA.W #Function_Choot_Falling : STA.W $0FA8,X 
 
 .return:
@@ -9875,8 +9847,7 @@ Function_Choot_Falling:
     STZ.W $0F7C,X 
     LDA.L $7E7802,X : STA.W $0F7E,X 
     STZ.W $0F80,X 
-    LDA.W #InstList_Choot_Idle 
-    JSR.W SetChootInstList 
+    LDA.W #InstList_Choot_Idle : JSR.W SetChootInstList 
     LDA.W #Function_Choot_WaitForSamusToGetNear : STA.W $0FA8,X 
     BRA .return 
 

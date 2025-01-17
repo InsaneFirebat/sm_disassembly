@@ -1911,24 +1911,21 @@ LoadMenuExitTilemap:
 
 
 Draw_FileCopyClear_SaveFileInfo:
-    LDA.W #$0000 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0000 : JSR.W LoadFromSRAM_external 
     STZ.W $0F96 
     LDA.W $0954 : BIT.W #$0001 
     BNE + 
     LDA.W #$0400 : STA.W $0F96 
 
   + JSR.W Draw_FileCopyClear_SaveSlotAInfo 
-    LDA.W #$0001 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0001 : JSR.W LoadFromSRAM_external 
     STZ.W $0F96 
     LDA.W $0954 : BIT.W #$0002 
     BNE + 
     LDA.W #$0400 : STA.W $0F96 
 
   + JSR.W Draw_FileCopyClear_SaveSlotBInfo 
-    LDA.W #$0002 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0002 : JSR.W LoadFromSRAM_external 
     STZ.W $0F96 
     LDA.W $0954 : BIT.W #$0004 
     BNE + 
@@ -2111,8 +2108,7 @@ Draw_FileCopy_SelectDestination_SaveFileInfo:
     JSR.W Load_Tilemap_in_Y_to_X_Coordinates 
     LDA.W $19B7 : CLC : ADC.W #$206A : STA.L $7E3760 
     JSR.W LoadMenuExitTilemap 
-    LDA.W #$0000 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0000 : JSR.W LoadFromSRAM_external 
     LDX.W #$0400 
     LDA.W $19B7 : BEQ + 
     LDX.W #$0000 
@@ -2120,8 +2116,7 @@ Draw_FileCopy_SelectDestination_SaveFileInfo:
   + TXA 
     STA.W $0F96 
     JSR.W Draw_FileCopyClear_SaveSlotAInfo 
-    LDA.W #$0001 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0001 : JSR.W LoadFromSRAM_external 
     LDX.W #$0400 
     LDA.W $19B7 
     CMP.W #$0001 
@@ -2131,8 +2126,7 @@ Draw_FileCopy_SelectDestination_SaveFileInfo:
   + TXA 
     STA.W $0F96 
     JSR.W Draw_FileCopyClear_SaveSlotBInfo 
-    LDA.W #$0002 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0002 : JSR.W LoadFromSRAM_external 
     LDX.W #$0400 
     LDA.W $19B7 
     CMP.W #$0002 
@@ -2255,8 +2249,7 @@ Draw_FileCopyClear_Confirmation:
     JSR.W Load_Tilemap_in_Y_to_X_Coordinates 
 
 Draw_FileCopyClear_Confirmation_SaveFileInfo:
-    LDA.W #$0000 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0000 : JSR.W LoadFromSRAM_external 
     LDX.W #$0000 
     LDA.W $19B7 : BEQ + 
     LDA.W $19B9 : BEQ + 
@@ -2265,8 +2258,7 @@ Draw_FileCopyClear_Confirmation_SaveFileInfo:
   + TXA 
     STA.W $0F96 
     JSR.W Draw_FileCopyClear_SaveSlotAInfo 
-    LDA.W #$0001 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0001 : JSR.W LoadFromSRAM_external 
     LDX.W #$0000 
     LDA.W $19B7 
     DEC A 
@@ -2279,8 +2271,7 @@ Draw_FileCopyClear_Confirmation_SaveFileInfo:
   + TXA 
     STA.W $0F96 
     JSR.W Draw_FileCopyClear_SaveSlotBInfo 
-    LDA.W #$0002 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0002 : JSR.W LoadFromSRAM_external 
     LDX.W #$0000 
     LDA.W $19B7 
     CMP.W #$0002 
@@ -2891,8 +2882,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     LDY.W #Tilemap_FileSelect_SamusA 
     LDX.W #($3<<1)|($5<<6) ; $0146
     JSR.W Load_Tilemap_in_Y_to_X_Coordinates 
-    LDA.W #$0000 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0000 : JSR.W LoadFromSRAM_external 
     ROR.W $0954 
     LDX.W #$015C 
     LDA.W $0954 : BIT.W #$8000 
@@ -2907,8 +2897,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     LDX.W #($3<<1)|($A<<6) ; $0286
     STZ.W $0F96 
     JSR.W Load_Tilemap_in_Y_to_X_Coordinates 
-    LDA.W #$0001 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0001 : JSR.W LoadFromSRAM_external 
     ROR.W $0954 
     LDX.W #$029C 
     LDA.W $0954 : BIT.W #$8000 
@@ -2923,8 +2912,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     LDX.W #($3<<1)|($F<<6) ; $03C6
     STZ.W $0F96 
     JSR.W Load_Tilemap_in_Y_to_X_Coordinates 
-    LDA.W #$0002 
-    JSR.W LoadFromSRAM_external 
+    LDA.W #$0002 : JSR.W LoadFromSRAM_external 
     ROR.W $0954 
     LDX.W #$03DC 
     LDA.W $0954 : BIT.W #$8000 
@@ -3694,16 +3682,13 @@ JMP_DrawAreaSelectMapLabels:
 FineSelectMap_Index6_AreaSelectMap_Debug:
     STZ.B $18 
     LDA.B $16 : STA.B $18 
-    LDA.W $0950 
-    JSR.W A_equals_A_Minus_1_Mod_6 
+    LDA.W $0950 : JSR.W A_equals_A_Minus_1_Mod_6 
     JSR.W Debug_Check_FileSelectMapArea_CanBeSelected 
     BNE .selected 
-    LDA.B $1C 
-    JSR.W A_equals_A_Minus_1_Mod_6 
+    LDA.B $1C : JSR.W A_equals_A_Minus_1_Mod_6 
     JSR.W Debug_Check_FileSelectMapArea_CanBeSelected 
     BNE .selected 
-    LDA.B $1C 
-    JSR.W A_equals_A_Minus_1_Mod_6 
+    LDA.B $1C : JSR.W A_equals_A_Minus_1_Mod_6 
     JSR.W Debug_Check_FileSelectMapArea_CanBeSelected 
     BEQ JMP_DrawAreaSelectMapLabels 
 
@@ -3718,8 +3703,7 @@ FineSelectMap_Index6_AreaSelectMap_Debug_debugNext:
     LDA.W $0950 : STA.B $1C 
 
 .loop:
-    LDA.B $1C 
-    JSR.W A_equals_A_Plus_1_Mod_6 
+    LDA.B $1C : JSR.W A_equals_A_Plus_1_Mod_6 
     JSR.W Debug_Check_FileSelectMapArea_CanBeSelected 
     BNE .switch 
     DEC.B $16 

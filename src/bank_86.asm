@@ -2925,8 +2925,7 @@ InitAI_EnemyProjectile_PhantoonStartingFlames:
     LDX.W $1993 
     LDA.W PhantoonFlameAngles,X : AND.W #$00FF : STA.W $1AFF,Y 
     TAY 
-    LDA.W #$0030 
-    JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
+    LDA.W #$0030 : JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
     PLY 
     LDA.W $0F7A : CLC : ADC.B $14 : STA.W $1A4B,Y 
     LDA.W $0F7E : CLC : ADC.W #$0010 : CLC : ADC.B $16 : STA.W $1A93,Y 
@@ -3019,8 +3018,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Enraged:
     LDA.W $1AFF,X : CLC : ADC.W $1AB7,X : AND.W #$00FF 
     STA.W $1AFF,X 
     TAY 
-    LDA.W $1ADB,X 
-    JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
+    LDA.W $1ADB,X : JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
     LDA.W $0F7A : CLC : ADC.B $14 : STA.W $1A4B,X 
     BMI + 
     CMP.W #$0100 
@@ -3065,8 +3063,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Spiral:
     LDA.W $1AFF,X : CLC : ADC.W #$0002 : AND.W #$00FF 
     STA.W $1AFF,X 
     TAY 
-    LDA.W $1ADB,X 
-    JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
+    LDA.W $1ADB,X : JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
     LDA.W $0F7A : CLC : ADC.B $14 : STA.W $1A4B,X 
     BMI + 
     CMP.W #$0100 
@@ -3113,8 +3110,7 @@ PreInst_EnemyProjectile_PhantoonStartingFlames_Activated:
     AND.W #$00FF 
     STA.W $1AFF,X 
     TAY 
-    LDA.W $1ADB,X 
-    JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
+    LDA.W $1ADB,X : JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
     LDA.W $0F7A : CLC : ADC.B $14 : STA.W $1A4B,X 
     LDA.W $0F7E : CLC : ADC.W #$0010 : CLC : ADC.B $16 : STA.W $1A93,X 
     RTS 
@@ -7650,8 +7646,7 @@ PreInstruction_EnemyProjectile_MotherBrainsBomb:
     INC A 
 
   + STA.W $1AB7,X 
-    LDA.W #$0007 
-    JSR.W Move_MotherBrains_Bomb 
+    LDA.W #$0007 : JSR.W Move_MotherBrains_Bomb 
     BCC .return 
 
 .bounced:

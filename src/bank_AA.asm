@@ -9854,8 +9854,7 @@ PositionShaktoolPieceRelativeToPreviousPiece:
 
 
 SetShaktoolPiecesNeighborAngleAndAngleDeltaForCurling:
-    LDA.W $0FA8,X 
-    JSR.W ShaktoolPiecesNeighborAngleInA 
+    LDA.W $0FA8,X : JSR.W ShaktoolPiecesNeighborAngleInA 
     LDY.W $0FB0,X 
     LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta : STA.W $0FAC,Y 
     LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_rightArm : STA.W $0FEC,Y 

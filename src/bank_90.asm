@@ -8791,8 +8791,7 @@ ProjectilePreInstruction_IceSBA_Main:
 
   + LDA.W $0C7C,X 
     TAY 
-    LDA.W #$0020 
-    JSR.W Math_90CC39 
+    LDA.W #$0020 : JSR.W Math_90CC39 
     LDA.W $0AF6 : CLC : ADC.B $14 : STA.W $0B64,X 
     LDA.W $0AFA : CLC : ADC.B $16 : STA.W $0B78,X 
     LDA.W $0C7C,X : CLC : ADC.W $0B60 : AND.W #$00FF 
@@ -8825,8 +8824,7 @@ ProjectilePreInstruction_IceSBA_End:
 
   + LDA.W $0C7C,X 
     TAY 
-    LDA.W $0BDC,X 
-    JSR.W Math_90CC39 
+    LDA.W $0BDC,X : JSR.W Math_90CC39 
     LDA.W $0AF6 : CLC : ADC.B $14 : STA.W $0B64,X 
     SEC : SBC.W $0911 : CMP.W #$FFE0 
     BMI .clearProjectile 
@@ -9373,8 +9371,7 @@ UNUSED_GrappleBeam_90D525:
     XBA 
     AND.W #$00FF 
     TAY 
-    LDA.W $0CFE 
-    JSR.W Math_90CC39 
+    LDA.W $0CFE : JSR.W Math_90CC39 
     LDA.W $0D16 : CLC : ADC.B $14 : STA.W $0D08 
     LDA.W $0D18 : CLC : ADC.B $16 : STA.W $0D0C 
     LDA.W $0CFA : CLC : ADC.W #$0800 : STA.W $0CFA 
@@ -9593,8 +9590,7 @@ ProjectilePreInstruction_PlasmaSBA:
     STZ.W $0CD0 
     LDA.W $0C7C,X 
     TAY 
-    LDA.W $0BDC,X 
-    JSR.W Math_90CC39 
+    LDA.W $0BDC,X : JSR.W Math_90CC39 
     LDA.W $0AF6 : CLC : ADC.B $14 : STA.W $0B64,X 
     LDA.W $0AFA : CLC : ADC.B $16 : STA.W $0B78,X 
     LDA.W $0C7C,X : CLC : ADC.W $0B60 : AND.W #$00FF 
@@ -9929,8 +9925,7 @@ ProjectilePreInstruction_SpazerSBA:
 .timerNotExpired:
     LDA.W $0C7C,X 
     TAY 
-    LDA.W $0BDC,X 
-    JSR.W Math_90CC39 
+    LDA.W $0BDC,X : JSR.W Math_90CC39 
     LDA.W $0AF6 : CLC : ADC.B $14 : STA.W $0B64,X 
     TXY 
     LDA.W $0CA4,X 

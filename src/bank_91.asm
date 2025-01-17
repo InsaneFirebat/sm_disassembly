@@ -5996,8 +5996,7 @@ RevealedBlockCommand_VerticalExtension:
 
 RevealedBlockExtensionLoop_Vertical:
     LDA.B $2C : CLC : ADC.B $2E : BPL + 
-    LDA.W #$00FF 
-    JSR.W CopyBlockToXrayBG2Tilemap 
+    LDA.W #$00FF : JSR.W CopyBlockToXrayBG2Tilemap 
     JMP.W LoadRevealedBlock_Done 
 
 
@@ -6026,8 +6025,7 @@ RevealedBlockCommand_HorizontalExtension:
 
 RevealedBlockExtensionLoop_Horizontal:
     LDA.B $2A : CLC : ADC.B $2E : BPL + 
-    LDA.W #$00FF 
-    JSR.W CopyBlockToXrayBG2Tilemap 
+    LDA.W #$00FF : JSR.W CopyBlockToXrayBG2Tilemap 
     JMP.W LoadRevealedBlock_Done 
 
 

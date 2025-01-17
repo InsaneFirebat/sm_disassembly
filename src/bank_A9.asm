@@ -377,8 +377,7 @@ InitAI_MotherBrainBody:
     DEX #2
     BPL .loopTilemap 
     PLB 
-    LDA.W #InstList_MotherBrainHead_InitialDummy 
-    JSR.W SetMotherBrainBodyInstList 
+    LDA.W #InstList_MotherBrainHead_InitialDummy : JSR.W SetMotherBrainBodyInstList 
     STZ.W $0F98 
     LDA.W $0F86 : ORA.W #$1500 : STA.W $0F86 
     LDA.W #$0000 : STA.W $0F96 
@@ -412,15 +411,13 @@ InitAI_MotherBrainHead:
     LDY.W #CorpseRottingDefinitions_MotherBrain 
     JSR.W InitializeEnemyCorpseRotting 
     LDA.W #$0BB8 : STA.W $0FCC 
-    LDA.W #InstList_MotherBrainHead_InitialDummy 
-    JSR.W SetMotherBrainHeadUnusedInstList 
+    LDA.W #InstList_MotherBrainHead_InitialDummy : JSR.W SetMotherBrainHeadUnusedInstList 
     STZ.W $0FD8 
     LDA.W $0FC6 : ORA.W #$1100 : STA.W $0FC6 
     LDA.W #$0200 : STA.W $0FD6 
     STA.L $7E7818 
     STA.L $7E781A 
-    LDA.W #InstList_MotherBrainHead_Initial 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Initial : JSR.W SetMotherBrainHeadInstList 
     JSR.W SetupMotherBrainHeadNormalPalette 
     RTL 
 
@@ -1118,8 +1115,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_PrepareMBForRising:
     JSL.L Spawn_MotherBrainRising_HDMAObject 
     STA.L $7E7812 
     LDA.W $0FC6 : ORA.W #$0100 : STA.W $0FC6 
-    LDA.W #InstList_MotherBrainHead_Initial 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Initial : JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_LoadMBLegTiles : STA.W $0FA8 
     LDA.W #$0100 : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_LoadMBLegTiles
 
@@ -1149,8 +1145,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_ContinuePausing:
 
 
 Function_MotherBrainBody_FakeDeath_Ascent_StartMusic_Quake:
-    LDA.W #InstList_MotherBrainBody_Crouched 
-    JSR.W SetMotherBrainBodyInstList 
+    LDA.W #InstList_MotherBrainBody_Crouched : JSR.W SetMotherBrainBodyInstList 
     LDA.W #$0001 : STA.W $0FD4 
     LDA.W $0F86 : AND.W #$FEFF : STA.W $0F86 
     LDA.W #$003B : STA.W $0F7A 
@@ -1183,8 +1178,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_RaiseMotherBrain:
     LDA.L $7E7812 
     TAX 
     STZ.W $18B4,X 
-    LDA.W #InstList_MotherBrainBody_StandingUpAfterCrouching_Slow 
-    JSR.W SetMotherBrainBodyInstList 
+    LDA.W #InstList_MotherBrainBody_StandingUpAfterCrouching_Slow : JSR.W SetMotherBrainBodyInstList 
     LDA.W #Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch : STA.W $0FA8 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_WaitForMBUncrouch
 
 Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch:
@@ -1233,8 +1227,7 @@ Function_MotherBrainBody_Phase2_Stretching_ShakeHeadMenacing:
 
 
 .timerExpired:
-    LDA.W #InstList_MotherBrainHead_Stretching_Phase2_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Stretching_Phase2_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MotherBrainBody_Phase2_Stretching_BringHeadBackUp : STA.W $0FA8 
     LDA.W #$0040 : STA.L $7E8068 
     LDA.W #$0100 : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_Phase2_Stretching_BringHeadBackUp
@@ -1839,8 +1832,7 @@ Instruction_MotherBrainBody_MoveBodyUpBy1:
 
 
 Instruction_MotherBrainBody_MoveBodyUpBy1_RightBy3_Footstep:
-    LDA.W #$0022 
-    JSR.W MotherBrainFootstepEffect 
+    LDA.W #$0022 : JSR.W MotherBrainFootstepEffect 
     LDA.W $0F7A : CLC : ADC.W #$0003 : STA.W $0F7A 
     LDA.W #$0001 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -1865,16 +1857,14 @@ Instruction_MotherBrainBody_MoveBodyUpBy4_LeftBy2:
 
 
 Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep:
-    LDA.W #$FFEF 
-    JSR.W MotherBrainFootstepEffect 
+    LDA.W #$FFEF : JSR.W MotherBrainFootstepEffect 
     LDA.W $0F7A : CLC : ADC.W #$FFFF : STA.W $0F7A 
     LDA.W #$0002 
     JMP.W MoveMotherBrainBodyDownByA 
 
 
 Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep_duplicate:
-    LDA.W #$000B 
-    JSR.W MotherBrainFootstepEffect 
+    LDA.W #$000B : JSR.W MotherBrainFootstepEffect 
     LDA.W $0F7A : SEC : SBC.W #$0001 : STA.W $0F7A 
     LDA.W #$0002 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -1898,8 +1888,7 @@ Instruction_MotherBrainBody_MoveBodyDownBy1_LeftBy3:
 
 
 Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy15_Footstep:
-    LDA.W #$FFDB 
-    JSR.W MotherBrainFootstepEffect 
+    LDA.W #$FFDB : JSR.W MotherBrainFootstepEffect 
     LDA.W $0F7A : SEC : SBC.W #$000F : STA.W $0F7A 
     LDA.W #$0002 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -4452,8 +4441,7 @@ Function_MBBody_Phase3_DeathSequence_MoveToBackOfRoom:
     LDA.W $0FC6 : ORA.W #$0400 : STA.W $0FC6 
     LDA.W #$0000 : STA.L $7E7808 
     LDY.W #$0006 
-    LDA.W #$0028 
-    JSR.W MakeMotherBrainWalkBackwards 
+    LDA.W #$0028 : JSR.W MakeMotherBrainWalkBackwards 
     BCS .arrivedAtBack 
     RTS 
 
@@ -4475,11 +4463,9 @@ Function_MBBody_Phase3_DeathSequence_return:
 Function_MBBody_Phase3_DeathSequence_StumbleToMiddleOfRoom:
     JSR.W GenerateSmokyExplosionsAroundMotherBrainBody 
     LDY.W #$0002 
-    LDA.W #$0060 
-    JSR.W MakeMotherBrainWalkForwards 
+    LDA.W #$0060 : JSR.W MakeMotherBrainWalkForwards 
     BCC Function_MBBody_Phase3_DeathSequence_return 
-    LDA.W #InstList_MotherBrainHead_DyingDrool_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_DyingDrool_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #$0006 : STA.L $7E8064 
     STA.L $7E8066 
     LDA.W #$0500 : STA.L $7E8068 
@@ -4642,8 +4628,7 @@ MotherBrainExplosionParameters_1:
     dw $0001,$0001,$0001 
 
 Function_MBBody_Phase3_DeathSequence_RealizeDecapitation:
-    LDA.W #InstList_MotherBrainHead_Decapitated_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Decapitated_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MotherBrain_SetupBrainToBeDrawn : STA.W $0FE8 
     LDA.W #$0000 : STA.W $0FB2 
     LDA.W #Function_MBBody_Phase3_DeathSequence_BrainFallsToGround : STA.W $0FA8 ; fallthrough to Function_MBBody_Phase3_DeathSequence_BrainFallsToGround
@@ -4700,8 +4685,7 @@ Function_MBBody_Phase3_DeathSequence_FadeToGrey:
 
 
 .finishedTransition:
-    LDA.W #InstList_MotherBrainHead_Corpse_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Corpse_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MBBody_Phase3_DeathSequence_CorpseTipsOver : STA.W $0FA8 
     LDA.W #$0100 : STA.W $0FB2 
     RTS 
@@ -5296,8 +5280,7 @@ DecideMotherBrainPhase2AttackStrategy:
     LDA.W $05E5 : AND.W #$00FF 
     CMP.W #$0080 
     BMI .callersReturn 
-    LDA.W #InstList_MotherBrainHead_Attacking_4OnionRings_Phase2 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Attacking_4OnionRings_Phase2 : JSR.W SetMotherBrainHeadInstList 
     PLA 
     RTS 
 
@@ -5374,8 +5357,7 @@ Function_MotherBrainBody_FiringBomb_DecideOnWalking_return:
 
 Function_MotherBrainBody_FiringBomb_WalkingBackwards:
     LDY.W #$0006 
-    LDA.W $0FB2 
-    JSR.W MakeMotherBrainWalkBackwards 
+    LDA.W $0FB2 : JSR.W MakeMotherBrainWalkBackwards 
     BCC Function_MotherBrainBody_FiringBomb_DecideOnWalking_return 
 
 MotherBrainFiringBomb_DecideOnCrouching:
@@ -5454,8 +5436,7 @@ Function_MBBody_Phase2_FiringLaser_PositionHeadSlowlyAndFire:
 
   + TYA 
     STA.L $7E8068 
-    LDA.W #InstList_MotherBrainHead_Attacking_Laser 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Attacking_Laser : JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MotherBrainBody_Phase2_FiringLaser_FinishAttack : STA.W $0FA8 
     LDA.W #$0010 : STA.W $0FB2 
     RTS 
@@ -5490,8 +5471,7 @@ Function_MotherBrainBody_Phase2_FiringDeathBeam:
 
 MotherBrainPhase2_FiringDeathBeam_BackUp:
     LDY.W #$0008 
-    LDA.W #$0028 
-    JSR.W MakeMotherBrainWalkBackwards 
+    LDA.W #$0028 : JSR.W MakeMotherBrainWalkBackwards 
     BCC .return 
     LDA.W #$0008 : STA.L $7E8064 
     LDA.W #$0006 : STA.L $7E8066 
@@ -5505,8 +5485,7 @@ MotherBrainPhase2_FiringDeathBeam_BackUp:
 
 MotherBrainPhase2_FiringDeathBeam_WaitForAnyActiveBombs:
     LDA.L $7E784A : BNE .return 
-    LDA.W #InstList_MotherBrainBody_DeathBeamMode 
-    JSR.W SetMotherBrainBodyInstList 
+    LDA.W #InstList_MotherBrainBody_DeathBeamMode : JSR.W SetMotherBrainBodyInstList 
     LDA.L $7E782E 
     INC A 
     STA.L $7E782E 
@@ -5520,8 +5499,7 @@ RTS_A9B8C8:
 
 
 MotherBrainPhase2_FiringDeathBeam_Finish:
-    LDA.W #InstList_MotherBrainHead_Neutral_Phase2_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Neutral_Phase2_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #$0002 : STA.L $7E8064 
     LDA.W #$0004 : STA.L $7E8066 
     LDA.W #$0000 : STA.L $7E782E 
@@ -5530,8 +5508,7 @@ MotherBrainPhase2_FiringDeathBeam_Finish:
 
 
 Function_MotherBrainBody_Phase2_FiringRainbowBeam_ExtendNeck:
-    LDA.W #InstList_MotherBrainHead_Neutral_Phase2_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Neutral_Phase2_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #$0040 : STA.L $7E8068 
     LDA.W #$0001 : STA.L $7E8062 
     LDA.W #$0002 : STA.L $7E8064 
@@ -5546,13 +5523,11 @@ Function_MotherBrainBody_Phase2_FiringRainbowBeam_return:
 Function_MBBody_Phase2_FiringRainbowBeam_StartCharging:
     DEC.W $0FB2 
     BPL Function_MotherBrainBody_Phase2_FiringRainbowBeam_return 
-    LDA.W #InstList_MotherBrainHead_ChargingRainbowBeam_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_ChargingRainbowBeam_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MotherBrainBody_Phase2_FiringRainbowBeam_RetractNeck : STA.W $0FA8 ; fallthrough to Function_MotherBrainBody_Phase2_FiringRainbowBeam_RetractNeck
 
 Function_MotherBrainBody_Phase2_FiringRainbowBeam_RetractNeck:
-    LDA.W #$0028 
-    JSR.W MakeMBWalkBackwardsReallySlowTowardsXPositionInA_RetractHead 
+    LDA.W #$0028 : JSR.W MakeMBWalkBackwardsReallySlowTowardsXPositionInA_RetractHead 
     BCC Function_MotherBrainBody_Phase2_FiringRainbowBeam_return 
     LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_WaitForBeamToCharge : STA.W $0FA8 
     LDA.W #$0100 : STA.W $0FB2 ; fallthrough to Function_MBBody_Phase2_FiringRainbowBeam_WaitForBeamToCharge
@@ -5585,8 +5560,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam:
     LDA.W $0CEE : BNE .return ; >_<
     STZ.W $0CCC 
     JSR.W ResetMotherBrainBodyRainbowBeamPaletteAnimationIndex 
-    LDA.W #InstList_MotherBrainHead_FiringRainbowBeam 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_FiringRainbowBeam : JSR.W SetMotherBrainHeadInstList 
     LDA.W #$0200 : STA.L $7E8026 
     JSL.L Spawn_MotherBrainRainbowBeam_HDMAObject 
     STA.L $7E7812 
@@ -5674,8 +5648,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring:
     TAX 
     STZ.W $18B4,X 
     STZ.W $1840 
-    LDA.W #InstList_MotherBrainHead_Neutral_Phase2_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Neutral_Phase2_0 : JSR.W SetMotherBrainHeadInstList 
     JSR.W SetupMotherBrainHeadNormalPalette 
     JSR.W WriteMotherBrainDefaultPalette 
     LDA.W #$0002 : JSL.L QueueSound_Lib1_Max6 
@@ -5780,8 +5753,7 @@ CalculateMotherBrainRainbowBeamHDMATables_long:
 
 
 MoveSamusTowardsWallDueToRainbowBeam:
-    LDA.W #$1000 
-    JSR.W MoveSamusHorizontallyTowardsWall 
+    LDA.W #$1000 : JSR.W MoveSamusHorizontallyTowardsWall 
     BCS .return 
     LDA.L $7E8022 : STA.B $12 
     LDA.W #$1000 : JSL.L Math_86C272 
@@ -6001,8 +5973,7 @@ Function_MotherBrainBody_Phase2_FinishSamusOff_StandUp:
 Function_MBBody_Phase2_FinishSamusOff_AdmireJobWellDone:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid_return 
-    LDA.W #InstList_MotherBrainHead_Stretching_Phase2_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Stretching_Phase2_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MBBody_Phase2_FinishSamusOff_ChargeFinalRainbowBeam : STA.W $0FA8 
     LDA.W #$0100 : STA.W $0FB2 
     RTS 
@@ -6011,8 +5982,7 @@ Function_MBBody_Phase2_FinishSamusOff_AdmireJobWellDone:
 Function_MBBody_Phase2_FinishSamusOff_ChargeFinalRainbowBeam:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid_return 
-    LDA.W #InstList_MotherBrainHead_ChargingRainbowBeam_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_ChargingRainbowBeam_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid : STA.W $0FA8 ; fallthough to Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid
 
 Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid:
@@ -6032,8 +6002,7 @@ Function_MBBody_Phase2_FinishSamusOff_FireFinalRainbowBeam:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid_return 
     JSR.W ResetMotherBrainBodyRainbowBeamPaletteAnimationIndex 
-    LDA.W #InstList_MotherBrainHead_FiringRainbowBeam 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_FiringRainbowBeam : JSR.W SetMotherBrainHeadInstList 
     LDA.W #$0006 : STA.L $7E8064 
     STA.L $7E8066 
     LDA.W #$0500 : STA.L $7E8068 
@@ -6131,13 +6100,11 @@ Function_MBBody_DrainedByBabyMetroid_RainbowBeamHasRunOut:
     LDA.W #$0040 : STA.L $7E8068 
     LDA.W #$0008 : STA.L $7E8064 
     STA.L $7E8066 
-    LDA.W #InstList_MotherBrainHead_DyingDrool_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_DyingDrool_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MBBody_DrainedByBabyMetroid_MoveToBackOfRoom : STA.W $0FA8 ; fallthrough to Function_MBBody_DrainedByBabyMetroid_MoveToBackOfRoom
 
 Function_MBBody_DrainedByBabyMetroid_MoveToBackOfRoom:
-    LDA.W #$0028 
-    JSR.W MakeMotherBrainWalkBackwards 
+    LDA.W #$0028 : JSR.W MakeMotherBrainWalkBackwards 
     BCC Function_MotherBrainBody_DrainedByBabyMetroid_return 
     LDA.W #Function_MBBody_DrainedByBabyMetroid_GoIntoLowPowerMode : STA.W $0FA8 
     LDA.W #$0000 : STA.L $7E8066 ; fallthrough to Function_MBBody_DrainedByBabyMetroid_GoIntoLowPowerMode
@@ -6148,8 +6115,7 @@ Function_MBBody_DrainedByBabyMetroid_GoIntoLowPowerMode:
     BNE Function_MotherBrainBody_DrainedByBabyMetroid_return 
     STA.L $7E7864 
     LDA.L $7E7804 : BNE Function_MotherBrainBody_DrainedByBabyMetroid_return 
-    LDA.W #InstList_MotherBrainBody_Crouch_Fast 
-    JSR.W SetMotherBrainBodyInstList 
+    LDA.W #InstList_MotherBrainBody_Crouch_Fast : JSR.W SetMotherBrainBodyInstList 
     LDA.W #Function_MBBody_DrainedByBabyMetroid_PrepareTransitionToGrey : STA.W $0FA8 
     LDA.W #$0040 : STA.W $0FB2 
 
@@ -6187,8 +6153,7 @@ Function_MBBody_DrainedByBabyMetroid_TransitionToGrey:
 Function_MotherBrainBody_PainfulWalking_WalkForwards:
     LDA.L $7E784E 
     TAY 
-    LDA.W #$0048 
-    JSR.W MakeMotherBrainWalkForwards 
+    LDA.W #$0048 : JSR.W MakeMotherBrainWalkForwards 
     BCC .return 
     LDA.W #Function_MotherBrainBody_PainfulWalking_WalkingForwards : STA.L $7E7850 
     JSR.W SetMotherBrainPainfulWalkingFunctionTimer 
@@ -6214,8 +6179,7 @@ Function_MotherBrainBody_PainfulWalking_WalkingForwards:
 Function_MotherBrainBody_PainfulWalking_WalkBackwards:
     LDA.L $7E784E 
     TAY 
-    LDA.W #$0028 
-    JSR.W MakeMotherBrainWalkBackwards 
+    LDA.W #$0028 : JSR.W MakeMotherBrainWalkBackwards 
     BCC .return 
     LDA.W #Function_MotherBrainBody_PainfulWalking_WalkingBackwards : STA.L $7E7850 
     JSR.W SetMotherBrainPainfulWalkingFunctionTimer 
@@ -6296,8 +6260,7 @@ Function_MotherBrainBody_Phase2_ReviveSelf_WakeUp:
 Function_MotherBrainBody_Phase2_ReviveSelf_WakeUpStretch:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid_return 
-    LDA.W #InstList_MotherBrainHead_Stretching_Phase3_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Stretching_Phase3_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid : STA.W $0FA8 
     LDA.W #$0080 : STA.W $0FB2 ; fallthrough to Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid
 
@@ -6305,8 +6268,7 @@ Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid_return 
     LDY.W #$0004 
-    LDA.W #$0050 
-    JSR.W MakeMotherBrainWalkForwards 
+    LDA.W #$0050 : JSR.W MakeMotherBrainWalkForwards 
     BCC Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid_return 
     LDA.W #Func_MBBody_Phase2_ReviveSelf_PrepareNeckForBabyMetroidDeath : STA.W $0FA8 
     LDA.W #$0002 : STA.L $7E783E 
@@ -6334,8 +6296,7 @@ Func_MBBody_Phase2_ReviveSelf_FinishPrepForBabyMetroidDeath:
 .standing:
     LDA.W #Function_MotherBrainBody_Phase2_KillBabyMetroid_Attack : STA.W $0FA8 
     LDY.W #$000A 
-    LDA.W #$0050 
-    JSR.W MakeMotherBrainWalkForwards ; fallthrough to Function_MotherBrainBody_Phase2_KillBabyMetroid_Attack
+    LDA.W #$0050 : JSR.W MakeMotherBrainWalkForwards ; fallthrough to Function_MotherBrainBody_Phase2_KillBabyMetroid_Attack
 
 Function_MotherBrainBody_Phase2_KillBabyMetroid_Attack:
     JSR.W MaybeMakeMotherBrainStandUpOrLeanDown 
@@ -6374,8 +6335,7 @@ Function_MBBody_Phase2_PrepareForFinalBabyMetroidAttack:
 
 
 Function_MBBody_Phase2_ExecuteFinalBabyMetroidAttack:
-    LDA.W #InstList_MotherBrainHead_Attacking_BabyMetroid 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_Attacking_BabyMetroid : JSR.W SetMotherBrainHeadInstList 
     LDA.W #RTS_A9C1A6 : STA.W $0FA8 
 
 RTS_A9C1A6:
@@ -6476,8 +6436,7 @@ Function_MotherBrainBody_Walking_TryToInchForward:
     STA.L $7E7876 
     LDA.W $05E5 : AND.W #$0002 
     CLC : ADC.W #$0004 : TAY 
-    LDA.L $7E7876 
-    JSR.W MakeMotherBrainWalkForwards 
+    LDA.L $7E7876 : JSR.W MakeMotherBrainWalkForwards 
     BCC .return 
     LDA.W #$0080 : STA.L $7E780E 
 
@@ -6580,8 +6539,7 @@ Function_MotherBrainNeck_RecoilRecovery:
 
 
 .timerExpired:
-    LDA.W #InstList_MotherBrainHead_AttackingSamus_4OnionRings_Phase3 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_AttackingSamus_4OnionRings_Phase3 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MotherBrainNeck_Normal : STA.L $7E7870 
     RTS 
 
@@ -6589,8 +6547,7 @@ Function_MotherBrainNeck_RecoilRecovery:
 Function_MotherBrainNeck_SetupHyperBeamRecoil:
     LDA.W #$0001 : STA.L $7E8062 
     STA.L $7E780C 
-    LDA.W #InstList_MotherBrainHead_HyperBeamRecoil_0 
-    JSR.W SetMotherBrainHeadInstList 
+    LDA.W #InstList_MotherBrainHead_HyperBeamRecoil_0 : JSR.W SetMotherBrainHeadInstList 
     LDA.W #$0032 : STA.L $7E7840 
     LDA.W #$0900 : STA.L $7E8068 
     LDA.W #$0008 : STA.L $7E8064 
@@ -6880,8 +6837,7 @@ MakeMotherBrainWalkForwards:
     LDA.W $0F7A 
     CMP.W #$0080 
     BPL .returnReachedTarget 
-    LDA.W .pointers,Y 
-    JSR.W SetMotherBrainBodyInstList 
+    LDA.W .pointers,Y : JSR.W SetMotherBrainBodyInstList 
 
 .returnNotReached:
     CLC 
@@ -6909,8 +6865,7 @@ UNUSED_MakeMotherBrainWalkBackwards_A9C62A:
     LDA.W $0F7A 
     CMP.W #$0010 
     BMI .returnCarrySet 
-    LDA.W MakeMotherBrainWalkBackwards_pointers,Y 
-    JSR.W SetMotherBrainBodyInstList 
+    LDA.W MakeMotherBrainWalkBackwards_pointers,Y : JSR.W SetMotherBrainBodyInstList 
 
 .returnCarryClear:
     CLC 
@@ -6930,8 +6885,7 @@ MakeMotherBrainWalkBackwards:
     LDA.W $0F7A 
     CMP.W #$0030 
     BMI .returnTargetReached 
-    LDA.W MakeMotherBrainWalkBackwards_pointers,Y 
-    JSR.W SetMotherBrainBodyInstList 
+    LDA.W MakeMotherBrainWalkBackwards_pointers,Y : JSR.W SetMotherBrainBodyInstList 
 
 .returnNotReached:
     CLC 
@@ -7002,8 +6956,7 @@ MakeMotherBrainLeanDown:
 
 
 .leanDown:
-    LDA.W #InstList_MotherBrainBody_LeaningDown 
-    JSR.W SetMotherBrainBodyInstList 
+    LDA.W #InstList_MotherBrainBody_LeaningDown : JSR.W SetMotherBrainBodyInstList 
 
 .notLeaningDown:
     CLC 
@@ -7194,8 +7147,7 @@ Function_BabyMetroidCutscene_SetMotherBrainToStumbleBack:
 Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody:
     LDA.W $0FBA : CLC : ADC.W #$0000 : STA.B $12 
     LDA.W $0FBE : CLC : ADC.W #$FFE8 : STA.B $14 
-    LDA.W #$0200 
-    JSR.W AccelerateBabyMetroidTowardsPoint 
+    LDA.W #$0200 : JSR.W AccelerateBabyMetroidTowardsPoint 
     BCS .reachedTarget 
     RTS 
 
@@ -7274,11 +7226,9 @@ Function_BabyMetroidCutscene_MoveToTheCeiling:
 
 SpawnThreeDustCloudsOnMotherBrainHead:
     LDA.W #$FFF8 : STA.B $14 
-    LDA.W #$FFF0 
-    JSR.W SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14 
+    LDA.W #$FFF0 : JSR.W SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14 
     LDA.W #$FFF0 : STA.B $14 
-    LDA.W #$0000 
-    JSR.W SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14 
+    LDA.W #$0000 : JSR.W SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14 
     LDA.W #$FFF8 : STA.B $14 
     LDA.W #$0010 ; fallthrough to SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14
 
@@ -7788,8 +7738,7 @@ EnemyTouch_BabyMetroidCutscene:
     BNE .return 
     LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA : SEC : SBC.W #$0014 : STA.B $14 
-    LDA.W #$0010 
-    JSR.W AccelerateBabyMetroidTowardsPoint 
+    LDA.W #$0010 : JSR.W AccelerateBabyMetroidTowardsPoint 
     BCC .return 
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
@@ -7921,8 +7870,7 @@ MotherBrainPalette_EndScreenFlashing:
 
 
 MotherBrainPalette_HandleRoomPalette:
-    LDA.W #$781C 
-    JSR.W HandleRoomPaletteInstList 
+    LDA.W #$781C : JSR.W HandleRoomPaletteInstList 
     BCS MotherBrainPalette_WriteRoomPalette 
     RTS 
 
@@ -8005,8 +7953,7 @@ UNSUED_SetInvalidRoomPaletteInstructionList_A9D151:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_HandleMotherBrainsPalette_A9D160:
-    LDA.W #$781C 
-    JSR.W HandleRoomPaletteInstList 
+    LDA.W #$781C : JSR.W HandleRoomPaletteInstList 
     BCC .return 
     PHY 
     LDX.W #$0082 
@@ -8774,8 +8721,7 @@ Function_CorpseSidehopper_Idling:
     dw $01C0,$0120,$0120,$0300 
 
 CorpseSidehopperMovement:
-    LDA.L $7E7814,X 
-    JSR.W CorpseSidehopperMovement_Horizontal 
+    LDA.L $7E7814,X : JSR.W CorpseSidehopperMovement_Horizontal 
     LDY.W #$0020 
     LDA.L $7E7816,X : BMI .rising 
     LDY.W #$0080 
@@ -9037,8 +8983,7 @@ ProcessCorpseRotting:
   + LDA.W $8808 : STA.B $14 
     LDA.W #$00A9 : STA.B $16 
     PHX 
-    LDA.W $0000,X 
-    JSR.W CopMoveCorpseRottingRotEntry 
+    LDA.W $0000,X : JSR.W CopMoveCorpseRottingRotEntry 
     PLX 
     BRA .next 
 
@@ -9048,8 +8993,7 @@ ProcessCorpseRotting:
     LDA.W $8806 : STA.B $12 
     LDA.W $8808 : STA.B $14 
     LDA.W #$00A9 : STA.B $16 
-    LDA.W $0000,X 
-    JSR.W CopMoveCorpseRottingRotEntry 
+    LDA.W $0000,X : JSR.W CopMoveCorpseRottingRotEntry 
     PLX 
     LDA.W $0000,X : CLC : ADC.W #$0002 : CMP.W $880C 
     BCC .store 
@@ -9168,8 +9112,7 @@ InitializeEnemyCorpseRotting:
     DEC A 
     STA.L $7E8832,X 
     LDX.W $0000,Y 
-    LDA.W $0008,Y 
-    JSR.W InitializeCorpseRottingDataTable 
+    LDA.W $0008,Y : JSR.W InitializeCorpseRottingDataTable 
     LDA.W $000A,Y : STA.B $12 
     JMP.W ($0012) 
 
@@ -11125,8 +11068,7 @@ Function_BabyMetroid_RushToSidehopper:
 Function_BabyMetroid_LatchOntoSidehopper:
     LDA.W $0FBA,X : STA.B $12 
     LDA.W $0FBE,X : CLC : ADC.W #$FFE0 : STA.B $14 
-    LDA.W #$0200 
-    JSR.W AccelerateBabyMetroidTowardsPoint 
+    LDA.W #$0200 : JSR.W AccelerateBabyMetroidTowardsPoint 
     BCS .reachedTarget 
     RTS 
 
@@ -11840,8 +11782,7 @@ EnemyTouch_BabyMetroid:
 .latchedOntoSamus:
     LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA : SEC : SBC.W #$0020 : STA.B $14 
-    LDA.W #$0200 
-    JSR.W AccelerateBabyMetroidTowardsPoint 
+    LDA.W #$0200 : JSR.W AccelerateBabyMetroidTowardsPoint 
     BCC .return 
     LDX.W $0E54 
     LDA.W #InstList_BabyMetroid_LatchedOn : STA.W $0F92,X 

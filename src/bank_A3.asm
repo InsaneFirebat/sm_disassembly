@@ -4150,8 +4150,7 @@ MocktroidShakeVelocityTable_Y:
 InitAI_Mochtroid:
     LDX.W $0E54 
     LDA.W #$0002 : STA.W $0F9A,X 
-    LDA.W #InstList_Mochtroid_NotTouchingSamus 
-    JSR.W SetMochtroidInstList 
+    LDA.W #InstList_Mochtroid_NotTouchingSamus : JSR.W SetMochtroidInstList 
     STZ.W $0FB2,X 
     RTL 
 
@@ -4253,8 +4252,7 @@ Function_Mochtroid_0_NotTouchingSamus:
     STZ.W $0FAA,X 
 
 .noBlockCollision:
-    LDA.W #InstList_Mochtroid_NotTouchingSamus 
-    JSR.W SetMochtroidInstList 
+    LDA.W #InstList_Mochtroid_NotTouchingSamus : JSR.W SetMochtroidInstList 
     RTS 
 
 
@@ -4273,8 +4271,7 @@ UNUSED_Function_Mochtroid_2_Shaking_A3A88F:
     STZ.W $0FB2,X 
 
 .shaking:
-    LDA.W #InstList_Mochtroid_NotTouchingSamus 
-    JSR.W SetMochtroidInstList 
+    LDA.W #InstList_Mochtroid_NotTouchingSamus : JSR.W SetMochtroidInstList 
     RTS 
 
 
@@ -4354,8 +4351,7 @@ SetMochtroidInstList:
 EnemyTouch_Mochtroid:
     LDX.W $0E54 
     LDA.W #$0001 : STA.W $0FB2,X 
-    LDA.W #InstList_Mochtroid_TouchingSamus 
-    JSR.W SetMochtroidInstList 
+    LDA.W #InstList_Mochtroid_TouchingSamus : JSR.W SetMochtroidInstList 
     LDA.L $7E8000,X 
     INC A 
     STA.L $7E8000,X 
@@ -9046,8 +9042,7 @@ Function_Yard_Movement_Hiding:
     BCS .notMovingVertically 
     STZ.B $12 
     STZ.B $14 
-    LDA.W $0FA8,X 
-    JSR.W SignedMath_A3CF8F 
+    LDA.W $0FA8,X : JSR.W SignedMath_A3CF8F 
     JSL.L CheckForHorizontalSolidBlockCollision 
     BCC .noCollision 
     RTL 
@@ -9056,8 +9051,7 @@ Function_Yard_Movement_Hiding:
 .notMovingVertically:
     STZ.B $12 
     STZ.B $14 
-    LDA.W $0FAA,X 
-    JSR.W SignedMath_A3CF8F 
+    LDA.W $0FAA,X : JSR.W SignedMath_A3CF8F 
     JSL.L CheckForVerticalSolidBlockCollision 
     BCC .noCollision 
     RTL 
@@ -9201,8 +9195,7 @@ YardCrawlingMovement_Vertical:
     EOR.W #$FFFF 
     INC A 
     STA.W $0FA8,X 
-    LDA.W $0006,Y 
-    JSR.W SetYardInstList_DisableTurnTransition 
+    LDA.W $0006,Y : JSR.W SetYardInstList_DisableTurnTransition 
     RTL 
 
 
@@ -9221,8 +9214,7 @@ YardCrawlingMovement_Vertical:
     EOR.W #$FFFF 
     INC A 
     STA.W $0FAA,X 
-    LDA.W $0004,Y 
-    JSR.W SetYardInstList_DisableTurnTransition 
+    LDA.W $0004,Y : JSR.W SetYardInstList_DisableTurnTransition 
     RTL 
 
 
@@ -9269,8 +9261,7 @@ YardCrawlingMovement_Horizontal:
     EOR.W #$FFFF 
     INC A 
     STA.W $0FAA,X 
-    LDA.W $0006,Y 
-    JSR.W SetYardInstList_DisableTurnTransition 
+    LDA.W $0006,Y : JSR.W SetYardInstList_DisableTurnTransition 
     RTL 
 
 
@@ -9289,8 +9280,7 @@ YardCrawlingMovement_Horizontal:
     EOR.W #$FFFF 
     INC A 
     STA.W $0FA8,X 
-    LDA.W $0004,Y 
-    JSR.W SetYardInstList_DisableTurnTransition 
+    LDA.W $0004,Y : JSR.W SetYardInstList_DisableTurnTransition 
     RTL 
 
 

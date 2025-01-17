@@ -3585,14 +3585,11 @@ Function_Kraid_KraidGetsBig_FadeInRoomBackground:
 .reachedTargetColor:
     JSR.W SetupKraidGetsBig_Thinking 
     LDX.W #$0080 
-    LDA.W KraidLint_InitialFunctionTimers_top 
-    JSR.W EnableKraidLints 
+    LDA.W KraidLint_InitialFunctionTimers_top : JSR.W EnableKraidLints 
     LDX.W #$00C0 
-    LDA.W KraidLint_InitialFunctionTimers_middle 
-    JSR.W EnableKraidLints 
+    LDA.W KraidLint_InitialFunctionTimers_middle : JSR.W EnableKraidLints 
     LDX.W #$0100 
-    LDA.W KraidLint_InitialFunctionTimers_bottom 
-    JSR.W EnableKraidLints 
+    LDA.W KraidLint_InitialFunctionTimers_bottom : JSR.W EnableKraidLints 
     LDA.W #Function_KraidNail_Initialize : STA.L $7E7980 
     STA.L $7E79C0 
     LDA.W #Function_Kraid_HandleFunctionTimer : STA.W $1128 
@@ -4658,14 +4655,12 @@ Function_KraidFoot_Phase2_Thinking:
     LDA.W $0000,X 
     CMP.W $0F7A 
     BPL .backwards 
-    LDA.W $0000,X 
-    JSR.W SetKraidWalkingForwards 
+    LDA.W $0000,X : JSR.W SetKraidWalkingForwards 
     RTL 
 
 
 .backwards:
-    LDA.W $0000,X 
-    JSR.W SetKraidWalkingBackwards 
+    LDA.W $0000,X : JSR.W SetKraidWalkingBackwards 
 
 .return:
     RTL 
@@ -7266,8 +7261,7 @@ Function_Phantoon_FightIntro_StartWavyFadeIn:
 
 
 Function_Phantoon_FightIntro_WavyFadeIn:
-    LDA.W #$000C 
-    JSR.W AdvancePhantoonFadeIn_DenominatorInA 
+    LDA.W #$000C : JSR.W AdvancePhantoonFadeIn_DenominatorInA 
     LDA.W WavyPhantoonConstants_Intro_amplitudeDelta : STA.B $12 
     LDA.W WavyPhantoonConstants_Intro_maxAmplitude : STA.B $14 
     JSR.W GrowShrinkPhantoonWaveAmplitude 
@@ -7421,8 +7415,7 @@ Function_Phantoon_Swooping_Opaque:
 
 Function_Phantoon_Swooping_FadeOut:
     JSR.W MovePhantoonInSwoopingPattern 
-    LDA.W #$000C 
-    JSR.W AdvancePhantoonFadeOut_DenominatorInA 
+    LDA.W #$000C : JSR.W AdvancePhantoonFadeOut_DenominatorInA 
     LDA.W $0FF2 : BEQ .return 
     LDA.W #Function_Phantoon_HidingBeforeFigure8_Hiding : STA.W $0FB2,X 
     LDA.W #$0078 : STA.W $0FB0,X 
@@ -7469,8 +7462,7 @@ Function_Phantoon_HidingBeforeFigure8_PlacePhantoon:
 
 
 Function_Phantoon_HidingBeforeFigure8_FadingIn:
-    LDA.W #$000C 
-    JSR.W AdvancePhantoonFadeIn_DenominatorInA 
+    LDA.W #$000C : JSR.W AdvancePhantoonFadeIn_DenominatorInA 
     LDA.W $0FF2 : BEQ .return 
     LDA.W #Function_Phantoon_Figure8_Moving : STA.W $0FB2 
 
@@ -7490,8 +7482,7 @@ Function_Phantoon_FlameRain_ShowPhantoon:
 
 
 Function_Phantoon_FlameRain_MakePhantoonVulnerable:
-    LDA.W #$0001 
-    JSR.W AdvancePhantoonFadeIn_DenominatorInA 
+    LDA.W #$0001 : JSR.W AdvancePhantoonFadeIn_DenominatorInA 
     LDA.W $0FF2 : BEQ .return 
     LDA.W $0F86 : AND.W #$FBFF : STA.W $0F86 
     LDA.W #Function_Phantoon_FlameRain_VulnerableWindow : STA.W $0FB2,X 
@@ -7530,8 +7521,7 @@ Function_Phantoon_FlameRain_VulnerableWindow:
 
 
 Function_Phantoon_FlameRain_FadingOut:
-    LDA.W #$000C 
-    JSR.W AdvancePhantoonFadeOut_DenominatorInA 
+    LDA.W #$000C : JSR.W AdvancePhantoonFadeOut_DenominatorInA 
     LDA.W $0FF2 : BNE .fadeComplete 
     RTS 
 
@@ -7570,8 +7560,7 @@ Function_Phantoon_FlameRain_SubsequentFlameRain:
 
 
 Function_Phantoon_FlameRain_InitialFlameRain:
-    LDA.W #$000C 
-    JSR.W AdvancePhantoonFadeOut_DenominatorInA 
+    LDA.W #$000C : JSR.W AdvancePhantoonFadeOut_DenominatorInA 
     JSR.W AdjustSpeedAndMovePhantoonInFigure8 
     JSR.W HandleCasualFlames 
     DEC.W $0FE8 
@@ -7584,22 +7573,19 @@ Function_Phantoon_FlameRain_InitialFlameRain:
     LDA.W $0F7A 
     CMP.W #$0080 
     BMI .pattern0 
-    LDA.W #$0002 
-    JSR.W SpawnFlameRainProjectiles 
+    LDA.W #$0002 : JSR.W SpawnFlameRainProjectiles 
     RTS 
 
 
 .pattern0:
-    LDA.W #$0000 
-    JSR.W SpawnFlameRainProjectiles 
+    LDA.W #$0000 : JSR.W SpawnFlameRainProjectiles 
 
 .return:
     RTS 
 
 
 Function_Phantoon_Enraged_FadingOutBeforeRage:
-    LDA.W #$000C 
-    JSR.W AdvancePhantoonFadeOut_DenominatorInA 
+    LDA.W #$000C : JSR.W AdvancePhantoonFadeOut_DenominatorInA 
     LDA.W $0FF2 : BEQ .return 
     LDA.W #Function_Phantoon_Enraged_Hiding : STA.W $0FB2,X 
     LDA.W #$0078 : STA.W $0FB0,X 
@@ -7624,8 +7610,7 @@ Function_Phantoon_Enraged_Hiding:
 
 
 Function_Phantoon_Enraged_FadingIn:
-    LDA.W #$000C 
-    JSR.W AdvancePhantoonFadeIn_DenominatorInA 
+    LDA.W #$000C : JSR.W AdvancePhantoonFadeIn_DenominatorInA 
     LDA.W $0FF2 : BEQ .return 
     LDA.W #Function_Phantoon_Enraged_Rage : STA.W $0FB2 
     LDA.W #$0004 : STA.W $0FB0,X 
@@ -7693,8 +7678,7 @@ Function_Phantoon_Enraged_Rage:
 
 
 Function_Phantoon_Enraged_FadingOutAfterRage:
-    LDA.W #$000C 
-    JSR.W AdvancePhantoonFadeOut_DenominatorInA 
+    LDA.W #$000C : JSR.W AdvancePhantoonFadeOut_DenominatorInA 
     LDA.W $0FF2 : BEQ .return 
     LDA.W #Function_Phantoon_HidingBeforeFigure8_Hiding : STA.W $0FB2,X 
     LDA.W #$0078 : STA.W $0FB0,X 
@@ -7721,15 +7705,13 @@ Function_Phantoon_DeathSequence_FadingInAndOut:
     NOP 
     LDA.W $0FEC : BIT.W #$0001 
     BNE .advanceFade 
-    LDA.W #$000C 
-    JSR.W AdvancePhantoonFadeOut_DenominatorInA 
+    LDA.W #$000C : JSR.W AdvancePhantoonFadeOut_DenominatorInA 
     LDA.W $0FF2 : BNE .fadeComplete 
     BRA .return 
 
 
 .advanceFade:
-    LDA.W #$000C 
-    JSR.W AdvancePhantoonFadeIn_DenominatorInA 
+    LDA.W #$000C : JSR.W AdvancePhantoonFadeIn_DenominatorInA 
     LDA.W $0FF2 : BEQ .return 
 
 .fadeComplete:
@@ -7864,8 +7846,7 @@ Function_Phantoon_DeathSequence_WavyMosaicPhantoon:
 
 
 .doneMosaic:
-    LDA.W #$000C 
-    JSR.W AdvancePhantoonFadeOut_DenominatorInA 
+    LDA.W #$000C : JSR.W AdvancePhantoonFadeOut_DenominatorInA 
     LDA.W $0FF2 : BEQ .return 
     LDA.W #Function_Phantoon_DeathSequence_ClearGraphics : STA.W $0FB2,X 
 
@@ -7961,8 +7942,7 @@ AdvancePhantoonFadeOut:
     TAY 
     LDA.L $7EC0E0,X 
     TAX 
-    LDA.W $0FF0 
-    JSR.W CalculateAthTransitionalColorFromXToY 
+    LDA.W $0FF0 : JSR.W CalculateAthTransitionalColorFromXToY 
     PLX 
     STA.L $7EC0E0,X 
     INX #2
@@ -7994,8 +7974,7 @@ AdvancePhantoonFadeIn:
     JSR.W GetPhantoonHealthBasedPaletteColor 
     LDA.L $7EC0E0,X 
     TAX 
-    LDA.W $0FF0 
-    JSR.W CalculateAthTransitionalColorFromXToY 
+    LDA.W $0FF0 : JSR.W CalculateAthTransitionalColorFromXToY 
     PLX 
     STA.L $7EC0E0,X 
     INX #2
@@ -8069,8 +8048,7 @@ AdvanceWreckedShipPowerOnPaletteTransition:
     TAY 
     LDA.L $7EC000,X 
     TAX 
-    LDA.W $0FF0 
-    JSR.W CalculateAthTransitionalColorFromXToY 
+    LDA.W $0FF0 : JSR.W CalculateAthTransitionalColorFromXToY 
     PLX 
     STA.L $7EC000,X 
     INX #2
@@ -8089,8 +8067,7 @@ CalculateAthTransitionalColorFromXToY:
     TAY 
     LDA.B $03,S : AND.W #$001F 
     TAX 
-    LDA.B $05,S 
-    JSR.W CalculateTheAthTransitionalColorComponentFromXToY 
+    LDA.B $05,S : JSR.W CalculateTheAthTransitionalColorComponentFromXToY 
     STA.B $07,S 
     LDA.B $01,S 
     ASL #3
@@ -8102,8 +8079,7 @@ CalculateAthTransitionalColorFromXToY:
     XBA 
     AND.W #$001F 
     TAX 
-    LDA.B $05,S 
-    JSR.W CalculateTheAthTransitionalColorComponentFromXToY 
+    LDA.B $05,S : JSR.W CalculateTheAthTransitionalColorComponentFromXToY 
     ASL #5
     ORA.B $07,S 
     STA.B $07,S 
@@ -8117,8 +8093,7 @@ CalculateAthTransitionalColorFromXToY:
     XBA 
     AND.W #$001F 
     TAX 
-    LDA.B $05,S 
-    JSR.W CalculateTheAthTransitionalColorComponentFromXToY 
+    LDA.B $05,S : JSR.W CalculateTheAthTransitionalColorComponentFromXToY 
     ASL #2
     XBA 
     ORA.B $07,S 

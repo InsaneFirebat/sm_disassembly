@@ -2050,8 +2050,7 @@ Function_Puromi_Inactive:
 Function_Puromi_Active:
     LDX.W $0E54 
     LDA.W $0FAE,X : STA.W $0E32 
-    LDA.L $7E8002,X 
-    JSR.W CheckExplosionCondition 
+    LDA.L $7E8002,X : JSR.W CheckExplosionCondition 
     STA.B $1E 
     PHA 
     CMP.L $7E8026,X 
@@ -2072,12 +2071,10 @@ Function_Puromi_Active:
 .matchingExplosionReason:
     PLA 
     STA.L $7E8026,X 
-    LDA.L $7E8002,X 
-    JSR.W ClampAngle_CheckInactivityCondition 
+    LDA.L $7E8002,X : JSR.W ClampAngle_CheckInactivityCondition 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.L $7E800C,X : STA.W $0F7A,X 
-    LDA.L $7E8002,X 
-    JSR.W ClampAngle_CheckInactivityCondition 
+    LDA.L $7E8002,X : JSR.W ClampAngle_CheckInactivityCondition 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC : ADC.L $7E800E,X : STA.W $0F7E,X 
     JSR.W HandlePuromiProjectiles 
@@ -2100,8 +2097,7 @@ HandlePuromiProjectiles:
     LDA.L $7E8014,X : CLC : ADC.W $0E54 : TAX 
     LDA.L $7E7800,X 
     TAY 
-    LDA.B $24 
-    JSR.W CheckExplosionCondition 
+    LDA.B $24 : JSR.W CheckExplosionCondition 
     STA.B $1E 
     PHA 
     CMP.L $7E7810,X 
@@ -2125,12 +2121,10 @@ HandlePuromiProjectiles:
     PLA 
     STA.L $7E7810,X 
     PLX 
-    LDA.B $24 
-    JSR.W ClampAngle_CheckInactivityCondition 
+    LDA.B $24 : JSR.W ClampAngle_CheckInactivityCondition 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.L $7E800C,X : STA.W $1A4B,Y 
-    LDA.B $24 
-    JSR.W ClampAngle_CheckInactivityCondition 
+    LDA.B $24 : JSR.W ClampAngle_CheckInactivityCondition 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC : ADC.L $7E800E,X : STA.W $1A93,Y 
     LDA.L $7E8014,X : SEC : SBC.W #$0002 : STA.L $7E8014,X 
@@ -2158,8 +2152,7 @@ HandlePuromiSpriteObjects:
     LDA.L $7E8014,X : CLC : ADC.W $0E54 : TAX 
     LDA.L $7E7820,X 
     TAY 
-    LDA.B $24 
-    JSR.W CheckExplosionCondition 
+    LDA.B $24 : JSR.W CheckExplosionCondition 
     STA.B $1E 
     PHA 
     CMP.L $7E7830,X 
@@ -2185,12 +2178,10 @@ HandlePuromiSpriteObjects:
     PLA 
     STA.L $7E7830,X 
     PLX 
-    LDA.B $24 
-    JSR.W ClampAngle_CheckInactivityCondition 
+    LDA.B $24 : JSR.W ClampAngle_CheckInactivityCondition 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.L $7E800C,X : STA.B $20 
-    LDA.B $24 
-    JSR.W ClampAngle_CheckInactivityCondition 
+    LDA.B $24 : JSR.W ClampAngle_CheckInactivityCondition 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC : ADC.L $7E800E,X : STA.B $22 
     PHX 
@@ -3224,8 +3215,7 @@ InitAI_Ridley:
     JSL.L DisableMinimap_MarkBossRoomTilesExplored 
     STZ.W $0FB4 
     STZ.W $0FB6 
-    LDA.W #InstList_Ridley_FacingLeft_Initial 
-    JSR.W SetRidleyInstList 
+    LDA.W #InstList_Ridley_FacingLeft_Initial : JSR.W SetRidleyInstList 
     LDA.W #$0E00 : STA.W $0F96 
     STA.L $7E7818 
     LDA.W $0F88 : ORA.W #$0004 : STA.W $0F88 
@@ -3523,8 +3513,7 @@ Function_Ridley_Startup_MainBodyAppears:
 Function_Ridley_Startup_RidleyRoars:
     DEC.W $0FB2 
     BPL Function_Ridley_Startup_RidleyRoars_return 
-    LDA.W #InstList_Ridley_FacingLeft_OpeningRoar 
-    JSR.W SetRidleyInstList 
+    LDA.W #InstList_Ridley_FacingLeft_OpeningRoar : JSR.W SetRidleyInstList 
     STZ.W $0FB2 
     LDA.W #Function_Ridley_Startup_ColorBGInNorfair_RaiseAcid_MainAI : STA.W $0FA8 
     LDA.W $079F 
@@ -3561,8 +3550,7 @@ Function_Ridley_Startup_ColorBGInNorfair_RaiseAcid_MainAI:
 
 .merge:
     STZ.W $0FB0 
-    LDA.W #InstList_RidleyCeres_FacingLeft_FlyUp_StartMainAI 
-    JSR.W SetRidleyInstList 
+    LDA.W #InstList_RidleyCeres_FacingLeft_FlyUp_StartMainAI : JSR.W SetRidleyInstList 
     LDA.W #$0008 : STA.L $7E7810 
     STA.L $7E7812 
     JSR.W SetAllTailPartsToMoving 
@@ -3786,8 +3774,7 @@ Function_RidleyCeres_StartFireballing:
     BPL .return 
     LDA.W $0F7A : STA.L $7E782E 
     LDA.W $0F7E : STA.L $7E7830 
-    LDA.W #InstList_Ridley_FacingLeft_Fireballing_0 
-    JSR.W SetRidleyInstList 
+    LDA.W #InstList_Ridley_FacingLeft_Fireballing_0 : JSR.W SetRidleyInstList 
     LDA.W #Function_RidleyCeres_Fireballing : STA.W $0FA8 
     LDA.W #$00E0 : STA.L $7E7800 
     JMP.W Function_RidleyCeres_Fireballing 
@@ -3832,8 +3819,7 @@ Function_RidleyCeres_Fireballing:
 
 
 Function_RidleyCeres_StartLunging:
-    LDA.W #InstList_RidleyCeres_FacingLeft_Lunging 
-    JSR.W SetRidleyInstList 
+    LDA.W #InstList_RidleyCeres_FacingLeft_Lunging : JSR.W SetRidleyInstList 
     LDA.W #Function_RidleyCeres_Lunging : STA.W $0FA8 
     LDA.W #$0040 : STA.W $0FB2 ; fallthrough to Function_RidleyCeres_Lunging
 
@@ -4086,8 +4072,7 @@ ExecuteCeresRidleyGetawayCutscene:
     STA.B $B3 
     LDA.L $7E8028 : SEC : SBC.W CeresRidleyGetawayXVelocityTable,X : STA.L $7E8028 
     STA.B $B1 
-    LDA.L $7E8020 
-    JSR.W RidleyCeres_UpdateBG12Palette5 
+    LDA.L $7E8020 : JSR.W RidleyCeres_UpdateBG12Palette5 
     LDA.L $7E7814 : CLC : ADC.W #$0030 : STA.L $7E7814 
     JSR.W HandleCeresRidleyMode7TransformationMatrix 
     JSR.W AnimateMode7BabyMetroidCapsuleDuringGetaway 
@@ -5056,8 +5041,7 @@ FlyTowardTargetXPositionAndSamusYPosition:
     LDA.L $7E7820 
     DEC A 
     BEQ .returnSamusNotSpinJumping 
-    LDA.W #InstList_Ridley_FacingLeft_Fireballing_0 
-    JSR.W SetRidleyInstList 
+    LDA.W #InstList_Ridley_FacingLeft_Fireballing_0 : JSR.W SetRidleyInstList 
 
 .returnSamusNotSpinJumping:
     CLC 
@@ -5166,8 +5150,7 @@ Function_Ridley_Tailbouncing_AttemptToGrabSamus:
     LDA.L $7E7820 
     DEC A 
     BEQ .RidleyTurning 
-    LDA.W #InstList_Ridley_FacingLeft_Fireballing_0 
-    JSR.W SetRidleyInstList 
+    LDA.W #InstList_Ridley_FacingLeft_Fireballing_0 : JSR.W SetRidleyInstList 
 
 .RidleyTurning:
     LDA.W #$0000 
@@ -5810,8 +5793,7 @@ Function_RidleyCeres_DropBabyMetroid:
 Function_RidleyCeres_PickupBabyMetroidDelay:
     DEC.W $0FB2 
     BPL Function_RidleyCeres_PickupBabyMetroid_return 
-    LDA.W #InstList_RidleyCeres_FacingLeft_ExtendLegs 
-    JSR.W SetRidleyInstList 
+    LDA.W #InstList_RidleyCeres_FacingLeft_ExtendLegs : JSR.W SetRidleyInstList 
     LDA.W #Function_RidleyCeres_PickupBabyMetroid : STA.W $0FA8 ; fallthrough to Function_RidleyCeres_PickupBabyMetroid
 
 Function_RidleyCeres_PickupBabyMetroid:
@@ -5911,8 +5893,7 @@ BabyMetroidDropped:
 
 
 DrawBabyMetroid:
-    LDA.W #$7806 
-    JSR.W GetBabyMetroidSpritemapPointerFromInstList 
+    LDA.W #$7806 : JSR.W GetBabyMetroidSpritemapPointerFromInstList 
     LDA.L $7E8804 : STA.B $12 
     LDA.L $7E8808 : STA.B $14 
     STZ.B $16 
@@ -6519,8 +6500,7 @@ Function_Ridley_MoveToDeathSpot:
 
 
 Function_Ridley_FinalRoar:
-    LDA.W #InstList_Ridley_FacingLeft_DeathRoar 
-    JSR.W SetRidleyInstList 
+    LDA.W #InstList_Ridley_FacingLeft_DeathRoar : JSR.W SetRidleyInstList 
     LDA.W #Function_Ridley_MoveToDeathSpot_Wait_LowerAcid : STA.W $0FA8 
     LDA.W #$0020 : STA.W $0FB2 
 
@@ -6593,8 +6573,7 @@ MoveRidleyToDeathSpot:
     STY.B $14 
     LDX.W #$0000 
     LDY.W #$0000 
-    LDA.W #$0010 
-    JSR.W AccelerateRidleyTowardDesiredXYPosition 
+    LDA.W #$0010 : JSR.W AccelerateRidleyTowardDesiredXYPosition 
     LDA.W #$0004 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
@@ -7377,8 +7356,7 @@ HandleTailFlingWhileSwingingInCircles:
     LDA.W $2004 : BEQ .return 
     LDA.W $201C : AND.W $201A 
     BPL .return 
-    LDA.W #$0001 
-    JSR.W TargetAnAngleTowardMissileOrSamus 
+    LDA.W #$0001 : JSR.W TargetAnAngleTowardMissileOrSamus 
     PLA 
     STZ.W $2004 
 

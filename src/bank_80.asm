@@ -79,8 +79,7 @@ SendAPUData:
 
 
 .uploadDataBlock:
-    LDA.W $0000,Y 
-    JSR.W IncY_OverflowCheck ; Data = [[Y++]]
+    LDA.W $0000,Y : JSR.W IncY_OverflowCheck ; Data = [[Y++]]
     XBA 
     LDA.B #$00 ; Index = 0
     BRA .uploadData 
@@ -88,8 +87,7 @@ SendAPUData:
 
 .loopNextData:
     XBA 
-    LDA.W $0000,Y 
-    JSR.W IncY_OverflowCheck ; Data = [[Y++]]
+    LDA.W $0000,Y : JSR.W IncY_OverflowCheck ; Data = [[Y++]]
     XBA 
 
 .wait:
@@ -115,11 +113,9 @@ SendAPUData:
 .processDataBlock:
     PHA 
     REP #$20 
-    LDA.W $0000,Y 
-    JSR.W IncYTwice_OverflowCheck ; X = [[Y]] (block size)
+    LDA.W $0000,Y : JSR.W IncYTwice_OverflowCheck ; X = [[Y]] (block size)
     TAX ; Y += 2
-    LDA.W $0000,Y 
-    JSR.W IncYTwice_OverflowCheck ; APU IO 2..3 = [[Y]] (destination address)
+    LDA.W $0000,Y : JSR.W IncYTwice_OverflowCheck ; APU IO 2..3 = [[Y]] (destination address)
     STA.L $002142 ; Y += 2
     SEP #$20 
     CPX.W #$0001 
@@ -3079,8 +3075,7 @@ InitialiseHUD_GameLoading:
 .maxSuperMissiles:
     LDA.W $09CC : BEQ .maxPowerBombs 
     LDX.W #$009C 
-    LDA.W $09CA 
-    JSR.W DrawTwoHUDDigits 
+    LDA.W $09CA : JSR.W DrawTwoHUDDigits 
 
 .maxPowerBombs:
     LDA.W $09D0 : BEQ .highlight 
@@ -3161,8 +3156,7 @@ HandleHUDTilemap_PausedAndRunning:
 .drawEtanksDigits:
     LDA.W #Tilemap_HUDDigits_health : STA.B $00 
     LDX.W #$008C 
-    LDA.B $12 
-    JSR.W DrawTwoHUDDigits 
+    LDA.B $12 : JSR.W DrawTwoHUDDigits 
 
 .handleSamusMissiles:
     LDA.W #Tilemap_HUDDigits_ammo : STA.B $00 
@@ -3183,14 +3177,12 @@ HandleHUDTilemap_PausedAndRunning:
     LDX.W #$009C 
     LDA.W $05CF : BIT.W #$1F40 
     BNE .debugSuperMissiles 
-    LDA.W $0A0A 
-    JSR.W DrawTwoHUDDigits 
+    LDA.W $0A0A : JSR.W DrawTwoHUDDigits 
     BRA .handlePowerBombs 
 
 
 .debugSuperMissiles:
-    LDA.W $0A0A 
-    JSR.W DrawThreeHUDDigits 
+    LDA.W $0A0A : JSR.W DrawThreeHUDDigits 
 
 .handlePowerBombs:
     LDA.W $09D0 : BEQ .handleHighlighter 
@@ -3229,8 +3221,7 @@ HandleHUDTilemap_PausedAndRunning:
     LDX.W #$1000 
 
 .highlight:
-    LDA.W $0A04 
-    JSR.W ToggleHUDItemHighlight 
+    LDA.W $0A04 : JSR.W ToggleHUDItemHighlight 
     LDX.W $0330 
     LDA.W #$00C0 : STA.B $D0,X 
     INX #2
@@ -3505,8 +3496,7 @@ DecrementTimer:
 DrawTimer:
     PHB : PHK : PLB 
     LDY.W #Spritemap_Timer_TIME 
-    LDA.W #$0000 
-    JSR.W DrawTimerSpritemap 
+    LDA.W #$0000 : JSR.W DrawTimerSpritemap 
     LDA.W $0947 
     LDX.W #$FFE4 
     JSR.W DrawTwoTimerDigits 
@@ -3526,8 +3516,7 @@ DrawTwoTimerDigits:
     LSR #3
     TAX 
     LDY.W TimerDigitsSpritemapPointers,X 
-    LDA.B $03,S 
-    JSR.W DrawTimerSpritemap 
+    LDA.B $03,S : JSR.W DrawTimerSpritemap 
     PLA 
     AND.W #$000F 
     ASL A 

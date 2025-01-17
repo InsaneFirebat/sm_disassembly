@@ -4964,12 +4964,10 @@ Setup_MapStation:
     BNE .setInstruction 
     LDX.W $1C87,Y 
     INX #2
-    LDA.W #$B047 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$B047 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C87,Y 
     DEX #4
-    LDA.W #$B048 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$B048 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -5024,12 +5022,10 @@ Setup_EnergyStation:
     STA.L $7F0002,X 
     LDX.W $1C87,Y 
     INX #2
-    LDA.W #$B049 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$B049 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C87,Y 
     DEX #2
-    LDA.W #$B04A 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$B04A : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -5040,12 +5036,10 @@ Setup_MissileStation:
     STA.L $7F0002,X 
     LDX.W $1C87,Y 
     INX #2
-    LDA.W #$B04B 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$B04B : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C87,Y 
     DEX #2
-    LDA.W #$B04C 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$B04C : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -5146,29 +5140,25 @@ DeletePLM:
 
 Setup_RightwardsExtension:
     LDX.W $1C87,Y 
-    LDA.W #$50FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$50FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     BRA DeletePLM 
 
 
 Setup_LeftwardsExtension:
     LDX.W $1C87,Y 
-    LDA.W #$5001 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$5001 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     BRA DeletePLM 
 
 
 Setup_DownwardsExtension:
     LDX.W $1C87,Y 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     BRA DeletePLM 
 
 
 Setup_UpwardsExtension:
     LDX.W $1C87,Y 
-    LDA.W #$D001 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D001 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     BRA DeletePLM 
 
 
@@ -5179,16 +5169,14 @@ Skip_Debug_DrawInstruction_for_ScrollPLM:
 
 Setup_ScrollPLM:
     LDX.W $1C87,Y 
-    LDA.W #$3046 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$3046 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W #$0000 : STA.W $1E17,Y 
     BRA Skip_Debug_DrawInstruction_for_ScrollPLM 
 
 
 Setup_SolidScrollPLM:
     LDX.W $1C87,Y 
-    LDA.W #$B046 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$B046 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W #$0000 : STA.W $1E17,Y 
     BRA Skip_Debug_DrawInstruction_for_ScrollPLM 
 
@@ -5534,27 +5522,22 @@ Setup_CollisionReaction_SaveStationTrigger:
 
 Setup_SaveStation:
     LDX.W $1C87,Y 
-    LDA.W #$B04D 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$B04D : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
 Setup_MotherBrainsRoomEscapeDoor:
     LDX.W $1C87,Y 
-    LDA.W #$9001 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$9001 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -6266,16 +6249,13 @@ PLMEntries_Reaction_CrittersEscapeBlock:
 
 Setup_CrittersEscapeBlock:
     LDX.W $1C87,Y 
-    LDA.W #$C04F 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C04F : JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -6386,8 +6366,7 @@ UNUSED_Setup_84BAD1:
     ORA.W #$8000 
     STA.W $1DC7,Y 
     LDX.W $1C87,Y 
-    LDA.W #$C044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -7923,15 +7902,13 @@ Setup_GreyDoor:
     STA.W $1E17,Y 
     LDA.W $1DC7,Y : AND.W #$83FF : STA.W $1DC7,Y 
     LDX.W $1C87,Y 
-    LDA.W #$C044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
 Setup_ColoredDoor:
     LDX.W $1C87,Y 
-    LDA.W #$C044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -9223,8 +9200,7 @@ PLMEntries_CrumbleLowerNorfairChozoRoomPlug:
 if !FEATURE_KEEP_UNREFERENCED
 Setup_UnusedShotBlock:
     LDX.W $1C87,Y 
-    LDA.W #$C000 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C000 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -9238,8 +9214,7 @@ PLMEntries_UnusedShotBlock:
 
 Setup_UnusedGrappleBlock:
     LDX.W $1C87,Y 
-    LDA.W #$E000 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$E000 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -9283,8 +9258,7 @@ PreInstruction_DeletePLM_SpawnTriggerBlockIf_4_8_IsBlankAir:
     LDA.L $7F0002,X 
     CMP.W #$00FF 
     BNE .return 
-    LDA.W #$B083 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$B083 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     STZ.W $1C37,X 
 
@@ -9449,14 +9423,10 @@ Instruction_PLM_GotoY_IfRoomArgGreaterThanY:
 
 Inst_PLM_Spawn4MotherBrainsGlassShatteringShardsWithArgs:
     LDA.W #$002E : JSL.L QueueSound_Lib3_Max15 
-    LDA.W $0000,Y 
-    JSR.W Spawn4MotherBrainsGlassShatteringShardsWithArgA 
-    LDA.W $0002,Y 
-    JSR.W Spawn4MotherBrainsGlassShatteringShardsWithArgA 
-    LDA.W $0004,Y 
-    JSR.W Spawn4MotherBrainsGlassShatteringShardsWithArgA 
-    LDA.W $0006,Y 
-    JSR.W Spawn4MotherBrainsGlassShatteringShardsWithArgA 
+    LDA.W $0000,Y : JSR.W Spawn4MotherBrainsGlassShatteringShardsWithArgA 
+    LDA.W $0002,Y : JSR.W Spawn4MotherBrainsGlassShatteringShardsWithArgA 
+    LDA.W $0004,Y : JSR.W Spawn4MotherBrainsGlassShatteringShardsWithArgA 
+    LDA.W $0006,Y : JSR.W Spawn4MotherBrainsGlassShatteringShardsWithArgA 
     TYA 
     CLC : ADC.W #$0008 : TAY 
     RTS 
@@ -9533,11 +9503,9 @@ InstList_PLM_ClearSlopeAccessForWreckedShipChozo:
 Instruction_PLM_TransformWreckedShipChozosSpikesIntoSlopes:
     PHX 
     LDX.W #$1608 
-    LDA.W #$1012 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$1012 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W #$160A 
-    LDA.W #$1013 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$1013 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     PLX 
     RTS 
 
@@ -9550,11 +9518,9 @@ InstList_PLM_BlockSlopeAccessForWreckedShipChozo:
 Instruction_PLM_RevertWreckedShipChozosSlopesIntoSpikes:
     PHX 
     LDX.W #$1608 
-    LDA.W #$A000 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A000 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W #$160A 
-    LDA.W #$A000 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A000 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     PLX 
     RTS 
 
@@ -9813,8 +9779,7 @@ Setup_BombTorizosCrumblingChozo:
 
 Setup_WreckedShipChozoHand:
     LDX.W $1C87,Y 
-    LDA.W #$B080 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$B080 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -9852,41 +9817,34 @@ Setup_Collision_WreckedShipChozoHandTrigger:
 if !FEATURE_KEEP_UNREFERENCED
 Setup_UnusedWreckedShip3x4ChozoBombBlock:
     LDX.W $1C87,Y 
-    LDA.W #$0044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$0044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
 Setup_UnusedAlternateLowerNorfairChozoHand:
     LDX.W $1C87,Y 
-    LDA.W #$8044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$8044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
 Setup_UnusedLowerNorfair2x2ChozoShotBlock:
     LDX.W $1C87,Y 
-    LDA.W #$8044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$8044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C87,Y 
     INX #2
-    LDA.W #$50FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$50FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y : CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y : CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
     INX #2
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_NoobTube:
     LDX.W $1C87,Y 
-    LDA.W #$8044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$8044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -10049,8 +10007,7 @@ Instruction_PLM_MovePLMUp1Row_MakeABlueDoorFacingRight:
     PHX 
     LDA.W $1C87,X : SEC : SBC.W $07A5 : SBC.W $07A5 : STA.W $1C87,X 
     TAX 
-    LDA.W #$C041 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C041 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     BRA Create3BlockVerticalExtension 
 
 
@@ -10058,22 +10015,18 @@ Instruction_PLM_MovePLMUp1Row_MakeABlueDoorFacingLeft:
     PHX 
     LDA.W $1C87,X : SEC : SBC.W $07A5 : SBC.W $07A5 : STA.W $1C87,X 
     TAX 
-    LDA.W #$C040 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C040 : JSR.W Write_Level_Data_Block_Type_and_BTS 
 
 Create3BlockVerticalExtension:
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FE 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FE : JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FD 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FD : JSR.W Write_Level_Data_Block_Type_and_BTS 
     PLX 
     RTS 
 
@@ -10380,11 +10333,9 @@ Setup_EyeDoorEye:
     AND.W $05E7 
     BNE .return 
     LDX.W $1C87,Y 
-    LDA.W #$C044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y : CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
 
 .return:
     RTS 
@@ -10398,8 +10349,7 @@ Setup_EyeDoor:
     AND.W $05E7 
     BNE .return 
     LDX.W $1C87,Y 
-    LDA.W #$A000 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A000 : JSR.W Write_Level_Data_Block_Type_and_BTS 
 
 .return:
     RTS 
@@ -10564,12 +10514,10 @@ Instruction_PLM_DamageDraygonTurret:
     PLX 
     LDA.W $1C87,X 
     TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     RTS 
 
@@ -10582,18 +10530,14 @@ Instruction_PLM_DamageDraygonTurretFacingDownRight:
     PLX 
     LDA.W $1C87,X 
     TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     INX #2
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     LDA.W $1C87,X : CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     INX #2
-    LDA.W #$0000 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$0000 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     RTS 
 
@@ -10606,18 +10550,14 @@ Instruction_PLM_DamageDraygonTurretFacingUpRight:
     PLX 
     LDA.W $1C87,X 
     TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     INX #2
-    LDA.W #$0000 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$0000 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     LDA.W $1C87,X : CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     INX #2
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     RTS 
 
@@ -10630,12 +10570,10 @@ Instruction_PLM_DamageDraygonTurret_duplicate:
     PLX 
     LDA.W $1C87,X 
     TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     RTS 
 
@@ -10648,18 +10586,14 @@ Instruction_PLM_DamageDraygonTurretFacingDownLeft:
     PLX 
     LDA.W $1C87,X 
     TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     DEX #2
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     LDA.W $1C87,X : CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     DEX #2
-    LDA.W #$0000 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$0000 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     RTS 
 
@@ -10672,18 +10606,14 @@ Instruction_PLM_DamageDraygonTurretFacingUpLeft:
     PLX 
     LDA.W $1C87,X 
     TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     DEX #2
-    LDA.W #$0000 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$0000 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     LDA.W $1C87,X : CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     DEX #2
-    LDA.W #$A003 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$A003 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     RTS 
 
@@ -10906,12 +10836,10 @@ Setup_DraygonCannonWithShieldFacingRight:
     LDA.W $1DC7,Y : STA.W $1E17,Y 
     LDA.W #$0000 : STA.W $1DC7,Y 
     LDX.W $1C87,Y 
-    LDA.W #$C044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -10920,17 +10848,13 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpRight_84DEB9:
     LDA.W $1DC7,Y : STA.W $1E17,Y 
     LDA.W #$0000 : STA.W $1DC7,Y 
     LDX.W $1C87,Y 
-    LDA.W #$C044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     INX #2
-    LDA.W #$50FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$50FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y : CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     INX #2
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -10939,12 +10863,10 @@ Setup_DraygonCannonWithShieldFacingLeft:
     LDA.W $1DC7,Y : STA.W $1E17,Y 
     LDA.W #$0000 : STA.W $1DC7,Y 
     LDX.W $1C87,Y 
-    LDA.W #$C044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 
 
@@ -10953,17 +10875,13 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpLeft_84DF15:
     LDA.W $1DC7,Y : STA.W $1E17,Y 
     LDA.W #$0000 : STA.W $1DC7,Y 
     LDX.W $1C87,Y 
-    LDA.W #$C044 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C044 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     DEX #2
-    LDA.W #$5001 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$5001 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y : CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     DEX #2
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$D0FF : JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -13097,8 +13015,7 @@ SetPLMItemGFXIndex_DoAbilitySetup:
 
 Setup_Ability:
     LDX.W $1C87,Y 
-    LDA.W #$0045 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$0045 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.L $7ED91A 
     INC A 
     STA.L $7ED91A 
@@ -13126,8 +13043,7 @@ SetPLMItemGFXINdex_DoAbilityShotBlockSetup:
 
 Setup_AbilityShotBlock:
     LDX.W $1C87,Y 
-    LDA.W #$C045 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    LDA.W #$C045 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C87,Y 
     LDA.L $7F0002,X : STA.W $1E17,Y 
     LDA.L $7ED91A 
