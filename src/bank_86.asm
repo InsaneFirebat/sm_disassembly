@@ -189,8 +189,7 @@ Process_Enemy_Projectile:
     STA.W $1B8F,X 
     LDA.W $0002,Y : STA.W $1B6B,X 
     TYA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $1B47,X 
 
 .return:
@@ -249,8 +248,7 @@ UNUSED_Inst_EnemyProjectile_CallExternalFuncWith2ByteParam:
     PLY 
     LDX.W $1991 
     TYA 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     TAY 
     RTS 
 
@@ -279,8 +277,7 @@ Instruction_EnemyProjectile_GotoY_Y:
 .highByte:
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     TAY 
     RTS 
 
@@ -319,8 +316,7 @@ Instruction_MoveRandomlyWithinXRadius_YRadius:
     JSL.L GenerateRandomNumber 
     SEP #$20 
     AND.W $0000,Y 
-    SEC 
-    SBC.W $0001,Y 
+    SEC : SBC.W $0001,Y 
     REP #$20 
     BMI .loopX 
     AND.W #$00FF 
@@ -330,16 +326,14 @@ Instruction_MoveRandomlyWithinXRadius_YRadius:
     INC A 
 
 .Xpos:
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
 
 .loopY:
     JSL.L GenerateRandomNumber 
     SEP #$20 
     AND.W $0002,Y 
-    SEC 
-    SBC.W $0003,Y 
+    SEC : SBC.W $0003,Y 
     REP #$20 
     BMI .loopY 
     AND.W #$00FF 
@@ -349,8 +343,7 @@ Instruction_MoveRandomlyWithinXRadius_YRadius:
     INC A 
 
 .Ypos:
-    CLC 
-    ADC.W $1A93,X 
+    CLC : ADC.W $1A93,X 
     STA.W $1A93,X 
     INY #4
     RTS 
@@ -450,12 +443,10 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Instruction_EnemyProjectile_CalculateDirectionTowardsSamus:
     PHY 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $1A4B,X 
+    SEC : SBC.W $1A4B,X 
     STA.B $12 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $1A93,X 
+    SEC : SBC.W $1A93,X 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     ASL A 
@@ -488,8 +479,7 @@ UNUSED_Inst_EnemyProj_WriteColorsFromYToColorIndex_8682D5:
     BPL .loop 
     PLX 
     PLA 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     TAY 
     RTS 
 
@@ -666,20 +656,15 @@ Draw_EnemyProjectile:
     AND.W #$FF00 
     STA.B $1C 
     LDA.W $1A4B,X 
-    SEC 
-    SBC.W $0911 
-    CLC 
-    ADC.B $24 
+    SEC : SBC.W $0911 
+    CLC : ADC.B $24 
     STA.B $14 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     BIT.W #$FE00 
     BNE .return 
     LDA.W $1A93,X 
-    SEC 
-    SBC.W $0915 
-    CLC 
-    ADC.B $22 
+    SEC : SBC.W $0915 
+    CLC : ADC.B $22 
     STA.B $12 
     BIT.W #$FF00 
     BNE + 
@@ -689,8 +674,7 @@ Draw_EnemyProjectile:
     BRA .return 
 
 
-  + CLC 
-    ADC.W #$0080 
+  + CLC : ADC.W #$0080 
     BIT.W #$FE00 
     BNE .return 
     PHX 
@@ -791,8 +775,7 @@ EnemyProjectile_BlockCollision_HorizontalExtension:
 .highByte:
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.W $0DC4 
+  + CLC : ADC.W $0DC4 
     STA.W $0DC4 
     ASL A 
     TAX 
@@ -802,8 +785,7 @@ EnemyProjectile_BlockCollision_HorizontalExtension:
     LSR #3
     TAX 
     PLA 
-    SEC 
-    SBC.W #$0003 
+    SEC : SBC.W #$0003 
     PHA 
 
 .return:
@@ -822,8 +804,7 @@ EnemyProjectile_BlockCollision_VerticalExtension:
     LDA.W $0DC4 
 
 .loop:
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     DEC.W $0DD4 
     BNE .loop 
     JMP.W .merge 
@@ -835,8 +816,7 @@ EnemyProjectile_BlockCollision_VerticalExtension:
     LDA.W $0DC4 
 
 .loop2:
-    SEC 
-    SBC.W $07A5 
+    SEC : SBC.W $07A5 
     INC.W $0DD4 
     BNE .loop2 
 
@@ -850,8 +830,7 @@ EnemyProjectile_BlockCollision_VerticalExtension:
     LSR #3
     TAX 
     PLA 
-    SEC 
-    SBC.W #$0003 
+    SEC : SBC.W #$0003 
     PHA 
 
 .return:
@@ -917,8 +896,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
     LDA.B $20 
     BNE .multiBlock 
     LDA.W $1A93,Y 
-    SEC 
-    SBC.B $1E 
+    SEC : SBC.B $1E 
     AND.W #$0008 
     BNE + 
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X 
@@ -928,8 +906,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
     EOR.W #$0002 
     TAX 
     LDA.W $1A93,Y 
-    CLC 
-    ADC.B $1E 
+    CLC : ADC.B $1E 
     DEC A 
     AND.W #$0008 
     BEQ .returnCollision 
@@ -949,8 +926,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
     LDA.B $1A 
     BNE + 
     LDA.W $1A93,Y 
-    CLC 
-    ADC.B $1E 
+    CLC : ADC.B $1E 
     DEC A 
     AND.W #$0008 
     BNE .bothHalves 
@@ -962,8 +938,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
   + CMP.B $20 
     BNE .bothHalves 
     LDA.W $1A93,Y 
-    SEC 
-    SBC.B $1E 
+    SEC : SBC.B $1E 
     AND.W #$0008 
     BNE .checkBottomHalf 
 
@@ -994,8 +969,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
     BIT.B $14 
     BMI + 
     AND.W #$FFF8 
-    SEC 
-    SBC.B $1C 
+    SEC : SBC.B $1C 
     STA.W $1A4B,X 
     SEC 
     RTS 
@@ -1027,8 +1001,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
     LDA.B $20 
     BNE .multiBlock 
     LDA.W $1A4B,Y 
-    SEC 
-    SBC.B $1C 
+    SEC : SBC.B $1C 
     AND.W #$0008 
     BNE + 
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X 
@@ -1038,8 +1011,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
     EOR.W #$0001 
     TAX 
     LDA.W $1A4B,Y 
-    CLC 
-    ADC.B $1C 
+    CLC : ADC.B $1C 
     DEC A 
     AND.W #$0008 
     BEQ .returnNoCollision 
@@ -1060,8 +1032,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
     LDA.B $1A 
     BNE + 
     LDA.W $1A4B,Y 
-    CLC 
-    ADC.B $1C 
+    CLC : ADC.B $1C 
     DEC A 
     AND.W #$0008 
     BNE .checkBothHalves 
@@ -1073,8 +1044,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
   + CMP.B $20 
     BNE .checkBothHalves 
     LDA.W $1A4B,Y 
-    SEC 
-    SBC.B $1C 
+    SEC : SBC.B $1C 
     AND.W #$0008 
     BNE .checkLeftHalf 
 
@@ -1105,8 +1075,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
     BIT.B $14 
     BMI + 
     AND.W #$FFF8 
-    SEC 
-    SBC.B $1E 
+    SEC : SBC.B $1E 
     STA.W $1A93,X 
     SEC 
     RTS 
@@ -1176,8 +1145,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
 
 
   + LDA.B $18 
-    CLC 
-    ADC.B $1E 
+    CLC : ADC.B $1E 
     DEC A 
     AND.W #$000F 
     STA.W $0DD4 
@@ -1198,20 +1166,17 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.L SlopeDefinitions_SlopeTopXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BEQ .setYpos 
     BPL .returnNoCollision 
 
 .setYpos:
-    CLC 
-    ADC.B $18 
+    CLC : ADC.B $18 
     STA.W $1A93,Y 
     LDA.W #$FFFF : STA.W $1A6F,Y 
     SEC 
@@ -1238,8 +1203,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
 
 
   + LDA.B $18 
-    SEC 
-    SBC.B $1E 
+    SEC : SBC.B $1E 
     AND.W #$000F 
     EOR.W #$000F 
     STA.W $0DD4 
@@ -1260,13 +1224,11 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.L SlopeDefinitions_SlopeTopXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BEQ .Ypos 
     BPL .noCollisionReturn 
@@ -1274,8 +1236,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
 .Ypos:
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.B $18 
+    CLC : ADC.B $18 
     STA.W $1A93,Y 
     LDA.W #$0000 : STA.W $1A6F,Y 
     SEC 
@@ -1367,50 +1328,42 @@ Move_EnemyProjectile_Horizontally:
     AND.W #$00FF 
     STA.B $1C 
     LDA.W $1A93,X 
-    SEC 
-    SBC.B $1E 
+    SEC : SBC.B $1E 
     AND.W #$FFF0 
     STA.B $1A 
     LDA.W $1A93,X 
-    CLC 
-    ADC.B $1E 
+    CLC : ADC.B $1E 
     DEC A 
-    SEC 
-    SBC.B $1A 
+    SEC : SBC.B $1A 
     LSR #4
     STA.B $1A 
     STA.B $20 
     LDA.W $1A93,X 
-    SEC 
-    SBC.B $1E 
+    SEC : SBC.B $1E 
     LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $1A27,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $16 
     LDA.W $1A4B,X 
     ADC.B $14 
     STA.B $18 
     BIT.B $14 
     BMI .lessThanZero 
-    CLC 
-    ADC.B $1C 
+    CLC : ADC.B $1C 
     DEC A 
     BRA + 
 
 
 .lessThanZero:
-    SEC 
-    SBC.B $1C 
+    SEC : SBC.B $1C 
 
   + STA.B $22 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     TAX 
 
@@ -1418,8 +1371,7 @@ Move_EnemyProjectile_Horizontally:
     JSR.W EnemyProjectile_BlockReaction_Horizontal 
     BCS .solid 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     DEC.B $1A 
@@ -1438,8 +1390,7 @@ Move_EnemyProjectile_Horizontally:
     BIT.B $14 
     BMI .movingLeft 
     AND.W #$FFF0 
-    SEC 
-    SBC.B $1C 
+    SEC : SBC.B $1C 
     CMP.W $1A4B,X 
     BCC .returnCollision 
     STA.W $1A4B,X 
@@ -1480,37 +1431,31 @@ Move_EnemyProjectile_Vertically:
     AND.W #$00FF 
     STA.B $1C 
     LDA.W $1A4B,X 
-    SEC 
-    SBC.B $1C 
+    SEC : SBC.B $1C 
     AND.W #$FFF0 
     STA.B $1A 
     LDA.W $1A4B,X 
-    CLC 
-    ADC.B $1C 
+    CLC : ADC.B $1C 
     DEC A 
-    SEC 
-    SBC.B $1A 
+    SEC : SBC.B $1A 
     LSR #4
     STA.B $1A 
     STA.B $20 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $16 
     LDA.W $1A93,X 
     ADC.B $14 
     STA.B $18 
     BIT.B $14 
     BMI .lessThanZero 
-    CLC 
-    ADC.B $1E 
+    CLC : ADC.B $1E 
     DEC A 
     BRA + 
 
 
 .lessThanZero:
-    SEC 
-    SBC.B $1E 
+    SEC : SBC.B $1E 
 
   + STA.B $22 
     LSR #4
@@ -1519,11 +1464,9 @@ Move_EnemyProjectile_Vertically:
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $1A4B,X 
-    SEC 
-    SBC.B $1C 
+    SEC : SBC.B $1C 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     TAX 
 
@@ -1547,8 +1490,7 @@ Move_EnemyProjectile_Vertically:
     BIT.B $14 
     BMI .movingUp 
     AND.W #$FFF0 
-    SEC 
-    SBC.B $1E 
+    SEC : SBC.B $1E 
     CMP.W $1A93,X 
     BCC .returnCollision 
     STA.W $1A93,X 
@@ -1578,18 +1520,15 @@ UNUSED_EnemyProjectile_868A39:
     JSL.L GenerateRandomNumber 
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$000C 
+    CLC : ADC.W #$000C 
     STA.W $1A93,Y 
     ADC.W #$0048 
     STA.W $19DF,Y 
     LDA.W $0FAE,X : STA.W $1ADB,Y 
     LDA.W $05E5 
     AND.W #$001F 
-    SEC 
-    SBC.W #$0010 
-    CLC 
-    ADC.W $0F7A,X 
+    SEC : SBC.W #$0010 
+    CLC : ADC.W $0F7A,X 
     STA.W $1A4B,Y 
     LDA.W $1ADC,Y 
     AND.W #$0006 
@@ -1620,8 +1559,7 @@ UNUSED_PreInstruction_EnemyProjectile_868A7D:
 .storeYVelocity:
     STA.B $12 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.B $12 
@@ -1657,13 +1595,11 @@ InstList_MetalSkreeParticle:
 InitAI_EnemyProjectile_MetalSkreeParticle_DownRight:
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0000 
+    SEC : SBC.W #$0000 
     STA.W $1A93,Y 
     LDA.W #$FCFF : STA.W $1ADB,Y 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     STA.W $1A4B,Y 
     LDA.W #$0140 : STA.W $1AB7,Y 
     RTS 
@@ -1672,13 +1608,11 @@ InitAI_EnemyProjectile_MetalSkreeParticle_DownRight:
 InitAI_EnemyProjectile_MetalSkreeParticle_UpRight:
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0000 
+    SEC : SBC.W #$0000 
     STA.W $1A93,Y 
     LDA.W #$FBFF : STA.W $1ADB,Y 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     STA.W $1A4B,Y 
     LDA.W #$0060 : STA.W $1AB7,Y 
     RTS 
@@ -1687,13 +1621,11 @@ InitAI_EnemyProjectile_MetalSkreeParticle_UpRight:
 InitAI_EnemyProjectile_MetalSkreeParticle_DownLeft:
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0000 
+    SEC : SBC.W #$0000 
     STA.W $1A93,Y 
     LDA.W #$FCFF : STA.W $1ADB,Y 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$FFFA 
+    CLC : ADC.W #$FFFA 
     STA.W $1A4B,Y 
     LDA.W #$FEC0 : STA.W $1AB7,Y 
     RTS 
@@ -1702,13 +1634,11 @@ InitAI_EnemyProjectile_MetalSkreeParticle_DownLeft:
 InitAI_EnemyProjectile_MetalSkreeParticle_UpLeft:
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0000 
+    SEC : SBC.W #$0000 
     STA.W $1A93,Y 
     LDA.W #$FBFF : STA.W $1ADB,Y 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$FFFA 
+    CLC : ADC.W #$FFFA 
     STA.W $1A4B,Y 
     LDA.W #$FFA0 : STA.W $1AB7,Y 
     RTS 
@@ -1730,8 +1660,7 @@ PreInstruction_EnemyProjectile_MetalSkreeParticle:
 .storeXVelocity:
     STA.B $12 
     LDA.W $1A27,X 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A27,X 
     LDA.W $1A4B,X 
     ADC.B $12 
@@ -1751,15 +1680,13 @@ PreInstruction_EnemyProjectile_MetalSkreeParticle:
 .storeYVelocity:
     STA.B $12 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.B $12 
     STA.W $1A93,X 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0050 
+    CLC : ADC.W #$0050 
     STA.W $1ADB,X 
     JSR.W CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4 
     BEQ .return 
@@ -1980,8 +1907,7 @@ Delete_EnemyProjectile_IfPowerBombed:
     LSR A 
     STA.B $14 
     LDA.W $0CE2 
-    SEC 
-    SBC.W $1A4B,X 
+    SEC : SBC.W $1A4B,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -1989,8 +1915,7 @@ Delete_EnemyProjectile_IfPowerBombed:
   + CMP.B $12 
     BCS .return 
     LDA.W $0CE4 
-    SEC 
-    SBC.W $1A93,X 
+    SEC : SBC.W $1A93,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -2034,10 +1959,8 @@ PreInstruction_DraygonGoop_StuckToSamus:
     LDA.W $0AF6 : STA.W $1A4B,X 
     LDA.W $1B23,X 
     ASL #2
-    CLC 
-    ADC.W $0AFA 
-    SEC 
-    SBC.W #$000C 
+    CLC : ADC.W $0AFA 
+    SEC : SBC.W #$000C 
     STA.W $1A93,X 
     DEC.W $1AFF,X 
     LDA.W $1AFF,X 
@@ -2070,8 +1993,7 @@ PreInstruction_EnemyProjectile_DraygonGoop:
     JSR.W Delete_EnemyProjectile_IfPowerBombed 
     JSR.W Move_EnemyProjectile_AccordingToAngleAndSpeed 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $1A4B,X 
+    SEC : SBC.W $1A4B,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -2079,8 +2001,7 @@ PreInstruction_EnemyProjectile_DraygonGoop:
   + CMP.W #$0010 
     BPL .checkRoomBoundaries 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $1A93,X 
+    SEC : SBC.W $1A93,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -2144,18 +2065,15 @@ UNUSED_InitAI_EnemyProjectile_Draygon_868E7A:
 
 UNUSED_PreInstruction_EnemyProjectile_Draygon_868E99:
     LDA.W $0F7A 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.B $12 
     LDA.W $0F7E 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     EOR.W #$00FF 
     INC A 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     AND.W #$00FF 
     STA.L $7E97DC,X 
     STA.B $12 
@@ -2325,12 +2243,10 @@ InitAI_EnemyProjectile_CrocomiresProjectile:
     LDA.W #$FE00 : STA.W $1AB7,Y 
     LDA.W #$0001 : STA.W $1ADB,Y 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.W $1A4B,Y 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.W $1A93,Y 
     LDA.W #$0000 : STA.W $19DF,Y 
     STA.W $1A27,Y 
@@ -2351,8 +2267,7 @@ PreInstruction_EnemyProjectile_CrocomiresProjectile_Setup:
     JSR.W Move_EnemyProjectile_Horizontally 
     LDA.W #$0A00 : STA.W $19BB 
     LDA.W $19DF,X 
-    CLC 
-    ADC.W $1AB7,X 
+    CLC : ADC.W $1AB7,X 
     STA.W $19DF,X 
     LDA.W #$FFC0 : STA.B $12 
     PHX 
@@ -2400,8 +2315,7 @@ EnemyProjectile_CrocomireSpikeWallPieces:
 InitAI_EnemyProjectile_CrocomireSpikeWallPieces:
     REP #$20 
     TYA 
-    SEC 
-    SBC.W #$0014 
+    SEC : SBC.W #$0014 
     TAX 
     LDA.W .Ypositions,X : STA.W $1A93,Y 
     LDA.W #$0210 : STA.W $1A4B,Y 
@@ -2425,8 +2339,7 @@ PreInstruction_EnemyProjectile_CrocomireSpikeWallPieces:
     LDA.W $1AFF,X 
     CMP.W .maxAcceleration,X 
     BEQ .storeAcceleration 
-    CLC 
-    ADC.W .accelerationDelta,X 
+    CLC : ADC.W .accelerationDelta,X 
     CMP.W .maxAcceleration,X 
     BCC .storeAcceleration 
     LDA.W .maxAcceleration,X 
@@ -2435,8 +2348,7 @@ PreInstruction_EnemyProjectile_CrocomireSpikeWallPieces:
     STA.W $1AFF,X 
     SEP #$20 
     LDA.W $1B00,X 
-    CLC 
-    ADC.W $1AB7,X 
+    CLC : ADC.W $1AB7,X 
     STA.W $1AB7,X 
     LDA.W $1AB8,X 
     ADC.B #$00 
@@ -2447,8 +2359,7 @@ PreInstruction_EnemyProjectile_CrocomireSpikeWallPieces:
 .storeVelocity:
     STA.W $1AB8,X 
     LDA.W $1AB7,X 
-    CLC 
-    ADC.W $1A28,X 
+    CLC : ADC.W $1A28,X 
     STA.W $1A28,X 
     LDA.W $1AB8,X 
     ADC.W $1A4B,X 
@@ -2458,15 +2369,13 @@ PreInstruction_EnemyProjectile_CrocomireSpikeWallPieces:
     STA.W $1A4C,X 
     REP #$20 
     LDA.W $1B23,X 
-    CLC 
-    ADC.W #$3000 
+    CLC : ADC.W #$3000 
     STA.W $1B23,X 
     LDA.W $1ADB,X 
     ADC.W #$0000 
     STA.W $1ADB,X 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.W $1B23,X 
+    CLC : ADC.W $1B23,X 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.W $1ADB,X 
@@ -2526,8 +2435,7 @@ UNUSED_MoveEnemyProjectileUpFor6FramesThenDelete_86922F:
 
 UNUSED_PreInstruction_EnemyProjectile_MovingUp_869259:
     LDA.W $1A93,X 
-    SEC 
-    SBC.W $1ADB,X 
+    SEC : SBC.W $1ADB,X 
     STA.W $1A93,X 
     LDA.W $1AFF,X 
     DEC A 
@@ -2562,8 +2470,7 @@ InitAI_EnemyProjectile_CrocomireBridgeCrumbling:
     LDA.W #$0000 : STA.W $1AB7,Y 
     LDA.W $05E5 
     AND.W #$003F 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     STA.W $1ADB,Y 
     LDA.W #$0400 : STA.W $19BB,Y 
     PLX 
@@ -2576,8 +2483,7 @@ PreInstruction_EnemyProjectile_CrocomireBridgeCrumbling:
     JSR.W Move_EnemyProjectile_Vertically 
     BCS .delete 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     AND.W #$3FFF 
     STA.W $1ADB,X 
     PLP 
@@ -2593,8 +2499,7 @@ PreInstruction_EnemyProjectile_CrocomireBridgeCrumbling:
 Move_EnemyProjectile_AccordingToVelocity:
     LDA.W $1AB7,X 
     SEP #$20 
-    CLC 
-    ADC.W $1A28,X 
+    CLC : ADC.W $1A28,X 
     STA.W $1A28,X 
     REP #$20 
     AND.W #$FF00 
@@ -2608,8 +2513,7 @@ Move_EnemyProjectile_AccordingToVelocity:
 Move_EnemyProjectile_Vertically_AccordingToVelocity:
     LDA.W $1ADB,X 
     SEP #$20 
-    CLC 
-    ADC.W $1A70,X 
+    CLC : ADC.W $1A70,X 
     STA.W $1A70,X 
     REP #$20 
     AND.W #$FF00 
@@ -2625,8 +2529,7 @@ Move_EnemyProjectile_Vertically_AccordingToVelocity:
 Move_EnemyProjectile_Horizontally_AccordingToVelocity:
     LDA.W $1AB7,X 
     SEP #$20 
-    CLC 
-    ADC.W $1A28,X 
+    CLC : ADC.W $1A28,X 
     STA.W $1A28,X 
     REP #$20 
     AND.W #$FF00 
@@ -2667,12 +2570,10 @@ UNUSED_InitAI_EnemyProj_RidleysFireball_Afterburn_86934D:
     LDA.W #$0000 : STA.W $1AFF,Y 
     STA.W $1B23,Y 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$FFE3 
+    CLC : ADC.W #$FFE3 
     STA.W $1A4B,Y 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$FFDD 
+    CLC : ADC.W #$FFDD 
     STA.W $1A93,Y 
     LDA.W #$0A00 : STA.W $19BB,Y 
     LDA.W $0FB4 
@@ -2728,12 +2629,10 @@ InitAI_EnemyProjectile_RidleyFireball:
 .right:
     LDA.W #$0019 
 
-  + CLC 
-    ADC.W $0F7A 
+  + CLC : ADC.W $0F7A 
     STA.W $1A4B,Y 
     LDA.W #$FFD5 
-    CLC 
-    ADC.W $0F7E 
+    CLC : ADC.W $0F7E 
     STA.W $1A93,Y 
     LDA.W #$0A00 : STA.W $19BB,Y 
     LDA.L $7E7832 : STA.W $1AB7,Y 
@@ -3152,8 +3051,7 @@ InitAI_EnemyProjectile_CeresFallingTile:
 
 PreInstruction_EnemyProjectile_CeresFallingTile:
     LDA.W #$0010 
-    CLC 
-    ADC.W $1ADB,X 
+    CLC : ADC.W $1ADB,X 
     STA.W $1ADB,X 
     JSR.W Move_EnemyProjectile_Vertically 
     BCS .collision 
@@ -3164,8 +3062,7 @@ PreInstruction_EnemyProjectile_CeresFallingTile:
     STZ.W $1997,X 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.B $14 
     LDA.W #$0009 
     LDY.W #EnemyProjectile_MiscDust 
@@ -3317,8 +3214,7 @@ PhantoonDestroyableFlameInit_Type0_Casual:
     STA.W $1ADB,Y 
     LDA.W $0F7A : STA.W $1A4B,Y 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $1A93,Y 
     LDA.W #InstList_EnemyProj_PhantoonDestroyableFlame_Casual_Falling_0 : STA.W $1B47,Y 
     LDA.W $1BD7,Y 
@@ -3350,8 +3246,7 @@ PhantoonDestroyableFlameInit_Type2_Enraged:
     STA.W $1AFF,Y 
     LDA.W $0F7A : STA.W $1A4B,Y 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $1A93,Y 
     LDA.W #PreInst_EnemyProj_PhantoonDestroyableFlame_Enraged : STA.W $1A03,Y 
     PLP 
@@ -3399,8 +3294,7 @@ PhantoonDestroyableFlameInit_Type6_Spiral:
     STA.W $1AFF,Y 
     LDA.W $0F7A : STA.W $1A4B,Y 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1A93,Y 
     LDA.W #PreInst_EnemyProj_PhantoonDestroyableFlame_Spiral : STA.W $1A03,Y 
     PLP 
@@ -3424,14 +3318,11 @@ InitAI_EnemyProjectile_PhantoonStartingFlames:
     JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
     PLY 
     LDA.W $0F7A 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A4B,Y 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$0010 
-    CLC 
-    ADC.B $16 
+    CLC : ADC.W #$0010 
+    CLC : ADC.B $16 
     STA.W $1A93,Y 
     PLP 
     RTS 
@@ -3442,8 +3333,7 @@ PhantoonFlameAngles:
 
 PreInst_EnemyProj_PhantoonDestroyableFlame_Casual_Falling:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1ADB,X 
     JSR.W Move_EnemyProjectile_Vertically 
     BCC .return 
@@ -3456,8 +3346,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Casual_Falling:
     LDA.W #$0001 : STA.W $1B8F,X 
     LDA.W #$0008 : STA.W $1AFF,X 
     LDA.W $1A93,X 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $1A93,X 
 
 .return:
@@ -3474,8 +3363,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Casual_HitGround:
     LDA.W #InstList_EnemyProj_PhantoonDestroyableFlame_Casual_Bouncing : STA.W $1B47,X 
     LDA.W #$0001 : STA.W $1B8F,X 
     LDA.W $1A93,X 
-    SEC 
-    SBC.W #$0008 
+    SEC : SBC.W #$0008 
     STA.W $1A93,X 
     LDA.W #$FD00 : STA.W $1ADB,X 
     STZ.W $1AFF,X 
@@ -3495,8 +3383,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Casual_HitGround:
 
 PreInst_EnemyProj_PhantoonDestroyableFlame_Casual_Bouncing:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1ADB,X 
     JSR.W Move_EnemyProjectile_Vertically 
     BCC .noCollision 
@@ -3533,29 +3420,24 @@ RTS_869A44:
 
 PreInst_EnemyProj_PhantoonDestroyableFlame_Enraged:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $1ADB,X 
     LDA.W $1AFF,X 
-    CLC 
-    ADC.W $1AB7,X 
+    CLC : ADC.W $1AB7,X 
     AND.W #$00FF 
     STA.W $1AFF,X 
     TAY 
     LDA.W $1ADB,X 
     JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
     LDA.W $0F7A 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A4B,X 
     BMI + 
     CMP.W #$0100 
     BPL + 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$0010 
-    CLC 
-    ADC.B $16 
+    CLC : ADC.W #$0010 
+    CLC : ADC.B $16 
     STA.W $1A93,X 
     BMI + 
     CMP.W #$0100 
@@ -3581,16 +3463,14 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Rain:
 
 .falling:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1ADB,X 
     JSR.W Move_EnemyProjectile_Vertically 
     BCC .return 
     LDA.W #InstList_EnemyProj_PhantoonDestroyableFlame_Rain_Falling : STA.W $1B47,X 
     LDA.W #$0001 : STA.W $1B8F,X 
     LDA.W $1A93,X 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $1A93,X 
     LDA.W #RTS_869A44 : STA.W $1A03,X 
     LDA.W #$001D 
@@ -3602,29 +3482,24 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Rain:
 
 PreInst_EnemyProj_PhantoonDestroyableFlame_Spiral:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     STA.W $1ADB,X 
     LDA.W $1AFF,X 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     AND.W #$00FF 
     STA.W $1AFF,X 
     TAY 
     LDA.W $1ADB,X 
     JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
     LDA.W $0F7A 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A4B,X 
     BMI + 
     CMP.W #$0100 
     BPL + 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$0010 
-    CLC 
-    ADC.B $16 
+    CLC : ADC.W #$0010 
+    CLC : ADC.B $16 
     STA.W $1A93,X 
     BMI + 
     CMP.W #$0100 
@@ -3673,14 +3548,11 @@ PreInst_EnemyProjectile_PhantoonStartingFlames_Activated:
     LDA.W $1ADB,X 
     JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
     LDA.W $0F7A 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A4B,X 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$0010 
-    CLC 
-    ADC.B $16 
+    CLC : ADC.W #$0010 
+    CLC : ADC.B $16 
     STA.W $1A93,X 
     RTS 
 
@@ -3688,8 +3560,7 @@ PreInst_EnemyProjectile_PhantoonStartingFlames_Activated:
 .delete:
     LDA.W $0F7A : STA.W $1A4B,X 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1A93,X 
     LDA.W #$0001 : STA.W $1B8F,X 
     LDA.W #InstList_EnemyProjectile_PhantoonDestroyableFlame_Delete : STA.W $1B47,X 
@@ -3712,8 +3583,7 @@ Calculate_XY_ComponentsOf_RadiusA_AngleY:
 
 
 .greaterThan80:
-    SEC 
-    SBC.W #$0080 
+    SEC : SBC.W #$0080 
     AND.W #$00FF 
     ASL A 
     TAX 
@@ -3723,8 +3593,7 @@ Calculate_XY_ComponentsOf_RadiusA_AngleY:
 
   + STA.B $14 
     LDA.B $1A 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     AND.W #$00FF 
     CMP.W #$0080 
     BPL .stillGreaterThan80 
@@ -3735,8 +3604,7 @@ Calculate_XY_ComponentsOf_RadiusA_AngleY:
 
 
 .stillGreaterThan80:
-    SEC 
-    SBC.W #$0080 
+    SEC : SBC.W #$0080 
     AND.W #$00FF 
     ASL A 
     TAX 
@@ -3766,8 +3634,7 @@ DoSomeMathWithSineAndPi_869BF3:
     NOP #3
     REP #$20 
     LDA.W $4216 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     RTS 
 
 
@@ -3841,12 +3708,10 @@ InitAI_EnemyProjectile_KraidRockSpit:
     PHX 
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1A4B,Y 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0060 
+    SEC : SBC.W #$0060 
     STA.W $1A93,Y 
     LDA.W #$0000 : STA.W $1A6F,Y 
     STA.W $1A27,Y 
@@ -3867,8 +3732,7 @@ Instruction_EnemyProjectile_KraidCeilingRocks:
     LDA.W #$0000 : STA.W $1AB7,Y 
     LDA.W $05E5 
     AND.W #$003F 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     STA.W $1ADB,Y 
     LDA.W #$0600 : STA.W $19BB,Y 
     PLX 
@@ -3889,8 +3753,7 @@ Instruction_EnemyProjectile_KraidRisingRocks:
 
   + TXA 
     LDX.W $0E54 
-    CLC 
-    ADC.W $0F7A,X 
+    CLC : ADC.W $0F7A,X 
     STA.W $1A4B,Y 
     LDA.W #$01B0 : STA.W $1A93,Y 
     LDA.W #$0000 : STA.W $1A6F,Y 
@@ -3912,8 +3775,7 @@ PreInstruction_EnemyProjectile_KraidRocks:
     JSR.W Move_EnemyProjectile_Vertically 
     BCS .delete 
     LDA.W $1AB7,X 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $1AB7,X 
     CMP.W #$0100 
     BMI + 
@@ -3921,8 +3783,7 @@ PreInstruction_EnemyProjectile_KraidRocks:
 
   + STA.W $1AB7,X 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     STA.W $1ADB,X 
     PLP 
     RTS 
@@ -3940,8 +3801,7 @@ PreInstruction_EnemyProjectile_KraidCeilingRocks:
     JSR.W Move_EnemyProjectile_Vertically 
     BCS .collision 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     AND.W #$3FFF 
     STA.W $1ADB,X 
     PLP 
@@ -4004,12 +3864,10 @@ InitAI_EnemyProjectile_MiniKraidSpit:
     PHX 
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.L $7E7804,X 
+    CLC : ADC.L $7E7804,X 
     STA.W $1A4B,Y 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.W $1A93,Y 
     LDA.W #$0000 : STA.W $1A6F,Y 
     STA.W $1A27,Y 
@@ -4027,8 +3885,7 @@ PreInstruction_EnemyProjectile_MiniKraidSpit:
     JSR.W Move_EnemyProjectile_Vertically 
     BCS .delete 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     BMI .setYvelocity 
     CMP.W #$0400 
     BMI .setYvelocity 
@@ -4063,8 +3920,7 @@ InitAI_EnemyProjectile_MiniKraidSpikes_Common:
     LDX.W $0E54 
     LDA.W $0F7A,X : STA.W $1A4B,Y 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A93,Y 
     LDA.W #$0000 : STA.W $1A6F,Y 
     STA.W $1A27,Y 
@@ -4107,20 +3963,17 @@ InitAI_EnemyProjectile_AlcoonFireball:
     PHX 
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$000C 
+    SEC : SBC.W #$000C 
     STA.W $1A93,Y 
     LDA.W #$FC00 : STA.W $1AB7,Y 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.W $1A4B,Y 
     LDA.W $0FAE,X 
     BMI + 
     LDA.W #$0400 : STA.W $1AB7,Y 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1A4B,Y 
 
   + LDX.W $1993 
@@ -4143,8 +3996,7 @@ PreInstruction_EnemyProjectile_AlcoonFireball:
     LDA.W $1AB7,X 
     BPL .positive 
     LDA.W $1AB7,X 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     STA.W $1AB7,X 
     CMP.W #$FE00 
     BMI .return 
@@ -4154,8 +4006,7 @@ PreInstruction_EnemyProjectile_AlcoonFireball:
 
 .positive:
     LDA.W $1AB7,X 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     STA.W $1AB7,X 
     CMP.W #$0200 
     BPL .return 
@@ -4329,12 +4180,10 @@ PreInstruction_EnemyProjectile_PirateClaw:
     PHY 
     PHX 
     LDA.B $14 
-    CLC 
-    ADC.B $18 
+    CLC : ADC.B $18 
     STA.W $1A93,Y 
     LDA.B $12 
-    CLC 
-    ADC.B $16 
+    CLC : ADC.B $16 
     STA.W $1A4B,Y 
     LDX.W #InstList_EnemyProjectile_PirateClaw_Left_0 
     LDA.W $1993 
@@ -4360,12 +4209,10 @@ PreInstruction_EnemyProjectile_PirateClaw_Left:
     AND.W #$00FF 
     STA.B $12 
     LDA.W $1A4B,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.W $1A4B,X 
     LDA.W $1AFF,X 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.W $1AFF,X 
     BNE .YPlus1 
     STZ.W $1B23,X 
@@ -4375,18 +4222,15 @@ PreInstruction_EnemyProjectile_PirateClaw_Left:
   + LDA.W $1AFF,X 
     XBA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
     LDA.W $1AFF,X 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $1AFF,X 
 
 .YPlus1:
     LDA.W $1A93,X 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     STA.W $1A93,X 
     JSR.W CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4 
     BEQ .return 
@@ -4404,12 +4248,10 @@ PreInstruction_EnemyProjectile_PirateClaw_Right:
     AND.W #$00FF 
     STA.B $12 
     LDA.W $1A4B,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A4B,X 
     LDA.W $1AFF,X 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.W $1AFF,X 
     BNE .YPlus1 
     STZ.W $1B23,X 
@@ -4421,18 +4263,15 @@ PreInstruction_EnemyProjectile_PirateClaw_Right:
     AND.W #$00FF 
     STA.B $12 
     LDA.W $1A4B,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.W $1A4B,X 
     LDA.W $1AFF,X 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $1AFF,X 
 
 .YPlus1:
     LDA.W $1A93,X 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     STA.W $1A93,X 
     JSR.W CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4 
     BEQ .return 
@@ -4576,12 +4415,10 @@ InitAI_EnemyProjectile_GunshipLiftoffDustClouds:
     STA.W $1ADB,Y 
     LDX.W $1993 
     LDA.W $0AF6 
-    CLC 
-    ADC.W .Xoffsets,X 
+    CLC : ADC.W .Xoffsets,X 
     STA.W $1A4B,Y 
     LDA.W $0AFA 
-    CLC 
-    ADC.W #$0050 
+    CLC : ADC.W #$0050 
     STA.W $1A93,Y 
     LDA.W .InstListPointers,X : STA.W $1B47,Y 
     TXA 
@@ -4605,8 +4442,7 @@ InitAI_EnemyProjectile_CeresElevatorPad:
     PHP 
     REP #$30 
     LDA.W $0AFA 
-    CLC 
-    ADC.W #$001C 
+    CLC : ADC.W #$001C 
     STA.W $1A93,Y 
     LDA.W #$003C : STA.W $1AFF,Y 
 
@@ -4641,8 +4477,7 @@ PreInstruction_EnemyProjectile_CeresElevatorPad:
 
 .timerExpired:
     LDA.W $0AFA 
-    CLC 
-    ADC.W #$001C 
+    CLC : ADC.W #$001C 
     STA.W $1A93,X 
     LDA.W $0AFA 
     INC A 
@@ -4976,8 +4811,7 @@ InitAI_EnemyProjectile_BombTorizoContinuousDrool:
     JSL.L GenerateRandomNumber 
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$FFFB 
+    CLC : ADC.W #$FFFB 
     STA.W $1A93,Y 
     BIT.W $0FB4,X 
     BVC .checkLeft 
@@ -4999,10 +4833,8 @@ InitAI_EnemyProjectile_BombTorizoContinuousDrool:
     STA.B $12 
     LDA.W $05E5 
     AND.W #$000F 
-    SEC 
-    SBC.W #$0008 
-    CLC 
-    ADC.B $12 
+    SEC : SBC.W #$0008 
+    CLC : ADC.B $12 
     ASL A 
 
 .angleDetermined:
@@ -5013,16 +4845,14 @@ InitAI_EnemyProjectile_BombTorizoContinuousDrool:
     BIT.W $0FB4,X 
     BMI .move 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$FFF8 
+    CLC : ADC.W #$FFF8 
     STA.W $1A4B,Y 
     RTS 
 
 
 .move:
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $1A4B,Y 
     RTS 
 
@@ -5043,8 +4873,7 @@ InitAI_EnemyProjectile_BombTorizoInitialDrool:
     LDX.W $0E54 
     LDA.W $05E5 
     AND.W #$0003 
-    CLC 
-    ADC.W $0F7E,X 
+    CLC : ADC.W $0F7E,X 
     ADC.W #$FFFB 
     STA.W $1A93,Y 
     LDA.W $05E5 
@@ -5056,8 +4885,7 @@ InitAI_EnemyProjectile_BombTorizoInitialDrool:
     AND.W #$0003 
     BIT.W $0FB4,X 
     BVC .notTurning 
-    CLC 
-    ADC.W $0F7A,X 
+    CLC : ADC.W $0F7A,X 
     STA.W $1A4B,Y 
     LDA.W #$0000 : STA.W $1AB7,Y 
     RTS 
@@ -5065,8 +4893,7 @@ InitAI_EnemyProjectile_BombTorizoInitialDrool:
 
 .notTurning:
     BMI .facingRight 
-    CLC 
-    ADC.W $0F7A,X 
+    CLC : ADC.W $0F7A,X 
     ADC.W #$FFF8 
     STA.W $1A4B,Y 
     LDA.W #$0000 : STA.W $1AB7,Y 
@@ -5074,8 +4901,7 @@ InitAI_EnemyProjectile_BombTorizoInitialDrool:
 
 
 .facingRight:
-    CLC 
-    ADC.W $0F7A,X 
+    CLC : ADC.W $0F7A,X 
     ADC.W #$0008 
     STA.W $1A4B,Y 
     LDA.W #$0000 : STA.W $1AB7,Y 
@@ -5092,8 +4918,7 @@ UNUSED_InitAI_EnemyProjectile_BombTorizo_86A6C7:
     STA.W $1A4B,Y 
     LDA.W $1C2B 
     ASL #4
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $1A93,Y 
     LDA.W #$0000 : STA.W $1A27,Y 
     STA.W $1A6F,Y 
@@ -5109,12 +4934,10 @@ InitAI_EnemyProjectile_BombTorizoExplosiveSwipe:
     BMI .facingRight 
     LDX.W $1993 
     LDA.W .Xpositions,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A4B,Y 
     LDA.W .Yposition,X 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A93,Y 
     RTS 
 
@@ -5124,12 +4947,10 @@ InitAI_EnemyProjectile_BombTorizoExplosiveSwipe:
     LDA.W .Xpositions,X 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A4B,Y 
     LDA.W .Yposition,X 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A93,Y 
     RTS 
 
@@ -5149,16 +4970,14 @@ InitAI_EnemyProj_BombTorizoChozoBreaking:
     LDA.W .InstListPointers,X : STA.W $1B47,Y 
     LDA.W $1C29 
     ASL #4
-    CLC 
-    ADC.W .Xoffsets,X 
+    CLC : ADC.W .Xoffsets,X 
     STA.W $1A4B,Y 
     TXA 
     AND.W #$000F 
     TAX 
     LDA.W $1C2B 
     ASL #4
-    CLC 
-    ADC.W .Yoffsets,X 
+    CLC : ADC.W .Yoffsets,X 
     STA.W $1A93,Y 
     LDA.W .Yvelocities,X : STA.W $1ADB,Y 
     LDA.W .Yaccelerations,X : STA.W $1B23,Y 
@@ -5213,13 +5032,11 @@ InitAI_EnemyProjectile_BombTorizoLowHealthExplosion:
     INC.W $1993 
     LDX.W $1993 
     LDA.W $1A4B,Y 
-    CLC 
-    ADC.W .Xoffsets,X 
+    CLC : ADC.W .Xoffsets,X 
     STA.W $1A4B,Y 
     STA.W $1AFF,Y 
     LDA.W $1A93,Y 
-    CLC 
-    ADC.W .Yoffsets,X 
+    CLC : ADC.W .Yoffsets,X 
     STA.W $1A93,Y 
     STA.W $1B23,Y 
     RTS 
@@ -5249,8 +5066,7 @@ PreInst_EnemyProjectile_BombTorizoLowHealthDrool_Falling:
     BCS .hitWall 
     LDA.W $1AB7,X 
     BPL .right 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     BMI + 
     LDA.W #$0003 
 
@@ -5259,8 +5075,7 @@ PreInst_EnemyProjectile_BombTorizoLowHealthDrool_Falling:
 
 
 .right:
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     BPL + 
     LDA.W #$0003 
 
@@ -5273,8 +5088,7 @@ PreInst_EnemyProjectile_BombTorizoLowHealthDrool_Falling:
     BCS .hitFloor 
 
   + LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1ADB,X 
     AND.W #$F000 
     CMP.W #$1000 
@@ -5293,8 +5107,7 @@ PreInst_EnemyProjectile_BombTorizoLowHealthDrool_Falling:
 
 .hitFloor:
     LDA.W $1A93,X 
-    SEC 
-    SBC.W #$0003 
+    SEC : SBC.W #$0003 
     STA.W $1A93,X 
     LDA.W #InstList_EnemyProj_BombTorizoLowHealthDrool_HitFloor : STA.W $1B47,X 
     LDA.W #$0001 : STA.W $1B8F,X 
@@ -5309,8 +5122,7 @@ PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling:
 
 .negative:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W $1B23 
+    CLC : ADC.W $1B23 
     STA.W $1ADB,X 
     AND.W #$F000 
     CMP.W #$1000 
@@ -5444,8 +5256,7 @@ UNUSED_InitAI_EnemyProjectile_QuestionMark_86AA3D:
     LDA.W #$0086 : STA.B $D4,X 
     LDA.W #$6E00 : STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     LDX.W $0330 
     LDA.W #$0040 : STA.B $D0,X 
@@ -5453,13 +5264,11 @@ UNUSED_InitAI_EnemyProjectile_QuestionMark_86AA3D:
     LDA.W #$0086 : STA.B $D4,X 
     LDA.W #$6F00 : STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     LDA.W $0AF6 : STA.W $1A4B,Y 
     LDA.W $0AFA 
-    SEC 
-    SBC.W #$0024 
+    SEC : SBC.W #$0024 
     STA.W $1A93,Y 
     RTS 
 
@@ -5468,16 +5277,14 @@ UNUSED_PreInstruction_EnemyProjectile_QuestionMark:
     STZ.B $12 
     STZ.B $14 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $1A4B,X 
+    SEC : SBC.W $1A4B,X 
     ASL #3
     BPL + 
     DEC.B $14 
 
   + STA.B $13 
     LDA.B $12 
-    CLC 
-    ADC.W $1A27,X 
+    CLC : ADC.W $1A27,X 
     STA.W $1A27,X 
     LDA.B $14 
     ADC.W $1A4B,X 
@@ -5485,18 +5292,15 @@ UNUSED_PreInstruction_EnemyProjectile_QuestionMark:
     STZ.B $12 
     STZ.B $14 
     LDA.W $0AFA 
-    SEC 
-    SBC.W #$0024 
-    SEC 
-    SBC.W $1A93,X 
+    SEC : SBC.W #$0024 
+    SEC : SBC.W $1A93,X 
     ASL #3
     BPL + 
     DEC.B $14 
 
   + STA.B $13 
     LDA.B $12 
-    CLC 
-    ADC.W $1A6F,X 
+    CLC : ADC.W $1A6F,X 
     STA.W $1A6F,X 
     LDA.B $14 
     ADC.W $1A93,X 
@@ -5603,26 +5407,20 @@ Instruction_EnemyProjectile_SpawnEnemyDropsWIthYDropChances:
 InitAI_EnemyProjectile_TorizoChozoOrbs_Egg_EyeBeam_Common:
     LDA.W $0000,X : STA.W $1B47,Y 
     LDA.B $12 
-    CLC 
-    ADC.W $0002,X 
+    CLC : ADC.W $0002,X 
     STA.W $1A4B,Y 
     JSL.L GenerateRandomNumber 
     AND.W #$00FF 
-    SEC 
-    SBC.W #$0080 
-    CLC 
-    ADC.W $0004,X 
+    SEC : SBC.W #$0080 
+    CLC : ADC.W $0004,X 
     STA.W $1AB7,Y 
     LDA.B $14 
-    CLC 
-    ADC.W $0006,X 
+    CLC : ADC.W $0006,X 
     STA.W $1A93,Y 
     JSL.L GenerateRandomNumber 
     AND.W #$00FF 
-    SEC 
-    SBC.W #$0080 
-    CLC 
-    ADC.W $0008,X 
+    SEC : SBC.W #$0080 
+    CLC : ADC.W $0008,X 
     STA.W $1ADB,Y 
     RTS 
 
@@ -5664,10 +5462,8 @@ UNUSED_InitializeTorizoChozoOrbToTargetSamus:
     STA.B $12 
     LDA.W $05E5 
     AND.W #$000F 
-    SEC 
-    SBC.W #$0008 
-    CLC 
-    ADC.B $12 
+    SEC : SBC.W #$0008 
+    CLC : ADC.B $12 
     ASL A 
     TAX 
     LDA.L SineCosineTables_8bitSine_SignExtended,X 
@@ -5678,14 +5474,12 @@ UNUSED_InitializeTorizoChozoOrbToTargetSamus:
     STA.W $1ADB,Y 
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$FFD8 
+    CLC : ADC.W #$FFD8 
     STA.W $1A93,Y 
     BIT.W $0FB4,X 
     BMI .facingRight 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$FFE5 
+    CLC : ADC.W #$FFE5 
     STA.W $1A4B,Y 
     LDA.W #InstList_EnemyProjectile_TorizoChozoOrbs_Left : STA.W $1B47,Y 
     RTS 
@@ -5693,8 +5487,7 @@ UNUSED_InitializeTorizoChozoOrbToTargetSamus:
 
 .facingRight:
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$001B 
+    CLC : ADC.W #$001B 
     STA.W $1A4B,Y 
     LDA.W #InstList_EnemyProjectile_TorizoChozoOrbs_Right : STA.W $1B47,Y 
     RTS 
@@ -5740,8 +5533,7 @@ PreInstruction_EnemyProjectile_BombTorizosChozoOrbs:
 
 .greaterThanZero:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0012 
+    CLC : ADC.W #$0012 
     STA.W $1ADB,X 
     AND.W #$F000 
     CMP.W #$1000 
@@ -5784,14 +5576,12 @@ PreInstruction_EnemyProjectile_GoldenTorizosChozoOrbs:
     BMI .bounceEnd 
     LDA.W $1AB7,X 
     BPL .subtract40 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     BRA + 
 
 
 .subtract40:
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
 
   + STA.W $1AB7,X 
     LDA.W $1ADB,X 
@@ -5805,8 +5595,7 @@ PreInstruction_EnemyProjectile_GoldenTorizosChozoOrbs:
 
 .bounceEnd:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     STA.W $1ADB,X 
     RTS 
 
@@ -5866,8 +5655,7 @@ UNUSED_Instruction_EnemyProj_MoveHorizontally_GotoY_86AD92:
 
   + STA.B $13 
     LDA.W $1A27,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A27,X 
     LDA.W $1A4B,X 
     ADC.B $14 
@@ -5940,15 +5728,13 @@ InitAI_EnemyProjectile_TorizoSonicBoom:
 .A14:
     LDA.W #$0014 
 
-  + CLC 
-    ADC.W $0F7E,X 
+  + CLC : ADC.W $0F7E,X 
     STA.W $1A93,Y 
     LDA.W #$0000 : STA.W $1ADB,Y 
     BIT.W $0FB4,X 
     BMI .facingRight 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$FFE0 
+    CLC : ADC.W #$FFE0 
     STA.W $1A4B,Y 
     LDA.W #$FD90 : STA.W $1AB7,Y 
     LDA.W #InstList_EnemyProjectile_TorizoSonicBoom_FiredLeft : STA.W $1B47,Y 
@@ -5957,8 +5743,7 @@ InitAI_EnemyProjectile_TorizoSonicBoom:
 
 .facingRight:
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $1A4B,Y 
     LDA.W #$0270 : STA.W $1AB7,Y 
     LDA.W #InstList_EnemyProjectile_TorizoSonicBoom_FiredRight : STA.W $1B47,Y 
@@ -5970,14 +5755,12 @@ PreInstruction_EnemyProjectile_TorizoSonicBoom:
     BCS .hitWall 
     LDA.W $1AB7,X 
     BMI .subtract10 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     BRA + 
 
 
 .subtract10:
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
 
   + STA.W $1AB7,X 
     AND.W #$F000 
@@ -6040,12 +5823,10 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 InitAI_EnemyProj_WreckedShipChozoSpikeClearingFootsteps:
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W $1993 
+    CLC : ADC.W $1993 
     STA.W $1A4B,Y 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$001C 
+    CLC : ADC.W #$001C 
     STA.W $1A93,Y 
     RTS 
 
@@ -6080,12 +5861,10 @@ InitAI_EnemyProjectile_TourianStatueDustClouds:
 InitAI_EnemyProjectile_TorizoLandingDustCloud_RightFoot:
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$0030 
+    CLC : ADC.W #$0030 
     STA.W $1A93,Y 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     STA.W $1A4B,Y 
     RTS 
 
@@ -6118,8 +5897,7 @@ EnemyProjectile_TourianStatueDustClouds:
 
 Instruction_EnemyProjectile_TorizoLandingDustClouds:
     LDA.W $1A93,X 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $1A93,X 
     RTS 
 
@@ -6147,12 +5925,10 @@ InstList_EnemyProjectile_TorizoLandingDustCloud_LeftFoot:
 InitAI_EnemyProjectile_TorizoLandingDustCloud_LeftFoot:
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$0030 
+    CLC : ADC.W #$0030 
     STA.W $1A93,Y 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W #$0018 
+    SEC : SBC.W #$0018 
     STA.W $1A4B,Y 
     RTS 
 
@@ -6181,8 +5957,7 @@ InitAI_EnemyProjectile_GoldenTorizoEgg:
     LDA.W $0F7E,X : STA.B $14 
     LDA.L GenerateRandomNumber ; >_<
     AND.W #$001F 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     STA.W $1B23,Y 
     LDA.W $0FB4,X : STA.W $1AFF,Y 
     BMI .right 
@@ -6228,14 +6003,12 @@ PreInstruction_EnemyProjectile_GoldenTorizoEgg_Bouncing:
     BMI .bounceEnd 
     LDA.W $1AB7,X 
     BPL .subtract20 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     BRA + 
 
 
 .subtract20:
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
 
   + STA.W $1AB7,X 
     LDA.W $1ADB,X 
@@ -6245,8 +6018,7 @@ PreInstruction_EnemyProjectile_GoldenTorizoEgg_Bouncing:
 
 .bounceEnd:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0030 
+    CLC : ADC.W #$0030 
     STA.W $1ADB,X 
     AND.W #$F000 
     CMP.W #$1000 
@@ -6286,8 +6058,7 @@ PreInstruction_EnemyProjectile_GoldenTorizoEgg_Hatched:
 .rightwards:
     LDA.W #$0030 
 
-  + CLC 
-    ADC.W $1AB7,X 
+  + CLC : ADC.W $1AB7,X 
     STA.W $1AB7,X 
     RTS 
 
@@ -6302,8 +6073,7 @@ PreInstruction_EnemyProjectile_GoldenTorizoEgg_HitWall:
     JSR.W Move_EnemyProjectile_Vertically 
     BCS .collision 
     LDA.W #$0030 
-    CLC 
-    ADC.W $1ADB,X 
+    CLC : ADC.W $1ADB,X 
     STA.W $1ADB,X 
     RTS 
 
@@ -6443,12 +6213,10 @@ InitAI_EnemyProjectile_GoldenTorizoSuperMissile:
     LDX.W #$0002 
 
   + LDA.W .Xoffsets,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A4B,Y 
     LDA.W #$FFCC 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A93,Y 
     LDA.W .InstListPointers,X : STA.W $1B47,Y 
     RTS 
@@ -6475,12 +6243,10 @@ PreInstruction_EnemyProjectile_GoldenTorizoSuperMissile_Held:
 .facingRight:
     LDA.W #$0020 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     STA.W $1A4B,X 
     LDA.W #$FFCC 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A93,X 
     RTS 
 
@@ -6494,8 +6260,7 @@ PreInst_EnemyProjectile_GoldenTorizoSuperMissile_Thrown:
     BCS .collision 
 
   + LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1ADB,X 
     AND.W #$F000 
     CMP.W #$1000 
@@ -6613,15 +6378,12 @@ InitAI_EnemyProjectile_GoldenTorizoEyeBeam:
   + JSR.W InitAI_EnemyProjectile_TorizoChozoOrbs_Egg_EyeBeam_Common 
     JSL.L GenerateRandomNumber 
     AND.W #$001E 
-    SEC 
-    SBC.W #$0010 
-    CLC 
-    ADC.W #$00C0 
+    SEC : SBC.W #$0010 
+    CLC : ADC.W #$00C0 
     LDX.W $0E54 
     BIT.W $0FB4,X 
     BMI .facingRight2 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
 
 .facingRight2:
     TAX 
@@ -6832,15 +6594,13 @@ InstList_EnemyProjectile_DragonFireball_Falling_Right:
 InitAI_EnemyProjectile_DragonFireball:
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$001C 
+    SEC : SBC.W #$001C 
     STA.W $1A93,Y 
     LDA.W #$FC3F : STA.W $1ADB,Y 
     BIT.W $0FA8,X 
     BPL .pointer 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$FFF4 
+    CLC : ADC.W #$FFF4 
     STA.W $1A4B,Y 
     LDA.W #$FD40 : STA.W $1AB7,Y 
     LDA.W #InstList_EnemyProjectile_DragonFireball_Rising_Left : STA.W $1B47,Y 
@@ -6849,8 +6609,7 @@ InitAI_EnemyProjectile_DragonFireball:
 
 .pointer:
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$000C 
+    CLC : ADC.W #$000C 
     STA.W $1A4B,Y 
     LDA.W #$02C0 : STA.W $1AB7,Y 
     LDA.W #InstList_EnemyProjectile_DragonFireball_Rising_Right : STA.W $1B47,Y 
@@ -6873,8 +6632,7 @@ PreInstruction_EnemyProjectile_DragonFireball:
 
   + STA.B $12 
     LDA.W $1A27,X 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A27,X 
     LDA.W $1A4B,X 
     ADC.B $12 
@@ -6894,16 +6652,14 @@ PreInstruction_EnemyProjectile_DragonFireball:
 
   + STA.B $12 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.B $12 
     STA.W $1A93,X 
     LDA.W $1ADB,X 
     BPL .movingDown 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $1ADB,X 
     BMI .return 
     BIT.W $1AB7,X 
@@ -6918,8 +6674,7 @@ PreInstruction_EnemyProjectile_DragonFireball:
 
 
 .movingDown:
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $1ADB,X 
     JSR.W Delete_EnemyProjectile_IfVerticallyOffScreen 
 
@@ -6935,8 +6690,7 @@ PreInstruction_EnemyProjectile_DragonFireball:
 
 Delete_EnemyProjectile_IfVerticallyOffScreen:
     LDA.W $1A93,X 
-    SEC 
-    SBC.W $0915 
+    SEC : SBC.W $0915 
     BMI .return 
     CMP.W #$0120 
     BCC .return 
@@ -7002,13 +6756,11 @@ InitAI_EnemyProjectile_EyeDoorProjectile:
     SEC 
     ROL A 
     ASL #3
-    CLC 
-    ADC.W .Xpositions,X 
+    CLC : ADC.W .Xpositions,X 
     STA.W $1A4B,Y 
     LDA.W $1C2B 
     ASL #4
-    CLC 
-    ADC.W .Ypositions,X 
+    CLC : ADC.W .Ypositions,X 
     STA.W $1A93,Y 
     RTS 
 
@@ -7058,8 +6810,7 @@ PreInstruction_EnemyProjectile_EyeDoorProjectile_Moving:
     ORA.W #$F000 
 
 .addXvelocity:
-    CLC 
-    ADC.W $1AB7,Y 
+    CLC : ADC.W $1AB7,Y 
     STA.W $1AB7,Y 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
     LSR #4
@@ -7068,8 +6819,7 @@ PreInstruction_EnemyProjectile_EyeDoorProjectile_Moving:
     ORA.W #$F000 
 
 .addYvelocity:
-    CLC 
-    ADC.W $1ADB,Y 
+    CLC : ADC.W $1ADB,Y 
     STA.W $1ADB,Y 
     LDA.W $1B23,Y 
     JSL.L BitIndexToByteIndexAndBitmask 
@@ -7094,16 +6844,14 @@ PreInstruction_EnemyProjectile_EyeDoorSweat:
 
 .positive:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$000C 
+    CLC : ADC.W #$000C 
     STA.W $1ADB,X 
     RTS 
 
 
 .hitFloor:
     LDA.W $1A93,X 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $1A93,X 
     LDA.W #InstList_EnemyProjectile_EyeDoorSweat_HitFloor : STA.W $1B47,X 
     LDA.W #$0001 : STA.W $1B8F,X 
@@ -7216,8 +6964,7 @@ InstList_EnemyProj_SpawnTourianStatueUnlockingParticleTail:
 
 Instruction_EnemyProjectile_YPositionInY:
     LDA.W $1A93,X 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     STA.W $1A93,X 
     INY #2
     RTS 
@@ -7253,8 +7000,7 @@ InitAI_EnemyProj_TourianStatueUnlockingParticleWaterSplash:
     LDX.W $1993 
     LDA.W $1A4B,X : STA.W $1A4B,Y 
     LDA.W $195E 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $1A93,Y 
     RTS 
 
@@ -7283,8 +7029,7 @@ InitAI_EnemyProjectile_TourianStatueUnlockingParticle:
     LDA.W $1A93,X : STA.W $1A93,Y 
     JSL.L GenerateRandomNumber 
     AND.W #$003F 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     AND.W #$00FF 
     ASL A 
     STA.W $1AFF,Y 
@@ -7357,8 +7102,7 @@ InitAI_EnemyProjectile_TourianStatue_Phantoon:
 
 PreInst_EnemyProj_TourianStatueUnlockingParticleWaterSplash:
     LDA.W $195E 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $1A93,X 
     RTS 
 
@@ -7372,15 +7116,13 @@ PreInst_EnemyProjectile_TourianStatueUnlockingParticle:
 
   + STA.B $13 
     LDA.W $1A27,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A27,X 
     LDA.W $1A4B,X 
     ADC.B $14 
     STA.W $1A4B,X 
     LDA.W $195E 
-    SEC 
-    SBC.W $1A93,X 
+    SEC : SBC.W $1A93,X 
     PHA 
     STZ.B $12 
     STZ.B $14 
@@ -7390,15 +7132,13 @@ PreInst_EnemyProjectile_TourianStatueUnlockingParticle:
 
   + STA.B $13 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.B $14 
     STA.W $1A93,X 
     LDA.W $195E 
-    SEC 
-    SBC.W $1A93,X 
+    SEC : SBC.W $1A93,X 
     EOR.B $01,S 
     BPL + 
     TXA 
@@ -7411,8 +7151,7 @@ PreInst_EnemyProjectile_TourianStatueUnlockingParticle:
     CMP.W #$0100 
     BEQ .delete 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1ADB,X 
     RTS 
 
@@ -7432,8 +7171,7 @@ PreInstruction_EnemyProjectile_TourianStatuesSoul:
 
   + STA.B $13 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.B $14 
@@ -7444,8 +7182,7 @@ PreInstruction_EnemyProjectile_TourianStatuesSoul:
     LDA.W #$0001 : STA.W $1B8F,X 
 
   + LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$FF80 
+    CLC : ADC.W #$FF80 
     STA.W $1ADB,X 
     RTS 
 
@@ -7461,10 +7198,8 @@ PreInst_EnemyProj_TourianStatue_Ridley_Phantoon_BaseDecor:
     LDA.L $7E9E00 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.W $0915 
-    CLC 
-    ADC.W $1B23,X 
+    CLC : ADC.W $0915 
+    CLC : ADC.W $1B23,X 
     STA.W $1A93,X 
     RTS 
 
@@ -7636,8 +7371,7 @@ InitAI_EnemyProjectile_PuromiBody:
     LDA.W $0F80,X : STA.W $1A6F,Y 
     PHX 
     LDA.L $7E8014,X 
-    CLC 
-    ADC.W $0E54 
+    CLC : ADC.W $0E54 
     TAX 
     TYA 
     STA.L $7E7800,X 
@@ -7684,8 +7418,7 @@ PreInstruction_EnemyProjectile_NorfairLavaquakeRocks:
 
 NorfairLavaquakeRocksFunction_Rising:
     LDA.W $1ADB,X 
-    SEC 
-    SBC.W #$0002 
+    SEC : SBC.W #$0002 
     STA.W $1ADB,X 
     BPL .lessThanZero 
     STZ.W $1ADB,X 
@@ -7699,8 +7432,7 @@ NorfairLavaquakeRocksFunction_Rising:
 .loop:
     PHX 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     DEC A 
     BPL + 
     LDA.W #$0000 
@@ -7712,16 +7444,14 @@ NorfairLavaquakeRocksFunction_Rising:
     PLX 
     STA.W $1B23,X 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.W $1B23,X 
+    CLC : ADC.W $1B23,X 
     BCC + 
     INC.W $1A93,X 
 
   + STA.W $1A6F,X 
     PHX 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     DEC A 
     BPL + 
     LDA.W #$0000 
@@ -7733,8 +7463,7 @@ NorfairLavaquakeRocksFunction_Rising:
     PLX 
     STA.W $1B23,X 
     LDA.W $1A93,X 
-    CLC 
-    ADC.W $1B23,X 
+    CLC : ADC.W $1B23,X 
     STA.W $1A93,X 
     DEC.B $12 
     BNE .loop 
@@ -7746,8 +7475,7 @@ NorfairLavaquakeRocksFunction_Rising:
 
 NorfairLavaquakeRocks_Falling:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     STA.W $1ADB,X 
     CMP.W #$0040 
     BMI + 
@@ -7758,8 +7486,7 @@ NorfairLavaquakeRocks_Falling:
 .loop:
     PHX 
     LDA.W $1ADB,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     INC A 
     ASL #3
     TAX 
@@ -7767,16 +7494,14 @@ NorfairLavaquakeRocks_Falling:
     PLX 
     STA.W $1B23,X 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.W $1B23,X 
+    CLC : ADC.W $1B23,X 
     BCC + 
     INC.W $1A93,X 
 
   + STA.W $1A6F,X 
     PHX 
     LDA.W $1ADB,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     INC A 
     ASL #3
     INC #2
@@ -7785,8 +7510,7 @@ NorfairLavaquakeRocks_Falling:
     PLX 
     STA.W $1B23,X 
     LDA.W $1A93,X 
-    CLC 
-    ADC.W $1B23,X 
+    CLC : ADC.W $1B23,X 
     STA.W $1A93,X 
     DEC.B $12 
     BNE .loop 
@@ -7799,15 +7523,13 @@ Move_EnemyProjectile_AccordingToXVelocity:
     AND.W #$FF00 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
     LDA.W $1AB7,X 
     AND.W #$00FF 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A27,X 
+    CLC : ADC.W $1A27,X 
     BCC + 
     INC.W $1A4B,X 
 
@@ -7829,16 +7551,14 @@ CheckIf_EnemyProjectile_IsOffScreen:
     CMP.W $0911 
     BMI .offScreen 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $1A4B,X 
     BMI .offScreen 
     LDA.W $1A93,X 
     CMP.W $0915 
     BMI .offScreen 
     LDA.W $0915 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $1A93,X 
     BMI .offScreen 
     LDA.W #$0000 
@@ -7905,12 +7625,10 @@ InitAI_EnemyProjectile_ShaktoolsAttack_Front:
     LSR #5
     TAX 
     LDA.W .Xoffset,X 
-    CLC 
-    ADC.W $1A4B,Y 
+    CLC : ADC.W $1A4B,Y 
     STA.W $1A4B,Y 
     LDA.W .Yoffset,X 
-    CLC 
-    ADC.W $1A93,Y 
+    CLC : ADC.W $1A93,Y 
     STA.W $1A93,Y 
     RTS 
 
@@ -8079,12 +7797,10 @@ InitAI_EnemyProjectile_MotherBrainsTurretBullets:
     LDA.W .Yvelocity,X : STA.W $1ADB,Y 
     LDX.W $1993 
     LDA.W $1A4B,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A4B,Y 
     LDA.W $1A93,X 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A93,Y 
     RTS 
 
@@ -8172,8 +7888,7 @@ PreInstruction_EnemyProjectile_MotherBrainsTurrets:
 Set_Next_Turret_Direction:
     SEP #$20 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.W $1A70,X 
+    CLC : ADC.W $1A70,X 
     AND.B #$07 
     STA.B $14 
     REP #$20 
@@ -8194,8 +7909,7 @@ Set_Next_Turret_Direction:
     EOR.B #$FF 
     INC A 
     STA.W $1A70,X 
-    CLC 
-    ADC.W $1A6F,X 
+    CLC : ADC.W $1A6F,X 
     STA.W $1A6F,X 
     REP #$20 
     RTS 
@@ -8228,19 +7942,15 @@ Set_Cooldown_Timer:
 Check_If_Turret_Is_On_Screen:
     LDA.W $1A93,X 
     BMI .returnOffScreen 
-    CLC 
-    ADC.W #$0010 
-    SEC 
-    SBC.W $0915 
+    CLC : ADC.W #$0010 
+    SEC : SBC.W $0915 
     BMI .returnOffScreen 
     CMP.W #$0100 
     BPL .returnOffScreen 
     LDA.W $1A4B,X 
     BMI .returnOffScreen 
-    CLC 
-    ADC.W #$0004 
-    SEC 
-    SBC.W $0911 
+    CLC : ADC.W #$0004 
+    SEC : SBC.W $0911 
     BMI .returnOffScreen 
     CMP.W #$0108 
     BPL .returnOffScreen 
@@ -8348,8 +8058,7 @@ InstList_EnemyProjectile_MotherBrainsTurretBullets_UpLeft:
 
 Instruction_EnemyProjectile_MotherBrainsTurretBullets_GotoY:
     TYA 
-    CLC 
-    ADC.W $1AFF,X 
+    CLC : ADC.W $1AFF,X 
     TAY 
     LDA.W $0000,Y 
     TAY 
@@ -8406,27 +8115,23 @@ Check_for_Bomb_Collision_with_Rectangle:
     LDA.W $0C7C,Y 
     BNE .next 
     LDA.W $0B64,Y 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W $0BB4,Y 
+  + SEC : SBC.W $0BB4,Y 
     BCC + 
     CMP.B $16 
     BCS .next 
 
   + LDA.W $0B78,Y 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W $0BC8,Y 
+  + SEC : SBC.W $0BC8,Y 
     BCC .returnCollision 
     CMP.B $18 
     BCC .returnCollision 
@@ -8446,27 +8151,23 @@ Check_for_Bomb_Collision_with_Rectangle:
 
 Check_for_Enemy_Collision_with_Rectangle:
     LDA.W $0F7A,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W $0F82,X 
+  + SEC : SBC.W $0F82,X 
     BCC + 
     CMP.B $16 
     BCS .returnNoCollision 
 
   + LDA.W $0F7E,X 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W $0F84,X 
+  + SEC : SBC.W $0F84,X 
     BCC .returnCollision 
     CMP.B $18 
     BCC .returnCollision 
@@ -8484,27 +8185,23 @@ Check_for_Enemy_Collision_with_Rectangle:
 Check_for_Collision_with_Samus:
     JSR.W Setup_Variables_for_EnemyProjectile_Collision_Detection 
     LDA.W $0AF6 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W $0AFE 
+  + SEC : SBC.W $0AFE 
     BCC + 
     CMP.B $16 
     BCS .returnNoCollision 
 
   + LDA.W $0AFA 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W $0B00 
+  + SEC : SBC.W $0B00 
     BCC .returnCollision 
     CMP.B $18 
     BCC .returnCollision 
@@ -8528,8 +8225,7 @@ Math_86C26C:
 Math_86C272:
     STA.B $26 
     LDA.B $12 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
 
 Math_86C27A:
     ASL A 
@@ -8576,8 +8272,7 @@ Math_16bitUnsignedMultiplication_86C29B:
     LDX.B $28 
     STX.W $4203 
     LDA.B $2B 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.B $2B 
     BCC + 
     INY 
@@ -8587,8 +8282,7 @@ Math_16bitUnsignedMultiplication_86C29B:
     LDX.B $29 
     STX.W $4203 
     LDA.B $2B 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.B $2B 
     BCC + 
     INY 
@@ -8617,12 +8311,10 @@ InitAI_EnemyProjectile_MotherBrainsOnionRings:
 
 Move_to_OnionRing_Spawn_Position:
     LDA.W $0FBA 
-    CLC 
-    ADC.W #$000A 
+    CLC : ADC.W #$000A 
     STA.W $1A4B,X 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1A93,X 
     RTS 
 
@@ -8660,8 +8352,7 @@ Hurt_Samus:
     LDA.W #$0005 : STA.W $18AA 
     LDY.W #$0000 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $1A4B,X 
+    SEC : SBC.W $1A4B,X 
     BMI .left 
     INY 
 
@@ -8679,8 +8370,7 @@ Handle_OnionRing_Collision_with_BabyMetroid:
     TAX 
     LDA.W #$0010 : STA.L $7E780C,X 
     LDA.W $0F8C,X 
-    SEC 
-    SBC.W #$0050 
+    SEC : SBC.W #$0050 
     BPL .storeHealth 
     LDA.W #$0000 
 
@@ -8721,8 +8411,7 @@ Check_for_OnionRing_Collision_with_Room:
     BCS .returnCollision 
     LDA.W $1A4B,X 
     BMI .returnCollision 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0911 
     BMI .returnCollision 
     CMP.W #$00F8 
     BPL .returnCollision 
@@ -8798,12 +8487,10 @@ InitAI_EnemyProjectile_MotherBrainsBomb:
     LDA.W #$0100 : STA.W $1ADB,Y 
     LDA.W #$00E0 : STA.W $1AB7,Y 
     LDA.W $0FBA 
-    CLC 
-    ADC.W #$000C 
+    CLC : ADC.W #$000C 
     STA.W $1A4B,Y 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1A93,Y 
     LDA.W #$0400 : STA.W $19BB,Y 
     LDA.W #$0070 : STA.W $1AFF,Y 
@@ -8823,8 +8510,7 @@ PreInstruction_EnemyProjectile_MotherBrainsBomb:
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0002 
+  + SEC : SBC.W #$0002 
     BPL + 
     LDA.W #$0000 
 
@@ -8923,8 +8609,7 @@ MotherBrainsBomb_Bomb_Collision_Detection:
 
 
 Move_MotherBrains_Bomb:
-    CLC 
-    ADC.W $1ADB,X 
+    CLC : ADC.W $1ADB,X 
     STA.W $1ADB,X 
     JSR.W Move_EnemyProjectile_AccordingToVelocity 
     LDA.W $1A4B,X 
@@ -8967,26 +8652,21 @@ InitAI_EnemyProjectile_MotherBrainRedBeam_Charging:
     STA.L $7E800A 
     LDA.W #$0400 : STA.W $19BB,Y 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     STA.W $1A4B,Y 
     STA.L $7E8008 
     LDA.W $0AF6 
-    SEC 
-    SBC.L $7E8008 
+    SEC : SBC.L $7E8008 
     STA.B $12 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$FFD0 
+    CLC : ADC.W #$FFD0 
     STA.W $1A93,Y 
     STA.L $7E800C 
     LDA.W $0AFA 
-    SEC 
-    SBC.L $7E800C 
+    SEC : SBC.L $7E800C 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
-    SEC 
-    SBC.W #$0080 
+    SEC : SBC.W #$0080 
     EOR.W #$FFFF 
     INC A 
     AND.W #$00FF 
@@ -9016,8 +8696,7 @@ InitAI_EnemyProjectile_MotherBrainRedBeam_Fired:
     LDA.W $1A6F,X : STA.L $7E800A 
     JSL.L GenerateRandomNumber 
     AND.W #$00FF 
-    CLC 
-    ADC.L $7E8012 
+    CLC : ADC.L $7E8012 
     AND.W #$00FF 
     STA.B $12 
     JSL.L GenerateRandomNumber 
@@ -9138,12 +8817,10 @@ InitAI_EnemyProjectile_MotherBrainRainbowBeam_Charging:
 
 PreInst_EnemyProjectile_MotherBrainRainbowBeam_Charging:
     LDA.W $0FBA 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.W $1A4B,X 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.W $1A93,X 
     RTS 
 
@@ -9167,12 +8844,10 @@ PreInstruction_EnemyProjectile_MotherBrainsDrool:
     ASL #2
     TAY 
     LDA.W .Xoffsets,Y 
-    CLC 
-    ADC.W $0FBA 
+    CLC : ADC.W $0FBA 
     STA.W $1A4B,X 
     LDA.W .Yoffsets,Y 
-    CLC 
-    ADC.W $0FBE 
+    CLC : ADC.W $0FBE 
     STA.W $1A93,X 
     STZ.W $1AB7,X 
     STZ.W $1ADB,X 
@@ -9191,8 +8866,7 @@ PreInstruction_EnemyProjectile_MotherBrainsDrool:
 
 PreInstruction_EnemyProjectile_MotherBrainsDrool_Falling:
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$000C 
+    CLC : ADC.W #$000C 
     STA.W $1ADB,X 
     JSR.W Move_EnemyProjectile_Vertically_AccordingToVelocity 
     CMP.W #$00D7 
@@ -9202,8 +8876,7 @@ PreInstruction_EnemyProjectile_MotherBrainsDrool_Falling:
 
 .hitFloor:
     LDA.W $1A93,X 
-    CLC 
-    ADC.W #$FFFC 
+    CLC : ADC.W #$FFFC 
     STA.W $1A93,X 
     LDA.W #InstList_EnemyProjectile_MotherBrainsDrool_HitFloor : STA.W $1B47,X 
     LDA.W #$0001 : STA.W $1B8F,X 
@@ -9224,8 +8897,7 @@ InstList_EnemyProjectile_MotherBrainsDrool:
 
 Instruction_EnemyProj_MotherBrainsDrool_MoveDownCPixels:
     LDA.W $1A93,X 
-    CLC 
-    ADC.W #$000C 
+    CLC : ADC.W #$000C 
     STA.W $1A93,X 
     RTS 
 
@@ -9257,12 +8929,10 @@ InitAI_EnemyProjectile_MotherBrainsDeathExplosion:
 
 PreInstruction_EnemyProjectile_MotherBrainsDeathExplosion:
     LDA.W $1AB7,X 
-    CLC 
-    ADC.W $0F7A 
+    CLC : ADC.W $0F7A 
     STA.W $1A4B,X 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W $0F7E 
+    CLC : ADC.W $0F7E 
     STA.W $1A93,X 
     RTS 
 
@@ -9276,24 +8946,20 @@ InitAI_EnemyProjectile_MotherBrainsRainbowBeamExplosion:
     TYX 
     STZ.W $19BB,X 
     LDA.B $12 : STA.W $1AB7,X 
-    CLC 
-    ADC.W $0AF6 
+    CLC : ADC.W $0AF6 
     STA.W $1A4B,X 
     LDA.B $14 : STA.W $1ADB,X 
-    CLC 
-    ADC.W $0AFA 
+    CLC : ADC.W $0AFA 
     STA.W $1A93,X 
     RTS 
 
 
 PreInstruction_EnemyProj_MotherBrainsRainbowBeamExplosion:
     LDA.W $1AB7,X 
-    CLC 
-    ADC.W $0AF6 
+    CLC : ADC.W $0AF6 
     STA.W $1A4B,X 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W $0AFA 
+    CLC : ADC.W $0AFA 
     STA.W $1A93,X 
     RTS 
 
@@ -9305,12 +8971,10 @@ InitAI_EnemyProjectile_MotherBrainExplodedEscapeDoorParticle:
     ASL #2
     TAY 
     LDA.W .Xoffsets,Y 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1A4B,X 
     LDA.W .Yoffsets,Y 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     STA.W $1A93,X 
     LDA.W .Xvelocities,Y : STA.W $1AB7,X 
     LDA.W .Yvelocities,Y : STA.W $1ADB,X 
@@ -9336,8 +9000,7 @@ PreInst_EnemyProj_MotherBrainExplodedEscapeDoorParticles:
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0010 
+  + SEC : SBC.W #$0010 
     BPL + 
     LDA.W #$0000 
 
@@ -9348,8 +9011,7 @@ PreInst_EnemyProj_MotherBrainExplodedEscapeDoorParticles:
 
   + STA.W $1AB7,X 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $1ADB,X 
     JSR.W Move_EnemyProjectile_AccordingToVelocity 
     DEC.W $1AFF,X 
@@ -9359,8 +9021,7 @@ PreInst_EnemyProj_MotherBrainExplodedEscapeDoorParticles:
 
   + STZ.W $1997,X 
     LDA.W $1A93,X 
-    CLC 
-    ADC.W #$FFFC 
+    CLC : ADC.W #$FFFC 
     STA.W $1A93,X 
     STA.B $14 
     LDA.W $1A4B,X : STA.B $12 
@@ -9400,12 +9061,10 @@ InitAI_EnemyProjectile_MotherBrainPurpleBreath_Big:
     TYX 
     STZ.W $19BB,X 
     LDA.W $0FBA 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     STA.W $1A4B,X 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1A93,X 
     RTS 
 
@@ -9414,12 +9073,10 @@ InitAI_EnemyProjectile_MotherBrainPurpleBreath_Small:
     TYX 
     STZ.W $19BB,X 
     LDA.W $0FBA 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     STA.W $1A4B,X 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1A93,X 
     LDA.W #$0001 : STA.L $7E786A 
     RTS 
@@ -9610,8 +9267,7 @@ PreInstruction_EnemyProjectile_MotherBrainsTubeFalling:
 MotherBrainsTubeFallingFunction_GenerateExplosion:
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.B $14 
     LDA.W #$0009 
     LDY.W #EnemyProjectile_MiscDust 
@@ -9818,27 +9474,21 @@ InitAI_EnemyProjectile_MotherBrainsGlassShattering_Shard:
     LDX.W $1993 
     LDA.W $1C29 
     ASL #4
-    CLC 
-    ADC.W .Xoffsets,X 
+    CLC : ADC.W .Xoffsets,X 
     STA.W $1A4B,Y 
     LDA.W $1C2B 
     ASL #4
-    CLC 
-    ADC.W .Yoffsets,X 
+    CLC : ADC.W .Yoffsets,X 
     STA.W $1A93,Y 
     JSL.L GenerateRandomNumber 
     AND.W #$000F 
-    SEC 
-    SBC.W #$0008 
-    CLC 
-    ADC.W $1A4B,Y 
+    SEC : SBC.W #$0008 
+    CLC : ADC.W $1A4B,Y 
     STA.W $1A4B,Y 
     JSL.L GenerateRandomNumber 
     AND.W #$000F 
-    SEC 
-    SBC.W #$0008 
-    CLC 
-    ADC.W $1A93,Y 
+    SEC : SBC.W #$0008 
+    CLC : ADC.W $1A93,Y 
     STA.W $1A93,Y 
     RTS 
 
@@ -9873,17 +9523,13 @@ InitAI_EnemyProjectile_MotherBrainGlassShattering_Sparkle:
     LDX.W $1993 
     JSL.L GenerateRandomNumber 
     AND.W #$001F 
-    SEC 
-    SBC.W #$0010 
-    CLC 
-    ADC.W $1A4B,X 
+    SEC : SBC.W #$0010 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,Y 
     JSL.L GenerateRandomNumber 
     AND.W #$001F 
-    SEC 
-    SBC.W #$0010 
-    CLC 
-    ADC.W $1A93,X 
+    SEC : SBC.W #$0010 
+    CLC : ADC.W $1A93,X 
     STA.W $1A93,Y 
     LDA.W #$0640 : STA.W $19BB,Y 
     RTS 
@@ -9898,8 +9544,7 @@ PreInstruction_EnemyProj_MotherBrainGlassShattering_Shard:
 
   + STA.B $13 
     LDA.W $1A27,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A27,X 
     LDA.W $1A4B,X 
     ADC.B $14 
@@ -9912,8 +9557,7 @@ PreInstruction_EnemyProj_MotherBrainGlassShattering_Shard:
 
   + STA.B $13 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.B $14 
@@ -9921,8 +9565,7 @@ PreInstruction_EnemyProj_MotherBrainGlassShattering_Shard:
     AND.W #$FF00 
     BNE .delete 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $1ADB,X 
     JSL.L GenerateRandomNumber 
     AND.W #$0420 
@@ -10014,8 +9657,7 @@ InitAI_EnemyProjectile_KiHunterAcidSpit_Left:
     LDX.W $0E54 
     LDA.W #$FD00 : STA.W $1AB7,Y 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W #$0016 
+    SEC : SBC.W #$0016 
     STA.W $1A4B,Y 
     BRA InitAI_EnemyProjectile_KiHunterAcidSpit__Common 
 
@@ -10025,15 +9667,13 @@ InitAI_EnemyProjectile_KiHunterAcidSpit_Right:
     LDX.W $0E54 
     LDA.W #$0300 : STA.W $1AB7,Y 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0016 
+    CLC : ADC.W #$0016 
     STA.W $1A4B,Y 
 
 InitAI_EnemyProjectile_KiHunterAcidSpit__Common:
     LDA.W #$0000 : STA.W $1ADB,Y 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.W $1A93,Y 
     LDA.W #$0000 : STA.W $1A6F,Y 
     STA.W $1A27,Y 
@@ -10044,8 +9684,7 @@ InitAI_EnemyProjectile_KiHunterAcidSpit__Common:
 PreInstruction_EnemyProj_KiHunterAcidSpit_Left_StartMoving:
     LDA.W #PreInstruction_EnemyProj_KiHunterAcidSpit_Moving : STA.W $1A03,X 
     LDA.W $1A4B,X 
-    SEC 
-    SBC.W #$0013 
+    SEC : SBC.W #$0013 
     STA.W $1A4B,X 
     RTS 
 
@@ -10053,8 +9692,7 @@ PreInstruction_EnemyProj_KiHunterAcidSpit_Left_StartMoving:
 PreInstruction_EnemyProj_KiHunterAcidSpit_Right_StartMoving:
     LDA.W #PreInstruction_EnemyProj_KiHunterAcidSpit_Moving : STA.W $1A03,X 
     LDA.W $1A4B,X 
-    CLC 
-    ADC.W #$0013 
+    CLC : ADC.W #$0013 
     STA.W $1A4B,X 
     RTS 
 
@@ -10070,8 +9708,7 @@ PreInstruction_EnemyProj_KiHunterAcidSpit_Moving:
     JSR.W Move_EnemyProjectile_Horizontally 
     BCS .hitWall 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $1ADB,X 
     CMP.W #$0200 
     BMI + 
@@ -10153,8 +9790,7 @@ InitAI_EnemyProjectile_KagoBug:
     AND.W #$0007 
     INC A 
     STA.W $1BFB,Y 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $1AFF,Y 
     LDA.W #PreInstruction_EnemyProjectile_KagoBug_Idling : STA.W $1A03,Y 
     RTS 
@@ -10203,8 +9839,7 @@ PreInstruction_EnemyProjectile_KagoBug_Jumping:
     JSR.W Move_EnemyProjectile_Vertically 
     BCS .hitCeiling 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W KagoBug_Constants_Yacceleration 
+    CLC : ADC.W KagoBug_Constants_Yacceleration 
     STA.W $1ADB,X 
     BPL .falling 
     RTS 
@@ -10253,8 +9888,7 @@ Instruction_EnemyProjectile_KagoBug_StartJumping:
     JSR.W Enable_KagoBug_Collision_with_SamusProj_IfFarEnoughFromKago 
     LDA.W $05E5 
     AND.W #$0300 
-    CLC 
-    ADC.W #$0800 
+    CLC : ADC.W #$0800 
     BIT.W #$0100 
     PHP 
     EOR.W #$FFFF 
@@ -10265,8 +9899,7 @@ Instruction_EnemyProjectile_KagoBug_StartJumping:
     TAX 
     LDA.W $0F7A,X 
     PLX 
-    SEC 
-    SBC.W $1A4B,X 
+    SEC : SBC.W $1A4B,X 
     PHP 
     BPL + 
     EOR.W #$FFFF 
@@ -10336,8 +9969,7 @@ Enable_KagoBug_Collision_with_SamusProj_IfFarEnoughFromKago:
     LDA.W $1B23,X 
     TAY 
     LDA.W $0F7A,Y 
-    SEC 
-    SBC.W $1A4B,X 
+    SEC : SBC.W $1A4B,X 
     BPL .enable 
     EOR.W #$FFFF 
     INC A 
@@ -10399,8 +10031,7 @@ PreInstruction_EnemyProjectile_PowampSpike:
     ASL A 
     TAY 
     LDA.W $1AB7,X 
-    CLC 
-    ADC.W PowampSpike_VelocityTable_X,Y 
+    CLC : ADC.W PowampSpike_VelocityTable_X,Y 
     STA.W $1AB7,X 
     JSR.W Move_EnemyProjectile_Horizontally 
     BCS .collision 
@@ -10408,8 +10039,7 @@ PreInstruction_EnemyProjectile_PowampSpike:
     ASL A 
     TAY 
     LDA.W $1ADB,X 
-    CLC 
-    ADC.W PowampSpike_VelocityTable_Y,Y 
+    CLC : ADC.W PowampSpike_VelocityTable_Y,Y 
     STA.W $1ADB,X 
     JSR.W Move_EnemyProjectile_Vertically 
     BCC .return 
@@ -10491,8 +10121,7 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_DownLeft_Right:
     STA.W $1AB7,Y 
     BPL .pointlessBranch 
     EOR.W #$FF00 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
 
 .pointlessBranch:
     LDA.W #$0080 : STA.W $1ADB,Y 
@@ -10518,54 +10147,44 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_UpLeft_Right:
     STA.W $1AB7,Y 
     BMI .pointlessBranch 
     EOR.W #$FF00 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
 
 .pointlessBranch:
     LDA.W #$FF80 : STA.W $1ADB,Y 
 
 InitAI_EnemyProjectile_WreckedShipRobotLaser_Common:
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.W $1A93,Y 
     LDA.W $0F7A,X 
     PLP 
     BMI .subtract 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     BRA + 
 
 
 .subtract:
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
 
   + STA.W $1A4B,Y 
     LDA.W #$0000 : STA.W $1A6F,Y 
     STA.W $1A27,Y 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W $0F82,X 
+    CLC : ADC.W $0F82,X 
     CMP.W $0911 
     BMI .return 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0F82,X 
-    SEC 
-    SBC.W #$0101 
+    SEC : SBC.W $0F82,X 
+    SEC : SBC.W #$0101 
     CMP.W $0911 
     BPL .return 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W $0F84,X 
+    CLC : ADC.W $0F84,X 
     CMP.W $0915 
     BMI .return 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W $0F84,X 
-    SEC 
-    SBC.W #$00E0 
+    SEC : SBC.W $0F84,X 
+    SEC : SBC.W #$00E0 
     BPL .return 
     LDA.W #$0067 
     JSL.L QueueSound_Lib2_Max6 
@@ -10878,10 +10497,8 @@ Instruction_EnemyProj_FlickerNoobTubeShardLeftRightSpritemap:
 
 .right:
     LDA.W #$0080 
-    SEC 
-    SBC.W $1B23,X 
-    CLC 
-    ADC.W #$0080 
+    SEC : SBC.W $1B23,X 
+    CLC : ADC.W #$0080 
     STA.W $1A4B,X 
     LDA.W $0002,Y : STA.W $1B6B,X 
 
@@ -10948,13 +10565,11 @@ Instruction_EnemyProjectile_NoobTubeCrack:
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $1C29 
     ASL #4
-    CLC 
-    ADC.W #$0060 
+    CLC : ADC.W #$0060 
     STA.W $1A4B,Y 
     LDA.W $1C2B 
     ASL #4
-    CLC 
-    ADC.W #$0030 
+    CLC : ADC.W #$0030 
     STA.W $1A93,Y 
     RTS 
 
@@ -10965,18 +10580,14 @@ InitAI_EnemyProjectile_NoobTubeShard:
     LDX.W $1993 
     LDA.W $1C29 
     ASL #4
-    CLC 
-    ADC.W #$0060 
-    CLC 
-    ADC.W .Xoffset,X 
+    CLC : ADC.W #$0060 
+    CLC : ADC.W .Xoffset,X 
     STA.W $1B23,Y 
     LDA.W #$0000 : STA.W $1AFF,Y 
     LDA.W $1C2B 
     ASL #4
-    CLC 
-    ADC.W #$0030 
-    CLC 
-    ADC.W .Yoffsets,X 
+    CLC : ADC.W #$0030 
+    CLC : ADC.W .Yoffsets,X 
     STA.W $1A93,Y 
     LDA.W .InstListPointer,X : STA.W $1B47,Y 
     LDA.W .Xvelocity,X : STA.W $1AB7,Y 
@@ -11014,14 +10625,12 @@ InitAI_EnemyProjectile_NoobTubeReleasedAirBubbles:
     LDX.W $1993 
     LDA.W $1C29 
     ASL #4
-    CLC 
-    ADC.W .Xoffset,X 
+    CLC : ADC.W .Xoffset,X 
     STA.W $1B23,Y 
     LDA.W #$0000 : STA.W $1AFF,Y 
     LDA.W $1C2B 
     ASL #4
-    CLC 
-    ADC.W .Yoffset,X 
+    CLC : ADC.W .Yoffset,X 
     STA.W $1A93,Y 
     LDA.W #$FB00 : STA.W $1ADB,Y 
     RTS 
@@ -11058,8 +10667,7 @@ PreInstruction_EnemyProjectile_NoobTubeCrack_Falling:
 
   + STA.B $13 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.B $14 
@@ -11076,8 +10684,7 @@ PreInstruction_EnemyProjectile_NoobTubeShard_Flying:
 
   + STA.B $13 
     LDA.W $1AFF,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1AFF,X 
     LDA.W $1B23,X 
     ADC.B $14 
@@ -11090,8 +10697,7 @@ PreInstruction_EnemyProjectile_NoobTubeShard_Flying:
 
   + STA.B $13 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.B $14 
@@ -11120,15 +10726,13 @@ Instruction_EnemyProjectile_NoobTubeCrack_Falling:
     STA.B $13 
     LDX.W $1991 
     LDA.W $1AFF,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1AFF,X 
     LDA.W $1B23,X 
     ADC.B $14 
     STA.W $1B23,X 
     LDA.W $1AB7,X 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     STA.W $1AB7,X 
     STZ.B $12 
     STZ.B $14 
@@ -11138,8 +10742,7 @@ Instruction_EnemyProjectile_NoobTubeCrack_Falling:
 
   + STA.B $13 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.B $14 
@@ -11168,15 +10771,13 @@ PreInstruction_EnemyProj_NoobTubeReleasedAirBubbles_Falling:
     STA.B $13 
     LDX.W $1991 
     LDA.W $1AFF,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1AFF,X 
     LDA.W $1B23,X 
     ADC.B $14 
     STA.W $1B23,X 
     LDA.W $1AB7,X 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $1AB7,X ; fallthrough to PreInstruction_EnemyProj_NoobTubeReleasedAirBubbles_Flying
 
 PreInstruction_EnemyProj_NoobTubeReleasedAirBubbles_Flying:
@@ -11188,8 +10789,7 @@ PreInstruction_EnemyProj_NoobTubeReleasedAirBubbles_Flying:
 
   + STA.B $13 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.B $14 
@@ -11320,14 +10920,12 @@ MoveCacatacSpikeUp:
     AND.W #$FF00 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A93,X 
+    CLC : ADC.W $1A93,X 
     STA.W $1A93,X 
     LDA.W $1ADB,X 
     AND.W #$00FF 
     XBA 
-    CLC 
-    ADC.W $1A6F,X 
+    CLC : ADC.W $1A6F,X 
     STA.W $1A6F,X 
     BCC .return 
     LDA.W $1A93,X 
@@ -11343,14 +10941,12 @@ MoveCacatacSpikeDown:
     AND.W #$FF00 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A93,X 
+    CLC : ADC.W $1A93,X 
     STA.W $1A93,X 
     LDA.W $1AB7,X 
     AND.W #$00FF 
     XBA 
-    CLC 
-    ADC.W $1A6F,X 
+    CLC : ADC.W $1A6F,X 
     STA.W $1A6F,X 
     BCC .return 
     LDA.W $1A93,X 
@@ -11366,14 +10962,12 @@ MoveCacatacSpikeLeft:
     AND.W #$FF00 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
     LDA.W $1ADB,X 
     AND.W #$00FF 
     XBA 
-    CLC 
-    ADC.W $1A27,X 
+    CLC : ADC.W $1A27,X 
     STA.W $1A27,X 
     BCC .return 
     LDA.W $1A4B,X 
@@ -11389,14 +10983,12 @@ MoveCacatacSpikeRight:
     AND.W #$FF00 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
     LDA.W $1AB7,X 
     AND.W #$00FF 
     XBA 
-    CLC 
-    ADC.W $1A27,X 
+    CLC : ADC.W $1A27,X 
     STA.W $1A27,X 
     BCC .return 
     LDA.W $1A4B,X 
@@ -11473,16 +11065,14 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate:
     CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $1A4B,X 
     BMI .returnOffScreen 
     LDA.W $1A93,X 
     CMP.W $0915 
     BMI .returnOffScreen 
     LDA.W $0915 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $1A93,X 
     BMI .returnOffScreen 
     LDA.W #$0000 
@@ -11520,8 +11110,7 @@ UNUSED_InitAI_EnemyProjectile_StokeProjectile_86DB18:
     LDA.W $0F7A,X : STA.W $1A4B,Y 
     LDA.W $0F7C,X : STA.W $1A27,Y 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     STA.W $1A93,Y 
     LDA.W $0F80,X : STA.W $1A6F,Y 
     LDA.W #$FF00 : STA.W $1ADB,Y 
@@ -11540,14 +11129,12 @@ UNUSED_EnemyProjectile_StokeProjectile_MoveLeft_86DB62:
     AND.W #$FF00 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
     LDA.W $1ADB,X 
     AND.W #$00FF 
     XBA 
-    CLC 
-    ADC.W $1A27,X 
+    CLC : ADC.W $1A27,X 
     STA.W $1A27,X 
     BCC .return 
     LDA.W $1A4B,X 
@@ -11563,14 +11150,12 @@ UNUSED_EnemyProjectile_StokeProjectile_MoveRight_86DB8C:
     AND.W #$FF00 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
     LDA.W $1AB7,X 
     AND.W #$00FF 
     XBA 
-    CLC 
-    ADC.W $1A27,X 
+    CLC : ADC.W $1A27,X 
     STA.W $1A27,X 
     BCC .return 
     LDA.W $1A4B,X 
@@ -11595,16 +11180,14 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again:
     CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $1A4B,X 
     BMI .returnOffScreen 
     LDA.W $1A93,X 
     CMP.W $0915 
     BMI .returnOffScreen 
     LDA.W $0915 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $1A93,X 
     BMI .returnOffScreen 
     LDA.W #$0000 
@@ -11706,8 +11289,7 @@ InitAI_EnemyProjectile_SporeSpawnsStalk:
     ASL A 
     TAX 
     LDA.W .data,X 
-    CLC 
-    ADC.W $0F7E 
+    CLC : ADC.W $0F7E 
     STA.W $1A93,Y 
     LDA.W $0F7A : STA.W $1A4B,Y 
     RTS 
@@ -11719,8 +11301,7 @@ InitAI_EnemyProjectile_SporeSpawnsStalk:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InitAI_EnemyProjectile_SporeSpawnsStalk_86DCC3:
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$FFA0 
+    CLC : ADC.W #$FFA0 
     STA.W $1A93,Y 
     LDA.W $0F7A : STA.W $1A4B,Y 
     RTS 
@@ -11756,17 +11337,14 @@ PreInstruction_EnemyProjectile_Spores:
     STA.B $12 
 
   + LDA.B $12 
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
     LDA.W SporeMovementData+1,Y 
     AND.W #$00FF 
     JSL.L Sign_Extend_A 
     STA.B $12 
-    CLC 
-    ADC.W $1A93,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.W $1A93,X 
+    CLC : ADC.B $12 
     STA.W $1A93,X 
     CMP.W #$0300 
     BMI + 
@@ -11889,8 +11467,7 @@ InitAI_EnemyProjectile_NamiFuneFireball:
     AND.W #$000F 
     BEQ .Fune 
     LDA.W $1A93,Y 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $1A93,Y 
 
 .Fune:
@@ -11915,14 +11492,12 @@ Function_EnemyProjectile_NamiFuneFireball_Left:
     AND.W #$FF00 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
     LDA.W $1ADB,X 
     AND.W #$00FF 
     XBA 
-    CLC 
-    ADC.W $1A27,X 
+    CLC : ADC.W $1A27,X 
     STA.W $1A27,X 
     BCC .return 
     LDA.W $1A4B,X 
@@ -11938,14 +11513,12 @@ Function_EnemyProjectile_NamiFuneFireball_Right:
     AND.W #$FF00 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
     LDA.W $1AB7,X 
     AND.W #$00FF 
     XBA 
-    CLC 
-    ADC.W $1A27,X 
+    CLC : ADC.W $1A27,X 
     STA.W $1A27,X 
     BCC .return 
     LDA.W $1A4B,X 
@@ -11971,8 +11544,7 @@ UNUSED_CheckIf_EnemyProj_isHorizontallyOffScreen_86DFA0:
     CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $1A4B,X 
     BMI .returnOffScreen 
     LDA.W #$0000 
@@ -12039,8 +11611,7 @@ InitAI_EnemyProjectile_MagdolliteFlame:
     LDA.W $0F7A,X : STA.W $1A4B,Y 
     LDA.W $0F7C,X : STA.W $1A27,Y 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     STA.W $1A93,Y 
     LDA.W $0F80,X : STA.W $1A6F,Y 
     LDA.W #$FD00 : STA.W $1ADB,Y 
@@ -12059,14 +11630,12 @@ Function_EnemyProjectile_MagdolliteFlame_Left:
     AND.W #$FF00 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
     LDA.W $1ADB,X 
     AND.W #$00FF 
     XBA 
-    CLC 
-    ADC.W $1A27,X 
+    CLC : ADC.W $1A27,X 
     STA.W $1A27,X 
     BCC .return 
     LDA.W $1A4B,X 
@@ -12082,14 +11651,12 @@ Function_EnemyProjectile_MagdolliteFlame_Right:
     AND.W #$FF00 
     XBA 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.W $1A4B,X 
+    CLC : ADC.W $1A4B,X 
     STA.W $1A4B,X 
     LDA.W $1AB7,X 
     AND.W #$00FF 
     XBA 
-    CLC 
-    ADC.W $1A27,X 
+    CLC : ADC.W $1A27,X 
     STA.W $1A27,X 
     BCC .return 
     LDA.W $1A4B,X 
@@ -12114,16 +11681,14 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again3:
     CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $1A4B,X 
     BMI .returnOffScreen 
     LDA.W $1A93,X 
     CMP.W $0915 
     BMI .returnOffScreen 
     LDA.W $0915 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $1A93,X 
     BMI .returnOffScreen 
     LDA.W #$0000 
@@ -12498,13 +12063,11 @@ InitAI_EnemyProj_MiscDustPLM:
     TAX 
     LDA.W $05E5 
     AND.W PLM_MiscDust_XYOffsetTable_randomX,X 
-    CLC 
-    ADC.W PLM_MiscDust_XYOffsetTable_minX,X 
+    CLC : ADC.W PLM_MiscDust_XYOffsetTable_minX,X 
     STA.B $12 
     LDA.W $05E6 
     AND.W PLM_MiscDust_XYOffsetTable_randomY,X 
-    CLC 
-    ADC.W PLM_MiscDust_XYOffsetTable_minY,X 
+    CLC : ADC.W PLM_MiscDust_XYOffsetTable_minY,X 
     STA.B $14 
     LDX.W $1C27 
     JSL.L Calculate_PLM_Block_Coordinates 
@@ -12512,15 +12075,13 @@ InitAI_EnemyProj_MiscDustPLM:
     SEC 
     ROL A 
     ASL #3
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A4B,Y 
     LDA.W $1C2B 
     SEC 
     ROL A 
     ASL #3
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $1A93,Y 
     JSL.L GenerateRandomNumber 
     RTS 
@@ -12658,8 +12219,7 @@ InitAI_EnemyProjectile_ShotGate_Common:
     STA.W $1A4B,Y 
     LDA.W $1C2B 
     ASL #4
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $1A93,Y 
     RTS 
 
@@ -12674,8 +12234,7 @@ PreInstruction_EnemyProjectile_ShotGate_InitialClosed:
     EOR.W #$FFFF 
     INC A 
 
-  + CLC 
-    ADC.W $19DF,X 
+  + CLC : ADC.W $19DF,X 
     CMP.W #$1000 
     BCC + 
     LDA.W #$0001 : STA.W $1B8F,X 
@@ -12686,8 +12245,7 @@ PreInstruction_EnemyProjectile_ShotGate_InitialClosed:
   + STA.W $19DF,X 
     LDA.W $1ADA,X 
     AND.W #$FF00 
-    CLC 
-    ADC.W $1A6F,X 
+    CLC : ADC.W $1A6F,X 
     STA.W $1A6F,X 
     LDA.W $1ADB,X 
     XBA 
@@ -12756,13 +12314,11 @@ InitAI_EnemyProjectile_SaveStationElectrictiy:
     LDX.W $1C27 
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $1C29 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     ASL #4
     STA.W $1A4B,Y 
     LDA.W $1C2B 
-    SEC 
-    SBC.W #$0002 
+    SEC : SBC.W #$0002 
     ASL #4
     STA.W $1A93,Y 
     RTS 
@@ -12787,8 +12343,7 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4:
     CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     STA.W $0E20 
     LDA.W $1A4B,X 
     CMP.W $0E20 
@@ -12797,8 +12352,7 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4:
     CMP.W $0915 
     BMI .returnOffScreen 
     LDA.W $0915 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     STA.W $0E20 
     LDA.W $1A93,X 
     CMP.W $0E20 
@@ -12837,13 +12391,11 @@ CheckIf_EnemyProjectile_IsInDraygonRoomBoundaries:
 Move_EnemyProjectile_AccordingToAngleAndSpeed:
     PHX 
     LDA.L $7E97DC,X 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     BIT.W #$0080 
     BNE .subtractX 
     LDA.W $1A27,X 
-    CLC 
-    ADC.W $1AFF,X 
+    CLC : ADC.W $1AFF,X 
     STA.W $1A27,X 
     LDA.W $1A4B,X 
     ADC.W $1AB7,X 
@@ -12853,21 +12405,18 @@ Move_EnemyProjectile_AccordingToAngleAndSpeed:
 
 .subtractX:
     LDA.W $1A27,X 
-    SEC 
-    SBC.W $1AFF,X 
+    SEC : SBC.W $1AFF,X 
     STA.W $1A27,X 
     LDA.W $1A4B,X 
     SBC.W $1AB7,X 
     STA.W $1A4B,X 
 
   + LDA.L $7E97DC,X 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     BIT.W #$0080 
     BNE .subtractY 
     LDA.W $1A6F,X 
-    CLC 
-    ADC.W $1B23,X 
+    CLC : ADC.W $1B23,X 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     ADC.W $1ADB,X 
@@ -12877,8 +12426,7 @@ Move_EnemyProjectile_AccordingToAngleAndSpeed:
 
 .subtractY:
     LDA.W $1A6F,X 
-    SEC 
-    SBC.W $1B23,X 
+    SEC : SBC.W $1B23,X 
     STA.W $1A6F,X 
     LDA.W $1A93,X 
     SBC.W $1ADB,X 
@@ -12894,18 +12442,15 @@ PlaceAndAim_DraygonsWallTurretProjectile:
     LDA.B $12 : STA.W $1A4B,Y 
     LDA.B $14 : STA.W $1A93,Y 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $1A4B,Y 
+    SEC : SBC.W $1A4B,Y 
     STA.B $12 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $1A93,Y 
+    SEC : SBC.W $1A93,Y 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     EOR.W #$00FF 
     INC A 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     AND.W #$00FF 
     STA.L $7E97DC,X 
     STA.B $12 
@@ -13281,8 +12826,7 @@ Function_EnemyProj_BotwoonsBody_HurtFlashHandling_duplicate:
 Function_EnemyProjectile_BotwoonsBody_Dying_SetDelay:
     TXA 
     ASL #2
-    CLC 
-    ADC.W #$0060 
+    CLC : ADC.W #$0060 
     STA.W $1AFF,X 
     LDA.W #Function_EnemyProjectile_BotwoonsBody_Dying_Waiting : STA.W $1AB7,X ; fallthrough to Function_EnemyProjectile_BotwoonsBody__Dying_Waiting
 
@@ -13307,8 +12851,7 @@ Function_EnemyProjectile_BotwoonsBody_Dying_Falling:
     ASL #3
     TAX 
     LDA.W $1A6F,Y 
-    CLC 
-    ADC.L CommonEnemyProjectileSpeeds_QuadraticallyIncreasing,X 
+    CLC : ADC.L CommonEnemyProjectileSpeeds_QuadraticallyIncreasing,X 
     BCC + 
     PHA 
     LDA.W $1A93,Y 
@@ -13318,8 +12861,7 @@ Function_EnemyProjectile_BotwoonsBody_Dying_Falling:
 
   + STA.W $1A6F,Y 
     LDA.W $1A93,Y 
-    CLC 
-    ADC.L CommonEnemyProjectileSpeeds_QuadraticallyIncreasing+2,X 
+    CLC : ADC.L CommonEnemyProjectileSpeeds_QuadraticallyIncreasing+2,X 
     STA.W $1A93,Y 
     CMP.W #$00C8 
     BMI .falling 
@@ -13339,8 +12881,7 @@ Function_EnemyProjectile_BotwoonsBody_Dying_Falling:
 
 .falling:
     LDA.W $1ADB,Y 
-    CLC 
-    ADC.W #$00C0 
+    CLC : ADC.W #$00C0 
     STA.W $1ADB,Y 
     LDA.W #$0000 : STA.W $1B8F,Y 
     JSR.W Function_EnemyProj_BotwoonsBody_HurtFlashHandling_duplicate 
@@ -13417,16 +12958,14 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again5:
     CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $1A4B,X 
     BMI .returnOffScreen 
     LDA.W $1A93,X 
     CMP.W $0915 
     BMI .returnOffScreen 
     LDA.W $0915 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $1A93,X 
     BMI .returnOffScreen 
     LDA.W #$0000 
@@ -13467,8 +13006,7 @@ InitAI_EnemyProjectile_YappingMawsBody:
     PHX 
     LDA.L $7E8808,X 
     ASL A 
-    CLC 
-    ADC.W $0E54 
+    CLC : ADC.W $0E54 
     TAX 
     TYA 
     STA.L $7E8800,X 
@@ -13525,18 +13063,14 @@ Instruction_EnemyProj_EnemyDeathExpl_SpawnSpriteObjectInY_20:
     PHY 
     JSL.L GenerateRandomNumber 
     AND.W #$003F 
-    SEC 
-    SBC.W #$0020 
-    CLC 
-    ADC.W $1A4B,X 
+    SEC : SBC.W #$0020 
+    CLC : ADC.W $1A4B,X 
     STA.B $12 
     LDA.W $05E5 
     AND.W #$3F00 
     XBA 
-    SEC 
-    SBC.W #$0020 
-    CLC 
-    ADC.W $1A93,X 
+    SEC : SBC.W #$0020 
+    CLC : ADC.W $1A93,X 
     STA.B $14 
     LDA.W $0000,Y : STA.B $16 
     STZ.B $18 
@@ -13552,18 +13086,14 @@ Instruction_EnemyProj_EnemyDeathExpl_SpawnSpriteObjectInY_10:
     PHY 
     JSL.L GenerateRandomNumber 
     AND.W #$001F 
-    SEC 
-    SBC.W #$0010 
-    CLC 
-    ADC.W $1A4B,X 
+    SEC : SBC.W #$0010 
+    CLC : ADC.W $1A4B,X 
     STA.B $12 
     LDA.W $05E5 
     AND.W #$1F00 
     XBA 
-    SEC 
-    SBC.W #$0010 
-    CLC 
-    ADC.W $1A93,X 
+    SEC : SBC.W #$0010 
+    CLC : ADC.W $1A93,X 
     STA.B $14 
     LDA.W $0000,Y : STA.B $16 
     STZ.B $18 
@@ -13877,8 +13407,7 @@ PreInstruction_EnemyProjectile_Pickup:
     CMP.W #$0180 
     BPL .notGrappled 
     LDA.W $1A4B,X 
-    SEC 
-    SBC.W $0D08 
+    SEC : SBC.W $0D08 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -13886,8 +13415,7 @@ PreInstruction_EnemyProjectile_Pickup:
   + CMP.W #$0010 
     BPL .notGrappled 
     LDA.W $1A93,X 
-    SEC 
-    SBC.W $0D0C 
+    SEC : SBC.W $0D0C 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -13916,27 +13444,23 @@ PreInstruction_EnemyProjectile_Pickup:
     AND.W #$00FF 
     STA.W $0E22 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $1A4B,X 
+    SEC : SBC.W $1A4B,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W $0AFE 
+  + SEC : SBC.W $0AFE 
     BCC + 
     CMP.W $0E20 
     BCS .return 
 
   + LDA.W $0AFA 
-    SEC 
-    SBC.W $1A93,X 
+    SEC : SBC.W $1A93,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W $0B00 
+  + SEC : SBC.W $0B00 
     BCC + 
     CMP.W $0E22 
     BCC + 
@@ -14036,8 +13560,7 @@ Random_Drop_Routine:
     STZ.B $18 
     LDY.W #$0001 
     LDA.W $09C2 
-    CLC 
-    ADC.W $09D6 
+    CLC : ADC.W $09D6 
     CMP.W #$001E 
     BCC .healthBombFlag 
     CMP.W #$0032 
@@ -14052,8 +13575,7 @@ Random_Drop_Routine:
     LDA.W $0E1A 
     BEQ .noHealthBomb 
     LDA.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X ; $B40000
-    CLC 
-    ADC.L EnemyDropChances_bigEnergy-(EnemyDropChances&$00FFFF),X ; $B40001
+    CLC : ADC.L EnemyDropChances_bigEnergy-(EnemyDropChances&$00FFFF),X ; $B40001
     STA.B $12 
     LDA.B #$03 : STA.B $16 
     JMP.W .dropChancesPooled 
@@ -14071,8 +13593,7 @@ Random_Drop_Routine:
 
 .energyAllowed:
     LDA.B $12 
-    CLC 
-    ADC.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X ; $B40000
+    CLC : ADC.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X ; $B40000
     ADC.L EnemyDropChances_bigEnergy-(EnemyDropChances&$00FFFF),X ; $B40001
     STA.B $12 
     LDA.B $16 
@@ -14084,8 +13605,7 @@ Random_Drop_Routine:
     CPY.W $09C8 
     BEQ .checkSuperMissiles 
     LDA.B $12 
-    CLC 
-    ADC.L EnemyDropChances_missiles-(EnemyDropChances&$00FFFF),X ; $B40002
+    CLC : ADC.L EnemyDropChances_missiles-(EnemyDropChances&$00FFFF),X ; $B40002
     STA.B $12 
     LDA.B $16 
     ORA.B #$04 
@@ -14096,8 +13616,7 @@ Random_Drop_Routine:
     CPY.W $09CC 
     BEQ .checkPowerBombs 
     LDA.B $14 
-    SEC 
-    SBC.L EnemyDropChances_superMissiles-(EnemyDropChances&$00FFFF),X ; $B40004
+    SEC : SBC.L EnemyDropChances_superMissiles-(EnemyDropChances&$00FFFF),X ; $B40004
     STA.B $14 
     LDA.B $16 
     ORA.B #$10 
@@ -14108,8 +13627,7 @@ Random_Drop_Routine:
     CPY.W $09D0 
     BEQ .dropChancesPooled 
     LDA.B $14 
-    SEC 
-    SBC.L EnemyDropChances_powerBombs-(EnemyDropChances&$00FFFF),X ; $B40005
+    SEC : SBC.L EnemyDropChances_powerBombs-(EnemyDropChances&$00FFFF),X ; $B40005
     STA.B $14 
     LDA.B $16 
     ORA.B #$20 
@@ -14136,8 +13654,7 @@ Random_Drop_Routine:
     NOP 
     REP #$20 
     LDA.B $18 
-    CLC 
-    ADC.W $4214 
+    CLC : ADC.W $4214 
     CMP.B $1A 
     BCS .return 
     STA.B $18 
@@ -14164,8 +13681,7 @@ Random_Drop_Routine:
     REP #$20 
     LDA.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X ; $B40000
     AND.W #$00FF 
-    CLC 
-    ADC.B $18 
+    CLC : ADC.B $18 
     CMP.B $1A 
     BCS .return 
     STA.B $18 
@@ -14208,8 +13724,7 @@ Respawn_Enemy:
     REP #$30 
     STA.W $0E54 
     LSR #2
-    CLC 
-    ADC.W $07CF 
+    CLC : ADC.W $07CF 
     TAX 
     LDY.W $0E54 
     LDA.L $A10000,X : STA.W $0F78,Y 
@@ -14311,8 +13826,7 @@ InitAI_EnemyProjectile_FallingSpark:
     LDA.W $0F7A,X : STA.W $1A4B,Y 
     LDA.W $0F7C,X : STA.W $1A27,Y 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $1A93,Y 
     LDA.W $0F80,X : STA.W $1A6F,Y 
     LDA.W #$0000 : STA.W $1AB7,Y 
@@ -14396,8 +13910,7 @@ PreInstruction_EnemyProjectile_FallingSpark:
     LDA.W #$8000 : STA.W $1AB7,X 
     LDA.W #$FFFF : STA.W $1ADB,X 
     LDA.W $1A93,X 
-    SEC 
-    SBC.W #$0002 
+    SEC : SBC.W #$0002 
     STA.W $1A93,X 
     RTS 
 

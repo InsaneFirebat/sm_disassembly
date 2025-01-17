@@ -8648,14 +8648,12 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     JSL.L GenerateRandomNumber 
     PHA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $0911 
+    CLC : ADC.W $0911 
     STA.B $12 
     PLA 
     XBA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $0915 
+    CLC : ADC.W $0915 
     STA.B $14 
     LSR #4
     SEP #$20 
@@ -8666,8 +8664,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     REP #$20 
     LDA.B $12 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     TAX 
     LDA.L $7F0002,X 
@@ -8688,14 +8685,12 @@ GenerateRandomExplosionOnEveryFourthFrame:
     JSL.L GenerateRandomNumber 
     PHA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $0911 
+    CLC : ADC.W $0911 
     STA.B $12 
     PLA 
     XBA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $0915 
+    CLC : ADC.W $0915 
     STA.B $14 
 
 GenerateRandomExplosionAt_12_14:
@@ -13320,8 +13315,7 @@ MainASM_Elevatube:
 
   + STA.B $13 
     LDA.W $07E1 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $07E1 
     LDA.W $07E3 
     ADC.B $14 
@@ -13332,14 +13326,11 @@ MainASM_Elevatube:
     STA.B $14 
     JSL.L MoveSamusDown_NoSolidEnemyCollision 
     LDA.W $07E5 
-    CLC 
-    ADC.W $07E7 
-    CLC 
-    ADC.W #$0E20 
+    CLC : ADC.W $07E7 
+    CLC : ADC.W #$0E20 
     CMP.W #$1C41 
     BCS .return 
-    SEC 
-    SBC.W #$0E20 
+    SEC : SBC.W #$0E20 
     STA.W $07E5 
 
 .return:
@@ -13693,8 +13684,7 @@ MainASM_ShakeScreenSwitchingBetweenMediumHorizAndStrongDiag:
 
 Room_State_Checking_Handler:
     TXA 
-    CLC 
-    ADC.W #$000B 
+    CLC : ADC.W #$000B 
     TAX 
 
 .loop:
@@ -14154,22 +14144,18 @@ MainASM_CrocomiresRoomShaking:
 
 
   + LDA.W #$0007 
-    CLC 
-    ADC.W $0FEE 
+    CLC : ADC.W $0FEE 
     ASL A 
     STA.B $12 
     LDA.W $0FEE 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
 
 .scroll:
     STA.B $12 
-    CLC 
-    ADC.B $B3 
+    CLC : ADC.B $B3 
     STA.B $B3 
     LDA.W #$FFD0 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $B7 
 
 .return:
@@ -14187,25 +14173,21 @@ MainASM_CrocomiresRoomShaking:
     BIT.W #$0001 
     BNE + 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0911 
     RTS 
 
 
   + LDA.W $0911 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $0911 
     RTS 
 
 
 .behindWallRumbling:
     LDA.W $0915 
-    CLC 
-    ADC.W $091F 
-    CLC 
-    ADC.W $0FEE 
+    CLC : ADC.W $091F 
+    CLC : ADC.W $0FEE 
     STA.B $B3 
     RTS 
 
@@ -14221,16 +14203,13 @@ MainASM_RidleysRoomShaking:
     ADC.W .Xspeeds,X 
     STA.B $B1 
     LDA.B $B5 
-    CLC 
-    ADC.W .Xspeeds,X 
+    CLC : ADC.W .Xspeeds,X 
     STA.B $B5 
     LDA.B $B3 
-    CLC 
-    ADC.W .Yspeeds,X 
+    CLC : ADC.W .Yspeeds,X 
     STA.B $B3 
     LDA.B $B7 
-    CLC 
-    ADC.W .Yspeeds,X 
+    CLC : ADC.W .Yspeeds,X 
     STA.B $B7 
 
 .return:

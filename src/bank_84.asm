@@ -163,8 +163,7 @@ Write_Row_of_Level_Data_Block_and_BTS:
     INY #2
     LDA.B ($05,S),Y : STA.B $16 
     LDA.B $05,S 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     STA.B $05,S 
     LDA.W $1C87,X 
     TAX 
@@ -251,8 +250,7 @@ Load_Item_and_Room_Special_Xray_Blocks:
     JSL.L LoadBlockToXrayBG2Tilemap 
     PLX 
     TXA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     TAX 
     JMP.W .loopRoomVar 
 
@@ -323,8 +321,7 @@ Spawn_Hardcoded_PLM:
     DEY #2
     BPL .loop 
     LDA.B $06,S 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.B $06,S 
     PLX 
     PLY 
@@ -346,8 +343,7 @@ Spawn_Hardcoded_PLM:
     LDA.B ($06,S),Y 
     REP #$20 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     STA.W $1C87,X 
     LDY.W #$0003 
@@ -355,8 +351,7 @@ Spawn_Hardcoded_PLM:
     TXY 
     TAX 
     LDA.B $06,S 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.B $06,S 
     PHK 
     PLB 
@@ -415,8 +410,7 @@ Spawn_Room_PLM:
     LDA.L $8F0002,X 
     REP #$20 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     STA.W $1C87,Y 
     LDA.L $8F0004,X : STA.W $1DC7,Y 
@@ -524,8 +518,7 @@ UNUSED_Spawn_Enemy_PLM_84853E:
     REP #$20 
     LDA.W $0F7A,Y 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     STA.W $1C87,X 
     PLA 
@@ -603,8 +596,7 @@ Process_PLM:
     STA.L $7EDE1C,X 
     LDA.W $0002,Y : STA.L $7EDE6C,X 
     TYA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $1D27,X 
     JSR.W Process_PLM_Draw_Instruction 
     LDX.W $1C27 
@@ -644,8 +636,7 @@ Process_PLM_Draw_Instruction:
     LDA.W $0000,Y : STA.L $7F0002,X 
     INY #2
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     DEC.B $16 
@@ -669,8 +660,7 @@ Process_PLM_Draw_Instruction:
     AND.W #$00FF 
 
   + ASL A 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $14 
     LDA.W $0001,Y 
     XBA 
@@ -681,8 +671,7 @@ Process_PLM_Draw_Instruction:
     TAX 
     LDA.W #$0000 
 
-  - SEC 
-    SBC.W $07A5 
+  - SEC : SBC.W $07A5 
     DEX 
     BNE - 
     BRA .setX 
@@ -693,15 +682,13 @@ Process_PLM_Draw_Instruction:
     TAX 
     LDA.W #$0000 
 
-  - CLC 
-    ADC.W $07A5 
+  - CLC : ADC.W $07A5 
     DEX 
     BNE - 
 
 .setX:
     ASL A 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     TAX 
     INY #3
     JMP.W .loopDrawEntry 
@@ -757,8 +744,7 @@ UNUSED_Instruction_PLM_CallFuctionInY_withA_8486E8:
     PLY 
     LDX.W $1C27 
     TYA 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     TAY 
     RTS 
 
@@ -804,8 +790,7 @@ UNUSED_Instruction_PLM_GotoY_PlusMinusY_848729:
 .negative:
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     TAY 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -864,14 +849,12 @@ Instruction_PLM_LoadItemPLMGFX:
     LDA.W #$0089 : STA.B $D4,X 
     LDA.B $12 : STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     INY #2
     LDX.B $14 
     TXA 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.B $18 
 
 .loop:
@@ -879,8 +862,7 @@ Instruction_PLM_LoadItemPLMGFX:
     AND.W #$00FF 
     XBA 
     ASL #2
-    CLC 
-    ADC.B $16 
+    CLC : ADC.B $16 
     STA.L $7EA000,X 
     INC.B $16 
     INY 
@@ -905,12 +887,10 @@ Instruction_PLM_TransferBytesToVRAM:
     LDA.W $0003,Y : STA.B $D3,X 
     LDA.W $0005,Y : STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     LDX.W $1C27 
     RTS 
@@ -1110,8 +1090,7 @@ Inst_PLM_PickUpEquipment_AddXrayToHUD_DisplayMessageBox:
 
 Instruction_PLM_CollectHealth_EnergyTank:
     LDA.W $09C4 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     STA.W $09C4 
     STA.W $09C2 
     LDA.W #$0168 
@@ -1124,8 +1103,7 @@ Instruction_PLM_CollectHealth_EnergyTank:
 
 Instruction_PLM_CollectHealth_ReserveTank:
     LDA.W $09D4 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     STA.W $09D4 
     LDA.W $09C0 
     BNE .playMusic 
@@ -1142,12 +1120,10 @@ Instruction_PLM_CollectHealth_ReserveTank:
 
 Instruction_PLM_CollectAmmo_MissileTank:
     LDA.W $09C8 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     STA.W $09C8 
     LDA.W $09C6 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     STA.W $09C6 
     JSL.L AddMissilesToHUDTilemap 
     LDA.W #$0168 
@@ -1160,12 +1136,10 @@ Instruction_PLM_CollectAmmo_MissileTank:
 
 Instruction_PLM_CollectAmmo_SuperMissileTank:
     LDA.W $09CC 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     STA.W $09CC 
     LDA.W $09CA 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     STA.W $09CA 
     JSL.L AddSuperMissilesToHUDTilemap 
     LDA.W #$0168 
@@ -1178,12 +1152,10 @@ Instruction_PLM_CollectAmmo_SuperMissileTank:
 
 Instruction_PLM_CollectAmmo_PowerBombTank:
     LDA.W $09D0 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     STA.W $09D0 
     LDA.W $09CE 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     STA.W $09CE 
     JSL.L AddPowerBombsToHUDTilemap 
     LDA.W #$0168 
@@ -1686,8 +1658,7 @@ Instruction_PLM_GotoY_ifSamusIsWithin_YColumnsRowsOfPLM:
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $0AF6 
     LSR #4
-    SEC 
-    SBC.W $1C29 
+    SEC : SBC.W $1C29 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -1700,8 +1671,7 @@ Instruction_PLM_GotoY_ifSamusIsWithin_YColumnsRowsOfPLM:
 
   + LDA.W $0AFA 
     LSR #4
-    SEC 
-    SBC.W $1C2B 
+    SEC : SBC.W $1C2B 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -1720,8 +1690,7 @@ Instruction_PLM_GotoY_ifSamusIsWithin_YColumnsRowsOfPLM:
 
 .tooFar:
     TYA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     TAY 
     RTS 
 
@@ -1729,8 +1698,7 @@ Instruction_PLM_GotoY_ifSamusIsWithin_YColumnsRowsOfPLM:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_MovePLMDown1Block_848D89:
     LDA.W $1C87,X 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     STA.W $1C87,X 
     RTS 
@@ -1775,8 +1743,7 @@ DrawPLM:
     LDA.W $0915 
     LSR #4
     STA.B $1A 
-    CLC 
-    ADC.W #$000F 
+    CLC : ADC.W #$000F 
     CMP.B $20 
     BPL + 
     RTS 
@@ -1798,32 +1765,27 @@ DrawPLM:
     STZ.B $12 
     LDA.B $1E : STA.B $18 
     LDA.W $0911 
-    CLC 
-    ADC.W #$000F 
+    CLC : ADC.W #$000F 
     LSR #4
     DEC A 
     STA.B $16 
-    SEC 
-    SBC.B $1E 
+    SEC : SBC.B $1E 
     BMI + 
     BEQ + 
     STA.B $12 
     LDA.B $14 
-    CLC 
-    ADC.B $1E 
+    CLC : ADC.B $1E 
     CMP.B $16 
     BEQ .return8E2F 
     BMI .return8E2F 
     LDA.B $14 
     LDA.B $14 ; >_<
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.B $14 
     LDA.B $16 : STA.B $18 
 
   + LDA.B $16 
-    CLC 
-    ADC.W #$0011 
+    CLC : ADC.W #$0011 
     STA.B $16 
     CMP.B $1E 
     BPL + 
@@ -1833,16 +1795,13 @@ DrawPLM:
 
 
   + LDA.B $18 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     DEC A 
-    SEC 
-    SBC.B $16 
+    SEC : SBC.B $16 
     STA.B $16 
     BMI + 
     LDA.B $14 
-    SEC 
-    SBC.B $16 
+    SEC : SBC.B $16 
     STA.B $14 
     BEQ .return8E2F 
 
@@ -1859,8 +1818,7 @@ DrawPLM:
 
 
   + LDA.W #$0200 
-    SEC 
-    SBC.W $1C25 
+    SEC : SBC.W $1C25 
     LSR #3
     CMP.B $14 
     BMI .pullXreturn 
@@ -1873,32 +1831,28 @@ DrawPLM:
     CMP.W #$0010 
     BCS .greaterThan10h 
     ASL A 
-    CLC 
-    ADC.B $09 
+    CLC : ADC.B $09 
     ADC.W $4216 
     PHA 
     LDA.W $091D 
     AND.W #$0100 
     BEQ + 
     PLA 
-    CLC 
-    ADC.W #$0400 
+    CLC : ADC.W #$0400 
     PHA 
     BRA + 
 
 
 .greaterThan10h:
     ASL A 
-    CLC 
-    ADC.B $0C 
+    CLC : ADC.B $0C 
     ADC.W $4216 
     PHA 
     LDA.W $091D 
     AND.W #$0100 
     BEQ + 
     PLA 
-    SEC 
-    SBC.W #$0400 
+    SEC : SBC.W #$0400 
     PHA 
 
   + LDA.B $14 
@@ -1908,8 +1862,7 @@ DrawPLM:
     PHA 
     AND.W #$001F 
     STA.B $22 
-    CLC 
-    ADC.B $1E 
+    CLC : ADC.B $1E 
     DEC A 
     AND.W #$FFE0 
     BNE + 
@@ -1919,8 +1872,7 @@ DrawPLM:
   + CPX.W #$00E4 
     BPL .return8F2C 
     LDA.W #$0020 
-    SEC 
-    SBC.B $22 
+    SEC : SBC.B $22 
     BMI .return8F2C 
     ASL A 
     STA.B $D0,X 
@@ -1931,34 +1883,27 @@ DrawPLM:
     EOR.W #$0400 
     STA.B $DC,X 
     LDA.B $DC,X 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.B $EA,X 
     LDA.B $D5,X 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.B $E3,X 
     LDA.B $14 
     ASL #2
     STA.B $1E 
-    SEC 
-    SBC.B $D0,X 
+    SEC : SBC.B $D0,X 
     STA.B $D7,X 
     STA.B $E5,X 
     LDA.W #$C6C8 ; $7E
-    CLC 
-    ADC.W $1C25 
+    CLC : ADC.W $1C25 
     STA.B $D2,X 
     STA.B $00 
-    CLC 
-    ADC.B $D0,X 
+    CLC : ADC.B $D0,X 
     STA.B $D9,X 
-    CLC 
-    ADC.B $D7,X 
+    CLC : ADC.B $D7,X 
     STA.B $E0,X 
     STA.B $06 
-    CLC 
-    ADC.B $DE,X 
+    CLC : ADC.B $DE,X 
     STA.B $E7,X 
     SEP #$20 
     LDA.B #$7E : STA.B $D4,X 
@@ -1969,8 +1914,7 @@ DrawPLM:
     STA.B $E9,X 
     REP #$20 
     TXA 
-    CLC 
-    ADC.W #$001C 
+    CLC : ADC.W #$001C 
     STA.W $0330 
     BRA .horizAddToVRAMWriteTableEnd 
 
@@ -1985,12 +1929,10 @@ DrawPLM:
     PLA 
     JSR.W PartiallySetupVRAMWriteTableEntries_SingleScrnPLMDrawTilemap 
     LDA.B $D5,X 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.B $DC,X 
     TXA 
-    CLC 
-    ADC.W #$000E 
+    CLC : ADC.W #$000E 
     STA.W $0330 
 
 .horizAddToVRAMWriteTableEnd:
@@ -1999,8 +1941,7 @@ DrawPLM:
     STA.B $12 
     INY #2
     TYA 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $03 
     LDY.W #$0000 
 
@@ -2042,8 +1983,7 @@ DrawPLM:
     INC.B $03 
     INC.B $03 
     LDA.W $1C25 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $1C25 
     CMP.W #$0200 
     BPL .return8FC8 
@@ -2102,8 +2042,7 @@ DrawPLM:
     BEQ + 
     BPL .return903B 
 
-  + CLC 
-    ADC.W #$0011 
+  + CLC : ADC.W #$0011 
     CMP.B $1E 
     BEQ .return903B 
     BPL + 
@@ -2115,22 +2054,18 @@ DrawPLM:
   + LDA.B $1E : STA.B $18 
     STZ.B $12 
     LDA.B $1A 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.B $16 
     LDA.B $1A 
-    SEC 
-    SBC.B $20 
+    SEC : SBC.B $20 
     BMI .drawBlockGreaterThanScreenBlock 
     STA.B $12 
     LDA.B $14 
-    CLC 
-    ADC.B $20 
+    CLC : ADC.B $20 
     CMP.B $1A 
     BMI .return903B 
     LDA.B $14 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.B $14 
 
 .crash:
@@ -2143,15 +2078,12 @@ DrawPLM:
     LDA.B $20 : STA.B $1A 
 
   + LDA.B $1A 
-    CLC 
-    ADC.B $14 
-    SEC 
-    SBC.B $16 
+    CLC : ADC.B $14 
+    SEC : SBC.B $16 
     STA.B $16 
     BMI + 
     LDA.B $14 
-    SEC 
-    SBC.B $16 
+    SEC : SBC.B $16 
     STA.B $14 
     BEQ .return903B 
     BMI .return908C 
@@ -2167,8 +2099,7 @@ DrawPLM:
 
 
   + LDA.W #$0200 
-    SEC 
-    SBC.W $1C25 
+    SEC : SBC.W $1C25 
     LSR #3
     CMP.B $14 
     BMI .return908C 
@@ -2178,16 +2109,14 @@ DrawPLM:
     INC A 
     STA.B $DC,X 
     TXA 
-    CLC 
-    ADC.W #$000E 
+    CLC : ADC.W #$000E 
     STA.W $0330 
     LDA.B $12 
     ASL A 
     STA.B $12 
     INY #2
     TYA 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $03 
     LDY.W #$0000 
 
@@ -2265,8 +2194,7 @@ DrawPLM:
     INC.B $03 
     INC.B $03 
     LDA.W $1C25 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $1C25 
     CMP.W #$0200 
     BPL .return918C 
@@ -2286,8 +2214,7 @@ DrawPLM:
     LDA.B $16 
     BMI + 
     ASL A 
-    CLC 
-    ADC.B $03 
+    CLC : ADC.B $03 
     TAY 
 
   + LDA.W $0000,Y 
@@ -2298,15 +2225,13 @@ DrawPLM:
   + AND.W #$00FF 
     BIT.W #$0080 
     BNE + 
-    CLC 
-    ADC.W $1C29 
+    CLC : ADC.W $1C29 
     STA.B $1E 
     BRA .incY 
 
 
   + ORA.W #$FF00 
-    CLC 
-    ADC.W $1C29 
+    CLC : ADC.W $1C29 
     STA.B $1E 
 
 .incY:
@@ -2315,8 +2240,7 @@ DrawPLM:
     AND.W #$00FF 
     BIT.W #$0080 
     BNE .setHighByte 
-    CLC 
-    ADC.W $1C2B 
+    CLC : ADC.W $1C2B 
     STA.B $20 
     INY 
     JMP.W .loopDrawEntry 
@@ -2324,8 +2248,7 @@ DrawPLM:
 
 .setHighByte:
     ORA.W #$FF00 
-    CLC 
-    ADC.W $1C2B 
+    CLC : ADC.W $1C2B 
     STA.B $20 
     INY 
     JMP.W .loopDrawEntry 
@@ -2341,32 +2264,28 @@ Calculate_PLMDrawTilemap_VRAMDestination:
     CMP.W #$0010 
     BCS .greaterThanF 
     ASL A 
-    CLC 
-    ADC.B $09 
+    CLC : ADC.B $09 
     ADC.W $4216 
     PHA 
     LDA.W $091D 
     AND.W #$0100 
     BEQ .fallthrough 
     PLA 
-    CLC 
-    ADC.W #$0400 
+    CLC : ADC.W #$0400 
     PHA 
     BRA .fallthrough 
 
 
 .greaterThanF:
     ASL A 
-    CLC 
-    ADC.B $0C 
+    CLC : ADC.B $0C 
     ADC.W $4216 
     PHA 
     LDA.W $091D 
     AND.W #$0100 
     BEQ .fallthrough 
     PLA 
-    SEC 
-    SBC.W #$0400 
+    SEC : SBC.W #$0400 
     PHA 
 
 .fallthrough:
@@ -2380,12 +2299,10 @@ PartiallySetupVRAMWriteTableEntries_SingleScrnPLMDrawTilemap:
     STA.B $D0,X 
     STA.B $D7,X 
     LDA.W #$C6C8 ; $7E
-    CLC 
-    ADC.W $1C25 
+    CLC : ADC.W $1C25 
     STA.B $D2,X 
     STA.B $00 
-    CLC 
-    ADC.B $D0,X 
+    CLC : ADC.B $D0,X 
     STA.B $D9,X 
     STA.B $06 
     SEP #$20 
@@ -4550,8 +4467,7 @@ InstList_PLM_CrumbleAccessToTourianElevator_1:
 Instruction_PLM_MovePLMDown1Block_84AB00:
     LDA.W $07A5 
     ASL A 
-    CLC 
-    ADC.W $1C87,X 
+    CLC : ADC.W $1C87,X 
     STA.W $1C87,X 
     RTS 
 
@@ -4602,8 +4518,7 @@ Instruction_PLM_Scroll_0_1_Blue:
 
 Instruction_PLM_MovePLMDown1Block:
     LDA.W $1C87,X 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     STA.W $1C87,X 
     RTS 
@@ -4798,8 +4713,7 @@ PreInst_PLM_PositionSamus_GiveAtLeast10FramesOfInvincibility:
 
 Instruction_PLM_Deal2DamageToSamus:
     LDA.W $0A4E 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.W $0A4E 
     LDA.W $0A50 
     ADC.W #$0002 
@@ -5239,8 +5153,7 @@ InstList_PLM_SaveStation_2:
 
 Instruction_PLM_PlaceSamusOnSaveStation:
     LDA.W $0AF6 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     AND.W #$FFF0 
     STA.W $0AF6 
     PHX 
@@ -5307,8 +5220,7 @@ UNUSED_LoadFXEntry_CompletelyBroken_84B05D:
     LDA.W $1978 
     BMI .loadFXEntry 
     TYA 
-    CLC 
-    ADC.W $07CD 
+    CLC : ADC.W $07CD 
     TAX 
     CMP.W $0002,X 
     PLA 
@@ -5374,8 +5286,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 Setup_BrinstarFloorPlant:
     LDA.W $0AFA 
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
     AND.W #$000F 
     CMP.W #$000F 
@@ -5401,8 +5312,7 @@ Setup_BrinstarFloorPlant:
 
 Setup_BrinstarCeilingPlant:
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     AND.W #$000F 
     BEQ .deactivate 
     LDA.W #$0000 : STA.W $1C37,Y 
@@ -5695,8 +5605,7 @@ Setup_UpwardsExtension:
 
 Skip_Debug_DrawInstruction_for_ScrollPLM:
     LDA.W $1D27,Y 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $1D27,Y 
     RTS 
 
@@ -5783,8 +5692,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 Setup_IcePhysics:
     LDA.W $0AFA 
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
     AND.W #$000F 
     CMP.W #$0007 
@@ -6009,8 +5917,7 @@ Setup_ClearBabyMetroidInvisibleWall:
     AND.W #$0FFF 
     STA.L $7F0002,X 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     DEY 
@@ -6028,8 +5935,7 @@ CreateBabyMetroidInvisibleWall:
     ORA.W #$8000 
     STA.L $7F0002,X 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     DEY 
@@ -6056,8 +5962,7 @@ Setup_CollisionReaction_SaveStationTrigger:
     TYX 
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $0AF6 
-    SEC 
-    SBC.W #$0008 
+    SEC : SBC.W #$0008 
     LSR #4
     CMP.W $1C29 
     BNE .collisionReturn 
@@ -6098,22 +6003,19 @@ Setup_MotherBrainsRoomEscapeDoor:
     LDA.W #$9001 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
-    CLC 
-    ADC.W $07A5 
-    ADC.W $07A5 
-    TAX 
-    LDA.W #$D0FF 
-    JSR.W Write_Level_Data_Block_Type_and_BTS 
-    TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
-    CLC 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
+    TAX 
+    LDA.W #$D0FF 
+    JSR.W Write_Level_Data_Block_Type_and_BTS 
+    TXA 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FF 
@@ -6630,8 +6532,7 @@ PreInst_PLM_AdvanceLavaAsSamusMovesLeft_SetLavaquakeEvent:
 
   + LDA.W .FXYVelocity,Y : STA.W $197C 
     TYA 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     STA.W $1D77,X 
 
 .return:
@@ -6845,15 +6746,13 @@ Setup_CrittersEscapeBlock:
     LDA.W #$C04F 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FF 
@@ -6872,17 +6771,7 @@ Setup_TurnCeresElevatorDoorToSolidBlocksDuringEscape:
     ORA.W #$8000 
     STA.L $7F0002,X 
     TXA 
-    CLC 
-    ADC.W $07A5 
-    ADC.W $07A5 
-    TAX 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
-    ORA.W #$8000 
-    STA.L $7F0002,X 
-    TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.L $7F0002,X 
@@ -6890,8 +6779,15 @@ Setup_TurnCeresElevatorDoorToSolidBlocksDuringEscape:
     ORA.W #$8000 
     STA.L $7F0002,X 
     TXA 
-    CLC 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
+    TAX 
+    LDA.L $7F0002,X 
+    AND.W #$0FFF 
+    ORA.W #$8000 
+    STA.L $7F0002,X 
+    TXA 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.L $7F0002,X 
@@ -7028,8 +6924,7 @@ InstList_PLM_ClearCrateriaMainstreetEscPassageIfCrittersEsc:
 
 Instruction_PLM_MovePLMRight4Blocks:
     LDA.W $1C87,X 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $1C87,X 
     RTS 
 
@@ -7075,8 +6970,7 @@ PreInst_PLM_WakePLMIfTriggeredOrSamusWithin4BlockColumnBelow:
     BNE + 
     LDA.W $0AFA 
     LSR #4
-    SEC 
-    SBC.W $1C2B 
+    SEC : SBC.W $1C2B 
     CMP.W #$0005 
     BCC .triggered 
 
@@ -7101,8 +6995,7 @@ PreInst_PLM_WakePLMIfTriggeredOrSamusWithin4BlockColumnAbove:
     BNE + 
     LDA.W $0AFA 
     LSR #4
-    SEC 
-    SBC.W $1C2B 
+    SEC : SBC.W $1C2B 
     CMP.W #$FFFC 
     BCS .triggered 
 
@@ -8428,8 +8321,7 @@ PLM_BTS10_MovePLMDownARow:
     ORA.W #$0010 
     STA.L $7F6402,X 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     TAX 
     RTS 
 
@@ -8452,8 +8344,7 @@ PLM_BTS10_MovePLMUpARow:
     ORA.W #$0010 
     STA.L $7F6402,X 
     TXA 
-    SEC 
-    SBC.W $07A5 
+    SEC : SBC.W $07A5 
     TAX 
     RTS 
 
@@ -9505,8 +9396,7 @@ Setup_Reaction_RespawningBombBlock:
 
 .bomb:
     LDA.W $1D27,Y 
-    CLC 
-    ADC.W #$0003 
+    CLC : ADC.W #$0003 
     STA.W $1D27,Y 
     LDX.W $1C87,Y 
     LDA.L $7F0002,X 
@@ -9610,8 +9500,7 @@ Setup_GenericGrappleBlock_ResetOverflow:
 
 Setup_DraygonsBrokenTurret:
     LDA.W $0A4E 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.W $0A4E 
     LDA.W $0A50 
     ADC.W #$0001 
@@ -9969,8 +9858,7 @@ PreInstruction_DeletePLM_SpawnTriggerBlockIf_4_8_IsBlankAir:
     LDA.B #$04 
     REP #$20 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     TAX 
     LDA.L $7F0002,X 
@@ -10159,8 +10047,7 @@ Inst_PLM_Spawn4MotherBrainsGlassShatteringShardsWithArgs:
     LDA.W $0006,Y 
     JSR.W Spawn4MotherBrainsGlassShatteringShardsWithArgA 
     TYA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     TAY 
     RTS 
 
@@ -10590,15 +10477,13 @@ Setup_UnusedLowerNorfair2x2ChozoShotBlock:
     LDA.W #$50FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     INX #2
@@ -10688,8 +10573,7 @@ UNUSED_PreInst_PLM_WakePLMIfSamusIsWithin4Blocks_84D710:
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $0AF6 
     LSR #4
-    SEC 
-    SBC.W $1C29 
+    SEC : SBC.W $1C29 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -10700,8 +10584,7 @@ UNUSED_PreInst_PLM_WakePLMIfSamusIsWithin4Blocks_84D710:
 
   + LDA.W $0AFA 
     LSR #4
-    SEC 
-    SBC.W $1C2B 
+    SEC : SBC.W $1C2B 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -10780,8 +10663,7 @@ Instruction_PLM_SpawnEyeDoorSweatDropProjectile:
 Instruction_PLM_MovePLMUp1Row_MakeABlueDoorFacingRight:
     PHX 
     LDA.W $1C87,X 
-    SEC 
-    SBC.W $07A5 
+    SEC : SBC.W $07A5 
     SBC.W $07A5 
     STA.W $1C87,X 
     TAX 
@@ -10793,8 +10675,7 @@ Instruction_PLM_MovePLMUp1Row_MakeABlueDoorFacingRight:
 Instruction_PLM_MovePLMUp1Row_MakeABlueDoorFacingLeft:
     PHX 
     LDA.W $1C87,X 
-    SEC 
-    SBC.W $07A5 
+    SEC : SBC.W $07A5 
     SBC.W $07A5 
     STA.W $1C87,X 
     TAX 
@@ -10803,22 +10684,19 @@ Instruction_PLM_MovePLMUp1Row_MakeABlueDoorFacingLeft:
 
 Create3BlockVerticalExtension:
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FE 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FD 
@@ -11133,8 +11011,7 @@ Setup_EyeDoorEye:
     LDA.W #$C044 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FF 
@@ -11327,8 +11204,7 @@ Instruction_PLM_DamageDraygonTurret:
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$A003 
@@ -11352,8 +11228,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownRight:
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     LDA.W $1C87,X 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$A003 
@@ -11380,8 +11255,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpRight:
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     LDA.W $1C87,X 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$A003 
@@ -11404,8 +11278,7 @@ Instruction_PLM_DamageDraygonTurret_duplicate:
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$A003 
@@ -11429,8 +11302,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownLeft:
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     LDA.W $1C87,X 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$A003 
@@ -11457,8 +11329,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpLeft:
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
     LDA.W $1C87,X 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$A003 
@@ -11691,8 +11562,7 @@ Setup_DraygonCannonWithShieldFacingRight:
     LDA.W #$C044 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FF 
@@ -11711,8 +11581,7 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpRight_84DEB9:
     LDA.W #$50FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FF 
@@ -11731,8 +11600,7 @@ Setup_DraygonCannonWithShieldFacingLeft:
     LDA.W #$C044 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FF 
@@ -11751,8 +11619,7 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpLeft_84DF15:
     LDA.W #$5001 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     LDA.W #$D0FF 

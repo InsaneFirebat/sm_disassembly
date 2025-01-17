@@ -9675,8 +9675,7 @@ Process_PaleteFXObject:
 Process_PaleteFXObject_done:
     LDX.W $1E7B 
     TYA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $1EBD,X 
 
 Process_PaleteFXObject_return:
@@ -9690,8 +9689,7 @@ Instruction_PaletteFXObject_Done:
 
 Instruction_PaletteFXObject_ColorIndex_Plus4:
     TXA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     TAX 
     INY #2
     RTS 
@@ -9699,8 +9697,7 @@ Instruction_PaletteFXObject_ColorIndex_Plus4:
 
 Instruction_PaletteFXObject_ColorIndex_Plus6:
     TXA 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     TAX 
     INY #2
     RTS 
@@ -9708,8 +9705,7 @@ Instruction_PaletteFXObject_ColorIndex_Plus6:
 
 Instruction_PaletteFXObject_ColorIndex_Plus8:
     TXA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     TAX 
     INY #2
     RTS 
@@ -9717,8 +9713,7 @@ Instruction_PaletteFXObject_ColorIndex_Plus8:
 
 Instruction_PaletteFXObject_ColorIndex_Plus10:
     TXA 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     TAX 
     INY #2
     RTS 
@@ -9726,8 +9721,7 @@ Instruction_PaletteFXObject_ColorIndex_Plus10:
 
 Instruction_PaletteFXObject_ColorIndex_Plus12:
     TXA 
-    CLC 
-    ADC.W #$0012 
+    CLC : ADC.W #$0012 
     TAX 
     INY #2
     RTS 
@@ -9736,8 +9730,7 @@ Instruction_PaletteFXObject_ColorIndex_Plus12:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PaletteFXObject_ColorIndex_Plus1E_8DC5C6:
     TXA 
-    CLC 
-    ADC.W #$001E 
+    CLC : ADC.W #$001E 
     TAX 
     INY #2
     RTS 
@@ -9790,8 +9783,7 @@ UNUSED_Inst_PaletteFXObject_CallExternalFuncInYWithA_8DC5FE:
     PLY 
     LDX.W $1E7B 
     TYA 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     TAY 
     RTS 
 
@@ -9821,8 +9813,7 @@ UNUSED_Instruction_PaletteFXObject_GotoYPlusY_8DC623:
 .highByte:
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     TAY 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -11210,8 +11201,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     AND.W #$0021 
     BNE + 
     LDA.W $0A4E 
-    CLC 
-    ADC.W #$4000 
+    CLC : ADC.W #$4000 
     STA.W $0A4E 
     LDA.W $0A50 
     ADC.W #$0000 

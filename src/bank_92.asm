@@ -17,8 +17,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     ASL A 
     TAX 
     LDA.W SamusTilesAnimation_AnimationDefinitionPointers,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     TAX 
     LDA.W $0000,X 
     AND.W #$00FF 
@@ -30,12 +29,10 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     AND.W #$00FF 
     STA.W $0B24 
     ASL #3
-    SEC 
-    SBC.W $0B24 
+    SEC : SBC.W $0B24 
     STA.B $12 
     LDA.W SamusTopHalfTilesAnimation_TilesDefinitionPointers,Y 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $071F 
     SEP #$20 
     LDA.B #$01 : STA.W $071D 
@@ -44,8 +41,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     ASL A 
     TAX 
     LDA.W SamusTilesAnimation_AnimationDefinitionPointers,X 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     TAX 
     LDA.W $0000,X 
     AND.W #$00FF 
@@ -58,12 +54,10 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     AND.W #$00FF 
     STA.W $0B26 
     ASL #3
-    SEC 
-    SBC.W $0B26 
+    SEC : SBC.W $0B26 
     STA.B $14 
     LDA.W SamusBottomHalfTilesAnimation_TilesDefinitionPointers,Y 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $0721 
     SEP #$20 
     LDA.B #$01 : STA.W $071E 
@@ -12018,8 +12012,7 @@ Debug_SamusTileViewer:
     LDY.W #$0060 
     JSL.L AddSamusSpritemapToOAM 
     LDA.W #$0182 
-    CLC 
-    ADC.W #$0003 
+    CLC : ADC.W #$0003 
     LDX.W #$0080 
     LDY.W #$0050 
     JSL.L AddSamusSpritemapToOAM 
@@ -12039,16 +12032,14 @@ DrawSamusSuitExploding:
     CMP.W #$0004 
     BEQ .facingLeft 
     LDA.W #$081C 
-    CLC 
-    ADC.W $0DE4 
+    CLC : ADC.W $0DE4 
     STA.B $12 
     BRA + 
 
 
 .facingLeft:
     LDA.W #$0825 
-    CLC 
-    ADC.W $0DE4 
+    CLC : ADC.W $0DE4 
     STA.B $12 
 
   + LDA.W $0AF6 

@@ -38,22 +38,18 @@ CalculateMotherBrainRainbowBeamHDMATables:
     LSR A 
     STA.B $12 
     LDA.L $7E8022 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.L $7E8034 
     LDA.L $7E8022 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.L $7E8036 
     LDA.W $0FB9 
-    CLC 
-    ADC.W #$0E00 
+    CLC : ADC.W #$0E00 
     AND.W #$FF00 
     STA.L $7E8038 
     STA.L $7E803C 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     STA.L $7E803A 
     STA.L $7E803E 
     LDA.L $7E8034 
@@ -127,11 +123,9 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
     LDA.L AbsoluteTangentTable,X : STA.B $14 
     LDA.W $803E 
     TAY 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     ASL A 
-    CLC 
-    ADC.W #$9D02 
+    CLC : ADC.W #$9D02 
     TAX 
     LDA.W #$00FF : STA.W $0002,X 
     STA.W $0004,X 
@@ -139,8 +133,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
 
 .loopLeftEdge:
     LDA.B $18 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     BCS ..done 
     STA.B $18 
     XBA 
@@ -168,8 +161,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
 
 .loopRightEdge:
     LDA.B $16 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     BCS ..done 
     STA.B $16 
     XBA 
@@ -218,8 +210,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpwards:
     LDA.W #$0010 : STA.L $7E9C03 
     LDA.W #$9D02 : STA.L $7E9C04 
     LDA.L $7E803A 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     CMP.W #$0080 
     BCS .greaterThanEqualTo80 
     PHA 
@@ -229,16 +220,14 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpwards:
     LDA.W #$007F : STA.L $7E9C09 
     PLA 
     ASL A 
-    CLC 
-    ADC.W #$9D04 
+    CLC : ADC.W #$9D04 
     STA.L $7E9C0A 
     LDA.W #$0000 : STA.L $7E9C0C 
     RTS 
 
 
 .greaterThanEqualTo80:
-    SEC 
-    SBC.W #$007F 
+    SEC : SBC.W #$007F 
     STA.B $12 
     ORA.W #$0080 
     STA.L $7E9C06 
@@ -282,19 +271,16 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpRight:
     LDA.L AbsoluteTangentTable,X : STA.B $14 
     LDA.W $803A 
     TAY 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     ASL A 
-    CLC 
-    ADC.W #$9D02 
+    CLC : ADC.W #$9D02 
     TAX 
     LDA.W #$00FF : STA.W $0002,X 
     STA.W $0004,X 
 
 .loop:
     LDA.B $16 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     BCC + 
     LDA.W #$FFFF 
 
@@ -303,8 +289,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpRight:
     XBA 
     STA.B $24 
     LDA.B $18 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     BCC + 
     LDA.W #$FFFF 
 
@@ -346,19 +331,16 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUp:
     LDA.L AbsoluteTangentTable,X : STA.B $14 
     LDA.W $803A 
     TAY 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     ASL A 
-    CLC 
-    ADC.W #$9D02 
+    CLC : ADC.W #$9D02 
     TAX 
     LDA.W #$00FF : STA.W $0002,X 
     STA.W $0004,X 
 
 .loop:
     LDA.B $16 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BCS + 
     LDA.W #$0000 
 
@@ -367,8 +349,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUp:
     XBA 
     STA.B $1A 
     LDA.B $18 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     BCC + 
     LDA.W #$FFFF 
 
@@ -412,19 +393,16 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpLeft:
     LDA.L AbsoluteTangentTable,X : STA.B $14 
     LDA.W $803A 
     TAY 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     ASL A 
-    CLC 
-    ADC.W #$9D02 
+    CLC : ADC.W #$9D02 
     TAX 
     LDA.W #$00FF : STA.W $0002,X 
     STA.W $0004,X 
 
 .loop:
     LDA.B $16 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BCS + 
     LDA.W #$0000 
 
@@ -433,8 +411,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpLeft:
     XBA 
     STA.B $24 
     LDA.B $18 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     BCS + 
     LDA.W #$0000 
 
@@ -507,8 +484,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownRight:
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $14 
     LDA.W $803A 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     TAY 
     LDX.W #$9D04 
     LDA.W #$00FF 
@@ -523,8 +499,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownRight:
 
 .loopBeam:
     LDA.B $16 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     BCC + 
     LDA.W #$FFFF 
 
@@ -533,8 +508,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownRight:
     XBA 
     STA.B $1A 
     LDA.B $18 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     BCC + 
     LDA.W #$FFFF 
 
@@ -574,8 +548,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDown:
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $14 
     LDA.W $803A 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     TAY 
     LDX.W #$9D04 
     LDA.W #$00FF 
@@ -590,8 +563,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDown:
 
 .loopBeam:
     LDA.B $16 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BCS + 
     LDA.W #$0000 
 
@@ -600,8 +572,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDown:
     XBA 
     STA.B $1A 
     LDA.B $18 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     BCC + 
     LDA.W #$FFFF 
 
@@ -643,8 +614,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownLeft:
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $14 
     LDA.W $803A 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     TAY 
     LDX.W #$9D04 
     LDA.W #$00FF 
@@ -659,8 +629,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownLeft:
 
 .loopBeam:
     LDA.B $16 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BCS + 
     LDA.W #$0000 
 
@@ -669,8 +638,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownLeft:
     XBA 
     STA.B $1A 
     LDA.B $18 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     BCS + 
     LDA.W #$0000 
 

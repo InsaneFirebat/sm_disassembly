@@ -155,8 +155,7 @@ Instruction_CommonA4_CallFunctionInY_WithA:
     PLX 
     PLY 
     TYA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     TAY 
     RTL 
 
@@ -188,8 +187,7 @@ UNUSED_Inst_CommonA4_CallExternalFunctionInY_WithA_A480CE:
     PLY 
     PLX 
     TYA 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     TAY 
     RTL 
 
@@ -218,8 +216,7 @@ Instruction_CommonA4_GotoY_PlusY:
 .highByte:
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     TAY 
     RTL 
 
@@ -285,12 +282,10 @@ Instruction_CommonA4_TransferYBytesInYToVRAM:
     LDA.W $0003,Y : STA.B $D3,X 
     LDA.W $0005,Y : STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     PLX 
     RTL 
@@ -483,8 +478,7 @@ FightAI_Crocomire_2_StepForwardUntilOnScreen_StepForward:
 
 FightAI_Crocomire_4_Asleep:
     LDA.W $0F7A 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -986,16 +980,14 @@ InitAI_Crocomire:
     XBA 
     STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     RTL 
 
 
 UpdateCrocomireBG2Scroll:
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0043 
+    SEC : SBC.W #$0043 
     EOR.W #$FFFF 
     INC A 
     STA.B $B7 
@@ -1032,31 +1024,26 @@ UpdateCrocomireBG2Scroll:
 .found:
     TAY 
     LDA.W $001C,Y 
-    CLC 
-    ADC.B $B7 
+    CLC : ADC.B $B7 
     STA.B $B7 ; fallthrough to UpdateCrocomireBG2XScroll
 
 UpdateCrocomireBG2XScroll:
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W $0FE8,X 
+    CLC : ADC.W $0FE8,X 
     STA.W $0FBA,X 
     LDA.W $0F7E,X : STA.W $0FBE,X 
     LDA.W $0F7A,X 
     CMP.W $0911 
     BPL .rightOffScreenCheck 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     CMP.W $0911 
     BMI .offScreen 
 
 .onScreen:
     LDA.W $0911 
-    SEC 
-    SBC.W $0F7A,X 
-    CLC 
-    ADC.W #$0033 
+    SEC : SBC.W $0F7A,X 
+    CLC : ADC.W #$0033 
     PHA 
     BPL + 
     EOR.W #$FFFF 
@@ -1080,12 +1067,10 @@ UpdateCrocomireBG2XScroll:
 
 .rightOffScreenCheck:
     LDA.W $0911 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     STA.B $12 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W #$0080 
+    SEC : SBC.W #$0080 
     CMP.B $12 
     BPL .offScreen 
     BRA .onScreen 
@@ -1175,17 +1160,14 @@ Crocomire_vs_Samus_CollisionHandling:
     LDA.W $0FA8 
     BNE .return 
     LDA.W $0F7A 
-    SEC 
-    SBC.W $0F82 
+    SEC : SBC.W $0F82 
     SBC.W $0AFE 
     SBC.W $0AF6 
     BPL .return 
     JSL.L NormalEnemyTouchAI 
     LDA.W $0F7A 
-    SEC 
-    SBC.W $0F82 
-    SEC 
-    SBC.W $0AFE 
+    SEC : SBC.W $0F82 
+    SEC : SBC.W $0AFE 
     STA.W $0AF6 
     STA.W $0B10 
     LDA.W #$FFFC : STA.W $0B58 
@@ -1585,8 +1567,7 @@ Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall:
     LDA.W $05E5 
     AND.W #$000F 
     STX.B $12 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     JSL.L SpawnBigDustCloudProjectile 
     PLY 
     PLX 
@@ -1608,8 +1589,7 @@ Instruction_Crocomire_MoveRight4PixelsIfOnScreen:
     STZ.B $12 
     LDA.W #$0004 : STA.B $14 
     LDA.W $0F7A 
-    SEC 
-    SBC.W $0F82 
+    SEC : SBC.W $0F82 
     SBC.W #$0100 
     SBC.B $14 
     CMP.W $0911 
@@ -1748,18 +1728,15 @@ HandleCrocomireAcidDamageSmoke:
     TAX 
 
   + TXA 
-    CLC 
-    ADC.W $0F7A 
+    CLC : ADC.W $0F7A 
     STA.B $12 
     LDA.W $05E5 
     AND.W #$1F00 
     XBA 
     STA.B $14 
     LDA.W $1962 
-    CLC 
-    ADC.W #$0010 
-    SEC 
-    SBC.B $14 
+    CLC : ADC.W #$0010 
+    SEC : SBC.B $14 
     STA.B $14 
     LDA.W #$0015 : STA.B $16 
     STZ.B $18 
@@ -1795,8 +1772,7 @@ SinkCrocomireDown:
     INC A 
     STA.B $12 
     LDA.W #$0120 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     AND.W #$FFF8 
     ASL #3
     TAX 
@@ -1815,8 +1791,7 @@ SinkCrocomireDown:
     LDX.W $0E54 
     SEP #$20 
     LDA.W $0FAE,X 
-    CLC 
-    ADC.B #$80 
+    CLC : ADC.B #$80 
     STA.W $0FAE,X 
     LDA.W $0FAF,X 
     ADC.B #$03 
@@ -1825,8 +1800,7 @@ SinkCrocomireDown:
     LDA.B #$30 
 
   + STA.W $0FAF,X 
-    CLC 
-    ADC.W $0FB0,X 
+    CLC : ADC.W $0FB0,X 
     STA.W $0FB0,X 
     LDA.W $0FB1,X 
     ADC.B #$00 
@@ -1836,8 +1810,7 @@ SinkCrocomireDown:
 
   + STA.W $0FB1,X 
     LDA.W $0FB0,X 
-    CLC 
-    ADC.W $0FB3,X 
+    CLC : ADC.W $0FB3,X 
     STA.W $0FB3,X 
     LDA.W $0FB1,X 
     ADC.W $0F7E,X 
@@ -1913,8 +1886,7 @@ RaiseCrocomireUp:
 .raised:
     JSL.L UpdateCrocomireBG2Scroll 
     LDA.W $0FAE 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W #$1F00 
     BMI + 
     LDA.W #$1F00 
@@ -1922,8 +1894,7 @@ RaiseCrocomireUp:
   + STA.W $0FAE 
     SEP #$20 
     LDA.W $0FB0 
-    SEC 
-    SBC.W $0FAF 
+    SEC : SBC.W $0FAF 
     STA.W $0FB0 
     LDA.W $0FB1 
     SBC.B #$00 
@@ -1934,8 +1905,7 @@ RaiseCrocomireUp:
 .positiveYVelocity:
     STA.W $0FB1 
     LDA.W $0FB3 
-    SEC 
-    SBC.W $0FB0 
+    SEC : SBC.W $0FB0 
     STA.W $0FB3 
     LDA.W $0F7E 
     SBC.W $0FB1 
@@ -1964,8 +1934,7 @@ MainAI_Crocomire_DeathSequence_10_Hop_3_LoadMeltingTilemap:
     STA.W $0FC6,X 
     LDA.W $0F7A,X : STA.W $0FBA,X 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $0FBE,X 
     LDX.W #$0000 
     LDA.W #$0338 
@@ -1989,8 +1958,7 @@ MainAI_Crocomire_DeathSequence_10_Hop_3_LoadMeltingTilemap:
 
 .done:
     TXA 
-    CLC 
-    ADC.W #$0400 ; fallthrough to WriteCrocomireBG2Tilemap
+    CLC : ADC.W #$0400 ; fallthrough to WriteCrocomireBG2Tilemap
     TAX 
 
 WriteCrocomireBG2Tilemap:
@@ -2004,8 +1972,7 @@ WriteCrocomireBG2Tilemap:
     XBA 
     STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     RTS 
 
@@ -2051,8 +2018,7 @@ MainAI_Crocomire_DeathSequence_2C_Hop_6_LoadMeltingTilemap:
 
 .done:
     TXA 
-    CLC 
-    ADC.W #$0400 
+    CLC : ADC.W #$0400 
     TAX 
     JMP.W WriteCrocomireBG2Tilemap 
 
@@ -2077,8 +2043,7 @@ MainAI_Crocomire_DeathSequence_12_2E_Hop_3_4_LoadMeltTiles:
     STZ.B $00 
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+6,X : STA.B $02 
     TXA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     TAX 
 
 .loop:
@@ -2133,12 +2098,10 @@ MainAI_Crocomire_DeathSequence_14_30_Hop_3_6_UploadingToVRAM:
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+4,X : STA.W $00D4,Y 
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+2,X : STA.W $00D5,Y 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     TXA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $068A 
     STY.W $0330 
     RTS 
@@ -2167,8 +2130,7 @@ MainAI_Crocomire_DeathSequence_36_Hop_6_QueueCry_HDMAObject:
 
 CreateCrocomireMeltingHDMAObject:
     LDA.W $0FBE 
-    SEC 
-    SBC.W #$0048 
+    SEC : SBC.W #$0048 
     ASL A 
     TAX 
     LDA.B $B7 
@@ -2226,8 +2188,7 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
     AND.W #$0002 
     BEQ + 
     TXA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     TAX 
 
   + STX.W $0F7A 
@@ -2246,8 +2207,7 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
     CMP.W #$FFFF 
     BEQ .terminator 
     TXA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     TAX 
     BRA .loopFindTerminator 
 
@@ -2270,8 +2230,7 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
     XBA 
     STA.B $12 
     LDA.W $0694 
-    SEC 
-    SBC.W #$0003 
+    SEC : SBC.W #$0003 
     CMP.W #$0010 
     BPL + 
     CPX.W #$5000 
@@ -2280,8 +2239,7 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
 
   + STA.W $0694 
     LDA.W $0692 
-    CLC 
-    ADC.W #$0180 
+    CLC : ADC.W #$0180 
     CMP.W #$5000 
     BMI + 
     LDA.W #$5000 
@@ -2289,8 +2247,7 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
   + STA.W $0692 
     STZ.B $12 
     LDA.W $0FBE 
-    SEC 
-    SBC.W #$0048 
+    SEC : SBC.W #$0048 
     ASL A 
     TAX 
     LDA.W $0694 
@@ -2300,14 +2257,11 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
 
 .loopMeltingRows:
     TYA 
-    SEC 
-    SBC.W $05A6 
-    CLC 
-    ADC.B $B7 
+    SEC : SBC.W $05A6 
+    CLC : ADC.B $B7 
     STA.L $7ECAF0,X 
     LDA.B $12 
-    CLC 
-    ADC.W $0692 
+    CLC : ADC.W $0692 
     STA.B $12 
     BCS .carrySet 
     INY 
@@ -2353,8 +2307,7 @@ MainAI_Crocomire_DeathSequence_1C_3A_Hop_3_6_ClearTilemap:
     XBA 
     STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     JMP.W NextCrocomireDeathSequenceIndex 
 
@@ -2410,14 +2363,12 @@ EraseMeltingCrocomirePixelColumn:
     LDA.W $069C,X 
     AND.W #$0007 
     ASL A 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $14 
     LDA.W $069C,X 
     AND.W #$FFF8 
     ASL #6
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     TAX 
     SEP #$20 
     LDA.L $7E4000,X 
@@ -2452,8 +2403,7 @@ EraseMeltingCrocomirePixelColumn:
 
 .cycled:
     LDA.W $069A 
-    CLC 
-    ADC.W $068A 
+    CLC : ADC.W $068A 
     TAX 
     LDY.W $0330 
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0,X 
@@ -2468,12 +2418,10 @@ EraseMeltingCrocomirePixelColumn:
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+4,X : STA.W $00D4,Y 
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+2,X : STA.W $00D5,Y 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     LDA.W $068A 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $068A 
     LDA.W $0690 
     CMP.W #$0080 
@@ -2520,8 +2468,7 @@ MainAI_Crocomire_DeathSequence_3E_BehindWall_WaitForSamus:
 
 MainAI_Crocomire_DeathSequence_58_FlowingDownTheRiver:
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0002 
+    SEC : SBC.W #$0002 
     STA.W $0F7A 
     CMP.W #$01E0 
     BMI .leftOfFightArea 
@@ -2557,16 +2504,14 @@ MainAI_Crocomire_DeathSequence_40_BehindWall_Rumbling:
     CMP.W .targetYOffset,X 
     BEQ .equal 
     BPL + 
-    CLC 
-    ADC.W $106E 
+    CLC : ADC.W $106E 
 
 .return:
     STA.W $0FEE 
     RTS 
 
 
-  + SEC 
-    SBC.W $106E 
+  + SEC : SBC.W $106E 
     BRA .return 
 
 
@@ -2623,12 +2568,10 @@ MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
     XBA 
     ASL #5
     STA.B $12 
-    CLC 
-    ADC.W .VRAMSpriteTilesOffset,Y 
+    CLC : ADC.W .VRAMSpriteTilesOffset,Y 
     STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     INY #2
     STY.W $0688 
@@ -2695,8 +2638,7 @@ MainAI_Crocomire_DeathSequence_44_BreaksDownWall:
     CMP.W #$00E0 
     BPL .timer 
     LDA.W $0FB0 
-    CLC 
-    ADC.W #$8000 
+    CLC : ADC.W #$8000 
     STA.W $0FB0 
     LDA.W $0FB2 
     ADC.W #$0000 
@@ -2706,8 +2648,7 @@ MainAI_Crocomire_DeathSequence_44_BreaksDownWall:
 
   + STA.W $0FB2 
     LDA.W $0F7C 
-    CLC 
-    ADC.W $0FB0 
+    CLC : ADC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     ADC.W $0FB2 
@@ -2730,8 +2671,7 @@ MainAI_Crocomire_DeathSequence_44_BreaksDownWall:
 
 MainAI_Crocomire_DeathSequence_46_SkeletonFalls:
     LDA.W $0FB0 
-    CLC 
-    ADC.W #$0800 
+    CLC : ADC.W #$0800 
     STA.W $0FB0 
     LDA.W $0FB2 
     ADC.W #$0000 
@@ -2741,15 +2681,13 @@ MainAI_Crocomire_DeathSequence_46_SkeletonFalls:
 
   + STA.W $0FB2 
     LDA.W #$E000 
-    CLC 
-    ADC.W $0F80 
+    CLC : ADC.W $0F80 
     STA.W $0F80 
     LDA.W $0F7E 
     ADC.W #$0000 
     STA.W $0F7E 
     LDA.W $0F7C 
-    CLC 
-    ADC.W $0FB0 
+    CLC : ADC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     ADC.W $0FB2 
@@ -2837,15 +2775,12 @@ SpawnBigDustCloudProjectile:
     STA.B $12 
     LDA.W $05E5 
     AND.W #$0007 
-    CLC 
-    ADC.W $0F7A 
+    CLC : ADC.W $0F7A 
     ADC.B $12 
     STA.B $12 
     LDA.W $0F7E 
-    CLC 
-    ADC.W $0F84 
-    SEC 
-    SBC.W #$0010 
+    CLC : ADC.W $0F84 
+    SEC : SBC.W #$0010 
     STA.B $14 
     LDA.W #$0015 
     LDY.W #EnemyProjectile_MiscDust 
@@ -2862,12 +2797,10 @@ MainAI_Crocomire_DeathSequence_48_SkeletonFallsApart:
     LDA.W #InstList_CrocomireCorpse_Skeleton_Dead : STA.W $0F92 
     LDA.W #$0001 : STA.W $0F94 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     STA.W $0F7A 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$0015 
+    CLC : ADC.W #$0015 
     STA.W $0F7E 
     LDA.W #$001C : STA.W $0F84 
     LDA.W #$0028 : STA.W $0F82 
@@ -2880,8 +2813,7 @@ MainAI_Crocomire_DeathSequence_48_SkeletonFallsApart:
 
 .notFallenApartYet:
     LDA.W $0FB0 
-    CLC 
-    ADC.W #$1000 
+    CLC : ADC.W #$1000 
     STA.W $0FB0 
     LDA.W $0FB2 
     ADC.W #$0000 
@@ -3550,8 +3482,7 @@ PowerBombReaction_Crocomire:
     STA.W $0FAA 
     LDA.W #$000A : STA.W $0FB0 
     LDA.W $0F9C 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0F9C 
     LDA.W $0F8A 
     ORA.W #$0002 
@@ -3569,8 +3500,7 @@ PowerBombReaction_Crocomire:
     CMP.W #ExtendedTilemap_Crocomire_0 
     BEQ .mouthNotOpen 
     TXA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     TAX 
     DEC.B $12 
     BNE .loop 
@@ -3588,12 +3518,9 @@ PowerBombReaction_Crocomire:
 EnemyShot_Crocomire_OpenMouth:
     LDA.W #$0000 : STA.W $0FA0 
     LDA.W $0F7A 
-    SEC 
-    SBC.W $0F82 
-    SEC 
-    SBC.W #$0100 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0F82 
+    SEC : SBC.W #$0100 
+    SEC : SBC.W $0911 
     BPL .offScreen 
     LDA.W $18A6 
     ASL A 
@@ -3623,8 +3550,7 @@ EnemyShot_Crocomire_OpenMouth:
     TXA 
     CMP.W #$0000 
     BEQ .flash 
-    CLC 
-    ADC.W $0FAE 
+    CLC : ADC.W $0FAE 
     STA.W $0FAE 
 
 .offScreen:
@@ -3645,8 +3571,7 @@ EnemyShot_Crocomire_OpenMouth:
     LDX.W CrocomireConstants_mouthCloseDelayWhenDamaged_ProjAttack 
 
   + TXA 
-    CLC 
-    ADC.W $0F94 
+    CLC : ADC.W $0F94 
     STA.W $0F94 
 
 .damaged:
@@ -3659,8 +3584,7 @@ EnemyShot_Crocomire_OpenMouth:
 
 .flash:
     LDA.W $0F9C 
-    CLC 
-    ADC.W #$000E 
+    CLC : ADC.W #$000E 
     STA.W $0F9C 
     LDA.W $0F8A 
     ORA.W #$0002 

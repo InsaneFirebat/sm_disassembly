@@ -155,8 +155,7 @@ Instruction_CommonA5_CallFunctionInY_WithA:
     PLX 
     PLY 
     TYA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     TAY 
     RTL 
 
@@ -188,8 +187,7 @@ UNUSED_Inst_CommonA5_CallExternalFunctionInY_WithA_A580CE:
     PLY 
     PLX 
     TYA 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     TAY 
     RTL 
 
@@ -218,8 +216,7 @@ Instruction_CommonA5_GotoY_PlusY:
 .highByte:
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     TAY 
     RTL 
 
@@ -285,12 +282,10 @@ Instruction_CommonA5_TransferYBytesInYToVRAM:
     LDA.W $0003,Y : STA.B $D3,X 
     LDA.W $0005,Y : STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     PLX 
     RTL 
@@ -456,8 +451,7 @@ Function_DraygonBody_FightIntro_InitialDelay:
     LDA.W #Tiles_Evir>>16 : STA.B $D4,X 
     LDA.W #$6D00 : STA.B $D5,X 
     LDA.W $0330 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     JSR.W SpawnFightIntroEvirSpriteObjects 
 
@@ -470,8 +464,7 @@ Function_DraygonBody_FightIntro_InitialDelay:
     LDA.W #Function_DraygonBody_FightIntro_Dance : STA.W $0FA8 
     STZ.W $0FAA 
     LDA.W $0F7A : STA.L $7E7800 
-    CLC 
-    ADC.W #$02A0 
+    CLC : ADC.W #$02A0 
     STA.L $7E7804 
     LDA.W $0F7E : STA.L $7E7802 
     LDA.L $7E7800 : STA.W $0F7A ; >.<
@@ -503,8 +496,7 @@ HandleFiringWallTurret:
     BNE .return 
     JSL.L GenerateRandomNumber 
     AND.W #$0003 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     ASL A 
     TAX 
     ASL A 
@@ -549,15 +541,13 @@ CalculateDraygonSwoopYPositions:
 .loop:
     LDX.W $0E54 ; >.<
     LDA.L $7E781E 
-    CLC 
-    ADC.W $0E22 
+    CLC : ADC.W $0E22 
     STA.W $0E22 
     XBA 
     AND.W #$00FF 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.W $0E24 
+    CLC : ADC.W $0E24 
     CMP.L $7E7802 
     BMI + 
     STA.W $0E24 
@@ -577,16 +567,14 @@ CalculateDraygonSwoopYPositions:
 
   + LDA.L $7E7800 
     BMI .leftSideReset 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     JSL.L NegateA_A0B067 
     BRA + 
 
 
 .leftSideReset:
     JSL.L NegateA_A0B067 
-    CLC 
-    ADC.W $0AF6 
+    CLC : ADC.W $0AF6 
     JSL.L NegateA_A0B067 
 
   + STA.B $2C 
@@ -625,8 +613,7 @@ Function_DraygonBody_SwoopRight_Descending:
     LDA.W $0FAA 
     BEQ .apex 
     LDA.W $0F7C 
-    CLC 
-    ADC.W $0FB0 
+    CLC : ADC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     ADC.W $0FAE 
@@ -661,8 +648,7 @@ Function_DraygonBody_SwoopRight_Apex:
     JSR.W HandleFiringWallTurret 
     LDX.W $0E54 ; >.<
     LDA.W #$02A0 
-    SEC 
-    SBC.W $0F7A 
+    SEC : SBC.W $0F7A 
     STA.B $2C 
     STZ.B $2A 
     LDA.W $0FAC 
@@ -695,8 +681,7 @@ Function_DraygonBody_SwoopRight_Ascending:
     CMP.W $0FAC 
     BEQ + 
     LDA.W $0F7C 
-    CLC 
-    ADC.W $0FB0 
+    CLC : ADC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     ADC.W $0FAE 
@@ -721,8 +706,7 @@ Function_DraygonBody_SwoopLeft_Setup:
     JSR.W HandleFiringWallTurret 
     LDX.W $0E54 ; >.<
     LDA.L $7E7804 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     JSL.L NegateA_A0B067 
     STA.B $2C 
     STZ.B $2A 
@@ -760,8 +744,7 @@ Function_DraygonBody_SwoopLeft_Descending:
     LDA.W $0FAA 
     BEQ .apex 
     LDA.W $0F7C 
-    SEC 
-    SBC.W $0FB0 
+    SEC : SBC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     SBC.W $0FAE 
@@ -780,16 +763,14 @@ Function_DraygonBody_SwoopLeft_Apex:
     LDA.L $7E7800 
     BMI .leftSideReset 
     LDA.W $0F7A 
-    SEC 
-    SBC.L $7E7800 
+    SEC : SBC.L $7E7800 
     BRA + 
 
 
 .leftSideReset:
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.W $0F7A 
+    CLC : ADC.W $0F7A 
 
   + STA.B $2C 
     STZ.B $2A 
@@ -823,8 +804,7 @@ Function_DraygonBody_SwoopLeft_Ascending:
     CMP.W $0FAC 
     BEQ .chooseAttack 
     LDA.W $0F7C 
-    SEC 
-    SBC.W $0FB0 
+    SEC : SBC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     SBC.W $0FAE 
@@ -869,8 +849,7 @@ Function_DraygonBody_GoopRight_MoveUntilSamusInRange:
     JSR.W HandleFiringWallTurret 
     JSR.W HandleShortDraygonBreathBubbles 
     LDA.W $0F7A 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     JSL.L NegateA_A0B067 
     CMP.W #$00D0 
     BPL .tooFar 
@@ -883,17 +862,14 @@ Function_DraygonBody_GoopRight_MoveUntilSamusInRange:
     LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
-    CLC 
-    ADC.W #$0180 
+    CLC : ADC.W #$0180 
     STA.W $0F7E 
     LDA.L $7E781A 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C 
-    CLC 
-    ADC.W $0FB0 
+    CLC : ADC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     ADC.W $0FAE 
@@ -920,17 +896,14 @@ Function_DraygonBody_GoopRight_FiringGoops:
     LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
-    CLC 
-    ADC.W #$0180 
+    CLC : ADC.W #$0180 
     STA.W $0F7E 
     LDA.L $7E781A 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C 
-    CLC 
-    ADC.W $0FB0 
+    CLC : ADC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     ADC.W $0FAE 
@@ -964,17 +937,14 @@ Function_DraygonBody_GoopRight_MoveUntilOffScreen:
     LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
-    CLC 
-    ADC.W #$0180 
+    CLC : ADC.W #$0180 
     STA.W $0F7E 
     LDA.L $7E781A 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C 
-    CLC 
-    ADC.W $0FB0 
+    CLC : ADC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     ADC.W $0FAE 
@@ -1014,8 +984,7 @@ Function_DraygonBody_GoopLeft_MoveUntilSamusInRange:
     JSR.W HandleFiringWallTurret 
     JSR.W HandleShortDraygonBreathBubbles 
     LDA.W $0F7A 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     JSL.L NegateA_A0B067 
     CMP.W #$00D0 
     BPL .tooFar 
@@ -1028,17 +997,14 @@ Function_DraygonBody_GoopLeft_MoveUntilSamusInRange:
     LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
-    CLC 
-    ADC.W #$0180 
+    CLC : ADC.W #$0180 
     STA.W $0F7E 
     LDA.L $7E781A 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C 
-    SEC 
-    SBC.W $0FB0 
+    SEC : SBC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     SBC.W $0FAE 
@@ -1064,17 +1030,14 @@ Function_DraygonBody_GoopLeft_FiringGoops:
     LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
-    CLC 
-    ADC.W #$0180 
+    CLC : ADC.W #$0180 
     STA.W $0F7E 
     LDA.L $7E781A 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C 
-    SEC 
-    SBC.W $0FB0 
+    SEC : SBC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     SBC.W $0FAE 
@@ -1110,17 +1073,14 @@ Function_DraygonBody_GoopLeft_MoveUntilOffScreen:
     LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
-    CLC 
-    ADC.W #$0180 
+    CLC : ADC.W #$0180 
     STA.W $0F7E 
     LDA.L $7E781A 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C 
-    SEC 
-    SBC.W $0FB0 
+    SEC : SBC.W $0FB0 
     STA.W $0F7C 
     LDA.W $0F7A 
     SBC.W $0FAE 
@@ -1165,16 +1125,13 @@ Function_DraygonBody_ChaseSamus:
 
 .notLeft:
     TYA 
-    CLC 
-    ADC.W $0F7A 
-    SEC 
-    SBC.W $0AF6 
+    CLC : ADC.W $0F7A 
+    SEC : SBC.W $0AF6 
     JSL.L NegateA_A0B067 
     CMP.W #$0008 
     BPL .notGrabbed 
     LDA.W $0F7E 
-    SEC 
-    SBC.W $0AFA 
+    SEC : SBC.W $0AFA 
     JSL.L NegateA_A0B067 
     CMP.W #$0008 
     BPL .notGrabbed 
@@ -1183,18 +1140,15 @@ Function_DraygonBody_ChaseSamus:
 
 .notGrabbed:
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A 
+    SEC : SBC.W $0F7A 
     STA.B $12 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0F7E 
+    SEC : SBC.W $0F7E 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     EOR.W #$00FF 
     INC A 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     AND.W #$00FF 
     STA.W $0E20 
     STA.B $12 
@@ -1262,8 +1216,7 @@ Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
     LDX.W $0F78 
     LDA.L $A0000D,X 
     AND.W #$00FF 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $0F9C 
     PLX 
     LDA.W $0F8A 
@@ -1274,14 +1227,12 @@ Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
 
 .notGrappled:
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0100 
+    SEC : SBC.W #$0100 
     JSL.L NegateA_A0B067 
     CMP.W #$0002 
     BPL .notReachedTarget 
     LDA.W $0F7E 
-    SEC 
-    SBC.W #$0180 
+    SEC : SBC.W #$0180 
     JSL.L NegateA_A0B067 
     CMP.W #$0002 
     BPL .notReachedTarget 
@@ -1290,18 +1241,15 @@ Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
 
 .notReachedTarget:
     LDA.W #$0100 
-    SEC 
-    SBC.W $0F7A 
+    SEC : SBC.W $0F7A 
     STA.B $12 
     LDA.W #$0180 
-    SEC 
-    SBC.W $0F7E 
+    SEC : SBC.W $0F7E 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     EOR.W #$00FF 
     INC A 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     AND.W #$00FF 
     STA.W $0E20 
     STA.B $12 
@@ -1341,8 +1289,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     LDX.W $0F78 
     LDA.L $A0000D,X 
     AND.W #$00FF 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $0F9C 
     PLX 
     LDA.W $0F8A 
@@ -1364,35 +1311,30 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     LDA.L $7E780A : STA.W $0E32 
     LDA.L $7E7810 
     JSL.L EightBitCosineMultiplication_A0B0B2 
-    CLC 
-    ADC.L $7E780C 
+    CLC : ADC.L $7E780C 
     STA.W $0F7A 
     LDA.L $7E780A 
     LSR #2
     STA.W $0E32 
     LDA.L $7E7810 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
-    CLC 
-    ADC.L $7E780E 
+    CLC : ADC.L $7E780E 
     STA.W $0F7E 
     LDA.W $0FA4,X 
     AND.W #$0007 
     BNE .noFoam 
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.B $12 
     LDA.L $7E8000 
     BEQ .left 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.B $12 
 
 .left:
     LDA.W $0F7E 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.B $14 
     LDA.W #$003D : STA.B $16 
     STZ.B $18 
@@ -1400,8 +1342,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
 
 .noFoam:
     LDA.L $7E7812 
-    CLC 
-    ADC.W #$2000 
+    CLC : ADC.W #$2000 
     STA.L $7E7812 
     LDA.L $7E780A 
     ADC.W #$0000 
@@ -1409,18 +1350,15 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     CMP.W #$00A0 
     BPL .finalSpanking 
     LDA.L $7E7816 
-    SEC 
-    SBC.W #$0001 
+    SEC : SBC.W #$0001 
     STA.L $7E7816 
     AND.W #$FF00 
     XBA 
-    CLC 
-    ADC.L $7E7810 
+    CLC : ADC.L $7E7810 
     AND.W #$00FF 
     STA.L $7E7810 
     LDA.L $7E7814 
-    SEC 
-    SBC.W #$4000 
+    SEC : SBC.W #$4000 
     STA.L $7E7814 
     LDA.L $7E780E 
     SBC.W #$0000 
@@ -1501,8 +1439,7 @@ Function_DraygonBody_GrabbedSamus_FlailTail_FlyStraightUp:
 Function_DraygonBody_GrabbedSamus_FlyStraightUp:
     JSR.W HandleFiringWallTurret 
     LDA.W $0F7E 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $0F7E 
     BMI .offScreenTop 
     RTS 
@@ -1525,20 +1462,17 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     AND.W #$000F 
     BNE .noFoam 
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.B $12 
     LDA.L $7E8000 
     BEQ .left 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.B $12 
 
 .left:
     LDA.W $0F7E 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.B $14 
     LDA.W #$003D : STA.B $16 
     STZ.B $18 
@@ -1551,8 +1485,7 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     LDA.W #$0100 
     LSR A ; >.<
     LSR A 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.B $12 
     LDA.W $0F7E 
     LSR #2
@@ -1560,12 +1493,10 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     LDA.W #$01E0 
     LSR A ; >.<
     LSR A 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     EOR.W #$FFFF 
     INC A 
     AND.W #$00FF 
@@ -1584,14 +1515,12 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     STA.W $0E20 
     JSL.L MoveEnemyAccordingToAngleAndXYSpeeds 
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0100 
+    SEC : SBC.W #$0100 
     JSL.L NegateA_A0B067 
     CMP.W #$0004 
     BPL .gotoReturn 
     LDA.W $0F7E 
-    SEC 
-    SBC.W #$01E0 
+    SEC : SBC.W #$01E0 
     JSL.L NegateA_A0B067 
     CMP.W #$0004 
     BPL .gotoReturn 
@@ -1676,14 +1605,12 @@ HandleDyingDraygonSmoke:
     BNE .return 
     JSL.L GenerateRandomNumber 
     AND.W #$007F 
-    CLC 
-    ADC.W #$00C0 
+    CLC : ADC.W #$00C0 
     STA.B $12 
     LDA.W $05E5 
     AND.W #$3F00 
     XBA 
-    CLC 
-    ADC.W #$0190 
+    CLC : ADC.W #$0190 
     STA.B $14 
     LDA.W #$0015 : STA.B $16 
     STZ.B $18 
@@ -1700,12 +1627,10 @@ HandleShortDraygonBreathBubbles:
     AND.W #$007F 
     BNE .return 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$FFF0 
+    CLC : ADC.W #$FFF0 
     STA.B $12 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$FFF0 
+    CLC : ADC.W #$FFF0 
     STA.B $14 
     LDA.W #$0018 : STA.B $16 
     STZ.B $18 
@@ -1717,20 +1642,14 @@ HandleShortDraygonBreathBubbles:
 
 EnemyGraphicsDrawnHook_Draygon_SetBG2XYScroll:
     LDA.W $0911 
-    SEC 
-    SBC.W $0F7A 
-    SEC 
-    SBC.W #$01C2 
-    CLC 
-    ADC.L $7E883C 
+    SEC : SBC.W $0F7A 
+    SEC : SBC.W #$01C2 
+    CLC : ADC.L $7E883C 
     STA.B $B5 
     LDA.W $0915 
-    SEC 
-    SBC.W $0F7E 
-    SEC 
-    SBC.W #$00C0 
-    CLC 
-    ADC.L $7E883E 
+    SEC : SBC.W $0F7E 
+    SEC : SBC.W #$00C0 
+    CLC : ADC.L $7E883E 
     STA.B $B7 
     RTL 
 
@@ -1846,8 +1765,7 @@ Debug_MoveDraygonWithDpad_Fast:
     BIT.W #$0200 
     BEQ .noPressingLeft 
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $0F7A 
     LDA.B $8D 
     CMP.W $1866 
@@ -1862,8 +1780,7 @@ Debug_MoveDraygonWithDpad_Fast:
     BIT.W #$0100 
     BEQ .noHorizontalMovement 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0F7A 
     LDA.B $8D 
     CMP.W $1866 
@@ -1880,8 +1797,7 @@ Debug_MoveDraygonWithDpad_Fast:
     BIT.W #$0800 
     BEQ .notPressingUp 
     LDA.W $0F7E 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $0F7E 
     BRA .return 
 
@@ -1891,8 +1807,7 @@ Debug_MoveDraygonWithDpad_Fast:
     BEQ .return 
     INC.W $0F7E 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0F7E 
 
 .return:
@@ -1907,12 +1822,10 @@ MoveSamusWithDraygon:
 
 .keepLeft:
     TYA 
-    CLC 
-    ADC.W $0F7A 
+    CLC : ADC.W $0F7A 
     STA.W $0AF6 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$0028 
+    CLC : ADC.W #$0028 
     STA.W $0AFA 
     JSL.L CapScrollingSpeed 
     LDA.W $0A64 
@@ -1937,8 +1850,7 @@ Instruction_Draygon_SetInstList_Body_Eye_Tail_Arms:
     STA.W $1054 
     PLY 
     TYA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     TAY 
     RTL 
 
@@ -2038,8 +1950,7 @@ HurtAI_Draygon:
     AND.W #$0007 
     BNE .return 
     LDA.W $0F8C 
-    SEC 
-    SBC.W #$0100 
+    SEC : SBC.W #$0100 
     BPL .grappleDamage 
     LDA.W #$0000 
 
@@ -2058,8 +1969,7 @@ EnemyTouch_Draygon:
 
 EnemyShot_Draygon:
     LDA.L $7E781E 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     CMP.W #$00A0 
     BPL + 
     STA.L $7E781E 
@@ -2102,16 +2012,13 @@ DraygonReaction_Common:
     JSL.L ReleaseSamusFromDraygon_external 
     STZ.W $0A64 
     LDA.W #$0100 
-    SEC 
-    SBC.W $0F7A 
+    SEC : SBC.W $0F7A 
     STA.B $12 
     LDA.W #$01E0 
-    SEC 
-    SBC.W $0F7E 
+    SEC : SBC.W $0F7E 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     EOR.W #$FFFF 
     INC A 
     AND.W #$00FF 
@@ -2233,22 +2140,18 @@ GenerateRandomDyingDraygonSpriteObjectPosition:
     JSL.L GenerateRandomNumber 
     LDA.W $05E5 
     AND.W #$007F 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     STA.B $12 
     LDA.W $0F7A 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $12 
     LDA.W $05E5 
     AND.W #$7F00 
     XBA 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     STA.B $14 
     LDA.W $0F7E 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $14 
     RTS 
 
@@ -2786,8 +2689,7 @@ Instruction_DraygonTail_TailWhipHit:
     LDA.W #$0007 : STA.W $183E 
     LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.B $14 
     LDA.W #$0015 : STA.B $16 
     STZ.B $18 
@@ -3295,17 +3197,14 @@ Instruction_Draygon_SpawnGoop_Leftwards:
     PHY 
     LDX.W $0E54 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$FFE4 
+    CLC : ADC.W #$FFE4 
     STA.B $12 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$FFF0 
+    CLC : ADC.W #$FFF0 
     STA.B $14 
     JSL.L GenerateRandomNumber 
     AND.W #$003F 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     STA.W $1995 
     LDY.W #EnemyProjectile_DraygonGoop 
     LDA.W #$0002 
@@ -3320,17 +3219,14 @@ Instruction_Draygon_SpawnGoop_Rightwards:
     PHY 
     LDX.W $0E54 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     STA.B $12 
     LDA.W $0F7E 
-    CLC 
-    ADC.W #$FFF0 
+    CLC : ADC.W #$FFF0 
     STA.B $14 
     JSL.L GenerateRandomNumber 
     AND.W #$003F 
-    CLC 
-    ADC.W #$00C0 
+    CLC : ADC.W #$00C0 
     STA.W $1995 
     LDY.W #EnemyProjectile_DraygonGoop 
     LDA.W #$0002 
@@ -3347,13 +3243,11 @@ HandleDeathSequenceEvirMovement:
 
 .loop:
     LDA.W DraygonDeathSequenceEvirAngles,Y 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     BIT.W #$0080 
     BEQ + 
     LDA.L $7EF178,X 
-    CLC 
-    ADC.W DraygonDeathSequenceEvirSubSpeeds_X,Y 
+    CLC : ADC.W DraygonDeathSequenceEvirSubSpeeds_X,Y 
     STA.L $7EF178,X 
     LDA.L $7EF0F8,X 
     ADC.W #$0000 
@@ -3362,8 +3256,7 @@ HandleDeathSequenceEvirMovement:
 
 
   + LDA.L $7EF178,X 
-    SEC 
-    SBC.W DraygonDeathSequenceEvirSubSpeeds_X,Y 
+    SEC : SBC.W DraygonDeathSequenceEvirSubSpeeds_X,Y 
     STA.L $7EF178,X 
     LDA.L $7EF0F8,X 
     SBC.W $0E24 
@@ -3371,13 +3264,11 @@ HandleDeathSequenceEvirMovement:
 
 .YPosition:
     LDA.W DraygonDeathSequenceEvirAngles,Y 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     BIT.W #$0080 
     BEQ + 
     LDA.L $7EF278,X 
-    CLC 
-    ADC.W DraygonDeathSequenceEvirSubSpeeds_Y,Y 
+    CLC : ADC.W DraygonDeathSequenceEvirSubSpeeds_Y,Y 
     STA.L $7EF278,X 
     LDA.L $7EF1F8,X 
     ADC.W #$0000 
@@ -3386,8 +3277,7 @@ HandleDeathSequenceEvirMovement:
 
 
   + LDA.L $7EF278,X 
-    SEC 
-    SBC.W DraygonDeathSequenceEvirSubSpeeds_Y,Y 
+    SEC : SBC.W DraygonDeathSequenceEvirSubSpeeds_Y,Y 
     STA.L $7EF278,X 
     LDA.L $7EF1F8,X 
     SBC.W #$0000 
@@ -3492,12 +3382,10 @@ HandleDraygonFightIntroDance:
 
 .loop:
     TXA 
-    SEC 
-    SBC.W #$0038 
+    SEC : SBC.W #$0038 
     TAY 
     LDA.W MovementLatencyForEachEvirSpriteObject,Y 
-    CLC 
-    ADC.L $7E880C 
+    CLC : ADC.L $7E880C 
     BMI .next 
     TAY 
     LDA.W DraygonFightIntroDanceData_KeikoLove,Y 
@@ -3506,14 +3394,12 @@ HandleDraygonFightIntroDance:
     LDA.W DraygonFightIntroDanceData_KeikoLove,Y 
     AND.W #$00FF 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.L $7EF0F8,X 
+    CLC : ADC.L $7EF0F8,X 
     STA.L $7EF0F8,X 
     LDA.W DraygonFightIntroDanceData_KeikoLove+1,Y 
     AND.W #$00FF 
     JSL.L Sign_Extend_A 
-    CLC 
-    ADC.L $7EF1F8,X 
+    CLC : ADC.L $7EF1F8,X 
     STA.L $7EF1F8,X 
 
 .next:
@@ -6464,12 +6350,10 @@ Function_DraygonEye_FacingLeft:
     AND.W #$007F 
     BNE .nonZeroCounter 
     LDA.W $0FBA 
-    SEC 
-    SBC.W #$0018 
+    SEC : SBC.W #$0018 
     STA.B $12 
     LDA.W $0FBE 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.B $14 
     LDA.W #$0018 
     LDY.W #EnemyProjectile_MiscDust 
@@ -6478,20 +6362,16 @@ Function_DraygonEye_FacingLeft:
 .nonZeroCounter:
     LDX.W $0E54 
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0018 
+    SEC : SBC.W #$0018 
     STA.B $12 
     LDA.W $0AF6 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.B $12 
     LDA.W $0F7E 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.B $14 
     LDA.W $0AFA 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     CMP.W $0FB2,X 
@@ -6526,12 +6406,10 @@ Function_DraygonEye_FacingRight:
     AND.W #$007F 
     BNE .nonZeroCounter 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     STA.B $12 
     LDA.W $0F7E 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.B $14 
     LDA.W #$0018 
     LDY.W #EnemyProjectile_MiscDust 
@@ -6540,20 +6418,16 @@ Function_DraygonEye_FacingRight:
 .nonZeroCounter:
     LDX.W $0E54 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     STA.B $12 
     LDA.W $0AF6 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.B $12 
     LDA.W $0F7E 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.B $14 
     LDA.W $0AFA 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     CMP.W $0FB2,X 
@@ -7314,8 +7188,7 @@ InstList_SporeSpawn_CloseAndMove:
 
 Instruction_SporeSpawn_IncreaseMaxXRadius:
     LDA.L $7E7816 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     CMP.W #$0030 
     BPL .return 
     STA.L $7E7816 
@@ -7419,8 +7292,7 @@ UNUSED_Instruction_SporeSpawn_SetMaxXRadiusAndAngles_A5E811:
     LDA.W $0002,Y : STA.L $7E7818 
     LDA.W $0004,Y : STA.L $7E7814 
     TYA 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     TAY 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -7448,8 +7320,7 @@ UNUSED_Instruction_SporeSpawn_AngleDeltaInY_A5E84A:
 
 UNUSED_Instruction_SporeSpawn_MaxXRadiusPlusY_A5E854:
     LDA.L $7E7816 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     STA.L $7E7816 
     INY #2
     RTL 
@@ -7457,8 +7328,7 @@ UNUSED_Instruction_SporeSpawn_MaxXRadiusPlusY_A5E854:
 
 UNUSED_Instruction_SporeSpawn_AngleDeltaPlusY_A5E863:
     LDA.L $7E7818 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     STA.L $7E7818 
     INY #2
     RTL 
@@ -7613,22 +7483,18 @@ Instruction_SporeSpawn_SpawnHardeningDustCloud:
     JSL.L GenerateRandomNumber 
     LDA.W $05E5 
     AND.W #$007F 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     STA.B $12 
     LDA.W $0F7A 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $12 
     LDA.W $05E5 
     AND.W #$7F00 
     XBA 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     STA.B $14 
     LDA.W $0F7E 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $14 
     LDA.W #$0015 
     LDY.W #EnemyProjectile_MiscDust 
@@ -7646,22 +7512,18 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
     JSL.L GenerateRandomNumber 
     LDA.W $05E5 
     AND.W #$007F 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     STA.B $12 
     LDA.W $0F7A 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $12 
     LDA.W $05E5 
     AND.W #$3F00 
     XBA 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.B $14 
     LDA.W $0F7E 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $14 
     LDA.W #$0003 : STA.B $16 
     STZ.B $18 
@@ -7682,14 +7544,12 @@ SpawnSporeSpawnCeilingDustCloud:
     JSL.L GenerateRandomNumber 
     LDA.W $05E5 
     AND.W #$003F 
-    CLC 
-    ADC.W #$0060 
+    CLC : ADC.W #$0060 
     STA.B $12 
     LDA.W $05E5 
     AND.W #$0F00 
     XBA 
-    CLC 
-    ADC.W #$01E0 
+    CLC : ADC.W #$01E0 
     STA.B $14 
     LDA.W #$0015 : STA.B $16 
     STZ.B $18 
@@ -7727,8 +7587,7 @@ InitAI_SporeSpawn:
     LDX.W $0E54 
     LDA.W $0F7A,X : STA.L $7E7808,X 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0048 
+    SEC : SBC.W #$0048 
     STA.L $7E780A,X 
     LDA.W $0F7A,X : STA.W $0FAC,X 
     LDA.W $0F7E,X : STA.W $0FAE,X 
@@ -7758,8 +7617,7 @@ InitAI_SporeSpawn:
     LDA.W #RTS_A5EB1A : STA.W $0FA8,X 
     LDA.W #ScrollingFinishedHook_SporeSpawnFight : STA.W $07E9 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0080 
+    SEC : SBC.W #$0080 
     STA.W $0F7E,X 
     LDA.W #$0000 
     LDY.W #EnemyProjectile_SporeSpawnSporeSpawner 
@@ -7791,8 +7649,7 @@ Function_SporeSpawn_Descent:
     JSR.W UpdateSporeSpawnStalkSegmentPositions 
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     STA.W $0F7E,X 
     CMP.W #$0270 
     BMI .descending 
@@ -7811,24 +7668,19 @@ Function_SporeSpawn_Moving:
     LDA.L $7E7816 : STA.W $0E32 
     LDA.L $7E7814 
     JSL.L EightBitCosineMultiplication_A0B0B2 
-    CLC 
-    ADC.W $0FAC,X 
+    CLC : ADC.W $0FAC,X 
     STA.W $0F7A,X 
     LDA.L $7E7816 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.W $0E32 
     LDA.L $7E7814 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     ASL A 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
-    CLC 
-    ADC.W $0FAE,X 
+    CLC : ADC.W $0FAE,X 
     STA.W $0F7E,X 
     LDA.L $7E7814 
-    CLC 
-    ADC.L $7E7818 
+    CLC : ADC.L $7E7818 
     AND.W #$00FF 
     STA.L $7E7814 
     RTS 
@@ -7837,16 +7689,13 @@ Function_SporeSpawn_Moving:
 Function_SporeSpawn_SetupDeath:
     LDX.W $0E54 
     LDA.W #$0080 
-    SEC 
-    SBC.W $0F7A 
+    SEC : SBC.W $0F7A 
     STA.B $12 
     LDA.W #$0270 
-    SEC 
-    SBC.W $0F7E 
+    SEC : SBC.W $0F7E 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     EOR.W #$FFFF 
     INC A 
     AND.W #$00FF 
@@ -7874,14 +7723,12 @@ Function_SporeSpawn_Dying:
     STA.W $0E20 
     JSL.L MoveEnemyAccordingToAngleAndXYSpeeds 
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0080 
+    SEC : SBC.W #$0080 
     JSL.L NegateA_A0B067 
     CMP.W #$0008 
     BPL .notDone 
     LDA.W $0F7E 
-    SEC 
-    SBC.W #$0270 
+    SEC : SBC.W #$0270 
     JSL.L NegateA_A0B067 
     CMP.W #$0008 
     BPL .notDone 
@@ -7895,8 +7742,7 @@ Function_SporeSpawn_Dying:
 
 UpdateSporeSpawnStalkSegmentPositions:
     LDA.W $0F7A 
-    SEC 
-    SBC.L $7E7808 
+    SEC : SBC.L $7E7808 
     BPL .positiveX 
     EOR.W #$FFFF 
     INC A 
@@ -7904,23 +7750,19 @@ UpdateSporeSpawnStalkSegmentPositions:
     STA.B $12 
     LSR A 
     STA.B $14 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $16 
     LDA.W #$0080 : STA.W $1A67 
     LDA.L $7E7808 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     STA.W $1A69 
     STA.L $7E8000 
     LDA.L $7E7808 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.W $1A6B 
     STA.L $7E8002 
     LDA.L $7E7808 
-    SEC 
-    SBC.B $16 
+    SEC : SBC.B $16 
     STA.W $1A6D 
     STA.L $7E8004 
     BRA .checkY 
@@ -7931,32 +7773,26 @@ UpdateSporeSpawnStalkSegmentPositions:
     STA.B $12 
     LSR A 
     STA.B $14 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $16 
     LDA.W #$0080 : STA.W $1A67 
     LDA.B $14 
-    CLC 
-    ADC.L $7E7808 
+    CLC : ADC.L $7E7808 
     STA.W $1A69 
     STA.L $7E8000 
     LDA.B $12 
-    CLC 
-    ADC.L $7E7808 
+    CLC : ADC.L $7E7808 
     STA.W $1A6B 
     STA.L $7E8002 
     LDA.B $16 
-    CLC 
-    ADC.L $7E7808 
+    CLC : ADC.L $7E7808 
     STA.W $1A6D 
     STA.L $7E8004 
 
 .checkY:
     LDA.W $0F7E 
-    SEC 
-    SBC.W #$0028 
-    SEC 
-    SBC.L $7E780A 
+    SEC : SBC.W #$0028 
+    SEC : SBC.L $7E780A 
     BPL .positiveY 
     EOR.W #$FFFF 
     INC A 
@@ -7964,23 +7800,19 @@ UpdateSporeSpawnStalkSegmentPositions:
     STA.B $12 
     LSR A 
     STA.B $14 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $16 
     LDA.W #$0230 : STA.W $1AAF 
     LDA.L $7E780A 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     STA.W $1AB1 
     STA.L $7E8006 
     LDA.L $7E780A 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.W $1AB3 
     STA.L $7E8008 
     LDA.L $7E780A 
-    SEC 
-    SBC.B $16 
+    SEC : SBC.B $16 
     STA.W $1AB5 
     STA.L $7E800A 
     BRA .return 
@@ -7991,23 +7823,19 @@ UpdateSporeSpawnStalkSegmentPositions:
     STA.B $12 
     LSR A 
     STA.B $14 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $16 
     LDA.W #$0230 : STA.W $1AAF 
     LDA.B $14 
-    CLC 
-    ADC.L $7E780A 
+    CLC : ADC.L $7E780A 
     STA.W $1AB1 
     STA.L $7E8006 
     LDA.B $12 
-    CLC 
-    ADC.L $7E780A 
+    CLC : ADC.L $7E780A 
     STA.W $1AB3 
     STA.L $7E8008 
     LDA.B $16 
-    CLC 
-    ADC.L $7E780A 
+    CLC : ADC.L $7E780A 
     STA.W $1AB5 
     STA.L $7E800A 
 

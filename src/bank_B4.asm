@@ -2226,8 +2226,7 @@ DebugHandler_7_EnemyDebugger_EnemySpawnDataEditor:
 .nonZeroName:
     TAX 
     LDA.L $B4000C,X 
-    CLC 
-    ADC.W #$0030 
+    CLC : ADC.W #$0030 
 
 .draw:
     JSL.L Add_Debug_Spritemap_to_OAM 
@@ -2312,17 +2311,14 @@ Debug_Draw_Enemy_Set_Name:
     LDA.W #$00B0 : STA.B $14 
     LDA.W #$0058 : STA.B $12 
     LDA.W $079F 
-    CLC 
-    ADC.W #$0014 
+    CLC : ADC.W #$0014 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $07D1 
-    SEC 
-    SBC.W #$0007 
+    SEC : SBC.W #$0007 
     TAX 
     LDA.L $B40002,X 
     AND.W #$00FF 
-    SEC 
-    SBC.W #$002C 
+    SEC : SBC.W #$002C 
     STA.B $16 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00A8 : STA.B $14 
@@ -2330,13 +2326,11 @@ Debug_Draw_Enemy_Set_Name:
     LDA.B $16 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $07D1 
-    SEC 
-    SBC.W #$0007 
+    SEC : SBC.W #$0007 
     TAX 
     LDA.L $B40004,X 
     AND.W #$00FF 
-    SEC 
-    SBC.W #$002C 
+    SEC : SBC.W #$002C 
     STA.B $16 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00B8 : STA.B $14 
@@ -2344,13 +2338,11 @@ Debug_Draw_Enemy_Set_Name:
     LDA.B $16 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $07D1 
-    SEC 
-    SBC.W #$0007 
+    SEC : SBC.W #$0007 
     TAX 
     LDA.L $B40005,X 
     AND.W #$00FF 
-    SEC 
-    SBC.W #$002C 
+    SEC : SBC.W #$002C 
     STA.B $16 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00C0 : STA.B $14 
@@ -2367,8 +2359,7 @@ DebugHandler_8_EnemyDebugger_RespawnEnemy:
     PLB 
     PLB 
     LDA.W #$701E 
-    CLC 
-    ADC.W $1846 
+    CLC : ADC.W $1846 
     TAX 
     LDY.W $1846 
     JSL.L Debug_SpawnEnemy_ToEnemyIndex_inY 
@@ -2394,14 +2385,12 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     LDA.L $A0003E,X 
     TAX 
     LDA.L $B4000C,X 
-    CLC 
-    ADC.W #$0030 
+    CLC : ADC.W #$0030 
     STA.B $16 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00A8 : STA.B $14 
     LDA.W $0E2A 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     STA.B $12 
     LDA.B $16 
     AND.W #$00FF 
@@ -2412,12 +2401,10 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     LDA.W $0E2A : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDA.W $0E2A 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $0E2A 
     LDA.W $0E26 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0E26 
     BRA .loop 
 
@@ -2443,8 +2430,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
   + TAX 
     LDA.L $B4000C,X 
-    CLC 
-    ADC.W #$0030 
+    CLC : ADC.W #$0030 
 
 .resolvedName:
     JSL.L Add_Debug_Spritemap_to_OAM 
@@ -2452,8 +2438,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     BIT.W #$0400 
     BEQ .checkTerminator 
     LDA.W $1864 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     CMP.W #$0010 
     BNE + 
     LDA.W #$0000 
@@ -2462,8 +2447,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 .checkTerminator:
     LDA.W $07D1 
-    CLC 
-    ADC.W $1864 
+    CLC : ADC.W $1864 
     TAX 
     LDA.L $B40000,X 
     CMP.W #$FFFF 
@@ -2542,8 +2526,7 @@ Debug_HandleCursorMovement:
     BIT.W #$0100 
     BEQ .noRight 
     LDA.W $1860 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     CMP.W #$00E0 
     BNE + 
     LDA.W #$00C0 
@@ -2556,8 +2539,7 @@ Debug_HandleCursorMovement:
     BIT.W #$0200 
     BEQ .noLeft 
     LDA.W $1860 
-    SEC 
-    SBC.W #$0008 
+    SEC : SBC.W #$0008 
     CMP.W #$00B8 
     BNE + 
     LDA.W #$00D8 
@@ -2570,8 +2552,7 @@ Debug_HandleCursorMovement:
     BIT.W #$0400 
     BEQ .noDown 
     LDA.W $1862 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     CMP.W #$0068 
     BNE + 
     LDA.W #$0030 
@@ -2584,8 +2565,7 @@ Debug_HandleCursorMovement:
     BIT.W #$0800 
     BEQ .return 
     LDA.W $1862 
-    SEC 
-    SBC.W #$0008 
+    SEC : SBC.W #$0008 
     CMP.W #$0028 
     BNE .setCursorY 
     LDA.W #$0060 
@@ -2610,18 +2590,15 @@ Debug_HandleDigitModification:
     BIT.W #$0040 
     BEQ .notNewlyPressedX 
     LDA.W $1860 
-    SEC 
-    SBC.W #$00C0 
+    SEC : SBC.W #$00C0 
     LSR #2
     TAX 
     LDA.W $1862 
-    SEC 
-    SBC.W #$0030 
+    SEC : SBC.W #$0030 
     LSR #2
     TAY 
     LDA.W $0012,Y 
-    CLC 
-    ADC.W .data,X 
+    CLC : ADC.W .data,X 
     STA.W $0012,Y 
     BRA + 
 
@@ -2630,18 +2607,15 @@ Debug_HandleDigitModification:
     BIT.W #$8000 
     BEQ + 
     LDA.W $1860 
-    SEC 
-    SBC.W #$00C0 
+    SEC : SBC.W #$00C0 
     LSR #2
     TAX 
     LDA.W $1862 
-    SEC 
-    SBC.W #$0030 
+    SEC : SBC.W #$0030 
     LSR #2
     TAY 
     LDA.W $0012,Y 
-    SEC 
-    SBC.W .data,X 
+    SEC : SBC.W .data,X 
     STA.W $0012,Y 
 
   + LDX.W $1846 
@@ -2685,20 +2659,17 @@ DebugHandler_10_EnemyDebugger_EnemyAllocationViewer:
     XBA 
     AND.W #$00FF 
     LSR A 
-    CLC 
-    ADC.W $0E2C 
+    CLC : ADC.W $0E2C 
     STA.W $0E2C 
     LDA.L $A0003E,X 
     TAX 
     LDA.L $B4000C,X 
-    CLC 
-    ADC.W #$0030 
+    CLC : ADC.W #$0030 
     STA.B $16 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00A8 : STA.B $14 
     LDA.W $0E2A 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     STA.B $12 
     LDA.B $16 
     AND.W #$00FF 
@@ -2709,12 +2680,10 @@ DebugHandler_10_EnemyDebugger_EnemyAllocationViewer:
     LDA.W $0E2A : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDA.W $0E2A 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $0E2A 
     LDA.W $0E26 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0E26 
     BRA .loop 
 
@@ -3019,8 +2988,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     BIT.W #$8000 
     BNE .pressingB 
     LDA.W $1846 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     CMP.W #$0800 
     BMI + 
     LDA.W #$0000 
@@ -3031,8 +2999,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
 
 .pressingB:
     LDA.W $1846 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     BNE + 
     LDA.W #$07C0 
 
@@ -3044,8 +3011,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     BEQ .checkX 
     LDX.W $1846 
     LDA.W $0AF6 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $0F7A,X 
     LDA.W $0AFA : STA.W $0F7E,X 
 
@@ -3066,36 +3032,30 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     CMP.W $0911 
     BMI + 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $0F7A,X 
     BMI + 
     LDA.W $0F7E,X 
     CMP.W $0915 
     BMI + 
     LDA.W $0915 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     CMP.W $0F7E,X 
     BMI + 
     LDX.W $1846 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0911 
     STA.B $14 
     STA.W $0E22 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W $0915 
+    SEC : SBC.W $0915 
     STA.B $12 
     STA.W $0E20 
     LDA.W $0E22 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.B $14 
     LDA.W $0E20 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.B $12 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$0025 
@@ -3140,8 +3100,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
 .debugName:
     TAX 
     LDA.L $B4000C,X 
-    CLC 
-    ADC.W #$0030 
+    CLC : ADC.W #$0030 
 
 .draw:
     JSL.L Add_Debug_Spritemap_to_OAM 
@@ -3417,8 +3376,7 @@ Debug_MoveEnemyWithDpad_4PixelsPerFrame:
     BIT.W #$0200 
     BEQ .notPressingLeft 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $0F7A,X 
     BRA .checkUp 
 
@@ -3427,8 +3385,7 @@ Debug_MoveEnemyWithDpad_4PixelsPerFrame:
     BIT.W #$0100 
     BEQ .checkUp 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0F7A,X 
 
 .checkUp:
@@ -3436,8 +3393,7 @@ Debug_MoveEnemyWithDpad_4PixelsPerFrame:
     BIT.W #$0800 
     BEQ .notPressingUp 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $0F7E,X 
     BRA .return 
 
@@ -3447,8 +3403,7 @@ Debug_MoveEnemyWithDpad_4PixelsPerFrame:
     BEQ .return 
     INC.W $0F7E,X 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0F7E,X 
 
 .return:
@@ -3457,64 +3412,52 @@ Debug_MoveEnemyWithDpad_4PixelsPerFrame:
 
 Draw4DigitHexValue:
     LDA.W $0E20 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.B $14 
     LDA.W $0E22 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.B $12 
     LDA.W #$0A00 : STA.B $26 
     LDA.W $0E24 
     AND.W #$F000 
     XBA 
     LSR #4
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $0E20 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.B $14 
     LDA.W $0E22 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.B $12 
     LDA.W #$0A00 : STA.B $26 
     LDA.W $0E24 
     AND.W #$0F00 
     XBA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $0E20 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.B $14 
     LDA.W $0E22 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.B $12 
     LDA.W #$0A00 : STA.B $26 
     LDA.W $0E24 
     AND.W #$00F0 
     LSR #4
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $0E20 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     STA.B $14 
     LDA.W #$0A00 : STA.B $26 
     LDA.W $0E22 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.B $12 
     LDA.W $0E24 
     AND.W #$000F 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     JSL.L Add_Debug_Spritemap_to_OAM 
     RTS 
 
@@ -3539,8 +3482,7 @@ Add_Debug_Spritemap_to_OAM:
     LDA.W $0000,Y : STA.B $1A 
     AND.W #$01FF 
     INY #2
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $0370,X 
     INX 
     LDA.B $1B 
@@ -3582,16 +3524,14 @@ Add_Debug_Spritemap_to_OAM:
   + SEP #$20 
     LDA.W $0000,Y 
     BMI + 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     BCS .F0 
     CMP.B #$F0 
     BCC .store 
     BRA .F0 
 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     BCS .checkMax 
     CMP.B #$F0 
     BCS .store 
@@ -6874,17 +6814,14 @@ DrawSpriteObjects:
     LDA.L $7EEF78,X 
     BEQ .next 
     LDA.L $7EF0F8,X 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0911 
     STA.B $14 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     BMI .next 
     CMP.W #$0120 
     BPL .next 
     LDA.L $7EF1F8,X 
-    SEC 
-    SBC.W $0915 
+    SEC : SBC.W $0915 
     STA.B $12 
     BMI .next 
     CMP.W #$0110 

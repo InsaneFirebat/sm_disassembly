@@ -155,8 +155,7 @@ Instruction_CommonAA_CallFunctionInY_WithA:
     PLX 
     PLY 
     TYA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     TAY 
     RTL 
 
@@ -188,8 +187,7 @@ UNUSED_Inst_CommonAA_CallExternalFunctionInY_WithA_AA80CE:
     PLY 
     PLX 
     TYA 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     TAY 
     RTL 
 
@@ -218,8 +216,7 @@ Instruction_CommonAA_GotoY_PlusY:
 .highByte:
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     TAY 
     RTL 
 
@@ -285,12 +282,10 @@ Instruction_CommonAA_TransferYBytesInYToVRAM:
     LDA.W $0003,Y : STA.B $D3,X 
     LDA.W $0005,Y : STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     PLX 
     RTL 
@@ -6897,15 +6892,13 @@ Instruction_Torizo_StandingUpMovement_IndexInY:
     LDA.W $0000,Y 
     TAY 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W .XVelocities,Y 
+    CLC : ADC.W .XVelocities,Y 
     STA.W $0F7A,X 
     TYA 
     AND.W #$000F 
     TAY 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W .YVelocities,Y 
+    CLC : ADC.W .YVelocities,Y 
     STA.W $0F7E,X 
     PLY 
     INY #2
@@ -6924,15 +6917,13 @@ Instruction_Torizo_SittingDownMovement_IndexInY:
     LDA.W $0000,Y 
     TAY 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W .negatedXVelocities,Y 
+    SEC : SBC.W .negatedXVelocities,Y 
     STA.W $0F7A,X 
     TYA 
     AND.W #$000F 
     TAY 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W .negatedYVelocities,Y 
+    SEC : SBC.W .negatedYVelocities,Y 
     STA.W $0F7E,X 
     PLY 
     INY #2
@@ -6971,8 +6962,7 @@ Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY:
 .noCollision:
     JSL.L AlignEnemyYPositionWIthNonSquareSlope 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     EOR.W $0FB4,X 
     BPL .facingAway 
     INY #2
@@ -7019,8 +7009,7 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
 .noCollision:
     JSL.L AlignEnemyYPositionWIthNonSquareSlope 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     EOR.W $0FB4,X 
     BPL .facingAway 
     INY #2
@@ -7067,8 +7056,7 @@ Instruction_Torizo_CallYIfSamusIsLessThan38PixelsInFront:
 
 .near:
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     EOR.W $0FB4,X 
     BPL .return 
     TYA 
@@ -7212,8 +7200,7 @@ HandleFalling:
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collision 
     LDA.W $0FAA,X 
-    CLC 
-    ADC.W #$0028 
+    CLC : ADC.W #$0028 
     STA.W $0FAA,X 
     RTS 
 
@@ -7493,8 +7480,7 @@ Function_Torizo_Movement_Jumping_Falling:
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collision 
     LDA.W $0FAA,X 
-    CLC 
-    ADC.W $0FAC,X 
+    CLC : ADC.W $0FAC,X 
     STA.W $0FAA,X 
     RTS 
 
@@ -8963,8 +8949,7 @@ Instruction_Torizo_QueueSonicBoomSFX:
 
 CheckIfTorizoIsFacingSamus:
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     EOR.W $0FB4,X 
     RTS 
 
@@ -9232,8 +9217,7 @@ Instruction_GoldenTorizo_WalkingMovement_IndexInY:
 .noCollision:
     JSL.L AlignEnemyYPositionWIthNonSquareSlope 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     EOR.W $0FB4,X 
     BPL .facingAway 
     INY #2
@@ -9698,8 +9682,7 @@ MoveShaktoolPiece1Pixel:
 
   + STA.B $13 
     LDA.W $0F7C,Y 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $0F7C,Y 
     LDA.W $0F7A,Y 
     ADC.B $14 
@@ -9712,8 +9695,7 @@ MoveShaktoolPiece1Pixel:
 
   + STA.B $13 
     LDA.W $0F80,Y 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $0F80,Y 
     LDA.W $0F7E,Y 
     ADC.B $14 
@@ -9933,8 +9915,7 @@ RTS_AADAE4:
     LDA.W ShaktoolPieceData_unusedAttackInstListPointer,Y : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     TXA 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     TAX 
     DEY #2
     BPL .loop 
@@ -10047,15 +10028,13 @@ SetSHaktoolPieceNeighborAngleDeltaDueToBlockCollision:
     BIT.W $0FB4,X 
     BMI .antiClockwise 
     SBC.W $0FAA,X 
-    CLC 
-    ADC.W $0FA8,X 
+    CLC : ADC.W $0FA8,X 
     BRA + 
 
 
 .antiClockwise:
     SBC.W $0FA8,X 
-    CLC 
-    ADC.W $0FAA,X 
+    CLC : ADC.W $0FAA,X 
 
   + XBA 
     AND.W #$00FF 
@@ -10077,8 +10056,7 @@ PositionShaktoolPieceRelativeToPreviousPiece:
 
   + STA.B $13 
     LDA.B $12 
-    CLC 
-    ADC.W $0F3C,X 
+    CLC : ADC.W $0F3C,X 
     STA.W $0F7C,X 
     LDA.B $14 
     ADC.W $0F3A,X 
@@ -10091,8 +10069,7 @@ PositionShaktoolPieceRelativeToPreviousPiece:
 
   + STA.B $13 
     LDA.B $12 
-    CLC 
-    ADC.W $0F40,X 
+    CLC : ADC.W $0F40,X 
     STA.W $0F80,X 
     LDA.B $14 
     ADC.W $0F3E,X 
@@ -10133,8 +10110,7 @@ Function_Shaktool_ArmPiece_SetPosition_HandleCurling:
     BIT.W $0FB4,X 
     BVC .notFullyCurled 
     LDA.W #$0100 
-    CLC 
-    ADC.W $0FA8,X 
+    CLC : ADC.W $0FA8,X 
     STA.W $0FA8,X 
     LDA.W #$0100 
     BRA + 
@@ -10149,8 +10125,7 @@ Function_Shaktool_ArmPiece_SetPosition_HandleCurling:
     INC A 
 
 .clockwise:
-    CLC 
-    ADC.W $0FAA,X 
+    CLC : ADC.W $0FAA,X 
     STA.W $0FAA,X 
     RTS 
 
@@ -10161,18 +10136,15 @@ Function_Shaktool_Head:
     EOR.W #$8000 
     STA.B $12 
     LDA.W $0FEA,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     LSR A 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     BIT.W $0FAE,X 
     BPL + 
     EOR.W #$8000 
 
   + XBA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     AND.W #$00E0 
     SEP #$20 
     STA.W $0FAE,X 
@@ -10208,16 +10180,14 @@ Function_Shaktool_FinalPiece:
     LDA.B $07,S : STA.W $0F7E,X 
     STZ.B $12 
     LDA.B $01,S 
-    SEC 
-    SBC.B $05,S 
+    SEC : SBC.B $05,S 
     STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCS .collision 
     LDA.B $07,S : STA.W $0F7E,X 
     STZ.B $12 
     LDA.B $03,S 
-    SEC 
-    SBC.B $07,S 
+    SEC : SBC.B $07,S 
     STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collision 
@@ -10230,8 +10200,7 @@ Function_Shaktool_FinalPiece:
     BIT.W $0FB4,X 
     BVC .notFullyCurled 
     LDA.W #$0100 
-    CLC 
-    ADC.W $0FA8,X 
+    CLC : ADC.W $0FA8,X 
     STA.W $0FA8,X 
     RTS 
 
@@ -10251,8 +10220,7 @@ Function_Shaktool_FinalPiece:
     STA.W $0FAE,X 
 
   + LDA.W $0FAC,X 
-    CLC 
-    ADC.W $0FAE,X 
+    CLC : ADC.W $0FAE,X 
     STA.W $0FAE,X 
     CMP.W #$F000 
     BCC .return 
@@ -10304,14 +10272,12 @@ Function_Shaktool_FinalPiece:
     AND.W #$FF00 
     BIT.W $0FB4,X 
     BMI .antiClockwise 
-    CLC 
-    ADC.W #$4000 
+    CLC : ADC.W #$4000 
     BRA + 
 
 
 .antiClockwise:
-    SEC 
-    SBC.W #$4000 
+    SEC : SBC.W #$4000 
 
   + JSR.W ShaktoolPiecesFacingAngleInA 
     LDY.W #$000C 
@@ -10322,8 +10288,7 @@ Function_Shaktool_FinalPiece:
     LDA.W ShaktoolPieceData_headBobInstListPointer,Y : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     TXA 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     TAX 
     DEY #2
     BPL .loop 
@@ -10341,13 +10306,11 @@ InitAI_Shaktool:
     ORA.W ShaktoolPieceData_properties,Y 
     STA.W $0F86,X 
     TXA 
-    SEC 
-    SBC.W ShaktoolPieceData_RAMOffset,Y 
+    SEC : SBC.W ShaktoolPieceData_RAMOffset,Y 
     STA.W $0FB0,X 
     LDA.W ShaktoolPieceData_functionPointer,Y : STA.W $0FB2,X 
     LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta,Y 
-    SEC 
-    SBC.W ShaktoolPieceData_zero,Y 
+    SEC : SBC.W ShaktoolPieceData_zero,Y 
     STA.W $0FAC,X 
     LDA.W ShaktoolPieceData_initialNeighborAngle,Y : STA.W $0FAA,X 
     LDA.W ShaktoolPieceData_initialInstListPointer,Y : STA.W $0F92,X 
@@ -10920,17 +10883,14 @@ Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
     PHX 
     PHY 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W $0000,Y 
+    CLC : ADC.W $0000,Y 
     PHA 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$001C 
+    CLC : ADC.W #$001C 
     PHA 
     JSL.L CalculateTheBlockContainingAPixelPosition 
     LDA.W $0DC4 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ASL A 
     TAX 
     LDA.L $7F0002,X 
@@ -10938,8 +10898,7 @@ Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
     CMP.W #$A000 
     BNE .return 
     TXA 
-    SEC 
-    SBC.W $07A5 
+    SEC : SBC.W $07A5 
     TAX 
     LDA.W #PLMEntries_CrumbleLowerNorfairChozoRoomPlug 
     JSL.L Spawn_PLM_to_CurrentBlockIndex 
@@ -10990,12 +10949,10 @@ Instruction_Chozo_Movement_IndexInY:
     JSL.L AlignEnemyYPositionWIthNonSquareSlope 
     LDY.W $0FAC,X 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W .XOffsets,Y 
+    CLC : ADC.W .XOffsets,Y 
     STA.W $0AF6 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W .YOffsets,Y 
+    CLC : ADC.W .YOffsets,Y 
     STA.W $0AFA 
     PLY 
     INY #2

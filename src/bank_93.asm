@@ -51,8 +51,7 @@ InitializeProjectile:
 .dontCrash:
     INY #2
     TYA 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     TAY 
     LDA.W $0000,Y : STA.W $0C40,X 
     TAY 
@@ -202,8 +201,7 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
     STA.B $12 
     LDA.W $0C18,X 
     AND.W #$00FF 
-    SEC 
-    SBC.W #$0022 
+    SEC : SBC.W #$0022 
     ASL A 
     TAY 
     LDA.W SamusProjectileDataPointers_ShinesparkEcho_SpazerSBATrail,Y 
@@ -216,8 +214,7 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
 .dontCrash:
     INY #2
     TYA 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     TAY 
     LDA.W $0000,Y : STA.W $0C40,X 
     LDA.W #$0001 : STA.W $0C54,X 
@@ -259,8 +256,7 @@ Get_ProjectileTrailFrame:
     REP #$30 
     PHY 
     LDA.W $0C40,X 
-    SEC 
-    SBC.W #$0008 
+    SEC : SBC.W #$0008 
     TAY 
     LDA.W $0006,Y : STA.B $16 
     PLY 
@@ -299,8 +295,7 @@ ProjectileInstructionHandler:
     AND.W #$00FF 
     STA.W $0BC8,X 
     TYA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $0C40,X 
 
 .return:
@@ -406,12 +401,10 @@ DrawProjectiles:
 
 .noRotation:
     LDA.W $0B64,X 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0911 
     STA.B $14 
     LDA.W $0B78,X 
-    SEC 
-    SBC.W $0915 
+    SEC : SBC.W $0915 
     STA.B $12 
 
 .positionCalculated:
@@ -455,14 +448,11 @@ UNUSED_PartialDrawProjectiles_9282FD:
     LDA.W $0C40,X 
     BEQ .next 
     LDA.W $0B64,X 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0911 
     STA.B $14 
     LDA.W $0B78,X 
-    SEC 
-    SBC.W #$0008 
-    SEC 
-    SBC.W $0915 
+    SEC : SBC.W #$0008 
+    SEC : SBC.W $0915 
     STA.B $12 
     AND.W #$FF00 
     BNE + 
@@ -522,16 +512,14 @@ DrawBombsAndProjectileExplosions:
 
 .normalPositionCalculation:
     LDA.W $0B64,X 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0911 
     STA.B $14 
     CMP.W #$0130 
     BPL .next 
     CMP.W #$FFD0 
     BMI .next 
     LDA.W $0B78,X 
-    SEC 
-    SBC.W $0915 
+    SEC : SBC.W $0915 
     STA.B $12 
 
 .calculatedPosition:
@@ -14283,16 +14271,13 @@ UNUSED_DrawShinesparkWindupEffectSprite_93F5E2:
     BIT.W #$0001 
     BNE .return 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0911 
     STA.B $14 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0915 
+    SEC : SBC.W $0915 
     STA.B $12 
     LDA.W #$003C 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     JSL.L AddSpritemapFrom_93A1A1_TableToOAM 
 
 .return:

@@ -155,8 +155,7 @@ Instruction_CommonB2_CallFunctionInY_WithA:
     PLX 
     PLY 
     TYA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     TAY 
     RTL 
 
@@ -188,8 +187,7 @@ UNUSED_Inst_CommonB2_CallExternalFunctionInY_WithA_B280CE:
     PLY 
     PLX 
     TYA 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     TAY 
     RTL 
 
@@ -218,8 +216,7 @@ Instruction_CommonB2_GotoY_PlusY:
 .highByte:
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     TAY 
     RTL 
 
@@ -285,12 +282,10 @@ Instruction_CommonB2_TransferYBytesInYToVRAM:
     LDA.W $0003,Y : STA.B $D3,X 
     LDA.W $0005,Y : STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     PLX 
     RTL 
@@ -510,8 +505,7 @@ EnemyShot_SpacePirate_GoldNinjaIsVulnerable:
     BNE .notBeam 
     LDA.B $12 
     AND.W #$000F 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     TAX 
     LDA.L $B40000,X 
     AND.W #$000F 
@@ -532,8 +526,7 @@ EnemyShot_SpacePirate_GoldNinjaIsVulnerable:
 
 .missile:
     XBA 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     TAX 
     LDA.L $B4000B,X 
     AND.W #$000F 
@@ -11909,13 +11902,11 @@ Instruction_PirateWall_PrepareWallJumpToRight:
     PHY 
     LDX.W $0E54 
     LDA.W $0FB6,X 
-    CLC 
-    ADC.W $0F7A,X 
+    CLC : ADC.W $0F7A,X 
     STA.W $0FAA,X 
     LDA.W $0FB6,X 
     LSR A 
-    CLC 
-    ADC.W $0F7A,X 
+    CLC : ADC.W $0F7A,X 
     STA.W $0FAE,X 
     LDA.W $0F7E,X : STA.W $0FB0,X 
     LDA.W #$0040 : STA.W $0FB2,X 
@@ -11929,15 +11920,13 @@ Instruction_PirateWall_PrepareWallJumpToLeft:
     PHY 
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0FB6,X 
+    SEC : SBC.W $0FB6,X 
     STA.W $0FAA,X 
     LDA.W $0FB6,X 
     LSR A 
     STA.B $12 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.W $0FAE,X 
     LDA.W $0F7E,X : STA.W $0FB0,X 
     LDA.W #$00C0 : STA.W $0FB2,X 
@@ -11954,12 +11943,10 @@ Instruction_PirateWall_FireLaserLeft:
     LDA.L $A00006,X : STA.W $1993 
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W #$0018 
+    SEC : SBC.W #$0018 
     STA.B $12 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.B $14 
     LDA.W #$0000 : STA.B $16 
     LDY.W #EnemyProjectile_PirateMotherBrainLaser 
@@ -11974,12 +11961,10 @@ Instruction_PirateWall_FireLaserRight:
     PHY 
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     STA.B $12 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.B $14 
     LDA.W #$0001 : STA.B $16 
     LDY.W #EnemyProjectile_PirateMotherBrainLaser 
@@ -12028,16 +12013,13 @@ InitAI_PirateWall:
     BIT.W #$8000 
     BNE .notFastJump 
     LDA.L $7E8000,X 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     STA.L $7E8000,X 
     LDA.L $7E8002,X 
-    SEC 
-    SBC.W #$0002 
+    SEC : SBC.W #$0002 
     STA.L $7E8002,X 
     LDA.L $7E8004,X 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     STA.L $7E8004,X 
 
 .notFastJump:
@@ -12055,8 +12037,7 @@ InitAI_PirateWall:
     BMI .lessThanB 
     LDA.W $0F7A,X 
     AND.W #$FFF0 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $0F7A,X 
     BRA .return 
 
@@ -12107,8 +12088,7 @@ Function_PirateWall_WallJumpingRight:
     STA.W $0E32 
     LDA.W $0FB2,X 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
-    CLC 
-    ADC.W $0FAE,X 
+    CLC : ADC.W $0FAE,X 
     STA.W $0F7A,X 
     LDA.W $0FB6,X 
     LSR #2
@@ -12117,12 +12097,10 @@ Function_PirateWall_WallJumpingRight:
     JSL.L EightBitCosineMultiplication_A0B0B2 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.W $0FB0,X 
+    CLC : ADC.W $0FB0,X 
     STA.W $0F7E,X 
     LDA.W $0FB2,X 
-    SEC 
-    SBC.L $7E8004,X 
+    SEC : SBC.L $7E8004,X 
     AND.W #$00FF 
     STA.W $0FB2,X 
     CMP.L $7E8000,X 
@@ -12135,8 +12113,7 @@ Function_PirateWall_WallJumpingRight:
     BMI .lessThanB 
     LDA.W $0F7A,X 
     AND.W #$FFF0 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $0F7A,X 
     BRA .return 
 
@@ -12181,8 +12158,7 @@ Function_PirateWall_WallJumpingLeft:
     STA.W $0E32 
     LDA.W $0FB2,X 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
-    CLC 
-    ADC.W $0FAE,X 
+    CLC : ADC.W $0FAE,X 
     STA.W $0F7A,X 
     LDA.W $0FB6,X 
     LSR #2
@@ -12191,12 +12167,10 @@ Function_PirateWall_WallJumpingLeft:
     JSL.L EightBitCosineMultiplication_A0B0B2 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.W $0FB0,X 
+    CLC : ADC.W $0FB0,X 
     STA.W $0F7E,X 
     LDA.W $0FB2,X 
-    CLC 
-    ADC.L $7E8004,X 
+    CLC : ADC.L $7E8004,X 
     AND.W #$00FF 
     STA.W $0FB2,X 
     CMP.L $7E8002,X 
@@ -12209,8 +12183,7 @@ Function_PirateWall_WallJumpingLeft:
     BMI .lessThanB 
     LDA.W $0F7A,X 
     AND.W #$FFF0 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $0F7A,X 
     BRA .return 
 
@@ -12825,8 +12798,7 @@ Instruction_PirateNinja_SetFunction0FAC_Active:
     PHX 
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     STA.B $12 
     LDA.W #$0001 : STA.W $0F94,X 
     LDY.W #InstList_PirateNinja_Active_FacingLeft_0 
@@ -12846,8 +12818,7 @@ UNUSED_Instruction_PirateNinja_Set0FAC_StandingKick_B2F5B3:
     PHX 
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     STA.B $12 
     LDA.W #$0001 : STA.W $0F94,X 
     LDY.W #InstList_PirateNinja_StandingKick_FacingLeft 
@@ -12884,25 +12855,21 @@ InitAI_PirateNinja:
     BIT.W #$0001 
     BEQ .zeroParam1again 
     LDA.W $0F7A,X : STA.W $0FB0,X 
-    CLC 
-    ADC.W $0FB6,X 
+    CLC : ADC.W $0FB6,X 
     STA.W $0FB2,X 
     BRA + 
 
 
 .zeroParam1again:
     LDA.W $0F7A,X : STA.W $0FB2,X 
-    SEC 
-    SBC.W $0FB6,X 
+    SEC : SBC.W $0FB6,X 
     STA.W $0FB0,X 
 
   + LDA.W $0FB2,X 
-    SEC 
-    SBC.W $0FB0,X 
+    SEC : SBC.W $0FB0,X 
     LSR A 
     STA.B $14 
-    CLC 
-    ADC.W $0FB0,X 
+    CLC : ADC.W $0FB0,X 
     STA.W $0FAE,X 
     LDA.W $0FAE,X ; >_<
     STZ.B $12 
@@ -12914,11 +12881,9 @@ InitAI_PirateNinja:
 
 .loop:
     LDA.W #$0020 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $12 
-    CLC 
-    ADC.B $16 
+    CLC : ADC.B $16 
     STA.B $16 
     CMP.B $14 
     BMI .loop 
@@ -12927,12 +12892,10 @@ InitAI_PirateNinja:
     AND.W #$FF00 
     XBA 
     STA.B $18 
-    CLC 
-    ADC.W $0FAE,X 
+    CLC : ADC.W $0FAE,X 
     STA.W $0FB2,X 
     LDA.W $0FAE,X 
-    SEC 
-    SBC.B $18 
+    SEC : SBC.B $18 
     STA.W $0FB0,X 
     LDY.W $0FB0,X 
     LDA.W $0FB4,X 
@@ -12967,18 +12930,15 @@ MainAI_PirateNinja:
 Function_PirateNinja_Initial:
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0080 
+  + SEC : SBC.W #$0080 
     BPL .tooFar 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     STA.B $12 
     LDY.W #InstList_PirateNinja_Active_FacingLeft_0 
     LDA.B $12 
@@ -13019,8 +12979,7 @@ PirateNinja_ProjectileClawAttackTrigger:
     CMP.W $0FB0,X 
     BEQ .reachedLeftPost 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     BPL .return 
     LDA.W #InstList_PirateNinja_ProjectileClawAttack_Right : STA.W $0F92,X 
     BRA .set1Timer 
@@ -13028,8 +12987,7 @@ PirateNinja_ProjectileClawAttackTrigger:
 
 .reachedLeftPost:
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     BMI .return 
     LDA.W #InstList_PirateNinja_ProjectileClawAttack_Left : STA.W $0F92,X 
 
@@ -13055,28 +13013,23 @@ PirateNinja_FlinchTrigger:
 
 .checkProjectile:
     LDA.W $0B64,Y 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0020 
+  + SEC : SBC.W #$0020 
     BPL .returnNoFlinch 
     LDA.W $0B78,Y 
-    SEC 
-    SBC.W $0F7E,X 
+    SEC : SBC.W $0F7E,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0020 
+  + SEC : SBC.W #$0020 
     BPL .returnNoFlinch 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     STA.B $12 
     LDY.W #InstList_PirateNinja_Flinch_FacingLeft 
     LDA.B $12 
@@ -13102,14 +13055,12 @@ PirateNinja_SpinJumpTrigger:
     PHX 
     LDX.W $0E54 
     LDA.W $0FAE,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0020 
+  + SEC : SBC.W #$0020 
     BPL .returnNoSpinJump 
     LDY.W #InstList_PirateNinja_SpinJumpLeft_0 
     LDA.W $0F7A,X 
@@ -13136,28 +13087,23 @@ PirateNinja_StandingKickTrigger:
     PHX 
     LDX.W $0E54 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0028 
+  + SEC : SBC.W #$0028 
     BPL .returnNoStandingKick 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0F7E,X 
+    SEC : SBC.W $0F7E,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0028 
+  + SEC : SBC.W #$0028 
     BPL .returnNoStandingKick 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     STA.B $12 
     LDY.W #InstList_PirateNinja_StandingKick_FacingLeft 
     LDA.B $12 
@@ -13185,14 +13131,12 @@ Function_PirateNinja_SpinJumpleft_Rising:
     XBA 
     STA.B $12 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.W $0F7A,X 
     DEC.W $0F7E,X 
     DEC.W $0F7E,X 
     LDA.L $7E7800,X 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.L $7E7800,X 
     LDA.W $0F7A,X 
     CMP.W $0FAE,X 
@@ -13211,14 +13155,12 @@ Function_PirateNinja_SpinJumpLeft_Falling:
     XBA 
     STA.B $12 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.W $0F7A,X 
     INC.W $0F7E,X 
     INC.W $0F7E,X 
     LDA.L $7E7800,X 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.L $7E7800,X 
     BEQ .landing 
     RTS 
@@ -13239,14 +13181,12 @@ Function_PirateNinja_SpinJumpRight_Rising:
     XBA 
     STA.B $12 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $0F7A,X 
     DEC.W $0F7E,X 
     DEC.W $0F7E,X 
     LDA.L $7E7800,X 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.L $7E7800,X 
     LDA.W $0F7A,X 
     CMP.W $0FAE,X 
@@ -13265,14 +13205,12 @@ Function_PirateNinja_SpinJumpRight_Falling:
     XBA 
     STA.B $12 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $0F7A,X 
     INC.W $0F7E,X 
     INC.W $0F7E,X 
     LDA.L $7E7800,X 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.L $7E7800,X 
     BEQ .landing 
     RTS 
@@ -13301,14 +13239,12 @@ Function_PirateNinja_ReadingToDivekick:
 PirateNinja_DivekickTrigger:
     LDX.W $0E54 
     LDA.W $0FAE,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0020 
+  + SEC : SBC.W #$0020 
     BPL .return 
 
 .loopRNG:
@@ -13324,8 +13260,7 @@ PirateNinja_DivekickTrigger:
 
 .keepLeft:
     TYA 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     ASL A 
     TAY 
     LDA.W .leftPointers,Y : STA.W $0F92,X 
@@ -13352,11 +13287,9 @@ Instruction_PirateNinja_SetLeftDivekickJumpInitialYSpeed:
     PHY 
     LDA.W #$0600 : STA.L $7E7800,X 
     LDA.W $0FB2,X 
-    SEC 
-    SBC.W $0FAE,X 
+    SEC : SBC.W $0FAE,X 
     LSR A 
-    CLC 
-    ADC.W $0FAE,X 
+    CLC : ADC.W $0FAE,X 
     STA.L $7E7806,X 
     PLY 
     PLX 
@@ -13369,12 +13302,10 @@ Instruction_PirateNinja_DivekickLeft_Jump:
     XBA 
     STA.B $12 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.W $0F7E,X 
     LDA.L $7E7800,X 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     STA.L $7E7800,X 
     BMI .negativeSpeed 
     RTS 
@@ -13390,8 +13321,7 @@ Instruction_PirateNinja_DivekickLeft_Jump:
 
 Instruction_PirateNinja_DivekickLeft_Divekick:
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W #$0005 
+    SEC : SBC.W #$0005 
     STA.W $0F7A,X 
     LDA.L $7E7800,X 
     AND.W #$FF00 
@@ -13403,8 +13333,7 @@ Instruction_PirateNinja_DivekickLeft_Divekick:
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collision 
     LDA.L $7E7800,X 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     STA.L $7E7800,X 
     BMI .collision 
     BIT.W #$FF00 
@@ -13423,8 +13352,7 @@ Instruction_PirateNinja_DivekickLeft_Divekick:
 
 Instruction_PirateNinja_DivekickLeft_WalkToLeftPost:
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$FFFE 
+    CLC : ADC.W #$FFFE 
     STA.W $0F7A,X 
     CMP.W $0FB0,X 
     BPL .return 
@@ -13442,11 +13370,9 @@ Instruction_PirateNinja_SetRightDivekickJumpInitialYSpeed:
     PHY 
     LDA.W #$0600 : STA.L $7E7800,X 
     LDA.W $0FAE,X 
-    SEC 
-    SBC.W $0FB0,X 
+    SEC : SBC.W $0FB0,X 
     LSR A 
-    CLC 
-    ADC.W $0FB0,X 
+    CLC : ADC.W $0FB0,X 
     STA.L $7E7806,X 
     PLY 
     PLX 
@@ -13459,12 +13385,10 @@ Instruction_PirateNinja_DivekickRight_Jump:
     XBA 
     STA.B $12 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.W $0F7E,X 
     LDA.L $7E7800,X 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     STA.L $7E7800,X 
     BMI .negativeSpeed 
     RTS 
@@ -13480,8 +13404,7 @@ Instruction_PirateNinja_DivekickRight_Jump:
 
 Instruction_PirateNinja_DivekickRight_Divekick:
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     STA.W $0F7A,X 
     LDA.L $7E7800,X 
     AND.W #$FF00 
@@ -13493,8 +13416,7 @@ Instruction_PirateNinja_DivekickRight_Divekick:
     JSL.L MoveEnemyDownBy_14_12 
     BCS .landing 
     LDA.L $7E7800,X 
-    SEC 
-    SBC.W #$0040 
+    SEC : SBC.W #$0040 
     STA.L $7E7800,X 
     BMI .landing 
     BIT.W #$FF00 
@@ -13513,8 +13435,7 @@ Instruction_PirateNinja_DivekickRight_Divekick:
 
 Instruction_PirateNinja_DivekickRight_WalkToRightPost:
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     STA.W $0F7A,X 
     CMP.W $0FB2,X 
     BMI .return 
@@ -13529,23 +13450,19 @@ Instruction_PirateNinja_DivekickRight_WalkToRightPost:
 
 PirateNinja_SpawnLandingDustCloud:
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W #$0008 
+    SEC : SBC.W #$0008 
     STA.B $12 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$001C 
+    CLC : ADC.W #$001C 
     STA.B $14 
     LDA.W #$000A : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.B $12 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$001C 
+    CLC : ADC.W #$001C 
     STA.B $14 
     LDA.W #$000A : STA.B $16 
     STZ.B $18 
@@ -13714,12 +13631,10 @@ Instruction_PirateWalking_FireLaserLeftWithYOffsetInY:
     PHY 
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W #$0018 
+    SEC : SBC.W #$0018 
     STA.B $12 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W $0000,Y 
+    SEC : SBC.W $0000,Y 
     STA.B $14 
     LDA.W #$0000 : STA.B $16 
     LDY.W #EnemyProjectile_PirateMotherBrainLaser 
@@ -13735,12 +13650,10 @@ Instruction_PirateWalking_FireLaserRightWithYOffsetInY:
     PHY 
     LDX.W $0E54 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     STA.B $12 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W $0000,Y 
+    SEC : SBC.W $0000,Y 
     STA.B $14 
     LDA.W #$0001 : STA.B $16 
     LDY.W #EnemyProjectile_PirateMotherBrainLaser 
@@ -13774,8 +13687,7 @@ Instruction_PirateWalking_ChooseAMovement:
     LDX.W $0E54 
     LDY.W #InstList_PirateWalking_WalkingRight_0 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     BMI .returnWalking 
     LDY.W #InstList_PirateWalking_WalkingLeft_0 
 
@@ -13788,8 +13700,7 @@ Instruction_PirateWalking_ChooseAMovement:
     LDX.W $0E54 
     LDY.W #InstList_PirateWalking_FireLasersLeft 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     BMI .returnLasers 
     LDY.W #InstList_PirateWalking_FireLasersRight 
 
@@ -13811,12 +13722,10 @@ InitAI_PirateWalking:
     STA.W $0F92,X 
     LDA.W #RTS_B2804B : STA.W $0FA8,X 
     LDA.W $0F7A,X 
-    CLC 
-    ADC.W $0FB6,X 
+    CLC : ADC.W $0FB6,X 
     STA.W $0FB2,X 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0FB6,X 
+    SEC : SBC.W $0FB6,X 
     STA.W $0FB0,X 
     RTL 
 
@@ -13840,8 +13749,7 @@ Function_PirateWalking_WalkingLeft:
     BEQ .walk 
     LDY.W #InstList_PirateWalking_FireLasersLeft 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     BMI .keepLeft 
     LDY.W #InstList_PirateWalking_FireLasersRight 
 
@@ -13858,8 +13766,7 @@ Function_PirateWalking_WalkingLeft:
     JSL.L MoveEnemyDownBy_14_12 
     BCC .return 
     LDA.W $0F7A,X : STA.L $7E7800,X 
-    CLC 
-    ADC.W #$FFEF 
+    CLC : ADC.W #$FFEF 
     STA.W $0F7A,X 
     LDA.W #$0001 : STA.B $14 
     STZ.B $12 
@@ -13894,8 +13801,7 @@ Function_PirateWalking_WalkingRight:
     BEQ .walk 
     LDY.W #InstList_PirateWalking_FireLasersLeft 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     BMI .keepLeft 
     LDY.W #InstList_PirateWalking_FireLasersRight 
 
@@ -13912,8 +13818,7 @@ Function_PirateWalking_WalkingRight:
     JSL.L MoveEnemyDownBy_14_12 
     BCC .return 
     LDA.W $0F7A,X : STA.L $7E7800,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.W $0F7A,X 
     LDA.W #$0001 : STA.B $14 
     STZ.B $12 
@@ -13957,28 +13862,23 @@ PirateWalking_FlinchTrigger:
 
 .checkProjectile:
     LDA.W $0B64,Y 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0020 
+  + SEC : SBC.W #$0020 
     BPL .returnNoFlinch 
     LDA.W $0B78,Y 
-    SEC 
-    SBC.W $0F7E,X 
+    SEC : SBC.W $0F7E,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0020 
+  + SEC : SBC.W #$0020 
     BPL .returnNoFlinch 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     STA.B $12 
     LDY.W #InstList_PirateWalking_Flinch_FacingLeft 
     LDA.B $12 

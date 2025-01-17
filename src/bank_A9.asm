@@ -155,8 +155,7 @@ Instruction_CommonA9_CallFunctionInY_WithA:
     PLX 
     PLY 
     TYA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     TAY 
     RTL 
 
@@ -188,8 +187,7 @@ UNUSED_Inst_CommonA9_CallExternalFunctionInY_WithA_A980CE:
     PLY 
     PLX 
     TYA 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     TAY 
     RTL 
 
@@ -218,8 +216,7 @@ Instruction_CommonA9_GotoY_PlusY:
 .highByte:
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     TAY 
     RTL 
 
@@ -285,12 +282,10 @@ Instruction_CommonA9_TransferYBytesInYToVRAM:
     LDA.W $0003,Y : STA.B $D3,X 
     LDA.W $0005,Y : STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     PLX 
     RTL 
@@ -527,8 +522,7 @@ Function_MotherBrain_SetupBrainAndNeckToBeDrawn:
 .timeIsFrozen:
     LDA.L $7E805C : STA.W $0FBA 
     LDA.W #$FFEB 
-    CLC 
-    ADC.L $7E805E 
+    CLC : ADC.L $7E805E 
     STA.W $0FBE 
     LDA.W #EnemyGraphicsDrawnHook_MotherBrain_DrawBrainAndNeck>>8&$FF00 : STA.W $178D 
     LDA.W #EnemyGraphicsDrawnHook_MotherBrain_DrawBrainAndNeck : STA.W $178C 
@@ -961,8 +955,7 @@ MainAI_MotherBrainTubes:
 
 Function_MotherBrainTubes_NonMainTube:
     LDA.W $0FAC,X 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     STA.W $0FAC,X 
     JSR.W AddADividedBy100ToEnemyYPosition 
     LDA.W $0F7E,X 
@@ -1000,8 +993,7 @@ Function_MotherBrainTubes_MainTube_WaitingToFall:
 
 Function_MotherBrainTubes_MainTube_Falling:
     LDA.W $0FAC,X 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     STA.W $0FAC,X 
     JSR.W AddADividedBy100ToEnemyYPosition 
     PHA 
@@ -1013,8 +1005,7 @@ Function_MotherBrainTubes_MainTube_Falling:
 
 .lessThanF4:
     PLA 
-    SEC 
-    SBC.W #$0038 
+    SEC : SBC.W #$0038 
     CMP.W #$00C4 
     STA.W $0FBE 
     BPL .greaterThanEqualToC4 
@@ -1046,8 +1037,7 @@ SpawnFallingTubeSmoke:
     ASL A 
     TAY 
     LDA.W .data,Y 
-    CLC 
-    ADC.W $0F7A,X 
+    CLC : ADC.W $0F7A,X 
     STA.B $12 
     LDA.W #$00D0 : STA.B $14 
     LDA.W #$0009 
@@ -1264,12 +1254,10 @@ Function_MotherBrainBody_FakeDeath_Ascent_RaiseMotherBrain:
     JSR.W SpawnDustCloudsForMotherBrainsAscent 
     LDA.W #$0002 : STA.B $12 
     LDA.B $B7 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $B7 
     LDA.W $0F7E 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     STA.W $0F7E 
     CMP.W #$00BD 
     BCS Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch_return 
@@ -1480,8 +1468,7 @@ RTS_A99084:
 
 HandleMotherBrainsNeck_Lower_2_BobDown:
     LDA.L $7E8040 
-    SEC 
-    SBC.L $7E8068 
+    SEC : SBC.L $7E8068 
     CMP.W #$2800 
     BCS + 
     LDA.W #$0004 : STA.L $7E8064 
@@ -1496,8 +1483,7 @@ HandleMotherBrainsNeck_Lower_4_BobUp:
     CMP.W #$003C 
     BMI .bobDown 
     LDA.L $7E8040 
-    CLC 
-    ADC.L $7E8068 
+    CLC : ADC.L $7E8068 
     CMP.W #$9000 
     BCC + 
     LDA.W #$0002 : STA.L $7E8064 
@@ -1514,8 +1500,7 @@ HandleMotherBrainsNeck_Lower_4_BobUp:
 
 HandleMotherBrainsNeck_Lower_6_Lower:
     LDA.L $7E8040 
-    SEC 
-    SBC.L $7E8068 
+    SEC : SBC.L $7E8068 
     CMP.W #$3000 
     BCS + 
     LDA.W #$0000 : STA.L $7E8064 
@@ -1527,8 +1512,7 @@ HandleMotherBrainsNeck_Lower_6_Lower:
 
 HandleMotherBrainsNeck_Lower_8_Raise:
     LDA.L $7E8040 
-    CLC 
-    ADC.L $7E8068 
+    CLC : ADC.L $7E8068 
     CMP.W #$9000 
     BCC + 
     LDA.W #$0000 : STA.L $7E8064 
@@ -1557,8 +1541,7 @@ RTS_A9911B:
 
 HandleMotherBrainsNeck_Upper_3_BobDown:
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     CMP.W $0AFA 
     BMI + 
     LDA.W #$0004 : STA.L $7E8064 
@@ -1567,8 +1550,7 @@ HandleMotherBrainsNeck_Upper_3_BobDown:
 
 
   + LDA.L $7E8042 
-    SEC 
-    SBC.L $7E8068 
+    SEC : SBC.L $7E8068 
     CMP.W #$2000 
     BCS + 
     LDA.W #$0004 : STA.L $7E8066 
@@ -1580,12 +1562,10 @@ HandleMotherBrainsNeck_Upper_3_BobDown:
 
 HandleMotherBrainsNeck_Upper_4_BobUp:
     LDA.L $7E8040 
-    CLC 
-    ADC.W #$0800 
+    CLC : ADC.W #$0800 
     STA.B $12 
     LDA.L $7E8042 
-    CLC 
-    ADC.L $7E8068 
+    CLC : ADC.L $7E8068 
     CMP.B $12 
     BCC + 
     LDA.W #$0002 : STA.L $7E8066 
@@ -1597,8 +1577,7 @@ HandleMotherBrainsNeck_Upper_4_BobUp:
 
 HandleMotherBrainsNeck_Upper_6_Lower:
     LDA.L $7E8042 
-    SEC 
-    SBC.L $7E8068 
+    SEC : SBC.L $7E8068 
     CMP.W #$2000 
     BCS + 
     LDA.W #$0000 : STA.L $7E8066 
@@ -1610,12 +1589,10 @@ HandleMotherBrainsNeck_Upper_6_Lower:
 
 HandleMotherBrainsNeck_Upper_8_Raise:
     LDA.L $7E8040 
-    CLC 
-    ADC.W #$0800 
+    CLC : ADC.W #$0800 
     STA.B $12 
     LDA.L $7E8042 
-    CLC 
-    ADC.L $7E8068 
+    CLC : ADC.L $7E8068 
     CMP.B $12 
     BCC + 
     LDA.W #$0000 : STA.L $7E8066 
@@ -1627,12 +1604,10 @@ HandleMotherBrainsNeck_Upper_8_Raise:
 
 HandleMotherBrainsNeck:
     LDA.W #$FFB0 
-    CLC 
-    ADC.W $0F7A 
+    CLC : ADC.W $0F7A 
     STA.L $7E7814 
     LDA.W #$002E 
-    CLC 
-    ADC.W $0F7E 
+    CLC : ADC.W $0F7E 
     STA.L $7E7816 
     LDA.L $7E8062 
     BEQ .neckMovementDisabled 
@@ -1645,68 +1620,52 @@ HandleMotherBrainsNeck:
     STA.B $12 
     LDA.L $7E8048 
     JSL.L GetSineMathInA_A9C460 
-    CLC 
-    ADC.L $7E7814 
-    CLC 
-    ADC.W #$0070 
+    CLC : ADC.L $7E7814 
+    CLC : ADC.W #$0070 
     STA.L $7E8044 
     LDA.L $7E8048 
     JSL.L GetCosineMathInA_A9C465 
-    CLC 
-    ADC.L $7E7816 
-    CLC 
-    ADC.W #$FFA0 
+    CLC : ADC.L $7E7816 
+    CLC : ADC.W #$FFA0 
     STA.L $7E8046 
     LDA.L $7E804E 
     JSL.L GetSineMathInA_A9C460 
-    CLC 
-    ADC.L $7E7814 
-    CLC 
-    ADC.W #$0070 
+    CLC : ADC.L $7E7814 
+    CLC : ADC.W #$0070 
     STA.L $7E804A 
     LDA.L $7E804E 
     JSL.L GetCosineMathInA_A9C465 
-    CLC 
-    ADC.L $7E7816 
-    CLC 
-    ADC.W #$FFA0 
+    CLC : ADC.L $7E7816 
+    CLC : ADC.W #$FFA0 
     STA.L $7E804C 
     LDA.L $7E8054 
     JSL.L GetSineMathInA_A9C460 
-    CLC 
-    ADC.L $7E7814 
-    CLC 
-    ADC.W #$0070 
+    CLC : ADC.L $7E7814 
+    CLC : ADC.W #$0070 
     STA.L $7E8050 
     LDA.L $7E8054 
     JSL.L GetCosineMathInA_A9C465 
-    CLC 
-    ADC.L $7E7816 
-    CLC 
-    ADC.W #$FFA0 
+    CLC : ADC.L $7E7816 
+    CLC : ADC.W #$FFA0 
     STA.L $7E8052 
     LDA.L $7E8043 
     AND.W #$00FF 
     STA.B $12 
     LDA.L $7E805A 
     JSL.L GetSineMathInA_A9C460 
-    CLC 
-    ADC.L $7E8050 
+    CLC : ADC.L $7E8050 
     STA.L $7E8056 
     LDA.L $7E805A 
     JSL.L GetCosineMathInA_A9C465 
-    CLC 
-    ADC.L $7E8052 
+    CLC : ADC.L $7E8052 
     STA.L $7E8058 
     LDA.L $7E8060 
     JSL.L GetSineMathInA_A9C460 
-    CLC 
-    ADC.L $7E8050 
+    CLC : ADC.L $7E8050 
     STA.L $7E805C 
     LDA.L $7E8060 
     JSL.L GetCosineMathInA_A9C465 
-    CLC 
-    ADC.L $7E8052 
+    CLC : ADC.L $7E8052 
     STA.L $7E805E 
     RTS 
 
@@ -1825,17 +1784,13 @@ DrawMotherBrainHead:
   + AND.W #$0006 
     TAX 
     LDA.W ShakingOffsets_X,X 
-    CLC 
-    ADC.W $0FBA 
+    CLC : ADC.W $0FBA 
     STA.B $12 
-    CLC 
-    ADC.W #$0020 
-    SEC 
-    SBC.W $0911 
+    CLC : ADC.W #$0020 
+    SEC : SBC.W $0911 
     BMI .return 
     LDA.W ShakingOffsets_Y,X 
-    CLC 
-    ADC.W $0FBE 
+    CLC : ADC.W $0FBE 
     STA.B $14 
     JMP.W AddSpritemapToOAM_RoomCoordinates 
 
@@ -1855,12 +1810,10 @@ DrawMotherBrainNeckSegment:
     AND.W #$0006 
     TAX 
     LDA.W ShakingOffsets_X,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.B $12 
     LDA.W ShakingOffsets_Y,X 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $14 
     LDA.L $7E7818 : STA.B $16 
     LDY.W #Spritemaps_MotherBrain_5 
@@ -1881,16 +1834,13 @@ AddSpritemapToOAM_RoomCoordinates:
     ORA.W #$00FF 
 
   + XBA 
-    CLC 
-    ADC.B $14 
-    SEC 
-    SBC.W $0915 
+    CLC : ADC.B $14 
+    SEC : SBC.W $0915 
     BMI .next 
     STA.B $1A 
     LDA.W $0000,Y 
     ADC.B $12 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0911 
     STA.W $0370,X 
     AND.W #$0100 
     BEQ .checkSizeBit 
@@ -1912,15 +1862,13 @@ AddSpritemapToOAM_RoomCoordinates:
     ORA.B $16 
     STA.W $0372,X 
     TXA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     AND.W #$01FF 
     TAX 
 
 .next:
     TYA 
-    CLC 
-    ADC.W #$0005 
+    CLC : ADC.W #$0005 
     TAY 
     DEC.B $18 
     BNE .loop 
@@ -1968,24 +1916,20 @@ Palette_MotherBrain_ExplodedDoor:
 
 MoveMotherBrainBodyDownByA_ScrollLeftByX:
     PHA 
-    CLC 
-    ADC.W $0F7E 
+    CLC : ADC.W $0F7E 
     STA.W $0F7E 
     PLA 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.B $B7 
+    CLC : ADC.B $B7 
     STA.B $B7 
     TXA 
-    CLC 
-    ADC.W #$0022 
+    CLC : ADC.W #$0022 
     STA.B $14 
     LDA.W $0F7A 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $B5 
     PLX 
     RTL 
@@ -1993,20 +1937,16 @@ MoveMotherBrainBodyDownByA_ScrollLeftByX:
 
 MoveMotherBrainBodyDownByA:
     PHA 
-    CLC 
-    ADC.W $0F7E 
+    CLC : ADC.W $0F7E 
     STA.W $0F7E 
     PLA 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.B $B7 
+    CLC : ADC.B $B7 
     STA.B $B7 
     LDA.W #$0000 
-    SEC 
-    SBC.W $0F7A 
-    CLC 
-    ADC.W #$0022 
+    SEC : SBC.W $0F7A 
+    CLC : ADC.W #$0022 
     STA.B $B5 
     RTL 
 
@@ -2076,8 +2016,7 @@ Instruction_MotherBrainBody_MoveBodyDownBy10_ScrollRightBy2:
 
 Instruction_MotherBrainBody_MoveBodyUpBy2_ScrollRightBy1:
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     STA.W $0F7A 
     LDA.W #$FFFE 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2085,8 +2024,7 @@ Instruction_MotherBrainBody_MoveBodyUpBy2_ScrollRightBy1:
 
 Instruction_MotherBrainBody_MoveBodyRightBy2:
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     STA.W $0F7A 
     LDA.W #$0000 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2101,8 +2039,7 @@ Instruction_MotherBrainBody_MoveBodyUpBy1_RightBy3_Footstep:
     LDA.W #$0022 
     JSR.W MotherBrainFootstepEffect 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0003 
+    CLC : ADC.W #$0003 
     STA.W $0F7A 
     LDA.W #$0001 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2110,8 +2047,7 @@ Instruction_MotherBrainBody_MoveBodyUpBy1_RightBy3_Footstep:
 
 Instruction_MotherBrainBody_MoveBodyDownBy2_RightBy15:
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$000F 
+    CLC : ADC.W #$000F 
     STA.W $0F7A 
     LDA.W #$FFFE 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2119,8 +2055,7 @@ Instruction_MotherBrainBody_MoveBodyDownBy2_RightBy15:
 
 Instruction_MotherBrainBody_MoveBodyDownBy4_RightBy6:
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     STA.W $0F7A 
     LDA.W #$FFFC 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2128,8 +2063,7 @@ Instruction_MotherBrainBody_MoveBodyDownBy4_RightBy6:
 
 Instruction_MotherBrainBody_MoveBodyUpBy4_LeftBy2:
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$FFFE 
+    CLC : ADC.W #$FFFE 
     STA.W $0F7A 
     LDA.W #$0004 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2139,8 +2073,7 @@ Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep:
     LDA.W #$FFEF 
     JSR.W MotherBrainFootstepEffect 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$FFFF 
+    CLC : ADC.W #$FFFF 
     STA.W $0F7A 
     LDA.W #$0002 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2150,8 +2083,7 @@ Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep_duplicate:
     LDA.W #$000B 
     JSR.W MotherBrainFootstepEffect 
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0001 
+    SEC : SBC.W #$0001 
     STA.W $0F7A 
     LDA.W #$0002 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2159,8 +2091,7 @@ Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep_duplicate:
 
 Instruction_MotherBrainBody_MoveBodyLeftBy2:
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0002 
+    SEC : SBC.W #$0002 
     STA.W $0F7A 
     LDA.W #$0000 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2173,8 +2104,7 @@ Instruction_MotherBrainBody_MoveBodyDownBy1:
 
 Instruction_MotherBrainBody_MoveBodyDownBy1_LeftBy3:
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0003 
+    SEC : SBC.W #$0003 
     STA.W $0F7A 
     LDA.W #$FFFF 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2184,8 +2114,7 @@ Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy15_Footstep:
     LDA.W #$FFDB 
     JSR.W MotherBrainFootstepEffect 
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$000F 
+    SEC : SBC.W #$000F 
     STA.W $0F7A 
     LDA.W #$0002 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2193,8 +2122,7 @@ Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy15_Footstep:
 
 Instruction_MotherBrainBody_MoveBodyUpBy4_LeftBy6:
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$0006 
+    SEC : SBC.W #$0006 
     STA.W $0F7A 
     LDA.W #$0004 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2202,8 +2130,7 @@ Instruction_MotherBrainBody_MoveBodyUpBy4_LeftBy6:
 
 Instruction_MotherBrainBody_MoveBodyDownBy4_RightBy2:
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$FFFE 
+    SEC : SBC.W #$FFFE 
     STA.W $0F7A 
     LDA.W #$FFFC 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2211,8 +2138,7 @@ Instruction_MotherBrainBody_MoveBodyDownBy4_RightBy2:
 
 Instruction_MotherBrainBody_MoveBodyDownBy2_RightBy1:
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$FFFF 
+    SEC : SBC.W #$FFFF 
     STA.W $0F7A 
     LDA.W #$FFFE 
     JMP.W MoveMotherBrainBodyDownByA 
@@ -2726,12 +2652,10 @@ Instruction_MotherBrainBody_SpawnDustCloudExplosionProj:
     PHY 
     PHX 
     LDA.W $0000,Y 
-    CLC 
-    ADC.W $0F7A 
+    CLC : ADC.W $0F7A 
     STA.B $12 
     LDA.W $0002,Y 
-    CLC 
-    ADC.W $0F7E 
+    CLC : ADC.W $0F7E 
     STA.B $14 
     LDA.W $0004,Y 
     LDY.W #EnemyProjectile_MiscDust 
@@ -3256,16 +3180,12 @@ Instruction_MotherBrainHead_AimOnionRingsAtBabyMetroid:
     LDA.L $7E7854 
     TAX 
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0FBA 
-    SEC 
-    SBC.W #$000A 
+    SEC : SBC.W $0FBA 
+    SEC : SBC.W #$000A 
     STA.B $12 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.W $0FBE 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W $0FBE 
+    SEC : SBC.W #$0010 
     STA.B $14 
     JMP.W AimMotherBrainOnionRings 
 
@@ -3274,22 +3194,17 @@ Instruction_MotherBrainHead_AimOnionRingsAtSamus:
     PHX 
     PHY 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0FBA 
-    SEC 
-    SBC.W #$000A 
+    SEC : SBC.W $0FBA 
+    SEC : SBC.W #$000A 
     STA.B $12 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0FBE 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W $0FBE 
+    SEC : SBC.W #$0010 
     STA.B $14 
 
 AimMotherBrainOnionRings:
     JSL.L CalculateAngleOf_12_14_Offset 
-    SEC 
-    SBC.W #$0080 
+    SEC : SBC.W #$0080 
     EOR.W #$FFFF 
     INC A 
     AND.W #$00FF 
@@ -3412,12 +3327,10 @@ InstList_MotherBrainHead_SpawnLaserProjectile:
     LDA.W #$0000 : STA.L $7E8062 
     PHY 
     LDA.W $0FBA 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.B $12 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.B $14 
     LDA.W #$0001 
     LDY.W #EnemyProjectile_PirateMotherBrainLaser 
@@ -5007,13 +4920,11 @@ Function_MBBody_Phase3_DeathSequence_RealizeDecapitation:
 
 Function_MBBody_Phase3_DeathSequence_BrainFallsToGround:
     LDA.W $0FB2 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $0FB2 
     XBA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $0FBE 
+    CLC : ADC.W $0FBE 
     CMP.W #$00C4 
     BCC .hitGround 
     LDA.W #$0002 
@@ -5123,14 +5034,11 @@ CorpseRottingRotEntryFinishedHook_MotherBrain:
     PHX 
     LDA.W $05E5 
     AND.W #$001F 
-    CLC 
-    ADC.W $0FBA 
-    CLC 
-    ADC.W #$FFF0 
+    CLC : ADC.W $0FBA 
+    CLC : ADC.W #$FFF0 
     STA.B $12 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.B $14 
     LDA.W #$000A 
     LDY.W #EnemyProjectile_MiscDust 
@@ -5361,8 +5269,7 @@ MotherBrainPart_vs_Samus_CollisionDetection:
     INX #2
     .loop:
     LDA.W $0AFA 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     BPL .SamusBelowHitbox 
     EOR.W #$FFFF 
     INC A 
@@ -5379,14 +5286,11 @@ MotherBrainPart_vs_Samus_CollisionDetection:
     EOR.W #$FFFF 
     INC A 
 
-  + CLC 
-    ADC.W $0B00 
-    SEC 
-    SBC.B $18 
+  + CLC : ADC.W $0B00 
+    SEC : SBC.B $18 
     BMI .next 
     LDA.W $0AF6 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BPL .SamusRightOfHitbox 
     EOR.W #$FFFF 
     INC A 
@@ -5403,18 +5307,15 @@ MotherBrainPart_vs_Samus_CollisionDetection:
     EOR.W #$FFFF 
     INC A 
 
-  + CLC 
-    ADC.W $0AFE 
-    SEC 
-    SBC.B $18 
+  + CLC : ADC.W $0AFE 
+    SEC : SBC.B $18 
     BPL .hit 
 
 .next:
     DEC.B $16 
     BEQ .returnNoCollision 
     TXA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     TAX 
     JMP.W .loop 
 
@@ -5444,8 +5345,7 @@ MotherBrainPart_vs_Samus_CollisionDetection:
 
 .SamusInAir:
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     CMP.W $0AF6 
     BPL .returnCollision 
     JSR.W HurtSamus_A9B5E1 
@@ -5472,8 +5372,7 @@ EnemyShot_MotherBrainHead:
     AND.W #$00FF 
     BEQ .return 
     LDX.W #$004E 
-    CLC 
-    ADC.W $1DC7,X 
+    CLC : ADC.W $1DC7,X 
     STA.W $1DC7,X 
     LDA.W #$006E 
     JSL.L QueueSound_Lib2_Max6 
@@ -5521,8 +5420,7 @@ MotherBrainShotReaction_Phase2_3:
     DEC A 
     BEQ .superMissile 
     LDA.L $7E780E 
-    SEC 
-    SBC.W #$0100 
+    SEC : SBC.W #$0100 
     BPL .done 
 
 .superMissile:
@@ -5550,8 +5448,7 @@ DetermineMotherBrainShotReactionType:
 
 MotherBrainBeamShotReaction_Phase3:
     LDA.L $7E780E 
-    SEC 
-    SBC.W #$010A 
+    SEC : SBC.W #$010A 
     BPL .maxCounter 
     LDA.W #Function_MotherBrainNeck_SetupHyperBeamRecoil : STA.L $7E7870 
     LDA.W #$0000 : STA.W $0FB2 
@@ -5590,8 +5487,7 @@ HurtSamus_A9B5E1:
     LDY.W #$0000 
     LDX.W $0E54 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     BMI .left 
     INY 
 
@@ -5661,10 +5557,8 @@ TryMotherBrainAttack_Phase2_TryAttack:
     JSR.W DecideMotherBrainPhase2AttackStrategy 
     LDX.W #.default 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$0004 
-    SEC 
-    SBC.W $0AFA 
+    CLC : ADC.W #$0004 
+    SEC : SBC.W $0AFA 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -6112,8 +6006,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring:
     JSR.W AimMotherBrainRainbowBeam 
     JSR.W HandleMotherBrainRainbowBeamExplosions 
     LDA.L $7E8026 
-    SEC 
-    SBC.W #$0180 
+    SEC : SBC.W #$0180 
     STA.L $7E8026 
     CMP.W #$0200 
     BPL Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring_return 
@@ -6179,8 +6072,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_DecideNextAction:
 .lessThan190:
     LDY.W #$000A 
     LDA.W $0F7A 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     JSR.W MakeMotherBrainWalkForwards 
     LDA.W #Function_MBBody_Phase2_FinishSamusOff_GetSamusToLowEnergy : STA.W $0FA8 
     RTS 
@@ -6216,8 +6108,7 @@ RetractMotherBrainsHead:
 
 AimMotherBrainRainbowBeam_IncreaseWidth:
     LDA.L $7E8026 
-    CLC 
-    ADC.W #$0180 
+    CLC : ADC.W #$0180 
     CMP.W #$0C00 
     BMI + 
     LDA.W #$0C00 
@@ -6226,20 +6117,15 @@ AimMotherBrainRainbowBeam_IncreaseWidth:
 
 AimMotherBrainRainbowBeam:
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0FBA 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W $0FBA 
+    SEC : SBC.W #$0010 
     STA.B $12 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0FBE 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W $0FBE 
+    SEC : SBC.W #$0004 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
-    SEC 
-    SBC.W #$0080 
+    SEC : SBC.W #$0080 
     EOR.W #$FFFF 
     INC A 
     AND.W #$00FF 
@@ -6280,22 +6166,19 @@ MoveSamusTowardsMiddleOfWall:
 
 MoveSamusForFallingAfterRainbowBeam:
     LDA.W $0FB4 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     BMI + 
     LDA.W #$0000 
 
   + STA.W $0FB4 
     JSR.W MoveSamusHorizontallyTowardsWall 
     LDA.W $0FB6 
-    CLC 
-    ADC.W #$0018 
+    CLC : ADC.W #$0018 
     STA.W $0FB6 ; fallthrough to MoveSamusVerticallyTowardsCeilingFloor
 
 MoveSamusVerticallyTowardsCeilingFloor:
     SEP #$20 
-    CLC 
-    ADC.W $0AFD 
+    CLC : ADC.W $0AFD 
     STA.W $0AFD 
     STA.W $0B17 
     REP #$20 
@@ -6333,8 +6216,7 @@ MoveSamusVerticallyTowardsCeilingFloor:
 
 MoveSamusHorizontallyTowardsWall:
     SEP #$20 
-    CLC 
-    ADC.W $0AF9 
+    CLC : ADC.W $0AF9 
     STA.W $0AF9 
     STA.W $0B13 
     REP #$20 
@@ -6468,8 +6350,7 @@ Function_MBBody_Phase2_FinishSamusOff_GetSamusToLowEnergy:
     BCC .noAttack 
     LDA.W #$00A0 
     JSL.L Suit_Damage_Division 
-    CLC 
-    ADC.W #$0014 
+    CLC : ADC.W #$0014 
     CMP.W $09C2 
     BPL .onionRings 
     LDY.W #InstList_MotherBrainHead_Attacking_Bomb_Phase2 
@@ -6929,8 +6810,7 @@ Function_MBBody_Phase3_RecoverFromCutscene_MakeSomeDistance:
     LDA.W #Function_MBBody_Phase3_RecoverFromCutscene_SetupForFighting : STA.W $0FA8 
     LDA.W #$0020 : STA.W $0FB2 
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$000E 
+    SEC : SBC.W #$000E 
     LDY.W #$0002 
     JSR.W MakeMotherBrainWalkBackwards 
 
@@ -6999,8 +6879,7 @@ MotherBrainPhase3WalkingHandler:
 Function_MotherBrainBody_Walking_TryToInchForward:
     LDA.L $7E780E 
     BEQ .walkLeft 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.L $7E780E 
     CMP.W #$0100 
     BCC .return 
@@ -7009,8 +6888,7 @@ Function_MotherBrainBody_Walking_TryToInchForward:
     STA.L $7E7876 
     LDA.W $05E5 
     AND.W #$0002 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     TAY 
     LDA.L $7E7876 
     JSR.W MakeMotherBrainWalkForwards 
@@ -7023,8 +6901,7 @@ Function_MotherBrainBody_Walking_TryToInchForward:
 
 .walkLeft:
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$000E 
+    SEC : SBC.W #$000E 
     STA.L $7E7876 
     LDA.W #Function_MotherBrainBody_Walking_RetreatQuickly : STA.L $7E7874 ; fallthrough to Function_MotherBrainBody_Walking_RetreatQuickly
 
@@ -7034,8 +6911,7 @@ Function_MotherBrainBody_Walking_RetreatQuickly:
     JSR.W MakeMotherBrainWalkBackwards 
     BCC .return 
     LDA.W $0F7A 
-    SEC 
-    SBC.W #$000E 
+    SEC : SBC.W #$000E 
     STA.L $7E7876 
     LDA.W #Function_MotherBrainBody_Walking_RetreatSlowly : STA.L $7E7874 
 
@@ -7159,8 +7035,7 @@ MoveEnemyAccordingToVelocity:
     LDX.W $0E54 
     LDA.W $0FAA,X 
     SEP #$20 
-    CLC 
-    ADC.W $0F7D,X 
+    CLC : ADC.W $0F7D,X 
     STA.W $0F7D,X 
     REP #$20 
     AND.W #$FF00 
@@ -7172,8 +7047,7 @@ MoveEnemyAccordingToVelocity:
     STA.W $0F7A,X 
     LDA.W $0FAC,X 
     SEP #$20 
-    CLC 
-    ADC.W $0F81,X 
+    CLC : ADC.W $0F81,X 
     STA.W $0F81,X 
     REP #$20 
     AND.W #$FF00 
@@ -7222,8 +7096,7 @@ GetSineMathInA_A9C460:
 GetCosineMathInA_A9C465:
     TAY 
     LDA.B $12 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
 
 GetSineMathInA_A9C46C:
     PHX 
@@ -7246,8 +7119,7 @@ GetSineMathInA_A9C46C:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_AddADividedBy100ToEnemyXPosition_A9C48E:
     SEP #$20 
-    CLC 
-    ADC.W $0F7D,X 
+    CLC : ADC.W $0F7D,X 
     STA.W $0F7D,X 
     REP #$20 
     AND.W #$FF00 
@@ -7263,8 +7135,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 AddADividedBy100ToEnemyYPosition:
     SEP #$20 
-    CLC 
-    ADC.W $0F81,X 
+    CLC : ADC.W $0F81,X 
     STA.W $0F81,X 
     REP #$20 
     AND.W #$FF00 
@@ -7283,8 +7154,7 @@ DecrementAmmoDueToRainbowBeam:
     BNE .superMissiles 
     LDA.W $09C6 
     BEQ .superMissiles 
-    SEC 
-    SBC.W .decrementValue 
+    SEC : SBC.W .decrementValue 
     CMP.W #$0001 
     BPL .writeMissiles 
     LDA.W $09D2 
@@ -7304,8 +7174,7 @@ DecrementAmmoDueToRainbowBeam:
     BNE .powerBombs 
     LDA.W $09CA 
     BEQ .powerBombs 
-    SEC 
-    SBC.W .decrementValue 
+    SEC : SBC.W .decrementValue 
     CMP.W #$0001 
     BPL .writeSuperMissiles 
     LDA.W $09D2 
@@ -7322,8 +7191,7 @@ DecrementAmmoDueToRainbowBeam:
 .powerBombs:
     LDA.W $09CE 
     BEQ .return 
-    SEC 
-    SBC.W .decrementValue 
+    SEC : SBC.W .decrementValue 
     CMP.W #$0001 
     BPL .writePowerBombs 
     LDA.W $09D2 
@@ -7405,8 +7273,7 @@ DamageSamusDueToRainbowBeam:
 
 HealSamusDueToBabyMetroid:
     LDA.W #$0001 
-    CLC 
-    ADC.W $09C2 
+    CLC : ADC.W $09C2 
     CMP.W $09C4 
     BMI .notMaxed 
     LDA.W $09C4 : STA.W $09C2 
@@ -7436,8 +7303,7 @@ ProcessSpriteTilesTransfers:
     LDA.W $0002,X : STA.W $00D2,Y 
     LDA.W $0005,X : STA.W $00D5,Y 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     TXA 
     ADC.W #$0007 
@@ -7606,8 +7472,7 @@ HandleMotherBrainWalking:
 .standing:
     LDA.L $7E780E 
     BEQ .walkBackwards 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     STA.L $7E780E 
     CMP.W #$0100 
     BCC .maybeWalkForwardsIfFarLeft 
@@ -7770,8 +7635,7 @@ Function_BabyMetroidCutscene_GetRightUpInMotherBrainsFace:
 Function_BabyMetroidCutscene_LatchOntoMotherBrain:
     LDA.W $0FBA : STA.B $12 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$FFE8 
+    CLC : ADC.W #$FFE8 
     STA.B $14 
     LDY.W #$0000 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
@@ -7794,12 +7658,10 @@ Function_BabyMetroidCutscene_SetMotherBrainToStumbleBack:
 
 Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody:
     LDA.W $0FBA 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.B $12 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$FFE8 
+    CLC : ADC.W #$FFE8 
     STA.B $14 
     LDA.W #$0200 
     JSR.W AccelerateBabyMetroidTowardsPoint 
@@ -7812,8 +7674,7 @@ Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody:
     STZ.W $0FAC,X 
     LDA.W $0FBA : STA.W $0F7A,X 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$FFE8 
+    CLC : ADC.W #$FFE8 
     STA.W $0F7E,X 
     LDA.W #InstList_BabyMetroid_DrainingMotherBrain 
     JSL.L SetEnemyInstList 
@@ -7831,14 +7692,11 @@ Function_BabyMetroidCutscene_WaitForMBToTurnToCorpse:
     AND.W #$0006 
     TAY 
     LDA.W ShakingOffsets_X,Y 
-    CLC 
-    ADC.W $0FBA 
+    CLC : ADC.W $0FBA 
     STA.W $0F7A,X 
     LDA.W ShakingOffsets_Y,Y 
-    CLC 
-    ADC.W $0FBE 
-    CLC 
-    ADC.W #$FFE8 
+    CLC : ADC.W $0FBE 
+    CLC : ADC.W #$FFE8 
     STA.W $0F7E,X 
     LDA.L $7E783E 
     BNE .turnedToCorpse 
@@ -7854,8 +7712,7 @@ Function_BabyMetroidCutscene_WaitForMBToTurnToCorpse:
 Function_BabyMetroidCutscene_StopDraining:
     LDA.W $0FBA : STA.W $0F7A,X 
     LDA.W $0FBE 
-    CLC 
-    ADC.W #$FFE8 
+    CLC : ADC.W #$FFE8 
     STA.W $0F7E,X 
     DEC.W $0FB2,X 
     BMI .timerExpired 
@@ -7910,12 +7767,10 @@ SpawnThreeDustCloudsOnMotherBrainHead:
     LDA.W #$0010 ; fallthrough to SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14
 
 SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14:
-    CLC 
-    ADC.W $0FBA 
+    CLC : ADC.W $0FBA 
     STA.B $12 
     LDA.B $14 
-    CLC 
-    ADC.W $0FBE 
+    CLC : ADC.W $0FBE 
     STA.B $14 
     LDA.W #$0009 
     LDY.W #EnemyProjectile_MiscDust 
@@ -7956,8 +7811,7 @@ Function_BabyMetroidCutscene_MoveToSamus:
     LDA.W $0008,Y 
     BMI .function 
     LDA.L $7E781C,X 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.L $7E781C,X 
 
 .return:
@@ -7991,8 +7845,7 @@ BabyMetroidCutscene_MovementTable_CeilingToSamus:
 Function_BabyMetroidCutscene_LatchOntoSamus:
     LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA 
-    SEC 
-    SBC.W #$0014 
+    SEC : SBC.W #$0014 
     STA.B $14 
     LDY.W #$0000 
     JMP.W GradduallyAccelerateTowardsPoint_1A_400 
@@ -8005,14 +7858,11 @@ Function_BabyMetroidCutscene_HealSamusUpToFullEnergy:
     AND.W #$0006 
     TAY 
     LDA.W ShakingOffsets_X,Y 
-    CLC 
-    ADC.W $0AF6 
+    CLC : ADC.W $0AF6 
     STA.W $0F7A,X 
     LDA.W ShakingOffsets_Y,Y 
-    CLC 
-    ADC.W $0AFA 
-    SEC 
-    SBC.W #$0014 
+    CLC : ADC.W $0AFA 
+    SEC : SBC.W #$0014 
     STA.W $0F7E,X 
     JSL.L HealSamusDueToBabyMetroid 
     BCS .return 
@@ -8032,15 +7882,12 @@ Function_BabyMetroidCutscene_IdleUntilRunOutOfHealth:
     TAY 
     LDA.W ShakingOffsets_X,Y 
     ASL A 
-    CLC 
-    ADC.W $0AF6 
+    CLC : ADC.W $0AF6 
     STA.W $0F7A,X 
     LDA.W ShakingOffsets_Y,Y 
     ASL A 
-    CLC 
-    ADC.W $0AFA 
-    SEC 
-    SBC.W #$0014 
+    CLC : ADC.W $0AFA 
+    SEC : SBC.W #$0014 
     STA.W $0F7E,X 
 
 .checkHealth:
@@ -8070,8 +7917,7 @@ Function_BabyMetroidCutscene_ReleaseSamus:
 
 Function_BabyMetroidCutscene_StaredownMotherBrain:
     LDA.W $0AF6 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.B $12 
     LDA.W #$0060 : STA.B $14 
     LDY.W #$0000 
@@ -8145,8 +7991,7 @@ Function_BabyMetroidCutscene_InitiateFinalCharge:
 Function_BabyMetroidCutscene_FinalCharge:
     LDA.W $0FBA : STA.B $12 
     LDA.W #$FFE0 
-    CLC 
-    ADC.W $0FBE 
+    CLC : ADC.W $0FBE 
     STA.B $14 
     LDY.W #$000C 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
@@ -8270,8 +8115,7 @@ HandleSamusRainbowPaletteAnimation:
 
 SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow:
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     CMP.W $0AFA 
     BMI .return 
     LDA.W #$0016 
@@ -8284,8 +8128,7 @@ SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow:
 
 SamusRainbowPaletteFunction_GraduallySlowAnimationDown:
     LDA.L $7E787A 
-    CLC 
-    ADC.W #$0300 
+    CLC : ADC.W #$0300 
     STA.L $7E787A 
     BCC .return 
     LDA.W $0ACE 
@@ -8366,12 +8209,10 @@ HandleBabyMetroidCutsceneDeathExplosions:
     ASL #2
     TAY 
     LDA.W .XOffsets,Y 
-    CLC 
-    ADC.W $0F7A,X 
+    CLC : ADC.W $0F7A,X 
     STA.B $12 
     LDA.W .YOffsets,Y 
-    CLC 
-    ADC.W $0F7E,X 
+    CLC : ADC.W $0F7E,X 
     STA.B $14 
     LDA.W #$0003 
     LDY.W #EnemyProjectile_MiscDust 
@@ -8412,8 +8253,7 @@ AccelerateBabyMetroidCutsceneDownwards:
     EOR.W #$FFFF 
     INC A 
 
-  + SEC 
-    SBC.W #$0020 
+  + SEC : SBC.W #$0020 
     BPL + 
     LDA.W #$0000 
 
@@ -8424,8 +8264,7 @@ AccelerateBabyMetroidCutsceneDownwards:
 
   + STA.W $0FAA,X 
     LDA.W $0FAC,X 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     STA.W $0FAC,X 
     RTS 
 
@@ -8488,19 +8327,16 @@ HandleBabyMetroidCutsceneHealthBasedPalette:
 
 ShakeBabyMetroidCutscene:
     LDA.W $0FAC,X 
-    CLC 
-    ADC.W #$FFFF 
+    CLC : ADC.W #$FFFF 
     STA.W $0FAC,X 
     LDA.W $0FA4,X 
     AND.W #$0006 
     TAY 
     LDA.W ShakingOffsets_X,Y 
-    CLC 
-    ADC.L $7E7820,X 
+    CLC : ADC.L $7E7820,X 
     STA.W $0F7A,X 
     LDA.W ShakingOffsets_Y,Y 
-    CLC 
-    ADC.L $7E7822,X 
+    CLC : ADC.L $7E7822,X 
     STA.W $0F7E,X 
     RTS 
 
@@ -8512,8 +8348,7 @@ EnemyTouch_BabyMetroidCutscene:
     BNE .return 
     LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA 
-    SEC 
-    SBC.W #$0014 
+    SEC : SBC.W #$0014 
     STA.B $14 
     LDA.W #$0010 
     JSR.W AccelerateBabyMetroidTowardsPoint 
@@ -8532,8 +8367,7 @@ UpdateBabyMetroidCutsceneSpeedAndAngle:
     BEQ .speedCalculated 
     BPL .notReachedTargedSpeed 
     LDA.L $7E7816,X 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     CMP.B $16 
     BPL .setSpeed 
     LDA.B $16 
@@ -8545,8 +8379,7 @@ UpdateBabyMetroidCutsceneSpeedAndAngle:
 
 .notReachedTargedSpeed:
     LDA.L $7E7816,X 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     CMP.B $16 
     BMI ..setSpeed 
     LDA.B $16 
@@ -8557,16 +8390,14 @@ UpdateBabyMetroidCutsceneSpeedAndAngle:
 .speedCalculated:
     LDA.B $12 
     BMI .negativeAngleDelta 
-    CLC 
-    ADC.L $7E7814,X 
+    CLC : ADC.L $7E7814,X 
     CMP.B $14 
     BMI .setAngle 
     BRA .maxAngle 
 
 
 .negativeAngleDelta:
-    CLC 
-    ADC.L $7E7814,X 
+    CLC : ADC.L $7E7814,X 
     CMP.B $14 
     BPL .setAngle 
 
@@ -9049,8 +8880,7 @@ Function_CorpseTorizo_Rotting:
 
 .sandHeapFormed:
     LDA.W $0FAC 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     STA.W $0FAC 
     LDX.W #$0000 
     JSL.L MoveEnemyAccordingToVelocity 
@@ -9087,8 +8917,7 @@ CorpseTorizo_vs_Samus_CollisionDetection:
     INX #2
     .loop:
     LDA.W $0AFA 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     BPL .SamusBelow 
     EOR.W #$FFFF 
     INC A 
@@ -9106,14 +8935,11 @@ CorpseTorizo_vs_Samus_CollisionDetection:
     EOR.W #$FFFF 
     INC A 
 
-  + CLC 
-    ADC.W $0B00 
-    SEC 
-    SBC.B $18 
+  + CLC : ADC.W $0B00 
+    SEC : SBC.B $18 
     BMI .next 
     LDA.W $0AF6 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BPL .SamusToTheRight 
     EOR.W #$FFFF 
     INC A 
@@ -9131,18 +8957,15 @@ CorpseTorizo_vs_Samus_CollisionDetection:
     EOR.W #$FFFF 
     INC A 
 
-  + CLC 
-    ADC.W $0AFE 
-    SEC 
-    SBC.B $18 
+  + CLC : ADC.W $0AFE 
+    SEC : SBC.B $18 
     BPL .collision 
 
 .next:
     DEC.B $16 
     BEQ .returnNoCollision 
     TXA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     TAX 
     JMP.W .loop 
 
@@ -9182,8 +9005,7 @@ ProcessCorpseTorizoRottingVRAMTransfers:
     LDA.W .src0,X : STA.W $00D2,Y 
     LDA.W .dest0,X : STA.W $00D5,Y 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     TXA 
     ADC.W #$0008 
@@ -9207,8 +9029,7 @@ ProcessCorpseTorizoRottingVRAMTransfers:
     LDA.W .src1,X : STA.W $00D2,Y 
     LDA.W .dest1,X : STA.W $00D5,Y 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     TXA 
     ADC.W #$0008 
@@ -9255,8 +9076,7 @@ CorpseRottingRotEntryFinishedHook_CorpseTorizo:
     PHX 
     LDA.W $05E5 
     AND.W #$001F 
-    CLC 
-    ADC.W #$0110 
+    CLC : ADC.W #$0110 
     STA.B $12 
     LDA.W #$00BC : STA.B $14 
     LDA.W #$000A 
@@ -9600,8 +9420,7 @@ CorpseSidehopperMovement:
 
 .rising:
     TYA 
-    CLC 
-    ADC.L $7E7816,X 
+    CLC : ADC.L $7E7816,X 
     STA.L $7E7816,X 
     STA.B $12 
     LDA.W $0F7A,X 
@@ -9625,8 +9444,7 @@ CorpseSidehopperMovement:
 .lessThan220:
     LDA.B $12 
     SEP #$20 
-    CLC 
-    ADC.W $0F81,X 
+    CLC : ADC.W $0F81,X 
     STA.W $0F81,X 
     REP #$20 
     AND.W #$FF00 
@@ -9670,8 +9488,7 @@ CorpseSidehopperMovement_Horizontal:
 .lessThan220:
     LDA.B $12 
     SEP #$20 
-    CLC 
-    ADC.W $0F7D,X 
+    CLC : ADC.W $0F7D,X 
     STA.W $0F7D,X 
     REP #$20 
     AND.W #$FF00 
@@ -9889,8 +9706,7 @@ ProcessCorpseRotting:
     JSR.W CopMoveCorpseRottingRotEntry 
     PLX 
     LDA.W $0000,X 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     CMP.W $880C 
     BCC .store 
     LDA.W $8812 : STA.B $12 
@@ -9914,8 +9730,7 @@ ProcessCorpseRotting:
 
 .next:
     TXA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     TAX 
     PLA 
     INC A 
@@ -9969,14 +9784,11 @@ CorpseRotEntryFinishedHook_Normal:
     LDA.W $05E5 
     AND.W #$001A 
     LDX.W $0E54 
-    CLC 
-    ADC.W $0F7A,X 
-    CLC 
-    ADC.W #$FFF2 
+    CLC : ADC.W $0F7A,X 
+    CLC : ADC.W #$FFF2 
     STA.B $12 
     LDA.W $0F7E,X 
-    CLC 
-    ADC.W #$0010 
+    CLC : ADC.W #$0010 
     STA.B $14 
     LDA.W #$000A 
     LDY.W #EnemyProjectile_MiscDust 
@@ -10004,8 +9816,7 @@ InitializeCorpseRottingDataTable:
     STA.L $7E0000,X 
     INX #2
     LDA.B $12 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     STA.B $12 
     PLA 
     DEC A 
@@ -10023,8 +9834,7 @@ InitializeEnemyCorpseRotting:
     PHY 
     TAY 
     LDA.W $0002,Y 
-    SEC 
-    SBC.W #$000C 
+    SEC : SBC.W #$000C 
     STA.L $7E8834,X 
     PLY 
     LDA.W $0008,Y : STA.L $7E882E,X 
@@ -10049,8 +9859,7 @@ ProcessCorpseRottingVRAMTransfers:
     LDA.W $0004,X : STA.W $00D2,Y 
     LDA.W $0006,X : STA.W $00D5,Y 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     TXA 
     ADC.W #$0008 
@@ -11875,13 +11684,11 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 CheckForEnemyCollisionWithEnemy:
     LDA.W $0F82,Y 
-    CLC 
-    ADC.W $0F82,X 
+    CLC : ADC.W $0F82,X 
     INC A 
     STA.B $12 
     LDA.W $0F7A,Y 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -11889,13 +11696,11 @@ CheckForEnemyCollisionWithEnemy:
   + CMP.B $12 
     BCS .return 
     LDA.W $0F84,Y 
-    CLC 
-    ADC.W $0F84,X 
+    CLC : ADC.W $0F84,X 
     INC A 
     STA.B $12 
     LDA.W $0F7E,Y 
-    SEC 
-    SBC.W $0F7E,X 
+    SEC : SBC.W $0F7E,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -11908,13 +11713,11 @@ CheckForEnemyCollisionWithEnemy:
 
 CheckForEnemyCollisionWithRectangle:
     LDA.B $16 
-    CLC 
-    ADC.W $0F82,X 
+    CLC : ADC.W $0F82,X 
     INC A 
     STA.B $1A 
     LDA.B $12 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -11922,13 +11725,11 @@ CheckForEnemyCollisionWithRectangle:
   + CMP.B $1A 
     BCS .return 
     LDA.B $18 
-    CLC 
-    ADC.W $0F84,X 
+    CLC : ADC.W $0F84,X 
     INC A 
     STA.B $1A 
     LDA.B $14 
-    SEC 
-    SBC.W $0F7E,X 
+    SEC : SBC.W $0F7E,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -12068,14 +11869,12 @@ Function_BabyMetroid_RushToMiddleOfRoom_return:
 Function_BabyMetroid_RushToSidehopper:
     LDA.W $0FBA,X : STA.B $12 
     LDA.W $0FBE,X 
-    CLC 
-    ADC.W #$FFE0 
+    CLC : ADC.W #$FFE0 
     STA.B $14 
     LDY.W #$000F 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
     TXA 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     TAY 
     JSL.L CheckForEnemyCollisionWithEnemy 
     BCS .return 
@@ -12088,8 +11887,7 @@ Function_BabyMetroid_RushToSidehopper:
 Function_BabyMetroid_LatchOntoSidehopper:
     LDA.W $0FBA,X : STA.B $12 
     LDA.W $0FBE,X 
-    CLC 
-    ADC.W #$FFE0 
+    CLC : ADC.W #$FFE0 
     STA.B $14 
     LDA.W #$0200 
     JSR.W AccelerateBabyMetroidTowardsPoint 
@@ -12102,8 +11900,7 @@ Function_BabyMetroid_LatchOntoSidehopper:
     STZ.W $0FAC,X 
     LDA.W $0FBA,X : STA.W $0F7A,X 
     LDA.W $0FBE,X 
-    CLC 
-    ADC.W #$FFE0 
+    CLC : ADC.W #$FFE0 
     STA.W $0F7E,X 
     LDA.W #InstList_BabyMetroid_LatchedOn : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -12123,10 +11920,8 @@ Function_BabyMetroid_DrainingSidehopper:
     ADC.W $0FBA,X 
     STA.W $0F7A,X 
     LDA.W ShakingOffsets_Y,Y 
-    CLC 
-    ADC.W $0FBE,X 
-    CLC 
-    ADC.W #$FFE0 
+    CLC : ADC.W $0FBE,X 
+    CLC : ADC.W #$FFE0 
     STA.W $0F7E,X 
     DEC.W $0FB2,X 
     BNE .return 
@@ -12173,8 +11968,7 @@ Function_BabyMetroid_MoveUp_UnlockCamera:
 
 Function_BabyMetroid_StareDownSamus:
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -12189,8 +11983,7 @@ Function_BabyMetroid_StareDownSamus:
 .notClose:
     LDA.L $7E7804,X 
     BEQ + 
-    SEC 
-    SBC.W #$0001 
+    SEC : SBC.W #$0001 
     BPL + 
     LDA.W #$0000 
 
@@ -12233,8 +12026,7 @@ Function_BabyMetroid_StareDownSamus:
 Function_BabyMetroid_LatchOntoSamus:
     LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.B $14 
     LDY.W #$000F 
     JMP.W GradduallyAccelerateTowardsPoint_1A_400 
@@ -12265,10 +12057,8 @@ Function_BabyMetroid_DrainingSamus:
     ADC.W $0AF6 
     STA.W $0F7A,X 
     LDA.W ShakingOffsets_Y,Y 
-    CLC 
-    ADC.W #$FFEC 
-    CLC 
-    ADC.W $0AFA 
+    CLC : ADC.W #$FFEC 
+    CLC : ADC.W $0AFA 
     STA.W $0F7E,X 
     JSL.L DamageSamusDueToBabyMetroid 
     RTS 
@@ -12329,8 +12119,7 @@ Function_BabyMetroid_BackOffGuiltily:
 
 Function_BabyMetroid_GoLeftGuiltily:
     LDA.W $0AF6 
-    CLC 
-    ADC.W #$FFC0 
+    CLC : ADC.W #$FFC0 
     STA.B $12 
     LDA.W #$0064 : STA.B $14 
     LDX.W $0E54 
@@ -12347,8 +12136,7 @@ Function_BabyMetroid_GoLeftGuiltily:
 
 Function_BabyMetroid_GoRightGuiltily:
     LDA.W $0AF6 
-    CLC 
-    ADC.W #$0060 
+    CLC : ADC.W #$0060 
     STA.B $12 
     LDA.W #$0068 : STA.B $14 
     LDX.W $0E54 
@@ -12427,8 +12215,7 @@ SignalBabyMetroidToLeave:
 
 GraduallyAccelerateTowardSamus:
     LDA.W $0F7A,X 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -12443,8 +12230,7 @@ GraduallyAccelerateTowardSamus:
 .notClose:
     LDA.L $7E7804,X 
     BEQ + 
-    SEC 
-    SBC.W #$0001 
+    SEC : SBC.W #$0001 
     BPL + 
     LDA.W #$0000 
 
@@ -12454,8 +12240,7 @@ GraduallyAccelerateTowardSamus:
     DEC A 
     STA.L $7E7802,X 
     LDA.W $0AFA 
-    CLC 
-    ADC.W #$FFEE 
+    CLC : ADC.W #$FFEE 
     TAY 
     BRA + 
 
@@ -12512,8 +12297,7 @@ GradduallyAccelerateTowardsPoint:
     STA.B $18 
     JSR.W GraduallyAccelerateHorizontally 
     LDA.W $0F7E,X 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     BEQ .return 
     BPL .up 
     EOR.W #$FFFF 
@@ -12532,8 +12316,7 @@ GradduallyAccelerateTowardsPoint:
   + STA.B $16 
     LDA.W $0FAC,X 
     BPL .movingDown 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     ADC.B $16 
 
 .movingDown:
@@ -12564,8 +12347,7 @@ GradduallyAccelerateTowardsPoint:
   + STA.B $16 
     LDA.W $0FAC,X 
     BMI .movingUp 
-    SEC 
-    SBC.W #$0008 
+    SEC : SBC.W #$0008 
     SBC.B $16 
 
 .movingUp:
@@ -12581,8 +12363,7 @@ GradduallyAccelerateTowardsPoint:
 
 GraduallyAccelerateHorizontally:
     LDA.W $0F7A,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BEQ .return 
     BPL .left 
     EOR.W #$FFFF 
@@ -12608,8 +12389,7 @@ GraduallyAccelerateHorizontally:
     ADC.B $1A 
 
 .onScreenRight:
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     ADC.B $16 
 
 .movingRight:
@@ -12647,8 +12427,7 @@ GraduallyAccelerateHorizontally:
     SBC.B $1A 
 
 ..onScreen:
-    SEC 
-    SBC.W #$0008 
+    SEC : SBC.W #$0008 
     SBC.B $16 
 
 .movingLeft:
@@ -12668,19 +12447,15 @@ GradualAccelerationDivisorTable:
 CheckIfEnemyIsVagulyOnScreen:
     LDA.W $0F7E,X 
     BMI .returnOffScreen 
-    CLC 
-    ADC.W #$0060 
-    SEC 
-    SBC.W $0915 
+    CLC : ADC.W #$0060 
+    SEC : SBC.W $0915 
     BMI .returnOffScreen 
     CMP.W #$01A0 
     BPL .returnOffScreen 
     LDA.W $0F7A,X 
     BMI .returnOffScreen 
-    CLC 
-    ADC.W #$0010 
-    SEC 
-    SBC.W $0911 
+    CLC : ADC.W #$0010 
+    SEC : SBC.W $0911 
     BMI .returnOffScreen 
     CMP.W #$0120 
     BPL .returnOffScreen 
@@ -12705,13 +12480,11 @@ AccelerateBabyMetroidTowardsPoint:
 
 AccelerateBabyMetroidTowardsYPosition:
     LDA.W $0F7E,X 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     BEQ .reachedTarget 
     BPL .up 
     LDA.W $0FAC,X 
-    CLC 
-    ADC.B $16 
+    CLC : ADC.B $16 
     CMP.W #$0500 
     BMI + 
     LDA.W #$0500 
@@ -12722,8 +12495,7 @@ AccelerateBabyMetroidTowardsYPosition:
     BPL + 
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.W $0F7E,X 
+  + CLC : ADC.W $0F7E,X 
     CMP.B $14 
     BMI .returnUpper 
     STZ.W $0FAC,X 
@@ -12738,8 +12510,7 @@ AccelerateBabyMetroidTowardsYPosition:
 
 .up:
     LDA.W $0FAC,X 
-    SEC 
-    SBC.B $16 
+    SEC : SBC.B $16 
     CMP.W #$FB00 
     BPL + 
     LDA.W #$FB00 
@@ -12750,8 +12521,7 @@ AccelerateBabyMetroidTowardsYPosition:
     BPL + 
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.W $0F7E,X 
+  + CLC : ADC.W $0F7E,X 
     CMP.B $14 
     BEQ .resetVelocity 
     BPL .returnLower 
@@ -12767,14 +12537,12 @@ AccelerateBabyMetroidTowardsYPosition:
 
 AccelerateBabyMetroidTowardsXPosition:
     LDA.W $0F7A,X 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BPL .left 
     EOR.W #$FFFF 
     INC A 
     LDA.W $0FAA,X 
-    CLC 
-    ADC.B $16 
+    CLC : ADC.B $16 
     CMP.W #$0500 
     BMI + 
     LDA.W #$0500 
@@ -12785,8 +12553,7 @@ AccelerateBabyMetroidTowardsXPosition:
     BPL + 
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.W $0F7A,X 
+  + CLC : ADC.W $0F7A,X 
     CMP.B $12 
     BMI .returnUpper 
     STZ.W $0FAA,X 
@@ -12799,8 +12566,7 @@ AccelerateBabyMetroidTowardsXPosition:
 
 .left:
     LDA.W $0FAA,X 
-    SEC 
-    SBC.B $16 
+    SEC : SBC.B $16 
     CMP.W #$FB00 
     BPL + 
     LDA.W #$FB00 
@@ -12811,8 +12577,7 @@ AccelerateBabyMetroidTowardsXPosition:
     BPL + 
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.W $0F7A,X 
+  + CLC : ADC.W $0F7A,X 
     CMP.B $12 
     BEQ .resetVelocity 
     BPL .returnLower 
@@ -12943,8 +12708,7 @@ EnemyTouch_BabyMetroid:
 .latchedOntoSamus:
     LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA 
-    SEC 
-    SBC.W #$0020 
+    SEC : SBC.W #$0020 
     STA.B $14 
     LDA.W #$0200 
     JSR.W AccelerateBabyMetroidTowardsPoint 
@@ -12963,34 +12727,28 @@ EnemyTouch_BabyMetroid:
 
 .repelled:
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     STA.B $12 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0F7E,X 
+    SEC : SBC.W $0F7E,X 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
-    SEC 
-    SBC.W #$0080 
+    SEC : SBC.W #$0080 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     AND.W #$00FF 
     STA.B $12 
     LDA.W #$0040 
     PHA 
     JSL.L Math_86C26C 
     LDX.W $0E54 
-    CLC 
-    ADC.W $0FAA,X 
+    CLC : ADC.W $0FAA,X 
     STA.W $0FAA,X 
     PLA 
     JSL.L Math_86C272 
     LDX.W $0E54 
-    CLC 
-    ADC.W $0FAC,X 
+    CLC : ADC.W $0FAC,X 
     STA.W $0FAC,X 
     RTL 
 
@@ -13001,20 +12759,16 @@ EnemyShot_BabyMetroid:
     BEQ .return 
     JSR.W SignalBabyMetroidToLeave 
     LDA.W $0B64 
-    SEC 
-    SBC.W $0F7A,X 
+    SEC : SBC.W $0F7A,X 
     STA.B $12 
     LDA.W $0B78 
-    SEC 
-    SBC.W $0F7E,X 
+    SEC : SBC.W $0F7E,X 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
-    SEC 
-    SBC.W #$0080 
+    SEC : SBC.W #$0080 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     AND.W #$00FF 
     STA.B $12 
     LDA.W $18A6 
@@ -13029,14 +12783,12 @@ EnemyShot_BabyMetroid:
   + PHA 
     JSL.L Math_86C26C 
     LDX.W $0E54 
-    CLC 
-    ADC.W $0FAA,X 
+    CLC : ADC.W $0FAA,X 
     STA.W $0FAA,X 
     PLA 
     JSL.L Math_86C272 
     LDX.W $0E54 
-    CLC 
-    ADC.W $0FAC,X 
+    CLC : ADC.W $0FAC,X 
     STA.W $0FAC,X 
 
 .return:

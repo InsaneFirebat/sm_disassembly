@@ -44,13 +44,11 @@ PostGrappleCollisionDetection_Horizontal_Slope_NonSquare:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.W SlopeDefinitions_SlopeLeftXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BEQ ..returnCarrySet 
     BMI ..returnCarryClear 
@@ -104,13 +102,11 @@ PostGrappleCollisionDetection_Horizontal_Slope_NonSquare:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.W SlopeDefinitions_SlopeLeftXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BEQ + 
     BPL ..returnCarryClear 
@@ -170,13 +166,11 @@ PostGrappleCollisionDetection_Vertical_Slope_NonSquare:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.W SlopeDefinitions_SlopeTopXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BEQ ..returnCarrySet 
     BMI ..returnCarryClear 
@@ -229,13 +223,11 @@ PostGrappleCollisionDetection_Vertical_Slope_NonSquare:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.W SlopeDefinitions_SlopeTopXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BEQ + 
     BPL ..returnCarryClear 
@@ -274,8 +266,7 @@ PostGrappleCollisionDetection_Horizontal_Slope_Square:
     LDA.B $1A 
     BNE .top 
     LDA.W $0AFA 
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
     AND.W #$0008 
     BNE .checkBothHalves 
@@ -288,8 +279,7 @@ PostGrappleCollisionDetection_Horizontal_Slope_Square:
     CMP.B $1C 
     BNE .checkBothHalves 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     AND.W #$0008 
     BNE .checkBottomHalf 
 
@@ -347,8 +337,7 @@ PostGrappleCollisionDetection_Vertical_Slope_Square:
     LDA.B $1A 
     BNE .leftmostBlock 
     LDA.W $0AF6 
-    CLC 
-    ADC.W $0AFE 
+    CLC : ADC.W $0AFE 
     DEC A 
     AND.W #$0008 
     BNE .checkBothHalves 
@@ -361,8 +350,7 @@ PostGrappleCollisionDetection_Vertical_Slope_Square:
     CMP.B $1C 
     BNE .checkBothHalves 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0AFE 
+    SEC : SBC.W $0AFE 
     AND.W #$0008 
     BNE .right 
 
@@ -519,8 +507,7 @@ PostGrappleCollisionDetection_Rightwards:
     STZ.W $0E04 
     JSR.W CalculateSamusYBlockSpan 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     LSR #4
     SEP #$20 
     STA.W $4202 
@@ -528,13 +515,11 @@ PostGrappleCollisionDetection_Rightwards:
     REP #$20 
     LDA.W $0AF8 : STA.B $16 
     LDA.W $0AF6 : STA.B $18 
-    CLC 
-    ADC.W $0AFE 
+    CLC : ADC.W $0AFE 
     DEC A 
     STA.B $20 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $0DC4 
     ASL A 
     TAX 
@@ -549,8 +534,7 @@ PostGrappleCollisionDetection_Rightwards:
 
 .noCollision:
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     DEC.B $1A 
@@ -567,8 +551,7 @@ PostGrappleCollisionDetection_Leftwards:
     STZ.W $0E06 
     JSR.W CalculateSamusYBlockSpan 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     LSR #4
     SEP #$20 
     STA.W $4202 
@@ -576,12 +559,10 @@ PostGrappleCollisionDetection_Leftwards:
     REP #$20 
     LDA.W $0AF8 : STA.B $16 
     LDA.W $0AF6 : STA.B $18 
-    SEC 
-    SBC.W $0AFE 
+    SEC : SBC.W $0AFE 
     STA.B $20 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $0DC4 
     ASL A 
     TAX 
@@ -596,8 +577,7 @@ PostGrappleCollisionDetection_Leftwards:
 
 .noCollision:
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     DEC.B $1A 
@@ -615,8 +595,7 @@ PostGrappleCollisionDetection_Downwards:
     JSR.W CalculateSamusXBlockSpan 
     LDA.W $0AFC : STA.B $16 
     LDA.W $0AFA : STA.B $18 
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
     STA.B $20 
     LSR #4
@@ -625,11 +604,9 @@ PostGrappleCollisionDetection_Downwards:
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0AFE 
+    SEC : SBC.W $0AFE 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $0DC4 
     ASL A 
     TAX 
@@ -659,8 +636,7 @@ PostGrappleCollisionDetection_Upwards:
     JSR.W CalculateSamusXBlockSpan 
     LDA.W $0AFC : STA.B $16 
     LDA.W $0AFA : STA.B $18 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     STA.B $20 
     LSR #4
     SEP #$20 
@@ -668,11 +644,9 @@ PostGrappleCollisionDetection_Upwards:
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0AFE 
+    SEC : SBC.W $0AFE 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $0DC4 
     ASL A 
     TAX 
@@ -736,15 +710,13 @@ SamusBlockCollisionDetection_Horizontal_Slope_NonSquare:
     BIT.W #$0040 
     BNE + 
     LDA.W $0B48 
-    CLC 
-    ADC.W .speedModifiers,X 
+    CLC : ADC.W .speedModifiers,X 
     BCC .backToReality 
     BRA .backToReality 
 
 
   + LDA.W $0B48 
-    SEC 
-    SBC.W .speedModifiers,X 
+    SEC : SBC.W .speedModifiers,X 
     BCS .backToReality ; >.<
 
 .backToReality:
@@ -759,8 +731,7 @@ SamusBlockCollisionDetection_Horizontal_Slope_NonSquare:
     JSL.L A_Y_16bit_UnsignedMultiplication 
     LDA.W $05F1 
     EOR.W #$FFFF 
-    CLC 
-    ADC.W #$0001 
+    CLC : ADC.W #$0001 
     STA.B $14 
     LDA.W $05F3 
     EOR.W #$FFFF 
@@ -778,15 +749,13 @@ SamusBlockCollisionDetection_Horizontal_Slope_NonSquare:
     BIT.W #$0040 
     BEQ + 
     LDA.W $0B48 
-    CLC 
-    ADC.W .speedModifiers,X 
+    CLC : ADC.W .speedModifiers,X 
     BCC ..backToReality 
     BRA ..backToReality 
 
 
   + LDA.W $0B48 
-    SEC 
-    SBC.W .speedModifiers,X 
+    SEC : SBC.W .speedModifiers,X 
     BCS ..backToReality 
 
 ..backToReality:
@@ -858,8 +827,7 @@ UNUSED_948606:
 
 .centerInBlock:
     LDA.B $18 
-    SEC 
-    SBC.W $0AFE 
+    SEC : SBC.W $0AFE 
     AND.W #$000F 
     EOR.W #$000F 
     STA.W $0DD4 
@@ -881,19 +849,16 @@ UNUSED_948606:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.W SlopeDefinitions_SlopeLeftXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BEQ + 
     BPL ..returnNoCollision 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     BPL + 
     LDA.W #$0000 
 
@@ -927,8 +892,7 @@ UNUSED_948606:
 
 ..centerInBlock:
     LDA.B $18 
-    CLC 
-    ADC.W $0AFE 
+    CLC : ADC.W $0AFE 
     DEC A 
     AND.W #$000F 
     STA.W $0DD4 
@@ -950,19 +914,16 @@ UNUSED_948606:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.W SlopeDefinitions_SlopeLeftXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BEQ + 
     BPL ..returnNoCollision 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     BPL + 
     LDA.W #$0000 
 
@@ -1004,8 +965,7 @@ SamusBlockCollisionReaction_Vertical_Slope_NonSquare:
 
 ..centerInBlock:
     LDA.B $18 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     AND.W #$000F 
     EOR.W #$000F 
     STA.W $0DD4 
@@ -1026,19 +986,16 @@ SamusBlockCollisionReaction_Vertical_Slope_NonSquare:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.W SlopeDefinitions_SlopeTopXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BEQ + 
     BPL ..returnNoCollision 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     BPL + 
     LDA.W #$0000 
 
@@ -1072,8 +1029,7 @@ SamusBlockCollisionReaction_Vertical_Slope_NonSquare:
 
 ..centerInBlock:
     LDA.B $18 
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
     AND.W #$000F 
     STA.W $0DD4 
@@ -1094,19 +1050,16 @@ SamusBlockCollisionReaction_Vertical_Slope_NonSquare:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.W SlopeDefinitions_SlopeTopXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BEQ + 
     BPL ..returnNoCollision 
 
-  + CLC 
-    ADC.B $12 
+  + CLC : ADC.B $12 
     BPL + 
     LDA.W #$0000 
 
@@ -1134,8 +1087,7 @@ Align_SamusYPosition_WithNonSquareSlope:
 .bottom:
     LDA.W $0AF6 : STA.B $1A 
     LDA.W $0AFA 
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
     STA.B $1C 
     STZ.B $1E 
@@ -1154,8 +1106,7 @@ Align_SamusYPosition_WithNonSquareSlope:
     CMP.W #$0005 
     BCC .SamusTopCheck 
     LDA.W $0AFA 
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
     AND.W #$000F 
     STA.W $0DD4 
@@ -1176,25 +1127,21 @@ Align_SamusYPosition_WithNonSquareSlope:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.W SlopeDefinitions_SlopeTopXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BPL .SamusTopCheck 
-    CLC 
-    ADC.W $0AFA 
+    CLC : ADC.W $0AFA 
     STA.W $0AFA 
     LDA.W #$0001 : STA.W $0DBA 
 
 .SamusTopCheck:
     LDA.W $0AF6 : STA.B $1A 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     STA.B $1C 
     STZ.B $1E 
     STZ.B $20 
@@ -1212,8 +1159,7 @@ Align_SamusYPosition_WithNonSquareSlope:
     CMP.W #$0005 
     BCC .return 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     AND.W #$000F 
     EOR.W #$000F 
     STA.W $0DD4 
@@ -1234,21 +1180,18 @@ Align_SamusYPosition_WithNonSquareSlope:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     TAX 
     LDA.W SlopeDefinitions_SlopeTopXOffsetByYPixel,X 
     AND.W #$001F 
-    SEC 
-    SBC.W $0DD4 
+    SEC : SBC.W $0DD4 
     DEC A 
     BEQ + 
     BPL .return 
 
   + EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.W $0AFA 
+    CLC : ADC.W $0AFA 
     STA.W $0AFA 
     LDA.W #$0001 : STA.W $0DBA 
 
@@ -1352,8 +1295,7 @@ SamusBlockCollisionReaction_Horizontal_Slope_Square:
     LDA.B $1A 
     BNE .top 
     LDA.W $0AFA 
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
     AND.W #$0008 
     BNE .checkBothHalves 
@@ -1366,8 +1308,7 @@ SamusBlockCollisionReaction_Horizontal_Slope_Square:
     CMP.B $1C 
     BNE .checkBothHalves 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     AND.W #$0008 
     BNE .checkBottomHalf 
 
@@ -1393,8 +1334,7 @@ SamusBlockCollisionReaction_Horizontal_Slope_Square:
     BIT.B $12 
     BMI .negative12 
     AND.W #$FFF8 
-    SEC 
-    SBC.W $0AFE 
+    SEC : SBC.W $0AFE 
     SBC.W $0AF6 
     BPL .notMinimum 
     LDA.W #$0000 
@@ -1410,8 +1350,7 @@ SamusBlockCollisionReaction_Horizontal_Slope_Square:
     ORA.W #$0007 
     SEC 
     ADC.W $0AFE 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     BMI .notMin 
     LDA.W #$0000 
 
@@ -1440,8 +1379,7 @@ SamusBlockCollisionReaction_Vertical_Slope_Square:
     LDA.B $1A 
     BNE .checkLeft 
     LDA.W $0AF6 
-    CLC 
-    ADC.W $0AFE 
+    CLC : ADC.W $0AFE 
     DEC A 
     AND.W #$0008 
     BNE .checkBothHalves 
@@ -1454,8 +1392,7 @@ SamusBlockCollisionReaction_Vertical_Slope_Square:
     CMP.B $1C 
     BNE .checkBothHalves 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0AFE 
+    SEC : SBC.W $0AFE 
     AND.W #$0008 
     BNE .checkRightHalf 
 
@@ -1481,8 +1418,7 @@ SamusBlockCollisionReaction_Vertical_Slope_Square:
     BIT.B $12 
     BMI .negative12 
     AND.W #$FFF8 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     SBC.W $0AFA 
     BPL .notMin 
     LDA.W #$0000 
@@ -1499,8 +1435,7 @@ SamusBlockCollisionReaction_Vertical_Slope_Square:
     ORA.W #$0007 
     SEC 
     ADC.W $0B00 
-    SEC 
-    SBC.W $0AFA 
+    SEC : SBC.W $0AFA 
     BMI .notMinimum 
     LDA.W #$0000 
 
@@ -1569,8 +1504,7 @@ SamusBlockCollisionReaction_SpikeBlock_BTS0_GenericSpike:
     LDA.W #$003C : STA.W $18A8 
     LDA.W #$000A : STA.W $18AA 
     LDA.W $0A4E 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.W $0A4E 
     LDA.W $0A50 
     ADC.W #$003C 
@@ -1596,8 +1530,7 @@ SamusBlockCollisionReaction_SpikeBlock_BTS1_KraidsLairSpike:
     LDA.W #$003C : STA.W $18A8 
     LDA.W #$000A : STA.W $18AA 
     LDA.W $0A4E 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.W $0A4E 
     LDA.W $0A50 
     ADC.W #$0010 
@@ -1623,8 +1556,7 @@ SamusBlockCollisionReact_SpikeBlock_BTS3_DraygonBrokenTurret:
     LDA.W #$003C : STA.W $18A8 
     LDA.W #$000A : STA.W $18AA 
     LDA.W $0A4E 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.W $0A4E 
     LDA.W $0A50 
     ADC.W #$0010 
@@ -1660,10 +1592,8 @@ SamusBlockCollisionReaction_Horizontal_SolidShootableGrapple:
     BIT.B $12 
     BMI .negative12 
     AND.W #$FFF0 
-    SEC 
-    SBC.W $0AFE 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AFE 
+    SEC : SBC.W $0AF6 
     BPL .leftNotMin 
     LDA.W #$0000 
 
@@ -1678,8 +1608,7 @@ SamusBlockCollisionReaction_Horizontal_SolidShootableGrapple:
     ORA.W #$000F 
     SEC 
     ADC.W $0AFE 
-    SEC 
-    SBC.W $0AF6 
+    SEC : SBC.W $0AF6 
     BMI .rightNotMin 
     LDA.W #$0000 
 
@@ -1696,10 +1625,8 @@ SamusBlockCollisionReaction_Vertical_SolidShootableGrapple:
     BIT.B $12 
     BMI .negative12 
     AND.W #$FFF0 
-    SEC 
-    SBC.W $0B00 
-    SEC 
-    SBC.W $0AFA 
+    SEC : SBC.W $0B00 
+    SEC : SBC.W $0AFA 
     BPL .bottomNotMin 
     LDA.W #$0000 
 
@@ -1714,8 +1641,7 @@ SamusBlockCollisionReaction_Vertical_SolidShootableGrapple:
     ORA.W #$000F 
     SEC 
     ADC.W $0B00 
-    SEC 
-    SBC.W $0AFA 
+    SEC : SBC.W $0AFA 
     BMI .topNotMin 
     LDA.W #$0000 
 
@@ -2377,8 +2303,7 @@ BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt:
 .highByte:
     ORA.W #$FF00 
 
-  + CLC 
-    ADC.W $0DC4 
+  + CLC : ADC.W $0DC4 
     STA.W $0DC4 
     ASL A 
     TAX 
@@ -2388,8 +2313,7 @@ BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt:
     LSR #3
     TAX 
     PLA 
-    SEC 
-    SBC.W #$0003 
+    SEC : SBC.W #$0003 
     PHA 
 
 .returnNoCollision:
@@ -2408,8 +2332,7 @@ BlockShotBombedGrappledCollisionInsideReaction_VerticalExt:
     LDA.W $0DC4 
 
 .loopUpper:
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     DEC.W $0DD4 
     BNE .loopUpper 
     JMP.W + 
@@ -2421,8 +2344,7 @@ BlockShotBombedGrappledCollisionInsideReaction_VerticalExt:
     LDA.W $0DC4 
 
 .loopLower:
-    SEC 
-    SBC.W $07A5 
+    SEC : SBC.W $07A5 
     INC.W $0DD4 
     BNE .loopLower 
 
@@ -2435,8 +2357,7 @@ BlockShotBombedGrappledCollisionInsideReaction_VerticalExt:
     LSR #3
     TAX 
     PLA 
-    SEC 
-    SBC.W #$0003 
+    SEC : SBC.W #$0003 
     PHA 
 
 .returnNoCollision:
@@ -2446,16 +2367,13 @@ BlockShotBombedGrappledCollisionInsideReaction_VerticalExt:
 
 CalculateSamusYBlockSpan:
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     AND.W #$FFF0 
     STA.B $1A 
     LDA.W $0AFA 
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
-    SEC 
-    SBC.B $1A 
+    SEC : SBC.B $1A 
     LSR #4
     STA.B $1A 
     STA.B $1C 
@@ -2464,16 +2382,13 @@ CalculateSamusYBlockSpan:
 
 CalculateSamusXBlockSpan:
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0AFE 
+    SEC : SBC.W $0AFE 
     AND.W #$FFF0 
     STA.B $1A 
     LDA.W $0AF6 
-    CLC 
-    ADC.W $0AFE 
+    CLC : ADC.W $0AFE 
     DEC A 
-    SEC 
-    SBC.B $1A 
+    SEC : SBC.B $1A 
     LSR #4
     STA.B $1A 
     STA.B $1C 
@@ -2549,36 +2464,31 @@ SamusBlockCollisionReaction_Vertical:
 SamusBlockCollisionDetection_Horizontal:
     JSR.W CalculateSamusYBlockSpan 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0AF8 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $16 
     LDA.W $0AF6 
     ADC.B $12 
     STA.B $18 
     BIT.B $12 
     BPL .movingRight 
-    SEC 
-    SBC.W $0AFE 
+    SEC : SBC.W $0AFE 
     BRA + 
 
 
 .movingRight:
-    CLC 
-    ADC.W $0AFE 
+    CLC : ADC.W $0AFE 
     DEC A 
 
   + STA.B $20 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     TAX 
 
@@ -2586,8 +2496,7 @@ SamusBlockCollisionDetection_Horizontal:
     JSR.W SamusBlockCollisionReaction_Horizontal 
     BCS .returnCollision 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     DEC.B $1A 
@@ -2604,22 +2513,19 @@ SamusBlockCollisionDetection_Horizontal:
 SamusBlockCollisionDetection_Vertical_LeftToRight:
     JSR.W CalculateSamusXBlockSpan 
     LDA.W $0AFC 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $16 
     LDA.W $0AFA 
     ADC.B $12 
     STA.B $18 
     BIT.B $12 
     BPL .movingDown 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     BRA + 
 
 
 .movingDown:
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
 
   + STA.B $20 
@@ -2629,11 +2535,9 @@ SamusBlockCollisionDetection_Vertical_LeftToRight:
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0AF6 
-    SEC 
-    SBC.W $0AFE 
+    SEC : SBC.W $0AFE 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $0DC4 
     ASL A 
     TAX 
@@ -2657,22 +2561,19 @@ SamusBlockCollisionDetection_Vertical_RightToLeft:
     JSR.W CalculateSamusXBlockSpan 
     STZ.B $1A 
     LDA.W $0AFC 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $16 
     LDA.W $0AFA 
     ADC.B $12 
     STA.B $18 
     BIT.B $12 
     BPL .movingDown 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     BRA + 
 
 
 .movingDown:
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
 
   + STA.B $20 
@@ -2682,12 +2583,10 @@ SamusBlockCollisionDetection_Vertical_RightToLeft:
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0AF6 
-    CLC 
-    ADC.W $0AFE 
+    CLC : ADC.W $0AFE 
     DEC A 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $0DC4 
     ASL A 
     TAX 
@@ -2858,8 +2757,7 @@ MoveSamusRight_NoSolidEnemyCollision:
     JSR.W SamusBlockCollisionDetection_Horizontal 
     BCC .noCollision 
     LDA.W $0AF8 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $0AF8 
     LDA.W $0AF6 
     ADC.B $12 
@@ -2873,8 +2771,7 @@ MoveSamusRight_NoSolidEnemyCollision:
 
 .noCollision:
     LDA.W $0AF8 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $0AF8 
     LDA.W $0AF6 
     ADC.B $12 
@@ -2910,8 +2807,7 @@ MoveSamusDown_NoSolidEnemyCollision:
 
 .moveVertically:
     LDA.W $0AFC 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $0AFC 
     LDA.W $0AFA 
     ADC.B $12 
@@ -2927,8 +2823,7 @@ MoveSamusDown_NoSolidEnemyCollision:
 
 .noCollision:
     LDA.W $0AFC 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.W $0AFC 
     LDA.W $0AFA 
     ADC.B $12 
@@ -3057,8 +2952,7 @@ BlockInsideReaction_SpikeAir_BTS2_AirSpike:
     LDA.W #$003C : STA.W $18A8 
     LDA.W #$000A : STA.W $18AA 
     LDA.W $0A4E 
-    CLC 
-    ADC.W #$0000 
+    CLC : ADC.W #$0000 
     STA.W $0A4E 
     LDA.W $0A50 
     ADC.W #$0010 
@@ -3472,8 +3366,7 @@ SamusBlockInsideHandling:
     STZ.W $1E73 
     LDA.W $0AF6 : STA.B $1A 
     LDA.W $0AFA 
-    CLC 
-    ADC.W $0B00 
+    CLC : ADC.W $0B00 
     DEC A 
     STA.W $0E02 
     STA.B $1C 
@@ -3510,8 +3403,7 @@ SamusBlockInsideHandling:
 .top:
     LDA.W #$0002 : STA.W $1E73 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     EOR.W $0E02 
     AND.W #$FFF0 
     BEQ .return 
@@ -3520,8 +3412,7 @@ SamusBlockInsideHandling:
     BEQ .return 
     LDA.W $0AF6 : STA.B $1A 
     LDA.W $0AFA 
-    SEC 
-    SBC.W $0B00 
+    SEC : SBC.W $0B00 
     STA.B $1C 
     STZ.B $1E 
     STZ.B $20 
@@ -3544,8 +3435,7 @@ CalculateBlockAt_12_1E_1C_20:
     PHP 
     REP #$30 
     LDA.B $1A 
-    CLC 
-    ADC.B $1E 
+    CLC : ADC.B $1E 
     BMI .giveUp 
     CMP.W #$1000 
     BPL .giveUp 
@@ -3553,8 +3443,7 @@ CalculateBlockAt_12_1E_1C_20:
     LSR #4
     STA.W $0DD4 
     LDA.B $1C 
-    CLC 
-    ADC.B $20 
+    CLC : ADC.B $20 
     BMI .giveUp 
     CMP.W #$1000 
     BPL .giveUp 
@@ -3571,8 +3460,7 @@ CalculateBlockAt_12_1E_1C_20:
     LDA.W $4216 
 
 .zeroIndex:
-    CLC 
-    ADC.W $0DD4 
+    CLC : ADC.W $0DD4 
     STA.W $0DC4 
     BRA .return 
 
@@ -3701,8 +3589,7 @@ RTS_949D33:
 
 MoveBlockIndexX_OneBlockUp:
     TXA 
-    SEC 
-    SBC.W $07A5 
+    SEC : SBC.W $07A5 
     SBC.W $07A5 
     TAX 
     RTS 
@@ -4233,8 +4120,7 @@ PowerBombExplosionBlockCollisionHandling:
     LSR #2
     STA.B $14 
     LDA.W $0CE2 
-    SEC 
-    SBC.B $12 
+    SEC : SBC.B $12 
     BPL .set16 
     LDA.W #$0000 
 
@@ -4242,8 +4128,7 @@ PowerBombExplosionBlockCollisionHandling:
     LSR #4
     STA.B $16 
     LDA.W $0CE2 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     LSR #4
     CMP.W $07A5 
     BCC .set18 
@@ -4253,8 +4138,7 @@ PowerBombExplosionBlockCollisionHandling:
 .set18:
     STA.B $18 
     LDA.W $0CE4 
-    SEC 
-    SBC.B $14 
+    SEC : SBC.B $14 
     BPL .set1A 
     LDA.W #$0000 
 
@@ -4262,8 +4146,7 @@ PowerBombExplosionBlockCollisionHandling:
     LSR #4
     STA.B $1A 
     LDA.W $0CE4 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     LSR #4
     CMP.W $07A7 
     BCC .set1C 
@@ -4301,8 +4184,7 @@ PowerBombExplosionBlockCollisionHandling_Row:
     ASL A 
     TAX 
     LDA.B $18 
-    SEC 
-    SBC.B $16 
+    SEC : SBC.B $16 
     TAY 
 
 .loop:
@@ -4326,8 +4208,7 @@ PowerBombExplosionBlockCollisionHandling_Column:
     ASL A 
     TAX 
     LDA.B $1C 
-    SEC 
-    SBC.B $1A 
+    SEC : SBC.B $1A 
     TAY 
 
 .loop:
@@ -4335,8 +4216,7 @@ PowerBombExplosionBlockCollisionHandling_Column:
     JSR.W BlockBombedReaction 
     PLY 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     DEY 
@@ -4462,16 +4342,13 @@ BlockShotReaction_Vertical:
 
 CalculateProjectileYBlockSpan:
     LDA.W $0B78,X 
-    SEC 
-    SBC.W $0BC8,X 
+    SEC : SBC.W $0BC8,X 
     AND.W #$FFF0 
     STA.B $26 
     LDA.W $0B78,X 
-    CLC 
-    ADC.W $0BC8,X 
+    CLC : ADC.W $0BC8,X 
     DEC A 
-    SEC 
-    SBC.B $26 
+    SEC : SBC.B $26 
     LSR #4
     STA.B $26 
     STA.B $1A 
@@ -4481,16 +4358,13 @@ CalculateProjectileYBlockSpan:
 
 CalculateProjectileXBlockSpan:
     LDA.W $0B64,X 
-    SEC 
-    SBC.W $0BB4,X 
+    SEC : SBC.W $0BB4,X 
     AND.W #$FFF0 
     STA.B $26 
     LDA.W $0B64,X 
-    CLC 
-    ADC.W $0BB4,X 
+    CLC : ADC.W $0BB4,X 
     DEC A 
-    SEC 
-    SBC.B $26 
+    SEC : SBC.B $26 
     LSR #4
     STA.B $26 
     STA.B $1A 
@@ -4513,16 +4387,14 @@ MoveBeamHorizontally_NoWaveBeam:
   + STA.B $13 
     JSR.W CalculateProjectileYBlockSpan 
     LDA.W $0B78,X 
-    SEC 
-    SBC.W $0BC8,X 
+    SEC : SBC.W $0BC8,X 
     LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0B8C,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $0B8C,X 
     STA.B $16 
     LDA.W $0B64,X 
@@ -4531,20 +4403,17 @@ MoveBeamHorizontally_NoWaveBeam:
     STA.B $18 
     BIT.B $14 
     BMI .negative14 
-    CLC 
-    ADC.W $0BB4,X 
+    CLC : ADC.W $0BB4,X 
     DEC A 
     BRA + 
 
 
 .negative14:
-    SEC 
-    SBC.W $0BB4,X 
+    SEC : SBC.W $0BB4,X 
 
   + STA.B $1C 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     TAX 
     LDA.B $26 
@@ -4558,8 +4427,7 @@ MoveBeamHorizontally_NoWaveBeam:
 .loop:
     JSR.W BlockShotReaction_Horizontal 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     DEC.B $26 
@@ -4597,8 +4465,7 @@ MoveBeamVertically_NoWaveBeam:
   + STA.B $13 
     JSR.W CalculateProjectileXBlockSpan 
     LDA.W $0BA0,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $0BA0,X 
     STA.B $16 
     LDA.W $0B78,X 
@@ -4607,15 +4474,13 @@ MoveBeamVertically_NoWaveBeam:
     STA.B $18 
     BIT.B $14 
     BMI .negative14 
-    CLC 
-    ADC.W $0BC8,X 
+    CLC : ADC.W $0BC8,X 
     DEC A 
     BRA + 
 
 
 .negative14:
-    SEC 
-    SBC.W $0BC8,X 
+    SEC : SBC.W $0BC8,X 
 
   + STA.B $1C 
     LSR #4
@@ -4624,11 +4489,9 @@ MoveBeamVertically_NoWaveBeam:
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0B64,X 
-    SEC 
-    SBC.W $0BB4,X 
+    SEC : SBC.W $0BB4,X 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     TAX 
     LDA.B $26 
@@ -4677,16 +4540,14 @@ MoveBeamHorizontally_WaveBeam:
   + STA.B $13 
     JSR.W CalculateProjectileYBlockSpan 
     LDA.W $0B78,X 
-    SEC 
-    SBC.W $0BC8,X 
+    SEC : SBC.W $0BC8,X 
     LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0B8C,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $0B8C,X 
     STA.B $16 
     LDA.W $0B64,X 
@@ -4695,20 +4556,17 @@ MoveBeamHorizontally_WaveBeam:
     STA.B $18 
     BIT.B $14 
     BMI .leftBoundary 
-    CLC 
-    ADC.W $0BB4,X 
+    CLC : ADC.W $0BB4,X 
     DEC A 
     BRA + 
 
 
 .leftBoundary:
-    SEC 
-    SBC.W $0BB4,X 
+    SEC : SBC.W $0BB4,X 
 
   + STA.B $1C 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     TAY 
     LDA.B $26 
@@ -4729,8 +4587,7 @@ MoveBeamHorizontally_WaveBeam:
 .loop:
     JSR.W BlockShotReaction_Horizontal 
     TXA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAX 
     DEC.B $26 
@@ -4758,8 +4615,7 @@ MoveBeamVertically_WaveBeam:
   + STA.B $13 
     JSR.W CalculateProjectileXBlockSpan 
     LDA.W $0BA0,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $0BA0,X 
     STA.B $16 
     LDA.W $0B78,X 
@@ -4768,15 +4624,13 @@ MoveBeamVertically_WaveBeam:
     STA.B $18 
     BIT.B $14 
     BMI .negative14 
-    CLC 
-    ADC.W $0BC8,X 
+    CLC : ADC.W $0BC8,X 
     DEC A 
     BRA + 
 
 
 .negative14:
-    SEC 
-    SBC.W $0BC8,X 
+    SEC : SBC.W $0BC8,X 
 
   + STA.B $1C 
     LSR #4
@@ -4785,11 +4639,9 @@ MoveBeamVertically_WaveBeam:
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0B64,X 
-    SEC 
-    SBC.W $0BB4,X 
+    SEC : SBC.W $0BB4,X 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     TAY 
     LDA.B $26 
@@ -4842,8 +4694,7 @@ MoveMissileHorizontally:
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0B8C,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $0B8C,X 
     STA.B $16 
     LDA.W $0B64,X 
@@ -4852,8 +4703,7 @@ MoveMissileHorizontally:
     STA.B $18 
     STA.B $1C 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     TAX 
     LDA.B $19 
@@ -4894,8 +4744,7 @@ MoveMissileVertically:
 
   + STA.B $13 
     LDA.W $0BA0,X 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     STA.W $0BA0,X 
     STA.B $16 
     LDA.W $0B78,X 
@@ -4910,8 +4759,7 @@ MoveMissileVertically:
     REP #$20 
     LDA.W $0B64,X 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
     TAX 
     LDA.B $19 
@@ -4985,8 +4833,7 @@ BlockShotReaction_Slope_NonSquare:
     EOR.W #$000F 
 
   + AND.W #$000F 
-    CLC 
-    ADC.W $0DD6 
+    CLC : ADC.W $0DD6 
     PHA 
     LDA.L $7F6401,X 
     BMI .blockBTSMSB 
@@ -5123,8 +4970,7 @@ BlockShotReaction_Horizontal_Slope_Square:
     LDA.B $1A 
     BNE .multiBlock 
     LDA.W $0B78,Y 
-    SEC 
-    SBC.W $0BC8,Y 
+    SEC : SBC.W $0BC8,Y 
     AND.W #$0008 
     BNE .bottomHalf 
     LDA.W SquareSlopeDefinitions_Bank94-1,X 
@@ -5135,8 +4981,7 @@ BlockShotReaction_Horizontal_Slope_Square:
     EOR.W #$0002 
     TAX 
     LDA.W $0B78,Y 
-    CLC 
-    ADC.W $0BC8,Y 
+    CLC : ADC.W $0BC8,Y 
     DEC A 
     AND.W #$0008 
     BEQ .returnNoCollision 
@@ -5156,8 +5001,7 @@ BlockShotReaction_Horizontal_Slope_Square:
     LDA.B $26 
     BNE .topBlockCheck 
     LDA.W $0B78,Y 
-    CLC 
-    ADC.W $0BC8,Y 
+    CLC : ADC.W $0BC8,Y 
     DEC A 
     AND.W #$0008 
     BNE .checkBothHalves 
@@ -5170,8 +5014,7 @@ BlockShotReaction_Horizontal_Slope_Square:
     CMP.B $1A 
     BNE .checkBothHalves 
     LDA.W $0B78,Y 
-    SEC 
-    SBC.W $0BC8,Y 
+    SEC : SBC.W $0BC8,Y 
     AND.W #$0008 
     BNE .checkBottomHalf 
 
@@ -5241,8 +5084,7 @@ BlockShotReaction_Vertical_Slope_Square:
     LDA.B $1A 
     BNE .multiBlock 
     LDA.W $0B64,Y 
-    SEC 
-    SBC.W $0BB4,Y 
+    SEC : SBC.W $0BB4,Y 
     AND.W #$0008 
     BNE .right 
     LDA.W SquareSlopeDefinitions_Bank94-1,X 
@@ -5253,8 +5095,7 @@ BlockShotReaction_Vertical_Slope_Square:
     EOR.W #$0001 
     TAX 
     LDA.W $0B64,Y 
-    CLC 
-    ADC.W $0BB4,Y 
+    CLC : ADC.W $0BB4,Y 
     DEC A 
     AND.W #$0008 
     BEQ .returnNoCollision 
@@ -5274,8 +5115,7 @@ BlockShotReaction_Vertical_Slope_Square:
     LDA.B $26 
     BNE .leftmostBlockCheck 
     LDA.W $0B64,Y 
-    CLC 
-    ADC.W $0BB4,Y 
+    CLC : ADC.W $0BB4,Y 
     DEC A 
     AND.W #$0008 
     BNE .checkBothHalves 
@@ -5288,8 +5128,7 @@ BlockShotReaction_Vertical_Slope_Square:
     CMP.B $1A 
     BNE .checkBothHalves 
     LDA.W $0B64,Y 
-    SEC 
-    SBC.W $0BB4,Y 
+    SEC : SBC.W $0BB4,Y 
     AND.W #$0008 
     BNE .checkLeftHalf 
 
@@ -5465,36 +5304,30 @@ GrappleBeamBlockCollisionDetection:
 
 .loop:
     LDA.W $0D0E 
-    CLC 
-    ADC.W $0D82 
+    CLC : ADC.W $0D82 
     STA.W $0D0E 
     LDA.W $0D10 
     ADC.W $0D84 
     STA.W $0D10 
     LDA.W $0D12 
-    CLC 
-    ADC.W $0D86 
+    CLC : ADC.W $0D86 
     STA.W $0D12 
     LDA.W $0D14 
     ADC.W $0D88 
     STA.W $0D14 
     LDA.W $0AF8 
-    CLC 
-    ADC.W $0D0E 
+    CLC : ADC.W $0D0E 
     STA.W $0D06 
     LDA.W $0AF6 
     ADC.W $0D10 
-    CLC 
-    ADC.W $0D02 
+    CLC : ADC.W $0D02 
     STA.W $0D08 
     LDA.W $0AFC 
-    CLC 
-    ADC.W $0D12 
+    CLC : ADC.W $0D12 
     STA.W $0D0A 
     LDA.W $0AFA 
     ADC.W $0D14 
-    CLC 
-    ADC.W $0D04 
+    CLC : ADC.W $0D04 
     STA.W $0D0C 
     JSL.L BlockGrappleReaction 
     BVC .notConnected 
@@ -5532,8 +5365,7 @@ BlockGrappleReaction:
     REP #$20 
     LDA.W $0D08 
     LSR #4
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $0DC4 
     ASL A 
     TAX 
@@ -5590,8 +5422,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     CMP.W #$0100 
     BNE .not100 
     LDA.W $0D08 
-    CLC 
-    ADC.W $0D84 
+    CLC : ADC.W $0D84 
     BRA + 
 
 
@@ -5603,8 +5434,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     LDA.W $4216 
     AND.W #$FF00 
     XBA 
-    CLC 
-    ADC.W $0D08 
+    CLC : ADC.W $0D08 
     BRA + 
 
 
@@ -5612,8 +5442,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     CMP.W #$FF00 
     BNE .notFF00 
     LDA.W $0D08 
-    SEC 
-    SBC.W $0D84 
+    SEC : SBC.W $0D84 
     BRA + 
 
 
@@ -5629,8 +5458,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     XBA 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.W $0D08 
+    CLC : ADC.W $0D08 
 
   + STA.W $0D90 
     LSR #4
@@ -5641,8 +5469,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     CMP.W #$0100 
     BNE .not100again 
     LDA.W $0D0C 
-    CLC 
-    ADC.W $0D84 
+    CLC : ADC.W $0D84 
     BRA + 
 
 
@@ -5654,8 +5481,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     LDA.W $4216 
     AND.W #$FF00 
     XBA 
-    CLC 
-    ADC.W $0D0C 
+    CLC : ADC.W $0D0C 
     BRA + 
 
 
@@ -5663,8 +5489,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     CMP.W #$FF00 
     BNE .notFF00again 
     LDA.W $0D0C 
-    SEC 
-    SBC.W $0D84 
+    SEC : SBC.W $0D84 
     BRA + 
 
 
@@ -5680,8 +5505,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     XBA 
     EOR.W #$FFFF 
     INC A 
-    CLC 
-    ADC.W $0D0C 
+    CLC : ADC.W $0D0C 
 
   + STA.W $0D92 
     LSR #4
@@ -5744,8 +5568,7 @@ GrappleSwingCollisionReaction_SpikeAir:
     ORA.W .zeroes1,X 
     BEQ .return 
     LDA.W $0A4E 
-    CLC 
-    ADC.W .zeroes0,X 
+    CLC : ADC.W .zeroes0,X 
     STA.W $0A4E 
     LDA.W $0A50 
     ADC.W .zeroes1,X 
@@ -5778,8 +5601,7 @@ GrappleSwingCollisionReaction_SpikeBlock:
     ORA.W .damage,X 
     BEQ .return 
     LDA.W $0A4E 
-    CLC 
-    ADC.W .zeroes,X 
+    CLC : ADC.W .zeroes,X 
     STA.W $0A4E 
     LDA.W $0A50 
     ADC.W .damage,X 
@@ -5853,8 +5675,7 @@ GrappleSwingCollisionReaction_duplicate:
 GrappleSwingCollisionDetectionDueToSwinging:
     LDA.W #$0006 : STA.W $0D98 
     LDA.W #$0008 
-    CLC 
-    ADC.W $0CFE 
+    CLC : ADC.W $0CFE 
     STA.W $0D84 
 
 .loop:
@@ -5862,8 +5683,7 @@ GrappleSwingCollisionDetectionDueToSwinging:
     JSR.W GrappleSwingCollisionReaction_duplicate 
     BCS .return 
     LDA.W $0D84 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.W $0D84 
     DEC.W $0D98 
     BNE .loop 
@@ -5904,8 +5724,7 @@ HandleGrappleBeamLengthChange:
 
 .positiveGrappleBeamLengthDelta:
     LDA.W $0CFE 
-    CLC 
-    ADC.W $0D00 
+    CLC : ADC.W $0D00 
     CMP.W #$0008 
     BCS .greaterThanEqualTo8 
     STZ.W $0D00 
@@ -5925,8 +5744,7 @@ HandleGrappleBeamLengthChange:
 .decreaseLength:
     STA.W $0D8A 
     DEC A 
-    CLC 
-    ADC.W $0D8E 
+    CLC : ADC.W $0D8E 
     STA.W $0D84 
     JSR.W CalculatePositionFromGrappleBeamEndWithDistanceAndAngle 
     JSR.W GrappleSwingCollisionReaction 
@@ -5952,8 +5770,7 @@ HandleGrappleBeamLengthChange:
 
 .increaseLength:
     LDA.W $0CFE 
-    CLC 
-    ADC.W $0D00 
+    CLC : ADC.W $0D00 
     CMP.W #$003F 
     BCC .lessThan3F 
     STZ.W $0D00 
@@ -5973,8 +5790,7 @@ HandleGrappleBeamLengthChange:
 .loopIncreaseLength:
     STA.W $0D8A 
     INC A 
-    CLC 
-    ADC.W $0D8E 
+    CLC : ADC.W $0D8E 
     STA.W $0D84 
     JSR.W CalculatePositionFromGrappleBeamEndWithDistanceAndAngle 
     JSR.W GrappleSwingCollisionReaction 
@@ -6015,8 +5831,7 @@ HandleGrappleBeamSwingingMovement:
 
 .nonLiquidPhysics:
     LDA.W $0D26 
-    CLC 
-    ADC.W $0D2E 
+    CLC : ADC.W $0D2E 
     BPL .preClockwise 
     EOR.W #$FFFF 
     INC A 
@@ -6042,8 +5857,7 @@ HandleGrappleBeamSwingingMovement:
 
 
 .clockwise:
-    CLC 
-    ADC.W $0CFA 
+    CLC : ADC.W $0CFA 
     XBA 
     AND.W #$00FF 
     ASL A 
@@ -6070,8 +5884,7 @@ HandleGrappleBeamSwingingMovement:
 
 ..reachedTarget:
     LDA.W $0CFA 
-    CLC 
-    ADC.W $0D9C 
+    CLC : ADC.W $0D9C 
     STA.W $0CFA 
     STA.W $0CFC 
     LDA.W #$8000 
@@ -6082,14 +5895,12 @@ HandleGrappleBeamSwingingMovement:
 
   + LDA.W $0D2E 
     BPL + 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     BPL ..zero 
     BRA ..returnCarryClear 
 
 
-  + SEC 
-    SBC.W #$0006 
+  + SEC : SBC.W #$0006 
     BMI ..zero 
     BRA ..returnCarryClear 
 
@@ -6153,8 +5964,7 @@ HandleGrappleBeamSwingingMovement:
 
 
 .anticlockwise:
-    CLC 
-    ADC.W $0CFA 
+    CLC : ADC.W $0CFA 
     XBA 
     AND.W #$00FF 
     ASL A 
@@ -6181,8 +5991,7 @@ HandleGrappleBeamSwingingMovement:
 
 ..reachedTarget:
     LDA.W $0CFA 
-    CLC 
-    ADC.W $0D9C 
+    CLC : ADC.W $0D9C 
     STA.W $0CFA 
     STA.W $0CFC 
     LDA.W #$8000 
@@ -6193,14 +6002,12 @@ HandleGrappleBeamSwingingMovement:
 
   + LDA.W $0D2E 
     BPL + 
-    CLC 
-    ADC.W #$0006 
+    CLC : ADC.W #$0006 
     BPL ..zero 
     BRA ..returnCarryClear 
 
 
-  + SEC 
-    SBC.W #$0006 
+  + SEC : SBC.W #$0006 
     BMI ..zero 
     BRA ..returnCarryClear 
 
@@ -6314,8 +6121,7 @@ CLCRTL_94AF0B:
 
 .loop:
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
-    CLC 
-    ADC.W $0D96 
+    CLC : ADC.W $0D96 
     STA.W $0D96 
     XBA 
     SEP #$20 
@@ -6364,8 +6170,7 @@ InitializeGrappleSegmentAnimations:
     STA.W $0D3E,X 
     STA.W $0D3C,X 
     TXA 
-    SEC 
-    SBC.W #$0008 
+    SEC : SBC.W #$0008 
     TAX 
     BPL .loop 
     RTL 
@@ -6376,12 +6181,10 @@ DrawGrappleBeam:
     PHK 
     PLB 
     LDA.W $0D08 
-    SEC 
-    SBC.W $0D1A 
+    SEC : SBC.W $0D1A 
     STA.B $12 
     LDA.W $0D0C 
-    SEC 
-    SBC.W $0D1C 
+    SEC : SBC.W $0D1C 
     STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     ASL A 
@@ -6413,17 +6216,13 @@ DrawGrappleBeam:
     ORA.B $26 
     STA.B $26 
     LDA.W $0D1A 
-    SEC 
-    SBC.W $0911 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W $0911 
+    SEC : SBC.W #$0004 
     STA.B $14 
     STZ.B $12 
     LDA.W $0D1C 
-    SEC 
-    SBC.W $0915 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W $0915 
+    SEC : SBC.W #$0004 
     STA.B $18 
     STZ.B $16 
     LDA.W $0CFE 
@@ -6436,8 +6235,7 @@ DrawGrappleBeam:
     LDA.W $4214 
     BMI .return 
     AND.W #$000F 
-    SEC 
-    SBC.W #$0001 
+    SEC : SBC.W #$0001 
     STA.B $28 
     LDX.W #$001E 
 
@@ -6458,8 +6256,7 @@ DrawGrappleBeam:
 .notInstruction:
     STA.W $0D42,X 
     TYA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0D62,X 
 
 .processedInstructions:
@@ -6500,8 +6297,7 @@ DrawGrappleSegment:
     CLC 
     LDA.B $14 : STA.W $0370,X 
     LDA.B $12 
-    CLC 
-    ADC.B $1A 
+    CLC : ADC.B $1A 
     STA.B $12 
     LDA.B $14 
     ADC.B $1C 
@@ -6517,8 +6313,7 @@ DrawGrappleSegment:
 
   + LDA.B $18 : STA.W $0371,X 
     LDA.B $16 
-    CLC 
-    ADC.B $1E 
+    CLC : ADC.B $1E 
     STA.B $16 
     LDA.B $18 
     ADC.B $20 
@@ -6527,8 +6322,7 @@ DrawGrappleSegment:
     ORA.B $26 
     STA.W $0372,X 
     TXA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0590 
     RTS 
 
@@ -6541,18 +6335,15 @@ Instruction_DrawGrappleBeam_GotoY:
 
 DrawGrappleBeamEnd_NotConnected:
     LDA.W $0D0C 
-    SEC 
-    SBC.W $0915 
+    SEC : SBC.W $0915 
     BIT.W #$FF00 
     BNE .return 
     LDX.W $0590 
     CLC 
     LDA.B $14 
     LDA.W $0D08 
-    SEC 
-    SBC.W $0911 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W $0911 
+    SEC : SBC.W #$0004 
     STA.W $0370,X 
     AND.W #$0100 
     BEQ + 
@@ -6563,15 +6354,12 @@ DrawGrappleBeamEnd_NotConnected:
 
   + LDA.B $18 ; >_<
     LDA.W $0D0C 
-    SEC 
-    SBC.W $0915 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W $0915 
+    SEC : SBC.W #$0004 
     STA.W $0371,X 
     LDA.W #$3A20 : STA.W $0372,X 
     TXA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0590 
 
 .return:
@@ -6582,8 +6370,7 @@ DrawGrappleBeamEnd_Connected:
     LDX.W $0590 
     CLC 
     LDA.W $0D08 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0911 
     SBC.W #$0004 
     STA.W $0370,X 
     AND.W #$0100 
@@ -6594,14 +6381,12 @@ DrawGrappleBeamEnd_Connected:
     STA.B ($22) 
 
   + LDA.W $0D0C 
-    SEC 
-    SBC.W $0915 
+    SEC : SBC.W $0915 
     SBC.W #$0004 
     STA.W $0371,X 
     LDA.W #$3A20 : STA.W $0372,X 
     TXA 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0590 
     RTS 
 

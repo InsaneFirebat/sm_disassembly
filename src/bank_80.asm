@@ -20,8 +20,7 @@ DebugConst_DisableAudio:
 UploadToAPU_Hardcoded:
     LDA.B $02,S : STA.B $04 
     LDA.B $01,S : STA.B $03 ; $03 = return address
-    CLC 
-    ADC.W #$0003 ; adjust return address
+    CLC : ADC.W #$0003 ; adjust return address
     STA.B $01,S 
     LDY.W #$0001 
     LDA.B [$03],Y : STA.B $00 
@@ -475,8 +474,7 @@ A_Y_16bit_UnsignedMultiplication:
     STY.W $4203 
     NOP 
     LDA.W $05F2 ; Result += bc * 100h
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $05F2 
     LDY.W $05EC 
     STY.W $4202 
@@ -484,15 +482,13 @@ A_Y_16bit_UnsignedMultiplication:
     STY.W $4203 
     NOP ; Result += ad * 100h
     LDA.W $05F2 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $05F2 
     LDY.W $05EA 
     STY.W $4203 
     NOP #2
     LDA.W $05F3 ; Result += bd * 10000h
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $05F3 
     REP #$30 
     PLX 
@@ -1313,8 +1309,7 @@ Finalise_OAM:
     STA.B $12 
     LSR A 
     ADC.B $12 
-    CLC 
-    ADC.W #.spriteY00F0 
+    CLC : ADC.W #.spriteY00F0 
     STA.B $12 
     LDA.W #$00F0 
     SEP #$30 
@@ -1509,12 +1504,10 @@ QueueMode7Transfers:
     AND.W #$00FF 
     STA.W $02D6,Y 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAX 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     BRA .loop 
 
@@ -1528,12 +1521,10 @@ QueueMode7Transfers:
     AND.W #$00FF 
     STA.W $02D8,Y 
     TXA 
-    CLC 
-    ADC.W #$0009 
+    CLC : ADC.W #$0009 
     TAX 
     TYA 
-    CLC 
-    ADC.W #$0009 
+    CLC : ADC.W #$0009 
     TAY 
     BRA .loop 
 
@@ -1657,8 +1648,7 @@ HandleVRAMWriteTable_ScrollingDMAs:
     LDA.B #$02 : STA.W $420B 
     REP #$20 
     TYA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     TAY 
     BRA .loop 
 
@@ -1872,8 +1862,7 @@ HandleVRAMReadTable:
     SEP #$20 
     LDA.B #$02 : STA.W $420B 
     TXA 
-    CLC 
-    ADC.B #$09 
+    CLC : ADC.B #$09 
     TAX 
     BRA .loop 
 
@@ -2107,8 +2096,7 @@ QueueSound_Lib1_Max6:
 QueueSound_Lib1:
     STA.W $0653 
     LDA.W $0646 
-    SEC 
-    SBC.W $0643 
+    SEC : SBC.W $0643 
     AND.B #$0F 
     CMP.W $0653 
     BCS .return 
@@ -2202,8 +2190,7 @@ QueueSound_Lib2_Max6:
 QueueSound_Lib2:
     STA.W $0654 
     LDA.W $0647 
-    SEC 
-    SBC.W $0644 
+    SEC : SBC.W $0644 
     AND.B #$0F 
     CMP.W $0654 
     BCS .return 
@@ -2297,8 +2284,7 @@ QueueSound_Lib3_Max6:
 QueueSound_Lib3:
     STA.W $0655 
     LDA.W $0648 
-    SEC 
-    SBC.W $0645 
+    SEC : SBC.W $0645 
     AND.B #$0F 
     CMP.W $0655 
     BCS .return 
@@ -2367,8 +2353,7 @@ SetupHDMATransfer:
     LDA.W $0006,Y : STA.W $4304,X 
     LDA.W $0007,Y : STA.W $4305,X 
     TYA 
-    CLC 
-    ADC.W #$0008 
+    CLC : ADC.W #$0008 
     STA.B $03,S 
     PLB 
     PLP 
@@ -2558,8 +2543,7 @@ TransferSamusTilesToVRAM:
     LDA.B ($3C),Y : STA.W $4314 
     INY 
     LDA.B ($3C),Y : STA.W $4315 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $14 
     INY #2
     STX.W $420B 
@@ -2582,8 +2566,7 @@ TransferSamusTilesToVRAM:
     LDA.B ($3C),Y : STA.W $4314 
     INY 
     LDA.B ($3C),Y : STA.W $4315 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $14 
     INY #2
     STX.W $420B 
@@ -3825,8 +3808,7 @@ ProcessTimer_RunningMovementDelayed:
 ProcessTimer_RunningMovingIntoPlace:
     LDY.W #$0000 
     LDA.W #$00E0 
-    CLC 
-    ADC.W $0948 
+    CLC : ADC.W $0948 
     CMP.W #$DC00 
     BCC .XinPosition 
     INY 
@@ -3835,8 +3817,7 @@ ProcessTimer_RunningMovingIntoPlace:
 .XinPosition:
     STA.W $0948 
     LDA.W #$FF3F 
-    CLC 
-    ADC.W $094A 
+    CLC : ADC.W $094A 
     CMP.W #$3000 
     BCS .YinPosition 
     INY 
@@ -3956,8 +3937,7 @@ DrawTimerSpritemap:
     LDA.W $0948 
     XBA 
     AND.W #$00FF 
-    CLC 
-    ADC.B $14 
+    CLC : ADC.B $14 
     STA.B $14 
     LDA.W $094A 
     XBA 
@@ -4142,8 +4122,7 @@ DisplayViewablePartOfRoom:
     PHP 
     SEP #$20 
     LDA.B $58 
-    SEC 
-    SBC.B $59 
+    SEC : SBC.B $59 
     XBA 
     REP #$20 
     AND.W #$F800 
@@ -4196,8 +4175,7 @@ UNUSED_QueueClearingOfBG2Tilemap_80A1E3:
     LDA.W #$007E : STA.B $D4,X 
     LDA.W #$4800 : STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -4217,8 +4195,7 @@ QueueClearingOfFXTilemap:
     LDA.W #$007E : STA.B $D4,X 
     LDA.W #$5880 : STA.B $D5,X 
     TXA 
-    CLC 
-    ADC.W #$0007 
+    CLC : ADC.W #$0007 
     STA.W $0330 
     RTL 
 
@@ -4295,8 +4272,7 @@ CalculateLayer2XPosition:
     LDA.W $0912 : STA.W $4203 
     REP #$20 
     LDA.W $0933 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     TAY 
 
 .scrollReturn:
@@ -4332,8 +4308,7 @@ CalculateLayer2YPosition:
     LDA.W $0916 : STA.W $4203 
     REP #$20 
     LDA.W $0933 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     TAY 
 
 .scrollReturn:
@@ -4353,20 +4328,16 @@ CalculateLayer2YPosition:
 
 CalculateBGScrolls:
     LDA.W $0911 
-    CLC 
-    ADC.W $091D 
+    CLC : ADC.W $091D 
     STA.B $B1 
     LDA.W $0915 
-    CLC 
-    ADC.W $091F 
+    CLC : ADC.W $091F 
     STA.B $B3 
     LDA.W $0917 
-    CLC 
-    ADC.W $0921 
+    CLC : ADC.W $0921 
     STA.B $B5 
     LDA.W $0919 
-    CLC 
-    ADC.W $0923 
+    CLC : ADC.W $0923 
     STA.B $B7 
     RTS 
 
@@ -4394,24 +4365,20 @@ Calc_Layer2Position_BGScrolls_UpdateBGGraphics_WhenScrolling:
     PLB 
     REP #$30 
     LDA.W $0911 
-    CLC 
-    ADC.W $091D 
+    CLC : ADC.W $091D 
     STA.B $B1 
     LDA.W $0915 
-    CLC 
-    ADC.W $091F 
+    CLC : ADC.W $091F 
     STA.B $B3 
     JSR.W CalculateLayer2XPosition 
     BCS .layer2Y 
-    CLC 
-    ADC.W $0921 
+    CLC : ADC.W $0921 
     STA.B $B5 
 
 .layer2Y:
     JSR.W CalculateLayer2YPosition 
     BCS UpdateBGGraphics_WhenScrolling 
-    CLC 
-    ADC.W $0923 
+    CLC : ADC.W $0923 
     STA.B $B7 
 
 UpdateBGGraphics_WhenScrolling:
@@ -4427,12 +4394,10 @@ UpdateBGGraphics_WhenScrolling:
 
 .updateLayer1:
     TXA 
-    CLC 
-    ADC.W $08F7 
+    CLC : ADC.W $08F7 
     STA.W $0990 
     TXA 
-    CLC 
-    ADC.W $0907 
+    CLC : ADC.W $0907 
     STA.W $0994 
     LDA.W $08F9 : STA.W $0992 
     LDA.W $0909 : STA.W $0996 
@@ -4452,12 +4417,10 @@ UpdateBGGraphics_WhenScrolling:
 
 .updateLayer2:
     TXA 
-    CLC 
-    ADC.W $08FB 
+    CLC : ADC.W $08FB 
     STA.W $0990 
     TXA 
-    CLC 
-    ADC.W $090B 
+    CLC : ADC.W $090B 
     STA.W $0994 
     LDA.W $08FD : STA.W $0992 
     LDA.W $090D : STA.W $0996 
@@ -4473,12 +4436,10 @@ UpdateBGGraphics_WhenScrolling:
     LDX.W #$000F 
 
   + TXA 
-    CLC 
-    ADC.W $08F9 
+    CLC : ADC.W $08F9 
     STA.W $0992 
     TXA 
-    CLC 
-    ADC.W $0909 
+    CLC : ADC.W $0909 
     STA.W $0996 
     LDA.W $08F7 : STA.W $0990 
     LDA.W $0907 : STA.W $0994 
@@ -4498,12 +4459,10 @@ UpdateBGGraphics_WhenScrolling:
 
 .finish:
     TXA 
-    CLC 
-    ADC.W $08FD 
+    CLC : ADC.W $08FD 
     STA.W $0992 
     TXA 
-    CLC 
-    ADC.W $090D 
+    CLC : ADC.W $090D 
     STA.W $0996 
     LDA.W $08FB : STA.W $0990 
     LDA.W $090B : STA.W $0994 
@@ -4585,8 +4544,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     STA.W $0911 
 
   + LDA.W $0915 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     XBA 
     SEP #$20 
     STA.W $4202 
@@ -4594,27 +4552,23 @@ HandleScrollZones_HorizontalAutoscrolling:
     REP #$20 
     LDA.W $0912 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     TAX 
     LDA.L $7ECD20,X 
     AND.W #$00FF 
     BNE .unboundedFromLeft 
     LDA.W $0911 
     AND.W #$FF00 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     STA.W $0933 
     LDA.W $0939 
-    CLC 
-    ADC.W $0DA2 
+    CLC : ADC.W $0DA2 
     ADC.W #$0002 
     CMP.W $0933 
     BCS .reachedRightScrollBoundary 
     STA.W $0939 
     LDA.W $0915 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     XBA 
     SEP #$20 
     STA.W $4202 
@@ -4623,8 +4577,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     LDA.W $093A 
     INC A 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     TAX 
     LDA.L $7ECD20,X 
     AND.W #$00FF 
@@ -4653,15 +4606,13 @@ HandleScrollZones_HorizontalAutoscrolling:
     AND.W #$FF00 
     STA.W $0933 
     LDA.W $0939 
-    SEC 
-    SBC.W $0DA2 
+    SEC : SBC.W $0DA2 
     SBC.W #$0002 
     CMP.W $0933 
     BMI .reachedLeftScrollBoundary 
     STA.W $0939 
     LDA.W $0915 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     XBA 
     SEP #$20 
     STA.W $4202 
@@ -4669,16 +4620,14 @@ HandleScrollZones_HorizontalAutoscrolling:
     REP #$20 
     LDA.W $093A 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     TAX 
     LDA.L $7ECD20,X 
     AND.W #$00FF 
     BNE .return0939 
     LDA.W $0939 
     AND.W #$FF00 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     BRA + 
 
 
@@ -4723,8 +4672,7 @@ HandleScrollZones_ScrollingRight:
 
 
   + LDA.W $0915 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     XBA 
     SEP #$20 
     STA.W $4202 
@@ -4742,8 +4690,7 @@ HandleScrollZones_ScrollingRight:
     AND.W #$FF00 
     STA.W $0933 
     LDA.W $0939 
-    SEC 
-    SBC.W $0DA2 
+    SEC : SBC.W $0DA2 
     SBC.W #$0002 
     CMP.W $0933 
     BPL + 
@@ -4778,8 +4725,7 @@ HandleScrollZones_ScrollingLeft:
 
 
   + LDA.W $0915 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     XBA 
     SEP #$20 
     STA.W $4202 
@@ -4787,20 +4733,17 @@ HandleScrollZones_ScrollingLeft:
     REP #$20 
     LDA.W $0912 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     TAX 
     LDA.L $7ECD20,X 
     AND.W #$00FF 
     BNE .return 
     LDA.W $0911 
     AND.W #$FF00 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     STA.W $0933 
     LDA.W $0939 
-    CLC 
-    ADC.W $0DA2 
+    CLC : ADC.W $0DA2 
     ADC.W #$0002 
     CMP.W $0933 
     BCC + 
@@ -4834,12 +4777,10 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     XBA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.B $14 
     TAX 
     LDA.L $7ECD20,X 
@@ -4856,8 +4797,7 @@ HandleScrollZones_VerticalAutoscrolling:
   + LDA.W $07AB 
     DEC A 
     XBA 
-    CLC 
-    ADC.W $0933 
+    CLC : ADC.W $0933 
     CMP.W $0915 
     BCS + 
     STA.W $0915 
@@ -4867,24 +4807,20 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     XBA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     TAX 
     LDA.L $7ECD20,X 
     AND.W #$00FF 
     BNE .unboundedFromAbove 
     LDA.W $0915 
     AND.W #$FF00 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     STA.W $0935 
     LDA.W $0939 
-    CLC 
-    ADC.W $0DA6 
+    CLC : ADC.W $0DA6 
     ADC.W #$0002 
     CMP.W $0935 
     BCS .reachedBottomScrollBoundary 
@@ -4896,12 +4832,10 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     XBA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     TAX 
     LDA.L $7ECD20,X 
     AND.W #$00FF 
@@ -4922,22 +4856,19 @@ HandleScrollZones_VerticalAutoscrolling:
 
 .unboundedFromAbove:
     TXA 
-    CLC 
-    ADC.W $07A9 
+    CLC : ADC.W $07A9 
     TAX 
     LDA.L $7ECD20,X 
     AND.W #$00FF 
     BNE .return 
     LDA.W $0915 
     AND.W #$FF00 
-    CLC 
-    ADC.W $0933 
+    CLC : ADC.W $0933 
     STA.W $0937 
     CMP.W $0915 
     BCS .return 
     LDA.W $0939 
-    SEC 
-    SBC.W $0DA6 
+    SEC : SBC.W $0DA6 
     SBC.W #$0002 
     CMP.W $0937 
     BMI .reachedTopScrollBoundary 
@@ -4947,20 +4878,17 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     XBA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     TAX 
     LDA.L $7ECD20,X 
     AND.W #$00FF 
     BNE .returnProposedLayer1X 
     LDA.W $0939 
     AND.W #$FF00 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     BRA .returnLayer1Y 
 
 
@@ -4996,12 +4924,10 @@ HandleScrollZones_ScrollingDown:
     LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     XBA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.B $14 
     TAX 
     LDA.L $7ECD20,X 
@@ -5020,30 +4946,26 @@ HandleScrollZones_ScrollingDown:
   + LDA.W $07AB 
     DEC A 
     XBA 
-    CLC 
-    ADC.W $0933 
+    CLC : ADC.W $0933 
     STA.W $0937 
     CMP.W $0915 
     BCC .setLayer1Y 
     LDA.B $14 
-    CLC 
-    ADC.W $07A9 
+    CLC : ADC.W $07A9 
     TAX 
     LDA.L $7ECD20,X 
     AND.W #$00FF 
     BNE .return 
     LDA.W $0915 
     AND.W #$FF00 
-    CLC 
-    ADC.W $0933 
+    CLC : ADC.W $0933 
     STA.W $0937 
     CMP.W $0915 
     BCS .return 
 
 .setLayer1Y:
     LDA.W $0939 
-    SEC 
-    SBC.W $0DA6 
+    SEC : SBC.W $0DA6 
     SBC.W #$0002 
     CMP.W $0937 
     BPL + 
@@ -5082,24 +5004,20 @@ HandleScrollZones_ScrollingUp:
     LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     XBA 
     AND.W #$00FF 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     TAX 
     LDA.L $7ECD20,X 
     AND.W #$00FF 
     BNE .return 
     LDA.W $0915 
     AND.W #$FF00 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     STA.W $0933 
     LDA.W $0939 
-    CLC 
-    ADC.W $0DA6 
+    CLC : ADC.W $0DA6 
     ADC.W #$0002 
     CMP.W $0933 
     BCC + 
@@ -5153,15 +5071,12 @@ UpdateLevelBackgroundDataColumn:
     PHB 
     REP #$30 
     LDA.W $0990 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     TXY 
     BEQ + 
-    CLC 
-    ADC.W #$9600 ; $7F
+    CLC : ADC.W #$9600 ; $7F
 
   + STA.B $36 
     LDA.W #$007F : STA.B $38 
@@ -5182,8 +5097,7 @@ UpdateLevelBackgroundDataColumn:
     AND.W #$001F 
     STA.W $0935 
     ASL A 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $0933 
     LDA.W #$5000 
     LDY.W $0935 
@@ -5193,16 +5107,13 @@ UpdateLevelBackgroundDataColumn:
 
   + TXY 
     BEQ + 
-    SEC 
-    SBC.W $098E 
+    SEC : SBC.W $098E 
 
   + STA.W $0937 
-    CLC 
-    ADC.W $0933 
+    CLC : ADC.W $0933 
     STA.W $095A,X 
     LDA.W $0937 
-    CLC 
-    ADC.W $0935 
+    CLC : ADC.W $0935 
     ADC.W $0935 
     STA.W $095C,X 
     LDA.W #$C8C8 ; $7E
@@ -5212,11 +5123,9 @@ UpdateLevelBackgroundDataColumn:
     LDA.W #$C9D0 ; $7E
     LDY.W #$0108 
 
-  + CLC 
-    ADC.W $0956,X 
+  + CLC : ADC.W $0956,X 
     STA.W $095E,X 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     STA.W $0960,X 
     STY.W $0937 
     SEP #$20 
@@ -5296,8 +5205,7 @@ UpdateLevelBackgroundDataColumn:
     INY #4
     STY.W $0937 
     PLA 
-    CLC 
-    ADC.W $07A5 
+    CLC : ADC.W $07A5 
     ADC.W $07A5 
     TAY 
     DEC.W $0939 
@@ -5334,15 +5242,12 @@ UpdateBackgroundLevelDataRow:
     PHB 
     REP #$30 
     LDA.W $0990 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     ASL A 
-    CLC 
-    ADC.W #$0002 
+    CLC : ADC.W #$0002 
     TXY 
     BEQ + 
-    CLC 
-    ADC.W #$9600 ; $7F
+    CLC : ADC.W #$9600 ; $7F
 
   + STA.B $36 
     LDA.W #$007F : STA.B $38 
@@ -5350,8 +5255,7 @@ UpdateBackgroundLevelDataRow:
     AND.W #$000F 
     STA.W $0933 
     LDA.W #$0010 
-    SEC 
-    SBC.W $0933 
+    SEC : SBC.W $0933 
     ASL #2
     STA.W $0964,X 
     LDA.W $0933 
@@ -5368,8 +5272,7 @@ UpdateBackgroundLevelDataRow:
     AND.W #$001F 
     STA.W $0935 
     ASL A 
-    CLC 
-    ADC.W $4216 
+    CLC : ADC.W $4216 
     STA.W $0933 
     LDA.W #$5400 : STA.W $0937 
     LDA.W #$5000 
@@ -5381,20 +5284,16 @@ UpdateBackgroundLevelDataRow:
 
   + TXY 
     BEQ + 
-    SEC 
-    SBC.W $098E 
+    SEC : SBC.W $098E 
 
-  + CLC 
-    ADC.W $0933 
+  + CLC : ADC.W $0933 
     STA.W $0968,X 
     LDA.W $0937 
     TXY 
     BEQ + 
-    SEC 
-    SBC.W $098E 
+    SEC : SBC.W $098E 
 
-  + CLC 
-    ADC.W $4216 
+  + CLC : ADC.W $4216 
     STA.W $096A,X 
     LDA.W #$C948 ; $7E
     LDY.W #$0000 
@@ -5403,11 +5302,9 @@ UpdateBackgroundLevelDataRow:
     LDA.W #$CA50 ; $7E
     LDY.W #$0108 
 
-  + CLC 
-    ADC.W $0964,X 
+  + CLC : ADC.W $0964,X 
     STA.W $096C,X 
-    CLC 
-    ADC.W #$0044 
+    CLC : ADC.W #$0044 
     STA.W $096E,X 
     STY.W $0937 
     SEP #$20 
@@ -5525,13 +5422,11 @@ DoorTransitionScrollingSetup:
 
 DoorTransitionScrollingSetup_Right:
     JSR.W CalculateLayer2XPosition 
-    SEC 
-    SBC.W #$0100 
+    SEC : SBC.W #$0100 
     STA.W $0917 
     JSR.W CalculateLayer2YPosition 
     LDA.W $0911 
-    SEC 
-    SBC.W #$0100 
+    SEC : SBC.W #$0100 
     STA.W $0911 
     JSR.W UpdateBGScrollOffsets 
     JSR.W Calculate_BGScroll_LayerPositionBlocks 
@@ -5544,13 +5439,11 @@ DoorTransitionScrollingSetup_Right:
 
 DoorTransitionScrollingSetup_Left:
     JSR.W CalculateLayer2XPosition 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     STA.W $0917 
     JSR.W CalculateLayer2YPosition 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     STA.W $0911 
     JSR.W UpdateBGScrollOffsets 
     JSR.W Calculate_BGScroll_LayerPositionBlocks 
@@ -5564,12 +5457,10 @@ DoorTransitionScrollingSetup_Left:
 DoorTransitionScrollingSetup_Down:
     JSR.W CalculateLayer2XPosition 
     JSR.W CalculateLayer2YPosition 
-    SEC 
-    SBC.W #$00E0 
+    SEC : SBC.W #$00E0 
     STA.W $0919 
     LDA.W $0915 
-    SEC 
-    SBC.W #$00E0 
+    SEC : SBC.W #$00E0 
     STA.W $0915 
     JSR.W UpdateBGScrollOffsets 
     JSR.W Calculate_BGScroll_LayerPositionBlocks 
@@ -5584,21 +5475,17 @@ DoorTransitionScrollingSetup_Up:
     JSR.W CalculateLayer2XPosition 
     LDA.W $0915 
     PHA 
-    CLC 
-    ADC.W #$001F 
+    CLC : ADC.W #$001F 
     STA.W $0915 
     JSR.W CalculateLayer2YPosition 
-    CLC 
-    ADC.W #$00E0 
+    CLC : ADC.W #$00E0 
     STA.W $0919 
     PLA 
-    CLC 
-    ADC.W #$0100 
+    CLC : ADC.W #$0100 
     STA.W $0915 
     JSR.W UpdateBGScrollOffsets 
     LDA.W $0929 
-    CLC 
-    ADC.W #$0020 
+    CLC : ADC.W #$0020 
     STA.W $0929 
     JSR.W Calculate_BGScroll_LayerPositionBlocks 
     JSR.W UpdatePreviousLayerBlocks 
@@ -5625,20 +5512,16 @@ UpdatePreviousLayerBlocks:
 
 UpdateBGScrollOffsets:
     LDA.B $B1 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0911 
     STA.W $091D 
     LDA.B $B3 
-    SEC 
-    SBC.W $0915 
+    SEC : SBC.W $0915 
     STA.W $091F 
     LDA.B $B5 
-    SEC 
-    SBC.W $0911 
+    SEC : SBC.W $0911 
     STA.W $0921 
     LDA.B $B7 
-    SEC 
-    SBC.W $0915 
+    SEC : SBC.W $0915 
     STA.W $0923 
     RTS 
 
@@ -5676,20 +5559,17 @@ DoorTransitionScrolling_Right:
     LDX.W $0925 
     PHX 
     LDA.W $0AF8 
-    CLC 
-    ADC.W $092B 
+    CLC : ADC.W $092B 
     STA.W $0AF8 
     LDA.W $0AF6 
     ADC.W $092D 
     STA.W $0AF6 
     STA.W $0B10 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0911 
     LDA.W $0917 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0917 
     JSL.L CalculateBGScrolls_UpdateBGGraphics_WhenScrolling 
     PLX 
@@ -5710,20 +5590,17 @@ DoorTransitionScrolling_Left:
     LDX.W $0925 
     PHX 
     LDA.W $0AF8 
-    SEC 
-    SBC.W $092B 
+    SEC : SBC.W $092B 
     STA.W $0AF8 
     LDA.W $0AF6 
     SBC.W $092D 
     STA.W $0AF6 
     STA.W $0B10 
     LDA.W $0911 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $0911 
     LDA.W $0917 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $0917 
     JSL.L CalculateBGScrolls_UpdateBGGraphics_WhenScrolling 
     PLX 
@@ -5749,13 +5626,11 @@ DoorTransitionScrolling_Down:
     PHA 
     LDA.W $0915 
     PHA 
-    SEC 
-    SBC.W #$000F 
+    SEC : SBC.W #$000F 
     STA.W $0915 
     LDA.W $0919 
     PHA 
-    SEC 
-    SBC.W #$000F 
+    SEC : SBC.W #$000F 
     STA.W $0919 
     JSR.W Calculate_BGScroll_LayerPositionBlocks 
     JSR.W UpdatePreviousLayerBlocks 
@@ -5776,20 +5651,17 @@ DoorTransitionScrolling_Down:
   + CPX.W #$0039 
     BCS .finish 
     LDA.W $0AFC 
-    CLC 
-    ADC.W $092B 
+    CLC : ADC.W $092B 
     STA.W $0AFC 
     LDA.W $0AFA 
     ADC.W $092D 
     STA.W $0AFA 
     STA.W $0B14 
     LDA.W $0915 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0915 
     LDA.W $0919 
-    CLC 
-    ADC.W #$0004 
+    CLC : ADC.W #$0004 
     STA.W $0919 
     JSL.L CalculateBGScrolls_UpdateBGGraphics_WhenScrolling 
 
@@ -5818,13 +5690,11 @@ DoorTransitionScrolling_Up:
     PHA 
     LDA.W $0915 
     PHA 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.W $0915 
     LDA.W $0919 
     PHA 
-    SEC 
-    SBC.W #$0010 
+    SEC : SBC.W #$0010 
     STA.W $0919 
     JSR.W Calculate_BGScroll_LayerPositionBlocks 
     JSR.W UpdatePreviousLayerBlocks 
@@ -5843,38 +5713,31 @@ DoorTransitionScrolling_Up:
 
 
   + LDA.W $0AFC 
-    SEC 
-    SBC.W $092B 
+    SEC : SBC.W $092B 
     STA.W $0AFC 
     LDA.W $0AFA 
     SBC.W $092D 
     STA.W $0AFA 
     STA.W $0B14 
     LDA.W $0915 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $0915 
     LDA.W $0919 
-    SEC 
-    SBC.W #$0004 
+    SEC : SBC.W #$0004 
     STA.W $0919 
     CPX.W #$0005 
     BCS + 
     LDA.W $0911 
-    CLC 
-    ADC.W $091D 
+    CLC : ADC.W $091D 
     STA.B $B1 
     LDA.W $0915 
-    CLC 
-    ADC.W $091F 
+    CLC : ADC.W $091F 
     STA.B $B3 
     LDA.W $0917 
-    CLC 
-    ADC.W $0921 
+    CLC : ADC.W $0921 
     STA.B $B5 
     LDA.W $0919 
-    CLC 
-    ADC.W $0923 
+    CLC : ADC.W $0923 
     STA.B $B7 
     BRA .done 
 
@@ -5938,8 +5801,7 @@ UNUSED_SetupRotatingMode7Background_80B032:
     BNE .innerLoop 
     REP #$20 
     PLA 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     TAY 
     SEP #$20 
     CPX.W #$0400 
@@ -5975,8 +5837,7 @@ UNUSED_ConfigureMode7RotationMatrix_80B0C2:
     INC A 
     STA.B $7C 
     LDA.W $0785 
-    CLC 
-    ADC.W #$0040 
+    CLC : ADC.W #$0040 
     AND.W #$00FF 
     ASL A 
     TAX 
@@ -5993,8 +5854,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Decompression_HardcodedDestination:
     LDA.B $02,S : STA.B $45 
     LDA.B $01,S : STA.B $44 
-    CLC 
-    ADC.W #$0003 
+    CLC : ADC.W #$0003 
     STA.B $01,S 
     LDY.W #$0001 
     LDA.B [$44],Y : STA.B $4C 
@@ -6230,8 +6090,7 @@ Decompression_VariableDestination:
     STZ.B $4B 
     REP #$20 
     TYA 
-    SEC 
-    SBC.B $4A 
+    SEC : SBC.B $4A 
     STA.B $4A 
     BRA .dictionaryCopy 
 
@@ -6504,8 +6363,7 @@ DecompressionToVRAM:
     STA.B $4B 
     REP #$20 
     LDA.B $4C 
-    CLC 
-    ADC.B $4A 
+    CLC : ADC.B $4A 
     STA.B $4A 
 
 .loopDictionaryCopy:
@@ -6568,8 +6426,7 @@ DecompressionToVRAM:
     STZ.B $4B 
     REP #$20 
     TYA 
-    SEC 
-    SBC.B $4A 
+    SEC : SBC.B $4A 
     STA.B $4A 
     BRA .loopDictionaryCopy 
 
@@ -6848,12 +6705,10 @@ LoadFromLoadStation:
     ASL A 
     STA.B $12 
     ASL A 
-    CLC 
-    ADC.B $12 
+    CLC : ADC.B $12 
     ADC.W $078B 
     ASL A 
-    CLC 
-    ADC.W LoadStationListPointers,X 
+    CLC : ADC.W LoadStationListPointers,X 
     TAX 
     LDA.W $0000,X : STA.W $079B 
     LDA.W $0002,X : STA.W $078D 
@@ -6863,13 +6718,11 @@ LoadFromLoadStation:
     LDA.W $0008,X : STA.W $0915 
     STA.W $091F 
     LDA.W $000A,X 
-    CLC 
-    ADC.W $0915 
+    CLC : ADC.W $0915 
     STA.W $0AFA 
     STA.W $0B14 
     LDA.W $0911 
-    CLC 
-    ADC.W #$0080 
+    CLC : ADC.W #$0080 
     ADC.W $000C,X 
     STA.W $0AF6 
     STA.W $0B10 
@@ -7530,8 +7383,7 @@ SetDebugElevatorAsUsed:
     AND.W #$000F 
     DEC A 
     ASL #2
-    CLC 
-    ADC.W .elevatorBits,X 
+    CLC : ADC.W .elevatorBits,X 
     TAY 
     LDA.W #$0000 
     SEP #$20 
