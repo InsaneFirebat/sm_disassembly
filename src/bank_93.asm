@@ -8,8 +8,7 @@ InitializeProjectile:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $0C04,X 
-    AND.W #$000F 
+    LDA.W $0C04,X : AND.W #$000F 
     ASL A 
     STA.B $12 
     LDA.W $0C18,X 
@@ -68,8 +67,7 @@ InitializeSuperMissileLink:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $0C19,X 
-    AND.W #$000F 
+    LDA.W $0C19,X : AND.W #$000F 
     ASL A 
     TAY 
     LDA.W SamusProjectileDataPointers_SuperMissileLink,Y 
@@ -94,8 +92,7 @@ InitializeBomb:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $0C19,X 
-    AND.W #$000F 
+    LDA.W $0C19,X : AND.W #$000F 
     ASL A 
     TAY 
     LDA.W SamusProjectileDataPointers_NonBeam,Y 
@@ -123,8 +120,7 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
     LDA.W $0C18,X 
     BIT.W #$0F00 
     BNE .notBeam 
-    LDA.W $0C18,X 
-    AND.W #$F0FF 
+    LDA.W $0C18,X : AND.W #$F0FF 
     ORA.W #$0700 
     STA.W $0C18,X 
     LDA.W ProjectileDataTable_NonBeam_BeamExplosion_pointer : STA.W $0C40,X 
@@ -190,12 +186,10 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $0C04,X 
-    AND.W #$000F 
+    LDA.W $0C04,X : AND.W #$000F 
     ASL A 
     STA.B $12 
-    LDA.W $0C18,X 
-    AND.W #$00FF 
+    LDA.W $0C18,X : AND.W #$00FF 
     SEC : SBC.W #$0022 : ASL A 
     TAY 
     LDA.W SamusProjectileDataPointers_ShinesparkEcho_SpazerSBATrail,Y 
@@ -222,8 +216,7 @@ InitializeSBAProjectile:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $0C18,X 
-    AND.W #$000F 
+    LDA.W $0C18,X : AND.W #$000F 
     ASL A 
     TAY 
     LDA.W SamusProjectileDataPointers_SBA,Y 
@@ -469,8 +462,7 @@ DrawBombsAndProjectileExplosions:
 .loop:
     LDA.W $0C40,X 
     BEQ .next 
-    LDA.W $0C18,X 
-    AND.W #$0F00 
+    LDA.W $0C18,X : AND.W #$0F00 
     CMP.W #$0300 
     BMI .next 
     BEQ .powerBomb 

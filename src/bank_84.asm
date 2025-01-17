@@ -81,8 +81,7 @@ Clear_Sounds_When_Going_Through_Door:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Clear_SpinJumpSound_GoingThroughDoor_848258:
-    LDA.W $0A1E 
-    AND.W #$FF00 
+    LDA.W $0A1E : AND.W #$FF00 
     CMP.W #$0300 
     BEQ .playSound 
     CMP.W #$1400 
@@ -105,8 +104,7 @@ Play_SpinJumpSound_if_SpinJumping:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Play_Resumed_SpinJumpSound_848278:
-    LDA.W $0A1E 
-    AND.W #$FF00 
+    LDA.W $0A1E : AND.W #$FF00 
     CMP.W #$0300 
     BEQ .playSound 
     CMP.W #$1400 
@@ -138,8 +136,7 @@ Write_Level_Data_Block_Type_and_BTS:
     PHX 
     STA.B $12 
     SEP #$20 
-    LDA.L $7F0003,X 
-    AND.B #$0F 
+    LDA.L $7F0003,X : AND.B #$0F 
     ORA.B $13 
     STA.L $7F0003,X 
     REP #$20 
@@ -218,8 +215,7 @@ Load_Item_and_Room_Special_Xray_Blocks:
     LDA.L $7EDF0C,X 
     TAY 
     LDX.W .InstructionPointers,Y 
-    LDA.W $0002,X 
-    AND.W #$0FFF 
+    LDA.W $0002,X : AND.W #$0FFF 
     LDX.W $1C29 
     LDY.W $1C2B 
     JSL.L LoadBlockToXrayBG2Tilemap 
@@ -835,8 +831,7 @@ Instruction_PLM_LoadItemPLMGFX:
     CLC : ADC.W #$0010 : STA.B $18 
 
 .loop:
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     XBA 
     ASL #2
     CLC : ADC.B $16 : STA.L $7EA000,X 
@@ -885,8 +880,7 @@ Instruction_PLM_GotoY_ifBossBitsSet:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_SetBossBits_848821:
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     JSL.L SetBossBitsInAForCurrentArea 
     INY 
     RTS 
@@ -999,8 +993,7 @@ Instruction_PLM_PickUpBeam_DisplayMessageBox:
     PLX 
     LDA.W #$0168 
     JSL.L Play_Room_Music_Track_After_A_Frames 
-    LDA.W $0002,Y 
-    AND.W #$00FF 
+    LDA.W $0002,Y : AND.W #$00FF 
     JSL.L MessageBox_Routine 
     INY #3
     RTS 
@@ -1011,8 +1004,7 @@ Instruction_PLM_PickUpEquipment_DisplayMessageBox:
     LDA.W $09A4 : ORA.W $0000,Y : STA.W $09A4 
     LDA.W #$0168 
     JSL.L Play_Room_Music_Track_After_A_Frames 
-    LDA.W $0002,Y 
-    AND.W #$00FF 
+    LDA.W $0002,Y : AND.W #$00FF 
     JSL.L MessageBox_Routine 
     INY #3
     RTS 
@@ -1127,8 +1119,7 @@ Instruction_PLM_Return:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_WaitUntil_Enemy0_IsDead_848A40:
-    LDA.W $0F86 
-    AND.W #$0200 
+    LDA.W $0F86 : AND.W #$0200 
     BNE .return 
     LDA.W $0F78 
     CMP.W #EnemyHeaders_Respawn 
@@ -1141,8 +1132,7 @@ UNUSED_Instruction_PLM_WaitUntil_Enemy0_IsDead_848A40:
 
 
 UNUSED_Instruction_PLM_WaitUntil_Enemy0_IsDead_848A59:
-    LDA.W $0FC6 
-    AND.W #$0200 
+    LDA.W $0FC6 : AND.W #$0200 
     BNE .return 
     LDA.W $0FB8 
     CMP.W #EnemyHeaders_Respawn 
@@ -1305,8 +1295,7 @@ Instruction_PLM_ProcessAirScrollUpdate:
     PHX 
     LDA.W $1C87,X 
     TAX 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
+    LDA.L $7F0002,X : AND.W #$0FFF 
     ORA.W #$3000 
     STA.L $7F0002,X 
     PLX 
@@ -1342,8 +1331,7 @@ Instruction_PLM_ProcessSolidScrollUpdate:
     PHX 
     LDA.W $1C87,X 
     TAX 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
+    LDA.L $7F0002,X : AND.W #$0FFF 
     ORA.W #$B000 
     STA.L $7F0002,X 
     PLX 
@@ -1352,8 +1340,7 @@ Instruction_PLM_ProcessSolidScrollUpdate:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_QueueMusicTrack_Y_848BD1:
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     INY 
     RTS 
@@ -1373,8 +1360,7 @@ Instruction_PLM_ClearMusicQueue_QueueMusicTrack:
     LDA.W $0639 : STA.W $063B 
     LDA.W #$0000 : STA.W $063F 
     STA.W $063D 
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     INY 
     RTS 
@@ -1730,18 +1716,15 @@ DrawPLM:
   + LDA.W #$0200 : SEC : SBC.W $1C25 : LSR #3
     CMP.B $14 
     BMI .pullXreturn 
-    LDA.B $1A 
-    AND.W #$000F 
+    LDA.B $1A : AND.W #$000F 
     ORA.W #$4000 
     STA.W $4202 
-    LDA.B $18 
-    AND.W #$001F 
+    LDA.B $18 : AND.W #$001F 
     CMP.W #$0010 
     BCS .greaterThan10h 
     ASL A 
     CLC : ADC.B $09 : ADC.W $4216 : PHA 
-    LDA.W $091D 
-    AND.W #$0100 
+    LDA.W $091D : AND.W #$0100 
     BEQ + 
     PLA 
     CLC : ADC.W #$0400 : PHA 
@@ -1751,8 +1734,7 @@ DrawPLM:
 .greaterThan10h:
     ASL A 
     CLC : ADC.B $0C : ADC.W $4216 : PHA 
-    LDA.W $091D 
-    AND.W #$0100 
+    LDA.W $091D : AND.W #$0100 
     BEQ + 
     PLA 
     SEC : SBC.W #$0400 : PHA 
@@ -1835,8 +1817,7 @@ DrawPLM:
     AND.W #$03FF 
     ASL #3
     TAX 
-    LDA.B $1E 
-    AND.W #$0C00 
+    LDA.B $1E : AND.W #$0C00 
     BNE .horizCopyBlockWithFlip 
     LDA.L $7EA000,X : STA.B [$00],Y 
     LDA.L $7EA004,X : STA.B [$06],Y 
@@ -1966,8 +1947,7 @@ DrawPLM:
     AND.W #$03FF 
     ASL #3
     TAX 
-    LDA.B $1E 
-    AND.W #$0C00 
+    LDA.B $1E : AND.W #$0C00 
     BNE .vertCopyBlockWithFlip 
     LDA.L $7EA000,X : STA.B [$00],Y 
     LDA.L $7EA002,X : STA.B [$06],Y 
@@ -2048,8 +2028,7 @@ DrawPLM:
 
 .incY:
     INY 
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     BIT.W #$0080 
     BNE .setHighByte 
     CLC : ADC.W $1C2B : STA.B $20 
@@ -2065,18 +2044,15 @@ DrawPLM:
 
 
 Calculate_PLMDrawTilemap_VRAMDestination:
-    LDA.B $1A 
-    AND.W #$000F 
+    LDA.B $1A : AND.W #$000F 
     ORA.W #$4000 
     STA.W $4202 
-    LDA.B $18 
-    AND.W #$001F 
+    LDA.B $18 : AND.W #$001F 
     CMP.W #$0010 
     BCS .greaterThanF 
     ASL A 
     CLC : ADC.B $09 : ADC.W $4216 : PHA 
-    LDA.W $091D 
-    AND.W #$0100 
+    LDA.W $091D : AND.W #$0100 
     BEQ .fallthrough 
     PLA 
     CLC : ADC.W #$0400 : PHA 
@@ -2086,8 +2062,7 @@ Calculate_PLMDrawTilemap_VRAMDestination:
 .greaterThanF:
     ASL A 
     CLC : ADC.B $0C : ADC.W $4216 : PHA 
-    LDA.W $091D 
-    AND.W #$0100 
+    LDA.W $091D : AND.W #$0100 
     BEQ .fallthrough 
     PLA 
     SEC : SBC.W #$0400 : PHA 
@@ -5154,13 +5129,11 @@ ActivateStationIfSamusArmCannonLinedUp:
 
 Setup_MapStation:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
+    LDA.L $7F0002,X : AND.W #$0FFF 
     ORA.W #$8000 
     STA.L $7F0002,X 
     LDX.W $079F 
-    LDA.L $7ED908,X 
-    AND.W #$00FF 
+    LDA.L $7ED908,X : AND.W #$00FF 
     BNE .setInstruction 
     LDX.W $1C87,Y 
     INX #2
@@ -5179,14 +5152,12 @@ Setup_MapStation:
 
 
 Setup_MapStationRightAccess:
-    LDA.W $0B02 
-    AND.W #$000F 
+    LDA.W $0B02 : AND.W #$000F 
     BNE .connected 
     LDA.W $0A1C 
     CMP.W #$008A 
     BNE .connected 
-    LDA.W $0A1E 
-    AND.W #$0004 
+    LDA.W $0A1E : AND.W #$0004 
     BEQ .connected 
     LDA.W $1C87,Y 
     DEC #2
@@ -5200,15 +5171,13 @@ Setup_MapStationRightAccess:
 
 
 Setup_MapStationLeftAccess:
-    LDA.W $0B02 
-    AND.W #$000F 
+    LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0001 
     BNE .connected 
     LDA.W $0A1C 
     CMP.W #$0089 
     BNE .connected 
-    LDA.W $0A1E 
-    AND.W #$0008 
+    LDA.W $0A1E : AND.W #$0008 
     BEQ .connected 
     LDA.W $1C87,Y 
     INC #4
@@ -5223,8 +5192,7 @@ Setup_MapStationLeftAccess:
 
 Setup_EnergyStation:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
+    LDA.L $7F0002,X : AND.W #$0FFF 
     ORA.W #$8000 
     STA.L $7F0002,X 
     LDX.W $1C87,Y 
@@ -5240,8 +5208,7 @@ Setup_EnergyStation:
 
 Setup_MissileStation:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
+    LDA.L $7F0002,X : AND.W #$0FFF 
     ORA.W #$8000 
     STA.L $7F0002,X 
     LDX.W $1C87,Y 
@@ -5256,14 +5223,12 @@ Setup_MissileStation:
 
 
 Setup_EnergyStationRightAccess:
-    LDA.W $0B02 
-    AND.W #$000F 
+    LDA.W $0B02 : AND.W #$000F 
     BNE .connected 
     LDA.W $0A1C 
     CMP.W #$008A 
     BNE .connected 
-    LDA.W $0A1E 
-    AND.W #$0004 
+    LDA.W $0A1E : AND.W #$0004 
     BEQ .connected 
     LDA.W $09C2 
     CMP.W $09C4 
@@ -5280,15 +5245,13 @@ Setup_EnergyStationRightAccess:
 
 
 Setup_EnergyStationLeftAccess:
-    LDA.W $0B02 
-    AND.W #$000F 
+    LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0001 
     BNE .connected 
     LDA.W $0A1C 
     CMP.W #$0089 
     BNE .connected 
-    LDA.W $0A1E 
-    AND.W #$0008 
+    LDA.W $0A1E : AND.W #$0008 
     BEQ .connected 
     LDA.W $09C2 
     CMP.W $09C4 
@@ -5305,14 +5268,12 @@ Setup_EnergyStationLeftAccess:
 
 
 Setup_MissileStationRightAccess:
-    LDA.W $0B02 
-    AND.W #$000F 
+    LDA.W $0B02 : AND.W #$000F 
     BNE .connected 
     LDA.W $0A1C 
     CMP.W #$008A 
     BNE .connected 
-    LDA.W $0A1E 
-    AND.W #$0004 
+    LDA.W $0A1E : AND.W #$0004 
     BEQ .connected 
     LDA.W $09C6 
     CMP.W $09C8 
@@ -5329,15 +5290,13 @@ Setup_MissileStationRightAccess:
 
 
 Setup_MissileStationLeftAccess:
-    LDA.W $0B02 
-    AND.W #$000F 
+    LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0001 
     BNE .connected 
     LDA.W $0A1C 
     CMP.W #$0089 
     BNE .connected 
-    LDA.W $0A1E 
-    AND.W #$0008 
+    LDA.W $0A1E : AND.W #$0008 
     BEQ .connected 
     LDA.W $09C6 
     CMP.W $09C8 
@@ -5500,8 +5459,7 @@ Setup_QuicksandSurface:
 
   + LDA.W $1E73 
     BNE InsideReaction_QuicksandSurface_SamusIsGrounded_return 
-    LDA.W $0B36 
-    AND.W #$0003 
+    LDA.W $0B36 : AND.W #$0003 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
@@ -5582,8 +5540,7 @@ Setup_SandfallsFast:
 
 
 Setup_QuicksandSurface_BTS85:
-    LDA.W $0B02 
-    AND.W #$0002 
+    LDA.W $0B02 : AND.W #$0002 
     BNE .vertical 
     CLC 
     RTS 
@@ -5599,8 +5556,7 @@ Setup_QuicksandSurface_BTS85:
   + LDX.B $12 
     LDA.B $14 : STA.B $12 
     STX.B $14 
-    LDA.W $0B36 
-    AND.W #$0003 
+    LDA.W $0B36 : AND.W #$0003 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
@@ -5617,8 +5573,7 @@ Setup_QuicksandSurface_BTS85:
     dw CollisionReaction_QuicksandSurface_SamusIsGrounded 
 
 CollisionReaction_QuicksandSurface_SamusIsGrounded:
-    LDA.W $0B02 
-    AND.W #$000F 
+    LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0002 
     BEQ .noCollision 
     CMP.W #$0003 
@@ -5701,8 +5656,7 @@ CreateBabyMetroidInvisibleWall:
     LDY.W #$000A 
 
 .loop:
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
+    LDA.L $7F0002,X : AND.W #$0FFF 
     ORA.W #$8000 
     STA.L $7F0002,X 
     TXA 
@@ -5724,8 +5678,7 @@ Setup_CollisionReaction_SaveStationTrigger:
 .standing:
     LDA.W $1E75 
     BNE .collisionReturn 
-    LDA.W $0B02 
-    AND.W #$000F 
+    LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0003 
     BNE .collisionReturn 
     TYX 
@@ -6238,8 +6191,7 @@ PLMEntries_enableSoundsIn20Frames_F0FramesIfCeres:
     dw InstList_PLM_EnableSoundsIn20Frames_F0FramesIfCeres 
 
 PreInst_PLM_WakePLM_StartLavaquakeIfSpeedBoosterCollected:
-    LDA.W $09A4 
-    AND.W #$2000 
+    LDA.W $09A4 : AND.W #$2000 
     BNE .collectedSpeedBooster 
     LDA.W #$FFFF : STA.W $197A 
     STZ.W $197C 
@@ -6473,8 +6425,7 @@ Setup_Reaction_CrittersEscapeBlock:
 
 .projectile:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
+    LDA.L $7F0002,X : AND.W #$F000 
     ORA.W #$009F 
     STA.W $1E17,Y 
     AND.W #$8FFF 
@@ -6522,26 +6473,22 @@ PLMEntries_CrittersEscapeBlock:
 
 Setup_TurnCeresElevatorDoorToSolidBlocksDuringEscape:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
+    LDA.L $7F0002,X : AND.W #$0FFF 
     ORA.W #$8000 
     STA.L $7F0002,X 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
+    LDA.L $7F0002,X : AND.W #$0FFF 
     ORA.W #$8000 
     STA.L $7F0002,X 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
+    LDA.L $7F0002,X : AND.W #$0FFF 
     ORA.W #$8000 
     STA.L $7F0002,X 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
+    LDA.L $7F0002,X : AND.W #$0FFF 
     ORA.W #$8000 
     STA.L $7F0002,X 
     RTS 
@@ -6621,12 +6568,10 @@ InstList_PLM_BombTorizoGreyDoor_5:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Setup_84BAD1:
-    LDA.W $1DC8,Y 
-    AND.W #$007C 
+    LDA.W $1DC8,Y : AND.W #$007C 
     LSR A 
     LDA.W #$0004 : STA.W $1E17,Y 
-    LDA.W $1DC7,Y 
-    AND.W #$83FF 
+    LDA.W $1DC7,Y : AND.W #$83FF 
     ORA.W #$8000 
     STA.W $1DC7,Y 
     LDX.W $1C87,Y 
@@ -7892,8 +7837,7 @@ InstList_PLM_ClosedBlueDoorFacingUp_43:
 
 Setup_LeftGreenGateTrigger:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0FFF 
+    LDA.W $0C18,X : AND.W #$0FFF 
     CMP.W #$0200 
     BNE .playSFX 
     JMP.W TriggerPLMOfBlockToTheRight 
@@ -7908,8 +7852,7 @@ Setup_LeftGreenGateTrigger:
 
 Setup_RightGreenGateTrigger:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0FFF 
+    LDA.W $0C18,X : AND.W #$0FFF 
     CMP.W #$0200 
     BNE .playSFX 
     JMP.W TriggerPLMOfBlockToTheLeft 
@@ -7924,8 +7867,7 @@ Setup_RightGreenGateTrigger:
 
 Setup_LeftRedGateTrigger:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0FFF 
+    LDA.W $0C18,X : AND.W #$0FFF 
     CMP.W #$0100 
     BEQ .triggerPLM 
     CMP.W #$0200 
@@ -7944,8 +7886,7 @@ Setup_LeftRedGateTrigger:
 
 Setup_RightRedGateTrigger:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0FFF 
+    LDA.W $0C18,X : AND.W #$0FFF 
     CMP.W #$0100 
     BEQ .triggerPLM 
     CMP.W #$0200 
@@ -7964,8 +7905,7 @@ Setup_RightRedGateTrigger:
 
 Setup_LeftYellowGateTrigger:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0FFF 
+    LDA.W $0C18,X : AND.W #$0FFF 
     CMP.W #$0300 
     BNE .playSFX 
     JMP.W TriggerPLMOfBlockToTheRight 
@@ -7978,8 +7918,7 @@ Setup_LeftYellowGateTrigger:
 
 RightYellowGateTrigger:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0FFF 
+    LDA.W $0C18,X : AND.W #$0FFF 
     CMP.W #$0300 
     BNE .playSFX 
     JMP.W TriggerPLMOfBlockToTheLeft 
@@ -7994,8 +7933,7 @@ RightYellowGateTrigger:
 
 Setup_LeftBlueGateTrigger:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0FFF 
+    LDA.W $0C18,X : AND.W #$0FFF 
     CMP.W #$0300 
     BEQ .deletePLM 
     JMP.W TriggerPLMOfBlockToTheRight 
@@ -8006,8 +7944,7 @@ Setup_LeftBlueGateTrigger:
 
 Setup_RightBlueGateTrigger:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0FFF 
+    LDA.W $0C18,X : AND.W #$0FFF 
     CMP.W #$0300 
     BEQ .deletePLM 
     JMP.W TriggerPLMOfBlockToTheLeft 
@@ -8062,8 +7999,7 @@ Give5BlockColumnBelowPLM_BTS10:
 
 
 PLM_BTS10_MovePLMDownARow:
-    LDA.L $7F6402,X 
-    AND.W #$FF00 
+    LDA.L $7F6402,X : AND.W #$FF00 
     ORA.W #$0010 
     STA.L $7F6402,X 
     TXA 
@@ -8084,8 +8020,7 @@ Give5BlockColumnAbovePLM_BTS10:
 
 
 PLM_BTS10_MovePLMUpARow:
-    LDA.L $7F6402,X 
-    AND.W #$FF00 
+    LDA.L $7F6402,X : AND.W #$FF00 
     ORA.W #$0010 
     STA.L $7F6402,X 
     TXA 
@@ -8212,8 +8147,7 @@ Setup_UpwardsGateShotblock:
     dw $0000,$C047,$0000,$C049,$0000,$C04B,$0000,$C04D 
 
 Setup_GreyDoor:
-    LDA.W $1DC8,Y 
-    AND.W #$007C 
+    LDA.W $1DC8,Y : AND.W #$007C 
     LSR A 
     STA.W $1E17,Y 
     LDA.W $1DC7,Y : AND.W #$83FF : STA.W $1DC7,Y 
@@ -8232,8 +8166,7 @@ Setup_ColoredDoor:
 
 Setup_BlueDoor:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0F00 
+    LDA.W $0C18,X : AND.W #$0F00 
     CMP.W #$0300 
     BNE .notPowerBomb 
     LDA.W #$0000 : STA.W $1C37,Y 
@@ -8242,8 +8175,7 @@ Setup_BlueDoor:
 
 .notPowerBomb:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
+    LDA.L $7F0002,X : AND.W #$0FFF 
     ORA.W #$8000 
     STA.L $7F0002,X 
     RTS 
@@ -8265,8 +8197,7 @@ Setup_GenericShotTriggerForAPLM:
 
 .found:
     LDY.W $0DDE 
-    LDA.W $0C18,Y 
-    AND.W #$1FFF 
+    LDA.W $0C18,Y : AND.W #$1FFF 
     ORA.W #$8000 
     STA.W $1D77,X 
     RTS 
@@ -8963,8 +8894,7 @@ Instruction_SetPLMBTSTo1:
     LDA.W $1C87,X 
     LSR A 
     TAX 
-    LDA.L $7F6402,X 
-    AND.W #$FF00 
+    LDA.L $7F6402,X : AND.W #$FF00 
     ORA.W #$0001 
     STA.L $7F6402,X 
     PLX 
@@ -9005,8 +8935,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_Collision_RespawningSpeedBoostBlock:
-    LDA.W $0B3E 
-    AND.W #$0F00 
+    LDA.W $0B3E : AND.W #$0F00 
     CMP.W #$0400 
     BEQ .speed 
     LDA.W $0A1C 
@@ -9029,8 +8958,7 @@ Setup_Collision_RespawningSpeedBoostBlock:
 
 .speed:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
+    LDA.L $7F0002,X : AND.W #$F000 
     ORA.W #$00B6 
     STA.W $1E17,Y 
     AND.W #$0FFF 
@@ -9040,13 +8968,11 @@ Setup_Collision_RespawningSpeedBoostBlock:
 
 
 Setup_Collision_RespawningCrumbleBlock:
-    LDA.W $0B02 
-    AND.W #$000F 
+    LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0003 
     BNE .deletePLM 
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
+    LDA.L $7F0002,X : AND.W #$F000 
     ORA.W #$00BC 
     STA.W $1E17,Y 
     AND.W #$8FFF 
@@ -9065,8 +8991,7 @@ Setup_Collision_RespawningCrumbleBlock:
 
 Setup_Reaction_RespawningShotBlock:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
+    LDA.L $7F0002,X : AND.W #$F000 
     ORA.W #$0052 
     STA.W $1E17,Y 
     AND.W #$8FFF 
@@ -9075,8 +9000,7 @@ Setup_Reaction_RespawningShotBlock:
 
 
 Setup_Collision_RespawningBombBlock:
-    LDA.W $0B3E 
-    AND.W #$0F00 
+    LDA.W $0B3E : AND.W #$0F00 
     CMP.W #$0400 
     BEQ .screwOrSpeed 
     LDA.W $0A1C 
@@ -9103,8 +9027,7 @@ Setup_Collision_RespawningBombBlock:
 
 .screwOrSpeed:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
+    LDA.L $7F0002,X : AND.W #$F000 
     ORA.W #$0058 
     STA.W $1E17,Y 
     AND.W #$0FFF 
@@ -9115,8 +9038,7 @@ Setup_Collision_RespawningBombBlock:
 
 Setup_Reaction_RespawningBombBlock:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0F00 
+    LDA.W $0C18,X : AND.W #$0F00 
     CMP.W #$0500 
     BEQ .bomb 
     CMP.W #$0300 
@@ -9127,8 +9049,7 @@ Setup_Reaction_RespawningBombBlock:
 
 .powerBomb:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
+    LDA.L $7F0002,X : AND.W #$F000 
     ORA.W #$0058 
     STA.W $1E17,Y 
     AND.W #$8FFF 
@@ -9139,8 +9060,7 @@ Setup_Reaction_RespawningBombBlock:
 .bomb:
     LDA.W $1D27,Y : CLC : ADC.W #$0003 : STA.W $1D27,Y 
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
+    LDA.L $7F0002,X : AND.W #$F000 
     ORA.W #$0058 
     STA.W $1E17,Y 
     AND.W #$8FFF 
@@ -9150,8 +9070,7 @@ Setup_Reaction_RespawningBombBlock:
 
 Setup_Reaction_RespawningPowerBombBlock:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0F00 
+    LDA.W $0C18,X : AND.W #$0F00 
     CMP.W #$0500 
     BEQ .bomb 
     CMP.W #$0300 
@@ -9162,8 +9081,7 @@ Setup_Reaction_RespawningPowerBombBlock:
 
 .powerBomb:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
+    LDA.L $7F0002,X : AND.W #$F000 
     ORA.W #$0057 
     STA.W $1E17,Y 
     AND.W #$8FFF 
@@ -9178,8 +9096,7 @@ Setup_Reaction_RespawningPowerBombBlock:
 
 Setup_Reaction_SuperMissileBlock:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0F00 
+    LDA.W $0C18,X : AND.W #$0F00 
     CMP.W #$0500 
     BEQ .bomb 
     CMP.W #$0200 
@@ -9190,8 +9107,7 @@ Setup_Reaction_SuperMissileBlock:
 
 .superMissile:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
+    LDA.L $7F0002,X : AND.W #$F000 
     ORA.W #$009F 
     STA.W $1E17,Y 
     AND.W #$8FFF 
@@ -9206,8 +9122,7 @@ Setup_Reaction_SuperMissileBlock:
 
 Setup_Reaction_SpeedCrumbleBlock:
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    AND.W #$0F00 
+    LDA.W $0C18,X : AND.W #$0F00 
     CMP.W #$0500 
     BEQ .return 
     LDA.W #$0000 : STA.W $1C37,Y 
@@ -9612,11 +9527,9 @@ RTS_84D18E:
 
 
 Setup_Reaction_LowerNorfairChozoHandTrigger:
-    LDA.W $09A4 
-    AND.W #$0200 
+    LDA.W $09A4 : AND.W #$0200 
     BEQ .return 
-    LDA.W $0B02 
-    AND.W #$000F 
+    LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0003 
     BNE .return 
     LDA.W $0A1C 
@@ -9791,8 +9704,7 @@ Spawn4MotherBrainsGlassShatteringShardsWithArgA:
 
 
 PreInstruction_PLM_WakePLMIfSamusHasBombs:
-    LDA.W $09A4 
-    AND.W #$1000 
+    LDA.W $09A4 : AND.W #$1000 
     BEQ .return 
     LDA.W #$0001 : STA.L $7EDE1C,X 
     INC.W $1D27,X 
@@ -9885,8 +9797,7 @@ Instruction_PLM_RevertWreckedShipChozosSlopesIntoSpikes:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PreInst_PLM_GotoToLinkInstructionIfBombed_84D409:
-    LDA.W $1D77,X 
-    AND.W #$0F00 
+    LDA.W $1D77,X : AND.W #$0F00 
     CMP.W #$0500 
     BNE .clearShotStatus 
     LDA.L $7EDEBC,X : STA.W $1D27,X 
@@ -9982,8 +9893,7 @@ RTS_84D4BE:
 
 
 PreInstruction_PLM_WakePLMIf_A_B_X_Y_Left_Right:
-    LDA.B $8F 
-    AND.W #$C3C0 
+    LDA.B $8F : AND.W #$C3C0 
     BEQ .return 
     LDA.W #$0001 : STA.L $7EDE1C,X 
     INC.W $1D27,X 
@@ -10151,8 +10061,7 @@ Setup_Collision_WreckedShipChozoHandTrigger:
     LDA.W #$0001 
     JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .return 
-    LDA.W $0B02 
-    AND.W #$000F 
+    LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0003 
     BNE .return 
     LDA.W $0A1C 
@@ -10325,8 +10234,7 @@ PreInstruction_PLM_WakePLMIfRoomArgDoorIsSet:
     TXY 
     LDA.W $1DC7,X 
     JSL.L BitIndexToByteIndexAndBitmask 
-    LDA.L $7ED8B0,X 
-    AND.W $05E7 
+    LDA.L $7ED8B0,X : AND.W $05E7 
     BEQ .return 
     TYX 
     LDA.W #.return : STA.W $1CD7,X 
@@ -10877,8 +10785,7 @@ PLMEntries_EyeDoorBottomFacingLeft:
     dw InstList_PLM_EyeDoorBottomFacingLeft_0 
 
 PreInst_PLM_GotoLinkInstructionIfShotWithAMissile_Draygon:
-    LDA.W $1D77,X 
-    AND.W #$0F00 
+    LDA.W $1D77,X : AND.W #$0F00 
     CMP.W #$0200 
     BEQ .super 
     CMP.W #$0100 
@@ -11373,8 +11280,7 @@ UNUSED_PLMEntries_DraygonCannonFacingUpLeft_84DF85:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 PreInstruction_PLM_GotoLinkInstructionIfTriggered:
-    LDA.W $1D77,X 
-    AND.W #$00FF 
+    LDA.W $1D77,X : AND.W #$00FF 
     CMP.W #$00FF 
     BNE .return 
     LDA.W #.return : STA.W $1CD7,X 

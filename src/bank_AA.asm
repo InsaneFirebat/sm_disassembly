@@ -6832,8 +6832,7 @@ Instruction_Torizo_SetSteppedLeftWithLeftFootState:
 
 
 Instruction_Torizo_SetSteppedRightWithRightFootState:
-    LDA.W $0FB4,X 
-    AND.W #$1FFF 
+    LDA.W $0FB4,X : AND.W #$1FFF 
     ORA.W #$8000 
     STA.W $0FB4,X 
     LDA.L $7E7812,X 
@@ -6843,8 +6842,7 @@ Instruction_Torizo_SetSteppedRightWithRightFootState:
 
 
 Instruction_Torizo_SetSteppedLeftWithRightFootState:
-    LDA.W $0FB4,X 
-    AND.W #$1FFF 
+    LDA.W $0FB4,X : AND.W #$1FFF 
     ORA.W #$2000 
     STA.W $0FB4,X 
     LDA.L $7E7812,X 
@@ -6854,8 +6852,7 @@ Instruction_Torizo_SetSteppedLeftWithRightFootState:
 
 
 Instruction_Torizo_SetSteppedRightWithLeftFootState:
-    LDA.W $0FB4,X 
-    AND.W #$1FFF 
+    LDA.W $0FB4,X : AND.W #$1FFF 
     ORA.W #$A000 
     STA.W $0FB4,X 
     LDA.L $7E7812,X 
@@ -7133,8 +7130,7 @@ HandleLowHealthInitialDrool:
 
 
 .crateria:
-    LDA.W $05E5 
-    AND.W #$8142 ; If [random number] & 8142h = 0: (1/16 chance)
+    LDA.W $05E5 : AND.W #$8142 ; If [random number] & 8142h = 0: (1/16 chance)
     BNE .return 
     LDA.W $0F8C,X 
     BEQ .return 
@@ -9049,8 +9045,7 @@ Instruction_GoldenTorizo_GotoY_JumpForwards_IfAtLeast70Pixel:
     LDA.W #$0168 
     CMP.L $7E780E,X 
     BCC .jump 
-    LDA.B $8B 
-    AND.W #$0300 
+    LDA.B $8B : AND.W #$0300 
     BEQ .noGo 
     JSL.L GenerateRandomNumber 
     AND.W #$0101 
@@ -9947,8 +9942,7 @@ SetSHaktoolPieceNeighborAngleDeltaDueToBlockCollision:
 
 
 PositionShaktoolPieceRelativeToPreviousPiece:
-    LDA.W $0FAB,X 
-    AND.W #$00FF 
+    LDA.W $0FAB,X : AND.W #$00FF 
     ASL A 
     TAY 
     STZ.B $12 
@@ -10092,8 +10086,7 @@ Function_Shaktool_FinalPiece:
     BNE + 
     JSR.W SetShaktoolPiecesNeighborAngleAndAngleDeltaForCurling 
     LDA.W #$7800 : STA.W $0FAE,X 
-    LDA.W $0FB4,X 
-    AND.W #$DFFF 
+    LDA.W $0FB4,X : AND.W #$DFFF 
     JSR.W ShaktoolPiecesMovementOptionsInA 
     LDA.W $0FAE,X : AND.W #$FF00 : STA.W $0FAE,X 
 
@@ -10137,8 +10130,7 @@ Function_Shaktool_FinalPiece:
     LDA.W $0FB4,X 
     ORA.W #$2000 
     JSR.W ShaktoolPiecesMovementOptionsInA 
-    LDA.W $0FB4,X 
-    AND.W #$BFFF 
+    LDA.W $0FB4,X : AND.W #$BFFF 
     JSR.W ShaktoolPiecesMovementOptionsInA 
 
   + STZ.W $0FAE,X 
@@ -10756,8 +10748,7 @@ Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
     JSL.L CalculateTheBlockContainingAPixelPosition 
     LDA.W $0DC4 : CLC : ADC.W $07A5 : ASL A 
     TAX 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
+    LDA.L $7F0002,X : AND.W #$F000 
     CMP.W #$A000 
     BNE .return 
     TXA 

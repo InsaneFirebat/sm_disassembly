@@ -3311,8 +3311,7 @@ Load_FX_Entry:
     LDA.W $000A,X : AND.W #$00FF : STA.W $1982 
     LDA.W $000B,X : AND.W #$00FF : STA.W $1984 
     LDA.W $000C,X : AND.W #$00FF : STA.W $197E 
-    LDA.W $000F,X 
-    AND.W #$00FF 
+    LDA.W $000F,X : AND.W #$00FF 
     BEQ .blend0 
     TAX 
     LDA.L PaletteBlends_Bank89_Color1,X : STA.L $7EC032 
@@ -3377,8 +3376,7 @@ Load_FX_Header:
     LDA.W $000A,X : AND.W #$00FF : STA.W $1982 
     LDA.W $000B,X : AND.W #$00FF : STA.W $1984 
     LDA.W $000C,X : AND.W #$00FF : STA.W $197E 
-    LDA.W $000F,X 
-    AND.W #$00FF 
+    LDA.W $000F,X : AND.W #$00FF 
     BEQ .blend0 
     TAX 
     LDA.L PaletteBlends_Bank89_Color1,X : STA.L $7EC232 
@@ -3397,8 +3395,7 @@ Load_FX_Header:
     LDA.W FXType_Tilemap_Pointers,Y : STA.W $1964 
 
   + LDX.W $1966 
-    LDA.W $0009,X 
-    AND.W #$00FF 
+    LDA.W $0009,X : AND.W #$00FF 
     BEQ .JMLreturn 
     TAY 
     LDA.W #$8800 : STA.B $13 
@@ -3410,8 +3407,7 @@ Load_FX_Header:
 
 .JMLreturn:
     LDX.W $1966 
-    LDA.W $000D,X 
-    AND.W #$00FF 
+    LDA.W $000D,X : AND.W #$00FF 
     BEQ .paletteFXEnd 
     STA.W $196A 
     LDA.W $079F 
@@ -3441,8 +3437,7 @@ Load_FX_Header:
 
 .paletteFXEnd:
     LDX.W $1966 
-    LDA.W $000E,X 
-    AND.W #$00FF 
+    LDA.W $000E,X : AND.W #$00FF 
     BEQ .return 
     STA.W $196A 
     LDA.W $079F 

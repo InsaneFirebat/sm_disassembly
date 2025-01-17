@@ -436,8 +436,7 @@ InitAI_Boulder:
     LDA.W $0F7E,X : STA.L $7E780A,X 
     STA.L $7E7806,X 
     LDA.W $0F80,X : STA.L $7E7804,X 
-    LDA.W $0FB7,X 
-    AND.W #$00FF 
+    LDA.W $0FB7,X : AND.W #$00FF 
     BNE .notRolling 
     LDA.W #$0001 : STA.L $7E780E,X 
 
@@ -445,8 +444,7 @@ InitAI_Boulder:
     EOR.W #$FFFF 
     INC A 
     CLC : ADC.L $7E780A,X : STA.W $0F7E,X 
-    LDA.W $0FB6,X 
-    AND.W #$00FF 
+    LDA.W $0FB6,X : AND.W #$00FF 
     EOR.W #$FFFF 
     INC A 
     STA.L $7E7800,X 
@@ -462,8 +460,7 @@ InitAI_Boulder:
 
 .left:
     LDA.W #$0002 : STA.L $7E7802,X 
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
+    LDA.W $0FB4,X : AND.W #$00FF 
     BEQ .return 
     LDA.W #$0005 : STA.L $7E7802,X 
 
@@ -512,8 +509,7 @@ Function_Boulder_WaitForSamusToGetNear:
 
 Function_Boulder_Falling:
     LDX.W $0E54 
-    LDA.W $0FAC,X 
-    AND.W #$FF00 
+    LDA.W $0FAC,X : AND.W #$FF00 
     XBA 
     ASL #3
     TAY 
@@ -539,8 +535,7 @@ Function_Boulder_Falling:
 
 Function_Boulder_Bounce_Rising:
     LDX.W $0E54 
-    LDA.W $0FAC,X 
-    AND.W #$FF00 
+    LDA.W $0FAC,X : AND.W #$FF00 
     XBA 
     ASL #3
     INC #4
@@ -554,8 +549,7 @@ Function_Boulder_Bounce_Rising:
 
 
 .negativeSpeedTableIndex:
-    LDA.W $0FAA,X 
-    AND.W #$FF00 
+    LDA.W $0FAA,X : AND.W #$FF00 
     XBA 
     ASL #3
     TAY 
@@ -575,8 +569,7 @@ Function_Boulder_Bounce_Rising:
 
 Function_Boulder_Bounce_Falling:
     LDX.W $0E54 
-    LDA.W $0FAC,X 
-    AND.W #$FF00 
+    LDA.W $0FAC,X : AND.W #$FF00 
     XBA 
     ASL #3
     TAY 
@@ -617,8 +610,7 @@ Function_Boulder_Bounce_Falling:
 
 .noCollision:
     LDA.W $0FAC,X : CLC : ADC.W #$0100 : STA.W $0FAC,X 
-    LDA.W $0FAA,X 
-    AND.W #$FF00 
+    LDA.W $0FAA,X : AND.W #$FF00 
     XBA 
     ASL #3
     TAY 
@@ -638,8 +630,7 @@ Function_Boulder_Bounce_Falling:
 
 Function_Boulder_Rolling:
     LDX.W $0E54 
-    LDA.W $0FAA,X 
-    AND.W #$FF00 
+    LDA.W $0FAA,X : AND.W #$FF00 
     XBA 
     ASL #3
     TAY 
@@ -841,8 +832,7 @@ InitAI_KzanTop:
     LDX.W $0E54 
     LDA.W #InstList_Kzan : STA.W $0F92,X 
     LDA.W #Function_Kzan_WaitingToFall : STA.W $0FA8,X 
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
+    LDA.W $0FB4,X : AND.W #$00FF 
     ASL #3
     STA.L $7E7804,X 
     TAX 
@@ -851,8 +841,7 @@ InitAI_KzanTop:
     LDX.W $0E54 
     LDA.B $14 : STA.W $0FB0,X 
     LDA.B $12 : STA.W $0FB2,X 
-    LDA.W $0FB6,X 
-    AND.W #$FF00 
+    LDA.W $0FB6,X : AND.W #$FF00 
     XBA 
     CLC : ADC.W $0F7E,X : STA.W $0FAE,X 
     LDA.W $0F7E,X : STA.W $0FAC,X 
@@ -888,8 +877,7 @@ Function_Kzan_WaitingToFall:
     LDA.W $0FAA,X 
     BNE .return 
     LDA.L $7E7800,X : STA.W $0FAA,X 
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
+    LDA.W $0FB4,X : AND.W #$00FF 
     ASL #3
     STA.L $7E7804,X 
     LDA.W #Function_Kzan_Falling : STA.W $0FA8,X 
@@ -2547,8 +2535,7 @@ MiniKraidSpitVelocityTable_rightward_Y2:
 
 InitAI_MiniKraid:
     LDX.W $0E54 
-    LDA.W $05E5 
-    AND.W #$0003 
+    LDA.W $05E5 : AND.W #$0003 
     CLC : ADC.W #$0002 : STA.W $0FAE,X 
     STA.W $0FB0,X 
     CLC : ADC.W #$0040 : STA.L $7E7806,X 
@@ -2600,8 +2587,7 @@ HandleMiniKraidSpike:
 
 
 .timerExpired:
-    LDA.W $05E5 
-    AND.W #$003F 
+    LDA.W $05E5 : AND.W #$003F 
     CLC : ADC.W #$0010 : STA.L $7E7806,X 
     TYA 
     PLX 
@@ -2632,8 +2618,7 @@ Instruction_MiniKraid_Move:
 
   + DEC.W $0FAE,X 
     BNE .nonZeroCounter 
-    LDA.W $05E5 
-    AND.W #$0003 
+    LDA.W $05E5 : AND.W #$0003 
     CLC : ADC.W #$0007 : STA.W $0FAE,X 
     BRA .negateEnemyXVelocity 
 
@@ -2664,8 +2649,7 @@ Instruction_MiniKraid_ChooseAction:
     LDX.W $0E54 
     LDA.W $0FB0,X 
     BNE .step 
-    LDA.W $05E5 
-    AND.W #$0003 
+    LDA.W $05E5 : AND.W #$0003 
     CLC : ADC.W #$0003 : STA.W $0FB0,X 
     LDY.W #InstList_MiniKraid_FireSpit_FacingRight 
     LDA.W $0FAC,X 
@@ -3283,11 +3267,9 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 InitAI_Ridley:
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    AND.W #$0001 
+    LDA.L $7ED828,X : AND.W #$0001 
     BEQ .notDead 
-    LDA.W $0F86 
-    AND.W #$FFFF 
+    LDA.W $0F86 : AND.W #$FFFF 
     ORA.W #$0700 
     STA.W $0F86 
     RTL 
@@ -3462,8 +3444,7 @@ EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor:
 .skipBaby:
     LDA.W $0FEA 
     BEQ .return 
-    LDA.W $1840 
-    AND.W #$0003 
+    LDA.W $1840 : AND.W #$0003 
     TAX 
     LDA.W CeresDoorOffsetsDuringEarthquake,X : CLC : ADC.W $0FBA : STA.B $14 
     LDA.W $0FBE : STA.B $12 
@@ -3541,8 +3522,7 @@ Function_Ridley_Startup_EyesAppear_Wait:
     BCC .return 
     STZ.W $0FB2 
     TYX 
-    LDA.W CeresRidleyEyeFadeInIndices,X 
-    AND.W #$00FF 
+    LDA.W CeresRidleyEyeFadeInIndices,X : AND.W #$00FF 
     CMP.W #$00FF 
     BEQ .done 
     STA.B $12 
@@ -3816,8 +3796,7 @@ Function_RidleyCeres_MainAI:
     NOP 
 
 .notReachedTarget:
-    LDA.W $05E5 
-    AND.W #$000F 
+    LDA.W $05E5 : AND.W #$000F 
     ASL A 
     TAX 
     LDA.W .pointers,X : STA.W $0FA8 
@@ -3909,8 +3888,7 @@ Function_RidleyCeres_StartFireballing:
 
 
 Function_RidleyCeres_Fireballing:
-    LDA.W $05E5 
-    AND.W #$0007 
+    LDA.W $05E5 : AND.W #$0007 
     BIT.W $05E5 
     BPL + 
     EOR.W #$FFFF 
@@ -4407,8 +4385,7 @@ Mode7Math_A6AC58:
 
 
 AnimateMode7BabyMetroidCapsuleDuringGetaway:
-    LDA.W $05B6 
-    AND.W #$0003 
+    LDA.W $05B6 : AND.W #$0003 
     BNE .return 
     LDA.L $7E802C 
     INC A 
@@ -4475,8 +4452,7 @@ AnimateMode7BabyMetroidCapsuleDuringGetaway:
     db $9D,$9E 
 
 AnimateMode7RidleyWings:
-    LDA.W $05B6 
-    AND.W #$0007 
+    LDA.W $05B6 : AND.W #$0007 
     BNE .return 
     LDA.L $7E802E 
     INC A 
@@ -4728,8 +4704,7 @@ TimeIsFrozenAI_Ridley:
     LDA.W #$0001 : STA.W $0FA4 ; fallthrough to HurtAI_Ridley
 
 HurtAI_Ridley:
-    LDA.W $0FA4 
-    AND.W #$0001 
+    LDA.W $0FA4 : AND.W #$0001 
     BNE .timeIsFrozen 
     JSR.W HandleRidleySamusInteractionBit 
     JSR.W PowerBombCheck 
@@ -4799,8 +4774,7 @@ DetermineAndExecuteNewRidleyAIScript:
 
 
 GetNewRidleyAIScript:
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0003 
     BNE .SamusNotSpinJumping 
     LDA.W #CheckIfRidleyBelowHalfHealth_spinJumping : STA.B $12 
@@ -5126,8 +5100,7 @@ Function_Ridley_ConsiderTailbouncing:
     LDA.W #$000B : STA.L $7E201E 
     LDA.W #$0180 : STA.L $7E2012 
     LDA.W #Function_Ridley_ConsideringTailbouncing : STA.W $0FA8 
-    LDA.W $05E5 
-    AND.W #$001F 
+    LDA.W $05E5 : AND.W #$001F 
     CLC : ADC.W #$0020 : STA.W $0FB2 ; fallthrough to Function_Ridley_ConsideringTailbouncing
 
 
@@ -5193,12 +5166,10 @@ FlyTowardTargetXPositionAndSamusYPosition:
     JSR.W GetRidleyAccelerationDivisorIndex 
     JSR.W AccelerateRidleyTowardDesiredXYPosition_NoDecelerationBoost 
     LDA.W #$0001 : STA.L $7E2004 
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0003 
     BNE .returnSamusSpinJumping 
-    LDA.W $05E5 
-    AND.W #$00FF 
+    LDA.W $05E5 : AND.W #$00FF 
     CMP.W #$0080 
     BCC .returnSamusNotSpinJumping 
     LDA.L $7E781E 
@@ -5261,8 +5232,7 @@ Function_Ridley_StartTailbouncing:
     JSR.W Function_RidleyTail_StartTailbouncing 
     JSR.W SetSpeedsForTailbouncing 
     LDA.W #Function_Ridley_Tailbouncing_AttemptToGrabSamus : STA.W $0FA8 
-    LDA.W $05E5 
-    AND.W #$003F 
+    LDA.W $05E5 : AND.W #$003F 
     ADC.W #$0080 : STA.W $0FB2 
 
 .return:
@@ -5484,8 +5454,7 @@ CheckForTurnaroundDuringTailbounce_RandomlyChangeDirection:
 
 
 SetSpeedsForTailbouncing:
-    LDA.W $05E5 
-    AND.W #$0003 
+    LDA.W $05E5 : AND.W #$0003 
     ASL A 
     TAY 
     LDA.W .XSpeedPointers,Y : STA.B $12 
@@ -5868,8 +5837,7 @@ HandleRidleySamusInteractionBit:
 
 
 CheckIfSpinJumpGrapplingDamageBoosting:
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     PHX 
     TAX 
     BIT.W .movementTypes_minus1,X 
@@ -6183,8 +6151,7 @@ InstList_BabyMetroidCutscene_1:
 Instruction_BabyMetroidCutscene_PlayCrySFXOrGotoX:
     LDA.L $7E880C 
     BNE .playSFX 
-    LDA.W $05E5 
-    AND.W #$0001 
+    LDA.W $05E5 : AND.W #$0001 
     BNE Instruction_BabyMetroidCutscene_GotoX 
 
 .playSFX:
@@ -6407,8 +6374,7 @@ CycleEmergencyTextColors:
     RTS 
 
 
-  + LDA.W $05B6 
-    AND.W #$0003 
+  + LDA.W $05B6 : AND.W #$0003 
     BNE .return 
     LDA.L $7E8030 
     INC A 
@@ -7340,8 +7306,7 @@ HandleRidleyTailAI:
     JSR.W UpdateRidleyTailPositions 
     JSR.W RidleyTailExtending 
     PLB 
-    LDA.W $0F86 
-    AND.W #$0400 
+    LDA.W $0F86 : AND.W #$0400 
     ORA.W $18A8 
     ORA.L $7E7836 
     BNE .return 
@@ -7479,8 +7444,7 @@ SetMinMaxTailAnglesBasedOnDirection:
     dw $4040,$4040,$4010 
 
 CheckIfAllTailPartsAreRotating:
-    LDA.W $2020 
-    AND.W $2034 
+    LDA.W $2020 : AND.W $2034 
     AND.W $2048 
     AND.W $205C 
     AND.W $2070 
@@ -7532,15 +7496,13 @@ RidleyTailAI_FlingTailAtSamus:
 HandleRidleyTailFlingTrigger:
     LDA.W $2004 
     BEQ .notFlingingTail 
-    LDA.W $201C 
-    AND.W $201A 
+    LDA.W $201C : AND.W $201A 
     BMI .notRotating 
 
 .notFlingingTail:
     LDA.W $2002 
     BEQ .done 
-    LDA.W $05E5 
-    AND.W #$00FF 
+    LDA.W $05E5 : AND.W #$00FF 
     CMP.W #$00F0 
     BCS .notRotating 
     LDA.W $0AF6 : SEC : SBC.W $0F7A : BPL .rightOfRidley 
@@ -7601,8 +7563,7 @@ SwingRidleyTailInCircles:
 HandleTailFlingWhileSwingingInCircles:
     LDA.W $2004 
     BEQ .return 
-    LDA.W $201C 
-    AND.W $201A 
+    LDA.W $201C : AND.W $201A 
     BPL .return 
     LDA.W #$0001 
     JSR.W TargetAnAngleTowardMissileOrSamus 
@@ -7617,8 +7578,7 @@ Function_Ridley_Tailbouncing:
     JSR.W SetMinMaxTailAnglesBasedOnDirection 
     JSR.W CheckIfAllTailPartsAreRotating 
     BCC .checkMoving 
-    LDA.W $05E5 
-    AND.W #$00FF 
+    LDA.W $05E5 : AND.W #$00FF 
     CMP.W #$00F0 
     BCS .randomlySkipDistanceCheck 
     LDA.W $0AF6 : SEC : SBC.L $000F7A : BPL .SamusOnRight 
@@ -7630,8 +7590,7 @@ Function_Ridley_Tailbouncing:
     BCS .checkMoving 
 
 .randomlySkipDistanceCheck:
-    LDA.W $201C 
-    AND.W $201A 
+    LDA.W $201C : AND.W $201A 
     BPL .checkMoving 
     LDA.W #$3F00 : STA.W $201A 
     LDA.W #$0008 : STA.W $2014 
@@ -7680,8 +7639,7 @@ ExtendTailForTailbouncing:
     JSR.W SetMinMaxTailAnglesBasedOnDirection 
     JSR.W CheckIfAllTailPartsAreRotating 
     BCC .checkTailPartsMoving 
-    LDA.W $05E5 
-    AND.W #$00FF 
+    LDA.W $05E5 : AND.W #$00FF 
     CMP.W #$00F0 
     BCS .randomlySkipDistanceCheck 
     LDA.W $0AF6 : SEC : SBC.L $000F7A : BPL .SamusOnRight 
@@ -7693,8 +7651,7 @@ ExtendTailForTailbouncing:
     BCS .checkTailPartsMoving 
 
 .randomlySkipDistanceCheck:
-    LDA.W $201C 
-    AND.W $201A 
+    LDA.W $201C : AND.W $201A 
     BPL .checkTailPartsMoving 
     LDA.W #$3F00 : STA.W $201A 
     LDA.W #$0008 : STA.W $2014 
@@ -7755,32 +7712,25 @@ ExtendTailForTailbouncing:
 
 
 SetRidleyTailAnglesTo40XX:
-    LDA.W $202A 
-    AND.W #$00FF 
+    LDA.W $202A : AND.W #$00FF 
     ORA.W #$4000 
     STA.W $202A 
-    LDA.W $203E 
-    AND.W #$00FF 
+    LDA.W $203E : AND.W #$00FF 
     ORA.W #$4000 
     STA.W $203E 
-    LDA.W $2052 
-    AND.W #$00FF 
+    LDA.W $2052 : AND.W #$00FF 
     ORA.W #$4000 
     STA.W $2052 
-    LDA.W $2066 
-    AND.W #$00FF 
+    LDA.W $2066 : AND.W #$00FF 
     ORA.W #$4000 
     STA.W $2066 
-    LDA.W $202A 
-    AND.W #$04FF 
+    LDA.W $202A : AND.W #$04FF 
     ORA.W #$4000 
     STA.W $207A 
-    LDA.W $208E 
-    AND.W #$00FF 
+    LDA.W $208E : AND.W #$00FF 
     ORA.W #$4000 
     STA.W $208E 
-    LDA.W $20A2 
-    AND.W #$00FF 
+    LDA.W $20A2 : AND.W #$00FF 
     ORA.W #$4000 
     STA.W $20A2 
     RTS 
@@ -8148,8 +8098,7 @@ TargetAMissileOrSuperMissileIfAvailable:
     LDY.W #$0000 
 
 .loop:
-    LDA.W $0C19,Y 
-    AND.W #$000F 
+    LDA.W $0C19,Y : AND.W #$000F 
     DEC A 
     BEQ .missileOrSuperMissile 
     DEC A 
@@ -8329,8 +8278,7 @@ Update_TailRotationDirection_Angle_DistanceFromRidley:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CheckIfAllTailPartsAreMoving_A6D431:
-    LDA.L $7E2020 
-    AND.L $7E2034 
+    LDA.L $7E2020 : AND.L $7E2034 
     AND.L $7E2048 
     AND.L $7E205C 
     AND.L $7E2070 
@@ -8446,8 +8394,7 @@ CheckForCollisionWithNonAirBlock:
     LSR #4
     CLC : ADC.W $4216 : ASL A 
     TAX 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
+    LDA.L $7F0002,X : AND.W #$F000 
     BNE .collision 
     CLC 
     RTL 
@@ -9184,8 +9131,7 @@ DrawRidleysWings:
     dw Spritemap_RidleyWings_FacingRight_MostlyRaised 
 
 DrawRidleyTail:
-    LDA.W $0F86 
-    AND.W #$0100 
+    LDA.W $0F86 : AND.W #$0100 
     BEQ .notInvisible 
     RTS 
 
@@ -9283,8 +9229,7 @@ RidleyGeneralUseDrawing:
     CLC 
 
 .loop:
-    LDA.W $0001,Y 
-    AND.W #$FF00 
+    LDA.W $0001,Y : AND.W #$FF00 
     BPL + 
     ORA.W #$00FF 
 
@@ -9669,8 +9614,7 @@ RidleyTail_vs_SamusProjectile_CollisionDetection:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ChangeRidleyProjectileDirection_A6DF08:
-    LDA.W $0C04,Y 
-    AND.W #$000F 
+    LDA.W $0C04,Y : AND.W #$000F 
     CMP.W #$0007 
     BNE .notFacingLeft 
     LDA.W #$0001 
@@ -9854,8 +9798,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 KillProjectilesWithRidleyTailTip:
-    LDA.W $0F86 
-    AND.W #$0400 
+    LDA.W $0F86 : AND.W #$0400 
     BEQ .notIntangible 
     RTS 
 
@@ -9909,8 +9852,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 TailProjectileCollision:
     LDA.W $0B64,Y : STA.B $12 
     LDA.W $0B78,Y : STA.B $14 
-    LDA.W $0C19,Y 
-    AND.W #$000F 
+    LDA.W $0C19,Y : AND.W #$000F 
     LDY.W #$000C 
     DEC A 
     BNE .notAMissile 
@@ -11528,8 +11470,7 @@ Instruction_CeresSteam_DecActivationTimer_Decide_GotoYOrY2:
     TAY ; fallthrough to Instruction_CeresSteam_SetToTangibleAndVisible
 
 Instruction_CeresSteam_SetToTangibleAndVisible:
-    LDA.W $0F86,X 
-    AND.W #$FBFF ; >.< #$FAFF
+    LDA.W $0F86,X : AND.W #$FBFF ; >.< #$FAFF
     AND.W #$FEFF 
     STA.W $0F86,X 
     RTL 
@@ -12347,8 +12288,7 @@ HandleEarthquakeDuringEscape:
     BCC .return 
     LDA.W $1840 
     BNE .return 
-    LDA.W $05E5 
-    AND.W #$0FFF 
+    LDA.W $05E5 : AND.W #$0FFF 
     CMP.W #$0080 
     BCC .random 
     LDA.W #$0002 : STA.W $1840 
@@ -12443,8 +12383,7 @@ Function_CeresDoor_RotatingElevatorRoom_ElevatorAnimations:
     JSR.W AnimateCeresElevatorPlatform 
     LDA.L $7EC400 
     BNE .return 
-    LDA.W $05B6 
-    AND.W #$0038 
+    LDA.W $05B6 : AND.W #$0038 
     ASL A 
     ADC.W #.paletteAnimation : TAY 
     LDX.W #$0052 
@@ -12467,8 +12406,7 @@ Function_CeresDoor_RotatingElevatorRoom_ElevatorAnimations:
     dw $5BFF,$15B8,$14B4,$17DF,$02FC,$0239,$0000,$0000 
 
 AnimateCeresElevatorPlatform:
-    LDA.W $05B6 
-    AND.W #$0002 
+    LDA.W $05B6 : AND.W #$0002 
     TAY 
     LDX.W .mode7TransferPointers,Y 
     JSL.L QueueMode7Transfers 

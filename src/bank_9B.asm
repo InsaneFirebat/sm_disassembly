@@ -581,8 +581,7 @@ SetProjectileTrailPosition:
     AND.W #$000F 
     ASL A 
     TAY 
-    LDA.W $0C04,X 
-    AND.W #$000F 
+    LDA.W $0C04,X : AND.W #$000F 
     ASL A 
     CLC : ADC.W BeamTrailOffsets_uncharged,Y : BRA .merge 
 
@@ -591,8 +590,7 @@ SetProjectileTrailPosition:
     AND.W #$000F 
     ASL A 
     TAY 
-    LDA.W $0C04,X 
-    AND.W #$000F 
+    LDA.W $0C04,X : AND.W #$000F 
     ASL A 
     CLC : ADC.W BeamTrailOffsets_charged,Y : BRA .merge 
 
@@ -601,8 +599,7 @@ SetProjectileTrailPosition:
     AND.W #$000F 
     ASL A 
     TAY 
-    LDA.W $0C04,X 
-    AND.W #$000F 
+    LDA.W $0C04,X : AND.W #$000F 
     ASL A 
     CLC : ADC.W BeamTrailOffsets_spazerSBA,Y 
 
@@ -1295,8 +1292,7 @@ SetSamusDeathSequencePose:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     PHA 
     CMP.W #$0003 
     BNE .noSpinJumpSFX 
@@ -1306,11 +1302,9 @@ SetSamusDeathSequencePose:
 .noSpinJumpSFX:
     PLA 
     TAX 
-    LDA.W .animationFrames,X 
-    AND.W #$00FF 
+    LDA.W .animationFrames,X : AND.W #$00FF 
     PHA 
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
     LDA.W #$00D7 : STA.W $0A1C 
@@ -1423,8 +1417,7 @@ Handle_Death_Animation_Flashing:
 
 .end:
     JSR.W FinishDeathAnimationFlashing 
-    LDA.B $8D 
-    AND.W #$00B0 
+    LDA.B $8D : AND.W #$00B0 
     CMP.W #$00B0 
     BNE .debug 
     LDA.W #$0001 : STA.W $0DEC 
@@ -1667,8 +1660,7 @@ HandleDeathSequenceSuitExplosion:
     ASL A 
     TAX 
     LDA.W DeathSequenceSuitExplosionPaletteIndexTable_timer,X : AND.W #$00FF : STA.W $0DE2 
-    LDA.W DeathSequenceSuitExplosionPaletteIndexTable_index,X 
-    AND.W #$00FF 
+    LDA.W DeathSequenceSuitExplosionPaletteIndexTable_index,X : AND.W #$00FF 
     ASL A 
     TAX 
     JSR.W WriteDeathAnimationSpritePalettes 
@@ -1759,11 +1751,9 @@ ShadesOfWhite:
     dw $6B5A,$6F7B,$739C,$77BD,$7BDE,$7FFF 
 
 CancelGrappleBeamIfInIncompatiblePose:
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     TAX 
-    LDA.W .poses,X 
-    AND.W #$00FF 
+    LDA.W .poses,X : AND.W #$00FF 
     BEQ .grappleAllowed 
 
 .cancelGrapple:
@@ -1785,8 +1775,7 @@ CancelGrappleBeamIfInIncompatiblePose:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_directionShotsFired,X 
-    AND.W #$00FF 
+    LDA.L PoseDefinitions_directionShotsFired,X : AND.W #$00FF 
     BIT.W #$00F0 
     BNE .cancelGrapple 
     CMP.W $0D34 
@@ -1839,8 +1828,7 @@ RTS_9BB8D4:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_directionShotsFired,X 
-    AND.W #$00FF 
+    LDA.L PoseDefinitions_directionShotsFired,X : AND.W #$00FF 
     BIT.W #$00F0 
     BNE .return 
     CMP.W $0D34 
@@ -1939,8 +1927,7 @@ ProcessEnemyGrappleBeamCollisionResult_HurtSamus:
     JSL.L Deal_A_Damage_to_Samus 
     LDA.W #$0060 : STA.W $18A8 
     LDA.W #$0005 : STA.W $18AA 
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
     STZ.W $0A54 
@@ -1957,8 +1944,7 @@ ProcessEnemyGrappleBeamCollisionResult_HurtSamus:
 
 
 HandleConnectingGrapple:
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$001A 
     BNE .notGrabbedByDraygon 
     LDA.W #GrappleBeamFunction_Connected_LockedInPlace : STA.W $0D32 
@@ -1974,8 +1960,7 @@ HandleConnectingGrapple:
     BNE .movingVertically 
     LDA.W $0B2C 
     BNE .movingVertically 
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0005 
     BEQ .crouching 
     LDA.W ConnectingToGrappleBlockPointerTable_Default_next,X : STA.W $0D32 
@@ -2198,8 +2183,7 @@ HandleGrappleDpadInput:
     STA.W $0D00 
 
 .adjustLengthEnd:
-    LDA.W $0CFA 
-    AND.W #$FF00 
+    LDA.W $0CFA : AND.W #$FF00 
     CMP.W #$4000 
     BMI .resetAccel 
     CMP.W #$C000 
@@ -2216,8 +2200,7 @@ HandleGrappleDpadInput:
 
 
 .right:
-    LDA.W $0CFA 
-    AND.W #$FF00 
+    LDA.W $0CFA : AND.W #$FF00 
     CMP.W #$8000 
     BNE .checkLiquidPhysics 
     LDA.W $0D26 
@@ -2246,8 +2229,7 @@ HandleGrappleDpadInput:
 
 
 .left:
-    LDA.W $0CFA 
-    AND.W #$FF00 
+    LDA.W $0CFA : AND.W #$FF00 
     CMP.W #$8000 
     BNE ..accellerate 
     LDA.W $0D26 
@@ -2271,8 +2253,7 @@ HandleGrappleDpadInput:
 
 
 DetermineGrappleSwingAngularAccelerationDueToAngleOfSwing:
-    LDA.W $0CFA 
-    AND.W #$C000 
+    LDA.W $0CFA : AND.W #$C000 
     CMP.W #$C000 
     BEQ .gotoUpLeft 
     BIT.W #$8000 
@@ -2319,8 +2300,7 @@ DetermineGrappleSwingAngularAccelerationDueToAngleOfSwing:
 
 
 .downLeft:
-    LDA.W $0CFA 
-    AND.W #$FF00 
+    LDA.W $0CFA : AND.W #$FF00 
     CMP.W #$8000 
     BEQ .straightDown 
     LDA.W GrappleSwingConstants_Deceleration 
@@ -2494,8 +2474,7 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
 
 .slowGrapple:
     STZ.W $0CF8 
-    LDA.W $0CFA 
-    AND.W #$FF00 
+    LDA.W $0CFA : AND.W #$FF00 
     CMP.W #$8000 
     BNE .setSwingingAnimationFrame 
     LDA.W $0A96 
@@ -2505,18 +2484,15 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
     LDA.W #$0040 : STA.W $0A96 
 
 .straightDown:
-    LDA.W $0CFD 
-    AND.W #$00FF 
+    LDA.W $0CFD : AND.W #$00FF 
     TAX 
-    LDA.W GrappleSwingSamusXYOffsets,X 
-    AND.W #$00FF 
+    LDA.W GrappleSwingSamusXYOffsets,X : AND.W #$00FF 
     BRA .merge 
 
 
 .setSwingingAnimationFrame:
     LDA.W #$000F : STA.W $0A94 
-    LDA.W $0CFD 
-    AND.W #$00FF 
+    LDA.W $0CFD : AND.W #$00FF 
     TAX 
     LDA.W GrappleSwingSamusXYOffsets,X : AND.W #$00FF : STA.W $0A96 
 
@@ -2540,19 +2516,16 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
     CLC : ADC.W #$0020 : STA.W $0A96 
 
 .notGrappleKicking:
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .right 
-    LDA.W GrappleSwingSamusXYOffsets_Right-1,X 
-    AND.W #$FF00 
+    LDA.W GrappleSwingSamusXYOffsets_Right-1,X : AND.W #$FF00 
     XBA 
     BPL + 
     ORA.W #$FF00 
 
   + CLC : ADC.W $0D16 : STA.W $0AF6 
-    LDA.W GrappleSwingSamusXYOffsets_Right,X 
-    AND.W #$FF00 
+    LDA.W GrappleSwingSamusXYOffsets_Right,X : AND.W #$FF00 
     XBA 
     BPL + 
     ORA.W #$FF00 
@@ -2567,15 +2540,13 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
 
 
 .right:
-    LDA.W GrappleSwingSamusXYOffsets_Left-1,X 
-    AND.W #$FF00 
+    LDA.W GrappleSwingSamusXYOffsets_Left-1,X : AND.W #$FF00 
     XBA 
     BPL + 
     ORA.W #$FF00 
 
   + CLC : ADC.W $0D16 : STA.W $0AF6 
-    LDA.W GrappleSwingSamusXYOffsets_Left,X 
-    AND.W #$FF00 
+    LDA.W GrappleSwingSamusXYOffsets_Left,X : AND.W #$FF00 
     XBA 
     BPL + 
     ORA.W #$FF00 
@@ -2653,8 +2624,7 @@ UpdateGrappleBeamStartPositionDuringGrappleFire:
     BEQ .moonwalking 
     CMP.W #$004A 
     BEQ .moonwalking 
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0001 
     BEQ .running 
 
@@ -2731,8 +2701,7 @@ UpdateGrappleBeamTiles:
     LDA.W #$6200 : STA.B $D0,X 
     INX #2
     STX.W $0330 
-    LDA.W $0CFA 
-    AND.W #$FF00 
+    LDA.W $0CFA : AND.W #$FF00 
     XBA 
     LSR A 
     AND.W #$00FE 
@@ -2780,8 +2749,7 @@ HandleGrappleBeamFlare:
     INC A 
     STA.W $0CD6 
     TAX 
-    LDA.L FlareAnimationDelays_MainFlare,X 
-    AND.W #$00FF 
+    LDA.L FlareAnimationDelays_MainFlare,X : AND.W #$00FF 
     CMP.W #$00FE 
     BEQ .frameFE 
     BRA .setAnimationTimer 
@@ -2797,8 +2765,7 @@ HandleGrappleBeamFlare:
     LDA.L FlareAnimationDelays_MainFlare,X : AND.W #$00FF : STA.W $0CDC 
 
 .positive:
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
     LDA.L FlareSpritemapTable_IndexOffsets_facingRight : CLC : ADC.W $0CD6 : STA.B $16 
@@ -3209,8 +3176,7 @@ GrappleBeamFunction_Fire_GotoCancel:
     ASL #3
     TAX 
     LDA.L PoseDefinitions_YOffset,X : AND.W #$00FF : STA.B $16 
-    LDA.L PoseDefinitions_directionShotsFired,X 
-    AND.W #$00FF 
+    LDA.L PoseDefinitions_directionShotsFired,X : AND.W #$00FF 
     BIT.W #$00F0 
     BEQ .fire 
 
@@ -3237,8 +3203,7 @@ GrappleBeamFunction_Fire_GotoCancel:
     BEQ .moonwalkingNotRunning 
     CMP.W #$004A 
     BEQ .moonwalkingNotRunning 
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0001 
     BEQ .running 
 
@@ -3581,8 +3546,7 @@ GrappleBeamFunction_WallGrabRelease:
 GrappleBeamFunction_HitNothing_Cancel:
     LDA.W #$0007 
     JSL.L QueueSound 
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0016 
     BNE .notGrappling 
     JSL.L HandleTransitionTableLookupFailure 
@@ -3634,8 +3598,7 @@ GrappleBeamFunction_Dropped:
 
 
 .cancel:
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .antiClockwise 
 
@@ -3656,8 +3619,7 @@ GrappleBeamFunction_Dropped:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_directionShotsFired,X 
-    AND.W #$00FF 
+    LDA.L PoseDefinitions_directionShotsFired,X : AND.W #$00FF 
     TAX 
     BIT.W #$00F0 
     BNE .cancel 
@@ -3669,8 +3631,7 @@ GrappleBeamFunction_Dropped:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_directionShotsFired,X 
-    AND.W #$00FF 
+    LDA.L PoseDefinitions_directionShotsFired,X : AND.W #$00FF 
     TAX 
     BIT.W #$00F0 
     BNE .checkDirection 
@@ -3679,8 +3640,7 @@ GrappleBeamFunction_Dropped:
 
 
 .checkDirection:
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
     LDA.W #$0027 : STA.W $0A2C 
@@ -3735,8 +3695,7 @@ GrappleBeamFunction_Dropped:
 GrappleBeamFunction_WallJumping:
     LDA.W #$0007 
     JSL.L QueueSound 
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0008 
     BEQ .right 
     LDA.W #$0083 : STA.W $0A2C 

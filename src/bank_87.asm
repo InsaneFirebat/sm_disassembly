@@ -179,32 +179,28 @@ UNUSED_RTS_8780EF:
 
 
 UNUSED_Instruction_AnimatedTilesObject_QueueMusicTrackInY:
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     INY 
     RTS 
 
 
 UNUSED_Inst_AnimTilesObject_QueueSoundInY_Lib1_Max6_8780FC:
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     JSL.L QueueSound_Lib1_Max6 
     INY 
     RTS 
 
 
 UNUSED_Inst_AnimTilesObject_QueueSoundInY_Lib2_Max6_878108:
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     JSL.L QueueSound_Lib2_Max6 
     INY 
     RTS 
 
 
 UNUSED_Inst_AnimTilesObject_QueueSoundInY_Lib3_Max6_878114:
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     JSL.L QueueSound_Lib3_Max6 
     INY 
     RTS 
@@ -225,8 +221,7 @@ UNUSED_Inst_AnimTilesObject_GotoYIfBossBitsInYSet_878120:
 
 
 UNUSED_Instruction_AnimatedTilesObject_SetBossBitsY_878133:
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     JSL.L SetBossBitsInAForCurrentArea 
     INY 
     RTS 
@@ -472,8 +467,7 @@ AnimatedTilesObject_Spores:
 
 Instruction_AnimTilesObject_GotoYIfAnyBossBitsYSetForAreaY:
     PHX 
-    LDA.W $0001,Y 
-    AND.W #$00FF 
+    LDA.W $0001,Y : AND.W #$00FF 
     TAX 
     LDA.L $7ED828,X 
     PLX 

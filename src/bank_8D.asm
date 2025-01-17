@@ -9846,8 +9846,7 @@ Instruction_PaletteFXObject_ColorIndexInY:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PaletteFXObject_QueueMusicTrackInY_8DC65E:
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     INY 
     RTS 
@@ -11188,8 +11187,7 @@ InstList_PaletteFXObject_GoldenTorizoBelly_1:
     dw InstList_PaletteFXObject_GoldenTorizoBelly_1
 
 PreInstruction_PaletteFXObject_SamusInHeat:
-    LDA.W $09A2 
-    AND.W #$0021 
+    LDA.W $09A2 : AND.W #$0021 
     BNE + 
     LDA.W $0A4E : CLC : ADC.W #$4000 : STA.W $0A4E 
     LDA.W $0A50 : ADC.W #$0000 : STA.W $0A50 

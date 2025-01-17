@@ -32,8 +32,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     ASL A 
     TAX 
     LDA.W SamusTilesAnimation_AnimationDefinitionPointers,X : CLC : ADC.B $14 : TAX 
-    LDA.W $0000,X 
-    AND.W #$00FF 
+    LDA.W $0000,X : AND.W #$00FF 
     CMP.W #$00FF 
     BEQ .return 
     ASL A 
@@ -12009,8 +12008,7 @@ DrawSamusSuitExploding:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
     LDA.W #$081C : CLC : ADC.W $0DE4 : STA.B $12 

@@ -1033,8 +1033,7 @@ InitAI_Gamet:
     LDA.W $0F7A,X : STA.W $0FAE,X 
     LDA.W $0F7E,X : STA.W $0FB0,X 
     LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
-    LDA.W $0FB7,X 
-    AND.W #$00FF 
+    LDA.W $0FB7,X : AND.W #$00FF 
     ASL #3
     STA.W $0FAA,X 
     STZ.W $0FAC,X 
@@ -1067,8 +1066,7 @@ ResetEnemyIfOffScreen:
 
 Function_Gamet_WaitUntilAllReady:
     LDX.W $0E54 
-    LDA.W $0FB6,X 
-    AND.W #$00FF 
+    LDA.W $0FB6,X : AND.W #$00FF 
     BEQ .return 
     LDA.W $0FE8,X 
     CMP.W #Function_Gamet_WaitUntilAllReady 
@@ -1090,8 +1088,7 @@ Function_Gamet_WaitUntilAllReady:
 
 Function_Gamet_WaitForSamusToGetNear:
     LDX.W $0E54 
-    LDA.W $0FB6,X 
-    AND.W #$00FF 
+    LDA.W $0FB6,X : AND.W #$00FF 
     JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
     LDA.W $0F7E,X 
@@ -2132,8 +2129,7 @@ QueueSmallExplosionSFX:
 
 
 InitAI_Botwoon:
-    LDA.L $7ED82C 
-    AND.W #$0002 
+    LDA.L $7ED82C : AND.W #$0002 
     BEQ .notDead 
     LDX.W $0E54 
     JSL.L Spawn_Hardcoded_PLM 
@@ -2531,8 +2527,7 @@ Function_Botwoon_DeathSequence_PreDeathDelay:
 
 Function_Botwoon_DeathSequence_FallingToGround:
     LDX.W $0E54 
-    LDA.L $7E8010,X 
-    AND.W #$FF00 
+    LDA.L $7E8010,X : AND.W #$FF00 
     XBA 
     ASL #3
     TAY 
@@ -4280,14 +4275,12 @@ Function_Botwoon_Movement_MoveAccordingToMovementData:
 .loop:
     LDA.L $7E8804,X 
     TAY 
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     JSL.L Sign_Extend_A 
     CMP.W #$FF80 
     BEQ .end 
     CLC : ADC.B $12 : STA.B $12 
-    LDA.W $0001,Y 
-    AND.W #$00FF 
+    LDA.W $0001,Y : AND.W #$00FF 
     JSL.L Sign_Extend_A 
     CMP.W #$FF80 
     BEQ .end 

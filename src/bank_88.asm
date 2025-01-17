@@ -162,8 +162,7 @@ LayerBlending_1C:
 
 LayerBlending_18_1E_30_Water_LavaAcid_Fog:
     LDY.B #$02 
-    LDA.B $84 
-    AND.B #$30 
+    LDA.B $84 : AND.B #$30 
     EOR.B #$30 
     BNE .return 
     LDA.B #$24 : STA.B $71 
@@ -252,8 +251,7 @@ Handle_LayerBlending_Xray_CanShowBlocks:
     LDA.B #$03 : STA.B $6C 
     LDA.B #$04 : STA.B $6D 
     LDA.B #$22 : STA.B $6E 
-    LDA.B $71 
-    AND.B #$80 
+    LDA.B $71 : AND.B #$80 
     ORA.B #$73 
     STA.B $71 
     RTS 
@@ -268,8 +266,7 @@ Handle_LayerBlending_Xray_CantShowBlocks:
     LDA.B #$03 : STA.B $6C 
     LDA.B #$04 : STA.B $6D 
     LDA.B #$22 : STA.B $6E 
-    LDA.B $71 
-    AND.B #$80 
+    LDA.B $71 : AND.B #$80 
     ORA.B #$61 
     STA.B $71 
     REP #$20 
@@ -846,8 +843,7 @@ UNUSED_Instruction_HDMAObject_TimerInY_888616:
 
 UNUSED_Instruction_HDMAObject_HDMAControlInY_888622:
     PHX 
-    LDA.W $18C0,X 
-    AND.W #$00FF 
+    LDA.W $18C0,X : AND.W #$00FF 
     TAX 
     SEP #$20 
     LDA.W $0000,Y : STA.W $4300,X 
@@ -859,8 +855,7 @@ UNUSED_Instruction_HDMAObject_HDMAControlInY_888622:
 
 UNUSED_Instruction_HDMAObject_HDMATargetInY:
     PHX 
-    LDA.W $18C0,X 
-    AND.W #$00FF 
+    LDA.W $18C0,X : AND.W #$00FF 
     TAX 
     SEP #$20 
     LDA.W $0000,Y : STA.W $4301,X 
@@ -879,8 +874,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_HDMAObject_HDMATableBank:
     PHX 
-    LDA.W $18C0,X 
-    AND.W #$00FF 
+    LDA.W $18C0,X : AND.W #$00FF 
     TAX 
     SEP #$20 
     LDA.W $0000,Y : STA.W $4304,X 
@@ -892,8 +886,7 @@ Instruction_HDMAObject_HDMATableBank:
 
 Instruction_HDMAObject_IndirectHDMATableBank:
     PHX 
-    LDA.W $18C0,X 
-    AND.W #$00FF 
+    LDA.W $18C0,X : AND.W #$00FF 
     TAX 
     SEP #$20 
     LDA.W $0000,Y : STA.W $4307,X 
@@ -1179,8 +1172,7 @@ Calculate_Xray_HDMADataTable:
     STA.B $00 
     LDA.W $0A82 : STA.B $12 
     LDA.W $0A84 : STA.B $14 
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
     LDA.W $0AF6 : SEC : SBC.W $0911 : CLC : ADC.W #$0003 : TAX 
@@ -1191,8 +1183,7 @@ Calculate_Xray_HDMADataTable:
     LDA.W $0AF6 : SEC : SBC.W $0911 : SBC.W #$0003 : TAX 
 
 .checkMovement:
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0005 
     BEQ .crouching 
     LDA.W $0AFA : SEC : SBC.W $0915 : SBC.W #$0010 : TAY 
@@ -1207,16 +1198,14 @@ Calculate_Xray_HDMADataTable:
     BMI .leftOfScreen 
     CPX.W #$0100 
     BMI .onScreen 
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0008 
     BEQ .offScreen 
     BRA .onScreenFromOffScreen 
 
 
 .leftOfScreen:
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .offScreen 
     BRA .onScreenFromOffScreen 
@@ -1281,8 +1270,7 @@ HandleXrayScope_State3_DeactivateBeam_RestoreBG2_FirstHalf:
     LDA.W #$0800 : STA.B $D0,X 
     LDA.W #$5000 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     STA.B $D5,X 
     TXA 
@@ -1314,8 +1302,7 @@ HandleXrayScope_State4_DeactivateBeam_RestoreBG2_SecondHalf:
     LDA.W #$0800 : STA.B $D0,X 
     LDA.W #$5800 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     CLC : ADC.W #$0400 : STA.B $D5,X 
     TXA 
@@ -1528,24 +1515,21 @@ PreInstruction_PowerBombExplosion_5_AfterGlow:
     SEP #$20 
     DEC.W $1938,X 
     BEQ .wake 
-    LDA.W $0074 
-    AND.B #$1F 
+    LDA.W $0074 : AND.B #$1F 
     BEQ .green 
     DEC A 
     ORA.B #$20 
     STA.W $0074 
 
 .green:
-    LDA.W $0075 
-    AND.B #$1F 
+    LDA.W $0075 : AND.B #$1F 
     BEQ .blue 
     DEC A 
     ORA.B #$40 
     STA.W $0075 
 
 .blue:
-    LDA.W $0076 
-    AND.B #$1F 
+    LDA.W $0076 : AND.B #$1F 
     BEQ .setTimer 
     DEC A 
     ORA.B #$80 
@@ -1648,13 +1632,11 @@ Calculate_PowerBombExplosion_HDMADataTablePointers:
 .onScreen:
     EOR.W #$03FF 
     SEC : SBC.W #$0100 : STA.W $0CE8 
-    LDA.W $0CEA 
-    AND.W #$FF00 
+    LDA.W $0CEA : AND.W #$FF00 
     BNE + 
     STZ.W $0CE8 
 
-  + LDA.W $18C0,X 
-    AND.W #$00FF 
+  + LDA.W $18C0,X : AND.W #$00FF 
     TAY 
     LDA.W $0CE8 
     ASL A 
@@ -1840,8 +1822,7 @@ PreInstruction_PowerBombExplosion_3_Explosion_Yellow:
     LDA.W $4217 : STA.B $12 
     TAX 
     PEA.W .loopPadDataTableBegin-1 
-    LDA.W $0CE7 
-    AND.B #$FF 
+    LDA.W $0CE7 : AND.B #$FF 
     BEQ .offScreenLeft 
     DEC A 
     BEQ .onScreen 
@@ -1930,8 +1911,7 @@ PreInstruction_PowerBombExplosion_4_Explosion_White:
     LDX.W #$0000 
     SEP #$20 
     PEA.W .manualReturn-1 
-    LDA.W $0CE7 
-    AND.B #$FF 
+    LDA.W $0CE7 : AND.B #$FF 
     BEQ .offScreenLeft 
     DEC A 
     BEQ .onScreen 
@@ -2004,13 +1984,11 @@ Calculate_PowerBombPreExplosion_HDMAObjectTablePointers:
 .onScreen:
     EOR.W #$03FF 
     SEC : SBC.W #$0100 : STA.W $0CE8 
-    LDA.W $0CEC 
-    AND.W #$FF00 
+    LDA.W $0CEC : AND.W #$FF00 
     BNE + 
     STZ.W $0CE8 
 
-  + LDA.W $18C0,X 
-    AND.W #$00FF 
+  + LDA.W $18C0,X : AND.W #$00FF 
     TAY 
     LDA.W $0CE8 
     ASL A 
@@ -2204,8 +2182,7 @@ PreInstruction_PowerBombExplosion_1_PreExplosion_White:
     LDA.W $4217 : STA.B $12 
     TAX 
     PEA.W .loopPadDataTableBegin-1 
-    LDA.W $0CE7 
-    AND.B #$FF 
+    LDA.W $0CE7 : AND.B #$FF 
     BEQ .offScreenLeft 
     DEC A 
     BEQ .onScreen 
@@ -2294,8 +2271,7 @@ PreInstruction_PowerBombExplosion_2_PreExplosion_Yellow:
     LDX.W #$0000 
     SEP #$20 
     PEA.W .manualReturn-1 
-    LDA.W $0CE7 
-    AND.B #$FF 
+    LDA.W $0CE7 : AND.B #$FF 
     BEQ .offScreenLeft 
     DEC A 
     BEQ .onScreen 
@@ -2725,8 +2701,7 @@ PreInstruction_CrystalFlash_2_AfterGlow:
     ORA.W $0076 
     AND.B #$1F 
     BEQ .wake 
-    LDA.W $0074 
-    AND.B #$1F 
+    LDA.W $0074 : AND.B #$1F 
     BEQ .green 
     DEC A 
     ORA.B #$20 
@@ -2846,13 +2821,11 @@ Calculate_CrystalFlash_HDMAObjectTablePointers:
 .onScreen:
     EOR.W #$03FF 
     SEC : SBC.W #$0100 : STA.W $0CE8 
-    LDA.W $0CEA 
-    AND.W #$FF00 
+    LDA.W $0CEA : AND.W #$FF00 
     BNE + 
     STZ.W $0CE8 
 
-  + LDA.W $18C0,X 
-    AND.W #$00FF 
+  + LDA.W $18C0,X : AND.W #$00FF 
     TAY 
     LDA.W $0CE8 
     ASL A 
@@ -2988,8 +2961,7 @@ PreInstruction_CrystalFlash_1_Explosion:
     LDA.W $4217 : STA.B $12 
     TAX 
     PEA.W .loopPadDataTableBegin-1 
-    LDA.W $0CE7 
-    AND.B #$FF 
+    LDA.W $0CE7 : AND.B #$FF 
     BEQ .offScreenLeft 
     DEC A 
     BEQ .onScreen 
@@ -3101,8 +3073,7 @@ PreInstruction_FXType_22_BG3XScroll:
     LDA.W $0915 
     CMP.W #$0400 
     BPL .wavy 
-    LDA.W $05B5 
-    AND.W #$0001 
+    LDA.W $05B5 : AND.W #$0001 
     BNE + 
     LDA.W $0596 
     INC #2
@@ -3689,8 +3660,7 @@ RoomMainASM_ScrollingSky:
     STA.B $D7,X 
     STA.B $DE,X 
     STA.B $E5,X 
-    LDA.W $0915 
-    AND.W #$07F8 
+    LDA.W $0915 : AND.W #$07F8 
     SEC : SBC.W #$0010 : PHA 
     AND.W #$FF00 
     XBA 
@@ -3701,8 +3671,7 @@ RoomMainASM_ScrollingSky:
     ASL #3
     CLC : ADC.B [$00],Y : STA.B $D2,X 
     CLC : ADC.W #$0040 : STA.B $D9,X 
-    LDA.W $0915 
-    AND.W #$07F8 
+    LDA.W $0915 : AND.W #$07F8 
     CLC : ADC.W #$00F0 : PHA 
     AND.W #$FF00 
     XBA 
@@ -3719,8 +3688,7 @@ RoomMainASM_ScrollingSky:
     STA.B $E2,X 
     STA.B $E9,X 
     REP #$20 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     STA.B $12 
     LDA.W $0915 : SEC : SBC.W #$0010 : AND.W #$01F8 
@@ -3775,8 +3743,7 @@ InstList_Fireflea_BG3XScroll_1:
 PreInstruction_Fireflea_BG3XScroll:
     PHP 
     REP #$30 
-    LDA.W $1986 
-    AND.W #$FF00 
+    LDA.W $1986 : AND.W #$FF00 
     ORA.W #$000C 
     STA.W $1986 
     LDA.W $0A78 
@@ -3940,8 +3907,7 @@ Handle_Earthquake_SoundEffect:
 
 .quake:
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W $05E5 
-    AND.W #$0003 
+    LDA.W $05E5 : AND.W #$0003 
     ADC.W .baseTimer,X : STA.W $0609 
     INX #4
     STX.W $0607 
@@ -4013,8 +3979,7 @@ Handle_Tide:
 .smallTide:
     STZ.W $1970 
     STZ.W $1972 
-    LDA.W $1975 
-    AND.W #$00FF 
+    LDA.W $1975 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
@@ -4039,8 +4004,7 @@ Handle_Tide:
 .bigTide:
     STZ.W $1970 
     STZ.W $1972 
-    LDA.W $1975 
-    AND.W #$00FF 
+    LDA.W $1975 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
@@ -4196,19 +4160,16 @@ PreInstruction_LavaAcid_BG3YScroll:
     DEC.W $192C,X 
     BNE + 
     LDA.W #$0070 : STA.W $192C,X 
-    LDA.W $05E5 
-    AND.W #$0007 
+    LDA.W $05E5 : AND.W #$0007 
     TAY 
-    LDA.W Lava_SoundEffects,Y 
-    AND.W #$00FF 
+    LDA.W Lava_SoundEffects,Y : AND.W #$00FF 
     JSL.L QueueSound_Lib2_Max6 
 
   + LDA.W $05E5 
     XBA 
     STA.W $05E5 
     LDX.W $18B2 
-    LDA.W $18C0,X 
-    AND.W #$00FF 
+    LDA.W $18C0,X : AND.W #$00FF 
     TAY 
     LDA.W $1962 
     BMI .negative 
@@ -4293,8 +4254,7 @@ Setup_LavaAcid_BG2YScrollDataTable_NotWavy:
     REP #$20 
     PHX 
     LDX.B #$1E 
-    LDA.B $B7 
-    AND.W #$01FF 
+    LDA.B $B7 : AND.W #$01FF 
 
 .loop:
     STA.L $7E9C46,X 
@@ -4359,8 +4319,7 @@ Setup_LavaAcid_BG2YScrollDataTable_VerticallyWavy:
 
 .nonZeroTimer:
     PHX 
-    LDA.B $B7 
-    AND.W #$000F 
+    LDA.B $B7 : AND.W #$000F 
     ASL A 
     PHA 
     CLC : ADC.W $1914,X : AND.W #$001E 
@@ -5600,8 +5559,7 @@ FXType_6_Water:
     JSL.L Spawn_HDMAObject 
     db $42,$11 
     dw InstList_Water_BG3_Xscroll 
-    LDA.W $197E 
-    AND.W #$0002 
+    LDA.W $197E : AND.W #$0002 
     BEQ .notWavy 
     JSL.L Spawn_HDMAObject 
     db $42,$0F 
@@ -5752,8 +5710,7 @@ PreInstruction_Water_BG3_Xscroll:
     DEY #2
     BPL .loop 
     LDX.W $18B2 
-    LDA.W $197E 
-    AND.W #$0001 
+    LDA.W $197E : AND.W #$0001 
     BEQ + 
     LDA.W $192C,X : CLC : ADC.W #$0040 : STA.W $192C,X 
 
@@ -5797,8 +5754,7 @@ PreInstruction_Water_BG2_Xscroll:
     LDA.B $B5 : STA.L $7E9C44 
     LDA.W $0A78 
     BNE .notWavy 
-    LDA.W $197E 
-    AND.W #$0002 
+    LDA.W $197E : AND.W #$0002 
     BNE .wavy 
     STZ.W $18B4,X 
 
@@ -5811,8 +5767,7 @@ PreInstruction_Water_BG2_Xscroll:
     JSR.W Setup_Water_BG2_Xscroll_DataTable_Wavy 
 
 .merge:
-    LDA.W $18C0,X 
-    AND.W #$00FF 
+    LDA.W $18C0,X : AND.W #$00FF 
     TAY 
     LDA.W $195E 
     BMI .negative 
@@ -5850,8 +5805,7 @@ Setup_Water_BG2_Xscroll_DataTable_Wavy:
     STA.W $1914,X 
 
   + PHX 
-    LDA.B $B7 
-    AND.W #$000F 
+    LDA.B $B7 : AND.W #$000F 
     ASL A 
     PHA 
     CLC : ADC.W $1914,X : AND.W #$001E 
@@ -8582,8 +8536,7 @@ SuitPickup_Stage1_LightBeamWidens_Linear:
     LDA.W $0DEE : STA.L $7E9800,X 
     DEX #2
     BPL .loop 
-    LDA.W $0DEE 
-    AND.W #$00FF 
+    LDA.W $0DEE : AND.W #$00FF 
     CMP.W #$0061 
     BPL .return 
     INC.W $0DEC 
@@ -8677,8 +8630,7 @@ SuitPickup_Stage4_LightBeamShrinks:
 .advanceToOrange:
     JSR.W AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToBlue 
 
-  + LDA.W $0DDC 
-    AND.W #$FF00 
+  + LDA.W $0DDC : AND.W #$FF00 
     XBA 
     STA.B $12 
     LDA.W $0DEE : CLC : ADC.B $12 : STA.W $0DEE 
@@ -8726,8 +8678,7 @@ SuitPickup_Stage5_LightBeamDissipates:
     LDA.W $0DEF : SEC : SBC.B #$08 : STA.W $0DEF 
     REP #$20 
     LDA.W $0DEE : STA.L $7E9900 
-    LDA.W $0DEE 
-    AND.W #$00FF 
+    LDA.W $0DEE : AND.W #$00FF 
     CMP.W #$0070 
     BMI .return 
     INC.W $0DEC 
@@ -9101,8 +9052,7 @@ PreInstruction_WavyPhantoon:
     LDA.W $106F : STA.W $4203 
     REP #$20 
     LDA.B $16 : CLC : ADC.B $18 : STA.B $16 
-    LDA.W $4215 
-    AND.W #$FF00 
+    LDA.W $4215 : AND.W #$FF00 
     CLC : ADC.B $16 : AND.W #$FF00 
     XBA 
     STA.B $12 
@@ -9144,8 +9094,7 @@ PreInstruction_WavyPhantoon:
     LDA.W $106F : STA.W $4203 
     REP #$20 
     LDA.B $16 : CLC : ADC.B $18 : STA.B $16 
-    LDA.W $4215 
-    AND.W #$FF00 
+    LDA.W $4215 : AND.W #$FF00 
     CLC : ADC.B $16 : AND.W #$FF00 
     XBA 
     STA.B $12 
@@ -9854,8 +9803,7 @@ PreInstruction_WavySamus:
     LDA.W $0D9F : STA.W $4203 
     REP #$20 
     LDA.B $16 : CLC : ADC.B $18 : STA.B $16 
-    LDA.W $4215 
-    AND.W #$FF00 
+    LDA.W $4215 : AND.W #$FF00 
     CLC : ADC.B $16 : AND.W #$FF00 
     XBA 
     STA.B $12 
@@ -9897,8 +9845,7 @@ PreInstruction_WavySamus:
     LDA.W $0D9F : STA.W $4203 
     REP #$20 
     LDA.B $16 : CLC : ADC.B $18 : STA.B $16 
-    LDA.W $4215 
-    AND.W #$FF00 
+    LDA.W $4215 : AND.W #$FF00 
     CLC : ADC.B $16 : AND.W #$FF00 
     XBA 
     STA.B $12 

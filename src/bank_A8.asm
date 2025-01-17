@@ -568,16 +568,14 @@ InitAI_Evir:
     LDA.W $0FB4,X 
     BNE .nonZeroParam1 
     JSR.W SetEvirFacingDirection 
-    LDA.W $0FB6,X 
-    AND.W #$00FF 
+    LDA.W $0FB6,X : AND.W #$00FF 
     ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.L $7E7808,X 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.L $7E7806,X 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.L $7E780C,X 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.L $7E780A,X 
-    LDA.W $0FB7,Y 
-    AND.W #$00FF 
+    LDA.W $0FB7,Y : AND.W #$00FF 
     LSR A 
     STA.W $0FB0,X 
     BRA + 
@@ -2342,8 +2340,7 @@ InitAI_Fune_Namihe:
     LDA.W #Function_Namihe_WaitForSamusToGetNear : STA.W $0FAA,X 
 
 .speciesDetermined:
-    LDA.W $0FB4,X 
-    AND.W #$00F0 
+    LDA.W $0FB4,X : AND.W #$00F0 
     BEQ .directionDetermined 
     INC.W $0FA8,X 
     INC.W $0FA8,X 
@@ -2759,8 +2756,7 @@ Function_Coven_Materialize_FadeToWhite:
     LDA.W #$0010 : STA.B $12 
 
 .loopUpper:
-    LDA.L $7EC000,X 
-    AND.W #$001F 
+    LDA.L $7EC000,X : AND.W #$001F 
     CMP.W #$001F 
     BPL .next 
     LDA.L $7EC000,X : CLC : ADC.W #$0421 : STA.L $7EC000,X 
@@ -2800,8 +2796,7 @@ Function_Coven_Materialize_FadeFromWhite:
     PLA 
     ORA.W $0FAA,X 
     BNE .return 
-    LDA.W $0F86,X 
-    AND.W #$FBFF ; >.< #$FAFF
+    LDA.W $0F86,X : AND.W #$FBFF ; >.< #$FAFF
     AND.W #$FEFF 
     STA.W $0F86,X 
     LDA.W #Function_Coven_Materialized : STA.W $0FA8,X 
@@ -3099,8 +3094,7 @@ AdvanceCovenPaletteTransition:
 .notReachedTarget:
     AND.W #$001F 
     STA.B $12 
-    LDA.L $7EC000,X 
-    AND.W #$001F 
+    LDA.L $7EC000,X : AND.W #$001F 
     CMP.B $12 
     BEQ .redEnd 
     BPL .notReachedRedTarget 
@@ -3112,16 +3106,14 @@ AdvanceCovenPaletteTransition:
     DEC A 
 
   + STA.B $12 
-    LDA.L $7EC000,X 
-    AND.W #$FFE0 
+    LDA.L $7EC000,X : AND.W #$FFE0 
     ORA.B $12 
     STA.L $7EC000,X 
     INY 
 
 .redEnd:
     LDA.L $7EC200,X : AND.W #$03E0 : STA.B $12 
-    LDA.L $7EC000,X 
-    AND.W #$03E0 
+    LDA.L $7EC000,X : AND.W #$03E0 
     CMP.B $12 
     BEQ .greenEnd 
     BPL .notReachedGreenTarget 
@@ -3132,16 +3124,14 @@ AdvanceCovenPaletteTransition:
     SEC : SBC.W #$0020 
 
   + STA.B $12 
-    LDA.L $7EC000,X 
-    AND.W #$FC1F 
+    LDA.L $7EC000,X : AND.W #$FC1F 
     ORA.B $12 
     STA.L $7EC000,X 
     INY 
 
 .greenEnd:
     LDA.L $7EC200,X : AND.W #$7C00 : STA.B $12 
-    LDA.L $7EC000,X 
-    AND.W #$7C00 
+    LDA.L $7EC000,X : AND.W #$7C00 
     CMP.B $12 
     BEQ .next 
     BPL .notReachedBlueTarget 
@@ -3152,8 +3142,7 @@ AdvanceCovenPaletteTransition:
     SEC : SBC.W #$0400 
 
   + STA.B $12 
-    LDA.L $7EC000,X 
-    AND.W #$83FF 
+    LDA.L $7EC000,X : AND.W #$83FF 
     ORA.B $12 
     STA.L $7EC000,X 
     INY 
@@ -3950,8 +3939,7 @@ Math_Sine_A8A742:
     STA.W $4203 
     NOP #3
     REP #$20 
-    LDA.W $4216 
-    AND.W #$FF00 
+    LDA.W $4216 : AND.W #$FF00 
     XBA 
     ASL A 
     STA.B $16 
@@ -4052,14 +4040,12 @@ FrozenAI_YappingMaw:
 
 SetYappingMawBodySegmentFrozenPalette:
     LDX.W $0E54 
-    LDA.W $19BB,Y 
-    AND.W #$F1FF 
+    LDA.W $19BB,Y : AND.W #$F1FF 
     ORA.L $7E880A,X 
     STA.W $19BB,Y 
     LDA.W $0F9E,X 
     BEQ .return 
-    LDA.W $19BB,Y 
-    AND.W #$F1FF 
+    LDA.W $19BB,Y : AND.W #$F1FF 
     ORA.W #$0C00 
     STA.W $19BB,Y 
     LDA.W $0F9E,X 
@@ -4067,8 +4053,7 @@ SetYappingMawBodySegmentFrozenPalette:
     BPL .return 
     BIT.W #$0002 
     BNE .return 
-    LDA.W $19BB,Y 
-    AND.W #$F1FF 
+    LDA.W $19BB,Y : AND.W #$F1FF 
     ORA.L $7E880A,X 
     STA.W $19BB,Y 
 
@@ -4081,16 +4066,14 @@ SetYappingMawBaseFrozenPalette:
     LDA.L $7E880A,X : STA.B $12 
     LDA.L $7E880C,X : STA.B $14 
     TAX 
-    LDA.L $7EF078,X 
-    AND.W #$F1FF 
+    LDA.L $7EF078,X : AND.W #$F1FF 
     ORA.B $12 
     STA.L $7EF078,X 
     LDX.W $0E54 
     LDA.W $0F9E,X 
     BEQ .return 
     LDX.B $14 
-    LDA.L $7EF078,X 
-    AND.W #$F1FF 
+    LDA.L $7EF078,X : AND.W #$F1FF 
     ORA.W #$0C00 
     STA.L $7EF078,X 
     LDX.W $0E54 
@@ -4100,8 +4083,7 @@ SetYappingMawBaseFrozenPalette:
     BIT.W #$0002 
     BNE .return 
     LDX.B $14 
-    LDA.L $7EF078,X 
-    AND.W #$F1FF 
+    LDA.L $7EF078,X : AND.W #$F1FF 
     ORA.B $12 
     STA.L $7EF078,X 
 
@@ -4965,8 +4947,7 @@ Function_Magdollite_Init_Slave2:
 
 GetMagdolliteSpeeds:
     LDX.W $0E54 
-    LDA.W $0FB7,X 
-    AND.W #$00FF 
+    LDA.W $0FB7,X : AND.W #$00FF 
     ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.L $7E7810,X 
@@ -4979,8 +4960,7 @@ GetMagdolliteSpeeds:
 SetMagdolliteGraphicsDrawnHook:
     LDA.W #EnemyGraphicsDrawnHook_Magdollite_PeriodicallyCyclePalettes : STA.W $178C 
     LDA.W #EnemyGraphicsDrawnHook_Magdollite_PeriodicallyCyclePalettes>>16 : STA.W $178E 
-    LDA.W $0F96,X 
-    AND.W #$0E00 
+    LDA.W $0F96,X : AND.W #$0E00 
     LSR #4
     CLC : ADC.W #$0100 : STA.W $1794 
     LDA.W #$0008 : STA.W $1798 
@@ -5041,8 +5021,7 @@ Function_Magdollite_WaitForSamusToGetNear:
     LDA.L $7E7888,X 
     BPL .return 
     LDA.W #$0000 : STA.L $7E7888,X 
-    LDA.W $0FB6,X 
-    AND.W #$00FF 
+    LDA.W $0FB6,X : AND.W #$00FF 
     JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
     LDA.W #InstList_Magdollite_SplashIntoLavaAndFormBasePillar_Left_0 : STA.W $0FAE,X 
@@ -5867,8 +5846,7 @@ Function_Beetom_DecideAction:
 Function_Beetom_DecideAction_SamusNotInProximity:
     LDX.W $0E54 
     JSL.L GenerateRandomNumber 
-    LDA.W $05E5 
-    AND.W #$0007 
+    LDA.W $05E5 : AND.W #$0007 
     ASL A 
     TAY 
     LDA.W SamusNotInProximityBeetomFunctionPointers,Y : STA.W $0FAC,X 
@@ -6492,8 +6470,7 @@ EnemyTouch_Beetom:
 .attached:
     LDA.W $0A6E 
     BNE .damage 
-    LDA.W $0E44 
-    AND.W #$0007 
+    LDA.W $0E44 : AND.W #$0007 
     CMP.W #$0007 
     BNE + 
     LDA.W $09C2 
@@ -6502,8 +6479,7 @@ EnemyTouch_Beetom:
     LDA.W #$002D 
     JSL.L QueueSound_Lib3_Max6 
 
-  + LDA.W $0FA4,X 
-    AND.W #$003F 
+  + LDA.W $0FA4,X : AND.W #$003F 
     CMP.W #$003F 
     BNE .return 
 
@@ -8126,8 +8102,7 @@ InitAI_RobotNoPower:
     LDA.W #$0000 : STA.L $7ED654 
     LDA.W #$0000 : STA.W $0FB0,X 
     LDA.W #$0001 : STA.W $0FB2,X 
-    LDA.L $7ED652 
-    AND.W #$FF00 
+    LDA.L $7ED652 : AND.W #$FF00 
     XBA 
     ASL #4
     TAX 
@@ -8169,8 +8144,7 @@ EnemyGraphicsDrawnHook_Robot_PeriodicallyCyclePalettes:
     STA.L $7ED654 
     BNE .return 
     PHX 
-    LDA.L $7ED652 
-    AND.W #$FF00 
+    LDA.L $7ED652 : AND.W #$FF00 
     XBA 
     ASL #4
     TAX 
@@ -8596,8 +8570,7 @@ Instruction_Robot_TryShootingLaserUpLeft:
 HandleFiringLaser_Upwards:
     LDA.W $0FAA,X 
     BNE .timerNotExpired 
-    LDA.W $05E5 
-    AND.W #$001F 
+    LDA.W $05E5 : AND.W #$001F 
     CLC : ADC.W #$0010 : STA.W $0FAA,X 
     PHX 
     LDY.B $30 
@@ -8624,8 +8597,7 @@ Instruction_Robot_TryShootingLaserLeft:
 HandleFiringLaser_Horizontal:
     LDA.W $0FAA,X 
     BNE .timerNotExpired 
-    LDA.W $05E5 
-    AND.W #$001F 
+    LDA.W $05E5 : AND.W #$001F 
     CLC : ADC.W #$0010 : STA.W $0FAA,X 
     PHX 
     LDY.W #EnemyProjectile_RobotLaser_Horizontal 
@@ -8654,8 +8626,7 @@ Instruction_Robot_TryShootingLaserDownLeft:
 HandleFiringLaser_Downwards:
     LDA.W $0FAA,X 
     BNE .timerNotExpired 
-    LDA.W $05E5 
-    AND.W #$001F 
+    LDA.W $05E5 : AND.W #$001F 
     CLC : ADC.W #$0010 : STA.W $0FAA,X 
     PHX 
     LDY.B $30 
@@ -9731,12 +9702,10 @@ Math_24Bit_UnsignedMultiplication_A8DAB3:
     LDA.B $19 : STA.W $4203 
     NOP #3
     REP #$20 
-    LDA.W $4216 
-    AND.W #$FF00 
+    LDA.W $4216 : AND.W #$FF00 
     XBA 
     STA.B $1E 
-    LDA.W $4216 
-    AND.W #$00FF 
+    LDA.W $4216 : AND.W #$00FF 
     XBA 
     CLC : ADC.B $1C : STA.B $1C 
     BCC .return 
@@ -9785,8 +9754,7 @@ EnemyShot_Bull:
     LDA.W $18A6 
     ASL A 
     TAY 
-    LDA.W $0C04,Y 
-    AND.W #$000F 
+    LDA.W $0C04,Y : AND.W #$000F 
     ASL A 
     TAY 
     LDA.W BullConstants_AngleToMove_upFacingRight,Y : STA.L $7E7804,X 
@@ -10254,8 +10222,7 @@ Instruction_Alcoon_SpawnAlcoonFireballDownward:
 Instruction_Alcoon_StartWalking:
     LDX.W $0E54 
     LDA.W #Function_Alcoon_MoveHorizontally_SpitFireballsAtSamus : STA.W $0FA8,X 
-    LDA.W $05E5 
-    AND.W #$0003 
+    LDA.W $05E5 : AND.W #$0003 
     BNE + 
     LDA.W #$0002 
 
@@ -11035,8 +11002,7 @@ Instruction_Spark_SetAsTangible:
 
 InitAI_Spark:
     LDX.W $0E54 
-    LDA.W $0FB4,X 
-    AND.W #$0003 
+    LDA.W $0FB4,X : AND.W #$0003 
     ASL A 
     TAY 
     LDA.W .functionPointers,Y : STA.W $0FAA,X 
@@ -11048,8 +11014,7 @@ InitAI_Spark:
     STZ.W $0F90,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    AND.W #$0001 
+    LDA.L $7ED828,X : AND.W #$0001 
     BEQ .PhantoonAlive 
     RTL 
 
@@ -11283,8 +11248,7 @@ InitAI_FaceBlock:
     XBA 
     STA.W $1794 
     LDA.W #$0010 : STA.W $1798 
-    LDA.W $0FB6,X 
-    AND.W #$0001 
+    LDA.W $0FB6,X : AND.W #$0001 
     ROR A 
     ROR A 
     STA.W $0FB6,X 
@@ -11344,8 +11308,7 @@ MainAI_FaceBlock:
     JSL.L NegateA_A0B067 
     CMP.W $0FB4,X 
     BPL .return 
-    LDA.W $0FAA,X 
-    AND.W #$8000 
+    LDA.W $0FAA,X : AND.W #$8000 
     CMP.W $0FB6,X 
     BEQ .return 
     LDY.W #InstList_FaceBlock_TurningLeft 
@@ -12714,8 +12677,7 @@ Function_Kihunter_Wingless_InitialFalling:
 Function_Kihunter_Wingless_PrepareToHop:
     LDA.W #RTL_A8F5E3 : STA.W $0FA8,X 
     LDA.W #$0000 : STA.L $7E7810,X 
-    LDA.W $05E5 
-    AND.W #$0001 
+    LDA.W $05E5 : AND.W #$0001 
     CLC : ADC.W #$FFF8 : STA.L $7E7812,X 
     LDA.W $0F7A,X 
     CMP.W $0AF6 
@@ -12935,8 +12897,7 @@ Function_KihunterWings_Falling:
 
 Function_KihunterWings_Falling_DriftingLeft:
     LDX.W $0E54 
-    LDA.W $0FAA,X 
-    AND.W #$FF00 
+    LDA.W $0FAA,X : AND.W #$FF00 
     XBA 
     ASL #3
     TAY 
@@ -13000,8 +12961,7 @@ DetermineFallingKihunterWingsRightArcCenterOffsets:
 
 Function_KihunterWings_Falling_DriftingRight:
     LDX.W $0E54 
-    LDA.W $0FAA,X 
-    AND.W #$FF00 
+    LDA.W $0FAA,X : AND.W #$FF00 
     XBA 
     ASL #3
     TAY 

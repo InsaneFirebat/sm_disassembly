@@ -33,8 +33,7 @@ Tiles_SpacePirate:
 incbin "../data/Tiles_SpacePirate.bin" ; $1800 bytes
 
 CalculateMotherBrainRainbowBeamHDMATables:
-    LDA.L $7E8027 
-    AND.W #$00FF 
+    LDA.L $7E8027 : AND.W #$00FF 
     LSR A 
     STA.B $12 
     LDA.L $7E8022 : SEC : SBC.B $12 : STA.L $7E8034 
@@ -44,12 +43,10 @@ CalculateMotherBrainRainbowBeamHDMATables:
     STA.L $7E803C 
     LDA.W $0FBE : CLC : ADC.W #$0005 : STA.L $7E803A 
     STA.L $7E803E 
-    LDA.L $7E8034 
-    AND.W #$00C0 
+    LDA.L $7E8034 : AND.W #$00C0 
     ASL #2
     STA.B $12 
-    LDA.L $7E8036 
-    AND.W #$00C0 
+    LDA.L $7E8036 : AND.W #$00C0 
     ORA.B $12 
     ASL #3
     XBA 
@@ -103,13 +100,11 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
     PLB 
     LDA.W #$00FF : STA.W $9D00 
     STA.W $9D02 
-    LDA.W $8034 
-    AND.W #$00FF 
+    LDA.W $8034 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $12 
-    LDA.W $8036 
-    AND.W #$00FF 
+    LDA.W $8036 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $14 
@@ -239,13 +234,11 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpRight:
     PLB 
     LDA.W #$00FF : STA.W $9D00 
     STA.W $9D02 
-    LDA.W $8036 
-    AND.W #$00FF 
+    LDA.W $8036 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $12 
-    LDA.W $8034 
-    AND.W #$00FF 
+    LDA.W $8034 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $14 
@@ -298,8 +291,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUp:
     ASL A 
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $12 
-    LDA.W $8034 
-    AND.W #$00FF 
+    LDA.W $8034 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $14 
@@ -435,13 +427,11 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownRight:
     PLB 
     LDA.W #$00FF : STA.W $9D00 
     STA.W $9D02 
-    LDA.W $8034 
-    AND.W #$00FF 
+    LDA.W $8034 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $12 
-    LDA.W $8036 
-    AND.W #$00FF 
+    LDA.W $8036 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $14 
@@ -498,8 +488,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDown:
     ASL A 
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $12 
-    LDA.W $8036 
-    AND.W #$00FF 
+    LDA.W $8036 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L AbsoluteTangentTable,X : STA.B $14 

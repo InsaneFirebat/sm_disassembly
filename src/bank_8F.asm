@@ -8640,8 +8640,7 @@ MainASM_SetScreenShaking_GenerateRandomExplosions:
 GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     LDA.W $0A78 
     BNE .return 
-    LDA.W $05B6 
-    AND.W #$0001 
+    LDA.W $05B6 : AND.W #$0001 
     BNE .return 
     JSL.L GenerateRandomNumber 
     PHA 
@@ -8662,8 +8661,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     LSR #4
     CLC : ADC.W $4216 : ASL A 
     TAX 
-    LDA.L $7F0002,X 
-    AND.W #$03FF 
+    LDA.L $7F0002,X : AND.W #$03FF 
     CMP.W #$00FF 
     BNE GenerateRandomExplosionAt_12_14 
 
@@ -8674,8 +8672,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
 GenerateRandomExplosionOnEveryFourthFrame:
     LDA.W $0A78 
     BNE GenerateRandomExplosionAt_12_14_return 
-    LDA.W $05B6 
-    AND.W #$0003 
+    LDA.W $05B6 : AND.W #$0003 
     BNE GenerateRandomExplosionAt_12_14_return 
     JSL.L GenerateRandomNumber 
     PHA 
@@ -8692,8 +8689,7 @@ GenerateRandomExplosionAt_12_14:
     CMP.W #$0008 
     BCS + 
     TAX 
-    LDA.W ExplosionSoundEffects,X 
-    AND.W #$00FF 
+    LDA.W ExplosionSoundEffects,X : AND.W #$00FF 
     BEQ + 
     JSL.L QueueSound_Lib2_Max6 
 
@@ -8715,8 +8711,7 @@ ExplosionSoundEffects:
     db $24,$00,$00,$25,$00,$00,$00,$00 
 
 MainASM_ScrollScreenRightInDachoraRoom:
-    LDA.L $7ECD2B 
-    AND.W #$00FF 
+    LDA.L $7ECD2B : AND.W #$00FF 
     CMP.W #$0002 
     BNE .return 
     LDA.W $0915 
@@ -13592,8 +13587,7 @@ MainASM_SpawnCeresPreElevatorHallFallingDebris:
     BCC + 
     LDY.W #EnemyProjectile_CeresFallingTile_Dark 
 
-  + LDA.W $05E5 
-    AND.W #$000F 
+  + LDA.W $05E5 : AND.W #$000F 
     ASL A 
     TAX 
     LDA.W .debrisXpos,X 
@@ -13708,8 +13702,7 @@ RoomStateCheck_MainAreaBossIsDead:
 
 
 RoomStateCheck_EventHasBeenSet:
-    LDA.W $0000,X 
-    AND.W #$00FF 
+    LDA.W $0000,X : AND.W #$00FF 
     JSL.L CheckIfEvent_inA_HasHappened 
     BCC + 
     LDA.W $0001,X 
@@ -13722,8 +13715,7 @@ RoomStateCheck_EventHasBeenSet:
 
 
 RoomStateCheck_BossIsDead:
-    LDA.W $0000,X 
-    AND.W #$00FF 
+    LDA.W $0000,X : AND.W #$00FF 
     JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC + 
     LDA.W $0001,X 
@@ -13737,8 +13729,7 @@ RoomStateCheck_BossIsDead:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomStateCheck_Morphball_8FE640:
-    LDA.W $09A4 
-    AND.W #$0004 
+    LDA.W $09A4 : AND.W #$0004 
     BEQ + 
     LDA.W $0000,X 
     TAX 
@@ -13779,8 +13770,7 @@ RoomStateCheck_PowerBombs:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomStateCheck_SpeedBooster_8FE678:
-    LDA.W $09A4 
-    AND.W #$2000 
+    LDA.W $09A4 : AND.W #$2000 
     BEQ + 
     LDA.W $0000,X 
     TAX 

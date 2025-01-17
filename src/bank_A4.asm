@@ -512,8 +512,7 @@ FightAI_Crocomire_6_SteppingForward:
 
 Instruction_Crocomire_MaybeStartProjectileAttack:
     PHX 
-    LDA.W $05E5 
-    AND.W #$0FFF 
+    LDA.W $05E5 : AND.W #$0FFF 
     CMP.W #$0400 
     BPL .return 
     LDA.W #$0008 : STA.W $0FAC 
@@ -938,8 +937,7 @@ InitAI_Crocomire:
     LDA.W #$0800 : STA.B $D0,X 
     LDA.W #$2000 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     STA.B $D5,X 
     TXA 
@@ -1472,8 +1470,7 @@ Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud_dup:
 
 SpawnBigDustCloudProjectileWithRandomXOffset:
     PHX 
-    LDA.W $05E5 
-    AND.W #$001F 
+    LDA.W $05E5 : AND.W #$001F 
     LDX.W $05E5 
     CPX.W #$1000 
     BMI .spawn 
@@ -1501,8 +1498,7 @@ Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall:
     LDX.W #$FFE0 
 
 .spawnDustCloud:
-    LDA.W $05E5 
-    AND.W #$000F 
+    LDA.W $05E5 : AND.W #$000F 
     STX.B $12 
     CLC : ADC.B $12 : JSL.L SpawnBigDustCloudProjectile 
     PLY 
@@ -1647,8 +1643,7 @@ HandleCrocomireAcidDamageSmoke:
     STA.L $7E9018 
     BNE .return 
     LDA.W #$0006 : STA.L $7E9018 
-    LDA.W $05E5 
-    AND.W #$003F 
+    LDA.W $05E5 : AND.W #$003F 
     TAX 
     LDA.W $05E5 
     BIT.W #$0002 
@@ -1659,8 +1654,7 @@ HandleCrocomireAcidDamageSmoke:
 
   + TXA 
     CLC : ADC.W $0F7A : STA.B $12 
-    LDA.W $05E5 
-    AND.W #$1F00 
+    LDA.W $05E5 : AND.W #$1F00 
     XBA 
     STA.B $14 
     LDA.W $1962 : CLC : ADC.W #$0010 : SEC : SBC.B $14 : STA.B $14 
@@ -1860,8 +1854,7 @@ WriteCrocomireBG2Tilemap:
     STY.B $D0,X 
     LDA.W #$2000 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     STA.B $D5,X 
     TXA 
@@ -2070,8 +2063,7 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
     JSR.W HandleCrocomireAcidDamageSmoke 
     LDX.W $102E 
     DEC.W $0FEE 
-    LDA.W $0FEE 
-    AND.W #$0002 
+    LDA.W $0FEE : AND.W #$0002 
     BEQ + 
     TXA 
     CLC : ADC.W #$0004 : TAX 
@@ -2176,8 +2168,7 @@ MainAI_Crocomire_DeathSequence_1C_3A_Hop_3_6_ClearTilemap:
     LDA.W #$0800 : STA.B $D0,X 
     LDA.W #$2000 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 
-    LDA.B $59 
-    AND.W #$00FE 
+    LDA.B $59 : AND.W #$00FE 
     XBA 
     STA.B $D5,X 
     TXA 
@@ -2227,18 +2218,15 @@ EraseMeltingCrocomirePixelColumn:
 
 .loopEraseColumn:
     LDX.W $0690 
-    LDA.W CrocomireMeltingXOffsetTable,X 
-    AND.W #$00FF 
+    LDA.W CrocomireMeltingXOffsetTable,X : AND.W #$00FF 
     TAX 
     AND.W #$FFF8 
     ASL #2
     STA.B $14 
-    LDA.W $069C,X 
-    AND.W #$0007 
+    LDA.W $069C,X : AND.W #$0007 
     ASL A 
     CLC : ADC.B $14 : STA.B $14 
-    LDA.W $069C,X 
-    AND.W #$FFF8 
+    LDA.W $069C,X : AND.W #$FFF8 
     ASL #6
     CLC : ADC.B $14 : TAX 
     SEP #$20 
@@ -2302,8 +2290,7 @@ MainAI_Crocomire_DeathSequence_3E_BehindWall_WaitForSamus:
     db $30,$03 
     dw PLMEntries_createCrocomireInvisibleWall 
     LDA.W #$0006 : STA.W $0941 
-    LDA.W $0F86 
-    AND.W #$7FFF 
+    LDA.W $0F86 : AND.W #$7FFF 
     ORA.W #$0400 
     STA.W $0F86 
     LDA.W $0FC6 : ORA.W #$0500 : STA.W $0FC6 
@@ -2414,8 +2401,7 @@ MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
     LDA.W #$0200 : STA.B $D0,X 
     LDA.W .skeletonSpriteTilesSourceAddress,Y : STA.B $D2,X 
     LDA.W #$00AD : STA.B $D4,X 
-    LDA.B $52 
-    AND.W #$0007 
+    LDA.B $52 : AND.W #$0007 
     XBA 
     ASL #5
     STA.B $12 
@@ -2602,8 +2588,7 @@ SpawnBigDustCloudProjectile:
     PHX 
     PHY 
     STA.B $12 
-    LDA.W $05E5 
-    AND.W #$0007 
+    LDA.W $05E5 : AND.W #$0007 
     CLC : ADC.W $0F7A : ADC.B $12 : STA.B $12 
     LDA.W $0F7E : CLC : ADC.W $0F84 : SEC : SBC.W #$0010 : STA.B $14 
     LDA.W #$0015 
@@ -3243,8 +3228,7 @@ RTL_A4B950:
 
 
 EnemyShot_Crocomire_Nothing:
-    LDA.W $0FAA 
-    AND.W #$000F 
+    LDA.W $0FAA : AND.W #$000F 
     CMP.W #$000F 
     BPL + 
     INC A 
@@ -3286,8 +3270,7 @@ PowerBombReaction_Crocomire:
     LDA.W $0FAC 
     CMP.W #$0018 
     BEQ .return 
-    LDA.W $0FAA 
-    AND.W #$BFF0 
+    LDA.W $0FAA : AND.W #$BFF0 
     ORA.W #$8000 
     STA.W $0FAA 
     LDA.W #$000A : STA.W $0FB0 
@@ -3354,8 +3337,7 @@ EnemyShot_Crocomire_OpenMouth:
     CLC : ADC.W $0FAE : STA.W $0FAE 
 
 .offScreen:
-    LDA.W $0FAA 
-    AND.W #$000F 
+    LDA.W $0FAA : AND.W #$000F 
     CMP.W #$000F 
     BPL + 
     INC A 
@@ -3374,8 +3356,7 @@ EnemyShot_Crocomire_OpenMouth:
     CLC : ADC.W $0F94 : STA.W $0F94 
 
 .damaged:
-    LDA.W $0FAA 
-    AND.W #$BFF0 
+    LDA.W $0FAA : AND.W #$BFF0 
     ORA.W #$0800 
     ORA.B $12 
     STA.W $0FAA 

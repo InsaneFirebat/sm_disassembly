@@ -3193,8 +3193,7 @@ InitAI_Kraid:
     SEP #$20 
     LDA.B #Tiles_KraidRoomBackground>>16 : STA.B $D4,X 
     REP #$20 
-    LDA.B $5D 
-    AND.W #$000F 
+    LDA.B $5D : AND.W #$000F 
     XBA 
     CLC : ADC.W #$3F00 : STA.B $D5,X 
     TXA 
@@ -3393,8 +3392,7 @@ MainAI_Kraid:
 
 
 Function_Kraid_KraidGetsBig_BreakCeilingIntoPlatforms:
-    LDA.W $05B6 
-    AND.W #$0007 
+    LDA.W $05B6 : AND.W #$0007 
     BNE .nonZeroCounter 
     JSR.W SpawnRandomEarthquakeProjectile 
 
@@ -3408,8 +3406,7 @@ Function_Kraid_KraidGetsBig_BreakCeilingIntoPlatforms:
   + STY.B $12 
     LDA.W $0F7A : CLC : ADC.B $12 : STA.W $0F7A 
     DEC.W $0F7E 
-    LDA.W $0F7E 
-    AND.W #$0003 
+    LDA.W $0F7E : AND.W #$0003 
     BNE .done 
     LDX.W $0FB2 
     CPX.W #$0012 
@@ -3564,8 +3561,7 @@ DrawKraidsRoomBackground:
     SEP #$20 
     LDA.B #Tiles_KraidRoomBackground>>16 : STA.B $D4,X 
     REP #$20 
-    LDA.B $5D 
-    AND.W #$000F 
+    LDA.B $5D : AND.W #$000F 
     XBA 
     CLC : ADC.W #$3F00 : STA.B $D5,X 
     TXA 
@@ -3585,8 +3581,7 @@ SetLintYPositionsAndRandomThinkingTimer:
     LDA.W $0F7E : SEC : SBC.W #$0014 : STA.W $0FFE 
     LDA.W $0F7E : CLC : ADC.W #$002E : STA.W $103E 
     LDA.W $0F7E : CLC : ADC.W #$0070 : STA.W $107E 
-    LDA.W $05E5 
-    AND.W #$0007 
+    LDA.W $05E5 : AND.W #$0007 
     BNE .multiplyBy40 
     LDA.W #$0002 
 
@@ -3722,8 +3717,7 @@ ProcessKraidInstList:
     LDA.B #$A7 : STA.B $D0,X 
     REP #$20 
     INX 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     STA.B $D0,X 
     INX #2
@@ -4386,24 +4380,21 @@ Function_Kraid_KraidShot_GlowEye:
     LDY.W #$0000 
 
 .loop:
-    LDA.L $7EC000,X 
-    AND.W #$001F 
+    LDA.L $7EC000,X : AND.W #$001F 
     CLC : ADC.W #$0001 : CMP.W #$001F 
     BMI + 
     INY 
     LDA.W #$001F 
 
   + STA.B $12 
-    LDA.L $7EC000,X 
-    AND.W #$03E0 
+    LDA.L $7EC000,X : AND.W #$03E0 
     CLC : ADC.W #$0020 : CMP.W #$03E0 
     BMI + 
     INY 
     LDA.W #$03E0 
 
   + STA.B $14 
-    LDA.L $7EC000,X 
-    AND.W #$FC00 
+    LDA.L $7EC000,X : AND.W #$FC00 
     ORA.B $12 
     ORA.B $14 
     STA.L $7EC000,X 
@@ -4442,8 +4433,7 @@ Function_Kraid_KraidShot_UnglowEye:
 
 .loop:
     LDA.L $7EC000,X : AND.W #$001F : STA.B $12 
-    LDA.W Palette_Kraid_BG_HurtFlash+2,Y 
-    AND.W #$001F 
+    LDA.W Palette_Kraid_BG_HurtFlash+2,Y : AND.W #$001F 
     CMP.B $12 
     BEQ + 
     INC.B $14 
@@ -4452,8 +4442,7 @@ Function_Kraid_KraidShot_UnglowEye:
     STA.L $7EC000,X 
 
   + LDA.L $7EC000,X : AND.W #$03E0 : STA.B $12 
-    LDA.W Palette_Kraid_BG_HurtFlash+2,Y 
-    AND.W #$03E0 
+    LDA.W Palette_Kraid_BG_HurtFlash+2,Y : AND.W #$03E0 
     CMP.B $12 
     BEQ .next 
     INC.B $14 
@@ -4527,8 +4516,7 @@ RTL_A7B831:
 
 
 Function_KraidLint_ProduceLint:
-    LDA.W $0F86,X 
-    AND.W #$FEFF ; >.< #$FAFF
+    LDA.W $0F86,X : AND.W #$FEFF ; >.< #$FAFF
     AND.W #$FBFF 
     STA.W $0F86,X 
     LDA.W $0F7A : CLC : ADC.W $0FAC,X : SEC : SBC.W $0FAA,X : STA.W $0F7A,X 
@@ -4602,8 +4590,7 @@ Function_KraidNail_WaitUntilTopLintXPosition100Plus:
     CMP.W #$0100 
     BMI .return 
     LDA.L $7E7800,X : STA.W $0FA8,X 
-    LDA.W $0F86,X 
-    AND.W #$FEFF ; >.< #$FAFF
+    LDA.W $0F86,X : AND.W #$FEFF ; >.< #$FAFF
     AND.W #$FBFF 
     STA.W $0F86,X 
 
@@ -4692,8 +4679,7 @@ MainAI_KraidFoot:
     LDA.W $0F7E : CLC : ADC.W #$0064 : STA.W $10BE 
     TAY 
     SEC : SBC.W #$00E0 : TAX 
-    LDA.W $10C6 
-    AND.W #$FEFF 
+    LDA.W $10C6 : AND.W #$FEFF 
     CPY.W $0915 
     BPL .offScreen 
     ORA.W #$0100 
@@ -4730,8 +4716,7 @@ Function_KraidFoot_Phase2_Thinking:
     BMI .loopXPositions 
     LDX.W #$0004 
 
-  + LDA.W $05E5 
-    AND.W #$001C 
+  + LDA.W $05E5 : AND.W #$001C 
     CMP.W #$0010 
     BMI + 
     LDA.W #$0010 
@@ -4895,12 +4880,10 @@ Function_KraidMainLoop_AttackingWithMouthOpen:
     LDA.W $0002,X 
     CMP.W #Tilemap_KraidHead_3 
     BNE .return 
-    LDA.W $0FAC 
-    AND.W #$000F 
+    LDA.W $0FAC : AND.W #$000F 
     BNE .return 
     LDY.W #EnemyProjectile_KraidRockSpit 
-    LDA.W $05E5 
-    AND.W #$000E 
+    LDA.W $05E5 : AND.W #$000E 
     TAX 
     LDA.W .rockSpitXVelocities,X 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
@@ -5042,8 +5025,7 @@ MainAI_KraidNailBad:
 
 
 Function_KraidNail_Initialize:
-    LDA.W $05E5 
-    AND.W #$0006 
+    LDA.W $05E5 : AND.W #$0006 
     TAY 
     LDA.W $1130 
     LDX.W $0E54 
@@ -5066,8 +5048,7 @@ Function_KraidNail_Initialize:
     LDA.W $0004,Y : STA.W $0FAE,X 
     LDA.W $0006,Y : STA.W $0FB0,X 
     LDA.W #$0001 : STA.W $0FB4,X 
-    LDA.W $0F86,X 
-    AND.W #$FEFF ; >.< #$FAFF
+    LDA.W $0F86,X : AND.W #$FEFF ; >.< #$FAFF
     AND.W #$FBFF 
     STA.W $0F86,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -5478,8 +5459,7 @@ UnpauseHook_KraidIsDead:
     SEP #$20 
     JSL.L SetForceBlankAndWaitForNMI 
     LDA.B #$00 : STA.W $2116 
-    LDA.B $5D 
-    AND.B #$0F 
+    LDA.B $5D : AND.B #$0F 
     ASL #4
     CLC : ADC.B #$3F : STA.W $2117 
     LDA.B #$80 : STA.W $2115 
@@ -5559,8 +5539,7 @@ UnpauseHook_KraidIsSinking:
     LDA.W #$0040 : STA.B $D0,X 
     LDA.W #$2FC0 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     CLC : ADC.W ShrinkingKraidTable_VRAMBG2TilemapOffset,Y : STA.B $D5,X 
     TXA 
@@ -5582,8 +5561,7 @@ PauseHook_Kraid:
     PHP 
     REP #$30 
     LDX.W $0360 
-    LDA.B $5D 
-    AND.W #$00FC 
+    LDA.B $5D : AND.W #$00FC 
     XBA 
     CLC : ADC.W #$3E00 : STA.W $0340,X 
     LDA.W #$0081 : STA.W $0342,X 
@@ -5668,8 +5646,7 @@ KraidDeath_FadeOutBackground:
     SEP #$20 
     LDA.B #$7E : STA.B $D4,X 
     REP #$20 
-    LDA.B $5D 
-    AND.W #$000F 
+    LDA.B $5D : AND.W #$000F 
     XBA 
     CLC : ADC.W #$3F00 : STA.B $D5,X 
     TXA 
@@ -5707,8 +5684,7 @@ UNUSED_ProcessKraidInstruction_WithNoASMInstructions_A7C457:
     LDA.B #$A7 : STA.B $D0,X 
     REP #$20 
     INX 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     STA.B $D0,X 
     INX #2
@@ -5821,8 +5797,7 @@ HandleKraidSinking:
     SEP #$20 
     LDA.B #$7E : STA.B $D4,X 
     REP #$20 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     CLC : ADC.W ShrinkingKraidTable_VRAMBG2TilemapOffset,Y : STA.B $D5,X 
     TXA 
@@ -6116,8 +6091,7 @@ UpdateBG2TilemapTopHalf:
     SEP #$20 
     LDA.B #$7E : STA.B $D4,X 
     REP #$20 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     STA.B $D5,X 
     TXA 
@@ -6140,8 +6114,7 @@ UpdateBG2TilemapBottomHalf:
     SEP #$20 
     LDA.B #$7E : STA.B $D4,X 
     REP #$20 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     CLC : ADC.W #$0800 : STA.B $D5,X 
     TXA 
@@ -6225,8 +6198,7 @@ Function_Kraid_RaiseThruFloor_RaiseKraid:
 SpawnRandomEarthquakeProjectile:
     LDA.W $05B5 
     BIT.W #$0002 
-    LDA.W $05E5 
-    AND.W #$003F 
+    LDA.W $05E5 : AND.W #$003F 
     TAX 
     LDA.W $05E5 
     BIT.W #$0002 
@@ -6237,8 +6209,7 @@ SpawnRandomEarthquakeProjectile:
 
   + TXA 
     CLC : ADC.W $0F7A : STA.B $12 
-    LDA.W $05E5 
-    AND.W #$3F00 
+    LDA.W $05E5 : AND.W #$3F00 
     XBA 
     STA.B $14 
     LDA.W #$01C0 : SEC : SBC.B $14 : STA.B $14 
@@ -6253,8 +6224,7 @@ SpawnRandomEarthquakeProjectile:
 
 .keepLeft:
     LDX.W $0E54 
-    LDA.W $05E5 
-    AND.W #$03F0 
+    LDA.W $05E5 : AND.W #$03F0 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     RTS 
 
@@ -6711,8 +6681,7 @@ Phantoon_BrokenNothingness:
 GrowShrinkPhantoonWaveAmplitude:
     LDA.W $1070 
     BNE .shrinking 
-    LDA.B $14 
-    AND.W #$FF00 
+    LDA.B $14 : AND.W #$FF00 
     XBA 
     STA.B $16 
     LDA.W $106E : CLC : ADC.B $12 : STA.W $106E 
@@ -6765,8 +6734,7 @@ PhantoonMaterializationFlameSpiral:
 
 SpawnFlameRainProjectiles:
     TAY 
-    LDA.W .firstFlamePositions,Y 
-    AND.W #$00FF 
+    LDA.W .firstFlamePositions,Y : AND.W #$00FF 
     TAY 
     LDA.W #$0007 : STA.B $12 
     LDA.W #$0010 : STA.B $14 
@@ -7058,16 +7026,14 @@ MovePhantoonInFigure8:
     STA.B $12 
     TYA 
     CLC : ADC.B $12 : TAY 
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     BIT.W #$0080 
     BEQ + 
     ORA.W #$FF00 
 
   + STA.B $12 
     LDA.W $0F7A : CLC : ADC.B $12 : STA.W $0F7A 
-    LDA.W $0001,Y 
-    AND.W #$00FF 
+    LDA.W $0001,Y : AND.W #$00FF 
     BIT.W #$0080 
     BEQ + 
     ORA.W #$FF00 
@@ -7107,16 +7073,14 @@ MovePhantoonInReverseFigure8:
     STA.B $12 
     TYA 
     CLC : ADC.B $12 : TAY 
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     BIT.W #$0080 
     BEQ + 
     ORA.W #$FF00 
 
   + STA.B $12 
     LDA.W $0F7A : SEC : SBC.B $12 : STA.W $0F7A 
-    LDA.W $0001,Y 
-    AND.W #$00FF 
+    LDA.W $0001,Y : AND.W #$00FF 
     BIT.W #$0080 
     BEQ + 
     ORA.W #$FF00 
@@ -7927,16 +7891,14 @@ Function_Phantoon_DeathSequence_Exploding:
     LDA.W $1032 
     ASL #2
     TAY 
-    LDA.W .XOffset,Y 
-    AND.W #$00FF 
+    LDA.W .XOffset,Y : AND.W #$00FF 
     BIT.W #$0080 
     BEQ + 
     ORA.W #$FF00 
 
   + STA.B $12 
     LDA.W $0F7A : CLC : ADC.B $12 : STA.B $12 
-    LDA.W .YOffset,Y 
-    AND.W #$00FF 
+    LDA.W .YOffset,Y : AND.W #$00FF 
     BIT.W #$0080 
     BEQ + 
     ORA.W #$FF00 
@@ -7944,8 +7906,7 @@ Function_Phantoon_DeathSequence_Exploding:
   + STA.B $14 
     LDA.W $0F7E : CLC : ADC.B $14 : STA.B $14 
     PHY 
-    LDA.W .explosionType,Y 
-    AND.W #$00FF 
+    LDA.W .explosionType,Y : AND.W #$00FF 
     PHA 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
@@ -8002,8 +7963,7 @@ Function_Phantoon_DeathSequence_SetupWavyMosaicPhantoon:
     STZ.W $106E 
     LDA.W #Function_Phantoon_DeathSequence_WavyMosaicPhantoon : STA.W $0FB2,X 
     LDA.W #$0002 : STA.W $0FEC 
-    LDA.W $0F86 
-    AND.W #$DFFF 
+    LDA.W $0F86 : AND.W #$DFFF 
     ORA.W #$0500 
     STA.W $0FC6 
     STA.W $1006 
@@ -8269,11 +8229,9 @@ CalculateAthTransitionalColorFromXToY:
     PHA 
     PHX 
     PHY 
-    LDA.B $01,S 
-    AND.W #$001F 
+    LDA.B $01,S : AND.W #$001F 
     TAY 
-    LDA.B $03,S 
-    AND.W #$001F 
+    LDA.B $03,S : AND.W #$001F 
     TAX 
     LDA.B $05,S 
     JSR.W CalculateTheAthTransitionalColorComponentFromXToY 
@@ -8465,8 +8423,7 @@ EnemyShot_Phantoon:
     LDA.W $18A6 
     ASL A 
     TAY 
-    LDA.W $0C18,Y 
-    AND.W #$0F00 
+    LDA.W $0C18,Y : AND.W #$0F00 
     CMP.W #$0200 
     BNE .overDamaged 
     JMP.W .enraged 
@@ -8487,8 +8444,7 @@ EnemyShot_Phantoon:
     LDA.W $18A6 
     ASL A 
     TAY 
-    LDA.W $0C18,Y 
-    AND.W #$0F00 
+    LDA.W $0C18,Y : AND.W #$0F00 
     CMP.W #$0200 
     BNE + 
     JMP.W .enraged 
@@ -9135,8 +9091,7 @@ MainAI_Etecoon:
 FreezeEtecoonIfQuakeActive:
     LDA.W $1840 
     BEQ .return 
-    LDA.W $0FB6,X 
-    AND.W #$00FF 
+    LDA.W $0FB6,X : AND.W #$00FF 
     ORA.W #$8000 
     STA.W $0FB6,X 
     LDA.W $0F94,X : CLC : ADC.W #$0080 : STA.W $0F94,X 
@@ -9428,8 +9383,7 @@ Function_Etecoon_LandedFromJump:
     LDA.W EtecoonConstants_initialYVelocityOfHopsAndFailedJumps : STA.W $0FA8,X 
     LDA.W EtecoonConstants_initialYVelocityOfHopsAndFailedJumps+2 : STA.W $0FAA,X 
     TXY 
-    LDA.W $0FB6,X 
-    AND.W #$00FF 
+    LDA.W $0FB6,X : AND.W #$00FF 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 

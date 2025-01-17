@@ -492,11 +492,9 @@ EnemyShot_SpacePirate_GoldNinjaIsVulnerable:
     LDA.B $12 
     BIT.W #$0F00 
     BNE .notBeam 
-    LDA.B $12 
-    AND.W #$000F 
+    LDA.B $12 : AND.W #$000F 
     CLC : ADC.B $14 : TAX 
-    LDA.L $B40000,X 
-    AND.W #$000F 
+    LDA.L $B40000,X : AND.W #$000F 
     BEQ EnemyShot_SpacePirate_GoldNinjaIsInvincible 
     CMP.W #$000F 
     BEQ EnemyShot_SpacePirate_GoldNinjaIsInvincible 
@@ -515,8 +513,7 @@ EnemyShot_SpacePirate_GoldNinjaIsVulnerable:
 .missile:
     XBA 
     CLC : ADC.B $14 : TAX 
-    LDA.L $B4000B,X 
-    AND.W #$000F 
+    LDA.L $B4000B,X : AND.W #$000F 
     BEQ EnemyShot_SpacePirate_GoldNinjaIsInvincible 
     CMP.W #$000F 
     BEQ EnemyShot_SpacePirate_GoldNinjaIsInvincible 
@@ -551,8 +548,7 @@ EnemyShot_SpacePirate_GoldNinjaIsInvincible:
 
 .reflect:
     LDA.W #$000A : STA.W $0FA0,X 
-    LDA.W $0C04,Y 
-    AND.W #$000F 
+    LDA.W $0C04,Y : AND.W #$000F 
     CMP.W #$0007 
     BNE .notLeft 
     LDA.W #$0001 
@@ -11993,12 +11989,10 @@ InitAI_PirateWall:
 
   + TYA 
     STA.W $0FA8,X 
-    LDA.W $0F7A,X 
-    AND.W #$000F 
+    LDA.W $0F7A,X : AND.W #$000F 
     CMP.W #$000B 
     BMI .lessThanB 
-    LDA.W $0F7A,X 
-    AND.W #$FFF0 
+    LDA.W $0F7A,X : AND.W #$FFF0 
     CLC : ADC.W #$0010 : STA.W $0F7A,X 
     BRA .return 
 
@@ -12062,12 +12056,10 @@ Function_PirateWall_WallJumpingRight:
     BNE .return 
     LDA.W #InstList_PirateWall_LandingOnRightWall : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
-    LDA.W $0F7A,X 
-    AND.W #$000F 
+    LDA.W $0F7A,X : AND.W #$000F 
     CMP.W #$000B 
     BMI .lessThanB 
-    LDA.W $0F7A,X 
-    AND.W #$FFF0 
+    LDA.W $0F7A,X : AND.W #$FFF0 
     CLC : ADC.W #$0010 : STA.W $0F7A,X 
     BRA .return 
 
@@ -12125,12 +12117,10 @@ Function_PirateWall_WallJumpingLeft:
     BNE .return 
     LDA.W #InstList_PirateWall_LandedOnLeftWall : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
-    LDA.W $0F7A,X 
-    AND.W #$000F 
+    LDA.W $0F7A,X : AND.W #$000F 
     CMP.W #$000B 
     BMI .lessThanB 
-    LDA.W $0F7A,X 
-    AND.W #$FFF0 
+    LDA.W $0F7A,X : AND.W #$FFF0 
     CLC : ADC.W #$0010 : STA.W $0F7A,X 
     BRA .return 
 
@@ -12810,8 +12800,7 @@ InitAI_PirateNinja:
     LDA.W $0FAE,X ; >_<
     STZ.B $12 
     STZ.B $16 
-    LDA.B $14 
-    AND.W #$00FF 
+    LDA.B $14 : AND.W #$00FF 
     XBA 
     STA.B $14 
 
@@ -12821,8 +12810,7 @@ InitAI_PirateNinja:
     CMP.B $14 
     BMI .loop 
     LDA.B $12 : STA.W $0FAA,X 
-    LDA.B $16 
-    AND.W #$FF00 
+    LDA.B $16 : AND.W #$FF00 
     XBA 
     STA.B $18 
     CLC : ADC.W $0FAE,X : STA.W $0FB2,X 
@@ -12897,8 +12885,7 @@ Function_PirateNinja_Active:
 
 
 PirateNinja_ProjectileClawAttackTrigger:
-    LDA.W $0FA4,X 
-    AND.W #$003F 
+    LDA.W $0FA4,X : AND.W #$003F 
     BNE .return 
     LDA.W $0F7A,X 
     CMP.W $0FB0,X 
@@ -13028,8 +13015,7 @@ PirateNinja_StandingKickTrigger:
 
 
 Function_PirateNinja_SpinJumpleft_Rising:
-    LDA.L $7E7800,X 
-    AND.W #$FF00 
+    LDA.L $7E7800,X : AND.W #$FF00 
     XBA 
     STA.B $12 
     LDA.W $0F7A,X : SEC : SBC.B $12 : STA.W $0F7A,X 
@@ -13048,8 +13034,7 @@ Function_PirateNinja_SpinJumpleft_Rising:
 
 
 Function_PirateNinja_SpinJumpLeft_Falling:
-    LDA.L $7E7800,X 
-    AND.W #$FF00 
+    LDA.L $7E7800,X : AND.W #$FF00 
     XBA 
     STA.B $12 
     LDA.W $0F7A,X : SEC : SBC.B $12 : STA.W $0F7A,X 
@@ -13070,8 +13055,7 @@ Function_PirateNinja_SpinJumpLeft_Falling:
 
 
 Function_PirateNinja_SpinJumpRight_Rising:
-    LDA.L $7E7800,X 
-    AND.W #$FF00 
+    LDA.L $7E7800,X : AND.W #$FF00 
     XBA 
     STA.B $12 
     LDA.W $0F7A,X : CLC : ADC.B $12 : STA.W $0F7A,X 
@@ -13090,8 +13074,7 @@ Function_PirateNinja_SpinJumpRight_Rising:
 
 
 Function_PirateNinja_SpinJumpRight_Falling:
-    LDA.L $7E7800,X 
-    AND.W #$FF00 
+    LDA.L $7E7800,X : AND.W #$FF00 
     XBA 
     STA.B $12 
     LDA.W $0F7A,X : CLC : ADC.B $12 : STA.W $0F7A,X 
@@ -13176,8 +13159,7 @@ Instruction_PirateNinja_SetLeftDivekickJumpInitialYSpeed:
 
 
 Instruction_PirateNinja_DivekickLeft_Jump:
-    LDA.L $7E7800,X 
-    AND.W #$FF00 
+    LDA.L $7E7800,X : AND.W #$FF00 
     XBA 
     STA.B $12 
     LDA.W $0F7E,X : SEC : SBC.B $12 : STA.W $0F7E,X 
@@ -13196,8 +13178,7 @@ Instruction_PirateNinja_DivekickLeft_Jump:
 
 Instruction_PirateNinja_DivekickLeft_Divekick:
     LDA.W $0F7A,X : SEC : SBC.W #$0005 : STA.W $0F7A,X 
-    LDA.L $7E7800,X 
-    AND.W #$FF00 
+    LDA.L $7E7800,X : AND.W #$FF00 
     XBA 
     STA.B $14 
     LDA.L $7E7800,X : AND.W #$00FF : STA.B $12 
@@ -13244,8 +13225,7 @@ Instruction_PirateNinja_SetRightDivekickJumpInitialYSpeed:
 
 
 Instruction_PirateNinja_DivekickRight_Jump:
-    LDA.L $7E7800,X 
-    AND.W #$FF00 
+    LDA.L $7E7800,X : AND.W #$FF00 
     XBA 
     STA.B $12 
     LDA.W $0F7E,X : SEC : SBC.B $12 : STA.W $0F7E,X 
@@ -13264,8 +13244,7 @@ Instruction_PirateNinja_DivekickRight_Jump:
 
 Instruction_PirateNinja_DivekickRight_Divekick:
     LDA.W $0F7A,X : CLC : ADC.W #$0005 : STA.W $0F7A,X 
-    LDA.L $7E7800,X 
-    AND.W #$FF00 
+    LDA.L $7E7800,X : AND.W #$FF00 
     XBA 
     STA.B $14 
     LDA.L $7E7800,X : AND.W #$00FF : STA.B $12 

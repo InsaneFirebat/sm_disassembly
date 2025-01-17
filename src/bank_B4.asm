@@ -2311,8 +2311,7 @@ Debug_Draw_Enemy_Set_Name:
     LDA.W #$0058 : STA.B $12 
     LDA.W $079F : CLC : ADC.W #$0014 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $07D1 : SEC : SBC.W #$0007 : TAX 
-    LDA.L $B40002,X 
-    AND.W #$00FF 
+    LDA.L $B40002,X : AND.W #$00FF 
     SEC : SBC.W #$002C : STA.B $16 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00A8 : STA.B $14 
@@ -2320,8 +2319,7 @@ Debug_Draw_Enemy_Set_Name:
     LDA.B $16 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $07D1 : SEC : SBC.W #$0007 : TAX 
-    LDA.L $B40004,X 
-    AND.W #$00FF 
+    LDA.L $B40004,X : AND.W #$00FF 
     SEC : SBC.W #$002C : STA.B $16 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00B8 : STA.B $14 
@@ -2329,8 +2327,7 @@ Debug_Draw_Enemy_Set_Name:
     LDA.B $16 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $07D1 : SEC : SBC.W #$0007 : TAX 
-    LDA.L $B40005,X 
-    AND.W #$00FF 
+    LDA.L $B40005,X : AND.W #$00FF 
     SEC : SBC.W #$002C : STA.B $16 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00C0 : STA.B $14 
@@ -2374,8 +2371,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00A8 : STA.B $14 
     LDA.W $0E2A : CLC : ADC.W #$0018 : STA.B $12 
-    LDA.B $16 
-    AND.W #$00FF 
+    LDA.B $16 : AND.W #$00FF 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $0E26 
     LDA.L $B40002,X : STA.W $0E24 
@@ -2619,8 +2615,7 @@ DebugHandler_10_EnemyDebugger_EnemyAllocationViewer:
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00A8 : STA.B $14 
     LDA.W $0E2A : CLC : ADC.W #$0018 : STA.B $12 
-    LDA.B $16 
-    AND.W #$00FF 
+    LDA.B $16 : AND.W #$00FF 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $0E26 
     LDA.L $B40002,X : STA.W $0E24 
@@ -2648,8 +2643,7 @@ DebugHandler:
     PHA 
     PLB 
     REP #$30 
-    LDA.W $185C 
-    AND.W #$00FF 
+    LDA.W $185C : AND.W #$00FF 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
@@ -2825,8 +2819,7 @@ DebugHandler_0_Default:
     LDA.W $05C5 
     BIT.W #$0040 
     BNE .SelectLX 
-    LDA.B $91 
-    AND.W #$0010 
+    LDA.B $91 : AND.W #$0010 
     BNE .R 
     LDA.B $91 
     BIT.W #$2000 
@@ -3262,8 +3255,7 @@ DebugHandler_F_EnemyDebugger_RAMViewer_5:
 
 
 Debug_MoveEnemyWithDpad_QuarterPixelPerFrame:
-    LDA.W $05B6 
-    AND.W #$0003 
+    LDA.W $05B6 : AND.W #$0003 
     BNE .return 
     LDA.B $8D 
     BIT.W #$0200 
@@ -3329,30 +3321,26 @@ Draw4DigitHexValue:
     LDA.W $0E20 : CLC : ADC.W #$0000 : STA.B $14 
     LDA.W $0E22 : CLC : ADC.W #$0000 : STA.B $12 
     LDA.W #$0A00 : STA.B $26 
-    LDA.W $0E24 
-    AND.W #$F000 
+    LDA.W $0E24 : AND.W #$F000 
     XBA 
     LSR #4
     CLC : ADC.W #$0004 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $0E20 : CLC : ADC.W #$0008 : STA.B $14 
     LDA.W $0E22 : CLC : ADC.W #$0000 : STA.B $12 
     LDA.W #$0A00 : STA.B $26 
-    LDA.W $0E24 
-    AND.W #$0F00 
+    LDA.W $0E24 : AND.W #$0F00 
     XBA 
     CLC : ADC.W #$0004 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $0E20 : CLC : ADC.W #$0010 : STA.B $14 
     LDA.W $0E22 : CLC : ADC.W #$0000 : STA.B $12 
     LDA.W #$0A00 : STA.B $26 
-    LDA.W $0E24 
-    AND.W #$00F0 
+    LDA.W $0E24 : AND.W #$00F0 
     LSR #4
     CLC : ADC.W #$0004 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $0E20 : CLC : ADC.W #$0018 : STA.B $14 
     LDA.W #$0A00 : STA.B $26 
     LDA.W $0E22 : CLC : ADC.W #$0000 : STA.B $12 
-    LDA.W $0E24 
-    AND.W #$000F 
+    LDA.W $0E24 : AND.W #$000F 
     CLC : ADC.W #$0004 : JSL.L Add_Debug_Spritemap_to_OAM 
     RTS 
 
@@ -3379,8 +3367,7 @@ Add_Debug_Spritemap_to_OAM:
     INY #2
     CLC : ADC.B $14 : STA.W $0370,X 
     INX 
-    LDA.B $1B 
-    AND.W #$0002 
+    LDA.B $1B : AND.W #$0002 
     BEQ + 
     TXA 
     STA.B $1C 
@@ -3395,8 +3382,7 @@ Add_Debug_Spritemap_to_OAM:
     PLY 
     LDX.B $1C 
 
-  + LDA.W $0370,X 
-    AND.W #$0001 
+  + LDA.W $0370,X : AND.W #$0001 
     BEQ + 
     TXA 
     STA.B $1C 
@@ -3442,8 +3428,7 @@ Add_Debug_Spritemap_to_OAM:
     INY 
     LDA.B $26 
     BEQ .useSpritemapEntryPalette 
-    LDA.W $0000,Y 
-    AND.W #$F1FF 
+    LDA.W $0000,Y : AND.W #$F1FF 
     ORA.B $26 
     BRA .next 
 

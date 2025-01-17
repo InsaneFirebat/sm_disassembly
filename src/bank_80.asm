@@ -302,8 +302,7 @@ CheckIfBossBitsForCurrentAreaMatchAnyBitsInA:
     SEP #$20 
     STA.W $05E7 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    AND.W $05E7 
+    LDA.L $7ED828,X : AND.W $05E7 
     BNE .match 
     PLP 
     PLY 
@@ -353,8 +352,7 @@ CheckIfEvent_inA_HasHappened:
     PHP 
     REP #$30 
     JSL.L BitIndexToByteIndexAndBitmask 
-    LDA.L $7ED820,X 
-    AND.W $05E7 
+    LDA.L $7ED820,X : AND.W $05E7 
     BNE .marked 
     PLP 
     PLY 
@@ -1230,8 +1228,7 @@ HandleFadingOut:
 .fadeOut:
     LDA.W $0723 : STA.W $0725 ; Screen fade counter = [screen fade delay]
     SEP #$30 
-    LDA.B $51 
-    AND.B #$0F ; If (brightness) = 0: return
+    LDA.B $51 : AND.B #$0F ; If (brightness) = 0: return
     BEQ .return 
     DEC A 
     BNE .disableFBlank ; If (brightness) = 1:
@@ -2293,11 +2290,9 @@ SetupHDMATransfer:
     PLB 
     LDA.B $03,S 
     TAY 
-    LDA.W $0001,Y 
-    AND.W #$00FF 
+    LDA.W $0001,Y : AND.W #$00FF 
     TAX 
-    LDA.L .table,X 
-    AND.W #$00FF 
+    LDA.L .table,X : AND.W #$00FF 
     TAX 
     LDA.W $0002,Y : STA.W $4300,X 
     LDA.W $0004,Y : STA.W $4302,X 
@@ -2415,12 +2410,10 @@ Update_IO_Registers:
     STX.W $2114 
     LDX.B $56 
     STX.W $07EC 
-    LDA.B $55 
-    AND.W #$0007 
+    LDA.B $55 : AND.W #$0007 
     CMP.W #$0007 
     BEQ .mode7 
-    LDA.B $56 
-    AND.W #$0007 
+    LDA.B $56 : AND.W #$0007 
     CMP.W #$0007 
     BEQ .mode7 
     RTS 
@@ -2570,8 +2563,7 @@ ReadControllerInput:
     SEP #$20 
 
 .wait:
-    LDA.W $4212 
-    AND.B #$01 
+    LDA.W $4212 : AND.B #$01 
     BNE .wait 
     REP #$20 
     LDA.W $4218 : STA.B $8B 
@@ -2653,8 +2645,7 @@ ReadControllerInput:
 
 
 .debugInputEnabled:
-    LDA.B $8B 
-    AND.W #$2020 
+    LDA.B $8B : AND.W #$2020 
     CMP.W #$2020 
     BNE .checkSelectR 
     LDA.B $8F : STA.W $05C5 
@@ -2662,8 +2653,7 @@ ReadControllerInput:
     STZ.B $8F 
 
 .checkSelectR:
-    LDA.B $8B 
-    AND.W #$2010 
+    LDA.B $8B : AND.W #$2010 
     CMP.W #$2010 
     BNE .checkToggleHUD 
     LDA.B $8F : STA.W $05C7 
@@ -3213,8 +3203,7 @@ AddMissilesToHUDTilemap:
     PHK 
     PLB 
     REP #$30 
-    LDA.L $7EC61C 
-    AND.W #$03FF 
+    LDA.L $7EC61C : AND.W #$03FF 
     CMP.W #$000F 
     BNE .return 
     LDA.W Tilemap_HUD_missiles : STA.L $7EC61C 
@@ -3281,8 +3270,7 @@ AddXrayToHUDTilemap:
     LDX.W #$002E 
 
 Write2x2TileIconToHUDTilemap:
-    LDA.L $7EC608,X 
-    AND.W #$03FF 
+    LDA.L $7EC608,X : AND.W #$03FF 
     CMP.W #$000F 
     BNE .return 
     LDA.W $0000,Y : STA.L $7EC608,X 
@@ -3515,8 +3503,7 @@ HandleHUDTilemap_PausedAndRunning:
     LDX.W #$1400 
     JSR.W ToggleHUDItemHighlight 
     LDA.W $09D2 : STA.W $0A0E 
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0003 
     BEQ .handleAutoCancel 
     CMP.W #$0014 
@@ -3680,8 +3667,7 @@ ProcessTimer:
     PLB 
     PHX 
     PHY 
-    LDA.W $0943 
-    AND.W #$00FF 
+    LDA.W $0943 : AND.W #$00FF 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
@@ -3788,8 +3774,7 @@ ClearTimerRAM:
 
 DecrementTimer:
     SEP #$39 ; Set carry and decimal
-    LDA.W $05B6 
-    AND.B #$7F 
+    LDA.W $05B6 : AND.B #$7F 
     TAX 
     LDA.W $0945 : SBC.W .centiseconds,X : STA.W $0945 
     BCS .checkExpired 
@@ -4449,14 +4434,11 @@ HandleScrollZones_HorizontalAutoscrolling:
     STA.W $4202 
     LDA.W $07A9 : STA.W $4203 
     REP #$20 
-    LDA.W $0912 
-    AND.W #$00FF 
+    LDA.W $0912 : AND.W #$00FF 
     CLC : ADC.W $4216 : TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .unboundedFromLeft 
-    LDA.W $0911 
-    AND.W #$FF00 
+    LDA.W $0911 : AND.W #$FF00 
     CLC : ADC.W #$0100 : STA.W $0933 
     LDA.W $0939 : CLC : ADC.W $0DA2 : ADC.W #$0002 : CMP.W $0933 
     BCS .reachedRightScrollBoundary 
@@ -4470,11 +4452,9 @@ HandleScrollZones_HorizontalAutoscrolling:
     INC A 
     AND.W #$00FF 
     CLC : ADC.W $4216 : TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .returnLayer1X 
-    LDA.W $0939 
-    AND.W #$FF00 
+    LDA.W $0939 : AND.W #$FF00 
     BRA + 
 
 
@@ -4490,8 +4470,7 @@ HandleScrollZones_HorizontalAutoscrolling:
 
 .unboundedFromLeft:
     INX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .return 
     LDA.W $0911 : AND.W #$FF00 : STA.W $0933 
     LDA.W $0939 : SEC : SBC.W $0DA2 : SBC.W #$0002 : CMP.W $0933 
@@ -4502,14 +4481,11 @@ HandleScrollZones_HorizontalAutoscrolling:
     STA.W $4202 
     LDA.W $07A9 : STA.W $4203 
     REP #$20 
-    LDA.W $093A 
-    AND.W #$00FF 
+    LDA.W $093A : AND.W #$00FF 
     CLC : ADC.W $4216 : TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .return0939 
-    LDA.W $0939 
-    AND.W #$FF00 
+    LDA.W $0939 : AND.W #$FF00 
     CLC : ADC.W #$0100 : BRA + 
 
 
@@ -4558,12 +4534,10 @@ HandleScrollZones_ScrollingRight:
     STA.W $4202 
     LDA.W $07A9 : STA.W $4203 
     REP #$20 
-    LDA.W $0912 
-    AND.W #$00FF 
+    LDA.W $0912 : AND.W #$00FF 
     SEC 
     ADC.W $4216 : TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .return 
     LDA.W $0911 : AND.W #$FF00 : STA.W $0933 
     LDA.W $0939 : SEC : SBC.W $0DA2 : SBC.W #$0002 : CMP.W $0933 
@@ -4603,14 +4577,11 @@ HandleScrollZones_ScrollingLeft:
     STA.W $4202 
     LDA.W $07A9 : STA.W $4203 
     REP #$20 
-    LDA.W $0912 
-    AND.W #$00FF 
+    LDA.W $0912 : AND.W #$00FF 
     CLC : ADC.W $4216 : TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .return 
-    LDA.W $0911 
-    AND.W #$FF00 
+    LDA.W $0911 : AND.W #$FF00 
     CLC : ADC.W #$0100 : STA.W $0933 
     LDA.W $0939 : CLC : ADC.W $0DA2 : ADC.W #$0002 : CMP.W $0933 
     BCC + 
@@ -4647,8 +4618,7 @@ HandleScrollZones_VerticalAutoscrolling:
     AND.W #$00FF 
     CLC : ADC.W $4216 : STA.B $14 
     TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     CMP.W #$0001 
     BEQ + 
     LDY.W #$001F 
@@ -4672,11 +4642,9 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W $0911 : CLC : ADC.W #$0080 : XBA 
     AND.W #$00FF 
     CLC : ADC.W $4216 : TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .unboundedFromAbove 
-    LDA.W $0915 
-    AND.W #$FF00 
+    LDA.W $0915 : AND.W #$FF00 
     CLC : ADC.W #$0100 : STA.W $0935 
     LDA.W $0939 : CLC : ADC.W $0DA6 : ADC.W #$0002 : CMP.W $0935 
     BCS .reachedBottomScrollBoundary 
@@ -4690,11 +4658,9 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W $0911 : CLC : ADC.W #$0080 : XBA 
     AND.W #$00FF 
     CLC : ADC.W $4216 : TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE + 
-    LDA.W $0939 
-    AND.W #$FF00 
+    LDA.W $0939 : AND.W #$FF00 
     BRA .returnLayer1Y 
 
 
@@ -4710,11 +4676,9 @@ HandleScrollZones_VerticalAutoscrolling:
 .unboundedFromAbove:
     TXA 
     CLC : ADC.W $07A9 : TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .return 
-    LDA.W $0915 
-    AND.W #$FF00 
+    LDA.W $0915 : AND.W #$FF00 
     CLC : ADC.W $0933 : STA.W $0937 
     CMP.W $0915 
     BCS .return 
@@ -4728,11 +4692,9 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W $0911 : CLC : ADC.W #$0080 : XBA 
     AND.W #$00FF 
     CLC : ADC.W $4216 : TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .returnProposedLayer1X 
-    LDA.W $0939 
-    AND.W #$FF00 
+    LDA.W $0939 : AND.W #$FF00 
     CLC : ADC.W #$0100 : BRA .returnLayer1Y 
 
 
@@ -4771,8 +4733,7 @@ HandleScrollZones_ScrollingDown:
     AND.W #$00FF 
     CLC : ADC.W $4216 : STA.B $14 
     TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     CMP.W #$0001 
     BEQ + 
     LDY.W #$001F 
@@ -4791,11 +4752,9 @@ HandleScrollZones_ScrollingDown:
     CMP.W $0915 
     BCC .setLayer1Y 
     LDA.B $14 : CLC : ADC.W $07A9 : TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .return 
-    LDA.W $0915 
-    AND.W #$FF00 
+    LDA.W $0915 : AND.W #$FF00 
     CLC : ADC.W $0933 : STA.W $0937 
     CMP.W $0915 
     BCS .return 
@@ -4840,11 +4799,9 @@ HandleScrollZones_ScrollingUp:
     LDA.W $0911 : CLC : ADC.W #$0080 : XBA 
     AND.W #$00FF 
     CLC : ADC.W $4216 : TAX 
-    LDA.L $7ECD20,X 
-    AND.W #$00FF 
+    LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .return 
-    LDA.W $0915 
-    AND.W #$FF00 
+    LDA.W $0915 : AND.W #$FF00 
     CLC : ADC.W #$0100 : STA.W $0933 
     LDA.W $0939 : CLC : ADC.W $0DA6 : ADC.W #$0002 : CMP.W $0933 
     BCC + 
@@ -4859,8 +4816,7 @@ HandleScrollZones_ScrollingUp:
 
 
 Debug_Layer1Position_Saving_Loading:
-    LDA.B $91 
-    AND.W #$0040 
+    LDA.B $91 : AND.W #$0040 
     BEQ + 
     INC.W $05D3 
 
@@ -4957,8 +4913,7 @@ UpdateLevelBackgroundDataColumn:
     TAX 
     PHY 
     LDY.W $0937 
-    LDA.W $093B 
-    AND.W #$0C00 
+    LDA.W $093B : AND.W #$0C00 
     BNE + 
     LDA.W $A000,X : STA.W $C8C8,Y 
     LDA.W $A002,X : STA.W $C908,Y 
@@ -5094,8 +5049,7 @@ UpdateBackgroundLevelDataRow:
     TAX 
     PHY 
     LDY.W $0937 
-    LDA.W $093B 
-    AND.W #$0C00 
+    LDA.W $093B : AND.W #$0C00 
     BNE + 
     LDA.W $A000,X : STA.W $C948,Y 
     LDA.W $A002,X : STA.W $C94A,Y 
@@ -5159,8 +5113,7 @@ DoorTransitionScrollingSetup:
     REP #$30 
     LDA.W $0927 : STA.W $0911 
     LDA.W $0929 : STA.W $0915 
-    LDA.W $0791 
-    AND.W #$0003 
+    LDA.W $0791 : AND.W #$0003 
     ASL A 
     TAX 
     JSR.W (Door_Transition_Scrolling_Setup_Pointers,X) 
@@ -5257,8 +5210,7 @@ DoorTransitionScrolling:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $0791 
-    AND.W #$0003 
+    LDA.W $0791 : AND.W #$0003 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
@@ -5505,11 +5457,9 @@ UNUSED_ConfigureMode7RotationMatrix_80B0C2:
     REP #$30 
     LDA.W $0783 
     BEQ .return 
-    LDA.W $05B6 
-    AND.W #$0007 
+    LDA.W $05B6 : AND.W #$0007 
     BNE .return 
-    LDA.W $0785 
-    AND.W #$00FF 
+    LDA.W $0785 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L SineCosineTables_8bitSine_SignExtended,X : STA.B $7A 
@@ -5574,8 +5524,7 @@ Decompression_VariableDestination:
     ASL #3
     AND.B #$E0 
     PHA 
-    LDA.B $4A 
-    AND.B #$03 
+    LDA.B $4A : AND.B #$03 
     XBA 
     PHX 
     LDX.B $47 
@@ -5593,8 +5542,7 @@ Decompression_VariableDestination:
     PHA 
     LDA.B #$00 
     XBA 
-    LDA.B $4A 
-    AND.B #$1F 
+    LDA.B $4A : AND.B #$1F 
 
   + TAX 
     INX 
@@ -5819,8 +5767,7 @@ DecompressionToVRAM:
     ASL #3
     AND.B #$E0 
     PHA 
-    LDA.B $4A 
-    AND.B #$03 
+    LDA.B $4A : AND.B #$03 
     XBA 
     PHX 
     LDX.B $47 
@@ -5838,8 +5785,7 @@ DecompressionToVRAM:
     PHA 
     LDA.B #$00 
     XBA 
-    LDA.B $4A 
-    AND.B #$1F 
+    LDA.B $4A : AND.B #$1F 
 
   + TAX 
     INX 
@@ -7044,8 +6990,7 @@ SetDebugElevatorAsUsed:
     LDA.W $079F 
     ASL A 
     TAX 
-    LDA.W $0793 
-    AND.W #$000F 
+    LDA.W $0793 : AND.W #$000F 
     DEC A 
     ASL #2
     CLC : ADC.W .elevatorBits,X : TAY 

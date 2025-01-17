@@ -477,8 +477,7 @@ Function_DraygonBody_FightIntro_Dance:
 
 
 HandleFiringWallTurret:
-    LDA.W $05B6 
-    AND.W #$003F 
+    LDA.W $05B6 : AND.W #$003F 
     BNE .return 
     JSL.L GenerateRandomNumber 
     AND.W #$0003 
@@ -604,8 +603,7 @@ Function_DraygonBody_SwoopRight_Descending:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Draygon_FireGoop_A58901:
-    LDA.W $05B6 
-    AND.W #$000F 
+    LDA.W $05B6 : AND.W #$000F 
     BNE .return 
     LDA.W #InstList_DraygonBody_FacingLeft_FireGoop : STA.W $0F92 
     LDA.L $7E8000 
@@ -660,8 +658,7 @@ Function_DraygonBody_SwoopRight_Ascending:
 
 
   + STZ.W $0FAA 
-    LDA.W $05E5 
-    AND.W #$0001 
+    LDA.W $05E5 : AND.W #$0001 
     BEQ .goopLeft 
     LDA.W #Function_DraygonBody_SwoopLeft_Setup : STA.W $0FA8 
     RTS 
@@ -771,8 +768,7 @@ Function_DraygonBody_SwoopLeft_Ascending:
 
 
 .chooseAttack:
-    LDA.W $05E5 
-    AND.W #$0001 
+    LDA.W $05E5 : AND.W #$0001 
     BEQ .goop 
     LDA.W #Function_DraygonBody_SwoopRight_Setup : STA.W $0FA8 
     STZ.W $0FAA 
@@ -830,8 +826,7 @@ Function_DraygonBody_GoopRight_FiringGoops:
     JSR.W HandleFiringWallTurret 
     LDA.W $0A66 
     BNE .SamusGooped 
-    LDA.W $05E5 
-    AND.W #$000F 
+    LDA.W $05E5 : AND.W #$000F 
     BNE .noGoop 
     LDA.L $7E7806 
     DEC A 
@@ -941,8 +936,7 @@ Function_DraygonBody_GoopLeft_MoveUntilSamusInRange:
 Function_DraygonBody_GoopLeft_FiringGoops:
     LDA.W $0A66 
     BNE .SamusGooped 
-    LDA.W $05E5 
-    AND.W #$000F 
+    LDA.W $05E5 : AND.W #$000F 
     BNE .noGoop 
     LDA.L $7E7806 
     DEC A 
@@ -1115,8 +1109,7 @@ Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
     BEQ .notGrappled 
     PHX 
     LDX.W $0F78 
-    LDA.L $A0000D,X 
-    AND.W #$00FF 
+    LDA.L $A0000D,X : AND.W #$00FF 
     CLC : ADC.W #$0008 : STA.W $0F9C 
     PLX 
     LDA.W $0F8A : ORA.W #$0002 : STA.W $0F8A 
@@ -1174,8 +1167,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     BEQ .notGrappled 
     PHX 
     LDX.W $0F78 
-    LDA.L $A0000D,X 
-    AND.W #$00FF 
+    LDA.L $A0000D,X : AND.W #$00FF 
     CLC : ADC.W #$0008 : STA.W $0F9C 
     PLX 
     LDA.W $0F8A : ORA.W #$0002 : STA.W $0F8A 
@@ -1183,8 +1175,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
 
 
 .notGrappled:
-    LDA.W $05E5 
-    AND.W #$00FF 
+    LDA.W $05E5 : AND.W #$00FF 
     BNE .noSpank 
     LDA.W #$0040 : STA.L $7E7818 
     LDA.W #Function_DraygonBody_GrabbedSamus_TailWhip : STA.W $0FA8 
@@ -1202,8 +1193,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     LDA.L $7E7810 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC : ADC.L $7E780E : STA.W $0F7E 
-    LDA.W $0FA4,X 
-    AND.W #$0007 
+    LDA.W $0FA4,X : AND.W #$0007 
     BNE .noFoam 
     LDA.W $0F7A : SEC : SBC.W #$0020 : STA.B $12 
     LDA.L $7E8000 
@@ -1317,8 +1307,7 @@ Function_DraygonBody_GrabbedSamus_FlyStraightUp:
 
 Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     LDX.W $0E54 ; >.<
-    LDA.W $0FA4,X 
-    AND.W #$000F 
+    LDA.W $0FA4,X : AND.W #$000F 
     BNE .noFoam 
     LDA.W $0F7A : SEC : SBC.W #$0020 : STA.B $12 
     LDA.L $7E8000 
@@ -1436,14 +1425,12 @@ Function_DraygonBody_DeathSequence_BuriedByEvirs:
 HandleDyingDraygonSmoke:
     PHY 
     PHX 
-    LDA.W $05B6 
-    AND.W #$0007 
+    LDA.W $05B6 : AND.W #$0007 
     BNE .return 
     JSL.L GenerateRandomNumber 
     AND.W #$007F 
     CLC : ADC.W #$00C0 : STA.B $12 
-    LDA.W $05E5 
-    AND.W #$3F00 
+    LDA.W $05E5 : AND.W #$3F00 
     XBA 
     CLC : ADC.W #$0190 : STA.B $14 
     LDA.W #$0015 : STA.B $16 
@@ -1457,8 +1444,7 @@ HandleDyingDraygonSmoke:
 
 
 HandleShortDraygonBreathBubbles:
-    LDA.W $0FA4,X 
-    AND.W #$007F 
+    LDA.W $0FA4,X : AND.W #$007F 
     BNE .return 
     LDA.W $0F7A : CLC : ADC.W #$FFF0 : STA.B $12 
     LDA.W $0F7E : CLC : ADC.W #$FFF0 : STA.B $14 
@@ -1756,8 +1742,7 @@ HurtAI_Draygon:
     LDA.W $0A64 
     BIT.W #$0001 
     BEQ .return 
-    LDA.W $0FA4 
-    AND.W #$0007 
+    LDA.W $0FA4 : AND.W #$0007 
     BNE .return 
     LDA.W $0F8C : SEC : SBC.W #$0100 : BPL .grappleDamage 
     LDA.W #$0000 
@@ -1937,12 +1922,10 @@ Inst_Draygon_SpawnDyingDraygonSpriteObject_BreathBubbles:
 
 GenerateRandomDyingDraygonSpriteObjectPosition:
     JSL.L GenerateRandomNumber 
-    LDA.W $05E5 
-    AND.W #$007F 
+    LDA.W $05E5 : AND.W #$007F 
     SEC : SBC.W #$0040 : STA.B $12 
     LDA.W $0F7A : CLC : ADC.B $12 : STA.B $12 
-    LDA.W $05E5 
-    AND.W #$7F00 
+    LDA.W $05E5 : AND.W #$7F00 
     XBA 
     SEC : SBC.W #$0040 : STA.B $14 
     LDA.W $0F7E : CLC : ADC.B $14 : STA.B $14 
@@ -3147,12 +3130,10 @@ HandleDraygonFightIntroDance:
     LDA.W DraygonFightIntroDanceData_KeikoLove,Y 
     CMP.W #$8080 
     BEQ .deleteSpriteObject 
-    LDA.W DraygonFightIntroDanceData_KeikoLove,Y 
-    AND.W #$00FF 
+    LDA.W DraygonFightIntroDanceData_KeikoLove,Y : AND.W #$00FF 
     JSL.L Sign_Extend_A 
     CLC : ADC.L $7EF0F8,X : STA.L $7EF0F8,X 
-    LDA.W DraygonFightIntroDanceData_KeikoLove+1,Y 
-    AND.W #$00FF 
+    LDA.W DraygonFightIntroDanceData_KeikoLove+1,Y : AND.W #$00FF 
     JSL.L Sign_Extend_A 
     CLC : ADC.L $7EF1F8,X : STA.L $7EF1F8,X 
 
@@ -6100,8 +6081,7 @@ MainAI_DraygonEye:
 
 
 Function_DraygonEye_FacingLeft:
-    LDA.W $0FA4,X 
-    AND.W #$007F 
+    LDA.W $0FA4,X : AND.W #$007F 
     BNE .nonZeroCounter 
     LDA.W $0FBA : SEC : SBC.W #$0018 : STA.B $12 
     LDA.W $0FBE : SEC : SBC.W #$0020 : STA.B $14 
@@ -6144,8 +6124,7 @@ Function_DraygonEye_FacingLeft:
 
 
 Function_DraygonEye_FacingRight:
-    LDA.W $0FA4,X 
-    AND.W #$007F 
+    LDA.W $0FA4,X : AND.W #$007F 
     BNE .nonZeroCounter 
     LDA.W $0F7A : CLC : ADC.W #$0018 : STA.B $12 
     LDA.W $0F7E : SEC : SBC.W #$0020 : STA.B $14 
@@ -7204,12 +7183,10 @@ Instruction_SporeSpawn_SpawnHardeningDustCloud:
     PHY 
     PHX 
     JSL.L GenerateRandomNumber 
-    LDA.W $05E5 
-    AND.W #$007F 
+    LDA.W $05E5 : AND.W #$007F 
     SEC : SBC.W #$0040 : STA.B $12 
     LDA.W $0F7A : CLC : ADC.B $12 : STA.B $12 
-    LDA.W $05E5 
-    AND.W #$7F00 
+    LDA.W $05E5 : AND.W #$7F00 
     XBA 
     SEC : SBC.W #$0040 : STA.B $14 
     LDA.W $0F7E : CLC : ADC.B $14 : STA.B $14 
@@ -7227,12 +7204,10 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
     PHY 
     PHX 
     JSL.L GenerateRandomNumber 
-    LDA.W $05E5 
-    AND.W #$007F 
+    LDA.W $05E5 : AND.W #$007F 
     SEC : SBC.W #$0040 : STA.B $12 
     LDA.W $0F7A : CLC : ADC.B $12 : STA.B $12 
-    LDA.W $05E5 
-    AND.W #$3F00 
+    LDA.W $05E5 : AND.W #$3F00 
     XBA 
     SEC : SBC.W #$0020 : STA.B $14 
     LDA.W $0F7E : CLC : ADC.B $14 : STA.B $14 
@@ -7249,15 +7224,12 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
 SpawnSporeSpawnCeilingDustCloud:
     PHY 
     PHX 
-    LDA.W $05B6 
-    AND.W #$000F 
+    LDA.W $05B6 : AND.W #$000F 
     BNE .return 
     JSL.L GenerateRandomNumber 
-    LDA.W $05E5 
-    AND.W #$003F 
+    LDA.W $05E5 : AND.W #$003F 
     CLC : ADC.W #$0060 : STA.B $12 
-    LDA.W $05E5 
-    AND.W #$0F00 
+    LDA.W $05E5 : AND.W #$0F00 
     XBA 
     CLC : ADC.W #$01E0 : STA.B $14 
     LDA.W #$0015 : STA.B $16 
@@ -7300,8 +7272,7 @@ InitAI_SporeSpawn:
     LDA.W $0F7E,X : STA.W $0FAE,X 
     STZ.W $0FB2,X 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    AND.W #$0002 
+    LDA.L $7ED828,X : AND.W #$0002 
     BEQ .alive 
     LDA.W #InstList_SporeSpawn_Initial_Dead : STA.W $0F92 
     LDA.W #RTS_A5EB1A : STA.W $0FA8 

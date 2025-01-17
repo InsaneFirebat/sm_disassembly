@@ -439,13 +439,11 @@ InitAI_Boyon:
     LDA.W #Spritemap_CommonA2_Nothing : STA.W $0F8E,X 
     JSR.W SetBoyonInstList 
     LDA.W #$0001 : STA.L $7E7802,X 
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
+    LDA.W $0FB4,X : AND.W #$00FF 
     ASL A 
     TAY 
     LDA.W BoyonData_speedMultipliers,Y : STA.W $0FA8,X 
-    LDA.W $0FB5,X 
-    AND.W #$00FF 
+    LDA.W $0FB5,X : AND.W #$00FF 
     ASL A 
     TAY 
     LDA.W BoyonData_jumpHeights,Y : STA.W $0FAC,X 
@@ -1400,8 +1398,7 @@ SleepingMamaTurtleShellShape:
 
 Function_MamaTurtle_LeaveShell:
     JSR.W MamaTurtle_vs_Samus_CollisionDetection 
-    LDA.W $05B5 
-    AND.W #$0001 
+    LDA.W $05B5 : AND.W #$0001 
     BNE .return 
     PHX 
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow 
@@ -1680,8 +1677,7 @@ Function_BabyTurtle_Hiding_NotCarryingSamus:
     LDA.W #InstList_BabyTurtle_Spinning : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #$0001 : STA.L $7E7808,X 
-    LDA.W $0A1E 
-    AND.W #$000F 
+    LDA.W $0A1E : AND.W #$000F 
     LDY.W BabyTurtleConstants_maxSpinningLeftVelocity 
     CMP.W #$0008 
     BNE .keepLeft 
@@ -2925,8 +2921,7 @@ PuyoMovement:
 
 .positiveIndex:
     LDY.W $0FB2,X 
-    LDA.W PuyoHopTable_XSpeed,Y 
-    AND.W #$FF00 
+    LDA.W PuyoHopTable_XSpeed,Y : AND.W #$FF00 
     XBA 
     STA.B $14 
     STZ.B $12 
@@ -3137,19 +3132,16 @@ Function_Puyo_Airborne_GiantHop:
 Function_Puyo_Airborne_Dropping:
     LDX.W $0E54 
     LDY.W $0FB2,X 
-    LDA.W PuyoHopTable_YSpeedTableIndexDelta,Y 
-    AND.W #$FF00 
+    LDA.W PuyoHopTable_YSpeedTableIndexDelta,Y : AND.W #$FF00 
     XBA 
     STA.B $14 
-    LDA.W PuyoHopTable_YSpeedTableIndexDelta,Y 
-    AND.W #$00FF 
+    LDA.W PuyoHopTable_YSpeedTableIndexDelta,Y : AND.W #$00FF 
     XBA 
     STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .return 
     JSR.W GetRandomNumber0_7 
-    LDA.B $1C 
-    AND.W #$0001 
+    LDA.B $1C : AND.W #$0001 
     CLC : ADC.W #$0005 : STA.L $7E7800,X 
     LDA.W #Function_Puyo_Grounded : STA.W $0FAE,X 
 
@@ -3359,8 +3351,7 @@ CacatacFunctionPointers:
 InitAI_Cacatac:
     LDX.W $0E54 
     LDA.W #Spritemap_CommonA2_Nothing : STA.W $0F8E,X 
-    LDA.W $0FB5,X 
-    AND.W #$00FF 
+    LDA.W $0FB5,X : AND.W #$00FF 
     BEQ .upsideDown 
     JSR.W SetCacatacInstList_UpsideUp_Idling 
     BRA + 
@@ -3373,14 +3364,12 @@ InitAI_Cacatac:
     ASL A 
     TAY 
     LDA.W CacatacFunctionPointers,Y : STA.W $0FB2,X 
-    LDA.W $0FB6,X 
-    AND.W #$00FF 
+    LDA.W $0FB6,X : AND.W #$00FF 
     ASL A 
     TAY 
     LDA.W $0F7A,X : CLC : ADC.W CacatacMaxTravelDistances,Y : STA.L $7E7802,X 
     LDA.W $0F7A,X : SEC : SBC.W CacatacMaxTravelDistances,Y : STA.L $7E7800,X 
-    LDA.W $0FB7,X 
-    AND.W #$00FF 
+    LDA.W $0FB7,X : AND.W #$00FF 
     ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W $0FAA,X 
@@ -3441,8 +3430,7 @@ MaybeMakeCacatacAttack:
     CMP.W #$0003 
     BPL .return 
     LDA.W #RTS_A2A01B : STA.W $0FB2,X 
-    LDA.W $0FB5,X 
-    AND.W #$00FF 
+    LDA.W $0FB5,X : AND.W #$00FF 
     BEQ .keepUpsideUp 
     JSR.W SetCacatacInstList_UpsideUp_Attacking 
     BRA .return 
@@ -3904,22 +3892,19 @@ InitAI_Owtch:
     TAX 
     JSR.W (OwtchConstants_initAIPointers,X) 
     LDX.W $0E54 
-    LDA.W $0FB6,X 
-    AND.W #$00FF 
+    LDA.W $0FB6,X : AND.W #$00FF 
     ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W $0FAA,X 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W $0FA8,X 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W $0FAE,X 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W $0FAC,X 
-    LDA.W $0FB7,X 
-    AND.W #$00FF 
+    LDA.W $0FB7,X : AND.W #$00FF 
     ASL A 
     TAY 
     LDA.W $0F7A,X : CLC : ADC.W OwtchConstants_XDistanceRanges,Y : STA.L $7E7804,X 
     LDA.W $0F7A,X : SEC : SBC.W OwtchConstants_XDistanceRanges,Y : STA.L $7E7802,X 
-    LDA.W $0FB5,X 
-    AND.W #$00FF 
+    LDA.W $0FB5,X : AND.W #$00FF 
     ASL A 
     TAY 
     LDA.W OwtchConstants_undergroundTimers,Y : STA.L $7E7800,X 
@@ -4009,8 +3994,7 @@ Function_Owtch_3_Sinking:
     CMP.W #$0010 
     BMI .return 
     LDA.W #$0002 : STA.W $0FB0,X 
-    LDA.W $0FB5,X 
-    AND.W #$00FF 
+    LDA.W $0FB5,X : AND.W #$00FF 
     ASL A 
     TAY 
     LDA.W OwtchConstants_undergroundTimers,Y : STA.L $7E7800,X 
@@ -4281,8 +4265,7 @@ ProcessShipHover:
     ASL A 
     TAY 
     LDA.W .timer,Y : AND.W #$00FF : STA.W $0FAE,X 
-    LDA.W .YVelocity,Y 
-    AND.W #$00FF 
+    LDA.W .YVelocity,Y : AND.W #$00FF 
     BIT.W #$0080 
     BEQ + 
     ORA.W #$FF00 
@@ -4457,8 +4440,7 @@ Function_Ship_Idle_HandleLettingSamusEnter:
     LDA.W $0F7E,X 
     CMP.W $0AFA 
     BMI .return 
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     BNE .return 
     LDA.B $8F 
     BIT.W #$0400 
@@ -5136,8 +5118,7 @@ InitAI_Mellow_Mella_Menu:
 MoveFlyAccordingToAngle:
     TXY 
     LDX.W $0FB0,Y 
-    LDA.L SineCosineTables_8bitSine_SignExtended-1,X 
-    AND.W #$FF00 
+    LDA.L SineCosineTables_8bitSine_SignExtended-1,X : AND.W #$FF00 
     CLC : ADC.W $0F7C,Y : STA.W $0F7C,Y 
     LDA.L SineCosineTables_8bitSine_SignExtended,X 
     XBA 
@@ -5150,8 +5131,7 @@ MoveFlyAccordingToAngle:
     AND.W #$00FF 
 
   + ADC.W $0F7A,Y : STA.W $0F7A,Y 
-    LDA.L SineCosineTables_NegativeCosine_SignExtended-1,X 
-    AND.W #$FF00 
+    LDA.L SineCosineTables_NegativeCosine_SignExtended-1,X : AND.W #$FF00 
     CLC : ADC.W $0F80,Y : STA.W $0F80,Y 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
     XBA 
@@ -5169,8 +5149,7 @@ MoveFlyAccordingToAngle:
 
 
 MoveFlyAccordingToVelocities:
-    LDA.W $0FA9,X 
-    AND.W #$FF00 
+    LDA.W $0FA9,X : AND.W #$FF00 
     CLC : ADC.W $0F7C,X : STA.W $0F7C,X 
     LDA.W $0FAA,X 
     XBA 
@@ -5183,8 +5162,7 @@ MoveFlyAccordingToVelocities:
     AND.W #$00FF 
 
   + ADC.W $0F7A,X : STA.W $0F7A,X 
-    LDA.W $0FAB,X 
-    AND.W #$FF00 
+    LDA.W $0FAB,X : AND.W #$FF00 
     CLC : ADC.W $0F80,X : STA.W $0F80,X 
     LDA.W $0FAC,X 
     XBA 
@@ -6057,8 +6035,7 @@ DeleteAndRespawnRinka:
 DecrementRinkaCounter:
     LDA.W $0FB4,X 
     BEQ .return 
-    LDA.W $0F86,X 
-    AND.W #$0100 
+    LDA.W $0F86,X : AND.W #$0100 
     BNE .return 
     LDA.L $7E783C 
     DEC A 
@@ -6074,8 +6051,7 @@ DecrementRinkaCounter:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Rinka_A2B89C:
-    LDA.W $0E44 
-    AND.W #$0003 
+    LDA.W $0E44 : AND.W #$0003 
     CMP.W $0FB4,X 
     BNE .setAsIntangible 
     LDA.W $0F86,X : AND.W #$FBFF : STA.W $0F86,X 
@@ -6172,8 +6148,7 @@ EnemyShot_Rinka:
 
 
 PowerBombReaction_Rinka:
-    LDA.W $0F86,X 
-    AND.W #$0100 
+    LDA.W $0F86,X : AND.W #$0100 
     BEQ .notInvisible 
     RTL 
 
@@ -6910,8 +6885,7 @@ Function_Squeept_Flame:
 
 
 Function_Squeept_Jump:
-    LDA.W $05E6 
-    AND.W #$0006 
+    LDA.W $05E6 : AND.W #$0006 
     TAY 
     LDA.W SqueeptInitialYVelocities,Y : STA.W $0FAC,X 
     LDA.W #Function_Squeept_Rising : STA.W $0FB2,X 
@@ -6922,8 +6896,7 @@ Function_Squeept_Jump:
 
 
 Function_Squeept_Rising:
-    LDA.W $0FAB,X 
-    AND.W #$FF00 
+    LDA.W $0FAB,X : AND.W #$FF00 
     CLC : ADC.W $0F80,X : STA.W $0F80,X 
     LDA.W $0FAC,X 
     XBA 
@@ -6950,8 +6923,7 @@ Function_Squeept_Rising:
 
 
 Function_Squeept_Flipping:
-    LDA.W $0FAB,X 
-    AND.W #$FF00 
+    LDA.W $0FAB,X : AND.W #$FF00 
     CLC : ADC.W $0F80,X : STA.W $0F80,X 
     LDA.W $0FAC,X 
     XBA 
@@ -6977,8 +6949,7 @@ Function_Squeept_Flipping:
 
 
 Function_Squeept_Falling:
-    LDA.W $0FAB,X 
-    AND.W #$FF00 
+    LDA.W $0FAB,X : AND.W #$FF00 
     CLC : ADC.W $0F80,X : STA.W $0F80,X 
     LDA.W $0FAC,X 
     XBA 
@@ -7372,8 +7343,7 @@ Function_Geruta_Flames:
 
 
 Function_Geruta_Idle:
-    LDA.W $05E5 
-    AND.W #$0101 
+    LDA.W $05E5 : AND.W #$0101 
     BEQ + 
     LDA.W #$00C0 
     JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
@@ -7955,8 +7925,7 @@ Function_Holtz_Flames:
 
 
 Function_Holtz_Idle:
-    LDA.W $05E5 
-    AND.W #$0101 
+    LDA.W $05E5 : AND.W #$0101 
     BEQ .quarterChancestayIdle 
     LDA.W #$0070 
     JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
@@ -8712,8 +8681,7 @@ StopIfSamusIsPressingTowardsOum:
     BEQ .return 
     LDA.W $0F7A,X : SEC : SBC.L $7E780C,X : BEQ .stationary 
     BMI .checkPressingRight 
-    LDA.B $8B 
-    AND.W #$0200 
+    LDA.B $8B : AND.W #$0200 
     BEQ .return 
     LDA.W #$0001 : STA.L $7E7816,X 
     LDA.L $7E780C,X : STA.W $0F7A,X 
@@ -8721,8 +8689,7 @@ StopIfSamusIsPressingTowardsOum:
 
 
 .checkPressingRight:
-    LDA.B $8B 
-    AND.W #$0100 
+    LDA.B $8B : AND.W #$0100 
     BEQ .return 
     LDA.W #$0001 : STA.L $7E7816,X 
     LDA.L $7E780C,X : STA.W $0F7A,X 
@@ -8734,8 +8701,7 @@ StopIfSamusIsPressingTowardsOum:
     BEQ .SamusIsToTheRight 
     LDA.W $0FAE,X 
     BEQ .return 
-    LDA.B $8B 
-    AND.W #$0100 
+    LDA.B $8B : AND.W #$0100 
     BEQ .return 
     BRA + 
 
@@ -8743,8 +8709,7 @@ StopIfSamusIsPressingTowardsOum:
 .SamusIsToTheRight:
     LDA.W $0FAE,X 
     BNE .return 
-    LDA.B $8B 
-    AND.W #$0200 
+    LDA.B $8B : AND.W #$0200 
     BEQ .return 
 
   + LDA.W #$0001 : STA.L $7E7816,X 
@@ -8826,8 +8791,7 @@ Function_Oum_Rolling:
 
 .SamusToTheRight:
     LDA.W #$0080 : STA.W $0FAC,X 
-    LDA.L $7E7800,X 
-    AND.W #$0001 
+    LDA.L $7E7800,X : AND.W #$0001 
     ORA.W #$0004 
     STA.L $7E7800,X 
     JSR.W SetOumInstList 
@@ -9970,8 +9934,7 @@ InitAI_Choot:
     LDA.W #Function_Choot_WaitForSamusToGetNear : STA.W $0FA8,X 
     LDA.W $0F7A,X : STA.L $7E7800,X 
     LDA.W $0F7E,X : STA.L $7E7802,X 
-    LDA.W $0FB5,X 
-    AND.W #$00FF 
+    LDA.W $0FB5,X : AND.W #$00FF 
     ASL A 
     TAY 
     LDA.W ChootFallingPatternDataPointers_offsets,Y : STA.W $0FB0,X 
@@ -10063,8 +10026,7 @@ Function_Choot_PrepareToJump:
 
 Function_Choot_Jumping:
     LDX.W $0E54 
-    LDA.W $0FAA,X 
-    AND.W #$FF00 
+    LDA.W $0FAA,X : AND.W #$FF00 
     XBA 
     ASL #3
     TAY 
@@ -10080,8 +10042,7 @@ Function_Choot_Jumping:
     LDA.L $7E7806,X : STA.W $0F7E,X 
     STA.L $7E780A,X 
     STZ.W $0FAC,X 
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
+    LDA.W $0FB4,X : AND.W #$00FF 
     DEC A 
     STA.W $0FAE,X 
     LDA.W #InstList_Choot_Falling 
@@ -10094,8 +10055,7 @@ Function_Choot_Jumping:
 
 Function_Choot_Falling:
     LDX.W $0E54 
-    LDA.W $0FAC,X 
-    AND.W #$FF00 
+    LDA.W $0FAC,X : AND.W #$FF00 
     XBA 
     ASL #2
     CLC : ADC.W $0FB0,X : TAY 
@@ -10207,8 +10167,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 InitAI_GRipper:
     LDX.W $0E54 
-    LDA.W $0F92,X 
-    AND.W #$00FF 
+    LDA.W $0F92,X : AND.W #$00FF 
     ASL #3
     STA.W $0FB0,X 
     TAY 
@@ -11185,8 +11144,7 @@ InitAI_ShutterGrowing:
   + STZ.W $0F88,X 
     STZ.W $0FB2,X 
     LDA.W #InstList_Shutter_GrowthLevel0 : STA.W $0F92,X 
-    LDA.W $0FB6,X 
-    AND.W #$00FF 
+    LDA.W $0FB6,X : AND.W #$00FF 
     ASL #2
     TAY 
     LDA.W .YSpeed,Y : STA.L $7E7800,X 
@@ -11615,8 +11573,7 @@ MainAI_ShutterShootable_ShutterDestroyable_Kamer:
   + LDA.W $0FA8,X 
     CMP.W #Function_Kamer_MovingDown 
     BEQ .return 
-    LDA.W $182C 
-    AND.W $182E 
+    LDA.W $182C : AND.W $182E 
     AND.W $1830 
     AND.W $1832 
     CMP.W #$FFFF 
@@ -11933,8 +11890,7 @@ MainAI_ShutterHorizShootable:
     LDA.W $0FA8,X 
     CMP.W #Function_HorizontalShutter_MovingRight 
     BEQ + 
-    LDA.W $182C 
-    AND.W $182E 
+    LDA.W $182C : AND.W $182E 
     AND.W $1830 
     AND.W $1832 
     CMP.W #$FFFF 
@@ -12082,8 +12038,7 @@ Function_HorizontalShutter_MovingRight:
 EjectSamusIfPressingRight:
     LDA.L $7E7826,X 
     BEQ .return 
-    LDA.B $8B 
-    AND.W #$0100 
+    LDA.B $8B : AND.W #$0100 
     BEQ .return 
     LDA.W $0B58 : CLC : ADC.W #$FFFC : STA.W $0B58 
     STZ.W $0B5A 
@@ -12095,8 +12050,7 @@ EjectSamusIfPressingRight:
 EjectSamusIfPressingLeft:
     LDA.L $7E7826,X 
     BEQ .return 
-    LDA.B $8B 
-    AND.W #$0200 
+    LDA.B $8B : AND.W #$0200 
     BEQ .return 
     LDA.W $0B58 : CLC : ADC.W #$0004 : STA.W $0B58 
     STZ.W $0B5A 
@@ -12150,8 +12104,7 @@ EnemyTouch_HorizShootableShutter:
     LDA.W $0AF6 
     CMP.W $0F7A,X 
     BPL .checkPressingLeft 
-    LDA.B $8B 
-    AND.W #$0100 
+    LDA.B $8B : AND.W #$0100 
     BEQ .return 
     LDA.W #$FFFC : STA.W $0B58 
     STZ.W $0B5A 
@@ -12159,8 +12112,7 @@ EnemyTouch_HorizShootableShutter:
 
 
 .checkPressingLeft:
-    LDA.B $8B 
-    AND.W #$0200 
+    LDA.B $8B : AND.W #$0200 
     BEQ .return 
     LDA.W #$0004 : STA.W $0B58 
     STZ.W $0B5A 

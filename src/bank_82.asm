@@ -967,8 +967,7 @@ MainGameLoop:
     STZ.W $071D 
     STZ.W $071F 
     STZ.W $0721 
-    LDA.W $0998 
-    AND.W #$00FF 
+    LDA.W $0998 : AND.W #$00FF 
     ASL A 
     TAX 
     JSR.W (.gamemodes,X) 
@@ -1182,8 +1181,7 @@ ResetSoundQueues:
 ShowSpareCPUDebug_UpdatePrevCtrl1Input:
     PHP 
     REP #$30 
-    LDA.W $05C5 
-    AND.W #$4000 
+    LDA.W $05C5 : AND.W #$4000 
     BEQ + 
     LDA.W $0DF4 
     BNE .clearFlag 
@@ -1197,8 +1195,7 @@ ShowSpareCPUDebug_UpdatePrevCtrl1Input:
   + LDA.W $0DF4 
     BEQ .return 
     SEP #$20 
-    LDA.B $51 
-    AND.B #$F0 
+    LDA.B $51 : AND.B #$F0 
     ORA.B #$05 
     STA.W $2100 
     REP #$20 
@@ -1509,8 +1506,7 @@ GameState_C_Pausing_NormalGameplayDarkening:
     REP #$30 
     JSR.W GameState_8_MainGameplay 
     JSL.L HandleFadingOut 
-    LDA.B $51 
-    AND.W #$000F 
+    LDA.B $51 : AND.W #$000F 
     BNE .return 
     JSL.L EnableNMI 
     STZ.W $0723 
@@ -1808,8 +1804,7 @@ Setup_MapScrolling_for_FileSelectMap:
     JSR.W DetermineMapScrollLimits 
     LDA.W $05AE : SEC : SBC.W $05AC : LSR A 
     CLC : ADC.W $05AC : SEC : SBC.W #$0080 : STA.B $B1 
-    LDA.W $0AF6 
-    AND.W #$FF00 
+    LDA.W $0AF6 : AND.W #$FF00 
     XBA 
     CLC : ADC.W $07A1 : ASL #3
     SEC : SBC.B $B1 : STA.B $12 
@@ -2087,8 +2082,7 @@ MapScrolling_Left:
 MapScrolling_Common:
     INC.W $05FF 
     INC.W $05FF 
-    LDA.W $05FF 
-    AND.W #$000F 
+    LDA.W $05FF : AND.W #$000F 
     BNE .return 
     LDA.W #$0036 
     JSL.L QueueSound_Lib1_Max6 
@@ -2273,8 +2267,7 @@ LoadPauseMenuMapTilemap:
     LDA.W #$0082 : STA.B $08 
     LDA.L MapData_pointers,X : STA.B $06 
     LDX.W $079F 
-    LDA.L $7ED908,X 
-    AND.W #$00FF 
+    LDA.L $7ED908,X : AND.W #$00FF 
     BNE .mapCollected 
     SEP #$20 
     LDY.W #$0000 
@@ -2391,8 +2384,7 @@ DrawRoomSelectMap:
     LDA.W #$0082 : STA.B $08 
     LDA.L MapData_pointers,X : STA.B $06 
     LDX.W $079F 
-    LDA.L $7ED908,X 
-    AND.W #$00FF 
+    LDA.L $7ED908,X : AND.W #$00FF 
     BNE .mapCollected 
     SEP #$20 
     LDY.W #$0000 
@@ -2484,8 +2476,7 @@ DrawRoomSelectMap:
     LDA.W #$1000 : STA.B $D0,X 
     LDA.W #$3000 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 
-    LDA.B $58 
-    AND.W #$00FC 
+    LDA.B $58 : AND.W #$00FC 
     XBA 
     STA.B $D5,X 
     TXA 
@@ -3031,8 +3022,7 @@ SetupMapScrollingForPauseMenu:
     STA.B $14 
     LDA.W $05AE : SEC : SBC.W $05AC : LSR A 
     CLC : ADC.W $05AC : SEC : SBC.W #$0080 : STA.B $B1 
-    LDA.W $0AF6 
-    AND.W #$FF00 
+    LDA.W $0AF6 : AND.W #$FF00 
     XBA 
     CLC : ADC.W $07A1 : ASL #3
     SEC : SBC.B $B1 : STA.B $12 
@@ -3499,8 +3489,7 @@ Copy_Bytes_of_Palette_from_7E_to_12:
     LDY.W #$0000 
 
 .loop:
-    LDA.B [$00],Y 
-    AND.W #$E3FF 
+    LDA.B [$00],Y : AND.W #$E3FF 
     ORA.B $12 
     STA.B [$00],Y 
     INY #2
@@ -3631,8 +3620,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Change_Pose_Due_to_Equipment_Change:
     PHP 
     REP #$30 
-    LDA.W $0A1F 
-    AND.W #$00FF 
+    LDA.W $0A1F : AND.W #$00FF 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
@@ -3707,8 +3695,7 @@ ChangePose_DueTo_EquipmentChange_SpinJumping:
     BNE .return 
 
 .merge:
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
     LDA.W #$0019 : STA.W $0A1C 
@@ -3733,8 +3720,7 @@ Change_Pose_due_to_Equipment_Change_MovementTypes_7_9:
     LDA.W $09A2 
     BIT.W #$0004 
     BNE .return 
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
     LDA.W #$001D : STA.W $0A1C 
@@ -3759,8 +3745,7 @@ ChangePose_DueTo_EquipmentChange_MorphBall:
     LDA.W $09A2 
     BIT.W #$0002 
     BEQ .return 
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
     LDA.W #$0079 : STA.W $0A1C 
@@ -3785,8 +3770,7 @@ ChangePose_DueTo_EquipmentChange_SpringBall:
     LDA.W $09A2 
     BIT.W #$0002 
     BNE .return 
-    LDA.W $0A1E 
-    AND.W #$00FF 
+    LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
     LDA.W #$001D : STA.W $0A1C 
@@ -3973,8 +3957,7 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     LDX.W #$0000 
 
 .loopTopMAP:
-    LDA.L $7E364A,X 
-    AND.W #$E3FF 
+    LDA.L $7E364A,X : AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E364A,X 
     INX #2
@@ -3987,8 +3970,7 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     LDX.W #$0000 
 
 .loopBottomMAP:
-    LDA.L $7E368A,X 
-    AND.W #$E3FF 
+    LDA.L $7E368A,X : AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E368A,X 
     INX #2
@@ -4001,8 +3983,7 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     LDX.W #$0000 
 
 .loopTopEXIT:
-    LDA.L $7E3658,X 
-    AND.W #$E3FF 
+    LDA.L $7E3658,X : AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3658,X 
     INX #2
@@ -4015,8 +3996,7 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     LDX.W #$0000 
 
 .loopBottomEXIT:
-    LDA.L $7E3698,X 
-    AND.W #$E3FF 
+    LDA.L $7E3698,X : AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3698,X 
     INX #2
@@ -4029,8 +4009,7 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     LDX.W #$0000 
 
 .loopTopSAMUS:
-    LDA.L $7E366C,X 
-    AND.W #$E3FF 
+    LDA.L $7E366C,X : AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E366C,X 
     INX #2
@@ -4043,8 +4022,7 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     LDX.W #$0000 
 
 .loopBottomSAMUS:
-    LDA.L $7E36AC,X 
-    AND.W #$E3FF 
+    LDA.L $7E36AC,X : AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E36AC,X 
     INX #2
@@ -4062,8 +4040,7 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     LDX.W #$0000 
 
 .loopTopEXIT:
-    LDA.L $7E3658,X 
-    AND.W #$E3FF 
+    LDA.L $7E3658,X : AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3658,X 
     INX #2
@@ -4076,8 +4053,7 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     LDX.W #$0000 
 
 .loopBottomEXIT:
-    LDA.L $7E3698,X 
-    AND.W #$E3FF 
+    LDA.L $7E3698,X : AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3698,X 
     INX #2
@@ -4090,8 +4066,7 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     LDX.W #$0000 
 
 .loopTopMAP:
-    LDA.L $7E364A,X 
-    AND.W #$E3FF 
+    LDA.L $7E364A,X : AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E364A,X 
     INX #2
@@ -4104,8 +4079,7 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     LDX.W #$0000 
 
 .loopBottomMAP:
-    LDA.L $7E368A,X 
-    AND.W #$E3FF 
+    LDA.L $7E368A,X : AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E368A,X 
     INX #2
@@ -4118,8 +4092,7 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     LDX.W #$0000 
 
 .loopTopSAMUS:
-    LDA.L $7E366C,X 
-    AND.W #$E3FF 
+    LDA.L $7E366C,X : AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E366C,X 
     INX #2
@@ -4132,8 +4105,7 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     LDX.W #$0000 
 
 .loopBottomSAMUS:
-    LDA.L $7E36AC,X 
-    AND.W #$E3FF 
+    LDA.L $7E36AC,X : AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E36AC,X 
     INX #2
@@ -4151,8 +4123,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     LDX.W #$0000 
 
 .loopTopSAMUS:
-    LDA.L $7E366C,X 
-    AND.W #$E3FF 
+    LDA.L $7E366C,X : AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E366C,X 
     INX #2
@@ -4165,8 +4136,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     LDX.W #$0000 
 
 .loopBottomSAMUS:
-    LDA.L $7E36AC,X 
-    AND.W #$E3FF 
+    LDA.L $7E36AC,X : AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E36AC,X 
     INX #2
@@ -4179,8 +4149,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     LDX.W #$0000 
 
 .loopTopEXIT:
-    LDA.L $7E3658,X 
-    AND.W #$E3FF 
+    LDA.L $7E3658,X : AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3658,X 
     INX #2
@@ -4193,8 +4162,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     LDX.W #$0000 
 
 .loopBottomEXIT:
-    LDA.L $7E3698,X 
-    AND.W #$E3FF 
+    LDA.L $7E3698,X : AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3698,X 
     INX #2
@@ -4207,8 +4175,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     LDX.W #$0000 
 
 .loopTopMAP:
-    LDA.L $7E364A,X 
-    AND.W #$E3FF 
+    LDA.L $7E364A,X : AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E364A,X 
     INX #2
@@ -4221,8 +4188,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     LDX.W #$0000 
 
 .loopBottomMAP:
-    LDA.L $7E368A,X 
-    AND.W #$E3FF 
+    LDA.L $7E368A,X : AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E368A,X 
     INX #2
@@ -4244,8 +4210,7 @@ Update_PauseMenu_L_R_Start_VRAMTilemap:
     LDA.B #$7E : STA.B $D0,X 
     REP #$20 
     INX 
-    LDA.B $59 
-    AND.W #$00FC 
+    LDA.B $59 : AND.W #$00FC 
     XBA 
     CLC : ADC.W #$0320 : STA.B $D0,X 
     INX #2
@@ -4287,8 +4252,7 @@ Draw_PauseScreen_SpriteAnimation:
     ASL A 
     CLC : ADC.W $0000,Y : STA.B $16 
     LDA.W PauseScreen_SpriteAnimationData_data,X : CLC : ADC.B $16 : TAY 
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     CMP.W #$00FF 
     BNE + 
     LDA.W PauseScreen_SpriteAnimationData_frame,X 
@@ -4296,8 +4260,7 @@ Draw_PauseScreen_SpriteAnimation:
     LDA.W #$0000 : STA.W $0000,Y 
     LDA.W PauseScreen_SpriteAnimationData_data,X 
     TAY 
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
 
   + LDY.B $18 
     STA.W $0000,Y 
@@ -4320,8 +4283,7 @@ Draw_PauseScreen_SpriteAnimation:
     LDA.W $0000,Y : AND.W #$00FF : STA.B $18 
     LDA.W PauseScreen_SpriteAnimationData_mode,X 
     TAY 
-    LDA.W $0000,Y 
-    AND.W #$00FF 
+    LDA.W $0000,Y : AND.W #$00FF 
     ASL A 
     STA.B $1A 
     LDA.W AnimationSpritemapBaseIDPointers,X : CLC : ADC.B $1A : TAY 
@@ -4425,8 +4387,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     LDY.W #$0000 
 
 .loopTilemap:
-    LDA.L $7E3A8E,X 
-    AND.W #$FC00 
+    LDA.L $7E3A8E,X : AND.W #$FC00 
     ORA.B [$00],Y 
     STA.L $7E3A8E,X 
     INY #2
@@ -4538,8 +4499,7 @@ EquipmentScreen_TransferBG1Tilemap:
 EquipmentScreen_Main:
     PHP 
     REP #$30 
-    LDA.W $0755 
-    AND.W #$00FF 
+    LDA.W $0755 : AND.W #$00FF 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
@@ -4603,8 +4563,7 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     BNE .up 
     BIT.W #$0400 
     BEQ .exit 
-    LDA.W $0755 
-    AND.W #$FF00 
+    LDA.W $0755 : AND.W #$FF00 
     CMP.W #$0100 
     BEQ .moveToBeams 
     LDA.W $09C0 
@@ -4625,8 +4584,7 @@ EquipmentScreen_Main_Tanks_DPadResponse:
 
 
 .up:
-    LDA.W $0755 
-    AND.W #$FF00 
+    LDA.W $0755 : AND.W #$FF00 
     BEQ .return 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
@@ -4666,8 +4624,7 @@ EquipmentScreen_GlowingArrow_Animated:
     LDA.W $09C0 
     CMP.W #$0001 
     BNE .disableGlow 
-    LDA.W $05B5 
-    AND.W #$001F 
+    LDA.W $05B5 : AND.W #$001F 
     ASL A 
     TAX 
     LDA.W .palette6,X : STA.L $7EC0CC 
@@ -4714,8 +4671,7 @@ EquipmentScreen_Enable_EnergyArrowGlow:
     LDX.W #$0000 
 
 .loopVertical:
-    LDA.L $7E3902,X 
-    AND.W #$E3FF 
+    LDA.L $7E3902,X : AND.W #$E3FF 
     ORA.W #$1800 
     STA.L $7E3902,X 
     TXA 
@@ -4729,8 +4685,7 @@ EquipmentScreen_Enable_EnergyArrowGlow:
     LDX.W #$0000 
 
 .loopHorizontal:
-    LDA.L $7E3B02,X 
-    AND.W #$E3FF 
+    LDA.L $7E3B02,X : AND.W #$E3FF 
     ORA.W #$1800 
     STA.L $7E3B02,X 
     INX #2
@@ -4750,8 +4705,7 @@ EquipmentScreen_Disable_EnergyArrowGlow:
     LDX.W #$0000 
 
 .loopVertical:
-    LDA.L $7E3902,X 
-    AND.W #$E3FF 
+    LDA.L $7E3902,X : AND.W #$E3FF 
     ORA.W #$1C00 
     STA.L $7E3902,X 
     TXA 
@@ -4765,8 +4719,7 @@ EquipmentScreen_Disable_EnergyArrowGlow:
     LDX.W #$0000 
 
 .loopHorizontal:
-    LDA.L $7E3B02,X 
-    AND.W #$E3FF 
+    LDA.L $7E3B02,X : AND.W #$E3FF 
     ORA.W #$1C00 
     STA.L $7E3B02,X 
     INX #2
@@ -4798,8 +4751,7 @@ EquipmentScreen_Main_Tanks_Mode:
     LDX.W #$0000 
 
 .loopAuto:
-    LDA.L $7E3A8E,X 
-    AND.W #$FC00 
+    LDA.L $7E3A8E,X : AND.W #$FC00 
     ORA.L EquipmentScreenTilemaps_manual,X 
     STA.L $7E3A8E,X 
     INX #2
@@ -4818,8 +4770,7 @@ EquipmentScreen_Main_Tanks_Mode:
     LDX.W #$0000 
 
 .loopManual:
-    LDA.L $7E3A8E,X 
-    AND.W #$FC00 
+    LDA.L $7E3A8E,X : AND.W #$FC00 
     ORA.L EquipmentScreenTilemaps_auto,X 
     STA.L $7E3A8E,X 
     INX #2
@@ -4948,8 +4899,7 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     BNE .down 
     BIT.W #$0800 
     BEQ .return 
-    LDA.W $0755 
-    AND.W #$FF00 
+    LDA.W $0755 : AND.W #$FF00 
     BEQ .moveToReserve 
     LDA.W $0755 : SEC : SBC.W #$0100 : STA.W $0755 
     XBA 
@@ -5066,8 +5016,7 @@ EquipmentScreen_SuitsMisc_MoveResponse:
     BNE .up 
     BIT.W #$0400 
     BEQ .return 
-    LDA.W $0755 
-    AND.W #$FF00 
+    LDA.W $0755 : AND.W #$FF00 
     CMP.W #$0500 
     BEQ .moveToBoots 
     LDA.W $0755 : CLC : ADC.W #$0100 : STA.W $0755 
@@ -5086,8 +5035,7 @@ EquipmentScreen_SuitsMisc_MoveResponse:
 
 
 .up:
-    LDA.W $0755 
-    AND.W #$FF00 
+    LDA.W $0755 : AND.W #$FF00 
     BEQ .return 
     LDA.W $0755 : SEC : SBC.W #$0100 : STA.W $0755 
     XBA 
@@ -5139,8 +5087,7 @@ EquipmentScreen_Main_Boots_MoveResponse:
     BNE .down 
     BIT.W #$0800 
     BEQ .return 
-    LDA.W $0755 
-    AND.W #$FF00 
+    LDA.W $0755 : AND.W #$FF00 
     BEQ .moveToSuitsMisc 
     LDA.W $0755 : SEC : SBC.W #$0100 : STA.W $0755 
     XBA 
@@ -5196,8 +5143,7 @@ EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM:
 EquipmentScreen_WriteSamusWireframeTilemap:
     PHP 
     REP #$30 
-    LDA.W $09A2 
-    AND.W #$0101 
+    LDA.W $09A2 : AND.W #$0101 
     LDX.W #$0000 
 
 .loopSuit:
@@ -5248,8 +5194,7 @@ EquipmentScreen_DrawItemSelector:
     ORA.W $09A4 
     ORA.W $09D4 
     BEQ .return 
-    LDA.W $0755 
-    AND.W #$00FF 
+    LDA.W $0755 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.W EquipmentScreen_ItemSelectorPositions_pointers,X : STA.B $12 
@@ -5420,13 +5365,11 @@ EquipmentScreen_Main_DisplayReserves_PaletteSetup:
     STA.W $0743 
     ASL A 
     TAX 
-    LDA.W ReserveTank_AnimationData,X 
-    AND.W #$00FF 
+    LDA.W ReserveTank_AnimationData,X : AND.W #$00FF 
     CMP.W #$00FF 
     BNE .animationTimer 
     STZ.W $0743 
-    LDA.W ReserveTank_AnimationData 
-    AND.W #$00FF 
+    LDA.W ReserveTank_AnimationData : AND.W #$00FF 
 
 .animationTimer:
     STA.W $072F 
@@ -5655,8 +5598,7 @@ EquipmentScreen_Main_ButtonResponse:
 
   + LDA.W #$0038 
     JSL.L QueueSound_Lib1_Max6 
-    LDA.W $0755 
-    AND.W #$00FF 
+    LDA.W $0755 : AND.W #$00FF 
     ASL A 
     TAX 
     STA.B $1A 
@@ -6342,8 +6284,7 @@ Display_Map_Elevator_Destinations:
     PLB 
     LDA.W #$0000 : STA.B $03 
     LDX.W $079F 
-    LDA.L $7ED908,X 
-    AND.W #$00FF 
+    LDA.L $7ED908,X : AND.W #$00FF 
     BEQ .return 
     LDA.W $079F 
     ASL A 
@@ -6553,8 +6494,7 @@ Cancel_Sound_Effects:
 
 Queue_Samus_Movement_SoundEffects:
     REP #$30 
-    LDA.W $0B3E 
-    AND.W #$FF00 
+    LDA.W $0B3E : AND.W #$FF00 
     CMP.W #$0400 
     BNE + 
     LDA.W #$002B 
@@ -6585,8 +6525,7 @@ UNUSED_82BE5A:
     STZ.B $12 
 
 .loop:
-    LDA.B [$00],Y 
-    AND.W #$03FF 
+    LDA.B [$00],Y : AND.W #$03FF 
     CMP.W #$001F 
     BEQ .clc 
     SEC 
@@ -8588,11 +8527,9 @@ CalculateTheAth_TransitionalColor_fromXtoY:
     PHA 
     PHX 
     PHY 
-    LDA.B $01,S 
-    AND.W #$001F 
+    LDA.B $01,S : AND.W #$001F 
     TAY 
-    LDA.B $03,S 
-    AND.W #$001F 
+    LDA.B $03,S : AND.W #$001F 
     TAX 
     LDA.B $05,S 
     JSR.W CalculateTheAth_TransitionalColorComponent_fromXtoY 
@@ -9084,12 +9021,10 @@ Load_Door_Header:
     AND.W #$0080 
     STA.W $0E16 
     LDA.W $0003,X : AND.W #$00FF : STA.W $0791 
-    LDA.W $0006,X 
-    AND.W #$00FF 
+    LDA.W $0006,X : AND.W #$00FF 
     XBA 
     STA.W $0927 
-    LDA.W $0007,X 
-    AND.W #$00FF 
+    LDA.W $0007,X : AND.W #$00FF 
     XBA 
     STA.W $0929 
     STZ.B $12 
@@ -9148,8 +9083,7 @@ Load_State_Header:
     PLB 
     PLB 
     LDX.W $07BB 
-    LDA.W $0003,X 
-    AND.W #$00FF 
+    LDA.W $0003,X : AND.W #$00FF 
     ASL A 
     TAY 
     LDX.W Tileset_Pointers,Y 
@@ -9176,8 +9110,7 @@ WaitUntilTheEndOfAVBlank_and_Enable_H_V_CounterInterrupts:
     PHP 
     SEP #$20 
     JSL.L WaitUntilTheEndOfAVBlank 
-    LDA.B $84 
-    AND.B #$30 
+    LDA.B $84 : AND.B #$30 
     CMP.B #$30 
     BEQ .return 
     JSL.L EnableHVCounterInterruptsNow 
@@ -9204,8 +9137,7 @@ Much_ado_about_nothing:
 
 
 Save_Map_Explored_If_Elevator:
-    LDA.W $0793 
-    AND.W #$000F 
+    LDA.W $0793 : AND.W #$000F 
     BEQ + 
     JSL.L SetDebugElevatorAsUsed 
 
@@ -9265,8 +9197,7 @@ Load_EnemyGFX_to_VRAM:
   + AND.W #$7FFF 
     STA.W $05C3 
     TYX 
-    LDA.L $B40002,X 
-    AND.W #$F000 
+    LDA.L $B40002,X : AND.W #$F000 
     LSR #4
     ORA.W #$6000 
     STA.W $05BE 
@@ -9666,8 +9597,7 @@ DoorTransitionFunction_FixDoorsMovingUp:
     PEA.W $8F00 
     PLB 
     PLB 
-    LDA.W $0791 
-    AND.W #$0003 
+    LDA.W $0791 : AND.W #$0003 
     CMP.W #$0003 
     BNE + 
     JSL.L DrawTopRowOfScreenForUpwardsDoorTransition 
@@ -9697,14 +9627,12 @@ DoorTransitionFunction_SetupScrolling:
     STZ.B $B5 
     STZ.B $B7 
     STZ.W $07E9 
-    LDA.W $0791 
-    AND.W #$0003 
+    LDA.W $0791 : AND.W #$0003 
     CMP.W #$0002 
     BNE + 
     INC.B $B3 
 
-  + LDA.W $0791 
-    AND.W #$0003 
+  + LDA.W $0791 : AND.W #$0003 
     CMP.W #$0003 
     BEQ + 
     STZ.W $0925 
@@ -9718,18 +9646,15 @@ DoorTransitionFunction_PlaceSamus_LoadTiles:
     PEA.W $8F00 
     PLB 
     PLB 
-    LDA.W $0AF6 
-    AND.W #$00FF 
+    LDA.W $0AF6 : AND.W #$00FF 
     CLC : ADC.W $0911 : STA.W $0AF6 
     STA.W $0B10 
-    LDA.W $0AFA 
-    AND.W #$00FF 
+    LDA.W $0AFA : AND.W #$00FF 
     CLC : ADC.W $0915 : STA.W $0AFA 
     STA.W $0B14 
     STZ.W $0931 
     STZ.W $05BC 
-    LDA.W $0791 
-    AND.W #$0003 
+    LDA.W $0791 : AND.W #$0003 
     CMP.W #$0002 
     BNE .horizontal 
     LDA.W #$0010 
@@ -9788,8 +9713,7 @@ DoorTransitionFunction_PlaceSamus_LoadTiles:
     dw $4000,$1000 
 
 .checkUp:
-    LDA.W $0791 
-    AND.W #$0003 
+    LDA.W $0791 : AND.W #$0003 
     CMP.W #$0003 
     BNE + 
     LDA.W #$0010 : STA.B $A7 
@@ -10048,8 +9972,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
-    LDA.W $0AF6 
-    AND.W #$00F0 
+    LDA.W $0AF6 : AND.W #$00F0 
     CMP.W #$0010 
     BNE .X 
     LDA.W $0AF6 
@@ -10061,13 +9984,11 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
 .X:
     CMP.W #$00E0 
     BNE .Y 
-    LDA.W $0AF6 
-    AND.W #$FFF0 
+    LDA.W $0AF6 : AND.W #$FFF0 
     SEC : SBC.W #$0008 : STA.W $0AF6 
 
 .Y:
-    LDA.W $0AFA 
-    AND.W #$00F0 
+    LDA.W $0AFA : AND.W #$00F0 
     CMP.W #$0010 
     BNE .what 
     LDA.W $0AFA 
@@ -10852,8 +10773,7 @@ Set_GameOptionsMenu_TilePalettes:
     STA.B $12 
 
 .loop:
-    LDA.L $7E3000,X 
-    AND.W #$E3FF 
+    LDA.L $7E3000,X : AND.W #$E3FF 
     ORA.B $12 
     STA.L $7E3000,X 
     INX #2
@@ -10866,8 +10786,7 @@ Set_GameOptionsMenu_TilePalettes:
 GameOptionsMenu_3_OptionsMenu:
     PHP 
     REP #$30 
-    LDA.B $8F 
-    AND.W #$0800 
+    LDA.B $8F : AND.W #$0800 
     BEQ .checkDown 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
@@ -10878,8 +10797,7 @@ GameOptionsMenu_3_OptionsMenu:
 
 
 .checkDown:
-    LDA.B $8F 
-    AND.W #$0400 
+    LDA.B $8F : AND.W #$0400 
     BEQ .checkB 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
@@ -11247,8 +11165,7 @@ GameOptionsMenu_6_DissolveInScreen:
 
 
 GameOptionsMenu_8_SpecialSettings:
-    LDA.B $8F 
-    AND.W #$0800 
+    LDA.B $8F : AND.W #$0800 
     BEQ .checkDown 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
@@ -11259,8 +11176,7 @@ GameOptionsMenu_8_SpecialSettings:
 
 
 .checkDown:
-    LDA.B $8F 
-    AND.W #$0400 
+    LDA.B $8F : AND.W #$0400 
     BEQ .checkB 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
@@ -11424,8 +11340,7 @@ Set_SpecialSetting_Highlights:
     dw $03AE 
 
 GameOptionsMenu_7_ControllerSettings:
-    LDA.B $8F 
-    AND.W #$0800 
+    LDA.B $8F : AND.W #$0800 
     BEQ .upEnd 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
@@ -11448,8 +11363,7 @@ GameOptionsMenu_7_ControllerSettings:
 
 
 .upEnd:
-    LDA.B $8F 
-    AND.W #$0400 
+    LDA.B $8F : AND.W #$0400 
     BEQ .downEnd 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 

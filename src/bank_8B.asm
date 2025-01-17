@@ -533,8 +533,7 @@ HandleMode7TransformMatrixAndBG1Position:
     REP #$20 
     STA.B $78 
     STA.B $7E 
-    LDA.W $198D 
-    AND.W #$00FF 
+    LDA.W $198D : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L SineCosineTables_8bitSine_SignExtended,X : STA.B $26 
@@ -683,8 +682,7 @@ Debug_DisplayVersionInfo:
     LDA.W .versionStringOAMEntryXpos,Y : AND.W #$00FF : STA.W $0370,X 
     LDA.W #$00CC : STA.W $0371,X 
     PHY 
-    LDA.W Debug_VersionString,Y 
-    AND.W #$00FF 
+    LDA.W Debug_VersionString,Y : AND.W #$00FF 
     BEQ .done 
     CMP.W #$002E 
     BEQ .decimalPoint 
@@ -768,8 +766,7 @@ Debug_DisplayVersionInfo:
 CinematicBGObjects_Update32x30CinematicBGTilemap:
     PHP 
     REP #$30 
-    LDA.B $55 
-    AND.W #$00FF 
+    LDA.B $55 : AND.W #$00FF 
     CMP.W #$0007 
     BEQ .return 
     LDX.W $0330 
@@ -793,8 +790,7 @@ CinematicBGObjects_Update32x30CinematicBGTilemap:
 CinematicBGObjects_UpdateSamusEyesTilemap:
     PHP 
     REP #$30 
-    LDA.B $55 
-    AND.W #$00FF 
+    LDA.B $55 : AND.W #$00FF 
     CMP.W #$0007 
     BEQ .return 
     LDX.W $0330 
@@ -818,8 +814,7 @@ CinematicBGObjects_UpdateSamusEyesTilemap:
 CinematicBGObjects_Update32x32CinematicBGTilemap:
     PHP 
     REP #$30 
-    LDA.B $55 
-    AND.W #$00FF 
+    LDA.B $55 : AND.W #$00FF 
     CMP.W #$0007 
     BEQ .return 
     LDX.W $0330 
@@ -874,12 +869,10 @@ IndirectInstructionFunction_DrawTextCharacter:
     LDX.W #$001E 
     LDA.W $0006,Y 
     BMI .pointer 
-    LDA.W $0008,Y 
-    AND.W #$00FF 
+    LDA.W $0008,Y : AND.W #$00FF 
     ASL #3
     STA.W $1A7D,X 
-    LDA.W $0009,Y 
-    AND.W #$00FF 
+    LDA.W $0009,Y : AND.W #$00FF 
     ASL #3
     SEC : SBC.W #$0008 : STA.W $1A9D,X 
     BRA .merge 
@@ -887,8 +880,7 @@ IndirectInstructionFunction_DrawTextCharacter:
 
 .pointer:
     LDA.W #$0008 : STA.W $1A7D,X 
-    LDA.W $0003,Y 
-    AND.W #$00FF 
+    LDA.W $0003,Y : AND.W #$00FF 
     INC #2
     ASL #3
     SEC : SBC.W #$0008 : STA.W $1A9D,X 
@@ -966,8 +958,7 @@ IndirectInstructionFunction_DrawSamusEyesToTilemap:
 
 
 CinematicBGObjects_X_16_TilemapOffsetForTile_12_13:
-    LDA.W $0012 
-    AND.W #$00FF 
+    LDA.W $0012 : AND.W #$00FF 
     ASL A 
     STA.W $0014 
     SEP #$20 
@@ -1254,15 +1245,13 @@ PaletteCrossFading_DecomposePaletteDataForFading:
     XBA 
     ASL #3
     STA.L $7E2A00,X 
-    LDA.B $12 
-    AND.W #$03E0 
+    LDA.B $12 : AND.W #$03E0 
     ASL #3
     STA.L $7E2600,X 
     XBA 
     ASL #3
     STA.L $7E2C00,X 
-    LDA.B $12 
-    AND.W #$7C00 
+    LDA.B $12 : AND.W #$7C00 
     LSR #2
     STA.L $7E2800,X 
     XBA 
@@ -1732,8 +1721,7 @@ MoveUnusedSpritesOffScreen:
 AdvanceFastScreenFadeOut:
     PHP 
     SEP #$30 
-    LDA.B $51 
-    AND.B #$0F 
+    LDA.B $51 : AND.B #$0F 
     BEQ .return 
     SEC : SBC.W $0725 : BEQ .forcedBlank 
     BMI .forcedBlank 
@@ -1760,8 +1748,7 @@ AdvanceSlowScreenFadeOut:
     BPL .returnFading 
 
 .checkBrightness:
-    LDA.B $51 
-    AND.B #$0F 
+    LDA.B $51 : AND.B #$0F 
     BEQ .done 
     DEC A 
     BEQ .zeroBrightness 
@@ -2830,8 +2817,7 @@ Process_TextGlowObject:
 
   + LDA.W $1A37,X : STA.B $1C 
     LDY.W $19F7,X 
-    LDA.W $1A17,X 
-    AND.W #$00FF 
+    LDA.W $1A17,X : AND.W #$00FF 
     ASL A 
     STA.W $0014 
     SEP #$20 
@@ -2846,8 +2832,7 @@ Process_TextGlowObject:
     LDA.W $0003,Y : AND.W #$00FF : STA.W $0014 
 
 .loop:
-    LDA.L $7E3000,X 
-    AND.W #$E3FF 
+    LDA.L $7E3000,X : AND.W #$E3FF 
     ORA.B $1C 
     STA.L $7E3000,X 
     INY #2
@@ -3668,8 +3653,7 @@ Configure_TitleScreen_GradientHDMATable:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $198F 
-    AND.W #$00F0 
+    LDA.W $198F : AND.W #$00F0 
     LSR #3
     TAX 
     LDA.L TitleSequenceHDMATables,X 
@@ -4566,8 +4550,7 @@ InitFunction_CinematicSpriteObject_MetroidEggParticles:
 
 
 PreInstruction_CinematicSpriteObject_MetroidEggParticle:
-    LDA.W $1B7D,X 
-    AND.W #$00FF 
+    LDA.W $1B7D,X : AND.W #$00FF 
     ASL #2
     TAY 
     LDA.W $1ADD,X : CLC : ADC.W .Xvelocities+2,Y : STA.W $1ADD,X 
@@ -4619,8 +4602,7 @@ InitFunction_CinematicSpriteObject_MetroidEggSlimeDrops:
 
 
 PreInstruction_CinematicSpriteObject_MetroidEggSlimeDrops:
-    LDA.W $1B7D,X 
-    AND.W #$00FF 
+    LDA.W $1B7D,X : AND.W #$00FF 
     ASL #2
     TAY 
     LDA.W $1ADD,X : CLC : ADC.W .Xvelocities+2,Y : STA.W $1ADD,X 
@@ -5892,8 +5874,7 @@ PreInstruction_CinematicSpriteObject_IntroMotherBrain:
     LDY.W #$0008 
 
 .loop:
-    LDA.W $0C18,Y 
-    AND.W #$0FFF 
+    LDA.W $0C18,Y : AND.W #$0FFF 
     CMP.W #$0100 
     BEQ .missile 
     DEY #2
