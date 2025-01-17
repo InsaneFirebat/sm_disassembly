@@ -102,10 +102,8 @@ InstList_CommonB2_DeleteEnemy:
     dw Instruction_CommonB2_DeleteEnemy 
 
 NOPNOP_B28069:
-    NOP 
-    NOP 
-
-Instruction_CommonB2_Enemy0FB2_InY:
+    NOP #2
+    Instruction_CommonB2_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
     INY #2

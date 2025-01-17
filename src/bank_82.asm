@@ -1960,15 +1960,7 @@ Load_EquipmentScreen_ReserveHealth_Tilemap:
     SEP #$20 
     LDA.B #$64 
     STA.W $4206 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #9
     LDA.W $4214 
     STA.B $2A 
     LDA.W $4215 
@@ -1980,13 +1972,7 @@ Load_EquipmentScreen_ReserveHealth_Tilemap:
     LDA.B #$0A 
     STA.W $4206 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #7
     LDA.W $4216 
     CLC 
     ADC.W #$0804 
@@ -6002,13 +5988,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     LDA.B #$64 
     STA.W $4206 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #7
     LDA.W $4214 
     STA.B $2C 
     LDA.W $09D6 
@@ -6017,13 +5997,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     LDA.B #$64 
     STA.W $4206 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #7
     LDA.W $4216 
     STA.B $32 
     LDA.W $4214 
@@ -6055,13 +6029,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     LDA.B #$0E 
     STA.W $4206 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #7
     LDA.W $4214 
     ASL A 
     TAX 
@@ -6126,13 +6094,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     LDA.B #$0A 
     STA.W $4206 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #7
     LDA.W $4216 
     CLC 
     ADC.W #$0804 
@@ -9591,8 +9553,7 @@ CalculateTheAth_TransitionalColorComponent_fromXtoY:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.L $004214 
     BIT.B $12 
     BPL + 
@@ -10131,9 +10092,7 @@ Load_Room_Header:
     LDA.W $07A7 
     STA.W $4203 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4216 
     ASL A 
     STA.W $07B9 

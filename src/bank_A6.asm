@@ -102,10 +102,8 @@ InstList_CommonA6_DeleteEnemy:
     dw Instruction_CommonA6_DeleteEnemy 
 
 NOPNOP_A68069:
-    NOP 
-    NOP 
-
-Instruction_CommonA6_Enemy0FB2_InY:
+    NOP #2
+    Instruction_CommonA6_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
     INY #2
@@ -5009,18 +5007,14 @@ Mode7Math_A6AC58:
     STX.W $4202 
     LDX.B $28 
     STX.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4216 
     STA.B $2A 
     LDX.B $27 
     STX.W $4202 
     LDX.B $29 
     STX.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDX.W $4216 
     STX.B $2C 
     LDY.W $4217 
@@ -5028,8 +5022,7 @@ Mode7Math_A6AC58:
     STX.W $4202 
     LDX.B $28 
     STX.W $4203 
-    NOP 
-    NOP 
+    NOP #2
     LDA.B $2B 
     CLC 
     ADC.W $4216 
@@ -5041,8 +5034,7 @@ Mode7Math_A6AC58:
     STX.W $4202 
     LDX.B $29 
     STX.W $4203 
-    NOP 
-    NOP 
+    NOP #2
     LDA.B $2B 
     CLC 
     ADC.W $4216 
@@ -9782,8 +9774,7 @@ AccelerateRidleyTowardDesiredXYPosition:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 
@@ -9816,8 +9807,7 @@ AccelerateRidleyTowardDesiredXYPosition:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 
@@ -9855,8 +9845,7 @@ AccelerateRidleyTowardDesiredXPosition:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 
@@ -9889,8 +9878,7 @@ AccelerateRidleyTowardDesiredXPosition:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 
@@ -9935,8 +9923,7 @@ AccelerateCeresRidleyTowardDesiredXY:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 
@@ -9968,8 +9955,7 @@ AccelerateCeresRidleyTowardDesiredXY:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 
@@ -10005,8 +9991,7 @@ CalculateRidleyXSpeed:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 
@@ -10037,8 +10022,7 @@ CalculateRidleyXSpeed:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 

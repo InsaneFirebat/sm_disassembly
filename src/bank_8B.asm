@@ -725,9 +725,7 @@ Multiplication_16bitUnsigned_8B85EE:
     STA.W $4202 
     LDA.B $28 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4216 
     STA.B $2C 
     LDA.W $4217 
@@ -736,9 +734,7 @@ Multiplication_16bitUnsigned_8B85EE:
     STA.W $4202 
     LDA.B $28 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4216 
     STA.B $2E 
     LDA.W $4217 
@@ -747,9 +743,7 @@ Multiplication_16bitUnsigned_8B85EE:
     STA.W $4202 
     LDA.B $29 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4216 
     STA.B $30 
     LDA.W $4217 
@@ -758,9 +752,7 @@ Multiplication_16bitUnsigned_8B85EE:
     STA.W $4202 
     LDA.B $29 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.B $2A 
@@ -1189,9 +1181,7 @@ CinematicBGObjects_X_16_TilemapOffsetForTile_12_13:
     STA.W $4202 
     LDA.W $0013 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     CLC 
@@ -1312,9 +1302,7 @@ UNUSED_CinematicBGObjects_Mode7TilemapOffsetForTile_8B8A2C:
     STA.W $4202 
     LDA.W $0013 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     CLC 
@@ -1935,9 +1923,7 @@ UNUSED_Math_8B8EA3:
     STA.W $4202 
     LDA.B $18 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     XBA 
@@ -1948,9 +1934,7 @@ UNUSED_Math_8B8EA3:
     STA.W $4202 
     LDA.B $18 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     CLC 
@@ -3372,9 +3356,7 @@ Process_TextGlowObject:
     STA.W $4202 
     LDA.W $1A27,X 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     CLC 
@@ -3571,9 +3553,7 @@ Copy_CreditsRow_ToCinematicBGTilemap:
     STA.W $4202 
     LDA.W $1A01 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     TAX 
@@ -12497,13 +12477,7 @@ Instruction_DrawItemPercentageCount:
     SEP #$20 
     LDA.W .tankValuesEnergyDivisor,X 
     STA.W $4206 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #7
     REP #$20 
     LDA.W $4214 
     CLC 
@@ -12538,13 +12512,7 @@ Instruction_DrawItemPercentageCount:
     SEP #$20 
     LDA.B #$0A 
     STA.W $4206 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #7
     REP #$20 
     LDA.W $4214 
     STA.W $4204 
@@ -12553,13 +12521,7 @@ Instruction_DrawItemPercentageCount:
     SEP #$20 
     LDA.B #$0A 
     STA.W $4206 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #7
     REP #$20 
     LDA.W $4214 
     STA.B $12 
@@ -14216,13 +14178,7 @@ Instruction_CinematicSpriteObject_SpawnClearTime:
     SEP #$20 
     LDA.B #$0A 
     STA.W $4206 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #7
     REP #$20 
     LDA.W $4214 
     STA.W $0DEC 
@@ -14233,13 +14189,7 @@ Instruction_CinematicSpriteObject_SpawnClearTime:
     SEP #$20 
     LDA.B #$0A 
     STA.W $4206 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #7
     REP #$20 
     LDA.W $4214 
     STA.W $0DF0 

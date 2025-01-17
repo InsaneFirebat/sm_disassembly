@@ -487,8 +487,7 @@ A_Y_16bit_UnsignedMultiplication:
     LDY.W $05E9 
     STY.W $4203 
     NOP ; Result = ac
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4216 
     STA.W $05F1 
     LDY.W $05EA 
@@ -509,8 +508,7 @@ A_Y_16bit_UnsignedMultiplication:
     STA.W $05F2 
     LDY.W $05EA 
     STY.W $4203 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $05F3 ; Result += bd * 10000h
     CLC 
     ADC.W $4216 

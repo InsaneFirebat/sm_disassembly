@@ -3952,9 +3952,7 @@ DoSomeMathWithSineAndPi_869BF3:
     STA.W $4202 
     LDA.B $18 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     XBA 
@@ -3965,9 +3963,7 @@ DoSomeMathWithSineAndPi_869BF3:
     STA.W $4202 
     LDA.B $18 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     CLC 
@@ -14847,8 +14843,7 @@ Random_Drop_Routine:
     LDA.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X ; $B40000
     STA.W $4203 
     PHY 
-    NOP 
-    NOP 
+    NOP #2
     LDY.W $4216 
     STY.W $4204 
     LDA.B $12 

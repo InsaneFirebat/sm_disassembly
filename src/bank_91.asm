@@ -6691,12 +6691,7 @@ CalculateBlockCoordinates:
     LDA.W $07A5 
     STA.W $4206 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #6
     LDA.W $4214 
     STA.B $2C 
     LDA.W $4216 
@@ -6709,8 +6704,7 @@ GetBlockTypeAndBTS:
     XBA 
     ORA.W $07A5 
     STA.W $4202 
-    NOP 
-    NOP 
+    NOP #2
     LDA.B $2A 
     CLC 
     ADC.W $4216 

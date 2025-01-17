@@ -102,10 +102,8 @@ InstList_CommonA7_DeleteEnemy:
     dw Instruction_CommonA7_DeleteEnemy 
 
 NOPNOP_A78069:
-    NOP 
-    NOP 
-
-Instruction_CommonA7_Enemy0FB2_InY:
+    NOP #2
+    Instruction_CommonA7_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
     INY #2
@@ -4395,11 +4393,7 @@ UNUSED_HandleProjectileDamageAndSound:
     SEP #$20 
     LDA.W $0E32 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #5
     REP #$20 
     LDA.W $4216 
     BEQ .return 
@@ -9454,11 +9448,7 @@ CalculateTheAthTransitionalColorComponentFromXToY:
     INC A 
     STA.W $4206 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #5
     LDA.W $4214 
     BIT.B $12 
     BPL + 

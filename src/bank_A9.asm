@@ -102,10 +102,8 @@ InstList_CommonA9_DeleteEnemy:
     dw Instruction_CommonA9_DeleteEnemy 
 
 NOPNOP_A98069:
-    NOP 
-    NOP 
-
-Instruction_CommonA9_Enemy0FB2_InY:
+    NOP #2
+    Instruction_CommonA9_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
     INY #2
@@ -12800,8 +12798,7 @@ UNUSED_GetYDividedByA_A9EEBF:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -13538,8 +13535,7 @@ GradduallyAccelerateTowardsPoint:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 
@@ -13572,8 +13568,7 @@ GradduallyAccelerateTowardsPoint:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 
@@ -13611,8 +13606,7 @@ GraduallyAccelerateHorizontally:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 
@@ -13652,8 +13646,7 @@ GraduallyAccelerateHorizontally:
     REP #$20 
     XBA 
     XBA 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4214 
     BNE + 
     INC A 

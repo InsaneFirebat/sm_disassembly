@@ -131,12 +131,7 @@ Calculate_PLM_Block_Coordinates:
     LDA.W $07A5 
     STA.W $4206 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #6
     LDA.W $4214 
     STA.W $1C2B 
     LDA.W $4216 

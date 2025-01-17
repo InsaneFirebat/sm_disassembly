@@ -3665,9 +3665,7 @@ CalculateBlockAt_12_1E_1C_20:
     LDA.W $07A5 
     STA.W $4202 
     STY.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
 
@@ -5725,8 +5723,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     SEP #$20 
     STA.W $4203 
     REP #$20 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4216 
     AND.W #$FF00 
     XBA 
@@ -5750,8 +5747,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     INC A 
     STA.W $4203 
     REP #$20 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4216 
     AND.W #$FF00 
     XBA 
@@ -5778,8 +5774,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     SEP #$20 
     STA.W $4203 
     REP #$20 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4216 
     AND.W #$FF00 
     XBA 
@@ -5803,8 +5798,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     INC A 
     STA.W $4203 
     REP #$20 
-    NOP 
-    NOP 
+    NOP #2
     LDA.W $4216 
     AND.W #$FF00 
     XBA 
@@ -6596,12 +6590,7 @@ DrawGrappleBeam:
     LDA.B #$08 
     STA.W $4206 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #6
     LDA.W $4214 
     BMI .return 
     AND.W #$000F 

@@ -102,10 +102,8 @@ InstList_CommonA8_DeleteEnemy:
     dw Instruction_CommonA8_DeleteEnemy 
 
 NOPNOP_A88069:
-    NOP 
-    NOP 
-
-Instruction_CommonA8_Enemy0FB2_InY:
+    NOP #2
+    Instruction_CommonA8_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
     INY #2
@@ -4470,9 +4468,7 @@ Math_Sine_A8A742:
     LDA.W $0E32 
     BEQ + 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     AND.W #$FF00 
@@ -11049,9 +11045,7 @@ Math_24Bit_UnsignedMultiplication_A8DAB3:
     STA.W $4202 
     LDA.B $18 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.B $1C 
@@ -11060,9 +11054,7 @@ Math_24Bit_UnsignedMultiplication_A8DAB3:
     STA.W $4202 
     LDA.B $19 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     AND.W #$FF00 

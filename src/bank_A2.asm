@@ -102,10 +102,8 @@ InstList_CommonA2_DeleteEnemy:
     dw Instruction_CommonA2_DeleteEnemy 
 
 NOPNOP_A28069:
-    NOP 
-    NOP 
-
-Instruction_CommonA2_Enemy0FB2_InY:
+    NOP #2
+    Instruction_CommonA2_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
     INY #2
@@ -505,9 +503,7 @@ CalculateInitialBounceSpeed:
   + STA.W $4202 
     LDA.W $0FA8,X 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.W $0FAA,X 
@@ -588,9 +584,7 @@ Function_Boyon_Falling:
     STA.W $4202 
     LDA.W $0FA8,X 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.W $0FAA,X 
@@ -625,9 +619,7 @@ Function_Boyon_Jumping:
     STA.W $4202 
     LDA.W $0FA8,X 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.W $0FAA,X 
@@ -11083,9 +11075,7 @@ CalculateChootJumpHeight:
     STA.W $4202 
     LDA.W $0FB2,X 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.B $12 

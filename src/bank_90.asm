@@ -3882,18 +3882,14 @@ CalculateSamusXBaseSpeed_DecelerationAllowed:
     STA.W $4202 
     LDA.W $000B,X 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.B $14 
     SEP #$20 
     LDA.W $0008,X 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4217 
     AND.W #$00FF 
@@ -3969,18 +3965,14 @@ CalculateSamusXBaseSpeed_DecelerationDisallowed:
     STA.W $4202 
     LDA.W $000B,X 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.B $14 
     SEP #$20 
     LDA.W $0008,X 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4217 
     AND.W #$00FF 
@@ -10230,9 +10222,7 @@ Math_90CC8A:
     STA.W $4202 
     LDA.B $18 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     XBA 
@@ -10243,9 +10233,7 @@ Math_90CC8A:
     STA.W $4202 
     LDA.B $18 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     CLC 

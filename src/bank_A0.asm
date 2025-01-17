@@ -102,10 +102,8 @@ InstList_Common_DeleteEnemy:
     dw Instruction_Common_DeleteEnemy 
 
 NOPNOP_A08069:
-    NOP 
-    NOP 
-
-Instruction_Common_Enemy0FB2_InY:
+    NOP #2
+    Instruction_Common_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
     INY #2
@@ -6088,11 +6086,7 @@ EightBitSineMultiplication_A0B0DA:
     STA.W $4202 
     LDA.W $0E32 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #5
     REP #$20 
     LDA.W $4216 
     XBA 
@@ -6349,18 +6343,14 @@ Multiplication_32bit_A0B6FF:
     STX.W $4202 
     LDX.B $28 
     STX.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4216 
     STA.B $2A 
     LDX.B $27 
     STX.W $4202 
     LDX.B $29 
     STX.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDX.W $4216 
     STX.B $2C 
     LDY.W $4217 
@@ -6368,8 +6358,7 @@ Multiplication_32bit_A0B6FF:
     STX.W $4202 
     LDX.B $28 
     STX.W $4203 
-    NOP 
-    NOP 
+    NOP #2
     LDA.B $2B 
     CLC 
     ADC.W $4216 
@@ -6382,8 +6371,7 @@ Multiplication_32bit_A0B6FF:
     STX.W $4202 
     LDX.B $29 
     STX.W $4203 
-    NOP 
-    NOP 
+    NOP #2
     LDA.B $2B 
     CLC 
     ADC.W $4216 
@@ -7869,9 +7857,7 @@ UNUSED_AssessSamusThreatLevel_A0C1D4:
     LDA.B #$03 
     STA.W $4206 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4214 
     CMP.W $09C2 
     BCC + 

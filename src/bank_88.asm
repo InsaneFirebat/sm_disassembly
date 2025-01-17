@@ -1981,9 +1981,7 @@ Calculate_PowerBombExplosion_HDMADataTablePointers:
 Calculate_PowerBombExplo_HDMADataTables_Scaled_LeftOfScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $14 
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y 
@@ -2023,9 +2021,7 @@ Calculate_PowerBombExplo_HDMADataTables_Scaled_LeftOfScreen:
 Calculate_PowerBombExplosion_HDMADataTables_Scaled_OnScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $14 
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y 
@@ -2065,9 +2061,7 @@ Calculate_PowerBombExplosion_HDMADataTables_Scaled_OnScreen:
 Calculate_PowerBombExplo_HDMADataTables_Scaled_RightOfScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $14 
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y 
@@ -2179,9 +2173,7 @@ PreInstruction_PowerBombExplosion_3_Explosion_Yellow:
     STA.W $4202 
     LDA.W PowerBombExplosion_ShapeDefinitionTable_Unscaled_topOffset 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $12 
     TAX 
@@ -2422,9 +2414,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CalcPowerBombRelatedHDMATables_Scaled_Left_888FBA:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $14 
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y 
@@ -2463,9 +2453,7 @@ UNUSED_CalcPowerBombRelatedHDMATables_Scaled_Left_888FBA:
 UNUSED_CalcPBRelatedHDMADataTables_Scaled_OnScreen_888FF8:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $14 
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y 
@@ -2504,9 +2492,7 @@ UNUSED_CalcPBRelatedHDMADataTables_Scaled_OnScreen_888FF8:
 UNUSED_CalPBRelatedHDMADataTables_Scaled_OnScreen_88903A:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $14 
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y 
@@ -2627,9 +2613,7 @@ PreInstruction_PowerBombExplosion_1_PreExplosion_White:
     STA.W $4202 
     LDA.W PowerBombExplosion_ShapeDefinitionTable_Unscaled_topOffset 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $12 
     TAX 
@@ -3375,9 +3359,7 @@ Calculate_CrystalFlash_HDMAObjectTablePointers:
 Calculate_CrystalFlash_HDMADataTables_Scaled_LeftOfScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $14 
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y 
@@ -3417,9 +3399,7 @@ Calculate_CrystalFlash_HDMADataTables_Scaled_LeftOfScreen:
 Calculate_CrystalFlash_HDMADataTables_Scaled_OnScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $14 
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y 
@@ -3458,9 +3438,7 @@ Calculate_CrystalFlash_HDMADataTables_Scaled_OnScreen:
 Calculate_CrystalFlash_HDMADataTables_Scaled_RightOfScreen:
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $14 
     LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y 
@@ -3523,9 +3501,7 @@ PreInstruction_CrystalFlash_1_Explosion:
     STA.W $4202 
     LDA.W PowerBombExplosion_ShapeDefinitionTable_Unscaled_topOffset 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     LDA.W $4217 
     STA.B $12 
     TAX 
@@ -10166,9 +10142,7 @@ PreInstruction_WavyPhantoon:
     STA.W $4202 
     LDA.W $106E 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     XBA 
@@ -10179,9 +10153,7 @@ PreInstruction_WavyPhantoon:
     STA.W $4202 
     LDA.W $106E 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     CLC 
@@ -10192,9 +10164,7 @@ PreInstruction_WavyPhantoon:
     STA.W $4202 
     LDA.W $106F 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.B $18 
@@ -10236,9 +10206,7 @@ PreInstruction_WavyPhantoon:
     STA.W $4202 
     LDA.W $106E 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     XBA 
@@ -10249,9 +10217,7 @@ PreInstruction_WavyPhantoon:
     STA.W $4202 
     LDA.W $106E 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     CLC 
@@ -10262,9 +10228,7 @@ PreInstruction_WavyPhantoon:
     STA.W $4202 
     LDA.W $106F 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.B $18 
@@ -11063,9 +11027,7 @@ PreInstruction_WavySamus:
     STA.W $4202 
     LDA.W $0D9E 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     XBA 
@@ -11076,9 +11038,7 @@ PreInstruction_WavySamus:
     STA.W $4202 
     LDA.W $0D9E 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     CLC 
@@ -11089,9 +11049,7 @@ PreInstruction_WavySamus:
     STA.W $4202 
     LDA.W $0D9F 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.B $18 
@@ -11133,9 +11091,7 @@ PreInstruction_WavySamus:
     STA.W $4202 
     LDA.W $0D9E 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     XBA 
@@ -11146,9 +11102,7 @@ PreInstruction_WavySamus:
     STA.W $4202 
     LDA.W $0D9E 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     CLC 
@@ -11159,9 +11113,7 @@ PreInstruction_WavySamus:
     STA.W $4202 
     LDA.W $0D9F 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.B $18 

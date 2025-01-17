@@ -102,10 +102,8 @@ InstList_CommonA3_DeleteEnemy:
     dw Instruction_CommonA3_DeleteEnemy 
 
 NOPNOP_A38069:
-    NOP 
-    NOP 
-
-Instruction_CommonA3_Enemy0FB2_InY:
+    NOP #2
+    Instruction_CommonA3_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
     INY #2
@@ -821,13 +819,7 @@ DetermineMetareeYVelocity:
     LDA.B #$18 
     STA.W $4206 
     REP #$20 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
-    NOP 
+    NOP #7
     LDA.W $4214 
     AND.W #$00FF 
     CLC 
@@ -7654,9 +7646,7 @@ UnsignedMultiplication_24bit_A3BE7B:
     STA.W $4202 
     LDA.B $18 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     STA.B $1C 
@@ -7665,9 +7655,7 @@ UnsignedMultiplication_24bit_A3BE7B:
     STA.W $4202 
     LDA.B $19 
     STA.W $4203 
-    NOP 
-    NOP 
-    NOP 
+    NOP #3
     REP #$20 
     LDA.W $4216 
     AND.W #$FF00 
