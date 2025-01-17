@@ -426,16 +426,12 @@ AnimDelay_9_TransitionToPoseDependingOnItemEquippedAndYSpeed:
     LDA.W $0B2C 
     BNE + 
     INY #2
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.W $0A2C 
+    LDA.B [$00],Y : AND.W #$00FF : STA.W $0A2C 
     BRA .return 
 
 
   + INY #3
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.W $0A2C 
+    LDA.B [$00],Y : AND.W #$00FF : STA.W $0A2C 
     BRA .return 
 
 
@@ -445,16 +441,12 @@ AnimDelay_9_TransitionToPoseDependingOnItemEquippedAndYSpeed:
     LDA.W $0B2C 
     BNE + 
     INY #4
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.W $0A2C 
+    LDA.B [$00],Y : AND.W #$00FF : STA.W $0A2C 
     BRA .return 
 
 
   + INY #5
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.W $0A2C 
+    LDA.B [$00],Y : AND.W #$00FF : STA.W $0A2C 
 
 .return:
     LDA.W #$0003 : STA.W $0A32 
@@ -468,17 +460,13 @@ UNUSED_AnimDelay_A_TransitionToPoseDependingOnYSpeed_9083F6:
     LDA.W $0B2C 
     BNE .nonZeroYSpeed 
     INY 
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.W $0A2C 
+    LDA.B [$00],Y : AND.W #$00FF : STA.W $0A2C 
     BRA + 
 
 
 .nonZeroYSpeed:
     INY #2
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.W $0A2C 
+    LDA.B [$00],Y : AND.W #$00FF : STA.W $0A2C 
 
   + LDA.W #$0003 : STA.W $0A32 
     CLC 
@@ -549,17 +537,13 @@ UNUSED_AnimDelay_C_TransToPoseDependingOnItemEquipped_90848B:
     BIT.B $12 
     BNE .equippedItems 
     INY #2
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.W $0A2C 
+    LDA.B [$00],Y : AND.W #$00FF : STA.W $0A2C 
     BRA .return 
 
 
 .equippedItems:
     INY #3
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.W $0A2C 
+    LDA.B [$00],Y : AND.W #$00FF : STA.W $0A2C 
 
 .return:
     LDA.W #$0003 : STA.W $0A32 
@@ -569,9 +553,7 @@ UNUSED_AnimDelay_C_TransToPoseDependingOnItemEquipped_90848B:
 
 AnimDelay_D_TransitionToPose:
     INY 
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.W $0A2C 
+    LDA.B [$00],Y : AND.W #$00FF : STA.W $0A2C 
     LDA.W #$0003 : STA.W $0A32 
     CLC 
     RTS 
@@ -579,9 +561,7 @@ AnimDelay_D_TransitionToPose:
 
 AnimDelay_E_GotoY:
     INY 
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.B [$00],Y : AND.W #$00FF : STA.B $12 
     LDA.W $0A96 : SEC : SBC.B $12 : STA.W $0A96 
     TAY 
     SEC 
@@ -1097,9 +1077,7 @@ DrawSamusEcho:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YOffset,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L PoseDefinitions_YOffset,X : AND.W #$00FF : STA.B $12 
     LDA.W $0AB0,Y : SEC : SBC.W $0911 : TAX 
     LDA.W $0AB8,Y : SEC : SBC.B $12 : SBC.W $0915 : BMI + 
     CMP.W #$00F8 
@@ -1119,9 +1097,7 @@ DrawSamusEcho:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YOffset,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L PoseDefinitions_YOffset,X : AND.W #$00FF : STA.B $12 
     PHY 
     LDA.W $0AB0,Y : SEC : SBC.W $0911 : TAX 
     LDA.W $0AB8,Y : SEC : SBC.B $12 : SBC.W $0915 : TAY 
@@ -1157,9 +1133,7 @@ DrawShinesparkCrashEchoCircle:
     TXA 
     ASL #2
     TAX 
-    LDA.L PoseDefinitions_YOffset,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L PoseDefinitions_YOffset,X : AND.W #$00FF : STA.B $12 
     LDA.W $0AB0,Y : SEC : SBC.W $0911 : TAX 
     LDA.W $0AB8,Y : SEC : SBC.B $12 : SBC.W $0915 : BMI .pullReturn 
     CMP.W #$00F8 
@@ -1189,9 +1163,7 @@ DrawShinesparkCrashEchoCircle:
     TXA 
     ASL #2
     TAX 
-    LDA.L PoseDefinitions_YOffset,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L PoseDefinitions_YOffset,X : AND.W #$00FF : STA.B $12 
     LDA.W $0AB0,Y : SEC : SBC.W $0911 : TAX 
     LDA.W $0AB8,Y : SEC : SBC.B $12 : SBC.W $0915 : TAY 
     PLA 
@@ -1422,9 +1394,7 @@ AtmosphericEffects_1_2_FootstepSplashes:
 
 AtmosphericEffects_3_DivingSplash:
     PHY 
-    LDA.W $0AEC,Y 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W $0AEC,Y : AND.W #$00FF : STA.B $12 
     LDA.W $195E : STA.W $0AE4,Y 
     LDA.W #$018F : CLC : ADC.B $12 : PHA 
     BRA AddAtmosphericSpritemapToOAM 
@@ -1452,9 +1422,7 @@ AtmosphericEffects_6_7_Dust:
 
 AtmosphericEffects_5_Bubbles:
     PHY 
-    LDA.W $0AEC,Y 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W $0AEC,Y : AND.W #$00FF : STA.B $12 
     LDA.W #$0186 : CLC : ADC.B $12 : PHA 
 
 AddAtmosphericSpritemapToOAM:
@@ -3377,9 +3345,7 @@ CalculateSamusXBaseSpeed_DecelerationAllowed:
     LDA.W $0008,X : STA.W $4203 
     NOP #3
     REP #$20 
-    LDA.W $4217 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W $4217 : AND.W #$00FF : STA.B $12 
     BRA + 
 
 
@@ -3441,9 +3407,7 @@ CalculateSamusXBaseSpeed_DecelerationDisallowed:
     LDA.W $0008,X : STA.W $4203 
     NOP #3
     REP #$20 
-    LDA.W $4217 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W $4217 : AND.W #$00FF : STA.B $12 
     BRA + 
 
 
@@ -3511,9 +3475,7 @@ Determine_SamusXSpeedTable_EntryPointer:
     LDA.W #SamusXSpeedTable_InLavaAcid : STA.W $0A6C 
 
 .speedTableSet:
-    LDA.W $0A1F 
-    AND.W #$00FF 
-    STA.B $14 
+    LDA.W $0A1F : AND.W #$00FF : STA.B $14 
     ASL A 
     CLC : ADC.B $14 : ASL #2
     CLC : ADC.W $0A6C : TAX 
@@ -4904,9 +4866,7 @@ MarkMapTilesExplored:
     CLC : ADC.B $22 : ASL #2
     CLC : ADC.B $14 : TAX 
     SEP #$20 
-    LDA.W $07F7,X 
-    ORA.W Bitmasks_1bit_90AC04,Y 
-    STA.W $07F7,X 
+    LDA.W $07F7,X : ORA.W Bitmasks_1bit_90AC04,Y : STA.W $07F7,X 
     PLY 
     PLX 
     PLP 
@@ -4982,9 +4942,7 @@ Update_Minimap:
     CLC : ADC.B $22 : ASL #2
     CLC : ADC.B $14 : TAX 
     SEP #$20 
-    LDA.W $07F7,X 
-    ORA.W Bitmasks_1bit_90AC04,Y 
-    STA.W $07F7,X 
+    LDA.W $07F7,X : ORA.W Bitmasks_1bit_90AC04,Y : STA.W $07F7,X 
     STY.B $20 
     STX.B $1E 
     REP #$30 
@@ -5208,9 +5166,7 @@ Update_HUD_Minimap_Tilemap:
     LDA.W $05B5 
     AND.W #$0008 
     BNE .return 
-    LDA.L $7EC680 
-    ORA.W #$1C00 
-    STA.L $7EC680 
+    LDA.L $7EC680 : ORA.W #$1C00 : STA.L $7EC680 
 
 .return:
     PLP 
@@ -5223,9 +5179,7 @@ MarkMapTileAboveSamusExplored:
     LDX.B $1E 
     SEP #$20 
     LDY.B $20 
-    LDA.W $07F3,X 
-    ORA.W Bitmasks_1bit_90AC04,Y 
-    STA.W $07F3,X 
+    LDA.W $07F3,X : ORA.W Bitmasks_1bit_90AC04,Y : STA.W $07F3,X 
     REP #$20 
     PLY 
     PLX 
@@ -6946,9 +6900,7 @@ Fire_Uncharge_Beam:
     LDA.W #$000A : STA.W $18AC 
     LDX.B $14 
     LDA.W #$0004 : STA.W $0C90,X 
-    LDA.W $09A6 
-    ORA.W #$8000 
-    STA.W $0C18,X 
+    LDA.W $09A6 : ORA.W #$8000 : STA.W $0C18,X 
     AND.W #$000F 
     ASL A 
     TAY 
@@ -6969,9 +6921,7 @@ Fire_Uncharge_Beam:
     PHA 
     AND.W #$003F 
     TAY 
-    LDA.W BeamAutoFireCooldowns,Y 
-    AND.W #$00FF 
-    STA.W $0CCC 
+    LDA.W BeamAutoFireCooldowns,Y : AND.W #$00FF : STA.W $0CCC 
     PLA 
     BIT.W #$0001 
     BNE .waveBeam 
@@ -6983,9 +6933,7 @@ Fire_Uncharge_Beam:
     PHA 
     AND.W #$003F 
     TAY 
-    LDA.W ProjectileCooldowns_Uncharged,Y 
-    AND.W #$00FF 
-    STA.W $0CCC 
+    LDA.W ProjectileCooldowns_Uncharged,Y : AND.W #$00FF : STA.W $0CCC 
     PLA 
     BIT.W #$0001 
     BNE .waveBeam 
@@ -7086,9 +7034,7 @@ FireChargeBeam:
     PHA 
     AND.W #$003F 
     TAY 
-    LDA.W ProjectileCooldowns_Uncharged,Y 
-    AND.W #$00FF 
-    STA.W $0CCC 
+    LDA.W ProjectileCooldowns_Uncharged,Y : AND.W #$00FF : STA.W $0CCC 
     PLA 
     BIT.W #$0001 
     BNE .waveBeam 
@@ -7161,9 +7107,7 @@ InitializeProjectilePositionDirection:
 
 .initialize:
     STA.W $0C04,Y 
-    LDA.L PoseDefinitions_YOffset,X 
-    AND.W #$00FF 
-    STA.B $16 
+    LDA.L PoseDefinitions_YOffset,X : AND.W #$00FF : STA.B $16 
     LDA.W $0C04,Y 
     AND.W #$000F 
     ASL A 
@@ -7284,16 +7228,12 @@ HandleChargingBeamGraphicsAudio:
 
 .goBack:
     INY 
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.B [$00],Y : AND.W #$00FF : STA.B $12 
     LDA.W $0CD6,X : SEC : SBC.B $12 : STA.W $0CD6,X 
     TAY 
 
 .merge:
-    LDA.B [$00],Y 
-    AND.W #$00FF 
-    STA.W $0CDC,X 
+    LDA.B [$00],Y : AND.W #$00FF : STA.W $0CDC,X 
 
 .chargeBeamAnimationUpdateEnd:
     PHX 
@@ -7350,9 +7290,7 @@ DrawFlareAnimationComponent:
     SEP #$20 
     LDA.B #$93 : STA.B $02 
     REP #$30 
-    LDA.W $0CD6,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W $0CD6,X : AND.W #$00FF : STA.B $12 
     LDA.W $0A1E 
     AND.W #$00FF 
     CMP.W #$0004 
@@ -7367,9 +7305,7 @@ DrawFlareAnimationComponent:
   + LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YOffset,X 
-    AND.W #$00FF 
-    STA.B $18 
+    LDA.L PoseDefinitions_YOffset,X : AND.W #$00FF : STA.B $18 
     LDA.L PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
     CMP.W #$00FF 
@@ -7758,9 +7694,7 @@ HUDSelectionHandler_Missiles_SuperMissiles:
     XBA 
     AND.W #$000F 
     TAY 
-    LDA.W ProjectileCooldowns_NonBeamProjectiles,Y 
-    AND.W #$00FF 
-    STA.W $0CCC 
+    LDA.W ProjectileCooldowns_NonBeamProjectiles,Y : AND.W #$00FF : STA.W $0CCC 
     LDA.W $0A04 
     BEQ + 
     STZ.W $09D2 
@@ -7803,9 +7737,7 @@ Spawn_SuperMissileLink:
 .zeroDamage:
     STX.B $14 
     TXY 
-    LDA.W $0C18,Y 
-    ORA.W #$8200 
-    STA.W $0C18,Y 
+    LDA.W $0C18,Y : ORA.W #$8200 : STA.W $0C18,Y 
     LDX.W $0DDE 
     LDA.W $0B64,X : STA.W $0B64,Y 
     LDA.W $0B78,X : STA.W $0B78,Y 
@@ -7880,9 +7812,7 @@ HUDSelectionHandler_MorphBall:
     XBA 
     AND.W #$000F 
     TAY 
-    LDA.W ProjectileCooldowns_NonBeamProjectiles,Y 
-    AND.W #$00FF 
-    STA.W $0CCC 
+    LDA.W ProjectileCooldowns_NonBeamProjectiles,Y : AND.W #$00FF : STA.W $0CCC 
 
 .returnBomb:
     PLP 
@@ -7920,9 +7850,7 @@ HUDSelectionHandler_MorphBall:
     LDA.W $09D2 
     XBA 
     STA.B $12 
-    LDA.W $0C18,X 
-    ORA.B $12 
-    STA.W $0C18,X 
+    LDA.W $0C18,X : ORA.B $12 : STA.W $0C18,X 
     PHA 
     LDA.W #$0000 : STA.W $0C04,X 
     LDA.W $0AF6 : STA.W $0B64,X 
@@ -7934,9 +7862,7 @@ HUDSelectionHandler_MorphBall:
     XBA 
     AND.W #$000F 
     TAY 
-    LDA.W ProjectileCooldowns_NonBeamProjectiles,Y 
-    AND.W #$00FF 
-    STA.W $0CCC 
+    LDA.W ProjectileCooldowns_NonBeamProjectiles,Y : AND.W #$00FF : STA.W $0CCC 
     LDA.W $0A04 
     BEQ + 
     STZ.W $09D2 
@@ -8452,9 +8378,7 @@ HandleArmCannonOpenState:
     TAX 
     LDA.W ArmCannonDrawingData,X 
     TAY 
-    LDA.W $0001,Y 
-    AND.W #$00FF 
-    STA.W $0AAC 
+    LDA.W $0001,Y : AND.W #$00FF : STA.W $0AAC 
     PLP 
     RTS 
 
@@ -8465,9 +8389,7 @@ UpdateArmCannonIsOpenState:
     BMI .returnCarryClear 
     LDA.W $09D2 
     TAX 
-    LDA.W ArmCannonOpenFlags,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W ArmCannonOpenFlags,X : AND.W #$00FF : STA.B $12 
     LDA.W $0AA6 
     AND.W #$00FF 
     CMP.B $12 
@@ -8482,9 +8404,7 @@ UpdateArmCannonIsOpenState:
     LDA.W #$0004 : STA.W $0AA8 
 
 .toggleArmCannon:
-    LDA.B $12 
-    ORA.W #$0100 
-    STA.W $0AA6 
+    LDA.B $12 : ORA.W #$0100 : STA.W $0AA6 
     SEC 
     RTS 
 
@@ -8526,9 +8446,7 @@ AdvanceArmCannonFrame:
     LDA.W #$0003 : STA.W $0AA8 
 
 .fullyTransitioned:
-    LDA.W $0AA6 
-    AND.W #$00FF 
-    STA.W $0AA6 
+    LDA.W $0AA6 : AND.W #$00FF : STA.W $0AA6 
 
 .return:
     PLP 
@@ -8610,9 +8528,7 @@ DrawArmCannon:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YOffset,X 
-    AND.W #$00FF 
-    STA.B $16 
+    LDA.L PoseDefinitions_YOffset,X : AND.W #$00FF : STA.B $16 
     LDX.W $0590 
     LDA.W $0AF6 : CLC : ADC.B $12 : SEC : SBC.W $0911 : BMI + 
     CMP.W #$0100 
@@ -9292,9 +9208,7 @@ FireWaveSBA:
     LDA.W $0C18 
     AND.W #$003F 
     TAY 
-    LDA.W ProjectileCooldowns_Uncharged,Y 
-    AND.W #$00FF 
-    STA.W $0CCC 
+    LDA.W ProjectileCooldowns_Uncharged,Y : AND.W #$00FF : STA.W $0CCC 
     LDA.W #$0004 : STA.W $0B60 
     LDA.W #$0028 
     JSL.L QueueSound_Lib1_Max6 
@@ -9340,9 +9254,7 @@ FireIceSBA:
     LDA.W $0C18 
     AND.W #$003F 
     TAY 
-    LDA.W ProjectileCooldowns_Uncharged,Y 
-    AND.W #$00FF 
-    STA.W $0CCC 
+    LDA.W ProjectileCooldowns_Uncharged,Y : AND.W #$00FF : STA.W $0CCC 
     LDA.W $0A1E 
     AND.W #$00FF 
     CMP.W #$0004 
@@ -9395,9 +9307,7 @@ FireSpazerSBA:
     LDA.W $0C18 
     AND.W #$003F 
     TAY 
-    LDA.W ProjectileCooldowns_Uncharged,Y 
-    AND.W #$00FF 
-    STA.W $0CCC 
+    LDA.W ProjectileCooldowns_Uncharged,Y : AND.W #$00FF : STA.W $0CCC 
     STZ.W $0B60 
     LDA.W #$0025 
     JSL.L QueueSound_Lib1_Max6 
@@ -9438,9 +9348,7 @@ FirePlasmaSBA:
     LDA.W $0C18 
     AND.W #$003F 
     TAY 
-    LDA.W ProjectileCooldowns_Uncharged,Y 
-    AND.W #$00FF 
-    STA.W $0CCC 
+    LDA.W ProjectileCooldowns_Uncharged,Y : AND.W #$00FF : STA.W $0CCC 
     LDA.W $0A1E 
     AND.W #$00FF 
     CMP.W #$0004 
@@ -9982,9 +9890,7 @@ ShinesparkCrash_Finish:
     LDA.W #ProjectilePreInstruction_SpeedEcho : STA.W $0C6E 
     LDA.W $0A1C : SEC : SBC.W #$00C9 : ASL A 
     TAX 
-    LDA.W .data0,X 
-    AND.W #$00FF 
-    STA.W $0C82 
+    LDA.W .data0,X : AND.W #$00FF : STA.W $0C82 
     STZ.W $0BE2 
 
 .extraEcho:
@@ -9998,9 +9904,7 @@ ShinesparkCrash_Finish:
     LDA.W #ProjectilePreInstruction_SpeedEcho : STA.W $0C70 
     LDA.W $0A1C : SEC : SBC.W #$00C9 : ASL A 
     TAX 
-    LDA.W .data1,X 
-    AND.W #$00FF 
-    STA.W $0C84 
+    LDA.W .data1,X : AND.W #$00FF : STA.W $0C84 
     STZ.W $0BE4 
 
 .dontFire:
@@ -10112,9 +10016,7 @@ CrystalFlash:
     LDA.W $0998 
     CMP.W #$0028 
     BPL .skipInputCheck 
-    LDA.W #$0430 
-    ORA.W $09B2 
-    STA.B $12 
+    LDA.W #$0430 : ORA.W $09B2 : STA.B $12 
     LDA.B $8B 
     CMP.B $12 
     BNE .returnCarrySet 
@@ -10440,9 +10342,7 @@ BombSpread:
     XBA 
     AND.W #$000F 
     TAY 
-    LDA.W ProjectileCooldowns_NonBeamProjectiles,Y 
-    AND.W #$00FF 
-    STA.W $0CCC 
+    LDA.W ProjectileCooldowns_NonBeamProjectiles,Y : AND.W #$00FF : STA.W $0CCC 
     STZ.W $0CD4 
     STZ.W $0CD0 
     RTS 
@@ -12532,9 +12432,7 @@ SamusPoseInputHandler_AutoJumpHack:
     BEQ .not1Through9 
     CMP.W #$0009 
     BPL .not1Through9 
-    LDA.B $8F 
-    ORA.W $09B4 
-    STA.B $8F 
+    LDA.B $8F : ORA.W $09B4 : STA.B $8F 
     STZ.W $0AF4 
 
 .not1Through9:
@@ -12978,9 +12876,7 @@ SetSamusRadius:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YRadius,X 
-    AND.W #$00FF 
-    STA.W $0B00 
+    LDA.L PoseDefinitions_YRadius,X : AND.W #$00FF : STA.W $0B00 
     LDA.W #$0005 : STA.W $0AFE 
     PLP 
     RTS 
@@ -13024,9 +12920,7 @@ AlignSamusBottomPositionWithPreviousPose:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YRadius,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L PoseDefinitions_YRadius,X : AND.W #$00FF : STA.B $12 
     LDA.W $0A20 
     ASL #3
     TAX 

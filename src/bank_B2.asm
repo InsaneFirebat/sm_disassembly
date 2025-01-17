@@ -119,9 +119,7 @@ RTS_B2807B:
 
 
 Instruction_CommonB2_DeleteEnemy:
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     PLA 
     PEA.W ProcessEnemyInstructions_return-1 
     RTL 
@@ -287,16 +285,12 @@ Instruction_CommonB2_TransferYBytesInYToVRAM:
 
 
 Instruction_CommonB2_EnableOffScreenProcessing:
-    LDA.W $0F86,X 
-    ORA.W #$0800 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0800 : STA.W $0F86,X 
     RTL 
 
 
 Instruction_CommonB2_DisableOffScreenProcessing:
-    LDA.W $0F86,X 
-    AND.W #$F7FF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$F7FF : STA.W $0F86,X 
     RTL 
 
 
@@ -12014,9 +12008,7 @@ InitAI_PirateWall:
 
 
 .lessThanB:
-    LDA.W $0F7A,X 
-    AND.W #$FFF8 
-    STA.W $0F7A,X 
+    LDA.W $0F7A,X : AND.W #$FFF8 : STA.W $0F7A,X 
     BRA .return ; >.<
 
 
@@ -12085,9 +12077,7 @@ Function_PirateWall_WallJumpingRight:
 
 
 .lessThanB:
-    LDA.W $0F7A,X 
-    AND.W #$FFF8 
-    STA.W $0F7A,X 
+    LDA.W $0F7A,X : AND.W #$FFF8 : STA.W $0F7A,X 
     BRA .return ; >.<
 
 
@@ -12150,9 +12140,7 @@ Function_PirateWall_WallJumpingLeft:
 
 
 .lessThanB:
-    LDA.W $0F7A,X 
-    AND.W #$FFF8 
-    STA.W $0F7A,X 
+    LDA.W $0F7A,X : AND.W #$FFF8 : STA.W $0F7A,X 
     BRA .return ; >.<
 
 
@@ -13216,9 +13204,7 @@ Instruction_PirateNinja_DivekickLeft_Divekick:
     AND.W #$FF00 
     XBA 
     STA.B $14 
-    LDA.L $7E7800,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L $7E7800,X : AND.W #$00FF : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collision 
     LDA.L $7E7800,X : SEC : SBC.W #$0040 : STA.L $7E7800,X 
@@ -13286,9 +13272,7 @@ Instruction_PirateNinja_DivekickRight_Divekick:
     AND.W #$FF00 
     XBA 
     STA.B $14 
-    LDA.L $7E7800,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L $7E7800,X : AND.W #$00FF : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .landing 
     LDA.L $7E7800,X : SEC : SBC.W #$0040 : STA.L $7E7800,X 

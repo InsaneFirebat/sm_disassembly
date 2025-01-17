@@ -119,9 +119,7 @@ RTS_AA807B:
 
 
 Instruction_CommonAA_DeleteEnemy:
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     PLA 
     PEA.W ProcessEnemyInstructions_return-1 
     RTL 
@@ -287,16 +285,12 @@ Instruction_CommonAA_TransferYBytesInYToVRAM:
 
 
 Instruction_CommonAA_EnableOffScreenProcessing:
-    LDA.W $0F86,X 
-    ORA.W #$0800 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0800 : STA.W $0F86,X 
     RTL 
 
 
 Instruction_CommonAA_DisableOffScreenProcessing:
-    LDA.W $0F86,X 
-    AND.W #$F7FF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$F7FF : STA.W $0F86,X 
     RTL 
 
 
@@ -5043,9 +5037,7 @@ InstList_Torizo_SpecialCallable_BlowUpBombTorizosGut:
     dw Instruction_Torizo_GotoGutExplosionLinkInstruction 
 
 Instruction_Torizo_MarkBTGutBlownUp_Spawn6BTDroolProjectiles:
-    LDA.W $0FB6,X 
-    ORA.W #$8000 
-    STA.W $0FB6,X 
+    LDA.W $0FB6,X : ORA.W #$8000 : STA.W $0FB6,X 
     PHX 
     PHY 
     LDY.W #EnemyProjectile_BombTorizoContinuousDrool 
@@ -5116,9 +5108,7 @@ InstList_Torizo_Callable_BlowUpBombTorizosFace:
     dw Instruction_Torizo_Return 
 
 Instruction_Torizo_MarkBombTorizoFaceBlownUp:
-    LDA.W $0FB6,X 
-    ORA.W #$4000 
-    STA.W $0FB6,X 
+    LDA.W $0FB6,X : ORA.W #$4000 : STA.W $0FB6,X 
     RTL 
 
 
@@ -5175,16 +5165,12 @@ InstList_Torizo_DeathSequence_2:
     dw Instruction_Common_DeleteEnemy 
 
 Instruction_Torizo_SetAsVisible:
-    LDA.W $0F86,X 
-    AND.W #$FEFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$FEFF : STA.W $0F86,X 
     RTL 
 
 
 Instruction_Torizo_SetAsInvisible:
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     RTL 
 
 
@@ -6833,16 +6819,12 @@ Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow:
 
 
 Instruction_Torizo_SetTorizoTurningAroundFlag:
-    LDA.W $0FB4,X 
-    ORA.W #$4000 
-    STA.W $0FB4,X 
+    LDA.W $0FB4,X : ORA.W #$4000 : STA.W $0FB4,X 
     RTL 
 
 
 Instruction_Torizo_SetSteppedLeftWithLeftFootState:
-    LDA.W $0FB4,X 
-    AND.W #$1FFF 
-    STA.W $0FB4,X 
+    LDA.W $0FB4,X : AND.W #$1FFF : STA.W $0FB4,X 
     LDA.L $7E7812,X 
     INC A 
     STA.L $7E7812,X 
@@ -7251,9 +7233,7 @@ Function_Torizo_SimpleMovement:
 
 
 Function_Torizo_WakeWhenBombTorizoChozoFinishesCrumbling:
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     PHX 
     LDX.W #$004E 
 
@@ -7266,9 +7246,7 @@ Function_Torizo_WakeWhenBombTorizoChozoFinishesCrumbling:
     PLX 
     LDA.W TorizoMusicTracks_song1 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W $0F86,X 
-    AND.W #$FBFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$FBFF : STA.W $0F86,X 
     INC.W $0F92,X 
     INC.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -7475,21 +7453,15 @@ InitAI_Torizo:
     JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .notDead 
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     RTL 
 
 
 .notDead:
     LDY.W $079F 
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    ORA.W TorizoInitial_properties,Y 
-    STA.W $0F86,X 
-    LDA.W $0F88,X 
-    ORA.W #$0004 
-    STA.W $0F88,X 
+    LDA.W $0F86,X : ORA.W TorizoInitial_properties,Y : STA.W $0F86,X 
+    LDA.W $0F88,X : ORA.W #$0004 : STA.W $0F88,X 
     LDA.W TorizoInitial_XRadius,Y : STA.W $0F82,X 
     LDA.W TorizoInitial_YRadius,Y : STA.W $0F84,X 
     LDA.W #Function_Torizo_SimpleMovement : STA.W $0FB0,X 
@@ -7587,12 +7559,8 @@ EnemyShot_Torizo_Normal:
     LDA.W #RTS_AAC6AB : STA.W $0FB0,X 
     LDA.W #InstList_Torizo_DeathSequence_0 : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
-    LDA.W $0FB6,X 
-    ORA.W #$C000 
-    STA.W $0FB6,X 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0FB6,X : ORA.W #$C000 : STA.W $0FB6,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
 
 .return:
     RTL 
@@ -8159,9 +8127,7 @@ InstList_GT_LandedFromBackwardsJump_FacingRight_LeftFootFwd:
     dw InstList_GoldenTorizo_WalkingRight_RightLegMoving 
 
 Instruction_GoldenTorizo_ClearCaughtSuperMissileFlag:
-    LDA.W $0FB6,X 
-    AND.W #$EFFF 
-    STA.W $0FB6,X 
+    LDA.W $0FB6,X : AND.W #$EFFF : STA.W $0FB6,X 
     RTL 
 
 
@@ -8632,16 +8598,12 @@ InstList_GoldenTorizo_EyeBeamAttack_2:
     dw Instruction_Torizo_Return 
 
 Instruction_GoldenTorizo_DisableEyeBeamExplosions:
-    LDA.L $7E780C,X 
-    AND.W #$7FFF 
-    STA.L $7E780C,X 
+    LDA.L $7E780C,X : AND.W #$7FFF : STA.L $7E780C,X 
     RTL 
 
 
 Instruction_GoldenTorizo_EnableEyeBeamExplosions:
-    LDA.L $7E780C,X 
-    ORA.W #$8000 
-    STA.L $7E780C,X 
+    LDA.L $7E780C,X : ORA.W #$8000 : STA.L $7E780C,X 
     RTL 
 
 
@@ -8690,9 +8652,7 @@ InstList_Torizo_Stunned_1:
     dw Instruction_Torizo_Return 
 
 Instruction_GoldenTorizo_UnmarkStunned:
-    LDA.W $0FB6,X 
-    AND.W #$DFFF 
-    STA.W $0FB6,X 
+    LDA.W $0FB6,X : AND.W #$DFFF : STA.W $0FB6,X 
     RTL 
 
 
@@ -9331,18 +9291,14 @@ ShotReaction_GoldenTorizo_Normal:
     LDA.W $18A6 
     ASL A 
     TAY 
-    LDA.W $0C18,Y 
-    AND.W #$0F00 
-    STA.L $7E780A,X 
+    LDA.W $0C18,Y : AND.W #$0F00 : STA.L $7E780A,X 
     CMP.W #$0100 
     BEQ ShotReaction_GoldenTorizo_Normal_Missile 
     CMP.W #$0200 
     BEQ ShotReaction_GoldenTorizo_Normal_SuperMissile 
 
 .stun:
-    LDA.W $0FB6,X 
-    ORA.W #$2000 
-    STA.W $0FB6,X ; fallthrough to ShotReaction_GoldenTorizo_Damaged
+    LDA.W $0FB6,X : ORA.W #$2000 : STA.W $0FB6,X ; fallthrough to ShotReaction_GoldenTorizo_Damaged
 
 ShotReaction_GoldenTorizo_Damaged:
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External 
@@ -9351,21 +9307,15 @@ ShotReaction_GoldenTorizo_Damaged:
     BNE .return 
     LDA.W #InstList_Torizo_DeathSequence_0 : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
-    LDA.W $0FB6,X 
-    ORA.W #$C000 
-    STA.W $0FB6,X 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0FB6,X : ORA.W #$C000 : STA.W $0FB6,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
 
 .return:
     RTL 
 
 
 ShotReaction_GoldenTorizo_Normal_Missile:
-    LDA.W $0C04,Y 
-    AND.W #$FFEF 
-    STA.W $0C04,Y 
+    LDA.W $0C04,Y : AND.W #$FFEF : STA.W $0C04,Y 
     LDA.W #RTS_AAC6AB : STA.W $0FB0,X 
     LDA.W #$0001 : STA.W $0F94,X 
     BIT.W $0FB4,X 
@@ -9388,13 +9338,9 @@ ShotReaction_GoldenTorizo_Normal_SuperMissile:
 
 
 .facingSamus:
-    LDA.W $0FB6,X 
-    ORA.W #$1000 
-    STA.W $0FB6,X 
+    LDA.W $0FB6,X : ORA.W #$1000 : STA.W $0FB6,X 
     LDA.W #RTS_AAC6AB : STA.W $0FB0,X 
-    LDA.W $0C04,Y 
-    ORA.W #$0010 
-    STA.W $0C04,Y 
+    LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W $0FB4,X 
     BIT.W #$2000 
@@ -10153,9 +10099,7 @@ Function_Shaktool_FinalPiece:
     LDA.W $0FB4,X 
     AND.W #$DFFF 
     JSR.W ShaktoolPiecesMovementOptionsInA 
-    LDA.W $0FAE,X 
-    AND.W #$FF00 
-    STA.W $0FAE,X 
+    LDA.W $0FAE,X : AND.W #$FF00 : STA.W $0FAE,X 
 
   + LDA.W $0FAC,X : CLC : ADC.W $0FAE,X : STA.W $0FAE,X 
     CMP.W #$F000 
@@ -10236,9 +10180,7 @@ InitAI_Shaktool:
     LDA.W #$0000 : STA.W $0FA8,X 
     STA.W $0FAE,X 
     LDY.W $0FB6,X 
-    LDA.W $0F86,X 
-    ORA.W ShaktoolPieceData_properties,Y 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W ShaktoolPieceData_properties,Y : STA.W $0F86,X 
     TXA 
     SEC : SBC.W ShaktoolPieceData_RAMOffset,Y : STA.W $0FB0,X 
     LDA.W ShaktoolPieceData_functionPointer,Y : STA.W $0FB2,X 
@@ -10922,9 +10864,7 @@ InitAI_NoobTubeCrack:
 
 InitAI_Chozo:
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    ORA.W #$A800 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$A800 : STA.W $0F86,X 
     LDA.W #Spritemap_CommonAA_Nothing : STA.W $0F8E,X 
     LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 

@@ -271,9 +271,7 @@ SetBossBitsInAForCurrentArea:
     SEP #$20 
     STA.W $05E7 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    ORA.W $05E7 
-    STA.L $7ED828,X 
+    LDA.L $7ED828,X : ORA.W $05E7 : STA.L $7ED828,X 
     PLP 
     PLY 
     PLX 
@@ -289,9 +287,7 @@ UNUSED_ClearBossBitsInAForCurrentArea_8081C0:
     EOR.B #$FF 
     STA.W $05E7 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    AND.W $05E7 
-    STA.L $7ED828,X 
+    LDA.L $7ED828,X : AND.W $05E7 : STA.L $7ED828,X 
     PLP 
     PLY 
     PLX 
@@ -330,9 +326,7 @@ MarkEvent_inA:
     PHP 
     REP #$30 
     JSL.L BitIndexToByteIndexAndBitmask 
-    LDA.L $7ED820,X 
-    ORA.W $05E7 
-    STA.L $7ED820,X 
+    LDA.L $7ED820,X : ORA.W $05E7 : STA.L $7ED820,X 
     PLP 
     PLY 
     PLX 
@@ -348,9 +342,7 @@ UnmarkEvent_inA:
     LDA.W $05E7 
     EOR.W #$FFFF 
     STA.W $05E7 
-    LDA.L $7ED820,X 
-    AND.W $05E7 
-    STA.L $7ED820,X 
+    LDA.L $7ED820,X : AND.W $05E7 : STA.L $7ED820,X 
     PLP 
     PLY 
     PLX 
@@ -511,9 +503,7 @@ EnableNMI:
     PHK 
     PLB 
     SEP #$20 
-    LDA.B $84 
-    ORA.B #$80 
-    STA.W $4200 
+    LDA.B $84 : ORA.B #$80 : STA.W $4200 
     STA.B $84 
     PLB 
     PLP 
@@ -526,9 +516,7 @@ DisableNMI:
     PHK 
     PLB 
     SEP #$20 
-    LDA.B $84 
-    AND.B #$7F 
-    STA.W $4200 
+    LDA.B $84 : AND.B #$7F : STA.W $4200 
     STA.B $84 
     PLB 
     PLP 
@@ -541,9 +529,7 @@ SetForceBlankAndWaitForNMI:
     PHK 
     PLB 
     SEP #$20 
-    LDA.B $51 
-    ORA.B #$80 
-    STA.B $51 
+    LDA.B $51 : ORA.B #$80 : STA.B $51 
     JSL.L WaitForNMI 
     PLB 
     PLP 
@@ -556,9 +542,7 @@ ClearForceBlankAndWaitForNMI:
     PHK 
     PLB 
     SEP #$20 
-    LDA.B $51 
-    AND.B #$7F 
-    STA.B $51 
+    LDA.B $51 : AND.B #$7F : STA.B $51 
     JSL.L WaitForNMI 
     PLB 
     PLP 
@@ -870,9 +854,7 @@ LoadMirrorOfCurrentAreasMapExplored:
     CPY.W #$0100 
     BMI .loop 
     LDX.W $079F 
-    LDA.L $7ED908,X 
-    AND.W #$00FF 
-    STA.W $0789 
+    LDA.L $7ED908,X : AND.W #$00FF : STA.W $0789 
     PLP 
     RTL 
 
@@ -899,9 +881,7 @@ MirrorCurrentAreasMapExplored:
     LDA.W $0789 
     BEQ .return 
     LDX.W $079F 
-    LDA.L $7ED908,X 
-    ORA.W #$00FF 
-    STA.L $7ED908,X 
+    LDA.L $7ED908,X : ORA.W #$00FF : STA.L $7ED908,X 
 
 .return:
     PLP 
@@ -1492,9 +1472,7 @@ QueueMode7Transfers:
     LDA.W $0001,X : STA.W $02D0,Y 
     LDA.W $0003,X : STA.W $02D2,Y 
     LDA.W $0005,X : STA.W $02D4,Y 
-    LDA.W $0007,X 
-    AND.W #$00FF 
-    STA.W $02D6,Y 
+    LDA.W $0007,X : AND.W #$00FF : STA.W $02D6,Y 
     TXA 
     CLC : ADC.W #$0007 : TAX 
     TYA 
@@ -1507,9 +1485,7 @@ QueueMode7Transfers:
     LDA.W $0003,X : STA.W $02D2,Y 
     LDA.W $0005,X : STA.W $02D4,Y 
     LDA.W $0007,X : STA.W $02D6,Y 
-    LDA.W $0009,X 
-    AND.W #$00FF 
-    STA.W $02D8,Y 
+    LDA.W $0009,X : AND.W #$00FF : STA.W $02D8,Y 
     TXA 
     CLC : ADC.W #$0009 : TAX 
     TYA 
@@ -4525,9 +4501,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     LDA.L $7ECD20,X 
     AND.W #$00FF 
     BNE .return 
-    LDA.W $0911 
-    AND.W #$FF00 
-    STA.W $0933 
+    LDA.W $0911 : AND.W #$FF00 : STA.W $0933 
     LDA.W $0939 : SEC : SBC.W $0DA2 : SBC.W #$0002 : CMP.W $0933 
     BMI .reachedLeftScrollBoundary 
     STA.W $0939 
@@ -4599,9 +4573,7 @@ HandleScrollZones_ScrollingRight:
     LDA.L $7ECD20,X 
     AND.W #$00FF 
     BNE .return 
-    LDA.W $0911 
-    AND.W #$FF00 
-    STA.W $0933 
+    LDA.W $0911 : AND.W #$FF00 : STA.W $0933 
     LDA.W $0939 : SEC : SBC.W $0DA2 : SBC.W #$0002 : CMP.W $0933 
     BPL + 
     LDA.W $0933 
@@ -4948,14 +4920,10 @@ UpdateLevelBackgroundDataColumn:
     INC A 
     STA.W $0956,X 
     SEP #$20 
-    LDA.W $0996 
-    AND.B #$0F 
-    STA.W $4202 
+    LDA.W $0996 : AND.B #$0F : STA.W $4202 
     LDA.B #$40 : STA.W $4203 
     REP #$20 
-    LDA.W $0994 
-    AND.W #$001F 
-    STA.W $0935 
+    LDA.W $0994 : AND.W #$001F : STA.W $0935 
     ASL A 
     CLC : ADC.W $4216 : STA.W $0933 
     LDA.W #$5000 
@@ -5099,9 +5067,7 @@ UpdateBackgroundLevelDataRow:
 
   + STA.B $36 
     LDA.W #$007F : STA.B $38 
-    LDA.W $0994 
-    AND.W #$000F 
-    STA.W $0933 
+    LDA.W $0994 : AND.W #$000F : STA.W $0933 
     LDA.W #$0010 : SEC : SBC.W $0933 : ASL #2
     STA.W $0964,X 
     LDA.W $0933 
@@ -5109,14 +5075,10 @@ UpdateBackgroundLevelDataRow:
     ASL #2
     STA.W $0966,X 
     SEP #$20 
-    LDA.W $0996 
-    AND.B #$0F 
-    STA.W $4202 
+    LDA.W $0996 : AND.B #$0F : STA.W $4202 
     LDA.B #$40 : STA.W $4203 
     REP #$20 
-    LDA.W $0994 
-    AND.W #$001F 
-    STA.W $0935 
+    LDA.W $0994 : AND.W #$001F : STA.W $0935 
     ASL A 
     CLC : ADC.W $4216 : STA.W $0933 
     LDA.W #$5400 : STA.W $0937 
@@ -7147,14 +7109,10 @@ SetDebugElevatorAsUsed:
     SEP #$20 
     LDA.W $0000,Y 
     TAX 
-    LDA.W $0001,Y 
-    ORA.L $7ED8F8,X 
-    STA.L $7ED8F8,X 
+    LDA.W $0001,Y : ORA.L $7ED8F8,X : STA.L $7ED8F8,X 
     LDA.W $0002,Y 
     TAX 
-    LDA.W $0003,Y 
-    ORA.L $7ED8F8,X 
-    STA.L $7ED8F8,X 
+    LDA.W $0003,Y : ORA.L $7ED8F8,X : STA.L $7ED8F8,X 
     PLB 
     PLP 
     RTL 

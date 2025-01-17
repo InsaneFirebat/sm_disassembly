@@ -17,15 +17,11 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     ASL A 
     TAX 
     LDA.W SamusTilesAnimation_AnimationDefinitionPointers,X : CLC : ADC.B $12 : TAX 
-    LDA.W $0000,X 
-    AND.W #$00FF 
-    STA.B $16 
+    LDA.W $0000,X : AND.W #$00FF : STA.B $16 
     ASL A 
     TAY 
     INX 
-    LDA.W $0000,X 
-    AND.W #$00FF 
-    STA.W $0B24 
+    LDA.W $0000,X : AND.W #$00FF : STA.W $0B24 
     ASL #3
     SEC : SBC.W $0B24 : STA.B $12 
     LDA.W SamusTopHalfTilesAnimation_TilesDefinitionPointers,Y : CLC : ADC.B $12 : STA.W $071F 
@@ -43,9 +39,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     ASL A 
     TAY 
     INX 
-    LDA.W $0000,X 
-    AND.W #$00FF 
-    STA.W $0B26 
+    LDA.W $0000,X : AND.W #$00FF : STA.W $0B26 
     ASL #3
     SEC : SBC.W $0B26 : STA.B $14 
     LDA.W SamusBottomHalfTilesAnimation_TilesDefinitionPointers,Y : CLC : ADC.B $14 : STA.W $0721 

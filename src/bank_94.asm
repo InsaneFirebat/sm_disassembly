@@ -23,9 +23,7 @@ PostGrappleCollisionDetection_Horizontal_Slope_NonSquare:
 
 
 ..centerInBlock:
-    LDA.B $20 
-    AND.W #$000F 
-    STA.W $0DD4 
+    LDA.B $20 : AND.W #$000F : STA.W $0DD4 
     LDA.L $7F6402,X 
     AND.W #$001F 
     ASL #4
@@ -79,9 +77,7 @@ PostGrappleCollisionDetection_Horizontal_Slope_NonSquare:
 
 
 ..centerInBlock:
-    LDA.B $20 
-    AND.W #$000F 
-    STA.W $0DD4 
+    LDA.B $20 : AND.W #$000F : STA.W $0DD4 
     LDA.L $7F6402,X 
     AND.W #$001F 
     ASL #4
@@ -142,9 +138,7 @@ PostGrappleCollisionDetection_Vertical_Slope_NonSquare:
 
 
 ..centerInBlock:
-    LDA.B $20 
-    AND.W #$000F 
-    STA.W $0DD4 
+    LDA.B $20 : AND.W #$000F : STA.W $0DD4 
     LDA.L $7F6402,X 
     AND.W #$001F 
     ASL #4
@@ -197,9 +191,7 @@ PostGrappleCollisionDetection_Vertical_Slope_NonSquare:
 
 
 ..centerInBlock:
-    LDA.B $20 
-    AND.W #$000F 
-    STA.W $0DD4 
+    LDA.B $20 : AND.W #$000F : STA.W $0DD4 
     LDA.L $7F6402,X 
     AND.W #$001F 
     ASL #4
@@ -1538,9 +1530,7 @@ SamusBlockCollisionReaction_Horizontal_Slope:
     AND.W #$001F 
     CMP.W #$0005 
     BCC .gotoSquare 
-    LDA.L $7F6402,X 
-    AND.W #$00FF 
-    STA.W $1E77 
+    LDA.L $7F6402,X : AND.W #$00FF : STA.W $1E77 
     JMP.W SamusBlockCollisionDetection_Horizontal_Slope_NonSquare 
 
 
@@ -2479,9 +2469,7 @@ WallJumpBlockCollisionDetection:
     PHB 
     PHK 
     PLB 
-    LDA.W $0B02 
-    ORA.W #$000F 
-    STA.W $0B02 
+    LDA.W $0B02 : ORA.W #$000F : STA.W $0B02 
     STZ.W $1E71 
     JSR.W SamusBlockCollisionDetection_Horizontal 
     BCC .noCollision 
@@ -2546,9 +2534,7 @@ BlockCollisionDetectionDueToChangeOfPose_SingleBlock:
     REP #$30 
     PHK 
     PLB 
-    LDA.W $0B02 
-    ORA.W #$000F 
-    STA.W $0B02 
+    LDA.W $0B02 : ORA.W #$000F : STA.W $0B02 
     STZ.W $1E71 
     LDA.W $05B6 
     LSR A 
@@ -3282,15 +3268,11 @@ DetermineProjectile_Prototype:
     LDA.W $0C19,X 
     AND.W #$000F 
     BNE .notBeam 
-    LDA.W $0C18,X 
-    AND.W #$000F 
-    STA.B $12 
+    LDA.W $0C18,X : AND.W #$000F : STA.B $12 
     ASL A 
     ADC.B $12 : INC #2
     TAX 
-    LDA.W ProtoWeaponConstants_Beams,X 
-    AND.W #$00FF 
-    STA.W $0DD2 
+    LDA.W ProtoWeaponConstants_Beams,X : AND.W #$00FF : STA.W $0DD2 
     BRA .return 
 
 
@@ -3298,9 +3280,7 @@ DetermineProjectile_Prototype:
     ASL A 
     INC A 
     TAX 
-    LDA.W ProtoWeaponConstants_NonBeams,X 
-    AND.W #$00FF 
-    STA.W $0DD2 
+    LDA.W ProtoWeaponConstants_NonBeams,X : AND.W #$00FF : STA.W $0DD2 
 
 .return:
     PLX 
@@ -3904,9 +3884,7 @@ PowerBombExplosionBlockCollisionHandling:
 
 
 .zero:
-    LDA.W $0CEB 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W $0CEB : AND.W #$00FF : STA.B $12 
     ASL A 
     ADC.B $12 : LSR #2
     STA.B $14 
@@ -4582,9 +4560,7 @@ BlockShotReaction_Slope_NonSquare:
 
 .YFlip:
     PLX 
-    LDA.W $0B78,Y 
-    AND.W #$000F 
-    STA.W $0DD4 
+    LDA.W $0B78,Y : AND.W #$000F : STA.W $0DD4 
     LDA.W SlopeDefinitions_SlopeTopXOffsetByYPixel,X 
     AND.W #$001F 
     CMP.W $0DD4 
@@ -5922,9 +5898,7 @@ DrawGrappleSegment:
 
     LDA.L MapOfOAMIndexToHighOAM_address,X ; dead code
     STA.B $22 
-    LDA.B ($22) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($22) 
+    LDA.B ($22) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($22) 
 
   + LDA.B $18 : STA.W $0371,X 
     LDA.B $16 : CLC : ADC.B $1E : STA.B $16 
@@ -5953,9 +5927,7 @@ DrawGrappleBeamEnd_NotConnected:
     AND.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $22 
-    LDA.B ($22) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($22) 
+    LDA.B ($22) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($22) 
 
   + LDA.B $18 ; >_<
     LDA.W $0D0C : SEC : SBC.W $0915 : SEC : SBC.W #$0004 : STA.W $0371,X 
@@ -5974,9 +5946,7 @@ DrawGrappleBeamEnd_Connected:
     AND.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $22 
-    LDA.B ($22) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($22) 
+    LDA.B ($22) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($22) 
 
   + LDA.W $0D0C : SEC : SBC.W $0915 : SBC.W #$0004 : STA.W $0371,X 
     LDA.W #$3A20 : STA.W $0372,X 

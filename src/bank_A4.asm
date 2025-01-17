@@ -119,9 +119,7 @@ RTS_A4807B:
 
 
 Instruction_CommonA4_DeleteEnemy:
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     PLA 
     PEA.W ProcessEnemyInstructions_return-1 
     RTL 
@@ -287,16 +285,12 @@ Instruction_CommonA4_TransferYBytesInYToVRAM:
 
 
 Instruction_CommonA4_EnableOffScreenProcessing:
-    LDA.W $0F86,X 
-    ORA.W #$0800 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0800 : STA.W $0F86,X 
     RTL 
 
 
 Instruction_CommonA4_DisableOffScreenProcessing:
-    LDA.W $0F86,X 
-    AND.W #$F7FF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$F7FF : STA.W $0F86,X 
     RTL 
 
 
@@ -478,9 +472,7 @@ FightAI_Crocomire_4_Asleep:
 
   + CMP.W #$00E0 
     BPL .return 
-    LDA.W $0FAA 
-    ORA.W #$8000 
-    STA.W $0FAA 
+    LDA.W $0FAA : ORA.W #$8000 : STA.W $0FAA 
     LDY.W #InstList_Crocomire_WaitForFirstSecondDamage 
     LDA.W #$0012 : STA.W $0FAC 
 
@@ -492,9 +484,7 @@ FightAI_Crocomire_6_SteppingForward:
     LDA.W $0FAA 
     BIT.W #$0800 
     BEQ .step 
-    LDA.W $0FAA 
-    AND.W #$F7FF 
-    STA.W $0FAA 
+    LDA.W $0FAA : AND.W #$F7FF : STA.W $0FAA 
     LDA.W $0FAE 
     BEQ .step 
     LDY.W #InstList_Crocomire_StepBack 
@@ -619,9 +609,7 @@ UNUSED_FightAI_Crocomire_10_RoarAndStepForwards_A487FB:
 
 UNUSED_SetFightIntroMovingClawsInstList_A48805:
     LDY.W #InstList_Crocomire_WaitForFirstSecondDamage_MovingClaws 
-    LDA.W $0FAA 
-    AND.W #$FBFF 
-    STA.W $0FAA 
+    LDA.W $0FAA : AND.W #$FBFF : STA.W $0FAA 
     RTS 
 
 
@@ -629,9 +617,7 @@ FightAI_Crocomire_12_WaitForFirstDamage:
     LDA.W $0FAA 
     BIT.W #$0800 
     BEQ .notDamaged 
-    LDA.W $0FAA 
-    AND.W #$F7FF 
-    STA.W $0FAA 
+    LDA.W $0FAA : AND.W #$F7FF : STA.W $0FAA 
     LDY.W #InstList_Crocomire_StepBack 
     LDA.W #$0014 : STA.W $0FAC 
     RTS 
@@ -650,9 +636,7 @@ FightAI_Crocomire_14_WaitForSecondDamage:
     LDA.W $0FAA 
     BIT.W #$0800 
     BEQ .notDamaged 
-    LDA.W $0FAA 
-    AND.W #$F7FF 
-    STA.W $0FAA 
+    LDA.W $0FAA : AND.W #$F7FF : STA.W $0FAA 
     LDY.W #InstList_Crocomire_StepBack 
     LDA.W #$000C : STA.W $0FAC 
     RTS 
@@ -671,9 +655,7 @@ UNUSED_FightAI_Crocomire_16_WaitForSecondDamage_A4885A:
     LDA.W $0FAA 
     BIT.W #$0800 
     BEQ .notDamaged 
-    LDA.W $0FAA 
-    AND.W #$F7FF 
-    STA.W $0FAA 
+    LDA.W $0FAA : AND.W #$F7FF : STA.W $0FAA 
     LDY.W #InstList_Crocomire_StepBack 
     LDA.W #$000C : STA.W $0FAC 
     RTS 
@@ -728,9 +710,7 @@ UNUSED_FightAI_Crocomire_1A_DoNearSpikeWallCharge_A4889A:
 FightAI_Crocomire_1C_UnusedSequence_SetInitialInstList:
     LDX.W $0E54 
     JSR.W FightAI_Crocomire_0_LockUp_SetInitialInstList 
-    LDA.W $0FAA 
-    ORA.W #$0200 
-    STA.W $0FAA 
+    LDA.W $0FAA : ORA.W #$0200 : STA.W $0FAA 
     LDA.W #$0020 : STA.W $0FAE 
     LDA.W #$001E : STA.W $0FAC 
     RTS 
@@ -784,9 +764,7 @@ UNUSED_FightAI_Crocomire_20_DoNothingAndStepForward_A48940:
     JSR.W FightAI_Crocomire_0_LockUp_SetInitialInstList 
     LDA.W $0FAE 
     BNE .return 
-    LDA.W $0FAA 
-    ORA.W #$2000 
-    STA.W $0FAA 
+    LDA.W $0FAA : ORA.W #$2000 : STA.W $0FAA 
     JSR.W FightAI_Crocomire_2_StepForwardUntilOnScreen_StepForward 
     LDA.W #$0024 : STA.W $0FAC 
 
@@ -833,9 +811,7 @@ UNUSED_FightAI_Crocomire_24_MoveClaws_StepForward_A489A8:
     BEQ .timerExpired 
     LDA.W #$0024 : STA.W $0FAC 
     STZ.W $0FEE 
-    LDA.W $0FAA 
-    ORA.W #$0400 
-    STA.W $0FAA 
+    LDA.W $0FAA : ORA.W #$0400 : STA.W $0FAA 
     LDY.W #InstList_Crocomire_WaitForFirstSecondDamage_MovingClaws 
     RTS 
 
@@ -843,9 +819,7 @@ UNUSED_FightAI_Crocomire_24_MoveClaws_StepForward_A489A8:
 .timerExpired:
     JSR.W FightAI_Crocomire_2_StepForwardUntilOnScreen_StepForward 
     LDA.W #$0028 : STA.W $0FAC 
-    LDA.W $0FAA 
-    AND.W #$FBFF 
-    STA.W $0FAA 
+    LDA.W $0FAA : AND.W #$FBFF : STA.W $0FAA 
     RTS 
 
 
@@ -866,9 +840,7 @@ UNUSED_FightAI_Crocomire_26_StepForward_A489DE:
 UNUSED_FightAI_Crocomire_28_MovingClaws_A489F9:
     LDA.W $0FAE 
     BNE .timerNotExpired 
-    LDA.W $0FAA 
-    AND.W #$BFFF 
-    STA.W $0FAA 
+    LDA.W $0FAA : AND.W #$BFFF : STA.W $0FAA 
     LDA.W #$0001 : STA.W $0F94 
     LDA.W $0FB2 : STA.W $0FAC 
     LDY.W #InstList_Crocomire_WaitForFirstSecondDamage_MovingClaws 
@@ -933,9 +905,7 @@ InitAI_Crocomire:
     LDA.W #$0002 : STA.W $0941 
     LDA.W #$0400 : STA.W $179A 
     LDA.W #InstList_Crocomire_Initial : STA.W $0F92,X 
-    LDA.W $0F88,X 
-    ORA.W #$0004 
-    STA.W $0F88,X 
+    LDA.W $0F88,X : ORA.W #$0004 : STA.W $0F88,X 
     LDA.W #$0001 : STA.W $0F94,X 
     RTL 
 
@@ -1373,14 +1343,10 @@ HandleCrocomiresBridge:
     dw PLMEntries_createCrocomireInvisibleWall 
     LDA.W #InstList_CrocomireTongue_BridgeCollapsed : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     LDA.W #$7FFF : STA.W $0FD4,X 
     LDA.W #InstList_Crocomire_Sleep : STA.W $0FD2,X 
-    LDA.W $0FC6 
-    ORA.W #$0100 
-    STA.W $0FC6 
+    LDA.W $0FC6 : ORA.W #$0100 : STA.W $0FC6 
     STZ.W $0FB0,X 
     STZ.W $0FB2,X 
     LDA.W #$0800 : STA.W $0FAE,X 
@@ -1602,9 +1568,7 @@ MainAI_Crocomire_DeathSequence_3C_Hop_6_Sinking:
     LDA.W #InstList_CrocomireCorpse_Skeleton_FlowingDownTheRiver : STA.W $0F92 
     LDA.W #$0101 : STA.L $7ECD24 
     STZ.W $05F7 
-    LDA.W $0FC6 
-    ORA.W #$0200 
-    STA.W $0FC6 
+    LDA.W $0FC6 : ORA.W #$0200 : STA.W $0FC6 
     JSL.L Spawn_Hardcoded_PLM 
     db $4E,$03 
     dw PLMEntries_clearCrocomireInvisibleWall 
@@ -1714,9 +1678,7 @@ MainAI_Crocomire_DeathSequence_8_E_Hop_1_2_Sinking:
 
 SinkCrocomireDown:
     JSR.W ResetCrocomireBG2YScrollHDMADataTable 
-    LDA.W $0FAA 
-    AND.W #$F7FF 
-    STA.W $0FAA 
+    LDA.W $0FAA : AND.W #$F7FF : STA.W $0FAA 
     LDX.W $0E54 
     JSL.L UpdateCrocomireBG2Scroll 
     LDA.W $0F7E,X 
@@ -1745,9 +1707,7 @@ SinkCrocomireDown:
     DEC.B $12 
     BNE .loopTilemap 
     LDA.W #$0001 : STA.W $0E1E 
-    LDA.W $0F88 
-    AND.W #$7FFF 
-    STA.W $0F88 
+    LDA.W $0F88 : AND.W #$7FFF : STA.W $0F88 
     LDX.W $0E54 
     SEP #$20 
     LDA.W $0FAE,X : CLC : ADC.B #$80 : STA.W $0FAE,X 
@@ -2282,18 +2242,10 @@ EraseMeltingCrocomirePixelColumn:
     ASL #6
     CLC : ADC.B $14 : TAX 
     SEP #$20 
-    LDA.L $7E4000,X 
-    AND.W TilePixelColumnBitmasks,Y 
-    STA.L $7E4000,X 
-    LDA.L $7E4001,X 
-    AND.W TilePixelColumnBitmasks,Y 
-    STA.L $7E4001,X 
-    LDA.L $7E4010,X 
-    AND.W TilePixelColumnBitmasks,Y 
-    STA.L $7E4010,X 
-    LDA.L $7E4011,X 
-    AND.W TilePixelColumnBitmasks,Y 
-    STA.L $7E4011,X 
+    LDA.L $7E4000,X : AND.W TilePixelColumnBitmasks,Y : STA.L $7E4000,X 
+    LDA.L $7E4001,X : AND.W TilePixelColumnBitmasks,Y : STA.L $7E4001,X 
+    LDA.L $7E4010,X : AND.W TilePixelColumnBitmasks,Y : STA.L $7E4010,X 
+    LDA.L $7E4011,X : AND.W TilePixelColumnBitmasks,Y : STA.L $7E4011,X 
     LDA.B #$00 
     XBA 
     LDX.W $0690 
@@ -2304,9 +2256,7 @@ EraseMeltingCrocomirePixelColumn:
     BEQ + 
     REP #$20 
     INC.W $069C,X 
-    LDA.W $069C,X 
-    AND.W #$00FF 
-    STA.B $16 
+    LDA.W $069C,X : AND.W #$00FF : STA.B $16 
     DEC.B $12 
     BNE .loopEraseColumn 
 
@@ -2356,9 +2306,7 @@ MainAI_Crocomire_DeathSequence_3E_BehindWall_WaitForSamus:
     AND.W #$7FFF 
     ORA.W #$0400 
     STA.W $0F86 
-    LDA.W $0FC6 
-    ORA.W #$0500 
-    STA.W $0FC6 
+    LDA.W $0FC6 : ORA.W #$0500 : STA.W $0FC6 
     LDA.W #$0004 : STA.W $0FAE 
     STZ.W $0FEE 
     LDA.W #$000A : STA.W $102E 
@@ -2718,9 +2666,7 @@ MainAI_Crocomire_DeathSequence_50_MarkEvent_PostDeathMusic:
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     STZ.W $0941 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    ORA.W #$0002 
-    STA.L $7ED828,X 
+    LDA.L $7ED828,X : ORA.W #$0002 : STA.L $7ED828,X 
     LDA.W #$0006 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$FFF0 
@@ -3289,9 +3235,7 @@ Palette_Crocomire_Sprite3:
 
 EnemyTouch_Crocomire_Claws:
     JSL.L NormalEnemyTouchAI 
-    LDA.W $0FAA 
-    ORA.W #$4000 
-    STA.W $0FAA 
+    LDA.W $0FAA : ORA.W #$4000 : STA.W $0FAA 
     LDA.W #$FFFC : STA.W $0B58 ; fallthrough to RTL_A4B950
 
 RTL_A4B950:
@@ -3306,9 +3250,7 @@ EnemyShot_Crocomire_Nothing:
     INC A 
 
   + STA.B $12 
-    LDA.W $0FAA 
-    ORA.B $12 
-    STA.W $0FAA 
+    LDA.W $0FAA : ORA.B $12 : STA.W $0FAA 
     RTL 
 
 
@@ -3350,9 +3292,7 @@ PowerBombReaction_Crocomire:
     STA.W $0FAA 
     LDA.W #$000A : STA.W $0FB0 
     LDA.W $0F9C : CLC : ADC.W #$0004 : STA.W $0F9C 
-    LDA.W $0F8A 
-    ORA.W #$0002 
-    STA.W $0F8A 
+    LDA.W $0F8A : ORA.W #$0002 : STA.W $0F8A 
     LDA.W #$0018 : STA.W $0FAC 
     LDX.W $0F8E 
     LDA.W $0000,X : STA.B $12 
@@ -3443,9 +3383,7 @@ EnemyShot_Crocomire_OpenMouth:
 
 .flash:
     LDA.W $0F9C : CLC : ADC.W #$000E : STA.W $0F9C 
-    LDA.W $0F8A 
-    ORA.W #$0002 
-    STA.W $0F8A 
+    LDA.W $0F8A : ORA.W #$0002 : STA.W $0F8A 
     RTL 
 
 
@@ -9263,9 +9201,7 @@ InitAI_CrocomireTongue:
     BNE .dead 
     LDX.W $0E54 
     LDA.W #InstList_CrocomireTongue_Fight : STA.W $0F92,X 
-    LDA.W $0F88,X 
-    ORA.W #$0404 
-    STA.W $0F88,X 
+    LDA.W $0F88,X : ORA.W #$0404 : STA.W $0F88,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #$0017 : STA.W $0FA8,X 
     LDA.W #$0E00 : STA.W $0F96,X 

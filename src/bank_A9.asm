@@ -119,9 +119,7 @@ RTS_A9807B:
 
 
 Instruction_CommonA9_DeleteEnemy:
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     PLA 
     PEA.W ProcessEnemyInstructions_return-1 
     RTL 
@@ -287,16 +285,12 @@ Instruction_CommonA9_TransferYBytesInYToVRAM:
 
 
 Instruction_CommonA9_EnableOffScreenProcessing:
-    LDA.W $0F86,X 
-    ORA.W #$0800 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0800 : STA.W $0F86,X 
     RTL 
 
 
 Instruction_CommonA9_DisableOffScreenProcessing:
-    LDA.W $0F86,X 
-    AND.W #$F7FF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$F7FF : STA.W $0F86,X 
     RTL 
 
 
@@ -401,9 +395,7 @@ InitAI_MotherBrainBody:
     LDA.W #InstList_MotherBrainHead_InitialDummy 
     JSR.W SetMotherBrainBodyInstList 
     STZ.W $0F98 
-    LDA.W $0F86 
-    ORA.W #$1500 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$1500 : STA.W $0F86 
     LDA.W #$0000 : STA.W $0F96 
     LDY.W #Palette_MotherBrain_GlassShards+2 
     LDX.W #$0162 
@@ -441,9 +433,7 @@ InitAI_MotherBrainHead:
     LDA.W #InstList_MotherBrainHead_InitialDummy 
     JSR.W SetMotherBrainHeadUnusedInstList 
     STZ.W $0FD8 
-    LDA.W $0FC6 
-    ORA.W #$1100 
-    STA.W $0FC6 
+    LDA.W $0FC6 : ORA.W #$1100 : STA.W $0FC6 
     LDA.W #$0200 : STA.W $0FD6 
     STA.L $7E7818 
     STA.L $7E781A 
@@ -575,9 +565,7 @@ Function_MBBody_FakeDeath_Descent_LockSamus_SetScrollRegion:
 .timerExpired:
     LDA.W #$0000 
     JSL.L Run_Samus_Command 
-    LDA.L $7ECD20 
-    AND.W #$00FF 
-    STA.L $7ECD20 
+    LDA.L $7ECD20 : AND.W #$00FF : STA.L $7ECD20 
     LDA.W #Function_MotherBrainBody_FakeDeath_Descent_QueueMusic : STA.W $0FA8 
     LDA.W #$0020 : STA.W $0FB2 
 
@@ -963,9 +951,7 @@ HandleFallingTubeSmoke_return:
 
 
 ExplodeMotherBrainTubes:
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     LDA.W $0F7A,X : STA.B $12 
     LDA.W $0F7E,X : STA.B $14 
     LDA.W #$0003 
@@ -988,9 +974,7 @@ Function_MotherBrainTubes_MainTube_Falling:
     PHA 
     CMP.W #$00F4 
     BMI .lessThanF4 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
 
 .lessThanF4:
     PLA 
@@ -1128,9 +1112,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_RowsC_D:
 
 Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2GFX:
     LDA.W #$0101 : STA.W $091B 
-    LDA.B $59 
-    AND.W #$FFFC 
-    STA.B $59 
+    LDA.B $59 : AND.W #$FFFC : STA.B $59 
     LDY.W #Palette_MotherBrain_Attacks+2 
     LDX.W #$0142 
     LDA.W #$000F 
@@ -1148,12 +1130,8 @@ Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2GFX:
 Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2Brain:
     LDA.W #$0034 : STA.W $1982 
     LDA.W #Function_MotherBrain_SetupBrainAndNeckToBeDrawn : STA.W $0FE8 
-    LDA.W $0F86 
-    AND.W #$FBFF 
-    STA.W $0F86 
-    LDA.W $0FC6 
-    AND.W #$FBFF 
-    STA.W $0FC6 
+    LDA.W $0F86 : AND.W #$FBFF : STA.W $0F86 
+    LDA.W $0FC6 : AND.W #$FBFF : STA.W $0FC6 
     LDA.W #$4650 : STA.W $0FCC 
     LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_PauseForSuspense : STA.W $0FA8 
     LDA.W #$0080 : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_PauseForSuspense
@@ -1177,9 +1155,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_PrepareMBForRising:
 .timerExpired:
     JSL.L Spawn_MotherBrainRising_HDMAObject 
     STA.L $7E7812 
-    LDA.W $0FC6 
-    ORA.W #$0100 
-    STA.W $0FC6 
+    LDA.W $0FC6 : ORA.W #$0100 : STA.W $0FC6 
     LDA.W #InstList_MotherBrainHead_Initial 
     JSR.W SetMotherBrainHeadInstList 
     LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_LoadMBLegTiles : STA.W $0FA8 
@@ -1214,9 +1190,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_StartMusic_Quake:
     LDA.W #InstList_MotherBrainBody_Crouched 
     JSR.W SetMotherBrainBodyInstList 
     LDA.W #$0001 : STA.W $0FD4 
-    LDA.W $0F86 
-    AND.W #$FEFF 
-    STA.W $0F86 
+    LDA.W $0F86 : AND.W #$FEFF : STA.W $0F86 
     LDA.W #$003B : STA.W $0F7A 
     LDA.W #$0117 : STA.W $0F7E 
     LDA.W #$FFE5 : STA.B $B5 
@@ -1571,9 +1545,7 @@ HandleMotherBrainsNeck:
     JSR.W HandleMotherBrainsNeck_Upper 
 
 .neckMovementDisabled:
-    LDA.L $7E8041 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L $7E8041 : AND.W #$00FF : STA.B $12 
     LDA.L $7E8048 
     JSL.L GetSineMathInA_A9C460 
     CLC : ADC.L $7E7814 : CLC : ADC.W #$0070 : STA.L $7E8044 
@@ -1592,9 +1564,7 @@ HandleMotherBrainsNeck:
     LDA.L $7E8054 
     JSL.L GetCosineMathInA_A9C465 
     CLC : ADC.L $7E7816 : CLC : ADC.W #$FFA0 : STA.L $7E8052 
-    LDA.L $7E8043 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L $7E8043 : AND.W #$00FF : STA.B $12 
     LDA.L $7E805A 
     JSL.L GetSineMathInA_A9C460 
     CLC : ADC.L $7E8050 : STA.L $7E8056 
@@ -1770,22 +1740,16 @@ AddSpritemapToOAM_RoomCoordinates:
     AND.W #$0100 
     BEQ .checkSizeBit 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
-    LDA.B ($1C) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($1C) 
+    LDA.B ($1C) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($1C) 
 
 .checkSizeBit:
     LDA.W $0000,Y 
     BPL + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
-    LDA.B ($1C) 
-    ORA.L MapOfOAMIndex_sizeBit,X 
-    STA.B ($1C) 
+    LDA.B ($1C) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($1C) 
 
   + LDA.B $1A : STA.W $0371,X 
-    LDA.W $0003,Y 
-    ORA.B $16 
-    STA.W $0372,X 
+    LDA.W $0003,Y : ORA.B $16 : STA.W $0372,X 
     TXA 
     CLC : ADC.W #$0004 : AND.W #$01FF 
     TAX 
@@ -4573,12 +4537,8 @@ Spritemaps_MotherBrainTubes_4:
     dw $AF5E 
 
 Function_MBBody_Phase3_DeathSequence_MoveToBackOfRoom:
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
-    LDA.W $0FC6 
-    ORA.W #$0400 
-    STA.W $0FC6 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
+    LDA.W $0FC6 : ORA.W #$0400 : STA.W $0FC6 
     LDA.W #$0000 : STA.L $7E7808 
     LDY.W #$0006 
     LDA.W #$0028 
@@ -4851,9 +4811,7 @@ Function_MBBody_Phase3_DeathSequence_CorpseTipsOver:
 
 .timerExpired:
     LDA.W #Function_MBBody_Phase3_DeathSequence_CorpseRotsAway : STA.W $0FA8 
-    LDA.W $0FC6 
-    ORA.W #$0400 
-    STA.W $0FC6 
+    LDA.W $0FC6 : ORA.W #$0400 : STA.W $0FC6 
     LDA.W #$0000 : STA.L $7E7808 
     RTS 
 
@@ -6302,9 +6260,7 @@ Function_MBBody_DrainedByBabyMetroid_FiringRainbowBeam:
     LDA.L $7E784C 
     ASL A 
     TAY 
-    LDA.W .walkingAnimationDelays,Y 
-    AND.W #$00FF 
-    STA.L $7E784E 
+    LDA.W .walkingAnimationDelays,Y : AND.W #$00FF : STA.L $7E784E 
     LDA.W .neckAngleDeltas,Y : STA.L $7E8068 
     LDA.L $7E784C 
     CMP.W #$0006 
@@ -6451,9 +6407,7 @@ SetMotherBrainPainfulWalkingFunctionTimer:
     LDA.L $7E784C 
     ASL A 
     TAY 
-    LDA.W .timers,Y 
-    AND.W #$00FF 
-    STA.L $7E7852 
+    LDA.W .timers,Y : AND.W #$00FF : STA.L $7E7852 
     RTS 
 
 
@@ -7299,9 +7253,7 @@ HandleMotherBrainWalking:
 
 InitAI_BabyMetroidCutscene:
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    ORA.W #$3000 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$3000 : STA.W $0F86,X 
     LDA.W #$0E00 : STA.W $0F96,X 
     LDA.W #InstList_BabyMetroid_Initial : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -7812,9 +7764,7 @@ Function_BabyMetroidCutscene_DeathSequence:
 
 
 .fadedToBlack:
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     LDA.W #Function_BabyMetroidCutscene_UnloadTiles : STA.W $0FA8,X 
     LDA.W #$0080 : STA.W $0FB2,X 
 
@@ -7854,9 +7804,7 @@ Function_BabyMetroidCutscene_FinalCutscene:
     JSL.L Run_Samus_Command 
     LDA.W #$0003 
     JSL.L DrainedSamusController 
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     LDA.W #$0000 : STA.L $7E7854 
     RTS 
 
@@ -7979,16 +7927,12 @@ HandleEnemyBlinking:
     LDA.W $0FA4,X 
     AND.W #$0001 
     BEQ .invisible 
-    LDA.W $0F86,X 
-    AND.W #$FEFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$FEFF : STA.W $0F86,X 
     RTS 
 
 
 .invisible:
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     RTS 
 
 
@@ -8512,9 +8456,7 @@ InitAI_CorpseTorizo:
     BPL .loop 
     PLB 
     LDA.W #Function_CorpseTorizo_WaitForSamusCollision : STA.W $0FA8 
-    LDA.W $0F86 
-    ORA.W #$A000 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$A000 : STA.W $0F86 
     LDA.W #InstList_CorpseTorizo : STA.W $0F92 
     LDA.W #$0001 : STA.W $0F94 
     STZ.W $0F90 
@@ -8536,9 +8478,7 @@ MainAI_CorpseTorizo:
     BNE .noCollision 
     JSR.W CorpseTorizo_vs_Samus_CollisionDetection 
     BCC .noCollision 
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     LDA.W #Function_CorpseTorizo_Rotting : STA.W $0FA8 
 
 .noCollision:
@@ -8586,9 +8526,7 @@ Function_CorpseTorizo_PreRotDelay:
 
 
 .done:
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     LDA.W #Function_CorpseTorizo_Rotting : STA.W $0FA8 ; fallthrough to Function_CorpseTorizo_Rotting
 
 Function_CorpseTorizo_Rotting:
@@ -8625,9 +8563,7 @@ PowerBombReaction_CorpseTorizo:
 
 
 EnemyTouch_EnemyShot_CorpseTorizo:
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     LDA.W #Function_CorpseTorizo_Rotting : STA.W $0FA8 
     RTL 
 
@@ -8948,9 +8884,7 @@ CorpseSidehopperInit_Param1_0_InitiallyAlive:
     LDA.W $0F86 
     AND.W #$0100 
     BEQ .visible 
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
 
 .visible:
     LDA.W #$0000 : STA.L $7E7810,X 
@@ -9230,9 +9164,7 @@ Function_CorpseSidehopper_BeingDrained:
     LDA.W #InstList_CorpseSidehopper_Alive_Corpse 
     JSL.L SetEnemyInstList 
     LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision : STA.W $0FA8,X 
-    LDA.W $0F86,X 
-    ORA.W #$8000 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$8000 : STA.W $0F86,X 
     LDA.W #$000C : STA.W $0F84,X 
 
 .return:
@@ -9304,9 +9236,7 @@ CorpseCommonAI_PreRotDelay:
     BCC .return 
     TYA 
     STA.W $0FA8,X 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
 
 .return:
     RTS 
@@ -9609,9 +9539,7 @@ CorpseSidehopperContactReaction_Rottable:
 CorpseCommonContactReaction:
     LDX.W $0E54 
     STA.W $0FA8,X 
-    LDA.W $0F86,X 
-    ORA.W #$0C00 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0C00 : STA.W $0F86,X 
 
 CorpseCommonContactReaction_return:
     RTL 
@@ -11427,9 +11355,7 @@ InitAI_BabyMetroid:
     BPL .loop 
     PLB 
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    ORA.W #$3000 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$3000 : STA.W $0F86,X 
     LDA.W #$0400 : STA.W $0F96,X 
     LDA.W #InstList_BabyMetroid_Normal : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -11437,9 +11363,7 @@ InitAI_BabyMetroid:
     LDA.W #Function_BabyMetroid_WaitForCamera 
     BIT.W $0911 
     BPL .notLeftDoor 
-    LDA.W $0F86,X 
-    ORA.W #$0500 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0500 : STA.W $0F86,X 
     LDA.W #Function_BabyMetroid_Disappeared 
 
 .notLeftDoor:
@@ -11493,12 +11417,8 @@ Function_BabyMetroid_WaitForCamera:
     CMP.W #$0201 
     BPL .return 
     LDA.W #$0200 : STA.W $0911 
-    LDA.L $7ECD20 
-    AND.W #$00FF 
-    STA.L $7ECD20 
-    LDA.L $7ECD22 
-    AND.W #$00FF 
-    STA.L $7ECD22 
+    LDA.L $7ECD20 : AND.W #$00FF : STA.L $7ECD20 
+    LDA.L $7ECD22 : AND.W #$00FF : STA.L $7ECD22 
     JSL.L Spawn_Hardcoded_PLM 
     db $30,$03 
     dw PLMEntries_createBabyMetroidInvisibleWall 
@@ -11610,12 +11530,8 @@ Function_BabyMetroid_MoveUp_UnlockCamera:
     BPL .return 
     LDA.W #Function_BabyMetroid_StareDownSamus : STA.W $0FA8,X 
     LDA.W #$0001 : STA.W $0FB6,X 
-    LDA.L $7ECD20 
-    ORA.W #$0100 
-    STA.L $7ECD20 
-    LDA.L $7ECD22 
-    ORA.W #$0100 
-    STA.L $7ECD22 
+    LDA.L $7ECD20 : ORA.W #$0100 : STA.L $7ECD20 
+    LDA.L $7ECD22 : ORA.W #$0100 : STA.L $7ECD22 
     JSL.L Spawn_Hardcoded_PLM 
     db $30,$03 
     dw PLMEntries_clearBabyMetroidInvisibleWall 
@@ -11819,9 +11735,7 @@ Function_BabyMetroid_Fleeing:
     BCS .return 
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
-    LDA.W $0F86,X 
-    AND.W #$DEFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$DEFF : STA.W $0F86,X 
     LDA.W #Function_BabyMetroid_Disappeared : STA.W $0FA8,X 
 
 .return:
@@ -11930,9 +11844,7 @@ GradduallyAccelerateTowardsPoint_1A_10:
     LDA.W #$0010 : STA.B $1A ; fallthrough to GradduallyAccelerateTowardsPoint
 
 GradduallyAccelerateTowardsPoint:
-    LDA.W GradualAccelerationDivisorTable,Y 
-    AND.W #$00FF 
-    STA.B $18 
+    LDA.W GradualAccelerationDivisorTable,Y : AND.W #$00FF : STA.B $18 
     JSR.W GraduallyAccelerateHorizontally 
     LDA.W $0F7E,X : SEC : SBC.B $14 : BEQ .return 
     BPL .up 

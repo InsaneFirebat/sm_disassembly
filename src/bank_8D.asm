@@ -12051,9 +12051,7 @@ InstList_PaletteFXObject_Norfair2_1:
     dw InstList_PaletteFXObject_Norfair2_1 
 
 Instruction_PaletteFXObject_1EED_InY:
-    LDA.W $0000,Y 
-    AND.W #$00FF 
-    STA.W $1EED 
+    LDA.W $0000,Y : AND.W #$00FF : STA.W $1EED 
     INY 
     RTS 
 

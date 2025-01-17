@@ -119,9 +119,7 @@ RTS_A7807B:
 
 
 Instruction_CommonA7_DeleteEnemy:
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     PLA 
     PEA.W ProcessEnemyInstructions_return-1 
     RTL 
@@ -287,16 +285,12 @@ Instruction_CommonA7_TransferYBytesInYToVRAM:
 
 
 Instruction_CommonA7_EnableOffScreenProcessing:
-    LDA.W $0F86,X 
-    ORA.W #$0800 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0800 : STA.W $0F86,X 
     RTL 
 
 
 Instruction_CommonA7_DisableOffScreenProcessing:
-    LDA.W $0F86,X 
-    AND.W #$F7FF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$F7FF : STA.W $0F86,X 
     RTL 
 
 
@@ -2015,9 +2009,7 @@ RTL_A794B5:
 EnemyShot_KraidArm:
     TYX 
     JSR.W SpawnExplosionProjectile 
-    LDA.W $0C04,Y 
-    ORA.W #$0010 
-    STA.W $0C04,Y 
+    LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
     RTL 
 
 
@@ -3243,9 +3235,7 @@ InitAI_Kraid:
     LDA.W #$0000 : STA.L $7E783E 
     LDA.W #$00B0 : STA.W $0F7A 
     LDA.W #$0250 : STA.W $0F7E 
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     LDA.W #Function_Kraid_RestrictSamusXPositionToFirstScreen : STA.W $0FA8 
     LDA.W #$012C : STA.W $0FB2 
     LDA.W #Function_Kraid_RaiseThruFloor_LoadTilemapTopHalf : STA.L $7E7800 
@@ -3293,18 +3283,14 @@ SetupKraidGFXWithTheTilePriorityCleared:
     LDX.W #$0000 
 
 .loop0:
-    LDA.L $7E2000,X 
-    AND.W #$DFFF 
-    STA.L $7E2800,X 
+    LDA.L $7E2000,X : AND.W #$DFFF : STA.L $7E2800,X 
     INX #2
     CPX.W #$0600 
     BMI .loop0 
     LDX.W #$0000 
 
 .loop1:
-    LDA.L $7E4000,X 
-    AND.B $12 
-    STA.L $7E2000,X 
+    LDA.L $7E4000,X : AND.B $12 : STA.L $7E2000,X 
     INX #2
     CPX.W #$0800 
     BMI .loop1 
@@ -3534,15 +3520,11 @@ Function_Kraid_KraidGetsBig_SetBG2TilemapPriorityBits:
     LDX.W #$0000 
 
 .loop:
-    LDA.L $7E2000,X 
-    ORA.W #$2000 
-    STA.L $7E2000,X 
+    LDA.L $7E2000,X : ORA.W #$2000 : STA.L $7E2000,X 
     INX #2
     CPX.W #$1000 
     BMI .loop 
-    LDA.W $0FC6 
-    AND.W #$FBFF 
-    STA.W $0FC6 
+    LDA.W $0FC6 : AND.W #$FBFF : STA.W $0FC6 
     LDA.W #Function_Kraid_KraidGetsBig_FinishUpdatingBG2Tilemap : STA.W $0FA8 
     JMP.W UpdateBG2TilemapTopHalf 
 
@@ -3823,9 +3805,7 @@ KraidsMouth_vs_Projectile_CollisionHandling:
     BNE .notBeam 
     BIT.W #$0010 
     BEQ .next 
-    LDA.L $7E780A 
-    ORA.W #$0001 
-    STA.L $7E780A 
+    LDA.L $7E780A : ORA.W #$0001 : STA.L $7E780A 
 
 .notBeam:
     PHX 
@@ -3836,9 +3816,7 @@ KraidsMouth_vs_Projectile_CollisionHandling:
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External 
     PLP 
     PLX 
-    LDA.W $0C04,X 
-    ORA.W #$0010 
-    STA.W $0C04,X 
+    LDA.W $0C04,X : ORA.W #$0010 : STA.W $0C04,X 
     LDY.W #$0001 
 
 .next:
@@ -3874,17 +3852,13 @@ KraidsMouth_vs_Projectile_CollisionHandling:
     BPL .return 
     LDA.W #KraidDeath_Initialize : STA.W $0FA8 
     LDA.W #$0000 : STA.L $7E780A 
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     LDA.W #$DFFF : STA.B $12 
     JSR.W SetupKraidGFXWithTheTilePriorityCleared 
     LDX.W #$0000 
 
 .loopSetIntangible:
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     TXA 
     CLC : ADC.W #$0040 : TAX 
     CPX.W #$0180 
@@ -3980,9 +3954,7 @@ KraidBody_vs_Projectile_CollisionHandling:
 
 .lessThanC537:
     STZ.W $0FB0 
-    LDA.L $7E780A 
-    AND.W #$FFFE 
-    STA.L $7E780A 
+    LDA.L $7E780A : AND.W #$FFFE : STA.L $7E780A 
     STZ.B $30 
     LDA.W $0FAA : SEC : SBC.W #$0008 : TAX 
     LDA.W $0004,X 
@@ -4006,15 +3978,11 @@ KraidBody_vs_Projectile_CollisionHandling:
 
 .hit:
     JSR.W SpawnExplosionProjectile 
-    LDA.W $0C04,X 
-    ORA.W #$0010 
-    STA.W $0C04,X 
+    LDA.W $0C04,X : ORA.W #$0010 : STA.W $0C04,X 
     LDA.W $0C18,X 
     BIT.W #$0010 
     BEQ + 
-    LDA.L $7E780A 
-    ORA.W #$0001 
-    STA.L $7E780A 
+    LDA.L $7E780A : ORA.W #$0001 : STA.L $7E780A 
 
   + INC.B $30 
 
@@ -4473,9 +4441,7 @@ Function_Kraid_KraidShot_UnglowEye:
     STZ.B $14 
 
 .loop:
-    LDA.L $7EC000,X 
-    AND.W #$001F 
-    STA.B $12 
+    LDA.L $7EC000,X : AND.W #$001F : STA.B $12 
     LDA.W Palette_Kraid_BG_HurtFlash+2,Y 
     AND.W #$001F 
     CMP.B $12 
@@ -4485,9 +4451,7 @@ Function_Kraid_KraidShot_UnglowEye:
     DEC A 
     STA.L $7EC000,X 
 
-  + LDA.L $7EC000,X 
-    AND.W #$03E0 
-    STA.B $12 
+  + LDA.L $7EC000,X : AND.W #$03E0 : STA.B $12 
     LDA.W Palette_Kraid_BG_HurtFlash+2,Y 
     AND.W #$03E0 
     CMP.B $12 
@@ -4605,17 +4569,13 @@ Function_KraidLint_FireLint:
     CMP.W #$0038 
     BPL .greaterThanEqualTo38 
     PHA 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     PLA 
 
 .greaterThanEqualTo38:
     CMP.W #$0020 
     BPL .greaterThanEqualTo20 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     LDA.W #Function_KraidNail_HorizontallyAlignEnemyToKraid : STA.W $0FA8,X 
     LDA.W #$012C : STA.W $0FB2,X 
     LDA.W #Function_KraidLint_ProduceLint : STA.L $7E7800,X 
@@ -4721,9 +4681,7 @@ KraidLint_vs_Samus_CollisionHandling:
     JSL.L NormalEnemyTouchAI 
     PLP 
     PLX 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
 
 .return:
     RTS 
@@ -5007,9 +4965,7 @@ UNUSED_Kraid_FireLintAfterAFrames_A7BCB5:
     STA.W $0FB2,X 
     LDA.W #Function_KraidNail_HorizontallyAlignEnemyToKraid : STA.W $0FA8,X 
     LDA.W #Function_KraidLint_FireLint : STA.L $7E7800,X 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -5044,9 +5000,7 @@ InitAI_KraidNail:
 InitAI_KraidNail_Common:
     LDA.W $0F96 : STA.W $0F96,X 
     LDA.W #$0028 : STA.W $0FAA,X 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     LDA.W #$7FFF : STA.W $0F94,X 
     LDA.W #InstList_KraidNail : STA.W $0F92,X 
     LDA.W InstList_KraidNail+2 : STA.W $0F8E,X 
@@ -5070,9 +5024,7 @@ MainAI_KraidNail:
 
 
 .delete:
-    LDA.W $1106 
-    ORA.W #$0300 
-    STA.W $1106 
+    LDA.W $1106 : ORA.W #$0300 : STA.W $1106 
     RTL 
 
 
@@ -5085,9 +5037,7 @@ MainAI_KraidNailBad:
 
 
 .delete:
-    LDA.W $1146 
-    ORA.W #$0300 
-    STA.W $1146 
+    LDA.W $1146 : ORA.W #$0300 : STA.W $1146 
     RTL 
 
 
@@ -5153,9 +5103,7 @@ Function_KraidNail_Initialize:
     LDA.W #$0000 : STA.W $0FB0,X 
     LDA.W #Function_KraidNail_WaitUntilTopLintXPosition100Plus : STA.W $0FA8,X 
     LDA.W #Function_KraidNail_Fire : STA.L $7E7800,X 
-    LDA.W $0F86,X 
-    ORA.W #$0500 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0500 : STA.W $0F86,X 
     RTL 
 
 
@@ -5369,18 +5317,10 @@ HandleKraidPhase1:
     LDA.W #RTL_A7BA2D : STA.W $10E8 
     LDA.W #InstList_KraidArm_Normal_0 : STA.W $0FD2 
     LDA.W #$0001 : STA.W $0FD4 
-    LDA.W $1006 
-    ORA.W #$0100 
-    STA.W $1006 
-    LDA.W $1046 
-    ORA.W #$0100 
-    STA.W $1046 
-    LDA.W $1086 
-    ORA.W #$0100 
-    STA.W $1086 
-    LDA.W $0FC6 
-    ORA.W #$0400 
-    STA.W $0FC6 
+    LDA.W $1006 : ORA.W #$0100 : STA.W $1006 
+    LDA.W $1046 : ORA.W #$0100 : STA.W $1046 
+    LDA.W $1086 : ORA.W #$0100 : STA.W $1086 
+    LDA.W $0FC6 : ORA.W #$0400 : STA.W $0FC6 
     RTS 
 
 
@@ -5574,9 +5514,7 @@ UnpauseHook_KraidIsAlive:
 
 TransferKraidTopHalfTilemapToVRAM:
     LDA.B #$00 : STA.W $2116 
-    LDA.B $59 
-    AND.B #$FC 
-    STA.W $2117 
+    LDA.B $59 : AND.B #$FC : STA.W $2117 
     LDA.B #$80 : STA.W $2115 
     JSL.L SetupHDMATransfer 
     db $01,$01,$18 
@@ -5687,14 +5625,10 @@ KraidDeath_Initialize:
     LDA.W InstList_Kraid_Dying_0 : STA.W $0FAC 
     LDX.W $0E54 
     PHX 
-    LDA.W $1106 
-    AND.W #$BFFF 
-    STA.W $1106 
+    LDA.W $1106 : AND.W #$BFFF : STA.W $1106 
     LDA.W #$0180 : STA.W $0E54 
     JSL.L EnemyDeath 
-    LDA.W $1146 
-    AND.W #$BFFF 
-    STA.W $1146 
+    LDA.W $1146 : AND.W #$BFFF : STA.W $1146 
     LDA.W #$01C0 : STA.W $0E54 
     JSL.L EnemyDeath 
     LDA.W #$0080 : STA.W $0E54 
@@ -5805,9 +5739,7 @@ KraidDeath_UpdateBG2TilemapBottomHalf:
     LDA.W #UnpauseHook_KraidIsSinking : STA.W $0604 
     LDA.W #KraidDeath_SinkThroughFloor : STA.W $0FA8 
     LDA.W #$002B : STA.L $7E9000 
-    LDA.W $0F86 
-    ORA.W #$8000 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$8000 : STA.W $0F86 
     LDA.W #$0001 : STA.W $183E 
     LDA.W #$0100 : STA.W $1840 
     LDA.W #InstList_KraidArm_RisingSinking : STA.W $0FD2 
@@ -5839,9 +5771,7 @@ KraidDeath_SinkThroughFloor:
     LDA.W $0F7E 
     CMP.W #$0260 
     BMI .return 
-    LDA.W $0F86 
-    AND.W #$FBFF 
-    STA.W $0F86 
+    LDA.W $0F86 : AND.W #$FBFF : STA.W $0F86 
     LDA.W #$0002 : STA.W $179A 
     LDY.W $0E54 
     LDX.W $0F78,Y 
@@ -6679,9 +6609,7 @@ InitAI_PhantoonBody:
     LDA.W #$0000 : STA.L $7E9032 
     STZ.W $0FF4 
     STZ.W $0FF6 
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     JSL.L Spawn_HDMAObject 
     db $01,$14 
     dw HDMAObjectInstList_Phantoon_SemiTransparency 
@@ -6928,9 +6856,7 @@ SetupEyeOpenPhantoonState:
     STA.W $0FD4 
     LDA.W #InstList_Phantoon_Body_EyeHitboxOnly : STA.W $0F92 
     LDA.W #InstList_Phantoon_Eyeball_Centered : STA.W $0FD2 
-    LDA.W $0F86 
-    AND.W #$FBFF 
-    STA.W $0F86 
+    LDA.W $0F86 : AND.W #$FBFF : STA.W $0F86 
     JSL.L GenerateRandomNumber 
     AND.W #$0007 
     ASL A 
@@ -7381,9 +7307,7 @@ StartPhantoonDeathSequence:
     STA.L $7E9100,X 
     DEX #2
     BPL .loopBG2XScroll 
-    LDA.W $1988 
-    ORA.W #$4000 
-    STA.W $1988 
+    LDA.W $1988 : ORA.W #$4000 : STA.W $1988 
     LDA.W #$0001 : STA.W $1076 
     PLX 
     RTS 
@@ -7479,9 +7403,7 @@ Function_Phantoon_FightIntro_StartWavyFadeIn:
 
 .timerExpired:
     STZ.W $0FAA,X 
-    LDA.W $1988 
-    ORA.W #$4000 
-    STA.W $1988 
+    LDA.W $1988 : ORA.W #$4000 : STA.W $1988 
     LDA.W #Function_Phantoon_FightIntro_WavyFadeIn : STA.W $0FB2,X 
     LDA.W #$8001 : STA.W $1074 
     LDA.W #$0078 : STA.W $0FB0,X 
@@ -7611,9 +7533,7 @@ Function_Phantoon_Figure8_VulnerableWindow:
     STA.W $0FD4 
     LDA.W #InstList_Phantoon_Body_Invulnerable : STA.W $0F92 
     LDA.W #InstList_Phantoon_Eye_Close_PickNewPattern : STA.W $0FD2 
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     LDA.W #$0001 : STA.W $0FB6 
     RTS 
 
@@ -7625,9 +7545,7 @@ Function_Phantoon_Figure8_VulnerableWindow:
 
 Function_Phantoon_Figure8_SwoopingTriggered:
     JSR.W MakePhantoonLookTowardsSamus 
-    LDA.W $1988 
-    AND.W #$BFFF 
-    STA.W $1988 
+    LDA.W $1988 : AND.W #$BFFF : STA.W $1988 
     JSR.W StartPhantoonSwoopingPattern 
     LDA.W #$0001 : STA.W $0F94 
     LDA.W #InstList_Phantoon_Body_FullHitbox : STA.W $0F92 
@@ -7643,16 +7561,12 @@ Function_Phantoon_Swooping_Opaque:
 
 .timerExpired:
     LDA.W #Function_Phantoon_Swooping_FadeOut : STA.W $0FB2,X 
-    LDA.W $1988 
-    ORA.W #$4000 
-    STA.W $1988 
+    LDA.W $1988 : ORA.W #$4000 : STA.W $1988 
     LDA.W #$0001 : STA.W $0F94 
     STA.W $0FD4 
     LDA.W #InstList_Phantoon_Body_Invulnerable : STA.W $0F92 
     LDA.W #InstList_Phantoon_Eye_Close : STA.W $0FD2 
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     STZ.W $0FF2 
     STZ.W $102A,X 
 
@@ -7723,9 +7637,7 @@ Function_Phantoon_HidingBeforeFigure8_FadingIn:
 
 Function_Phantoon_FlameRain_ShowPhantoon:
     STZ.W $0FF2 
-    LDA.W $1988 
-    AND.W #$BFFF 
-    STA.W $1988 
+    LDA.W $1988 : AND.W #$BFFF : STA.W $1988 
     LDA.W #$0001 : STA.W $0F94 
     STA.W $0FD4 
     LDA.W #InstList_Phantoon_Body_FullHitbox : STA.W $0F92 
@@ -7739,9 +7651,7 @@ Function_Phantoon_FlameRain_MakePhantoonVulnerable:
     JSR.W AdvancePhantoonFadeIn_DenominatorInA 
     LDA.W $0FF2 
     BEQ .return 
-    LDA.W $0F86 
-    AND.W #$FBFF 
-    STA.W $0F86 
+    LDA.W $0F86 : AND.W #$FBFF : STA.W $0F86 
     LDA.W #Function_Phantoon_FlameRain_VulnerableWindow : STA.W $0FB2,X 
     LDA.W #$005A : STA.W $0FB0 
 
@@ -7771,12 +7681,8 @@ Function_Phantoon_FlameRain_VulnerableWindow:
     STA.W $0FD4 
     LDA.W #InstList_Phantoon_Body_Invulnerable : STA.W $0F92 
     LDA.W #InstList_Phantoon_Eye_Close : STA.W $0FD2 
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
-    LDA.W $1988 
-    ORA.W #$4000 
-    STA.W $1988 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
+    LDA.W $1988 : ORA.W #$4000 : STA.W $1988 
 
 .return:
     RTS 
@@ -8056,9 +7962,7 @@ Function_Phantoon_DeathSequence_Exploding:
     JSL.L QueueSound_Lib2_Max6 
 
   + PLY 
-    LDA.W .timer,Y 
-    AND.W #$00FF 
-    STA.W $0FB0,X 
+    LDA.W .timer,Y : AND.W #$00FF : STA.W $0FB0,X 
     LDA.W $1032 
     INC A 
     STA.W $1032 
@@ -8152,9 +8056,7 @@ Function_Phantoon_DeathSequence_ClearGraphics:
     STZ.B $57 
     REP #$20 
     STZ.W $0FF4 
-    LDA.W $1988 
-    AND.W #$BFFF 
-    STA.W $1988 
+    LDA.W $1988 : AND.W #$BFFF : STA.W $1988 
     LDA.W #$FFFF : STA.W $1074 
     LDA.W #Function_Phantoon_DeathSequence_ActivateWreckedShip : STA.W $0FB2,X 
     LDA.W #$003C : STA.W $0FB0,X 
@@ -8200,21 +8102,15 @@ Function_Phantoon_DeathSequence_ActivateWreckedShip:
     JSR.W AdvanceWreckedShipPowerOnPaletteTransition 
     BCC .return 
     SEP #$20 
-    LDA.B $69 
-    ORA.B #$02 
-    STA.B $69 
+    LDA.B $69 : ORA.B #$02 : STA.B $69 
     REP #$20 
     JSL.L PhantoonDeathItemDropRoutine 
-    LDA.W $0F86 
-    ORA.W #$0200 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0200 : STA.W $0F86 
     STA.W $0FC6 
     STA.W $1006 
     STA.W $1046 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    ORA.W #$0001 
-    STA.L $7ED828,X 
+    LDA.L $7ED828,X : ORA.W #$0001 : STA.L $7ED828,X 
     JSL.L Spawn_Hardcoded_PLM 
     db $00,$06 
     dw PLMEntries_restorePhantoonsDoorDuringBossFight 
@@ -8487,9 +8383,7 @@ HurtAI_Phantoon:
     STA.L $7EC0E0,X 
     DEX #2
     BPL .loopPalette 
-    LDA.W $1036 
-    AND.W #$00FF 
-    STA.W $1036 
+    LDA.W $1036 : AND.W #$00FF : STA.W $1036 
     BRA .return 
 
 
@@ -8503,9 +8397,7 @@ HurtAI_Phantoon:
     LDA.W #$7FFF : STA.L $7EC0E0,X 
     DEX #2
     BPL .loopWhite 
-    LDA.W $1036 
-    ORA.W #$0100 
-    STA.W $1036 
+    LDA.W $1036 : ORA.W #$0100 : STA.W $1036 
 
 .return:
     PLP 
@@ -8542,9 +8434,7 @@ EnemyShot_Phantoon:
     LDA.W #$0073 
     JSL.L QueueSound_Lib2_Max6 
     LDA.W #$0001 : STA.W $1036 
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     JSR.W StartPhantoonDeathSequence 
 
 .returnUpper:
@@ -8610,9 +8500,7 @@ EnemyShot_Phantoon:
     JSL.L GenerateRandomNumber 
     AND.W #$0007 
     TAY 
-    LDA.W Phantoon_Unknown0FEAValues_A7CDA5,Y 
-    AND.W #$00FF 
-    STA.W $0FEA 
+    LDA.W Phantoon_Unknown0FEAValues_A7CDA5,Y : AND.W #$00FF : STA.W $0FEA 
     TYA 
     STA.W $1076 
     LDA.W #$0001 : STA.W $1036 
@@ -8642,16 +8530,12 @@ EnemyShot_Phantoon:
     STZ.W $0FB0,X 
     STZ.W $1028 
     STZ.W $102A,X 
-    LDA.W $1988 
-    ORA.W #$4000 
-    STA.W $1988 
+    LDA.W $1988 : ORA.W #$4000 : STA.W $1988 
     LDA.W #$0001 : STA.W $0F94 
     STA.W $0FD4 
     LDA.W #InstList_Phantoon_Body_Invulnerable : STA.W $0F92 
     LDA.W #InstList_Phantoon_Eye_Close : STA.W $0FD2 
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     STZ.W $0FF2 
     BRA .return1036_2 
 
@@ -9221,9 +9105,7 @@ EtecoonConstants_SamusXProximityThresholdAtBottomOfRoom:
 
 InitAI_Etecoon:
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    ORA.W #$2000 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$2000 : STA.W $0F86,X 
     LDA.W #Spritemap_CommonA7_Nothing : STA.W $0F8E,X 
     LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
@@ -9727,9 +9609,7 @@ Function_Etecoon_StartHop_TopOfRoom:
     AND.W #$FF00 
     CMP.W #$0400 
     BMI .notFailedJump 
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
-    STA.W $0FB4,X 
+    LDA.W $0FB4,X : AND.W #$00FF : STA.W $0FB4,X 
     LDA.W $0FB6,X 
     BIT.W #$0002 
     BNE .notFailedJump 
@@ -10527,9 +10407,7 @@ DachoraConstants_XAcceleration:
 
 InitAI_Dachora:
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    ORA.W #$2000 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$2000 : STA.W $0F86,X 
     LDA.W #Spritemap_CommonA7_Nothing : STA.W $0F8E,X 
     LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
@@ -11055,16 +10933,12 @@ Function_Dachora_Echo:
     BEQ .visible 
 
 .invisible:
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     BRA .return 
 
 
 .visible:
-    LDA.W $0F86,X 
-    AND.W #$FEFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$FEFF : STA.W $0F86,X 
 
 .return:
     RTL 

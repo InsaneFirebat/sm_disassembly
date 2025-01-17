@@ -119,9 +119,7 @@ RTS_A0807B:
 
 
 Instruction_Common_DeleteEnemy:
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     PLA 
     PEA.W ProcessEnemyInstructions_return-1 
     RTL 
@@ -287,16 +285,12 @@ Instruction_Common_TransferYBytesInYToVRAM:
 
 
 Instruction_Common_EnableOffScreenProcessing:
-    LDA.W $0F86,X 
-    ORA.W #$0800 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0800 : STA.W $0F86,X 
     RTL 
 
 
 Instruction_Common_DisableOffScreenProcessing:
-    LDA.W $0F86,X 
-    AND.W #$F7FF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$F7FF : STA.W $0F86,X 
     RTL 
 
 
@@ -781,9 +775,7 @@ Initialise_Enemies:
     LDA.W $0008,X : STA.W $0F82,Y 
     LDA.W $000A,X : STA.W $0F84,Y 
     LDA.W $0004,X : STA.W $0F8C,Y 
-    LDA.W $0039,X 
-    AND.W #$00FF 
-    STA.W $0F9A,Y 
+    LDA.W $0039,X : AND.W #$00FF : STA.W $0F9A,Y 
     LDA.W $000C,X : STA.W $0FA6,Y 
     LDA.W $0010,X 
     BEQ + 
@@ -846,9 +838,7 @@ Initialise_Enemies:
     TYA 
     LSR #6
     STA.W $0E4E 
-    LDA.L $A10002,X 
-    AND.W #$00FF 
-    STA.W $0E52 
+    LDA.L $A10002,X : AND.W #$00FF : STA.W $0E52 
 
 .return:
     PLB 
@@ -1016,9 +1006,7 @@ UNUSED_LoadEnemyWidthHeightHealthLayerBank_A08D3A:
     LDA.W $0008,X : STA.W $0F82,Y 
     LDA.W $000A,X : STA.W $0F84,Y 
     LDA.W $0004,X : STA.W $0F8C,Y 
-    LDA.W $0039,X 
-    AND.W #$00FF 
-    STA.W $0F9A,Y 
+    LDA.W $0039,X : AND.W #$00FF : STA.W $0F9A,Y 
     LDA.W $000C,X : STA.W $0FA6,Y 
     PLY 
     PLX 
@@ -1086,13 +1074,9 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
     LDA.L $B40000,X 
     TAX 
     LDA.W $0036,X : STA.B $16 
-    LDA.W $0038,X 
-    AND.W #$00FF 
-    STA.B $1A 
+    LDA.W $0038,X : AND.W #$00FF : STA.B $1A 
     LDX.W $0E7A 
-    LDA.B $12 
-    AND.W #$7FFF 
-    STA.W $0E5A,X 
+    LDA.B $12 : AND.W #$7FFF : STA.W $0E5A,X 
     LDA.B $16 : STA.W $0E5C,X 
     LDA.B $1E 
     BIT.B $12 
@@ -1435,9 +1419,7 @@ Main_Enemy_Routine:
     LDA.W $0F9C,X 
     CMP.W #$0008 
     BPL + 
-    LDA.W $0F8A,X 
-    AND.W #$FFFD 
-    STA.W $0F8A,X 
+    LDA.W $0F8A,X : AND.W #$FFFD : STA.W $0F8A,X 
 
   + INC.W $17A8 
     INC.W $17A8 
@@ -1566,9 +1548,7 @@ Debug_SpawnEnemy_ToEnemyIndex_inY:
     LDA.W $1786 : STA.W $178A 
     LDA.W $0000,X 
     TAX 
-    LDA.L $A00014,X 
-    AND.W #$00FF 
-    STA.W $0E26 
+    LDA.L $A00014,X : AND.W #$00FF : STA.W $0E26 
     JMP.W SpawnEnemy_AlwaysSucceed 
 
 
@@ -1655,9 +1635,7 @@ SpawnEnemy_AlwaysSucceed:
     LDA.L $A00008,X : STA.W $0F82,Y 
     LDA.L $A0000A,X : STA.W $0F84,Y 
     LDA.L $A00004,X : STA.W $0F8C,Y 
-    LDA.L $A00039,X 
-    AND.W #$00FF 
-    STA.W $0F9A,Y 
+    LDA.L $A00039,X : AND.W #$00FF : STA.W $0F9A,Y 
     LDA.L $A0000C,X : STA.W $0FA6,Y 
     LDX.W $0E20 
     LDA.W $0000,X : STA.W $0F78,Y 
@@ -1825,9 +1803,7 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
 .crash:
     BMI .crash 
     TAY 
-    LDA.W $0000,Y 
-    AND.W #$00FF 
-    STA.W $060B 
+    LDA.W $0000,Y : AND.W #$00FF : STA.W $060B 
     INY #2
     .loop:
     LDA.W $0004,Y : STA.B $16 
@@ -1893,9 +1869,7 @@ NormalEnemyFrozenAI:
 
 
 .unsetFrozenAI:
-    LDA.W $0F8A,X 
-    AND.W #$FFFB 
-    STA.W $0F8A,X 
+    LDA.W $0F8A,X : AND.W #$FFFB : STA.W $0F8A,X 
     STA.W $0F9E,X 
     LDA.W #$0000 
 
@@ -1967,12 +1941,8 @@ UNUSED_RespawnEnemy_A095F1:
     LDA.L $A1000E,X : STA.W $0FB6,Y 
     PHX 
     TYX 
-    LDA.L $7E7006,X 
-    AND.W #$0E00 
-    STA.W $0F96,X 
-    LDA.L $7E7006,X 
-    AND.W #$01FF 
-    STA.W $0F98,X 
+    LDA.L $7E7006,X : AND.W #$0E00 : STA.W $0F96,X 
+    LDA.L $7E7006,X : AND.W #$01FF : STA.W $0F98,X 
     PLX 
     LDA.W #$0000 : STA.W $0F9E,Y 
     STA.W $0F9C,Y 
@@ -1993,9 +1963,7 @@ UNUSED_RespawnEnemy_A095F1:
     LDA.W $0008,X : STA.W $0F82,Y 
     LDA.W $000A,X : STA.W $0F84,Y 
     LDA.W $0004,X : STA.W $0F8C,Y 
-    LDA.W $0039,X 
-    AND.W #$00FF 
-    STA.W $0F9A,Y 
+    LDA.W $0039,X : AND.W #$00FF : STA.W $0F9A,Y 
     LDA.W $000C,X : STA.W $0FA6,Y 
     STA.W $1786 
     JSL.L .executeAI 
@@ -2226,9 +2194,7 @@ Samus_Projectiles_Interaction_Handling:
 
 
 .notABomb:
-    LDA.W $0C04,Y 
-    ORA.W #$0010 
-    STA.W $0C04,Y 
+    LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
     LDA.W $0C2C,Y 
     JSL.L Suit_Damage_Division 
     JSL.L Deal_A_Damage_to_Samus 
@@ -2398,16 +2364,12 @@ Projectile_vs_Projectile_Collision_Handling:
     BEQ .nextProjectile 
     CMP.W #$0700 
     BPL .nextProjectile 
-    LDA.W $0B64,Y 
-    AND.W #$FFE0 
-    STA.B $12 
+    LDA.W $0B64,Y : AND.W #$FFE0 : STA.B $12 
     LDA.W $1A4B,X 
     AND.W #$FFE0 
     CMP.B $12 
     BNE .nextProjectile 
-    LDA.W $0B78,Y 
-    AND.W #$FFE0 
-    STA.B $12 
+    LDA.W $0B78,Y : AND.W #$FFE0 : STA.B $12 
     LDA.W $1A93,X 
     AND.W #$FFE0 
     CMP.B $12 
@@ -2437,9 +2399,7 @@ HandleEnemyProjectileCollisionWithProjectile:
     LDA.W $0C18,Y 
     BIT.W #$0008 
     BNE .plasmaBeam 
-    LDA.W $0C04,Y 
-    ORA.W #$0010 
-    STA.W $0C04,Y 
+    LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
 
 .plasmaBeam:
     LDA.L $7EF380,X 
@@ -2453,9 +2413,7 @@ HandleEnemyProjectileCollisionWithProjectile:
     LDA.L $86000C,X : STA.W $1B47,Y 
     LDA.W #$0001 : STA.W $1B8F,Y 
     LDA.W #RTS_8684FB : STA.W $1A03,Y 
-    LDA.W $1BD7,Y 
-    AND.W #$0FFF 
-    STA.W $1BD7,Y 
+    LDA.W $1BD7,Y : AND.W #$0FFF : STA.W $1BD7,Y 
     TYX 
     PLY 
     RTS 
@@ -2519,9 +2477,7 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
     LDA.W $0AFA : SEC : SBC.W $0B00 : STA.W $1884 
     LDA.W $0F8E,X 
     TAX 
-    LDA.W $0000,X 
-    AND.W #$00FF 
-    STA.W $060B 
+    LDA.W $0000,X : AND.W #$00FF : STA.W $060B 
     INX #2
     STX.W $186E 
 
@@ -2653,9 +2609,7 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
 .crash:
     BMI .crash 
     TAX 
-    LDA.W $0000,X 
-    AND.W #$00FF 
-    STA.W $060B 
+    LDA.W $0000,X : AND.W #$00FF : STA.W $060B 
     INX #2
     STX.W $186E 
 
@@ -2713,9 +2667,7 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     BNE .noDelete 
 
 .delete:
-    LDA.W $0C04,Y 
-    ORA.W #$0010 
-    STA.W $0C04,Y 
+    LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
 
 .noDelete:
     JSL.L .executeCollision 
@@ -2826,9 +2778,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
 .crash:
     BMI .crash 
     TAX 
-    LDA.W $0000,X 
-    AND.W #$00FF 
-    STA.W $060B 
+    LDA.W $0000,X : AND.W #$00FF : STA.W $060B 
     INX #2
     STX.W $186E 
 
@@ -2868,9 +2818,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
     LDA.W $0006,X : CLC : ADC.W $187C : STA.W $1876 
     LDA.W $0B78,Y : SEC : SBC.W $0BC8,Y : CMP.W $1876 
     BPL .nextHitbox 
-    LDA.W $0C04,Y 
-    ORA.W #$0010 
-    STA.W $0C04,Y 
+    LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
     JSL.L .executeCollision 
     BRA .returnLower 
 
@@ -3128,9 +3076,7 @@ GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy:
     LDX.W $0E54 
     STZ.W $0F8A,X 
     LDX.W $0E54 
-    LDA.W $0F88,X 
-    ORA.W #$0001 
-    STA.W $0F88,X 
+    LDA.W $0F88,X : ORA.W #$0001 : STA.W $0F88,X 
     RTL 
 
 
@@ -3338,9 +3284,7 @@ Enemy_vs_ProjectileCollisionHandling:
     BNE .noDelete 
 
 .delete:
-    LDA.W $0C04,Y 
-    ORA.W #$0010 
-    STA.W $0C04,Y 
+    LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
 
 .noDelete:
     JSL.L .executeEnemyShot 
@@ -3444,9 +3388,7 @@ Enemy_vs_Bomb_CollisionHandling:
     TAY 
     LDA.W $0C7C,Y 
     BNE .next 
-    LDA.W $0C04,Y 
-    ORA.W #$0010 
-    STA.W $0C04,Y 
+    LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
     JSL.L .executeEnemyShot 
     BRA .returnLower 
 
@@ -3474,9 +3416,7 @@ Enemy_vs_Bomb_CollisionHandling:
 Process_Enemy_PowerBomb_Interaction:
     PHB 
     LDA.W #$0005 : STA.L $7EF378 
-    LDA.W $0CEB 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W $0CEB : AND.W #$00FF : STA.B $12 
     BNE .hasRadius 
     PLB 
     RTL 
@@ -3528,9 +3468,7 @@ Process_Enemy_PowerBomb_Interaction:
     STA.W $1784 
     JSL.L .executeEnemyAI 
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    ORA.W #$0800 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0800 : STA.W $0F86,X 
 
 .next:
     LDA.W $0E54 : SEC : SBC.W #$0040 : STA.W $0E54 
@@ -3574,9 +3512,7 @@ EnemyDeath:
     LDY.W #EnemyProjectile_EnemyDeathExplosion 
     LDA.W $0E20 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    LDA.W $0F86,X 
-    AND.W #$4000 
-    STA.B $12 
+    LDA.W $0F86,X : AND.W #$4000 : STA.B $12 
     LDY.W #$003E 
     LDX.W $0E54 
 
@@ -3615,9 +3551,7 @@ RinkaDeath:
     LDY.W #EnemyProjectile_EnemyDeathExplosion 
     LDA.W $0E20 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    LDA.W $0F86,X 
-    AND.W #$4000 
-    STA.B $12 
+    LDA.W $0F86,X : AND.W #$4000 : STA.B $12 
     LDY.W #$003E 
     LDX.W $0E54 
 
@@ -3756,9 +3690,7 @@ NormalEnemyTouchAI_NoDeathCheck:
 .hurtTimerNotExpired:
     LDX.W $0E54 
     STA.W $0F9C,X 
-    LDA.W $0F8A,X 
-    ORA.W #$0002 
-    STA.W $0F8A,X 
+    LDA.W $0F8A,X : ORA.W #$0002 : STA.W $0F8A,X 
     STZ.W $18A8 
     STZ.W $18AA 
     LDA.W $0F8C,X : SEC : SBC.B $12 : BPL .storeHealth 
@@ -3849,9 +3781,7 @@ NormalEnemyPowerBombAI_NoDeathCheck:
 .ANonZero:
     CLC : ADC.W #$0008 : LDX.W $0E54 
     STA.W $0F9C,X 
-    LDA.W $0F8A,X 
-    ORA.W #$0002 
-    STA.W $0F8A,X 
+    LDA.W $0F8A,X : ORA.W #$0002 : STA.W $0F8A,X 
     LDA.W $0F8C,X : SEC : SBC.W $187A : BEQ .zeroHealth 
     BCS .storeHealth 
 
@@ -3968,9 +3898,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     LDA.B $12 
     AND.W #$000F 
     CLC : ADC.B $14 : TAX 
-    LDA.L $B40000,X 
-    AND.W #$00FF 
-    STA.W $0E40 
+    LDA.L $B40000,X : AND.W #$00FF : STA.W $0E40 
     AND.W #$007F 
     STA.W $0E32 
     LDA.W $0E40 
@@ -4013,9 +3941,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
   + XBA 
     CLC : ADC.B $14 : TAX 
-    LDA.L $B4000B,X 
-    AND.W #$007F 
-    STA.W $0E32 
+    LDA.L $B4000B,X : AND.W #$007F : STA.W $0E32 
     BRA .calculateDamage 
 
 
@@ -4023,9 +3949,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     CMP.W #$0500 
     BNE .checkPowerBomb 
     LDX.B $14 
-    LDA.L $B4000E,X 
-    AND.W #$007F 
-    STA.W $0E32 
+    LDA.L $B4000E,X : AND.W #$007F : STA.W $0E32 
     BRA .calculateDamage 
 
 
@@ -4033,9 +3957,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     CMP.W #$0300 
     BNE .noDamage 
     LDX.B $14 
-    LDA.L $B4000F,X 
-    AND.W #$007F 
-    STA.W $0E32 
+    LDA.L $B4000F,X : AND.W #$007F : STA.W $0E32 
     JMP.W .calculateDamage 
 
 
@@ -4043,9 +3965,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     LDA.W $18A6 
     ASL A 
     TAX 
-    LDA.W $0C04,X 
-    ORA.W #$0010 
-    STA.W $0C04,X 
+    LDA.W $0C04,X : ORA.W #$0010 : STA.W $0C04,X 
     LDA.W $0B64,X : STA.B $12 
     LDA.W $0B78,X : STA.B $14 
     LDA.W #$0006 : STA.B $16 
@@ -4075,9 +3995,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 .notNorfair:
     TYA 
     STA.W $0F9E,X 
-    LDA.W $0F8A,X 
-    ORA.W #$0004 
-    STA.W $0F8A,X 
+    LDA.W $0F8A,X : ORA.W #$0004 : STA.W $0F8A,X 
     LDA.W #$000A : STA.W $0FA0,X 
     PLX 
     PLB 
@@ -4097,9 +4015,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
   + CLC : ADC.W #$0008 : LDX.W $0E54 
     STA.W $0F9C,X 
-    LDA.W $0F8A,X 
-    ORA.W #$0002 
-    STA.W $0F8A,X 
+    LDA.W $0F8A,X : ORA.W #$0002 : STA.W $0F8A,X 
     LDA.W $0F9E,X 
     BNE .noFlashNoCry 
     PHX 
@@ -4151,9 +4067,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 ..notNorfair:
     TYA 
     STA.W $0F9E,X 
-    LDA.W $0F8A,X 
-    ORA.W #$0004 
-    STA.W $0F8A,X 
+    LDA.W $0F8A,X : ORA.W #$0004 : STA.W $0F8A,X 
     LDA.W #$000A : STA.W $0FA0,X 
     LDA.W #$000A 
     JSL.L QueueSound_Lib3_Max3 
@@ -4186,9 +4100,7 @@ CreateADudShot:
     LDA.W $18A6 
     ASL A 
     TAX 
-    LDA.W $0C04,X 
-    ORA.W #$0010 
-    STA.W $0C04,X 
+    LDA.W $0C04,X : ORA.W #$0010 : STA.W $0C04,X 
     PLY 
     PLX 
     RTL 
@@ -6643,9 +6555,7 @@ ProcessEnemyInstructions:
     LDA.W $0002,Y : STA.W $0F8E,X 
     TYA 
     CLC : ADC.W #$0004 : STA.W $0F92,X 
-    LDA.W $0F88,X 
-    ORA.W #$8000 
-    STA.W $0F88,X 
+    LDA.W $0F88,X : ORA.W #$8000 : STA.W $0F88,X 
 
   .return ; sleep, wait, delete
     PLB 
@@ -6653,9 +6563,7 @@ ProcessEnemyInstructions:
 
 
 ProcessEnemyInstructions_noUpdate:
-    LDA.W $0F88,X 
-    AND.W #$7FFF 
-    STA.W $0F88,X 
+    LDA.W $0F88,X : AND.W #$7FFF : STA.W $0F88,X 
     PLB 
     RTS 
 
@@ -6716,9 +6624,7 @@ EnemyBlockCollisionReaction_Horizontal_Slope:
 
 
 .nonSquare:
-    LDA.L $7F6402,X 
-    AND.W #$00FF 
-    STA.W $1E77 
+    LDA.L $7F6402,X : AND.W #$00FF : STA.W $1E77 
     JMP.W EnemyBlockCollisionReaction_Horizontal_Slope_NonSquare 
 
 

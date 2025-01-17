@@ -343,79 +343,59 @@ Instruction_MoveRandomlyWithinXRadius_YRadius:
 
 
 Instruction_EnemyProjectile_Properties_OrY:
-    LDA.W $1BD7,X 
-    ORA.W $0000,Y 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : ORA.W $0000,Y : STA.W $1BD7,X 
     INY #2
     RTS 
 
 
 Instruction_EnemyProjectile_Properties_AndY:
-    LDA.W $1BD7,X 
-    AND.W $0000,Y 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : AND.W $0000,Y : STA.W $1BD7,X 
     INY #2
     RTS 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Inst_EnemyProj_EnableCollisionWithSamusProj_868248:
-    LDA.W $1BD7,X 
-    ORA.W #$8000 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : ORA.W #$8000 : STA.W $1BD7,X 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_EnemyProjectile_DisableCollisionWIthSamusProj:
-    LDA.W $1BD7,X 
-    AND.W #$7FFF 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : AND.W #$7FFF : STA.W $1BD7,X 
     RTS 
 
 
 Instruction_EnemyProjectile_DisableCollisionWithSamus:
-    LDA.W $1BD7,X 
-    ORA.W #$2000 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : ORA.W #$2000 : STA.W $1BD7,X 
     RTS 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Inst_EnemyProjectile_EnableCollisionWithSamus_868266:
-    LDA.W $1BD7,X 
-    AND.W #$DFFF 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : AND.W #$DFFF : STA.W $1BD7,X 
     RTS 
 
 
 UNUSED_Inst_EnemyProjectile_SetToNotDieOnContact_868270:
-    LDA.W $1BD7,X 
-    ORA.W #$4000 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : ORA.W #$4000 : STA.W $1BD7,X 
     RTS 
 
 
 UNUSED_Instruction_EnemyProjectile_SetToDieOnContact_86827A:
-    LDA.W $1BD7,X 
-    AND.W #$BFFF 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : AND.W #$BFFF : STA.W $1BD7,X 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_EnemyProjectile_SetHighPriority:
-    LDA.W $1BD7,X 
-    ORA.W #$1000 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : ORA.W #$1000 : STA.W $1BD7,X 
     RTS 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_EnemyProjectile_SetLowPriority_86828E:
-    LDA.W $1BD7,X 
-    AND.W #$EFFF 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : AND.W #$EFFF : STA.W $1BD7,X 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -454,9 +434,7 @@ UNUSED_Inst_EnemyProj_WriteColorsFromYToColorIndex_8682D5:
     PHY 
     PHX 
     LDX.W $0002,Y 
-    LDA.W $0004,Y 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W $0004,Y : AND.W #$00FF : STA.B $12 
     LDA.W $0000,Y 
     TAY 
 
@@ -637,12 +615,8 @@ Draw_LowPriority_EnemyProjectile:
 
 Draw_EnemyProjectile:
     LDY.W $1B6B,X 
-    LDA.W $19BB,X 
-    AND.W #$00FF 
-    STA.B $1A 
-    LDA.W $19BB,X 
-    AND.W #$FF00 
-    STA.B $1C 
+    LDA.W $19BB,X : AND.W #$00FF : STA.B $1A 
+    LDA.W $19BB,X : AND.W #$FF00 : STA.B $1C 
     LDA.W $1A4B,X : SEC : SBC.W $0911 : CLC : ADC.B $24 : STA.B $14 
     CLC : ADC.W #$0080 : BIT.W #$FE00 
     BNE .return 
@@ -833,9 +807,7 @@ EnemyProjectile_BlockCollision_HorizontalSlope:
 
 
 .nonSquare:
-    LDA.L $7F6402,X 
-    AND.W #$00FF 
-    STA.W $1E77 
+    LDA.L $7F6402,X : AND.W #$00FF : STA.W $1E77 
     JMP.W EnemyProjectile_BlockCollision_HorizontalSlopeNonSquare 
 
 
@@ -1264,12 +1236,8 @@ Move_EnemyProjectile_Horizontally:
     DEC.B $14 
 
   + STA.B $13 
-    LDA.W $1BB4,X 
-    AND.W #$00FF 
-    STA.B $1E 
-    LDA.W $1BB3,X 
-    AND.W #$00FF 
-    STA.B $1C 
+    LDA.W $1BB4,X : AND.W #$00FF : STA.B $1E 
+    LDA.W $1BB3,X : AND.W #$00FF : STA.B $1C 
     LDA.W $1A93,X : SEC : SBC.B $1E : AND.W #$FFF0 
     STA.B $1A 
     LDA.W $1A93,X : CLC : ADC.B $1E : DEC A 
@@ -1350,12 +1318,8 @@ Move_EnemyProjectile_Vertically:
     DEC.B $14 
 
   + STA.B $13 
-    LDA.W $1BB4,X 
-    AND.W #$00FF 
-    STA.B $1E 
-    LDA.W $1BB3,X 
-    AND.W #$00FF 
-    STA.B $1C 
+    LDA.W $1BB4,X : AND.W #$00FF : STA.B $1E 
+    LDA.W $1BB3,X : AND.W #$00FF : STA.B $1C 
     LDA.W $1A4B,X : SEC : SBC.B $1C : AND.W #$FFF0 
     STA.B $1A 
     LDA.W $1A4B,X : CLC : ADC.B $1C : DEC A 
@@ -1450,9 +1414,7 @@ UNUSED_EnemyProjectile_868A39:
     dw UNUSED_EnemyProjectile_868A39 
 
 UNUSED_PreInstruction_EnemyProjectile_868A7D:
-    LDA.W $1ADA,X 
-    AND.W #$FF00 
-    STA.B $14 
+    LDA.W $1ADA,X : AND.W #$FF00 : STA.B $14 
     LDA.W $1ADB,X 
     XBA 
     BPL + 
@@ -1531,9 +1493,7 @@ InitAI_EnemyProjectile_MetalSkreeParticle_UpLeft:
 
 
 PreInstruction_EnemyProjectile_MetalSkreeParticle:
-    LDA.W $1AB6,X 
-    AND.W #$FF00 
-    STA.B $14 
+    LDA.W $1AB6,X : AND.W #$FF00 : STA.B $14 
     LDA.W $1AB7,X 
     XBA 
     BPL + 
@@ -1547,9 +1507,7 @@ PreInstruction_EnemyProjectile_MetalSkreeParticle:
     STA.B $12 
     LDA.W $1A27,X : CLC : ADC.B $14 : STA.W $1A27,X 
     LDA.W $1A4B,X : ADC.B $12 : STA.W $1A4B,X 
-    LDA.W $1ADA,X 
-    AND.W #$FF00 
-    STA.B $14 
+    LDA.W $1ADA,X : AND.W #$FF00 : STA.B $14 
     LDA.W $1ADB,X 
     XBA 
     BPL + 
@@ -1774,9 +1732,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Delete_EnemyProjectile_IfPowerBombed:
     PHY 
     PHX 
-    LDA.W $0CEB 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W $0CEB : AND.W #$00FF : STA.B $12 
     BEQ .return 
     LSR A 
     ADC.B $12 : LSR A 
@@ -2522,9 +2478,7 @@ UNUSED_InstList_Smoke_86945F:
     dw Instruction_EnemyProjectile_Delete 
 
 UNUSED_Instruction_DisableCollisionsWithSamus_869475:
-    LDA.W $1BD7,X 
-    ORA.W #$2000 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : ORA.W #$2000 : STA.W $1BD7,X 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -3051,9 +3005,7 @@ PhantoonDestroyableFlameInit_Type2_Enraged:
 .greaterThan7:
     LDA.W #$FFFE : STA.W $1AB7,Y 
 
-  + LDA.W .angles,X 
-    AND.W #$00FF 
-    STA.W $1AFF,Y 
+  + LDA.W .angles,X : AND.W #$00FF : STA.W $1AFF,Y 
     LDA.W $0F7A : STA.W $1A4B,Y 
     LDA.W $0F7E : CLC : ADC.W #$0020 : STA.W $1A93,Y 
     LDA.W #PreInst_EnemyProj_PhantoonDestroyableFlame_Enraged : STA.W $1A03,Y 
@@ -3077,9 +3029,7 @@ PhantoonDestroyableFlameInit_Type4_Rain:
     AND.W #$00F0 
     LSR A 
     STA.W $1AB7,Y 
-    LDA.W .XPositions,X 
-    AND.W #$00FF 
-    STA.W $1A4B,Y 
+    LDA.W .XPositions,X : AND.W #$00FF : STA.W $1A4B,Y 
     LDA.W #$0028 : STA.W $1A93,Y 
     LDA.W #PreInst_EnemyProj_PhantoonDestroyableFlame_Rain : STA.W $1A03,Y 
     PLP 
@@ -3097,9 +3047,7 @@ PhantoonDestroyableFlameInit_Type6_Spiral:
     LDA.W $1993 
     AND.W #$00FF 
     TAX 
-    LDA.W PhantoonFlameAngles,X 
-    AND.W #$00FF 
-    STA.W $1AFF,Y 
+    LDA.W PhantoonFlameAngles,X : AND.W #$00FF : STA.W $1AFF,Y 
     LDA.W $0F7A : STA.W $1A4B,Y 
     LDA.W $0F7E : CLC : ADC.W #$0010 : STA.W $1A93,Y 
     LDA.W #PreInst_EnemyProj_PhantoonDestroyableFlame_Spiral : STA.W $1A03,Y 
@@ -3116,9 +3064,7 @@ InitAI_EnemyProjectile_PhantoonStartingFlames:
     STA.W $1ADB,Y 
     PHY 
     LDX.W $1993 
-    LDA.W PhantoonFlameAngles,X 
-    AND.W #$00FF 
-    STA.W $1AFF,Y 
+    LDA.W PhantoonFlameAngles,X : AND.W #$00FF : STA.W $1AFF,Y 
     TAY 
     LDA.W #$0030 
     JSR.W Calculate_XY_ComponentsOf_RadiusA_AngleY 
@@ -3841,9 +3787,7 @@ InitAI_EnemyProjectile_Pirate_MotherBrain_Laser:
     LDX.W $0E54 
     LDA.W $0F78,X 
     TAX 
-    LDA.L $A00006,X 
-    ORA.W #$1000 
-    STA.W $1BD7,Y 
+    LDA.L $A00006,X : ORA.W #$1000 : STA.W $1BD7,Y 
     LDX.W $0E54 
     LDA.W $0FB4,X : STA.W $1AFF,Y 
     LDA.W #$0067 
@@ -4652,9 +4596,7 @@ InitAI_EnemyProj_BombTorizoChozoBreaking:
     CLC : ADC.W .Yoffsets,X : STA.W $1A93,Y 
     LDA.W .Yvelocities,X : STA.W $1ADB,Y 
     LDA.W .Yaccelerations,X : STA.W $1B23,Y 
-    LDA.W $1BD7,Y 
-    ORA.W #$1000 
-    STA.W $1BD7,Y 
+    LDA.W $1BD7,Y : ORA.W #$1000 : STA.W $1BD7,Y 
     RTS 
 
 
@@ -6190,9 +6132,7 @@ InitAI_EnemyProjectile_DragonFireball:
 
 
 PreInstruction_EnemyProjectile_DragonFireball:
-    LDA.W $1AB6,X 
-    AND.W #$FF00 
-    STA.B $14 
+    LDA.W $1AB6,X : AND.W #$FF00 : STA.B $14 
     LDA.W $1AB7,X 
     XBA 
     BPL .lowByteX 
@@ -6206,9 +6146,7 @@ PreInstruction_EnemyProjectile_DragonFireball:
   + STA.B $12 
     LDA.W $1A27,X : CLC : ADC.B $14 : STA.W $1A27,X 
     LDA.W $1A4B,X : ADC.B $12 : STA.W $1A4B,X 
-    LDA.W $1ADA,X 
-    AND.W #$FF00 
-    STA.B $14 
+    LDA.W $1ADA,X : AND.W #$FF00 : STA.B $14 
     LDA.W $1ADB,X 
     XBA 
     BPL .lowByteY 
@@ -7190,9 +7128,7 @@ InitAI_EnemyProjectile_MotherBrainsTurrets:
     LDA.W $1993 
     ASL A 
     TAX 
-    LDA.W .directionIndices,X 
-    ORA.W #$0100 
-    STA.W $1A6F,Y 
+    LDA.W .directionIndices,X : ORA.W #$0100 : STA.W $1A6F,Y 
     PHX 
     AND.W #$00FF 
     ASL A 
@@ -7874,12 +7810,8 @@ Check_for_OnionRing_Collision_with_Room:
 Setup_Variables_for_EnemyProjectile_Collision_Detection:
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
-    LDA.W $1BB3,X 
-    AND.W #$00FF 
-    STA.B $16 
-    LDA.W $1BB4,X 
-    AND.W #$00FF 
-    STA.B $18 
+    LDA.W $1BB3,X : AND.W #$00FF : STA.B $16 
+    LDA.W $1BB4,X : AND.W #$00FF : STA.B $18 
     RTS 
 
 
@@ -8015,9 +7947,7 @@ PreInstruction_EnemyProjectile_MotherBrainsBomb:
 MotherBrainsBomb_Bomb_Collision_Detection:
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
-    LDA.W $1BB3,X 
-    AND.W #$00FF 
-    STA.B $16 
+    LDA.W $1BB3,X : AND.W #$00FF : STA.B $16 
     LDA.W $1BB3,X 
     XBA 
     AND.W #$00FF 
@@ -9323,9 +9253,7 @@ Enable_KagoBug_Collision_with_SamusProj_IfFarEnoughFromKago:
 .enable:
     CMP.W #$0017 
     BMI .return 
-    LDA.W $1BD7,X 
-    ORA.W #$8000 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : ORA.W #$8000 : STA.W $1BD7,X 
 
 .return:
     PLY 
@@ -11987,34 +11915,26 @@ Function_EnemyProjectile_BotwoonsBody_Main:
 
 
 Function_EnemyProjectile_BotwoonsBody_HurtFlashHandling:
-    LDA.W $19BB,X 
-    ORA.W #$0E00 
-    STA.W $19BB,X 
+    LDA.W $19BB,X : ORA.W #$0E00 : STA.W $19BB,X 
     LDA.W $0F9C 
     BEQ .return 
     LDA.W $0E44 
     BIT.W #$0002 
     BEQ .return 
-    LDA.W $19BB,X 
-    AND.W #$F1FF 
-    STA.W $19BB,X 
+    LDA.W $19BB,X : AND.W #$F1FF : STA.W $19BB,X 
 
 .return:
     RTS 
 
 
 Function_EnemyProj_BotwoonsBody_HurtFlashHandling_duplicate:
-    LDA.W $19BB,Y 
-    ORA.W #$0E00 
-    STA.W $19BB,Y 
+    LDA.W $19BB,Y : ORA.W #$0E00 : STA.W $19BB,Y 
     LDA.W $0F9C 
     BEQ .return 
     LDA.W $0E44 
     BIT.W #$0002 
     BEQ .return 
-    LDA.W $19BB,Y 
-    AND.W #$F1FF 
-    STA.W $19BB,Y 
+    LDA.W $19BB,Y : AND.W #$F1FF : STA.W $19BB,Y 
 
 .return:
     RTS 
@@ -12451,9 +12371,7 @@ Instruction_EnemyProjectile_EnemyDeathExplosion_BecomePickup:
     LDA.W #$0001 : STA.W $1B8F,X 
     LDA.W #$0190 : STA.W $1B23,X 
     LDA.W #PreInstruction_EnemyProjectile_Pickup : STA.W $1A03,X 
-    LDA.W $1BD7,X 
-    AND.W #$BFFF 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : AND.W #$BFFF : STA.W $1BD7,X 
     LDA.W $1B47,X 
     PLY 
     PLX 
@@ -12542,9 +12460,7 @@ InitAI_EnemyProjectile_EnemyDeathExplosion:
     LDA.W $0F86,Y 
     BIT.W #$4000 
     BEQ .noRespawn 
-    LDA.W $0E54 
-    ORA.W #$8000 
-    STA.L $7EF410,X 
+    LDA.W $0E54 : ORA.W #$8000 : STA.L $7EF410,X 
 
 .noRespawn:
     LDA.W $0F78,Y : STA.L $7EF3C8,X 
@@ -12610,12 +12526,8 @@ PreInstruction_EnemyProjectile_Pickup:
 
 
 .notGrappled:
-    LDA.W $1BB3,X 
-    AND.W #$00FF 
-    STA.W $0E20 
-    LDA.W $1BB4,X 
-    AND.W #$00FF 
-    STA.W $0E22 
+    LDA.W $1BB3,X : AND.W #$00FF : STA.W $0E20 
+    LDA.W $1BB4,X : AND.W #$00FF : STA.W $0E22 
     LDA.W $0AF6 : SEC : SBC.W $1A4B,X : BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -12706,9 +12618,7 @@ Random_Drop_Routine:
     PEA.W EnemyHeaders>>8&$FF00 
     PLB 
     PLB 
-    LDA.L $7EF410,X 
-    AND.W #$7FFF 
-    STA.W $0E2A 
+    LDA.L $7EF410,X : AND.W #$7FFF : STA.W $0E2A 
     LDA.L $7EF3C8,X 
     TAX 
     STA.W $0E28 
@@ -12760,9 +12670,7 @@ Random_Drop_Routine:
     LDA.B $12 : CLC : ADC.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X ; $B40000
     ADC.L EnemyDropChances_bigEnergy-(EnemyDropChances&$00FFFF),X ; $B40001
     STA.B $12 
-    LDA.B $16 
-    ORA.B #$03 
-    STA.B $16 
+    LDA.B $16 : ORA.B #$03 : STA.B $16 
 
 .fullEnergy:
     LDY.W $09C6 
@@ -12770,9 +12678,7 @@ Random_Drop_Routine:
     BEQ .checkSuperMissiles 
     LDA.B $12 : CLC : ADC.L EnemyDropChances_missiles-(EnemyDropChances&$00FFFF),X ; $B40002
     STA.B $12 
-    LDA.B $16 
-    ORA.B #$04 
-    STA.B $16 
+    LDA.B $16 : ORA.B #$04 : STA.B $16 
 
 .checkSuperMissiles:
     LDY.W $09CA 
@@ -12780,9 +12686,7 @@ Random_Drop_Routine:
     BEQ .checkPowerBombs 
     LDA.B $14 : SEC : SBC.L EnemyDropChances_superMissiles-(EnemyDropChances&$00FFFF),X ; $B40004
     STA.B $14 
-    LDA.B $16 
-    ORA.B #$10 
-    STA.B $16 
+    LDA.B $16 : ORA.B #$10 : STA.B $16 
 
 .checkPowerBombs:
     LDY.W $09CE 
@@ -12790,9 +12694,7 @@ Random_Drop_Routine:
     BEQ .dropChancesPooled 
     LDA.B $14 : SEC : SBC.L EnemyDropChances_powerBombs-(EnemyDropChances&$00FFFF),X ; $B40005
     STA.B $14 
-    LDA.B $16 
-    ORA.B #$20 
-    STA.B $16 
+    LDA.B $16 : ORA.B #$20 : STA.B $16 
 
 .dropChancesPooled:
     LDY.W #$0000 
@@ -12916,9 +12818,7 @@ Respawn_Enemy:
     LDA.W $0008,X : STA.W $0F82,Y 
     LDA.W $000A,X : STA.W $0F84,Y 
     LDA.W $0004,X : STA.W $0F8C,Y 
-    LDA.W $0039,X 
-    AND.W #$00FF 
-    STA.W $0F9A,Y 
+    LDA.W $0039,X : AND.W #$00FF : STA.W $0F9A,Y 
     LDA.W $000C,X : STA.W $0FA6,Y 
     STA.W $1786 
     JSL.L .executeEnemyInitAI 

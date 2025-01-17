@@ -119,9 +119,7 @@ RTS_A3807B:
 
 
 Instruction_CommonA3_DeleteEnemy:
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     PLA 
     PEA.W ProcessEnemyInstructions_return-1 
     RTL 
@@ -287,16 +285,12 @@ Instruction_CommonA3_TransferYBytesInYToVRAM:
 
 
 Instruction_CommonA3_EnableOffScreenProcessing:
-    LDA.W $0F86,X 
-    ORA.W #$0800 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0800 : STA.W $0F86,X 
     RTL 
 
 
 Instruction_CommonA3_DisableOffScreenProcessing:
-    LDA.W $0F86,X 
-    AND.W #$F7FF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$F7FF : STA.W $0F86,X 
     RTL 
 
 
@@ -468,9 +462,7 @@ InitAI_Waver:
     STZ.W $0FAC,X 
     STZ.W $0FB0,X 
     LDA.W #InstList_Waver_Steady_FacingLeft : STA.W $0F92,X 
-    LDA.W $0FB4,X 
-    AND.W #$0001 
-    STA.W $0FB2,X 
+    LDA.W $0FB4,X : AND.W #$0001 : STA.W $0FB2,X 
     JSR.W SetWaverInstList 
     RTL 
 
@@ -528,18 +520,14 @@ MainAI_Waver:
     AND.W #$007F 
     CMP.W #$0038 
     BNE .notSpinning 
-    LDA.W $0FB2,X 
-    ORA.W #$0002 
-    STA.W $0FB2,X 
+    LDA.W $0FB2,X : ORA.W #$0002 : STA.W $0FB2,X 
     JSR.W SetWaverInstList 
 
 .notSpinning:
     LDA.W $0FB0,X 
     BEQ .return 
     STZ.W $0FB0,X 
-    LDA.W $0FB2,X 
-    AND.W #$0001 
-    STA.W $0FB2,X 
+    LDA.W $0FB2,X : AND.W #$0001 : STA.W $0FB2,X 
     JSR.W SetWaverInstList 
 
 .return:
@@ -797,9 +785,7 @@ Function_Metaree_LaunchedAttack:
     LDA.W #$0015 : STA.W $0FA8,X 
     LDA.W $0FB2,X : STA.B $14 
     STZ.B $12 
-    LDA.W $0F86,X 
-    ORA.W #$0003 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0003 : STA.W $0F86,X 
     LDX.W $0E54 
     JSL.L CheckForVerticalSolidBlockCollision_SkreeMetaree 
     BCS .collision 
@@ -853,14 +839,10 @@ Function_Metaree_Burrowing:
 
 .delete:
     LDX.W $0E54 
-    LDA.W $0F96,X 
-    ORA.W $0F98,X 
-    STA.L $7E7006,X 
+    LDA.W $0F96,X : ORA.W $0F98,X : STA.L $7E7006,X 
     LDA.W #$0A00 : STA.W $0F96,X 
     STZ.W $0F98,X 
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     RTL 
 
 
@@ -1142,9 +1124,7 @@ FirefleaMovementRadii:
 InitAI_Fireflea:
     LDX.W $0E54 
     LDA.W #InstList_Fireflea : STA.W $0F92,X 
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W $0FB4,X : AND.W #$00FF : STA.B $12 
     AND.W #$0002 
     BNE .circleMovement 
     JSR.W SetFirefleaSpeed 
@@ -1197,9 +1177,7 @@ SetFirefleaRadius:
     AND.W #$00FF 
     ASL A 
     TAY 
-    LDA.W FirefleaMovementRadii,Y 
-    AND.W #$00FF 
-    STA.W $0FAC,X 
+    LDA.W FirefleaMovementRadii,Y : AND.W #$00FF : STA.W $0FAC,X 
     RTS 
 
 
@@ -1590,12 +1568,8 @@ InitAI_Skultera:
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W $0FAA,X 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W $0FB0,X 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W $0FAE,X 
-    LDA.W $0FB6,X 
-    AND.W #$00FF 
-    STA.L $7E7800,X 
-    LDA.W $0FB7,X 
-    AND.W #$00FF 
-    STA.L $7E7804,X 
+    LDA.W $0FB6,X : AND.W #$00FF : STA.L $7E7800,X 
+    LDA.W $0FB7,X : AND.W #$00FF : STA.L $7E7804,X 
     LDA.W #$0000 : STA.W $0FB2,X 
     STA.L $7E7802,X 
     LDA.L $7E7800,X : STA.W $0E32 
@@ -3099,9 +3073,7 @@ InitAI_Tripper_Kamer2_Common:
     INC A 
     STA.W $0FA8,X 
     STZ.W $0FB2,X 
-    LDA.W $0FB7,X 
-    AND.W #$00FF 
-    STA.L $7E780A,X 
+    LDA.W $0FB7,X : AND.W #$00FF : STA.L $7E780A,X 
     RTL 
 
 
@@ -3651,12 +3623,8 @@ InitAI_Sbug:
 
 
 CalculateMovingForwardSpeeds:
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
-    STA.B $14 
-    LDA.W $0FB5,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W $0FB4,X : AND.W #$00FF : STA.B $14 
+    LDA.W $0FB5,X : AND.W #$00FF : STA.B $12 
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name ; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
     LDA.B $16 : STA.L $7E7802,X 
     LDA.B $18 : STA.L $7E7800,X 
@@ -3667,17 +3635,13 @@ CalculateMovingForwardSpeeds:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CalculateMovingForwardVelocities_A3A1B0:
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
-    STA.W $0E32 
+    LDA.W $0FB4,X : AND.W #$00FF : STA.W $0E32 
     LDA.W $0FB5,X 
     AND.W #$00FF 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     LDA.W $0E36 : STA.L $7E7802,X 
     LDA.W $0E38 : STA.L $7E7800,X 
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
-    STA.W $0E32 
+    LDA.W $0FB4,X : AND.W #$00FF : STA.W $0E32 
     LDA.W $0FB5,X 
     AND.W #$00FF 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
@@ -3688,16 +3652,12 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CalculateMovingLeftVelocities:
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
-    STA.W $0E32 
+    LDA.W $0FB4,X : AND.W #$00FF : STA.W $0E32 
     LDA.W $0FB5,X : SEC : SBC.W #$0020 : AND.W #$00FF 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     LDA.W $0E36 : STA.L $7E780A,X 
     LDA.W $0E38 : STA.L $7E7808,X 
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
-    STA.W $0E32 
+    LDA.W $0FB4,X : AND.W #$00FF : STA.W $0E32 
     LDA.W $0FB5,X : SEC : SBC.W #$0020 : AND.W #$00FF 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     LDA.W $0E36 : STA.L $7E780E,X 
@@ -3706,16 +3666,12 @@ CalculateMovingLeftVelocities:
 
 
 CalculateMovingRightVelocities:
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
-    STA.W $0E32 
+    LDA.W $0FB4,X : AND.W #$00FF : STA.W $0E32 
     LDA.W $0FB5,X : CLC : ADC.W #$0020 : AND.W #$00FF 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     LDA.W $0E36 : STA.L $7E7812,X 
     LDA.W $0E38 : STA.L $7E7810,X 
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
-    STA.W $0E32 
+    LDA.W $0FB4,X : AND.W #$00FF : STA.W $0E32 
     LDA.W $0FB5,X : CLC : ADC.W #$0020 : AND.W #$00FF 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     LDA.W $0E36 : STA.L $7E7816,X 
@@ -3850,16 +3806,12 @@ DetermineCustomInstListIndex:
 
 
 CalculateCustomVelocities:
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
-    STA.W $0E32 
+    LDA.W $0FB4,X : AND.W #$00FF : STA.W $0E32 
     LDA.W $0FAC,X 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     LDA.W $0E36 : STA.L $7E781A,X 
     LDA.W $0E38 : STA.L $7E7818,X 
-    LDA.W $0FB4,X 
-    AND.W #$00FF 
-    STA.W $0E32 
+    LDA.W $0FB4,X : AND.W #$00FF : STA.W $0E32 
     LDA.W $0FAC,X 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     LDA.W $0E36 : STA.L $7E781E,X 
@@ -4037,9 +3989,7 @@ MoveSbugForward:
     LDA.L $7E7800,X : STA.W $0E26 
     LDA.L $7E7806,X : STA.W $0E28 
     LDA.L $7E7804,X : STA.W $0E2A 
-    LDA.W $0FB5,X 
-    AND.W #$00FF 
-    STA.W $0E20 
+    LDA.W $0FB5,X : AND.W #$00FF : STA.W $0E20 
     JSL.L MoveEnemyAccordingToAngleAndXYSpeeds 
     RTS 
 
@@ -4307,9 +4257,7 @@ Function_Mochtroid_0_NotTouchingSamus:
     STA.B $13 
     AND.W #$2000 
     BEQ + 
-    LDA.B $14 
-    ORA.W #$FFC0 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$FFC0 : STA.B $14 
 
   + LDA.W $0FAC,X : SEC : SBC.B $12 : STA.W $0FAC,X 
     LDA.W $0FAE,X : SBC.B $14 : STA.W $0FAE,X 
@@ -4351,9 +4299,7 @@ Function_Mochtroid_0_NotTouchingSamus:
     STA.B $13 
     AND.W #$2000 
     BEQ + 
-    LDA.B $14 
-    ORA.W #$FFC0 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$FFC0 : STA.B $14 
 
   + LDA.W $0FA8,X : SEC : SBC.B $12 : STA.W $0FA8,X 
     LDA.W $0FAA,X : SBC.B $14 : STA.W $0FAA,X 
@@ -5800,9 +5746,7 @@ InitAI_Zoa:
     STA.W $0FB0,X 
     STA.L $7E7800,X 
     LDA.W #InstList_Zoa_FacingLeft_Shooting : STA.W $0F92,X 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     LDA.W $0F7A,X : STA.W $0FAA,X 
     LDA.W $0F7E,X : STA.W $0FAC,X 
     RTL 
@@ -5834,9 +5778,7 @@ Function_Zoa_WaitForSamusToGetNear:
 
 
 Function_Zoa_Rising:
-    LDA.W $0F86,X 
-    AND.W #$FEFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$FEFF : STA.W $0F86,X 
     JSL.L Get_SamusY_minus_EnemyY 
     BMI .rising 
     DEC.W $0FAE,X 
@@ -5880,9 +5822,7 @@ Function_Zoa_Shooting:
 
 
 .offScreen:
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     LDA.W $0FAA,X : STA.W $0F7A,X 
     LDA.W $0FAC,X : STA.W $0F7E,X 
     STZ.W $0FAE,X 
@@ -6688,9 +6628,7 @@ Instruction_Bang_SetFinishedGrowingFlagTo1:
 InitAI_Bang:
     LDX.W $0E54 
     LDA.W $0F96,X : STA.W $0FAA,X 
-    LDA.W $0F86,X 
-    ORA.W #$1000 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$1000 : STA.W $0F86,X 
     LDA.W #Function_Bang_Movement_MovementDelay : STA.W $0FB2,X 
     LDA.W #$0010 : STA.L $7E7800,X 
     LDA.W #$0000 : STA.L $7E7802,X 
@@ -6729,9 +6667,7 @@ BangAI_Electricity:
     LDA.L $7E8040,X : CLC : ADC.W #$000A : STA.L $7E8000,X 
     JSR.W SetBangInstList 
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     RTL 
 
 
@@ -6739,9 +6675,7 @@ BangAI_Shell:
     LDX.W $0E54 
     LDA.L $7E7FC0,X : CLC : ADC.W #$0014 : STA.L $7E8000,X 
     JSR.W SetBangInstList 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     RTL 
 
 
@@ -6771,19 +6705,13 @@ BangAI_Core:
     CMP.W #$0009 
     BNE + 
     LDA.W #$0010 : STA.W $0FA0,X 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     JSL.L DetermineDirectionOfSamusFromEnemy 
     JSR.W FireChargedBeamAtSamus 
     JSL.L EnemyDeath 
     LDX.W $0E54 
-    LDA.W $0FC6,X 
-    ORA.W #$0200 
-    STA.W $0FC6,X 
-    LDA.W $0F46,X 
-    ORA.W #$0200 
-    STA.W $0F46,X 
+    LDA.W $0FC6,X : ORA.W #$0200 : STA.W $0FC6,X 
+    LDA.W $0F46,X : ORA.W #$0200 : STA.W $0F46,X 
     RTL 
 
 
@@ -7128,9 +7056,7 @@ EnemyShot_Bang:
     ASL A 
     TAY 
     LDA.W $0C2C,Y : CLC : ADC.W $0FB0,X : STA.W $0FB0,X 
-    LDA.W $0C04,Y 
-    ORA.W #$0010 
-    STA.W $0C04,Y 
+    LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
     LDX.W $0E54 
     LDA.L $7E8000,X 
     CMP.W #$0009 
@@ -8233,9 +8159,7 @@ Function_Skree_LaunchedAttack:
     LDA.W #$0015 : STA.W $0FA8,X 
     LDA.W #$0006 : STA.B $14 
     STZ.B $12 
-    LDA.W $0F86,X 
-    ORA.W #$0003 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0003 : STA.W $0F86,X 
     LDX.W $0E54 
     JSL.L CheckForVerticalSolidBlockCollision_SkreeMetaree 
     BCS .collision 
@@ -8289,14 +8213,10 @@ Function_Skree_Burrowing:
 
 .delete:
     LDX.W $0E54 
-    LDA.W $0F96,X 
-    ORA.W $0F98,X 
-    STA.L $7E7006,X 
+    LDA.W $0F96,X : ORA.W $0F98,X : STA.L $7E7006,X 
     LDA.W #$0A00 : STA.W $0F96,X 
     STZ.W $0F98,X 
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     RTL 
 
 
@@ -9106,9 +9026,7 @@ InitAI_Yard:
     ASL #3
     TAY 
     LDA.W YardDirectionData_crawlingInstList,Y : STA.W $0F92,X 
-    LDA.W YardDirectionData_movementDirection,Y 
-    ORA.W $0F86,X 
-    STA.W $0F86,X 
+    LDA.W YardDirectionData_movementDirection,Y : ORA.W $0F86,X : STA.W $0F86,X 
     LDA.W YardDirectionData_hidingInstList,Y : STA.W $0FAE,X 
     LDA.W YardDirectionData_airborneFacingDirection,Y : STA.W $0FAC,X 
     LDA.W #$0000 : STA.L $7E7810,X 
@@ -9247,16 +9165,12 @@ DetermineIfYardHitboxIsSolidToSamus:
 
 
 .solid:
-    LDA.W $0F86,X 
-    ORA.W #$8000 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$8000 : STA.W $0F86,X 
     RTS 
 
 
 .notSolid:
-    LDA.W $0F86,X 
-    AND.W #$7FFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$7FFF : STA.W $0F86,X 
     RTS 
 
 
@@ -9875,9 +9789,7 @@ CheckIfSamusIsDirectingTowardsYard:
     XBA 
     DEC A 
     STA.B $12 
-    LDA.W $0FAC,X 
-    AND.W #$0001 
-    STA.B $14 
+    LDA.W $0FAC,X : AND.W #$0001 : STA.B $14 
     LDA.B $12 
     BNE .notPressingRight 
     LDA.B $14 
@@ -10944,9 +10856,7 @@ Instruction_Reflec_Param2InY:
 
 InitAI_Reflec:
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    ORA.W #$1000 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$1000 : STA.W $0F86,X 
     LDA.W $0FB4,X 
     ASL A 
     TAY 
@@ -11007,9 +10917,7 @@ EnemyShot_Reflec:
 
 .skipFunction:
     STA.W $0C04,Y 
-    LDA.W $0C18,Y 
-    AND.W #$7FFF 
-    STA.W $0C18,Y 
+    LDA.W $0C18,Y : AND.W #$7FFF : STA.W $0C18,Y 
     STY.B $14 
     JSL.L ProjectileReflection 
     LDA.W #$0057 
@@ -11017,9 +10925,7 @@ EnemyShot_Reflec:
     RTL 
 
 
-  + LDA.W $0C04,Y 
-    ORA.W #$0010 
-    STA.W $0C04,Y 
+  + LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
     LDA.W $0F8C,X 
     BEQ .return 
     JSL.L CommonA3_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic 
@@ -12561,18 +12467,14 @@ BombedOffVelocities_Y:
 InitAI_Metroid:
     LDX.W $0E54 
     LDA.W #InstList_Metroid_ChasingSamus : STA.W $0F92,X 
-    LDA.W $0F96,X 
-    ORA.W $0F98,X 
-    STA.B $18 
+    LDA.W $0F96,X : ORA.W $0F98,X : STA.B $18 
     LDA.W $0F7A,X : STA.B $12 
     LDA.W $0F7E,X : STA.B $14 
     LDA.W #$0032 : STA.B $16 
     JSL.L Create_Sprite_Object 
     LDA.B $12 : STA.L $7E7800,X 
     LDX.W $0E54 
-    LDA.W $0F96,X 
-    ORA.W $0F98,X 
-    STA.B $18 
+    LDA.W $0F96,X : ORA.W $0F98,X : STA.B $18 
     LDA.W $0F7A,X : STA.B $12 
     LDA.W $0F7E,X : STA.B $14 
     LDA.W #$0034 : STA.B $16 
@@ -12665,15 +12567,11 @@ HurtAI_Metroid:
     LDX.W $0E54 
     LDA.L $7E7800,X 
     TAX 
-    LDA.L $7EF078,X 
-    AND.W #$F1FF 
-    STA.L $7EF078,X 
+    LDA.L $7EF078,X : AND.W #$F1FF : STA.L $7EF078,X 
     LDX.W $0E54 
     LDA.L $7E7802,X 
     TAX 
-    LDA.L $7EF078,X 
-    AND.W #$F1FF 
-    STA.L $7EF078,X 
+    LDA.L $7EF078,X : AND.W #$F1FF : STA.L $7EF078,X 
     RTL 
 
 
@@ -12684,9 +12582,7 @@ MainAI_Metroid:
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
-    LDA.W $0F96,X 
-    ORA.W $0F98,X 
-    STA.B $18 
+    LDA.W $0F96,X : ORA.W $0F98,X : STA.B $18 
     LDA.W $0F7A,X : STA.B $12 
     LDA.W $0F7E,X : STA.B $14 
     LDA.L $7E7800,X 
@@ -12721,9 +12617,7 @@ Function_Metroid_0_ChaseSamus:
     STA.B $13 
     AND.W #$2000 
     BEQ + 
-    LDA.B $14 
-    ORA.W #$FFC0 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$FFC0 : STA.B $14 
 
   + LDA.W $0FAC,X : SEC : SBC.B $12 : STA.W $0FAC,X 
     LDA.W $0FAE,X : SBC.B $14 : STA.W $0FAE,X 
@@ -12761,9 +12655,7 @@ Function_Metroid_0_ChaseSamus:
     STA.B $13 
     AND.W #$2000 
     BEQ + 
-    LDA.B $14 
-    ORA.W #$FFC0 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$FFC0 : STA.B $14 
 
   + LDA.W $0FA8,X : SEC : SBC.B $12 : STA.W $0FA8,X 
     LDA.W $0FAA,X : SBC.B $14 : STA.W $0FAA,X 
@@ -12807,9 +12699,7 @@ Function_Metroid_1_LatchOntoSamus:
     STA.B $14 
     AND.W #$1000 
     BEQ + 
-    LDA.B $14 
-    ORA.W #$E000 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$E000 : STA.B $14 
 
   + LDA.B $14 
     BMI .negativeY 
@@ -12848,9 +12738,7 @@ Function_Metroid_1_LatchOntoSamus:
     STA.B $14 
     AND.W #$1000 
     BEQ + 
-    LDA.B $14 
-    ORA.W #$E000 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$E000 : STA.B $14 
 
   + LDA.B $14 
     BMI .negativeX 
@@ -13133,9 +13021,7 @@ EnemyShot_Metroid:
 .freeze:
     STZ.W $0FB6,X 
     LDA.W #$0190 : STA.W $0F9E,X 
-    LDA.W $0F8A,X 
-    ORA.W #$0004 
-    STA.W $0F8A,X 
+    LDA.W $0F8A,X : ORA.W #$0004 : STA.W $0F8A,X 
     RTL 
 
 

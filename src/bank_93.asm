@@ -54,12 +54,8 @@ InitializeProjectile:
     CLC : ADC.B $12 : TAY 
     LDA.W $0000,Y : STA.W $0C40,X 
     TAY 
-    LDA.W $0004,Y 
-    AND.W #$00FF 
-    STA.W $0BB4,X 
-    LDA.W $0005,Y 
-    AND.W #$00FF 
-    STA.W $0BC8,X 
+    LDA.W $0004,Y : AND.W #$00FF : STA.W $0BB4,X 
+    LDA.W $0005,Y : AND.W #$00FF : STA.W $0BC8,X 
     LDA.W #$0001 : STA.W $0C54,X 
     PLB 
     PLP 
@@ -283,12 +279,8 @@ ProjectileInstructionHandler:
 .timer:
     STA.W $0C54,X 
     LDA.W $0002,Y : STA.W $0CB8,X 
-    LDA.W $0004,Y 
-    AND.W #$00FF 
-    STA.W $0BB4,X 
-    LDA.W $0005,Y 
-    AND.W #$00FF 
-    STA.W $0BC8,X 
+    LDA.W $0004,Y : AND.W #$00FF : STA.W $0BB4,X 
+    LDA.W $0005,Y : AND.W #$00FF : STA.W $0BC8,X 
     TYA 
     CLC : ADC.W #$0008 : STA.W $0C40,X 
 

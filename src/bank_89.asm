@@ -3307,18 +3307,10 @@ Load_FX_Entry:
     LDA.W $0002,X : STA.W $1978 
     LDA.W $0004,X : STA.W $197A 
     LDA.W $0006,X : STA.W $197C 
-    LDA.W $0008,X 
-    AND.W #$00FF 
-    STA.W $1980 
-    LDA.W $000A,X 
-    AND.W #$00FF 
-    STA.W $1982 
-    LDA.W $000B,X 
-    AND.W #$00FF 
-    STA.W $1984 
-    LDA.W $000C,X 
-    AND.W #$00FF 
-    STA.W $197E 
+    LDA.W $0008,X : AND.W #$00FF : STA.W $1980 
+    LDA.W $000A,X : AND.W #$00FF : STA.W $1982 
+    LDA.W $000B,X : AND.W #$00FF : STA.W $1984 
+    LDA.W $000C,X : AND.W #$00FF : STA.W $197E 
     LDA.W $000F,X 
     AND.W #$00FF 
     BEQ .blend0 
@@ -3381,18 +3373,10 @@ Load_FX_Header:
     LDA.W $0002,X : STA.W $1978 
     LDA.W $0004,X : STA.W $197A 
     LDA.W $0006,X : STA.W $197C 
-    LDA.W $0008,X 
-    AND.W #$00FF 
-    STA.W $1980 
-    LDA.W $000A,X 
-    AND.W #$00FF 
-    STA.W $1982 
-    LDA.W $000B,X 
-    AND.W #$00FF 
-    STA.W $1984 
-    LDA.W $000C,X 
-    AND.W #$00FF 
-    STA.W $197E 
+    LDA.W $0008,X : AND.W #$00FF : STA.W $1980 
+    LDA.W $000A,X : AND.W #$00FF : STA.W $1982 
+    LDA.W $000B,X : AND.W #$00FF : STA.W $1984 
+    LDA.W $000C,X : AND.W #$00FF : STA.W $197E 
     LDA.W $000F,X 
     AND.W #$00FF 
     BEQ .blend0 
@@ -3407,9 +3391,7 @@ Load_FX_Header:
     LDA.W #$0000 : STA.L $7EC236 
 
   + LDX.W $1966 
-    LDA.W $0009,X 
-    AND.W #$00FF 
-    STA.W $196E 
+    LDA.W $0009,X : AND.W #$00FF : STA.W $196E 
     BEQ + 
     TAY 
     LDA.W FXType_Tilemap_Pointers,Y : STA.W $1964 

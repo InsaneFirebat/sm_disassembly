@@ -1489,9 +1489,7 @@ FinishDeathAnimationFlashing:
     PLB 
     LDY.W #$0008 
     JSR.W QueueTransferOfSegmentOfSamusDeathSequenceToVRAM 
-    LDA.W DeathSequenceSuitExplosionPaletteIndexTable_timer 
-    AND.W #$00FF 
-    STA.W $0DE2 
+    LDA.W DeathSequenceSuitExplosionPaletteIndexTable_timer : AND.W #$00FF : STA.W $0DE2 
     STZ.W $0DE4 
     STZ.W $0DE6 
     JSR.W HandleDeathSequenceSuitExplosion 
@@ -1660,9 +1658,7 @@ HandleDeathSequenceSuitExplosion:
     BMI .lessThan2 
     ASL A 
     TAX 
-    LDA.W DeathSequenceSuitExplosionPaletteIndexTable_timer,X 
-    AND.W #$00FF 
-    STA.W $0DE2 
+    LDA.W DeathSequenceSuitExplosionPaletteIndexTable_timer,X : AND.W #$00FF : STA.W $0DE2 
     BRA .notFinished 
 
 
@@ -1670,9 +1666,7 @@ HandleDeathSequenceSuitExplosion:
     LDA.W $0DE4 
     ASL A 
     TAX 
-    LDA.W DeathSequenceSuitExplosionPaletteIndexTable_timer,X 
-    AND.W #$00FF 
-    STA.W $0DE2 
+    LDA.W DeathSequenceSuitExplosionPaletteIndexTable_timer,X : AND.W #$00FF : STA.W $0DE2 
     LDA.W DeathSequenceSuitExplosionPaletteIndexTable_index,X 
     AND.W #$00FF 
     ASL A 
@@ -2524,9 +2518,7 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
     LDA.W $0CFD 
     AND.W #$00FF 
     TAX 
-    LDA.W GrappleSwingSamusXYOffsets,X 
-    AND.W #$00FF 
-    STA.W $0A96 
+    LDA.W GrappleSwingSamusXYOffsets,X : AND.W #$00FF : STA.W $0A96 
 
 .merge:
     ASL A 
@@ -2652,9 +2644,7 @@ UpdateGrappleBeamStartPositionDuringGrappleFire:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YOffset,X 
-    AND.W #$00FF 
-    STA.B $16 
+    LDA.L PoseDefinitions_YOffset,X : AND.W #$00FF : STA.B $16 
     LDA.W $0D34 
     ASL A 
     TAX 
@@ -2799,16 +2789,12 @@ HandleGrappleBeamFlare:
 
 .frameFE:
     INX 
-    LDA.L FlareAnimationDelays_MainFlare,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L FlareAnimationDelays_MainFlare,X : AND.W #$00FF : STA.B $12 
     LDA.W $0CD6 : SEC : SBC.B $12 : STA.W $0CD6 
     TAX 
 
 .setAnimationTimer:
-    LDA.L FlareAnimationDelays_MainFlare,X 
-    AND.W #$00FF 
-    STA.W $0CDC 
+    LDA.L FlareAnimationDelays_MainFlare,X : AND.W #$00FF : STA.W $0CDC 
 
 .positive:
     LDA.W $0A1E 
@@ -3157,9 +3143,7 @@ GrappleBeamHandler:
     DEC A 
     STA.W $0CF6 
 
-  + LDA.W $0A64 
-    AND.W #$FFFE 
-    STA.W $0A64 
+  + LDA.W $0A64 : AND.W #$FFFE : STA.W $0A64 
     JSR.W CancelGrappleBeamIfInIncompatiblePose 
     PEA.W .manualReturn-1 
     JMP.W ($0D32) 
@@ -3181,18 +3165,14 @@ GrappleBeamHandler:
     BMI .clearLiquidPhysics 
     CMP.B $12 
     BPL .clearLiquidPhysics 
-    LDA.W $0CF4 
-    ORA.W #$0001 
-    STA.W $0CF4 
+    LDA.W $0CF4 : ORA.W #$0001 : STA.W $0CF4 
     PLB 
     PLP 
     RTL 
 
 
 .clearLiquidPhysics:
-    LDA.W $0CF4 
-    AND.W #$FFFE 
-    STA.W $0CF4 
+    LDA.W $0CF4 : AND.W #$FFFE : STA.W $0CF4 
     PLB 
     PLP 
     RTL 
@@ -3228,9 +3208,7 @@ GrappleBeamFunction_Fire_GotoCancel:
     BEQ .draygon 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YOffset,X 
-    AND.W #$00FF 
-    STA.B $16 
+    LDA.L PoseDefinitions_YOffset,X : AND.W #$00FF : STA.B $16 
     LDA.L PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
     BIT.W #$00F0 
@@ -3456,9 +3434,7 @@ GrappleBeamFunction_Firing:
     EOR.W #$FFFF 
     INC A 
     STA.W $0D00 
-    LDA.W $0A64 
-    ORA.W #$0001 
-    STA.W $0A64 
+    LDA.W $0A64 : ORA.W #$0001 : STA.W $0A64 
 
 .return:
     RTS 
@@ -3550,9 +3526,7 @@ GrappleBeamFunction_Connected_Swinging:
     JSL.L EnemyGrappleBeamCollisionDetection 
     TAY 
     BEQ .blockCollision 
-    LDA.W $0CF4 
-    ORA.W #$8000 
-    STA.W $0CF4 
+    LDA.W $0CF4 : ORA.W #$8000 : STA.W $0CF4 
     BRA + 
 
 
@@ -3687,9 +3661,7 @@ GrappleBeamFunction_Dropped:
     TAX 
     BIT.W #$00F0 
     BNE .cancel 
-    LDA.W .standingPoses,X 
-    AND.W #$00FF 
-    STA.W $0A2C 
+    LDA.W .standingPoses,X : AND.W #$00FF : STA.W $0A2C 
     BRA .merge 
 
 
@@ -3702,9 +3674,7 @@ GrappleBeamFunction_Dropped:
     TAX 
     BIT.W #$00F0 
     BNE .checkDirection 
-    LDA.W .crouchingPoses,X 
-    AND.W #$00FF 
-    STA.W $0A2C 
+    LDA.W .crouchingPoses,X : AND.W #$00FF : STA.W $0A2C 
     BRA .merge 
 
 

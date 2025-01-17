@@ -373,9 +373,7 @@ LoadMap:
     XBA 
     STA.B $14 
     LDX.B $16 
-    LDA.W SRAMMapData_size,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.W SRAMMapData_size,X : AND.W #$00FF : STA.B $12 
     LDA.B $16 
     ASL A 
     TAX 
@@ -417,9 +415,7 @@ SaveMap:
 
 .loopAreas:
     LDX.B $1A 
-    LDA.W SRAMMapData_size,X 
-    AND.W #$00FF 
-    STA.B $16 
+    LDA.W SRAMMapData_size,X : AND.W #$00FF : STA.B $16 
     LDA.B $1A 
     ASL A 
     TAX 
@@ -556,16 +552,12 @@ AddSpritemapToOAM:
     LDA.W $0000,Y 
     BPL + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
-    LDA.B ($1C) 
-    ORA.L MapOfOAMIndexToHighOAM_bitmask,X 
-    STA.B ($1C) 
+    LDA.B ($1C) : ORA.L MapOfOAMIndexToHighOAM_bitmask,X : STA.B ($1C) 
     JMP.W .merge 
 
 
   + LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
-    LDA.B ($1C) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($1C) 
+    LDA.B ($1C) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($1C) 
     BRA .merge 
 
 
@@ -573,9 +565,7 @@ AddSpritemapToOAM:
     LDA.W $0000,Y 
     BPL .merge 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
-    LDA.B ($1C) 
-    ORA.L MapOfOAMIndex_sizeBit,X 
-    STA.B ($1C) 
+    LDA.B ($1C) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($1C) 
 
 .merge:
     SEP #$20 
@@ -658,16 +648,12 @@ AddSpritemapToOAM_Offscreen:
     LDA.W $0000,Y 
     BPL + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
-    LDA.B ($1C) 
-    ORA.L MapOfOAMIndexToHighOAM_bitmask,X 
-    STA.B ($1C) 
+    LDA.B ($1C) : ORA.L MapOfOAMIndexToHighOAM_bitmask,X : STA.B ($1C) 
     JMP.W .merge 
 
 
   + LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
-    LDA.B ($1C) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($1C) 
+    LDA.B ($1C) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($1C) 
     BRA .merge 
 
 
@@ -675,9 +661,7 @@ AddSpritemapToOAM_Offscreen:
     LDA.W $0000,Y 
     BPL .merge 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
-    LDA.B ($1C) 
-    ORA.L MapOfOAMIndex_sizeBit,X 
-    STA.B ($1C) 
+    LDA.B ($1C) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($1C) 
 
 .merge:
     SEP #$20 
@@ -737,9 +721,7 @@ OAMEntry_XPosition_180h:
     LDA.B #$80 : STA.W $0370,X 
     REP #$20 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
-    LDA.B ($1C) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($1C) 
+    LDA.B ($1C) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($1C) 
     SEP #$20 
     RTS 
 
@@ -768,17 +750,13 @@ AddSpritemapFrom_82C569_TableToOAM:
     LDA.W $0000,Y 
     BPL .preMerge 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndexToHighOAM_bitmask,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndexToHighOAM_bitmask,X : STA.B ($16) 
     JMP.W .merge 
 
 
 .preMerge:
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($16) 
     JMP.W .merge 
 
 
@@ -786,9 +764,7 @@ AddSpritemapFrom_82C569_TableToOAM:
     LDA.W $0000,Y 
     BPL .merge 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_sizeBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($16) 
 
 .merge:
     LDA.W $0002,Y : CLC : ADC.B $12 : STA.W $0371,X 
@@ -834,17 +810,13 @@ AddSamusSpritemapToOAM:
     LDA.W $0000,Y 
     BPL .preMerge 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndexToHighOAM_bitmask,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndexToHighOAM_bitmask,X : STA.B ($16) 
     JMP.W .merge 
 
 
 .preMerge:
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($16) 
     JMP.W .merge 
 
 
@@ -852,9 +824,7 @@ AddSamusSpritemapToOAM:
     LDA.W $0000,Y 
     BPL .merge 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_sizeBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($16) 
 
 .merge:
     LDA.W $0002,Y : CLC : ADC.B $12 : STA.W $0371,X 
@@ -911,16 +881,12 @@ AddSpritemapToOAM_Common:
     AND.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($16) 
 
   + LDA.W $0000,Y 
     BPL + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_sizeBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($16) 
 
   + LDA.W $0002,Y : CLC : ADC.B $12 : STA.W $0371,X 
     LDA.W $0003,Y : STA.W $0372,X 
@@ -954,16 +920,12 @@ AddSpritemapToOAM_WithBaseTileNumber_8AB8:
     AND.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($16) 
 
   + LDA.W $0000,Y 
     BPL + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_sizeBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($16) 
 
   + SEP #$20 
     LDA.W $0002,Y : CLC : ADC.B $12 : STA.W $0371,X 
@@ -1002,16 +964,12 @@ AddSpritemapToOAM_WithBaseTileNumber_8B22:
     AND.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($16) 
 
   + LDA.W $0000,Y 
     BPL + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_sizeBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($16) 
 
   + SEP #$20 
     LDA.W $0002,Y 
@@ -1057,16 +1015,12 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8B96:
     AND.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($16) 
 
   + LDA.W $0000,Y 
     BPL + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_sizeBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($16) 
 
   + SEP #$20 
     LDA.W $0002,Y 
@@ -1114,9 +1068,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8C0A:
     BIT.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($16) 
 
   + SEP #$20 
     CLC 
@@ -1136,9 +1088,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8C0A:
     LDA.W $0000,Y 
     BPL + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_sizeBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($16) 
 
   + LDA.W $0003,Y : ADC.B $1A : ORA.B $1C 
     STA.W $0372,X 
@@ -1169,9 +1119,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8C7F:
     BIT.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_highXPosBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($16) 
 
   + SEP #$20 
     CLC 
@@ -1191,9 +1139,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8C7F:
     LDA.W $0000,Y 
     BPL + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
-    LDA.B ($16) 
-    ORA.L MapOfOAMIndex_sizeBit,X 
-    STA.B ($16) 
+    LDA.B ($16) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($16) 
 
   + LDA.W $0003,Y : ADC.B $1A : ORA.B $1C 
     STA.W $0372,X 
@@ -1717,9 +1663,7 @@ GameOverMenu_Index1_Initialise:
     STZ.W $0F92 
     STZ.W $0F94 
     JSL.L Handle_GameOver_BabyMetroid 
-    LDA.B $6F 
-    AND.W #$FF00 
-    STA.B $6F 
+    LDA.B $6F : AND.W #$FF00 : STA.B $6F 
     JSL.L Disable_HDMAObjects 
     JSL.L Wait_End_VBlank_Clear_HDMA 
     JSL.L Enable_HDMAObjects 
@@ -1964,9 +1908,7 @@ FileSelectMenu_Index5_13_FadeOutFromMain:
 
 FileSelectMenu_IndexF_1B_FadeOutToMain:
     JSL.L HandleFadingOut 
-    LDA.B $57 
-    AND.W #$FF0F 
-    STA.B $12 
+    LDA.B $57 : AND.W #$FF0F : STA.B $12 
     LDA.B $51 
     AND.W #$000F 
     ASL #4
@@ -1995,9 +1937,7 @@ FileSelectMenu_Index7_15_FadeInFromMain:
     REP #$30 
     JSL.L Draw_Menu_Selection_Missile 
     JSL.L HandleFadingIn 
-    LDA.B $57 
-    AND.W #$FF0F 
-    STA.B $12 
+    LDA.B $57 : AND.W #$FF0F : STA.B $12 
     LDA.B $51 
     AND.W #$000F 
     ASL #4
@@ -2619,9 +2559,7 @@ FileSelectMenu_Index0_FileCopy_DoFileCopy:
     LDA.W $19B9 
     ASL A 
     TAX 
-    LDA.W $0954 
-    ORA.W .list,X 
-    STA.W $0954 
+    LDA.W $0954 : ORA.W .list,X : STA.W $0954 
     LDA.W $19B9 
     ASL #2
     CLC : ADC.W #$0009 : ASL #6
@@ -2883,9 +2821,7 @@ FileSelectMenu_Index19_FileClear_DoFileClear:
     LDA.W $19B7 
     ASL A 
     TAX 
-    LDA.W $0954 
-    AND.W .data,X 
-    STA.W $0954 
+    LDA.W $0954 : AND.W .data,X : STA.W $0954 
     LDY.W #Tilemap_FileSelect_dataCleared 
     LDX.W #($0<<1)|($14<<6) ; $0500
     STZ.W $0F96 
@@ -3900,15 +3836,9 @@ FileSelectMap_Index5_GameOptionsToAreaSelectMap_ExpSqrTrans:
 
 
   + INC.W $0727 
-    LDA.B $69 
-    AND.B #$FD 
-    STA.B $69 
-    LDA.B $6C 
-    AND.B #$00 
-    STA.B $6C 
-    LDA.B $6D 
-    AND.B #$00 
-    STA.B $6D 
+    LDA.B $69 : AND.B #$FD : STA.B $69 
+    LDA.B $6C : AND.B #$00 : STA.B $6C 
+    LDA.B $6D : AND.B #$00 : STA.B $6D 
     LDA.B #$18 : STA.B $B7 
     LDA.B #$00 : STA.B $B8 
     REP #$30 
@@ -4520,23 +4450,15 @@ FileSelectMap_Index9_AreaSelectMapToRoomSelectMap_Init:
     PHA 
     PLB 
     LDX.W $079B 
-    LDA.W $0001,X 
-    AND.B #$FF 
-    STA.W $079F 
-    LDA.W $0002,X 
-    AND.B #$FF 
-    STA.W $07A1 
-    LDA.W $0003,X 
-    AND.B #$FF 
-    STA.W $07A3 
+    LDA.W $0001,X : AND.B #$FF : STA.W $079F 
+    LDA.W $0002,X : AND.B #$FF : STA.W $07A1 
+    LDA.W $0003,X : AND.B #$FF : STA.W $07A3 
     PLB 
     REP #$20 
     JSL.L Setup_MapScrolling_for_FileSelectMap 
     LDA.W $05B0 : CLC : ADC.W #$0018 : STA.W $05B0 
     LDA.W #$0018 : STA.B $B7 
-    LDA.B $69 
-    AND.W #$FFFB 
-    STA.B $69 
+    LDA.B $69 : AND.W #$FFFB : STA.B $69 
     INC.W $0727 
     STZ.W $05FD 
     STZ.W $05FF 

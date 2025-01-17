@@ -119,9 +119,7 @@ RTS_B3807B:
 
 
 Instruction_CommonB3_DeleteEnemy:
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     PLA 
     PEA.W ProcessEnemyInstructions_return-1 
     RTL 
@@ -287,16 +285,12 @@ Instruction_CommonB3_TransferYBytesInYToVRAM:
 
 
 Instruction_CommonB3_EnableOffScreenProcessing:
-    LDA.W $0F86,X 
-    ORA.W #$0800 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0800 : STA.W $0F86,X 
     RTL 
 
 
 Instruction_CommonB3_DisableOffScreenProcessing:
-    LDA.W $0F86,X 
-    AND.W #$F7FF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$F7FF : STA.W $0F86,X 
     RTL 
 
 
@@ -443,9 +437,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 UNUSED_InitAI_SpinningTurtleEye_B386FB:
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    ORA.W #$2000 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$2000 : STA.W $0F86,X 
     LDA.W #UNUSED_InstList_SpinningTurtleEye_Initial_B386A7 : STA.W $0F92,X 
     RTL 
 
@@ -694,9 +686,7 @@ Function_Zeb_Zebbo_WaitForSamusToGetNear:
 
 .close:
     LDA.W #Function_Zeb_Zebbo_Rising : STA.W $0FB2,X 
-    LDA.W $0F86,X 
-    AND.W #$FEFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$FEFF : STA.W $0F86,X 
     LDA.W #$0000 : STA.W $0F90,X 
     BIT.W $0FA8,X 
     BMI .left 
@@ -725,9 +715,7 @@ Function_Zeb_Zebbo_Rising:
 
 
 .targetHeight:
-    LDA.W $0FB0,X 
-    ORA.W #$0001 
-    STA.W $0FB0,X 
+    LDA.W $0FB0,X : ORA.W #$0001 : STA.W $0FB0,X 
     JSR.W Set_Zeb_Zebbo_InstList 
     LDA.W #Function_Zeb_Zebbo_Shooting : STA.W $0FB2,X 
 
@@ -760,9 +748,7 @@ Function_Zeb_Zebbo_Shooting:
     STA.W $0F80,X 
     STZ.W $0FB0,X 
     JSR.W Set_Zeb_Zebbo_InstList 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     LDA.W #$0030 : STA.W $0FAE,X 
     LDA.W #Function_Zeb_Zebbo_SpawnDelay : STA.W $0FB2,X 
     RTL 
@@ -1046,9 +1032,7 @@ InitAI_Gamet:
     LDX.W $0E54 
     LDA.W $0F7A,X : STA.W $0FAE,X 
     LDA.W $0F7E,X : STA.W $0FB0,X 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     LDA.W $0FB7,X 
     AND.W #$00FF 
     ASL #3
@@ -1072,9 +1056,7 @@ ResetEnemyIfOffScreen:
     LDX.W $0E54 
     JSL.L CheckIfEnemyCenterIsOnScreen 
     BEQ .return 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     LDA.W #Function_Gamet_WaitUntilAllReady : STA.W $0FA8,X 
     LDA.W $0FAE,X : STA.W $0F7A,X 
     LDA.W $0FB0,X : STA.W $0F7E,X 
@@ -1163,9 +1145,7 @@ SetupGametFormation:
 
 Function_Gamet_Rising:
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    AND.W #$FEFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$FEFF : STA.W $0F86,X 
     LDA.W #$0080 
     TAY 
     LDA.W $0F80,X : CLC : ADC.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : BCC + 
@@ -1491,9 +1471,7 @@ Function_Geega_WaitForSamusToGetNear:
   + LDA.W #$0030 
     JSL.L IsSamusWithingAPixelRowsOfEnemy 
     BEQ .return 
-    LDA.W $0F86,X 
-    AND.W #$FEFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$FEFF : STA.W $0F86,X 
     LDA.W #$0018 : STA.L $7E8000,X 
     LDA.W #Function_Geega_ShootDelay : STA.W $0FA8,X 
 
@@ -1534,9 +1512,7 @@ Function_Geega_ShootingLeft:
     STZ.W $0F80,X 
     LDA.W #Function_Geega_WaitForSamusToGetNear : STA.W $0FA8,X 
     LDA.W #$0000 : STA.L $7E780C,X 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     BRA .return 
 
 
@@ -1579,9 +1555,7 @@ Function_Geega_ShootingRight:
     STZ.W $0F80,X 
     LDA.W #Function_Geega_WaitForSamusToGetNear : STA.W $0FA8,X 
     LDA.W #$0000 : STA.L $7E780C,X 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     BRA .return 
 
 
@@ -1630,9 +1604,7 @@ Function_Geega_DippingLeft:
     LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDA.W #InstList_Geega_FacingLeft_Rising : STA.W $0F92,X 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     JMP.W .return 
 
 
@@ -1673,9 +1645,7 @@ Function_Geega_DippingRight:
     LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDA.W #InstList_Geega_FacingRight_Rising : STA.W $0F92,X 
-    LDA.W $0F86,X 
-    ORA.W #$0100 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     JMP.W .return 
 
 
@@ -2171,9 +2141,7 @@ InitAI_Botwoon:
     dw PLMEntries_clearBotwoonWall 
     LDA.W #$0101 : STA.L $7ECD20 
     LDA.W #InstList_Botwoon_Hide : STA.W $0F92,X 
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     JMP.W .return 
 
 
@@ -2201,9 +2169,7 @@ InitAI_Botwoon:
     STA.L $7E8832,X 
     LDA.W #$FFFF : STA.L $7E802C,X 
     LDA.W #$0000 : STA.L $7E802E,X 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     LDA.W $0F8C,X : STA.L $7E8836,X 
     LSR A 
     STA.L $7E8838,X 
@@ -2286,9 +2252,7 @@ BotwoonDeathCheck:
 
 
 SetBotwoonAsIntangible:
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     RTS 
 
 
@@ -2298,9 +2262,7 @@ UNUSED_SetBotwoonBodyProjectilesAsIntangible_B396FF:
 
 .loop:
     TYX 
-    LDA.W $1BD7,Y 
-    ORA.W #$2000 
-    STA.W $1BD7,Y 
+    LDA.W $1BD7,Y : ORA.W #$2000 : STA.W $1BD7,Y 
     LDA.W #$0002 : STA.L $7EF380,X 
     DEY #2
     CPY.W #$000A 
@@ -2435,9 +2397,7 @@ SetupBotwoonSpitting:
     LDA.W #Function_Botwoon_Spitting : STA.W $0FAE,X 
     LDA.W #Function_Botwoon_Head_Spitting_SetAngleAndShow : STA.W $0FB2,X 
     LDA.W #$0030 : STA.L $7E8002,X 
-    LDA.W $0F86,X 
-    AND.W #$FBFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$FBFF : STA.W $0F86,X 
     RTS 
 
 
@@ -2637,9 +2597,7 @@ Function_Botwoon_DeathSequence_CrumblingWall:
 
 
 .end:
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     LDA.W #$0002 
     JSL.L SetBossBitsInAForCurrentArea 
     LDA.W #$0003 
@@ -2797,9 +2755,7 @@ UpdateBotwonBodyProjectilePositions:
     EOR.W #$0001 
     STA.L $7E7820,X 
     BEQ .notHidden 
-    LDA.W $1BD7,Y 
-    ORA.W #$2000 
-    STA.W $1BD7,Y 
+    LDA.W $1BD7,Y : ORA.W #$2000 : STA.W $1BD7,Y 
     PHX 
     TYX 
     LDA.W #$0002 : STA.L $7EF380,X 
@@ -2808,9 +2764,7 @@ UpdateBotwonBodyProjectilePositions:
 
 
 .notHidden:
-    LDA.W $1BD7,Y 
-    AND.W #$DFFF 
-    STA.W $1BD7,Y 
+    LDA.W $1BD7,Y : AND.W #$DFFF : STA.W $1BD7,Y 
     PHX 
     TYX 
     LDA.W #$0001 : STA.L $7EF380,X 
@@ -2914,18 +2868,14 @@ Function_Botwoon_Head_MovingAround:
     LDA.L $7E8026,X 
     BEQ .notHidden 
     LDA.W #$0007 : STA.W $0F9A,X 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     LDA.B $16 : CLC : ADC.W #$0100 : STA.B $16 
     BRA + 
 
 
   .notHidden
     LDA.W #$0002 : STA.W $0F9A,X 
-    LDA.W $0F86,X 
-    AND.W #$FBFF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$FBFF : STA.W $0F86,X 
 
 +   LDA.B $16 
     LSR #5
@@ -4911,16 +4861,12 @@ InitAI_EtecoonEscape:
     LDA.W #$000F 
     JSL.L CheckIfEvent_inA_HasHappened 
     BCC .notEscaped 
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     RTL 
 
 
 .notEscaped:
-    LDA.W $0F86,X 
-    ORA.W #$A400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$A400 : STA.W $0F86,X 
     LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     STZ.W $0F96,X 
@@ -5435,16 +5381,12 @@ InitAI_DachoraEscape:
     LDA.W #$000F 
     JSL.L CheckIfEvent_inA_HasHappened 
     BCC .notEscaped 
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     RTL 
 
 
 .notEscaped:
-    LDA.W $0F86,X 
-    ORA.W #$2000 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$2000 : STA.W $0F86,X 
     LDA.W #Spritemap_CommonB3_Nothing : STA.W $0F8E,X 
     LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 

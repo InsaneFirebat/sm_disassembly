@@ -3393,9 +3393,7 @@ Add_Debug_Spritemap_to_OAM:
     TAX 
     LDA.W .indices,Y 
     TAY 
-    LDA.W .size,X 
-    ORA.W $0570,Y 
-    STA.W $0570,Y 
+    LDA.W .size,X : ORA.W $0570,Y : STA.W $0570,Y 
     PLY 
     LDX.B $1C 
 
@@ -3411,9 +3409,7 @@ Add_Debug_Spritemap_to_OAM:
     TAX 
     LDA.W .indices,Y 
     TAY 
-    LDA.W .XPosition,X 
-    ORA.W $0570,Y 
-    STA.W $0570,Y 
+    LDA.W .XPosition,X : ORA.W $0570,Y : STA.W $0570,Y 
     PLY 
     LDX.B $1C 
 
@@ -6715,12 +6711,8 @@ DrawSpriteObjects:
     BMI .next 
     CMP.W #$0110 
     BPL .next 
-    LDA.L $7EF078,X 
-    AND.W #$0E00 
-    STA.B $03 
-    LDA.L $7EF078,X 
-    AND.W #$01FF 
-    STA.B $00 
+    LDA.L $7EF078,X : AND.W #$0E00 : STA.B $03 
+    LDA.L $7EF078,X : AND.W #$01FF : STA.B $00 
     PHX 
     LDA.L $7EEF78,X 
     TAX 

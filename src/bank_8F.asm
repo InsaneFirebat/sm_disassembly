@@ -8633,9 +8633,7 @@ MainASM_ScrollingSkyLand_ZebesTimebombSet:
 
 MainASM_SetScreenShaking_GenerateRandomExplosions:
     JSR.W GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile 
-    LDA.W $1840 
-    ORA.W #$8000 
-    STA.W $1840 
+    LDA.W $1840 : ORA.W #$8000 : STA.W $1840 
     RTS 
 
 
@@ -8702,9 +8700,7 @@ GenerateRandomExplosionAt_12_14:
   + TXA 
     AND.W #$0007 
     TAX 
-    LDA.W ExplosionSpriteObjectIDs,X 
-    AND.W #$00FF 
-    STA.B $16 
+    LDA.W ExplosionSpriteObjectIDs,X : AND.W #$00FF : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
 
@@ -9806,9 +9802,7 @@ UnpauseHook_Draygon:
 SetupASM_SetCollectedMap:
     REP #$30 
     LDX.W $079F 
-    LDA.L $7ED908,X 
-    ORA.W #$0001 
-    STA.L $7ED908,X 
+    LDA.L $7ED908,X : ORA.W #$0001 : STA.L $7ED908,X 
     STA.W $0789 
     RTS 
 

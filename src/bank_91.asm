@@ -392,42 +392,30 @@ DetermineProspectivePoseFromTransitionTable:
 
 
 TranslateCustomControllerBindingsToDefaultBindings:
-    LDA.B $8F 
-    AND.W #$0F00 
-    STA.B $12 
-    LDA.B $8B 
-    AND.W #$0F00 
-    STA.B $14 
+    LDA.B $8F : AND.W #$0F00 : STA.B $12 
+    LDA.B $8B : AND.W #$0F00 : STA.B $14 
     LDA.B $8F 
     BIT.W $09B2 
     BEQ .checkJump12 
-    LDA.B $12 
-    ORA.W #$0040 
-    STA.B $12 
+    LDA.B $12 : ORA.W #$0040 : STA.B $12 
     LDA.B $8F 
 
 .checkJump12:
     BIT.W $09B4 
     BEQ .checkRun12 
-    LDA.B $12 
-    ORA.W #$0080 
-    STA.B $12 
+    LDA.B $12 : ORA.W #$0080 : STA.B $12 
     LDA.B $8F 
 
 .checkRun12:
     BIT.W $09B6 
     BEQ .checkItemCancel12 
-    LDA.B $12 
-    ORA.W #$8000 
-    STA.B $12 
+    LDA.B $12 : ORA.W #$8000 : STA.B $12 
     LDA.B $8F 
 
 .checkItemCancel12:
     BIT.W $09B8 
     BEQ .checkAimUp12 
-    LDA.B $12 
-    ORA.W #$4000 
-    STA.B $12 
+    LDA.B $12 : ORA.W #$4000 : STA.B $12 
     LDA.B $8F 
 
 .checkAimUp12:
@@ -436,9 +424,7 @@ TranslateCustomControllerBindingsToDefaultBindings:
     LDA.W $09BE 
     BIT.W #$0030 
     BEQ .reloadNewInputs 
-    LDA.B $12 
-    ORA.W #$0010 
-    STA.B $12 
+    LDA.B $12 : ORA.W #$0010 : STA.B $12 
 
 .reloadNewInputs:
     LDA.B $8F 
@@ -449,9 +435,7 @@ TranslateCustomControllerBindingsToDefaultBindings:
     LDA.W $09BC 
     BIT.W #$0030 
     BEQ .checkShot14 
-    LDA.B $12 
-    ORA.W #$0020 
-    STA.B $12 
+    LDA.B $12 : ORA.W #$0020 : STA.B $12 
 
 .checkShot14:
     LDA.B $12 
@@ -460,33 +444,25 @@ TranslateCustomControllerBindingsToDefaultBindings:
     LDA.B $8B 
     BIT.W $09B2 
     BEQ .checkJump14 
-    LDA.B $14 
-    ORA.W #$0040 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$0040 : STA.B $14 
     LDA.B $8B 
 
 .checkJump14:
     BIT.W $09B4 
     BEQ .checkRun14 
-    LDA.B $14 
-    ORA.W #$0080 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$0080 : STA.B $14 
     LDA.B $8B 
 
 .checkRun14:
     BIT.W $09B6 
     BEQ .checkItemCancel14 
-    LDA.B $14 
-    ORA.W #$8000 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$8000 : STA.B $14 
     LDA.B $8B 
 
 .checkItemCancel14:
     BIT.W $09B8 
     BEQ .checkAimUp14 
-    LDA.B $14 
-    ORA.W #$4000 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$4000 : STA.B $14 
     LDA.B $8B 
 
 .checkAimUp14:
@@ -495,9 +471,7 @@ TranslateCustomControllerBindingsToDefaultBindings:
     LDA.W $09BE 
     BIT.W #$0030 
     BEQ .reloadPressedInputs 
-    LDA.B $14 
-    ORA.W #$0010 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$0010 : STA.B $14 
 
 .reloadPressedInputs:
     LDA.B $8B 
@@ -508,9 +482,7 @@ TranslateCustomControllerBindingsToDefaultBindings:
     LDA.W $09BC 
     BIT.W #$0030 
     BEQ .done 
-    LDA.B $14 
-    ORA.W #$0020 
-    STA.B $14 
+    LDA.B $14 : ORA.W #$0020 : STA.B $14 
 
 .done:
     LDA.B $14 
@@ -749,9 +721,7 @@ RecordDemoInputFrame:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $0A8A 
-    AND.W #$7FFF 
-    STA.W $0E24 
+    LDA.W $0A8A : AND.W #$7FFF : STA.W $0E24 
     LDA.W #$00E0 : STA.W $0E20 
     LDA.W #$0038 : STA.W $0E22 
     JSR.W Draw_RecordedDemoDuration 
@@ -811,9 +781,7 @@ Pause_Terminate_Reset_DemoRecorder:
     STA.L $B8800A,X 
     LDA.W $078F : STA.L $B8FF00 
     LDA.W $079F : STA.L $B8FF02 
-    LDA.W $0A8A 
-    ORA.W #$8000 
-    STA.W $0A8A 
+    LDA.W $0A8A : ORA.W #$8000 : STA.W $0A8A 
 
 .checkA:
     LDA.B $91 
@@ -4119,9 +4087,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
     JMP.W .leftEdgeEnd 
 
 
-  + LDA.B $23 
-    ORA.W #$FF00 
-    STA.B [$00],Y 
+  + LDA.B $23 : ORA.W #$FF00 : STA.B [$00],Y 
     INY #2
     STY.B $12 
     TYA 
@@ -4130,9 +4096,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
 .loopLeftOnScreen:
     LDA.B $22 : CLC : ADC.B $1E : STA.B $22 
     BCS ..loop 
-    LDA.B $23 
-    ORA.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $23 : ORA.W #$FF00 : STA.B [$00],Y 
     DEY #2
     BPL .loopLeftOnScreen 
     BRA .leftEdgeEnd 
@@ -4158,9 +4122,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
     JMP.W .rightEdgeEnd 
 
 
-  + LDA.B $25 
-    ORA.W #$FF00 
-    STA.B [$00],Y 
+  + LDA.B $25 : ORA.W #$FF00 : STA.B [$00],Y 
     DEY #2
     STY.B $14 
     TYA 
@@ -4169,9 +4131,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
 .loopRightOnScreen:
     LDA.B $24 : CLC : ADC.B $20 : STA.B $24 
     BCS ..loop 
-    LDA.B $25 
-    ORA.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $25 : ORA.W #$FF00 : STA.B [$00],Y 
     INY #2
     CPY.W #$01CC 
     BMI .loopRightOnScreen 
@@ -4216,9 +4176,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
     JMP.W .rightEdgeEnd 
 
 
-  + LDA.B $24 
-    AND.W #$FF00 
-    STA.B [$00],Y 
+  + LDA.B $24 : AND.W #$FF00 : STA.B [$00],Y 
     INY #2
     STY.B $12 
     TYA 
@@ -4227,9 +4185,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
 .loopRightOnScreen:
     LDA.B $24 : SEC : SBC.B $20 : STA.B $24 
     BCC ..loop 
-    LDA.B $24 
-    AND.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $24 : AND.W #$FF00 : STA.B [$00],Y 
     DEY #2
     BPL .loopRightOnScreen 
     BRA .rightEdgeEnd 
@@ -4255,9 +4211,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
     JMP.W .leftEdgeEnd 
 
 
-  + LDA.B $22 
-    AND.W #$FF00 
-    STA.B [$00],Y 
+  + LDA.B $22 : AND.W #$FF00 : STA.B [$00],Y 
     DEY #2
     STY.B $14 
     TYA 
@@ -4266,9 +4220,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
 .leftOnScreen:
     LDA.B $22 : SEC : SBC.B $1E : STA.B $22 
     BCC ..loop 
-    LDA.B $22 
-    AND.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $22 : AND.W #$FF00 : STA.B [$00],Y 
     INY #2
     CPY.W #$01CC 
     BMI .leftOnScreen 
@@ -5157,9 +5109,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedRight:
     DEC A 
     ASL A 
     TAY 
-    LDA.B $17 
-    ORA.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $17 : ORA.W #$FF00 : STA.B [$00],Y 
     DEY #2
     LDA.B $16 : STA.B $22 
     STA.B $24 
@@ -5167,9 +5117,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedRight:
 .loopLeftOnScreen:
     LDA.B $22 : CLC : ADC.B $1E : STA.B $22 
     BCS .loopLeft 
-    LDA.B $23 
-    ORA.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $23 : ORA.W #$FF00 : STA.B [$00],Y 
     DEY #2
     BPL .loopLeftOnScreen 
     BRA .leftEdgeEnd 
@@ -5188,9 +5136,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedRight:
 .loopRightOnScreen:
     LDA.B $24 : CLC : ADC.B $20 : STA.B $24 
     BCS .loopRight 
-    LDA.B $25 
-    ORA.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $25 : ORA.W #$FF00 : STA.B [$00],Y 
     INY #2
     CPY.W #$01CC 
     BMI .loopRightOnScreen 
@@ -5215,9 +5161,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedLeft:
     DEC A 
     ASL A 
     TAY 
-    LDA.B $16 
-    AND.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $16 : AND.W #$FF00 : STA.B [$00],Y 
     DEY #2
     LDA.B $16 : STA.B $22 
     STA.B $24 
@@ -5225,9 +5169,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedLeft:
 .loopRightOnScreen:
     LDA.B $24 : SEC : SBC.B $20 : STA.B $24 
     BCC .loopRight 
-    LDA.B $24 
-    AND.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $24 : AND.W #$FF00 : STA.B [$00],Y 
     DEY #2
     BPL .loopRightOnScreen 
     BRA .rightEdgeEnd 
@@ -5246,9 +5188,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedLeft:
 .loopLeftOnScreen:
     LDA.B $22 : SEC : SBC.B $1E : STA.B $22 
     BCC .loopLeft 
-    LDA.B $22 
-    AND.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $22 : AND.W #$FF00 : STA.B [$00],Y 
     INY #2
     CPY.W #$01CC 
     BMI .loopLeftOnScreen 
@@ -5742,16 +5682,12 @@ Calc_Xray_HDMADataTable_OnScreen_HorizontalLine:
     LDA.B $12 
     CMP.W #$0040 
     BNE .not40 
-    LDA.B $17 
-    ORA.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $17 : ORA.W #$FF00 : STA.B [$00],Y 
     BRA + 
 
 
 .not40:
-    LDA.B $16 
-    AND.W #$FF00 
-    STA.B [$00],Y 
+    LDA.B $16 : AND.W #$FF00 : STA.B [$00],Y 
 
   + DEY #2
     LDA.W #$00FF 
@@ -5884,12 +5820,8 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
 
 .loopCopyBG1Row:
     LDA.W #$0010 : STA.B $12 
-    LDA.B $18 
-    AND.W #$07E0 
-    STA.B $1A 
-    LDA.B $18 
-    AND.W #$001F 
-    STA.B $1C 
+    LDA.B $18 : AND.W #$07E0 : STA.B $1A 
+    LDA.B $18 : AND.W #$001F : STA.B $1C 
     STZ.B $1E 
 
 .loopCopyBG1Column:
@@ -5922,9 +5854,7 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     DEC.B $12 
     BNE .loopCopyBG1Column 
     JSR.W CopyLastBG1BlockOfRowToXrayBG2Tilemap 
-    LDA.B $18 
-    AND.W #$0400 
-    STA.B $20 
+    LDA.B $18 : AND.W #$0400 : STA.B $20 
     LDA.B $18 : CLC : ADC.W #$0040 : AND.W #$03FF 
     CLC : ADC.B $20 : STA.B $18 
     LDA.B $16 : CLC : ADC.W #$0040 : STA.B $16 
@@ -6083,15 +6013,11 @@ LoadRevealedBlock_Done:
 
 
 LoadRevealedBlockCommand:
-    LDA.L $7F6402,X 
-    AND.W #$00FF 
-    STA.B $26 
+    LDA.L $7F6402,X : AND.W #$00FF : STA.B $26 
     TXA 
     ASL A 
     TAX 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
-    STA.B $28 
+    LDA.L $7F0002,X : AND.W #$F000 : STA.B $28 
     LDX.W #$0000 
 
 .loopBlockType:
@@ -6147,15 +6073,11 @@ GetBlockTypeAndBTS:
     STA.W $4202 
     NOP #2
     LDA.B $2A : CLC : ADC.W $4216 : TAX 
-    LDA.L $7F6402,X 
-    AND.W #$00FF 
-    STA.B $2E 
+    LDA.L $7F6402,X : AND.W #$00FF : STA.B $2E 
     TXA 
     ASL A 
     TAX 
-    LDA.L $7F0002,X 
-    AND.W #$F000 
-    STA.B $30 
+    LDA.L $7F0002,X : AND.W #$F000 : STA.B $30 
     RTS 
 
 
@@ -6473,12 +6395,8 @@ XraySetup_5_ReadBG2Tilemap_2ndScreen:
     LDA.W $091D : CLC : ADC.W $0911 : STA.B $B1 
     LDA.W $091F : CLC : ADC.W $0915 : STA.B $B3 
 
-  + LDA.B $B1 
-    AND.W #$000F 
-    STA.B $B5 
-    LDA.B $B3 
-    AND.W #$000F 
-    STA.B $B7 
+  + LDA.B $B1 : AND.W #$000F : STA.B $B5 
+    LDA.B $B3 : AND.W #$000F : STA.B $B7 
     SEP #$20 
     LDA.B #$49 : STA.B $59 
     REP #$20 
@@ -8838,9 +8756,7 @@ Debug_HandleSelectL_B:
     AND.W #$0FFF 
     CMP.W #$000C 
     BMI + 
-    LDA.W $09A6 
-    AND.W #$F000 
-    STA.W $09A6 
+    LDA.W $09A6 : AND.W #$F000 : STA.W $09A6 
 
   + JSL.L Update_Beam_Tiles_and_Palette 
     LDA.W #$F33F ; Same extra bit (10) as GT Code
@@ -8857,9 +8773,7 @@ Debug_HandleSelectL_B:
     LDA.W #$01F3 : STA.W $09D6 
     STZ.W $09D8 
     LDA.W #$100F : STA.W $09A8 
-    LDA.W $09A6 
-    ORA.W #$1000 
-    STA.W $09A6 
+    LDA.W $09A6 : ORA.W #$1000 : STA.W $09A6 
     JSL.L AddGrappleToHUDTilemap 
     JSL.L AddXrayToHUDTilemap 
     JSL.L AddMissilesToHUDTilemap 
@@ -9006,9 +8920,7 @@ DrainedSamusController_0_LetDrainedSamusFall:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.W PoseDefinitions_YRadius,X 
-    AND.W #$00FF 
-    STA.W $0B00 
+    LDA.W PoseDefinitions_YRadius,X : AND.W #$00FF : STA.W $0B00 
     STZ.W $0B46 
     STZ.W $0B48 
     STZ.W $0B2C 
@@ -9070,9 +8982,7 @@ DrainedSamusController_2_ReleaseSamusFromDrainedPose:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.W PoseDefinitions_YRadius,X 
-    AND.W #$00FF 
-    STA.W $0B00 
+    LDA.W PoseDefinitions_YRadius,X : AND.W #$00FF : STA.W $0B00 
     STZ.W $0B46 
     STZ.W $0B48 
     STZ.W $0B2C 
@@ -10047,9 +9957,7 @@ ProspectivePoseCmd_7_StartTransitionAnimation:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.W PoseDefinitions_YRadius,X 
-    AND.W #$00FF 
-    STA.W $0B00 
+    LDA.W PoseDefinitions_YRadius,X : AND.W #$00FF : STA.W $0B00 
     JSL.L BlockCollisionDetectionDueToChangeOfPose 
 
 .notShrinking:
@@ -11675,9 +11583,7 @@ InitializeSamusPose_TurningAround_OnGround:
     LDA.B $8B 
     BIT.W $09B4 
     BEQ .standing 
-    LDA.W TurningSamusPoses_moonwalk,X 
-    AND.W #$00FF 
-    STA.W $0A1C 
+    LDA.W TurningSamusPoses_moonwalk,X : AND.W #$00FF : STA.W $0A1C 
     BRA .done 
 
 
@@ -11686,16 +11592,12 @@ InitializeSamusPose_TurningAround_OnGround:
     BEQ .crouching 
 
 .standing:
-    LDA.W TurningSamusPoses_standing,X 
-    AND.W #$00FF 
-    STA.W $0A1C 
+    LDA.W TurningSamusPoses_standing,X : AND.W #$00FF : STA.W $0A1C 
     BRA .done 
 
 
 .crouching:
-    LDA.W TurningSamusPoses_crouching,X 
-    AND.W #$00FF 
-    STA.W $0A1C 
+    LDA.W TurningSamusPoses_crouching,X : AND.W #$00FF : STA.W $0A1C 
 
 .done:
     LDA.W $0B44 : CLC : ADC.W $0B48 : STA.W $0B48 
@@ -11714,9 +11616,7 @@ InitializeSamusPose_TurningAround_Jumping:
     LDA.W PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
     TAX 
-    LDA.W TurningSamusPoses_jumpingInAir,X 
-    AND.W #$00FF 
-    STA.W $0A1C 
+    LDA.W TurningSamusPoses_jumpingInAir,X : AND.W #$00FF : STA.W $0A1C 
     LDA.W $0B44 : CLC : ADC.W $0B48 : STA.W $0B48 
     LDA.W $0B42 : ADC.W $0B46 : STA.W $0B46 
     STZ.W $0B44 
@@ -11733,9 +11633,7 @@ InitializeSamusPose_TurningAround_Falling:
     LDA.W PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
     TAX 
-    LDA.W TurningSamusPoses_falling,X 
-    AND.W #$00FF 
-    STA.W $0A1C 
+    LDA.W TurningSamusPoses_falling,X : AND.W #$00FF : STA.W $0A1C 
     LDA.W $0B44 : CLC : ADC.W $0B48 : STA.W $0B48 
     LDA.W $0B42 : ADC.W $0B46 : STA.W $0B46 
     STZ.W $0B44 
@@ -12273,9 +12171,7 @@ HandlePoseChangeCollision:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YRadius,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L PoseDefinitions_YRadius,X : AND.W #$00FF : STA.B $12 
     LDA.W $0A20 
     ASL #3
     TAX 
@@ -12308,9 +12204,7 @@ HandlePoseChangeCollision:
     STA.W $0DD0 
     TAX 
     BEQ .stillNoCollision 
-    LDA.W $0A34 
-    ORA.W #$0002 
-    STA.W $0A34 
+    LDA.W $0A34 : ORA.W #$0002 : STA.W $0A34 
 
 .stillNoCollision:
     LDA.B $12 : STA.W $0A40 
@@ -12334,9 +12228,7 @@ HandlePoseChangeCollision:
     STZ.B $14 
     JSL.L BlockCollisionDetectionDueToChangeOfPose 
     BCC .noCollisionFinal 
-    LDA.W $0A36 
-    ORA.W #$0002 
-    STA.W $0A36 
+    LDA.W $0A36 : ORA.W #$0002 : STA.W $0A36 
 
 .noCollisionFinal:
     LDA.B $12 : STA.W $0A3C 
@@ -12384,9 +12276,7 @@ PoseChangeCollision_SolidEnemy_FromAbove:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YRadius,X 
-    AND.W #$00FF 
-    STA.W $0B00 
+    LDA.L PoseDefinitions_YRadius,X : AND.W #$00FF : STA.W $0B00 
     LDA.W #$0003 : STA.W $0B02 
     JSL.L Samus_vs_SolidEnemy_CollisionDetection 
     STA.W $0DD0 
@@ -12414,9 +12304,7 @@ PoseChangeCollision_SolidEnemy_FromBelow:
     LDA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YRadius,X 
-    AND.W #$00FF 
-    STA.W $0B00 
+    LDA.L PoseDefinitions_YRadius,X : AND.W #$00FF : STA.W $0B00 
     LDA.W #$0002 : STA.W $0B02 
     JSL.L Samus_vs_SolidEnemy_CollisionDetection 
     STA.W $0DD0 
@@ -12533,9 +12421,7 @@ HandleCollisionFromBothSidesDueToPoseChange:
   + STA.W $0A1C 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_YRadius,X 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L PoseDefinitions_YRadius,X : AND.W #$00FF : STA.B $12 
     LDA.W $0B00 
     CMP.B $12 
     BPL .returnCarryClear 

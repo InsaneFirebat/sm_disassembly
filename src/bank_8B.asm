@@ -680,9 +680,7 @@ Debug_DisplayVersionInfo:
     LDY.W #$0000 
 
 .loopVersionString:
-    LDA.W .versionStringOAMEntryXpos,Y 
-    AND.W #$00FF 
-    STA.W $0370,X 
+    LDA.W .versionStringOAMEntryXpos,Y : AND.W #$00FF : STA.W $0370,X 
     LDA.W #$00CC : STA.W $0371,X 
     PHY 
     LDA.W Debug_VersionString,Y 
@@ -909,13 +907,9 @@ IndirectInstructionFunction_DrawTextCharacter:
 
 IndirectInstructionFunction_DrawTextToTilemap:
     JSR.W CinematicBGObjects_X_16_TilemapOffsetForTile_12_13 
-    LDA.W $0002,Y 
-    AND.W #$00FF 
-    STA.W $0012 
+    LDA.W $0002,Y : AND.W #$00FF : STA.W $0012 
     STA.W $0018 
-    LDA.W $0003,Y 
-    AND.W #$00FF 
-    STA.W $0014 
+    LDA.W $0003,Y : AND.W #$00FF : STA.W $0014 
 
 .loop:
     LDA.W $0004,Y : STA.L $7E3000,X 
@@ -943,13 +937,9 @@ IndirectInstructionFunction_DrawTextToTilemap:
 
 IndirectInstructionFunction_DrawSamusEyesToTilemap:
     JSR.W CinematicBGObjects_X_16_TilemapOffsetForTile_12_13 
-    LDA.W $0002,Y 
-    AND.W #$00FF 
-    STA.W $0012 
+    LDA.W $0002,Y : AND.W #$00FF : STA.W $0012 
     STA.W $0018 
-    LDA.W $0003,Y 
-    AND.W #$00FF 
-    STA.W $0014 
+    LDA.W $0003,Y : AND.W #$00FF : STA.W $0014 
 
 .loops:
     LDA.W $0004,Y : STA.L $7E3800,X 
@@ -993,12 +983,8 @@ CinematicBGObjects_X_16_TilemapOffsetForTile_12_13:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B896B:
     JSR.W UNUSED_CinematicBGObjects_Mode7TilemapOffsetForTile_8B8A2C 
-    LDA.W $0002,Y 
-    AND.W #$00FF 
-    STA.W $0012 
-    LDA.W $0003,Y 
-    AND.W #$00FF 
-    STA.W $0014 
+    LDA.W $0002,Y : AND.W #$00FF : STA.W $0012 
+    LDA.W $0003,Y : AND.W #$00FF : STA.W $0014 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     LDX.W $0334 
@@ -1031,12 +1017,8 @@ UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B896B:
 
 UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B89CF:
     JSR.W UNUSED_CinematicBGObjects_Mode7TilemapOffsetForTile_8B8A2C 
-    LDA.W $0002,Y 
-    AND.W #$00FF 
-    STA.W $0012 
-    LDA.W $0003,Y 
-    AND.W #$00FF 
-    STA.W $0014 
+    LDA.W $0002,Y : AND.W #$00FF : STA.W $0012 
+    LDA.W $0003,Y : AND.W #$00FF : STA.W $0014 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     LDX.W $0334 
@@ -1068,9 +1050,7 @@ UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B89CF:
 
 
 UNUSED_CinematicBGObjects_Mode7TilemapOffsetForTile_8B8A2C:
-    LDA.W $0012 
-    AND.W #$00FF 
-    STA.W $0014 
+    LDA.W $0012 : AND.W #$00FF : STA.W $0014 
     SEP #$20 
     LDA.B #$80 : STA.W $4202 
     LDA.W $0013 : STA.W $4203 
@@ -1580,9 +1560,7 @@ MoveUnusedSpritesOffScreen:
     PLA 
     LSR #2
     TAX 
-    LDA.W $0570,X 
-    ORA.W .Xpos,Y 
-    STA.W $0570,X 
+    LDA.W $0570,X : ORA.W .Xpos,Y : STA.W $0570,X 
     CPX.W #$001E 
     BPL .setXpos 
     INX #2
@@ -2812,12 +2790,8 @@ Spawn_TextGlowObject:
     TYA 
     STA.W $19F7,X 
     LDA.W #$0001 : STA.W $1A07,X 
-    LDA.B $12 
-    AND.W #$00FF 
-    STA.W $1A17,X 
-    LDA.B $13 
-    AND.W #$00FF 
-    STA.W $1A27,X 
+    LDA.B $12 : AND.W #$00FF : STA.W $1A17,X 
+    LDA.B $13 : AND.W #$00FF : STA.W $1A27,X 
     LDA.W #$0000 : STA.W $1A37,X 
     PLX 
     RTS 
@@ -2867,13 +2841,9 @@ Process_TextGlowObject:
     REP #$20 
     LDA.W $4216 : CLC : ADC.W $0014 : STA.W $0016 
     TAX 
-    LDA.W $0002,Y 
-    AND.W #$00FF 
-    STA.W $0012 
+    LDA.W $0002,Y : AND.W #$00FF : STA.W $0012 
     STA.W $0018 
-    LDA.W $0003,Y 
-    AND.W #$00FF 
-    STA.W $0014 
+    LDA.W $0003,Y : AND.W #$00FF : STA.W $0014 
 
 .loop:
     LDA.L $7E3000,X 
@@ -5866,18 +5836,14 @@ RTS_BackgroundFLickeringEffect:
     BIT.W #$0001 
     BEQ .enableBG2 
     SEP #$20 
-    LDA.B $69 
-    AND.B #$FD 
-    STA.B $69 
+    LDA.B $69 : AND.B #$FD : STA.B $69 
     REP #$20 
     RTS 
 
 
 .enableBG2:
     SEP #$20 
-    LDA.B $69 
-    ORA.B #$02 
-    STA.B $69 
+    LDA.B $69 : ORA.B #$02 : STA.B $69 
     REP #$20 
     RTS 
 
@@ -10697,9 +10663,7 @@ Initialize_ShootingStars:
     LDA.W ShootingStar_Table_delay,X 
     BEQ .zero 
     STA.W $000A,Y 
-    LDA.W $0000,Y 
-    ORA.W #$8000 
-    STA.W $0000,Y 
+    LDA.W $0000,Y : ORA.W #$8000 : STA.W $0000,Y 
     BRA + 
 
 
@@ -10741,9 +10705,7 @@ Handle_ShootingStars:
     STA.W $000A,Y 
     BPL .gotoNextProcess 
     LDA.W #$0020 : STA.W $000A,Y 
-    LDA.W $0000,Y 
-    AND.W #$00FF 
-    STA.W $0000,Y 
+    LDA.W $0000,Y : AND.W #$00FF : STA.W $0000,Y 
 
 .gotoNextProcess:
     JMP.W .nextProcess 
@@ -10885,9 +10847,7 @@ Handle_ShootingStars:
     STA.W $0008,Y 
     STA.W $000C,Y 
     STA.W $000E,Y 
-    LDA.W $0000,Y 
-    AND.W #$00FF 
-    STA.W $0000,Y 
+    LDA.W $0000,Y : AND.W #$00FF : STA.W $0000,Y 
     JMP.W .nextDraw 
 
 

@@ -119,9 +119,7 @@ RTS_A5807B:
 
 
 Instruction_CommonA5_DeleteEnemy:
-    LDA.W $0F86,X 
-    ORA.W #$0200 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     PLA 
     PEA.W ProcessEnemyInstructions_return-1 
     RTL 
@@ -287,16 +285,12 @@ Instruction_CommonA5_TransferYBytesInYToVRAM:
 
 
 Instruction_CommonA5_EnableOffScreenProcessing:
-    LDA.W $0F86,X 
-    ORA.W #$0800 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0800 : STA.W $0F86,X 
     RTL 
 
 
 Instruction_CommonA5_DisableOffScreenProcessing:
-    LDA.W $0F86,X 
-    AND.W #$F7FF 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : AND.W #$F7FF : STA.W $0F86,X 
     RTL 
 
 
@@ -1033,9 +1027,7 @@ Function_DraygonBody_ChaseSamus:
 
 
 .SamusStillGooped:
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     LDY.W #$0008 
     LDA.L $7E8000 
     BNE .notLeft 
@@ -1127,9 +1119,7 @@ Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
     AND.W #$00FF 
     CLC : ADC.W #$0008 : STA.W $0F9C 
     PLX 
-    LDA.W $0F8A 
-    ORA.W #$0002 
-    STA.W $0F8A 
+    LDA.W $0F8A : ORA.W #$0002 : STA.W $0F8A 
     RTS 
 
 
@@ -1174,9 +1164,7 @@ Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
     TYA 
     STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     RTS 
 
 
@@ -1190,9 +1178,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     AND.W #$00FF 
     CLC : ADC.W #$0008 : STA.W $0F9C 
     PLX 
-    LDA.W $0F8A 
-    ORA.W #$0002 
-    STA.W $0F8A 
+    LDA.W $0F8A : ORA.W #$0002 : STA.W $0F8A 
     RTS 
 
 
@@ -1301,9 +1287,7 @@ Function_DraygonBody_GrabbedSamus_FlailTail_FlyStraightUp:
     JSL.L ReleaseSamusFromDraygon_external 
     STZ.W $0A64 
     LDA.W #Function_DraygonBody_GrabbedSamus_FlyStraightUp : STA.W $0FA8 
-    LDA.W $0F86 
-    AND.W #$FBFF 
-    STA.W $0F86 
+    LDA.W $0F86 : AND.W #$FBFF : STA.W $0F86 
     LDY.W #InstList_DraygonTail_FacingLeft_TailFlail 
     LDA.L $7E8000 
     BEQ .keepLeft 
@@ -1323,9 +1307,7 @@ Function_DraygonBody_GrabbedSamus_FlyStraightUp:
 
 
 .offScreenTop:
-    LDA.W $0F86 
-    AND.W #$FBFF 
-    STA.W $0F86 
+    LDA.W $0F86 : AND.W #$FBFF : STA.W $0F86 
     LDA.W #Function_DraygonBody_SwoopRight_Setup : STA.W $0FA8 
     STZ.W $0FAA 
     LDA.L $7E7800 : STA.W $0F7A 
@@ -1370,17 +1352,13 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     AND.W #$00FF 
     STA.L $7E8806 
     LDA.W #$0001 : STA.B $14 
-    LDA.L $7E8806 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L $7E8806 : AND.W #$00FF : STA.B $12 
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name ; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
     LDA.B $16 : STA.W $0E24 
     LDA.B $18 : STA.W $0E26 
     LDA.B $1A : STA.W $0E28 
     LDA.B $1C : STA.W $0E2A 
-    LDA.L $7E8806 
-    AND.W #$00FF 
-    STA.W $0E20 
+    LDA.L $7E8806 : AND.W #$00FF : STA.W $0E20 
     JSL.L MoveEnemyAccordingToAngleAndXYSpeeds 
     LDA.W $0F7A : SEC : SBC.W #$0100 : JSL.L NegateA_A0B067 
     CMP.W #$0004 
@@ -1403,9 +1381,7 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     LDA.W #$01A0 : STA.W $0FAA 
     LDA.W #InstList_Draygon_Sleep : STA.W $0F92 
     LDA.W #$0001 : STA.W $0F94 
-    LDA.W $0F86 
-    ORA.W #$0200 
-    STA.W $1006 
+    LDA.W $0F86 : ORA.W #$0200 : STA.W $1006 
     STA.W $1046 
     LDY.W #InstList_DraygonEye_FacingLeft_Dead 
     LDA.L $7E8000 
@@ -1446,14 +1422,10 @@ Function_DraygonBody_DeathSequence_BuriedByEvirs:
     BMI .return 
     LDA.W #InstList_Draygon_Delete : STA.W $0F92 
     LDA.W #$0001 : STA.W $0F94 
-    LDA.W $0F86 
-    ORA.W #$0200 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0200 : STA.W $0F86 
     STA.W $0FC6 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    ORA.W #$0001 
-    STA.L $7ED828,X 
+    LDA.L $7ED828,X : ORA.W #$0001 : STA.L $7ED828,X 
     JSL.L DraygonDeathItemDropRoutine 
     JSR.W Draygon_ClearSpriteObjects 
 
@@ -1853,9 +1825,7 @@ DraygonReaction_Common:
     AND.W #$00FF 
     STA.L $7E8806 
     LDA.W #$0001 : STA.B $14 
-    LDA.L $7E8806 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L $7E8806 : AND.W #$00FF : STA.B $12 
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name ; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
     LDA.B $16 : STA.L $7E8010 
     LDA.B $18 : STA.L $7E8012 
@@ -2174,9 +2144,7 @@ InstList_Draygon_Delete:
 Instruction_DraygonBody_SetAsIntangible:
     PHX 
     LDX.W $0E54 
-    LDA.W $0F86 
-    ORA.W #$0400 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     PLX 
     RTL 
 
@@ -7337,9 +7305,7 @@ InitAI_SporeSpawn:
     BEQ .alive 
     LDA.W #InstList_SporeSpawn_Initial_Dead : STA.W $0F92 
     LDA.W #RTS_A5EB1A : STA.W $0FA8 
-    LDA.W $0F86 
-    ORA.W #$8000 
-    STA.W $0F86 
+    LDA.W $0F86 : ORA.W #$8000 : STA.W $0F86 
     JSR.W UpdateSporeSpawnStalkSegmentPositions 
     JSL.L Spawn_Hardcoded_PLM 
     db $07,$1E 
@@ -7423,9 +7389,7 @@ Function_SporeSpawn_SetupDeath:
     AND.W #$00FF 
     STA.L $7E8806 
     LDA.W #$0001 : STA.B $14 
-    LDA.L $7E8806 
-    AND.W #$00FF 
-    STA.B $12 
+    LDA.L $7E8806 : AND.W #$00FF : STA.B $12 
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name ; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
     LDA.B $16 : STA.L $7E8010,X 
     LDA.B $18 : STA.L $7E8012,X 
@@ -7440,9 +7404,7 @@ Function_SporeSpawn_Dying:
     LDA.L $7E8012,X : STA.W $0E26 
     LDA.L $7E8014,X : STA.W $0E28 
     LDA.L $7E8016,X : STA.W $0E2A 
-    LDA.L $7E8806 
-    AND.W #$00FF 
-    STA.W $0E20 
+    LDA.L $7E8806 : AND.W #$00FF : STA.W $0E20 
     JSL.L MoveEnemyAccordingToAngleAndXYSpeeds 
     LDA.W $0F7A : SEC : SBC.W #$0080 : JSL.L NegateA_A0B067 
     CMP.W #$0008 
@@ -7611,9 +7573,7 @@ SporeSpawnReaction_Common:
     STZ.W $0FA0,X 
     STZ.W $0F9C,X 
     STZ.W $0F8A,X 
-    LDA.W $0F86,X 
-    ORA.W #$0400 
-    STA.W $0F86,X 
+    LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     LDY.W #$001A 
     LDA.W #$0000 
 
@@ -7624,9 +7584,7 @@ SporeSpawnReaction_Common:
     LDA.W #InstList_SporeSpawn_DeathSequence_0 : STA.W $0F92 
     LDA.W #$0001 : STA.W $0F94 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    ORA.W #$0002 
-    STA.L $7ED828,X 
+    LDA.L $7ED828,X : ORA.W #$0002 : STA.L $7ED828,X 
     STZ.W $07E9 
     JSL.L Spawn_Hardcoded_PLM 
     db $07,$1E 

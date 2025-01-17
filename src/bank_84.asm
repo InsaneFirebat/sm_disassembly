@@ -238,9 +238,7 @@ Load_Item_and_Room_Special_Xray_Blocks:
     BEQ .return 
     AND.W #$00FF 
     STA.B $12 
-    LDA.L $8F0001,X 
-    AND.W #$00FF 
-    STA.B $14 
+    LDA.L $8F0001,X : AND.W #$00FF : STA.B $14 
     PHX 
     LDA.L $8F0002,X 
     LDX.B $12 
@@ -942,9 +940,7 @@ Instruction_PLM_SetRoomArg_ChozoBlockDestroyed:
     LDA.W $1DC7,X 
     BMI .return 
     JSL.L BitIndexToByteIndexAndBitmask 
-    LDA.L $7ED830,X 
-    ORA.W $05E7 
-    STA.L $7ED830,X 
+    LDA.L $7ED830,X : ORA.W $05E7 : STA.L $7ED830,X 
 
 .return:
     PLX 
@@ -978,9 +974,7 @@ Instruction_PLM_SetRoomArg_ItemCollected:
     LDA.W $1DC7,X 
     BMI .return 
     JSL.L BitIndexToByteIndexAndBitmask 
-    LDA.L $7ED870,X 
-    ORA.W $05E7 
-    STA.L $7ED870,X 
+    LDA.L $7ED870,X : ORA.W $05E7 : STA.L $7ED870,X 
 
 .return:
     PLX 
@@ -988,12 +982,8 @@ Instruction_PLM_SetRoomArg_ItemCollected:
 
 
 Instruction_PLM_PickUpBeam_DisplayMessageBox:
-    LDA.W $0000,Y 
-    ORA.W $09A8 
-    STA.W $09A8 
-    LDA.W $0000,Y 
-    ORA.W $09A6 
-    STA.W $09A6 
+    LDA.W $0000,Y : ORA.W $09A8 : STA.W $09A8 
+    LDA.W $0000,Y : ORA.W $09A6 : STA.W $09A6 
     LDA.W $0000,Y 
     ASL A 
     AND.W #$0008 
@@ -1017,12 +1007,8 @@ Instruction_PLM_PickUpBeam_DisplayMessageBox:
 
 
 Instruction_PLM_PickUpEquipment_DisplayMessageBox:
-    LDA.W $09A2 
-    ORA.W $0000,Y 
-    STA.W $09A2 
-    LDA.W $09A4 
-    ORA.W $0000,Y 
-    STA.W $09A4 
+    LDA.W $09A2 : ORA.W $0000,Y : STA.W $09A2 
+    LDA.W $09A4 : ORA.W $0000,Y : STA.W $09A4 
     LDA.W #$0168 
     JSL.L Play_Room_Music_Track_After_A_Frames 
     LDA.W $0002,Y 
@@ -1033,12 +1019,8 @@ Instruction_PLM_PickUpEquipment_DisplayMessageBox:
 
 
 Inst_PLM_PickUpEquipment_AddGrappleHUD_DisplayMessageBox:
-    LDA.W $09A2 
-    ORA.W $0000,Y 
-    STA.W $09A2 
-    LDA.W $09A4 
-    ORA.W $0000,Y 
-    STA.W $09A4 
+    LDA.W $09A2 : ORA.W $0000,Y : STA.W $09A2 
+    LDA.W $09A4 : ORA.W $0000,Y : STA.W $09A4 
     JSL.L AddGrappleToHUDTilemap 
     LDA.W #$0168 
     JSL.L Play_Room_Music_Track_After_A_Frames 
@@ -1049,12 +1031,8 @@ Inst_PLM_PickUpEquipment_AddGrappleHUD_DisplayMessageBox:
 
 
 Inst_PLM_PickUpEquipment_AddXrayToHUD_DisplayMessageBox:
-    LDA.W $09A2 
-    ORA.W $0000,Y 
-    STA.W $09A2 
-    LDA.W $09A4 
-    ORA.W $0000,Y 
-    STA.W $09A4 
+    LDA.W $09A2 : ORA.W $0000,Y : STA.W $09A2 
+    LDA.W $09A4 : ORA.W $0000,Y : STA.W $09A4 
     JSL.L AddXrayToHUDTilemap 
     LDA.W #$0168 
     JSL.L Play_Room_Music_Track_After_A_Frames 
@@ -1218,9 +1196,7 @@ Instruction_PLM_IncDoorHit_SetRoomArgDoor_GotoY:
     LDA.W $1DC7,X 
     BMI .setMSB 
     JSL.L BitIndexToByteIndexAndBitmask 
-    LDA.L $7ED8B0,X 
-    ORA.W $05E7 
-    STA.L $7ED8B0,X 
+    LDA.L $7ED8B0,X : ORA.W $05E7 : STA.L $7ED8B0,X 
 
 .setMSB:
     PLX 
@@ -1523,9 +1499,7 @@ Instruction_PLM_Activate_MapStation:
     PHX 
     PHY 
     LDX.W $079F 
-    LDA.L $7ED908,X 
-    ORA.W #$00FF 
-    STA.L $7ED908,X 
+    LDA.L $7ED908,X : ORA.W #$00FF : STA.L $7ED908,X 
     LDA.W #$0014 
     JSL.L MessageBox_Routine 
     LDA.W #$0001 : STA.W $0789 
@@ -1580,16 +1554,12 @@ Instruction_PLM_GotoY_or_ActivateSaveStation:
     LDX.W $1C27 
     LDY.W #EnemyProjectile_SaveStationElectricity 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W $1DC7,X 
-    AND.W #$0007 
-    STA.W $078B 
+    LDA.W $1DC7,X : AND.W #$0007 : STA.W $078B 
     JSL.L BitIndexToByteIndexAndBitmask 
     LDA.W $079F 
     ASL A 
     TAX 
-    LDA.L $7ED8F8,X 
-    ORA.W $05E7 
-    STA.L $7ED8F8,X 
+    LDA.L $7ED8F8,X : ORA.W $05E7 : STA.L $7ED8F8,X 
     LDA.W $0952 
     JSL.L SaveToSRAM 
     PLY 
@@ -5165,9 +5135,7 @@ Setup_BrinstarFloorPlant:
 
 .deactivate:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$8FFF 
-    STA.L $7F0002,X 
+    LDA.L $7F0002,X : AND.W #$8FFF : STA.L $7F0002,X 
     TYX 
     LDA.W $0AF6 : STA.W $1E17,X 
     LDA.W $0AFA 
@@ -5187,9 +5155,7 @@ Setup_BrinstarCeilingPlant:
 
 .deactivate:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$8FFF 
-    STA.L $7F0002,X 
+    LDA.L $7F0002,X : AND.W #$8FFF : STA.L $7F0002,X 
     TYX 
     LDA.W $0AF6 : STA.W $1E17,X 
     LDA.W $0AFA 
@@ -5519,9 +5485,7 @@ Setup_ScrollBlockTouchPLM:
 
 Setup_DeactivatePLM:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$8FFF 
-    STA.L $7F0002,X ; fallthrough to RTS_84B3CF
+    LDA.L $7F0002,X : AND.W #$8FFF : STA.L $7F0002,X ; fallthrough to RTS_84B3CF
 
 RTS_84B3CF:
     RTS 
@@ -5539,9 +5503,7 @@ Setup_SetCarry:
 
 Setup_EnemyBreakableBlock:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
-    STA.L $7F0002,X 
+    LDA.L $7F0002,X : AND.W #$0FFF : STA.L $7F0002,X 
     RTS 
 
 
@@ -5774,9 +5736,7 @@ Setup_ClearBabyMetroidInvisibleWall:
     LDY.W #$000A 
 
 .loop:
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
-    STA.L $7F0002,X 
+    LDA.L $7F0002,X : AND.W #$0FFF : STA.L $7F0002,X 
     TXA 
     CLC : ADC.W $07A5 : ADC.W $07A5 : TAX 
     DEY 
@@ -8304,9 +8264,7 @@ Setup_GreyDoor:
     AND.W #$007C 
     LSR A 
     STA.W $1E17,Y 
-    LDA.W $1DC7,Y 
-    AND.W #$83FF 
-    STA.W $1DC7,Y 
+    LDA.W $1DC7,Y : AND.W #$83FF : STA.W $1DC7,Y 
     LDX.W $1C87,Y 
     LDA.W #$C044 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
@@ -9312,9 +9270,7 @@ Setup_RespawningBreakableGrappleBlock:
     TXA 
     LSR A 
     TAX 
-    LDA.L $7F6402,X 
-    AND.W #$FF00 
-    STA.L $7F6402,X 
+    LDA.L $7F6402,X : AND.W #$FF00 : STA.L $7F6402,X 
 
 Setup_GenericGrappleBlock_SetOverflow:
     SEP #$40 
@@ -9724,9 +9680,7 @@ Setup_Reaction_LowerNorfairChozoHandTrigger:
     JSL.L MarkEvent_inA 
     LDA.W #$0001 : STA.W $0FB4 
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
-    STA.L $7F0002,X 
+    LDA.L $7F0002,X : AND.W #$0FFF : STA.L $7F0002,X 
     LDA.W #$0000 
     JSL.L Run_Samus_Command 
     JSL.L Spawn_Hardcoded_PLM 
@@ -10262,9 +10216,7 @@ Setup_Collision_WreckedShipChozoHandTrigger:
     LDA.W #$0202 : STA.L $7ECD27 
     LDA.W #$0101 : STA.L $7ECD2D 
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    AND.W #$0FFF 
-    STA.L $7F0002,X 
+    LDA.L $7F0002,X : AND.W #$0FFF : STA.L $7F0002,X 
     LDA.W #$0000 
     JSL.L Run_Samus_Command 
     JSL.L Spawn_Hardcoded_PLM 

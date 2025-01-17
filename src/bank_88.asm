@@ -599,9 +599,7 @@ Spawn_HDMAObject_to_Slot_X:
     LDA.B $12 
     XBA 
     STA.W $18B4,X 
-    LDA.B $14 
-    ORA.B $18 
-    STA.W $18C0,X 
+    LDA.B $14 : ORA.B $18 : STA.W $18C0,X 
     PHX 
     LDX.B $14 
     LDA.W $0000,Y : STA.W $4300,X 
@@ -1887,15 +1885,9 @@ PreInstruction_PowerBombExplosion_3_Explosion_Yellow:
     STA.B $12 
     ASL A 
     CLC : ADC.B $12 : TAX 
-    LDA.L PowerBombExplosion_Colors_red,X 
-    ORA.B #$20 
-    STA.W $0074 ; >.<
-    LDA.L PowerBombExplosion_Colors_green,X 
-    ORA.B #$40 
-    STA.W $0075 ; >.<
-    LDA.L PowerBombExplosion_Colors_blue,X 
-    ORA.B #$80 
-    STA.W $0076 ; >.<
+    LDA.L PowerBombExplosion_Colors_red,X : ORA.B #$20 : STA.W $0074 ; >.<
+    LDA.L PowerBombExplosion_Colors_green,X : ORA.B #$40 : STA.W $0075 ; >.<
+    LDA.L PowerBombExplosion_Colors_blue,X : ORA.B #$80 : STA.W $0076 ; >.<
     REP #$30 
     PLY 
     PLX 
@@ -1964,15 +1956,9 @@ PreInstruction_PowerBombExplosion_4_Explosion_White:
     STA.B $12 
     ASL A 
     CLC : ADC.B $12 : TAX 
-    LDA.L PowerBombExplosion_Colors_red,X 
-    ORA.B #$20 
-    STA.W $0074 ; >.<
-    LDA.L PowerBombExplosion_Colors_green,X 
-    ORA.B #$40 
-    STA.W $0075 ; >.<
-    LDA.L PowerBombExplosion_Colors_blue,X 
-    ORA.B #$80 
-    STA.W $0076 ; >.<
+    LDA.L PowerBombExplosion_Colors_red,X : ORA.B #$20 : STA.W $0074 ; >.<
+    LDA.L PowerBombExplosion_Colors_green,X : ORA.B #$40 : STA.W $0075 ; >.<
+    LDA.L PowerBombExplosion_Colors_blue,X : ORA.B #$80 : STA.W $0076 ; >.<
     REP #$30 
     PLY 
     PLX 
@@ -2263,15 +2249,9 @@ PreInstruction_PowerBombExplosion_1_PreExplosion_White:
     STA.B $12 
     ASL A 
     CLC : ADC.B $12 : TAX 
-    LDA.L PowerBomb_PreExplosion_Colors_red,X 
-    ORA.B #$20 
-    STA.W $0074 ; >.<
-    LDA.L PowerBomb_PreExplosion_Colors_green,X 
-    ORA.B #$40 
-    STA.W $0075 ; >.<
-    LDA.L PowerBomb_PreExplosion_Colors_blue,X 
-    ORA.B #$80 
-    STA.W $0076 ; >.<
+    LDA.L PowerBomb_PreExplosion_Colors_red,X : ORA.B #$20 : STA.W $0074 ; >.<
+    LDA.L PowerBomb_PreExplosion_Colors_green,X : ORA.B #$40 : STA.W $0075 ; >.<
+    LDA.L PowerBomb_PreExplosion_Colors_blue,X : ORA.B #$80 : STA.W $0076 ; >.<
     REP #$30 
     PLY 
     PLX 
@@ -2340,15 +2320,9 @@ PreInstruction_PowerBombExplosion_2_PreExplosion_Yellow:
     STA.B $12 
     ASL A 
     CLC : ADC.B $12 : TAX 
-    LDA.L PowerBomb_PreExplosion_Colors_red,X 
-    ORA.B #$20 
-    STA.W $0074 
-    LDA.L PowerBomb_PreExplosion_Colors_green,X 
-    ORA.B #$40 
-    STA.W $0075 
-    LDA.L PowerBomb_PreExplosion_Colors_blue,X 
-    ORA.B #$80 
-    STA.W $0076 
+    LDA.L PowerBomb_PreExplosion_Colors_red,X : ORA.B #$20 : STA.W $0074 
+    LDA.L PowerBomb_PreExplosion_Colors_green,X : ORA.B #$40 : STA.W $0075 
+    LDA.L PowerBomb_PreExplosion_Colors_blue,X : ORA.B #$80 : STA.W $0076 
     REP #$30 
     PLY 
     PLX 
@@ -3059,15 +3033,9 @@ PreInstruction_CrystalFlash_1_Explosion:
     STA.B $12 
     ASL A 
     CLC : ADC.B $12 : TAX 
-    LDA.L PowerBombExplosion_Colors_red,X 
-    ORA.B #$20 
-    STA.W $0074 
-    LDA.L PowerBombExplosion_Colors_green,X 
-    ORA.B #$40 
-    STA.W $0075 
-    LDA.L PowerBombExplosion_Colors_blue,X 
-    ORA.B #$80 
-    STA.W $0076 
+    LDA.L PowerBombExplosion_Colors_red,X : ORA.B #$20 : STA.W $0074 
+    LDA.L PowerBombExplosion_Colors_green,X : ORA.B #$40 : STA.W $0075 
+    LDA.L PowerBombExplosion_Colors_blue,X : ORA.B #$80 : STA.W $0076 
     REP #$30 
     PLY 
     PLX 
@@ -3255,9 +3223,7 @@ Calculate_FXType_22_IndirectHDMATable:
 .loop:
     SEC : SBC.W #$0010 : BMI .done 
     STA.B $18 
-    LDA.W #$0010 
-    ORA.B $16 
-    STA.L $7E9E00,X 
+    LDA.W #$0010 : ORA.B $16 : STA.L $7E9E00,X 
     LDA.B $14 : STA.L $7E9E01,X 
     LDA.B $18 
     INX #3
@@ -3268,9 +3234,7 @@ Calculate_FXType_22_IndirectHDMATable:
     STA.B $12 
 
 .done:
-    LDA.B $18 
-    ORA.B $16 
-    STA.L $7E9E00,X 
+    LDA.B $18 : ORA.B $16 : STA.L $7E9E00,X 
     LDA.B $14 : STA.L $7E9E01,X 
     INX #3
     .return:
@@ -3280,12 +3244,8 @@ Calculate_FXType_22_IndirectHDMATable:
 FXType_20_ScrollingSky_RoomSetupASM_ScrollingSkyLand:
     PHP 
     SEP #$30 
-    LDA.W $091B 
-    ORA.B #$01 
-    STA.W $091B 
-    LDA.W $091C 
-    ORA.B #$01 
-    STA.W $091C 
+    LDA.W $091B : ORA.B #$01 : STA.W $091B 
+    LDA.W $091C : ORA.B #$01 : STA.W $091C 
     JSL.L Spawn_HDMAObject 
     db $42,$0F 
     dw InstList_ScrollingSkyLand_BG2XScroll_0 
@@ -3373,9 +3333,7 @@ Calculate_FXType_22_BG3YScrollHDMATable:
     LDA.B ($06),Y : SEC : SBC.W $0598 : STA.L $7E9C01,X 
 
 .next:
-    LDA.L $7E9C00,X 
-    AND.W #$00FF 
-    STA.B $14 
+    LDA.L $7E9C00,X : AND.W #$00FF : STA.B $14 
     CLC : ADC.B $12 : STA.B $12 
     INX #3
     LDA.B $14 : CLC : ADC.W $0598 : STA.W $0598 
@@ -4320,9 +4278,7 @@ PreInstruction_LavaAcid_BG2YScroll:
 
 .merge:
     LDX.W $18B2 
-    LDA.B $B7 
-    AND.W #$000F 
-    STA.B $12 
+    LDA.B $B7 : AND.W #$000F : STA.B $12 
     LDA.B $12 
     ASL A 
     CLC : ADC.B $12 : CLC : ADC.W #IndirectHDMATable_LavaAcidBG2_Yscroll : STA.W $18D8,X 
@@ -8880,12 +8836,8 @@ AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToOrange:
 
 
 VariaSuitPickup_Stage3_GiveSamusVariaSuit:
-    LDA.W $09A2 
-    ORA.W #$0001 
-    STA.W $09A2 
-    LDA.W $09A4 
-    ORA.W #$0001 
-    STA.W $09A4 
+    LDA.W $09A2 : ORA.W #$0001 : STA.W $09A2 
+    LDA.W $09A4 : ORA.W #$0001 : STA.W $09A4 
     LDA.W #$009B : STA.W $0A1C 
     JSL.L InitializeSamusPose_1 
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged 
@@ -8900,12 +8852,8 @@ VariaSuitPickup_Stage3_GiveSamusVariaSuit:
 
 
 GravitySuitPickup_Stage3_GiveSamusGravitySuit:
-    LDA.W $09A2 
-    ORA.W #$0020 
-    STA.W $09A2 
-    LDA.W $09A4 
-    ORA.W #$0020 
-    STA.W $09A4 
+    LDA.W $09A2 : ORA.W #$0020 : STA.W $09A2 
+    LDA.W $09A4 : ORA.W #$0020 : STA.W $09A4 
     LDA.W #$009B : STA.W $0A1C 
     JSL.L InitializeSamusPose_1 
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged 

@@ -1457,22 +1457,14 @@ HandleMotherBrainBodyFlickering:
     LDA.W $0FA4 
     LSR A 
     BCC .invisible 
-    LDA.B $69 
-    ORA.W #$0002 
-    STA.B $69 
-    LDA.W $0F86 
-    AND.W #$FEFF 
-    STA.W $0F86 
+    LDA.B $69 : ORA.W #$0002 : STA.B $69 
+    LDA.W $0F86 : AND.W #$FEFF : STA.W $0F86 
     RTL 
 
 
 .invisible:
-    LDA.B $69 
-    AND.W #$FFFD 
-    STA.B $69 
-    LDA.W $0F86 
-    ORA.W #$0100 
-    STA.W $0F86 
+    LDA.B $69 : AND.W #$FFFD : STA.B $69 
+    LDA.W $0F86 : ORA.W #$0100 : STA.W $0F86 
     RTL 
 
 
