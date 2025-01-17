@@ -4554,8 +4554,7 @@ GenerateExplosionsAroundMotherBrainBody:
     LDY.W $0000,X 
     JSL.L GenerateRandomNumber 
     CMP.W #$4000 : BCC .random 
-    LDY.W $0002,X 
-    CMP.W #$E000 : BCC .random 
+    LDY.W $0002,X : CMP.W #$E000 : BCC .random 
     LDY.W $0004,X 
 
 .random:
@@ -5262,8 +5261,7 @@ TryMotherBrainPhase2Attack_EndAttack:
 
 Function_MotherBrainBody_FiringBomb_DecideOnWalking:
     LDA.W $05E5 : CMP.W #$FF80 : BCS MotherBrainFiringBomb_DecideOnCrouching 
-    LDX.W #$0040 
-    CMP.W #$6000 : BCS + 
+    LDX.W #$0040 : CMP.W #$6000 : BCS + 
     LDX.W #$0060 
 
   + TXA 
@@ -6784,8 +6782,7 @@ MakeMotherBrainWalkBackwards_pointers:
 
 MakeMotherBrainStandUp:
     LDA.L $7E7804 : BEQ .returnStanding 
-    LDY.W #InstList_MotherBrainBody_StandingUpAfterCrouching_Fast 
-    CMP.W #$0003 : BEQ .standFast 
+    LDY.W #InstList_MotherBrainBody_StandingUpAfterCrouching_Fast : CMP.W #$0003 : BEQ .standFast 
     CMP.W #$0006 : BNE .returnNotStanding 
     LDY.W #InstList_MotherBrainBody_StandingUpAfterLeaningDown 
 
@@ -7540,18 +7537,12 @@ HandleBabyMetroidCutsceneHealthBasedPalette:
 
 
 .health80:
-    LDY.W #$0002 
-    CMP.W #$08C0 : BPL .setPalette 
-    LDY.W #$0004 
-    CMP.W #$0780 : BPL .setPalette 
-    LDY.W #$0006 
-    CMP.W #$0640 : BPL .setPalette 
-    LDY.W #$0008 
-    CMP.W #$0500 : BPL .setPalette 
-    LDY.W #$000A 
-    CMP.W #$03C0 : BPL .setPalette 
-    LDY.W #$000C 
-    CMP.W #$0280 : BPL .setPalette 
+    LDY.W #$0002 : CMP.W #$08C0 : BPL .setPalette 
+    LDY.W #$0004 : CMP.W #$0780 : BPL .setPalette 
+    LDY.W #$0006 : CMP.W #$0640 : BPL .setPalette 
+    LDY.W #$0008 : CMP.W #$0500 : BPL .setPalette 
+    LDY.W #$000A : CMP.W #$03C0 : BPL .setPalette 
+    LDY.W #$000C : CMP.W #$0280 : BPL .setPalette 
     LDY.W #$000E 
 
 .setPalette:

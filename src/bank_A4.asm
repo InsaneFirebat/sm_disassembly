@@ -1470,12 +1470,9 @@ MainAI_Crocomire_DeathSequence_3C_Hop_6_Sinking:
 
 SetMelting2InstListPointer:
     LDA.W $0F7E 
-    LDY.W #InstList_Crocomire_Melting2_TopRow 
-    CMP.W #$0118 : BPL .setInstList 
-    LDY.W #InstList_Crocomire_Melting2_Top2Rows 
-    CMP.W #$0108 : BPL .setInstList 
-    LDY.W #InstList_Crocomire_Melting2_Top3Rows 
-    CMP.W #$00F8 : BPL .setInstList 
+    LDY.W #InstList_Crocomire_Melting2_TopRow : CMP.W #$0118 : BPL .setInstList 
+    LDY.W #InstList_Crocomire_Melting2_Top2Rows : CMP.W #$0108 : BPL .setInstList 
+    LDY.W #InstList_Crocomire_Melting2_Top3Rows : CMP.W #$00F8 : BPL .setInstList 
     LDY.W #InstList_Crocomire_Melting2_Top4Rows 
 
 .setInstList:
@@ -1488,12 +1485,9 @@ SetMelting2InstListPointer:
 MainAI_Crocomire_DeathSequence_1E_24_2A_Hop_3_4_5_Sinking:
     JSR.W HandleCrocomireAcidDamageSmoke 
     LDA.W $0F7E 
-    LDY.W #InstList_Crocomire_Melting1_TopRow 
-    CMP.W #$0118 : BPL .setInstList 
-    LDY.W #InstList_Crocomire_Melting1_Top2Rows 
-    CMP.W #$0108 : BPL .setInstList 
-    LDY.W #InstList_Crocomire_Melting1_Top3Rows 
-    CMP.W #$00F8 : BPL .setInstList 
+    LDY.W #InstList_Crocomire_Melting1_TopRow : CMP.W #$0118 : BPL .setInstList 
+    LDY.W #InstList_Crocomire_Melting1_Top2Rows : CMP.W #$0108 : BPL .setInstList 
+    LDY.W #InstList_Crocomire_Melting1_Top3Rows : CMP.W #$00F8 : BPL .setInstList 
     LDY.W #InstList_Crocomire_Melting1_Top4Rows 
 
 .setInstList:
@@ -1606,12 +1600,9 @@ SinkCrocomireDown:
 MainAI_Crocomire_DeathSequence_34_Hop_6_Rising:
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    LDY.W #InstList_Crocomire_Melting2_TopRow 
-    CMP.W #$0118 : BPL .setInstListPointer 
-    LDY.W #InstList_Crocomire_Melting2_Top2Rows 
-    CMP.W #$0108 : BPL .setInstListPointer 
-    LDY.W #InstList_Crocomire_Melting2_Top3Rows 
-    CMP.W #$00F8 : BPL .setInstListPointer 
+    LDY.W #InstList_Crocomire_Melting2_TopRow : CMP.W #$0118 : BPL .setInstListPointer 
+    LDY.W #InstList_Crocomire_Melting2_Top2Rows : CMP.W #$0108 : BPL .setInstListPointer 
+    LDY.W #InstList_Crocomire_Melting2_Top3Rows : CMP.W #$00F8 : BPL .setInstListPointer 
     LDY.W #InstList_Crocomire_Melting2_Top4Rows 
 
 .setInstListPointer:
@@ -1626,12 +1617,9 @@ MainAI_Crocomire_DeathSequence_16_22_28_Hop_3_4_5_Rising:
     JSR.W HandleCrocomireAcidDamageSmoke 
     LDX.W $0E54 
     LDA.W $0F7E,X 
-    LDY.W #InstList_Crocomire_Melting1_TopRow 
-    CMP.W #$0118 : BPL .setInstListPointer 
-    LDY.W #InstList_Crocomire_Melting1_Top2Rows 
-    CMP.W #$0108 : BPL .setInstListPointer 
-    LDY.W #InstList_Crocomire_Melting1_Top3Rows 
-    CMP.W #$00F8 : BPL .setInstListPointer 
+    LDY.W #InstList_Crocomire_Melting1_TopRow : CMP.W #$0118 : BPL .setInstListPointer 
+    LDY.W #InstList_Crocomire_Melting1_Top2Rows : CMP.W #$0108 : BPL .setInstListPointer 
+    LDY.W #InstList_Crocomire_Melting1_Top3Rows : CMP.W #$00F8 : BPL .setInstListPointer 
     LDY.W #InstList_Crocomire_Melting1_Top4Rows 
 
 .setInstListPointer:
@@ -3079,10 +3067,8 @@ PowerBombReaction_Crocomire:
 
 .loop:
     LDA.W $0006,X 
-    LDY.W #InstList_Crocomire_PowerBombReaction_MouthFullyOpen 
-    CMP.W #ExtendedTilemap_Crocomire_1 : BEQ .mouthNotOpen 
-    LDY.W #InstList_Crocomire_PowerBombReaction_MouthPartiallyOpen 
-    CMP.W #ExtendedTilemap_Crocomire_0 : BEQ .mouthNotOpen 
+    LDY.W #InstList_Crocomire_PowerBombReaction_MouthFullyOpen : CMP.W #ExtendedTilemap_Crocomire_1 : BEQ .mouthNotOpen 
+    LDY.W #InstList_Crocomire_PowerBombReaction_MouthPartiallyOpen : CMP.W #ExtendedTilemap_Crocomire_0 : BEQ .mouthNotOpen 
     TXA 
     CLC : ADC.W #$0008 : TAX 
     DEC.B $12 
@@ -3116,10 +3102,8 @@ EnemyShot_Crocomire_OpenMouth:
 
 .notBeam:
     AND.W #$0F00 
-    LDX.W CrocomireConstants_stepsWhenDamagedByMissile 
-    CMP.W #$0100 : BEQ .damage 
-    LDX.W CrocomireConstants_stepsWhenDamagedBySuperMissile 
-    CMP.W #$0200 : BEQ .damage 
+    LDX.W CrocomireConstants_stepsWhenDamagedByMissile : CMP.W #$0100 : BEQ .damage 
+    LDX.W CrocomireConstants_stepsWhenDamagedBySuperMissile : CMP.W #$0200 : BEQ .damage 
     LDX.W #$0000 
 
 .damage:

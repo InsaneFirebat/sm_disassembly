@@ -2426,8 +2426,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 
 .checkB:
-    LDX.W $1866 
-    CMP.W #$8000 : BMI + 
+    LDX.W $1866 : CMP.W #$8000 : BMI + 
     LDA.L $B40000,X 
     TAX 
     LDA.L $A0003E,X 

@@ -4148,8 +4148,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     LDA.W $09D4 : BEQ .noReserves 
     LDA.W $09C0 : BEQ .noReserves 
     LDX.W #EquipmentScreenTilemaps_auto 
-    LDY.W #$0082 
-    CMP.W #$0001 : BEQ + 
+    LDY.W #$0082 : CMP.W #$0001 : BEQ + 
     LDX.W #EquipmentScreenTilemaps_manual 
     LDY.W #$0082 
 
@@ -5826,8 +5825,7 @@ Draw_FileCopy_Arrow:
     LDA.W $19B7 : SEC : SBC.W $19B9 : BPL .upwards 
     EOR.W #$FFFF 
     INC A 
-    LDX.W #$0000 
-    CMP.W #$0002 : BPL .spawnSprite 
+    LDX.W #$0000 : CMP.W #$0002 : BPL .spawnSprite 
     LDX.W #$0006 
     LDA.W $19B7 : BEQ + 
     LDX.W #$000C 
@@ -5836,8 +5834,7 @@ Draw_FileCopy_Arrow:
 
 
 .upwards:
-    LDX.W #$0012 
-    CMP.W #$0002 : BPL .spawnSprite 
+    LDX.W #$0012 : CMP.W #$0002 : BPL .spawnSprite 
     LDX.W #$0018 
     LDA.W $19B7 : CMP.W #$0001 : BEQ .spawnSprite 
     LDX.W #$001E 

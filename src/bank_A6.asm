@@ -7934,10 +7934,8 @@ HandleRidleyHealthBasedPalette_return:
 DetermineAndSetCeresRidleysColorPalette:
     LDA.L $7E7802 : BEQ HandleRidleyHealthBasedPalette_return 
     LDA.L $7E781A : CMP.W #$0032 : BCC HandleRidleyHealthBasedPalette_return 
-    LDY.W #$0000 
-    CMP.W #$0046 : BCC .paletteChosen 
-    LDY.W #$0001 
-    CMP.W #$005A ; >.< where's the BCC?
+    LDY.W #$0000 : CMP.W #$0046 : BCC .paletteChosen 
+    LDY.W #$0001 : CMP.W #$005A ; >.< where's the BCC?
     LDY.W #$0002 
 
 .paletteChosen:
@@ -12321,12 +12319,9 @@ SetZebetiteInstList:
     LDX.W $0E54 
     LDY.W #$0000 
     LDA.W $0F8C,X : CMP.W #$0320 : BPL .indexInY 
-    LDY.W #$0002 
-    CMP.W #$0258 : BPL .indexInY 
-    LDY.W #$0004 
-    CMP.W #$0190 : BPL .indexInY 
-    LDY.W #$0006 
-    CMP.W #$00C8 : BPL .indexInY 
+    LDY.W #$0002 : CMP.W #$0258 : BPL .indexInY 
+    LDY.W #$0004 : CMP.W #$0190 : BPL .indexInY 
+    LDY.W #$0006 : CMP.W #$00C8 : BPL .indexInY 
     LDY.W #$0008 
 
 .indexInY:

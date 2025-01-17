@@ -795,8 +795,7 @@ LoadEnemyGFXIndices:
 .loop:
     LDX.B $12 
     LDA.L $A10000,X 
-    LDX.B $1C 
-    CMP.L $B40000,X : BEQ .found 
+    LDX.B $1C : CMP.L $B40000,X : BEQ .found 
     LDA.L $B40000,X : CMP.W #$FFFF : BEQ .notFound 
     LDA.L $B40000,X 
     TAX 
@@ -1443,14 +1442,10 @@ SpawnEnemy_AlwaysSucceed:
     LDY.W $0E4A 
     LDX.W $0E20 
     LDA.W $0000,X 
-    LDX.W #$0000 
-    CMP.L $7EEF5C : BEQ .graphics 
-    LDX.W #$0002 
-    CMP.L $7EEF5E : BEQ .graphics 
-    LDX.W #$0004 
-    CMP.L $7EEF60 : BEQ .graphics 
-    LDX.W #$0006 
-    CMP.L $7EEF62 : BEQ .graphics 
+    LDX.W #$0000 : CMP.L $7EEF5C : BEQ .graphics 
+    LDX.W #$0002 : CMP.L $7EEF5E : BEQ .graphics 
+    LDX.W #$0004 : CMP.L $7EEF60 : BEQ .graphics 
+    LDX.W #$0006 : CMP.L $7EEF62 : BEQ .graphics 
     LDA.W #$0000 : STA.W $0F98,Y 
     STA.W $0F96,Y 
     BRA + 
@@ -2560,8 +2555,7 @@ EnemyGrappleBeamCollisionDetection:
     LDA.W $0F78,X 
     TAX 
     LDA.L $A0001A,X : CMP.W #Common_GrappleAI_NoInteraction : BEQ .grappleIndexDetermined 
-    LDY.W #$0001 
-    CMP.W #Common_GrappleAI_SamusLatchesOn : BEQ .grappleIndexDetermined 
+    LDY.W #$0001 : CMP.W #Common_GrappleAI_SamusLatchesOn : BEQ .grappleIndexDetermined 
     INY 
     CMP.W #Common_GrappleAI_KillEnemy : BEQ .grappleIndexDetermined 
     INY 
@@ -3160,13 +3154,10 @@ NormalEnemyTouchAI_NoDeathCheck:
     CLC : ADC.W #$000F : STA.B $14 
     LDY.W #$01F4 
     LDA.W $0A6E : CMP.W #$0001 : BEQ .damageCalculated 
-    LDY.W #$012C 
-    CMP.W #$0002 : BEQ .damageCalculated 
-    LDY.W #$07D0 
-    CMP.W #$0003 : BEQ .damageCalculated 
+    LDY.W #$012C : CMP.W #$0002 : BEQ .damageCalculated 
+    LDY.W #$07D0 : CMP.W #$0003 : BEQ .damageCalculated 
     INC.B $14 
-    LDY.W #$00C8 
-    CMP.W #$0004 : BNE .defaultDamage 
+    LDY.W #$00C8 : CMP.W #$0004 : BNE .defaultDamage 
     LDA.W #$0004 : JSL.L Run_Samus_Command 
     BRA .damageCalculated 
 
@@ -3334,8 +3325,7 @@ NormalEnemyShotAI:
     XBA 
     AND.W #$000F 
     STA.L $7E7002,X 
-    LDY.W #$0002 
-    CMP.W #$0002 : BEQ .superMissile 
+    LDY.W #$0002 : CMP.W #$0002 : BEQ .superMissile 
     LDA.W $0F78,X 
     TAX 
     LDA.L $A00022,X : BEQ .deathAnimationInY 
@@ -4225,8 +4215,7 @@ IsSamusWithingAPixelRowsOfEnemy:
     LDA.W $0F7E,X 
     TAX 
     JSL.L GetSignedYMinusX_A0B07D 
-    LDX.W $0E54 
-    CMP.W $0E20 : BPL .returnZero 
+    LDX.W $0E54 : CMP.W $0E20 : BPL .returnZero 
     LDA.W #$0001 
     RTL 
 
@@ -4242,8 +4231,7 @@ IsSamusWithinAPixelColumnsOfEnemy:
     LDA.W $0F7A,X 
     TAX 
     JSL.L GetSignedYMinusX_A0B07D 
-    LDX.W $0E54 
-    CMP.W $0E20 : BPL .returnZero 
+    LDX.W $0E54 : CMP.W $0E20 : BPL .returnZero 
     LDA.W #$0001 
     RTL 
 

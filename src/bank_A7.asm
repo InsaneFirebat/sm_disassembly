@@ -5083,12 +5083,9 @@ HandleKraidPhase1:
     LDA.W $0FAA 
     TAX 
     LDA.W $0002,X 
-    LDY.W #$0032 
-    CMP.W #Tilemap_KraidHead_0 : BEQ + 
-    LDY.W #$002A 
-    CMP.W #Tilemap_KraidHead_1 : BEQ + 
-    LDY.W #$0022 
-    CMP.W #Tilemap_KraidHead_2 : BEQ + 
+    LDY.W #$0032 : CMP.W #Tilemap_KraidHead_0 : BEQ + 
+    LDY.W #$002A : CMP.W #Tilemap_KraidHead_1 : BEQ + 
+    LDY.W #$0022 : CMP.W #Tilemap_KraidHead_2 : BEQ + 
     LDY.W #$001A 
 
   + TYA 

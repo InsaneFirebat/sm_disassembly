@@ -1640,8 +1640,7 @@ Function_BabyTurtle_Hiding_NotCarryingSamus:
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #$0001 : STA.L $7E7808,X 
     LDA.W $0A1E : AND.W #$000F 
-    LDY.W BabyTurtleConstants_maxSpinningLeftVelocity 
-    CMP.W #$0008 : BNE .keepLeft 
+    LDY.W BabyTurtleConstants_maxSpinningLeftVelocity : CMP.W #$0008 : BNE .keepLeft 
     LDY.W BabyTurtleConstants_maxSpinningRightVelocity 
 
 .keepLeft:
@@ -6395,8 +6394,7 @@ Function_Rio_Homing:
 
 
 SetRioInstList:
-    LDX.W $0E54 
-    CMP.W $0FB2,X : BEQ .return 
+    LDX.W $0E54 : CMP.W $0FB2,X : BEQ .return 
     STA.W $0FB2,X 
     STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -6695,8 +6693,7 @@ Function_Squeept_Falling:
 
 
 SetSqueeptInstList:
-    LDX.W $0E54 
-    CMP.L $7E7802,X : BEQ .return 
+    LDX.W $0E54 : CMP.L $7E7802,X : BEQ .return 
     STA.L $7E7802,X 
     STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -7174,8 +7171,7 @@ Function_Geruta_FinishSwoop:
 
 
 SetGerutaInstList:
-    LDX.W $0E54 
-    CMP.L $7E7800,X : BEQ .return 
+    LDX.W $0E54 : CMP.L $7E7800,X : BEQ .return 
     STA.L $7E7800,X 
     STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -7737,8 +7733,7 @@ Function_Holtz_SwoopCooldown:
 
 
 SetHoltzInstList:
-    LDX.W $0E54 
-    CMP.L $7E7800,X : BEQ .return 
+    LDX.W $0E54 : CMP.L $7E7800,X : BEQ .return 
     STA.L $7E7800,X 
     STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 

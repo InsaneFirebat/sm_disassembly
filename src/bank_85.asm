@@ -528,8 +528,7 @@ Handle_MessageBox_Interaction:
 
 Toggle_Save_Confirmation_Selection:
     LDA.W $05F9 : EOR.W #$0002 : STA.W $05F9 
-    LDY.W #$0040 
-    CMP.W #$0002 : BNE + 
+    LDY.W #$0040 : CMP.W #$0002 : BNE + 
     LDY.W #$0080 
 
   + LDX.W #$0100 

@@ -5954,14 +5954,10 @@ Function_DraygonEye_FacingLeft:
     LDA.W $0AFA : SEC : SBC.B $14 : STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     CMP.W $0FB2,X : BEQ .return 
-    LDY.W #InstList_DraygonEye_FacingLeft_LookingUp 
-    CMP.W #$0020 : BMI .directionChosen 
-    LDY.W #InstList_DraygonEye_FacingLeft_LookingRight 
-    CMP.W #$0060 : BMI .directionChosen 
-    LDY.W #InstList_DraygonEye_FacingLeft_LookingDown 
-    CMP.W #$00A0 : BMI .directionChosen 
-    LDY.W #InstList_DraygonEye_FacingLeft_LookingLeft 
-    CMP.W #$00E0 : BMI .directionChosen 
+    LDY.W #InstList_DraygonEye_FacingLeft_LookingUp : CMP.W #$0020 : BMI .directionChosen 
+    LDY.W #InstList_DraygonEye_FacingLeft_LookingRight : CMP.W #$0060 : BMI .directionChosen 
+    LDY.W #InstList_DraygonEye_FacingLeft_LookingDown : CMP.W #$00A0 : BMI .directionChosen 
+    LDY.W #InstList_DraygonEye_FacingLeft_LookingLeft : CMP.W #$00E0 : BMI .directionChosen 
     LDY.W #InstList_DraygonEye_FacingLeft_LookingUp 
 
 .directionChosen:
@@ -5992,14 +5988,10 @@ Function_DraygonEye_FacingRight:
     LDA.W $0AFA : SEC : SBC.B $14 : STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     CMP.W $0FB2,X : BEQ .return 
-    LDY.W #InstList_DraygonEye_FacingRight_LookingUp 
-    CMP.W #$0020 : BMI .directionChosen 
-    LDY.W #InstList_DraygonEye_FacingRight_LookingRight 
-    CMP.W #$0060 : BMI .directionChosen 
-    LDY.W #InstList_DraygonEye_FacingRight_LookingDown 
-    CMP.W #$00A0 : BMI .directionChosen 
-    LDY.W #InstList_DraygonEye_FacingRight_LookingLeft 
-    CMP.W #$00E0 : BMI .directionChosen 
+    LDY.W #InstList_DraygonEye_FacingRight_LookingUp : CMP.W #$0020 : BMI .directionChosen 
+    LDY.W #InstList_DraygonEye_FacingRight_LookingRight : CMP.W #$0060 : BMI .directionChosen 
+    LDY.W #InstList_DraygonEye_FacingRight_LookingDown : CMP.W #$00A0 : BMI .directionChosen 
+    LDY.W #InstList_DraygonEye_FacingRight_LookingLeft : CMP.W #$00E0 : BMI .directionChosen 
     LDY.W #InstList_DraygonEye_FacingRight_LookingUp 
 
 .directionChosen:
@@ -7317,10 +7309,8 @@ EnemyShot_SporeSpawn_Vulnerable:
     LDA.W #$0001 : STA.W $0F94,X 
     LDY.W #$0060 
     LDA.W $0F8C,X : CMP.W #$0046 : BMI .paletteChosen 
-    LDY.W #$0040 
-    CMP.W #$019A : BMI .paletteChosen 
-    LDY.W #$0020 
-    CMP.W #$0302 : BMI .paletteChosen 
+    LDY.W #$0040 : CMP.W #$019A : BMI .paletteChosen 
+    LDY.W #$0020 : CMP.W #$0302 : BMI .paletteChosen 
     LDY.W #$0000 
 
 .paletteChosen:

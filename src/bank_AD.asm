@@ -601,10 +601,8 @@ MotherBrainHealthBasedPaletteHandling:
     PLB : PLB 
     LDY.W #$0000 
     LDA.W $0FCC : CMP.W #$2328 : BCS .writePalette 
-    LDY.W #$0002 
-    CMP.W #$1518 : BCS .writePalette 
-    LDY.W #$0004 
-    CMP.W #$0708 : BCS .writePalette 
+    LDY.W #$0002 : CMP.W #$1518 : BCS .writePalette 
+    LDY.W #$0004 : CMP.W #$0708 : BCS .writePalette 
     LDY.W #$0006 
 
 .writePalette:
