@@ -493,8 +493,7 @@ UNUSED_ModifyMode7TransformAndBG1PosWithController_8B8488:
 
 
 .zoomIn:
-    LDA.W $198F 
-    BEQ .return 
+    LDA.W $198F : BEQ .return 
     DEC A 
     STA.W $198F 
 
@@ -557,13 +556,11 @@ HandleMode7TransformMatrixAndBG1Position:
 Multiplication_16bitSigned_8B858F:
     PHP 
     REP #$30 
-    LDA.B $26 
-    BPL .leftPositive 
+    LDA.B $26 : BPL .leftPositive 
     EOR.W #$FFFF 
     INC A 
     STA.B $26 
-    LDA.B $28 
-    BMI + 
+    LDA.B $28 : BMI + 
     JSR.W Multiplication_16bitUnsigned_8B85EE 
     LDA.B $2C 
     EOR.W #$FFFF 
@@ -599,8 +596,7 @@ Multiplication_16bitSigned_8B858F:
 
 
 .leftPositive:
-    LDA.B $28 
-    BMI .leftPositiveRightNegative 
+    LDA.B $28 : BMI .leftPositiveRightNegative 
     JSR.W Multiplication_16bitUnsigned_8B85EE 
     PLP 
     RTS 
@@ -706,8 +702,7 @@ Debug_DisplayVersionInfo:
 .done:
     PLY 
     STX.W $0590 
-    LDA.L DebugConst_DisableAudio 
-    BEQ .versionNumber 
+    LDA.L DebugConst_DisableAudio : BEQ .versionNumber 
     LDA.W #$00B4 : STA.W $0370,X 
     LDA.W #$00C4 : STA.W $0371,X 
     LDA.W #$39E2 : STA.W $0372,X 
@@ -853,8 +848,7 @@ IndirectInstructionFunction_Nothing:
 
 
 IndirectInstructionFunction_DrawTextCharacter:
-    LDA.W $1BA1 
-    BNE .toggleFlag 
+    LDA.W $1BA1 : BNE .toggleFlag 
     LDA.W #$0001 : STA.W $1BA1 
     BRA .drawText 
 
@@ -867,8 +861,7 @@ IndirectInstructionFunction_DrawTextCharacter:
     PHY 
     LDY.W $19CD,X 
     LDX.W #$001E 
-    LDA.W $0006,Y 
-    BMI .pointer 
+    LDA.W $0006,Y : BMI .pointer 
     LDA.W $0008,Y : AND.W #$00FF 
     ASL #3
     STA.W $1A7D,X 
@@ -889,8 +882,7 @@ IndirectInstructionFunction_DrawTextCharacter:
     LDA.W $0004,Y 
     CMP.W #IndirectInstructions_IntroText_Space 
     BEQ .fallthrough 
-    LDA.W $1BA1 
-    BEQ .fallthrough 
+    LDA.W $1BA1 : BEQ .fallthrough 
     LDA.W #$000D 
     JSL.L QueueSound_Lib3_Max6 
 
@@ -1425,18 +1417,15 @@ TransferJapanTextTilesToVRAM:
 
 
 HandleSamusDuringIntro:
-    LDA.W $1A57 
-    BEQ .return 
+    LDA.W $1A57 : BEQ .return 
     JSL.L SamusCurrentStateHandler 
     JSL.L SamusNewStateHandler 
-    LDA.W $18A8 
-    BEQ .handleKnockback 
+    LDA.W $18A8 : BEQ .handleKnockback 
     DEC A 
     STA.W $18A8 
 
 .handleKnockback:
-    LDA.W $18AA 
-    BEQ .return 
+    LDA.W $18AA : BEQ .return 
     DEC A 
     STA.W $18AA 
 
@@ -1445,8 +1434,7 @@ HandleSamusDuringIntro:
 
 
 DrawIntroSprites:
-    LDA.W $1A57 
-    BEQ .noSamus 
+    LDA.W $1A57 : BEQ .noSamus 
     BMI .samusPriority 
     JSR.W Draw_CinematicSpriteObjects_IntroTitleSequence 
     JSL.L DrawSamusAndProjectiles 
@@ -2049,8 +2037,7 @@ Spawn_CinematicSpriteObject_Y:
     LDY.W #$001E 
 
 .loop:
-    LDA.W $1B1D,Y 
-    BEQ SpawnCinematicSpriteObject_XToIndexY 
+    LDA.W $1B1D,Y : BEQ SpawnCinematicSpriteObject_XToIndexY 
     DEY #2
     BPL .loop 
     PLX 
@@ -2109,8 +2096,7 @@ Handle_CinematicSpriteObjects:
 
 .loop:
     STX.W $1A59 
-    LDA.W $1B1D,X 
-    BEQ .next 
+    LDA.W $1B1D,X : BEQ .next 
     JSR.W Process_CinematicSpriteObjects_InstList 
     LDX.W $1A59 
 
@@ -2129,8 +2115,7 @@ Process_CinematicSpriteObjects_InstList:
     LDY.W $1B1D,X 
 
 .loop:
-    LDA.W $0000,Y 
-    BPL + 
+    LDA.W $0000,Y : BPL + 
     STA.B $12 
     INY #2
     PEA.W .loop-1 
@@ -2284,8 +2269,7 @@ Spawn_Mode7Objects:
     LDY.W #$0002 
 
 .loop:
-    LDA.W $19A1,Y 
-    BEQ .spawn 
+    LDA.W $19A1,Y : BEQ .spawn 
     DEY #2
     BPL .loop 
     PLX 
@@ -2314,8 +2298,7 @@ Handle_Mode7Objects:
 
 .loop:
     STX.W $19B1 
-    LDA.W $19A1,X 
-    BEQ .next 
+    LDA.W $19A1,X : BEQ .next 
     JSR.W Process_Mode7Objects_InstList 
     LDX.W $19B1 
 
@@ -2334,8 +2317,7 @@ Process_Mode7Objects_InstList:
     LDY.W $19A1,X 
 
 .loop:
-    LDA.W $0000,Y 
-    BPL .timer 
+    LDA.W $0000,Y : BPL .timer 
     STA.B $12 
     INY #2
     PEA.W .loop-1 
@@ -2471,8 +2453,7 @@ Spawn_CinematicBGObject:
     LDY.W #$0006 
 
 .loop:
-    LDA.W $19CD,Y 
-    BEQ .spawn 
+    LDA.W $19CD,Y : BEQ .spawn 
     DEY #2
     BPL .loop 
     PLX 
@@ -2504,8 +2485,7 @@ Handle_CinematicBGObjects:
 
 .loop:
     STX.W $19ED 
-    LDA.W $19CD,X 
-    BEQ .next 
+    LDA.W $19CD,X : BEQ .next 
     JSR.W Process_CinematicBGObject_InstList 
     LDX.W $19ED 
 
@@ -2536,8 +2516,7 @@ Process_CinematicBGObject_InstList:
     LDY.W $19CD,X 
 
 .loop:
-    LDA.W $0000,Y 
-    BPL .timer 
+    LDA.W $0000,Y : BPL .timer 
     STA.B $12 
     INY #2
     PEA.W .loop-1 
@@ -2689,8 +2668,7 @@ Draw_CinematicSpriteObjects_IntroTitleSequence:
     LDX.W #$001E 
 
 .loop:
-    LDA.W $1A5D,X 
-    BEQ .next 
+    LDA.W $1A5D,X : BEQ .next 
     PEA.W $8C00 
     PLB 
     PLB 
@@ -2725,8 +2703,7 @@ Draw_CinematicSpriteObjects_EndingCredits:
     LDX.W #$001E 
 
 .loop:
-    LDA.W $1A5D,X 
-    BEQ .next 
+    LDA.W $1A5D,X : BEQ .next 
     PEA.W $8C00 
     PLB 
     PLB 
@@ -2765,8 +2742,7 @@ Spawn_TextGlowObject:
     LDX.W #$000E 
 
 .loop:
-    LDA.W $19F7,X 
-    BEQ .spawn 
+    LDA.W $19F7,X : BEQ .spawn 
     DEX #2
     BPL .loop 
     PLX 
@@ -2795,8 +2771,7 @@ Handle_TextGlowObject:
 
 .loop:
     STX.W $1A47 
-    LDA.W $19F7,X 
-    BEQ .next 
+    LDA.W $19F7,X : BEQ .next 
     JSR.W Process_TextGlowObject 
     LDX.W $1A47 
 
@@ -2928,8 +2903,7 @@ Handle_CreditsObject:
     REP #$30 
     BIT.W $19FF 
     BPL .return 
-    LDA.W $19F7 
-    BEQ .updateTilemap 
+    LDA.W $19F7 : BEQ .updateTilemap 
     JSR.W Process_CreditsObject_InstList 
 
 .updateTilemap:
@@ -2955,8 +2929,7 @@ Process_CreditsObject_InstList:
     LDY.W $19F7 
 
 .loop:
-    LDA.W $0000,Y 
-    BPL .copyRow 
+    LDA.W $0000,Y : BPL .copyRow 
     STA.B $12 
     INY #2
     PEA.W .loop-1 
@@ -3069,8 +3042,7 @@ SkipToTitleScreenCheck:
     LDA.B $8F 
     BIT.W #$9080 
     BEQ .return 
-    LDA.W $1A53 
-    BNE .return 
+    LDA.W $1A53 : BNE .return 
     LDA.W #$0001 : STA.W $1A53 
     STZ.W $0723 
     LDA.W #$0002 : STA.W $0725 
@@ -3082,8 +3054,7 @@ SkipToTitleScreenCheck:
 SkipToTitleScreenHandler:
     PHP 
     REP #$30 
-    LDA.W $1A53 
-    BEQ .return 
+    LDA.W $1A53 : BEQ .return 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
@@ -4035,8 +4006,7 @@ GameState_1E_22_25_Intro_CeresGoesBoom_SamusGoesToZebes_8B:
 
 
 .manualReturn:
-    LDA.W $1B9F 
-    BMI + 
+    LDA.W $1B9F : BMI + 
     INC A 
     STA.W $1B9F 
 
@@ -4231,8 +4201,7 @@ CinematicFunction_Intro_HandleDrawingInitialJapanText_Wait60f:
     BCC .return 
     LDA.W #CinematicFunction_Intro_PlayTheLastMetroidMusicFor200Frames : STA.W $1F51 
     LDA.W #$003C : STA.W $1A49 
-    LDA.W $09E2 
-    BEQ .return 
+    LDA.W $09E2 : BEQ .return 
     LDX.W $0330 
     LDA.W #$0100 : STA.B $D0,X 
     INX #2
@@ -4490,8 +4459,7 @@ PreInstruction_CinematicSpriteObject_MetroidEgg:
 
 
 PreInstruction_MetroidEgg_DeleteAfterCrossFade:
-    LDA.W $1A4B 
-    BNE .return 
+    LDA.W $1A4B : BNE .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete : STA.W $1B1D,X 
     STZ.W $1A57 
@@ -4695,8 +4663,7 @@ InitFunction_CinematicSpriteObject_BabyMetroidBeingDelivered:
 
 
 PreInst_CinematicSpriteObject_BabyMetroidBeingDelivered:
-    LDA.W $1A4B 
-    BNE .crossFading 
+    LDA.W $1A4B : BNE .crossFading 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete : STA.W $1B1D,X 
     RTS 
@@ -4706,8 +4673,7 @@ PreInst_CinematicSpriteObject_BabyMetroidBeingDelivered:
     LDA.W $1A49 
     BIT.W #$0003 
     BNE .return 
-    LDA.W $1993 
-    BEQ .return 
+    LDA.W $1993 : BEQ .return 
     DEC A 
     STA.W $1993 
     LDA.W $1A7D,X 
@@ -4726,8 +4692,7 @@ InitFunction_CinematicSpriteObject_BabyMetroidBeingExamined:
 
 
 PreInst_CinematicSpriteObject_BabyMetroidBeingExamined:
-    LDA.W $1A4B 
-    BNE .crossFading 
+    LDA.W $1A4B : BNE .crossFading 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete : STA.W $1B1D,X 
     RTS 
@@ -4796,8 +4761,7 @@ PreInst_CinematicSpriteObject_IntroJapanTextNextPageArrow:
 
 Instruction_HandleCreatingJapanText_Page1:
     STZ.W $1BA1 
-    LDA.W $09E2 
-    BEQ .return 
+    LDA.W $09E2 : BEQ .return 
     PHB 
     PEA.W $8B00 
     PLB 
@@ -4814,8 +4778,7 @@ Instruction_HandleCreatingJapanText_Page1:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page1:
     JSR.W Instruction_SetCaretToBlink 
-    LDA.W $09E2 
-    BEQ .waitForInput 
+    LDA.W $09E2 : BEQ .waitForInput 
     PHB 
     PEA.W $8B00 
     PLB 
@@ -4833,8 +4796,7 @@ Instruction_SpawnBlinkingMarkers_WaitForInput_Page1:
 
 Instruction_HandleCreatingJapanText_Page2:
     STZ.W $1BA1 
-    LDA.W $09E2 
-    BEQ .return 
+    LDA.W $09E2 : BEQ .return 
     PHB 
     PEA.W $8B00 
     PLB 
@@ -4851,8 +4813,7 @@ Instruction_HandleCreatingJapanText_Page2:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page2:
     JSR.W Instruction_SetCaretToBlink 
-    LDA.W $09E2 
-    BEQ .noJapanText 
+    LDA.W $09E2 : BEQ .noJapanText 
     PHB 
     PEA.W $8B00 
     PLB 
@@ -4875,16 +4836,14 @@ Instruction_SpawnBlinkingMarkers_WaitForInput_Page2:
 
 
 CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight:
-    LDA.W $1BA3 
-    BEQ .timerExpired 
+    LDA.W $1BA3 : BEQ .timerExpired 
     DEC A 
     STA.W $1BA3 
     RTS 
 
 
 .timerExpired:
-    LDA.B $8F 
-    BNE .newInputs 
+    LDA.B $8F : BNE .newInputs 
     RTS 
 
 
@@ -4939,16 +4898,14 @@ CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight:
 
 
 CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDiscovery:
-    LDA.W $1BA3 
-    BEQ .timerExpired 
+    LDA.W $1BA3 : BEQ .timerExpired 
     DEC A 
     STA.W $1BA3 
     RTS 
 
 
 .timerExpired:
-    LDA.B $8F 
-    BNE .newInputs 
+    LDA.B $8F : BNE .newInputs 
     RTS 
 
 
@@ -5032,8 +4989,7 @@ Setup_Intro_CrossFade_Into_SamusGameplay:
 
 Instruction_HandleCreatingJapanText_Page3:
     STZ.W $1BA1 
-    LDA.W $09E2 
-    BEQ .return 
+    LDA.W $09E2 : BEQ .return 
     PHB 
     PEA.W $8B00 
     PLB 
@@ -5050,8 +5006,7 @@ Instruction_HandleCreatingJapanText_Page3:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page3:
     JSR.W Instruction_SetCaretToBlink 
-    LDA.W $09E2 
-    BEQ .waitForInput 
+    LDA.W $09E2 : BEQ .waitForInput 
     PHB 
     PEA.W $8B00 
     PLB 
@@ -5075,8 +5030,7 @@ Instruction_SpawnBlinkingMarkers_WaitForInput_Page3:
 
 Instruction_HandleCreatingJapanText_Page4:
     STZ.W $1BA1 
-    LDA.W $09E2 
-    BEQ .return 
+    LDA.W $09E2 : BEQ .return 
     PHB 
     PEA.W $8B00 
     PLB 
@@ -5093,8 +5047,7 @@ Instruction_HandleCreatingJapanText_Page4:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page4:
     JSR.W Instruction_SetCaretToBlink 
-    LDA.W $09E2 
-    BEQ .waitForInput 
+    LDA.W $09E2 : BEQ .waitForInput 
     PHB 
     PEA.W $8B00 
     PLB 
@@ -5117,16 +5070,14 @@ Instruction_SpawnBlinkingMarkers_WaitForInput_Page4:
 
 
 CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDelivery:
-    LDA.W $1BA3 
-    BEQ .timerExpired 
+    LDA.W $1BA3 : BEQ .timerExpired 
     DEC A 
     STA.W $1BA3 
     RTS 
 
 
 .timerExpired:
-    LDA.B $8F 
-    BEQ .return 
+    LDA.B $8F : BEQ .return 
     SEP #$20 
     LDA.B #$58 : STA.B $58 
     REP #$20 
@@ -5143,16 +5094,14 @@ CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDelivery:
 
 
 CinematicFunc_Intro_WaitForInput_SetupBabyMetroidExamined:
-    LDA.W $1BA3 
-    BEQ .timerExpired 
+    LDA.W $1BA3 : BEQ .timerExpired 
     DEC A 
     STA.W $1BA3 
     RTS 
 
 
 .timerExpired:
-    LDA.B $8F 
-    BEQ .return 
+    LDA.B $8F : BEQ .return 
     SEP #$20 
     LDA.B #$5C : STA.B $58 
     REP #$20 
@@ -5198,8 +5147,7 @@ SetupIntroCrossFadeIntoScientistCutscene:
 
 Instruction_HandleCreatingJapanText_Page5:
     STZ.W $1BA1 
-    LDA.W $09E2 
-    BEQ .return 
+    LDA.W $09E2 : BEQ .return 
     PHB 
     PEA.W $8B00 
     PLB 
@@ -5216,8 +5164,7 @@ Instruction_HandleCreatingJapanText_Page5:
 
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page5:
     JSR.W Instruction_SetCaretToBlink 
-    LDA.W $09E2 
-    BEQ .waitForInput 
+    LDA.W $09E2 : BEQ .waitForInput 
     PHB 
     PEA.W $8B00 
     PLB 
@@ -5241,19 +5188,16 @@ Instruction_SpawnBlinkingMarkers_WaitForInput_Page5:
 
 CinematicFunction_Intro_WaitForInput_ClearText:
     JSR.W RTS_BackgroundFLickeringEffect 
-    LDA.W $1BA3 
-    BEQ .timerExpired 
+    LDA.W $1BA3 : BEQ .timerExpired 
     DEC A 
     STA.W $1BA3 
     RTS 
 
 
 .timerExpired:
-    LDA.B $8F 
-    BEQ .return 
+    LDA.B $8F : BEQ .return 
     LDA.W #$007F : STA.W $1A4B 
-    LDA.W $09E2 
-    BEQ CinematicFunction_Intro_Page6 
+    LDA.W $09E2 : BEQ CinematicFunction_Intro_Page6 
     LDA.W #CinematicFunction_Intro_Page6 : STA.W $1F51 
     JSL.L Disable_CinematicBGTilemap_Updates 
     JSR.W BlankOut_JapanText_Tiles 
@@ -5278,8 +5222,7 @@ CinematicFunction_Intro_Page6:
 
 Instruction_HandleCreatingJapanText_Page6:
     STZ.W $1BA1 
-    LDA.W $09E2 
-    BEQ .return 
+    LDA.W $09E2 : BEQ .return 
     PHB 
     PEA.W $8B00 
     PLB 
@@ -5346,8 +5289,7 @@ CinematicFunction_Intro_CrossFadeToSamusGameplay:
     BMI .loop 
     JSR.W BlankOut_JapanText_Tiles 
     LDA.W #CinematicFunction_Nothing : STA.W $1F51 
-    LDA.W $1A57 
-    BPL .return 
+    LDA.W $1A57 : BPL .return 
     LDY.W #PaletteFXObjects_OldMotherBrainFightBackgroundLights 
     JSL.L Spawn_PaletteFXObject 
 
@@ -5656,8 +5598,7 @@ Instruction_LoadIntroJapanTextPage2_Subpage1:
 
 
 Instruction_LoadIntroJapanTextPage2_Subpage2:
-    LDA.B $8F 
-    BEQ .return 
+    LDA.B $8F : BEQ .return 
     LDA.W #InstList_EnableCinematicBGTilemapUpdates_Page2DoneInput : STA.W $19A1,X 
     LDA.W #$0001 : STA.W $19A9,X 
     LDA.W #RTS_8B93D9 : STA.W $19A5,X 
@@ -5695,8 +5636,7 @@ Instruction_LoadIntroJapanTextPage3_Subpage1:
 
 
 PreInstruction_LoadIntroJapanTextPage3_Subpage2:
-    LDA.B $8F 
-    BEQ .return 
+    LDA.B $8F : BEQ .return 
     LDA.W #InstList_EnableCinematicBGTilemapUpdates_Page3DoneInput : STA.W $19A1,X 
     LDA.W #$0001 : STA.W $19A9,X 
     LDA.W #RTS_8B93D9 : STA.W $19A5,X 
@@ -5734,8 +5674,7 @@ Instruction_LoadIntroJapanTextPage4_Subpage1:
 
 
 PreInstruction_LoadIntroJapanTextPage4_Subpage2:
-    LDA.B $8F 
-    BEQ .return 
+    LDA.B $8F : BEQ .return 
     LDA.W #InstList_EnableCinematicBGTilemapUpdates_Page4DoneInput : STA.W $19A1,X 
     LDA.W #$0001 : STA.W $19A9,X 
     LDA.W #RTS_8B93D9 : STA.W $19A5,X 
@@ -5773,8 +5712,7 @@ Instruction_LoadIntroJapanTextPage5_Subpage1:
 
 
 PreInstruction_LoadIntroJapanTextPage5_Subpage2:
-    LDA.B $8F 
-    BEQ .return 
+    LDA.B $8F : BEQ .return 
     LDA.W #InstList_EnableCinematicBGTilemapUpdates_Page5DoneInput : STA.W $19A1,X 
     LDA.W #$0001 : STA.W $19A9,X 
     LDA.W #RTS_8B93D9 : STA.W $19A5,X 
@@ -5944,8 +5882,7 @@ PreInstruction_IntroMotherBrain_Exploding:
 
 PreInstruction_IntroMotherBrain_CrossFading:
     JSR.W IntroMotherBrain_ScreenShaking 
-    LDA.W $1A4B 
-    BNE .return 
+    LDA.W $1A4B : BNE .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete : STA.W $1B1D,X 
     STZ.W $1A57 
@@ -5955,8 +5892,7 @@ PreInstruction_IntroMotherBrain_CrossFading:
 
 
 IntroMotherBrain_HurtFlashHandling:
-    LDA.W $1ADD,X 
-    BEQ .return 
+    LDA.W $1ADD,X : BEQ .return 
     BIT.W #$0001 
     BNE + 
     PHX 
@@ -6019,8 +5955,7 @@ InitFunction_CinematicSpriteObject_IntroRinka:
     db $50,$00,$40,$00,$38,$00,$58,$00 
 
 Instruction_StartMoving_IntroRinka:
-    LDA.W $1B7D,X 
-    BNE .missesSamus 
+    LDA.W $1B7D,X : BNE .missesSamus 
     LDA.W #PreInstruction_IntroRinka_Moving_HitsSamus : STA.W $1B3D,X 
     RTS 
 
@@ -6125,8 +6060,7 @@ InitFunc_CineSpriteObject_IntroMotherBrainExplosion_Small:
     db $01,$00,$08,$00,$10,$00 
 
 PreInst_CinematicSpriteObject_IntroMotherBrainExplosion:
-    LDA.W $1A4B 
-    BNE .return 
+    LDA.W $1A4B : BNE .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete : STA.W $1B1D,X 
 
@@ -6225,8 +6159,7 @@ PreInstruction_ConfusedBabyMetroid_Hatched:
   + STA.B $12 
     LDA.W $1AFD,X : CLC : ADC.B $14 : STA.W $1AFD,X 
     LDA.W $1A9D,X : ADC.B $12 : STA.W $1A9D,X 
-    LDA.W $1A4F 
-    BMI .return 
+    LDA.W $1A4F : BMI .return 
     LDA.W #$0080 : STA.W $1A4D 
     LDA.W #PreInstruction_ConfusedBabyMetroid_Idling : STA.W $1B3D,X 
 
@@ -6250,8 +6183,7 @@ PreInstruction_ConfusedBabyMetroid_Idling:
 
 
 PreInstruction_ConfusedBabyMetroid_Dancing:
-    LDA.W $1A4B 
-    BNE .timerExpired 
+    LDA.W $1A4B : BNE .timerExpired 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete : STA.W $1B1D,X 
     STZ.W $1A57 
@@ -6532,8 +6464,7 @@ CinematicFunction_FlyToCeres_FlyingIntoCamera:
     db $00, $00 ; VRAM address increment mode
 
 InitFunction_CinematicSpriteObject_CeresStars:
-    LDA.W $1B9D 
-    BNE .nonZero 
+    LDA.W $1B9D : BNE .nonZero 
     LDA.W #$FC00 : STA.W $1B7D,Y 
     LDA.W #$0070 : STA.W $1A7D,Y 
     LDA.W #$0057 : STA.W $1A9D,Y 
@@ -6623,8 +6554,7 @@ PreInstruction_CinematicSpriteObject_CeresSmallAsteroid:
 
 
 InitFunction_CinematicSpriteObject_CeresPurpleSpaceVortex:
-    LDA.W $1B9D 
-    BNE .nonZero 
+    LDA.W $1B9D : BNE .nonZero 
     LDA.W #$0070 : STA.W $1A7D,Y 
     LDA.W #RTS_8BBFD9 : STA.W $1B3D,Y 
     BRA + 
@@ -6716,8 +6646,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_SkipNextInstructionIfEnglishText:
-    LDA.W $09E2 
-    BNE .return 
+    LDA.W $09E2 : BNE .return 
     TYA 
     CLC : ADC.W #$0006 : TAY 
 
@@ -7581,8 +7510,7 @@ Instruction_FadeInPlanetZebesText:
 
 
 Instruction_SpawnPlanetZebesJapanTextIfNeeded:
-    LDA.W $09E2 
-    BEQ .return 
+    LDA.W $09E2 : BEQ .return 
     PHY 
     LDY.W #CinematicSpriteObjectDefinitions_PlanetZebesJapanText 
     JSR.W Spawn_CinematicSpriteObject_Y 
@@ -8811,8 +8739,7 @@ GameState27_EndingAndCredits:
 
 
 .manualReturn:
-    LDA.W $1B9F 
-    BMI .zeroTimer 
+    LDA.W $1B9F : BMI .zeroTimer 
     INC A 
     STA.W $1B9F 
 
@@ -9516,8 +9443,7 @@ FadeOut_ZebesExplosion_AfterGlow:
 
 
 CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningFast:
-    LDA.W $1A4B 
-    BEQ .fadeOutAfterGlow 
+    LDA.W $1A4B : BEQ .fadeOutAfterGlow 
     DEC A 
     STA.W $1A4B 
     BRA .timerExpired 
@@ -10145,20 +10071,17 @@ CinematicFunction_PostCredits_IdleSamus2:
 
 
 CinematicFunction_PostCredits_SamusShootsScreen:
-    LDA.W $1A4D 
-    BEQ .timerExpired 
+    LDA.W $1A4D : BEQ .timerExpired 
     DEC A 
     STA.W $1A4D 
     LDX.W #$0180 
     LDY.W #$0010 
     JSR.W PaletteCrossFading_FadeOutYColorsStartingFromColorIndexX 
-    LDA.W $1A49 
-    BEQ .timerExpired 
+    LDA.W $1A49 : BEQ .timerExpired 
     JSR.W PaletteCrossFading_ComposeFadingPalettes 
 
 .timerExpired:
-    LDA.W $1A49 
-    BEQ .transitionPalette 
+    LDA.W $1A49 : BEQ .transitionPalette 
     DEC A 
     STA.W $1A49 
     BRA + 
@@ -10184,8 +10107,7 @@ CinematicFunction_PostCredits_SamusShootsScreen:
 
 
 TransitionSamusPaletteToBlack:
-    LDA.W $1A4F 
-    BEQ .return 
+    LDA.W $1A4F : BEQ .return 
     DEC A 
     STA.W $1A4F 
     LDX.W #$01E0 
@@ -10198,8 +10120,7 @@ TransitionSamusPaletteToBlack:
 
 
 TransferPostCreditsSuperMetroidIconToVRAM:
-    LDA.W $1A4F 
-    BNE .return 
+    LDA.W $1A4F : BNE .return 
     LDA.W $1A4D 
     CMP.W #$0006 
     BMI .loading 
@@ -10500,17 +10421,14 @@ Instruction_DrawItemPercentageCount:
     REP #$20 
     LDA.W $4214 : STA.B $12 
     LDA.W $4216 : STA.B $14 
-    LDA.B $12 
-    BEQ + 
+    LDA.B $12 : BEQ + 
     ASL #2
     TAY 
     LDA.W TilemapValuesForDecimalDigits_topHalf,Y : STA.L $7E339C 
     LDA.W TilemapValuesForDecimalDigits_bottomHalf,Y : STA.L $7E33DC 
 
-  + LDA.B $14 
-    BNE + 
-    LDA.B $12 
-    BEQ .unitsOnly 
+  + LDA.B $14 : BNE + 
+    LDA.B $12 : BEQ .unitsOnly 
     LDA.B $14 
 
   + ASL #2
@@ -10580,8 +10498,7 @@ TilemapValuesForDecimalDigits:
 
 Instruction_DrawItemPercentageJapanText:
     PHX 
-    LDA.W $09E2 
-    BEQ .return 
+    LDA.W $09E2 : BEQ .return 
     LDX.W #$007E 
 
 .loop:
@@ -10641,8 +10558,7 @@ Initialize_ShootingStars:
     TAX 
     LDA.W #$0000 : STA.W $000C,Y 
     STA.W $000E,Y 
-    LDA.W ShootingStar_Table_delay,X 
-    BEQ .zero 
+    LDA.W ShootingStar_Table_delay,X : BEQ .zero 
     STA.W $000A,Y 
     LDA.W $0000,Y : ORA.W #$8000 : STA.W $0000,Y 
     BRA + 
@@ -10668,8 +10584,7 @@ Initialize_ShootingStars:
 Handle_ShootingStars:
     PHP 
     REP #$30 
-    LDA.W $1A05 
-    BNE .loopSetup 
+    LDA.W $1A05 : BNE .loopSetup 
     PLP 
     RTS 
 
@@ -10693,8 +10608,7 @@ Handle_ShootingStars:
 
 
 .loopProcess:
-    LDA.W $0000,Y 
-    BMI .delay 
+    LDA.W $0000,Y : BMI .delay 
     PHA 
     AND.W #$FF00 
     CMP.W #$0400 
@@ -10761,8 +10675,7 @@ Handle_ShootingStars:
     LDY.W #$0E0C 
 
 .loopDraw:
-    LDA.W $0000,Y 
-    BMI .nextDraw 
+    LDA.W $0000,Y : BMI .nextDraw 
     LDA.W $0002,Y 
     BIT.W #$FF00 
     BNE .offScreen 
@@ -11606,8 +11519,7 @@ InitFunction_CinematicSpriteObject_YellowClouds_Top_TopHalf:
     LDA.W #$FFA0 : STA.W $1A9D,Y 
 
 CommonInit_YellowClouds_TopBottom:
-    LDA.W $1B9D 
-    BEQ .noInitParam 
+    LDA.W $1B9D : BEQ .noInitParam 
     LDA.W #$0180 : STA.W $1A7D,Y 
     LDA.W #$0A00 : STA.W $1ABD,Y 
     LDA.W $1B1D,Y : CLC : ADC.W #$0004 : STA.W $1B1D,Y 
@@ -11637,8 +11549,7 @@ InitFunction_CineSpriteObject_YellowClouds_Bottom_BottomHalf:
 
 InitFunction_CinematicSpriteObject_YellowClouds_Right:
     LDA.W #$0140 : STA.W $1A7D,Y 
-    LDA.W $1B9D 
-    BEQ .noInitParam 
+    LDA.W $1B9D : BEQ .noInitParam 
     LDA.W #$01C0 : STA.W $1A9D,Y 
     LDA.W #$0A00 : STA.W $1ABD,Y 
     RTS 
@@ -11652,8 +11563,7 @@ InitFunction_CinematicSpriteObject_YellowClouds_Right:
 
 InitFunction_CinematicSpriteObject_YellowClouds_Left:
     LDA.W #$FFC0 : STA.W $1A7D,Y 
-    LDA.W $1B9D 
-    BEQ .noInitParam 
+    LDA.W $1B9D : BEQ .noInitParam 
     LDA.W #$FF40 : STA.W $1A9D,Y 
     LDA.W #$0A00 : STA.W $1ABD,Y 
     RTS 
@@ -11790,8 +11700,7 @@ Instruction_CineSpriteObjectSpawnZebesExplosionSilhouette:
 
 
 PreInst_CineSpriteObj_ExplodingZebes_PurpleGlow_Stars_Lava:
-    LDA.W $1B3B 
-    BNE .return 
+    LDA.W $1B3B : BNE .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete_duplicate : STA.W $1B1D,X 
 

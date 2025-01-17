@@ -33,8 +33,7 @@ UploadToAPU_long:
 
 
 UploadToAPU:
-    LDA.L DebugConst_DisableAudio 
-    BEQ .upload ; If [DebugConst_DisableAudio] != 0:
+    LDA.L DebugConst_DisableAudio : BEQ .upload ; If [DebugConst_DisableAudio] != 0:
     RTS ; Return
 
 
@@ -431,12 +430,10 @@ WaitUntilTheEndOfAVBlank:
     SEP #$20 
 
 .waitVBlankStart:
-    LDA.W $4212 
-    BPL .waitVBlankStart ; Wait until v-blank is active
+    LDA.W $4212 : BPL .waitVBlankStart ; Wait until v-blank is active
 
 .waitVBlankEnd:
-    LDA.W $4212 
-    BMI .waitVBlankEnd ; Wait until v-blank has finished
+    LDA.W $4212 : BMI .waitVBlankEnd ; Wait until v-blank has finished
     PLP 
     PLA 
     RTL 
@@ -486,8 +483,7 @@ WaitForNMI:
     LDA.B #$01 : STA.W $05B4 ; Set NMI request flag
 
 .wait:
-    LDA.W $05B4 
-    BNE .wait ; Wait until NMI request acknowledged
+    LDA.W $05B4 : BNE .wait ; Wait until NMI request acknowledged
     PLB 
     PLP 
     RTL 
@@ -673,12 +669,10 @@ Boot:
     LDX.B #$04 
 
 .wait3Frames:
-    LDA.W $4212 
-    BPL .wait3Frames ; Wait the remainder of this frame and 3 more frames (???)
+    LDA.W $4212 : BPL .wait3Frames ; Wait the remainder of this frame and 3 more frames (???)
 
 ..wait:
-    LDA.W $4212 
-    BMI ..wait 
+    LDA.W $4212 : BMI ..wait 
     DEX 
     BNE .wait3Frames 
     REP #$30 
@@ -710,12 +704,10 @@ SoftReset:
     LDX.B #$04 
 
 .wait:
-    LDA.W $4212 
-    BPL .wait 
+    LDA.W $4212 : BPL .wait 
 
 .wait3Frames:
-    LDA.W $4212 
-    BMI .wait3Frames ; Wait the remainder of this frame and 3 more frames (???)
+    LDA.W $4212 : BMI .wait3Frames ; Wait the remainder of this frame and 3 more frames (???)
     DEX 
     BNE .wait 
 
@@ -783,12 +775,10 @@ CommonBootSection:
     LDX.B #$04 
 
 .wait:
-    LDA.W $4212 
-    BPL .wait 
+    LDA.W $4212 : BPL .wait 
 
 .wait3Frames:
-    LDA.W $4212 
-    BMI .wait3Frames ; Wait the remainder of this frame and 3 more frames (???)
+    LDA.W $4212 : BMI .wait3Frames ; Wait the remainder of this frame and 3 more frames (???)
     DEX 
     BNE .wait 
     REP #$30 
@@ -874,8 +864,7 @@ MirrorCurrentAreasMapExplored:
     INY #2
     CPY.W #$0100 
     BMI .loop 
-    LDA.W $0789 
-    BEQ .return 
+    LDA.W $0789 : BEQ .return 
     LDX.W $079F 
     LDA.L $7ED908,X : ORA.W #$00FF : STA.L $7ED908,X 
 
@@ -887,8 +876,7 @@ MirrorCurrentAreasMapExplored:
 NTSC_PAL_SRAM_MappingCheck:
     PHP 
     SEP #$30 
-    LDA.L Debug_RegionSRAM 
-    BEQ .region ; If [$80:8000] != 0:
+    LDA.L Debug_RegionSRAM : BEQ .region ; If [$80:8000] != 0:
     JMP.W .return ; Return
 
 
@@ -1509,8 +1497,7 @@ ProcessMode7Transfers:
 
 .loop:
     SEP #$20 
-    LDA.W $0000,X 
-    BMI .VRAM 
+    LDA.W $0000,X : BMI .VRAM 
     ASL A 
     BMI .CGRAM 
     PLP 
@@ -1587,8 +1574,7 @@ HandleVRAMWriteTable_ScrollingDMAs:
     LDY.W #$0000 
 
 .loop:
-    LDA.W $00D0,Y 
-    BEQ .done 
+    LDA.W $00D0,Y : BEQ .done 
     STA.W $4315 
     LDA.W $00D2,Y : STA.W $4312 
     LDA.W $00D3,Y : STA.W $4313 
@@ -1620,8 +1606,7 @@ HandleVRAMWriteTable_ScrollingDMAs:
 
 ExecuteHorizontalScrollingDMAs:
     LDA.B #$81 : STA.W $2115 
-    LDA.W $0962 
-    BEQ .BG2 
+    LDA.W $0962 : BEQ .BG2 
     STZ.W $0962 
     LDY.W $095A 
     STY.W $2116 
@@ -1655,8 +1640,7 @@ ExecuteHorizontalScrollingDMAs:
     LDA.B #$02 : STA.W $420B 
 
 .BG2:
-    LDA.W $097E 
-    BEQ .return 
+    LDA.W $097E : BEQ .return 
     STZ.W $097E 
     LDY.W $0976 
     STY.W $2116 
@@ -1695,8 +1679,7 @@ ExecuteHorizontalScrollingDMAs:
 
 ExecuteVerticalScrollingDMAs:
     LDA.B #$80 : STA.W $2115 
-    LDA.W $0970 
-    BEQ .BG2 
+    LDA.W $0970 : BEQ .BG2 
     STZ.W $0970 
     LDY.W $0968 
     STY.W $2116 
@@ -1736,8 +1719,7 @@ ExecuteVerticalScrollingDMAs:
     LDA.B #$02 : STA.W $420B 
 
 .BG2:
-    LDA.W $098C 
-    BEQ .return 
+    LDA.W $098C : BEQ .return 
     STZ.W $098C 
     LDY.W $0984 
     STY.W $2116 
@@ -1804,8 +1786,7 @@ HandleVRAMReadTable:
 
 .loop:
     REP #$20 
-    LDA.W $0340,X 
-    BEQ .done 
+    LDA.W $0340,X : BEQ .done 
     STA.W $2116 
     LDA.W $2139 
     LDA.W $0342,X : STA.W $4310 
@@ -1834,8 +1815,7 @@ CheckIfMusicIsQueued:
     LDX.W #$000E 
 
 .loop:
-    LDA.W $0629,X 
-    BNE .nonZeroTimer 
+    LDA.W $0629,X : BNE .nonZeroTimer 
     DEX #2
     BPL .loop 
     PLX 
@@ -1862,8 +1842,7 @@ HandleMusicQueue:
 
 
 .positive:
-    LDA.W $063D 
-    BMI .musicData 
+    LDA.W $063D : BMI .musicData 
     SEP #$20 
     AND.B #$7F 
     STA.W $07F5 
@@ -2005,8 +1984,7 @@ QueueSound:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$0F 
-    BRA QueueSound_Lib1 
+    LDA.B #$0F : BRA QueueSound_Lib1 
 
 
 QueueSound_Lib1_Max9:
@@ -2015,8 +1993,7 @@ QueueSound_Lib1_Max9:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$09 
-    BRA QueueSound_Lib1 
+    LDA.B #$09 : BRA QueueSound_Lib1 
 
 
 QueueSound_Lib1_Max3:
@@ -2025,8 +2002,7 @@ QueueSound_Lib1_Max3:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$03 
-    BRA QueueSound_Lib1 
+    LDA.B #$03 : BRA QueueSound_Lib1 
 
 
 QueueSound_Lib1_Max1:
@@ -2035,8 +2011,7 @@ QueueSound_Lib1_Max1:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$01 
-    BRA QueueSound_Lib1 
+    LDA.B #$01 : BRA QueueSound_Lib1 
 
 
 QueueSound_Lib1_Max6:
@@ -2097,8 +2072,7 @@ QueueSound_Lib2_Max15:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$0F 
-    BRA QueueSound_Lib2 
+    LDA.B #$0F : BRA QueueSound_Lib2 
 
 
 QueueSound_Lib2_Max9:
@@ -2107,8 +2081,7 @@ QueueSound_Lib2_Max9:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$09 
-    BRA QueueSound_Lib2 
+    LDA.B #$09 : BRA QueueSound_Lib2 
 
 
 QueueSound_Lib2_Max3:
@@ -2117,8 +2090,7 @@ QueueSound_Lib2_Max3:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$03 
-    BRA QueueSound_Lib2 
+    LDA.B #$03 : BRA QueueSound_Lib2 
 
 
 QueueSound_Lib2_Max1:
@@ -2127,8 +2099,7 @@ QueueSound_Lib2_Max1:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$01 
-    BRA QueueSound_Lib2 
+    LDA.B #$01 : BRA QueueSound_Lib2 
 
 
 QueueSound_Lib2_Max6:
@@ -2189,8 +2160,7 @@ QueueSound_Lib3_Max15:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$0F 
-    BRA QueueSound_Lib3 
+    LDA.B #$0F : BRA QueueSound_Lib3 
 
 
 QueueSound_Lib3_Max9:
@@ -2199,8 +2169,7 @@ QueueSound_Lib3_Max9:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$09 
-    BRA QueueSound_Lib3 
+    LDA.B #$09 : BRA QueueSound_Lib3 
 
 
 QueueSound_Lib3_Max3:
@@ -2209,8 +2178,7 @@ QueueSound_Lib3_Max3:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$03 
-    BRA QueueSound_Lib3 
+    LDA.B #$03 : BRA QueueSound_Lib3 
 
 
 QueueSound_Lib3_Max1:
@@ -2219,8 +2187,7 @@ QueueSound_Lib3_Max1:
     PHP 
     SEP #$30 
     XBA 
-    LDA.B #$01 
-    BRA QueueSound_Lib3 
+    LDA.B #$01 : BRA QueueSound_Lib3 
 
 
 QueueSound_Lib3_Max6:
@@ -2491,8 +2458,7 @@ TransferSamusTilesToVRAM:
     STX.W $420B 
     LDA.W #$6100 : STA.W $2116 
     LDA.B $14 : STA.W $4312 
-    LDA.B ($3C),Y 
-    BEQ .bottom 
+    LDA.B ($3C),Y : BEQ .bottom 
     STA.W $4315 
     STX.W $420B 
 
@@ -2513,8 +2479,7 @@ TransferSamusTilesToVRAM:
     STX.W $420B 
     LDA.W #$6180 : STA.W $2116 
     LDA.B $14 : STA.W $4312 
-    LDA.B ($3C),Y 
-    BEQ .return 
+    LDA.B ($3C),Y : BEQ .return 
     STA.W $4315 
     STX.W $420B 
 
@@ -2528,15 +2493,12 @@ ProcessAnimatedTilesObjectVRAMTransfers:
     LDX.B #$87 
     PHX 
     PLB 
-    LDA.W $1EF1 
-    BPL .return 
+    LDA.W $1EF1 : BPL .return 
     LDX.B #$0A 
 
 .loop:
-    LDA.W $1EF5,X 
-    BEQ .next 
-    LDA.W $1F25,X 
-    BEQ .next 
+    LDA.W $1EF5,X : BEQ .next 
+    LDA.W $1F25,X : BEQ .next 
     STA.W $4302 
     LDY.B #$87 
     STY.W $4304 
@@ -2571,8 +2533,7 @@ ReadControllerInput:
     AND.B $8B 
     STA.B $8F 
     STA.B $93 
-    LDA.B $8B 
-    BEQ .unheld 
+    LDA.B $8B : BEQ .unheld 
     CMP.B $97 
     BNE .unheld 
     DEC.B $A3 
@@ -2587,8 +2548,7 @@ ReadControllerInput:
 
 .heldEnd:
     LDA.B $8B : STA.B $97 
-    LDA.W $05D1 
-    BNE .debug 
+    LDA.W $05D1 : BNE .debug 
     PLP 
     RTL 
 
@@ -2599,8 +2559,7 @@ ReadControllerInput:
     AND.B $8D 
     STA.B $91 
     STA.B $95 
-    LDA.B $8D 
-    BEQ .unheld2 
+    LDA.B $8D : BEQ .unheld2 
     CMP.B $99 
     BNE .unheld2 
     DEC.B $A5 
@@ -2615,8 +2574,7 @@ ReadControllerInput:
 
 .held2End:
     LDA.B $8D : STA.B $99 
-    LDA.W $0617 
-    BNE .checkDebug 
+    LDA.W $0617 : BNE .checkDebug 
     LDA.B $8B 
     CMP.W #$3030 
     BNE .checkDebug 
@@ -2625,8 +2583,7 @@ ReadControllerInput:
 
 
 .checkDebug:
-    LDA.W $05D1 
-    BNE .debugEnabled 
+    LDA.W $05D1 : BNE .debugEnabled 
     STZ.W $05C5 
     STZ.W $05C7 
     LDA.W #$FFEF 
@@ -2724,8 +2681,7 @@ NMI:
     LDX.B #$00 
 
 .handleHDMAQueue:
-    LDA.W $18B4,X 
-    BEQ .next 
+    LDA.W $18B4,X : BEQ .next 
     LDY.W $18C0,X 
     LDA.W $18D8,X : STA.W $4302,Y 
 
@@ -2819,8 +2775,7 @@ ExecuteDoorTransitionVRAMUpdate:
 
 
 Interrupt_Cmd0:
-    LDA.B $A7 
-    BEQ .returnZero 
+    LDA.B $A7 : BEQ .returnZero 
     STZ.B $A7 
     BRA .return 
 
@@ -2863,8 +2818,7 @@ Interrupt_Cmd6_MainGameplay_EndHUDDrawing:
     LDA.B $5B : STA.W $2109 
     LDA.B $6A : STA.W $212C 
     REP #$20 
-    LDA.B $A7 
-    BEQ .setCommand4 
+    LDA.B $A7 : BEQ .setCommand4 
     STZ.B $A7 
     BRA .return 
 
@@ -2897,8 +2851,7 @@ Interrupt_CmdA_StartDoorTransition_EndHUDDrawing:
     ORA.W $07B1 
     BIT.B #$01 
     BEQ .BG1Sprites 
-    LDA.B #$10 
-    BRA .sprites 
+    LDA.B #$10 : BRA .sprites 
 
 
 .BG1Sprites:
@@ -2907,8 +2860,7 @@ Interrupt_CmdA_StartDoorTransition_EndHUDDrawing:
 .sprites:
     STA.W $212C 
     REP #$20 
-    LDA.B $A7 
-    BEQ .command8 
+    LDA.B $A7 : BEQ .command8 
     STZ.B $A7 
     BRA .return 
 
@@ -2940,8 +2892,7 @@ Interrupt_CmdE_Draygon_EndHUDDrawing:
     LDA.B $70 : STA.W $2130 
     LDA.B $73 : STA.W $2131 
     REP #$20 
-    LDA.B $A7 
-    BEQ .commandC 
+    LDA.B $A7 : BEQ .commandC 
     STZ.B $A7 
     BRA .return 
 
@@ -2973,8 +2924,7 @@ Interrupt_Cmd12_VerticalDoorTransition_EndHUDDrawing:
     ORA.W $07B1 
     BIT.B #$01 
     BEQ .BG1Sprites 
-    LDA.B #$10 
-    BRA .sprites 
+    LDA.B #$10 : BRA .sprites 
 
 
 .BG1Sprites:
@@ -2990,8 +2940,7 @@ Interrupt_Cmd12_VerticalDoorTransition_EndHUDDrawing:
     JSR.W ExecuteDoorTransitionVRAMUpdate 
 
 .scrolling:
-    LDA.W $0931 
-    BMI .return 
+    LDA.W $0931 : BMI .return 
     JSL.L DoorTransitionScrolling 
 
 .return:
@@ -3002,8 +2951,7 @@ Interrupt_Cmd12_VerticalDoorTransition_EndHUDDrawing:
 
 
 Interrupt_Cmd14_VerticalDoorTransition_EndDrawing:
-    LDA.B $A7 
-    BEQ .command10 
+    LDA.B $A7 : BEQ .command10 
     STZ.B $A7 
     BRA .return 
 
@@ -3037,8 +2985,7 @@ Interrupt_Cmd18_HorizontalDoorTransition_EndHUDDrawing:
     ORA.W $07B1 
     BIT.B #$01 
     BEQ .BG1Sprites 
-    LDA.B #$10 
-    BRA .sprites 
+    LDA.B #$10 : BRA .sprites 
 
 
 .BG1Sprites:
@@ -3049,8 +2996,7 @@ Interrupt_Cmd18_HorizontalDoorTransition_EndHUDDrawing:
     STZ.W $2130 
     STZ.W $2131 
     REP #$20 
-    LDA.W $0931 
-    BMI .return 
+    LDA.W $0931 : BMI .return 
     JSL.L DoorTransitionScrolling 
 
 .return:
@@ -3066,8 +3012,7 @@ Interrupt_Cmd1A_HorizontalDoorTransition_EndDrawing:
     JSR.W ExecuteDoorTransitionVRAMUpdate 
 
 .nextCommand:
-    LDA.B $A7 
-    BEQ .command16 
+    LDA.B $A7 : BEQ .command16 
     STZ.B $A7 
     BRA .return 
 
@@ -3320,18 +3265,15 @@ InitialiseHUD_GameLoading:
     JSL.L AddGrappleToHUDTilemap 
 
 .missiles:
-    LDA.W $09C8 
-    BEQ .superMissiles 
+    LDA.W $09C8 : BEQ .superMissiles 
     JSL.L AddMissilesToHUDTilemap 
 
 .superMissiles:
-    LDA.W $09CC 
-    BEQ .powerBombs 
+    LDA.W $09CC : BEQ .powerBombs 
     JSL.L AddSuperMissilesToHUDTilemap 
 
 .powerBombs:
-    LDA.W $09D0 
-    BEQ .previous 
+    LDA.W $09D0 : BEQ .previous 
     JSL.L AddPowerBombsToHUDTilemap 
 
 .previous:
@@ -3344,22 +3286,19 @@ InitialiseHUD_GameLoading:
     LDA.W #Tilemap_HUDDigits_ammo : STA.B $00 
     LDA.W #$0080 ; bank $80
     STA.B $02 
-    LDA.W $09C8 
-    BEQ .maxSuperMissiles 
+    LDA.W $09C8 : BEQ .maxSuperMissiles 
     LDA.W $09C6 
     LDX.W #$0094 
     JSR.W DrawThreeHUDDigits 
 
 .maxSuperMissiles:
-    LDA.W $09CC 
-    BEQ .maxPowerBombs 
+    LDA.W $09CC : BEQ .maxPowerBombs 
     LDX.W #$009C 
     LDA.W $09CA 
     JSR.W DrawTwoHUDDigits 
 
 .maxPowerBombs:
-    LDA.W $09D0 
-    BEQ .highlight 
+    LDA.W $09D0 : BEQ .highlight 
     LDA.W $09CE 
     LDX.W #$00A2 
     JSR.W DrawTwoHUDDigits 
@@ -3389,8 +3328,7 @@ HandleHUDTilemap_PausedAndRunning:
     CMP.W #$0001 
     BNE .handleSamusHealth 
     LDY.W #Tilemap_HUD_autoReserve 
-    LDA.W $09D6 
-    BNE .drawAutoReserve 
+    LDA.W $09D6 : BNE .drawAutoReserve 
     LDY.W #Tilemap_HUD_emptyAutoReserve 
 
 .drawAutoReserve:
@@ -3433,8 +3371,7 @@ HandleHUDTilemap_PausedAndRunning:
     DEC.B $16 
     BEQ .drawEtanksDigits 
     LDX.W #$3430 
-    LDA.B $14 
-    BEQ .drawEtanks 
+    LDA.B $14 : BEQ .drawEtanks 
     DEC.B $14 
     LDX.W #$2831 
 
@@ -3454,8 +3391,7 @@ HandleHUDTilemap_PausedAndRunning:
 
 .handleSamusMissiles:
     LDA.W #Tilemap_HUDDigits_ammo : STA.B $00 
-    LDA.W $09C8 
-    BEQ .handleSuperMissiles 
+    LDA.W $09C8 : BEQ .handleSuperMissiles 
     LDA.W $09C6 
     CMP.W $0A08 
     BEQ .handleSuperMissiles 
@@ -3464,8 +3400,7 @@ HandleHUDTilemap_PausedAndRunning:
     JSR.W DrawThreeHUDDigits 
 
 .handleSuperMissiles:
-    LDA.W $09CC 
-    BEQ .handlePowerBombs 
+    LDA.W $09CC : BEQ .handlePowerBombs 
     LDA.W $09CA 
     CMP.W $0A0A 
     BEQ .handlePowerBombs 
@@ -3484,8 +3419,7 @@ HandleHUDTilemap_PausedAndRunning:
     JSR.W DrawThreeHUDDigits 
 
 .handlePowerBombs:
-    LDA.W $09D0 
-    BEQ .handleHighlighter 
+    LDA.W $09D0 : BEQ .handleHighlighter 
     LDA.W $09CE 
     CMP.W $0A0C 
     BEQ .handleHighlighter 
@@ -3511,8 +3445,7 @@ HandleHUDTilemap_PausedAndRunning:
     LDA.W $0D32 
     CMP.W #GrappleBeamFunction_Inactive 
     BNE .handleAutoCancel 
-    LDA.W $0A78 
-    BNE .handleAutoCancel 
+    LDA.W $0A78 : BNE .handleAutoCancel 
     LDA.W #$0039 
     JSL.L QueueSound_Lib1_Max6 
 
@@ -3976,8 +3909,7 @@ StartGameplay:
     JSR.W CalculateBGScrolls 
     JSL.L DisplayViewablePartOfRoom 
     JSL.L EnableNMI 
-    LDA.B $A9 
-    BNE .setNextInterrupt 
+    LDA.B $A9 : BNE .setNextInterrupt 
     LDA.W #$0004 
 
 .setNextInterrupt:
@@ -4170,8 +4102,7 @@ CalculateLayer2XPosition:
     PHP 
     LDY.W $0911 
     SEP #$20 
-    LDA.W $091B 
-    BEQ .scrollReturn 
+    LDA.W $091B : BEQ .scrollReturn 
     CMP.B #$01 
     BEQ .return 
     AND.B #$FE 
@@ -4204,8 +4135,7 @@ CalculateLayer2YPosition:
     PHP 
     LDY.W $0915 
     SEP #$20 
-    LDA.W $091C 
-    BEQ .scrollReturn 
+    LDA.W $091C : BEQ .scrollReturn 
     CMP.B #$01 
     BEQ .return 
     AND.B #$FE 
@@ -4253,8 +4183,7 @@ CalculateBGScrolls_UpdateBGGraphics_WhenScrolling:
 
 
 Calc_Layer2Position_BGScrolls_UpdateBGGraphics_WhenScrolling:
-    LDA.W $0A78 
-    BEQ .continue 
+    LDA.W $0A78 : BEQ .continue 
     RTL 
 
 
@@ -4459,13 +4388,11 @@ HandleScrollZones_HorizontalAutoscrolling:
 
 
 .returnLayer1X:
-    LDA.W $0939 
-    BRA + 
+    LDA.W $0939 : BRA + 
 
 
 .reachedRightScrollBoundary:
-    LDA.W $0933 
-    BRA + 
+    LDA.W $0933 : BRA + 
 
 
 .unboundedFromLeft:
@@ -4490,8 +4417,7 @@ HandleScrollZones_HorizontalAutoscrolling:
 
 
 .return0939:
-    LDA.W $0939 
-    BRA + 
+    LDA.W $0939 : BRA + 
 
 
 .reachedLeftScrollBoundary:
@@ -4566,8 +4492,7 @@ HandleScrollZones_ScrollingLeft:
     LDA.W $0B0A : STA.W $0911 
     STZ.W $090F 
 
-  + LDA.W $0911 
-    BPL + 
+  + LDA.W $0911 : BPL + 
     STZ.W $0911 
     BRA .return 
 
@@ -4664,13 +4589,11 @@ HandleScrollZones_VerticalAutoscrolling:
     BRA .returnLayer1Y 
 
 
-  + LDA.W $0939 
-    BRA .returnLayer1Y 
+  + LDA.W $0939 : BRA .returnLayer1Y 
 
 
 .reachedBottomScrollBoundary:
-    LDA.W $0935 
-    BRA .returnLayer1Y 
+    LDA.W $0935 : BRA .returnLayer1Y 
 
 
 .unboundedFromAbove:
@@ -4699,8 +4622,7 @@ HandleScrollZones_VerticalAutoscrolling:
 
 
 .returnProposedLayer1X:
-    LDA.W $0939 
-    BRA .returnLayer1Y 
+    LDA.W $0939 : BRA .returnLayer1Y 
 
 
 .reachedTopScrollBoundary:
@@ -4786,8 +4708,7 @@ HandleScrollZones_ScrollingUp:
     LDA.W $0B0E : STA.W $0915 
     STZ.W $0913 
 
-  + LDA.W $0915 
-    BPL + 
+  + LDA.W $0915 : BPL + 
     STZ.W $0915 
     BRA .return 
 
@@ -4842,8 +4763,7 @@ UpdateLevelDataColumn:
     LDX.W #$0000 
 
 UpdateLevelBackgroundDataColumn:
-    LDA.W $0783 
-    BEQ + 
+    LDA.W $0783 : BEQ + 
     RTS 
 
 
@@ -4972,8 +4892,7 @@ UpdateLevelDataRow:
     LDX.W #$0000 
 
 UpdateBackgroundLevelDataRow:
-    LDA.W $0783 
-    BEQ + 
+    LDA.W $0783 : BEQ + 
     RTS 
 
 
@@ -5455,8 +5374,7 @@ UNUSED_SetupRotatingMode7Background_80B032:
 UNUSED_ConfigureMode7RotationMatrix_80B0C2:
     PHP 
     REP #$30 
-    LDA.W $0783 
-    BEQ .return 
+    LDA.W $0783 : BEQ .return 
     LDA.W $05B6 : AND.W #$0007 
     BNE .return 
     LDA.W $0785 : AND.W #$00FF 
@@ -5993,8 +5911,7 @@ DecompressionToVRAM:
     LSR A 
     STA.L $002116 
     LDA.L $002139 
-    LDA.L $002139 
-    BCC + 
+    LDA.L $002139 : BCC + 
     XBA 
 
   + INC.B $4A 

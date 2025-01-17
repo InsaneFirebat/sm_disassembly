@@ -11930,8 +11930,7 @@ PlaySamusFanfare:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $0DEC 
-    BNE .nonZero 
+    LDA.W $0DEC : BNE .nonZero 
     LDA.W #$0001 
     LDY.W #$000E 
     JSL.L QueueMusicDataOrTrack_YFrameDelay 

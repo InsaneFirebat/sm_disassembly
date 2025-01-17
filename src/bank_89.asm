@@ -3347,8 +3347,7 @@ Load_FX_Header:
     LDY.W #$0000 
 
 .loopDoor:
-    LDA.W $0000,X 
-    BEQ .load 
+    LDA.W $0000,X : BEQ .load 
     CMP.W #$FFFF 
     BNE + 
     PLB 
@@ -3475,8 +3474,7 @@ RoomMainASM_CeresElevatorShaft:
     PHB 
     PHK 
     PLB 
-    LDA.W $093F 
-    BMI .rotating 
+    LDA.W $093F : BMI .rotating 
     PLB 
     RTL 
 
@@ -3492,10 +3490,8 @@ RoomMainASM_CeresElevatorShaft:
     LDA.W $0AFA 
     CMP.W #$004B 
     BMI .handleRotationMatrix 
-    LDA.W $0B2E 
-    BNE .handleRotationMatrix 
-    LDA.W $0B2C 
-    BNE .handleRotationMatrix 
+    LDA.W $0B2E : BNE .handleRotationMatrix 
+    LDA.W $0B2C : BNE .handleRotationMatrix 
     LDA.W $0998 
     CMP.W #$0008 
     BNE .handleRotationMatrix 
@@ -3519,8 +3515,7 @@ RoomMainASM_CeresElevatorShaft:
     STA.B $7C 
     LDA.W .cosT,X : STA.B $78 
     STA.B $7E 
-    LDA.W $07E1 
-    BMI .decRotationMatrixIndex 
+    LDA.W $07E1 : BMI .decRotationMatrixIndex 
     INC A 
     CMP.W #$0044 
     BNE .storeIndex 

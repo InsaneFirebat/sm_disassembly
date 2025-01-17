@@ -2217,10 +2217,8 @@ DebugHandler_7_EnemyDebugger_EnemySpawnDataEditor:
     LDX.W $1846 
     LDA.W $0F78,X 
     TAX 
-    LDA.L $A0003E,X 
-    BNE .nonZeroName 
-    LDA.W #$0030 
-    BRA .draw 
+    LDA.L $A0003E,X : BNE .nonZeroName 
+    LDA.W #$0030 : BRA .draw 
 
 
 .nonZeroName:
@@ -2388,18 +2386,14 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     LDA.W #$00B0 : STA.B $14 
     LDA.W #$0048 : STA.B $12 
     LDX.W $1846 
-    LDA.L $7E701E,X 
-    BNE .hasSpawnID 
-    LDA.W #$0030 
-    BRA .resolvedName 
+    LDA.L $7E701E,X : BNE .hasSpawnID 
+    LDA.W #$0030 : BRA .resolvedName 
 
 
 .hasSpawnID:
     TAX 
-    LDA.L $A0003E,X 
-    BNE + 
-    LDA.W #$0030 
-    BRA .resolvedName 
+    LDA.L $A0003E,X : BNE + 
+    LDA.W #$0030 : BRA .resolvedName 
 
 
   + TAX 
@@ -2458,8 +2452,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     TAX 
     LDA.L $A0003E,X 
     TAX 
-    LDA.L $B4000C,X 
-    BNE + 
+    LDA.L $B4000C,X : BNE + 
     STZ.W $185C 
     LDA.W #$0001 
     RTS 
@@ -2834,8 +2827,7 @@ DebugHandler_0_Default:
 
 .A:
     LDY.W #$0001 
-    LDA.W $0E12 
-    BEQ .toggle 
+    LDA.W $0E12 : BEQ .toggle 
     LDY.W #$0000 
 
 .toggle:
@@ -3008,10 +3000,8 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     LDX.W $1846 
     LDA.W $0F78,X 
     TAX 
-    LDA.L $A0003E,X 
-    BNE .debugName 
-    LDA.W #$0030 
-    BRA .draw 
+    LDA.L $A0003E,X : BNE .debugName 
+    LDA.W #$0030 : BRA .draw 
 
 
 .debugName:
@@ -3398,8 +3388,7 @@ Add_Debug_Spritemap_to_OAM:
     LDX.B $1C 
 
   + SEP #$20 
-    LDA.W $0000,Y 
-    BMI + 
+    LDA.W $0000,Y : BMI + 
     CLC : ADC.B $12 : BCS .F0 
     CMP.B #$F0 
     BCC .store 
@@ -3426,8 +3415,7 @@ Add_Debug_Spritemap_to_OAM:
 
 .unknown:
     INY 
-    LDA.B $26 
-    BEQ .useSpritemapEntryPalette 
+    LDA.B $26 : BEQ .useSpritemapEntryPalette 
     LDA.W $0000,Y : AND.W #$F1FF 
     ORA.B $26 
     BRA .next 
@@ -6550,8 +6538,7 @@ Create_Sprite_Object:
     LDX.W #$003E 
 
 .loop:
-    LDA.L $7EEF78,X 
-    BEQ .found 
+    LDA.L $7EEF78,X : BEQ .found 
     DEX #2
     BPL .loop 
     BRA .return 
@@ -6601,13 +6588,11 @@ HandleSpriteObjects:
 
 .loop:
     LDX.W $1844 
-    LDA.L $7EEF78,X 
-    BEQ .next 
+    LDA.L $7EEF78,X : BEQ .next 
     LDA.L $7EF2F8,X 
     BIT.W #$0001 
     BNE .next 
-    LDA.L $7EEFF8,X 
-    BMI .ASMInstruction 
+    LDA.L $7EEFF8,X : BMI .ASMInstruction 
     DEC A 
     STA.L $7EEFF8,X 
     BNE .next 
@@ -6684,8 +6669,7 @@ DrawSpriteObjects:
     LDX.W #$003E 
 
 .loop:
-    LDA.L $7EEF78,X 
-    BEQ .next 
+    LDA.L $7EEF78,X : BEQ .next 
     LDA.L $7EF0F8,X : SEC : SBC.W $0911 : STA.B $14 
     CLC : ADC.W #$0010 : BMI .next 
     CMP.W #$0120 

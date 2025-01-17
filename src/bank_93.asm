@@ -130,8 +130,7 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
 
 
 .notBeam:
-    LDA.W $1F51 
-    BNE .setExplosion 
+    LDA.W $1F51 : BNE .setExplosion 
     LDA.W #$0007 
     JSL.L QueueSound_Lib2_Max6 
 
@@ -261,8 +260,7 @@ ProjectileInstructionHandler:
     LDY.W $0C40,X 
 
 .loop:
-    LDA.W $0000,Y 
-    BPL .timer 
+    LDA.W $0000,Y : BPL .timer 
     STA.B $12 
     INY #2
     PEA.W .loop-1 
@@ -324,8 +322,7 @@ DrawProjectiles:
     STX.W $0DDE 
 
 .loop:
-    LDA.W $0C40,X 
-    BNE + 
+    LDA.W $0C40,X : BNE + 
     JMP.W .next 
 
 
@@ -371,11 +368,9 @@ DrawProjectiles:
     BPL .next 
 
 .draw:
-    LDA.W $093F 
-    BPL .noRotation 
+    LDA.W $093F : BPL .noRotation 
     JSL.L Calculate_ProjectilePosition_InRotatingElevatorRoom 
-    LDA.B $12 
-    BRA .positionCalculated 
+    LDA.B $12 : BRA .positionCalculated 
 
 
 .noRotation:
@@ -385,14 +380,12 @@ DrawProjectiles:
 .positionCalculated:
     AND.W #$FF00 
     BNE + 
-    LDA.W $0CB8,X 
-    BPL .loadIndex 
+    LDA.W $0CB8,X : BPL .loadIndex 
     JSL.L AddProjectileSpritemapToOAM 
     BRA .loadIndex 
 
 
-  + LDA.W $0CB8,X 
-    BPL .loadIndex 
+  + LDA.W $0CB8,X : BPL .loadIndex 
     JSL.L RTL_818AB7 
 
 .loadIndex:
@@ -420,20 +413,17 @@ UNUSED_PartialDrawProjectiles_9282FD:
     STX.W $0DDE 
 
 .loop:
-    LDA.W $0C40,X 
-    BEQ .next 
+    LDA.W $0C40,X : BEQ .next 
     LDA.W $0B64,X : SEC : SBC.W $0911 : STA.B $14 
     LDA.W $0B78,X : SEC : SBC.W #$0008 : SEC : SBC.W $0915 : STA.B $12 
     AND.W #$FF00 
     BNE + 
-    LDA.W $0CB8,X 
-    BPL .getIndex 
+    LDA.W $0CB8,X : BPL .getIndex 
     JSL.L AddProjectileSpritemapToOAM 
     BRA .getIndex 
 
 
-  + LDA.W $0CB8,X 
-    BPL .getIndex 
+  + LDA.W $0CB8,X : BPL .getIndex 
     JSL.L RTL_818AB7 
 
 .getIndex:
@@ -460,24 +450,20 @@ DrawBombsAndProjectileExplosions:
     STX.W $0DDE 
 
 .loop:
-    LDA.W $0C40,X 
-    BEQ .next 
+    LDA.W $0C40,X : BEQ .next 
     LDA.W $0C18,X : AND.W #$0F00 
     CMP.W #$0300 
     BMI .next 
     BEQ .powerBomb 
     CMP.W #$0500 
     BEQ .normalPositionCalculation 
-    LDA.W $093F 
-    BPL .normalPositionCalculation 
+    LDA.W $093F : BPL .normalPositionCalculation 
     JSL.L Calculate_ProjectilePosition_InRotatingElevatorRoom 
-    LDA.B $12 
-    BRA .calculatedPosition 
+    LDA.B $12 : BRA .calculatedPosition 
 
 
 .powerBomb:
-    LDA.W $0C7C,X 
-    BEQ .next 
+    LDA.W $0C7C,X : BEQ .next 
 
 .normalPositionCalculation:
     LDA.W $0B64,X : SEC : SBC.W $0911 : STA.B $14 

@@ -44,8 +44,7 @@ Spawn_AnimatedTilesObject:
     LDX.W #$000A 
 
 .loop:
-    LDA.W $1EF5,X 
-    BEQ .found 
+    LDA.W $1EF5,X : BEQ .found 
     DEX #2
     BPL .loop 
     PLX 
@@ -82,8 +81,7 @@ AnimatedTilesObject_Handler:
 
 .loop:
     STX.W $1EF3 
-    LDA.W $1EF5,X 
-    BEQ .next 
+    LDA.W $1EF5,X : BEQ .next 
     JSR.W Process_AnimatedTilesObject 
     LDX.W $1EF3 
 
@@ -104,8 +102,7 @@ Process_AnimatedTilesObject:
     LDY.W $1F0D,X 
 
 .loop:
-    LDA.W $0000,Y 
-    BPL .notInstruction 
+    LDA.W $0000,Y : BPL .notInstruction 
     STA.W $1F49 
     INY #2
     PEA.W .loop-1 
@@ -504,8 +501,7 @@ Instruction_AnimTilesObject_SpawnTourianStatuesSoulParamY:
 
 
 Instruction_AnimatedTilesObject_GotoYIfTourianStatueBusy:
-    LDA.W $1E6F 
-    BPL .notBusy 
+    LDA.W $1E6F : BPL .notBusy 
     JMP.W Instruction_AnimatedTilesObject_GotoY 
 
 

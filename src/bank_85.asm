@@ -387,8 +387,7 @@ Setup_MessageBox_BG3_Yscroll_HDMA:
 
 DrawShootButton_SetupPPUForLargeMessageBox:
     REP #$30 
-    LDA.W $09B2 
-    BRA DrawSpecialButton_SetupPPUForLargeMessageBox 
+    LDA.W $09B2 : BRA DrawSpecialButton_SetupPPUForLargeMessageBox 
 
 
 DrawRunButton_SetupPPUForLargeMessageBox:
@@ -502,10 +501,8 @@ Handle_MessageBox_Interaction:
     LDA.W $4212 
     BIT.B #$01 
     BNE .loopInput 
-    LDA.W $4218 
-    BNE .busyReturn 
-    LDA.W $4219 
-    BEQ .loopInput 
+    LDA.W $4218 : BNE .busyReturn 
+    LDA.W $4219 : BEQ .loopInput 
 
 .busyReturn:
     RTS 
@@ -529,8 +526,7 @@ Handle_MessageBox_Interaction:
     BNE .waitLoop 
     JSL.L ReadControllerInput 
     REP #$30 
-    LDA.B $8F 
-    BEQ .saveInput 
+    LDA.B $8F : BEQ .saveInput 
     BIT.W #$0080 
     BNE .inputA 
     BIT.W #$8000 
@@ -550,8 +546,7 @@ Handle_MessageBox_Interaction:
 
 
 .inputA:
-    LDA.W $05F9 
-    BNE .return 
+    LDA.W $05F9 : BNE .return 
     BRA .return 
 
 

@@ -904,8 +904,7 @@ BabyMetroidFadingToBlackPalettes_6:
 FadeMotherBrainPaletteToBlack:
     ASL A 
     TAX 
-    LDA.L .pointers,X 
-    BNE .notZero 
+    LDA.L .pointers,X : BNE .notZero 
     SEC 
     RTL 
 
@@ -1113,8 +1112,7 @@ TransitionMotherBrainPaletteToGrey_FakeDeath:
     PHX 
     ASL A 
     TAX 
-    LDA.L MotherBrainPalettes_TransitionToGrey,X 
-    BNE TransitionMotherBrainPaletteToFromGrey_FakeDeath 
+    LDA.L MotherBrainPalettes_TransitionToGrey,X : BNE TransitionMotherBrainPaletteToFromGrey_FakeDeath 
     PLX 
     SEC 
     RTL 
@@ -1124,8 +1122,7 @@ TransitionMotherBrainPaletteFromGrey_FakeDeath:
     PHX 
     ASL A 
     TAX 
-    LDA.L MotherBrainPalettes_TransitionFromGrey,X 
-    BNE TransitionMotherBrainPaletteToFromGrey_FakeDeath 
+    LDA.L MotherBrainPalettes_TransitionFromGrey,X : BNE TransitionMotherBrainPaletteToFromGrey_FakeDeath 
     PLX 
     SEC 
     RTL 
@@ -1151,8 +1148,7 @@ TransitionMotherBrainPaletteToFromGrey_FakeDeath:
 TransitionMotherBrainPaletteFromGrey_DrainedByBabyMetroid:
     ASL A 
     TAX 
-    LDA.L MotherBrainPalettes_TransitionFromGrey,X 
-    BNE .notZero 
+    LDA.L MotherBrainPalettes_TransitionFromGrey,X : BNE .notZero 
     SEC 
     RTL 
 
@@ -1184,8 +1180,7 @@ TransitionMotherBrainPaletteFromGrey_DrainedByBabyMetroid:
 TransitionMotherBrainPaletteToGrey_DrainedByBabyMetroid:
     ASL A 
     TAX 
-    LDA.L .pointers,X 
-    BNE .notZero 
+    LDA.L .pointers,X : BNE .notZero 
     SEC 
     RTL 
 
@@ -1268,8 +1263,7 @@ TransitionMotherBrainPaletteToGrey_DrainedByBabyMetroid:
 TransitionMotherBrainPaletteToGrey_RealDeath:
     ASL A 
     TAX 
-    LDA.L .pointers,X 
-    BNE .notZero 
+    LDA.L .pointers,X : BNE .notZero 
     SEC 
     RTL 
 
@@ -1359,8 +1353,7 @@ FadeOutBackgroundForBabyMetroidDeathSequence:
 FadeInBackgroundForMotherBrainPhase3:
     ASL A 
     TAX 
-    LDA.L .pointers,X 
-    BNE .notZero 
+    LDA.L .pointers,X : BNE .notZero 
     SEC 
     RTL 
 

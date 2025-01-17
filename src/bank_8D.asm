@@ -9573,8 +9573,7 @@ Spawn_PaletteFXObject:
     LDX.W #$000E 
 
 .loop:
-    LDA.W $1E7D,X 
-    BEQ .zero 
+    LDA.W $1E7D,X : BEQ .zero 
     DEX #2
     BPL .loop 
     PLX 
@@ -9619,8 +9618,7 @@ PaletteFXObject_Handler:
 
 .loop:
     STX.W $1E7B 
-    LDA.W $1E7D,X 
-    BEQ .next 
+    LDA.W $1E7D,X : BEQ .next 
     JSR.W Process_PaleteFXObject 
     LDX.W $1E7B 
 
@@ -9644,8 +9642,7 @@ Process_PaleteFXObject:
     TAY 
 
 .loopDetermineColorIndex:
-    LDA.W $0000,Y 
-    BPL .timer 
+    LDA.W $0000,Y : BPL .timer 
     STA.B $12 
     INY #2
     PEA.W .loopDetermineColorIndex-1 
@@ -9658,8 +9655,7 @@ Process_PaleteFXObject:
     TAX 
 
 .loopWriteColors:
-    LDA.W $0002,Y 
-    BPL .storeColor 
+    LDA.W $0002,Y : BPL .storeColor 
     STA.B $12 
     PEA.W .loopWriteColors-1 
     JMP.W ($0012) 
@@ -11124,8 +11120,7 @@ InstList_PaletteFXObject_Common_GreyOutTourianStatue:
     dw Instruction_Delete_8DC5CF
 
 PreInstruction_PaletteFXObject_DeleteIfEnemy0Died:
-    LDA.W $0F8C 
-    BNE .return 
+    LDA.W $0F8C : BNE .return 
     STZ.W $1E7D,X 
 
 .return:
@@ -11210,15 +11205,13 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     LDA.W $09A2 
     BIT.W #$0020 
     BEQ .checkVaria 
-    LDA.W #.InstListPointers_gravity 
-    BRA .setInstListPointer 
+    LDA.W #.InstListPointers_gravity : BRA .setInstListPointer 
 
 
 .checkVaria:
     BIT.W #$0001 
     BEQ .powerSuit 
-    LDA.W #.InstListPointers_varia 
-    BRA .setInstListPointer 
+    LDA.W #.InstListPointers_varia : BRA .setInstListPointer 
 
 
 .powerSuit:
@@ -11291,15 +11284,13 @@ Setup_PaletteFXObject_Norfair1_Tourian1:
     LDA.W $09A2 
     BIT.W #$0020 
     BEQ .checkVaria 
-    LDA.W #InstList_PaletteFXObject_SamusInHeat_GravitySuit_0 
-    BRA + 
+    LDA.W #InstList_PaletteFXObject_SamusInHeat_GravitySuit_0 : BRA + 
 
 
 .checkVaria:
     BIT.W #$0001 
     BEQ .powerSuit 
-    LDA.W #InstList_PaletteFXObject_SamusInHeat_VariaSuit_0 
-    BRA + 
+    LDA.W #InstList_PaletteFXObject_SamusInHeat_VariaSuit_0 : BRA + 
 
 
 .powerSuit:
@@ -12339,8 +12330,7 @@ InstList_PaletteFXObject_Maridia4_1:
     dw InstList_PaletteFXObject_Maridia4_1 
 
 PreInstruction_PaletteFXObject_DeleteIf2MoreObjectsSpawned:
-    LDA.W $1E79,X 
-    BEQ .return 
+    LDA.W $1E79,X : BEQ .return 
     STZ.W $1E7D,X 
 
 .return:

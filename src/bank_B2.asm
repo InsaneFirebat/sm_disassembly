@@ -416,8 +416,7 @@ PowerBombReaction_Ninja_Walking_GreyWall:
 
 EnemyTouch_SpacePirate:
     LDX.W $0E54 
-    LDA.W $0F9E,X 
-    BNE .return 
+    LDA.W $0F9E,X : BNE .return 
     JSL.L NormalEnemyTouchAI 
 
 .return:
@@ -438,8 +437,7 @@ NormalPirateShot:
     LDA.W $0F7A,X : STA.L $7EF434 
     LDA.W $0F7E,X : STA.L $7EF436 
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External 
-    LDA.W $0F8C,X 
-    BNE .return 
+    LDA.W $0F8C,X : BNE .return 
     LDX.W $0E54 
     LDA.W $0F78,X 
     CMP.W #EnemyHeaders_PirateGoldNinja 
@@ -483,8 +481,7 @@ EnemyShot_SpacePirate_GoldNinjaIsVulnerable:
     LDX.W $0E54 
     LDA.W $0F78,X 
     TAX 
-    LDA.L $A0003C,X 
-    BNE .zeroVuln 
+    LDA.L $A0003C,X : BNE .zeroVuln 
     LDA.W #EnemyVulnerabilities 
 
 .zeroVuln:
@@ -543,23 +540,20 @@ EnemyShot_SpacePirate_GoldNinjaIsInvincible:
 
 
 .super:
-    LDA.W $0C7C,Y 
-    BEQ .return 
+    LDA.W $0C7C,Y : BEQ .return 
 
 .reflect:
     LDA.W #$000A : STA.W $0FA0,X 
     LDA.W $0C04,Y : AND.W #$000F 
     CMP.W #$0007 
     BNE .notLeft 
-    LDA.W #$0001 
-    BRA .merge 
+    LDA.W #$0001 : BRA .merge 
 
 
 .notLeft:
     CMP.W #$0002 
     BNE .downFacingLeft 
-    LDA.W #$0008 
-    BRA .merge 
+    LDA.W #$0008 : BRA .merge 
 
 
 .downFacingLeft:
@@ -11803,8 +11797,7 @@ Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left:
     BCC .noCOllision 
     LDA.W $0FAC,X : EOR.W #$0001 : STA.W $0FAC,X 
     LDY.W #InstList_PirateWall_MovingDownLeftWall_0 
-    LDA.W $0FAC,X 
-    BEQ .return 
+    LDA.W $0FAC,X : BEQ .return 
     LDY.W #InstList_PirateWall_MovingUpLeftWall_0 
 
 .return:
@@ -11831,8 +11824,7 @@ Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right:
     BCC .noCollision 
     LDA.W $0FAC,X : EOR.W #$0001 : STA.W $0FAC,X 
     LDY.W #InstList_PirateWall_MovingDownRightWall_0 
-    LDA.W $0FAC,X 
-    BEQ .return 
+    LDA.W $0FAC,X : BEQ .return 
     LDY.W #InstList_PirateWall_MovingUpRightWall_0 
 
 .return:
@@ -12735,8 +12727,7 @@ Instruction_PirateNinja_SetFunction0FAC_Active:
     LDA.W $0F7A,X : SEC : SBC.W $0AF6 : STA.B $12 
     LDA.W #$0001 : STA.W $0F94,X 
     LDY.W #InstList_PirateNinja_Active_FacingLeft_0 
-    LDA.B $12 
-    BPL .keepLeft 
+    LDA.B $12 : BPL .keepLeft 
     LDY.W #InstList_PirateNinja_Active_FacingRight_0 
 
 .keepLeft:
@@ -12753,8 +12744,7 @@ UNUSED_Instruction_PirateNinja_Set0FAC_StandingKick_B2F5B3:
     LDA.W $0F7A,X : SEC : SBC.W $0AF6 : STA.B $12 
     LDA.W #$0001 : STA.W $0F94,X 
     LDY.W #InstList_PirateNinja_StandingKick_FacingLeft 
-    LDA.B $12 
-    BPL .keepLeft 
+    LDA.B $12 : BPL .keepLeft 
     LDY.W #InstList_PirateNinja_StandingKick_FacingRight 
 
 .keepLeft:
@@ -12854,8 +12844,7 @@ Function_PirateNinja_Initial:
   + SEC : SBC.W #$0080 : BPL .tooFar 
     LDA.W $0F7A,X : SEC : SBC.W $0AF6 : STA.B $12 
     LDY.W #InstList_PirateNinja_Active_FacingLeft_0 
-    LDA.B $12 
-    BPL .keepLeft 
+    LDA.B $12 : BPL .keepLeft 
     LDY.W #InstList_PirateNinja_Active_FacingRight_0 
 
 .keepLeft:
@@ -12912,8 +12901,7 @@ PirateNinja_FlinchTrigger:
     LDY.W #$0008 
 
 .loop:
-    LDA.W $0C18,Y 
-    BNE .checkProjectile 
+    LDA.W $0C18,Y : BNE .checkProjectile 
     DEY #2
     BPL .loop 
     BRA .returnNoFlinch 
@@ -12932,8 +12920,7 @@ PirateNinja_FlinchTrigger:
   + SEC : SBC.W #$0020 : BPL .returnNoFlinch 
     LDA.W $0F7A,X : SEC : SBC.W $0AF6 : STA.B $12 
     LDY.W #InstList_PirateNinja_Flinch_FacingLeft 
-    LDA.B $12 
-    BPL .keepLeft 
+    LDA.B $12 : BPL .keepLeft 
     LDY.W #InstList_PirateNinja_Flinch_FacingRight 
 
 .keepLeft:
@@ -12995,8 +12982,7 @@ PirateNinja_StandingKickTrigger:
   + SEC : SBC.W #$0028 : BPL .returnNoStandingKick 
     LDA.W $0F7A,X : SEC : SBC.W $0AF6 : STA.B $12 
     LDY.W #InstList_PirateNinja_StandingKick_FacingLeft 
-    LDA.B $12 
-    BPL .kepLeft 
+    LDA.B $12 : BPL .kepLeft 
     LDY.W #InstList_PirateNinja_StandingKick_FacingRight 
 
 .kepLeft:
@@ -13654,8 +13640,7 @@ PirateWalking_FlinchTrigger:
     LDY.W #$0008 
 
 .loopProjectiles:
-    LDA.W $0C18,Y 
-    BNE .checkProjectile 
+    LDA.W $0C18,Y : BNE .checkProjectile 
     DEY #2
     BPL .loopProjectiles 
     BRA .returnNoFlinch 
@@ -13674,8 +13659,7 @@ PirateWalking_FlinchTrigger:
   + SEC : SBC.W #$0020 : BPL .returnNoFlinch 
     LDA.W $0F7A,X : SEC : SBC.W $0AF6 : STA.B $12 
     LDY.W #InstList_PirateWalking_Flinch_FacingLeft 
-    LDA.B $12 
-    BPL .keepLeft 
+    LDA.B $12 : BPL .keepLeft 
     LDY.W #InstList_PirateWalking_Flinch_FacingRight 
 
 .keepLeft:

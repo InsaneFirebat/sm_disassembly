@@ -480,15 +480,13 @@ Function_Boulder_WaitForSamusToGetNear:
     BMI .return 
     CMP.L $7E780C,X 
     BPL .return 
-    LDA.W $0FB0,X 
-    BNE .left 
+    LDA.W $0FB0,X : BNE .left 
     JSL.L Get_SamusX_minus_EnemyX 
     BMI .return 
     CMP.L $7E7800,X 
     BPL .return 
     LDA.W #Function_Boulder_Falling : STA.W $0FA8,X 
-    LDA.L $7E780E,X 
-    BEQ .return 
+    LDA.L $7E780E,X : BEQ .return 
     LDA.W #Function_Boulder_Rolling : STA.W $0FA8,X 
     BRA .return 
 
@@ -499,8 +497,7 @@ Function_Boulder_WaitForSamusToGetNear:
     CMP.L $7E7800,X 
     BMI .return 
     LDA.W #Function_Boulder_Falling : STA.W $0FA8,X 
-    LDA.L $7E780E,X 
-    BEQ .return 
+    LDA.L $7E780E,X : BEQ .return 
     LDA.W #Function_Boulder_Rolling : STA.W $0FA8,X 
 
 .return:
@@ -553,8 +550,7 @@ Function_Boulder_Bounce_Rising:
     XBA 
     ASL #3
     TAY 
-    LDA.W $0FB0,X 
-    BEQ .right 
+    LDA.W $0FB0,X : BEQ .right 
     INY #4
     .right:
     JSR.W MoveBoulderHorizontally 
@@ -614,8 +610,7 @@ Function_Boulder_Bounce_Falling:
     XBA 
     ASL #3
     TAY 
-    LDA.W $0FB0,X 
-    BEQ ..right 
+    LDA.W $0FB0,X : BEQ ..right 
     INY #4
     ..right:
     JSR.W MoveBoulderHorizontally 
@@ -640,8 +635,7 @@ Function_Boulder_Rolling:
     JSL.L MoveEnemyDownBy_14_12 
     PLY 
     LDA.W $0F7E,X : SEC : SBC.L $7E7802,X : STA.W $0F7E,X 
-    LDA.W $0FB0,X 
-    BEQ .right 
+    LDA.W $0FB0,X : BEQ .right 
     INY #4
     .right:
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y : STA.B $12 
@@ -874,8 +868,7 @@ Function_Kzan_WaitingToFall:
     PHX 
     LDX.W $0E54 
     DEC.W $0FAA,X 
-    LDA.W $0FAA,X 
-    BNE .return 
+    LDA.W $0FAA,X : BNE .return 
     LDA.L $7E7800,X : STA.W $0FAA,X 
     LDA.W $0FB4,X : AND.W #$00FF 
     ASL #3
@@ -1400,8 +1393,7 @@ Instruction_Hibashi_FinishActivity:
 InitAI_Hibashi:
     LDX.W $0E54 
     LDA.W #InstList_Hibashi_HitboxPart : STA.W $0F92,X 
-    LDA.W $0FB6,X 
-    BNE .return 
+    LDA.W $0FB6,X : BNE .return 
     LDA.W #InstList_Hibashi_GraphicsPart : STA.W $0F92,X 
     LDA.W #Function_Hibashi_Inactive : STA.W $0FA8,X 
     LDA.W $0F7E,X : STA.W $0FAE,X 
@@ -1413,8 +1405,7 @@ InitAI_Hibashi:
 
 MainAI_Hibashi:
     LDX.W $0E54 
-    LDA.W $0FB6,X 
-    BNE .return 
+    LDA.W $0FB6,X : BNE .return 
     JSR.W ($0FA8,X) 
 
 .return:
@@ -1439,8 +1430,7 @@ Function_Hibashi_Inactive:
 
 Function_Hibashi_Active:
     LDX.W $0E54 
-    LDA.W $0FAC,X 
-    BEQ .return 
+    LDA.W $0FAC,X : BEQ .return 
     LDA.W $0FB4,X : STA.W $0FAA,X 
     LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     LDA.W #Function_Hibashi_Inactive : STA.W $0FA8,X 
@@ -1964,8 +1954,7 @@ InitAI_Puromi:
     LDA.W $0FAC,X 
     ASL #3
     TAY 
-    LDA.W $0FB0,X 
-    BNE .firingUp 
+    LDA.W $0FB0,X : BNE .firingUp 
     INY #4
     .firingUp:
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.L $7E800A,X 
@@ -2172,8 +2161,7 @@ HandlePuromiProjectiles:
     JMP.W .loop 
 
 
-  + LDA.B $1C 
-    BEQ .return 
+  + LDA.B $1C : BEQ .return 
     LDA.W #Function_Puromi_Inactive : STA.W $0FA8,X 
     LDA.W $0F86,X : AND.W #$F7FF : STA.W $0F86,X 
 
@@ -2247,8 +2235,7 @@ ClampAngle_CheckInactivityCondition:
     PHA 
     LDX.W $0E54 
     STZ.B $1C 
-    LDA.W $0FB0,X 
-    BNE .notClockwise 
+    LDA.W $0FB0,X : BNE .notClockwise 
     PLA 
     CMP.L $7E801C,X 
     BMI .afterFinish 
@@ -2268,13 +2255,11 @@ ClampAngle_CheckInactivityCondition:
 
 .afterFinish:
     INC.B $1C 
-    LDA.L $7E801C,X 
-    BRA .return 
+    LDA.L $7E801C,X : BRA .return 
 
 
 .beforeStart:
-    LDA.L $7E8006,X 
-    BRA .return 
+    LDA.L $7E8006,X : BRA .return 
 
 
 .return:
@@ -2286,15 +2271,13 @@ CheckExplosionCondition:
     PHX 
     PHA 
     LDX.W $0E54 
-    LDA.W $0FB0,X 
-    BNE .notClockwise 
+    LDA.W $0FB0,X : BNE .notClockwise 
     PLA 
     CMP.L $7E801E,X 
     BMI .clockwiseFalling 
     CMP.L $7E8020,X 
     BMI .clockwiseRising 
-    LDA.W #$0000 
-    BRA .return 
+    LDA.W #$0000 : BRA .return 
 
 
 .notClockwise:
@@ -2303,32 +2286,27 @@ CheckExplosionCondition:
     BPL .antiClockwiseFalling 
     CMP.L $7E8020,X 
     BPL .antiClockwiseRising 
-    LDA.W #$0000 
-    BRA .return 
+    LDA.W #$0000 : BRA .return 
 
 
 .clockwiseRising:
     LDA.W #$0001 : STA.B $1A 
-    LDA.W #$0001 
-    BRA .return 
+    LDA.W #$0001 : BRA .return 
 
 
 .clockwiseFalling:
     LDA.W #$0000 : STA.B $1A 
-    LDA.W #$0002 
-    BRA .return 
+    LDA.W #$0002 : BRA .return 
 
 
 .antiClockwiseRising:
     LDA.W #$0000 : STA.B $1A 
-    LDA.W #$0001 
-    BRA .return 
+    LDA.W #$0001 : BRA .return 
 
 
 .antiClockwiseFalling:
     LDA.W #$0001 : STA.B $1A 
-    LDA.W #$0002 
-    BRA .return 
+    LDA.W #$0002 : BRA .return 
 
 
 .return:
@@ -2578,8 +2556,7 @@ HandleMiniKraidSpike:
     TYA 
     STX.B $12 
     CLC : ADC.B $12 : TAX 
-    LDA.L $7E7806,X 
-    BEQ .timerExpired 
+    LDA.L $7E7806,X : BEQ .timerExpired 
     DEC A 
     STA.L $7E7806,X 
     PLX 
@@ -2593,8 +2570,7 @@ HandleMiniKraidSpike:
     PLX 
     STA.L $7E780C,X 
     LDY.W #EnemyProjectile_MiniKraidSpikes_Left 
-    LDA.W $0FAC,X 
-    BMI .keepLeft 
+    LDA.W $0FAC,X : BMI .keepLeft 
     LDY.W #EnemyProjectile_MiniKraidSpikes_Right 
 
 .keepLeft:
@@ -2612,8 +2588,7 @@ HandleMiniKraidSpike:
 Instruction_MiniKraid_Move:
     PHY 
     LDX.W $0E54 
-    LDA.W $0FB0,X 
-    BEQ + 
+    LDA.W $0FB0,X : BEQ + 
     DEC.W $0FB0,X 
 
   + DEC.W $0FAE,X 
@@ -2647,23 +2622,19 @@ Instruction_MiniKraid_Move:
 
 Instruction_MiniKraid_ChooseAction:
     LDX.W $0E54 
-    LDA.W $0FB0,X 
-    BNE .step 
+    LDA.W $0FB0,X : BNE .step 
     LDA.W $05E5 : AND.W #$0003 
     CLC : ADC.W #$0003 : STA.W $0FB0,X 
     LDY.W #InstList_MiniKraid_FireSpit_FacingRight 
-    LDA.W $0FAC,X 
-    BPL .return 
+    LDA.W $0FAC,X : BPL .return 
     LDY.W #InstList_MiniKraid_FireSpit_FacingLeft 
     RTL 
 
 
 .step:
-    LDA.W $0FAC,X 
-    BMI .left 
+    LDA.W $0FAC,X : BMI .left 
     LDY.W #InstList_MiniKraid_StepForwards_FacingRight 
-    LDA.W $0FAA,X 
-    BPL .return 
+    LDA.W $0FAA,X : BPL .return 
     LDY.W #InstList_MiniKraid_StepBackwards_FacingRight 
 
 .return:
@@ -2672,8 +2643,7 @@ Instruction_MiniKraid_ChooseAction:
 
 .left:
     LDY.W #InstList_MiniKraid_StepForwards_FacingLeft 
-    LDA.W $0FAA,X 
-    BMI .return 
+    LDA.W $0FAA,X : BMI .return 
     LDY.W #InstList_MiniKraid_StepBackwards_FacingLeft 
     RTL 
 
@@ -2716,8 +2686,7 @@ FireMiniKraidSpit_Common:
 Instruction_MiniKraid_FireSpitRight:
     PHY 
     LDY.W #$0008 
-    LDA.W #$0004 
-    BRA FireMiniKraidSpit_Common 
+    LDA.W #$0004 : BRA FireMiniKraidSpit_Common 
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -2748,8 +2717,7 @@ EnemyShot_PowerBombReaction_MiniKraid:
 
 Reaction_MiniKraid_Common:
     LDX.W $0E54 
-    LDA.W $0F8C,X 
-    BNE .return 
+    LDA.W $0F8C,X : BNE .return 
     LDA.W #$0003 
     JSL.L EnemyDeath 
     JSL.L MiniKraidDeathItemDropRoutine 
@@ -3390,10 +3358,8 @@ MainAI_RidleyCeres:
 
 
 .manualReturn:
-    LDA.W $093F 
-    BNE .return 
-    LDA.L $7E7804 
-    BEQ HandleBabyMetroidCapsuleInteractions 
+    LDA.W $093F : BNE .return 
+    LDA.L $7E7804 : BEQ HandleBabyMetroidCapsuleInteractions 
     JSR.W MakeRidleysWingsAndTailFlashWhenHit 
     JSR.W HandleMovementAndMainBodyWallCollisions 
     JSR.W HandleWingFlapping 
@@ -3429,21 +3395,18 @@ HurtAI_RidleyCeres:
 
 HandleBabyMetroidCapsuleInteractions:
     JSR.W HandleCarryingBabyMetroid 
-    LDA.L $7E7804 
-    BEQ EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor 
+    LDA.L $7E7804 : BEQ EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor 
     LDA.W #EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor>>8&$FF00 : STA.W $178D 
     LDA.W #EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor : STA.W $178C 
     RTL 
 
 
 EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor:
-    LDA.W $093F 
-    BNE .skipBaby 
+    LDA.W $093F : BNE .skipBaby 
     JSR.W DrawBabyMetroid 
 
 .skipBaby:
-    LDA.W $0FEA 
-    BEQ .return 
+    LDA.W $0FEA : BEQ .return 
     LDA.W $1840 : AND.W #$0003 
     TAX 
     LDA.W CeresDoorOffsetsDuringEarthquake,X : CLC : ADC.W $0FBA : STA.B $14 
@@ -3489,8 +3452,7 @@ Function_Ridley_ResetSpeeds:
 
 
 Function_Ridley_Startup_FirstRun:
-    LDA.W $0797 
-    BNE Function_Ridley_Startup_InitalWait_return 
+    LDA.W $0797 : BNE Function_Ridley_Startup_InitalWait_return 
     LDA.W #Function_Ridley_Startup_InitalWait : STA.W $0FA8 
     LDA.W #$0200 
     LDY.W $079F 
@@ -3513,8 +3475,7 @@ Function_Ridley_Startup_InitalWait_return:
 
 
 Function_Ridley_Startup_EyesAppear_Wait:
-    LDA.W $0FB0 
-    BMI .return 
+    LDA.W $0FB0 : BMI .return 
     TAY 
     INC.W $0FB2 
     LDA.W $0FB2 
@@ -3839,8 +3800,7 @@ CeresRidleyAttackCooldown_FlyToPosition:
 
 
 Function_RidleyCeres_StartFireballing:
-    LDA.W $0FAC 
-    BPL + 
+    LDA.W $0FAC : BPL + 
     EOR.W #$FFFF 
     INC A 
 
@@ -4138,8 +4098,7 @@ HandleCeresRidleyGetawayCutscene:
     PHB 
     PHK 
     PLB 
-    LDA.L $7E8024 
-    BNE .return 
+    LDA.L $7E8024 : BNE .return 
     JSR.W ExecuteCeresRidleyGetawayCutscene 
 
 .return:
@@ -4295,8 +4254,7 @@ Mode7Math_A6AC0E:
     INC A 
 
   + STA.B $26 
-    LDA.B $12 
-    BRA Mode7Math_Common_A6AC30 
+    LDA.B $12 : BRA Mode7Math_Common_A6AC30 
 
 
 Mode7Math_A6AC1E:
@@ -4313,8 +4271,7 @@ Mode7Math_Common_A6AC30:
     ASL A 
     AND.W #$01FE 
     TAX 
-    LDA.L SineCosineTables_8bitSine_SignExtended,X 
-    BEQ .return 
+    LDA.L SineCosineTables_8bitSine_SignExtended,X : BEQ .return 
     STA.B $16 
     BPL + 
     EOR.W #$FFFF 
@@ -4658,8 +4615,7 @@ MainAI_Ridley:
 
 
 .manualReturn:
-    LDA.L $7E7804 
-    BEQ .notActiveNotHoldingSamus 
+    LDA.L $7E7804 : BEQ .notActiveNotHoldingSamus 
     JSR.W MakeRidleysWingsAndTailFlashWhenHit 
     JSR.W HandleMovementAndMainBodyWallCollisions 
     JSR.W HandleWingFlapping 
@@ -4668,8 +4624,7 @@ MainAI_Ridley:
     JSR.W DrawRidleyTail 
     JSR.W DrawRidleysWings 
     JSR.W AnimateRidleysRibs 
-    LDA.L $7E7836 
-    BEQ .notActiveNotHoldingSamus 
+    LDA.L $7E7836 : BEQ .notActiveNotHoldingSamus 
     JSR.W MoveSamusToWithinRidleysClawsIfHolding 
 
 .notActiveNotHoldingSamus:
@@ -4713,8 +4668,7 @@ HurtAI_Ridley:
 
 
 .manualReturn:
-    LDA.L $7E7804 
-    BEQ .checkHoldingSamus 
+    LDA.L $7E7804 : BEQ .checkHoldingSamus 
     JSR.W HandleMovementAndMainBodyWallCollisions 
     JSR.W HandleWingFlapping 
     JSR.W HandleRidleyTailAI 
@@ -4736,8 +4690,7 @@ HurtAI_Ridley:
     BMI .return 
 
 .checkHoldingSamus:
-    LDA.L $7E7836 
-    BEQ .return 
+    LDA.L $7E7836 : BEQ .return 
     JSR.W MoveSamusToWithinRidleysClawsIfHolding 
 
 .return:
@@ -4782,8 +4735,7 @@ GetNewRidleyAIScript:
 
 
 .SamusNotSpinJumping:
-    LDA.W $0F8C 
-    BNE .RidleyNotDead 
+    LDA.W $0F8C : BNE .RidleyNotDead 
     LDA.W #CheckIfRidleyBelowHalfHealth_zeroHealth : STA.B $12 
     LDA.L $7E800A 
     INC A 
@@ -4895,8 +4847,7 @@ Function_Ridley_MoveToCenterSide:
     DEC.W $0FB2 
     BMI .collision 
     LDX.W #$00C0 
-    LDA.L $7E7820 
-    BEQ .facingLeft 
+    LDA.L $7E7820 : BEQ .facingLeft 
     LDX.W #$0060 
 
 .facingLeft:
@@ -4937,8 +4888,7 @@ Function_Ridley_StartUSwoop:
 
 Function_Ridley_FlyToUSwoopStartingPosition:
     LDX.W #$00C0 
-    LDA.L $7E7820 
-    BEQ .facingLeft 
+    LDA.L $7E7820 : BEQ .facingLeft 
     LDX.W #$0040 
 
 .facingLeft:
@@ -4961,8 +4911,7 @@ Function_Ridley_FlyToUSwoopStartingPosition:
 
 
 Function_Ridley_USwoop_FirstDive:
-    LDA.L $7E7820 
-    BNE .notFacingLeft 
+    LDA.L $7E7820 : BNE .notFacingLeft 
     LDA.W #$FFE0 : STA.B $12 
     LDA.W #$FE00 : STA.B $14 
     BRA + 
@@ -4974,8 +4923,7 @@ Function_Ridley_USwoop_FirstDive:
 
   + LDA.W #$0480 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
-    LDA.L $7E7800 
-    BEQ .timerExpired 
+    LDA.L $7E7800 : BEQ .timerExpired 
     DEC A 
     STA.L $7E7800 
     RTS 
@@ -4988,8 +4936,7 @@ Function_Ridley_USwoop_FirstDive:
 
 
 Function_Ridley_USwoop_DiveToHalfwayPoint:
-    LDA.L $7E7820 
-    BNE .facingRight 
+    LDA.L $7E7820 : BNE .facingRight 
     LDA.W #$FEC0 : STA.B $12 
     LDA.W #$C000 : STA.B $14 
     BRA + 
@@ -5001,8 +4948,7 @@ Function_Ridley_USwoop_DiveToHalfwayPoint:
 
   + LDA.W #$0500 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
-    LDA.L $7E7800 
-    BEQ .timerExpired 
+    LDA.L $7E7800 : BEQ .timerExpired 
     DEC A 
     STA.L $7E7800 
     RTS 
@@ -5016,8 +4962,7 @@ Function_Ridley_USwoop_DiveToHalfwayPoint:
 
 
 Function_Ridley_USwoop_ClimbAfterHalfwayPoint:
-    LDA.L $7E7820 
-    BNE .facingRight 
+    LDA.L $7E7820 : BNE .facingRight 
     LDA.W #$FE00 : STA.B $12 
     LDA.W #$8800 : STA.B $14 
     BRA + 
@@ -5029,8 +4974,7 @@ Function_Ridley_USwoop_ClimbAfterHalfwayPoint:
 
   + LDA.W #$0300 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
-    LDA.L $7E7800 
-    BEQ .timerExpired 
+    LDA.L $7E7800 : BEQ .timerExpired 
     DEC A 
     STA.L $7E7800 
     RTS 
@@ -5043,8 +4987,7 @@ Function_Ridley_USwoop_ClimbAfterHalfwayPoint:
 
 
 Function_Ridley_USwoop_FinalClimb:
-    LDA.L $7E7820 
-    BNE .facingRight 
+    LDA.L $7E7820 : BNE .facingRight 
     LDA.W #$FC00 : STA.B $12 
     LDA.W #$8800 : STA.B $14 
     BRA + 
@@ -5056,8 +4999,7 @@ Function_Ridley_USwoop_FinalClimb:
 
   + LDA.W #$0300 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
-    LDA.L $7E7800 
-    BEQ .timerExpired 
+    LDA.L $7E7800 : BEQ .timerExpired 
     DEC A 
     STA.L $7E7800 
     RTS 
@@ -5074,8 +5016,7 @@ Function_Ridley_USwoop_End:
     LDA.W #$8000 : STA.B $14 
     LDA.W #$01C0 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
-    LDA.L $7E7800 
-    BEQ .timerExpired 
+    LDA.L $7E7800 : BEQ .timerExpired 
     DEC A 
     STA.L $7E7800 
     RTS 
@@ -5172,8 +5113,7 @@ FlyTowardTargetXPositionAndSamusYPosition:
     LDA.W $05E5 : AND.W #$00FF 
     CMP.W #$0080 
     BCC .returnSamusNotSpinJumping 
-    LDA.L $7E781E 
-    BNE .returnSamusNotSpinJumping 
+    LDA.L $7E781E : BNE .returnSamusNotSpinJumping 
     LDA.L $7E7820 
     DEC A 
     BEQ .returnSamusNotSpinJumping 
@@ -5382,8 +5322,7 @@ AttemptToGrabSamus_SkipSpinCheck:
 
 
 GrabbingSamus_SetMinimumYSpeed_ResetTailAI:
-    LDA.W $0FAC 
-    BMI + 
+    LDA.W $0FAC : BMI + 
     EOR.W #$FFFF 
     INC A 
 
@@ -5398,8 +5337,7 @@ GrabbingSamus_SetMinimumYSpeed_ResetTailAI:
 
 
 CheckForTurnaroundDuringTailbounce_RandomlyChangeDirection:
-    LDA.W $0FAA 
-    BNE .storeXSpeed 
+    LDA.W $0FAA : BNE .storeXSpeed 
     LDA.W #$00C0 
     BIT.W $0F79 
     BPL + 
@@ -5442,14 +5380,12 @@ CheckForTurnaroundDuringTailbounce_RandomlyChangeDirection:
 
 
 .crossedLeftBoundary:
-    LDA.W $0FAA 
-    BMI .changeDirection 
+    LDA.W $0FAA : BMI .changeDirection 
     RTS 
 
 
 .crossedRightBoundary:
-    LDA.W $0FAA 
-    BPL .changeDirection 
+    LDA.W $0FAA : BPL .changeDirection 
     RTS 
 
 
@@ -5523,16 +5459,14 @@ HoldingSamusYDispacement:
     dw $0023,$002E,$0038 
 
 MoveSamusToWithinRidleysClawsIfHolding:
-    LDA.L $7E7828 
-    BEQ .noSamusXDisplacement 
+    LDA.L $7E7828 : BEQ .noSamusXDisplacement 
     STA.B $12 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
   + SEC : SBC.W #$0004 : BPL .positive 
-    LDA.W #$0000 
-    BRA + 
+    LDA.W #$0000 : BRA + 
 
 
 .positive:
@@ -5544,16 +5478,14 @@ MoveSamusToWithinRidleysClawsIfHolding:
   + STA.L $7E7828 
 
 .noSamusXDisplacement:
-    LDA.L $7E782A 
-    BEQ .noSamusYDisplacement 
+    LDA.L $7E782A : BEQ .noSamusYDisplacement 
     STA.B $12 
     BPL + 
     EOR.W #$FFFF 
     INC A 
 
   + SEC : SBC.W #$0004 : BPL .positive2 
-    LDA.W #$0000 
-    BRA + 
+    LDA.W #$0000 : BRA + 
 
 
 .positive2:
@@ -5600,8 +5532,7 @@ CheckIfRidleyIsReadyToExplode:
 
 
 .notDead:
-    LDA.W $0CEE 
-    BEQ .noPowerBomb 
+    LDA.W $0CEE : BEQ .noPowerBomb 
     LDA.W #Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus : STA.W $0FA8 
     JMP.W Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus 
 
@@ -5615,8 +5546,7 @@ CheckIfRidleyIsReadyToExplode:
 CheckFor_Deathswoop_PowerBombDodge_MoveToCenter_RamGrabSamus:
     JSR.W CheckIfSpinJumpGrapplingDamageBoosting 
     BCC CheckIfRidleyIsReadyToExplode 
-    LDA.L $7E783E 
-    BNE CheckIfRidleyIsReadyToExplode 
+    LDA.L $7E783E : BNE CheckIfRidleyIsReadyToExplode 
     LDA.L $7E7820 
     ASL A 
     TAY 
@@ -5624,8 +5554,7 @@ CheckFor_Deathswoop_PowerBombDodge_MoveToCenter_RamGrabSamus:
     LDA.W $0F7A : SEC : SBC.W $0AF6 : STA.B $14 
     EOR.B $12 
     BPL + 
-    LDA.B $14 
-    BPL .positive 
+    LDA.B $14 : BPL .positive 
     EOR.W #$FFFF 
     INC A 
 
@@ -5635,8 +5564,7 @@ CheckFor_Deathswoop_PowerBombDodge_MoveToCenter_RamGrabSamus:
 
   + LDA.W $0F7E : CLC : ADC.W #$0023 : SEC : SBC.W $0AFA : BPL CheckIfRidleyIsReadyToExplode 
     LDX.W #$FFF0 
-    LDA.L $7E7820 
-    BEQ .facingLeft 
+    LDA.L $7E7820 : BEQ .facingLeft 
     LDX.W #$0010 
 
 .facingLeft:
@@ -5673,19 +5601,16 @@ CheckFor_Deathswoop_PowerBombDodge_MoveToCenter_RamGrabSamus:
     EOR.W #$FFFF 
     INC A 
     STA.W $0FAC 
-    LDA.W $0F8C 
-    BEQ .dead 
+    LDA.W $0F8C : BEQ .dead 
     LDA.W $0CEE 
-    LDA.W $0CEE 
-    BEQ Function_Ridley_InPositionToGrabSamus_NoPowerBomb 
+    LDA.W $0CEE : BEQ Function_Ridley_InPositionToGrabSamus_NoPowerBomb 
     JSR.W GrabSamus 
     LDA.W #Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus : STA.W $0FA8 
     JMP.W Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus 
 
 
 .dead:
-    LDA.L $7E7836 
-    BNE .holdingSamus 
+    LDA.L $7E7836 : BNE .holdingSamus 
     JSR.W GrabSamus 
 
 .holdingSamus:
@@ -5705,8 +5630,7 @@ Function_Ridley_InPositionToGrabSamus_NoPowerBomb:
 
 .minimum100:
     STA.L $7E7830 
-    LDA.L $7E7836 
-    BNE .holdingSamus 
+    LDA.L $7E7836 : BNE .holdingSamus 
     JSR.W GrabSamus 
 
 .holdingSamus:
@@ -5792,11 +5716,9 @@ GrabSamus:
 ReleaseSamus:
     LDA.W #$0001 : STA.L $7E2004 
     STA.L $7E2000 
-    LDA.L $7E7802 
-    BMI .dead 
+    LDA.L $7E7802 : BMI .dead 
     JSR.W CheckIfSpinJumpGrapplingDamageBoosting 
-    LDA.W #$0006 
-    BVS + 
+    LDA.W #$0006 : BVS + 
     LDA.W #$000A 
 
   + STA.L $7E783C 
@@ -5810,8 +5732,7 @@ ReleaseSamus:
 
 
 HandleRidleySamusInteractionBit:
-    LDA.L $7E7802 
-    BMI .return 
+    LDA.L $7E7802 : BMI .return 
     BEQ .ridleyInactive 
     JSR.W CheckIfRidleyIsOnScreen 
     BCC .onScreen 
@@ -5823,13 +5744,11 @@ HandleRidleySamusInteractionBit:
     LDA.W $0F86 : AND.W #$FBFF : STA.W $0F86 
 
 .ridleyInactive:
-    LDA.L $7E783C 
-    BEQ .return 
+    LDA.L $7E783C : BEQ .return 
     DEC A 
     STA.L $7E783C 
     BNE .return 
-    LDA.L $7E7802 
-    BMI .return 
+    LDA.L $7E7802 : BMI .return 
     LDA.W $0F86 : AND.W #$FBFF : STA.W $0F86 
 
 .return:
@@ -5873,15 +5792,12 @@ CheckIfSamusIsBelowTailbounceThreshold:
 
 
 PowerBombCheck:
-    LDA.L $7E7802 
-    BMI .return 
+    LDA.L $7E7802 : BMI .return 
     BEQ .return 
     CMP.W #$0002 
     BEQ .return 
-    LDA.W $0CEE 
-    BEQ .return 
-    LDA.L $7E7836 
-    BNE .return 
+    LDA.W $0CEE : BEQ .return 
+    LDA.L $7E7836 : BNE .return 
     JSR.W RidleyGrabbedSamus_ResetTailAI 
     LDY.W #CheckFor_Deathswoop_PowerBombDodge_MoveToCenter_RamGrabSamus 
     STY.W $0FA8 
@@ -5891,8 +5807,7 @@ PowerBombCheck:
 
 
 Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus:
-    LDA.W $0CEE 
-    BEQ .powerBombActive 
+    LDA.W $0CEE : BEQ .powerBombActive 
     LDA.W #$0002 : STA.L $7E7802 
     LDY.W #$0050 
     LDA.W $0CE2 
@@ -5916,8 +5831,7 @@ Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus:
 .powerBombActive:
     LDA.W #$0001 : STA.L $7E7802 
     LDY.W #DetermineAndExecuteNewRidleyAIScript 
-    LDA.L $7E7836 
-    BEQ .notHoldingSamus 
+    LDA.L $7E7836 : BEQ .notHoldingSamus 
     LDY.W #Function_Ridley_InPositionToGrabSamus_NoPowerBomb 
 
 .notHoldingSamus:
@@ -6149,8 +6063,7 @@ InstList_BabyMetroidCutscene_1:
     dw InstList_BabyMetroidCutscene_0 
 
 Instruction_BabyMetroidCutscene_PlayCrySFXOrGotoX:
-    LDA.L $7E880C 
-    BNE .playSFX 
+    LDA.L $7E880C : BNE .playSFX 
     LDA.W $05E5 : AND.W #$0001 
     BNE Instruction_BabyMetroidCutscene_GotoX 
 
@@ -6174,8 +6087,7 @@ Instruction_BabyMetroidCutscene_UpdateColors:
 
 
 Instruction_BabyMetroidCutscene_GotoXIfNotFalling:
-    LDA.L $7E880C 
-    BEQ Instruction_BabyMetroidCutscene_NextInstruction 
+    LDA.L $7E880C : BEQ Instruction_BabyMetroidCutscene_NextInstruction 
 
 Instruction_BabyMetroidCutscene_GotoX:
     LDA.W $0000,X 
@@ -6278,8 +6190,7 @@ PostGetawayFunction_SetupCeresEscapeTimer:
     STA.L $7E803C 
     STA.L $7E803E 
     LDA.W #$0020 : STA.W $0FB0 
-    LDA.W $09E2 
-    BNE .japanText 
+    LDA.W $09E2 : BNE .japanText 
     INC.W $0FB2 
     INC.W $0FB2 
 
@@ -6354,8 +6265,7 @@ UNUSED_CycleColor_A6C176:
     LDA.W #$FFE1 
 
   + STA.L $7E8032 
-    LDA.L $7E8032 
-    BPL + 
+    LDA.L $7E8032 : BPL + 
     EOR.W #$FFFF 
     INC A 
 
@@ -6424,8 +6334,7 @@ SetupZebesEscapeTypewriter:
 ProcessEscapeTimerTileTransfers:
     LDX.W $0FB0 
     LDY.W $0330 
-    LDA.W $0000,X 
-    BEQ .returnCarrySet 
+    LDA.W $0000,X : BEQ .returnCarrySet 
     STA.W $00D0,Y 
     LDA.W $0003,X : STA.W $00D3,Y 
     LDA.W $0002,X : STA.W $00D2,Y 
@@ -6435,8 +6344,7 @@ ProcessEscapeTimerTileTransfers:
     TXA 
     ADC.W #$0007 : STA.W $0FB0 
     TAX 
-    LDA.W $0000,X 
-    BEQ .returnCarrySet 
+    LDA.W $0000,X : BEQ .returnCarrySet 
     CLC 
     RTS 
 
@@ -6457,8 +6365,7 @@ HandleTypewriterText_External:
 
 
 HandleTypewriterText:
-    LDA.L $7E803A 
-    BEQ .timerExpired 
+    LDA.L $7E803A : BEQ .timerExpired 
     DEC A 
     STA.L $7E803A 
     RTS 
@@ -6470,8 +6377,7 @@ HandleTypewriterText:
     TAX 
 
 .loop:
-    LDA.W $0000,X 
-    BNE + 
+    LDA.W $0000,X : BNE + 
     SEC 
     RTS 
 
@@ -6556,8 +6462,7 @@ QueueCeresEscapeJapaneseTextTilemapTransfers:
     LDY.W $0330 
 
 .loop:
-    LDA.W $0000,X 
-    BEQ .done 
+    LDA.W $0000,X : BEQ .done 
     STA.W $00D0,Y 
     LDA.W $0003,X : STA.W $00D3,Y 
     LDA.W $0002,X : STA.W $00D2,Y 
@@ -6714,8 +6619,7 @@ Function_Ridley_DeathExplosions_DropSamusIfNeeded:
     JSR.W SpawnRidleyExplosions 
     DEC.W $0FB2 
     BPL Function_Ridley_FinalRoar_return 
-    LDA.L $7E7836 
-    BEQ .notHoldingSamus 
+    LDA.L $7E7836 : BEQ .notHoldingSamus 
     JSR.W ReleaseSamus 
 
 .notHoldingSamus:
@@ -6928,8 +6832,7 @@ RidleyExplosionInitialization_C:
 
 RidleyExplosionInitialization_E:
     LDY.W #$0000 
-    LDA.L $7E7820 
-    BEQ .right 
+    LDA.L $7E7820 : BEQ .right 
     LDY.W #$0002 
 
 .right:
@@ -6949,8 +6852,7 @@ RidleyExplosionInitialization_E:
 
 RidleyExplosionInitialization_10:
     LDY.W #$0000 
-    LDA.L $7E7820 
-    BEQ .right 
+    LDA.L $7E7820 : BEQ .right 
     LDY.W #$0002 
 
 .right:
@@ -6970,8 +6872,7 @@ RidleyExplosionInitialization_10:
 
 RidleyExplosionInitialization_12:
     LDY.W #$0000 
-    LDA.L $7E7820 
-    BEQ .right 
+    LDA.L $7E7820 : BEQ .right 
     LDY.W #$0002 
 
 .right:
@@ -6991,8 +6892,7 @@ RidleyExplosionInitialization_12:
 
 RidleyExplosionInitialization_14:
     LDY.W #$0000 
-    LDA.L $7E7820 
-    BEQ .right 
+    LDA.L $7E7820 : BEQ .right 
     LDY.W #$0002 
 
 .right:
@@ -7012,8 +6912,7 @@ RidleyExplosionInitialization_14:
 
 RidleyExplosionInitialization_16:
     LDY.W #$0000 
-    LDA.L $7E7820 
-    BEQ .right 
+    LDA.L $7E7820 : BEQ .right 
     LDY.W #$0002 
 
 .right:
@@ -7034,8 +6933,7 @@ RidleyExplosionInitialization_16:
 MainAI_RidleyExplosion:
     LDX.W $0E54 
     JSR.W HandleFlickering 
-    LDA.W $0FAA,X 
-    BPL + 
+    LDA.W $0FAA,X : BPL + 
     EOR.W #$FFFF 
     INC A 
 
@@ -7355,8 +7253,7 @@ Function_RidleyTail_StrictTailbouncingExtending:
 
 
 Function_RidleyTail_2_3_6_7_Common:
-    LDA.L $7E7820 
-    BNE .notFacingLeft 
+    LDA.L $7E7820 : BNE .notFacingLeft 
     LDA.W #$4000 : STA.L $7E201C 
     LDA.W #$FFFF : STA.L $7E201A 
     BRA + 
@@ -7494,14 +7391,12 @@ RidleyTailAI_FlingTailAtSamus:
 
 
 HandleRidleyTailFlingTrigger:
-    LDA.W $2004 
-    BEQ .notFlingingTail 
+    LDA.W $2004 : BEQ .notFlingingTail 
     LDA.W $201C : AND.W $201A 
     BMI .notRotating 
 
 .notFlingingTail:
-    LDA.W $2002 
-    BEQ .done 
+    LDA.W $2002 : BEQ .done 
     LDA.W $05E5 : AND.W #$00FF 
     CMP.W #$00F0 
     BCS .notRotating 
@@ -7512,8 +7407,7 @@ HandleRidleyTailFlingTrigger:
 .rightOfRidley:
     CMP.W #$0080 
     BCS .done 
-    LDA.W #$0000 
-    BRA + 
+    LDA.W #$0000 : BRA + 
 
 
 .notRotating:
@@ -7561,8 +7455,7 @@ SwingRidleyTailInCircles:
 
 
 HandleTailFlingWhileSwingingInCircles:
-    LDA.W $2004 
-    BEQ .return 
+    LDA.W $2004 : BEQ .return 
     LDA.W $201C : AND.W $201A 
     BPL .return 
     LDA.W #$0001 
@@ -7617,8 +7510,7 @@ Function_Ridley_Tailbouncing:
 .movingUp:
     LDA.W #$FFFF : STA.W $201A 
     STA.W $201C 
-    LDA.W $2010 
-    BNE .decrementTimer 
+    LDA.W $2010 : BNE .decrementTimer 
 
 .done:
     STA.W $2014 
@@ -7693,8 +7585,7 @@ ExtendTailForTailbouncing:
 .RidleyMovingUp:
     LDA.W #$FFFF : STA.W $201A 
     STA.W $201C 
-    LDA.W $2010 
-    BNE .decrementTimer 
+    LDA.W $2010 : BNE .decrementTimer 
     JMP.W .done 
 
 
@@ -7782,8 +7673,7 @@ UpdateRidleyTailPositions:
     dw $0020,$0000,$FFE0 
 
 RidleyTailExtending:
-    LDA.W $203C 
-    BEQ .reachedTargetDistanceFromPreviousTailPart 
+    LDA.W $203C : BEQ .reachedTargetDistanceFromPreviousTailPart 
     CMP.W $203A 
     BPL + 
     LDA.W #$0000 : STA.W $203C 
@@ -7802,8 +7692,7 @@ RidleyTailExtending:
     BPL + 
     LDA.W $203A : SEC : SBC.W #$0080 : STA.W $203A 
 
-  + LDA.W $2050 
-    BEQ .reachedTargetDistanceFromPreviousTailPart2 
+  + LDA.W $2050 : BEQ .reachedTargetDistanceFromPreviousTailPart2 
     CMP.W $204E 
     BPL + 
     LDA.W #$0000 : STA.W $2050 
@@ -7822,8 +7711,7 @@ RidleyTailExtending:
     BPL + 
     LDA.W $204E : SEC : SBC.W #$0080 : STA.W $204E 
 
-  + LDA.W $2064 
-    BEQ .reachedTargetDistanceFromPreviousTailPart3 
+  + LDA.W $2064 : BEQ .reachedTargetDistanceFromPreviousTailPart3 
     CMP.W $2062 
     BPL + 
     LDA.W #$0000 : STA.W $2064 
@@ -7842,8 +7730,7 @@ RidleyTailExtending:
     BPL + 
     LDA.W $2062 : SEC : SBC.W #$0080 : STA.W $2062 
 
-  + LDA.W $2078 
-    BEQ .reachedTargetDistanceFromPreviousTailPart4 
+  + LDA.W $2078 : BEQ .reachedTargetDistanceFromPreviousTailPart4 
     CMP.W $2076 
     BPL + 
     LDA.W #$0000 : STA.W $2078 
@@ -7862,8 +7749,7 @@ RidleyTailExtending:
     BPL + 
     LDA.W $2076 : SEC : SBC.W #$0080 : STA.W $2076 
 
-  + LDA.W $208C 
-    BEQ .reachedTargetDistanceFromPreviousTailPart5 
+  + LDA.W $208C : BEQ .reachedTargetDistanceFromPreviousTailPart5 
     CMP.W $208A 
     BPL + 
     LDA.W #$0000 : STA.W $208C 
@@ -7882,8 +7768,7 @@ RidleyTailExtending:
     BPL + 
     LDA.W $208A : SEC : SBC.W #$0080 : STA.W $208A 
 
-  + LDA.W $20A0 
-    BEQ .reachedTargetDistanceFromPreviousTailPart6 
+  + LDA.W $20A0 : BEQ .reachedTargetDistanceFromPreviousTailPart6 
     CMP.W $209E 
     BPL + 
     LDA.W #$0000 : STA.W $20A0 
@@ -7907,8 +7792,7 @@ RidleyTailExtending:
 
 
 SetRidleyTailAngles:
-    LDA.W $2020,X 
-    BMI .tailPartMoving 
+    LDA.W $2020,X : BMI .tailPartMoving 
     LDA.W $202A,X 
     JMP.W .notMoving 
 
@@ -7934,17 +7818,14 @@ SetRidleyTailAngles:
     LDA.W #$8000 : STA.W $2034,X 
     LDA.W $2024,X : STA.W $2038,X 
 
-  + LDA.W $2024,X 
-    BMI .clockwiseRotation 
-    LDA.W $201C 
-    BMI .noCounterClockwiseTarget 
+  + LDA.W $2024,X : BMI .clockwiseRotation 
+    LDA.W $201C : BMI .noCounterClockwiseTarget 
     LDA.W #$0C00 : STA.W $2028,X 
     LDA.W $202A,X : CLC : ADC.W $2014 : CMP.W $201C 
     BMI .storeAngle 
     TXA 
     BEQ + 
-    LDA.W $200C,X 
-    BNE .tailPartMoving2 
+    LDA.W $200C,X : BNE .tailPartMoving2 
 
   + LDA.W $201C : STA.W $202A,X 
     JMP.W .stopTailPartMovement 
@@ -7956,21 +7837,18 @@ SetRidleyTailAngles:
 
 .tailPartMoving2:
     LDA.W #$8000 : STA.W $2024,X 
-    LDA.W $2018 
-    BRA .storeAngle 
+    LDA.W $2018 : BRA .storeAngle 
 
 
 .clockwiseRotation:
-    LDA.W $201A 
-    BMI .noClockwiseTarget 
+    LDA.W $201A : BMI .noClockwiseTarget 
     LDA.W #$0C00 : STA.W $2028,X 
     LDA.W $202A,X : SEC : SBC.W $2014 : DEC A 
     CMP.W $201A 
     BPL .incrementAngle 
     TXA 
     BEQ + 
-    LDA.W $200C,X 
-    BNE .tailPartMoving3 
+    LDA.W $200C,X : BNE .tailPartMoving3 
 
   + LDA.W $201A : STA.W $202A,X 
     JMP.W .stopTailPartMovement 
@@ -7983,8 +7861,7 @@ SetRidleyTailAngles:
 
 .tailPartMoving3:
     LDA.W #$0000 : STA.W $2024,X 
-    LDA.W $2016 
-    BRA .storeAngle 
+    LDA.W $2016 : BRA .storeAngle 
 
 
 .incrementAngle:
@@ -8022,8 +7899,7 @@ TargetAnAngleTowardMissileOrSamus:
     LDA.W $7820 
     DEC A 
     BEQ .returnUpper 
-    LDA.W $7802 
-    BEQ .returnUpper 
+    LDA.W $7802 : BEQ .returnUpper 
     JSR.W TargetAMissileOrSuperMissileIfAvailable 
     BCC .noProjectiles 
     LDA.B $12 : SBC.W $202C : STA.B $12 
@@ -8048,8 +7924,7 @@ TargetAnAngleTowardMissileOrSamus:
     INC A 
     AND.W #$00FF 
     STA.B $12 
-    LDA.W $7820 
-    BNE .facingRight 
+    LDA.W $7820 : BNE .facingRight 
     LDA.B $12 
     CMP.W #$0018 
     BCC + 
@@ -8088,8 +7963,7 @@ TargetAMissileOrSuperMissileIfAvailable:
     LDA.W $20A6 : STA.B $14 
     LDA.W #$0040 : STA.B $16 
     STA.B $18 
-    LDA.W $0CCE 
-    BNE .checkProjectiles 
+    LDA.W $0CCE : BNE .checkProjectiles 
     CLC 
     RTS 
 
@@ -8145,8 +8019,7 @@ PlaySwishingSFXIfTailIsMovingFast:
     STA.L $7E781C 
     CMP.W #$0010 
     BMI .return 
-    LDA.L $7E781E 
-    BNE .noSFX 
+    LDA.L $7E781E : BNE .noSFX 
     LDA.W #$0021 
     JSL.L QueueSound_Lib3_Max6 
 
@@ -8233,8 +8106,7 @@ UpdateTailPartRAMFromXToY:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SetAllTailPartsToNotMoving_A6D3D4:
-    LDA.W #$0000 
-    BRA SetAllTailPartsToMovingOrNotMoving 
+    LDA.W #$0000 : BRA SetAllTailPartsToMovingOrNotMoving 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -8331,8 +8203,7 @@ DetermineAndSetRidleySpeedAndColorPalette:
     BMI HandleRidleyHealthBasedPalette_return 
 
 HandleRidleyHealthBasedPalette:
-    LDA.L $7EC400 
-    BNE HandleRidleyHealthBasedPalette_return 
+    LDA.L $7EC400 : BNE HandleRidleyHealthBasedPalette_return 
     LDA.B $12 
     ASL #3
     SEC : SBC.B $12 : ASL #2
@@ -8346,8 +8217,7 @@ HandleRidleyHealthBasedPalette_return:
 
 
 DetermineAndSetCeresRidleysColorPalette:
-    LDA.L $7E7802 
-    BEQ HandleRidleyHealthBasedPalette_return 
+    LDA.L $7E7802 : BEQ HandleRidleyHealthBasedPalette_return 
     LDA.L $7E781A 
     CMP.W #$0032 
     BCC HandleRidleyHealthBasedPalette_return 
@@ -8366,8 +8236,7 @@ DetermineAndSetCeresRidleysColorPalette:
 MakeRidleysWingsAndTailFlashWhenHit:
     PHX 
     LDX.W #$0E00 
-    LDA.W $0F9C 
-    BEQ .noFlash 
+    LDA.W $0F9C : BEQ .noFlash 
     DEC A 
     BEQ .noFlash 
     LDA.W $0E44 
@@ -8423,13 +8292,11 @@ AccelerateRidleyTowardDesiredXYPosition:
     XBA 
     XBA 
     NOP #2
-    LDA.W $4214 
-    BNE + 
+    LDA.W $4214 : BNE + 
     INC A 
 
   + STA.B $16 
-    LDA.W $0FAC,X 
-    BPL + 
+    LDA.W $0FAC,X : BPL + 
     CLC : ADC.B $1A : CLC : ADC.W #$0008 : ADC.B $16 
 
   + ADC.B $16 : CMP.W #$0500 
@@ -8450,13 +8317,11 @@ AccelerateRidleyTowardDesiredXYPosition:
     XBA 
     XBA 
     NOP #2
-    LDA.W $4214 
-    BNE + 
+    LDA.W $4214 : BNE + 
     INC A 
 
   + STA.B $16 
-    LDA.W $0FAC,X 
-    BMI + 
+    LDA.W $0FAC,X : BMI + 
     SEC : SBC.B $1A : SEC : SBC.W #$0008 : SBC.B $16 
 
   + SBC.B $16 : CMP.W #$FB00 
@@ -8479,13 +8344,11 @@ AccelerateRidleyTowardDesiredXPosition:
     XBA 
     XBA 
     NOP #2
-    LDA.W $4214 
-    BNE + 
+    LDA.W $4214 : BNE + 
     INC A 
 
   + STA.B $16 
-    LDA.W $0FAA,X 
-    BPL + 
+    LDA.W $0FAA,X : BPL + 
     CLC : ADC.B $1A : CLC : ADC.W #$0008 : ADC.B $16 
 
   + ADC.B $16 : CMP.W #$0500 
@@ -8506,13 +8369,11 @@ AccelerateRidleyTowardDesiredXPosition:
     XBA 
     XBA 
     NOP #2
-    LDA.W $4214 
-    BNE + 
+    LDA.W $4214 : BNE + 
     INC A 
 
   + STA.B $16 
-    LDA.W $0FAA,X 
-    BMI + 
+    LDA.W $0FAA,X : BMI + 
     SEC : SBC.B $1A : SEC : SBC.W #$0008 : SBC.B $16 
 
   + SBC.B $16 : CMP.W #$FB00 
@@ -8540,13 +8401,11 @@ AccelerateCeresRidleyTowardDesiredXY:
     XBA 
     XBA 
     NOP #2
-    LDA.W $4214 
-    BNE + 
+    LDA.W $4214 : BNE + 
     INC A 
 
   + STA.B $16 
-    LDA.W $0FAC,X 
-    BPL .moveDown 
+    LDA.W $0FAC,X : BPL .moveDown 
     ADC.B $16 : ADC.B $16 
 
 .moveDown:
@@ -8569,13 +8428,11 @@ AccelerateCeresRidleyTowardDesiredXY:
     XBA 
     XBA 
     NOP #2
-    LDA.W $4214 
-    BNE + 
+    LDA.W $4214 : BNE + 
     INC A 
 
   + STA.B $16 
-    LDA.W $0FAC,X 
-    BMI .movingUp 
+    LDA.W $0FAC,X : BMI .movingUp 
     SBC.B $16 : SBC.B $16 
 
 .movingUp:
@@ -8599,13 +8456,11 @@ CalculateRidleyXSpeed:
     XBA 
     XBA 
     NOP #2
-    LDA.W $4214 
-    BNE + 
+    LDA.W $4214 : BNE + 
     INC A 
 
   + STA.B $16 
-    LDA.W $0FAA,X 
-    BPL .movingRight 
+    LDA.W $0FAA,X : BPL .movingRight 
     ADC.B $16 : ADC.B $16 
 
 .movingRight:
@@ -8627,13 +8482,11 @@ CalculateRidleyXSpeed:
     XBA 
     XBA 
     NOP #2
-    LDA.W $4214 
-    BNE + 
+    LDA.W $4214 : BNE + 
     INC A 
 
   + STA.B $16 
-    LDA.W $0FAA,X 
-    BMI .movingLeft 
+    LDA.W $0FAA,X : BMI .movingLeft 
     SBC.B $16 : SBC.B $16 
 
 .movingLeft:
@@ -8773,8 +8626,7 @@ UpdateRidleysUSwoopSpeedAndAngle:
   + STA.L $7E7816 
 
 .checkAngle:
-    LDA.B $12 
-    BMI .negativeTargetAngle 
+    LDA.B $12 : BMI .negativeTargetAngle 
     CLC : ADC.L $7E7814 : CMP.B $14 
     BMI .calculateAngle 
     BRA + 
@@ -8868,15 +8720,13 @@ CeresRidleyRoomShaking:
     LDA.W $079F 
     CMP.W #$0002 
     BEQ .return 
-    LDA.W $0FAA,X 
-    BPL .movingRight 
+    LDA.W $0FAA,X : BPL .movingRight 
     EOR.W #$FFFF 
     INC A 
 
 .movingRight:
     STA.B $12 
-    LDA.W $0FAC,X 
-    BPL .movingDown 
+    LDA.W $0FAC,X : BPL .movingDown 
     EOR.W #$FFFF 
     INC A 
 
@@ -8891,8 +8741,7 @@ CeresRidleyRoomShaking:
     LDA.W $079F 
     CMP.W #$0002 
     BEQ .norfair 
-    LDA.W #$0021 
-    BRA + 
+    LDA.W #$0021 : BRA + 
 
 
 .norfair:
@@ -8906,19 +8755,15 @@ CeresRidleyRoomShaking:
 
 
 TurnAroundIfFacingAwayFromRoomCenter:
-    LDA.L $7E7820 
-    BEQ .facingLeft 
+    LDA.L $7E7820 : BEQ .facingLeft 
     DEC A 
     BEQ .return 
-    LDA.W $0F79 
-    BPL .return 
-    LDA.W #InstList_Ridley_TurnFromRightToLeft 
-    BRA + 
+    LDA.W $0F79 : BPL .return 
+    LDA.W #InstList_Ridley_TurnFromRightToLeft : BRA + 
 
 
 .facingLeft:
-    LDA.W $0F79 
-    BMI .return 
+    LDA.W $0F79 : BMI .return 
     LDA.W #InstList_Ridley_TurnFromLeftToRight 
 
   + STA.W $0F92 
@@ -8948,14 +8793,12 @@ HandleWingFlapping:
 
 
 CalculateWingFlapSpeed:
-    LDA.W $0FAA 
-    BPL + 
+    LDA.W $0FAA : BPL + 
     EOR.W #$FFFF 
     INC A 
 
   + STA.B $12 
-    LDA.W $0FAC 
-    BPL + 
+    LDA.W $0FAC : BPL + 
     EOR.W #$FFFF 
     INC A 
 
@@ -9010,8 +8853,7 @@ AnimateRidleysRibs:
 
 .loop:
     TAX 
-    LDA.W $0000,X 
-    BPL .timer 
+    LDA.W $0000,X : BPL .timer 
     STA.L $7E780A 
     BRA .loop 
 
@@ -9086,8 +8928,7 @@ RidleyClawGraphicsPointers_holding:
     dw Tiles_RidleysRibsAndClaws_5 
 
 DrawRidleysWings:
-    LDA.L $7E7820 
-    BEQ .facingLeft 
+    LDA.L $7E7820 : BEQ .facingLeft 
     DEC A 
     BEQ .return 
     LDA.W #$000A 
@@ -9181,22 +9022,19 @@ GetBabyMetroidSpritemapPointerFromInstList:
     LDA.B #$7E : STA.B $02 
     STA.B $05 
     REP #$20 
-    LDA.B [$00] 
-    BMI .pointer 
+    LDA.B [$00] : BMI .pointer 
     PLA 
     RTS 
 
 
 .pointer:
     TAX 
-    LDA.W $0000,X 
-    BMI .instruction 
+    LDA.W $0000,X : BMI .instruction 
     CMP.B [$03] 
     BNE .timerDoesNotMatchCounter 
     INX #4
     .manualReturn:
-    LDA.W $0000,X 
-    BPL .notInstruction 
+    LDA.W $0000,X : BPL .notInstruction 
 
 .instruction:
     STA.B $06 
@@ -9244,8 +9082,7 @@ RidleyGeneralUseDrawing:
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) : ORA.L MapOfOAMIndex_highXPosBit,X : STA.B ($1C) 
 
-  + LDA.W $0000,Y 
-    BPL + 
+  + LDA.W $0000,Y : BPL + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) : ORA.L MapOfOAMIndex_sizeBit,X : STA.B ($1C) 
 
@@ -9543,13 +9380,11 @@ Spritemap_RidleyWings_FacingRight_FullyLowered:
     dw $F104 
 
 CheckIfRidleyIsOnScreen:
-    LDA.W $0F7E 
-    BMI .offScreen 
+    LDA.W $0F7E : BMI .offScreen 
     CLC : ADC.W #$0020 : SEC : SBC.W $0915 : BMI .offScreen 
     CMP.W #$0120 
     BPL .offScreen 
-    LDA.W $0F7A 
-    BMI .offScreen 
+    LDA.W $0F7A : BMI .offScreen 
     CLC : ADC.W #$0020 : SEC : SBC.W $0911 : BMI .offScreen 
     CMP.W #$0140 
     BPL .offScreen 
@@ -9563,8 +9398,7 @@ CheckIfRidleyIsOnScreen:
 
 
 RidleyTail_vs_SamusProjectile_CollisionDetection:
-    LDA.W $0CCE 
-    BNE .projectilesToCheck 
+    LDA.W $0CCE : BNE .projectilesToCheck 
     CLC 
     RTS 
 
@@ -9573,8 +9407,7 @@ RidleyTail_vs_SamusProjectile_CollisionDetection:
     LDY.W #$0000 
 
 .loop:
-    LDA.W $0C18,Y 
-    BPL .nextProjectile 
+    LDA.W $0C18,Y : BPL .nextProjectile 
     XBA 
     AND.W #$000F 
     CMP.W #$0003 
@@ -9617,15 +9450,13 @@ UNUSED_ChangeRidleyProjectileDirection_A6DF08:
     LDA.W $0C04,Y : AND.W #$000F 
     CMP.W #$0007 
     BNE .notFacingLeft 
-    LDA.W #$0001 
-    BRA .done 
+    LDA.W #$0001 : BRA .done 
 
 
 .notFacingLeft:
     CMP.W #$0002 
     BNE .notLeftOrRight 
-    LDA.W #$0008 
-    BRA .done 
+    LDA.W #$0008 : BRA .done 
 
 
 .notLeftOrRight:
@@ -9695,8 +9526,7 @@ EnemyShot_Ridley:
     CMP.W #$0002 
     BEQ .NorfairRidley 
     LDY.W #$000D 
-    LDA.W $0F9C 
-    BEQ .oddFlashTimer 
+    LDA.W $0F9C : BEQ .oddFlashTimer 
     LSR A 
     BCC .oddFlashTimer 
     INY 
@@ -9722,10 +9552,8 @@ RTL_A6DFB6:
 
 
 SetRidleyAsDead:
-    LDA.W $0F8C 
-    BNE .return 
-    LDA.L $7E7802 
-    BMI .return 
+    LDA.W $0F8C : BNE .return 
+    LDA.L $7E7802 : BMI .return 
     LDA.W #$FFFF : STA.L $7E7802 
     LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     LDA.W #Function_Ridley_MoveToDeathSpot : STA.W $0FA8 
@@ -10000,15 +9828,13 @@ Instruction_Ridley_GotoY:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingBaby_A6E4EE:
-    LDA.L $7E7836 
-    BNE Instruction_Ridley_GotoY 
+    LDA.L $7E7836 : BNE Instruction_Ridley_GotoY 
     INY #2
     BRA Instruction_Ridley_GotoY 
 
 
 UNUSED_Instruction_RidleyCeres_GotoYIfHoldingBaby_A6E4F8:
-    LDA.L $7E7836 
-    BEQ Instruction_Ridley_GotoY 
+    LDA.L $7E7836 : BEQ Instruction_Ridley_GotoY 
     INY #2
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -10025,8 +9851,7 @@ Instruction_Ridley_SkipToNextInstruction:
 
 
 Instruction_Ridley_GotoYIfNotFacingLeft:
-    LDA.L $7E7820 
-    BEQ Instruction_Ridley_SkipToNextInstruction 
+    LDA.L $7E7820 : BEQ Instruction_Ridley_SkipToNextInstruction 
     BRA Instruction_Ridley_GotoY 
 
 
@@ -10478,8 +10303,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Instruction_Ridley_CalculateFireballAngleAndXYSpeeds:
     PHX 
     PHY 
-    LDA.L $7E7820 
-    BNE .facingRight 
+    LDA.L $7E7820 : BNE .facingRight 
     LDA.W #$FFE7 : CLC : ADC.W $0F7A : STA.B $12 
     LDA.W $0AF6 : SEC : SBC.B $12 : STA.B $12 
     LDA.W #$FFD5 : CLC : ADC.W $0F7E : STA.B $14 
@@ -10492,8 +10316,7 @@ Instruction_Ridley_CalculateFireballAngleAndXYSpeeds:
     BCS .checkEB 
     CMP.W #$0040 
     BCC .loadEB 
-    LDA.W #$00B0 
-    BRA + 
+    LDA.W #$00B0 : BRA + 
 
 
 .checkEB:
@@ -10520,8 +10343,7 @@ Instruction_Ridley_CalculateFireballAngleAndXYSpeeds:
     BCC .check15 
     CMP.W #$00C0 
     BCS .load15 
-    LDA.W #$0050 
-    BRA + 
+    LDA.W #$0050 : BRA + 
 
 
 .check15:
@@ -10546,8 +10368,7 @@ Instruction_Ridley_CalculateFireballAngleAndXYSpeeds:
 
 
 FireLeadsFireball:
-    LDA.W #$0000 
-    BRA SpawnRidleyFireball 
+    LDA.W #$0000 : BRA SpawnRidleyFireball 
 
 
 FireTrailsFireball:
@@ -12154,14 +11975,12 @@ Instruction_CeresDoor_GotoYIfAreaBossIsAlive:
 
 
 Instruction_CeresDoor_GotoYIfCeresRidleyHasNotEscaped:
-    LDA.W $093F 
-    BEQ Inst_CeresDoor_GotoYIfSamusIsNotWithin30Pixels_gotoY 
+    LDA.W $093F : BEQ Inst_CeresDoor_GotoYIfSamusIsNotWithin30Pixels_gotoY 
     BRA Inst_CeresDoor_GotoYIfSamusIsNotWithin30Pixels_outOfRange 
 
 
 SetElevatorRoomToRotateIfRidleyHasEscaped:
-    LDA.W $093F 
-    BEQ .return 
+    LDA.W $093F : BEQ .return 
     LDA.W #$8000 : STA.W $093F 
 
 .return:
@@ -12216,8 +12035,7 @@ InitAI_CeresDoor:
     LDA.W InstListPointers_CeresDoor,Y : STA.W $0F92,X 
     STZ.W $0FAA,X 
     JSR.W LoadRotatingElevatorRoomPreExplosioNDoorOverlayTilesIfNeeded 
-    LDA.W $093F 
-    BNE .escapeSequence 
+    LDA.W $093F : BNE .escapeSequence 
     LDA.W $0FB4,X 
     CMP.W #$0003 
     BNE .notRidleysRoom 
@@ -12286,8 +12104,7 @@ HandleEarthquakeDuringEscape:
     LDA.W $093F 
     CMP.W #$0002 
     BCC .return 
-    LDA.W $1840 
-    BNE .return 
+    LDA.W $1840 : BNE .return 
     LDA.W $05E5 : AND.W #$0FFF 
     CMP.W #$0080 
     BCC .random 
@@ -12381,8 +12198,7 @@ Function_CeresDoor_RotatingElevatorRoom_Rumbling_Explosions:
 Function_CeresDoor_RotatingElevatorRoom_ElevatorAnimations:
     PHX 
     JSR.W AnimateCeresElevatorPlatform 
-    LDA.L $7EC400 
-    BNE .return 
+    LDA.L $7EC400 : BNE .return 
     LDA.W $05B6 : AND.W #$0038 
     ASL A 
     ADC.W #.paletteAnimation : TAY 
@@ -12716,8 +12532,7 @@ InitAI_Zebetite:
     LDA.W #$0080 : STA.W $0F98,X 
     STZ.W $0FAC,X 
     LDY.W #Function_Zebetite_SpawnBottomZebetiteIfNeeded 
-    LDA.W $0FB4,X 
-    BEQ .setFunctionPointer 
+    LDA.W $0FB4,X : BEQ .setFunctionPointer 
     LDY.W #Function_Zebetite_WaitForDoorTransitionToFinish 
 
 .setFunctionPointer:
@@ -12747,8 +12562,7 @@ InitAI_Zebetite:
     LDA.W .height,Y : STA.W $0F84,X 
     LDA.W .instListPointer,Y : STA.W $0F92,X 
     LDA.W .XPosition,Y : STA.W $0F7A,X 
-    LDA.W $0FB4,X 
-    BEQ .zeroParam1 
+    LDA.W $0FB4,X : BEQ .zeroParam1 
     LDA.W .YPosition_nonZero,Y : STA.W $0F7E,X 
     RTL 
 
@@ -12781,8 +12595,7 @@ InitAI_Zebetite:
 
 MainAI_Zebetite:
     LDX.W $0E54 
-    LDA.W $1840 
-    BNE .function 
+    LDA.W $1840 : BNE .function 
     STZ.W $0FA2,X 
 
 .function:
@@ -12790,8 +12603,7 @@ MainAI_Zebetite:
 
 
 Function_Zebetite_SpawnBottomZebetiteIfNeeded:
-    LDA.W $0FB2,X 
-    BPL .notNeeded 
+    LDA.W $0FB2,X : BPL .notNeeded 
     JSR.W SpawnBottomZebetite 
     LDA.W $0E54 : STA.W $0FB6,X 
     TAY 
@@ -12803,8 +12615,7 @@ Function_Zebetite_SpawnBottomZebetiteIfNeeded:
     LDA.W #Function_Zebetite_WaitForDoorTransitionToFinish : STA.W $0FA8,X ; fallthrough to Function_Zebetite_WaitForDoorTransitionToFinish
 
 Function_Zebetite_WaitForDoorTransitionToFinish:
-    LDA.W $0795 
-    BEQ .finished 
+    LDA.W $0795 : BEQ .finished 
     RTL 
 
 
@@ -12815,8 +12626,7 @@ Function_Zebetite_Active:
     JSR.W HandleZebetitePaletteAnimation 
     JSR.W SetZebetiteInstList 
     LDX.W $0E54 
-    LDA.W $0F8C,X 
-    BEQ .destroyed 
+    LDA.W $0F8C,X : BEQ .destroyed 
     CLC : ADC.W #$0001 : CMP.W #$03E8 
     BMI + 
     LDA.W #$03E8 
@@ -12826,8 +12636,7 @@ Function_Zebetite_Active:
 
 
 .destroyed:
-    LDA.W $0FB4,X 
-    BEQ .singlePart 
+    LDA.W $0FB4,X : BEQ .singlePart 
 
 .noMore:
     LDA.W #$0000 
@@ -12937,11 +12746,9 @@ SetZebetiteInstList:
     dw InstList_Small_HealthLessThan200 
 
 HandleZebetitePaletteAnimation:
-    LDA.L $7EC400 
-    BNE .return 
+    LDA.L $7EC400 : BNE .return 
     LDX.W $0E54 
-    LDA.W $0FB4,X 
-    BNE .return 
+    LDA.W $0FB4,X : BNE .return 
     LDA.W $0FAC 
     INC A 
     AND.W #$0007 

@@ -8638,8 +8638,7 @@ MainASM_SetScreenShaking_GenerateRandomExplosions:
 
 
 GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
-    LDA.W $0A78 
-    BNE .return 
+    LDA.W $0A78 : BNE .return 
     LDA.W $05B6 : AND.W #$0001 
     BNE .return 
     JSL.L GenerateRandomNumber 
@@ -8670,8 +8669,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
 
 
 GenerateRandomExplosionOnEveryFourthFrame:
-    LDA.W $0A78 
-    BNE GenerateRandomExplosionAt_12_14_return 
+    LDA.W $0A78 : BNE GenerateRandomExplosionAt_12_14_return 
     LDA.W $05B6 : AND.W #$0003 
     BNE GenerateRandomExplosionAt_12_14_return 
     JSL.L GenerateRandomNumber 
@@ -13292,8 +13290,7 @@ MainASM_Elevatube:
     STZ.W $0AF8 
     STZ.B $12 
     STZ.B $14 
-    LDA.W $07E5 
-    BPL + 
+    LDA.W $07E5 : BPL + 
     DEC.B $14 
 
   + STA.B $13 
@@ -13576,8 +13573,7 @@ RTS_8FE524:
 
 
 MainASM_SpawnCeresPreElevatorHallFallingDebris:
-    LDA.W $093F 
-    BEQ RTS_8FE524 
+    LDA.W $093F : BEQ RTS_8FE524 
     DEC.W $07E1 
     BPL RTS_8FE524 
     LDA.W #$0008 : STA.W $07E1 
@@ -13610,12 +13606,10 @@ MainASM_HandleCeresRidleyGetawayCutscene:
 
 
 MainASM_ShakeScreenSwitchingBetweenLightHorizAndMediumDiag:
-    LDA.W $07E1 
-    BEQ .resetQuakeTimer 
+    LDA.W $07E1 : BEQ .resetQuakeTimer 
     DEC.W $07E1 
     BNE MainASM_GenerateRandomExplosionOnEveryFourthFrame 
-    LDA.W #$0012 
-    BRA + 
+    LDA.W #$0012 : BRA + 
 
 
 .resetQuakeTimer:
@@ -13633,12 +13627,10 @@ MainASM_GenerateRandomExplosionOnEveryFourthFrame:
 
 
 MainASM_ShakeScreenSwitchingBetweenMediumHorizAndStrongDiag:
-    LDA.W $07E1 
-    BEQ .resetQuakeTimer 
+    LDA.W $07E1 : BEQ .resetQuakeTimer 
     DEC.W $07E1 
     BNE .noEarthquakeChange 
-    LDA.W #$0015 
-    BRA + 
+    LDA.W #$0015 : BRA + 
 
 
 .resetQuakeTimer:
@@ -13745,8 +13737,7 @@ RoomStateCheck_MorphballAndMissiles:
     LDA.W $09A4 
     BIT.W #$0004 
     BEQ + 
-    LDA.W $09C8 
-    BEQ + 
+    LDA.W $09C8 : BEQ + 
     LDA.W $0000,X 
     TAX 
     JMP.W Use_StatePointer_inX 
@@ -13757,8 +13748,7 @@ RoomStateCheck_MorphballAndMissiles:
 
 
 RoomStateCheck_PowerBombs:
-    LDA.W $09D0 
-    BEQ + 
+    LDA.W $09D0 : BEQ + 
     LDA.W $0000,X 
     TAX 
     JMP.W Use_StatePointer_inX 
@@ -14047,8 +14037,7 @@ Execute_Room_Setup_ASM:
     PHB 
     REP #$30 
     LDX.W $07BB 
-    LDA.W $0018,X 
-    BEQ .return 
+    LDA.W $0018,X : BEQ .return 
     PHK 
     PLB 
     JSR.W ($0018,X) 
@@ -14064,8 +14053,7 @@ Execute_Door_ASM:
     PHB 
     REP #$30 
     LDX.W $078D 
-    LDA.L $83000A,X 
-    BEQ .return 
+    LDA.L $83000A,X : BEQ .return 
     STA.B $12 
     PHK 
     PLB 
@@ -14108,8 +14096,7 @@ MainASM_CrocomiresRoomShaking:
     STA.W $0FEE 
     CMP.W #$FFF9 
     BMI + 
-    LDA.W $0FEE 
-    BRA .scroll 
+    LDA.W $0FEE : BRA .scroll 
 
 
   + LDA.W #$0007 : CLC : ADC.W $0FEE : ASL A 
@@ -14129,8 +14116,7 @@ MainASM_CrocomiresRoomShaking:
     LDA.W $0FAC 
     CMP.W #$0022 
     BNE .return 
-    LDA.W $0FAE 
-    BEQ .return 
+    LDA.W $0FAE : BEQ .return 
     DEC A 
     STA.W $0FAE 
     BIT.W #$0001 
@@ -14149,8 +14135,7 @@ MainASM_CrocomiresRoomShaking:
 
 
 MainASM_RidleysRoomShaking:
-    LDA.W $10A8 
-    BEQ .return 
+    LDA.W $10A8 : BEQ .return 
     DEC A 
     STA.W $10A8 
     ASL A 

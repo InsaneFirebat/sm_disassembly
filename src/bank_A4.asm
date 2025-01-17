@@ -485,8 +485,7 @@ FightAI_Crocomire_6_SteppingForward:
     BIT.W #$0800 
     BEQ .step 
     LDA.W $0FAA : AND.W #$F7FF : STA.W $0FAA 
-    LDA.W $0FAE 
-    BEQ .step 
+    LDA.W $0FAE : BEQ .step 
     LDY.W #InstList_Crocomire_StepBack 
     LDA.W #$000C : STA.W $0FAC 
     RTS 
@@ -573,8 +572,7 @@ FightAI_Crocomire_A_NearSpikeWallCharge:
 
 
 FightAI_Crocomire_C_SteppingBack:
-    LDA.W $0FAE 
-    BEQ .stepForward 
+    LDA.W $0FAE : BEQ .stepForward 
     DEC A 
     STA.W $0FAE 
     BEQ .stepForward 
@@ -719,8 +717,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ChargeCrocomireForwardOneStepAfterDelay_A488EE:
     LDX.W $0E54 
     JSR.W FightAI_Crocomire_0_LockUp_SetInitialInstList 
-    LDA.W $0FAE 
-    BEQ .timerExpired 
+    LDA.W $0FAE : BEQ .timerExpired 
     DEC.W $0FAE 
     BNE .return 
 
@@ -761,8 +758,7 @@ UNUSED_FightAI_Crocomire_1E_ChooseForwardMovingAttack_A4891B:
 UNUSED_FightAI_Crocomire_20_DoNothingAndStepForward_A48940:
     LDX.W $0E54 
     JSR.W FightAI_Crocomire_0_LockUp_SetInitialInstList 
-    LDA.W $0FAE 
-    BNE .return 
+    LDA.W $0FAE : BNE .return 
     LDA.W $0FAA : ORA.W #$2000 : STA.W $0FAA 
     JSR.W FightAI_Crocomire_2_StepForwardUntilOnScreen_StepForward 
     LDA.W #$0024 : STA.W $0FAC 
@@ -804,8 +800,7 @@ UNUSED_FightAI_Crocomire_22_MoveForwardUntilHitSamus_A4895E:
 
 UNUSED_FightAI_Crocomire_24_MoveClaws_StepForward_A489A8:
     LDX.W $0E54 
-    LDA.W $0FAE 
-    BEQ .timerExpired 
+    LDA.W $0FAE : BEQ .timerExpired 
     DEC.W $0FAE 
     BEQ .timerExpired 
     LDA.W #$0024 : STA.W $0FAC 
@@ -837,8 +832,7 @@ UNUSED_FightAI_Crocomire_26_StepForward_A489DE:
 
 
 UNUSED_FightAI_Crocomire_28_MovingClaws_A489F9:
-    LDA.W $0FAE 
-    BNE .timerNotExpired 
+    LDA.W $0FAE : BNE .timerNotExpired 
     LDA.W $0FAA : AND.W #$BFFF : STA.W $0FAA 
     LDA.W #$0001 : STA.W $0F94 
     LDA.W $0FB2 : STA.W $0FAC 
@@ -1103,8 +1097,7 @@ MainAI_Crocomire_DeathSequence_56_DeadDueToRoomEntry:
 
 
 Crocomire_vs_Samus_CollisionHandling:
-    LDA.W $0FA8 
-    BNE .return 
+    LDA.W $0FA8 : BNE .return 
     LDA.W $0F7A : SEC : SBC.W $0F82 : SBC.W $0AFE : SBC.W $0AF6 : BPL .return 
     JSL.L NormalEnemyTouchAI 
     LDA.W $0F7A : SEC : SBC.W $0F82 : SEC : SBC.W $0AFE : STA.W $0AF6 
@@ -1117,10 +1110,8 @@ Crocomire_vs_Samus_CollisionHandling:
 
 
 CrocomireHurtFlashHandling:
-    LDA.W $0797 
-    BNE .return 
-    LDA.W $0F9C 
-    BEQ .palette 
+    LDA.W $0797 : BNE .return 
+    LDA.W $0F9C : BEQ .palette 
     LDA.W $0E44 
     BIT.W #$0002 
     BEQ .palette 
@@ -1179,8 +1170,7 @@ Instruction_Crocomire_QueueSkeletonCollapseSFX:
 HandlePlayingCrocomireAcidDamageSFX:
     PHX 
     PHY 
-    LDA.L $7E8000 
-    BEQ .return 
+    LDA.L $7E8000 : BEQ .return 
     DEC A 
     STA.L $7E8000 
     BNE .return 
@@ -1199,8 +1189,7 @@ MainAI_Crocomire_DeathSequence_4_A_Hop_1_2_Resting:
     JSL.L UpdateCrocomireBG2XScroll 
 
 MainAI_Crocomire_DeathSequence_20_26_Hop_4_5_Resting:
-    LDA.W $0FAE 
-    BEQ .timerExpired 
+    LDA.W $0FAE : BEQ .timerExpired 
     DEC A 
     STA.W $0FAE 
     RTS 
@@ -1220,8 +1209,7 @@ HandleCrocomiresBridge:
     BMI .notOnBridge 
     CMP.W #$0610 
     BPL .oneBlockDeep 
-    LDA.L $7E9000 
-    BNE .returnUpper 
+    LDA.L $7E9000 : BNE .returnUpper 
     LDA.W #$0001 : STA.L $7E9000 
     LDA.W #$0600 : STA.B $12 
     LDA.W #$00B0 : STA.B $14 
@@ -1249,8 +1237,7 @@ HandleCrocomiresBridge:
     BMI .deadCode 
     CMP.W #$0620 
     BPL .twoBlocksDeep 
-    LDA.L $7E9002 
-    BNE .returnMiddle 
+    LDA.L $7E9002 : BNE .returnMiddle 
     LDA.W #$0001 : STA.L $7E9002 
     JSL.L Spawn_Hardcoded_PLM 
     db $61,$0B 
@@ -1280,8 +1267,7 @@ HandleCrocomiresBridge:
     BMI .deadCode2 
     CMP.W #$0630 
     BPL .threeBlocksDeep 
-    LDA.L $7E9006 
-    BNE .returnLower 
+    LDA.L $7E9006 : BNE .returnLower 
     LDA.W #$0001 : STA.L $7E9006 
     JSL.L Spawn_Hardcoded_PLM 
     db $62,$0B 
@@ -2354,10 +2340,8 @@ MainAI_Crocomire_DeathSequence_40_BehindWall_Rumbling:
 
 
 .equal:
-    LDA.W .targetYOffset,X 
-    BPL .positive 
-    LDA.W $102E 
-    BEQ .rumbleTimerExpired 
+    LDA.W .targetYOffset,X : BPL .positive 
+    LDA.W $102E : BEQ .rumbleTimerExpired 
     DEC A 
     STA.W $102E 
     DEX #2
@@ -2386,8 +2370,7 @@ MainAI_Crocomire_DeathSequence_40_BehindWall_Rumbling:
     dw $0003,$0001,$0001,$FFFF,$8080,$8080,$8080,$8080 
 
 MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
-    LDA.W $0FAE 
-    BEQ .zero 
+    LDA.W $0FAE : BEQ .zero 
     DEC A 
     STA.W $0FAE 
     LDY.W $0688 
@@ -2482,8 +2465,7 @@ MainAI_Crocomire_DeathSequence_44_BreaksDownWall:
     LDA.W $0F7A : ADC.W $0FB2 : STA.W $0F7A 
 
 .timer:
-    LDA.W $102E 
-    BEQ .return 
+    LDA.W $102E : BEQ .return 
     DEC.W $102E 
     BNE .return 
     STZ.W $0FB0 
@@ -2522,63 +2504,51 @@ MainAI_Crocomire_DeathSequence_46_SkeletonFalls:
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative20:
-    LDA.W #$FFE0 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$FFE0 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_0:
-    LDA.W #$0000 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$0000 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative10:
-    LDA.W #$FFF0 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$FFF0 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_10:
-    LDA.W #$0010 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$0010 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_0_dup:
-    LDA.W #$0000 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$0000 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_8:
-    LDA.W #$0008 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$0008 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_10_dup:
-    LDA.W #$0010 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$0010 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_18:
-    LDA.W #$0018 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$0018 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_20:
-    LDA.W #$0020 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$0020 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_28:
-    LDA.W #$0028 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$0028 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_30:
-    LDA.W #$0030 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$0030 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_38:
-    LDA.W #$0038 
-    BRA SpawnBigDustCloudProjectile 
+    LDA.W #$0038 : BRA SpawnBigDustCloudProjectile 
 
 
 Instruction_Crocomire_SpawnBigDustCloudProjectile_40:
@@ -3262,10 +3232,8 @@ EnemyShot_Crocomire_SpawnShotExplosion:
 
 
 PowerBombReaction_Crocomire:
-    LDA.W $0FA8 
-    BNE .return 
-    LDA.W CrocomireConstants_powerBombReactionEnableFlag 
-    BEQ .return 
+    LDA.W $0FA8 : BNE .return 
+    LDA.W CrocomireConstants_powerBombReactionEnableFlag : BEQ .return 
     STA.W $0FAE 
     LDA.W $0FAC 
     CMP.W #$0018 

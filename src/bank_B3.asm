@@ -640,8 +640,7 @@ InitAI_Zeb_Zebbo:
     LDA.W #$0000 : STA.W $0FB0,X 
     STA.L $7E7802,X 
     LDA.W #InstList_Zeb_FacingLeft_Rising : STA.W $0F92,X 
-    LDA.W $0FB4,X 
-    BEQ .return 
+    LDA.W $0FB4,X : BEQ .return 
     LDA.W #InstList_Zebbo_FacingLeft_Rising : STA.W $0F92,X 
 
 .return:
@@ -690,8 +689,7 @@ Function_Zeb_Zebbo_WaitForSamusToGetNear:
     LDA.W #$0000 : STA.W $0F90,X 
     BIT.W $0FA8,X 
     BMI .left 
-    LDA.W #$0002 
-    BRA + 
+    LDA.W #$0002 : BRA + 
 
 
 .left:
@@ -773,10 +771,8 @@ Set_Zeb_Zebbo_InstList:
     STA.L $7E7802,X 
     ASL A 
     TAY 
-    LDA.W $0FB4,X 
-    BNE .zebbo 
-    LDA.W InstListPointers_Zeb,Y 
-    BRA + 
+    LDA.W $0FB4,X : BNE .zebbo 
+    LDA.W InstListPointers_Zeb,Y : BRA + 
 
 
 .zebbo:
@@ -1426,8 +1422,7 @@ InitAI_Geega:
     LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDA.W #InstList_Geega_FacingLeft_Rising : STA.W $0F92,X 
-    LDA.W $0FB4,X 
-    BNE + 
+    LDA.W $0FB4,X : BNE + 
     LDA.W #InstList_Geega_FacingRight_Rising : STA.W $0F92,X 
 
   + LDA.W $0FB6,X 
@@ -1450,8 +1445,7 @@ MainAI_Geega:
 
 Function_Geega_WaitForSamusToGetNear:
     LDX.W $0E54 
-    LDA.W $0FB4,X 
-    BNE .leftwards 
+    LDA.W $0FB4,X : BNE .leftwards 
     JSL.L Get_SamusX_minus_EnemyX 
     BMI .return 
     CMP.W #$00C0 
@@ -1489,8 +1483,7 @@ Function_Geega_ShootDelay:
     STZ.W $0F90,X 
     LDA.W #InstList_Geega_FacingLeft_Rising : STA.W $0F92,X 
     LDA.W #Function_Geega_ShootingLeft : STA.W $0FA8,X 
-    LDA.W $0FB4,X 
-    BNE .return 
+    LDA.W $0FB4,X : BNE .return 
     LDA.W #InstList_Geega_FacingRight_Rising : STA.W $0F92,X 
     LDA.W #Function_Geega_ShootingRight : STA.W $0FA8,X 
 
@@ -1514,8 +1507,7 @@ Function_Geega_ShootingLeft:
 
 
 .onScreen:
-    LDA.L $7E780C,X 
-    BNE .return 
+    LDA.L $7E780C,X : BNE .return 
     LDA.W $0F7A,X : SEC : SBC.W $0AF6 : CMP.W #$0030 
     BPL .return 
     LDA.W #Function_Geega_DippingLeft : STA.W $0FA8,X 
@@ -1557,8 +1549,7 @@ Function_Geega_ShootingRight:
 
 
 .onScreen:
-    LDA.L $7E780C,X 
-    BNE .return 
+    LDA.L $7E780C,X : BNE .return 
     LDA.W $0F7A,X : SEC : SBC.W $0AF6 : EOR.W #$FFFF 
     INC A 
     CMP.W #$0030 
@@ -1607,8 +1598,7 @@ Function_Geega_DippingLeft:
 
 .onScreen:
     JSR.W MoveGeegaLeft 
-    LDA.W $0FB2,X 
-    BNE .moveDown 
+    LDA.W $0FB2,X : BNE .moveDown 
     JSR.W MoveGeegaUp 
     LDA.W $0F7E,X 
     CMP.L $7E7810,X 
@@ -1648,8 +1638,7 @@ Function_Geega_DippingRight:
 
 .onScreen:
     JSR.W MoveGeegaRight 
-    LDA.W $0FB2,X 
-    BNE .moveDown 
+    LDA.W $0FB2,X : BNE .moveDown 
     JSR.W MoveGeegaUp 
     LDA.L $7E7810,X 
     CMP.W $0F7E,X 
@@ -2215,14 +2204,10 @@ UNUSED_SpeedTable_Random_B3967B:
 
 UNUSED_Botwoon_MaybeSpitting_B39396:
     LDX.W $0E54 
-    LDA.L $7E801E,X 
-    BNE + 
-    LDA.L $7E801C,X 
-    BEQ + 
-    LDA.L $7E8026,X 
-    BNE + 
-    LDA.L $7E8002,X 
-    BNE + 
+    LDA.L $7E801E,X : BNE + 
+    LDA.L $7E801C,X : BEQ + 
+    LDA.L $7E8026,X : BNE + 
+    LDA.L $7E8002,X : BNE + 
     LDA.W #Function_Botwoon_Head_Spitting_SetAngleAndShow : STA.W $0FB2,X 
     LDA.W #$0018 : STA.L $7E8002,X 
 
@@ -2233,10 +2218,8 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 BotwoonDeathCheck:
     LDX.W $0E54 
-    LDA.L $7E801E,X 
-    BEQ .return 
-    LDA.L $7E803C,X 
-    BEQ .return 
+    LDA.L $7E801E,X : BEQ .return 
+    LDA.L $7E803C,X : BEQ .return 
     LDA.W #$0001 : STA.L $7E8020,X 
     LDA.W #Function_Botwoon_DeathSequence_PreDeathDelay : STA.W $0FAE,X 
     LDA.W #$00F0 : STA.L $7E8004,X 
@@ -2346,16 +2329,12 @@ BotwoonLeaveHoleAction_JumpTable:
 
 Function_Botwoon_GoThroughHole:
     LDX.W $0E54 
-    LDA.L $7E8038,X 
-    BEQ .moveAround 
+    LDA.L $7E8038,X : BEQ .moveAround 
     LDA.W #$0000 : STA.L $7E8038,X 
     STZ.B $12 
-    LDA.L $7E8026,X 
-    BNE .gotoAction 
-    LDA.L $7E8832,X 
-    BNE .gotoAction 
-    LDA.L $7E803E,X 
-    BNE .gotoAction 
+    LDA.L $7E8026,X : BNE .gotoAction 
+    LDA.L $7E8832,X : BNE .gotoAction 
+    LDA.L $7E803E,X : BNE .gotoAction 
     JSL.L GenerateRandomNumber 
     AND.W #$000E 
     STA.B $12 
@@ -2400,8 +2379,7 @@ SetupBotwoonSpitting:
 ChooseBotwoonMovementPath:
     JSR.W SetBotwoonSpeed 
     STZ.B $12 
-    LDA.L $7E8026,X 
-    BEQ .notHidden 
+    LDA.L $7E8026,X : BEQ .notHidden 
     LDA.W #$0080 : STA.B $12 
 
 .notHidden:
@@ -2415,11 +2393,9 @@ ChooseBotwoonMovementPath:
 
 
 SetBotwoonSpeed:
-    LDA.L $7E8026,X 
-    BNE .return 
+    LDA.L $7E8026,X : BNE .return 
     LDA.W #$0000 : STA.L $7E803E,X 
-    LDA.W $0F8C,X 
-    BEQ .return 
+    LDA.W $0F8C,X : BEQ .return 
     BMI .return 
     CMP.L $7E8838,X 
     BPL .return 
@@ -2449,8 +2425,7 @@ SetBotwoonSpeed:
 
 Function_Botwoon_MovingAround:
     LDX.W $0E54 
-    LDA.L $7E8038,X 
-    BEQ .notGoingThroughHole 
+    LDA.L $7E8038,X : BEQ .notGoingThroughHole 
     LDA.W #$0000 : STA.L $7E8038,X 
     JMP.W + ; >.<
 
@@ -2467,8 +2442,7 @@ Function_Botwoon_MovingAround:
 
   + LDA.W #Function_Botwoon_GoThroughHole : STA.W $0FAE,X 
     LDA.W #Function_Botwoon_Movement_DirectlyTowardTargetHole : STA.W $0FB0,X 
-    LDA.L $7E8026,X 
-    BEQ .return 
+    LDA.L $7E8026,X : BEQ .return 
     LDA.W #$0000 : STA.L $7E802A,X 
 
 .return:
@@ -2477,8 +2451,7 @@ Function_Botwoon_MovingAround:
 
 Function_Botwoon_Spitting:
     LDX.W $0E54 
-    LDA.L $7E8002,X 
-    BNE .timerNotExpired 
+    LDA.L $7E8002,X : BNE .timerNotExpired 
     LDA.W #$0000 : STA.L $7E8038,X 
     JMP.W + ; >.<
 
@@ -2492,8 +2465,7 @@ Function_Botwoon_Spitting:
   + LDA.W #Function_Botwoon_MovingAround : STA.W $0FAE,X 
     LDA.W #Function_Botwoon_Movement_StartMovingAccordingToMovementData : STA.W $0FB0,X 
     LDA.W #Function_Botwoon_Head_MovingAround : STA.W $0FB2,X 
-    LDA.L $7E801E,X 
-    BNE .deathFlagSet 
+    LDA.L $7E801E,X : BNE .deathFlagSet 
     JSL.L GenerateRandomNumber 
     AND.W #$0001 
     STA.L $7E8026,X 
@@ -2562,8 +2534,7 @@ Function_Botwoon_DeathSequence_FallingToGround:
 
 Function_Botwoon_DeathSequence_WaitForBodyToFallToGround:
     LDX.W $0E54 
-    LDA.L $7E883E,X 
-    BEQ .return 
+    LDA.L $7E883E,X : BEQ .return 
     LDA.W #Function_Botwoon_DeathSequence_CrumblingWall : STA.W $0FAE,X 
     JSR.W SpawnBotwoonItemDrops_StartCrumblingWall 
 
@@ -2769,8 +2740,7 @@ UpdateBotwonBodyProjectilePositions:
     LDA.W #$0000 : STA.L $7E802A,X 
     STA.L $7E803C,X 
     LDA.W #$FFFF : STA.L $7E802C,X 
-    LDA.L $7E8026,X 
-    BNE .toggleVisibilityEnd 
+    LDA.L $7E8026,X : BNE .toggleVisibilityEnd 
     LDA.W #$0001 : STA.L $7E803C,X 
 
 .toggleVisibilityEnd:
@@ -2806,8 +2776,7 @@ SetBotwoonInstListTableIndices:
     LDX.B $16 
     LDA.L $7E7800,X 
     TAY 
-    LDA.L $7E7820,X 
-    BEQ .nothidden 
+    LDA.L $7E7820,X : BEQ .nothidden 
     LDA.W #$0100 : STA.B $18 
 
 .nothidden:
@@ -2850,16 +2819,13 @@ Function_Botwoon_Head_MovingAround:
     LDA.W $0F7E,X : SEC : SBC.L $7E882E,X : STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     STA.B $16 
-    LDA.B $12 
-    BNE .nonZero 
-    LDA.B $14 
-    BNE .nonZero 
+    LDA.B $12 : BNE .nonZero 
+    LDA.B $14 : BNE .nonZero 
     JMP.W .noHeadUpdate 
 
 
   .nonZero
-    LDA.L $7E8026,X 
-    BEQ .notHidden 
+    LDA.L $7E8026,X : BEQ .notHidden 
     LDA.W #$0007 : STA.W $0F9A,X 
     LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     LDA.B $16 : CLC : ADC.W #$0100 : STA.B $16 
@@ -2927,8 +2893,7 @@ Function_Botwoon_Head_Spitting_SetAngleAndShow:
 
 Function_Botwoon_Head_Spitting_Spawn5SpitProjectiles:
     LDX.W $0E54 
-    LDA.L $7E8834,X 
-    BNE .spitting 
+    LDA.L $7E8834,X : BNE .spitting 
     RTS 
 
 
@@ -2989,8 +2954,7 @@ Function_Botwoon_Head_Spitting_Cooldown:
 
 
 Botwoon_vs_Hole_CollisionDetection:
-    LDA.L $7E802A,X 
-    BEQ .collisionNotDisabled 
+    LDA.L $7E802A,X : BEQ .collisionNotDisabled 
     JMP.W .return 
 
 
@@ -3035,8 +2999,7 @@ Botwoon_vs_Hole_CollisionDetection:
 EnemyTouch_Botwoon:
     JSL.L CommonB3_NormalTouchAI_NoDeathCheck 
     LDX.W $0E54 
-    LDA.W $0F8C,X 
-    BNE .return 
+    LDA.W $0F8C,X : BNE .return 
     LDA.W #$0001 : STA.L $7E801E,X 
     JSR.W SetBotwoonAsIntangible 
 
@@ -3054,8 +3017,7 @@ EnemyShot_Botwoon:
     JSL.L RTL_B3957A ; >.<
 
 .healthUnchanged:
-    LDA.W $0F8C,X 
-    BNE .return 
+    LDA.W $0F8C,X : BNE .return 
     LDA.W #$0001 : STA.L $7E801E,X 
     JSR.W SetBotwoonAsIntangible 
 
@@ -3066,8 +3028,7 @@ EnemyShot_Botwoon:
 PowerBombReaction_Botwoon:
     JSL.L CommonB3_NormalEnemyPowerBombAI_NoDeathCheck 
     LDX.W $0E54 
-    LDA.W $0F8C,X 
-    BNE .return 
+    LDA.W $0F8C,X : BNE .return 
     LDA.W #$0001 : STA.L $7E801E,X 
     JSR.W SetBotwoonAsIntangible 
 
@@ -4268,8 +4229,7 @@ Function_Botwoon_Movement_MoveAccordingToMovementData:
     STZ.B $14 
     LDA.L $7E8030,X : STA.B $18 
     LDA.W #$0002 : STA.B $16 
-    LDA.L $7E8808,X 
-    BPL .loop 
+    LDA.L $7E8808,X : BPL .loop 
     LDA.W #$FFFE : STA.B $16 
 
 .loop:
@@ -4288,8 +4248,7 @@ Function_Botwoon_Movement_MoveAccordingToMovementData:
     LDA.L $7E8804,X : CLC : ADC.B $16 : STA.L $7E8804,X 
     DEC.B $18 
     BNE .loop 
-    LDA.L $7E8808,X 
-    BPL .positive 
+    LDA.L $7E8808,X : BPL .positive 
     LDA.B $12 
     EOR.W #$FFFF 
     INC A 
@@ -4812,8 +4771,7 @@ Function_EtecoonEscape_StationaryWaitingToExpressGratitude:
 Function_EtecoonEscape_RunningAroundAimlessly:
     STZ.B $12 
     STZ.B $14 
-    LDA.W $0FA8,X 
-    BPL + 
+    LDA.W $0FA8,X : BPL + 
     DEC.B $14 
 
   + STA.B $13 
@@ -4825,8 +4783,7 @@ Function_EtecoonEscape_RunningAroundAimlessly:
     INC A 
     STA.W $0FA8,X 
     BPL .greaterThan0 
-    LDA.W #InstList_EtecoonEscape_RunningLeft_LowTide_0 
-    BRA + 
+    LDA.W #InstList_EtecoonEscape_RunningLeft_LowTide_0 : BRA + 
 
 
 .greaterThan0:

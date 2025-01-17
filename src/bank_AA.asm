@@ -5196,8 +5196,7 @@ Instruction_Torizo_SetBossBit_QueueElevatorMusic_SpawnDrops:
     PHY 
     PHX 
     PHP 
-    LDA.W $079F 
-    BNE .notCrateria 
+    LDA.W $079F : BNE .notCrateria 
     JSL.L BombTorizoDeathItemDropRoutine 
     BRA .return 
 
@@ -6609,10 +6608,8 @@ InstList_Torizo_FacingRight_Faceless_Walking_RightLegMoving:
     dw InstList_Torizo_FacingRight_Faceless_Walking_LeftLegMoving 
 
 MakeTorizoJumpForwards:
-    LDA.W $0FB4,X 
-    BMI .facingRight 
-    LDA.W #$FE00 
-    BRA + 
+    LDA.W $0FB4,X : BMI .facingRight 
+    LDA.W #$FE00 : BRA + 
 
 
 .facingRight:
@@ -6626,10 +6623,8 @@ MakeTorizoJumpForwards:
 
 
 MakeTorizoJumpBackwards:
-    LDA.W $0FB4,X 
-    BMI .facingRight 
-    LDA.W #$0300 
-    BRA + 
+    LDA.W $0FB4,X : BMI .facingRight 
+    LDA.W #$0300 : BRA + 
 
 
 .facingRight:
@@ -6725,8 +6720,7 @@ Instruction_Torizo_GotoY_IfFaceBlownUp_ElseGotoY2_IfGolden:
     BIT.W $0FB6,X 
     BVS .faceBlownUp 
     INY #2
-    LDA.W $079F 
-    BNE .faceBlownUp 
+    LDA.W $079F : BNE .faceBlownUp 
     INY #2
     RTL 
 
@@ -6914,8 +6908,7 @@ Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY:
     PLY 
     BCC .noCollision 
     LDA.W #$0000 : STA.L $7E7806,X 
-    LDA.W $0FB4,X 
-    BMI .turningLeft 
+    LDA.W $0FB4,X : BMI .turningLeft 
     LDY.W #InstList_Torizo_FacingRight_TurningRight 
     RTL 
 
@@ -6934,8 +6927,7 @@ Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY:
 
 
 .facingAway:
-    LDA.L $7E7806,X 
-    BNE .return 
+    LDA.L $7E7806,X : BNE .return 
     LDA.W #$0048 : STA.L $7E7806,X 
 
 .return:
@@ -6959,8 +6951,7 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
     PLY 
     BCC .noCollision 
     LDA.W #$0000 : STA.L $7E7806,X 
-    LDA.W $0FB4,X 
-    BMI .turningLeft 
+    LDA.W $0FB4,X : BMI .turningLeft 
     LDY.W #InstList_Torizo_FacingRight_Faceless_TurningRight 
     RTL 
 
@@ -6979,8 +6970,7 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
 
 
 .facingAway:
-    LDA.L $7E7806,X 
-    BNE .return 
+    LDA.L $7E7806,X : BNE .return 
     LDA.W #$0048 : STA.L $7E7806,X 
 
 .return:
@@ -6994,8 +6984,7 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
     dw $0000,$0007,$0011,$0012 
 
 Instruction_Torizo_GotoY_IfRising:
-    LDA.W $0FAA,X 
-    BMI .rising 
+    LDA.W $0FAA,X : BMI .rising 
     INY #2
     RTL 
 
@@ -7057,8 +7046,7 @@ Instruction_Torizo_CallY_OrY2_ForBombTorizoAttack:
     BEQ .sonicBooms 
 
 .spewOrbs:
-    LDA.W $0000,Y 
-    BRA .return 
+    LDA.W $0000,Y : BRA .return 
 
 
 .sonicBooms:
@@ -7124,16 +7112,14 @@ Instruction_Torizo_PlayTorizoFootstepsSFX:
 
 
 HandleLowHealthInitialDrool:
-    LDA.W $079F 
-    BEQ .crateria 
+    LDA.W $079F : BEQ .crateria 
     JMP.W .returnNotCrateria ; >.<
 
 
 .crateria:
     LDA.W $05E5 : AND.W #$8142 ; If [random number] & 8142h = 0: (1/16 chance)
     BNE .return 
-    LDA.W $0F8C,X 
-    BEQ .return 
+    LDA.W $0F8C,X : BEQ .return 
     CMP.W #$015E 
     BCS .return 
     LDY.W #EnemyProjectile_BombTorizoInitialDrool 
@@ -7150,8 +7136,7 @@ HandleLowHealthInitialDrool:
 HandleFalling:
     STZ.B $12 
     STZ.B $14 
-    LDA.W $0FAA,X 
-    BPL + 
+    LDA.W $0FAA,X : BPL + 
     DEC.B $14 
 
   + STA.B $13 
@@ -7162,8 +7147,7 @@ HandleFalling:
 
 
 .collision:
-    LDA.W $0FAA,X 
-    BMI .return 
+    LDA.W $0FAA,X : BMI .return 
     CMP.W #$0100 
     BEQ .return 
     LDA.W #$0004 : STA.W $183E 
@@ -7273,10 +7257,8 @@ Function_Torizo_NormalMovement:
     LDA.W $0F8C,X 
     CMP.W #$0064 
     BCS .noChange 
-    LDA.W $0FB4,X 
-    BMI .facingRight 
-    LDA.W #InstList_Torizo_FacingRight_Faceless_TurningRight 
-    BRA + 
+    LDA.W $0FB4,X : BMI .facingRight 
+    LDA.W #InstList_Torizo_FacingRight_Faceless_TurningRight : BRA + 
 
 
 .facingRight:
@@ -7300,16 +7282,13 @@ Function_Torizo_Movement_Walking:
 
 
 .notFaceless:
-    LDA.L $7E7806,X 
-    BEQ .notTurning 
+    LDA.L $7E7806,X : BEQ .notTurning 
     DEC A 
     STA.L $7E7806,X 
     BNE .notTurning 
     LDA.W #$0000 : STA.L $7E7806,X 
-    LDA.W $0FB4,X 
-    BMI .facingRight 
-    LDA.W #InstList_Torizo_FacingRight_TurningRight 
-    BRA + 
+    LDA.W $0FB4,X : BMI .facingRight 
+    LDA.W #InstList_Torizo_FacingRight_TurningRight : BRA + 
 
 
 .facingRight:
@@ -7322,8 +7301,7 @@ Function_Torizo_Movement_Walking:
 
 .notTurning:
     STZ.B $12 
-    LDA.W $0FA8,X 
-    BPL + 
+    LDA.W $0FA8,X : BPL + 
     EOR.W #$FFFF 
     INC A 
 
@@ -7335,10 +7313,8 @@ Function_Torizo_Movement_Walking:
   + STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .returnUpper 
-    LDA.W $0FB4,X 
-    BMI ..facingRight 
-    LDA.W #InstList_Torizo_FacingLeft_Falling_0 
-    BRA + 
+    LDA.W $0FB4,X : BMI ..facingRight 
+    LDA.W #InstList_Torizo_FacingLeft_Falling_0 : BRA + 
 
 
 ..facingRight:
@@ -7354,16 +7330,13 @@ Function_Torizo_Movement_Walking:
 
 
 .faceless:
-    LDA.L $7E7806,X 
-    BEQ .facelessNotTurning 
+    LDA.L $7E7806,X : BEQ .facelessNotTurning 
     DEC A 
     STA.L $7E7806,X 
     BNE .facelessNotTurning 
     LDA.W #$0000 : STA.L $7E7806,X 
-    LDA.W $0FB4,X 
-    BMI ..facingRight 
-    LDA.W #InstList_Torizo_FacingRight_Faceless_TurningRight 
-    BRA + 
+    LDA.W $0FB4,X : BMI ..facingRight 
+    LDA.W #InstList_Torizo_FacingRight_Faceless_TurningRight : BRA + 
 
 
 ..facingRight:
@@ -7376,8 +7349,7 @@ Function_Torizo_Movement_Walking:
 
 .facelessNotTurning:
     STZ.B $12 
-    LDA.W $0FA8,X 
-    BPL + 
+    LDA.W $0FA8,X : BPL + 
     EOR.W #$FFFF 
     INC A 
 
@@ -7389,10 +7361,8 @@ Function_Torizo_Movement_Walking:
   + STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .returnLower 
-    LDA.W $0FB4,X 
-    BMI ..facingRight 
-    LDA.W #InstList_Torizo_FacingLeft_Falling_0 
-    BRA + 
+    LDA.W $0FB4,X : BMI ..facingRight 
+    LDA.W #InstList_Torizo_FacingLeft_Falling_0 : BRA + 
 
 
 ..facingRight:
@@ -7415,8 +7385,7 @@ Function_Torizo_Movement_Attacking:
 Function_Torizo_Movement_Jumping_Falling:
     STZ.B $12 
     STZ.B $14 
-    LDA.W $0FA8,X 
-    BPL + 
+    LDA.W $0FA8,X : BPL + 
     DEC.B $14 
 
   + STA.B $13 
@@ -7424,8 +7393,7 @@ Function_Torizo_Movement_Jumping_Falling:
     JSL.L AlignEnemyYPositionWIthNonSquareSlope 
     STZ.B $12 
     STZ.B $14 
-    LDA.W $0FAA,X 
-    BPL + 
+    LDA.W $0FAA,X : BPL + 
     DEC.B $14 
 
   + STA.B $13 
@@ -7478,8 +7446,7 @@ InitAI_Torizo:
     LDA.W Palette_Torizo_OrbProjectile,X : STA.L $7EC360,X 
     DEX #2
     BPL .loopTargetPalettes 
-    LDA.W $079F 
-    BNE .GTCode 
+    LDA.W $079F : BNE .GTCode 
     JSR.W LoadInitialBombTorizoPalettes 
     JSL.L Spawn_BombTorizoHaze 
     RTL 
@@ -7538,8 +7505,7 @@ EnemyTouch_Torizo:
 
 
 EnemyShot_Torizo_Normal:
-    LDA.W $079F 
-    BEQ .crateria 
+    LDA.W $079F : BEQ .crateria 
     JMP.W ShotReaction_GoldenTorizo_Normal 
 
 
@@ -7550,8 +7516,7 @@ EnemyShot_Torizo_Normal:
     BNE .return 
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External 
     LDX.W $0E54 
-    LDA.W $0F8C,X 
-    BNE .return 
+    LDA.W $0F8C,X : BNE .return 
     LDA.W #RTS_AAC6AB : STA.W $0FB0,X 
     LDA.W #InstList_Torizo_DeathSequence_0 : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -7567,8 +7532,7 @@ RTL_AAC9C1:
 
 
 EnemyShot_Torizo_StandUp_SitDown:
-    LDA.W $079F 
-    BEQ .return 
+    LDA.W $079F : BEQ .return 
     JMP.W ShotReaction_GoldenTorizo_StandUp_SitDown 
 
 
@@ -9108,8 +9072,7 @@ Instruction_GoldenTorizo_CallY_OrY2_ForAttack:
     BEQ .sonicBooms 
 
 .spewOrbs:
-    LDA.W $0000,Y 
-    BRA .return 
+    LDA.W $0000,Y : BRA .return 
 
 
 .sonicBooms:
@@ -9131,8 +9094,7 @@ Instruction_GoldenTorizo_WalkingMovement_IndexInY:
     PLY 
     BCC .noCollision 
     LDA.W #$0000 : STA.L $7E7806,X 
-    LDA.W $0FB4,X 
-    BMI .facingRight 
+    LDA.W $0FB4,X : BMI .facingRight 
     LDY.W #InstList_GoldenTorizo_TurningRight 
     RTL 
 
@@ -9151,8 +9113,7 @@ Instruction_GoldenTorizo_WalkingMovement_IndexInY:
 
 
 .facingAway:
-    LDA.L $7E7806,X 
-    BNE .return 
+    LDA.L $7E7806,X : BNE .return 
     LDA.W #$0010 : STA.L $7E7806,X 
 
 .return:
@@ -9198,16 +9159,13 @@ Function_GoldenTorizo_Movement_Attacking:
 
 
 Function_GoldenTorizo_Movement_Walking:
-    LDA.L $7E7806,X 
-    BEQ .notTurning 
+    LDA.L $7E7806,X : BEQ .notTurning 
     DEC A 
     STA.L $7E7806,X 
     BNE .notTurning 
     LDA.W #$0000 : STA.L $7E7806,X 
-    LDA.W $0FB4,X 
-    BMI .facingRight 
-    LDA.W #InstList_GoldenTorizo_TurningRight 
-    BRA + 
+    LDA.W $0FB4,X : BMI .facingRight 
+    LDA.W #InstList_GoldenTorizo_TurningRight : BRA + 
 
 
 .facingRight:
@@ -9220,8 +9178,7 @@ Function_GoldenTorizo_Movement_Walking:
 
 .notTurning:
     STZ.B $12 
-    LDA.W $0FA8,X 
-    BPL + 
+    LDA.W $0FA8,X : BPL + 
     EOR.W #$FFFF 
     INC A 
 
@@ -9233,10 +9190,8 @@ Function_GoldenTorizo_Movement_Walking:
   + STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .return 
-    LDA.W $0FB4,X 
-    BMI ..facingRight 
-    LDA.W #InstList_Torizo_FacingLeft_Falling_0 
-    BRA + 
+    LDA.W $0FB4,X : BMI ..facingRight 
+    LDA.W #InstList_Torizo_FacingLeft_Falling_0 : BRA + 
 
 
 ..facingRight:
@@ -9253,10 +9208,8 @@ Function_GoldenTorizo_Movement_Walking:
 
 ShotReaction_GoldenTorizo_StandUp_SitDown:
     LDX.W $0E54 
-    LDA.W $0F9C,X 
-    BNE .return 
-    LDA.L $7E7808,X 
-    BEQ ShotReaction_GoldenTorizo_Damaged 
+    LDA.W $0F9C,X : BNE .return 
+    LDA.L $7E7808,X : BEQ ShotReaction_GoldenTorizo_Damaged 
 
 .return:
     RTL 
@@ -9264,10 +9217,8 @@ ShotReaction_GoldenTorizo_StandUp_SitDown:
 
 ShotReaction_GoldenTorizo_Normal:
     LDX.W $0E54 
-    LDA.W $0F9C,X 
-    BNE .return 
-    LDA.L $7E7808,X 
-    BEQ .gotoFlashOrAnimLock 
+    LDA.W $0F9C,X : BNE .return 
+    LDA.L $7E7808,X : BEQ .gotoFlashOrAnimLock 
     JMP.W ShotReaction_GoldenTorizo_Damaged 
 
 
@@ -9298,8 +9249,7 @@ ShotReaction_GoldenTorizo_Normal:
 ShotReaction_GoldenTorizo_Damaged:
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External 
     LDX.W $0E54 
-    LDA.W $0F8C,X 
-    BNE .return 
+    LDA.W $0F8C,X : BNE .return 
     LDA.W #InstList_Torizo_DeathSequence_0 : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W $0FB6,X : ORA.W #$C000 : STA.W $0FB6,X 
@@ -9315,8 +9265,7 @@ ShotReaction_GoldenTorizo_Normal_Missile:
     LDA.W #$0001 : STA.W $0F94,X 
     BIT.W $0FB4,X 
     BMI .keepRight 
-    LDA.W #InstList_GoldenTorizo_Dodge_TurningLeft 
-    BRA + 
+    LDA.W #InstList_GoldenTorizo_Dodge_TurningLeft : BRA + 
 
 
 .keepRight:
@@ -9342,20 +9291,17 @@ ShotReaction_GoldenTorizo_Normal_SuperMissile:
     BNE .backgroundLegForward 
     BIT.W $0FB4,X 
     BMI .facingRight 
-    LDA.W #InstList_GoldenTorizo_CaughtSuper_FacingLeft_LeftLegFwd 
-    BRA + 
+    LDA.W #InstList_GoldenTorizo_CaughtSuper_FacingLeft_LeftLegFwd : BRA + 
 
 
 .facingRight:
-    LDA.W #InstList_GoldenTorizo_CaughtSuper_FacingRight_RightLegFwd 
-    BRA + 
+    LDA.W #InstList_GoldenTorizo_CaughtSuper_FacingRight_RightLegFwd : BRA + 
 
 
 .backgroundLegForward:
     BIT.W $0FB4,X 
     BMI ..facingRight 
-    LDA.W #InstList_GoldenTorizo_CaughtSuper_FacingLeft_RightLegFwd 
-    BRA + 
+    LDA.W #InstList_GoldenTorizo_CaughtSuper_FacingLeft_RightLegFwd : BRA + 
 
 
 ..facingRight:
@@ -9588,8 +9534,7 @@ MoveShaktoolPiece1Pixel:
     TAX 
     STZ.B $12 
     STZ.B $14 
-    LDA.L SineCosineTables_8bitSine_SignExtended,X 
-    BPL + 
+    LDA.L SineCosineTables_8bitSine_SignExtended,X : BPL + 
     DEC.B $14 
 
   + STA.B $13 
@@ -9597,8 +9542,7 @@ MoveShaktoolPiece1Pixel:
     LDA.W $0F7A,Y : ADC.B $14 : STA.W $0F7A,Y 
     STZ.B $12 
     STZ.B $14 
-    LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
-    BPL + 
+    LDA.L SineCosineTables_NegativeCosine_SignExtended,X : BPL + 
     DEC.B $14 
 
   + STA.B $13 
@@ -9947,8 +9891,7 @@ PositionShaktoolPieceRelativeToPreviousPiece:
     TAY 
     STZ.B $12 
     STZ.B $14 
-    LDA.W SineCosineTables_sine,Y 
-    BPL + 
+    LDA.W SineCosineTables_sine,Y : BPL + 
     DEC.B $14 
 
   + STA.B $13 
@@ -9956,8 +9899,7 @@ PositionShaktoolPieceRelativeToPreviousPiece:
     LDA.B $14 : ADC.W $0F3A,X : STA.W $0F7A,X 
     STZ.B $12 
     STZ.B $14 
-    LDA.W SineCosineTables_negativeCosine,Y 
-    BPL + 
+    LDA.W SineCosineTables_negativeCosine,Y : BPL + 
     DEC.B $14 
 
   + STA.B $13 
@@ -9999,8 +9941,7 @@ Function_Shaktool_ArmPiece_SetPosition_HandleCurling:
     BIT.W $0FB4,X 
     BVC .notFullyCurled 
     LDA.W #$0100 : CLC : ADC.W $0FA8,X : STA.W $0FA8,X 
-    LDA.W #$0100 
-    BRA + 
+    LDA.W #$0100 : BRA + 
 
 
 .notFullyCurled:
@@ -10281,8 +10222,7 @@ EnemyTouch_Shaktool:
 EnemyShot_Shaktool:
     JSL.L NormalEnemyShotAI 
     LDX.W $0E54 
-    LDA.W $0F8C,X 
-    BNE .return 
+    LDA.W $0F8C,X : BNE .return 
     LDY.W $0FB0,X 
     LDA.W #$0200 : STA.W $0F86,Y 
     STA.W $0FC6,Y 
@@ -10583,8 +10523,7 @@ Instruction_Chozo_UnlockSamus:
 
 
 Function_Chozo_LowerNorfair:
-    LDA.W $0FB4,X 
-    BEQ .return 
+    LDA.W $0FB4,X : BEQ .return 
     LDA.W #InstList_Chozo_LowerNorfair_Activated_0 : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
 
@@ -10774,8 +10713,7 @@ Instruction_Chozo_Movement_IndexInY:
     STZ.B $12 
     STZ.B $14 
     LDY.W $0FAC,X 
-    LDA.W .XVelocity,Y 
-    BPL + 
+    LDA.W .XVelocity,Y : BPL + 
     DEC.B $14 
 
   + STA.B $13 
@@ -10786,8 +10724,7 @@ Instruction_Chozo_Movement_IndexInY:
     STZ.B $12 
     STZ.B $14 
     LDY.W $0FAC,X 
-    LDA.W .XVelocity,Y 
-    BPL + 
+    LDA.W .XVelocity,Y : BPL + 
     EOR.W #$FFFF 
     INC A 
 
@@ -10914,8 +10851,7 @@ Function_Chozo_WreckedShip:
     PLX 
     AND.W #$0001 
     BEQ .return 
-    LDA.W $0FB4,X 
-    BEQ .return 
+    LDA.W $0FB4,X : BEQ .return 
     LDA.W #InstList_Chozo_WreckedShip_Activated_0 : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #$FF00 : STA.W $0FA8,X 
