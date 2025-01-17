@@ -2751,9 +2751,7 @@ UpdateBotwonBodyProjectilePositions:
     CMP.B $12 
     BNE .toggleVisibilityEnd 
     LDX.B $14 
-    LDA.L $7E7820,X 
-    EOR.W #$0001 
-    STA.L $7E7820,X 
+    LDA.L $7E7820,X : EOR.W #$0001 : STA.L $7E7820,X 
     BEQ .notHidden 
     LDA.W $1BD7,Y : ORA.W #$2000 : STA.W $1BD7,Y 
     PHX 
@@ -3020,9 +3018,7 @@ Botwoon_vs_Hole_CollisionDetection:
     CMP.W BotwoonHoleHitboxes_bottomBoundary,Y 
     BPL .notInHole 
     LDA.W #$0001 : STA.L $7E802A,X 
-    LDA.L $7E8026,X 
-    EOR.W #$0001 
-    STA.L $7E8026,X 
+    LDA.L $7E8026,X : EOR.W #$0001 : STA.L $7E8026,X 
     LDA.W $0FAA,X : STA.L $7E802C,X 
     LDA.L $7E800C,X 
     DEC A 

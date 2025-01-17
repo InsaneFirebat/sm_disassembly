@@ -5530,9 +5530,7 @@ PreInstruction_EnemyProjectile_GoldenTorizoEgg_Bouncing:
     EOR.W #$FFFF 
     INC A 
     STA.W $1AB7,X 
-    LDA.W $1AFF,X 
-    EOR.W #$8000 
-    STA.W $1AFF,X 
+    LDA.W $1AFF,X : EOR.W #$8000 : STA.W $1AFF,X 
 
 .moveVertically:
     JSR.W Move_EnemyProjectile_Vertically 
@@ -7381,9 +7379,7 @@ Check_If_Turret_Is_On_Screen:
 
 
 PreInstruction_EnemyProjectile_MotherBrainsTurretBullets:
-    LDA.W $1BD7,X 
-    EOR.W #$8000 
-    STA.W $1BD7,X 
+    LDA.W $1BD7,X : EOR.W #$8000 : STA.W $1BD7,X 
     JSR.W Move_EnemyProjectile_AccordingToVelocity 
     LDA.W $1A93,X 
     TAY 

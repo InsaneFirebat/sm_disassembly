@@ -11805,9 +11805,7 @@ Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left:
     PLX 
     PLY 
     BCC .noCOllision 
-    LDA.W $0FAC,X 
-    EOR.W #$0001 
-    STA.W $0FAC,X 
+    LDA.W $0FAC,X : EOR.W #$0001 : STA.W $0FAC,X 
     LDY.W #InstList_PirateWall_MovingDownLeftWall_0 
     LDA.W $0FAC,X 
     BEQ .return 
@@ -11835,9 +11833,7 @@ Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right:
     PLX 
     PLY 
     BCC .noCollision 
-    LDA.W $0FAC,X 
-    EOR.W #$0001 
-    STA.W $0FAC,X 
+    LDA.W $0FAC,X : EOR.W #$0001 : STA.W $0FAC,X 
     LDY.W #InstList_PirateWall_MovingDownRightWall_0 
     LDA.W $0FAC,X 
     BEQ .return 

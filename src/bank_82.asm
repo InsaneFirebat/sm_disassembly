@@ -5684,9 +5684,7 @@ EquipmentScreen_Main_ButtonResponse:
     BRA .return 
 
 
-  + LDA.W $0000,X 
-    EOR.W #$FFFF 
-    STA.B $12 
+  + LDA.W $0000,X : EOR.W #$FFFF : STA.B $12 
     LDA.W $0000,Y : AND.B $12 : STA.W $0000,Y 
     LDA.W #$0C00 : STA.B $12 
     LDA.B $18 : STA.B $16 

@@ -2138,9 +2138,7 @@ Samus_Y_Movement_WithSpeedCalculations:
     LDA.W $0B36 
     CMP.W #$0002 
     BEQ .notDown 
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -2465,9 +2463,7 @@ MoveSamus_HorizontallyWithZeroBaseXSpeed:
 MoveSamus_Left:
     PHP 
     REP #$30 
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -2488,9 +2484,7 @@ MoveSamus_Left:
 
 
 .noSolidEnemyCollision:
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -2545,9 +2539,7 @@ MoveSamus_Up:
     PHP 
     REP #$30 
     LDA.W #$0002 : STA.W $0B02 
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -2565,9 +2557,7 @@ MoveSamus_Up:
     RTS 
 
 
-  + LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+  + LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -3032,9 +3022,7 @@ MoveSamus_Right_NoCollisionDetection:
 MoveSamus_Left_NoCollisionDetection:
     LDA.W $0AF8 : SEC : SBC.B $14 : STA.W $0AF8 
     LDA.W $0AF6 : SBC.B $12 : STA.W $0AF6 
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -3058,9 +3046,7 @@ MoveSamus_Down_NoCollisionDetection:
 MoveSamus_Up_NoCollisionDetection:
     LDA.W $0AFC : SEC : SBC.B $14 : STA.W $0AFC 
     LDA.W $0AFA : SBC.B $12 : STA.W $0AFA 
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -3608,9 +3594,7 @@ Grapple_WallJump_Check:
     JSL.L Samus_vs_SolidEnemy_CollisionDetection 
     TAX 
     BNE .collisionDetected 
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -3711,9 +3695,7 @@ WallJump_Check:
     JSL.L Samus_vs_SolidEnemy_CollisionDetection 
     TAX 
     BNE .collisionDetected 
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -3779,9 +3761,7 @@ WallJump_Check:
     JSL.L Samus_vs_SolidEnemy_CollisionDetection 
     TAX 
     BNE .leftCollisionDetected 
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -9615,9 +9595,7 @@ Shinespark_Horizontal_Movement:
 
 .left:
     JSR.W CalculateSamusXDisplacement_ForMovingLeft 
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -9639,9 +9617,7 @@ Shinespark_Horizontal_Movement:
 
 
 .flipDirection:
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -9682,9 +9658,7 @@ Shinespark_Vertical_Movement:
     LDA.W #$000E : STA.B $12 
 
 .flipDirection:
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -9695,9 +9669,7 @@ Shinespark_Vertical_Movement:
   + LDA.W $0B5A : CLC : ADC.B $14 : STA.B $14 
     LDA.W $0B5C : ADC.B $12 : STA.B $12 
     LDA.W #$0002 : STA.W $0B02 
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -9718,9 +9690,7 @@ Shinespark_Vertical_Movement:
     BRA .noMovement 
 
 
-  + LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+  + LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 
@@ -11801,9 +11771,7 @@ CalculateSamusXDisplacement_ForMovingLeft:
     REP #$30 
     JSR.W CalculateSamusXSpeed 
     STZ.W $0B02 
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $14 
     EOR.W #$FFFF 
     INC A 

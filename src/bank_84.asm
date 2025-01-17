@@ -1849,19 +1849,11 @@ DrawPLM:
 .horizCopyBlockWithFlip:
     CMP.W #$0400 
     BNE .horizCopyBlockWithVertFlip 
-    LDA.L $7EA002,X 
-    EOR.W #$4000 
-    STA.B [$00],Y 
-    LDA.L $7EA006,X 
-    EOR.W #$4000 
-    STA.B [$06],Y 
+    LDA.L $7EA002,X : EOR.W #$4000 : STA.B [$00],Y 
+    LDA.L $7EA006,X : EOR.W #$4000 : STA.B [$06],Y 
     INY #2
-    LDA.L $7EA000,X 
-    EOR.W #$4000 
-    STA.B [$00],Y 
-    LDA.L $7EA004,X 
-    EOR.W #$4000 
-    STA.B [$06],Y 
+    LDA.L $7EA000,X : EOR.W #$4000 : STA.B [$00],Y 
+    LDA.L $7EA004,X : EOR.W #$4000 : STA.B [$06],Y 
 
 .horizNextBlock:
     INY #2
@@ -1883,36 +1875,20 @@ DrawPLM:
 .horizCopyBlockWithVertFlip:
     CMP.W #$0800 
     BNE .horizCopyBlockWithBothFlips 
-    LDA.L $7EA004,X 
-    EOR.W #$8000 
-    STA.B [$00],Y 
-    LDA.L $7EA000,X 
-    EOR.W #$8000 
-    STA.B [$06],Y 
+    LDA.L $7EA004,X : EOR.W #$8000 : STA.B [$00],Y 
+    LDA.L $7EA000,X : EOR.W #$8000 : STA.B [$06],Y 
     INY #2
-    LDA.L $7EA006,X 
-    EOR.W #$8000 
-    STA.B [$00],Y 
-    LDA.L $7EA002,X 
-    EOR.W #$8000 
-    STA.B [$06],Y 
+    LDA.L $7EA006,X : EOR.W #$8000 : STA.B [$00],Y 
+    LDA.L $7EA002,X : EOR.W #$8000 : STA.B [$06],Y 
     BRA .horizNextBlock 
 
 
 .horizCopyBlockWithBothFlips:
-    LDA.L $7EA006,X 
-    EOR.W #$C000 
-    STA.B [$00],Y 
-    LDA.L $7EA002,X 
-    EOR.W #$C000 
-    STA.B [$06],Y 
+    LDA.L $7EA006,X : EOR.W #$C000 : STA.B [$00],Y 
+    LDA.L $7EA002,X : EOR.W #$C000 : STA.B [$06],Y 
     INY #2
-    LDA.L $7EA004,X 
-    EOR.W #$C000 
-    STA.B [$00],Y 
-    LDA.L $7EA000,X 
-    EOR.W #$C000 
-    STA.B [$06],Y 
+    LDA.L $7EA004,X : EOR.W #$C000 : STA.B [$00],Y 
+    LDA.L $7EA000,X : EOR.W #$C000 : STA.B [$06],Y 
     BRA .horizNextBlock 
 
 
@@ -2004,55 +1980,31 @@ DrawPLM:
 .vertCopyBlockWithFlip:
     CMP.W #$0400 
     BNE .vertCopyBlockWithVertFlip 
-    LDA.L $7EA002,X 
-    EOR.W #$4000 
-    STA.B [$00],Y 
-    LDA.L $7EA000,X 
-    EOR.W #$4000 
-    STA.B [$06],Y 
+    LDA.L $7EA002,X : EOR.W #$4000 : STA.B [$00],Y 
+    LDA.L $7EA000,X : EOR.W #$4000 : STA.B [$06],Y 
     INY #2
-    LDA.L $7EA006,X 
-    EOR.W #$4000 
-    STA.B [$00],Y 
-    LDA.L $7EA004,X 
-    EOR.W #$4000 
-    STA.B [$06],Y 
+    LDA.L $7EA006,X : EOR.W #$4000 : STA.B [$00],Y 
+    LDA.L $7EA004,X : EOR.W #$4000 : STA.B [$06],Y 
     BRA .vertNextBlock 
 
 
 .vertCopyBlockWithVertFlip:
     CMP.W #$0800 
     BNE .vertCopyBlockWithBothFlips 
-    LDA.L $7EA004,X 
-    EOR.W #$8000 
-    STA.B [$00],Y 
-    LDA.L $7EA006,X 
-    EOR.W #$8000 
-    STA.B [$06],Y 
+    LDA.L $7EA004,X : EOR.W #$8000 : STA.B [$00],Y 
+    LDA.L $7EA006,X : EOR.W #$8000 : STA.B [$06],Y 
     INY #2
-    LDA.L $7EA000,X 
-    EOR.W #$8000 
-    STA.B [$00],Y 
-    LDA.L $7EA002,X 
-    EOR.W #$8000 
-    STA.B [$06],Y 
+    LDA.L $7EA000,X : EOR.W #$8000 : STA.B [$00],Y 
+    LDA.L $7EA002,X : EOR.W #$8000 : STA.B [$06],Y 
     BRA .vertNextBlock 
 
 
 .vertCopyBlockWithBothFlips:
-    LDA.L $7EA006,X 
-    EOR.W #$C000 
-    STA.B [$00],Y 
-    LDA.L $7EA004,X 
-    EOR.W #$C000 
-    STA.B [$06],Y 
+    LDA.L $7EA006,X : EOR.W #$C000 : STA.B [$00],Y 
+    LDA.L $7EA004,X : EOR.W #$C000 : STA.B [$06],Y 
     INY #2
-    LDA.L $7EA002,X 
-    EOR.W #$C000 
-    STA.B [$00],Y 
-    LDA.L $7EA000,X 
-    EOR.W #$C000 
-    STA.B [$06],Y 
+    LDA.L $7EA002,X : EOR.W #$C000 : STA.B [$00],Y 
+    LDA.L $7EA000,X : EOR.W #$C000 : STA.B [$06],Y 
 
 .vertNextBlock:
     INY #2

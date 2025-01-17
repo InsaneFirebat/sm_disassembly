@@ -9870,9 +9870,7 @@ ShaktoolPiecesNeighborAngleInA:
 
 FlipShaktool:
     LDY.W $0FB0,X 
-    LDA.W $106E,Y 
-    EOR.W #$8000 
-    STA.W $106E,Y 
+    LDA.W $106E,Y : EOR.W #$8000 : STA.W $106E,Y 
     LDX.W $112A,Y 
     LDA.W $0FEA,Y 
     EOR.W #$8000 
@@ -10026,9 +10024,7 @@ Function_Shaktool_ArmPiece_SetPosition_HandleCurling:
 
 Function_Shaktool_Head:
     JSR.W Function_Shaktool_ArmPiece_SetPosition_HandleCurling 
-    LDA.W $0FAA,X 
-    EOR.W #$8000 
-    STA.B $12 
+    LDA.W $0FAA,X : EOR.W #$8000 : STA.B $12 
     LDA.W $0FEA,X : SEC : SBC.B $12 : LSR A 
     CLC : ADC.B $12 : BIT.W $0FAE,X 
     BPL + 

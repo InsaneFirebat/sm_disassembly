@@ -10541,9 +10541,7 @@ Function_Dachora_StartRunning:
 
 Function_Dachora_RunningLeft:
     JSR.W AccelerateRunningDachora 
-    LDA.B $14 
-    EOR.W #$FFFF 
-    STA.B $14 
+    LDA.B $14 : EOR.W #$FFFF : STA.B $14 
     LDA.B $12 
     EOR.W #$FFFF 
     INC A 
@@ -10774,9 +10772,7 @@ Function_Dachora_Shinesparking:
     BMI + 
     LDA.W #$000F : STA.B $14 
 
-  + LDA.B $14 
-    EOR.W #$FFFF 
-    STA.B $14 
+  + LDA.B $14 : EOR.W #$FFFF : STA.B $14 
     LDA.B $12 
     EOR.W #$FFFF 
     INC A 

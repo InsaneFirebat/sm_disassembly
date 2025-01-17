@@ -2816,9 +2816,7 @@ DebugHandler_0_Default:
     LDA.B $91 
     BIT.W #$0020 
     BEQ .notNewlyPressedStartL 
-    LDA.W $185E 
-    EOR.W #$0001 
-    STA.W $185E 
+    LDA.W $185E : EOR.W #$0001 : STA.W $185E 
 
 .notNewlyPressedStartL:
     LDA.W $05C5 

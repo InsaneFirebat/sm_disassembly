@@ -339,9 +339,7 @@ UnmarkEvent_inA:
     PHP 
     REP #$30 
     JSL.L BitIndexToByteIndexAndBitmask 
-    LDA.W $05E7 
-    EOR.W #$FFFF 
-    STA.W $05E7 
+    LDA.W $05E7 : EOR.W #$FFFF : STA.W $05E7 
     LDA.L $7ED820,X : AND.W $05E7 : STA.L $7ED820,X 
     PLP 
     PLY 
@@ -2677,17 +2675,13 @@ ReadControllerInput:
     LDA.W $05C7 
     BIT.W #$0080 
     BEQ .checkAmmoSwap 
-    LDA.B $84 
-    EOR.W #$0030 
-    STA.B $84 
+    LDA.B $84 : EOR.W #$0030 : STA.B $84 
 
 .checkAmmoSwap:
     LDA.W $05C7 
     BIT.W #$8000 
     BEQ .swapEnd 
-    LDA.W $05CF 
-    EOR.W #$8000 
-    STA.W $05CF 
+    LDA.W $05CF : EOR.W #$8000 : STA.W $05CF 
     BPL .swapAmmo 
     LDA.W $09C6 : STA.W $05C9 
     LDA.W $09CA : STA.W $05CB 
@@ -2707,9 +2701,7 @@ ReadControllerInput:
     LDA.W $05C7 
     BIT.W #$0040 
     BEQ .return 
-    LDA.W $05CF 
-    EOR.W #$2000 
-    STA.W $05CF 
+    LDA.W $05CF : EOR.W #$2000 : STA.W $05CF 
 
 .return:
     PLP 
@@ -4977,50 +4969,26 @@ UpdateLevelBackgroundDataColumn:
 
   + CMP.W #$0400 
     BNE + 
-    LDA.W $A002,X 
-    EOR.W #$4000 
-    STA.W $C8C8,Y 
-    LDA.W $A000,X 
-    EOR.W #$4000 
-    STA.W $C908,Y 
-    LDA.W $A006,X 
-    EOR.W #$4000 
-    STA.W $C8CA,Y 
-    LDA.W $A004,X 
-    EOR.W #$4000 
-    STA.W $C90A,Y 
+    LDA.W $A002,X : EOR.W #$4000 : STA.W $C8C8,Y 
+    LDA.W $A000,X : EOR.W #$4000 : STA.W $C908,Y 
+    LDA.W $A006,X : EOR.W #$4000 : STA.W $C8CA,Y 
+    LDA.W $A004,X : EOR.W #$4000 : STA.W $C90A,Y 
     BRA .next 
 
 
   + CMP.W #$0800 
     BNE + 
-    LDA.W $A004,X 
-    EOR.W #$8000 
-    STA.W $C8C8,Y 
-    LDA.W $A006,X 
-    EOR.W #$8000 
-    STA.W $C908,Y 
-    LDA.W $A000,X 
-    EOR.W #$8000 
-    STA.W $C8CA,Y 
-    LDA.W $A002,X 
-    EOR.W #$8000 
-    STA.W $C90A,Y 
+    LDA.W $A004,X : EOR.W #$8000 : STA.W $C8C8,Y 
+    LDA.W $A006,X : EOR.W #$8000 : STA.W $C908,Y 
+    LDA.W $A000,X : EOR.W #$8000 : STA.W $C8CA,Y 
+    LDA.W $A002,X : EOR.W #$8000 : STA.W $C90A,Y 
     BRA .next 
 
 
-  + LDA.W $A006,X 
-    EOR.W #$C000 
-    STA.W $C8C8,Y 
-    LDA.W $A004,X 
-    EOR.W #$C000 
-    STA.W $C908,Y 
-    LDA.W $A002,X 
-    EOR.W #$C000 
-    STA.W $C8CA,Y 
-    LDA.W $A000,X 
-    EOR.W #$C000 
-    STA.W $C90A,Y 
+  + LDA.W $A006,X : EOR.W #$C000 : STA.W $C8C8,Y 
+    LDA.W $A004,X : EOR.W #$C000 : STA.W $C908,Y 
+    LDA.W $A002,X : EOR.W #$C000 : STA.W $C8CA,Y 
+    LDA.W $A000,X : EOR.W #$C000 : STA.W $C90A,Y 
 
 .next:
     INY #4
@@ -5138,50 +5106,26 @@ UpdateBackgroundLevelDataRow:
 
   + CMP.W #$0400 
     BNE + 
-    LDA.W $A002,X 
-    EOR.W #$4000 
-    STA.W $C948,Y 
-    LDA.W $A000,X 
-    EOR.W #$4000 
-    STA.W $C94A,Y 
-    LDA.W $A006,X 
-    EOR.W #$4000 
-    STA.W $C98C,Y 
-    LDA.W $A004,X 
-    EOR.W #$4000 
-    STA.W $C98E,Y 
+    LDA.W $A002,X : EOR.W #$4000 : STA.W $C948,Y 
+    LDA.W $A000,X : EOR.W #$4000 : STA.W $C94A,Y 
+    LDA.W $A006,X : EOR.W #$4000 : STA.W $C98C,Y 
+    LDA.W $A004,X : EOR.W #$4000 : STA.W $C98E,Y 
     BRA .next 
 
 
   + CMP.W #$0800 
     BNE + 
-    LDA.W $A004,X 
-    EOR.W #$8000 
-    STA.W $C948,Y 
-    LDA.W $A006,X 
-    EOR.W #$8000 
-    STA.W $C94A,Y 
-    LDA.W $A000,X 
-    EOR.W #$8000 
-    STA.W $C98C,Y 
-    LDA.W $A002,X 
-    EOR.W #$8000 
-    STA.W $C98E,Y 
+    LDA.W $A004,X : EOR.W #$8000 : STA.W $C948,Y 
+    LDA.W $A006,X : EOR.W #$8000 : STA.W $C94A,Y 
+    LDA.W $A000,X : EOR.W #$8000 : STA.W $C98C,Y 
+    LDA.W $A002,X : EOR.W #$8000 : STA.W $C98E,Y 
     BRA .next 
 
 
-  + LDA.W $A006,X 
-    EOR.W #$C000 
-    STA.W $C948,Y 
-    LDA.W $A004,X 
-    EOR.W #$C000 
-    STA.W $C94A,Y 
-    LDA.W $A002,X 
-    EOR.W #$C000 
-    STA.W $C98C,Y 
-    LDA.W $A000,X 
-    EOR.W #$C000 
-    STA.W $C98E,Y 
+  + LDA.W $A006,X : EOR.W #$C000 : STA.W $C948,Y 
+    LDA.W $A004,X : EOR.W #$C000 : STA.W $C94A,Y 
+    LDA.W $A002,X : EOR.W #$C000 : STA.W $C98C,Y 
+    LDA.W $A000,X : EOR.W #$C000 : STA.W $C98E,Y 
 
 .next:
     INY #4

@@ -2891,9 +2891,7 @@ PuyoMovement:
     LDA.L $7E7806,X 
     BNE .falling 
     LDA.B $01 : STA.L $7E7808,X 
-    LDA.L $7E7804,X 
-    EOR.W #$0001 
-    STA.L $7E780A,X 
+    LDA.L $7E7804,X : EOR.W #$0001 : STA.L $7E780A,X 
     LDA.W #$0004 : STA.L $7E7800,X 
     LDA.W #Function_Puyo_Airborne_Dropping : STA.W $0FB0,X 
     LDA.W #$0000 : STA.L $7E7802,X 
@@ -2943,9 +2941,7 @@ PuyoMovement:
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
     LDA.W #$0001 : STA.L $7E7808,X 
-    LDA.L $7E7804,X 
-    EOR.W #$0001 
-    STA.L $7E780A,X 
+    LDA.L $7E7804,X : EOR.W #$0001 : STA.L $7E780A,X 
     LDA.W #$0000 : STA.L $7E7802,X 
     LDA.W #$0004 : STA.L $7E7800,X 
     LDA.W #Function_Puyo_Airborne_Dropping : STA.W $0FB0,X 
@@ -5582,9 +5578,7 @@ MainAI_Multiviola:
     LDA.B $1C : STA.W $0FB2,X 
     LDA.W $0FB4,X : CLC : ADC.W #$0040 : BIT.W #$0080 
     BNE + 
-    LDA.W $0FAC,X 
-    EOR.W #$FFFF 
-    STA.W $0FAC,X 
+    LDA.W $0FAC,X : EOR.W #$FFFF : STA.W $0FAC,X 
     LDA.W $0FAE,X 
     EOR.W #$FFFF 
     INC A 
@@ -5594,18 +5588,14 @@ MainAI_Multiviola:
     LDA.W $0FAE,X : STA.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWithWall 
-    LDA.W $0FB4,X 
-    EOR.W #$0040 
-    STA.W $0FB4,X 
+    LDA.W $0FB4,X : EOR.W #$0040 : STA.W $0FB4,X 
     BRA .return 
 
 
 .notCollidedWithWall:
     LDA.W $0FB4,X : CLC : ADC.W #$0080 : BIT.W #$0080 
     BNE + 
-    LDA.W $0FB0,X 
-    EOR.W #$FFFF 
-    STA.W $0FB0,X 
+    LDA.W $0FB0,X : EOR.W #$FFFF : STA.W $0FB0,X 
     LDA.W $0FB2,X 
     EOR.W #$FFFF 
     INC A 
@@ -5615,9 +5605,7 @@ MainAI_Multiviola:
     LDA.W $0FB2,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .return 
-    LDA.W $0FB4,X 
-    EOR.W #$00C0 
-    STA.W $0FB4,X 
+    LDA.W $0FB4,X : EOR.W #$00C0 : STA.W $0FB4,X 
 
 .return:
     RTL 
@@ -8893,12 +8881,8 @@ Function_Oum_Rolling:
 .noUnadjustForSamus:
     LDA.B $24 
     BEQ .return 
-    LDA.W $0FAE,X 
-    EOR.W #$0001 
-    STA.W $0FAE,X 
-    LDA.L $7E7800,X 
-    EOR.W #$0004 
-    STA.L $7E7800,X 
+    LDA.W $0FAE,X : EOR.W #$0001 : STA.W $0FAE,X 
+    LDA.L $7E7800,X : EOR.W #$0004 : STA.L $7E7800,X 
     JSR.W SetOumInstList 
 
 .return:
@@ -11874,9 +11858,7 @@ PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer:
     LDA.W #Function_Kamer_MovingDown : STA.W $0FA8,X 
 
 .upwards:
-    LDA.L $7E8000,X 
-    EOR.W #$0001 
-    STA.L $7E8000,X 
+    LDA.L $7E8000,X : EOR.W #$0001 : STA.L $7E8000,X 
 
 .nonShootable:
     JSR.W PlayGateOpeningClosingSFXIfOnScreen 
@@ -12216,9 +12198,7 @@ PowerBombReaction_CommonReaction_HorizontalShutter:
     LDA.W $0FA8,X 
     CMP.W #Function_HorizontalShutter_MovingRight 
     BEQ .return 
-    LDA.L $7E8000,X 
-    EOR.W #$0001 
-    STA.L $7E8000,X 
+    LDA.L $7E8000,X : EOR.W #$0001 : STA.L $7E8000,X 
     LDA.W #Function_HorizontalShutter_MovingLeft : STA.W $0FA8,X 
     LDA.L $7E8000,X 
     BEQ .return 

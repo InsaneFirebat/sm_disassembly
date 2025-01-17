@@ -1235,9 +1235,7 @@ MainAI_Fireflea:
     RTL 
 
 
-  + LDA.L $7E7804,X 
-    EOR.W #$0004 
-    STA.L $7E7804,X 
+  + LDA.L $7E7804,X : EOR.W #$0004 : STA.L $7E7804,X 
     RTL 
 
 
@@ -6997,9 +6995,7 @@ StrugglingWithMultiWordNegation:
 
   + LDA.B $16 
     LDA.W #$0000 : SEC : SBC.B $16 : STA.B $1C 
-    LDA.B $18 
-    EOR.W #$FFFF 
-    STA.B $1E 
+    LDA.B $18 : EOR.W #$FFFF : STA.B $1E 
 
 .return:
     RTS 
@@ -9532,9 +9528,7 @@ Function_Yard_Movement_Airborne:
     EOR.W #$FFFF 
     INC A 
     STA.B $16 
-    LDA.W #$0000 
-    EOR.W #$FFFF 
-    STA.B $18 
+    LDA.W #$0000 : EOR.W #$FFFF : STA.B $18 
     BRA + 
 
 

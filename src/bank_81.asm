@@ -1431,9 +1431,7 @@ DebugGameOverMenu_Index3_Main:
 
 
 .toggleSelection:
-    LDA.W $0950 
-    EOR.W #$0001 
-    STA.W $0950 
+    LDA.W $0950 : EOR.W #$0001 : STA.W $0950 
 
 .noChange:
     LDX.W #$7800 
@@ -1595,9 +1593,7 @@ GameOverMenu_Index4_Main:
 .toggleSelection:
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
-    LDA.W $0950 
-    EOR.W #$0001 
-    STA.W $0950 
+    LDA.W $0950 : EOR.W #$0001 : STA.W $0950 
 
 .noChange:
     LDX.W #$0028 
@@ -2463,9 +2459,7 @@ FileSelectMenu_IndexC_FileCopy_Confirmation:
 
 
 .toggle:
-    LDA.W $19B5 
-    EOR.W #$0001 
-    STA.W $19B5 
+    LDA.W $19B5 : EOR.W #$0001 : STA.W $19B5 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
 
@@ -2764,9 +2758,7 @@ FileSelectMenu_Index18_FileClear_Confirmation:
 
 
 .toggle:
-    LDA.W $19B5 
-    EOR.W #$0001 
-    STA.W $19B5 
+    LDA.W $19B5 : EOR.W #$0001 : STA.W $19B5 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
 

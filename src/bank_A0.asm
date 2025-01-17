@@ -6477,9 +6477,7 @@ UNUSED_AssessSamusThreatLevel_A0C1D4:
     AND.W #$000F 
     EOR.W #$FFFF 
     STA.B $16 
-    LDA.W $09A4 
-    EOR.W #$FFFF 
-    STA.B $18 
+    LDA.W $09A4 : EOR.W #$FFFF : STA.B $18 
     LDA.W #$0000 
     LSR.B $16 
     BCS + 

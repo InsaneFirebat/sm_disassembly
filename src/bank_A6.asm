@@ -7966,9 +7966,7 @@ SetRidleyTailAngles:
 .stopTailPartMovement:
     STZ.W $2020,X 
     STZ.W $2022,X 
-    LDA.W $2024,X 
-    EOR.W #$8000 
-    STA.W $2024,X 
+    LDA.W $2024,X : EOR.W #$8000 : STA.W $2024,X 
     RTS 
 
 

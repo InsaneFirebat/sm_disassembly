@@ -438,9 +438,7 @@ TranslateCustomControllerBindingsToDefaultBindings:
     LDA.B $12 : ORA.W #$0020 : STA.B $12 
 
 .checkShot14:
-    LDA.B $12 
-    EOR.W #$FFFF 
-    STA.B $12 
+    LDA.B $12 : EOR.W #$FFFF : STA.B $12 
     LDA.B $8B 
     BIT.W $09B2 
     BEQ .checkJump14 
@@ -485,9 +483,7 @@ TranslateCustomControllerBindingsToDefaultBindings:
     LDA.B $14 : ORA.W #$0020 : STA.B $14 
 
 .done:
-    LDA.B $14 
-    EOR.W #$FFFF 
-    STA.B $14 
+    LDA.B $14 : EOR.W #$FFFF : STA.B $14 
     RTS 
 
 

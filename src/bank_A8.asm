@@ -717,9 +717,7 @@ HandleEvirBody:
   + DEC.W $0FB0,X 
     BPL .return 
     LDA.W $0FB7,X : AND.W #$00FF : STA.W $0FB0,X 
-    LDA.L $7E7800,X 
-    EOR.W #$0001 
-    STA.L $7E7800,X 
+    LDA.L $7E7800,X : EOR.W #$0001 : STA.L $7E7800,X 
 
 .return:
     RTS 
@@ -6087,9 +6085,7 @@ Function_Beetom_ShortHopLeft:
     LDA.W #$C000 : STA.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
-    LDA.L $7E7812,X 
-    EOR.W #$0001 
-    STA.L $7E7812,X 
+    LDA.L $7E7812,X : EOR.W #$0001 : STA.L $7E7812,X 
     LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
@@ -6111,9 +6107,7 @@ Function_Beetom_ShortHopRight:
     LDA.W #$4000 : STA.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
-    LDA.L $7E7812,X 
-    EOR.W #$0001 
-    STA.L $7E7812,X 
+    LDA.L $7E7812,X : EOR.W #$0001 : STA.L $7E7812,X 
     LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
@@ -6179,9 +6173,7 @@ Function_Beetom_LongHopLeft:
     LDA.W #$C000 : STA.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
-    LDA.L $7E7812,X 
-    EOR.W #$0001 
-    STA.L $7E7812,X 
+    LDA.L $7E7812,X : EOR.W #$0001 : STA.L $7E7812,X 
     LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
@@ -6203,9 +6195,7 @@ Function_Beetom_LongHopRight:
     LDA.W #$4000 : STA.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
-    LDA.L $7E7812,X 
-    EOR.W #$0001 
-    STA.L $7E7812,X 
+    LDA.L $7E7812,X : EOR.W #$0001 : STA.L $7E7812,X 
     LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
@@ -6274,9 +6264,7 @@ Function_Beetom_LungeLeft:
     STZ.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
-    LDA.L $7E7812,X 
-    EOR.W #$0001 
-    STA.L $7E7812,X 
+    LDA.L $7E7812,X : EOR.W #$0001 : STA.L $7E7812,X 
     LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
@@ -6298,9 +6286,7 @@ Function_Beetom_LungeRight:
     STZ.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
-    LDA.L $7E7812,X 
-    EOR.W #$0001 
-    STA.L $7E7812,X 
+    LDA.L $7E7812,X : EOR.W #$0001 : STA.L $7E7812,X 
     LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
@@ -6477,9 +6463,7 @@ Function_Beetom_Movement_BeingFlung:
     STZ.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
-    LDA.L $7E7812,X 
-    EOR.W #$0001 
-    STA.L $7E7812,X 
+    LDA.L $7E7812,X : EOR.W #$0001 : STA.L $7E7812,X 
     LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
@@ -9776,9 +9760,7 @@ Negate_1E_1C_A8DAF6:
     LDA.B $1C ; >.<
     LDA.W #$0000 : SEC : SBC.B $1C : STA.B $1C 
 
-  + LDA.B $1E 
-    EOR.W #$FFFF 
-    STA.B $1E 
+  + LDA.B $1E : EOR.W #$FFFF : STA.B $1E 
 
 .return:
     RTS 
