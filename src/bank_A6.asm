@@ -104,15 +104,13 @@ InstList_CommonA6_DeleteEnemy:
 NOPNOP_A68069:
     NOP #2
     Instruction_CommonA6_Enemy0FB2_InY:
-    LDA.W $0000,Y 
-    STA.W $0FB2,X 
+    LDA.W $0000,Y : STA.W $0FB2,X 
     INY #2
     RTL 
 
 
 Instruction_CommonA6_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_A6807B 
-    STA.W $0FB2,X 
+    LDA.W #RTS_A6807B : STA.W $0FB2,X 
     RTL 
 
 
@@ -130,8 +128,7 @@ Instruction_CommonA6_DeleteEnemy:
 
 
 Instruction_CommonA6_CallFunctionInY:
-    LDA.W $0000,Y 
-    STA.B $12 
+    LDA.W $0000,Y : STA.B $12 
     PHY 
     PHX 
     PEA.W .manualReturn-1 
@@ -146,8 +143,7 @@ Instruction_CommonA6_CallFunctionInY:
 
 
 Instruction_CommonA6_CallFunctionInY_WithA:
-    LDA.W $0000,Y 
-    STA.B $12 
+    LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
     PHY 
     PHX 
@@ -167,10 +163,8 @@ Instruction_CommonA6_CallFunctionInY_WithA:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA6_CallExternalFunctionInY_A680B5:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     PHX 
     PHY 
     JSL.L .externalFunction 
@@ -185,10 +179,8 @@ UNUSED_Instruction_CommonA6_CallExternalFunctionInY_A680B5:
 
 
 UNUSED_Inst_CommonA6_CallExternalFunctionInY_WithA_A680CE:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
     PHX 
     PHY 
@@ -256,8 +248,7 @@ Instruction_CommonA6_DecrementTimer_GotoY_PlusY_IfNonZero:
 
 
 Instruction_CommonA6_TimerInY:
-    LDA.W $0000,Y 
-    STA.W $0F90,X 
+    LDA.W $0000,Y : STA.W $0F90,X 
     INY #2
     RTL 
 
@@ -277,8 +268,7 @@ Instruction_CommonA6_Sleep:
 
 
 Instruction_CommonA6_WaitYFrames:
-    LDA.W $0000,Y 
-    STA.W $0F94,X 
+    LDA.W $0000,Y : STA.W $0F94,X 
     INY #2
     TYA 
     STA.W $0F92,X 
@@ -290,14 +280,10 @@ Instruction_CommonA6_WaitYFrames:
 Instruction_CommonA6_TransferYBytesInYToVRAM:
     PHX 
     LDX.W $0330 
-    LDA.W $0000,Y 
-    STA.B $D0,X 
-    LDA.W $0002,Y 
-    STA.B $D2,X 
-    LDA.W $0003,Y 
-    STA.B $D3,X 
-    LDA.W $0005,Y 
-    STA.B $D5,X 
+    LDA.W $0000,Y : STA.B $D0,X 
+    LDA.W $0002,Y : STA.B $D2,X 
+    LDA.W $0003,Y : STA.B $D3,X 
+    LDA.W $0005,Y : STA.B $D5,X 
     TXA 
     CLC 
     ADC.W #$0007 
@@ -459,24 +445,17 @@ BounceSpeedTableIndices:
 InitAI_Boulder:
     LDX.W $0E54 
     STZ.W $0FAC,X 
-    LDA.W #$0000 
-    STA.W $0FAA,X 
-    LDA.W #$0002 
-    STA.W $0FAE,X 
-    LDA.W #Function_Boulder_WaitForSamusToGetNear 
-    STA.W $0FA8,X 
-    LDA.W $0F7A,X 
-    STA.L $7E7808,X 
-    LDA.W $0F7E,X 
-    STA.L $7E780A,X 
+    LDA.W #$0000 : STA.W $0FAA,X 
+    LDA.W #$0002 : STA.W $0FAE,X 
+    LDA.W #Function_Boulder_WaitForSamusToGetNear : STA.W $0FA8,X 
+    LDA.W $0F7A,X : STA.L $7E7808,X 
+    LDA.W $0F7E,X : STA.L $7E780A,X 
     STA.L $7E7806,X 
-    LDA.W $0F80,X 
-    STA.L $7E7804,X 
+    LDA.W $0F80,X : STA.L $7E7804,X 
     LDA.W $0FB7,X 
     AND.W #$00FF 
     BNE .notRolling 
-    LDA.W #$0001 
-    STA.L $7E780E,X 
+    LDA.W #$0001 : STA.L $7E780E,X 
 
 .notRolling:
     EOR.W #$FFFF 
@@ -492,8 +471,7 @@ InitAI_Boulder:
     LDA.W $0F92,X 
     AND.W #$00FF 
     STA.L $7E780C,X 
-    LDA.W #InstList_Boulder_FacingLeft 
-    STA.W $0F92,X 
+    LDA.W #InstList_Boulder_FacingLeft : STA.W $0F92,X 
     LDA.W $0FB5,X 
     AND.W #$00FF 
     STA.W $0FB0,X 
@@ -502,17 +480,14 @@ InitAI_Boulder:
     EOR.W #$FFFF 
     INC A 
     STA.L $7E7800,X 
-    LDA.W #InstList_Boulder_FacingRight 
-    STA.W $0F92,X 
+    LDA.W #InstList_Boulder_FacingRight : STA.W $0F92,X 
 
 .left:
-    LDA.W #$0002 
-    STA.L $7E7802,X 
+    LDA.W #$0002 : STA.L $7E7802,X 
     LDA.W $0FB4,X 
     AND.W #$00FF 
     BEQ .return 
-    LDA.W #$0005 
-    STA.L $7E7802,X 
+    LDA.W #$0005 : STA.L $7E7802,X 
 
 .return:
     RTL 
@@ -536,12 +511,10 @@ Function_Boulder_WaitForSamusToGetNear:
     BMI .return 
     CMP.L $7E7800,X 
     BPL .return 
-    LDA.W #Function_Boulder_Falling 
-    STA.W $0FA8,X 
+    LDA.W #Function_Boulder_Falling : STA.W $0FA8,X 
     LDA.L $7E780E,X 
     BEQ .return 
-    LDA.W #Function_Boulder_Rolling 
-    STA.W $0FA8,X 
+    LDA.W #Function_Boulder_Rolling : STA.W $0FA8,X 
     BRA .return 
 
 
@@ -550,12 +523,10 @@ Function_Boulder_WaitForSamusToGetNear:
     BPL .return 
     CMP.L $7E7800,X 
     BMI .return 
-    LDA.W #Function_Boulder_Falling 
-    STA.W $0FA8,X 
+    LDA.W #Function_Boulder_Falling : STA.W $0FA8,X 
     LDA.L $7E780E,X 
     BEQ .return 
-    LDA.W #Function_Boulder_Rolling 
-    STA.W $0FA8,X 
+    LDA.W #Function_Boulder_Rolling : STA.W $0FA8,X 
 
 .return:
     RTS 
@@ -572,12 +543,9 @@ Function_Boulder_Falling:
     LDA.W $0F7E,X 
     CMP.L $7E780A,X 
     BMI .notReachedTarget 
-    LDA.L $7E780A,X 
-    STA.W $0F7E,X 
-    LDA.W #Function_Boulder_Bounce_Rising 
-    STA.W $0FA8,X 
-    LDA.W #$2000 
-    STA.W $0FAC,X 
+    LDA.L $7E780A,X : STA.W $0F7E,X 
+    LDA.W #Function_Boulder_Bounce_Rising : STA.W $0FA8,X 
+    LDA.W #$2000 : STA.W $0FAC,X 
     BRA .return 
 
 
@@ -588,8 +556,7 @@ Function_Boulder_Falling:
     STA.W $0FAC,X 
     CMP.W #$5000 
     BMI .return 
-    LDA.W #$5000 
-    STA.W $0FAC,X 
+    LDA.W #$5000 : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -610,8 +577,7 @@ Function_Boulder_Bounce_Rising:
     STA.W $0FAC,X 
     BPL .negativeSpeedTableIndex 
     STZ.W $0FAC,X 
-    LDA.W #Function_Boulder_Bounce_Falling 
-    STA.W $0FA8,X 
+    LDA.W #Function_Boulder_Bounce_Falling : STA.W $0FA8,X 
     BRA .return 
 
 
@@ -632,8 +598,7 @@ Function_Boulder_Bounce_Rising:
     STA.W $0FAA,X 
     CMP.W #$5000 
     BMI .return 
-    LDA.W #$5000 
-    STA.W $0FAA,X 
+    LDA.W #$5000 : STA.W $0FAA,X 
 
 .return:
     RTS 
@@ -646,10 +611,8 @@ Function_Boulder_Bounce_Falling:
     XBA 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
-    STA.B $12 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
-    STA.B $14 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y : STA.B $12 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .noCollision 
     LDA.W #$0042 
@@ -660,10 +623,8 @@ Function_Boulder_Bounce_Falling:
     LDA.W $0F86,X 
     ORA.W #$0200 
     STA.W $0F86,X 
-    LDA.W $0F7A,X 
-    STA.B $12 
-    LDA.W $0F7E,X 
-    STA.B $14 
+    LDA.W $0F7A,X : STA.B $12 
+    LDA.W $0F7E,X : STA.B $14 
     LDA.W #$0011 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
@@ -673,22 +634,17 @@ Function_Boulder_Bounce_Falling:
 
 
 .right:
-    LDA.W #Function_Boulder_Bounce_Rising 
-    STA.W $0FA8,X 
+    LDA.W #Function_Boulder_Bounce_Rising : STA.W $0FA8,X 
     LDA.W $0FAE,X 
     DEC A 
     ASL A 
     TAY 
-    LDA.W BounceSpeedTableIndices+2,Y 
-    STA.W $0FAC,X 
+    LDA.W BounceSpeedTableIndices+2,Y : STA.W $0FAC,X 
     DEC.W $0FAE,X 
     BPL .return 
-    LDA.W $0F7E,X 
-    STA.L $7E7806,X 
-    LDA.W $0F80,X 
-    STA.L $7E7804,X 
-    LDA.W #Function_Boulder_Rolling 
-    STA.W $0FA8,X 
+    LDA.W $0F7E,X : STA.L $7E7806,X 
+    LDA.W $0F80,X : STA.L $7E7804,X 
+    LDA.W #Function_Boulder_Rolling : STA.W $0FA8,X 
     BRA .return 
 
 
@@ -713,8 +669,7 @@ Function_Boulder_Bounce_Falling:
     STA.W $0FAA,X 
     CMP.W #$5000 
     BMI .return 
-    LDA.W #$5000 
-    STA.W $0FAA,X 
+    LDA.W #$5000 : STA.W $0FAA,X 
 
 .return:
     RTS 
@@ -727,8 +682,7 @@ Function_Boulder_Rolling:
     XBA 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
-    STA.B $12 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y : STA.B $12 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
     CLC 
     ADC.L $7E7802,X 
@@ -744,24 +698,19 @@ Function_Boulder_Rolling:
     BEQ .right 
     INY #4
     .right:
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
-    STA.B $12 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
-    STA.B $14 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y : STA.B $12 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWithWall 
     LDA.W $0F86,X 
     ORA.W #$0100 
     ORA.W #$0200 
     STA.W $0F86,X 
-    LDA.W #Function_Boulder_LoadEnemyIndex 
-    STA.W $0FA8,X 
+    LDA.W #Function_Boulder_LoadEnemyIndex : STA.W $0FA8,X 
     LDA.W #$0042 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W $0F7A,X 
-    STA.B $12 
-    LDA.W $0F7E,X 
-    STA.B $14 
+    LDA.W $0F7A,X : STA.B $12 
+    LDA.W $0F7E,X : STA.B $14 
     LDA.W #$0011 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
@@ -777,8 +726,7 @@ Function_Boulder_Rolling:
     STA.W $0FAA,X 
     CMP.W #$4000 
     BMI + 
-    LDA.W #$4000 
-    STA.W $0FAA,X 
+    LDA.W #$4000 : STA.W $0FAA,X 
 
   + LDA.W $0F7E,X 
     CMP.L $7E7806,X 
@@ -786,14 +734,11 @@ Function_Boulder_Rolling:
     LDA.W $0F80,X 
     CMP.L $7E7804,X 
     BNE .return 
-    LDA.W #$0000 
-    STA.L $7E7802,X 
+    LDA.W #$0000 : STA.L $7E7802,X 
 
 .return:
-    LDA.W $0F7E,X 
-    STA.L $7E7806,X 
-    LDA.W $0F80,X 
-    STA.L $7E7804,X 
+    LDA.W $0F7E,X : STA.L $7E7806,X 
+    LDA.W $0F80,X : STA.L $7E7804,X 
     RTS 
 
 
@@ -960,32 +905,25 @@ InstList_Kzan:
 
 InitAI_KzanTop:
     LDX.W $0E54 
-    LDA.W #InstList_Kzan 
-    STA.W $0F92,X 
-    LDA.W #Function_Kzan_WaitingToFall 
-    STA.W $0FA8,X 
+    LDA.W #InstList_Kzan : STA.W $0F92,X 
+    LDA.W #Function_Kzan_WaitingToFall : STA.W $0FA8,X 
     LDA.W $0FB4,X 
     AND.W #$00FF 
     ASL #3
     STA.L $7E7804,X 
     TAX 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,X 
-    STA.B $12 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,X 
-    STA.B $14 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,X : STA.B $12 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,X : STA.B $14 
     LDX.W $0E54 
-    LDA.B $14 
-    STA.W $0FB0,X 
-    LDA.B $12 
-    STA.W $0FB2,X 
+    LDA.B $14 : STA.W $0FB0,X 
+    LDA.B $12 : STA.W $0FB2,X 
     LDA.W $0FB6,X 
     AND.W #$FF00 
     XBA 
     CLC 
     ADC.W $0F7E,X 
     STA.W $0FAE,X 
-    LDA.W $0F7E,X 
-    STA.W $0FAC,X 
+    LDA.W $0F7E,X : STA.W $0FAC,X 
     LDA.W $0FB6,X 
     AND.W #$00FF 
     STA.L $7E7800,X 
@@ -995,8 +933,7 @@ InitAI_KzanTop:
 
 InitAI_KzanBottom:
     LDX.W $0E54 
-    LDA.W $0F3A,X 
-    STA.W $0F7A,X 
+    LDA.W $0F3A,X : STA.W $0F7A,X 
     LDA.W $0F3E,X 
     CLC 
     ADC.W #$000C 
@@ -1006,8 +943,7 @@ InitAI_KzanBottom:
 
 MainAI_KzanBottom:
     LDX.W $0E54 ; Same as init AI
-    LDA.W $0F3A,X 
-    STA.W $0F7A,X 
+    LDA.W $0F3A,X : STA.W $0F7A,X 
     LDA.W $0F3E,X 
     CLC 
     ADC.W #$000C 
@@ -1027,14 +963,12 @@ Function_Kzan_WaitingToFall:
     DEC.W $0FAA,X 
     LDA.W $0FAA,X 
     BNE .return 
-    LDA.L $7E7800,X 
-    STA.W $0FAA,X 
+    LDA.L $7E7800,X : STA.W $0FAA,X 
     LDA.W $0FB4,X 
     AND.W #$00FF 
     ASL #3
     STA.L $7E7804,X 
-    LDA.W #Function_Kzan_Falling 
-    STA.W $0FA8,X 
+    LDA.W #Function_Kzan_Falling : STA.W $0FA8,X 
 
 .return:
     PLX 
@@ -1044,25 +978,19 @@ Function_Kzan_WaitingToFall:
 Function_Kzan_Falling:
     PHX 
     LDX.W $0E54 
-    LDA.W $0F7E,X 
-    STA.L $7E7802,X 
+    LDA.W $0F7E,X : STA.L $7E7802,X 
     LDA.L $7E7804,X 
     TAX 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,X 
-    STA.B $14 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,X 
-    STA.B $12 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,X : STA.B $14 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,X : STA.B $12 
     LDX.W $0E54 
     JSL.L MoveEnemyY_plus_12_14 
     LDA.W $0F7E,X 
     CMP.W $0FAE,X 
     BMI .notReachedTarget 
-    LDA.W #$0040 
-    STA.L $7E7806,X 
-    LDA.W #Function_Kzan_WaitingToRise 
-    STA.W $0FA8,X 
-    LDA.W $0FAE,X 
-    STA.W $0F7E,X 
+    LDA.W #$0040 : STA.L $7E7806,X 
+    LDA.W #Function_Kzan_WaitingToRise : STA.W $0FA8,X 
+    LDA.W $0FAE,X : STA.W $0F7E,X 
     LDA.W #$001B 
     JSL.L QueueSound_Lib2_Max6 
 
@@ -1098,28 +1026,22 @@ Function_Kzan_WaitingToRise:
 
 
 .timerExpired:
-    LDA.W #Function_Kzan_Rising 
-    STA.W $0FA8,X 
+    LDA.W #Function_Kzan_Rising : STA.W $0FA8,X 
     RTS 
 
 
 Function_Kzan_Rising:
     PHX 
     LDX.W $0E54 
-    LDA.W $0F7E,X 
-    STA.L $7E7802,X 
-    LDA.W #$8000 
-    STA.B $12 
-    LDA.W #$0000 
-    STA.B $14 
+    LDA.W $0F7E,X : STA.L $7E7802,X 
+    LDA.W #$8000 : STA.B $12 
+    LDA.W #$0000 : STA.B $14 
     JSL.L MoveEnemyY_minus_12_14 
     LDA.W $0F7E,X 
     CMP.W $0FAC,X 
     BPL .notReachedTarget 
-    LDA.W #Function_Kzan_WaitingToFall 
-    STA.W $0FA8,X 
-    LDA.W $0FAC,X 
-    STA.W $0F7E,X 
+    LDA.W #Function_Kzan_WaitingToFall : STA.W $0FA8,X 
+    LDA.W $0FAC,X : STA.W $0F7E,X 
 
 .notReachedTarget:
     JSL.L CheckIfKzanIsTouchingSamusFromBelow 
@@ -1428,10 +1350,8 @@ Instruction_Hibashi_ActivityFrame0:
     SEC 
     SBC.W Hibashi_YOffset_0 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_0 
-    STA.W $0FC4,X 
-    LDA.W #$0008 
-    STA.W $0FC2,X 
+    LDA.W Hibashi_XOffset_0 : STA.W $0FC4,X 
+    LDA.W #$0008 : STA.W $0FC2,X 
     RTL 
 
 
@@ -1441,8 +1361,7 @@ Instruction_Hibashi_ActivityFrame1:
     SEC 
     SBC.W Hibashi_YOffset_1 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_1 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_1 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1452,8 +1371,7 @@ Instruction_Hibashi_ActivityFrame2:
     SEC 
     SBC.W Hibashi_YOffset_2 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_2 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_2 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1463,8 +1381,7 @@ Instruction_Hibashi_ActivityFrame3:
     SEC 
     SBC.W Hibashi_YOffset_3 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_3 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_3 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1474,8 +1391,7 @@ Instruction_Hibashi_ActivityFrame4:
     SEC 
     SBC.W Hibashi_YOffset_4 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_4 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_4 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1485,8 +1401,7 @@ Instruction_Hibashi_ActivityFrame5:
     SEC 
     SBC.W Hibashi_YOffset_5 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_5 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_5 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1496,8 +1411,7 @@ Instruction_Hibashi_ActivityFrame6:
     SEC 
     SBC.W Hibashi_YOffset_6 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_6 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_6 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1507,8 +1421,7 @@ Instruction_Hibashi_ActivityFrame7:
     SEC 
     SBC.W Hibashi_YOffset_7 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_7 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_7 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1518,8 +1431,7 @@ Instruction_Hibashi_ActivityFrame8:
     SEC 
     SBC.W Hibashi_YOffset_8 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_8 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_8 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1529,8 +1441,7 @@ Instruction_Hibashi_ActivityFrame9:
     SEC 
     SBC.W Hibashi_YOffset_9 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_9 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_9 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1540,8 +1451,7 @@ Instruction_Hibashi_ActivityFrameA:
     SEC 
     SBC.W Hibashi_YOffset_A 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_A 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_A : STA.W $0FC4,X 
     RTL 
 
 
@@ -1551,8 +1461,7 @@ Instruction_Hibashi_ActivityFrameB:
     SEC 
     SBC.W Hibashi_YOffset_B 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_B 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_B : STA.W $0FC4,X 
     RTL 
 
 
@@ -1562,8 +1471,7 @@ Instruction_Hibashi_ActivityFrameC:
     SEC 
     SBC.W Hibashi_YOffset_C 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_C 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_C : STA.W $0FC4,X 
     RTL 
 
 
@@ -1573,8 +1481,7 @@ Instruction_Hibashi_ActivityFrameD:
     SEC 
     SBC.W Hibashi_YOffset_D 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_D 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_D : STA.W $0FC4,X 
     RTL 
 
 
@@ -1584,8 +1491,7 @@ Instruction_Hibashi_ActivityFrameE:
     SEC 
     SBC.W Hibashi_YOffset_E 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_E 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_E : STA.W $0FC4,X 
     RTL 
 
 
@@ -1595,8 +1501,7 @@ Instruction_Hibashi_ActivityFrameF:
     SEC 
     SBC.W Hibashi_YOffset_F 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_F 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_F : STA.W $0FC4,X 
     RTL 
 
 
@@ -1606,8 +1511,7 @@ Instruction_Hibashi_ActivityFrame10:
     SEC 
     SBC.W Hibashi_YOffset_10 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_10 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_10 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1617,8 +1521,7 @@ Instruction_Hibashi_ActivityFrame11:
     SEC 
     SBC.W Hibashi_YOffset_11 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_11 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_11 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1628,8 +1531,7 @@ Instruction_Hibashi_ActivityFrame12:
     SEC 
     SBC.W Hibashi_YOffset_12 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_12 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_12 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1639,8 +1541,7 @@ Instruction_Hibashi_ActivityFrame13:
     SEC 
     SBC.W Hibashi_YOffset_13 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_13 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_13 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1650,8 +1551,7 @@ Instruction_Hibashi_ActivityFrame14:
     SEC 
     SBC.W Hibashi_YOffset_14 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_14 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_14 : STA.W $0FC4,X 
     RTL 
 
 
@@ -1661,20 +1561,16 @@ Instruction_Hibashi_ActivityFrame15:
     SEC 
     SBC.W Hibashi_YOffset_15 
     STA.W $0FBE,X 
-    LDA.W Hibashi_XOffset_15 
-    STA.W $0FC4,X 
+    LDA.W Hibashi_XOffset_15 : STA.W $0FC4,X 
     RTL 
 
 
 Instruction_Hibashi_FinishActivity:
     LDX.W $0E54 
-    LDA.W #$0001 
-    STA.W $0FAC,X 
-    LDA.W #$0000 
-    STA.W $0FC2,X 
+    LDA.W #$0001 : STA.W $0FAC,X 
+    LDA.W #$0000 : STA.W $0FC2,X 
     STA.W $0FC4,X 
-    LDA.W $0FAE,X 
-    STA.W $0F7E,X 
+    LDA.W $0FAE,X : STA.W $0F7E,X 
     LDA.W $0F86,X 
     ORA.W #$0100 
     STA.W $0F86,X 
@@ -1686,18 +1582,13 @@ Instruction_Hibashi_FinishActivity:
 
 InitAI_Hibashi:
     LDX.W $0E54 
-    LDA.W #InstList_Hibashi_HitboxPart 
-    STA.W $0F92,X 
+    LDA.W #InstList_Hibashi_HitboxPart : STA.W $0F92,X 
     LDA.W $0FB6,X 
     BNE .return 
-    LDA.W #InstList_Hibashi_GraphicsPart 
-    STA.W $0F92,X 
-    LDA.W #Function_Hibashi_Inactive 
-    STA.W $0FA8,X 
-    LDA.W $0F7E,X 
-    STA.W $0FAE,X 
-    LDA.W #$0000 
-    STA.W $0F82,X 
+    LDA.W #InstList_Hibashi_GraphicsPart : STA.W $0F92,X 
+    LDA.W #Function_Hibashi_Inactive : STA.W $0FA8,X 
+    LDA.W $0F7E,X : STA.W $0FAE,X 
+    LDA.W #$0000 : STA.W $0F82,X 
 
 .return:
     RTL 
@@ -1717,14 +1608,11 @@ Function_Hibashi_Inactive:
     LDX.W $0E54 
     DEC.W $0FAA,X 
     BPL .return 
-    LDA.W #Function_Hibashi_Active 
-    STA.W $0FA8,X 
+    LDA.W #Function_Hibashi_Active : STA.W $0FA8,X 
     STZ.W $0FAC,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #InstList_Hibashi_GraphicsPart 
-    STA.W $0F92,X 
+    LDA.W #InstList_Hibashi_GraphicsPart : STA.W $0F92,X 
     LDA.W $0F86,X 
     AND.W #$FEFF 
     STA.W $0F86,X 
@@ -1740,13 +1628,11 @@ Function_Hibashi_Active:
     LDX.W $0E54 
     LDA.W $0FAC,X 
     BEQ .return 
-    LDA.W $0FB4,X 
-    STA.W $0FAA,X 
+    LDA.W $0FB4,X : STA.W $0FAA,X 
     LDA.W $0F86,X 
     ORA.W #$0100 
     STA.W $0F86,X 
-    LDA.W #Function_Hibashi_Inactive 
-    STA.W $0FA8,X 
+    LDA.W #Function_Hibashi_Inactive : STA.W $0FA8,X 
 
 .return:
     RTS 
@@ -2247,8 +2133,7 @@ InstList_Puromi:
 
 InitAI_Puromi:
     LDX.W $0E54 
-    LDA.W #InstList_Puromi 
-    STA.W $0F92,X 
+    LDA.W #InstList_Puromi : STA.W $0F92,X 
     LDA.W $0FB4,X 
     AND.W #$00FF 
     STA.W $0FAC,X 
@@ -2262,24 +2147,17 @@ InitAI_Puromi:
     AND.W #$00FF 
     STA.W $0FB2,X 
     STA.W $0FAA,X 
-    LDA.W #Function_Puromi_Inactive 
-    STA.W $0FA8,X 
+    LDA.W #Function_Puromi_Inactive : STA.W $0FA8,X 
     LDA.W $0FB0,X 
     ASL #2
     TAY 
-    LDA.W .startAngle_clockwise,Y 
-    STA.L $7E8006,X 
+    LDA.W .startAngle_clockwise,Y : STA.L $7E8006,X 
     STA.L $7E8002,X 
-    LDA.W .finishAngle_clockwise,Y 
-    STA.L $7E801C,X 
-    LDA.W .angleBetweenBodyPartsDoubled_clockwise,Y 
-    STA.L $7E8016,X 
-    LDA.W .angleBetweenBodyParts_clockwise,Y 
-    STA.L $7E8018,X 
-    LDA.W .risingExplosionAngle_clockwise,Y 
-    STA.L $7E8020,X 
-    LDA.W .fallingExplosionAngle_clockwise,Y 
-    STA.L $7E801E,X 
+    LDA.W .finishAngle_clockwise,Y : STA.L $7E801C,X 
+    LDA.W .angleBetweenBodyPartsDoubled_clockwise,Y : STA.L $7E8016,X 
+    LDA.W .angleBetweenBodyParts_clockwise,Y : STA.L $7E8018,X 
+    LDA.W .risingExplosionAngle_clockwise,Y : STA.L $7E8020,X 
+    LDA.W .fallingExplosionAngle_clockwise,Y : STA.L $7E801E,X 
     LDA.W $0FAC,X 
     ASL #3
     TAY 
@@ -2287,32 +2165,25 @@ InitAI_Puromi:
     BNE .firingUp 
     INY #4
     .firingUp:
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
-    STA.L $7E800A,X 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y 
-    STA.L $7E8008,X 
-    LDA.W $0F7A,X 
-    STA.L $7E800C,X 
-    LDA.W $0F7E,X 
-    STA.L $7E800E,X 
-    LDA.W $0FAE,X 
-    STA.W $0E32 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.L $7E800A,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.L $7E8008,X 
+    LDA.W $0F7A,X : STA.L $7E800C,X 
+    LDA.W $0F7E,X : STA.L $7E800E,X 
+    LDA.W $0FAE,X : STA.W $0E32 
     LDA.L $7E8006,X 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC 
     ADC.L $7E800C,X 
     STA.L $7E8010,X 
     STA.W $0F7A,X 
-    LDA.W $0FAE,X 
-    STA.W $0E32 
+    LDA.W $0FAE,X : STA.W $0E32 
     LDA.L $7E8006,X 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC 
     ADC.L $7E800E,X 
     STA.L $7E8012,X 
     STA.W $0F7E,X 
-    LDA.W #$0008 
-    STA.L $7E8014,X 
+    LDA.W #$0008 : STA.L $7E8014,X 
 
 .loopEnemyProjectiles:
     LDX.W $0E54 
@@ -2323,17 +2194,13 @@ InitAI_Puromi:
     SBC.W #$0002 
     STA.L $7E8014,X 
     BNE .loopEnemyProjectiles 
-    LDA.W #$0006 
-    STA.L $7E8014,X 
+    LDA.W #$0006 : STA.L $7E8014,X 
 
 .loopSpirteObjects:
     LDX.W $0E54 
-    LDA.W $0F7A,X 
-    STA.B $12 
-    LDA.W $0F7E,X 
-    STA.B $14 
-    LDA.W #$002B 
-    STA.B $16 
+    LDA.W $0F7A,X : STA.B $12 
+    LDA.W $0F7E,X : STA.B $14 
+    LDA.W #$002B : STA.B $16 
     LDA.W $0F96,X 
     ORA.W $0F98,X 
     STA.L $7E8028,X 
@@ -2344,8 +2211,7 @@ InitAI_Puromi:
     CLC 
     ADC.W $0E54 
     TAX 
-    LDA.B $12 
-    STA.L $7E7820,X 
+    LDA.B $12 : STA.L $7E7820,X 
     PLX 
     LDA.L $7E8014,X 
     SEC 
@@ -2401,14 +2267,10 @@ Function_Puromi_Inactive:
     LDX.W $0E54 
     DEC.W $0FAA,X 
     BPL .return 
-    LDA.W $0FB2,X 
-    STA.W $0FAA,X 
-    LDA.L $7E8006,X 
-    STA.L $7E8002,X 
-    LDA.W #Function_Puromi_Active 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.L $7E8026,X 
+    LDA.W $0FB2,X : STA.W $0FAA,X 
+    LDA.L $7E8006,X : STA.L $7E8002,X 
+    LDA.W #Function_Puromi_Active : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.L $7E8026,X 
     STA.L $7E7810,X 
     STA.L $7E7812,X 
     STA.L $7E7814,X 
@@ -2435,8 +2297,7 @@ Function_Puromi_Inactive:
 
 Function_Puromi_Active:
     LDX.W $0E54 
-    LDA.W $0FAE,X 
-    STA.W $0E32 
+    LDA.W $0FAE,X : STA.W $0E32 
     LDA.L $7E8002,X 
     JSR.W CheckExplosionCondition 
     STA.B $1E 
@@ -2444,25 +2305,18 @@ Function_Puromi_Active:
     CMP.L $7E8026,X 
     BEQ .matchingExplosionReason 
     LDX.W $0E54 
-    LDA.W $0F7A,X 
-    STA.B $12 
-    LDA.W $0F7E,X 
-    STA.B $14 
-    LDA.W #$002E 
-    STA.B $16 
-    LDA.L $7E8028,X 
-    STA.B $18 
+    LDA.W $0F7A,X : STA.B $12 
+    LDA.W $0F7E,X : STA.B $14 
+    LDA.W #$002E : STA.B $16 
+    LDA.L $7E8028,X : STA.B $18 
     JSL.L Create_Sprite_Object 
-    LDA.W $0F7A,X 
-    STA.B $12 
-    LDA.W $0F7E,X 
-    STA.B $14 
+    LDA.W $0F7A,X : STA.B $12 
+    LDA.W $0F7E,X : STA.B $14 
     LDA.B $1A 
     CLC 
     ADC.W #$002C 
     STA.B $16 
-    LDA.L $7E8028,X 
-    STA.B $18 
+    LDA.L $7E8028,X : STA.B $18 
     JSL.L Create_Sprite_Object 
     JSR.W PlayPuromiExplosionSFX 
 
@@ -2495,8 +2349,7 @@ Function_Puromi_Active:
 
 HandlePuromiProjectiles:
     LDX.W $0E54 
-    LDA.W #$0008 
-    STA.L $7E8014,X 
+    LDA.W #$0008 : STA.L $7E8014,X 
     LDA.L $7E8002,X 
     CLC 
     ADC.L $7E8018,X 
@@ -2523,25 +2376,18 @@ HandlePuromiProjectiles:
     BEQ .matchingExplosionReason 
     PHX 
     LDX.W $0E54 
-    LDA.W $1A4B,Y 
-    STA.B $12 
-    LDA.W $1A93,Y 
-    STA.B $14 
-    LDA.W #$002E 
-    STA.B $16 
-    LDA.L $7E8028,X 
-    STA.B $18 
+    LDA.W $1A4B,Y : STA.B $12 
+    LDA.W $1A93,Y : STA.B $14 
+    LDA.W #$002E : STA.B $16 
+    LDA.L $7E8028,X : STA.B $18 
     JSL.L Create_Sprite_Object 
-    LDA.W $1A4B,Y 
-    STA.B $12 
-    LDA.W $1A93,Y 
-    STA.B $14 
+    LDA.W $1A4B,Y : STA.B $12 
+    LDA.W $1A93,Y : STA.B $14 
     LDA.B $1A 
     CLC 
     ADC.W #$002C 
     STA.B $16 
-    LDA.L $7E8028,X 
-    STA.B $18 
+    LDA.L $7E8028,X : STA.B $18 
     JSL.L Create_Sprite_Object 
     JSR.W PlayPuromiExplosionSFX 
     PLX 
@@ -2572,8 +2418,7 @@ HandlePuromiProjectiles:
 
   + LDA.B $1C 
     BEQ .return 
-    LDA.W #Function_Puromi_Inactive 
-    STA.W $0FA8,X 
+    LDA.W #Function_Puromi_Inactive : STA.W $0FA8,X 
     LDA.W $0F86,X 
     AND.W #$F7FF 
     STA.W $0F86,X 
@@ -2584,10 +2429,8 @@ HandlePuromiProjectiles:
 
 HandlePuromiSpriteObjects:
     LDX.W $0E54 
-    LDA.W #$0006 
-    STA.L $7E8014,X 
-    LDA.L $7E8002,X 
-    STA.B $24 
+    LDA.W #$0006 : STA.L $7E8014,X 
+    LDA.L $7E8002,X : STA.B $24 
 
 .loop:
     LDX.W $0E54 
@@ -2610,28 +2453,20 @@ HandlePuromiSpriteObjects:
     BEQ .matchingExplosionReason 
     PHX 
     LDX.W $0E54 
-    LDA.L $7E8028,X 
-    STA.B $26 
+    LDA.L $7E8028,X : STA.B $26 
     TYX 
-    LDA.L $7EF0F8,X 
-    STA.B $12 
-    LDA.L $7EF1F8,X 
-    STA.B $14 
-    LDA.W #$002E 
-    STA.B $16 
-    LDA.B $26 
-    STA.B $18 
+    LDA.L $7EF0F8,X : STA.B $12 
+    LDA.L $7EF1F8,X : STA.B $14 
+    LDA.W #$002E : STA.B $16 
+    LDA.B $26 : STA.B $18 
     JSL.L Create_Sprite_Object 
-    LDA.L $7EF0F8,X 
-    STA.B $12 
-    LDA.L $7EF1F8,X 
-    STA.B $14 
+    LDA.L $7EF0F8,X : STA.B $12 
+    LDA.L $7EF1F8,X : STA.B $14 
     LDA.W #$002C 
     CLC 
     ADC.B $1A 
     STA.B $16 
-    LDA.B $26 
-    STA.B $18 
+    LDA.B $26 : STA.B $18 
     JSL.L Create_Sprite_Object 
     JSR.W PlayPuromiExplosionSFX 
     PLX 
@@ -2654,10 +2489,8 @@ HandlePuromiSpriteObjects:
     STA.B $22 
     PHX 
     TYX 
-    LDA.B $20 
-    STA.L $7EF0F8,X 
-    LDA.B $22 
-    STA.L $7EF1F8,X 
+    LDA.B $20 : STA.L $7EF0F8,X 
+    LDA.B $22 : STA.L $7EF1F8,X 
     PLX 
     LDA.L $7E8014,X 
     SEC 
@@ -2737,29 +2570,25 @@ CheckExplosionCondition:
 
 
 .clockwiseRising:
-    LDA.W #$0001 
-    STA.B $1A 
+    LDA.W #$0001 : STA.B $1A 
     LDA.W #$0001 
     BRA .return 
 
 
 .clockwiseFalling:
-    LDA.W #$0000 
-    STA.B $1A 
+    LDA.W #$0000 : STA.B $1A 
     LDA.W #$0002 
     BRA .return 
 
 
 .antiClockwiseRising:
-    LDA.W #$0000 
-    STA.B $1A 
+    LDA.W #$0000 : STA.B $1A 
     LDA.W #$0001 
     BRA .return 
 
 
 .antiClockwiseFalling:
-    LDA.W #$0001 
-    STA.B $1A 
+    LDA.W #$0001 : STA.B $1A 
     LDA.W #$0002 
     BRA .return 
 
@@ -2983,24 +2812,20 @@ InitAI_MiniKraid:
     CLC 
     ADC.W #$FFD0 
     STA.L $7E780A,X 
-    LDA.W #$0000 
-    STA.L $7E780E,X 
+    LDA.W #$0000 : STA.L $7E780E,X 
     LDA.W $0F86,X 
     ORA.W #$2000 
     STA.W $0F86,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #$FFFC 
-    STA.W $0FAA,X 
+    LDA.W #$FFFC : STA.W $0FAA,X 
     STA.W $0FAC,X 
     LDY.W #InstList_MiniKraid_StepForwards_FacingLeft 
     LDA.W $0F7A,X 
     SEC 
     SBC.W $0AF6 
     BPL .keepLeft 
-    LDA.W #$0004 
-    STA.W $0FAA,X 
+    LDA.W #$0004 : STA.W $0FAA,X 
     STA.W $0FAC,X 
     LDY.W #InstList_MiniKraid_StepForwards_FacingRight 
 
@@ -3083,8 +2908,7 @@ Instruction_MiniKraid_Move:
 
 
 .nonZeroCounter:
-    LDA.W $0FAA,X 
-    STA.B $14 
+    LDA.W $0FAA,X : STA.B $14 
     STZ.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .noCollision 
@@ -3096,14 +2920,12 @@ Instruction_MiniKraid_Move:
     STA.W $0FAA,X 
 
 .noCollision:
-    LDA.W #$FFFC 
-    STA.W $0FAC,X 
+    LDA.W #$FFFC : STA.W $0FAC,X 
     LDA.W $0F7A,X 
     SEC 
     SBC.W $0AF6 
     BPL .return 
-    LDA.W #$0004 
-    STA.W $0FAC,X 
+    LDA.W #$0004 : STA.W $0FAC,X 
 
 .return:
     PLY 
@@ -3167,18 +2989,14 @@ FireMiniKraidSpit_Common:
     PHY 
     PHX 
     STA.L $7E7804,X 
-    LDA.W MiniKraidSpitVelocityTable_leftward_X1,Y 
-    STA.L $7E7800,X 
-    LDA.W MiniKraidSpitVelocityTable_leftward_Y1,Y 
-    STA.L $7E7802,X 
+    LDA.W MiniKraidSpitVelocityTable_leftward_X1,Y : STA.L $7E7800,X 
+    LDA.W MiniKraidSpitVelocityTable_leftward_Y1,Y : STA.L $7E7802,X 
     LDY.W #EnemyProjectile_MiniKraidSpit 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLX 
     PLY 
-    LDA.W MiniKraidSpitVelocityTable_leftward_X2,Y 
-    STA.L $7E7800,X 
-    LDA.W MiniKraidSpitVelocityTable_leftward_Y2,Y 
-    STA.L $7E7802,X 
+    LDA.W MiniKraidSpitVelocityTable_leftward_X2,Y : STA.L $7E7800,X 
+    LDA.W MiniKraidSpitVelocityTable_leftward_Y2,Y : STA.L $7E7802,X 
     LDY.W #EnemyProjectile_MiniKraidSpit 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY 
@@ -3195,10 +3013,8 @@ Instruction_MiniKraid_FireSpitRight:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PowerBombReaction_MiniKraid_A69C0B:
     LDX.W $0E54 
-    LDA.W $0F7A,X 
-    STA.L $7EF434 
-    LDA.W $0F7E,X 
-    STA.L $7EF436 
+    LDA.W $0F7A,X : STA.L $7EF434 
+    LDA.W $0F7E,X : STA.L $7EF436 
     JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External 
     BRA Reaction_MiniKraid_Common 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -3206,20 +3022,16 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyTouch_MiniKraid:
     LDX.W $0E54 
-    LDA.W $0F7A,X 
-    STA.L $7EF434 
-    LDA.W $0F7E,X 
-    STA.L $7EF436 
+    LDA.W $0F7A,X : STA.L $7EF434 
+    LDA.W $0F7E,X : STA.L $7EF436 
     JSL.L NormalEnemyTouchAI_NoDeathCheck_External 
     BRA Reaction_MiniKraid_Common 
 
 
 EnemyShot_PowerBombReaction_MiniKraid:
     LDX.W $0E54 
-    LDA.W $0F7A,X 
-    STA.L $7EF434 
-    LDA.W $0F7E,X 
-    STA.L $7EF436 
+    LDA.W $0F7A,X : STA.L $7EF434 
+    LDA.W $0F7E,X : STA.L $7EF436 
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External 
     BRA Reaction_MiniKraid_Common ; >.<
 
@@ -3773,14 +3585,12 @@ InitAI_Ridley:
     STZ.W $0FB6 
     LDA.W #InstList_Ridley_FacingLeft_Initial 
     JSR.W SetRidleyInstList 
-    LDA.W #$0E00 
-    STA.W $0F96 
+    LDA.W #$0E00 : STA.W $0F96 
     STA.L $7E7818 
     LDA.W $0F88 
     ORA.W #$0004 
     STA.W $0F88 
-    LDA.W #$0000 
-    STA.L $7E7802 
+    LDA.W #$0000 : STA.L $7E7802 
     STA.L $7E781A 
     STZ.W $183E 
     STZ.W $1840 
@@ -3796,33 +3606,22 @@ InitAI_Ridley:
     LDA.W $0F86 
     ORA.W #$1400 
     STA.W $0F86 
-    LDA.W #$0060 
-    STA.W $0F7A 
-    LDA.W #$018A 
-    STA.W $0F7E 
+    LDA.W #$0060 : STA.W $0F7A 
+    LDA.W #$018A : STA.W $0F7E 
     LDA.W #Function_Ridley_Startup_Liftoff_FacingRight ; >_<
-    LDA.W #Function_Ridley_Startup_FirstRun 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_Startup_FirstRun : STA.W $0FA8 
     STZ.W $0FAA 
     STZ.W $0FAC 
-    LDA.W #$0005 
-    STA.W $0F9A 
-    LDA.W #$0000 
-    STA.L $7E7802 ; >.<
+    LDA.W #$0005 : STA.W $0F9A 
+    LDA.W #$0000 : STA.L $7E7802 ; >.<
     INC A 
     STA.L $7E7804 
-    LDA.W #$0040 
-    STA.L $7E8000 
-    LDA.W #$01A0 
-    STA.L $7E8002 
-    LDA.W #$0040 
-    STA.L $7E8004 
-    LDA.W #$00E0 
-    STA.L $7E8006 
-    LDA.W #$0002 
-    STA.L $7E7820 
-    LDA.W #$0078 
-    STA.L $7E7838 
+    LDA.W #$0040 : STA.L $7E8000 
+    LDA.W #$01A0 : STA.L $7E8002 
+    LDA.W #$0040 : STA.L $7E8004 
+    LDA.W #$00E0 : STA.L $7E8006 
+    LDA.W #$0002 : STA.L $7E7820 
+    LDA.W #$0078 : STA.L $7E7838 
     LDY.W #Palette_NorfairRidleyInit 
     LDX.W #$0140 
     LDA.W #$0020 
@@ -3845,30 +3644,21 @@ InitAI_Ridley:
     LDA.W $0F86 
     ORA.W #$1400 
     STA.W $0F86 
-    LDA.W #$00BA 
-    STA.W $0F7A 
-    LDA.W #$00A9 
-    STA.W $0F7E 
-    LDA.W #$0000 
-    STA.W $093F 
+    LDA.W #$00BA : STA.W $0F7A 
+    LDA.W #$00A9 : STA.W $0F7E 
+    LDA.W #$0000 : STA.W $093F 
     STA.L $7E7820 
     STA.L $7E7804 
     INC A 
     STA.L $7E2002 
-    LDA.W #$000F 
-    STA.L $7E7838 
-    LDA.W #Function_Ridley_Startup_FirstRun 
-    STA.W $0FA8 
+    LDA.W #$000F : STA.L $7E7838 
+    LDA.W #Function_Ridley_Startup_FirstRun : STA.W $0FA8 
     STZ.W $0FAA 
     STZ.W $0FAC 
-    LDA.W #$FFE0 
-    STA.L $7E8000 
-    LDA.W #$00B0 
-    STA.L $7E8002 
-    LDA.W #$0028 
-    STA.L $7E8004 
-    LDA.W #$00E0 
-    STA.L $7E8006 
+    LDA.W #$FFE0 : STA.L $7E8000 
+    LDA.W #$00B0 : STA.L $7E8002 
+    LDA.W #$0028 : STA.L $7E8004 
+    LDA.W #$00E0 : STA.L $7E8006 
     LDY.W #Palette_CeresRidleyInit 
     LDX.W #$0140 
     LDA.W #$0020 
@@ -3882,22 +3672,17 @@ InitAI_Ridley:
     INX #2
     DEY 
     BNE .loopClearSpritePalette7 
-    LDA.W #InstList_BabyMetroidCutscene_0 
-    STA.L $7E7806 
-    LDA.W #$0001 
-    STA.L $7E7808 
-    LDA.W #UpdateBabyMetroidPosition_CarriedInArms 
-    STA.L $7E8800 
-    LDA.W #$0005 
-    STA.L $7E780E 
+    LDA.W #InstList_BabyMetroidCutscene_0 : STA.L $7E7806 
+    LDA.W #$0001 : STA.L $7E7808 
+    LDA.W #UpdateBabyMetroidPosition_CarriedInArms : STA.L $7E8800 
+    LDA.W #$0005 : STA.L $7E780E 
     LDA.W #$0000 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     RTL 
 
 
 MainAI_RidleyCeres:
-    LDA.W #$7FFF 
-    STA.W $0F8C 
+    LDA.W #$7FFF : STA.W $0F8C 
     PEA.W .manualReturn-1 
     JMP.W ($0FA8) 
 
@@ -3945,10 +3730,8 @@ HandleBabyMetroidCapsuleInteractions:
     JSR.W HandleCarryingBabyMetroid 
     LDA.L $7E7804 
     BEQ EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor 
-    LDA.W #EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor>>8&$FF00 
-    STA.W $178D 
-    LDA.W #EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor 
-    STA.W $178C 
+    LDA.W #EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor>>8&$FF00 : STA.W $178D 
+    LDA.W #EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor : STA.W $178C 
     RTL 
 
 
@@ -3967,10 +3750,8 @@ EnemyGraphicsDrawnHook_RidleyCeres_DrawBabyMetroidAndDoor:
     CLC 
     ADC.W $0FBA 
     STA.B $14 
-    LDA.W $0FBE 
-    STA.B $12 
-    LDA.W #$0400 
-    STA.B $16 
+    LDA.W $0FBE : STA.B $12 
+    LDA.W #$0400 : STA.B $16 
     LDY.W #Spritemap_CeresDoor 
     JSL.L AddSpritemapToOAM 
 
@@ -4013,8 +3794,7 @@ Function_Ridley_ResetSpeeds:
 Function_Ridley_Startup_FirstRun:
     LDA.W $0797 
     BNE Function_Ridley_Startup_InitalWait_return 
-    LDA.W #Function_Ridley_Startup_InitalWait 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_Startup_InitalWait : STA.W $0FA8 
     LDA.W #$0200 
     LDY.W $079F 
     CPY.W #$0002 
@@ -4027,8 +3807,7 @@ Function_Ridley_Startup_FirstRun:
 Function_Ridley_Startup_InitalWait:
     DEC.W $0FB2 
     BPL Function_Ridley_Startup_InitalWait_return 
-    LDA.W #Function_Ridley_Startup_EyesAppear_Wait 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_Startup_EyesAppear_Wait : STA.W $0FA8 
     STZ.W $0FB0 
     STZ.W $0FB2 
 
@@ -4059,12 +3838,9 @@ Function_Ridley_Startup_EyesAppear_Wait:
     INX 
     STX.W $0FB0 
     LDX.W #$01F8 
-    LDA.W CeresRidleyEyeFadeInColors_0,Y 
-    STA.L $7EC000,X 
-    LDA.W CeresRidleyEyeFadeInColors_1,Y 
-    STA.L $7EC002,X 
-    LDA.W CeresRidleyEyeFadeInColors_2,Y 
-    STA.L $7EC004,X 
+    LDA.W CeresRidleyEyeFadeInColors_0,Y : STA.L $7EC000,X 
+    LDA.W CeresRidleyEyeFadeInColors_1,Y : STA.L $7EC002,X 
+    LDA.W CeresRidleyEyeFadeInColors_2,Y : STA.L $7EC004,X 
 
 .return:
     RTS 
@@ -4072,10 +3848,8 @@ Function_Ridley_Startup_EyesAppear_Wait:
 
 .done:
     STZ.W $0FB0 
-    LDA.W #Function_Ridley_Startup_MainBodyAppears 
-    STA.W $0FA8 
-    LDA.W #$0001 
-    STA.L $7E7804 
+    LDA.W #Function_Ridley_Startup_MainBodyAppears : STA.W $0FA8 
+    LDA.W #$0001 : STA.L $7E7804 
     RTS 
 
 
@@ -4086,10 +3860,8 @@ Function_Ridley_Startup_MainBodyAppears:
     BCC .return 
     STZ.W $0FB2 
     LDY.W $0FB0 
-    LDA.W #$0122 
-    STA.B $12 
-    LDA.W #$01E2 
-    STA.B $14 
+    LDA.W #$0122 : STA.B $12 
+    LDA.W #$01E2 : STA.B $14 
     LDA.W #$000B 
 
 .loop:
@@ -4119,8 +3891,7 @@ Function_Ridley_Startup_MainBodyAppears:
     LDA.W $079F 
     CMP.W #$0002 
     BNE .notCeres 
-    LDA.W #$0002 
-    STA.W $0F9A 
+    LDA.W #$0002 : STA.W $0F9A 
 
 .notCeres:
     LDA.W $0F86 
@@ -4128,10 +3899,8 @@ Function_Ridley_Startup_MainBodyAppears:
     STA.W $0F86 
     LDY.W #$0000 
     STY.W $0FB0 
-    LDA.W #Function_Ridley_Startup_RidleyRoars 
-    STA.W $0FA8 
-    LDA.W #$0004 
-    STA.W $0FB2 
+    LDA.W #Function_Ridley_Startup_RidleyRoars : STA.W $0FA8 
+    LDA.W #$0004 : STA.W $0FB2 
     LDA.W #$0005 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     RTS 
@@ -4143,13 +3912,11 @@ Function_Ridley_Startup_RidleyRoars:
     LDA.W #InstList_Ridley_FacingLeft_OpeningRoar 
     JSR.W SetRidleyInstList 
     STZ.W $0FB2 
-    LDA.W #Function_Ridley_Startup_ColorBGInNorfair_RaiseAcid_MainAI 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_Startup_ColorBGInNorfair_RaiseAcid_MainAI : STA.W $0FA8 
     LDA.W $079F 
     CMP.W #$0002 
     BEQ Function_Ridley_Startup_RidleyRoars_return 
-    LDA.W #$00FC 
-    STA.W $0FB2 
+    LDA.W #$00FC : STA.W $0FB2 
 
 Function_Ridley_Startup_RidleyRoars_return:
     RTS 
@@ -4161,20 +3928,16 @@ Function_Ridley_Startup_ColorBGInNorfair_RaiseAcid_MainAI:
     BNE .ceres 
     DEC.W $0FB2 
     BPL Function_Ridley_Startup_RidleyRoars_return 
-    LDA.W #$0002 
-    STA.W $0FB2 
+    LDA.W #$0002 : STA.W $0FB2 
     LDA.W $0FB0 
     INC A 
     STA.W $0FB0 
     DEC A 
     JSR.W AdjustRidleyBackgroundColorsIfNecessary 
     BCC Function_Ridley_Startup_RidleyRoars_return 
-    LDA.W #$01B8 
-    STA.W $197A 
-    LDA.W #$FFA0 
-    STA.W $197C 
-    LDA.W #$0020 
-    STA.W $1980 
+    LDA.W #$01B8 : STA.W $197A 
+    LDA.W #$FFA0 : STA.W $197C 
+    LDA.W #$0020 : STA.W $1980 
     BRA .merge 
 
 
@@ -4186,14 +3949,11 @@ Function_Ridley_Startup_ColorBGInNorfair_RaiseAcid_MainAI:
     STZ.W $0FB0 
     LDA.W #InstList_RidleyCeres_FacingLeft_FlyUp_StartMainAI 
     JSR.W SetRidleyInstList 
-    LDA.W #$0008 
-    STA.L $7E7810 
+    LDA.W #$0008 : STA.L $7E7810 
     STA.L $7E7812 
     JSR.W SetAllTailPartsToMoving 
-    LDA.W #$0001 
-    STA.L $7E2000 
-    LDA.W #Function_Ridley_ResetSpeeds 
-    STA.W $0FA8 
+    LDA.W #$0001 : STA.L $7E2000 
+    LDA.W #Function_Ridley_ResetSpeeds : STA.W $0FA8 
     RTS 
 
 
@@ -4304,8 +4064,7 @@ Function_RidleyCeres_StartupLiftoff_FacingLeft:
 
 
 .reachedTarget:
-    LDA.W #Function_RidleyCeres_StartupLiftoff_FacingLeft_SlowingDown 
-    STA.W $0FA8 ; fallthrough to Function_RidleyCeres_StartupLiftoff_FacingLeft_SlowingDown
+    LDA.W #Function_RidleyCeres_StartupLiftoff_FacingLeft_SlowingDown : STA.W $0FA8 ; fallthrough to Function_RidleyCeres_StartupLiftoff_FacingLeft_SlowingDown
 
 Function_RidleyCeres_StartupLiftoff_FacingLeft_SlowingDown:
     LDA.W $0FAC 
@@ -4315,10 +4074,8 @@ Function_RidleyCeres_StartupLiftoff_FacingLeft_SlowingDown:
     LDA.W $0F7E 
     CMP.W #$0050 
     BPL .return 
-    LDA.W #Function_RidleyCeres_MainAI 
-    STA.W $0FA8 
-    LDA.W #$0001 
-    STA.L $7E7802 
+    LDA.W #Function_RidleyCeres_MainAI : STA.W $0FA8 
+    LDA.W #$0001 : STA.L $7E7802 
 
 .return:
     RTS 
@@ -4331,18 +4088,14 @@ Function_RidleyCeres_MainAI:
     LDA.W $09C2 
     CMP.W #$001E 
     BPL .SamusNotLowEnergy 
-    LDA.W #$0000 
-    STA.L $7E7802 
-    LDA.W #Function_RidleyCeres_FlyAwayToEndFight 
-    STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E7802 
+    LDA.W #Function_RidleyCeres_FlyAwayToEndFight : STA.W $0FA8 
     JMP.W Function_RidleyCeres_FlyAwayToEndFight 
 
 
 .shot100Times:
-    LDA.W #$0000 
-    STA.L $7E7802 
-    LDA.W #Function_RidleyCeres_InitializeBabyMetroidDrop 
-    STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E7802 
+    LDA.W #Function_RidleyCeres_InitializeBabyMetroidDrop : STA.W $0FA8 
     JMP.W Function_RidleyCeres_InitializeBabyMetroidDrop 
 
 
@@ -4361,10 +4114,8 @@ Function_RidleyCeres_MainAI:
     AND.W #$000F 
     ASL A 
     TAX 
-    LDA.W .pointers,X 
-    STA.W $0FA8 
-    LDA.W #$0000 
-    STA.L $7E7800 
+    LDA.W .pointers,X : STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E7800 
 
 .return:
     RTS 
@@ -4396,8 +4147,7 @@ CeresRidleyAttackCooldown_FlyToPosition:
     LDX.W #$0000 
     LDY.W #$0000 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
-    LDA.W #$0008 
-    STA.B $16 
+    LDA.W #$0008 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     RTS 
@@ -4419,10 +4169,8 @@ Function_RidleyCeres_StartFireballing:
     INC A 
 
   + STA.W $0FAC 
-    LDA.W $0F7A 
-    STA.B $12 
-    LDA.W #$0058 
-    STA.B $14 
+    LDA.W $0F7A : STA.B $12 
+    LDA.W #$0058 : STA.B $14 
     LDX.W #$0000 
     LDY.W #$0000 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
@@ -4431,16 +4179,12 @@ Function_RidleyCeres_StartFireballing:
     BMI .reachedTarget 
     CMP.W #$0080 
     BPL .return 
-    LDA.W $0F7A 
-    STA.L $7E782E 
-    LDA.W $0F7E 
-    STA.L $7E7830 
+    LDA.W $0F7A : STA.L $7E782E 
+    LDA.W $0F7E : STA.L $7E7830 
     LDA.W #InstList_Ridley_FacingLeft_Fireballing_0 
     JSR.W SetRidleyInstList 
-    LDA.W #Function_RidleyCeres_Fireballing 
-    STA.W $0FA8 
-    LDA.W #$00E0 
-    STA.L $7E7800 
+    LDA.W #Function_RidleyCeres_Fireballing : STA.W $0FA8 
+    LDA.W #$00E0 : STA.L $7E7800 
     JMP.W Function_RidleyCeres_Fireballing 
 
 
@@ -4454,8 +4198,7 @@ Function_RidleyCeres_StartFireballing:
     STA.L $7E7800 
     CMP.W #$0030 
     BCC .return 
-    LDA.W #Function_RidleyCeres_StartSwoop 
-    STA.W $0FA8 
+    LDA.W #Function_RidleyCeres_StartSwoop : STA.W $0FA8 
     RTS 
 
 
@@ -4481,10 +4224,8 @@ Function_RidleyCeres_Fireballing:
     DEC A 
     STA.L $7E7800 
     BPL .return 
-    LDA.W #$0000 
-    STA.L $7E7800 
-    LDA.W #Function_RidleyCeres_MainAI 
-    STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E7800 
+    LDA.W #Function_RidleyCeres_MainAI : STA.W $0FA8 
 
 .return:
     RTS 
@@ -4493,14 +4234,11 @@ Function_RidleyCeres_Fireballing:
 Function_RidleyCeres_StartLunging:
     LDA.W #InstList_RidleyCeres_FacingLeft_Lunging 
     JSR.W SetRidleyInstList 
-    LDA.W #Function_RidleyCeres_Lunging 
-    STA.W $0FA8 
-    LDA.W #$0040 
-    STA.W $0FB2 ; fallthrough to Function_RidleyCeres_Lunging
+    LDA.W #Function_RidleyCeres_Lunging : STA.W $0FA8 
+    LDA.W #$0040 : STA.W $0FB2 ; fallthrough to Function_RidleyCeres_Lunging
 
 Function_RidleyCeres_Lunging:
-    LDA.W $0AF6 
-    STA.B $12 
+    LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA 
     SEC 
     SBC.W #$0044 
@@ -4512,8 +4250,7 @@ Function_RidleyCeres_Lunging:
     LDX.W #$0000 
     LDY.W #$000D 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
-    LDA.W #$0002 
-    STA.B $16 
+    LDA.W #$0002 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCC .collision 
@@ -4521,22 +4258,17 @@ Function_RidleyCeres_Lunging:
     BPL .return 
 
 .collision:
-    LDA.W #$0000 
-    STA.L $7E7800 
-    LDA.W #Function_RidleyCeres_MainAI 
-    STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E7800 
+    LDA.W #Function_RidleyCeres_MainAI : STA.W $0FA8 
 
 .return:
     RTS 
 
 
 Function_RidleyCeres_StartSwoop:
-    LDA.W #Function_RidleyCeres_FlyToSwoopSetupPosition 
-    STA.W $0FA8 
-    LDA.W #$000A 
-    STA.W $0FB2 
-    LDA.W #$0000 
-    STA.L $7E7814 
+    LDA.W #Function_RidleyCeres_FlyToSwoopSetupPosition : STA.W $0FA8 
+    LDA.W #$000A : STA.W $0FB2 
+    LDA.W #$0000 : STA.L $7E7814 
     STA.L $7E2002 ; fallthrough to Function_Ridley_Ceres_FlyToSwoopSetupPosition
 
 Function_RidleyCeres_FlyToSwoopSetupPosition:
@@ -4554,88 +4286,64 @@ Function_RidleyCeres_FlyToSwoopSetupPosition:
 
 
 .reachedTarget:
-    LDA.W #Function_RidleyCeres_Swoop 
-    STA.W $0FA8 
-    LDA.W #$000A 
-    STA.W $0FB2 
-    LDA.W #$0000 
-    STA.L $7E7814 
+    LDA.W #Function_RidleyCeres_Swoop : STA.W $0FA8 
+    LDA.W #$000A : STA.W $0FB2 
+    LDA.W #$0000 : STA.L $7E7814 
     RTS 
 
 
 Function_RidleyCeres_Swoop:
-    LDA.W #$FFE0 
-    STA.B $12 
-    LDA.W #$FC00 
-    STA.B $14 
-    LDA.W #$0300 
-    STA.B $16 
+    LDA.W #$FFE0 : STA.B $12 
+    LDA.W #$FC00 : STA.B $14 
+    LDA.W #$0300 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #Function_RidleyCeres_SwoopingDownLeft 
-    STA.W $0FA8 
-    LDA.W #$0024 
-    STA.W $0FB2 
+    LDA.W #Function_RidleyCeres_SwoopingDownLeft : STA.W $0FA8 
+    LDA.W #$0024 : STA.W $0FB2 
 
 .return:
     RTS 
 
 
 Function_RidleyCeres_SwoopingDownLeft:
-    LDA.W #$FE00 
-    STA.B $12 
-    LDA.W #$C000 
-    STA.B $14 
-    LDA.W #$0300 
-    STA.B $16 
+    LDA.W #$FE00 : STA.B $12 
+    LDA.W #$C000 : STA.B $14 
+    LDA.W #$0300 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #Function_RidleyCeres_SwoopingUpRight 
-    STA.W $0FA8 
-    LDA.W #$001C 
-    STA.W $0FB2 
-    LDA.W #$0001 
-    STA.L $7E2004 
+    LDA.W #Function_RidleyCeres_SwoopingUpRight : STA.W $0FA8 
+    LDA.W #$001C : STA.W $0FB2 
+    LDA.W #$0001 : STA.L $7E2004 
 
 .return:
     RTS 
 
 
 Function_RidleyCeres_SwoopingUpRight:
-    LDA.W #$FE00 
-    STA.B $12 
-    LDA.W #$8800 
-    STA.B $14 
-    LDA.W #$0300 
-    STA.B $16 
+    LDA.W #$FE00 : STA.B $12 
+    LDA.W #$8800 : STA.B $14 
+    LDA.W #$0300 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #Function_RidleyCeres_EndOfSwoop 
-    STA.W $0FA8 
-    LDA.W #$0001 
-    STA.W $0FB2 
+    LDA.W #Function_RidleyCeres_EndOfSwoop : STA.W $0FA8 
+    LDA.W #$0001 : STA.W $0FB2 
 
 .return:
     RTS 
 
 
 Function_RidleyCeres_EndOfSwoop:
-    LDA.W #$FD00 
-    STA.B $12 
-    LDA.W #$8800 
-    STA.B $14 
-    LDA.W #$0300 
-    STA.B $16 
+    LDA.W #$FD00 : STA.B $12 
+    LDA.W #$8800 : STA.B $14 
+    LDA.W #$0300 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #Function_RidleyCeres_MainAI 
-    STA.W $0FA8 
-    LDA.W #$0000 
-    STA.L $7E7800 
+    LDA.W #Function_RidleyCeres_MainAI : STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E7800 
     INC A 
     STA.L $7E2002 
 
@@ -4644,12 +4352,9 @@ Function_RidleyCeres_EndOfSwoop:
 
 
 Function_RidleyCeres_FlyAwayToEndFight:
-    LDA.W #$FF40 
-    STA.L $7E8000 
-    LDA.W #$00C0 
-    STA.B $12 
-    LDA.W #$FF80 
-    STA.B $14 
+    LDA.W #$FF40 : STA.L $7E8000 
+    LDA.W #$00C0 : STA.B $12 
+    LDA.W #$FF80 : STA.B $14 
     LDX.W #$0000 
     LDY.W #$0001 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
@@ -4662,10 +4367,8 @@ Function_RidleyCeres_FlyAwayToEndFight_return:
 
 
 Function_RidleyCeres_FlyAwayToEndFight_reachedTarget:
-    LDA.W #Function_RidleyCeres_SpawnWallsAndUpdatePalettesForGetaway 
-    STA.W $0FA8 
-    LDA.W #$0040 
-    STA.W $0FB2 ; fallthrough to Function_RidleyCeres_SpawnWallsAndUpdatePalettesForGetaway
+    LDA.W #Function_RidleyCeres_SpawnWallsAndUpdatePalettesForGetaway : STA.W $0FA8 
+    LDA.W #$0040 : STA.W $0FB2 ; fallthrough to Function_RidleyCeres_SpawnWallsAndUpdatePalettesForGetaway
 
 Function_RidleyCeres_SpawnWallsAndUpdatePalettesForGetaway:
     DEC.W $0FB2 
@@ -4673,10 +4376,8 @@ Function_RidleyCeres_SpawnWallsAndUpdatePalettesForGetaway:
     JSR.W SpawnWallsDuringCeresRidleyGetawayCutscene 
     STZ.W $0FAA 
     STZ.W $0FAC 
-    LDA.W #$0000 
-    STA.L $7E2000 
-    LDA.W #Function_RidleyCeres_DisableAI_SetupMode7Ridley 
-    STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E2000 
+    LDA.W #Function_RidleyCeres_DisableAI_SetupMode7Ridley : STA.W $0FA8 
     LDY.W #.BG2Palette5 
     LDX.W #$00A2 
     LDA.W #$000F 
@@ -4700,10 +4401,8 @@ Function_RidleyCeres_SpawnWallsAndUpdatePalettesForGetaway:
     dw $7E20,$6560,$2060,$1000,$7940,$5D00,$4CA0,$3CA0 
 
 Function_RidleyCeres_DisableAI_SetupMode7Ridley:
-    LDA.W #RTS_A6AA4F 
-    STA.W $0FA8 
-    LDA.W #$0001 
-    STA.W $093F 
+    LDA.W #RTS_A6AA4F : STA.W $0FA8 
+    LDA.W #$0001 : STA.W $093F 
     JMP.W SetupMode7ForCeresRidleyEscape 
 
 
@@ -4734,38 +4433,27 @@ Function_RidleyCeres_CycleEmergencyTextColors:
 
 SetupMode7ForCeresRidleyEscape:
     SEP #$20 
-    LDA.B #$07 
-    STA.B $56 
+    LDA.B #$07 : STA.B $56 
     REP #$20 
-    LDA.W #$0001 
-    STA.W $0783 
+    LDA.W #$0001 : STA.W $0783 
     SEP #$20 
-    LDA.B #$80 
-    STA.B $5F 
+    LDA.B #$80 : STA.B $5F 
     REP #$20 
-    LDA.W #$0100 
-    STA.B $78 
+    LDA.W #$0100 : STA.B $78 
     STA.B $7A 
     STA.B $7C 
     STA.B $7E 
-    LDA.W #$0040 
-    STA.B $80 
+    LDA.W #$0040 : STA.B $80 
     STA.B $82 
-    LDA.W #$0000 
-    STA.L $7E8024 
+    LDA.W #$0000 : STA.L $7E8024 
     STA.L $7E8026 
-    LDA.W #$0001 
-    STA.L $7E7814 
-    LDA.W #$FF80 
-    STA.L $7E8028 
+    LDA.W #$0001 : STA.L $7E7814 
+    LDA.W #$FF80 : STA.L $7E8028 
     STA.B $B1 
-    LDA.W #$0020 
-    STA.L $7E802A 
+    LDA.W #$0020 : STA.L $7E802A 
     STA.B $B3 
-    LDA.W #$0800 
-    STA.L $7E8020 
-    LDA.W #$0400 
-    STA.L $7E8022 
+    LDA.W #$0800 : STA.L $7E8020 
+    LDA.W #$0400 : STA.L $7E8022 
     RTS 
 
 
@@ -4796,10 +4484,8 @@ ExecuteCeresRidleyGetawayCutscene:
     CPX.W #$00D0 
     BNE .dontPushSamus 
     JSL.L SetSamusToBePushedOutOfCeresRidleysWay 
-    LDA.W #$0023 
-    STA.W $183E 
-    LDA.W #$0040 
-    STA.W $1840 
+    LDA.W #$0023 : STA.W $183E 
+    LDA.W #$0040 : STA.W $1840 
 
 .dontPushSamus:
     LDA.W CeresRidleyMode7GetawayBackgroundParameters,X 
@@ -4833,8 +4519,7 @@ ExecuteCeresRidleyGetawayCutscene:
     INC A 
     STA.L $7E8024 
     SEP #$20 
-    LDA.B #$09 
-    STA.B $56 
+    LDA.B #$09 : STA.B $56 
     REP #$20 ; >.<
     SEP #$20 ; >.<
     STZ.B $5F 
@@ -4847,8 +4532,7 @@ ExecuteCeresRidleyGetawayCutscene:
     STZ.B $82 
     STZ.B $B1 
     STZ.B $B3 
-    LDA.W #CeresRidleyPostGetawayFunctionHandler 
-    STA.W $0FA8 
+    LDA.W #CeresRidleyPostGetawayFunctionHandler : STA.W $0FA8 
     STZ.W $0FB2 
     RTS 
 
@@ -4867,8 +4551,7 @@ HandleCeresRidleyMode7TransformationMatrix:
     INC A 
 
   + STA.B $26 
-    LDA.L $7E8020 
-    STA.B $28 
+    LDA.L $7E8020 : STA.B $28 
     JSR.W Mode7Math_A6AC58 
     LDA.B $2B 
     BIT.B $18 
@@ -4886,8 +4569,7 @@ HandleCeresRidleyMode7TransformationMatrix:
     INC A 
 
   + STA.B $26 
-    LDA.L $7E8020 
-    STA.B $28 
+    LDA.L $7E8020 : STA.B $28 
     JSR.W Mode7Math_A6AC58 
     LDA.B $2B 
     BIT.B $18 
@@ -4907,8 +4589,7 @@ HandleCeresRidleyMode7TransformationMatrix:
     INC A 
 
   + STA.B $26 
-    LDA.L $7E8020 
-    STA.B $28 
+    LDA.L $7E8020 : STA.B $28 
     JSR.W Mode7Math_A6AC58 
     LDA.B $2B 
     BIT.B $18 
@@ -4926,8 +4607,7 @@ HandleCeresRidleyMode7TransformationMatrix:
     INC A 
 
   + STA.B $26 
-    LDA.L $7E8020 
-    STA.B $28 
+    LDA.L $7E8020 : STA.B $28 
     JSR.W Mode7Math_A6AC58 
     LDA.B $2B 
     BIT.B $18 
@@ -5003,8 +4683,7 @@ Mode7Math_A6AC58:
     LDX.B $28 
     STX.W $4203 
     NOP #3
-    LDA.W $4216 
-    STA.B $2A 
+    LDA.W $4216 : STA.B $2A 
     LDX.B $27 
     STX.W $4202 
     LDX.B $29 
@@ -5367,10 +5046,8 @@ RidleyHurtAIMaxTimer:
     dw $0008 
 
 TimeIsFrozenAI_Ridley:
-    LDA.W #$0000 
-    STA.L $7E8008 
-    LDA.W #$0001 
-    STA.W $0FA4 ; fallthrough to HurtAI_Ridley
+    LDA.W #$0000 : STA.L $7E8008 
+    LDA.W #$0001 : STA.W $0FA4 ; fallthrough to HurtAI_Ridley
 
 HurtAI_Ridley:
     LDA.W $0FA4 
@@ -5425,8 +5102,7 @@ Function_Ridley_Startup_Liftoff_FacingRight:
     LDX.W #$0000 
     LDY.W #$000E 
     JSR.W AccelerateRidleyTowardDesiredXYPosition_NoDecelerationBoost 
-    LDA.W #$0008 
-    STA.B $16 
+    LDA.W #$0008 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCC .collision 
@@ -5434,10 +5110,8 @@ Function_Ridley_Startup_Liftoff_FacingRight:
 
 
 .collision:
-    LDA.W #$0001 
-    STA.L $7E7802 
-    LDA.W #DetermineAndExecuteNewRidleyAIScript 
-    STA.W $0FA8 
+    LDA.W #$0001 : STA.L $7E7802 
+    LDA.W #DetermineAndExecuteNewRidleyAIScript : STA.W $0FA8 
 
 DetermineAndExecuteNewRidleyAIScript:
     JSR.W GetNewRidleyAIScript 
@@ -5445,8 +5119,7 @@ DetermineAndExecuteNewRidleyAIScript:
     AND.W #$0007 
     ASL A 
     TAY 
-    LDA.B ($12),Y 
-    STA.W $0FA8 
+    LDA.B ($12),Y : STA.W $0FA8 
     JMP.W ($0FA8) 
 
 
@@ -5455,16 +5128,14 @@ GetNewRidleyAIScript:
     AND.W #$00FF 
     CMP.W #$0003 
     BNE .SamusNotSpinJumping 
-    LDA.W #CheckIfRidleyBelowHalfHealth_spinJumping 
-    STA.B $12 
+    LDA.W #CheckIfRidleyBelowHalfHealth_spinJumping : STA.B $12 
     RTS 
 
 
 .SamusNotSpinJumping:
     LDA.W $0F8C 
     BNE .RidleyNotDead 
-    LDA.W #CheckIfRidleyBelowHalfHealth_zeroHealth 
-    STA.B $12 
+    LDA.W #CheckIfRidleyBelowHalfHealth_zeroHealth : STA.B $12 
     LDA.L $7E800A 
     INC A 
     STA.L $7E800A 
@@ -5568,10 +5239,8 @@ CheckIfRidleyBelowHalfHealth:
     dw CheckFor_Deathswoop_PowerBombDodge_MoveToCenter_RamGrabSamus 
 
 Function_Ridley_InitializeMovementToCenter:
-    LDA.W #Function_Ridley_MoveToCenterSide 
-    STA.W $0FA8 
-    LDA.W #$0080 
-    STA.W $0FB2 ; fallthrough to Function_Ridley_MoveToCenterSide
+    LDA.W #Function_Ridley_MoveToCenterSide : STA.W $0FA8 
+    LDA.W #$0080 : STA.W $0FB2 ; fallthrough to Function_Ridley_MoveToCenterSide
 
 Function_Ridley_MoveToCenterSide:
     DEC.W $0FB2 
@@ -5588,8 +5257,7 @@ Function_Ridley_MoveToCenterSide:
     JSR.W GetRidleyAccelerationDivisorIndex 
     LDX.W #$0000 
     JSR.W AccelerateRidleyTowardDesiredXYPosition_NoDecelerationBoost 
-    LDA.W #$0008 
-    STA.B $16 
+    LDA.W #$0008 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCC .collision 
@@ -5597,8 +5265,7 @@ Function_Ridley_MoveToCenterSide:
 
 
 .collision:
-    LDA.W #DetermineAndExecuteNewRidleyAIScript 
-    STA.W $0FA8 
+    LDA.W #DetermineAndExecuteNewRidleyAIScript : STA.W $0FA8 
     RTS 
 
 
@@ -5615,12 +5282,9 @@ GetRidleyAccelerationDivisorIndex:
     dw $0004,$0008,$000A,$000C 
 
 Function_Ridley_StartUSwoop:
-    LDA.W #Function_Ridley_FlyToUSwoopStartingPosition 
-    STA.W $0FA8 
-    LDA.W #$000A 
-    STA.L $7E7800 
-    LDA.W #$0000 
-    STA.L $7E7814 ; fallthrough to Function_Ridley_FlyToUSwoopStartingPosition
+    LDA.W #Function_Ridley_FlyToUSwoopStartingPosition : STA.W $0FA8 
+    LDA.W #$000A : STA.L $7E7800 
+    LDA.W #$0000 : STA.L $7E7814 ; fallthrough to Function_Ridley_FlyToUSwoopStartingPosition
 
 Function_Ridley_FlyToUSwoopStartingPosition:
     LDX.W #$00C0 
@@ -5635,17 +5299,13 @@ Function_Ridley_FlyToUSwoopStartingPosition:
     LDX.W #$0000 
     LDY.W #$0001 
     JSR.W AccelerateRidleyTowardDesiredXYPosition_NoDecelerationBoost 
-    LDA.W #$0008 
-    STA.B $16 
+    LDA.W #$0008 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCS .return 
-    LDA.W #Function_Ridley_USwoop_FirstDive 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.L $7E7800 
-    LDA.W #$0000 
-    STA.L $7E7814 
+    LDA.W #Function_Ridley_USwoop_FirstDive : STA.W $0FA8 
+    LDA.W #$0020 : STA.L $7E7800 
+    LDA.W #$0000 : STA.L $7E7814 
 
 .return:
     RTS 
@@ -5654,21 +5314,16 @@ Function_Ridley_FlyToUSwoopStartingPosition:
 Function_Ridley_USwoop_FirstDive:
     LDA.L $7E7820 
     BNE .notFacingLeft 
-    LDA.W #$FFE0 
-    STA.B $12 
-    LDA.W #$FE00 
-    STA.B $14 
+    LDA.W #$FFE0 : STA.B $12 
+    LDA.W #$FE00 : STA.B $14 
     BRA + 
 
 
 .notFacingLeft:
-    LDA.W #$0020 
-    STA.B $12 
-    LDA.W #$0200 
-    STA.B $14 
+    LDA.W #$0020 : STA.B $12 
+    LDA.W #$0200 : STA.B $14 
 
-  + LDA.W #$0480 
-    STA.B $16 
+  + LDA.W #$0480 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
     LDA.L $7E7800 
     BEQ .timerExpired 
@@ -5678,31 +5333,24 @@ Function_Ridley_USwoop_FirstDive:
 
 
 .timerExpired:
-    LDA.W #Function_Ridley_USwoop_DiveToHalfwayPoint 
-    STA.W $0FA8 
-    LDA.W #$0014 
-    STA.L $7E7800 
+    LDA.W #Function_Ridley_USwoop_DiveToHalfwayPoint : STA.W $0FA8 
+    LDA.W #$0014 : STA.L $7E7800 
     RTS 
 
 
 Function_Ridley_USwoop_DiveToHalfwayPoint:
     LDA.L $7E7820 
     BNE .facingRight 
-    LDA.W #$FEC0 
-    STA.B $12 
-    LDA.W #$C000 
-    STA.B $14 
+    LDA.W #$FEC0 : STA.B $12 
+    LDA.W #$C000 : STA.B $14 
     BRA + 
 
 
 .facingRight:
-    LDA.W #$0140 
-    STA.B $12 
-    LDA.W #$4000 
-    STA.B $14 
+    LDA.W #$0140 : STA.B $12 
+    LDA.W #$4000 : STA.B $14 
 
-  + LDA.W #$0500 
-    STA.B $16 
+  + LDA.W #$0500 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
     LDA.L $7E7800 
     BEQ .timerExpired 
@@ -5712,33 +5360,25 @@ Function_Ridley_USwoop_DiveToHalfwayPoint:
 
 
 .timerExpired:
-    LDA.W #Function_Ridley_USwoop_ClimbAfterHalfwayPoint 
-    STA.W $0FA8 
-    LDA.W #$0010 
-    STA.L $7E7800 
-    LDA.W #$0001 
-    STA.L $7E2004 
+    LDA.W #Function_Ridley_USwoop_ClimbAfterHalfwayPoint : STA.W $0FA8 
+    LDA.W #$0010 : STA.L $7E7800 
+    LDA.W #$0001 : STA.L $7E2004 
     RTS 
 
 
 Function_Ridley_USwoop_ClimbAfterHalfwayPoint:
     LDA.L $7E7820 
     BNE .facingRight 
-    LDA.W #$FE00 
-    STA.B $12 
-    LDA.W #$8800 
-    STA.B $14 
+    LDA.W #$FE00 : STA.B $12 
+    LDA.W #$8800 : STA.B $14 
     BRA + 
 
 
 .facingRight:
-    LDA.W #$0200 
-    STA.B $12 
-    LDA.W #$7800 
-    STA.B $14 
+    LDA.W #$0200 : STA.B $12 
+    LDA.W #$7800 : STA.B $14 
 
-  + LDA.W #$0300 
-    STA.B $16 
+  + LDA.W #$0300 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
     LDA.L $7E7800 
     BEQ .timerExpired 
@@ -5748,31 +5388,24 @@ Function_Ridley_USwoop_ClimbAfterHalfwayPoint:
 
 
 .timerExpired:
-    LDA.W #Function_Ridley_USwoop_FinalClimb 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.L $7E7800 
+    LDA.W #Function_Ridley_USwoop_FinalClimb : STA.W $0FA8 
+    LDA.W #$0020 : STA.L $7E7800 
     RTS 
 
 
 Function_Ridley_USwoop_FinalClimb:
     LDA.L $7E7820 
     BNE .facingRight 
-    LDA.W #$FC00 
-    STA.B $12 
-    LDA.W #$8800 
-    STA.B $14 
+    LDA.W #$FC00 : STA.B $12 
+    LDA.W #$8800 : STA.B $14 
     BRA + 
 
 
 .facingRight:
-    LDA.W #$0400 
-    STA.B $12 
-    LDA.W #$7800 
-    STA.B $14 
+    LDA.W #$0400 : STA.B $12 
+    LDA.W #$7800 : STA.B $14 
 
-  + LDA.W #$0300 
-    STA.B $16 
+  + LDA.W #$0300 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
     LDA.L $7E7800 
     BEQ .timerExpired 
@@ -5782,19 +5415,15 @@ Function_Ridley_USwoop_FinalClimb:
 
 
 .timerExpired:
-    LDA.W #Function_Ridley_USwoop_End 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.L $7E7800 
+    LDA.W #Function_Ridley_USwoop_End : STA.W $0FA8 
+    LDA.W #$0020 : STA.L $7E7800 
     JMP.W TurnAroundIfFacingAwayFromRoomCenter 
 
 
 Function_Ridley_USwoop_End:
     STZ.B $12 
-    LDA.W #$8000 
-    STA.B $14 
-    LDA.W #$01C0 
-    STA.B $16 
+    LDA.W #$8000 : STA.B $14 
+    LDA.W #$01C0 : STA.B $16 
     JSR.W UpdateRidleysUSwoopSpeedAndAngle 
     LDA.L $7E7800 
     BEQ .timerExpired 
@@ -5819,12 +5448,9 @@ UNUSED_A6B5BE:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Function_Ridley_ConsiderTailbouncing:
-    LDA.W #$000B 
-    STA.L $7E201E 
-    LDA.W #$0180 
-    STA.L $7E2012 
-    LDA.W #Function_Ridley_ConsideringTailbouncing 
-    STA.W $0FA8 
+    LDA.W #$000B : STA.L $7E201E 
+    LDA.W #$0180 : STA.L $7E2012 
+    LDA.W #Function_Ridley_ConsideringTailbouncing : STA.W $0FA8 
     LDA.W $05E5 
     AND.W #$001F 
     CLC 
@@ -5836,8 +5462,7 @@ Function_Ridley_ConsideringTailbouncing:
     LDA.L $7E7820 
     ASL A 
     TAY 
-    LDA.W .targetXPosition,Y 
-    STA.B $12 
+    LDA.W .targetXPosition,Y : STA.B $12 
     JSR.W FlyTowardTargetXPositionAndSamusYPosition 
     BCC .spinJumping 
     JMP.W SetupRidleyTailForTailbouncing 
@@ -5846,10 +5471,8 @@ Function_Ridley_ConsideringTailbouncing:
 .spinJumping:
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #Function_Ridley_HoverWhileSamusIsSpinJumping 
-    STA.W $0FA8 
-    LDA.W #$0080 
-    STA.W $0FB2 
+    LDA.W #Function_Ridley_HoverWhileSamusIsSpinJumping : STA.W $0FA8 
+    LDA.W #$0080 : STA.W $0FB2 
     JMP.W TurnAroundIfFacingAwayFromRoomCenter 
 
 
@@ -5864,8 +5487,7 @@ Function_Ridley_HoverWhileSamusIsSpinJumping:
     LDA.L $7E7820 
     ASL A 
     TAY 
-    LDA.W .targetXPosition,Y 
-    STA.B $12 
+    LDA.W .targetXPosition,Y : STA.B $12 
     JSR.W FlyTowardTargetXPositionAndSamusYPosition 
     BCC .spinJumping 
     JMP.W SetupRidleyTailForTailbouncing 
@@ -5874,10 +5496,8 @@ Function_Ridley_HoverWhileSamusIsSpinJumping:
 .spinJumping:
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #Function_Ridley_ConsideringTailbouncing 
-    STA.W $0FA8 
-    LDA.W #$0080 
-    STA.W $0FB2 
+    LDA.W #Function_Ridley_ConsideringTailbouncing : STA.W $0FA8 
+    LDA.W #$0080 : STA.W $0FB2 
     JMP.W TurnAroundIfFacingAwayFromRoomCenter 
 
 
@@ -5899,8 +5519,7 @@ FlyTowardTargetXPositionAndSamusYPosition:
     LDX.W #$0000 
     JSR.W GetRidleyAccelerationDivisorIndex 
     JSR.W AccelerateRidleyTowardDesiredXYPosition_NoDecelerationBoost 
-    LDA.W #$0001 
-    STA.L $7E2004 
+    LDA.W #$0001 : STA.L $7E2004 
     LDA.W $0A1F 
     AND.W #$00FF 
     CMP.W #$0003 
@@ -5928,14 +5547,10 @@ FlyTowardTargetXPositionAndSamusYPosition:
 
 
 SetupRidleyTailForTailbouncing:
-    LDA.W #$00F0 
-    STA.L $7E2012 
-    LDA.W #$0010 
-    STA.L $7E201E 
-    LDA.W #$0001 
-    STA.L $7E2000 
-    LDA.W #Function_Ridley_FlyToTailbouncingStartPosition 
-    STA.W $0FA8 
+    LDA.W #$00F0 : STA.L $7E2012 
+    LDA.W #$0010 : STA.L $7E201E 
+    LDA.W #$0001 : STA.L $7E2000 
+    LDA.W #Function_Ridley_FlyToTailbouncingStartPosition : STA.W $0FA8 
     RTS 
 
 
@@ -5946,10 +5561,8 @@ Function_Ridley_FlyToTailbouncingStartPosition:
     LDA.L $7E7820 
     ASL A 
     TAY 
-    LDA.W .targetXPositions,Y 
-    STA.B $12 
-    LDA.W #$0120 
-    STA.B $14 
+    LDA.W .targetXPositions,Y : STA.B $12 
+    LDA.W #$0120 : STA.B $14 
     LDX.W #$0000 
     LDY.W #$0000 
     JMP.W AccelerateRidleyTowardDesiredXYPosition_NoDecelerationBoost 
@@ -5960,17 +5573,13 @@ Function_Ridley_FlyToTailbouncingStartPosition:
 
 .startTailbouncing:
     JSR.W TurnAroundIfFacingAwayFromRoomCenter 
-    LDA.W #Function_Ridley_StartTailbouncing 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.W $0FB2 ; fallthrough to Function_Ridley_StartTailbouncing
+    LDA.W #Function_Ridley_StartTailbouncing : STA.W $0FA8 
+    LDA.W #$0020 : STA.W $0FB2 ; fallthrough to Function_Ridley_StartTailbouncing
 
 
 Function_Ridley_StartTailbouncing:
-    LDA.W $0F7A 
-    STA.B $12 
-    LDA.W #$0120 
-    STA.B $14 
+    LDA.W $0F7A : STA.B $12 
+    LDA.W #$0120 : STA.B $14 
     LDX.W #$0000 
     LDY.W #$0000 
     JSR.W AccelerateRidleyTowardDesiredXYPosition_NoDecelerationBoost 
@@ -5978,8 +5587,7 @@ Function_Ridley_StartTailbouncing:
     BPL .return 
     JSR.W Function_RidleyTail_StartTailbouncing 
     JSR.W SetSpeedsForTailbouncing 
-    LDA.W #Function_Ridley_Tailbouncing_AttemptToGrabSamus 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_Tailbouncing_AttemptToGrabSamus : STA.W $0FA8 
     LDA.W $05E5 
     AND.W #$003F 
     ADC.W #$0080 
@@ -6012,8 +5620,7 @@ Function_Ridley_Tailbouncing_AttemptToGrabSamus:
     STA.W $0FAC 
     JSR.W CheckForTailbounceCollisionWithSolidBlock 
     BCC .return 
-    LDA.L $7E20A4 
-    STA.B $12 
+    LDA.L $7E20A4 : STA.B $12 
     LDA.L $7E20A6 
     CLC 
     ADC.W #$000C 
@@ -6023,25 +5630,21 @@ Function_Ridley_Tailbouncing_AttemptToGrabSamus:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     LDA.W #$0076 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #$000D 
-    STA.W $183E 
-    LDA.W #$0004 
-    STA.W $1840 
+    LDA.W #$000D : STA.W $183E 
+    LDA.W #$0004 : STA.W $1840 
     JSR.W CheckForTurnaroundDuringTailbounce_RandomlyChangeDirection 
     JSR.W SetSpeedsForTailbouncing 
     LDX.W #InitializeTailParts_distanceFromRidleyToTailParts 
     LDY.W #$2026 
     JSR.W UpdateTailPartRAMFromXToY 
-    LDA.W #$0C00 
-    STA.L $7E2028 
+    LDA.W #$0C00 : STA.L $7E2028 
     STA.L $7E203C 
     STA.L $7E2050 
     STA.L $7E2064 
     STA.L $7E2078 
     STA.L $7E208C 
     STA.L $7E20A0 
-    LDA.W #$0004 
-    STA.L $7E2000 
+    LDA.W #$0004 : STA.L $7E2000 
     LDA.L $7E800C 
     INC A 
     CMP.W #$0002 
@@ -6057,8 +5660,7 @@ Function_Ridley_Tailbouncing_AttemptToGrabSamus:
 
 .everyOtherBounce:
     STA.L $7E800C 
-    LDA.W #Function_Ridley_Tailbouncing_HitGround 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_Tailbouncing_HitGround : STA.W $0FA8 
     RTS 
 
 
@@ -6072,10 +5674,8 @@ Function_Ridley_Tailbouncing_HitGround:
     ADC.L $7E200E 
     STA.W $0FAC 
     BMI .return 
-    LDA.W #$0000 
-    STA.W $0FAC 
-    LDA.W #Function_Ridley_Tailbouncing_AttemptToGrabSamus 
-    STA.W $0FA8 
+    LDA.W #$0000 : STA.W $0FAC 
+    LDA.W #Function_Ridley_Tailbouncing_AttemptToGrabSamus : STA.W $0FA8 
 
 .return:
     RTS 
@@ -6083,8 +5683,7 @@ Function_Ridley_Tailbouncing_HitGround:
 
 .nextFunction:
     JSR.W RidleyGrabbedSamus_ResetTailAI 
-    LDA.W #DetermineAndExecuteNewRidleyAIScript 
-    STA.W $0FA8 
+    LDA.W #DetermineAndExecuteNewRidleyAIScript : STA.W $0FA8 
     RTS 
 
 
@@ -6136,8 +5735,7 @@ CheckForTailbounceCollisionWithSolidBlock:
 
 
 RidleyGrabbedSamus_ResetTailAI:
-    LDA.W #$0001 
-    STA.L $7E2000 
+    LDA.W #$0001 : STA.L $7E2000 
     STA.L $7E2014 
     RTS 
 
@@ -6183,8 +5781,7 @@ GrabbingSamus_SetMinimumYSpeed_ResetTailAI:
 
   + STA.W $0FAC 
     JSR.W RidleyGrabbedSamus_ResetTailAI 
-    LDA.W #Function_Ridley_InPositionToGrabSamus_NoPowerBomb 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_InPositionToGrabSamus_NoPowerBomb : STA.W $0FA8 
     JMP.W Function_Ridley_InPositionToGrabSamus_NoPowerBomb 
 
 
@@ -6252,21 +5849,16 @@ SetSpeedsForTailbouncing:
     AND.W #$0003 
     ASL A 
     TAY 
-    LDA.W .XSpeedPointers,Y 
-    STA.B $12 
-    LDA.W .YSpeedPointers,Y 
-    STA.B $14 
+    LDA.W .XSpeedPointers,Y : STA.B $12 
+    LDA.W .YSpeedPointers,Y : STA.B $14 
     LDA.L $7E7824 
     CLC 
     ADC.W #$0002 
     ASL A 
     TAY 
-    LDA.W .acceleration,Y 
-    STA.L $7E200E 
-    LDA.W .store7E200C,Y 
-    STA.L $7E200C 
-    LDA.B ($14),Y 
-    STA.W $0FAC 
+    LDA.W .acceleration,Y : STA.L $7E200E 
+    LDA.W .store7E200C,Y : STA.L $7E200C 
+    LDA.B ($14),Y : STA.W $0FAC 
     LDA.B ($12),Y 
     LDX.W $0FAA 
     BPL + 
@@ -6420,24 +6012,20 @@ CheckIfRidleyIsReadyToExplode:
     CMP.W #$000A 
     BMI .notDead 
     JSL.L SetRidleyAsDead 
-    LDA.W #Function_Ridley_FinalRoar 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_FinalRoar : STA.W $0FA8 
     JMP.W Function_Ridley_FinalRoar 
 
 
 .notDead:
     LDA.W $0CEE 
     BEQ .noPowerBomb 
-    LDA.W #Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus : STA.W $0FA8 
     JMP.W Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus 
 
 
 .noPowerBomb:
-    LDA.W #Function_Ridley_InitializeMovementToCenter 
-    STA.W $0FA8 
-    LDA.W #$0001 
-    STA.L $7E2004 
+    LDA.W #Function_Ridley_InitializeMovementToCenter : STA.W $0FA8 
+    LDA.W #$0001 : STA.L $7E2004 
     RTS 
 
 
@@ -6449,8 +6037,7 @@ CheckFor_Deathswoop_PowerBombDodge_MoveToCenter_RamGrabSamus:
     LDA.L $7E7820 
     ASL A 
     TAY 
-    LDA.W .signedBitmask,Y 
-    STA.B $12 
+    LDA.W .signedBitmask,Y : STA.B $12 
     LDA.W $0F7A 
     SEC 
     SBC.W $0AF6 
@@ -6504,10 +6091,8 @@ CheckFor_Deathswoop_PowerBombDodge_MoveToCenter_RamGrabSamus:
     CLC 
     ADC.W $0F7E 
     STA.B $14 
-    LDA.W #$0008 
-    STA.B $16 
-    LDA.W #$000C 
-    STA.B $18 
+    LDA.W #$0008 : STA.B $16 
+    LDA.W #$000C : STA.B $18 
     JSR.W EfficientCollisionDetectionForSamusAt_12_14 
     BCS .collision 
     RTS 
@@ -6530,8 +6115,7 @@ CheckFor_Deathswoop_PowerBombDodge_MoveToCenter_RamGrabSamus:
     LDA.W $0CEE 
     BEQ Function_Ridley_InPositionToGrabSamus_NoPowerBomb 
     JSR.W GrabSamus 
-    LDA.W #Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus : STA.W $0FA8 
     JMP.W Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus 
 
 
@@ -6542,8 +6126,7 @@ CheckFor_Deathswoop_PowerBombDodge_MoveToCenter_RamGrabSamus:
 
 .holdingSamus:
     JSL.L SetRidleyAsDead 
-    LDA.W #Function_Ridley_MoveToDeathSpot 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_MoveToDeathSpot : STA.W $0FA8 
     JMP.W Function_Ridley_MoveToDeathSpot 
 
 
@@ -6551,8 +6134,7 @@ Function_Ridley_InPositionToGrabSamus_NoPowerBomb:
     LDA.L $7E7820 
     ASL A 
     TAY 
-    LDA.W TargetXPositionHoldingSamus,Y 
-    STA.L $7E782E 
+    LDA.W TargetXPositionHoldingSamus,Y : STA.L $7E782E 
     LDA.W $0F7E 
     CLC 
     ADC.W #$FFC0 
@@ -6567,25 +6149,19 @@ Function_Ridley_InPositionToGrabSamus_NoPowerBomb:
     JSR.W GrabSamus 
 
 .holdingSamus:
-    LDA.W #Function_Ridley_HoldingSamus_MoveTowardTargetPosition 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.W $0FB2 ; fallthrough to Function_Ridley_HoldingSamus_MoveTowardTargetPosition
+    LDA.W #Function_Ridley_HoldingSamus_MoveTowardTargetPosition : STA.W $0FA8 
+    LDA.W #$0020 : STA.W $0FB2 ; fallthrough to Function_Ridley_HoldingSamus_MoveTowardTargetPosition
 
 Function_Ridley_HoldingSamus_MoveTowardTargetPosition:
-    LDA.L $7E782E 
-    STA.B $12 
-    LDA.L $7E7830 
-    STA.B $14 
+    LDA.L $7E782E : STA.B $12 
+    LDA.L $7E7830 : STA.B $14 
     LDX.W #$0000 
     LDY.W #$0000 
     JSR.W AccelerateRidleyTowardDesiredXYPosition_NoDecelerationBoost 
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #Function_Ridley_DropSamus 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.W $0FB2 
+    LDA.W #Function_Ridley_DropSamus : STA.W $0FA8 
+    LDA.W #$0020 : STA.W $0FB2 
 
 .return:
     RTS 
@@ -6597,25 +6173,19 @@ TargetXPositionHoldingSamus:
 Function_Ridley_DropSamus:
     DEC.W $0FB2 
     BMI .release 
-    LDA.L $7E782E 
-    STA.B $12 
-    LDA.W #$0100 
-    STA.B $14 
+    LDA.L $7E782E : STA.B $12 
+    LDA.W #$0100 : STA.B $14 
     LDX.W #$0000 
     LDY.W #$0000 
     JMP.W AccelerateRidleyTowardDesiredXYPosition_NoDecelerationBoost 
 
 
 .release:
-    LDA.W #$0008 
-    STA.L $7E201E 
-    LDA.W #$00F0 
-    STA.L $7E2012 
+    LDA.W #$0008 : STA.L $7E201E 
+    LDA.W #$00F0 : STA.L $7E2012 
     JSR.W ReleaseSamus 
-    LDA.W #Function_Ridley_FallBackIntoPositionAfterDroppingSamus 
-    STA.W $0FA8 
-    LDA.W #$0040 
-    STA.W $0FB2 
+    LDA.W #Function_Ridley_FallBackIntoPositionAfterDroppingSamus : STA.W $0FA8 
+    LDA.W #$0040 : STA.W $0FB2 
     RTS 
 
 
@@ -6630,10 +6200,8 @@ Function_Ridley_FallBackIntoPositionAfterDroppingSamus:
     LDA.L $7E7820 
     ASL A 
     TAY 
-    LDA.W .targetXPositions,Y 
-    STA.B $12 
-    LDA.W #$00E0 
-    STA.B $14 
+    LDA.W .targetXPositions,Y : STA.B $12 
+    LDA.W #$00E0 : STA.B $14 
     LDX.W #$0000 
     LDY.W #$0000 
     JSR.W AccelerateRidleyTowardDesiredXYPosition_NoDecelerationBoost 
@@ -6641,12 +6209,9 @@ Function_Ridley_FallBackIntoPositionAfterDroppingSamus:
 
 
 .timerExpired:
-    LDA.W #$0010 
-    STA.L $7E201E 
-    LDA.W #$00F0 
-    STA.L $7E2012 
-    LDA.W #DetermineAndExecuteNewRidleyAIScript 
-    STA.W $0FA8 
+    LDA.W #$0010 : STA.L $7E201E 
+    LDA.W #$00F0 : STA.L $7E2012 
+    LDA.W #DetermineAndExecuteNewRidleyAIScript : STA.W $0FA8 
     RTS 
 
 
@@ -6658,8 +6223,7 @@ GrabSamus:
     LDA.W $0F86 
     ORA.W #$0400 
     STA.W $0F86 
-    LDA.W #$0001 
-    STA.L $7E7836 
+    LDA.W #$0001 : STA.L $7E7836 
     DEC A 
     JSL.L Run_Samus_Command 
     SEC 
@@ -6667,8 +6231,7 @@ GrabSamus:
 
 
 ReleaseSamus:
-    LDA.W #$0001 
-    STA.L $7E2004 
+    LDA.W #$0001 : STA.L $7E2004 
     STA.L $7E2000 
     LDA.L $7E7802 
     BMI .dead 
@@ -6680,8 +6243,7 @@ ReleaseSamus:
   + STA.L $7E783C 
 
 .dead:
-    LDA.W #$0000 
-    STA.L $7E7836 
+    LDA.W #$0000 : STA.L $7E7836 
     INC A 
     JSL.L Run_Samus_Command 
     CLC 
@@ -6779,8 +6341,7 @@ PowerBombCheck:
 Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus:
     LDA.W $0CEE 
     BEQ .powerBombActive 
-    LDA.W #$0002 
-    STA.L $7E7802 
+    LDA.W #$0002 : STA.L $7E7802 
     LDY.W #$0050 
     LDA.W $0CE2 
     CMP.W #$0080 
@@ -6801,8 +6362,7 @@ Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus:
 
 
 .powerBombActive:
-    LDA.W #$0001 
-    STA.L $7E7802 
+    LDA.W #$0001 : STA.L $7E7802 
     LDY.W #DetermineAndExecuteNewRidleyAIScript 
     LDA.L $7E7836 
     BEQ .notHoldingSamus 
@@ -6814,42 +6374,33 @@ Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus:
 
 
 Function_RidleyCeres_InitializeBabyMetroidDrop:
-    LDA.W #$00C0 
-    STA.B $12 
-    LDA.W #$0080 
-    STA.B $14 
+    LDA.W #$00C0 : STA.B $12 
+    LDA.W #$0080 : STA.B $14 
     LDX.W #$0000 
     LDY.W #$0001 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
     LDA.W $0F7A 
     CMP.W #$00C0 
     BMI .return 
-    LDA.W #Function_RidleyCeres_DropBabyMetroid 
-    STA.W $0FA8 
+    LDA.W #Function_RidleyCeres_DropBabyMetroid : STA.W $0FA8 
 
 .return:
     RTS 
 
 
 Function_RidleyCeres_DropBabyMetroid:
-    LDA.W #$FF40 
-    STA.L $7E8000 
-    LDA.W #$00C0 
-    STA.B $12 
-    LDA.W #$FF80 
-    STA.B $14 
+    LDA.W #$FF40 : STA.L $7E8000 
+    LDA.W #$00C0 : STA.B $12 
+    LDA.W #$FF80 : STA.B $14 
     LDX.W #$0000 
     LDY.W #$0001 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
     LDA.W $0F7E 
     CMP.W #$0020 
     BPL Function_RidleyCeres_PickupBabyMetroid_return 
-    LDA.W #DropBabyMetroid 
-    STA.L $7E8800 
-    LDA.W #Function_RidleyCeres_PickupBabyMetroidDelay 
-    STA.W $0FA8 
-    LDA.W #$0015 
-    STA.W $0FB2 
+    LDA.W #DropBabyMetroid : STA.L $7E8800 
+    LDA.W #Function_RidleyCeres_PickupBabyMetroidDelay : STA.W $0FA8 
+    LDA.W #$0015 : STA.W $0FB2 
     RTS 
 
 
@@ -6858,8 +6409,7 @@ Function_RidleyCeres_PickupBabyMetroidDelay:
     BPL Function_RidleyCeres_PickupBabyMetroid_return 
     LDA.W #InstList_RidleyCeres_FacingLeft_ExtendLegs 
     JSR.W SetRidleyInstList 
-    LDA.W #Function_RidleyCeres_PickupBabyMetroid 
-    STA.W $0FA8 ; fallthrough to Function_RidleyCeres_PickupBabyMetroid
+    LDA.W #Function_RidleyCeres_PickupBabyMetroid : STA.W $0FA8 ; fallthrough to Function_RidleyCeres_PickupBabyMetroid
 
 Function_RidleyCeres_PickupBabyMetroid:
     LDA.L $7E8804 
@@ -6881,10 +6431,8 @@ Function_RidleyCeres_PickupBabyMetroid:
     CLC 
     ADC.W $0F7E 
     STA.B $14 
-    LDA.W #$0004 
-    STA.B $16 
-    LDA.W #$0004 
-    STA.B $18 
+    LDA.W #$0004 : STA.B $16 
+    LDA.W #$0004 : STA.B $18 
     JSR.W CheckIfRidleyIsWithinRangeToPickupBabyMetroid 
     BCS Function_RidleyCeres_PickupBabyMetroid_holding 
 
@@ -6893,16 +6441,12 @@ Function_RidleyCeres_PickupBabyMetroid_return:
 
 
 Function_RidleyCeres_PickupBabyMetroid_holding:
-    LDA.W #$0001 
-    STA.L $7E7836 
+    LDA.W #$0001 : STA.L $7E7836 
     SEC 
     JSR.W TransferGraphicsForRidleysClawsHoldingSamusOrBabyMetroid 
-    LDA.W #$FE00 
-    STA.W $0FAC 
-    LDA.W #UpdateBabyMetroidPosition_CarriedInFeet 
-    STA.L $7E8800 
-    LDA.W #Function_RidleyCeres_FlyAwayToEndFight 
-    STA.W $0FA8 
+    LDA.W #$FE00 : STA.W $0FAC 
+    LDA.W #UpdateBabyMetroidPosition_CarriedInFeet : STA.L $7E8800 
+    LDA.W #Function_RidleyCeres_FlyAwayToEndFight : STA.W $0FA8 
     RTS 
 
 
@@ -6944,8 +6488,7 @@ CheckIfRidleyIsWithinRangeToPickupBabyMetroid:
 
 
 HandleCarryingBabyMetroid:
-    LDA.L $7E8800 
-    STA.B $12 
+    LDA.L $7E8800 : STA.B $12 
     JMP.W ($0012) 
 
 
@@ -6974,11 +6517,9 @@ UpdateBabyMetroidPosition_CarriedInFeet:
 
 
 DropBabyMetroid:
-    LDA.W #$0000 
-    STA.L $7E880A 
+    LDA.W #$0000 : STA.L $7E880A 
     STA.L $7E880C 
-    LDA.W #BabyMetroidDropped 
-    STA.L $7E8800 ; fallthrough to BabyMetroidDropped
+    LDA.W #BabyMetroidDropped : STA.L $7E8800 ; fallthrough to BabyMetroidDropped
 
 BabyMetroidDropped:
     LDA.L $7E880C 
@@ -6999,10 +6540,8 @@ BabyMetroidDropped:
     STA.L $7E8808 
     CMP.W #$00C0 
     BMI .return 
-    LDA.W #$00C0 
-    STA.L $7E8808 
-    LDA.W #.return 
-    STA.L $7E8800 
+    LDA.W #$00C0 : STA.L $7E8808 
+    LDA.W #.return : STA.L $7E8800 
 
 .return:
     RTS 
@@ -7011,10 +6550,8 @@ BabyMetroidDropped:
 DrawBabyMetroid:
     LDA.W #$7806 
     JSR.W GetBabyMetroidSpritemapPointerFromInstList 
-    LDA.L $7E8804 
-    STA.B $12 
-    LDA.L $7E8808 
-    STA.B $14 
+    LDA.L $7E8804 : STA.B $12 
+    LDA.L $7E8808 : STA.B $14 
     STZ.B $16 
     JMP.W RidleyGeneralUseDrawing 
 
@@ -7189,14 +6726,10 @@ CeresRidleyPostGetawayFunctionHandler:
     dw PostGetawayFunction_CycleEmergencyTextColors_StartEscape 
 
 PostGetawayFunction_UpdateColors_TransferTimerSpriteTiles:
-    LDA.L $7EC002 
-    STA.L $7EC0C2 
-    LDA.L $7EC006 
-    STA.L $7EC0C6 
-    LDA.L $7EC022 
-    STA.L $7EC0A2 
-    LDA.L $7EC026 
-    STA.L $7EC0A6 
+    LDA.L $7EC002 : STA.L $7EC0C2 
+    LDA.L $7EC006 : STA.L $7EC0C6 
+    LDA.L $7EC022 : STA.L $7EC0A2 
+    LDA.L $7EC026 : STA.L $7EC0A6 
     LDX.W #ZebesEscapeTimerSpriteTileTransferEntries_size 
     STX.W $0FB0 
     INC.W $0FB2 
@@ -7216,8 +6749,7 @@ PostGetawayFunction_TransferEscapeTiles_ProcessEmergencyText:
     INC.W $0FB2 
     INC.W $0FB2 
     JSR.W DrawEmergencyText 
-    LDA.W #$0080 
-    STA.W $0FB0 
+    LDA.W #$0080 : STA.W $0FB0 
     LDA.W #$0007 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
@@ -7229,15 +6761,12 @@ PostGetawayFunction_SetupCeresEscapeTimer:
     JSR.W CycleEmergencyTextColors 
     DEC.W $0FB0 
     BNE .return 
-    LDA.W #TypewriterText_CeresEscapeTimer 
-    STA.L $7E8036 
-    LDA.W #$0000 
-    STA.L $7E8038 
+    LDA.W #TypewriterText_CeresEscapeTimer : STA.L $7E8036 
+    LDA.W #$0000 : STA.L $7E8038 
     STA.L $7E803A 
     STA.L $7E803C 
     STA.L $7E803E 
-    LDA.W #$0020 
-    STA.W $0FB0 
+    LDA.W #$0020 : STA.W $0FB0 
     LDA.W $09E2 
     BNE .japanText 
     INC.W $0FB2 
@@ -7274,10 +6803,8 @@ PostGetawayFunction_CycleEmergencyTextColors_StartEscape:
     JSR.W CycleEmergencyTextColors 
     JSR.W Function_Ridley_ResetSpeeds 
     STZ.W $0FB2 
-    LDA.W #Function_RidleyCeres_CycleEmergencyTextColors 
-    STA.W $0FA8 
-    LDA.W #$0001 
-    STA.W $0943 
+    LDA.W #Function_RidleyCeres_CycleEmergencyTextColors : STA.W $0FA8 
+    LDA.W #$0001 : STA.W $0943 
     INC A 
     STA.W $093F 
     DEC A 
@@ -7288,14 +6815,10 @@ PostGetawayFunction_CycleEmergencyTextColors_StartEscape:
 DrawEmergencyText:
     LDX.W #.tilemapEntry 
     LDY.W $0330 
-    LDA.W $0000,X 
-    STA.W $00D0,Y 
-    LDA.W $0003,X 
-    STA.W $00D3,Y 
-    LDA.W $0002,X 
-    STA.W $00D2,Y 
-    LDA.W $0005,X 
-    STA.W $00D5,Y 
+    LDA.W $0000,X : STA.W $00D0,Y 
+    LDA.W $0003,X : STA.W $00D3,Y 
+    LDA.W $0002,X : STA.W $00D2,Y 
+    LDA.W $0005,X : STA.W $00D5,Y 
     TYA 
     CLC 
     ADC.W #$0007 
@@ -7358,12 +6881,9 @@ CycleEmergencyTextColors:
     ASL A 
     TAY 
     LDX.W #$00C2 
-    LDA.W .emergencyColor0,Y 
-    STA.L $7EC000,X 
-    LDA.W .emergencyColor1,Y 
-    STA.L $7EC002,X 
-    LDA.W .emergencyColor2,Y 
-    STA.L $7EC004,X 
+    LDA.W .emergencyColor0,Y : STA.L $7EC000,X 
+    LDA.W .emergencyColor1,Y : STA.L $7EC002,X 
+    LDA.W .emergencyColor2,Y : STA.L $7EC004,X 
     RTS 
 
 
@@ -7382,14 +6902,10 @@ CycleEmergencyTextColors:
     dw $0A9E,$09B7,$08AD,$06BE,$05B7,$04AC 
 
 SetupZebesEscapeTypewriter:
-    LDA.L $7EC0FA 
-    STA.L $7EC13A 
-    LDA.L $7EC0FC 
-    STA.L $7EC13C 
-    LDA.W #TypewriterText_ZebesEscapeTimer 
-    STA.L $7E8036 
-    LDA.W #$0000 
-    STA.L $7E8038 
+    LDA.L $7EC0FA : STA.L $7EC13A 
+    LDA.L $7EC0FC : STA.L $7EC13C 
+    LDA.W #TypewriterText_ZebesEscapeTimer : STA.L $7E8036 
+    LDA.W #$0000 : STA.L $7E8038 
     STA.L $7E803A 
     STA.L $7E803C 
     STA.L $7E803E 
@@ -7404,12 +6920,9 @@ ProcessEscapeTimerTileTransfers:
     LDA.W $0000,X 
     BEQ .returnCarrySet 
     STA.W $00D0,Y 
-    LDA.W $0003,X 
-    STA.W $00D3,Y 
-    LDA.W $0002,X 
-    STA.W $00D2,Y 
-    LDA.W $0005,X 
-    STA.W $00D5,Y 
+    LDA.W $0003,X : STA.W $00D3,Y 
+    LDA.W $0002,X : STA.W $00D2,Y 
+    LDA.W $0005,X : STA.W $00D5,Y 
     TYA 
     CLC 
     ADC.W #$0007 
@@ -7448,8 +6961,7 @@ HandleTypewriterText:
 
 
 .timerExpired:
-    LDA.L $7E803C 
-    STA.L $7E803A 
+    LDA.L $7E803C : STA.L $7E803A 
     LDA.L $7E8036 
     TAX 
 
@@ -7463,8 +6975,7 @@ HandleTypewriterText:
   + CMP.W #$0001 
     BNE + 
     INX #2
-    LDA.W $0000,X 
-    STA.L $7E803C 
+    LDA.W $0000,X : STA.L $7E803C 
     INX #2
     JMP.W .loop 
 
@@ -7472,8 +6983,7 @@ HandleTypewriterText:
   + CMP.W #$000D 
     BNE + 
     INX #2
-    LDA.W $0000,X 
-    STA.L $7E8038 
+    LDA.W $0000,X : STA.L $7E8038 
     INX #2
     JMP.W .loop 
 
@@ -7500,10 +7010,8 @@ HandleTypewriterText:
     INC A 
     STA.L $7E8036 
     LDY.W $0330 
-    LDA.W #$0002 
-    STA.W $00D0,Y 
-    LDA.W #$7E00 
-    STA.W $00D3,Y 
+    LDA.W #$0002 : STA.W $00D0,Y 
+    LDA.W #$7E00 : STA.W $00D3,Y 
     PLA 
     SEC 
     SBC.W #$0041 
@@ -7512,8 +7020,7 @@ HandleTypewriterText:
     STA.L $7E8034 
     LDA.W #$8034 ; $7E
     STA.W $00D2,Y 
-    LDA.L $7E8038 
-    STA.W $00D5,Y 
+    LDA.L $7E8038 : STA.W $00D5,Y 
     INC A 
     STA.L $7E8038 
     TYA 
@@ -7525,8 +7032,7 @@ HandleTypewriterText:
     STA.L $7E803E 
     CMP.W #$0002 
     BMI .returnStillTyping 
-    LDA.W #$0000 
-    STA.L $7E803E 
+    LDA.W #$0000 : STA.L $7E803E 
     LDA.W $079F 
     CMP.W #$0006 
     BNE .introTypewriterSFX 
@@ -7555,12 +7061,9 @@ QueueCeresEscapeJapaneseTextTilemapTransfers:
     LDA.W $0000,X 
     BEQ .done 
     STA.W $00D0,Y 
-    LDA.W $0003,X 
-    STA.W $00D3,Y 
-    LDA.W $0002,X 
-    STA.W $00D2,Y 
-    LDA.W $0005,X 
-    STA.W $00D5,Y 
+    LDA.W $0003,X : STA.W $00D3,Y 
+    LDA.W $0002,X : STA.W $00D2,Y 
+    LDA.W $0005,X : STA.W $00D5,Y 
     TYA 
     CLC 
     ADC.W #$0007 
@@ -7691,10 +7194,8 @@ Function_Ridley_MoveToDeathSpot:
 Function_Ridley_FinalRoar:
     LDA.W #InstList_Ridley_FacingLeft_DeathRoar 
     JSR.W SetRidleyInstList 
-    LDA.W #Function_Ridley_MoveToDeathSpot_Wait_LowerAcid 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.W $0FB2 
+    LDA.W #Function_Ridley_MoveToDeathSpot_Wait_LowerAcid : STA.W $0FA8 
+    LDA.W #$0020 : STA.W $0FB2 
 
 Function_Ridley_FinalRoar_return:
     RTS 
@@ -7706,19 +7207,13 @@ Function_Ridley_MoveToDeathSpot_Wait_LowerAcid:
     BPL Function_Ridley_FinalRoar_return 
     STZ.W $0FAA 
     STZ.W $0FAC 
-    LDA.W #$0210 
-    STA.W $197A 
-    LDA.W #$0040 
-    STA.W $197C 
-    LDA.W #$0001 
-    STA.W $1980 
-    LDA.W #$0000 
-    STA.L $7E800E 
+    LDA.W #$0210 : STA.W $197A 
+    LDA.W #$0040 : STA.W $197C 
+    LDA.W #$0001 : STA.W $1980 
+    LDA.W #$0000 : STA.L $7E800E 
     STA.L $7E8010 
-    LDA.W #Function_Ridley_DeathExplosions_DropSamusIfNeeded 
-    STA.W $0FA8 
-    LDA.W #$00A0 
-    STA.W $0FB2 ; fallthrough to Function_Ridley_DeathExplosions_DropSamusIfNeeded
+    LDA.W #Function_Ridley_DeathExplosions_DropSamusIfNeeded : STA.W $0FA8 
+    LDA.W #$00A0 : STA.W $0FB2 ; fallthrough to Function_Ridley_DeathExplosions_DropSamusIfNeeded
 
 Function_Ridley_DeathExplosions_DropSamusIfNeeded:
     JSR.W SpawnRidleyExplosions 
@@ -7729,8 +7224,7 @@ Function_Ridley_DeathExplosions_DropSamusIfNeeded:
     JSR.W ReleaseSamus 
 
 .notHoldingSamus:
-    LDA.W #Function_Ridley_DisableRidley 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_DisableRidley : STA.W $0FA8 
     STZ.W $0FAA 
     STZ.W $0FAC 
     JMP.W SpawnRidleyExplosionEnemies 
@@ -7738,25 +7232,20 @@ Function_Ridley_DeathExplosions_DropSamusIfNeeded:
 
 Function_Ridley_DisableRidley:
     JSR.W SpawnRidleyExplosions 
-    LDA.W #$0000 
-    STA.L $7E7804 
+    LDA.W #$0000 : STA.L $7E7804 
     LDA.W $0F86 
     ORA.W #$0100 
     STA.W $0F86 
-    LDA.W #Function_Ridley_Wait20Frames 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.W $0FB2 
+    LDA.W #Function_Ridley_Wait20Frames : STA.W $0FA8 
+    LDA.W #$0020 : STA.W $0FB2 
     RTS 
 
 
 Function_Ridley_Wait20Frames:
     DEC.W $0FB2 
     BPL Function_Ridley_FinalRoar_return 
-    LDA.W #Function_Ridley_Wait100f_SpawnDrops_ChangeMusic_MarkBossDead 
-    STA.W $0FA8 
-    LDA.W #$0100 
-    STA.W $0FB2 
+    LDA.W #Function_Ridley_Wait100f_SpawnDrops_ChangeMusic_MarkBossDead : STA.W $0FA8 
+    LDA.W #$0100 : STA.W $0FB2 
     RTS 
 
 
@@ -7771,8 +7260,7 @@ Function_Ridley_Wait100f_SpawnDrops_ChangeMusic_MarkBossDead:
     LDA.W $0F86 
     ORA.W #$0200 
     STA.W $0F86 
-    LDA.W #.return 
-    STA.W $0FA8 
+    LDA.W #.return : STA.W $0FA8 
 
 .return:
     RTS 
@@ -7787,8 +7275,7 @@ MoveRidleyToDeathSpot:
     LDY.W #$0000 
     LDA.W #$0010 
     JSR.W AccelerateRidleyTowardDesiredXYPosition 
-    LDA.W #$0004 
-    STA.B $16 
+    LDA.W #$0004 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     RTS 
@@ -7803,8 +7290,7 @@ SpawnRidleyExplosions:
 
 
 .timerExpired:
-    LDA.W #$0004 
-    STA.L $7E800E 
+    LDA.W #$0004 : STA.L $7E800E 
     LDA.L $7E8010 
     INC A 
     CMP.W #$000A 
@@ -7841,15 +7327,12 @@ SpawnRidleyExplosions:
 
 InitAI_RidleyExplosion:
     LDX.W $0E54 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     STZ.W $0F98,X 
-    LDA.W #$0E00 
-    STA.W $0F96,X 
+    LDA.W #$0E00 : STA.W $0F96,X 
     LDY.W $0FB4,X 
-    LDA.W .lifetimes,Y 
-    STA.W $0FB2,X 
+    LDA.W .lifetimes,Y : STA.W $0FB2,X 
     JSL.L GenerateRandomNumber 
     AND.W #$0130 
     BIT.W $05E5 
@@ -7883,76 +7366,56 @@ InitAI_RidleyExplosion:
 
 RidleyExplosionInitialization_0:
     LDX.W $0E54 
-    LDA.L $7E202C 
-    STA.W $0F7A,X 
-    LDA.L $7E202E 
-    STA.W $0F7E,X 
-    LDA.W #InstList_RidleyTail_Large 
-    STA.W $0F92,X 
+    LDA.L $7E202C : STA.W $0F7A,X 
+    LDA.L $7E202E : STA.W $0F7E,X 
+    LDA.W #InstList_RidleyTail_Large : STA.W $0F92,X 
     RTL 
 
 
 RidleyExplosionInitialization_2:
     LDX.W $0E54 
-    LDA.L $7E2040 
-    STA.W $0F7A,X 
-    LDA.L $7E2042 
-    STA.W $0F7E,X 
-    LDA.W #InstList_RidleyTail_Large 
-    STA.W $0F92,X 
+    LDA.L $7E2040 : STA.W $0F7A,X 
+    LDA.L $7E2042 : STA.W $0F7E,X 
+    LDA.W #InstList_RidleyTail_Large : STA.W $0F92,X 
     RTL 
 
 
 RidleyExplosionInitialization_4:
     LDX.W $0E54 
-    LDA.L $7E2054 
-    STA.W $0F7A,X 
-    LDA.L $7E2056 
-    STA.W $0F7E,X 
-    LDA.W #InstList_RidleyTail_Medium 
-    STA.W $0F92,X 
+    LDA.L $7E2054 : STA.W $0F7A,X 
+    LDA.L $7E2056 : STA.W $0F7E,X 
+    LDA.W #InstList_RidleyTail_Medium : STA.W $0F92,X 
     RTL 
 
 
 RidleyExplosionInitialization_6:
     LDX.W $0E54 
-    LDA.L $7E2068 
-    STA.W $0F7A,X 
-    LDA.L $7E206A 
-    STA.W $0F7E,X 
-    LDA.W #InstList_RidleyTail_Medium 
-    STA.W $0F92,X 
+    LDA.L $7E2068 : STA.W $0F7A,X 
+    LDA.L $7E206A : STA.W $0F7E,X 
+    LDA.W #InstList_RidleyTail_Medium : STA.W $0F92,X 
     RTL 
 
 
 RidleyExplosionInitialization_8:
     LDX.W $0E54 
-    LDA.L $7E207C 
-    STA.W $0F7A,X 
-    LDA.L $7E207E 
-    STA.W $0F7E,X 
-    LDA.W #InstList_RidleyTail_Small 
-    STA.W $0F92,X 
+    LDA.L $7E207C : STA.W $0F7A,X 
+    LDA.L $7E207E : STA.W $0F7E,X 
+    LDA.W #InstList_RidleyTail_Small : STA.W $0F92,X 
     RTL 
 
 
 RidleyExplosionInitialization_A:
     LDX.W $0E54 
-    LDA.L $7E2090 
-    STA.W $0F7A,X 
-    LDA.L $7E2092 
-    STA.W $0F7E,X 
-    LDA.W #InstList_RidleyTail_Small 
-    STA.W $0F92,X 
+    LDA.L $7E2090 : STA.W $0F7A,X 
+    LDA.L $7E2092 : STA.W $0F7E,X 
+    LDA.W #InstList_RidleyTail_Small : STA.W $0F92,X 
     RTL 
 
 
 RidleyExplosionInitialization_C:
     LDX.W $0E54 
-    LDA.L $7E20A4 
-    STA.W $0F7A,X 
-    LDA.L $7E20A6 
-    STA.W $0F7E,X 
+    LDA.L $7E20A4 : STA.W $0F7A,X 
+    LDA.L $7E20A6 : STA.W $0F7E,X 
     LDA.L $7E20A2 
     CLC 
     ADC.L $7E208E 
@@ -7961,8 +7424,7 @@ RidleyExplosionInitialization_C:
     AND.W #$00F0 
     LSR #3
     TAY 
-    LDA.W .instListPointers,Y 
-    STA.W $0F92,X 
+    LDA.W .instListPointers,Y : STA.W $0F92,X 
     RTL 
 
 
@@ -8000,8 +7462,7 @@ RidleyExplosionInitialization_E:
     CLC 
     ADC.W $0F7E 
     STA.W $0F7E,X 
-    LDA.W .instListPointer,Y 
-    STA.W $0F92,X 
+    LDA.W .instListPointer,Y : STA.W $0F92,X 
     RTL 
 
 
@@ -8028,8 +7489,7 @@ RidleyExplosionInitialization_10:
     CLC 
     ADC.W $0F7E 
     STA.W $0F7E,X 
-    LDA.W .instListPointer,Y 
-    STA.W $0F92,X 
+    LDA.W .instListPointer,Y : STA.W $0F92,X 
     RTL 
 
 
@@ -8056,8 +7516,7 @@ RidleyExplosionInitialization_12:
     CLC 
     ADC.W $0F7E 
     STA.W $0F7E,X 
-    LDA.W .instListPointer,Y 
-    STA.W $0F92,X 
+    LDA.W .instListPointer,Y : STA.W $0F92,X 
     RTL 
 
 
@@ -8084,8 +7543,7 @@ RidleyExplosionInitialization_14:
     CLC 
     ADC.W $0F7E 
     STA.W $0F7E,X 
-    LDA.W .instListPointer,Y 
-    STA.W $0F92,X 
+    LDA.W .instListPointer,Y : STA.W $0F92,X 
     RTL 
 
 
@@ -8112,8 +7570,7 @@ RidleyExplosionInitialization_16:
     CLC 
     ADC.W $0F7E 
     STA.W $0F7E,X 
-    LDA.W .instListPointer,Y 
-    STA.W $0F92,X 
+    LDA.W .instListPointer,Y : STA.W $0F92,X 
     RTL 
 
 
@@ -8434,53 +7891,42 @@ HandleRidleyTailAI:
     dw Function_RidleyTail_TailSpin 
 
 Function_RidleyTail_StartTailbouncing:
-    LDA.W #$0008 
-    STA.L $7E2014 
+    LDA.W #$0008 : STA.L $7E2014 
     JSR.W Function_RidleyTail_2_3_6_7_Common 
-    LDA.W #$0003 
-    STA.L $7E2000 
+    LDA.W #$0003 : STA.L $7E2000 
     RTS 
 
 
 Function_RidleyTail_StillStartingTailbouncing:
-    LDA.W #$0008 
-    STA.L $7E2014 
+    LDA.W #$0008 : STA.L $7E2014 
     BRA Function_RidleyTail_2_3_6_7_Common 
 
 
 Function_RidleyTail_ContinueExtendingDuringTailbouncing:
-    LDA.W #$0003 
-    STA.L $7E2014 
+    LDA.W #$0003 : STA.L $7E2014 
     JSR.W Function_RidleyTail_2_3_6_7_Common 
-    LDA.W #$0006 
-    STA.L $7E2000 
+    LDA.W #$0006 : STA.L $7E2000 
     RTS 
 
 
 Function_RidleyTail_StrictTailbouncingExtending:
-    LDA.W #$0002 
-    STA.L $7E2014 
+    LDA.W #$0002 : STA.L $7E2014 
     JSR.W Function_RidleyTail_2_3_6_7_Common 
-    LDA.W #$0007 
-    STA.L $7E2000 
+    LDA.W #$0007 : STA.L $7E2000 
     RTS 
 
 
 Function_RidleyTail_2_3_6_7_Common:
     LDA.L $7E7820 
     BNE .notFacingLeft 
-    LDA.W #$4000 
-    STA.L $7E201C 
-    LDA.W #$FFFF 
-    STA.L $7E201A 
+    LDA.W #$4000 : STA.L $7E201C 
+    LDA.W #$FFFF : STA.L $7E201A 
     BRA + 
 
 
 .notFacingLeft:
-    LDA.W #$4000 
-    STA.L $7E201A 
-    LDA.W #$FFFF 
-    STA.L $7E201C 
+    LDA.W #$4000 : STA.L $7E201A 
+    LDA.W #$FFFF : STA.L $7E201C 
 
   + JSR.W Function_RidleyTail_DuringTailbouncing 
     LDA.L $7E2020 
@@ -8495,32 +7941,27 @@ Function_RidleyTail_2_3_6_7_Common:
 
 
 .duringTailbouncing:
-    LDA.W #$0004 
-    STA.L $7E2000 
+    LDA.W #$0004 : STA.L $7E2000 
     RTS 
 
 
 Function_RidleyTail_FlingingAtSamus:
-    LDA.W #RidleyTailAI_FlingTailAtSamus 
-    STA.B $12 
+    LDA.W #RidleyTailAI_FlingTailAtSamus : STA.B $12 
     BRA ExecuteRidleyTailAI 
 
 
 Function_RidleyTail_DuringTailbouncing:
-    LDA.W #Function_Ridley_Tailbouncing 
-    STA.B $12 
+    LDA.W #Function_Ridley_Tailbouncing : STA.B $12 
     BRA ExecuteRidleyTailAI 
 
 
 Function_RidleyTail_StartExtendingDuringTailbouncing:
-    LDA.W #ExtendTailForTailbouncing 
-    STA.B $12 
+    LDA.W #ExtendTailForTailbouncing : STA.B $12 
     BRA ExecuteRidleyTailAI 
 
 
 Function_RidleyTail_TailSpin:
-    LDA.W #SwingRidleyTailInCircles 
-    STA.B $12 
+    LDA.W #SwingRidleyTailInCircles : STA.B $12 
     BRA ExecuteRidleyTailAI ; >.<
 
 
@@ -8555,10 +7996,8 @@ SetMinMaxTailAnglesBasedOnDirection:
     LDA.W $7820 
     ASL A 
     TAX 
-    LDA.L .minAngle,X 
-    STA.W $2016 
-    LDA.L .maxAngle,X 
-    STA.W $2018 
+    LDA.L .minAngle,X : STA.W $2016 
+    LDA.L .maxAngle,X : STA.W $2018 
     RTS 
 
 
@@ -8605,10 +8044,8 @@ RidleyTailAI_FlingTailAtSamus:
 
 
 .noPartsMoving:
-    LDA.W #$8000 
-    STA.W $2020 
-    LDA.W #$FFFF 
-    STA.W $201A 
+    LDA.W #$8000 : STA.W $2020 
+    LDA.W #$FFFF : STA.W $201A 
     STA.W $201C 
     LDA.W #$0002 
     LDY.W $0AF6 
@@ -8680,10 +8117,8 @@ SwingRidleyTailInCircles:
 
 
 .noTailPartsMoving:
-    LDA.W #$8000 
-    STA.L $7E2020 
-    LDA.W #$FFFF 
-    STA.L $7E201A 
+    LDA.W #$8000 : STA.L $7E2020 
+    LDA.W #$FFFF : STA.L $7E201A 
     STA.L $7E201C 
     LDA.W #$0002 
     LDY.W $0AF6 
@@ -8733,10 +8168,8 @@ Function_Ridley_Tailbouncing:
     LDA.W $201C 
     AND.W $201A 
     BPL .checkMoving 
-    LDA.W #$3F00 
-    STA.W $201A 
-    LDA.W #$0008 
-    STA.W $2014 
+    LDA.W #$3F00 : STA.W $201A 
+    LDA.W #$0008 : STA.W $2014 
     RTS 
 
 
@@ -8755,12 +8188,10 @@ Function_Ridley_Tailbouncing:
 .tailPartsMoving:
     BIT.W $0FAC 
     BMI .movingUp 
-    LDA.W #$0005 
-    STA.W $2000 
+    LDA.W #$0005 : STA.W $2000 
 
 .movingUp:
-    LDA.W #$FFFF 
-    STA.W $201A 
+    LDA.W #$FFFF : STA.W $201A 
     STA.W $201C 
     LDA.W $2010 
     BNE .decrementTimer 
@@ -8774,11 +8205,9 @@ Function_Ridley_Tailbouncing:
     DEC A 
     STA.W $2010 
     BNE .done 
-    LDA.W #$8000 
-    STA.W $2020 
+    LDA.W #$8000 : STA.W $2020 
     JSR.W SetRidleyTailAnglesTo40XX 
-    LDA.W #$0008 
-    STA.W $2014 
+    LDA.W #$0008 : STA.W $2014 
     RTS 
 
 
@@ -8805,10 +8234,8 @@ ExtendTailForTailbouncing:
     LDA.W $201C 
     AND.W $201A 
     BPL .checkTailPartsMoving 
-    LDA.W #$3F00 
-    STA.W $201A 
-    LDA.W #$0008 
-    STA.W $2014 
+    LDA.W #$3F00 : STA.W $201A 
+    LDA.W #$0008 : STA.W $2014 
     RTS 
 
 
@@ -8827,30 +8254,25 @@ ExtendTailForTailbouncing:
 .tailPartMoving:
     BIT.W $0FAC 
     BMI .RidleyMovingUp 
-    LDA.W #$0006 
-    STA.W $2000 
-    LDA.W #$0A00 
-    STA.W $2028 
+    LDA.W #$0006 : STA.W $2000 
+    LDA.W #$0A00 : STA.W $2028 
     STA.W $203C 
     STA.W $2050 
     STA.W $2064 
     STA.W $2078 
     STA.W $208C 
     STA.W $20A0 
-    LDA.W #$4000 
-    STA.W $202A 
+    LDA.W #$4000 : STA.W $202A 
     STA.W $203E 
     STA.W $2052 
     STA.W $2066 
     STA.W $207A 
     STA.W $208E 
     STA.W $20A2 
-    LDA.W #$8000 
-    STA.W $2020 
+    LDA.W #$8000 : STA.W $2020 
 
 .RidleyMovingUp:
-    LDA.W #$FFFF 
-    STA.W $201A 
+    LDA.W #$FFFF : STA.W $201A 
     STA.W $201C 
     LDA.W $2010 
     BNE .decrementTimer 
@@ -8861,8 +8283,7 @@ ExtendTailForTailbouncing:
     DEC A 
     STA.W $2010 
     BNE .done 
-    LDA.W #$8000 
-    STA.W $2020 
+    LDA.W #$8000 : STA.W $2020 
     JSR.W SetRidleyTailAnglesTo40XX 
     LDA.W #$0008 
 
@@ -8944,8 +8365,7 @@ UpdateRidleyTailPositions:
     LDA.W $7820 
     DEC A 
     BNE .notFacingForward 
-    LDA.W $0F7A 
-    STA.W $2040 
+    LDA.W $0F7A : STA.W $2040 
     STA.W $2054 
     STA.W $2068 
     STA.W $207C 
@@ -8987,8 +8407,7 @@ RidleyTailExtending:
     BEQ .reachedTargetDistanceFromPreviousTailPart 
     CMP.W $203A 
     BPL + 
-    LDA.W #$0000 
-    STA.W $203C 
+    LDA.W #$0000 : STA.W $203C 
 
   + LDA.W $203A 
     CLC 
@@ -9014,8 +8433,7 @@ RidleyTailExtending:
     BEQ .reachedTargetDistanceFromPreviousTailPart2 
     CMP.W $204E 
     BPL + 
-    LDA.W #$0000 
-    STA.W $2050 
+    LDA.W #$0000 : STA.W $2050 
 
   + LDA.W $204E 
     CLC 
@@ -9041,8 +8459,7 @@ RidleyTailExtending:
     BEQ .reachedTargetDistanceFromPreviousTailPart3 
     CMP.W $2062 
     BPL + 
-    LDA.W #$0000 
-    STA.W $2064 
+    LDA.W #$0000 : STA.W $2064 
 
   + LDA.W $2062 
     CLC 
@@ -9068,8 +8485,7 @@ RidleyTailExtending:
     BEQ .reachedTargetDistanceFromPreviousTailPart4 
     CMP.W $2076 
     BPL + 
-    LDA.W #$0000 
-    STA.W $2078 
+    LDA.W #$0000 : STA.W $2078 
 
   + LDA.W $2076 
     CLC 
@@ -9095,8 +8511,7 @@ RidleyTailExtending:
     BEQ .reachedTargetDistanceFromPreviousTailPart5 
     CMP.W $208A 
     BPL + 
-    LDA.W #$0000 
-    STA.W $208C 
+    LDA.W #$0000 : STA.W $208C 
 
   + LDA.W $208A 
     CLC 
@@ -9122,8 +8537,7 @@ RidleyTailExtending:
     BEQ .reachedTargetDistanceFromPreviousTailPart6 
     CMP.W $209E 
     BPL + 
-    LDA.W #$0000 
-    STA.W $20A0 
+    LDA.W #$0000 : STA.W $20A0 
 
   + LDA.W $209E 
     CLC 
@@ -9178,19 +8592,15 @@ SetRidleyTailAngles:
     BCC - 
     CMP.W #$FFFF 
     BEQ + 
-    LDA.W #$FFFF 
-    STA.W $2022,X 
-    LDA.W #$8000 
-    STA.W $2034,X 
-    LDA.W $2024,X 
-    STA.W $2038,X 
+    LDA.W #$FFFF : STA.W $2022,X 
+    LDA.W #$8000 : STA.W $2034,X 
+    LDA.W $2024,X : STA.W $2038,X 
 
   + LDA.W $2024,X 
     BMI .clockwiseRotation 
     LDA.W $201C 
     BMI .noCounterClockwiseTarget 
-    LDA.W #$0C00 
-    STA.W $2028,X 
+    LDA.W #$0C00 : STA.W $2028,X 
     LDA.W $202A,X 
     CLC 
     ADC.W $2014 
@@ -9201,8 +8611,7 @@ SetRidleyTailAngles:
     LDA.W $200C,X 
     BNE .tailPartMoving2 
 
-  + LDA.W $201C 
-    STA.W $202A,X 
+  + LDA.W $201C : STA.W $202A,X 
     JMP.W .stopTailPartMovement 
 
 
@@ -9214,8 +8623,7 @@ SetRidleyTailAngles:
     BMI .storeAngle 
 
 .tailPartMoving2:
-    LDA.W #$8000 
-    STA.W $2024,X 
+    LDA.W #$8000 : STA.W $2024,X 
     LDA.W $2018 
     BRA .storeAngle 
 
@@ -9223,8 +8631,7 @@ SetRidleyTailAngles:
 .clockwiseRotation:
     LDA.W $201A 
     BMI .noClockwiseTarget 
-    LDA.W #$0C00 
-    STA.W $2028,X 
+    LDA.W #$0C00 : STA.W $2028,X 
     LDA.W $202A,X 
     SEC 
     SBC.W $2014 
@@ -9236,8 +8643,7 @@ SetRidleyTailAngles:
     LDA.W $200C,X 
     BNE .tailPartMoving3 
 
-  + LDA.W $201A 
-    STA.W $202A,X 
+  + LDA.W $201A : STA.W $202A,X 
     JMP.W .stopTailPartMovement 
 
 
@@ -9250,8 +8656,7 @@ SetRidleyTailAngles:
     BPL .incrementAngle 
 
 .tailPartMoving3:
-    LDA.W #$0000 
-    STA.W $2024,X 
+    LDA.W #$0000 : STA.W $2024,X 
     LDA.W $2016 
     BRA .storeAngle 
 
@@ -9351,8 +8756,7 @@ TargetAnAngleTowardMissileOrSamus:
     CMP.W $202A 
     BCS .returnMiddle 
     STA.W $201A 
-    LDA.W #$0008 
-    STA.W $2014 
+    LDA.W #$0008 : STA.W $2014 
 
 .returnMiddle:
     RTS 
@@ -9373,20 +8777,16 @@ TargetAnAngleTowardMissileOrSamus:
     CMP.W $202A 
     BCC .returnLower 
     STA.W $201C 
-    LDA.W #$0008 
-    STA.W $2014 
+    LDA.W #$0008 : STA.W $2014 
 
 .returnLower:
     RTS 
 
 
 TargetAMissileOrSuperMissileIfAvailable:
-    LDA.W $20A4 
-    STA.B $12 
-    LDA.W $20A6 
-    STA.B $14 
-    LDA.W #$0040 
-    STA.B $16 
+    LDA.W $20A4 : STA.B $12 
+    LDA.W $20A6 : STA.B $14 
+    LDA.W #$0040 : STA.B $16 
     STA.B $18 
     LDA.W $0CCE 
     BNE .checkProjectiles 
@@ -9441,10 +8841,8 @@ TargetAMissileOrSuperMissileIfAvailable:
 
 
 .targetProjectile:
-    LDA.W $0B64,Y 
-    STA.B $12 
-    LDA.W $0B78,Y 
-    STA.B $14 
+    LDA.W $0B64,Y : STA.B $12 
+    LDA.W $0B78,Y : STA.B $14 
     SEC 
     RTS 
 
@@ -9464,27 +8862,20 @@ PlaySwishingSFXIfTailIsMovingFast:
     JSL.L QueueSound_Lib3_Max6 
 
 .noSFX:
-    LDA.W #$0000 
-    STA.L $7E781C 
+    LDA.W #$0000 : STA.L $7E781C 
 
 .return:
     RTS 
 
 
 InitializeTailParts:
-    LDA.W #$0001 
-    STA.L $7E2014 
-    LDA.W #$3FF0 
-    STA.L $7E2016 
-    LDA.W #$4040 
-    STA.L $7E2018 
-    LDA.W #$FFFF 
-    STA.L $7E201A 
+    LDA.W #$0001 : STA.L $7E2014 
+    LDA.W #$3FF0 : STA.L $7E2016 
+    LDA.W #$4040 : STA.L $7E2018 
+    LDA.W #$FFFF : STA.L $7E201A 
     STA.L $7E201C 
-    LDA.W #$00F0 
-    STA.L $7E2012 
-    LDA.W #$0010 
-    STA.L $7E201E 
+    LDA.W #$00F0 : STA.L $7E2012 
+    LDA.W #$0010 : STA.L $7E201E 
     INC A 
     STA.L $7E2022 
     STA.L $7E2036 
@@ -9508,8 +8899,7 @@ InitializeTailParts:
     LDX.W #.YPositionOfTailPart 
     LDY.W #$202E 
     JSR.W UpdateTailPartRAMFromXToY 
-    LDA.W #$0000 
-    STA.L $7E2020 
+    LDA.W #$0000 : STA.L $7E2020 
     STA.L $7E2034 
     STA.L $7E2048 
     STA.L $7E205C 
@@ -9535,16 +8925,14 @@ InitializeTailParts:
     dw $0002,$0007,$0003,$FFFD,$FFF9,$FFF9,$FFFF 
 
 UpdateTailPartRAMFromXToY:
-    LDA.W #$007E 
-    STA.B $14 
+    LDA.W #$007E : STA.B $14 
     STY.B $12 
     LDY.W #$0000 
     LDA.W #$0007 
 
 .loop:
     PHA 
-    LDA.W $0000,X 
-    STA.B [$12],Y 
+    LDA.W $0000,X : STA.B [$12],Y 
     INX #2
     TYA 
     CLC 
@@ -9639,8 +9027,7 @@ DealSuitAdjustedEnemyDamageToSamus:
 
 SetRidleyInstList:
     STA.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #$0001 : STA.W $0F94 
     STZ.W $0F90 
     RTS 
 
@@ -9725,8 +9112,7 @@ CheckForCollisionWithNonAirBlock:
     LSR #4
     SEP #$20 
     STA.W $4202 
-    LDA.W $07A5 
-    STA.W $4203 
+    LDA.W $07A5 : STA.W $4203 
     REP #$20 
     TXA 
     LSR #4
@@ -9764,8 +9150,7 @@ AccelerateRidleyTowardDesiredXYPosition:
     INC A 
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -9797,8 +9182,7 @@ AccelerateRidleyTowardDesiredXYPosition:
 .belowTarget:
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -9835,8 +9219,7 @@ AccelerateRidleyTowardDesiredXPosition:
     INC A 
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -9868,8 +9251,7 @@ AccelerateRidleyTowardDesiredXPosition:
 .rightOfTarget:
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -9913,8 +9295,7 @@ AccelerateCeresRidleyTowardDesiredXY:
     INC A 
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -9945,8 +9326,7 @@ AccelerateCeresRidleyTowardDesiredXY:
 .positive:
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -9981,8 +9361,7 @@ CalculateRidleyXSpeed:
     INC A 
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -10012,8 +9391,7 @@ CalculateRidleyXSpeed:
 .moveLeft:
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -10043,8 +9421,7 @@ CeresRidleyAccelerationDivisorIndex:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_A6D722:
-    LDA.W #$0200 
-    STA.B $16 
+    LDA.W #$0200 : STA.B $16 
     STZ.B $1C 
     JSR.W UNUSED_A6D798 
     JSR.W UNUSED_A6D734 
@@ -10076,8 +9453,7 @@ UNUSED_A6D734:
     CMP.B $14 
     BMI .returnUpper 
     STZ.W $0FAC,X 
-    LDA.B $14 
-    STA.W $0F7E,X 
+    LDA.B $14 : STA.W $0F7E,X 
     INC.B $1C 
 
 .returnUpper:
@@ -10105,8 +9481,7 @@ UNUSED_A6D734:
     BPL .returnLower 
 
   + STZ.W $0FAC,X 
-    LDA.B $14 
-    STA.W $0F7E,X 
+    LDA.B $14 : STA.W $0F7E,X 
     INC.B $1C 
 
 .returnLower:
@@ -10138,8 +9513,7 @@ UNUSED_A6D798:
     CMP.B $12 
     BMI .returnUpper 
     STZ.W $0FAA,X 
-    LDA.B $12 
-    STA.W $0F7A,X 
+    LDA.B $12 : STA.W $0F7A,X 
     INC.B $1C 
 
 .returnUpper:
@@ -10167,8 +9541,7 @@ UNUSED_A6D798:
     BPL .returnLower 
 
   + STZ.W $0FAA,X 
-    LDA.B $12 
-    STA.W $0F7A,X 
+    LDA.B $12 : STA.W $0F7A,X 
     INC.B $1C 
 
 .returnLower:
@@ -10235,8 +9608,7 @@ UpdateRidleysUSwoopSpeedAndAngle:
 
 
 HandleMovementAndMainBodyWallCollisions:
-    LDA.W #$0000 
-    STA.L $7E783E 
+    LDA.W #$0000 : STA.L $7E783E 
     LDX.W $0E54 
     LDA.W $0FAA,X 
     SEP #$20 
@@ -10254,11 +9626,9 @@ HandleMovementAndMainBodyWallCollisions:
     CMP.L $7E8004 
     BPL .checkRightWall 
     JSR.W CeresRidleyRoomShaking 
-    LDA.L $7E8004 
-    STA.W $0F7A,X 
+    LDA.L $7E8004 : STA.W $0F7A,X 
     STZ.W $0FAA,X 
-    LDA.W #$0001 
-    STA.L $7E783E 
+    LDA.W #$0001 : STA.L $7E783E 
     BRA .getYSpeed 
 
 
@@ -10266,8 +9636,7 @@ HandleMovementAndMainBodyWallCollisions:
     CMP.L $7E8006 
     BMI + 
     STZ.W $0FAA,X 
-    LDA.W #$0002 
-    STA.L $7E783E 
+    LDA.W #$0002 : STA.L $7E783E 
     LDA.L $7E8006 
 
   + STA.W $0F7A,X 
@@ -10288,12 +9657,10 @@ HandleMovementAndMainBodyWallCollisions:
     ADC.W $0F7E,X 
     CMP.L $7E8000 
     BPL .checkBottomWall 
-    LDA.L $7E8000 
-    STA.W $0F7E,X 
+    LDA.L $7E8000 : STA.W $0F7E,X 
     STZ.W $0FAC,X 
     LDA.L $7E783E 
-    LDA.W #$0004 
-    STA.L $7E783E 
+    LDA.W #$0004 : STA.L $7E783E 
     RTS 
 
 
@@ -10302,8 +9669,7 @@ HandleMovementAndMainBodyWallCollisions:
     BMI .done 
     STZ.W $0FAC,X 
     LDA.L $7E783E 
-    LDA.W #$0008 
-    STA.L $7E783E 
+    LDA.W #$0008 : STA.L $7E783E 
     LDA.L $7E8002 
 
 .done:
@@ -10346,8 +9712,7 @@ CeresRidleyRoomShaking:
     LDA.W #$0018 ; dead code
 
   + STA.W $183E 
-    LDA.W #$000C 
-    STA.W $1840 
+    LDA.W #$000C : STA.W $1840 
 
 .return:
     RTS 
@@ -10370,8 +9735,7 @@ TurnAroundIfFacingAwayFromRoomCenter:
     LDA.W #InstList_Ridley_TurnFromLeftToRight 
 
   + STA.W $0F92 
-    LDA.W #$0002 
-    STA.W $0F94 
+    LDA.W #$0002 : STA.W $0F94 
     STZ.W $0F90 
 
 .return:
@@ -10385,8 +9749,7 @@ HandleWingFlapping:
     SBC.L $7E7810 
     STA.L $7E7812 
     BPL .return 
-    LDA.W #$0020 
-    STA.L $7E7812 
+    LDA.W #$0020 : STA.L $7E7812 
     LDA.L $7E780E 
     INC A 
     CMP.W #$000A 
@@ -10451,10 +9814,8 @@ CalculateWingFlapSpeed:
     dw $000C,$000E,$0010,$0012,$001C,$0020,$0028,$0030 
 
 InitializeRibAnimation:
-    LDA.W #RidleyRib_AnimationData 
-    STA.L $7E780A 
-    LDA.W #$0001 
-    STA.L $7E780C 
+    LDA.W #RidleyRib_AnimationData : STA.L $7E780A 
+    LDA.W #$0001 : STA.L $7E780C 
 
 InitializeRibAnimation_return:
     RTS 
@@ -10478,27 +9839,20 @@ AnimateRidleysRibs:
 .timer:
     STA.L $7E780C 
     LDY.W $0330 
-    LDA.W #Tiles_RidleysRibsAndClaws_0>>8&$FF00 
-    STA.W $00D3,Y 
+    LDA.W #Tiles_RidleysRibsAndClaws_0>>8&$FF00 : STA.W $00D3,Y 
     STA.W $00DA,Y 
-    LDA.W $0002,X 
-    STA.W $00D2,Y 
-    LDA.W $0004,X 
-    STA.W $00D9,Y 
-    LDA.W #$7220 
-    STA.W $00D5,Y 
-    LDA.W #$7320 
-    STA.W $00DC,Y 
-    LDA.W #$0040 
-    STA.W $00D0,Y 
+    LDA.W $0002,X : STA.W $00D2,Y 
+    LDA.W $0004,X : STA.W $00D9,Y 
+    LDA.W #$7220 : STA.W $00D5,Y 
+    LDA.W #$7320 : STA.W $00DC,Y 
+    LDA.W #$0040 : STA.W $00D0,Y 
     STA.W $00D7,Y 
     TYA 
     CLC 
     ADC.W #$000E 
     TAY 
     STY.W $0330 
-    LDA.W #$0000 
-    STA.W $00D0,Y 
+    LDA.W #$0000 : STA.W $00D0,Y 
     TXA 
     CLC 
     ADC.W #$0006 
@@ -10532,27 +9886,20 @@ TransferGraphicsForRidleysClawsHoldingSamusOrBabyMetroid:
 
 .notHolding:
     LDY.W $0330 
-    LDA.W #Tiles_RidleysRibsAndClaws_0>>8&$FF00 
-    STA.W $00D3,Y 
+    LDA.W #Tiles_RidleysRibsAndClaws_0>>8&$FF00 : STA.W $00D3,Y 
     STA.W $00DA,Y 
-    LDA.W $0000,X 
-    STA.W $00D2,Y 
-    LDA.W $0002,X 
-    STA.W $00D9,Y 
-    LDA.W #$7AC0 
-    STA.W $00D5,Y 
-    LDA.W #$7BC0 
-    STA.W $00DC,Y 
-    LDA.W #$0080 
-    STA.W $00D0,Y 
+    LDA.W $0000,X : STA.W $00D2,Y 
+    LDA.W $0002,X : STA.W $00D9,Y 
+    LDA.W #$7AC0 : STA.W $00D5,Y 
+    LDA.W #$7BC0 : STA.W $00DC,Y 
+    LDA.W #$0080 : STA.W $00D0,Y 
     STA.W $00D7,Y 
     TYA 
     CLC 
     ADC.W #$000E 
     TAY 
     STY.W $0330 
-    LDA.W #$0000 
-    STA.W $00D0,Y 
+    LDA.W #$0000 : STA.W $00D0,Y 
     RTS 
 
 
@@ -10577,12 +9924,9 @@ DrawRidleysWings:
     ASL A 
     TAX 
     LDY.W .spritemapPointersLeft,X 
-    LDA.L $7E7818 
-    STA.B $16 
-    LDA.W $0F7A 
-    STA.B $12 
-    LDA.W $0F7E 
-    STA.B $14 
+    LDA.L $7E7818 : STA.B $16 
+    LDA.W $0F7A : STA.B $12 
+    LDA.W $0F7E : STA.B $14 
     JMP.W RidleyGeneralUseDrawing 
 
 
@@ -10622,10 +9966,8 @@ DrawRidleyTail:
 
 
 .notInvisible:
-    LDA.L $7E20A4 
-    STA.B $12 
-    LDA.L $7E20A6 
-    STA.B $14 
+    LDA.L $7E20A4 : STA.B $12 
+    LDA.L $7E20A6 : STA.B $14 
     LDA.L $7E20A2 
     CLC 
     ADC.L $7E208E 
@@ -10636,45 +9978,32 @@ DrawRidleyTail:
     TAX 
     LDY.W RidleyTailTipSpritemapPointers,X 
     JSR.W GeneralPurposeRidleyDrawing_SetPalette 
-    LDA.L $7E2092 
-    STA.B $14 
-    LDA.L $7E2090 
-    STA.B $12 
+    LDA.L $7E2092 : STA.B $14 
+    LDA.L $7E2090 : STA.B $12 
     LDY.W #Spritemap_RidleyTail_Small 
     JSR.W GeneralPurposeRidleyDrawing_SetPalette 
-    LDA.L $7E207C 
-    STA.B $12 
-    LDA.L $7E207E 
-    STA.B $14 
+    LDA.L $7E207C : STA.B $12 
+    LDA.L $7E207E : STA.B $14 
     LDY.W #Spritemap_RidleyTail_Small 
     JSR.W GeneralPurposeRidleyDrawing_SetPalette 
-    LDA.L $7E2068 
-    STA.B $12 
-    LDA.L $7E206A 
-    STA.B $14 
+    LDA.L $7E2068 : STA.B $12 
+    LDA.L $7E206A : STA.B $14 
     LDY.W #Spritemap_RidleyTail_Medium 
     JSR.W GeneralPurposeRidleyDrawing_SetPalette 
-    LDA.L $7E2054 
-    STA.B $12 
-    LDA.L $7E2056 
-    STA.B $14 
+    LDA.L $7E2054 : STA.B $12 
+    LDA.L $7E2056 : STA.B $14 
     LDY.W #Spritemap_RidleyTail_Medium 
     JSR.W GeneralPurposeRidleyDrawing_SetPalette 
-    LDA.L $7E2040 
-    STA.B $12 
-    LDA.L $7E2042 
-    STA.B $14 
+    LDA.L $7E2040 : STA.B $12 
+    LDA.L $7E2042 : STA.B $14 
     LDY.W #Spritemap_RidleyTail_Large 
     JSR.W GeneralPurposeRidleyDrawing_SetPalette 
-    LDA.L $7E202C 
-    STA.B $12 
-    LDA.L $7E202E 
-    STA.B $14 
+    LDA.L $7E202C : STA.B $12 
+    LDA.L $7E202E : STA.B $14 
     LDY.W #Spritemap_RidleyTail_Large ; fallthrough to GeneralPurposeRidleyDrawing
 
 GeneralPurposeRidleyDrawing_SetPalette:
-    LDA.L $7E7818 
-    STA.B $16 
+    LDA.L $7E7818 : STA.B $16 
     JMP.W RidleyGeneralUseDrawing 
 
 
@@ -10683,8 +10012,7 @@ GetBabyMetroidSpritemapPointerFromInstList:
     INC #2
     STA.B $03 
     SEP #$20 
-    LDA.B #$7E 
-    STA.B $02 
+    LDA.B #$7E : STA.B $02 
     STA.B $05 
     REP #$20 
     LDA.B [$00] 
@@ -10712,8 +10040,7 @@ GetBabyMetroidSpritemapPointerFromInstList:
 
 
 .notInstruction:
-    LDA.W #$0001 
-    STA.B [$03] 
+    LDA.W #$0001 : STA.B [$03] 
     TXA 
     STA.B [$00] 
     LDY.W $0002,X 
@@ -10757,22 +10084,19 @@ RidleyGeneralUseDrawing:
     STA.W $0370,X 
     AND.W #$0100 
     BEQ + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $1C 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($1C) 
 
   + LDA.W $0000,Y 
     BPL + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $1C 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($1C) 
 
-  + LDA.B $1A 
-    STA.W $0371,X 
+  + LDA.B $1A : STA.W $0371,X 
     LDA.W $0003,Y 
     ORA.B $16 
     STA.W $0372,X 
@@ -11152,10 +10476,8 @@ RidleyTail_vs_SamusProjectile_CollisionDetection:
 
 
 .collision:
-    LDA.B $12 
-    STA.W $0B64,Y 
-    LDA.B $14 
-    STA.W $0B78,Y 
+    LDA.B $12 : STA.W $0B64,Y 
+    LDA.B $14 : STA.W $0B78,Y 
     LDA.W $0C04,Y 
     ORA.W #$0010 
     STA.W $0C04,Y 
@@ -11239,10 +10561,8 @@ UNUSED_RidleyDamagesSamus_A6DF60:
 
 UNUSED_RidleyDamagesSamus_A6DF66:
     JSL.L DealSuitAdjustedEnemyDamageToSamus 
-    LDA.W #$0060 
-    STA.W $18A8 
-    LDA.W #$0005 
-    STA.W $18AA 
+    LDA.W #$0060 : STA.W $18A8 
+    LDA.W #$0005 : STA.W $18AA 
     LDY.W #$0000 
     LDX.W $0E54 
     LDA.W $0AF6 
@@ -11293,35 +10613,28 @@ SetRidleyAsDead:
     BNE .return 
     LDA.L $7E7802 
     BMI .return 
-    LDA.W #$FFFF 
-    STA.L $7E7802 
+    LDA.W #$FFFF : STA.L $7E7802 
     LDA.W $0F86 
     ORA.W #$0400 
     STA.W $0F86 
-    LDA.W #Function_Ridley_MoveToDeathSpot 
-    STA.W $0FA8 
+    LDA.W #Function_Ridley_MoveToDeathSpot : STA.W $0FA8 
 
 .return:
     RTL 
 
 
 RidleyTail_vs_Samus_Interaction:
-    LDA.W #$000E 
-    STA.B $16 
+    LDA.W #$000E : STA.B $16 
     STA.B $18 
-    LDA.L $7E20A4 
-    STA.B $12 
-    LDA.L $7E20A6 
-    STA.B $14 
+    LDA.L $7E20A4 : STA.B $12 
+    LDA.L $7E20A6 : STA.B $14 
     JSR.W EfficientCollisionDetectionForSamusAt_12_14 
     BCC .return 
     LDA.L $7E7838 
     JSL.L Suit_Damage_Division 
     JSL.L Deal_A_Damage_to_Samus 
-    LDA.W #$0060 
-    STA.W $18A8 
-    LDA.W #$0005 
-    STA.W $18AA 
+    LDA.W #$0060 : STA.W $18A8 
+    LDA.W #$0005 : STA.W $18AA 
     LDY.W #$0000 
     LDA.W $0AF6 
     SEC 
@@ -11400,22 +10713,16 @@ KillProjectilesWithRidleyTailTip:
 
 
 .notIntangible:
-    LDA.W #$000E 
-    STA.B $16 
+    LDA.W #$000E : STA.B $16 
     STA.B $18 
-    LDA.L $7E20A4 
-    STA.B $12 
-    LDA.L $7E20A6 
-    STA.B $14 
+    LDA.L $7E20A4 : STA.B $12 
+    LDA.L $7E20A6 : STA.B $14 
     JSR.W RidleyTail_vs_SamusProjectile_CollisionDetection 
     BCS TailProjectileCollision 
-    LDA.W #$000A 
-    STA.B $16 
+    LDA.W #$000A : STA.B $16 
     STA.B $18 
-    LDA.L $7E2090 
-    STA.B $12 
-    LDA.L $7E2092 
-    STA.B $14 
+    LDA.L $7E2090 : STA.B $12 
+    LDA.L $7E2092 : STA.B $14 
     JSR.W RidleyTail_vs_SamusProjectile_CollisionDetection 
     BCS TailProjectileCollision 
     RTS 
@@ -11423,40 +10730,28 @@ KillProjectilesWithRidleyTailTip:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_TailProjectileCollision_A6E0C2:
-    LDA.L $7E207C 
-    STA.B $12 
-    LDA.L $7E207E 
-    STA.B $14 
+    LDA.L $7E207C : STA.B $12 
+    LDA.L $7E207E : STA.B $14 
     JSR.W RidleyTail_vs_SamusProjectile_CollisionDetection 
     BCS TailProjectileCollision 
-    LDA.W #$000B 
-    STA.B $16 
+    LDA.W #$000B : STA.B $16 
     STA.B $18 
-    LDA.L $7E2068 
-    STA.B $12 
-    LDA.L $7E206A 
-    STA.B $14 
+    LDA.L $7E2068 : STA.B $12 
+    LDA.L $7E206A : STA.B $14 
     JSR.W RidleyTail_vs_SamusProjectile_CollisionDetection 
     BCS TailProjectileCollision 
-    LDA.L $7E2054 
-    STA.B $12 
-    LDA.L $7E2056 
-    STA.B $14 
+    LDA.L $7E2054 : STA.B $12 
+    LDA.L $7E2056 : STA.B $14 
     JSR.W RidleyTail_vs_SamusProjectile_CollisionDetection 
     BCS TailProjectileCollision 
-    LDA.W #$000D 
-    STA.B $16 
+    LDA.W #$000D : STA.B $16 
     STA.B $18 
-    LDA.L $7E2040 
-    STA.B $12 
-    LDA.L $7E2042 
-    STA.B $14 
+    LDA.L $7E2040 : STA.B $12 
+    LDA.L $7E2042 : STA.B $14 
     JSR.W RidleyTail_vs_SamusProjectile_CollisionDetection 
     BCS TailProjectileCollision 
-    LDA.L $7E202C 
-    STA.B $12 
-    LDA.L $7E202E 
-    STA.B $14 
+    LDA.L $7E202C : STA.B $12 
+    LDA.L $7E202E : STA.B $14 
     JSR.W RidleyTail_vs_SamusProjectile_CollisionDetection 
     BCS TailProjectileCollision 
     RTS 
@@ -11464,10 +10759,8 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 TailProjectileCollision:
-    LDA.W $0B64,Y 
-    STA.B $12 
-    LDA.W $0B78,Y 
-    STA.B $14 
+    LDA.W $0B64,Y : STA.B $12 
+    LDA.W $0B78,Y : STA.B $14 
     LDA.W $0C19,Y 
     AND.W #$000F 
     LDY.W #$000C 
@@ -11590,15 +10883,13 @@ Palette_Ridley_HealthBased_Below1800:
     dw $20AF,$184C,$4DDF,$183F,$1016,$067F,$057B,$04B7 
 
 Instruction_Ridley_QueueRoarSFX:
-    LDA.W #$0059 
-    STA.L $7E781E 
+    LDA.W #$0059 : STA.L $7E781E 
     JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
 Instruction_Ridley_ResetRoarFlag:
-    LDA.W #$0000 
-    STA.L $7E781E 
+    LDA.W #$0000 : STA.L $7E781E 
     RTL 
 
 
@@ -11609,8 +10900,7 @@ Inst_Ridley_GotoYAndSetTimerTo8IfNotNorfairOrSamusLowEnergy:
     LDA.W $09C2 
     CMP.W #$001E 
     BPL Instruction_Ridley_SkipToNextInstruction 
-    LDA.W #$0008 
-    STA.L $7E7800 
+    LDA.W #$0008 : STA.L $7E7800 
 
 Instruction_Ridley_GotoY:
     LDA.W $0000,Y 
@@ -11635,12 +10925,9 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Inst_RidleyCeres_UpdateSamusPrevPosition_HeldYDisplacement:
-    LDA.W $0AF6 
-    STA.W $0B10 
-    LDA.W $0AFA 
-    STA.W $0B14 
-    LDA.W $0000,Y 
-    STA.L $7E783A 
+    LDA.W $0AF6 : STA.W $0B10 
+    LDA.W $0AFA : STA.W $0B14 
+    LDA.W $0000,Y : STA.L $7E783A 
 
 Instruction_Ridley_SkipToNextInstruction:
     INY #2
@@ -11941,21 +11228,18 @@ InstList_Ridley_TurnFromRightToLeft:
     dw Instruction_Common_Sleep 
 
 Instruction_Ridley_SetDirectionToLeft_UpdateTailParts:
-    LDA.W #$0000 
-    STA.L $7E7820 
+    LDA.W #$0000 : STA.L $7E7820 
     JSR.W Update_TailRotationDirection_Angle_DistanceFromRidley 
     RTL 
 
 
 Instruction_Ridley_SetDirectionToForwardTurning:
-    LDA.W #$0001 
-    STA.L $7E7820 
+    LDA.W #$0001 : STA.L $7E7820 
     RTL 
 
 
 Instruction_Ridley_SetDirectionToRight_UpdateTailParts:
-    LDA.W #$0002 
-    STA.L $7E7820 
+    LDA.W #$0002 : STA.L $7E7820 
     JSR.W Update_TailRotationDirection_Angle_DistanceFromRidley 
     RTL 
 
@@ -12258,18 +11542,14 @@ InstList_RidleyCeres_FacingRight_FlyUp_StartMainAI:
     dw Instruction_Common_Sleep 
 
 Instruction_RidleyCeres_SetRidleyMainAI_SetVerticalSpeed:
-    LDA.W #Function_RidleyCeres_StartupLiftoff_FacingLeft 
-    STA.W $0FA8 
-    LDA.W #$FEA0 
-    STA.W $0FAC 
+    LDA.W #Function_RidleyCeres_StartupLiftoff_FacingLeft : STA.W $0FA8 
+    LDA.W #$FEA0 : STA.W $0FAC 
     RTL 
 
 
 Instruction_Ridley_SetRidleyMainAI_SetVerticalSpeed:
-    LDA.W #Function_Ridley_Startup_Liftoff_FacingRight 
-    STA.W $0FA8 
-    LDA.W #$FEA0 
-    STA.W $0FAC 
+    LDA.W #Function_Ridley_Startup_Liftoff_FacingRight : STA.W $0FA8 
+    LDA.W #$FEA0 : STA.W $0FAC 
     RTL 
 
 
@@ -12936,11 +12216,9 @@ InitAI_CeresSteam:
     LDA.W $0F88,X 
     ORA.W #$0004 
     STA.W $0F88,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #$0A00 
-    STA.W $0F96,X 
+    LDA.W #$0A00 : STA.W $0F96,X 
     JSL.L GenerateRandomNumber 
     AND.W #$001F 
     INC A 
@@ -12948,10 +12226,8 @@ InitAI_CeresSteam:
     LDA.W $0FB4,X 
     ASL A 
     TAY 
-    LDA.W InitAI_CeresSteam_instListPointers,Y 
-    STA.W $0F92,X 
-    LDA.W InitAI_CeresSteam_initialFunctionPointers,Y 
-    STA.W $0FA8,X 
+    LDA.W InitAI_CeresSteam_instListPointers,Y : STA.W $0F92,X 
+    LDA.W InitAI_CeresSteam_initialFunctionPointers,Y : STA.W $0FA8,X 
 
 InitAI_CeresSteam_return:
     RTL 
@@ -12975,16 +12251,13 @@ InitAI_CeresSteam_initialFunctionPointers:
 
 MainAI_CeresSteam:
     LDX.W $0E54 
-    LDA.W #$7FFF 
-    STA.W $0F8C,X 
+    LDA.W #$7FFF : STA.W $0F8C,X 
     JMP.W ($0FA8,X) 
 
 
 Func_CeresSteam_CalculateGraphicalOffsetInRotatingElevRoom:
-    LDA.W $0F7A,X 
-    STA.B $12 
-    LDA.W $0F7E,X 
-    STA.B $14 
+    LDA.W $0F7A,X : STA.B $12 
+    LDA.W $0F7E,X : STA.B $14 
     JSL.L Calculate_CeresSteamPosition_InRotatingElevatorRoom 
     LDX.W $0E54 
     LDA.B $12 
@@ -13000,8 +12273,7 @@ Func_CeresSteam_CalculateGraphicalOffsetInRotatingElevRoom:
 
 EnemyTouch_CeresSteam:
     LDX.W $0E54 
-    LDA.W #$7FFF 
-    STA.W $0F8C,X 
+    LDA.W #$7FFF : STA.W $0F8C,X 
     JSL.L NormalEnemyTouchAI 
     RTL 
 
@@ -13853,8 +13125,7 @@ Instruction_CeresDoor_GotoYIfCeresRidleyHasNotEscaped:
 SetElevatorRoomToRotateIfRidleyHasEscaped:
     LDA.W $093F 
     BEQ .return 
-    LDA.W #$8000 
-    STA.W $093F 
+    LDA.W #$8000 : STA.W $093F 
 
 .return:
     RTL 
@@ -13875,8 +13146,7 @@ Instruction_CeresDoor_SetAsTangible:
 
 
 Instruction_CeresDoor_SetDrawnByRidleyFlag:
-    LDA.W #$0001 
-    STA.W $0FAA,X 
+    LDA.W #$0001 : STA.W $0FAA,X 
     RTL 
 
 
@@ -13905,21 +13175,16 @@ Instruction_CeresDoor_QueueOpeningSFX:
 
 InitAI_CeresDoor:
     LDX.W $0E54 
-    LDA.W #Spritemap_CeresDoor_Placeholder 
-    STA.W $0F8E,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #Spritemap_CeresDoor_Placeholder : STA.W $0F8E,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     STZ.W $0F98,X 
-    LDA.W #$0400 
-    STA.W $0F96,X 
+    LDA.W #$0400 : STA.W $0F96,X 
     LDA.W $0FB4,X 
     ASL A 
     TAY 
-    LDA.W .functionPointers,Y 
-    STA.W $0FA8,X 
-    LDA.W InstListPointers_CeresDoor,Y 
-    STA.W $0F92,X 
+    LDA.W .functionPointers,Y : STA.W $0FA8,X 
+    LDA.W InstListPointers_CeresDoor,Y : STA.W $0F92,X 
     STZ.W $0FAA,X 
     JSR.W LoadRotatingElevatorRoomPreExplosioNDoorOverlayTilesIfNeeded 
     LDA.W $093F 
@@ -13943,8 +13208,7 @@ InitAI_CeresDoor:
     LDY.W #Palette_CeresDoor_DuringEscape+2 
 
 .merge:
-    LDA.W #$0E00 
-    STA.W $0F96,X 
+    LDA.W #$0E00 : STA.W $0F96,X 
     LDX.W #$01E2 
     LDA.W #$000F 
     JSL.L WriteAColorsFromYToTargetColorIndexX 
@@ -13965,14 +13229,10 @@ LoadRotatingElevatorRoomPreExplosioNDoorOverlayTilesIfNeeded:
     CMP.W #$0002 
     BNE .return 
     LDY.W $0330 
-    LDA.W #$0400 
-    STA.W $00D0,Y 
-    LDA.W #Tiles_CeresElevatorRoomDoor>>8&$FF00 
-    STA.W $00D3,Y 
-    LDA.W #Tiles_CeresElevatorRoomDoor 
-    STA.W $00D2,Y 
-    LDA.W #$7000 
-    STA.W $00D5,Y 
+    LDA.W #$0400 : STA.W $00D0,Y 
+    LDA.W #Tiles_CeresElevatorRoomDoor>>8&$FF00 : STA.W $00D3,Y 
+    LDA.W #Tiles_CeresElevatorRoomDoor : STA.W $00D2,Y 
+    LDA.W #$7000 : STA.W $00D5,Y 
     TYA 
     CLC 
     ADC.W #$0007 
@@ -14005,16 +13265,14 @@ HandleEarthquakeDuringEscape:
     AND.W #$0FFF 
     CMP.W #$0080 
     BCC .random 
-    LDA.W #$0002 
-    STA.W $1840 
+    LDA.W #$0002 : STA.W $1840 
     TYA 
     STA.W $183E 
     RTL 
 
 
 .random:
-    LDA.W #$0004 
-    STA.W $1840 
+    LDA.W #$0004 : STA.W $1840 
     TYA 
     CLC 
     ADC.W #$0006 
@@ -14030,8 +13288,7 @@ Function_CeresDoor_RidleyEscapeMode7Wall:
     LDA.W $093F 
     LSR A 
     BCC .return 
-    LDA.W #$0E00 
-    STA.W $0F96,X 
+    LDA.W #$0E00 : STA.W $0F96,X 
     JSL.L Instruction_CeresDoor_SetAsVisible 
 
 .return:
@@ -14043,10 +13300,8 @@ Function_CeresDoor_RotatingElevatorRoom_Default:
     LDA.W $093F 
     CMP.W #$0002 
     BCC .return 
-    LDA.W #Function_CeresDoor_RotatingElevatorRoom_Rumbling_Explosions 
-    STA.W $0FA8,X 
-    LDA.W #$0030 
-    STA.W $0FAE,X 
+    LDA.W #Function_CeresDoor_RotatingElevatorRoom_Rumbling_Explosions : STA.W $0FA8,X 
+    LDA.W #$0030 : STA.W $0FAE,X 
     STZ.W $0FB0 
     STZ.W $0FB2 
 
@@ -14060,20 +13315,17 @@ Function_CeresDoor_RotatingElevatorRoom_Rumbling_Explosions:
     LDA.W $0F86,X 
     ORA.W #$0100 
     STA.W $0F86,X 
-    LDA.W #Function_CeresDoor_RotatingElevatorRoom_ElevatorAnimations 
-    STA.W $0FA8,X 
+    LDA.W #Function_CeresDoor_RotatingElevatorRoom_ElevatorAnimations : STA.W $0FA8,X 
     JMP.W SetElevatorRoomToRotateIfRidleyHasEscaped 
 
 
 .enemyRumbleTimerNotExpired:
     DEC.W $0FB0 
     BPL .return 
-    LDA.W #$0004 
-    STA.W $0FB0 
+    LDA.W #$0004 : STA.W $0FB0 
     DEC.W $0FB2 
     BPL .ceresDoorTimerNotExpired 
-    LDA.W #$0003 
-    STA.W $0FB2 
+    LDA.W #$0003 : STA.W $0FB2 
 
 .ceresDoorTimerNotExpired:
     LDA.W $0FB2 
@@ -14447,13 +13699,10 @@ InitAI_Zebetite:
     LDA.W $0F86,X 
     ORA.W #$A000 
     STA.W $0F86,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #$0400 
-    STA.W $0F96,X 
-    LDA.W #$0080 
-    STA.W $0F98,X 
+    LDA.W #$0400 : STA.W $0F96,X 
+    LDA.W #$0080 : STA.W $0F98,X 
     STZ.W $0FAC,X 
     LDY.W #Function_Zebetite_SpawnBottomZebetiteIfNeeded 
     LDA.W $0FB4,X 
@@ -14473,8 +13722,7 @@ InitAI_Zebetite:
     LDA.W #$0003 
     JSL.L CheckIfEvent_inA_HasHappened 
     ROL.B $12 
-    LDA.B $12 
-    STA.W $0FAE,X 
+    LDA.B $12 : STA.W $0FAE,X 
     CMP.W #$0004 
     BMI .notAllDestroyed 
     LDA.W $0F86,X 
@@ -14486,24 +13734,18 @@ InitAI_Zebetite:
 .notAllDestroyed:
     ASL A 
     TAY 
-    LDA.W .multipartFlag,Y 
-    STA.W $0FB2,X 
-    LDA.W .height,Y 
-    STA.W $0F84,X 
-    LDA.W .instListPointer,Y 
-    STA.W $0F92,X 
-    LDA.W .XPosition,Y 
-    STA.W $0F7A,X 
+    LDA.W .multipartFlag,Y : STA.W $0FB2,X 
+    LDA.W .height,Y : STA.W $0F84,X 
+    LDA.W .instListPointer,Y : STA.W $0F92,X 
+    LDA.W .XPosition,Y : STA.W $0F7A,X 
     LDA.W $0FB4,X 
     BEQ .zeroParam1 
-    LDA.W .YPosition_nonZero,Y 
-    STA.W $0F7E,X 
+    LDA.W .YPosition_nonZero,Y : STA.W $0F7E,X 
     RTL 
 
 
 .zeroParam1:
-    LDA.W .YPosition_zero,Y 
-    STA.W $0F7E,X 
+    LDA.W .YPosition_zero,Y : STA.W $0F7E,X 
     RTL 
 
 
@@ -14542,16 +13784,14 @@ Function_Zebetite_SpawnBottomZebetiteIfNeeded:
     LDA.W $0FB2,X 
     BPL .notNeeded 
     JSR.W SpawnBottomZebetite 
-    LDA.W $0E54 
-    STA.W $0FB6,X 
+    LDA.W $0E54 : STA.W $0FB6,X 
     TAY 
     TXA 
     TYX 
     STA.W $0FB6,X 
 
 .notNeeded:
-    LDA.W #Function_Zebetite_WaitForDoorTransitionToFinish 
-    STA.W $0FA8,X ; fallthrough to Function_Zebetite_WaitForDoorTransitionToFinish
+    LDA.W #Function_Zebetite_WaitForDoorTransitionToFinish : STA.W $0FA8,X ; fallthrough to Function_Zebetite_WaitForDoorTransitionToFinish
 
 Function_Zebetite_WaitForDoorTransitionToFinish:
     LDA.W $0795 
@@ -14560,8 +13800,7 @@ Function_Zebetite_WaitForDoorTransitionToFinish:
 
 
 .finished:
-    LDA.W #Function_Zebetite_Active 
-    STA.W $0FA8,X 
+    LDA.W #Function_Zebetite_Active : STA.W $0FA8,X 
 
 Function_Zebetite_Active:
     JSR.W HandleZebetitePaletteAnimation 
@@ -14671,8 +13910,7 @@ SetZebetiteInstList:
 
 .keepBig:
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     RTS 
 
@@ -14729,10 +13967,8 @@ EnemyShot_Zebetite:
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External 
     LDX.W $0E54 
     LDY.W $0FB6,X 
-    LDA.W $0F8C,X 
-    STA.W $0F8C,Y 
-    LDA.W $0F9C,X 
-    STA.W $0F9C,Y 
+    LDA.W $0F8C,X : STA.W $0F8C,Y 
+    LDA.W $0F9C,X : STA.W $0F9C,Y 
     RTL 
 
 

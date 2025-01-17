@@ -2201,28 +2201,19 @@ EnemySets_Debug:
 DebugHandler_7_EnemyDebugger_EnemySpawnDataEditor:
     JSR.W Debug_HandleCursorMovement 
     JSR.W Debug_HandleDigitModification 
-    LDA.W #$0800 
-    STA.B $26 
-    LDA.W $1860 
-    STA.B $14 
-    LDA.W $1862 
-    STA.B $12 
+    LDA.W #$0800 : STA.B $26 
+    LDA.W $1860 : STA.B $14 
+    LDA.W $1862 : STA.B $12 
     LDA.W #$001C 
     JSL.L Add_Debug_Spritemap_to_OAM 
-    LDA.W #$0A00 
-    STA.B $26 
-    LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0048 
-    STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
+    LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0048 : STA.B $12 
     LDA.W #$002F 
     JSL.L Add_Debug_Spritemap_to_OAM 
-    LDA.W #$0A00 
-    STA.B $26 
-    LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0048 
-    STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
+    LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0048 : STA.B $12 
     LDX.W $1846 
     LDA.W $0F78,X 
     TAX 
@@ -2261,10 +2252,8 @@ DebugHandler_7_EnemyDebugger_EnemySpawnDataEditor:
     BIT.W #$0080 
     BEQ .checkL 
     LDX.W $1846 
-    LDA.W $0F7A,X 
-    STA.L $7E7020,X 
-    LDA.W $0F7E,X 
-    STA.L $7E7022,X 
+    LDA.W $0F7A,X : STA.L $7E7020,X 
+    LDA.W $0F7E,X : STA.L $7E7022,X 
 
 .checkL:
     LDA.B $91 
@@ -2280,72 +2269,48 @@ DebugHandler_7_EnemyDebugger_EnemySpawnDataEditor:
 
 Draw_Debug_Enemy_Spawn_Values:
     LDX.W $1846 
-    LDA.L $7E7020,X 
-    STA.W $0E24 
-    LDA.W #$00C8 
-    STA.W $0E20 
-    LDA.W #$0038 
-    STA.W $0E22 
+    LDA.L $7E7020,X : STA.W $0E24 
+    LDA.W #$00C8 : STA.W $0E20 
+    LDA.W #$0038 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.L $7E7022,X 
-    STA.W $0E24 
-    LDA.W #$00C8 
-    STA.W $0E20 
-    LDA.W #$0040 
-    STA.W $0E22 
+    LDA.L $7E7022,X : STA.W $0E24 
+    LDA.W #$00C8 : STA.W $0E20 
+    LDA.W #$0040 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.L $7E7024,X 
-    STA.W $0E24 
-    LDA.W #$00C8 
-    STA.W $0E20 
-    LDA.W #$0048 
-    STA.W $0E22 
+    LDA.L $7E7024,X : STA.W $0E24 
+    LDA.W #$00C8 : STA.W $0E20 
+    LDA.W #$0048 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.L $7E7026,X 
-    STA.W $0E24 
-    LDA.W #$00C8 
-    STA.W $0E20 
-    LDA.W #$0050 
-    STA.W $0E22 
+    LDA.L $7E7026,X : STA.W $0E24 
+    LDA.W #$00C8 : STA.W $0E20 
+    LDA.W #$0050 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.L $7E7028,X 
-    STA.W $0E24 
-    LDA.W #$00C8 
-    STA.W $0E20 
-    LDA.W #$0058 
-    STA.W $0E22 
+    LDA.L $7E7028,X : STA.W $0E24 
+    LDA.W #$00C8 : STA.W $0E20 
+    LDA.W #$0058 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.L $7E702A,X 
-    STA.W $0E24 
-    LDA.W #$00C8 
-    STA.W $0E20 
-    LDA.W #$0060 
-    STA.W $0E22 
+    LDA.L $7E702A,X : STA.W $0E24 
+    LDA.W #$00C8 : STA.W $0E20 
+    LDA.W #$0060 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.L $7E702C,X 
-    STA.W $0E24 
-    LDA.W #$00C8 
-    STA.W $0E20 
-    LDA.W #$0068 
-    STA.W $0E22 
+    LDA.L $7E702C,X : STA.W $0E24 
+    LDA.W #$00C8 : STA.W $0E20 
+    LDA.W #$0068 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     RTS 
 
 
 Debug_Draw_Enemy_Set_Name:
     PHX 
-    LDA.W #$0A00 
-    STA.B $26 
-    LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0058 
-    STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
+    LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0058 : STA.B $12 
     LDA.W $079F 
     CLC 
     ADC.W #$0014 
@@ -2359,12 +2324,9 @@ Debug_Draw_Enemy_Set_Name:
     SEC 
     SBC.W #$002C 
     STA.B $16 
-    LDA.W #$0A00 
-    STA.B $26 
-    LDA.W #$00A8 
-    STA.B $14 
-    LDA.W #$0058 
-    STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
+    LDA.W #$00A8 : STA.B $14 
+    LDA.W #$0058 : STA.B $12 
     LDA.B $16 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $07D1 
@@ -2376,12 +2338,9 @@ Debug_Draw_Enemy_Set_Name:
     SEC 
     SBC.W #$002C 
     STA.B $16 
-    LDA.W #$0A00 
-    STA.B $26 
-    LDA.W #$00B8 
-    STA.B $14 
-    LDA.W #$0058 
-    STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
+    LDA.W #$00B8 : STA.B $14 
+    LDA.W #$0058 : STA.B $12 
     LDA.B $16 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $07D1 
@@ -2393,12 +2352,9 @@ Debug_Draw_Enemy_Set_Name:
     SEC 
     SBC.W #$002C 
     STA.B $16 
-    LDA.W #$0A00 
-    STA.B $26 
-    LDA.W #$00C0 
-    STA.B $14 
-    LDA.W #$0058 
-    STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
+    LDA.W #$00C0 : STA.B $14 
+    LDA.W #$0058 : STA.B $12 
     LDA.B $16 
     JSL.L Add_Debug_Spritemap_to_OAM 
     PLX 
@@ -2427,8 +2383,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     TAX 
     STA.W $0E26 
     LDX.W $0E26 
-    LDA.W #$0038 
-    STA.W $0E2A 
+    LDA.W #$0038 : STA.W $0E2A 
 
 .loop:
     LDX.W $0E26 
@@ -2442,10 +2397,8 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     CLC 
     ADC.W #$0030 
     STA.B $16 
-    LDA.W #$0A00 
-    STA.B $26 
-    LDA.W #$00A8 
-    STA.B $14 
+    LDA.W #$0A00 : STA.B $26 
+    LDA.W #$00A8 : STA.B $14 
     LDA.W $0E2A 
     CLC 
     ADC.W #$0018 
@@ -2454,12 +2407,9 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     AND.W #$00FF 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $0E26 
-    LDA.L $B40002,X 
-    STA.W $0E24 
-    LDA.W #$00D8 
-    STA.W $0E20 
-    LDA.W $0E2A 
-    STA.W $0E22 
+    LDA.L $B40002,X : STA.W $0E24 
+    LDA.W #$00D8 : STA.W $0E20 
+    LDA.W $0E2A : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDA.W $0E2A 
     CLC 
@@ -2473,12 +2423,9 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 
 .endLoop:
-    LDA.W #$0A00 
-    STA.B $26 
-    LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0048 
-    STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
+    LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0048 : STA.B $12 
     LDX.W $1846 
     LDA.L $7E701E,X 
     BNE .hasSpawnID 
@@ -2533,8 +2480,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     TAX 
     STX.W $1866 
     LDX.W $1846 
-    LDA.B $12 
-    STA.L $7E701E,X 
+    LDA.B $12 : STA.L $7E701E,X 
     LDA.B $91 
     BIT.W #$0010 
     BEQ .checkL 
@@ -2567,10 +2513,8 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 
   + LDY.W $1846 
-    LDA.W $0F7A,Y 
-    STA.W $1868 
-    LDA.W $0F7E,Y 
-    STA.W $186A 
+    LDA.W $0F7A,Y : STA.W $1868 
+    LDA.W $0F7E,Y : STA.W $186A 
     PHB 
     PEA.W $B4B4 
     PLB 
@@ -2580,10 +2524,8 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     JSL.L Debug_SpawnEnemy_ToEnemyIndex_inY 
     PLB 
     LDY.W $1846 
-    LDA.W $1868 
-    STA.W $0F7A,Y 
-    LDA.W $186A 
-    STA.W $0F7E,Y 
+    LDA.W $1868 : STA.W $0F7A,Y 
+    LDA.W $186A : STA.W $0F7E,Y 
     PHX 
     PHY 
     TYX 
@@ -2657,20 +2599,13 @@ Debug_HandleCursorMovement:
 
 Debug_HandleDigitModification:
     LDX.W $1846 
-    LDA.L $7E7020,X 
-    STA.B $12 
-    LDA.L $7E7022,X 
-    STA.B $14 
-    LDA.L $7E7024,X 
-    STA.B $16 
-    LDA.L $7E7026,X 
-    STA.B $18 
-    LDA.L $7E7028,X 
-    STA.B $1A 
-    LDA.L $7E702A,X 
-    STA.B $1C 
-    LDA.L $7E702C,X 
-    STA.B $1E 
+    LDA.L $7E7020,X : STA.B $12 
+    LDA.L $7E7022,X : STA.B $14 
+    LDA.L $7E7024,X : STA.B $16 
+    LDA.L $7E7026,X : STA.B $18 
+    LDA.L $7E7028,X : STA.B $1A 
+    LDA.L $7E702A,X : STA.B $1C 
+    LDA.L $7E702C,X : STA.B $1E 
     LDA.B $91 
     BIT.W #$0040 
     BEQ .notNewlyPressedX 
@@ -2710,20 +2645,13 @@ Debug_HandleDigitModification:
     STA.W $0012,Y 
 
   + LDX.W $1846 
-    LDA.B $12 
-    STA.L $7E7020,X 
-    LDA.B $14 
-    STA.L $7E7022,X 
-    LDA.B $16 
-    STA.L $7E7024,X 
-    LDA.B $18 
-    STA.L $7E7026,X 
-    LDA.B $1A 
-    STA.L $7E7028,X 
-    LDA.B $1C 
-    STA.L $7E702A,X 
-    LDA.B $1E 
-    STA.L $7E702C,X 
+    LDA.B $12 : STA.L $7E7020,X 
+    LDA.B $14 : STA.L $7E7022,X 
+    LDA.B $16 : STA.L $7E7024,X 
+    LDA.B $18 : STA.L $7E7026,X 
+    LDA.B $1A : STA.L $7E7028,X 
+    LDA.B $1C : STA.L $7E702A,X 
+    LDA.B $1E : STA.L $7E702C,X 
     RTS 
 
 
@@ -2744,8 +2672,7 @@ DebugHandler_10_EnemyDebugger_EnemyAllocationViewer:
     TAX 
     STA.W $0E26 
     LDX.W $0E26 
-    LDA.W #$0038 
-    STA.W $0E2A 
+    LDA.W #$0038 : STA.W $0E2A 
     STZ.W $0E2C 
 
 .loop:
@@ -2767,10 +2694,8 @@ DebugHandler_10_EnemyDebugger_EnemyAllocationViewer:
     CLC 
     ADC.W #$0030 
     STA.B $16 
-    LDA.W #$0A00 
-    STA.B $26 
-    LDA.W #$00A8 
-    STA.B $14 
+    LDA.W #$0A00 : STA.B $26 
+    LDA.W #$00A8 : STA.B $14 
     LDA.W $0E2A 
     CLC 
     ADC.W #$0018 
@@ -2779,12 +2704,9 @@ DebugHandler_10_EnemyDebugger_EnemyAllocationViewer:
     AND.W #$00FF 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $0E26 
-    LDA.L $B40002,X 
-    STA.W $0E24 
-    LDA.W #$00D8 
-    STA.W $0E20 
-    LDA.W $0E2A 
-    STA.W $0E22 
+    LDA.L $B40002,X : STA.W $0E24 
+    LDA.W #$00D8 : STA.W $0E20 
+    LDA.W $0E2A : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDA.W $0E2A 
     CLC 
@@ -2798,12 +2720,9 @@ DebugHandler_10_EnemyDebugger_EnemyAllocationViewer:
 
 
 .terminated:
-    LDA.W $0E2C 
-    STA.W $0E24 
-    LDA.W #$00A8 
-    STA.W $0E20 
-    LDA.W $0E2A 
-    STA.W $0E22 
+    LDA.W $0E2C : STA.W $0E24 
+    LDA.W #$00A8 : STA.W $0E20 
+    LDA.W $0E2A : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDA.W #$0000 
     RTS 
@@ -2845,12 +2764,9 @@ DebugHandler:
     dw DebugHandler_10_EnemyDebugger_EnemyAllocationViewer 
 
 DebugHandler_4_SpriteTilesViewer_FirstHalf:
-    LDA.W #$0A00 
-    STA.B $26 
-    LDA.W #$0080 
-    STA.B $14 
-    LDA.W #$0080 
-    STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
+    LDA.W #$0080 : STA.B $14 
+    LDA.W #$0080 : STA.B $12 
     LDA.W #$0003 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $05C5 
@@ -2873,34 +2789,29 @@ DebugHandler_3_SpriteTilesViewer_SecondHalf:
     LDA.W $185A 
     CMP.W #$0000 
     BNE + 
-    LDA.W #$0200 
-    STA.W $185A 
+    LDA.W #$0200 : STA.W $185A 
     BRA .merge 
 
 
   + CMP.W #$0200 
     BNE + 
-    LDA.W #$0400 
-    STA.W $185A 
+    LDA.W #$0400 : STA.W $185A 
     BRA .merge 
 
 
   + CMP.W #$0400 
     BNE + 
-    LDA.W #$0600 
-    STA.W $185A 
+    LDA.W #$0600 : STA.W $185A 
     BRA .merge 
 
 
   + CMP.W #$0600 
     BNE + 
-    LDA.W #$0E00 
-    STA.W $185A 
+    LDA.W #$0E00 : STA.W $185A 
     BRA .merge 
 
 
-  + LDA.W #$0000 
-    STA.W $185A 
+  + LDA.W #$0000 : STA.W $185A 
     BRA .merge 
 
 
@@ -2909,10 +2820,8 @@ DebugHandler_3_SpriteTilesViewer_SecondHalf:
 
 .merge:
     STA.B $26 
-    LDA.W #$0080 
-    STA.B $14 
-    LDA.W #$0080 
-    STA.B $12 
+    LDA.W #$0080 : STA.B $14 
+    LDA.W #$0080 : STA.B $12 
     LDA.W #$0002 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $05C5 
@@ -2929,19 +2838,14 @@ DebugHandler_3_SpriteTilesViewer_SecondHalf:
 
 
 DebugHandler_1_PaletteViewer_SpritePalettes:
-    LDA.W #$0000 
-    STA.B $26 
-    LDA.W #$0060 
-    STA.B $14 
+    LDA.W #$0000 : STA.B $26 
+    LDA.W #$0060 : STA.B $14 
     STA.B $12 
     LDA.W #$0000 
     JSL.L Add_Debug_Spritemap_to_OAM 
-    LDA.W #$0000 
-    STA.B $26 
-    LDA.W #$00A0 
-    STA.B $14 
-    LDA.W #$0060 
-    STA.B $12 
+    LDA.W #$0000 : STA.B $26 
+    LDA.W #$00A0 : STA.B $14 
+    LDA.W #$0060 : STA.B $12 
     LDA.W #$0001 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $05C5 
@@ -2955,8 +2859,7 @@ DebugHandler_1_PaletteViewer_SpritePalettes:
     LDX.W #$00FE 
 
 .loop:
-    LDA.L $7EC000,X 
-    STA.L $7EC100,X 
+    LDA.L $7EC000,X : STA.L $7EC100,X 
     DEX #2
     BNE .loop 
     INC.W $185C 
@@ -2965,19 +2868,14 @@ DebugHandler_1_PaletteViewer_SpritePalettes:
 
 
 DebugHandler_2_PaletteViewer_BGPalettes:
-    LDA.W #$0000 
-    STA.B $26 
-    LDA.W #$0060 
-    STA.B $14 
+    LDA.W #$0000 : STA.B $26 
+    LDA.W #$0060 : STA.B $14 
     STA.B $12 
     LDA.W #$0000 
     JSL.L Add_Debug_Spritemap_to_OAM 
-    LDA.W #$0000 
-    STA.B $26 
-    LDA.W #$00A0 
-    STA.B $14 
-    LDA.W #$0060 
-    STA.B $12 
+    LDA.W #$0000 : STA.B $26 
+    LDA.W #$00A0 : STA.B $14 
+    LDA.W #$0060 : STA.B $12 
     LDA.W #$0001 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $05C5 
@@ -3044,8 +2942,7 @@ DebugHandler_0_Default:
 
 
 .Select:
-    LDA.W #$0010 
-    STA.W $185C 
+    LDA.W #$0010 : STA.W $185C 
     LDA.W #$0000 
     RTS 
 
@@ -3070,20 +2967,15 @@ DebugHandler_0_Default:
 
 .SelectLA:
     SEP #$20 
-    LDA.B #$80 
-    STA.W $2100 
-    LDA.B #$00 
-    STA.W $2116 
-    LDA.B #$70 
-    STA.W $2117 
-    LDA.B #$80 
-    STA.W $2115 
+    LDA.B #$80 : STA.W $2100 
+    LDA.B #$00 : STA.W $2116 
+    LDA.B #$70 : STA.W $2117 
+    LDA.B #$80 : STA.W $2115 
     JSL.L SetupHDMATransfer 
     db $01,$01,$18 
     dl Tiles_Debug_PaletteViewer 
     dw $1000 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     STZ.W $2100 
     REP #$20 
     INC.W $185C 
@@ -3093,26 +2985,19 @@ DebugHandler_0_Default:
 
 DebugHandler_5_EnemyDebugger_Initialize:
     SEP #$20 
-    LDA.B #$80 
-    STA.W $2100 
-    LDA.B #$00 
-    STA.W $2116 
-    LDA.B #$6B 
-    STA.W $2117 
-    LDA.B #$80 
-    STA.W $2115 
+    LDA.B #$80 : STA.W $2100 
+    LDA.B #$00 : STA.W $2116 
+    LDA.B #$6B : STA.W $2117 
+    LDA.B #$80 : STA.W $2115 
     JSL.L SetupHDMATransfer 
     db $01,$01,$18 
     dl Tiles_DebuggerFont 
     dw $0A00 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     STZ.W $2100 
     REP #$20 
-    LDA.W #$00C0 
-    STA.W $1860 
-    LDA.W #$0030 
-    STA.W $1862 
+    LDA.W #$00C0 : STA.W $1860 
+    LDA.W #$0030 : STA.W $1862 
     INC.W $185C 
     RTS 
 
@@ -3162,8 +3047,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     CLC 
     ADC.W #$0020 
     STA.W $0F7A,X 
-    LDA.W $0AFA 
-    STA.W $0F7E,X 
+    LDA.W $0AFA : STA.W $0F7E,X 
 
 .checkX:
     LDX.W $1846 
@@ -3213,56 +3097,37 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     CLC 
     ADC.W #$0004 
     STA.B $12 
-    LDA.W #$0A00 
-    STA.B $26 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W #$0025 
     JSL.L Add_Debug_Spritemap_to_OAM 
 
-  + LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0050 
-    STA.B $12 
-    LDA.W #$0A00 
-    STA.B $26 
+  + LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0050 : STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W #$0027 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
-    LDA.W $0F7A,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0038 
-    STA.W $0E22 
+    LDA.W $0F7A,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0038 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0F7E,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0040 
-    STA.W $0E22 
+    LDA.W $0F7E,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0040 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0F8C,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0048 
-    STA.W $0E22 
+    LDA.W $0F8C,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0048 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
-    LDA.W $1846 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0050 
-    STA.W $0E22 
+    LDA.W $1846 : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0050 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
-    LDA.W #$0A00 
-    STA.B $26 
-    LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0048 
-    STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
+    LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0048 : STA.B $12 
     LDX.W $1846 
     LDA.W $0F78,X 
     TAX 
@@ -3295,45 +3160,30 @@ DebugHandler_A_EnemyDebugger_RAMViewer_0:
     RTS 
 
 
-  + LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0050 
-    STA.B $12 
-    LDA.W #$0A00 
-    STA.B $26 
+  + LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0050 : STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W #$0029 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
-    LDA.W $0FA4,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0038 
-    STA.W $0E22 
+    LDA.W $0FA4,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0038 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0F8A,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0040 
-    STA.W $0E22 
+    LDA.W $0F8A,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0040 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0F78,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0048 
-    STA.W $0E22 
+    LDA.W $0F78,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0048 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0FA6,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0050 
-    STA.W $0E22 
+    LDA.W $0FA6,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0050 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDA.W #$0000 
     RTS 
@@ -3348,45 +3198,30 @@ DebugHandler_B_EnemyDebugger_RAMViewer_1:
     RTS 
 
 
-  + LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0050 
-    STA.B $12 
-    LDA.W #$0A00 
-    STA.B $26 
+  + LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0050 : STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W #$002A 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
-    LDA.W $0F86,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0038 
-    STA.W $0E22 
+    LDA.W $0F86,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0038 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0F88,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0040 
-    STA.W $0E22 
+    LDA.W $0F88,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0040 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0F96,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0048 
-    STA.W $0E22 
+    LDA.W $0F96,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0048 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0F98,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0050 
-    STA.W $0E22 
+    LDA.W $0F98,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0050 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDA.W #$0000 
     RTS 
@@ -3401,45 +3236,30 @@ DebugHandler_C_EnemyDebugger_RAMViewer_2:
     RTS 
 
 
-  + LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0050 
-    STA.B $12 
-    LDA.W #$0A00 
-    STA.B $26 
+  + LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0050 : STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W #$002B 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
-    LDA.W $0F92,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0038 
-    STA.W $0E22 
+    LDA.W $0F92,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0038 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0F94,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0040 
-    STA.W $0E22 
+    LDA.W $0F94,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0040 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0F90,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0048 
-    STA.W $0E22 
+    LDA.W $0F90,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0048 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0F8E,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0050 
-    STA.W $0E22 
+    LDA.W $0F8E,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0050 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDA.W #$0000 
     RTS 
@@ -3454,45 +3274,30 @@ DebugHandler_D_EnemyDebugger_RAMViewer_3:
     RTS 
 
 
-  + LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0050 
-    STA.B $12 
-    LDA.W #$0A00 
-    STA.B $26 
+  + LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0050 : STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W #$002C 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
-    LDA.W $0F9C,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0038 
-    STA.W $0E22 
+    LDA.W $0F9C,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0038 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0F9E,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0040 
-    STA.W $0E22 
+    LDA.W $0F9E,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0040 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0FA0,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0048 
-    STA.W $0E22 
+    LDA.W $0FA0,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0048 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0FA2,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0050 
-    STA.W $0E22 
+    LDA.W $0FA2,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0050 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDA.W #$0000 
     RTS 
@@ -3507,45 +3312,30 @@ DebugHandler_E_EnemyDebugger_RAMViewer_4:
     RTS 
 
 
-  + LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0050 
-    STA.B $12 
-    LDA.W #$0A00 
-    STA.B $26 
+  + LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0050 : STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W #$002D 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
-    LDA.W $0FA8,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0038 
-    STA.W $0E22 
+    LDA.W $0FA8,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0038 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0FAA,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0040 
-    STA.W $0E22 
+    LDA.W $0FAA,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0040 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0FAC,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0048 
-    STA.W $0E22 
+    LDA.W $0FAC,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0048 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0FAE,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0050 
-    STA.W $0E22 
+    LDA.W $0FAE,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0050 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDA.W #$0000 
     RTS 
@@ -3560,45 +3350,30 @@ DebugHandler_F_EnemyDebugger_RAMViewer_5:
     RTS 
 
 
-  + LDA.W #$00B0 
-    STA.B $14 
-    LDA.W #$0050 
-    STA.B $12 
-    LDA.W #$0A00 
-    STA.B $26 
+  + LDA.W #$00B0 : STA.B $14 
+    LDA.W #$0050 : STA.B $12 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W #$002E 
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
-    LDA.W $0FB0,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0038 
-    STA.W $0E22 
+    LDA.W $0FB0,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0038 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0FB2,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0040 
-    STA.W $0E22 
+    LDA.W $0FB2,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0040 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0FB4,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0048 
-    STA.W $0E22 
+    LDA.W $0FB4,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0048 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDX.W $1846 
-    LDA.W $0FB6,X 
-    STA.W $0E24 
-    LDA.W #$00E0 
-    STA.W $0E20 
-    LDA.W #$0050 
-    STA.W $0E22 
+    LDA.W $0FB6,X : STA.W $0E24 
+    LDA.W #$00E0 : STA.W $0E20 
+    LDA.W #$0050 : STA.W $0E22 
     JSR.W Draw4DigitHexValue 
     LDA.W #$0000 
     RTS 
@@ -3689,8 +3464,7 @@ Draw4DigitHexValue:
     CLC 
     ADC.W #$0000 
     STA.B $12 
-    LDA.W #$0A00 
-    STA.B $26 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W $0E24 
     AND.W #$F000 
     XBA 
@@ -3706,8 +3480,7 @@ Draw4DigitHexValue:
     CLC 
     ADC.W #$0000 
     STA.B $12 
-    LDA.W #$0A00 
-    STA.B $26 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W $0E24 
     AND.W #$0F00 
     XBA 
@@ -3722,8 +3495,7 @@ Draw4DigitHexValue:
     CLC 
     ADC.W #$0000 
     STA.B $12 
-    LDA.W #$0A00 
-    STA.B $26 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W $0E24 
     AND.W #$00F0 
     LSR #4
@@ -3734,8 +3506,7 @@ Draw4DigitHexValue:
     CLC 
     ADC.W #$0018 
     STA.B $14 
-    LDA.W #$0A00 
-    STA.B $26 
+    LDA.W #$0A00 : STA.B $26 
     LDA.W $0E22 
     CLC 
     ADC.W #$0000 
@@ -3765,8 +3536,7 @@ Add_Debug_Spritemap_to_OAM:
     LDX.W $0590 
 
 .loop:
-    LDA.W $0000,Y 
-    STA.B $1A 
+    LDA.W $0000,Y : STA.B $1A 
     AND.W #$01FF 
     INY #2
     CLC 
@@ -6975,22 +6745,17 @@ Create_Sprite_Object:
 
 
 .found:
-    LDA.W #$0000 
-    STA.L $7EF078,X 
+    LDA.W #$0000 : STA.L $7EF078,X 
     STA.L $7EF178,X 
     STA.L $7EF278,X 
     STA.L $7EF2F8,X 
-    LDA.B $12 
-    STA.L $7EF0F8,X 
-    LDA.B $14 
-    STA.L $7EF1F8,X 
-    LDA.B $18 
-    STA.L $7EF078,X 
+    LDA.B $12 : STA.L $7EF0F8,X 
+    LDA.B $14 : STA.L $7EF1F8,X 
+    LDA.B $18 : STA.L $7EF078,X 
     LDA.B $16 
     ASL A 
     TAY 
-    LDA.W SpriteObject_DrawInst_Pointers,Y 
-    STA.L $7EEF78,X 
+    LDA.W SpriteObject_DrawInst_Pointers,Y : STA.L $7EEF78,X 
     PHX 
     TAX 
     LDA.L $B40000,X 
@@ -7070,15 +6835,13 @@ Instruction_SpriteObject_GoBack4Bytes:
     LDA.L $7EEF78,X 
     DEC #4
     STA.L $7EEF78,X 
-    LDA.W #$7FFF 
-    STA.L $7EEFF8,X 
+    LDA.W #$7FFF : STA.L $7EEFF8,X 
     RTS 
 
 
 Instruction_SpriteObject_Delete:
     LDX.W $1844 
-    LDA.W #$0000 
-    STA.L $7EEF78,X 
+    LDA.W #$0000 : STA.L $7EEF78,X 
     RTS 
 
 

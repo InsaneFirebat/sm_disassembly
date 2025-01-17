@@ -104,15 +104,13 @@ InstList_CommonAA_DeleteEnemy:
 NOPNOP_AA8069:
     NOP #2
     Instruction_CommonAA_Enemy0FB2_InY:
-    LDA.W $0000,Y 
-    STA.W $0FB2,X 
+    LDA.W $0000,Y : STA.W $0FB2,X 
     INY #2
     RTL 
 
 
 Instruction_CommonAA3_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_AA807B 
-    STA.W $0FB2,X 
+    LDA.W #RTS_AA807B : STA.W $0FB2,X 
     RTL 
 
 
@@ -130,8 +128,7 @@ Instruction_CommonAA_DeleteEnemy:
 
 
 Instruction_CommonAA_CallFunctionInY:
-    LDA.W $0000,Y 
-    STA.B $12 
+    LDA.W $0000,Y : STA.B $12 
     PHY 
     PHX 
     PEA.W .manualReturn-1 
@@ -146,8 +143,7 @@ Instruction_CommonAA_CallFunctionInY:
 
 
 Instruction_CommonAA_CallFunctionInY_WithA:
-    LDA.W $0000,Y 
-    STA.B $12 
+    LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
     PHY 
     PHX 
@@ -167,10 +163,8 @@ Instruction_CommonAA_CallFunctionInY_WithA:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonAA_CallExternalFunctionInY_AA80B5:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     PHX 
     PHY 
     JSL.L .externalFunction 
@@ -185,10 +179,8 @@ UNUSED_Instruction_CommonAA_CallExternalFunctionInY_AA80B5:
 
 
 UNUSED_Inst_CommonAA_CallExternalFunctionInY_WithA_AA80CE:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
     PHX 
     PHY 
@@ -256,8 +248,7 @@ Instruction_CommonAA_DecrementTimer_GotoY_PlusY_IfNonZero:
 
 
 Instruction_CommonAA_TimerInY:
-    LDA.W $0000,Y 
-    STA.W $0F90,X 
+    LDA.W $0000,Y : STA.W $0F90,X 
     INY #2
     RTL 
 
@@ -277,8 +268,7 @@ Instruction_CommonAA_Sleep:
 
 
 Instruction_CommonAA_WaitYFrames:
-    LDA.W $0000,Y 
-    STA.W $0F94,X 
+    LDA.W $0000,Y : STA.W $0F94,X 
     INY #2
     TYA 
     STA.W $0F92,X 
@@ -290,14 +280,10 @@ Instruction_CommonAA_WaitYFrames:
 Instruction_CommonAA_TransferYBytesInYToVRAM:
     PHX 
     LDX.W $0330 
-    LDA.W $0000,Y 
-    STA.B $D0,X 
-    LDA.W $0002,Y 
-    STA.B $D2,X 
-    LDA.W $0003,Y 
-    STA.B $D3,X 
-    LDA.W $0005,Y 
-    STA.B $D5,X 
+    LDA.W $0000,Y : STA.B $D0,X 
+    LDA.W $0002,Y : STA.B $D2,X 
+    LDA.W $0003,Y : STA.B $D3,X 
+    LDA.W $0005,Y : STA.B $D5,X 
     TXA 
     CLC 
     ADC.W #$0007 
@@ -5027,8 +5013,7 @@ TorizoMusicTracks_elevator:
     dw $0003 
 
 Instruction_Torizo_FunctionInY:
-    LDA.W $0000,Y 
-    STA.W $0FB0,X 
+    LDA.W $0000,Y : STA.W $0FB0,X 
     INY #2
     RTL 
 
@@ -6658,12 +6643,9 @@ MakeTorizoJumpForwards:
     LDA.W #$0200 
 
   + STA.W $0FA8,X 
-    LDA.W #$FA40 
-    STA.W $0FAA,X 
-    LDA.W #$0028 
-    STA.W $0FAC,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$FA40 : STA.W $0FAA,X 
+    LDA.W #$0028 : STA.W $0FAC,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTS 
 
 
@@ -6678,12 +6660,9 @@ MakeTorizoJumpBackwards:
     LDA.W #$FD00 
 
   + STA.W $0FA8,X 
-    LDA.W #$FB80 
-    STA.W $0FAA,X 
-    LDA.W #$0028 
-    STA.W $0FAC,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$FB80 : STA.W $0FAA,X 
+    LDA.W #$0028 : STA.W $0FAC,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTS 
 
 
@@ -6692,10 +6671,8 @@ LoadInitialBombTorizoPalettes:
     LDX.W #$001E 
 
 .loop:
-    LDA.W Palette_Torizo_InitialBombTorizo_SpritePalette2,X 
-    STA.L $7EC340,X 
-    LDA.W Palette_Torizo_InitialBombTorizo_SpritePalette1,X 
-    STA.L $7EC320,X 
+    LDA.W Palette_Torizo_InitialBombTorizo_SpritePalette2,X : STA.L $7EC340,X 
+    LDA.W Palette_Torizo_InitialBombTorizo_SpritePalette1,X : STA.L $7EC320,X 
     DEX #2
     BPL .loop 
     PLX 
@@ -6707,10 +6684,8 @@ LoadNormalTorizoTargetPalettes:
     LDX.W #$001E 
 
 .loop:
-    LDA.W Palette_Torizo_Normal_SpritePalette2,X 
-    STA.L $7EC340,X 
-    LDA.W Palette_Torizo_Normal_SpritePalette1,X 
-    STA.L $7EC320,X 
+    LDA.W Palette_Torizo_Normal_SpritePalette2,X : STA.L $7EC340,X 
+    LDA.W Palette_Torizo_Normal_SpritePalette1,X : STA.L $7EC320,X 
     DEX #2
     BPL .loop 
     PLX 
@@ -6722,10 +6697,8 @@ LoadInitialGoldenTorizoPalettes:
     LDX.W #$001E 
 
 .loop:
-    LDA.W Palette_Torizo_InitialGoldenTorizo_SpritePalette2,X 
-    STA.L $7EC340,X 
-    LDA.W Palette_Torizo_InitialGoldenTorizo_SpritePalette1,X 
-    STA.L $7EC320,X 
+    LDA.W Palette_Torizo_InitialGoldenTorizo_SpritePalette2,X : STA.L $7EC340,X 
+    LDA.W Palette_Torizo_InitialGoldenTorizo_SpritePalette1,X : STA.L $7EC320,X 
     DEX #2
     BPL .loop 
     PLX 
@@ -6737,10 +6710,8 @@ LoadGoldenTorizoPalettes:
     LDX.W #$001E 
 
 .loop:
-    LDA.W Palette_Torizo_GoldenTorizo_SpritePalette2,X 
-    STA.L $7EC340,X 
-    LDA.W Palette_Torizo_GoldenTorizo_SpritePalette1,X 
-    STA.L $7EC320,X 
+    LDA.W Palette_Torizo_GoldenTorizo_SpritePalette2,X : STA.L $7EC340,X 
+    LDA.W Palette_Torizo_GoldenTorizo_SpritePalette1,X : STA.L $7EC320,X 
     DEX #2
     BPL .loop 
     PLX 
@@ -6752,10 +6723,8 @@ LoadNormalTorizoPalettes:
     LDX.W #$001E 
 
 .loop:
-    LDA.W Palette_Torizo_Normal_SpritePalette2,X 
-    STA.L $7EC140,X 
-    LDA.W Palette_Torizo_Normal_SpritePalette1,X 
-    STA.L $7EC120,X 
+    LDA.W Palette_Torizo_Normal_SpritePalette2,X : STA.L $7EC140,X 
+    LDA.W Palette_Torizo_Normal_SpritePalette1,X : STA.L $7EC120,X 
     DEX #2
     BPL .loop 
     PLX 
@@ -6767,14 +6736,12 @@ RTL_AAC2C8:
 
 
 Instruction_Torizo_SetAnimationLock:
-    LDA.W #$7777 
-    STA.L $7E7808,X 
+    LDA.W #$7777 : STA.L $7E7808,X 
     RTL 
 
 
 Instruction_Torizo_ClearAnimationLock:
-    LDA.W #$0000 
-    STA.L $7E7808,X 
+    LDA.W #$0000 : STA.L $7E7808,X 
     RTL 
 
 
@@ -6795,8 +6762,7 @@ Instruction_Torizo_GotoY_IfFaceBlownUp_ElseGotoY2_IfGolden:
 
 
 Instruction_Torizo_LinkInstructionInY:
-    LDA.W $0000,Y 
-    STA.L $7E7800,X 
+    LDA.W $0000,Y : STA.L $7E7800,X 
     INY #2
     RTL 
 
@@ -6832,8 +6798,7 @@ Instruction_Torizo_Spawn5LowHealthExplosion_SleepFor28Frames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0028 
-    STA.W $0F9C,X 
+    LDA.W #$0028 : STA.W $0F9C,X 
     STA.W $0F94,X 
     PLA 
     PEA.W ProcessEnemyInstructions_return-1 
@@ -6847,8 +6812,7 @@ Instruction_Torizo_SpawnTorizoDeathExplosion_SleepFor1IFrame:
     PLY 
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F9C,X 
+    LDA.W #$0001 : STA.W $0F9C,X 
     STA.W $0F94,X 
     PLA 
     PEA.W ProcessEnemyInstructions_return-1 
@@ -6987,14 +6951,12 @@ Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY:
     STZ.B $12 
     LDA.W $0000,Y 
     TAY 
-    LDA.W .velocities,Y 
-    STA.B $14 
+    LDA.W .velocities,Y : STA.B $14 
     STA.W $0FA8,X 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     PLY 
     BCC .noCollision 
-    LDA.W #$0000 
-    STA.L $7E7806,X 
+    LDA.W #$0000 : STA.L $7E7806,X 
     LDA.W $0FB4,X 
     BMI .turningLeft 
     LDY.W #InstList_Torizo_FacingRight_TurningRight 
@@ -7020,8 +6982,7 @@ Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY:
 .facingAway:
     LDA.L $7E7806,X 
     BNE .return 
-    LDA.W #$0048 
-    STA.L $7E7806,X 
+    LDA.W #$0048 : STA.L $7E7806,X 
 
 .return:
     INY #2
@@ -7038,14 +6999,12 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
     STZ.B $12 
     LDA.W $0000,Y 
     TAY 
-    LDA.W .velocities,Y 
-    STA.B $14 
+    LDA.W .velocities,Y : STA.B $14 
     STA.W $0FA8,X 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     PLY 
     BCC .noCollision 
-    LDA.W #$0000 
-    STA.L $7E7806,X 
+    LDA.W #$0000 : STA.L $7E7806,X 
     LDA.W $0FB4,X 
     BMI .turningLeft 
     LDY.W #InstList_Torizo_FacingRight_Faceless_TurningRight 
@@ -7071,8 +7030,7 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
 .facingAway:
     LDA.L $7E7806,X 
     BNE .return 
-    LDA.W #$0048 
-    STA.L $7E7806,X 
+    LDA.W #$0048 : STA.L $7E7806,X 
 
 .return:
     INY #2
@@ -7265,12 +7223,9 @@ HandleFalling:
     BMI .return 
     CMP.W #$0100 
     BEQ .return 
-    LDA.W #$0004 
-    STA.W $183E 
-    LDA.W #$0020 
-    STA.W $1840 
-    LDA.W #$0100 
-    STA.W $0FAA,X 
+    LDA.W #$0004 : STA.W $183E 
+    LDA.W #$0020 : STA.W $1840 
+    LDA.W #$0100 : STA.W $0FAA,X 
 
 .return:
     RTS 
@@ -7291,8 +7246,7 @@ HurtAI_BombTorizo:
     LDX.W #$001E 
 
 .loop:
-    LDA.W #$7FFF 
-    STA.L $7EC140,X 
+    LDA.W #$7FFF : STA.L $7EC140,X 
     STA.L $7EC120,X 
     DEX #2
     BPL .loop 
@@ -7318,8 +7272,7 @@ UNUSED_Torizo_AAC6AC:
     LDA.W #$0600 
     JSL.L Advance_GradualColorChange_ofPalettesInA_Denominator_C 
     BCS .return 
-    LDA.W #RTS_AAC6AB 
-    STA.W $0FB0,X 
+    LDA.W #RTS_AAC6AB : STA.W $0FB0,X 
 
 .return:
     RTS 
@@ -7353,8 +7306,7 @@ Function_Torizo_WakeWhenBombTorizoChozoFinishesCrumbling:
     STA.W $0F86,X 
     INC.W $0F92,X 
     INC.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTS 
 
 
@@ -7370,12 +7322,9 @@ Function_Torizo_NormalMovement:
     LDA.W $0F8C,X 
     CMP.W #$015E 
     BCS .notLowHealth 
-    LDA.W $0F92,X 
-    STA.L $7E7802,X 
-    LDA.W #InstList_Torizo_SpecialCallable_BlowUpBombTorizosGut 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W $0F92,X : STA.L $7E7802,X 
+    LDA.W #InstList_Torizo_SpecialCallable_BlowUpBombTorizosGut : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTS 
 
 
@@ -7395,10 +7344,8 @@ Function_Torizo_NormalMovement:
     LDA.W #InstList_Torizo_FacingLeft_Faceless_TurningLeft 
 
   + STA.L $7E7800,X 
-    LDA.W #InstList_Torizo_Callable_BlowUpBombTorizosFace 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #InstList_Torizo_Callable_BlowUpBombTorizosFace : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTS 
 
 
@@ -7419,8 +7366,7 @@ Function_Torizo_Movement_Walking:
     DEC A 
     STA.L $7E7806,X 
     BNE .notTurning 
-    LDA.W #$0000 
-    STA.L $7E7806,X 
+    LDA.W #$0000 : STA.L $7E7806,X 
     LDA.W $0FB4,X 
     BMI .facingRight 
     LDA.W #InstList_Torizo_FacingRight_TurningRight 
@@ -7431,8 +7377,7 @@ Function_Torizo_Movement_Walking:
     LDA.W #InstList_Torizo_FacingLeft_TurningLeft 
 
   + STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTS 
 
 
@@ -7461,10 +7406,8 @@ Function_Torizo_Movement_Walking:
     LDA.W #InstList_Torizo_FacingRight_Falling_0 
 
   + STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #$0100 
-    STA.W $0FAA,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #$0100 : STA.W $0FAA,X 
     STZ.W $0FA8,X 
 
 .returnUpper:
@@ -7477,8 +7420,7 @@ Function_Torizo_Movement_Walking:
     DEC A 
     STA.L $7E7806,X 
     BNE .facelessNotTurning 
-    LDA.W #$0000 
-    STA.L $7E7806,X 
+    LDA.W #$0000 : STA.L $7E7806,X 
     LDA.W $0FB4,X 
     BMI ..facingRight 
     LDA.W #InstList_Torizo_FacingRight_Faceless_TurningRight 
@@ -7489,8 +7431,7 @@ Function_Torizo_Movement_Walking:
     LDA.W #InstList_Torizo_FacingLeft_Faceless_TurningLeft 
 
   + STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTS 
 
 
@@ -7519,10 +7460,8 @@ Function_Torizo_Movement_Walking:
     LDA.W #InstList_Torizo_FacingRight_Falling_0 
 
   + STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #$0100 
-    STA.W $0FAA,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #$0100 : STA.W $0FAA,X 
     STZ.W $0FA8,X 
 
 .returnLower:
@@ -7561,16 +7500,11 @@ Function_Torizo_Movement_Jumping_Falling:
 
 
 .collision:
-    LDA.L $7E7800,X 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #$0100 
-    STA.W $0FAA,X 
-    LDA.W #$0004 
-    STA.W $183E 
-    LDA.W #$0020 
-    STA.W $1840 
+    LDA.L $7E7800,X : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #$0100 : STA.W $0FAA,X 
+    LDA.W #$0004 : STA.W $183E 
+    LDA.W #$0020 : STA.W $1840 
     RTS 
 
 
@@ -7594,36 +7528,24 @@ InitAI_Torizo:
     LDA.W $0F88,X 
     ORA.W #$0004 
     STA.W $0F88,X 
-    LDA.W TorizoInitial_XRadius,Y 
-    STA.W $0F82,X 
-    LDA.W TorizoInitial_YRadius,Y 
-    STA.W $0F84,X 
-    LDA.W #Function_Torizo_SimpleMovement 
-    STA.W $0FB0,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W TorizoInitial_XRadius,Y : STA.W $0F82,X 
+    LDA.W TorizoInitial_YRadius,Y : STA.W $0F84,X 
+    LDA.W #Function_Torizo_SimpleMovement : STA.W $0FB0,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     STZ.W $0F96,X 
-    LDA.W #RTS_AAC95E 
-    STA.W $0FB2,X 
-    LDA.W TorizoInitial_instListPointer,Y 
-    STA.W $0F92,X 
-    LDA.W #ExtendedSpritemap_Torizo_Blank 
-    STA.W $0F8E,X 
-    LDA.W TorizoInitial_XPosition,Y 
-    STA.W $0F7A,X 
-    LDA.W TorizoInitial_YPosition,Y 
-    STA.W $0F7E,X 
+    LDA.W #RTS_AAC95E : STA.W $0FB2,X 
+    LDA.W TorizoInitial_instListPointer,Y : STA.W $0F92,X 
+    LDA.W #ExtendedSpritemap_Torizo_Blank : STA.W $0F8E,X 
+    LDA.W TorizoInitial_XPosition,Y : STA.W $0F7A,X 
+    LDA.W TorizoInitial_YPosition,Y : STA.W $0F7E,X 
     STZ.W $0FA8,X 
-    LDA.W #$0100 
-    STA.W $0FAA,X 
+    LDA.W #$0100 : STA.W $0FAA,X 
     LDX.W #$001E 
 
 .loopTargetPalettes:
-    LDA.W Palette_Torizo_BombTorizoStatue,X 
-    STA.L $7EC3E0,X 
-    LDA.W Palette_Torizo_OrbProjectile,X 
-    STA.L $7EC360,X 
+    LDA.W Palette_Torizo_BombTorizoStatue,X : STA.L $7EC3E0,X 
+    LDA.W Palette_Torizo_OrbProjectile,X : STA.L $7EC360,X 
     DEX #2
     BPL .loopTargetPalettes 
     LDA.W $079F 
@@ -7638,26 +7560,19 @@ InitAI_Torizo:
     LDA.B $8B 
     CMP.W #$C0C0 ; ABXY inputs
     BNE .return 
-    LDA.W #$02BC 
-    STA.W $09C2 
+    LDA.W #$02BC : STA.W $09C2 
     STA.W $09C4 
-    LDA.W #$012C 
-    STA.W $09D4 
+    LDA.W #$012C : STA.W $09D4 
     STA.W $09D6 
-    LDA.W #$0064 
-    STA.W $09C6 
+    LDA.W #$0064 : STA.W $09C6 
     STA.W $09C8 
-    LDA.W #$0014 
-    STA.W $09CA 
+    LDA.W #$0014 : STA.W $09CA 
     STA.W $09CC 
-    LDA.W #$0014 
-    STA.W $09CE 
+    LDA.W #$0014 : STA.W $09CE 
     STA.W $09D0 
-    LDA.W #$F337 
-    STA.W $09A2 
+    LDA.W #$F337 : STA.W $09A2 
     STA.W $09A4 
-    LDA.W #$100F 
-    STA.W $09A6 
+    LDA.W #$100F : STA.W $09A6 
     STA.W $09A8 
 
 .return:
@@ -7707,12 +7622,9 @@ EnemyShot_Torizo_Normal:
     LDX.W $0E54 
     LDA.W $0F8C,X 
     BNE .return 
-    LDA.W #RTS_AAC6AB 
-    STA.W $0FB0,X 
-    LDA.W #InstList_Torizo_DeathSequence_0 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #RTS_AAC6AB : STA.W $0FB0,X 
+    LDA.W #InstList_Torizo_DeathSequence_0 : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     LDA.W $0FB6,X 
     ORA.W #$C000 
     STA.W $0FB6,X 
@@ -7879,10 +7791,8 @@ Instruction_Torizo_LoadGoldenTorizoPalettes:
 Inst_Torizo_StartFightMusic_GoldenTorizoBellyPaletteFX:
     LDA.W #$0005 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$0012 
-    STA.W $0F82,X 
-    LDA.W #$0030 
-    STA.W $0F84,X 
+    LDA.W #$0012 : STA.W $0F82,X 
+    LDA.W #$0030 : STA.W $0F84,X 
     PHY 
     LDY.W #PaletteFXObjects_GoldenTorizoBelly 
     JSL.L Spawn_PaletteFXObject 
@@ -9019,8 +8929,7 @@ MainAI_GoldenTorizo:
     BEQ .spaceJump 
     CMP.W #$001C 
     BEQ .spaceJump 
-    LDA.W #$0000 
-    STA.L $7E780E,X 
+    LDA.W #$0000 : STA.L $7E780E,X 
     BRA .executeFunction 
 
 
@@ -9081,8 +8990,7 @@ HurtAI_GoldenTorizo:
     LDX.W #$001E 
 
 .loopPalettes:
-    LDA.W #$7FFF 
-    STA.L $7EC140,X 
+    LDA.W #$7FFF : STA.L $7EC140,X 
     STA.L $7EC120,X 
     DEX #2
     BPL .loopPalettes 
@@ -9126,8 +9034,7 @@ Instruction_GoldenTorizo_GotoY_IfSamusIsMorphedBehindTorizo:
     BNE .noGo 
 
 .gotoY:
-    LDA.W #$0000 
-    STA.L $7E7812,X 
+    LDA.W #$0000 : STA.L $7E7812,X 
     LDA.W $0000,Y 
     TAY 
     RTL 
@@ -9180,8 +9087,7 @@ Instruction_GoldenTorizo_CallY_25Chance_IfHealthLessThan789:
     JSL.L GenerateRandomNumber 
     AND.W #$0102 
     BNE .noGo 
-    LDA.W #$0000 
-    STA.L $7E7812,X 
+    LDA.W #$0000 : STA.L $7E7812,X 
     TYA 
     INC #2
     STA.L $7E7800,X 
@@ -9232,8 +9138,7 @@ Instruction_GoldenTorizo_GotoY_JumpForwards_IfAtLeast70Pixel:
     BEQ .noGo 
 
 .jump:
-    LDA.W #$0000 
-    STA.L $7E7812,X 
+    LDA.W #$0000 : STA.L $7E7812,X 
     JSR.W MakeTorizoJumpForwards 
     LDA.W $0000,Y 
     TAY 
@@ -9264,8 +9169,7 @@ Instruction_GoldenTorizo_GotoY_JumpBack_IfLessThan20Pixels:
     BMI .noGo 
 
 .jump:
-    LDA.W #$0000 
-    STA.L $7E7812,X 
+    LDA.W #$0000 : STA.L $7E7812,X 
     JSR.W MakeTorizoJumpBackwards 
     LDA.W $0000,Y 
     TAY 
@@ -9308,14 +9212,12 @@ Instruction_GoldenTorizo_WalkingMovement_IndexInY:
     STZ.B $12 
     LDA.W $0000,Y 
     TAY 
-    LDA.W .velocities,Y 
-    STA.B $14 
+    LDA.W .velocities,Y : STA.B $14 
     STA.W $0FA8,X 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     PLY 
     BCC .noCollision 
-    LDA.W #$0000 
-    STA.L $7E7806,X 
+    LDA.W #$0000 : STA.L $7E7806,X 
     LDA.W $0FB4,X 
     BMI .facingRight 
     LDY.W #InstList_GoldenTorizo_TurningRight 
@@ -9341,8 +9243,7 @@ Instruction_GoldenTorizo_WalkingMovement_IndexInY:
 .facingAway:
     LDA.L $7E7806,X 
     BNE .return 
-    LDA.W #$0010 
-    STA.L $7E7806,X 
+    LDA.W #$0010 : STA.L $7E7806,X 
 
 .return:
     INY #2
@@ -9363,8 +9264,7 @@ Function_GoldenTorizo_WakeIfSamusIsBelowAndRightOfTargetPos:
     BCS .return 
     INC.W $0F92,X 
     INC.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
 
 .return:
     RTS 
@@ -9393,8 +9293,7 @@ Function_GoldenTorizo_Movement_Walking:
     DEC A 
     STA.L $7E7806,X 
     BNE .notTurning 
-    LDA.W #$0000 
-    STA.L $7E7806,X 
+    LDA.W #$0000 : STA.L $7E7806,X 
     LDA.W $0FB4,X 
     BMI .facingRight 
     LDA.W #InstList_GoldenTorizo_TurningRight 
@@ -9405,8 +9304,7 @@ Function_GoldenTorizo_Movement_Walking:
     LDA.W #InstList_GoldenTorizo_TurningLeft 
 
   + STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTS 
 
 
@@ -9435,10 +9333,8 @@ Function_GoldenTorizo_Movement_Walking:
     LDA.W #InstList_Torizo_FacingRight_Falling_0 
 
   + STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #$0100 
-    STA.W $0FAA,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #$0100 : STA.W $0FAA,X 
     STZ.W $0FA8,X 
 
 .return:
@@ -9498,10 +9394,8 @@ ShotReaction_GoldenTorizo_Damaged:
     LDX.W $0E54 
     LDA.W $0F8C,X 
     BNE .return 
-    LDA.W #InstList_Torizo_DeathSequence_0 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #InstList_Torizo_DeathSequence_0 : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     LDA.W $0FB6,X 
     ORA.W #$C000 
     STA.W $0FB6,X 
@@ -9517,10 +9411,8 @@ ShotReaction_GoldenTorizo_Normal_Missile:
     LDA.W $0C04,Y 
     AND.W #$FFEF 
     STA.W $0C04,Y 
-    LDA.W #RTS_AAC6AB 
-    STA.W $0FB0,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #RTS_AAC6AB : STA.W $0FB0,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     BIT.W $0FB4,X 
     BMI .keepRight 
     LDA.W #InstList_GoldenTorizo_Dodge_TurningLeft 
@@ -9544,13 +9436,11 @@ ShotReaction_GoldenTorizo_Normal_SuperMissile:
     LDA.W $0FB6,X 
     ORA.W #$1000 
     STA.W $0FB6,X 
-    LDA.W #RTS_AAC6AB 
-    STA.W $0FB0,X 
+    LDA.W #RTS_AAC6AB : STA.W $0FB0,X 
     LDA.W $0C04,Y 
     ORA.W #$0010 
     STA.W $0C04,Y 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     LDA.W $0FB4,X 
     BIT.W #$2000 
     BNE .backgroundLegForward 
@@ -9627,12 +9517,10 @@ MainAI_TourianStatue:
 InitAI_TourianStatue:
     LDX.W $0E54 
     STZ.W $0F96,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDY.W $0FB4,X 
-    LDA.W .pointers,Y 
-    STA.W $0F92,X 
+    LDA.W .pointers,Y : STA.W $0F92,X 
     LDY.W $0FB4,X 
     BNE .nonZeroParam1 
     LDY.W #EnemyProjectile_TourianStatueBaseDecoration 
@@ -9646,10 +9534,8 @@ InitAI_TourianStatue:
     LDX.W #$001E 
 
 .loopPalettes:
-    LDA.W Palettes_TourianStatue_BaseDecoration,X 
-    STA.L $7EC3E0,X 
-    LDA.W Palettes_TourianStatue_Phantoon,X 
-    STA.L $7EC340,X 
+    LDA.W Palettes_TourianStatue_BaseDecoration,X : STA.L $7EC3E0,X 
+    LDA.W Palettes_TourianStatue_Phantoon,X : STA.L $7EC340,X 
     DEX #2
     BPL .loopPalettes 
     RTL 
@@ -9856,20 +9742,13 @@ RTL_AAD99F:
 Instruction_Shaktool_ResetShaktoolFunctions:
     PHY 
     LDY.W $0FB0,X 
-    LDA.W ShaktoolPieceData_functionPointer 
-    STA.W $0FB2,Y 
-    LDA.W ShaktoolPieceData_functionPointer_rightArm 
-    STA.W $0FF2,Y 
-    LDA.W ShaktoolPieceData_functionPointer_centerRightArm 
-    STA.W $1032,Y 
-    LDA.W ShaktoolPieceData_functionPointer_head 
-    STA.W $1072,Y 
-    LDA.W ShaktoolPieceData_functionPointer_centerLeftArm 
-    STA.W $10B2,Y 
-    LDA.W ShaktoolPieceData_functionPointer_leftArm 
-    STA.W $10F2,Y 
-    LDA.W ShaktoolPieceData_functionPointer_leftSaw 
-    STA.W $1132,Y 
+    LDA.W ShaktoolPieceData_functionPointer : STA.W $0FB2,Y 
+    LDA.W ShaktoolPieceData_functionPointer_rightArm : STA.W $0FF2,Y 
+    LDA.W ShaktoolPieceData_functionPointer_centerRightArm : STA.W $1032,Y 
+    LDA.W ShaktoolPieceData_functionPointer_head : STA.W $1072,Y 
+    LDA.W ShaktoolPieceData_functionPointer_centerLeftArm : STA.W $10B2,Y 
+    LDA.W ShaktoolPieceData_functionPointer_leftArm : STA.W $10F2,Y 
+    LDA.W ShaktoolPieceData_functionPointer_leftSaw : STA.W $1132,Y 
     PLY 
     RTL 
 
@@ -10050,12 +9929,9 @@ RTS_AADAE4:
     LDY.W #$000C 
 
 .loop:
-    LDA.W #RTS_AADCAA 
-    STA.W $0FB2,X 
-    LDA.W ShaktoolPieceData_unusedAttackInstListPointer,Y 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #RTS_AADCAA : STA.W $0FB2,X 
+    LDA.W ShaktoolPieceData_unusedAttackInstListPointer,Y : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     TXA 
     SEC 
     SBC.W #$0040 
@@ -10136,28 +10012,23 @@ FlipShaktool:
     AND.W #$FF00 
     STA.W $106A,Y 
     LDX.W $10FC,Y 
-    LDA.W $0F7C,Y 
-    STA.W $10FC,Y 
+    LDA.W $0F7C,Y : STA.W $10FC,Y 
     TXA 
     STA.W $0F7C,Y 
     LDX.W $1100,Y 
-    LDA.W $0F80,Y 
-    STA.W $1100,Y 
+    LDA.W $0F80,Y : STA.W $1100,Y 
     TXA 
     STA.W $0F80,Y 
     LDX.W $10FA,Y 
-    LDA.W $0F7A,Y 
-    STA.W $10FA,Y 
+    LDA.W $0F7A,Y : STA.W $10FA,Y 
     TXA 
     STA.W $0F7A,Y 
     LDX.W $10FE,Y 
-    LDA.W $0F7E,Y 
-    STA.W $10FE,Y 
+    LDA.W $0F7E,Y : STA.W $10FE,Y 
     TXA 
     STA.W $0F7E,Y 
     TYX 
-    LDA.W #$8000 
-    STA.W $0FBC,X 
+    LDA.W #$8000 : STA.W $0FBC,X 
     STA.W $0FFC,X 
     STA.W $103C,X 
     STA.W $107C,X 
@@ -10233,20 +10104,13 @@ SetShaktoolPiecesNeighborAngleAndAngleDeltaForCurling:
     LDA.W $0FA8,X 
     JSR.W ShaktoolPiecesNeighborAngleInA 
     LDY.W $0FB0,X 
-    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta 
-    STA.W $0FAC,Y 
-    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_rightArm 
-    STA.W $0FEC,Y 
-    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_centerRightArm 
-    STA.W $102C,Y 
-    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_head 
-    STA.W $106C,Y 
-    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_centerLeftArm 
-    STA.W $10AC,Y 
-    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_leftArm 
-    STA.W $10EC,Y 
-    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_leftSaw 
-    STA.W $112C,Y 
+    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta : STA.W $0FAC,Y 
+    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_rightArm : STA.W $0FEC,Y 
+    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_centerRightArm : STA.W $102C,Y 
+    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_head : STA.W $106C,Y 
+    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_centerLeftArm : STA.W $10AC,Y 
+    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_leftArm : STA.W $10EC,Y 
+    LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta_leftSaw : STA.W $112C,Y 
     RTS 
 
 
@@ -10315,10 +10179,8 @@ Function_Shaktool_Head:
     REP #$20 
     LSR #4
     TAY 
-    LDA.W .pointers,Y 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W .pointers,Y : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTS 
 
 
@@ -10342,10 +10204,8 @@ Function_Shaktool_FinalPiece:
     PHA 
     LDA.W $0F7A,X 
     PHA 
-    LDA.B $05,S 
-    STA.W $0F7A,X 
-    LDA.B $07,S 
-    STA.W $0F7E,X 
+    LDA.B $05,S : STA.W $0F7A,X 
+    LDA.B $07,S : STA.W $0F7E,X 
     STZ.B $12 
     LDA.B $01,S 
     SEC 
@@ -10353,8 +10213,7 @@ Function_Shaktool_FinalPiece:
     STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCS .collision 
-    LDA.B $07,S 
-    STA.W $0F7E,X 
+    LDA.B $07,S : STA.W $0F7E,X 
     STZ.B $12 
     LDA.B $03,S 
     SEC 
@@ -10383,8 +10242,7 @@ Function_Shaktool_FinalPiece:
     AND.W #$FF00 
     BNE + 
     JSR.W SetShaktoolPiecesNeighborAngleAndAngleDeltaForCurling 
-    LDA.W #$7800 
-    STA.W $0FAE,X 
+    LDA.W #$7800 : STA.W $0FAE,X 
     LDA.W $0FB4,X 
     AND.W #$DFFF 
     JSR.W ShaktoolPiecesMovementOptionsInA 
@@ -10460,12 +10318,9 @@ Function_Shaktool_FinalPiece:
 
 .loop:
     JSR.W SetSHaktoolPieceNeighborAngleDeltaDueToBlockCollision 
-    LDA.W #RTS_AADCAA 
-    STA.W $0FB2,X 
-    LDA.W ShaktoolPieceData_headBobInstListPointer,Y 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #RTS_AADCAA : STA.W $0FB2,X 
+    LDA.W ShaktoolPieceData_headBobInstListPointer,Y : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     TXA 
     SEC 
     SBC.W #$0040 
@@ -10477,11 +10332,9 @@ Function_Shaktool_FinalPiece:
 
 InitAI_Shaktool:
     LDX.W $0E54 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #$0000 
-    STA.W $0FA8,X 
+    LDA.W #$0000 : STA.W $0FA8,X 
     STA.W $0FAE,X 
     LDY.W $0FB6,X 
     LDA.W $0F86,X 
@@ -10491,18 +10344,14 @@ InitAI_Shaktool:
     SEC 
     SBC.W ShaktoolPieceData_RAMOffset,Y 
     STA.W $0FB0,X 
-    LDA.W ShaktoolPieceData_functionPointer,Y 
-    STA.W $0FB2,X 
+    LDA.W ShaktoolPieceData_functionPointer,Y : STA.W $0FB2,X 
     LDA.W ShaktoolPieceData_initialCurlingNeighborAngleDelta,Y 
     SEC 
     SBC.W ShaktoolPieceData_zero,Y 
     STA.W $0FAC,X 
-    LDA.W ShaktoolPieceData_initialNeighborAngle,Y 
-    STA.W $0FAA,X 
-    LDA.W ShaktoolPieceData_initialInstListPointer,Y 
-    STA.W $0F92,X 
-    LDA.W ShaktoolPieceData_layerControl,Y 
-    STA.W $0F9A,X 
+    LDA.W ShaktoolPieceData_initialNeighborAngle,Y : STA.W $0FAA,X 
+    LDA.W ShaktoolPieceData_initialInstListPointer,Y : STA.W $0F92,X 
+    LDA.W ShaktoolPieceData_layerControl,Y : STA.W $0F9A,X 
     TYA 
     BEQ .return 
     JSR.W PositionShaktoolPieceRelativeToPreviousPiece 
@@ -10611,8 +10460,7 @@ EnemyShot_Shaktool:
     LDA.W $0F8C,X 
     BNE .return 
     LDY.W $0FB0,X 
-    LDA.W #$0200 
-    STA.W $0F86,Y 
+    LDA.W #$0200 : STA.W $0F86,Y 
     STA.W $0FC6,Y 
     STA.W $1006,Y 
     STA.W $1046,Y 
@@ -10894,16 +10742,13 @@ InstList_Chozo_LowerNorfair_Activated_1:
     dw Instruction_Common_Sleep 
 
 Instruction_Chozo_StartLoweringAcid:
-    LDA.W #$0020 
-    STA.W $1980 
-    LDA.W #$0040 
-    STA.W $197C 
+    LDA.W #$0020 : STA.W $1980 
+    LDA.W #$0040 : STA.W $197C 
     RTL 
 
 
 Instruction_Chozo_SetLoweredAcidPosition:
-    LDA.W #$02D2 
-    STA.W $1978 
+    LDA.W #$02D2 : STA.W $1978 
     RTL 
 
 
@@ -10916,10 +10761,8 @@ Instruction_Chozo_UnlockSamus:
 Function_Chozo_LowerNorfair:
     LDA.W $0FB4,X 
     BEQ .return 
-    LDA.W #InstList_Chozo_LowerNorfair_Activated_0 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #InstList_Chozo_LowerNorfair_Activated_0 : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
 
 .return:
     RTS 
@@ -11114,8 +10957,7 @@ Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
 
 
 Instruction_Chozo_Movement_IndexInY:
-    LDA.W $0000,Y 
-    STA.W $0FAC,X 
+    LDA.W $0000,Y : STA.W $0FAC,X 
     PHY 
     STZ.B $12 
     STZ.B $14 
@@ -11181,12 +11023,10 @@ Instruction_Chozo_Movement_IndexInY:
 Instruction_Chozo_ReleaseSamus_BlockSlopeAccess:
     LDA.W #$0001 
     JSL.L Run_Samus_Command 
-    LDA.W #$0000 
-    STA.L $7ECD26 
+    LDA.W #$0000 : STA.L $7ECD26 
     STA.L $7ECD28 
     STA.L $7ECD29 
-    LDA.W #$0001 
-    STA.L $7ECD2D 
+    LDA.W #$0001 : STA.L $7ECD2D 
     JSL.L Spawn_Hardcoded_PLM 
     db $17,$1D 
     dw PLMEntries_BlockSlopeAccessForWreckedShipChozo 
@@ -11197,8 +11037,7 @@ InitAI_NoobTubeCrack:
     LDX.W #$003E 
 
 .loop:
-    LDA.W Palette_NoobTubeCrack_SpritePalette1,X 
-    STA.L $7EC320,X 
+    LDA.W Palette_NoobTubeCrack_SpritePalette1,X : STA.L $7EC320,X 
     DEX #2
     BPL .loop 
     RTL 
@@ -11209,29 +11048,22 @@ InitAI_Chozo:
     LDA.W $0F86,X 
     ORA.W #$A800 
     STA.W $0F86,X 
-    LDA.W #Spritemap_CommonAA_Nothing 
-    STA.W $0F8E,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #Spritemap_CommonAA_Nothing : STA.W $0F8E,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #RTS_AAE7A6 
-    STA.W $0FB2,X 
-    LDA.W #$0000 
-    STA.W $0FB4,X 
+    LDA.W #RTS_AAE7A6 : STA.W $0FB2,X 
+    LDA.W #$0000 : STA.W $0FB4,X 
     STZ.W $0F96,X 
     STZ.W $0F9A 
     LDY.W $0FB6,X 
-    LDA.W .instListPointers,Y 
-    STA.W $0F92,X 
+    LDA.W .instListPointers,Y : STA.W $0F92,X 
     TYA 
     BNE .lowerNorfair 
     LDX.W #$001E 
 
 .loopWreckedShip:
-    LDA.W Palette_Chozo_WreckedShip_SpritePalette2,X 
-    STA.L $7EC340,X 
-    LDA.W Palette_Chozo_WreckedShip_SpritePalette1,X 
-    STA.L $7EC320,X 
+    LDA.W Palette_Chozo_WreckedShip_SpritePalette2,X : STA.L $7EC340,X 
+    LDA.W Palette_Chozo_WreckedShip_SpritePalette1,X : STA.L $7EC320,X 
     DEX #2
     BPL .loopWreckedShip 
     JSL.L Spawn_Hardcoded_PLM 
@@ -11247,10 +11079,8 @@ InitAI_Chozo:
     LDX.W #$001E 
 
 .loop:
-    LDA.W Palette_Chozo_LowerNorfair_SpritePalette2,X 
-    STA.L $7EC340,X 
-    LDA.W Palette_Chozo_LowerNorfair_SpritePalette1,X 
-    STA.L $7EC320,X 
+    LDA.W Palette_Chozo_LowerNorfair_SpritePalette2,X : STA.L $7EC340,X 
+    LDA.W Palette_Chozo_LowerNorfair_SpritePalette1,X : STA.L $7EC320,X 
     DEX #2
     BPL .loop 
     JSL.L Spawn_Hardcoded_PLM 
@@ -11282,14 +11112,10 @@ Function_Chozo_WreckedShip:
     BEQ .return 
     LDA.W $0FB4,X 
     BEQ .return 
-    LDA.W #InstList_Chozo_WreckedShip_Activated_0 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #$FF00 
-    STA.W $0FA8,X 
-    LDA.W #$0100 
-    STA.W $0FAA,X 
+    LDA.W #InstList_Chozo_WreckedShip_Activated_0 : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #$FF00 : STA.W $0FA8,X 
+    LDA.W #$0100 : STA.W $0FAA,X 
 
 .return:
     RTS 

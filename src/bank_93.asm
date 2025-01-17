@@ -43,8 +43,7 @@ InitializeProjectile:
     TAY 
 
 .merge:
-    LDA.W $0000,Y 
-    STA.W $0C2C,X 
+    LDA.W $0000,Y : STA.W $0C2C,X 
     BPL .dontCrash 
     JML.L Crash_Handler 
 
@@ -55,8 +54,7 @@ InitializeProjectile:
     CLC 
     ADC.B $12 
     TAY 
-    LDA.W $0000,Y 
-    STA.W $0C40,X 
+    LDA.W $0000,Y : STA.W $0C40,X 
     TAY 
     LDA.W $0004,Y 
     AND.W #$00FF 
@@ -64,8 +62,7 @@ InitializeProjectile:
     LDA.W $0005,Y 
     AND.W #$00FF 
     STA.W $0BC8,X 
-    LDA.W #$0001 
-    STA.W $0C54,X 
+    LDA.W #$0001 : STA.W $0C54,X 
     PLB 
     PLP 
     RTL 
@@ -83,18 +80,15 @@ InitializeSuperMissileLink:
     TAY 
     LDA.W SamusProjectileDataPointers_SuperMissileLink,Y 
     TAY 
-    LDA.W $0000,Y 
-    STA.W $0C2C,X 
+    LDA.W $0000,Y : STA.W $0C2C,X 
     BPL .dontCrash 
     JML.L Crash_Handler 
 
 
 .dontCrash:
     INY #2
-    LDA.W $0000,Y 
-    STA.W $0C40,X 
-    LDA.W #$0001 
-    STA.W $0C54,X 
+    LDA.W $0000,Y : STA.W $0C40,X 
+    LDA.W #$0001 : STA.W $0C54,X 
     PLB 
     PLP 
     RTL 
@@ -112,18 +106,15 @@ InitializeBomb:
     TAY 
     LDA.W SamusProjectileDataPointers_NonBeam,Y 
     TAY 
-    LDA.W $0000,Y 
-    STA.W $0C2C,X 
+    LDA.W $0000,Y : STA.W $0C2C,X 
     BPL .dontCrash 
     JML.L Crash_Handler 
 
 
 .dontCrash:
     INY #2
-    LDA.W $0000,Y 
-    STA.W $0C40,X 
-    LDA.W #$0001 
-    STA.W $0C54,X 
+    LDA.W $0000,Y : STA.W $0C40,X 
+    LDA.W #$0001 : STA.W $0C54,X 
     PLB 
     PLP 
     RTL 
@@ -142,8 +133,7 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
     AND.W #$F0FF 
     ORA.W #$0700 
     STA.W $0C18,X 
-    LDA.W ProjectileDataTable_NonBeam_BeamExplosion_pointer 
-    STA.W $0C40,X 
+    LDA.W ProjectileDataTable_NonBeam_BeamExplosion_pointer : STA.W $0C40,X 
     LDA.W #$000C 
     JSL.L QueueSound_Lib2_Max6 
     BRA .return 
@@ -164,31 +154,24 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
     PLA 
     BIT.W #$0200 
     BNE .superMissile 
-    LDA.W ProjectileDataTable_NonBeam_MissileExplosion_pointer 
-    STA.W $0C40,X 
+    LDA.W ProjectileDataTable_NonBeam_MissileExplosion_pointer : STA.W $0C40,X 
     BRA .setCooldown 
 
 
 .superMissile:
-    LDA.W ProjectileDataTable_NonBeam_SuperMissileExplosion_pointer 
-    STA.W $0C40,X 
-    LDA.W #$0014 
-    STA.W $183E 
-    LDA.W #$001E 
-    STA.W $1840 
+    LDA.W ProjectileDataTable_NonBeam_SuperMissileExplosion_pointer : STA.W $0C40,X 
+    LDA.W #$0014 : STA.W $183E 
+    LDA.W #$001E : STA.W $1840 
 
 .setCooldown:
     LDA.W $0CCC 
     CMP.W #$0015 
     BMI .return 
-    LDA.W #$0014 
-    STA.W $0CCC 
+    LDA.W #$0014 : STA.W $0CCC 
 
 .return:
-    LDA.W #$0001 
-    STA.W $0C54,X 
-    LDA.W #$0008 
-    STA.W $0C2C,X 
+    LDA.W #$0001 : STA.W $0C54,X 
+    LDA.W #$0008 : STA.W $0C2C,X 
     PLB 
     PLP 
     RTL 
@@ -200,10 +183,8 @@ Initialize_Bomb_Explosion:
     PHK 
     PLB 
     REP #$30 
-    LDA.W ProjectileDataTable_NonBeam_BombExplosion_pointer 
-    STA.W $0C40,X 
-    LDA.W #$0001 
-    STA.W $0C54,X 
+    LDA.W ProjectileDataTable_NonBeam_BombExplosion_pointer : STA.W $0C40,X 
+    LDA.W #$0001 : STA.W $0C54,X 
     PLB 
     PLP 
     RTL 
@@ -227,8 +208,7 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
     TAY 
     LDA.W SamusProjectileDataPointers_ShinesparkEcho_SpazerSBATrail,Y 
     TAY 
-    LDA.W $0000,Y 
-    STA.W $0C2C,X 
+    LDA.W $0000,Y : STA.W $0C2C,X 
     BPL .dontCrash 
     JML.L Crash_Handler 
 
@@ -239,10 +219,8 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
     CLC 
     ADC.B $12 
     TAY 
-    LDA.W $0000,Y 
-    STA.W $0C40,X 
-    LDA.W #$0001 
-    STA.W $0C54,X 
+    LDA.W $0000,Y : STA.W $0C40,X 
+    LDA.W #$0001 : STA.W $0C54,X 
     PLB 
     PLP 
     RTL 
@@ -260,17 +238,14 @@ InitializeSBAProjectile:
     TAY 
     LDA.W SamusProjectileDataPointers_SBA,Y 
     TAY 
-    LDA.W $0000,Y 
-    STA.W $0C2C,X 
+    LDA.W $0000,Y : STA.W $0C2C,X 
     BPL .dontCrash 
     JML.L Crash_Handler 
 
 
 .dontCrash:
-    LDA.W $0002,Y 
-    STA.W $0C40,X 
-    LDA.W #$0001 
-    STA.W $0C54,X 
+    LDA.W $0002,Y : STA.W $0C40,X 
+    LDA.W #$0001 : STA.W $0C54,X 
     PLB 
     PLP 
     RTL 
@@ -287,8 +262,7 @@ Get_ProjectileTrailFrame:
     SEC 
     SBC.W #$0008 
     TAY 
-    LDA.W $0006,Y 
-    STA.B $16 
+    LDA.W $0006,Y : STA.B $16 
     PLY 
     PLB 
     PLP 
@@ -317,8 +291,7 @@ ProjectileInstructionHandler:
 
 .timer:
     STA.W $0C54,X 
-    LDA.W $0002,Y 
-    STA.W $0CB8,X 
+    LDA.W $0002,Y : STA.W $0CB8,X 
     LDA.W $0004,Y 
     AND.W #$00FF 
     STA.W $0BB4,X 

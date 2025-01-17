@@ -104,15 +104,13 @@ InstList_CommonA9_DeleteEnemy:
 NOPNOP_A98069:
     NOP #2
     Instruction_CommonA9_Enemy0FB2_InY:
-    LDA.W $0000,Y 
-    STA.W $0FB2,X 
+    LDA.W $0000,Y : STA.W $0FB2,X 
     INY #2
     RTL 
 
 
 Instruction_CommonA9_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_A9807B 
-    STA.W $0FB2,X 
+    LDA.W #RTS_A9807B : STA.W $0FB2,X 
     RTL 
 
 
@@ -130,8 +128,7 @@ Instruction_CommonA9_DeleteEnemy:
 
 
 Instruction_CommonA9_CallFunctionInY:
-    LDA.W $0000,Y 
-    STA.B $12 
+    LDA.W $0000,Y : STA.B $12 
     PHY 
     PHX 
     PEA.W .manualReturn-1 
@@ -146,8 +143,7 @@ Instruction_CommonA9_CallFunctionInY:
 
 
 Instruction_CommonA9_CallFunctionInY_WithA:
-    LDA.W $0000,Y 
-    STA.B $12 
+    LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
     PHY 
     PHX 
@@ -167,10 +163,8 @@ Instruction_CommonA9_CallFunctionInY_WithA:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA9_CallExternalFunctionInY_A980B5:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     PHX 
     PHY 
     JSL.L .externalFunction 
@@ -185,10 +179,8 @@ UNUSED_Instruction_CommonA9_CallExternalFunctionInY_A980B5:
 
 
 UNUSED_Inst_CommonA9_CallExternalFunctionInY_WithA_A980CE:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
     PHX 
     PHY 
@@ -256,8 +248,7 @@ Instruction_CommonA9_DecrementTimer_GotoY_PlusY_IfNonZero:
 
 
 Instruction_CommonA9_TimerInY:
-    LDA.W $0000,Y 
-    STA.W $0F90,X 
+    LDA.W $0000,Y : STA.W $0F90,X 
     INY #2
     RTL 
 
@@ -277,8 +268,7 @@ Instruction_CommonA9_Sleep:
 
 
 Instruction_CommonA9_WaitYFrames:
-    LDA.W $0000,Y 
-    STA.W $0F94,X 
+    LDA.W $0000,Y : STA.W $0F94,X 
     INY #2
     TYA 
     STA.W $0F92,X 
@@ -290,14 +280,10 @@ Instruction_CommonA9_WaitYFrames:
 Instruction_CommonA9_TransferYBytesInYToVRAM:
     PHX 
     LDX.W $0330 
-    LDA.W $0000,Y 
-    STA.B $D0,X 
-    LDA.W $0002,Y 
-    STA.B $D2,X 
-    LDA.W $0003,Y 
-    STA.B $D3,X 
-    LDA.W $0005,Y 
-    STA.B $D5,X 
+    LDA.W $0000,Y : STA.B $D0,X 
+    LDA.W $0002,Y : STA.B $D2,X 
+    LDA.W $0003,Y : STA.B $D3,X 
+    LDA.W $0005,Y : STA.B $D5,X 
     TXA 
     CLC 
     ADC.W #$0007 
@@ -428,8 +414,7 @@ InitAI_MotherBrainBody:
     LDA.W $0F86 
     ORA.W #$1500 
     STA.W $0F86 
-    LDA.W #$0000 
-    STA.W $0F96 
+    LDA.W #$0000 : STA.W $0F96 
     LDY.W #Palette_MotherBrain_GlassShards+2 
     LDX.W #$0162 
     LDA.W #$000F 
@@ -438,15 +423,11 @@ InitAI_MotherBrainBody:
     LDX.W #$01E2 
     LDA.W #$000F 
     JSL.L WriteAColorsFromYToTargetColorIndexX 
-    LDA.W #$0000 
-    STA.L $7E7800 
+    LDA.W #$0000 : STA.L $7E7800 
     STA.L $7E7844 
-    LDA.W #$0002 
-    STA.L $7E7808 
-    LDA.W #Function_MotherBrain_SetupBrainToBeDrawn 
-    STA.W $0FE8 
-    LDA.W #Function_MotherBrain_FirstPhase 
-    STA.W $0FA8 
+    LDA.W #$0002 : STA.L $7E7808 
+    LDA.W #Function_MotherBrain_SetupBrainToBeDrawn : STA.W $0FE8 
+    LDA.W #Function_MotherBrain_FirstPhase : STA.W $0FA8 
     LDA.W #$0001 
     JSL.L Load_FX_Entry 
     LDA.W #$0000 
@@ -466,16 +447,14 @@ InitAI_MotherBrainHead:
     LDX.W #$0040 
     LDY.W #CorpseRottingDefinitions_MotherBrain 
     JSR.W InitializeEnemyCorpseRotting 
-    LDA.W #$0BB8 
-    STA.W $0FCC 
+    LDA.W #$0BB8 : STA.W $0FCC 
     LDA.W #InstList_MotherBrainHead_InitialDummy 
     JSR.W SetMotherBrainHeadUnusedInstList 
     STZ.W $0FD8 
     LDA.W $0FC6 
     ORA.W #$1100 
     STA.W $0FC6 
-    LDA.W #$0200 
-    STA.W $0FD6 
+    LDA.W #$0200 : STA.W $0FD6 
     STA.L $7E7818 
     STA.L $7E781A 
     LDA.W #InstList_MotherBrainHead_Initial 
@@ -496,10 +475,8 @@ MainAI_HurtAI_MotherBrainBody:
     JSR.W ProcessMotherBrainInvincibilityPalette 
     LDA.L $7E7844 
     BEQ .return 
-    LDA.W #UnpauseHook_MotherBrainBody>>8&$FF00 
-    STA.W $0605 
-    LDA.W #UnpauseHook_MotherBrainBody 
-    STA.W $0604 
+    LDA.W #UnpauseHook_MotherBrainBody>>8&$FF00 : STA.W $0605 
+    LDA.W #UnpauseHook_MotherBrainBody : STA.W $0604 
 
 .return:
     RTL 
@@ -515,10 +492,8 @@ UnpauseHook_MotherBrainBody:
     LDA.W $0F88 
     AND.W #$0004 
     BEQ .return 
-    LDA.W #$0800 
-    STA.W $179A 
-    LDA.W #$0001 
-    STA.W $0E1E 
+    LDA.W #$0800 : STA.W $179A 
+    LDA.W #$0001 : STA.W $0E1E 
 
 .return:
     RTL 
@@ -536,10 +511,8 @@ PowerBombReaction_MotherBrain:
     JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External ; Fallthrough to MainAI_HurtAI_MotherBrainHead
 
 MainAI_HurtAI_MotherBrainHead:
-    LDA.W #RTL_A98786>>8&$FF00 
-    STA.W $178D 
-    LDA.W #RTL_A98786 
-    STA.W $178C 
+    LDA.W #RTL_A98786>>8&$FF00 : STA.W $178D 
+    LDA.W #RTL_A98786 : STA.W $178C 
     LDA.W $0FC6 
     AND.W #$0100 
     BEQ RTL_A98786 
@@ -552,16 +525,13 @@ Function_MotherBrain_SetupBrainAndNeckToBeDrawn:
     JSR.W HandleMotherBrainsNeck 
 
 .timeIsFrozen:
-    LDA.L $7E805C 
-    STA.W $0FBA 
+    LDA.L $7E805C : STA.W $0FBA 
     LDA.W #$FFEB 
     CLC 
     ADC.L $7E805E 
     STA.W $0FBE 
-    LDA.W #EnemyGraphicsDrawnHook_MotherBrain_DrawBrainAndNeck>>8&$FF00 
-    STA.W $178D 
-    LDA.W #EnemyGraphicsDrawnHook_MotherBrain_DrawBrainAndNeck 
-    STA.W $178C 
+    LDA.W #EnemyGraphicsDrawnHook_MotherBrain_DrawBrainAndNeck>>8&$FF00 : STA.W $178D 
+    LDA.W #EnemyGraphicsDrawnHook_MotherBrain_DrawBrainAndNeck : STA.W $178C 
     RTL 
 
 
@@ -572,10 +542,8 @@ EnemyGraphicsDrawnHook_MotherBrain_DrawBrainAndNeck:
 
 
 Function_MotherBrain_SetupBrainToBeDrawn:
-    LDA.W #EnemyGraphicsDrawnHook_MotherBrain_DrawBrain>>8&$FF00 
-    STA.W $178D 
-    LDA.W #EnemyGraphicsDrawnHook_MotherBrain_DrawBrain 
-    STA.W $178C 
+    LDA.W #EnemyGraphicsDrawnHook_MotherBrain_DrawBrain>>8&$FF00 : STA.W $178D 
+    LDA.W #EnemyGraphicsDrawnHook_MotherBrain_DrawBrain : STA.W $178C 
     RTL 
 
 
@@ -588,15 +556,13 @@ Function_MotherBrain_FirstPhase:
     LDA.W #$0002 
     JSL.L CheckIfEvent_inA_HasHappened 
     BCC .runCollisionDetection 
-    LDA.W $1840 
-    STA.L $7E7840 
+    LDA.W $1840 : STA.L $7E7840 
     LDA.W $0AF6 
     CMP.W #$00EC 
     BPL .runCollisionDetection 
     LDA.W $0FCC 
     BNE .runCollisionDetection 
-    LDA.W #$0001 
-    STA.L $7E783A 
+    LDA.W #$0001 : STA.L $7E783A 
     STA.L $7E7800 
     JSL.L DisableMinimap_MarkBossRoomTilesExplored 
     LDA.W #$0006 
@@ -610,10 +576,8 @@ Function_MotherBrain_FirstPhase:
 
 
 Function_MotherBrainBody_FakeDeath_Descent_InitialPause:
-    LDA.W #Function_MBBody_FakeDeath_Descent_LockSamus_SetScrollRegion 
-    STA.W $0FA8 
-    LDA.W #$0040 
-    STA.W $0FB2 ; fallthrough to Function_MBBody_FakeDeath_Descent_LockSamus_SetScrollRegion
+    LDA.W #Function_MBBody_FakeDeath_Descent_LockSamus_SetScrollRegion : STA.W $0FA8 
+    LDA.W #$0040 : STA.W $0FB2 ; fallthrough to Function_MBBody_FakeDeath_Descent_LockSamus_SetScrollRegion
 
 Function_MBBody_FakeDeath_Descent_LockSamus_SetScrollRegion:
     DEC.W $0FB2 
@@ -627,10 +591,8 @@ Function_MBBody_FakeDeath_Descent_LockSamus_SetScrollRegion:
     LDA.L $7ECD20 
     AND.W #$00FF 
     STA.L $7ECD20 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Descent_QueueMusic 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.W $0FB2 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Descent_QueueMusic : STA.W $0FA8 
+    LDA.W #$0020 : STA.W $0FB2 
 
 Function_MotherBrainBody_FakeDeath_Descent_QueueMusic:
     DEC.W $0FB2 
@@ -639,20 +601,16 @@ Function_MotherBrainBody_FakeDeath_Descent_QueueMusic:
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$FF21 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Descent_UnlockSamus 
-    STA.W $0FA8 
-    LDA.W #$000C 
-    STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_FakeDeath_Descent_UnlockSamus
+    LDA.W #Function_MotherBrainBody_FakeDeath_Descent_UnlockSamus : STA.W $0FA8 
+    LDA.W #$000C : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_FakeDeath_Descent_UnlockSamus
 
 Function_MotherBrainBody_FakeDeath_Descent_UnlockSamus:
     DEC.W $0FB2 
     BPL Function_MBBody_FakeDeath_Descent_return 
     LDA.W #$0001 
     JSL.L Run_Samus_Command 
-    LDA.W #Function_MBBody_FakeDeath_Descent_BeginScnFlashing_LowerAcid 
-    STA.W $0FA8 
-    LDA.W #$0008 
-    STA.W $0FB2 ; fallthrough to Function_MBBody_FakeDeath_Descent_BeginScnFlashing_LowerAcid
+    LDA.W #Function_MBBody_FakeDeath_Descent_BeginScnFlashing_LowerAcid : STA.W $0FA8 
+    LDA.W #$0008 : STA.W $0FB2 ; fallthrough to Function_MBBody_FakeDeath_Descent_BeginScnFlashing_LowerAcid
 
 Function_MBBody_FakeDeath_Descent_BeginScnFlashing_LowerAcid:
     DEC.W $0FB2 
@@ -660,13 +618,10 @@ Function_MBBody_FakeDeath_Descent_BeginScnFlashing_LowerAcid:
     JSR.W MotherBrainPalette_BeginScreenFlashing 
     LDA.W #$0002 
     JSL.L Load_FX_Entry 
-    LDA.W #Function_MotherBrainBody_SpawnTubesFallingWhenLessThan4Proj 
-    STA.W $0FF0 
-    LDA.W #Function_MBBody_FakeDeath_Descent_TransitionMBPaletteToGrey 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_SpawnTubesFallingWhenLessThan4Proj : STA.W $0FF0 
+    LDA.W #Function_MBBody_FakeDeath_Descent_TransitionMBPaletteToGrey : STA.W $0FA8 
     STZ.W $0FB2 
-    LDA.W #$0000 
-    STA.L $7E802E 
+    LDA.W #$0000 : STA.L $7E802E 
     JSL.L Spawn_Hardcoded_PLM 
     db $0E,$02 
     dw PLMEntries_clearCeilingBlockInMotherBrainsRoom 
@@ -678,16 +633,14 @@ Function_MBBody_FakeDeath_Descent_return:
 Function_MBBody_FakeDeath_Descent_TransitionMBPaletteToGrey:
     DEC.W $0FB2 
     BPL Function_MBBody_FakeDeath_Descent_CollapseTubes 
-    LDA.W #$0008 
-    STA.W $0FB2 
+    LDA.W #$0008 : STA.W $0FB2 
     LDA.L $7E802E 
     INC A 
     STA.L $7E802E 
     DEC A 
     JSL.L TransitionMotherBrainPaletteToGrey_FakeDeath 
     BCC Function_MBBody_FakeDeath_Descent_CollapseTubes 
-    LDA.W #Function_MBBody_FakeDeath_Descent_CollapseTubes 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_FakeDeath_Descent_CollapseTubes : STA.W $0FA8 
 
 Function_MBBody_FakeDeath_Descent_CollapseTubes:
     PEA.W .manualReturn-1 
@@ -708,8 +661,7 @@ HandleFakeDeathExplosions:
 
 
 .timerExpired:
-    LDA.W #$0008 
-    STA.L $7E8030 
+    LDA.W #$0008 : STA.L $7E8030 
     LDA.L $7E8032 
     DEC A 
     BPL + 
@@ -718,10 +670,8 @@ HandleFakeDeathExplosions:
   + STA.L $7E8032 
     ASL #2
     TAX 
-    LDA.W .XPosition,X 
-    STA.B $12 
-    LDA.W .YPosition,X 
-    STA.B $14 
+    LDA.W .XPosition,X : STA.B $12 
+    LDA.W .YPosition,X : STA.B $14 
     LDY.W #$0003 
     LDA.W $05E5 
     CMP.W #$4000 
@@ -764,8 +714,7 @@ Function_MotherBrainBody_SpawnTubesFallingWhenLessThan4Proj:
 .tooManyProjs:
     LDX.W #EnemyPopulations_MotherBrainFallingTubes_BottomLeft 
     JSL.L SpawnEnemy 
-    LDA.W #Function_MotherBrainBody_ClearBottomLeftTube 
-    STA.W $0FF0 
+    LDA.W #Function_MotherBrainBody_ClearBottomLeftTube : STA.W $0FF0 
     RTS 
 
 
@@ -773,24 +722,19 @@ Function_MotherBrainBody_ClearBottomLeftTube:
     JSL.L Spawn_Hardcoded_PLM 
     db $05,$09 
     dw PLMEntries_clearMotherBrainsBottomLeftTube 
-    LDA.W #Function_MotherBrainBody_SpawnTopRightTubeFallingProjectile 
-    STA.W $0FF0 
-    LDA.W #$0020 
-    STA.W $0FF2 
+    LDA.W #Function_MotherBrainBody_SpawnTopRightTubeFallingProjectile : STA.W $0FF0 
+    LDA.W #$0020 : STA.W $0FF2 
     RTS 
 
 
 Function_MotherBrainBody_SpawnTopRightTubeFallingProjectile:
     DEC.W $0FF2 
     BPL .return 
-    LDA.W #$0098 
-    STA.B $12 
-    LDA.W #$002F 
-    STA.B $14 
+    LDA.W #$0098 : STA.B $12 
+    LDA.W #$002F : STA.B $14 
     LDY.W #EnemyProjectile_MotherBrainTubeFalling_TopRight 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #Function_MotherBrainBody_ClearCeilingBlockColumn9 
-    STA.W $0FF0 
+    LDA.W #Function_MotherBrainBody_ClearCeilingBlockColumn9 : STA.W $0FF0 
 
 .return:
     RTS 
@@ -800,24 +744,19 @@ Function_MotherBrainBody_ClearCeilingBlockColumn9:
     JSL.L Spawn_Hardcoded_PLM 
     db $09,$02 
     dw PLMEntries_clearCeilingBlockInMotherBrainsRoom 
-    LDA.W #Function_MotherBrainBody_SpawnTopLeftTubeFallingProjectile 
-    STA.W $0FF0 
-    LDA.W #$0020 
-    STA.W $0FF2 
+    LDA.W #Function_MotherBrainBody_SpawnTopLeftTubeFallingProjectile : STA.W $0FF0 
+    LDA.W #$0020 : STA.W $0FF2 
     RTS 
 
 
 Function_MotherBrainBody_SpawnTopLeftTubeFallingProjectile:
     DEC.W $0FF2 
     BPL .return 
-    LDA.W #$0068 
-    STA.B $12 
-    LDA.W #$002F 
-    STA.B $14 
+    LDA.W #$0068 : STA.B $12 
+    LDA.W #$002F : STA.B $14 
     LDY.W #EnemyProjectile_MotherBrainTubeFalling_TopLeft 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #Function_MotherBrainBody_ClearCeilingBlockColumn6 
-    STA.W $0FF0 
+    LDA.W #Function_MotherBrainBody_ClearCeilingBlockColumn6 : STA.W $0FF0 
 
 .return:
     RTS 
@@ -827,10 +766,8 @@ Function_MotherBrainBody_ClearCeilingBlockColumn6:
     JSL.L Spawn_Hardcoded_PLM 
     db $06,$02 
     dw PLMEntries_clearCeilingBlockInMotherBrainsRoom 
-    LDA.W #Function_MotherBrainBody_SpawnTubesFalling1 
-    STA.W $0FF0 
-    LDA.W #$0020 
-    STA.W $0FF2 
+    LDA.W #Function_MotherBrainBody_SpawnTubesFalling1 : STA.W $0FF0 
+    LDA.W #$0020 : STA.W $0FF2 
     RTS 
 
 
@@ -839,8 +776,7 @@ Function_MotherBrainBody_SpawnTubesFalling1:
     BPL .return 
     LDX.W #EnemyPopulations_MotherBrainFallingTubes_BottomRight 
     JSL.L SpawnEnemy 
-    LDA.W #Function_MotherBrainBody_ClearBottomRightTube 
-    STA.W $0FF0 
+    LDA.W #Function_MotherBrainBody_ClearBottomRightTube : STA.W $0FF0 
 
 .return:
     RTS 
@@ -850,10 +786,8 @@ Function_MotherBrainBody_ClearBottomRightTube:
     JSL.L Spawn_Hardcoded_PLM 
     db $0A,$09 
     dw PLMEntries_clearMotherBrainsBottomRightTube 
-    LDA.W #Function_MotherBrainBody_SpawnTubesFalling2 
-    STA.W $0FF0 
-    LDA.W #$0020 
-    STA.W $0FF2 
+    LDA.W #Function_MotherBrainBody_SpawnTubesFalling2 : STA.W $0FF0 
+    LDA.W #$0020 : STA.W $0FF2 
     RTS 
 
 
@@ -862,8 +796,7 @@ Function_MotherBrainBody_SpawnTubesFalling2:
     BPL .return 
     LDX.W #EnemyPopulations_MotherBrainFallingTubes_BottomMiddleLeft 
     JSL.L SpawnEnemy 
-    LDA.W #Function_MotherBrainBody_ClearBottomMiddleLeftTube 
-    STA.W $0FF0 
+    LDA.W #Function_MotherBrainBody_ClearBottomMiddleLeftTube : STA.W $0FF0 
 
 .return:
     RTS 
@@ -873,24 +806,19 @@ Function_MotherBrainBody_ClearBottomMiddleLeftTube:
     JSL.L Spawn_Hardcoded_PLM 
     db $06,$0A 
     dw PLMEntries_clearMotherBrainsBottomMiddleSideTube 
-    LDA.W #Function_MotherBrainBody_SpawnTopMiddleLeftTubeFallingProj 
-    STA.W $0FF0 
-    LDA.W #$0020 
-    STA.W $0FF2 
+    LDA.W #Function_MotherBrainBody_SpawnTopMiddleLeftTubeFallingProj : STA.W $0FF0 
+    LDA.W #$0020 : STA.W $0FF2 
     RTS 
 
 
 Function_MotherBrainBody_SpawnTopMiddleLeftTubeFallingProj:
     DEC.W $0FF2 
     BPL .return 
-    LDA.W #$0078 
-    STA.B $12 
-    LDA.W #$003B 
-    STA.B $14 
+    LDA.W #$0078 : STA.B $12 
+    LDA.W #$003B : STA.B $14 
     LDY.W #EnemyProjectile_MotherBrainTubeFalling_TopMiddleLeft 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #Function_MotherBrainBody_ClearCeilingTubeColumn7 
-    STA.W $0FF0 
+    LDA.W #Function_MotherBrainBody_ClearCeilingTubeColumn7 : STA.W $0FF0 
 
 .return:
     RTS 
@@ -900,24 +828,19 @@ Function_MotherBrainBody_ClearCeilingTubeColumn7:
     JSL.L Spawn_Hardcoded_PLM 
     db $07,$02 
     dw PLMEntries_clearCeilingTubeInMotherBrainsRoom 
-    LDA.W #Function_MotherBrainBody_SpawnTopMiddleRightTubeFallingProj 
-    STA.W $0FF0 
-    LDA.W #$0020 
-    STA.W $0FF2 
+    LDA.W #Function_MotherBrainBody_SpawnTopMiddleRightTubeFallingProj : STA.W $0FF0 
+    LDA.W #$0020 : STA.W $0FF2 
     RTS 
 
 
 Function_MotherBrainBody_SpawnTopMiddleRightTubeFallingProj:
     DEC.W $0FF2 
     BPL .return 
-    LDA.W #$0088 
-    STA.B $12 
-    LDA.W #$003B 
-    STA.B $14 
+    LDA.W #$0088 : STA.B $12 
+    LDA.W #$003B : STA.B $14 
     LDY.W #EnemyProjectile_MotherBrainTubeFalling_TopMiddleRight 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #Function_MotherBrainBody_ClearCeilingTubeColumn8 
-    STA.W $0FF0 
+    LDA.W #Function_MotherBrainBody_ClearCeilingTubeColumn8 : STA.W $0FF0 
 
 .return:
     RTS 
@@ -927,10 +850,8 @@ Function_MotherBrainBody_ClearCeilingTubeColumn8:
     JSL.L Spawn_Hardcoded_PLM 
     db $08,$02 
     dw PLMEntries_clearCeilingTubeInMotherBrainsRoom 
-    LDA.W #Function_MotherBrainBody_SpawnTubesFalling3 
-    STA.W $0FF0 
-    LDA.W #$0020 
-    STA.W $0FF2 
+    LDA.W #Function_MotherBrainBody_SpawnTubesFalling3 : STA.W $0FF0 
+    LDA.W #$0020 : STA.W $0FF2 
     RTS 
 
 
@@ -939,8 +860,7 @@ Function_MotherBrainBody_SpawnTubesFalling3:
     BPL .return 
     LDX.W #EnemyPopulations_MotherBrainFallingTubes_BottomMiddleRight 
     JSL.L SpawnEnemy 
-    LDA.W #Function_MotherBrainBody_ClearBottomMiddleRightTube 
-    STA.W $0FF0 
+    LDA.W #Function_MotherBrainBody_ClearBottomMiddleRightTube : STA.W $0FF0 
 
 .return:
     RTS 
@@ -950,10 +870,8 @@ Function_MotherBrainBody_ClearBottomMiddleRightTube:
     JSL.L Spawn_Hardcoded_PLM 
     db $09,$0A 
     dw PLMEntries_clearMotherBrainsBottomMiddleSideTube 
-    LDA.W #Function_MotherBrainBody_SpawnTubesFalling4 
-    STA.W $0FF0 
-    LDA.W #$0002 
-    STA.W $0FF2 
+    LDA.W #Function_MotherBrainBody_SpawnTubesFalling4 : STA.W $0FF0 
+    LDA.W #$0002 : STA.W $0FF2 
     RTS 
 
 
@@ -962,8 +880,7 @@ Function_MotherBrainBody_SpawnTubesFalling4:
     BPL .return 
     LDX.W #EnemyPopulations_MotherBrainFallingTubes_MainTube 
     JSL.L SpawnEnemy 
-    LDA.W #Function_MotherBrainBody_ClearBottomMiddleTubes 
-    STA.W $0FF0 
+    LDA.W #Function_MotherBrainBody_ClearBottomMiddleTubes : STA.W $0FF0 
 
 .return:
     RTS 
@@ -973,8 +890,7 @@ Function_MotherBrainBody_ClearBottomMiddleTubes:
     JSL.L Spawn_Hardcoded_PLM 
     db $07,$07 
     dw PLMEntries_clearMotherBrainsBottomMiddleTubes 
-    LDA.W #RTS_A98AE4 
-    STA.W $0FF0 ; fallthrough to RTS_A98AE4
+    LDA.W #RTS_A98AE4 : STA.W $0FF0 ; fallthrough to RTS_A98AE4
 
 RTS_A98AE4:
     RTS 
@@ -1013,17 +929,13 @@ EnemyPopulations_MotherBrainFallingTubes_MainTube:
 InitAI_MotherBrainTubes:
     LDX.W $0E54 
     LDY.W $0FB4,X 
-    LDA.W .XRaidius,Y 
-    STA.W $0F82,X 
-    LDA.W .YRadius,Y 
-    STA.W $0F84,X 
-    LDA.W .YPositionThreshold,Y 
-    STA.W $0FAA,X 
+    LDA.W .XRaidius,Y : STA.W $0F82,X 
+    LDA.W .YRadius,Y : STA.W $0F84,X 
+    LDA.W .YPositionThreshold,Y : STA.W $0FAA,X 
     STZ.W $0FAE,X 
     STZ.W $0FB0,X 
     STZ.W $0FAC,X 
-    LDA.W .functionPointer,Y 
-    STA.W $0FA8,X 
+    LDA.W .functionPointer,Y : STA.W $0FA8,X 
     RTL 
 
 
@@ -1070,10 +982,8 @@ ExplodeMotherBrainTubes:
     LDA.W $0F86,X 
     ORA.W #$0200 
     STA.W $0F86,X 
-    LDA.W $0F7A,X 
-    STA.B $12 
-    LDA.W $0F7E,X 
-    STA.B $14 
+    LDA.W $0F7A,X : STA.B $12 
+    LDA.W $0F7E,X : STA.B $14 
     LDA.W #$0003 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
@@ -1085,8 +995,7 @@ ExplodeMotherBrainTubes:
 Function_MotherBrainTubes_MainTube_WaitingToFall:
     DEC.W $0FB6,X 
     BPL HandleFallingTubeSmoke_return 
-    LDA.W #Function_MotherBrainTubes_MainTube_Falling 
-    STA.W $0FA8,X ; fallthrough to Function_MotherBrainTubes_MainTube_Falling
+    LDA.W #Function_MotherBrainTubes_MainTube_Falling : STA.W $0FA8,X ; fallthrough to Function_MotherBrainTubes_MainTube_Falling
 
 
 Function_MotherBrainTubes_MainTube_Falling:
@@ -1119,22 +1028,17 @@ Function_MotherBrainTubes_MainTube_Falling:
     STZ.W $18B4 
     STZ.W $18B6 
     STZ.W $0FAC,X 
-    LDA.W #$00C4 
-    STA.W $0FBE 
-    LDA.W #$003B 
-    STA.W $0F7A 
-    LDA.W #$0117 
-    STA.W $0F7E 
+    LDA.W #$00C4 : STA.W $0FBE 
+    LDA.W #$003B : STA.W $0F7A 
+    LDA.W #$0117 : STA.W $0F7E 
     JSR.W SetupMotherBrainsNeckForFakeDeathAscent 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows2_3 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows2_3 : STA.W $0FA8 
     LDX.W $0E54 
     JMP.W ExplodeMotherBrainTubes 
 
 
 SpawnFallingTubeSmoke:
-    LDA.W #$0008 
-    STA.W $0FAE,X 
+    LDA.W #$0008 : STA.W $0FAE,X 
     LDA.W $0FB0,X 
     INC A 
     AND.W #$0003 
@@ -1145,8 +1049,7 @@ SpawnFallingTubeSmoke:
     CLC 
     ADC.W $0F7A,X 
     STA.B $12 
-    LDA.W #$00D0 
-    STA.B $14 
+    LDA.W #$00D0 : STA.B $14 
     LDA.W #$0009 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
@@ -1188,8 +1091,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows2_3:
     JSL.L Spawn_Hardcoded_PLM 
     db $02,$03 
     dw PLMEntries_motherBrainsBackgroundRow3 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows4_5 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows4_5 : STA.W $0FA8 
     RTS 
 
 
@@ -1200,8 +1102,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows4_5:
     JSL.L Spawn_Hardcoded_PLM 
     db $02,$05 
     dw PLMEntries_motherBrainsBackgroundRow5 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows6_7 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows6_7 : STA.W $0FA8 
     RTS 
 
 
@@ -1212,8 +1113,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows6_7:
     JSL.L Spawn_Hardcoded_PLM 
     db $02,$07 
     dw PLMEntries_motherBrainsBackgroundRow7 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows8_9 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows8_9 : STA.W $0FA8 
     RTS 
 
 
@@ -1224,8 +1124,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_Rows8_9:
     JSL.L Spawn_Hardcoded_PLM 
     db $02,$09 
     dw PLMEntries_motherBrainsBackgroundRow9 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_RowsA_B 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_RowsA_B : STA.W $0FA8 
     RTS 
 
 
@@ -1236,8 +1135,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_RowsA_B:
     JSL.L Spawn_Hardcoded_PLM 
     db $02,$0B 
     dw PLMEntries_motherBrainsBackgroundRowB 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_RowsC_D 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_RowsC_D : STA.W $0FA8 
     RTS 
 
 
@@ -1248,14 +1146,12 @@ Function_MotherBrainBody_FakeDeath_Ascent_DrawRoomBG_RowsC_D:
     JSL.L Spawn_Hardcoded_PLM 
     db $02,$0D 
     dw PLMEntries_motherBrainsBackgroundRowD 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2GFX 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2GFX : STA.W $0FA8 
     RTS 
 
 
 Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2GFX:
-    LDA.W #$0101 
-    STA.W $091B 
+    LDA.W #$0101 : STA.W $091B 
     LDA.B $59 
     AND.W #$FFFC 
     STA.B $59 
@@ -1267,31 +1163,24 @@ Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2GFX:
     LDX.W #$0162 
     LDA.W #$000F 
     JSL.L WriteAColorsFromYtoColorIndexX 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2Brain 
-    STA.W $0FA8 
-    LDA.W #$0001 
-    STA.W $0E1E 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2Brain : STA.W $0FA8 
+    LDA.W #$0001 : STA.W $0E1E 
     STA.L $7E7844 
     RTS 
 
 
 Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2Brain:
-    LDA.W #$0034 
-    STA.W $1982 
-    LDA.W #Function_MotherBrain_SetupBrainAndNeckToBeDrawn 
-    STA.W $0FE8 
+    LDA.W #$0034 : STA.W $1982 
+    LDA.W #Function_MotherBrain_SetupBrainAndNeckToBeDrawn : STA.W $0FE8 
     LDA.W $0F86 
     AND.W #$FBFF 
     STA.W $0F86 
     LDA.W $0FC6 
     AND.W #$FBFF 
     STA.W $0FC6 
-    LDA.W #$4650 
-    STA.W $0FCC 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_PauseForSuspense 
-    STA.W $0FA8 
-    LDA.W #$0080 
-    STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_PauseForSuspense
+    LDA.W #$4650 : STA.W $0FCC 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_PauseForSuspense : STA.W $0FA8 
+    LDA.W #$0080 : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_PauseForSuspense
 
 Function_MotherBrainBody_FakeDeath_Ascent_PauseForSuspense:
     DEC.W $0FB2 
@@ -1300,10 +1189,8 @@ Function_MotherBrainBody_FakeDeath_Ascent_PauseForSuspense:
 
 
 .timerExpired:
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_PrepareMBForRising 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_PrepareMBForRising
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_PrepareMBForRising : STA.W $0FA8 
+    LDA.W #$0020 : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_PrepareMBForRising
 
 Function_MotherBrainBody_FakeDeath_Ascent_PrepareMBForRising:
     DEC.W $0FB2 
@@ -1319,10 +1206,8 @@ Function_MotherBrainBody_FakeDeath_Ascent_PrepareMBForRising:
     STA.W $0FC6 
     LDA.W #InstList_MotherBrainHead_Initial 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_LoadMBLegTiles 
-    STA.W $0FA8 
-    LDA.W #$0100 
-    STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_LoadMBLegTiles
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_LoadMBLegTiles : STA.W $0FA8 
+    LDA.W #$0100 : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_LoadMBLegTiles
 
 Function_MotherBrainBody_FakeDeath_Ascent_LoadMBLegTiles:
     LDX.W #MotherBrainFightSpriteTileTransferEntries_legs 
@@ -1332,25 +1217,18 @@ Function_MotherBrainBody_FakeDeath_Ascent_LoadMBLegTiles:
 
 
 .finishedLoading:
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_ContinuePausing 
-    STA.W $0FA8 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_ContinuePausing
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_ContinuePausing : STA.W $0FA8 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_ContinuePausing
 
 
 Function_MotherBrainBody_FakeDeath_Ascent_ContinuePausing:
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #$003B 
-    STA.W $0F7A 
-    LDA.W #$0117 
-    STA.W $0F7E 
-    LDA.W #$FFE5 
-    STA.B $B5 
-    LDA.W #$FF27 
-    STA.B $B7 
-    LDA.W #$0007 
-    STA.L $7E7808 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_StartMusic_Quake 
-    STA.W $0FA8 
+    LDA.W #$003B : STA.W $0F7A 
+    LDA.W #$0117 : STA.W $0F7E 
+    LDA.W #$FFE5 : STA.B $B5 
+    LDA.W #$FF27 : STA.B $B7 
+    LDA.W #$0007 : STA.L $7E7808 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_StartMusic_Quake : STA.W $0FA8 
 
 .return:
     RTS 
@@ -1359,35 +1237,23 @@ Function_MotherBrainBody_FakeDeath_Ascent_ContinuePausing:
 Function_MotherBrainBody_FakeDeath_Ascent_StartMusic_Quake:
     LDA.W #InstList_MotherBrainBody_Crouched 
     JSR.W SetMotherBrainBodyInstList 
-    LDA.W #$0001 
-    STA.W $0FD4 
+    LDA.W #$0001 : STA.W $0FD4 
     LDA.W $0F86 
     AND.W #$FEFF 
     STA.W $0F86 
-    LDA.W #$003B 
-    STA.W $0F7A 
-    LDA.W #$0117 
-    STA.W $0F7E 
-    LDA.W #$FFE5 
-    STA.B $B5 
-    LDA.W #$FF27 
-    STA.B $B7 
+    LDA.W #$003B : STA.W $0F7A 
+    LDA.W #$0117 : STA.W $0F7E 
+    LDA.W #$FFE5 : STA.B $B5 
+    LDA.W #$FF27 : STA.B $B7 
     LDA.W #$0005 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$0002 
-    STA.W $183E 
-    LDA.W #$0100 
-    STA.W $1840 
-    LDA.W #$0050 
-    STA.L $7E8068 
-    LDA.W #$0001 
-    STA.L $7E8062 
-    LDA.W #$0008 
-    STA.L $7E8064 
-    LDA.W #$0006 
-    STA.L $7E8066 
-    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_RaiseMotherBrain 
-    STA.W $0FA8 
+    LDA.W #$0002 : STA.W $183E 
+    LDA.W #$0100 : STA.W $1840 
+    LDA.W #$0050 : STA.L $7E8068 
+    LDA.W #$0001 : STA.L $7E8062 
+    LDA.W #$0008 : STA.L $7E8064 
+    LDA.W #$0006 : STA.L $7E8066 
+    LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_RaiseMotherBrain : STA.W $0FA8 
     RTS 
 
 
@@ -1396,8 +1262,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_RaiseMotherBrain:
     AND.W #$0003 
     BNE Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch_return 
     JSR.W SpawnDustCloudsForMotherBrainsAscent 
-    LDA.W #$0002 
-    STA.B $12 
+    LDA.W #$0002 : STA.B $12 
     LDA.B $B7 
     CLC 
     ADC.B $12 
@@ -1408,18 +1273,15 @@ Function_MotherBrainBody_FakeDeath_Ascent_RaiseMotherBrain:
     STA.W $0F7E 
     CMP.W #$00BD 
     BCS Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch_return 
-    LDA.W #$0140 
-    STA.W $179A 
-    LDA.W #$00BC 
-    STA.W $0F7E 
+    LDA.W #$0140 : STA.W $179A 
+    LDA.W #$00BC : STA.W $0F7E 
     STZ.W $1840 
     LDA.L $7E7812 
     TAX 
     STZ.W $18B4,X 
     LDA.W #InstList_MotherBrainBody_StandingUpAfterCrouching_Slow 
     JSR.W SetMotherBrainBodyInstList 
-    LDA.W #Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch 
-    STA.W $0FA8 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_WaitForMBUncrouch
+    LDA.W #Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch : STA.W $0FA8 ; fallthrough to Function_MotherBrainBody_FakeDeath_Ascent_WaitForMBUncrouch
 
 Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch:
     LDA.L $7E7804 
@@ -1431,8 +1293,7 @@ Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch_return:
 
 Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch_standing:
     STA.L $7E802E 
-    LDA.W #Function_MBBody_FakeDeath_Ascent_TransitionFromGreyLowerHead 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_FakeDeath_Ascent_TransitionFromGreyLowerHead : STA.W $0FA8 
     STZ.W $0FB2 
     RTS 
 
@@ -1440,29 +1301,23 @@ Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch_standing:
 Function_MBBody_FakeDeath_Ascent_TransitionFromGreyLowerHead:
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #$0004 
-    STA.W $0FB2 
+    LDA.W #$0004 : STA.W $0FB2 
     LDA.L $7E802E 
     INC A 
     STA.L $7E802E 
     DEC A 
     JSL.L TransitionMotherBrainPaletteFromGrey_FakeDeath 
     BCC .return 
-    LDA.W #$0001 
-    STA.L $7E7860 
+    LDA.W #$0001 : STA.L $7E7860 
     INC A 
     STA.L $7E7800 
     DEC A 
     STA.L $7E7864 
-    LDA.W #$0006 
-    STA.L $7E8064 
+    LDA.W #$0006 : STA.L $7E8064 
     STA.L $7E8066 
-    LDA.W #$0500 
-    STA.L $7E8068 
-    LDA.W #Function_MotherBrainBody_Phase2_Stretching_ShakeHeadMenacing 
-    STA.W $0FA8 
-    LDA.W #$0017 
-    STA.W $0FB2 
+    LDA.W #$0500 : STA.L $7E8068 
+    LDA.W #Function_MotherBrainBody_Phase2_Stretching_ShakeHeadMenacing : STA.W $0FA8 
+    LDA.W #$0017 : STA.W $0FB2 
 
 .return:
     RTS 
@@ -1477,33 +1332,24 @@ Function_MotherBrainBody_Phase2_Stretching_ShakeHeadMenacing:
 .timerExpired:
     LDA.W #InstList_MotherBrainHead_Stretching_Phase2_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MotherBrainBody_Phase2_Stretching_BringHeadBackUp 
-    STA.W $0FA8 
-    LDA.W #$0040 
-    STA.L $7E8068 
-    LDA.W #$0100 
-    STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_Phase2_Stretching_BringHeadBackUp
+    LDA.W #Function_MotherBrainBody_Phase2_Stretching_BringHeadBackUp : STA.W $0FA8 
+    LDA.W #$0040 : STA.L $7E8068 
+    LDA.W #$0100 : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_Phase2_Stretching_BringHeadBackUp
 
 Function_MotherBrainBody_Phase2_Stretching_BringHeadBackUp:
     DEC.W $0FB2 
     BPL Function_MotherBrainBody_Phase2_Stretching_FinishStretching_return 
-    LDA.W #$0002 
-    STA.L $7E8064 
-    LDA.W #$0004 
-    STA.L $7E8066 
-    LDA.W #Function_MotherBrainBody_Phase2_Stretching_FinishStretching 
-    STA.W $0FA8 
-    LDA.W #$0040 
-    STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_Phase2_Stretching_FinishStretching
+    LDA.W #$0002 : STA.L $7E8064 
+    LDA.W #$0004 : STA.L $7E8066 
+    LDA.W #Function_MotherBrainBody_Phase2_Stretching_FinishStretching : STA.W $0FA8 
+    LDA.W #$0040 : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_Phase2_Stretching_FinishStretching
 
 
 Function_MotherBrainBody_Phase2_Stretching_FinishStretching:
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #$0001 
-    STA.L $7E7868 
-    LDA.W #Function_MotherBrainBody_Phase2_Thinking 
-    STA.W $0FA8 
+    LDA.W #$0001 : STA.L $7E7868 
+    LDA.W #Function_MotherBrainBody_Phase2_Thinking : STA.W $0FA8 
 
 .return:
     RTS 
@@ -1512,17 +1358,14 @@ Function_MotherBrainBody_Phase2_Stretching_FinishStretching:
 SpawnDustCloudsForMotherBrainsAscent:
     DEC.W $0FF2 
     BPL .timerNotExpired 
-    LDA.W #$0007 
-    STA.W $0FF2 
+    LDA.W #$0007 : STA.W $0FF2 
 
 .timerNotExpired:
     LDA.W $0FF2 
     ASL A 
     TAX 
-    LDA.W .XPositions,X 
-    STA.B $12 
-    LDA.W #$00D4 
-    STA.B $14 
+    LDA.W .XPositions,X : STA.B $12 
+    LDA.W #$00D4 : STA.B $14 
     LDA.W $05E5 
     AND.W #$0100 
     XBA 
@@ -1607,20 +1450,14 @@ MotherBrainFightSpriteTileTransferEntries:
     dw $7100,$0000 
 
 SetupMotherBrainsNeckForFakeDeathAscent:
-    LDA.W #$0002 
-    STA.L $7E8048 
-    LDA.W #$000A 
-    STA.L $7E804E 
+    LDA.W #$0002 : STA.L $7E8048 
+    LDA.W #$000A : STA.L $7E804E 
     STA.L $7E805A 
-    LDA.W #$0014 
-    STA.L $7E8054 
+    LDA.W #$0014 : STA.L $7E8054 
     STA.L $7E8060 
-    LDA.W #$4800 
-    STA.L $7E8040 
-    LDA.W #$5000 
-    STA.L $7E8042 
-    LDA.W #$0100 
-    STA.L $7E8068 
+    LDA.W #$4800 : STA.L $7E8040 
+    LDA.W #$5000 : STA.L $7E8042 
+    LDA.W #$0100 : STA.L $7E8068 
     RTS 
 
 
@@ -1647,8 +1484,7 @@ HandleMotherBrainsNeck_Lower_2_BobDown:
     SBC.L $7E8068 
     CMP.W #$2800 
     BCS + 
-    LDA.W #$0004 
-    STA.L $7E8064 
+    LDA.W #$0004 : STA.L $7E8064 
     LDA.W #$2800 
 
   + STA.L $7E8040 
@@ -1664,8 +1500,7 @@ HandleMotherBrainsNeck_Lower_4_BobUp:
     ADC.L $7E8068 
     CMP.W #$9000 
     BCC + 
-    LDA.W #$0002 
-    STA.L $7E8064 
+    LDA.W #$0002 : STA.L $7E8064 
     LDA.W #$9000 
 
   + STA.L $7E8040 
@@ -1673,8 +1508,7 @@ HandleMotherBrainsNeck_Lower_4_BobUp:
 
 
 .bobDown:
-    LDA.W #$0002 
-    STA.L $7E8064 
+    LDA.W #$0002 : STA.L $7E8064 
     RTS 
 
 
@@ -1684,8 +1518,7 @@ HandleMotherBrainsNeck_Lower_6_Lower:
     SBC.L $7E8068 
     CMP.W #$3000 
     BCS + 
-    LDA.W #$0000 
-    STA.L $7E8064 
+    LDA.W #$0000 : STA.L $7E8064 
     LDA.W #$3000 
 
   + STA.L $7E8040 
@@ -1698,8 +1531,7 @@ HandleMotherBrainsNeck_Lower_8_Raise:
     ADC.L $7E8068 
     CMP.W #$9000 
     BCC + 
-    LDA.W #$0000 
-    STA.L $7E8064 
+    LDA.W #$0000 : STA.L $7E8064 
     LDA.W #$9000 
 
   + STA.L $7E8040 
@@ -1729,8 +1561,7 @@ HandleMotherBrainsNeck_Upper_3_BobDown:
     ADC.W #$0004 
     CMP.W $0AFA 
     BMI + 
-    LDA.W #$0004 
-    STA.L $7E8064 
+    LDA.W #$0004 : STA.L $7E8064 
     STA.L $7E8066 
     RTS 
 
@@ -1740,8 +1571,7 @@ HandleMotherBrainsNeck_Upper_3_BobDown:
     SBC.L $7E8068 
     CMP.W #$2000 
     BCS + 
-    LDA.W #$0004 
-    STA.L $7E8066 
+    LDA.W #$0004 : STA.L $7E8066 
     LDA.W #$2000 
 
   + STA.L $7E8042 
@@ -1758,8 +1588,7 @@ HandleMotherBrainsNeck_Upper_4_BobUp:
     ADC.L $7E8068 
     CMP.B $12 
     BCC + 
-    LDA.W #$0002 
-    STA.L $7E8066 
+    LDA.W #$0002 : STA.L $7E8066 
     LDA.B $12 
 
   + STA.L $7E8042 
@@ -1772,8 +1601,7 @@ HandleMotherBrainsNeck_Upper_6_Lower:
     SBC.L $7E8068 
     CMP.W #$2000 
     BCS + 
-    LDA.W #$0000 
-    STA.L $7E8066 
+    LDA.W #$0000 : STA.L $7E8066 
     LDA.W #$2000 
 
   + STA.L $7E8042 
@@ -1790,8 +1618,7 @@ HandleMotherBrainsNeck_Upper_8_Raise:
     ADC.L $7E8068 
     CMP.B $12 
     BCC + 
-    LDA.W #$0000 
-    STA.L $7E8066 
+    LDA.W #$0000 : STA.L $7E8066 
     LDA.B $12 
 
   + STA.L $7E8042 
@@ -1922,8 +1749,7 @@ GetMotherBrainHeadSpritemapPointerInY:
 
 
 .specialInstruction:
-    LDA.W #$0001 
-    STA.L $7E8000 
+    LDA.W #$0001 : STA.L $7E8000 
     TXA 
     STA.L $7E8002 
     LDY.W $0002,X 
@@ -1946,30 +1772,20 @@ DrawMotherBrainsNeck:
 
 
 .visible:
-    LDA.L $7E805C 
-    STA.B $12 
-    LDA.L $7E805E 
-    STA.B $14 
+    LDA.L $7E805C : STA.B $12 
+    LDA.L $7E805E : STA.B $14 
     JSR.W DrawMotherBrainNeckSegment 
-    LDA.L $7E8056 
-    STA.B $12 
-    LDA.L $7E8058 
-    STA.B $14 
+    LDA.L $7E8056 : STA.B $12 
+    LDA.L $7E8058 : STA.B $14 
     JSR.W DrawMotherBrainNeckSegment 
-    LDA.L $7E8050 
-    STA.B $12 
-    LDA.L $7E8052 
-    STA.B $14 
+    LDA.L $7E8050 : STA.B $12 
+    LDA.L $7E8052 : STA.B $14 
     JSR.W DrawMotherBrainNeckSegment 
-    LDA.L $7E804A 
-    STA.B $12 
-    LDA.L $7E804C 
-    STA.B $14 
+    LDA.L $7E804A : STA.B $12 
+    LDA.L $7E804C : STA.B $14 
     JSR.W DrawMotherBrainNeckSegment 
-    LDA.L $7E8044 
-    STA.B $12 
-    LDA.L $7E8046 
-    STA.B $14 
+    LDA.L $7E8044 : STA.B $12 
+    LDA.L $7E8046 : STA.B $14 
     JMP.W DrawMotherBrainNeckSegment 
 
 
@@ -2046,8 +1862,7 @@ DrawMotherBrainNeckSegment:
     CLC 
     ADC.B $14 
     STA.B $14 
-    LDA.L $7E7818 
-    STA.B $16 
+    LDA.L $7E7818 : STA.B $16 
     LDY.W #Spritemaps_MotherBrain_5 
     JMP.W AddSpritemapToOAM_RoomCoordinates ; >.<
 
@@ -2079,8 +1894,7 @@ AddSpritemapToOAM_RoomCoordinates:
     STA.W $0370,X 
     AND.W #$0100 
     BEQ .checkSizeBit 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $1C 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($1C) 
@@ -2088,14 +1902,12 @@ AddSpritemapToOAM_RoomCoordinates:
 .checkSizeBit:
     LDA.W $0000,Y 
     BPL + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $1C 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($1C) 
 
-  + LDA.B $1A 
-    STA.W $0371,X 
+  + LDA.B $1A : STA.W $0371,X 
     LDA.W $0003,Y 
     ORA.B $16 
     STA.W $0372,X 
@@ -2200,15 +2012,12 @@ MoveMotherBrainBodyDownByA:
 
 
 MotherBrainFootstepEffect:
-    LDA.W #$0001 
-    STA.W $183E 
-    LDA.W #$0004 
-    STA.W $1840 
+    LDA.W #$0001 : STA.W $183E 
+    LDA.W #$0004 : STA.W $1840 
     LDA.L $7E7800 
     CMP.W #$0003 
     BNE .return 
-    LDA.W #$0016 
-    STA.L QueueSound_Lib3_Max6 ; >_<
+    LDA.W #$0016 : STA.L QueueSound_Lib3_Max6 ; >_<
 
 .return:
     RTS 
@@ -2410,38 +2219,32 @@ Instruction_MotherBrainBody_MoveBodyDownBy2_RightBy1:
 
 
 Instruction_MotherBrainBody_SetPoseToStanding:
-    LDA.W #$0000 
-    STA.L $7E7804 
+    LDA.W #$0000 : STA.L $7E7804 
     RTL 
 
 
 Instruction_MotherBrainBody_SetPoseToWalking:
-    LDA.W #$0001 
-    STA.L $7E7804 
+    LDA.W #$0001 : STA.L $7E7804 
     RTL 
 
 
 Instruction_MotherBrainBody_SetPoseToCrouching:
-    LDA.W #$0003 
-    STA.L $7E7804 
+    LDA.W #$0003 : STA.L $7E7804 
     RTL 
 
 
 Instruction_MotherBrainBody_SetPoseToCrouchingTransition:
-    LDA.W #$0002 
-    STA.L $7E7804 
+    LDA.W #$0002 : STA.L $7E7804 
     RTL 
 
 
 Instruction_MotherBrainBody_SetPoseToDeathBeamMode:
-    LDA.W #$0004 
-    STA.L $7E7804 
+    LDA.W #$0004 : STA.L $7E7804 
     RTL 
 
 
 Instruction_MotherBrainBody_SetPoseToLeaningDown:
-    LDA.W #$0006 
-    STA.L $7E7804 
+    LDA.W #$0006 : STA.L $7E7804 
     RTL 
 
 
@@ -2966,16 +2769,14 @@ Instruction_MotherBrain_GotoX:
 
 
 Instruction_MotherBrainHead_EnableNeckMovement_GotoX:
-    LDA.W #$0001 
-    STA.L $7E8062 
+    LDA.W #$0001 : STA.L $7E8062 
     LDA.W $0000,X 
     TAX 
     RTS 
 
 
 Instruction_MotherBrainHead_DisableNeckMovement:
-    LDA.W #$0000 
-    STA.L $7E8062 
+    LDA.W #$0000 : STA.L $7E8062 
     RTS 
 
 
@@ -3028,8 +2829,7 @@ Instruction_MotherBrainHead_SpawnPurpleBreathBigProjectile:
 
 
 Instruction_MotherBrainHead_SetMainShakeTimerTo50:
-    LDA.W #$0032 
-    STA.L $7E7840 
+    LDA.W #$0032 : STA.L $7E7840 
     RTS 
 
 
@@ -3529,8 +3329,7 @@ Instruction_MotherBrainHead_IncBabyMetroidAttackCounter:
 
 
 Instruction_MotherBrainHead_ResetBabyMetroidAttackCounter:
-    LDA.W #$0000 
-    STA.L $7E7826 
+    LDA.W #$0000 : STA.L $7E7826 
     RTS 
 
 
@@ -3610,8 +3409,7 @@ InstList_MotherBrainHead_Attacking_Laser:
     dw InstList_MotherBrainHead_Neutral_Phase2_0 
 
 InstList_MotherBrainHead_SpawnLaserProjectile:
-    LDA.W #$0000 
-    STA.L $7E8062 
+    LDA.W #$0000 : STA.L $7E8062 
     PHY 
     LDA.W $0FBA 
     CLC 
@@ -3653,8 +3451,7 @@ Instruction_MotherBrainHead_SpawnRainbowBeamChargingProj:
 
 
 Instruction_MotherBrainHead_SetupEffectsForRainbowBeamCharge:
-    LDA.W #$0000 
-    STA.L $7E7868 
+    LDA.W #$0000 : STA.L $7E7868 
     JSR.W SetupMotherBrainHeadPaletteForChargingHerLaser 
     LDA.W #$007F 
     JSL.L QueueSound_Lib2_Max6 
@@ -5004,8 +4801,7 @@ Function_MBBody_Phase3_DeathSequence_MoveToBackOfRoom:
     LDA.W $0FC6 
     ORA.W #$0400 
     STA.W $0FC6 
-    LDA.W #$0000 
-    STA.L $7E7808 
+    LDA.W #$0000 : STA.L $7E7808 
     LDY.W #$0006 
     LDA.W #$0028 
     JSR.W MakeMotherBrainWalkBackwards 
@@ -5014,17 +4810,14 @@ Function_MBBody_Phase3_DeathSequence_MoveToBackOfRoom:
 
 
 .arrivedAtBack:
-    LDA.W #Function_MBBody_Phase3_DeathSequence_IdleWhilstExploding 
-    STA.W $0FA8 
-    LDA.W #$0080 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_IdleWhilstExploding : STA.W $0FA8 
+    LDA.W #$0080 : STA.W $0FB2 
 
 Function_MBBody_Phase3_DeathSequence_IdleWhilstExploding:
     JSR.W GenerateSmokyExplosionsAroundMotherBrainBody 
     DEC.W $0FB2 
     BPL Function_MBBody_Phase3_DeathSequence_return 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_StumbleToMiddleOfRoom 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_StumbleToMiddleOfRoom : STA.W $0FA8 
 
 Function_MBBody_Phase3_DeathSequence_return:
     RTS 
@@ -5038,15 +4831,11 @@ Function_MBBody_Phase3_DeathSequence_StumbleToMiddleOfRoom:
     BCC Function_MBBody_Phase3_DeathSequence_return 
     LDA.W #InstList_MotherBrainHead_DyingDrool_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #$0006 
-    STA.L $7E8064 
+    LDA.W #$0006 : STA.L $7E8064 
     STA.L $7E8066 
-    LDA.W #$0500 
-    STA.L $7E8068 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_DisableBrainEffects 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.W $0FB2 
+    LDA.W #$0500 : STA.L $7E8068 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_DisableBrainEffects : STA.W $0FA8 
+    LDA.W #$0020 : STA.W $0FB2 
     RTS 
 
 
@@ -5054,8 +4843,7 @@ Function_MBBody_Phase3_DeathSequence_DisableBrainEffects:
     JSR.W GenerateSmokyExplosionsAroundMotherBrainBody 
     DEC.W $0FB2 
     BPL Function_MBBody_Phase3_DeathSequence_return 
-    LDA.W #$0000 
-    STA.L $7E8064 
+    LDA.W #$0000 : STA.L $7E8064 
     STA.L $7E8066 
     STA.L $7E7864 
     STA.L $7E7868 
@@ -5064,17 +4852,14 @@ Function_MBBody_Phase3_DeathSequence_DisableBrainEffects:
     LDX.W #$001C 
 
 .loopPalette:
-    LDA.L $7EC122,X 
-    STA.L $7EC1E2,X 
+    LDA.L $7EC122,X : STA.L $7EC1E2,X 
     DEX #2
     BPL .loopPalette 
     JSL.L MotherBrainHealthBasedPaletteHandling 
-    LDA.W #$0E00 
-    STA.L $7E781A 
+    LDA.W #$0E00 : STA.L $7E781A 
     STZ.W $0FF0 
     STZ.W $0FF2 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_SetupBodyFadeOut 
-    STA.W $0FA8 ; fallthrough to Function_MBBody_Phase3_DeathSequence_SetupBodyFadeOut
+    LDA.W #Function_MBBody_Phase3_DeathSequence_SetupBodyFadeOut : STA.W $0FA8 ; fallthrough to Function_MBBody_Phase3_DeathSequence_SetupBodyFadeOut
 
 Function_MBBody_Phase3_DeathSequence_SetupBodyFadeOut:
     JSR.W GenerateMixedExplosionsAroundMotherBrainBody 
@@ -5084,10 +4869,8 @@ Function_MBBody_Phase3_DeathSequence_SetupBodyFadeOut:
 
 
 .timerExpired:
-    LDA.W #$0000 
-    STA.L $7E802E 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_FadeOutBody 
-    STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E802E 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_FadeOutBody : STA.W $0FA8 
     STZ.W $0FB2 ; fallthrough to Function_MBBody_Phase3_DeathSequence_FadeOutBody
 
 Function_MBBody_Phase3_DeathSequence_FadeOutBody:
@@ -5095,8 +4878,7 @@ Function_MBBody_Phase3_DeathSequence_FadeOutBody:
     JSR.W GenerateMixedExplosionsAroundMotherBrainBody 
     DEC.W $0FB2 
     BPL .returnUpper 
-    LDA.W #$0010 
-    STA.W $0FB2 
+    LDA.W #$0010 : STA.W $0FB2 
     LDA.L $7E802E 
     INC A 
     STA.L $7E802E 
@@ -5109,8 +4891,7 @@ Function_MBBody_Phase3_DeathSequence_FadeOutBody:
 
 
 .fadedToBlack:
-    LDA.W #$02C6 
-    STA.W $179A 
+    LDA.W #$02C6 : STA.W $179A 
     TAX 
     PHB 
     PEA.W $7E7E 
@@ -5123,17 +4904,14 @@ Function_MBBody_Phase3_DeathSequence_FadeOutBody:
     DEX #2
     BPL .loopTilemap 
     PLB 
-    LDA.W #$0001 
-    STA.W $0E1E 
+    LDA.W #$0001 : STA.W $0E1E 
     LDA.W $0F86 
     ORA.W #$0100 
     AND.W #$DFFF 
     STA.W $0F86 
     STZ.W $0F88 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_FinalFewExplosions 
-    STA.W $0FA8 
-    LDA.W #$0010 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_FinalFewExplosions : STA.W $0FA8 
+    LDA.W #$0010 : STA.W $0FB2 
 
 Function_MBBody_Phase3_DeathSequence_FadeOutBody_returnLower:
     RTS 
@@ -5143,25 +4921,20 @@ Function_MBBody_Phase3_DeathSequence_FinalFewExplosions:
     JSR.W GenerateMixedExplosionsAroundMotherBrainBody 
     DEC.W $0FB2 
     BPL Function_MBBody_Phase3_DeathSequence_FadeOutBody_returnLower 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_RealizeDecapitation 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_RealizeDecapitation : STA.W $0FA8 
     RTS 
 
 
 GenerateSmokyExplosionsAroundMotherBrainBody:
-    LDA.W #MotherBrainExplosionParameters_1 
-    STA.B $16 
-    LDA.W #$0002 
-    STA.B $18 
+    LDA.W #MotherBrainExplosionParameters_1 : STA.B $16 
+    LDA.W #$0002 : STA.B $18 
     LDA.W #$0010 
     BRA GenerateExplosionsAroundMotherBrainBody 
 
 
 GenerateMixedExplosionsAroundMotherBrainBody:
-    LDA.W #MotherBrainExplosionParameters_0 
-    STA.B $16 
-    LDA.W #$0004 
-    STA.B $18 
+    LDA.W #MotherBrainExplosionParameters_0 : STA.B $16 
+    LDA.W #$0004 : STA.B $18 
     LDA.W #$0008 ; fallthrough to GenerateExplosionsAroundMotherBrainBody
 
 GenerateExplosionsAroundMotherBrainBody:
@@ -5170,8 +4943,7 @@ GenerateExplosionsAroundMotherBrainBody:
     STA.W $0FF0 
     DEC.W $0FF2 
     BPL .getIndex 
-    LDA.W #$0006 
-    STA.W $0FF2 
+    LDA.W #$0006 : STA.W $0FF2 
 
 .getIndex:
     LDA.W $0FF2 
@@ -5182,10 +4954,8 @@ GenerateExplosionsAroundMotherBrainBody:
 .loop:
     PHA 
     PHX 
-    LDA.W .XOffset,X 
-    STA.B $12 
-    LDA.W .YOffset,X 
-    STA.B $14 
+    LDA.W .XOffset,X : STA.B $12 
+    LDA.W .YOffset,X : STA.B $14 
     LDX.B $16 
     LDY.W $0000,X 
     JSL.L GenerateRandomNumber 
@@ -5231,12 +5001,9 @@ MotherBrainExplosionParameters_1:
 Function_MBBody_Phase3_DeathSequence_RealizeDecapitation:
     LDA.W #InstList_MotherBrainHead_Decapitated_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MotherBrain_SetupBrainToBeDrawn 
-    STA.W $0FE8 
-    LDA.W #$0000 
-    STA.W $0FB2 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_BrainFallsToGround 
-    STA.W $0FA8 ; fallthrough to Function_MBBody_Phase3_DeathSequence_BrainFallsToGround
+    LDA.W #Function_MotherBrain_SetupBrainToBeDrawn : STA.W $0FE8 
+    LDA.W #$0000 : STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_BrainFallsToGround : STA.W $0FA8 ; fallthrough to Function_MBBody_Phase3_DeathSequence_BrainFallsToGround
 
 Function_MBBody_Phase3_DeathSequence_BrainFallsToGround:
     LDA.W $0FB2 
@@ -5251,10 +5018,8 @@ Function_MBBody_Phase3_DeathSequence_BrainFallsToGround:
     BCC .hitGround 
     LDA.W #$0002 
     JSL.L EnableEarthquakeTypeInAFor20Frames 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_LoadCorpseTiles 
-    STA.W $0FA8 
-    LDA.W #$0100 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_LoadCorpseTiles : STA.W $0FA8 
+    LDA.W #$0100 : STA.W $0FB2 
     LDA.W #$00C4 
 
 .hitGround:
@@ -5266,10 +5031,8 @@ Function_MBBody_Phase3_DeathSequence_LoadCorpseTiles:
     LDX.W #MotherBrainFightSpriteTileTransferEntries_corpse 
     JSR.W ProcessSpriteTilesTransfers 
     BCC Function_MBBody_Phase3_DeathSequence_LoadCorpseTiles_return 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_SetupFadeToGrey 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_SetupFadeToGrey : STA.W $0FA8 
+    LDA.W #$0020 : STA.W $0FB2 
 
 Function_MBBody_Phase3_DeathSequence_LoadCorpseTiles_return:
     RTS 
@@ -5278,10 +5041,8 @@ Function_MBBody_Phase3_DeathSequence_LoadCorpseTiles_return:
 Function_MBBody_Phase3_DeathSequence_SetupFadeToGrey:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase3_DeathSequence_LoadCorpseTiles_return 
-    LDA.W #$0000 
-    STA.L $7E802E 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_FadeToGrey 
-    STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E802E 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_FadeToGrey : STA.W $0FA8 
     STZ.W $0FB2 
     RTS 
 
@@ -5295,8 +5056,7 @@ Function_MBBody_Phase3_DeathSequence_FadeToGrey:
     DEC A 
     JSL.L TransitionMotherBrainPaletteToGrey_RealDeath 
     BCS .finishedTransition 
-    LDA.W #$0010 
-    STA.W $0FB2 
+    LDA.W #$0010 : STA.W $0FB2 
 
 .return:
     RTS 
@@ -5305,10 +5065,8 @@ Function_MBBody_Phase3_DeathSequence_FadeToGrey:
 .finishedTransition:
     LDA.W #InstList_MotherBrainHead_Corpse_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_CorpseTipsOver 
-    STA.W $0FA8 
-    LDA.W #$0100 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_CorpseTipsOver : STA.W $0FA8 
+    LDA.W #$0100 : STA.W $0FB2 
     RTS 
 
 
@@ -5319,13 +5077,11 @@ Function_MBBody_Phase3_DeathSequence_CorpseTipsOver:
 
 
 .timerExpired:
-    LDA.W #Function_MBBody_Phase3_DeathSequence_CorpseRotsAway 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_CorpseRotsAway : STA.W $0FA8 
     LDA.W $0FC6 
     ORA.W #$0400 
     STA.W $0FC6 
-    LDA.W #$0000 
-    STA.L $7E7808 
+    LDA.W #$0000 : STA.L $7E7808 
     RTS 
 
 
@@ -5349,18 +5105,15 @@ Function_MBBody_Phase3_DeathSequence_CorpseRotsAway:
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$FF24 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_20FrameDelay 
-    STA.W $0FA8 
-    LDA.W #$0014 
-    STA.W $0FB2 ; fallthrough to Function_MBBody_Phase3_DeathSequence_20FrameDelay
+    LDA.W #Function_MBBody_Phase3_DeathSequence_20FrameDelay : STA.W $0FA8 
+    LDA.W #$0014 : STA.W $0FB2 ; fallthrough to Function_MBBody_Phase3_DeathSequence_20FrameDelay
 
 Function_MBBody_Phase3_DeathSequence_20FrameDelay:
     DEC.W $0FB2 
     BPL .return 
     STZ.W $0FBA 
     STZ.W $0FBE 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_LoadEscapeTimerTiles 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_LoadEscapeTimerTiles : STA.W $0FA8 
 
 .return:
     RTS 
@@ -5402,8 +5155,7 @@ Function_MBBody_Phase3_DeathSequence_LoadEscapeTimerTiles:
     JSR.W ProcessSpriteTilesTransfers 
     PLB 
     BCC Function_MBBody_Phase3_DeathSequence_StartEscape_return 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_StartEscape 
-    STA.W $0FA8 ; fallthrough to Function_MBBody_Phase3_DeathSequence_StartEscapeSequence
+    LDA.W #Function_MBBody_Phase3_DeathSequence_StartEscape : STA.W $0FA8 ; fallthrough to Function_MBBody_Phase3_DeathSequence_StartEscapeSequence
 
 Function_MBBody_Phase3_DeathSequence_StartEscape:
     LDX.W #MotherBrainFightSpriteTileTransferEntries_explodedDoor 
@@ -5415,10 +5167,8 @@ Function_MBBody_Phase3_DeathSequence_StartEscape:
     JSL.L WriteAColorsFromYtoColorIndexX 
     LDA.W #$0007 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$0005 
-    STA.W $183E 
-    LDA.W #$FFFF 
-    STA.W $1840 
+    LDA.W #$0005 : STA.W $183E 
+    LDA.W #$FFFF : STA.W $1840 
     LDY.W #PaletteFXObjects_Tourian8_ShutterRedFlashing 
     JSL.L Spawn_PaletteFXObject 
     LDY.W #PaletteFXObjects_Tourian10_BackgroundRedFlashing 
@@ -5427,11 +5177,9 @@ Function_MBBody_Phase3_DeathSequence_StartEscape:
     JSL.L Spawn_PaletteFXObject 
     LDY.W #PaletteFXObjects_Tourian40_RedFlashingArkanoidBlocksRedOrbs 
     JSL.L Spawn_PaletteFXObject 
-    LDA.W #$0000 
-    STA.L $7E7844 
+    LDA.W #$0000 : STA.L $7E7844 
     JSL.L SetupZebesEscapeTypewriter 
-    LDA.W #$0020 
-    STA.W $0FB2 
+    LDA.W #$0020 : STA.W $0FB2 
     LDY.W #Function_MBBody_Phase3_DeathSequence_SpawnTimeBombSetJapanText 
     LDA.W $09E2 
     BNE .keepJapanText 
@@ -5447,8 +5195,7 @@ Function_MBBody_Phase3_DeathSequence_StartEscape_return:
 Function_MBBody_Phase3_DeathSequence_SpawnTimeBombSetJapanText:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText : STA.W $0FA8 
     LDY.W #EnemyProjectile_TimeBombSetJapanText 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics ; fallthrough to Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText
 
@@ -5456,10 +5203,8 @@ Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText:
     LDA.W #$2610 
     JSL.L HandleTypewriterText_External 
     BCC .return 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_DoorExploding_StartTimer 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_DoorExploding_StartTimer : STA.W $0FA8 
+    LDA.W #$0020 : STA.W $0FB2 
 
 .return:
     RTS 
@@ -5471,15 +5216,12 @@ Function_MBBody_Phase3_DeathSequence_DoorExploding_StartTimer:
     BPL .return 
     LDA.W #$000F 
     JSL.L Run_Samus_Command 
-    LDA.W #$0002 
-    STA.W $0943 
+    LDA.W #$0002 : STA.W $0943 
     JSL.L SetBossBitsInAForCurrentArea 
     LDA.W #$000E 
     JSL.L MarkEvent_inA 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_BlowUpEscapeDoor 
-    STA.W $0FA8 
-    LDA.W #$0000 
-    STA.W $0FF0 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_BlowUpEscapeDoor : STA.W $0FA8 
+    LDA.W #$0000 : STA.W $0FF0 
     STA.W $0FF2 
 
 .return:
@@ -5488,8 +5230,7 @@ Function_MBBody_Phase3_DeathSequence_DoorExploding_StartTimer:
 
 Function_MBBody_Phase3_DeathSequence_BlowUpEscapeDoor:
     JSR.W ExplodeMotherBrainEscapeDoor 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_KeepEarthquakeGoing 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_KeepEarthquakeGoing : STA.W $0FA8 
     JSL.L Spawn_Hardcoded_PLM 
     db $00,$06 
     dw PLMEntries_motherBrainsRoomEscapeDoor 
@@ -5511,23 +5252,19 @@ GenerateEscapeDoorExplosion:
     DEC A 
     STA.W $0FF0 
     BPL .return 
-    LDA.W #$0004 
-    STA.W $0FF0 
+    LDA.W #$0004 : STA.W $0FF0 
     LDA.W $0FF2 
     DEC A 
     STA.W $0FF2 
     BPL .max3 
-    LDA.W #$0003 
-    STA.W $0FF2 
+    LDA.W #$0003 : STA.W $0FF2 
 
 .max3:
     LDA.W $0FF2 
     ASL #2
     TAY 
-    LDA.W .data0,Y 
-    STA.B $12 
-    LDA.W .data1,Y 
-    STA.B $14 
+    LDA.W .data0,Y : STA.B $12 
+    LDA.W .data1,Y : STA.B $14 
     LDY.W #$0003 
     JSL.L GenerateRandomNumber 
     CMP.W #$4000 
@@ -5566,14 +5303,11 @@ ExplodeMotherBrainEscapeDoor:
 
 
 MotherBrain_vs_Samus_CollisionDetection:
-    LDA.L $7E7808 
-    STA.B $1A 
+    LDA.L $7E7808 : STA.B $1A 
     LSR.B $1A 
     BCC .checkBrain 
-    LDA.W $0F7A 
-    STA.B $12 
-    LDA.W $0F7E 
-    STA.B $14 
+    LDA.W $0F7A : STA.B $12 
+    LDA.W $0F7E : STA.B $14 
     LDX.W #HitboxDefinitions_MotherBrainBody 
     JSR.W MotherBrainPart_vs_Samus_CollisionDetection 
     BCS .return 
@@ -5581,10 +5315,8 @@ MotherBrain_vs_Samus_CollisionDetection:
 .checkBrain:
     LSR.B $1A 
     BCC .checkNeck 
-    LDA.W $0FBA 
-    STA.B $12 
-    LDA.W $0FBE 
-    STA.B $14 
+    LDA.W $0FBA : STA.B $12 
+    LDA.W $0FBE : STA.B $14 
     LDX.W #HitboxDefinitions_MotherBrainHead 
     JSR.W MotherBrainPart_vs_Samus_CollisionDetection 
     BCS .return 
@@ -5592,24 +5324,18 @@ MotherBrain_vs_Samus_CollisionDetection:
 .checkNeck:
     LSR.B $1A 
     BCC .return 
-    LDA.L $7E804A 
-    STA.B $12 
-    LDA.L $7E804C 
-    STA.B $14 
+    LDA.L $7E804A : STA.B $12 
+    LDA.L $7E804C : STA.B $14 
     LDX.W #HitboxDefinitions_MotherBrainNeck 
     JSR.W MotherBrainPart_vs_Samus_CollisionDetection 
     BCS .return 
-    LDA.L $7E8050 
-    STA.B $12 
-    LDA.L $7E8052 
-    STA.B $14 
+    LDA.L $7E8050 : STA.B $12 
+    LDA.L $7E8052 : STA.B $14 
     LDX.W #HitboxDefinitions_MotherBrainNeck 
     JSR.W MotherBrainPart_vs_Samus_CollisionDetection 
     BCS .return 
-    LDA.L $7E8056 
-    STA.B $12 
-    LDA.L $7E8058 
-    STA.B $14 
+    LDA.L $7E8056 : STA.B $12 
+    LDA.L $7E8058 : STA.B $14 
     LDX.W #HitboxDefinitions_MotherBrainNeck 
     JSR.W MotherBrainPart_vs_Samus_CollisionDetection 
 
@@ -5705,21 +5431,16 @@ MotherBrainPart_vs_Samus_CollisionDetection:
 
 .min4:
     STA.W $0B58 
-    LDA.W #$0004 
-    STA.W $0B5C 
+    LDA.W #$0004 : STA.W $0B5C 
     STZ.W $0B56 
     STZ.W $0B5A 
-    LDA.W #$0060 
-    STA.W $18A8 
-    LDA.W #$0005 
-    STA.W $18AA 
-    LDA.W #$0001 
-    STA.W $0A54 
+    LDA.W #$0060 : STA.W $18A8 
+    LDA.W #$0005 : STA.W $18AA 
+    LDA.W #$0001 : STA.W $0A54 
     LDA.W $0AFA 
     CMP.W #$00C0 
     BPL .SamusInAir 
-    LDA.W #$0002 
-    STA.W $0B36 
+    LDA.W #$0002 : STA.W $0B36 
 
 .SamusInAir:
     LDA.W $0F7A 
@@ -5832,10 +5553,8 @@ MotherBrainBeamShotReaction_Phase3:
     SEC 
     SBC.W #$010A 
     BPL .maxCounter 
-    LDA.W #Function_MotherBrainNeck_SetupHyperBeamRecoil 
-    STA.L $7E7870 
-    LDA.W #$0000 
-    STA.W $0FB2 
+    LDA.W #Function_MotherBrainNeck_SetupHyperBeamRecoil : STA.L $7E7870 
+    LDA.W #$0000 : STA.W $0FB2 
 
 .maxCounter:
     STA.L $7E780E 
@@ -5866,10 +5585,8 @@ EnemyTouch_MotherBrainHead:
 
 HurtSamus_A9B5E1:
     JSL.L DealSuitAdjustedEnemyDamageToSamus 
-    LDA.W #$0060 
-    STA.W $18A8 
-    LDA.W #$0005 
-    STA.W $18AA 
+    LDA.W #$0060 : STA.W $18A8 
+    LDA.W #$0005 : STA.W $18AA 
     LDY.W #$0000 
     LDX.W $0E54 
     LDA.W $0AF6 
@@ -5886,8 +5603,7 @@ HurtSamus_A9B5E1:
 Function_MotherBrainBody_Phase2_Thinking:
     LDA.W $0FCC 
     BNE .notDead 
-    LDA.W #Function_MotherBrainBody_Phase2_FiringRainbowBeam_ExtendNeck 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_Phase2_FiringRainbowBeam_ExtendNeck : STA.W $0FA8 
     JMP.W Function_MotherBrainBody_Phase2_FiringRainbowBeam_ExtendNeck 
 
 
@@ -5908,8 +5624,7 @@ Function_MotherBrainBody_Phase2_Thinking:
 
 
 .tryAttack:
-    LDA.W #Function_MotherBrainBody_Phase2_TryAttack 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_Phase2_TryAttack : STA.W $0FA8 
     RTS 
 
 
@@ -5922,8 +5637,7 @@ Function_MotherBrainBody_Phase2_Thinking:
 
   + CMP.W #$A000 
     BCS .tryAttack 
-    LDA.W #Function_MotherBrainBody_Phase2_FiringDeathBeam 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_Phase2_FiringDeathBeam : STA.W $0FA8 
     RTS 
 
 
@@ -5940,8 +5654,7 @@ Function_MotherBrainBody_Phase2_TryAttack:
     dw TryMotherBrainPhase2Attack_EndAttack 
 
 TryMotherBrainAttack_Phase2_TryAttack:
-    LDA.W #$0040 
-    STA.W $0FB4 
+    LDA.W #$0040 : STA.W $0FB4 
     LDA.L $7E7830 
     INC A 
     STA.L $7E7830 
@@ -5990,14 +5703,12 @@ TryMotherBrainAttack_Phase2_TryAttack:
     LDA.L $7E784A 
     CMP.W #$0001 
     BPL .return 
-    LDA.W #Function_MotherBrainBody_FiringBomb_DecideOnWalking 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FiringBomb_DecideOnWalking : STA.W $0FA8 
     JMP.W Function_MotherBrainBody_FiringBomb_DecideOnWalking 
 
 
 .laser:
-    LDA.W #Function_MBBody_Phase2_FiringLaser_PositionHeadQuickly 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase2_FiringLaser_PositionHeadQuickly : STA.W $0FA8 
     JMP.W Function_MBBody_Phase2_FiringLaser_PositionHeadQuickly 
 
 
@@ -6032,8 +5743,7 @@ DecideMotherBrainPhase2AttackStrategy:
 
 .callersReturn:
     PLA 
-    LDA.W #Function_MBBody_Phase2_FiringLaser_PositionHeadQuickly 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase2_FiringLaser_PositionHeadQuickly : STA.W $0FA8 
     JMP.W Function_MBBody_Phase2_FiringLaser_PositionHeadQuickly 
 
 
@@ -6048,8 +5758,7 @@ DecideMotherBrainPhase2AttackStrategy:
   + LDA.L $7E784A 
     CMP.W #$0001 
     BPL .return 
-    LDA.W #Function_MotherBrainBody_FiringBomb_DecideOnWalking 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FiringBomb_DecideOnWalking : STA.W $0FA8 
     PLA 
     JMP.W Function_MotherBrainBody_FiringBomb_DecideOnWalking 
 
@@ -6076,10 +5785,8 @@ TryMotherBrainPhase2Attack_Cooldown:
 
 
 TryMotherBrainPhase2Attack_EndAttack:
-    LDA.W #$0000 
-    STA.L $7E7830 
-    LDA.W #Function_MotherBrainBody_Phase2_Thinking 
-    STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E7830 
+    LDA.W #Function_MotherBrainBody_Phase2_Thinking : STA.W $0FA8 
     RTS 
 
 
@@ -6099,8 +5806,7 @@ Function_MotherBrainBody_FiringBomb_DecideOnWalking:
     LDY.W #$0006 
     JSR.W MakeMotherBrainWalkBackwards 
     BCS MotherBrainFiringBomb_DecideOnCrouching 
-    LDA.W #Function_MotherBrainBody_FiringBomb_WalkingBackwards 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FiringBomb_WalkingBackwards : STA.W $0FA8 
 
 Function_MotherBrainBody_FiringBomb_DecideOnWalking_return:
     RTS 
@@ -6116,8 +5822,7 @@ MotherBrainFiringBomb_DecideOnCrouching:
     JSL.L GenerateRandomNumber 
     CMP.W #$8000 
     BCC MotherBrainFiringBomb_FireBomb 
-    LDA.W #Function_MotherBrainBody_FiringBomb_Crouch 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FiringBomb_Crouch : STA.W $0FA8 
 
 Function_MotherBrainBody_FiringBomb_Crouch:
     JSR.W MakeMotherBrainCrouch 
@@ -6132,10 +5837,8 @@ MotherBrainFiringBomb_FireBomb:
 .notCorpse:
     TYA 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MotherBrainBody_FiringBomb_FiredBomb 
-    STA.W $0FA8 
-    LDA.W #$002C 
-    STA.W $0FB2 
+    LDA.W #Function_MotherBrainBody_FiringBomb_FiredBomb : STA.W $0FA8 
+    LDA.W #$002C : STA.W $0FB2 
     RTS 
 
 
@@ -6144,8 +5847,7 @@ Function_MotherBrainBody_FiringBomb_FiredBomb:
     BPL MotherBrainFiringBomb_FinishFiringBomb_return 
     JSR.W MakeMotherBrainStandUp 
     BCS MotherBrainFiringBomb_FinishFiringBomb 
-    LDA.W #Function_MotherBrainBody_FiringBomb_StandUp 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_FiringBomb_StandUp : STA.W $0FA8 
 
 Function_MotherBrainBody_FiringBomb_StandUp:
     JSR.W MakeMotherBrainStandUp 
@@ -6175,12 +5877,9 @@ Function_MBBody_Phase2_FiringLaser_PositionHeadQuickly:
   + TXA 
     STA.L $7E8064 
     STA.L $7E8066 
-    LDA.W #$0200 
-    STA.L $7E8068 
-    LDA.W #Function_MBBody_Phase2_FiringLaser_PositionHeadSlowlyAndFire 
-    STA.W $0FA8 
-    LDA.W #$0004 
-    STA.W $0FB2 
+    LDA.W #$0200 : STA.L $7E8068 
+    LDA.W #Function_MBBody_Phase2_FiringLaser_PositionHeadSlowlyAndFire : STA.W $0FA8 
+    LDA.W #$0004 : STA.W $0FB2 
     RTS 
 
 
@@ -6200,10 +5899,8 @@ Function_MBBody_Phase2_FiringLaser_PositionHeadSlowlyAndFire:
     STA.L $7E8068 
     LDA.W #InstList_MotherBrainHead_Attacking_Laser 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MotherBrainBody_Phase2_FiringLaser_FinishAttack 
-    STA.W $0FA8 
-    LDA.W #$0010 
-    STA.W $0FB2 
+    LDA.W #Function_MotherBrainBody_Phase2_FiringLaser_FinishAttack : STA.W $0FA8 
+    LDA.W #$0010 : STA.W $0FB2 
     RTS 
 
 
@@ -6214,11 +5911,9 @@ Function_MotherBrainBody_Phase2_FiringLaser_FinishAttack:
 
 
 .timerExpired:
-    LDA.W #$0004 
-    STA.L $7E8064 
+    LDA.W #$0004 : STA.L $7E8064 
     STA.L $7E8066 
-    LDA.W #Function_MotherBrainBody_Phase2_Thinking 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_Phase2_Thinking : STA.W $0FA8 
     JMP.W Function_MotherBrainBody_Phase2_Thinking 
 
 
@@ -6241,10 +5936,8 @@ MotherBrainPhase2_FiringDeathBeam_BackUp:
     LDA.W #$0028 
     JSR.W MakeMotherBrainWalkBackwards 
     BCC .return 
-    LDA.W #$0008 
-    STA.L $7E8064 
-    LDA.W #$0006 
-    STA.L $7E8066 
+    LDA.W #$0008 : STA.L $7E8064 
+    LDA.W #$0006 : STA.L $7E8066 
     LDA.L $7E782E 
     INC A 
     STA.L $7E782E 
@@ -6273,32 +5966,22 @@ RTS_A9B8C8:
 MotherBrainPhase2_FiringDeathBeam_Finish:
     LDA.W #InstList_MotherBrainHead_Neutral_Phase2_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #$0002 
-    STA.L $7E8064 
-    LDA.W #$0004 
-    STA.L $7E8066 
-    LDA.W #$0000 
-    STA.L $7E782E 
-    LDA.W #Function_MotherBrainBody_Phase2_Thinking 
-    STA.W $0FA8 
+    LDA.W #$0002 : STA.L $7E8064 
+    LDA.W #$0004 : STA.L $7E8066 
+    LDA.W #$0000 : STA.L $7E782E 
+    LDA.W #Function_MotherBrainBody_Phase2_Thinking : STA.W $0FA8 
     RTS 
 
 
 Function_MotherBrainBody_Phase2_FiringRainbowBeam_ExtendNeck:
     LDA.W #InstList_MotherBrainHead_Neutral_Phase2_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #$0040 
-    STA.L $7E8068 
-    LDA.W #$0001 
-    STA.L $7E8062 
-    LDA.W #$0002 
-    STA.L $7E8064 
-    LDA.W #$0004 
-    STA.L $7E8066 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_StartCharging 
-    STA.W $0FA8 
-    LDA.W #$0100 
-    STA.W $0FB2 
+    LDA.W #$0040 : STA.L $7E8068 
+    LDA.W #$0001 : STA.L $7E8062 
+    LDA.W #$0002 : STA.L $7E8064 
+    LDA.W #$0004 : STA.L $7E8066 
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_StartCharging : STA.W $0FA8 
+    LDA.W #$0100 : STA.W $0FB2 
 
 Function_MotherBrainBody_Phase2_FiringRainbowBeam_return:
     RTS 
@@ -6309,38 +5992,29 @@ Function_MBBody_Phase2_FiringRainbowBeam_StartCharging:
     BPL Function_MotherBrainBody_Phase2_FiringRainbowBeam_return 
     LDA.W #InstList_MotherBrainHead_ChargingRainbowBeam_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MotherBrainBody_Phase2_FiringRainbowBeam_RetractNeck 
-    STA.W $0FA8 ; fallthrough to Function_MotherBrainBody_Phase2_FiringRainbowBeam_RetractNeck
+    LDA.W #Function_MotherBrainBody_Phase2_FiringRainbowBeam_RetractNeck : STA.W $0FA8 ; fallthrough to Function_MotherBrainBody_Phase2_FiringRainbowBeam_RetractNeck
 
 Function_MotherBrainBody_Phase2_FiringRainbowBeam_RetractNeck:
     LDA.W #$0028 
     JSR.W MakeMBWalkBackwardsReallySlowTowardsXPositionInA_RetractHead 
     BCC Function_MotherBrainBody_Phase2_FiringRainbowBeam_return 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_WaitForBeamToCharge 
-    STA.W $0FA8 
-    LDA.W #$0100 
-    STA.W $0FB2 ; fallthrough to Function_MBBody_Phase2_FiringRainbowBeam_WaitForBeamToCharge
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_WaitForBeamToCharge : STA.W $0FA8 
+    LDA.W #$0100 : STA.W $0FB2 ; fallthrough to Function_MBBody_Phase2_FiringRainbowBeam_WaitForBeamToCharge
 
 Function_MBBody_Phase2_FiringRainbowBeam_WaitForBeamToCharge:
     DEC.W $0FB2 
     BPL Function_MotherBrainBody_Phase2_FiringRainbowBeam_return 
     LDA.W #$0071 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_ExtendNeckDown 
-    STA.W $0FA8 ; fallthrough to Function_MBBody_Phase2_FiringRainbowBeam_ExtendNeckDown
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_ExtendNeckDown : STA.W $0FA8 ; fallthrough to Function_MBBody_Phase2_FiringRainbowBeam_ExtendNeckDown
 
 Function_MBBody_Phase2_FiringRainbowBeam_ExtendNeckDown:
-    LDA.W #$0008 
-    STA.W $0CCC 
-    LDA.W #$0006 
-    STA.L $7E8064 
+    LDA.W #$0008 : STA.W $0CCC 
+    LDA.W #$0006 : STA.L $7E8064 
     STA.L $7E8066 
-    LDA.W #$0500 
-    STA.L $7E8068 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam 
-    STA.W $0FA8 
-    LDA.W #$0010 
-    STA.W $0FB2 ; fallthough to Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam
+    LDA.W #$0500 : STA.L $7E8068 
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam : STA.W $0FA8 
+    LDA.W #$0010 : STA.W $0FB2 ; fallthough to Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam
 
 Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam:
     JSR.W AimMotherBrainRainbowBeam_IncreaseWidth 
@@ -6360,18 +6034,13 @@ Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam:
     JSR.W ResetMotherBrainBodyRainbowBeamPaletteAnimationIndex 
     LDA.W #InstList_MotherBrainHead_FiringRainbowBeam 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #$0200 
-    STA.L $7E8026 
+    LDA.W #$0200 : STA.L $7E8026 
     JSL.L Spawn_MotherBrainRainbowBeam_HDMAObject 
     STA.L $7E7812 
-    LDA.W #$0040 
-    STA.L $7E8068 
-    LDA.W #$0001 
-    STA.L $7E8062 
-    LDA.W #$0002 
-    STA.L $7E8064 
-    LDA.W #$0004 
-    STA.L $7E8066 
+    LDA.W #$0040 : STA.L $7E8068 
+    LDA.W #$0001 : STA.L $7E8062 
+    LDA.W #$0002 : STA.L $7E8064 
+    LDA.W #$0004 : STA.L $7E8066 
     STZ.W $0FB4 
     STZ.W $0FB6 
     LDA.W #$0005 
@@ -6382,10 +6051,8 @@ Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam:
 
 .greaterThan2BC:
     JSL.L Run_Samus_Command 
-    LDA.W #$0006 
-    STA.L $7E782A 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_MoveSamusTowardWall 
-    STA.W $0FA8 
+    LDA.W #$0006 : STA.L $7E782A 
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_MoveSamusTowardWall : STA.W $0FA8 
     RTS 
 
 
@@ -6396,8 +6063,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_MoveSamusTowardWall:
     JSR.W HandleMotherBrainRainbowBeamExplosions 
     JSR.W MoveSamusTowardsWallDueToRainbowBeam 
     BCC .return 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_1FrameDelay 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_1FrameDelay : STA.W $0FA8 
     STZ.W $0FB2 
 
 .return:
@@ -6412,25 +6078,19 @@ Function_MBBody_Phase2_FiringRainbowBeam_1FrameDelay:
     JSR.W MoveSamusTowardsWallDueToRainbowBeam 
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #$0008 
-    STA.W $183E 
-    LDA.W #$0008 
-    STA.W $1840 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_StartDrainingSamus 
-    STA.W $0FA8 
+    LDA.W #$0008 : STA.W $183E 
+    LDA.W #$0008 : STA.W $1840 
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_StartDrainingSamus : STA.W $0FA8 
 
 .return:
     RTS 
 
 
 Function_MBBody_Phase2_FiringRainbowBeam_StartDrainingSamus:
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_DrainingSamus 
-    STA.W $0FA8 
-    LDA.W #$012B 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_DrainingSamus : STA.W $0FA8 
+    LDA.W #$012B : STA.W $0FB2 
     STA.W $1840 
-    LDA.W #$0008 
-    STA.W $183E ; fallthough to Function_MBBody_Phase2_FiringRainbowBeam_DrainingSamus
+    LDA.W #$0008 : STA.W $183E ; fallthough to Function_MBBody_Phase2_FiringRainbowBeam_DrainingSamus
 
 Function_MBBody_Phase2_FiringRainbowBeam_DrainingSamus:
     JSR.W PlayMotherBrainRainbowBeamSFX 
@@ -6442,8 +6102,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_DrainingSamus:
     JSR.W MoveSamusTowardsMiddleOfWall 
     DEC.W $0FB2 
     BPL Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring_return 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring : STA.W $0FA8 
     RTS 
 
 
@@ -6458,10 +6117,8 @@ Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring:
     STA.L $7E8026 
     CMP.W #$0200 
     BPL Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring_return 
-    LDA.W #$0200 
-    STA.L $7E8026 
-    LDA.W #$FF00 
-    STA.W $0FB4 
+    LDA.W #$0200 : STA.L $7E8026 
+    LDA.W #$FF00 : STA.W $0FB4 
     STZ.W $0FB6 
     LDA.L $7E7812 
     TAX 
@@ -6473,14 +6130,11 @@ Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring:
     JSR.W WriteMotherBrainDefaultPalette 
     LDA.W #$0002 
     JSL.L QueueSound_Lib1_Max6 
-    LDA.W #$0000 
-    STA.L $7E782C 
+    LDA.W #$0000 : STA.L $7E782C 
     LDA.W #$0001 
     JSL.L Run_Samus_Command 
-    LDA.W #$0008 
-    STA.W $0CCC 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_LetSamusFall 
-    STA.W $0FA8 
+    LDA.W #$0008 : STA.W $0CCC 
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_LetSamusFall : STA.W $0FA8 
 
 Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring_return:
     RTS 
@@ -6489,32 +6143,24 @@ Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring_return:
 Function_MBBody_Phase2_FiringRainbowBeam_LetSamusFall:
     LDA.W #$0000 
     JSL.L DrainedSamusController 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_WaitForSamusToLand 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_WaitForSamusToLand : STA.W $0FA8 
 
 Function_MBBody_Phase2_FiringRainbowBeam_WaitForSamusToLand:
     JSR.W MoveSamusForFallingAfterRainbowBeam 
     BCC .return 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_LowerHead 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_LowerHead : STA.W $0FA8 
 
 .return:
     RTS 
 
 
 Function_MBBody_Phase2_FiringRainbowBeam_LowerHead:
-    LDA.W #$0040 
-    STA.L $7E8068 
-    LDA.W #$0001 
-    STA.L $7E8062 
-    LDA.W #$0002 
-    STA.L $7E8064 
-    LDA.W #$0004 
-    STA.L $7E8066 
-    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_DecideNextAction 
-    STA.W $0FA8 
-    LDA.W #$0080 
-    STA.W $0FB2 
+    LDA.W #$0040 : STA.L $7E8068 
+    LDA.W #$0001 : STA.L $7E8062 
+    LDA.W #$0002 : STA.L $7E8064 
+    LDA.W #$0004 : STA.L $7E8066 
+    LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_DecideNextAction : STA.W $0FA8 
+    LDA.W #$0080 : STA.W $0FB2 
 
 Function_MBBody_Phase2_FiringRainbowBeam_LowerHead_return:
     RTS 
@@ -6526,8 +6172,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_DecideNextAction:
     LDA.W $09C2 
     CMP.W #$0190 
     BMI .lessThan190 
-    LDA.W #Function_MotherBrainBody_Phase2_FiringRainbowBeam_ExtendNeck 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_Phase2_FiringRainbowBeam_ExtendNeck : STA.W $0FA8 
     RTS 
 
 
@@ -6537,8 +6182,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_DecideNextAction:
     CLC 
     ADC.W #$0010 
     JSR.W MakeMotherBrainWalkForwards 
-    LDA.W #Function_MBBody_Phase2_FinishSamusOff_GetSamusToLowEnergy 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase2_FinishSamusOff_GetSamusToLowEnergy : STA.W $0FA8 
     RTS 
 
 
@@ -6549,8 +6193,7 @@ PlayMotherBrainRainbowBeamSFX:
     STA.L $7E782A 
     LDA.W #$0040 
     JSL.L QueueSound_Lib1_Max6 
-    LDA.W #$0001 
-    STA.L $7E782C 
+    LDA.W #$0001 : STA.L $7E782C 
 
 .return:
     RTS 
@@ -6564,14 +6207,10 @@ MakeMBWalkBackwardsReallySlowTowardsXPositionInA_RetractHead:
 
 
 RetractMotherBrainsHead:
-    LDA.W #$0050 
-    STA.L $7E8068 
-    LDA.W #$0001 
-    STA.L $7E8062 
-    LDA.W #$0008 
-    STA.L $7E8064 
-    LDA.W #$0006 
-    STA.L $7E8066 
+    LDA.W #$0050 : STA.L $7E8068 
+    LDA.W #$0001 : STA.L $7E8062 
+    LDA.W #$0008 : STA.L $7E8064 
+    LDA.W #$0006 : STA.L $7E8066 
     RTS 
 
 
@@ -6617,8 +6256,7 @@ MoveSamusTowardsWallDueToRainbowBeam:
     LDA.W #$1000 
     JSR.W MoveSamusHorizontallyTowardsWall 
     BCS .return 
-    LDA.L $7E8022 
-    STA.B $12 
+    LDA.L $7E8022 : STA.B $12 
     LDA.W #$1000 
     JSL.L Math_86C272 
     JSR.W MoveSamusVerticallyTowardsCeilingFloor 
@@ -6714,8 +6352,7 @@ MoveSamusHorizontallyTowardsWall:
 
 
 .greaterThanEqualToEB:
-    LDA.W #$00EB 
-    STA.W $0AF6 
+    LDA.W #$00EB : STA.W $0AF6 
     STA.W $0B10 
     STZ.W $0AF8 
     STZ.W $0B12 
@@ -6730,17 +6367,14 @@ HandleMotherBrainRainbowBeamExplosions:
 
 
 .timerExpired:
-    LDA.W #$0008 
-    STA.W $0FB6 
+    LDA.W #$0008 : STA.W $0FB6 
     INC.W $0FB4 
     LDA.W $0FB4 
     AND.W #$0007 
     ASL A 
     TAX 
-    LDA.W .data0,X 
-    STA.B $12 
-    LDA.W .data1,X 
-    STA.B $14 
+    LDA.W .data0,X : STA.B $12 
+    LDA.W .data1,X : STA.B $14 
     LDY.W #EnemyProjectile_MotherBrainRainbowBeam_Explosion 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     LDA.W #$0024 
@@ -6755,8 +6389,7 @@ HandleMotherBrainRainbowBeamExplosions:
     db $F9,$FF,$02,$00,$05,$00,$FC,$FF,$06,$00,$FE,$FF,$FA,$FF,$07,$00 
 
 ResetMotherBrainBodyRainbowBeamPaletteAnimationIndex:
-    LDA.W #$0000 
-    STA.L $7E7842 
+    LDA.W #$0000 : STA.L $7E7842 
     RTS 
 
 
@@ -6861,8 +6494,7 @@ Function_MBBody_Phase2_FinishSamusOff_GetSamusToLowEnergy:
 
 
 .done:
-    LDA.W #Function_MotherBrainBody_Phase2_FinishSamusOff_StandUp 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_Phase2_FinishSamusOff_StandUp : STA.W $0FA8 
 
 .return:
     RTS 
@@ -6871,20 +6503,16 @@ Function_MBBody_Phase2_FinishSamusOff_GetSamusToLowEnergy:
 Function_MotherBrainBody_Phase2_FinishSamusOff_StandUp:
     JSR.W MakeMotherBrainStandUp 
     BCC Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid_return 
-    LDA.W #Function_MBBody_Phase2_FinishSamusOff_AdmireJobWellDone 
-    STA.W $0FA8 
-    LDA.W #$0010 
-    STA.W $0FB2 ; fallthrough to Function_MBBody_Phase2_FinishSamusOff_AdmireJobWellDone
+    LDA.W #Function_MBBody_Phase2_FinishSamusOff_AdmireJobWellDone : STA.W $0FA8 
+    LDA.W #$0010 : STA.W $0FB2 ; fallthrough to Function_MBBody_Phase2_FinishSamusOff_AdmireJobWellDone
 
 Function_MBBody_Phase2_FinishSamusOff_AdmireJobWellDone:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid_return 
     LDA.W #InstList_MotherBrainHead_Stretching_Phase2_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MBBody_Phase2_FinishSamusOff_ChargeFinalRainbowBeam 
-    STA.W $0FA8 
-    LDA.W #$0100 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase2_FinishSamusOff_ChargeFinalRainbowBeam : STA.W $0FA8 
+    LDA.W #$0100 : STA.W $0FB2 
     RTS 
 
 
@@ -6893,8 +6521,7 @@ Function_MBBody_Phase2_FinishSamusOff_ChargeFinalRainbowBeam:
     BPL Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid_return 
     LDA.W #InstList_MotherBrainHead_ChargingRainbowBeam_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid 
-    STA.W $0FA8 ; fallthough to Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid
+    LDA.W #Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid : STA.W $0FA8 ; fallthough to Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid
 
 Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid:
     LDX.W #MotherBrainFightSpriteTileTransferEntries_babyMetroid 
@@ -6902,10 +6529,8 @@ Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid:
     BCC Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid_return 
     JSR.W RetractMotherBrainsHead 
     JSR.W SpawnBabyMetroidCutscene 
-    LDA.W #Function_MBBody_Phase2_FinishSamusOff_FireFinalRainbowBeam 
-    STA.W $0FA8 
-    LDA.W #$0100 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase2_FinishSamusOff_FireFinalRainbowBeam : STA.W $0FA8 
+    LDA.W #$0100 : STA.W $0FB2 
 
 Function_MBBody_Phase2_FinishSamusOff_LoadBabyMetroid_return:
     RTS 
@@ -6917,15 +6542,12 @@ Function_MBBody_Phase2_FinishSamusOff_FireFinalRainbowBeam:
     JSR.W ResetMotherBrainBodyRainbowBeamPaletteAnimationIndex 
     LDA.W #InstList_MotherBrainHead_FiringRainbowBeam 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #$0006 
-    STA.L $7E8064 
+    LDA.W #$0006 : STA.L $7E8064 
     STA.L $7E8066 
-    LDA.W #$0500 
-    STA.L $7E8068 
+    LDA.W #$0500 : STA.L $7E8068 
     LDA.W #$0071 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #RTS_A9BE1A 
-    STA.W $0FA8 
+    LDA.W #RTS_A9BE1A : STA.W $0FA8 
 
 RTS_A9BE1A:
     RTS 
@@ -6946,36 +6568,25 @@ PopulationData_BabyMetroidCutscene:
     dw $2800,$0000,$0000,$0000 
 
 Function_MotherBrainBody_DrainedByBabyMetroid_TakenAback:
-    LDA.W #$0003 
-    STA.L $7E7800 
-    LDA.W #$0008 
-    STA.L $7E8064 
+    LDA.W #$0003 : STA.L $7E7800 
+    LDA.W #$0008 : STA.L $7E8064 
     STA.L $7E8066 
-    LDA.W #$0700 
-    STA.L $7E8068 
-    LDA.W #Function_MotherBrainBody_DrainedByBabyMetroid_RegainBalance 
-    STA.W $0FA8 
-    LDA.W #$0030 
-    STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_DrainedByBabyMetroid_RegainBalance
+    LDA.W #$0700 : STA.L $7E8068 
+    LDA.W #Function_MotherBrainBody_DrainedByBabyMetroid_RegainBalance : STA.W $0FA8 
+    LDA.W #$0030 : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_DrainedByBabyMetroid_RegainBalance
 
 Function_MotherBrainBody_DrainedByBabyMetroid_RegainBalance:
     JSR.W HandleMotherBrainBodyRainbowBeamPalette 
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #Function_MBBody_DrainedByBabyMetroid_FiringRainbowBeam 
-    STA.W $0FA8 
-    LDA.W #Function_MotherBrainBody_PainfulWalking_WalkForwards 
-    STA.L $7E7850 
-    LDA.W #$0000 
-    STA.L $7E784C 
-    LDA.W #$0002 
-    STA.L $7E784E 
+    LDA.W #Function_MBBody_DrainedByBabyMetroid_FiringRainbowBeam : STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_PainfulWalking_WalkForwards : STA.L $7E7850 
+    LDA.W #$0000 : STA.L $7E784C 
+    LDA.W #$0002 : STA.L $7E784E 
     LDA.W #$0001 
     LDA.L $7E8062 
-    LDA.W #$0002 
-    STA.L $7E8064 
-    LDA.W #$0004 
-    STA.L $7E8066 
+    LDA.W #$0002 : STA.L $7E8064 
+    LDA.W #$0004 : STA.L $7E8066 
 
 .return:
     RTS 
@@ -6984,12 +6595,10 @@ Function_MotherBrainBody_DrainedByBabyMetroid_RegainBalance:
 Function_MBBody_DrainedByBabyMetroid_FiringRainbowBeam:
     LDA.L $7E7840 
     BNE + 
-    LDA.W #$0032 
-    STA.L $7E7840 
+    LDA.W #$0032 : STA.L $7E7840 
 
   + JSR.W HandleMotherBrainBodyRainbowBeamPalette 
-    LDA.L $7E7850 
-    STA.B $12 
+    LDA.L $7E7850 : STA.B $12 
     PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
@@ -7001,19 +6610,16 @@ Function_MBBody_DrainedByBabyMetroid_FiringRainbowBeam:
     LDA.W .walkingAnimationDelays,Y 
     AND.W #$00FF 
     STA.L $7E784E 
-    LDA.W .neckAngleDeltas,Y 
-    STA.L $7E8068 
+    LDA.W .neckAngleDeltas,Y : STA.L $7E8068 
     LDA.L $7E784C 
     CMP.W #$0006 
     BNE .return 
-    LDA.W #$0000 
-    STA.L $7E782C 
+    LDA.W #$0000 : STA.L $7E782C 
     STA.L $7E7860 
     JSR.W WriteMotherBrainPhase2DeathPalette 
     LDA.W #$0002 
     JSL.L QueueSound_Lib1_Max6 
-    LDA.W #Function_MBBody_DrainedByBabyMetroid_RainbowBeamHasRunOut 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_DrainedByBabyMetroid_RainbowBeamHasRunOut : STA.W $0FA8 
 
 .return:
     RTS 
@@ -7026,8 +6632,7 @@ Function_MBBody_DrainedByBabyMetroid_FiringRainbowBeam:
     dw $0500,$0500,$0200,$0200,$00C0,$00C0,$0040,$0040 
 
 Function_MBBody_DrainedByBabyMetroid_RainbowBeamHasRunOut:
-    LDA.L $7E7850 
-    STA.B $12 
+    LDA.L $7E7850 : STA.B $12 
     PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
@@ -7036,24 +6641,19 @@ Function_MBBody_DrainedByBabyMetroid_RainbowBeamHasRunOut:
     LDA.L $7E784C 
     CMP.W #$0008 
     BMI Function_MotherBrainBody_DrainedByBabyMetroid_return 
-    LDA.W #$0040 
-    STA.L $7E8068 
-    LDA.W #$0008 
-    STA.L $7E8064 
+    LDA.W #$0040 : STA.L $7E8068 
+    LDA.W #$0008 : STA.L $7E8064 
     STA.L $7E8066 
     LDA.W #InstList_MotherBrainHead_DyingDrool_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MBBody_DrainedByBabyMetroid_MoveToBackOfRoom 
-    STA.W $0FA8 ; fallthrough to Function_MBBody_DrainedByBabyMetroid_MoveToBackOfRoom
+    LDA.W #Function_MBBody_DrainedByBabyMetroid_MoveToBackOfRoom : STA.W $0FA8 ; fallthrough to Function_MBBody_DrainedByBabyMetroid_MoveToBackOfRoom
 
 Function_MBBody_DrainedByBabyMetroid_MoveToBackOfRoom:
     LDA.W #$0028 
     JSR.W MakeMotherBrainWalkBackwards 
     BCC Function_MotherBrainBody_DrainedByBabyMetroid_return 
-    LDA.W #Function_MBBody_DrainedByBabyMetroid_GoIntoLowPowerMode 
-    STA.W $0FA8 
-    LDA.W #$0000 
-    STA.L $7E8066 ; fallthrough to Function_MBBody_DrainedByBabyMetroid_GoIntoLowPowerMode
+    LDA.W #Function_MBBody_DrainedByBabyMetroid_GoIntoLowPowerMode : STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E8066 ; fallthrough to Function_MBBody_DrainedByBabyMetroid_GoIntoLowPowerMode
 
 Function_MBBody_DrainedByBabyMetroid_GoIntoLowPowerMode:
     LDA.L $7E8064 
@@ -7064,10 +6664,8 @@ Function_MBBody_DrainedByBabyMetroid_GoIntoLowPowerMode:
     BNE Function_MotherBrainBody_DrainedByBabyMetroid_return 
     LDA.W #InstList_MotherBrainBody_Crouch_Fast 
     JSR.W SetMotherBrainBodyInstList 
-    LDA.W #Function_MBBody_DrainedByBabyMetroid_PrepareTransitionToGrey 
-    STA.W $0FA8 
-    LDA.W #$0040 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_DrainedByBabyMetroid_PrepareTransitionToGrey : STA.W $0FA8 
+    LDA.W #$0040 : STA.W $0FB2 
 
 Function_MotherBrainBody_DrainedByBabyMetroid_return:
     RTS 
@@ -7076,18 +6674,14 @@ Function_MotherBrainBody_DrainedByBabyMetroid_return:
 Function_MBBody_DrainedByBabyMetroid_PrepareTransitionToGrey:
     DEC.W $0FB2 
     BPL Function_MotherBrainBody_DrainedByBabyMetroid_return 
-    LDA.W #$0000 
-    STA.L $7E802E 
-    LDA.W #Function_MBBody_DrainedByBabyMetroid_TransitionToGrey 
-    STA.W $0FA8 
-    LDA.W #$0010 
-    STA.W $0FB2 
+    LDA.W #$0000 : STA.L $7E802E 
+    LDA.W #Function_MBBody_DrainedByBabyMetroid_TransitionToGrey : STA.W $0FA8 
+    LDA.W #$0010 : STA.W $0FB2 
 
 Function_MBBody_DrainedByBabyMetroid_TransitionToGrey:
     DEC.W $0FB2 
     BPL Function_MotherBrainBody_DrainedByBabyMetroid_return 
-    LDA.W #$0010 
-    STA.W $0FB2 
+    LDA.W #$0010 : STA.W $0FB2 
     LDA.L $7E802E 
     INC A 
     STA.L $7E802E 
@@ -7096,14 +6690,11 @@ Function_MBBody_DrainedByBabyMetroid_TransitionToGrey:
     BCC Function_MotherBrainBody_DrainedByBabyMetroid_return 
     LDA.W #$8CA0 ; 36,000 HP
     STA.W $0FCC 
-    LDA.W #$0001 
-    STA.L $7E783E 
+    LDA.W #$0001 : STA.L $7E783E 
     DEC A 
     STA.L $7E7868 
-    LDA.W #$0002 
-    STA.L $7E7800 
-    LDA.W #Function_MotherBrainBody_Phase2_ReviveSelf_InanimateGrey 
-    STA.W $0FA8 
+    LDA.W #$0002 : STA.L $7E7800 
+    LDA.W #Function_MotherBrainBody_Phase2_ReviveSelf_InanimateGrey : STA.W $0FA8 
     RTS 
 
 
@@ -7113,8 +6704,7 @@ Function_MotherBrainBody_PainfulWalking_WalkForwards:
     LDA.W #$0048 
     JSR.W MakeMotherBrainWalkForwards 
     BCC .return 
-    LDA.W #Function_MotherBrainBody_PainfulWalking_WalkingForwards 
-    STA.L $7E7850 
+    LDA.W #Function_MotherBrainBody_PainfulWalking_WalkingForwards : STA.L $7E7850 
     JSR.W SetMotherBrainPainfulWalkingFunctionTimer 
 
 .return:
@@ -7129,8 +6719,7 @@ Function_MotherBrainBody_PainfulWalking_WalkingForwards:
     LDA.L $7E784C 
     INC A 
     STA.L $7E784C 
-    LDA.W #Function_MotherBrainBody_PainfulWalking_WalkBackwards 
-    STA.L $7E7850 
+    LDA.W #Function_MotherBrainBody_PainfulWalking_WalkBackwards : STA.L $7E7850 
 
 .return:
     RTS 
@@ -7142,8 +6731,7 @@ Function_MotherBrainBody_PainfulWalking_WalkBackwards:
     LDA.W #$0028 
     JSR.W MakeMotherBrainWalkBackwards 
     BCC .return 
-    LDA.W #Function_MotherBrainBody_PainfulWalking_WalkingBackwards 
-    STA.L $7E7850 
+    LDA.W #Function_MotherBrainBody_PainfulWalking_WalkingBackwards : STA.L $7E7850 
     JSR.W SetMotherBrainPainfulWalkingFunctionTimer 
 
 .return:
@@ -7158,8 +6746,7 @@ Function_MotherBrainBody_PainfulWalking_WalkingBackwards:
     LDA.L $7E784C 
     INC A 
     STA.L $7E784C 
-    LDA.W #Function_MotherBrainBody_PainfulWalking_WalkForwards 
-    STA.L $7E7850 
+    LDA.W #Function_MotherBrainBody_PainfulWalking_WalkForwards : STA.L $7E7850 
 
 .return:
     RTS 
@@ -7179,10 +6766,8 @@ SetMotherBrainPainfulWalkingFunctionTimer:
     dw $0010,$0010,$0020,$0020,$0030,$0030,$0040,$0040 
 
 Function_MotherBrainBody_Phase2_ReviveSelf_InanimateGrey:
-    LDA.W #Function_MotherBrainBody_Phase2_ReviveSelf_ShowSignsOfLife 
-    STA.W $0FA8 
-    LDA.W #$0300 
-    STA.W $0FB2 
+    LDA.W #Function_MotherBrainBody_Phase2_ReviveSelf_ShowSignsOfLife : STA.W $0FA8 
+    LDA.W #$0300 : STA.W $0FB2 
 
 Function_MotherBrainBody_Phase2_ReviveSelf_return:
     RTS 
@@ -7191,61 +6776,46 @@ Function_MotherBrainBody_Phase2_ReviveSelf_return:
 Function_MotherBrainBody_Phase2_ReviveSelf_ShowSignsOfLife:
     DEC.W $0FB2 
     BPL Function_MotherBrainBody_Phase2_ReviveSelf_return 
-    LDA.W #$0001 
-    STA.L $7E7868 
+    LDA.W #$0001 : STA.L $7E7868 
     STA.L $7E7864 
-    LDA.W #Function_MBBody_Phase2_ReviveSelf_PrepareTransitionToGrey 
-    STA.W $0FA8 
-    LDA.W #$00E0 
-    STA.W $0FB2 ; fallthrough to Function_MBBody_Phase2_ReviveSelf_PrepareTransitionToGrey
+    LDA.W #Function_MBBody_Phase2_ReviveSelf_PrepareTransitionToGrey : STA.W $0FA8 
+    LDA.W #$00E0 : STA.W $0FB2 ; fallthrough to Function_MBBody_Phase2_ReviveSelf_PrepareTransitionToGrey
 
 Function_MBBody_Phase2_ReviveSelf_PrepareTransitionToGrey:
-    LDA.W #Function_MBBody_Phase2_ReviveSelf_TransitionFromGrey 
-    STA.W $0FA8 
-    LDA.W #$0000 
-    STA.L $7E802E ; fallthrough to Function_MBBody_Phase2_ReviveSelf_TransitionFromGrey
+    LDA.W #Function_MBBody_Phase2_ReviveSelf_TransitionFromGrey : STA.W $0FA8 
+    LDA.W #$0000 : STA.L $7E802E ; fallthrough to Function_MBBody_Phase2_ReviveSelf_TransitionFromGrey
 
 Function_MBBody_Phase2_ReviveSelf_TransitionFromGrey:
     DEC.W $0FB2 
     BPL Function_MotherBrainBody_Phase2_ReviveSelf_return 
-    LDA.W #$0010 
-    STA.W $0FB2 
+    LDA.W #$0010 : STA.W $0FB2 
     LDA.L $7E802E 
     INC A 
     STA.L $7E802E 
     DEC A 
     JSL.L TransitionMotherBrainPaletteFromGrey_DrainedByBabyMetroid 
     BCC Function_MotherBrainBody_Phase2_ReviveSelf_return 
-    LDA.W #Function_MotherBrainBody_Phase2_ReviveSelf_WakeUp 
-    STA.W $0FA8 
-    LDA.W #$0001 
-    STA.L $7E7860 
+    LDA.W #Function_MotherBrainBody_Phase2_ReviveSelf_WakeUp : STA.W $0FA8 
+    LDA.W #$0001 : STA.L $7E7860 
     JSR.W SetupMotherBrainHeadNormalPalette ; fallthrough to Function_MotherBrainBody_Phase2_ReviveSelf_WakeUp
 
 Function_MotherBrainBody_Phase2_ReviveSelf_WakeUp:
     JSR.W MakeMotherBrainStandUp 
     BCC Function_MotherBrainBody_Phase2_ReviveSelf_return 
-    LDA.W #$0006 
-    STA.L $7E8064 
+    LDA.W #$0006 : STA.L $7E8064 
     STA.L $7E8066 
-    LDA.W #$0500 
-    STA.L $7E8068 
-    LDA.W #$0001 
-    STA.L $7E8062 
-    LDA.W #Function_MotherBrainBody_Phase2_ReviveSelf_WakeUpStretch 
-    STA.W $0FA8 
-    LDA.W #$0010 
-    STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_Phase2_ReviveSelf_WakeUpStretch
+    LDA.W #$0500 : STA.L $7E8068 
+    LDA.W #$0001 : STA.L $7E8062 
+    LDA.W #Function_MotherBrainBody_Phase2_ReviveSelf_WakeUpStretch : STA.W $0FA8 
+    LDA.W #$0010 : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_Phase2_ReviveSelf_WakeUpStretch
 
 Function_MotherBrainBody_Phase2_ReviveSelf_WakeUpStretch:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid_return 
     LDA.W #InstList_MotherBrainHead_Stretching_Phase3_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid 
-    STA.W $0FA8 
-    LDA.W #$0080 
-    STA.W $0FB2 ; fallthrough to Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid
+    LDA.W #Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid : STA.W $0FA8 
+    LDA.W #$0080 : STA.W $0FB2 ; fallthrough to Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid
 
 Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid:
     DEC.W $0FB2 
@@ -7254,10 +6824,8 @@ Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid:
     LDA.W #$0050 
     JSR.W MakeMotherBrainWalkForwards 
     BCC Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid_return 
-    LDA.W #Func_MBBody_Phase2_ReviveSelf_PrepareNeckForBabyMetroidDeath 
-    STA.W $0FA8 
-    LDA.W #$0002 
-    STA.L $7E783E 
+    LDA.W #Func_MBBody_Phase2_ReviveSelf_PrepareNeckForBabyMetroidDeath : STA.W $0FA8 
+    LDA.W #$0002 : STA.L $7E783E 
     DEC A 
     STA.L $7E7862 
 
@@ -7266,18 +6834,12 @@ Function_MBBody_Phase2_ReviveSelf_WalkUpToBabyMetroid_return:
 
 
 Func_MBBody_Phase2_ReviveSelf_PrepareNeckForBabyMetroidDeath:
-    LDA.W #$0000 
-    STA.L $7E7826 
-    LDA.W #$0001 
-    STA.L $7E8062 
-    LDA.W #$0002 
-    STA.L $7E8064 
-    LDA.W #$0004 
-    STA.L $7E8066 
-    LDA.W #$0040 
-    STA.L $7E8068 
-    LDA.W #Func_MBBody_Phase2_ReviveSelf_FinishPrepForBabyMetroidDeath 
-    STA.W $0FA8 ; fallthrough to Func_MBBody_Phase2_ReviveSelf_FinishPrepForBabyMetroidDeath
+    LDA.W #$0000 : STA.L $7E7826 
+    LDA.W #$0001 : STA.L $7E8062 
+    LDA.W #$0002 : STA.L $7E8064 
+    LDA.W #$0004 : STA.L $7E8066 
+    LDA.W #$0040 : STA.L $7E8068 
+    LDA.W #Func_MBBody_Phase2_ReviveSelf_FinishPrepForBabyMetroidDeath : STA.W $0FA8 ; fallthrough to Func_MBBody_Phase2_ReviveSelf_FinishPrepForBabyMetroidDeath
 
 Func_MBBody_Phase2_ReviveSelf_FinishPrepForBabyMetroidDeath:
     JSR.W MakeMotherBrainStandUp 
@@ -7286,8 +6848,7 @@ Func_MBBody_Phase2_ReviveSelf_FinishPrepForBabyMetroidDeath:
 
 
 .standing:
-    LDA.W #Function_MotherBrainBody_Phase2_KillBabyMetroid_Attack 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_Phase2_KillBabyMetroid_Attack : STA.W $0FA8 
     LDY.W #$000A 
     LDA.W #$0050 
     JSR.W MakeMotherBrainWalkForwards ; fallthrough to Function_MotherBrainBody_Phase2_KillBabyMetroid_Attack
@@ -7307,10 +6868,8 @@ Function_MotherBrainBody_Phase2_KillBabyMetroid_Attack:
 .zeroIndex:
     TYA 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MBBody_Phase2_KillBabyMetroid_AttackCooldown 
-    STA.W $0FA8 
-    LDA.W #$0040 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase2_KillBabyMetroid_AttackCooldown : STA.W $0FA8 
+    LDA.W #$0040 : STA.W $0FB2 
 
 Function_MBBody_Phase2_KillBabyMetroid_return:
     RTS 
@@ -7319,8 +6878,7 @@ Function_MBBody_Phase2_KillBabyMetroid_return:
 Function_MBBody_Phase2_KillBabyMetroid_AttackCooldown:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase2_KillBabyMetroid_return 
-    LDA.W #Function_MotherBrainBody_Phase2_KillBabyMetroid_Attack 
-    STA.W $0FA8 
+    LDA.W #Function_MotherBrainBody_Phase2_KillBabyMetroid_Attack : STA.W $0FA8 
 
 RTS_A9C18D:
     RTS 
@@ -7336,8 +6894,7 @@ Function_MBBody_Phase2_PrepareForFinalBabyMetroidAttack:
 Function_MBBody_Phase2_ExecuteFinalBabyMetroidAttack:
     LDA.W #InstList_MotherBrainHead_Attacking_BabyMetroid 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #RTS_A9C1A6 
-    STA.W $0FA8 
+    LDA.W #RTS_A9C1A6 : STA.W $0FA8 
 
 RTS_A9C1A6:
     RTS 
@@ -7368,12 +6925,9 @@ MaybeMakeMotherBrainStandUpOrLeanDown:
 
 
 Function_MBBody_Phase3_RecoverFromCutscene_MakeSomeDistance:
-    LDA.W #$0004 
-    STA.L $7E7800 
-    LDA.W #Function_MBBody_Phase3_RecoverFromCutscene_SetupForFighting 
-    STA.W $0FA8 
-    LDA.W #$0020 
-    STA.W $0FB2 
+    LDA.W #$0004 : STA.L $7E7800 
+    LDA.W #Function_MBBody_Phase3_RecoverFromCutscene_SetupForFighting : STA.W $0FA8 
+    LDA.W #$0020 : STA.W $0FB2 
     LDA.W $0F7A 
     SEC 
     SBC.W #$000E 
@@ -7387,18 +6941,14 @@ Function_MotherBrainBody_Phase3_RecoverFromCutscene_return:
 Function_MBBody_Phase3_RecoverFromCutscene_SetupForFighting:
     DEC.W $0FB2 
     BPL Function_MotherBrainBody_Phase3_RecoverFromCutscene_return 
-    LDA.W #Function_MBBody_Phase3_Fighting_Main 
-    STA.W $0FA8 
-    LDA.W #Function_MotherBrainNeck_Normal 
-    STA.L $7E7870 
-    LDA.W #Function_MotherBrainBody_Walking_TryToInchForward 
-    STA.L $7E7874 ; fallthrough to Function_MBBody_Phase3_Fighting_Main
+    LDA.W #Function_MBBody_Phase3_Fighting_Main : STA.W $0FA8 
+    LDA.W #Function_MotherBrainNeck_Normal : STA.L $7E7870 
+    LDA.W #Function_MotherBrainBody_Walking_TryToInchForward : STA.L $7E7874 ; fallthrough to Function_MBBody_Phase3_Fighting_Main
 
 Function_MBBody_Phase3_Fighting_Main:
     LDA.W $0FCC 
     BNE Function_MBBody_Phase3_Fighting_Main_notDead 
-    LDA.W #Function_MBBody_Phase3_DeathSequence_MoveToBackOfRoom 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase3_DeathSequence_MoveToBackOfRoom : STA.W $0FA8 
 
 Function_MBBody_Phase3_Fighting_Main_return:
     RTS 
@@ -7423,18 +6973,15 @@ Function_MBBody_Phase3_Fighting_Main_notDead:
 Function_MBBody_Phase3_Fighting_Main_lessThan80:
     TYA 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MBBody_Phase3_Fighting_AttackCooldown 
-    STA.W $0FA8 
-    LDA.W #$0040 
-    STA.W $0FB2 
+    LDA.W #Function_MBBody_Phase3_Fighting_AttackCooldown : STA.W $0FA8 
+    LDA.W #$0040 : STA.W $0FB2 
     RTS 
 
 
 Function_MBBody_Phase3_Fighting_AttackCooldown:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase3_Fighting_Main_return 
-    LDA.W #Function_MBBody_Phase3_Fighting_Main 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase3_Fighting_Main : STA.W $0FA8 
     RTS 
 
 
@@ -7445,8 +6992,7 @@ MotherBrainPhase3WalkingHandler:
 
 
 .standing:
-    LDA.L $7E7874 
-    STA.B $12 
+    LDA.L $7E7874 : STA.B $12 
     JMP.W ($0012) 
 
 
@@ -7469,8 +7015,7 @@ Function_MotherBrainBody_Walking_TryToInchForward:
     LDA.L $7E7876 
     JSR.W MakeMotherBrainWalkForwards 
     BCC .return 
-    LDA.W #$0080 
-    STA.L $7E780E 
+    LDA.W #$0080 : STA.L $7E780E 
 
 .return:
     RTS 
@@ -7481,8 +7026,7 @@ Function_MotherBrainBody_Walking_TryToInchForward:
     SEC 
     SBC.W #$000E 
     STA.L $7E7876 
-    LDA.W #Function_MotherBrainBody_Walking_RetreatQuickly 
-    STA.L $7E7874 ; fallthrough to Function_MotherBrainBody_Walking_RetreatQuickly
+    LDA.W #Function_MotherBrainBody_Walking_RetreatQuickly : STA.L $7E7874 ; fallthrough to Function_MotherBrainBody_Walking_RetreatQuickly
 
 Function_MotherBrainBody_Walking_RetreatQuickly:
     LDA.L $7E7876 
@@ -7493,8 +7037,7 @@ Function_MotherBrainBody_Walking_RetreatQuickly:
     SEC 
     SBC.W #$000E 
     STA.L $7E7876 
-    LDA.W #Function_MotherBrainBody_Walking_RetreatSlowly 
-    STA.L $7E7874 
+    LDA.W #Function_MotherBrainBody_Walking_RetreatSlowly : STA.L $7E7874 
 
 .return:
     RTS 
@@ -7517,10 +7060,8 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Function_MotherBrainBody_Walking_Crouch_A9C2E5:
     JSR.W MakeMotherBrainCrouch 
     BCC UNUSED_Function_MotherBrainBody_Walking_Crouch_return_A9C2F8 
-    LDA.W #UNUSED_Function_MotherBrainBody_Walking_Crouching_A9C2F9 
-    STA.L $7E7874 
-    LDA.W #$0040 
-    STA.L $7E7878 
+    LDA.W #UNUSED_Function_MotherBrainBody_Walking_Crouching_A9C2F9 : STA.L $7E7874 
+    LDA.W #$0040 : STA.L $7E7878 
 
 UNUSED_Function_MotherBrainBody_Walking_Crouch_return_A9C2F8:
     RTS 
@@ -7531,8 +7072,7 @@ UNUSED_Function_MotherBrainBody_Walking_Crouching_A9C2F9:
     DEC A 
     STA.L $7E7878 
     BPL UNUSED_Function_MotherBrainBody_Walking_Crouch_return_A9C2F8 
-    LDA.W #UNUSED_Function_MotherBrainBody_Walking_StandUp_A9C30B 
-    STA.L $7E7874 
+    LDA.W #UNUSED_Function_MotherBrainBody_Walking_StandUp_A9C30B : STA.L $7E7874 
 
 UNUSED_Function_MotherBrainBody_Walking_StandUp_A9C30B:
     JSR.W MakeMotherBrainStandUp 
@@ -7542,8 +7082,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 SetMotherBrainWalkingFunctionToTryToInchForward:
     STA.L $7E780E 
-    LDA.W #Function_MotherBrainBody_Walking_TryToInchForward 
-    STA.L $7E7874 
+    LDA.W #Function_MotherBrainBody_Walking_TryToInchForward : STA.L $7E7874 
     LDA.W $0F7A 
     INC A 
     STA.L $7E7876 
@@ -7551,39 +7090,28 @@ SetMotherBrainWalkingFunctionToTryToInchForward:
 
 
 MotherBrainPhase3NeckHandler:
-    LDA.L $7E7870 
-    STA.B $12 
+    LDA.L $7E7870 : STA.B $12 
     JMP.W ($0012) 
 
 
 Function_MotherBrainNeck_Normal:
-    LDA.W #$0001 
-    STA.L $7E8064 ; >_<
-    LDA.W #$0080 
-    STA.L $7E8068 
-    LDA.W #$0002 
-    STA.L $7E8064 
-    LDA.W #$0004 
-    STA.L $7E8066 
-    LDA.W #RTS_A9C353 
-    STA.L $7E7870 
+    LDA.W #$0001 : STA.L $7E8064 ; >_<
+    LDA.W #$0080 : STA.L $7E8068 
+    LDA.W #$0002 : STA.L $7E8064 
+    LDA.W #$0004 : STA.L $7E8066 
+    LDA.W #RTS_A9C353 : STA.L $7E7870 
 
 RTS_A9C353:
     RTS 
 
 
 Function_MotherBrainNeck_SetupRecoilRecovery:
-    LDA.W #$0001 
-    STA.L $7E8062 
-    LDA.W #$0500 
-    STA.L $7E8068 
-    LDA.W #$0006 
-    STA.L $7E8064 
+    LDA.W #$0001 : STA.L $7E8062 
+    LDA.W #$0500 : STA.L $7E8068 
+    LDA.W #$0006 : STA.L $7E8064 
     STA.L $7E8066 
-    LDA.W #Function_MotherBrainNeck_RecoilRecovery 
-    STA.L $7E7870 
-    LDA.W #$0010 
-    STA.L $7E7872 ; fallthrough to Function_MotherBrainNeck_RecoilRecovery
+    LDA.W #Function_MotherBrainNeck_RecoilRecovery : STA.L $7E7870 
+    LDA.W #$0010 : STA.L $7E7872 ; fallthrough to Function_MotherBrainNeck_RecoilRecovery
 
 Function_MotherBrainNeck_RecoilRecovery:
     LDA.L $7E7872 
@@ -7596,28 +7124,21 @@ Function_MotherBrainNeck_RecoilRecovery:
 .timerExpired:
     LDA.W #InstList_MotherBrainHead_AttackingSamus_4OnionRings_Phase3 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #Function_MotherBrainNeck_Normal 
-    STA.L $7E7870 
+    LDA.W #Function_MotherBrainNeck_Normal : STA.L $7E7870 
     RTS 
 
 
 Function_MotherBrainNeck_SetupHyperBeamRecoil:
-    LDA.W #$0001 
-    STA.L $7E8062 
+    LDA.W #$0001 : STA.L $7E8062 
     STA.L $7E780C 
     LDA.W #InstList_MotherBrainHead_HyperBeamRecoil_0 
     JSR.W SetMotherBrainHeadInstList 
-    LDA.W #$0032 
-    STA.L $7E7840 
-    LDA.W #$0900 
-    STA.L $7E8068 
-    LDA.W #$0008 
-    STA.L $7E8064 
+    LDA.W #$0032 : STA.L $7E7840 
+    LDA.W #$0900 : STA.L $7E8068 
+    LDA.W #$0008 : STA.L $7E8064 
     STA.L $7E8066 
-    LDA.W #Function_MotherBrainNeck_HyperBeamRecoil 
-    STA.L $7E7870 
-    LDA.W #$000B 
-    STA.L $7E7872 ; fallthrough to Function_MotherBrainNeck_HyperBeamRecoil
+    LDA.W #Function_MotherBrainNeck_HyperBeamRecoil : STA.L $7E7870 
+    LDA.W #$000B : STA.L $7E7872 ; fallthrough to Function_MotherBrainNeck_HyperBeamRecoil
 
 Function_MotherBrainNeck_HyperBeamRecoil:
     LDA.L $7E7872 
@@ -7628,12 +7149,9 @@ Function_MotherBrainNeck_HyperBeamRecoil:
 
 
 .timerExpired:
-    LDA.W #$0080 
-    STA.L $7E8068 
-    LDA.W #$0000 
-    STA.L $7E780C 
-    LDA.W #Function_MotherBrainNeck_SetupRecoilRecovery 
-    STA.L $7E7870 
+    LDA.W #$0080 : STA.L $7E8068 
+    LDA.W #$0000 : STA.L $7E780C 
+    LDA.W #Function_MotherBrainNeck_SetupRecoilRecovery : STA.L $7E7870 
     RTS 
 
 
@@ -7670,31 +7188,27 @@ MoveEnemyAccordingToVelocity:
 
 SetMotherBrainBodyInstList:
     STA.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #$0001 : STA.W $0F94 
     STZ.W $0F90 
     RTS 
 
 
 SetMotherBrainHeadUnusedInstList:
     STA.W $0FD2 
-    LDA.W #$0001 
-    STA.W $0FD4 
+    LDA.W #$0001 : STA.W $0FD4 
     STZ.W $0FD0 
     RTS 
 
 
 SetMotherBrainHeadInstList:
     STA.L $7E8002 
-    LDA.W #$0001 
-    STA.L $7E8000 
+    LDA.W #$0001 : STA.L $7E8000 
     RTS 
 
 
 SetEnemyInstList:
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     RTL 
 
@@ -7776,12 +7290,10 @@ DecrementAmmoDueToRainbowBeam:
     LDA.W $09D2 
     CMP.W #$0001 
     BNE .resetAutoCancel 
-    LDA.W #$0000 
-    STA.W $09D2 
+    LDA.W #$0000 : STA.W $09D2 
 
 .resetAutoCancel:
-    LDA.W #$0000 
-    STA.W $0A04 
+    LDA.W #$0000 : STA.W $0A04 
 
 .writeMissiles:
     STA.W $09C6 
@@ -7799,12 +7311,10 @@ DecrementAmmoDueToRainbowBeam:
     LDA.W $09D2 
     CMP.W #$0002 
     BNE ..resetAutoCancel 
-    LDA.W #$0000 
-    STA.W $09D2 
+    LDA.W #$0000 : STA.W $09D2 
 
 ..resetAutoCancel:
-    LDA.W #$0000 
-    STA.W $0A04 
+    LDA.W #$0000 : STA.W $0A04 
 
 .writeSuperMissiles:
     STA.W $09CA 
@@ -7819,12 +7329,10 @@ DecrementAmmoDueToRainbowBeam:
     LDA.W $09D2 
     CMP.W #$0003 
     BNE ..resetAutoCancel 
-    LDA.W #$0000 
-    STA.W $09D2 
+    LDA.W #$0000 : STA.W $09D2 
 
 ..resetAutoCancel:
-    LDA.W #$0000 
-    STA.W $0A04 
+    LDA.W #$0000 : STA.W $0A04 
 
 .writePowerBombs:
     STA.W $09CE 
@@ -7901,8 +7409,7 @@ HealSamusDueToBabyMetroid:
     ADC.W $09C2 
     CMP.W $09C4 
     BMI .notMaxed 
-    LDA.W $09C4 
-    STA.W $09C2 
+    LDA.W $09C4 : STA.W $09C2 
     JSR.W HandlePlayingGainingLosingIncrementalEnergySFX 
     CLC 
     RTL 
@@ -7925,12 +7432,9 @@ ProcessSpriteTilesTransfers:
     LDA.W $0000,X 
     BEQ + 
     STA.W $00D0,Y 
-    LDA.W $0003,X 
-    STA.W $00D3,Y 
-    LDA.W $0002,X 
-    STA.W $00D2,Y 
-    LDA.W $0005,X 
-    STA.W $00D5,Y 
+    LDA.W $0003,X : STA.W $00D3,Y 
+    LDA.W $0002,X : STA.W $00D2,Y 
+    LDA.W $0005,X : STA.W $00D5,Y 
     TYA 
     CLC 
     ADC.W #$0007 
@@ -8109,8 +7613,7 @@ HandleMotherBrainWalking:
     BCC .maybeWalkForwardsIfFarLeft 
 
 .walkForwards:
-    LDA.W #$0080 
-    STA.L $7E780E 
+    LDA.W #$0080 : STA.L $7E780E 
     LDA.W $0F7A 
     CMP.W #$0080 
     BPL .return 
@@ -8119,8 +7622,7 @@ HandleMotherBrainWalking:
 
 
 .walkBackwards:
-    LDA.W #$0001 
-    STA.L $7E780E 
+    LDA.W #$0001 : STA.L $7E780E 
     LDA.W $0F7A 
     CMP.W #$0030 
     BMI .maybeWalkForwards 
@@ -8148,32 +7650,21 @@ InitAI_BabyMetroidCutscene:
     LDA.W $0F86,X 
     ORA.W #$3000 
     STA.W $0F86,X 
-    LDA.W #$0E00 
-    STA.W $0F96,X 
-    LDA.W #InstList_BabyMetroid_Initial 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0E00 : STA.W $0F96,X 
+    LDA.W #InstList_BabyMetroid_Initial : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STA.L $7E7808,X 
     STZ.W $0F90,X 
-    LDA.W #$000A 
-    STA.W $0FB0,X 
-    LDA.W #$00A0 
-    STA.W $0F98,X 
-    LDA.W #$0140 
-    STA.W $0F7A,X 
-    LDA.W #$0060 
-    STA.W $0F7E,X 
+    LDA.W #$000A : STA.W $0FB0,X 
+    LDA.W #$00A0 : STA.W $0F98,X 
+    LDA.W #$0140 : STA.W $0F7A,X 
+    LDA.W #$0060 : STA.W $0F7E,X 
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
-    LDA.W #$0000 
-    STA.L $7E7812,X 
-    LDA.W #Function_BabyMetroidCutscene_DashOntoScreen 
-    STA.W $0FA8,X 
-    LDA.W #$00F8 
-    STA.W $0FB2,X 
-    LDA.W #HandleBabyMetroidCutscenePalette_Normal 
-    STA.L $7E781E,X 
+    LDA.W #$0000 : STA.L $7E7812,X 
+    LDA.W #Function_BabyMetroidCutscene_DashOntoScreen : STA.W $0FA8,X 
+    LDA.W #$00F8 : STA.W $0FB2,X 
+    LDA.W #HandleBabyMetroidCutscenePalette_Normal : STA.L $7E781E,X 
     LDY.W #Palette_MotherBrain_BabyMetroid+2 
     LDX.W #$01E2 
     LDA.W #$000F 
@@ -8188,8 +7679,7 @@ MainAI_BabyMetroidCutscene:
     JSR.W HandleBabyMetroidCutsceneFlashing 
     JSR.W HandleBabyMetroidCutsceneHealthBasedPalette 
     LDX.W $0E54 
-    LDA.L $7E781E,X 
-    STA.B $12 
+    LDA.L $7E781E,X : STA.B $12 
     PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
@@ -8217,8 +7707,7 @@ HandleBabyMetroidCutsceneFlashing:
 HandlePlayingBabyMetroidCutsceneCrySFX:
     LDA.L $7E7828 
     BEQ .return 
-    LDA.W #$0000 
-    STA.L $7E7828 
+    LDA.W #$0000 : STA.L $7E7828 
     LDA.W #$0072 
     JSL.L QueueSound_Lib2_Max6 
 
@@ -8233,22 +7722,15 @@ Function_BabyMetroidCutscene_DashOntoScreen:
 
 
 .timerExpired:
-    LDA.W #$D800 
-    STA.L $7E7814,X 
-    LDA.W #$0A00 
-    STA.L $7E7816,X 
-    LDA.W #Function_BabyMetroidCutscene_CurveTowardMotherBrainHead 
-    STA.W $0FA8,X 
-    LDA.W #$000A 
-    STA.W $0FB2,X ; fallthrough to Function_BabyMetroidCutscene_CurveTowardMotherBrainHead
+    LDA.W #$D800 : STA.L $7E7814,X 
+    LDA.W #$0A00 : STA.L $7E7816,X 
+    LDA.W #Function_BabyMetroidCutscene_CurveTowardMotherBrainHead : STA.W $0FA8,X 
+    LDA.W #$000A : STA.W $0FB2,X ; fallthrough to Function_BabyMetroidCutscene_CurveTowardMotherBrainHead
 
 Function_BabyMetroidCutscene_CurveTowardMotherBrainHead:
-    LDA.W #$FE80 
-    STA.B $12 
-    LDA.W #$B000 
-    STA.B $14 
-    LDA.W #$0A00 
-    STA.B $16 
+    LDA.W #$FE80 : STA.B $12 
+    LDA.W #$B000 : STA.B $14 
+    LDA.W #$0A00 : STA.B $16 
     JSR.W UpdateBabyMetroidCutsceneSpeedAndAngle 
     DEC.W $0FB2,X 
     BMI .timerExpired 
@@ -8256,27 +7738,19 @@ Function_BabyMetroidCutscene_CurveTowardMotherBrainHead:
 
 
 .timerExpired:
-    LDA.W #Function_BabyMetroidCutscene_GetRightUpInMotherBrainsFace 
-    STA.W $0FA8,X 
-    LDA.W #$0009 
-    STA.W $0FB2,X 
+    LDA.W #Function_BabyMetroidCutscene_GetRightUpInMotherBrainsFace : STA.W $0FA8,X 
+    LDA.W #$0009 : STA.W $0FB2,X 
     RTS 
 
 
 Function_BabyMetroidCutscene_GetRightUpInMotherBrainsFace:
-    LDA.W #$FA00 
-    STA.B $12 
-    LDA.W #$8200 
-    STA.B $14 
-    LDA.W #$0E00 
-    STA.B $16 
+    LDA.W #$FA00 : STA.B $12 
+    LDA.W #$8200 : STA.B $14 
+    LDA.W #$0E00 : STA.B $16 
     JSR.W UpdateBabyMetroidCutsceneSpeedAndAngle 
-    LDA.W $0FBA 
-    STA.B $12 
-    LDA.W $0FBE 
-    STA.B $14 
-    LDA.W #$0004 
-    STA.B $16 
+    LDA.W $0FBA : STA.B $12 
+    LDA.W $0FBE : STA.B $14 
+    LDA.W #$0004 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCC .timerExpired 
@@ -8287,29 +7761,25 @@ Function_BabyMetroidCutscene_GetRightUpInMotherBrainsFace:
 
 .timerExpired:
     STA.W $0FA8,X 
-    LDA.W #Function_BabyMetroidCutscene_LatchOntoMotherBrain 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroidCutscene_LatchOntoMotherBrain : STA.W $0FA8,X 
     LDA.W #$0001 
     JSL.L DrainedSamusController 
     RTS 
 
 
 Function_BabyMetroidCutscene_LatchOntoMotherBrain:
-    LDA.W $0FBA 
-    STA.B $12 
+    LDA.W $0FBA : STA.B $12 
     LDA.W $0FBE 
     CLC 
     ADC.W #$FFE8 
     STA.B $14 
     LDY.W #$0000 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
-    LDA.W #$0008 
-    STA.B $16 
+    LDA.W #$0008 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCS .return 
-    LDA.W #Function_BabyMetroidCutscene_SetMotherBrainToStumbleBack 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroidCutscene_SetMotherBrainToStumbleBack : STA.W $0FA8,X 
 
 .return:
     RTS 
@@ -8320,8 +7790,7 @@ Function_BabyMetroidCutscene_SetMotherBrainToStumbleBack:
     LDA.W $0F7A 
     DEC A 
     JSR.W MakeMotherBrainWalkBackwards 
-    LDA.W #Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody 
-    STA.W $0FA8,X ; fallthrough to Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody
+    LDA.W #Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody : STA.W $0FA8,X ; fallthrough to Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody
 
 Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody:
     LDA.W $0FBA 
@@ -8341,24 +7810,19 @@ Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody:
 .reachedTarget:
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
-    LDA.W $0FBA 
-    STA.W $0F7A,X 
+    LDA.W $0FBA : STA.W $0F7A,X 
     LDA.W $0FBE 
     CLC 
     ADC.W #$FFE8 
     STA.W $0F7E,X 
     LDA.W #InstList_BabyMetroid_DrainingMotherBrain 
     JSL.L SetEnemyInstList 
-    LDA.W #Function_BabyMetroidCutscene_WaitForMBToTurnToCorpse 
-    STA.W $0FA8,X 
-    LDA.W #$0001 
-    STA.W $0FB0,X 
-    LDA.W #Function_MotherBrainBody_DrainedByBabyMetroid_TakenAback 
-    STA.W $0FA8 
+    LDA.W #Function_BabyMetroidCutscene_WaitForMBToTurnToCorpse : STA.W $0FA8,X 
+    LDA.W #$0001 : STA.W $0FB0,X 
+    LDA.W #Function_MotherBrainBody_DrainedByBabyMetroid_TakenAback : STA.W $0FA8 
     LDA.W #$0040 
     JSL.L QueueSound_Lib1_Max6 
-    LDA.W #$0001 
-    STA.L $7E782C 
+    LDA.W #$0001 : STA.L $7E782C 
     RTS 
 
 
@@ -8382,16 +7846,13 @@ Function_BabyMetroidCutscene_WaitForMBToTurnToCorpse:
 
 
 .turnedToCorpse:
-    LDA.W #Function_BabyMetroidCutscene_StopDraining 
-    STA.W $0FA8,X 
-    LDA.W #$0040 
-    STA.W $0FB2,X 
+    LDA.W #Function_BabyMetroidCutscene_StopDraining : STA.W $0FA8,X 
+    LDA.W #$0040 : STA.W $0FB2,X 
     RTS 
 
 
 Function_BabyMetroidCutscene_StopDraining:
-    LDA.W $0FBA 
-    STA.W $0F7A,X 
+    LDA.W $0FBA : STA.W $0F7A,X 
     LDA.W $0FBE 
     CLC 
     ADC.W #$FFE8 
@@ -8404,12 +7865,9 @@ Function_BabyMetroidCutscene_StopDraining:
 .timerExpired:
     LDA.W #InstList_BabyMetroid_Initial 
     JSL.L SetEnemyInstList 
-    LDA.W #$000A 
-    STA.W $0FB0,X 
-    LDA.W #Function_BabyMetroidCutscene_LetGo_SpawnDustClouds 
-    STA.W $0FA8,X 
-    LDA.W #$0020 
-    STA.W $0FB2,X 
+    LDA.W #$000A : STA.W $0FB0,X 
+    LDA.W #Function_BabyMetroidCutscene_LetGo_SpawnDustClouds : STA.W $0FA8,X 
+    LDA.W #$0020 : STA.W $0FB2,X 
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
     RTS 
@@ -8419,18 +7877,14 @@ Function_BabyMetroidCutscene_LetGo_SpawnDustClouds:
     DEC.W $0FB2,X 
     BPL Function_BabyMetroidCutscene_MoveToTheCeiling 
     JSR.W SpawnThreeDustCloudsOnMotherBrainHead 
-    LDA.W #Function_BabyMetroidCutscene_MoveToTheCeiling 
-    STA.W $0FA8,X ; fallthrough to Function_BabyMetroidCutscene_MoveToTheCeiling
+    LDA.W #Function_BabyMetroidCutscene_MoveToTheCeiling : STA.W $0FA8,X ; fallthrough to Function_BabyMetroidCutscene_MoveToTheCeiling
 
 Function_BabyMetroidCutscene_MoveToTheCeiling:
-    LDA.W $0FBA 
-    STA.B $12 
-    LDA.W #$0000 
-    STA.B $14 
+    LDA.W $0FBA : STA.B $12 
+    LDA.W #$0000 : STA.B $14 
     LDY.W #$0000 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
-    LDA.W #$0004 
-    STA.B $16 
+    LDA.W #$0004 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCC .collision 
@@ -8440,24 +7894,19 @@ Function_BabyMetroidCutscene_MoveToTheCeiling:
 .collision:
     LDA.W #$0004 
     JSL.L DrainedSamusController 
-    LDA.W #Function_BabyMetroidCutscene_MoveToSamus 
-    STA.W $0FA8,X 
-    LDA.W #BabyMetroidCutscene_MovementTable_CeilingToSamus 
-    STA.L $7E781C,X 
+    LDA.W #Function_BabyMetroidCutscene_MoveToSamus : STA.W $0FA8,X 
+    LDA.W #BabyMetroidCutscene_MovementTable_CeilingToSamus : STA.L $7E781C,X 
     RTS 
 
 
 SpawnThreeDustCloudsOnMotherBrainHead:
-    LDA.W #$FFF8 
-    STA.B $14 
+    LDA.W #$FFF8 : STA.B $14 
     LDA.W #$FFF0 
     JSR.W SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14 
-    LDA.W #$FFF0 
-    STA.B $14 
+    LDA.W #$FFF0 : STA.B $14 
     LDA.W #$0000 
     JSR.W SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14 
-    LDA.W #$FFF8 
-    STA.B $14 
+    LDA.W #$FFF8 : STA.B $14 
     LDA.W #$0010 ; fallthrough to SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14
 
 SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14:
@@ -8475,8 +7924,7 @@ SpawnDustCloudAtMotherBrainHeadPosition_OffsetByA_14:
 
 
 Function_BabyMetroidCutscene_MoveToSamus:
-    LDA.W #$0000 
-    STA.L $7E7808,X 
+    LDA.W #$0000 : STA.L $7E7808,X 
     INC A 
     STA.L $7E7812,X 
     LDA.W $05E5 
@@ -8489,12 +7937,9 @@ Function_BabyMetroidCutscene_MoveToSamus:
 .skipSFX:
     LDA.L $7E781C,X 
     TAY 
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0002,Y 
-    STA.B $14 
-    LDA.W $0006,Y 
-    STA.B $16 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0002,Y : STA.B $14 
+    LDA.W $0006,Y : STA.B $16 
     LDA.W $0004,Y 
     PHY 
     TAY 
@@ -8504,8 +7949,7 @@ Function_BabyMetroidCutscene_MoveToSamus:
 
 .manualReturn:
     PLY 
-    LDA.W #$0004 
-    STA.B $16 
+    LDA.W #$0004 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCS .return 
@@ -8545,8 +7989,7 @@ BabyMetroidCutscene_MovementTable_CeilingToSamus:
     dw Function_BabyMetroidCutscene_LatchOntoSamus 
 
 Function_BabyMetroidCutscene_LatchOntoSamus:
-    LDA.W $0AF6 
-    STA.B $12 
+    LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA 
     SEC 
     SBC.W #$0014 
@@ -8556,8 +7999,7 @@ Function_BabyMetroidCutscene_LatchOntoSamus:
 
 
 Function_BabyMetroidCutscene_HealSamusUpToFullEnergy:
-    LDA.W #$0000 
-    STA.L $7E7808,X 
+    LDA.W #$0000 : STA.L $7E7808,X 
     JSR.W HandlePlayingBabyMetroidCutsceneCrySFX 
     LDA.W $0FA4,X 
     AND.W #$0006 
@@ -8574,12 +8016,9 @@ Function_BabyMetroidCutscene_HealSamusUpToFullEnergy:
     STA.W $0F7E,X 
     JSL.L HealSamusDueToBabyMetroid 
     BCS .return 
-    LDA.W $09D4 
-    STA.W $09D6 
-    LDA.W #Function_BabyMetroidCutscene_IdleUntilRunOutOfHealth 
-    STA.W $0FA8,X 
-    LDA.W #.return 
-    STA.L $7E781E,X 
+    LDA.W $09D4 : STA.W $09D6 
+    LDA.W #Function_BabyMetroidCutscene_IdleUntilRunOutOfHealth : STA.W $0FA8,X 
+    LDA.W #.return : STA.L $7E781E,X 
 
 .return:
     RTS 
@@ -8611,17 +8050,12 @@ Function_BabyMetroidCutscene_IdleUntilRunOutOfHealth:
 
 
 .zeroHealth:
-    LDA.W #$0140 
-    STA.W $0F8C,X 
-    LDA.W #Function_BabyMetroidCutscene_ReleaseSamus 
-    STA.W $0FA8,X 
-    LDA.W #$000A 
-    STA.W $0FB0,X 
+    LDA.W #$0140 : STA.W $0F8C,X 
+    LDA.W #Function_BabyMetroidCutscene_ReleaseSamus : STA.W $0FA8,X 
+    LDA.W #$000A : STA.W $0FB0,X 
     STZ.W $0FAE,X 
-    LDA.W #HandleBabyMetroidCutscenePalette_LowHealth 
-    STA.L $7E781E,X 
-    LDA.W #$0001 
-    STA.L $7E7808,X 
+    LDA.W #HandleBabyMetroidCutscenePalette_LowHealth : STA.L $7E781E,X 
+    LDA.W #$0001 : STA.L $7E7808,X 
     DEC A 
     STA.L $7E7812,X 
     RTS 
@@ -8630,24 +8064,19 @@ Function_BabyMetroidCutscene_IdleUntilRunOutOfHealth:
 Function_BabyMetroidCutscene_ReleaseSamus:
     LDA.W #$0072 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #$0001 
-    STA.L $7E7856 
-    LDA.W #Function_BabyMetroidCutscene_StaredownMotherBrain 
-    STA.W $0FA8,X 
-    LDA.W #Function_MBBody_Phase2_PrepareForFinalBabyMetroidAttack 
-    STA.W $0FA8 ; fallthrough to Function_BabyMetroidCutscene_StaredownMotherBrain
+    LDA.W #$0001 : STA.L $7E7856 
+    LDA.W #Function_BabyMetroidCutscene_StaredownMotherBrain : STA.W $0FA8,X 
+    LDA.W #Function_MBBody_Phase2_PrepareForFinalBabyMetroidAttack : STA.W $0FA8 ; fallthrough to Function_BabyMetroidCutscene_StaredownMotherBrain
 
 Function_BabyMetroidCutscene_StaredownMotherBrain:
     LDA.W $0AF6 
     SEC 
     SBC.W #$0004 
     STA.B $12 
-    LDA.W #$0060 
-    STA.B $14 
+    LDA.W #$0060 : STA.B $14 
     LDY.W #$0000 
     JSR.W GradduallyAccelerateTowardsPoint_1A_10 
-    LDA.W #$0004 
-    STA.B $16 
+    LDA.W #$0004 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCC .collision 
@@ -8655,20 +8084,16 @@ Function_BabyMetroidCutscene_StaredownMotherBrain:
 
 
 .collision:
-    LDA.W #Function_BabyMetroidCutscene_FlyOffScreen 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroidCutscene_FlyOffScreen : STA.W $0FA8,X 
     RTS 
 
 
 Function_BabyMetroidCutscene_FlyOffScreen:
-    LDA.W #$0110 
-    STA.B $12 
-    LDA.W #$0040 
-    STA.B $14 
+    LDA.W #$0110 : STA.B $12 
+    LDA.W #$0040 : STA.B $14 
     LDY.W #$0000 
     JSR.W GradduallyAccelerateTowardsPoint_1A_10 
-    LDA.W #$0004 
-    STA.B $16 
+    LDA.W #$0004 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCC .collision 
@@ -8676,20 +8101,16 @@ Function_BabyMetroidCutscene_FlyOffScreen:
 
 
 .collision:
-    LDA.W #Function_BabyMetroidCutscene_MoveToFinalChargeStartPosition 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroidCutscene_MoveToFinalChargeStartPosition : STA.W $0FA8,X 
     RTS 
 
 
 Function_BabyMetroidCutscene_MoveToFinalChargeStartPosition:
-    LDA.W #$0131 
-    STA.B $12 
-    LDA.W #$00A0 
-    STA.B $14 
+    LDA.W #$0131 : STA.B $12 
+    LDA.W #$00A0 : STA.B $14 
     LDY.W #$0000 
     JSR.W GradduallyAccelerateTowardsPoint_1A_10 
-    LDA.W #$0004 
-    STA.B $16 
+    LDA.W #$0004 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCC .collision 
@@ -8697,26 +8118,19 @@ Function_BabyMetroidCutscene_MoveToFinalChargeStartPosition:
 
 
 .collision:
-    LDA.W #$004F 
-    STA.W $0F8C,X 
-    LDA.W #$0000 
-    STA.L $7E7856 
-    LDA.W #Function_MBBody_Phase2_ExecuteFinalBabyMetroidAttack 
-    STA.W $0FA8 
-    LDA.W #Function_BabyMetroidCutscene_InitiateFinalCharge 
-    STA.W $0FA8,X 
+    LDA.W #$004F : STA.W $0F8C,X 
+    LDA.W #$0000 : STA.L $7E7856 
+    LDA.W #Function_MBBody_Phase2_ExecuteFinalBabyMetroidAttack : STA.W $0FA8 
+    LDA.W #Function_BabyMetroidCutscene_InitiateFinalCharge : STA.W $0FA8,X 
     RTS 
 
 
 Function_BabyMetroidCutscene_InitiateFinalCharge:
-    LDA.W #$0122 
-    STA.B $12 
-    LDA.W #$0080 
-    STA.B $14 
+    LDA.W #$0122 : STA.B $12 
+    LDA.W #$0080 : STA.B $14 
     LDY.W #$000A 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
-    LDA.W #$0004 
-    STA.B $16 
+    LDA.W #$0004 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCC .collision 
@@ -8724,14 +8138,12 @@ Function_BabyMetroidCutscene_InitiateFinalCharge:
 
 
 .collision:
-    LDA.W #Function_BabyMetroidCutscene_FinalCharge 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroidCutscene_FinalCharge : STA.W $0FA8,X 
     RTS 
 
 
 Function_BabyMetroidCutscene_FinalCharge:
-    LDA.W $0FBA 
-    STA.B $12 
+    LDA.W $0FBA : STA.B $12 
     LDA.W #$FFE0 
     CLC 
     ADC.W $0FBE 
@@ -8744,10 +8156,8 @@ Function_BabyMetroidCutscene_FinalCharge:
 
 
 .zeroHealth:
-    LDA.W #Function_BabyMetroidCutscene_PrepareForHyperBeam_return 
-    STA.L $7E781E,X 
-    LDA.W #$10A0 
-    STA.W $0F98,X 
+    LDA.W #Function_BabyMetroidCutscene_PrepareForHyperBeam_return : STA.L $7E781E,X 
+    LDA.W #$10A0 : STA.W $0F98,X 
     LDA.W #$0019 
     JSL.L QueueSound_Lib3_Max6 
     JSL.L FadeOutBackgroundForBabyMetroidDeathSequence 
@@ -8755,31 +8165,22 @@ Function_BabyMetroidCutscene_FinalCharge:
     JSL.L SetEnemyInstList 
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
-    LDA.W #RTS_A9C18D 
-    STA.W $0FA8 
+    LDA.W #RTS_A9C18D : STA.W $0FA8 
     LDA.W #$0000 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #Function_BabyMetroidCutscene_TakeFinalBlow 
-    STA.W $0FA8,X 
-    LDA.W #$0010 
-    STA.W $0FB2,X 
-    LDA.W $0F7A,X 
-    STA.L $7E7820,X 
-    LDA.W $0F7E,X 
-    STA.L $7E7822,X ; fallthrough to Function_BabyMetroidCutscene_TakeFinalBlow
+    LDA.W #Function_BabyMetroidCutscene_TakeFinalBlow : STA.W $0FA8,X 
+    LDA.W #$0010 : STA.W $0FB2,X 
+    LDA.W $0F7A,X : STA.L $7E7820,X 
+    LDA.W $0F7E,X : STA.L $7E7822,X ; fallthrough to Function_BabyMetroidCutscene_TakeFinalBlow
 
 Function_BabyMetroidCutscene_TakeFinalBlow:
     JSR.W ShakeBabyMetroidCutscene 
     DEC.W $0FB2,X 
     BPL Function_BabyMetroidCutscene_PrepareForHyperBeam_return 
-    LDA.L $7E7820,X 
-    STA.W $0F7A,X 
-    LDA.L $7E7822,X 
-    STA.W $0F7E,X 
-    LDA.W #Function_BabyMetroidCutscene_PlaySamusTheme 
-    STA.W $0FA8,X 
-    LDA.W #$0038 
-    STA.W $0FB2,X ; fallthrough to Function_BabyMetroidCutscene_PlaySamusTheme
+    LDA.L $7E7820,X : STA.W $0F7A,X 
+    LDA.L $7E7822,X : STA.W $0F7E,X 
+    LDA.W #Function_BabyMetroidCutscene_PlaySamusTheme : STA.W $0FA8,X 
+    LDA.W #$0038 : STA.W $0FB2,X ; fallthrough to Function_BabyMetroidCutscene_PlaySamusTheme
 
 Function_BabyMetroidCutscene_PlaySamusTheme:
     DEC.W $0FB2,X 
@@ -8788,20 +8189,16 @@ Function_BabyMetroidCutscene_PlaySamusTheme:
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0005 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #Function_BabyMetroidCutscene_PrepareForHyperBeam 
-    STA.W $0FA8,X 
-    LDA.W #$000C 
-    STA.W $0FB2,X ; fallthrough to Function_BabyMetroidCutscene_PrepareForHyperBeam
+    LDA.W #Function_BabyMetroidCutscene_PrepareForHyperBeam : STA.W $0FA8,X 
+    LDA.W #$000C : STA.W $0FB2,X ; fallthrough to Function_BabyMetroidCutscene_PrepareForHyperBeam
 
 Function_BabyMetroidCutscene_PrepareForHyperBeam:
     DEC.W $0FB2,X 
     BPL Function_BabyMetroidCutscene_PrepareForHyperBeam_return 
     LDA.W #$0019 
     JSL.L Run_Samus_Command 
-    LDA.W #SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow 
-    STA.L $7E786C 
-    LDA.W #Function_BabyMetroidCutscene_DeathSequence 
-    STA.W $0FA8,X 
+    LDA.W #SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow : STA.L $7E786C 
+    LDA.W #Function_BabyMetroidCutscene_DeathSequence : STA.W $0FA8,X 
 
 Function_BabyMetroidCutscene_PrepareForHyperBeam_return:
     RTS 
@@ -8820,10 +8217,8 @@ Function_BabyMetroidCutscene_DeathSequence:
     LDA.W $0F86,X 
     ORA.W #$0100 
     STA.W $0F86,X 
-    LDA.W #Function_BabyMetroidCutscene_UnloadTiles 
-    STA.W $0FA8,X 
-    LDA.W #$0080 
-    STA.W $0FB2,X 
+    LDA.W #Function_BabyMetroidCutscene_UnloadTiles : STA.W $0FA8,X 
+    LDA.W #$0080 : STA.W $0FB2,X 
 
 Function_BabyMetroidCutscene_DeathSequence_return:
     RTS 
@@ -8838,18 +8233,14 @@ Function_BabyMetroidCutscene_UnloadTiles:
     JSR.W ProcessSpriteTilesTransfers 
     PLX 
     BCC Function_BabyMetroidCutscene_DeathSequence_return 
-    LDA.W #Function_BabyMetroidCutscene_LetSamusRainbowSomeMore 
-    STA.W $0FA8,X 
-    LDA.W #$00B0 
-    STA.W $0FB2,X ; fallthrough to Function_BabyMetroidCutscene_LetSamusRainbowSomeMore
+    LDA.W #Function_BabyMetroidCutscene_LetSamusRainbowSomeMore : STA.W $0FA8,X 
+    LDA.W #$00B0 : STA.W $0FB2,X ; fallthrough to Function_BabyMetroidCutscene_LetSamusRainbowSomeMore
 
 Function_BabyMetroidCutscene_LetSamusRainbowSomeMore:
     DEC.W $0FB2,X 
     BPL Function_BabyMetroidCutscene_DeathSequence_return 
-    LDA.W #Function_BabyMetroidCutscene_FinalCutscene 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.L $7E802E ; fallthrough to Function_BabyMetroidCutscene_FinalCutscene
+    LDA.W #Function_BabyMetroidCutscene_FinalCutscene : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.L $7E802E ; fallthrough to Function_BabyMetroidCutscene_FinalCutscene
 
 Function_BabyMetroidCutscene_FinalCutscene:
     LDA.L $7E802E 
@@ -8860,8 +8251,7 @@ Function_BabyMetroidCutscene_FinalCutscene:
     JSL.L FadeInBackgroundForMotherBrainPhase3 
     PLX 
     BCC Function_BabyMetroidCutscene_DeathSequence_return 
-    LDA.W #Function_MBBody_Phase3_RecoverFromCutscene_MakeSomeDistance 
-    STA.W $0FA8 
+    LDA.W #Function_MBBody_Phase3_RecoverFromCutscene_MakeSomeDistance : STA.W $0FA8 
     LDA.W #$0017 
     JSL.L Run_Samus_Command 
     LDA.W #$0003 
@@ -8869,14 +8259,12 @@ Function_BabyMetroidCutscene_FinalCutscene:
     LDA.W $0F86,X 
     ORA.W #$0200 
     STA.W $0F86,X 
-    LDA.W #$0000 
-    STA.L $7E7854 
+    LDA.W #$0000 : STA.L $7E7854 
     RTS 
 
 
 HandleSamusRainbowPaletteAnimation:
-    LDA.L $7E786C 
-    STA.B $12 
+    LDA.L $7E786C : STA.B $12 
     JMP.W ($0012) 
 
 
@@ -8888,8 +8276,7 @@ SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow:
     BMI .return 
     LDA.W #$0016 
     JSL.L Run_Samus_Command 
-    LDA.W #SamusRainbowPaletteFunction_GraduallySlowAnimationDown 
-    STA.L $7E786C 
+    LDA.W #SamusRainbowPaletteFunction_GraduallySlowAnimationDown : STA.L $7E786C 
 
 .return:
     RTS 
@@ -8934,8 +8321,7 @@ FadeBabyMetroidCutsceneToBlack:
 
 
 .advancePalette:
-    LDA.W #$0008 
-    STA.L $7E7818,X 
+    LDA.W #$0008 : STA.L $7E7818,X 
     LDA.L $7E781A,X 
     INC A 
     CMP.W #$0007 
@@ -8969,8 +8355,7 @@ HandleBabyMetroidCutsceneDeathExplosions:
 
 
 .timerExpired:
-    LDA.W #$0004 
-    STA.L $7E7810,X 
+    LDA.W #$0004 : STA.L $7E7810,X 
     LDA.L $7E780E,X 
     INC A 
     CMP.W #$000A 
@@ -9125,8 +8510,7 @@ EnemyTouch_BabyMetroidCutscene:
     LDA.W $0FA8,X 
     CMP.W #Function_BabyMetroidCutscene_LatchOntoSamus 
     BNE .return 
-    LDA.W $0AF6 
-    STA.B $12 
+    LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA 
     SEC 
     SBC.W #$0014 
@@ -9136,8 +8520,7 @@ EnemyTouch_BabyMetroidCutscene:
     BCC .return 
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
-    LDA.W #Function_BabyMetroidCutscene_HealSamusUpToFullEnergy 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroidCutscene_HealSamusUpToFullEnergy : STA.W $0FA8,X 
 
 .return:
     RTL 
@@ -9254,8 +8637,7 @@ ProcessMotherBrainInvincibilityPalette:
     LDX.W #$001C 
 
 .loop:
-    LDA.L $7EC102,X 
-    STA.L $7EC122,X 
+    LDA.L $7EC102,X : STA.L $7EC122,X 
     STA.L $7EC162,X 
     STA.L $7EC082,X 
     DEX #2
@@ -9266,16 +8648,13 @@ ProcessMotherBrainInvincibilityPalette:
 
 
 MotherBrainPalette_BeginScreenFlashing:
-    LDA.W #InstList_RoomPalette_FirstPhaseEnded 
-    STA.L $7E781C 
-    LDA.W #$0001 
-    STA.L $7E781E 
+    LDA.W #InstList_RoomPalette_FirstPhaseEnded : STA.L $7E781C 
+    LDA.W #$0001 : STA.L $7E781E 
     RTS 
 
 
 MotherBrainPalette_EndScreenFlashing:
-    LDA.W #$0000 
-    STA.L $7E781C 
+    LDA.W #$0000 : STA.L $7E781C 
     STA.L $7E781E 
     LDY.W #RoomPalettes_Phase1Ended_0 
     BRA MotherBrainPalette_WriteRoomPalette 
@@ -9356,18 +8735,14 @@ RoomPalettes_Phase1Ended_3:
     dw $0421,$0006,$0005,$1800,$1000,$0421,$0868,$2108 
 
 UNSUED_SetInvalidRoomPaletteInstructionList_A9D142:
-    LDA.W #MotherBrainPalettes_TransitionToGrey 
-    STA.L $7E781C 
-    LDA.W #$0001 
-    STA.L $7E781E 
+    LDA.W #MotherBrainPalettes_TransitionToGrey : STA.L $7E781C 
+    LDA.W #$0001 : STA.L $7E781E 
     RTS 
 
 
 UNSUED_SetInvalidRoomPaletteInstructionList_A9D151:
-    LDA.W #MotherBrainPalettes_TransitionFromGrey 
-    STA.L $7E781C 
-    LDA.W #$0001 
-    STA.L $7E781E 
+    LDA.W #MotherBrainPalettes_TransitionFromGrey : STA.L $7E781C 
+    LDA.W #$0001 : STA.L $7E781E 
     RTS 
 
 
@@ -9388,8 +8763,7 @@ UNUSED_HandleMotherBrainsPalette_A9D160:
     LDA.W #$0005 
     JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W #$017C 
-    LDA.W $0000,Y 
-    STA.W $0000,X 
+    LDA.W $0000,Y : STA.W $0000,X 
 
 .return:
     RTS 
@@ -9401,8 +8775,7 @@ HandleRoomPaletteInstList:
     INC #2
     STA.B $03 
     SEP #$20 
-    LDA.B #$7E 
-    STA.B $02 
+    LDA.B #$7E : STA.B $02 
     STA.B $05 
     REP #$20 
     LDA.B [$00] 
@@ -9431,8 +8804,7 @@ HandleRoomPaletteInstList:
 
 
 .specialInstruction:
-    LDA.W #$0001 
-    STA.B [$03] 
+    LDA.W #$0001 : STA.B [$03] 
     TXA 
     STA.B [$00] 
     LDY.W $0002,X 
@@ -9471,14 +8843,12 @@ HandleMotherBrainsPalette:
 
 
 SetupMotherBrainHeadNormalPalette:
-    LDA.W #$000A 
-    STA.W $0FB0 
+    LDA.W #$000A : STA.W $0FB0 
     RTS 
 
 
 SetupMotherBrainHeadPaletteForChargingHerLaser:
-    LDA.W #$0202 
-    STA.W $0FB0 
+    LDA.W #$0202 : STA.W $0FB0 
     RTS 
 
 
@@ -9503,8 +8873,7 @@ HandleMotherBrainHeadPalette:
     TAX 
     LDY.W .pointers,X 
     STY.B $12 
-    LDA.W $0FB0 
-    STA.W $0FAF 
+    LDA.W $0FB0 : STA.W $0FAF 
     LDA.W $0FAE 
     BNE .zeroCounter 
     LDY.W $0FE8 
@@ -9551,8 +8920,7 @@ WriteAColorsFromYtoColorIndexX:
     STA.B $12 
 
 .loop:
-    LDA.W $0000,Y 
-    STA.L $7EC000,X 
+    LDA.W $0000,Y : STA.L $7EC000,X 
     INX #2
     INY #2
     DEC.B $12 
@@ -9564,8 +8932,7 @@ WriteAColorsFromYToTargetColorIndexX:
     STA.B $12 
 
 .loop:
-    LDA.W $0000,Y 
-    STA.L $7EC200,X 
+    LDA.W $0000,Y : STA.L $7EC200,X 
     INX #2
     INY #2
     DEC.B $12 
@@ -9586,27 +8953,19 @@ InitAI_CorpseTorizo:
     DEX #2
     BPL .loop 
     PLB 
-    LDA.W #Function_CorpseTorizo_WaitForSamusCollision 
-    STA.W $0FA8 
+    LDA.W #Function_CorpseTorizo_WaitForSamusCollision : STA.W $0FA8 
     LDA.W $0F86 
     ORA.W #$A000 
     STA.W $0F86 
-    LDA.W #InstList_CorpseTorizo 
-    STA.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #InstList_CorpseTorizo : STA.W $0F92 
+    LDA.W #$0001 : STA.W $0F94 
     STZ.W $0F90 
-    LDA.W #$0200 
-    STA.W $0F96 
+    LDA.W #$0200 : STA.W $0F96 
     STZ.W $0FAA 
-    LDA.W #$0008 
-    STA.W $0FAC 
-    LDA.W #$0000 
-    STA.L $7E7808 
-    LDA.W #$000F 
-    STA.L $7E7804 
-    LDA.W #$0000 
-    STA.L $7E7806 
+    LDA.W #$0008 : STA.W $0FAC 
+    LDA.W #$0000 : STA.L $7E7808 
+    LDA.W #$000F : STA.L $7E7804 
+    LDA.W #$0000 : STA.L $7E7806 
     LDX.W #$0000 
     LDY.W #CorpseRottingDefinitions_Torizo 
     JSR.W InitializeEnemyCorpseRotting 
@@ -9622,14 +8981,11 @@ MainAI_CorpseTorizo:
     LDA.W $0F86 
     ORA.W #$0400 
     STA.W $0F86 
-    LDA.W #Function_CorpseTorizo_Rotting 
-    STA.W $0FA8 
+    LDA.W #Function_CorpseTorizo_Rotting : STA.W $0FA8 
 
 .noCollision:
-    LDA.W #EnemyGraphicsDrawnHook_CorpseTorizo>>8&$FF00 
-    STA.W $178D 
-    LDA.W #EnemyGraphicsDrawnHook_CorpseTorizo 
-    STA.W $178C 
+    LDA.W #EnemyGraphicsDrawnHook_CorpseTorizo>>8&$FF00 : STA.W $178D 
+    LDA.W #EnemyGraphicsDrawnHook_CorpseTorizo : STA.W $178C 
     LDX.W #$0000 
     JSR.W ($0FA8,X) 
     JSR.W ProcessCorpseTorizoRottingVRAMTransfers 
@@ -9638,10 +8994,8 @@ MainAI_CorpseTorizo:
 
 EnemyGraphicsDrawnHook_CorpseTorizo:
     STZ.B $16 
-    LDA.W #$0128 
-    STA.B $12 
-    LDA.W #$00BB 
-    STA.B $14 
+    LDA.W #$0128 : STA.B $12 
+    LDA.W #$00BB : STA.B $14 
     LDY.W #Spritemaps_CorpseTorizo_SandHeap 
     JSR.W AddSpritemapToOAM_RoomCoordinates 
     RTL 
@@ -9658,8 +9012,7 @@ Function_CorpseTorizo_WaitForSamusCollision:
     BNE .return 
 
 .collision:
-    LDA.W #Function_CorpseTorizo_PreRotDelay 
-    STA.W $0FA8 
+    LDA.W #Function_CorpseTorizo_PreRotDelay : STA.W $0FA8 
 
 .return:
     RTS 
@@ -9678,8 +9031,7 @@ Function_CorpseTorizo_PreRotDelay:
     LDA.W $0F86 
     ORA.W #$0400 
     STA.W $0F86 
-    LDA.W #Function_CorpseTorizo_Rotting 
-    STA.W $0FA8 ; fallthrough to Function_CorpseTorizo_Rotting
+    LDA.W #Function_CorpseTorizo_Rotting : STA.W $0FA8 ; fallthrough to Function_CorpseTorizo_Rotting
 
 Function_CorpseTorizo_Rotting:
     LDA.L $7E7806 
@@ -9687,8 +9039,7 @@ Function_CorpseTorizo_Rotting:
     STA.L $7E7806 
     CMP.W #$000F 
     BCC .sandHeapFormed 
-    LDA.W #$0000 
-    STA.L $7E7806 
+    LDA.W #$0000 : STA.L $7E7806 
     LDA.L $7E7804 
     BEQ .sandHeapFormed 
     JSR.W CopyLineOfSandHeapTileData 
@@ -9705,8 +9056,7 @@ Function_CorpseTorizo_Rotting:
     JSL.L MoveEnemyAccordingToVelocity 
     JSR.W ProcessCorpseRotting 
     BCS .return 
-    LDA.W #Function_CorpseTorizo_WaitForSamusCollision_return 
-    STA.W $0FA8 
+    LDA.W #Function_CorpseTorizo_WaitForSamusCollision_return : STA.W $0FA8 
 
 .return:
     RTS 
@@ -9723,16 +9073,13 @@ EnemyTouch_EnemyShot_CorpseTorizo:
     LDA.W $0F86 
     ORA.W #$0400 
     STA.W $0F86 
-    LDA.W #Function_CorpseTorizo_Rotting 
-    STA.W $0FA8 
+    LDA.W #Function_CorpseTorizo_Rotting : STA.W $0FA8 
     RTL 
 
 
 CorpseTorizo_vs_Samus_CollisionDetection:
-    LDA.W $0F7A 
-    STA.B $12 
-    LDA.W $0F7E 
-    STA.B $14 
+    LDA.W $0F7A : STA.B $12 
+    LDA.W $0F7E : STA.B $14 
     LDX.W #HitboxDefinition_CorpseTorizo 
     LDA.W $0000,X 
     BEQ .returnNoCollision 
@@ -9812,8 +9159,7 @@ CorpseTorizo_vs_Samus_CollisionDetection:
 
 .min4:
     STA.W $0B58 
-    LDA.W #$0004 
-    STA.W $0B5C 
+    LDA.W #$0004 : STA.W $0B5C 
     STZ.W $0B56 
     STZ.W $0B5A 
     SEC 
@@ -9832,12 +9178,9 @@ ProcessCorpseTorizoRottingVRAMTransfers:
 
 .loopEven:
     STA.W $00D0,Y 
-    LDA.W .bank0,X 
-    STA.W $00D3,Y 
-    LDA.W .src0,X 
-    STA.W $00D2,Y 
-    LDA.W .dest0,X 
-    STA.W $00D5,Y 
+    LDA.W .bank0,X : STA.W $00D3,Y 
+    LDA.W .src0,X : STA.W $00D2,Y 
+    LDA.W .dest0,X : STA.W $00D5,Y 
     TYA 
     CLC 
     ADC.W #$0007 
@@ -9860,12 +9203,9 @@ ProcessCorpseTorizoRottingVRAMTransfers:
 
 .loopOdd:
     STA.W $00D0,Y 
-    LDA.W .bank1,X 
-    STA.W $00D3,Y 
-    LDA.W .src1,X 
-    STA.W $00D2,Y 
-    LDA.W .dest1,X 
-    STA.W $00D5,Y 
+    LDA.W .bank1,X : STA.W $00D3,Y 
+    LDA.W .src1,X : STA.W $00D2,Y 
+    LDA.W .dest1,X : STA.W $00D5,Y 
     TYA 
     CLC 
     ADC.W #$0007 
@@ -9918,8 +9258,7 @@ CorpseRottingRotEntryFinishedHook_CorpseTorizo:
     CLC 
     ADC.W #$0110 
     STA.B $12 
-    LDA.W #$00BC 
-    STA.B $14 
+    LDA.W #$00BC : STA.B $14 
     LDA.W #$000A 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
@@ -9947,42 +9286,24 @@ CopyLineOfSandHeapTileData:
     PEA.W $7E7E 
     PLB 
     PLB 
-    LDA.L Tiles_CorpseTorizo,X 
-    STA.W $9500,Y 
-    LDA.L Tiles_CorpseTorizo+$10,X 
-    STA.W $9510,Y 
-    LDA.L Tiles_CorpseTorizo+$20,X 
-    STA.W $9520,Y 
-    LDA.L Tiles_CorpseTorizo+$30,X 
-    STA.W $9530,Y 
-    LDA.L Tiles_CorpseTorizo+$40,X 
-    STA.W $9540,Y 
-    LDA.L Tiles_CorpseTorizo+$50,X 
-    STA.W $9550,Y 
-    LDA.L Tiles_CorpseTorizo+$60,X 
-    STA.W $9560,Y 
-    LDA.L Tiles_CorpseTorizo+$70,X 
-    STA.W $9570,Y 
-    LDA.L Tiles_CorpseTorizo+$80,X 
-    STA.W $9580,Y 
-    LDA.L Tiles_CorpseTorizo+$90,X 
-    STA.W $9590,Y 
-    LDA.L Tiles_CorpseTorizo+$A0,X 
-    STA.W $95A0,Y 
-    LDA.L Tiles_CorpseTorizo+$B0,X 
-    STA.W $95B0,Y 
-    LDA.L Tiles_CorpseTorizo+$C0,X 
-    STA.W $95C0,Y 
-    LDA.L Tiles_CorpseTorizo+$D0,X 
-    STA.W $95D0,Y 
-    LDA.L Tiles_CorpseTorizo+$E0,X 
-    STA.W $95E0,Y 
-    LDA.L Tiles_CorpseTorizo+$F0,X 
-    STA.W $95F0,Y 
-    LDA.L Tiles_CorpseTorizo+$100,X 
-    STA.W $9600,Y 
-    LDA.L Tiles_CorpseTorizo+$110,X 
-    STA.W $9610,Y 
+    LDA.L Tiles_CorpseTorizo,X : STA.W $9500,Y 
+    LDA.L Tiles_CorpseTorizo+$10,X : STA.W $9510,Y 
+    LDA.L Tiles_CorpseTorizo+$20,X : STA.W $9520,Y 
+    LDA.L Tiles_CorpseTorizo+$30,X : STA.W $9530,Y 
+    LDA.L Tiles_CorpseTorizo+$40,X : STA.W $9540,Y 
+    LDA.L Tiles_CorpseTorizo+$50,X : STA.W $9550,Y 
+    LDA.L Tiles_CorpseTorizo+$60,X : STA.W $9560,Y 
+    LDA.L Tiles_CorpseTorizo+$70,X : STA.W $9570,Y 
+    LDA.L Tiles_CorpseTorizo+$80,X : STA.W $9580,Y 
+    LDA.L Tiles_CorpseTorizo+$90,X : STA.W $9590,Y 
+    LDA.L Tiles_CorpseTorizo+$A0,X : STA.W $95A0,Y 
+    LDA.L Tiles_CorpseTorizo+$B0,X : STA.W $95B0,Y 
+    LDA.L Tiles_CorpseTorizo+$C0,X : STA.W $95C0,Y 
+    LDA.L Tiles_CorpseTorizo+$D0,X : STA.W $95D0,Y 
+    LDA.L Tiles_CorpseTorizo+$E0,X : STA.W $95E0,Y 
+    LDA.L Tiles_CorpseTorizo+$F0,X : STA.W $95F0,Y 
+    LDA.L Tiles_CorpseTorizo+$100,X : STA.W $9600,Y 
+    LDA.L Tiles_CorpseTorizo+$110,X : STA.W $9610,Y 
     PLB 
     RTS 
 
@@ -10101,22 +9422,14 @@ CorpseSidehopperInit_Param1_0_InitiallyAlive:
     STA.W $0F86,X 
 
 .visible:
-    LDA.W #$0000 
-    STA.L $7E7810,X 
-    LDA.W #$0060 
-    STA.L $7E7814,X 
-    LDA.W #$0100 
-    STA.L $7E7816,X 
-    LDA.W #$01E8 
-    STA.W $0F7A,X 
-    LDA.W #$00B8 
-    STA.W $0F7E,X 
-    LDA.W #Function_CorpseSidehopper_Alive_WaitingForActivation 
-    STA.W $0FA8,X 
-    LDA.W #$0200 
-    STA.W $0F96,X 
-    LDA.W #$0015 
-    STA.W $0F84,X 
+    LDA.W #$0000 : STA.L $7E7810,X 
+    LDA.W #$0060 : STA.L $7E7814,X 
+    LDA.W #$0100 : STA.L $7E7816,X 
+    LDA.W #$01E8 : STA.W $0F7A,X 
+    LDA.W #$00B8 : STA.W $0F7E,X 
+    LDA.W #Function_CorpseSidehopper_Alive_WaitingForActivation : STA.W $0FA8,X 
+    LDA.W #$0200 : STA.W $0F96,X 
+    LDA.W #$0015 : STA.W $0F84,X 
     LDA.W #InstList_CorpseSidehopper_Alive_Idle 
     JSL.L SetEnemyInstList 
     LDY.W #CorpseRottingDefinitions_Sidehopper_Param1_0 
@@ -10126,12 +9439,9 @@ CorpseSidehopperInit_Param1_0_InitiallyAlive:
 
 CorpseSidehopperInit_Param1_2_InitiallyDead:
     LDX.W $0E54 
-    LDA.W #$FFFF 
-    STA.L $7E7810,X 
-    LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision 
-    STA.W $0FA8,X 
-    LDA.W #$0E00 
-    STA.W $0F96,X 
+    LDA.W #$FFFF : STA.L $7E7810,X 
+    LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision : STA.W $0FA8,X 
+    LDA.W #$0E00 : STA.W $0F96,X 
     LDA.W #InstList_CorpseSidehopper_Alive_Dead 
     JSL.L SetEnemyInstList 
     LDY.W #CorpseRottingDefinitions_Sidehopper_Param1_2 
@@ -10141,10 +9451,8 @@ CorpseSidehopperInit_Param1_2_InitiallyDead:
 
 InitAI_CorpseZoomer:
     LDX.W $0E54 
-    LDA.W #$0E00 
-    STA.W $0F96,X 
-    LDA.W #Function_CorpseZoomer_WaitForSamusCollision 
-    STA.W $0FA8,X 
+    LDA.W #$0E00 : STA.W $0F96,X 
+    LDA.W #Function_CorpseZoomer_WaitForSamusCollision : STA.W $0FA8,X 
     LDY.W $0FB4,X 
     LDA.W .instListPointers,Y 
     JSL.L SetEnemyInstList 
@@ -10166,10 +9474,8 @@ InitAI_CorpseZoomer:
 
 InitAI_CorpseRipper:
     LDX.W $0E54 
-    LDA.W #$0E00 
-    STA.W $0F96,X 
-    LDA.W #Function_CorpseRipper_WaitForSamusCollision 
-    STA.W $0FA8,X 
+    LDA.W #$0E00 : STA.W $0F96,X 
+    LDA.W #Function_CorpseRipper_WaitForSamusCollision : STA.W $0FA8,X 
     LDY.W $0FB4,X 
     LDA.W .instListPointers,Y 
     JSL.L SetEnemyInstList 
@@ -10189,10 +9495,8 @@ InitAI_CorpseRipper:
 
 InitAI_CorpseSkree:
     LDX.W $0E54 
-    LDA.W #$0E00 
-    STA.W $0F96,X 
-    LDA.W #Function_CorpseSkree_WaitForSamusCollision 
-    STA.W $0FA8,X 
+    LDA.W #$0E00 : STA.W $0F96,X 
+    LDA.W #Function_CorpseSkree_WaitForSamusCollision : STA.W $0FA8,X 
     LDY.W $0FB4,X 
     LDA.W .instListPointers,Y 
     JSL.L SetEnemyInstList 
@@ -10234,8 +9538,7 @@ Function_CorpseSidehopper_Alive_WaitingForActivation:
 
 
 .activate:
-    LDA.W #Function_CorpseSidehopper_Hopping 
-    STA.W $0FA8,X ; fallthrough to Function_CorpseSidehopper_Hopping
+    LDA.W #Function_CorpseSidehopper_Hopping : STA.W $0FA8,X ; fallthrough to Function_CorpseSidehopper_Hopping
 
 Function_CorpseSidehopper_Hopping:
     JSR.W CorpseSidehopperMovement 
@@ -10246,18 +9549,15 @@ Function_CorpseSidehopper_Hopping:
     STA.L $7E780C,X 
     LDA.W #InstList_CorpseSidehopper_Alive_Hopping 
     JSL.L SetEnemyInstList 
-    LDA.W #.return 
-    STA.W $0FA8,X 
+    LDA.W #.return : STA.W $0FA8,X 
 
 .return:
     RTS 
 
 
 Function_CorpseSidehopper_StartIdling:
-    LDA.W #Function_CorpseSidehopper_Idling 
-    STA.W $0FA8,X 
-    LDA.W #$0040 
-    STA.W $0FB2,X 
+    LDA.W #Function_CorpseSidehopper_Idling : STA.W $0FA8,X 
+    LDA.W #$0040 : STA.W $0FB2,X 
     RTS 
 
 
@@ -10266,23 +9566,19 @@ Function_CorpseSidehopper_Idling:
     BPL .return 
     LDA.L $7E7810,X 
     BEQ .notDone 
-    LDA.W #Function_CorpseSidehopper_BeingDrained 
-    STA.W $0FA8,X 
+    LDA.W #Function_CorpseSidehopper_BeingDrained : STA.W $0FA8,X 
     RTS 
 
 
 .notDone:
-    LDA.W #Function_CorpseSidehopper_Hopping 
-    STA.W $0FA8,X 
+    LDA.W #Function_CorpseSidehopper_Hopping : STA.W $0FA8,X 
     LDA.W #InstList_CorpseSidehopper_Alive_Idle 
     JSL.L SetEnemyInstList 
     LDA.L $7E780C,X 
     ASL A 
     TAY 
-    LDA.W .YVelocity,Y 
-    STA.L $7E7816,X 
-    LDA.W .XVelocity,Y 
-    STA.L $7E7814,X 
+    LDA.W .YVelocity,Y : STA.L $7E7816,X 
+    LDA.W .XVelocity,Y : STA.L $7E7814,X 
 
 .return:
     RTS 
@@ -10394,8 +9690,7 @@ Function_CorpseSidehopper_BeingDrained:
     STA.L $7E780E,X 
     CMP.W #$0008 
     BCC .return 
-    LDA.W #$0000 
-    STA.L $7E780E,X 
+    LDA.W #$0000 : STA.L $7E780E,X 
     LDA.L $7E7810,X 
     DEC A 
     ASL #5
@@ -10412,13 +9707,11 @@ Function_CorpseSidehopper_BeingDrained:
     BCC .return 
     LDA.W #InstList_CorpseSidehopper_Alive_Corpse 
     JSL.L SetEnemyInstList 
-    LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision 
-    STA.W $0FA8,X 
+    LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision : STA.W $0FA8,X 
     LDA.W $0F86,X 
     ORA.W #$8000 
     STA.W $0F86,X 
-    LDA.W #$000C 
-    STA.W $0F84,X 
+    LDA.W #$000C : STA.W $0F84,X 
 
 .return:
     RTS 
@@ -10501,8 +9794,7 @@ Function_CorpseSidehopper_Rotting:
     JSR.W ProcessCorpseRotting 
     LDX.W $0E54 
     BCS .process 
-    LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision 
-    STA.W $0FA8,X 
+    LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision : STA.W $0FA8,X 
 
 .process:
     LDA.L $7E8826,X 
@@ -10514,8 +9806,7 @@ Function_CorpseZoomer_Rotting:
     JSR.W ProcessCorpseRotting 
     LDX.W $0E54 
     BCS .process 
-    LDA.W #RTS_A9DA63 
-    STA.W $0FA8,X 
+    LDA.W #RTS_A9DA63 : STA.W $0FA8,X 
 
 .process:
     LDA.L $7E8826,X 
@@ -10527,8 +9818,7 @@ Function_CorpseRipper_Rotting:
     JSR.W ProcessCorpseRotting 
     LDX.W $0E54 
     BCS .process 
-    LDA.W #RTS_A9DA63 
-    STA.W $0FA8,X 
+    LDA.W #RTS_A9DA63 : STA.W $0FA8,X 
 
 .process:
     LDA.L $7E8826,X 
@@ -10540,8 +9830,7 @@ Function_CorpseSkree_Rotting:
     JSR.W ProcessCorpseRotting 
     LDX.W $0E54 
     BCS .process 
-    LDA.W #RTS_A9DA63 
-    STA.W $0FA8,X 
+    LDA.W #RTS_A9DA63 : STA.W $0FA8,X 
 
 .process:
     LDA.L $7E8826,X 
@@ -10554,22 +9843,14 @@ ProcessCorpseRotting:
     PEA.W $7E7E 
     PLB 
     PLB 
-    LDA.W $882E,X 
-    STA.W $880A 
-    LDA.W $8830,X 
-    STA.W $880C 
-    LDA.W $8832,X 
-    STA.W $880E 
-    LDA.W $8834,X 
-    STA.W $8810 
-    LDA.W $8836,X 
-    STA.W $8812 
-    LDA.W $882C,X 
-    STA.W $8808 
-    LDA.W $8828,X 
-    STA.W $8804 
-    LDA.W $882A,X 
-    STA.W $8806 
+    LDA.W $882E,X : STA.W $880A 
+    LDA.W $8830,X : STA.W $880C 
+    LDA.W $8832,X : STA.W $880E 
+    LDA.W $8834,X : STA.W $8810 
+    LDA.W $8836,X : STA.W $8812 
+    LDA.W $882C,X : STA.W $8808 
+    LDA.W $8828,X : STA.W $8804 
+    LDA.W $882A,X : STA.W $8806 
     LDA.W $8824,X 
     TAX 
     LDA.W #$0000 
@@ -10584,18 +9865,14 @@ ProcessCorpseRotting:
     STA.W $0002,X 
     CMP.W #$0004 
     BCS .next 
-    LDA.W $8804 
-    STA.B $12 
+    LDA.W $8804 : STA.B $12 
     LDA.B $01,S 
     CMP.W $880E 
     BCC + 
-    LDA.W $8806 
-    STA.B $12 
+    LDA.W $8806 : STA.B $12 
 
-  + LDA.W $8808 
-    STA.B $14 
-    LDA.W #$00A9 
-    STA.B $16 
+  + LDA.W $8808 : STA.B $14 
+    LDA.W #$00A9 : STA.B $16 
     PHX 
     LDA.W $0000,X 
     JSR.W CopMoveCorpseRottingRotEntry 
@@ -10605,12 +9882,9 @@ ProcessCorpseRotting:
 
 .timerExpired:
     PHX 
-    LDA.W $8806 
-    STA.B $12 
-    LDA.W $8808 
-    STA.B $14 
-    LDA.W #$00A9 
-    STA.B $16 
+    LDA.W $8806 : STA.B $12 
+    LDA.W $8808 : STA.B $14 
+    LDA.W #$00A9 : STA.B $16 
     LDA.W $0000,X 
     JSR.W CopMoveCorpseRottingRotEntry 
     PLX 
@@ -10619,8 +9893,7 @@ ProcessCorpseRotting:
     ADC.W #$0002 
     CMP.W $880C 
     BCC .store 
-    LDA.W $8812 
-    STA.B $12 
+    LDA.W $8812 : STA.B $12 
     PHK 
     PLB 
     PEA.W .manualReturn-1 
@@ -10741,18 +10014,12 @@ InitializeCorpseRottingDataTable:
 
 
 InitializeEnemyCorpseRotting:
-    LDA.W $0000,Y 
-    STA.L $7E8824,X 
-    LDA.W $0002,Y 
-    STA.L $7E8826,X 
-    LDA.W $0004,Y 
-    STA.L $7E8828,X 
-    LDA.W $0006,Y 
-    STA.L $7E882A,X 
-    LDA.W $000E,Y 
-    STA.L $7E8836,X 
-    LDA.W $000C,Y 
-    STA.L $7E882C,X 
+    LDA.W $0000,Y : STA.L $7E8824,X 
+    LDA.W $0002,Y : STA.L $7E8826,X 
+    LDA.W $0004,Y : STA.L $7E8828,X 
+    LDA.W $0006,Y : STA.L $7E882A,X 
+    LDA.W $000E,Y : STA.L $7E8836,X 
+    LDA.W $000C,Y : STA.L $7E882C,X 
     PHY 
     TAY 
     LDA.W $0002,Y 
@@ -10760,8 +10027,7 @@ InitializeEnemyCorpseRotting:
     SBC.W #$000C 
     STA.L $7E8834,X 
     PLY 
-    LDA.W $0008,Y 
-    STA.L $7E882E,X 
+    LDA.W $0008,Y : STA.L $7E882E,X 
     DEC A 
     STA.L $7E8830,X 
     DEC A 
@@ -10769,8 +10035,7 @@ InitializeEnemyCorpseRotting:
     LDX.W $0000,Y 
     LDA.W $0008,Y 
     JSR.W InitializeCorpseRottingDataTable 
-    LDA.W $000A,Y 
-    STA.B $12 
+    LDA.W $000A,Y : STA.B $12 
     JMP.W ($0012) 
 
 
@@ -10780,12 +10045,9 @@ ProcessCorpseRottingVRAMTransfers:
 
 .loop:
     STA.W $00D0,Y 
-    LDA.W $0002,X 
-    STA.W $00D3,Y 
-    LDA.W $0004,X 
-    STA.W $00D2,Y 
-    LDA.W $0006,X 
-    STA.W $00D5,Y 
+    LDA.W $0002,X : STA.W $00D3,Y 
+    LDA.W $0004,X : STA.W $00D2,Y 
+    LDA.W $0006,X : STA.W $00D5,Y 
     TYA 
     CLC 
     ADC.W #$0007 
@@ -11419,10 +10681,8 @@ CorpseRottingRotEntry_Move_Torizo:
     BCC .column1 
     CMP.W #$005E 
     BPL .offsetGreaterThan5D 
-    LDA.W $2000,X 
-    STA.W $2002,Y 
-    LDA.W $2010,X 
-    STA.W $2012,Y 
+    LDA.W $2000,X : STA.W $2002,Y 
+    LDA.W $2010,X : STA.W $2012,Y 
 
 .offsetGreaterThan5D:
     STZ.W $2000,X 
@@ -11434,10 +10694,8 @@ CorpseRottingRotEntry_Move_Torizo:
     BCC .column2 
     CMP.W #$005E 
     BPL ..offsetGreaterThan5E 
-    LDA.W $2020,X 
-    STA.W $2022,Y 
-    LDA.W $2030,X 
-    STA.W $2032,Y 
+    LDA.W $2020,X : STA.W $2022,Y 
+    LDA.W $2030,X : STA.W $2032,Y 
 
 ..offsetGreaterThan5E:
     STZ.W $2020,X 
@@ -11449,10 +10707,8 @@ CorpseRottingRotEntry_Move_Torizo:
     BCC .column3 
     CMP.W #$005E 
     BPL ..offsetGreaterThan5E 
-    LDA.W $2040,X 
-    STA.W $2042,Y 
-    LDA.W $2050,X 
-    STA.W $2052,Y 
+    LDA.W $2040,X : STA.W $2042,Y 
+    LDA.W $2050,X : STA.W $2052,Y 
 
 ..offsetGreaterThan5E:
     STZ.W $2040,X 
@@ -11462,10 +10718,8 @@ CorpseRottingRotEntry_Move_Torizo:
     LDA.W $8802 
     CMP.W #$005E 
     BPL ..offsetGreaterThan5E 
-    LDA.W $2060,X 
-    STA.W $2062,Y 
-    LDA.W $2070,X 
-    STA.W $2072,Y 
+    LDA.W $2060,X : STA.W $2062,Y 
+    LDA.W $2070,X : STA.W $2072,Y 
 
 ..offsetGreaterThan5E:
     STZ.W $2060,X 
@@ -11473,50 +10727,40 @@ CorpseRottingRotEntry_Move_Torizo:
     LDA.W $8802 
     CMP.W #$005E 
     BPL + 
-    LDA.W $2080,X 
-    STA.W $2082,Y 
-    LDA.W $2090,X 
-    STA.W $2092,Y 
+    LDA.W $2080,X : STA.W $2082,Y 
+    LDA.W $2090,X : STA.W $2092,Y 
 
   + STZ.W $2080,X 
     STZ.W $2090,X 
     LDA.W $8802 
     CMP.W #$005E 
     BPL + 
-    LDA.W $20A0,X 
-    STA.W $20A2,Y 
-    LDA.W $20B0,X 
-    STA.W $20B2,Y 
+    LDA.W $20A0,X : STA.W $20A2,Y 
+    LDA.W $20B0,X : STA.W $20B2,Y 
 
   + STZ.W $20A0,X 
     STZ.W $20B0,X 
     LDA.W $8802 
     CMP.W #$005E 
     BPL + 
-    LDA.W $20C0,X 
-    STA.W $20C2,Y 
-    LDA.W $20D0,X 
-    STA.W $20D2,Y 
+    LDA.W $20C0,X : STA.W $20C2,Y 
+    LDA.W $20D0,X : STA.W $20D2,Y 
 
   + STZ.W $20C0,X 
     STZ.W $20D0,X 
     LDA.W $8802 
     CMP.W #$005E 
     BPL + 
-    LDA.W $20E0,X 
-    STA.W $20E2,Y 
-    LDA.W $20F0,X 
-    STA.W $20F2,Y 
+    LDA.W $20E0,X : STA.W $20E2,Y 
+    LDA.W $20F0,X : STA.W $20F2,Y 
 
   + STZ.W $20E0,X 
     STZ.W $20F0,X 
     LDA.W $8802 
     CMP.W #$005E 
     BPL + 
-    LDA.W $2100,X 
-    STA.W $2102,Y 
-    LDA.W $2110,X 
-    STA.W $2112,Y 
+    LDA.W $2100,X : STA.W $2102,Y 
+    LDA.W $2110,X : STA.W $2112,Y 
 
   + STZ.W $2100,X 
     STZ.W $2110,X 
@@ -11525,10 +10769,8 @@ CorpseRottingRotEntry_Move_Torizo:
     BCC .return 
     CMP.W #$005E 
     BPL + 
-    LDA.W $2120,X 
-    STA.W $2122,Y 
-    LDA.W $2130,X 
-    STA.W $2132,Y 
+    LDA.W $2120,X : STA.W $2122,Y 
+    LDA.W $2130,X : STA.W $2132,Y 
 
   + STZ.W $2120,X 
     STZ.W $2130,X 
@@ -11543,88 +10785,68 @@ CorpseRottingRotEntry_Copy_Torizo:
     BCC + 
     CMP.W #$005E 
     BPL + 
-    LDA.W $2000,X 
-    STA.W $2002,Y 
-    LDA.W $2010,X 
-    STA.W $2012,Y 
+    LDA.W $2000,X : STA.W $2002,Y 
+    LDA.W $2010,X : STA.W $2012,Y 
 
   + LDA.W $8802 
     CMP.W #$0048 
     BCC + 
     CMP.W #$005E 
     BPL + 
-    LDA.W $2020,X 
-    STA.W $2022,Y 
-    LDA.W $2030,X 
-    STA.W $2032,Y 
+    LDA.W $2020,X : STA.W $2022,Y 
+    LDA.W $2030,X : STA.W $2032,Y 
 
   + LDA.W $8802 
     CMP.W #$0010 
     BCC + 
     CMP.W #$005E 
     BPL + 
-    LDA.W $2040,X 
-    STA.W $2042,Y 
-    LDA.W $2050,X 
-    STA.W $2052,Y 
+    LDA.W $2040,X : STA.W $2042,Y 
+    LDA.W $2050,X : STA.W $2052,Y 
 
   + LDA.W $8802 
     CMP.W #$005E 
     BPL + 
-    LDA.W $2060,X 
-    STA.W $2062,Y 
-    LDA.W $2070,X 
-    STA.W $2072,Y 
+    LDA.W $2060,X : STA.W $2062,Y 
+    LDA.W $2070,X : STA.W $2072,Y 
 
   + LDA.W $8802 
     CMP.W #$005E 
     BPL + 
-    LDA.W $2080,X 
-    STA.W $2082,Y 
-    LDA.W $2090,X 
-    STA.W $2092,Y 
+    LDA.W $2080,X : STA.W $2082,Y 
+    LDA.W $2090,X : STA.W $2092,Y 
 
   + LDA.W $8802 
     CMP.W #$005E 
     BPL + 
-    LDA.W $20A0,X 
-    STA.W $20A2,Y 
-    LDA.W $20B0,X 
-    STA.W $20B2,Y 
+    LDA.W $20A0,X : STA.W $20A2,Y 
+    LDA.W $20B0,X : STA.W $20B2,Y 
 
   + LDA.W $8802 
     CMP.W #$005E 
     BPL + 
-    LDA.W $20C0,X 
-    STA.W $20C2,Y 
-    LDA.W $20D0,X 
-    STA.W $20D2,Y 
+    LDA.W $20C0,X : STA.W $20C2,Y 
+    LDA.W $20D0,X : STA.W $20D2,Y 
 
   + LDA.W $8802 
     CMP.W #$005E 
     BPL + 
-    LDA.W $20E0,X 
-    STA.W $20E2,Y 
-    LDA.W $20F0,X 
-    STA.W $20F2,Y 
+    LDA.W $20E0,X : STA.W $20E2,Y 
+    LDA.W $20F0,X : STA.W $20F2,Y 
 
   + LDA.W $8802 
     CMP.W #$005E 
     BPL + 
-    LDA.W $2100,X 
-    STA.W $2102,Y 
-    LDA.W $2110,X 
-    STA.W $2112,Y 
+    LDA.W $2100,X : STA.W $2102,Y 
+    LDA.W $2110,X : STA.W $2112,Y 
 
   + LDA.W $8802 
     CMP.W #$0010 
     BCC .return 
     CMP.W #$005E 
     BPL .return 
-    LDA.W $2120,X 
-    STA.W $2122,Y 
-    LDA.W $2130,X 
-    STA.W $2132,Y 
+    LDA.W $2120,X : STA.W $2122,Y 
+    LDA.W $2130,X : STA.W $2132,Y 
 
 .return:
     RTS 
@@ -11636,10 +10858,8 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_0:
     BCC .column1 
     CMP.W #$0026 
     BPL .offsetGreaterThan25 
-    LDA.W $2000,X 
-    STA.W $2002,Y 
-    LDA.W $2010,X 
-    STA.W $2012,Y 
+    LDA.W $2000,X : STA.W $2002,Y 
+    LDA.W $2010,X : STA.W $2012,Y 
 
 .offsetGreaterThan25:
     STZ.W $2000,X 
@@ -11651,10 +10871,8 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_0:
     BCC .column2 
     CMP.W #$0026 
     BPL ..offsetGreaterThan25 
-    LDA.W $2020,X 
-    STA.W $2022,Y 
-    LDA.W $2030,X 
-    STA.W $2032,Y 
+    LDA.W $2020,X : STA.W $2022,Y 
+    LDA.W $2030,X : STA.W $2032,Y 
 
 ..offsetGreaterThan25:
     STZ.W $2020,X 
@@ -11664,30 +10882,24 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_0:
     LDA.W $8802 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2040,X 
-    STA.W $2042,Y 
-    LDA.W $2050,X 
-    STA.W $2052,Y 
+    LDA.W $2040,X : STA.W $2042,Y 
+    LDA.W $2050,X : STA.W $2052,Y 
 
   + STZ.W $2040,X 
     STZ.W $2050,X 
     LDA.W $8802 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2060,X 
-    STA.W $2062,Y 
-    LDA.W $2070,X 
-    STA.W $2072,Y 
+    LDA.W $2060,X : STA.W $2062,Y 
+    LDA.W $2070,X : STA.W $2072,Y 
 
   + STZ.W $2060,X 
     STZ.W $2070,X 
     LDA.W $8802 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2080,X 
-    STA.W $2082,Y 
-    LDA.W $2090,X 
-    STA.W $2092,Y 
+    LDA.W $2080,X : STA.W $2082,Y 
+    LDA.W $2090,X : STA.W $2092,Y 
 
   + STZ.W $2080,X 
     STZ.W $2090,X 
@@ -11700,44 +10912,34 @@ CorpseRottingRotEntry_Copy_Sidehopper_Param1_0:
     BCC + 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2000,X 
-    STA.W $2002,Y 
-    LDA.W $2010,X 
-    STA.W $2012,Y 
+    LDA.W $2000,X : STA.W $2002,Y 
+    LDA.W $2010,X : STA.W $2012,Y 
 
   + LDA.W $8802 
     CMP.W #$0008 
     BCC + 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2020,X 
-    STA.W $2022,Y 
-    LDA.W $2030,X 
-    STA.W $2032,Y 
+    LDA.W $2020,X : STA.W $2022,Y 
+    LDA.W $2030,X : STA.W $2032,Y 
 
   + LDA.W $8802 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2040,X 
-    STA.W $2042,Y 
-    LDA.W $2050,X 
-    STA.W $2052,Y 
+    LDA.W $2040,X : STA.W $2042,Y 
+    LDA.W $2050,X : STA.W $2052,Y 
 
   + LDA.W $8802 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2060,X 
-    STA.W $2062,Y 
-    LDA.W $2070,X 
-    STA.W $2072,Y 
+    LDA.W $2060,X : STA.W $2062,Y 
+    LDA.W $2070,X : STA.W $2072,Y 
 
   + LDA.W $8802 
     CMP.W #$0026 
     BPL .return 
-    LDA.W $2080,X 
-    STA.W $2082,Y 
-    LDA.W $2090,X 
-    STA.W $2092,Y 
+    LDA.W $2080,X : STA.W $2082,Y 
+    LDA.W $2090,X : STA.W $2092,Y 
 
 .return:
     RTS 
@@ -11747,20 +10949,16 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_2:
     LDA.W $8802 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2320,X 
-    STA.W $2322,Y 
-    LDA.W $2330,X 
-    STA.W $2332,Y 
+    LDA.W $2320,X : STA.W $2322,Y 
+    LDA.W $2330,X : STA.W $2332,Y 
 
   + STZ.W $2320,X 
     STZ.W $2330,X 
     LDA.W $8802 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2340,X 
-    STA.W $2342,Y 
-    LDA.W $2350,X 
-    STA.W $2352,Y 
+    LDA.W $2340,X : STA.W $2342,Y 
+    LDA.W $2350,X : STA.W $2352,Y 
 
   + STZ.W $2340,X 
     STZ.W $2350,X 
@@ -11769,10 +10967,8 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_2:
     BCC .column3 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2360,X 
-    STA.W $2362,Y 
-    LDA.W $2370,X 
-    STA.W $2372,Y 
+    LDA.W $2360,X : STA.W $2362,Y 
+    LDA.W $2370,X : STA.W $2372,Y 
 
   + STZ.W $2360,X 
     STZ.W $2370,X 
@@ -11783,10 +10979,8 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_2:
     BCC .column4 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2380,X 
-    STA.W $2382,Y 
-    LDA.W $2390,X 
-    STA.W $2392,Y 
+    LDA.W $2380,X : STA.W $2382,Y 
+    LDA.W $2390,X : STA.W $2392,Y 
 
   + STZ.W $2380,X 
     STZ.W $2390,X 
@@ -11797,10 +10991,8 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_2:
     BCC .return 
     CMP.W #$0026 
     BPL + 
-    LDA.W $23A0,X 
-    STA.W $23A2,Y 
-    LDA.W $23B0,X 
-    STA.W $23B2,Y 
+    LDA.W $23A0,X : STA.W $23A2,Y 
+    LDA.W $23B0,X : STA.W $23B2,Y 
 
   + STZ.W $23A0,X 
     STZ.W $23B0,X 
@@ -11813,48 +11005,38 @@ CorpseRottingRotEntry_Copy_Sidehopper_Param1_2:
     LDA.W $8802 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2320,X 
-    STA.W $2322,Y 
-    LDA.W $2330,X 
-    STA.W $2332,Y 
+    LDA.W $2320,X : STA.W $2322,Y 
+    LDA.W $2330,X : STA.W $2332,Y 
 
   + LDA.W $8802 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2340,X 
-    STA.W $2342,Y 
-    LDA.W $2350,X 
-    STA.W $2352,Y 
+    LDA.W $2340,X : STA.W $2342,Y 
+    LDA.W $2350,X : STA.W $2352,Y 
 
   + LDA.W $8802 
     CMP.W #$0008 
     BCC + 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2360,X 
-    STA.W $2362,Y 
-    LDA.W $2370,X 
-    STA.W $2372,Y 
+    LDA.W $2360,X : STA.W $2362,Y 
+    LDA.W $2370,X : STA.W $2372,Y 
 
   + LDA.W $8802 
     CMP.W #$0008 
     BCC + 
     CMP.W #$0026 
     BPL + 
-    LDA.W $2380,X 
-    STA.W $2382,Y 
-    LDA.W $2390,X 
-    STA.W $2392,Y 
+    LDA.W $2380,X : STA.W $2382,Y 
+    LDA.W $2390,X : STA.W $2392,Y 
 
   + LDA.W $8802 
     CMP.W #$0008 
     BCC .return 
     CMP.W #$0026 
     BPL .return 
-    LDA.W $23A0,X 
-    STA.W $23A2,Y 
-    LDA.W $23B0,X 
-    STA.W $23B2,Y 
+    LDA.W $23A0,X : STA.W $23A2,Y 
+    LDA.W $23B0,X : STA.W $23B2,Y 
 
 .return:
     RTS 
@@ -11864,30 +11046,24 @@ CorpseRottingRotEntry_Move_Zoomer_Param1_0:
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2940,X 
-    STA.W $2942,Y 
-    LDA.W $2950,X 
-    STA.W $2952,Y 
+    LDA.W $2940,X : STA.W $2942,Y 
+    LDA.W $2950,X : STA.W $2952,Y 
 
   + STZ.W $2940,X 
     STZ.W $2950,X 
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2960,X 
-    STA.W $2962,Y 
-    LDA.W $2970,X 
-    STA.W $2972,Y 
+    LDA.W $2960,X : STA.W $2962,Y 
+    LDA.W $2970,X : STA.W $2972,Y 
 
   + STZ.W $2960,X 
     STZ.W $2970,X 
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2980,X 
-    STA.W $2982,Y 
-    LDA.W $2990,X 
-    STA.W $2992,Y 
+    LDA.W $2980,X : STA.W $2982,Y 
+    LDA.W $2990,X : STA.W $2992,Y 
 
   + STZ.W $2980,X 
     STZ.W $2990,X 
@@ -11898,26 +11074,20 @@ CorpseRottingRotEntry_Copy_Zoomer_Param1_0:
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2940,X 
-    STA.W $2942,Y 
-    LDA.W $2950,X 
-    STA.W $2952,Y 
+    LDA.W $2940,X : STA.W $2942,Y 
+    LDA.W $2950,X : STA.W $2952,Y 
 
   + LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2960,X 
-    STA.W $2962,Y 
-    LDA.W $2970,X 
-    STA.W $2972,Y 
+    LDA.W $2960,X : STA.W $2962,Y 
+    LDA.W $2970,X : STA.W $2972,Y 
 
   + LDA.W $8802 
     CMP.W #$000E 
     BPL .return 
-    LDA.W $2980,X 
-    STA.W $2982,Y 
-    LDA.W $2990,X 
-    STA.W $2992,Y 
+    LDA.W $2980,X : STA.W $2982,Y 
+    LDA.W $2990,X : STA.W $2992,Y 
 
 .return:
     RTS 
@@ -11927,30 +11097,24 @@ CorpseRottingRotEntry_Move_Zoomer_Param1_2:
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2A00,X 
-    STA.W $2A02,Y 
-    LDA.W $2A10,X 
-    STA.W $2A12,Y 
+    LDA.W $2A00,X : STA.W $2A02,Y 
+    LDA.W $2A10,X : STA.W $2A12,Y 
 
   + STZ.W $2A00,X 
     STZ.W $2A10,X 
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2A20,X 
-    STA.W $2A22,Y 
-    LDA.W $2A30,X 
-    STA.W $2A32,Y 
+    LDA.W $2A20,X : STA.W $2A22,Y 
+    LDA.W $2A30,X : STA.W $2A32,Y 
 
   + STZ.W $2A20,X 
     STZ.W $2A30,X 
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2A40,X 
-    STA.W $2A42,Y 
-    LDA.W $2A50,X 
-    STA.W $2A52,Y 
+    LDA.W $2A40,X : STA.W $2A42,Y 
+    LDA.W $2A50,X : STA.W $2A52,Y 
 
   + STZ.W $2A40,X 
     STZ.W $2A50,X 
@@ -11961,26 +11125,20 @@ CorpseRottingRotEntry_Copy_Zoomer_Param1_2:
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2A00,X 
-    STA.W $2A02,Y 
-    LDA.W $2A10,X 
-    STA.W $2A12,Y 
+    LDA.W $2A00,X : STA.W $2A02,Y 
+    LDA.W $2A10,X : STA.W $2A12,Y 
 
   + LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2A20,X 
-    STA.W $2A22,Y 
-    LDA.W $2A30,X 
-    STA.W $2A32,Y 
+    LDA.W $2A20,X : STA.W $2A22,Y 
+    LDA.W $2A30,X : STA.W $2A32,Y 
 
   + LDA.W $8802 
     CMP.W #$000E 
     BPL .return 
-    LDA.W $2A40,X 
-    STA.W $2A42,Y 
-    LDA.W $2A50,X 
-    STA.W $2A52,Y 
+    LDA.W $2A40,X : STA.W $2A42,Y 
+    LDA.W $2A50,X : STA.W $2A52,Y 
 
 .return:
     RTS 
@@ -11990,30 +11148,24 @@ CorpseRottingRotEntry_Move_Zoomer_Param1_4:
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2AC0,X 
-    STA.W $2AC2,Y 
-    LDA.W $2AD0,X 
-    STA.W $2AD2,Y 
+    LDA.W $2AC0,X : STA.W $2AC2,Y 
+    LDA.W $2AD0,X : STA.W $2AD2,Y 
 
   + STZ.W $2AC0,X 
     STZ.W $2AD0,X 
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2AE0,X 
-    STA.W $2AE2,Y 
-    LDA.W $2AF0,X 
-    STA.W $2AF2,Y 
+    LDA.W $2AE0,X : STA.W $2AE2,Y 
+    LDA.W $2AF0,X : STA.W $2AF2,Y 
 
   + STZ.W $2AE0,X 
     STZ.W $2AF0,X 
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2B00,X 
-    STA.W $2B02,Y 
-    LDA.W $2B10,X 
-    STA.W $2B12,Y 
+    LDA.W $2B00,X : STA.W $2B02,Y 
+    LDA.W $2B10,X : STA.W $2B12,Y 
 
   + STZ.W $2B00,X 
     STZ.W $2B10,X 
@@ -12024,26 +11176,20 @@ CorpseRottingRotEntry_Copy_Zoomer_Param1_4:
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2AC0,X 
-    STA.W $2AC2,Y 
-    LDA.W $2AD0,X 
-    STA.W $2AD2,Y 
+    LDA.W $2AC0,X : STA.W $2AC2,Y 
+    LDA.W $2AD0,X : STA.W $2AD2,Y 
 
   + LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2AE0,X 
-    STA.W $2AE2,Y 
-    LDA.W $2AF0,X 
-    STA.W $2AF2,Y 
+    LDA.W $2AE0,X : STA.W $2AE2,Y 
+    LDA.W $2AF0,X : STA.W $2AF2,Y 
 
   + LDA.W $8802 
     CMP.W #$000E 
     BPL .return 
-    LDA.W $2B00,X 
-    STA.W $2B02,Y 
-    LDA.W $2B10,X 
-    STA.W $2B12,Y 
+    LDA.W $2B00,X : STA.W $2B02,Y 
+    LDA.W $2B10,X : STA.W $2B12,Y 
 
 .return:
     RTS 
@@ -12053,30 +11199,24 @@ CorpseRottingRotEntry_Move_Ripper_Param1_0:
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2B80,X 
-    STA.W $2B82,Y 
-    LDA.W $2B90,X 
-    STA.W $2B92,Y 
+    LDA.W $2B80,X : STA.W $2B82,Y 
+    LDA.W $2B90,X : STA.W $2B92,Y 
 
   + STZ.W $2B80,X 
     STZ.W $2B90,X 
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2BA0,X 
-    STA.W $2BA2,Y 
-    LDA.W $2BB0,X 
-    STA.W $2BB2,Y 
+    LDA.W $2BA0,X : STA.W $2BA2,Y 
+    LDA.W $2BB0,X : STA.W $2BB2,Y 
 
   + STZ.W $2BA0,X 
     STZ.W $2BB0,X 
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2BC0,X 
-    STA.W $2BC2,Y 
-    LDA.W $2BD0,X 
-    STA.W $2BD2,Y 
+    LDA.W $2BC0,X : STA.W $2BC2,Y 
+    LDA.W $2BD0,X : STA.W $2BD2,Y 
 
   + STZ.W $2BC0,X 
     STZ.W $2BD0,X 
@@ -12087,26 +11227,20 @@ CorpseRottingRotEntry_Copy_Ripper_Param1_0:
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2B80,X 
-    STA.W $2B82,Y 
-    LDA.W $2B90,X 
-    STA.W $2B92,Y 
+    LDA.W $2B80,X : STA.W $2B82,Y 
+    LDA.W $2B90,X : STA.W $2B92,Y 
 
   + LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2BA0,X 
-    STA.W $2BA2,Y 
-    LDA.W $2BB0,X 
-    STA.W $2BB2,Y 
+    LDA.W $2BA0,X : STA.W $2BA2,Y 
+    LDA.W $2BB0,X : STA.W $2BB2,Y 
 
   + LDA.W $8802 
     CMP.W #$000E 
     BPL .return 
-    LDA.W $2BC0,X 
-    STA.W $2BC2,Y 
-    LDA.W $2BD0,X 
-    STA.W $2BD2,Y 
+    LDA.W $2BC0,X : STA.W $2BC2,Y 
+    LDA.W $2BD0,X : STA.W $2BD2,Y 
 
 .return:
     RTS 
@@ -12116,30 +11250,24 @@ CorpseRottingRotEntry_Move_Ripper_Param1_2:
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2C40,X 
-    STA.W $2C42,Y 
-    LDA.W $2C50,X 
-    STA.W $2C52,Y 
+    LDA.W $2C40,X : STA.W $2C42,Y 
+    LDA.W $2C50,X : STA.W $2C52,Y 
 
   + STZ.W $2C40,X 
     STZ.W $2C50,X 
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2C60,X 
-    STA.W $2C62,Y 
-    LDA.W $2C70,X 
-    STA.W $2C72,Y 
+    LDA.W $2C60,X : STA.W $2C62,Y 
+    LDA.W $2C70,X : STA.W $2C72,Y 
 
   + STZ.W $2C60,X 
     STZ.W $2C70,X 
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2C80,X 
-    STA.W $2C82,Y 
-    LDA.W $2C90,X 
-    STA.W $2C92,Y 
+    LDA.W $2C80,X : STA.W $2C82,Y 
+    LDA.W $2C90,X : STA.W $2C92,Y 
 
   + STZ.W $2C80,X 
     STZ.W $2C90,X 
@@ -12150,26 +11278,20 @@ CorpseRottingRotEntry_Copy_Ripper_Param1_2:
     LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2C40,X 
-    STA.W $2C42,Y 
-    LDA.W $2C50,X 
-    STA.W $2C52,Y 
+    LDA.W $2C40,X : STA.W $2C42,Y 
+    LDA.W $2C50,X : STA.W $2C52,Y 
 
   + LDA.W $8802 
     CMP.W #$000E 
     BPL + 
-    LDA.W $2C60,X 
-    STA.W $2C62,Y 
-    LDA.W $2C70,X 
-    STA.W $2C72,Y 
+    LDA.W $2C60,X : STA.W $2C62,Y 
+    LDA.W $2C70,X : STA.W $2C72,Y 
 
   + LDA.W $8802 
     CMP.W #$000E 
     BPL .return 
-    LDA.W $2C80,X 
-    STA.W $2C82,Y 
-    LDA.W $2C90,X 
-    STA.W $2C92,Y 
+    LDA.W $2C80,X : STA.W $2C82,Y 
+    LDA.W $2C90,X : STA.W $2C92,Y 
 
 .return:
     RTS 
@@ -12179,20 +11301,16 @@ CorpseRottingRotEntry_Move_Skree_Param1_0:
     LDA.W $8802 
     CMP.W #$001E 
     BPL + 
-    LDA.W $2640,X 
-    STA.W $2642,Y 
-    LDA.W $2650,X 
-    STA.W $2652,Y 
+    LDA.W $2640,X : STA.W $2642,Y 
+    LDA.W $2650,X : STA.W $2652,Y 
 
   + STZ.W $2640,X 
     STZ.W $2650,X 
     LDA.W $8802 
     CMP.W #$001E 
     BPL + 
-    LDA.W $2660,X 
-    STA.W $2662,Y 
-    LDA.W $2670,X 
-    STA.W $2672,Y 
+    LDA.W $2660,X : STA.W $2662,Y 
+    LDA.W $2670,X : STA.W $2672,Y 
 
   + STZ.W $2660,X 
     STZ.W $2670,X 
@@ -12203,18 +11321,14 @@ CorpseRottingRotEntry_Copy_Skree_Param1_0:
     LDA.W $8802 
     CMP.W #$001E 
     BPL + 
-    LDA.W $2640,X 
-    STA.W $2642,Y 
-    LDA.W $2650,X 
-    STA.W $2652,Y 
+    LDA.W $2640,X : STA.W $2642,Y 
+    LDA.W $2650,X : STA.W $2652,Y 
 
   + LDA.W $8802 
     CMP.W #$001E 
     BPL .return 
-    LDA.W $2660,X 
-    STA.W $2662,Y 
-    LDA.W $2670,X 
-    STA.W $2672,Y 
+    LDA.W $2660,X : STA.W $2662,Y 
+    LDA.W $2670,X : STA.W $2672,Y 
 
 .return:
     RTS 
@@ -12224,20 +11338,16 @@ CorpseRottingRotEntry_Move_Skree_Param1_2:
     LDA.W $8802 
     CMP.W #$001E 
     BPL + 
-    LDA.W $2740,X 
-    STA.W $2742,Y 
-    LDA.W $2750,X 
-    STA.W $2752,Y 
+    LDA.W $2740,X : STA.W $2742,Y 
+    LDA.W $2750,X : STA.W $2752,Y 
 
   + STZ.W $2740,X 
     STZ.W $2750,X 
     LDA.W $8802 
     CMP.W #$001E 
     BPL + 
-    LDA.W $2760,X 
-    STA.W $2762,Y 
-    LDA.W $2770,X 
-    STA.W $2772,Y 
+    LDA.W $2760,X : STA.W $2762,Y 
+    LDA.W $2770,X : STA.W $2772,Y 
 
   + STZ.W $2760,X 
     STZ.W $2770,X 
@@ -12248,18 +11358,14 @@ CorpseRottingRotEntry_Copy_Skree_Param1_2:
     LDA.W $8802 
     CMP.W #$001E 
     BPL + 
-    LDA.W $2740,X 
-    STA.W $2742,Y 
-    LDA.W $2750,X 
-    STA.W $2752,Y 
+    LDA.W $2740,X : STA.W $2742,Y 
+    LDA.W $2750,X : STA.W $2752,Y 
 
   + LDA.W $8802 
     CMP.W #$001E 
     BPL .return 
-    LDA.W $2760,X 
-    STA.W $2762,Y 
-    LDA.W $2770,X 
-    STA.W $2772,Y 
+    LDA.W $2760,X : STA.W $2762,Y 
+    LDA.W $2770,X : STA.W $2772,Y 
 
 .return:
     RTS 
@@ -12269,20 +11375,16 @@ CorpseRottingRotEntry_Move_Skree_Param1_4:
     LDA.W $8802 
     CMP.W #$001E 
     BPL + 
-    LDA.W $2840,X 
-    STA.W $2842,Y 
-    LDA.W $2850,X 
-    STA.W $2852,Y 
+    LDA.W $2840,X : STA.W $2842,Y 
+    LDA.W $2850,X : STA.W $2852,Y 
 
   + STZ.W $2840,X 
     STZ.W $2850,X 
     LDA.W $8802 
     CMP.W #$001E 
     BPL + 
-    LDA.W $2860,X 
-    STA.W $2862,Y 
-    LDA.W $2870,X 
-    STA.W $2872,Y 
+    LDA.W $2860,X : STA.W $2862,Y 
+    LDA.W $2870,X : STA.W $2872,Y 
 
   + STZ.W $2860,X 
     STZ.W $2870,X 
@@ -12293,18 +11395,14 @@ CorpseRottingRotEntry_Copy_Skree_Param1_4:
     LDA.W $8802 
     CMP.W #$001E 
     BPL + 
-    LDA.W $2840,X 
-    STA.W $2842,Y 
-    LDA.W $2850,X 
-    STA.W $2852,Y 
+    LDA.W $2840,X : STA.W $2842,Y 
+    LDA.W $2850,X : STA.W $2852,Y 
 
   + LDA.W $8802 
     CMP.W #$001E 
     BPL .return 
-    LDA.W $2860,X 
-    STA.W $2862,Y 
-    LDA.W $2870,X 
-    STA.W $2872,Y 
+    LDA.W $2860,X : STA.W $2862,Y 
+    LDA.W $2870,X : STA.W $2872,Y 
 
 .return:
     RTS 
@@ -12316,10 +11414,8 @@ CorpseRottingRotEntry_Move_MotherBrain:
     BCC .column1 
     CMP.W #$002E 
     BPL + 
-    LDA.W $9000,X 
-    STA.W $9002,Y 
-    LDA.W $9010,X 
-    STA.W $9012,Y 
+    LDA.W $9000,X : STA.W $9002,Y 
+    LDA.W $9010,X : STA.W $9012,Y 
 
   + STZ.W $9000,X 
     STZ.W $9010,X 
@@ -12330,10 +11426,8 @@ CorpseRottingRotEntry_Move_MotherBrain:
     BCC .column2 
     CMP.W #$002E 
     BPL + 
-    LDA.W $9020,X 
-    STA.W $9022,Y 
-    LDA.W $9030,X 
-    STA.W $9032,Y 
+    LDA.W $9020,X : STA.W $9022,Y 
+    LDA.W $9030,X : STA.W $9032,Y 
 
   + STZ.W $9020,X 
     STZ.W $9030,X 
@@ -12342,30 +11436,24 @@ CorpseRottingRotEntry_Move_MotherBrain:
     LDA.W $8802 
     CMP.W #$002E 
     BPL + 
-    LDA.W $9040,X 
-    STA.W $9042,Y 
-    LDA.W $9050,X 
-    STA.W $9052,Y 
+    LDA.W $9040,X : STA.W $9042,Y 
+    LDA.W $9050,X : STA.W $9052,Y 
 
   + STZ.W $9040,X 
     STZ.W $9050,X 
     LDA.W $8802 
     CMP.W #$002E 
     BPL + 
-    LDA.W $9060,X 
-    STA.W $9062,Y 
-    LDA.W $9070,X 
-    STA.W $9072,Y 
+    LDA.W $9060,X : STA.W $9062,Y 
+    LDA.W $9070,X : STA.W $9072,Y 
 
   + STZ.W $9060,X 
     STZ.W $9070,X 
     LDA.W $8802 
     CMP.W #$002E 
     BPL + 
-    LDA.W $9080,X 
-    STA.W $9082,Y 
-    LDA.W $9090,X 
-    STA.W $9092,Y 
+    LDA.W $9080,X : STA.W $9082,Y 
+    LDA.W $9090,X : STA.W $9092,Y 
 
   + STZ.W $9080,X 
     STZ.W $9090,X 
@@ -12374,10 +11462,8 @@ CorpseRottingRotEntry_Move_MotherBrain:
     BCC .column6 
     CMP.W #$002E 
     BPL + 
-    LDA.W $90A0,X 
-    STA.W $90A2,Y 
-    LDA.W $90B0,X 
-    STA.W $90B2,Y 
+    LDA.W $90A0,X : STA.W $90A2,Y 
+    LDA.W $90B0,X : STA.W $90B2,Y 
 
   + STZ.W $90A0,X 
     STZ.W $90B0,X 
@@ -12388,10 +11474,8 @@ CorpseRottingRotEntry_Move_MotherBrain:
     BCC .return 
     CMP.W #$002E 
     BPL + 
-    LDA.W $90C0,X 
-    STA.W $90C2,Y 
-    LDA.W $90D0,X 
-    STA.W $90D2,Y 
+    LDA.W $90C0,X : STA.W $90C2,Y 
+    LDA.W $90D0,X : STA.W $90D2,Y 
 
   + STZ.W $90C0,X 
     STZ.W $90D0,X 
@@ -12406,64 +11490,50 @@ CorpseRottingRotEntry_Copy_MotherBrain:
     BCC + 
     CMP.W #$002E 
     BPL + 
-    LDA.W $9000,X 
-    STA.W $9002,Y 
-    LDA.W $9010,X 
-    STA.W $9012,Y 
+    LDA.W $9000,X : STA.W $9002,Y 
+    LDA.W $9010,X : STA.W $9012,Y 
 
   + LDA.W $8802 
     CMP.W #$0008 
     BCC + 
     CMP.W #$002E 
     BPL + 
-    LDA.W $9020,X 
-    STA.W $9022,Y 
-    LDA.W $9030,X 
-    STA.W $9032,Y 
+    LDA.W $9020,X : STA.W $9022,Y 
+    LDA.W $9030,X : STA.W $9032,Y 
 
   + LDA.W $8802 
     CMP.W #$002E 
     BPL + 
-    LDA.W $9040,X 
-    STA.W $9042,Y 
-    LDA.W $9050,X 
-    STA.W $9052,Y 
+    LDA.W $9040,X : STA.W $9042,Y 
+    LDA.W $9050,X : STA.W $9052,Y 
 
   + LDA.W $8802 
     CMP.W #$002E 
     BPL + 
-    LDA.W $9060,X 
-    STA.W $9062,Y 
-    LDA.W $9070,X 
-    STA.W $9072,Y 
+    LDA.W $9060,X : STA.W $9062,Y 
+    LDA.W $9070,X : STA.W $9072,Y 
 
   + LDA.W $8802 
     CMP.W #$002E 
     BPL + 
-    LDA.W $9080,X 
-    STA.W $9082,Y 
-    LDA.W $9090,X 
-    STA.W $9092,Y 
+    LDA.W $9080,X : STA.W $9082,Y 
+    LDA.W $9090,X : STA.W $9092,Y 
 
   + LDA.W $8802 
     CMP.W #$0008 
     BCC + 
     CMP.W #$002E 
     BPL + 
-    LDA.W $90A0,X 
-    STA.W $90A2,Y 
-    LDA.W $90B0,X 
-    STA.W $90B2,Y 
+    LDA.W $90A0,X : STA.W $90A2,Y 
+    LDA.W $90B0,X : STA.W $90B2,Y 
 
   + LDA.W $8802 
     CMP.W #$0020 
     BCC .return 
     CMP.W #$002E 
     BPL .return 
-    LDA.W $90C0,X 
-    STA.W $90C2,Y 
-    LDA.W $90D0,X 
-    STA.W $90D2,Y 
+    LDA.W $90C0,X : STA.W $90C2,Y 
+    LDA.W $90D0,X : STA.W $90D2,Y 
 
 .return:
     RTS 
@@ -12886,12 +11956,9 @@ InitAI_BabyMetroid:
     LDA.W $0F86,X 
     ORA.W #$3000 
     STA.W $0F86,X 
-    LDA.W #$0400 
-    STA.W $0F96,X 
-    LDA.W #InstList_BabyMetroid_Normal 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0400 : STA.W $0F96,X 
+    LDA.W #InstList_BabyMetroid_Normal : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDA.W #Function_BabyMetroid_WaitForCamera 
     BIT.W $0911 
@@ -12905,8 +11972,7 @@ InitAI_BabyMetroid:
     STA.W $0FA8,X 
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
-    LDA.W #$000A 
-    STA.W $0FB0,X 
+    LDA.W #$000A : STA.W $0FB0,X 
     STZ.W $0FB6,X 
     LDY.W #Palette_CorpseSidehopper 
     LDX.W #$0120 
@@ -12931,8 +11997,7 @@ PowerBombReaction_BabyMetroid:
 
 MainAI_BabyMetroid:
     LDX.W $0E54 
-    LDA.W #$7FFF 
-    STA.W $0F8C,X 
+    LDA.W #$7FFF : STA.W $0F8C,X 
     JSR.W ($0FA8,X) 
     JSL.L MoveEnemyAccordingToVelocity 
     LDA.L $7EC400 
@@ -12953,8 +12018,7 @@ Function_BabyMetroid_WaitForCamera:
     LDA.W $0911 
     CMP.W #$0201 
     BPL .return 
-    LDA.W #$0200 
-    STA.W $0911 
+    LDA.W #$0200 : STA.W $0911 
     LDA.L $7ECD20 
     AND.W #$00FF 
     STA.L $7ECD20 
@@ -12968,51 +12032,41 @@ Function_BabyMetroid_WaitForCamera:
     db $1F,$03 
     dw PLMEntries_createBabyMetroidInvisibleWall 
     LDX.W $0E54 
-    LDA.W #Function_BabyMetroid_LetSidehopperLiveForABit 
-    STA.W $0FA8,X 
-    LDA.W #$0001 
-    STA.L $7E7808,X 
+    LDA.W #Function_BabyMetroid_LetSidehopperLiveForABit : STA.W $0FA8,X 
+    LDA.W #$0001 : STA.L $7E7808,X 
 
 .return:
     RTS 
 
 
 Function_BabyMetroid_LetSidehopperLiveForABit:
-    LDA.W #Function_BabyMetroid_QueueBattleMusic 
-    STA.W $0FA8,X 
-    LDA.W #$01D0 
-    STA.W $0FB2,X ; fallthrough to Function_BabyMetroid_QueueBattleMusic
+    LDA.W #Function_BabyMetroid_QueueBattleMusic : STA.W $0FA8,X 
+    LDA.W #$01D0 : STA.W $0FB2,X ; fallthrough to Function_BabyMetroid_QueueBattleMusic
 
 Function_BabyMetroid_QueueBattleMusic:
     DEC.W $0FB2,X 
     BPL Function_BabyMetroid_RushToMiddleOfRoom_return 
     LDA.W #$0005 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #Function_BabyMetroid_RushToMiddleOfRoom 
-    STA.W $0FA8,X ; fallthrough to Function_BabyMetroid_RushToMiddleOfRoom
+    LDA.W #Function_BabyMetroid_RushToMiddleOfRoom : STA.W $0FA8,X ; fallthrough to Function_BabyMetroid_RushToMiddleOfRoom
 
 Function_BabyMetroid_RushToMiddleOfRoom:
-    LDA.W #$0248 
-    STA.B $12 
-    LDA.W #$004A 
-    STA.B $14 
+    LDA.W #$0248 : STA.B $12 
+    LDA.W #$004A : STA.B $14 
     LDY.W #$000F 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
-    LDA.W #$0001 
-    STA.B $16 
+    LDA.W #$0001 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCS Function_BabyMetroid_RushToMiddleOfRoom_return 
-    LDA.W #Function_BabyMetroid_RushToSidehopper 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroid_RushToSidehopper : STA.W $0FA8,X 
 
 Function_BabyMetroid_RushToMiddleOfRoom_return:
     RTS 
 
 
 Function_BabyMetroid_RushToSidehopper:
-    LDA.W $0FBA,X 
-    STA.B $12 
+    LDA.W $0FBA,X : STA.B $12 
     LDA.W $0FBE,X 
     CLC 
     ADC.W #$FFE0 
@@ -13025,16 +12079,14 @@ Function_BabyMetroid_RushToSidehopper:
     TAY 
     JSL.L CheckForEnemyCollisionWithEnemy 
     BCS .return 
-    LDA.W #Function_BabyMetroid_LatchOntoSidehopper 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroid_LatchOntoSidehopper : STA.W $0FA8,X 
 
 .return:
     RTS 
 
 
 Function_BabyMetroid_LatchOntoSidehopper:
-    LDA.W $0FBA,X 
-    STA.B $12 
+    LDA.W $0FBA,X : STA.B $12 
     LDA.W $0FBE,X 
     CLC 
     ADC.W #$FFE0 
@@ -13048,24 +12100,18 @@ Function_BabyMetroid_LatchOntoSidehopper:
 .reachedTarget:
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
-    LDA.W $0FBA,X 
-    STA.W $0F7A,X 
+    LDA.W $0FBA,X : STA.W $0F7A,X 
     LDA.W $0FBE,X 
     CLC 
     ADC.W #$FFE0 
     STA.W $0F7E,X 
-    LDA.W #InstList_BabyMetroid_LatchedOn 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #InstList_BabyMetroid_LatchedOn : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #Function_BabyMetroid_DrainingSidehopper 
-    STA.W $0FA8,X 
-    LDA.W #$0001 
-    STA.W $0FB0,X 
+    LDA.W #Function_BabyMetroid_DrainingSidehopper : STA.W $0FA8,X 
+    LDA.W #$0001 : STA.W $0FB0,X 
     STZ.W $0FB6,X 
-    LDA.W #$0140 
-    STA.W $0FB2,X 
+    LDA.W #$0140 : STA.W $0FB2,X 
     RTS 
 
 
@@ -13084,41 +12130,30 @@ Function_BabyMetroid_DrainingSidehopper:
     STA.W $0F7E,X 
     DEC.W $0FB2,X 
     BNE .return 
-    LDA.W #Function_BabyMetroid_MakeSidehopperRottable 
-    STA.W $0FA8,X 
-    LDA.W #InstList_BabyMetroid_FinishDraining 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #Function_BabyMetroid_MakeSidehopperRottable : STA.W $0FA8,X 
+    LDA.W #InstList_BabyMetroid_FinishDraining : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #$000A 
-    STA.W $0FB0,X 
+    LDA.W #$000A : STA.W $0FB0,X 
 
 .return:
     RTS 
 
 
 Function_BabyMetroid_MakeSidehopperRottable:
-    LDA.W #$0001 
-    STA.L $7E7850 
-    LDA.W #Function_BabyMetroid_MoveUp_UnlockCamera 
-    STA.W $0FA8,X 
-    LDA.W #$00C0 
-    STA.W $0FB2,X ; fallthrough to Function_BabyMetroid_MoveUp_UnlockCamera
+    LDA.W #$0001 : STA.L $7E7850 
+    LDA.W #Function_BabyMetroid_MoveUp_UnlockCamera : STA.W $0FA8,X 
+    LDA.W #$00C0 : STA.W $0FB2,X ; fallthrough to Function_BabyMetroid_MoveUp_UnlockCamera
 
 Function_BabyMetroid_MoveUp_UnlockCamera:
-    LDA.W $0F7A,X 
-    STA.B $12 
-    LDA.W #$0068 
-    STA.B $14 
+    LDA.W $0F7A,X : STA.B $12 
+    LDA.W #$0068 : STA.B $14 
     LDY.W #$0000 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
     DEC.W $0FB2,X 
     BPL .return 
-    LDA.W #Function_BabyMetroid_StareDownSamus 
-    STA.W $0FA8,X 
-    LDA.W #$0001 
-    STA.W $0FB6,X 
+    LDA.W #Function_BabyMetroid_StareDownSamus : STA.W $0FA8,X 
+    LDA.W #$0001 : STA.W $0FB6,X 
     LDA.L $7ECD20 
     ORA.W #$0100 
     STA.L $7ECD20 
@@ -13179,13 +12214,11 @@ Function_BabyMetroid_StareDownSamus:
     AND.W #$0FFF 
     CMP.W #$0FE0 
     BCC .notRareChance 
-    LDA.W #$0020 
-    STA.L $7E7802,X 
+    LDA.W #$0020 : STA.L $7E7802,X 
 
 .notRareChance:
     STY.B $14 
-    LDA.W $0AF6 
-    STA.B $12 
+    LDA.W $0AF6 : STA.B $12 
     LDX.W $0E54 
     LDY.W #$000A 
     JMP.W GradduallyAccelerateTowardsPoint_1A_400 
@@ -13193,14 +12226,12 @@ Function_BabyMetroid_StareDownSamus:
 
 .done:
     LDX.W $0E54 
-    LDA.W #Function_BabyMetroid_LatchOntoSamus 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroid_LatchOntoSamus : STA.W $0FA8,X 
     RTS 
 
 
 Function_BabyMetroid_LatchOntoSamus:
-    LDA.W $0AF6 
-    STA.B $12 
+    LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA 
     SEC 
     SBC.W #$0020 
@@ -13212,24 +12243,19 @@ Function_BabyMetroid_LatchOntoSamus:
 Function_BabyMetroid_StartDrainingSamus:
     LDA.W #$0012 
     JSL.L Run_Samus_Command 
-    LDA.W #Function_BabyMetroid_DrainingSamus 
-    STA.W $0FA8 ; fallthrough to Function_BabyMetroid_DrainingSamus
+    LDA.W #Function_BabyMetroid_DrainingSamus : STA.W $0FA8 ; fallthrough to Function_BabyMetroid_DrainingSamus
 
 Function_BabyMetroid_DrainingSamus:
     LDA.W $09C2 
     CMP.W #$0002 
     BCC .done 
-    LDA.W #$0008 
-    STA.W $0CCC 
-    LDA.W #$0005 
-    STA.W $0CD2 
-    LDA.W #$0002 
-    STA.W $0A66 
+    LDA.W #$0008 : STA.W $0CCC 
+    LDA.W #$0005 : STA.W $0CD2 
+    LDA.W #$0002 : STA.W $0A66 
     LDA.W $0B2E 
     CMP.W #$0004 
     BMI .lessThan4 
-    LDA.W #$0002 
-    STA.W $0B2E 
+    LDA.W #$0002 : STA.W $0B2E 
 
 .lessThan4:
     LDA.W $0FA4,X 
@@ -13251,30 +12277,25 @@ Function_BabyMetroid_DrainingSamus:
 .done:
     STZ.W $0A66 
     STZ.W $0CD2 
-    LDA.W #Function_BabyMetroid_StartHeelRealization 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroid_StartHeelRealization : STA.W $0FA8,X 
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
     LDA.W #InstList_BabyMetroid_FinishDraining 
     JSL.L SetEnemyInstList 
-    LDA.W #$000A 
-    STA.W $0FB0,X 
+    LDA.W #$000A : STA.W $0FB0,X 
     LDA.W #$0013 
     JSL.L Run_Samus_Command 
     LDA.W #$0000 
     JSL.L DrainedSamusController 
-    LDA.W #$0000 
-    STA.L $7E7808,X 
+    LDA.W #$0000 : STA.L $7E7808,X 
     LDA.W #$0007 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     RTS 
 
 
 Function_BabyMetroid_StartHeelRealization:
-    LDA.W #Function_BabyMetroid_HeelRealization 
-    STA.W $0FA8,X 
-    LDA.W #$0078 
-    STA.W $0FB2,X ; fallthrough to Function_BabyMetroid_HeelRealization
+    LDA.W #Function_BabyMetroid_HeelRealization : STA.W $0FA8,X 
+    LDA.W #$0078 : STA.W $0FB2,X ; fallthrough to Function_BabyMetroid_HeelRealization
 
 Function_BabyMetroid_HeelRealization:
     DEC.W $0FB2,X 
@@ -13283,16 +12304,12 @@ Function_BabyMetroid_HeelRealization:
 
 
 .timerExpired:
-    LDA.W #Function_BabyMetroid_BackOffGuiltily 
-    STA.W $0FA8,X 
-    LDA.W #$00C0 
-    STA.W $0FB2,X ; fallthrough to Function_BabyMetroid_BackOffGuiltily
+    LDA.W #Function_BabyMetroid_BackOffGuiltily : STA.W $0FA8,X 
+    LDA.W #$00C0 : STA.W $0FB2,X ; fallthrough to Function_BabyMetroid_BackOffGuiltily
 
 Function_BabyMetroid_BackOffGuiltily:
-    LDA.W $0AF6 
-    STA.B $12 
-    LDA.W #$0068 
-    STA.B $14 
+    LDA.W $0AF6 : STA.B $12 
+    LDA.W #$0068 : STA.B $14 
     LDX.W $0E54 
     LDY.W #$0000 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
@@ -13304,14 +12321,10 @@ Function_BabyMetroid_BackOffGuiltily:
 .timerExpired:
     LDA.W #$007D 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #Function_BabyMetroid_GoLeftGuiltily 
-    STA.W $0FA8,X 
-    LDA.W #$0058 
-    STA.W $0FB2,X 
-    LDA.W #InstList_BabyMetroid_LatchedOn 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #Function_BabyMetroid_GoLeftGuiltily : STA.W $0FA8,X 
+    LDA.W #$0058 : STA.W $0FB2,X 
+    LDA.W #InstList_BabyMetroid_LatchedOn : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X ; fallthrough to Function_BabyMetroid_GoLeftGuiltily
 
 Function_BabyMetroid_GoLeftGuiltily:
@@ -13319,8 +12332,7 @@ Function_BabyMetroid_GoLeftGuiltily:
     CLC 
     ADC.W #$FFC0 
     STA.B $12 
-    LDA.W #$0064 
-    STA.B $14 
+    LDA.W #$0064 : STA.B $14 
     LDX.W $0E54 
     LDY.W #$0000 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
@@ -13330,18 +12342,15 @@ Function_BabyMetroid_GoLeftGuiltily:
 
 
 .timerExpired:
-    LDA.W #Function_BabyMetroid_GoRightGuiltily 
-    STA.W $0FA8,X 
-    LDA.W #$0058 
-    STA.W $0FB2,X ; fallthrough to Function_BabyMetroid_GoRightGuiltily
+    LDA.W #Function_BabyMetroid_GoRightGuiltily : STA.W $0FA8,X 
+    LDA.W #$0058 : STA.W $0FB2,X ; fallthrough to Function_BabyMetroid_GoRightGuiltily
 
 Function_BabyMetroid_GoRightGuiltily:
     LDA.W $0AF6 
     CLC 
     ADC.W #$0060 
     STA.B $12 
-    LDA.W #$0068 
-    STA.B $14 
+    LDA.W #$0068 : STA.B $14 
     LDX.W $0E54 
     LDY.W #$0000 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
@@ -13352,14 +12361,10 @@ Function_BabyMetroid_GoRightGuiltily:
 
 .timerExpired:
     LDX.W $0E54 
-    LDA.W #Function_BabyMetroid_SamusRecovering 
-    STA.W $0FA8,X 
-    LDA.W #$0100 
-    STA.W $0FB2,X 
-    LDA.W #InstList_BabyMetroid_Remorse 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #Function_BabyMetroid_SamusRecovering : STA.W $0FA8,X 
+    LDA.W #$0100 : STA.W $0FB2,X 
+    LDA.W #InstList_BabyMetroid_Remorse : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     RTS 
 
@@ -13367,19 +12372,15 @@ Function_BabyMetroid_GoRightGuiltily:
 Function_BabyMetroid_FleeRemorsefully:
     LDA.W #$0052 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #Function_BabyMetroid_Fleeing 
-    STA.W $0FA8,X ; fallthrough to Function_BabyMetroid_Fleeing
+    LDA.W #Function_BabyMetroid_Fleeing : STA.W $0FA8,X ; fallthrough to Function_BabyMetroid_Fleeing
 
 Function_BabyMetroid_Fleeing:
-    LDA.W #$FF80 
-    STA.B $12 
-    LDA.W #$0040 
-    STA.B $14 
+    LDA.W #$FF80 : STA.B $12 
+    LDA.W #$0040 : STA.B $14 
     LDX.W $0E54 
     LDY.W #$0000 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
-    LDA.W #$0008 
-    STA.B $16 
+    LDA.W #$0008 : STA.B $16 
     STA.B $18 
     JSL.L CheckForEnemyCollisionWithRectangle 
     BCS .return 
@@ -13388,8 +12389,7 @@ Function_BabyMetroid_Fleeing:
     LDA.W $0F86,X 
     AND.W #$DEFF 
     STA.W $0F86,X 
-    LDA.W #Function_BabyMetroid_Disappeared 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroid_Disappeared : STA.W $0FA8,X 
 
 .return:
     RTS 
@@ -13404,10 +12404,8 @@ Function_BabyMetroid_SamusRecovering:
 .timerExpired:
     LDA.W #$0002 
     JSL.L DrainedSamusController 
-    LDA.W #$0001 
-    STA.W $0FB6,X 
-    LDA.W #Function_BabyMetroid_Remorse 
-    STA.W $0FA8,X ; fallthrough to Function_BabyMetroid_Remorse
+    LDA.W #$0001 : STA.W $0FB6,X 
+    LDA.W #Function_BabyMetroid_Remorse : STA.W $0FA8,X ; fallthrough to Function_BabyMetroid_Remorse
 
 Function_BabyMetroid_Remorse:
     JSR.W GraduallyAccelerateTowardSamus 
@@ -13416,8 +12414,7 @@ Function_BabyMetroid_Remorse:
 
 
 MakeBabyMetroidFlee:
-    LDA.W #Function_BabyMetroid_FleeRemorsefully 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroid_FleeRemorsefully : STA.W $0FA8,X 
     RTS 
 
 
@@ -13469,12 +12466,10 @@ GraduallyAccelerateTowardSamus:
     AND.W #$0FFF 
     CMP.W #$0FE0 
     BCC + 
-    LDA.W #$0020 
-    STA.L $7E7802,X 
+    LDA.W #$0020 : STA.L $7E7802,X 
 
   + STY.B $14 
-    LDA.W $0AF6 
-    STA.B $12 
+    LDA.W $0AF6 : STA.B $12 
     LDX.W $0E54 
     LDY.W #$0008 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
@@ -13494,26 +12489,22 @@ GraduallyAccelerateTowardSamus:
 
 
 GradduallyAccelerateTowardsPoint_1A_400:
-    LDA.W #$0400 
-    STA.B $1A 
+    LDA.W #$0400 : STA.B $1A 
     BRA GradduallyAccelerateTowardsPoint 
 
 
 GradduallyAccelerateTowardsPoint_1A_4:
-    LDA.W #$0004 
-    STA.B $1A 
+    LDA.W #$0004 : STA.B $1A 
     BRA GradduallyAccelerateTowardsPoint 
 
 
 GradduallyAccelerateTowardsPoint_1A_8:
-    LDA.W #$0008 
-    STA.B $1A 
+    LDA.W #$0008 : STA.B $1A 
     BRA GradduallyAccelerateTowardsPoint 
 
 
 GradduallyAccelerateTowardsPoint_1A_10:
-    LDA.W #$0010 
-    STA.B $1A ; fallthrough to GradduallyAccelerateTowardsPoint
+    LDA.W #$0010 : STA.B $1A ; fallthrough to GradduallyAccelerateTowardsPoint
 
 GradduallyAccelerateTowardsPoint:
     LDA.W GradualAccelerationDivisorTable,Y 
@@ -13529,8 +12520,7 @@ GradduallyAccelerateTowardsPoint:
     INC A 
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -13562,8 +12552,7 @@ GradduallyAccelerateTowardsPoint:
 .up:
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -13600,8 +12589,7 @@ GraduallyAccelerateHorizontally:
     INC A 
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -13640,8 +12628,7 @@ GraduallyAccelerateHorizontally:
 .left:
     STA.W $4204 
     SEP #$20 
-    LDA.B $18 
-    STA.W $4206 
+    LDA.B $18 : STA.W $4206 
     REP #$20 
     XBA 
     XBA 
@@ -13840,26 +12827,20 @@ AccelerateBabyMetroidTowardsXPosition:
 
 
 HandleNormalBabyMetroidPalette:
-    LDA.W #$014A 
-    STA.B $12 
-    LDA.W #BabyMetroidColors_Normal 
-    STA.B $16 
+    LDA.W #$014A : STA.B $12 
+    LDA.W #BabyMetroidColors_Normal : STA.B $16 
     BRA HandleBabyMetroidPalette 
 
 
 HandleBabyMetroidCutscenePalette_Normal:
-    LDA.W #$01EA 
-    STA.B $12 
-    LDA.W #BabyMetroidColors_Normal 
-    STA.B $16 
+    LDA.W #$01EA : STA.B $12 
+    LDA.W #BabyMetroidColors_Normal : STA.B $16 
     BRA HandleBabyMetroidPalette 
 
 
 HandleBabyMetroidCutscenePalette_LowHealth:
-    LDA.W #$01EA 
-    STA.B $12 
-    LDA.W #BabyMetroidColors_LowHealth 
-    STA.B $16 ; fallthrough to HandleBabyMetroidPalette
+    LDA.W #$01EA : STA.B $12 
+    LDA.W #BabyMetroidColors_LowHealth : STA.B $16 ; fallthrough to HandleBabyMetroidPalette
 
 HandleBabyMetroidPalette:
     LDX.W $0E54 
@@ -13873,8 +12854,7 @@ HandleBabyMetroidPalette:
 
 
 .timerExpired:
-    LDA.W $0FB0,X 
-    STA.W $0FAF,X 
+    LDA.W $0FB0,X : STA.W $0FAF,X 
     LDA.W $0FAE,X 
     INC A 
     AND.B #$07 
@@ -13919,8 +12899,7 @@ HandleBabyMetroidCrySFX:
     STA.L $7E780A,X 
     CMP.W #$0004 
     BCC .return 
-    LDA.W #$0000 
-    STA.L $7E780A,X 
+    LDA.W #$0000 : STA.L $7E780A,X 
     LDA.W #$0072 
     LDY.W $0FB0,X 
     CPY.W #$000A 
@@ -13955,16 +12934,14 @@ EnemyTouch_BabyMetroid:
     BEQ .latchedOntoSamus 
     CMP.W #Function_BabyMetroid_StareDownSamus 
     BNE .return 
-    LDA.W #Function_BabyMetroid_LatchOntoSamus 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroid_LatchOntoSamus : STA.W $0FA8,X 
 
 .return:
     RTL 
 
 
 .latchedOntoSamus:
-    LDA.W $0AF6 
-    STA.B $12 
+    LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA 
     SEC 
     SBC.W #$0020 
@@ -13973,18 +12950,14 @@ EnemyTouch_BabyMetroid:
     JSR.W AccelerateBabyMetroidTowardsPoint 
     BCC .return 
     LDX.W $0E54 
-    LDA.W #InstList_BabyMetroid_LatchedOn 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #InstList_BabyMetroid_LatchedOn : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #$0001 
-    STA.W $0FB0,X 
+    LDA.W #$0001 : STA.W $0FB0,X 
     STZ.W $0FB6,X 
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
-    LDA.W #Function_BabyMetroid_StartDrainingSamus 
-    STA.W $0FA8,X 
+    LDA.W #Function_BabyMetroid_StartDrainingSamus : STA.W $0FA8,X 
     RTL 
 
 

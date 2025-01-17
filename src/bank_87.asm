@@ -59,15 +59,11 @@ Spawn_AnimatedTilesObject:
     TYA 
     STA.W $1EF5,X 
     STZ.W $1F01,X 
-    LDA.W $0000,Y 
-    STA.W $1F0D,X 
+    LDA.W $0000,Y : STA.W $1F0D,X 
     STZ.W $1F25,X 
-    LDA.W $0002,Y 
-    STA.W $1F31,X 
-    LDA.W $0004,Y 
-    STA.W $1F3D,X 
-    LDA.W #$0001 
-    STA.W $1F19,X 
+    LDA.W $0002,Y : STA.W $1F31,X 
+    LDA.W $0004,Y : STA.W $1F3D,X 
+    LDA.W #$0001 : STA.W $1F19,X 
     PLX 
     PLB 
     PLP 
@@ -118,8 +114,7 @@ Process_AnimatedTilesObject:
 
 .notInstruction:
     STA.W $1F19,X 
-    LDA.W $0002,Y 
-    STA.W $1F25,X 
+    LDA.W $0002,Y : STA.W $1F25,X 
     TYA 
     CLC 
     ADC.W #$0004 
@@ -177,8 +172,7 @@ UNUSED_Inst_AnimTilesObject_DecTimer_GotoYPlusYIfNon0_8780DC:
 
 UNUSED_Instruction_AnimatedTilesObject_TimerInY_8780E3:
     SEP #$20 
-    LDA.W $0000,Y 
-    STA.W $1F01,X 
+    LDA.W $0000,Y : STA.W $1F01,X 
     REP #$20 
     INY 
     RTS 
@@ -314,8 +308,7 @@ Instruction_AnimatedTilesObject_WaitUntilAreaBossIsDead:
     JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCS .return 
     PLA 
-    LDA.W #$0001 
-    STA.W $1F19,X 
+    LDA.W #$0001 : STA.W $1F19,X 
 
 .return:
     RTS 
@@ -548,8 +541,7 @@ Instruction_AnimatedTilesObject_TourianStatueResetAnimStateY:
 Instruction_AnimatedTilesObject_Clear3ColorsOfPaletteData:
     PHX 
     LDX.W $0000,Y 
-    LDA.W #$0000 
-    STA.L $7EC000,X 
+    LDA.W #$0000 : STA.L $7EC000,X 
     STA.L $7EC002,X 
     STA.L $7EC004,X 
     PLX 
@@ -574,8 +566,7 @@ Instruction_AnimatedTilesObject_Write8ColorsOfTargetPaletteD:
     LDY.W #$0000 
 
 .loop:
-    LDA.W .palleteData,Y 
-    STA.L $7EC200,X 
+    LDA.W .palleteData,Y : STA.L $7EC200,X 
     INX #2
     INY #2
     CPY.W #$0010 

@@ -104,15 +104,13 @@ InstList_CommonA8_DeleteEnemy:
 NOPNOP_A88069:
     NOP #2
     Instruction_CommonA8_Enemy0FB2_InY:
-    LDA.W $0000,Y 
-    STA.W $0FB2,X 
+    LDA.W $0000,Y : STA.W $0FB2,X 
     INY #2
     RTL 
 
 
 Instruction_CommonA8_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_A8807B 
-    STA.W $0FB2,X 
+    LDA.W #RTS_A8807B : STA.W $0FB2,X 
     RTL 
 
 
@@ -130,8 +128,7 @@ Instruction_CommonA8_DeleteEnemy:
 
 
 Instruction_CommonA8_CallFunctionInY:
-    LDA.W $0000,Y 
-    STA.B $12 
+    LDA.W $0000,Y : STA.B $12 
     PHY 
     PHX 
     PEA.W .manualReturn-1 
@@ -146,8 +143,7 @@ Instruction_CommonA8_CallFunctionInY:
 
 
 Instruction_CommonA8_CallFunctionInY_WithA:
-    LDA.W $0000,Y 
-    STA.B $12 
+    LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
     PHY 
     PHX 
@@ -167,10 +163,8 @@ Instruction_CommonA8_CallFunctionInY_WithA:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA8_CallExternalFunctionInY_A880B5:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     PHX 
     PHY 
     JSL.L .externalFunction 
@@ -185,10 +179,8 @@ UNUSED_Instruction_CommonA8_CallExternalFunctionInY_A880B5:
 
 
 UNUSED_Inst_CommonA8_CallExternalFunctionInY_WithA_A880CE:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
     PHX 
     PHY 
@@ -256,8 +248,7 @@ Instruction_CommonA8_DecrementTimer_GotoY_PlusY_IfNonZero:
 
 
 Instruction_CommonA8_TimerInY:
-    LDA.W $0000,Y 
-    STA.W $0F90,X 
+    LDA.W $0000,Y : STA.W $0F90,X 
     INY #2
     RTL 
 
@@ -277,8 +268,7 @@ Instruction_CommonA8_Sleep:
 
 
 Instruction_CommonA8_WaitYFrames:
-    LDA.W $0000,Y 
-    STA.W $0F94,X 
+    LDA.W $0000,Y : STA.W $0F94,X 
     INY #2
     TYA 
     STA.W $0F92,X 
@@ -290,14 +280,10 @@ Instruction_CommonA8_WaitYFrames:
 Instruction_CommonA8_TransferYBytesInYToVRAM:
     PHX 
     LDX.W $0330 
-    LDA.W $0000,Y 
-    STA.B $D0,X 
-    LDA.W $0002,Y 
-    STA.B $D2,X 
-    LDA.W $0003,Y 
-    STA.B $D3,X 
-    LDA.W $0005,Y 
-    STA.B $D5,X 
+    LDA.W $0000,Y : STA.B $D0,X 
+    LDA.W $0002,Y : STA.B $D2,X 
+    LDA.W $0003,Y : STA.B $D3,X 
+    LDA.W $0005,Y : STA.B $D5,X 
     TXA 
     CLC 
     ADC.W #$0007 
@@ -558,14 +544,12 @@ Instruction_Evir_SetInitialRegenerationXOffset:
     LDA.L $7E7782,X 
     CMP.W #InstList_Evir_Body_FacingRight 
     BEQ .facingRight 
-    LDA.W #$0008 
-    STA.W $0FB2,X 
+    LDA.W #$0008 : STA.W $0FB2,X 
     BRA .return 
 
 
 .facingRight:
-    LDA.W #$FFF8 
-    STA.W $0FB2,X 
+    LDA.W #$FFF8 : STA.W $0FB2,X 
 
 .return:
     RTL 
@@ -589,11 +573,9 @@ Instruction_Evir_AdvanceRegenerationXOffset:
 
 Instruction_Evir_FinishRegeneration:
     LDX.W $0E54 
-    LDA.W #$0000 
-    STA.L $7E7818,X 
+    LDA.W #$0000 : STA.L $7E7818,X 
     STA.L $7E7816,X 
-    LDA.W #Function_EvirProjectile_Idle 
-    STA.W $0FAC,X 
+    LDA.W #Function_EvirProjectile_Idle : STA.W $0FAC,X 
     RTL 
 
 
@@ -606,14 +588,10 @@ InitAI_Evir:
     AND.W #$00FF 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
-    STA.L $7E7808,X 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y 
-    STA.L $7E7806,X 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y 
-    STA.L $7E780C,X 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y 
-    STA.L $7E780A,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.L $7E7808,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.L $7E7806,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.L $7E780C,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.L $7E780A,X 
     LDA.W $0FB7,Y 
     AND.W #$00FF 
     LSR A 
@@ -623,14 +601,11 @@ InitAI_Evir:
 
 .nonZeroParam1:
     JSR.W HandleEvirArms 
-    LDA.W #$0004 
-    STA.W $0F9A,X 
+    LDA.W #$0004 : STA.W $0F9A,X 
 
-  + LDA.W #$0000 
-    STA.L $7E7800,X 
+  + LDA.W #$0000 : STA.L $7E7800,X 
     STA.L $7E7802,X 
-    LDA.W #Function_Evir_HandleBodyArms 
-    STA.W $0FAC,X 
+    LDA.W #Function_Evir_HandleBodyArms : STA.W $0FAC,X 
     RTL 
 
 
@@ -638,21 +613,17 @@ SetEvirFacingDirection:
     LDX.W $0E54 
     JSL.L Get_SamusX_minus_EnemyX 
     BPL .SamusToTheRight 
-    LDA.W #$0000 
-    STA.W $0FAA,X 
+    LDA.W #$0000 : STA.W $0FAA,X 
     BRA + 
 
 
 .SamusToTheRight:
-    LDA.W #$0001 
-    STA.W $0FAA,X 
+    LDA.W #$0001 : STA.W $0FAA,X 
 
-  + LDA.W #InstList_Evir_Body_FacingLeft 
-    STA.L $7E7804,X 
+  + LDA.W #InstList_Evir_Body_FacingLeft : STA.L $7E7804,X 
     LDA.W $0FAA,X 
     BEQ .keepLeft 
-    LDA.W #InstList_Evir_Body_FacingRight 
-    STA.L $7E7804,X 
+    LDA.W #InstList_Evir_Body_FacingRight : STA.L $7E7804,X 
 
 .keepLeft:
     JSR.W SetEvirInstList 
@@ -661,8 +632,7 @@ SetEvirFacingDirection:
 
 HandleEvirArms:
     LDX.W $0E54 
-    LDA.W $0F6A,X 
-    STA.W $0FAA,X 
+    LDA.W $0F6A,X : STA.W $0FAA,X 
     BNE .facingRight 
     LDA.W $0F3A,X 
     SEC 
@@ -672,8 +642,7 @@ HandleEvirArms:
     CLC 
     ADC.W #$000A 
     STA.W $0F7E,X 
-    LDA.W #InstList_Evir_Arms_FacingLeft 
-    STA.L $7E7804,X 
+    LDA.W #InstList_Evir_Arms_FacingLeft : STA.L $7E7804,X 
     JSR.W SetEvirInstList 
     BRA .return 
 
@@ -687,8 +656,7 @@ HandleEvirArms:
     CLC 
     ADC.W #$000A 
     STA.W $0F7E,X 
-    LDA.W #InstList_Evir_Arms_FacingRight 
-    STA.L $7E7804,X 
+    LDA.W #InstList_Evir_Arms_FacingRight : STA.L $7E7804,X 
     JSR.W SetEvirInstList 
 
 .return:
@@ -697,28 +665,22 @@ HandleEvirArms:
 
 InitAI_EvirProjectile:
     LDX.W $0E54 
-    LDA.W #InstList_Evir_Projectile_Normal 
-    STA.L $7E7804,X 
+    LDA.W #InstList_Evir_Projectile_Normal : STA.L $7E7804,X 
     JSR.W SetEvirInstList 
-    LDA.W $0F16,X 
-    STA.W $0F96,X 
-    LDA.W $0F18,X 
-    STA.W $0F98,X 
+    LDA.W $0F16,X : STA.W $0F96,X 
+    LDA.W $0F18,X : STA.W $0F98,X 
     JSR.W ResetEvirProjectilePosition 
-    LDA.W #$0000 
-    STA.L $7E7802,X 
+    LDA.W #$0000 : STA.L $7E7802,X 
     STA.L $7E7818,X 
     STA.L $7E7816,X 
     STA.W $0FB2,X 
-    LDA.W #Function_EvirProjectile_Idle 
-    STA.W $0FAC,X 
+    LDA.W #Function_EvirProjectile_Idle : STA.W $0FAC,X 
     RTL 
 
 
 ResetEvirProjectilePosition:
     LDX.W $0E54 
-    LDA.W $0F2A,X 
-    STA.W $0FAA,X 
+    LDA.W $0F2A,X : STA.W $0FAA,X 
     BNE .notUp 
     LDA.W $0EFA,X 
     SEC 
@@ -830,8 +792,7 @@ MainAI_EvirProjectile:
     LDA.L $7E7816,X 
     BEQ .angleInitialized 
     LDA.W $0FAA,X ; >_<
-    LDA.W #InstList_Evir_Projectile_Normal 
-    STA.L $7E7804,X 
+    LDA.W #InstList_Evir_Projectile_Normal : STA.L $7E7804,X 
     JSR.W SetEvirInstList 
     BRA .merge 
 
@@ -839,8 +800,7 @@ MainAI_EvirProjectile:
 .angleInitialized:
     LDA.L $7E7818,X 
     BEQ .doneSpawning 
-    LDA.W #InstList_Evir_Projectile_Regenerating_0 
-    STA.L $7E7804,X 
+    LDA.W #InstList_Evir_Projectile_Regenerating_0 : STA.L $7E7804,X 
     JSR.W SetEvirInstList 
     BRA .merge 
 
@@ -861,8 +821,7 @@ ShootEvirProjectileAtSamus:
     LDA.W #$0080 
     JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
-    LDA.W #$0004 
-    STA.W $0E32 
+    LDA.W #$0004 : STA.W $0E32 
     JSL.L CalculateAngleOfSamusFromEnemy 
     SEC 
     SBC.W #$0040 
@@ -872,20 +831,15 @@ ShootEvirProjectileAtSamus:
     STA.B $16 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     STA.L $7E780E,X 
-    LDA.W $0E38 
-    STA.L $7E7810,X 
+    LDA.W $0E38 : STA.L $7E7810,X 
     LDA.B $16 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     STA.L $7E7812,X 
-    LDA.W $0E38 
-    STA.L $7E7814,X 
-    LDA.W #InstList_Evir_Projectile_Normal 
-    STA.L $7E7804,X 
+    LDA.W $0E38 : STA.L $7E7814,X 
+    LDA.W #InstList_Evir_Projectile_Normal : STA.L $7E7804,X 
     JSR.W SetEvirInstList 
-    LDA.W #$0001 
-    STA.L $7E7816,X 
-    LDA.W #Function_EvirProjectile_Moving 
-    STA.W $0FAC,X 
+    LDA.W #$0001 : STA.L $7E7816,X 
+    LDA.W #Function_EvirProjectile_Moving : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -931,14 +885,11 @@ Function_EvirProjectile_Regenerating:
     BNE .return 
     LDA.L $7E7818,X 
     BNE .notRegenerating 
-    LDA.W #InstList_Evir_Projectile_Normal 
-    STA.L $7E7804,X 
+    LDA.W #InstList_Evir_Projectile_Normal : STA.L $7E7804,X 
     JSR.W SetEvirInstList 
-    LDA.W #$0000 
-    STA.L $7E7818,X 
+    LDA.W #$0000 : STA.L $7E7818,X 
     STA.L $7E7816,X 
-    LDA.W #Function_EvirProjectile_Idle 
-    STA.W $0FAC,X 
+    LDA.W #Function_EvirProjectile_Idle : STA.W $0FAC,X 
     BRA .return 
 
 
@@ -960,16 +911,11 @@ StartEvirProjectileRegeneratingIfFarOffScreen:
     BEQ .return 
     LDA.W $0F1E,X 
     BNE .return 
-    LDA.W #$0000 
-    STA.L $7E7816,X 
-    LDA.W #$0001 
-    STA.L $7E7818,X 
-    LDA.W #Function_EvirProjectile_Regenerating 
-    STA.W $0FAC,X 
-    LDA.W #$0001 
-    STA.L $7E7818,X 
-    LDA.W #InstList_Evir_Projectile_Regenerating_0 
-    STA.L $7E7804,X 
+    LDA.W #$0000 : STA.L $7E7816,X 
+    LDA.W #$0001 : STA.L $7E7818,X 
+    LDA.W #Function_EvirProjectile_Regenerating : STA.W $0FAC,X 
+    LDA.W #$0001 : STA.L $7E7818,X 
+    LDA.W #InstList_Evir_Projectile_Regenerating_0 : STA.L $7E7804,X 
     JSR.W SetEvirInstList 
 
 .return:
@@ -983,8 +929,7 @@ SetEvirInstList:
     BEQ .return 
     STA.W $0F92,X 
     STA.L $7E7802,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
 
 .return:
@@ -1028,8 +973,7 @@ ContactReaction_Evir_Common:
     LDA.W $100A,X 
     ORA.W #$0004 
     STA.W $100A,X 
-    LDA.W $0F9E,X 
-    STA.W $101E,X 
+    LDA.W $0F9E,X : STA.W $101E,X 
 
 .return:
     RTL 
@@ -1664,26 +1608,21 @@ InitAI_Eye:
     LDA.W $0F86,X 
     ORA.W #$2000 
     STA.W $0F86,X 
-    LDA.W #Spritemap_CommonA8_Nothing 
-    STA.W $0F8E,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #Spritemap_CommonA8_Nothing : STA.W $0F8E,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDA.W $0FB6,X 
     BMI .mountPart 
-    LDA.W #Function_Eye_WaitForSamusToGetNear 
-    STA.W $0FB2,X 
+    LDA.W #Function_Eye_WaitForSamusToGetNear : STA.W $0FB2,X 
     LDA.W $0FB4,X 
     BIT.W #$0001 
     BEQ .facingRight 
-    LDA.W #InstList_Eye_FacingLeft_Closed 
-    STA.W $0F92,X 
+    LDA.W #InstList_Eye_FacingLeft_Closed : STA.W $0F92,X 
     BRA .return 
 
 
 .facingRight:
-    LDA.W #InstList_Eye_FacingRight_Closed 
-    STA.W $0F92,X 
+    LDA.W #InstList_Eye_FacingRight_Closed : STA.W $0F92,X 
     BRA .return 
 
 
@@ -1699,15 +1638,12 @@ InitAI_Eye:
     CLC 
     ADC.W .YOffsets,Y 
     STA.W $0F7E,X 
-    LDA.W #RTL_A891DC 
-    STA.W $0FB2,X 
-    LDA.W .instListPointers,Y 
-    STA.W $0F92,X 
+    LDA.W #RTL_A891DC : STA.W $0FB2,X 
+    LDA.W .instListPointers,Y : STA.W $0F92,X 
     LDX.W #$01FE 
 
 .loop:
-    LDA.W #$00FF 
-    STA.L $7E9100,X 
+    LDA.W #$00FF : STA.L $7E9100,X 
     DEX #2
     BPL .loop 
 
@@ -1748,24 +1684,19 @@ Function_Eye_WaitForSamusToGetNear:
     JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     TAY 
     BEQ .return 
-    LDA.W #$0020 
-    STA.W $0FB0,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0020 : STA.W $0FB0,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     LDA.W $0FB4,X 
     BIT.W #$0001 
     BEQ .zeroParam 
-    LDA.W #InstList_Eye_FacingLeft_Activating 
-    STA.W $0F92,X 
+    LDA.W #InstList_Eye_FacingLeft_Activating : STA.W $0F92,X 
     BRA + 
 
 
 .zeroParam:
-    LDA.W #InstList_Eye_FacingRight_Activating 
-    STA.W $0F92,X 
+    LDA.W #InstList_Eye_FacingRight_Activating : STA.W $0F92,X 
 
-  + LDA.W #Function_Eye_Activating 
-    STA.W $0FB2,X 
+  + LDA.W #Function_Eye_Activating : STA.W $0FB2,X 
 
 .return:
     RTL 
@@ -1780,8 +1711,7 @@ Function_Eye_Activating:
     LDA.W #$0017 
     JSL.L QueueSound_Lib2_Max6 
     JSL.L Spawn_MorphBallEyeBeam_HDMAObject 
-    LDA.W #Function_Eye_Active 
-    STA.W $0FB2,X 
+    LDA.W #Function_Eye_Active : STA.W $0FB2,X 
     LDA.W $0AF6 
     SEC 
     SBC.W $0F7A,X 
@@ -1811,22 +1741,18 @@ Function_Eye_Active:
     LDA.W #$0071 
     JSL.L QueueSound_Lib2_Max6 
     STZ.W $0FAC,X 
-    LDA.W #$0020 
-    STA.W $0FB0,X 
+    LDA.W #$0020 : STA.W $0FB0,X 
     LDA.W $0FB4,X 
     BIT.W #$0001 
     BEQ .zeroParam 
-    LDA.W #InstList_Eye_FacingLeft_Deactivating 
-    STA.W $0F92,X 
+    LDA.W #InstList_Eye_FacingLeft_Deactivating : STA.W $0F92,X 
     BRA + 
 
 
 .zeroParam:
-    LDA.W #InstList_Eye_FacingRight_Deactivating 
-    STA.W $0F92,X 
+    LDA.W #InstList_Eye_FacingRight_Deactivating : STA.W $0F92,X 
 
-  + LDA.W #Function_Eye_Deactivating 
-    STA.W $0FB2,X 
+  + LDA.W #Function_Eye_Deactivating : STA.W $0FB2,X 
     BRA .merge 
 
 
@@ -1848,8 +1774,7 @@ Function_Eye_Active:
     STA.W $0F92,X 
 
 .merge:
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTL 
 
 
@@ -1859,8 +1784,7 @@ Function_Eye_Deactivating:
     BPL .return 
 
 .timerExpired:
-    LDA.W #Function_Eye_WaitForSamusToGetNear 
-    STA.W $0FB2,X 
+    LDA.W #Function_Eye_WaitForSamusToGetNear : STA.W $0FB2,X 
 
 .return:
     RTL 
@@ -2489,12 +2413,10 @@ Instruction_FuneNamihe_FinishActivity:
     LDA.W $0FA8,X 
     INC #4
     STA.W $0FA8,X 
-    LDA.W #Function_Fune_WaitForTimer 
-    STA.W $0FAA,X 
+    LDA.W #Function_Fune_WaitForTimer : STA.W $0FAA,X 
     LDA.W $0FAE,X 
     BEQ .return 
-    LDA.W #Function_Namihe_WaitForSamusToGetNear 
-    STA.W $0FAA,X 
+    LDA.W #Function_Namihe_WaitForSamusToGetNear : STA.W $0FAA,X 
 
 .return:
     RTL 
@@ -2505,12 +2427,10 @@ Instruction_FuneNamihe_FinishActivity_duplicate:
     LDA.W $0FA8,X 
     INC #4
     STA.W $0FA8,X 
-    LDA.W #Function_Fune_WaitForTimer 
-    STA.W $0FAA,X 
+    LDA.W #Function_Fune_WaitForTimer : STA.W $0FAA,X 
     LDA.W $0FAE,X 
     BEQ .return 
-    LDA.W #Function_Namihe_WaitForSamusToGetNear 
-    STA.W $0FAA,X 
+    LDA.W #Function_Namihe_WaitForSamusToGetNear : STA.W $0FAA,X 
 
 .return:
     RTL 
@@ -2528,18 +2448,14 @@ InstListPointers_Fune_Namihe:
 
 InitAI_Fune_Namihe:
     LDX.W $0E54 
-    LDA.W #InstListPointers_Fune_Namihe+$4 
-    STA.W $0FA8,X 
-    LDA.W #Function_Fune_WaitForTimer 
-    STA.W $0FAA,X 
+    LDA.W #InstListPointers_Fune_Namihe+$4 : STA.W $0FA8,X 
+    LDA.W #Function_Fune_WaitForTimer : STA.W $0FAA,X 
     LDA.W $0FB4,X 
     AND.W #$000F 
     STA.W $0FAE,X 
     BEQ .speciesDetermined 
-    LDA.W #InstListPointers_Fune_Namihe+$C 
-    STA.W $0FA8,X 
-    LDA.W #Function_Namihe_WaitForSamusToGetNear 
-    STA.W $0FAA,X 
+    LDA.W #InstListPointers_Fune_Namihe+$C : STA.W $0FA8,X 
+    LDA.W #Function_Namihe_WaitForSamusToGetNear : STA.W $0FAA,X 
 
 .speciesDetermined:
     LDA.W $0FB4,X 
@@ -2576,8 +2492,7 @@ Function_Fune_WaitForTimer:
     DEC #4
     STA.W $0FA8,X 
     JSR.W SetFuneNamiheInstList 
-    LDA.W #RTS_A8978E 
-    STA.W $0FAA,X 
+    LDA.W #RTS_A8978E : STA.W $0FAA,X 
     STZ.W $0FB0,X 
 
 .return:
@@ -2586,22 +2501,18 @@ Function_Fune_WaitForTimer:
 
 Function_Namihe_WaitForSamusToGetNear:
     LDX.W $0E54 
-    LDA.W $0FA8,X 
-    STA.L $7E7800,X 
+    LDA.W $0FA8,X : STA.L $7E7800,X 
     JSR.W Namihe_CheckIfSamusIsInProximity 
     BEQ .notInProximity 
-    LDA.L $7E7800,X 
-    STA.W $0FA8,X 
+    LDA.L $7E7800,X : STA.W $0FA8,X 
     DEC #4
     STA.L $7E7800,X 
     STA.W $0FA8,X 
     JSR.W SetFuneNamiheInstList 
-    LDA.W #RTS_A8978F 
-    STA.W $0FAA,X 
+    LDA.W #RTS_A8978F : STA.W $0FAA,X 
 
 .notInProximity:
-    LDA.L $7E7800,X 
-    STA.W $0FA8,X 
+    LDA.L $7E7800,X : STA.W $0FA8,X 
     RTS 
 
 
@@ -2622,13 +2533,11 @@ Namihe_CheckIfSamusIsInProximity:
 
 SetFuneNamiheInstList:
     LDX.W $0E54 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDA.W $0FA8,X 
     TAY 
-    LDA.W $0000,Y 
-    STA.W $0F92,X 
+    LDA.W $0000,Y : STA.W $0F92,X 
     RTS 
 
 
@@ -2934,13 +2843,10 @@ InitAI_Coven:
     LDA.W $0F86,X 
     ORA.W #$2500 
     STA.W $0F86,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #InstList_Coven 
-    STA.W $0F92,X 
-    LDA.W #Function_Coven_Dematerialized_Asleep 
-    STA.W $0FA8,X 
+    LDA.W #InstList_Coven : STA.W $0F92,X 
+    LDA.W #Function_Coven_Dematerialized_Asleep : STA.W $0FA8,X 
     LDA.W CovenConstants_SleepTimer 
     CLC 
     ADC.W #$00A0 
@@ -2952,8 +2858,7 @@ InitAI_Coven:
     CLC 
     ADC.W #$0100 
     TAX 
-    LDA.W #$0010 
-    STA.B $12 
+    LDA.W #$0010 : STA.B $12 
     LDA.W #$0000 
 
 .loop:
@@ -2980,8 +2885,7 @@ Function_Coven_Materialize_FadeToWhite:
     CLC 
     ADC.W #$0100 
     TAX 
-    LDA.W #$0010 
-    STA.B $12 
+    LDA.W #$0010 : STA.B $12 
 
 .loopUpper:
     LDA.L $7EC000,X 
@@ -3001,8 +2905,7 @@ Function_Coven_Materialize_FadeToWhite:
     CPY.W #$0010 
     BMI .return 
     LDX.W $0E54 
-    LDA.W #Function_Coven_Materialize_FadeFromWhite 
-    STA.W $0FA8,X 
+    LDA.W #Function_Coven_Materialize_FadeFromWhite : STA.W $0FA8,X 
     LDA.W $0F96,X 
     XBA 
     ASL #4
@@ -3012,8 +2915,7 @@ Function_Coven_Materialize_FadeToWhite:
     LDY.W #$0000 
 
 .loopLower:
-    LDA.W Palette_Coven,Y 
-    STA.L $7EC200,X 
+    LDA.W Palette_Coven,Y : STA.L $7EC200,X 
     INX #2
     INY #2
     CPY.W #$0020 
@@ -3036,36 +2938,23 @@ Function_Coven_Materialize_FadeFromWhite:
     AND.W #$FBFF ; >.< #$FAFF
     AND.W #$FEFF 
     STA.W $0F86,X 
-    LDA.W #Function_Coven_Materialized 
-    STA.W $0FA8,X 
-    LDA.W $0F7E,X 
-    STA.L $7E7800,X 
-    LDA.W #$0001 
-    STA.W $0FAA,X 
-    LDA.W #$0002 
-    STA.W $0FAC,X 
-    LDA.W #$0000 
-    STA.L $7E7802,X 
-    LDA.W CovenConstants_InitialHoveringYVelocity 
-    STA.L $7E7804,X 
-    LDA.W CovenConstants_MaterializeTimer 
-    STA.W $0FAA,X 
-    LDA.W #$0004 
-    STA.L $7E780A,X 
-    LDA.W $0AF6 
-    STA.L $7E780C,X 
+    LDA.W #Function_Coven_Materialized : STA.W $0FA8,X 
+    LDA.W $0F7E,X : STA.L $7E7800,X 
+    LDA.W #$0001 : STA.W $0FAA,X 
+    LDA.W #$0002 : STA.W $0FAC,X 
+    LDA.W #$0000 : STA.L $7E7802,X 
+    LDA.W CovenConstants_InitialHoveringYVelocity : STA.L $7E7804,X 
+    LDA.W CovenConstants_MaterializeTimer : STA.W $0FAA,X 
+    LDA.W #$0004 : STA.L $7E780A,X 
+    LDA.W $0AF6 : STA.L $7E780C,X 
     STA.L $7E780E,X 
     STA.L $7E7810,X 
-    LDA.W #$000C 
-    STA.L $7E7812,X 
-    LDA.W $0AFA,X 
-    STA.L $7E7814,X 
+    LDA.W #$000C : STA.L $7E7812,X 
+    LDA.W $0AFA,X : STA.L $7E7814,X 
     STA.L $7E7816,X 
     STA.L $7E7818,X 
-    LDA.W CovenConstants_SamusStationaryFramesThreshold 
-    STA.L $7E781A,X 
-    LDA.W CovenConstants_SamusMovementCounterThreshold 
-    STA.L $7E781C,X 
+    LDA.W CovenConstants_SamusStationaryFramesThreshold : STA.L $7E781A,X 
+    LDA.W CovenConstants_SamusMovementCounterThreshold : STA.L $7E781C,X 
 
 .return:
     RTL 
@@ -3101,8 +2990,7 @@ HandleFadeInTimerAndIndex:
 
 
 .terminator:
-    LDA.W #$0000 
-    STA.W $0FAA,X 
+    LDA.W #$0000 : STA.W $0FAA,X 
     STA.W $0FAC,X 
     RTS 
 
@@ -3112,13 +3000,11 @@ Function_Coven_Dematerializing:
     CMP.W #$0000 
     BNE .return 
     LDX.W $0E54 
-    LDA.W #Function_Coven_Dematerialized_Asleep 
-    STA.W $0FA8,X 
+    LDA.W #Function_Coven_Dematerialized_Asleep : STA.W $0FA8,X 
     LDA.W $0F86,X 
     ORA.W #$0100 
     STA.W $0F86,X 
-    LDA.W CovenConstants_SleepTimer 
-    STA.W $0FAA,X 
+    LDA.W CovenConstants_SleepTimer : STA.W $0FAA,X 
 
 .return:
     RTL 
@@ -3158,8 +3044,7 @@ Function_Coven_Materialized:
     DEC A 
     STA.W $0FAA,X 
     BNE .return 
-    LDA.W #Function_Coven_Dematerializing 
-    STA.W $0FA8,X 
+    LDA.W #Function_Coven_Dematerializing : STA.W $0FA8,X 
     LDA.W $0F86,X 
     ORA.W #$0400 
     STA.W $0F86,X 
@@ -3170,8 +3055,7 @@ Function_Coven_Materialized:
     CLC 
     ADC.W #$0100 
     TAX 
-    LDA.W #$0010 
-    STA.B $12 
+    LDA.W #$0010 : STA.B $12 
     LDA.W #$7FFF 
 
 .loop:
@@ -3192,12 +3076,9 @@ Function_Coven_Dematerialized_Asleep:
     BNE .return 
 
 .timerExpired:
-    LDA.W #$0001 
-    STA.W $0FAA,X 
-    LDA.W #$0002 
-    STA.W $0FAC,X 
-    LDA.W #Function_Coven_Dematerialized_Awake 
-    STA.W $0FA8,X 
+    LDA.W #$0001 : STA.W $0FAA,X 
+    LDA.W #$0002 : STA.W $0FAC,X 
+    LDA.W #Function_Coven_Dematerialized_Awake : STA.W $0FA8,X 
 
 .return:
     RTL 
@@ -3231,16 +3112,13 @@ Function_Coven_Dematerialized_Awake:
     JMP.W .updateZone 
 
 
-  + LDA.W #$0004 
-    STA.L $7E780A,X 
-    LDA.W #$000C 
-    STA.L $7E7812,X 
+  + LDA.W #$0004 : STA.L $7E780A,X 
+    LDA.W #$000C : STA.L $7E7812,X 
     BRA .materialize 
 
 
 .breakLockOn:
-    LDA.W CovenConstants_SamusStationaryFramesThreshold 
-    STA.L $7E781A,X 
+    LDA.W CovenConstants_SamusStationaryFramesThreshold : STA.L $7E781A,X 
     LDY.W #$0000 
     LDA.W $0AF6 
     SEC 
@@ -3260,18 +3138,14 @@ Function_Coven_Dematerialized_Awake:
     BEQ .checkYMovement 
     TYA 
     STA.L $7E780A,X 
-    LDA.W CovenConstants_SamusMovementCounterThreshold 
-    STA.L $7E781C,X 
+    LDA.W CovenConstants_SamusMovementCounterThreshold : STA.L $7E781C,X 
     BRA .updateZone 
 
 
 .materialize:
-    LDA.W #Function_Coven_Materialize_FadeToWhite 
-    STA.W $0FA8,X 
-    LDA.W CovenConstants_SamusStationaryFramesThreshold 
-    STA.L $7E781A,X 
-    LDA.W CovenConstants_SamusMovementCounterThreshold 
-    STA.L $7E781C,X 
+    LDA.W #Function_Coven_Materialize_FadeToWhite : STA.W $0FA8,X 
+    LDA.W CovenConstants_SamusStationaryFramesThreshold : STA.L $7E781A,X 
+    LDA.W CovenConstants_SamusMovementCounterThreshold : STA.L $7E781C,X 
     LDA.L $7E780A,X 
     CLC 
     ADC.L $7E7812,X 
@@ -3307,8 +3181,7 @@ Function_Coven_Dematerialized_Awake:
     BEQ .matchingYMovementDirection 
     TYA 
     STA.L $7E7812,X 
-    LDA.W CovenConstants_SamusMovementCounterThreshold 
-    STA.L $7E781C,X 
+    LDA.W CovenConstants_SamusMovementCounterThreshold : STA.L $7E781C,X 
     BRA .updateZone 
 
 
@@ -3319,8 +3192,7 @@ Function_Coven_Dematerialized_Awake:
     BEQ .materialize 
 
 .updateZone:
-    LDA.W $0AF6 
-    STA.L $7E780C,X 
+    LDA.W $0AF6 : STA.L $7E780C,X 
     SEC 
     SBC.W CovenStationaryZoneXRadius 
     STA.L $7E780E,X 
@@ -3328,8 +3200,7 @@ Function_Coven_Dematerialized_Awake:
     CLC 
     ADC.W CovenStationaryZoneXRadius 
     STA.L $7E7810,X 
-    LDA.W $0AFA 
-    STA.L $7E7814,X 
+    LDA.W $0AFA : STA.L $7E7814,X 
     SEC 
     SBC.W CovenStationaryZoneYRadius 
     STA.L $7E7816,X 
@@ -3750,55 +3621,43 @@ YappingMawSamusOffsets_Y_UpLeft:
 
 Instruction_YappingMaw_OffsetSamusUpRight:
     LDX.W $0E54 
-    LDA.W YappingMawSamusOffsets_X_UpRight 
-    STA.L $7E8024,X 
-    LDA.W YappingMawSamusOffsets_Y_UpRight 
-    STA.L $7E8026,X 
+    LDA.W YappingMawSamusOffsets_X_UpRight : STA.L $7E8024,X 
+    LDA.W YappingMawSamusOffsets_Y_UpRight : STA.L $7E8026,X 
     RTL 
 
 
 Instruction_YappingMaw_OffsetSamusUpLeft:
     LDX.W $0E54 
-    LDA.W YappingMawSamusOffsets_X_UpLeft 
-    STA.L $7E8024,X 
-    LDA.W YappingMawSamusOffsets_Y_UpLeft 
-    STA.L $7E8026,X 
+    LDA.W YappingMawSamusOffsets_X_UpLeft : STA.L $7E8024,X 
+    LDA.W YappingMawSamusOffsets_Y_UpLeft : STA.L $7E8026,X 
     RTL 
 
 
 Instruction_YappingMaw_OffsetSamusDownRight:
     LDX.W $0E54 
-    LDA.W YappingMawSamusOffsets_X_DownRight 
-    STA.L $7E8024,X 
-    LDA.W YappingMawSamusOffsets_Y_DownRight 
-    STA.L $7E8026,X 
+    LDA.W YappingMawSamusOffsets_X_DownRight : STA.L $7E8024,X 
+    LDA.W YappingMawSamusOffsets_Y_DownRight : STA.L $7E8026,X 
     RTL 
 
 
 Instruction_YappingMaw_OffsetSamusDownLeft:
     LDX.W $0E54 
-    LDA.W YappingMawSamusOffsets_X_DownLeft 
-    STA.L $7E8024,X 
-    LDA.W YappingMawSamusOffsets_Y_DownLeft 
-    STA.L $7E8026,X 
+    LDA.W YappingMawSamusOffsets_X_DownLeft : STA.L $7E8024,X 
+    LDA.W YappingMawSamusOffsets_Y_DownLeft : STA.L $7E8026,X 
     RTL 
 
 
 Instruction_YappingMaw_OffsetSamusUp:
     LDX.W $0E54 
-    LDA.W YappingMawSamusOffsets_X_Up 
-    STA.L $7E8024,X 
-    LDA.W YappingMawSamusOffsets_Y_Up 
-    STA.L $7E8026,X 
+    LDA.W YappingMawSamusOffsets_X_Up : STA.L $7E8024,X 
+    LDA.W YappingMawSamusOffsets_Y_Up : STA.L $7E8026,X 
     RTL 
 
 
 Instruction_YappingMaw_OffsetSamusDown:
     LDX.W $0E54 
-    LDA.W YappingMawSamusOffsets_X_Down 
-    STA.L $7E8024,X 
-    LDA.W YappingMawSamusOffsets_Y_Down 
-    STA.L $7E8026,X 
+    LDA.W YappingMawSamusOffsets_X_Down : STA.L $7E8024,X 
+    LDA.W YappingMawSamusOffsets_Y_Down : STA.L $7E8026,X 
     RTL 
 
 
@@ -3819,12 +3678,9 @@ Instruction_YappingMaw_QueueSFXIfOnScreen:
 
 InitAI_YappingMaw:
     LDX.W $0E54 
-    LDA.W $0F7A,X 
-    STA.L $7E7818,X 
-    LDA.W $0F7E,X 
-    STA.L $7E781A,X 
-    LDA.W #$0000 
-    STA.L $7E7800,X 
+    LDA.W $0F7A,X : STA.L $7E7818,X 
+    LDA.W $0F7E,X : STA.L $7E781A,X 
+    LDA.W #$0000 : STA.L $7E7800,X 
     STA.L $7E7802,X 
     STA.L $7E7804,X 
     STA.L $7E7806,X 
@@ -3833,36 +3689,25 @@ InitAI_YappingMaw:
     STA.L $7E780C,X 
     STA.L $7E780E,X 
     STA.L $7E8020,X 
-    LDA.W $0FB4,X 
-    STA.W $0FB2,X 
-    LDA.W #$0040 
-    STA.W $0FB0,X 
-    LDA.W #InstList_YappingMaw_Attacking_FacingUp 
-    STA.W $0F92,X 
-    LDA.W #$0039 
-    STA.B $24 
-    LDA.W #$0008 
-    STA.B $22 
+    LDA.W $0FB4,X : STA.W $0FB2,X 
+    LDA.W #$0040 : STA.W $0FB0,X 
+    LDA.W #InstList_YappingMaw_Attacking_FacingUp : STA.W $0F92,X 
+    LDA.W #$0039 : STA.B $24 
+    LDA.W #$0008 : STA.B $22 
     LDA.W $0FB6,X 
     BNE .keepUp 
-    LDA.W #InstList_YappingMaw_Attacking_FacingDown 
-    STA.W $0F92,X 
-    LDA.W #$0038 
-    STA.B $24 
-    LDA.W #$FFF8 
-    STA.B $22 
+    LDA.W #InstList_YappingMaw_Attacking_FacingDown : STA.W $0F92,X 
+    LDA.W #$0038 : STA.B $24 
+    LDA.W #$FFF8 : STA.B $22 
 
 .keepUp:
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #Function_YappingMaw_Neutral 
-    STA.W $0FA8,X 
+    LDA.W #Function_YappingMaw_Neutral : STA.W $0FA8,X 
     LDA.W $0F96,X 
     AND.W #$0E00 
     STA.L $7E880A,X 
-    LDA.W #$0003 
-    STA.L $7E8808,X 
+    LDA.W #$0003 : STA.L $7E8808,X 
 
 .loop:
     LDX.W $0E54 
@@ -3873,21 +3718,18 @@ InitAI_YappingMaw:
     DEC A 
     STA.L $7E8808,X 
     BPL .loop 
-    LDA.W $0F7A,X 
-    STA.B $12 
+    LDA.W $0F7A,X : STA.B $12 
     LDA.W $0F7E,X 
     CLC 
     ADC.B $22 
     STA.B $14 
-    LDA.B $24 
-    STA.B $16 
+    LDA.B $24 : STA.B $16 
     LDA.W $0F96,X 
     ORA.W $0F98,X 
     STA.L $7E880E,X 
     STA.B $18 
     JSL.L Create_Sprite_Object 
-    LDA.B $12 
-    STA.L $7E880C,X 
+    LDA.B $12 : STA.L $7E880C,X 
     RTL 
 
 
@@ -3908,14 +3750,10 @@ MainAI_YappingMaw:
 
 Function_YappingMaw_Neutral:
     LDX.W $0E54 
-    LDA.W $0F7A,X 
-    STA.W $0E32 
-    LDA.W $0F7E,X 
-    STA.W $0E34 
-    LDA.W $0AF6 
-    STA.W $0E36 
-    LDA.W $0AFA 
-    STA.W $0E38 
+    LDA.W $0F7A,X : STA.W $0E32 
+    LDA.W $0F7E,X : STA.W $0E34 
+    LDA.W $0AF6 : STA.W $0E36 
+    LDA.W $0AFA : STA.W $0E38 
     JSL.L CalculateDistanceAndAngleOfSamusFromEnemy 
     JSL.L NegateA_A0B067 
     STA.L $7E7810,X 
@@ -3926,21 +3764,17 @@ Function_YappingMaw_Neutral:
     LDA.L $7E7810,X ; >_<
     CMP.W #$0040 
     BMI + 
-    LDA.W #$0040 
-    STA.L $7E7810,X 
+    LDA.W #$0040 : STA.L $7E7810,X 
 
-  + LDA.W $0E3A 
-    STA.L $7E7814,X 
-    LDA.W #Function_YappingMaw_Attack 
-    STA.W $0FA8,X 
+  + LDA.W $0E3A : STA.L $7E7814,X 
+    LDA.W #Function_YappingMaw_Attack : STA.W $0FA8,X 
 
 .return:
     RTS 
 
 
 .pointBlank:
-    LDA.W #$0030 
-    STA.L $7E802A,X 
+    LDA.W #$0030 : STA.L $7E802A,X 
     RTS 
 
 
@@ -3964,14 +3798,12 @@ Function_YappingMaw_Attack:
     STA.L $7E7816,X 
     CMP.W #$0080 
     BPL .targetAngleGreaterThanEqualTo80 
-    LDA.W #$0000 
-    STA.L $7E801E,X 
+    LDA.W #$0000 : STA.L $7E801E,X 
     BRA + 
 
 
 .targetAngleGreaterThanEqualTo80:
-    LDA.W #$0001 
-    STA.L $7E801E,X 
+    LDA.W #$0001 : STA.L $7E801E,X 
 
   + JSR.W CalculateYappingMawOriginPosition 
     LDA.L $7E7814,X 
@@ -3982,27 +3814,21 @@ Function_YappingMaw_Attack:
     ASL A 
     STA.L $7E8028,X 
     TAY 
-    LDA.W InstListPointers_YappingMaw,Y 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W InstListPointers_YappingMaw,Y : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     TYA 
     ASL A 
     TAY 
-    LDA.W YappingMawSamusOffsets_X_Up,Y 
-    STA.L $7E8024,X 
-    LDA.W YappingMawSamusOffsets_Y_Up,Y 
-    STA.L $7E8026,X 
-    LDA.W #Function_YappingMaw_Attacking 
-    STA.W $0FA8,X 
+    LDA.W YappingMawSamusOffsets_X_Up,Y : STA.L $7E8024,X 
+    LDA.W YappingMawSamusOffsets_Y_Up,Y : STA.L $7E8026,X 
+    LDA.W #Function_YappingMaw_Attacking : STA.W $0FA8,X 
     RTS 
 
 
 CalculateYappingMawOriginPosition:
     LDX.W $0E54 
-    LDA.L $7E7812,X 
-    STA.W $0E32 
+    LDA.L $7E7812,X : STA.W $0E32 
     LDA.W #$0080 
     JSL.L Math_Cosine_A8A73E 
     STA.L $7E781C,X 
@@ -4017,8 +3843,7 @@ CalculateYappingMawOriginPosition:
 
 CalculateBodySegment1Velocities:
     LDX.W $0E54 
-    LDA.L $7E7800,X 
-    STA.W $0E32 
+    LDA.L $7E7800,X : STA.W $0E32 
     LDA.W #$0000 
     JSL.L Math_Cosine_A8A73E 
     STA.L $7E7820,X 
@@ -4040,8 +3865,7 @@ CalculateBodySegment1Velocities:
 
 CalculateBodySegment2Velocities:
     LDX.W $0E54 
-    LDA.L $7E7804,X 
-    STA.W $0E32 
+    LDA.L $7E7804,X : STA.W $0E32 
     LDA.W #$0000 
     JSL.L Math_Cosine_A8A73E 
     STA.L $7E7820,X 
@@ -4063,8 +3887,7 @@ CalculateBodySegment2Velocities:
 
 CalculateBodySegment3Velocities:
     LDX.W $0E54 
-    LDA.L $7E7808,X 
-    STA.W $0E32 
+    LDA.L $7E7808,X : STA.W $0E32 
     LDA.W #$0000 
     JSL.L Math_Cosine_A8A73E 
     STA.L $7E7820,X 
@@ -4086,8 +3909,7 @@ CalculateBodySegment3Velocities:
 
 CalculateHeadSegmentVelocities:
     LDX.W $0E54 
-    LDA.L $7E780C,X 
-    STA.W $0E32 
+    LDA.L $7E780C,X : STA.W $0E32 
     LDA.W #$0000 
     JSL.L Math_Cosine_A8A73E 
     STA.L $7E7820,X 
@@ -4139,8 +3961,7 @@ Function_YappingMaw_Attacking:
     ADC.B $14 
     STA.L $7E8008,X 
 
-  + LDA.L $7E7812,X 
-    STA.W $0E32 
+  + LDA.L $7E7812,X : STA.W $0E32 
     LDA.L $7E8002,X 
     JSL.L Math_Cosine_A8A73E 
     SEC 
@@ -4227,8 +4048,7 @@ Function_YappingMaw_Attacking:
     BMI .cooldown 
     CMP.W #$0080 
     BMI .gotoMoveSamus 
-    LDA.W #$0080 
-    STA.W $0FAA,X 
+    LDA.W #$0080 : STA.W $0FAA,X 
     STZ.W $0FAC,X 
     INC.W $0FAE,X 
     INC.W $0FAE,X 
@@ -4238,10 +4058,8 @@ Function_YappingMaw_Attacking:
 
 
 .cooldown:
-    LDA.W #Function_YappingMaw_Cooldown 
-    STA.W $0FA8,X 
-    LDA.W #$0030 
-    STA.L $7E802A,X 
+    LDA.W #Function_YappingMaw_Cooldown : STA.W $0FA8,X 
+    LDA.W #$0030 : STA.L $7E802A,X 
     LDA.L $7E8028,X 
     CMP.W #$0004 
     BEQ .upRight 
@@ -4255,20 +4073,17 @@ Function_YappingMaw_Attacking:
 
 
 .upRight:
-    LDA.W #InstList_YappingMaw_Cooldown_FacingUpRight 
-    STA.W $0F92,X 
+    LDA.W #InstList_YappingMaw_Cooldown_FacingUpRight : STA.W $0F92,X 
     BRA .upMerge 
 
 
 .upLeft:
-    LDA.W #InstList_YappingMaw_Cooldown_FacingUpLeft_0 
-    STA.W $0F92,X 
+    LDA.W #InstList_YappingMaw_Cooldown_FacingUpLeft_0 : STA.W $0F92,X 
     BRA .upMerge 
 
 
 .up:
-    LDA.W #InstList_YappingMaw_Cooldown_FacingUp_0 
-    STA.W $0F92,X 
+    LDA.W #InstList_YappingMaw_Cooldown_FacingUp_0 : STA.W $0F92,X 
 
 .upMerge:
     LDA.W $0FB6,X 
@@ -4282,20 +4097,17 @@ Function_YappingMaw_Attacking:
 
 
 .downRight:
-    LDA.W #InstList_YappingMaw_Cooldown_FacingDownRight 
-    STA.W $0F92,X 
+    LDA.W #InstList_YappingMaw_Cooldown_FacingDownRight : STA.W $0F92,X 
     BRA .moveSamus 
 
 
 .downLeft:
-    LDA.W #InstList_YappingMaw_Cooldown_FacingDownLeft_0 
-    STA.W $0F92,X 
+    LDA.W #InstList_YappingMaw_Cooldown_FacingDownLeft_0 : STA.W $0F92,X 
     BRA .moveSamus 
 
 
 .down:
-    LDA.W #InstList_YappingMaw_Cooldown_FacingDown_0 
-    STA.W $0F92,X 
+    LDA.W #InstList_YappingMaw_Cooldown_FacingDown_0 : STA.W $0F92,X 
     BRA .return 
 
 
@@ -4356,16 +4168,11 @@ Function_YappingMaw_Cooldown:
     LDA.W $0A60 
     CMP.W #SamusPoseInputHandler_Demo 
     BEQ .return 
-    LDA.W #SamusPoseInputHandler_Normal 
-    STA.W $0A60 
-    LDA.W #$0000 
-    STA.L $7E8020,X 
-    LDA.W #$0030 
-    STA.L $7E802A,X 
-    LDA.W #$0040 
-    STA.W $0FB0,X 
-    LDA.W #Function_YappingMaw_Neutral 
-    STA.W $0FA8,X 
+    LDA.W #SamusPoseInputHandler_Normal : STA.W $0A60 
+    LDA.W #$0000 : STA.L $7E8020,X 
+    LDA.W #$0030 : STA.L $7E802A,X 
+    LDA.W #$0040 : STA.W $0FB0,X 
+    LDA.W #Function_YappingMaw_Neutral : STA.W $0FA8,X 
 
 .return:
     RTS 
@@ -4375,10 +4182,8 @@ SetBodySegmentPosition_0:
     LDX.W $0E54 
     LDA.L $7E8800,X 
     TAY 
-    LDA.L $7E7818,X 
-    STA.W $1A4B,Y 
-    LDA.L $7E781A,X 
-    STA.W $1A93,Y 
+    LDA.L $7E7818,X : STA.W $1A4B,Y 
+    LDA.L $7E781A,X : STA.W $1A93,Y 
     RTS 
 
 
@@ -4484,12 +4289,9 @@ EnemyTouch_YappingMaw:
     BPL .return 
     LDA.L $7E8020,X 
     BNE .return 
-    LDA.W #$0000 
-    STA.L $7E802A,X 
-    LDA.W #$0001 
-    STA.L $7E8020,X 
-    LDA.W #RTS_90E90E 
-    STA.W $0A60 
+    LDA.W #$0000 : STA.L $7E802A,X 
+    LDA.W #$0001 : STA.L $7E8020,X 
+    LDA.W #RTS_90E90E : STA.W $0A60 
 
 .return:
     RTL 
@@ -4502,35 +4304,28 @@ EnemyShot_YappingMaw:
     BNE .alive 
     LDA.L $7E8800,X 
     TAY 
-    LDA.W #$0000 
-    STA.W $1997,Y 
+    LDA.W #$0000 : STA.W $1997,Y 
     LDA.L $7E8802,X 
     TAY 
-    LDA.W #$0000 
-    STA.W $1997,Y 
+    LDA.W #$0000 : STA.W $1997,Y 
     LDA.L $7E8804,X 
     TAY 
-    LDA.W #$0000 
-    STA.W $1997,Y 
+    LDA.W #$0000 : STA.W $1997,Y 
     LDA.L $7E8806,X 
     TAY 
-    LDA.W #$0000 
-    STA.W $1997,Y 
+    LDA.W #$0000 : STA.W $1997,Y 
     PHX 
     LDA.L $7E880C,X 
     TAX 
-    LDA.W #$0000 
-    STA.L $7EEF78,X 
+    LDA.W #$0000 : STA.L $7EEF78,X 
     PLX 
     LDA.W $0A60 
     CMP.W #SamusPoseInputHandler_Demo 
     BEQ .notDemo 
-    LDA.W #SamusPoseInputHandler_Normal 
-    STA.W $0A60 
+    LDA.W #SamusPoseInputHandler_Normal : STA.W $0A60 
 
 .notDemo:
-    LDA.W #$0000 
-    STA.L $7E8020,X 
+    LDA.W #$0000 : STA.L $7E8020,X 
     BRA .return 
 
 
@@ -4540,12 +4335,10 @@ EnemyShot_YappingMaw:
     LDA.W $0A60 
     CMP.W #SamusPoseInputHandler_Demo 
     BEQ .alsoNotDemo 
-    LDA.W #SamusPoseInputHandler_Normal 
-    STA.W $0A60 
+    LDA.W #SamusPoseInputHandler_Normal : STA.W $0A60 
 
 .alsoNotDemo:
-    LDA.W #$0000 
-    STA.L $7E8020,X 
+    LDA.W #$0000 : STA.L $7E8020,X 
 
 .return:
     RTL 
@@ -4597,10 +4390,8 @@ SetYappingMawBodySegmentFrozenPalette:
 
 SetYappingMawBaseFrozenPalette:
     LDX.W $0E54 
-    LDA.L $7E880A,X 
-    STA.B $12 
-    LDA.L $7E880C,X 
-    STA.B $14 
+    LDA.L $7E880A,X : STA.B $12 
+    LDA.L $7E880C,X : STA.B $14 
     TAX 
     LDA.L $7EF078,X 
     AND.W #$F1FF 
@@ -4927,17 +4718,13 @@ InitAI_Kago:
     LDA.W $0F86,X 
     ORA.W #$2000 
     STA.W $0F86,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     STZ.W $0FB0,X 
-    LDA.W #InstList_Kago_Initial_SlowAnimation 
-    STA.W $0F92,X 
-    LDA.W #Function_Kago_Nothing 
-    STA.W $0FA8,X 
+    LDA.W #InstList_Kago_Initial_SlowAnimation : STA.W $0F92,X 
+    LDA.W #Function_Kago_Nothing : STA.W $0FA8,X 
     STZ.W $0FB2,X 
-    LDA.W $0FB4,X 
-    STA.L $7E7808,X 
+    LDA.W $0FB4,X : STA.L $7E7808,X 
     RTL 
 
 
@@ -4947,8 +4734,7 @@ MainAI_Kago:
 
 
 Function_Kago_Nothing:
-    LDA.W #RTL_A8AB81 
-    STA.W $0FA8,X ; fallthrough to RTL_A8AB81
+    LDA.W #RTL_A8AB81 : STA.W $0FA8,X ; fallthrough to RTL_A8AB81
 
 RTL_A8AB81:
     RTL 
@@ -4962,19 +4748,14 @@ EnemyShot_Kago:
     PHX 
     PHY 
     JSL.L NormalEnemyShotAI 
-    LDA.W #$0002 
-    STA.W $183E 
-    LDA.W #$0010 
-    STA.W $1840 
+    LDA.W #$0002 : STA.W $183E 
+    LDA.W #$0010 : STA.W $1840 
     LDX.W $0E54 
     LDA.W $0FAA,X 
     BNE .takenHit 
-    LDA.W #$0001 
-    STA.W $0FAA,X 
-    LDA.W #InstList_Kago_TakenHit_FastAnimation 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0FAA,X 
+    LDA.W #InstList_Kago_TakenHit_FastAnimation : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
 
 .takenHit:
     LDA.L $7E7808,X 
@@ -4985,8 +4766,7 @@ EnemyShot_Kago:
     LDA.W #$0004 
     JSL.L EnemyDeath 
     LDX.W $0E54 
-    LDA.W #$0001 
-    STA.W $0FB2,X 
+    LDA.W #$0001 : STA.W $0FB2,X 
 
 .notDead:
     LDY.W #EnemyProjectile_KagoBug 
@@ -5312,15 +5092,13 @@ Instruction_Magdollite_MoveUp2Pixels:
 
 Instruction_Magdollite_SetWaitingFlag:
     LDX.W $0E54 
-    LDA.W #$0001 
-    STA.L $7E7802,X 
+    LDA.W #$0001 : STA.L $7E7802,X 
     RTL 
 
 
 Instruction_Magdollite_ResetWaitingFlag:
     LDX.W $0E54 
-    LDA.W #$0000 
-    STA.L $7E7802,X 
+    LDA.W #$0000 : STA.L $7E7802,X 
     RTL 
 
 
@@ -5356,8 +5134,7 @@ Instruction_Magdollite_MoveDownBy18Pixels_SetSlavesAsVisible:
 
 Instruction_Magdollite_RestoreInitialYPositions:
     LDX.W $0E54 
-    LDA.L $7E7806,X 
-    STA.W $0F7E,X 
+    LDA.L $7E7806,X : STA.W $0F7E,X 
     STA.W $0FBE,X 
     RTL 
 
@@ -5443,18 +5220,15 @@ Instruction_Magdollite_ShiftLeft8Pixels_Up4Pixels_Left_dup:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Magdollite_RestoreXYPositions_A8AF32:
     LDX.W $0E54 
-    LDA.L $7E7824,X 
-    STA.W $0F7A,X 
-    LDA.L $7E7826,X 
-    STA.W $0F7E,X 
+    LDA.L $7E7824,X : STA.W $0F7A,X 
+    LDA.L $7E7826,X : STA.W $0F7E,X 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_Magdollite_SetCooldownTimerTo100:
     LDX.W $0E54 
-    LDA.W #$0100 
-    STA.L $7E7808,X 
+    LDA.W #$0100 : STA.L $7E7808,X 
     RTL 
 
 
@@ -5495,51 +5269,40 @@ InitAI_Magdollite:
 
 Function_Magdollite_Init_Master:
     LDX.W $0E54 
-    LDA.W #$0000 
-    STA.W $0FAC,X 
+    LDA.W #$0000 : STA.W $0FAC,X 
     STA.L $7E7800,X 
     STA.L $7E7804,X 
-    LDA.W $0F7E,X 
-    STA.L $7E7806,X 
+    LDA.W $0F7E,X : STA.L $7E7806,X 
     JSL.L Get_SamusX_minus_EnemyX 
     BPL .keepLeft 
-    LDA.W #$0001 
-    STA.L $7E7800,X 
+    LDA.W #$0001 : STA.L $7E7800,X 
 
 .keepLeft:
     LDA.L $7E7800,X 
-    LDA.W #InstList_Magdollite_Idling_FacingLeft 
-    STA.W $0FAE,X 
+    LDA.W #InstList_Magdollite_Idling_FacingLeft : STA.W $0FAE,X 
     LDA.L $7E7800,X 
     BNE .keepLeft2 
-    LDA.W #InstList_Magdollite_Idling_FacingRight 
-    STA.W $0FAE,X 
+    LDA.W #InstList_Magdollite_Idling_FacingRight : STA.W $0FAE,X 
 
 .keepLeft2:
     JSR.W CheckIfMagdolliteInstListChanged 
-    LDA.W #Function_Magdollite_WaitForSamusToGetNear 
-    STA.W $0FB2,X 
+    LDA.W #Function_Magdollite_WaitForSamusToGetNear : STA.W $0FB2,X 
     RTS 
 
 
 Function_Magdollite_Init_Slave1:
     LDX.W $0E54 
-    LDA.W $0F7E,X 
-    STA.L $7E7806,X 
-    LDA.W #$0000 
-    STA.W $0FAC,X 
+    LDA.W $0F7E,X : STA.L $7E7806,X 
+    LDA.W #$0000 : STA.W $0FAC,X 
     STA.L $7E7818,X 
-    LDA.W #$0001 
-    STA.L $7E781A,X 
-    LDA.W #InstList_Magdollite_Slave1_NarrowPillar_FacingLeft 
-    STA.W $0FAE,X 
+    LDA.W #$0001 : STA.L $7E781A,X 
+    LDA.W #InstList_Magdollite_Slave1_NarrowPillar_FacingLeft : STA.W $0FAE,X 
     JSR.W CheckIfMagdolliteInstListChanged 
     LDA.W $0F7E,X 
     CLC 
     ADC.W #$0020 
     STA.W $0F7E,X 
-    LDA.W #Function_Magdollite_Slave1_WaitForAttackToBeTriggered 
-    STA.W $0FB2,X 
+    LDA.W #Function_Magdollite_Slave1_WaitForAttackToBeTriggered : STA.W $0FB2,X 
     LDA.W $0F86,X 
     ORA.W #$0100 
     STA.W $0F86,X 
@@ -5548,22 +5311,17 @@ Function_Magdollite_Init_Slave1:
 
 Function_Magdollite_Init_Slave2:
     LDX.W $0E54 
-    LDA.W $0F7E,X 
-    STA.L $7E7806,X 
-    LDA.W $0F7A,X 
-    STA.L $7E7822,X 
-    LDA.W #$0000 
-    STA.W $0FAC,X 
+    LDA.W $0F7E,X : STA.L $7E7806,X 
+    LDA.W $0F7A,X : STA.L $7E7822,X 
+    LDA.W #$0000 : STA.W $0FAC,X 
     STA.L $7E7808,X 
-    LDA.W #InstList_Magdollite_Slave2_PillarCap 
-    STA.W $0FAE,X 
+    LDA.W #InstList_Magdollite_Slave2_PillarCap : STA.W $0FAE,X 
     JSR.W CheckIfMagdolliteInstListChanged 
     LDA.W $0F7E,X 
     CLC 
     ADC.W #$0020 
     STA.W $0F7E,X 
-    LDA.W #Function_Magdollite_Slave2_Idling_WaitingForTrigger 
-    STA.W $0FB2,X 
+    LDA.W #Function_Magdollite_Slave2_Idling_WaitingForTrigger : STA.W $0FB2,X 
     LDA.W $0F86,X 
     ORA.W #$0100 
     STA.W $0F86,X 
@@ -5576,32 +5334,24 @@ GetMagdolliteSpeeds:
     AND.W #$00FF 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
-    STA.L $7E7810,X 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y 
-    STA.L $7E780E,X 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y 
-    STA.L $7E7814,X 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y 
-    STA.L $7E7812,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.L $7E7810,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.L $7E780E,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.L $7E7814,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.L $7E7812,X 
     RTS 
 
 
 SetMagdolliteGraphicsDrawnHook:
-    LDA.W #EnemyGraphicsDrawnHook_Magdollite_PeriodicallyCyclePalettes 
-    STA.W $178C 
-    LDA.W #EnemyGraphicsDrawnHook_Magdollite_PeriodicallyCyclePalettes>>16 
-    STA.W $178E 
+    LDA.W #EnemyGraphicsDrawnHook_Magdollite_PeriodicallyCyclePalettes : STA.W $178C 
+    LDA.W #EnemyGraphicsDrawnHook_Magdollite_PeriodicallyCyclePalettes>>16 : STA.W $178E 
     LDA.W $0F96,X 
     AND.W #$0E00 
     LSR #4
     CLC 
     ADC.W #$0100 
     STA.W $1794 
-    LDA.W #$0008 
-    STA.W $1798 
-    LDA.W #$0000 
-    STA.W $1796 
+    LDA.W #$0008 : STA.W $1798 
+    LDA.W #$0000 : STA.W $1796 
     RTS 
 
 
@@ -5613,32 +5363,23 @@ EnemyGraphicsDrawnHook_Magdollite_PeriodicallyCyclePalettes:
     DEC A 
     STA.W $1798 
     BNE .return 
-    LDA.W #$0008 
-    STA.W $1798 
+    LDA.W #$0008 : STA.W $1798 
     LDA.W $1796 
     INC A 
     STA.W $1796 
     AND.W #$0003 
     ASL #5
     TAY 
-    LDA.W Palette_Magdollite_Glow_0,Y 
-    STA.B $12 
-    LDA.W Palette_Magdollite_Glow_1,Y 
-    STA.B $14 
-    LDA.W Palette_Magdollite_Glow_2,Y 
-    STA.B $16 
-    LDA.W Palette_Magdollite_Glow_3,Y 
-    STA.B $18 
+    LDA.W Palette_Magdollite_Glow_0,Y : STA.B $12 
+    LDA.W Palette_Magdollite_Glow_1,Y : STA.B $14 
+    LDA.W Palette_Magdollite_Glow_2,Y : STA.B $16 
+    LDA.W Palette_Magdollite_Glow_3,Y : STA.B $18 
     LDA.W $1794 
     TAX 
-    LDA.B $12 
-    STA.L $7EC012,X 
-    LDA.B $14 
-    STA.L $7EC014,X 
-    LDA.B $16 
-    STA.L $7EC016,X 
-    LDA.B $18 
-    STA.L $7EC018,X 
+    LDA.B $12 : STA.L $7EC012,X 
+    LDA.B $14 : STA.L $7EC014,X 
+    LDA.B $16 : STA.L $7EC016,X 
+    LDA.B $18 : STA.L $7EC018,X 
 
 .return:
     RTL 
@@ -5655,38 +5396,30 @@ MainAI_Magdollite:
 
 Function_Magdollite_WaitForSamusToGetNear:
     LDX.W $0E54 
-    LDA.W #$0000 
-    STA.L $7E7800,X 
-    LDA.W #InstList_Magdollite_Idling_FacingLeft 
-    STA.W $0FAE,X 
+    LDA.W #$0000 : STA.L $7E7800,X 
+    LDA.W #InstList_Magdollite_Idling_FacingLeft : STA.W $0FAE,X 
     JSL.L Get_SamusX_minus_EnemyX 
     BMI .facingDirectionChosen 
-    LDA.W #InstList_Magdollite_Idling_FacingRight 
-    STA.W $0FAE,X 
-    LDA.W #$0001 
-    STA.L $7E7800,X 
+    LDA.W #InstList_Magdollite_Idling_FacingRight : STA.W $0FAE,X 
+    LDA.W #$0001 : STA.L $7E7800,X 
 
 .facingDirectionChosen:
     JSR.W CheckIfMagdolliteInstListChanged 
     LDA.L $7E7888,X 
     BPL .return 
-    LDA.W #$0000 
-    STA.L $7E7888,X 
+    LDA.W #$0000 : STA.L $7E7888,X 
     LDA.W $0FB6,X 
     AND.W #$00FF 
     JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
-    LDA.W #InstList_Magdollite_SplashIntoLavaAndFormBasePillar_Left_0 
-    STA.W $0FAE,X 
+    LDA.W #InstList_Magdollite_SplashIntoLavaAndFormBasePillar_Left_0 : STA.W $0FAE,X 
     LDA.L $7E7800,X 
     BEQ .keepLeft 
-    LDA.W #InstList_Magdollite_SplashIntoLavaAndFormBasePillar_Right_0 
-    STA.W $0FAE,X 
+    LDA.W #InstList_Magdollite_SplashIntoLavaAndFormBasePillar_Right_0 : STA.W $0FAE,X 
 
 .keepLeft:
     JSR.W CheckIfMagdolliteInstListChanged 
-    LDA.W #Function_Magdollite_WaitUntilBasePillarFormed 
-    STA.W $0FB2,X 
+    LDA.W #Function_Magdollite_WaitUntilBasePillarFormed : STA.W $0FB2,X 
 
 .return:
     RTS 
@@ -5696,12 +5429,9 @@ Function_Magdollite_WaitUntilBasePillarFormed:
     LDX.W $0E54 
     LDA.L $7E7802,X 
     BNE .return 
-    LDA.W #$0001 
-    STA.L $7E7804,X 
-    LDA.W #$0000 
-    STA.L $7E785A,X 
-    LDA.W #Function_Magdollite_WaitForOtherPartsToFinish 
-    STA.W $0FB2,X 
+    LDA.W #$0001 : STA.L $7E7804,X 
+    LDA.W #$0000 : STA.L $7E785A,X 
+    LDA.W #Function_Magdollite_WaitForOtherPartsToFinish : STA.W $0FB2,X 
 
 .return:
     RTS 
@@ -5711,17 +5441,14 @@ Function_Magdollite_WaitForOtherPartsToFinish:
     LDX.W $0E54 
     LDA.L $7E7804,X 
     BNE .return 
-    LDA.W #InstList_Magdollite_UnformBasePillar_SplashBackToIdle_Left_0 
-    STA.W $0FAE,X 
+    LDA.W #InstList_Magdollite_UnformBasePillar_SplashBackToIdle_Left_0 : STA.W $0FAE,X 
     JSL.L Get_SamusX_minus_EnemyX 
     BMI .facingDirectionChosen 
-    LDA.W #InstList_Magdollite_UnformBasePillar_SplashBackToIdle_Right_0 
-    STA.W $0FAE,X 
+    LDA.W #InstList_Magdollite_UnformBasePillar_SplashBackToIdle_Right_0 : STA.W $0FAE,X 
 
 .facingDirectionChosen:
     JSR.W CheckIfMagdolliteInstListChanged 
-    LDA.W #Function_Magdollite_UnformBasePillarBackToHeadIdling 
-    STA.W $0FB2,X 
+    LDA.W #Function_Magdollite_UnformBasePillarBackToHeadIdling : STA.W $0FB2,X 
 
 .return:
     RTS 
@@ -5731,17 +5458,14 @@ Function_Magdollite_UnformBasePillarBackToHeadIdling:
     LDX.W $0E54 
     LDA.L $7E7802,X 
     BNE .return 
-    LDA.W #InstList_Magdollite_Idling_FacingLeft 
-    STA.W $0FAE,X 
+    LDA.W #InstList_Magdollite_Idling_FacingLeft : STA.W $0FAE,X 
     JSL.L Get_SamusX_minus_EnemyX 
     BMI .facingDirectionChosen 
-    LDA.W #InstList_Magdollite_Idling_FacingRight 
-    STA.W $0FAE,X 
+    LDA.W #InstList_Magdollite_Idling_FacingRight : STA.W $0FAE,X 
 
 .facingDirectionChosen:
     JSR.W CheckIfMagdolliteInstListChanged 
-    LDA.W #Function_Magdollite_WaitForSamusToGetNear 
-    STA.W $0FB2,X 
+    LDA.W #Function_Magdollite_WaitForSamusToGetNear : STA.W $0FB2,X 
 
 .return:
     RTS 
@@ -5751,15 +5475,11 @@ Function_Magdollite_Slave1_WaitForAttackToBeTriggered:
     LDX.W $0E54 
     LDA.L $7E781A,X 
     BNE .return 
-    LDA.W #Function_Magdollite_Slave1_HandlePillarGrowth 
-    STA.W $0FB2,X 
-    LDA.W #$0000 
-    STA.W $0FB0,X 
+    LDA.W #Function_Magdollite_Slave1_HandlePillarGrowth : STA.W $0FB2,X 
+    LDA.W #$0000 : STA.W $0FB0,X 
     STA.L $7E781A,X 
-    LDA.W #$0002 
-    STA.W $0FAA,X 
-    LDA.L $7E7806,X 
-    STA.W $0F7E,X 
+    LDA.W #$0002 : STA.W $0FAA,X 
+    LDA.L $7E7806,X : STA.W $0F7E,X 
 
 .return:
     RTS 
@@ -5806,10 +5526,8 @@ Function_Magdollite_Slave1_AddPillarStacksToReachSamusHeight:
 
 
 .doneGrowing:
-    LDA.W #Function_Magdollite_Slave1_GetEnemyIndex 
-    STA.W $0FB2,X 
-    LDA.W #$0001 
-    STA.L $7E7818,X 
+    LDA.W #Function_Magdollite_Slave1_GetEnemyIndex : STA.W $0FB2,X 
+    LDA.W #$0001 : STA.L $7E7818,X 
     LDA.W $0FB0,X 
     EOR.W #$FFFF 
     INC A 
@@ -5826,8 +5544,7 @@ Function_Magdollite_Slave1_AddPillarStacksToReachSamusHeight:
     ADC.W #$0008 
     STA.W $0F7E,X 
     LDY.W $0FAA,X 
-    LDA.W MagdolliteSlave1InstListPointers,Y 
-    STA.W $0FAE,X 
+    LDA.W MagdolliteSlave1InstListPointers,Y : STA.W $0FAE,X 
     JSR.W CheckIfMagdolliteInstListChanged 
 
 .return:
@@ -5881,19 +5598,15 @@ RemoveMagdollitePillarStacksUntilBackToBaseHeight:
     SBC.W #$0008 
     STA.W $0F7E,X 
     LDY.W $0FAA,X 
-    LDA.W MagdolliteSlave1InstListPointers,Y 
-    STA.W $0FAE,X 
+    LDA.W MagdolliteSlave1InstListPointers,Y : STA.W $0FAE,X 
     JSR.W CheckIfMagdolliteInstListChanged 
     BRA .return 
 
 
 .doneShrinking:
-    LDA.W #$0001 
-    STA.L $7E781A,X 
-    LDA.W #$0000 
-    STA.L $7E77C4,X 
-    LDA.W #Function_Magdollite_Slave1_WaitForAttackToBeTriggered 
-    STA.W $0FB2,X 
+    LDA.W #$0001 : STA.L $7E781A,X 
+    LDA.W #$0000 : STA.L $7E77C4,X 
+    LDA.W #Function_Magdollite_Slave1_WaitForAttackToBeTriggered : STA.W $0FB2,X 
 
 .return:
     RTS 
@@ -5904,8 +5617,7 @@ Function_Magdollite_Slave2_Idling_WaitingForTrigger:
     LDA.W $0F32,X 
     CMP.W #Function_Magdollite_WaitUntilBasePillarFormed 
     BNE .return 
-    LDA.W #Function_Magdollite_Slave2_SetToThrowFireballsAfterGrowing 
-    STA.W $0FB2,X 
+    LDA.W #Function_Magdollite_Slave2_SetToThrowFireballsAfterGrowing : STA.W $0FB2,X 
 
 .return:
     RTS 
@@ -5915,19 +5627,13 @@ Function_Magdollite_Slave2_SetSlave1ToShrinkAfterFireballs:
     LDX.W $0E54 
     LDA.L $7E7802,X 
     BNE .done 
-    LDA.W #InstList_Magdollite_Slave2_PillarCap 
-    STA.W $0FAE,X 
+    LDA.W #InstList_Magdollite_Slave2_PillarCap : STA.W $0FAE,X 
     JSR.W CheckIfMagdolliteInstListChanged 
-    LDA.W #Function_Magdollite_Slave1_HandlePillarShrinking 
-    STA.W $0F72,X 
-    LDA.W #Function_Magdollite_Slave2_GoBackToIdlingAfterPillarShrinks 
-    STA.W $0FB2,X 
-    LDA.W #$0000 
-    STA.L $7E77D8,X 
-    LDA.L $7E7824,X 
-    STA.W $0F7A,X 
-    LDA.L $7E7826,X 
-    STA.W $0F7E,X 
+    LDA.W #Function_Magdollite_Slave1_HandlePillarShrinking : STA.W $0F72,X 
+    LDA.W #Function_Magdollite_Slave2_GoBackToIdlingAfterPillarShrinks : STA.W $0FB2,X 
+    LDA.W #$0000 : STA.L $7E77D8,X 
+    LDA.L $7E7824,X : STA.W $0F7A,X 
+    LDA.L $7E7826,X : STA.W $0F7E,X 
 
 .done:
     JSR.W SetMagdolliteYRadius 
@@ -5938,25 +5644,18 @@ Function_Magdollite_Slave2_SetToThrowFireballsAfterGrowing:
     LDX.W $0E54 
     LDA.L $7E77D8,X 
     BEQ .waiting 
-    LDA.W #InstList_Magdollite_Slave2_ThrowFireballs_FacingLeft 
-    STA.W $0FAE,X 
-    LDA.W #$0000 
-    STA.W $0FAA,X 
+    LDA.W #InstList_Magdollite_Slave2_ThrowFireballs_FacingLeft : STA.W $0FAE,X 
+    LDA.W #$0000 : STA.W $0FAA,X 
     JSL.L Get_SamusX_minus_EnemyX 
     BMI .directionChosen 
-    LDA.W #InstList_Magdollite_ThrowFireballs_FacingRight 
-    STA.W $0FAE,X 
-    LDA.W #$0001 
-    STA.W $0FAA,X 
+    LDA.W #InstList_Magdollite_ThrowFireballs_FacingRight : STA.W $0FAE,X 
+    LDA.W #$0001 : STA.W $0FAA,X 
 
 .directionChosen:
     JSR.W CheckIfMagdolliteInstListChanged 
-    LDA.W #Function_Magdollite_Slave2_SetSlave1ToShrinkAfterFireballs 
-    STA.W $0FB2,X 
-    LDA.W $0F7A,X 
-    STA.L $7E7824,X 
-    LDA.W $0F7E,X 
-    STA.L $7E7826,X 
+    LDA.W #Function_Magdollite_Slave2_SetSlave1ToShrinkAfterFireballs : STA.W $0FB2,X 
+    LDA.W $0F7A,X : STA.L $7E7824,X 
+    LDA.W $0F7E,X : STA.L $7E7826,X 
     BRA .done 
 
 
@@ -5977,8 +5676,7 @@ Function_Magdollite_Slave2_GoBackToIdlingAfterPillarShrinks:
     LDA.W $0F32,X 
     CMP.W #Function_Magdollite_WaitForSamusToGetNear 
     BNE .notWaitingForTrigger 
-    LDA.W #Function_Magdollite_Slave2_Idling_WaitingForTrigger 
-    STA.W $0FB2,X 
+    LDA.W #Function_Magdollite_Slave2_Idling_WaitingForTrigger : STA.W $0FB2,X 
     BRA .done 
 
 
@@ -6003,8 +5701,7 @@ SetMagdolliteYRadius:
     STA.W $0F04,X 
     CMP.W #$0008 
     BPL .return 
-    LDA.W #$0008 
-    STA.W $0F04,X 
+    LDA.W #$0008 : STA.W $0F04,X 
 
 .return:
     RTS 
@@ -6017,8 +5714,7 @@ CheckIfMagdolliteInstListChanged:
     BEQ .return 
     STA.W $0F92,X 
     STA.W $0FAC,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
 
 .return:
@@ -6502,57 +6198,42 @@ Instruction_Beetom_Nothing:
 
 SetBeetomInstList:
     LDX.W $0E54 
-    LDA.L $7E7800,X 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.L $7E7800,X : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     RTS 
 
 
 InitAI_Beetom:
     LDX.W $0E54 
-    LDA.W #$0000 
-    STA.W $0FAE,X 
+    LDA.W #$0000 : STA.W $0FAE,X 
     STA.W $0FAC,X 
     STA.L $7E780A,X 
     STA.L $7E7810,X 
     STA.W $0FA8,X 
-    LDA.W #$0040 
-    STA.W $0FB0,X 
-    LDA.B $8B 
-    STA.W $0FB2,X 
-    LDA.W #$0017 
-    STA.W $05E5 
-    LDA.W #$3000 
-    STA.B $16 
-    LDA.W #$0004 
-    STA.B $18 
+    LDA.W #$0040 : STA.W $0FB0,X 
+    LDA.B $8B : STA.W $0FB2,X 
+    LDA.W #$0017 : STA.W $05E5 
+    LDA.W #$3000 : STA.B $16 
+    LDA.W #$0004 : STA.B $18 
     JSR.W Beetom_CalculateInitialHopSpeed 
     STA.L $7E7804,X 
-    LDA.W #$4000 
-    STA.B $16 
-    LDA.W #$0005 
-    STA.B $18 
+    LDA.W #$4000 : STA.B $16 
+    LDA.W #$0005 : STA.B $18 
     JSR.W Beetom_CalculateInitialHopSpeed 
     STA.L $7E7806,X 
-    LDA.W #$3000 
-    STA.B $16 
-    LDA.W #$0003 
-    STA.B $18 
+    LDA.W #$3000 : STA.B $16 
+    LDA.W #$0003 : STA.B $18 
     JSR.W Beetom_CalculateInitialHopSpeed 
     STA.L $7E7808,X 
-    LDA.W #InstList_Beetom_Crawling_FacingRight_0 
-    STA.L $7E7800,X 
+    LDA.W #InstList_Beetom_Crawling_FacingRight_0 : STA.L $7E7800,X 
     JSL.L Get_SamusX_minus_EnemyX 
     BPL .SamusToTheLeft 
-    LDA.W #InstList_Beetom_Crawling_FacingLeft_0 
-    STA.L $7E7800,X 
+    LDA.W #InstList_Beetom_Crawling_FacingLeft_0 : STA.L $7E7800,X 
 
 .SamusToTheLeft:
     JSR.W SetBeetomInstList 
-    LDA.W #Function_Beetom_DecideAction 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_DecideAction : STA.W $0FAC,X 
     RTL 
 
 
@@ -6588,14 +6269,12 @@ Function_Beetom_DecideAction:
     LDA.W #$0060 
     JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .notInProximity 
-    LDA.W #Function_Beetom_DecideAction_SamusInProximity 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_DecideAction_SamusInProximity : STA.W $0FAC,X 
     BRA .return 
 
 
 .notInProximity:
-    LDA.W #Function_Beetom_DecideAction_SamusNotInProximity 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_DecideAction_SamusNotInProximity : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -6608,8 +6287,7 @@ Function_Beetom_DecideAction_SamusNotInProximity:
     AND.W #$0007 
     ASL A 
     TAY 
-    LDA.W SamusNotInProximityBeetomFunctionPointers,Y 
-    STA.W $0FAC,X 
+    LDA.W SamusNotInProximityBeetomFunctionPointers,Y : STA.W $0FAC,X 
     LDA.W $05E5 
     AND.W #$0001 
     STA.L $7E7812,X 
@@ -6618,159 +6296,119 @@ Function_Beetom_DecideAction_SamusNotInProximity:
 
 Function_Beetom_StartIdling:
     LDX.W $0E54 
-    LDA.W #$0020 
-    STA.W $0FAE,X 
-    LDA.W #Function_Beetom_Idling 
-    STA.W $0FAC,X 
+    LDA.W #$0020 : STA.W $0FAE,X 
+    LDA.W #Function_Beetom_Idling : STA.W $0FAC,X 
     RTS 
 
 
 Function_Beetom_StartCrawlingLeft:
     LDX.W $0E54 
-    LDA.W #Function_Beetom_CrawlingLeft 
-    STA.W $0FAC,X 
-    LDA.W #InstList_Beetom_Crawling_FacingLeft_0 
-    STA.L $7E7800,X 
+    LDA.W #Function_Beetom_CrawlingLeft : STA.W $0FAC,X 
+    LDA.W #InstList_Beetom_Crawling_FacingLeft_0 : STA.L $7E7800,X 
     JSR.W SetBeetomInstList 
     RTS 
 
 
 Function_Beetom_StartCrawlingRight:
     LDX.W $0E54 
-    LDA.W #Function_Beetom_CrawlingRight 
-    STA.W $0FAC,X 
-    LDA.W #InstList_Beetom_Crawling_FacingRight_0 
-    STA.L $7E7800,X 
+    LDA.W #Function_Beetom_CrawlingRight : STA.W $0FAC,X 
+    LDA.W #InstList_Beetom_Crawling_FacingRight_0 : STA.L $7E7800,X 
     JSR.W SetBeetomInstList 
     RTS 
 
 
 Function_Beetom_StartShortHopRight:
     LDX.W $0E54 
-    LDA.L $7E7804,X 
-    STA.W $0FAA,X 
-    LDA.W #Function_Beetom_ShortHopLeft 
-    STA.W $0FAC,X 
-    LDA.W #$0000 
-    STA.L $7E780A,X 
-    LDA.W #InstList_Beetom_Hop_FacingLeft 
-    STA.L $7E7800,X 
+    LDA.L $7E7804,X : STA.W $0FAA,X 
+    LDA.W #Function_Beetom_ShortHopLeft : STA.W $0FAC,X 
+    LDA.W #$0000 : STA.L $7E780A,X 
+    LDA.W #InstList_Beetom_Hop_FacingLeft : STA.L $7E7800,X 
     JSR.W SetBeetomInstList 
     RTS 
 
 
 Function_Beetom_StartShortHopLeft:
     LDX.W $0E54 
-    LDA.L $7E7804,X 
-    STA.W $0FAA,X 
-    LDA.W #Function_Beetom_ShortHopRight 
-    STA.W $0FAC,X 
-    LDA.W #$0000 
-    STA.L $7E780A,X 
-    LDA.W #InstList_Beetom_Hop_FacingRight 
-    STA.L $7E7800,X 
+    LDA.L $7E7804,X : STA.W $0FAA,X 
+    LDA.W #Function_Beetom_ShortHopRight : STA.W $0FAC,X 
+    LDA.W #$0000 : STA.L $7E780A,X 
+    LDA.W #InstList_Beetom_Hop_FacingRight : STA.L $7E7800,X 
     JSR.W SetBeetomInstList 
     RTS 
 
 
 Function_Beetom_StartLongHopLeft:
     LDX.W $0E54 
-    LDA.L $7E7806,X 
-    STA.W $0FAA,X 
-    LDA.W #Function_Beetom_LongHopLeft 
-    STA.W $0FAC,X 
-    LDA.W #$0000 
-    STA.L $7E780A,X 
-    LDA.W #InstList_Beetom_Hop_FacingLeft 
-    STA.L $7E7800,X 
+    LDA.L $7E7806,X : STA.W $0FAA,X 
+    LDA.W #Function_Beetom_LongHopLeft : STA.W $0FAC,X 
+    LDA.W #$0000 : STA.L $7E780A,X 
+    LDA.W #InstList_Beetom_Hop_FacingLeft : STA.L $7E7800,X 
     JSR.W SetBeetomInstList 
     RTS 
 
 
 Function_Beetom_StartLongHopRight:
     LDX.W $0E54 
-    LDA.L $7E7806,X 
-    STA.W $0FAA,X 
-    LDA.W #Function_Beetom_LongHopRight 
-    STA.W $0FAC,X 
-    LDA.W #$0000 
-    STA.L $7E780A,X 
-    LDA.W #InstList_Beetom_Hop_FacingRight 
-    STA.L $7E7800,X 
+    LDA.L $7E7806,X : STA.W $0FAA,X 
+    LDA.W #Function_Beetom_LongHopRight : STA.W $0FAC,X 
+    LDA.W #$0000 : STA.L $7E780A,X 
+    LDA.W #InstList_Beetom_Hop_FacingRight : STA.L $7E7800,X 
     JSR.W SetBeetomInstList 
     RTS 
 
 
 Function_Beetom_DecideAction_SamusInProximity:
     LDX.W $0E54 
-    LDA.L $7E7808,X 
-    STA.W $0FAA,X 
-    LDA.W #InstList_Beetom_Hop_FacingRight 
-    STA.L $7E7800,X 
-    LDA.W #Function_Beetom_LungeRight 
-    STA.W $0FAC,X 
-    LDA.W #$0001 
-    STA.L $7E7812,X 
+    LDA.L $7E7808,X : STA.W $0FAA,X 
+    LDA.W #InstList_Beetom_Hop_FacingRight : STA.L $7E7800,X 
+    LDA.W #Function_Beetom_LungeRight : STA.W $0FAC,X 
+    LDA.W #$0001 : STA.L $7E7812,X 
     JSL.L Get_SamusX_minus_EnemyX 
     BPL .SamusToTheLeft 
-    LDA.W #InstList_Beetom_Hop_FacingLeft 
-    STA.L $7E7800,X 
-    LDA.W #Function_Beetom_LungeLeft 
-    STA.W $0FAC,X 
-    LDA.W #$0000 
-    STA.L $7E7812,X 
+    LDA.W #InstList_Beetom_Hop_FacingLeft : STA.L $7E7800,X 
+    LDA.W #Function_Beetom_LungeLeft : STA.W $0FAC,X 
+    LDA.W #$0000 : STA.L $7E7812,X 
 
 .SamusToTheLeft:
     JSR.W SetBeetomInstList 
-    LDA.W #$0000 
-    STA.L $7E780A,X 
+    LDA.W #$0000 : STA.L $7E780A,X 
     RTS 
 
 
 Function_Beetom_StartDrainingSamus_FacingLeft:
     LDX.W $0E54 
-    LDA.W #InstList_Beetom_DrainingSamus_FacingLeft_0 
-    STA.L $7E7800,X 
+    LDA.W #InstList_Beetom_DrainingSamus_FacingLeft_0 : STA.L $7E7800,X 
     JSR.W SetBeetomInstList 
-    LDA.W #Function_Beetom_DrainingSamus_FacingLeft 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_DrainingSamus_FacingLeft : STA.W $0FAC,X 
     RTS 
 
 
 Function_Beetom_StartDrainingSamus_FacingRight:
     LDX.W $0E54 
-    LDA.W #InstList_Beetom_DrainingSamus_FacingRight_0 
-    STA.L $7E7800,X 
+    LDA.W #InstList_Beetom_DrainingSamus_FacingRight_0 : STA.L $7E7800,X 
     JSR.W SetBeetomInstList 
-    LDA.W #Function_Beetom_DrainingSamus_FacingRight 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_DrainingSamus_FacingRight : STA.W $0FAC,X 
     RTS 
 
 
 Function_Beetom_StartDropping:
     LDX.W $0E54 
-    LDA.W #InstList_Beetom_Crawling_FacingLeft_0 
-    STA.L $7E7800,X 
+    LDA.W #InstList_Beetom_Crawling_FacingLeft_0 : STA.L $7E7800,X 
     LDA.L $7E7812,X 
     BEQ .keepLeft 
-    LDA.W #InstList_Beetom_Crawling_FacingRight_0 
-    STA.L $7E7800,X 
+    LDA.W #InstList_Beetom_Crawling_FacingRight_0 : STA.L $7E7800,X 
 
 .keepLeft:
     JSR.W SetBeetomInstList 
-    LDA.W #$0000 
-    STA.L $7E780A,X 
-    LDA.W #Function_Beetom_Dropping 
-    STA.W $0FAC,X 
+    LDA.W #$0000 : STA.L $7E780A,X 
+    LDA.W #Function_Beetom_Dropping : STA.W $0FAC,X 
     RTS 
 
 
 Function_Beetom_StartBeingFlung:
     LDX.W $0E54 
-    LDA.W #$0000 
-    STA.W $0FAA,X 
-    LDA.W #Function_Beetom_BeingFlung 
-    STA.W $0FAC,X 
+    LDA.W #$0000 : STA.W $0FAA,X 
+    LDA.W #Function_Beetom_BeingFlung : STA.W $0FAC,X 
     RTS 
 
 
@@ -6778,8 +6416,7 @@ Function_Beetom_Idling:
     LDX.W $0E54 
     DEC.W $0FAE,X 
     BPL .return 
-    LDA.W #Function_Beetom_DecideAction 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_DecideAction : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -6793,13 +6430,11 @@ Function_Beetom_CrawlingLeft:
     SEC 
     SBC.W #$0008 
     STA.W $0F7A,X 
-    LDA.W #$0001 
-    STA.B $14 
+    LDA.W #$0001 : STA.B $14 
     STZ.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
-    LDA.W #Function_Beetom_StartCrawlingRight 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartCrawlingRight : STA.W $0FAC,X 
     DEC.W $0F7E,X 
     LDA.W $0F7A,X 
     CLC 
@@ -6813,22 +6448,17 @@ Function_Beetom_CrawlingLeft:
     CLC 
     ADC.W #$0008 
     STA.W $0F7A,X 
-    LDA.W #$C000 
-    STA.B $12 
-    LDA.W #$FFFF 
-    STA.B $14 
+    LDA.W #$C000 : STA.B $12 
+    LDA.W #$FFFF : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
-    LDA.W #Function_Beetom_StartCrawlingRight 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartCrawlingRight : STA.W $0FAC,X 
     BRA .return 
 
 
 .end:
-    LDA.W #$0040 
-    STA.W $0FAE,X 
-    LDA.W #Function_Beetom_DecideAction 
-    STA.W $0FAC,X 
+    LDA.W #$0040 : STA.W $0FAE,X 
+    LDA.W #Function_Beetom_DecideAction : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -6842,13 +6472,11 @@ Function_Beetom_CrawlingRight:
     CLC 
     ADC.W #$0008 
     STA.W $0F7A,X 
-    LDA.W #$0001 
-    STA.B $14 
+    LDA.W #$0001 : STA.B $14 
     STZ.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
-    LDA.W #Function_Beetom_StartCrawlingLeft 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartCrawlingLeft : STA.W $0FAC,X 
     DEC.W $0F7E,X 
     LDA.W $0F7A,X 
     SEC 
@@ -6862,21 +6490,17 @@ Function_Beetom_CrawlingRight:
     SEC 
     SBC.W #$0008 
     STA.W $0F7A,X 
-    LDA.W #$4000 
-    STA.B $12 
+    LDA.W #$4000 : STA.B $12 
     STZ.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
-    LDA.W #Function_Beetom_StartCrawlingLeft 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartCrawlingLeft : STA.W $0FAC,X 
     BRA .return 
 
 
 .end:
-    LDA.W #$0040 
-    STA.W $0FAE,X 
-    LDA.W #Function_Beetom_DecideAction 
-    STA.W $0FAC,X 
+    LDA.W #$0040 : STA.W $0FAE,X 
+    LDA.W #Function_Beetom_DecideAction : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -6893,17 +6517,14 @@ Function_Beetom_ShortHopLeft:
 .falling:
     JSR.W Function_Beetom_YMovement_ShortHop_Falling 
 
-  + LDA.W #$FFFF 
-    STA.B $14 
-    LDA.W #$C000 
-    STA.B $12 
+  + LDA.W #$FFFF : STA.B $14 
+    LDA.W #$C000 : STA.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
     LDA.L $7E7812,X 
     EOR.W #$0001 
     STA.L $7E7812,X 
-    LDA.W #Function_Beetom_StartDropping 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -6921,15 +6542,13 @@ Function_Beetom_ShortHopRight:
     JSR.W Function_Beetom_YMovement_ShortHop_Falling 
 
   + STZ.B $14 
-    LDA.W #$4000 
-    STA.B $12 
+    LDA.W #$4000 : STA.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
     LDA.L $7E7812,X 
     EOR.W #$0001 
     STA.L $7E7812,X 
-    LDA.W #Function_Beetom_StartDropping 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -6939,14 +6558,11 @@ Function_Beetom_YMovement_ShortHop_Rising:
     LDA.W $0FAA,X 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y 
-    STA.B $14 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y 
-    STA.B $12 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y : STA.B $14 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .notCollidedWithBlock 
-    LDA.W #Function_Beetom_StartDropping 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
     BRA .return 
 
 
@@ -6956,10 +6572,8 @@ Function_Beetom_YMovement_ShortHop_Rising:
     SBC.W #$0004 
     STA.W $0FAA,X 
     BPL .return 
-    LDA.W #$0000 
-    STA.W $0FAA,X 
-    LDA.W #$0001 
-    STA.L $7E780A,X 
+    LDA.W #$0000 : STA.W $0FAA,X 
+    LDA.W #$0001 : STA.L $7E780A,X 
 
 .return:
     RTS 
@@ -6969,14 +6583,11 @@ Function_Beetom_YMovement_ShortHop_Falling:
     LDA.W $0FAA,X 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
-    STA.B $14 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
-    STA.B $12 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y : STA.B $14 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .notCollidedWithBlock 
-    LDA.W #Function_Beetom_DecideAction 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_DecideAction : STA.W $0FAC,X 
     BRA .return 
 
 
@@ -6987,8 +6598,7 @@ Function_Beetom_YMovement_ShortHop_Falling:
     STA.W $0FAA,X 
     CMP.W #$0040 
     BMI .return 
-    LDA.W #$0040 
-    STA.W $0FAA,X 
+    LDA.W #$0040 : STA.W $0FAA,X 
 
 .return:
     RTS 
@@ -7005,17 +6615,14 @@ Function_Beetom_LongHopLeft:
 .falling:
     JSR.W Function_Beetom_YMovement_LongHop_Falling 
 
-  + LDA.W #$FFFF 
-    STA.B $14 
-    LDA.W #$C000 
-    STA.B $12 
+  + LDA.W #$FFFF : STA.B $14 
+    LDA.W #$C000 : STA.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
     LDA.L $7E7812,X 
     EOR.W #$0001 
     STA.L $7E7812,X 
-    LDA.W #Function_Beetom_StartDropping 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -7033,15 +6640,13 @@ Function_Beetom_LongHopRight:
     JSR.W Function_Beetom_YMovement_LongHop_Falling 
 
   + STZ.B $14 
-    LDA.W #$4000 
-    STA.B $12 
+    LDA.W #$4000 : STA.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
     LDA.L $7E7812,X 
     EOR.W #$0001 
     STA.L $7E7812,X 
-    LDA.W #Function_Beetom_StartDropping 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -7051,14 +6656,11 @@ Function_Beetom_YMovement_LongHop_Rising:
     LDA.W $0FAA,X 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y 
-    STA.B $14 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y 
-    STA.B $12 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y : STA.B $14 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .notCollidedWithBlock 
-    LDA.W #Function_Beetom_StartDropping 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
     BRA .return 
 
 
@@ -7068,10 +6670,8 @@ Function_Beetom_YMovement_LongHop_Rising:
     SBC.W #$0005 
     STA.W $0FAA,X 
     BPL .return 
-    LDA.W #$0000 
-    STA.W $0FAA,X 
-    LDA.W #$0001 
-    STA.L $7E780A,X 
+    LDA.W #$0000 : STA.W $0FAA,X 
+    LDA.W #$0001 : STA.L $7E780A,X 
 
 .return:
     RTS 
@@ -7081,14 +6681,11 @@ Function_Beetom_YMovement_LongHop_Falling:
     LDA.W $0FAA,X 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
-    STA.B $14 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
-    STA.B $12 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y : STA.B $14 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .notCollidedWithBlock 
-    LDA.W #Function_Beetom_DecideAction 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_DecideAction : STA.W $0FAC,X 
     BRA .return 
 
 
@@ -7099,8 +6696,7 @@ Function_Beetom_YMovement_LongHop_Falling:
     STA.W $0FAA,X 
     CMP.W #$0040 
     BMI .return 
-    LDA.W #$0040 
-    STA.W $0FAA,X 
+    LDA.W #$0040 : STA.W $0FAA,X 
 
 .return:
     RTS 
@@ -7127,8 +6723,7 @@ Function_Beetom_LungeLeft:
     LDA.L $7E7812,X 
     EOR.W #$0001 
     STA.L $7E7812,X 
-    LDA.W #Function_Beetom_StartDropping 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -7145,16 +6740,14 @@ Function_Beetom_LungeRight:
 .falling:
     JSR.W Function_Beetom_YMovement_Lunge_Falling 
 
-  + LDA.W #$0003 
-    STA.B $14 
+  + LDA.W #$0003 : STA.B $14 
     STZ.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .return 
     LDA.L $7E7812,X 
     EOR.W #$0001 
     STA.L $7E7812,X 
-    LDA.W #Function_Beetom_StartDropping 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -7164,14 +6757,11 @@ Function_Beetom_YMovement_Lunge_Rising:
     LDA.W $0FAA,X 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y 
-    STA.B $14 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y 
-    STA.B $12 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y : STA.B $14 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .notCollidedWithBlock 
-    LDA.W #Function_Beetom_StartDropping 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
     BRA .return 
 
 
@@ -7181,10 +6771,8 @@ Function_Beetom_YMovement_Lunge_Rising:
     SBC.W #$0005 
     STA.W $0FAA,X 
     BPL .return 
-    LDA.W #$0000 
-    STA.W $0FAA,X 
-    LDA.W #$0001 
-    STA.L $7E780A,X 
+    LDA.W #$0000 : STA.W $0FAA,X 
+    LDA.W #$0001 : STA.L $7E780A,X 
 
 .return:
     RTS 
@@ -7194,14 +6782,11 @@ Function_Beetom_YMovement_Lunge_Falling:
     LDA.W $0FAA,X 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
-    STA.B $14 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
-    STA.B $12 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y : STA.B $14 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .notCollidedWithBlock 
-    LDA.W #Function_Beetom_DecideAction 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_DecideAction : STA.W $0FAC,X 
     BRA .return 
 
 
@@ -7212,8 +6797,7 @@ Function_Beetom_YMovement_Lunge_Falling:
     STA.W $0FAA,X 
     CMP.W #$0040 
     BMI .return 
-    LDA.W #$0040 
-    STA.W $0FAA,X 
+    LDA.W #$0040 : STA.W $0FAA,X 
 
 .return:
     RTS 
@@ -7224,28 +6808,22 @@ Function_Beetom_DrainingSamus_FacingLeft:
     LDA.W $0FB0,X 
     BNE .attached 
     STZ.B $12 
-    LDA.W #$0010 
-    STA.B $14 
+    LDA.W #$0010 : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWithWall 
-    LDA.W #$0001 
-    STA.L $7E7812,X 
+    LDA.W #$0001 : STA.L $7E7812,X 
     STZ.B $12 
-    LDA.W #$FFE0 
-    STA.B $14 
+    LDA.W #$FFE0 : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
 
 .notCollidedWithWall:
-    LDA.W #$0000 
-    STA.L $7E7810,X 
-    LDA.W #Function_Beetom_StartBeingFlung 
-    STA.W $0FAC,X 
+    LDA.W #$0000 : STA.L $7E7810,X 
+    LDA.W #Function_Beetom_StartBeingFlung : STA.W $0FAC,X 
     BRA .return 
 
 
 .attached:
-    LDA.W $0AF6 
-    STA.W $0F7A,X 
+    LDA.W $0AF6 : STA.W $0F7A,X 
     LDA.W $0AFA 
     SEC 
     SBC.W #$0004 
@@ -7261,28 +6839,22 @@ Function_Beetom_DrainingSamus_FacingRight:
     LDA.W $0FB0,X 
     BNE .attached 
     STZ.B $12 
-    LDA.W #$FFF0 
-    STA.B $14 
+    LDA.W #$FFF0 : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWithWall 
-    LDA.W #$0000 
-    STA.L $7E7812,X 
+    LDA.W #$0000 : STA.L $7E7812,X 
     STZ.B $12 
-    LDA.W #$0020 
-    STA.B $14 
+    LDA.W #$0020 : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
 
 .notCollidedWithWall:
-    LDA.W #$0000 
-    STA.L $7E7810,X 
-    LDA.W #Function_Beetom_StartBeingFlung 
-    STA.W $0FAC,X 
+    LDA.W #$0000 : STA.L $7E7810,X 
+    LDA.W #Function_Beetom_StartBeingFlung : STA.W $0FAC,X 
     BRA .return 
 
 
 .attached:
-    LDA.W $0AF6 
-    STA.W $0F7A,X 
+    LDA.W $0AF6 : STA.W $0F7A,X 
     LDA.W $0AFA 
     SEC 
     SBC.W #$0004 
@@ -7307,22 +6879,18 @@ UpdateBeetomButtonCounter:
 
 Function_Beetom_Dropping:
     LDX.W $0E54 
-    LDA.W #$0003 
-    STA.B $14 
-    LDA.W #$0000 
-    STA.B $12 
+    LDA.W #$0003 : STA.B $14 
+    LDA.W #$0000 : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .return 
     LDA.L $7E7812,X 
     BNE .keepLeft 
-    LDA.W #Function_Beetom_StartCrawlingLeft 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartCrawlingLeft : STA.W $0FAC,X 
     BRA .return 
 
 
 .keepLeft:
-    LDA.W #Function_Beetom_StartCrawlingRight 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartCrawlingRight : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -7338,14 +6906,11 @@ Function_Beetom_Movement_BeingFlung:
     LDA.W $0FAA,X 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
-    STA.B $14 
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
-    STA.B $12 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y : STA.B $14 
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .notCollidedWithBlock 
-    LDA.W #Function_Beetom_DecideAction 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_DecideAction : STA.W $0FAC,X 
     BRA + 
 
 
@@ -7356,8 +6921,7 @@ Function_Beetom_Movement_BeingFlung:
     STA.W $0FAA,X 
     CMP.W #$0040 
     BMI + 
-    LDA.W #$0040 
-    STA.W $0FAA,X 
+    LDA.W #$0040 : STA.W $0FAA,X 
 
   + LDA.L $7E7812,X 
     BNE .right 
@@ -7377,8 +6941,7 @@ Function_Beetom_Movement_BeingFlung:
     LDA.L $7E7812,X 
     EOR.W #$0001 
     STA.L $7E7812,X 
-    LDA.W #Function_Beetom_StartDropping 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -7390,21 +6953,16 @@ EnemyTouch_Beetom:
     BNE .attached 
     LDA.L $7E7812,X 
     BNE .right 
-    LDA.W #Function_Beetom_StartDrainingSamus_FacingLeft 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDrainingSamus_FacingLeft : STA.W $0FAC,X 
     BRA + 
 
 
 .right:
-    LDA.W #Function_Beetom_StartDrainingSamus_FacingRight 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDrainingSamus_FacingRight : STA.W $0FAC,X 
 
-  + LDA.W #$0001 
-    STA.L $7E7810,X 
-    LDA.W #$0040 
-    STA.W $0FB0,X 
-    LDA.W #$0002 
-    STA.W $0F9A,X 
+  + LDA.W #$0001 : STA.L $7E7810,X 
+    LDA.W #$0040 : STA.W $0FB0,X 
+    LDA.W #$0002 : STA.W $0F9A,X 
     LDA.W $0AF6 
     SEC 
     SBC.W $0F7A,X 
@@ -7434,8 +6992,7 @@ EnemyTouch_Beetom:
 
 .damage:
     JSL.L CommonA8_NormalEnemyTouchAI 
-    LDA.W #$0000 
-    STA.W $18A8 
+    LDA.W #$0000 : STA.W $18A8 
     STA.W $18AA 
 
 .return:
@@ -7454,12 +7011,10 @@ EnemyShot_Beetom:
     BNE .return 
 
 .startDropping:
-    LDA.W #Function_Beetom_StartDropping 
-    STA.W $0FAC,X 
+    LDA.W #Function_Beetom_StartDropping : STA.W $0FAC,X 
 
 .return:
-    LDA.W #$0000 
-    STA.L $7E7810,X 
+    LDA.W #$0000 : STA.L $7E7810,X 
     RTL 
 
 
@@ -7833,33 +7388,23 @@ InitAI_Powamp:
     LDA.W $0F86,X 
     ORA.W #$2000 
     STA.W $0F86,X 
-    LDA.W #Spritemap_CommonA8_Nothing 
-    STA.W $0F8E,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #Spritemap_CommonA8_Nothing : STA.W $0F8E,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDA.W $0FB4,X 
     BNE .balloon 
-    LDA.W #$003C 
-    STA.W $0FB0,X 
-    LDA.W #Function_Powamp_Deflated_Resting 
-    STA.W $0FB2,X 
-    LDA.W #InstList_Powamp_Body_SlowAnimation 
-    STA.W $0F92,X 
+    LDA.W #$003C : STA.W $0FB0,X 
+    LDA.W #Function_Powamp_Deflated_Resting : STA.W $0FB2,X 
+    LDA.W #InstList_Powamp_Body_SlowAnimation : STA.W $0F92,X 
     BRA .return 
 
 
 .balloon:
-    LDA.W $0F7A,X 
-    STA.W $0FA8,X 
-    LDA.W $0F7E,X 
-    STA.W $0FAA,X 
-    LDA.W #RTL_A8C568 
-    STA.W $0FB2,X 
-    LDA.W #InstList_Powamp_Balloon_Deflated 
-    STA.W $0F92,X 
-    LDA.W $0FB6,X 
-    STA.W $0FAE,X 
+    LDA.W $0F7A,X : STA.W $0FA8,X 
+    LDA.W $0F7E,X : STA.W $0FAA,X 
+    LDA.W #RTL_A8C568 : STA.W $0FB2,X 
+    LDA.W #InstList_Powamp_Balloon_Deflated : STA.W $0F92,X 
+    LDA.W $0FB6,X : STA.W $0FAE,X 
 
 .return:
     RTL 
@@ -7941,14 +7486,10 @@ Function_Powamp_Deflated_Resting:
     BPL .done 
 
 .timerExpired:
-    LDA.W #$0001 
-    STA.W $0F54,X 
-    LDA.W #InstList_Powamp_Balloon_StartingToRise 
-    STA.W $0F52,X 
-    LDA.W #Function_Powamp_Inflating 
-    STA.W $0FB2,X 
-    LDA.W #$000A 
-    STA.W $0FB0,X 
+    LDA.W #$0001 : STA.W $0F54,X 
+    LDA.W #InstList_Powamp_Balloon_StartingToRise : STA.W $0F52,X 
+    LDA.W #Function_Powamp_Inflating : STA.W $0FB2,X 
+    LDA.W #$000A : STA.W $0FB0,X 
 
 .done:
     JSR.W HandlePowampBalloonYOffset 
@@ -7961,16 +7502,11 @@ Function_Powamp_Inflating:
     BPL .done 
 
 .timerExpired:
-    LDA.W #Function_Powamp_Inflated_RiseToTargetHeight 
-    STA.W $0FB2,X 
-    LDA.W Powamp_InitialYVelocity_Rising 
-    STA.W $0FA8,X 
-    LDA.W Powamp_InitialYVelocity_Rising+2 
-    STA.W $0FAA,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #InstList_Powamp_Body_FastAnimation 
-    STA.W $0F92,X 
+    LDA.W #Function_Powamp_Inflated_RiseToTargetHeight : STA.W $0FB2,X 
+    LDA.W Powamp_InitialYVelocity_Rising : STA.W $0FA8,X 
+    LDA.W Powamp_InitialYVelocity_Rising+2 : STA.W $0FAA,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #InstList_Powamp_Body_FastAnimation : STA.W $0F92,X 
 
 .done:
     JSR.W HandlePowampBalloonYOffset 
@@ -7981,8 +7517,7 @@ Function_Powamp_Inflated_RiseToTargetHeight:
     LDA.W $0F8A,X 
     BIT.W #$0001 
     BEQ .notGrappleAI 
-    LDA.W #Function_Powamp_Grappled_RiseToTargetHeight 
-    STA.W $0FB2,X 
+    LDA.W #Function_Powamp_Grappled_RiseToTargetHeight : STA.W $0FB2,X 
     JMP.W Function_Powamp_Grappled_RiseToTargetHeight 
 
 
@@ -7992,8 +7527,7 @@ Function_Powamp_Inflated_RiseToTargetHeight:
     BPL .timerNotExpired 
 
 .negativeTimer:
-    LDA.W #$0005 
-    STA.W $0FAE,X 
+    LDA.W #$0005 : STA.W $0FAE,X 
     LDA.W $0FAC,X 
     ASL A 
     TAY 
@@ -8019,10 +7553,8 @@ Function_Powamp_Inflated_RiseToTargetHeight:
     LDA.W $0FA8,X 
     ADC.W Powamp_YAccel_Rising 
     STA.W $0FA8,X 
-    LDA.W $0FA8,X 
-    STA.B $14 
-    LDA.W $0FAA,X 
-    STA.B $12 
+    LDA.W $0FA8,X : STA.B $14 
+    LDA.W $0FAA,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .doneRising 
     LDA.W $0F6A,X 
@@ -8036,20 +7568,15 @@ Function_Powamp_Inflated_RiseToTargetHeight:
     BEQ .centered 
     CMP.W #$0006 
     BEQ .centered 
-    LDA.W #Function_Powamp_Inflated_FinishWiggle 
-    STA.W $0FB2,X 
+    LDA.W #Function_Powamp_Inflated_FinishWiggle : STA.W $0FB2,X 
     BRA .done 
 
 
 .centered:
-    LDA.W #Function_Powamp_Deflating 
-    STA.W $0FB2,X 
-    LDA.W #$000A 
-    STA.W $0FB0,X 
-    LDA.W #$0001 
-    STA.W $0F54,X 
-    LDA.W #InstList_Powamp_Balloon_StartSinking 
-    STA.W $0F52,X 
+    LDA.W #Function_Powamp_Deflating : STA.W $0FB2,X 
+    LDA.W #$000A : STA.W $0FB0,X 
+    LDA.W #$0001 : STA.W $0F54,X 
+    LDA.W #InstList_Powamp_Balloon_StartSinking : STA.W $0F52,X 
 
 .done:
     JSR.W HandlePowampBalloonYOffset 
@@ -8062,8 +7589,7 @@ Function_Powamp_Inflated_FinishWiggle:
     BPL .continueRising 
 
 .timerExpired:
-    LDA.W #$0005 
-    STA.W $0FAE,X 
+    LDA.W #$0005 : STA.W $0FAE,X 
     LDA.W $0FAC,X 
     ASL A 
     TAY 
@@ -8087,14 +7613,10 @@ Function_Powamp_Inflated_FinishWiggle:
 
 
 .centered:
-    LDA.W #Function_Powamp_Deflating 
-    STA.W $0FB2,X 
-    LDA.W #$000A 
-    STA.W $0FB0,X 
-    LDA.W #$0001 
-    STA.W $0F54,X 
-    LDA.W #InstList_Powamp_Balloon_StartSinking 
-    STA.W $0F52,X 
+    LDA.W #Function_Powamp_Deflating : STA.W $0FB2,X 
+    LDA.W #$000A : STA.W $0FB0,X 
+    LDA.W #$0001 : STA.W $0F54,X 
+    LDA.W #InstList_Powamp_Balloon_StartSinking : STA.W $0F52,X 
     BRA .return 
 
 
@@ -8106,10 +7628,8 @@ Function_Powamp_Inflated_FinishWiggle:
     LDA.W $0FA8,X 
     ADC.W Powamp_YAccel_Rising 
     STA.W $0FA8,X 
-    LDA.W $0FA8,X 
-    STA.B $14 
-    LDA.W $0FAA,X 
-    STA.B $12 
+    LDA.W $0FA8,X : STA.B $14 
+    LDA.W $0FAA,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
 
 .return:
@@ -8121,8 +7641,7 @@ Function_Powamp_Grappled_RiseToTargetHeight:
     LDA.W $0F8A,X 
     BIT.W #$0001 
     BNE .grappleAI 
-    LDA.W #Function_Powamp_Inflated_FinishWiggle 
-    STA.W $0FB2,X 
+    LDA.W #Function_Powamp_Inflated_FinishWiggle : STA.W $0FB2,X 
     RTL 
 
 
@@ -8132,8 +7651,7 @@ Function_Powamp_Grappled_RiseToTargetHeight:
     BPL .timerNotExpired 
 
 .timerExpired:
-    LDA.W #$0005 
-    STA.W $0FAE,X 
+    LDA.W #$0005 : STA.W $0FAE,X 
     LDA.W $0FAC,X 
     ASL A 
     TAY 
@@ -8159,10 +7677,8 @@ Function_Powamp_Grappled_RiseToTargetHeight:
     LDA.W $0FA8,X 
     ADC.W Powamp_YAccel_Rising 
     STA.W $0FA8,X 
-    LDA.W $0FA8,X 
-    STA.B $14 
-    LDA.W $0FAA,X 
-    STA.B $12 
+    LDA.W $0FA8,X : STA.B $14 
+    LDA.W $0FAA,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .doneSinking 
     LDA.W $0F6A,X 
@@ -8176,14 +7692,12 @@ Function_Powamp_Grappled_RiseToTargetHeight:
     BEQ .centered 
     CMP.W #$0006 
     BEQ .centered 
-    LDA.W #Function_Powamp_Grappled_FinishWiggle 
-    STA.W $0FB2,X 
+    LDA.W #Function_Powamp_Grappled_FinishWiggle : STA.W $0FB2,X 
     BRA .return 
 
 
 .centered:
-    LDA.W #Function_Powamp_Grappled_Resting 
-    STA.W $0FB2,X 
+    LDA.W #Function_Powamp_Grappled_Resting : STA.W $0FB2,X 
 
 .return:
     JSR.W HandlePowampBalloonYOffset 
@@ -8194,8 +7708,7 @@ Function_Powamp_Grappled_FinishWiggle:
     LDA.W $0F8A,X 
     BIT.W #$0001 
     BNE .GrappleAI 
-    LDA.W #Function_Powamp_Inflated_FinishWiggle 
-    STA.W $0FB2,X 
+    LDA.W #Function_Powamp_Inflated_FinishWiggle : STA.W $0FB2,X 
     RTL 
 
 
@@ -8205,8 +7718,7 @@ Function_Powamp_Grappled_FinishWiggle:
     BPL .continueRising 
 
 .timerExpired:
-    LDA.W #$0005 
-    STA.W $0FAE,X 
+    LDA.W #$0005 : STA.W $0FAE,X 
     LDA.W $0FAC,X 
     ASL A 
     TAY 
@@ -8230,8 +7742,7 @@ Function_Powamp_Grappled_FinishWiggle:
 
 
 .centered:
-    LDA.W #Function_Powamp_Grappled_Resting 
-    STA.W $0FB2,X 
+    LDA.W #Function_Powamp_Grappled_Resting : STA.W $0FB2,X 
     BRA .return 
 
 
@@ -8243,10 +7754,8 @@ Function_Powamp_Grappled_FinishWiggle:
     LDA.W $0FA8,X 
     ADC.W Powamp_YAccel_Rising 
     STA.W $0FA8,X 
-    LDA.W $0FA8,X 
-    STA.B $14 
-    LDA.W $0FAA,X 
-    STA.B $12 
+    LDA.W $0FA8,X : STA.B $14 
+    LDA.W $0FAA,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
 
 .return:
@@ -8258,14 +7767,10 @@ Function_Powamp_Grappled_Resting:
     LDA.W $0F8A,X 
     BIT.W #$0001 
     BNE .done 
-    LDA.W #Function_Powamp_Deflating 
-    STA.W $0FB2,X 
-    LDA.W #$000A 
-    STA.W $0FB0,X 
-    LDA.W #$0001 
-    STA.W $0F54,X 
-    LDA.W #InstList_Powamp_Balloon_StartSinking 
-    STA.W $0F52,X 
+    LDA.W #Function_Powamp_Deflating : STA.W $0FB2,X 
+    LDA.W #$000A : STA.W $0FB0,X 
+    LDA.W #$0001 : STA.W $0F54,X 
+    LDA.W #InstList_Powamp_Balloon_StartSinking : STA.W $0F52,X 
 
 .done:
     JSR.W HandlePowampBalloonYOffset 
@@ -8278,12 +7783,9 @@ Function_Powamp_Deflating:
     BPL .done 
 
 .timerExpired:
-    LDA.W #Function_Powamp_Deflated_Sinking 
-    STA.W $0FB2,X 
-    LDA.W Powamp_InitialYVelocity_Sinking 
-    STA.W $0FA8,X 
-    LDA.W Powamp_InitialYVelocity_Sinking+2 
-    STA.W $0FAA,X 
+    LDA.W #Function_Powamp_Deflated_Sinking : STA.W $0FB2,X 
+    LDA.W Powamp_InitialYVelocity_Sinking : STA.W $0FA8,X 
+    LDA.W Powamp_InitialYVelocity_Sinking+2 : STA.W $0FAA,X 
 
 .done:
     JSR.W HandlePowampBalloonYOffset 
@@ -8298,24 +7800,17 @@ Function_Powamp_Deflated_Sinking:
     LDA.W $0FA8,X 
     ADC.W Powamp_YAccel_Sinking 
     STA.W $0FA8,X 
-    LDA.W $0FA8,X 
-    STA.B $14 
-    LDA.W $0FAA,X 
-    STA.B $12 
+    LDA.W $0FA8,X : STA.B $14 
+    LDA.W $0FAA,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
     LDA.W $0F7E,X 
     CMP.W $0F6A,X 
     BMI .done 
-    LDA.W $0F6A,X 
-    STA.W $0F7E,X 
-    LDA.W #Function_Powamp_Deflated_Resting 
-    STA.W $0FB2,X 
-    LDA.W #$003C 
-    STA.W $0FB0,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #InstList_Powamp_Body_SlowAnimation 
-    STA.W $0F92,X 
+    LDA.W $0F6A,X : STA.W $0F7E,X 
+    LDA.W #Function_Powamp_Deflated_Resting : STA.W $0FB2,X 
+    LDA.W #$003C : STA.W $0FB0,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #InstList_Powamp_Body_SlowAnimation : STA.W $0F92,X 
 
 .done:
     JSR.W HandlePowampBalloonYOffset 
@@ -8337,15 +7832,11 @@ Function_Powamp_FatalDamage:
     LSR A 
     BEQ + 
     TAY 
-    LDA.W .instListPointers,Y 
-    STA.W $0F52,X 
-    LDA.W #$0001 
-    STA.W $0F54,X 
+    LDA.W .instListPointers,Y : STA.W $0F52,X 
+    LDA.W #$0001 : STA.W $0F54,X 
 
-  + LDA.W #Function_Powamp_DeathSequence 
-    STA.W $0FB2,X 
-    LDA.W #$0020 
-    STA.W $0FB0,X 
+  + LDA.W #Function_Powamp_DeathSequence : STA.W $0FB2,X 
+    LDA.W #$0020 : STA.W $0FB0,X 
     JSR.W HandlePowampBalloonYOffset 
     RTL 
 
@@ -8396,8 +7887,7 @@ EnemyTouch_Powamp:
     PLA 
     STA.W $0F96,X 
     JSR.W FirePowampSpikesIn8Directions 
-    LDA.W #$0A00 
-    STA.W $0F96,X 
+    LDA.W #$0A00 : STA.W $0F96,X 
 
 .return:
     RTL 
@@ -8417,8 +7907,7 @@ EnemyShot_Powamp:
     LDA.W $0F8A,X 
     BIT.W #$0004 
     BEQ .notFrozenAI 
-    LDA.W $0F9E,X 
-    STA.W $0F5E,X 
+    LDA.W $0F9E,X : STA.W $0F5E,X 
     LDA.W $0F4A,X 
     ORA.W #$0004 
     STA.W $0F4A,X 
@@ -8427,8 +7916,7 @@ EnemyShot_Powamp:
     LDA.W $0F8A,X 
     BIT.W #$0002 
     BEQ .notHurtAI 
-    LDA.W $0F9C,X 
-    STA.W $0F5C,X 
+    LDA.W $0F9C,X : STA.W $0F5C,X 
     LDA.W $0F4A,X 
     ORA.W #$0002 
     STA.W $0F4A,X 
@@ -8436,10 +7924,8 @@ EnemyShot_Powamp:
 .notHurtAI:
     LDA.W $0F8C,X 
     BNE .return 
-    LDA.W #Function_Powamp_FatalDamage 
-    STA.W $0FB2,X 
-    LDA.W #$0001 
-    STA.W $0FB6,X 
+    LDA.W #Function_Powamp_FatalDamage : STA.W $0FB2,X 
+    LDA.W #$0001 : STA.W $0FB6,X 
 
 .return:
     PLB 
@@ -8458,16 +7944,11 @@ PowerBombReaction_Powamp:
 
 
 .notDead:
-    LDA.W $0FA2,X 
-    STA.W $0F62,X 
-    LDA.W $0FA0,X 
-    STA.W $0F60,X 
-    LDA.W $0F9C,X 
-    STA.W $0F5C,X 
-    LDA.W $0F9E,X 
-    STA.W $0F5E,X 
-    LDA.W $0F8A,X 
-    STA.W $0F4A,X 
+    LDA.W $0FA2,X : STA.W $0F62,X 
+    LDA.W $0FA0,X : STA.W $0F60,X 
+    LDA.W $0F9C,X : STA.W $0F5C,X 
+    LDA.W $0F9E,X : STA.W $0F5E,X 
+    LDA.W $0F8A,X : STA.W $0F4A,X 
 
 .return:
     RTL 
@@ -9164,28 +8645,20 @@ InitAI_Robot:
     BEQ InitAI_RobotNoPower 
     LDX.W $0E54 
     SEP #$20 
-    LDA.B #EnemyGraphicsDrawnHook_Robot_PeriodicallyCyclePalettes>>16 
-    STA.W $178E 
+    LDA.B #EnemyGraphicsDrawnHook_Robot_PeriodicallyCyclePalettes>>16 : STA.W $178E 
     REP #$20 
-    LDA.W #EnemyGraphicsDrawnHook_Robot_PeriodicallyCyclePalettes 
-    STA.W $178C 
+    LDA.W #EnemyGraphicsDrawnHook_Robot_PeriodicallyCyclePalettes : STA.W $178C 
     LDA.W $0F86,X 
     ORA.W #$A000 
     STA.W $0F86,X 
-    LDA.W #$0004 
-    STA.W $0F94,X 
+    LDA.W #$0004 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #InstList_Robot_Initial 
-    STA.W $0F92,X 
-    LDA.W #$FE00 
-    STA.W $0FA8,X 
-    LDA.W #$0001 
-    STA.L $7ED654 
-    LDA.W #$0000 
-    STA.L $7ED656 
+    LDA.W #InstList_Robot_Initial : STA.W $0F92,X 
+    LDA.W #$FE00 : STA.W $0FA8,X 
+    LDA.W #$0001 : STA.L $7ED654 
+    LDA.W #$0000 : STA.L $7ED656 
     STA.W $0FAA,X 
-    LDA.W $0F96,X 
-    STA.L $7ED652 
+    LDA.W $0F96,X : STA.L $7ED652 
     RTL 
 
 
@@ -9204,27 +8677,21 @@ InitAI_RobotNoPower:
     STA.W $0FB4,X 
     ASL A 
     TAY 
-    LDA.W .pointers,Y 
-    STA.W $0F92,X 
+    LDA.W .pointers,Y : STA.W $0F92,X 
     LDA.W $0F86,X 
     ORA.W #$8000 
     STA.W $0F86,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #$0000 
-    STA.L $7ED654 
-    LDA.W #$0000 
-    STA.W $0FB0,X 
-    LDA.W #$0001 
-    STA.W $0FB2,X 
+    LDA.W #$0000 : STA.L $7ED654 
+    LDA.W #$0000 : STA.W $0FB0,X 
+    LDA.W #$0001 : STA.W $0FB2,X 
     LDA.L $7ED652 
     AND.W #$FF00 
     XBA 
     ASL #4
     TAX 
-    LDA.W #$000A 
-    STA.L $7EC112,X 
+    LDA.W #$000A : STA.L $7EC112,X 
     STA.L $7EC114,X 
     STA.L $7EC116,X 
     STA.L $7EC118,X 
@@ -9238,10 +8705,8 @@ InitAI_RobotNoPower:
 
 MainAI_Robot:
     LDX.W $0E54 
-    LDA.W $0FB0,X 
-    STA.B $12 
-    LDA.W $0FB2,X 
-    STA.B $14 
+    LDA.W $0FB0,X : STA.B $12 
+    LDA.W $0FB2,X : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS RTL_A8CC66 
     LDX.W $0E54 
@@ -9281,14 +8746,10 @@ EnemyGraphicsDrawnHook_Robot_PeriodicallyCyclePalettes:
     LDA.W .paletteColor9,Y 
     BMI .zero 
     STA.L $7EC112,X 
-    LDA.W .paletteColorA,Y 
-    STA.L $7EC114,X 
-    LDA.W .paletteColorB,Y 
-    STA.L $7EC116,X 
-    LDA.W .paletteColorC,Y 
-    STA.L $7EC118,X 
-    LDA.W .timer,Y 
-    STA.L $7ED654 
+    LDA.W .paletteColorA,Y : STA.L $7EC114,X 
+    LDA.W .paletteColorB,Y : STA.L $7EC116,X 
+    LDA.W .paletteColorC,Y : STA.L $7EC118,X 
+    LDA.W .timer,Y : STA.L $7ED654 
     TYA 
     CLC 
     ADC.W #$000A 
@@ -9337,12 +8798,9 @@ Instruction_Robot_FacingLeft_MoveForward_HandleWallOrFall:
     PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
-    LDA.W #$FE00 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.B $12 
-    LDA.W #$FFFC 
-    STA.B $14 
+    LDA.W #$FE00 : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.B $12 
+    LDA.W #$FFFC : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWithWall 
     LDA.W $0FAA,X 
@@ -9359,48 +8817,38 @@ Instruction_Robot_FacingLeft_MoveForward_HandleWallOrFall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow 
     AND.W #$FFFF 
     BEQ .notTouchingSamusFromBelow 
-    LDA.W #$0000 
-    STA.W $0B56 
-    LDA.W #$FFFC 
-    STA.W $0B58 
+    LDA.W #$0000 : STA.W $0B56 
+    LDA.W #$FFFC : STA.W $0B58 
 
 .notTouchingSamusFromBelow:
-    LDA.W $0F7E,X 
-    STA.W $0FAE,X 
-    LDA.W $0F7A,X 
-    STA.W $0FAC,X 
+    LDA.W $0F7E,X : STA.W $0FAE,X 
+    LDA.W $0F7A,X : STA.W $0FAC,X 
     SEC 
     SBC.W $0F82,X 
     SEC 
     SBC.W $0F82,X 
     STA.W $0F7A,X 
     STZ.B $12 
-    LDA.W #$0001 
-    STA.B $14 
+    LDA.W #$0001 : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
     LDA.W $0FAA,X 
     CLC 
     ADC.W #$0008 
     STA.W $0FAA,X 
-    LDA.W $0FAC,X 
-    STA.W $0F7A,X 
-    LDA.W $0FAE,X 
-    STA.W $0F7E,X 
+    LDA.W $0FAC,X : STA.W $0F7A,X 
+    LDA.W $0FAE,X : STA.W $0F7E,X 
     PLY 
     LDX.W $0E54 
-    LDA.W #$0200 
-    STA.W $0FA8,X 
+    LDA.W #$0200 : STA.W $0FA8,X 
     LDY.W #InstList_Robot_ApproachingAFallToTheLeft 
     PLX 
     RTL 
 
 
 .collidedWithBlock:
-    LDA.W $0FAC,X 
-    STA.W $0F7A,X 
-    LDA.W $0FAE,X 
-    STA.W $0F7E,X 
+    LDA.W $0FAC,X : STA.W $0F7A,X 
+    LDA.W $0FAE,X : STA.W $0F7E,X 
     PLY 
     PLX 
     RTL 
@@ -9411,12 +8859,9 @@ Instruction_Robot_FacingLeft_MoveForward_HandleHittingWall:
     PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
-    LDA.W #$FE00 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.B $12 
-    LDA.W #$FFFC 
-    STA.B $14 
+    LDA.W #$FE00 : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.B $12 
+    LDA.W #$FFFC : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWtihWall 
     LDA.W $0FAA,X 
@@ -9433,10 +8878,8 @@ Instruction_Robot_FacingLeft_MoveForward_HandleHittingWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow 
     AND.W #$FFFF 
     BEQ .return 
-    LDA.W #$0000 
-    STA.W $0B56 
-    LDA.W #$FFFC 
-    STA.W $0B58 
+    LDA.W #$0000 : STA.W $0B56 
+    LDA.W #$FFFC : STA.W $0B58 
 
 .return:
     PLY 
@@ -9449,12 +8892,9 @@ Instruction_Robot_FacingLeft_MoveBackward_HandleWallOrFall:
     PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
-    LDA.W #$FE00 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.B $12 
-    LDA.W #$0004 
-    STA.B $14 
+    LDA.W #$FE00 : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.B $12 
+    LDA.W #$0004 : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWithWall 
     LDA.W $0FAA,X 
@@ -9471,48 +8911,38 @@ Instruction_Robot_FacingLeft_MoveBackward_HandleWallOrFall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow 
     AND.W #$FFFF 
     BEQ .notTouchingSamusFromBelow 
-    LDA.W #$0000 
-    STA.W $0B56 
-    LDA.W #$0004 
-    STA.W $0B58 
+    LDA.W #$0000 : STA.W $0B56 
+    LDA.W #$0004 : STA.W $0B58 
 
 .notTouchingSamusFromBelow:
-    LDA.W $0F7E,X 
-    STA.W $0FAE,X 
-    LDA.W $0F7A,X 
-    STA.W $0FAC,X 
+    LDA.W $0F7E,X : STA.W $0FAE,X 
+    LDA.W $0F7A,X : STA.W $0FAC,X 
     CLC 
     ADC.W $0F82,X 
     CLC 
     ADC.W $0F82,X 
     STA.W $0F7A,X 
     STZ.B $12 
-    LDA.W #$0001 
-    STA.B $14 
+    LDA.W #$0001 : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
     LDA.W $0FAA,X 
     CLC 
     ADC.W #$0008 
     STA.W $0FAA,X 
-    LDA.W $0FAC,X 
-    STA.W $0F7A,X 
-    LDA.W $0FAE,X 
-    STA.W $0F7E,X 
+    LDA.W $0FAC,X : STA.W $0F7A,X 
+    LDA.W $0FAE,X : STA.W $0F7E,X 
     PLY 
     LDX.W $0E54 
-    LDA.W #$FE00 
-    STA.W $0FA8,X 
+    LDA.W #$FE00 : STA.W $0FA8,X 
     LDY.W #InstList_Robot_ApproachingAFallToTheRight 
     PLX 
     RTL 
 
 
 .collidedWithBlock:
-    LDA.W $0FAC,X 
-    STA.W $0F7A,X 
-    LDA.W $0FAE,X 
-    STA.W $0F7E,X 
+    LDA.W $0FAC,X : STA.W $0F7A,X 
+    LDA.W $0FAE,X : STA.W $0F7E,X 
     PLY 
     PLX 
     RTL 
@@ -9523,12 +8953,9 @@ Instruction_Robot_FacingLeft_MoveBackward_HandleHittingWall:
     PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
-    LDA.W #$FE00 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.B $12 
-    LDA.W #$0004 
-    STA.B $14 
+    LDA.W #$FE00 : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.B $12 
+    LDA.W #$0004 : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWithWall 
     LDA.W $0FAA,X 
@@ -9545,10 +8972,8 @@ Instruction_Robot_FacingLeft_MoveBackward_HandleHittingWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow 
     AND.W #$FFFF 
     BEQ .return 
-    LDA.W #$0000 
-    STA.W $0B56 
-    LDA.W #$0004 
-    STA.W $0B58 
+    LDA.W #$0000 : STA.W $0B56 
+    LDA.W #$0004 : STA.W $0B58 
 
 .return:
     PLY 
@@ -9566,12 +8991,9 @@ Instruction_Robot_FacingRight_MoveForward_HandleWallOrFall:
     PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
-    LDA.W #$0200 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.B $12 
-    LDA.W #$0004 
-    STA.B $14 
+    LDA.W #$0200 : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.B $12 
+    LDA.W #$0004 : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWithWall 
     LDA.W $0FAA,X 
@@ -9588,48 +9010,38 @@ Instruction_Robot_FacingRight_MoveForward_HandleWallOrFall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow 
     AND.W #$FFFF 
     BEQ .notTouchingSamusFromBelow 
-    LDA.W #$0000 
-    STA.W $0B56 
-    LDA.W #$0004 
-    STA.W $0B58 
+    LDA.W #$0000 : STA.W $0B56 
+    LDA.W #$0004 : STA.W $0B58 
 
 .notTouchingSamusFromBelow:
-    LDA.W $0F7E,X 
-    STA.W $0FAE,X 
-    LDA.W $0F7A,X 
-    STA.W $0FAC,X 
+    LDA.W $0F7E,X : STA.W $0FAE,X 
+    LDA.W $0F7A,X : STA.W $0FAC,X 
     CLC 
     ADC.W $0F82,X 
     CLC 
     ADC.W $0F82,X 
     STA.W $0F7A,X 
     STZ.B $12 
-    LDA.W #$0001 
-    STA.B $14 
+    LDA.W #$0001 : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
     LDA.W $0FAA,X 
     CLC 
     ADC.W #$0008 
     STA.W $0FAA,X 
-    LDA.W $0FAC,X 
-    STA.W $0F7A,X 
-    LDA.W $0FAE,X 
-    STA.W $0F7E,X 
+    LDA.W $0FAC,X : STA.W $0F7A,X 
+    LDA.W $0FAE,X : STA.W $0F7E,X 
     PLY 
     LDX.W $0E54 
-    LDA.W #$FE00 
-    STA.W $0FA8,X 
+    LDA.W #$FE00 : STA.W $0FA8,X 
     LDY.W #InstList_Robot_ApproachingAFallToTheRight 
     PLX 
     RTL 
 
 
 .collidedWithBlock:
-    LDA.W $0FAC,X 
-    STA.W $0F7A,X 
-    LDA.W $0FAE,X 
-    STA.W $0F7E,X 
+    LDA.W $0FAC,X : STA.W $0F7A,X 
+    LDA.W $0FAE,X : STA.W $0F7E,X 
     PLY 
     PLX 
     RTL 
@@ -9640,12 +9052,9 @@ Instruction_Robot_FacingRight_MoveForward_HandleHittingWall:
     PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
-    LDA.W #$0200 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.B $12 
-    LDA.W #$0004 
-    STA.B $14 
+    LDA.W #$0200 : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.B $12 
+    LDA.W #$0004 : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWithWall 
     LDA.W $0FAA,X 
@@ -9662,10 +9071,8 @@ Instruction_Robot_FacingRight_MoveForward_HandleHittingWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow 
     AND.W #$FFFF 
     BEQ .return 
-    LDA.W #$0000 
-    STA.W $0B56 
-    LDA.W #$0004 
-    STA.W $0B58 
+    LDA.W #$0000 : STA.W $0B56 
+    LDA.W #$0004 : STA.W $0B58 
 
 .return:
     PLY 
@@ -9678,12 +9085,9 @@ Instruction_Robot_FacingRight_MoveBackward_HandleWallOrFall:
     PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
-    LDA.W #$0200 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.B $12 
-    LDA.W #$FFFC 
-    STA.B $14 
+    LDA.W #$0200 : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.B $12 
+    LDA.W #$FFFC : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWithWall 
     LDA.W $0FAA,X 
@@ -9700,48 +9104,38 @@ Instruction_Robot_FacingRight_MoveBackward_HandleWallOrFall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow 
     AND.W #$FFFF 
     BEQ .notTouchingSamusFromBelow 
-    LDA.W #$0000 
-    STA.W $0B56 
-    LDA.W #$FFFC 
-    STA.W $0B58 
+    LDA.W #$0000 : STA.W $0B56 
+    LDA.W #$FFFC : STA.W $0B58 
 
 .notTouchingSamusFromBelow:
-    LDA.W $0F7E,X 
-    STA.W $0FAE,X 
-    LDA.W $0F7A,X 
-    STA.W $0FAC,X 
+    LDA.W $0F7E,X : STA.W $0FAE,X 
+    LDA.W $0F7A,X : STA.W $0FAC,X 
     SEC 
     SBC.W $0F82,X 
     SEC 
     SBC.W $0F82,X 
     STA.W $0F7A,X 
     STZ.B $12 
-    LDA.W #$0001 
-    STA.B $14 
+    LDA.W #$0001 : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
     LDA.W $0FAA,X 
     CLC 
     ADC.W #$0008 
     STA.W $0FAA,X 
-    LDA.W $0FAE,X 
-    STA.W $0F7E,X 
-    LDA.W $0FAC,X 
-    STA.W $0F7A,X 
+    LDA.W $0FAE,X : STA.W $0F7E,X 
+    LDA.W $0FAC,X : STA.W $0F7A,X 
     PLY 
     LDX.W $0E54 
-    LDA.W #$0200 
-    STA.W $0FA8,X 
+    LDA.W #$0200 : STA.W $0FA8,X 
     LDY.W #InstList_Robot_ApproachingAFallToTheLeft 
     PLX 
     RTL 
 
 
 .collidedWithBlock:
-    LDA.W $0FAE,X 
-    STA.W $0F7E,X 
-    LDA.W $0FAC,X 
-    STA.W $0F7A,X 
+    LDA.W $0FAE,X : STA.W $0F7E,X 
+    LDA.W $0FAC,X : STA.W $0F7A,X 
     PLY 
     PLX 
     RTL 
@@ -9752,12 +9146,9 @@ Instruction_Robot_FacingRight_MoveBackward_HandleHittingWall:
     PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
-    LDA.W #$0200 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.B $12 
-    LDA.W #$FFFC 
-    STA.B $14 
+    LDA.W #$0200 : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.B $12 
+    LDA.W #$FFFC : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .notCollidedWithWall 
     LDA.W $0FAA,X 
@@ -9774,10 +9165,8 @@ Instruction_Robot_FacingRight_MoveBackward_HandleHittingWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow 
     AND.W #$FFFF 
     BEQ .return 
-    LDA.W #$0000 
-    STA.W $0B56 
-    LDA.W #$FFFC 
-    STA.W $0B58 
+    LDA.W #$0000 : STA.W $0B56 
+    LDA.W #$FFFC : STA.W $0B58 
 
 .return:
     PLY 
@@ -9818,18 +9207,14 @@ Instruction_Robot_Goto_FacingLeft_WalkingForwards:
 
 
 Instruction_Robot_TryShootingLaserUpRight:
-    LDA.W #InstList_Robot_FacingRight_ShotLaserUpRight 
-    STA.B $32 
-    LDA.W #EnemyProjectile_RobotLaser_UpRight 
-    STA.B $30 
+    LDA.W #InstList_Robot_FacingRight_ShotLaserUpRight : STA.B $32 
+    LDA.W #EnemyProjectile_RobotLaser_UpRight : STA.B $30 
     BRA HandleFiringLaser_Upwards 
 
 
 Instruction_Robot_TryShootingLaserUpLeft:
-    LDA.W #InstList_Robot_FacingLeft_ShotLaserUpLeft 
-    STA.B $32 
-    LDA.W #EnemyProjectile_RobotLaser_UpLeft 
-    STA.B $30 ; fallthrough to HandleFiringLaser_Upwards
+    LDA.W #InstList_Robot_FacingLeft_ShotLaserUpLeft : STA.B $32 
+    LDA.W #EnemyProjectile_RobotLaser_UpLeft : STA.B $30 ; fallthrough to HandleFiringLaser_Upwards
 
 HandleFiringLaser_Upwards:
     LDA.W $0FAA,X 
@@ -9854,14 +9239,12 @@ HandleFiringLaser_Upwards:
 
 
 Instruction_Robot_TryShootingLaserRight:
-    LDA.W #InstList_Robot_FacingRight_ShotLaserRight 
-    STA.B $32 
+    LDA.W #InstList_Robot_FacingRight_ShotLaserRight : STA.B $32 
     BRA HandleFiringLaser_Horizontal 
 
 
 Instruction_Robot_TryShootingLaserLeft:
-    LDA.W #InstList_Robot_FacingLeft_ShotLaserLeft 
-    STA.B $32 
+    LDA.W #InstList_Robot_FacingLeft_ShotLaserLeft : STA.B $32 
 
 HandleFiringLaser_Horizontal:
     LDA.W $0FAA,X 
@@ -9886,18 +9269,14 @@ HandleFiringLaser_Horizontal:
 
 
 Instruction_Robot_TryShootingLaserDownRight:
-    LDA.W #EnemyProjectile_RobotLaser_DownRight 
-    STA.B $30 
-    LDA.W #InstList_Robot_FacingRight_ShotLaserDownRight 
-    STA.B $32 
+    LDA.W #EnemyProjectile_RobotLaser_DownRight : STA.B $30 
+    LDA.W #InstList_Robot_FacingRight_ShotLaserDownRight : STA.B $32 
     BRA HandleFiringLaser_Downwards 
 
 
 Instruction_Robot_TryShootingLaserDownLeft:
-    LDA.W #EnemyProjectile_RobotLaser_DownLeft 
-    STA.B $30 
-    LDA.W #InstList_Robot_FacingLeft_ShotLaserDownLeft 
-    STA.B $32 
+    LDA.W #EnemyProjectile_RobotLaser_DownLeft : STA.B $30 
+    LDA.W #InstList_Robot_FacingLeft_ShotLaserDownLeft : STA.B $32 
 
 HandleFiringLaser_Downwards:
     LDA.W $0FAA,X 
@@ -9934,14 +9313,12 @@ EnemyTouch_Robot:
     LDA.W $0F7A,X 
     CMP.W $0AF6 
     BMI .rightOfSamus 
-    LDA.W #$FFFC 
-    STA.W $0B58 
+    LDA.W #$FFFC : STA.W $0B58 
     RTL 
 
 
 .rightOfSamus:
-    LDA.W #$0004 
-    STA.W $0B58 
+    LDA.W #$0004 : STA.W $0B58 
     RTL 
 
 
@@ -9991,8 +9368,7 @@ EnemyShot_Robot:
 
 .merge:
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     LDA.W $0FAA,X 
     CLC 
     ADC.W #$0040 
@@ -10778,28 +10154,21 @@ BullAccelerationIntervalTable_decel:
 
 InitAI_Bull:
     LDX.W $0E54 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #InstList_Bull_Normal 
-    STA.W $0F92,X 
+    LDA.W #InstList_Bull_Normal : STA.W $0F92,X 
     LDA.W $0FB4,X 
     ASL #2
     TAY 
-    LDA.W BullAccelerationIntervalTable_accel,Y 
-    STA.L $7E780A,X 
+    LDA.W BullAccelerationIntervalTable_accel,Y : STA.L $7E780A,X 
     STA.W $0FB2,X 
-    LDA.W BullAccelerationIntervalTable_decel,Y 
-    STA.L $7E780C,X 
-    LDA.W #$0010 
-    STA.W $0FB0,X 
-    LDA.W #Function_Bull_MovementDelay 
-    STA.W $0FA8,X 
+    LDA.W BullAccelerationIntervalTable_decel,Y : STA.L $7E780C,X 
+    LDA.W #$0010 : STA.W $0FB0,X 
+    LDA.W #Function_Bull_MovementDelay : STA.W $0FA8,X 
     LDA.W $0FB6,X 
     ASL A 
     TAY 
-    LDA.W BullConstants_MaxSpeeds,Y 
-    STA.L $7E7800,X 
+    LDA.W BullConstants_MaxSpeeds,Y : STA.L $7E7800,X 
     RTL 
 
 
@@ -10809,10 +10178,8 @@ MainAI_Bull:
     DEC A 
     STA.L $7E780E,X 
     BNE .function 
-    LDA.W #$0001 
-    STA.L $7E780E,X 
-    LDA.W #$0000 
-    STA.L $7E7806,X 
+    LDA.W #$0001 : STA.L $7E780E,X 
+    LDA.W #$0000 : STA.L $7E7806,X 
 
 .function:
     JSR.W ($0FA8,X) 
@@ -10823,10 +10190,8 @@ Function_Bull_MovementDelay:
     LDX.W $0E54 
     DEC.W $0FB0,X 
     BNE .return 
-    LDA.W #$0010 
-    STA.W $0FB0,X 
-    LDA.W #Function_Bull_TargetSamus 
-    STA.W $0FA8,X 
+    LDA.W #$0010 : STA.W $0FB0,X 
+    LDA.W #Function_Bull_TargetSamus : STA.W $0FA8,X 
 
 .return:
     RTS 
@@ -10840,10 +10205,8 @@ Function_Bull_TargetSamus:
     AND.W #$00FF 
     STA.L $7E7802,X 
     STA.L $7E7804,X 
-    LDA.W #Function_Bull_Accelerating 
-    STA.W $0FA8,X 
-    LDA.W #$0018 
-    STA.W $0FAC,X 
+    LDA.W #Function_Bull_Accelerating : STA.W $0FA8,X 
+    LDA.W #$0018 : STA.W $0FAC,X 
     RTS 
 
 
@@ -10871,10 +10234,8 @@ Function_Bull_Decelerating:
     BPL .decelerate 
 
 .stopped:
-    LDA.W #Function_Bull_MovementDelay 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.W $0FAA,X 
+    LDA.W #Function_Bull_MovementDelay : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.W $0FAA,X 
     STA.W $0FAC,X 
     STA.W $0FAE,X 
     RTS 
@@ -10900,10 +10261,8 @@ TriggerBullDecelerationIfTooFarOffTarget:
     JSL.L NegateA_A0B067 
     CMP.W #$0030 
     BMI .return 
-    LDA.W #Function_Bull_Decelerating 
-    STA.W $0FA8,X 
-    LDA.W #$0018 
-    STA.W $0FAC,X 
+    LDA.W #Function_Bull_Decelerating : STA.W $0FA8,X 
+    LDA.W #$0018 : STA.W $0FAC,X 
 
 .return:
     RTS 
@@ -10919,8 +10278,7 @@ BullXMovement:
     AND.W #$00FF 
     ASL A 
     TAX 
-    LDA.L SineCosineTables_16bitSine,X 
-    STA.B $12 
+    LDA.L SineCosineTables_16bitSine,X : STA.B $12 
     PLX 
     LDA.B $12 
     BPL .positive 
@@ -10932,8 +10290,7 @@ BullXMovement:
     AND.W #$FF00 
     XBA 
     STA.B $16 
-    LDA.W $0FAE,X 
-    STA.B $18 
+    LDA.W $0FAE,X : STA.B $18 
     JSR.W Math_24Bit_UnsignedMultiplication_A8DAB3 
     LDA.B $1A 
     BEQ .notLeft 
@@ -10958,8 +10315,7 @@ BullYMovement:
     AND.W #$00FF 
     ASL A 
     TAX 
-    LDA.L SineCosineTables_16bitSine,X 
-    STA.B $12 
+    LDA.L SineCosineTables_16bitSine,X : STA.B $12 
     PLX 
     LDA.B $12 
     BPL .positive 
@@ -10971,8 +10327,7 @@ BullYMovement:
     AND.W #$FF00 
     XBA 
     STA.B $16 
-    LDA.W $0FAE,X 
-    STA.B $18 
+    LDA.W $0FAE,X : STA.B $18 
     JSR.W Math_24Bit_UnsignedMultiplication_A8DAB3 
     LDA.B $1A 
     BEQ .notUp 
@@ -10992,8 +10347,7 @@ BullYMovement:
 AccelerateBull:
     DEC.W $0FB2,X 
     BNE .return 
-    LDA.L $7E780A,X 
-    STA.W $0FB2,X 
+    LDA.L $7E780A,X : STA.W $0FB2,X 
     LDA.W $0FAA,X 
     CLC 
     ADC.W $0FAC,X 
@@ -11010,8 +10364,7 @@ AccelerateBull:
 DecelerateBull:
     DEC.W $0FB2,X 
     BNE .return 
-    LDA.L $7E780C,X 
-    STA.W $0FB2,X 
+    LDA.L $7E780C,X : STA.W $0FB2,X 
     LDA.W $0FAA,X 
     SEC 
     SBC.W $0FAC,X 
@@ -11028,19 +10381,14 @@ DecelerateBull:
 Math_24Bit_UnsignedMultiplication_A8DAB3:
     PHP 
     SEP #$20 
-    LDA.B $16 
-    STA.W $4202 
-    LDA.B $18 
-    STA.W $4203 
+    LDA.B $16 : STA.W $4202 
+    LDA.B $18 : STA.W $4203 
     NOP #3
     REP #$20 
-    LDA.W $4216 
-    STA.B $1C 
+    LDA.W $4216 : STA.B $1C 
     SEP #$20 
-    LDA.B $16 
-    STA.W $4202 
-    LDA.B $19 
-    STA.W $4203 
+    LDA.B $16 : STA.W $4202 
+    LDA.B $19 : STA.W $4203 
     NOP #3
     REP #$20 
     LDA.W $4216 
@@ -11087,8 +10435,7 @@ Negate_1E_1C_A8DAF6:
 
 EnemyShot_Bull:
     LDX.W $0E54 
-    LDA.W $0F8C,X 
-    STA.L $7E8800,X 
+    LDA.W $0F8C,X : STA.L $7E8800,X 
     JSL.L CommonA8_NormalEnemyShotAI 
     LDA.W $0F8C,X 
     CMP.L $7E8800,X 
@@ -11099,11 +10446,9 @@ EnemyShot_Bull:
 .noDamage:
     LDA.L $7E7806,X 
     BNE .return 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #InstList_Bull_Shot_0 
-    STA.W $0F92,X 
+    LDA.W #InstList_Bull_Shot_0 : STA.W $0F92,X 
     LDA.W $18A6 
     ASL A 
     TAY 
@@ -11111,18 +10456,12 @@ EnemyShot_Bull:
     AND.W #$000F 
     ASL A 
     TAY 
-    LDA.W BullConstants_AngleToMove_upFacingRight,Y 
-    STA.L $7E7804,X 
-    LDA.W #$0100 
-    STA.W $0FAA,X 
-    LDA.W #$0600 
-    STA.W $0FAE,X 
-    LDA.W #Function_Bull_Decelerating 
-    STA.W $0FA8,X 
-    LDA.W #$0030 
-    STA.L $7E780E,X 
-    LDA.W #$0001 
-    STA.L $7E7806,X 
+    LDA.W BullConstants_AngleToMove_upFacingRight,Y : STA.L $7E7804,X 
+    LDA.W #$0100 : STA.W $0FAA,X 
+    LDA.W #$0600 : STA.W $0FAE,X 
+    LDA.W #Function_Bull_Decelerating : STA.W $0FA8,X 
+    LDA.W #$0030 : STA.L $7E780E,X 
+    LDA.W #$0001 : STA.L $7E7806,X 
 
 .return:
     RTL 
@@ -11316,19 +10655,14 @@ AlcoonConstants_XThresholdToHide:
 
 InitAI_Alcoon:
     LDX.W $0E54 
-    LDA.W #$0000 
-    STA.L $7E7808,X 
-    LDA.W $0F7E,X 
-    STA.W $0FB2,X 
-    LDA.W $0F7A,X 
-    STA.L $7E7804,X 
+    LDA.W #$0000 : STA.L $7E7808,X 
+    LDA.W $0F7E,X : STA.W $0FB2,X 
+    LDA.W $0F7A,X : STA.L $7E7804,X 
     LDA.W $0F86,X 
     ORA.W #$2000 
     STA.W $0F86,X 
-    LDA.W #InstList_Alcoon_FacingLeft_Walking_0 
-    STA.W $0F92,X 
-    LDA.W #Function_Alcoon_WaitForSamusToGetNear 
-    STA.W $0FA8,X 
+    LDA.W #InstList_Alcoon_FacingLeft_Walking_0 : STA.W $0F92,X 
+    LDA.W #Function_Alcoon_WaitForSamusToGetNear : STA.W $0FA8,X 
     JSR.W SetupAlcoonJumpMovement 
 
 .loopRising:
@@ -11343,10 +10677,8 @@ InitAI_Alcoon:
     BMI .loopRising 
 
 .loopFalling:
-    LDA.W $0FAC,X 
-    STA.B $12 
-    LDA.W $0FAA,X 
-    STA.B $14 
+    LDA.W $0FAC,X : STA.B $12 
+    LDA.W $0FAA,X : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
     JSR.W AlcoonYAcceleration 
@@ -11354,23 +10686,18 @@ InitAI_Alcoon:
 
 
 .collidedWithBlock:
-    LDA.W $0F7E,X 
-    STA.L $7E7806,X 
-    LDA.W $0FB2,X 
-    STA.W $0F7E,X 
+    LDA.W $0F7E,X : STA.L $7E7806,X 
+    LDA.W $0FB2,X : STA.W $0F7E,X 
     RTL 
 
 
 SetupAlcoonJumpMovement:
-    LDA.W #$FFF4 
-    STA.W $0FAA,X 
-    LDA.W #$0000 
-    STA.W $0FAC,X 
+    LDA.W #$FFF4 : STA.W $0FAA,X 
+    LDA.W #$0000 : STA.W $0FAC,X 
     STA.W $0FAE,X 
     STA.W $0FB0,X 
     STA.L $7E7800,X 
-    LDA.W #$8000 
-    STA.L $7E7802,X 
+    LDA.W #$8000 : STA.L $7E7802,X 
     RTS 
 
 
@@ -11423,10 +10750,8 @@ Function_Alcoon_WaitForSamusToGetNear:
     STA.W $0FAE,X 
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #Function_Alcoon_Emerging_Rising 
-    STA.W $0FA8,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #Function_Alcoon_Emerging_Rising : STA.W $0FA8,X 
     LDA.W #$005E 
     JSL.L QueueSound_Lib2_Max6 
 
@@ -11451,8 +10776,7 @@ Function_Alcoon_Emerging_Rising:
     BMI .return 
 
 .falling:
-    LDA.W #Function_Alcoon_Emerging_Falling 
-    STA.W $0FA8,X 
+    LDA.W #Function_Alcoon_Emerging_Falling : STA.W $0FA8,X 
     LDY.W #InstList_Alcoon_FacingLeft_Airborne_LookingForward 
     LDA.W $0FAE,X 
     BMI .keepLeft 
@@ -11461,8 +10785,7 @@ Function_Alcoon_Emerging_Rising:
 .keepLeft:
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
 
 .return:
     RTL 
@@ -11474,10 +10797,8 @@ Function_Alcoon_Emerging_Rising:
 
 
 Function_Alcoon_Emerging_Falling:
-    LDA.W $0FAC,X 
-    STA.B $12 
-    LDA.W $0FAA,X 
-    STA.B $14 
+    LDA.W $0FAC,X : STA.B $12 
+    LDA.W $0FAA,X : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
     JSR.W AlcoonYAcceleration 
@@ -11500,19 +10821,15 @@ Function_Alcoon_Emerging_Falling:
     STA.W $0FAE,X 
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #Function_Alcoon_MoveHorizontally_SpitFireballsAtSamus 
-    STA.W $0FA8,X 
-    LDA.W #$0001 
-    STA.L $7E7808,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #Function_Alcoon_MoveHorizontally_SpitFireballsAtSamus : STA.W $0FA8,X 
+    LDA.W #$0001 : STA.L $7E7808,X 
     RTL 
 
 
 Function_Alcoon_MoveHorizontally_SpitFireballsAtSamus:
     STZ.B $12 
-    LDA.W #$0002 
-    STA.B $14 
+    LDA.W #$0002 : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     LDA.L $7E7804,X 
     SEC 
@@ -11554,22 +10871,17 @@ Function_Alcoon_MoveHorizontally_SpitFireballsAtSamus:
 .fireballs:
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #RTL_A8DECC 
-    STA.W $0FA8,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #RTL_A8DECC : STA.W $0FA8,X 
 
 .return:
     RTL 
 
 
 .farAway:
-    LDA.W #Function_Alcoon_Hiding_Rising 
-    STA.W $0FA8,X 
-    LDA.W #$FFFC 
-    STA.W $0FAA,X 
-    LDA.W #$0000 
-    STA.W $0FAC,X 
+    LDA.W #Function_Alcoon_Hiding_Rising : STA.W $0FA8,X 
+    LDA.W #$FFFC : STA.W $0FAA,X 
+    LDA.W #$0000 : STA.W $0FAC,X 
     LDY.W #InstList_Alcoon_FacingLeft_Airborne_LookingForward 
     LDA.W $0FAE,X 
     BMI + 
@@ -11577,8 +10889,7 @@ Function_Alcoon_MoveHorizontally_SpitFireballsAtSamus:
 
   + TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTL 
 
 
@@ -11596,8 +10907,7 @@ Function_Alcoon_Hiding_Rising:
     STA.W $0F7E,X 
     JSR.W AlcoonYAcceleration 
     BMI .return 
-    LDA.W #Function_Alcoon_Hiding_Falling 
-    STA.W $0FA8,X 
+    LDA.W #Function_Alcoon_Hiding_Falling : STA.W $0FA8,X 
 
 .return:
     RTL 
@@ -11618,12 +10928,9 @@ Function_Alcoon_Hiding_Falling:
 
 
 .reachedTargetY:
-    LDA.W $0FB2,X 
-    STA.W $0F7E,X 
-    LDA.L $7E7804,X 
-    STA.W $0F7A,X 
-    LDA.W #Function_Alcoon_WaitForSamusToGetNear 
-    STA.W $0FA8,X 
+    LDA.W $0FB2,X : STA.W $0F7E,X 
+    LDA.L $7E7804,X : STA.W $0F7A,X 
+    LDA.W #Function_Alcoon_WaitForSamusToGetNear : STA.W $0FA8,X 
     RTL 
 
 
@@ -11655,8 +10962,7 @@ Instruction_Alcoon_SpawnAlcoonFireballDownward:
 
 Instruction_Alcoon_StartWalking:
     LDX.W $0E54 
-    LDA.W #Function_Alcoon_MoveHorizontally_SpitFireballsAtSamus 
-    STA.W $0FA8,X 
+    LDA.W #Function_Alcoon_MoveHorizontally_SpitFireballsAtSamus : STA.W $0FA8,X 
     LDA.W $05E5 
     AND.W #$0003 
     BNE + 
@@ -11683,8 +10989,7 @@ Instruction_Alcoon_MoveHorizontally_TurnIfWallCollision:
     PHY 
     LDX.W $0E54 
     STZ.B $12 
-    LDA.W $0FAE,X 
-    STA.B $14 
+    LDA.W $0FAE,X : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCS .turnAround 
     JSL.L AlignEnemyYPositionWIthNonSquareSlope 
@@ -12121,25 +11426,19 @@ AtomicInstListPointers:
 
 InitAI_Atomic:
     LDX.W $0E54 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDA.W $0FB4,X 
     ASL A 
     TAY 
-    LDA.W AtomicInstListPointers,Y 
-    STA.W $0F92,X 
+    LDA.W AtomicInstListPointers,Y : STA.W $0F92,X 
     LDA.W $0FB6,X 
     ASL #3
     TAY 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
-    STA.L $7E7802,X 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y 
-    STA.L $7E7800,X 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y 
-    STA.L $7E7806,X 
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y 
-    STA.L $7E7804,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.L $7E7802,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.L $7E7800,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.L $7E7806,X 
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.L $7E7804,X 
     RTL 
 
 
@@ -12156,12 +11455,10 @@ MainAI_Atomic:
 
 ChooseAtomicYMovementFunction:
     LDX.W $0E54 
-    LDA.W #Function_Atomic_MoveUp 
-    STA.W $0FA8,X 
+    LDA.W #Function_Atomic_MoveUp : STA.W $0FA8,X 
     JSL.L Get_SamusY_minus_EnemyY 
     BMI .return 
-    LDA.W #Function_Atomic_MoveDown 
-    STA.W $0FA8,X 
+    LDA.W #Function_Atomic_MoveDown : STA.W $0FA8,X 
 
 .return:
     RTS 
@@ -12169,12 +11466,10 @@ ChooseAtomicYMovementFunction:
 
 ChooseAtomicXMovementFunction:
     LDX.W $0E54 
-    LDA.W #Function_Atomic_MoveLeft 
-    STA.W $0FAA,X 
+    LDA.W #Function_Atomic_MoveLeft : STA.W $0FAA,X 
     JSL.L Get_SamusX_minus_EnemyX 
     BMI .return 
-    LDA.W #Function_Atomic_MoveRight 
-    STA.W $0FAA,X 
+    LDA.W #Function_Atomic_MoveRight : STA.W $0FAA,X 
 
 .return:
     RTS 
@@ -12481,19 +11776,14 @@ InitAI_Spark:
     AND.W #$0003 
     ASL A 
     TAY 
-    LDA.W .functionPointers,Y 
-    STA.W $0FAA,X 
-    LDA.W $0FB6,X 
-    STA.W $0FB0,X 
+    LDA.W .functionPointers,Y : STA.W $0FAA,X 
+    LDA.W $0FB6,X : STA.W $0FB0,X 
     STZ.B $12 
     JSR.W SetSparkFunctionTimer 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W .instListPointers,Y 
-    STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W .instListPointers,Y : STA.W $0F92,X 
     STZ.W $0F90,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     LDX.W $079F 
     LDA.L $7ED828,X 
     AND.W #$0001 
@@ -12537,12 +11827,9 @@ Function_Spark_Intermittent_Inactive:
 
 
 .timerExpired:
-    LDA.W #Function_Spark_Intermittent_Active 
-    STA.W $0FAA,X 
-    LDA.W #InstList_Spark_FlickerOn 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #Function_Spark_Intermittent_Active : STA.W $0FAA,X 
+    LDA.W #InstList_Spark_FlickerOn : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.B $12 
     JSR.W SetSparkFunctionTimer 
     RTL 
@@ -12557,14 +11844,10 @@ Function_Spark_Intermittent_Active:
 
 
 .timerExpired:
-    LDA.W #Function_Spark_Intermittent_Inactive 
-    STA.W $0FAA,X 
-    LDA.W #InstList_Spark_FlickerOut 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #$0008 
-    STA.B $12 
+    LDA.W #Function_Spark_Intermittent_Inactive : STA.W $0FAA,X 
+    LDA.W #InstList_Spark_FlickerOut : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #$0008 : STA.B $12 
     JSR.W SetSparkFunctionTimer 
     RTL 
 
@@ -12726,8 +12009,7 @@ InstList_FaceBlock_FacingForward:
 
 InitAI_FaceBlock:
     LDX.W $0E54 
-    LDA.W #InstList_FaceBlock_FacingForward 
-    STA.W $0F92,X 
+    LDA.W #InstList_FaceBlock_FacingForward : STA.W $0F92,X 
     LDY.W #EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes 
     LDA.W $09A4 
     BIT.W #$0004 
@@ -12736,15 +12018,13 @@ InitAI_FaceBlock:
 
 .morphBallCollected:
     STY.W $178C 
-    LDA.W #EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes>>16 
-    STA.W $178E 
+    LDA.W #EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes>>16 : STA.W $178E 
     LDA.W $0F96,X 
     ASL #4
     AND.W #$FF00 
     XBA 
     STA.W $1794 
-    LDA.W #$0010 
-    STA.W $1798 
+    LDA.W #$0010 : STA.W $1798 
     LDA.W $0FB6,X 
     AND.W #$0001 
     ROR A 
@@ -12760,19 +12040,16 @@ EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes:
     DEC A 
     STA.W $1798 
     BNE .return 
-    LDA.W #$0010 
-    STA.W $1798 
+    LDA.W #$0010 : STA.W $1798 
     LDA.W $1794 
     TAX 
     LDA.W $1796 
     ASL #3
     TAY 
-    LDA.W #$0004 
-    STA.W $060B 
+    LDA.W #$0004 : STA.W $060B 
 
 .loopColors:
-    LDA.W FaceBlockGlowColors,Y 
-    STA.L $7EC112,X 
+    LDA.W FaceBlockGlowColors,Y : STA.L $7EC112,X 
     INY #2
     INX #2
     DEC.W $060B 
@@ -12821,12 +12098,9 @@ MainAI_FaceBlock:
 .keepLeft:
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #$0001 
-    STA.W $0FA8,X 
-    LDA.W #$0010 
-    STA.W $1798 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0FA8,X 
+    LDA.W #$0010 : STA.W $1798 
 
 .return:
     RTL 
@@ -13864,25 +13138,16 @@ InitAI_Kihunter:
     LDA.W $0F86,X 
     ORA.W #$2000 
     STA.W $0F86,X 
-    LDA.W #$0000 
-    STA.L $7E7828,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0000 : STA.L $7E7828,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #InstList_Kihunter_Idling_FacingLeft 
-    STA.W $0F92,X 
-    LDA.W #$0000 
-    STA.W $0FB2,X 
-    LDA.W #Function_Kihunter_Winged_IdleFlying 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.L $7E7810,X 
-    LDA.W #$0001 
-    STA.L $7E7812,X 
-    LDA.W #$0000 
-    STA.L $7E780C,X 
-    LDA.W #$FFFF 
-    STA.L $7E780E,X 
+    LDA.W #InstList_Kihunter_Idling_FacingLeft : STA.W $0F92,X 
+    LDA.W #$0000 : STA.W $0FB2,X 
+    LDA.W #Function_Kihunter_Winged_IdleFlying : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.L $7E7810,X 
+    LDA.W #$0001 : STA.L $7E7812,X 
+    LDA.W #$0000 : STA.L $7E780C,X 
+    LDA.W #$FFFF : STA.L $7E780E,X 
     LDA.W $0F7E,X 
     SEC 
     SBC.W #$0010 
@@ -13890,20 +13155,14 @@ InitAI_Kihunter:
     CLC 
     ADC.W #$0020 
     STA.L $7E7816,X 
-    LDA.W $0F7A,X 
-    STA.L $7E7818,X 
-    LDA.W $0F7E,X 
-    STA.L $7E781A,X 
+    LDA.W $0F7A,X : STA.L $7E7818,X 
+    LDA.W $0F7E,X : STA.L $7E781A,X 
     LDA.W $0FB4,X 
     BPL .return 
-    LDA.W #$0001 
-    STA.L $7E7828,X 
-    LDA.W #Function_Kihunter_Wingless_InitialFalling 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.L $7E7810,X 
-    LDA.W #$0001 
-    STA.L $7E7812,X 
+    LDA.W #$0001 : STA.L $7E7828,X 
+    LDA.W #Function_Kihunter_Wingless_InitialFalling : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.L $7E7810,X 
+    LDA.W #$0001 : STA.L $7E7812,X 
 
 .return:
     RTL 
@@ -13914,21 +13173,14 @@ InitAI_KihunterWings:
     LDA.W $0F86,X 
     ORA.W #$2000 
     STA.W $0F86,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #InstList_KihunterWings_FacingLeft 
-    STA.W $0F92,X 
-    LDA.W $0F3E,X 
-    STA.W $0F7E,X 
-    LDA.W $0F3A,X 
-    STA.W $0F7A,X 
-    LDA.W #Function_KihunterWings_Attached 
-    STA.W $0FA8,X 
-    LDA.W $0F56,X 
-    STA.W $0F96,X 
-    LDA.W $0F58,X 
-    STA.W $0F98,X 
+    LDA.W #InstList_KihunterWings_FacingLeft : STA.W $0F92,X 
+    LDA.W $0F3E,X : STA.W $0F7E,X 
+    LDA.W $0F3A,X : STA.W $0F7A,X 
+    LDA.W #Function_KihunterWings_Attached : STA.W $0FA8,X 
+    LDA.W $0F56,X : STA.W $0F96,X 
+    LDA.W $0F58,X : STA.W $0F98,X 
     LDA.W $0F74,X 
     BPL .return 
     LDA.W $0F86,X 
@@ -13950,10 +13202,8 @@ MainAI_KihunterWings:
 
 
 Function_Kihunter_Winged_IdleFlying:
-    LDA.L $7E7810,X 
-    STA.B $12 
-    LDA.L $7E7812,X 
-    STA.B $14 
+    LDA.L $7E7810,X : STA.B $12 
+    LDA.L $7E7812,X : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
     LDA.W $0F7E,X 
@@ -13979,10 +13229,8 @@ Function_Kihunter_Winged_IdleFlying:
     STA.L $7E7812,X 
 
 .noChangeY:
-    LDA.L $7E780C,X 
-    STA.B $12 
-    LDA.L $7E780E,X 
-    STA.B $14 
+    LDA.L $7E780C,X : STA.B $12 
+    LDA.L $7E780E,X : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCC .noCollision 
     LDY.W #$0000 
@@ -13994,12 +13242,9 @@ Function_Kihunter_Winged_IdleFlying:
     LDY.W #$0004 
 
 .movingLeft:
-    LDA.W .instListPointers_kihunter,Y 
-    STA.W $0F92,X 
-    LDA.W .instListPointers_wings,Y 
-    STA.W $0FD2,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W .instListPointers_kihunter,Y : STA.W $0F92,X 
+    LDA.W .instListPointers_wings,Y : STA.W $0FD2,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STA.W $0FD4,X 
 
 .noCollision:
@@ -14030,62 +13275,42 @@ Function_Kihunter_Winged_IdleFlying:
     STA.B $18 
     LDA.B $12 
     BMI .rightOfSamus 
-    LDA.W #$0002 
-    STA.L $7E7800,X 
-    LDA.W #$0000 
-    STA.L $7E7804,X 
+    LDA.W #$0002 : STA.L $7E7800,X 
+    LDA.W #$0000 : STA.L $7E7804,X 
     STA.L $7E7806,X 
     STA.L $7E7808,X 
-    LDA.W #$2000 
-    STA.L $7E780A,X 
-    LDA.W #$0080 
-    STA.W $0FB2,X 
-    LDA.W #$0001 
-    STA.L $7E780E,X 
-    LDA.W #$0090 
-    STA.L $7E781C,X 
+    LDA.W #$2000 : STA.L $7E780A,X 
+    LDA.W #$0080 : STA.W $0FB2,X 
+    LDA.W #$0001 : STA.L $7E780E,X 
+    LDA.W #$0090 : STA.L $7E781C,X 
     LDY.W #$0004 
     BRA + 
 
 
 .rightOfSamus:
-    LDA.W #$FFFE 
-    STA.L $7E7800,X 
-    LDA.W #$0000 
-    STA.L $7E7804,X 
+    LDA.W #$FFFE : STA.L $7E7800,X 
+    LDA.W #$0000 : STA.L $7E7804,X 
     STA.L $7E7806,X 
-    LDA.W #$FFFF 
-    STA.L $7E7808,X 
+    LDA.W #$FFFF : STA.L $7E7808,X 
     STA.L $7E780E,X 
-    LDA.W #$E000 
-    STA.L $7E780A,X 
-    LDA.W #$00FF 
-    STA.W $0FB2,X 
-    LDA.W #$00F0 
-    STA.L $7E781C,X 
+    LDA.W #$E000 : STA.L $7E780A,X 
+    LDA.W #$00FF : STA.W $0FB2,X 
+    LDA.W #$00F0 : STA.L $7E781C,X 
     LDY.W #$0000 
 
-  + LDA.W .instListPointers_kihunter,Y 
-    STA.W $0F92,X 
-    LDA.W .instListPointers_wings,Y 
-    STA.W $0FD2,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+  + LDA.W .instListPointers_kihunter,Y : STA.W $0F92,X 
+    LDA.W .instListPointers_wings,Y : STA.W $0FD2,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STA.W $0FD4,X 
     LDA.W $0F7A,X 
     CLC 
     ADC.B $12 
     STA.W $0FAA,X 
-    LDA.W $0F7E,X 
-    STA.W $0FAC,X 
-    LDA.W #Function_Kihunter_Winged_Swoop 
-    STA.W $0FA8,X 
-    LDA.B $18 
-    STA.L $7E7824,X 
-    LDA.B $14 
-    STA.L $7E7822,X 
-    LDA.W #$0000 
-    STA.L $7E7820,X 
+    LDA.W $0F7E,X : STA.W $0FAC,X 
+    LDA.W #Function_Kihunter_Winged_Swoop : STA.W $0FA8,X 
+    LDA.B $18 : STA.L $7E7824,X 
+    LDA.B $14 : STA.L $7E7822,X 
+    LDA.W #$0000 : STA.L $7E7820,X 
     RTL 
 
 
@@ -14113,8 +13338,7 @@ Function_Kihunter_Winged_Swoop:
 
   + LDA.L $7E7820,X 
     BNE .noInstListChange 
-    LDA.W #$0001 
-    STA.L $7E7820,X 
+    LDA.W #$0001 : STA.L $7E7820,X 
     LDY.W #InstList_Kihunter_Swiping_FacingRight 
     LDA.L $7E7808,X 
     BPL .keepRight 
@@ -14123,8 +13347,7 @@ Function_Kihunter_Winged_Swoop:
 .keepRight:
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
 
 .noInstListChange:
     LDA.L $7E7808,X 
@@ -14146,8 +13369,7 @@ Function_Kihunter_Winged_Swoop:
     STA.W $0FB2,X 
     CMP.W #$0080 
     BPL .swoopContinues 
-    LDA.W #Function_Kihunter_Winged_IdleFlying 
-    STA.W $0FA8,X 
+    LDA.W #Function_Kihunter_Winged_IdleFlying : STA.W $0FA8,X 
     RTL 
 
 
@@ -14169,14 +13391,12 @@ Function_Kihunter_Winged_Swoop:
     STA.W $0FB2,X 
     CMP.W #$0100 
     BMI .swoopContinues 
-    LDA.W #Function_Kihunter_Winged_IdleFlying 
-    STA.W $0FA8,X 
+    LDA.W #Function_Kihunter_Winged_IdleFlying : STA.W $0FA8,X 
     RTL 
 
 
 .swoopContinues:
-    LDA.L $7E7822,X 
-    STA.W $0E32 
+    LDA.L $7E7822,X : STA.W $0E32 
     LDA.W $0FB2,X 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC 
@@ -14188,8 +13408,7 @@ Function_Kihunter_Winged_Swoop:
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCS .collidedHorizontally 
     JSL.L AlignEnemyYPositionWIthNonSquareSlope 
-    LDA.L $7E7824,X 
-    STA.W $0E32 
+    LDA.L $7E7824,X : STA.W $0E32 
     LDA.W $0FB2,X 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC 
@@ -14206,41 +13425,30 @@ Function_Kihunter_Winged_Swoop:
 .collidedHorizontally:
     LDA.L $7E7808,X 
     BPL .arcRight 
-    LDA.W #$0000 
-    STA.L $7E780C,X 
-    LDA.W #$0001 
-    STA.L $7E780E,X 
+    LDA.W #$0000 : STA.L $7E780C,X 
+    LDA.W #$0001 : STA.L $7E780E,X 
     BRA .collidedVertically 
 
 
 .arcRight:
-    LDA.W #$0000 
-    STA.L $7E780C,X 
-    LDA.W #$FFFF 
-    STA.L $7E780E,X 
+    LDA.W #$0000 : STA.L $7E780C,X 
+    LDA.W #$FFFF : STA.L $7E780E,X 
 
 .collidedVertically:
-    LDA.W #Function_Kihunter_Winged_BackOff 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.L $7E7810,X 
-    LDA.W #$FFFF 
-    STA.L $7E7812,X 
+    LDA.W #Function_Kihunter_Winged_BackOff : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.L $7E7810,X 
+    LDA.W #$FFFF : STA.L $7E7812,X 
     RTL 
 
 
 Function_Kihunter_Winged_BackOff:
-    LDA.L $7E780C,X 
-    STA.B $12 
-    LDA.L $7E780E,X 
-    STA.B $14 
+    LDA.L $7E780C,X : STA.B $12 
+    LDA.L $7E780E,X : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCS .collidedWithBlock 
     JSL.L AlignEnemyYPositionWIthNonSquareSlope 
-    LDA.L $7E7810,X 
-    STA.B $12 
-    LDA.L $7E7812,X 
-    STA.B $14 
+    LDA.L $7E7810,X : STA.B $12 
+    LDA.L $7E7812,X : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
     LDA.W $0F7E,X 
@@ -14250,47 +13458,38 @@ Function_Kihunter_Winged_BackOff:
 
 
 .collidedWithBlock:
-    LDA.W #Function_Kihunter_Winged_IdleFlying 
-    STA.W $0FA8,X 
+    LDA.W #Function_Kihunter_Winged_IdleFlying : STA.W $0FA8,X 
     RTL 
 
 
 Instruction_Kihunter_SetIdlingInstListsFacingForwards:
     LDY.W #InstList_Kihunter_Idling_FacingLeft 
-    LDA.W #InstList_KihunterWings_FacingLeft 
-    STA.B $12 
+    LDA.W #InstList_KihunterWings_FacingLeft : STA.B $12 
     LDA.L $7E780E,X 
     BMI .keepLeft 
     LDY.W #InstList_Kihunter_Idling_FacingRight 
-    LDA.W #InstList_KihunterWings_FacingRight 
-    STA.B $12 
+    LDA.W #InstList_KihunterWings_FacingRight : STA.B $12 
 
 .keepLeft:
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     LDA.W $0FE8,X 
     CMP.W #Function_KihunterWings_Attached 
     BNE .return 
-    LDA.B $12 
-    STA.W $0FD2,X 
-    LDA.W #$0001 
-    STA.W $0FD4,X 
+    LDA.B $12 : STA.W $0FD2,X 
+    LDA.W #$0001 : STA.W $0FD4,X 
 
 .return:
     RTL 
 
 
 Function_Kihunter_Wingless_InitialFalling:
-    LDA.L $7E7810,X 
-    STA.B $12 
-    LDA.L $7E7812,X 
-    STA.B $14 
+    LDA.L $7E7810,X : STA.B $12 
+    LDA.L $7E7812,X : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .notCollidedWithBlock 
-    LDA.W #Function_Kihunter_Wingless_PrepareToHop 
-    STA.W $0FA8,X 
+    LDA.W #Function_Kihunter_Wingless_PrepareToHop : STA.W $0FA8,X 
     RTL 
 
 
@@ -14306,10 +13505,8 @@ Function_Kihunter_Wingless_InitialFalling:
 
 
 Function_Kihunter_Wingless_PrepareToHop:
-    LDA.W #RTL_A8F5E3 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.L $7E7810,X 
+    LDA.W #RTL_A8F5E3 : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.L $7E7810,X 
     LDA.W $05E5 
     AND.W #$0001 
     CLC 
@@ -14318,26 +13515,18 @@ Function_Kihunter_Wingless_PrepareToHop:
     LDA.W $0F7A,X 
     CMP.W $0AF6 
     BPL .rightOfSamus 
-    LDA.W #$0000 
-    STA.L $7E780C,X 
-    LDA.W #$0002 
-    STA.L $7E780E,X 
-    LDA.W #InstList_Kihunter_Hop_FacingRight 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0000 : STA.L $7E780C,X 
+    LDA.W #$0002 : STA.L $7E780E,X 
+    LDA.W #InstList_Kihunter_Hop_FacingRight : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTL 
 
 
 .rightOfSamus:
-    LDA.W #$0000 
-    STA.L $7E780C,X 
-    LDA.W #$FFFE 
-    STA.L $7E780E,X 
-    LDA.W #InstList_Kihunter_Hop_FacingLeft 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X ; fallthrough to RTL_A8F5E3
+    LDA.W #$0000 : STA.L $7E780C,X 
+    LDA.W #$FFFE : STA.L $7E780E,X 
+    LDA.W #InstList_Kihunter_Hop_FacingLeft : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X ; fallthrough to RTL_A8F5E3
 
 RTL_A8F5E3:
     RTL 
@@ -14346,23 +13535,18 @@ RTL_A8F5E3:
 Instruction_Kihunter_SetFunctionToHop:
     PHX 
     LDX.W $0E54 
-    LDA.W #Function_Kihunter_Wingless_Hop 
-    STA.W $0FA8,X 
+    LDA.W #Function_Kihunter_Wingless_Hop : STA.W $0FA8,X 
     PLX 
     RTL 
 
 
 Function_Kihunter_Wingless_Hop:
-    LDA.L $7E7810,X 
-    STA.B $12 
-    LDA.L $7E7812,X 
-    STA.B $14 
+    LDA.L $7E7810,X : STA.B $12 
+    LDA.L $7E7812,X : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedVertically 
-    LDA.L $7E780C,X 
-    STA.B $12 
-    LDA.L $7E780E,X 
-    STA.B $14 
+    LDA.L $7E780C,X : STA.B $12 
+    LDA.L $7E780E,X : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCS .collidedHorizontally 
     JSL.L AlignEnemyYPositionWIthNonSquareSlope 
@@ -14387,14 +13571,10 @@ Function_Kihunter_Wingless_Hop:
 .collidedVertically:
     LDA.L $7E7812,X 
     BMI .hitCeiling 
-    LDA.W #$0000 
-    STA.L $7E7810,X 
-    LDA.W #$FFFC 
-    STA.L $7E7812,X 
-    LDA.W #RTL_A8F5E3 
-    STA.W $0FA8,X 
-    LDA.W #$000C 
-    STA.L $7E781E,X 
+    LDA.W #$0000 : STA.L $7E7810,X 
+    LDA.W #$FFFC : STA.L $7E7812,X 
+    LDA.W #RTL_A8F5E3 : STA.W $0FA8,X 
+    LDA.W #$000C : STA.L $7E781E,X 
     LDY.W #InstList_Kihunter_LandedFromHop_FacingLeft 
     LDA.W $0F92,X 
     CMP.W #InstList_Kihunter_Hop_FacingRight 
@@ -14404,22 +13584,19 @@ Function_Kihunter_Wingless_Hop:
 .keepLeft:
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     RTL 
 
 
 .hitCeiling:
-    LDA.W #$0001 
-    STA.L $7E7812,X 
+    LDA.W #$0001 : STA.L $7E7812,X 
     RTL 
 
 
 Instruction_Kihunter_SetFunctionTo_Wingless_Thinking:
     PHX 
     LDX.W $0E54 
-    LDA.W #Function_Kihunter_Wingless_Thinking 
-    STA.W $0FA8,X 
+    LDA.W #Function_Kihunter_Wingless_Thinking : STA.W $0FA8,X 
     PLX 
     RTL 
 
@@ -14459,10 +13636,8 @@ Function_Kihunter_Wingless_FireAcidSpit:
 .keepLeft:
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
-    LDA.W #RTL_A8F5E3 
-    STA.W $0FA8,X 
+    LDA.W #$0001 : STA.W $0F94,X 
+    LDA.W #RTL_A8F5E3 : STA.W $0FA8,X 
     RTL 
 
 
@@ -14481,17 +13656,14 @@ FireAcidSpit:
     JSL.L QueueSound_Lib2_Max6 
     LDX.W $0E54 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    LDA.W #$0018 
-    STA.L $7E781E,X 
+    LDA.W #$0018 : STA.L $7E781E,X 
     PLY 
     RTL 
 
 
 Function_KihunterWings_Attached:
-    LDA.W $0F3A,X 
-    STA.W $0F7A,X 
-    LDA.W $0F3E,X 
-    STA.W $0F7E,X 
+    LDA.W $0F3A,X : STA.W $0F7A,X 
+    LDA.W $0F3E,X : STA.W $0F7E,X 
     RTL 
 
 
@@ -14507,36 +13679,27 @@ EnemyShot_Kihunter:
     CMP.W $0FF4,X 
     BEQ .clipWings 
     BMI .clipWings 
-    LDA.W $0F8A,X 
-    STA.W $0FCA,X 
-    LDA.W $0F9E,X 
-    STA.W $0FDE,X 
-    LDA.W $0FA0,X 
-    STA.W $0FE0,X 
-    LDA.W $0F9C,X 
-    STA.W $0FDC,X 
+    LDA.W $0F8A,X : STA.W $0FCA,X 
+    LDA.W $0F9E,X : STA.W $0FDE,X 
+    LDA.W $0FA0,X : STA.W $0FE0,X 
+    LDA.W $0F9C,X : STA.W $0FDC,X 
 
 .returnUpper:
     RTL 
 
 
 .dead:
-    LDA.W #$0200 
-    STA.W $0FC6,X 
+    LDA.W #$0200 : STA.W $0FC6,X 
     RTL 
 
 
 .clipWings:
     LDA.L $7E7828,X 
     BNE .returnUpper 
-    LDA.W #$0001 
-    STA.L $7E7828,X 
-    LDA.W #Function_Kihunter_Wingless_InitialFalling 
-    STA.W $0FA8,X 
-    LDA.W #$0000 
-    STA.L $7E7810,X 
-    LDA.W #$0001 
-    STA.L $7E7812,X 
+    LDA.W #$0001 : STA.L $7E7828,X 
+    LDA.W #Function_Kihunter_Wingless_InitialFalling : STA.W $0FA8,X 
+    LDA.W #$0000 : STA.L $7E7810,X 
+    LDA.W #$0001 : STA.L $7E7812,X 
     PHX 
     TXA 
     CLC 
@@ -14546,33 +13709,23 @@ EnemyShot_Kihunter:
     LDA.W $0FA8,X 
     CMP.W #Function_KihunterWings_Falling 
     BEQ .returnLower 
-    LDA.W $0F7E,X 
-    STA.L $7E780E,X 
-    LDA.W $0F7A,X 
-    STA.L $7E7810,X 
+    LDA.W $0F7E,X : STA.L $7E780E,X 
+    LDA.W $0F7A,X : STA.L $7E7810,X 
     JSR.W DetermineFallingKihunterWingsSpeedTableIndexResetValue 
     JSR.W DetermineFallingKihunterWingsLeftArcCenterOffsets 
     JSR.W DetermineFallingKihunterWingsRightArcCenterOffsets 
-    LDA.W #$E000 
-    STA.W $0FB2,X 
-    LDA.W #Function_KihunterWings_Falling 
-    STA.W $0FA8,X 
-    LDA.W #Function_KihunterWings_Falling_DriftingLeft 
-    STA.L $7E7800,X 
+    LDA.W #$E000 : STA.W $0FB2,X 
+    LDA.W #Function_KihunterWings_Falling : STA.W $0FA8,X 
+    LDA.W #Function_KihunterWings_Falling_DriftingLeft : STA.L $7E7800,X 
     LDA.L $7E780E,X 
     SEC 
     SBC.L $7E7816,X 
     STA.L $7E780C,X 
-    LDA.W $0F7A,X 
-    STA.L $7E780A,X 
-    LDA.L $7E7814,X 
-    STA.W $0FAA,X 
-    LDA.W #InstList_KihunterWings_Falling 
-    STA.W $0F92,X 
-    LDA.W #Spritemap_CommonA8_Nothing 
-    STA.W $0F8E,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W $0F7A,X : STA.L $7E780A,X 
+    LDA.L $7E7814,X : STA.W $0FAA,X 
+    LDA.W #InstList_KihunterWings_Falling : STA.W $0F92,X 
+    LDA.W #Spritemap_CommonA8_Nothing : STA.W $0F8E,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDA.W $0F86,X 
     ORA.W #$0800 
@@ -14586,8 +13739,7 @@ EnemyShot_Kihunter:
 
 Function_KihunterWings_Falling:
     LDX.W $0E54 
-    LDA.L $7E7800,X 
-    STA.B $12 
+    LDA.L $7E7800,X : STA.B $12 
     JMP.W ($0012) 
 
 
@@ -14744,45 +13896,32 @@ Function_KihunterWings_Falling_DriftingRight:
     LDA.W $0F86,X 
     ORA.W #$0200 
     STA.W $0F86,X 
-    LDA.L $7E7810,X 
-    STA.W $0F7A,X 
-    LDA.L $7E780E,X 
-    STA.W $0F7E,X 
+    LDA.L $7E7810,X : STA.W $0F7A,X 
+    LDA.L $7E780E,X : STA.W $0F7E,X 
     BRA .return 
 
 
 SetupFallingKihunterWingsDriftingLeft:
-    LDA.W #Function_KihunterWings_Falling_DriftingLeft 
-    STA.L $7E7800,X 
-    LDA.L $7E7814,X 
-    STA.W $0FAA,X 
-    LDA.W #$E000 
-    STA.W $0FB2,X 
-    LDA.W $0F7A,X 
-    STA.L $7E780A,X 
-    LDA.W $0F7E,X 
-    STA.L $7E780C,X 
+    LDA.W #Function_KihunterWings_Falling_DriftingLeft : STA.L $7E7800,X 
+    LDA.L $7E7814,X : STA.W $0FAA,X 
+    LDA.W #$E000 : STA.W $0FB2,X 
+    LDA.W $0F7A,X : STA.L $7E780A,X 
+    LDA.W $0F7E,X : STA.L $7E780C,X 
     RTS 
 
 
 SetupFallingKihunterWingsDriftingRight:
-    LDA.W #Function_KihunterWings_Falling_DriftingRight 
-    STA.L $7E7800,X 
-    LDA.L $7E7814,X 
-    STA.W $0FAA,X 
-    LDA.W #$A000 
-    STA.W $0FB2,X 
-    LDA.W $0F7A,X 
-    STA.L $7E780A,X 
-    LDA.W $0F7E,X 
-    STA.L $7E780C,X 
+    LDA.W #Function_KihunterWings_Falling_DriftingRight : STA.L $7E7800,X 
+    LDA.L $7E7814,X : STA.W $0FAA,X 
+    LDA.W #$A000 : STA.W $0FB2,X 
+    LDA.W $0F7A,X : STA.L $7E780A,X 
+    LDA.W $0F7E,X : STA.L $7E780C,X 
     RTS 
 
 
 DetermineFallingKihunterWingsSpeedTableIndexResetValue:
     LDX.W $0E54 
-    LDA.W #$0000 
-    STA.L $7E7814,X 
+    LDA.W #$0000 : STA.L $7E7814,X 
     STA.W $0FAA,X 
 
 .loop:

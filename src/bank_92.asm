@@ -38,8 +38,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     ADC.B $12 
     STA.W $071F 
     SEP #$20 
-    LDA.B #$01 
-    STA.W $071D 
+    LDA.B #$01 : STA.W $071D 
     REP #$20 
     LDA.W $0A1C 
     ASL A 
@@ -67,8 +66,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     ADC.B $14 
     STA.W $0721 
     SEP #$20 
-    LDA.B #$01 
-    STA.W $071E 
+    LDA.B #$01 : STA.W $071E 
     REP #$20 
 
 .return:
@@ -11981,14 +11979,10 @@ PlaySamusFanfare:
 
 
 .greaterThanEqualTo168:
-    LDA.W $0A20 
-    STA.W $0A24 
-    LDA.W $0A22 
-    STA.W $0A26 
-    LDA.W $0A1C 
-    STA.W $0A20 
-    LDA.W $0A1E 
-    STA.W $0A22 
+    LDA.W $0A20 : STA.W $0A24 
+    LDA.W $0A22 : STA.W $0A26 
+    LDA.W $0A1C : STA.W $0A20 
+    LDA.W $0A1E : STA.W $0A22 
     STZ.W $0DEC 
     PLB 
     PLP 

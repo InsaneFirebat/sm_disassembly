@@ -9588,12 +9588,9 @@ Spawn_PaletteFXObject:
     TYA 
     STA.W $1E7D,X 
     STZ.W $1E8D,X 
-    LDA.W #RTS_8DC526 
-    STA.W $1EAD,X 
-    LDA.W $0002,Y 
-    STA.W $1EBD,X 
-    LDA.W #$0001 
-    STA.W $1ECD,X 
+    LDA.W #RTS_8DC526 : STA.W $1EAD,X 
+    LDA.W $0002,Y : STA.W $1EBD,X 
+    LDA.W #$0001 : STA.W $1ECD,X 
     STZ.W $1EDD,X 
     TXA 
     TYX 
@@ -9754,16 +9751,14 @@ Instruction_Delete_8DC5CF:
 
 
 Instruction_PaletteFXObject_PreInstructionInY:
-    LDA.W $0000,Y 
-    STA.W $1EAD,X 
+    LDA.W $0000,Y : STA.W $1EAD,X 
     INY #2
     RTS 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Inst_PaletteFXObject_ClearPreInstruction_8DC5DD:
-    LDA.W #RTS_8DC5E3 
-    STA.W $1EAD,X 
+    LDA.W #RTS_8DC5E3 : STA.W $1EAD,X 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 RTS_8DC5E3:
@@ -9772,10 +9767,8 @@ RTS_8DC5E3:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Inst_PaletteFXObject_CallExternalFunctionInY_8DC5E4:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     PHY 
     JSL.L .externalFunction 
     PLY 
@@ -9789,10 +9782,8 @@ UNUSED_Inst_PaletteFXObject_CallExternalFunctionInY_8DC5E4:
 
 
 UNUSED_Inst_PaletteFXObject_CallExternalFuncInYWithA_8DC5FE:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
     PHY 
     JSL.L .externalFunction 
@@ -9855,8 +9846,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_PaletteFXObject_TimerInY:
     SEP #$20 
-    LDA.W $0000,Y 
-    STA.W $1EDD,X 
+    LDA.W $0000,Y : STA.W $1EDD,X 
     REP #$20 
     INY 
     RTS 
@@ -9867,8 +9857,7 @@ RTS_8DC654:
 
 
 Instruction_PaletteFXObject_ColorIndexInY:
-    LDA.W $0000,Y 
-    STA.W $1E8D,X 
+    LDA.W $0000,Y : STA.W $1E8D,X 
     INY #2
     RTS 
 
@@ -11090,8 +11079,7 @@ PaletteFXObjects_PostCreditsSuperMetroidIcon:
     dw InstList_PaletteFXObject_PostCreditsSuperMetroidIconGlare 
 
 Setup_PaletteFXObject_OldMotherBrainFightBackgroundLights:
-    LDA.W #PreInstruction_PaletteFXObject_DeleteIfIntroPage2IsActive 
-    STA.W $1EAD,Y 
+    LDA.W #PreInstruction_PaletteFXObject_DeleteIfIntroPage2IsActive : STA.W $1EAD,Y 
     RTS 
 
 
@@ -11099,10 +11087,8 @@ PreInstruction_PaletteFXObject_DeleteIfIntroPage2IsActive:
     LDA.W $1F51 
     CMP.W #CinematicFunction_Intro_Page2 
     BNE .return 
-    LDA.W #InstList_PaletteFXObject_Delete 
-    STA.W $1EBD,X 
-    LDA.W #$0001 
-    STA.W $1ECD,X 
+    LDA.W #InstList_PaletteFXObject_Delete : STA.W $1EBD,X 
+    LDA.W #$0001 : STA.W $1ECD,X 
 
 .return:
     RTS 
@@ -11245,8 +11231,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     STA.W $1EEF 
     ASL A 
     TAY 
-    LDA.W #$0001 
-    STA.W $1ECD,X 
+    LDA.W #$0001 : STA.W $1ECD,X 
     LDA.W $09A2 
     BIT.W #$0020 
     BEQ .checkVaria 
@@ -11266,8 +11251,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
 
 .setInstListPointer:
     STA.B $12 
-    LDA.B ($12),Y 
-    STA.W $1EBD,X 
+    LDA.B ($12),Y : STA.W $1EBD,X 
 
 .return:
     RTS 
@@ -11656,8 +11640,7 @@ UNUSED_PreInstruction_PaletteFXObject_WaitUntilAreBossIsDead:
     JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCS .return 
     PLA 
-    LDA.W #$0001 
-    STA.W $1ECD,X 
+    LDA.W #$0001 : STA.W $1ECD,X 
 
 .return:
     RTS 
@@ -11729,10 +11712,8 @@ PreInst_PaletteFXObject_RestartCrateria1IfSamusIsntLowEnough:
     LDA.W $0AFA 
     CMP.W #$0380 
     BCS .return 
-    LDA.W #$0001 
-    STA.W $1ECD,X 
-    LDA.W #InstList_PaletteFXObject_Crateria1_1 
-    STA.W $1EBD,X 
+    LDA.W #$0001 : STA.W $1ECD,X 
+    LDA.W #InstList_PaletteFXObject_Crateria1_1 : STA.W $1EBD,X 
 
 .return:
     RTS 
@@ -11793,10 +11774,8 @@ UNUSED_PreInst_PalFXObj_RestartDarkLightningIfSamus_8DED84:
     LDA.W $0AFA 
     CMP.W #$0380 
     BCS .return 
-    LDA.W #$0001 
-    STA.W $1ECD,X 
-    LDA.W #UNUSED_InstList_PaletteFXObject_DarkLightning_1_8DEC76 
-    STA.W $1EBD,X 
+    LDA.W #$0001 : STA.W $1ECD,X 
+    LDA.W #UNUSED_InstList_PaletteFXObject_DarkLightning_1_8DEC76 : STA.W $1EBD,X 
 
 .return:
     RTS 
@@ -12464,8 +12443,7 @@ Setup_PaletteFXObject_Brinstar8:
     PLX 
     AND.W #$0002 
     BEQ .return 
-    LDA.W #$0000 
-    STA.W $1E7D,Y 
+    LDA.W #$0000 : STA.W $1E7D,Y 
 
 .return:
     RTS 

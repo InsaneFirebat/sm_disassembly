@@ -104,15 +104,13 @@ InstList_CommonA5_DeleteEnemy:
 NOPNOP_A58069:
     NOP #2
     Instruction_CommonA5_Enemy0FB2_InY:
-    LDA.W $0000,Y 
-    STA.W $0FB2,X 
+    LDA.W $0000,Y : STA.W $0FB2,X 
     INY #2
     RTL 
 
 
 Instruction_CommonA5_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_A5807B 
-    STA.W $0FB2,X 
+    LDA.W #RTS_A5807B : STA.W $0FB2,X 
     RTL 
 
 
@@ -130,8 +128,7 @@ Instruction_CommonA5_DeleteEnemy:
 
 
 Instruction_CommonA5_CallFunctionInY:
-    LDA.W $0000,Y 
-    STA.B $12 
+    LDA.W $0000,Y : STA.B $12 
     PHY 
     PHX 
     PEA.W .manualReturn-1 
@@ -146,8 +143,7 @@ Instruction_CommonA5_CallFunctionInY:
 
 
 Instruction_CommonA5_CallFunctionInY_WithA:
-    LDA.W $0000,Y 
-    STA.B $12 
+    LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
     PHY 
     PHX 
@@ -167,10 +163,8 @@ Instruction_CommonA5_CallFunctionInY_WithA:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA5_CallExternalFunctionInY_A580B5:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     PHX 
     PHY 
     JSL.L .externalFunction 
@@ -185,10 +179,8 @@ UNUSED_Instruction_CommonA5_CallExternalFunctionInY_A580B5:
 
 
 UNUSED_Inst_CommonA5_CallExternalFunctionInY_WithA_A580CE:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
     PHX 
     PHY 
@@ -256,8 +248,7 @@ Instruction_CommonA5_DecrementTimer_GotoY_PlusY_IfNonZero:
 
 
 Instruction_CommonA5_TimerInY:
-    LDA.W $0000,Y 
-    STA.W $0F90,X 
+    LDA.W $0000,Y : STA.W $0F90,X 
     INY #2
     RTL 
 
@@ -277,8 +268,7 @@ Instruction_CommonA5_Sleep:
 
 
 Instruction_CommonA5_WaitYFrames:
-    LDA.W $0000,Y 
-    STA.W $0F94,X 
+    LDA.W $0000,Y : STA.W $0F94,X 
     INY #2
     TYA 
     STA.W $0F92,X 
@@ -290,14 +280,10 @@ Instruction_CommonA5_WaitYFrames:
 Instruction_CommonA5_TransferYBytesInYToVRAM:
     PHX 
     LDX.W $0330 
-    LDA.W $0000,Y 
-    STA.B $D0,X 
-    LDA.W $0002,Y 
-    STA.B $D2,X 
-    LDA.W $0003,Y 
-    STA.B $D3,X 
-    LDA.W $0005,Y 
-    STA.B $D5,X 
+    LDA.W $0000,Y : STA.B $D0,X 
+    LDA.W $0002,Y : STA.B $D2,X 
+    LDA.W $0003,Y : STA.B $D3,X 
+    LDA.W $0005,Y : STA.B $D5,X 
     TXA 
     CLC 
     ADC.W #$0007 
@@ -413,8 +399,7 @@ InitAI_DraygonBody:
     LDX.W #$0030 
 
 .loopTargetPalette:
-    LDA.W Palette_Draygon_Sprite1,X 
-    STA.L $7EC320,X 
+    LDA.W Palette_Draygon_Sprite1,X : STA.L $7EC320,X 
     DEX #2
     BPL .loopTargetPalette 
     LDX.W #$0FFE 
@@ -428,30 +413,19 @@ InitAI_DraygonBody:
     LDA.W #$0700 
     ASL A 
     STA.W $0F96,X 
-    LDA.W #$00A5 
-    STA.W $178E 
-    LDA.W #EnemyGraphicsDrawnHook_Draygon_SetBG2XYScroll 
-    STA.W $178C 
-    LDA.W #$FFFF 
-    STA.W $183C 
-    LDA.W #InstList_DraygonBody_FacingLeft_Idle 
-    STA.W $0F92 
-    LDA.W #InstList_DraygonEye_FacingLeft_Idle 
-    STA.W $0FD2 
-    LDA.W #InstList_DraygonTail_FacingLeft_FakeTailWhip 
-    STA.W $1012 
-    LDA.W #InstList_DraygonArms_FacingLeft_NearSwoopApex 
-    STA.W $1052 
-    LDA.W #$0400 
-    STA.W $179A 
-    LDA.W #Function_DraygonBody_FightIntro_InitialDelay 
-    STA.W $0FA8,X 
+    LDA.W #$00A5 : STA.W $178E 
+    LDA.W #EnemyGraphicsDrawnHook_Draygon_SetBG2XYScroll : STA.W $178C 
+    LDA.W #$FFFF : STA.W $183C 
+    LDA.W #InstList_DraygonBody_FacingLeft_Idle : STA.W $0F92 
+    LDA.W #InstList_DraygonEye_FacingLeft_Idle : STA.W $0FD2 
+    LDA.W #InstList_DraygonTail_FacingLeft_FakeTailWhip : STA.W $1012 
+    LDA.W #InstList_DraygonArms_FacingLeft_NearSwoopApex : STA.W $1052 
+    LDA.W #$0400 : STA.W $179A 
+    LDA.W #Function_DraygonBody_FightIntro_InitialDelay : STA.W $0FA8,X 
     JSL.L Spawn_DraygonMainScreenLayers_HDMAObject 
-    LDA.W #$000C 
-    STA.B $A9 
+    LDA.W #$000C : STA.B $A9 
     JSL.L Spawn_BG3_Scroll_HDMA_Object 
-    LDA.W #$0001 
-    STA.L $7E880A 
+    LDA.W #$0001 : STA.L $7E880A 
     JSL.L DisableMinimap_MarkBossRoomTilesExplored 
     RTL 
 
@@ -459,12 +433,10 @@ InitAI_DraygonBody:
 MainAI_DraygonBody:
     LDX.W $0E54 
     JSR.W ($0FA8,X) 
-    LDA.W $0F7A 
-    STA.W $0FBA 
+    LDA.W $0F7A : STA.W $0FBA 
     STA.W $0FFA 
     STA.W $103A 
-    LDA.W $0F7E 
-    STA.W $0FBE 
+    LDA.W $0F7E : STA.W $0FBE 
     STA.W $0FFE 
     STA.W $103E 
     RTL 
@@ -479,14 +451,10 @@ Function_DraygonBody_FightIntro_InitialDelay:
     LDA.W $0FAA 
     BNE .incFunctionTimer 
     LDX.W $0330 
-    LDA.W #$0600 
-    STA.B $D0,X 
-    LDA.W #Tiles_Evir 
-    STA.B $D2,X 
-    LDA.W #Tiles_Evir>>16 
-    STA.B $D4,X 
-    LDA.W #$6D00 
-    STA.B $D5,X 
+    LDA.W #$0600 : STA.B $D0,X 
+    LDA.W #Tiles_Evir : STA.B $D2,X 
+    LDA.W #Tiles_Evir>>16 : STA.B $D4,X 
+    LDA.W #$6D00 : STA.B $D5,X 
     LDA.W $0330 
     CLC 
     ADC.W #$0007 
@@ -499,22 +467,16 @@ Function_DraygonBody_FightIntro_InitialDelay:
 
 
 .done:
-    LDA.W #Function_DraygonBody_FightIntro_Dance 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_FightIntro_Dance : STA.W $0FA8 
     STZ.W $0FAA 
-    LDA.W $0F7A 
-    STA.L $7E7800 
+    LDA.W $0F7A : STA.L $7E7800 
     CLC 
     ADC.W #$02A0 
     STA.L $7E7804 
-    LDA.W $0F7E 
-    STA.L $7E7802 
-    LDA.L $7E7800 
-    STA.W $0F7A ; >.<
-    LDA.L $7E7802 
-    STA.W $0F7E ; >.<
-    LDA.W #$0018 
-    STA.L $7E781E 
+    LDA.W $0F7E : STA.L $7E7802 
+    LDA.L $7E7800 : STA.W $0F7A ; >.<
+    LDA.L $7E7802 : STA.W $0F7E ; >.<
+    LDA.W #$0018 : STA.L $7E781E 
     RTS 
 
 
@@ -530,8 +492,7 @@ Function_DraygonBody_FightIntro_Dance:
 
 
 .startFight:
-    LDA.W #Function_DraygonBody_SwoopRight_Setup 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_SwoopRight_Setup : STA.W $0FA8 
     STZ.W $0FAA 
     RTS 
 
@@ -550,10 +511,8 @@ HandleFiringWallTurret:
     TAY 
     LDA.L $7E8800,X 
     BNE .return 
-    LDA.W .XPosition,Y 
-    STA.B $12 
-    LDA.W .YPosition,Y 
-    STA.B $14 
+    LDA.W .XPosition,Y : STA.B $12 
+    LDA.W .YPosition,Y : STA.B $14 
     LDY.W #EnemyProjectile_DraygonWallTurret 
     LDA.W #$0003 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
@@ -573,20 +532,15 @@ Function_DraygonBody_SwoopRight_Setup:
     JSR.W HandleFiringWallTurret 
     LDX.W $0E54 ; >.<
     JSR.W CalculateDraygonSwoopYPositions 
-    LDA.W #Function_DraygonBody_SwoopRight_Descending 
-    STA.W $0FA8 
-    LDA.W #InstList_DraygonBody_FacingRight_Reset 
-    STA.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
-    LDA.W #$0001 
-    STA.L $7E8000 
+    LDA.W #Function_DraygonBody_SwoopRight_Descending : STA.W $0FA8 
+    LDA.W #InstList_DraygonBody_FacingRight_Reset : STA.W $0F92 
+    LDA.W #$0001 : STA.W $0F94 
+    LDA.W #$0001 : STA.L $7E8000 
     RTS 
 
 
 CalculateDraygonSwoopYPositions:
-    LDA.W #$0180 
-    STA.W $0E28 
+    LDA.W #$0180 : STA.W $0E28 
     LDA.W $0E28 ; >.<
     STA.W $0E24 
     STZ.W $0E22 
@@ -642,10 +596,8 @@ CalculateDraygonSwoopYPositions:
     STA.B $2E 
     STZ.B $30 
     JSL.L UnsignedDivision_32bit_A0B761 
-    LDA.B $2C 
-    STA.W $0FAE 
-    LDA.B $2A 
-    STA.W $0FB0 
+    LDA.B $2C : STA.W $0FAE 
+    LDA.B $2A : STA.W $0FB0 
     LDA.W $0F7E 
     LDX.W $0E26 
     STA.L $7E9002,X 
@@ -661,14 +613,11 @@ Function_DraygonBody_SwoopRight_Descending:
     LDX.W $0FAA 
     CPX.W #$0068 
     BNE .notIndex68 
-    LDA.W #InstList_DraygonArms_FacingRight_NearSwoopApex 
-    STA.W $1052 
-    LDA.W #$0001 
-    STA.W $1054 
+    LDA.W #InstList_DraygonArms_FacingRight_NearSwoopApex : STA.W $1052 
+    LDA.W #$0001 : STA.W $1054 
 
 .notIndex68:
-    LDA.L $7E9002,X 
-    STA.W $0F7E,Y 
+    LDA.L $7E9002,X : STA.W $0F7E,Y 
     DEC.W $0FAA 
     DEC.W $0FAA 
     DEC.W $0FAA 
@@ -686,8 +635,7 @@ Function_DraygonBody_SwoopRight_Descending:
 
 
 .apex:
-    LDA.W #Function_DraygonBody_SwoopRight_Apex 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_SwoopRight_Apex : STA.W $0FA8 
     RTS 
 
 
@@ -696,16 +644,13 @@ UNUSED_Draygon_FireGoop_A58901:
     LDA.W $05B6 
     AND.W #$000F 
     BNE .return 
-    LDA.W #InstList_DraygonBody_FacingLeft_FireGoop 
-    STA.W $0F92 
+    LDA.W #InstList_DraygonBody_FacingLeft_FireGoop : STA.W $0F92 
     LDA.L $7E8000 
     BEQ .keepLeft 
-    LDA.W #InstList_DraygonBody_FacingRight_FireGoop 
-    STA.W $0F92 
+    LDA.W #InstList_DraygonBody_FacingRight_FireGoop : STA.W $0F92 
 
 .keepLeft:
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #$0001 : STA.W $0F94 
 
 .return:
     RTS 
@@ -725,12 +670,9 @@ Function_DraygonBody_SwoopRight_Apex:
     STA.B $2E 
     STZ.B $30 
     JSL.L UnsignedDivision_32bit_A0B761 
-    LDA.B $2C 
-    STA.W $0FAE 
-    LDA.B $2A 
-    STA.W $0FB0 
-    LDA.W #Function_DraygonBody_SwoopRight_Ascending 
-    STA.W $0FA8 
+    LDA.B $2C : STA.W $0FAE 
+    LDA.B $2A : STA.W $0FB0 
+    LDA.W #Function_DraygonBody_SwoopRight_Ascending : STA.W $0FA8 
     RTS 
 
 
@@ -740,14 +682,11 @@ Function_DraygonBody_SwoopRight_Ascending:
     LDX.W $0FAA 
     CPX.W #$0068 
     BNE .notIndex68 
-    LDA.W #InstList_DraygonArms_FacingRight_Idle_0 
-    STA.W $1052 
-    LDA.W #$0001 
-    STA.W $1054 
+    LDA.W #InstList_DraygonArms_FacingRight_Idle_0 : STA.W $1052 
+    LDA.W #$0001 : STA.W $1054 
 
 .notIndex68:
-    LDA.L $7E9002,X 
-    STA.W $0F7E,Y 
+    LDA.L $7E9002,X : STA.W $0F7E,Y 
     INC.W $0FAA 
     INC.W $0FAA 
     INC.W $0FAA 
@@ -769,14 +708,12 @@ Function_DraygonBody_SwoopRight_Ascending:
     LDA.W $05E5 
     AND.W #$0001 
     BEQ .goopLeft 
-    LDA.W #Function_DraygonBody_SwoopLeft_Setup 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_SwoopLeft_Setup : STA.W $0FA8 
     RTS 
 
 
 .goopLeft:
-    LDA.W #Function_DraygonBody_GoopLeft_Setup 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_GoopLeft_Setup : STA.W $0FA8 
     RTS 
 
 
@@ -794,20 +731,13 @@ Function_DraygonBody_SwoopLeft_Setup:
     STA.B $2E 
     STZ.B $30 
     JSL.L UnsignedDivision_32bit_A0B761 
-    LDA.B $2C 
-    STA.W $0FAE 
-    LDA.B $2A 
-    STA.W $0FB0 
-    LDA.W #Function_DraygonBody_SwoopLeft_Descending 
-    STA.W $0FA8 
-    LDA.W #InstList_DraygonBody_FacingLeft_Reset 
-    STA.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
-    LDA.W #$0000 
-    STA.L $7E8000 
-    LDA.W $0FAC 
-    STA.W $0FAA 
+    LDA.B $2C : STA.W $0FAE 
+    LDA.B $2A : STA.W $0FB0 
+    LDA.W #Function_DraygonBody_SwoopLeft_Descending : STA.W $0FA8 
+    LDA.W #InstList_DraygonBody_FacingLeft_Reset : STA.W $0F92 
+    LDA.W #$0001 : STA.W $0F94 
+    LDA.W #$0000 : STA.L $7E8000 
+    LDA.W $0FAC : STA.W $0FAA 
     RTS 
 
 
@@ -818,14 +748,11 @@ Function_DraygonBody_SwoopLeft_Descending:
     LDX.W $0FAA 
     CPX.W #$0068 
     BNE .notIndex68 
-    LDA.W #InstList_DraygonArms_FacingLeft_NearSwoopApex 
-    STA.W $1052 
-    LDA.W #$0001 
-    STA.W $1054 
+    LDA.W #InstList_DraygonArms_FacingLeft_NearSwoopApex : STA.W $1052 
+    LDA.W #$0001 : STA.W $1054 
 
 .notIndex68:
-    LDA.L $7E9002,X 
-    STA.W $0F7E,Y 
+    LDA.L $7E9002,X : STA.W $0F7E,Y 
     DEC.W $0FAA 
     DEC.W $0FAA 
     DEC.W $0FAA 
@@ -843,8 +770,7 @@ Function_DraygonBody_SwoopLeft_Descending:
 
 
 .apex:
-    LDA.W #Function_DraygonBody_SwoopLeft_Apex 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_SwoopLeft_Apex : STA.W $0FA8 
     RTS 
 
 
@@ -872,12 +798,9 @@ Function_DraygonBody_SwoopLeft_Apex:
     STA.B $2E 
     STZ.B $30 
     JSL.L UnsignedDivision_32bit_A0B761 
-    LDA.B $2C 
-    STA.W $0FAE 
-    LDA.B $2A 
-    STA.W $0FB0 
-    LDA.W #Function_DraygonBody_SwoopLeft_Ascending 
-    STA.W $0FA8 
+    LDA.B $2C : STA.W $0FAE 
+    LDA.B $2A : STA.W $0FB0 
+    LDA.W #Function_DraygonBody_SwoopLeft_Ascending : STA.W $0FA8 
     RTS 
 
 
@@ -888,13 +811,10 @@ Function_DraygonBody_SwoopLeft_Ascending:
     LDX.W $0FAA 
     CPX.W #$0068 
     BNE + 
-    LDA.W #InstList_DraygonArms_FacingLeft_Idle_0 
-    STA.W $1052 
-    LDA.W #$0001 
-    STA.W $1054 
+    LDA.W #InstList_DraygonArms_FacingLeft_Idle_0 : STA.W $1052 
+    LDA.W #$0001 : STA.W $1054 
 
-  + LDA.L $7E9002,X 
-    STA.W $0F7E,Y 
+  + LDA.L $7E9002,X : STA.W $0F7E,Y 
     INC.W $0FAA 
     INC.W $0FAA 
     INC.W $0FAA 
@@ -916,48 +836,32 @@ Function_DraygonBody_SwoopLeft_Ascending:
     LDA.W $05E5 
     AND.W #$0001 
     BEQ .goop 
-    LDA.W #Function_DraygonBody_SwoopRight_Setup 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_SwoopRight_Setup : STA.W $0FA8 
     STZ.W $0FAA 
-    LDA.L $7E7800 
-    STA.W $0F7A 
-    LDA.L $7E7802 
-    STA.W $0F7E 
+    LDA.L $7E7800 : STA.W $0F7A 
+    LDA.L $7E7802 : STA.W $0F7E 
     RTS 
 
 
 .goop:
-    LDA.W #Function_DraygonBody_GoopRight_Setup 
-    STA.W $0FA8 
-    LDA.L $7E7800 
-    STA.W $0F7A 
+    LDA.W #Function_DraygonBody_GoopRight_Setup : STA.W $0FA8 
+    LDA.L $7E7800 : STA.W $0F7A 
     RTS 
 
 
 Function_DraygonBody_GoopRight_Setup:
     JSR.W HandleFiringWallTurret 
-    LDA.W #$FFB0 
-    STA.W $0F7A 
-    LDA.W #$0180 
-    STA.W $0F7E 
-    LDA.W #$0000 
-    STA.W $0FB0 
-    LDA.W #$0001 
-    STA.W $0FAE 
-    LDA.W #$0000 
-    STA.L $7E781A 
-    LDA.W #InstList_DraygonArms_FacingRight_NearSwoopApex 
-    STA.W $1052 
-    LDA.W #$0001 
-    STA.W $1054 
-    LDA.W #Function_DraygonBody_GoopRight_MoveUntilSamusInRange 
-    STA.W $0FA8 
-    LDA.W #InstList_DraygonBody_FacingRight_Reset 
-    STA.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
-    LDA.W #$0001 
-    STA.L $7E8000 
+    LDA.W #$FFB0 : STA.W $0F7A 
+    LDA.W #$0180 : STA.W $0F7E 
+    LDA.W #$0000 : STA.W $0FB0 
+    LDA.W #$0001 : STA.W $0FAE 
+    LDA.W #$0000 : STA.L $7E781A 
+    LDA.W #InstList_DraygonArms_FacingRight_NearSwoopApex : STA.W $1052 
+    LDA.W #$0001 : STA.W $1054 
+    LDA.W #Function_DraygonBody_GoopRight_MoveUntilSamusInRange : STA.W $0FA8 
+    LDA.W #InstList_DraygonBody_FacingRight_Reset : STA.W $0F92 
+    LDA.W #$0001 : STA.W $0F94 
+    LDA.W #$0001 : STA.L $7E8000 
     RTS 
 
 
@@ -970,16 +874,13 @@ Function_DraygonBody_GoopRight_MoveUntilSamusInRange:
     JSL.L NegateA_A0B067 
     CMP.W #$00D0 
     BPL .tooFar 
-    LDA.W #Function_DraygonBody_GoopRight_FiringGoops 
-    STA.W $0FA8 
-    LDA.W #$0010 
-    STA.L $7E7806 
+    LDA.W #Function_DraygonBody_GoopRight_FiringGoops : STA.W $0FA8 
+    LDA.W #$0010 : STA.L $7E7806 
     RTS 
 
 
 .tooFar:
-    LDA.W #$0020 
-    STA.W $0E32 
+    LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC 
@@ -1013,12 +914,10 @@ Function_DraygonBody_GoopRight_FiringGoops:
     BEQ .reloadSpeedDivisor 
     LDY.W #InstList_DraygonBody_FacingRight_FireGoop 
     STY.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #$0001 : STA.W $0F94 
 
 .noGoop:
-    LDA.W #$0020 
-    STA.W $0E32 
+    LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC 
@@ -1049,25 +948,20 @@ Function_DraygonBody_GoopRight_FiringGoops:
     BEQ .done 
 
 .SamusGooped:
-    LDA.W #Function_DraygonBody_ChaseSamus 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_ChaseSamus : STA.W $0FA8 
     RTS 
 
 
 .done:
-    LDA.W #InstList_DraygonArms_FacingRight_Idle_0 
-    STA.W $1052 
-    LDA.W #$0001 
-    STA.W $1054 
-    LDA.W #Function_DraygonBody_GoopRight_MoveUntilOffScreen 
-    STA.W $0FA8 
+    LDA.W #InstList_DraygonArms_FacingRight_Idle_0 : STA.W $1052 
+    LDA.W #$0001 : STA.W $1054 
+    LDA.W #Function_DraygonBody_GoopRight_MoveUntilOffScreen : STA.W $0FA8 
     RTS 
 
 
 Function_DraygonBody_GoopRight_MoveUntilOffScreen:
     JSR.W HandleShortDraygonBreathBubbles 
-    LDA.W #$0020 
-    STA.W $0E32 
+    LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC 
@@ -1094,40 +988,25 @@ Function_DraygonBody_GoopRight_MoveUntilOffScreen:
 
 
 .done:
-    LDA.W #Function_DraygonBody_SwoopLeft_Setup 
-    STA.W $0FA8 
-    LDA.W #$0250 
-    STA.W $0F7A 
-    LDA.W #$FFB0 
-    STA.W $0F7E 
-    LDA.W $0FAC 
-    STA.W $0FAA 
+    LDA.W #Function_DraygonBody_SwoopLeft_Setup : STA.W $0FA8 
+    LDA.W #$0250 : STA.W $0F7A 
+    LDA.W #$FFB0 : STA.W $0F7E 
+    LDA.W $0FAC : STA.W $0FAA 
     RTS 
 
 
 Function_DraygonBody_GoopLeft_Setup:
-    LDA.L $7E7804 
-    STA.W $0F7A 
-    LDA.W #$0180 
-    STA.W $0F7E 
-    LDA.W #$0000 
-    STA.W $0FB0 
-    LDA.W #$0001 
-    STA.W $0FAE 
-    LDA.W #$0000 
-    STA.L $7E781A 
-    LDA.W #InstList_DraygonArms_FacingRight_NearSwoopApex 
-    STA.W $1052 
-    LDA.W #$0001 
-    STA.W $1054 
-    LDA.W #Function_DraygonBody_GoopLeft_MoveUntilSamusInRange 
-    STA.W $0FA8 
-    LDA.W #InstList_DraygonBody_FacingLeft_Reset 
-    STA.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
-    LDA.W #$0000 
-    STA.L $7E8000 
+    LDA.L $7E7804 : STA.W $0F7A 
+    LDA.W #$0180 : STA.W $0F7E 
+    LDA.W #$0000 : STA.W $0FB0 
+    LDA.W #$0001 : STA.W $0FAE 
+    LDA.W #$0000 : STA.L $7E781A 
+    LDA.W #InstList_DraygonArms_FacingRight_NearSwoopApex : STA.W $1052 
+    LDA.W #$0001 : STA.W $1054 
+    LDA.W #Function_DraygonBody_GoopLeft_MoveUntilSamusInRange : STA.W $0FA8 
+    LDA.W #InstList_DraygonBody_FacingLeft_Reset : STA.W $0F92 
+    LDA.W #$0001 : STA.W $0F94 
+    LDA.W #$0000 : STA.L $7E8000 
     RTS 
 
 
@@ -1140,16 +1019,13 @@ Function_DraygonBody_GoopLeft_MoveUntilSamusInRange:
     JSL.L NegateA_A0B067 
     CMP.W #$00D0 
     BPL .tooFar 
-    LDA.W #Function_DraygonBody_GoopLeft_FiringGoops 
-    STA.W $0FA8 
-    LDA.W #$0010 
-    STA.L $7E7806 
+    LDA.W #Function_DraygonBody_GoopLeft_FiringGoops : STA.W $0FA8 
+    LDA.W #$0010 : STA.L $7E7806 
     RTS 
 
 
 .tooFar:
-    LDA.W #$0020 
-    STA.W $0E32 
+    LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC 
@@ -1182,12 +1058,10 @@ Function_DraygonBody_GoopLeft_FiringGoops:
     BEQ .reloadSpeedDivisor 
     LDY.W #InstList_DraygonBody_FacingLeft_FireGoop 
     STY.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #$0001 : STA.W $0F94 
 
 .noGoop:
-    LDA.W #$0020 
-    STA.W $0E32 
+    LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC 
@@ -1218,18 +1092,14 @@ Function_DraygonBody_GoopLeft_FiringGoops:
     BEQ .done 
 
 .SamusGooped:
-    LDA.W #Function_DraygonBody_ChaseSamus 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_ChaseSamus : STA.W $0FA8 
     RTS 
 
 
 .done:
-    LDA.W #InstList_DraygonArms_FacingLeft_Idle_0 
-    STA.W $1052 
-    LDA.W #$0001 
-    STA.W $1054 
-    LDA.W #Function_DraygonBody_GoopLeft_MoveUntilOffScreen 
-    STA.W $0FA8 
+    LDA.W #InstList_DraygonArms_FacingLeft_Idle_0 : STA.W $1052 
+    LDA.W #$0001 : STA.W $1054 
+    LDA.W #Function_DraygonBody_GoopLeft_MoveUntilOffScreen : STA.W $0FA8 
     RTS 
 
 
@@ -1237,8 +1107,7 @@ Function_DraygonBody_GoopLeft_MoveUntilOffScreen:
     JSR.W HandleShortDraygonBreathBubbles 
     LDA.W $0A66 
     BNE .SamusGooped 
-    LDA.W #$0020 
-    STA.W $0E32 
+    LDA.W #$0020 : STA.W $0E32 
     LDA.L $7E781A 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC 
@@ -1265,20 +1134,15 @@ Function_DraygonBody_GoopLeft_MoveUntilOffScreen:
 
 
 .SamusGooped:
-    LDA.W #Function_DraygonBody_ChaseSamus 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_ChaseSamus : STA.W $0FA8 
     RTS 
 
 
 .done:
-    LDA.W #Function_DraygonBody_SwoopRight_Setup 
-    STA.W $0FA8 
-    LDA.W #$FFB0 
-    STA.W $0F7A 
-    LDA.W #$FFB0 
-    STA.W $0F7E 
-    LDA.W $0FAC 
-    STA.W $0FAA 
+    LDA.W #Function_DraygonBody_SwoopRight_Setup : STA.W $0FA8 
+    LDA.W #$FFB0 : STA.W $0F7A 
+    LDA.W #$FFB0 : STA.W $0F7E 
+    LDA.W $0FAC : STA.W $0FAA 
     RTS 
 
 
@@ -1286,8 +1150,7 @@ Function_DraygonBody_ChaseSamus:
     JSR.W HandleFiringWallTurret 
     LDA.W $0A66 
     BNE .SamusStillGooped 
-    LDA.W #Function_DraygonBody_GrabbedSamus_FlyStraightUp 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_GrabbedSamus_FlyStraightUp : STA.W $0FA8 
     RTS 
 
 
@@ -1335,17 +1198,12 @@ Function_DraygonBody_ChaseSamus:
     AND.W #$00FF 
     STA.W $0E20 
     STA.B $12 
-    LDA.W #$0002 
-    STA.B $14 
+    LDA.W #$0002 : STA.B $14 
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name ; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
-    LDA.B $16 
-    STA.W $0E24 
-    LDA.B $18 
-    STA.W $0E26 
-    LDA.B $1A 
-    STA.W $0E28 
-    LDA.B $1C 
-    STA.W $0E2A 
+    LDA.B $16 : STA.W $0E24 
+    LDA.B $18 : STA.W $0E26 
+    LDA.B $1A : STA.W $0E28 
+    LDA.B $1C : STA.W $0E2A 
     JSL.L MoveEnemyAccordingToAngleAndXYSpeeds 
     RTS 
 
@@ -1358,8 +1216,7 @@ Function_DraygonBody_ChaseSamus:
 
 .keepLeft:
     STY.W $1052 
-    LDA.W #$0001 
-    STA.W $1054 
+    LDA.W #$0001 : STA.W $1054 
     LDA.W #$000D 
     JSL.L Run_Samus_Command 
     AND.W #$FFFF 
@@ -1372,33 +1229,24 @@ Function_DraygonBody_ChaseSamus:
 .left:
     TYA 
     JSL.L SetSamusIntoTheGrabbedByDraygonPose 
-    LDA.W #$0100 
-    STA.L $7E780C 
-    LDA.W #$0180 
-    STA.L $7E780E 
-    LDA.W #$0000 
-    STA.L $7E780A 
+    LDA.W #$0100 : STA.L $7E780C 
+    LDA.W #$0180 : STA.L $7E780E 
+    LDA.W #$0000 : STA.L $7E780A 
     STA.L $7E7812 
-    LDA.W #$00C0 
-    STA.L $7E7810 
-    LDA.W #$0800 
-    STA.L $7E7816 
-    LDA.W #Function_DraygonBody_GrabbedSamus_MovingToTargetPosition 
-    STA.W $0FA8 
+    LDA.W #$00C0 : STA.L $7E7810 
+    LDA.W #$0800 : STA.L $7E7816 
+    LDA.W #Function_DraygonBody_GrabbedSamus_MovingToTargetPosition : STA.W $0FA8 
     RTS 
 
 
 .retreat:
-    LDA.W #Function_DraygonBody_RepelledByGrapple 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_RepelledByGrapple : STA.W $0FA8 
     RTS 
 
 
 Function_DraygonBody_RepelledByGrapple:
-    LDA.W #GrappleBeamFunction_Dropped 
-    STA.W $0D32 
-    LDA.W #Function_DraygonBody_GrabbedSamus_FlailTail_FlyStraightUp 
-    STA.W $0FA8 
+    LDA.W #GrappleBeamFunction_Dropped : STA.W $0D32 
+    LDA.W #Function_DraygonBody_GrabbedSamus_FlailTail_FlyStraightUp : STA.W $0FA8 
     RTS 
 
 
@@ -1457,25 +1305,19 @@ Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
     AND.W #$00FF 
     STA.W $0E20 
     STA.B $12 
-    LDA.W #$0002 
-    STA.B $14 
+    LDA.W #$0002 : STA.B $14 
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name ; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
-    LDA.B $16 
-    STA.W $0E24 
-    LDA.B $18 
-    STA.W $0E26 
-    LDA.B $1A 
-    STA.W $0E28 
-    LDA.B $1C 
-    STA.W $0E2A 
+    LDA.B $16 : STA.W $0E24 
+    LDA.B $18 : STA.W $0E26 
+    LDA.B $1A : STA.W $0E28 
+    LDA.B $1C : STA.W $0E2A 
     JSL.L MoveEnemyAccordingToAngleAndXYSpeeds 
     JSR.W MoveSamusWithDraygon 
     RTS 
 
 
 .reachedTargetPosition:
-    LDA.W #Function_DraygonBody_GrabbedSamus_RisingSpiralMovement 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_GrabbedSamus_RisingSpiralMovement : STA.W $0FA8 
     LDY.W #InstList_DraygonBody_FacingLeft_Roar 
     LDA.L $7E8000 
     BEQ .keepLeft 
@@ -1484,8 +1326,7 @@ Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
 .keepLeft:
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     LDA.W $0F86 
     ORA.W #$0400 
     STA.W $0F86 
@@ -1514,16 +1355,13 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     LDA.W $05E5 
     AND.W #$00FF 
     BNE .noSpank 
-    LDA.W #$0040 
-    STA.L $7E7818 
-    LDA.W #Function_DraygonBody_GrabbedSamus_TailWhip 
-    STA.W $0FA8 
+    LDA.W #$0040 : STA.L $7E7818 
+    LDA.W #Function_DraygonBody_GrabbedSamus_TailWhip : STA.W $0FA8 
     RTS 
 
 
 .noSpank:
-    LDA.L $7E780A 
-    STA.W $0E32 
+    LDA.L $7E780A : STA.W $0E32 
     LDA.L $7E7810 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC 
@@ -1556,8 +1394,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     SEC 
     SBC.W #$0010 
     STA.B $14 
-    LDA.W #$003D 
-    STA.B $16 
+    LDA.W #$003D : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
 
@@ -1594,8 +1431,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     RTS 
 
 .finalSpanking:
-    LDA.W #Function_DraygonBody_GrabbedSamus_FinalSpanking_Start 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_GrabbedSamus_FinalSpanking_Start : STA.W $0FA8 
     RTS 
 
 
@@ -1617,13 +1453,11 @@ Function_DraygonBody_GrabbedSamus_TailWhip:
 
 .keepLeft:
     STY.W $1012 
-    LDA.W #$0001 
-    STA.W $1014 
+    LDA.W #$0001 : STA.W $1014 
     RTS 
 
 .done:
-    LDA.W #Function_DraygonBody_GrabbedSamus_RisingSpiralMovement 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_GrabbedSamus_RisingSpiralMovement : STA.W $0FA8 
     RTS 
 
 
@@ -1636,10 +1470,8 @@ Function_DraygonBody_GrabbedSamus_FinalSpanking_Start:
 
 .keepLeft:
     STY.W $1012 
-    LDA.W #$0001 
-    STA.W $1014 
-    LDA.W #Function_DraygonBody_GrabbedSamus_FinalSpanking_Ongoing 
-    STA.W $0FA8 
+    LDA.W #$0001 : STA.W $1014 
+    LDA.W #Function_DraygonBody_GrabbedSamus_FinalSpanking_Ongoing : STA.W $0FA8 
     RTS 
 
 
@@ -1651,8 +1483,7 @@ Function_DraygonBody_GrabbedSamus_FinalSpanking_Ongoing:
 Function_DraygonBody_GrabbedSamus_FlailTail_FlyStraightUp:
     JSL.L ReleaseSamusFromDraygon_external 
     STZ.W $0A64 
-    LDA.W #Function_DraygonBody_GrabbedSamus_FlyStraightUp 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_GrabbedSamus_FlyStraightUp : STA.W $0FA8 
     LDA.W $0F86 
     AND.W #$FBFF 
     STA.W $0F86 
@@ -1663,8 +1494,7 @@ Function_DraygonBody_GrabbedSamus_FlailTail_FlyStraightUp:
 
 .keepLeft:
     STY.W $1012 
-    LDA.W #$0001 
-    STA.W $1014 
+    LDA.W #$0001 : STA.W $1014 
     RTS 
 
 
@@ -1682,13 +1512,10 @@ Function_DraygonBody_GrabbedSamus_FlyStraightUp:
     LDA.W $0F86 
     AND.W #$FBFF 
     STA.W $0F86 
-    LDA.W #Function_DraygonBody_SwoopRight_Setup 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_SwoopRight_Setup : STA.W $0FA8 
     STZ.W $0FAA 
-    LDA.L $7E7800 
-    STA.W $0F7A 
-    LDA.L $7E7802 
-    STA.W $0F7E 
+    LDA.L $7E7800 : STA.W $0F7A 
+    LDA.L $7E7802 : STA.W $0F7E 
     RTS 
 
 
@@ -1713,8 +1540,7 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     SEC 
     SBC.W #$0010 
     STA.B $14 
-    LDA.W #$003D 
-    STA.B $16 
+    LDA.W #$003D : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
 
@@ -1744,20 +1570,15 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     INC A 
     AND.W #$00FF 
     STA.L $7E8806 
-    LDA.W #$0001 
-    STA.B $14 
+    LDA.W #$0001 : STA.B $14 
     LDA.L $7E8806 
     AND.W #$00FF 
     STA.B $12 
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name ; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
-    LDA.B $16 
-    STA.W $0E24 
-    LDA.B $18 
-    STA.W $0E26 
-    LDA.B $1A 
-    STA.W $0E28 
-    LDA.B $1C 
-    STA.W $0E2A 
+    LDA.B $16 : STA.W $0E24 
+    LDA.B $18 : STA.W $0E26 
+    LDA.B $1A : STA.W $0E28 
+    LDA.B $1C : STA.W $0E2A 
     LDA.L $7E8806 
     AND.W #$00FF 
     STA.W $0E20 
@@ -1783,16 +1604,12 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
 
 .done:
     JSR.W SpawnDeathSequenceEvirSpriteObjects 
-    LDA.W #Function_DraygonBody_DeathSequence_WaitForEvirs 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_DeathSequence_WaitForEvirs : STA.W $0FA8 
     LDA.W #$0003 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$01A0 
-    STA.W $0FAA 
-    LDA.W #InstList_Draygon_Sleep 
-    STA.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #$01A0 : STA.W $0FAA 
+    LDA.W #InstList_Draygon_Sleep : STA.W $0F92 
+    LDA.W #$0001 : STA.W $0F94 
     LDA.W $0F86 
     ORA.W #$0200 
     STA.W $1006 
@@ -1804,10 +1621,8 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
 
 .keepLeft:
     STY.W $0FD2 
-    LDA.W #$0001 
-    STA.W $0FD4 
-    LDA.W #RTS_A5804B 
-    STA.W $0FE8 
+    LDA.W #$0001 : STA.W $0FD4 
+    LDA.W #RTS_A5804B : STA.W $0FE8 
 
 .return:
     RTS 
@@ -1823,8 +1638,7 @@ Function_DraygonBody_DeathSequence_WaitForEvirs:
 
 
 .timerExpired:
-    LDA.W #Function_DraygonBody_DeathSequence_BuriedByEvirs 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_DeathSequence_BuriedByEvirs : STA.W $0FA8 
 
 .return:
     RTS 
@@ -1837,10 +1651,8 @@ Function_DraygonBody_DeathSequence_BuriedByEvirs:
     LDA.W $0F7E 
     CMP.W #$0240 
     BMI .return 
-    LDA.W #InstList_Draygon_Delete 
-    STA.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #InstList_Draygon_Delete : STA.W $0F92 
+    LDA.W #$0001 : STA.W $0F94 
     LDA.W $0F86 
     ORA.W #$0200 
     STA.W $0F86 
@@ -1873,8 +1685,7 @@ HandleDyingDraygonSmoke:
     CLC 
     ADC.W #$0190 
     STA.B $14 
-    LDA.W #$0015 
-    STA.B $16 
+    LDA.W #$0015 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
 
@@ -1896,8 +1707,7 @@ HandleShortDraygonBreathBubbles:
     CLC 
     ADC.W #$FFF0 
     STA.B $14 
-    LDA.W #$0018 
-    STA.B $16 
+    LDA.W #$0018 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
 
@@ -1948,8 +1758,7 @@ Debug_DraygonController2InputHandling:
 
 .keepLeft:
     STY.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #$0001 : STA.W $0F94 
     BRA .return 
 
 
@@ -1963,8 +1772,7 @@ Debug_DraygonController2InputHandling:
 
 ..keepLeft:
     STY.W $1012 
-    LDA.W #$0001 
-    STA.W $1014 
+    LDA.W #$0001 : STA.W $1014 
     BRA .return 
 
 
@@ -1978,8 +1786,7 @@ Debug_DraygonController2InputHandling:
 
 ..keepLeft:
     STY.W $1052 
-    LDA.W #$0001 
-    STA.W $1054 
+    LDA.W #$0001 : STA.W $1054 
     BRA .return 
 
 
@@ -2000,8 +1807,7 @@ Debug_MoveDraygonWithDpad_Slow:
     BEQ .notPressingLeft 
     STA.W $1866 
     LDY.W #InstList_DraygonBody_FacingLeft_Reset 
-    LDA.W #$0000 
-    STA.L $7E8000 
+    LDA.W #$0000 : STA.L $7E8000 
     BRA + 
 
 
@@ -2013,12 +1819,10 @@ Debug_MoveDraygonWithDpad_Slow:
     BEQ .noHorizontalMovement 
     STA.W $1866 
     LDY.W #InstList_DraygonBody_FacingRight_Reset 
-    LDA.W #$0001 
-    STA.L $7E8000 
+    LDA.W #$0001 : STA.L $7E8000 
 
   + STY.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #$0001 : STA.W $0F94 
 
 .noHorizontalMovement:
     LDA.B $8D 
@@ -2050,8 +1854,7 @@ Debug_MoveDraygonWithDpad_Fast:
     BEQ .noPressingLeft 
     STA.W $1866 
     LDY.W #InstList_DraygonBody_FacingLeft_Reset 
-    LDA.W #$0000 
-    STA.L $7E8000 
+    LDA.W #$0000 : STA.L $7E8000 
     BRA + 
 
 
@@ -2067,12 +1870,10 @@ Debug_MoveDraygonWithDpad_Fast:
     BEQ .noHorizontalMovement 
     STA.W $1866 
     LDY.W #InstList_DraygonBody_FacingRight_Reset 
-    LDA.W #$0001 
-    STA.L $7E8000 
+    LDA.W #$0001 : STA.L $7E8000 
 
   + STY.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #$0001 : STA.W $0F94 
 
 .noHorizontalMovement:
     LDA.B $8D 
@@ -2118,8 +1919,7 @@ MoveSamusWithDraygon:
     BIT.W #$0002 
     BEQ .return 
     STZ.W $0A64 
-    LDA.W #Function_DraygonBody_GrabbedSamus_FlyStraightUp 
-    STA.W $0FA8 
+    LDA.W #Function_DraygonBody_GrabbedSamus_FlyStraightUp : STA.W $0FA8 
 
 .return:
     RTS 
@@ -2127,16 +1927,11 @@ MoveSamusWithDraygon:
 
 Instruction_Draygon_SetInstList_Body_Eye_Tail_Arms:
     PHY 
-    LDA.W $0000,Y 
-    STA.W $0F92 
-    LDA.W $0002,Y 
-    STA.W $0FD2 
-    LDA.W $0004,Y 
-    STA.W $1012 
-    LDA.W $0006,Y 
-    STA.W $1052 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W $0000,Y : STA.W $0F92 
+    LDA.W $0002,Y : STA.W $0FD2 
+    LDA.W $0004,Y : STA.W $1012 
+    LDA.W $0006,Y : STA.W $1052 
+    LDA.W #$0001 : STA.W $0F94 
     STA.W $0FD4 
     STA.W $1014 
     STA.W $1054 
@@ -2194,12 +1989,10 @@ HurtAI_Draygon:
 
 .noFlash:
     LDX.W #$C0A0 ; $7E
-    LDA.W #$0010 
-    STA.W $060B 
+    LDA.W #$0010 : STA.W $060B 
 
 .loopBG12Palette5:
-    LDA.W $0000,Y 
-    STA.L $7E0000,X 
+    LDA.W $0000,Y : STA.L $7E0000,X 
     INX #2
     INY #2
     DEC.W $060B 
@@ -2214,8 +2007,7 @@ HurtAI_Draygon:
     LDX.W #$0000 
 
 .loopHealthBasedPalette:
-    LDA.W DraygonHealthBasedPaletteTable,Y 
-    STA.L $7EC0B2,X 
+    LDA.W DraygonHealthBasedPaletteTable,Y : STA.L $7EC0B2,X 
     INY #2
     INX #2
     CPX.W #$0008 
@@ -2231,12 +2023,10 @@ HurtAI_Draygon:
 
 ..noFlash:
     LDX.W #$C1E0 ; $7E
-    LDA.W #$0010 
-    STA.W $060B 
+    LDA.W #$0010 : STA.W $060B 
 
 .loopSpritePalette7:
-    LDA.W $0000,Y 
-    STA.L $7E0000,X 
+    LDA.W $0000,Y : STA.L $7E0000,X 
     INX #2
     INY #2
     DEC.W $060B 
@@ -2291,8 +2081,7 @@ DraygonReaction_Common:
 
 
 .dead:
-    LDA.W #GrappleBeamFunction_Dropped 
-    STA.W $0D32 
+    LDA.W #GrappleBeamFunction_Dropped : STA.W $0D32 
     LDY.W #InstList_DraygonArms_FacingLeft_Dying 
     LDA.L $7E8000 
     BEQ ..keepLeft 
@@ -2300,20 +2089,16 @@ DraygonReaction_Common:
 
   ..keepLeft
     STY.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #$0001 : STA.W $0F94 
     LDY.W #InstList_DraygonEye_FacingLeft_Dying_0 
     LDA.L $7E8000 
     BEQ + 
     LDY.W #InstList_DraygonEye_FacingRight_Dying_0 
 
 +   STY.W $0FD2 
-    LDA.W #$0001 
-    STA.W $0FD4 
-    LDA.W #RTS_A5804B 
-    STA.W $0FE8 
-    LDA.W #Function_DraygonBody_DeathSequence_DriftToDeathSpot 
-    STA.W $0FA8 
+    LDA.W #$0001 : STA.W $0FD4 
+    LDA.W #RTS_A5804B : STA.W $0FE8 
+    LDA.W #Function_DraygonBody_DeathSequence_DriftToDeathSpot : STA.W $0FA8 
     JSL.L ReleaseSamusFromDraygon_external 
     STZ.W $0A64 
     LDA.W #$0100 
@@ -2331,20 +2116,15 @@ DraygonReaction_Common:
     INC A 
     AND.W #$00FF 
     STA.L $7E8806 
-    LDA.W #$0001 
-    STA.B $14 
+    LDA.W #$0001 : STA.B $14 
     LDA.L $7E8806 
     AND.W #$00FF 
     STA.B $12 
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name ; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
-    LDA.B $16 
-    STA.L $7E8010 
-    LDA.B $18 
-    STA.L $7E8012 
-    LDA.B $1A 
-    STA.L $7E8014 
-    LDA.B $1C 
-    STA.L $7E8016 
+    LDA.B $16 : STA.L $7E8010 
+    LDA.B $18 : STA.L $7E8012 
+    LDA.B $1A : STA.L $7E8014 
+    LDA.B $1C : STA.L $7E8016 
     RTL 
 
 
@@ -2385,8 +2165,7 @@ DraygonHealthBasedPaletteHandling:
     LDX.W #$0000 
 
 .loopPalette:
-    LDA.W DraygonHealthBasedPaletteTable,Y 
-    STA.L $7EC0B2,X 
+    LDA.W DraygonHealthBasedPaletteTable,Y : STA.L $7EC0B2,X 
     INY #2
     INX #2
     CPX.W #$0008 
@@ -2397,8 +2176,7 @@ DraygonHealthBasedPaletteHandling:
 
 
 Instruction_Draygon_FunctionInY:
-    LDA.W $0000,Y 
-    STA.W $0FA8,X 
+    LDA.W $0000,Y : STA.W $0FA8,X 
     INY #2
     RTL 
 
@@ -2407,8 +2185,7 @@ Inst_Draygon_SpawnDyingDraygonSpriteObject_BigDustCloud:
     PHY 
     PHX 
     JSR.W GenerateRandomDyingDraygonSpriteObjectPosition 
-    LDA.W #$0015 
-    STA.B $16 
+    LDA.W #$0015 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
     PLX 
@@ -2420,8 +2197,7 @@ Inst_Draygon_SpawnDyingDraygonSpriteObject_SmallExplosion:
     PHY 
     PHX 
     JSR.W GenerateRandomDyingDraygonSpriteObjectPosition 
-    LDA.W #$0003 
-    STA.B $16 
+    LDA.W #$0003 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
     PLX 
@@ -2433,8 +2209,7 @@ Inst_Draygon_SpawnDyingDraygonSpriteObject_BigExplosion:
     PHY 
     PHX 
     JSR.W GenerateRandomDyingDraygonSpriteObjectPosition 
-    LDA.W #$001D 
-    STA.B $16 
+    LDA.W #$001D : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
     PLX 
@@ -2446,8 +2221,7 @@ Inst_Draygon_SpawnDyingDraygonSpriteObject_BreathBubbles:
     PHY 
     PHX 
     JSR.W GenerateRandomDyingDraygonSpriteObjectPosition 
-    LDA.W #$0018 
-    STA.B $16 
+    LDA.W #$0018 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
     PLX 
@@ -2618,8 +2392,7 @@ InstList_DraygonBody_FacingLeft_Idle:
     dw Instruction_Common_Sleep 
 
 Instruction_Draygon_RoomLoadingInterruptCmd_BeginHUDDraw:
-    LDA.W #$000C 
-    STA.B $A9 
+    LDA.W #$000C : STA.B $A9 
     RTL 
 
 
@@ -2660,13 +2433,10 @@ InstList_DraygonBody_Dying_2:
 Instruction_Draygon_ParalyseDraygonTailAndArms:
     PHX 
     PHY 
-    LDA.W #$0001 
-    STA.W $1014 
+    LDA.W #$0001 : STA.W $1014 
     STA.W $1054 
-    LDA.W #InstList_Draygon_Sleep 
-    STA.W $1012 
-    LDA.W #InstList_Draygon_Sleep 
-    STA.W $1052 
+    LDA.W #InstList_Draygon_Sleep : STA.W $1012 
+    LDA.W #InstList_Draygon_Sleep : STA.W $1052 
     PLY 
     PLX 
     RTL 
@@ -3007,24 +2777,19 @@ InstList_DraygonTail_FacingLeft_TailFlail:
 Instruction_DraygonTail_TailWhipHit:
     PHX 
     PHY 
-    LDA.W #$0018 
-    STA.L $7E781E 
+    LDA.W #$0018 : STA.L $7E781E 
     LDX.W $0F78 
     LDA.L $A00006,X 
     JSL.L Suit_Damage_Division 
     JSL.L Deal_A_Damage_to_Samus 
-    LDA.W #$0020 
-    STA.W $1840 
-    LDA.W #$0007 
-    STA.W $183E 
-    LDA.W $0AF6 
-    STA.B $12 
+    LDA.W #$0020 : STA.W $1840 
+    LDA.W #$0007 : STA.W $183E 
+    LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA 
     CLC 
     ADC.W #$0010 
     STA.B $14 
-    LDA.W #$0015 
-    STA.B $16 
+    LDA.W #$0015 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
     PLY 
@@ -3145,8 +2910,7 @@ InstList_DraygonBody_FacingRight_Idle:
     dw Instruction_Common_Sleep 
 
 Instruction_Draygon_RoomLoadingInterruptCmd_BeginHUDDraw_dup:
-    LDA.W #$000C 
-    STA.B $A9 
+    LDA.W #$000C : STA.B $A9 
     RTL 
 
 
@@ -3354,10 +3118,8 @@ Debug_InstList_DraygonTail_FacingRight_FakeTailWhip:
 Instruction_DraygonBody_DisplaceGraphics:
     PHX 
     PHY 
-    LDA.W $0000,Y 
-    STA.L $7E883C 
-    LDA.W $0002,Y 
-    STA.L $7E883E 
+    LDA.W $0000,Y : STA.L $7E883C 
+    LDA.W $0002,Y : STA.L $7E883E 
     PLY 
     PLX 
     INY #4
@@ -3501,8 +3263,7 @@ InstList_DraygonTail_FacingRight_TailFlail_1:
     dw Instruction_Common_Sleep 
 
 Instruction_Draygon_BodyFunctionInY:
-    LDA.W $0000,Y 
-    STA.W $0FA8 
+    LDA.W $0000,Y : STA.W $0FA8 
     INY #2
     RTL 
 
@@ -3658,14 +3419,10 @@ SpawnDeathSequenceEvirSpriteObjects:
     LDY.W #$0014 
 
 loopLeft:
-    LDA.W DraygonDeathSequenceEvirSpawnPositions_X,Y 
-    STA.B $12 
-    LDA.W DraygonDeathSequenceEvirSpawnPositions_Y,Y 
-    STA.B $14 
-    LDA.W #$003B 
-    STA.B $16 
-    LDA.W #$0E00 
-    STA.B $18 
+    LDA.W DraygonDeathSequenceEvirSpawnPositions_X,Y : STA.B $12 
+    LDA.W DraygonDeathSequenceEvirSpawnPositions_Y,Y : STA.B $14 
+    LDA.W #$003B : STA.B $16 
+    LDA.W #$0E00 : STA.B $18 
     JSL.L Create_Sprite_Object 
     DEY #4
     DEX 
@@ -3673,14 +3430,10 @@ loopLeft:
     LDX.W #$0002 
 
 .loopRight:
-    LDA.W DraygonDeathSequenceEvirSpawnPositions_X,Y 
-    STA.B $12 
-    LDA.W DraygonDeathSequenceEvirSpawnPositions_Y,Y 
-    STA.B $14 
-    LDA.W #$003C 
-    STA.B $16 
-    LDA.W #$0E00 
-    STA.B $18 
+    LDA.W DraygonDeathSequenceEvirSpawnPositions_X,Y : STA.B $12 
+    LDA.W DraygonDeathSequenceEvirSpawnPositions_Y,Y : STA.B $14 
+    LDA.W #$003C : STA.B $16 
+    LDA.W #$0E00 : STA.B $18 
     JSL.L Create_Sprite_Object 
     DEY #4
     DEX 
@@ -3708,41 +3461,25 @@ Draygon_ClearSpriteObjects:
 SpawnFightIntroEvirSpriteObjects:
     PHX 
     PHY 
-    LDA.W #$0010 
-    STA.B $12 
-    LDA.W #$0180 
-    STA.B $14 
-    LDA.W #$003B 
-    STA.B $16 
-    LDA.W #$0E00 
-    STA.B $18 
+    LDA.W #$0010 : STA.B $12 
+    LDA.W #$0180 : STA.B $14 
+    LDA.W #$003B : STA.B $16 
+    LDA.W #$0E00 : STA.B $18 
     JSL.L Create_Sprite_Object 
-    LDA.W #$0010 
-    STA.B $12 
-    LDA.W #$0180 
-    STA.B $14 
-    LDA.W #$003B 
-    STA.B $16 
-    LDA.W #$0E00 
-    STA.B $18 
+    LDA.W #$0010 : STA.B $12 
+    LDA.W #$0180 : STA.B $14 
+    LDA.W #$003B : STA.B $16 
+    LDA.W #$0E00 : STA.B $18 
     JSL.L Create_Sprite_Object 
-    LDA.W #$0010 
-    STA.B $12 
-    LDA.W #$0180 
-    STA.B $14 
-    LDA.W #$003B 
-    STA.B $16 
-    LDA.W #$0E00 
-    STA.B $18 
+    LDA.W #$0010 : STA.B $12 
+    LDA.W #$0180 : STA.B $14 
+    LDA.W #$003B : STA.B $16 
+    LDA.W #$0E00 : STA.B $18 
     JSL.L Create_Sprite_Object 
-    LDA.W #$0010 
-    STA.B $12 
-    LDA.W #$0180 
-    STA.B $14 
-    LDA.W #$003B 
-    STA.B $16 
-    LDA.W #$0E00 
-    STA.B $18 
+    LDA.W #$0010 : STA.B $12 
+    LDA.W #$0180 : STA.B $14 
+    LDA.W #$003B : STA.B $16 
+    LDA.W #$0E00 : STA.B $18 
     JSL.L Create_Sprite_Object 
     PLY 
     PLX 
@@ -3791,8 +3528,7 @@ HandleDraygonFightIntroDance:
 
 
 .deleteSpriteObject:
-    LDA.W #$0000 
-    STA.L $7EEF78,X 
+    LDA.W #$0000 : STA.L $7EEF78,X 
     BRA .next 
 
 
@@ -6704,17 +6440,14 @@ Spritemap_Draygon_5D:
 
 InitAI_DraygonEye:
     LDX.W $0E54 
-    LDA.W #InstList_DraygonEye_FacingLeft_Idle 
-    STA.W $0F92,X 
-    LDA.W #RTS_A5804B 
-    STA.W $0FA8,X 
+    LDA.W #InstList_DraygonEye_FacingLeft_Idle : STA.W $0F92,X 
+    LDA.W #RTS_A5804B : STA.W $0FA8,X 
     RTL 
 
 
 Instruction_Draygon_EyeFunctionInY:
     PHY 
-    LDA.W $0000,Y 
-    STA.W $0FE8 
+    LDA.W $0000,Y : STA.W $0FE8 
     PLY 
     INY #2
     RTL 
@@ -6781,8 +6514,7 @@ Function_DraygonEye_FacingLeft:
     STA.W $0FB2,X 
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
 
 .return:
@@ -6844,8 +6576,7 @@ Function_DraygonEye_FacingRight:
     STA.W $0FB2,X 
     TYA 
     STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
 
 .return:
@@ -6854,8 +6585,7 @@ Function_DraygonEye_FacingRight:
 
 InitAI_DraygonTail:
     LDX.W $0E54 
-    LDA.W #InstList_DraygonTail_FacingLeft_FakeTailWhip 
-    STA.W $0F92,X 
+    LDA.W #InstList_DraygonTail_FacingLeft_FakeTailWhip : STA.W $0F92,X 
     LDA.W #$0700 
     ASL A 
     STA.W $0F96,X 
@@ -6876,13 +6606,11 @@ RTL_A5C5AC:
 
 InitAI_DraygonArms:
     LDX.W $0E54 
-    LDA.W #InstList_DraygonArms_FacingLeft_Idle_0 
-    STA.W $0F92,X 
+    LDA.W #InstList_DraygonArms_FacingLeft_Idle_0 : STA.W $0F92,X 
     LDA.W #$0700 
     ASL A 
     STA.W $0F96,X 
-    LDA.W #$0002 
-    STA.W $0F9A,X 
+    LDA.W #$0002 : STA.W $0F9A,X 
     RTL 
 
 
@@ -7599,8 +7327,7 @@ Instruction_SporeSpawn_IncreaseMaxXRadius:
 Instruction_SporeSpawn_ClearDamagedFlag:
     PHX 
     PHY 
-    LDA.W #$0000 
-    STA.L $7E801E 
+    LDA.W #$0000 : STA.L $7E801E 
     PLY 
     PLX 
     RTL 
@@ -7688,12 +7415,9 @@ InstList_SporeSpawn_DeathSequence_2:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_SporeSpawn_SetMaxXRadiusAndAngles_A5E811:
-    LDA.W $0000,Y 
-    STA.L $7E7816 
-    LDA.W $0002,Y 
-    STA.L $7E7818 
-    LDA.W $0004,Y 
-    STA.L $7E7814 
+    LDA.W $0000,Y : STA.L $7E7816 
+    LDA.W $0002,Y : STA.L $7E7818 
+    LDA.W $0004,Y : STA.L $7E7814 
     TYA 
     CLC 
     ADC.W #$0006 
@@ -7703,25 +7427,21 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_SporeSpawn_SetMaxXRadiusAndAngleDelta:
-    LDA.W $0000,Y 
-    STA.L $7E7816 
-    LDA.W $0002,Y 
-    STA.L $7E7818 
+    LDA.W $0000,Y : STA.L $7E7816 
+    LDA.W $0002,Y : STA.L $7E7818 
     INY #4
     RTL 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_SporeSpawn_MaxXRadiusInY_A5E840:
-    LDA.W $0000,Y 
-    STA.L $7E7816 
+    LDA.W $0000,Y : STA.L $7E7816 
     INY #2
     RTL 
 
 
 UNUSED_Instruction_SporeSpawn_AngleDeltaInY_A5E84A:
-    LDA.W $0000,Y 
-    STA.L $7E7818 
+    LDA.W $0000,Y : STA.L $7E7818 
     INY #2
     RTL 
 
@@ -7746,17 +7466,14 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_SporeSpawn_SporeGenerationFlagInY:
-    LDA.W $0000,Y 
-    STA.L $7E9000 
+    LDA.W $0000,Y : STA.L $7E9000 
     INY #2
     RTL 
 
 
 Instruction_SporeSpawn_Harden:
-    LDA.W #$0080 
-    STA.W $0F7A 
-    LDA.W #$0270 
-    STA.W $0F7E 
+    LDA.W #$0080 : STA.W $0F7A 
+    LDA.W #$0270 : STA.W $0F7E 
     LDA.W $0F86 
     ORA.W #$A000 
     AND.W #$FBFF 
@@ -7799,8 +7516,7 @@ Instruction_SporeSpawn_FunctionInY:
     PHY 
     PHX 
     LDX.W $0E54 
-    LDA.W $0000,Y 
-    STA.W $0FA8,X 
+    LDA.W $0000,Y : STA.W $0FA8,X 
     PLX 
     PLY 
     INY #2
@@ -7816,8 +7532,7 @@ Instruction_SporeSpawn_LoadDeathSequencePalette:
     LDX.W #$0000 
 
 .loopSpritePalette1:
-    LDA.W Palette_SporeSpawn_DeathSequence_0,Y 
-    STA.L $7EC120,X 
+    LDA.W Palette_SporeSpawn_DeathSequence_0,Y : STA.L $7EC120,X 
     INY #2
     INX #2
     CPX.W #$0020 
@@ -7828,8 +7543,7 @@ Instruction_SporeSpawn_LoadDeathSequencePalette:
     LDX.W #$0000 
 
 .loopBG12Palette4:
-    LDA.W Palette_SporeSpawn_DeathSequence_Level_0,Y 
-    STA.L $7EC080,X 
+    LDA.W Palette_SporeSpawn_DeathSequence_Level_0,Y : STA.L $7EC080,X 
     INY #2
     INX #2
     CPX.W #$0020 
@@ -7840,8 +7554,7 @@ Instruction_SporeSpawn_LoadDeathSequencePalette:
     LDX.W #$0000 
 
 Instruction_SporeSpawn_.loopBG12Palette7:
-    LDA.W Palette_SporeSpawn_DeathSequence_Background_0,Y 
-    STA.L $7EC0E0,X 
+    LDA.W Palette_SporeSpawn_DeathSequence_Background_0,Y : STA.L $7EC0E0,X 
     INY #2
     INX #2
     CPX.W #$0020 
@@ -7861,8 +7574,7 @@ Instruction_SporeSpawn_LoadDeathSequenceTargetPalette:
     LDX.W #$0000 
 
 .loopSpritePalette1:
-    LDA.W Palette_SporeSpawn_DeathSequence_0,Y 
-    STA.L $7EC320,X 
+    LDA.W Palette_SporeSpawn_DeathSequence_0,Y : STA.L $7EC320,X 
     INY #2
     INX #2
     CPX.W #$0020 
@@ -7873,8 +7585,7 @@ Instruction_SporeSpawn_LoadDeathSequenceTargetPalette:
     LDX.W #$0000 
 
 .loopBG12Palette4:
-    LDA.W Palette_SporeSpawn_DeathSequence_Level_0,Y 
-    STA.L $7EC280,X 
+    LDA.W Palette_SporeSpawn_DeathSequence_Level_0,Y : STA.L $7EC280,X 
     INY #2
     INX #2
     CPX.W #$0020 
@@ -7885,8 +7596,7 @@ Instruction_SporeSpawn_LoadDeathSequenceTargetPalette:
     LDX.W #$0000 
 
 .loopBG12Palette7:
-    LDA.W Palette_SporeSpawn_DeathSequence_Background_0,Y 
-    STA.L $7EC2E0,X 
+    LDA.W Palette_SporeSpawn_DeathSequence_Background_0,Y : STA.L $7EC2E0,X 
     INY #2
     INX #2
     CPX.W #$0020 
@@ -7953,8 +7663,7 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
     CLC 
     ADC.B $14 
     STA.B $14 
-    LDA.W #$0003 
-    STA.B $16 
+    LDA.W #$0003 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
     LDA.W #$0025 
@@ -7982,8 +7691,7 @@ SpawnSporeSpawnCeilingDustCloud:
     CLC 
     ADC.W #$01E0 
     STA.B $14 
-    LDA.W #$0015 
-    STA.B $16 
+    LDA.W #$0015 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
 
@@ -7998,8 +7706,7 @@ InitAI_SporeSpawn:
     LDX.W #$0000 
 
 .loopSpritePalette7:
-    LDA.W Palette_SporeSpawn,Y 
-    STA.L $7EC3E0,X 
+    LDA.W Palette_SporeSpawn,Y : STA.L $7EC3E0,X 
     INY #2
     INX #2
     CPX.W #$0020 
@@ -8018,25 +7725,20 @@ InitAI_SporeSpawn:
     LDY.W #EnemyProjectile_SporeSpawnStalk 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     LDX.W $0E54 
-    LDA.W $0F7A,X 
-    STA.L $7E7808,X 
+    LDA.W $0F7A,X : STA.L $7E7808,X 
     LDA.W $0F7E,X 
     SEC 
     SBC.W #$0048 
     STA.L $7E780A,X 
-    LDA.W $0F7A,X 
-    STA.W $0FAC,X 
-    LDA.W $0F7E,X 
-    STA.W $0FAE,X 
+    LDA.W $0F7A,X : STA.W $0FAC,X 
+    LDA.W $0F7E,X : STA.W $0FAE,X 
     STZ.W $0FB2,X 
     LDX.W $079F 
     LDA.L $7ED828,X 
     AND.W #$0002 
     BEQ .alive 
-    LDA.W #InstList_SporeSpawn_Initial_Dead 
-    STA.W $0F92 
-    LDA.W #RTS_A5EB1A 
-    STA.W $0FA8 
+    LDA.W #InstList_SporeSpawn_Initial_Dead : STA.W $0F92 
+    LDA.W #RTS_A5EB1A : STA.W $0FA8 
     LDA.W $0F86 
     ORA.W #$8000 
     STA.W $0F86 
@@ -8050,15 +7752,11 @@ InitAI_SporeSpawn:
 
 .alive:
     LDX.W $0E54 
-    LDA.W #InstList_SporeSpawn_Initial_Alive 
-    STA.W $0F92 
-    LDA.W #$FFFF 
-    STA.W $183C 
+    LDA.W #InstList_SporeSpawn_Initial_Alive : STA.W $0F92 
+    LDA.W #$FFFF : STA.W $183C 
     LDX.W $0E54 
-    LDA.W #RTS_A5EB1A 
-    STA.W $0FA8,X 
-    LDA.W #ScrollingFinishedHook_SporeSpawnFight 
-    STA.W $07E9 
+    LDA.W #RTS_A5EB1A : STA.W $0FA8,X 
+    LDA.W #ScrollingFinishedHook_SporeSpawnFight : STA.W $07E9 
     LDA.W $0F7E,X 
     SEC 
     SBC.W #$0080 
@@ -8098,25 +7796,19 @@ Function_SporeSpawn_Descent:
     STA.W $0F7E,X 
     CMP.W #$0270 
     BMI .descending 
-    LDA.W #InstList_SporeSpawn_FightHasStarted 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #InstList_SporeSpawn_FightHasStarted : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
 
 .descending:
-    LDA.W #$0030 
-    STA.L $7E7816 
-    LDA.W #$0001 
-    STA.L $7E7818 
-    LDA.W #$00C0 
-    STA.L $7E7814 
+    LDA.W #$0030 : STA.L $7E7816 
+    LDA.W #$0001 : STA.L $7E7818 
+    LDA.W #$00C0 : STA.L $7E7814 
     RTS 
 
 
 Function_SporeSpawn_Moving:
     JSR.W UpdateSporeSpawnStalkSegmentPositions 
-    LDA.L $7E7816 
-    STA.W $0E32 
+    LDA.L $7E7816 : STA.W $0E32 
     LDA.L $7E7814 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC 
@@ -8159,33 +7851,24 @@ Function_SporeSpawn_SetupDeath:
     INC A 
     AND.W #$00FF 
     STA.L $7E8806 
-    LDA.W #$0001 
-    STA.B $14 
+    LDA.W #$0001 : STA.B $14 
     LDA.L $7E8806 
     AND.W #$00FF 
     STA.B $12 
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name ; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
-    LDA.B $16 
-    STA.L $7E8010,X 
-    LDA.B $18 
-    STA.L $7E8012,X 
-    LDA.B $1A 
-    STA.L $7E8014,X 
-    LDA.B $1C 
-    STA.L $7E8016,X 
+    LDA.B $16 : STA.L $7E8010,X 
+    LDA.B $18 : STA.L $7E8012,X 
+    LDA.B $1A : STA.L $7E8014,X 
+    LDA.B $1C : STA.L $7E8016,X 
     RTS 
 
 
 Function_SporeSpawn_Dying:
     LDX.W $0E54 
-    LDA.L $7E8010,X 
-    STA.W $0E24 
-    LDA.L $7E8012,X 
-    STA.W $0E26 
-    LDA.L $7E8014,X 
-    STA.W $0E28 
-    LDA.L $7E8016,X 
-    STA.W $0E2A 
+    LDA.L $7E8010,X : STA.W $0E24 
+    LDA.L $7E8012,X : STA.W $0E26 
+    LDA.L $7E8014,X : STA.W $0E28 
+    LDA.L $7E8016,X : STA.W $0E2A 
     LDA.L $7E8806 
     AND.W #$00FF 
     STA.W $0E20 
@@ -8202,8 +7885,7 @@ Function_SporeSpawn_Dying:
     JSL.L NegateA_A0B067 
     CMP.W #$0008 
     BPL .notDone 
-    LDA.W #RTS_A5EB1A 
-    STA.W $0FA8 
+    LDA.W #RTS_A5EB1A : STA.W $0FA8 
 
 .notDone:
     JSR.W UpdateSporeSpawnStalkSegmentPositions 
@@ -8225,8 +7907,7 @@ UpdateSporeSpawnStalkSegmentPositions:
     CLC 
     ADC.B $12 
     STA.B $16 
-    LDA.W #$0080 
-    STA.W $1A67 
+    LDA.W #$0080 : STA.W $1A67 
     LDA.L $7E7808 
     SEC 
     SBC.B $14 
@@ -8253,8 +7934,7 @@ UpdateSporeSpawnStalkSegmentPositions:
     CLC 
     ADC.B $12 
     STA.B $16 
-    LDA.W #$0080 
-    STA.W $1A67 
+    LDA.W #$0080 : STA.W $1A67 
     LDA.B $14 
     CLC 
     ADC.L $7E7808 
@@ -8287,8 +7967,7 @@ UpdateSporeSpawnStalkSegmentPositions:
     CLC 
     ADC.B $12 
     STA.B $16 
-    LDA.W #$0230 
-    STA.W $1AAF 
+    LDA.W #$0230 : STA.W $1AAF 
     LDA.L $7E780A 
     SEC 
     SBC.B $14 
@@ -8315,8 +7994,7 @@ UpdateSporeSpawnStalkSegmentPositions:
     CLC 
     ADC.B $12 
     STA.B $16 
-    LDA.W #$0230 
-    STA.W $1AAF 
+    LDA.W #$0230 : STA.W $1AAF 
     LDA.B $14 
     CLC 
     ADC.L $7E780A 
@@ -8353,8 +8031,7 @@ EnemyShot_SporeSpawn_Vulnerable:
     JSL.L NormalEnemyShotAI_NoDeathCheck 
     LDA.W $0F9C,X 
     BEQ EnemyShot_SporeSpawn 
-    LDA.W #Function_SporeSpawn_Moving 
-    STA.W $0FA8,X 
+    LDA.W #Function_SporeSpawn_Moving : STA.W $0FA8,X 
     LDY.W #$0002 
     LDA.W $0F8C,X 
     CMP.W #$0190 
@@ -8377,12 +8054,9 @@ EnemyShot_SporeSpawn_Vulnerable:
     EOR.W #$FFFF 
     INC A 
     STA.L $7E7818 
-    LDA.W #$0001 
-    STA.L $7E801E 
-    LDA.W #InstList_SporeSpawn_CloseAndMove 
-    STA.W $0F92,X 
-    LDA.W #$0001 
-    STA.W $0F94,X 
+    LDA.W #$0001 : STA.L $7E801E 
+    LDA.W #InstList_SporeSpawn_CloseAndMove : STA.W $0F92,X 
+    LDA.W #$0001 : STA.W $0F94,X 
     LDY.W #$0060 
     LDA.W $0F8C,X 
     CMP.W #$0046 
@@ -8420,8 +8094,7 @@ SporeSpawnReaction_Common:
     LDA.W $0F8C,X 
     BNE .return 
     LDX.W $0E54 
-    LDA.W #$0000 
-    STA.L $7E781C 
+    LDA.W #$0000 : STA.L $7E781C 
     STZ.W $0FA0,X 
     STZ.W $0F9C,X 
     STZ.W $0F8A,X 
@@ -8435,10 +8108,8 @@ SporeSpawnReaction_Common:
     STA.W $1997,Y 
     DEY #2
     BPL .loopClearProjectiles 
-    LDA.W #InstList_SporeSpawn_DeathSequence_0 
-    STA.W $0F92 
-    LDA.W #$0001 
-    STA.W $0F94 
+    LDA.W #InstList_SporeSpawn_DeathSequence_0 : STA.W $0F92 
+    LDA.W #$0001 : STA.W $0F94 
     LDX.W $079F 
     LDA.L $7ED828,X 
     ORA.W #$0002 
@@ -8460,8 +8131,7 @@ LoadSporeSpawnHealthBasedPalette:
     LDX.W #$0000 
 
 .loopSpritePalette1:
-    LDA.W Palette_SporeSpawn_HealthBased_0,Y 
-    STA.L $7EC120,X 
+    LDA.W Palette_SporeSpawn_HealthBased_0,Y : STA.L $7EC120,X 
     INY #2
     INX #2
     CPX.W #$0020 

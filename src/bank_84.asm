@@ -20,10 +20,8 @@ GoldenTorizo_HealthBasedPalette_Handling:
     LDX.W #$001E 
 
 .loop:
-    LDA.W .palette2,Y 
-    STA.L $7EC140,X 
-    LDA.W .palette1,Y 
-    STA.L $7EC120,X 
+    LDA.W .palette2,Y : STA.L $7EC140,X 
+    LDA.W .palette1,Y : STA.L $7EC120,X 
     DEY #2
     DEX #2
     BPL .loop 
@@ -128,14 +126,11 @@ Calculate_PLM_Block_Coordinates:
     LSR A 
     STA.W $4204 
     SEP #$20 
-    LDA.W $07A5 
-    STA.W $4206 
+    LDA.W $07A5 : STA.W $4206 
     REP #$20 
     NOP #6
-    LDA.W $4214 
-    STA.W $1C2B 
-    LDA.W $4216 
-    STA.W $1C29 
+    LDA.W $4214 : STA.W $1C2B 
+    LDA.W $4216 : STA.W $1C29 
     RTL 
 
 
@@ -152,8 +147,7 @@ Write_Level_Data_Block_Type_and_BTS:
     LSR A 
     TAX 
     SEP #$20 
-    LDA.B $12 
-    STA.L $7F6402,X 
+    LDA.B $12 : STA.L $7F6402,X 
     REP #$20 
     PLX 
     RTS 
@@ -163,14 +157,11 @@ Write_Row_of_Level_Data_Block_and_BTS:
     PHX 
     PHY 
     LDY.W #$0001 
-    LDA.B ($05,S),Y 
-    STA.B $12 
+    LDA.B ($05,S),Y : STA.B $12 
     INY #2
-    LDA.B ($05,S),Y 
-    STA.B $14 
+    LDA.B ($05,S),Y : STA.B $14 
     INY #2
-    LDA.B ($05,S),Y 
-    STA.B $16 
+    LDA.B ($05,S),Y : STA.B $16 
     LDA.B $05,S 
     CLC 
     ADC.W #$0006 
@@ -349,10 +340,8 @@ Spawn_Hardcoded_PLM:
     PLB 
     TYX 
     LDY.W #$0002 
-    LDA.B ($06,S),Y 
-    STA.W $4202 
-    LDA.W $07A5 
-    STA.W $4203 
+    LDA.B ($06,S),Y : STA.W $4202 
+    LDA.W $07A5 : STA.W $4203 
     LDY.W #$0001 
     LDA.B ($06,S),Y 
     REP #$20 
@@ -375,17 +364,12 @@ Spawn_Hardcoded_PLM:
     STA.W $1C37,Y 
     TYX 
     TAY 
-    LDA.W #$0000 
-    STA.W $1DC7,X 
+    LDA.W #$0000 : STA.W $1DC7,X 
     STA.L $7EDF0C,X 
-    LDA.W #RTS_848469 
-    STA.W $1CD7,X 
-    LDA.W $0002,Y 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
-    LDA.W #InstList_PLM_DefaultPLMDrawInstruction 
-    STA.L $7EDE6C,X 
+    LDA.W #RTS_848469 : STA.W $1CD7,X 
+    LDA.W $0002,Y : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
+    LDA.W #InstList_PLM_DefaultPLMDrawInstruction : STA.L $7EDE6C,X 
     STZ.W $1D77,X 
     STX.W $1C27 
     TYX 
@@ -426,10 +410,8 @@ Spawn_Room_PLM:
 
 .found:
     SEP #$20 
-    LDA.L $8F0003,X 
-    STA.W $4202 
-    LDA.W $07A5 
-    STA.W $4203 
+    LDA.L $8F0003,X : STA.W $4202 
+    LDA.W $07A5 : STA.W $4203 
     LDA.L $8F0002,X 
     REP #$20 
     AND.W #$00FF 
@@ -437,22 +419,15 @@ Spawn_Room_PLM:
     ADC.W $4216 
     ASL A 
     STA.W $1C87,Y 
-    LDA.L $8F0004,X 
-    STA.W $1DC7,Y 
-    LDA.L $8F0000,X 
-    STA.W $1C37,Y 
+    LDA.L $8F0004,X : STA.W $1DC7,Y 
+    LDA.L $8F0000,X : STA.W $1C37,Y 
     TYX 
     TAY 
-    LDA.W #$0000 
-    STA.L $7EDF0C,X 
-    LDA.W #RTS_8484E6 
-    STA.W $1CD7,X 
-    LDA.W $0002,Y 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
-    LDA.W #InstList_PLM_DefaultPLMDrawInstruction 
-    STA.L $7EDE6C,X 
+    LDA.W #$0000 : STA.L $7EDF0C,X 
+    LDA.W #RTS_8484E6 : STA.W $1CD7,X 
+    LDA.W $0002,Y : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
+    LDA.W #InstList_PLM_DefaultPLMDrawInstruction : STA.L $7EDE6C,X 
     STZ.W $1D77,X 
     STX.W $1C27 
     TYX 
@@ -496,16 +471,11 @@ Spawn_PLM_to_CurrentBlockIndex:
     STA.W $1C87,X 
     TYA 
     STA.W $1C37,X 
-    LDA.W #RTS_84853D 
-    STA.W $1CD7,X 
-    LDA.W $0002,Y 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
-    LDA.W #InstList_PLM_DefaultPLMDrawInstruction 
-    STA.L $7EDE6C,X 
-    LDA.W #$0000 
-    STA.W $1D77,X 
+    LDA.W #RTS_84853D : STA.W $1CD7,X 
+    LDA.W $0002,Y : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
+    LDA.W #InstList_PLM_DefaultPLMDrawInstruction : STA.L $7EDE6C,X 
+    LDA.W #$0000 : STA.W $1D77,X 
     STA.W $1DC7,X 
     STA.L $7EDF0C,X 
     STX.W $1C27 
@@ -550,8 +520,7 @@ UNUSED_Spawn_Enemy_PLM_84853E:
     LSR #4
     SEP #$20 
     STA.W $4202 
-    LDA.W $07A5 
-    STA.W $4203 
+    LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0F7A,Y 
     LSR #4
@@ -562,16 +531,11 @@ UNUSED_Spawn_Enemy_PLM_84853E:
     PLA 
     STA.W $1C37,X 
     TAY 
-    LDA.W #RTS_8485B3 
-    STA.W $1CD7,X 
-    LDA.W $0002,Y 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
-    LDA.W #InstList_PLM_DefaultPLMDrawInstruction 
-    STA.L $7EDE6C,X 
-    LDA.W #$0000 
-    STA.W $1D77,X 
+    LDA.W #RTS_8485B3 : STA.W $1CD7,X 
+    LDA.W $0002,Y : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
+    LDA.W #InstList_PLM_DefaultPLMDrawInstruction : STA.L $7EDE6C,X 
+    LDA.W #$0000 : STA.W $1D77,X 
     STA.W $1DC7,X 
     STA.L $7EDF0C,X 
     STX.W $1C27 
@@ -637,8 +601,7 @@ Process_PLM:
 
 .nonZeroTimer:
     STA.L $7EDE1C,X 
-    LDA.W $0002,Y 
-    STA.L $7EDE6C,X 
+    LDA.W $0002,Y : STA.L $7EDE6C,X 
     TYA 
     CLC 
     ADC.W #$0004 
@@ -655,8 +618,7 @@ Process_PLM:
 Process_PLM_Draw_Instruction:
     LDA.L $7EDE6C,X 
     TAY 
-    LDA.W $1C87,X 
-    STA.B $12 
+    LDA.W $1C87,X : STA.B $12 
     TAX 
 
 .loopDrawEntry:
@@ -666,8 +628,7 @@ Process_PLM_Draw_Instruction:
     STA.B $16 
     INY #2
     .loopRow:
-    LDA.W $0000,Y 
-    STA.L $7F0002,X 
+    LDA.W $0000,Y : STA.L $7F0002,X 
     INY #2
     INX #2
     DEC.B $16 
@@ -680,8 +641,7 @@ Process_PLM_Draw_Instruction:
     STA.B $16 
     INY #2
     .loopColumn:
-    LDA.W $0000,Y 
-    STA.L $7F0002,X 
+    LDA.W $0000,Y : STA.L $7F0002,X 
     INY #2
     TXA 
     CLC 
@@ -762,15 +722,13 @@ Instruction_PLM_Delete:
 
 
 Instruction_PLM_PreInstruction_inY:
-    LDA.W $0000,Y 
-    STA.W $1CD7,X 
+    LDA.W $0000,Y : STA.W $1CD7,X 
     INY #2
     RTS 
 
 
 Instruction_PLM_ClearPreInstruction:
-    LDA.W #RTS_8486D0 
-    STA.W $1CD7,X 
+    LDA.W #RTS_8486D0 : STA.W $1CD7,X 
 
 RTS_8486D0:
     RTS 
@@ -778,10 +736,8 @@ RTS_8486D0:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_CallFuctionInY_8486D1:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     PHY 
     JSL.L UNUSED_Instruction_PLM_CallFuctionInY_withA_8486E8 
     PLY 
@@ -793,10 +749,8 @@ UNUSED_Instruction_PLM_CallFuctionInY_8486D1:
 UNUSED_Instruction_PLM_CallFuctionInY_withA_8486E8:
     JML.W [$0012] 
 
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
     PHY 
     JSL.L .externalFunction 
@@ -815,10 +769,8 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_CallFunctionInY:
-    LDA.W $0000,Y 
-    STA.B $12 
-    LDA.W $0001,Y 
-    STA.B $13 
+    LDA.W $0000,Y : STA.B $12 
+    LDA.W $0001,Y : STA.B $13 
     PHX 
     PHY 
     JSL.L .externalFunction 
@@ -877,8 +829,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_PLM_TimerEqualsY_8Bit:
     SEP #$20 
-    LDA.W $0000,Y 
-    STA.W $1D77,X 
+    LDA.W $0000,Y : STA.W $1D77,X 
     REP #$20 
     INY 
     RTS 
@@ -886,8 +837,7 @@ Instruction_PLM_TimerEqualsY_8Bit:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_TimerEqualsY_16Bit_84875A:
-    LDA.W $0000,Y 
-    STA.W $1D77,X 
+    LDA.W $0000,Y : STA.W $1D77,X 
     INY #2
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -898,29 +848,21 @@ RTS_848763:
 
 
 Instruction_PLM_LoadItemPLMGFX:
-    LDA.W $1C2D 
-    STA.L $7EDF0C,X 
+    LDA.W $1C2D : STA.L $7EDF0C,X 
     TAX 
     INC #2
     AND.W #$0006 
     STA.W $1C2D 
-    LDA.W .VRAMAddresses,X 
-    STA.B $12 
-    LDA.W .tileTableIndices,X 
-    STA.B $14 
-    LDA.W .startingTileNumbers,X 
-    STA.B $16 
+    LDA.W .VRAMAddresses,X : STA.B $12 
+    LDA.W .tileTableIndices,X : STA.B $14 
+    LDA.W .startingTileNumbers,X : STA.B $16 
     TYA 
     STA.W $1C2F,X 
     LDX.W $0330 
-    LDA.W #$0100 
-    STA.B $D0,X 
-    LDA.W $0000,Y 
-    STA.B $D2,X 
-    LDA.W #$0089 
-    STA.B $D4,X 
-    LDA.B $12 
-    STA.B $D5,X 
+    LDA.W #$0100 : STA.B $D0,X 
+    LDA.W $0000,Y : STA.B $D2,X 
+    LDA.W #$0089 : STA.B $D4,X 
+    LDA.B $12 : STA.B $D5,X 
     TXA 
     CLC 
     ADC.W #$0007 
@@ -958,14 +900,10 @@ Instruction_PLM_LoadItemPLMGFX:
 
 Instruction_PLM_TransferBytesToVRAM:
     LDX.W $0330 
-    LDA.W $0000,Y 
-    STA.B $D0,X 
-    LDA.W $0002,Y 
-    STA.B $D2,X 
-    LDA.W $0003,Y 
-    STA.B $D3,X 
-    LDA.W $0005,Y 
-    STA.B $D5,X 
+    LDA.W $0000,Y : STA.B $D0,X 
+    LDA.W $0002,Y : STA.B $D2,X 
+    LDA.W $0003,Y : STA.B $D3,X 
+    LDA.W $0005,Y : STA.B $D5,X 
     TXA 
     CLC 
     ADC.W #$0007 
@@ -1257,8 +1195,7 @@ Instruction_PLM_CollectAmmo_PowerBombTank:
 
 
 Instruction_PLM_LinkInstruction_Y:
-    LDA.W $0000,Y 
-    STA.L $7EDEBC,X 
+    LDA.W $0000,Y : STA.L $7EDEBC,X 
     INY #2
     RTS 
 
@@ -1287,8 +1224,7 @@ UNUSED_Instruction_PLM_WaitUntil_Enemy0_IsDead_848A40:
     CMP.W #EnemyHeaders_Respawn 
     BEQ .return 
     PLA 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .return:
     RTS 
@@ -1302,8 +1238,7 @@ UNUSED_Instruction_PLM_WaitUntil_Enemy0_IsDead_848A59:
     CMP.W #EnemyHeaders_Respawn 
     BEQ .return 
     PLA 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .return:
     RTS 
@@ -1359,8 +1294,7 @@ Instruction_PLM_IncDoorHit_SetRoomArgDoor_GotoY:
     PLX 
     ORA.W #$8000 
     STA.W $1DC7,X 
-    LDA.W #.return 
-    STA.W $1CD7,X 
+    LDA.W #.return : STA.W $1CD7,X 
     INY 
     JMP.W Instruction_PLM_GotoY 
 
@@ -1379,10 +1313,8 @@ Instruction_PLM_IncRoomArg_RoomArgFFFF_GotoY:
 
 
 .FFFF:
-    LDA.W #$FFFF 
-    STA.W $1DC7,X 
-    LDA.W #.return 
-    STA.W $1CD7,X 
+    LDA.W #$FFFF : STA.W $1DC7,X 
+    LDA.W #.return : STA.W $1CD7,X 
     INY 
     JMP.W Instruction_PLM_GotoY 
 
@@ -1393,8 +1325,7 @@ Instruction_PLM_PLMBTS_Y:
     LSR A 
     TAX 
     SEP #$20 
-    LDA.W $0000,Y 
-    STA.L $7F6402,X 
+    LDA.W $0000,Y : STA.L $7F6402,X 
     REP #$20 
     PLX 
     INY 
@@ -1407,8 +1338,7 @@ Instruction_PLM_DrawPLMBlock_Clone:
     PHY 
     TXY 
     LDX.W $1C87,Y 
-    LDA.W $1E17,Y 
-    STA.L $7F0002,X 
+    LDA.W $1E17,Y : STA.L $7F0002,X 
     JMP.W Instruction_PLM_DrawPLMBlock_draw 
 
 
@@ -1418,20 +1348,16 @@ Instruction_PLM_DrawPLMBlock:
     PHY 
     TXY 
     LDX.W $1C87,Y 
-    LDA.W $1E17,Y 
-    STA.L $7F0002,X 
+    LDA.W $1E17,Y : STA.L $7F0002,X 
 
 Instruction_PLM_DrawPLMBlock_draw:
     STA.W $1E69 
-    LDA.W #$0001 
-    STA.W $1E67 
+    LDA.W #$0001 : STA.W $1E67 
     STZ.W $1E6B 
     PLY 
     PLX 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
-    LDA.W #$1E67 
-    STA.L $7EDE6C,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
+    LDA.W #$1E67 : STA.L $7EDE6C,X 
     TYA 
     STA.W $1D27,X 
     JSR.W Process_PLM_Draw_Instruction 
@@ -1458,8 +1384,7 @@ Instruction_PLM_ProcessAirScrollUpdate:
     LDA.W $0000,Y 
     BMI .specialAir 
     TAX 
-    LDA.W $0001,Y 
-    STA.L $7ECD20,X 
+    LDA.W $0001,Y : STA.L $7ECD20,X 
     INY #2
     BRA .loop 
 
@@ -1496,8 +1421,7 @@ Instruction_PLM_ProcessSolidScrollUpdate:
     LDA.W $0000,Y 
     BMI .specialBlock 
     TAX 
-    LDA.W $0001,Y 
-    STA.L $7ECD20,X 
+    LDA.W $0001,Y : STA.L $7ECD20,X 
     INY #2
     BRA .loop 
 
@@ -1538,10 +1462,8 @@ Instruction_PLM_ClearMusicQueue_QueueMusicTrack:
     DEX #2
     BPL .loop 
     PLX 
-    LDA.W $0639 
-    STA.W $063B 
-    LDA.W #$0000 
-    STA.W $063F 
+    LDA.W $0639 : STA.W $063B 
+    LDA.W #$0000 : STA.W $063F 
     STA.W $063D 
     LDA.W $0000,Y 
     AND.W #$00FF 
@@ -1674,8 +1596,7 @@ Instruction_PLM_Activate_MapStation:
     STA.L $7ED908,X 
     LDA.W #$0014 
     JSL.L MessageBox_Routine 
-    LDA.W #$0001 
-    STA.W $0789 
+    LDA.W #$0001 : STA.W $0789 
     PLY 
     PLX 
     RTS 
@@ -1689,8 +1610,7 @@ Instruction_PLM_Activate_EnergyStation:
     BEQ .unlockSamus 
     LDA.W #$0015 
     JSL.L MessageBox_Routine 
-    LDA.W $09C4 
-    STA.W $09C2 
+    LDA.W $09C4 : STA.W $09C2 
 
 .unlockSamus:
     LDA.W #$0001 
@@ -1708,8 +1628,7 @@ Instruction_PLM_Activate_MissileStation:
     BEQ .unlockSamus 
     LDA.W #$0016 
     JSL.L MessageBox_Routine 
-    LDA.W $09C8 
-    STA.W $09C6 
+    LDA.W $09C8 : STA.W $09C6 
 
 .unlockSamus:
     LDA.W #$0001 
@@ -1843,18 +1762,14 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 DrawPLM_HardCoded:
     REP #$30 
-    LDA.W #$5000 
-    STA.B $09 
-    LDA.W #$53E0 
-    STA.B $0C 
+    LDA.W #$5000 : STA.B $09 
+    LDA.W #$53E0 : STA.B $0C 
     LDA.L $7EDE6C,X 
     TAY 
 
 DrawPLM:
-    LDA.W $1C29 
-    STA.B $1E 
-    LDA.W $1C2B 
-    STA.B $20 
+    LDA.W $1C29 : STA.B $1E 
+    LDA.W $1C2B : STA.B $20 
 
 .loopDrawEntry:
     LDA.W $0915 
@@ -1881,8 +1796,7 @@ DrawPLM:
     BMI .return8E2F 
     STA.B $1A 
     STZ.B $12 
-    LDA.B $1E 
-    STA.B $18 
+    LDA.B $1E : STA.B $18 
     LDA.W $0911 
     CLC 
     ADC.W #$000F 
@@ -1905,8 +1819,7 @@ DrawPLM:
     SEC 
     SBC.B $12 
     STA.B $14 
-    LDA.B $16 
-    STA.B $18 
+    LDA.B $16 : STA.B $18 
 
   + LDA.B $16 
     CLC 
@@ -2048,8 +1961,7 @@ DrawPLM:
     ADC.B $DE,X 
     STA.B $E7,X 
     SEP #$20 
-    LDA.B #$7E 
-    STA.B $D4,X 
+    LDA.B #$7E : STA.B $D4,X 
     STA.B $02 
     STA.B $DB,X 
     STA.B $08 
@@ -2093,23 +2005,18 @@ DrawPLM:
     LDY.W #$0000 
 
 .loopHorizBlock:
-    LDA.B ($03) 
-    STA.B $1E 
+    LDA.B ($03) : STA.B $1E 
     AND.W #$03FF 
     ASL #3
     TAX 
     LDA.B $1E 
     AND.W #$0C00 
     BNE .horizCopyBlockWithFlip 
-    LDA.L $7EA000,X 
-    STA.B [$00],Y 
-    LDA.L $7EA004,X 
-    STA.B [$06],Y 
+    LDA.L $7EA000,X : STA.B [$00],Y 
+    LDA.L $7EA004,X : STA.B [$06],Y 
     INY #2
-    LDA.L $7EA002,X 
-    STA.B [$00],Y 
-    LDA.L $7EA006,X 
-    STA.B [$06],Y 
+    LDA.L $7EA002,X : STA.B [$00],Y 
+    LDA.L $7EA006,X : STA.B [$06],Y 
     BRA .horizNextBlock 
 
 
@@ -2205,8 +2112,7 @@ DrawPLM:
     RTS 
 
 
-  + LDA.B $1E 
-    STA.B $18 
+  + LDA.B $1E : STA.B $18 
     STZ.B $12 
     LDA.B $1A 
     CLC 
@@ -2234,8 +2140,7 @@ DrawPLM:
 
 
 .drawBlockGreaterThanScreenBlock:
-    LDA.B $20 
-    STA.B $1A 
+    LDA.B $20 : STA.B $1A 
 
   + LDA.B $1A 
     CLC 
@@ -2267,8 +2172,7 @@ DrawPLM:
     LSR #3
     CMP.B $14 
     BMI .return908C 
-    LDA.W #$8000 
-    STA.B $1C 
+    LDA.W #$8000 : STA.B $1C 
     JSR.W Calculate_PLMDrawTilemap_VRAMDestination 
     LDA.B $D5,X 
     INC A 
@@ -2288,23 +2192,18 @@ DrawPLM:
     LDY.W #$0000 
 
 .loopVertBlock:
-    LDA.B ($03) 
-    STA.B $1E 
+    LDA.B ($03) : STA.B $1E 
     AND.W #$03FF 
     ASL #3
     TAX 
     LDA.B $1E 
     AND.W #$0C00 
     BNE .vertCopyBlockWithFlip 
-    LDA.L $7EA000,X 
-    STA.B [$00],Y 
-    LDA.L $7EA002,X 
-    STA.B [$06],Y 
+    LDA.L $7EA000,X : STA.B [$00],Y 
+    LDA.L $7EA002,X : STA.B [$06],Y 
     INY #2
-    LDA.L $7EA004,X 
-    STA.B [$00],Y 
-    LDA.L $7EA006,X 
-    STA.B [$06],Y 
+    LDA.L $7EA004,X : STA.B [$00],Y 
+    LDA.L $7EA006,X : STA.B [$06],Y 
     JMP.W .vertNextBlock 
 
 
@@ -2490,8 +2389,7 @@ PartiallySetupVRAMWriteTableEntries_SingleScrnPLMDrawTilemap:
     STA.B $D9,X 
     STA.B $06 
     SEP #$20 
-    LDA.B #$7E 
-    STA.B $D4,X 
+    LDA.B #$7E : STA.B $D4,X 
     STA.B $DB,X 
     STA.B $02 
     STA.B $08 
@@ -4678,8 +4576,7 @@ RTS_84AB27:
 
 Setup_CrumbleBotwoonWall_Wait40Frames:
     TYX 
-    LDA.W #$0040 
-    STA.L $7EDE1C,X 
+    LDA.W #$0040 : STA.L $7EDE1C,X 
     RTS 
 
 
@@ -4700,8 +4597,7 @@ InstList_PLM_CrumbleBotwoonWall_1:
 
 
 Instruction_PLM_Scroll_0_1_Blue:
-    LDA.W #$0101 
-    STA.L $7ECD20 
+    LDA.W #$0101 : STA.L $7ECD20 
     RTS 
 
 Instruction_PLM_MovePLMDown1Block:
@@ -4893,10 +4789,8 @@ InstList_PLM_ClearMotherBrainsBottomRightTube:
     dw Instruction_PLM_Delete 
 
 PreInst_PLM_PositionSamus_GiveAtLeast10FramesOfInvincibility:
-    LDA.W $1E17,X 
-    STA.W $0AF6 
-    LDA.L $7EDF0C,X 
-    STA.W $0AFA 
+    LDA.W $1E17,X : STA.W $0AF6 
+    LDA.L $7EDF0C,X : STA.W $0AFA 
     LDA.W #$0010 
     TSB.W $18A8 
     RTS 
@@ -4914,8 +4808,7 @@ Instruction_PLM_Deal2DamageToSamus:
 
 
 Instruction_PLM_GiveSamus30FramesOfInvincibility:
-    LDA.W #$0030 
-    STA.W $18A8 
+    LDA.W #$0030 : STA.W $18A8 
     RTS 
 
 
@@ -5371,8 +5264,7 @@ Instruction_PLM_DisplayGameSavedMessageBox:
 Instruction_PLM_EnableMovement_SetSaveStationUsed:
     LDA.W #$0001 
     JSL.L Run_Samus_Command 
-    LDA.W #$0001 
-    STA.W $1E75 
+    LDA.W #$0001 : STA.W $1E75 
     RTS 
 
 
@@ -5488,8 +5380,7 @@ Setup_BrinstarFloorPlant:
     AND.W #$000F 
     CMP.W #$000F 
     BEQ .deactivate 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     CLC 
     RTS 
 
@@ -5500,8 +5391,7 @@ Setup_BrinstarFloorPlant:
     AND.W #$8FFF 
     STA.L $7F0002,X 
     TYX 
-    LDA.W $0AF6 
-    STA.W $1E17,X 
+    LDA.W $0AF6 : STA.W $1E17,X 
     LDA.W $0AFA 
     DEC A 
     STA.L $7EDF0C,X 
@@ -5515,8 +5405,7 @@ Setup_BrinstarCeilingPlant:
     SBC.W $0B00 
     AND.W #$000F 
     BEQ .deactivate 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     CLC 
     RTS 
 
@@ -5527,8 +5416,7 @@ Setup_BrinstarCeilingPlant:
     AND.W #$8FFF 
     STA.L $7F0002,X 
     TYX 
-    LDA.W $0AF6 
-    STA.W $1E17,X 
+    LDA.W $0AF6 : STA.W $1E17,X 
     LDA.W $0AFA 
     INC A 
     STA.L $7EDF0C,X 
@@ -5557,10 +5445,8 @@ ActivateStationIfSamusArmCannonLinedUp:
     ORA.W #$000B 
     CMP.W $0AFA 
     BNE .delete 
-    LDA.L $7EDEBC,X 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.L $7EDEBC,X : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
     LDA.W #$0006 
     JSL.L Run_Samus_Command 
     SEC 
@@ -5568,8 +5454,7 @@ ActivateStationIfSamusArmCannonLinedUp:
 
 
 .delete:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -5596,8 +5481,7 @@ Setup_MapStation:
 
 
 .setInstruction:
-    LDA.W #InstList_PLM_MapStation_2 
-    STA.W $1D27,Y 
+    LDA.W #InstList_PLM_MapStation_2 : STA.W $1D27,Y 
     RTS 
 
 
@@ -5617,8 +5501,7 @@ Setup_MapStationRightAccess:
 
 
 .connected:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -5640,8 +5523,7 @@ Setup_MapStationLeftAccess:
 
 
 .connected:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -5699,8 +5581,7 @@ Setup_EnergyStationRightAccess:
 
 
 .connected:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -5725,8 +5606,7 @@ Setup_EnergyStationLeftAccess:
 
 
 .connected:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -5750,8 +5630,7 @@ Setup_MissileStationRightAccess:
 
 
 .connected:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -5776,15 +5655,13 @@ Setup_MissileStationLeftAccess:
 
 
 .connected:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
 
 DeletePLM:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -5828,8 +5705,7 @@ Setup_ScrollPLM:
     LDX.W $1C87,Y 
     LDA.W #$3046 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    LDA.W #$0000 
-    STA.W $1E17,Y 
+    LDA.W #$0000 : STA.W $1E17,Y 
     BRA Skip_Debug_DrawInstruction_for_ScrollPLM 
 
 
@@ -5837,8 +5713,7 @@ Setup_SolidScrollPLM:
     LDX.W $1C87,Y 
     LDA.W #$B046 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    LDA.W #$0000 
-    STA.W $1E17,Y 
+    LDA.W #$0000 : STA.W $1E17,Y 
     BRA Skip_Debug_DrawInstruction_for_ScrollPLM 
 
 
@@ -5861,12 +5736,10 @@ Setup_ScrollBlockTouchPLM:
 .found:
     LDA.W $1E17,X 
     BMI .return 
-    LDA.W #$8000 
-    STA.W $1E17,X 
+    LDA.W #$8000 : STA.W $1E17,X 
     INC.W $1D27,X 
     INC.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .return:
     RTS 
@@ -5920,8 +5793,7 @@ Setup_IcePhysics:
     BNE .return 
 
 .decel:
-    LDA.W #$0010 
-    STA.W $0B4C 
+    LDA.W #$0010 : STA.W $0B4C 
 
 .return:
     CLC 
@@ -5964,8 +5836,7 @@ InsideReaction_QuicksandSurface_SamusIsGrounded:
     STZ.W $0B2E 
     STZ.W $0B5A 
     STZ.W $0B5C 
-    LDA.W QuicksandSurface_InsideReaction_distanceOnGround,Y 
-    STA.W $0B5B 
+    LDA.W QuicksandSurface_InsideReaction_distanceOnGround,Y : STA.W $0B5B 
 
   .return
     RTS 
@@ -5977,21 +5848,18 @@ InsideReaction_QuicksandSurface_SamusIsMovingUp:
     BCS + 
     STZ.W $0B2C 
     STZ.W $0B2E 
-    LDA.W QuicksandSurface_InsideReaction_maxVelocity,Y 
-    STA.W $0B2D 
+    LDA.W QuicksandSurface_InsideReaction_maxVelocity,Y : STA.W $0B2D 
 
   + STZ.W $0B5A 
     STZ.W $0B5C 
-    LDA.W QuicksandSurface_InsideReaction_distanceInAir,Y 
-    STA.W $0B5B 
+    LDA.W QuicksandSurface_InsideReaction_distanceInAir,Y : STA.W $0B5B 
     RTS 
 
 
 InsideReaction_QuicksandSurface_SamusIsMovingDown:
     STZ.W $0B5A 
     STZ.W $0B5C 
-    LDA.W QuicksandSurface_InsideReaction_distanceInAir,Y 
-    STA.W $0B5B 
+    LDA.W QuicksandSurface_InsideReaction_distanceInAir,Y : STA.W $0B5B 
     STZ.W $0AF4 
     RTS 
 
@@ -6010,28 +5878,22 @@ QuicksandSurface_InsideReaction:
 
 Setup_Inside_SubmergingQuicksand:
     STZ.W $0AF4 
-    LDA.W #$2000 
-    STA.W $0B5A 
-    LDA.W #$0001 
-    STA.W $0B5C 
+    LDA.W #$2000 : STA.W $0B5A 
+    LDA.W #$0001 : STA.W $0B5C 
     CLC 
     RTS 
 
 
 Setup_SandfallsSlow:
-    LDA.W #$4000 
-    STA.W $0B5A 
-    LDA.W #$0001 
-    STA.W $0B5C 
+    LDA.W #$4000 : STA.W $0B5A 
+    LDA.W #$0001 : STA.W $0B5C 
     CLC 
     RTS 
 
 
 Setup_SandfallsFast:
-    LDA.W #$C000 
-    STA.W $0B5A 
-    LDA.W #$0001 
-    STA.W $0B5C 
+    LDA.W #$C000 : STA.W $0B5A 
+    LDA.W #$0001 : STA.W $0B5C 
     CLC 
     RTS 
 
@@ -6052,8 +5914,7 @@ Setup_QuicksandSurface_BTS85:
     LDY.W #$0002 
 
   + LDX.B $12 
-    LDA.B $14 
-    STA.B $12 
+    LDA.B $14 : STA.B $12 
     STX.B $14 
     LDA.W $0B36 
     AND.W #$0003 
@@ -6061,8 +5922,7 @@ Setup_QuicksandSurface_BTS85:
     TAX 
     JSR.W (.pointers,X) 
     LDX.B $12 
-    LDA.B $14 
-    STA.B $12 
+    LDA.B $14 : STA.B $12 
     STX.B $14 
     RTS 
 
@@ -6219,8 +6079,7 @@ Setup_CollisionReaction_SaveStationTrigger:
 .found:
     INC.W $1D27,X 
     INC.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .collisionReturn:
     SEC 
@@ -6694,8 +6553,7 @@ Setup_EnableSoundsIn20Frames_F0FramesIfCeres:
     LDA.W #$00F0 
 
   + STA.W $1D77,Y 
-    LDA.W #PreInstruction_PLM_DecTimer_EnableSounds_DeletePLMIfZero 
-    STA.W $1CD7,Y 
+    LDA.W #PreInstruction_PLM_DecTimer_EnableSounds_DeletePLMIfZero : STA.W $1CD7,Y 
     RTS 
 
 
@@ -6720,8 +6578,7 @@ PreInst_PLM_WakePLM_StartLavaquakeIfSpeedBoosterCollected:
     LDA.W $09A4 
     AND.W #$2000 
     BNE .collectedSpeedBooster 
-    LDA.W #$FFFF 
-    STA.W $197A 
+    LDA.W #$FFFF : STA.W $197A 
     STZ.W $197C 
     STZ.W $1980 
     STZ.W $1840 
@@ -6732,10 +6589,8 @@ PreInst_PLM_WakePLM_StartLavaquakeIfSpeedBoosterCollected:
 .collectedSpeedBooster:
     LDA.W $197A 
     BMI .deletePLM 
-    LDA.W #$FF80 
-    STA.W $197C 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.W #$FF80 : STA.W $197C 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
     INC.W $1D27,X 
     INC.W $1D27,X 
     STZ.W $1D77,X 
@@ -6751,8 +6606,7 @@ PreInst_PLM_WakePLM_StartFXMotionIfSamusIsFarEnoughLeft:
     LDA.W #$0AE0 
     CMP.W $0AF6 
     BCC .return 
-    LDA.W #$0001 
-    STA.W $1980 
+    LDA.W #$0001 : STA.W $1980 
     STA.L $7EDE1C,X 
     INC.W $1D27,X 
     INC.W $1D27,X 
@@ -6774,8 +6628,7 @@ PreInst_PLM_AdvanceLavaAsSamusMovesLeft_SetLavaquakeEvent:
     BCS + 
     STA.W $1978 
 
-  + LDA.W .FXYVelocity,Y 
-    STA.W $197C 
+  + LDA.W .FXYVelocity,Y : STA.W $197C 
     TYA 
     CLC 
     ADC.W #$0006 
@@ -6819,8 +6672,7 @@ Setup_SpeedBoosterEscape:
     LDA.W #$0015 
     JSL.L CheckIfEvent_inA_HasHappened 
     BCC .return 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
 
 .return:
     RTS 
@@ -6833,10 +6685,8 @@ PLMEntries_SpeedBoosterEscape:
 PreInstruction_PLM_ShaktoolsRoom:
     LDA.W $0592 
     BEQ .powerBombNotActive 
-    LDA.W #$0101 
-    STA.L $7ECD20 
-    LDA.W #$0101 
-    STA.L $7ECD22 
+    LDA.W #$0101 : STA.L $7ECD20 
+    LDA.W #$0101 : STA.L $7ECD22 
 
 .powerBombNotActive:
     LDA.W #$0348 
@@ -6856,10 +6706,8 @@ InstList_PLM_ShaktoolsRoom:
     dw Instruction_PLM_Sleep 
 
 Setup_ShaktoolsRoom:
-    LDA.W #$0001 
-    STA.L $7ECD20 
-    LDA.W #$0000 
-    STA.L $7ECD22 
+    LDA.W #$0001 : STA.L $7ECD20 
+    LDA.W #$0000 : STA.L $7ECD22 
     RTS 
 
 
@@ -6889,8 +6737,7 @@ WakePLMIfSamusIsBelowRightOfTarget:
     BCS .return 
     INC.W $1D27,X 
     INC.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .return:
     RTS 
@@ -6905,10 +6752,8 @@ InstList_PLM_MakeOldTourianEscapeShaftFakeWallExplode:
     dw Instruction_PLM_Delete 
 
 PreInstruction_PLM_MakeOldTourianEscapeShaftFakeWallExplode:
-    LDA.W #$00F0 
-    STA.B $12 
-    LDA.W #$0820 
-    STA.B $14 
+    LDA.W #$00F0 : STA.B $12 
+    LDA.W #$0820 : STA.B $14 
     JSR.W WakePLMIfSamusIsBelowRightOfTarget 
     BCS .return 
     PHY 
@@ -6927,16 +6772,12 @@ InstList_PLM_RaiseAcidInEscapeBeforeOldTourianEscapeShaft:
     dw Instruction_PLM_Delete 
 
 PreInst_PLM_RaiseAcidInEscapeRoomBeforeOldTourianEscapeShaft:
-    LDA.W #$00F0 
-    STA.B $12 
-    LDA.W #$0540 
-    STA.B $14 
+    LDA.W #$00F0 : STA.B $12 
+    LDA.W #$0540 : STA.B $14 
     JSR.W WakePLMIfSamusIsBelowRightOfTarget 
     BCS .return 
-    LDA.W #$FF98 
-    STA.W $197C 
-    LDA.W #$0010 
-    STA.W $1980 
+    LDA.W #$FF98 : STA.W $197C 
+    LDA.W #$0010 : STA.W $1980 
 
 .return:
     RTS 
@@ -6952,8 +6793,7 @@ PLMEntries_RaiseAcidInEscapeRoomBeforeOldTourianEscapeShaft:
 
 Setup_GateBlock:
     STZ.B $26 
-    LDA.W #$FFFF 
-    STA.B $28 
+    LDA.W #$FFFF : STA.B $28 
     RTS 
 
 
@@ -6966,8 +6806,7 @@ Setup_Reaction_CrittersEscapeBlock:
     LDA.W $0C18,X 
     BNE .projectile 
     AND.W #$0F00 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -7139,8 +6978,7 @@ UNUSED_Setup_84BAD1:
     LDA.W $1DC8,Y 
     AND.W #$007C 
     LSR A 
-    LDA.W #$0004 
-    STA.W $1E17,Y 
+    LDA.W #$0004 : STA.W $1E17,Y 
     LDA.W $1DC7,Y 
     AND.W #$83FF 
     ORA.W #$8000 
@@ -7176,8 +7014,7 @@ Setup_ClearCrateriaMainstreetEscapePassageIfCrittersEscaped:
     LDA.W #$000F 
     JSL.L CheckIfEvent_inA_HasHappened 
     BCS .return 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
 
 .return:
     RTS 
@@ -7223,10 +7060,8 @@ PreInstruction_PLM_WakePLMIfTriggered:
     BEQ .return 
     INC.W $1D27,X 
     INC.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
-    LDA.W #.return 
-    STA.W $1CD7,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
+    LDA.W #.return : STA.W $1CD7,X 
 
 .return:
     RTS 
@@ -7251,10 +7086,8 @@ PreInst_PLM_WakePLMIfTriggeredOrSamusWithin4BlockColumnBelow:
 .triggered:
     INC.W $1D27,X 
     INC.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
-    LDA.W #.return 
-    STA.W $1CD7,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
+    LDA.W #.return : STA.W $1CD7,X 
 
 .return:
     RTS 
@@ -7279,10 +7112,8 @@ PreInst_PLM_WakePLMIfTriggeredOrSamusWithin4BlockColumnAbove:
 .triggered:
     INC.W $1D27,X 
     INC.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
-    LDA.W #.return 
-    STA.W $1CD7,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
+    LDA.W #.return : STA.W $1CD7,X 
 
 .return:
     RTS 
@@ -7319,8 +7150,7 @@ Instruction_PLM_WakeEnemyProjectileAtPLMsPosition:
     db $00 ; BRK with no operand
 
 .found:
-    LDA.W #$0001 
-    STA.W $1B8F,X 
+    LDA.W #$0001 : STA.W $1B8F,X 
     INC.W $1B47,X 
     INC.W $1B47,X 
     PLY 
@@ -7459,10 +7289,8 @@ PreInstruction_PLM_GotoLinkInstructionIfShot:
     LDA.W $1D77,X 
     BEQ .return 
     STZ.W $1D77,X 
-    LDA.L $7EDEBC,X 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.L $7EDEBC,X : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .return:
     RTS 
@@ -7475,10 +7303,8 @@ PreInstruction_PLM_GotoLinkInstructionIfHitWithPowerBomb:
     CMP.W #$0300 
     BNE .playSFX 
     STZ.W $1D77,X 
-    LDA.L $7EDEBC,X 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.L $7EDEBC,X : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
     RTS 
 
 
@@ -7502,10 +7328,8 @@ PreInstruction_PLM_GotoLinkInstructionIfShotWithAMissile:
 
 .missile:
     STZ.W $1D77,X 
-    LDA.L $7EDEBC,X 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.L $7EDEBC,X : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
     RTS 
 
 
@@ -7519,8 +7343,7 @@ PreInstruction_PLM_GotoLinkInstructionIfShotWithAMissile:
 
 
 .super:
-    LDA.W #$0077 
-    STA.L $7EDF0C,X 
+    LDA.W #$0077 : STA.L $7EDF0C,X 
     BRA .missile 
 
 
@@ -7531,10 +7354,8 @@ PreInstruction_PLM_GotoLinkInstIfShotWithASuperMissile:
     CMP.W #$0200 
     BNE .playSFX 
     STZ.W $1D77,X 
-    LDA.L $7EDEBC,X 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.L $7EDEBC,X : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
     RTS 
 
 
@@ -7549,10 +7370,8 @@ PreInstruction_PLM_GotoLinkInstIfShotWithASuperMissile:
 
 Goto_Link_Instruction:
     STZ.W $1D77,X 
-    LDA.L $7EDEBC,X 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.L $7EDEBC,X : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
     RTS 
 
 
@@ -7653,8 +7472,7 @@ PreInstruction_PLM_GotoLinkInstructionIfCrittersEscaped:
 Instruction_PLM_SetGreyDoorPreInstruction:
     PHY 
     LDY.W $1E17,X 
-    LDA.W .pointers,Y 
-    STA.W $1CD7,X 
+    LDA.W .pointers,Y : STA.W $1CD7,X 
     PLY 
     RTS 
 
@@ -8445,8 +8263,7 @@ Setup_LeftGreenGateTrigger:
 .playSFX:
     LDA.W #$0057 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -8462,8 +8279,7 @@ Setup_RightGreenGateTrigger:
 .playSFX:
     LDA.W #$0057 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -8483,8 +8299,7 @@ Setup_LeftRedGateTrigger:
 .playSFX:
     LDA.W #$0057 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -8504,8 +8319,7 @@ Setup_RightRedGateTrigger:
 .playSFX:
     LDA.W #$0057 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -8521,8 +8335,7 @@ Setup_LeftYellowGateTrigger:
 .playSFX:
     LDA.W #$0057 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
 
 RightYellowGateTrigger:
     LDX.W $0DDE 
@@ -8536,8 +8349,7 @@ RightYellowGateTrigger:
 .playSFX:
     LDA.W #$0057 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -8551,8 +8363,7 @@ Setup_LeftBlueGateTrigger:
 
 
 .deletePLM:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
 
 Setup_RightBlueGateTrigger:
     LDX.W $0DDE 
@@ -8564,8 +8375,7 @@ Setup_RightBlueGateTrigger:
 
 
 .deletePLM:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -8595,8 +8405,7 @@ TriggerPLMOfBlockToTheLeft:
     INC.W $1D77,X 
 
 .return:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -8679,8 +8488,7 @@ Setup_UpwardsOpenGate:
 
 Setup_DownwardsGateShotblock:
     LDX.W $1DC7,Y 
-    LDA.W .instListPointers,X 
-    STA.W $1D27,Y 
+    LDA.W .instListPointers,X : STA.W $1D27,Y 
     LDX.W $1DC7,Y 
     LDA.W .leftBlock,X 
     BEQ .noRoomArg 
@@ -8725,8 +8533,7 @@ Setup_DownwardsGateShotblock:
 
 Setup_UpwardsGateShotblock:
     LDX.W $1DC7,Y 
-    LDA.W .instListPointers,X 
-    STA.W $1D27,Y 
+    LDA.W .instListPointers,X : STA.W $1D27,Y 
     LDX.W $1DC7,Y 
     LDA.W .leftBlock,X 
     BEQ .noRoomArg 
@@ -8796,8 +8603,7 @@ Setup_BlueDoor:
     AND.W #$0F00 
     CMP.W #$0300 
     BNE .notPowerBomb 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -9551,8 +9357,7 @@ UNUSED_Setup_84CDC2:
 
 .screwAttacking:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    STA.W $1E17,Y 
+    LDA.L $7F0002,X : STA.W $1E17,Y 
     AND.W #$0FFF 
     STA.L $7F0002,X 
     CLC 
@@ -9560,8 +9365,7 @@ UNUSED_Setup_84CDC2:
 
 
 .deletePLM:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -9585,8 +9389,7 @@ Setup_Collision_RespawningSpeedBoostBlock:
     BEQ .speed 
     CMP.W #$00CE 
     BEQ .speed 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -9616,15 +9419,13 @@ Setup_Collision_RespawningCrumbleBlock:
     AND.W #$8FFF 
     STA.L $7F0002,X 
     TYX 
-    LDA.W #$0004 
-    STA.L $7EDE1C,X 
+    LDA.W #$0004 : STA.L $7EDE1C,X 
     SEC 
     RTS 
 
 
 .deletePLM:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -9662,8 +9463,7 @@ Setup_Collision_RespawningBombBlock:
     BEQ .screwOrSpeed 
     CMP.W #$00CE 
     BEQ .screwOrSpeed 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -9688,8 +9488,7 @@ Setup_Reaction_RespawningBombBlock:
     BEQ .bomb 
     CMP.W #$0300 
     BEQ .powerBomb 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -9727,8 +9526,7 @@ Setup_Reaction_RespawningPowerBombBlock:
     BEQ .bomb 
     CMP.W #$0300 
     BEQ .powerBomb 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -9744,8 +9542,7 @@ Setup_Reaction_RespawningPowerBombBlock:
 
 
 .bomb:
-    LDA.W #UNUSED_InstList_PLM_PowerBombBlockBombed_84C91C 
-    STA.W $1D27,Y 
+    LDA.W #UNUSED_InstList_PLM_PowerBombBlockBombed_84C91C : STA.W $1D27,Y 
     RTS 
 
 
@@ -9757,8 +9554,7 @@ Setup_Reaction_SuperMissileBlock:
     BEQ .bomb 
     CMP.W #$0200 
     BEQ .superMissile 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 
@@ -9774,8 +9570,7 @@ Setup_Reaction_SuperMissileBlock:
 
 
 .bomb:
-    LDA.W #UNUSED_InstList_PLM_SuperMissileBlockBombed_84C922 
-    STA.W $1D27,Y 
+    LDA.W #UNUSED_InstList_PLM_SuperMissileBlockBombed_84C922 : STA.W $1D27,Y 
     RTS 
 
 
@@ -9785,8 +9580,7 @@ Setup_Reaction_SpeedCrumbleBlock:
     AND.W #$0F00 
     CMP.W #$0500 
     BEQ .return 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
 
 .return:
     RTS 
@@ -9794,8 +9588,7 @@ Setup_Reaction_SpeedCrumbleBlock:
 
 Setup_RespawningBreakableGrappleBlock:
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    STA.W $1E17,Y 
+    LDA.L $7F0002,X : STA.W $1E17,Y 
     TXA 
     LSR A 
     TAX 
@@ -10164,18 +9957,15 @@ InstList_PLM_LowerNorfairChozoHand_1:
     dw Instruction_PLM_Delete 
 
 Instruction_PLM_FXBaseYPosition_2D2:
-    LDA.W #$02D2 
-    STA.W $1978 
+    LDA.W #$02D2 : STA.W $1978 
     RTS 
 
 
 PreInstruction_DeletePLM_SpawnTriggerBlockIf_4_8_IsBlankAir:
     PHX 
     SEP #$20 
-    LDA.B #$08 
-    STA.W $4202 
-    LDA.W $07A5 
-    STA.W $4203 
+    LDA.B #$08 : STA.W $4202 
+    LDA.W $07A5 : STA.W $4203 
     LDA.B #$04 
     REP #$20 
     AND.W #$00FF 
@@ -10219,8 +10009,7 @@ Setup_Reaction_LowerNorfairChozoHandTrigger:
 .react:
     LDA.W #$000C 
     JSL.L MarkEvent_inA 
-    LDA.W #$0001 
-    STA.W $0FB4 
+    LDA.W #$0001 : STA.W $0FB4 
     LDX.W $1C87,Y 
     LDA.L $7F0002,X 
     AND.W #$0FFF 
@@ -10232,8 +10021,7 @@ Setup_Reaction_LowerNorfairChozoHandTrigger:
     dw PLMEntries_CrumbleLowerNorfairChozoRoomPlug 
 
 .return:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -10389,12 +10177,10 @@ PreInstruction_PLM_WakePLMIfSamusHasBombs:
     LDA.W $09A4 
     AND.W #$1000 
     BEQ .return 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
     INC.W $1D27,X 
     INC.W $1D27,X 
-    LDA.W #.return 
-    STA.W $1CD7,X 
+    LDA.W #.return : STA.W $1CD7,X 
 
 .return:
     RTS 
@@ -10486,10 +10272,8 @@ UNUSED_PreInst_PLM_GotoToLinkInstructionIfBombed_84D409:
     AND.W #$0F00 
     CMP.W #$0500 
     BNE .clearShotStatus 
-    LDA.L $7EDEBC,X 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.L $7EDEBC,X : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .clearShotStatus:
     STZ.W $1D77,X 
@@ -10541,18 +10325,14 @@ UNUSED_InstList_PLM_AlternateLowerNorfairChozoHand_84D46E:
     dw Instruction_PLM_Delete 
 
 UNUSED_Instruction_PLM_DrainAcidLake_84D476:
-    LDA.W #$02D2 
-    STA.W $197A 
-    LDA.W #$0070 
-    STA.W $197C 
-    LDA.W #$0020 
-    STA.W $1980 
+    LDA.W #$02D2 : STA.W $197A 
+    LDA.W #$0070 : STA.W $197C 
+    LDA.W #$0020 : STA.W $1980 
     RTS 
 
 
 UNUSED_Instruction_PLM_FXBaseYPosition_2D2_84D489:
-    LDA.W #$02D2 
-    STA.W $1978 
+    LDA.W #$02D2 : STA.W $1978 
     RTS 
 
 
@@ -10588,8 +10368,7 @@ PreInstruction_PLM_WakePLMIf_A_B_X_Y_Left_Right:
     LDA.B $8F 
     AND.W #$C3C0 
     BEQ .return 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
     INC.W $1D27,X 
     INC.W $1D27,X 
 
@@ -10653,10 +10432,8 @@ Instruction_PLM_SpawnNoobTubeCrackEnemyProjectile:
 
 
 Instruction_PLM_TriggerNoobTubeEarthquake:
-    LDA.W #$000B 
-    STA.W $183E 
-    LDA.W #$0040 
-    STA.W $1840 
+    LDA.W #$000B : STA.W $183E 
+    LDA.W #$0040 : STA.W $1840 
     RTS 
 
 
@@ -10740,8 +10517,7 @@ Setup_BombTorizosCrumblingChozo:
     LDA.W #$0004 
     JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .return 
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
 
 .return:
     RTS 
@@ -10771,12 +10547,9 @@ Setup_Collision_WreckedShipChozoHandTrigger:
     BNE .return 
 
 .trigger:
-    LDA.W #$0001 
-    STA.W $0FB4 
-    LDA.W #$0202 
-    STA.L $7ECD27 
-    LDA.W #$0101 
-    STA.L $7ECD2D 
+    LDA.W #$0001 : STA.W $0FB4 
+    LDA.W #$0202 : STA.L $7ECD27 
+    LDA.W #$0101 : STA.L $7ECD2D 
     LDX.W $1C87,Y 
     LDA.L $7F0002,X 
     AND.W #$0FFF 
@@ -10788,8 +10561,7 @@ Setup_Collision_WreckedShipChozoHandTrigger:
     dw PLMEntries_ClearSlopeAccessForWreckedShipChozo 
 
 .return:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     SEC 
     RTS 
 
@@ -10938,10 +10710,8 @@ UNUSED_PreInst_PLM_WakePLMIfSamusIsWithin4Blocks_84D710:
     BEQ + 
     BCS .return 
 
-  + LDA.L $7EDEBC,X 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+  + LDA.L $7EDEBC,X : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .return:
     RTS 
@@ -10956,12 +10726,9 @@ PreInstruction_PLM_WakePLMIfRoomArgDoorIsSet:
     AND.W $05E7 
     BEQ .return 
     TYX 
-    LDA.W #.return 
-    STA.W $1CD7,X 
-    LDA.L $7EDEBC,X 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.W #.return : STA.W $1CD7,X 
+    LDA.L $7EDEBC,X : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .return:
     RTS 
@@ -11475,8 +11242,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg18:
 
 PreInstruction_PLM_SetsMetroidsClearedStatesWhenRequired:
     LDX.W $1DC7,Y 
-    LDA.W .pointers,X 
-    STA.W $1CD7,Y 
+    LDA.W .pointers,X : STA.W $1CD7,Y 
     RTS 
 
 
@@ -11538,18 +11304,15 @@ PreInst_PLM_GotoLinkInstructionIfShotWithAMissile_Draygon:
 
 .missile:
     STZ.W $1D77,X 
-    LDA.L $7EDEBC,X 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.L $7EDEBC,X : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .return:
     RTS 
 
 
 .super:
-    LDA.W #$0077 
-    STA.W $1DC7,X 
+    LDA.W #$0077 : STA.W $1DC7,X 
     BRA .missile 
 
 
@@ -11557,8 +11320,7 @@ Instruction_PLM_DamageDraygonTurret:
     PHX 
     LDA.W $1E17,X 
     TAX 
-    LDA.W #$0001 
-    STA.L $7E0000,X 
+    LDA.W #$0001 : STA.L $7E0000,X 
     PLX 
     LDA.W $1C87,X 
     TAX 
@@ -11579,8 +11341,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownRight:
     PHX 
     LDA.W $1E17,X 
     TAX 
-    LDA.W #$0001 
-    STA.L $7E0000,X 
+    LDA.W #$0001 : STA.L $7E0000,X 
     PLX 
     LDA.W $1C87,X 
     TAX 
@@ -11608,8 +11369,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpRight:
     PHX 
     LDA.W $1E17,X 
     TAX 
-    LDA.W #$0001 
-    STA.L $7E0000,X 
+    LDA.W #$0001 : STA.L $7E0000,X 
     PLX 
     LDA.W $1C87,X 
     TAX 
@@ -11637,8 +11397,7 @@ Instruction_PLM_DamageDraygonTurret_duplicate:
     PHX 
     LDA.W $1E17,X 
     TAX 
-    LDA.W #$0001 
-    STA.L $7E0000,X 
+    LDA.W #$0001 : STA.L $7E0000,X 
     PLX 
     LDA.W $1C87,X 
     TAX 
@@ -11659,8 +11418,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownLeft:
     PHX 
     LDA.W $1E17,X 
     TAX 
-    LDA.W #$0001 
-    STA.L $7E0000,X 
+    LDA.W #$0001 : STA.L $7E0000,X 
     PLX 
     LDA.W $1C87,X 
     TAX 
@@ -11688,8 +11446,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpLeft:
     PHX 
     LDA.W $1E17,X 
     TAX 
-    LDA.W #$0001 
-    STA.L $7E0000,X 
+    LDA.W #$0001 : STA.L $7E0000,X 
     PLX 
     LDA.W $1C87,X 
     TAX 
@@ -11928,10 +11685,8 @@ UNUSED_InstList_PLM_DraygonCannonFacingUpLeft_84DE80:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Setup_DraygonCannonWithShieldFacingRight:
-    LDA.W $1DC7,Y 
-    STA.W $1E17,Y 
-    LDA.W #$0000 
-    STA.W $1DC7,Y 
+    LDA.W $1DC7,Y : STA.W $1E17,Y 
+    LDA.W #$0000 : STA.W $1DC7,Y 
     LDX.W $1C87,Y 
     LDA.W #$C044 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
@@ -11947,10 +11702,8 @@ Setup_DraygonCannonWithShieldFacingRight:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Setup_DraygonCannonWithShieldFacingDownUpRight_84DEB9:
-    LDA.W $1DC7,Y 
-    STA.W $1E17,Y 
-    LDA.W #$0000 
-    STA.W $1DC7,Y 
+    LDA.W $1DC7,Y : STA.W $1E17,Y 
+    LDA.W #$0000 : STA.W $1DC7,Y 
     LDX.W $1C87,Y 
     LDA.W #$C044 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
@@ -11972,10 +11725,8 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_DraygonCannonWithShieldFacingLeft:
-    LDA.W $1DC7,Y 
-    STA.W $1E17,Y 
-    LDA.W #$0000 
-    STA.W $1DC7,Y 
+    LDA.W $1DC7,Y : STA.W $1E17,Y 
+    LDA.W #$0000 : STA.W $1DC7,Y 
     LDX.W $1C87,Y 
     LDA.W #$C044 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
@@ -11991,10 +11742,8 @@ Setup_DraygonCannonWithShieldFacingLeft:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Setup_DraygonCannonWithShieldFacingDownUpLeft_84DF15:
-    LDA.W $1DC7,Y 
-    STA.W $1E17,Y 
-    LDA.W #$0000 
-    STA.W $1DC7,Y 
+    LDA.W $1DC7,Y : STA.W $1E17,Y 
+    LDA.W #$0000 : STA.W $1DC7,Y 
     LDX.W $1C87,Y 
     LDA.W #$C044 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
@@ -12016,10 +11765,8 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Setup_DraygonCannon:
-    LDA.W $1DC7,Y 
-    STA.W $1E17,Y 
-    LDA.W #$0003 
-    STA.W $1DC7,Y 
+    LDA.W $1DC7,Y : STA.W $1E17,Y 
+    LDA.W #$0003 : STA.W $1DC7,Y 
     RTS 
 
 
@@ -12084,12 +11831,9 @@ PreInstruction_PLM_GotoLinkInstructionIfTriggered:
     AND.W #$00FF 
     CMP.W #$00FF 
     BNE .return 
-    LDA.W #.return 
-    STA.W $1CD7,X 
-    LDA.L $7EDEBC,X 
-    STA.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.W #.return : STA.W $1CD7,X 
+    LDA.L $7EDEBC,X : STA.W $1D27,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .return:
     RTS 
@@ -12138,8 +11882,7 @@ PreInstruction_PLM_WakePLMIfTriggered_WithDeadCodePBCheck:
     STZ.W $1D77,X 
     INC.W $1D27,X 
     INC.W $1D27,X 
-    LDA.W #$0001 
-    STA.L $7EDE1C,X 
+    LDA.W #$0001 : STA.L $7EDE1C,X 
 
 .return:
     RTS 
@@ -12182,8 +11925,7 @@ Instruction_PLM_DrawItemFrame0:
     PHY 
     LDA.L $7EDF0C,X 
     TAY 
-    LDA.W .drawInsts,Y 
-    STA.L $7EDE6C,X 
+    LDA.W .drawInsts,Y : STA.L $7EDE6C,X 
     PLY 
     BRA DrawPLM_Wait4Frames 
 
@@ -12198,8 +11940,7 @@ Instruction_PLM_DrawItemFrame1:
     PHY 
     LDA.L $7EDF0C,X 
     TAY 
-    LDA.W .drawInsts,Y 
-    STA.L $7EDE6C,X 
+    LDA.W .drawInsts,Y : STA.L $7EDE6C,X 
     PLY 
     BRA DrawPLM_Wait4Frames 
 
@@ -12211,8 +11952,7 @@ Instruction_PLM_DrawItemFrame1:
     dw DrawInst_DrawItemFrame1_3 
 
 DrawPLM_Wait4Frames:
-    LDA.W #$0004 
-    STA.L $7EDE1C,X 
+    LDA.W #$0004 : STA.L $7EDE1C,X 
     TYA 
     STA.W $1D27,X 
     JSR.W Process_PLM_Draw_Instruction 
@@ -13017,8 +12757,7 @@ InstList_PLM_SpeedBoosterChozoOrb_4:
     dw Instruction_PLM_Delete 
 
 Instruction_PLM_FXYVelocity_FFE0:
-    LDA.W #$FFE0 
-    STA.W $197C 
+    LDA.W #$FFE0 : STA.W $197C 
     RTS 
 
 
@@ -14193,8 +13932,7 @@ Setup_AbilityShotBlock:
     LDA.W #$C045 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C87,Y 
-    LDA.L $7F0002,X 
-    STA.W $1E17,Y 
+    LDA.L $7F0002,X : STA.W $1E17,Y 
     LDA.L $7ED91A 
     INC A 
     STA.L $7ED91A 
@@ -14217,15 +13955,13 @@ Setup_ItemCollisionDetection:
     db $00 ; BRK with no operand
 
 .found:
-    LDA.W #$00FF 
-    STA.W $1D77,X 
+    LDA.W #$00FF : STA.W $1D77,X 
     CLC 
     RTS 
 
 
 .delete:
-    LDA.W #$0000 
-    STA.W $1C37,Y 
+    LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
 

@@ -86,8 +86,7 @@ MessageBox_Routine:
     LDA.W $05F9 
     CMP.W #$0002 
     BEQ .no 
-    LDA.W #$0018 
-    STA.W $1C1F 
+    LDA.W #$0018 : STA.W $1C1F 
     JSR.W Clear_MessageBox_BG3Tilemap 
     JSR.W Play_Saving_Sound_Effect 
     JSR.W Initialise_MessageBox 
@@ -110,8 +109,7 @@ MaybeTriggerPauseScreen_or_ReturnSaveConfirmationSelection:
     LDA.W $1C1F 
     CMP.W #$0014 
     BNE .notMapPause 
-    LDA.W #$000C 
-    STA.W $0998 
+    LDA.W #$000C : STA.W $0998 
     RTS 
 
 
@@ -163,32 +161,20 @@ Initialise_PPU_for_MessageBoxes:
     JSR.W Wait_for_Lag_Frame 
     SEP #$20 
     STZ.W $420C 
-    LDA.B #$19 
-    STA.W $2121 
-    LDA.B #$B1 
-    STA.W $2122 
-    LDA.B #$0B 
-    STA.W $2122 
-    LDA.B #$1F 
-    STA.W $2122 
-    LDA.B #$00 
-    STA.W $2122 
-    LDA.B $85 
-    STA.L $7E33EA 
-    LDA.B $5B 
-    STA.L $7E33EB 
-    LDA.B #$58 
-    STA.B $5B 
-    LDA.B #$17 
-    STA.B $6A 
+    LDA.B #$19 : STA.W $2121 
+    LDA.B #$B1 : STA.W $2122 
+    LDA.B #$0B : STA.W $2122 
+    LDA.B #$1F : STA.W $2122 
+    LDA.B #$00 : STA.W $2122 
+    LDA.B $85 : STA.L $7E33EA 
+    LDA.B $5B : STA.L $7E33EB 
+    LDA.B #$58 : STA.B $5B 
+    LDA.B #$17 : STA.B $6A 
     STZ.B $70 
     STZ.B $73 
-    LDA.B #$20 
-    STA.W $2132 
-    LDA.B #$40 
-    STA.W $2132 
-    LDA.B #$80 
-    STA.W $2132 
+    LDA.B #$20 : STA.W $2132 
+    LDA.B #$40 : STA.W $2132 
+    LDA.B #$80 : STA.W $2132 
     LDA.W $2111 
     STZ.W $2111 
     STZ.W $2111 
@@ -205,24 +191,18 @@ Initialise_PPU_for_MessageBoxes:
     BPL .loop 
     JSR.W Wait_for_Lag_Frame 
     REP #$20 
-    LDA.W #$5880 
-    STA.W $2116 
+    LDA.W #$5880 : STA.W $2116 
     LDA.W $2139 
     LDA.W #$3981 ;  (8-bit transfer looks wrong, bug?)
     STA.W $4310 
-    LDA.W #$4100 
-    STA.W $4312 
-    LDA.W #$007E 
-    STA.W $4314 
-    LDA.W #$0700 
-    STA.W $4315 
+    LDA.W #$4100 : STA.W $4312 
+    LDA.W #$007E : STA.W $4314 
+    LDA.W #$0700 : STA.W $4315 
     STZ.W $4317 
     STZ.W $4319 
     SEP #$20 
-    LDA.B #$80 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$80 : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     JSL.L HandleMusicQueue 
     JSL.L HandleSounds 
     RTS 
@@ -238,23 +218,16 @@ Clear_MessageBox_BG3Tilemap:
     DEX #2
     BPL .loop 
     JSR.W Wait_for_Lag_Frame 
-    LDA.W #$5880 
-    STA.W $2116 
-    LDA.W #$1801 
-    STA.W $4310 
-    LDA.W #$3800 
-    STA.W $4312 
-    LDA.W #$007E 
-    STA.W $4314 
-    LDA.W #$0700 
-    STA.W $4315 
+    LDA.W #$5880 : STA.W $2116 
+    LDA.W #$1801 : STA.W $4310 
+    LDA.W #$3800 : STA.W $4312 
+    LDA.W #$007E : STA.W $4314 
+    LDA.W #$0700 : STA.W $4315 
     STZ.W $4317 
     STZ.W $4319 
     SEP #$20 
-    LDA.B #$80 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$80 : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     JSL.L HandleMusicQueue 
     JSL.L HandleSounds 
     RTS 
@@ -289,20 +262,17 @@ Write_Large_MessageBox_Tilemap:
     LDX.W #$0000 
 
 .topBorderLoop:
-    LDA.W Large_MessageBox_TopBottomBorder_Tilemap,X 
-    STA.L $7E3200,X 
+    LDA.W Large_MessageBox_TopBottomBorder_Tilemap,X : STA.L $7E3200,X 
     INX #2
     CPX.W #$0040 
     BNE .topBorderLoop 
     LDY.W #$0000 
     JSR.W Write_Message_Tilemap 
-    LDA.W #$0020 
-    STA.B $16 
+    LDA.W #$0020 : STA.B $16 
     LDY.W #$0000 
 
 .bottomBorderLoop:
-    LDA.W Large_MessageBox_TopBottomBorder_Tilemap,Y 
-    STA.L $7E3200,X 
+    LDA.W Large_MessageBox_TopBottomBorder_Tilemap,Y : STA.L $7E3200,X 
     INY #2
     INX #2
     DEC.B $16 
@@ -315,19 +285,16 @@ Write_Small_MessageBox_Tilemap:
     LDX.W #$0000 
 
 .topBorderLoop:
-    LDA.W Small_MessageBox_TopBottomBorder_Tilemap,X 
-    STA.L $7E3200,X 
+    LDA.W Small_MessageBox_TopBottomBorder_Tilemap,X : STA.L $7E3200,X 
     INX #2
     CPX.W #$0040 
     BNE .topBorderLoop 
     JSR.W Write_Message_Tilemap 
-    LDA.W #$0020 
-    STA.B $16 
+    LDA.W #$0020 : STA.B $16 
     LDY.W #$0000 
 
 .bottomBorderLoop:
-    LDA.W Small_MessageBox_TopBottomBorder_Tilemap,Y 
-    STA.L $7E3200,X 
+    LDA.W Small_MessageBox_TopBottomBorder_Tilemap,Y : STA.L $7E3200,X 
     INY #2
     INX #2
     DEC.B $16 
@@ -340,10 +307,8 @@ Write_Message_Tilemap:
     JSL.L HandleMusicQueue 
     JSL.L HandleSounds 
     REP #$30 
-    LDA.W #$0070 
-    STA.W $05A6 
-    LDA.W #$007C 
-    STA.W $05A4 
+    LDA.W #$0070 : STA.W $05A6 
+    LDA.W #$007C : STA.W $05A4 
     STZ.W $05A2 
     LDX.W #$0000 
     LDA.W #$0000 
@@ -361,8 +326,7 @@ Write_Message_Tilemap:
     CLC 
     ADC.B $34 
     TAX 
-    LDA.W MessageDefinitionsPointers_messageTilemap,X 
-    STA.B $00 
+    LDA.W MessageDefinitionsPointers_messageTilemap,X : STA.B $00 
     LDA.W MessageDefinitionsPointers_nextEntryMessageTilemap,X 
     SEC 
     SBC.B $00 
@@ -377,8 +341,7 @@ Write_Message_Tilemap:
     LDY.W #$0000 
 
 .messageLoop:
-    LDA.B ($00),Y 
-    STA.L $7E3200,X 
+    LDA.B ($00),Y : STA.L $7E3200,X 
     INX #2
     INY #2
     DEC.B $16 
@@ -395,21 +358,15 @@ Setup_PPU_for_Active_MessageBox:
     ADC.B $34 
     STA.B $34 
     STA.W $2116 
-    LDA.W #$1801 
-    STA.W $4310 
-    LDA.W #$3200 
-    STA.W $4312 
-    LDA.W #$007E 
-    STA.W $4314 
-    LDA.B $09 
-    STA.W $4315 
+    LDA.W #$1801 : STA.W $4310 
+    LDA.W #$3200 : STA.W $4312 
+    LDA.W #$007E : STA.W $4314 
+    LDA.B $09 : STA.W $4315 
     STZ.W $4317 
     STZ.W $4319 
     SEP #$20 
-    LDA.B #$80 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$80 : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     JSL.L HandleMusicQueue 
     JSL.L HandleSounds 
     RTS 
@@ -417,40 +374,27 @@ Setup_PPU_for_Active_MessageBox:
 
 Setup_MessageBox_BG3_Yscroll_HDMA:
     SEP #$20 
-    LDA.B #$FF 
-    STA.L $7E3380 
-    LDA.B #$00 
-    STA.L $7E3381 
-    LDA.B #$30 
-    STA.L $7E3382 
-    LDA.B #$E1 
-    STA.L $7E3383 
-    LDA.B #$FE 
-    STA.L $7E3384 
-    LDA.B #$30 
-    STA.L $7E3385 
-    LDA.B #$00 
-    STA.L $7E3386 
-    LDA.B #$42 
-    STA.W $4360 
-    LDA.B #$12 
-    STA.W $4361 
-    LDA.B #$80 
-    STA.W $4362 
+    LDA.B #$FF : STA.L $7E3380 
+    LDA.B #$00 : STA.L $7E3381 
+    LDA.B #$30 : STA.L $7E3382 
+    LDA.B #$E1 : STA.L $7E3383 
+    LDA.B #$FE : STA.L $7E3384 
+    LDA.B #$30 : STA.L $7E3385 
+    LDA.B #$00 : STA.L $7E3386 
+    LDA.B #$42 : STA.W $4360 
+    LDA.B #$12 : STA.W $4361 
+    LDA.B #$80 : STA.W $4362 
     STA.W $4365 
-    LDA.B #$33 
-    STA.W $4363 
+    LDA.B #$33 : STA.W $4363 
     STA.W $4366 
-    LDA.B #$7E 
-    STA.W $4364 
+    LDA.B #$7E : STA.W $4364 
     STA.W $4367 
     STZ.W $4368 
     STZ.W $4369 
     STZ.W $436A 
     JSR.W Write_MessageBox_BG3_Yscroll_HDMA_DataTable 
     SEP #$20 
-    LDA.B #$40 
-    STA.W $420C 
+    LDA.B #$40 : STA.W $420C 
     RTS 
 
 
@@ -495,10 +439,8 @@ DrawSpecialButton_SetupPPUForLargeMessageBox:
     TAX 
     LDA.W Special_Button_Tilemap_Offsets,X 
     TAX 
-    LDA.W .buttons,Y 
-    STA.L $7E3200,X 
-    LDA.W #$01A0 
-    STA.B $34 
+    LDA.W .buttons,Y : STA.L $7E3200,X 
+    LDA.W #$01A0 : STA.B $34 
     JSR.W Setup_PPU_for_Active_MessageBox 
     RTS 
 
@@ -515,16 +457,14 @@ DrawSpecialButton_SetupPPUForLargeMessageBox:
 
 Setup_PPU_for_Small_MessageBox:
     REP #$30 
-    LDA.W #$01C0 
-    STA.B $34 
+    LDA.W #$01C0 : STA.B $34 
     JSR.W Setup_PPU_for_Active_MessageBox 
     RTS 
 
 
 Setup_PPU_for_Large_MessageBox:
     REP #$30 
-    LDA.W #$01A0 
-    STA.B $34 
+    LDA.W #$01A0 : STA.B $34 
     JSR.W Setup_PPU_for_Active_MessageBox 
     RTS 
 
@@ -541,8 +481,7 @@ Open_MessageBox:
     STA.W $05A2 
     CMP.W #$1800 
     BMI .loop 
-    LDA.W #$1800 
-    STA.W $05A2 
+    LDA.W #$1800 : STA.W $05A2 
     JSR.W Write_MessageBox_BG3_Yscroll_HDMA_DataTable 
     RTS 
 
@@ -633,8 +572,7 @@ Handle_MessageBox_Interaction:
 
 
 .inputB:
-    LDA.W #$0002 
-    STA.W $05F9 
+    LDA.W #$0002 : STA.W $05F9 
     BRA .return 
 
 
@@ -648,37 +586,28 @@ Toggle_Save_Confirmation_Selection:
     LDY.W #$0080 
 
   + LDX.W #$0100 
-    LDA.W #$0020 
-    STA.B $34 
+    LDA.W #$0020 : STA.B $34 
 
 .loop:
-    LDA.W UNUSED_MessageTilemaps_YES_859581,Y 
-    STA.L $7E3200,X 
+    LDA.W UNUSED_MessageTilemaps_YES_859581,Y : STA.L $7E3200,X 
     INX #2
     INY #2
     DEC.B $34 
     BNE .loop 
     JSR.W Wait_for_Lag_Frame 
     REP #$20 
-    LDA.W #$59A0 
-    STA.B $34 
+    LDA.W #$59A0 : STA.B $34 
     LDA.B $34 ; >_<
     STA.W $2116 
-    LDA.W #$1801 
-    STA.W $4310 
-    LDA.W #$3200 
-    STA.W $4312 
-    LDA.W #$007E 
-    STA.W $4314 
-    LDA.W #$0180 
-    STA.W $4315 
+    LDA.W #$1801 : STA.W $4310 
+    LDA.W #$3200 : STA.W $4312 
+    LDA.W #$007E : STA.W $4314 
+    LDA.W #$0180 : STA.W $4315 
     STZ.W $4317 
     STZ.W $4319 
     SEP #$20 
-    LDA.B #$80 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$80 : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     JSL.L HandleMusicQueue 
     JSL.L HandleSounds 
     RTS 
@@ -724,20 +653,17 @@ Write_MessageBox_BG3_Yscroll_HDMA_DataTable:
     XBA 
     AND.W #$00FF 
     STA.W $05A8 
-    LDA.W #$0063 
-    STA.W $05AA 
+    LDA.W #$0063 : STA.W $05AA 
     LDA.W #$7C00 
     CLC 
     ADC.W $05A2 
     XBA 
     AND.W #$00FF 
     STA.W $05A4 
-    LDA.W #$0094 
-    STA.W $05A6 
+    LDA.W #$0094 : STA.W $05A6 
     LDX.W #$00F6 
     LDY.W #$00F8 
-    LDA.W #$001E 
-    STA.B $14 
+    LDA.W #$001E : STA.B $14 
 
 .loop:
     LDA.W $05AA 
@@ -775,46 +701,29 @@ Restore_PPU:
     REP #$20 
     JSR.W Wait_for_Lag_Frame 
     REP #$20 
-    LDA.W #$5880 
-    STA.W $2116 
-    LDA.W #$1801 
-    STA.W $4310 
-    LDA.W #$4100 
-    STA.W $4312 
-    LDA.W #$007E 
-    STA.W $4314 
-    LDA.W #$0700 
-    STA.W $4315 
+    LDA.W #$5880 : STA.W $2116 
+    LDA.W #$1801 : STA.W $4310 
+    LDA.W #$4100 : STA.W $4312 
+    LDA.W #$007E : STA.W $4314 
+    LDA.W #$0700 : STA.W $4315 
     STZ.W $4317 
     STZ.W $4319 
     SEP #$20 
-    LDA.B #$80 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$80 : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     JSR.W Wait_for_Lag_Frame 
     SEP #$20 
-    LDA.L $7E33EA 
-    STA.B $85 
+    LDA.L $7E33EA : STA.B $85 
     STA.W $420C 
-    LDA.L $7E33EB 
-    STA.B $5B 
-    LDA.B $69 
-    STA.B $6A 
-    LDA.B $6E 
-    STA.B $70 
-    LDA.B $71 
-    STA.B $73 
-    LDA.B #$19 
-    STA.W $2121 
-    LDA.L $7EC032 
-    STA.W $2122 
-    LDA.L $7EC033 
-    STA.W $2122 
-    LDA.L $7EC034 
-    STA.W $2122 
-    LDA.L $7EC035 
-    STA.W $2122 
+    LDA.L $7E33EB : STA.B $5B 
+    LDA.B $69 : STA.B $6A 
+    LDA.B $6E : STA.B $70 
+    LDA.B $71 : STA.B $73 
+    LDA.B #$19 : STA.W $2121 
+    LDA.L $7EC032 : STA.W $2122 
+    LDA.L $7EC033 : STA.W $2122 
+    LDA.L $7EC034 : STA.W $2122 
+    LDA.L $7EC035 : STA.W $2122 
     JSL.L HDMAObjectHandler_HandleMusicQueue 
     JSL.L HandleSounds 
     RTS 

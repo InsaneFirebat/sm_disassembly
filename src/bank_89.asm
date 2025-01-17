@@ -3306,12 +3306,9 @@ Load_FX_Entry:
     PLB 
     PLB 
     LDX.W $1966 
-    LDA.W $0002,X 
-    STA.W $1978 
-    LDA.W $0004,X 
-    STA.W $197A 
-    LDA.W $0006,X 
-    STA.W $197C 
+    LDA.W $0002,X : STA.W $1978 
+    LDA.W $0004,X : STA.W $197A 
+    LDA.W $0006,X : STA.W $197C 
     LDA.W $0008,X 
     AND.W #$00FF 
     STA.W $1980 
@@ -3328,18 +3325,14 @@ Load_FX_Entry:
     AND.W #$00FF 
     BEQ .blend0 
     TAX 
-    LDA.L PaletteBlends_Bank89_Color1,X 
-    STA.L $7EC032 
-    LDA.L PaletteBlends_Bank89_Color2,X 
-    STA.L $7EC034 
-    LDA.L PaletteBlends_Bank89_Color3,X 
-    STA.L $7EC036 
+    LDA.L PaletteBlends_Bank89_Color1,X : STA.L $7EC032 
+    LDA.L PaletteBlends_Bank89_Color2,X : STA.L $7EC034 
+    LDA.L PaletteBlends_Bank89_Color3,X : STA.L $7EC036 
     BRA .return 
 
 
 .blend0:
-    LDA.W #$0000 
-    STA.L $7EC036 
+    LDA.W #$0000 : STA.L $7EC036 
 
 .return:
     PLB 
@@ -3391,12 +3384,9 @@ Load_FX_Header:
     STY.W $1968 
     STX.W $1966 
     LDX.W $1966 
-    LDA.W $0002,X 
-    STA.W $1978 
-    LDA.W $0004,X 
-    STA.W $197A 
-    LDA.W $0006,X 
-    STA.W $197C 
+    LDA.W $0002,X : STA.W $1978 
+    LDA.W $0004,X : STA.W $197A 
+    LDA.W $0006,X : STA.W $197C 
     LDA.W $0008,X 
     AND.W #$00FF 
     STA.W $1980 
@@ -3413,18 +3403,14 @@ Load_FX_Header:
     AND.W #$00FF 
     BEQ .blend0 
     TAX 
-    LDA.L PaletteBlends_Bank89_Color1,X 
-    STA.L $7EC232 
-    LDA.L PaletteBlends_Bank89_Color2,X 
-    STA.L $7EC234 
-    LDA.L PaletteBlends_Bank89_Color3,X 
-    STA.L $7EC236 
+    LDA.L PaletteBlends_Bank89_Color1,X : STA.L $7EC232 
+    LDA.L PaletteBlends_Bank89_Color2,X : STA.L $7EC234 
+    LDA.L PaletteBlends_Bank89_Color3,X : STA.L $7EC236 
     BRA + 
 
 
 .blend0:
-    LDA.W #$0000 
-    STA.L $7EC236 
+    LDA.W #$0000 : STA.L $7EC236 
 
   + LDX.W $1966 
     LDA.W $0009,X 
@@ -3432,18 +3418,15 @@ Load_FX_Header:
     STA.W $196E 
     BEQ + 
     TAY 
-    LDA.W FXType_Tilemap_Pointers,Y 
-    STA.W $1964 
+    LDA.W FXType_Tilemap_Pointers,Y : STA.W $1964 
 
   + LDX.W $1966 
     LDA.W $0009,X 
     AND.W #$00FF 
     BEQ .JMLreturn 
     TAY 
-    LDA.W #$8800 
-    STA.B $13 
-    LDA.W FXType_Function_Pointers,Y 
-    STA.B $12 
+    LDA.W #$8800 : STA.B $13 
+    LDA.W FXType_Function_Pointers,Y : STA.B $12 
     PHK 
     PEA.W .JMLreturn-1 
     JML.W [$0012] 
@@ -3458,8 +3441,7 @@ Load_FX_Header:
     LDA.W $079F 
     ASL A 
     TAY 
-    LDA.W AreaSpecific_PaletteFXObjectList_Pointers,Y 
-    STA.B $AF 
+    LDA.W AreaSpecific_PaletteFXObjectList_Pointers,Y : STA.B $AF 
     LDY.W #$0000 
 
 .loopPaletteFX:
@@ -3490,8 +3472,7 @@ Load_FX_Header:
     LDA.W $079F 
     ASL A 
     TAY 
-    LDA.W AreaSpecific_AnimatedTilesObjectList_Pointers,Y 
-    STA.B $AF 
+    LDA.W AreaSpecific_AnimatedTilesObjectList_Pointers,Y : STA.B $AF 
     LDY.W #$0000 
 
 .loopAnimatedTiles:
@@ -3557,8 +3538,7 @@ RoomMainASM_CeresElevatorShaft:
     JSL.L Run_Samus_Command 
     STZ.W $0723 
     STZ.W $0725 
-    LDA.W #$0020 
-    STA.W $0998 
+    LDA.W #$0020 : STA.W $0998 
 
 .handleRotationMatrix:
     DEC.W $07E3 
@@ -3569,15 +3549,12 @@ RoomMainASM_CeresElevatorShaft:
     ADC.W $07E1 
     ASL A 
     TAX 
-    LDA.W .timer,X 
-    STA.W $07E3 
-    LDA.W .sinT,X 
-    STA.B $7A 
+    LDA.W .timer,X : STA.W $07E3 
+    LDA.W .sinT,X : STA.B $7A 
     EOR.W #$FFFF 
     INC A 
     STA.B $7C 
-    LDA.W .cosT,X 
-    STA.B $78 
+    LDA.W .cosT,X : STA.B $78 
     STA.B $7E 
     LDA.W $07E1 
     BMI .decRotationMatrixIndex 

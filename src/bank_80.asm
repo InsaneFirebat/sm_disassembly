@@ -18,19 +18,15 @@ DebugConst_DisableAudio:
     dw $0000 ; Disable audio ($80:8024)
 
 UploadToAPU_Hardcoded:
-    LDA.B $02,S 
-    STA.B $04 
-    LDA.B $01,S 
-    STA.B $03 ; $03 = return address
+    LDA.B $02,S : STA.B $04 
+    LDA.B $01,S : STA.B $03 ; $03 = return address
     CLC 
     ADC.W #$0003 ; adjust return address
     STA.B $01,S 
     LDY.W #$0001 
-    LDA.B [$03],Y 
-    STA.B $00 
+    LDA.B [$03],Y : STA.B $00 
     INY 
-    LDA.B [$03],Y 
-    STA.B $01 ; $00 = [(return address) + 1] (parameter address)
+    LDA.B [$03],Y : STA.B $01 ; $00 = [(return address) + 1] (parameter address)
 
 UploadToAPU_long:
     JSR.W UploadToAPU 
@@ -47,20 +43,17 @@ UploadToAPU:
     PHP 
     PHB 
     REP #$30 
-    LDA.W #$FFFF 
-    STA.L $000617 ; Set uploading to APU flag
+    LDA.W #$FFFF : STA.L $000617 ; Set uploading to APU flag
     SEP #$20 
     REP #$10 
-    LDA.B #$FF 
-    STA.L $002140 ; APU IO 0 = FFh (request APU upload)
+    LDA.B #$FF : STA.L $002140 ; APU IO 0 = FFh (request APU upload)
     LDY.B $00 ; Y = parameter short address
     LDA.B $02 
     PHA 
     PLB ; Set DB to parameter bank
     REP #$30 
     JSR.W SendAPUData 
-    LDA.W #$0000 
-    STA.L $000617 ; Clear uploading to APU flag
+    LDA.W #$0000 : STA.L $000617 ; Clear uploading to APU flag
     PLB 
     PLP 
     RTS 
@@ -69,8 +62,7 @@ UploadToAPU:
 SendAPUData:
     PHP 
     REP #$30 
-    LDA.W #$3000 
-    STA.L $000641 
+    LDA.W #$3000 : STA.L $000641 
 
 .retry:
     LDA.W #$BBAA 
@@ -191,19 +183,15 @@ IncY_OverflowCheck_overflow:
 
 GenerateRandomNumber:
     SEP #$20 
-    LDA.W $05E5 
-    STA.W $4202 
-    LDA.B #$05 
-    STA.W $4203 
+    LDA.W $05E5 : STA.W $4202 
+    LDA.B #$05 : STA.W $4203 
     NOP ; A = [random number low] * 5
     REP #$20 
     LDA.W $4216 ; A += ([random number high] * 5 + 1) * 100h
     PHA 
     SEP #$20 
-    LDA.W $05E6 
-    STA.W $4202 
-    LDA.B #$05 
-    STA.W $4203 
+    LDA.W $05E6 : STA.W $4202 
+    LDA.B #$05 : STA.W $4203 
     XBA 
     NOP 
     LDA.W $4216 ; A += ([random number high] * 5 + 1) * 100h
@@ -225,8 +213,7 @@ UpdateHeldInput:
     PHK 
     PLB 
     STA.W $05DD ; Timed held input timer reset value = [A]
-    LDA.B $8B 
-    STA.B $12 
+    LDA.B $8B : STA.B $12 
     LDA.B $8F 
     TRB.B $12 
     LDA.B $12 ; If held input != [previous held input]: go to .unheld
@@ -243,8 +230,7 @@ UpdateHeldInput:
 
 
 .unheld:
-    LDA.W $05DD 
-    STA.W $05DB ; Timed held input timer = [timed held input timer reset value]
+    LDA.W $05DD : STA.W $05DB ; Timed held input timer = [timed held input timer reset value]
 
 .positive:
     STZ.W $05DF ; Timed held input = 0
@@ -403,8 +389,7 @@ Write_supermetroid_ToSRAM:
     LDX.W #$000A 
 
 .loop:
-    LDA.L Text_supermetroid,X 
-    STA.L $701FE0,X 
+    LDA.L Text_supermetroid,X : STA.L $701FE0,X 
     DEX #2
     BPL .loop 
     PLX 
@@ -413,8 +398,7 @@ Write_supermetroid_ToSRAM:
 
 CheckForNonCorruptSRAM:
     PHX 
-    LDA.W #$0003 
-    STA.W $1F59 ; Number of demo sets = 3
+    LDA.W #$0003 : STA.W $1F59 ; Number of demo sets = 3
     LDA.W #$0000 
     JSL.L LoadFromSRAM ; Load SRAM slot A
     BCC .nonCorrupt ; If not corrupt, go to .nonCorrupt
@@ -427,8 +411,7 @@ CheckForNonCorruptSRAM:
     LDX.W #$000A 
 
 .corruptLoop:
-    LDA.L Text_madadameyohn,X 
-    STA.L $701FE0,X ; $70:1FE0..1FEB = 'madadameyohn' (all SRAM is corrupt)
+    LDA.L Text_madadameyohn,X : STA.L $701FE0,X ; $70:1FE0..1FEB = 'madadameyohn' (all SRAM is corrupt)
     DEX #2
     BPL .corruptLoop 
     PLX 
@@ -444,8 +427,7 @@ CheckForNonCorruptSRAM:
     BNE .return ; If $70:1FE0..1FEB = 'supermetroid':
     DEX #2
     BPL .nonCorruptLoop 
-    LDA.W #$0004 
-    STA.W $1F59 ; Number of demo sets = 4
+    LDA.W #$0004 : STA.W $1F59 ; Number of demo sets = 4
 
 .return:
     PLX 
@@ -488,8 +470,7 @@ A_Y_16bit_UnsignedMultiplication:
     STY.W $4203 
     NOP ; Result = ac
     NOP #2
-    LDA.W $4216 
-    STA.W $05F1 
+    LDA.W $4216 : STA.W $05F1 
     LDY.W $05EA 
     STY.W $4203 
     NOP 
@@ -524,8 +505,7 @@ WaitForNMI:
     PHK 
     PLB 
     SEP #$30 
-    LDA.B #$01 
-    STA.W $05B4 ; Set NMI request flag
+    LDA.B #$01 : STA.W $05B4 ; Set NMI request flag
 
 .wait:
     LDA.W $05B4 
@@ -600,14 +580,11 @@ UNUSED_UpdateCGRAM_808395:
     PHP 
     SEP #$10 
     REP #$20 
-    LDA.W #$2200 
-    STA.W $4310 
-    LDA.W #$C000 
-    STA.W $4312 
+    LDA.W #$2200 : STA.W $4310 
+    LDA.W #$C000 : STA.W $4312 
     LDX.B #$7E 
     STX.W $4314 
-    LDA.W #$0200 
-    STA.W $4315 
+    LDA.W #$0200 : STA.W $4315 
     LDX.B #$00 
     STX.W $2121 
     LDX.B #$02 
@@ -713,8 +690,7 @@ Boot:
 
 .bank80:
     SEP #$20 
-    LDA.B #$01 
-    STA.W $420D ; Enable FastROM
+    LDA.B #$01 : STA.W $420D ; Enable FastROM
     STA.B $86 
     REP #$30 
     LDX.W #$1FFF 
@@ -775,8 +751,7 @@ SoftReset:
 
 CommonBootSection:
     SEP #$20 
-    LDA.B #$8F 
-    STA.W $2100 ; Enable forced blank
+    LDA.B #$8F : STA.W $2100 ; Enable forced blank
     REP #$30 
     PEA.W $7E00 
     PLB 
@@ -799,8 +774,7 @@ CommonBootSection:
     SEP #$30 
     STZ.W $4200 
     STZ.B $84 ; Disable NMI and auto-joypad read
-    LDA.B #$8F 
-    STA.B $51 ; Set forced blank
+    LDA.B #$8F : STA.B $51 ; Set forced blank
     JSR.W Initialise_CPU_IO_Registers ; Initialise CPU IO registers
     JSR.W InitialisePPURegisters ; Initialise PPU registers
     JSR.W WriteALoadOf_1C2F ; Write a load of 1C2Fh
@@ -848,10 +822,8 @@ CommonBootSection:
     DEX 
     BNE .wait 
     REP #$30 
-    LDA.W #$0061 
-    STA.W $05E5 ; Seed random number with 61h
-    LDA.W #$0000 
-    STA.W $063F 
+    LDA.W #$0061 : STA.W $05E5 ; Seed random number with 61h
+    LDA.W #$0000 : STA.W $063F 
     STA.W $0629 
     STA.W $062B 
     STA.W $062D 
@@ -860,8 +832,7 @@ CommonBootSection:
     STA.W $0633 
     STA.W $0635 
     STA.W $0637 
-    LDA.L DebugConst_DebugMode 
-    STA.W $05D1 ; Mirror debug byte to RAM
+    LDA.L DebugConst_DebugMode : STA.W $05D1 ; Mirror debug byte to RAM
     JSR.W NTSC_PAL_SRAM_MappingCheck ; NTSC/PAL and SRAM mapping check
     REP #$30 
     JSL.L CheckForNonCorruptSRAM ; Check for non-corrupt SRAM
@@ -903,8 +874,7 @@ LoadMirrorOfCurrentAreasMapExplored:
     LDY.W #$0000 
 
 .loop:
-    LDA.L $7ECD52,X 
-    STA.W $07F7,Y 
+    LDA.L $7ECD52,X : STA.W $07F7,Y 
     INX #2
     INY #2
     CPY.W #$0100 
@@ -931,8 +901,7 @@ MirrorCurrentAreasMapExplored:
     LDY.W #$0000 
 
 .loop:
-    LDA.W $07F7,Y 
-    STA.L $7ECD52,X 
+    LDA.W $07F7,Y : STA.L $7ECD52,X 
     INX #2
     INY #2
     CPY.W #$0100 
@@ -973,50 +942,36 @@ NTSC_PAL_SRAM_MappingCheck:
     BEQ .SRAMCheck 
 
 .failedRegion:
-    LDA.B #$8F 
-    STA.W $2100 ; Enable forced blank
+    LDA.B #$8F : STA.W $2100 ; Enable forced blank
     STZ.W $4200 ; Disable all interrupts
-    LDA.B #$00 
-    STA.W $2116 
-    LDA.B #$00 
-    STA.W $2117 
-    LDA.B #$80 
-    STA.W $2115 ; VRAM $0000..1FFF = [$8E:8000..BFFF] (BG1 tiles)
+    LDA.B #$00 : STA.W $2116 
+    LDA.B #$00 : STA.W $2117 
+    LDA.B #$80 : STA.W $2115 ; VRAM $0000..1FFF = [$8E:8000..BFFF] (BG1 tiles)
     JSL.L SetupHDMATransfer ; Set up a (H)DMA transfer
     db $01,$01,$18 
     dl Tiles_Menu_BG1_BG2 
     dw $4000 
-    LDA.B #$02 
-    STA.W $420B 
-    LDA.B #$00 
-    STA.W $2116 
-    LDA.B #$40 
-    STA.W $2117 
-    LDA.B #$80 
-    STA.W $2115 ; VRAM $4000..47FF = [$80:B437..C436] (BG1 tilemap)
+    LDA.B #$02 : STA.W $420B 
+    LDA.B #$00 : STA.W $2116 
+    LDA.B #$40 : STA.W $2117 
+    LDA.B #$80 : STA.W $2115 ; VRAM $4000..47FF = [$80:B437..C436] (BG1 tilemap)
     JSL.L SetupHDMATransfer ; Set up a (H)DMA transfer
     db $01,$01,$18 
     dl Tilemap_FailedRegionCheck 
     dw $1000 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     STZ.W $2121 
     JSL.L SetupHDMATransfer ; Set up a (H)DMA transfer
     db $01,$00,$22 ; CGRAM = [$8E:E400..E5FF] (menu palettes)
     dl Menu_Palettes 
     dw $0200 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     STZ.W $2131 ; Disable colour math
     STZ.W $212D ; Disable subscreen
-    LDA.B #$01 
-    STA.W $212C ; Main screen layers = BG1
-    LDA.B #$0F 
-    STA.W $2100 ; Disable forced blank
-    LDA.B #$00 
-    STA.W $210B ; BG1 tiles base address = $0000
-    LDA.B #$40 
-    STA.W $2107 ; BG1 tilemap base address = $4000
+    LDA.B #$01 : STA.W $212C ; Main screen layers = BG1
+    LDA.B #$0F : STA.W $2100 ; Disable forced blank
+    LDA.B #$00 : STA.W $210B ; BG1 tiles base address = $0000
+    LDA.B #$40 : STA.W $2107 ; BG1 tilemap base address = $4000
 
 .gotoCrash:
     BRA .gotoCrash 
@@ -1027,8 +982,7 @@ NTSC_PAL_SRAM_MappingCheck:
     LDX.W #$1FFE 
 
 .backupSRAM:
-    LDA.L $700000,X 
-    STA.L $7F0000,X ; $7F:0000..1FFF = [$70:0000..1FFF]
+    LDA.L $700000,X : STA.L $7F0000,X ; $7F:0000..1FFF = [$70:0000..1FFF]
     DEX #2
     BPL .backupSRAM 
     LDA.W #$0000 
@@ -1059,8 +1013,7 @@ NTSC_PAL_SRAM_MappingCheck:
     LDX.W #$1FFE 
 
 .restoreSRAM:
-    LDA.L $7F0000,X 
-    STA.L $700000,X ; $70:0000..1FFF = [$7F:0000..1FFF]
+    LDA.L $7F0000,X : STA.L $700000,X ; $70:0000..1FFF = [$7F:0000..1FFF]
     DEX #2
     BPL .restoreSRAM 
 
@@ -1071,58 +1024,43 @@ NTSC_PAL_SRAM_MappingCheck:
 
 .failedSRAMCheck:
     SEP #$20 
-    LDA.B #$8F 
-    STA.W $2100 ; Enable forced blank
+    LDA.B #$8F : STA.W $2100 ; Enable forced blank
     STZ.W $4200 ; Disable all interrupts
-    LDA.B #$00 
-    STA.W $2116 
-    LDA.B #$00 
-    STA.W $2117 
-    LDA.B #$80 
-    STA.W $2115 ; VRAM $0000..1FFF = [$8E:8000..BFFF] (BG1 tiles)
+    LDA.B #$00 : STA.W $2116 
+    LDA.B #$00 : STA.W $2117 
+    LDA.B #$80 : STA.W $2115 ; VRAM $0000..1FFF = [$8E:8000..BFFF] (BG1 tiles)
     JSL.L SetupHDMATransfer ; Set up a (H)DMA transfer
     db $01,$01,$18 
     dl Tiles_Menu_BG1_BG2 
     dw $4000 
-    LDA.B #$02 
-    STA.W $420B 
-    LDA.B #$00 
-    STA.W $2116 
-    LDA.B #$40 
-    STA.W $2117 
-    LDA.B #$80 
-    STA.W $2115 ; VRAM $4000..47FF = [$80:BC37..C436] (BG1 tilemap)
+    LDA.B #$02 : STA.W $420B 
+    LDA.B #$00 : STA.W $2116 
+    LDA.B #$40 : STA.W $2117 
+    LDA.B #$80 : STA.W $2115 ; VRAM $4000..47FF = [$80:BC37..C436] (BG1 tilemap)
     JSL.L SetupHDMATransfer ; Set up a (H)DMA transfer
     db $01,$01,$18 
     dl Tilemap_FailedSRAMMappingCheck 
     dw $1000 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     STZ.W $2121 
     JSL.L SetupHDMATransfer ; Set up a (H)DMA transfer
     db $01,$00,$22 ; CGRAM = [$8E:E400..E5FF] (menu palettes)
     dl Menu_Palettes 
     dw $0200 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     STZ.W $2131 ; Disable colour math
     STZ.W $212D ; Disable subscreen
-    LDA.B #$01 
-    STA.W $212C ; Main screen layers = BG1
-    LDA.B #$0F 
-    STA.W $2100 ; Disable forced blank
-    LDA.B #$00 
-    STA.W $210B ; BG1 tiles base address = $0000
-    LDA.B #$40 
-    STA.W $2107 ; BG1 tilemap base address = $4000
+    LDA.B #$01 : STA.W $212C ; Main screen layers = BG1
+    LDA.B #$0F : STA.W $2100 ; Disable forced blank
+    LDA.B #$00 : STA.W $210B ; BG1 tiles base address = $0000
+    LDA.B #$40 : STA.W $2107 ; BG1 tilemap base address = $4000
 
 .crash:
     BRA .crash ; Crash
 
 
 Initialise_CPU_IO_Registers:
-    LDA.B #$01 
-    STA.W $4200 ; Enable auto-joypad read
+    LDA.B #$01 : STA.W $4200 ; Enable auto-joypad read
     STA.B $84 
     STZ.W $4201 ; Joypad programmable IO port = 0
     STZ.W $4202 
@@ -1137,18 +1075,15 @@ Initialise_CPU_IO_Registers:
     STZ.W $420B ; Disable all DMA channels
     STZ.W $420C 
     STZ.B $85 ; Disable all HDMA channels
-    LDA.B #$01 
-    STA.W $420D ; Enable FastROM
+    LDA.B #$01 : STA.W $420D ; Enable FastROM
     STA.B $86 
     RTS 
 
 
 InitialisePPURegisters:
-    LDA.B #$8F 
-    STA.W $2100 ; Enable forced blank
+    LDA.B #$8F : STA.W $2100 ; Enable forced blank
     STA.B $51 
-    LDA.B #$03 
-    STA.W $2101 ; Sprite tiles base address = $6000, sprite sizes = 8x8 / 16x16
+    LDA.B #$03 : STA.W $2101 ; Sprite tiles base address = $6000, sprite sizes = 8x8 / 16x16
     STA.B $52 
     STZ.W $2102 
     STZ.B $53 
@@ -1157,25 +1092,20 @@ InitialisePPURegisters:
     STA.B $54 
     STZ.W $2104 
     STZ.W $2104 ; OAM $0000 = 0
-    LDA.B #$09 
-    STA.W $2105 ; BG mode = 1 with BG3 priority, BG tile sizes = 8x8
+    LDA.B #$09 : STA.W $2105 ; BG mode = 1 with BG3 priority, BG tile sizes = 8x8
     STA.B $55 
     STZ.W $2106 
     STZ.B $57 ; Disable mosaic
-    LDA.B #$40 
-    STA.W $2107 ; BG1 tilemap base address = $4000, size = 32x32
+    LDA.B #$40 : STA.W $2107 ; BG1 tilemap base address = $4000, size = 32x32
     STA.B $58 
-    LDA.B #$44 
-    STA.W $2108 ; BG2 tilemap base address = $4400, size = 32x32
+    LDA.B #$44 : STA.W $2108 ; BG2 tilemap base address = $4400, size = 32x32
     STA.B $59 
-    LDA.B #$48 
-    STA.W $2109 ; BG3 tilemap base address = $4800, size = 32x32
+    LDA.B #$48 : STA.W $2109 ; BG3 tilemap base address = $4800, size = 32x32
     STA.B $5A 
     LDA.B #$48 ; >.<
     STZ.W $210A 
     STZ.B $5C ; BG4 tilemap base address = $0000, size = 32x32
-    LDA.B #$00 
-    STA.W $210B 
+    LDA.B #$00 : STA.W $210B 
     STA.B $5D ; BG1/2/4 tiles base address = $0000
     LDA.B #$05 ; BG3 tiles base address = $5000
     STA.W $210C 
@@ -1205,19 +1135,15 @@ InitialisePPURegisters:
     STZ.W $211E 
     STZ.W $211F ; Mode 7 transformation origin co-ordinate X = 0
     STZ.W $2120 ; Mode 7 transformation origin co-ordinate Y = 0
-    LDA.B #$00 
-    STA.W $2123 
+    LDA.B #$00 : STA.W $2123 
     STA.B $60 
-    LDA.B #$00 
-    STA.W $2124 ; Disable all window masks
+    LDA.B #$00 : STA.W $2124 ; Disable all window masks
     STA.B $61 
     STZ.W $2125 
     STZ.B $62 
-    LDA.B #$00 
-    STA.W $2126 ; Window 1 left position = 0
+    LDA.B #$00 : STA.W $2126 ; Window 1 left position = 0
     STA.B $63 
-    LDA.B #$F8 
-    STA.W $2127 ; Window 1 right position = F8h
+    LDA.B #$F8 : STA.W $2127 ; Window 1 right position = F8h
     STA.B $64 
     STZ.W $2128 
     STZ.B $65 ; Window 2 left position = 0
@@ -1227,37 +1153,28 @@ InitialisePPURegisters:
     STZ.B $67 
     STZ.W $212B ; Window 1/2 mask logic = OR
     STZ.B $68 
-    LDA.B #$11 
-    STA.W $212C ; Main screen layers = BG1/sprites
+    LDA.B #$11 : STA.W $212C ; Main screen layers = BG1/sprites
     STA.B $69 
     STA.W $212E 
     STA.B $6C ; Disable BG1/sprites in window area main screen
-    LDA.B #$02 
-    STA.W $212D ; Subscreen layers = BG2
+    LDA.B #$02 : STA.W $212D ; Subscreen layers = BG2
     STA.B $6B 
     STA.W $212F 
     STA.B $6D ; Disable BG2 in window area subscreen
-    LDA.B #$02 
-    STA.W $2130 ; Enable colour math subscreen layers
+    LDA.B #$02 : STA.W $2130 ; Enable colour math subscreen layers
     STA.B $6E 
-    LDA.B #$A1 
-    STA.W $2131 ; Enable subtractive colour math on BG1/backdrop
+    LDA.B #$A1 : STA.W $2131 ; Enable subtractive colour math on BG1/backdrop
     STA.B $71 
-    LDA.B #$E0 
-    STA.W $2132 
+    LDA.B #$E0 : STA.W $2132 
     LDA.B #$E0 ; >.<
     STA.W $2132 
-    LDA.B #$80 
-    STA.W $2132 
+    LDA.B #$80 : STA.W $2132 
     STA.B $74 
-    LDA.B #$40 
-    STA.W $2132 ; Colour math subscreen backdrop colour = (0, 0, 0)
+    LDA.B #$40 : STA.W $2132 ; Colour math subscreen backdrop colour = (0, 0, 0)
     STA.B $75 
-    LDA.B #$20 
-    STA.W $2132 
+    LDA.B #$20 : STA.W $2132 
     STA.B $76 
-    LDA.B #$00 
-    STA.W $2133 ; Use standard NTSC resolution
+    LDA.B #$00 : STA.W $2133 ; Use standard NTSC resolution
     STA.B $77 
     RTS 
 
@@ -1343,16 +1260,14 @@ HandleFadingOut:
 
 
 .fadeOut:
-    LDA.W $0723 
-    STA.W $0725 ; Screen fade counter = [screen fade delay]
+    LDA.W $0723 : STA.W $0725 ; Screen fade counter = [screen fade delay]
     SEP #$30 
     LDA.B $51 
     AND.B #$0F ; If (brightness) = 0: return
     BEQ .return 
     DEC A 
     BNE .disableFBlank ; If (brightness) = 1:
-    LDA.B #$80 
-    STA.B $51 ; Enable forced blank, brightness = 0
+    LDA.B #$80 : STA.B $51 ; Enable forced blank, brightness = 0
     BRA .return ; Return
 
 
@@ -1375,8 +1290,7 @@ HandleFadingIn:
 
 
 .fadeIn:
-    LDA.W $0723 
-    STA.W $0725 ; Screen fade counter = [screen fade delay]
+    LDA.W $0723 : STA.W $0725 ; Screen fade counter = [screen fade delay]
     SEP #$30 
     LDA.B $51 
     INC A 
@@ -1588,12 +1502,9 @@ QueueMode7Transfers:
 
 
 .CGRAM:
-    LDA.W $0001,X 
-    STA.W $02D0,Y 
-    LDA.W $0003,X 
-    STA.W $02D2,Y 
-    LDA.W $0005,X 
-    STA.W $02D4,Y 
+    LDA.W $0001,X : STA.W $02D0,Y 
+    LDA.W $0003,X : STA.W $02D2,Y 
+    LDA.W $0005,X : STA.W $02D4,Y 
     LDA.W $0007,X 
     AND.W #$00FF 
     STA.W $02D6,Y 
@@ -1609,14 +1520,10 @@ QueueMode7Transfers:
 
 
 .VRAM:
-    LDA.W $0001,X 
-    STA.W $02D0,Y 
-    LDA.W $0003,X 
-    STA.W $02D2,Y 
-    LDA.W $0005,X 
-    STA.W $02D4,Y 
-    LDA.W $0007,X 
-    STA.W $02D6,Y 
+    LDA.W $0001,X : STA.W $02D0,Y 
+    LDA.W $0003,X : STA.W $02D2,Y 
+    LDA.W $0005,X : STA.W $02D4,Y 
+    LDA.W $0007,X : STA.W $02D6,Y 
     LDA.W $0009,X 
     AND.W #$00FF 
     STA.W $02D8,Y 
@@ -1666,16 +1573,12 @@ ProcessMode7Transfers:
     STA.W $4310 
     LDY.W $0001,X 
     STY.W $4312 
-    LDA.W $0003,X 
-    STA.W $4314 
+    LDA.W $0003,X : STA.W $4314 
     LDY.W $0004,X 
     STY.W $4315 
-    LDA.B #$22 
-    STA.W $4311 
-    LDA.W $0006,X 
-    STA.W $2121 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$22 : STA.W $4311 
+    LDA.W $0006,X : STA.W $2121 
+    LDA.B #$02 : STA.W $420B 
     REP #$21 ; carry clear
     TXA 
     ADC.W #$0007 
@@ -1691,18 +1594,14 @@ ProcessMode7Transfers:
     STA.W $4310 
     LDY.W $0001,X 
     STY.W $4312 
-    LDA.W $0003,X 
-    STA.W $4314 
+    LDA.W $0003,X : STA.W $4314 
     LDY.W $0004,X 
     STY.W $4315 
-    LDA.B #$18 
-    STA.W $4311 
+    LDA.B #$18 : STA.W $4311 
     LDY.W $0006,X 
     STY.W $2116 
-    LDA.W $0008,X 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.W $0008,X : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     REP #$21 
     TXA 
     ADC.W #$0009 
@@ -1716,18 +1615,14 @@ ProcessMode7Transfers:
     STA.W $4310 
     LDY.W $0001,X 
     STY.W $4312 
-    LDA.W $0003,X 
-    STA.W $4314 
+    LDA.W $0003,X : STA.W $4314 
     LDY.W $0004,X 
     STY.W $4315 
-    LDA.B #$19 
-    STA.W $4311 
+    LDA.B #$19 : STA.W $4311 
     LDY.W $0006,X 
     STY.W $2116 
-    LDA.W $0008,X 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.W $0008,X : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     REP #$21 ; clear carry
     TXA 
     ADC.W #$0009 
@@ -1741,18 +1636,15 @@ HandleVRAMWriteTable_ScrollingDMAs:
     LDX.W $0330 
     BEQ .done 
     STZ.B $D0,X 
-    LDA.W #$1801 
-    STA.W $4310 
+    LDA.W #$1801 : STA.W $4310 
     LDY.W #$0000 
 
 .loop:
     LDA.W $00D0,Y 
     BEQ .done 
     STA.W $4315 
-    LDA.W $00D2,Y 
-    STA.W $4312 
-    LDA.W $00D3,Y 
-    STA.W $4313 
+    LDA.W $00D2,Y : STA.W $4312 
+    LDA.W $00D3,Y : STA.W $4313 
     LDA.W #$0080 
     LDX.B $D5,Y 
     BPL .skip 
@@ -1762,8 +1654,7 @@ HandleVRAMWriteTable_ScrollingDMAs:
     STA.W $2115 
     STX.W $2116 
     SEP #$20 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     REP #$20 
     TYA 
     CLC 
@@ -1783,8 +1674,7 @@ HandleVRAMWriteTable_ScrollingDMAs:
 
 
 ExecuteHorizontalScrollingDMAs:
-    LDA.B #$81 
-    STA.W $2115 
+    LDA.B #$81 : STA.W $2115 
     LDA.W $0962 
     BEQ .BG2 
     STZ.W $0962 
@@ -1794,19 +1684,16 @@ ExecuteHorizontalScrollingDMAs:
     STX.W $4310 
     LDX.W #$C8C8 ; $7EC8C8
     STX.W $4312 
-    LDA.B #$7E 
-    STA.W $4314 
+    LDA.B #$7E : STA.W $4314 
     LDX.W $0956 
     STX.W $4315 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     INY 
     STY.W $2116 
     STX.W $4315 
     LDX.W #$C908 ; $7EC908
     STX.W $4312 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     LDX.W $095E 
     STX.W $4312 
     LDX.W $0958 
@@ -1814,15 +1701,13 @@ ExecuteHorizontalScrollingDMAs:
     STX.W $4315 
     LDY.W $095C 
     STY.W $2116 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     INY 
     STY.W $2116 
     STX.W $4315 
     LDX.W $0960 
     STX.W $4312 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
 
 .BG2:
     LDA.W $097E 
@@ -1834,19 +1719,16 @@ ExecuteHorizontalScrollingDMAs:
     STX.W $4310 
     LDX.W #$C9D0 ; $7EC9D0
     STX.W $4312 
-    LDA.B #$7E 
-    STA.W $4314 
+    LDA.B #$7E : STA.W $4314 
     LDX.W $0972 
     STX.W $4315 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     INY 
     STY.W $2116 
     STX.W $4315 
     LDX.W #$CA10 ; $7ECA10
     STX.W $4312 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     LDX.W $097A 
     STX.W $4312 
     LDX.W $0974 
@@ -1854,23 +1736,20 @@ ExecuteHorizontalScrollingDMAs:
     STX.W $4315 
     LDY.W $0978 
     STY.W $2116 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     INY 
     STY.W $2116 
     STX.W $4315 
     LDX.W $097C 
     STX.W $4312 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
 
 .return:
     RTS 
 
 
 ExecuteVerticalScrollingDMAs:
-    LDA.B #$80 
-    STA.W $2115 
+    LDA.B #$80 : STA.W $2115 
     LDA.W $0970 
     BEQ .BG2 
     STZ.W $0970 
@@ -1880,12 +1759,10 @@ ExecuteVerticalScrollingDMAs:
     STX.W $4310 
     LDX.W #$C948 ; $7EC948
     STX.W $4312 
-    LDA.B #$7E 
-    STA.W $4314 
+    LDA.B #$7E : STA.W $4314 
     LDX.W $0964 
     STX.W $4315 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     REP #$20 
     TYA 
     ORA.W #$0020 
@@ -1894,8 +1771,7 @@ ExecuteVerticalScrollingDMAs:
     STX.W $4315 
     LDX.W #$C98C ; $7E
     STX.W $4312 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     LDX.W $096C 
     STX.W $4312 
     LDX.W $0966 
@@ -1903,8 +1779,7 @@ ExecuteVerticalScrollingDMAs:
     STX.W $4315 
     LDY.W $096A 
     STY.W $2116 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     REP #$20 
     TYA 
     ORA.W #$0020 
@@ -1913,8 +1788,7 @@ ExecuteVerticalScrollingDMAs:
     STX.W $4315 
     LDX.W $096E 
     STX.W $4312 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
 
 .BG2:
     LDA.W $098C 
@@ -1926,12 +1800,10 @@ ExecuteVerticalScrollingDMAs:
     STX.W $4310 
     LDX.W #$CA50 ; $7E
     STX.W $4312 
-    LDA.B #$7E 
-    STA.W $4314 
+    LDA.B #$7E : STA.W $4314 
     LDX.W $0980 
     STX.W $4315 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     REP #$20 
     TYA 
     ORA.W #$0020 
@@ -1940,8 +1812,7 @@ ExecuteVerticalScrollingDMAs:
     STX.W $4315 
     LDX.W #$CA94 ; $7E
     STX.W $4312 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     LDX.W $0988 
     STX.W $4312 
     LDX.W $0982 
@@ -1949,8 +1820,7 @@ ExecuteVerticalScrollingDMAs:
     STX.W $4315 
     LDY.W $0986 
     STY.W $2116 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     SEP #$02 
     BEQ .continue 
 
@@ -1967,8 +1837,7 @@ ExecuteVerticalScrollingDMAs:
     STX.W $4315 
     LDX.W $098A 
     STX.W $4312 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
 
 .return:
     RTS 
@@ -1986,8 +1855,7 @@ HandleVRAMReadTable:
 .readTable:
     STZ.W $0340,X 
     LDX.B #$00 
-    LDA.B #$80 
-    STA.W $2115 
+    LDA.B #$80 : STA.W $2115 
 
 .loop:
     REP #$20 
@@ -1995,19 +1863,14 @@ HandleVRAMReadTable:
     BEQ .done 
     STA.W $2116 
     LDA.W $2139 
-    LDA.W $0342,X 
-    STA.W $4310 
-    LDA.W $0344,X 
-    STA.W $4312 
-    LDA.W $0345,X 
-    STA.W $4313 
-    LDA.W $0347,X 
-    STA.W $4315 
+    LDA.W $0342,X : STA.W $4310 
+    LDA.W $0344,X : STA.W $4312 
+    LDA.W $0345,X : STA.W $4313 
+    LDA.W $0347,X : STA.W $4315 
     STZ.W $4317 
     STZ.W $4319 
     SEP #$20 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     TXA 
     CLC 
     ADC.B #$09 
@@ -2065,8 +1928,7 @@ HandleMusicQueue:
     STA.W $2140 
     STA.W $064C 
     REP #$20 
-    LDA.W #$0008 
-    STA.W $0686 
+    LDA.W #$0008 : STA.W $0686 
     LDX.W $063B 
     STZ.W $0619,X 
     STZ.W $0629,X 
@@ -2079,10 +1941,8 @@ HandleMusicQueue:
     LDX.W $063B 
     CPX.W $0639 
     BEQ .clearTimer 
-    LDA.W $0619,X 
-    STA.W $063D 
-    LDA.W $0629,X 
-    STA.W $063F 
+    LDA.W $0619,X : STA.W $063D 
+    LDA.W $0629,X : STA.W $063F 
     PLP 
     RTL 
 
@@ -2098,13 +1958,10 @@ HandleMusicQueue:
     STA.W $07F3 
     TAX 
     SEP #$20 
-    LDA.B #$FF 
-    STA.W $064C 
+    LDA.B #$FF : STA.W $064C 
     REP #$20 
-    LDA.L Music_Pointers,X 
-    STA.B $00 
-    LDA.L Music_Pointers+1,X 
-    STA.B $01 
+    LDA.L Music_Pointers,X : STA.B $00 
+    LDA.L Music_Pointers+1,X : STA.B $01 
     JSL.L UploadToAPU_long 
     SEP #$20 
     STZ.W $064C 
@@ -2116,8 +1973,7 @@ HandleMusicQueue:
     TXA 
     AND.W #$000E 
     STA.W $063B 
-    LDA.W #$0008 
-    STA.W $0686 
+    LDA.W #$0008 : STA.W $0686 
     PLP 
     RTL 
 
@@ -2130,8 +1986,7 @@ UNUSED_QueueMusicDataOrTrack_808FA3:
     PHY 
     LDX.W $0639 
     STA.W $0619,X 
-    LDA.W #$0010 
-    STA.W $0629,X 
+    LDA.W #$0010 : STA.W $0629,X 
     INX #2
     TXA 
     AND.W #$000E 
@@ -2161,8 +2016,7 @@ QueueMusicDataOrTrack_8FrameDelay:
     BEQ .return 
     LDX.W $0639 
     STA.W $0619,X 
-    LDA.W #$0008 
-    STA.W $0629,X 
+    LDA.W #$0008 : STA.W $0629,X 
     INX #2
     TXA 
     AND.W #$000E 
@@ -2508,14 +2362,10 @@ SetupHDMATransfer:
     LDA.L .table,X 
     AND.W #$00FF 
     TAX 
-    LDA.W $0002,Y 
-    STA.W $4300,X 
-    LDA.W $0004,Y 
-    STA.W $4302,X 
-    LDA.W $0006,Y 
-    STA.W $4304,X 
-    LDA.W $0007,Y 
-    STA.W $4305,X 
+    LDA.W $0002,Y : STA.W $4300,X 
+    LDA.W $0004,Y : STA.W $4302,X 
+    LDA.W $0006,Y : STA.W $4304,X 
+    LDA.W $0007,Y : STA.W $4305,X 
     TYA 
     CLC 
     ADC.W #$0008 
@@ -2670,23 +2520,18 @@ Update_IO_Registers:
 
 
 UpdateOAM_CGRAM:
-    LDA.W #$0400 
-    STA.W $4300 
-    LDA.W #$0370 
-    STA.W $4302 
+    LDA.W #$0400 : STA.W $4300 
+    LDA.W #$0370 : STA.W $4302 
     LDX.B #$00 
     STX.W $4304 
-    LDA.W #$0220 
-    STA.W $4305 
+    LDA.W #$0220 : STA.W $4305 
     STZ.W $2102 
-    LDA.W #$2200 
-    STA.W $4310 
+    LDA.W #$2200 : STA.W $4310 
     LDA.W #$C000 ; $7E
     STA.W $4312 
     LDX.B #$7E 
     STX.W $4314 
-    LDA.W #$0200 
-    STA.W $4315 
+    LDA.W #$0200 : STA.W $4315 
     LDX.B #$00 
     STX.W $2121 
     LDX.B #$03 
@@ -2705,29 +2550,21 @@ TransferSamusTilesToVRAM:
     LDY.W $071D 
     BEQ .bottom 
     LDY.B #$02 
-    LDA.W $071F 
-    STA.B $3C 
-    LDA.W #$6000 
-    STA.W $2116 
-    LDA.W #$1801 
-    STA.W $4310 
-    LDA.B ($3C) 
-    STA.W $4312 
+    LDA.W $071F : STA.B $3C 
+    LDA.W #$6000 : STA.W $2116 
+    LDA.W #$1801 : STA.W $4310 
+    LDA.B ($3C) : STA.W $4312 
     STA.B $14 
-    LDA.B ($3C),Y 
-    STA.W $4314 
+    LDA.B ($3C),Y : STA.W $4314 
     INY 
-    LDA.B ($3C),Y 
-    STA.W $4315 
+    LDA.B ($3C),Y : STA.W $4315 
     CLC 
     ADC.B $14 
     STA.B $14 
     INY #2
     STX.W $420B 
-    LDA.W #$6100 
-    STA.W $2116 
-    LDA.B $14 
-    STA.W $4312 
+    LDA.W #$6100 : STA.W $2116 
+    LDA.B $14 : STA.W $4312 
     LDA.B ($3C),Y 
     BEQ .bottom 
     STA.W $4315 
@@ -2737,29 +2574,21 @@ TransferSamusTilesToVRAM:
     LDY.W $071E 
     BEQ .return 
     LDY.B #$02 
-    LDA.W $0721 
-    STA.B $3C 
-    LDA.W #$6080 
-    STA.W $2116 
-    LDA.W #$1801 
-    STA.W $4310 
-    LDA.B ($3C) 
-    STA.W $4312 
+    LDA.W $0721 : STA.B $3C 
+    LDA.W #$6080 : STA.W $2116 
+    LDA.W #$1801 : STA.W $4310 
+    LDA.B ($3C) : STA.W $4312 
     STA.B $14 
-    LDA.B ($3C),Y 
-    STA.W $4314 
+    LDA.B ($3C),Y : STA.W $4314 
     INY 
-    LDA.B ($3C),Y 
-    STA.W $4315 
+    LDA.B ($3C),Y : STA.W $4315 
     CLC 
     ADC.B $14 
     STA.B $14 
     INY #2
     STX.W $420B 
-    LDA.W #$6180 
-    STA.W $2116 
-    LDA.B $14 
-    STA.W $4312 
+    LDA.W #$6180 : STA.W $2116 
+    LDA.B $14 : STA.W $4312 
     LDA.B ($3C),Y 
     BEQ .return 
     STA.W $4315 
@@ -2787,12 +2616,9 @@ ProcessAnimatedTilesObjectVRAMTransfers:
     STA.W $4302 
     LDY.B #$87 
     STY.W $4304 
-    LDA.W #$1801 
-    STA.W $4300 
-    LDA.W $1F31,X 
-    STA.W $4305 
-    LDA.W $1F3D,X 
-    STA.W $2116 
+    LDA.W #$1801 : STA.W $4300 
+    LDA.W $1F31,X : STA.W $4305 
+    LDA.W $1F3D,X : STA.W $2116 
     LDY.B #$80 
     STY.W $2115 
     LDY.B #$01 
@@ -2817,8 +2643,7 @@ ReadControllerInput:
     AND.B #$01 
     BNE .wait 
     REP #$20 
-    LDA.W $4218 
-    STA.B $8B 
+    LDA.W $4218 : STA.B $8B 
     EOR.B $97 
     AND.B $8B 
     STA.B $8F 
@@ -2829,20 +2654,16 @@ ReadControllerInput:
     BNE .unheld 
     DEC.B $A3 
     BNE .heldEnd 
-    LDA.B $8B 
-    STA.B $93 
-    LDA.B $89 
-    STA.B $A3 
+    LDA.B $8B : STA.B $93 
+    LDA.B $89 : STA.B $A3 
     BRA .heldEnd 
 
 
 .unheld:
-    LDA.B $87 
-    STA.B $A3 
+    LDA.B $87 : STA.B $A3 
 
 .heldEnd:
-    LDA.B $8B 
-    STA.B $97 
+    LDA.B $8B : STA.B $97 
     LDA.W $05D1 
     BNE .debug 
     PLP 
@@ -2850,8 +2671,7 @@ ReadControllerInput:
 
 
 .debug:
-    LDA.W $421A 
-    STA.B $8D 
+    LDA.W $421A : STA.B $8D 
     EOR.B $99 
     AND.B $8D 
     STA.B $91 
@@ -2862,20 +2682,16 @@ ReadControllerInput:
     BNE .unheld2 
     DEC.B $A5 
     BNE .held2End 
-    LDA.B $8D 
-    STA.B $95 
-    LDA.B $89 
-    STA.B $A5 
+    LDA.B $8D : STA.B $95 
+    LDA.B $89 : STA.B $A5 
     BRA .held2End 
 
 
 .unheld2:
-    LDA.B $87 
-    STA.B $A5 
+    LDA.B $87 : STA.B $A5 
 
 .held2End:
-    LDA.B $8D 
-    STA.B $99 
+    LDA.B $8D : STA.B $99 
     LDA.W $0617 
     BNE .checkDebug 
     LDA.B $8B 
@@ -2910,8 +2726,7 @@ ReadControllerInput:
     AND.W #$2020 
     CMP.W #$2020 
     BNE .checkSelectR 
-    LDA.B $8F 
-    STA.W $05C5 
+    LDA.B $8F : STA.W $05C5 
     STZ.B $8B 
     STZ.B $8F 
 
@@ -2920,8 +2735,7 @@ ReadControllerInput:
     AND.W #$2010 
     CMP.W #$2010 
     BNE .checkToggleHUD 
-    LDA.B $8F 
-    STA.W $05C7 
+    LDA.B $8F : STA.W $05C7 
     LDA.W #$E0F0 ; >_<
     STZ.B $8B 
     STZ.B $8F 
@@ -2942,12 +2756,9 @@ ReadControllerInput:
     EOR.W #$8000 
     STA.W $05CF 
     BPL .swapAmmo 
-    LDA.W $09C6 
-    STA.W $05C9 
-    LDA.W $09CA 
-    STA.W $05CB 
-    LDA.W $09CE 
-    STA.W $05CD 
+    LDA.W $09C6 : STA.W $05C9 
+    LDA.W $09CA : STA.W $05CB 
+    LDA.W $09CE : STA.W $05CD 
     STZ.W $09C6 
     STZ.W $09CA 
     STZ.W $09CE 
@@ -2955,12 +2766,9 @@ ReadControllerInput:
 
 
 .swapAmmo:
-    LDA.W $05C9 
-    STA.W $09C6 
-    LDA.W $05CB 
-    STA.W $09CA 
-    LDA.W $05CD 
-    STA.W $09CE 
+    LDA.W $05C9 : STA.W $09C6 
+    LDA.W $05CB : STA.W $09CA 
+    LDA.W $05CD : STA.W $09CE 
 
 .swapEnd:
     LDA.W $05C7 
@@ -3004,8 +2812,7 @@ NMI:
     LDA.W $18B4,X 
     BEQ .next 
     LDY.W $18C0,X 
-    LDA.W $18D8,X 
-    STA.W $4302,Y 
+    LDA.W $18D8,X : STA.W $4302,Y 
 
 .next:
     INX #2
@@ -3077,26 +2884,21 @@ InterruptCommandPointers:
 
 ExecuteDoorTransitionVRAMUpdate:
     SEP #$20 
-    LDA.B #$80 
-    STA.W $2100 
+    LDA.B #$80 : STA.W $2100 
     LDX.W $05BE 
     STX.W $2116 
     LDX.W #$1801 
     STX.W $4310 
     LDX.W $05C0 
     STX.W $4312 
-    LDA.W $05C2 
-    STA.W $4314 
+    LDA.W $05C2 : STA.W $4314 
     LDX.W $05C3 
     STX.W $4315 
-    LDA.B #$80 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$80 : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     LDA.B #$80 
     TRB.W $05BD 
-    LDA.B #$0F 
-    STA.W $2100 
+    LDA.B #$0F : STA.W $2100 
     REP #$20 
     RTS 
 
@@ -3128,12 +2930,10 @@ Interrupt_Cmd2_DisableHVCounterInterrupts:
 
 Interrupt_Cmd4_MainGameplay_BeginHUDDrawing:
     SEP #$20 
-    LDA.B #$5A 
-    STA.W $2109 
+    LDA.B #$5A : STA.W $2109 
     STZ.W $2130 
     STZ.W $2131 
-    LDA.B #$04 
-    STA.W $212C 
+    LDA.B #$04 : STA.W $212C 
     REP #$20 
     LDA.W #$0006 
     LDY.W #$001F 
@@ -3143,14 +2943,10 @@ Interrupt_Cmd4_MainGameplay_BeginHUDDrawing:
 
 Interrupt_Cmd6_MainGameplay_EndHUDDrawing:
     SEP #$20 
-    LDA.B $70 
-    STA.W $2130 
-    LDA.B $73 
-    STA.W $2131 
-    LDA.B $5B 
-    STA.W $2109 
-    LDA.B $6A 
-    STA.W $212C 
+    LDA.B $70 : STA.W $2130 
+    LDA.B $73 : STA.W $2131 
+    LDA.B $5B : STA.W $2109 
+    LDA.B $6A : STA.W $212C 
     REP #$20 
     LDA.B $A7 
     BEQ .setCommand4 
@@ -3169,10 +2965,8 @@ Interrupt_Cmd6_MainGameplay_EndHUDDrawing:
 
 Interrupt_Cmd8_StartDoorTransition_BeginHUDDrawing:
     SEP #$20 
-    LDA.B #$5A 
-    STA.W $2109 
-    LDA.B #$04 
-    STA.W $212C 
+    LDA.B #$5A : STA.W $2109 
+    LDA.B #$04 : STA.W $212C 
     STZ.W $2130 
     STZ.W $2131 
     REP #$20 
@@ -3215,8 +3009,7 @@ Interrupt_CmdA_StartDoorTransition_EndHUDDrawing:
 
 Interrupt_CmdC_Draygon_BeginHUDDrawing:
     SEP #$20 
-    LDA.B #$04 
-    STA.W $212C 
+    LDA.B #$04 : STA.W $212C 
     STZ.W $2130 
     STZ.W $2131 
     REP #$20 
@@ -3228,12 +3021,9 @@ Interrupt_CmdC_Draygon_BeginHUDDrawing:
 
 Interrupt_CmdE_Draygon_EndHUDDrawing:
     SEP #$20 
-    LDA.B $5B 
-    STA.W $2109 
-    LDA.B $70 
-    STA.W $2130 
-    LDA.B $73 
-    STA.W $2131 
+    LDA.B $5B : STA.W $2109 
+    LDA.B $70 : STA.W $2130 
+    LDA.B $73 : STA.W $2131 
     REP #$20 
     LDA.B $A7 
     BEQ .commandC 
@@ -3252,8 +3042,7 @@ Interrupt_CmdE_Draygon_EndHUDDrawing:
 
 Interrupt_Cmd10_VerticalDoorTransition_BeginHUDDrawing:
     SEP #$20 
-    LDA.B #$04 
-    STA.W $212C 
+    LDA.B #$04 : STA.W $212C 
     STZ.W $2130 
     STZ.W $2131 
     REP #$20 
@@ -3317,8 +3106,7 @@ Interrupt_Cmd14_VerticalDoorTransition_EndDrawing:
 
 Interrupt_Cmd16_HorizontalDoorTransition_BeginHUDDrawing:
     SEP #$20 
-    LDA.B #$04 
-    STA.W $212C 
+    LDA.B #$04 : STA.W $212C 
     STZ.W $2130 
     STZ.W $2131 
     REP #$20 
@@ -3383,10 +3171,8 @@ Interrupt_Cmd1A_HorizontalDoorTransition_EndDrawing:
 EnableHVCounterInterrupts:
     PHP 
     REP #$30 
-    LDA.W #$0000 
-    STA.W $4209 
-    LDA.W #$0098 
-    STA.W $4207 
+    LDA.W #$0000 : STA.W $4209 
+    LDA.W #$0098 : STA.W $4207 
     LDA.W #$0030 
     TSB.B $84 
     PLP 
@@ -3397,15 +3183,12 @@ EnableHVCounterInterrupts:
 EnableHVCounterInterruptsNow:
     PHP 
     REP #$30 
-    LDA.W #$0000 
-    STA.W $4209 
-    LDA.W #$0098 
-    STA.W $4207 
+    LDA.W #$0000 : STA.W $4209 
+    LDA.W #$0098 : STA.W $4207 
     LDA.W #$0030 
     TSB.B $84 
     SEP #$20 
-    LDA.B $84 
-    STA.W $4200 
+    LDA.B $84 : STA.W $4200 
     PLP 
     CLI 
     RTL 
@@ -3509,18 +3292,12 @@ AddMissilesToHUDTilemap:
     AND.W #$03FF 
     CMP.W #$000F 
     BNE .return 
-    LDA.W Tilemap_HUD_missiles 
-    STA.L $7EC61C 
-    LDA.W Tilemap_HUD_missiles+2 
-    STA.L $7EC61E 
-    LDA.W Tilemap_HUD_missiles+4 
-    STA.L $7EC620 
-    LDA.W Tilemap_HUD_missiles+6 
-    STA.L $7EC65C 
-    LDA.W Tilemap_HUD_missiles+8 
-    STA.L $7EC65E 
-    LDA.W Tilemap_HUD_missiles+$A 
-    STA.L $7EC660 
+    LDA.W Tilemap_HUD_missiles : STA.L $7EC61C 
+    LDA.W Tilemap_HUD_missiles+2 : STA.L $7EC61E 
+    LDA.W Tilemap_HUD_missiles+4 : STA.L $7EC620 
+    LDA.W Tilemap_HUD_missiles+6 : STA.L $7EC65C 
+    LDA.W Tilemap_HUD_missiles+8 : STA.L $7EC65E 
+    LDA.W Tilemap_HUD_missiles+$A : STA.L $7EC660 
 
 .return:
     PLB 
@@ -3583,14 +3360,10 @@ Write2x2TileIconToHUDTilemap:
     AND.W #$03FF 
     CMP.W #$000F 
     BNE .return 
-    LDA.W $0000,Y 
-    STA.L $7EC608,X 
-    LDA.W $0002,Y 
-    STA.L $7EC60A,X 
-    LDA.W $0004,Y 
-    STA.L $7EC648,X 
-    LDA.W $0006,Y 
-    STA.L $7EC64A,X 
+    LDA.W $0000,Y : STA.L $7EC608,X 
+    LDA.W $0002,Y : STA.L $7EC60A,X 
+    LDA.W $0004,Y : STA.L $7EC648,X 
+    LDA.W $0006,Y : STA.L $7EC64A,X 
 
 .return:
     PLB 
@@ -3606,23 +3379,19 @@ InitialiseHUD_GameLoading:
     PHK 
     PLB 
     REP #$30 
-    LDA.W #$5800 
-    STA.W $2116 
-    LDA.W #$0080 
-    STA.W $2115 
+    LDA.W #$5800 : STA.W $2116 
+    LDA.W #$0080 : STA.W $2115 
     JSL.L SetupHDMATransfer 
     db $01,$01,$18 
     dl Tilemap_HUD_topRow 
     dw $0040 
     SEP #$20 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     REP #$20 
     LDX.W #$0000 
 
 .loopRows123:
-    LDA.W Tilemap_HUD_rows123,X 
-    STA.L $7EC608,X 
+    LDA.W Tilemap_HUD_rows123,X : STA.L $7EC608,X 
     INX #2
     CPX.W #$00C0 
     BNE .loopRows123 
@@ -3659,8 +3428,7 @@ InitialiseHUD_GameLoading:
     STZ.W $0A0C 
     STZ.W $0A0E 
     JSL.L Initialise_Minimap_broken 
-    LDA.W #Tilemap_HUDDigits_ammo 
-    STA.B $00 
+    LDA.W #Tilemap_HUDDigits_ammo : STA.B $00 
     LDA.W #$0080 ; bank $80
     STA.B $02 
     LDA.W $09C8 
@@ -3713,43 +3481,31 @@ HandleHUDTilemap_PausedAndRunning:
     LDY.W #Tilemap_HUD_emptyAutoReserve 
 
 .drawAutoReserve:
-    LDA.W $0000,Y 
-    STA.L $7EC618 
-    LDA.W $0002,Y 
-    STA.L $7EC61A 
-    LDA.W $0004,Y 
-    STA.L $7EC658 
-    LDA.W $0006,Y 
-    STA.L $7EC65A 
-    LDA.W $0008,Y 
-    STA.L $7EC698 
-    LDA.W $000A,Y 
-    STA.L $7EC69A 
+    LDA.W $0000,Y : STA.L $7EC618 
+    LDA.W $0002,Y : STA.L $7EC61A 
+    LDA.W $0004,Y : STA.L $7EC658 
+    LDA.W $0006,Y : STA.L $7EC65A 
+    LDA.W $0008,Y : STA.L $7EC698 
+    LDA.W $000A,Y : STA.L $7EC69A 
 
 .handleSamusHealth:
     LDA.W $09C2 
     CMP.W $0A06 
     BEQ .handleSamusMissiles 
     STA.W $0A06 
-    LDA.W $09C2 
-    STA.W $4204 
+    LDA.W $09C2 : STA.W $4204 
     SEP #$20 
-    LDA.B #$64 
-    STA.W $4206 
+    LDA.B #$64 : STA.W $4206 
     PHA 
     PLA 
     PHA 
     PLA 
     REP #$20 
-    LDA.W $4214 
-    STA.B $14 
-    LDA.W $4216 
-    STA.B $12 
-    LDA.W $09C4 
-    STA.W $4204 
+    LDA.W $4214 : STA.B $14 
+    LDA.W $4216 : STA.B $12 
+    LDA.W $09C4 : STA.W $4204 
     SEP #$20 
-    LDA.B #$64 
-    STA.W $4206 
+    LDA.B #$64 : STA.W $4206 
     PHA 
     PLA 
     PHA 
@@ -3778,15 +3534,13 @@ HandleHUDTilemap_PausedAndRunning:
     BMI .loopEtanks 
 
 .drawEtanksDigits:
-    LDA.W #Tilemap_HUDDigits_health 
-    STA.B $00 
+    LDA.W #Tilemap_HUDDigits_health : STA.B $00 
     LDX.W #$008C 
     LDA.B $12 
     JSR.W DrawTwoHUDDigits 
 
 .handleSamusMissiles:
-    LDA.W #Tilemap_HUDDigits_ammo 
-    STA.B $00 
+    LDA.W #Tilemap_HUDDigits_ammo : STA.B $00 
     LDA.W $09C8 
     BEQ .handleSuperMissiles 
     LDA.W $09C6 
@@ -3835,8 +3589,7 @@ HandleHUDTilemap_PausedAndRunning:
     LDA.W $0A0E 
     LDX.W #$1400 
     JSR.W ToggleHUDItemHighlight 
-    LDA.W $09D2 
-    STA.W $0A0E 
+    LDA.W $09D2 : STA.W $0A0E 
     LDA.W $0A1F 
     AND.W #$00FF 
     CMP.W #$0003 
@@ -3862,17 +3615,14 @@ HandleHUDTilemap_PausedAndRunning:
     LDA.W $0A04 
     JSR.W ToggleHUDItemHighlight 
     LDX.W $0330 
-    LDA.W #$00C0 
-    STA.B $D0,X 
+    LDA.W #$00C0 : STA.B $D0,X 
     INX #2
     LDA.W #$C608 ; $7E
     STA.B $D0,X 
     INX #2
-    LDA.W #$007E 
-    STA.B $D0,X 
+    LDA.W #$007E : STA.B $D0,X 
     INX 
-    LDA.W #$5820 
-    STA.B $D0,X 
+    LDA.W #$5820 : STA.B $D0,X 
     INX #2
     STX.W $0330 
     PLB 
@@ -3957,8 +3707,7 @@ ToggleHUDItemHighlight:
 DrawThreeHUDDigits:
     STA.W $4204 
     SEP #$20 
-    LDA.B #$64 
-    STA.W $4206 
+    LDA.B #$64 : STA.W $4206 
     PHA 
     PLA 
     PHA 
@@ -3967,16 +3716,14 @@ DrawThreeHUDDigits:
     LDA.W $4214 
     ASL A 
     TAY 
-    LDA.B [$00],Y 
-    STA.L $7EC608,X 
+    LDA.B [$00],Y : STA.L $7EC608,X 
     INX #2
     LDA.W $4216 
 
 DrawTwoHUDDigits:
     STA.W $4204 
     SEP #$20 
-    LDA.B #$0A 
-    STA.W $4206 
+    LDA.B #$0A : STA.W $4206 
     PHA 
     PLA 
     PHA 
@@ -3985,13 +3732,11 @@ DrawTwoHUDDigits:
     LDA.W $4214 
     ASL A 
     TAY 
-    LDA.B [$00],Y 
-    STA.L $7EC608,X 
+    LDA.B [$00],Y : STA.L $7EC608,X 
     LDA.W $4216 
     ASL A 
     TAY 
-    LDA.B [$00],Y 
-    STA.L $7EC60A,X 
+    LDA.B [$00],Y : STA.L $7EC60A,X 
     RTS 
 
 
@@ -4034,8 +3779,7 @@ ProcessTimer_CeresStart:
     JSL.L ClearTimerRAM 
     LDA.W #$0100 
     JSL.L SetTimer 
-    LDA.W #$8003 
-    STA.W $0943 
+    LDA.W #$8003 : STA.W $0943 
 
 ProcessTimer_Inactive:
     CLC 
@@ -4046,8 +3790,7 @@ ProcessTimer_MotherBrainStart:
     JSL.L ClearTimerRAM 
     LDA.W #$0300 
     JSL.L SetTimer 
-    LDA.W #$8003 
-    STA.W $0943 
+    LDA.W #$8003 : STA.W $0943 
     CLC 
     RTS 
 
@@ -4116,10 +3859,8 @@ SetTimer:
 
 
 ClearTimerRAM:
-    LDA.W #$8000 
-    STA.W $0948 
-    LDA.W #$8000 
-    STA.W $094A 
+    LDA.W #$8000 : STA.W $0948 
+    LDA.W #$8000 : STA.W $094A 
     STZ.W $0945 
     STZ.W $0946 
     STZ.W $0943 
@@ -4143,8 +3884,7 @@ DecrementTimer:
     SBC.B #$00 
     STA.W $0947 
     BCC .clearTimer 
-    LDA.B #$59 
-    STA.W $0946 
+    LDA.B #$59 : STA.W $0946 
     BRA .checkExpired 
 
 
@@ -4223,8 +3963,7 @@ DrawTimerSpritemap:
     XBA 
     AND.W #$00FF 
     STA.B $12 
-    LDA.W #$0A00 
-    STA.B $16 
+    LDA.W #$0A00 : STA.B $16 
     JSL.L AddSpritemapToOAM 
     RTS 
 
@@ -4312,8 +4051,7 @@ StartGameplay:
     STZ.W $07F5 
     STZ.W $0943 
     JSL.L ResetSoundQueues 
-    LDA.W #$FFFF 
-    STA.W $05F5 
+    LDA.W #$FFFF : STA.W $05F5 
     JSL.L DisableNMI 
     JSL.L DisableHVCounterInterrupts 
     JSL.L Load_Destination_Room 
@@ -4337,10 +4075,8 @@ StartGameplay:
     JSL.L LoadLibraryBackground_LoadingPausing 
     JSR.W CalculateLayer2XPosition 
     JSR.W CalculateLayer2YPosition 
-    LDA.W $0917 
-    STA.W $0921 
-    LDA.W $0919 
-    STA.W $0923 
+    LDA.W $0917 : STA.W $0921 
+    LDA.W $0919 : STA.W $0923 
     JSR.W CalculateBGScrolls 
     JSL.L DisplayViewablePartOfRoom 
     JSL.L EnableNMI 
@@ -4355,8 +4091,7 @@ StartGameplay:
     JSL.L Spawn_Hardcoded_PLM 
     db $08,$08 
     dw PLMEntries_enableSoundsIn20Frames_F0FramesIfCeres 
-    LDA.W #DoorTransitionFunction_FadeInTheScreen_and_RunEnemies_Finish 
-    STA.W $099C 
+    LDA.W #DoorTransitionFunction_FadeInTheScreen_and_RunEnemies_Finish : STA.W $099C 
     PLB 
     PLP 
     RTL 
@@ -4418,26 +4153,18 @@ DisplayViewablePartOfRoom:
 
 .loop:
     PHX 
-    LDA.W $08F7 
-    STA.W $0990 
-    LDA.W $08F9 
-    STA.W $0992 
-    LDA.W $0907 
-    STA.W $0994 
-    LDA.W $0909 
-    STA.W $0996 
+    LDA.W $08F7 : STA.W $0990 
+    LDA.W $08F9 : STA.W $0992 
+    LDA.W $0907 : STA.W $0994 
+    LDA.W $0909 : STA.W $0996 
     JSR.W UpdateLevelDataColumn 
     LDA.W $091B 
     LSR A 
     BCS .increment 
-    LDA.W $08FB 
-    STA.W $0990 
-    LDA.W $08FD 
-    STA.W $0992 
-    LDA.W $090B 
-    STA.W $0994 
-    LDA.W $090D 
-    STA.W $0996 
+    LDA.W $08FB : STA.W $0990 
+    LDA.W $08FD : STA.W $0992 
+    LDA.W $090B : STA.W $0994 
+    LDA.W $090D : STA.W $0996 
     JSR.W UpdateBackgroundDataColumn 
 
 .increment:
@@ -4464,14 +4191,10 @@ UNUSED_QueueClearingOfBG2Tilemap_80A1E3:
     DEX #2
     BPL .loop 
     LDX.W $0330 
-    LDA.W #$1000 
-    STA.B $D0,X 
-    LDA.W #$4000 
-    STA.B $D2,X 
-    LDA.W #$007E 
-    STA.B $D4,X 
-    LDA.W #$4800 
-    STA.B $D5,X 
+    LDA.W #$1000 : STA.B $D0,X 
+    LDA.W #$4000 : STA.B $D2,X 
+    LDA.W #$007E : STA.B $D4,X 
+    LDA.W #$4800 : STA.B $D5,X 
     TXA 
     CLC 
     ADC.W #$0007 
@@ -4489,14 +4212,10 @@ QueueClearingOfFXTilemap:
     DEX #2
     BPL .loop 
     LDX.W $0330 
-    LDA.W #$0F00 
-    STA.B $D0,X 
-    LDA.W #$4000 
-    STA.B $D2,X 
-    LDA.W #$007E 
-    STA.B $D4,X 
-    LDA.W #$5880 
-    STA.B $D5,X 
+    LDA.W #$0F00 : STA.B $D0,X 
+    LDA.W #$4000 : STA.B $D2,X 
+    LDA.W #$007E : STA.B $D4,X 
+    LDA.W #$5880 : STA.B $D5,X 
     TXA 
     CLC 
     ADC.W #$0007 
@@ -4507,37 +4226,23 @@ QueueClearingOfFXTilemap:
 ClearBG2Tilemap:
     PHP 
     REP #$20 
-    LDA.W #$4800 
-    STA.W $2116 
-    LDA.W #$1808 
-    STA.W $4310 
-    LDA.W #.addr 
-    STA.W $4312 
-    LDA.W #$0080 
-    STA.W $4314 
-    LDA.W #$0800 
-    STA.W $4315 
+    LDA.W #$4800 : STA.W $2116 
+    LDA.W #$1808 : STA.W $4310 
+    LDA.W #.addr : STA.W $4312 
+    LDA.W #$0080 : STA.W $4314 
+    LDA.W #$0800 : STA.W $4315 
     SEP #$20 
-    LDA.B #$00 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$00 : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     REP #$20 
-    LDA.W #$4800 
-    STA.W $2116 
-    LDA.W #$1908 
-    STA.W $4310 
-    LDA.W #.addr 
-    STA.W $4312 
-    LDA.W #$0080 
-    STA.W $4314 
-    LDA.W #$0800 
-    STA.W $4315 
+    LDA.W #$4800 : STA.W $2116 
+    LDA.W #$1908 : STA.W $4310 
+    LDA.W #.addr : STA.W $4312 
+    LDA.W #$0080 : STA.W $4314 
+    LDA.W #$0800 : STA.W $4315 
     SEP #$20 
-    LDA.B #$80 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$80 : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     PLP 
     RTL 
 
@@ -4548,37 +4253,23 @@ ClearBG2Tilemap:
 ClearFXTilemap:
     PHP 
     REP #$20 
-    LDA.W #$5880 
-    STA.W $2116 
-    LDA.W #$1808 
-    STA.W $4310 
-    LDA.W #.addr 
-    STA.W $4312 
-    LDA.W #$0080 
-    STA.W $4314 
-    LDA.W #$0780 
-    STA.W $4315 
+    LDA.W #$5880 : STA.W $2116 
+    LDA.W #$1808 : STA.W $4310 
+    LDA.W #.addr : STA.W $4312 
+    LDA.W #$0080 : STA.W $4314 
+    LDA.W #$0780 : STA.W $4315 
     SEP #$20 
-    LDA.B #$00 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$00 : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     REP #$20 
-    LDA.W #$5880 
-    STA.W $2116 
-    LDA.W #$1908 
-    STA.W $4310 
-    LDA.W #.addr+1 
-    STA.W $4312 
-    LDA.W #$0080 
-    STA.W $4314 
-    LDA.W #$0780 
-    STA.W $4315 
+    LDA.W #$5880 : STA.W $2116 
+    LDA.W #$1908 : STA.W $4310 
+    LDA.W #.addr+1 : STA.W $4312 
+    LDA.W #$0080 : STA.W $4314 
+    LDA.W #$0780 : STA.W $4315 
     SEP #$20 
-    LDA.B #$80 
-    STA.W $2115 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$80 : STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
     PLP 
     RTL 
 
@@ -4596,15 +4287,12 @@ CalculateLayer2XPosition:
     BEQ .return 
     AND.B #$FE 
     STA.W $4202 
-    LDA.W $0911 
-    STA.W $4203 
+    LDA.W $0911 : STA.W $4203 
     STZ.W $0934 
     PHA 
     PLA 
-    LDA.W $4217 
-    STA.W $0933 
-    LDA.W $0912 
-    STA.W $4203 
+    LDA.W $4217 : STA.W $0933 
+    LDA.W $0912 : STA.W $4203 
     REP #$20 
     LDA.W $0933 
     CLC 
@@ -4636,15 +4324,12 @@ CalculateLayer2YPosition:
     BEQ .return 
     AND.B #$FE 
     STA.W $4202 
-    LDA.W $0915 
-    STA.W $4203 
+    LDA.W $0915 : STA.W $4203 
     STZ.W $0934 
     PHA 
     PLA 
-    LDA.W $4217 
-    STA.W $0933 
-    LDA.W $0916 
-    STA.W $4203 
+    LDA.W $4217 : STA.W $0933 
+    LDA.W $0916 : STA.W $4203 
     REP #$20 
     LDA.W $0933 
     CLC 
@@ -4749,10 +4434,8 @@ UpdateBGGraphics_WhenScrolling:
     CLC 
     ADC.W $0907 
     STA.W $0994 
-    LDA.W $08F9 
-    STA.W $0992 
-    LDA.W $0909 
-    STA.W $0996 
+    LDA.W $08F9 : STA.W $0992 
+    LDA.W $0909 : STA.W $0996 
     JSR.W UpdateLevelDataColumn 
 
 .layer1HorizontalEnd:
@@ -4776,10 +4459,8 @@ UpdateBGGraphics_WhenScrolling:
     CLC 
     ADC.W $090B 
     STA.W $0994 
-    LDA.W $08FD 
-    STA.W $0992 
-    LDA.W $090D 
-    STA.W $0996 
+    LDA.W $08FD : STA.W $0992 
+    LDA.W $090D : STA.W $0996 
     JSR.W UpdateBackgroundDataColumn 
 
 .layer2HorizontalEnd:
@@ -4799,10 +4480,8 @@ UpdateBGGraphics_WhenScrolling:
     CLC 
     ADC.W $0909 
     STA.W $0996 
-    LDA.W $08F7 
-    STA.W $0990 
-    LDA.W $0907 
-    STA.W $0994 
+    LDA.W $08F7 : STA.W $0990 
+    LDA.W $0907 : STA.W $0994 
     JSR.W UpdateLevelDataRow 
 
 .layer1VerticalEnd:
@@ -4826,10 +4505,8 @@ UpdateBGGraphics_WhenScrolling:
     CLC 
     ADC.W $090D 
     STA.W $0996 
-    LDA.W $08FB 
-    STA.W $0990 
-    LDA.W $090B 
-    STA.W $0994 
+    LDA.W $08FB : STA.W $0990 
+    LDA.W $090B : STA.W $0994 
     JSR.W UpdateBackgroundDataRow 
 
 .return:
@@ -4896,8 +4573,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     PHA 
     PLB 
     REP #$30 
-    LDA.W $0911 
-    STA.W $0939 
+    LDA.W $0911 : STA.W $0939 
     BPL + 
     STZ.W $0911 
 
@@ -4914,8 +4590,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     XBA 
     SEP #$20 
     STA.W $4202 
-    LDA.W $07A9 
-    STA.W $4203 
+    LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0912 
     AND.W #$00FF 
@@ -4943,8 +4618,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     XBA 
     SEP #$20 
     STA.W $4202 
-    LDA.W $07A9 
-    STA.W $4203 
+    LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $093A 
     INC A 
@@ -4991,8 +4665,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     XBA 
     SEP #$20 
     STA.W $4202 
-    LDA.W $07A9 
-    STA.W $4203 
+    LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $093A 
     AND.W #$00FF 
@@ -5033,13 +4706,11 @@ HandleScrollZones_ScrollingRight:
     PHA 
     PLB 
     REP #$30 
-    LDA.W $0911 
-    STA.W $0939 
+    LDA.W $0911 : STA.W $0939 
     LDA.W $0B0A 
     CMP.W $0911 
     BPL + 
-    LDA.W $0B0A 
-    STA.W $0911 
+    LDA.W $0B0A : STA.W $0911 
     STZ.W $090F 
 
   + LDA.W $07A9 
@@ -5057,8 +4728,7 @@ HandleScrollZones_ScrollingRight:
     XBA 
     SEP #$20 
     STA.W $4202 
-    LDA.W $07A9 
-    STA.W $4203 
+    LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0912 
     AND.W #$00FF 
@@ -5095,12 +4765,10 @@ HandleScrollZones_ScrollingLeft:
     PHA 
     PLB 
     REP #$30 
-    LDA.W $0911 
-    STA.W $0939 
+    LDA.W $0911 : STA.W $0939 
     CMP.W $0B0A 
     BPL + 
-    LDA.W $0B0A 
-    STA.W $0911 
+    LDA.W $0B0A : STA.W $0911 
     STZ.W $090F 
 
   + LDA.W $0911 
@@ -5115,8 +4783,7 @@ HandleScrollZones_ScrollingLeft:
     XBA 
     SEP #$20 
     STA.W $4202 
-    LDA.W $07A9 
-    STA.W $4203 
+    LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0912 
     AND.W #$00FF 
@@ -5163,10 +4830,8 @@ HandleScrollZones_VerticalAutoscrolling:
     REP #$30 
     LDY.W #$0000 
     SEP #$20 
-    LDA.W $0916 
-    STA.W $4202 
-    LDA.W $07A9 
-    STA.W $4203 
+    LDA.W $0916 : STA.W $4202 
+    LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
     CLC 
@@ -5184,8 +4849,7 @@ HandleScrollZones_VerticalAutoscrolling:
     LDY.W #$001F 
 
   + STY.W $0933 
-    LDA.W $0915 
-    STA.W $0939 
+    LDA.W $0915 : STA.W $0939 
     BPL + 
     STZ.W $0915 
 
@@ -5199,10 +4863,8 @@ HandleScrollZones_VerticalAutoscrolling:
     STA.W $0915 
 
   + SEP #$20 
-    LDA.W $0916 
-    STA.W $4202 
-    LDA.W $07A9 
-    STA.W $4203 
+    LDA.W $0916 : STA.W $4202 
+    LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
     CLC 
@@ -5231,8 +4893,7 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W $093A 
     INC A 
     STA.W $4202 
-    LDA.W $07A9 
-    STA.W $4203 
+    LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
     CLC 
@@ -5282,10 +4943,8 @@ HandleScrollZones_VerticalAutoscrolling:
     BMI .reachedTopScrollBoundary 
     STA.W $0939 
     SEP #$20 
-    LDA.W $093A 
-    STA.W $4202 
-    LDA.W $07A9 
-    STA.W $4203 
+    LDA.W $093A : STA.W $4202 
+    LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
     CLC 
@@ -5330,14 +4989,11 @@ HandleScrollZones_ScrollingDown:
     PHA 
     PLB 
     REP #$30 
-    LDA.W $0915 
-    STA.W $0939 
+    LDA.W $0915 : STA.W $0939 
     LDY.W #$0000 
     SEP #$20 
-    LDA.W $0916 
-    STA.W $4202 
-    LDA.W $07A9 
-    STA.W $4203 
+    LDA.W $0916 : STA.W $4202 
+    LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
     CLC 
@@ -5358,8 +5014,7 @@ HandleScrollZones_ScrollingDown:
     LDA.W $0B0E 
     CMP.W $0915 
     BPL + 
-    LDA.W $0B0E 
-    STA.W $0915 
+    LDA.W $0B0E : STA.W $0915 
     STZ.W $0913 
 
   + LDA.W $07AB 
@@ -5410,12 +5065,10 @@ HandleScrollZones_ScrollingUp:
     PHA 
     PLB 
     REP #$30 
-    LDA.W $0915 
-    STA.W $0939 
+    LDA.W $0915 : STA.W $0939 
     CMP.W $0B0E 
     BPL + 
-    LDA.W $0B0E 
-    STA.W $0915 
+    LDA.W $0B0E : STA.W $0915 
     STZ.W $0913 
 
   + LDA.W $0915 
@@ -5425,10 +5078,8 @@ HandleScrollZones_ScrollingUp:
 
 
   + SEP #$20 
-    LDA.W $0916 
-    STA.W $4202 
-    LDA.W $07A9 
-    STA.W $4203 
+    LDA.W $0916 : STA.W $4202 
+    LDA.W $07A9 : STA.W $4203 
     REP #$20 
     LDA.W $0911 
     CLC 
@@ -5471,17 +5122,13 @@ Debug_Layer1Position_Saving_Loading:
   + LDA.W $05D3 
     LSR A 
     BCC + 
-    LDA.W $05D5 
-    STA.W $0911 
-    LDA.W $05D7 
-    STA.W $0915 
+    LDA.W $05D5 : STA.W $0911 
+    LDA.W $05D7 : STA.W $0915 
     RTL 
 
 
-  + LDA.W $0911 
-    STA.W $05D5 
-    LDA.W $0915 
-    STA.W $05D7 
+  + LDA.W $0911 : STA.W $05D5 
+    LDA.W $0915 : STA.W $05D7 
     RTL 
 
 
@@ -5501,10 +5148,8 @@ UpdateLevelBackgroundDataColumn:
 
   + PHP 
     SEP #$20 
-    LDA.W $07A5 
-    STA.W $4202 
-    LDA.W $0992 
-    STA.W $4203 
+    LDA.W $07A5 : STA.W $4202 
+    LDA.W $0992 : STA.W $4203 
     PHB 
     REP #$30 
     LDA.W $0990 
@@ -5519,8 +5164,7 @@ UpdateLevelBackgroundDataColumn:
     ADC.W #$9600 ; $7F
 
   + STA.B $36 
-    LDA.W #$007F 
-    STA.B $38 
+    LDA.W #$007F : STA.B $38 
     LDA.W $0996 
     ASL #2
     AND.W #$003C 
@@ -5532,8 +5176,7 @@ UpdateLevelBackgroundDataColumn:
     LDA.W $0996 
     AND.B #$0F 
     STA.W $4202 
-    LDA.B #$40 
-    STA.W $4203 
+    LDA.B #$40 : STA.W $4203 
     REP #$20 
     LDA.W $0994 
     AND.W #$001F 
@@ -5583,12 +5226,10 @@ UpdateLevelBackgroundDataColumn:
     REP #$20 
     PHX 
     LDY.W #$0000 
-    LDA.W #$0010 
-    STA.W $0939 
+    LDA.W #$0010 : STA.W $0939 
 
 .loop:
-    LDA.B [$36],Y 
-    STA.W $093B 
+    LDA.B [$36],Y : STA.W $093B 
     AND.W #$03FF 
     ASL #3
     TAX 
@@ -5597,14 +5238,10 @@ UpdateLevelBackgroundDataColumn:
     LDA.W $093B 
     AND.W #$0C00 
     BNE + 
-    LDA.W $A000,X 
-    STA.W $C8C8,Y 
-    LDA.W $A002,X 
-    STA.W $C908,Y 
-    LDA.W $A004,X 
-    STA.W $C8CA,Y 
-    LDA.W $A006,X 
-    STA.W $C90A,Y 
+    LDA.W $A000,X : STA.W $C8C8,Y 
+    LDA.W $A002,X : STA.W $C908,Y 
+    LDA.W $A004,X : STA.W $C8CA,Y 
+    LDA.W $A006,X : STA.W $C90A,Y 
     JMP.W .next 
 
 
@@ -5692,10 +5329,8 @@ UpdateBackgroundLevelDataRow:
 
   + PHP 
     SEP #$20 
-    LDA.W $07A5 
-    STA.W $4202 
-    LDA.W $0992 
-    STA.W $4203 
+    LDA.W $07A5 : STA.W $4202 
+    LDA.W $0992 : STA.W $4203 
     PHB 
     REP #$30 
     LDA.W $0990 
@@ -5710,8 +5345,7 @@ UpdateBackgroundLevelDataRow:
     ADC.W #$9600 ; $7F
 
   + STA.B $36 
-    LDA.W #$007F 
-    STA.B $38 
+    LDA.W #$007F : STA.B $38 
     LDA.W $0994 
     AND.W #$000F 
     STA.W $0933 
@@ -5728,8 +5362,7 @@ UpdateBackgroundLevelDataRow:
     LDA.W $0996 
     AND.B #$0F 
     STA.W $4202 
-    LDA.B #$40 
-    STA.W $4203 
+    LDA.B #$40 : STA.W $4203 
     REP #$20 
     LDA.W $0994 
     AND.W #$001F 
@@ -5738,14 +5371,12 @@ UpdateBackgroundLevelDataRow:
     CLC 
     ADC.W $4216 
     STA.W $0933 
-    LDA.W #$5400 
-    STA.W $0937 
+    LDA.W #$5400 : STA.W $0937 
     LDA.W #$5000 
     LDY.W $0935 
     CPY.W #$0010 
     BCC + 
-    LDA.W #$5000 
-    STA.W $0937 
+    LDA.W #$5000 : STA.W $0937 
     LDA.W #$53E0 
 
   + TXY 
@@ -5786,12 +5417,10 @@ UpdateBackgroundLevelDataRow:
     REP #$20 
     PHX 
     LDY.W #$0000 
-    LDA.W #$0011 
-    STA.W $0939 
+    LDA.W #$0011 : STA.W $0939 
 
 .loop:
-    LDA.B [$36],Y 
-    STA.W $093B 
+    LDA.B [$36],Y : STA.W $093B 
     AND.W #$03FF 
     ASL #3
     TAX 
@@ -5800,14 +5429,10 @@ UpdateBackgroundLevelDataRow:
     LDA.W $093B 
     AND.W #$0C00 
     BNE + 
-    LDA.W $A000,X 
-    STA.W $C948,Y 
-    LDA.W $A002,X 
-    STA.W $C94A,Y 
-    LDA.W $A004,X 
-    STA.W $C98C,Y 
-    LDA.W $A006,X 
-    STA.W $C98E,Y 
+    LDA.W $A000,X : STA.W $C948,Y 
+    LDA.W $A002,X : STA.W $C94A,Y 
+    LDA.W $A004,X : STA.W $C98C,Y 
+    LDA.W $A006,X : STA.W $C98E,Y 
     JMP.W .next 
 
 
@@ -5888,10 +5513,8 @@ DrawTopRowOfScreenForUpwardsDoorTransition:
 
 DoorTransitionScrollingSetup:
     REP #$30 
-    LDA.W $0927 
-    STA.W $0911 
-    LDA.W $0929 
-    STA.W $0915 
+    LDA.W $0927 : STA.W $0911 
+    LDA.W $0929 : STA.W $0915 
     LDA.W $0791 
     AND.W #$0003 
     ASL A 
@@ -5993,14 +5616,10 @@ Door_Transition_Scrolling_Setup_Pointers:
     dw DoorTransitionScrollingSetup_Up 
 
 UpdatePreviousLayerBlocks:
-    LDA.W $08F7 
-    STA.W $08FF 
-    LDA.W $08FB 
-    STA.W $0903 
-    LDA.W $08F9 
-    STA.W $0901 
-    LDA.W $08FD 
-    STA.W $0905 
+    LDA.W $08F7 : STA.W $08FF 
+    LDA.W $08FB : STA.W $0903 
+    LDA.W $08F9 : STA.W $0901 
+    LDA.W $08FD : STA.W $0905 
     RTS 
 
 
@@ -6036,10 +5655,8 @@ DoorTransitionScrolling:
     TAX 
     JSR.W (.pointers,X) 
     BCC .return 
-    LDA.W $0927 
-    STA.W $0911 
-    LDA.W $0929 
-    STA.W $0915 
+    LDA.W $0927 : STA.W $0911 
+    LDA.W $0929 : STA.W $0915 
     LDA.W #$8000 
     TSB.W $0931 
 
@@ -6280,8 +5897,7 @@ DoorTransitionScrolling_Up:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SetupRotatingMode7Background_80B032:
-    LDA.W #$0001 
-    STA.W $0783 
+    LDA.W #$0001 : STA.W $0783 
     LDA.W $0783 ; >_<
     BNE + 
     SEC ; dead code
@@ -6289,20 +5905,14 @@ UNUSED_SetupRotatingMode7Background_80B032:
 
 
   + JSL.L SetForceBlankAndWaitForNMI 
-    LDA.W #$0080 
-    STA.W $2115 
+    LDA.W #$0080 : STA.W $2115 
     STZ.W $2116 
-    LDA.W #$1900 
-    STA.W $4310 
-    LDA.W #$8000 
-    STA.W $4312 
-    LDA.W #$4000 
-    STA.W $4315 
+    LDA.W #$1900 : STA.W $4310 
+    LDA.W #$8000 : STA.W $4312 
+    LDA.W #$4000 : STA.W $4315 
     SEP #$20 
-    LDA.B #$98 
-    STA.W $4314 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$98 : STA.W $4314 
+    LDA.B #$02 : STA.W $420B 
     STZ.W $2115 
     STZ.W $2116 
     STZ.W $2117 
@@ -6334,16 +5944,13 @@ UNUSED_SetupRotatingMode7Background_80B032:
     SEP #$20 
     CPX.W #$0400 
     BNE .loop 
-    LDA.B #$07 
-    STA.B $55 
+    LDA.B #$07 : STA.B $55 
     REP #$20 
-    LDA.W #$0100 
-    STA.B $78 
+    LDA.W #$0100 : STA.B $78 
     STZ.B $7A 
     STZ.B $7C 
     STA.B $7E 
-    LDA.W #$0080 
-    STA.B $80 
+    LDA.W #$0080 : STA.B $80 
     STA.B $82 
     STZ.W $0785 
     JSL.L ClearForceBlankAndWaitForNMI 
@@ -6363,8 +5970,7 @@ UNUSED_ConfigureMode7RotationMatrix_80B0C2:
     AND.W #$00FF 
     ASL A 
     TAX 
-    LDA.L SineCosineTables_8bitSine_SignExtended,X 
-    STA.B $7A 
+    LDA.L SineCosineTables_8bitSine_SignExtended,X : STA.B $7A 
     EOR.W #$FFFF 
     INC A 
     STA.B $7C 
@@ -6374,8 +5980,7 @@ UNUSED_ConfigureMode7RotationMatrix_80B0C2:
     AND.W #$00FF 
     ASL A 
     TAX 
-    LDA.L SineCosineTables_8bitSine_SignExtended,X 
-    STA.B $78 
+    LDA.L SineCosineTables_8bitSine_SignExtended,X : STA.B $78 
     STA.B $7E 
     INC.W $0785 
 
@@ -6386,19 +5991,15 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Decompression_HardcodedDestination:
-    LDA.B $02,S 
-    STA.B $45 
-    LDA.B $01,S 
-    STA.B $44 
+    LDA.B $02,S : STA.B $45 
+    LDA.B $01,S : STA.B $44 
     CLC 
     ADC.W #$0003 
     STA.B $01,S 
     LDY.W #$0001 
-    LDA.B [$44],Y 
-    STA.B $4C 
+    LDA.B [$44],Y : STA.B $4C 
     INY 
-    LDA.B [$44],Y 
-    STA.B $4D 
+    LDA.B [$44],Y : STA.B $4D 
 
 Decompression_VariableDestination:
     PHP 
@@ -6531,13 +6132,11 @@ Decompression_VariableDestination:
     STA.B $4B 
 
 .loopWordFill:
-    LDA.B $4A 
-    STA.B [$4C],Y 
+    LDA.B $4A : STA.B [$4C],Y 
     INY 
     DEX 
     BEQ .goto_loopMain 
-    LDA.B $4B 
-    STA.B [$4C],Y 
+    LDA.B $4B : STA.B [$4C],Y 
     INY 
     DEX 
     BNE .loopWordFill 
@@ -7241,8 +6840,7 @@ LoadFromLoadStation:
     PHK 
     PLB 
     REP #$30 
-    LDA.W #$0001 
-    STA.W $1E75 
+    LDA.W #$0001 : STA.W $1E75 
     LDA.W $079F 
     ASL A 
     TAX 
@@ -7257,17 +6855,12 @@ LoadFromLoadStation:
     CLC 
     ADC.W LoadStationListPointers,X 
     TAX 
-    LDA.W $0000,X 
-    STA.W $079B 
-    LDA.W $0002,X 
-    STA.W $078D 
-    LDA.W $0004,X 
-    STA.W $078F 
-    LDA.W $0006,X 
-    STA.W $0911 
+    LDA.W $0000,X : STA.W $079B 
+    LDA.W $0002,X : STA.W $078D 
+    LDA.W $0004,X : STA.W $078F 
+    LDA.W $0006,X : STA.W $0911 
     STA.W $091D 
-    LDA.W $0008,X 
-    STA.W $0915 
+    LDA.W $0008,X : STA.W $0915 
     STA.W $091F 
     LDA.W $000A,X 
     CLC 
@@ -7287,8 +6880,7 @@ LoadFromLoadStation:
     PHA 
     PLB 
     LDX.W $079B 
-    LDA.W $0001,X 
-    STA.W $079F 
+    LDA.W $0001,X : STA.W $079F 
     STZ.W $05F7 
     PLB 
     PLP 

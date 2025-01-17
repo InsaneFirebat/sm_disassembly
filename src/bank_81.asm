@@ -18,8 +18,7 @@ SaveToSRAM:
     LDY.W #$005E 
 
 .loopSamus:
-    LDA.W $09A2,Y 
-    STA.W $D7C0,Y 
+    LDA.W $09A2,Y : STA.W $D7C0,Y 
     DEY #2
     BPL .loopSamus 
     LDX.W #$0000 
@@ -29,25 +28,21 @@ SaveToSRAM:
     LDY.W #$0000 
 
 .loopMap:
-    LDA.W $07F7,Y 
-    STA.W $CD52,X 
+    LDA.W $07F7,Y : STA.W $CD52,X 
     INY #2
     INX #2
     CPY.W #$0100 
     BMI .loopMap 
     JSR.W SaveMap 
-    LDA.W $078B 
-    STA.W $D916 
-    LDA.W $079F 
-    STA.W $D918 
+    LDA.W $078B : STA.W $D916 
+    LDA.W $079F : STA.W $D918 
     LDX.B $12 
     LDA.L SaveSlotOffsets,X 
     TAX 
     LDY.W #$D7C0 ; $7E
 
 .loopToSRAM:
-    LDA.W $0000,Y 
-    STA.L $700000,X 
+    LDA.W $0000,Y : STA.L $700000,X 
     CLC 
     ADC.B $14 
     STA.B $14 
@@ -56,8 +51,7 @@ SaveToSRAM:
     CPY.W #$DE1C ; $7E
     BNE .loopToSRAM 
     LDX.B $12 
-    LDA.B $14 
-    STA.L $700000,X 
+    LDA.B $14 : STA.L $700000,X 
     STA.L $701FF0,X 
     EOR.W #$FFFF 
     STA.L $700008,X 
@@ -88,8 +82,7 @@ LoadFromSRAM:
     LDY.W #$D7C0 ; $7E
 
 .loop:
-    LDA.L $700000,X 
-    STA.W $0000,Y 
+    LDA.L $700000,X : STA.W $0000,Y 
     CLC 
     ADC.B $14 
     STA.B $14 
@@ -119,15 +112,12 @@ LoadFromSRAM:
     LDY.W #$005E 
 
 .loopSuccess:
-    LDA.W $D7C0,Y 
-    STA.W $09A2,Y 
+    LDA.W $D7C0,Y : STA.W $09A2,Y 
     DEY #2
     BPL .loopSuccess 
     JSR.W LoadMap 
-    LDA.W $D916 
-    STA.W $078B 
-    LDA.W $D918 
-    STA.W $079F 
+    LDA.W $D916 : STA.W $078B 
+    LDA.W $D918 : STA.W $079F 
     PLY 
     PLX 
     CLC 
@@ -152,8 +142,7 @@ LoadFromSRAM:
     INY #2
     CPY.W #$DE1C ; $7E
     BNE .loopCorrupt 
-    LDA.W #$0000 
-    STA.W $078B 
+    LDA.W #$0000 : STA.W $078B 
     STA.W $079F 
     PLY 
     PLX 
@@ -396,16 +385,13 @@ LoadMap:
     LDA.B $16 
     ASL A 
     TAX 
-    LDA.W MapRoomPointers,X 
-    STA.B $00 
-    LDA.W #$0081 
-    STA.B $02 
+    LDA.W MapRoomPointers,X : STA.B $00 
+    LDA.W #$0081 : STA.B $02 
     LDA.W SRAMMapData_offset,X 
     TAX 
     LDA.W #$CD52 ; $7E
     STA.B $03 
-    LDA.W #$007E 
-    STA.B $05 
+    LDA.W #$007E : STA.B $05 
 
 .loopRoom:
     LDA.B ($00) 
@@ -414,8 +400,7 @@ LoadMap:
     ADC.B $14 
     TAY 
     SEP #$20 
-    LDA.L $7ED91C,X 
-    STA.B [$03],Y 
+    LDA.L $7ED91C,X : STA.B [$03],Y 
     REP #$20 
     INC.B $00 
     INX 
@@ -446,8 +431,7 @@ SaveMap:
     LDA.B $1A 
     ASL A 
     TAX 
-    LDA.W MapRoomPointers,X 
-    STA.B $00 
+    LDA.W MapRoomPointers,X : STA.B $00 
     LDA.W SRAMMapData_offset,X 
     TAX 
     LDA.B $1A 
@@ -455,8 +439,7 @@ SaveMap:
     STA.B $18 
     LDA.W #$CD52 ; $7E
     STA.B $03 
-    LDA.W #$007E 
-    STA.B $05 
+    LDA.W #$007E : STA.B $05 
 
 .loopRooms:
     LDA.B ($00) 
@@ -465,8 +448,7 @@ SaveMap:
     ADC.B $18 
     TAY 
     SEP #$20 
-    LDA.B [$03],Y 
-    STA.L $7ED91C,X 
+    LDA.B [$03],Y : STA.L $7ED91C,X 
     REP #$20 
     INC.B $00 
     INX 
@@ -585,16 +567,14 @@ AddSpritemapToOAM:
     BEQ .xHighClear 
     LDA.W $0000,Y 
     BPL + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $1C 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) 
     ORA.L MapOfOAMIndexToHighOAM_bitmask,X 
     STA.B ($1C) 
     JMP.W .merge 
 
 
-  + LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $1C 
+  + LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($1C) 
@@ -604,8 +584,7 @@ AddSpritemapToOAM:
 .xHighClear:
     LDA.W $0000,Y 
     BPL .merge 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $1C 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($1C) 
@@ -696,16 +675,14 @@ AddSpritemapToOAM_Offscreen:
     BEQ .xHighClear 
     LDA.W $0000,Y 
     BPL + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $1C 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) 
     ORA.L MapOfOAMIndexToHighOAM_bitmask,X 
     STA.B ($1C) 
     JMP.W .merge 
 
 
-  + LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $1C 
+  + LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($1C) 
@@ -715,8 +692,7 @@ AddSpritemapToOAM_Offscreen:
 .xHighClear:
     LDA.W $0000,Y 
     BPL .merge 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $1C 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($1C) 
@@ -780,11 +756,9 @@ AddSpritemapToOAM_Offscreen:
 
 
 OAMEntry_XPosition_180h:
-    LDA.B #$80 
-    STA.W $0370,X 
+    LDA.B #$80 : STA.W $0370,X 
     REP #$20 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $1C 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
     LDA.B ($1C) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($1C) 
@@ -817,8 +791,7 @@ AddSpritemapFrom_82C569_TableToOAM:
     BEQ .xHighClear 
     LDA.W $0000,Y 
     BPL .preMerge 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndexToHighOAM_bitmask,X 
     STA.B ($16) 
@@ -826,8 +799,7 @@ AddSpritemapFrom_82C569_TableToOAM:
 
 
 .preMerge:
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($16) 
@@ -837,8 +809,7 @@ AddSpritemapFrom_82C569_TableToOAM:
 .xHighClear:
     LDA.W $0000,Y 
     BPL .merge 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($16) 
@@ -895,8 +866,7 @@ AddSamusSpritemapToOAM:
     BEQ .xHighClear 
     LDA.W $0000,Y 
     BPL .preMerge 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndexToHighOAM_bitmask,X 
     STA.B ($16) 
@@ -904,8 +874,7 @@ AddSamusSpritemapToOAM:
 
 
 .preMerge:
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($16) 
@@ -915,8 +884,7 @@ AddSamusSpritemapToOAM:
 .xHighClear:
     LDA.W $0000,Y 
     BPL .merge 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($16) 
@@ -926,8 +894,7 @@ AddSamusSpritemapToOAM:
     CLC 
     ADC.B $12 
     STA.W $0371,X 
-    LDA.W $0003,Y 
-    STA.W $0372,X 
+    LDA.W $0003,Y : STA.W $0372,X 
     TYA 
     CLC 
     ADC.W #$0005 
@@ -953,8 +920,7 @@ AddSpritemapFrom_93A1A1_TableToOAM:
     ASL A 
     TAX 
     LDY.W FlareSpritemapPointers,X 
-    LDA.W $0000,Y 
-    STA.B $18 
+    LDA.W $0000,Y : STA.B $18 
     INY #2
     BRA AddSpritemapToOAM_Common 
 
@@ -985,16 +951,14 @@ AddSpritemapToOAM_Common:
     STA.W $0370,X 
     AND.W #$0100 
     BEQ + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($16) 
 
   + LDA.W $0000,Y 
     BPL + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($16) 
@@ -1003,8 +967,7 @@ AddSpritemapToOAM_Common:
     CLC 
     ADC.B $12 
     STA.W $0371,X 
-    LDA.W $0003,Y 
-    STA.W $0372,X 
+    LDA.W $0003,Y : STA.W $0372,X 
     TYA 
     CLC 
     ADC.W #$0005 
@@ -1039,16 +1002,14 @@ AddSpritemapToOAM_WithBaseTileNumber_8AB8:
     STA.W $0370,X 
     AND.W #$0100 
     BEQ + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($16) 
 
   + LDA.W $0000,Y 
     BPL + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($16) 
@@ -1098,16 +1059,14 @@ AddSpritemapToOAM_WithBaseTileNumber_8B22:
     STA.W $0370,X 
     AND.W #$0100 
     BEQ + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($16) 
 
   + LDA.W $0000,Y 
     BPL + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($16) 
@@ -1163,16 +1122,14 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8B96:
     STA.W $0370,X 
     AND.W #$0100 
     BEQ + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($16) 
 
   + LDA.W $0000,Y 
     BPL + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($16) 
@@ -1231,8 +1188,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8C0A:
     STA.W $0370,X 
     BIT.W #$0100 
     BEQ + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($16) 
@@ -1256,8 +1212,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8C0A:
     REP #$21 
     LDA.W $0000,Y 
     BPL + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($16) 
@@ -1297,8 +1252,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8C7F:
     STA.W $0370,X 
     BIT.W #$0100 
     BEQ + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_highXPosBit,X 
     STA.B ($16) 
@@ -1322,8 +1276,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8C7F:
     REP #$21 
     LDA.W $0000,Y 
     BPL + 
-    LDA.L MapOfOAMIndexToHighOAM_address,X 
-    STA.B $16 
+    LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
     LDA.B ($16) 
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($16) 
@@ -1383,16 +1336,14 @@ Debug_GameOverMenu_Index0_FadeOut_ConfigureGraphicsForMenu:
     LDX.W #$0000 
 
 .loopPalettes:
-    LDA.L $7EC000,X 
-    STA.L $7E3300,X 
+    LDA.L $7EC000,X : STA.L $7E3300,X 
     INX #2
     CPX.W #$0200 
     BMI .loopPalettes 
     LDX.W #$0000 
 
 .loopIORegisterMirrors:
-    LDA.B $51,X 
-    STA.L $7E3500,X 
+    LDA.B $51,X : STA.L $7E3500,X 
     INX #2
     CPX.W #$0036 
     BMI .loopIORegisterMirrors 
@@ -1417,13 +1368,10 @@ Debug_GameOverMenu_Index1_Initialise:
     LDA.W #$FF03 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     SEP #$20 
-    LDA.B #$11 
-    STA.B $69 
+    LDA.B #$11 : STA.B $69 
     REP #$30 
-    LDA.W #Debug_GameOverMenu_VRAMTransferDefinitions 
-    STA.B $00 
-    LDA.W #$0081 
-    STA.B $02 
+    LDA.W #Debug_GameOverMenu_VRAMTransferDefinitions : STA.B $00 
+    LDA.W #$0081 : STA.B $02 
     JSL.L LoadDebugGameOverMenuTilemap 
     JSL.L ClearForceBlankAndWaitForNMI 
     INC.W $0727 
@@ -1454,74 +1402,51 @@ Debug_GameOverMenu_Index24_FadeIn:
 MapVRAMForMenu:
     SEP #$20 
     STZ.B $6B 
-    LDA.B #$03 
-    STA.B $52 
-    LDA.B #$51 
-    STA.B $58 
-    LDA.B #$58 
-    STA.B $59 
-    LDA.B #$5C 
-    STA.B $5A 
-    LDA.B #$00 
-    STA.B $5D 
-    LDA.B #$04 
-    STA.B $5E 
-    LDA.B #$13 
-    STA.B $69 
+    LDA.B #$03 : STA.B $52 
+    LDA.B #$51 : STA.B $58 
+    LDA.B #$58 : STA.B $59 
+    LDA.B #$5C : STA.B $5A 
+    LDA.B #$00 : STA.B $5D 
+    LDA.B #$04 : STA.B $5E 
+    LDA.B #$13 : STA.B $69 
     RTS 
 
 
 LoadInitialMenuTiles:
     PHP 
     SEP #$30 
-    LDA.B #$00 
-    STA.W $2116 
-    LDA.B #$00 
-    STA.W $2117 
-    LDA.B #$80 
-    STA.W $2115 
+    LDA.B #$00 : STA.W $2116 
+    LDA.B #$00 : STA.W $2117 
+    LDA.B #$80 : STA.W $2115 
     JSL.L SetupHDMATransfer 
     db $01,$01,$18 
     dl Tiles_Menu_BG1_BG2 
     dw $5600 
-    LDA.B #$02 
-    STA.W $420B 
-    LDA.B #$00 
-    STA.W $2116 
-    LDA.B #$30 
-    STA.W $2117 
-    LDA.B #$80 
-    STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
+    LDA.B #$00 : STA.W $2116 
+    LDA.B #$30 : STA.W $2117 
+    LDA.B #$80 : STA.W $2115 
     JSL.L SetupHDMATransfer 
     db $01,$01,$18 
     dl Tiles_PauseScreen_BG1_BG2 
     dw $2000 
-    LDA.B #$02 
-    STA.W $420B 
-    LDA.B #$00 
-    STA.W $2116 
-    LDA.B #$60 
-    STA.W $2117 
-    LDA.B #$80 
-    STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
+    LDA.B #$00 : STA.W $2116 
+    LDA.B #$60 : STA.W $2117 
+    LDA.B #$80 : STA.W $2115 
     JSL.L SetupHDMATransfer 
     db $01,$01,$18 
     dl Tiles_Menu_PauseScreen_Sprites 
     dw $2000 
-    LDA.B #$02 
-    STA.W $420B 
-    LDA.B #$00 
-    STA.W $2116 
-    LDA.B #$40 
-    STA.W $2117 
-    LDA.B #$80 
-    STA.W $2115 
+    LDA.B #$02 : STA.W $420B 
+    LDA.B #$00 : STA.W $2116 
+    LDA.B #$40 : STA.W $2117 
+    LDA.B #$80 : STA.W $2115 
     JSL.L SetupHDMATransfer 
     db $01,$01,$18 
     dl Tiles_Beta_Minimap_Area_Select_BG3 
     dw $0600 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     PLP 
     RTS 
 
@@ -1531,10 +1456,8 @@ LoadMenuPalettes:
     LDX.W #$0000 
 
 .loop:
-    LDA.L Menu_Palettes,X 
-    STA.L $7EC000,X 
-    LDA.L Menu_Palettes+2,X 
-    STA.L $7EC002,X 
+    LDA.L Menu_Palettes,X : STA.L $7EC000,X 
+    LDA.L Menu_Palettes+2,X : STA.L $7EC002,X 
     INX #4
     CPX.W #$0200 
     BMI .loop 
@@ -1551,12 +1474,9 @@ LoadDebugGameOverMenuTilemap:
     CPX.W #$0800 
     BMI .loopClear 
     LDX.W $0330 
-    LDA.W #$0800 
-    STA.B $D0,X 
-    LDA.W #$3800 
-    STA.B $D2,X 
-    LDA.W #$007E 
-    STA.B $D4,X 
+    LDA.W #$0800 : STA.B $D0,X 
+    LDA.W #$3800 : STA.B $D2,X 
+    LDA.W #$007E : STA.B $D4,X 
     LDA.B $58 
     AND.W #$00FC 
     XBA 
@@ -1574,14 +1494,11 @@ LoadDebugGameOverMenuTilemap:
     BEQ .return 
     STA.B $D0,X 
     INY #2
-    LDA.B [$00],Y 
-    STA.B $D2,X 
+    LDA.B [$00],Y : STA.B $D2,X 
     INY #2
-    LDA.B [$00],Y 
-    STA.B $D4,X 
+    LDA.B [$00],Y : STA.B $D4,X 
     INY #2
-    LDA.B [$00],Y 
-    STA.B $D5,X 
+    LDA.B [$00],Y : STA.B $D5,X 
     TXA 
     CLC 
     ADC.W #$0007 
@@ -1676,8 +1593,7 @@ DebugGameOverMenu_Index3_Main:
     ORA.W #$0028 
     LDX.W $0590 
     STA.W $0370,X 
-    LDA.W #$00B6 
-    STA.W $0372,X 
+    LDA.W #$00B6 : STA.W $0372,X 
     INX #4
     STX.W $0590 
     RTS 
@@ -1687,16 +1603,14 @@ RestorePalettesAndIORegistersFromDebugGameOverMenu:
     LDX.W #$0000 
 
 .loopPalettes:
-    LDA.L $7E3300,X 
-    STA.L $7EC000,X 
+    LDA.L $7E3300,X : STA.L $7EC000,X 
     INX #2
     CPX.W #$0200 
     BMI .loopPalettes 
     LDX.W #$0000 
 
 .loopIORegisters:
-    LDA.L $7E3500,X 
-    STA.B $51,X 
+    LDA.L $7E3500,X : STA.B $51,X 
     INX #2
     CPX.W #$0036 
     BMI .loopIORegisters 
@@ -1705,21 +1619,16 @@ RestorePalettesAndIORegistersFromDebugGameOverMenu:
 
 DebugGameOverMenu_Index5_Continue:
     SEP #$30 
-    LDA.B #$00 
-    STA.W $2116 
-    LDA.B #$40 
-    STA.W $2117 
-    LDA.B #$80 
-    STA.W $2115 
+    LDA.B #$00 : STA.W $2116 
+    LDA.B #$40 : STA.W $2117 
+    LDA.B #$80 : STA.W $2115 
     JSL.L SetupHDMATransfer 
     db $01,$01,$18 
     dl Tiles_Standard_BG3 
     dw $2000 
-    LDA.B #$02 
-    STA.W $420B 
+    LDA.B #$02 : STA.W $420B 
     REP #$30 
-    LDA.W #$0010 
-    STA.W $0998 
+    LDA.W #$0010 : STA.W $0998 
     STZ.W $0950 
     JMP.W RestorePalettesAndIORegistersFromDebugGameOverMenu 
 
@@ -1791,10 +1700,8 @@ GameOverMenu_Index7_FadeOutIntoGameMapView:
 GameOverMenu_Index6_LoadGameMapView:
     JSL.L Disable_HDMAObjects 
     JSL.L Wait_End_VBlank_Clear_HDMA 
-    LDA.W #$0005 
-    STA.W $0998 
-    LDA.W #$0000 
-    STA.W $0727 
+    LDA.W #$0005 : STA.W $0998 
+    LDA.W #$0000 : STA.W $0727 
     RTS 
 
 
@@ -1811,12 +1718,10 @@ GameOverMenu_Index4_Main:
     BNE .toggleSelection 
     BIT.W #$0080 
     BEQ .noChange 
-    LDA.W #$00B4 
-    STA.W $0F94 
+    LDA.W #$00B4 : STA.W $0F94 
     LDA.W $0950 
     BEQ + 
-    LDA.W #$0007 
-    STA.W $0727 
+    LDA.W #$0007 : STA.W $0727 
     RTS 
 
 
@@ -1857,21 +1762,16 @@ GameOverMenu_Index4_Main:
 
 GameOverMenu_Index1_Initialise:
     SEP #$20 
-    LDA.B #$11 
-    STA.B $69 
-    LDA.B #$20 
-    STA.B $74 
-    LDA.B #$40 
-    STA.B $75 
-    LDA.B #$80 
-    STA.B $76 
+    LDA.B #$11 : STA.B $69 
+    LDA.B #$20 : STA.B $74 
+    LDA.B #$40 : STA.B $75 
+    LDA.B #$80 : STA.B $76 
     REP #$30 
     LDA.W #$0000 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$FF03 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$0001 
-    STA.W $198D 
+    LDA.W #$0001 : STA.W $198D 
     DEC A 
     STA.W $1997 
     LDX.W #$0000 
@@ -1883,12 +1783,9 @@ GameOverMenu_Index1_Initialise:
     CPX.W #$0800 
     BMI .loop 
     LDX.W $0330 
-    LDA.W #$0800 
-    STA.B $D0,X 
-    LDA.W #$3600 
-    STA.B $D2,X 
-    LDA.W #$007E 
-    STA.B $D4,X 
+    LDA.W #$0800 : STA.B $D0,X 
+    LDA.W #$3600 : STA.B $D2,X 
+    LDA.W #$007E : STA.B $D4,X 
     LDA.B $58 
     AND.W #$00FC 
     XBA 
@@ -1933,10 +1830,8 @@ GameOverMenu_Index1_Initialise:
     STZ.W $0723 
     STZ.W $0725 
     STZ.W $0950 
-    LDA.W #$0028 
-    STA.W $19A1 
-    LDA.W #$00A0 
-    STA.W $19AB 
+    LDA.W #$0028 : STA.W $19A1 
+    LDA.W #$00A0 : STA.W $19AB 
     RTS 
 
 
@@ -2112,10 +2007,8 @@ LoadFileSelectPalettes:
     LDX.W #$0000 
 
 .loop:
-    LDA.L Menu_Palettes,X 
-    STA.L $7EC000,X 
-    LDA.L Menu_Palettes+2,X 
-    STA.L $7EC002,X 
+    LDA.L Menu_Palettes,X : STA.L $7EC000,X 
+    LDA.L Menu_Palettes+2,X : STA.L $7EC002,X 
     INX #4
     CPX.W #$0200 
     BMI .loop 
@@ -2131,8 +2024,7 @@ FileSelectMenu_Index20_MainToOptionsMenu_FadeOut:
     LDA.B $51 
     AND.W #$000F 
     BNE .return 
-    LDA.W #$0002 
-    STA.W $0998 
+    LDA.W #$0002 : STA.W $0998 
     STZ.W $0727 
     LDY.W #$0000 
     LDA.W #$0000 
@@ -2192,10 +2084,8 @@ FileSelectMenu_Index11_10_FadeInToMain:
     LDA.W $0952 
     ASL #2
     TAX 
-    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Yposition,X 
-    STA.W $19AB 
-    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Xposition,X 
-    STA.W $19A1 
+    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Yposition,X : STA.W $19AB 
+    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Xposition,X : STA.W $19A1 
 
 FileSelectMenu_Index7_15_FadeInFromMain:
     REP #$30 
@@ -2287,8 +2177,7 @@ Draw_FileCopyClear_SaveFileInfo:
     LDA.W $0954 
     BIT.W #$0001 
     BNE + 
-    LDA.W #$0400 
-    STA.W $0F96 
+    LDA.W #$0400 : STA.W $0F96 
 
   + JSR.W Draw_FileCopyClear_SaveSlotAInfo 
     LDA.W #$0001 
@@ -2297,8 +2186,7 @@ Draw_FileCopyClear_SaveFileInfo:
     LDA.W $0954 
     BIT.W #$0002 
     BNE + 
-    LDA.W #$0400 
-    STA.W $0F96 
+    LDA.W #$0400 : STA.W $0F96 
 
   + JSR.W Draw_FileCopyClear_SaveSlotBInfo 
     LDA.W #$0002 
@@ -2307,8 +2195,7 @@ Draw_FileCopyClear_SaveFileInfo:
     LDA.W $0954 
     BIT.W #$0004 
     BNE + 
-    LDA.W #$0400 
-    STA.W $0F96 
+    LDA.W #$0400 : STA.W $0F96 
 
   + JSR.W Draw_FileCopyClear_SaveSlotCInfo 
     JMP.W QueueTransfer_MenuTilemap_ToVRAMBG1 
@@ -2373,12 +2260,9 @@ Draw_FileCopyClear_SaveSlotCInfo:
 
 QueueTransfer_MenuTilemap_ToVRAMBG1:
     LDX.W $0330 
-    LDA.W #$0800 
-    STA.B $D0,X 
-    LDA.W #$3600 
-    STA.B $D2,X 
-    LDA.W #$007E 
-    STA.B $D4,X 
+    LDA.W #$0800 : STA.B $D0,X 
+    LDA.W #$3600 : STA.B $D2,X 
+    LDA.W #$007E : STA.B $D4,X 
     LDA.B $58 
     AND.W #$00FC 
     XBA 
@@ -2478,10 +2362,8 @@ Set_FileCopyMenu_SelectionMissile_Position:
     LDA.W $19B5 
     ASL A 
     TAX 
-    LDA.W .position,X 
-    STA.W $19AB 
-    LDA.W #$0016 
-    STA.W $19A1 
+    LDA.W .position,X : STA.W $19AB 
+    LDA.W #$0016 : STA.W $19A1 
     RTS 
 
 
@@ -2589,10 +2471,8 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
     LDA.W $19B5 
     ASL A 
     TAX 
-    LDA.W .positions,X 
-    STA.W $19AB 
-    LDA.W #$0016 
-    STA.W $19A1 
+    LDA.W .positions,X : STA.W $19AB 
+    LDA.W #$0016 : STA.W $19A1 
     RTS 
 
 
@@ -2601,8 +2481,7 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
     SEC 
     SBC.W #$0002 
     STA.W $0727 
-    LDA.W $19B7 
-    STA.W $19B5 
+    LDA.W $19B7 : STA.W $19B5 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
     JMP.W Initialise_FileSelectMenu_FileCopy 
@@ -2659,8 +2538,7 @@ FileSelectMenu_IndexB_FileCopy_InitialiseConfirmation:
     JSR.W Draw_FileCopyClear_Confirmation 
     INC.W $0727 
     STZ.W $19B5 
-    LDA.W #$0008 
-    STA.W $198F 
+    LDA.W #$0008 : STA.W $198F 
     RTS 
 
 
@@ -2758,8 +2636,7 @@ FileSelectMenu_IndexC_FileCopy_Confirmation:
     SEC 
     SBC.W #$0003 
     STA.W $0727 
-    LDA.W $19B9 
-    STA.W $19B5 
+    LDA.W $19B9 : STA.W $19B5 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
     RTS 
@@ -2784,8 +2661,7 @@ FileSelectMenu_IndexC_FileCopy_Confirmation:
     LDY.W #$00D0 
 
   + STY.W $19AB 
-    LDA.W #$005E 
-    STA.W $19A1 
+    LDA.W #$005E : STA.W $19A1 
     RTS 
 
 
@@ -2795,15 +2671,13 @@ HandleFileCopyArrowPalette:
     DEC A 
     STA.W $198F 
     BNE .return 
-    LDA.W #$0004 
-    STA.W $198F 
+    LDA.W #$0004 : STA.W $198F 
     LDA.L $7EC122 
     TAY 
     LDX.W #$0000 
 
 .loop:
-    LDA.L $7EC124,X 
-    STA.L $7EC122,X 
+    LDA.L $7EC124,X : STA.L $7EC122,X 
     INX #2
     CPX.W #$000C 
     BMI .loop 
@@ -2819,24 +2693,20 @@ FileSelectMenu_Index0_FileCopy_DoFileCopy:
     JSL.L Draw_Menu_Selection_Missile 
     JSR.W HandleFileCopyArrowPalette 
     JSL.L Draw_FileCopy_Arrow 
-    LDA.W #$0070 
-    STA.B $02 
+    LDA.W #$0070 : STA.B $02 
     STA.B $05 
     LDA.W $19B7 
     ASL A 
     TAX 
-    LDA.L SaveSlotOffsets,X 
-    STA.B $00 
+    LDA.L SaveSlotOffsets,X : STA.B $00 
     LDA.W $19B9 
     ASL A 
     TAX 
-    LDA.L SaveSlotOffsets,X 
-    STA.B $03 
+    LDA.L SaveSlotOffsets,X : STA.B $03 
     LDY.W #$0000 
 
 .loop:
-    LDA.B [$00],Y 
-    STA.B [$03],Y 
+    LDA.B [$00],Y : STA.B [$03],Y 
     INY #2
     CPY.W #$065C 
     BMI .loop 
@@ -3040,10 +2910,8 @@ Set_FileClearMenuSelection_MissilePosition:
     LDA.W $19B5 
     ASL A 
     TAX 
-    LDA.W .positions,X 
-    STA.W $19AB 
-    LDA.W #$0016 
-    STA.W $19A1 
+    LDA.W .positions,X : STA.W $19AB 
+    LDA.W #$0016 : STA.W $19A1 
     RTS 
 
 
@@ -3060,8 +2928,7 @@ FileSelectMenu_Index17_FileClear_InitialiseConfirmation:
     CLC 
     ADC.W #$206A 
     STA.L $7E376A 
-    LDA.W #$0003 
-    STA.W $19B9 
+    LDA.W #$0003 : STA.W $19B9 
     JSR.W Draw_FileCopyClear_Confirmation 
     INC.W $0727 
     STZ.W $19B5 
@@ -3088,8 +2955,7 @@ FileSelectMenu_Index18_FileClear_Confirmation:
     SEC 
     SBC.W #$0002 
     STA.W $0727 
-    LDA.W $19B7 
-    STA.W $19B5 
+    LDA.W $19B7 : STA.W $19B5 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
     JMP.W Initialise_FileSelectMenu_FileClear 
@@ -3114,21 +2980,18 @@ FileSelectMenu_Index18_FileClear_Confirmation:
     LDY.W #$00D0 
 
   + STY.W $19AB 
-    LDA.W #$005E 
-    STA.W $19A1 
+    LDA.W #$005E : STA.W $19A1 
     RTS 
 
 
 FileSelectMenu_Index19_FileClear_DoFileClear:
     REP #$30 
     JSL.L Draw_Border_Around_DATA_CLEAR_MODE 
-    LDA.W #$0070 
-    STA.B $02 
+    LDA.W #$0070 : STA.B $02 
     LDA.W $19B7 
     ASL A 
     TAX 
-    LDA.L SaveSlotOffsets,X 
-    STA.B $00 
+    LDA.L SaveSlotOffsets,X : STA.B $00 
     LDY.W #$0000 
     LDA.W #$0000 
 
@@ -3140,8 +3003,7 @@ FileSelectMenu_Index19_FileClear_DoFileClear:
     LDA.W $19B7 
     ASL A 
     TAX 
-    LDA.W #$0000 
-    STA.L $700000,X 
+    LDA.W #$0000 : STA.L $700000,X 
     STA.L $700008,X 
     STA.L $701FF0,X 
     STA.L $701FF8,X 
@@ -3149,8 +3011,7 @@ FileSelectMenu_Index19_FileClear_DoFileClear:
     JSR.W NewSaveFile 
     LDA.W $19B7 
     JSL.L LoadFromSRAM 
-    LDA.W $19B7 
-    STA.W $079F 
+    LDA.W $19B7 : STA.W $079F 
     JSL.L LoadMirrorOfCurrentAreasMapExplored 
     LDX.W #$0500 
     LDA.W #$000F 
@@ -3188,8 +3049,7 @@ FileSelectMenu_Index1A_FileClear_ClearCompleted:
     BCS .slotACorrupt 
 
 .selectSlotA:
-    LDA.W #$0000 
-    STA.W $0952 
+    LDA.W #$0000 : STA.W $0952 
     RTS 
 
 
@@ -3197,16 +3057,14 @@ FileSelectMenu_Index1A_FileClear_ClearCompleted:
     LDA.W #$0001 
     JSL.L LoadFromSRAM 
     BCS + 
-    LDA.W #$0001 
-    STA.W $0952 
+    LDA.W #$0001 : STA.W $0952 
     RTS 
 
 
   + LDA.W #$0002 
     JSL.L LoadFromSRAM 
     BCS .selectSlotA 
-    LDA.W #$0002 
-    STA.W $0952 
+    LDA.W #$0002 : STA.W $0952 
 
 .return:
     RTS 
@@ -3260,16 +3118,13 @@ FileSelectMenu_Index1F_MainToOptionsMenu_TurnSamusHelmet:
 
 Draw_FileSelect_SamusHelmets:
     LDX.W #$0004 
-    LDA.W #$0000 
-    STA.W $198D,X 
+    LDA.W #$0000 : STA.W $198D,X 
     JSR.W Draw_FileSelect_Slot_SamusHelmet 
     LDX.W #$0006 
-    LDA.W #$0000 
-    STA.W $198D,X 
+    LDA.W #$0000 : STA.W $198D,X 
     JSR.W Draw_FileSelect_Slot_SamusHelmet 
     LDX.W #$0008 
-    LDA.W #$0000 
-    STA.W $198D,X 
+    LDA.W #$0000 : STA.W $198D,X 
 
 Draw_FileSelect_Slot_SamusHelmet:
     PHX 
@@ -3281,14 +3136,12 @@ Draw_FileSelect_Slot_SamusHelmet:
     DEC A 
     STA.W $198D,X 
     BNE timerHandled 
-    LDA.W #$0008 
-    STA.W $198D,X 
+    LDA.W #$0008 : STA.W $198D,X 
     LDA.W $1997,X 
     INC A 
     CMP.W #$0008 
     BMI + 
-    LDA.W #$0000 
-    STA.W $198D,X 
+    LDA.W #$0000 : STA.W $198D,X 
     LDA.W #$0007 
 
   + STA.W $1997,X 
@@ -3297,8 +3150,7 @@ timerHandled:
     LDA.W $1997,X 
     ASL A 
     TAY 
-    LDA.W #$0E00 
-    STA.B $03 
+    LDA.W #$0E00 : STA.B $03 
     LDA.W .data,Y 
     PHA 
     LDA.W $19AB,X 
@@ -3359,8 +3211,7 @@ FileSelectMap_Index16_FileClear_AreaSelectMapToGameOptions:
     LDA.B $51 
     AND.W #$000F 
     BNE .return 
-    LDA.W #$0002 
-    STA.W $0998 
+    LDA.W #$0002 : STA.W $0998 
     STZ.W $0727 
 
 .return:
@@ -3373,17 +3224,13 @@ FileSelectMenu_Index1_TitleSequenceToMain_LoadBG2:
     LDA.W #$000F 
 
 .loop:
-    LDA.L Zebes_and_Stars_Tilemap,X 
-    STA.L $7E3600,X 
+    LDA.L Zebes_and_Stars_Tilemap,X : STA.L $7E3600,X 
     DEX #2
     BPL .loop 
     LDX.W $0330 
-    LDA.W #$0800 
-    STA.B $D0,X 
-    LDA.W #$3600 
-    STA.B $D2,X 
-    LDA.W #$007E 
-    STA.B $D4,X 
+    LDA.W #$0800 : STA.B $D0,X 
+    LDA.W #$3600 : STA.B $D2,X 
+    LDA.W #$007E : STA.B $D4,X 
     LDA.B $59 
     AND.W #$00FC 
     XBA 
@@ -3393,8 +3240,7 @@ FileSelectMenu_Index1_TitleSequenceToMain_LoadBG2:
     ADC.W #$0007 
     STA.W $0330 
     INC.W $0727 
-    LDA.W #$0001 
-    STA.W $198D 
+    LDA.W #$0001 : STA.W $198D 
     STZ.W $1997 
     RTS 
 
@@ -3423,8 +3269,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     STA.L $7E3600,X 
     DEX #2
     BPL .loopTilemap 
-    LDA.W #$FFFF 
-    STA.W $0954 
+    LDA.W #$FFFF : STA.W $0954 
     LDY.W #Tilemap_FileSelect_SamusData 
     LDX.W #($B<<1)|($1<<6) ; $0056
     STZ.W $0F96 
@@ -3504,8 +3349,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     STZ.W $0F96 
     JSR.W Load_Tilemap_in_Y_to_X_Coordinates 
     JSR.W QueueTransfer_MenuTilemap_ToVRAMBG1 
-    LDA.W #$0001 
-    STA.W $198D 
+    LDA.W #$0001 : STA.W $198D 
     DEC A 
     STA.W $198F 
     STA.W $1991 
@@ -3520,18 +3364,13 @@ FileSelectMenu_Index10_1C_ReloadMain:
     STA.W $19AB 
     STA.W $19A3 
     STA.W $19AD 
-    LDA.W #$0064 
-    STA.W $19A5 
+    LDA.W #$0064 : STA.W $19A5 
     STA.W $19A7 
     STA.W $19A9 
-    LDA.W #$002F 
-    STA.W $19AF 
-    LDA.W #$0057 
-    STA.W $19B1 
-    LDA.W #$007F 
-    STA.W $19B3 
-    LDA.W #$0001 
-    STA.W $0723 
+    LDA.W #$002F : STA.W $19AF 
+    LDA.W #$0057 : STA.W $19B1 
+    LDA.W #$007F : STA.W $19B3 
+    LDA.W #$0001 : STA.W $0723 
     STA.W $0725 
     JSL.L ClearForceBlankAndWaitForNMI 
     INC.W $0727 
@@ -3551,10 +3390,8 @@ FileSelectMenu_Index3_TitleSequenceToMain_FadeIn:
     LDA.W $0952 
     ASL #2
     TAX 
-    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Yposition,X 
-    STA.W $19AB 
-    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Xposition,X 
-    STA.W $19A1 
+    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Yposition,X : STA.W $19AB 
+    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Xposition,X : STA.W $19A1 
     JSL.L Draw_Menu_Selection_Missile 
     JSL.L Draw_Border_Around_SAMUS_DATA 
     JSL.L HandleFadingIn 
@@ -3588,34 +3425,26 @@ Draw_FileSelection_Health:
     CLC 
     ADC.W #$0008 
     TAX 
-    LDA.W $09C2 
-    STA.W $4204 
+    LDA.W $09C2 : STA.W $4204 
     SEP #$20 
-    LDA.B #$64 
-    STA.W $4206 
+    LDA.B #$64 : STA.W $4206 
     PHA 
     PLA 
     PHA 
     PLA 
     REP #$20 
-    LDA.W $4214 
-    STA.B $14 
-    LDA.W $4216 
-    STA.B $12 
-    LDA.W $09C4 
-    STA.W $4204 
+    LDA.W $4214 : STA.B $14 
+    LDA.W $4216 : STA.B $12 
+    LDA.W $09C4 : STA.W $4204 
     SEP #$20 
-    LDA.B #$64 
-    STA.W $4206 
+    LDA.B #$64 : STA.W $4206 
     PHA 
     PLA 
     PHA 
     PLA 
     REP #$20 
-    LDA.W $4214 
-    STA.B $16 
-    LDA.W #$0007 
-    STA.B $18 
+    LDA.W $4214 : STA.B $16 
+    LDA.W #$0007 : STA.B $18 
     TXA 
     CLC 
     ADC.W #$0040 
@@ -3640,27 +3469,22 @@ Draw_FileSelection_Health:
     SEC 
     SBC.W #$004E 
     TAX 
-    LDA.W #$0008 
-    STA.B $18 
+    LDA.W #$0008 : STA.B $18 
     BRA .loop 
 
 
 .etanksDrawn:
     LDX.B $1A 
-    LDA.B $12 
-    STA.W $4204 
+    LDA.B $12 : STA.W $4204 
     SEP #$20 
-    LDA.B #$0A 
-    STA.W $4206 
+    LDA.B #$0A : STA.W $4206 
     PHA 
     PLA 
     PHA 
     PLA 
     REP #$20 
-    LDA.W $4214 
-    STA.B $14 
-    LDA.W $4216 
-    STA.B $12 
+    LDA.W $4214 : STA.B $14 
+    LDA.W $4216 : STA.B $12 
     LDX.B $1A 
     LDA.B $12 
     CLC 
@@ -3678,11 +3502,9 @@ Draw_FileSelection_Health:
 Draw_FileSelection_Time:
     BNE .return 
     STX.B $1A 
-    LDA.W $09E0 
-    STA.W $4204 
+    LDA.W $09E0 : STA.W $4204 
     SEP #$20 
-    LDA.B #$0A 
-    STA.W $4206 
+    LDA.B #$0A : STA.W $4206 
     PHA 
     PLA 
     PHA 
@@ -3705,11 +3527,9 @@ Draw_FileSelection_Time:
     TAX 
     LDY.W #Tilemap_FileSelect_colon 
     JSR.W Load_Tilemap_in_Y_to_X_Coordinates 
-    LDA.W $09DE 
-    STA.W $4204 
+    LDA.W $09DE : STA.W $4204 
     SEP #$20 
-    LDA.B #$0A 
-    STA.W $4206 
+    LDA.B #$0A : STA.W $4206 
     PHA 
     PLA 
     PHA 
@@ -3755,8 +3575,7 @@ FileSelectMenu_Index4_Main:
     BEQ .goto_done 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
-    LDA.W #$0021 
-    STA.W $0727 
+    LDA.W #$0021 : STA.W $0727 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
 
@@ -3782,10 +3601,8 @@ FileSelectMenu_Index4_Main:
     ADC.W #$0002 
     ASL A 
     TAX 
-    LDA.W #$0001 
-    STA.W $198D,X 
-    LDA.W $0952 
-    STA.L $701FEC 
+    LDA.W #$0001 : STA.W $198D,X 
+    LDA.W $0952 : STA.L $701FEC 
     EOR.W #$FFFF 
     STA.L $701FEE 
     LDA.W $0952 
@@ -3861,10 +3678,8 @@ FileSelectMenu_Index4_Main:
     LDA.W $0952 
     ASL #2
     TAX 
-    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Yposition,X 
-    STA.W $19AB 
-    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Xposition,X 
-    STA.W $19A1 
+    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Yposition,X : STA.W $19AB 
+    LDA.W FileSelectMenu_SelectionMissile_Coordinates_Xposition,X : STA.W $19A1 
     RTS 
 
 
@@ -3897,8 +3712,7 @@ FileSelectMenu_Index4_Main:
 .checkFive:
     CMP.W #$0005 
     BNE .return 
-    LDA.W #$0021 
-    STA.W $0727 
+    LDA.W #$0021 : STA.W $0727 
 
 .return:
     RTS 
@@ -3919,12 +3733,9 @@ FileSelectMap_Index0_GameOptionsToAreaSelectMap_ClearBG2:
     REP #$30 
     JSR.W ClearMenuTilemap 
     LDX.W $0330 
-    LDA.W #$0800 
-    STA.B $D0,X 
-    LDA.W #$3600 
-    STA.B $D2,X 
-    LDA.W #$007E 
-    STA.B $D4,X 
+    LDA.W #$0800 : STA.B $D0,X 
+    LDA.W #$3600 : STA.B $D2,X 
+    LDA.W #$007E : STA.B $D4,X 
     LDA.B $59 
     AND.W #$00FC 
     XBA 
@@ -3933,19 +3744,16 @@ FileSelectMap_Index0_GameOptionsToAreaSelectMap_ClearBG2:
     CLC 
     ADC.W #$0007 
     STA.W $0330 
-    LDA.W #$0000 
-    STA.L $7EC400 
+    LDA.W #$0000 : STA.L $7EC400 
     JSR.W LoadFileSelectPalettes 
     LDX.W #$0000 
 
 .loop:
-    LDA.L $7EC000,X 
-    STA.L $7EC200,X 
+    LDA.L $7EC000,X : STA.L $7EC200,X 
     INX #2
     CPX.W #$0040 
     BMI .loop 
-    LDA.W #$0000 
-    STA.L $7EC21C 
+    LDA.W #$0000 : STA.L $7EC21C 
     STA.L $7EC23C 
     INC.W $0727 
     RTS 
@@ -3995,8 +3803,7 @@ FileSelectMap_Index1_GameOptionsToAreaSelectMap_FadeOut:
     INC.W $0727 
     STZ.W $0787 
     SEP #$20 
-    LDA.B #$02 
-    STA.B $69 
+    LDA.B #$02 : STA.B $69 
 
 .return:
     RTS 
@@ -4032,12 +3839,10 @@ LoadAreaMapForegroundColors:
     LDA.W AreaSelectMap_ForegroundPaletteTable_RAM,Y 
     TAX 
     PLY 
-    LDA.W #$0005 
-    STA.B $12 
+    LDA.W #$0005 : STA.B $12 
 
 .loopColors:
-    LDA.W AreaSelectMap_ForgegroundPaletteTable,Y 
-    STA.L $7EC000,X 
+    LDA.W AreaSelectMap_ForgegroundPaletteTable,Y : STA.L $7EC000,X 
     INX #2
     INY #2
     DEC.B $12 
@@ -4117,12 +3922,9 @@ AreaSelectMap_ForegroundPaletteTable:
 FileSelectMap_Index2_11_Load_AreaSelect_ForegroundTilemap:
     REP #$30 
     LDX.W $0330 
-    LDA.W #$0800 
-    STA.B $D0,X 
-    LDA.W #Tilemap_AreaSelect_Foreground 
-    STA.B $D2,X 
-    LDA.W #$0081 
-    STA.B $D4,X 
+    LDA.W #$0800 : STA.B $D0,X 
+    LDA.W #Tilemap_AreaSelect_Foreground : STA.B $D2,X 
+    LDA.W #$0081 : STA.B $D4,X 
     LDA.B $58 
     AND.W #$00FC 
     XBA 
@@ -4153,16 +3955,14 @@ FileSelectMap_Index3_GameOptionsToAreaSelectMap:
 
 Load_AreaSelect_BackgroundTilemap:
     LDX.W $0330 
-    LDA.W #$0800 
-    STA.B $D0,X 
+    LDA.W #$0800 : STA.B $D0,X 
     TYA 
     XBA 
     ASL #3
     CLC 
     ADC.W #Tilemap_AreaSelect_Background_Crateria 
     STA.B $D2,X 
-    LDA.W #Tilemap_AreaSelect_Background_Crateria>>16 
-    STA.B $D4,X 
+    LDA.W #Tilemap_AreaSelect_Background_Crateria>>16 : STA.B $D4,X 
     LDA.B $5A 
     AND.W #$00FC 
     XBA 
@@ -4176,27 +3976,19 @@ Load_AreaSelect_BackgroundTilemap:
 
 FileSelectMap_Index4_13_PrepareTransitionToAreaSelectMap:
     SEP #$20 
-    LDA.B #$04 
-    STA.B $6B 
+    LDA.B #$04 : STA.B $6B 
     STA.W $212D 
-    LDA.B #$04 
-    STA.B $6D 
+    LDA.B #$04 : STA.B $6D 
     STA.W $212F 
-    LDA.B #$02 
-    STA.B $6F 
+    LDA.B #$02 : STA.B $6F 
     STA.W $2130 
-    LDA.B #$25 
-    STA.B $72 
+    LDA.B #$25 : STA.B $72 
     STA.W $2131 
-    LDA.B #$80 
-    STA.B $76 
-    LDA.B #$40 
-    STA.B $75 
-    LDA.B #$20 
-    STA.B $74 
+    LDA.B #$80 : STA.B $76 
+    LDA.B #$40 : STA.B $75 
+    LDA.B #$20 : STA.B $74 
     JSR.W Setup_Initial_ExpandingSquareTransition_HDMA 
-    LDA.B #$0C 
-    STA.B $85 
+    LDA.B #$0C : STA.B $85 
     STA.W $420C 
     JSR.W Config_Window1_ExpandingSquareTransition 
     STZ.W $18B0 
@@ -4208,110 +4000,68 @@ FileSelectMap_Index4_13_PrepareTransitionToAreaSelectMap:
 
 Config_Window1_ExpandingSquareTransition:
     SEP #$20 
-    LDA.B #$13 
-    STA.B $69 
+    LDA.B #$13 : STA.B $69 
     STA.W $212C 
-    LDA.B #$13 
-    STA.B $6C 
+    LDA.B #$13 : STA.B $6C 
     STA.W $212E 
-    LDA.B #$23 
-    STA.B $60 
+    LDA.B #$23 : STA.B $60 
     STA.W $2123 
-    LDA.B #$03 
-    STA.B $61 
+    LDA.B #$03 : STA.B $61 
     STA.W $2124 
-    LDA.B #$23 
-    STA.B $62 
+    LDA.B #$23 : STA.B $62 
     STA.W $2125 
     RTS 
 
 
 Setup_Initial_ExpandingSquareTransition_HDMA:
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7E9E20 
+    LDA.B #$00 : STA.L $7E9E20 
     STA.L $7E9E21 
     DEC A 
     STA.L $7E9E22 
     STA.L $7E9E23 
-    LDA.B #$7F 
-    STA.L $7E9E32 
-    LDA.B #$81 
-    STA.L $7E9E36 
-    LDA.B #$6F 
-    STA.L $7E9E00 
-    LDA.B #$22 
-    STA.L $7E9E01 
-    LDA.B #$9E 
-    STA.L $7E9E02 
-    LDA.B #$01 
-    STA.L $7E9E03 
-    LDA.B #$32 
-    STA.L $7E9E04 
-    LDA.B #$9E 
-    STA.L $7E9E05 
-    LDA.B #$01 
-    STA.L $7E9E06 
-    LDA.B #$32 
-    STA.L $7E9E07 
-    LDA.B #$9E 
-    STA.L $7E9E08 
-    LDA.B #$6F 
-    STA.L $7E9E09 
-    LDA.B #$20 
-    STA.L $7E9E0A 
-    LDA.B #$9E 
-    STA.L $7E9E0B 
-    LDA.B #$40 
-    STA.W $4320 
-    LDA.B #$26 
-    STA.W $4321 
-    LDA.B #$00 
-    STA.W $4322 
-    LDA.B #$9E 
-    STA.W $4323 
-    LDA.B #$7E 
-    STA.W $4324 
+    LDA.B #$7F : STA.L $7E9E32 
+    LDA.B #$81 : STA.L $7E9E36 
+    LDA.B #$6F : STA.L $7E9E00 
+    LDA.B #$22 : STA.L $7E9E01 
+    LDA.B #$9E : STA.L $7E9E02 
+    LDA.B #$01 : STA.L $7E9E03 
+    LDA.B #$32 : STA.L $7E9E04 
+    LDA.B #$9E : STA.L $7E9E05 
+    LDA.B #$01 : STA.L $7E9E06 
+    LDA.B #$32 : STA.L $7E9E07 
+    LDA.B #$9E : STA.L $7E9E08 
+    LDA.B #$6F : STA.L $7E9E09 
+    LDA.B #$20 : STA.L $7E9E0A 
+    LDA.B #$9E : STA.L $7E9E0B 
+    LDA.B #$40 : STA.W $4320 
+    LDA.B #$26 : STA.W $4321 
+    LDA.B #$00 : STA.W $4322 
+    LDA.B #$9E : STA.W $4323 
+    LDA.B #$7E : STA.W $4324 
     STA.W $4327 
     STZ.W $4325 
     STZ.W $4326 
     STZ.W $4328 
     STZ.W $4329 
     STZ.W $432A 
-    LDA.B #$6F 
-    STA.L $7E9E10 
-    LDA.B #$20 
-    STA.L $7E9E11 
-    LDA.B #$9E 
-    STA.L $7E9E12 
-    LDA.B #$01 
-    STA.L $7E9E13 
-    LDA.B #$36 
-    STA.L $7E9E14 
-    LDA.B #$9E 
-    STA.L $7E9E15 
-    LDA.B #$01 
-    STA.L $7E9E16 
-    LDA.B #$36 
-    STA.L $7E9E17 
-    LDA.B #$9E 
-    STA.L $7E9E18 
-    LDA.B #$6F 
-    STA.L $7E9E19 
-    LDA.B #$20 
-    STA.L $7E9E1A 
-    LDA.B #$9E 
-    STA.L $7E9E1B 
-    LDA.B #$40 
-    STA.W $4330 
-    LDA.B #$27 
-    STA.W $4331 
-    LDA.B #$10 
-    STA.W $4332 
-    LDA.B #$9E 
-    STA.W $4333 
-    LDA.B #$7E 
-    STA.W $4334 
+    LDA.B #$6F : STA.L $7E9E10 
+    LDA.B #$20 : STA.L $7E9E11 
+    LDA.B #$9E : STA.L $7E9E12 
+    LDA.B #$01 : STA.L $7E9E13 
+    LDA.B #$36 : STA.L $7E9E14 
+    LDA.B #$9E : STA.L $7E9E15 
+    LDA.B #$01 : STA.L $7E9E16 
+    LDA.B #$36 : STA.L $7E9E17 
+    LDA.B #$9E : STA.L $7E9E18 
+    LDA.B #$6F : STA.L $7E9E19 
+    LDA.B #$20 : STA.L $7E9E1A 
+    LDA.B #$9E : STA.L $7E9E1B 
+    LDA.B #$40 : STA.W $4330 
+    LDA.B #$27 : STA.W $4331 
+    LDA.B #$10 : STA.W $4332 
+    LDA.B #$9E : STA.W $4333 
+    LDA.B #$7E : STA.W $4334 
     STA.W $4337 
     STZ.W $4335 
     STZ.W $4336 
@@ -4364,18 +4114,14 @@ FileSelectMap_Index5_GameOptionsToAreaSelectMap_ExpSqrTrans:
     LDA.B $6D 
     AND.B #$00 
     STA.B $6D 
-    LDA.B #$18 
-    STA.B $B7 
-    LDA.B #$00 
-    STA.B $B8 
+    LDA.B #$18 : STA.B $B7 
+    LDA.B #$00 : STA.B $B8 
     REP #$30 
-    LDA.W #$0001 
-    STA.W $073B 
+    LDA.W #$0001 : STA.W $073B 
     LDX.W #$0000 
 
 .copyTilemap:
-    LDA.L Tilemap_BG2PauseScreen_BG2RoomSelectMap_0,X 
-    STA.L $7E4000,X 
+    LDA.L Tilemap_BG2PauseScreen_BG2RoomSelectMap_0,X : STA.L $7E4000,X 
     INX #2
     CPX.W #$0640 
     BMI .copyTilemap 
@@ -4386,27 +4132,21 @@ FileSelectMap_Index5_GameOptionsToAreaSelectMap_ExpSqrTrans:
     INX #2
     CPX.W #$0800 
     BMI .loopTilemap 
-    LDA.W #$4154 
-    STA.B $00 
-    LDA.W #$007E 
-    STA.B $02 
+    LDA.W #$4154 : STA.B $00 
+    LDA.W #$007E : STA.B $02 
     JSL.L DrawRoomSelectMap_AreaLabel 
     LDY.W #$0140 
     LDX.W #$077E 
 
 .loopMapControls:
-    LDA.W Tilemap_RoomSelectMap_Controls,Y 
-    STA.L $7E4000,X 
+    LDA.W Tilemap_RoomSelectMap_Controls,Y : STA.L $7E4000,X 
     DEX #2
     DEY #2
     BNE .loopMapControls 
     LDX.W $0330 
-    LDA.W #$0800 
-    STA.B $D0,X 
-    LDA.W #$4000 
-    STA.B $D2,X 
-    LDA.W #$007E 
-    STA.B $D4,X 
+    LDA.W #$0800 : STA.B $D0,X 
+    LDA.W #$4000 : STA.B $D2,X 
+    LDA.W #$007E : STA.B $D4,X 
     LDA.B $59 
     AND.W #$00FC 
     XBA 
@@ -4438,8 +4178,7 @@ FineSelectMap_Index6_AreaSelectMap:
 .checkB:
     BIT.W #$8000 
     BEQ + 
-    LDA.W #$0016 
-    STA.W $0727 
+    LDA.W #$0016 : STA.W $0727 
     JMP.W DrawAreaSelectMapLabels 
 
 
@@ -4456,8 +4195,7 @@ JMP_DrawAreaSelectMapLabels:
 
 FineSelectMap_Index6_AreaSelectMap_Debug:
     STZ.B $18 
-    LDA.B $16 
-    STA.B $18 
+    LDA.B $16 : STA.B $18 
     LDA.W $0950 
     JSR.W A_equals_A_Minus_1_Mod_6 
     JSR.W Debug_Check_FileSelectMapArea_CanBeSelected 
@@ -4479,10 +4217,8 @@ FineSelectMap_Index6_AreaSelectMap_Debug:
 
 
 FineSelectMap_Index6_AreaSelectMap_Debug_debugNext:
-    LDA.W #$0006 
-    STA.B $16 
-    LDA.W $0950 
-    STA.B $1C 
+    LDA.W #$0006 : STA.B $16 
+    LDA.W $0950 : STA.B $1C 
 
 .loop:
     LDA.B $1C 
@@ -4524,10 +4260,8 @@ Select_FileSelectMap_Area:
     INC.W $0727 
     LDA.W $05D1 
     BNE .debugEnabled 
-    LDA.L $7ED918 
-    STA.W $079F 
-    LDA.L $7ED916 
-    STA.W $078B 
+    LDA.L $7ED918 : STA.W $079F 
+    LDA.L $7ED916 : STA.W $078B 
     JMP.W JMP_DrawAreaSelectMapLabels 
 
 
@@ -4535,17 +4269,13 @@ Select_FileSelectMap_Area:
     LDA.W $0950 
     ASL A 
     TAX 
-    LDA.W FileSelectMapArea_IndexTable,X 
-    STA.W $079F 
+    LDA.W FileSelectMapArea_IndexTable,X : STA.W $079F 
     ASL A 
     TAX 
-    LDA.L $7ED8F8,X 
-    STA.B $12 
+    LDA.L $7ED8F8,X : STA.B $12 
     LDX.W #$0000 
-    LDA.W #$0082 
-    STA.B $02 
-    LDA.W #MapIcon_PositionTablePointers_savePoints 
-    STA.B $00 
+    LDA.W #$0082 : STA.B $02 
+    LDA.W #MapIcon_PositionTablePointers_savePoints : STA.B $00 
     LDA.W $079F 
     ASL A 
     TAY 
@@ -4554,8 +4284,7 @@ Select_FileSelectMap_Area:
 .crash:
     BEQ .crash 
     STA.B $00 
-    LDA.W #$0010 
-    STA.B $14 
+    LDA.W #$0010 : STA.B $14 
 
 .loopSavesElevators:
     LSR.B $12 
@@ -4632,8 +4361,7 @@ Switch_Active_FileSelectMapArea:
     LDA.W FileSelectMapArea_IndexTable,X 
     TAX 
     JSR.W LoadInactiveAreaMapForegroundColors 
-    LDA.B $1C 
-    STA.W $0950 
+    LDA.B $1C : STA.W $0950 
     ASL A 
     TAX 
     LDA.W FileSelectMapArea_IndexTable,X 
@@ -4674,12 +4402,10 @@ DrawAreaSelectMapLabels:
     PHA 
     PLB 
     PLB 
-    LDA.L $7ED8F8,X 
-    STA.B $24 
+    LDA.L $7ED8F8,X : STA.B $24 
     LDA.L MapIcon_PositionTablePointers_savePoints,X 
     TAX 
-    LDA.W #$0010 
-    STA.B $1E 
+    LDA.W #$0010 : STA.B $1E 
 
 .loopSavePoints:
     LDA.W $0000,X 
@@ -4799,40 +4525,27 @@ FileSelectMap_Index7_AreaSelectMapToRoomSelectMap:
     JSR.W DrawAreaSelectMapLabels 
     SEP #$20 
     JSR.W Setup_Initial_ExpandingSquareTransition_HDMA 
-    LDA.B #$13 
-    STA.B $69 
-    LDA.B #$13 
-    STA.B $6C 
-    LDA.B #$32 
-    STA.B $60 
+    LDA.B #$13 : STA.B $69 
+    LDA.B #$13 : STA.B $6C 
+    LDA.B #$32 : STA.B $60 
     STA.W $2123 
-    LDA.B #$02 
-    STA.B $61 
+    LDA.B #$02 : STA.B $61 
     STA.W $2124 
-    LDA.B #$05 
-    STA.B $72 
+    LDA.B #$05 : STA.B $72 
     STA.W $2131 
-    LDA.B #$22 
-    STA.B $62 
+    LDA.B #$22 : STA.B $62 
     STA.W $2125 
-    LDA.B #$30 
-    STA.B $5D 
-    LDA.B #$00 
-    STA.L $7E9E09 
+    LDA.B #$30 : STA.B $5D 
+    LDA.B #$00 : STA.L $7E9E09 
     STA.L $7E9E19 
     REP #$30 
-    LDA.W #$4154 
-    STA.B $00 
-    LDA.W #$007E 
-    STA.B $02 
+    LDA.W #$4154 : STA.B $00 
+    LDA.W #$007E : STA.B $02 
     JSL.L DrawRoomSelectMap_AreaLabel 
     LDX.W $0330 
-    LDA.W #$0200 
-    STA.B $D0,X 
-    LDA.W #$4000 
-    STA.B $D2,X 
-    LDA.W #$007E 
-    STA.B $D4,X 
+    LDA.W #$0200 : STA.B $D0,X 
+    LDA.W #$4000 : STA.B $D2,X 
+    LDA.W #$007E : STA.B $D4,X 
     LDA.B $59 
     AND.W #$00FC 
     XBA 
@@ -4844,45 +4557,32 @@ FileSelectMap_Index7_AreaSelectMapToRoomSelectMap:
     LDA.W $079F 
     ASL A 
     TAX 
-    LDA.W RoomSelectMap_ExpandingSquare_Timers,X 
-    STA.L $7E9E50 
+    LDA.W RoomSelectMap_ExpandingSquare_Timers,X : STA.L $7E9E50 
     TXA 
     ASL A 
     TAX 
-    LDA.W FileSelectMap_Labels_Positions_X,X 
-    STA.L $7E9E32 
+    LDA.W FileSelectMap_Labels_Positions_X,X : STA.L $7E9E32 
     STA.L $7E9E36 
-    LDA.W FileSelectMap_Labels_Positions_Y,X 
-    STA.L $7E9E3A 
+    LDA.W FileSelectMap_Labels_Positions_Y,X : STA.L $7E9E3A 
     STA.L $7E9E3E 
-    LDA.W #$0000 
-    STA.L $7E9E30 
+    LDA.W #$0000 : STA.L $7E9E30 
     STA.L $7E9E34 
     STA.L $7E9E38 
     STA.L $7E9E3C 
     TXA 
     ASL #2
     TAX 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_leftSub,X 
-    STA.L $7E9E40 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_left,X 
-    STA.L $7E9E42 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_rightSub,X 
-    STA.L $7E9E44 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_right,X 
-    STA.L $7E9E46 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_topSub,X 
-    STA.L $7E9E48 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_top,X 
-    STA.L $7E9E4A 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_bottomSub,X 
-    STA.L $7E9E4C 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_bottom,X 
-    STA.L $7E9E4E 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_leftSub,X : STA.L $7E9E40 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_left,X : STA.L $7E9E42 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_rightSub,X : STA.L $7E9E44 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_right,X : STA.L $7E9E46 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_topSub,X : STA.L $7E9E48 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_top,X : STA.L $7E9E4A 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_bottomSub,X : STA.L $7E9E4C 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_bottom,X : STA.L $7E9E4E 
     SEP #$20 
     JSR.W Setup_FileSelectMap_ExpandingSquareTransition_HDMA 
-    LDA.B #$0C 
-    STA.B $85 
+    LDA.B #$0C : STA.B $85 
     STA.W $420C 
     REP #$20 
     INC.W $0727 
@@ -4919,8 +4619,7 @@ Setup_FileSelectMap_ExpandingSquareTransition_HDMA:
     JSR.W AddExpandingSquareTransition_LeftPos_IndirectHDMATable 
     LDY.W #$9E20 ; $7E
     JSR.W AddExpandingSquareTransition_RightPos_IndirectHDMATable 
-    LDA.B #$00 
-    STA.L $7E9E00,X 
+    LDA.B #$00 : STA.L $7E9E00,X 
     STA.L $7E9E10,X 
     RTS 
 
@@ -4946,8 +4645,7 @@ AddExpandingSquareTransition_LeftPos_IndirectHDMATable:
   + SEC 
     SBC.B #$7F 
     STA.L $7E9E00,X 
-    LDA.B #$7F 
-    STA.L $7E9E03,X 
+    LDA.B #$7F : STA.L $7E9E03,X 
     REP #$20 
     TYA 
     STA.L $7E9E01,X 
@@ -4976,8 +4674,7 @@ AddExpandingSquareTransition_RightPos_IndirectHDMATable:
   + SEC 
     SBC.B #$7F 
     STA.L $7E9E10,X 
-    LDA.B #$7F 
-    STA.L $7E9E13,X 
+    LDA.B #$7F : STA.L $7E9E13,X 
     REP #$20 
     TYA 
     STA.L $7E9E11,X 
@@ -4996,10 +4693,8 @@ FileSelectMap_Index8_AreaSelectMapToRoomSelectMap:
     BPL + 
     INC.W $0727 
     SEP #$20 
-    LDA.B #$02 
-    STA.B $69 
-    LDA.B #$00 
-    STA.B $6C 
+    LDA.B #$02 : STA.B $69 
+    LDA.B #$00 : STA.B $6C 
     STA.B $6D 
     STA.B $6B 
 
@@ -5090,8 +4785,7 @@ FileSelectMap_Index9_AreaSelectMapToRoomSelectMap_Init:
     CLC 
     ADC.W #$0018 
     STA.W $05B0 
-    LDA.W #$0018 
-    STA.B $B7 
+    LDA.W #$0018 : STA.B $B7 
     LDA.B $69 
     AND.W #$FFFB 
     STA.B $69 
@@ -5160,16 +4854,14 @@ FileSelectMap_IndexA_RoomSelectMap:
     JSL.L QueueSound_Lib1_Max6 
     PHB 
     SEP #$20 
-    LDA.B #$82 
-    STA.B $02 
+    LDA.B #$82 : STA.B $02 
     PHA 
     PLB 
     REP #$20 
     LDA.W $079F 
     ASL A 
     TAX 
-    LDA.L $7ED8F8,X 
-    STA.B $18 
+    LDA.L $7ED8F8,X : STA.B $18 
     LDA.W $078B 
 
 .loopIndex:
@@ -5189,11 +4881,9 @@ FileSelectMap_IndexA_RoomSelectMap:
     LDA.W $078B 
     ASL #2
     TAY 
-    LDA.B [$00],Y 
-    STA.B $12 
+    LDA.B [$00],Y : STA.B $12 
     INY #2
-    LDA.B [$00],Y 
-    STA.B $14 
+    LDA.B [$00],Y : STA.B $14 
     LDA.W $078B 
     CMP.W #$0010 
     BPL .debugSavePoints 
@@ -5238,8 +4928,7 @@ FileSelectMap_IndexA_RoomSelectMap:
     LDA.W $079F 
     ASL A 
     TAX 
-    LDA.L $7ED8F8,X 
-    STA.B $18 
+    LDA.L $7ED8F8,X : STA.B $18 
     BRA .loopSavesElevators 
 
 
@@ -5396,8 +5085,7 @@ FileSelectMap_IndexD_RoomSelectMapToAreaSelectMap_FadeOut:
     AND.W #$000F 
     BNE .return 
     INC.W $0727 
-    LDA.W #$0020 
-    STA.W $0F7A 
+    LDA.W #$0020 : STA.W $0F7A 
 
 .return:
     RTS 
@@ -5418,8 +5106,7 @@ FileSelectMap_IndexE_RoomSelectMapToLoadingGameData_Wait:
 
 FileSelectMap_IndexF_RoomSelectMapToAreaSelectMap_ClearBG1:
     SEP #$20 
-    LDA.B #$12 
-    STA.B $69 
+    LDA.B #$12 : STA.B $69 
     REP #$30 
     LDA.W #$000F 
     LDX.W #$07FE 
@@ -5429,12 +5116,9 @@ FileSelectMap_IndexF_RoomSelectMapToAreaSelectMap_ClearBG1:
     DEX #2
     BPL .loop 
     LDX.W $0330 
-    LDA.W #$0800 
-    STA.B $D0,X 
-    LDA.W #$3000 
-    STA.B $D2,X 
-    LDA.W #$007E 
-    STA.B $D4,X 
+    LDA.W #$0800 : STA.B $D0,X 
+    LDA.W #$3000 : STA.B $D2,X 
+    LDA.W #$007E : STA.B $D4,X 
     LDA.B $58 
     AND.W #$00FC 
     XBA 
@@ -5469,8 +5153,7 @@ FileSelectMap_Index10_RoomSelectMapToAreaSelectMap_LoadPal:
 
 FileSelectMap_Index14_PrepContractSquareTransToAreaSelect:
     SEP #$20 
-    LDA.B #$00 
-    STA.B $85 
+    LDA.B #$00 : STA.B $85 
     REP #$30 
     LDA.W #$003C 
     JSL.L QueueSound_Lib1_Max6 
@@ -5484,56 +5167,36 @@ FileSelectMap_Index14_PrepContractSquareTransToAreaSelect:
     TXA 
     ASL #3
     TAX 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_leftSub,X 
-    STA.L $7E9E40 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_left,X 
-    STA.L $7E9E42 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_rightSub,X 
-    STA.L $7E9E44 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_right,X 
-    STA.L $7E9E46 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_topSub,X 
-    STA.L $7E9E48 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_top,X 
-    STA.L $7E9E4A 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_bottomSub,X 
-    STA.L $7E9E4C 
-    LDA.W RoomSelectMap_ExpandingSquare_Velocities_bottom,X 
-    STA.L $7E9E4E 
-    LDA.W #$0008 
-    STA.L $7E9E32 
-    LDA.W #$00F8 
-    STA.L $7E9E36 
-    LDA.W #$0008 
-    STA.L $7E9E3A 
-    LDA.W #$00D8 
-    STA.L $7E9E3E 
-    LDA.W #$0000 
-    STA.L $7E9E30 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_leftSub,X : STA.L $7E9E40 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_left,X : STA.L $7E9E42 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_rightSub,X : STA.L $7E9E44 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_right,X : STA.L $7E9E46 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_topSub,X : STA.L $7E9E48 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_top,X : STA.L $7E9E4A 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_bottomSub,X : STA.L $7E9E4C 
+    LDA.W RoomSelectMap_ExpandingSquare_Velocities_bottom,X : STA.L $7E9E4E 
+    LDA.W #$0008 : STA.L $7E9E32 
+    LDA.W #$00F8 : STA.L $7E9E36 
+    LDA.W #$0008 : STA.L $7E9E3A 
+    LDA.W #$00D8 : STA.L $7E9E3E 
+    LDA.W #$0000 : STA.L $7E9E30 
     STA.L $7E9E34 
     STA.L $7E9E38 
     STA.L $7E9E3C 
     JSR.W Setup_FileSelectMap_ExpandingSquareTransition_HDMA 
     INC.W $0727 
     SEP #$20 
-    LDA.B #$0C 
-    STA.B $85 
+    LDA.B #$0C : STA.B $85 
     STA.W $420C 
-    LDA.B #$32 
-    STA.B $60 
+    LDA.B #$32 : STA.B $60 
     STA.W $2123 
-    LDA.B #$02 
-    STA.B $61 
+    LDA.B #$02 : STA.B $61 
     STA.W $2124 
-    LDA.B #$30 
-    STA.B $5D 
-    LDA.B #$22 
-    STA.B $62 
-    LDA.B #$00 
-    STA.L $7E9E09 
+    LDA.B #$30 : STA.B $5D 
+    LDA.B #$22 : STA.B $62 
+    LDA.B #$00 : STA.L $7E9E09 
     STA.L $7E9E19 
-    LDA.B #$00 
-    STA.B $B3 
+    LDA.B #$00 : STA.B $B3 
     STA.B $B4 
     STA.B $B1 
     STA.B $B2 
@@ -5582,10 +5245,8 @@ FileSelectMap_Index15_RoomSelectMapToAreaSelectMap:
     SBC.W #$000F 
     STA.W $0727 
     SEP #$20 
-    LDA.B #$11 
-    STA.B $69 
-    LDA.B #$00 
-    STA.B $6C 
+    LDA.B #$11 : STA.B $69 
+    LDA.B #$00 : STA.B $6C 
     STA.B $6D 
 
 .return:
@@ -5620,17 +5281,13 @@ Tilemap_RoomSelectMap_Controls:
 
 NewSaveFile:
     REP #$30 
-    LDA.W #$0063 
-    STA.W $09C4 
+    LDA.W #$0063 : STA.W $09C4 
     STA.W $09C2 
-    LDA.W #$0000 
-    STA.W $09C8 
+    LDA.W #$0000 : STA.W $09C8 
     STA.W $09C6 
-    LDA.W #$0000 
-    STA.W $09CC 
+    LDA.W #$0000 : STA.W $09CC 
     STA.W $09CA 
-    LDA.W #$0000 
-    STA.W $09D0 
+    LDA.W #$0000 : STA.W $09D0 
     STA.W $09CE 
     STZ.W $09D2 
     STZ.W $09A8 
@@ -5641,28 +5298,17 @@ NewSaveFile:
     STZ.W $09D4 
     STZ.W $09D6 
     STZ.W $09D8 
-    LDA.W #$0800 
-    STA.W $09AA 
-    LDA.W #$0400 
-    STA.W $09AC 
-    LDA.W #$0200 
-    STA.W $09AE 
-    LDA.W #$0100 
-    STA.W $09B0 
-    LDA.W #$0080 
-    STA.W $09B4 
-    LDA.W #$8000 
-    STA.W $09B6 
-    LDA.W #$0040 
-    STA.W $09B2 
-    LDA.W #$4000 
-    STA.W $09B8 
-    LDA.W #$2000 
-    STA.W $09BA 
-    LDA.W #$0010 
-    STA.W $09BE 
-    LDA.W #$0020 
-    STA.W $09BC 
+    LDA.W #$0800 : STA.W $09AA 
+    LDA.W #$0400 : STA.W $09AC 
+    LDA.W #$0200 : STA.W $09AE 
+    LDA.W #$0100 : STA.W $09B0 
+    LDA.W #$0080 : STA.W $09B4 
+    LDA.W #$8000 : STA.W $09B6 
+    LDA.W #$0040 : STA.W $09B2 
+    LDA.W #$4000 : STA.W $09B8 
+    LDA.W #$2000 : STA.W $09BA 
+    LDA.W #$0010 : STA.W $09BE 
+    LDA.W #$0020 : STA.W $09BC 
     STZ.W $09DA 
     STZ.W $09DC 
     STZ.W $09DE 
@@ -5670,8 +5316,7 @@ NewSaveFile:
     STZ.W $09E2 
     STZ.W $09E4 
     STZ.W $09EA 
-    LDA.W #$0001 
-    STA.W $09E6 
+    LDA.W #$0001 : STA.W $09E6 
     STA.W $09E8 
     LDX.W #$0000 
     LDA.W #$0000 

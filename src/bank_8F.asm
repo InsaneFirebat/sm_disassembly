@@ -2463,10 +2463,8 @@ SetupASM_ClearBlocksAfterSavingAnimalsAndShakeScreen:
     JSL.L Spawn_Hardcoded_PLM 
     db $3D,$0B 
     dw PLMEntries_ClearCrateriaMainstreetEscapePassageIfCrittersEsc 
-    LDA.W #$0018 
-    STA.W $183E 
-    LDA.W #$FFFF 
-    STA.W $1840 
+    LDA.W #$0018 : STA.W $183E 
+    LDA.W #$FFFF : STA.W $1840 
     RTS 
 
 
@@ -2493,10 +2491,8 @@ RTS_8F91BC:
 
 
 SetupASM_ShakeScreenAndCall88A7D8DuringEscape:
-    LDA.W #$0006 
-    STA.W $183E 
-    LDA.W #$FFFF 
-    STA.W $1840 
+    LDA.W #$0006 : STA.W $183E 
+    LDA.W #$FFFF : STA.W $1840 
 
 SetupASM_ScrollingSkyLand:
     JSL.L FXType_20_ScrollingSky_RoomSetupASM_ScrollingSkyLand 
@@ -7754,8 +7750,7 @@ DoorASM_StartWreckedShipTreadmillWestEntrance:
 DoorASM_Scroll_6_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD26 
+    LDA.B #$02 : STA.L $7ECD26 
     PLP 
     RTS 
 
@@ -7763,8 +7758,7 @@ DoorASM_Scroll_6_Green:
 DoorASM_Scroll_0_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD20 
+    LDA.B #$01 : STA.L $7ECD20 
     PLP 
     RTS 
 
@@ -7772,8 +7766,7 @@ DoorASM_Scroll_0_Blue:
 DoorASM_Scroll_13_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD33 
+    LDA.B #$01 : STA.L $7ECD33 
     PLP 
     RTS 
 
@@ -7781,10 +7774,8 @@ DoorASM_Scroll_13_Blue:
 DoorASM_Scroll_4_Red_8_Green:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD24 
-    LDA.B #$02 
-    STA.L $7ECD28 
+    LDA.B #$00 : STA.L $7ECD24 
+    LDA.B #$02 : STA.L $7ECD28 
     PLP 
     RTS 
 
@@ -7792,8 +7783,7 @@ DoorASM_Scroll_4_Red_8_Green:
 DoorASM_Scroll_8_9_A_B_Red:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD28 
+    LDA.B #$00 : STA.L $7ECD28 
     STA.L $7ECD29 
     STA.L $7ECD2A 
     STA.L $7ECD2B 
@@ -7804,8 +7794,7 @@ DoorASM_Scroll_8_9_A_B_Red:
 DoorASM_Scroll_2_3_4_5_B_C_D_11_Red:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD22 
+    LDA.B #$00 : STA.L $7ECD22 
     STA.L $7ECD23 
     STA.L $7ECD24 
     STA.L $7ECD25 
@@ -7820,8 +7809,7 @@ DoorASM_Scroll_2_3_4_5_B_C_D_11_Red:
 DoorASM_Scroll_1_4_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD21 
+    LDA.B #$02 : STA.L $7ECD21 
     STA.L $7ECD24 
     PLP 
     RTS 
@@ -7830,8 +7818,7 @@ DoorASM_Scroll_1_4_Green:
 DoorASM_Scroll_2_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD22 
+    LDA.B #$01 : STA.L $7ECD22 
     PLP 
     RTS 
 
@@ -7839,8 +7826,7 @@ DoorASM_Scroll_2_Blue:
 DoorASM_Scroll_17_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD37 
+    LDA.B #$01 : STA.L $7ECD37 
     PLP 
     RTS 
 
@@ -7848,8 +7834,7 @@ DoorASM_Scroll_17_Blue:
 DoorASM_Scroll_4_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD24 
+    LDA.B #$01 : STA.L $7ECD24 
     PLP 
     RTS 
 
@@ -7857,8 +7842,7 @@ DoorASM_Scroll_4_Blue:
 DoorASM_Scroll_6_Green_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD26 
+    LDA.B #$02 : STA.L $7ECD26 
     PLP 
     RTS 
 
@@ -7866,8 +7850,7 @@ DoorASM_Scroll_6_Green_duplicate:
 DoorASM_Scroll_3_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD23 
+    LDA.B #$02 : STA.L $7ECD23 
     PLP 
     RTS 
 
@@ -8126,8 +8109,7 @@ LibBG_Brinstar_7_BlueGridBlocks:
 DoorASM_Scroll_18_1C_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD38 
+    LDA.B #$02 : STA.L $7ECD38 
     STA.L $7ECD3C 
     PLP 
     RTS 
@@ -8136,8 +8118,7 @@ DoorASM_Scroll_18_1C_Green:
 DoorASM_Scroll_5_6_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD25 
+    LDA.B #$01 : STA.L $7ECD25 
     STA.L $7ECD26 
     PLP 
     RTS 
@@ -8146,8 +8127,7 @@ DoorASM_Scroll_5_6_Blue:
 DoorASM_Scroll_1D_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD3D 
+    LDA.B #$01 : STA.L $7ECD3D 
     PLP 
     RTS 
 
@@ -8155,8 +8135,7 @@ DoorASM_Scroll_1D_Blue:
 DoorASM_Scroll_2_3_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD22 
+    LDA.B #$02 : STA.L $7ECD22 
     STA.L $7ECD23 
     PLP 
     RTS 
@@ -8165,10 +8144,8 @@ DoorASM_Scroll_2_3_Green:
 DoorASM_Scroll_0_Red_1_Green:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD20 
-    LDA.B #$02 
-    STA.L $7ECD21 
+    LDA.B #$00 : STA.L $7ECD20 
+    LDA.B #$02 : STA.L $7ECD21 
     PLP 
     RTS 
 
@@ -8176,8 +8153,7 @@ DoorASM_Scroll_0_Red_1_Green:
 DoorASM_Scroll_B_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD2B 
+    LDA.B #$02 : STA.L $7ECD2B 
     PLP 
     RTS 
 
@@ -8185,10 +8161,8 @@ DoorASM_Scroll_B_Green:
 DoorASM_Scroll_Scroll_1C_Red_1D_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD3C 
-    LDA.B #$01 
-    STA.L $7ECD3D 
+    LDA.B #$00 : STA.L $7ECD3C 
+    LDA.B #$01 : STA.L $7ECD3D 
     PLP 
     RTS 
 
@@ -8196,8 +8170,7 @@ DoorASM_Scroll_Scroll_1C_Red_1D_Blue:
 DoorASM_Scroll_4_Red:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD24 
+    LDA.B #$00 : STA.L $7ECD24 
     PLP 
     RTS 
 
@@ -8205,8 +8178,7 @@ DoorASM_Scroll_4_Red:
 DoorASM_Scroll_20_24_25_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD40 
+    LDA.B #$02 : STA.L $7ECD40 
     STA.L $7ECD44 
     STA.L $7ECD45 
     PLP 
@@ -8216,8 +8188,7 @@ DoorASM_Scroll_20_24_25_Green:
 DoorASM_Scroll_2_Blue_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD22 
+    LDA.B #$01 : STA.L $7ECD22 
     PLP 
     RTS 
 
@@ -8225,8 +8196,7 @@ DoorASM_Scroll_2_Blue_duplicate:
 DoorASM_Scroll_0_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD20 
+    LDA.B #$02 : STA.L $7ECD20 
     PLP 
     RTS 
 
@@ -8234,8 +8204,7 @@ DoorASM_Scroll_0_Green:
 DoorASM_Scroll_6_7_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD26 
+    LDA.B #$02 : STA.L $7ECD26 
     STA.L $7ECD27 
     PLP 
     RTS 
@@ -8244,10 +8213,8 @@ DoorASM_Scroll_6_7_Green:
 DoorASM_Scroll_1_Blue_2_Red:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD21 
-    LDA.B #$00 
-    STA.L $7ECD22 
+    LDA.B #$01 : STA.L $7ECD21 
+    LDA.B #$00 : STA.L $7ECD22 
     PLP 
     RTS 
 
@@ -8255,10 +8222,8 @@ DoorASM_Scroll_1_Blue_2_Red:
 DoorASM_Scroll_1_Blue_3_Red:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD21 
-    LDA.B #$00 
-    STA.L $7ECD23 
+    LDA.B #$01 : STA.L $7ECD21 
+    LDA.B #$00 : STA.L $7ECD23 
     PLP 
     RTS 
 
@@ -8266,10 +8231,8 @@ DoorASM_Scroll_1_Blue_3_Red:
 DoorASM_Scroll_0_Red_4_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD20 
-    LDA.B #$01 
-    STA.L $7ECD24 
+    LDA.B #$00 : STA.L $7ECD20 
+    LDA.B #$01 : STA.L $7ECD24 
     PLP 
     RTS 
 
@@ -8277,8 +8240,7 @@ DoorASM_Scroll_0_Red_4_Blue:
 DoorASM_Scroll_2_3_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD22 
+    LDA.B #$01 : STA.L $7ECD22 
     STA.L $7ECD23 
     PLP 
     RTS 
@@ -8287,8 +8249,7 @@ DoorASM_Scroll_2_3_Blue:
 DoorASM_Scroll_0_1_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD20 
+    LDA.B #$02 : STA.L $7ECD20 
     STA.L $7ECD21 
     PLP 
     RTS 
@@ -8297,8 +8258,7 @@ DoorASM_Scroll_0_1_Green:
 DoorASM_Scroll_1_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD21 
+    LDA.B #$02 : STA.L $7ECD21 
     PLP 
     RTS 
 
@@ -8306,8 +8266,7 @@ DoorASM_Scroll_1_Green:
 DoorASM_Scroll_F_12_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD2F 
+    LDA.B #$02 : STA.L $7ECD2F 
     STA.L $7ECD32 
     PLP 
     RTS 
@@ -8316,8 +8275,7 @@ DoorASM_Scroll_F_12_Green:
 DoorASM_Scroll_6_Green_duplicate_again:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD26 
+    LDA.B #$02 : STA.L $7ECD26 
     PLP 
     RTS 
 
@@ -8325,18 +8283,15 @@ DoorASM_Scroll_6_Green_duplicate_again:
 DoorASM_Scroll_0_Green_1_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD20 
-    LDA.B #$01 
-    STA.L $7ECD21 
+    LDA.B #$02 : STA.L $7ECD20 
+    LDA.B #$01 : STA.L $7ECD21 
     PLP 
     RTS 
 
 
 DoorASM_Scroll_2_Green:
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD22 
+    LDA.B #$02 : STA.L $7ECD22 
     RTS 
 
 
@@ -8462,11 +8417,9 @@ LibBG_Norfair_9_Bubbles:
 DoorASM_Scroll_3_4_Red_6_7_8_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD23 
+    LDA.B #$00 : STA.L $7ECD23 
     STA.L $7ECD24 
-    LDA.B #$01 
-    STA.L $7ECD26 
+    LDA.B #$01 : STA.L $7ECD26 
     STA.L $7ECD27 
     STA.L $7ECD28 
     PLP 
@@ -8476,14 +8429,11 @@ DoorASM_Scroll_3_4_Red_6_7_8_Blue:
 DoorASM_Scroll_1_2_3_Blue_4_Green_6_Red:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD21 
+    LDA.B #$01 : STA.L $7ECD21 
     STA.L $7ECD22 
     STA.L $7ECD23 
-    LDA.B #$02 
-    STA.L $7ECD24 
-    LDA.B #$00 
-    STA.L $7ECD26 
+    LDA.B #$02 : STA.L $7ECD24 
+    LDA.B #$00 : STA.L $7ECD26 
     PLP 
     RTS 
 
@@ -8491,8 +8441,7 @@ DoorASM_Scroll_1_2_3_Blue_4_Green_6_Red:
 DoorASM_Scroll_0_1_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD20 
+    LDA.B #$01 : STA.L $7ECD20 
     STA.L $7ECD21 
     PLP 
     RTS 
@@ -8501,10 +8450,8 @@ DoorASM_Scroll_0_1_Blue:
 DoorASM_Scroll_0_Blue_1_Red:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD21 
-    LDA.B #$01 
-    STA.L $7ECD20 
+    LDA.B #$00 : STA.L $7ECD21 
+    LDA.B #$01 : STA.L $7ECD20 
     PLP 
     RTS 
 
@@ -8512,8 +8459,7 @@ DoorASM_Scroll_0_Blue_1_Red:
 DoorASM_Scroll_A_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD2A 
+    LDA.B #$02 : STA.L $7ECD2A 
     PLP 
     RTS 
 
@@ -8522,10 +8468,8 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DoorASM_Scroll_0_Blue_2_Red_8FC005:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD20 
-    LDA.B #$00 
-    STA.L $7ECD22 
+    LDA.B #$01 : STA.L $7ECD20 
+    LDA.B #$00 : STA.L $7ECD22 
     PLP 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -8534,8 +8478,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 DoorASM_Scroll_0_2_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD20 
+    LDA.B #$02 : STA.L $7ECD20 
     STA.L $7ECD22 
     PLP 
     RTS 
@@ -8544,11 +8487,9 @@ DoorASM_Scroll_0_2_Green:
 DoorASM_Scroll_6_7_Blue_8_Red:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD26 
+    LDA.B #$01 : STA.L $7ECD26 
     STA.L $7ECD27 
-    LDA.B #$00 
-    STA.L $7ECD28 
+    LDA.B #$00 : STA.L $7ECD28 
     PLP 
     RTS 
 
@@ -8556,10 +8497,8 @@ DoorASM_Scroll_6_7_Blue_8_Red:
 DoorASM_Scroll_2_Red_3_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD22 
-    LDA.B #$01 
-    STA.L $7ECD23 
+    LDA.B #$00 : STA.L $7ECD22 
+    LDA.B #$01 : STA.L $7ECD23 
     PLP 
     RTS 
 
@@ -8567,8 +8506,7 @@ DoorASM_Scroll_2_Red_3_Blue:
 DoorASM_Scroll_7_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD27 
+    LDA.B #$02 : STA.L $7ECD27 
     PLP 
     RTS 
 
@@ -8576,10 +8514,8 @@ DoorASM_Scroll_7_Green:
 DoorASM_Scroll_1_Red_2_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD21 
-    LDA.B #$01 
-    STA.L $7ECD22 
+    LDA.B #$00 : STA.L $7ECD21 
+    LDA.B #$01 : STA.L $7ECD22 
     PLP 
     RTS 
 
@@ -8587,10 +8523,8 @@ DoorASM_Scroll_1_Red_2_Blue:
 DoorASM_Scroll_0_Blue_3_Red:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD23 
-    LDA.B #$01 
-    STA.L $7ECD20 
+    LDA.B #$00 : STA.L $7ECD23 
+    LDA.B #$01 : STA.L $7ECD20 
     PLP 
     RTS 
 
@@ -8598,10 +8532,8 @@ DoorASM_Scroll_0_Blue_3_Red:
 DoorASM_Scroll_1_Blue_4_Red:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD21 
-    LDA.B #$00 
-    STA.L $7ECD24 
+    LDA.B #$01 : STA.L $7ECD21 
+    LDA.B #$00 : STA.L $7ECD24 
     PLP 
     RTS 
 
@@ -8609,10 +8541,8 @@ DoorASM_Scroll_1_Blue_4_Red:
 DoorASM_Scroll_0_Blue_1_2_3_Red:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD20 
-    LDA.B #$00 
-    STA.L $7ECD21 
+    LDA.B #$01 : STA.L $7ECD20 
+    LDA.B #$00 : STA.L $7ECD21 
     STA.L $7ECD22 
     STA.L $7ECD23 
     PLP 
@@ -8622,8 +8552,7 @@ DoorASM_Scroll_0_Blue_1_2_3_Red:
 DoorASM_Scroll_0_Green_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD20 
+    LDA.B #$02 : STA.L $7ECD20 
     PLP 
     RTS 
 
@@ -8631,11 +8560,9 @@ DoorASM_Scroll_0_Green_duplicate:
 DoorASM_Scroll_0_1_Blue_4_Red:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD20 
+    LDA.B #$01 : STA.L $7ECD20 
     STA.L $7ECD21 
-    LDA.B #$00 
-    STA.L $7ECD24 
+    LDA.B #$00 : STA.L $7ECD24 
     PLP 
     RTS 
 
@@ -8643,10 +8570,8 @@ DoorASM_Scroll_0_1_Blue_4_Red:
 DoorASM_Scroll_0_Blue_3_Red_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD20 
-    LDA.B #$00 
-    STA.L $7ECD23 
+    LDA.B #$01 : STA.L $7ECD20 
+    LDA.B #$00 : STA.L $7ECD23 
     PLP 
     RTS 
 
@@ -8654,8 +8579,7 @@ DoorASM_Scroll_0_Blue_3_Red_duplicate:
 DoorASM_Scroll_0_Blue_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD20 
+    LDA.B #$01 : STA.L $7ECD20 
     PLP 
     RTS 
 
@@ -8663,10 +8587,8 @@ DoorASM_Scroll_0_Blue_duplicate:
 DoorASM_Scroll_0_Blue_1_Red_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD20 
-    LDA.B #$00 
-    STA.L $7ECD21 
+    LDA.B #$01 : STA.L $7ECD20 
+    LDA.B #$00 : STA.L $7ECD21 
     PLP 
     RTS 
 
@@ -8674,8 +8596,7 @@ DoorASM_Scroll_0_Blue_1_Red_duplicate:
 DoorASM_Scroll_18_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD38 
+    LDA.B #$01 : STA.L $7ECD38 
     PLP 
     RTS 
 
@@ -8683,10 +8604,8 @@ DoorASM_Scroll_18_Blue:
 DoorASM_Scroll_2_Blue_3_Red:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD23 
-    LDA.B #$01 
-    STA.L $7ECD22 
+    LDA.B #$00 : STA.L $7ECD23 
+    LDA.B #$01 : STA.L $7ECD22 
     PLP 
     RTS 
 
@@ -8694,8 +8613,7 @@ DoorASM_Scroll_2_Blue_3_Red:
 DoorASM_Scroll_E_Red:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD2E 
+    LDA.B #$00 : STA.L $7ECD2E 
     PLP 
     RTS 
 
@@ -8742,8 +8660,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     LSR #4
     SEP #$20 
     PHA 
-    LDA.W $07A5 
-    STA.W $4202 
+    LDA.W $07A5 : STA.W $4202 
     PLA 
     STA.W $4203 
     REP #$20 
@@ -9875,20 +9792,15 @@ RTS_8FC8DC:
 
 
 SetupASM_SetPausingCodeForDraygon:
-    LDA.W #PauseHook_Draygon>>8&$FF00 
-    STA.W $0602 
-    LDA.W #PauseHook_Draygon 
-    STA.W $0601 
-    LDA.W #UnpauseHook_Draygon>>8&$FF00 
-    STA.W $0605 
-    LDA.W #UnpauseHook_Draygon 
-    STA.W $0604 
+    LDA.W #PauseHook_Draygon>>8&$FF00 : STA.W $0602 
+    LDA.W #PauseHook_Draygon : STA.W $0601 
+    LDA.W #UnpauseHook_Draygon>>8&$FF00 : STA.W $0605 
+    LDA.W #UnpauseHook_Draygon : STA.W $0604 
     RTS 
 
 
 PauseHook_Draygon:
-    LDA.W #$0004 
-    STA.B $A7 
+    LDA.W #$0004 : STA.B $A7 
     RTL 
 
 
@@ -9896,8 +9808,7 @@ UnpauseHook_Draygon:
     LDA.W $18B6 
     CMP.W #$0008 
     BNE .return 
-    LDA.W #$000C 
-    STA.B $A7 
+    LDA.W #$000C : STA.B $A7 
 
 .return:
     RTL 
@@ -9920,28 +9831,22 @@ RTS_8FC91E:
 SetupASM_SetZebesTimebombEvent_SetLightHorizontalRoomShaking:
     LDA.W #$000E 
     JSL.L MarkEvent_inA 
-    LDA.W #$0012 
-    STA.W $183E 
-    LDA.W #$FFFF 
-    STA.W $1840 
+    LDA.W #$0012 : STA.W $183E 
+    LDA.W #$FFFF : STA.W $1840 
     RTS 
 
 
 SetupASM_SetLightHorizontalRoomShaking:
-    LDA.W #$0012 
-    STA.W $183E 
+    LDA.W #$0012 : STA.W $183E 
     STA.W $07E3 
     STZ.W $07E1 
-    LDA.W #$FFFF 
-    STA.W $1840 
+    LDA.W #$FFFF : STA.W $1840 
     RTS 
 
 
 SetupASM_SetMediumHorizontalRoomShaking:
-    LDA.W #$0015 
-    STA.W $183E 
-    LDA.W #$FFFF 
-    STA.W $1840 
+    LDA.W #$0015 : STA.W $183E 
+    LDA.W #$FFFF : STA.W $1840 
     RTS 
 
 
@@ -9949,12 +9854,10 @@ SetupASM_SetupEscapeRoom4sPLM_SetMediumHorizontalRoomShaking:
     JSL.L Spawn_Hardcoded_PLM 
     db $10,$10 
     dw PLMEntries_RaiseAcidInEscapeRoomBeforeOldTourianEscapeShaft 
-    LDA.W #$0015 
-    STA.W $183E 
+    LDA.W #$0015 : STA.W $183E 
     STA.W $07E3 
     STZ.W $07E1 
-    LDA.W #$FFFF 
-    STA.W $1840 
+    LDA.W #$FFFF : STA.W $1840 
     RTS 
 
 
@@ -9971,12 +9874,10 @@ SetupASM_SpawnCeresHaze:
 SetupASM_SetBG1_2_TilesBaseAddress_SpawnCeresHaze:
     PHP 
     SEP #$20 
-    LDA.B #$66 
-    STA.B $5D 
+    LDA.B #$66 : STA.B $5D 
     PLP 
     JSL.L FXType_2C_CeresHaze 
-    LDA.W #$0009 
-    STA.W $07EB 
+    LDA.W #$0009 : STA.W $07EB 
     RTS 
 
 
@@ -13316,8 +13217,7 @@ DoorASM_StartWreckedShipTreadmillEastEntrance:
 DoorASM_Scroll_1_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD21 
+    LDA.B #$01 : STA.L $7ECD21 
     PLP 
     RTS 
 
@@ -13325,8 +13225,7 @@ DoorASM_Scroll_1_Blue:
 DoorASM_Scroll_0_Green_duplicate_again:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD20 
+    LDA.B #$02 : STA.L $7ECD20 
     PLP 
     RTS 
 
@@ -13334,10 +13233,8 @@ DoorASM_Scroll_0_Green_duplicate_again:
 DoorASM_Scroll_3_Red_4_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD23 
-    LDA.B #$01 
-    STA.L $7ECD24 
+    LDA.B #$00 : STA.L $7ECD23 
+    LDA.B #$01 : STA.L $7ECD24 
     PLP 
     RTS 
 
@@ -13345,8 +13242,7 @@ DoorASM_Scroll_3_Red_4_Blue:
 DoorASM_Scroll_29_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD49 
+    LDA.B #$01 : STA.L $7ECD49 
     PLP 
     RTS 
 
@@ -13354,8 +13250,7 @@ DoorASM_Scroll_29_Blue:
 DoorASM_Scroll_28_2E_Green:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD48 
+    LDA.B #$02 : STA.L $7ECD48 
     STA.L $7ECD4E 
     PLP 
     RTS 
@@ -13364,8 +13259,7 @@ DoorASM_Scroll_28_2E_Green:
 DoorASM_Scroll_6_7_8_9_A_B_Red:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD26 
+    LDA.B #$00 : STA.L $7ECD26 
     STA.L $7ECD27 
     STA.L $7ECD28 
     STA.L $7ECD29 
@@ -13390,13 +13284,10 @@ LibBG_Maridia_C_GreenWall:
     dw $4800,$1000,$0000 
 
 DoorASM_SetupElevatubeFromSouth:
-    LDA.W #$FF00 
-    STA.W $07E5 
+    LDA.W #$FF00 : STA.W $07E5 
     STZ.W $07E3 
-    LDA.W #$09C0 
-    STA.W $07E3 
-    LDA.W #$FFE0 
-    STA.W $07E7 
+    LDA.W #$09C0 : STA.W $07E3 
+    LDA.W #$FFE0 : STA.W $07E7 
     LDA.W #$0000 
     JSL.L Run_Samus_Command 
     JSL.L Spawn_Hardcoded_PLM 
@@ -13406,13 +13297,10 @@ DoorASM_SetupElevatubeFromSouth:
 
 
 DoorASM_SetupElevatubeFromNorth:
-    LDA.W #$0100 
-    STA.W $07E5 
+    LDA.W #$0100 : STA.W $07E5 
     STZ.W $07E3 
-    LDA.W #$0040 
-    STA.W $07E3 
-    LDA.W #$0020 
-    STA.W $07E7 
+    LDA.W #$0040 : STA.W $07E3 
+    LDA.W #$0020 : STA.W $07E7 
     LDA.W #$0000 
     JSL.L Run_Samus_Command 
     JSL.L Spawn_Hardcoded_PLM 
@@ -13422,8 +13310,7 @@ DoorASM_SetupElevatubeFromNorth:
 
 
 MainASM_Elevatube:
-    LDA.W #$0080 
-    STA.W $0AF6 
+    LDA.W #$0080 : STA.W $0AF6 
     STZ.W $0AF8 
     STZ.B $12 
     STZ.B $14 
@@ -13466,8 +13353,7 @@ DoorASM_ResetElevatubeOnNorthExit:
 
 
 DoorASM_ResetElevatubeOnSouthExit:
-    LDA.W #$0202 
-    STA.L $7ECD20 
+    LDA.W #$0202 : STA.L $7ECD20 
     LDA.W #$0001 
     JSL.L Run_Samus_Command 
     RTS 
@@ -13476,10 +13362,8 @@ DoorASM_ResetElevatubeOnSouthExit:
 DoorASM_Scroll_A_Red_B_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD2A 
-    LDA.B #$01 
-    STA.L $7ECD2B 
+    LDA.B #$00 : STA.L $7ECD2A 
+    LDA.B #$01 : STA.L $7ECD2B 
     PLP 
     RTS 
 
@@ -13488,10 +13372,8 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DoorASM_Scroll_4_Green_8FE329:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD31 
-    LDA.B #$01 
-    STA.L $7ECD30 
+    LDA.B #$00 : STA.L $7ECD31 
+    LDA.B #$01 : STA.L $7ECD30 
     PLP 
     RTS 
 
@@ -13499,8 +13381,7 @@ UNUSED_DoorASM_Scroll_4_Green_8FE329:
 UNUSED_DoorASM_Scroll_4_Green_8FE33A:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD24 
+    LDA.B #$02 : STA.L $7ECD24 
     PLP 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -13509,10 +13390,8 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 DoorASM_Scroll_0_Red_4_Blue_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD20 
-    LDA.B #$01 
-    STA.L $7ECD24 
+    LDA.B #$00 : STA.L $7ECD20 
+    LDA.B #$01 : STA.L $7ECD24 
     PLP 
     RTS 
 
@@ -13520,10 +13399,8 @@ DoorASM_Scroll_0_Red_4_Blue_duplicate:
 DoorASM_Scroll_0_Red_1_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD20 
-    LDA.B #$01 
-    STA.L $7ECD21 
+    LDA.B #$00 : STA.L $7ECD20 
+    LDA.B #$01 : STA.L $7ECD21 
     PLP 
     RTS 
 
@@ -13531,10 +13408,8 @@ DoorASM_Scroll_0_Red_1_Blue:
 DoorASM_Scroll_9_Red_A_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD29 
-    LDA.B #$01 
-    STA.L $7ECD2A 
+    LDA.B #$00 : STA.L $7ECD29 
+    LDA.B #$01 : STA.L $7ECD2A 
     PLP 
     RTS 
 
@@ -13542,11 +13417,9 @@ DoorASM_Scroll_9_Red_A_Blue:
 DoorASM_Scroll_0_2_Red_1_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD20 
+    LDA.B #$00 : STA.L $7ECD20 
     STA.L $7ECD22 
-    LDA.B #$01 
-    STA.L $7ECD21 
+    LDA.B #$01 : STA.L $7ECD21 
     PLP 
     RTS 
 
@@ -13554,8 +13427,7 @@ DoorASM_Scroll_0_2_Red_1_Blue:
 DoorASM_Scroll_1_Blue_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD21 
+    LDA.B #$01 : STA.L $7ECD21 
     PLP 
     RTS 
 
@@ -13563,8 +13435,7 @@ DoorASM_Scroll_1_Blue_duplicate:
 DoorASM_Scroll_6_Blue:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD26 
+    LDA.B #$01 : STA.L $7ECD26 
     PLP 
     RTS 
 
@@ -13572,8 +13443,7 @@ DoorASM_Scroll_6_Blue:
 DoorASM_Scroll_4_Red_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD24 
+    LDA.B #$00 : STA.L $7ECD24 
     PLP 
     RTS 
 
@@ -13582,8 +13452,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DoorASM_Scroll_1_Red_8FE3AE:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD21 
+    LDA.B #$00 : STA.L $7ECD21 
     PLP 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -13592,8 +13461,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 DoorASM_Scroll_4_7_Red:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD24 
+    LDA.B #$00 : STA.L $7ECD24 
     STA.L $7ECD27 
     PLP 
     RTS 
@@ -13602,10 +13470,8 @@ DoorASM_Scroll_4_7_Red:
 DoorASM_Scroll_1_Blue_2_Red_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$00 
-    STA.L $7ECD22 
-    LDA.B #$01 
-    STA.L $7ECD21 
+    LDA.B #$00 : STA.L $7ECD22 
+    LDA.B #$01 : STA.L $7ECD21 
     PLP 
     RTS 
 
@@ -13613,8 +13479,7 @@ DoorASM_Scroll_1_Blue_2_Red_duplicate:
 DoorASM_Scroll_0_2_Green_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD20 
+    LDA.B #$02 : STA.L $7ECD20 
     STA.L $7ECD22 
     PLP 
     RTS 
@@ -13695,8 +13560,7 @@ LibBG_Tourian_D_E_StatueHall:
 DoorASM_Scroll_0_1_Green_duplicate:
     PHP 
     SEP #$20 
-    LDA.B #$02 
-    STA.L $7ECD20 
+    LDA.B #$02 : STA.L $7ECD20 
     STA.L $7ECD21 
     PLP 
     RTS 
@@ -13705,42 +13569,32 @@ DoorASM_Scroll_0_1_Green_duplicate:
 DoorASM_Scroll_8_Blue_9_Red:
     PHP 
     SEP #$20 
-    LDA.B #$01 
-    STA.L $7ECD38 
-    LDA.B #$00 
-    STA.L $7ECD39 
+    LDA.B #$01 : STA.L $7ECD38 
+    LDA.B #$00 : STA.L $7ECD39 
     PLP 
     RTS 
 
 
 DoorASM_ToCeresElevatorShaft:
     SEP #$20 
-    LDA.B #$07 
-    STA.B $56 
+    LDA.B #$07 : STA.B $56 
     STA.W $2105 
     REP #$20 
-    LDA.W #$0100 
-    STA.B $78 
+    LDA.W #$0100 : STA.B $78 
     STA.B $7E 
     STZ.B $7A 
     STZ.B $7C 
-    LDA.W #$0080 
-    STA.B $80 
-    LDA.W #$03F0 
-    STA.B $82 
-    LDA.W #$0001 
-    STA.W $0783 
-    LDA.W #$0022 
-    STA.W $07E1 
-    LDA.W #$003C 
-    STA.W $07E3 
+    LDA.W #$0080 : STA.B $80 
+    LDA.W #$03F0 : STA.B $82 
+    LDA.W #$0001 : STA.W $0783 
+    LDA.W #$0022 : STA.W $07E1 
+    LDA.W #$003C : STA.W $07E3 
     RTS 
 
 
 DoorASM_FromCeresElevatorShaft:
     SEP #$20 
-    LDA.B #$09 
-    STA.B $56 
+    LDA.B #$09 : STA.B $56 
     REP #$20 
     STZ.W $0783 
     RTS 
@@ -13760,8 +13614,7 @@ MainASM_SpawnCeresPreElevatorHallFallingDebris:
     BEQ RTS_8FE524 
     DEC.W $07E1 
     BPL RTS_8FE524 
-    LDA.W #$0008 
-    STA.W $07E1 
+    LDA.W #$0008 : STA.W $07E1 
     LDY.W #EnemyProjectile_CeresFallingTile_Light 
     LDA.W $05E5 
     ASL A 
@@ -13804,8 +13657,7 @@ MainASM_ShakeScreenSwitchingBetweenLightHorizAndMediumDiag:
     JSL.L GenerateRandomNumber 
     CMP.W #$0200 
     BCS MainASM_GenerateRandomExplosionOnEveryFourthFrame 
-    LDA.W #$002A 
-    STA.W $07E1 
+    LDA.W #$002A : STA.W $07E1 
     LDA.W #$0017 
 
   + STA.W $183E 
@@ -13828,15 +13680,13 @@ MainASM_ShakeScreenSwitchingBetweenMediumHorizAndStrongDiag:
     JSL.L GenerateRandomNumber 
     CMP.W #$0180 
     BCS .noEarthquakeChange 
-    LDA.W #$002A 
-    STA.W $07E1 
+    LDA.W #$002A : STA.W $07E1 
     LDA.W #$001A 
 
   + STA.W $07E3 
 
 .noEarthquakeChange:
-    LDA.W $07E3 
-    STA.W $183E 
+    LDA.W $07E3 : STA.W $183E 
     JSR.W GenerateRandomExplosionOnEveryFourthFrame 
     RTS 
 
@@ -13848,8 +13698,7 @@ Room_State_Checking_Handler:
     TAX 
 
 .loop:
-    LDA.W $0000,X 
-    STA.W $07B7 
+    LDA.W $0000,X : STA.W $07B7 
     INX #2
     PEA.W .loop-1 
     JMP.W ($07B7) 
