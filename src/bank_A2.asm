@@ -837,9 +837,7 @@ InitAI_Stoke:
     LDA.W #Spritemap_CommonA2_Nothing 
     STA.W $0F8E,X 
     LDA.W $0FB6,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.W $0FAA,X 
@@ -3122,9 +3120,7 @@ ChooseHopType:
     LDA.W #$0002 
 
 .greaterThan2:
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.W $0FB2,X 
     TAY 
     LDA.W PuyoHopTable_airborneFunction,Y 
@@ -3156,9 +3152,7 @@ Puyo_CalculateInitialHopSpeed:
     STA.B $16 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.B $18 
     CLC 
@@ -3213,9 +3207,7 @@ PuyoMovement:
 
   + AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.L $7E7806,X 
     BEQ .notFalling 
@@ -3768,9 +3760,7 @@ InitAI_Cacatac:
     STA.L $7E7800,X 
     LDA.W $0FB7,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.W $0FAA,X 
@@ -4332,9 +4322,7 @@ InitAI_Owtch:
     LDX.W $0E54 
     LDA.W $0FB6,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.W $0FAA,X 
@@ -5945,8 +5933,7 @@ SetFlyToAttackSamus:
     ASL A 
     STA.W $0FAA,Y 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $0FAC,Y 
     LDA.W $0AFA 
     STA.W $0FAE,Y 
@@ -10010,9 +9997,7 @@ Function_Oum_Falling:
   + STA.W $0FAA,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
     STA.B $12 
@@ -10051,9 +10036,7 @@ Function_Oum_Rising:
 .notNegative:
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y 
     STA.B $12 
@@ -11156,9 +11139,7 @@ CalculateChootInitialJumpSpeed:
     STA.B $18 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.B $14 
     CLC 
@@ -11227,9 +11208,7 @@ Function_Choot_Jumping:
     LDA.W $0FAA,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W $0F80,X 
     CLC 
@@ -11272,8 +11251,7 @@ Function_Choot_Falling:
     LDA.W $0FAC,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.W $0FB0,X 
     TAY 
@@ -11403,9 +11381,7 @@ InitAI_GRipper:
     LDX.W $0E54 
     LDA.W $0F92,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.W $0FB0,X 
     TAY 
     LDA.W $0F92,X 
@@ -11598,9 +11574,7 @@ InitAI_Ripper2:
     TYA 
     STA.W $0F92,X 
     LDA.W $0FB4,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.W $0FB0,X 
     TAY 
     LDA.W $0FB6,X 
@@ -11802,9 +11776,7 @@ InitAI_Ripper:
     TYA 
     STA.W $0F92,X 
     LDA.W $0FB4,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.W $0FB0,X 
     TAY 
     LDA.W $0FB6,X 
@@ -12507,8 +12479,7 @@ InitAI_ShutterGrowing:
     STA.W $0F92,X 
     LDA.W $0FB6,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .YSpeed,Y 
     STA.L $7E7800,X 
@@ -13000,9 +12971,7 @@ Init_Shutter_Kamer_Common:
     LDA.W $0F92,X 
     AND.W #$00FF 
     STA.L $7E7800,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.W $0FAE,X 
@@ -13019,18 +12988,12 @@ Init_Shutter_Kamer_Common:
     LDA.W $0F88,X 
     AND.W #$00FF 
     STA.L $7E7804,X 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.L $7E7810,X 
     LDA.W $0F89,X 
     AND.W #$00FF 
     STA.L $7E7806,X 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.L $7E7812,X 
     LDA.W $0FB4,X 
     AND.W #$00FF 
@@ -13388,9 +13351,7 @@ InitializeHorizontalShutter:
     LDA.W $0F92,X 
     AND.W #$00FF 
     STA.L $7E7800,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.W $0FAE,X 
@@ -13408,18 +13369,12 @@ InitializeHorizontalShutter:
     LDA.W $0F88,X 
     AND.W #$00FF 
     STA.L $7E7804,X 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.L $7E7810,X 
     LDA.W $0F89,X 
     AND.W #$00FF 
     STA.L $7E7806,X 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.L $7E7812,X 
     LDA.W $0FB4,X 
     AND.W #$00FF 

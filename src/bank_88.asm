@@ -2244,9 +2244,7 @@ PreInstruction_PowerBombExplosion_3_Explosion_Yellow:
 
 .finishedTable:
     LDA.W $0CEB 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     AND.B #$1F 
     STA.B $12 
     ASL A 
@@ -2332,9 +2330,7 @@ PreInstruction_PowerBombExplosion_4_Explosion_White:
     LDA.B #$00 
     XBA 
     LDA.W $0CEB 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     AND.B #$1F 
     STA.B $12 
     ASL A 
@@ -2696,9 +2692,7 @@ PreInstruction_PowerBombExplosion_1_PreExplosion_White:
 
 .finishedTable:
     LDA.W $0CED 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     AND.B #$0F 
     STA.B $12 
     ASL A 
@@ -2784,9 +2778,7 @@ PreInstruction_PowerBombExplosion_2_PreExplosion_Yellow:
     LDA.B #$00 
     XBA 
     LDA.W $0CED 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     AND.B #$0F 
     STA.B $12 
     ASL A 
@@ -3596,9 +3588,7 @@ PreInstruction_CrystalFlash_1_Explosion:
 
 .finishedTable:
     LDA.W $0CEB 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     AND.B #$1F 
     STA.B $12 
     ASL A 
@@ -4437,9 +4427,7 @@ RoomMainASM_ScrollingSky:
     TAY 
     PLA 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     CLC 
     ADC.B [$00],Y 
     STA.B $D2,X 
@@ -4457,9 +4445,7 @@ RoomMainASM_ScrollingSky:
     TAY 
     PLA 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     CLC 
     ADC.B [$00],Y 
     STA.B $E0,X 
@@ -4481,8 +4467,7 @@ RoomMainASM_ScrollingSky:
     SEC 
     SBC.W #$0010 
     AND.W #$01F8 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.B $12 
     STA.B $D5,X 
@@ -4493,8 +4478,7 @@ RoomMainASM_ScrollingSky:
     CLC 
     ADC.W #$00F0 
     AND.W #$01F8 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.B $12 
     STA.B $E3,X 
@@ -4832,9 +4816,7 @@ Handle_Tide:
     ASL A 
     TAX 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     BPL + 
     DEC.W $1972 
 
@@ -4865,11 +4847,7 @@ Handle_Tide:
     ASL A 
     TAX 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     BPL + 
     DEC.W $1972 
 
@@ -10564,9 +10542,7 @@ Set_RainbowBeam_ColorMathSubscreenBackdropColor:
     STA.B $74 
     REP #$20 
     LDA.B $01,S 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     XBA 
     SEP #$20 
     AND.B #$1F 
@@ -10574,8 +10550,7 @@ Set_RainbowBeam_ColorMathSubscreenBackdropColor:
     STA.B $75 
     REP #$20 
     PLA 
-    LSR A 
-    LSR A 
+    LSR #2
     XBA 
     SEP #$20 
     AND.B #$1F 
@@ -10786,8 +10761,7 @@ PreInstruction_MorphBallEyeBeamHDMA_FullBeam:
 .update:
     JSR.W Update_MorphBallEyeBeam_HDMATable_ColorMathSubScnBackColor 
     LDA.L $7E9090 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     SEP #$20 
     LDA.W .red,Y 

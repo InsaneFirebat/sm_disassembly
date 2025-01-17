@@ -887,9 +887,7 @@ Debug_DisplayVersionInfo:
     STA.B $12 
     PLA 
     AND.W #$00F0 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAY 
     LDA.W #$00E8 
     STA.W $0370,X 
@@ -1078,15 +1076,11 @@ IndirectInstructionFunction_DrawTextCharacter:
     BMI .pointer 
     LDA.W $0008,Y 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.W $1A7D,X 
     LDA.W $0009,Y 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     SEC 
     SBC.W #$0008 
     STA.W $1A9D,X 
@@ -1100,9 +1094,7 @@ IndirectInstructionFunction_DrawTextCharacter:
     AND.W #$00FF 
     INC A 
     INC A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     SEC 
     SBC.W #$0008 
     STA.W $1A9D,X 
@@ -1616,30 +1608,21 @@ PaletteCrossFading_DecomposePaletteDataForFading:
     XBA 
     STA.L $7E2400,X 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.L $7E2A00,X 
     LDA.B $12 
     AND.W #$03E0 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.L $7E2600,X 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.L $7E2C00,X 
     LDA.B $12 
     AND.W #$7C00 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.L $7E2800,X 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.L $7E2E00,X 
     INX 
     INX 
@@ -1736,15 +1719,12 @@ PaletteCrossFading_ComposeFadingPalettes:
     AND.W #$001F 
     STA.B $12 
     LDA.L $7E2600,X 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     AND.W #$03E0 
     ORA.B $12 
     STA.B $12 
     LDA.L $7E2800,X 
-    ASL A 
-    ASL A 
+    ASL #2
     AND.W #$7C00 
     ORA.B $12 
     STA.L $7E2000,X 
@@ -2008,15 +1988,13 @@ MoveUnusedSpritesOffScreen:
     LDA.W $0590 
     CMP.W #$0200 
     BPL .return 
-    LSR A 
-    LSR A 
+    LSR #2
     PHA 
     AND.W #$0007 
     ASL A 
     TAY 
     PLA 
-    LSR A 
-    LSR A 
+    LSR #2
     TAX 
     LDA.W $0570,X 
     ORA.W .Xpos,Y 
@@ -4475,9 +4453,7 @@ Configure_TitleScreen_GradientHDMATable:
     REP #$30 
     LDA.W $198F 
     AND.W #$00F0 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     LDA.L TitleSequenceHDMATables,X 
     TAY 
@@ -5479,8 +5455,7 @@ Instruction_SpawnMetroidEggParticles:
 InitFunction_CinematicSpriteObject_MetroidEggParticles:
     LDA.W $1B9D 
     STA.W $1B7D,Y 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W .Xposition,X 
     CLC 
@@ -5511,8 +5486,7 @@ InitFunction_CinematicSpriteObject_MetroidEggParticles:
 PreInstruction_CinematicSpriteObject_MetroidEggParticle:
     LDA.W $1B7D,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W $1ADD,X 
     CLC 
@@ -5524,8 +5498,7 @@ PreInstruction_CinematicSpriteObject_MetroidEggParticle:
     LDA.W $1B7D,X 
     XBA 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W $1AFD,X 
     CLC 
@@ -5585,8 +5558,7 @@ InitFunction_CinematicSpriteObject_MetroidEggSlimeDrops:
 PreInstruction_CinematicSpriteObject_MetroidEggSlimeDrops:
     LDA.W $1B7D,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W $1ADD,X 
     CLC 
@@ -5600,8 +5572,7 @@ PreInstruction_CinematicSpriteObject_MetroidEggSlimeDrops:
     BNE .nonZero 
     XBA 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W $1AFD,X 
     CLC 
@@ -5618,8 +5589,7 @@ PreInstruction_CinematicSpriteObject_MetroidEggSlimeDrops:
 .nonZero:
     XBA 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W $1AFD,X 
     CLC 
@@ -8662,8 +8632,7 @@ PreInst_CeresExplosionSpawner_SpawnExplosion2EveryCFrames:
 InitFunction_CinematicSpriteObject_CeresExplosion2:
     LDA.W $1B9D 
     STA.W $1B7D,Y 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W $1993 
     EOR.W #$FFFF 
@@ -11516,8 +11485,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningFast:
     AND.W #$00FF 
     STA.W $198D 
     LDA.W $1A4D 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W $1991 
     CLC 
@@ -11564,8 +11532,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningSlow:
 
 .notE0:
     LDA.W $1A4D 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W $1991 
     CLC 
@@ -12362,9 +12329,7 @@ TransferPostCreditsSuperMetroidIconToVRAM:
 
 
 .loading:
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDX.W $0330 
     LDA.W .size,Y 
@@ -12555,8 +12520,7 @@ CinematicFunction_PostCredits_GreyOutSuperMetroidIcon:
     PHY 
     PHB 
     LDA.W $1A49 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W .spritePalette,X 
     PHA 
@@ -12737,8 +12701,7 @@ Instruction_DrawItemPercentageCount:
     STA.B $14 
     LDA.B $12 
     BEQ + 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W TilemapValuesForDecimalDigits_topHalf,Y 
     STA.L $7E339C 
@@ -12751,8 +12714,7 @@ Instruction_DrawItemPercentageCount:
     BEQ .unitsOnly 
     LDA.B $14 
 
-  + ASL A 
-    ASL A 
+  + ASL #2
     TAY 
     LDA.W TilemapValuesForDecimalDigits_topHalf,Y 
     STA.L $7E339E 
@@ -12761,8 +12723,7 @@ Instruction_DrawItemPercentageCount:
 
 .unitsOnly:
     LDA.B $16 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W TilemapValuesForDecimalDigits_topHalf,Y 
     STA.L $7E33A0 
@@ -12891,9 +12852,7 @@ Initialize_ShootingStars:
     PHX 
     TXA 
     STA.W $0000,Y 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W #$0000 
     STA.W $000C,Y 
@@ -12969,9 +12928,7 @@ Handle_ShootingStars:
     BMI .lessThan4 
     PLA 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W $000C,Y 
     CLC 
@@ -12991,9 +12948,7 @@ Handle_ShootingStars:
 .lessThan4:
     PLA 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W $000C,Y 
     CLC 
@@ -13091,9 +13046,7 @@ Handle_ShootingStars:
     LDA.W $0000,Y 
     PHA 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W ShootingStar_Table_timer,X 
     STA.W $000A,Y 
@@ -13955,9 +13908,7 @@ InitFunction_CineSpriteObject_ClearTime_Minutes_OnesDigit:
 
 
 CinematicSpriteObject_InstListPointer_PlusA_Times8:
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.B $12 
     LDA.W $1B1D,Y 
     CLC 

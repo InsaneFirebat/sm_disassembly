@@ -652,8 +652,7 @@ CalculateDraygonSwoopYPositions:
   + STA.B $2C 
     STZ.B $2A 
     LDA.W $0E26 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $2E 
     STZ.B $30 
     JSL.L UnsignedDivision_32bit_A0B761 
@@ -736,8 +735,7 @@ Function_DraygonBody_SwoopRight_Apex:
     STA.B $2C 
     STZ.B $2A 
     LDA.W $0FAC 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $2E 
     STZ.B $30 
     JSL.L UnsignedDivision_32bit_A0B761 
@@ -806,8 +804,7 @@ Function_DraygonBody_SwoopLeft_Setup:
     STA.B $2C 
     STZ.B $2A 
     LDA.W $0E26 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $2E 
     STZ.B $30 
     JSL.L UnsignedDivision_32bit_A0B761 
@@ -885,8 +882,7 @@ Function_DraygonBody_SwoopLeft_Apex:
   + STA.B $2C 
     STZ.B $2A 
     LDA.W $0FAC 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $2E 
     STZ.B $30 
     JSL.L UnsignedDivision_32bit_A0B761 
@@ -1548,8 +1544,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     ADC.L $7E780C 
     STA.W $0F7A 
     LDA.L $7E780A 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.W $0E32 
     LDA.L $7E7810 
     JSL.L EightBitNegativeSineMultiplication_A0B0C6 
@@ -1739,8 +1734,7 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
 
 .noFoam:
     LDA.W $0F7A 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $12 
     LDA.W #$0100 
     LSR A ; >.<
@@ -1749,8 +1743,7 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     SBC.B $12 
     STA.B $12 
     LDA.W $0F7E 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $14 
     LDA.W #$01E0 
     LSR A ; >.<
@@ -2232,8 +2225,7 @@ HurtAI_Draygon:
     BIT.W #$0002 
     BNE .flashing 
     LDA.L $7E781C 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDX.W #$0000 
 
@@ -2409,8 +2401,7 @@ DraygonHealthBasedPaletteHandling:
     BEQ .return 
     STA.L $7E781C 
     LDA.L $7E781C ; >_<
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDX.W #$0000 
 

@@ -616,9 +616,7 @@ InitAI_Evir:
     JSR.W SetEvirFacingDirection 
     LDA.W $0FB6,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.L $7E7808,X 
@@ -1857,8 +1855,7 @@ Function_Eye_Active:
     JSL.L CalculateAngleOf_12_14_Offset 
     STA.W $0FAE,X 
     AND.W #$00F0 
-    LSR A 
-    LSR A 
+    LSR #2
     CLC 
     ADC.W #InstList_Eye_Active 
     STA.W $0F92,X 
@@ -2976,10 +2973,7 @@ InitAI_Coven:
     LDX.W $0E54 
     LDA.W $0F96,X 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W #$0100 
     TAX 
@@ -3008,10 +3002,7 @@ Function_Coven_Materialize_FadeToWhite:
     LDX.W $0E54 
     LDA.W $0F96,X 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W #$0100 
     TAX 
@@ -3041,10 +3032,7 @@ Function_Coven_Materialize_FadeToWhite:
     STA.W $0FA8,X 
     LDA.W $0F96,X 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W #$0100 
     TAX 
@@ -3208,10 +3196,7 @@ Function_Coven_Materialized:
     LDX.W $0E54 
     LDA.W $0F96,X 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W #$0100 
     TAX 
@@ -3442,10 +3427,7 @@ AdvanceCovenPaletteTransition:
     LDX.W $0E54 
     LDA.W $0F96,X 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W #$0100 
     TAX 
@@ -4028,11 +4010,7 @@ Function_YappingMaw_Attack:
     CLC 
     ADC.W #$0010 
     AND.W #$00FF 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     ASL A 
     STA.L $7E8028,X 
     TAY 
@@ -4164,8 +4142,7 @@ CalculateHeadSegmentVelocities:
 Function_YappingMaw_Attacking:
     LDX.W $0E54 
     LDA.W $0FAA,X 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $14 
     LDA.L $7E801E,X 
     BNE .notAimingDown 
@@ -5632,9 +5609,7 @@ GetMagdolliteSpeeds:
     LDX.W $0E54 
     LDA.W $0FB7,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.L $7E7810,X 
@@ -5654,10 +5629,7 @@ SetMagdolliteGraphicsDrawnHook:
     STA.W $178E 
     LDA.W $0F96,X 
     AND.W #$0E00 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W #$0100 
     STA.W $1794 
@@ -5682,11 +5654,7 @@ EnemyGraphicsDrawnHook_Magdollite_PeriodicallyCyclePalettes:
     INC A 
     STA.W $1796 
     AND.W #$0003 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     TAY 
     LDA.W Palette_Magdollite_Glow_0,Y 
     STA.B $12 
@@ -6633,9 +6601,7 @@ Beetom_CalculateInitialHopSpeed:
     CLC 
     ADC.B $18 
     STA.B $12 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.B $14 
     CLC 
@@ -7007,9 +6973,7 @@ Function_Beetom_ShortHopRight:
 
 Function_Beetom_YMovement_ShortHop_Rising:
     LDA.W $0FAA,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y 
     STA.B $14 
@@ -7039,9 +7003,7 @@ Function_Beetom_YMovement_ShortHop_Rising:
 
 Function_Beetom_YMovement_ShortHop_Falling:
     LDA.W $0FAA,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
     STA.B $14 
@@ -7123,9 +7085,7 @@ Function_Beetom_LongHopRight:
 
 Function_Beetom_YMovement_LongHop_Rising:
     LDA.W $0FAA,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y 
     STA.B $14 
@@ -7155,9 +7115,7 @@ Function_Beetom_YMovement_LongHop_Rising:
 
 Function_Beetom_YMovement_LongHop_Falling:
     LDA.W $0FAA,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
     STA.B $14 
@@ -7240,9 +7198,7 @@ Function_Beetom_LungeRight:
 
 Function_Beetom_YMovement_Lunge_Rising:
     LDA.W $0FAA,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y 
     STA.B $14 
@@ -7272,9 +7228,7 @@ Function_Beetom_YMovement_Lunge_Rising:
 
 Function_Beetom_YMovement_Lunge_Falling:
     LDA.W $0FAA,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
     STA.B $14 
@@ -7418,9 +7372,7 @@ Function_Beetom_BeingFlung:
 
 Function_Beetom_Movement_BeingFlung:
     LDA.W $0FAA,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
     STA.B $14 
@@ -9305,10 +9257,7 @@ InitAI_RobotNoPower:
     LDA.L $7ED652 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     TAX 
     LDA.W #$000A 
     STA.L $7EC112,X 
@@ -9359,10 +9308,7 @@ EnemyGraphicsDrawnHook_Robot_PeriodicallyCyclePalettes:
     LDA.L $7ED652 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     TAX 
     LDA.L $7ED656 
     TAY 
@@ -10874,8 +10820,7 @@ InitAI_Bull:
     LDA.W #InstList_Bull_Normal 
     STA.W $0F92,X 
     LDA.W $0FB4,X 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W BullAccelerationIntervalTable_accel,Y 
     STA.L $7E780A,X 
@@ -12225,9 +12170,7 @@ InitAI_Atomic:
     LDA.W AtomicInstListPointers,Y 
     STA.W $0F92,X 
     LDA.W $0FB6,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.L $7E7802,X 
@@ -12836,10 +12779,7 @@ InitAI_FaceBlock:
     LDA.W #EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes>>16 
     STA.W $178E 
     LDA.W $0F96,X 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     AND.W #$FF00 
     XBA 
     STA.W $1794 
@@ -12865,9 +12805,7 @@ EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes:
     LDA.W $1794 
     TAX 
     LDA.W $1796 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W #$0004 
     STA.W $060B 
@@ -12898,10 +12836,7 @@ MainAI_FaceBlock:
     LDY.W #EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes 
     STY.W $178C 
     LDA.W $0F96,X 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     AND.W #$FF00 
     XBA 
     STA.W $1794 
@@ -14703,9 +14638,7 @@ Function_KihunterWings_Falling_DriftingLeft:
     LDA.W $0FAA,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W $0FB2,X 
     CLC 
@@ -14796,9 +14729,7 @@ Function_KihunterWings_Falling_DriftingRight:
     LDA.W $0FAA,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W $0FB2,X 
     CLC 
@@ -14903,9 +14834,7 @@ DetermineFallingKihunterWingsSpeedTableIndexResetValue:
     STA.L $7E7814,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W $0FAE,X 
     CLC 

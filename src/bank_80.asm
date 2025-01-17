@@ -276,9 +276,7 @@ BitIndexToByteIndexAndBitmask:
     DEC A 
     BPL .loop 
     PLA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     RTL 
 
@@ -4239,9 +4237,7 @@ DrawTwoTimerDigits:
     PHX 
     PHA 
     AND.W #$00F0 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     LDY.W TimerDigitsSpritemapPointers,X 
     LDA.B $03,S 
@@ -4885,64 +4881,40 @@ UpdateBGGraphics_WhenScrolling:
 
 Calculate_BGScroll_LayerPositionBlocks:
     LDA.B $B1 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.W $0907 
     LDA.B $B5 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.W $090B 
     LDA.W $0911 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     BIT.W #$0800 
     BEQ + 
     ORA.W #$F000 
 
   + STA.W $08F7 
     LDA.W $0917 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     BIT.W #$0800 
     BEQ + 
     ORA.W #$F000 
 
   + STA.W $08FB 
     LDA.B $B3 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.W $0909 
     LDA.B $B7 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.W $090D 
     LDA.W $0915 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     BIT.W #$0800 
     BEQ + 
     ORA.W #$F000 
 
   + STA.W $08F9 
     LDA.W $0919 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     BIT.W #$0800 
     BEQ + 
     ORA.W #$F000 
@@ -5591,8 +5563,7 @@ UpdateLevelBackgroundDataColumn:
     LDA.W #$007F 
     STA.B $38 
     LDA.W $0996 
-    ASL A 
-    ASL A 
+    ASL #2
     AND.W #$003C 
     STA.W $0958,X 
     EOR.W #$003F 
@@ -5660,9 +5631,7 @@ UpdateLevelBackgroundDataColumn:
     LDA.B [$36],Y 
     STA.W $093B 
     AND.W #$03FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     PHY 
     LDY.W $0937 
@@ -5793,13 +5762,11 @@ UpdateBackgroundLevelDataRow:
     LDA.W #$0010 
     SEC 
     SBC.W $0933 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $0964,X 
     LDA.W $0933 
     INC A 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $0966,X 
     SEP #$20 
     LDA.W $0996 
@@ -5870,9 +5837,7 @@ UpdateBackgroundLevelDataRow:
     LDA.B [$36],Y 
     STA.W $093B 
     AND.W #$03FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     PHY 
     LDY.W $0937 
@@ -6516,9 +6481,7 @@ Decompression_VariableDestination:
     CMP.B #$E0 
     BNE .pushCommandBits 
     LDA.B $4A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     AND.B #$E0 
     PHA 
     LDA.B $4A 
@@ -6767,9 +6730,7 @@ DecompressionToVRAM:
     CMP.B #$E0 
     BNE .pushCommandBits 
     LDA.B $4A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     AND.B #$E0 
     PHA 
     LDA.B $4A 
@@ -8024,8 +7985,7 @@ SetDebugElevatorAsUsed:
     LDA.W $0793 
     AND.W #$000F 
     DEC A 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.W .elevatorBits,X 
     TAY 

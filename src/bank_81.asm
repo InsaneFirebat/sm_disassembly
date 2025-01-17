@@ -2214,10 +2214,7 @@ FileSelectMenu_IndexF_1B_FadeOutToMain:
     STA.B $12 
     LDA.B $51 
     AND.W #$000F 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     EOR.W #$00F0 
     ORA.B $12 
     STA.B $57 
@@ -2234,8 +2231,7 @@ FileSelectMenu_IndexF_1B_FadeOutToMain:
 FileSelectMenu_Index11_10_FadeInToMain:
     REP #$30 
     LDA.W $0952 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W FileSelectMenu_SelectionMissile_Coordinates_Yposition,X 
     STA.W $19AB 
@@ -2251,10 +2247,7 @@ FileSelectMenu_Index7_15_FadeInFromMain:
     STA.B $12 
     LDA.B $51 
     AND.W #$000F 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     EOR.W #$00F0 
     ORA.B $12 
     STA.B $57 
@@ -2931,16 +2924,10 @@ FileSelectMenu_Index0_FileCopy_DoFileCopy:
     ORA.W .list,X 
     STA.W $0954 
     LDA.W $19B9 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.W #$0009 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #6
     CLC 
     ADC.W #$0018 
     TAX 
@@ -3550,11 +3537,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     LDA.W $0954 
     EOR.W #$FFFF 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     STA.W $0954 
     CMP.W #$0000 
     BEQ .loadTilemap 
@@ -3618,8 +3601,7 @@ LoadFromSRAM_external:
 FileSelectMenu_Index3_TitleSequenceToMain_FadeIn:
     JSR.W Draw_FileSelect_SamusHelmets 
     LDA.W $0952 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W FileSelectMenu_SelectionMissile_Coordinates_Yposition,X 
     STA.W $19AB 
@@ -3930,8 +3912,7 @@ FileSelectMenu_Index4_Main:
 
 .done:
     LDA.W $0952 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W FileSelectMenu_SelectionMissile_Coordinates_Yposition,X 
     STA.W $19AB 
@@ -4236,9 +4217,7 @@ Load_AreaSelect_BackgroundTilemap:
     STA.B $D0,X 
     TYA 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     CLC 
     ADC.W #Tilemap_AreaSelect_Background_Crateria 
     STA.B $D2,X 
@@ -4646,8 +4625,7 @@ Select_FileSelectMap_Area:
     LSR.B $12 
     BCC + 
     TXA 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.B [$00],Y 
     CMP.W #$FFFE 
@@ -4663,8 +4641,7 @@ Select_FileSelectMap_Area:
 
 .loopDebugSavePoints:
     TXA 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.B [$00],Y 
     CMP.W #$FFFE 
@@ -4795,8 +4772,7 @@ DrawAreaSelectMapLabels:
     ASL A 
     TAX 
     LDA.W FileSelectMapArea_IndexTable,X 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W FileSelectMap_Labels_Positions_Y,X 
     TAY 
@@ -4949,8 +4925,7 @@ FileSelectMap_Index7_AreaSelectMapToRoomSelectMap:
     STA.L $7E9E38 
     STA.L $7E9E3C 
     TXA 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W RoomSelectMap_ExpandingSquare_Velocities_leftSub,X 
     STA.L $7E9E40 
@@ -5279,8 +5254,7 @@ FileSelectMap_IndexA_RoomSelectMap:
     BEQ .crash 
     STA.B $00 
     LDA.W $078B 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.B [$00],Y 
     STA.B $12 
@@ -5298,8 +5272,7 @@ FileSelectMap_IndexA_RoomSelectMap:
     LSR.B $18 
     BCC .savesElevators 
     LDA.W $078B 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.B [$00],Y 
     CMP.W #$FFFE 
@@ -5315,8 +5288,7 @@ FileSelectMap_IndexA_RoomSelectMap:
 
 .loopDebugSavePoints:
     LDA.W $078B 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.B [$00],Y 
     CMP.W #$FFFF 
@@ -5341,8 +5313,7 @@ FileSelectMap_IndexA_RoomSelectMap:
 
 .found:
     LDA.W $078B 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.B [$00],Y 
     CMP.B $B1 
@@ -5581,9 +5552,7 @@ FileSelectMap_Index14_PrepContractSquareTransToAreaSelect:
     SBC.W #$000C 
     STA.L $7E9E50 
     TXA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W RoomSelectMap_ExpandingSquare_Velocities_leftSub,X 
     STA.L $7E9E40 

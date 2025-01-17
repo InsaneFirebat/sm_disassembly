@@ -14,8 +14,7 @@ GoldenTorizo_HealthBasedPalette_Handling:
     BEQ + 
     LDA.W #$0038 
 
-  + ASL A 
-    ASL A 
+  + ASL #2
     ORA.W #$001E 
     TAY 
     LDX.W #$001E 
@@ -565,20 +564,14 @@ UNUSED_Spawn_Enemy_PLM_84853E:
 
 .found:
     LDA.W $0F7E,Y 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
     STA.W $4203 
     REP #$20 
     LDA.W $0F7A,Y 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -981,8 +974,7 @@ Instruction_PLM_LoadItemPLMGFX:
     LDA.W $0000,Y 
     AND.W #$00FF 
     XBA 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.B $16 
     STA.L $7EA000,X 
@@ -1843,10 +1835,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Instruction_PLM_GotoY_ifSamusIsWithin_YColumnsRowsOfPLM:
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $0AF6 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEC 
     SBC.W $1C29 
     BPL + 
@@ -1860,10 +1849,7 @@ Instruction_PLM_GotoY_ifSamusIsWithin_YColumnsRowsOfPLM:
     BCS .tooFar 
 
   + LDA.W $0AFA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEC 
     SBC.W $1C2B 
     BPL + 
@@ -1941,10 +1927,7 @@ DrawPLM:
 
 .loopDrawEntry:
     LDA.W $0915 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1A 
     CLC 
     ADC.W #$000F 
@@ -1972,10 +1955,7 @@ DrawPLM:
     LDA.W $0911 
     CLC 
     ADC.W #$000F 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     DEC A 
     STA.B $16 
     SEC 
@@ -2037,9 +2017,7 @@ DrawPLM:
   + LDA.W #$0200 
     SEC 
     SBC.W $1C25 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     CMP.B $14 
     BMI .pullXreturn 
     LDA.B $1A 
@@ -2117,8 +2095,7 @@ DrawPLM:
     ADC.W #$0020 
     STA.B $E3,X 
     LDA.B $14 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.B $1E 
     SEC 
     SBC.B $D0,X 
@@ -2189,9 +2166,7 @@ DrawPLM:
     LDA.B ($03) 
     STA.B $1E 
     AND.W #$03FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.B $1E 
     AND.W #$0C00 
@@ -2290,10 +2265,7 @@ DrawPLM:
     AND.W #$7FFF 
     STA.B $14 
     LDA.W $0911 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.B $1E 
     BEQ + 
     BPL .return903B 
@@ -2367,9 +2339,7 @@ DrawPLM:
   + LDA.W #$0200 
     SEC 
     SBC.W $1C25 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     CMP.B $14 
     BMI .return908C 
     LDA.W #$8000 
@@ -2397,9 +2367,7 @@ DrawPLM:
     LDA.B ($03) 
     STA.B $1E 
     AND.W #$03FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.B $1E 
     AND.W #$0C00 
@@ -2590,8 +2558,7 @@ PartiallySetupVRAMWriteTableEntries_SingleScrnPLMDrawTilemap:
     ORA.B $1C 
     STA.B $D5,X 
     LDA.B $14 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.B $D0,X 
     STA.B $D7,X 
     LDA.W #$C6C8 ; $7E
@@ -5523,10 +5490,7 @@ UNUSED_LoadFXEntry_CompletelyBroken_84B05D:
     PEA.W $8F00 
     PLB 
     PLB 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     TAX 
     CMP.W $1968 
     BEQ .return 
@@ -5555,10 +5519,7 @@ UNUSED_LoadFXEntry0IfPLMIsInLeftmostScreenColumn_84B08B:
     LDX.W $1C27 
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $0AF6 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $1C29 
     BNE .return 
     LDA.W #$0000 
@@ -5574,10 +5535,7 @@ UNUSED_LoadFXEntry1IfPLMIsInLeftmostScreenColumn_84B0A6:
     LDX.W $1C27 
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $0AF6 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $1C29 
     BNE .return 
     LDA.W #$0001 
@@ -5593,10 +5551,7 @@ UNUSED_LoadFXEntry2IfPLMIsInLeftmostScreenColumn_84B0C1:
     LDX.W $1C27 
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $0AF6 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $1C29 
     BNE .return 
     LDA.W #$0002 
@@ -5683,10 +5638,7 @@ ActivateStationIfSamusArmCannonLinedUp:
     JSL.L Calculate_PLM_Block_Coordinates 
     PLX 
     LDA.W $1C2B 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     ORA.W #$000B 
     CMP.W $0AFA 
     BNE .delete 
@@ -6348,10 +6300,7 @@ Setup_CollisionReaction_SaveStationTrigger:
     LDA.W $0AF6 
     SEC 
     SBC.W #$0008 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $1C29 
     BNE .collisionReturn 
     TYX 
@@ -7390,17 +7339,11 @@ PreInstruction_PLM_WakePLMIfTriggered:
 PreInst_PLM_WakePLMIfTriggeredOrSamusWithin4BlockColumnBelow:
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $0AF6 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $1C29 
     BNE + 
     LDA.W $0AFA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEC 
     SBC.W $1C2B 
     CMP.W #$0005 
@@ -7424,17 +7367,11 @@ PreInst_PLM_WakePLMIfTriggeredOrSamusWithin4BlockColumnBelow:
 PreInst_PLM_WakePLMIfTriggeredOrSamusWithin4BlockColumnAbove:
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $0AF6 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $1C29 
     BNE + 
     LDA.W $0AFA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEC 
     SBC.W $1C2B 
     CMP.W #$FFFC 
@@ -11100,10 +11037,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PreInst_PLM_WakePLMIfSamusIsWithin4Blocks_84D710:
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $0AF6 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEC 
     SBC.W $1C29 
     BPL + 
@@ -11115,10 +11049,7 @@ UNUSED_PreInst_PLM_WakePLMIfSamusIsWithin4Blocks_84D710:
     BCS .return 
 
   + LDA.W $0AFA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEC 
     SBC.W $1C2B 
     BPL + 

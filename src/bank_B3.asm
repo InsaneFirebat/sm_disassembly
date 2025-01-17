@@ -1127,9 +1127,7 @@ InitAI_Gamet:
     STA.W $0F86,X 
     LDA.W $0FB7,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.W $0FAA,X 
     STZ.W $0FAC,X 
     LDA.W #$0001 
@@ -1635,9 +1633,7 @@ InitAI_Geega:
     STA.W $0F92,X 
 
   + LDA.W $0FB6,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.L $7E7802,X 
@@ -1960,9 +1956,7 @@ Function_Geega_DippingRight:
 MoveGeegaUp:
     INC.W $0FB0,X 
     LDA.W $0FB0,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W $0F80,X 
     CLC 
@@ -1988,9 +1982,7 @@ MoveGeegaDown:
 
 
   + LDA.W $0FB0,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W $0F80,X 
     CLC 
@@ -2526,10 +2518,7 @@ InitAI_Botwoon:
     STA.L $7E882A,X 
     STA.L $7E882E,X 
     LDA.W $0F96,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W #$0100 
     STA.L $7E881C,X 
@@ -2664,10 +2653,7 @@ BotwoonHealthBasedPaletteHandling:
     CMP.W BotwoonHealthThresholdsForPaletteChange,Y 
     BPL .return 
     LDA.L $7E881E,X 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.B $12 
     LDA.L $7E881C,X 
     STA.B $14 
@@ -2795,8 +2781,7 @@ ChooseBotwoonMovementPath:
     AND.W #$0018 
     STA.B $14 
     LDA.L $7E802E,X 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.B $12 
     CLC 
@@ -2832,8 +2817,7 @@ SetBotwoonSpeed:
 
 .merge:
     LDA.L $7E803E,X 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W BotwoonSpeedTable_speed,Y 
     STA.L $7E8030,X 
@@ -2940,9 +2924,7 @@ Function_Botwoon_DeathSequence_FallingToGround:
     LDA.L $7E8010,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W $0F80,X 
     CLC 
@@ -3351,11 +3333,7 @@ SetBotwoonInstListTableIndices:
     JSL.L CalculateAngleOf_12_14_Offset 
     CLC 
     ADC.B $18 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     ASL A 
     STA.W $1AFF,Y 
     DEC.B $16 
@@ -3410,11 +3388,7 @@ Function_Botwoon_Head_MovingAround:
     STA.W $0F86,X 
 
 +   LDA.B $16 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     ASL A 
     TAY 
     LDA.W InstListPointers_Botwoon,Y 
@@ -3458,11 +3432,7 @@ Function_Botwoon_Head_Spitting_SetAngleAndShow:
     CLC 
     ADC.W #$0010 
     AND.W #$00FF 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     ASL A 
     TAY 
     LDA.W InstListPointers_Botwoon_spit,Y 

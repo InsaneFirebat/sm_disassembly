@@ -729,8 +729,7 @@ HandleFakeDeathExplosions:
     LDA.W #$0007 
 
   + STA.L $7E8032 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W .XPosition,X 
     STA.B $12 
@@ -5206,10 +5205,7 @@ GenerateExplosionsAroundMotherBrainBody:
 
 .getIndex:
     LDA.W $0FF2 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     TAX 
     LDA.B $18 
 
@@ -5559,8 +5555,7 @@ GenerateEscapeDoorExplosion:
 
 .max3:
     LDA.W $0FF2 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .data0,Y 
     STA.B $12 
@@ -6870,8 +6865,7 @@ WriteMotherBrainPalette:
 Function_MBBody_Phase2_FinishSamusOff_GetSamusToLowEnergy:
     LDA.W #$0050 
     JSL.L Suit_Damage_Division 
-    ASL A 
-    ASL A 
+    ASL #2
     ADC.W #$0014 
     CMP.W $09C2 
     BPL .done 
@@ -9024,8 +9018,7 @@ HandleBabyMetroidCutsceneDeathExplosions:
     LDA.W #$0000 
 
   + STA.L $7E780E,X 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .XOffsets,Y 
     CLC 
@@ -9571,9 +9564,7 @@ HandleMotherBrainHeadPalette:
     STA.W $0FAE 
     REP #$20 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     ADC.B $12 
     TAY 
     LDX.W #$0122 
@@ -10461,11 +10452,7 @@ Function_CorpseSidehopper_BeingDrained:
     STA.L $7E780E,X 
     LDA.L $7E7810,X 
     DEC A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     ADC.W #Palette_SidehopperCorpseBeingDrained_0 
     TAY 
     LDX.W #$0122 
@@ -10734,8 +10721,7 @@ CopMoveCorpseRottingRotEntry:
     STA.W $8802 
     TAY 
     AND.W #$FFF8 
-    LSR A 
-    LSR A 
+    LSR #2
     TAX 
     TYA 
     AND.W #$0007 
@@ -13958,9 +13944,7 @@ HandleBabyMetroidPalette:
     REP #$20 
     AND.W #$00FF 
     JSR.W HandleBabyMetroidCrySFX 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     ADC.B $16 
     TAY 
     LDX.B $12 
@@ -14126,9 +14110,7 @@ EnemyShot_BabyMetroid:
     ASL A 
     TAX 
     LDA.W $0C2C,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     CMP.W #$00F0 
     BCC + 
     LDA.W #$00F0 

@@ -621,8 +621,7 @@ SetProjectileTrailPosition:
 .merge:
     TAY 
     LDA.B $16 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.W $0000,Y 
     TAY 
@@ -1920,9 +1919,7 @@ CancelGrappleBeamIfInIncompatiblePose:
     CMP.W #GrappleBeamFunction_Connected_LockedInPlace 
     BPL .return 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
@@ -1977,9 +1974,7 @@ RTS_9BB8D4:
     RTS 
 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
@@ -2116,8 +2111,7 @@ HandleConnectingGrapple:
 
 .notGrabbedByDraygon:
     LDA.W $0D34 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W $0B2E 
     BNE .movingVertically 
@@ -2502,24 +2496,20 @@ DetermineGrappleSwingAngularAccelerationDueToAngleOfSwing:
     BIT.W #$4000 
     BNE .downRight 
     LDA.W GrappleSwingConstants_Deceleration 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.W $0D2C 
     LDA.W $0CF4 
     BEQ + 
     BIT.W #$0001 
     BEQ + 
     LDA.W GrappleSwingConstants_AccelerationDueToAngleOfSwing 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.W $0D28 
     RTS 
 
 
   + LDA.W GrappleSwingConstants_AccelerationDueToAngleOfSwing 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.W $0D28 
     RTS 
 
@@ -2596,8 +2586,7 @@ DetermineGrappleSwingAngularAccelerationDueToAngleOfSwing:
 
 .upLeft:
     LDA.W GrappleSwingConstants_Deceleration 
-    LSR A 
-    LSR A 
+    LSR #2
     EOR.W #$FFFF 
     INC A 
     STA.W $0D2C 
@@ -2606,9 +2595,7 @@ DetermineGrappleSwingAngularAccelerationDueToAngleOfSwing:
     BIT.W #$0001 
     BEQ .minus6 
     LDA.W GrappleSwingConstants_AccelerationDueToAngleOfSwing 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     EOR.W #$FFFF 
     INC A 
     STA.W $0D28 
@@ -2617,8 +2604,7 @@ DetermineGrappleSwingAngularAccelerationDueToAngleOfSwing:
 
 .minus6:
     LDA.W GrappleSwingConstants_AccelerationDueToAngleOfSwing 
-    LSR A 
-    LSR A 
+    LSR #2
     EOR.W #$FFFF 
     INC A 
     STA.W $0D28 
@@ -2932,9 +2918,7 @@ UpdateGrappleBeamStartPositionDuringGrappleFire:
     PLB 
     REP #$30 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YOffset,X 
     AND.W #$00FF 
@@ -3568,9 +3552,7 @@ GrappleBeamFunction_Fire_GotoCancel:
     BEQ .draygon 
     CMP.W #$00BE 
     BEQ .draygon 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YOffset,X 
     AND.W #$00FF 
@@ -4091,9 +4073,7 @@ GrappleBeamFunction_Dropped:
     CMP.W #$0011 
     BMI .crouching 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
@@ -4108,9 +4088,7 @@ GrappleBeamFunction_Dropped:
 
 .crouching:
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 

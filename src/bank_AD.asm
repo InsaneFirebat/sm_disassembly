@@ -58,15 +58,12 @@ CalculateMotherBrainRainbowBeamHDMATables:
     STA.L $7E803E 
     LDA.L $7E8034 
     AND.W #$00C0 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.B $12 
     LDA.L $7E8036 
     AND.W #$00C0 
     ORA.B $12 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     XBA 
     TAX 
     JSR.W (CalculateMotherBrainRainbowBeamHDMATables_pointers,X) 

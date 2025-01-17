@@ -9,8 +9,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     PLB 
     REP #$30 
     LDA.W $0A96 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.B $12 
     INC A 
     INC A 
@@ -31,9 +30,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     LDA.W $0000,X 
     AND.W #$00FF 
     STA.W $0B24 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     SEC 
     SBC.W $0B24 
     STA.B $12 
@@ -62,9 +59,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     LDA.W $0000,X 
     AND.W #$00FF 
     STA.W $0B26 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     SEC 
     SBC.W $0B26 
     STA.B $14 

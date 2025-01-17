@@ -8739,10 +8739,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     CLC 
     ADC.W $0915 
     STA.B $14 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     PHA 
     LDA.W $07A5 
@@ -8751,10 +8748,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     STA.W $4203 
     REP #$20 
     LDA.B $12 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 

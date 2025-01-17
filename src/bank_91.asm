@@ -547,9 +547,7 @@ HandleTransitionTableLookupFailure:
 
 .consultPoseDefinition:
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_newPose,X 
     AND.W #$00FF 
@@ -802,8 +800,7 @@ RecordDemoInputFrame:
 
 .record:
     LDA.W $0A8A 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.B $12 
     ASL A 
     ADC.B $12 
@@ -845,8 +842,7 @@ Pause_Terminate_Reset_DemoRecorder:
     BIT.W #$0040 
     BEQ .checkA 
     LDA.W $0A8A 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.B $12 
     ASL A 
     ADC.B $12 
@@ -893,10 +889,7 @@ Draw_RecordedDemoDuration:
     LDA.W $0E24 
     AND.W #$F000 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W #$0004 
     JSL.L Add_Debug_Spritemap_to_OAM 
@@ -928,10 +921,7 @@ Draw_RecordedDemoDuration:
     STA.B $26 
     LDA.W $0E24 
     AND.W #$00F0 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W #$0004 
     JSL.L Add_Debug_Spritemap_to_OAM 
@@ -1133,10 +1123,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 LoadDemoData:
     LDA.W $1F57 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.B $12 
     LDA.W $1F55 
     ASL A 
@@ -6489,16 +6476,13 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     CLC 
     ADC.W $0915 
     AND.W #$00F0 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.B $18 
     LDA.W $091D 
     CLC 
     ADC.W $0911 
     AND.W #$00F0 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     CLC 
     ADC.B $18 
     STA.B $18 
@@ -6506,8 +6490,7 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     CLC 
     ADC.W $0911 
     AND.W #$0100 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.B $18 
     STA.B $18 
@@ -6592,18 +6575,12 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
 
 
   + LDA.W $0915 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     XBA 
     ORA.W $07A5 
     STA.W $4202 
     LDA.W $0911 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     STA.B $22 
@@ -6722,9 +6699,7 @@ LoadRightHalfOfRevealed2xNBlock:
     ADC.W #$0008 
     TAY 
     LDA.B ($03),Y 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L $7EA000,X 
     PHA 
@@ -6749,9 +6724,7 @@ LoadRightHalfOfRevealed2xNBlock:
     ADC.W #$0004 
     TAY 
     LDA.B ($03),Y 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L $7EA000,X 
     PHA 
@@ -7063,9 +7036,7 @@ RevealedBlockCommand_Copy2x2BlockToXrayBG2Tilemap:
     CMP.W #$0001 
     BEQ .gotoDone 
     LDA.B ($03),Y 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L $7EA000,X 
     PHA 
@@ -7091,9 +7062,7 @@ CopyRevealedBlockCommandArgumentToXrayBG2Tilemap:
     LDA.B ($03),Y 
 
 CopyBlockToXrayBG2Tilemap:
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L $7EA000,X 
     PHA 
@@ -7115,9 +7084,7 @@ CopyBlockToXrayBG2Tilemap:
 
 CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockRight:
     LDA.B ($03),Y 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L $7EA000,X 
     PHA 
@@ -7139,9 +7106,7 @@ CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockRight:
 
 CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockDown:
     LDA.B ($03),Y 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L $7EA000,X 
     PHA 
@@ -7168,10 +7133,7 @@ LoadBlockToXrayBG2Tilemap:
     REP #$30 
     STA.B $28 
     LDA.W $0911 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $18 
     TXA 
     SEC 
@@ -7181,10 +7143,7 @@ LoadBlockToXrayBG2Tilemap:
     SBC.W #$0010 
     BPL .return 
     LDA.W $0915 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1A 
     TYA 
     SEC 
@@ -7194,15 +7153,10 @@ LoadBlockToXrayBG2Tilemap:
     SBC.W #$0010 
     BPL .return 
     LDA.B $1A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     CLC 
     ADC.B $18 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.B $16 
     LDA.B $28 
     BIT.W #$0800 
@@ -7224,9 +7178,7 @@ LoadBlockToXrayBG2Tilemap:
 
 
 CopyYFlippedBlockToXrayBG2Tilemap:
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L $7EA000,X 
     PHA 
@@ -9844,9 +9796,7 @@ Set_NonXray_SamusPose:
     LDA.W #$FFFF 
     STA.W $0A80 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -10091,9 +10041,7 @@ DrainedSamusController_0_LetDrainedSamusFall:
     JSL.L InitializeSamusPose_1 
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -10166,9 +10114,7 @@ DrainedSamusController_2_ReleaseSamusFromDrainedPose:
 
 .merge:
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -10625,8 +10571,7 @@ PSP_Falling:
 
 
 .changed:
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W $0A1E 
     AND.W #$00FF 
@@ -10690,9 +10635,7 @@ PSP_Landed_Grounded:
     CMP.W #$0014 
     BEQ .wasSpinning 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
@@ -10943,9 +10886,7 @@ CheckIfProspectivePoseRunsIntoAWall:
     LDA.W $0A28 
     CMP.W #$FFFF 
     BEQ .returnPoseUnchanged 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_movementType,X 
     AND.W #$00FF 
@@ -10995,9 +10936,7 @@ CheckIfProspectivePoseRunsIntoAWall:
     LDA.W $0A1C 
 
 .setRanIntoWallPose:
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
@@ -11233,9 +11172,7 @@ ProspectivePoseCmd_7_StartTransitionAnimation:
 
 .shrinking:
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -12301,9 +12238,7 @@ InitializeSamusPose_1:
     PLB 
     REP #$30 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_00_XDirection,X 
     STA.W $0A1E 
@@ -12337,9 +12272,7 @@ InitializeSamusPose_2:
     JSR.W (.pointers,X) 
     BCC .return 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_00_XDirection,X 
     STA.W $0A1E 
@@ -12351,9 +12284,7 @@ InitializeSamusPose_2:
     TAX 
     JSR.W (.pointers,X) 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_00_XDirection,X 
     STA.W $0A1E 
@@ -12400,9 +12331,7 @@ CLCRTS_91F4DA:
 
 InitializeSamusPose_Standing:
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
@@ -12411,9 +12340,7 @@ InitializeSamusPose_Standing:
     BNE .returnCarryClear 
 
   + LDA.W $0A20 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
@@ -12550,9 +12477,7 @@ InitializeSamusPose_NormalJumping:
     BIT.W $09B2 
     BEQ .returnCarryClear 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
@@ -13036,9 +12961,7 @@ InitializeSamusPose_TurningAround_OnGround:
     BEQ .done 
     CMP.W #$009B 
     BEQ .done 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
@@ -13048,9 +12971,7 @@ InitializeSamusPose_TurningAround_OnGround:
     CMP.W #$0010 
     BNE .notMoonwalking 
     LDA.W $0A20 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W PoseDefinitions_directionShotsFired,Y 
     AND.W #$00FF 
@@ -13099,9 +13020,7 @@ InitializeSamusPose_TurningAround_OnGround:
 
 InitializeSamusPose_TurningAround_Jumping:
     LDA.W $0A20 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
@@ -13126,9 +13045,7 @@ InitializeSamusPose_TurningAround_Jumping:
 
 InitializeSamusPose_TurningAround_Falling:
     LDA.W $0A20 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W PoseDefinitions_directionShotsFired,X 
     AND.W #$00FF 
@@ -13331,9 +13248,7 @@ Set_Samus_AnimationFrame_if_PoseChanged:
     BIT.W #$0020 
     BNE .normalGravity 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -13738,17 +13653,13 @@ HandlePoseChangeCollision:
     STZ.W $0A34 
     STZ.W $0A36 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 
     STA.B $12 
     LDA.W $0A20 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -13870,9 +13781,7 @@ PoseChangeCollision_SolidEnemy_FromAbove:
     LDA.W $0B00 
     PHA 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -13907,9 +13816,7 @@ PoseChangeCollision_SolidEnemy_FromBelow:
     LDA.W $0B00 
     PHA 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -14048,9 +13955,7 @@ HandleCollisionFromBothSidesDueToPoseChange:
     LDA.W #$0028 
 
   + STA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 

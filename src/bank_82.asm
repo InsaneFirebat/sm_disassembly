@@ -169,9 +169,7 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     LDA.W $1F57 
     DEC A 
     STA.B $12 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     ADC.B $12 
     ASL A 
     STA.B $12 
@@ -781,9 +779,7 @@ CheckForNextDemo:
     PHP 
     REP #$30 
     LDA.W $1F57 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     ADC.W $1F57 
     ASL A 
     STA.B $12 
@@ -822,9 +818,7 @@ LoadDemoRoomData:
     REP #$30 
     STZ.W $078D 
     LDA.W $1F57 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     ADC.W $1F57 
     ASL A 
     STA.B $12 
@@ -2108,9 +2102,7 @@ Setup_MapScrolling_for_FileSelectMap:
     XBA 
     CLC 
     ADC.W $07A1 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     SEC 
     SBC.B $B1 
     STA.B $12 
@@ -2160,9 +2152,7 @@ Setup_MapScrolling_for_FileSelectMap:
     CLC 
     ADC.W $07A3 
     INC A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     SEC 
     SBC.B $B3 
     STA.B $12 
@@ -3466,9 +3456,7 @@ SetupMapScrollingForPauseMenu:
     XBA 
     CLC 
     ADC.W $07A1 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     SEC 
     SBC.B $B1 
     STA.B $12 
@@ -3518,9 +3506,7 @@ SetupMapScrollingForPauseMenu:
     CLC 
     ADC.W $07A3 
     INC A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     SEC 
     SBC.B $B3 
     STA.B $12 
@@ -3610,9 +3596,7 @@ DetermineMapScrollLimits:
 
 A_equals_X_times_8:
     TXA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     RTS 
 
 
@@ -5079,9 +5063,7 @@ Handle_PauseScreen_PaletteAnimation:
     LDA.W $074F 
     REP #$30 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     CLC 
     ADC.W #$001E 
     TAY 
@@ -6091,8 +6073,7 @@ EquipmentScreen_DrawItemSelector:
     LDA.W $0755 
     XBA 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.B $12 
     TAY 
@@ -6792,8 +6773,7 @@ Draw_FileSelectMap_Icons:
     LDA.W MapIcon_PositionTablePointers_savePoints,X 
     STA.B $00 
     LDA.W $078B 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.B [$00],Y 
     SEC 
@@ -6982,12 +6962,7 @@ Check_if_MapPosition_isExplored:
     STA.B $12 
     TXA 
     AND.W #$00FF 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #6
     CLC 
     ADC.B $12 
     STA.B $12 
@@ -6998,9 +6973,7 @@ Check_if_MapPosition_isExplored:
     ADC.B $12 
     STA.B $12 
     TXA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     AND.W #$0007 
     TAX 
     LDY.B $12 
@@ -7203,9 +7176,7 @@ MapScreen_DrawSamusPositionIndicator:
     AND.W #$00FF 
     CLC 
     ADC.W $07A1 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     SEC 
     SBC.B $B1 
     TAX 
@@ -7215,9 +7186,7 @@ MapScreen_DrawSamusPositionIndicator:
     CLC 
     ADC.W $07A3 
     INC A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     SEC 
     SBC.B $B3 
     TAY 
@@ -7683,10 +7652,7 @@ UNUSED_82BE5A:
 .crash:
     BPL .crash 
     TYA ; dead code
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     TAX 
     SEP #$20 
     LDA.B $12 
@@ -9690,44 +9656,33 @@ CalculateTheAth_TransitionalColor_fromXtoY:
     JSR.W CalculateTheAth_TransitionalColorComponent_fromXtoY 
     STA.B $07,S 
     LDA.B $01,S 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     XBA 
     AND.W #$001F 
     TAY 
     LDA.B $03,S 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     XBA 
     AND.W #$001F 
     TAX 
     LDA.B $05,S 
     JSR.W CalculateTheAth_TransitionalColorComponent_fromXtoY 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     ORA.B $07,S 
     STA.B $07,S 
     LDA.B $01,S 
-    LSR A 
-    LSR A 
+    LSR #2
     XBA 
     AND.W #$001F 
     TAY 
     LDA.B $03,S 
-    LSR A 
-    LSR A 
+    LSR #2
     XBA 
     AND.W #$001F 
     TAX 
     LDA.B $05,S 
     JSR.W CalculateTheAth_TransitionalColorComponent_fromXtoY 
-    ASL A 
-    ASL A 
+    ASL #2
     XBA 
     ORA.B $07,S 
     STA.B $07,S 
@@ -10299,18 +10254,12 @@ Load_Room_Header:
     LDA.W $0004,X 
     AND.W #$00FF 
     STA.W $07A9 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $07A5 
     LDA.W $0005,X 
     AND.W #$00FF 
     STA.W $07AB 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $07A7 
     LDA.W $0006,X 
     AND.W #$00FF 
@@ -10483,10 +10432,7 @@ Load_EnemyGFX_to_VRAM:
     TYX 
     LDA.L $B40002,X 
     AND.W #$F000 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     ORA.W #$6000 
     STA.W $05BE 
 
@@ -12833,8 +12779,7 @@ Set_SpecialSetting_Highlights:
     LDA.W $0000,X 
     BNE .settingIsOn 
     LDA.W $099E 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     PHX 
     LDA.W .iconCancelManualRow0,X 
@@ -12867,8 +12812,7 @@ Set_SpecialSetting_Highlights:
 
 .settingIsOn:
     LDA.W $099E 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     PHX 
     LDA.W .iconCancelManualRow0,X 
@@ -13131,8 +13075,7 @@ PreInstruction_MenuSelectionMissile:
     BEQ + 
     STA.B $12 
     LDA.W $099E 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.B $12 
     TAY 

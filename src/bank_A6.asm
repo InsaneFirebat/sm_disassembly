@@ -578,9 +578,7 @@ Function_Boulder_Falling:
     LDA.W $0FAC,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     JSR.W MoveBoulderVertically 
     LDA.W $0F7E,X 
@@ -614,9 +612,7 @@ Function_Boulder_Bounce_Rising:
     LDA.W $0FAC,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     INC A 
     INC A 
     INC A 
@@ -638,9 +634,7 @@ Function_Boulder_Bounce_Rising:
     LDA.W $0FAA,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W $0FB0,X 
     BEQ .right 
@@ -669,9 +663,7 @@ Function_Boulder_Bounce_Falling:
     LDA.W $0FAC,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
     STA.B $12 
@@ -727,9 +719,7 @@ Function_Boulder_Bounce_Falling:
     LDA.W $0FAA,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W $0FB0,X 
     BEQ ..right 
@@ -758,9 +748,7 @@ Function_Boulder_Rolling:
     LDA.W $0FAA,X 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
     STA.B $12 
@@ -1005,9 +993,7 @@ InitAI_KzanTop:
     STA.W $0FA8,X 
     LDA.W $0FB4,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.L $7E7804,X 
     TAX 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,X 
@@ -1072,9 +1058,7 @@ Function_Kzan_WaitingToFall:
     STA.W $0FAA,X 
     LDA.W $0FB4,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.L $7E7804,X 
     LDA.W #Function_Kzan_Falling 
     STA.W $0FA8,X 
@@ -2308,8 +2292,7 @@ InitAI_Puromi:
     LDA.W #Function_Puromi_Inactive 
     STA.W $0FA8,X 
     LDA.W $0FB0,X 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .startAngle_clockwise,Y 
     STA.L $7E8006,X 
@@ -2325,9 +2308,7 @@ InitAI_Puromi:
     LDA.W .fallingExplosionAngle_clockwise,Y 
     STA.L $7E801E,X 
     LDA.W $0FAC,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W $0FB0,X 
     BNE .firingUp 
@@ -5326,11 +5307,7 @@ CeresRidleyGetawayXVelocityTable:
 RidleyCeres_UpdateBG12Palette5:
     XBA 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     ADC.W #.palette0 
     TAY 
     LDX.W #$00A2 
@@ -7884,8 +7861,7 @@ SpawnRidleyExplosions:
 
 .notA:
     STA.L $7E8010 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .XPosition,Y 
     CLC 
@@ -8031,9 +8007,7 @@ RidleyExplosionInitialization_C:
     CLC 
     ADC.W #$0008 
     AND.W #$00F0 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAY 
     LDA.W .instListPointers,Y 
     STA.W $0F92,X 
@@ -9743,13 +9717,10 @@ HandleRidleyHealthBasedPalette:
     LDA.L $7EC400 
     BNE HandleRidleyHealthBasedPalette_return 
     LDA.B $12 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     SEC 
     SBC.B $12 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.W #Palette_Ridley_HealthBased_Below9000 
     TAY 
@@ -9801,20 +9772,14 @@ MakeRidleysWingsAndTailFlashWhenHit:
 
 CheckForCollisionWithNonAirBlock:
     TYA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
     STA.W $4203 
     REP #$20 
     TXA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -10520,8 +10485,7 @@ CalculateWingFlapSpeed:
     LDA.B $12 
 
 .YSpeedGreater:
-    ASL A 
-    ASL A 
+    ASL #2
     AND.W #$0F00 
     XBA 
     ASL A 
@@ -10726,9 +10690,7 @@ DrawRidleyTail:
     CLC 
     ADC.W #$0008 
     AND.W #$00F0 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     LDY.W RidleyTailTipSpritemapPointers,X 
     JSR.W GeneralPurposeRidleyDrawing_SetPalette 
@@ -11464,8 +11426,7 @@ UNUSED_ProjectileCollision_A6E01B:
     ASL A 
     TAX 
     LDA.W $0C2C,X 
-    ASL A 
-    ASL A 
+    ASL #2
     CMP.W #$0300 
     BCC + 
     LDA.W #$0300 
@@ -14189,8 +14150,7 @@ Function_CeresDoor_RotatingElevatorRoom_Rumbling_Explosions:
 
 .ceresDoorTimerNotExpired:
     LDA.W $0FB2 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .XOffset,Y 
     CLC 
@@ -14814,8 +14774,7 @@ HandleZebetitePaletteAnimation:
     INC A 
     AND.W #$0007 
     STA.W $0FAC 
-    ASL A 
-    ASL A 
+    ASL #2
     ADC.W #.colors 
     TAY 
     LDX.W #$0158 

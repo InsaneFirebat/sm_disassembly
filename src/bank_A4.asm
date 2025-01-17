@@ -1954,9 +1954,7 @@ SinkCrocomireDown:
     SEC 
     SBC.B $12 
     AND.W #$FFF8 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W #$0020 
     STA.B $12 
@@ -2621,8 +2619,7 @@ EraseMeltingCrocomirePixelColumn:
     AND.W #$00FF 
     TAX 
     AND.W #$FFF8 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.B $14 
     LDA.W $069C,X 
     AND.W #$0007 
@@ -2632,12 +2629,7 @@ EraseMeltingCrocomirePixelColumn:
     STA.B $14 
     LDA.W $069C,X 
     AND.W #$FFF8 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #6
     CLC 
     ADC.B $14 
     TAX 
@@ -2868,11 +2860,7 @@ MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
     LDA.B $52 
     AND.W #$0007 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     STA.B $12 
     CLC 
     ADC.W .VRAMSpriteTilesOffset,Y 

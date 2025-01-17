@@ -3297,10 +3297,7 @@ Load_FX_Entry:
     PHB 
     REP #$30 
     AND.W #$0007 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $1968 
     CLC 
     ADC.W $07CD 

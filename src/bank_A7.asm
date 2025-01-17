@@ -3284,9 +3284,7 @@ InitAI_Kraid:
     STA.L $7E7808 
     LDX.W #$0000 
     LDA.W $0F8C 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.B $12 
 
 .loopKraidHealth:
@@ -3302,8 +3300,7 @@ InitAI_Kraid:
     LDX.W $0E54 
     JSR.W SetupKraidGFXWithTheTilePriorityCleared 
     LDA.W $0F8C 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.L $7E7820 
     CLC 
     ADC.L $7E7820 
@@ -3780,12 +3777,7 @@ SetLintYPositionsAndRandomThinkingTimer:
     LDA.W #$0002 
 
 .multiplyBy40:
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #6
     STA.L $7E7806 
     RTS 
 
@@ -4550,10 +4542,7 @@ KraidHealthBasedPaletteHandling:
     INX 
     INX 
     TXA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     TAY 
 
 .hurtFlashFrame:
@@ -4833,10 +4822,7 @@ Function_Kraid_KraidShot_UnglowEye:
     INX 
     INX 
     TXA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     TAY 
     LDX.W #$00E2 
     STZ.B $14 
@@ -6145,10 +6131,7 @@ UnpauseHook_KraidIsDead:
     STA.W $2116 
     LDA.B $5D 
     AND.B #$0F 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.B #$3F 
     STA.W $2117 
@@ -8833,9 +8816,7 @@ Function_Phantoon_FlameRain_SubsequentFlameRain:
     JSL.L GenerateRandomNumber 
     AND.W #$0007 
     PHA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W Phantoon_FlameRain_PositionTable_index,Y 
     STA.W $0FA8 
@@ -9066,8 +9047,7 @@ Function_Phantoon_DeathSequence_Exploding:
 
 .timerExpired:
     LDA.W $1032 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .XOffset,Y 
     AND.W #$00FF 
@@ -9380,9 +9360,7 @@ GetPhantoonHealthBasedPaletteColor:
     STX.B $18 
     LDX.W $0E54 
     LDA.W #$09C4 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.B $12 
     STA.B $14 
     STZ.B $16 
@@ -9476,44 +9454,33 @@ CalculateAthTransitionalColorFromXToY:
     JSR.W CalculateTheAthTransitionalColorComponentFromXToY 
     STA.B $07,S 
     LDA.B $01,S 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     XBA 
     AND.W #$001F 
     TAY 
     LDA.B $03,S 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     XBA 
     AND.W #$001F 
     TAX 
     LDA.B $05,S 
     JSR.W CalculateTheAthTransitionalColorComponentFromXToY 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     ORA.B $07,S 
     STA.B $07,S 
     LDA.B $01,S 
-    LSR A 
-    LSR A 
+    LSR #2
     XBA 
     AND.W #$001F 
     TAY 
     LDA.B $03,S 
-    LSR A 
-    LSR A 
+    LSR #2
     XBA 
     AND.W #$001F 
     TAX 
     LDA.B $05,S 
     JSR.W CalculateTheAthTransitionalColorComponentFromXToY 
-    ASL A 
-    ASL A 
+    ASL #2
     XBA 
     ORA.B $07,S 
     STA.B $07,S 

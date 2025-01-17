@@ -2677,14 +2677,12 @@ Debug_HandleDigitModification:
     LDA.W $1860 
     SEC 
     SBC.W #$00C0 
-    LSR A 
-    LSR A 
+    LSR #2
     TAX 
     LDA.W $1862 
     SEC 
     SBC.W #$0030 
-    LSR A 
-    LSR A 
+    LSR #2
     TAY 
     LDA.W $0012,Y 
     CLC 
@@ -2699,14 +2697,12 @@ Debug_HandleDigitModification:
     LDA.W $1860 
     SEC 
     SBC.W #$00C0 
-    LSR A 
-    LSR A 
+    LSR #2
     TAX 
     LDA.W $1862 
     SEC 
     SBC.W #$0030 
-    LSR A 
-    LSR A 
+    LSR #2
     TAY 
     LDA.W $0012,Y 
     SEC 
@@ -3699,10 +3695,7 @@ Draw4DigitHexValue:
     LDA.W $0E24 
     AND.W #$F000 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W #$0004 
     JSL.L Add_Debug_Spritemap_to_OAM 
@@ -3734,10 +3727,7 @@ Draw4DigitHexValue:
     STA.B $26 
     LDA.W $0E24 
     AND.W #$00F0 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W #$0004 
     JSL.L Add_Debug_Spritemap_to_OAM 

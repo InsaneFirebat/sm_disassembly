@@ -10251,8 +10251,7 @@ SetSHaktoolPieceNeighborAngleDeltaDueToBlockCollision:
 
   + XBA 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $0FAC,X 
     RTS 
 
@@ -10377,10 +10376,7 @@ Function_Shaktool_Head:
     SEP #$20 
     STA.W $0FAE,X 
     REP #$20 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     TAY 
     LDA.W .pointers,Y 
     STA.W $0F92,X 

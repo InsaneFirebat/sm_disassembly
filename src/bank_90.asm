@@ -1230,9 +1230,7 @@ DrawSamusEchoes:
 DrawSamusEcho:
     PHY 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YOffset,X 
     AND.W #$00FF 
@@ -1261,9 +1259,7 @@ DrawSamusEcho:
     LDA.W $0ACA 
     BEQ .return 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YOffset,X 
     AND.W #$00FF 
@@ -1311,8 +1307,7 @@ DrawShinesparkCrashEchoCircle:
     ADC.W $0A96 
     PHA 
     TXA 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.L PoseDefinitions_YOffset,X 
     AND.W #$00FF 
@@ -1354,8 +1349,7 @@ DrawShinesparkCrashEchoCircle:
     ADC.W $0A96 
     PHA 
     TXA 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.L PoseDefinitions_YOffset,X 
     AND.W #$00FF 
@@ -1839,8 +1833,7 @@ Calculate_SamusSpritemapPosition:
 
 CalculateUsualSamusSpritemapPosition:
     TYA 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.L PoseDefinitions_YOffset,X 
     AND.W #$00FF 
@@ -1880,8 +1873,7 @@ CalculateSamusSpritemapPosition_Standing:
     BPL Goto_CalculateUsualSamusSpritemapPosition 
     SEC 
     SBC.W #$00A4 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.W $0A96 
     TAX 
@@ -4095,8 +4087,7 @@ Determine_SamusXSpeedTable_EntryPointer:
     ASL A 
     CLC 
     ADC.B $14 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.W $0A6C 
     TAX 
@@ -5520,9 +5511,7 @@ MarkMapTilesExplored:
     AND.W #$0007 
     TAY 
     LDA.B $12 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.B $14 
     LDA.B $18 
     AND.W #$FF00 
@@ -5533,8 +5522,7 @@ MarkMapTilesExplored:
     STA.B $16 
     CLC 
     ADC.B $22 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.B $14 
     TAX 
@@ -5561,9 +5549,7 @@ Initialise_Minimap_broken:
     AND.W #$0007 
     TAY 
     TXA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.B $14 
     LDA.W $0AFA 
     AND.W #$FF00 
@@ -5585,10 +5571,7 @@ Update_Minimap:
 
 
   + LDA.W $0AF6 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $07A5 
     BCC + 
     PLP 
@@ -5596,10 +5579,7 @@ Update_Minimap:
 
 
   + LDA.W $0AFA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $07A7 
     BCC + 
     PLP 
@@ -5621,9 +5601,7 @@ Update_Minimap:
     AND.W #$0007 
     TAY 
     LDA.B $12 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.B $14 
     LDA.W $0AFA 
     AND.W #$FF00 
@@ -5634,8 +5612,7 @@ Update_Minimap:
     STA.B $16 
     CLC 
     ADC.B $22 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.B $14 
     TAX 
@@ -5765,9 +5742,7 @@ Update_HUD_Minimap_Tilemap:
     CLC 
     ADC.B $22 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     CLC 
     ADC.B $12 
     STA.W $060B 
@@ -6879,8 +6854,7 @@ InitializeBeamVelocities:
     LDX.B $14 
     LDA.W $0C18,X 
     AND.W #$000F 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W $0C04,X 
     AND.W #$000F 
@@ -6967,8 +6941,7 @@ InitializeProjectileVelocities_Up:
 
 
 .left:
-    LSR A 
-    LSR A 
+    LSR #2
     ORA.W #$C000 
     STA.B $12 
 
@@ -6992,8 +6965,7 @@ InitializeProjectileVelocities_UpRight:
 
 
 .left:
-    LSR A 
-    LSR A 
+    LSR #2
     ORA.W #$C000 
     STA.B $12 
 
@@ -7080,8 +7052,7 @@ InitializeProjectileVelocities_UpLeft:
 
 
 .left:
-    LSR A 
-    LSR A 
+    LSR #2
     ORA.W #$C000 
     STA.B $12 
 
@@ -7128,8 +7099,7 @@ AccelerateMissile:
 .initialized:
     LDA.W $0C04,X 
     AND.W #$000F 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.B $12 
     LDA.W $0C19,X 
     AND.W #$000F 
@@ -8093,9 +8063,7 @@ SamusBeamPreInstructionPointers:
 
 InitializeProjectilePositionDirection:
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDY.B $14 
     LDA.W $0B5E 
@@ -8165,9 +8133,7 @@ InitializeProjectilePositionDirection:
 .unused:
     PHX 
     LDA.W $0A24 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_directionShotsFired,X 
     BIT.W #$00F0 
@@ -8358,9 +8324,7 @@ DrawFlareAnimationComponent:
     STA.B $16 
 
   + LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YOffset,X 
     AND.W #$00FF 
@@ -9703,9 +9667,7 @@ DrawArmCannon:
 
   + STA.B $14 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YOffset,X 
     AND.W #$00FF 
@@ -11842,8 +11804,7 @@ BombSpread:
     LDA.W BombSpreadData_YSubSpeeds,Y 
     STA.W $0C90,X 
     LDA.W $0CD4 
-    ASL A 
-    ASL A 
+    ASL #2
     XBA 
     AND.W #$0003 
     CLC 
@@ -13700,8 +13661,7 @@ CalculateSamusXSpeed_Divisor2:
     LDA.B $12 
     ADC.W $0B42 
     XBA 
-    LSR A 
-    LSR A 
+    LSR #2
     XBA 
     PHA 
     AND.W #$00FF 
@@ -13711,8 +13671,7 @@ CalculateSamusXSpeed_Divisor2:
     AND.W #$FF00 
     STA.B $16 
     LDA.B $14 
-    LSR A 
-    LSR A 
+    LSR #2
     CLC 
     ADC.B $16 
     STA.B $14 
@@ -13728,9 +13687,7 @@ CalculateSamusXSpeed_Divisor3:
     LDA.B $12 
     ADC.W $0B42 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     XBA 
     PHA 
     AND.W #$00FF 
@@ -13740,9 +13697,7 @@ CalculateSamusXSpeed_Divisor3:
     AND.W #$FF00 
     STA.B $16 
     LDA.B $14 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     CLC 
     ADC.B $16 
     STA.B $14 
@@ -13758,10 +13713,7 @@ CalculateSamusXSpeed_Divisor4:
     LDA.B $12 
     ADC.W $0B42 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     XBA 
     PHA 
     AND.W #$00FF 
@@ -13771,10 +13723,7 @@ CalculateSamusXSpeed_Divisor4:
     AND.W #$FF00 
     STA.B $16 
     LDA.B $14 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.B $16 
     STA.B $14 
@@ -14402,8 +14351,7 @@ HandlePeriodicDamageToSamus:
 
 .gravitySuit:
     LDA.W $0A4F 
-    LSR A 
-    LSR A 
+    LSR #2
     PHA 
     XBA 
     AND.W #$FF00 
@@ -14736,9 +14684,7 @@ SetSamusRadius:
     PHP 
     REP #$30 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -14753,9 +14699,7 @@ Get_Samus_Bottom_Boundary:
     PHP 
     REP #$30 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -14771,9 +14715,7 @@ Get_Samus_BottomTop_Boundary:
     PHP 
     REP #$30 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -14796,17 +14738,13 @@ AlignSamusBottomPositionWithPreviousPose:
     PHP 
     REP #$30 
     LDA.W $0A1C 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 
     STA.B $12 
     LDA.W $0A20 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X 
     AND.W #$00FF 
@@ -14912,17 +14850,11 @@ DemoRecorder_DisplaySamusPositionAsAmmoIfMorphed:
     AND.W #$00FF 
     BEQ .return 
     LDA.W $0AF6 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.W $09C6 
     STA.W $09C8 
     LDA.W $0AFA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.W $09CA 
     STA.W $09CC 
 

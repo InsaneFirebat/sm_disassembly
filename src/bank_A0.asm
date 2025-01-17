@@ -434,9 +434,7 @@ Handle_Room_Shaking:
     LDA.W $183E 
     CMP.W #$0024 
     BPL .return 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W $1840 
     BIT.W #$0002 
@@ -982,12 +980,7 @@ Initialise_Enemies:
 
   + STY.W $0E4C 
     TYA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #6
     STA.W $0E4E 
     LDA.L $A10002,X 
     AND.W #$00FF 
@@ -1029,11 +1022,7 @@ LoadEnemyGFXIndices:
     LDA.L $B40000,X 
     TAX 
     LDA.W $0000,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     CLC 
     ADC.B $1E 
     STA.B $1E 
@@ -1304,9 +1293,7 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
     LDX.B $1C 
     LDA.L $B40002,X 
     AND.W #$3000 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     PLX 
 
 .noMSB:
@@ -1342,11 +1329,7 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
     PLY 
     PLX 
     LDA.B $12 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     CLC 
     ADC.L $7EEF76 
     STA.L $7EEF76 
@@ -2314,8 +2297,7 @@ UNUSED_RespawnEnemy_A095F1:
     PLB 
     REP #$30 
     LDA.W $0E54 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $12 
     LDA.W $07CF 
     CLC 
@@ -5990,29 +5972,19 @@ Sign_Extend_A:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MultiplyBy10_A0AFFD:
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 MultiplyBy20_A0B002:
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     RTL 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MultiplyBy30_A0B008:
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $0E32 
     CLC 
     ADC.W $0E32 
@@ -6022,12 +5994,7 @@ UNUSED_MultiplyBy30_A0B008:
 
 
 UNUSED_MultiplyBy40_A0B018:
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #6
     RTL 
 
 
@@ -6042,10 +6009,7 @@ UNUSED_SwapLowByteNybbles_A0B01F:
     XBA 
     REP #$20 
     ORA.W $0E32 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     AND.W #$00FF 
     ORA.W $0E34 
     RTL 
@@ -6062,10 +6026,7 @@ UNUSED_SwapHighByteNybbles_A0B040:
     XBA 
     REP #$20 
     ORA.W $0E32 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     AND.W #$FF00 
     ORA.W $0E34 
 
@@ -6962,20 +6923,14 @@ DraygonDeathItemDropRoutine:
 
 CalculateTheBlockContainingAPixelPosition:
     LDA.B $04,S 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
     STA.W $4203 
     REP #$20 
     LDA.B $06,S 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     STA.W $0DC4 
@@ -7037,18 +6992,12 @@ CheckForHorizontalSolidBlockCollision:
     DEC A 
     SEC 
     SBC.B $1A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1A 
     LDA.W $0F7E,X 
     SEC 
     SBC.W $0F84,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
@@ -7074,10 +7023,7 @@ CheckForHorizontalSolidBlockCollision:
     SBC.W $0F82,X 
 
   + STA.B $22 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -7154,10 +7100,7 @@ CheckForVerticalSolidBlockCollision:
     DEC A 
     SEC 
     SBC.B $1A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1A 
     LDA.W $0F80,X 
     CLC 
@@ -7179,10 +7122,7 @@ CheckForVerticalSolidBlockCollision:
     SBC.W $0F84,X 
 
   + STA.B $22 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
@@ -7191,10 +7131,7 @@ CheckForVerticalSolidBlockCollision:
     LDA.W $0F7A,X 
     SEC 
     SBC.W $0F82,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -7271,18 +7208,12 @@ UNUSED_MoveEnemyRight_NoBlockCollisionReactions_A0BD26:
     DEC A 
     SEC 
     SBC.B $1A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1A 
     LDA.W $0F7E,X 
     SEC 
     SBC.W $0F84,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
@@ -7316,10 +7247,7 @@ UNUSED_MoveEnemyRight_NoBlockCollisionReactions_A0BD26:
     SBC.W $0F82,X 
 
   + STA.B $22 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -7403,10 +7331,7 @@ UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6:
     DEC A 
     SEC 
     SBC.B $1A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1A 
     LDA.B $1C 
     LSR A 
@@ -7436,10 +7361,7 @@ UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6:
     SBC.W $0F84,X 
 
   + STA.B $22 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
@@ -7448,10 +7370,7 @@ UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6:
     LDA.W $0F7A,X 
     SEC 
     SBC.W $0F82,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -7532,18 +7451,12 @@ UNUSED_CheckForHorizontalSolidBlockCollision_A0BEBF:
     DEC A 
     SEC 
     SBC.B $1A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1A 
     LDA.W $0F7E,X 
     SEC 
     SBC.W $0F84,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
@@ -7577,10 +7490,7 @@ UNUSED_CheckForHorizontalSolidBlockCollision_A0BEBF:
     SBC.W $0F82,X 
 
   + STA.B $22 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -7660,10 +7570,7 @@ CheckForVerticalSolidBlockCollision_SkreeMetaree:
     DEC A 
     SEC 
     SBC.B $1A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1A 
     LDA.B $1C 
     LSR A 
@@ -7693,10 +7600,7 @@ CheckForVerticalSolidBlockCollision_SkreeMetaree:
     SBC.W $0F84,X 
 
   + STA.B $22 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
@@ -7705,10 +7609,7 @@ CheckForVerticalSolidBlockCollision_SkreeMetaree:
     LDA.W $0F7A,X 
     SEC 
     SBC.W $0F82,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -7891,9 +7792,7 @@ CalculateAngleOfXYOffset:
 
 CalculateAngleOfXYOffset_BottomRightUpperOctant:
     LDA.W $4214 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     CLC 
     ADC.W #$0040 
     AND.W #$00FF 
@@ -7902,9 +7801,7 @@ CalculateAngleOfXYOffset_BottomRightUpperOctant:
 
 CalculateAngleOfXYOffset_BottomRightLowerOctant:
     LDA.W $4214 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.B $12 
     LDA.W #$0080 
     SEC 
@@ -7915,18 +7812,14 @@ CalculateAngleOfXYOffset_BottomRightLowerOctant:
 
 CalculateAngleOfXYOffset_TopRightUpperOctant:
     LDA.W $4214 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     AND.W #$00FF 
     RTS 
 
 
 CalculateAngleOfXYOffset_TopRightLowerOctant:
     LDA.W $4214 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.B $12 
     LDA.W #$0040 
     SEC 
@@ -7937,9 +7830,7 @@ CalculateAngleOfXYOffset_TopRightLowerOctant:
 
 CalculateAngleOfXYOffset_BottomLeftLowerOctant:
     LDA.W $4214 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     CLC 
     ADC.W #$0080 
     AND.W #$00FF 
@@ -7948,9 +7839,7 @@ CalculateAngleOfXYOffset_BottomLeftLowerOctant:
 
 CalculateAngleOfXYOffset_BottomLeftUpperOctant:
     LDA.W $4214 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.B $12 
     LDA.W #$00C0 
     SEC 
@@ -7961,9 +7850,7 @@ CalculateAngleOfXYOffset_BottomLeftUpperOctant:
 
 CalculateAngleOfXYOffset_TopLeftLowerOctant:
     LDA.W $4214 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     CLC 
     ADC.W #$00C0 
     AND.W #$00FF 
@@ -7972,9 +7859,7 @@ CalculateAngleOfXYOffset_TopLeftLowerOctant:
 
 CalculateAngleOfXYOffset_TopLeftUpperOctant:
     LDA.W $4214 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.B $12 
     LDA.W #$0100 
     SEC 
@@ -8244,8 +8129,7 @@ EnemyBlockCollisionReaction_Vertical_Slope:
 
 
 EnemyBlockCollisionReaction_Horizontal_Slope_Square:
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $0DD4 
     LDA.L $7F6401,X 
     ROL A 
@@ -8255,9 +8139,7 @@ EnemyBlockCollisionReaction_Horizontal_Slope_Square:
     STA.W $0DD6 
     LDA.B $1A 
     AND.W #$0008 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     EOR.W $0DD6 
     ADC.W $0DD4 
     TAX 
@@ -8329,8 +8211,7 @@ EnemyBlockCollisionReaction_Horizontal_Slope_Square:
 
 
 EnemyBlockCollisionReaction_Vertical_Slope_Square:
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $0DD4 
     LDA.L $7F6401,X 
     ROL A 
@@ -8340,8 +8221,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_Square:
     STA.W $0DD6 
     LDA.B $1A 
     AND.W #$0008 
-    LSR A 
-    LSR A 
+    LSR #2
     EOR.W $0DD6 
     ADC.W $0DD4 
     TAX 
@@ -8432,8 +8312,7 @@ EnemyBlockCollisionReaction_Horizontal_Slope_NonSquare:
 .processSlopes:
     LDA.W $1E77 
     AND.W #$001F 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.B $14 
     BPL + 
@@ -8497,10 +8376,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_NonSquare:
     STA.W $4206 
     REP #$20 
     LDA.W $0F7A,Y 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $4216 
     BEQ + 
     CLC 
@@ -8515,10 +8391,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_NonSquare:
     STA.W $0DD4 
     LDA.L $7F6402,X 
     AND.W #$001F 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $0DD6 
     LDA.L $7F6401,X 
     BMI .returnUpper 
@@ -8566,10 +8439,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_NonSquare:
     STA.W $4206 
     REP #$20 
     LDA.W $0F7A,Y 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $4216 
     BEQ + 
     CLC 
@@ -8584,10 +8454,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_NonSquare:
     STA.W $0DD4 
     LDA.L $7F6402,X 
     AND.W #$001F 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $0DD6 
     LDA.L $7F6401,X 
     BPL .returnLower 
@@ -8651,9 +8518,7 @@ EnemyBlockCollisionReaction_HorizontalExtension:
     LDA.L $7F0002,X 
     AND.W #$F000 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     PLA 
     SEC 
@@ -8699,9 +8564,7 @@ EnemyBlockCollisionReaction_VerticalExtension:
     LDA.L $7F0002,X 
     AND.W #$F000 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     PLA 
     SEC 
@@ -8749,19 +8612,13 @@ MoveEnemyRightBy_14_12_Common:
     DEC A 
     SEC 
     SBC.B $1C 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1C 
     STA.B $1E 
     LDA.W $0F7E,X 
     SEC 
     SBC.W $0F84,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
@@ -8787,10 +8644,7 @@ MoveEnemyRightBy_14_12_Common:
     SBC.W $0F82,X 
 
   + STA.B $1A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -8896,10 +8750,7 @@ MoveEnemyDownBy_14_12_BranchEntry:
     DEC A 
     SEC 
     SBC.B $1C 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1C 
     STA.B $1E 
     LDA.W $0F80,X 
@@ -8922,10 +8773,7 @@ MoveEnemyDownBy_14_12_BranchEntry:
     SBC.W $0F84,X 
 
   + STA.B $1A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
@@ -8934,10 +8782,7 @@ MoveEnemyDownBy_14_12_BranchEntry:
     LDA.W $0F7A,X 
     SEC 
     SBC.W $0F82,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -9004,9 +8849,7 @@ EnemyHorizontalBlockReaction:
     TXY 
     AND.W #$F000 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     TYA 
     LSR A 
@@ -9039,9 +8882,7 @@ EnemyVerticalBlockReaction:
     TXY 
     AND.W #$F000 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     TYA 
     LSR A 
@@ -9106,10 +8947,7 @@ AlignEnemyYPositionWIthNonSquareSlope:
     STA.W $0DD4 
     LDA.L $7F6402,X 
     AND.W #$001F 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $0DD6 
     LDA.L $7F6401,X 
     BMI .enemyTopCheck 
@@ -9168,10 +9006,7 @@ AlignEnemyYPositionWIthNonSquareSlope:
     STA.W $0DD4 
     LDA.L $7F6402,X 
     AND.W #$001F 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $0DD6 
     LDA.L $7F6401,X 
     BPL .return 

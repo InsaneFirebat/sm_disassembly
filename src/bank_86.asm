@@ -757,8 +757,7 @@ Get_Values_for_Screen_Shaking:
     LDA.W $183E 
     CMP.W #$0024 
     BPL .returnZero 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W $1840 
     BIT.W #$0002 
@@ -850,9 +849,7 @@ EnemyProjectile_BlockCollision_HorizontalExtension:
     LDA.L $7F0002,X 
     AND.W #$F000 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     PLA 
     SEC 
@@ -900,9 +897,7 @@ EnemyProjectile_BlockCollision_VerticalExtension:
     LDA.L $7F0002,X 
     AND.W #$F000 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     PLA 
     SEC 
@@ -954,8 +949,7 @@ EnemyProjectile_BlockCollision_VerticalSlope:
 
 
 EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $0DD4 
     LDA.L $7F6401,X 
     ROL A 
@@ -965,9 +959,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
     STA.W $0DD6 
     LDA.B $22 
     AND.W #$0008 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     EOR.W $0DD6 
     ADC.W $0DD4 
     TAX 
@@ -1068,8 +1060,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
 
 
 EnemyProjectile_BlockCollision_VerticalSlopeSquare:
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $0DD4 
     LDA.L $7F6401,X 
     ROL A 
@@ -1079,8 +1070,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
     STA.W $0DD6 
     LDA.B $22 
     AND.W #$0008 
-    LSR A 
-    LSR A 
+    LSR #2
     EOR.W $0DD6 
     ADC.W $0DD4 
     TAX 
@@ -1202,8 +1192,7 @@ SquareSlopeDefinitions_Bank86:
 EnemyProjectile_BlockCollision_HorizontalSlopeNonSquare:
     LDA.W $1E77 
     AND.W #$001F 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.B $14 
     BPL .return ; >.<
@@ -1230,10 +1219,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
     STA.W $4206 
     REP #$20 
     LDA.W $1A4B,Y 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $4216 
     BEQ + 
     CLC 
@@ -1248,10 +1234,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
     STA.W $0DD4 
     LDA.L $7F6402,X 
     AND.W #$001F 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $0DD6 
     LDA.L $7F6401,X 
     BMI .returnNoCollision 
@@ -1300,10 +1283,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
     STA.W $4206 
     REP #$20 
     LDA.W $1A4B,Y 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CMP.W $4216 
     BEQ + 
     CLC 
@@ -1318,10 +1298,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
     STA.W $0DD4 
     LDA.L $7F6402,X 
     AND.W #$001F 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $0DD6 
     LDA.L $7F6401,X 
     BPL .noCollisionReturn 
@@ -1407,9 +1384,7 @@ EnemyProjectile_BlockReaction_Horizontal:
     LDA.L $7F0002,X 
     AND.W #$F000 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     JSR.W (EnemyProjectile_BlockCollision_Horizontal_Pointers,X) 
     PLX 
@@ -1423,9 +1398,7 @@ EnemyProjectile_BlockReaction_Vertical:
     LDA.L $7F0002,X 
     AND.W #$F000 
     XBA 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     TAX 
     JSR.W (EnemyProjectile_BlockCollision_Vertical_Pointers,X) 
     PLX 
@@ -1458,19 +1431,13 @@ Move_EnemyProjectile_Horizontally:
     DEC A 
     SEC 
     SBC.B $1A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1A 
     STA.B $20 
     LDA.W $1A93,X 
     SEC 
     SBC.B $1E 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
@@ -1496,10 +1463,7 @@ Move_EnemyProjectile_Horizontally:
     SBC.B $1C 
 
   + STA.B $22 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -1583,10 +1547,7 @@ Move_EnemyProjectile_Vertically:
     DEC A 
     SEC 
     SBC.B $1A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $1A 
     STA.B $20 
     LDA.W $1A6F,X 
@@ -1609,10 +1570,7 @@ Move_EnemyProjectile_Vertically:
     SBC.B $1E 
 
   + STA.B $22 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     SEP #$20 
     STA.W $4202 
     LDA.W $07A5 
@@ -1621,10 +1579,7 @@ Move_EnemyProjectile_Vertically:
     LDA.W $1A4B,X 
     SEC 
     SBC.B $1C 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     CLC 
     ADC.W $4216 
     ASL A 
@@ -2168,8 +2123,7 @@ PreInstruction_DraygonGoop_StuckToSamus:
     LDA.W $0AF6 
     STA.W $1A4B,X 
     LDA.W $1B23,X 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.W $0AFA 
     SEC 
@@ -2521,14 +2475,12 @@ PreInstruction_EnemyProjectile_CrocomiresProjectile_Setup:
     CLC 
     LDA.L SineCosineTables_8bitSine_SignExtended,X 
     STA.B $12 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $1AB7,Y 
     CLC 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
     STA.B $12 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $1ADB,Y 
     LDA.W #PreInstruction_EnemyProjectile_CrocomiresProjectile_Fired 
     STA.W $1A03,Y 
@@ -5420,16 +5372,10 @@ UNUSED_InitAI_EnemyProjectile_BombTorizo_86A6C7:
     LDX.W $1C27 
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $1C29 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $1A4B,Y 
     LDA.W $1C2B 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     SEC 
     SBC.W #$0004 
     STA.W $1A93,Y 
@@ -5490,10 +5436,7 @@ InitAI_EnemyProj_BombTorizoChozoBreaking:
     LDA.W .InstListPointers,X 
     STA.W $1B47,Y 
     LDA.W $1C29 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W .Xoffsets,X 
     STA.W $1A4B,Y 
@@ -5501,10 +5444,7 @@ InitAI_EnemyProj_BombTorizoChozoBreaking:
     AND.W #$000F 
     TAX 
     LDA.W $1C2B 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W .Yoffsets,X 
     STA.W $1A93,Y 
@@ -5843,9 +5783,7 @@ UNUSED_PreInstruction_EnemyProjectile_QuestionMark:
     LDA.W $0AF6 
     SEC 
     SBC.W $1A4B,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     BPL + 
     DEC.B $14 
 
@@ -5864,9 +5802,7 @@ UNUSED_PreInstruction_EnemyProjectile_QuestionMark:
     SBC.W #$0024 
     SEC 
     SBC.W $1A93,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     BPL + 
     DEC.B $14 
 
@@ -6953,12 +6889,10 @@ CalculateGoldenTorizoSuperMissileVelocitiesFromAngle:
     ASL A 
     TAX 
     LDA.L SineCosineTables_8bitSine_SignExtended,X 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $1AB7,Y 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $1ADB,Y 
     PLY 
     PLX 
@@ -7054,14 +6988,10 @@ InitAI_EnemyProjectile_GoldenTorizoEyeBeam:
 .facingRight2:
     TAX 
     LDA.L SineCosineTables_8bitSine_SignExtended,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.W $1AB7,Y 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.W $1ADB,Y 
     RTS 
 
@@ -7450,17 +7380,12 @@ InitAI_EnemyProjectile_EyeDoorProjectile:
     LDA.W $1C29 
     SEC 
     ROL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     CLC 
     ADC.W .Xpositions,X 
     STA.W $1A4B,Y 
     LDA.W $1C2B 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W .Ypositions,X 
     STA.W $1A93,Y 
@@ -7480,16 +7405,11 @@ InitAI_EnemyProjectile_EyeDoorSweat:
     DEC A 
     SEC 
     ROL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     STA.W $1A4B,Y 
     LDA.W $1C2B 
     INC A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $1A93,Y 
     LDX.W $1993 
     LDA.W .Xvelocity,X 
@@ -7513,10 +7433,7 @@ PreInstruction_EnemyProjectile_EyeDoorProjectile_Moving:
     LDA.W $1AFF,X 
     TAX 
     LDA.L SineCosineTables_8bitSine_SignExtended,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     BIT.W #$0800 
     BEQ .addXvelocity 
     ORA.W #$F000 
@@ -7526,10 +7443,7 @@ PreInstruction_EnemyProjectile_EyeDoorProjectile_Moving:
     ADC.W $1AB7,Y 
     STA.W $1AB7,Y 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     BIT.W #$0800 
     BEQ .addYvelocity 
     ORA.W #$F000 
@@ -7740,8 +7654,7 @@ InitAI_EnemyProjectile_TourianStatueEyeGlow:
     LDA.W TourianStatueEyeData_Yposition,X 
     STA.W $1A93,Y 
     TXA 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDX.W #$01F2 
 
@@ -7774,8 +7687,7 @@ InitAI_EnemyProjectile_TourianStatueUnlockingParticle:
     LDA.L SineCosineTables_8bitSine_SignExtended,X 
     STA.W $1AB7,Y 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $1ADB,Y 
     RTS 
 
@@ -8223,9 +8135,7 @@ NorfairLavaquakeRocksFunction_Rising:
     BPL + 
     LDA.W #$0000 
 
-  + ASL A 
-    ASL A 
-    ASL A 
+  + ASL #3
     INC A 
     INC A 
     INC A 
@@ -8249,9 +8159,7 @@ NorfairLavaquakeRocksFunction_Rising:
     BPL + 
     LDA.W #$0000 
 
-  + ASL A 
-    ASL A 
-    ASL A 
+  + ASL #3
     INC A 
     INC A 
     INC A 
@@ -8293,9 +8201,7 @@ NorfairLavaquakeRocks_Falling:
     SEC 
     SBC.B $12 
     INC A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.L CommonEnemyProjectileSpeeds_QuadraticallyIncreasing,X 
     PLX 
@@ -8312,9 +8218,7 @@ NorfairLavaquakeRocks_Falling:
     SEC 
     SBC.B $12 
     INC A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     INC A 
     INC A 
     TAX 
@@ -8445,11 +8349,7 @@ InitAI_EnemyProjectile_ShaktoolsAttack_Front:
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
     STA.W $1ADB,Y 
     TXA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     TAX 
     LDA.W .Xoffset,X 
     CLC 
@@ -9779,8 +9679,7 @@ InitAI_EnemyProjectile_MotherBrainsDrool:
 
 PreInstruction_EnemyProjectile_MotherBrainsDrool:
     LDA.W $1AFF,X 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .Xoffsets,Y 
     CLC 
@@ -9926,8 +9825,7 @@ InitAI_EnemyProjectile_MotherBrainExplodedEscapeDoorParticle:
     TYX 
     STZ.W $19BB,X 
     LDA.W $1993 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .Xoffsets,Y 
     CLC 
@@ -10447,14 +10345,10 @@ InitAI_EnemyProjectile_MotherBrainsGlassShattering_Shard:
     LDA.L SineCosineTables_8bitSine_SignExtended,X 
     STA.W $1AB7,Y 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
-    ASL A 
-    ASL A 
+    ASL #2
     STA.W $1ADB,Y 
     TXA 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     AND.W #$001E 
     TAX 
     LDA.W .InstListPointers,X 
@@ -10465,18 +10359,12 @@ InitAI_EnemyProjectile_MotherBrainsGlassShattering_Shard:
     JSL.L Calculate_PLM_Block_Coordinates 
     LDX.W $1993 
     LDA.W $1C29 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W .Xoffsets,X 
     STA.W $1A4B,Y 
     LDA.W $1C2B 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W .Yoffsets,X 
     STA.W $1A93,Y 
@@ -11659,18 +11547,12 @@ Instruction_EnemyProjectile_NoobTubeCrack:
     LDX.W $1C27 
     JSL.L Calculate_PLM_Block_Coordinates 
     LDA.W $1C29 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W #$0060 
     STA.W $1A4B,Y 
     LDA.W $1C2B 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W #$0030 
     STA.W $1A93,Y 
@@ -11682,10 +11564,7 @@ InitAI_EnemyProjectile_NoobTubeShard:
     JSL.L Calculate_PLM_Block_Coordinates 
     LDX.W $1993 
     LDA.W $1C29 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W #$0060 
     CLC 
@@ -11694,10 +11573,7 @@ InitAI_EnemyProjectile_NoobTubeShard:
     LDA.W #$0000 
     STA.W $1AFF,Y 
     LDA.W $1C2B 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W #$0030 
     CLC 
@@ -11741,20 +11617,14 @@ InitAI_EnemyProjectile_NoobTubeReleasedAirBubbles:
     JSL.L Calculate_PLM_Block_Coordinates 
     LDX.W $1993 
     LDA.W $1C29 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W .Xoffset,X 
     STA.W $1B23,Y 
     LDA.W #$0000 
     STA.W $1AFF,Y 
     LDA.W $1C2B 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.W .Yoffset,X 
     STA.W $1A93,Y 
@@ -12678,8 +12548,7 @@ InitAI_EnemyProjectile_NamiFuneFireball:
 .Fune:
     LDA.W $0FB6,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDA.W NamiFuneFireball_XVelocityTable_left,X 
     STA.W $1ADB,Y 
@@ -13296,9 +13165,7 @@ InitAI_EnemyProj_MiscDustPLM:
     STA.W $1B47,Y 
     LDA.W $1994 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W $05E5 
     AND.W PLM_MiscDust_XYOffsetTable_randomX,X 
@@ -13315,18 +13182,14 @@ InitAI_EnemyProj_MiscDustPLM:
     LDA.W $1C29 
     SEC 
     ROL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     CLC 
     ADC.B $12 
     STA.W $1A4B,Y 
     LDA.W $1C2B 
     SEC 
     ROL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     CLC 
     ADC.B $14 
     STA.W $1A93,Y 
@@ -13465,16 +13328,10 @@ InitAI_EnemyProjectile_ShotGate_Common:
     LDA.W $1C87,X 
     STA.W $1AFF,Y 
     LDA.W $1C29 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $1A4B,Y 
     LDA.W $1C2B 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     CLC 
     ADC.B $12 
     STA.W $1A93,Y 
@@ -13576,18 +13433,12 @@ InitAI_EnemyProjectile_SaveStationElectrictiy:
     LDA.W $1C29 
     CLC 
     ADC.W #$0001 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $1A4B,Y 
     LDA.W $1C2B 
     SEC 
     SBC.W #$0002 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     STA.W $1A93,Y 
     RTS 
 
@@ -14119,8 +13970,7 @@ Function_EnemyProj_BotwoonsBody_HurtFlashHandling_duplicate:
 
 Function_EnemyProjectile_BotwoonsBody_Dying_SetDelay:
     TXA 
-    ASL A 
-    ASL A 
+    ASL #2
     CLC 
     ADC.W #$0060 
     STA.W $1AFF,X 
@@ -14147,9 +13997,7 @@ Function_EnemyProjectile_BotwoonsBody_Dying_Falling:
     LDA.W $1ADB,Y 
     AND.W #$FF00 
     XBA 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAX 
     LDA.W $1A6F,Y 
     CLC 
@@ -15064,10 +14912,7 @@ Random_Drop_Routine:
 
 .noMinorDrops:
     LDA.B $16 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #4
     STA.B $16 
     INX 
     INX 
@@ -15125,8 +14970,7 @@ Respawn_Enemy:
     PLB 
     REP #$30 
     STA.W $0E54 
-    LSR A 
-    LSR A 
+    LSR #2
     CLC 
     ADC.W $07CF 
     TAX 

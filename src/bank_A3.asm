@@ -1271,9 +1271,7 @@ SetInitialFirefleaAngle:
 SetFirefleaSpeed:
     LDA.W $0FB6,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.B $12 
     AND.W #$0001 
@@ -1722,9 +1720,7 @@ InitAI_Skultera:
 .keepLeft:
     LDA.W $0FB4,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.W $0FAC,X 
@@ -3313,9 +3309,7 @@ InitAI_Tripper_Kamer2_Common:
     STA.W $0F92,X 
     LDA.W $0FB6,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.W $0FAC,X 
@@ -3420,9 +3414,7 @@ Function_Tripper_Kamer2_YMovement_Rising:
     LDA.L $7E780A,X 
     STA.W $0FB2,X 
 
-  + ASL A 
-    ASL A 
-    ASL A 
+  + ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y 
     STA.B $12 
@@ -3460,9 +3452,7 @@ Function_Tripper_Kamer2_YMovement_1_Sinking:
     LDA.W $0F7E,X 
     STA.L $7E7802,X 
     LDA.W $0FB2,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
     STA.B $12 
@@ -4036,11 +4026,7 @@ DetermineFacingForwardInstListIndex:
     SEC 
     SBC.W #$0030 
     AND.W #$00FF 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     ASL A 
     STA.L $7E8000,X 
     RTS 
@@ -4053,11 +4039,7 @@ DetermineFacingLeftInstListIndex:
     SEC 
     SBC.W #$0020 
     AND.W #$00FF 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     ASL A 
     STA.L $7E8002,X 
     RTS 
@@ -4070,11 +4052,7 @@ DetermineFacingRightInstListIndex:
     CLC 
     ADC.W #$0020 
     AND.W #$00FF 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     ASL A 
     STA.L $7E8004,X 
     RTS 
@@ -4201,11 +4179,7 @@ DetermineCustomInstListIndex:
     SEC 
     SBC.W #$0030 
     AND.W #$00FF 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #5
     ASL A 
     STA.L $7E8006,X 
     RTS 
@@ -4748,8 +4722,7 @@ Function_Mochtroid_0_NotTouchingSamus:
     LDA.W $0F7E,X 
     SEC 
     SBC.W $0AFA 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $13 
     AND.W #$2000 
     BEQ + 
@@ -4803,8 +4776,7 @@ Function_Mochtroid_0_NotTouchingSamus:
     LDA.W $0F7A,X 
     SEC 
     SBC.W $0AF6 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $13 
     AND.W #$2000 
     BEQ + 
@@ -5265,9 +5237,7 @@ Hoppers_CalculateInitialHopSpeed:
     CLC 
     ADC.B $18 
     STA.B $12 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.B $14 
     CLC 
@@ -5525,9 +5495,7 @@ Function_Hopper_WaitToHop:
 HopperMovement_Jumping_UpsideUp:
     LDX.W $0E54 
     LDA.W $0FAC,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y 
     STA.B $14 
@@ -5577,9 +5545,7 @@ HopperMovement_Jumping_UpsideUp:
 HopperMovement_Falling_UpsideUp:
     LDX.W $0E54 
     LDA.W $0FAC,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
     STA.B $14 
@@ -5622,9 +5588,7 @@ HopperMovement_Falling_UpsideUp:
 HopperMovement_Jumping_UpsideDown:
     LDX.W $0E54 
     LDA.W $0FAC,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
     STA.B $14 
@@ -5674,9 +5638,7 @@ HopperMovement_Jumping_UpsideDown:
 HopperMovement_Falling_UpsideDown:
     LDX.W $0E54 
     LDA.W $0FAC,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y 
     STA.B $14 
@@ -7307,8 +7269,7 @@ InitAI_Bang:
     STA.L $7E7816,X 
     LDA.W $0FB7,X 
     AND.W #$00FF 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W BangAccelerationIntervalTimeResetValues_accel,Y 
     STA.L $7E7818,X 
@@ -9645,9 +9606,7 @@ Instruction_Yard_DirectionInY:
     PHY 
     LDA.W $0000,Y 
     STA.L $7E780E,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W YardDirectionData_airborneFacingDirection,Y 
     STA.L $000FAC,X 
@@ -9846,9 +9805,7 @@ InitAI_Yard:
     LDA.W #$0001 
     STA.W $0F94,X 
     LDA.W $0F92,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W YardDirectionData_crawlingInstList,Y 
     STA.W $0F92,X 
@@ -10371,8 +10328,7 @@ DropYard:
     LDA.W #Function_Yard_Movement_Airborne 
     STA.W $0FB2,X 
     LDA.W $0FAC,X 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .airbornePointers,Y 
     STA.W $0F92,X 
@@ -10540,8 +10496,7 @@ Function_Yard_Movement_Airborne:
 
 SetYardAirborneInstList:
     LDA.W $0FAC,X 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .airbornePointers,Y 
     STA.W $0F92,X 
@@ -10616,9 +10571,7 @@ TurnYardAround:
     TAY 
     LDA.W YardOppositeDirection,Y 
     STA.L $7E780E,X 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W YardDirectionData_crawlingInstList,Y 
     STA.W $0F92,X 
@@ -10801,8 +10754,7 @@ KickYardIntoAIr:
     LDA.W #Function_Yard_Movement_Airborne 
     STA.W $0FB2,X 
     LDA.W $0FAC,X 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .airbornePointers,Y 
     STA.W $0F92,X 
@@ -10819,8 +10771,7 @@ KickYardIntoAIr:
     BCC + 
     LDA.W #$000F 
 
-  + ASL A 
-    ASL A 
+  + ASL #2
     TAY 
     LDA.W .YSubVelocity,Y 
     STA.L $7E7800,X 
@@ -10866,8 +10817,7 @@ ShootYardIntoAir:
     LDA.W #Function_Yard_Movement_Airborne 
     STA.W $0FB2,X 
     LDA.W $0FAC,X 
-    ASL A 
-    ASL A 
+    ASL #2
     TAY 
     LDA.W .airbornePointers,Y 
     STA.W $0F92,X 
@@ -11695,9 +11645,7 @@ EnemyGraphicsDrawnHook_Reflec_PeriodicallyCyclePalettes:
     LDA.W $1794 
     TAX 
     LDA.W $1796 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #3
     TAY 
     LDA.W #$0004 
     STA.W $060B 
@@ -11819,10 +11767,7 @@ InitAI_Reflec:
     LDA.W #EnemyGraphicsDrawnHook_Reflec_PeriodicallyCyclePalettes>>16 
     STA.W $178E 
     LDA.W $0F96,X 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #4
     AND.W #$FF00 
     XBA 
     STA.W $1794 
@@ -11853,11 +11798,7 @@ EnemyShot_Reflec:
     LDA.W #$000A 
     STA.W $0FA0,X 
     LDA.W $0FB6,X 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     STA.W $0E32 
     LDA.W $0C04,Y 
     AND.W #$000F 
@@ -13435,8 +13376,7 @@ AdjustEnemyXVelocityForSlopes:
     AND.W #$001F 
     CMP.W #$0005 
     BCC .normalSpeed 
-    ASL A 
-    ASL A 
+    ASL #2
     TAX 
     LDY.W .adjustedSpeedMultiplier,X 
     LDX.W $0E54 
@@ -13756,8 +13696,7 @@ Function_Metroid_0_ChaseSamus:
     LDA.W $0F7E,X 
     SEC 
     SBC.W $0E32 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $13 
     AND.W #$2000 
     BEQ + 
@@ -13807,8 +13746,7 @@ Function_Metroid_0_ChaseSamus:
     LDA.W $0F7A,X 
     SEC 
     SBC.W $0AF6 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.B $13 
     AND.W #$2000 
     BEQ + 
@@ -13864,9 +13802,7 @@ Function_Metroid_1_LatchOntoSamus:
     SBC.W $0F7E,X 
     XBA 
     AND.W #$FF00 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.B $14 
     AND.W #$1000 
     BEQ + 
@@ -13912,9 +13848,7 @@ Function_Metroid_1_LatchOntoSamus:
     SBC.W $0F7A,X 
     XBA 
     AND.W #$FF00 
-    LSR A 
-    LSR A 
-    LSR A 
+    LSR #3
     STA.B $14 
     AND.W #$1000 
     BEQ + 
@@ -14022,12 +13956,7 @@ EnemyTouch_Metroid:
     TYA 
     STA.W $0FAA,X 
     PLA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #6
     STA.W $0FA9,X 
     LDY.W #$0000 
     LDA.W $0F7E,X 
@@ -14040,12 +13969,7 @@ EnemyTouch_Metroid:
     TYA 
     STA.W $0FAE,X 
     PLA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #6
     STA.W $0FAD,X 
     STZ.W $0FB2,X 
     LDA.W #InstList_Metroid_ChasingSamus 
@@ -14233,11 +14157,7 @@ EnemyShot_Metroid:
     TYA 
     STA.W $0FAA,X 
     PLA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     STA.W $0FA9,X 
     LDY.W #$0000 
     LDA.W $0F7E,X 
@@ -14250,11 +14170,7 @@ EnemyShot_Metroid:
     TYA 
     STA.W $0FAE,X 
     PLA 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
-    ASL A 
+    ASL #5
     STA.W $0FAD,X 
     STZ.W $0FB2,X 
     LDA.W #InstList_Metroid_ChasingSamus 

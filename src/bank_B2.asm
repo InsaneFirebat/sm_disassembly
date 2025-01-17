@@ -12162,8 +12162,7 @@ Function_PirateWall_WallJumpingRight:
     ADC.W $0FAE,X 
     STA.W $0F7A,X 
     LDA.W $0FB6,X 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.W $0E32 
     LDA.W $0FB2,X 
     JSL.L EightBitCosineMultiplication_A0B0B2 
@@ -12241,8 +12240,7 @@ Function_PirateWall_WallJumpingLeft:
     ADC.W $0FAE,X 
     STA.W $0F7A,X 
     LDA.W $0FB6,X 
-    LSR A 
-    LSR A 
+    LSR #2
     STA.W $0E32 
     LDA.W $0FB2,X 
     JSL.L EightBitCosineMultiplication_A0B0B2 
