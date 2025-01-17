@@ -3367,8 +3367,7 @@ Function_Ridley_Startup_FirstRun:
     LDA.W $0797 : BNE Function_Ridley_Startup_InitalWait_return 
     LDA.W #Function_Ridley_Startup_InitalWait : STA.W $0FA8 
     LDA.W #$0200 
-    LDY.W $079F 
-    CPY.W #$0002 : BNE .notNorfar 
+    LDY.W $079F : CPY.W #$0002 : BNE .notNorfar 
     LDA.W #$00AA 
 
 .notNorfar:
@@ -7149,8 +7148,7 @@ RidleyTailAI_FlingTailAtSamus:
     LDA.W #$FFFF : STA.W $201A 
     STA.W $201C 
     LDA.W #$0002 
-    LDY.W $0AF6 
-    CPY.W #$0070 : BCS .SamusNotLeftSide 
+    LDY.W $0AF6 : CPY.W #$0070 : BCS .SamusNotLeftSide 
     LDA.W #$0001 
 
 .SamusNotLeftSide:
@@ -7211,8 +7209,7 @@ SwingRidleyTailInCircles:
     LDA.W #$FFFF : STA.L $7E201A 
     STA.L $7E201C 
     LDA.W #$0002 
-    LDY.W $0AF6 
-    CPY.W #$0070 : BCS + 
+    LDY.W $0AF6 : CPY.W #$0070 : BCS + 
     LDA.W #$0001 
 
   + STA.L $7E2014 
@@ -7895,8 +7892,7 @@ SetRidleyInstList:
 
 DetermineAndSetRidleySpeedAndColorPalette:
     LDA.W #$0000 
-    LDY.W $0F8C 
-    CPY.W #$2328 : BCS + 
+    LDY.W $0F8C : CPY.W #$2328 : BCS + 
     INC A 
     CPY.W #$1518 : BCS + 
     INC A 

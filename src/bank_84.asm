@@ -1526,8 +1526,7 @@ DrawPLM:
     BEQ .return8E2F 
 
   + PHX 
-    LDX.W $0330 
-    CPX.W #$01E0 : BMI + 
+    LDX.W $0330 : CPX.W #$01E0 : BMI + 
 
 .pullXreturn:
     PLX 
@@ -1727,8 +1726,7 @@ DrawPLM:
     BMI .return908C 
 
   + PHX 
-    LDX.W $0330 
-    CPX.W #$00F0 : BMI + 
+    LDX.W $0330 : CPX.W #$00F0 : BMI + 
 
 .return908C:
     PLX 

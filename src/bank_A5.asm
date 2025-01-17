@@ -553,8 +553,7 @@ Function_DraygonBody_SwoopRight_Descending:
     JSR.W HandleFiringWallTurret 
     JSR.W HandleShortDraygonBreathBubbles 
     LDY.W $0E54 
-    LDX.W $0FAA 
-    CPX.W #$0068 : BNE .notIndex68 
+    LDX.W $0FAA : CPX.W #$0068 : BNE .notIndex68 
     LDA.W #InstList_DraygonArms_FacingRight_NearSwoopApex : STA.W $1052 
     LDA.W #$0001 : STA.W $1054 
 
@@ -610,8 +609,7 @@ Function_DraygonBody_SwoopRight_Apex:
 Function_DraygonBody_SwoopRight_Ascending:
     JSR.W HandleFiringWallTurret 
     LDY.W $0E54 
-    LDX.W $0FAA 
-    CPX.W #$0068 : BNE .notIndex68 
+    LDX.W $0FAA : CPX.W #$0068 : BNE .notIndex68 
     LDA.W #InstList_DraygonArms_FacingRight_Idle_0 : STA.W $1052 
     LDA.W #$0001 : STA.W $1054 
 
@@ -664,8 +662,7 @@ Function_DraygonBody_SwoopLeft_Descending:
     JSR.W HandleFiringWallTurret 
     JSR.W HandleShortDraygonBreathBubbles 
     LDY.W $0E54 
-    LDX.W $0FAA 
-    CPX.W #$0068 : BNE .notIndex68 
+    LDX.W $0FAA : CPX.W #$0068 : BNE .notIndex68 
     LDA.W #InstList_DraygonArms_FacingLeft_NearSwoopApex : STA.W $1052 
     LDA.W #$0001 : STA.W $1054 
 
@@ -715,8 +712,7 @@ Function_DraygonBody_SwoopLeft_Ascending:
     JSR.W HandleFiringWallTurret 
     JSR.W HandleShortDraygonBreathBubbles 
     LDY.W $0E54 
-    LDX.W $0FAA 
-    CPX.W #$0068 : BNE + 
+    LDX.W $0FAA : CPX.W #$0068 : BNE + 
     LDA.W #InstList_DraygonArms_FacingLeft_Idle_0 : STA.W $1052 
     LDA.W #$0001 : STA.W $1054 
 

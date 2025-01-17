@@ -1730,8 +1730,7 @@ HandleMusicQueue:
     STA.W $063B 
 
 .negative:
-    LDX.W $063B 
-    CPX.W $0639 : BEQ .clearTimer 
+    LDX.W $063B : CPX.W $0639 : BEQ .clearTimer 
     LDA.W $0619,X : STA.W $063D 
     LDA.W $0629,X : STA.W $063F 
     PLP 
@@ -1790,8 +1789,7 @@ QueueMusicDataOrTrack_8FrameDelay:
     PHP 
     REP #$30 
     PHX : PHY 
-    LDX.W $0998 
-    CPX.W #$0028 : BCS .return 
+    LDX.W $0998 : CPX.W #$0028 : BCS .return 
     PHA 
     LDA.W $0639 
     INC #2
@@ -1816,8 +1814,7 @@ QueueMusicDataOrTrack_YFrameDelay:
     PHP 
     REP #$30 
     PHX 
-    LDX.W $0998 
-    CPX.W #$0028 : BCS .return 
+    LDX.W $0998 : CPX.W #$0028 : BCS .return 
     LDX.W $0639 
     STA.W $0619,X 
     TYA 
@@ -1878,8 +1875,7 @@ QueueSound_Lib1:
     REP #$30 
     LDX.W $05F5 
     BNE .return 
-    LDX.W $0998 
-    CPX.W #$0028 : BCS .return 
+    LDX.W $0998 : CPX.W #$0028 : BCS .return 
     LDX.W $0592 
     BMI .return 
     SEP #$30 
@@ -1949,8 +1945,7 @@ QueueSound_Lib2:
     REP #$30 
     LDX.W $05F5 
     BNE .return 
-    LDX.W $0998 
-    CPX.W #$0028 : BCS .return 
+    LDX.W $0998 : CPX.W #$0028 : BCS .return 
     LDX.W $0592 
     BMI .return 
     SEP #$30 
@@ -2020,8 +2015,7 @@ QueueSound_Lib3:
     REP #$30 
     LDX.W $05F5 
     BNE .return 
-    LDX.W $0998 
-    CPX.W #$0028 : BCS .return 
+    LDX.W $0998 : CPX.W #$0028 : BCS .return 
     LDX.W $0592 
     BMI .return 
     SEP #$30 
@@ -2472,10 +2466,8 @@ NMI:
 .next:
     INX #2
     CPX.B #$0C : BNE .handleHDMAQueue 
-    LDX.B $55 
-    CPX.B #$07 : BEQ .mode7Enabled 
-    LDX.B $56 
-    CPX.B #$07 : BNE .mode7Disabled 
+    LDX.B $55 : CPX.B #$07 : BEQ .mode7Enabled 
+    LDX.B $56 : CPX.B #$07 : BNE .mode7Disabled 
 
 .mode7Enabled:
     JSL.L HandleMode7Transfers 
@@ -2507,8 +2499,7 @@ NMI:
     LDX.W $05BA 
     INX 
     STX.W $05BA 
-    LDX.W $05BA 
-    CPX.W $05BB : BCC .return 
+    LDX.W $05BA : CPX.W $05BB : BCC .return 
     STX.W $05BB 
     BRA .return 
 
@@ -4383,8 +4374,7 @@ UpdateLevelBackgroundDataColumn:
     ASL A 
     CLC : ADC.W $4216 : STA.W $0933 
     LDA.W #$5000 
-    LDY.W $0935 
-    CPY.W #$0010 : BCC + 
+    LDY.W $0935 : CPY.W #$0010 : BCC + 
     LDA.W #$53E0 
 
   + TXY 
@@ -4395,8 +4385,7 @@ UpdateLevelBackgroundDataColumn:
     CLC : ADC.W $0933 : STA.W $095A,X 
     LDA.W $0937 : CLC : ADC.W $0935 : ADC.W $0935 : STA.W $095C,X 
     LDA.W #$C8C8 ; $7E
-    LDY.W #$0000 
-    CPX.W #$0000 : BEQ + 
+    LDY.W #$0000 : CPX.W #$0000 : BEQ + 
     LDA.W #$C9D0 ; $7E
     LDY.W #$0108 
 
@@ -4507,8 +4496,7 @@ UpdateBackgroundLevelDataRow:
     CLC : ADC.W $4216 : STA.W $0933 
     LDA.W #$5400 : STA.W $0937 
     LDA.W #$5000 
-    LDY.W $0935 
-    CPY.W #$0010 : BCC + 
+    LDY.W $0935 : CPY.W #$0010 : BCC + 
     LDA.W #$5000 : STA.W $0937 
     LDA.W #$53E0 
 
@@ -4524,8 +4512,7 @@ UpdateBackgroundLevelDataRow:
 
   + CLC : ADC.W $4216 : STA.W $096A,X 
     LDA.W #$C948 ; $7E
-    LDY.W #$0000 
-    CPX.W #$0000 : BEQ + 
+    LDY.W #$0000 : CPX.W #$0000 : BEQ + 
     LDA.W #$CA50 ; $7E
     LDY.W #$0108 
 

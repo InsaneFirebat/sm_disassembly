@@ -1371,8 +1371,7 @@ Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud_dup:
 SpawnBigDustCloudProjectileWithRandomXOffset:
     PHX 
     LDA.W $05E5 : AND.W #$001F 
-    LDX.W $05E5 
-    CPX.W #$1000 : BMI .spawn 
+    LDX.W $05E5 : CPX.W #$1000 : BMI .spawn 
     EOR.W #$FFFF 
     INC A 
 
@@ -1777,8 +1776,7 @@ MainAI_Crocomire_DeathSequence_12_2E_Hop_3_4_LoadMeltTiles:
     CLC : ADC.W #$0008 : TAX 
 
 .loop:
-    LDY.W MeltingCrocomireTilesLoadingTable_Melting1_0,X 
-    CPY.W #$FFFF : BEQ .done 
+    LDY.W MeltingCrocomireTilesLoadingTable_Melting1_0,X : CPY.W #$FFFF : BEQ .done 
     PHX 
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+2,X 
     TAX 

@@ -446,8 +446,7 @@ CalculateInitialBounceSpeed:
 .loop:
     LDY.W $0FB0,X 
     SEP #$20 
-    LDA.W BoyonData_speedTable,Y 
-    CPY.W #$0017 : BMI + 
+    LDA.W BoyonData_speedTable,Y : CPY.W #$0017 : BMI + 
     LDA.B #$FF 
 
   + STA.W $4202 
@@ -508,8 +507,7 @@ Function_Boyon_Falling:
     INC.W $0FB0,X 
     LDY.W $0FB0,X 
     SEP #$20 
-    LDA.W BoyonData_speedTable,Y 
-    CPY.W #$0017 : BMI .lessThan17 
+    LDA.W BoyonData_speedTable,Y : CPY.W #$0017 : BMI .lessThan17 
     LDA.B #$FF 
 
 .lessThan17:
@@ -534,8 +532,7 @@ Function_Boyon_Jumping:
     LDX.W $0E54 
     LDY.W $0FB0,X 
     SEP #$20 
-    LDA.W BoyonData_speedTable,Y 
-    CPY.W #$0017 : BMI .lessThan17 
+    LDA.W BoyonData_speedTable,Y : CPY.W #$0017 : BMI .lessThan17 
     LDA.B #$FF 
 
 .lessThan17:

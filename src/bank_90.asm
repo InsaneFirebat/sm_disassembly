@@ -1429,8 +1429,7 @@ CalculateSamusSpritemapPosition_Shinespark_CF_Drained:
     CMP.W #$00EA : BEQ + 
     CMP.W #$00EB : BNE .goto_CalculateUsualSamusSpritemapPosition 
 
-  + LDX.W $0A96 
-    CPX.W #$0005 : BMI .goto_CalculateUsualSamusSpritemapPosition 
+  + LDX.W $0A96 : CPX.W #$0005 : BMI .goto_CalculateUsualSamusSpritemapPosition 
     LDA.W #$FFFD : BRA .merge 
 
 
@@ -5893,8 +5892,7 @@ HandleProjectileTrails:
     CLC : ADC.W #$0004 : STA.W $D6A0,Y 
 
 .leftInstructionsEnd:
-    LDX.W $0590 
-    CPX.W #$0200 : BPL .leftTrailEnd 
+    LDX.W $0590 : CPX.W #$0200 : BPL .leftTrailEnd 
     LDA.W $D730,Y : SEC : SBC.W $0911 : BIT.W #$FF00 
     BNE .leftTrailEnd 
     STA.W $0370,X 
@@ -5928,8 +5926,7 @@ HandleProjectileTrails:
     CLC : ADC.W #$0004 : STA.W $D6C4,Y 
 
 .rightInstructionsEnd:
-    LDX.W $0590 
-    CPX.W #$0200 : BPL .rightTrailEnd 
+    LDX.W $0590 : CPX.W #$0200 : BPL .rightTrailEnd 
     LDA.W $D754,Y : SEC : SBC.W $0911 : BIT.W #$FF00 
     BNE .rightTrailEnd 
     STA.W $0370,X 
@@ -5955,8 +5952,7 @@ HandleProjectileTrails:
     LDY.W #$0022 
 
 .loopTimeIsFrozen:
-    LDX.W $0590 
-    CPX.W #$0200 : BPL + 
+    LDX.W $0590 : CPX.W #$0200 : BPL + 
     LDA.W $D658,Y : BEQ + 
     LDA.W $D730,Y : SEC : SBC.W $0911 : BIT.W #$FF00 
     BNE + 
@@ -5968,8 +5964,7 @@ HandleProjectileTrails:
     TXA 
     CLC : ADC.W #$0004 : STA.W $0590 
 
-  + LDX.W $0590 
-    CPX.W #$0200 : BPL .next 
+  + LDX.W $0590 : CPX.W #$0200 : BPL .next 
     LDA.W $D67C,Y : BEQ .next 
     LDA.W $D754,Y : SEC : SBC.W $0911 : BIT.W #$FF00 
     BNE .next 
@@ -11614,8 +11609,7 @@ FootstepGraphics_Crateria:
 
 
 .notCinematic:
-    LDX.W $079D 
-    CPX.W #$0010 : BPL .gotoCommon 
+    LDX.W $079D : CPX.W #$0010 : BPL .gotoCommon 
     LDA.W .footstepTypes,X : AND.W #$00FF 
     BIT.W #$0001 
     BNE .landingSite 

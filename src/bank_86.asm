@@ -2300,8 +2300,7 @@ UNUSED_DoFireballDamageToSamus_TurnIntoSmoke_869442:
     LDA.W #UNUSED_InstList_Smoke_86945F : STA.W $1B47,X 
     LDA.W #$0001 : STA.W $1B8F,X 
     LDA.W #$0003 
-    LDY.W $079F 
-    CPY.W #$0002 : BNE .gotoHurtSamus 
+    LDY.W $079F : CPY.W #$0002 : BNE .gotoHurtSamus 
     LDA.W #$003C 
 
 .gotoHurtSamus:
@@ -12101,10 +12100,8 @@ Random_Drop_Routine:
 .noHealthBomb:
     LDA.L $B40003,X : STA.B $12 
     LDA.B #$08 : STA.B $16 
-    LDY.W $09C2 
-    CPY.W $09C4 : BNE .energyAllowed 
-    LDY.W $09D6 
-    CPY.W $09D4 : BEQ .fullEnergy 
+    LDY.W $09C2 : CPY.W $09C4 : BNE .energyAllowed 
+    LDY.W $09D6 : CPY.W $09D4 : BEQ .fullEnergy 
 
 .energyAllowed:
     LDA.B $12 : CLC : ADC.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X ; $B40000
@@ -12113,22 +12110,19 @@ Random_Drop_Routine:
     LDA.B $16 : ORA.B #$03 : STA.B $16 
 
 .fullEnergy:
-    LDY.W $09C6 
-    CPY.W $09C8 : BEQ .checkSuperMissiles 
+    LDY.W $09C6 : CPY.W $09C8 : BEQ .checkSuperMissiles 
     LDA.B $12 : CLC : ADC.L EnemyDropChances_missiles-(EnemyDropChances&$00FFFF),X ; $B40002
     STA.B $12 
     LDA.B $16 : ORA.B #$04 : STA.B $16 
 
 .checkSuperMissiles:
-    LDY.W $09CA 
-    CPY.W $09CC : BEQ .checkPowerBombs 
+    LDY.W $09CA : CPY.W $09CC : BEQ .checkPowerBombs 
     LDA.B $14 : SEC : SBC.L EnemyDropChances_superMissiles-(EnemyDropChances&$00FFFF),X ; $B40004
     STA.B $14 
     LDA.B $16 : ORA.B #$10 : STA.B $16 
 
 .checkPowerBombs:
-    LDY.W $09CE 
-    CPY.W $09D0 : BEQ .dropChancesPooled 
+    LDY.W $09CE : CPY.W $09D0 : BEQ .dropChancesPooled 
     LDA.B $14 : SEC : SBC.L EnemyDropChances_powerBombs-(EnemyDropChances&$00FFFF),X ; $B40005
     STA.B $14 
     LDA.B $16 : ORA.B #$20 : STA.B $16 

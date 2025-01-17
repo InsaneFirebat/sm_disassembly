@@ -5487,8 +5487,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam:
     STZ.W $0FB4 
     STZ.W $0FB6 
     LDA.W #$0005 
-    LDY.W $09C2 
-    CPY.W #$02BC : BPL .greaterThan2BC 
+    LDY.W $09C2 : CPY.W #$02BC : BPL .greaterThan2BC 
     LDA.W #$0018 
 
 .greaterThan2BC:
@@ -5677,8 +5676,7 @@ MoveSamusTowardsWallDueToRainbowBeam:
 
 MoveSamusTowardsMiddleOfWall:
     LDA.W #$0040 
-    LDY.W #$007C 
-    CPY.W $0AFA : BPL .lessThanEqualTo7C 
+    LDY.W #$007C : CPY.W $0AFA : BPL .lessThanEqualTo7C 
     EOR.W #$FFFF 
     INC A 
 
@@ -7896,8 +7894,7 @@ HandleMotherBrainHeadPalette:
     STY.B $12 
     LDA.W $0FB0 : STA.W $0FAF 
     LDA.W $0FAE : BNE .zeroCounter 
-    LDY.W $0FE8 
-    CPY.W #Function_MotherBrain_SetupBrainAndNeckToBeDrawn : BNE .return 
+    LDY.W $0FE8 : CPY.W #Function_MotherBrain_SetupBrainAndNeckToBeDrawn : BNE .return 
 
 .zeroCounter:
     INC A 
@@ -11275,8 +11272,7 @@ HandleBabyMetroidCrySFX:
     CMP.W #$0004 : BCC .return 
     LDA.W #$0000 : STA.L $7E780A,X 
     LDA.W #$0072 
-    LDY.W $0FB0,X 
-    CPY.W #$000A : BCS .queueSFX 
+    LDY.W $0FB0,X : CPY.W #$000A : BCS .queueSFX 
     LDA.W #$0078 
 
 .queueSFX:

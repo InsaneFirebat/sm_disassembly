@@ -1189,8 +1189,7 @@ HandleXrayScope_State3_DeactivateBeam_RestoreBG2_FirstHalf:
     SEP #$20 
     LDA.W $192C,X : STA.B $59 
     REP #$20 
-    LDX.W $0330 
-    CPX.W #$00F0 : BPL .return 
+    LDX.W $0330 : CPX.W #$00F0 : BPL .return 
     LDA.W #$0800 : STA.B $D0,X 
     LDA.W #$5000 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 
@@ -1218,8 +1217,7 @@ HandleXrayScope_State4_DeactivateBeam_RestoreBG2_SecondHalf:
 
   + TXA 
     TSB.W $1986 
-    LDX.W $0330 
-    CPX.W #$00F0 : BPL .return 
+    LDX.W $0330 : CPX.W #$00F0 : BPL .return 
     LDA.W #$0800 : STA.B $D0,X 
     LDA.W #$5800 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 

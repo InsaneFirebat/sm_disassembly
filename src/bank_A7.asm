@@ -3383,8 +3383,7 @@ Function_Kraid_KraidGetsBig_BreakCeilingIntoPlatforms:
     DEC.W $0F7E 
     LDA.W $0F7E : AND.W #$0003 
     BNE .done 
-    LDX.W $0FB2 
-    CPX.W #$0012 : BPL .done 
+    LDX.W $0FB2 : CPX.W #$0012 : BPL .done 
     LDA.W .XPositions,X 
     LDY.W #EnemyProjectile_KraidCeilingRocks 
     LDX.W $0E54 
@@ -3909,8 +3908,7 @@ KraidBody_vs_Projectile_CollisionHandling:
 
 .noProjectiles:
     PLX 
-    LDY.B $30 
-    CPY.W #$0000 : BEQ .return 
+    LDY.B $30 : CPY.W #$0000 : BEQ .return 
     LDA.W $0FA8 : CMP.W #Function_Kraid_MainLoop_Thinking : BNE .return 
     LDA.W #Function_Kraid_KraidShot_InitializeEyeGlowing : STA.W $0FA8 
     LDA.L $7E780A : BIT.W #$0001 
@@ -4836,8 +4834,7 @@ Function_KraidNail_Initialize:
     LDA.W $05E5 : AND.W #$0006 
     TAY 
     LDA.W $1130 
-    LDX.W $0E54 
-    CPX.W #$0180 : BNE + 
+    LDX.W $0E54 : CPX.W #$0180 : BNE + 
     LDA.W $1170 
 
   + CMP.W #$0000 : BPL .positiveYVelocity 
@@ -4871,8 +4868,7 @@ Function_KraidNail_Initialize:
 
 
 .horizontal:
-    LDA.L $7E798E 
-    CPX.W #$01C0 : BEQ .notKraidNailBad 
+    LDA.L $7E798E : CPX.W #$01C0 : BEQ .notKraidNailBad 
     LDA.L $7E79CE 
 
 .notKraidNailBad:
