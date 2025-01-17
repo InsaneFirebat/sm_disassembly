@@ -372,8 +372,7 @@ Handle_Room_Shaking:
     REP #$30 
     LDA.W $1840 : BEQ .return 
     LDA.W $0A78 : BNE .return 
-    LDA.W $183E : CMP.W #$0024 
-    BPL .return 
+    LDA.W $183E : CMP.W #$0024 : BPL .return 
     ASL #3
     TAX 
     LDA.W $1840 : BIT.W #$0002 
@@ -405,8 +404,7 @@ Handle_Room_Shaking:
 
 .decrementEarthquakeTimer:
     DEC.W $1840 
-    LDA.W $183E : CMP.W #$0012 
-    BMI .return 
+    LDA.W $183E : CMP.W #$0012 : BMI .return 
     JSR.W SetAllActiveEnemiesToShakeHorizontallyFor2Frames 
 
 .return:
@@ -420,8 +418,7 @@ SetAllActiveEnemiesToShakeHorizontallyFor2Frames:
     LDY.W #$0000 
 
 .loop:
-    LDA.W $17AC,Y : CMP.W #$FFFF 
-    BEQ .return 
+    LDA.W $17AC,Y : CMP.W #$FFFF : BEQ .return 
     TAX 
     LDA.W #$0002 : STA.W $0FA2,X 
     INY #2
@@ -472,17 +469,14 @@ Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles:
     STZ.W $0E32 
 
 .loopMain:
-    LDA.W $0E32 : CMP.W #$0008 
-    BEQ .finish 
-    CMP.W #$0003 
-    BNE .layerNot3 
+    LDA.W $0E32 : CMP.W #$0008 : BEQ .finish 
+    CMP.W #$0003 : BNE .layerNot3 
     JSL.L DrawSamusAndProjectiles 
     BRA .layerNot6 
 
 
 .layerNot3:
-    CMP.W #$0006 
-    BNE .layerNot6 
+    CMP.W #$0006 : BNE .layerNot6 
     JSL.L Draw_LowPriority_EnemyProjectile 
 
 .layerNot6:
@@ -503,8 +497,7 @@ Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles:
     JSR.W WriteEnemyOAM_IfNotFrozenOrInvincibleFrame 
     LDA.W $0E38 
     INC #2
-    CMP.W $0E36 
-    BNE .loopOAM 
+    CMP.W $0E36 : BNE .loopOAM 
 
 .next:
     INC.W $0E32 
@@ -591,8 +584,7 @@ Debug_LoadEnemySetData:
     TAX 
 
 .loop:
-    LDA.L $B40000,X : CMP.W #$FFFF 
-    BEQ .return 
+    LDA.L $B40000,X : CMP.W #$FFFF : BEQ .return 
     PHX 
     TAX 
     LDA.L $A0003E,X : BNE .hasName 
@@ -667,8 +659,7 @@ ClearEnemyData_ProcessEnemySet:
     DEY 
     BNE .loop 
     LDX.W $07CF 
-    LDA.L $A10000,X : CMP.W #$FFFF 
-    BNE .processEnemySet 
+    LDA.L $A10000,X : CMP.W #$FFFF : BNE .processEnemySet 
     JMP.W .return 
 
 
@@ -712,8 +703,7 @@ Initialise_Enemies:
     DEX #2
     BPL .loopEnemyProjectileKilledEnemyIndices 
     LDX.W $07CF 
-    LDA.L $A10000,X : CMP.W #$FFFF 
-    BNE + 
+    LDA.L $A10000,X : CMP.W #$FFFF : BNE + 
     JMP.W .return 
 
 
@@ -773,8 +763,7 @@ Initialise_Enemies:
     CLC : ADC.W #$0040 : TAY 
     TXA 
     CLC : ADC.W #$0010 : TAX 
-    LDA.L $A10000,X : CMP.W #$FFFF 
-    BEQ + 
+    LDA.L $A10000,X : CMP.W #$FFFF : BEQ + 
     JMP.W .loop 
 
 
@@ -807,10 +796,8 @@ LoadEnemyGFXIndices:
     LDX.B $12 
     LDA.L $A10000,X 
     LDX.B $1C 
-    CMP.L $B40000,X 
-    BEQ .found 
-    LDA.L $B40000,X : CMP.W #$FFFF 
-    BEQ .notFound 
+    CMP.L $B40000,X : BEQ .found 
+    LDA.L $B40000,X : CMP.W #$FFFF : BEQ .notFound 
     LDA.L $B40000,X 
     TAX 
     LDA.W $0000,X 
@@ -896,22 +883,19 @@ TransferEnemyTilesToVRAM_InitialiseEnemies:
     STX.W $0E7E 
 
 .nonZeroSrcAddr:
-    CMP.W #$FFFF 
-    BNE .notFFFF 
+    CMP.W #$FFFF : BNE .notFFFF 
     RTL 
 
 
 .notFFFF:
-    CMP.W #$FFFE 
-    BNE .notFFFE 
+    CMP.W #$FFFE : BNE .notFFFE 
     JSL.L Initialise_Enemies 
     LDA.W #$FFFF : STA.W $0E7C 
     RTL 
 
 
 .notFFFE:
-    CMP.W #$9800 
-    BEQ .finish 
+    CMP.W #$9800 : BEQ .finish 
     LDX.W $0330 
     LDA.W #$0800 : STA.B $D0,X 
     LDA.W $0E7C : STA.B $D2,X 
@@ -966,8 +950,7 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
 
 .loop:
     TAX 
-    LDA.L $B40000,X : CMP.W #$FFFF 
-    BNE .notFFFF 
+    LDA.L $B40000,X : CMP.W #$FFFF : BNE .notFFFF 
     JMP.W .return 
 
 
@@ -1068,8 +1051,7 @@ Determine_Which_Enemies_to_Process:
 .loop:
     LDX.W $0E54 
     LDA.W $0F78,X : BEQ .next 
-    CMP.W #EnemyHeaders_Respawn 
-    BEQ .next 
+    CMP.W #EnemyHeaders_Respawn : BEQ .next 
     LDA.W $0F86,X : BIT.W #$0200 
     BEQ ..notDeleted 
     STZ.W $0F78,X 
@@ -1081,14 +1063,10 @@ Determine_Which_Enemies_to_Process:
     BNE .activeEnemies 
     LDA.W $0F8A,X : BIT.W #$0004 
     BNE .activeEnemies 
-    LDA.W $0F7A,X : CLC : ADC.W $0F82,X : CMP.W $0911 
-    BMI .next 
-    LDA.W $0911 : CLC : ADC.W #$0100 : CLC : ADC.W $0F82,X : CMP.W $0F7A,X 
-    BMI .next 
-    LDA.W $0F7E,X : CLC : ADC.W #$0008 : CMP.W $0915 
-    BMI .next 
-    LDA.W $0915 : CLC : ADC.W #$00F8 : CMP.W $0F7E,X 
-    BMI .next 
+    LDA.W $0F7A,X : CLC : ADC.W $0F82,X : CMP.W $0911 : BMI .next 
+    LDA.W $0911 : CLC : ADC.W #$0100 : CLC : ADC.W $0F82,X : CMP.W $0F7A,X : BMI .next 
+    LDA.W $0F7E,X : CLC : ADC.W #$0008 : CMP.W $0915 : BMI .next 
+    LDA.W $0915 : CLC : ADC.W #$00F8 : CMP.W $0F7E,X : BMI .next 
 
 .activeEnemies:
     TXA 
@@ -1106,8 +1084,7 @@ Determine_Which_Enemies_to_Process:
 
 .next:
     LDA.W $0E54 : CLC : ADC.W #$0040 : STA.W $0E54 
-    CMP.W #$0800 
-    BPL .done 
+    CMP.W #$0800 : BPL .done 
     JMP.W .loop 
 
 
@@ -1124,8 +1101,7 @@ Determine_Which_Enemies_to_Process:
 .loopProcessOffscreen:
     LDX.W $0E54 
     LDA.W $0F78,X : BEQ .nextProcessOffscreen 
-    CMP.W #EnemyHeaders_Respawn 
-    BEQ .nextProcessOffscreen 
+    CMP.W #EnemyHeaders_Respawn : BEQ .nextProcessOffscreen 
     LDA.W $0F86,X : BIT.W #$0200 
     BEQ ..notDeleted 
     STZ.W $0F78,X 
@@ -1149,8 +1125,7 @@ Determine_Which_Enemies_to_Process:
 
 .nextProcessOffscreen:
     LDA.W $0E54 : CLC : ADC.W #$0040 : STA.W $0E54 
-    CMP.W #$0800 
-    BMI .loopProcessOffscreen 
+    CMP.W #$0800 : BMI .loopProcessOffscreen 
     LDA.W #$FFFF 
     LDY.W $17A4 
     STA.W $17AC,Y 
@@ -1169,8 +1144,7 @@ Main_Enemy_Routine:
 
 
 .processEnemies:
-    LDA.W $0E1C : CMP.W #$FFFF 
-    BEQ .resetEnemyIndices 
+    LDA.W $0E1C : CMP.W #$FFFF : BEQ .resetEnemyIndices 
     TAX 
     LDA.W #$0040 : STA.W $0FA2,X 
     LDA.W #$FFFF : STA.W $0E1C 
@@ -1181,8 +1155,7 @@ Main_Enemy_Routine:
 
 .loop:
     LDY.W $17A8 
-    LDA.W $17AC,Y : CMP.W #$FFFF 
-    BNE ..notFFFF 
+    LDA.W $17AC,Y : CMP.W #$FFFF : BNE ..notFFFF 
     JMP.W .return 
 
 
@@ -1272,10 +1245,8 @@ Main_Enemy_Routine:
     LDX.W $0E54 
     LDA.W $0F88,X : BIT.W #$0001 
     BEQ .paralysedEnd 
-    LDA.W $0F9C,X : CMP.W #$0001 
-    BEQ + 
-    LDA.W $0F9E,X : CMP.W #$0001 
-    BNE .paralysedEnd 
+    LDA.W $0F9C,X : CMP.W #$0001 : BEQ + 
+    LDA.W $0F9E,X : CMP.W #$0001 : BNE .paralysedEnd 
 
   + LDA.W #$0000 : STA.L $7E7002,X 
     LDA.W #$0000 : JSL.L EnemyDeath 
@@ -1303,8 +1274,7 @@ Main_Enemy_Routine:
     ORA.W $185E 
     BNE + 
     DEC.W $0F9C,X 
-    LDA.W $0F9C,X : CMP.W #$0008 
-    BPL + 
+    LDA.W $0F9C,X : CMP.W #$0008 : BPL + 
     LDA.W $0F8A,X : AND.W #$FFFD : STA.W $0F8A,X 
 
   + INC.W $17A8 
@@ -1367,8 +1337,7 @@ UNUSED_LoggingRoutineForASpecificVertcalEnemyReaction_A0918B:
     STA.L $7E001C,X 
     STA.L $7E001E,X 
     TXA 
-    CLC : ADC.W #$0020 : CMP.W #$9800 
-    BMI .return 
+    CLC : ADC.W #$0020 : CMP.W #$9800 : BMI .return 
     LDA.W #$0000 
 
 .return:
@@ -1462,8 +1431,7 @@ SpawnEnemy:
 
 .next:
     LDA.W $0E4A : CLC : ADC.W #$0040 : STA.W $0E4A 
-    CMP.W #$0800 
-    BMI .loopFirstEnemy 
+    CMP.W #$0800 : BMI .loopFirstEnemy 
 
 .notFound:
     LDA.W #$FFFF 
@@ -1476,17 +1444,13 @@ SpawnEnemy_AlwaysSucceed:
     LDX.W $0E20 
     LDA.W $0000,X 
     LDX.W #$0000 
-    CMP.L $7EEF5C 
-    BEQ .graphics 
+    CMP.L $7EEF5C : BEQ .graphics 
     LDX.W #$0002 
-    CMP.L $7EEF5E 
-    BEQ .graphics 
+    CMP.L $7EEF5E : BEQ .graphics 
     LDX.W #$0004 
-    CMP.L $7EEF60 
-    BEQ .graphics 
+    CMP.L $7EEF60 : BEQ .graphics 
     LDX.W #$0006 
-    CMP.L $7EEF62 
-    BEQ .graphics 
+    CMP.L $7EEF62 : BEQ .graphics 
     LDA.W #$0000 : STA.W $0F98,Y 
     STA.W $0F96,Y 
     BRA + 
@@ -1530,8 +1494,7 @@ SpawnEnemy_AlwaysSucceed:
     PHX : PHY 
     STY.W $0E54 
     LDX.W $0F78,Y 
-    LDA.L $A00012,X : CMP.W #$8000 
-    BMI .processInstructions 
+    LDA.L $A00012,X : CMP.W #$8000 : BMI .processInstructions 
     STA.W $1784 
     LDA.L $A0000C,X : STA.W $1786 
     PHB 
@@ -1620,8 +1583,7 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
 
 .timerExpired:
     LDA.W $0F9E,X : BEQ .useEnemyPalette 
-    CMP.W #$005A 
-    BCS .palette6 
+    CMP.W #$005A : BCS .palette6 
     BIT.W #$0002 
     BEQ .useEnemyPalette 
 
@@ -1658,8 +1620,7 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
     .loop:
     LDA.W $0004,Y : STA.B $16 
     TAX 
-    LDA.W $0000,X : CMP.W #$FFFE 
-    BNE .notExtendedSpritemap 
+    LDA.W $0000,X : CMP.W #$FFFE : BNE .notExtendedSpritemap 
     LDA.W $0000,Y : CLC : ADC.W $0E22 : STA.B $14 
     LDA.W $0002,Y : CLC : ADC.W $0E20 : STA.B $12 
     LDX.W $0E54 
@@ -1818,8 +1779,7 @@ ProcessExtendedTilemap:
     LDY.B $16 
     INY #2
     .loop:
-    LDA.W $0000,Y : CMP.W #$FFFF 
-    BEQ .return 
+    LDA.W $0000,Y : CMP.W #$FFFF : BEQ .return 
     TAX 
     LDA.W $0002,Y : STA.W $060D 
     INY #4
@@ -1944,8 +1904,7 @@ Samus_Projectiles_Interaction_Handling:
     LDA.W $0C18,Y : BIT.W #$8000 
     BNE .gotoNext 
     AND.W #$0F00 
-    CMP.W #$0700 
-    BMI .interactive 
+    CMP.W #$0700 : BMI .interactive 
 
 .gotoNext:
     JMP.W .next 
@@ -1959,31 +1918,25 @@ Samus_Projectiles_Interaction_Handling:
     INC A 
 
   + SEC : SBC.W $0BB4,Y : BCC + 
-    CMP.W $0AFE 
-    BCS .gotoNext 
+    CMP.W $0AFE : BCS .gotoNext 
 
   + LDA.W $0B78,Y : SEC : SBC.W $0AFA : BPL + 
     EOR.W #$FFFF 
     INC A 
 
   + SEC : SBC.W $0BC8,Y : BCC .checkBombType 
-    CMP.W $0B00 
-    BCC .checkBombType 
+    CMP.W $0B00 : BCC .checkBombType 
     BRA .next 
 
 
 .checkBombType:
     LDA.W $0C18,Y : AND.W #$FF00 
-    CMP.W #$0300 
-    BEQ .checkBombTimer 
-    CMP.W #$0500 
-    BNE .notABomb 
+    CMP.W #$0300 : BEQ .checkBombTimer 
+    CMP.W #$0500 : BNE .notABomb 
 
 .checkBombTimer:
-    LDA.W $0C7C,Y : CMP.W #$0008 
-    BNE .next 
-    LDA.W $0AF6 : CMP.W $0B64,Y 
-    BEQ .straight 
+    LDA.W $0C7C,Y : CMP.W #$0008 : BNE .next 
+    LDA.W $0AF6 : CMP.W $0B64,Y : BEQ .straight 
     BMI .left 
     LDA.W #$0003 : BRA .storeBombJumpDirection 
 
@@ -2017,8 +1970,7 @@ Samus_Projectiles_Interaction_Handling:
 
 .next:
     INC.W $18A6 
-    LDA.W $18A6 : CMP.W $187C 
-    BEQ .returnLower 
+    LDA.W $18A6 : CMP.W $187C : BEQ .returnLower 
     JMP.W .loop 
 
 
@@ -2061,8 +2013,7 @@ EnemyProjectile_Samus_Collision_Handling:
     INC A 
 
   + SEC : SBC.W $0AFE : BCC .checkY 
-    CMP.W $0E20 
-    BCS .next 
+    CMP.W $0E20 : BCS .next 
 
 .checkY:
     LDA.W $0AFA : SEC : SBC.W $1A93,X : BPL + 
@@ -2070,8 +2021,7 @@ EnemyProjectile_Samus_Collision_Handling:
     INC A 
 
   + SEC : SBC.W $0B00 : BCC .handleCollision 
-    CMP.W $0E22 
-    BCC .handleCollision 
+    CMP.W $0E22 : BCC .handleCollision 
     BRA .next 
 
 
@@ -2136,24 +2086,18 @@ Projectile_vs_Projectile_Collision_Handling:
     LDY.W #$0000 
 
 .loopProjectile:
-    LDA.L $7EF380,X : CMP.W #$0002 
-    BEQ .nextEnemyProjectile 
+    LDA.L $7EF380,X : CMP.W #$0002 : BEQ .nextEnemyProjectile 
     LDA.W $0C18,Y : BEQ .nextProjectile 
     AND.W #$0F00 
-    CMP.W #$0300 
-    BEQ .nextProjectile 
-    CMP.W #$0500 
-    BEQ .nextProjectile 
-    CMP.W #$0700 
-    BPL .nextProjectile 
+    CMP.W #$0300 : BEQ .nextProjectile 
+    CMP.W #$0500 : BEQ .nextProjectile 
+    CMP.W #$0700 : BPL .nextProjectile 
     LDA.W $0B64,Y : AND.W #$FFE0 : STA.B $12 
     LDA.W $1A4B,X : AND.W #$FFE0 
-    CMP.B $12 
-    BNE .nextProjectile 
+    CMP.B $12 : BNE .nextProjectile 
     LDA.W $0B78,Y : AND.W #$FFE0 : STA.B $12 
     LDA.W $1A93,X : AND.W #$FFE0 
-    CMP.B $12 
-    BNE .nextProjectile 
+    CMP.B $12 : BNE .nextProjectile 
     JSR.W HandleEnemyProjectileCollisionWithProjectile 
 
 .nextProjectile:
@@ -2179,8 +2123,7 @@ HandleEnemyProjectileCollisionWithProjectile:
     LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
 
 .plasmaBeam:
-    LDA.L $7EF380,X : CMP.W #$0001 
-    BEQ .buggyDudShot 
+    LDA.L $7EF380,X : CMP.W #$0001 : BEQ .buggyDudShot 
     LDA.W $0C18,Y 
     PHY 
     TXY 
@@ -2216,10 +2159,8 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
     LDA.W $0F8E,Y : BEQ .returnUpper 
     LDA.W $0F78,X 
     TAX 
-    LDA.L $A00030,X : CMP.W #RTL_A0804C 
-    BEQ .returnUpper 
-    CMP.W #RTS_A0804B 
-    BNE .touch 
+    LDA.L $A00030,X : CMP.W #RTL_A0804C : BEQ .returnUpper 
+    CMP.W #RTS_A0804B : BNE .touch 
 
 .returnUpper:
     PLB 
@@ -2237,8 +2178,7 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
 
 .notInvincible:
     LDX.W $0E54 
-    LDA.W $0F8E,X : CMP.W #$8000 
-    BMI .returnUpper 
+    LDA.W $0F8E,X : CMP.W #$8000 : BMI .returnUpper 
     LDA.W $0AF6 : CLC : ADC.W $0AFE : STA.W $187E 
     LDA.W $0AF6 : SEC : SBC.W $0AFE : STA.W $1880 
     LDA.W $0AFA : CLC : ADC.W $0B00 : STA.W $1882 
@@ -2263,14 +2203,10 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
 
 .loopHitboxes:
     LDX.W $1878 
-    LDA.W $187A : CLC : ADC.W $0000,X : CMP.W $187E 
-    BPL .nextHitboxEntry 
-    LDA.W $187A : CLC : ADC.W $0004,X : CMP.W $1880 
-    BMI .nextHitboxEntry 
-    LDA.W $187C : CLC : ADC.W $0002,X : CMP.W $1882 
-    BPL .nextHitboxEntry 
-    LDA.W $187C : CLC : ADC.W $0006,X : CMP.W $1884 
-    BMI .nextHitboxEntry 
+    LDA.W $187A : CLC : ADC.W $0000,X : CMP.W $187E : BPL .nextHitboxEntry 
+    LDA.W $187A : CLC : ADC.W $0004,X : CMP.W $1880 : BMI .nextHitboxEntry 
+    LDA.W $187C : CLC : ADC.W $0002,X : CMP.W $1882 : BPL .nextHitboxEntry 
+    LDA.W $187C : CLC : ADC.W $0006,X : CMP.W $1884 : BMI .nextHitboxEntry 
     JSL.L .executeAI 
     BRA .returnLower 
 
@@ -2318,13 +2254,10 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     STA.W $060F 
     LDY.W $0E54 
     LDA.W $0F8E,Y : BEQ .returnUpper 
-    CMP.W #ExtendedSpritemap_Common_Nothing 
-    BEQ .returnUpper 
+    CMP.W #ExtendedSpritemap_Common_Nothing : BEQ .returnUpper 
     LDX.W $0F78,Y 
-    LDA.L $A00032,X : CMP.W #RTL_A0804C 
-    BEQ .returnUpper 
-    CMP.W #RTS_A0804B 
-    BNE + 
+    LDA.L $A00032,X : CMP.W #RTL_A0804C : BEQ .returnUpper 
+    CMP.W #RTS_A0804B : BNE + 
 
 .returnUpper:
     PLB 
@@ -2335,8 +2268,7 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     LDA.W $0F86,X : BIT.W #$0400 
     BNE .returnUpper 
     LDA.W $0FA0,X : BNE .returnUpper 
-    LDA.W $0F78,X : CMP.W #EnemyHeaders_Respawn 
-    BEQ .returnUpper 
+    LDA.W $0F78,X : CMP.W #EnemyHeaders_Respawn : BEQ .returnUpper 
     STZ.W $18A6 
 
 .loopProjectiles:
@@ -2346,12 +2278,9 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     TAY 
     LDA.W $0C18,Y : BEQ .gotoNextProjectile 
     AND.W #$0F00 
-    CMP.W #$0300 
-    BEQ .gotoNextProjectile 
-    CMP.W #$0500 
-    BEQ .gotoNextProjectile 
-    CMP.W #$0700 
-    BMI .validProjectile 
+    CMP.W #$0300 : BEQ .gotoNextProjectile 
+    CMP.W #$0500 : BEQ .gotoNextProjectile 
+    CMP.W #$0700 : BMI .validProjectile 
 
 .gotoNextProjectile:
     JMP.W .nextProjectile 
@@ -2390,23 +2319,18 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     ASL A 
     TAY 
     LDA.W $0000,X : CLC : ADC.W $187A : STA.W $1870 
-    LDA.W $0B64,Y : CLC : ADC.W $0BB4,Y : CMP.W $1870 
-    BPL + 
+    LDA.W $0B64,Y : CLC : ADC.W $0BB4,Y : CMP.W $1870 : BPL + 
     JMP.W .nextHitbox 
 
 
   + LDA.W $0004,X : CLC : ADC.W $187A : STA.W $1874 
-    LDA.W $0B64,Y : SEC : SBC.W $0BB4,Y : CMP.W $1874 
-    BPL .nextHitbox 
+    LDA.W $0B64,Y : SEC : SBC.W $0BB4,Y : CMP.W $1874 : BPL .nextHitbox 
     LDA.W $0002,X : CLC : ADC.W $187C : STA.W $1872 
-    LDA.W $0B78,Y : CLC : ADC.W $0BC8,Y : CMP.W $1872 
-    BMI .nextHitbox 
+    LDA.W $0B78,Y : CLC : ADC.W $0BC8,Y : CMP.W $1872 : BMI .nextHitbox 
     LDA.W $0006,X : CLC : ADC.W $187C : STA.W $1876 
-    LDA.W $0B78,Y : SEC : SBC.W $0BC8,Y : CMP.W $1876 
-    BPL .nextHitbox 
+    LDA.W $0B78,Y : SEC : SBC.W $0BC8,Y : CMP.W $1876 : BPL .nextHitbox 
     LDA.W $0C18,Y : AND.W #$0F00 
-    CMP.W #$0200 
-    BNE .notSuperMissile 
+    CMP.W #$0200 : BNE .notSuperMissile 
     LDA.W #$001E : STA.W $1840 
     LDA.W #$0012 : STA.W $183E 
 
@@ -2443,8 +2367,7 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
 
 .nextProjectile:
     INC.W $18A6 
-    LDA.W $18A6 : CMP.W #$0005 
-    BPL .returnLower 
+    LDA.W $18A6 : CMP.W #$0005 : BPL .returnLower 
     JMP.W .loopProjectiles 
 
 
@@ -2474,10 +2397,8 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
     LDA.W $0FA0,X : BNE .returnUpper 
     LDY.W $0E54 
     LDX.W $0F78,Y 
-    LDA.L $A00032,X : CMP.W #RTL_A0804C 
-    BEQ .returnUpper 
-    CMP.W #RTS_A0804B 
-    BNE + 
+    LDA.L $A00032,X : CMP.W #RTL_A0804C : BEQ .returnUpper 
+    CMP.W #RTS_A0804B : BNE + 
 
 .returnUpper:
     PLB 
@@ -2499,8 +2420,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
 .notZeroX:
     LDA.W $0C18,Y : BEQ .gotoNextProjectile 
     AND.W #$0F00 
-    CMP.W #$0500 
-    BEQ .bomb 
+    CMP.W #$0500 : BEQ .bomb 
 
 .gotoNextProjectile:
     JMP.W .nextProjectile 
@@ -2542,20 +2462,16 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
     ASL A 
     TAY 
     LDA.W $0000,X : CLC : ADC.W $187A : STA.W $1870 
-    LDA.W $0B64,Y : CLC : ADC.W $0BB4,Y : CMP.W $1870 
-    BPL + 
+    LDA.W $0B64,Y : CLC : ADC.W $0BB4,Y : CMP.W $1870 : BPL + 
     JMP.W .nextHitbox 
 
 
   + LDA.W $0004,X : CLC : ADC.W $187A : STA.W $1874 
-    LDA.W $0B64,Y : SEC : SBC.W $0BB4,Y : CMP.W $1874 
-    BPL .nextHitbox 
+    LDA.W $0B64,Y : SEC : SBC.W $0BB4,Y : CMP.W $1874 : BPL .nextHitbox 
     LDA.W $0002,X : CLC : ADC.W $187C : STA.W $1872 
-    LDA.W $0B78,Y : CLC : ADC.W $0BC8,Y : CMP.W $1872 
-    BMI .nextHitbox 
+    LDA.W $0B78,Y : CLC : ADC.W $0BC8,Y : CMP.W $1872 : BMI .nextHitbox 
     LDA.W $0006,X : CLC : ADC.W $187C : STA.W $1876 
-    LDA.W $0B78,Y : SEC : SBC.W $0BC8,Y : CMP.W $1876 
-    BPL .nextHitbox 
+    LDA.W $0B78,Y : SEC : SBC.W $0BC8,Y : CMP.W $1876 : BPL .nextHitbox 
     LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
     JSL.L .executeCollision 
     BRA .returnLower 
@@ -2579,8 +2495,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
 
 .nextProjectile:
     INC.W $18A6 
-    LDA.W $18A6 : CMP.W #$000A 
-    BEQ .returnLower 
+    LDA.W $18A6 : CMP.W #$000A : BEQ .returnLower 
     JMP.W .loopProjectiles 
 
 
@@ -2608,8 +2523,7 @@ EnemyGrappleBeamCollisionDetection:
 .loop:
     LDY.W $17AA 
     LDA.W $17EC,Y : STA.W $0E54 
-    CMP.W #$FFFF 
-    BNE .notFFFF 
+    CMP.W #$FFFF : BNE .notFFFF 
     STZ.B $12 
     LDA.W #$0000 
     PLY : PLX : PLB 
@@ -2624,8 +2538,7 @@ EnemyGrappleBeamCollisionDetection:
     INC A 
 
   + SEC : SBC.W $0F82,X : BCC .Y 
-    CMP.W #$0008 
-    BCS .next 
+    CMP.W #$0008 : BCS .next 
 
 .Y:
     LDA.W $0F7E,X : SEC : SBC.W $0D0C : BPL + 
@@ -2633,8 +2546,7 @@ EnemyGrappleBeamCollisionDetection:
     INC A 
 
   + SEC : SBC.W $0F84,X : BCC .hit 
-    CMP.W #$0008 
-    BCC .hit 
+    CMP.W #$0008 : BCC .hit 
 
 .next:
     INC.W $17AA 
@@ -2647,37 +2559,27 @@ EnemyGrappleBeamCollisionDetection:
     LDY.W #$0000 
     LDA.W $0F78,X 
     TAX 
-    LDA.L $A0001A,X : CMP.W #Common_GrappleAI_NoInteraction 
-    BEQ .grappleIndexDetermined 
+    LDA.L $A0001A,X : CMP.W #Common_GrappleAI_NoInteraction : BEQ .grappleIndexDetermined 
     LDY.W #$0001 
-    CMP.W #Common_GrappleAI_SamusLatchesOn 
-    BEQ .grappleIndexDetermined 
+    CMP.W #Common_GrappleAI_SamusLatchesOn : BEQ .grappleIndexDetermined 
     INY 
-    CMP.W #Common_GrappleAI_KillEnemy 
-    BEQ .grappleIndexDetermined 
+    CMP.W #Common_GrappleAI_KillEnemy : BEQ .grappleIndexDetermined 
     INY 
-    CMP.W #Common_GrappleAI_CancelGrappleBeam 
-    BEQ .grappleIndexDetermined 
+    CMP.W #Common_GrappleAI_CancelGrappleBeam : BEQ .grappleIndexDetermined 
     INY 
-    CMP.W #Common_GrappleAI_SamusLatchesOn_NoInvincibility 
-    BEQ .grappleIndexDetermined 
+    CMP.W #Common_GrappleAI_SamusLatchesOn_NoInvincibility : BEQ .grappleIndexDetermined 
     INY 
-    CMP.W #UNUSED_Common_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A08019 
-    BEQ .grappleIndexDetermined 
+    CMP.W #UNUSED_Common_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A08019 : BEQ .grappleIndexDetermined 
     INY 
-    CMP.W #Common_GrappleAI_HurtSamus 
-    BEQ .grappleIndexDetermined 
+    CMP.W #Common_GrappleAI_HurtSamus : BEQ .grappleIndexDetermined 
     LDY.W #$0000 
 
 .grappleIndexDetermined:
     STX.B $12 
     TYA 
-    CMP.W #$0001 
-    BEQ .attachGrapple 
-    CMP.W #$0004 
-    BEQ .attachGrapple 
-    CMP.W #$0005 
-    BEQ .attachGrapple 
+    CMP.W #$0001 : BEQ .attachGrapple 
+    CMP.W #$0004 : BEQ .attachGrapple 
+    CMP.W #$0005 : BEQ .attachGrapple 
 
 .return:
     PLY : PLX : PLB 
@@ -2821,11 +2723,9 @@ Enemy_vs_Samus_CollisionHandling:
 .normalContactDamage:
     LDA.W $18A8 : BEQ .tangible 
     LDX.W $0E54 
-    LDA.W $0F78,X : CMP.W #EnemyHeaders_Respawn 
-    BNE .return 
+    LDA.W $0F78,X : CMP.W #EnemyHeaders_Respawn : BNE .return 
     LDA.L $7E7000,X : BEQ .return 
-    CMP.W #$0008 
-    BNE .tangible 
+    CMP.W #$0008 : BNE .tangible 
 
 .return:
     PLB 
@@ -2835,10 +2735,8 @@ Enemy_vs_Samus_CollisionHandling:
 .tangible:
     LDX.W $0E54 
     LDY.W $0F78,X 
-    LDA.W $0030,Y : CMP.W #RTL_A0804C 
-    BEQ ..return 
-    CMP.W #RTS_A0804B 
-    BNE .hasTouchAI 
+    LDA.W $0030,Y : CMP.W #RTL_A0804C : BEQ ..return 
+    CMP.W #RTS_A0804B : BNE .hasTouchAI 
 
 ..return:
     PLB 
@@ -2852,8 +2750,7 @@ Enemy_vs_Samus_CollisionHandling:
     INC A 
 
   + SEC : SBC.W $0AFE : BCC ..Y 
-    CMP.W $0F82,X 
-    BCS ..return 
+    CMP.W $0F82,X : BCS ..return 
 
 ..Y:
     LDA.W $0AFA : SEC : SBC.W $0F7E,X : BPL + 
@@ -2861,8 +2758,7 @@ Enemy_vs_Samus_CollisionHandling:
     INC A 
 
   + SEC : SBC.W $0B00 : BCC + 
-    CMP.W $0F84,X 
-    BCC + 
+    CMP.W $0F84,X : BCC + 
 
 ..return:
     PLB 
@@ -2874,8 +2770,7 @@ Enemy_vs_Samus_CollisionHandling:
     ASL A 
     STA.B $14 
     LDX.W $0E54 
-    LDA.W $0F78,X : CMP.W #EnemyHeaders_Respawn 
-    BEQ .gotoExecuteEnemyTouch 
+    LDA.W $0F78,X : CMP.W #EnemyHeaders_Respawn : BEQ .gotoExecuteEnemyTouch 
     LDY.W $0E54 
     LDA.W $0F9E,Y : BEQ .gotoExecuteEnemyTouch 
     PLB 
@@ -2916,12 +2811,10 @@ Enemy_vs_ProjectileCollisionHandling:
 .nonZeroCounter:
     LDY.W $0E54 
     LDA.W $0F8E,Y : BEQ .returnUpper 
-    CMP.W #Spritemap_Common_Nothing 
-    BEQ .returnUpper 
+    CMP.W #Spritemap_Common_Nothing : BEQ .returnUpper 
     LDA.W $0F86,Y : BIT.W #$0400 
     BNE .returnUpper 
-    LDA.W $0F78,Y : CMP.W #EnemyHeaders_Respawn 
-    BEQ .returnUpper 
+    LDA.W $0F78,Y : CMP.W #EnemyHeaders_Respawn : BEQ .returnUpper 
     LDA.W $0FA0,Y : BNE .returnUpper 
     STZ.W $18A6 
 
@@ -2932,12 +2825,9 @@ Enemy_vs_ProjectileCollisionHandling:
     TAY 
     LDA.W $0C18,Y : BEQ .gotoNextProjectile 
     AND.W #$0F00 
-    CMP.W #$0300 
-    BEQ .gotoNextProjectile 
-    CMP.W #$0500 
-    BEQ .gotoNextProjectile 
-    CMP.W #$0700 
-    BMI .validProjectile 
+    CMP.W #$0300 : BEQ .gotoNextProjectile 
+    CMP.W #$0500 : BEQ .gotoNextProjectile 
+    CMP.W #$0700 : BMI .validProjectile 
 
 .gotoNextProjectile:
     JMP.W .nextProjectile 
@@ -2949,8 +2839,7 @@ Enemy_vs_ProjectileCollisionHandling:
     INC A 
 
   + SEC : SBC.W $0BB4,Y : BCC .Y 
-    CMP.W $0F82,X 
-    BCS .nextProjectile 
+    CMP.W $0F82,X : BCS .nextProjectile 
 
 .Y:
     LDA.W $0B78,Y : SEC : SBC.W $0F7E,X : BPL + 
@@ -2958,15 +2847,13 @@ Enemy_vs_ProjectileCollisionHandling:
     INC A 
 
   + SEC : SBC.W $0BC8,Y : BCC .checkSuper 
-    CMP.W $0F84,X 
-    BCC .checkSuper 
+    CMP.W $0F84,X : BCC .checkSuper 
     BRA .nextProjectile 
 
 
 .checkSuper:
     LDA.W $0C18,Y : AND.W #$0F00 
-    CMP.W #$0200 
-    BNE .checkPlasma 
+    CMP.W #$0200 : BNE .checkPlasma 
     LDA.W #$001E : STA.W $1840 
     LDA.W #$0012 : STA.W $183E 
 
@@ -2990,8 +2877,7 @@ Enemy_vs_ProjectileCollisionHandling:
 
 .nextProjectile:
     INC.W $18A6 
-    LDA.W $18A6 : CMP.W #$0005 
-    BEQ .returnLower 
+    LDA.W $18A6 : CMP.W #$0005 : BEQ .returnLower 
     JMP.W .loop 
 
 
@@ -3026,8 +2912,7 @@ Enemy_vs_Bomb_CollisionHandling:
     LDA.W $0F8E,Y : BEQ .returnUpper 
     LDY.W $0E54 
     LDA.W $0FA0,Y : BNE .returnUpper 
-    LDA.W $0F78,Y : CMP.W #EnemyHeaders_Respawn 
-    BEQ .returnUpper 
+    LDA.W $0F78,Y : CMP.W #EnemyHeaders_Respawn : BEQ .returnUpper 
     LDA.W #$0005 : STA.W $18A6 
 
 .loop:
@@ -3042,8 +2927,7 @@ Enemy_vs_Bomb_CollisionHandling:
 .projectileType:
     LDA.W $0C7C,Y : BNE .next 
     LDA.W $0C18,Y : AND.W #$0F00 
-    CMP.W #$0500 
-    BEQ .bomb 
+    CMP.W #$0500 : BEQ .bomb 
     LDA.W $0C18,Y : BIT.W #$8000 
     BNE .bomb 
     JMP.W .next 
@@ -3055,8 +2939,7 @@ Enemy_vs_Bomb_CollisionHandling:
     INC A 
 
   + SEC : SBC.W $0BB4,Y : BCC .Y 
-    CMP.W $0F82,X 
-    BCS .next 
+    CMP.W $0F82,X : BCS .next 
 
 .Y:
     LDA.W $0B78,Y : SEC : SBC.W $0F7E,X : BPL + 
@@ -3064,8 +2947,7 @@ Enemy_vs_Bomb_CollisionHandling:
     INC A 
 
   + SEC : SBC.W $0BC8,Y : BCC + 
-    CMP.W $0F84,X 
-    BCC + 
+    CMP.W $0F84,X : BCC + 
     BRA .next 
 
 
@@ -3080,8 +2962,7 @@ Enemy_vs_Bomb_CollisionHandling:
 
 .next:
     INC.W $18A6 
-    LDA.W $18A6 : CMP.W #$000A 
-    BEQ .returnLower 
+    LDA.W $18A6 : CMP.W #$000A : BEQ .returnLower 
     JMP.W .loop 
 
 
@@ -3116,8 +2997,7 @@ Process_Enemy_PowerBomb_Interaction:
     LDX.W $0E54 
     LDA.W $0FA0,X : BNE .next 
     LDA.W $0F78,X : BEQ .next 
-    CMP.W #EnemyHeaders_Respawn 
-    BEQ .next 
+    CMP.W #EnemyHeaders_Respawn : BEQ .next 
     TAX 
     LDA.L $A0003C,X : BNE + 
     LDA.W #EnemyVulnerabilities_Default 
@@ -3130,14 +3010,12 @@ Process_Enemy_PowerBomb_Interaction:
     EOR.W #$FFFF 
     INC A 
 
-  + CMP.B $12 
-    BCS .next 
+  + CMP.B $12 : BCS .next 
     LDA.W $0CE4 : SEC : SBC.W $0F7E,X : BPL + 
     EOR.W #$FFFF 
     INC A 
 
-  + CMP.B $14 
-    BCS .next 
+  + CMP.B $14 : BCS .next 
     LDA.W $0F78,X 
     TAX 
     LDA.L $A00028,X : BNE .enemyAI 
@@ -3169,14 +3047,12 @@ EnemyDeath:
     PLB : PLB 
     REP #$30 
     PHA 
-    LDA.W $0F8A,X : CMP.W #$0001 
-    BNE .checkA 
+    LDA.W $0F8A,X : CMP.W #$0001 : BNE .checkA 
     LDA.W #GrappleBeamFunction_Dropped : STA.W $0D32 
 
 .checkA:
     PLA 
-    CMP.W #$0005 
-    BMI .AIsValid 
+    CMP.W #$0005 : BMI .AIsValid 
     LDA.W #$0000 
 
 .AIsValid:
@@ -3208,8 +3084,7 @@ RinkaDeath:
     PHP : PHB : PEA.W $A000 
     PLB : PLB 
     REP #$30 
-    CMP.W #$0003 
-    BMI .AIsValid 
+    CMP.W #$0003 : BMI .AIsValid 
     LDA.W #$0000 
 
 .AIsValid:
@@ -3284,18 +3159,14 @@ NormalEnemyTouchAI_NoDeathCheck:
 .notNormal:
     CLC : ADC.W #$000F : STA.B $14 
     LDY.W #$01F4 
-    LDA.W $0A6E : CMP.W #$0001 
-    BEQ .damageCalculated 
+    LDA.W $0A6E : CMP.W #$0001 : BEQ .damageCalculated 
     LDY.W #$012C 
-    CMP.W #$0002 
-    BEQ .damageCalculated 
+    CMP.W #$0002 : BEQ .damageCalculated 
     LDY.W #$07D0 
-    CMP.W #$0003 
-    BEQ .damageCalculated 
+    CMP.W #$0003 : BEQ .damageCalculated 
     INC.B $14 
     LDY.W #$00C8 
-    CMP.W #$0004 
-    BNE .defaultDamage 
+    CMP.W #$0004 : BNE .defaultDamage 
     LDA.W #$0004 : JSL.L Run_Samus_Command 
     BRA .damageCalculated 
 
@@ -3317,8 +3188,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     AND.W #$007F 
     STA.W $0E32 
     BEQ .return 
-    CMP.W #$00FF 
-    BEQ .return 
+    CMP.W #$00FF : BEQ .return 
     LDA.W $0E32 : STA.B $28 
     LDA.B $16 
     LSR A 
@@ -3405,8 +3275,7 @@ NormalEnemyPowerBombAI_NoDeathCheck:
 .XNonZero:
     TAX 
     LDA.L $B4000F,X : AND.W #$00FF 
-    CMP.W #$00FF 
-    BEQ .return 
+    CMP.W #$00FF : BEQ .return 
     AND.W #$007F 
     STA.W $0E32 
     BEQ .return 
@@ -3466,8 +3335,7 @@ NormalEnemyShotAI:
     AND.W #$000F 
     STA.L $7E7002,X 
     LDY.W #$0002 
-    CMP.W #$0002 
-    BEQ .superMissile 
+    CMP.W #$0002 : BEQ .superMissile 
     LDA.W $0F78,X 
     TAX 
     LDA.L $A00022,X : BEQ .deathAnimationInY 
@@ -3480,8 +3348,7 @@ NormalEnemyShotAI:
 .superMissile:
     LDA.W $0F78,X 
     TAX 
-    LDA.L $A00022,X : CMP.W #$0003 
-    BMI .enemyDeath 
+    LDA.L $A00022,X : CMP.W #$0003 : BMI .enemyDeath 
     TAY 
 
 .enemyDeath:
@@ -3541,8 +3408,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     LDA.L $B40000,X : AND.W #$00FF : STA.W $0E40 
     AND.W #$007F 
     STA.W $0E32 
-    LDA.W $0E40 : CMP.W #$00FF 
-    BNE .checkCharge 
+    LDA.W $0E40 : CMP.W #$00FF : BNE .checkCharge 
     JMP.W .freeze 
 
 
@@ -3551,8 +3417,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     BEQ .calculateDamage 
     LDX.B $14 
     LDA.L $B40013,X : AND.W #$00FF 
-    CMP.W #$00FF 
-    BEQ .noDamage 
+    CMP.W #$00FF : BEQ .noDamage 
     AND.W #$000F 
     BEQ .noDamage 
     STA.W $0E32 
@@ -3570,10 +3435,8 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
 .notBeam:
     AND.W #$0F00 
-    CMP.W #$0100 
-    BEQ + 
-    CMP.W #$0200 
-    BNE .notMissile 
+    CMP.W #$0100 : BEQ + 
+    CMP.W #$0200 : BNE .notMissile 
 
   + XBA 
     CLC : ADC.B $14 : TAX 
@@ -3582,16 +3445,14 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
 
 .notMissile:
-    CMP.W #$0500 
-    BNE .checkPowerBomb 
+    CMP.W #$0500 : BNE .checkPowerBomb 
     LDX.B $14 
     LDA.L $B4000E,X : AND.W #$007F : STA.W $0E32 
     BRA .calculateDamage 
 
 
 .checkPowerBomb:
-    CMP.W #$0300 
-    BNE .noDamage 
+    CMP.W #$0300 : BNE .noDamage 
     LDX.B $14 
     LDA.L $B4000F,X : AND.W #$007F : STA.W $0E32 
     JMP.W .calculateDamage 
@@ -3619,8 +3480,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
 .timerNotExpired:
     LDY.W #$0190 
-    LDA.W $079F : CMP.W #$0002 
-    BNE .notNorfair 
+    LDA.W $079F : CMP.W #$0002 : BNE .notNorfair 
     LDY.W #$012C 
 
 .notNorfair:
@@ -3676,12 +3536,10 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     LDA.W $0C18,Y : AND.W #$0002 
     BEQ .enemyHealthZero 
     LDA.W $0E40 : AND.W #$00F0 
-    CMP.W #$0080 
-    BEQ .enemyHealthZero 
+    CMP.W #$0080 : BEQ .enemyHealthZero 
     LDA.W $0F9E,X : BNE .enemyHealthZero 
     LDY.W #$0190 
-    LDA.W $079F : CMP.W #$0002 
-    BNE ..notNorfair 
+    LDA.W $079F : CMP.W #$0002 : BNE ..notNorfair 
     LDY.W #$012C 
 
 ..notNorfair:
@@ -3818,8 +3676,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
 
 .loop:
     LDY.W $17AA 
-    LDA.W $17EC,Y : CMP.W #$FFFF 
-    BNE .valid 
+    LDA.W $17EC,Y : CMP.W #$FFFF : BNE .valid 
     JMP.W .returnZeroLower 
 
 
@@ -3841,8 +3698,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     INC A 
 
   + SEC : SBC.B $08,X : BCC .checkY 
-    CMP.W $0008,Y 
-    BCS .gotoNext 
+    CMP.W $0008,Y : BCS .gotoNext 
 
 .checkY:
     LDA.B $04,X : SEC : SBC.W $0004,Y : BPL + 
@@ -3850,8 +3706,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     INC A 
 
   + SEC : SBC.B $0A,X : BCC .collision 
-    CMP.W $000A,Y 
-    BCC .collision 
+    CMP.W $000A,Y : BCC .collision 
 
 .gotoNext:
     JMP.W .next 
@@ -4027,8 +3882,7 @@ CheckIfEnemyIsTouchingSamusFromBelow:
     INC A 
 
   + SEC : SBC.W $0AFE : BCC .checkY 
-    CMP.W $0F82,X 
-    BCC .checkY 
+    CMP.W $0F82,X : BCC .checkY 
     LDA.W #$0000 
     RTL 
 
@@ -4038,8 +3892,7 @@ CheckIfEnemyIsTouchingSamusFromBelow:
     EOR.W #$FFFF 
     INC A 
     SEC : SBC.W $0B00 : BCC .touching 
-    CMP.W $0F84,X 
-    BEQ .touching 
+    CMP.W $0F84,X : BEQ .touching 
     BCC .touching 
 
 .noTouch:
@@ -4059,8 +3912,7 @@ UNUSED_CheckIfEnemyIsTouchingSamusFromAbove_A0AC29:
     INC A 
 
   + SEC : SBC.W $0AFE : BCC .checkY 
-    CMP.W $0F82,X 
-    BCC .checkY 
+    CMP.W $0F82,X : BCC .checkY 
     LDA.W #$0000 
     RTL 
 
@@ -4070,8 +3922,7 @@ UNUSED_CheckIfEnemyIsTouchingSamusFromAbove_A0AC29:
     EOR.W #$FFFF 
     INC A 
     SEC : SBC.W $0B00 : BCC .touching 
-    CMP.W $0F84,X 
-    BEQ .touching 
+    CMP.W $0F84,X : BEQ .touching 
     BCC .touching 
 
 .noTouch:
@@ -4091,10 +3942,8 @@ CheckIfEnemyIsTouchingSamus:
     INC A 
 
   + SEC : SBC.W $0AFE : BCC .checkY 
-    CMP.W $0F82,X 
-    BCC .checkY 
-    CMP.W #$0008 
-    BCC .checkY 
+    CMP.W $0F82,X : BCC .checkY 
+    CMP.W #$0008 : BCC .checkY 
     LDA.W #$0000 
     RTL 
 
@@ -4105,8 +3954,7 @@ CheckIfEnemyIsTouchingSamus:
     INC A 
 
   + SEC : SBC.W $0B00 : BCC .touching 
-    CMP.W $0F84,X 
-    BCC .touching 
+    CMP.W $0F84,X : BCC .touching 
     LDA.W #$0000 
     RTL 
 
@@ -4123,8 +3971,7 @@ CalculateDistanceAndAngleOfSamusFromEnemy:
     EOR.W #$FFFF 
     INC A 
 
-  + CMP.W #$00FF 
-    BPL .returnError 
+  + CMP.W #$00FF : BPL .returnError 
     STA.B $12 
     STA.W $0E20 
     LDA.W $0E38 : SEC : SBC.W $0E34 : STA.W $0E3E 
@@ -4132,8 +3979,7 @@ CalculateDistanceAndAngleOfSamusFromEnemy:
     EOR.W #$FFFF 
     INC A 
 
-  + CMP.W #$00FF 
-    BPL .returnError 
+  + CMP.W #$00FF : BPL .returnError 
     STA.B $14 
     STA.W $0E22 
     JSL.L CalculateAngleOf_12_14_Offset 
@@ -4194,8 +4040,7 @@ UNUSED_SignedA_ZeroIsSpecialCase_A0AD4A:
 
 
 .notZero:
-    CMP.W #$8000 
-    BMI .return1 
+    CMP.W #$8000 : BMI .return1 
     LDA.W #$FFFF 
     RTL 
 
@@ -4222,14 +4067,10 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 CheckIfEnemyCenterIsOnScreen:
     LDX.W $0E54 
-    LDA.W $0F7A,X : CMP.W $0911 
-    BMI .offScreen 
-    LDA.W $0911 : CLC : ADC.W #$0100 : CMP.W $0F7A,X 
-    BMI .offScreen 
-    LDA.W $0F7E,X : CMP.W $0915 
-    BMI .offScreen 
-    LDA.W $0915 : CLC : ADC.W #$0100 : CMP.W $0F7E,X 
-    BMI .offScreen 
+    LDA.W $0F7A,X : CMP.W $0911 : BMI .offScreen 
+    LDA.W $0911 : CLC : ADC.W #$0100 : CMP.W $0F7A,X : BMI .offScreen 
+    LDA.W $0F7E,X : CMP.W $0915 : BMI .offScreen 
+    LDA.W $0915 : CLC : ADC.W #$0100 : CMP.W $0F7E,X : BMI .offScreen 
     LDA.W #$0000 
     RTL 
 
@@ -4243,14 +4084,10 @@ CheckIfEnemyCenterIsOverAPixelsOffScreen:
     PHX 
     STA.B $12 
     LDX.W $0E54 
-    LDA.W $0F7A,X : CLC : ADC.B $12 : CMP.W $0911 
-    BMI .offScreen 
-    LDA.W $0911 : CLC : ADC.W #$0100 : CLC : ADC.B $12 : CMP.W $0F7A,X 
-    BMI .offScreen 
-    LDA.W $0F7E,X : CLC : ADC.B $12 : CMP.W $0915 
-    BMI .offScreen 
-    LDA.W $0915 : CLC : ADC.W #$0100 : CLC : ADC.B $12 : CMP.W $0F7E,X 
-    BMI .offScreen 
+    LDA.W $0F7A,X : CLC : ADC.B $12 : CMP.W $0911 : BMI .offScreen 
+    LDA.W $0911 : CLC : ADC.W #$0100 : CLC : ADC.B $12 : CMP.W $0F7A,X : BMI .offScreen 
+    LDA.W $0F7E,X : CLC : ADC.B $12 : CMP.W $0915 : BMI .offScreen 
+    LDA.W $0915 : CLC : ADC.W #$0100 : CLC : ADC.B $12 : CMP.W $0F7E,X : BMI .offScreen 
     PLX 
     LDA.W #$0000 
     RTL 
@@ -4265,14 +4102,10 @@ CheckIfEnemyCenterIsOverAPixelsOffScreen:
 CheckIfEnemyIsOnScreen:
     PHX 
     LDX.W $0E54 
-    LDA.W $0F7A,X : CLC : ADC.W $0F82,X : CMP.W $0911 
-    BMI .offScreen 
-    LDA.W $0911 : CLC : ADC.W #$0100 : CLC : ADC.W $0F82,X : CMP.W $0F7A,X 
-    BMI .offScreen 
-    LDA.W $0F7E,X : CLC : ADC.W #$0008 : CMP.W $0915 
-    BMI .offScreen 
-    LDA.W $0915 : CLC : ADC.W #$00F8 : CMP.W $0F7E,X 
-    BMI .offScreen 
+    LDA.W $0F7A,X : CLC : ADC.W $0F82,X : CMP.W $0911 : BMI .offScreen 
+    LDA.W $0911 : CLC : ADC.W #$0100 : CLC : ADC.W $0F82,X : CMP.W $0F7A,X : BMI .offScreen 
+    LDA.W $0F7E,X : CLC : ADC.W #$0008 : CMP.W $0915 : BMI .offScreen 
+    LDA.W $0915 : CLC : ADC.W #$00F8 : CMP.W $0F7E,X : BMI .offScreen 
     PLX 
     LDA.W #$0000 
     RTL 
@@ -4345,8 +4178,7 @@ UNUSED_ProtoInstructionListHandler_A0AE7C:
     TXY 
     LDX.W $0E54 
     LDA.W $0F94,X : BEQ + 
-    CMP.W #$0001 
-    BEQ + 
+    CMP.W #$0001 : BEQ + 
     DEC.W $0F94,X 
     LDA.W #$0000 
     RTL 
@@ -4356,10 +4188,8 @@ UNUSED_ProtoInstructionListHandler_A0AE7C:
     LDY.W $0F90,X 
 
 .loop:
-    LDA.B ($00),Y : CMP.W #$FFFF 
-    BEQ .return1 
-    CMP.W #$FFFE 
-    BNE .notTerminated 
+    LDA.B ($00),Y : CMP.W #$FFFF : BEQ .return1 
+    CMP.W #$FFFE : BNE .notTerminated 
     LDY.W #$0000 
     JMP.W .loop 
 
@@ -4396,8 +4226,7 @@ IsSamusWithingAPixelRowsOfEnemy:
     TAX 
     JSL.L GetSignedYMinusX_A0B07D 
     LDX.W $0E54 
-    CMP.W $0E20 
-    BPL .returnZero 
+    CMP.W $0E20 : BPL .returnZero 
     LDA.W #$0001 
     RTL 
 
@@ -4414,8 +4243,7 @@ IsSamusWithinAPixelColumnsOfEnemy:
     TAX 
     JSL.L GetSignedYMinusX_A0B07D 
     LDX.W $0E54 
-    CMP.W $0E20 
-    BPL .returnZero 
+    CMP.W $0E20 : BPL .returnZero 
     LDA.W #$0001 
     RTL 
 
@@ -4947,8 +4775,7 @@ CapScrollingSpeed:
     PHX : PHY 
     LDA.W $0AFA : SEC : SBC.W $0B14 : STA.B $12 
     JSL.L NegateA_A0B067 
-    CMP.W #$000C 
-    BMI .YPositionEnd 
+    CMP.W #$000C : BMI .YPositionEnd 
     LDY.W #$FFF4 
     LDA.B $12 : BMI .negative 
     LDY.W #$000C 
@@ -4960,8 +4787,7 @@ CapScrollingSpeed:
 .YPositionEnd:
     LDA.W $0AF6 : SEC : SBC.W $0B10 : STA.B $12 
     JSL.L NegateA_A0B067 
-    CMP.W #$000C 
-    BMI .retrun 
+    CMP.W #$000C : BMI .retrun 
     LDY.W #$FFF4 
     LDA.B $12 : BMI + 
     LDY.W #$000C 
@@ -5452,8 +5278,7 @@ UNUSED_MoveEnemyRight_NoBlockCollisionReactions_A0BD26:
     LSR A 
     BCC .movingLeft 
     LDA.B $22 : AND.W #$FFF0 
-    SEC : SBC.W $0F82,X : CMP.W $0F7A,X 
-    BMI .returnCarrySetUpper 
+    SEC : SBC.W $0F82,X : CMP.W $0F7A,X : BMI .returnCarrySetUpper 
     STA.W $0F7A,X 
 
 .returnCarrySetUpper:
@@ -5467,8 +5292,7 @@ UNUSED_MoveEnemyRight_NoBlockCollisionReactions_A0BD26:
     ORA.W #$000F 
     SEC 
     ADC.W $0F82,X : SEC 
-    CMP.W $0F7A,X 
-    BEQ .storeX 
+    CMP.W $0F7A,X : BEQ .storeX 
     BPL .returnCarrySetLower 
 
 .storeX:
@@ -5536,8 +5360,7 @@ UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6:
     LSR A 
     BCC .movingUp 
     LDA.B $22 : AND.W #$FFF0 
-    SEC : SBC.W $0F84,X : CMP.W $0F7E,X 
-    BMI .returnCarrySetUpper 
+    SEC : SBC.W $0F84,X : CMP.W $0F7E,X : BMI .returnCarrySetUpper 
     STA.W $0F7E,X 
 
 .returnCarrySetUpper:
@@ -5551,8 +5374,7 @@ UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6:
     ORA.W #$000F 
     SEC 
     ADC.W $0F84,X : SEC 
-    CMP.W $0F7E,X 
-    BEQ .storeY 
+    CMP.W $0F7E,X : BEQ .storeY 
     BPL .returnCarrySetLower 
 
 .storeY:
@@ -5777,8 +5599,7 @@ CalculateAngleOfXYOffset:
 
 .positive14:
     STA.B $14 
-    CMP.B $12 
-    BCC .lowerOctant 
+    CMP.B $12 : BCC .lowerOctant 
     SEP #$20 
     STZ.W $4204 
     LDA.B $12 : STA.W $4205 
@@ -5911,14 +5732,12 @@ UNUSED_AssessSamusThreatLevel_A0C1D4:
     LDA.B #$03 : STA.W $4206 
     REP #$20 
     NOP #3
-    LDA.W $4214 : CMP.W $09C2 
-    BCC + 
+    LDA.W $4214 : CMP.W $09C2 : BCC + 
     LDA.W #$0001 : BRA .store12 
 
 
   + ASL A 
-    CMP.W $09C2 
-    BCC .load3 
+    CMP.W $09C2 : BCC .load3 
     LDA.W #$0002 : BRA .store12 
 
 
@@ -5965,11 +5784,9 @@ UNUSED_AssessSamusThreatLevel_A0C1D4:
     ADC.W #$0003 
 
   + CLC : ADC.W $09CA : CLC : ADC.W $09CE : STA.B $14 
-    CMP.W #$000B 
-    BCC .return 
+    CMP.W #$000B : BCC .return 
     INC.B $12 
-    CMP.W #$001E 
-    BCC .return 
+    CMP.W #$001E : BCC .return 
     INC.B $12 
 
 .return:
@@ -6061,8 +5878,7 @@ EnemyBlockCollisionReaction_Spike:
 EnemyBlockCollisionReaction_Horizontal_Slope:
     LDX.W $0DC4 
     LDA.L $7F6402,X : AND.W #$001F 
-    CMP.W #$0005 
-    BCS .nonSquare 
+    CMP.W #$0005 : BCS .nonSquare 
     JMP.W EnemyBlockCollisionReaction_Horizontal_Slope_Square 
 
 
@@ -6074,8 +5890,7 @@ EnemyBlockCollisionReaction_Horizontal_Slope:
 EnemyBlockCollisionReaction_Vertical_Slope:
     LDX.W $0DC4 
     LDA.L $7F6402,X : AND.W #$001F 
-    CMP.W #$0005 
-    BCS .nonSquare 
+    CMP.W #$0005 : BCS .nonSquare 
     JMP.W EnemyBlockCollisionReaction_Vertical_Slope_Square 
 
 
@@ -6106,8 +5921,7 @@ EnemyBlockCollisionReaction_Horizontal_Slope_Square:
 
 
 .topBlockCheck:
-    CMP.B $1E 
-    BNE .checkBothHalves 
+    CMP.B $1E : BNE .checkBothHalves 
     LDA.W $0F7E,Y : SEC : SBC.W $0F84,Y : AND.W #$0008 
     BNE .checkBottomHalf 
 
@@ -6172,8 +5986,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_Square:
 
 
 .leftmostBlockCheck:
-    CMP.B $1E 
-    BNE .checkBothHalves 
+    CMP.B $1E : BNE .checkBothHalves 
     LDA.W $0F7A,Y : SEC : SBC.W $0F82,Y : AND.W #$0008 
     BNE .checkRightHalf 
 
@@ -6290,8 +6103,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_NonSquare:
     REP #$20 
     LDA.W $0F7A,Y 
     LSR #4
-    CMP.W $4216 
-    BEQ + 
+    CMP.W $4216 : BEQ + 
     CLC 
     RTS 
 
@@ -6338,8 +6150,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_NonSquare:
     REP #$20 
     LDA.W $0F7A,Y 
     LSR #4
-    CMP.W $4216 
-    BEQ + 
+    CMP.W $4216 : BEQ + 
     CLC 
     RTS 
 
@@ -6519,8 +6330,7 @@ MoveEnemyRightBy_14_12_Common:
     LDA.B $1A : BIT.B $14 
     BMI .movingLeft 
     AND.W #$FFF0 
-    SEC : SBC.W $0F82,X : CMP.W $0F7A,X 
-    BCC + 
+    SEC : SBC.W $0F82,X : CMP.W $0F7A,X : BCC + 
     STA.W $0F7A,X 
 
   + LDA.W #$FFFF : STA.W $0F7C,X 
@@ -6531,8 +6341,7 @@ MoveEnemyRightBy_14_12_Common:
 .movingLeft:
     ORA.W #$000F 
     SEC 
-    ADC.W $0F82,X : CMP.W $0F7A,X 
-    BEQ .storeX 
+    ADC.W $0F82,X : CMP.W $0F7A,X : BEQ .storeX 
     BCS .storeSubX 
 
 .storeX:
@@ -6618,8 +6427,7 @@ MoveEnemyDownBy_14_12_BranchEntry:
     LDA.B $1A : BIT.B $14 
     BMI .movingUp 
     AND.W #$FFF0 
-    SEC : SBC.W $0F84,X : CMP.W $0F7E,X 
-    BCC + 
+    SEC : SBC.W $0F84,X : CMP.W $0F7E,X : BCC + 
     STA.W $0F7E,X 
 
   + LDA.W #$FFFF : STA.W $0F80,X 
@@ -6630,8 +6438,7 @@ MoveEnemyDownBy_14_12_BranchEntry:
 .movingUp:
     ORA.W #$000F 
     SEC 
-    ADC.W $0F84,X : CMP.W $0F7E,X 
-    BEQ .storeX 
+    ADC.W $0F84,X : CMP.W $0F7E,X : BEQ .storeX 
     BCS .storeSubX 
 
 .storeX:
@@ -6723,12 +6530,10 @@ AlignEnemyYPositionWIthNonSquareSlope:
     ASL A 
     TAX 
     LDA.L $7F0002,X : AND.W #$F000 
-    CMP.W #$1000 
-    BNE .enemyTopCheck 
+    CMP.W #$1000 : BNE .enemyTopCheck 
     LDX.W $0DC4 
     LDA.L $7F6402,X : AND.W #$001F 
-    CMP.W #$0005 
-    BCC .enemyTopCheck 
+    CMP.W #$0005 : BCC .enemyTopCheck 
     PLP 
     SEC 
     PHP 
@@ -6764,12 +6569,10 @@ AlignEnemyYPositionWIthNonSquareSlope:
     ASL A 
     TAX 
     LDA.L $7F0002,X : AND.W #$F000 
-    CMP.W #$1000 
-    BNE .return 
+    CMP.W #$1000 : BNE .return 
     LDX.W $0DC4 
     LDA.L $7F6402,X : AND.W #$001F 
-    CMP.W #$0005 
-    BCC .return 
+    CMP.W #$0005 : BCC .return 
     PLP 
     SEC 
     PHP 

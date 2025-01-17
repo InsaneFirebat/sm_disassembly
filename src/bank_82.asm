@@ -5,8 +5,7 @@ org $828000
 GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     PHP 
     REP #$30 
-    LDA.W $0998 : CMP.W #$0028 
-    BNE .notDemo 
+    LDA.W $0998 : CMP.W #$0028 : BNE .notDemo 
     JSR.W InialiseIORegistersForGameplay 
     JSR.W Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps 
     JSR.W LoadInitialPalette 
@@ -16,12 +15,9 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
 
 
 .notDemo:
-    LDA.L $7ED914 : CMP.W #$0005 
-    BEQ .onZebes 
-    CMP.W #$001F 
-    BEQ .ceres 
-    CMP.W #$0022 
-    BEQ .zebesLanding 
+    LDA.L $7ED914 : CMP.W #$0005 : BEQ .onZebes 
+    CMP.W #$001F : BEQ .ceres 
+    CMP.W #$0022 : BEQ .zebesLanding 
     BRA .onZebes 
 
 
@@ -68,13 +64,11 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     JSL.L Enable_HDMAObjects 
     JSL.L Enable_AnimatedTilesObjects 
     JSL.L SetLiquidPhysicsType 
-    LDA.W $0998 : CMP.W #$0028 
-    BNE + 
+    LDA.W $0998 : CMP.W #$0028 : BNE + 
     JMP.W .demo 
 
 
-  + LDA.L $7ED914 : CMP.W #$0022 
-    BNE .notZebesLanding 
+  + LDA.L $7ED914 : CMP.W #$0022 : BNE .notZebesLanding 
     LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$000F : STA.W $0DA0 
 
@@ -118,8 +112,7 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     DEY #2
     BNE .loopBetaPalettes 
     PLP 
-    LDA.L $7ED914 : CMP.W #$001F 
-    BNE .runSamusCmd 
+    LDA.L $7ED914 : CMP.W #$001F : BNE .runSamusCmd 
     LDA.W #$0000 : STA.L $7EC1BE 
     LDA.W #$0008 : JSL.L Run_Samus_Command 
     PLP 
@@ -368,8 +361,7 @@ GameState_21_BlackoutFromCeres:
   + JSR.W GameState_8_MainGameplay 
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BEQ + 
+    LDA.B $51 : CMP.B #$80 : BEQ + 
     REP #$20 
     PLP 
     RTS 
@@ -427,8 +419,7 @@ GameState_24_WhitingOutFromTimeUp:
     REP #$30 
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BEQ + 
+    LDA.B $51 : CMP.B #$80 : BEQ + 
     REP #$20 
     PLP 
     RTS 
@@ -484,8 +475,7 @@ GameState_26_SamusEscapesFromZebes:
     JSR.W GameState_8_MainGameplay 
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BEQ + 
+    LDA.B $51 : CMP.B #$80 : BEQ + 
     REP #$20 
     PLP 
     RTS 
@@ -577,8 +567,7 @@ GameState_2A_PlayingDemo:
 GameState_2B_UnloadGameData:
     PHP 
     REP #$30 
-    LDA.W $0DEC : CMP.W #$0001 
-    BEQ + 
+    LDA.W $0DEC : CMP.W #$0001 : BEQ + 
     JSR.W CheckForNextDemo 
 
   + JSL.L EnableNMI 
@@ -658,13 +647,11 @@ CheckForNextDemo:
     ASL A 
     TAX 
     LDA.W DemoRoomData_pointers,X : CLC : ADC.B $12 : TAX 
-    LDA.W $0000,X : CMP.W #$FFFF 
-    BNE .nextDemoScene 
+    LDA.W $0000,X : CMP.W #$FFFF : BNE .nextDemoScene 
     STZ.W $0DEC 
     LDA.W $1F55 
     INC A 
-    CMP.W $1F59 
-    BCC + 
+    CMP.W $1F59 : BCC + 
     LDA.W #$0000 
 
   + STA.W $1F55 
@@ -1052,8 +1039,7 @@ HandleSounds:
 
 SoundState_0_SendAPUSoundRequestFromQueue:
     TYX 
-    LDA.W $0643,X : CMP.W $0646,X 
-    BEQ .return 
+    LDA.W $0643,X : CMP.W $0646,X : BEQ .return 
     LDA.L .data,X : CLC : ADC.W $0643,X : TAY 
     LDA.W $0656,Y : STA.W $2141,X 
     STA.W $064D,X 
@@ -1072,8 +1058,7 @@ SoundState_0_SendAPUSoundRequestFromQueue:
 
 SoundState_1_WaitForAPUSoundRequestAcknowledgement:
     TYX 
-    LDA.W $064D,X : CMP.W $2141,X 
-    BEQ .incState 
+    LDA.W $064D,X : CMP.W $2141,X : BEQ .incState 
     STA.W $2141,X 
     BRA .return 
 
@@ -1100,8 +1085,7 @@ SoundState_2_ClearSoundRequest:
 
 SoudnState_3_WaitForAPUClearRequestAcknowledgement:
     TYX 
-    LDA.W $064D,X : CMP.W $2141,X 
-    BEQ .state0 
+    LDA.W $064D,X : CMP.W $2141,X : BEQ .state0 
     STA.W $2141,X 
     BRA .return 
 
@@ -1170,8 +1154,7 @@ GameState_0_ResetStart:
     STZ.W $0DFC 
     LDA.W #CinematicFunction_LoadTitleSequence : STA.W $1F51 
     STZ.W $1F55 
-    LDA.W $1F59 : CMP.W #$0004 
-    BNE .return 
+    LDA.W $1F59 : CMP.W #$0004 : BNE .return 
     LDA.W #$0003 : STA.W $1F55 
 
 .return:
@@ -1214,8 +1197,7 @@ GameState_7_MainGameplayFadingIn:
     JSR.W GameState_8_MainGameplay 
     JSL.L HandleFadingIn 
     SEP #$20 
-    LDA.B $51 : CMP.B #$0F 
-    BNE .return 
+    LDA.B $51 : CMP.B #$0F : BNE .return 
     REP #$20 
     STZ.W $0723 
     STZ.W $0725 
@@ -1765,8 +1747,7 @@ Setup_MapScrolling_for_FileSelectMap:
     LDA.W #$0040 : SEC : SBC.B $12 : BMI .return 
     STA.B $12 
     LDA.B $B3 : SEC : SBC.B $12 : STA.B $B3 
-    CMP.W #$FFD8 
-    BPL .return 
+    CMP.W #$FFD8 : BPL .return 
     LDA.W #$FFD8 : STA.B $B3 
 
 .return:
@@ -1779,8 +1760,7 @@ GameState_E_Paused_LoadingPauseScreen:
     JSL.L Draw_PauseMenu_during_FadeIn 
     JSL.L HandleFadingIn 
     SEP #$20 
-    LDA.B $51 : CMP.B #$0F 
-    BNE .return 
+    LDA.B $51 : CMP.B #$0F : BNE .return 
     REP #$20 
     STZ.W $0723 
     STZ.W $0725 
@@ -1853,8 +1833,7 @@ PauseMenu_2_MapScreenToEquipmentScreen_FadingOut:
     LDA.W #$0000 : STA.W $0763 
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BNE .return 
+    LDA.B $51 : CMP.B #$80 : BNE .return 
     JSL.L EnableNMI 
     REP #$20 
     STZ.W $0723 
@@ -1871,8 +1850,7 @@ PauseMenu_5_EquipmentScreenToMapScreen_FadingOut:
     JSR.W Handle_PauseMenu_L_R_PressedHighlight 
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BNE .return 
+    LDA.B $51 : CMP.B #$80 : BNE .return 
     JSL.L EnableNMI 
     REP #$20 
     STZ.W $0723 
@@ -1919,8 +1897,7 @@ PauseMenu_7_EquipmentScreenToMapScreen_FadingIn:
     LDA.W #$0000 : STA.W $0763 
     JSL.L HandleFadingIn 
     SEP #$20 
-    LDA.B $51 : CMP.B #$0F 
-    BNE .return 
+    LDA.B $51 : CMP.B #$0F : BNE .return 
     REP #$20 
     STZ.W $0723 
     STZ.W $0725 
@@ -1939,8 +1916,7 @@ PauseMenu_4_MapScreenToEquipmentScreen_FadingIn:
     LDA.W #$0001 : STA.W $0763 
     JSL.L HandleFadingIn 
     SEP #$20 
-    LDA.B $51 : CMP.B #$0F 
-    BNE .return 
+    LDA.B $51 : CMP.B #$0F : BNE .return 
     REP #$20 
     STZ.W $0723 
     STZ.W $0725 
@@ -2036,8 +2012,7 @@ GameState_10_Unpausing_LoadingNormalGameplay:
     JSR.W Draw_PauseMenu_During_FadeOut 
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BNE .return 
+    LDA.B $51 : CMP.B #$80 : BNE .return 
     JSL.L EnableNMI 
     REP #$20 
     STZ.W $0723 
@@ -2050,8 +2025,7 @@ GameState_10_Unpausing_LoadingNormalGameplay:
 
 
 Draw_PauseMenu_During_FadeOut:
-    LDA.W $0763 : CMP.W #$0001 
-    BEQ .equipScreen 
+    LDA.W $0763 : CMP.W #$0001 : BEQ .equipScreen 
     JSL.L Display_Map_Elevator_Destinations 
     JSL.L Draw_Map_Icons 
     JMP.W MapScreen_DrawSamusPositionIndicator 
@@ -2094,8 +2068,7 @@ GameState_12_Unpausing_NormalGameplayBrightening:
     JSR.W GameState_8_MainGameplay 
     JSL.L HandleFadingIn 
     SEP #$20 
-    LDA.B $51 : CMP.B #$0F 
-    BNE .return 
+    LDA.B $51 : CMP.B #$0F : BNE .return 
     REP #$20 
     STZ.W $0723 
     STZ.W $0725 
@@ -2129,8 +2102,7 @@ Load_PauseMenuMapTilemap_and_AreaLabel:
     LDA.B #$18 : STA.W $4315 
     LDA.B #$00 : STA.W $4316 
     REP #$30 
-    LDA.W $079F : CMP.W #$0007 
-    BMI + 
+    LDA.W $079F : CMP.W #$0007 : BMI + 
     LDA.W #$0000 
 
   + ASL A 
@@ -2146,8 +2118,7 @@ Load_PauseMenuMapTilemap_and_AreaLabel:
 LoadPauseMenuMapTilemap:
     PHP 
     REP #$30 
-    LDA.W $079F : CMP.W #$0007 
-    BMI + 
+    LDA.W $079F : CMP.W #$0007 : BMI + 
     LDA.W #$0000 
 
   + STA.B $12 
@@ -2181,8 +2152,7 @@ LoadPauseMenuMapTilemap:
     SEP #$20 
     INY #2
     INC.B $12 
-    LDA.B $12 : CMP.B #$08 
-    BMI .loopWithoutMapData 
+    LDA.B $12 : CMP.B #$08 : BMI .loopWithoutMapData 
     STZ.B $12 
     INX 
     CPX.W #$0100 
@@ -2260,8 +2230,7 @@ DrawRoomSelectMap:
     LDA.B #$FF : STA.B $B4 
     REP #$30 
     PHK : PLB 
-    LDA.W $079F : CMP.W #$0007 
-    BMI + 
+    LDA.W $079F : CMP.W #$0007 : BMI + 
     LDA.W #$0000 
 
   + STA.B $12 
@@ -2295,8 +2264,7 @@ DrawRoomSelectMap:
     SEP #$20 
     INY #2
     INC.B $12 
-    LDA.B $12 : CMP.B #$08 
-    BMI .loopWithoutMapData 
+    LDA.B $12 : CMP.B #$08 : BMI .loopWithoutMapData 
     STZ.B $12 
     INX 
     CPX.W #$0100 
@@ -2943,8 +2911,7 @@ SetupMapScrollingForPauseMenu:
     LDA.W #$0040 : SEC : SBC.B $12 : BMI .return 
     STA.B $12 
     LDA.B $B3 : SEC : SBC.B $12 : STA.B $B3 
-    CMP.W #$FFD8 
-    BPL .return 
+    CMP.W #$FFD8 : BPL .return 
     LDA.W #$FFD8 : STA.B $B3 
 
 .return:
@@ -2975,8 +2942,7 @@ DetermineMapScrollLimits:
     JSR.W DetermineLeftmostMapColumn 
     JSR.W A_equals_X_times_8 
     STA.W $05AC 
-    LDA.W $079F : CMP.W #$0004 
-    BNE + 
+    LDA.W $079F : CMP.W #$0004 : BNE + 
     LDA.W $05AC : SEC : SBC.W #$0018 : STA.W $05AC 
 
   + LDA.B $06 : CLC : ADC.W #$0083 : STA.B $00 
@@ -3074,8 +3040,7 @@ DetermineRightmostMapColumn:
     BMI .emptyMap 
     TXA 
     AND.B #$07 
-    CMP.B #$07 
-    BNE + 
+    CMP.B #$07 : BNE + 
     LDA.B $00 : SEC : SBC.B #$01 : STA.B $00 
     LDA.B $01 : SBC.B #$00 : STA.B $01 
 
@@ -3536,14 +3501,10 @@ RTS_82A425:
 ChangePose_DueTo_EquipmentChange_SpinJumping:
     PHP 
     REP #$30 
-    LDA.W $0A1C : CMP.W #$0081 
-    BEQ .screwAttack 
-    CMP.W #$0082 
-    BEQ .screwAttack 
-    CMP.W #$001B 
-    BEQ .spaceJump 
-    CMP.W #$001C 
-    BEQ .spaceJump 
+    LDA.W $0A1C : CMP.W #$0081 : BEQ .screwAttack 
+    CMP.W #$0082 : BEQ .screwAttack 
+    CMP.W #$001B : BEQ .spaceJump 
+    CMP.W #$001C : BEQ .spaceJump 
     BRA .return 
 
 
@@ -3559,8 +3520,7 @@ ChangePose_DueTo_EquipmentChange_SpinJumping:
 
 .merge:
     LDA.W $0A1E : AND.W #$00FF 
-    CMP.W #$0004 
-    BEQ .facingLeft 
+    CMP.W #$0004 : BEQ .facingLeft 
     LDA.W #$0019 : STA.W $0A1C 
     BRA .initialisePose 
 
@@ -3583,8 +3543,7 @@ Change_Pose_due_to_Equipment_Change_MovementTypes_7_9:
     LDA.W $09A2 : BIT.W #$0004 
     BNE .return 
     LDA.W $0A1E : AND.W #$00FF 
-    CMP.W #$0004 
-    BEQ .facingLeft 
+    CMP.W #$0004 : BEQ .facingLeft 
     LDA.W #$001D : STA.W $0A1C 
     BRA .initialisePose 
 
@@ -3607,8 +3566,7 @@ ChangePose_DueTo_EquipmentChange_MorphBall:
     LDA.W $09A2 : BIT.W #$0002 
     BEQ .return 
     LDA.W $0A1E : AND.W #$00FF 
-    CMP.W #$0004 
-    BEQ .facingLeft 
+    CMP.W #$0004 : BEQ .facingLeft 
     LDA.W #$0079 : STA.W $0A1C 
     BRA .initialisePose 
 
@@ -3631,8 +3589,7 @@ ChangePose_DueTo_EquipmentChange_SpringBall:
     LDA.W $09A2 : BIT.W #$0002 
     BNE .return 
     LDA.W $0A1E : AND.W #$00FF 
-    CMP.W #$0004 
-    BEQ .facingLeft 
+    CMP.W #$0004 : BEQ .facingLeft 
     LDA.W #$001D : STA.W $0A1C 
     BRA .initialisePose 
 
@@ -3669,8 +3626,7 @@ Handle_PauseScreen_L_R_Input:
 
 
 .R:
-    LDA.W $0753 : CMP.W #$0002 
-    BEQ .return 
+    LDA.W $0753 : CMP.W #$0002 : BEQ .return 
     LDA.W Duration_Of_L_R_Button_Pressed_Highlight : STA.W $0729 
     LDA.W #$0002 : STA.W $0727 
 
@@ -4080,8 +4036,7 @@ Draw_PauseScreen_SpriteAnimation:
     CLC : ADC.W $0000,Y : STA.B $16 
     LDA.W PauseScreen_SpriteAnimationData_data,X : CLC : ADC.B $16 : TAY 
     LDA.W $0000,Y : AND.W #$00FF 
-    CMP.W #$00FF 
-    BNE + 
+    CMP.W #$00FF : BNE + 
     LDA.W PauseScreen_SpriteAnimationData_frame,X 
     TAY 
     LDA.W #$0000 : STA.W $0000,Y 
@@ -4139,8 +4094,7 @@ Handle_PauseScreen_PaletteAnimation:
     STA.W $074F 
     ASL A 
     CLC : ADC.W $074F : TAX 
-    LDA.W L_R_HighlightAnimationData_PauseScreenPaletteAnimationDelays,X : CMP.B #$FF 
-    BNE + 
+    LDA.W L_R_HighlightAnimationData_PauseScreenPaletteAnimationDelays,X : CMP.B #$FF : BNE + 
     REP #$30 
     LDA.W #$002A : JSL.L QueueSound_Lib3_Max6 
     SEP #$20 
@@ -4195,8 +4149,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     LDA.W $09C0 : BEQ .noReserves 
     LDX.W #EquipmentScreenTilemaps_auto 
     LDY.W #$0082 
-    CMP.W #$0001 
-    BEQ + 
+    CMP.W #$0001 : BEQ + 
     LDX.W #EquipmentScreenTilemaps_manual 
     LDY.W #$0082 
 
@@ -4358,8 +4311,7 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     BNE .moveToBoots 
     LDX.W #$0000 
     JSR.W EquipmentScreen_MoveLowerOnSuitsMisc 
-    CMP.W #$FFFF 
-    BNE .exit 
+    CMP.W #$FFFF : BNE .exit 
 
 .moveToBoots:
     LDX.W #$0000 
@@ -4376,10 +4328,8 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     BIT.W #$0400 
     BEQ .exit 
     LDA.W $0755 : AND.W #$FF00 
-    CMP.W #$0100 
-    BEQ .moveToBeams 
-    LDA.W $09C0 : CMP.W #$0001 
-    BEQ .moveToBeams 
+    CMP.W #$0100 : BEQ .moveToBeams 
+    LDA.W $09C0 : CMP.W #$0001 : BEQ .moveToBeams 
     LDA.W $0755 : CLC : ADC.W #$0100 : STA.W $0755 
     LDA.W $09D6 : BEQ .moveToBeams 
     LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
@@ -4428,8 +4378,7 @@ EquipmentScreen_Main_Tanks_GlowingArrow:
     dw EquipmentScreen_GlowingArrow_Solid_On 
 
 EquipmentScreen_GlowingArrow_Animated:
-    LDA.W $09C0 : CMP.W #$0001 
-    BNE .disableGlow 
+    LDA.W $09C0 : CMP.W #$0001 : BNE .disableGlow 
     LDA.W $05B5 : AND.W #$001F 
     ASL A 
     TAX 
@@ -4539,8 +4488,7 @@ EquipmentScreen_Main_Tanks_Mode:
     BEQ .return 
     LDA.W $09D4 : BEQ .return 
     LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
-    LDA.W $09C0 : CMP.W #$0001 
-    BNE .manual 
+    LDA.W $09C0 : CMP.W #$0001 : BNE .manual 
     LDA.W #$0002 : STA.W $09C0 
     JSR.W EquipmentScreen_ClearHUDReserveAUTOTilemap 
     PHP 
@@ -4619,14 +4567,12 @@ EquipmentScreen_Main_Tanks_ReserveTank:
     DEC A 
     STA.W $0757 
     AND.W #$0007 
-    CMP.W #$0007 
-    BNE .incrementEnergy 
+    CMP.W #$0007 : BNE .incrementEnergy 
     LDA.W #$002D : JSL.L QueueSound_Lib3_Max6 
 
 .incrementEnergy:
     LDA.W $09C2 : CLC : ADC.W ReserveTank_TransferEnergyPerFrame : STA.W $09C2 
-    CMP.W $09C4 
-    BMI .decrementReserve 
+    CMP.W $09C4 : BMI .decrementReserve 
     LDA.W $09C4 : STA.W $09C2 
     BRA .emptyReserve 
 
@@ -4673,8 +4619,7 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     BNE .top 
     LDX.W #$0004 
     JSR.W EquipmentScreen_MoveLowerOnSuitsMisc 
-    CMP.W #$0000 
-    BEQ .return 
+    CMP.W #$0000 : BEQ .return 
     LDX.W #$0000 
     JSR.W EquipmentScreen_MoveLowerOnBoots 
     BRA .return 
@@ -4699,22 +4644,19 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     ASL A 
     TAX 
     JSR.W EquipmentScreen_MoveHigherOnBeams 
-    CMP.W #$FFFF 
-    BNE .return 
+    CMP.W #$FFFF : BNE .return 
 
 .moveToReserve:
     LDX.W #$0000 
     JSR.W EquipmentScreen_MoveToReserveTanks 
-    CMP.W #$0000 
-    BNE .return 
+    CMP.W #$0000 : BNE .return 
     LDA.B $12 : STA.W $0755 
     BRA .return 
 
 
 .down:
     LDA.W $0A76 : BNE .return 
-    LDA.W $0755 : CMP.W #$0401 
-    BEQ .return 
+    LDA.W $0755 : CMP.W #$0401 : BEQ .return 
     LDA.W $0755 : CLC : ADC.W #$0100 : STA.W $0755 
     XBA 
     AND.W #$00FF 
@@ -4784,8 +4726,7 @@ EquipmentScreen_SuitsMisc_MoveResponse:
     BNE .topOfBeams 
     LDX.W #$0000 
     JSR.W EquipmentScreen_MoveToReserveTanks 
-    CMP.W #$0000 
-    BNE .return 
+    CMP.W #$0000 : BNE .return 
     LDA.B $12 : STA.W $0755 
 
 .topOfBeams:
@@ -4800,16 +4741,14 @@ EquipmentScreen_SuitsMisc_MoveResponse:
     BIT.W #$0400 
     BEQ .return 
     LDA.W $0755 : AND.W #$FF00 
-    CMP.W #$0500 
-    BEQ .moveToBoots 
+    CMP.W #$0500 : BEQ .moveToBoots 
     LDA.W $0755 : CLC : ADC.W #$0100 : STA.W $0755 
     XBA 
     AND.W #$00FF 
     ASL A 
     TAX 
     JSR.W EquipmentScreen_MoveLowerOnSuitsMisc 
-    CMP.W #$FFFF 
-    BNE .return 
+    CMP.W #$FFFF : BNE .return 
 
 .moveToBoots:
     LDX.W #$0000 
@@ -4852,14 +4791,12 @@ EquipmentScreen_Main_Boots_MoveResponse:
     BNE .moveToReserve 
     LDX.W #$0008 
     JSR.W EquipmentScreen_MoveHigherOnBeams 
-    CMP.W #$FFFF 
-    BNE .return 
+    CMP.W #$FFFF : BNE .return 
 
 .moveToReserve:
     LDX.W #$0000 
     JSR.W EquipmentScreen_MoveToReserveTanks 
-    CMP.W #$0000 
-    BNE .return 
+    CMP.W #$0000 : BNE .return 
     LDA.B $12 : STA.W $0755 
     BRA .return 
 
@@ -4877,8 +4814,7 @@ EquipmentScreen_Main_Boots_MoveResponse:
     ASL A 
     TAX 
     JSR.W EquipmentScreen_MoveHigherOnBoots 
-    CMP.W #$FFFF 
-    BNE .return 
+    CMP.W #$FFFF : BNE .return 
 
 .moveToSuitsMisc:
     LDX.W #$000A 
@@ -4887,8 +4823,7 @@ EquipmentScreen_Main_Boots_MoveResponse:
 
 
 .down:
-    LDA.W $0755 : CMP.W #$0203 
-    BEQ .return 
+    LDA.W $0755 : CMP.W #$0203 : BEQ .return 
     LDA.W $0755 : CLC : ADC.W #$0100 : STA.W $0755 
     XBA 
     AND.W #$00FF 
@@ -4928,8 +4863,7 @@ EquipmentScreen_WriteSamusWireframeTilemap:
     LDX.W #$0000 
 
 .loopSuit:
-    CMP.W .bitmaps,X 
-    BEQ + 
+    CMP.W .bitmaps,X : BEQ + 
     INX #2
     BRA .loopSuit 
 
@@ -5057,14 +4991,12 @@ EquipmentScreen_DisplayReserveTankAmount:
     LDA.W $4214 
     ASL A 
     TAX 
-    CMP.W #$0007 
-    BPL + 
+    CMP.W #$0007 : BPL + 
     LDA.W $4216 : BEQ + 
     LDA.W $05B5 : BIT.W #$0004 
     BNE + 
     INX #2
-    + LDA.W $09D6 : CMP.W #$0064 
-    BMI + 
+    + LDA.W $09D6 : CMP.W #$0064 : BMI + 
     TXA 
     CLC : ADC.W #$0010 : TAX 
 
@@ -5083,8 +5015,7 @@ EquipmentScreen_DisplayReserveTankAmount:
 
 .loopEmptyTanks:
     LDX.B $34 
-    LDA.B $30 : CMP.B $2C 
-    BPL + 
+    LDA.B $30 : CMP.B $2C : BPL + 
     LDA.W EquipmentScreen_ReserveTank_Xpositions,X 
     TAX 
     LDY.W EquipmentScreen_ReserveTank_Yposition 
@@ -5136,8 +5067,7 @@ EquipmentScreen_Main_DisplayReserves_PaletteSetup:
     ASL A 
     TAX 
     LDA.W ReserveTank_AnimationData,X : AND.W #$00FF 
-    CMP.W #$00FF 
-    BNE .animationTimer 
+    CMP.W #$00FF : BNE .animationTimer 
     STZ.W $0743 
     LDA.W ReserveTank_AnimationData : AND.W #$00FF 
 
@@ -5550,8 +5480,7 @@ Draw_FileSelectMap_Icons:
 Draw_SaveStation_MapIcons:
     STX.B $20 
     STA.B $22 
-    LDA.W $079F : CMP.L $7ED918 
-    BNE .return 
+    LDA.W $079F : CMP.L $7ED918 : BNE .return 
     ASL A 
     TAX 
     LDA.L $7ED8F8,X : STA.B $24 
@@ -5679,10 +5608,8 @@ Display_Map_Boss_Icons:
     TAX 
 
 .bossIcons:
-    LDA.W $0000,X : CMP.W #$FFFF 
-    BEQ .return 
-    CMP.W #$FFFE 
-    BEQ .skip 
+    LDA.W $0000,X : CMP.W #$FFFF : BEQ .return 
+    CMP.W #$FFFE : BEQ .skip 
     LDA.W #$0E00 : STA.B $03 
     LSR.B $24 
     BCS .bossDead 
@@ -5749,23 +5676,19 @@ Handle_MapScrollArrows:
     LDA.B #$82 
     PHA : PLB 
     REP #$20 
-    LDA.W $05AC : SEC : SBC.W #$0018 : CMP.B $B1 
-    BPL + 
+    LDA.W $05AC : SEC : SBC.W #$0018 : CMP.B $B1 : BPL + 
     LDX.W #MapScrollArrows_left 
     JSL.L Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction 
 
-  + LDA.W $05AE : CLC : ADC.W #$0018 : SEC : SBC.W #$0100 : CMP.B $B1 
-    BMI + 
+  + LDA.W $05AE : CLC : ADC.W #$0018 : SEC : SBC.W #$0100 : CMP.B $B1 : BMI + 
     LDX.W #MapScrollArrows_right 
     JSL.L Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction 
 
-  + LDA.W $05B0 : SEC : SBC.W #$0038 : CMP.B $B3 
-    BPL + 
+  + LDA.W $05B0 : SEC : SBC.W #$0038 : CMP.B $B3 : BPL + 
     LDX.W #MapScrollArrows_up 
     JSL.L Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction 
 
-  + LDA.W $05B2 : SEC : SBC.W #$00B1 : CMP.B $B3 
-    BMI .cancelScrollDown 
+  + LDA.W $05B2 : SEC : SBC.W #$00B1 : CMP.B $B3 : BMI .cancelScrollDown 
     LDX.W #MapScrollArrows_down 
     JSL.L Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction 
 
@@ -5775,8 +5698,7 @@ Handle_MapScrollArrows:
 
 
 .cancelScrollDown:
-    LDA.W $05FD : CMP.W MapScrollArrows_downDirection 
-    BNE .return 
+    LDA.W $05FD : CMP.W MapScrollArrows_downDirection : BNE .return 
     STZ.W $05FB 
     STZ.W $05FD 
     STZ.W $05FF 
@@ -5905,8 +5827,7 @@ Draw_FileCopy_Arrow:
     EOR.W #$FFFF 
     INC A 
     LDX.W #$0000 
-    CMP.W #$0002 
-    BPL .spawnSprite 
+    CMP.W #$0002 : BPL .spawnSprite 
     LDX.W #$0006 
     LDA.W $19B7 : BEQ + 
     LDX.W #$000C 
@@ -5916,11 +5837,9 @@ Draw_FileCopy_Arrow:
 
 .upwards:
     LDX.W #$0012 
-    CMP.W #$0002 
-    BPL .spawnSprite 
+    CMP.W #$0002 : BPL .spawnSprite 
     LDX.W #$0018 
-    LDA.W $19B7 : CMP.W #$0001 
-    BEQ .spawnSprite 
+    LDA.W $19B7 : CMP.W #$0001 : BEQ .spawnSprite 
     LDX.W #$001E 
 
 .spawnSprite:
@@ -5965,8 +5884,7 @@ Display_Map_Elevator_Destinations:
     TAX 
 
 .loop:
-    LDA.W $0000,X : CMP.W #$FFFF 
-    BEQ .return 
+    LDA.W $0000,X : CMP.W #$FFFF : BEQ .return 
     PHX 
     SEC : SBC.B $B1 : PHA 
     LDA.W $0002,X : SEC : SBC.B $B3 : TAY 
@@ -5994,8 +5912,7 @@ Process_GameOver_BabyMetroid_InstructionList:
     DEC A 
     STA.W $0F94 
     BNE Draw_GameOver_BabyMetroid 
-    LDA.W $0006,X : CMP.W #$FFFF 
-    BEQ Restart_GameOver_BabyMetroid_InstructionList 
+    LDA.W $0006,X : CMP.W #$FFFF : BEQ Restart_GameOver_BabyMetroid_InstructionList 
     BMI Goto_A_82BBEB 
     STA.W $0F94 
     TXA 
@@ -6046,8 +5963,7 @@ FinishProcessing_GameOver_BabyMetroid_ASMInstruction:
     TXA 
     CLC : ADC.W #$0008 : STA.W $0F92 
     TAX 
-    LDA.W $0000,X : CMP.W #$FFFF 
-    BEQ Restart_GameOver_BabyMetroid_InstructionList 
+    LDA.W $0000,X : CMP.W #$FFFF : BEQ Restart_GameOver_BabyMetroid_InstructionList 
     BRA Draw_GameOver_BabyMetroid 
 
 
@@ -6156,12 +6072,10 @@ Cancel_Sound_Effects:
 Queue_Samus_Movement_SoundEffects:
     REP #$30 
     LDA.W $0B3E : AND.W #$FF00 
-    CMP.W #$0400 
-    BNE + 
+    CMP.W #$0400 : BNE + 
     LDA.W #$002B : JSL.L QueueSound_Lib3_Max6 
 
-  + LDA.W $0CD0 : CMP.W #$0010 
-    BMI + 
+  + LDA.W $0CD0 : CMP.W #$0010 : BMI + 
     LDA.W #$0041 : JSL.L QueueSound_Lib1_Max6 
 
   + LDA.W #$0014 : JSL.L Run_Samus_Command 
@@ -6183,8 +6097,7 @@ UNUSED_82BE5A:
 
 .loop:
     LDA.B [$00],Y : AND.W #$03FF 
-    CMP.W #$001F 
-    BEQ .clc 
+    CMP.W #$001F : BEQ .clc 
     SEC 
     BRA + 
 
@@ -6250,13 +6163,11 @@ UNUSED_82BEA3:
     LDA.B $12 
     DEC A 
     STA.B $12 
-    CMP.B #$FF 
-    BNE .middleLoop 
+    CMP.B #$FF : BNE .middleLoop 
     LDA.W $079F 
     INC A 
     STA.W $079F 
-    CMP.B #$07 
-    BMI .biggerLoop 
+    CMP.B #$07 : BMI .biggerLoop 
 
 .crash:
     BRA .crash 
@@ -8063,8 +7974,7 @@ Advance_GradualColorChange_ofBGPalette6:
     REP #$30 
     LDA.W #$000C : STA.L $7EC402 
     INC A 
-    CMP.L $7EC400 
-    BCS .advance 
+    CMP.L $7EC400 : BCS .advance 
     LDA.W #$0000 : STA.L $7EC400 
     SEC 
     RTL 
@@ -8098,8 +8008,7 @@ Advance_GradualColorChange_ofBGPalette6:
 Advance_GradualColorChange_ofPaletteRAM:
     REP #$30 
     LDA.W #$000F : STA.L $7EC402 
-    CMP.L $7EC400 
-    BPL .advance 
+    CMP.L $7EC400 : BPL .advance 
     LDA.W #$0000 : STA.L $7EC400 
     SEC 
     RTL 
@@ -8136,8 +8045,7 @@ Advance_GradualColorChange_ofAllPalettes:
     REP #$30 
     LDA.L $7EC402 
     INC A 
-    CMP.L $7EC400 
-    BCS .advance 
+    CMP.L $7EC400 : BCS .advance 
     LDA.W #$0000 : STA.L $7EC400 
     SEC 
     RTS 
@@ -8150,8 +8058,7 @@ Advance_GradualColorChange_ofAllPalettes:
 
 .loop:
     STX.W $C404 
-    LDA.W $C200,X : CMP.W $C000,X 
-    BEQ .next 
+    LDA.W $C200,X : CMP.W $C000,X : BEQ .next 
     TAY 
     LDA.W $C000,X 
     TAX 
@@ -8211,16 +8118,14 @@ CalculateTheAth_TransitionalColor_fromXtoY:
 
 
 CalculateTheAth_TransitionalColorComponent_fromXtoY:
-    CMP.W #$0000 
-    BNE .AisNonZero 
+    CMP.W #$0000 : BNE .AisNonZero 
     TXA 
     RTS 
 
 
 .AisNonZero:
     DEC A 
-    CMP.W $C402 
-    BNE + 
+    CMP.W $C402 : BNE + 
     TYA 
     RTS 
 
@@ -8272,8 +8177,7 @@ Advance_GradualColorChange_ofPalettesInA:
     PHA 
     LDA.W $C402 
     INC A 
-    CMP.W $C400 
-    BCS + 
+    CMP.W $C400 : BCS + 
     LDA.W #$0000 : STA.W $C400 
     PLA 
     SEC 
@@ -8307,8 +8211,7 @@ Advance_GradualColorChange_ofPaletteX_DividedBy_20:
     LDX.W $C404 
 
 .loop:
-    LDA.W $C200,X : CMP.W $C000,X 
-    BEQ .next 
+    LDA.W $C200,X : CMP.W $C000,X : BEQ .next 
     TAY 
     LDA.W $C000,X 
     TAX 
@@ -8342,8 +8245,7 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
 
 
 .noAutoReserve:
-    LDA.W $0998 : CMP.W #$0008 
-    BEQ .normalGameplay 
+    LDA.W $0998 : CMP.W #$0008 : BEQ .normalGameplay 
     PLP 
     RTS 
 
@@ -8355,22 +8257,18 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
 
 .tickGameTime:
     LDA.W $09DA : CLC : ADC.W #$0001 : STA.W $09DA 
-    CMP.W #$003C 
-    BMI .checkGameTime 
+    CMP.W #$003C : BMI .checkGameTime 
     STZ.W $09DA 
     LDA.W $09DC : CLC : ADC.W #$0001 : STA.W $09DC 
-    CMP.W #$003C 
-    BMI .checkGameTime 
+    CMP.W #$003C : BMI .checkGameTime 
     STZ.W $09DC 
     LDA.W $09DE : CLC : ADC.W #$0001 : STA.W $09DE 
-    CMP.W #$003C 
-    BMI .checkGameTime 
+    CMP.W #$003C : BMI .checkGameTime 
     STZ.W $09DE 
     LDA.W $09E0 : CLC : ADC.W #$0001 : STA.W $09E0 
 
 .checkGameTime:
-    LDA.W $09E0 : CMP.W #$0064 
-    BPL .capGameTime 
+    LDA.W $09E0 : CMP.W #$0064 : BPL .capGameTime 
     PLP 
     RTS 
 
@@ -8406,8 +8304,7 @@ Reserve_Tank_Auto_Refill:
     LDA.W #$002D : JSL.L QueueSound_Lib3_Max3 
 
   + LDA.W $09C2 : CLC : ADC.W #$0001 : STA.W $09C2 
-    CMP.W $09C4 
-    BMI + 
+    CMP.W $09C4 : BMI + 
     LDA.W $09C4 : STA.W $09C2 
     BRA .zeroReserve 
 
@@ -8587,8 +8484,7 @@ GameState_19_DeathSequence_BlackOut:
     REP #$30 
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BNE .return 
+    LDA.B $51 : CMP.B #$80 : BNE .return 
     JSL.L EnableNMI 
     REP #$20 
     STZ.W $0723 
@@ -8712,8 +8608,7 @@ WaitUntilTheEndOfAVBlank_and_Enable_H_V_CounterInterrupts:
     SEP #$20 
     JSL.L WaitUntilTheEndOfAVBlank 
     LDA.B $84 : AND.B #$30 
-    CMP.B #$30 
-    BEQ .return 
+    CMP.B #$30 : BEQ .return 
     JSL.L EnableHVCounterInterruptsNow 
 
 .return:
@@ -8776,8 +8671,7 @@ Load_EnemyGFX_to_VRAM:
     TXY 
 
 .loop:
-    LDA.L $B40000,X : CMP.W #$FFFF 
-    BEQ .return 
+    LDA.L $B40000,X : CMP.W #$FFFF : BEQ .return 
     TAX 
     LDA.L $A00036,X : STA.W $05C0 
     LDA.L $A00037,X : STA.W $05C1 
@@ -8842,11 +8736,9 @@ Perform_Door_Transition_VRAM_Update:
 Queue_Room_Music_Data:
     PHP : PHB 
     REP #$30 
-    LDA.W $0998 : CMP.W #$0028 
-    BCS .return 
+    LDA.W $0998 : CMP.W #$0028 : BCS .return 
     LDA.W $07CB : BEQ .return 
-    CMP.W $07F3 
-    BEQ .return 
+    CMP.W $07F3 : BEQ .return 
     LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W $07CB 
     ORA.W #$FF00 
@@ -8860,8 +8752,7 @@ Queue_Room_Music_Data:
 Update_Music_Track_Index:
     PHP : PHB 
     REP #$30 
-    LDA.W $0998 : CMP.W #$0028 
-    BCS .return 
+    LDA.W $0998 : CMP.W #$0028 : BCS .return 
     LDA.W $07C9 : BEQ .return 
     LDA.W $07CA : AND.W #$FF00 : STA.B $12 
     LDA.W $07C9 
@@ -8869,8 +8760,7 @@ Update_Music_Track_Index:
     LDA.W $07F2 : AND.W #$FF00 : STA.B $14 
     LDA.W $07F5 
     TSB.B $14 
-    LDA.B $12 : CMP.B $14 
-    BEQ .return 
+    LDA.B $12 : CMP.B $14 : BEQ .return 
     LDA.W $07C9 : STA.W $07F5 
 
 .return:
@@ -8881,8 +8771,7 @@ Update_Music_Track_Index:
 Load_New_Music_Track_If_Changed:
     PHP : PHB 
     REP #$30 
-    LDA.W $0998 : CMP.W #$0028 
-    BCS .return 
+    LDA.W $0998 : CMP.W #$0028 : BCS .return 
     LDA.W $07C9 : BEQ .return 
     LDA.W $07CA : AND.W #$FF00 : STA.B $12 
     LDA.W $07C9 
@@ -8890,8 +8779,7 @@ Load_New_Music_Track_If_Changed:
     LDA.W $07F2 : AND.W #$FF00 : STA.B $14 
     LDA.W $07F5 
     TSB.B $14 
-    LDA.B $12 : CMP.B $14 
-    BEQ .return 
+    LDA.B $12 : CMP.B $14 : BEQ .return 
     LDY.W #$0006 
     LDA.W $07C9 : JSL.L QueueMusicDataOrTrack_YFrameDelay 
 
@@ -8912,8 +8800,7 @@ Play_Room_Music_Track_After_A_Frames:
     REP #$30 
     PHY 
     TAY 
-    LDA.W $0998 : CMP.W #$0028 
-    BCS .return 
+    LDA.W $0998 : CMP.W #$0028 : BCS .return 
     LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_YFrameDelay 
     LDA.W $07F5 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
@@ -9152,8 +9039,7 @@ DoorTransitionFunction_FixDoorsMovingUp:
     PEA.W $8F00 
     PLB : PLB 
     LDA.W $0791 : AND.W #$0003 
-    CMP.W #$0003 
-    BNE + 
+    CMP.W #$0003 : BNE + 
     JSL.L DrawTopRowOfScreenForUpwardsDoorTransition 
 
   + LDA.W #DoorTransitionFunction_LoadRoomHeader_SetupMap_Decompress : STA.W $099C 
@@ -9180,13 +9066,11 @@ DoorTransitionFunction_SetupScrolling:
     STZ.B $B7 
     STZ.W $07E9 
     LDA.W $0791 : AND.W #$0003 
-    CMP.W #$0002 
-    BNE + 
+    CMP.W #$0002 : BNE + 
     INC.B $B3 
 
   + LDA.W $0791 : AND.W #$0003 
-    CMP.W #$0003 
-    BEQ + 
+    CMP.W #$0003 : BEQ + 
     STZ.W $0925 
 
   + JSL.L DoorTransitionScrollingSetup 
@@ -9206,8 +9090,7 @@ DoorTransitionFunction_PlaceSamus_LoadTiles:
     STZ.W $0931 
     STZ.W $05BC 
     LDA.W $0791 : AND.W #$0003 
-    CMP.W #$0002 
-    BNE .horizontal 
+    CMP.W #$0002 : BNE .horizontal 
     LDA.W #$0010 : BRA .vertical 
 
 
@@ -9219,8 +9102,7 @@ DoorTransitionFunction_PlaceSamus_LoadTiles:
     JSR.W WaitUntilTheEndOfAVBlank_and_Enable_H_V_CounterInterrupts 
     LDA.W $07B3 : BIT.W #$0002 
     BEQ .decompress 
-    LDA.W $078D : CMP.W #Door_PostCrocShaft_0 
-    BEQ .decompress 
+    LDA.W $078D : CMP.W #Door_PostCrocShaft_0 : BEQ .decompress 
     LDA.W #CRE_Tiles_Compressed>>8&$FF00 : STA.B $48 
     LDA.W #CRE_Tiles_Compressed : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
@@ -9246,8 +9128,7 @@ DoorTransitionFunction_PlaceSamus_LoadTiles:
     dw $2000,$1000 
     LDA.W $07B3 : BIT.W #$0006 
     BEQ .checkUp 
-    LDA.W $078D : CMP.W #Door_PostCrocShaft_0 
-    BEQ .checkUp 
+    LDA.W $078D : CMP.W #Door_PostCrocShaft_0 : BEQ .checkUp 
     JSR.W Perform_Door_Transition_VRAM_Update 
     dl $7E7000 
     dw $2800,$1000 
@@ -9260,8 +9141,7 @@ DoorTransitionFunction_PlaceSamus_LoadTiles:
 
 .checkUp:
     LDA.W $0791 : AND.W #$0003 
-    CMP.W #$0003 
-    BNE + 
+    CMP.W #$0003 : BNE + 
     LDA.W #$0010 : STA.B $A7 
 
   + LDA.W #DoorTransitionFunction_LoadSpritesBGPLMsAudio_RunDoorRoomASM : STA.W $099C 
@@ -9403,8 +9283,7 @@ LoadLibraryBackground_0_Terminator:
 
 
 LoadLibraryBackground_E_DoorDependentTransferToVRAM:
-    LDA.W $078D : CMP.W $0000,Y 
-    BEQ + 
+    LDA.W $078D : CMP.W $0000,Y : BEQ + 
     TYA 
     CLC : ADC.W #$0009 : TAY 
     CLC 
@@ -9513,8 +9392,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
     LDA.W $0AF6 : AND.W #$00F0 
-    CMP.W #$0010 
-    BNE .X 
+    CMP.W #$0010 : BNE .X 
     LDA.W $0AF6 
     ORA.W #$000F 
     CLC : ADC.W #$0008 : STA.W $0AF6 
@@ -9522,15 +9400,13 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
 
 
 .X:
-    CMP.W #$00E0 
-    BNE .Y 
+    CMP.W #$00E0 : BNE .Y 
     LDA.W $0AF6 : AND.W #$FFF0 
     SEC : SBC.W #$0008 : STA.W $0AF6 
 
 .Y:
     LDA.W $0AFA : AND.W #$00F0 
-    CMP.W #$0010 
-    BNE .what 
+    CMP.W #$0010 : BNE .what 
     LDA.W $0AFA 
     ORA.W #$000F 
     CLC : ADC.W #$0008 : STA.W $0AFA 
@@ -9678,8 +9554,7 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     DEX #2
     BPL .loopC 
     PLB 
-    LDA.W $079F : CMP.W #$0006 
-    BEQ .skipCRE 
+    LDA.W $079F : CMP.W #$0006 : BEQ .skipCRE 
     LDA.W #CRE_TileTable_Compressed>>8&$FF00 : STA.B $48 
     LDA.W #CRE_TileTable_Compressed : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
@@ -9802,8 +9677,7 @@ CheckIfColoredDoorcapWasSpawned_SwitchDoorPLMInstruction:
     LDX.W #$004E 
 
 .loop:
-    CMP.W $1C87,X 
-    BEQ .found 
+    CMP.W $1C87,X : BEQ .found 
     DEX #2
     BPL .loop 
 
@@ -9883,8 +9757,7 @@ LoadLibraryBackgroundLP_0_Terminator:
 
 
 LoadLibraryBackgroundLP_E_DoorDependentTransferToVRAM:
-    LDA.W $078D : CMP.W $0000,Y 
-    BEQ + 
+    LDA.W $078D : CMP.W $0000,Y : BEQ + 
     TYA 
     CLC : ADC.W #$0009 : TAY 
     CLC 
@@ -9997,8 +9870,7 @@ Load_Level_Scroll_and_CRE_Data:
     DEX #2
     BPL - 
     PLB 
-    LDA.W $079F : CMP.W #$0006 
-    BEQ .inCeres 
+    LDA.W $079F : CMP.W #$0006 : BEQ .inCeres 
     LDA.W $07B3 : BIT.W #$0002 
     BEQ + 
     LDA.W #CRE_TileTable_Compressed>>8&$FF00 : STA.B $48 
@@ -10100,8 +9972,7 @@ GameState_2_GameOptionsMenu:
     JSR.W (.pointers,X) 
     JSR.W GameOptionsMenu_ObjectHandler 
     JSR.W Draw_GameOptionsMenu_Spritemaps 
-    LDA.W $0DE2 : CMP.W #$0002 
-    BMI .return 
+    LDA.W $0DE2 : CMP.W #$0002 : BMI .return 
     JSR.W Draw_GameOptionsMenu_BG1 
 
 .return:
@@ -10127,8 +9998,7 @@ GameState_2_GameOptionsMenu:
 GameOptionsMenu_0_FinishFadingOut:
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BNE + 
+    LDA.B $51 : CMP.B #$80 : BNE + 
     JSL.L EnableNMI 
     REP #$20 
     STZ.W $0723 
@@ -10138,8 +10008,7 @@ GameOptionsMenu_0_FinishFadingOut:
 
 
   + SEP #$20 
-    LDA.B $51 : CMP.B #$0E 
-    BNE .return 
+    LDA.B $51 : CMP.B #$0E : BNE .return 
     LDA.B $6B : BIT.B #$04 
     BNE .return 
     REP #$20 
@@ -10224,8 +10093,7 @@ GameOptionsMenu_1_LoadingOptionsMenu:
 GameOptionsMenu_2_FadingInOptionsMenu:
     JSL.L HandleFadingIn 
     SEP #$20 
-    LDA.B $51 : CMP.B #$0F 
-    BNE .return 
+    LDA.B $51 : CMP.B #$0F : BNE .return 
     REP #$20 
     STZ.W $0723 
     STZ.W $0725 
@@ -10292,8 +10160,7 @@ GameOptionsMenu_3_OptionsMenu:
     LDA.W $099E 
     INC A 
     STA.W $099E 
-    CMP.W #$0005 
-    BNE .checkB 
+    CMP.W #$0005 : BNE .checkB 
     STZ.W $099E 
 
 .checkB:
@@ -10335,8 +10202,7 @@ GameOptionsMenu_StartGame:
     BEQ .startGame 
 
 .debug:
-    LDA.L $7ED914 : CMP.W #$0005 
-    BNE .fadeScreen 
+    LDA.L $7ED914 : CMP.W #$0005 : BNE .fadeScreen 
 
 .startGame:
     LDA.W #$0004 : STA.W $0DE2 
@@ -10408,8 +10274,7 @@ Start_GameOptionsMenu_DissolveTransition:
 GameOptionsMenu_B_TransitionBackToFileSelect:
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BNE .return 
+    LDA.B $51 : CMP.B #$80 : BNE .return 
     JSL.L EnableNMI 
     REP #$20 
     STZ.W $0723 
@@ -10428,8 +10293,7 @@ GameOptionsMenu_B_TransitionBackToFileSelect:
 GameOptionsMenu_C_FadingOutOptionsMenuToStartGame:
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BNE .return 
+    LDA.B $51 : CMP.B #$80 : BNE .return 
     JSL.L EnableNMI 
     REP #$20 
     STZ.W $0723 
@@ -10452,8 +10316,7 @@ GameOptionsMenu_4_StartGame:
 .checkLoadingState:
     LDA.L $7ED914 : BEQ .intro 
     STA.W $0998 
-    CMP.W #$0022 
-    BNE .cutscene 
+    CMP.W #$0022 : BNE .cutscene 
     LDA.W #CinematicFunction_CeresGoesBoom_Initial : STA.W $1F51 
     BRA .cutscene 
 
@@ -10474,8 +10337,7 @@ GameOptionsMenu_4_StartGame:
 
 
 .debug:
-    LDA.L $7ED914 : CMP.W #$0005 
-    BEQ .fileSelectMap 
+    LDA.L $7ED914 : CMP.W #$0005 : BEQ .fileSelectMap 
     LDA.W #$0005 : STA.W $0998 
     STA.L $7ED914 
     LDA.W $0952 : JSL.L SaveToSRAM 
@@ -10490,13 +10352,11 @@ GameOptionsMenu_4_StartGame:
 GameOptionsMenu_5_DissolveOutScreen:
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $57 : CMP.B #$F3 
-    BEQ .notFinishedFadingOut 
+    LDA.B $57 : CMP.B #$F3 : BEQ .notFinishedFadingOut 
     CLC : ADC.B #$10 : STA.B $57 
 
 .notFinishedFadingOut:
-    LDA.B $51 : CMP.B #$80 
-    BEQ .finishedFadingOut 
+    LDA.B $51 : CMP.B #$80 : BEQ .finishedFadingOut 
     REP #$20 
     RTS 
 
@@ -10587,13 +10447,11 @@ GameOptionsMenu_5_DissolveOutScreen:
 GameOptionsMenu_6_DissolveInScreen:
     JSL.L HandleFadingIn 
     SEP #$20 
-    LDA.B $57 : CMP.B #$03 
-    BEQ .brightness 
+    LDA.B $57 : CMP.B #$03 : BEQ .brightness 
     SEC : SBC.B #$10 : STA.B $57 
 
 .brightness:
-    LDA.B $51 : CMP.B #$0F 
-    BNE .return 
+    LDA.B $51 : CMP.B #$0F : BNE .return 
     STZ.B $57 
     REP #$20 
     STZ.W $0723 
@@ -10639,8 +10497,7 @@ GameOptionsMenu_8_SpecialSettings:
     LDA.W $099E 
     INC A 
     STA.W $099E 
-    CMP.W #$0003 
-    BNE .checkB 
+    CMP.W #$0003 : BNE .checkB 
     STZ.W $099E 
 
 .checkB:
@@ -10785,8 +10642,7 @@ GameOptionsMenu_7_ControllerSettings:
     DEC A 
     STA.W $099E 
     BMI .gotoScrollDown 
-    CMP.W #$0006 
-    BEQ .scrollUp 
+    CMP.W #$0006 : BEQ .scrollUp 
     RTS 
 
 
@@ -10806,10 +10662,8 @@ GameOptionsMenu_7_ControllerSettings:
     LDA.W $099E 
     INC A 
     STA.W $099E 
-    CMP.W #$0007 
-    BEQ .scrollDown 
-    CMP.W #$0009 
-    BNE .return 
+    CMP.W #$0007 : BEQ .scrollDown 
+    CMP.W #$0009 : BNE .return 
     STZ.W $099E 
     BRA .scrollUp 
 
@@ -10852,17 +10706,14 @@ GameOptionsMenu_7_ControllerSettings:
 .backOnTrack:
     TAY 
     BEQ .otherReturn 
-    LDA.W $099E : CMP.W #$0008 
-    BNE .otherReturn 
-    LDA.W $0DE0 : CMP.W #$0010 
-    BPL .otherReturn 
+    LDA.W $099E : CMP.W #$0008 : BNE .otherReturn 
+    LDA.W $0DE0 : CMP.W #$0010 : BPL .otherReturn 
     LDA.W $0DE0 
     ASL A 
     TAX 
     TYA 
     AND.W .inputs,X 
-    CMP.W .inputs,X 
-    BNE .debugInvulOff 
+    CMP.W .inputs,X : BNE .debugInvulOff 
     INC.W $0DE0 
     RTS 
 
@@ -10918,8 +10769,7 @@ GameOptions_ControllerSettings_End:
 
 GameOptionsMenu_9_ScrollControllerSettingsDown:
     LDA.B $B3 : CLC : ADC.W #$0002 : STA.B $B3 
-    CMP.W #$0020 
-    BNE .return 
+    CMP.W #$0020 : BNE .return 
     LDA.W #$0007 : STA.W $0DE2 
 
 .return:
@@ -10943,8 +10793,7 @@ Setup_MenuSelectionMissile:
 
 
 PreInstruction_MenuSelectionMissile:
-    LDA.W $0998 : CMP.W #$0002 
-    BEQ + 
+    LDA.W $0998 : CMP.W #$0002 : BEQ + 
     LDA.W #$0001 : STA.W $1B1D,X 
     LDA.W #InstList_GameOptionsMenu_Delete : STA.W $1AFD,X 
     RTS 
@@ -11033,13 +10882,10 @@ Common_Border_Setup:
 
 
 PreInstruction_BorderAround_OPTIONS_MODE:
-    LDA.W $0998 : CMP.W #$0002 
-    BNE .delete 
-    LDA.W $0DE2 : CMP.W #$0006 
-    BNE .return 
+    LDA.W $0998 : CMP.W #$0002 : BNE .delete 
+    LDA.W $0DE2 : CMP.W #$0006 : BNE .return 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BEQ .delete 
+    LDA.B $51 : CMP.B #$80 : BEQ .delete 
     REP #$20 
     RTS 
 
@@ -11054,11 +10900,9 @@ PreInstruction_BorderAround_OPTIONS_MODE:
 
 
 PreInstruction_BorderAround_CONTRLLER_SETTING_MODE:
-    LDA.W $0DE2 : CMP.W #$0006 
-    BNE .dissolveInEnd 
+    LDA.W $0DE2 : CMP.W #$0006 : BNE .dissolveInEnd 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BEQ .delete 
+    LDA.B $51 : CMP.B #$80 : BEQ .delete 
     REP #$20 
     RTS 
 
@@ -11071,15 +10915,13 @@ PreInstruction_BorderAround_CONTRLLER_SETTING_MODE:
 
 
 .dissolveInEnd:
-    CMP.W #$0009 
-    BNE .checkScrollingUp 
+    CMP.W #$0009 : BNE .checkScrollingUp 
     LDA.W $1ABD,X : SEC : SBC.W #$0002 : STA.W $1ABD,X 
     RTS 
 
 
 .checkScrollingUp:
-    CMP.W #$000A 
-    BNE .return 
+    CMP.W #$000A : BNE .return 
     LDA.W $1ABD,X : CLC : ADC.W #$0002 : STA.W $1ABD,X 
 
 .return:
@@ -11087,11 +10929,9 @@ PreInstruction_BorderAround_CONTRLLER_SETTING_MODE:
 
 
 PreInstruction_BorderAround_SPECIAL_SETTING_MODE:
-    LDA.W $0DE2 : CMP.W #$0006 
-    BNE .return 
+    LDA.W $0DE2 : CMP.W #$0006 : BNE .return 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BEQ .startedFadingIn 
+    LDA.B $51 : CMP.B #$80 : BEQ .startedFadingIn 
     REP #$20 
     RTS 
 
@@ -11107,8 +10947,7 @@ PreInstruction_BorderAround_SPECIAL_SETTING_MODE:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PreInstruction_82F404:
-    LDA.W $0DE2 : CMP.W #$0001 
-    BNE .return 
+    LDA.W $0DE2 : CMP.W #$0001 : BNE .return 
     LDA.W #$0001 : STA.W $1B1D,X 
     LDA.W #InstList_GameOptionsMenu_Delete : STA.W $1AFD,X 
 
@@ -11125,8 +10964,7 @@ Setup_FileSelectMenu_SamusHelmet:
 
 
 PreInstruction_FileSelectMenu_SamusHelmet:
-    LDA.W $0998 : CMP.W #$0002 
-    BEQ .extraRTS 
+    LDA.W $0998 : CMP.W #$0002 : BEQ .extraRTS 
     LDA.W #$0001 : STA.W $1B1D,X 
     LDA.W #InstList_GameOptionsMenu_Delete : STA.W $1AFD,X 
     RTS 
@@ -11359,10 +11197,8 @@ Draw_GameOptionsMenu_ControllerBindings:
     INX #2
     CPX.W #$000E 
     BMI .loop 
-    LDA.W $1B47 : CMP.W #$0005 
-    BEQ .shoulderButton 
-    CMP.W #$0006 
-    BEQ .shoulderButton 
+    LDA.W $1B47 : CMP.W #$0005 : BEQ .shoulderButton 
+    CMP.W #$0006 : BEQ .shoulderButton 
     LDA.W ButtonTilemaps_OFF : STA.L $7E352E 
     LDA.W ButtonTilemaps_OFF+$2 : STA.L $7E3530 
     LDA.W ButtonTilemaps_OFF+$4 : STA.L $7E3532 
@@ -11371,10 +11207,8 @@ Draw_GameOptionsMenu_ControllerBindings:
     LDA.W ButtonTilemaps_OFF+$A : STA.L $7E3572 
 
 .shoulderButton:
-    LDA.W $1B49 : CMP.W #$0005 
-    BEQ .return 
-    CMP.W #$0006 
-    BEQ .return 
+    LDA.W $1B49 : CMP.W #$0005 : BEQ .return 
+    CMP.W #$0006 : BEQ .return 
     LDA.W ButtonTilemaps_OFF : STA.L $7E35EE 
     LDA.W ButtonTilemaps_OFF+$2 : STA.L $7E35F0 
     LDA.W ButtonTilemaps_OFF+$4 : STA.L $7E35F2 
@@ -11449,16 +11283,14 @@ GameOptions_ControllerSettings_SetBinding:
     STA.B $12 
     LDA.W $099E 
     ASL A 
-    CLC : ADC.W #$0002 : CMP.W #$000E 
-    BMI + 
+    CLC : ADC.W #$0002 : CMP.W #$000E : BMI + 
     LDA.W #$0000 
 
   + TAY 
     LDX.W #$0005 
 
 .loopFindExisting:
-    LDA.W $1B3D,Y : CMP.B $12 
-    BEQ .found 
+    LDA.W $1B3D,Y : CMP.B $12 : BEQ .found 
     INY #2
     CPY.W #$000E 
     BMI .next 

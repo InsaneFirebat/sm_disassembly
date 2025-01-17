@@ -2348,8 +2348,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 .loop:
     LDX.W $0E26 
-    LDA.L $B40000,X : CMP.W #$FFFF 
-    BEQ .endLoop 
+    LDA.L $B40000,X : CMP.W #$FFFF : BEQ .endLoop 
     TAX 
     LDA.L $A0003E,X 
     TAX 
@@ -2391,16 +2390,14 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.B $91 : BIT.W #$0400 
     BEQ .checkTerminator 
-    LDA.W $1864 : CLC : ADC.W #$0004 : CMP.W #$0010 
-    BNE + 
+    LDA.W $1864 : CLC : ADC.W #$0004 : CMP.W #$0010 : BNE + 
     LDA.W #$0000 
 
   + STA.W $1864 
 
 .checkTerminator:
     LDA.W $07D1 : CLC : ADC.W $1864 : TAX 
-    LDA.L $B40000,X : CMP.W #$FFFF 
-    BNE + 
+    LDA.L $B40000,X : CMP.W #$FFFF : BNE + 
     STZ.W $1864 
     LDX.W $07D1 
     LDA.L $B40000,X 
@@ -2430,8 +2427,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 .checkB:
     LDX.W $1866 
-    CMP.W #$8000 
-    BMI + 
+    CMP.W #$8000 : BMI + 
     LDA.L $B40000,X 
     TAX 
     LDA.L $A0003E,X 
@@ -2466,8 +2462,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 Debug_HandleCursorMovement:
     LDA.B $91 : BIT.W #$0100 
     BEQ .noRight 
-    LDA.W $1860 : CLC : ADC.W #$0008 : CMP.W #$00E0 
-    BNE + 
+    LDA.W $1860 : CLC : ADC.W #$0008 : CMP.W #$00E0 : BNE + 
     LDA.W #$00C0 
 
   + STA.W $1860 
@@ -2477,8 +2472,7 @@ Debug_HandleCursorMovement:
 .noRight:
     BIT.W #$0200 
     BEQ .noLeft 
-    LDA.W $1860 : SEC : SBC.W #$0008 : CMP.W #$00B8 
-    BNE + 
+    LDA.W $1860 : SEC : SBC.W #$0008 : CMP.W #$00B8 : BNE + 
     LDA.W #$00D8 
 
   + STA.W $1860 
@@ -2488,8 +2482,7 @@ Debug_HandleCursorMovement:
 .noLeft:
     BIT.W #$0400 
     BEQ .noDown 
-    LDA.W $1862 : CLC : ADC.W #$0008 : CMP.W #$0068 
-    BNE + 
+    LDA.W $1862 : CLC : ADC.W #$0008 : CMP.W #$0068 : BNE + 
     LDA.W #$0030 
 
   + STA.W $1862 
@@ -2499,8 +2492,7 @@ Debug_HandleCursorMovement:
 .noDown:
     BIT.W #$0800 
     BEQ .return 
-    LDA.W $1862 : SEC : SBC.W #$0008 : CMP.W #$0028 
-    BNE .setCursorY 
+    LDA.W $1862 : SEC : SBC.W #$0008 : CMP.W #$0028 : BNE .setCursorY 
     LDA.W #$0060 
 
 .setCursorY:
@@ -2570,8 +2562,7 @@ DebugHandler_10_EnemyDebugger_EnemyAllocationViewer:
 
 .loop:
     LDX.W $0E26 
-    LDA.L $B40000,X : CMP.W #$FFFF 
-    BEQ .terminated 
+    LDA.L $B40000,X : CMP.W #$FFFF : BEQ .terminated 
     TAX 
     LDA.L $A00000,X 
     XBA 
@@ -2658,26 +2649,22 @@ DebugHandler_4_SpriteTilesViewer_FirstHalf:
 DebugHandler_3_SpriteTilesViewer_SecondHalf:
     LDA.W $05C5 : BIT.W #$0080 
     BEQ .noChange 
-    LDA.W $185A : CMP.W #$0000 
-    BNE + 
+    LDA.W $185A : CMP.W #$0000 : BNE + 
     LDA.W #$0200 : STA.W $185A 
     BRA .merge 
 
 
-  + CMP.W #$0200 
-    BNE + 
+  + CMP.W #$0200 : BNE + 
     LDA.W #$0400 : STA.W $185A 
     BRA .merge 
 
 
-  + CMP.W #$0400 
-    BNE + 
+  + CMP.W #$0400 : BNE + 
     LDA.W #$0600 : STA.W $185A 
     BRA .merge 
 
 
-  + CMP.W #$0600 
-    BNE + 
+  + CMP.W #$0600 : BNE + 
     LDA.W #$0E00 : STA.W $185A 
     BRA .merge 
 
@@ -2868,8 +2855,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     BEQ .checkA 
     LDA.B $8D : BIT.W #$8000 
     BNE .pressingB 
-    LDA.W $1846 : CLC : ADC.W #$0040 : CMP.W #$0800 
-    BMI + 
+    LDA.W $1846 : CLC : ADC.W #$0040 : CMP.W #$0800 : BMI + 
     LDA.W #$0000 
 
   + STA.W $1846 
@@ -2901,14 +2887,10 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     JSL.L Debug_MoveEnemyWithDpad_QuarterPixelPerFrame 
 
   + LDX.W $1846 
-    LDA.W $0F7A,X : CMP.W $0911 
-    BMI + 
-    LDA.W $0911 : CLC : ADC.W #$0100 : CMP.W $0F7A,X 
-    BMI + 
-    LDA.W $0F7E,X : CMP.W $0915 
-    BMI + 
-    LDA.W $0915 : CLC : ADC.W #$0100 : CMP.W $0F7E,X 
-    BMI + 
+    LDA.W $0F7A,X : CMP.W $0911 : BMI + 
+    LDA.W $0911 : CLC : ADC.W #$0100 : CMP.W $0F7A,X : BMI + 
+    LDA.W $0F7E,X : CMP.W $0915 : BMI + 
+    LDA.W $0915 : CLC : ADC.W #$0100 : CMP.W $0F7E,X : BMI + 
     LDX.W $1846 
     LDA.W $0F7A,X : SEC : SBC.W $0911 : STA.B $14 
     STA.W $0E22 
@@ -3320,20 +3302,17 @@ Add_Debug_Spritemap_to_OAM:
   + SEP #$20 
     LDA.W $0000,Y : BMI + 
     CLC : ADC.B $12 : BCS .F0 
-    CMP.B #$F0 
-    BCC .store 
+    CMP.B #$F0 : BCC .store 
     BRA .F0 
 
 
   + CLC : ADC.B $12 : BCS .checkMax 
-    CMP.B #$F0 
-    BCS .store 
+    CMP.B #$F0 : BCS .store 
     BRA .F0 
 
 
 .checkMax:
-    CMP.B #$F0 
-    BCC .store 
+    CMP.B #$F0 : BCC .store 
 
 .F0:
     LDA.B #$F0 
@@ -6516,8 +6495,7 @@ HandleSpriteObjects:
     INC #4
     STA.L $7EEF78,X 
     TAX 
-    LDA.L $B40000,X : CMP.W #$8000 
-    BPL .ASMInstruction 
+    LDA.L $B40000,X : CMP.W #$8000 : BPL .ASMInstruction 
     LDX.W $1844 
     STA.L $7EEFF8,X 
 
@@ -6579,12 +6557,10 @@ DrawSpriteObjects:
     LDA.L $7EEF78,X : BEQ .next 
     LDA.L $7EF0F8,X : SEC : SBC.W $0911 : STA.B $14 
     CLC : ADC.W #$0010 : BMI .next 
-    CMP.W #$0120 
-    BPL .next 
+    CMP.W #$0120 : BPL .next 
     LDA.L $7EF1F8,X : SEC : SBC.W $0915 : STA.B $12 
     BMI .next 
-    CMP.W #$0110 
-    BPL .next 
+    CMP.W #$0110 : BPL .next 
     LDA.L $7EF078,X : AND.W #$0E00 : STA.B $03 
     LDA.L $7EF078,X : AND.W #$01FF : STA.B $00 
     PHX 

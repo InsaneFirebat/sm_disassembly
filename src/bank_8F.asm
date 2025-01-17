@@ -8661,8 +8661,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     CLC : ADC.W $4216 : ASL A 
     TAX 
     LDA.L $7F0002,X : AND.W #$03FF 
-    CMP.W #$00FF 
-    BNE GenerateRandomExplosionAt_12_14 
+    CMP.W #$00FF : BNE GenerateRandomExplosionAt_12_14 
 
 .return:
     RTS 
@@ -8684,8 +8683,7 @@ GenerateRandomExplosionOnEveryFourthFrame:
 GenerateRandomExplosionAt_12_14:
     JSL.L GenerateRandomNumber 
     AND.W #$000F 
-    CMP.W #$0008 
-    BCS + 
+    CMP.W #$0008 : BCS + 
     TAX 
     LDA.W ExplosionSoundEffects,X : AND.W #$00FF 
     BEQ + 
@@ -8710,12 +8708,9 @@ ExplosionSoundEffects:
 
 MainASM_ScrollScreenRightInDachoraRoom:
     LDA.L $7ECD2B : AND.W #$00FF 
-    CMP.W #$0002 
-    BNE .return 
-    LDA.W $0915 : CMP.W #$0500 
-    BCS .return 
-    LDA.W $0911 : CMP.W #$0380 
-    BCS .return 
+    CMP.W #$0002 : BNE .return 
+    LDA.W $0915 : CMP.W #$0500 : BCS .return 
+    LDA.W $0911 : CMP.W #$0380 : BCS .return 
     ADC.W #$0003 : STA.W $0911 
 
 .return:
@@ -9781,8 +9776,7 @@ PauseHook_Draygon:
 
 
 UnpauseHook_Draygon:
-    LDA.W $18B6 : CMP.W #$0008 
-    BNE .return 
+    LDA.W $18B6 : CMP.W #$0008 : BNE .return 
     LDA.W #$000C : STA.B $A7 
 
 .return:
@@ -13295,8 +13289,7 @@ MainASM_Elevatube:
     STX.B $12 
     STA.B $14 
     JSL.L MoveSamusDown_NoSolidEnemyCollision 
-    LDA.W $07E5 : CLC : ADC.W $07E7 : CLC : ADC.W #$0E20 : CMP.W #$1C41 
-    BCS .return 
+    LDA.W $07E5 : CLC : ADC.W $07E7 : CLC : ADC.W #$0E20 : CMP.W #$1C41 : BCS .return 
     SEC : SBC.W #$0E20 : STA.W $07E5 
 
 .return:
@@ -13605,8 +13598,7 @@ MainASM_ShakeScreenSwitchingBetweenLightHorizAndMediumDiag:
 
 .resetQuakeTimer:
     JSL.L GenerateRandomNumber 
-    CMP.W #$0200 
-    BCS MainASM_GenerateRandomExplosionOnEveryFourthFrame 
+    CMP.W #$0200 : BCS MainASM_GenerateRandomExplosionOnEveryFourthFrame 
     LDA.W #$002A : STA.W $07E1 
     LDA.W #$0017 
 
@@ -13626,8 +13618,7 @@ MainASM_ShakeScreenSwitchingBetweenMediumHorizAndStrongDiag:
 
 .resetQuakeTimer:
     JSL.L GenerateRandomNumber 
-    CMP.W #$0180 
-    BCS .noEarthquakeChange 
+    CMP.W #$0180 : BCS .noEarthquakeChange 
     LDA.W #$002A : STA.W $07E1 
     LDA.W #$001A 
 
@@ -13658,8 +13649,7 @@ Use_StatePointer_inX:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomStateCheck_Door_8FE5EB:
-    LDA.W $0000,X : CMP.W $078D 
-    BNE + 
+    LDA.W $0000,X : CMP.W $078D : BNE + 
     LDA.W $0002,X 
     TAX 
     JMP.W Use_StatePointer_inX 
@@ -14063,15 +14053,13 @@ Execute_Room_Main_ASM:
 MainASM_CrocomiresRoomShaking:
     LDA.W $0F86 : BIT.W #$0200 
     BNE .return 
-    LDA.W $0FA8 : CMP.W #$0040 
-    BEQ .behindWallRumbling 
+    LDA.W $0FA8 : CMP.W #$0040 : BEQ .behindWallRumbling 
     LDA.W $0FAA : BIT.W #$0400 
     BEQ .branch 
     LDA.W $0FEE 
     DEC A 
     STA.W $0FEE 
-    CMP.W #$FFF9 
-    BMI + 
+    CMP.W #$FFF9 : BMI + 
     LDA.W $0FEE : BRA .scroll 
 
 
@@ -14089,8 +14077,7 @@ MainASM_CrocomiresRoomShaking:
 
 
 .branch:
-    LDA.W $0FAC : CMP.W #$0022 
-    BNE .return 
+    LDA.W $0FAC : CMP.W #$0022 : BNE .return 
     LDA.W $0FAE : BEQ .return 
     DEC A 
     STA.W $0FAE 

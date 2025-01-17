@@ -3342,14 +3342,12 @@ Load_FX_Header:
 
 .loopDoor:
     LDA.W $0000,X : BEQ .load 
-    CMP.W #$FFFF 
-    BNE + 
+    CMP.W #$FFFF : BNE + 
     PLB : PLP 
     RTL 
 
 
-  + CMP.W $078D 
-    BEQ .load 
+  + CMP.W $078D : BEQ .load 
     TXA 
     CLC : ADC.W #$0010 : TAX 
     TYA 
@@ -3469,18 +3467,13 @@ RoomMainASM_CeresElevatorShaft:
 
 
 .rotating:
-    LDA.W #$0080 : SEC : SBC.W #$0010 : CMP.W $0AF6 
-    BPL .handleRotationMatrix 
-    LDA.W #$0080 : CLC : ADC.W #$0010 : CMP.W $0AF6 
-    BMI .handleRotationMatrix 
-    LDA.W $0AFA : CMP.W #$0080 
-    BPL .handleRotationMatrix 
-    LDA.W $0AFA : CMP.W #$004B 
-    BMI .handleRotationMatrix 
+    LDA.W #$0080 : SEC : SBC.W #$0010 : CMP.W $0AF6 : BPL .handleRotationMatrix 
+    LDA.W #$0080 : CLC : ADC.W #$0010 : CMP.W $0AF6 : BMI .handleRotationMatrix 
+    LDA.W $0AFA : CMP.W #$0080 : BPL .handleRotationMatrix 
+    LDA.W $0AFA : CMP.W #$004B : BMI .handleRotationMatrix 
     LDA.W $0B2E : BNE .handleRotationMatrix 
     LDA.W $0B2C : BNE .handleRotationMatrix 
-    LDA.W $0998 : CMP.W #$0008 
-    BNE .handleRotationMatrix 
+    LDA.W $0998 : CMP.W #$0008 : BNE .handleRotationMatrix 
     LDA.W #$0002 : JSL.L Run_Samus_Command 
     STZ.W $0723 
     STZ.W $0725 
@@ -3502,16 +3495,14 @@ RoomMainASM_CeresElevatorShaft:
     STA.B $7E 
     LDA.W $07E1 : BMI .decRotationMatrixIndex 
     INC A 
-    CMP.W #$0044 
-    BNE .storeIndex 
+    CMP.W #$0044 : BNE .storeIndex 
     ORA.W #$8000 
     BRA .storeIndex 
 
 
 .decRotationMatrixIndex:
     DEC A 
-    CMP.W #$8000 
-    BNE .storeIndex 
+    CMP.W #$8000 : BNE .storeIndex 
     LDA.W #$0000 
 
 .storeIndex:

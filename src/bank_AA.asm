@@ -6774,8 +6774,7 @@ Instruction_Torizo_SpawnTorizoLandingDustClouds:
 
 
 Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow:
-    LDA.W $0F8C,X : CMP.W #$015E 
-    BCS .return 
+    LDA.W $0F8C,X : CMP.W #$015E : BCS .return 
     PHY 
     LDY.W #EnemyProjectile_BombTorizoInitialDrool 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
@@ -7008,8 +7007,7 @@ Instruction_Torizo_CallY_OrY2_ForBombTorizoAttack:
     TYA 
     INC #4
     STA.L $7E7800,X 
-    LDA.W $09C6 : CMP.W #$0005 
-    BCC .spewOrbs 
+    LDA.W $09C6 : CMP.W #$0005 : BCC .spewOrbs 
     LDA.W $0AF6 
     LSR A 
     ADC.W $05B6 : BIT.W #$0008 
@@ -7088,8 +7086,7 @@ HandleLowHealthInitialDrool:
     LDA.W $05E5 : AND.W #$8142 ; If [random number] & 8142h = 0: (1/16 chance)
     BNE .return 
     LDA.W $0F8C,X : BEQ .return 
-    CMP.W #$015E 
-    BCS .return 
+    CMP.W #$015E : BCS .return 
     LDY.W #EnemyProjectile_BombTorizoInitialDrool 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
 
@@ -7116,8 +7113,7 @@ HandleFalling:
 
 .collision:
     LDA.W $0FAA,X : BMI .return 
-    CMP.W #$0100 
-    BEQ .return 
+    CMP.W #$0100 : BEQ .return 
     LDA.W #$0004 : STA.W $183E 
     LDA.W #$0020 : STA.W $1840 
     LDA.W #$0100 : STA.W $0FAA,X 
@@ -7185,8 +7181,7 @@ Function_Torizo_WakeWhenBombTorizoChozoFinishesCrumbling:
     LDX.W #$004E 
 
 .loop:
-    LDA.W $1C37,X : CMP.W #PLMEntries_BombTorizosCrumblingChozo 
-    BEQ .return 
+    LDA.W $1C37,X : CMP.W #PLMEntries_BombTorizosCrumblingChozo : BEQ .return 
     DEX #2
     BPL .loop 
     PLX 
@@ -7207,8 +7202,7 @@ Function_Torizo_NormalMovement:
     JSR.W HandleLowHealthInitialDrool 
     BIT.W $0FB6,X 
     BMI .notLowHealth 
-    LDA.W $0F8C,X : CMP.W #$015E 
-    BCS .notLowHealth 
+    LDA.W $0F8C,X : CMP.W #$015E : BCS .notLowHealth 
     LDA.W $0F92,X : STA.L $7E7802,X 
     LDA.W #InstList_Torizo_SpecialCallable_BlowUpBombTorizosGut : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -7218,8 +7212,7 @@ Function_Torizo_NormalMovement:
 .notLowHealth:
     BIT.W $0FB6,X 
     BVS .noChange 
-    LDA.W $0F8C,X : CMP.W #$0064 
-    BCS .noChange 
+    LDA.W $0F8C,X : CMP.W #$0064 : BCS .noChange 
     LDA.W $0FB4,X : BMI .facingRight 
     LDA.W #InstList_Torizo_FacingRight_Faceless_TurningRight : BRA + 
 
@@ -7269,8 +7262,7 @@ Function_Torizo_Movement_Walking:
     INC A 
 
   + INC A 
-    CMP.W #$0010 
-    BCC + 
+    CMP.W #$0010 : BCC + 
     LDA.W #$000F 
 
   + STA.B $14 
@@ -7317,8 +7309,7 @@ Function_Torizo_Movement_Walking:
     INC A 
 
   + INC A 
-    CMP.W #$0010 
-    BCC + 
+    CMP.W #$0010 : BCC + 
     LDA.W #$000F 
 
   + STA.B $14 
@@ -7621,8 +7612,7 @@ InstList_GoldenTorizo_Initial_3:
     dw InstList_GoldenTorizo_WalkingLeft_LeftLegMoving 
 
 Instruction_Torizo_GotoY_IfNotHitGround:
-    LDA.W $0F7E,X : CMP.W #$0177 
-    BEQ .notHitGround 
+    LDA.W $0F7E,X : CMP.W #$0177 : BEQ .notHitGround 
     LDA.W $0000,Y 
     TAY 
     RTL 
@@ -8440,8 +8430,7 @@ Instruction_GoldenTorizo_EyeBeamAttack_0:
     LDX.W #$0022 
 
 .loop:
-    LDA.W $1997,X : CMP.W #EnemyProjectile_GoldenTorizoEgg 
-    BEQ .gotoY 
+    LDA.W $1997,X : CMP.W #EnemyProjectile_GoldenTorizoEgg : BEQ .gotoY 
     DEX #2
     BPL .loop 
     PLX 
@@ -8764,10 +8753,8 @@ InstList_GoldenTorizo_WalkingRight_RightLegMoving:
 
 MainAI_GoldenTorizo:
     LDX.W $0E54 
-    LDA.W $0A1C : CMP.W #$001B 
-    BEQ .spaceJump 
-    CMP.W #$001C 
-    BEQ .spaceJump 
+    LDA.W $0A1C : CMP.W #$001B : BEQ .spaceJump 
+    CMP.W #$001C : BEQ .spaceJump 
     LDA.W #$0000 : STA.L $7E780E,X 
     BRA .executeFunction 
 
@@ -8847,20 +8834,13 @@ Instruction_GoldenTorizo_GotoY_IfSamusIsMorphedBehindTorizo:
     BCC .noGo 
     LDA.W #$0028 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCS .noGo 
-    LDA.W $0A1C : CMP.W #$001D 
-    BEQ .gotoY 
-    CMP.W #$001E 
-    BEQ .gotoY 
-    CMP.W #$001F 
-    BEQ .gotoY 
-    CMP.W #$0079 
-    BEQ .gotoY 
-    CMP.W #$007A 
-    BEQ .gotoY 
-    CMP.W #$007B 
-    BEQ .gotoY 
-    CMP.W #$007C 
-    BNE .noGo 
+    LDA.W $0A1C : CMP.W #$001D : BEQ .gotoY 
+    CMP.W #$001E : BEQ .gotoY 
+    CMP.W #$001F : BEQ .gotoY 
+    CMP.W #$0079 : BEQ .gotoY 
+    CMP.W #$007A : BEQ .gotoY 
+    CMP.W #$007B : BEQ .gotoY 
+    CMP.W #$007C : BNE .noGo 
 
 .gotoY:
     LDA.W #$0000 : STA.L $7E7812,X 
@@ -8908,8 +8888,7 @@ Instruction_GT_CallY_25Chance_IfSamusMorphedInFrontOfTorizo:
 
 
 Instruction_GoldenTorizo_CallY_25Chance_IfHealthLessThan789:
-    LDA.W #$0788 : CMP.W $0F8C,X 
-    BCC .noGo 
+    LDA.W #$0788 : CMP.W $0F8C,X : BCC .noGo 
     JSL.L GenerateRandomNumber 
     AND.W #$0102 
     BNE .noGo 
@@ -8928,8 +8907,7 @@ Instruction_GoldenTorizo_CallY_25Chance_IfHealthLessThan789:
 
 
 Instruction_GoldenTorizo_CallY_IfStunHealthGreaterThan2A31:
-    LDA.W #$2A30 : CMP.W $0F8C,X 
-    BCS .noGo 
+    LDA.W #$2A30 : CMP.W $0F8C,X : BCS .noGo 
     LDA.W $0FB6,X : BIT.W #$2000 
     BEQ .noGo 
     TYA 
@@ -8950,8 +8928,7 @@ Instruction_GoldenTorizo_GotoY_JumpForwards_IfAtLeast70Pixel:
     BCC .noGo 
     JSR.W CheckIfTorizoIsFacingSamus 
     BMI .noGo 
-    LDA.W #$0168 : CMP.L $7E780E,X 
-    BCC .jump 
+    LDA.W #$0168 : CMP.L $7E780E,X : BCC .jump 
     LDA.B $8B : AND.W #$0300 
     BEQ .noGo 
     JSL.L GenerateRandomNumber 
@@ -8980,8 +8957,7 @@ Instruction_GoldenTorizo_SpawnChozoOrbs:
 
 
 Instruction_GoldenTorizo_GotoY_JumpBack_IfLessThan20Pixels:
-    LDA.L $7E7812,X : CMP.W #$0008 
-    BCS .jump 
+    LDA.L $7E7812,X : CMP.W #$0008 : BCS .jump 
     LDA.W #$0020 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCS .noGo 
     JSR.W CheckIfTorizoIsFacingSamus 
@@ -9004,8 +8980,7 @@ Instruction_GoldenTorizo_CallY_OrY2_ForAttack:
     TYA 
     INC #4
     STA.L $7E7800,X 
-    LDA.W $09C6 : CMP.W #$0020 
-    BCC .spewOrbs 
+    LDA.W $09C6 : CMP.W #$0020 : BCC .spewOrbs 
     LDA.W $0AF6 
     LSR A 
     ADC.W $05B6 : AND.W #$0008 
@@ -9067,10 +9042,8 @@ Instruction_GoldenTorizo_WalkingMovement_IndexInY:
     dw $0000,$0007,$0011,$0012 
 
 Function_GoldenTorizo_WakeIfSamusIsBelowAndRightOfTargetPos:
-    LDA.W #$0140 : CMP.W $0AFA 
-    BCS .return 
-    LDA.W #$0170 : CMP.W $0AF6 
-    BCS .return 
+    LDA.W #$0140 : CMP.W $0AFA : BCS .return 
+    LDA.W #$0170 : CMP.W $0AF6 : BCS .return 
     INC.W $0F92,X 
     INC.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -9121,8 +9094,7 @@ Function_GoldenTorizo_Movement_Walking:
     INC A 
 
   + INC A 
-    CMP.W #$0010 
-    BCC + 
+    CMP.W #$0010 : BCC + 
     LDA.W #$000F 
 
   + STA.B $14 
@@ -9175,10 +9147,8 @@ ShotReaction_GoldenTorizo_Normal:
     ASL A 
     TAY 
     LDA.W $0C18,Y : AND.W #$0F00 : STA.L $7E780A,X 
-    CMP.W #$0100 
-    BEQ ShotReaction_GoldenTorizo_Normal_Missile 
-    CMP.W #$0200 
-    BEQ ShotReaction_GoldenTorizo_Normal_SuperMissile 
+    CMP.W #$0100 : BEQ ShotReaction_GoldenTorizo_Normal_Missile 
+    CMP.W #$0200 : BEQ ShotReaction_GoldenTorizo_Normal_SuperMissile 
 
 .stun:
     LDA.W $0FB6,X : ORA.W #$2000 : STA.W $0FB6,X ; fallthrough to ShotReaction_GoldenTorizo_Damaged
@@ -9956,8 +9926,7 @@ Function_Shaktool_FinalPiece:
     LDA.W $0FAE,X : AND.W #$FF00 : STA.W $0FAE,X 
 
   + LDA.W $0FAC,X : CLC : ADC.W $0FAE,X : STA.W $0FAE,X 
-    CMP.W #$F000 
-    BCC .return 
+    CMP.W #$F000 : BCC .return 
     LDY.W $0FB0,X 
     LDA.W $0FB4,X 
     ORA.W #$4000 
@@ -10600,8 +10569,7 @@ Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
     LDA.W $0DC4 : CLC : ADC.W $07A5 : ASL A 
     TAX 
     LDA.L $7F0002,X : AND.W #$F000 
-    CMP.W #$A000 
-    BNE .return 
+    CMP.W #$A000 : BNE .return 
     TXA 
     SEC : SBC.W $07A5 : TAX 
     LDA.W #PLMEntries_CrumbleLowerNorfairChozoRoomPlug : JSL.L Spawn_PLM_to_CurrentBlockIndex 

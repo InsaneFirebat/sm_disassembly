@@ -188,8 +188,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpwards:
     LDA.W #$9D00 : STA.L $7E9C01 
     LDA.W #$0010 : STA.L $7E9C03 
     LDA.W #$9D02 : STA.L $7E9C04 
-    LDA.L $7E803A : SEC : SBC.W #$0020 : CMP.W #$0080 
-    BCS .greaterThanEqualTo80 
+    LDA.L $7E803A : SEC : SBC.W #$0020 : CMP.W #$0080 : BCS .greaterThanEqualTo80 
     PHA 
     ORA.W #$0080 
     STA.L $7E9C06 
@@ -259,8 +258,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpRight:
   + STA.B $18 
     AND.W #$FF00 
     ORA.B $24 
-    CMP.W #$FFFF 
-    BNE .next 
+    CMP.W #$FFFF : BNE .next 
     LDA.W #$00FF 
 
 .next:
@@ -310,8 +308,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUp:
   + STA.B $18 
     AND.W #$FF00 
     ORA.B $1A 
-    CMP.W #$FFFF 
-    BNE .next 
+    CMP.W #$FFFF : BNE .next 
     LDA.W #$00FF 
 
 .next:
@@ -364,8 +361,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpLeft:
   + STA.B $18 
     AND.W #$FF00 
     ORA.B $24 
-    CMP.W #$FFFF 
-    BNE .next 
+    CMP.W #$FFFF : BNE .next 
     LDA.W #$00FF 
 
 .next:
@@ -451,8 +447,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownRight:
   + STA.B $18 
     AND.W #$FF00 
     ORA.B $1A 
-    CMP.W #$FFFF 
-    BNE + 
+    CMP.W #$FFFF : BNE + 
     LDA.W #$00FF 
 
   + STA.W $0000,X 
@@ -506,8 +501,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDown:
   + STA.B $18 
     AND.W #$FF00 
     ORA.B $1A 
-    CMP.W #$FFFF 
-    BNE + 
+    CMP.W #$FFFF : BNE + 
     LDA.W #$00FF 
 
   + STA.W $0000,X 
@@ -598,8 +592,7 @@ SealMotherBrainsWallFunction_FakeDeath_Descent:
 
 
 MotherBrainHealthBasedPaletteHandling:
-    LDA.L $7E783E : CMP.W #$0002 
-    BCS .recovered 
+    LDA.L $7E783E : CMP.W #$0002 : BCS .recovered 
     RTL 
 
 
@@ -607,14 +600,11 @@ MotherBrainHealthBasedPaletteHandling:
     PHB : PEA.W $AD00 
     PLB : PLB 
     LDY.W #$0000 
-    LDA.W $0FCC : CMP.W #$2328 
-    BCS .writePalette 
+    LDA.W $0FCC : CMP.W #$2328 : BCS .writePalette 
     LDY.W #$0002 
-    CMP.W #$1518 
-    BCS .writePalette 
+    CMP.W #$1518 : BCS .writePalette 
     LDY.W #$0004 
-    CMP.W #$0708 
-    BCS .writePalette 
+    CMP.W #$0708 : BCS .writePalette 
     LDY.W #$0006 
 
 .writePalette:

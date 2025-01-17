@@ -416,8 +416,7 @@ MainAI_DraygonBody:
 Function_DraygonBody_FightIntro_InitialDelay:
     JSR.W HandleFiringWallTurret 
     LDX.W $0E54 ; >.<
-    LDA.W $0FAA : CMP.W #$0100 
-    BPL .done 
+    LDA.W $0FAA : CMP.W #$0100 : BPL .done 
     LDA.W $0FAA : BNE .incFunctionTimer 
     LDX.W $0330 
     LDA.W #$0600 : STA.B $D0,X 
@@ -447,8 +446,7 @@ Function_DraygonBody_FightIntro_InitialDelay:
 Function_DraygonBody_FightIntro_Dance:
     JSR.W HandleFiringWallTurret 
     LDX.W $0E54 ; >.<
-    LDA.W $0FAA : CMP.W #$04D0 
-    BPL .startFight 
+    LDA.W $0FAA : CMP.W #$04D0 : BPL .startFight 
     JSR.W HandleDraygonFightIntroDance 
     INC.W $0FAA 
     RTS 
@@ -511,8 +509,7 @@ CalculateDraygonSwoopYPositions:
     AND.W #$00FF 
     EOR.W #$FFFF 
     INC A 
-    CLC : ADC.W $0E24 : CMP.L $7E7802 
-    BMI + 
+    CLC : ADC.W $0E24 : CMP.L $7E7802 : BMI + 
     STA.W $0E24 
     LDX.W $0E26 
     STA.L $7E9002,X 
@@ -520,8 +517,7 @@ CalculateDraygonSwoopYPositions:
     INC.W $0E26 
     INC.W $0E26 
     INC.W $0E26 
-    LDA.W $0E26 : CMP.W #$0800 
-    BMI .loop 
+    LDA.W $0E26 : CMP.W #$0800 : BMI .loop 
 
 .crash:
     BRA .crash 
@@ -627,8 +623,7 @@ Function_DraygonBody_SwoopRight_Ascending:
     INC.W $0FAA 
     INC.W $0FAA 
     INC.W $0FAA 
-    LDA.W $0FAA : CMP.W $0FAC 
-    BEQ + 
+    LDA.W $0FAA : CMP.W $0FAC : BEQ + 
     LDA.W $0F7C : CLC : ADC.W $0FB0 : STA.W $0F7C 
     LDA.W $0F7A : ADC.W $0FAE : STA.W $0F7A 
     RTS 
@@ -734,8 +729,7 @@ Function_DraygonBody_SwoopLeft_Ascending:
     INC.W $0FAA 
     INC.W $0FAA 
     INC.W $0FAA 
-    LDA.W $0FAA : CMP.W $0FAC 
-    BEQ .chooseAttack 
+    LDA.W $0FAA : CMP.W $0FAC : BEQ .chooseAttack 
     LDA.W $0F7C : SEC : SBC.W $0FB0 : STA.W $0F7C 
     LDA.W $0F7A : SBC.W $0FAE : STA.W $0F7A 
     RTS 
@@ -777,8 +771,7 @@ Function_DraygonBody_GoopRight_MoveUntilSamusInRange:
     JSR.W HandleFiringWallTurret 
     JSR.W HandleShortDraygonBreathBubbles 
     LDA.W $0F7A : SEC : SBC.W $0AF6 : JSL.L NegateA_A0B067 
-    CMP.W #$00D0 
-    BPL .tooFar 
+    CMP.W #$00D0 : BPL .tooFar 
     LDA.W #Function_DraygonBody_GoopRight_FiringGoops : STA.W $0FA8 
     LDA.W #$0010 : STA.L $7E7806 
     RTS 
@@ -817,8 +810,7 @@ Function_DraygonBody_GoopRight_FiringGoops:
     LDA.W $0F7C : CLC : ADC.W $0FB0 : STA.W $0F7C 
     LDA.W $0F7A : ADC.W $0FAE : STA.W $0F7A 
     BMI .return 
-    CMP.W #$02A0 
-    BPL .reloadSpeedDivisor 
+    CMP.W #$02A0 : BPL .reloadSpeedDivisor 
 
 .return:
     RTS 
@@ -849,8 +841,7 @@ Function_DraygonBody_GoopRight_MoveUntilOffScreen:
     LDA.W $0F7C : CLC : ADC.W $0FB0 : STA.W $0F7C 
     LDA.W $0F7A : ADC.W $0FAE : STA.W $0F7A 
     BMI .return 
-    CMP.W #$02A0 
-    BPL .done 
+    CMP.W #$02A0 : BPL .done 
 
 .return:
     RTS 
@@ -883,8 +874,7 @@ Function_DraygonBody_GoopLeft_MoveUntilSamusInRange:
     JSR.W HandleFiringWallTurret 
     JSR.W HandleShortDraygonBreathBubbles 
     LDA.W $0F7A : SEC : SBC.W $0AF6 : JSL.L NegateA_A0B067 
-    CMP.W #$00D0 
-    BPL .tooFar 
+    CMP.W #$00D0 : BPL .tooFar 
     LDA.W #Function_DraygonBody_GoopLeft_FiringGoops : STA.W $0FA8 
     LDA.W #$0010 : STA.L $7E7806 
     RTS 
@@ -922,8 +912,7 @@ Function_DraygonBody_GoopLeft_FiringGoops:
     LDA.W $0F7C : SEC : SBC.W $0FB0 : STA.W $0F7C 
     LDA.W $0F7A : SBC.W $0FAE : STA.W $0F7A 
     BPL .return 
-    CMP.W #$FFB0 
-    BMI .reloadSpeedDivisor 
+    CMP.W #$FFB0 : BMI .reloadSpeedDivisor 
 
 .return:
     RTS 
@@ -955,8 +944,7 @@ Function_DraygonBody_GoopLeft_MoveUntilOffScreen:
     LDA.W $0F7C : SEC : SBC.W $0FB0 : STA.W $0F7C 
     LDA.W $0F7A : SBC.W $0FAE : STA.W $0F7A 
     BPL .return 
-    CMP.W #$FFB0 
-    BMI .done 
+    CMP.W #$FFB0 : BMI .done 
 
 .return:
     RTS 
@@ -991,11 +979,9 @@ Function_DraygonBody_ChaseSamus:
 .notLeft:
     TYA 
     CLC : ADC.W $0F7A : SEC : SBC.W $0AF6 : JSL.L NegateA_A0B067 
-    CMP.W #$0008 
-    BPL .notGrabbed 
+    CMP.W #$0008 : BPL .notGrabbed 
     LDA.W $0F7E : SEC : SBC.W $0AFA : JSL.L NegateA_A0B067 
-    CMP.W #$0008 
-    BPL .notGrabbed 
+    CMP.W #$0008 : BPL .notGrabbed 
     BRA .grab 
 
 
@@ -1075,11 +1061,9 @@ Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
 
 .notGrappled:
     LDA.W $0F7A : SEC : SBC.W #$0100 : JSL.L NegateA_A0B067 
-    CMP.W #$0002 
-    BPL .notReachedTarget 
+    CMP.W #$0002 : BPL .notReachedTarget 
     LDA.W $0F7E : SEC : SBC.W #$0180 : JSL.L NegateA_A0B067 
-    CMP.W #$0002 
-    BPL .notReachedTarget 
+    CMP.W #$0002 : BPL .notReachedTarget 
     BRA .reachedTargetPosition 
 
 
@@ -1161,8 +1145,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
 .noFoam:
     LDA.L $7E7812 : CLC : ADC.W #$2000 : STA.L $7E7812 
     LDA.L $7E780A : ADC.W #$0000 : STA.L $7E780A 
-    CMP.W #$00A0 
-    BPL .finalSpanking 
+    CMP.W #$00A0 : BPL .finalSpanking 
     LDA.L $7E7816 : SEC : SBC.W #$0001 : STA.L $7E7816 
     AND.W #$FF00 
     XBA 
@@ -1170,8 +1153,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     STA.L $7E7810 
     LDA.L $7E7814 : SEC : SBC.W #$4000 : STA.L $7E7814 
     LDA.L $7E780E : SBC.W #$0000 : STA.L $7E780E 
-    CMP.W #$0040 
-    BMI .finalSpanking 
+    CMP.W #$0040 : BMI .finalSpanking 
     JSR.W MoveSamusWithDraygon 
     RTS 
 
@@ -1186,8 +1168,7 @@ Function_DraygonBody_GrabbedSamus_TailWhip:
     DEC A 
     STA.L $7E7818 
     BEQ .done 
-    CMP.W #$003F 
-    BEQ .getDirection 
+    CMP.W #$003F : BEQ .getDirection 
     RTS 
 
 .getDirection:
@@ -1298,11 +1279,9 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     LDA.L $7E8806 : AND.W #$00FF : STA.W $0E20 
     JSL.L MoveEnemyAccordingToAngleAndXYSpeeds 
     LDA.W $0F7A : SEC : SBC.W #$0100 : JSL.L NegateA_A0B067 
-    CMP.W #$0004 
-    BPL .gotoReturn 
+    CMP.W #$0004 : BPL .gotoReturn 
     LDA.W $0F7E : SEC : SBC.W #$01E0 : JSL.L NegateA_A0B067 
-    CMP.W #$0004 
-    BPL .gotoReturn 
+    CMP.W #$0004 : BPL .gotoReturn 
     BRA .done 
 
 
@@ -1351,8 +1330,7 @@ Function_DraygonBody_DeathSequence_BuriedByEvirs:
     JSR.W HandleDyingDraygonSmoke 
     JSR.W HandleDeathSequenceEvirMovement 
     INC.W $0F7E 
-    LDA.W $0F7E : CMP.W #$0240 
-    BMI .return 
+    LDA.W $0F7E : CMP.W #$0240 : BMI .return 
     LDA.W #InstList_Draygon_Delete : STA.W $0F92 
     LDA.W #$0001 : STA.W $0F94 
     LDA.W $0F86 : ORA.W #$0200 : STA.W $0F86 
@@ -1466,8 +1444,7 @@ Debug_MoveDraygonWithDpad_Slow:
     LDA.B $8D : BIT.W #$0200 
     BEQ .notPressingLeft 
     DEC.W $0F7A 
-    CMP.W $1866 
-    BEQ .notPressingLeft 
+    CMP.W $1866 : BEQ .notPressingLeft 
     STA.W $1866 
     LDY.W #InstList_DraygonBody_FacingLeft_Reset 
     LDA.W #$0000 : STA.L $7E8000 
@@ -1478,8 +1455,7 @@ Debug_MoveDraygonWithDpad_Slow:
     BIT.W #$0100 
     BEQ .noHorizontalMovement 
     INC.W $0F7A 
-    CMP.W $1866 
-    BEQ .noHorizontalMovement 
+    CMP.W $1866 : BEQ .noHorizontalMovement 
     STA.W $1866 
     LDY.W #InstList_DraygonBody_FacingRight_Reset 
     LDA.W #$0001 : STA.L $7E8000 
@@ -1507,8 +1483,7 @@ Debug_MoveDraygonWithDpad_Fast:
     LDA.B $8D : BIT.W #$0200 
     BEQ .noPressingLeft 
     LDA.W $0F7A : SEC : SBC.W #$0004 : STA.W $0F7A 
-    LDA.B $8D : CMP.W $1866 
-    BEQ .noPressingLeft 
+    LDA.B $8D : CMP.W $1866 : BEQ .noPressingLeft 
     STA.W $1866 
     LDY.W #InstList_DraygonBody_FacingLeft_Reset 
     LDA.W #$0000 : STA.L $7E8000 
@@ -1519,8 +1494,7 @@ Debug_MoveDraygonWithDpad_Fast:
     BIT.W #$0100 
     BEQ .noHorizontalMovement 
     LDA.W $0F7A : CLC : ADC.W #$0004 : STA.W $0F7A 
-    LDA.B $8D : CMP.W $1866 
-    BEQ .noHorizontalMovement 
+    LDA.B $8D : CMP.W $1866 : BEQ .noHorizontalMovement 
     STA.W $1866 
     LDY.W #InstList_DraygonBody_FacingRight_Reset 
     LDA.W #$0001 : STA.L $7E8000 
@@ -1686,8 +1660,7 @@ EnemyTouch_Draygon:
 
 
 EnemyShot_Draygon:
-    LDA.L $7E781E : CLC : ADC.W #$0008 : CMP.W #$00A0 
-    BPL + 
+    LDA.L $7E781E : CLC : ADC.W #$0008 : CMP.W #$00A0 : BPL + 
     STA.L $7E781E 
 
   + JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External 
@@ -1760,16 +1733,14 @@ DraygonHealthBasedPaletteHandling:
     LDX.W #$0000 
 
 .loopFindThreshold:
-    LDA.W $0F8C : CMP.W DraygonHealthBasedPaletteThresholds,X 
-    BPL .found 
+    LDA.W $0F8C : CMP.W DraygonHealthBasedPaletteThresholds,X : BPL .found 
     INX #2
     BRA .loopFindThreshold 
 
 
 .found:
     TXA 
-    CMP.L $7E781C 
-    BEQ .return 
+    CMP.L $7E781C : BEQ .return 
     STA.L $7E781C 
     LDA.L $7E781C ; >_<
     ASL #2
@@ -3015,8 +2986,7 @@ HandleDraygonFightIntroDance:
     SEC : SBC.W #$0038 : TAY 
     LDA.W MovementLatencyForEachEvirSpriteObject,Y : CLC : ADC.L $7E880C : BMI .next 
     TAY 
-    LDA.W DraygonFightIntroDanceData_KeikoLove,Y : CMP.W #$8080 
-    BEQ .deleteSpriteObject 
+    LDA.W DraygonFightIntroDanceData_KeikoLove,Y : CMP.W #$8080 : BEQ .deleteSpriteObject 
     LDA.W DraygonFightIntroDanceData_KeikoLove,Y : AND.W #$00FF 
     JSL.L Sign_Extend_A 
     CLC : ADC.L $7EF0F8,X : STA.L $7EF0F8,X 
@@ -5983,20 +5953,15 @@ Function_DraygonEye_FacingLeft:
     LDA.W $0F7E : SEC : SBC.W #$0020 : STA.B $14 
     LDA.W $0AFA : SEC : SBC.B $14 : STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
-    CMP.W $0FB2,X 
-    BEQ .return 
+    CMP.W $0FB2,X : BEQ .return 
     LDY.W #InstList_DraygonEye_FacingLeft_LookingUp 
-    CMP.W #$0020 
-    BMI .directionChosen 
+    CMP.W #$0020 : BMI .directionChosen 
     LDY.W #InstList_DraygonEye_FacingLeft_LookingRight 
-    CMP.W #$0060 
-    BMI .directionChosen 
+    CMP.W #$0060 : BMI .directionChosen 
     LDY.W #InstList_DraygonEye_FacingLeft_LookingDown 
-    CMP.W #$00A0 
-    BMI .directionChosen 
+    CMP.W #$00A0 : BMI .directionChosen 
     LDY.W #InstList_DraygonEye_FacingLeft_LookingLeft 
-    CMP.W #$00E0 
-    BMI .directionChosen 
+    CMP.W #$00E0 : BMI .directionChosen 
     LDY.W #InstList_DraygonEye_FacingLeft_LookingUp 
 
 .directionChosen:
@@ -6026,20 +5991,15 @@ Function_DraygonEye_FacingRight:
     LDA.W $0F7E : SEC : SBC.W #$0020 : STA.B $14 
     LDA.W $0AFA : SEC : SBC.B $14 : STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
-    CMP.W $0FB2,X 
-    BEQ .return 
+    CMP.W $0FB2,X : BEQ .return 
     LDY.W #InstList_DraygonEye_FacingRight_LookingUp 
-    CMP.W #$0020 
-    BMI .directionChosen 
+    CMP.W #$0020 : BMI .directionChosen 
     LDY.W #InstList_DraygonEye_FacingRight_LookingRight 
-    CMP.W #$0060 
-    BMI .directionChosen 
+    CMP.W #$0060 : BMI .directionChosen 
     LDY.W #InstList_DraygonEye_FacingRight_LookingDown 
-    CMP.W #$00A0 
-    BMI .directionChosen 
+    CMP.W #$00A0 : BMI .directionChosen 
     LDY.W #InstList_DraygonEye_FacingRight_LookingLeft 
-    CMP.W #$00E0 
-    BMI .directionChosen 
+    CMP.W #$00E0 : BMI .directionChosen 
     LDY.W #InstList_DraygonEye_FacingRight_LookingUp 
 
 .directionChosen:
@@ -6783,8 +6743,7 @@ InstList_SporeSpawn_CloseAndMove:
     dw InstList_SporeSpawn_OpenAndStop_0 
 
 Instruction_SporeSpawn_IncreaseMaxXRadius:
-    LDA.L $7E7816 : CLC : ADC.W #$0008 : CMP.W #$0030 
-    BPL .return 
+    LDA.L $7E7816 : CLC : ADC.W #$0008 : CMP.W #$0030 : BPL .return 
     STA.L $7E7816 
 
 .return:
@@ -7186,8 +7145,7 @@ Function_SporeSpawn_Descent:
     JSR.W UpdateSporeSpawnStalkSegmentPositions 
     LDX.W $0E54 
     LDA.W $0F7E,X : CLC : ADC.W #$0001 : STA.W $0F7E,X 
-    CMP.W #$0270 
-    BMI .descending 
+    CMP.W #$0270 : BMI .descending 
     LDA.W #InstList_SporeSpawn_FightHasStarted : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
 
@@ -7240,11 +7198,9 @@ Function_SporeSpawn_Dying:
     LDA.L $7E8806 : AND.W #$00FF : STA.W $0E20 
     JSL.L MoveEnemyAccordingToAngleAndXYSpeeds 
     LDA.W $0F7A : SEC : SBC.W #$0080 : JSL.L NegateA_A0B067 
-    CMP.W #$0008 
-    BPL .notDone 
+    CMP.W #$0008 : BPL .notDone 
     LDA.W $0F7E : SEC : SBC.W #$0270 : JSL.L NegateA_A0B067 
-    CMP.W #$0008 
-    BPL .notDone 
+    CMP.W #$0008 : BPL .notDone 
     LDA.W #RTS_A5EB1A : STA.W $0FA8 
 
 .notDone:
@@ -7339,8 +7295,7 @@ EnemyShot_SporeSpawn_Vulnerable:
     LDA.W $0F9C,X : BEQ EnemyShot_SporeSpawn 
     LDA.W #Function_SporeSpawn_Moving : STA.W $0FA8,X 
     LDY.W #$0002 
-    LDA.W $0F8C,X : CMP.W #$0190 
-    BPL .noSpeedUp 
+    LDA.W $0F8C,X : CMP.W #$0190 : BPL .noSpeedUp 
     LDA.L $7E7818 : BPL .negativeAngleDelta 
     TYA 
     EOR.W #$FFFF 
@@ -7361,19 +7316,15 @@ EnemyShot_SporeSpawn_Vulnerable:
     LDA.W #InstList_SporeSpawn_CloseAndMove : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDY.W #$0060 
-    LDA.W $0F8C,X : CMP.W #$0046 
-    BMI .paletteChosen 
+    LDA.W $0F8C,X : CMP.W #$0046 : BMI .paletteChosen 
     LDY.W #$0040 
-    CMP.W #$019A 
-    BMI .paletteChosen 
+    CMP.W #$019A : BMI .paletteChosen 
     LDY.W #$0020 
-    CMP.W #$0302 
-    BMI .paletteChosen 
+    CMP.W #$0302 : BMI .paletteChosen 
     LDY.W #$0000 
 
 .paletteChosen:
-    CMP.L $7E8800 
-    BEQ EnemyShot_SporeSpawn 
+    CMP.L $7E8800 : BEQ EnemyShot_SporeSpawn 
     STA.L $7E8800 
     TYA 
     JSL.L LoadSporeSpawnHealthBasedPalette 

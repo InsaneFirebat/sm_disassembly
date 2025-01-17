@@ -30,8 +30,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     TAX 
     LDA.W SamusTilesAnimation_AnimationDefinitionPointers,X : CLC : ADC.B $14 : TAX 
     LDA.W $0000,X : AND.W #$00FF 
-    CMP.W #$00FF 
-    BEQ .return 
+    CMP.W #$00FF : BEQ .return 
     ASL A 
     TAY 
     INX 
@@ -11931,8 +11930,7 @@ PlaySamusFanfare:
 
 
 .nonZero:
-    CMP.W #$0005 
-    BNE .not5 
+    CMP.W #$0005 : BNE .not5 
     LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
     BRA .not5 
 
@@ -11940,8 +11938,7 @@ PlaySamusFanfare:
 .not5:
     LDA.W $0DEC 
     INC A 
-    CMP.W #$0168 
-    BPL .greaterThanEqualTo168 
+    CMP.W #$0168 : BPL .greaterThanEqualTo168 
     STA.W $0DEC 
     BRA .return 
 
@@ -11991,8 +11988,7 @@ DrawSamusSuitExploding:
     PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A1E : AND.W #$00FF 
-    CMP.W #$0004 
-    BEQ .facingLeft 
+    CMP.W #$0004 : BEQ .facingLeft 
     LDA.W #$081C : CLC : ADC.W $0DE4 : STA.B $12 
     BRA + 
 

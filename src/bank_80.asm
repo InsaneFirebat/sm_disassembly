@@ -60,8 +60,7 @@ SendAPUData:
     LDA.W #$3000 : STA.L $000641 
 
 .retry:
-    LDA.W #$BBAA : CMP.L $002140 
-    BEQ .AABB ; Wait until [APU IO 0..1] = AAh BBh
+    LDA.W #$BBAA : CMP.L $002140 : BEQ .AABB ; Wait until [APU IO 0..1] = AAh BBh
     LDA.L $000641 
     DEC A 
     STA.L $000641 
@@ -90,8 +89,7 @@ SendAPUData:
     XBA 
 
 .wait:
-    CMP.L $002140 
-    BNE .wait ; Wait until APU IO 0 echoes
+    CMP.L $002140 : BNE .wait ; Wait until APU IO 0 echoes
     INC A ; Increment index
 
 .uploadData:
@@ -102,8 +100,7 @@ SendAPUData:
     BNE .loopNextData ; If [X] != 0: go to .loopNextData
 
 .wait2:
-    CMP.L $002140 
-    BNE .wait2 ; Wait until APU IO 0 echoes
+    CMP.L $002140 : BNE .wait2 ; Wait until APU IO 0 echoes
 
 .inc:
     ADC.B #$03 ; Kick = [index] + 4
@@ -130,8 +127,7 @@ SendAPUData:
 .wait3:
     DEX ; Wait until APU IO 0 echoes
     BEQ .return ; If exceeded 1000h attempts: return
-    CMP.L $002140 
-    BNE .wait3 
+    CMP.L $002140 : BNE .wait3 
     PLX 
     BVS .uploadDataBlock ; If block size != 0: go to .uploadDataBlock
     SEP #$20 
@@ -359,8 +355,7 @@ CheckForNonCorruptSRAM:
     LDX.W #$000A 
 
 .nonCorruptLoop:
-    LDA.L $701FE0,X : CMP.L Text_supermetroid,X 
-    BNE .return ; If $70:1FE0..1FEB = 'supermetroid':
+    LDA.L $701FE0,X : CMP.L Text_supermetroid,X : BNE .return ; If $70:1FE0..1FEB = 'supermetroid':
     DEX #2
     BPL .nonCorruptLoop 
     LDA.W #$0004 : STA.W $1F59 ; Number of demo sets = 4
@@ -857,8 +852,7 @@ NTSC_PAL_SRAM_MappingCheck:
     LDX.W #$1FFE 
 
 .loop:
-    CMP.L $700000,X 
-    BNE .failedSRAMCheck ; If [$70:0000..1FFF] != 0..FFFh: go to .failedSRAMCheck
+    CMP.L $700000,X : BNE .failedSRAMCheck ; If [$70:0000..1FFF] != 0..FFFh: go to .failedSRAMCheck
     INC A 
     DEX #2
     .verifySRAM:
@@ -1143,8 +1137,7 @@ HandleFadingIn:
 Finalise_OAM:
     PHP 
     REP #$30 
-    LDA.W $0590 : CMP.W #$0200 
-    BPL .clearOAMStackPointer 
+    LDA.W $0590 : CMP.W #$0200 : BPL .clearOAMStackPointer 
     LSR A 
     STA.B $12 
     LSR A 
@@ -1834,8 +1827,7 @@ QueueMusicDataOrTrack_YFrameDelay:
     LDX.W $0639 
     STA.W $0619,X 
     TYA 
-    CMP.W #$0008 
-    BCS .setTimer 
+    CMP.W #$0008 : BCS .setTimer 
     LDA.W #$0008 
 
 .setTimer:
@@ -1887,8 +1879,7 @@ QueueSound_Lib1_Max6:
 QueueSound_Lib1:
     STA.W $0653 
     LDA.W $0646 : SEC : SBC.W $0643 : AND.B #$0F 
-    CMP.W $0653 
-    BCS .return 
+    CMP.W $0653 : BCS .return 
     XBA 
     REP #$30 
     LDX.W $05F5 
@@ -1920,8 +1911,7 @@ QueueSound_Lib1:
 
 .queueFull:
     JSR.W NOPRTS_8091A7 
-    CMP.W $0656,Y 
-    BCS .return 
+    CMP.W $0656,Y : BCS .return 
     STA.W $0656,Y 
     BRA .return 
 
@@ -1963,8 +1953,7 @@ QueueSound_Lib2_Max6:
 QueueSound_Lib2:
     STA.W $0654 
     LDA.W $0647 : SEC : SBC.W $0644 : AND.B #$0F 
-    CMP.W $0654 
-    BCS .return 
+    CMP.W $0654 : BCS .return 
     XBA 
     REP #$30 
     LDX.W $05F5 
@@ -1996,8 +1985,7 @@ QueueSound_Lib2:
 
 .queueFull:
     JSR.W NOPRTS_8091A7 
-    CMP.W $0666,Y 
-    BCS .return 
+    CMP.W $0666,Y : BCS .return 
     STA.W $0666,Y 
     BRA .return 
 
@@ -2039,8 +2027,7 @@ QueueSound_Lib3_Max6:
 QueueSound_Lib3:
     STA.W $0655 
     LDA.W $0648 : SEC : SBC.W $0645 : AND.B #$0F 
-    CMP.W $0655 
-    BCS .return 
+    CMP.W $0655 : BCS .return 
     XBA 
     REP #$30 
     LDX.W $05F5 
@@ -2072,8 +2059,7 @@ QueueSound_Lib3:
 
 .queueFull:
     JSR.W NOPRTS_8091A7 
-    CMP.W $0676,Y 
-    BCS .return 
+    CMP.W $0676,Y : BCS .return 
     STA.W $0676,Y 
     BRA .return 
 
@@ -2210,11 +2196,9 @@ Update_IO_Registers:
     LDX.B $56 
     STX.W $07EC 
     LDA.B $55 : AND.W #$0007 
-    CMP.W #$0007 
-    BEQ .mode7 
+    CMP.W #$0007 : BEQ .mode7 
     LDA.B $56 : AND.W #$0007 
-    CMP.W #$0007 
-    BEQ .mode7 
+    CMP.W #$0007 : BEQ .mode7 
     RTS 
 
 
@@ -2364,8 +2348,7 @@ ReadControllerInput:
     STA.B $8F 
     STA.B $93 
     LDA.B $8B : BEQ .unheld 
-    CMP.B $97 
-    BNE .unheld 
+    CMP.B $97 : BNE .unheld 
     DEC.B $A3 
     BNE .heldEnd 
     LDA.B $8B : STA.B $93 
@@ -2390,8 +2373,7 @@ ReadControllerInput:
     STA.B $91 
     STA.B $95 
     LDA.B $8D : BEQ .unheld2 
-    CMP.B $99 
-    BNE .unheld2 
+    CMP.B $99 : BNE .unheld2 
     DEC.B $A5 
     BNE .held2End 
     LDA.B $8D : STA.B $95 
@@ -2405,8 +2387,7 @@ ReadControllerInput:
 .held2End:
     LDA.B $8D : STA.B $99 
     LDA.W $0617 : BNE .checkDebug 
-    LDA.B $8B : CMP.W #$3030 
-    BNE .checkDebug 
+    LDA.B $8B : CMP.W #$3030 : BNE .checkDebug 
     STZ.W $05F5 
     JMP.W SoftReset 
 
@@ -2432,16 +2413,14 @@ ReadControllerInput:
 
 .debugInputEnabled:
     LDA.B $8B : AND.W #$2020 
-    CMP.W #$2020 
-    BNE .checkSelectR 
+    CMP.W #$2020 : BNE .checkSelectR 
     LDA.B $8F : STA.W $05C5 
     STZ.B $8B 
     STZ.B $8F 
 
 .checkSelectR:
     LDA.B $8B : AND.W #$2010 
-    CMP.W #$2010 
-    BNE .checkToggleHUD 
+    CMP.W #$2010 : BNE .checkToggleHUD 
     LDA.B $8F : STA.W $05C7 
     LDA.W #$E0F0 ; >_<
     STZ.B $8B 
@@ -2954,8 +2933,7 @@ AddMissilesToHUDTilemap:
     PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.L $7EC61C : AND.W #$03FF 
-    CMP.W #$000F 
-    BNE .return 
+    CMP.W #$000F : BNE .return 
     LDA.W Tilemap_HUD_missiles : STA.L $7EC61C 
     LDA.W Tilemap_HUD_missiles+2 : STA.L $7EC61E 
     LDA.W Tilemap_HUD_missiles+4 : STA.L $7EC620 
@@ -3000,8 +2978,7 @@ AddXrayToHUDTilemap:
 
 Write2x2TileIconToHUDTilemap:
     LDA.L $7EC608,X : AND.W #$03FF 
-    CMP.W #$000F 
-    BNE .return 
+    CMP.W #$000F : BNE .return 
     LDA.W $0000,Y : STA.L $7EC608,X 
     LDA.W $0002,Y : STA.L $7EC60A,X 
     LDA.W $0004,Y : STA.L $7EC648,X 
@@ -3095,8 +3072,7 @@ HandleHUDTilemap_PausedAndRunning:
     SEP #$20 
     STZ.B $02 
     REP #$30 
-    LDA.W $09C0 : CMP.W #$0001 
-    BNE .handleSamusHealth 
+    LDA.W $09C0 : CMP.W #$0001 : BNE .handleSamusHealth 
     LDY.W #Tilemap_HUD_autoReserve 
     LDA.W $09D6 : BNE .drawAutoReserve 
     LDY.W #Tilemap_HUD_emptyAutoReserve 
@@ -3110,8 +3086,7 @@ HandleHUDTilemap_PausedAndRunning:
     LDA.W $000A,Y : STA.L $7EC69A 
 
 .handleSamusHealth:
-    LDA.W $09C2 : CMP.W $0A06 
-    BEQ .handleSamusMissiles 
+    LDA.W $09C2 : CMP.W $0A06 : BEQ .handleSamusMissiles 
     STA.W $0A06 
     LDA.W $09C2 : STA.W $4204 
     SEP #$20 
@@ -3154,16 +3129,14 @@ HandleHUDTilemap_PausedAndRunning:
 .handleSamusMissiles:
     LDA.W #Tilemap_HUDDigits_ammo : STA.B $00 
     LDA.W $09C8 : BEQ .handleSuperMissiles 
-    LDA.W $09C6 : CMP.W $0A08 
-    BEQ .handleSuperMissiles 
+    LDA.W $09C6 : CMP.W $0A08 : BEQ .handleSuperMissiles 
     STA.W $0A08 
     LDX.W #$0094 
     JSR.W DrawThreeHUDDigits 
 
 .handleSuperMissiles:
     LDA.W $09CC : BEQ .handlePowerBombs 
-    LDA.W $09CA : CMP.W $0A0A 
-    BEQ .handlePowerBombs 
+    LDA.W $09CA : CMP.W $0A0A : BEQ .handlePowerBombs 
     STA.W $0A0A 
     LDX.W #$009C 
     LDA.W $05CF : BIT.W #$1F40 
@@ -3177,15 +3150,13 @@ HandleHUDTilemap_PausedAndRunning:
 
 .handlePowerBombs:
     LDA.W $09D0 : BEQ .handleHighlighter 
-    LDA.W $09CE : CMP.W $0A0C 
-    BEQ .handleHighlighter 
+    LDA.W $09CE : CMP.W $0A0C : BEQ .handleHighlighter 
     STA.W $0A0C 
     LDX.W #$00A2 
     JSR.W DrawTwoHUDDigits 
 
 .handleHighlighter:
-    LDA.W $09D2 : CMP.W $0A0E 
-    BEQ .handleAutoCancel 
+    LDA.W $09D2 : CMP.W $0A0E : BEQ .handleAutoCancel 
     LDX.W #$1000 
     JSR.W ToggleHUDItemHighlight 
     LDA.W $0A0E 
@@ -3193,12 +3164,9 @@ HandleHUDTilemap_PausedAndRunning:
     JSR.W ToggleHUDItemHighlight 
     LDA.W $09D2 : STA.W $0A0E 
     LDA.W $0A1F : AND.W #$00FF 
-    CMP.W #$0003 
-    BEQ .handleAutoCancel 
-    CMP.W #$0014 
-    BEQ .handleAutoCancel 
-    LDA.W $0D32 : CMP.W #GrappleBeamFunction_Inactive 
-    BNE .handleAutoCancel 
+    CMP.W #$0003 : BEQ .handleAutoCancel 
+    CMP.W #$0014 : BEQ .handleAutoCancel 
+    LDA.W $0D32 : CMP.W #GrappleBeamFunction_Inactive : BNE .handleAutoCancel 
     LDA.W $0A78 : BNE .handleAutoCancel 
     LDA.W #$0039 : JSL.L QueueSound_Lib1_Max6 
 
@@ -3236,29 +3204,25 @@ ToggleHUDItemHighlight:
     ASL A 
     TAY 
     LDX.W .HUDItemOffsets,Y 
-    LDA.L $7EC608,X : CMP.W #$2C0F 
-    BEQ .topRightMiddle 
+    LDA.L $7EC608,X : CMP.W #$2C0F : BEQ .topRightMiddle 
     AND.W #$E3FF 
     ORA.W $077C 
     STA.L $7EC608,X 
 
 .topRightMiddle:
-    LDA.L $7EC60A,X : CMP.W #$2C0F 
-    BEQ .bottomLeft 
+    LDA.L $7EC60A,X : CMP.W #$2C0F : BEQ .bottomLeft 
     AND.W #$E3FF 
     ORA.W $077C 
     STA.L $7EC60A,X 
 
 .bottomLeft:
-    LDA.L $7EC648,X : CMP.W #$2C0F 
-    BEQ .bottomRightMiddle 
+    LDA.L $7EC648,X : CMP.W #$2C0F : BEQ .bottomRightMiddle 
     AND.W #$E3FF 
     ORA.W $077C 
     STA.L $7EC648,X 
 
 .bottomRightMiddle:
-    LDA.L $7EC64A,X : CMP.W #$2C0F 
-    BEQ .checkY 
+    LDA.L $7EC64A,X : CMP.W #$2C0F : BEQ .checkY 
     AND.W #$E3FF 
     ORA.W $077C 
     STA.L $7EC64A,X 
@@ -3270,15 +3234,13 @@ ToggleHUDItemHighlight:
 
 
 .topRight:
-    LDA.L $7EC60C,X : CMP.W #$2C0F 
-    BEQ .bottomRight 
+    LDA.L $7EC60C,X : CMP.W #$2C0F : BEQ .bottomRight 
     AND.W #$E3FF 
     ORA.W $077C 
     STA.L $7EC60C,X 
 
 .bottomRight:
-    LDA.L $7EC64C,X : CMP.W #$2C0F 
-    BEQ .return 
+    LDA.L $7EC64C,X : CMP.W #$2C0F : BEQ .return 
     AND.W #$E3FF 
     ORA.W $077C 
     STA.L $7EC64C,X 
@@ -3372,8 +3334,7 @@ ProcessTimer_MotherBrainStart:
 ProcessTimer_InitialDelay:
     SEP #$20 
     INC.W $0948 
-    LDA.W $0948 : CMP.B #$10 
-    BCC .return 
+    LDA.W $0948 : CMP.B #$10 : BCC .return 
     INC.W $0943 
 
 .return:
@@ -3384,8 +3345,7 @@ ProcessTimer_InitialDelay:
 ProcessTimer_RunningMovementDelayed:
     SEP #$20 
     INC.W $0948 
-    LDA.W $0948 : CMP.B #$60 
-    BCC .return 
+    LDA.W $0948 : CMP.B #$60 : BCC .return 
     STZ.W $0948 
     INC.W $0943 
 
@@ -3396,15 +3356,13 @@ ProcessTimer_RunningMovementDelayed:
 
 ProcessTimer_RunningMovingIntoPlace:
     LDY.W #$0000 
-    LDA.W #$00E0 : CLC : ADC.W $0948 : CMP.W #$DC00 
-    BCC .XinPosition 
+    LDA.W #$00E0 : CLC : ADC.W $0948 : CMP.W #$DC00 : BCC .XinPosition 
     INY 
     LDA.W #$DC00 
 
 .XinPosition:
     STA.W $0948 
-    LDA.W #$FF3F : CLC : ADC.W $094A : CMP.W #$3000 
-    BCS .YinPosition 
+    LDA.W #$FF3F : CLC : ADC.W $094A : CMP.W #$3000 : BCS .YinPosition 
     INY 
     LDA.W #$3000 
 
@@ -3816,8 +3774,7 @@ CalculateLayer2XPosition:
     LDY.W $0911 
     SEP #$20 
     LDA.W $091B : BEQ .scrollReturn 
-    CMP.B #$01 
-    BEQ .return 
+    CMP.B #$01 : BEQ .return 
     AND.B #$FE 
     STA.W $4202 
     LDA.W $0911 : STA.W $4203 
@@ -3848,8 +3805,7 @@ CalculateLayer2YPosition:
     LDY.W $0915 
     SEP #$20 
     LDA.W $091C : BEQ .scrollReturn 
-    CMP.B #$01 
-    BEQ .return 
+    CMP.B #$01 : BEQ .return 
     AND.B #$FE 
     STA.W $4202 
     LDA.W $0915 : STA.W $4203 
@@ -3913,8 +3869,7 @@ UpdateBGGraphics_WhenScrolling:
     REP #$20 
     JSR.W Calculate_BGScroll_LayerPositionBlocks 
     LDX.W #$0000 
-    LDA.W $08F7 : CMP.W $08FF 
-    BEQ .layer1HorizontalEnd 
+    LDA.W $08F7 : CMP.W $08FF : BEQ .layer1HorizontalEnd 
     STA.W $08FF 
     BMI .updateLayer1 
     LDX.W #$0010 
@@ -3933,8 +3888,7 @@ UpdateBGGraphics_WhenScrolling:
     LSR A 
     BCS .layer2HorizontalEnd 
     LDX.W #$0000 
-    LDA.W $08FB : CMP.W $0903 
-    BEQ .layer2HorizontalEnd 
+    LDA.W $08FB : CMP.W $0903 : BEQ .layer2HorizontalEnd 
     STA.W $0903 
     BMI .updateLayer2 
     LDX.W #$0010 
@@ -3950,8 +3904,7 @@ UpdateBGGraphics_WhenScrolling:
 
 .layer2HorizontalEnd:
     LDX.W #$0001 
-    LDA.W $08F9 : CMP.W $0901 
-    BEQ .layer1VerticalEnd 
+    LDA.W $08F9 : CMP.W $0901 : BEQ .layer1VerticalEnd 
     STA.W $0901 
     BMI + 
     LDX.W #$000F 
@@ -3969,8 +3922,7 @@ UpdateBGGraphics_WhenScrolling:
     LSR A 
     BCS .return 
     LDX.W #$0001 
-    LDA.W $08FD : CMP.W $0905 
-    BEQ .return 
+    LDA.W $08FD : CMP.W $0905 : BEQ .return 
     STA.W $0905 
     BMI .finish 
     LDX.W #$000F 
@@ -4052,8 +4004,7 @@ HandleScrollZones_HorizontalAutoscrolling:
   + LDA.W $07A9 
     DEC A 
     XBA 
-    CMP.W $0911 
-    BCS + 
+    CMP.W $0911 : BCS + 
     STA.W $0911 
 
   + LDA.W $0915 : CLC : ADC.W #$0080 : XBA 
@@ -4067,8 +4018,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     BNE .unboundedFromLeft 
     LDA.W $0911 : AND.W #$FF00 
     CLC : ADC.W #$0100 : STA.W $0933 
-    LDA.W $0939 : CLC : ADC.W $0DA2 : ADC.W #$0002 : CMP.W $0933 
-    BCS .reachedRightScrollBoundary 
+    LDA.W $0939 : CLC : ADC.W $0DA2 : ADC.W #$0002 : CMP.W $0933 : BCS .reachedRightScrollBoundary 
     STA.W $0939 
     LDA.W $0915 : CLC : ADC.W #$0080 : XBA 
     SEP #$20 
@@ -4098,8 +4048,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .return 
     LDA.W $0911 : AND.W #$FF00 : STA.W $0933 
-    LDA.W $0939 : SEC : SBC.W $0DA2 : SBC.W #$0002 : CMP.W $0933 
-    BMI .reachedLeftScrollBoundary 
+    LDA.W $0939 : SEC : SBC.W $0DA2 : SBC.W #$0002 : CMP.W $0933 : BMI .reachedLeftScrollBoundary 
     STA.W $0939 
     LDA.W $0915 : CLC : ADC.W #$0080 : XBA 
     SEP #$20 
@@ -4135,16 +4084,14 @@ HandleScrollZones_ScrollingRight:
     PHA : PLB 
     REP #$30 
     LDA.W $0911 : STA.W $0939 
-    LDA.W $0B0A : CMP.W $0911 
-    BPL + 
+    LDA.W $0B0A : CMP.W $0911 : BPL + 
     LDA.W $0B0A : STA.W $0911 
     STZ.W $090F 
 
   + LDA.W $07A9 
     DEC A 
     XBA 
-    CMP.W $0911 
-    BCS + 
+    CMP.W $0911 : BCS + 
     STA.W $0911 
     BRA .return 
 
@@ -4160,8 +4107,7 @@ HandleScrollZones_ScrollingRight:
     LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .return 
     LDA.W $0911 : AND.W #$FF00 : STA.W $0933 
-    LDA.W $0939 : SEC : SBC.W $0DA2 : SBC.W #$0002 : CMP.W $0933 
-    BPL + 
+    LDA.W $0939 : SEC : SBC.W $0DA2 : SBC.W #$0002 : CMP.W $0933 : BPL + 
     LDA.W $0933 
 
   + STA.W $0911 
@@ -4178,8 +4124,7 @@ HandleScrollZones_ScrollingLeft:
     PHA : PLB 
     REP #$30 
     LDA.W $0911 : STA.W $0939 
-    CMP.W $0B0A 
-    BPL + 
+    CMP.W $0B0A : BPL + 
     LDA.W $0B0A : STA.W $0911 
     STZ.W $090F 
 
@@ -4199,8 +4144,7 @@ HandleScrollZones_ScrollingLeft:
     BNE .return 
     LDA.W $0911 : AND.W #$FF00 
     CLC : ADC.W #$0100 : STA.W $0933 
-    LDA.W $0939 : CLC : ADC.W $0DA2 : ADC.W #$0002 : CMP.W $0933 
-    BCC + 
+    LDA.W $0939 : CLC : ADC.W $0DA2 : ADC.W #$0002 : CMP.W $0933 : BCC + 
     LDA.W $0933 
 
   + STA.W $0911 
@@ -4232,8 +4176,7 @@ HandleScrollZones_VerticalAutoscrolling:
     CLC : ADC.W $4216 : STA.B $14 
     TAX 
     LDA.L $7ECD20,X : AND.W #$00FF 
-    CMP.W #$0001 
-    BEQ + 
+    CMP.W #$0001 : BEQ + 
     LDY.W #$001F 
 
   + STY.W $0933 
@@ -4244,8 +4187,7 @@ HandleScrollZones_VerticalAutoscrolling:
   + LDA.W $07AB 
     DEC A 
     XBA 
-    CLC : ADC.W $0933 : CMP.W $0915 
-    BCS + 
+    CLC : ADC.W $0933 : CMP.W $0915 : BCS + 
     STA.W $0915 
 
   + SEP #$20 
@@ -4259,8 +4201,7 @@ HandleScrollZones_VerticalAutoscrolling:
     BNE .unboundedFromAbove 
     LDA.W $0915 : AND.W #$FF00 
     CLC : ADC.W #$0100 : STA.W $0935 
-    LDA.W $0939 : CLC : ADC.W $0DA6 : ADC.W #$0002 : CMP.W $0935 
-    BCS .reachedBottomScrollBoundary 
+    LDA.W $0939 : CLC : ADC.W $0DA6 : ADC.W #$0002 : CMP.W $0935 : BCS .reachedBottomScrollBoundary 
     STA.W $0939 
     SEP #$20 
     LDA.W $093A 
@@ -4291,10 +4232,8 @@ HandleScrollZones_VerticalAutoscrolling:
     BNE .return 
     LDA.W $0915 : AND.W #$FF00 
     CLC : ADC.W $0933 : STA.W $0937 
-    CMP.W $0915 
-    BCS .return 
-    LDA.W $0939 : SEC : SBC.W $0DA6 : SBC.W #$0002 : CMP.W $0937 
-    BMI .reachedTopScrollBoundary 
+    CMP.W $0915 : BCS .return 
+    LDA.W $0939 : SEC : SBC.W $0DA6 : SBC.W #$0002 : CMP.W $0937 : BMI .reachedTopScrollBoundary 
     STA.W $0939 
     SEP #$20 
     LDA.W $093A : STA.W $4202 
@@ -4341,13 +4280,11 @@ HandleScrollZones_ScrollingDown:
     CLC : ADC.W $4216 : STA.B $14 
     TAX 
     LDA.L $7ECD20,X : AND.W #$00FF 
-    CMP.W #$0001 
-    BEQ + 
+    CMP.W #$0001 : BEQ + 
     LDY.W #$001F 
 
   + STY.W $0933 
-    LDA.W $0B0E : CMP.W $0915 
-    BPL + 
+    LDA.W $0B0E : CMP.W $0915 : BPL + 
     LDA.W $0B0E : STA.W $0915 
     STZ.W $0913 
 
@@ -4355,19 +4292,16 @@ HandleScrollZones_ScrollingDown:
     DEC A 
     XBA 
     CLC : ADC.W $0933 : STA.W $0937 
-    CMP.W $0915 
-    BCC .setLayer1Y 
+    CMP.W $0915 : BCC .setLayer1Y 
     LDA.B $14 : CLC : ADC.W $07A9 : TAX 
     LDA.L $7ECD20,X : AND.W #$00FF 
     BNE .return 
     LDA.W $0915 : AND.W #$FF00 
     CLC : ADC.W $0933 : STA.W $0937 
-    CMP.W $0915 
-    BCS .return 
+    CMP.W $0915 : BCS .return 
 
 .setLayer1Y:
-    LDA.W $0939 : SEC : SBC.W $0DA6 : SBC.W #$0002 : CMP.W $0937 
-    BPL + 
+    LDA.W $0939 : SEC : SBC.W $0DA6 : SBC.W #$0002 : CMP.W $0937 : BPL + 
     LDA.W $0937 
 
   + STA.W $0915 
@@ -4384,8 +4318,7 @@ HandleScrollZones_ScrollingUp:
     PHA : PLB 
     REP #$30 
     LDA.W $0915 : STA.W $0939 
-    CMP.W $0B0E 
-    BPL + 
+    CMP.W $0B0E : BPL + 
     LDA.W $0B0E : STA.W $0915 
     STZ.W $0913 
 
@@ -4405,8 +4338,7 @@ HandleScrollZones_ScrollingUp:
     BNE .return 
     LDA.W $0915 : AND.W #$FF00 
     CLC : ADC.W #$0100 : STA.W $0933 
-    LDA.W $0939 : CLC : ADC.W $0DA6 : ADC.W #$0002 : CMP.W $0933 
-    BCC + 
+    LDA.W $0939 : CLC : ADC.W $0DA6 : ADC.W #$0002 : CMP.W $0933 : BCC + 
     LDA.W $0933 
 
   + STA.W $0915 
@@ -4521,8 +4453,7 @@ UpdateLevelBackgroundDataColumn:
     JMP.W .next 
 
 
-  + CMP.W #$0400 
-    BNE + 
+  + CMP.W #$0400 : BNE + 
     LDA.W $A002,X : EOR.W #$4000 : STA.W $C8C8,Y 
     LDA.W $A000,X : EOR.W #$4000 : STA.W $C908,Y 
     LDA.W $A006,X : EOR.W #$4000 : STA.W $C8CA,Y 
@@ -4530,8 +4461,7 @@ UpdateLevelBackgroundDataColumn:
     BRA .next 
 
 
-  + CMP.W #$0800 
-    BNE + 
+  + CMP.W #$0800 : BNE + 
     LDA.W $A004,X : EOR.W #$8000 : STA.W $C8C8,Y 
     LDA.W $A006,X : EOR.W #$8000 : STA.W $C908,Y 
     LDA.W $A000,X : EOR.W #$8000 : STA.W $C8CA,Y 
@@ -4654,8 +4584,7 @@ UpdateBackgroundLevelDataRow:
     JMP.W .next 
 
 
-  + CMP.W #$0400 
-    BNE + 
+  + CMP.W #$0400 : BNE + 
     LDA.W $A002,X : EOR.W #$4000 : STA.W $C948,Y 
     LDA.W $A000,X : EOR.W #$4000 : STA.W $C94A,Y 
     LDA.W $A006,X : EOR.W #$4000 : STA.W $C98C,Y 
@@ -4663,8 +4592,7 @@ UpdateBackgroundLevelDataRow:
     BRA .next 
 
 
-  + CMP.W #$0800 
-    BNE + 
+  + CMP.W #$0800 : BNE + 
     LDA.W $A004,X : EOR.W #$8000 : STA.W $C948,Y 
     LDA.W $A006,X : EOR.W #$8000 : STA.W $C94A,Y 
     LDA.W $A000,X : EOR.W #$8000 : STA.W $C98C,Y 
@@ -5098,15 +5026,13 @@ Decompression_VariableDestination:
   + STX.B $47 
     PLX 
     STA.B $4A 
-    CMP.B #$FF 
-    BNE + 
+    CMP.B #$FF : BNE + 
     PLB : PLP 
     RTL 
 
 
   + AND.B #$E0 
-    CMP.B #$E0 
-    BNE .pushCommandBits 
+    CMP.B #$E0 : BNE .pushCommandBits 
     LDA.B $4A 
     ASL #3
     AND.B #$E0 
@@ -5134,17 +5060,13 @@ Decompression_VariableDestination:
   + TAX 
     INX 
     PLA 
-    CMP.B #$00 
-    BPL + 
+    CMP.B #$00 : BPL + 
     JMP.W .dictionaryVariant 
 
 
-  + CMP.B #$20 
-    BEQ .byteFill 
-    CMP.B #$40 
-    BEQ .wordFill 
-    CMP.B #$60 
-    BEQ .incrementingFill 
+  + CMP.B #$20 : BEQ .byteFill 
+    CMP.B #$40 : BEQ .wordFill 
+    CMP.B #$60 : BEQ .incrementingFill 
 
 .loopDirectCopy:
     PHX 
@@ -5238,8 +5160,7 @@ Decompression_VariableDestination:
 
 
 .dictionaryVariant:
-    CMP.B #$C0 
-    BCS .slidingDictionary 
+    CMP.B #$C0 : BCS .slidingDictionary 
     AND.B #$20 
     STA.B $4F 
     PHX 
@@ -5333,15 +5254,13 @@ DecompressionToVRAM:
   + STX.B $47 
     PLX 
     STA.B $4A 
-    CMP.B #$FF 
-    BNE + 
+    CMP.B #$FF : BNE + 
     PLB : PLP 
     RTL 
 
 
   + AND.B #$E0 
-    CMP.B #$E0 
-    BNE .pushCommandBits 
+    CMP.B #$E0 : BNE .pushCommandBits 
     LDA.B $4A 
     ASL #3
     AND.B #$E0 
@@ -5369,17 +5288,13 @@ DecompressionToVRAM:
   + TAX 
     INX 
     PLA 
-    CMP.B #$00 
-    BPL + 
+    CMP.B #$00 : BPL + 
     JMP.W .dictionaryVariant 
 
 
-  + CMP.B #$20 
-    BEQ .byteFill 
-    CMP.B #$40 
-    BEQ .wordFill 
-    CMP.B #$60 
-    BNE .loopDirectCopy 
+  + CMP.B #$20 : BEQ .byteFill 
+    CMP.B #$40 : BEQ .wordFill 
+    CMP.B #$60 : BNE .loopDirectCopy 
     JMP.W .incrementingFill 
 
 
@@ -5537,8 +5452,7 @@ DecompressionToVRAM:
 
 
 .dictionaryVariant:
-    CMP.B #$C0 
-    BCS .slidingDictionary 
+    CMP.B #$C0 : BCS .slidingDictionary 
     AND.B #$20 
     STA.B $4F 
     PHX 

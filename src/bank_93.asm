@@ -134,8 +134,7 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
     LDA.W #$001E : STA.W $1840 
 
 .setCooldown:
-    LDA.W $0CCC : CMP.W #$0015 
-    BMI .return 
+    LDA.W $0CCC : CMP.W #$0015 : BMI .return 
     LDA.W #$0014 : STA.W $0CCC 
 
 .return:
@@ -256,8 +255,7 @@ Instruction_SamusProjectile_GotoY:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_SamusProj_GotoY_BasedOnBombTimer_938240:
     REP #$30 
-    LDA.W $0000,Y : CMP.W $0C7C,X 
-    BPL .lessThanY 
+    LDA.W $0000,Y : CMP.W $0C7C,X : BPL .lessThanY 
     LDA.W $0004,Y 
     TAY 
     RTS 
@@ -314,8 +312,7 @@ DrawProjectiles:
 
 .noFlickering:
     AND.W #$0F00 
-    CMP.W #$0300 
-    BPL .next 
+    CMP.W #$0300 : BPL .next 
 
 .draw:
     LDA.W $093F : BPL .noRotation 
@@ -402,11 +399,9 @@ DrawBombsAndProjectileExplosions:
 .loop:
     LDA.W $0C40,X : BEQ .next 
     LDA.W $0C18,X : AND.W #$0F00 
-    CMP.W #$0300 
-    BMI .next 
+    CMP.W #$0300 : BMI .next 
     BEQ .powerBomb 
-    CMP.W #$0500 
-    BEQ .normalPositionCalculation 
+    CMP.W #$0500 : BEQ .normalPositionCalculation 
     LDA.W $093F : BPL .normalPositionCalculation 
     JSL.L Calculate_ProjectilePosition_InRotatingElevatorRoom 
     LDA.B $12 : BRA .calculatedPosition 
@@ -417,10 +412,8 @@ DrawBombsAndProjectileExplosions:
 
 .normalPositionCalculation:
     LDA.W $0B64,X : SEC : SBC.W $0911 : STA.B $14 
-    CMP.W #$0130 
-    BPL .next 
-    CMP.W #$FFD0 
-    BMI .next 
+    CMP.W #$0130 : BPL .next 
+    CMP.W #$FFD0 : BMI .next 
     LDA.W $0B78,X : SEC : SBC.W $0915 : STA.B $12 
 
 .calculatedPosition:
@@ -14156,10 +14149,8 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawShinesparkWindupEffectSprite_93F5E2:
     PHP : PHB : PHK : PLB 
     REP #$30 
-    LDA.W $0A1C : CMP.W #$00C7 
-    BEQ .verticalShinesparkWindup 
-    CMP.W #$00C8 
-    BNE .return 
+    LDA.W $0A1C : CMP.W #$00C7 : BEQ .verticalShinesparkWindup 
+    CMP.W #$00C8 : BNE .return 
 
 .verticalShinesparkWindup:
     LDA.W $05B6 : BIT.W #$0001 

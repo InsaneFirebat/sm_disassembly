@@ -57,8 +57,7 @@ MessageBox_Routine:
     JSR.W Initialise_MessageBox 
     JSR.W Play_2_Lag_Frames_of_Music_and_Sound_Effects 
     JSR.W Open_MessageBox 
-    LDA.W $1C1F : CMP.W #$001C 
-    BEQ .gunship 
+    LDA.W $1C1F : CMP.W #$001C : BEQ .gunship 
     JSR.W Handle_MessageBox_Interaction 
     JSR.W Close_MessageBox 
     JSR.W Clear_MessageBox_BG3Tilemap 
@@ -74,8 +73,7 @@ MessageBox_Routine:
 .gunship:
     JSR.W Handle_MessageBox_Interaction 
     JSR.W Close_MessageBox 
-    LDA.W $05F9 : CMP.W #$0002 
-    BEQ .no 
+    LDA.W $05F9 : CMP.W #$0002 : BEQ .no 
     LDA.W #$0018 : STA.W $1C1F 
     JSR.W Clear_MessageBox_BG3Tilemap 
     JSR.W Play_Saving_Sound_Effect 
@@ -96,17 +94,14 @@ MessageBox_Routine:
 
 MaybeTriggerPauseScreen_or_ReturnSaveConfirmationSelection:
     REP #$30 
-    LDA.W $1C1F : CMP.W #$0014 
-    BNE .notMapPause 
+    LDA.W $1C1F : CMP.W #$0014 : BNE .notMapPause 
     LDA.W #$000C : STA.W $0998 
     RTS 
 
 
 .notMapPause:
-    CMP.W #$001C 
-    BEQ .saveConfirmationSelection 
-    CMP.W #$0017 
-    BNE .return 
+    CMP.W #$001C : BEQ .saveConfirmationSelection 
+    CMP.W #$0017 : BNE .return 
 
 .saveConfirmationSelection:
     LDA.W $05F9 
@@ -137,8 +132,7 @@ Wait_for_Lag_Frame:
     LDA.W $05B8 
 
 .wait:
-    CMP.W $05B8 
-    BEQ .wait 
+    CMP.W $05B8 : BEQ .wait 
     PLP 
     RTS 
 
@@ -450,8 +444,7 @@ Open_MessageBox:
 .loop:
     JSR.W Write_MessageBox_BG3_Yscroll_HDMA_DataTable 
     LDA.W $05A2 : CLC : ADC.W #$0200 : STA.W $05A2 
-    CMP.W #$1800 
-    BMI .loop 
+    CMP.W #$1800 : BMI .loop 
     LDA.W #$1800 : STA.W $05A2 
     JSR.W Write_MessageBox_BG3_Yscroll_HDMA_DataTable 
     RTS 
@@ -459,19 +452,13 @@ Open_MessageBox:
 
 Handle_MessageBox_Interaction:
     SEP #$20 
-    LDA.W $1C1F : CMP.B #$17 
-    BEQ .save 
-    CMP.B #$1C 
-    BEQ .save 
+    LDA.W $1C1F : CMP.B #$17 : BEQ .save 
+    CMP.B #$1C : BEQ .save 
     LDX.W #$000A 
-    LDA.W $1C1F : CMP.B #$14 
-    BEQ .lagLoop 
-    CMP.B #$15 
-    BEQ .lagLoop 
-    CMP.B #$16 
-    BEQ .lagLoop 
-    CMP.B #$18 
-    BEQ .lagLoop 
+    LDA.W $1C1F : CMP.B #$14 : BEQ .lagLoop 
+    CMP.B #$15 : BEQ .lagLoop 
+    CMP.B #$16 : BEQ .lagLoop 
+    CMP.B #$18 : BEQ .lagLoop 
     LDX.W #$0168 
 
 .lagLoop:
@@ -542,8 +529,7 @@ Handle_MessageBox_Interaction:
 Toggle_Save_Confirmation_Selection:
     LDA.W $05F9 : EOR.W #$0002 : STA.W $05F9 
     LDY.W #$0040 
-    CMP.W #$0002 
-    BNE + 
+    CMP.W #$0002 : BNE + 
     LDY.W #$0080 
 
   + LDX.W #$0100 

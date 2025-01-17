@@ -478,8 +478,7 @@ UNUSED_ModifyMode7TransformAndBG1PosWithController_8B8488:
 
 
 .zoomOut:
-    LDA.W $198F : CMP.W #$7000 
-    BPL .return 
+    LDA.W $198F : CMP.W #$7000 : BPL .return 
     INC A 
     STA.W $198F 
     BRA .return 
@@ -673,8 +672,7 @@ Debug_DisplayVersionInfo:
     PHY 
     LDA.W Debug_VersionString,Y : AND.W #$00FF 
     BEQ .done 
-    CMP.W #$002E 
-    BEQ .decimalPoint 
+    CMP.W #$002E : BEQ .decimalPoint 
     SEC : SBC.W #$0030 : ASL A 
     TAY 
     LDA.W .versionStringOAMEntryTileNumbersAttributes,Y : STA.W $0372,X 
@@ -755,8 +753,7 @@ CinematicBGObjects_Update32x30CinematicBGTilemap:
     PHP 
     REP #$30 
     LDA.B $55 : AND.W #$00FF 
-    CMP.W #$0007 
-    BEQ .return 
+    CMP.W #$0007 : BEQ .return 
     LDX.W $0330 
     LDA.W #$0780 : STA.B $D0,X 
     INX #2
@@ -779,8 +776,7 @@ CinematicBGObjects_UpdateSamusEyesTilemap:
     PHP 
     REP #$30 
     LDA.B $55 : AND.W #$00FF 
-    CMP.W #$0007 
-    BEQ .return 
+    CMP.W #$0007 : BEQ .return 
     LDX.W $0330 
     LDA.W #$0080 : STA.B $D0,X 
     INX #2
@@ -803,8 +799,7 @@ CinematicBGObjects_Update32x32CinematicBGTilemap:
     PHP 
     REP #$30 
     LDA.B $55 : AND.W #$00FF 
-    CMP.W #$0007 
-    BEQ .return 
+    CMP.W #$0007 : BEQ .return 
     LDX.W $0330 
     LDA.W #$0800 : STA.B $D0,X 
     INX #2
@@ -869,8 +864,7 @@ IndirectInstructionFunction_DrawTextCharacter:
     SEC : SBC.W #$0008 : STA.W $1A9D,X 
 
 .merge:
-    LDA.W $0004,Y : CMP.W #IndirectInstructions_IntroText_Space 
-    BEQ .fallthrough 
+    LDA.W $0004,Y : CMP.W #IndirectInstructions_IntroText_Space : BEQ .fallthrough 
     LDA.W $1BA1 : BEQ .fallthrough 
     LDA.W #$000D : JSL.L QueueSound_Lib3_Max6 
 
@@ -1416,8 +1410,7 @@ UNUSED_CalculateXYComponentsOfRadiusAAngleY_8B8E52:
     STA.B $18 
     TYA 
     STA.B $1A 
-    CMP.W #$0080 
-    BPL + 
+    CMP.W #$0080 : BPL + 
     ASL A 
     TAX 
     JSR.W UNUSED_Math_8B8EA3 
@@ -1434,8 +1427,7 @@ UNUSED_CalculateXYComponentsOfRadiusAAngleY_8B8E52:
 .storeXComponent:
     STA.B $14 
     LDA.B $1A : SEC : SBC.W #$0040 : AND.W #$00FF 
-    CMP.W #$0080 
-    BPL + 
+    CMP.W #$0080 : BPL + 
     ASL A 
     TAX 
     JSR.W UNUSED_Math_8B8EA3 
@@ -1477,8 +1469,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 MoveUnusedSpritesOffScreen:
     PHP 
     REP #$30 
-    LDA.W $0590 : CMP.W #$0200 
-    BPL .return 
+    LDA.W $0590 : CMP.W #$0200 : BPL .return 
     LSR #2
     PHA 
     AND.W #$0007 
@@ -1714,8 +1705,7 @@ AdvanceFastScreenFadeIn:
     PHP 
     SEP #$30 
     LDA.B $51 : CLC : ADC.W $0725 : AND.B #$1F 
-    CMP.B #$0F 
-    BPL .disableForcedBlank 
+    CMP.B #$0F : BPL .disableForcedBlank 
     STA.B $51 
     PLP 
     CLC 
@@ -1740,8 +1730,7 @@ AdvanceSlowScreenFadeIn:
     LDA.B $51 
     INC A 
     AND.B #$1F 
-    CMP.B #$0F 
-    BPL .maxBrightness 
+    CMP.B #$0F : BPL .maxBrightness 
     STA.B $51 
     LDA.W $0725 : STA.W $0723 
 
@@ -2607,14 +2596,12 @@ Draw_CinematicSpriteObjects_IntroTitleSequence:
     LDA.W $1A9D,X : SEC : SBC.W $0915 : STA.B $12 
     BIT.W #$FF00 
     BNE + 
-    CLC : ADC.W #$0080 : CMP.W #$01FF 
-    BCS .next 
+    CLC : ADC.W #$0080 : CMP.W #$01FF : BCS .next 
     JSL.L AddSpritemapToOAM 
     BRA .next 
 
 
-  + CLC : ADC.W #$0080 : CMP.W #$01FF 
-    BCS .next 
+  + CLC : ADC.W #$0080 : CMP.W #$01FF : BCS .next 
     JSL.L AddSpritemapToOAM_Offscreen 
 
 .next:
@@ -2640,22 +2627,19 @@ Draw_CinematicSpriteObjects_EndingCredits:
     LDA.W $1A9D,X : SEC : SBC.W $0915 : STA.B $12 
     BIT.W #$FF00 
     BNE + 
-    CLC : ADC.W #$0080 : CMP.W #$01FF 
-    BCS .next 
+    CLC : ADC.W #$0080 : CMP.W #$01FF : BCS .next 
     JSL.L AddSpritemapToOAM 
     BRA .next 
 
 
-  + CLC : ADC.W #$0080 : CMP.W #$01FF 
-    BCS .next 
+  + CLC : ADC.W #$0080 : CMP.W #$01FF : BCS .next 
     JSL.L AddSpritemapToOAM_Offscreen 
 
 .next:
     DEX #2
     BPL .loop 
     PLB 
-    LDA.W $1F51 : CMP.W #CinematicFunc_Ending_ZebesDestruction2_CrossFade_FadingIn 
-    BPL .return 
+    LDA.W $1F51 : CMP.W #CinematicFunc_Ending_ZebesDestruction2_CrossFade_FadingIn : BPL .return 
     JSR.W MoveUnusedSpritesOffScreen 
 
 .return:
@@ -2749,8 +2733,7 @@ Process_TextGlowObject:
 
 
   + LDX.W $1A47 
-    LDA.W $1A37,X : CMP.W #$0C00 
-    BEQ .return 
+    LDA.W $1A37,X : CMP.W #$0C00 : BEQ .return 
     CLC : ADC.W #$0400 : STA.W $1A37,X 
     LDA.W #$0005 : STA.W $1A07,X 
     RTS 
@@ -2841,8 +2824,7 @@ Process_CreditsObject_InstList:
     PLB : PLB 
     LDA.W $1995 : CLC : ADC.W #$8000 : STA.W $1995 
     LDA.W $1997 : ADC.W #$0000 : STA.W $1997 
-    SEC : SBC.W $1A03 : CMP.W #$0008 
-    BMI .return 
+    SEC : SBC.W $1A03 : CMP.W #$0008 : BMI .return 
     LDA.W $1997 : STA.W $1A03 
     LDY.W $19F7 
 
@@ -2948,8 +2930,7 @@ RTS_8B9A47:
 
 
 SkipToTitleScreenCheck:
-    LDA.W $1F51 : CMP.W #RTS_8B9F28 
-    BPL .return 
+    LDA.W $1F51 : CMP.W #RTS_8B9F28 : BPL .return 
     LDA.B $8F : BIT.W #$9080 
     BEQ .return 
     LDA.W $1A53 : BNE .return 
@@ -3211,8 +3192,7 @@ Instruction_TriggerTitleSequenceScene0:
 CinematicFunction_TitleSequenceScene0_PanningLeft_Lower:
     LDA.W $1991 : CLC : ADC.W $1999 : STA.W $1991 
     LDA.W $1993 : ADC.W $199B : STA.W $1993 
-    CMP.W #$FFF9 
-    BPL .titleScreenCheck 
+    CMP.W #$FFF9 : BPL .titleScreenCheck 
     SEP #$20 
     LDA.B #$10 : STA.B $69 
     REP #$20 
@@ -3251,8 +3231,7 @@ Instruction_TriggerTitleSequenceScene1:
 CinematicFunction_TitleSequenceScene1_PanningLeft_Upper:
     LDA.W $1991 : CLC : ADC.W $1999 : STA.W $1991 
     LDA.W $1993 : ADC.W $199B : STA.W $1993 
-    CMP.W #$FF50 
-    BPL .titleScreenCheck 
+    CMP.W #$FF50 : BPL .titleScreenCheck 
     SEP #$20 
     LDA.B #$10 : STA.B $69 
     REP #$20 
@@ -3294,8 +3273,7 @@ Instruction_TriggerTitleSequenceScene2:
 CinematicFunction_TitleSequenceScene2_PanningDown:
     LDA.W $1995 : CLC : ADC.W $199D : STA.W $1995 
     LDA.W $1997 : ADC.W $199F : STA.W $1997 
-    CMP.W #$00A3 
-    BMI .titleScreenCheck 
+    CMP.W #$00A3 : BMI .titleScreenCheck 
     SEP #$20 
     LDA.B #$10 : STA.B $69 
     REP #$20 
@@ -3339,8 +3317,7 @@ Instruction_TriggerTitleSequenceScene3:
 CinematicFunction_TitleSequenceScene3_ZoomingOut:
     LDA.W $05B6 : BIT.W #$0001 
     BNE .return 
-    LDA.W $198F : CMP.W #$0100 
-    BPL .finish 
+    LDA.W $198F : CMP.W #$0100 : BPL .finish 
     INC A 
     STA.W $198F 
 
@@ -4320,8 +4297,7 @@ InitFunction_CinematicSpriteObject_MetroidEgg:
 
 
 PreInstruction_CinematicSpriteObject_MetroidEgg:
-    LDA.W $0AF6 : CMP.W #$00A9 
-    BPL .return 
+    LDA.W $0AF6 : CMP.W #$00A9 : BPL .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_MetroidEggHatching_0 : STA.W $1B1D,X 
     LDA.W #RTS_8B93D9 : STA.W $1B3D,X 
@@ -4401,8 +4377,7 @@ PreInstruction_CinematicSpriteObject_MetroidEggParticle:
     TAY 
     LDA.W $1AFD,X : CLC : ADC.W .Yvelocities+2,Y : STA.W $1AFD,X 
     LDA.W $1A9D,X : ADC.W .Yvelocities,Y : STA.W $1A9D,X 
-    CMP.W #$00A8 
-    BMI .lessThanA8 
+    CMP.W #$00A8 : BMI .lessThanA8 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete : STA.W $1B1D,X 
     RTS 
@@ -4454,8 +4429,7 @@ PreInstruction_CinematicSpriteObject_MetroidEggSlimeDrops:
     TAY 
     LDA.W $1AFD,X : CLC : ADC.W .YvelocitiesEven+2,Y : STA.W $1AFD,X 
     LDA.W $1A9D,X : ADC.W .YvelocitiesEven,Y : STA.W $1A9D,X 
-    CMP.W #$00A8 
-    BMI .notHitGround 
+    CMP.W #$00A8 : BMI .notHitGround 
     BRA + 
 
 
@@ -4466,8 +4440,7 @@ PreInstruction_CinematicSpriteObject_MetroidEggSlimeDrops:
     TAY 
     LDA.W $1AFD,X : CLC : ADC.W .YvelocitiesOdd+2,Y : STA.W $1AFD,X 
     LDA.W $1A9D,X : ADC.W .YvelocitiesOdd,Y : STA.W $1A9D,X 
-    CMP.W #$00A8 
-    BMI .notHitGround 
+    CMP.W #$00A8 : BMI .notHitGround 
 
   + LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_MetroidEggParticle_HitGround : STA.W $1B1D,X 
@@ -4570,8 +4543,7 @@ PreInst_CinematicSpriteObject_BabyMetroidBeingExamined:
 .crossFading:
     LDA.W $1A49 : BIT.W #$0003 
     BNE .return 
-    LDA.W $1997 : CMP.W #$0008 
-    BPL .return 
+    LDA.W $1997 : CMP.W #$0008 : BPL .return 
     INC A 
     STA.W $1997 
     LDA.W $1A9D,X 
@@ -4610,13 +4582,11 @@ InitFunc_CinematicSpriteObject_IntroJapanTextNextPageArrow:
 
 
 PreInst_CinematicSpriteObject_IntroJapanTextNextPageArrow:
-    LDA.W $1BA3 : CMP.W #$003B 
-    BNE + 
+    LDA.W $1BA3 : CMP.W #$003B : BNE + 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_IntroJapanTextNextPageArrow_Blink : STA.W $1B1D,X 
 
-  + LDA.W $1A4B : CMP.W #$007F 
-    BNE .return 
+  + LDA.W $1A4B : CMP.W #$007F : BNE .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete : STA.W $1B1D,X 
 
@@ -5320,10 +5290,8 @@ CinematicFunction_Intro_CrossFadeFromScientistCutscene:
 
 
 PreInstruction_CinematicBGObject_SamusBlinking:
-    LDA.W $1F51 : CMP.W #CinematicFunction_Intro_Page6 
-    BEQ .notPage6 
-    CMP.W #RTS_8BA390 
-    BNE .return 
+    LDA.W $1F51 : CMP.W #CinematicFunction_Intro_Page6 : BEQ .notPage6 
+    CMP.W #RTS_8BA390 : BNE .return 
 
 .notPage6:
     LDA.W #CinematicBGObjectInstLists_SamusBlinkingPage6 : STA.W $19CD,X 
@@ -5336,8 +5304,7 @@ PreInstruction_CinematicBGObject_SamusBlinking:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicBGObject_8BB4DC:
-    LDA.W $1B3B : CMP.W #InstList_IntroTextCaret_Blink 
-    BMI .return 
+    LDA.W $1B3B : CMP.W #InstList_IntroTextCaret_Blink : BMI .return 
     LDA.W #$0001 : STA.W $19DD,X 
 
 .return:
@@ -5575,8 +5542,7 @@ RTS_BackgroundFLickeringEffect:
 CinematicFunction_Intro_Finish:
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BNE .return 
+    LDA.B $51 : CMP.B #$80 : BNE .return 
     JSL.L EnableNMI 
     REP #$20 
     STZ.W $0723 
@@ -5616,16 +5582,14 @@ PreInstruction_CinematicSpriteObject_IntroMotherBrain:
 
 .loop:
     LDA.W $0C18,Y : AND.W #$0FFF 
-    CMP.W #$0100 
-    BEQ .missile 
+    CMP.W #$0100 : BEQ .missile 
     DEY #2
     BPL .loop 
     RTS 
 
 
 .missile:
-    LDA.W $0B64,Y : CMP.W #$0054 
-    BPL .return 
+    LDA.W $0B64,Y : CMP.W #$0054 : BPL .return 
     PHX 
     TYX 
     JSL.L Kill_Projectile 
@@ -5634,8 +5598,7 @@ PreInstruction_CinematicSpriteObject_IntroMotherBrain:
     LDA.W $1B7D,X 
     INC A 
     STA.W $1B7D,X 
-    CMP.W #$0004 
-    BNE .return 
+    CMP.W #$0004 : BNE .return 
     STZ.W $1B7D,X 
     LDA.W #PreInstruction_IntroMotherBrain_Exploding : STA.W $1B3D,X 
     LDA.W #$0000 
@@ -5673,8 +5636,7 @@ PreInstruction_IntroMotherBrain_Exploding:
     LDA.W $1B7D,X 
     INC A 
     STA.W $1B7D,X 
-    CMP.W #$0080 
-    BMI .return 
+    CMP.W #$0080 : BMI .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_IntroMotherBrain_StartPage2_0 : STA.W $1B1D,X 
 
@@ -5772,8 +5734,7 @@ PreInstruction_IntroRinka_Moving_HitsSamus:
     LDA.W $1AFD,X : CLC : ADC.W #$8000 : STA.W $1AFD,X 
     LDA.W $1A9D,X : ADC.W #$0000 : STA.W $1A9D,X 
     LDA.W $0AF6 : SEC : SBC.W #$0005 : STA.B $12 
-    LDA.W $1A7D,X : CLC : ADC.W #$0008 : CMP.B $12 
-    BMI .exploding 
+    LDA.W $1A7D,X : CLC : ADC.W #$0008 : CMP.B $12 : BMI .exploding 
     LDA.W #$000B : STA.W $18A8 
     LDA.W #$000B : STA.W $18AA 
     LDA.W #$0001 : STA.W $0A54 
@@ -5781,8 +5742,7 @@ PreInstruction_IntroRinka_Moving_HitsSamus:
 
 
 .exploding:
-    LDA.W $1B3D : CMP.W #PreInstruction_IntroMotherBrain_Exploding 
-    BNE .return 
+    LDA.W $1B3D : CMP.W #PreInstruction_IntroMotherBrain_Exploding : BNE .return 
 
 .delete:
     LDA.W #$0001 : STA.W $1B5D,X 
@@ -5800,12 +5760,9 @@ PreInstruction_IntroRinka_Moving_MissesSamus:
     LDA.W $1A7D,X : ADC.W .Xvelocities,Y : STA.W $1A7D,X 
     LDA.W $1AFD,X : CLC : ADC.W #$8000 : STA.W $1AFD,X 
     LDA.W $1A9D,X : ADC.W #$0000 : STA.W $1A9D,X 
-    CMP.W #$0010 
-    BMI .delete 
-    CMP.W #$00D0 
-    BPL .delete 
-    LDA.W $1B3D : CMP.W #PreInstruction_IntroMotherBrain_Exploding 
-    BNE .return 
+    CMP.W #$0010 : BMI .delete 
+    CMP.W #$00D0 : BPL .delete 
+    LDA.W $1B3D : CMP.W #PreInstruction_IntroMotherBrain_Exploding : BNE .return 
 
 .delete:
     LDA.W #$0001 : STA.W $1B5D,X 
@@ -5899,8 +5856,7 @@ InitFunction_CinematicSpriteObject_ConfusedBabyMetroid:
 
 
 PreInstruction_CinematicSpriteObject_ConfusedBabyMetroid:
-    LDA.W $1B1F,X : CMP.W #InstList_MetroidEggHatching_2 
-    BMI .return 
+    LDA.W $1B1F,X : CMP.W #InstList_MetroidEggHatching_2 : BMI .return 
     LDA.W #PreInstruction_ConfusedBabyMetroid_Hatched : STA.W $1B3D,X 
     STZ.W $1A4D 
     STZ.W $1A4F 
@@ -5910,8 +5866,7 @@ PreInstruction_CinematicSpriteObject_ConfusedBabyMetroid:
 
 
 PreInstruction_ConfusedBabyMetroid_Hatched:
-    LDA.W $1A9D,X : CMP.W #$0091 
-    BNE + 
+    LDA.W $1A9D,X : CMP.W #$0091 : BNE + 
     LDA.W #$0000 
     LDY.W #CinematicSpriteObjectDefinitions_MetroidEggSlimeDrops 
     JSR.W Spawn_CinematicSpriteObject_Y 
@@ -5926,16 +5881,13 @@ PreInstruction_ConfusedBabyMetroid_Hatched:
     JSR.W Spawn_CinematicSpriteObject_Y 
     LDA.W #$0023 : JSL.L QueueSound_Lib3_Max6 
 
-  + LDA.W $0AFA : SEC : SBC.W #$0020 : CMP.W $1A9D,X 
-    BMI + 
-    LDA.W $1A4F : CMP.W #$0220 
-    BPL .setYVelocity 
+  + LDA.W $0AFA : SEC : SBC.W #$0020 : CMP.W $1A9D,X : BMI + 
+    LDA.W $1A4F : CMP.W #$0220 : BPL .setYVelocity 
     CLC : ADC.W #$0020 : STA.W $1A4F 
     BRA .setYVelocity 
 
 
-  + LDA.W $1A4F : CMP.W #$FDE1 
-    BMI .setYVelocity 
+  + LDA.W $1A4F : CMP.W #$FDE1 : BMI .setYVelocity 
     SEC : SBC.W #$0020 : STA.W $1A4F 
 
 .setYVelocity:
@@ -5985,25 +5937,21 @@ PreInstruction_ConfusedBabyMetroid_Dancing:
 
 
 .timerExpired:
-    LDA.W $1B7D,X : CMP.W #$0080 
-    BPL + 
+    LDA.W $1B7D,X : CMP.W #$0080 : BPL + 
     INC A 
     STA.W $1B7D,X 
     BIT.W #$003F 
     BNE + 
     LDA.W #$0023 : JSL.L QueueSound_Lib3_Max6 
 
-  + LDA.W $0AF6 : CMP.W $1A7D,X 
-    BMI .checkXposition 
-    LDA.W $1A4D : CMP.W #$0280 
-    BPL + 
+  + LDA.W $0AF6 : CMP.W $1A7D,X : BMI .checkXposition 
+    LDA.W $1A4D : CMP.W #$0280 : BPL + 
     CLC : ADC.W #$0020 : STA.W $1A4D 
     BRA + 
 
 
 .checkXposition:
-    LDA.W $1A4D : CMP.W #$FD81 
-    BMI + 
+    LDA.W $1A4D : CMP.W #$FD81 : BMI + 
     SEC : SBC.W #$0020 : STA.W $1A4D 
 
   + LDA.W $1A4D 
@@ -6029,17 +5977,14 @@ PreInstruction_ConfusedBabyMetroid_Dancing:
 .setXposition:
     LDA.W $1ADD,X : CLC : ADC.B $14 : STA.W $1ADD,X 
     LDA.W $1A7D,X : ADC.B $12 : STA.W $1A7D,X 
-    LDA.W $0AFA : SEC : SBC.W #$0008 : CMP.W $1A9D,X 
-    BMI .checkY 
-    LDA.W $1A4F : CMP.W #$0220 
-    BPL .setYvelocity 
+    LDA.W $0AFA : SEC : SBC.W #$0008 : CMP.W $1A9D,X : BMI .checkY 
+    LDA.W $1A4F : CMP.W #$0220 : BPL .setYvelocity 
     CLC : ADC.W #$0020 : STA.W $1A4F 
     BRA .setYvelocity 
 
 
 .checkY:
-    LDA.W $1A4F : CMP.W #$FDE1 
-    BMI .setYvelocity 
+    LDA.W $1A4F : CMP.W #$FDE1 : BMI .setYvelocity 
     SEC : SBC.W #$0020 : STA.W $1A4F 
 
 .setYvelocity:
@@ -6200,8 +6145,7 @@ CinematicFunction_FlyToCeres_WaitForMusicQueue_EnableDisplay:
 
 
 CinematicFunction_FlyToCeres_FlyingIntoCamera:
-    LDA.W $198F : CMP.W #$0020 
-    BMI .zoomLessThan20 
+    LDA.W $198F : CMP.W #$0020 : BMI .zoomLessThan20 
     SEC : SBC.W #$0010 : STA.W $198F 
     RTS 
 
@@ -6262,8 +6206,7 @@ InitFunction_CinematicSpriteObject_CeresStars:
 
 
 PreInstruction_CinematicSpriteObject_CeresStars:
-    LDA.W $1F51 : CMP.W #CinematicFunction_FlyToCeres_FlyingIntoCamera 
-    BEQ .flyingIntoCamera 
+    LDA.W $1F51 : CMP.W #CinematicFunction_FlyToCeres_FlyingIntoCamera : BEQ .flyingIntoCamera 
     RTS 
 
 
@@ -6359,35 +6302,30 @@ RTS_8BBFD9:
 CinematicFunction_FlyToCeres_FlyingIntoCeres:
     SEP #$20 
     LDA.B $74 : SEC : SBC.B #$01 : STA.B $74 
-    CMP.B #$20 
-    BPL .color1 
+    CMP.B #$20 : BPL .color1 
     LDA.B #$20 : STA.B $74 
 
 .color1:
     LDA.B $75 : SEC : SBC.B #$01 : STA.B $75 
-    CMP.B #$40 
-    BPL .color2 
+    CMP.B #$40 : BPL .color2 
     LDA.B #$40 : STA.B $75 
 
 .color2:
     LDA.B $76 : SEC : SBC.B #$01 : STA.B $76 
-    CMP.B #$80 
-    BPL .zoomLessThanC00 
+    CMP.B #$80 : BPL .zoomLessThanC00 
     LDA.B #$80 : STA.B $76 
 
 .zoomLessThanC00:
     REP #$20 
     LDA.W $1991 : SEC : SBC.W #$2000 : STA.W $1991 
     LDA.W $1993 : SBC.W #$0000 : STA.W $1993 
-    LDA.W $198F : CMP.W #$0C00 
-    BPL .zoomLessThan2000 
+    LDA.W $198F : CMP.W #$0C00 : BPL .zoomLessThan2000 
     CLC : ADC.W #$0010 : STA.W $198F 
     RTS 
 
 
 .zoomLessThan2000:
-    LDA.W $198F : CMP.W #$2000 
-    BPL + 
+    LDA.W $198F : CMP.W #$2000 : BPL + 
     CLC : ADC.W #$0020 : STA.W $198F 
     RTS 
 
@@ -6450,8 +6388,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 CinematicFunction_FlyToCeres_Finish:
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BNE .return 
+    LDA.B $51 : CMP.B #$80 : BNE .return 
     JSL.L EnableNMI 
     REP #$20 
     STZ.W $0723 
@@ -6608,8 +6545,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     LDA.W #CinematicFunction_CeresGoesBoom_WaitForMusicQueue : STA.W $1F51 
     LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$FF2D : JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W $0998 : CMP.W #$0025 
-    BNE .notState25 
+    LDA.W $0998 : CMP.W #$0025 : BNE .notState25 
     LDA.W #$0008 
     LDY.W #$000E 
     JSL.L QueueMusicDataOrTrack_YFrameDelay 
@@ -6640,8 +6576,7 @@ CinematicFunction_CeresGoesBoom_SmallCeresExplosion_FadingIn:
     LDA.W $198F : CLC : ADC.W #$0001 : STA.W $198F 
     JSL.L HandleFadingIn 
     SEP #$20 
-    LDA.B $51 : CMP.B #$0F 
-    BNE .return 
+    LDA.B $51 : CMP.B #$0F : BNE .return 
     REP #$20 
     STZ.W $0723 
     STZ.W $0725 
@@ -6658,8 +6593,7 @@ CinematicFunction_CeresGoesBoom_CeresExplosions:
     LDA.W $1997 : ADC.W #$0000 : STA.W $1997 
     LDA.W $1991 : SEC : SBC.W #$4000 : STA.W $1991 
     LDA.W $1993 : SBC.W #$0000 : STA.W $1993 
-    LDA.W $198F : CMP.W #$0280 
-    BPL + 
+    LDA.W $198F : CMP.W #$0280 : BPL + 
     CLC : ADC.W #$0001 : STA.W $198F 
     RTS 
 
@@ -6684,8 +6618,7 @@ CinematicFunction_CeresGoesBoom_CeresExplosions:
     LDA.W #$0000 
     LDY.W #CinematicSpriteObjectDefinitions_CeresFinalExplosion 
     JSR.W Spawn_CinematicSpriteObject_Y 
-    LDA.W $0998 : CMP.W #$0025 
-    BNE .notState25 
+    LDA.W $0998 : CMP.W #$0025 : BNE .notState25 
     LDX.W #.mode7TransferData_clearCeresUpperHalf 
     JSL.L QueueMode7Transfers 
     BRA .clearCeresLowerHalf 
@@ -6766,8 +6699,7 @@ InitFunction_CinematicSpriteObject_CeresExplosion1:
 
 
 PreInst_CeresExplosionSpawner_SpawnExplosion2EveryCFrames:
-    LDA.W $1F51 : CMP.W #CinematicFunction_CeresGoesBoom_GunshipFlyingAway 
-    BNE .notGunshipFlyingAway 
+    LDA.W $1F51 : CMP.W #CinematicFunction_CeresGoesBoom_GunshipFlyingAway : BNE .notGunshipFlyingAway 
     LDA.W #RTS_8B93D9 : STA.W $1B3D,X 
     RTS 
 
@@ -6897,8 +6829,7 @@ CinematicFunction_CeresGoesBoom_GunshipFlyingAway:
     DEC A 
     AND.W #$00FF 
     STA.W $198D 
-    LDA.W $198F : CMP.W #$0010 
-    BMI .zoomLessThan10 
+    LDA.W $198F : CMP.W #$0010 : BMI .zoomLessThan10 
     SEC : SBC.W #$0010 : STA.W $198F 
     RTS 
 
@@ -6926,14 +6857,12 @@ CinematicFunction_CeresGoesBoom_WaitC0Frames:
 CinematicFunction_CeresGoesBoom_FadeOut:
     JSL.L HandleFadingOut 
     SEP #$20 
-    LDA.B $51 : CMP.B #$80 
-    BNE .return 
+    LDA.B $51 : CMP.B #$80 : BNE .return 
     JSL.L EnableNMI 
     REP #$20 
     STZ.W $0723 
     STZ.W $0725 
-    LDA.W $0998 : CMP.W #$0025 
-    BEQ .gameState25 
+    LDA.W $0998 : CMP.W #$0025 : BEQ .gameState25 
     LDA.W #CinematicFunction_FlyToZebes_Initial : STA.W $1F51 
     RTS 
 
@@ -7056,8 +6985,7 @@ CinematicFunction_FlyToZebes_FadingIn:
 .fadeIn:
     JSL.L HandleFadingIn 
     SEP #$20 
-    LDA.B $51 : CMP.B #$0F 
-    BNE .return 
+    LDA.B $51 : CMP.B #$0F : BNE .return 
     REP #$20 
     STZ.W $0723 
     STZ.W $0725 
@@ -7116,8 +7044,7 @@ InitFunction_CinematicSpriteObject_Zebes:
 
 
 PreInstruction_CinematicSpriteObject_Zebes:
-    LDA.W $1F51 : CMP.W #RTS_8BCADE 
-    BNE .return 
+    LDA.W $1F51 : CMP.W #RTS_8BCADE : BNE .return 
     LDA.W #PreInstruction_Zebes_SlideSceneAway : STA.W $1B3D,X 
 
 .return:
@@ -7135,8 +7062,7 @@ PreInstruction_Zebes_SlideSceneAway:
     STA.B $12 
     LDA.W $1AFD,X : SEC : SBC.B $14 : STA.W $1AFD,X 
     LDA.W $1A9D,X : SBC.B $12 : STA.W $1A9D,X 
-    CMP.W #$FF80 
-    BPL .return 
+    CMP.W #$FF80 : BPL .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete : STA.W $1B1D,X 
 
@@ -7154,8 +7080,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 PreInstruction_CinematicSpriteObject_ZebesStars5:
-    LDA.W $1F51 : CMP.W #RTS_8BCADE 
-    BNE .return 
+    LDA.W $1F51 : CMP.W #RTS_8BCADE : BNE .return 
     LDA.W #PreInstruction_ZebesStars5_SlideSceneAway : STA.W $1B3D,X 
 
 .return:
@@ -7173,8 +7098,7 @@ PreInstruction_ZebesStars5_SlideSceneAway:
     STA.B $12 
     LDA.W $1AFD,X : SEC : SBC.B $14 : STA.W $1AFD,X 
     LDA.W $1A9D,X : SBC.B $12 : STA.W $1A9D,X 
-    CMP.W #$FF80 
-    BPL .return 
+    CMP.W #$FF80 : BPL .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete : STA.W $1B1D,X 
     LDA.W #CinematicFunction_FlyToZebes_LoadGameData : STA.W $1F51 
@@ -7184,8 +7108,7 @@ PreInstruction_ZebesStars5_SlideSceneAway:
 
 
 PreInstruction_CinematicSpriteObject_ZebesStars_2_3_4:
-    LDA.W $1F51 : CMP.W #RTS_8BCADE 
-    BNE .return 
+    LDA.W $1F51 : CMP.W #RTS_8BCADE : BNE .return 
     LDA.W #PreInstruction_ZebesStars_2_3_4_SlideSceneAway : STA.W $1B3D,X 
 
 .return:
@@ -7203,8 +7126,7 @@ PreInstruction_ZebesStars_2_3_4_SlideSceneAway:
     STA.B $12 
     LDA.W $1AFD,X : SEC : SBC.B $14 : STA.W $1AFD,X 
     LDA.W $1A9D,X : SBC.B $12 : STA.W $1A9D,X 
-    CMP.W #$FF80 
-    BPL .return 
+    CMP.W #$FF80 : BPL .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete : STA.W $1B1D,X 
 
@@ -7299,8 +7221,7 @@ CinematicFunction_FlyToZebes_FlyingToZebes_DriftingRight:
     LDA.W $1997 : ADC.W #$0000 : STA.W $1997 
     LDA.W $1991 : SEC : SBC.W #$8000 : STA.W $1991 
     LDA.W $1993 : SBC.W #$0000 : STA.W $1993 
-    LDA.W $198F : CMP.W #$0480 
-    BPL .zoomLessThan480 
+    LDA.W $198F : CMP.W #$0480 : BPL .zoomLessThan480 
     CLC : ADC.W #$0004 : STA.W $198F 
     RTS 
 
@@ -7315,11 +7236,9 @@ CinematicFunction_FlyToZebes_FlyingToZebes_TurningLeft:
     LDA.W $1997 : ADC.W #$0000 : STA.W $1997 
     LDA.W $1991 : SEC : SBC.W #$8000 : STA.W $1991 
     LDA.W $1993 : SBC.W #$0000 : STA.W $1993 
-    CMP.W #$FF80 
-    BMI .finished 
+    CMP.W #$FF80 : BMI .finished 
     LDA.W $198F : CLC : ADC.W #$0010 : STA.W $198F 
-    LDA.W $198D : CMP.W #$00E0 
-    BEQ .return 
+    LDA.W $198D : CMP.W #$00E0 : BEQ .return 
     SEC : SBC.W #$0001 : AND.W #$00FF 
     STA.W $198D 
 
@@ -7337,8 +7256,7 @@ CinematicFunction_FlyToZebes_FlyingToZebes_DriftingLeft:
     LDA.W $1997 : ADC.W #$0000 : STA.W $1997 
     LDA.W $1991 : CLC : ADC.W #$2000 : STA.W $1991 
     LDA.W $1993 : ADC.W #$0000 : STA.W $1993 
-    LDA.W $198F : CMP.W #$2000 
-    BPL .zoomLessThan2000 
+    LDA.W $198F : CMP.W #$2000 : BPL .zoomLessThan2000 
     CLC : ADC.W #$0020 : STA.W $198F 
     RTS 
 
@@ -8501,8 +8419,7 @@ GameState27_EndingAndCredits:
 
 
 HandleFinalScreen_CinematicBGObjects:
-    LDA.W $1F51 : CMP.W #CinematicFunction_PostCredits_FadeFromWhite 
-    BMI .return 
+    LDA.W $1F51 : CMP.W #CinematicFunction_PostCredits_FadeFromWhite : BMI .return 
     JSR.W Handle_CinematicBGObjects 
 
 .return:
@@ -8711,8 +8628,7 @@ CinematicFunction_Ending_ZebesDestruction0_CloudsOnSide:
 
 .zoomOut:
     LDA.W $198F : CLC : ADC.W #$0002 : STA.W $198F 
-    CMP.W #$0180 
-    BMI .return 
+    CMP.W #$0180 : BMI .return 
     JSR.W AdvanceFastScreenFadeOut 
     BCC .return 
     LDA.W #CineFunc_Ending_ZebesDestruction1_CloudsOnTopBottom_Setup : STA.W $1F51 
@@ -8795,8 +8711,7 @@ CinematicFunction_Ending_ZebesDestruction1_CloudsOnTopBottom:
     STA.W $198D 
 
   + LDA.W $198F : CLC : ADC.W #$0003 : STA.W $198F 
-    CMP.W #$0180 
-    BMI .return 
+    CMP.W #$0180 : BMI .return 
     JSR.W AdvanceFastScreenFadeOut 
     BCC .return 
     LDA.W #CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup : STA.W $1F51 
@@ -9018,8 +8933,7 @@ CinematicFunction_Ending_ZebesDestruction2_CrossFade:
 
 
 CinematicFunc_Ending_SpaceView_LoadGunshipBG:
-    LDA.W $1A49 : CMP.W #$0008 
-    BPL .timerGreaterThan7 
+    LDA.W $1A49 : CMP.W #$0008 : BPL .timerGreaterThan7 
     ASL A 
     TAX 
     LDY.W $0334 
@@ -9050,8 +8964,7 @@ CinematicFunc_Ending_SpaceView_LoadGunshipBG:
   + LDA.W $1A49 
     INC A 
     STA.W $1A49 
-    CMP.W #$0010 
-    BMI .return 
+    CMP.W #$0010 : BMI .return 
     SEP #$20 
     LDA.B #$01 : STA.B $55 
     REP #$20 
@@ -9140,27 +9053,21 @@ FadeOut_ZebesExplosion_AfterGlow:
 .timerExpired:
     SEP #$20 
     LDA.B $74 : SEC : SBC.B #$01 : STA.B $74 
-    CMP.B #$20 
-    BPL + 
+    CMP.B #$20 : BPL + 
     LDA.B #$20 : STA.B $74 
 
   + LDA.B $75 : SEC : SBC.B #$01 : STA.B $75 
-    CMP.B #$40 
-    BPL + 
+    CMP.B #$40 : BPL + 
     LDA.B #$40 : STA.B $75 
 
   + LDA.B $76 : SEC : SBC.B #$01 : STA.B $76 
-    CMP.B #$80 
-    BPL .checkColors 
+    CMP.B #$80 : BPL .checkColors 
     LDA.B #$80 : STA.B $76 
 
 .checkColors:
-    LDA.B $74 : CMP.B #$20 
-    BNE .setTimer 
-    LDA.B $75 : CMP.B #$40 
-    BNE .setTimer 
-    LDA.B $76 : CMP.B #$80 
-    BNE .setTimer 
+    LDA.B $74 : CMP.B #$20 : BNE .setTimer 
+    LDA.B $75 : CMP.B #$40 : BNE .setTimer 
+    LDA.B $76 : CMP.B #$80 : BNE .setTimer 
     STZ.B $6F 
     STZ.B $72 
 
@@ -9196,8 +9103,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningFast:
     AND.W #$000F 
     STA.W $1A4D 
     LDA.W $198F : SEC : SBC.W #$0008 : STA.W $198F 
-    CMP.W #$05B0 
-    BPL .return 
+    CMP.W #$05B0 : BPL .return 
     LDA.W #$0001 : STA.W $1A4B 
     STZ.W $1A4D 
     LDA.W #CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningSlow : STA.W $1F51 
@@ -9214,8 +9120,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningFast:
 
 CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningSlow:
     JSR.W FadeOut_ZebesExplosion_AfterGlow 
-    LDA.W $198D : CMP.W #$00E0 
-    BEQ .notE0 
+    LDA.W $198D : CMP.W #$00E0 : BEQ .notE0 
     SEC : SBC.W #$0001 : AND.W #$00FF 
     STA.W $198D 
 
@@ -9230,8 +9135,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningSlow:
     AND.W #$0007 
     STA.W $1A4D 
     LDA.W $198F : SEC : SBC.W #$0002 : STA.W $198F 
-    CMP.W #$04A0 
-    BPL .return 
+    CMP.W #$04A0 : BPL .return 
     LDA.W #CinematicFunc_Ending_SpaceView_GunshipEmergence_FlyToCamera : STA.W $1F51 
     LDA.W #$8000 : STA.W $1A4D 
     STZ.W $1A4B 
@@ -9255,17 +9159,14 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_FlyToCamera:
     LDA.W $1A4B : SBC.W #$0000 : STA.W $1A4B 
     LDA.W $1991 : CLC : ADC.W $1A4D : STA.W $1991 
     LDA.W $1993 : ADC.W $1A4B : STA.W $1993 
-    LDA.W $198F : CMP.W #$0180 
-    BPL + 
+    LDA.W $198F : CMP.W #$0180 : BPL + 
     LDA.W $1A51 : BIT.W #$0003 
     BNE + 
-    LDA.W $198D : CMP.W #$0010 
-    BEQ + 
+    LDA.W $198D : CMP.W #$0010 : BEQ + 
     CLC : ADC.W #$0002 : AND.W #$00FF 
     STA.W $198D 
 
-  + LDA.W $198F : CMP.W #$0020 
-    BMI .zoomLessThan20 
+  + LDA.W $198F : CMP.W #$0020 : BMI .zoomLessThan20 
     SEC : SBC.W #$0004 : STA.W $198F 
     RTS 
 
@@ -9405,8 +9306,7 @@ CinematicFunction_Credits_Setup:
     LDA.W #PostCredits_SuperMetroid_Icon_Tilemap : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
     dl $7E8000 
-    LDA.W $09E0 : CMP.W #$0003 
-    BPL .gameTimeOver3 
+    LDA.W $09E0 : CMP.W #$0003 : BPL .gameTimeOver3 
     SEP #$30 
     LDA.B #$00 : STA.W $2116 
     LDA.B #$00 : STA.W $2117 
@@ -9496,8 +9396,7 @@ CinematicFunction_PostCredits_BlankScreen:
 CinematicFunction_PostCredits_FadeInShootingStars:
     JSL.L HandleFadingIn 
     SEP #$20 
-    LDA.B $51 : CMP.B #$0F 
-    BEQ .fadedIn 
+    LDA.B $51 : CMP.B #$0F : BEQ .fadedIn 
     REP #$20 
     RTS 
 
@@ -9583,10 +9482,8 @@ CinematicFunction_PostCredits_DeerForce:
 
 .decTimer:
     LDA.W #$007F : STA.W $1A49 
-    LDA.W $09E0 : CMP.W #$0003 
-    BMI .bestEnding 
-    CMP.W #$000A 
-    BMI .mediocreEnding 
+    LDA.W $09E0 : CMP.W #$0003 : BMI .bestEnding 
+    CMP.W #$000A : BMI .mediocreEnding 
     LDY.W #CinematicSpriteObjectDefs_SuitedSamus_Idle_Head_Helmet 
     JSR.W Spawn_CinematicSpriteObject_Y 
     LDY.W #CinematicSpriteObjectDefinitions_SuitedSamus_Idle_Body 
@@ -9645,8 +9542,7 @@ CinematicFunc_PostCredits_IdleSamus_1_CrossFadeOutSamusSuit:
     LDX.W #$0040 
     LDY.W #$0010 
     JSR.W PaletteCrossFading_FadeOutYColorsStartingFromColorIndexX 
-    LDA.W $09E0 : CMP.W #$0003 
-    BMI .lessThan3 
+    LDA.W $09E0 : CMP.W #$0003 : BMI .lessThan3 
     LDX.W #$01C0 
     LDY.W #$0010 
     JSR.W PaletteCrossFading_FadeInYColorsStartingFromColorIndexX 
@@ -9661,8 +9557,7 @@ CinematicFunction_PostCredits_IdleSamus1:
     LDA.W $1A49 
     DEC A 
     STA.W $1A49 
-    CMP.W #$0041 
-    BPL .return 
+    CMP.W #$0041 : BPL .return 
     LDX.W #$023E 
     LDA.W #$007F 
 
@@ -9697,10 +9592,8 @@ CinematicFunction_PostCredits_1994Nintendo:
     BPL .return 
 
 .timerExpired:
-    LDA.W $09E0 : CMP.W #$0003 
-    BMI .gameTimeOver10 
-    CMP.W #$000A 
-    BMI .gameTimeOver10 
+    LDA.W $09E0 : CMP.W #$0003 : BMI .gameTimeOver10 
+    CMP.W #$000A : BMI .gameTimeOver10 
     LDA.W #CinematicFunction_PostCredits_IdleSamus2 : STA.W $1F51 
     BRA .return 
 
@@ -9724,8 +9617,7 @@ CinematicFunc_PostCredits_IdleSamus2_CrossFadeOutSamusSuit:
     LDX.W #$0040 
     LDY.W #$0010 
     JSR.W PaletteCrossFading_FadeOutYColorsStartingFromColorIndexX 
-    LDA.W $09E0 : CMP.W #$0003 
-    BMI .gameTimeUnder3 
+    LDA.W $09E0 : CMP.W #$0003 : BMI .gameTimeUnder3 
     LDX.W #$01C0 
     LDY.W #$0010 
     JSR.W PaletteCrossFading_FadeInYColorsStartingFromColorIndexX 
@@ -9751,10 +9643,8 @@ CinematicFunction_PostCredits_IdleSamus2:
     REP #$20 
     LDA.W #RTS_8BDB9D : STA.W $1F51 
     STZ.W $1A4D 
-    LDA.W $09E0 : CMP.W #$0003 
-    BMI .bestEnding 
-    CMP.W #$000A 
-    BMI .mediocreEnding 
+    LDA.W $09E0 : CMP.W #$0003 : BMI .bestEnding 
+    CMP.W #$000A : BMI .mediocreEnding 
     LDY.W #CinematicSpriteObjectDefinitions_ThumbsUp_Head_Helmet 
     JSR.W Spawn_CinematicSpriteObject_Y 
     LDY.W #CinematicSpriteObjectDefinitions_ThumbsUp_Arm 
@@ -9807,8 +9697,7 @@ CinematicFunction_PostCredits_SamusShootsScreen:
   + LDA.W $198D : SEC : SBC.W #$0008 : AND.W #$00FF 
     STA.W $198D 
     LDA.W $198F : SEC : SBC.W #$0040 : STA.W $198F 
-    CMP.W #$0018 
-    BMI .zoomGreaterThan18 
+    CMP.W #$0018 : BMI .zoomGreaterThan18 
     RTS 
 
 
@@ -9835,8 +9724,7 @@ TransitionSamusPaletteToBlack:
 
 TransferPostCreditsSuperMetroidIconToVRAM:
     LDA.W $1A4F : BNE .return 
-    LDA.W $1A4D : CMP.W #$0006 
-    BMI .loading 
+    LDA.W $1A4D : CMP.W #$0006 : BMI .loading 
 
 .return:
     RTS 
@@ -9939,18 +9827,15 @@ CinematicFunction_PostCredits_FadeToWhite:
 CinematicFunction_PostCredits_FadeFromWhite:
     SEP #$20 
     LDA.B $74 : SEC : SBC.B #$01 : STA.B $74 
-    CMP.B #$20 
-    BPL + 
+    CMP.B #$20 : BPL + 
     LDA.B #$20 : STA.B $74 
 
   + LDA.B $75 : SEC : SBC.B #$01 : STA.B $75 
-    CMP.B #$40 
-    BPL + 
+    CMP.B #$40 : BPL + 
     LDA.B #$40 : STA.B $75 
 
   + LDA.B $76 : SEC : SBC.B #$01 : STA.B $76 
-    CMP.B #$80 
-    BPL + 
+    CMP.B #$80 : BPL + 
     LDA.B #$80 : STA.B $76 
 
   + REP #$20 
@@ -10019,8 +9904,7 @@ CinematicFunction_PostCredits_GreyOutSuperMetroidIcon:
     LDA.W $1A49 
     INC A 
     STA.W $1A49 
-    CMP.W #$0010 
-    BMI .return 
+    CMP.W #$0010 : BMI .return 
     LDA.W #RTS_8BE7BA : STA.W $1F51 
     JSR.W Clear_CinematicSpriteObjects 
     PLB 
@@ -10224,8 +10108,7 @@ Instruction_ClearItemPercentageJapanText:
 
 CinematicFunction_PostCredits_ScrollItemPercentageDown:
     LDA.W $1997 : SEC : SBC.W #$0002 : STA.W $1997 
-    CMP.W #$FFB1 
-    BPL .return 
+    CMP.W #$FFB1 : BPL .return 
     LDY.W #CinematicBGObjectDefinitions_PostCredits_SeeYouNextMission 
     LDA.W #$4C00 : JSR.W Spawn_CinematicBGObject 
     LDA.W #RTS_8BE7BA : STA.W $1F51 
@@ -10307,8 +10190,7 @@ Handle_ShootingStars:
     LDA.W $0000,Y : BMI .delay 
     PHA 
     AND.W #$FF00 
-    CMP.W #$0400 
-    BMI .lessThan4 
+    CMP.W #$0400 : BMI .lessThan4 
     PLA 
     AND.W #$00FF 
     ASL #3
@@ -11111,8 +10993,7 @@ PreInstruction_CinematicSpriteObject_CrittersEscape:
     LDA.W $1A9D,X : ADC.W #$0000 : STA.W $1A9D,X 
     LDA.W $1ADD,X : CLC : ADC.W #$0000 : STA.W $1ADD,X 
     LDA.W $1A7D,X : ADC.W #$0001 : STA.W $1A7D,X 
-    CMP.W #$0110 
-    BMI .return 
+    CMP.W #$0110 : BMI .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete_duplicate : STA.W $1B1D,X 
 
@@ -11325,8 +11206,7 @@ InitFunc_CineSpriteObject_SuperMetroidIcon_Circle_BottomHalf:
 PreInstruction_CineSpriteObject_SuperMetroidIcon_S_TopHalf:
     LDA.W $1A9D,X : CLC : ADC.W $1B7D,X : STA.W $1A9D,X 
     LDA.W $1A7D,X : SEC : SBC.W $1B7D,X : STA.W $1A7D,X 
-    CMP.W #$018B 
-    BPL + 
+    CMP.W #$018B : BPL + 
     LDA.W #$018A : STA.W $1A7D,X 
     LDA.W #$016F : STA.W $1A9D,X 
     LDA.W #RTS_8B93D9 : STA.W $1B3D,X 
@@ -11344,8 +11224,7 @@ PreInstruction_CineSpriteObject_SuperMetroidIcon_S_TopHalf:
 Instruction_CineSpriteObject_SuperMetroidIcon_S_BottomHalf:
     LDA.W $1A9D,X : SEC : SBC.W $1B7D,X : STA.W $1A9D,X 
     LDA.W $1A7D,X : CLC : ADC.W $1B7D,X : STA.W $1A7D,X 
-    CMP.W #$017E 
-    BMI + 
+    CMP.W #$017E : BMI + 
     LDA.W #$017E : STA.W $1A7D,X 
     LDA.W #$017F : STA.W $1A9D,X 
     LDA.W #RTS_8B93D9 : STA.W $1B3D,X 
@@ -11464,8 +11343,7 @@ Instruction_EndZebesExplosion:
 
 
 Instruction_CinematicSpriteObject_ZebesExplosion_Stars_Left:
-    LDA.W $1F51 : CMP.W #CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningFast 
-    BNE .return 
+    LDA.W $1F51 : CMP.W #CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningFast : BNE .return 
     LDA.W #PreInst_CineSpriteObject_ZebesExplosion_Stars_Left_Moving : STA.W $1B3D,X 
     LDA.W #$4000 : STA.W $1AFD,X 
     LDA.W #$0000 : STA.W $1B7D,X 
@@ -11481,8 +11359,7 @@ PreInst_CineSpriteObject_ZebesExplosion_Stars_Left_Moving:
     LDA.W $1A7D,X : ADC.W $1B7D,X : STA.W $1A7D,X ; fallthrough to PreInstruction_CineSpriteObject_ZebesExplosion_AfterGlow
 
 PreInstruction_CineSpriteObject_ZebesExplosion_AfterGlow:
-    LDA.W $1F51 : CMP.W #RTS_8BDE63 
-    BNE .return 
+    LDA.W $1F51 : CMP.W #RTS_8BDE63 : BNE .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete_duplicate : STA.W $1B1D,X 
 
@@ -11499,8 +11376,7 @@ Instruction_CinematicSpriteObject_SpawnCompletedSuccessfully:
 
 
 PreInstruction_CinematicSpriteObject_Text:
-    LDA.W $1F51 : CMP.W #CinematicFunction_Credits_Setup 
-    BNE .return 
+    LDA.W $1F51 : CMP.W #CinematicFunction_Credits_Setup : BNE .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete_duplicate : STA.W $1B1D,X 
 
@@ -11578,8 +11454,7 @@ Instruction_CinematicSpriteObject_TransitionToCredits:
 
 
 PreInstruction_CinematicSpriteObject_YellowClouds_Top:
-    LDA.W $198F : CMP.W #$00B0 
-    BPL .return 
+    LDA.W $198F : CMP.W #$00B0 : BPL .return 
     LDA.W #PreInstruction_CinematicSpriteObject_YellowClouds_Top_Moving : STA.W $1B3D,X 
 
 .return:
@@ -11593,8 +11468,7 @@ PreInstruction_CinematicSpriteObject_YellowClouds_Top_Moving:
 
 
 PreInstruction_CinematicSpriteObject_YellowClouds_Bottom:
-    LDA.W $198F : CMP.W #$00B0 
-    BPL .return 
+    LDA.W $198F : CMP.W #$00B0 : BPL .return 
     LDA.W #PreInstruction_CineSpriteObject_YellowClouds_Bottom_Moving : STA.W $1B3D,X 
 
 .return:
@@ -11608,8 +11482,7 @@ PreInstruction_CineSpriteObject_YellowClouds_Bottom_Moving:
 
 
 PreInstruction_CinematicSpriteObject_YellowClouds_Right:
-    LDA.W $198F : CMP.W #$0060 
-    BMI .return 
+    LDA.W $198F : CMP.W #$0060 : BMI .return 
     LDA.W #PreInstruction_CineSpriteObject_YellowClouds_Right_Moving : STA.W $1B3D,X 
 
 .return:
@@ -11625,8 +11498,7 @@ PreInstruction_CineSpriteObject_YellowClouds_Right_Moving:
 
 
 PreInstruction_CinematicSpriteObject_YellowClouds_Left:
-    LDA.W $198F : CMP.W #$0060 
-    BMI .return 
+    LDA.W $198F : CMP.W #$0060 : BMI .return 
     LDA.W #PreInstruction_CineSpriteObject_YellowClouds_Left_Moving : STA.W $1B3D,X 
 
 .return:
@@ -11642,8 +11514,7 @@ PreInstruction_CineSpriteObject_YellowClouds_Left_Moving:
 
 
 PreInstruction_CinematicSpriteObject_Samus_Idle:
-    LDA.W $1F51 : CMP.W #RTS_8BDB9D 
-    BNE .return 
+    LDA.W $1F51 : CMP.W #RTS_8BDB9D : BNE .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete_duplicate : STA.W $1B1D,X 
 
@@ -11666,8 +11537,7 @@ Instruction_CinematicSpriteObject_SpawnSuitlessSamusJump:
 
 Inst_CineSpriteObject_SpawnSuitlessSamus_LettingHairDown:
     JSR.W MoveJumpingEndingSamus 
-    LDA.W $1A9D,X : CMP.W #$FFB0 
-    BPL .return 
+    LDA.W $1A9D,X : CMP.W #$FFB0 : BPL .return 
     SEP #$20 
     LDA.B #$03 : STA.B $52 
     REP #$20 
@@ -11682,8 +11552,7 @@ Inst_CineSpriteObject_SpawnSuitlessSamus_LettingHairDown:
 
 Instruction_CinematicSpriteObject_SpawnSuitedSamusJump:
     PHY 
-    LDA.W $09E0 : CMP.W #$000A 
-    BMI .gameTimeUnder10 
+    LDA.W $09E0 : CMP.W #$000A : BMI .gameTimeUnder10 
     LDY.W #CinematicSpriteObjectDefinitions_Jump_Head_Helmet 
     LDA.W #$0002 : STA.B $12 
     JSR.W Spawn_CinematicSpriteObject_YToIndex12 
@@ -11704,8 +11573,7 @@ Instruction_CinematicSpriteObject_SpawnSuitedSamusJump:
 
 PreInst_CinematicSpriteObject_SuitedSamus_Jump_Head_Jumping:
     JSR.W MoveJumpingEndingSamus 
-    LDA.W $1A9D,X : CMP.W #$FFB0 
-    BPL .return 
+    LDA.W $1A9D,X : CMP.W #$FFB0 : BPL .return 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_CinematicSpriteObject_Delete_duplicate : STA.W $1B1D,X 
 
@@ -11714,8 +11582,7 @@ PreInst_CinematicSpriteObject_SuitedSamus_Jump_Head_Jumping:
 
 
 Instruction_CineSpriteObject_PositionSuitedHeadToPrepareJump:
-    LDA.W $09E0 : CMP.W #$000A 
-    BMI .gameTimeUnder10 
+    LDA.W $09E0 : CMP.W #$000A : BMI .gameTimeUnder10 
     LDA.W #$0076 : STA.W $1A7F,X 
     LDA.W #$0078 : STA.W $1A9F,X 
     BRA .return 
@@ -11730,8 +11597,7 @@ Instruction_CineSpriteObject_PositionSuitedHeadToPrepareJump:
 
 
 Instruction_CinematicSpriteObject_PositionSamusHeadToJump:
-    LDA.W $09E0 : CMP.W #$000A 
-    BMI .gameTimeUnder10 
+    LDA.W $09E0 : CMP.W #$000A : BMI .gameTimeUnder10 
     LDA.W #$0078 : STA.W $1A7F,X 
     LDA.W #$0072 : STA.W $1A9F,X 
     BRA .return 
@@ -11748,8 +11614,7 @@ Instruction_CinematicSpriteObject_PositionSamusHeadToJump:
 PreInstruction_CinematicSpriteObject_Samus_Jump_Falling:
     JSR.W TransferPostCreditsSamusBeamToVRAM 
     JSR.W MoveJumpingEndingSamus 
-    LDA.W $1A9D,X : CMP.W #$0088 
-    BMI .return 
+    LDA.W $1A9D,X : CMP.W #$0088 : BMI .return 
     LDA.W #$0088 : STA.W $1A9D,X 
     LDA.W #$0001 : STA.W $1B5D,X 
     LDA.W #InstList_Samus_Jump_Landed : STA.W $1B1D,X 
@@ -11797,8 +11662,7 @@ MoveJumpingEndingSamus:
 
 TransferPostCreditsSamusBeamToVRAM:
     PHX : PHY 
-    LDA.W $1A4D : CMP.W #$0010 
-    BPL .return 
+    LDA.W $1A4D : CMP.W #$0010 : BPL .return 
     ASL A 
     TAY 
     LDX.W $0330 

@@ -875,10 +875,8 @@ InstList_KraidArm_Slow:
     dw InstList_KraidArm_Slow 
 
 Instruction_KraidArm_SlowArmIfLessThanHalfHealth:
-    LDA.W $0F8C : CMP.L $7E7812 
-    BPL .return 
-    LDA.W $0FD2 : CMP.W #InstList_KraidArm_Slow 
-    BPL .return 
+    LDA.W $0F8C : CMP.L $7E7812 : BPL .return 
+    LDA.W $0FD2 : CMP.W #InstList_KraidArm_Slow : BPL .return 
     LDY.W #InstList_KraidArm_Slow 
 
 .return:
@@ -3408,8 +3406,7 @@ Function_Kraid_KraidGetsBig_BreakCeilingIntoPlatforms:
     STX.W $0FB2 
 
 .done:
-    LDA.W $0F7E : CMP.W #$0128 
-    BPL .return 
+    LDA.W $0F7E : CMP.W #$0128 : BPL .return 
     LDA.W #Function_Kraid_KraidGetsBig_SetBG2TilemapPriorityBits : STA.W $0FA8 
 
 .return:
@@ -3638,8 +3635,7 @@ Function_Kraid_KraidGetsBig_Thinking:
 
 Function_Kraid_KraidShot_KraidsMouthIsOpen:
     JSR.W KraidInstListHandling 
-    CMP.W #$FFFF 
-    BNE .return 
+    CMP.W #$FFFF : BNE .return 
     LDA.W #Function_Kraid_MainLoop_Thinking : STA.W $0FA8 
     LDA.W #$005A : STA.W $0FAC 
     LDA.L $7E780A : BIT.W #$0004 
@@ -3672,8 +3668,7 @@ KraidInstListHandling:
 
 ProcessKraidInstList:
     LDX.W $0FAA 
-    LDA.W $0000,X : CMP.W #$FFFF 
-    BEQ .return 
+    LDA.W $0000,X : CMP.W #$FFFF : BEQ .return 
     BMI .ASMInstruction 
     STA.W $0FAC 
     TXA 
@@ -3729,16 +3724,14 @@ Instruction_Kraid_PlayDyingSFX:
 KraidsMouth_vs_Projectile_CollisionHandling:
     REP #$30 
     PHX 
-    LDA.W $0FA8 : CMP.W #KraidDeath_SinkThroughFloor 
-    BMI .notDying 
+    LDA.W $0FA8 : CMP.W #KraidDeath_SinkThroughFloor : BMI .notDying 
     PLX 
     RTS 
 
 
 .notDying:
     LDA.W $0FAA : SEC : SBC.W #$0008 : TAX 
-    LDA.W $0006,X : CMP.W #$FFFF 
-    BNE .notTerminator 
+    LDA.W $0006,X : CMP.W #$FFFF : BNE .notTerminator 
     LDY.W #$0000 
     JMP.W .noProjectiles 
 
@@ -3756,12 +3749,9 @@ KraidsMouth_vs_Projectile_CollisionHandling:
 
 .loop:
     LDA.W $0B78,X : SEC : SBC.W $0BC8,X : DEC A 
-    CMP.B $12 
-    BPL .next 
-    LDA.W $0B78,X : CLC : ADC.W $0BC8,X : CMP.B $14 
-    BMI .next 
-    LDA.W $0B64,X : CLC : ADC.W $0BB4,X : CMP.B $16 
-    BMI .next 
+    CMP.B $12 : BPL .next 
+    LDA.W $0B78,X : CLC : ADC.W $0BC8,X : CMP.B $14 : BMI .next 
+    LDA.W $0B64,X : CLC : ADC.W $0BB4,X : CMP.B $16 : BMI .next 
     LDA.W $0C18,X : BIT.W #$0F00 
     BNE .notBeam 
     BIT.W #$0010 
@@ -3799,14 +3789,12 @@ KraidsMouth_vs_Projectile_CollisionHandling:
     STA.L $7E780A 
 
 .notChargedBeam:
-    LDA.W $0F8C : CMP.W #$0001 
-    BMI .dead 
+    LDA.W $0F8C : CMP.W #$0001 : BMI .dead 
     RTS 
 
 
 .dead:
-    LDA.W $0FA8 : CMP.W #KraidDeath_Initialize 
-    BPL .return 
+    LDA.W $0FA8 : CMP.W #KraidDeath_Initialize : BPL .return 
     LDA.W #KraidDeath_Initialize : STA.W $0FA8 
     LDA.W #$0000 : STA.L $7E780A 
     LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
@@ -3820,8 +3808,7 @@ KraidsMouth_vs_Projectile_CollisionHandling:
     CLC : ADC.W #$0040 : TAX 
     CPX.W #$0180 
     BMI .loopSetIntangible 
-    LDA.W $0FAA : CMP.W #InstList_Kraid_DyingRoar_0 
-    BPL .return 
+    LDA.W $0FAA : CMP.W #InstList_Kraid_DyingRoar_0 : BPL .return 
     CLC : ADC.W #$003C : STA.W $0FAA 
 
 .return:
@@ -3846,29 +3833,24 @@ SpawnExplosionProjectile:
 
 
 KraidBody_vs_Samus_CollisionHandling:
-    LDA.W $0FA8 : CMP.W #KraidDeath_Initialize 
-    BPL .return0 
+    LDA.W $0FA8 : CMP.W #KraidDeath_Initialize : BPL .return0 
     LDA.W $0AF6 : CLC : ADC.W $0AFE : STA.B $12 
     LDA.W $0AFA : SEC : SBC.W $0F7E : LDX.W #$0000 
 
 .loop:
-    CMP.W HitboxDefinitionTable_KraidBody_bottom,X 
-    BPL + 
-    CMP.W HitboxDefinitionTable_KraidBody_top,X 
-    BPL + 
+    CMP.W HitboxDefinitionTable_KraidBody_bottom,X : BPL + 
+    CMP.W HitboxDefinitionTable_KraidBody_top,X : BPL + 
     INX #4
     BRA .loop 
 
 
   + LDA.W HitboxDefinitionTable_KraidBody_left,X : CLC : ADC.W $0F7A : SEC : SBC.B $12 : BPL .return1 
-    LDA.W $0AF6 : CMP.W #$0028 
-    BMI .lessThan28 
+    LDA.W $0AF6 : CMP.W #$0028 : BMI .lessThan28 
     SEC : SBC.W #$0008 : STA.W $0AF6 
     STA.W $0B10 
 
 .lessThan28:
-    LDA.W $0AFA : SEC : SBC.W #$0008 : CMP.L $7E7808 
-    BPL + 
+    LDA.W $0AFA : SEC : SBC.W #$0008 : CMP.L $7E7808 : BPL + 
     LDA.L $7E7808 
 
   + STA.W $0AFA 
@@ -3897,8 +3879,7 @@ HitboxDefinitionTable_KraidBody_top:
 
 KraidBody_vs_Projectile_CollisionHandling:
     PHX 
-    LDA.W $0FA8 : CMP.W #KraidDeath_SinkThroughFloor 
-    BMI .lessThanC537 
+    LDA.W $0FA8 : CMP.W #KraidDeath_SinkThroughFloor : BMI .lessThanC537 
     PLX 
     RTS 
 
@@ -3919,12 +3900,9 @@ KraidBody_vs_Projectile_CollisionHandling:
 
 .loop:
     LDA.W $0B78,X : SEC : SBC.W $0BC8,X : DEC A 
-    CMP.B $12 
-    BPL .body 
-    LDA.W $0B78,X : CLC : ADC.W $0BC8,X : CMP.B $14 
-    BMI .next 
-    LDA.W $0B64,X : CLC : ADC.W $0BB4,X : CMP.B $16 
-    BMI .next 
+    CMP.B $12 : BPL .body 
+    LDA.W $0B78,X : CLC : ADC.W $0BC8,X : CMP.B $14 : BMI .next 
+    LDA.W $0B64,X : CLC : ADC.W $0BB4,X : CMP.B $16 : BMI .next 
 
 .hit:
     JSR.W SpawnExplosionProjectile 
@@ -3944,8 +3922,7 @@ KraidBody_vs_Projectile_CollisionHandling:
     LDY.B $30 
     CPY.W #$0000 
     BEQ .return 
-    LDA.W $0FA8 : CMP.W #Function_Kraid_MainLoop_Thinking 
-    BNE .return 
+    LDA.W $0FA8 : CMP.W #Function_Kraid_MainLoop_Thinking : BNE .return 
     LDA.W #Function_Kraid_KraidShot_InitializeEyeGlowing : STA.W $0FA8 
     LDA.L $7E780A : BIT.W #$0001 
     BEQ .return 
@@ -3961,10 +3938,8 @@ KraidBody_vs_Projectile_CollisionHandling:
     LDA.W $0B78,X : SEC : SBC.W $0F7E : LDY.W #$0000 
 
 .loopBody:
-    CMP.W HitboxDefinitionTable_KraidBody_bottom,Y 
-    BPL + 
-    CMP.W HitboxDefinitionTable_KraidBody_top,Y 
-    BPL + 
+    CMP.W HitboxDefinitionTable_KraidBody_bottom,Y : BPL + 
+    CMP.W HitboxDefinitionTable_KraidBody_top,Y : BPL + 
     INY #4
     BRA .loopBody 
 
@@ -4000,10 +3975,8 @@ UNUSED_HandleProjectileDamageAndSound:
 
 .notBeam:
     AND.W #$0F00 
-    CMP.W #$0100 
-    BEQ .superMissile 
-    CMP.W #$0200 
-    BNE .missileEnd 
+    CMP.W #$0100 : BEQ .superMissile 
+    CMP.W #$0200 : BNE .missileEnd 
 
 .superMissile:
     XBA 
@@ -4012,15 +3985,13 @@ UNUSED_HandleProjectileDamageAndSound:
 
 
 .missileEnd:
-    CMP.W #$0300 
-    BNE .notPowerBomb 
+    CMP.W #$0300 : BNE .notPowerBomb 
     LDX.B $14 
     LDA.L $B4000E,X : BRA .determinedVulnerability 
 
 
 .notPowerBomb:
-    CMP.W #$0500 
-    BNE .return 
+    CMP.W #$0500 : BNE .return 
     LDX.B $14 
     LDA.L $B4000F,X 
 
@@ -4057,8 +4028,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 KraidPaletteHandling:
     PHX : PHY 
-    LDA.W $0F8C : CMP.W #$0001 
-    BPL .alive 
+    LDA.W $0F8C : CMP.W #$0001 : BPL .alive 
     STA.L $7E782A 
     BRA + 
 
@@ -4108,8 +4078,7 @@ KraidHealthBasedPaletteHandling:
     LDA.W $0F8C 
 
 .loop:
-    CMP.L $7E780C,X 
-    BPL .getIndex 
+    CMP.L $7E780C,X : BPL .getIndex 
     DEX #2
     BNE .loop 
 
@@ -4260,8 +4229,7 @@ Instruction_Kraid_XPositionPlus3:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_Kraid_MoveRight_A7B683:
     PHX : PHY 
-    LDA.W $0F7A : CMP.W #$0140 
-    BMI .leftScreen 
+    LDA.W $0F7A : CMP.W #$0140 : BMI .leftScreen 
     LDA.L $7E781E 
     DEC A 
     STA.L $7E781E 
@@ -4296,8 +4264,7 @@ Function_Kraid_KraidShot_InitializeEyeGlowing:
 Function_Kraid_KraidShot_GlowEye:
     PHX : PHY 
     JSR.W KraidInstListHandling 
-    CMP.W #$FFFF 
-    BNE .notTerminator 
+    CMP.W #$FFFF : BNE .notTerminator 
     LDA.W #$0100 
     LDA.W $0FAC 
 
@@ -4307,15 +4274,13 @@ Function_Kraid_KraidShot_GlowEye:
 
 .loop:
     LDA.L $7EC000,X : AND.W #$001F 
-    CLC : ADC.W #$0001 : CMP.W #$001F 
-    BMI + 
+    CLC : ADC.W #$0001 : CMP.W #$001F : BMI + 
     INY 
     LDA.W #$001F 
 
   + STA.B $12 
     LDA.L $7EC000,X : AND.W #$03E0 
-    CLC : ADC.W #$0020 : CMP.W #$03E0 
-    BMI + 
+    CLC : ADC.W #$0020 : CMP.W #$03E0 : BMI + 
     INY 
     LDA.W #$03E0 
 
@@ -4342,8 +4307,7 @@ Function_Kraid_KraidShot_UnglowEye:
     LDA.W $0F8C 
 
 .loopHealth:
-    CMP.L $7E780C,X 
-    BPL .getIndexY 
+    CMP.L $7E780C,X : BPL .getIndexY 
     DEX #2
     BNE .loopHealth 
 
@@ -4358,8 +4322,7 @@ Function_Kraid_KraidShot_UnglowEye:
 .loop:
     LDA.L $7EC000,X : AND.W #$001F : STA.B $12 
     LDA.W Palette_Kraid_BG_HurtFlash+2,Y : AND.W #$001F 
-    CMP.B $12 
-    BEQ + 
+    CMP.B $12 : BEQ + 
     INC.B $14 
     LDA.L $7EC000,X 
     DEC A 
@@ -4367,8 +4330,7 @@ Function_Kraid_KraidShot_UnglowEye:
 
   + LDA.L $7EC000,X : AND.W #$03E0 : STA.B $12 
     LDA.W Palette_Kraid_BG_HurtFlash+2,Y : AND.W #$03E0 
-    CMP.B $12 
-    BEQ .next 
+    CMP.B $12 : BEQ .next 
     INC.B $14 
     LDA.L $7EC000,X : SEC : SBC.W #$0020 : STA.L $7EC000,X 
 
@@ -4442,8 +4404,7 @@ Function_KraidLint_ProduceLint:
     STA.W $0F86,X 
     LDA.W $0F7A : CLC : ADC.W $0FAC,X : SEC : SBC.W $0FAA,X : STA.W $0F7A,X 
     LDA.W $0FAA,X : CLC : ADC.W #$0001 : STA.W $0FAA,X 
-    CMP.W #$0020 
-    BMI .return 
+    CMP.W #$0020 : BMI .return 
     LDA.W #Function_KraidLint_ChargeLint : STA.W $0FA8,X 
     LDA.W #$001E : STA.W $0FB2,X 
 
@@ -4473,15 +4434,13 @@ Function_KraidLint_ChargeLint:
 Function_KraidLint_FireLint:
     LDA.W $0F7C,X : SEC : SBC.W KraidLint_XSubSpeed : STA.W $0F7C,X 
     LDA.W $0F7A,X : SBC.W KraidLint_XSpeed : STA.W $0F7A,X 
-    CMP.W #$0038 
-    BPL .greaterThanEqualTo38 
+    CMP.W #$0038 : BPL .greaterThanEqualTo38 
     PHA 
     LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     PLA 
 
 .greaterThanEqualTo38:
-    CMP.W #$0020 
-    BPL .greaterThanEqualTo20 
+    CMP.W #$0020 : BPL .greaterThanEqualTo20 
     LDA.W $0F86,X : ORA.W #$0100 : STA.W $0F86,X 
     LDA.W #Function_KraidNail_HorizontallyAlignEnemyToKraid : STA.W $0FA8,X 
     LDA.W #$012C : STA.W $0FB2,X 
@@ -4493,8 +4452,7 @@ Function_KraidLint_FireLint:
     AND.W #$FFFF 
     BEQ .return 
     LDA.W $0B56 : SEC : SBC.W KraidLint_XSubSpeed : STA.W $0B56 
-    LDA.W $0B58 : SBC.W KraidLint_XSpeed : CMP.W #$FFF0 
-    BPL .storeExtraDisplacement 
+    LDA.W $0B58 : SBC.W KraidLint_XSpeed : CMP.W #$FFF0 : BPL .storeExtraDisplacement 
     LDA.W #$FFF0 
 
 .storeExtraDisplacement:
@@ -4505,8 +4463,7 @@ Function_KraidLint_FireLint:
 
 
 Function_KraidNail_WaitUntilTopLintXPosition100Plus:
-    LDA.W $0FFA : CMP.W #$0100 
-    BMI .return 
+    LDA.W $0FFA : CMP.W #$0100 : BMI .return 
     LDA.L $7E7800,X : STA.W $0FA8,X 
     LDA.W $0F86,X : AND.W #$FEFF ; >.< #$FAFF
     AND.W #$FBFF 
@@ -4561,19 +4518,14 @@ KraidLint_vs_Samus_CollisionHandling:
 .notIntangible:
     LDA.W $18A8 : BNE .return 
     LDA.W $0F7A,X : CLC : ADC.W Hitbox_KraidLint+2 : SEC : SBC.W #$0002 : STA.B $12 
-    LDA.W $0AF6 : CLC : ADC.W $0AFE : CMP.B $12 
-    BMI .return 
-    LDA.W $0AF6 : SEC : SBC.W $0AFE : CMP.B $12 
-    BPL .return 
+    LDA.W $0AF6 : CLC : ADC.W $0AFE : CMP.B $12 : BMI .return 
+    LDA.W $0AF6 : SEC : SBC.W $0AFE : CMP.B $12 : BPL .return 
     LDA.W $0F7E,X : CLC : ADC.W Hitbox_KraidLint+4 : CLC : ADC.W #$0002 : STA.B $16 
-    LDA.W $0AFA : CLC : ADC.W $0B00 : CMP.B $16 
-    BMI .return 
+    LDA.W $0AFA : CLC : ADC.W $0B00 : CMP.B $16 : BMI .return 
     LDA.W $0F7E,X : CLC : ADC.W Hitbox_KraidLint+8 : SEC : SBC.W #$0002 : STA.B $18 
-    LDA.W $0AFA : SEC : SBC.W $0B00 : CMP.B $18 
-    BPL .return 
+    LDA.W $0AFA : SEC : SBC.W $0B00 : CMP.B $18 : BPL .return 
     LDA.W $0AFE : CLC : ADC.W #$0010 : EOR.W #$FFFF 
-    CLC : ADC.W $0B58 : CMP.W #$0010 
-    BMI + 
+    CLC : ADC.W $0B58 : CMP.W #$0010 : BMI + 
     LDA.W #$0010 
 
   + STA.W $0B58 
@@ -4620,23 +4572,20 @@ Function_KraidFoot_Phase2_Thinking:
     LDX.W #$0000 
 
 .loopXPositions:
-    LDA.W $0F7A : CMP.W .XPosition,X 
-    BEQ + 
+    LDA.W $0F7A : CMP.W .XPosition,X : BEQ + 
     INX #4
     CPX.W #$0018 
     BMI .loopXPositions 
     LDX.W #$0004 
 
   + LDA.W $05E5 : AND.W #$001C 
-    CMP.W #$0010 
-    BMI + 
+    CMP.W #$0010 : BMI + 
     LDA.W #$0010 
 
   + CLC : ADC.W .movementDataPointer,X : TAX 
     LDA.W $0002,X 
     TAY 
-    LDA.W $0000,X : CMP.W $0F7A 
-    BPL .backwards 
+    LDA.W $0000,X : CMP.W $0F7A : BPL .backwards 
     LDA.W $0000,X : JSR.W SetKraidWalkingForwards 
     RTL 
 
@@ -4709,14 +4658,12 @@ SetKraidWalkingForwards:
 
 
 Function_KraidFoot_Phase2_WalkingBackward:
-    LDA.L $7E781E : CMP.W $0F7A 
-    BEQ .walking 
+    LDA.L $7E781E : CMP.W $0F7A : BEQ .walking 
     BPL .return 
     STA.W $0F7A 
 
 .walking:
-    LDA.W $10D2 : CMP.W #InstList_KraidFoot_KraidIsBig_WalkingBackwards_1 
-    BMI .return 
+    LDA.W $10D2 : CMP.W #InstList_KraidFoot_KraidIsBig_WalkingBackwards_1 : BMI .return 
     LDA.W #Function_KraidFoot_Phase2_Thinking : STA.W $10E8 
     LDA.W #$0001 : STA.W $10D4 
     LDA.W #InstList_KraidFoot_KraidIsBig_Neutral : STA.W $10D2 
@@ -4726,14 +4673,12 @@ Function_KraidFoot_Phase2_WalkingBackward:
 
 
 Function_KraidFoot_Phase2Setup_WalkToStartingPoint:
-    LDA.L $7E781E : CMP.W $0F7A 
-    BEQ .walking 
+    LDA.L $7E781E : CMP.W $0F7A : BEQ .walking 
     BPL .return 
     STA.W $0F7A 
 
 .walking:
-    LDA.W $10D2 : CMP.W #InstList_KraidFoot_KraidIsBig_WalkingBackwards_1 
-    BMI .return 
+    LDA.W $10D2 : CMP.W #InstList_KraidFoot_KraidIsBig_WalkingBackwards_1 : BMI .return 
     LDA.W #Function_Kraid_HandleFunctionTimer : STA.W $10E8 
     LDA.W #$00B4 : STA.W $10F2 
     LDA.W #Function_KraidFoot_Phase2Setup_InitializePhase2 : STA.L $7E7940 
@@ -4752,11 +4697,9 @@ Function_KraidFoot_Phase2Setup_InitializePhase2:
 
 
 Function_KraidFoot_Phase2_WalkingForward:
-    LDA.L $7E781E : CMP.W $0F7A 
-    BMI .forwards 
+    LDA.L $7E781E : CMP.W $0F7A : BMI .forwards 
     STA.W $0F7A 
-    LDA.W $10D2 : CMP.W #InstList_KraidFoot_KraidIsBig_WalkingForward_1 
-    BNE .return 
+    LDA.W $10D2 : CMP.W #InstList_KraidFoot_KraidIsBig_WalkingForward_1 : BNE .return 
     LDA.W #Function_KraidFoot_Phase2_Thinking : STA.W $10E8 
     LDA.W #$0001 : STA.W $10D4 
     LDA.W #InstList_KraidFoot_KraidIsBig_Neutral : STA.W $10D2 
@@ -4766,8 +4709,7 @@ Function_KraidFoot_Phase2_WalkingForward:
 
 
 .forwards:
-    LDA.W $10D2 : CMP.W #InstList_KraidFoot_KraidIsBig_WalkingForward_1 
-    BNE .return 
+    LDA.W $10D2 : CMP.W #InstList_KraidFoot_KraidIsBig_WalkingForward_1 : BNE .return 
     LDA.W #InstList_KraidFoot_KraidIsBig_WalkingForward_0 : STA.W $10D2 
     LDA.W #$0001 : STA.W $10D4 
     RTL 
@@ -4775,11 +4717,9 @@ Function_KraidFoot_Phase2_WalkingForward:
 
 Function_KraidMainLoop_AttackingWithMouthOpen:
     JSR.W KraidInstListHandling 
-    CMP.W #$FFFF 
-    BEQ .finishedInstructions 
+    CMP.W #$FFFF : BEQ .finishedInstructions 
     LDA.W $0FAA : SEC : SBC.W #$0008 : TAX 
-    LDA.W $0002,X : CMP.W #Tilemap_KraidHead_3 
-    BNE .return 
+    LDA.W $0002,X : CMP.W #Tilemap_KraidHead_3 : BNE .return 
     LDA.W $0FAC : AND.W #$000F 
     BNE .return 
     LDY.W #EnemyProjectile_KraidRockSpit 
@@ -4817,12 +4757,10 @@ Function_KraidMainLoop_AttackingWithMouthOpen:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_KraidFoot_LungeForwardIfSamusIsNotInvincible_A7BC75:
-    LDA.W $10D2 : CMP.W #InstList_KraidFoot_LungeForward_1 
-    BMI .return 
+    LDA.W $10D2 : CMP.W #InstList_KraidFoot_LungeForward_1 : BMI .return 
     LDA.W $18A8 : BEQ .lunge 
     LDA.W #Function_KraidFoot_Phase2_WalkingBackward : STA.W $10E8 
-    LDA.W $0911 : CLC : ADC.W #$0120 : CMP.W #$0120 
-    BMI + 
+    LDA.W $0911 : CLC : ADC.W #$0120 : CMP.W #$0120 : BMI + 
     LDA.W #$0120 
 
   + STA.L $7E781E 
@@ -4895,8 +4833,7 @@ InitAI_KraidNailBad:
 
 MainAI_KraidNail:
     REP #$30 
-    LDA.W $0F8C : CMP.W #$0001 
-    BMI .delete 
+    LDA.W $0F8C : CMP.W #$0001 : BMI .delete 
     JMP.W ($1128) 
 
 
@@ -4907,8 +4844,7 @@ MainAI_KraidNail:
 
 MainAI_KraidNailBad:
     REP #$30 
-    LDA.W $0F8C : CMP.W #$0001 
-    BMI .delete 
+    LDA.W $0F8C : CMP.W #$0001 : BMI .delete 
     JMP.W ($1168) 
 
 
@@ -4926,8 +4862,7 @@ Function_KraidNail_Initialize:
     BNE + 
     LDA.W $1170 
 
-  + CMP.W #$0000 
-    BPL .positiveYVelocity 
+  + CMP.W #$0000 : BPL .positiveYVelocity 
     LDA.W .upwardsVelocityPointers,Y : BRA + 
 
 
@@ -4964,8 +4899,7 @@ Function_KraidNail_Initialize:
     LDA.L $7E79CE 
 
 .notKraidNailBad:
-    CMP.W #$0001 
-    BEQ .diagonal 
+    CMP.W #$0001 : BEQ .diagonal 
     LDA.W #$0001 : STA.L $7E780E,X 
     LDA.W #$0032 : STA.W $0F7A,X 
     LDA.W #$00F0 : STA.W $0F7E,X 
@@ -5035,15 +4969,13 @@ Function_KraidNail_Fire:
     LDY.W #$0000 
 
 .loop:
-    LDA.W $0F7E : CLC : ADC.W .topBoundaryOffset,Y : CMP.W $0F7E,X 
-    BMI + 
+    LDA.W $0F7E : CLC : ADC.W .topBoundaryOffset,Y : CMP.W $0F7E,X : BMI + 
     INY #4
     BRA .loop 
 
 
   + LDA.W $0F7A : CLC : ADC.W .leftBoundaryOffset,Y : STA.B $12 
-    LDA.W $0F7A,X : CLC : ADC.W $0F82,X : CMP.B $12 
-    BMI .bounced 
+    LDA.W $0F7A,X : CLC : ADC.W $0F82,X : CMP.B $12 : BMI .bounced 
     LDA.W $0FAC,X : BMI .bounced 
     LDA.W $0FAA,X 
     EOR.W #$FFFF 
@@ -5079,8 +5011,7 @@ Function_KraidNail_Fire:
 
 Function_KraidFoot_Phase1_PrepareToLungeForward:
     JSR.W HandleKraidPhase1 
-    LDA.W $0FD2 : CMP.W #InstList_KraidArm_Normal_1 
-    BMI .return 
+    LDA.W $0FD2 : CMP.W #InstList_KraidArm_Normal_1 : BMI .return 
     LDA.W #InstList_KraidArm_Dying_PreparingToLungeForward : STA.W $0FD2 
     LDA.W #$0001 : STA.W $0FD4 
     LDA.W #$0001 : STA.W $10D4 
@@ -5094,14 +5025,11 @@ Function_KraidFoot_Phase1_PrepareToLungeForward:
 
 Function_KraidFoot_Phase1_LungeForward:
     JSR.W HandleKraidPhase1 
-    LDA.W $0F7A : CMP.W #$005C 
-    BPL + 
+    LDA.W $0F7A : CMP.W #$005C : BPL + 
     LDA.W #$005C : STA.W $0F7A 
 
-  + LDA.W $10D2 : CMP.W #InstList_KraidFoot_LungeForward_1 
-    BNE .return 
-    LDA.W $0F7A : CMP.W #$005C 
-    BEQ .done 
+  + LDA.W $10D2 : CMP.W #InstList_KraidFoot_LungeForward_1 : BNE .return 
+    LDA.W $0F7A : CMP.W #$005C : BEQ .done 
     LDA.W #$0001 : STA.W $10D4 
     LDA.W #InstList_KraidFoot_LungeForward_0 : STA.W $10D2 
     RTL 
@@ -5120,14 +5048,11 @@ Function_KraidFoot_Phase1_LungeForward:
 
 Function_KraidFoot_Phase1_RetreatFromLunge:
     JSR.W HandleKraidPhase1 
-    LDA.W $0F7A : CMP.W #$00B0 
-    BMI + 
+    LDA.W $0F7A : CMP.W #$00B0 : BMI + 
     LDA.W #$00B0 : STA.W $0F7A 
 
-  + LDA.W $10D2 : CMP.W #InstList_KraidFoot_KraidIsBig_WalkingBackwards_1 
-    BMI .return 
-    LDA.W $0F7A : CMP.W #$00B0 
-    BEQ .done 
+  + LDA.W $10D2 : CMP.W #InstList_KraidFoot_KraidIsBig_WalkingBackwards_1 : BMI .return 
+    LDA.W $0F7A : CMP.W #$00B0 : BEQ .done 
     LDA.W #InstList_KraidFoot_KraidIsBig_WalkingBackwards_0 : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     RTL 
@@ -5147,8 +5072,7 @@ Function_KraidFoot_Phase1_RetreatFromLunge:
 
 
 HandleKraidPhase1:
-    LDA.W $0F8C : CMP.L $7E7818 
-    BMI .getBig 
+    LDA.W $0F8C : CMP.L $7E7818 : BMI .getBig 
     RTS 
 
 
@@ -5160,14 +5084,11 @@ HandleKraidPhase1:
     TAX 
     LDA.W $0002,X 
     LDY.W #$0032 
-    CMP.W #Tilemap_KraidHead_0 
-    BEQ + 
+    CMP.W #Tilemap_KraidHead_0 : BEQ + 
     LDY.W #$002A 
-    CMP.W #Tilemap_KraidHead_1 
-    BEQ + 
+    CMP.W #Tilemap_KraidHead_1 : BEQ + 
     LDY.W #$0022 
-    CMP.W #Tilemap_KraidHead_2 
-    BEQ + 
+    CMP.W #Tilemap_KraidHead_2 : BEQ + 
     LDY.W #$001A 
 
   + TYA 
@@ -5402,17 +5323,14 @@ UnpauseHook_KraidIsSinking:
     LDA.B #$02 : STA.W $420B 
     REP #$30 
     PHB : PHK : PLB 
-    LDA.W $0F7E : CMP.W ShrinkingKraidTable_KraidYPosition 
-    BMI .return 
+    LDA.W $0F7E : CMP.W ShrinkingKraidTable_KraidYPosition : BMI .return 
     LDY.W #$0000 
     LDX.W $0330 
 
 .loop:
     REP #$30 
-    LDA.W ShrinkingKraidTable_KraidYPosition,Y : CMP.W #$FFFF 
-    BEQ .return 
-    LDA.W $0F7E : CMP.W ShrinkingKraidTable_KraidYPosition,Y 
-    BMI .return 
+    LDA.W ShrinkingKraidTable_KraidYPosition,Y : CMP.W #$FFFF : BEQ .return 
+    LDA.W $0F7E : CMP.W ShrinkingKraidTable_KraidYPosition,Y : BMI .return 
     LDA.W #$0040 : STA.B $D0,X 
     LDA.W #$2FC0 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 
@@ -5617,8 +5535,7 @@ KraidDeath_SinkThroughFloor:
     JSR.W PlaySoundEveryHalfSecond 
     JSR.W HandleKraidSinking 
     INC.W $0F7E 
-    LDA.W $0F7E : CMP.W #$0260 
-    BMI .return 
+    LDA.W $0F7E : CMP.W #$0260 : BMI .return 
     LDA.W $0F86 : AND.W #$FBFF : STA.W $0F86 
     LDA.W #$0002 : STA.W $179A 
     LDY.W $0E54 
@@ -5652,8 +5569,7 @@ HandleKraidSinking:
 
 .loop:
     LDA.W ShrinkingKraidTable_KraidYPosition,Y : BMI .return 
-    CMP.W $0F7E 
-    BEQ .found 
+    CMP.W $0F7E : BEQ .found 
     TYA 
     CLC : ADC.W #$0006 : TAY 
     BRA .loop 
@@ -6042,8 +5958,7 @@ Function_Kraid_RaiseThruFloor_RaiseKraid:
     LDA.W $0F7A : CLC : ADC.B $12 : STA.W $0F7A 
     LDA.W $0F80 : SEC : SBC.W #$8000 : STA.W $0F80 
     LDA.W $0F7E : SBC.W #$0000 : STA.W $0F7E 
-    LDA.W $0F7E : CMP.W #$01C9 
-    BPL .return 
+    LDA.W $0F7E : CMP.W #$01C9 : BPL .return 
     LDA.W #$00B0 : STA.W $0F7A 
     LDA.W #Function_KraidFoot_Phase1_Thinking : STA.W $10E8 
     LDA.W #$012C : STA.W $10F2 
@@ -6507,8 +6422,7 @@ PlayPhantoonMaterializationSFX:
     LDA.W Phantoon_MaterializationSFX,Y : JSL.L QueueSound_Lib2_Max6 
     LDA.L $7E9032 
     INC A 
-    CMP.W #$0003 
-    BMI .storeIndex 
+    CMP.W #$0003 : BMI .storeIndex 
     LDA.W #$0000 
 
 .storeIndex:
@@ -6541,8 +6455,7 @@ GrowShrinkPhantoonWaveAmplitude:
     LDA.W $106E : CLC : ADC.B $12 : STA.W $106E 
     AND.W #$FF00 
     XBA 
-    CMP.B $16 
-    BMI .returnNotCompletedCycle 
+    CMP.B $16 : BMI .returnNotCompletedCycle 
     LDA.B $14 : STA.W $106E 
     BRA .returnNotCompletedCycle 
 
@@ -6698,8 +6611,7 @@ PickNewPhantoonPattern:
     LDA.W $0FA8 
     INC A 
     STA.W $0FA8 
-    CMP.W #$0216 
-    BMI + 
+    CMP.W #$0216 : BMI + 
     STZ.W $0FA8 
 
   + LDA.W #$0001 : STA.W $0FAC 
@@ -6760,8 +6672,7 @@ UpdateFigure8PhantoonSpeed:
 .stage0:
     LDA.W $0FAA : CLC : ADC.W Phantoon_Figure8_SubAcceleration_SlowStage : STA.W $0FAA 
     LDA.W $0FAC : ADC.W Phantoon_Figure8_Acceleration_SlowStage : STA.W $0FAC 
-    CMP.W Phantoon_Figure8_SpeedCaps_Stage0Max 
-    BMI ..return 
+    CMP.W Phantoon_Figure8_SpeedCaps_Stage0Max : BMI ..return 
     LDA.W Phantoon_Figure8_SpeedCaps_Stage0Max 
     DEC A 
     STA.W $0FAC 
@@ -6775,8 +6686,7 @@ UpdateFigure8PhantoonSpeed:
 .stage1:
     LDA.W $0FAA : CLC : ADC.W Phantoon_Figure8_SubAcceleration_FastStages : STA.W $0FAA 
     LDA.W $0FAC : ADC.W Phantoon_Figure8_Acceleration_FastStages : STA.W $0FAC 
-    CMP.W Phantoon_Figure8_SpeedCaps_Stage1Max 
-    BMI ..return 
+    CMP.W Phantoon_Figure8_SpeedCaps_Stage1Max : BMI ..return 
     LDA.W Phantoon_Figure8_SpeedCaps_Stage1Max : STA.W $0FAC 
     STZ.W $0FAA 
     INC.W $0FAE 
@@ -6788,8 +6698,7 @@ UpdateFigure8PhantoonSpeed:
 .stage2:
     LDA.W $0FAA : SEC : SBC.W Phantoon_Figure8_SubAcceleration_FastStages : STA.W $0FAA 
     LDA.W $0FAC : SBC.W Phantoon_Figure8_Acceleration_FastStages : STA.W $0FAC 
-    CMP.W Phantoon_Figure8_SpeedCaps_Stage2Min 
-    BEQ .negativeSpeed 
+    CMP.W Phantoon_Figure8_SpeedCaps_Stage2Min : BEQ .negativeSpeed 
     BPL .return 
 
 .negativeSpeed:
@@ -6813,8 +6722,7 @@ UpdateReversedFigure8PhantoonSpeed:
 .stage0:
     LDA.W $0FAA : SEC : SBC.W Phantoon_ReverseFigure8_SubAcceleration_SlowStage : STA.W $0FAA 
     LDA.W $0FAC : SBC.W Phantoon_ReverseFigure8_Acceleration_SlowStage : STA.W $0FAC 
-    CMP.W Phantoon_ReverseFigure8_SpeedCaps_Stage0Max 
-    BEQ + 
+    CMP.W Phantoon_ReverseFigure8_SpeedCaps_Stage0Max : BEQ + 
     BPL .stage0_return 
 
   + LDA.W Phantoon_ReverseFigure8_SpeedCaps_Stage0Max 
@@ -6830,8 +6738,7 @@ UpdateReversedFigure8PhantoonSpeed:
 .stage1:
     LDA.W $0FAA : SEC : SBC.W Phantoon_ReverseFigure8_SubAcceleration_FastStages : STA.W $0FAA 
     LDA.W $0FAC : SBC.W Phantoon_ReverseFigure8_Acceleration_FastStages : STA.W $0FAC 
-    CMP.W Phantoon_ReverseFigure8_SpeedCaps_Stage1Max 
-    BEQ + 
+    CMP.W Phantoon_ReverseFigure8_SpeedCaps_Stage1Max : BEQ + 
     BPL .stage1_return 
 
   + LDA.W Phantoon_ReverseFigure8_SpeedCaps_Stage1Max 
@@ -6847,8 +6754,7 @@ UpdateReversedFigure8PhantoonSpeed:
 .stage2:
     LDA.W $0FAA : CLC : ADC.W Phantoon_ReverseFigure8_SubAcceleration_FastStages : STA.W $0FAA 
     LDA.W $0FAC : ADC.W Phantoon_ReverseFigure8_Acceleration_FastStages : STA.W $0FAC 
-    CMP.W Phantoon_ReverseFigure8_SpeedCaps_Stage2Min 
-    BMI ..return 
+    CMP.W Phantoon_ReverseFigure8_SpeedCaps_Stage2Min : BMI ..return 
     LDA.W Phantoon_ReverseFigure8_SpeedCaps_Stage2Min : STA.W $0FAC 
     STZ.W $0FAA 
     STZ.W $0FAE 
@@ -6887,8 +6793,7 @@ MovePhantoonInFigure8:
     LDA.W $0FA8 
     INC A 
     STA.W $0FA8 
-    CMP.B $14 
-    BMI + 
+    CMP.B $14 : BMI + 
     STZ.W $0FA8 
 
   + PLY 
@@ -6950,8 +6855,7 @@ MovePhantoonInReverseFigure8:
 MovePhantoonInSwoopingPattern:
     LDA.W $1030 : BMI .targetXNegative 
     CLC : ADC.W #$0002 : STA.W $1030 
-    CMP.W #$0100 
-    BMI .targetCalculated 
+    CMP.W #$0100 : BMI .targetCalculated 
     ORA.W #$8000 
     STA.W $1030 
     AND.W #$7FFF 
@@ -6967,17 +6871,14 @@ MovePhantoonInSwoopingPattern:
   + LDA.W #$0000 : STA.W $1030 
 
 .targetCalculated:
-    CMP.W $0F7A 
-    BMI .lessThanX 
-    LDA.W $102C : CMP.W #$0800 
-    BPL + 
+    CMP.W $0F7A : BMI .lessThanX 
+    LDA.W $102C : CMP.W #$0800 : BPL + 
     CLC : ADC.W #$0020 : STA.W $102C 
     BRA + 
 
 
 .lessThanX:
-    LDA.W $102C : CMP.W #$F801 
-    BMI + 
+    LDA.W $102C : CMP.W #$F801 : BMI + 
     SEC : SBC.W #$0020 : STA.W $102C 
 
   + LDA.W $102C 
@@ -6994,36 +6895,30 @@ MovePhantoonInSwoopingPattern:
   + STA.B $12 
     LDA.W $0F7C : CLC : ADC.B $14 : STA.W $0F7C 
     LDA.W $0F7A : ADC.B $12 : STA.W $0F7A 
-    CMP.W #$FFC0 
-    BPL + 
+    CMP.W #$FFC0 : BPL + 
     LDA.W #$FFC0 : STA.W $0F7A 
     BRA .checkDead 
 
 
-  + CMP.W #$01C0 
-    BMI .checkDead 
+  + CMP.W #$01C0 : BMI .checkDead 
     LDA.W #$01C0 : STA.W $0F7A 
 
 .checkDead:
-    LDA.W $0FB2,X : CMP.W #Function_Phantoon_Swooping_FatalDamage 
-    BNE .notDeathSwoop 
+    LDA.W $0FB2,X : CMP.W #Function_Phantoon_Swooping_FatalDamage : BNE .notDeathSwoop 
     LDA.W #$0070 : BRA + 
 
 
 .notDeathSwoop:
     LDA.W $0AFA : SEC : SBC.W #$0030 
 
-  + CMP.W $0F7E 
-    BMI .lessThanY 
-    LDA.W $102E : CMP.W #$0600 
-    BPL + 
+  + CMP.W $0F7E : BMI .lessThanY 
+    LDA.W $102E : CMP.W #$0600 : BPL + 
     CLC : ADC.W #$0040 : STA.W $102E 
     BRA + 
 
 
 .lessThanY:
-    LDA.W $102E : CMP.W #$FA01 
-    BMI + 
+    LDA.W $102E : CMP.W #$FA01 : BMI + 
     SEC : SBC.W #$0040 : STA.W $102E 
 
   + LDA.W $102E 
@@ -7040,14 +6935,12 @@ MovePhantoonInSwoopingPattern:
   + STA.B $12 
     LDA.W $0F80 : CLC : ADC.B $14 : STA.W $0F80 
     LDA.W $0F7E : ADC.B $12 : STA.W $0F7E 
-    CMP.W #$0040 
-    BPL + 
+    CMP.W #$0040 : BPL + 
     LDA.W #$0040 : STA.W $0F7E 
     RTS 
 
 
-  + CMP.W #$00D8 
-    BMI .return 
+  + CMP.W #$00D8 : BMI .return 
     LDA.W #$00D8 : STA.W $0F7E 
 
 .return:
@@ -7086,10 +6979,8 @@ MakePhantoonLookTowardsSamus:
 
 StartPhantoonDeathSequence:
     PHX 
-    LDA.W $0FB2,X : CMP.W #Function_Phantoon_Swooping_Opaque 
-    BEQ .swooping 
-    CMP.W #Function_Phantoon_Swooping_FadeOut 
-    BEQ .swooping 
+    LDA.W $0FB2,X : CMP.W #Function_Phantoon_Swooping_Opaque : BEQ .swooping 
+    CMP.W #Function_Phantoon_Swooping_FadeOut : BEQ .swooping 
     LDA.W #Function_Phantoon_DeathSequence_FadingInAndOut : STA.W $0FB2,X 
     BRA + 
 
@@ -7163,8 +7054,7 @@ Function_Phantoon_FightIntro_SpawnCircleOfFlames:
     LDA.W $0FA8 
     INC A 
     STA.W $0FA8 
-    CMP.W #$0008 
-    BMI .return 
+    CMP.W #$0008 : BMI .return 
     STZ.W $0FA8 
     STZ.W $102A,X 
     LDA.W #Function_Phantoon_FightIntro_SpinCircleOfFlames : STA.W $0FB2,X 
@@ -7522,8 +7412,7 @@ Function_Phantoon_FlameRain_InitialFlameRain:
 .timerExpired:
     STZ.W $1028 
     LDA.W #Function_Phantoon_FlameRain_ShowPhantoon : STA.W $0FB2,X 
-    LDA.W $0F7A : CMP.W #$0080 
-    BMI .pattern0 
+    LDA.W $0F7A : CMP.W #$0080 : BMI .pattern0 
     LDA.W #$0002 : JSR.W SpawnFlameRainProjectiles 
     RTS 
 
@@ -7612,8 +7501,7 @@ Function_Phantoon_Enraged_Rage:
     LDA.W $0FF2 
     INC A 
     STA.W $0FF2 
-    CMP.W #$0008 
-    BPL .doneRaging 
+    CMP.W #$0008 : BPL .doneRaging 
     LDA.W #$0080 : STA.W $0FB0,X 
     RTS 
 
@@ -7641,10 +7529,8 @@ Function_Phantoon_Enraged_FadingOutAfterRage:
 Function_Phantoon_Swooping_FatalDamage:
     JSR.W MakePhantoonLookTowardsSamus 
     JSR.W MovePhantoonInSwoopingPattern 
-    LDA.W $0F7A : CMP.W #$0060 
-    BMI .return 
-    CMP.W #$00A0 
-    BPL .return 
+    LDA.W $0F7A : CMP.W #$0060 : BMI .return 
+    CMP.W #$00A0 : BPL .return 
     LDA.W #Function_Phantoon_DeathSequence_FadingInAndOut : STA.W $0FB2,X 
 
 .return:
@@ -7669,8 +7555,7 @@ Function_Phantoon_DeathSequence_FadingInAndOut:
     LDA.W $0FEC 
     INC A 
     STA.W $0FEC 
-    CMP.W #$000A 
-    BMI .return 
+    CMP.W #$000A : BMI .return 
     LDA.W #Function_Phantoon_DeathSequence_Exploding : STA.W $0FB2,X 
     LDA.W #$000F : STA.W $0FB0,X 
     STZ.W $1032 
@@ -7711,8 +7596,7 @@ Function_Phantoon_DeathSequence_Exploding:
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLA 
-    CMP.W #$001D 
-    BNE .PhantoonExplosion 
+    CMP.W #$001D : BNE .PhantoonExplosion 
     LDA.W #$0024 : JSL.L QueueSound_Lib2_Max6 
     BRA + 
 
@@ -7725,14 +7609,12 @@ Function_Phantoon_DeathSequence_Exploding:
     LDA.W $1032 
     INC A 
     STA.W $1032 
-    CMP.W #$000D 
-    BMI .return 
+    CMP.W #$000D : BMI .return 
     LDA.W #$0005 : STA.W $1032 
     LDA.W $0FA8 
     INC A 
     STA.W $0FA8 
-    CMP.W #$0003 
-    BMI .return 
+    CMP.W #$0003 : BMI .return 
     LDA.W #Function_Phantoon_DeathSequence_SetupWavyMosaicPhantoon : STA.W $0FB2,X 
 
 .return:
@@ -7773,13 +7655,11 @@ Function_Phantoon_DeathSequence_WavyMosaicPhantoon:
     LDA.W WavyPhantoonConstants_Dying_amplitudeDelta : STA.B $12 
     LDA.W WavyPhantoonConstants_Dying_maxAmplitude : STA.B $14 
     JSR.W GrowShrinkPhantoonWaveAmplitude 
-    LDA.W $0FEC : CMP.W #$FFFF 
-    BEQ .doneMosaic 
+    LDA.W $0FEC : CMP.W #$FFFF : BEQ .doneMosaic 
     LDA.W $05B6 : BIT.W #$000F 
     BNE .return 
     SEP #$20 
-    LDA.W $0FEC : CMP.B #$F2 
-    BEQ .mosaicF2 
+    LDA.W $0FEC : CMP.B #$F2 : BEQ .mosaicF2 
     CLC : ADC.B #$10 : STA.W $0FEC 
     STA.B $57 
     REP #$20 
@@ -7874,8 +7754,7 @@ AdvancePhantoonFadeOut:
     REP #$30 
     LDA.W $0FEE 
     INC A 
-    CMP.W $0FF0 
-    BCS .advance 
+    CMP.W $0FF0 : BCS .advance 
     LDA.W #$0000 : STA.W $0FF0 
     SEC 
     RTS 
@@ -7907,8 +7786,7 @@ AdvancePhantoonFadeIn:
     REP #$30 
     LDA.W $0FEE 
     INC A 
-    CMP.W $0FF0 
-    BCS .advance 
+    CMP.W $0FF0 : BCS .advance 
     LDA.W #$0000 : STA.W $0FF0 
     SEC 
     RTS 
@@ -7945,14 +7823,12 @@ GetPhantoonHealthBasedPaletteColor:
     STZ.B $16 
 
 .loop:
-    LDA.B $14 : CMP.W $0F8C,X 
-    BPL .getPointer 
+    LDA.B $14 : CMP.W $0F8C,X : BPL .getPointer 
     LDA.B $14 : CLC : ADC.B $12 : STA.B $14 
     LDA.B $16 
     INC A 
     STA.B $16 
-    CMP.W #$0007 
-    BMI .loop 
+    CMP.W #$0007 : BMI .loop 
 
 .getPointer:
     LDA.B $16 
@@ -7979,8 +7855,7 @@ AdvanceWreckedShipPowerOnPaletteTransition:
     REP #$30 
     LDA.W $0FEE 
     INC A 
-    CMP.W $0FF0 
-    BCS .advance 
+    CMP.W $0FF0 : BCS .advance 
     LDA.W #$0000 : STA.W $0FF0 
     SEC 
     RTS 
@@ -8050,16 +7925,14 @@ CalculateAthTransitionalColorFromXToY:
 
 
 CalculateTheAthTransitionalColorComponentFromXToY:
-    CMP.W #$0000 
-    BNE .notZero 
+    CMP.W #$0000 : BNE .notZero 
     TXA 
     RTS 
 
 
 .notZero:
     DEC A 
-    CMP.W $0FEE 
-    BNE + 
+    CMP.W $0FEE : BNE + 
     TYA 
     RTS 
 
@@ -8096,8 +7969,7 @@ CalculateTheAthTransitionalColorComponentFromXToY:
 HurtAI_Phantoon:
     PHP 
     REP #$30 
-    LDA.W $0F9C : CMP.W #$0008 
-    BEQ .healthBased 
+    LDA.W $0F9C : CMP.W #$0008 : BEQ .healthBased 
     LDA.W $0FA4 : BIT.W #$0002 
     BNE .white 
     LDA.W $1036 : BIT.W #$FF00 
@@ -8143,8 +8015,7 @@ RTL_A7DD9A:
 
 EnemyShot_Phantoon:
     PHB 
-    LDA.W $0FB2 : CMP.W #Function_Phantoon_DeathSequence_FadingInAndOut 
-    BMI .notDead 
+    LDA.W $0FB2 : CMP.W #Function_Phantoon_DeathSequence_FadingInAndOut : BMI .notDead 
     PLB 
     RTL 
 
@@ -8171,52 +8042,43 @@ EnemyShot_Phantoon:
     LDA.W $0F8A,X : BIT.W #$0002 
     BEQ .returnUpper 
     LDA.W #$0073 : JSL.L QueueSound_Lib2_Max6 
-    LDA.W $0FB2,X : CMP.W #Function_Phantoon_Figure8_VulnerableWindow 
-    BEQ .vulnerableWindow 
-    CMP.W #Function_Phantoon_FlameRain_VulnerableWindow 
-    BEQ .vulnerableWindow 
-    CMP.W #Function_Phantoon_Swooping_Opaque 
-    BEQ .swooping 
+    LDA.W $0FB2,X : CMP.W #Function_Phantoon_Figure8_VulnerableWindow : BEQ .vulnerableWindow 
+    CMP.W #Function_Phantoon_FlameRain_VulnerableWindow : BEQ .vulnerableWindow 
+    CMP.W #Function_Phantoon_Swooping_Opaque : BEQ .swooping 
     JMP.W .return1036_2 
 
 
 .swooping:
     LDA.B $12 : SEC : SBC.W $0F8C,X : STA.B $12 
-    CMP.W #$012C 
-    BMI .overDamaged 
+    CMP.W #$012C : BMI .overDamaged 
     LDA.W $18A6 
     ASL A 
     TAY 
     LDA.W $0C18,Y : AND.W #$0F00 
-    CMP.W #$0200 
-    BNE .overDamaged 
+    CMP.W #$0200 : BNE .overDamaged 
     JMP.W .enraged 
 
 
 .overDamaged:
     LDA.W $102A,X : CLC : ADC.B $12 : STA.W $102A,X 
-    CMP.W #$012C 
-    BMI .return1036_2 
+    CMP.W #$012C : BMI .return1036_2 
     LDA.W #$0001 : STA.W $0FB0,X 
     BRA .return1036_2 
 
 
 .vulnerableWindow:
     LDA.B $12 : SEC : SBC.W $0F8C,X : STA.B $12 
-    CMP.W #$012C 
-    BMI + 
+    CMP.W #$012C : BMI + 
     LDA.W $18A6 
     ASL A 
     TAY 
     LDA.W $0C18,Y : AND.W #$0F00 
-    CMP.W #$0200 
-    BNE + 
+    CMP.W #$0200 : BNE + 
     JMP.W .enraged 
 
 
   + LDA.W $102A,X : CLC : ADC.B $12 : STA.W $102A,X 
-    CMP.W #$012C 
-    BPL .nextRound 
+    CMP.W #$012C : BPL .nextRound 
     JSL.L GenerateRandomNumber 
     AND.W #$0007 
     TAY 
@@ -8226,8 +8088,7 @@ EnemyShot_Phantoon:
     LDA.W #$0001 : STA.W $1036 
     LDA.W $1028 : BNE .returnLower 
     LDA.W #$0001 : STA.W $1028 
-    LDA.W $0FB0,X : CMP.W #$0010 
-    BMI .returnLower 
+    LDA.W $0FB0,X : CMP.W #$0010 : BMI .returnLower 
     LDA.W #$0010 : STA.W $0FB0,X 
 
 .returnLower:
@@ -8870,8 +8731,7 @@ EtecoonHorizontalMovement:
 EtecoonVerticalMovement:
     LDA.W $0FA8,X : STA.B $14 
     LDA.W $0FAA,X : STA.B $12 
-    LDA.W $0FA8,X : CMP.W #$0005 
-    BPL .move 
+    LDA.W $0FA8,X : CMP.W #$0005 : BPL .move 
     LDA.W $0FAA,X : CLC : ADC.L $000B32 : STA.W $0FAA,X 
     LDA.W $0FA8,X : ADC.L $000B34 : STA.W $0FA8,X 
 
@@ -8928,8 +8788,7 @@ Function_Etecoon_StartHop_BottomOfRoom:
     STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #Function_Etecoon_Hopping_BottomOfRoom : STA.W $0FB2,X 
-    LDA.W $0AF6 : CMP.W #$0100 
-    BMI .return 
+    LDA.W $0AF6 : CMP.W #$0100 : BMI .return 
     LDA.W #$0033 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
@@ -8959,8 +8818,7 @@ Function_Etecoon_Hopping_BottomOfRoom:
     TAY 
     BEQ .hopMore 
     JSL.L DetermineDirectionOfSamusFromEnemy 
-    CMP.W #$0005 
-    BPL .left 
+    CMP.W #$0005 : BPL .left 
     LDA.W #InstList_Etecoon_LookRightAtSamusAndRunLeft : STA.W $0F92,X 
     STZ.W $0FB4,X 
     BRA + 
@@ -9060,8 +8918,7 @@ Function_Etecoon_Jumping:
   + LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #Function_Etecoon_WallJump : STA.W $0FB2,X 
     LDA.W #$0008 : STA.W $0FB0,X 
-    LDA.W $0AF6 : CMP.W #$0100 
-    BMI .returnUpper 
+    LDA.W $0AF6 : CMP.W #$0100 : BMI .returnUpper 
     LDA.W #$0032 : JSL.L QueueSound_Lib2_Max6 
 
 .returnUpper:
@@ -9172,8 +9029,7 @@ HopAtCenterRunUpPoint:
 
 Function_Etecoon_RunToLeftRunUpPoint:
     JSR.W EtecoonHorizontalMovement 
-    LDA.W $0F7A,X : CMP.W #$0219 
-    BPL .return 
+    LDA.W $0F7A,X : CMP.W #$0219 : BPL .return 
     LDA.W #$000B : STA.W $0FB0,X 
     LDA.W #Function_Etecoon_StartHop_TopOfRoom : STA.W $0FB2,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -9185,8 +9041,7 @@ Function_Etecoon_RunToLeftRunUpPoint:
 
 Function_Etecoon_RunToRightRunUpPoint:
     JSR.W EtecoonHorizontalMovement 
-    LDA.W $0F7A,X : CMP.W #$0258 
-    BMI .return 
+    LDA.W $0F7A,X : CMP.W #$0258 : BMI .return 
     LDA.W #$000B : STA.W $0FB0,X 
     LDA.W #Function_Etecoon_StartHop_TopOfRoom : STA.W $0FB2,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -9198,8 +9053,7 @@ Function_Etecoon_RunToRightRunUpPoint:
 
 Function_Etecoon_RunningForSuccessfulMorphTunnelJump:
     JSR.W EtecoonHorizontalMovement 
-    LDA.W $0F7A,X : CMP.W #$0258 
-    BMI .return 
+    LDA.W $0F7A,X : CMP.W #$0258 : BMI .return 
     LDA.W #Function_Etecoon_SuccessfulMorphTunnelJump : STA.W $0FB2,X 
     LDA.W EtecoonConstants_initialYVelocityOfSuccessfulJump : STA.W $0FA8,X 
     LDA.W EtecoonConstants_initialYVelocityOfSuccessfulJump+2 : STA.W $0FAA,X 
@@ -9213,8 +9067,7 @@ Function_Etecoon_RunningForSuccessfulMorphTunnelJump:
 Function_Etecoon_SuccessfulMorphTunnelJump:
     JSR.W EtecoonHorizontalMovement 
     JSR.W EtecoonVerticalMovement 
-    LDA.W $0F7A,X : CMP.W #$02A8 
-    BMI .return 
+    LDA.W $0F7A,X : CMP.W #$02A8 : BMI .return 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #InstList_Etecoon_RunningRight : STA.W $0F92,X 
     LDA.W #Function_Etecoon_RunningThroughMorphTunnel : STA.W $0FB2,X 
@@ -9225,8 +9078,7 @@ Function_Etecoon_SuccessfulMorphTunnelJump:
 
 Function_Etecoon_RunningThroughMorphTunnel:
     JSR.W EtecoonHorizontalMovement 
-    LDA.W $0F7A,X : CMP.W #$0348 
-    BMI .return 
+    LDA.W $0F7A,X : CMP.W #$0348 : BMI .return 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #InstList_Etecoon_JumpingRight : STA.W $0F92,X 
     LDA.W #Function_Etecoon_FallingFromMorphTunnelLedge : STA.W $0FB2,X 
@@ -9279,8 +9131,7 @@ Function_Etecoon_Hopping_TopOfRoom:
 
 
 .successEtecoon:
-    LDA.W $0F7A,X : CMP.W #$0340 
-    BPL .hop 
+    LDA.W $0F7A,X : CMP.W #$0340 : BPL .hop 
     LDA.W #Function_Etecoon_HopUntilSamusIsNear : STA.W $0FB2,X 
 
 .return:
@@ -9296,8 +9147,7 @@ Function_Etecoon_StartHop_TopOfRoom:
 .timerExpired:
     LDA.W $0FB4,X : CLC : ADC.W #$0100 : STA.W $0FB4,X 
     AND.W #$FF00 
-    CMP.W #$0400 
-    BMI .notFailedJump 
+    CMP.W #$0400 : BMI .notFailedJump 
     LDA.W $0FB4,X : AND.W #$00FF : STA.W $0FB4,X 
     LDA.W $0FB6,X : BIT.W #$0002 
     BNE .notFailedJump 
@@ -9318,8 +9168,7 @@ Function_Etecoon_StartHop_TopOfRoom:
     LDA.W EtecoonConstants_initialYVelocityOfHopsAndFailedJumps : STA.W $0FA8,X 
     LDA.W EtecoonConstants_initialYVelocityOfHopsAndFailedJumps+2 : STA.W $0FAA,X 
     LDA.W #$0001 : STA.W $0F94,X 
-    LDA.W $0AF6 : CMP.W #$0100 
-    BMI .return 
+    LDA.W $0AF6 : CMP.W #$0100 : BMI .return 
     LDA.W #$0033 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
@@ -9351,8 +9200,7 @@ Function_Etecoon_HopUntilSamusIsNear:
     INC #2
     STA.W $0F92,X 
     LDA.W #Function_Etecoon_Hopping_TopOfRoom : STA.W $0FB2,X 
-    LDA.W $0AF6 : CMP.W #$0100 
-    BMI .skipSFX 
+    LDA.W $0AF6 : CMP.W #$0100 : BMI .skipSFX 
     LDA.W #$0033 : JSL.L QueueSound_Lib2_Max6 
 
 .skipSFX:
@@ -9364,8 +9212,7 @@ Function_Etecoon_HopUntilSamusIsNear:
 
 Function_Etecoon_RunningForFailedMorphTunnelJump:
     JSR.W EtecoonHorizontalMovement 
-    LDA.W $0F7A,X : CMP.W #$0258 
-    BMI .return 
+    LDA.W $0F7A,X : CMP.W #$0258 : BMI .return 
     LDA.W #Function_Etecoon_FailedTunnelJump : STA.W $0FB2,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #InstList_Etecoon_JumpingRight : STA.W $0F92,X 
@@ -10245,8 +10092,7 @@ Function_Dachora_RunningLeft:
 
 
 .noWall:
-    LDA.W $0F7A,X : CMP.W #$0060 
-    BMI .stop 
+    LDA.W $0F7A,X : CMP.W #$0060 : BMI .stop 
     RTL 
 
     LDA.W UNUSED_DachoraConstants_maxXDistanceFromSamusToStop_A7F4CB ; dead code
@@ -10286,8 +10132,7 @@ Function_Dachora_RunningRight:
 
 
 .noWall:
-    LDA.W $0F7A,X : CMP.W #$0480 
-    BPL + 
+    LDA.W $0F7A,X : CMP.W #$0480 : BPL + 
     RTL 
 
 
@@ -10305,10 +10150,8 @@ Function_Dachora_RunningRight:
 
 
 AccelerateRunningDachora:
-    LDA.W $0FA8,X : CMP.W DachoraConstants_maxXSpeed 
-    BMI .noPaletteChange 
-    LDA.W $0FB0,X : CMP.W #$0001 
-    BNE .animTimer 
+    LDA.W $0FA8,X : CMP.W DachoraConstants_maxXSpeed : BMI .noPaletteChange 
+    LDA.W $0FB0,X : CMP.W #$0001 : BNE .animTimer 
     LDA.W #$0039 : JSL.L QueueSound_Lib2_Max6 
 
 .animTimer:
@@ -10329,18 +10172,15 @@ AccelerateRunningDachora:
     TAY 
     JSR.W LoadDachoraPalette 
     LDA.W $0FB0,X : CLC : ADC.W #$0110 : STA.W $0FB0,X 
-    CMP.W #$0410 
-    BMI .noPaletteChange 
+    CMP.W #$0410 : BMI .noPaletteChange 
     LDA.W #$0310 : STA.W $0FB0,X 
 
 .noPaletteChange:
     LDA.W #$0001 : STA.B $14 
     STZ.B $12 
     JSL.L MoveEnemyDownBy_14_12 
-    LDA.W $0FA8,X : CMP.W DachoraConstants_maxXSpeed 
-    BMI .increaseSpeed 
-    LDA.W $0FAA,X : CMP.W DachoraConstants_maxXSpeed+2 
-    BMI .increaseSpeed 
+    LDA.W $0FA8,X : CMP.W DachoraConstants_maxXSpeed : BMI .increaseSpeed 
+    LDA.W $0FAA,X : CMP.W DachoraConstants_maxXSpeed+2 : BMI .increaseSpeed 
     LDA.W DachoraConstants_maxXSpeed : STA.W $0FA8,X 
     STA.B $14 
     LDA.W DachoraConstants_maxXSpeed+2 : STA.W $0FAA,X 
@@ -10353,10 +10193,8 @@ AccelerateRunningDachora:
     STA.B $12 
     LDA.W $0FA8,X : ADC.W DachoraConstants_XAcceleration : STA.W $0FA8,X 
     STA.B $14 
-    CMP.W #$0004 
-    BNE .checkMaxSpeed 
-    LDA.B $12 : CMP.W #$0000 
-    BNE .return 
+    CMP.W #$0004 : BNE .checkMaxSpeed 
+    LDA.B $12 : CMP.W #$0000 : BNE .return 
 
 .maxSpeed:
     LDA.W $0F92,X : CLC : ADC.W #$001C : STA.W $0F92,X 
@@ -10364,10 +10202,8 @@ AccelerateRunningDachora:
 
 
 .checkMaxSpeed:
-    CMP.W #$0008 
-    BNE .return 
-    LDA.B $12 : CMP.W #$0000 
-    BEQ .maxSpeed 
+    CMP.W #$0008 : BNE .return 
+    LDA.B $12 : CMP.W #$0000 : BEQ .maxSpeed 
 
 .return:
     RTS 
@@ -10429,8 +10265,7 @@ Function_Dachora_Shinesparking:
     STA.B $12 
     LDA.W $0FA8,X : ADC.W $0FAC,X : STA.W $0FA8,X 
     STA.B $14 
-    CMP.W #$000F 
-    BMI + 
+    CMP.W #$000F : BMI + 
     LDA.W #$000F : STA.B $14 
 
   + LDA.B $14 : EOR.W #$FFFF : STA.B $14 
@@ -10519,8 +10354,7 @@ LoadDachoraShinePalette:
     TAY 
     JSR.W LoadDachoraPalette 
     LDA.W $0FB0,X : CLC : ADC.W #$0100 : STA.W $0FB0,X 
-    CMP.W #$0400 
-    BMI .return 
+    CMP.W #$0400 : BMI .return 
     STZ.W $0FB0,X 
 
 .return:
@@ -10538,8 +10372,7 @@ Function_Dachora_Falling:
     STA.B $12 
     LDA.W $0FA8,X : ADC.L $000B34 : STA.W $0FA8,X 
     STA.B $14 
-    CMP.W #$000A 
-    BMI + 
+    CMP.W #$000A : BMI + 
     LDA.W #$000A : STA.B $14 
     STZ.B $12 
 

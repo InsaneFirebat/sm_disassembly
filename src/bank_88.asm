@@ -395,18 +395,12 @@ Initialise_Special_Effects_for_New_Room:
     REP #$20 
     STZ.W $0607 
     STZ.W $0609 
-    LDA.W $079B : CMP.W #RoomHeader_BombTorizo 
-    BEQ .noEarthquakeSFX 
-    CMP.W #RoomHeader_Climb 
-    BEQ .noEarthquakeSFX 
-    CMP.W #RoomHeader_Ridley 
-    BEQ .noEarthquakeSFX 
-    CMP.W #RoomHeader_Pillar 
-    BEQ .noEarthquakeSFX 
-    CMP.W #RoomHeader_MotherBrain 
-    BEQ .noEarthquakeSFX 
-    CMP.W #RoomHeader_TourianEscape4 
-    BEQ .noEarthquakeSFX 
+    LDA.W $079B : CMP.W #RoomHeader_BombTorizo : BEQ .noEarthquakeSFX 
+    CMP.W #RoomHeader_Climb : BEQ .noEarthquakeSFX 
+    CMP.W #RoomHeader_Ridley : BEQ .noEarthquakeSFX 
+    CMP.W #RoomHeader_Pillar : BEQ .noEarthquakeSFX 
+    CMP.W #RoomHeader_MotherBrain : BEQ .noEarthquakeSFX 
+    CMP.W #RoomHeader_TourianEscape4 : BEQ .noEarthquakeSFX 
     BRA .earthquakeSFX 
 
 
@@ -889,8 +883,7 @@ RaiseOrLower_FX:
     LDA.W #$0000 
 
   + STA.W $1978 
-    LDA.W $197A : CMP.W $1978 
-    BCC .return 
+    LDA.W $197A : CMP.W $1978 : BCC .return 
     STA.W $1978 
     STZ.W $1976 
 
@@ -905,8 +898,7 @@ RaiseOrLower_FX:
     LDA.W #$FFFF 
 
   + STA.W $1978 
-    LDA.W $197A : CMP.W $1978 
-    BCS .returnCarryClear 
+    LDA.W $197A : CMP.W $1978 : BCS .returnCarryClear 
     STA.W $1978 
     STZ.W $1976 
     SEC 
@@ -927,8 +919,7 @@ PreInstruction_Xray_Main:
     PHP 
     REP #$30 
     LDX.W #$1000 
-    LDA.W $196E : CMP.W #$0024 
-    BEQ + 
+    LDA.W $196E : CMP.W #$0024 : BEQ + 
     LDX.W #$2000 
     JSL.L CheckIfXrayShouldShowAnyBlocks 
     BEQ + 
@@ -995,8 +986,7 @@ HandleXrayScope_State1_BeamIsWidening:
     LDA.W $0A7C : ADC.W #$0000 : STA.W $0A7C 
     LDA.W $0A86 : CLC : ADC.W $0A7E : STA.W $0A86 
     LDA.W $0A84 : ADC.W $0A7C : STA.W $0A84 
-    CMP.W #$000B 
-    BMI .calculateHDMATable 
+    CMP.W #$000B : BMI .calculateHDMATable 
     STZ.W $0A86 
     LDA.W #$000A : STA.W $0A84 
     LDA.W $0A7A 
@@ -1055,8 +1045,7 @@ HandleMovingXray_UpDown:
 MoveXray_Up:
     PHP 
     REP #$30 
-    LDA.W $0A82 : CMP.W #$0080 
-    BPL .facingLeft 
+    LDA.W $0A82 : CMP.W #$0080 : BPL .facingLeft 
     SEC : SBC.W $0A84 : BEQ .return 
     BMI .setAngularWidth 
     LDA.W $0A82 : SEC : SBC.W #$0001 : STA.W $0A82 
@@ -1068,12 +1057,10 @@ MoveXray_Up:
 
 
 .facingLeft:
-    CLC : ADC.W $0A84 : CMP.W #$0100 
-    BEQ .return 
+    CLC : ADC.W $0A84 : CMP.W #$0100 : BEQ .return 
     BPL .max100 
     LDA.W $0A82 : CLC : ADC.W #$0001 : STA.W $0A82 
-    ADC.W $0A84 : CMP.W #$0100 
-    BEQ .return 
+    ADC.W $0A84 : CMP.W #$0100 : BEQ .return 
     BMI .return 
 
 .max100:
@@ -1087,14 +1074,11 @@ MoveXray_Up:
 MoveXray_Down:
     PHP 
     REP #$30 
-    LDA.W $0A82 : CMP.W #$0080 
-    BPL .facingLeft 
-    CLC : ADC.W $0A84 : CMP.W #$0080 
-    BEQ .return 
+    LDA.W $0A82 : CMP.W #$0080 : BPL .facingLeft 
+    CLC : ADC.W $0A84 : CMP.W #$0080 : BEQ .return 
     BPL .setAngularWidth 
     LDA.W $0A82 : CLC : ADC.W #$0001 : STA.W $0A82 
-    ADC.W $0A84 : CMP.W #$0080 
-    BEQ .return 
+    ADC.W $0A84 : CMP.W #$0080 : BEQ .return 
     BMI .return 
 
 .setAngularWidth:
@@ -1103,12 +1087,10 @@ MoveXray_Down:
 
 
 .facingLeft:
-    SEC : SBC.W $0A84 : CMP.W #$0080 
-    BEQ .return 
+    SEC : SBC.W $0A84 : CMP.W #$0080 : BEQ .return 
     BMI + 
     LDA.W $0A82 : SEC : SBC.W #$0001 : STA.W $0A82 
-    SBC.W $0A84 : CMP.W #$0080 
-    BEQ .return 
+    SBC.W $0A84 : CMP.W #$0080 : BEQ .return 
     BPL .return 
 
   + LDA.W #$0080 : CLC : ADC.W $0A84 : STA.W $0A82 
@@ -1127,8 +1109,7 @@ Calculate_Xray_HDMADataTable:
     LDA.W $0A82 : STA.B $12 
     LDA.W $0A84 : STA.B $14 
     LDA.W $0A1E : AND.W #$00FF 
-    CMP.W #$0004 
-    BEQ .facingLeft 
+    CMP.W #$0004 : BEQ .facingLeft 
     LDA.W $0AF6 : SEC : SBC.W $0911 : CLC : ADC.W #$0003 : TAX 
     BRA .checkMovement 
 
@@ -1138,8 +1119,7 @@ Calculate_Xray_HDMADataTable:
 
 .checkMovement:
     LDA.W $0A1F : AND.W #$00FF 
-    CMP.W #$0005 
-    BEQ .crouching 
+    CMP.W #$0005 : BEQ .crouching 
     LDA.W $0AFA : SEC : SBC.W $0915 : SBC.W #$0010 : TAY 
     BRA .checkScreenPosition 
 
@@ -1153,15 +1133,13 @@ Calculate_Xray_HDMADataTable:
     CPX.W #$0100 
     BMI .onScreen 
     LDA.W $0A1E : AND.W #$00FF 
-    CMP.W #$0008 
-    BEQ .offScreen 
+    CMP.W #$0008 : BEQ .offScreen 
     BRA .onScreenFromOffScreen 
 
 
 .leftOfScreen:
     LDA.W $0A1E : AND.W #$00FF 
-    CMP.W #$0004 
-    BEQ .offScreen 
+    CMP.W #$0004 : BEQ .offScreen 
     BRA .onScreenFromOffScreen 
 
 
@@ -1201,8 +1179,7 @@ HandleXrayScope_State3_DeactivateBeam_RestoreBG2_FirstHalf:
     STZ.W $0A90 
     LDA.W #$00FF : STA.L $7E9800 
     LDX.W #$1000 
-    LDA.W $196E : CMP.W #$0024 
-    BEQ + 
+    LDA.W $196E : CMP.W #$0024 : BEQ + 
     LDX.W #$2000 
     JSL.L CheckIfXrayShouldShowAnyBlocks 
     BEQ + 
@@ -1239,8 +1216,7 @@ HandleXrayScope_State4_DeactivateBeam_RestoreBG2_SecondHalf:
     PHP 
     REP #$30 
     LDX.W #$1000 
-    LDA.W $196E : CMP.W #$0024 
-    BEQ + 
+    LDA.W $196E : CMP.W #$0024 : BEQ + 
     LDX.W #$2000 
     JSL.L CheckIfXrayShouldShowAnyBlocks 
     BEQ + 
@@ -1270,8 +1246,7 @@ HandleXrayScope_State5_DeactivateBeam_Finish:
     PHP 
     REP #$30 
     LDX.W #$1000 
-    LDA.W $196E : CMP.W #$0024 
-    BEQ + 
+    LDA.W $196E : CMP.W #$0024 : BEQ + 
     LDX.W #$2000 
     JSL.L CheckIfXrayShouldShowAnyBlocks 
     BEQ + 
@@ -1304,8 +1279,7 @@ HandleXrayScope_State5_DeactivateBeam_Finish:
     STZ.W $18B4,X 
     LDA.W #$000A : JSL.L QueueSound_Lib1_Max6 
     SEP #$20 
-    LDA.W $196E : CMP.B #$24 
-    BEQ + 
+    LDA.W $196E : CMP.B #$24 : BEQ + 
     LDA.B #$80 : STA.B $76 
     LDA.B #$40 : STA.B $75 
     LDA.B #$20 : STA.B $74 
@@ -1406,10 +1380,8 @@ PowerBombExplosion_Setup4_Explosion_White:
 
 
 PowerBombExplosion_ClearnUp_TryCrystalFlash:
-    LDA.W $0AF6 : CMP.W $0CE2 
-    BNE .clearPBFlag 
-    LDA.W $0AFA : CMP.W $0CE4 
-    BNE .clearPBFlag 
+    LDA.W $0AF6 : CMP.W $0CE2 : BNE .clearPBFlag 
+    LDA.W $0AFA : CMP.W $0CE4 : BNE .clearPBFlag 
     PHX 
     JSL.L CrystalFlash 
     PLX 
@@ -1556,14 +1528,12 @@ Calculate_PowerBombExplosion_HDMADataTablePointers:
 
 
 .exploding:
-    LDA.W $0CE2 : SEC : SBC.W $0911 : CLC : ADC.W #$0100 : CMP.W #$0300 
-    BCC + 
+    LDA.W $0CE2 : SEC : SBC.W $0911 : CLC : ADC.W #$0100 : CMP.W #$0300 : BCC + 
     BRA .offScreen 
 
 
   + STA.W $0CE6 
-    LDA.W $0CE4 : SEC : SBC.W $0915 : CLC : ADC.W #$0100 : CMP.W #$0300 
-    BCC .onScreen 
+    LDA.W $0CE4 : SEC : SBC.W $0915 : CLC : ADC.W #$0100 : CMP.W #$0300 : BCC .onScreen 
 
 .offScreen:
     LDA.W #$0000 
@@ -1805,8 +1775,7 @@ PreInstruction_PowerBombExplosion_3_Explosion_Yellow:
     REP #$30 
     PLY : PLX 
     LDA.W $0CEA : CLC : ADC.W $0CF0 : STA.W $0CEA 
-    CMP.W #$8600 
-    BCC .lessThan8600 
+    CMP.W #$8600 : BCC .lessThan8600 
     LDA.W #$0001 : STA.W $18E4,X 
     INC.W $18CC,X 
     INC.W $18CC,X 
@@ -1869,8 +1838,7 @@ PreInstruction_PowerBombExplosion_4_Explosion_White:
     REP #$30 
     PLY : PLX 
     LDA.W $0CF2 : CLC : ADC.W #$00C0 : STA.W $0CF2 
-    CMP.W #PowerBomb_PreExplosion_ShapeDefinitionTables_PreScaled 
-    BNE .notPreExplosion 
+    CMP.W #PowerBomb_PreExplosion_ShapeDefinitionTables_PreScaled : BNE .notPreExplosion 
     LDA.W #$0001 : STA.W $18E4,X 
     INC.W $18CC,X 
     INC.W $18CC,X 
@@ -1893,14 +1861,12 @@ Calculate_PowerBombPreExplosion_HDMAObjectTablePointers:
 
 
 .exploding:
-    LDA.W $0CE2 : SEC : SBC.W $0911 : CLC : ADC.W #$0100 : CMP.W #$0300 
-    BCC + 
+    LDA.W $0CE2 : SEC : SBC.W $0911 : CLC : ADC.W #$0100 : CMP.W #$0300 : BCC + 
     BRA .offScreen 
 
 
   + STA.W $0CE6 
-    LDA.W $0CE4 : SEC : SBC.W $0915 : CLC : ADC.W #$0100 : CMP.W #$0300 
-    BCC .onScreen 
+    LDA.W $0CE4 : SEC : SBC.W $0915 : CLC : ADC.W #$0100 : CMP.W #$0300 : BCC .onScreen 
 
 .offScreen:
     LDA.W #$0000 
@@ -2214,8 +2180,7 @@ PreInstruction_PowerBombExplosion_2_PreExplosion_Yellow:
     REP #$30 
     PLY : PLX 
     LDA.W $0CF2 : CLC : ADC.W #$00C0 : STA.W $0CF2 
-    CMP.W #PowerBomb_ShapeDefinitionTiles_Optimization_A206 
-    BNE .notA206 
+    CMP.W #PowerBomb_ShapeDefinitionTiles_Optimization_A206 : BNE .notA206 
     LDA.W #$0001 : STA.W $18E4,X 
     INC.W $18CC,X 
     INC.W $18CC,X 
@@ -2712,14 +2677,12 @@ Calculate_CrystalFlash_HDMAObjectTablePointers:
 
 
 .exploding:
-    LDA.W $0CE2 : SEC : SBC.W $0911 : CLC : ADC.W #$0100 : CMP.W #$0300 
-    BCC + 
+    LDA.W $0CE2 : SEC : SBC.W $0911 : CLC : ADC.W #$0100 : CMP.W #$0300 : BCC + 
     BRA .offScreen 
 
 
   + STA.W $0CE6 
-    LDA.W $0CE4 : SEC : SBC.W $0915 : CLC : ADC.W #$0100 : CMP.W #$0300 
-    BCC .onScreen 
+    LDA.W $0CE4 : SEC : SBC.W $0915 : CLC : ADC.W #$0100 : CMP.W #$0300 : BCC .onScreen 
 
 .offScreen:
     LDA.W #$0000 
@@ -2911,8 +2874,7 @@ PreInstruction_CrystalFlash_1_Explosion:
     REP #$30 
     PLY : PLX 
     LDA.W $0CEA : CLC : ADC.W $0CF0 : STA.W $0CEA 
-    CMP.W #$2000 
-    BCC .lessThan2000 
+    CMP.W #$2000 : BCC .lessThan2000 
     LDA.W #$0001 : STA.W $18E4,X 
     INC.W $18CC,X 
     INC.W $18CC,X 
@@ -2966,8 +2928,7 @@ PreInstruction_FXType_22_BG3XScroll:
     PHP 
     REP #$30 
     PHB : PHX : PHY 
-    LDA.W $0915 : CMP.W #$0400 
-    BPL .wavy 
+    LDA.W $0915 : CMP.W #$0400 : BPL .wavy 
     LDA.W $05B5 : AND.W #$0001 
     BNE + 
     LDA.W $0596 
@@ -3018,8 +2979,7 @@ PreInstruction_FXType_22_BG3XScroll:
     LDA.W #$9E00 ; $7E
     STA.L $7E9E03 
     STA.L $7E9F03 
-    LDA.W $0915 : CMP.W #$0400 
-    BMI .lessThan400 
+    LDA.W $0915 : CMP.W #$0400 : BMI .lessThan400 
     LDA.W #$00B1 : STA.B $14 
     STZ.B $16 
     LDX.W #$0105 
@@ -3052,8 +3012,7 @@ PreInstruction_FXType_22_BG3XScroll:
 
 .lessThan10:
     TYA 
-    CMP.W #$0000 
-    BEQ + 
+    CMP.W #$0000 : BEQ + 
     CLC : ADC.W #$0080 
 
   + STA.L $7E9E00,X 
@@ -3071,11 +3030,9 @@ Calculate_FXType_22_IndirectHDMATable:
     LDA.W #$04C0 : SEC : SBC.W $0915 : STA.B $18 
     BMI .return 
     BEQ .return 
-    CMP.W #$0080 
-    BMI .onlyOneEntryNeeded 
+    CMP.W #$0080 : BMI .onlyOneEntryNeeded 
     STA.B $12 
-    CMP.W #$00C1 
-    BMI .remainingScanlineCounter 
+    CMP.W #$00C1 : BMI .remainingScanlineCounter 
     LDA.W #$00C1 
 
 .remainingScanlineCounter:
@@ -3143,10 +3100,8 @@ Calculate_FXType_22_BG3YScrollHDMATable:
     LDY.W #$0000 
 
 .loopFirstStrip:
-    CMP.B ($00),Y 
-    BMI + 
-    CMP.B ($09),Y 
-    BMI .foundFirstStrip 
+    CMP.B ($00),Y : BMI + 
+    CMP.B ($09),Y : BMI .foundFirstStrip 
 
   + INY #6
     CPY.B $18 
@@ -3156,8 +3111,7 @@ Calculate_FXType_22_BG3YScrollHDMATable:
 
 
 .foundFirstStrip:
-    LDA.B $12 : CMP.W #$04E0 
-    BMI .YposMod10 
+    LDA.B $12 : CMP.W #$04E0 : BMI .YposMod10 
     AND.W #$001F 
     BRA + 
 
@@ -3175,10 +3129,8 @@ Calculate_FXType_22_BG3YScrollHDMATable:
     LDA.B $12 
 
 .loopStrip:
-    CMP.B ($00),Y 
-    BMI + 
-    CMP.B ($09),Y 
-    BMI .foundStrip 
+    CMP.B ($00),Y : BMI + 
+    CMP.B ($09),Y : BMI .foundStrip 
 
   + INY #6
     CPY.B $18 
@@ -3196,16 +3148,14 @@ Calculate_FXType_22_BG3YScrollHDMATable:
     CLC : ADC.B $12 : STA.B $12 
     INX #3
     LDA.B $14 : CLC : ADC.W $0598 : STA.W $0598 
-    CMP.W #$00E0 
-    BMI .loopHDMATable 
+    CMP.W #$00E0 : BMI .loopHDMATable 
     PLB 
     RTS 
 
 
 Damage_Samus_IfSheIsInTheTopRow:
     LDA.W $0AFA : SEC : SBC.W $0B00 : BMI .8damage 
-    CMP.W #$0011 
-    BMI .8damage 
+    CMP.W #$0011 : BMI .8damage 
     RTS 
 
 
@@ -3409,8 +3359,7 @@ Handle_ScrollingSky_BG2XScroll_HDMATables:
     LDA.W ScrollingSky_ScrollingTable_scrollSpeed,Y : ADC.L $7E0002,X : STA.L $7E0002,X 
     TYA 
     CLC : ADC.W #$0008 : TAY 
-    CMP.W #$00B8 
-    BMI .loopDataTable 
+    CMP.W #$00B8 : BMI .loopDataTable 
     LDA.W #$0000 : STA.L $7E9FD8 
     STA.L $7E9FDA 
     LDA.W #$001F : STA.L $7E9F00 
@@ -3421,21 +3370,17 @@ Handle_ScrollingSky_BG2XScroll_HDMATables:
     LDX.W #$0003 
 
 .loopIndirectTable:
-    LDA.B $12 : CMP.W ScrollingSky_ScrollingTable_topPosition,Y 
-    BMI + 
-    CMP.W ScrollingSky_ScrollingTable_nextEntry,Y 
-    BMI .scrollingSection 
+    LDA.B $12 : CMP.W ScrollingSky_ScrollingTable_topPosition,Y : BMI + 
+    CMP.W ScrollingSky_ScrollingTable_nextEntry,Y : BMI .scrollingSection 
 
   + TYA 
     CLC : ADC.W #$0008 : TAY 
-    CMP.W #$00B8 
-    BMI .loopIndirectTable 
+    CMP.W #$00B8 : BMI .loopIndirectTable 
     LDA.W #$05FF : SEC : SBC.B $12 
 
 .loopNonScrollingSection:
     STA.B $18 
-    CMP.W #$0080 
-    BMI .lessThan80 
+    CMP.W #$0080 : BMI .lessThan80 
     LDA.W #$007F : STA.L $7E9F00,X 
     LDA.W #$00B5 : STA.L $7E9F01,X 
     INX #3
@@ -3451,8 +3396,7 @@ Handle_ScrollingSky_BG2XScroll_HDMATables:
 
 .scrollingSection:
     LDA.W ScrollingSky_ScrollingTable_nextEntry,Y : SEC : SBC.B $12 : STA.B $18 
-    CMP.W #$0080 
-    BMI .heightLessThan80 
+    CMP.W #$0080 : BMI .heightLessThan80 
     LDA.W #$007F : STA.L $7E9F00,X 
     LDA.W ScrollingSky_ScrollingTable_HDMADataTableEntryPointer,Y 
     INC #2
@@ -3465,8 +3409,7 @@ Handle_ScrollingSky_BG2XScroll_HDMATables:
     LDA.W ScrollingSky_ScrollingTable_HDMADataTableEntryPointer,Y : CLC : ADC.W #$0002 : STA.L $7E9F01,X 
     LDA.B $18 : CLC : ADC.B $12 : STA.B $12 
     INX #3
-    LDA.B $12 : CMP.B $14 
-    BPL .terminateTable 
+    LDA.B $12 : CMP.B $14 : BPL .terminateTable 
     JMP.W .loopIndirectTable 
 
 
@@ -3633,16 +3576,14 @@ PreInstruction_Fireflea_BG3XScroll:
     DEC.W $1778 
     BNE .nonZero 
     LDA.W #$0006 : STA.W $1778 
-    LDA.W $177E : CMP.W #$000A 
-    BMI .lessThanA 
+    LDA.W $177E : CMP.W #$000A : BMI .lessThanA 
     LDA.W #$0006 : BRA .storeIndex 
 
 
 .lessThanA:
     LDA.W $177A 
     INC A 
-    CMP.W #$000C 
-    BCC .storeIndex 
+    CMP.W #$000C : BCC .storeIndex 
     LDA.W #$0000 
 
 .storeIndex:
@@ -3713,13 +3654,11 @@ PreInstruction_ExpandingContractingEffect_BG2YScroll:
     PHP 
     REP #$30 
     INC.W $059A 
-    LDA.W $059A : CMP.W #$0004 
-    BMI .counterLessThan4 
+    LDA.W $059A : CMP.W #$0004 : BMI .counterLessThan4 
     STZ.W $059A 
     LDA.W $05A0 : BEQ .expanding 
     LDA.W $05A2 : SEC : SBC.W #$0400 : STA.W $05A2 
-    CMP.W #$2000 
-    BPL + 
+    CMP.W #$2000 : BPL + 
     LDA.W #$2000 : STA.W $05A2 
     STZ.W $05A0 
     BRA + 
@@ -3727,8 +3666,7 @@ PreInstruction_ExpandingContractingEffect_BG2YScroll:
 
 .expanding:
     LDA.W $05A2 : CLC : ADC.W #$0400 : STA.W $05A2 
-    CMP.W #$8000 
-    BMI + 
+    CMP.W #$8000 : BMI + 
     INC.W $05A0 
 
   + LDA.W #$0080 : STA.W $05A4 
@@ -3907,8 +3845,7 @@ RTS_88B342:
 FXRisingFunction_LavaAcid_Normal:
     LDA.W $197C : BEQ .return3 
     BMI .negative 
-    LDA.W $197A : CMP.W $1978 
-    BEQ .return1 
+    LDA.W $197A : CMP.W $1978 : BEQ .return1 
     BCS .doRise 
 
 .return1:
@@ -3916,8 +3853,7 @@ FXRisingFunction_LavaAcid_Normal:
 
 
 .negative:
-    LDA.W $197A : CMP.W $1978 
-    BEQ .return2 
+    LDA.W $197A : CMP.W $1978 : BEQ .return2 
     BCC .doRise 
 
 .return2:
@@ -4002,8 +3938,7 @@ PreInstruction_LavaAcid_BG3YScroll:
 
 
 .positive:
-    CMP.W #$0100 
-    BCC .onScreen 
+    CMP.W #$0100 : BCC .onScreen 
 
 .offScreen:
     LDA.W #$0000 : BRA .merge 
@@ -4016,8 +3951,7 @@ PreInstruction_LavaAcid_BG3YScroll:
 .merge:
     STA.L $7E9C02 
     LDX.W $18B2 
-    LDA.W $196E : CMP.W #$0002 
-    BNE + 
+    LDA.W $196E : CMP.W #$0002 : BNE + 
     LDA.W $1962 : BMI + 
     DEC.W $192C,X 
     BNE + 
@@ -4038,8 +3972,7 @@ PreInstruction_LavaAcid_BG3YScroll:
     LDA.W #$00FF : BRA .merge2 
 
 
-  + CMP.W #$0200 
-    BCC .merge2 
+  + CMP.W #$0200 : BCC .merge2 
 
 .negative:
     LDA.W #$01FF 
@@ -5431,8 +5364,7 @@ FXType_6_Water:
 FXRisingFunction_Water_Normal:
     LDA.W $197C : BEQ .return3 
     BMI .negative 
-    LDA.W $197A : CMP.W $1978 
-    BEQ .return1 
+    LDA.W $197A : CMP.W $1978 : BEQ .return1 
     BCS .doRise 
 
 .return1:
@@ -5440,8 +5372,7 @@ FXRisingFunction_Water_Normal:
 
 
 .negative:
-    LDA.W $197A : CMP.W $1978 
-    BEQ .return2 
+    LDA.W $197A : CMP.W $1978 : BEQ .return2 
     BCC .doRise 
 
 .return2:
@@ -5514,8 +5445,7 @@ PreInstruction_Water_BG3_Xscroll:
 
 
 .notAboveScreen:
-    CMP.W #$0100 
-    BCC .onScreen 
+    CMP.W #$0100 : BCC .onScreen 
 
 .negative:
     LDA.W #$0000 : BRA .merge 
@@ -5574,8 +5504,7 @@ PreInstruction_Water_BG3_Xscroll:
 
 
 .lessThan100:
-    CMP.W #$0200 
-    BCC .merge2 
+    CMP.W #$0200 : BCC .merge2 
 
 .negative2:
     LDA.W #$01FF 
@@ -5624,8 +5553,7 @@ PreInstruction_Water_BG2_Xscroll:
 
 
 .lessThan100:
-    CMP.W #$0200 
-    BCC .merge2 
+    CMP.W #$0200 : BCC .merge2 
 
 .negative:
     LDA.W #$01FF 
@@ -7750,8 +7678,7 @@ PreInstruction_TourianEntranceStatue_BG2_Yscroll_Descending:
     LDA.W $0A78 : BNE .return 
     LDA.W $1914,X : CLC : ADC.W #$C000 : STA.W $1914,X 
     LDA.W $1920,X : ADC.W #$FFFF : STA.W $1920,X 
-    CMP.W #$FF10 
-    BNE .setYscroll 
+    CMP.W #$FF10 : BNE .setYscroll 
     PHX : PHP 
     REP #$10 
     JSL.L Spawn_Hardcoded_PLM 
@@ -7961,8 +7888,7 @@ PreInst_CeresHaze_ColorMathSubScnBackdropColor_RidleyIsDead:
 Setup_CeresHaze_ColorMathSubScnBackColor_HDMAObject_FadingIn:
     STA.W $1920,X 
     STZ.W $1914,X 
-    LDA.W $099C : CMP.W #DoorTransitionFunction_FadeInTheScreen_and_RunEnemies_Finish 
-    BEQ .fadingIn 
+    LDA.W $099C : CMP.W #DoorTransitionFunction_FadeInTheScreen_and_RunEnemies_Finish : BEQ .fadingIn 
     RTL 
 
 
@@ -7977,8 +7903,7 @@ PreInstruction_CeresHaze_ColorMathSubScnBackColor_FadingIn:
     LDY.B #$80 
     STY.B $76 
     LDA.W #$002C : STA.W $1986 
-    LDA.W $1914,X : CMP.W #$0010 
-    BEQ .done 
+    LDA.W $1914,X : CMP.W #$0010 : BEQ .done 
     PHX : PHP 
     SEP #$20 
     LDA.W $1920,X : STA.B $14 
@@ -8015,8 +7940,7 @@ PreInstruction_CeresHaze_ColorMathSubScnBackColor_FadedIn:
     LDY.B #$80 
     STY.B $76 
     LDA.W #$002C : STA.W $1986 
-    LDA.W $099C : CMP.W #DoorTransitionFunction_FadeOutTheScreen 
-    BEQ .fadingOut 
+    LDA.W $099C : CMP.W #DoorTransitionFunction_FadeOutTheScreen : BEQ .fadingOut 
     RTL 
 
 
@@ -8187,15 +8111,11 @@ PreInstruction_DraygonMainScreenLayers:
     LDA.W $0F86 : BIT.W #$0200 
     BNE .offScreen 
     LDA.W $0F7A : SEC : SBC.W $0911 : CLC : ADC.W #$0040 : BMI .offScreen 
-    CMP.W #$0180 
-    BPL .offScreen 
+    CMP.W #$0180 : BPL .offScreen 
     LDA.W $0F7E : SEC : SBC.W $0915 : CLC : ADC.W #$0010 : BMI .offScreen 
-    LDA.W $0F7E : SEC : SBC.W $0915 : CMP.W #$0130 
-    BPL .offScreen 
-    CMP.W #$0028 
-    BMI .aroundTop 
-    CMP.W #$00C0 
-    BMI .aroundMiddle 
+    LDA.W $0F7E : SEC : SBC.W $0915 : CMP.W #$0130 : BPL .offScreen 
+    CMP.W #$0028 : BMI .aroundTop 
+    CMP.W #$00C0 : BMI .aroundMiddle 
     BRA .aroundBottom 
 
 
@@ -8332,8 +8252,7 @@ SuitPickup_Stage0_LightBeamAppears:
     BEQ + 
     BPL .loopLowerHalf 
 
-  + LDA.W $0DEE : CMP.W #$0080 
-    BMI .return 
+  + LDA.W $0DEE : CMP.W #$0080 : BMI .return 
     INC.W $0DEC 
     LDA.W #$7878 : STA.W $0DEE 
 
@@ -8357,8 +8276,7 @@ SuitPickup_Stage1_LightBeamWidens_Linear:
     DEX #2
     BPL .loop 
     LDA.W $0DEE : AND.W #$00FF 
-    CMP.W #$0061 
-    BPL .return 
+    CMP.W #$0061 : BPL .return 
     INC.W $0DEC 
     LDA.W #$846C ; Suit pickup light beam left position = 6Ch, right position = 84h
     STA.W $0DEE 
@@ -8425,8 +8343,7 @@ SuitPickup_Stage3_LightBeamWidens_Curved:
     BMI .loopLowerHalf 
     REP #$20 
     LDA.W $0DDC : CLC : ADC.W #$0060 : STA.W $0DDC 
-    LDA.W $0DEE : CMP.W #$FF00 
-    BNE .return 
+    LDA.W $0DEE : CMP.W #$FF00 : BNE .return 
     INC.W $0DEC 
     LDA.W $0DDC 
     LSR A 
@@ -8475,12 +8392,10 @@ SuitPickup_Stage4_LightBeamShrinks:
     BPL .loopLowerHalf 
 
   + LDA.W $0DDC : SEC : SBC.W #$0020 : STA.W $0DDC 
-    CMP.W #$0100 
-    BPL + 
+    CMP.W #$0100 : BPL + 
     LDA.W #$0100 : STA.W $0DDC 
 
-  + LDA.W $0DEE : CMP.W #$0080 
-    BMI .return 
+  + LDA.W $0DEE : CMP.W #$0080 : BMI .return 
     INC.W $0DEC 
     LDA.W #$F8FF : STA.W $0DEE 
 
@@ -8496,8 +8411,7 @@ SuitPickup_Stage5_LightBeamDissipates:
     REP #$20 
     LDA.W $0DEE : STA.L $7E9900 
     LDA.W $0DEE : AND.W #$00FF 
-    CMP.W #$0070 
-    BMI .return 
+    CMP.W #$0070 : BMI .return 
     INC.W $0DEC 
 
 .return:
@@ -8538,30 +8452,24 @@ GravitySuitPickup_Stage6:
 
 AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToWhite:
     SEP #$20 
-    LDA.W $0DF0 : CMP.B #$3F 
-    BEQ .green 
+    LDA.W $0DF0 : CMP.B #$3F : BEQ .green 
     INC #2
     STA.W $0DF0 
-    CMP.B #$40 
-    BMI .green 
+    CMP.B #$40 : BMI .green 
     LDA.B #$3F : STA.W $0DF0 
 
 .green:
-    LDA.W $0DF1 : CMP.B #$5F 
-    BEQ .blue 
+    LDA.W $0DF1 : CMP.B #$5F : BEQ .blue 
     INC #2
     STA.W $0DF1 
-    CMP.B #$60 
-    BMI .blue 
+    CMP.B #$60 : BMI .blue 
     LDA.B #$5F : STA.W $0DF1 
 
 .blue:
-    LDA.W $0DF2 : CMP.B #$9F 
-    BEQ .return 
+    LDA.W $0DF2 : CMP.B #$9F : BEQ .return 
     INC #2
     STA.W $0DF2 
-    CMP.B #$A0 
-    BMI .return 
+    CMP.B #$A0 : BMI .return 
     LDA.B #$9F : STA.W $0DF2 
 
 .return:
@@ -8572,20 +8480,17 @@ AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToWhite:
 
 AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToOrange:
     SEP #$20 
-    LDA.W $0DF0 : CMP.B #$3F 
-    BEQ .green 
+    LDA.W $0DF0 : CMP.B #$3F : BEQ .green 
     DEC A 
     STA.W $0DF0 
 
 .green:
-    LDA.W $0DF1 : CMP.B #$4D 
-    BEQ .blue 
+    LDA.W $0DF1 : CMP.B #$4D : BEQ .blue 
     DEC A 
     STA.W $0DF1 
 
 .blue:
-    LDA.W $0DF2 : CMP.B #$83 
-    BEQ .return 
+    LDA.W $0DF2 : CMP.B #$83 : BEQ .return 
     DEC A 
     STA.W $0DF2 
 
@@ -8629,20 +8534,17 @@ GravitySuitPickup_Stage3_GiveSamusGravitySuit:
 
 AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToBlue:
     SEP #$20 
-    LDA.W $0DF0 : CMP.B #$30 
-    BEQ .green 
+    LDA.W $0DF0 : CMP.B #$30 : BEQ .green 
     DEC A 
     STA.W $0DF0 
 
 .green:
-    LDA.W $0DF1 : CMP.B #$49 
-    BEQ .blue 
+    LDA.W $0DF1 : CMP.B #$49 : BEQ .blue 
     DEC A 
     STA.W $0DF1 
 
 .blue:
-    LDA.W $0DF2 : CMP.B #$90 
-    BEQ .return 
+    LDA.W $0DF2 : CMP.B #$90 : BEQ .return 
     DEC A 
     STA.W $0DF2 
 
@@ -9008,11 +8910,9 @@ Initialise_Rainbow_Beam:
 PreInstruction_MotherBrainRainbowBeam:
     PHP 
     REP #$30 
-    LDA.W $0998 : CMP.W #$0013 
-    BEQ .delete 
+    LDA.W $0998 : CMP.W #$0013 : BEQ .delete 
     LDA.W #$0024 : STA.W $1986 
-    LDA.W $0998 : CMP.W #$001B 
-    BEQ .return 
+    LDA.W $0998 : CMP.W #$001B : BEQ .return 
     PHB : PEA.W $A900 
     PLB : PLB 
     JSL.L Calculate_MotherBrain_RainbowBeam_HDMATables 
@@ -9155,8 +9055,7 @@ Update_MorphBallEyeBeam_HDMATable_ColorMathSubScnBackColor:
     LDA.W $0FBE : SEC : SBC.W $0915 : TAY 
     LDA.W $0FBA : SEC : SBC.W $0911 : TAX 
     BMI .offScreen 
-    CMP.W #$0100 
-    BPL .offScreen 
+    CMP.W #$0100 : BPL .offScreen 
     SEP #$20 
     LDA.B #$7E : STA.B $02 
     REP #$20 
@@ -9193,8 +9092,7 @@ PreInstruction_MorphBallEyeBeam_BeamIsWidening:
     LDA.L $7E9080 : ADC.W #$0000 : STA.L $7E9080 
     LDA.W $1938,X : CLC : ADC.L $7E9082 : STA.W $1938,X 
     LDA.W $192C,X : ADC.L $7E9080 : STA.W $192C,X 
-    CMP.W #$0004 
-    BMI .update 
+    CMP.W #$0004 : BMI .update 
     LDA.W #$0004 : STA.W $192C,X 
     LDX.W $18B2 
     LDA.W $18CC,X 
@@ -9270,8 +9168,7 @@ PreInstruction_MorphBallEyeBeamHDMA_DeactivateBeam:
     REP #$30 
     LDA.W #$0010 : STA.W $1986 
     SEP #$20 
-    LDA.W $1915,X : CMP.B #$40 
-    BNE .notDone 
+    LDA.W $1915,X : CMP.B #$40 : BNE .notDone 
     LDA.B #$20 : STA.B $74 
     LDA.B #$40 : STA.B $75 
     LDA.B #$80 : STA.B $76 
@@ -9302,20 +9199,17 @@ PreInstruction_MorphBallEyeBeamHDMA_DeactivateBeam:
     JSR.W Update_MorphBallEyeBeam_HDMATable_ColorMathSubScnBackColor 
     LDX.W $18B2 
     SEP #$20 
-    LDA.W $1914,X : CMP.B #$20 
-    BEQ .green 
+    LDA.W $1914,X : CMP.B #$20 : BEQ .green 
     DEC A 
     STA.W $1914,X 
 
 .green:
-    LDA.W $1915,X : CMP.B #$40 
-    BEQ .blue 
+    LDA.W $1915,X : CMP.B #$40 : BEQ .blue 
     DEC A 
     STA.W $1915,X 
 
 .blue:
-    LDA.W $1920,X : CMP.B #$80 
-    BEQ .returnREP20 
+    LDA.W $1920,X : CMP.B #$80 : BEQ .returnREP20 
     DEC A 
     STA.W $1920,X 
 
@@ -9380,8 +9274,7 @@ PreInst_ColorMathSubScnBackdropColor_TitleSequenceGradient:
     PHP 
     REP #$30 
     JSL.L Configure_TitleScreen_GradientHDMATable 
-    LDA.W $1F51 : CMP.W #CinematicFunction_LoadTitleSequence 
-    BNE .return 
+    LDA.W $1F51 : CMP.W #CinematicFunction_LoadTitleSequence : BNE .return 
     LDX.W $18B2 
     LDA.W $18CC,X 
     INC #2
@@ -9396,8 +9289,7 @@ PreInst_ColorMathSubScnBackdropColor_TitleSequenceGradient:
 PreInstruction_ColorMathControlRegB_TitleSequenceGradient:
     PHP 
     REP #$30 
-    LDA.W $1F51 : CMP.W #CinematicFunction_LoadTitleSequence 
-    BNE .return 
+    LDA.W $1F51 : CMP.W #CinematicFunction_LoadTitleSequence : BNE .return 
     LDX.W $18B2 
     LDA.W $18CC,X 
     INC #2
@@ -9438,8 +9330,7 @@ HDMATable_IntroCutsceneCrossFade_ColorMathControlRegB:
 PreInstruction_IntroCutsceneCrossFade:
     PHP 
     REP #$30 
-    LDA.W $1A4B : CMP.W #$0001 
-    BNE .return 
+    LDA.W $1A4B : CMP.W #$0001 : BNE .return 
     LDX.W $18B2 
     LDA.W $18CC,X 
     INC #2
