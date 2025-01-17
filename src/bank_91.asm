@@ -5918,8 +5918,7 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     PLA 
     STA.L $7E4000,X 
     LDA.B $16 : CLC : ADC.W #$0004 : STA.B $16 
-    LDA.B $1E 
-    ADC.W #$0002 : STA.B $1E 
+    LDA.B $1E : ADC.W #$0002 : STA.B $1E 
     DEC.B $12 
     BNE .loopCopyBG1Column 
     JSR.W CopyLastBG1BlockOfRowToXrayBG2Tilemap 
@@ -9978,8 +9977,7 @@ ProspectivePoseCmd_1_Decelerate:
 
 .nonZeroXSpeed:
     LDA.W $0B44 : CLC : ADC.W $0B48 : STA.W $0B48 
-    LDA.W $0B42 
-    ADC.W $0B46 : STA.W $0B46 
+    LDA.W $0B42 : ADC.W $0B46 : STA.W $0B46 
     LDA.W #$0002 : STA.W $0B4A 
     JSL.L Cancel_SpeedBoosting 
     STZ.W $0B44 
@@ -11289,8 +11287,7 @@ InitializeSamusPose_SpinJumping:
 
 .speed:
     LDA.W $0B44 : CLC : ADC.W $0B48 : STA.W $0B48 
-    LDA.W $0B42 
-    ADC.W $0B46 : STA.W $0B46 
+    LDA.W $0B42 : ADC.W $0B46 : STA.W $0B46 
     JSL.L Cancel_SpeedBoosting 
     STZ.W $0B44 
     STZ.W $0B42 
@@ -11702,8 +11699,7 @@ InitializeSamusPose_TurningAround_OnGround:
 
 .done:
     LDA.W $0B44 : CLC : ADC.W $0B48 : STA.W $0B48 
-    LDA.W $0B42 
-    ADC.W $0B46 : STA.W $0B46 
+    LDA.W $0B42 : ADC.W $0B46 : STA.W $0B46 
     STZ.W $0B44 
     STZ.W $0B42 
     LDA.W #$0001 : STA.W $0B4A 
@@ -11722,8 +11718,7 @@ InitializeSamusPose_TurningAround_Jumping:
     AND.W #$00FF 
     STA.W $0A1C 
     LDA.W $0B44 : CLC : ADC.W $0B48 : STA.W $0B48 
-    LDA.W $0B42 
-    ADC.W $0B46 : STA.W $0B46 
+    LDA.W $0B42 : ADC.W $0B46 : STA.W $0B46 
     STZ.W $0B44 
     STZ.W $0B42 
     LDA.W #$0001 : STA.W $0B4A 
@@ -11742,8 +11737,7 @@ InitializeSamusPose_TurningAround_Falling:
     AND.W #$00FF 
     STA.W $0A1C 
     LDA.W $0B44 : CLC : ADC.W $0B48 : STA.W $0B48 
-    LDA.W $0B42 
-    ADC.W $0B46 : STA.W $0B46 
+    LDA.W $0B42 : ADC.W $0B46 : STA.W $0B46 
     STZ.W $0B44 
     STZ.W $0B42 
     LDA.W #$0001 : STA.W $0B4A 
@@ -11803,8 +11797,7 @@ ApplyMomentumIfTurningInMorphBall:
 
 .speed:
     LDA.W $0B44 : CLC : ADC.W $0B48 : STA.W $0B48 
-    LDA.W $0B42 
-    ADC.W $0B46 : STA.W $0B46 
+    LDA.W $0B42 : ADC.W $0B46 : STA.W $0B46 
     JSL.L Cancel_SpeedBoosting 
     STZ.W $0B44 
     STZ.W $0B42 

@@ -1246,10 +1246,8 @@ MainAI_Fireflea:
     LDA.L $7E7804,X 
     TAY 
     CLC 
-    LDA.W $0F80,X 
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W $0F80,X 
-    LDA.W $0F7E,X 
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W $0F7E,X 
+    LDA.W $0F80,X : ADC.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W $0F80,X 
+    LDA.W $0F7E,X : ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W $0F7E,X 
     LDA.W $0F7E,X 
     CMP.L $7E7800,X 
     BMI + 
@@ -2110,16 +2108,14 @@ ElevatorAI_1_LeavingRoom:
     BNE .up 
     LDA.W #$0000 : STA.W $0799 
     LDA.W $0F80,X : CLC : ADC.W #$8000 : STA.W $0F80,X 
-    LDA.W $0F7E,X 
-    ADC.W #$0001 : STA.W $0F7E,X 
+    LDA.W $0F7E,X : ADC.W #$0001 : STA.W $0F7E,X 
     BRA + 
 
 
 .up:
     LDA.W #$8000 : STA.W $0799 
     LDA.W $0F80,X : SEC : SBC.W #$8000 : STA.W $0F80,X 
-    LDA.W $0F7E,X 
-    SBC.W #$0001 : STA.W $0F7E,X 
+    LDA.W $0F7E,X : SBC.W #$0001 : STA.W $0F7E,X 
 
   + JSR.W PlaceSamusOnElevator 
     RTS 
@@ -2133,8 +2129,7 @@ ElevatorAI_3_EnteringRoom:
     LDA.W $0FB4,X 
     BEQ .down 
     LDA.W $0F80,X : CLC : ADC.W #$8000 : STA.W $0F80,X 
-    LDA.W $0F7E,X 
-    ADC.W #$0001 : STA.W $0F7E,X 
+    LDA.W $0F7E,X : ADC.W #$0001 : STA.W $0F7E,X 
     CMP.W $0FA8,X 
     BCS .reachedTarget 
     BRA PlaceSamusOnElevator 
@@ -2142,8 +2137,7 @@ ElevatorAI_3_EnteringRoom:
 
 .down:
     LDA.W $0F80,X : SEC : SBC.W #$8000 : STA.W $0F80,X 
-    LDA.W $0F7E,X 
-    SBC.W #$0001 : STA.W $0F7E,X 
+    LDA.W $0F7E,X : SBC.W #$0001 : STA.W $0F7E,X 
     CMP.W $0FA8,X 
     BCC .reachedTarget 
     BRA PlaceSamusOnElevator 
@@ -4318,8 +4312,7 @@ Function_Mochtroid_0_NotTouchingSamus:
     STA.B $14 
 
   + LDA.W $0FAC,X : SEC : SBC.B $12 : STA.W $0FAC,X 
-    LDA.W $0FAE,X 
-    SBC.B $14 : STA.W $0FAE,X 
+    LDA.W $0FAE,X : SBC.B $14 : STA.W $0FAE,X 
     BMI .negativeY 
     CMP.W #$0003 
     BCC + 
@@ -4363,8 +4356,7 @@ Function_Mochtroid_0_NotTouchingSamus:
     STA.B $14 
 
   + LDA.W $0FA8,X : SEC : SBC.B $12 : STA.W $0FA8,X 
-    LDA.W $0FAA,X 
-    SBC.B $14 : STA.W $0FAA,X 
+    LDA.W $0FAA,X : SBC.B $14 : STA.W $0FAA,X 
     BMI .negativeX 
     CMP.W #$0003 
     BCC + 
@@ -6999,10 +6991,8 @@ BangXMovement:
     LDA.B $1E : STA.B $18 
 
   + CLC 
-    LDA.W $0F7C,X 
-    ADC.B $16 : STA.W $0F7C,X 
-    LDA.W $0F7A,X 
-    ADC.B $18 : STA.W $0F7A,X 
+    LDA.W $0F7C,X : ADC.B $16 : STA.W $0F7C,X 
+    LDA.W $0F7A,X : ADC.B $18 : STA.W $0F7A,X 
     RTS 
 
 
@@ -7035,10 +7025,8 @@ BangYMovement:
     LDA.B $1E : STA.B $18 
 
   + CLC 
-    LDA.W $0F80,X 
-    ADC.B $16 : STA.W $0F80,X 
-    LDA.W $0F7E,X 
-    ADC.B $18 : STA.W $0F7E,X 
+    LDA.W $0F80,X : ADC.B $16 : STA.W $0F80,X 
+    LDA.W $0F7E,X : ADC.B $18 : STA.W $0F7E,X 
     RTS 
 
 
@@ -9641,10 +9629,8 @@ Function_Yard_Movement_Airborne:
     LDA.W #$0000 : STA.B $18 
 
   + CLC 
-    LDA.L $7E7804,X 
-    ADC.B $16 : STA.L $7E7804,X 
-    LDA.L $7E7806,X 
-    ADC.B $18 : BEQ .gotoXMovementEnd 
+    LDA.L $7E7804,X : ADC.B $16 : STA.L $7E7804,X 
+    LDA.L $7E7806,X : ADC.B $18 : BEQ .gotoXMovementEnd 
     STA.L $7E7806,X 
 
 .gotoXMovementEnd:
@@ -9672,10 +9658,8 @@ Function_Yard_Movement_Airborne:
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedVertically 
     CLC 
-    LDA.L $7E7800,X 
-    ADC.W #$2000 : STA.L $7E7800,X 
-    LDA.L $7E7802,X 
-    ADC.W #$0000 : CMP.W #$0004 
+    LDA.L $7E7800,X : ADC.W #$2000 : STA.L $7E7800,X 
+    LDA.L $7E7802,X : ADC.W #$0000 : CMP.W #$0004 
     BPL .return 
     STA.L $7E7802,X 
 
@@ -12323,8 +12307,7 @@ Function_Crawlers_Falling:
     CMP.W #$0004 
     BPL .fallSpeedCapped 
     LDA.L $7E7802,X : CLC : ADC.W #$8000 : STA.L $7E7802,X 
-    LDA.L $7E7804,X 
-    ADC.W #$0000 : STA.L $7E7804,X 
+    LDA.L $7E7804,X : ADC.W #$0000 : STA.L $7E7804,X 
 
 .fallSpeedCapped:
     LDA.L $7E7802,X 
@@ -12743,8 +12726,7 @@ Function_Metroid_0_ChaseSamus:
     STA.B $14 
 
   + LDA.W $0FAC,X : SEC : SBC.B $12 : STA.W $0FAC,X 
-    LDA.W $0FAE,X 
-    SBC.B $14 : STA.W $0FAE,X 
+    LDA.W $0FAE,X : SBC.B $14 : STA.W $0FAE,X 
     BMI .negativeY 
     CMP.W #$0003 
     BCC .moveDown 
@@ -12784,8 +12766,7 @@ Function_Metroid_0_ChaseSamus:
     STA.B $14 
 
   + LDA.W $0FA8,X : SEC : SBC.B $12 : STA.W $0FA8,X 
-    LDA.W $0FAA,X 
-    SBC.B $14 : STA.W $0FAA,X 
+    LDA.W $0FAA,X : SBC.B $14 : STA.W $0FAA,X 
     BMI .negativeX 
     CMP.W #$0003 
     BCC .moveRight 

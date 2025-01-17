@@ -3165,14 +3165,12 @@ DetermineLeftmostMapColumn:
     AND.B #$07 
     BNE + 
     LDA.B $00 : CLC : ADC.B #$01 : STA.B $00 
-    LDA.B $01 
-    ADC.B #$00 : STA.B $01 
+    LDA.B $01 : ADC.B #$00 : STA.B $01 
 
   + CPX.W #$0020 
     BNE .loopColumns 
     LDA.B $00 : CLC : ADC.B #$7B : STA.B $00 
-    LDA.B $01 
-    ADC.B #$00 : STA.B $01 
+    LDA.B $01 : ADC.B #$00 : STA.B $01 
     BRA .loopColumns 
 
 
@@ -3216,8 +3214,7 @@ DetermineRightmostMapColumn:
     CMP.B #$07 
     BNE + 
     LDA.B $00 : SEC : SBC.B #$01 : STA.B $00 
-    LDA.B $01 
-    SBC.B #$00 : STA.B $01 
+    LDA.B $01 : SBC.B #$00 : STA.B $01 
 
   + CPX.W #$001F 
     BNE .loopColumns 
@@ -8696,8 +8693,7 @@ CalculateTheAth_TransitionalColorComponent_fromXtoY:
     AND.W #$FF00 
     STA.L $004204 
     SEP #$21 
-    LDA.W $C402 
-    SBC.B $14 : INC A 
+    LDA.W $C402 : SBC.B $14 : INC A 
     STA.L $004206 
     REP #$20 
     XBA 
@@ -8754,8 +8750,7 @@ Advance_GradualColorChange_ofPalettesInA:
     LSR A 
     PHA 
     BCS .advance 
-    LDA.W $C404 
-    ADC.W #$0020 : STA.W $C404 
+    LDA.W $C404 : ADC.W #$0020 : STA.W $C404 
     BRA .loop 
 
 

@@ -550,8 +550,7 @@ AddSpritemapToOAM:
     CLC 
 
 .loop:
-    LDA.W $0000,Y 
-    ADC.B $14 : STA.W $0370,X 
+    LDA.W $0000,Y : ADC.B $14 : STA.W $0370,X 
     AND.W #$0100 
     BEQ .xHighClear 
     LDA.W $0000,Y 
@@ -653,8 +652,7 @@ AddSpritemapToOAM_Offscreen:
     CLC 
 
 .loop:
-    LDA.W $0000,Y 
-    ADC.B $14 : STA.W $0370,X 
+    LDA.W $0000,Y : ADC.B $14 : STA.W $0370,X 
     AND.W #$0100 
     BEQ .xHighClear 
     LDA.W $0000,Y 
@@ -764,8 +762,7 @@ AddSpritemapFrom_82C569_TableToOAM:
     CLC 
 
 .loop:
-    LDA.W $0000,Y 
-    ADC.B $14 : STA.W $0370,X 
+    LDA.W $0000,Y : ADC.B $14 : STA.W $0370,X 
     AND.W #$0100 
     BEQ .xHighClear 
     LDA.W $0000,Y 
@@ -831,8 +828,7 @@ AddSamusSpritemapToOAM:
     CLC 
 
 .loop:
-    LDA.W $0000,Y 
-    ADC.B $14 : STA.W $0370,X 
+    LDA.W $0000,Y : ADC.B $14 : STA.W $0370,X 
     AND.W #$0100 
     BEQ .xHighClear 
     LDA.W $0000,Y 
@@ -911,8 +907,7 @@ AddSpritemapToOAM_Common:
     CLC 
 
 .loop:
-    LDA.W $0000,Y 
-    ADC.B $14 : STA.W $0370,X 
+    LDA.W $0000,Y : ADC.B $14 : STA.W $0370,X 
     AND.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
@@ -955,8 +950,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8AB8:
     CLC 
 
 .loop:
-    LDA.W $0000,Y 
-    ADC.B $14 : STA.W $0370,X 
+    LDA.W $0000,Y : ADC.B $14 : STA.W $0370,X 
     AND.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
@@ -974,8 +968,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8AB8:
   + SEP #$20 
     LDA.W $0002,Y : CLC : ADC.B $12 : STA.W $0371,X 
     REP #$21 
-    LDA.W $0003,Y 
-    ADC.B $00 : ORA.B $03 
+    LDA.W $0003,Y : ADC.B $00 : ORA.B $03 
     STA.W $0372,X 
     TYA 
     ADC.W #$0005 : TAY 
@@ -1005,8 +998,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8B22:
     CLC 
 
 .loop:
-    LDA.W $0000,Y 
-    ADC.B $14 : STA.W $0370,X 
+    LDA.W $0000,Y : ADC.B $14 : STA.W $0370,X 
     AND.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
@@ -1035,8 +1027,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8B22:
 .onScreen:
     STA.W $0371,X 
     REP #$21 
-    LDA.W $0003,Y 
-    ADC.B $00 : ORA.B $03 
+    LDA.W $0003,Y : ADC.B $00 : ORA.B $03 
     STA.W $0372,X 
     TYA 
     ADC.W #$0005 : TAY 
@@ -1062,8 +1053,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8B96:
     CLC 
 
 .loop:
-    LDA.W $0000,Y 
-    ADC.B $14 : STA.W $0370,X 
+    LDA.W $0000,Y : ADC.B $14 : STA.W $0370,X 
     AND.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $16 
@@ -1092,8 +1082,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8B96:
 .onScreen:
     STA.W $0371,X 
     REP #$21 
-    LDA.W $0003,Y 
-    ADC.B $00 : ORA.B $03 
+    LDA.W $0003,Y : ADC.B $00 : ORA.B $03 
     STA.W $0372,X 
     TYA 
     ADC.W #$0005 : TAY 
@@ -1151,8 +1140,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8C0A:
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($16) 
 
-  + LDA.W $0003,Y 
-    ADC.B $1A : ORA.B $1C 
+  + LDA.W $0003,Y : ADC.B $1A : ORA.B $1C 
     STA.W $0372,X 
     TXA 
     ADC.W #$0004 : AND.W #$01FF 
@@ -1207,8 +1195,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8C7F:
     ORA.L MapOfOAMIndex_sizeBit,X 
     STA.B ($16) 
 
-  + LDA.W $0003,Y 
-    ADC.B $1A : ORA.B $1C 
+  + LDA.W $0003,Y : ADC.B $1A : ORA.B $1C 
     STA.W $0372,X 
     TXA 
     ADC.W #$0004 : AND.W #$01FF 
@@ -4489,29 +4476,25 @@ FileSelectMap_Index8_AreaSelectMapToRoomSelectMap:
 
 HandleRoomSelectMap_ExpandingSquareTransition:
     LDA.L $7E9E30 : CLC : ADC.L $7E9E40 : STA.L $7E9E30 
-    LDA.L $7E9E32 
-    ADC.L $7E9E42 : CMP.W #$0001 
+    LDA.L $7E9E32 : ADC.L $7E9E42 : CMP.W #$0001 
     BPL + 
     LDA.W #$0001 
 
   + STA.L $7E9E32 
     LDA.L $7E9E34 : CLC : ADC.L $7E9E44 : STA.L $7E9E34 
-    LDA.L $7E9E36 
-    ADC.L $7E9E46 : CMP.W #$0100 
+    LDA.L $7E9E36 : ADC.L $7E9E46 : CMP.W #$0100 
     BMI + 
     LDA.W #$00FF 
 
   + STA.L $7E9E36 
     LDA.L $7E9E38 : CLC : ADC.L $7E9E48 : STA.L $7E9E38 
-    LDA.L $7E9E3A 
-    ADC.L $7E9E4A : CMP.W #$0001 
+    LDA.L $7E9E3A : ADC.L $7E9E4A : CMP.W #$0001 
     BPL + 
     LDA.W #$0001 
 
   + STA.L $7E9E3A 
     LDA.L $7E9E3C : CLC : ADC.L $7E9E4C : STA.L $7E9E3C 
-    LDA.L $7E9E3E 
-    ADC.L $7E9E4E : CMP.W #$00E0 
+    LDA.L $7E9E3E : ADC.L $7E9E4E : CMP.W #$00E0 
     BMI + 
     LDA.W #$00E0 
 
@@ -4933,17 +4916,13 @@ FileSelectMap_Index14_PrepContractSquareTransToAreaSelect:
 FileSelectMap_Index15_RoomSelectMapToAreaSelectMap:
     REP #$30 
     LDA.L $7E9E30 : SEC : SBC.L $7E9E40 : STA.L $7E9E30 
-    LDA.L $7E9E32 
-    SBC.L $7E9E42 : STA.L $7E9E32 
+    LDA.L $7E9E32 : SBC.L $7E9E42 : STA.L $7E9E32 
     LDA.L $7E9E34 : SEC : SBC.L $7E9E44 : STA.L $7E9E34 
-    LDA.L $7E9E36 
-    SBC.L $7E9E46 : STA.L $7E9E36 
+    LDA.L $7E9E36 : SBC.L $7E9E46 : STA.L $7E9E36 
     LDA.L $7E9E38 : SEC : SBC.L $7E9E48 : STA.L $7E9E38 
-    LDA.L $7E9E3A 
-    SBC.L $7E9E4A : STA.L $7E9E3A 
+    LDA.L $7E9E3A : SBC.L $7E9E4A : STA.L $7E9E3A 
     LDA.L $7E9E3C : SEC : SBC.L $7E9E4C : STA.L $7E9E3C 
-    LDA.L $7E9E3E 
-    SBC.L $7E9E4E : STA.L $7E9E3E 
+    LDA.L $7E9E3E : SBC.L $7E9E4E : STA.L $7E9E3E 
     JSR.W Setup_FileSelectMap_ExpandingSquareTransition_HDMA 
     REP #$20 
     JSR.W DrawAreaSelectMapLabels 

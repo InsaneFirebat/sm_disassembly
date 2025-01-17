@@ -2165,10 +2165,8 @@ Function_Puromi_Active:
     JSR.W HandlePuromiProjectiles 
     JSR.W HandlePuromiSpriteObjects 
     CLC 
-    LDA.L $7E8000,X 
-    ADC.L $7E8008,X : STA.L $7E8000,X 
-    LDA.L $7E8002,X 
-    ADC.L $7E800A,X : STA.L $7E8002,X 
+    LDA.L $7E8000,X : ADC.L $7E8008,X : STA.L $7E8000,X 
+    LDA.L $7E8002,X : ADC.L $7E800A,X : STA.L $7E8002,X 
     RTS 
 
 
@@ -3967,10 +3965,8 @@ Function_RidleyCeres_Fireballing:
     INC A 
 
   + STA.B $16 
-    LDA.L $7E782E 
-    ADC.B $16 : STA.B $12 
-    LDA.L $7E7830 
-    ADC.B $16 : STA.B $14 
+    LDA.L $7E782E : ADC.B $16 : STA.B $12 
+    LDA.L $7E7830 : ADC.B $16 : STA.B $14 
     LDX.W #$0000 
     LDY.W #$0000 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
@@ -5651,8 +5647,7 @@ MoveSamusToWithinRidleysClawsIfHolding:
     LDA.L $7E7820 
     ASL A 
     TAY 
-    LDA.W HoldingSamusXDispacement,Y 
-    ADC.W $0F7A : CLC : ADC.L $7E7828 : STA.W $0AF6 
+    LDA.W HoldingSamusXDispacement,Y : ADC.W $0F7A : CLC : ADC.L $7E7828 : STA.W $0AF6 
     LDA.L $7E783A 
     TAY 
     LDA.W HoldingSamusYDispacement,Y : CLC : ADC.W $0F7E : CLC : ADC.L $7E782A : STA.W $0AFA 
@@ -5663,8 +5658,7 @@ SetDisplacementForRidleyGrabbingSamus:
     LDA.L $7E7820 
     ASL A 
     TAY 
-    LDA.W HoldingSamusXDispacement,Y 
-    ADC.W $0F7A : SEC : SBC.W $0AF6 : EOR.W #$FFFF 
+    LDA.W HoldingSamusXDispacement,Y : ADC.W $0F7A : SEC : SBC.W $0AF6 : EOR.W #$FFFF 
     INC A 
     STA.L $7E7828 
     LDA.L $7E783A 
@@ -7872,8 +7866,7 @@ UpdateRidleyTailPositions:
     INC A 
     ASL A 
     TAX 
-    LDA.L .XPositionOffsets,X 
-    ADC.W $2030 
+    LDA.L .XPositionOffsets,X : ADC.W $2030 
 
 .facingForward:
     CLC : ADC.W $0F7A : STA.W $202C 
@@ -8151,8 +8144,7 @@ TargetAnAngleTowardMissileOrSamus:
     BEQ .returnUpper 
     JSR.W TargetAMissileOrSuperMissileIfAvailable 
     BCC .noProjectiles 
-    LDA.B $12 
-    SBC.W $202C : STA.B $12 
+    LDA.B $12 : SBC.W $202C : STA.B $12 
     LDA.B $14 : SEC : SBC.W $202E : STA.B $14 
     BRA + 
 
@@ -9375,8 +9367,7 @@ RidleyGeneralUseDrawing:
     CMP.W #$00E0 
     BPL .next 
     STA.B $1A 
-    LDA.W $0000,Y 
-    ADC.B $12 : SEC : SBC.W $0911 : STA.W $0370,X 
+    LDA.W $0000,Y : ADC.B $12 : SEC : SBC.W $0911 : STA.W $0370,X 
     AND.W #$0100 
     BEQ + 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 

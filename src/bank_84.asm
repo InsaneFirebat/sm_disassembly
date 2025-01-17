@@ -4589,8 +4589,7 @@ PreInst_PLM_PositionSamus_GiveAtLeast10FramesOfInvincibility:
 
 Instruction_PLM_Deal2DamageToSamus:
     LDA.W $0A4E : CLC : ADC.W #$0000 : STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W #$0002 : STA.W $0A50 
+    LDA.W $0A50 : ADC.W #$0002 : STA.W $0A50 
     RTS 
 
 
@@ -9331,8 +9330,7 @@ Setup_GenericGrappleBlock_ResetOverflow:
 
 Setup_DraygonsBrokenTurret:
     LDA.W $0A4E : CLC : ADC.W #$0000 : STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W #$0001 : STA.W $0A50 
+    LDA.W $0A50 : ADC.W #$0001 : STA.W $0A50 
     SEP #$40 
     SEC 
     RTS 

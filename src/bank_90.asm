@@ -221,8 +221,7 @@ AnimateSamus_FX_Lava:
 
 .periodicDamage:
     LDA.W $0A4E : CLC : ADC.W SamusPhysicsConstants_LavaSubDamagePerFrame : STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W SamusPhysicsConstants_LavaDamagePerFrame : STA.W $0A50 
+    LDA.W $0A50 : ADC.W SamusPhysicsConstants_LavaDamagePerFrame : STA.W $0A50 
     BRA AnimateSamus_SubmergedInLavaAcid 
 
 
@@ -251,8 +250,7 @@ AnimateSamus_FX_Acid:
     JSL.L QueueSound_Lib3_Max3 
 
   + LDA.W $0A4E : CLC : ADC.W SamusPhysicsConstants_AcidSubDamagePerFrame : STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W SamusPhysicsConstants_AcidDamagePerFrame : STA.W $0A50 
+    LDA.W $0A50 : ADC.W SamusPhysicsConstants_AcidDamagePerFrame : STA.W $0A50 
 
 AnimateSamus_SubmergedInLavaAcid:
     LDA.W SamusPhysicsConstants_AnimationDelayInLavaAcid : STA.W $0A9C 
@@ -1976,8 +1974,7 @@ MoveSamus_Vertically_PushedByCeresRidley:
     CMP.W #$0005 
     BPL + 
     LDA.W $0B2C : CLC : ADC.W $0B32 : STA.W $0B2C 
-    LDA.W $0B2E 
-    ADC.W $0B34 : STA.W $0B2E 
+    LDA.W $0B2E : ADC.W $0B34 : STA.W $0B2E 
 
   + LDA.W $0B2C : STA.B $14 
     LDA.W $0B2E : STA.B $12 
@@ -2152,8 +2149,7 @@ Samus_Y_Movement_WithSpeedCalculations:
     CMP.W #$0002 
     BEQ .down 
     LDA.W $0B2C : SEC : SBC.W $0B32 : STA.W $0B2C 
-    LDA.W $0B2E 
-    SBC.W $0B34 : STA.W $0B2E 
+    LDA.W $0B2E : SBC.W $0B34 : STA.W $0B2E 
     BRA + 
 
 
@@ -2162,8 +2158,7 @@ Samus_Y_Movement_WithSpeedCalculations:
     CMP.W #$0005 
     BEQ + 
     LDA.W $0B2C : CLC : ADC.W $0B32 : STA.W $0B2C 
-    LDA.W $0B2E 
-    ADC.W $0B34 : STA.W $0B2E 
+    LDA.W $0B2E : ADC.W $0B34 : STA.W $0B2E 
 
   + LDA.W $0B5C 
     BEQ .checkDirection 
@@ -2187,8 +2182,7 @@ Samus_Y_Movement_WithSpeedCalculations:
 
 .notDown:
     LDA.W $0B5A : CLC : ADC.B $14 : STA.B $14 
-    LDA.W $0B5C 
-    ADC.B $12 : STA.B $12 
+    LDA.W $0B5C : ADC.B $12 : STA.B $12 
     BMI .moveUp 
     JSR.W MoveSamus_Down 
     BRA .return 
@@ -2292,8 +2286,7 @@ Samus_Morphed_Bouncing_Movement:
     STZ.B $14 
     STZ.B $12 
     LDA.W $0B5A : CLC : ADC.B $14 : STA.B $14 
-    LDA.W $0B5C 
-    ADC.B $12 : STA.B $12 
+    LDA.W $0B5C : ADC.B $12 : STA.B $12 
     BMI .moveUp 
     INC.B $12 
     JSR.W MoveSamus_Down 
@@ -2342,8 +2335,7 @@ Samus_Y_Movement_NoSpeedCalculations:
     STZ.B $14 
     STZ.B $12 
     LDA.W $0B5A : CLC : ADC.B $14 : STA.B $14 
-    LDA.W $0B5C 
-    ADC.B $12 : STA.B $12 
+    LDA.W $0B5C : ADC.B $12 : STA.B $12 
     BMI .moveUp 
     INC.B $12 
 
@@ -2375,8 +2367,7 @@ MoveSamus_ByExtraYDisplacement:
     STZ.B $14 
     STZ.B $12 
     LDA.W $0B5A : CLC : ADC.B $14 : STA.B $14 
-    LDA.W $0B5C 
-    ADC.B $12 : STA.B $12 
+    LDA.W $0B5C : ADC.B $12 : STA.B $12 
     BMI .moveUp 
     INC.B $12 
     JSR.W MoveSamus_Down 
@@ -2842,15 +2833,13 @@ Handle_Horizontal_Scrolling:
     BEQ .return 
     BMI + 
     LDA.W $090F : CLC : ADC.W $0DA4 : STA.W $090F 
-    LDA.W $0911 
-    ADC.W $0DA2 : STA.W $0911 
+    LDA.W $0911 : ADC.W $0DA2 : STA.W $0911 
     JSL.L HandleScrollZones_ScrollingRight 
     BRA .return 
 
 
   + LDA.W $090F : SEC : SBC.W $0DA4 : STA.W $090F 
-    LDA.W $0911 
-    SBC.W $0DA2 : STA.W $0911 
+    LDA.W $0911 : SBC.W $0DA2 : STA.W $0911 
     JSL.L HandleScrollZones_ScrollingLeft 
 
 .return:
@@ -2890,16 +2879,14 @@ Handle_Vertical_Scrolling:
     BEQ .return 
     BMI .idealLessThanActual 
     LDA.W $0913 : CLC : ADC.W $0DA8 : STA.W $0913 
-    LDA.W $0915 
-    ADC.W $0DA6 : STA.W $0915 
+    LDA.W $0915 : ADC.W $0DA6 : STA.W $0915 
     JSL.L HandleScrollZones_ScrollingDown 
     BRA .return 
 
 
 .idealLessThanActual:
     LDA.W $0913 : SEC : SBC.W $0DA8 : STA.W $0913 
-    LDA.W $0915 
-    SBC.W $0DA6 : STA.W $0915 
+    LDA.W $0915 : SBC.W $0DA6 : STA.W $0915 
     JSL.L HandleScrollZones_ScrollingUp 
 
 .return:
@@ -2917,15 +2904,13 @@ Calculate_CameraXSpeed:
 
 
   + LDA.W $0B12 : SEC : SBC.W $0AF8 : STA.W $0DA4 
-    LDA.W $0B10 
-    SBC.W $0AF6 : CLC : ADC.W SamusPhysicsConstants_CameraXOffsetFromSamusWhenTurning : STA.W $0DA2 
+    LDA.W $0B10 : SBC.W $0AF6 : CLC : ADC.W SamusPhysicsConstants_CameraXOffsetFromSamusWhenTurning : STA.W $0DA2 
     BRA .return 
 
 
 .right:
     LDA.W $0AF8 : SEC : SBC.W $0B12 : STA.W $0DA4 
-    LDA.W $0AF6 
-    SBC.W $0B10 : CLC : ADC.W SamusPhysicsConstants_CameraXOffsetFromSamusWhenTurning : STA.W $0DA2 
+    LDA.W $0AF6 : SBC.W $0B10 : CLC : ADC.W SamusPhysicsConstants_CameraXOffsetFromSamusWhenTurning : STA.W $0DA2 
 
 .return:
     PLP 
@@ -2942,15 +2927,13 @@ CalculateVerticalDistanceSamusMovedLastFrame:
 
 
   + LDA.W $0B16 : SEC : SBC.W $0AFC : STA.W $0DA8 
-    LDA.W $0B14 
-    SBC.W $0AFA : CLC : ADC.W SamusPhysicsConstants_CameraXOffsetFromSamusWhenTurning : STA.W $0DA6 
+    LDA.W $0B14 : SBC.W $0AFA : CLC : ADC.W SamusPhysicsConstants_CameraXOffsetFromSamusWhenTurning : STA.W $0DA6 
     BRA .return 
 
 
 .down:
     LDA.W $0AFC : SEC : SBC.W $0B16 : STA.W $0DA8 
-    LDA.W $0AFA 
-    SBC.W $0B14 : CLC : ADC.W SamusPhysicsConstants_CameraXOffsetFromSamusWhenTurning : STA.W $0DA6 
+    LDA.W $0AFA : SBC.W $0B14 : CLC : ADC.W SamusPhysicsConstants_CameraXOffsetFromSamusWhenTurning : STA.W $0DA6 
 
 .return:
     PLP 
@@ -3048,8 +3031,7 @@ Handle_Samus_XExtraRunSpeed:
 
 .accelerating:
     LDA.W $0B44 : CLC : ADC.W SamusPhysicsConstants_XSubAccelerations_DashHeld,X : STA.W $0B44 
-    LDA.W $0B42 
-    ADC.W SamusPhysicsConstants_XAccelerations_DashHeld,X : STA.W $0B42 
+    LDA.W $0B42 : ADC.W SamusPhysicsConstants_XAccelerations_DashHeld,X : STA.W $0B42 
     BRA .done 
 
 
@@ -3073,8 +3055,7 @@ Handle_Samus_XExtraRunSpeed:
 
 MoveSamus_Right_NoCollisionDetection:
     LDA.W $0AF8 : CLC : ADC.B $14 : STA.W $0AF8 
-    LDA.W $0AF6 
-    ADC.B $12 : STA.W $0AF6 
+    LDA.W $0AF6 : ADC.B $12 : STA.W $0AF6 
     LDA.B $14 : STA.W $0DB0 
     LDA.B $12 : STA.W $0DAE 
     RTS 
@@ -3082,8 +3063,7 @@ MoveSamus_Right_NoCollisionDetection:
 
 MoveSamus_Left_NoCollisionDetection:
     LDA.W $0AF8 : SEC : SBC.B $14 : STA.W $0AF8 
-    LDA.W $0AF6 
-    SBC.B $12 : STA.W $0AF6 
+    LDA.W $0AF6 : SBC.B $12 : STA.W $0AF6 
     LDA.B $12 
     EOR.W #$FFFF 
     STA.B $12 
@@ -3101,8 +3081,7 @@ MoveSamus_Left_NoCollisionDetection:
 
 MoveSamus_Down_NoCollisionDetection:
     LDA.W $0AFC : CLC : ADC.B $14 : STA.W $0AFC 
-    LDA.W $0AFA 
-    ADC.B $12 : STA.W $0AFA 
+    LDA.W $0AFA : ADC.B $12 : STA.W $0AFA 
     LDA.B $14 : STA.W $0DB8 
     LDA.B $12 : STA.W $0DB6 
     RTS 
@@ -3110,8 +3089,7 @@ MoveSamus_Down_NoCollisionDetection:
 
 MoveSamus_Up_NoCollisionDetection:
     LDA.W $0AFC : SEC : SBC.B $14 : STA.W $0AFC 
-    LDA.W $0AFA 
-    SBC.B $12 : STA.W $0AFA 
+    LDA.W $0AFA : SBC.B $12 : STA.W $0AFA 
     LDA.B $12 
     EOR.W #$FFFF 
     STA.B $12 
@@ -3367,8 +3345,7 @@ CalculateSamusXBaseSpeed_DecelerationAllowed:
     LDA.W $0B4A 
     BNE .decelerating 
     LDA.W $0B48 : CLC : ADC.W $0002,X : STA.W $0B48 
-    LDA.W $0B46 
-    ADC.W $0000,X : STA.W $0B46 
+    LDA.W $0B46 : ADC.W $0000,X : STA.W $0B46 
     CMP.W $0004,X 
     BMI .return 
     BEQ .checkMaxSubSpeed 
@@ -3412,8 +3389,7 @@ CalculateSamusXBaseSpeed_DecelerationAllowed:
     LDA.W $0008,X : STA.B $12 
 
   + LDA.W $0B48 : SEC : SBC.B $14 : STA.W $0B48 
-    LDA.W $0B46 
-    SBC.B $12 : STA.W $0B46 
+    LDA.W $0B46 : SBC.B $12 : STA.W $0B46 
     BPL .return 
     STZ.W $0B46 
     STZ.W $0B48 
@@ -3433,8 +3409,7 @@ CalculateSamusXBaseSpeed_DecelerationDisallowed:
     BIT.W #$0001 
     BNE .turningAround 
     LDA.W $0B48 : CLC : ADC.W $0002,X : STA.W $0B48 
-    LDA.W $0B46 
-    ADC.W $0000,X : STA.W $0B46 
+    LDA.W $0B46 : ADC.W $0000,X : STA.W $0B46 
     CMP.W $0004,X 
     BMI .returnClear 
     BEQ .checkMaxSubSpeed 
@@ -3478,8 +3453,7 @@ CalculateSamusXBaseSpeed_DecelerationDisallowed:
     LDA.W $0008,X : STA.B $12 
 
   + LDA.W $0B48 : SEC : SBC.B $14 : STA.W $0B48 
-    LDA.W $0B46 
-    SBC.B $12 : STA.W $0B46 
+    LDA.W $0B46 : SBC.B $12 : STA.W $0B46 
     BPL .returnClear 
     STZ.W $0B46 
     STZ.W $0B48 
@@ -9699,8 +9673,7 @@ SamusMovementHandler_HorizontalShinespark:
 Shinespark_Horizontal_Movement:
     LDA.W #$000F : STA.W $0A68 
     LDA.W $0B44 : CLC : ADC.W $0B32 : STA.W $0B44 
-    LDA.W $0B42 
-    ADC.W $0B34 : STA.W $0B42 
+    LDA.W $0B42 : ADC.W $0B34 : STA.W $0B42 
     CMP.W #$000F 
     BMI + 
     LDA.W #$000F : STA.W $0B42 
@@ -9791,12 +9764,10 @@ Shinespark_Horizontal_Movement:
 Shinespark_Vertical_Movement:
     LDA.W #$000F : STA.W $0A68 
     LDA.W $0DEE : CLC : ADC.W $0B32 : STA.W $0DEE 
-    LDA.W $0DEC 
-    ADC.W $0B34 : STA.W $0DEC 
+    LDA.W $0DEC : ADC.W $0B34 : STA.W $0DEC 
     LDA.W $0B2C : CLC : ADC.W $0DEE : STA.W $0B2C 
     STA.B $14 
-    LDA.W $0B2E 
-    ADC.W $0DEC : STA.W $0B2E 
+    LDA.W $0B2E : ADC.W $0DEC : STA.W $0B2E 
     STA.B $12 
     CMP.W #$000E 
     BMI .flipDirection 
@@ -9814,8 +9785,7 @@ Shinespark_Vertical_Movement:
     INC.B $12 
 
   + LDA.W $0B5A : CLC : ADC.B $14 : STA.B $14 
-    LDA.W $0B5C 
-    ADC.B $12 : STA.B $12 
+    LDA.W $0B5C : ADC.B $12 : STA.B $12 
     LDA.W #$0002 : STA.W $0B02 
     LDA.B $12 
     EOR.W #$FFFF 
@@ -10507,19 +10477,16 @@ ProjectilePreInstruction_BombSpread:
 
 .timerNotExpired:
     LDA.W $0C90,X : CLC : ADC.W $0B32 : STA.W $0C90,X 
-    LDA.W $0BF0,X 
-    ADC.W $0B34 : STA.W $0BF0,X 
+    LDA.W $0BF0,X : ADC.W $0B34 : STA.W $0BF0,X 
     LDA.W $0BA0,X : CLC : ADC.W $0C90,X : STA.W $0BA0,X 
-    LDA.W $0B78,X 
-    ADC.W $0BF0,X : STA.W $0B78,X 
+    LDA.W $0B78,X : ADC.W $0BF0,X : STA.W $0B78,X 
     JSL.L BombSpreadBlockCollisionDetection 
     BCC .falling 
     LDX.W $0DDE 
     TXA 
     SEC : SBC.W #$000A : TAY 
     LDA.W $0BA0,X : SEC : SBC.W $0C90,X : STA.W $0BA0,X 
-    LDA.W $0B78,X 
-    SBC.W $0BF0,X : STA.W $0B78,X 
+    LDA.W $0B78,X : SBC.W $0BF0,X : STA.W $0B78,X 
     LDA.W $0BF0,X 
     BMI .negativeYVelocity 
     LDA.W BombSpreadData_YSubSpeeds,Y : STA.W $0C90,X 
@@ -10552,15 +10519,13 @@ ProjectilePreInstruction_BombSpread:
 
 .right:
     LDA.W $0B8C,X : CLC : ADC.B $14 : STA.W $0B8C,X 
-    LDA.W $0B64,X 
-    ADC.B $12 : STA.W $0B64,X 
+    LDA.W $0B64,X : ADC.B $12 : STA.W $0B64,X 
     BRA .movementDone 
 
 
 .left:
     LDA.W $0B8C,X : SEC : SBC.B $14 : STA.W $0B8C,X 
-    LDA.W $0B64,X 
-    SBC.B $12 : STA.W $0B64,X 
+    LDA.W $0B64,X : SBC.B $12 : STA.W $0B64,X 
 
 .movementDone:
     JSL.L BombSpreadBlockCollisionDetection 
@@ -10581,8 +10546,7 @@ ProjectilePreInstruction_BombSpread:
     AND.W #$7FFF 
     STA.W $0BDC,X 
     LDA.W $0B8C,X : CLC : ADC.B $14 : STA.W $0B8C,X 
-    LDA.W $0B64,X 
-    ADC.B $12 : STA.W $0B64,X 
+    LDA.W $0B64,X : ADC.B $12 : STA.W $0B64,X 
     BRA .return 
 
 
@@ -10590,8 +10554,7 @@ ProjectilePreInstruction_BombSpread:
     ORA.W #$8000 
     STA.W $0BDC,X 
     LDA.W $0B8C,X : SEC : SBC.B $14 : STA.W $0B8C,X 
-    LDA.W $0B64,X 
-    SBC.B $12 : STA.W $0B64,X 
+    LDA.W $0B64,X : SBC.B $12 : STA.W $0B64,X 
 
 .return:
     RTS 
@@ -10651,8 +10614,7 @@ ProjectilePreInstruction_WaveSBA:
 
   + STA.B $12 
     LDA.W $0B8C,X : CLC : ADC.B $14 : STA.W $0B8C,X 
-    LDA.W $0B64,X 
-    ADC.B $12 : STA.W $0B64,X 
+    LDA.W $0B64,X : ADC.B $12 : STA.W $0B64,X 
     LDA.W $0AFA 
     CMP.W $0B78,X 
     BMI .checkYVelocity 
@@ -10683,8 +10645,7 @@ ProjectilePreInstruction_WaveSBA:
 
   + STA.B $12 
     LDA.W $0BA0,X : CLC : ADC.B $14 : STA.W $0BA0,X 
-    LDA.W $0B78,X 
-    ADC.B $12 : STA.W $0B78,X 
+    LDA.W $0B78,X : ADC.B $12 : STA.W $0B78,X 
     CPX.W #$0006 
     BNE .return 
     LDA.W $0BDC,X 
@@ -11909,8 +11870,7 @@ UNUSED_SamusTimerHackHandler_SpecialFalling_90E41B:
     CMP.W #$0005 
     BPL .GreaterThan4 
     LDA.W $0B2C : CLC : ADC.W $0B32 : STA.W $0B2C 
-    LDA.W $0B2E 
-    ADC.W $0B34 : STA.W $0B2E 
+    LDA.W $0B2E : ADC.W $0B34 : STA.W $0B2E 
 
 .GreaterThan4:
     LDA.W $0A1C 
@@ -11952,8 +11912,7 @@ CalculateSamusXDisplacement_ForMovingLeft:
     INC.B $12 
 
   + LDA.W $0B56 : CLC : ADC.B $14 : STA.B $14 
-    LDA.W $0B58 
-    ADC.B $12 : STA.B $12 
+    LDA.W $0B58 : ADC.B $12 : STA.B $12 
     BMI .clamp 
     CMP.W #$0010 
     BPL .maxClamp 
@@ -11986,8 +11945,7 @@ CalculateSamusXDisplacement_ForMovingRight:
     JSR.W CalculateSamusXSpeed 
     LDA.W #$0001 : STA.W $0B02 
     LDA.W $0B56 : CLC : ADC.B $14 : STA.B $14 
-    LDA.W $0B58 
-    ADC.B $12 : STA.B $12 
+    LDA.W $0B58 : ADC.B $12 : STA.B $12 
     BMI .clamp 
     CMP.W #$0010 
     BPL .maxClamp 
@@ -12035,16 +11993,14 @@ CalculateSamusXSpeed:
 CalculateSamusXSpeed_Divisor0:
     LDA.B $14 : CLC : ADC.W $0B44 : STA.B $14 
     STA.W $0DBE 
-    LDA.B $12 
-    ADC.W $0B42 : STA.B $12 
+    LDA.B $12 : ADC.W $0B42 : STA.B $12 
     STA.W $0DBC 
     RTS 
 
 
 CalculateSamusXSpeed_Divisor1:
     LDA.B $14 : CLC : ADC.W $0B44 : STA.B $14 
-    LDA.B $12 
-    ADC.W $0B42 : XBA 
+    LDA.B $12 : ADC.W $0B42 : XBA 
     LSR A 
     XBA 
     PHA 
@@ -12063,8 +12019,7 @@ CalculateSamusXSpeed_Divisor1:
 
 CalculateSamusXSpeed_Divisor2:
     LDA.B $14 : CLC : ADC.W $0B44 : STA.B $14 
-    LDA.B $12 
-    ADC.W $0B42 : XBA 
+    LDA.B $12 : ADC.W $0B42 : XBA 
     LSR #2
     XBA 
     PHA 
@@ -12083,8 +12038,7 @@ CalculateSamusXSpeed_Divisor2:
 
 CalculateSamusXSpeed_Divisor3:
     LDA.B $14 : CLC : ADC.W $0B44 : STA.B $14 
-    LDA.B $12 
-    ADC.W $0B42 : XBA 
+    LDA.B $12 : ADC.W $0B42 : XBA 
     LSR #3
     XBA 
     PHA 
@@ -12103,8 +12057,7 @@ CalculateSamusXSpeed_Divisor3:
 
 CalculateSamusXSpeed_Divisor4:
     LDA.B $14 : CLC : ADC.W $0B44 : STA.B $14 
-    LDA.B $12 
-    ADC.W $0B42 : XBA 
+    LDA.B $12 : ADC.W $0B42 : XBA 
     LSR #4
     XBA 
     PHA 
@@ -12724,8 +12677,7 @@ HandlePeriodicDamageToSamus:
 
 .dontCrash:
     LDA.W $0A4C : SEC : SBC.W $0A4E : STA.W $0A4C 
-    LDA.W $09C2 
-    SBC.W $0A50 : STA.W $09C2 
+    LDA.W $09C2 : SBC.W $0A50 : STA.W $09C2 
     BPL .timeIsFrozen 
     STZ.W $0A4C 
     STZ.W $09C2 

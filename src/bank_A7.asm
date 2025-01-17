@@ -4601,8 +4601,7 @@ Function_KraidLint_ChargeLint:
 
 Function_KraidLint_FireLint:
     LDA.W $0F7C,X : SEC : SBC.W KraidLint_XSubSpeed : STA.W $0F7C,X 
-    LDA.W $0F7A,X 
-    SBC.W KraidLint_XSpeed : STA.W $0F7A,X 
+    LDA.W $0F7A,X : SBC.W KraidLint_XSpeed : STA.W $0F7A,X 
     CMP.W #$0038 
     BPL .greaterThanEqualTo38 
     PHA 
@@ -4627,8 +4626,7 @@ Function_KraidLint_FireLint:
     AND.W #$FFFF 
     BEQ .return 
     LDA.W $0B56 : SEC : SBC.W KraidLint_XSubSpeed : STA.W $0B56 
-    LDA.W $0B58 
-    SBC.W KraidLint_XSpeed : CMP.W #$FFF0 
+    LDA.W $0B58 : SBC.W KraidLint_XSpeed : CMP.W #$FFF0 
     BPL .storeExtraDisplacement 
     LDA.W #$FFF0 
 
@@ -6277,8 +6275,7 @@ Function_Kraid_RaiseThruFloor_RaiseKraid:
   + STY.B $12 
     LDA.W $0F7A : CLC : ADC.B $12 : STA.W $0F7A 
     LDA.W $0F80 : SEC : SBC.W #$8000 : STA.W $0F80 
-    LDA.W $0F7E 
-    SBC.W #$0000 : STA.W $0F7E 
+    LDA.W $0F7E : SBC.W #$0000 : STA.W $0F7E 
     LDA.W $0F7E 
     CMP.W #$01C9 
     BPL .return 
@@ -7023,8 +7020,7 @@ UpdateFigure8PhantoonSpeed:
 
 .stage0:
     LDA.W $0FAA : CLC : ADC.W Phantoon_Figure8_SubAcceleration_SlowStage : STA.W $0FAA 
-    LDA.W $0FAC 
-    ADC.W Phantoon_Figure8_Acceleration_SlowStage : STA.W $0FAC 
+    LDA.W $0FAC : ADC.W Phantoon_Figure8_Acceleration_SlowStage : STA.W $0FAC 
     CMP.W Phantoon_Figure8_SpeedCaps_Stage0Max 
     BMI ..return 
     LDA.W Phantoon_Figure8_SpeedCaps_Stage0Max 
@@ -7039,8 +7035,7 @@ UpdateFigure8PhantoonSpeed:
 
 .stage1:
     LDA.W $0FAA : CLC : ADC.W Phantoon_Figure8_SubAcceleration_FastStages : STA.W $0FAA 
-    LDA.W $0FAC 
-    ADC.W Phantoon_Figure8_Acceleration_FastStages : STA.W $0FAC 
+    LDA.W $0FAC : ADC.W Phantoon_Figure8_Acceleration_FastStages : STA.W $0FAC 
     CMP.W Phantoon_Figure8_SpeedCaps_Stage1Max 
     BMI ..return 
     LDA.W Phantoon_Figure8_SpeedCaps_Stage1Max : STA.W $0FAC 
@@ -7053,8 +7048,7 @@ UpdateFigure8PhantoonSpeed:
 
 .stage2:
     LDA.W $0FAA : SEC : SBC.W Phantoon_Figure8_SubAcceleration_FastStages : STA.W $0FAA 
-    LDA.W $0FAC 
-    SBC.W Phantoon_Figure8_Acceleration_FastStages : STA.W $0FAC 
+    LDA.W $0FAC : SBC.W Phantoon_Figure8_Acceleration_FastStages : STA.W $0FAC 
     CMP.W Phantoon_Figure8_SpeedCaps_Stage2Min 
     BEQ .negativeSpeed 
     BPL .return 
@@ -7080,8 +7074,7 @@ UpdateReversedFigure8PhantoonSpeed:
 
 .stage0:
     LDA.W $0FAA : SEC : SBC.W Phantoon_ReverseFigure8_SubAcceleration_SlowStage : STA.W $0FAA 
-    LDA.W $0FAC 
-    SBC.W Phantoon_ReverseFigure8_Acceleration_SlowStage : STA.W $0FAC 
+    LDA.W $0FAC : SBC.W Phantoon_ReverseFigure8_Acceleration_SlowStage : STA.W $0FAC 
     CMP.W Phantoon_ReverseFigure8_SpeedCaps_Stage0Max 
     BEQ + 
     BPL .stage0_return 
@@ -7098,8 +7091,7 @@ UpdateReversedFigure8PhantoonSpeed:
 
 .stage1:
     LDA.W $0FAA : SEC : SBC.W Phantoon_ReverseFigure8_SubAcceleration_FastStages : STA.W $0FAA 
-    LDA.W $0FAC 
-    SBC.W Phantoon_ReverseFigure8_Acceleration_FastStages : STA.W $0FAC 
+    LDA.W $0FAC : SBC.W Phantoon_ReverseFigure8_Acceleration_FastStages : STA.W $0FAC 
     CMP.W Phantoon_ReverseFigure8_SpeedCaps_Stage1Max 
     BEQ + 
     BPL .stage1_return 
@@ -7116,8 +7108,7 @@ UpdateReversedFigure8PhantoonSpeed:
 
 .stage2:
     LDA.W $0FAA : CLC : ADC.W Phantoon_ReverseFigure8_SubAcceleration_FastStages : STA.W $0FAA 
-    LDA.W $0FAC 
-    ADC.W Phantoon_ReverseFigure8_Acceleration_FastStages : STA.W $0FAC 
+    LDA.W $0FAC : ADC.W Phantoon_ReverseFigure8_Acceleration_FastStages : STA.W $0FAC 
     CMP.W Phantoon_ReverseFigure8_SpeedCaps_Stage2Min 
     BMI ..return 
     LDA.W Phantoon_ReverseFigure8_SpeedCaps_Stage2Min : STA.W $0FAC 
@@ -7271,8 +7262,7 @@ MovePhantoonInSwoopingPattern:
 
   + STA.B $12 
     LDA.W $0F7C : CLC : ADC.B $14 : STA.W $0F7C 
-    LDA.W $0F7A 
-    ADC.B $12 : STA.W $0F7A 
+    LDA.W $0F7A : ADC.B $12 : STA.W $0F7A 
     CMP.W #$FFC0 
     BPL + 
     LDA.W #$FFC0 : STA.W $0F7A 
@@ -7322,8 +7312,7 @@ MovePhantoonInSwoopingPattern:
 
   + STA.B $12 
     LDA.W $0F80 : CLC : ADC.B $14 : STA.W $0F80 
-    LDA.W $0F7E 
-    ADC.B $12 : STA.W $0F7E 
+    LDA.W $0F7E : ADC.B $12 : STA.W $0F7E 
     CMP.W #$0040 
     BPL + 
     LDA.W #$0040 : STA.W $0F7E 
@@ -8458,8 +8447,7 @@ CalculateTheAthTransitionalColorComponentFromXToY:
   + SEP #$21 
     STZ.W $4204 
     STA.W $4205 
-    LDA.W $0FEE 
-    SBC.B $14 : INC A 
+    LDA.W $0FEE : SBC.B $14 : INC A 
     STA.W $4206 
     REP #$20 
     NOP #5
@@ -9289,8 +9277,7 @@ EtecoonVerticalMovement:
     CMP.W #$0005 
     BPL .move 
     LDA.W $0FAA,X : CLC : ADC.L $000B32 : STA.W $0FAA,X 
-    LDA.W $0FA8,X 
-    ADC.L $000B34 : STA.W $0FA8,X 
+    LDA.W $0FA8,X : ADC.L $000B34 : STA.W $0FA8,X 
 
 .move:
     JSL.L MoveEnemyDownBy_14_12 
@@ -10823,8 +10810,7 @@ AccelerateRunningDachora:
 .increaseSpeed:
     LDA.W $0FAA,X : CLC : ADC.W DachoraConstants_XAcceleration+2 : STA.W $0FAA,X 
     STA.B $12 
-    LDA.W $0FA8,X 
-    ADC.W DachoraConstants_XAcceleration : STA.W $0FA8,X 
+    LDA.W $0FA8,X : ADC.W DachoraConstants_XAcceleration : STA.W $0FA8,X 
     STA.B $14 
     CMP.W #$0004 
     BNE .checkMaxSpeed 
@@ -10901,12 +10887,10 @@ Function_Dachora_Shinesparking:
     JSR.W LoadDachoraShinePalette 
     JSR.W UpdateDachoraEchoPositions 
     LDA.W $0FAE,X : CLC : ADC.L $000B32 : STA.W $0FAE,X 
-    LDA.W $0FAC,X 
-    ADC.L $000B34 : STA.W $0FAC,X 
+    LDA.W $0FAC,X : ADC.L $000B34 : STA.W $0FAC,X 
     LDA.W $0FAA,X : CLC : ADC.W $0FAE,X : STA.W $0FAA,X 
     STA.B $12 
-    LDA.W $0FA8,X 
-    ADC.W $0FAC,X : STA.W $0FA8,X 
+    LDA.W $0FA8,X : ADC.W $0FAC,X : STA.W $0FA8,X 
     STA.B $14 
     CMP.W #$000F 
     BMI + 
@@ -11024,8 +11008,7 @@ LoadDachoraShinePalette:
 Function_Dachora_Falling:
     LDA.W $0FAA,X : CLC : ADC.L $000B32 : STA.W $0FAA,X 
     STA.B $12 
-    LDA.W $0FA8,X 
-    ADC.L $000B34 : STA.W $0FA8,X 
+    LDA.W $0FA8,X : ADC.L $000B34 : STA.W $0FA8,X 
     STA.B $14 
     CMP.W #$000A 
     BMI + 

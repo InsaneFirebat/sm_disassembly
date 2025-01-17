@@ -2914,21 +2914,18 @@ Function_Coven_Dematerializing:
 
 Function_Coven_Materialized:
     LDA.W $0F80,X : CLC : ADC.L $7E7802,X : STA.W $0F80,X 
-    LDA.W $0F7E,X 
-    ADC.L $7E7804,X : STA.W $0F7E,X 
+    LDA.W $0F7E,X : ADC.L $7E7804,X : STA.W $0F7E,X 
     LDA.W $0F7E,X 
     CMP.L $7E7800,X 
     BMI .subvelocity 
     LDA.L $7E7802,X : SEC : SBC.W CovenConstants_HoveringYAccelerationDeceleration : STA.L $7E7802,X 
-    LDA.L $7E7804,X 
-    SBC.W #$0000 : STA.L $7E7804,X 
+    LDA.L $7E7804,X : SBC.W #$0000 : STA.L $7E7804,X 
     BRA + 
 
 
 .subvelocity:
     LDA.L $7E7802,X : CLC : ADC.W CovenConstants_HoveringYAccelerationDeceleration : STA.L $7E7802,X 
-    LDA.L $7E7804,X 
-    ADC.W #$0000 : STA.L $7E7804,X 
+    LDA.L $7E7804,X : ADC.W #$0000 : STA.L $7E7804,X 
 
   + LDA.W $0FAA,X 
     DEC A 
@@ -3763,8 +3760,7 @@ Function_YappingMaw_Attacking:
     LDA.L $7E801E,X 
     BNE .notAimingDown 
     SEC 
-    LDA.W #$0080 
-    SBC.B $14 : STA.L $7E8002,X 
+    LDA.W #$0080 : SBC.B $14 : STA.L $7E8002,X 
     SBC.B $14 : STA.L $7E8004,X 
     SBC.B $14 : STA.L $7E8006,X 
     SBC.B $14 : STA.L $7E8008,X 
@@ -3773,8 +3769,7 @@ Function_YappingMaw_Attacking:
 
 .notAimingDown:
     CLC 
-    LDA.W #$0080 
-    ADC.B $14 : STA.L $7E8002,X 
+    LDA.W #$0080 : ADC.B $14 : STA.L $7E8002,X 
     ADC.B $14 : STA.L $7E8004,X 
     ADC.B $14 : STA.L $7E8006,X 
     ADC.B $14 : STA.L $7E8008,X 
@@ -3812,22 +3807,14 @@ Function_YappingMaw_Attacking:
     JSR.W CalculateBodySegment3Velocities 
     JSR.W CalculateHeadSegmentVelocities 
     CLC 
-    LDA.L $7E7800,X 
-    ADC.L $7E800E,X : STA.L $7E7800,X 
-    LDA.L $7E7802,X 
-    ADC.L $7E8010,X : STA.L $7E7802,X 
-    LDA.L $7E7804,X 
-    ADC.L $7E8012,X : STA.L $7E7804,X 
-    LDA.L $7E7806,X 
-    ADC.L $7E8014,X : STA.L $7E7806,X 
-    LDA.L $7E7808,X 
-    ADC.L $7E8016,X : STA.L $7E7808,X 
-    LDA.L $7E780A,X 
-    ADC.L $7E8018,X : STA.L $7E780A,X 
-    LDA.L $7E780C,X 
-    ADC.L $7E801A,X : STA.L $7E780C,X 
-    LDA.L $7E780E,X 
-    ADC.L $7E801C,X : STA.L $7E780E,X 
+    LDA.L $7E7800,X : ADC.L $7E800E,X : STA.L $7E7800,X 
+    LDA.L $7E7802,X : ADC.L $7E8010,X : STA.L $7E7802,X 
+    LDA.L $7E7804,X : ADC.L $7E8012,X : STA.L $7E7804,X 
+    LDA.L $7E7806,X : ADC.L $7E8014,X : STA.L $7E7806,X 
+    LDA.L $7E7808,X : ADC.L $7E8016,X : STA.L $7E7808,X 
+    LDA.L $7E780A,X : ADC.L $7E8018,X : STA.L $7E780A,X 
+    LDA.L $7E780C,X : ADC.L $7E801A,X : STA.L $7E780C,X 
+    LDA.L $7E780E,X : ADC.L $7E801C,X : STA.L $7E780E,X 
     LDA.L $7E7818,X : CLC : ADC.L $7E780C,X : STA.W $0F7A,X 
     LDA.L $7E781A,X : CLC : ADC.L $7E780E,X : STA.W $0F7E,X 
     JSR.W UpdateYappingMawAngularSpeed 
@@ -5198,16 +5185,13 @@ Function_Magdollite_Slave1_WaitForAttackToBeTriggered:
 Function_Magdollite_Slave1_HandlePillarGrowth:
     LDX.W $0E54 
     CLC 
-    LDA.W $0F80,X 
-    ADC.L $7E77D2,X : STA.W $0F80,X 
+    LDA.W $0F80,X : ADC.L $7E77D2,X : STA.W $0F80,X 
     BCC + 
     INC.W $0FB0,X 
 
-  + LDA.W $0F7E,X 
-    ADC.L $7E77D4,X : STA.W $0F7E,X 
+  + LDA.W $0F7E,X : ADC.L $7E77D4,X : STA.W $0F7E,X 
     CLC 
-    LDA.W $0FB0,X 
-    ADC.L $7E77D4,X : STA.W $0FB0,X 
+    LDA.W $0FB0,X : ADC.L $7E77D4,X : STA.W $0FB0,X 
     JSR.W Function_Magdollite_Slave1_AddPillarStacksToReachSamusHeight 
     RTS 
 
@@ -7151,8 +7135,7 @@ Function_Powamp_Inflated_RiseToTargetHeight:
 
 .timerNotExpired:
     LDA.W $0FAA,X : CLC : ADC.W Powamp_YAccel_Rising+2 : STA.W $0FAA,X 
-    LDA.W $0FA8,X 
-    ADC.W Powamp_YAccel_Rising : STA.W $0FA8,X 
+    LDA.W $0FA8,X : ADC.W Powamp_YAccel_Rising : STA.W $0FA8,X 
     LDA.W $0FA8,X : STA.B $14 
     LDA.W $0FAA,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
@@ -7216,8 +7199,7 @@ Function_Powamp_Inflated_FinishWiggle:
 
 .continueRising:
     LDA.W $0FAA,X : CLC : ADC.W Powamp_YAccel_Rising+2 : STA.W $0FAA,X 
-    LDA.W $0FA8,X 
-    ADC.W Powamp_YAccel_Rising : STA.W $0FA8,X 
+    LDA.W $0FA8,X : ADC.W Powamp_YAccel_Rising : STA.W $0FA8,X 
     LDA.W $0FA8,X : STA.B $14 
     LDA.W $0FAA,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
@@ -7258,8 +7240,7 @@ Function_Powamp_Grappled_RiseToTargetHeight:
 
 .timerNotExpired:
     LDA.W $0FAA,X : CLC : ADC.W Powamp_YAccel_Rising+2 : STA.W $0FAA,X 
-    LDA.W $0FA8,X 
-    ADC.W Powamp_YAccel_Rising : STA.W $0FA8,X 
+    LDA.W $0FA8,X : ADC.W Powamp_YAccel_Rising : STA.W $0FA8,X 
     LDA.W $0FA8,X : STA.B $14 
     LDA.W $0FAA,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
@@ -7325,8 +7306,7 @@ Function_Powamp_Grappled_FinishWiggle:
 
 .continueRising:
     LDA.W $0FAA,X : CLC : ADC.W Powamp_YAccel_Rising+2 : STA.W $0FAA,X 
-    LDA.W $0FA8,X 
-    ADC.W Powamp_YAccel_Rising : STA.W $0FA8,X 
+    LDA.W $0FA8,X : ADC.W Powamp_YAccel_Rising : STA.W $0FA8,X 
     LDA.W $0FA8,X : STA.B $14 
     LDA.W $0FAA,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
@@ -7367,8 +7347,7 @@ Function_Powamp_Deflating:
 
 Function_Powamp_Deflated_Sinking:
     LDA.W $0FAA,X : CLC : ADC.W Powamp_YAccel_Sinking+2 : STA.W $0FAA,X 
-    LDA.W $0FA8,X 
-    ADC.W Powamp_YAccel_Sinking : STA.W $0FA8,X 
+    LDA.W $0FA8,X : ADC.W Powamp_YAccel_Sinking : STA.W $0FA8,X 
     LDA.W $0FA8,X : STA.B $14 
     LDA.W $0FAA,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
@@ -8279,8 +8258,7 @@ MainAI_Robot:
     INC A 
     STA.W $0F94,X 
     LDA.W $0FB0,X : CLC : ADC.W #$8000 : STA.W $0FB0,X 
-    LDA.W $0FB2,X 
-    ADC.W #$0000 : STA.W $0FB2,X ; fallthrough to MainAI_RobotNoPower
+    LDA.W $0FB2,X : ADC.W #$0000 : STA.W $0FB2,X ; fallthrough to MainAI_RobotNoPower
 
 RTL_A8CC66:
     RTL 
@@ -9784,10 +9762,8 @@ BullXMovement:
 
 .notLeft:
     CLC 
-    LDA.W $0F7C,X 
-    ADC.B $1C : STA.W $0F7C,X 
-    LDA.W $0F7A,X 
-    ADC.B $1E : STA.W $0F7A,X 
+    LDA.W $0F7C,X : ADC.B $1C : STA.W $0F7C,X 
+    LDA.W $0F7A,X : ADC.B $1E : STA.W $0F7A,X 
     RTS 
 
 
@@ -9819,10 +9795,8 @@ BullYMovement:
 
 .notUp:
     CLC 
-    LDA.W $0F80,X 
-    ADC.B $1C : STA.W $0F80,X 
-    LDA.W $0F7E,X 
-    ADC.B $1E : STA.W $0F7E,X 
+    LDA.W $0F80,X : ADC.B $1C : STA.W $0F80,X 
+    LDA.W $0F7E,X : ADC.B $1E : STA.W $0F7E,X 
     RTS 
 
 
@@ -10132,8 +10106,7 @@ InitAI_Alcoon:
 
 .loopRising:
     LDA.W $0FAC,X : CLC : ADC.W $0F80,X : STA.W $0F80,X 
-    LDA.W $0FAA,X 
-    ADC.W $0F7E,X : STA.W $0F7E,X 
+    LDA.W $0FAA,X : ADC.W $0F7E,X : STA.W $0F7E,X 
     JSR.W AlcoonYAcceleration 
     BMI .loopRising 
 
@@ -10164,8 +10137,7 @@ SetupAlcoonJumpMovement:
 
 AlcoonYAcceleration:
     LDA.W $0FAC,X : CLC : ADC.L $7E7802,X : STA.W $0FAC,X 
-    LDA.W $0FAA,X 
-    ADC.L $7E7800,X : STA.W $0FAA,X 
+    LDA.W $0FAA,X : ADC.L $7E7800,X : STA.W $0FAA,X 
     RTS 
 
 
@@ -10217,8 +10189,7 @@ Function_Alcoon_WaitForSamusToGetNear:
 
 Function_Alcoon_Emerging_Rising:
     LDA.W $0FAC,X : CLC : ADC.W $0F80,X : STA.W $0F80,X 
-    LDA.W $0FAA,X 
-    ADC.W $0F7E,X : STA.W $0F7E,X 
+    LDA.W $0FAA,X : ADC.W $0F7E,X : STA.W $0F7E,X 
     JSR.W AlcoonYAcceleration 
     BMI .return 
 
@@ -10337,8 +10308,7 @@ RTL_A8DECC:
 
 Function_Alcoon_Hiding_Rising:
     LDA.W $0FAC,X : CLC : ADC.W $0F80,X : STA.W $0F80,X 
-    LDA.W $0FAA,X 
-    ADC.W $0F7E,X : STA.W $0F7E,X 
+    LDA.W $0FAA,X : ADC.W $0F7E,X : STA.W $0F7E,X 
     JSR.W AlcoonYAcceleration 
     BMI .return 
     LDA.W #Function_Alcoon_Hiding_Falling : STA.W $0FA8,X 
@@ -10349,8 +10319,7 @@ Function_Alcoon_Hiding_Rising:
 
 Function_Alcoon_Hiding_Falling:
     LDA.W $0FAC,X : CLC : ADC.W $0F80,X : STA.W $0F80,X 
-    LDA.W $0FAA,X 
-    ADC.W $0F7E,X : STA.W $0F7E,X 
+    LDA.W $0FAA,X : ADC.W $0F7E,X : STA.W $0F7E,X 
     CMP.W $0FB2,X 
     BPL .reachedTargetY 
     JSR.W AlcoonYAcceleration 
@@ -12742,8 +12711,7 @@ Function_Kihunter_Winged_Swoop:
     LDA.L $7E7808,X 
     BPL .rightwards 
     LDA.L $7E7806,X : CLC : ADC.L $7E780A,X : STA.L $7E7806,X 
-    LDA.L $7E7804,X 
-    ADC.L $7E7808,X : CMP.L $7E7800,X 
+    LDA.L $7E7804,X : ADC.L $7E7808,X : CMP.L $7E7800,X 
     BPL + 
     LDA.L $7E7800,X 
 
@@ -12757,8 +12725,7 @@ Function_Kihunter_Winged_Swoop:
 
 .rightwards:
     LDA.L $7E7806,X : CLC : ADC.L $7E780A,X : STA.L $7E7806,X 
-    LDA.L $7E7804,X 
-    ADC.L $7E7808,X : CMP.L $7E7800,X 
+    LDA.L $7E7804,X : ADC.L $7E7808,X : CMP.L $7E7800,X 
     BMI + 
     LDA.L $7E7800,X 
 
@@ -12862,8 +12829,7 @@ Function_Kihunter_Wingless_InitialFalling:
 
 .notCollidedWithBlock:
     LDA.L $7E7810,X : CLC : ADC.W KihunterConstants_fallingAcceleration_hop : STA.L $7E7810,X 
-    LDA.L $7E7812,X 
-    ADC.W KihunterConstants_fallingAcceleration_wingsClipped : STA.L $7E7812,X 
+    LDA.L $7E7812,X : ADC.W KihunterConstants_fallingAcceleration_wingsClipped : STA.L $7E7812,X 
     RTL 
 
 
@@ -12912,8 +12878,7 @@ Function_Kihunter_Wingless_Hop:
     BCS .collidedHorizontally 
     JSL.L AlignEnemyYPositionWIthNonSquareSlope 
     LDA.L $7E7810,X : CLC : ADC.W KihunterConstants_fallingAcceleration_hop : STA.L $7E7810,X 
-    LDA.L $7E7812,X 
-    ADC.W KihunterConstants_fallingAcceleration_wingsClipped : STA.L $7E7812,X 
+    LDA.L $7E7812,X : ADC.W KihunterConstants_fallingAcceleration_wingsClipped : STA.L $7E7812,X 
     RTL 
 
 

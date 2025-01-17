@@ -9653,8 +9653,7 @@ MoveShaktoolPiece1Pixel:
 
   + STA.B $13 
     LDA.W $0F7C,Y : CLC : ADC.B $12 : STA.W $0F7C,Y 
-    LDA.W $0F7A,Y 
-    ADC.B $14 : STA.W $0F7A,Y 
+    LDA.W $0F7A,Y : ADC.B $14 : STA.W $0F7A,Y 
     STZ.B $12 
     STZ.B $14 
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
@@ -9663,8 +9662,7 @@ MoveShaktoolPiece1Pixel:
 
   + STA.B $13 
     LDA.W $0F80,Y : CLC : ADC.B $12 : STA.W $0F80,Y 
-    LDA.W $0F7E,Y 
-    ADC.B $14 : STA.W $0F7E,Y 
+    LDA.W $0F7E,Y : ADC.B $14 : STA.W $0F7E,Y 
     PLY 
     PLX 
     RTL 
@@ -10017,8 +10015,7 @@ PositionShaktoolPieceRelativeToPreviousPiece:
 
   + STA.B $13 
     LDA.B $12 : CLC : ADC.W $0F3C,X : STA.W $0F7C,X 
-    LDA.B $14 
-    ADC.W $0F3A,X : STA.W $0F7A,X 
+    LDA.B $14 : ADC.W $0F3A,X : STA.W $0F7A,X 
     STZ.B $12 
     STZ.B $14 
     LDA.W SineCosineTables_negativeCosine,Y 
@@ -10027,8 +10024,7 @@ PositionShaktoolPieceRelativeToPreviousPiece:
 
   + STA.B $13 
     LDA.B $12 : CLC : ADC.W $0F40,X : STA.W $0F80,X 
-    LDA.B $14 
-    ADC.W $0F3E,X : STA.W $0F7E,X 
+    LDA.B $14 : ADC.W $0F3E,X : STA.W $0F7E,X 
     RTS 
 
 

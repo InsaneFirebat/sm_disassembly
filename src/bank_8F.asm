@@ -13309,8 +13309,7 @@ MainASM_Elevatube:
 
   + STA.B $13 
     LDA.W $07E1 : CLC : ADC.B $12 : STA.W $07E1 
-    LDA.W $07E3 
-    ADC.B $14 : STA.W $07E3 
+    LDA.W $07E3 : ADC.B $14 : STA.W $07E3 
     LDA.B $12 
     LDX.B $14 
     STX.B $12 
@@ -14172,8 +14171,7 @@ MainASM_RidleysRoomShaking:
     STA.W $10A8 
     ASL A 
     TAX 
-    LDA.B $B1 
-    ADC.W .Xspeeds,X : STA.B $B1 
+    LDA.B $B1 : ADC.W .Xspeeds,X : STA.B $B1 
     LDA.B $B5 : CLC : ADC.W .Xspeeds,X : STA.B $B5 
     LDA.B $B3 : CLC : ADC.W .Yspeeds,X : STA.B $B3 
     LDA.B $B7 : CLC : ADC.W .Yspeeds,X : STA.B $B7 

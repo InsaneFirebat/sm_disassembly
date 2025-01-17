@@ -1766,8 +1766,7 @@ AddSpritemapToOAM_RoomCoordinates:
   + XBA 
     CLC : ADC.B $14 : SEC : SBC.W $0915 : BMI .next 
     STA.B $1A 
-    LDA.W $0000,Y 
-    ADC.B $12 : SEC : SBC.W $0911 : STA.W $0370,X 
+    LDA.W $0000,Y : ADC.B $12 : SEC : SBC.W $0911 : STA.W $0370,X 
     AND.W #$0100 
     BEQ .checkSizeBit 
     LDA.L MapOfOAMIndexToHighOAM_address,X : STA.B $1C 
@@ -11583,8 +11582,7 @@ Function_BabyMetroid_DrainingSidehopper:
     LDA.W $0FA4,X 
     AND.W #$0006 
     TAY 
-    LDA.W ShakingOffsets_X,Y 
-    ADC.W $0FBA,X : STA.W $0F7A,X 
+    LDA.W ShakingOffsets_X,Y : ADC.W $0FBA,X : STA.W $0F7A,X 
     LDA.W ShakingOffsets_Y,Y : CLC : ADC.W $0FBE,X : CLC : ADC.W #$FFE0 : STA.W $0F7E,X 
     DEC.W $0FB2,X 
     BNE .return 
@@ -11636,8 +11634,7 @@ Function_BabyMetroid_StareDownSamus:
 
   + CMP.W #$0008 
     BCS .notClose 
-    LDA.L $7E7804,X 
-    ADC.W #$0002 : BRA + 
+    LDA.L $7E7804,X : ADC.W #$0002 : BRA + 
 
 
 .notClose:
@@ -11710,8 +11707,7 @@ Function_BabyMetroid_DrainingSamus:
     LDA.W $0FA4,X 
     AND.W #$0006 
     TAY 
-    LDA.W ShakingOffsets_X,Y 
-    ADC.W $0AF6 : STA.W $0F7A,X 
+    LDA.W ShakingOffsets_X,Y : ADC.W $0AF6 : STA.W $0F7A,X 
     LDA.W ShakingOffsets_Y,Y : CLC : ADC.W #$FFEC : CLC : ADC.W $0AFA : STA.W $0F7E,X 
     JSL.L DamageSamusDueToBabyMetroid 
     RTS 
@@ -11869,8 +11865,7 @@ GraduallyAccelerateTowardSamus:
 
   + CMP.W #$0002 
     BCS .notClose 
-    LDA.L $7E7804,X 
-    ADC.W #$0002 : BRA + 
+    LDA.L $7E7804,X : ADC.W #$0002 : BRA + 
 
 
 .notClose:

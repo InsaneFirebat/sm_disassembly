@@ -1404,8 +1404,7 @@ SamusBlockCollisionReaction_SpikeBlock_BTS0_GenericSpike:
     LDA.W #$003C : STA.W $18A8 
     LDA.W #$000A : STA.W $18AA 
     LDA.W $0A4E : CLC : ADC.W #$0000 : STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W #$003C : STA.W $0A50 
+    LDA.W $0A50 : ADC.W #$003C : STA.W $0A50 
     LDA.W $0A1E 
     EOR.W #$000C 
     BIT.W #$0008 
@@ -1427,8 +1426,7 @@ SamusBlockCollisionReaction_SpikeBlock_BTS1_KraidsLairSpike:
     LDA.W #$003C : STA.W $18A8 
     LDA.W #$000A : STA.W $18AA 
     LDA.W $0A4E : CLC : ADC.W #$0000 : STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W #$0010 : STA.W $0A50 
+    LDA.W $0A50 : ADC.W #$0010 : STA.W $0A50 
     LDA.W $0A1E 
     EOR.W #$000C 
     BIT.W #$0008 
@@ -1450,8 +1448,7 @@ SamusBlockCollisionReact_SpikeBlock_BTS3_DraygonBrokenTurret:
     LDA.W #$003C : STA.W $18A8 
     LDA.W #$000A : STA.W $18AA 
     LDA.W $0A4E : CLC : ADC.W #$0000 : STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W #$0010 : STA.W $0A50 
+    LDA.W $0A50 : ADC.W #$0010 : STA.W $0A50 
     LDA.W $0A1E 
     EOR.W #$000C 
     BIT.W #$0008 
@@ -2335,8 +2332,7 @@ SamusBlockCollisionDetection_Horizontal:
     LDA.W $07A5 : STA.W $4203 
     REP #$20 
     LDA.W $0AF8 : CLC : ADC.B $14 : STA.B $16 
-    LDA.W $0AF6 
-    ADC.B $12 : STA.B $18 
+    LDA.W $0AF6 : ADC.B $12 : STA.B $18 
     BIT.B $12 
     BPL .movingRight 
     SEC : SBC.W $0AFE : BRA + 
@@ -2369,8 +2365,7 @@ SamusBlockCollisionDetection_Horizontal:
 SamusBlockCollisionDetection_Vertical_LeftToRight:
     JSR.W CalculateSamusXBlockSpan 
     LDA.W $0AFC : CLC : ADC.B $14 : STA.B $16 
-    LDA.W $0AFA 
-    ADC.B $12 : STA.B $18 
+    LDA.W $0AFA : ADC.B $12 : STA.B $18 
     BIT.B $12 
     BPL .movingDown 
     SEC : SBC.W $0B00 : BRA + 
@@ -2409,8 +2404,7 @@ SamusBlockCollisionDetection_Vertical_RightToLeft:
     JSR.W CalculateSamusXBlockSpan 
     STZ.B $1A 
     LDA.W $0AFC : CLC : ADC.B $14 : STA.B $16 
-    LDA.W $0AFA 
-    ADC.B $12 : STA.B $18 
+    LDA.W $0AFA : ADC.B $12 : STA.B $18 
     BIT.B $12 
     BPL .movingDown 
     SEC : SBC.W $0B00 : BRA + 
@@ -2597,8 +2591,7 @@ MoveSamusRight_NoSolidEnemyCollision:
     JSR.W SamusBlockCollisionDetection_Horizontal 
     BCC .noCollision 
     LDA.W $0AF8 : CLC : ADC.B $14 : STA.W $0AF8 
-    LDA.W $0AF6 
-    ADC.B $12 : STA.W $0AF6 
+    LDA.W $0AF6 : ADC.B $12 : STA.W $0AF6 
     PLB 
     PLP 
     SEC 
@@ -2608,8 +2601,7 @@ MoveSamusRight_NoSolidEnemyCollision:
 
 .noCollision:
     LDA.W $0AF8 : CLC : ADC.B $14 : STA.W $0AF8 
-    LDA.W $0AF6 
-    ADC.B $12 : STA.W $0AF6 
+    LDA.W $0AF6 : ADC.B $12 : STA.W $0AF6 
     PLB 
     PLP 
     CLC 
@@ -2641,8 +2633,7 @@ MoveSamusDown_NoSolidEnemyCollision:
 
 .moveVertically:
     LDA.W $0AFC : CLC : ADC.B $14 : STA.W $0AFC 
-    LDA.W $0AFA 
-    ADC.B $12 : STA.W $0AFA 
+    LDA.W $0AFA : ADC.B $12 : STA.W $0AFA 
 
 .collision:
     PLB 
@@ -2654,8 +2645,7 @@ MoveSamusDown_NoSolidEnemyCollision:
 
 .noCollision:
     LDA.W $0AFC : CLC : ADC.B $14 : STA.W $0AFC 
-    LDA.W $0AFA 
-    ADC.B $12 : STA.W $0AFA 
+    LDA.W $0AFA : ADC.B $12 : STA.W $0AFA 
     LDA.W $1E71 
     BNE .collision 
     PLB 
@@ -2694,8 +2684,7 @@ CLCRTS_9497D8:
     LDA.W $0A4E 
     CLC 
     STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W #$0001 : STA.W $0A50 
+    LDA.W $0A50 : ADC.W #$0001 : STA.W $0A50 
     STZ.W $0B42 
     STZ.W $0B46 
     CLC 
@@ -2734,8 +2723,7 @@ CLCRTS_949812:
     LDA.W $0A4E 
     CLC 
     STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W #$0001 : STA.W $0A50 
+    LDA.W $0A50 : ADC.W #$0001 : STA.W $0A50 
     LDA.W #SamusXSpeedTable_InLavaAcid : STA.W $0A6C 
     STZ.W $0B32 
     STZ.W $0B34 
@@ -2778,8 +2766,7 @@ BlockInsideReaction_SpikeAir_BTS2_AirSpike:
     LDA.W #$003C : STA.W $18A8 
     LDA.W #$000A : STA.W $18AA 
     LDA.W $0A4E : CLC : ADC.W #$0000 : STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W #$0010 : STA.W $0A50 
+    LDA.W $0A50 : ADC.W #$0010 : STA.W $0A50 
     LDA.W $0A1E 
     EOR.W #$000C 
     BIT.W #$0008 
@@ -4171,8 +4158,7 @@ MoveBeamHorizontally_NoWaveBeam:
     REP #$20 
     LDA.W $0B8C,X : CLC : ADC.B $12 : STA.W $0B8C,X 
     STA.B $16 
-    LDA.W $0B64,X 
-    ADC.B $14 : STA.W $0B64,X 
+    LDA.W $0B64,X : ADC.B $14 : STA.W $0B64,X 
     STA.B $18 
     BIT.B $14 
     BMI .negative14 
@@ -4235,8 +4221,7 @@ MoveBeamVertically_NoWaveBeam:
     JSR.W CalculateProjectileXBlockSpan 
     LDA.W $0BA0,X : CLC : ADC.B $12 : STA.W $0BA0,X 
     STA.B $16 
-    LDA.W $0B78,X 
-    ADC.B $14 : STA.W $0B78,X 
+    LDA.W $0B78,X : ADC.B $14 : STA.W $0B78,X 
     STA.B $18 
     BIT.B $14 
     BMI .negative14 
@@ -4308,8 +4293,7 @@ MoveBeamHorizontally_WaveBeam:
     REP #$20 
     LDA.W $0B8C,X : CLC : ADC.B $12 : STA.W $0B8C,X 
     STA.B $16 
-    LDA.W $0B64,X 
-    ADC.B $14 : STA.W $0B64,X 
+    LDA.W $0B64,X : ADC.B $14 : STA.W $0B64,X 
     STA.B $18 
     BIT.B $14 
     BMI .leftBoundary 
@@ -4369,8 +4353,7 @@ MoveBeamVertically_WaveBeam:
     JSR.W CalculateProjectileXBlockSpan 
     LDA.W $0BA0,X : CLC : ADC.B $12 : STA.W $0BA0,X 
     STA.B $16 
-    LDA.W $0B78,X 
-    ADC.B $14 : STA.W $0B78,X 
+    LDA.W $0B78,X : ADC.B $14 : STA.W $0B78,X 
     STA.B $18 
     BIT.B $14 
     BMI .negative14 
@@ -4441,8 +4424,7 @@ MoveMissileHorizontally:
     REP #$20 
     LDA.W $0B8C,X : CLC : ADC.B $12 : STA.W $0B8C,X 
     STA.B $16 
-    LDA.W $0B64,X 
-    ADC.B $14 : STA.W $0B64,X 
+    LDA.W $0B64,X : ADC.B $14 : STA.W $0B64,X 
     STA.B $18 
     STA.B $1C 
     LSR #4
@@ -4487,8 +4469,7 @@ MoveMissileVertically:
   + STA.B $13 
     LDA.W $0BA0,X : CLC : ADC.B $12 : STA.W $0BA0,X 
     STA.B $16 
-    LDA.W $0B78,X 
-    ADC.B $14 : STA.W $0B78,X 
+    LDA.W $0B78,X : ADC.B $14 : STA.W $0B78,X 
     STA.B $18 
     STA.B $1C 
     LSR #4
@@ -5023,17 +5004,13 @@ GrappleBeamBlockCollisionDetection:
 
 .loop:
     LDA.W $0D0E : CLC : ADC.W $0D82 : STA.W $0D0E 
-    LDA.W $0D10 
-    ADC.W $0D84 : STA.W $0D10 
+    LDA.W $0D10 : ADC.W $0D84 : STA.W $0D10 
     LDA.W $0D12 : CLC : ADC.W $0D86 : STA.W $0D12 
-    LDA.W $0D14 
-    ADC.W $0D88 : STA.W $0D14 
+    LDA.W $0D14 : ADC.W $0D88 : STA.W $0D14 
     LDA.W $0AF8 : CLC : ADC.W $0D0E : STA.W $0D06 
-    LDA.W $0AF6 
-    ADC.W $0D10 : CLC : ADC.W $0D02 : STA.W $0D08 
+    LDA.W $0AF6 : ADC.W $0D10 : CLC : ADC.W $0D02 : STA.W $0D08 
     LDA.W $0AFC : CLC : ADC.W $0D12 : STA.W $0D0A 
-    LDA.W $0AFA 
-    ADC.W $0D14 : CLC : ADC.W $0D04 : STA.W $0D0C 
+    LDA.W $0AFA : ADC.W $0D14 : CLC : ADC.W $0D04 : STA.W $0D0C 
     JSL.L BlockGrappleReaction 
     BVC .notConnected 
     BCC .notConnected 
@@ -5213,8 +5190,7 @@ GrappleSwingCollisionReaction:
     LDA.W $0D96 : STA.W $4202 
     LDA.W $07A5 : STA.W $4203 
     REP #$21 
-    LDA.W $0D94 
-    ADC.W $4216 : STA.W $0DC4 
+    LDA.W $0D94 : ADC.W $4216 : STA.W $0DC4 
     ASL A 
     TAX 
     LDA.L $7F0002,X 
@@ -5261,8 +5237,7 @@ GrappleSwingCollisionReaction_SpikeAir:
     ORA.W .zeroes1,X 
     BEQ .return 
     LDA.W $0A4E : CLC : ADC.W .zeroes0,X : STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W .zeroes1,X : STA.W $0A50 
+    LDA.W $0A50 : ADC.W .zeroes1,X : STA.W $0A50 
     LDA.W #$003C : STA.W $18A8 
     LDA.W #$000A : STA.W $18AA 
 
@@ -5291,8 +5266,7 @@ GrappleSwingCollisionReaction_SpikeBlock:
     ORA.W .damage,X 
     BEQ .return 
     LDA.W $0A4E : CLC : ADC.W .zeroes,X : STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W .damage,X : STA.W $0A50 
+    LDA.W $0A50 : ADC.W .damage,X : STA.W $0A50 
     LDA.W #$003C : STA.W $18A8 
     LDA.W #$000A : STA.W $18AA 
 
@@ -5332,8 +5306,7 @@ GrappleSwingCollisionReaction_duplicate:
     LDA.W $0D96 : STA.W $4202 
     LDA.W $07A5 : STA.W $4203 
     REP #$21 
-    LDA.W $0D94 
-    ADC.W $4216 : STA.W $0DC4 
+    LDA.W $0D94 : ADC.W $4216 : STA.W $0DC4 
     ASL A 
     TAX 
     LDA.L $7F0002,X 
@@ -5790,8 +5763,7 @@ CLCRTL_94AF0B:
     STA.W $4202 
     LDA.W $07A5 : STA.W $4203 
     REP #$21 
-    LDA.L SineCosineTables_8bitSine_SignExtended,X 
-    ADC.W $0D94 : STA.W $0D94 
+    LDA.L SineCosineTables_8bitSine_SignExtended,X : ADC.W $0D94 : STA.W $0D94 
     AND.W #$FF00 
     XBA 
     ADC.W $4216 : STA.W $0DC4 
@@ -5944,8 +5916,7 @@ DrawGrappleSegment:
     CLC 
     LDA.B $14 : STA.W $0370,X 
     LDA.B $12 : CLC : ADC.B $1A : STA.B $12 
-    LDA.B $14 
-    ADC.B $1C : STA.B $14 
+    LDA.B $14 : ADC.B $1C : STA.B $14 
     AND.W #$0100 
     BRA + 
 
@@ -5957,8 +5928,7 @@ DrawGrappleSegment:
 
   + LDA.B $18 : STA.W $0371,X 
     LDA.B $16 : CLC : ADC.B $1E : STA.B $16 
-    LDA.B $18 
-    ADC.B $20 : STA.B $18 
+    LDA.B $18 : ADC.B $20 : STA.B $18 
     TYA 
     ORA.B $26 
     STA.W $0372,X 

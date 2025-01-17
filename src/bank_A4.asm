@@ -1751,24 +1751,20 @@ SinkCrocomireDown:
     LDX.W $0E54 
     SEP #$20 
     LDA.W $0FAE,X : CLC : ADC.B #$80 : STA.W $0FAE,X 
-    LDA.W $0FAF,X 
-    ADC.B #$03 : CMP.B #$30 
+    LDA.W $0FAF,X : ADC.B #$03 : CMP.B #$30 
     BMI + 
     LDA.B #$30 
 
   + STA.W $0FAF,X 
     CLC : ADC.W $0FB0,X : STA.W $0FB0,X 
-    LDA.W $0FB1,X 
-    ADC.B #$00 : CMP.B #$03 
+    LDA.W $0FB1,X : ADC.B #$00 : CMP.B #$03 
     BMI + 
     LDA.B #$03 
 
   + STA.W $0FB1,X 
     LDA.W $0FB0,X : CLC : ADC.W $0FB3,X : STA.W $0FB3,X 
-    LDA.W $0FB1,X 
-    ADC.W $0F7E,X : STA.W $0F7E,X 
-    LDA.W $0F7F,X 
-    ADC.B #$00 : STA.W $0F7F,X 
+    LDA.W $0FB1,X : ADC.W $0F7E,X : STA.W $0F7E,X 
+    LDA.W $0F7F,X : ADC.B #$00 : STA.W $0F7F,X 
     REP #$20 
     RTS 
 
@@ -1843,18 +1839,15 @@ RaiseCrocomireUp:
   + STA.W $0FAE 
     SEP #$20 
     LDA.W $0FB0 : SEC : SBC.W $0FAF : STA.W $0FB0 
-    LDA.W $0FB1 
-    SBC.B #$00 : BPL .positiveYVelocity 
+    LDA.W $0FB1 : SBC.B #$00 : BPL .positiveYVelocity 
     LDA.B #$FF : STA.W $0FB0 
     LDA.B #$00 
 
 .positiveYVelocity:
     STA.W $0FB1 
     LDA.W $0FB3 : SEC : SBC.W $0FB0 : STA.W $0FB3 
-    LDA.W $0F7E 
-    SBC.W $0FB1 : STA.W $0F7E 
-    LDA.W $0F7F 
-    SBC.B #$00 : STA.W $0F7F 
+    LDA.W $0F7E : SBC.W $0FB1 : STA.W $0F7E 
+    LDA.W $0F7F : SBC.B #$00 : STA.W $0F7F 
     REP #$20 
     RTS 
 
@@ -2546,15 +2539,13 @@ MainAI_Crocomire_DeathSequence_44_BreaksDownWall:
     CMP.W #$00E0 
     BPL .timer 
     LDA.W $0FB0 : CLC : ADC.W #$8000 : STA.W $0FB0 
-    LDA.W $0FB2 
-    ADC.W #$0000 : CMP.W #$0002 
+    LDA.W $0FB2 : ADC.W #$0000 : CMP.W #$0002 
     BMI + 
     LDA.W #$0002 
 
   + STA.W $0FB2 
     LDA.W $0F7C : CLC : ADC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    ADC.W $0FB2 : STA.W $0F7A 
+    LDA.W $0F7A : ADC.W $0FB2 : STA.W $0F7A 
 
 .timer:
     LDA.W $102E 
@@ -2573,18 +2564,15 @@ MainAI_Crocomire_DeathSequence_44_BreaksDownWall:
 
 MainAI_Crocomire_DeathSequence_46_SkeletonFalls:
     LDA.W $0FB0 : CLC : ADC.W #$0800 : STA.W $0FB0 
-    LDA.W $0FB2 
-    ADC.W #$0000 : CMP.W #$0005 
+    LDA.W $0FB2 : ADC.W #$0000 : CMP.W #$0005 
     BMI + 
     LDA.W #$0005 
 
   + STA.W $0FB2 
     LDA.W #$E000 : CLC : ADC.W $0F80 : STA.W $0F80 
-    LDA.W $0F7E 
-    ADC.W #$0000 : STA.W $0F7E 
+    LDA.W $0F7E : ADC.W #$0000 : STA.W $0F7E 
     LDA.W $0F7C : CLC : ADC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    ADC.W $0FB2 : STA.W $0F7A 
+    LDA.W $0F7A : ADC.W $0FB2 : STA.W $0F7A 
     CMP.W #$0240 
     BMI .return 
     LDA.W #$0025 
@@ -2697,8 +2685,7 @@ MainAI_Crocomire_DeathSequence_48_SkeletonFallsApart:
 
 .notFallenApartYet:
     LDA.W $0FB0 : CLC : ADC.W #$1000 : STA.W $0FB0 
-    LDA.W $0FB2 
-    ADC.W #$0000 : CMP.W #$0006 
+    LDA.W $0FB2 : ADC.W #$0000 : CMP.W #$0006 
     BMI + 
     LDA.W #$0006 
 

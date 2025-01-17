@@ -3823,14 +3823,11 @@ DecrementTimer:
     LDA.W $05B6 
     AND.B #$7F 
     TAX 
-    LDA.W $0945 
-    SBC.W .centiseconds,X : STA.W $0945 
+    LDA.W $0945 : SBC.W .centiseconds,X : STA.W $0945 
     BCS .checkExpired 
-    LDA.W $0946 
-    SBC.B #$00 : STA.W $0946 
+    LDA.W $0946 : SBC.B #$00 : STA.W $0946 
     BCS .checkExpired 
-    LDA.W $0947 
-    SBC.B #$00 : STA.W $0947 
+    LDA.W $0947 : SBC.B #$00 : STA.W $0947 
     BCC .clearTimer 
     LDA.B #$59 : STA.W $0946 
     BRA .checkExpired 
@@ -5381,8 +5378,7 @@ DoorTransitionScrolling_Right:
     LDX.W $0925 
     PHX 
     LDA.W $0AF8 : CLC : ADC.W $092B : STA.W $0AF8 
-    LDA.W $0AF6 
-    ADC.W $092D : STA.W $0AF6 
+    LDA.W $0AF6 : ADC.W $092D : STA.W $0AF6 
     STA.W $0B10 
     LDA.W $0911 : CLC : ADC.W #$0004 : STA.W $0911 
     LDA.W $0917 : CLC : ADC.W #$0004 : STA.W $0917 
@@ -5405,8 +5401,7 @@ DoorTransitionScrolling_Left:
     LDX.W $0925 
     PHX 
     LDA.W $0AF8 : SEC : SBC.W $092B : STA.W $0AF8 
-    LDA.W $0AF6 
-    SBC.W $092D : STA.W $0AF6 
+    LDA.W $0AF6 : SBC.W $092D : STA.W $0AF6 
     STA.W $0B10 
     LDA.W $0911 : SEC : SBC.W #$0004 : STA.W $0911 
     LDA.W $0917 : SEC : SBC.W #$0004 : STA.W $0917 
@@ -5457,8 +5452,7 @@ DoorTransitionScrolling_Down:
   + CPX.W #$0039 
     BCS .finish 
     LDA.W $0AFC : CLC : ADC.W $092B : STA.W $0AFC 
-    LDA.W $0AFA 
-    ADC.W $092D : STA.W $0AFA 
+    LDA.W $0AFA : ADC.W $092D : STA.W $0AFA 
     STA.W $0B14 
     LDA.W $0915 : CLC : ADC.W #$0004 : STA.W $0915 
     LDA.W $0919 : CLC : ADC.W #$0004 : STA.W $0919 
@@ -5510,8 +5504,7 @@ DoorTransitionScrolling_Up:
 
 
   + LDA.W $0AFC : SEC : SBC.W $092B : STA.W $0AFC 
-    LDA.W $0AFA 
-    SBC.W $092D : STA.W $0AFA 
+    LDA.W $0AFA : SBC.W $092D : STA.W $0AFA 
     STA.W $0B14 
     LDA.W $0915 : SEC : SBC.W #$0004 : STA.W $0915 
     LDA.W $0919 : SEC : SBC.W #$0004 : STA.W $0919 

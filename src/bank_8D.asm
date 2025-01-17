@@ -11192,8 +11192,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     AND.W #$0021 
     BNE + 
     LDA.W $0A4E : CLC : ADC.W #$4000 : STA.W $0A4E 
-    LDA.W $0A50 
-    ADC.W #$0000 : STA.W $0A50 
+    LDA.W $0A50 : ADC.W #$0000 : STA.W $0A50 
     LDA.W $05B6 
     BIT.W #$0007 
     BNE + 

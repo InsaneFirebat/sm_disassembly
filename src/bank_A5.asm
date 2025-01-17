@@ -599,8 +599,7 @@ Function_DraygonBody_SwoopRight_Descending:
     LDA.W $0FAA 
     BEQ .apex 
     LDA.W $0F7C : CLC : ADC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    ADC.W $0FAE : STA.W $0F7A 
+    LDA.W $0F7A : ADC.W $0FAE : STA.W $0F7A 
     RTS 
 
 
@@ -662,8 +661,7 @@ Function_DraygonBody_SwoopRight_Ascending:
     CMP.W $0FAC 
     BEQ + 
     LDA.W $0F7C : CLC : ADC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    ADC.W $0FAE : STA.W $0F7A 
+    LDA.W $0F7A : ADC.W $0FAE : STA.W $0F7A 
     RTS 
 
 
@@ -720,8 +718,7 @@ Function_DraygonBody_SwoopLeft_Descending:
     LDA.W $0FAA 
     BEQ .apex 
     LDA.W $0F7C : SEC : SBC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    SBC.W $0FAE : STA.W $0F7A 
+    LDA.W $0F7A : SBC.W $0FAE : STA.W $0F7A 
     RTS 
 
 
@@ -775,8 +772,7 @@ Function_DraygonBody_SwoopLeft_Ascending:
     CMP.W $0FAC 
     BEQ .chooseAttack 
     LDA.W $0F7C : SEC : SBC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    SBC.W $0FAE : STA.W $0F7A 
+    LDA.W $0F7A : SBC.W $0FAE : STA.W $0F7A 
     RTS 
 
 
@@ -832,8 +828,7 @@ Function_DraygonBody_GoopRight_MoveUntilSamusInRange:
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C : CLC : ADC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    ADC.W $0FAE : STA.W $0F7A 
+    LDA.W $0F7A : ADC.W $0FAE : STA.W $0F7A 
     RTS 
 
 
@@ -860,8 +855,7 @@ Function_DraygonBody_GoopRight_FiringGoops:
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C : CLC : ADC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    ADC.W $0FAE : STA.W $0F7A 
+    LDA.W $0F7A : ADC.W $0FAE : STA.W $0F7A 
     BMI .return 
     CMP.W #$02A0 
     BPL .reloadSpeedDivisor 
@@ -895,8 +889,7 @@ Function_DraygonBody_GoopRight_MoveUntilOffScreen:
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C : CLC : ADC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    ADC.W $0FAE : STA.W $0F7A 
+    LDA.W $0F7A : ADC.W $0FAE : STA.W $0F7A 
     BMI .return 
     CMP.W #$02A0 
     BPL .done 
@@ -947,8 +940,7 @@ Function_DraygonBody_GoopLeft_MoveUntilSamusInRange:
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C : SEC : SBC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    SBC.W $0FAE : STA.W $0F7A 
+    LDA.W $0F7A : SBC.W $0FAE : STA.W $0F7A 
     RTS 
 
 
@@ -974,8 +966,7 @@ Function_DraygonBody_GoopLeft_FiringGoops:
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C : SEC : SBC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    SBC.W $0FAE : STA.W $0F7A 
+    LDA.W $0F7A : SBC.W $0FAE : STA.W $0F7A 
     BPL .return 
     CMP.W #$FFB0 
     BMI .reloadSpeedDivisor 
@@ -1011,8 +1002,7 @@ Function_DraygonBody_GoopLeft_MoveUntilOffScreen:
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
     LDA.W $0F7C : SEC : SBC.W $0FB0 : STA.W $0F7C 
-    LDA.W $0F7A 
-    SBC.W $0FAE : STA.W $0F7A 
+    LDA.W $0F7A : SBC.W $0FAE : STA.W $0F7A 
     BPL .return 
     CMP.W #$FFB0 
     BMI .done 
@@ -1242,8 +1232,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
 
 .noFoam:
     LDA.L $7E7812 : CLC : ADC.W #$2000 : STA.L $7E7812 
-    LDA.L $7E780A 
-    ADC.W #$0000 : STA.L $7E780A 
+    LDA.L $7E780A : ADC.W #$0000 : STA.L $7E780A 
     CMP.W #$00A0 
     BPL .finalSpanking 
     LDA.L $7E7816 : SEC : SBC.W #$0001 : STA.L $7E7816 
@@ -1252,8 +1241,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     CLC : ADC.L $7E7810 : AND.W #$00FF 
     STA.L $7E7810 
     LDA.L $7E7814 : SEC : SBC.W #$4000 : STA.L $7E7814 
-    LDA.L $7E780E 
-    SBC.W #$0000 : STA.L $7E780E 
+    LDA.L $7E780E : SBC.W #$0000 : STA.L $7E780E 
     CMP.W #$0040 
     BMI .finalSpanking 
     JSR.W MoveSamusWithDraygon 
@@ -3068,27 +3056,23 @@ HandleDeathSequenceEvirMovement:
     LDA.W DraygonDeathSequenceEvirAngles,Y : CLC : ADC.W #$0040 : BIT.W #$0080 
     BEQ + 
     LDA.L $7EF178,X : CLC : ADC.W DraygonDeathSequenceEvirSubSpeeds_X,Y : STA.L $7EF178,X 
-    LDA.L $7EF0F8,X 
-    ADC.W #$0000 : STA.L $7EF0F8,X 
+    LDA.L $7EF0F8,X : ADC.W #$0000 : STA.L $7EF0F8,X 
     BRA .YPosition 
 
 
   + LDA.L $7EF178,X : SEC : SBC.W DraygonDeathSequenceEvirSubSpeeds_X,Y : STA.L $7EF178,X 
-    LDA.L $7EF0F8,X 
-    SBC.W $0E24 : STA.L $7EF0F8,X 
+    LDA.L $7EF0F8,X : SBC.W $0E24 : STA.L $7EF0F8,X 
 
 .YPosition:
     LDA.W DraygonDeathSequenceEvirAngles,Y : CLC : ADC.W #$0080 : BIT.W #$0080 
     BEQ + 
     LDA.L $7EF278,X : CLC : ADC.W DraygonDeathSequenceEvirSubSpeeds_Y,Y : STA.L $7EF278,X 
-    LDA.L $7EF1F8,X 
-    ADC.W #$0000 : STA.L $7EF1F8,X 
+    LDA.L $7EF1F8,X : ADC.W #$0000 : STA.L $7EF1F8,X 
     BRA .nextSpriteObject 
 
 
   + LDA.L $7EF278,X : SEC : SBC.W DraygonDeathSequenceEvirSubSpeeds_Y,Y : STA.L $7EF278,X 
-    LDA.L $7EF1F8,X 
-    SBC.W #$0000 : STA.L $7EF1F8,X 
+    LDA.L $7EF1F8,X : SBC.W #$0000 : STA.L $7EF1F8,X 
 
 .nextSpriteObject:
     DEX #2

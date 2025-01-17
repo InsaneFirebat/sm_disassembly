@@ -931,8 +931,7 @@ RaiseOrLower_FX:
     DEC.B $18 
     STA.B $17 
     LDA.W $1976 : CLC : ADC.B $16 : STA.W $1976 
-    LDA.W $1978 
-    ADC.B $18 : BPL + 
+    LDA.W $1978 : ADC.B $18 : BPL + 
     LDA.W #$0000 
 
   + STA.W $1978 
@@ -949,8 +948,7 @@ RaiseOrLower_FX:
 .lower:
     STA.B $17 
     LDA.W $1976 : CLC : ADC.B $16 : STA.W $1976 
-    LDA.W $1978 
-    ADC.B $18 : BPL + 
+    LDA.W $1978 : ADC.B $18 : BPL + 
     LDA.W #$FFFF 
 
   + STA.W $1978 
@@ -1045,11 +1043,9 @@ HandleXrayScope_State1_BeamIsWidening:
   + JSR.W RTS_888753 
     REP #$20 
     LDA.W $0A7E : CLC : ADC.W #$0800 : STA.W $0A7E 
-    LDA.W $0A7C 
-    ADC.W #$0000 : STA.W $0A7C 
+    LDA.W $0A7C : ADC.W #$0000 : STA.W $0A7C 
     LDA.W $0A86 : CLC : ADC.W $0A7E : STA.W $0A86 
-    LDA.W $0A84 
-    ADC.W $0A7C : STA.W $0A84 
+    LDA.W $0A84 : ADC.W $0A7C : STA.W $0A84 
     CMP.W #$000B 
     BMI .calculateHDMATable 
     STZ.W $0A86 
@@ -3595,8 +3591,7 @@ Handle_ScrollingSky_BG2XScroll_HDMATables:
     LDA.W ScrollingSky_ScrollingTable_HDMADataTableEntryPointer,Y 
     TAX 
     LDA.W ScrollingSky_ScrollingTable_scrollSubspeed,Y : CLC : ADC.L $7E0000,X : STA.L $7E0000,X 
-    LDA.W ScrollingSky_ScrollingTable_scrollSpeed,Y 
-    ADC.L $7E0002,X : STA.L $7E0002,X 
+    LDA.W ScrollingSky_ScrollingTable_scrollSpeed,Y : ADC.L $7E0002,X : STA.L $7E0002,X 
     TYA 
     CLC : ADC.W #$0008 : TAY 
     CMP.W #$00B8 
@@ -4204,8 +4199,7 @@ PreInstruction_LavaAcid_BG3YScroll:
     JSR.W Handle_Tide 
     SEP #$10 
     LDA.W $1976 : CLC : ADC.W $1970 : STA.W $1960 
-    LDA.W $1978 
-    ADC.W $1972 : STA.W $1962 
+    LDA.W $1978 : ADC.W $1972 : STA.W $1962 
     LDA.B $B1 : STA.L $7ECADC 
     LDA.W #$0000 : STA.L $7E9C00 
     LDA.W #$0000 : STA.L $7ECADE 
@@ -5741,8 +5735,7 @@ PreInstruction_Water_BG3_Xscroll:
     JSR.W Handle_Tide 
     SEP #$10 
     LDA.W $1976 : CLC : ADC.W $1970 : STA.W $195C 
-    LDA.W $1978 
-    ADC.W $1972 : STA.W $195E 
+    LDA.W $1978 : ADC.W $1972 : STA.W $195E 
     LDA.W $195E 
     BMI .negative 
     SEC : SBC.W $0915 : BEQ + 
@@ -8010,8 +8003,7 @@ PreInstruction_TourianEntranceStatue_BG2_Yscroll_Descending:
     LDA.W $0A78 
     BNE .return 
     LDA.W $1914,X : CLC : ADC.W #$C000 : STA.W $1914,X 
-    LDA.W $1920,X 
-    ADC.W #$FFFF : STA.W $1920,X 
+    LDA.W $1920,X : ADC.W #$FFFF : STA.W $1920,X 
     CMP.W #$FF10 
     BNE .setYscroll 
     PHX 
@@ -9518,11 +9510,9 @@ PreInstruction_MorphBallEyeBeam_BeamIsWidening:
     REP #$30 
     LDA.W #$0010 : STA.W $1986 
     LDA.L $7E9082 : CLC : ADC.W #$4000 : STA.L $7E9082 
-    LDA.L $7E9080 
-    ADC.W #$0000 : STA.L $7E9080 
+    LDA.L $7E9080 : ADC.W #$0000 : STA.L $7E9080 
     LDA.W $1938,X : CLC : ADC.L $7E9082 : STA.W $1938,X 
-    LDA.W $192C,X 
-    ADC.L $7E9080 : STA.W $192C,X 
+    LDA.W $192C,X : ADC.L $7E9080 : STA.W $192C,X 
     CMP.W #$0004 
     BMI .update 
     LDA.W #$0004 : STA.W $192C,X 

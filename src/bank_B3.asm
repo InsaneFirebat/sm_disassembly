@@ -714,8 +714,7 @@ Function_Zeb_Zebbo_WaitForSamusToGetNear:
 
 Function_Zeb_Zebbo_Rising:
     LDA.W #$FFFF : CLC : ADC.W $0F80,X : STA.W $0F80,X 
-    LDA.W #$FFFE 
-    ADC.W $0F7E,X : STA.W $0F7E,X 
+    LDA.W #$FFFE : ADC.W $0F7E,X : STA.W $0F7E,X 
     LDA.L $7E7800,X 
     CMP.W $0F7E,X 
     BMI .return 
@@ -740,15 +739,13 @@ Function_Zeb_Zebbo_Shooting:
     BIT.W $0FA8,X 
     BPL .right 
     LDA.W $0F7C,X : SEC : SBC.W #$0000 : STA.W $0F7C,X 
-    LDA.W $0F7A,X 
-    SBC.W #$0002 : STA.W $0F7A,X 
+    LDA.W $0F7A,X : SBC.W #$0002 : STA.W $0F7A,X 
     BRA .checkOnScreen 
 
 
 .right:
     LDA.W #$0000 : CLC : ADC.W $0F7C,X : STA.W $0F7C,X 
-    LDA.W #$0002 
-    ADC.W $0F7A,X : STA.W $0F7A,X 
+    LDA.W #$0002 : ADC.W $0F7A,X : STA.W $0F7A,X 
 
 .checkOnScreen:
     JSL.L CheckIfEnemyIsHorizontallyOffScreen 
@@ -4859,8 +4856,7 @@ MainAI_EtecoonEscape:
 
 Function_EtecoonEscape_RunningForEscape:
     LDA.W $0F7C,X : CLC : ADC.W #$8000 : STA.W $0F7C,X 
-    LDA.W $0F7A,X 
-    ADC.W #$0003 : STA.W $0F7A,X 
+    LDA.W $0F7A,X : ADC.W #$0003 : STA.W $0F7A,X 
     RTS 
 
 
