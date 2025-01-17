@@ -37,5 +37,5 @@ incbin "../data/Tiles_GoldenTorizoEgg.bin" ; $600 bytes
 Tiles_Zoa:
 incbin "../data/Tiles_Zoa.bin" ; $400 bytes
 
-Freespace_BankAF_EC00:                                                   ;AFEC00;
+Freespace_BankAF_EC00: 
 ; $1400 bytes

@@ -135,5 +135,5 @@ PostCredits_SuperMetroid_Icon_Tilemap:
 incbin "../data/PostCredits_SuperMetroid_Icon_Tilemap.bin" ; $15D bytes
 check bankcross on
 
-Freespace_Bank99_EE21:                                                   ;99EE21;
+Freespace_Bank99_EE21: 
 ; $11DF bytes

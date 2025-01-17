@@ -281,5 +281,5 @@ incbin "../data/SamusTiles_Top_Set6_EntryA.bin" ; $1E0 bytes
 SamusTiles_Top_Set6_EntryB:
 incbin "../data/SamusTiles_Top_Set6_EntryB.bin" ; $200 bytes
 
-Freespace_Bank9D_F780:                                                   ;9DF780;
+Freespace_Bank9D_F780: 
 ; $880 bytes
