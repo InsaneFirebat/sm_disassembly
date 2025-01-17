@@ -506,8 +506,7 @@ Function_MotherBrain_FirstPhase:
     LDA.W #$0002 : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .runCollisionDetection 
     LDA.W $1840 : STA.L $7E7840 
-    LDA.W $0AF6 
-    CMP.W #$00EC 
+    LDA.W $0AF6 : CMP.W #$00EC 
     BPL .runCollisionDetection 
     LDA.W $0FCC : BNE .runCollisionDetection 
     LDA.W #$0001 : STA.L $7E783A 
@@ -613,8 +612,7 @@ HandleFakeDeathExplosions:
     LDA.W .XPosition,X : STA.B $12 
     LDA.W .YPosition,X : STA.B $14 
     LDY.W #$0003 
-    LDA.W $05E5 
-    CMP.W #$4000 
+    LDA.W $05E5 : CMP.W #$4000 
     BCS + 
     LDY.W #$000C 
 
@@ -900,8 +898,7 @@ MainAI_MotherBrainTubes:
 Function_MotherBrainTubes_NonMainTube:
     LDA.W $0FAC,X : CLC : ADC.W #$0006 : STA.W $0FAC,X 
     JSR.W AddADividedBy100ToEnemyYPosition 
-    LDA.W $0F7E,X 
-    CMP.W $0FAA,X 
+    LDA.W $0F7E,X : CMP.W $0FAA,X 
     BPL ExplodeMotherBrainTubes 
 
 HandleFallingTubeSmoke:
@@ -1382,8 +1379,7 @@ HandleMotherBrainsNeck_Lower_2_BobDown:
 
 
 HandleMotherBrainsNeck_Lower_4_BobUp:
-    LDA.W $0FBE 
-    CMP.W #$003C 
+    LDA.W $0FBE : CMP.W #$003C 
     BMI .bobDown 
     LDA.L $7E8040 : CLC : ADC.L $7E8068 : CMP.W #$9000 
     BCC + 
@@ -1754,8 +1750,7 @@ MoveMotherBrainBodyDownByA:
 MotherBrainFootstepEffect:
     LDA.W #$0001 : STA.W $183E 
     LDA.W #$0004 : STA.W $1840 
-    LDA.L $7E7800 
-    CMP.W #$0003 
+    LDA.L $7E7800 : CMP.W #$0003 
     BNE .return 
     LDA.W #$0016 : STA.L QueueSound_Lib3_Max6 ; >_<
 
@@ -2486,8 +2481,7 @@ Instruction_MotherBrainHead_SpawnDroolProjectile:
 
   + STA.L $7E7866 
     LDY.W #EnemyProjectile_MotherBrainDrool 
-    LDA.L $7E8068 
-    CMP.W #$0080 
+    LDA.L $7E8068 : CMP.W #$0080 
     BMI .lessThan80 
     LDY.W #EnemyProjectile_MotherBrainDyingDrool 
 
@@ -2705,8 +2699,7 @@ InstList_MotherBrainHead_Neutral_Phase2_1:
     dw InstList_MotherBrainHead_Neutral_Phase2_0 
 
 Instruction_MotherBrainHead_MaybeGotoNeutralPhase2:
-    LDA.W $05E5 
-    CMP.W #$F000 
+    LDA.W $05E5 : CMP.W #$F000 
     BCS .return 
     LDX.W #InstList_MotherBrainHead_Neutral_Phase2_1 
 
@@ -2900,8 +2893,7 @@ InstList_MotherBrainHead_Attacking_4OnionRings_Phase3:
 
 Instruction_MotherBrainHead_QueueBabyMetroidAttackSFX:
     PHY 
-    LDA.L $7E7826 
-    CMP.W #$000B 
+    LDA.L $7E7826 : CMP.W #$000B 
     BEQ .return 
     LDA.W #$0000 
     ASL A 
@@ -5015,8 +5007,7 @@ MotherBrainPart_vs_Samus_CollisionDetection:
     LDA.W #$0060 : STA.W $18A8 
     LDA.W #$0005 : STA.W $18AA 
     LDA.W #$0001 : STA.W $0A54 
-    LDA.W $0AFA 
-    CMP.W #$00C0 
+    LDA.W $0AFA : CMP.W #$00C0 
     BPL .SamusInAir 
     LDA.W #$0002 : STA.W $0B36 
 
@@ -5064,8 +5055,7 @@ EnemyShot_MotherBrainHead:
 
 .notFirstPhase:
     JSR.W MotherBrainShotReaction_Phase2_3 
-    LDA.L $7E7800 
-    CMP.W #$0001 
+    LDA.L $7E7800 : CMP.W #$0001 
     BNE .gotoNormalShotAI 
     JML.L CreateADudShot 
 
@@ -5075,8 +5065,7 @@ EnemyShot_MotherBrainHead:
 
 
 MotherBrainShotReaction_Phase2_3:
-    LDA.L $7E7800 
-    CMP.W #$0004 
+    LDA.L $7E7800 : CMP.W #$0004 
     BNE .notBeam 
     JSR.W DetermineMotherBrainShotReactionType 
     CMP.W #$0002 
@@ -5167,11 +5156,9 @@ Function_MotherBrainBody_Phase2_Thinking:
 
 
 .standing:
-    LDA.W $0FCC 
-    CMP.W #$1194 
+    LDA.W $0FCC : CMP.W #$1194 
     BMI .lowHealth 
-    LDA.W $05E5 
-    CMP.W #$1000 
+    LDA.W $05E5 : CMP.W #$1000 
     BCC .tryAttack 
     JMP.W HandleMotherBrainWalking 
 
@@ -5182,8 +5169,7 @@ Function_MotherBrainBody_Phase2_Thinking:
 
 
 .lowHealth:
-    LDA.W $05E5 
-    CMP.W #$2000 
+    LDA.W $05E5 : CMP.W #$2000 
     BCS + 
     JMP.W HandleMotherBrainWalking 
 
@@ -5224,8 +5210,7 @@ TryMotherBrainAttack_Phase2_TryAttack:
 .SamusFar:
     SEP #$20 
     LDY.W #$0000 
-    LDA.W $05E5 
-    CMP.W $0000,X 
+    LDA.W $05E5 : CMP.W $0000,X 
     BCC + 
     INY #2
     CMP.W $0001,X 
@@ -5236,8 +5221,7 @@ TryMotherBrainAttack_Phase2_TryAttack:
     INY #2
     + TYX 
     REP #$20 
-    LDA.W .instListPointers,X 
-    CMP.W #InstList_MotherBrainHead_Attacking_Bomb_Phase2 
+    LDA.W .instListPointers,X : CMP.W #InstList_MotherBrainHead_Attacking_Bomb_Phase2 
     BEQ .bomb 
     CMP.W #InstList_MotherBrainHead_Attacking_Laser 
     BEQ .laser 
@@ -5248,8 +5232,7 @@ TryMotherBrainAttack_Phase2_TryAttack:
 
 
 .bomb:
-    LDA.L $7E784A 
-    CMP.W #$0001 
+    LDA.L $7E784A : CMP.W #$0001 
     BPL .return 
     LDA.W #Function_MotherBrainBody_FiringBomb_DecideOnWalking : STA.W $0FA8 
     JMP.W Function_MotherBrainBody_FiringBomb_DecideOnWalking 
@@ -5298,8 +5281,7 @@ DecideMotherBrainPhase2AttackStrategy:
     RTS 
 
 
-  + LDA.L $7E784A 
-    CMP.W #$0001 
+  + LDA.L $7E784A : CMP.W #$0001 
     BPL .return 
     LDA.W #Function_MotherBrainBody_FiringBomb_DecideOnWalking : STA.W $0FA8 
     PLA 
@@ -5334,8 +5316,7 @@ TryMotherBrainPhase2Attack_EndAttack:
 
 
 Function_MotherBrainBody_FiringBomb_DecideOnWalking:
-    LDA.W $05E5 
-    CMP.W #$FF80 
+    LDA.W $05E5 : CMP.W #$FF80 
     BCS MotherBrainFiringBomb_DecideOnCrouching 
     LDX.W #$0040 
     CMP.W #$6000 
@@ -5409,8 +5390,7 @@ MotherBrainFiringBomb_FinishFiringBomb_return:
 
 Function_MBBody_Phase2_FiringLaser_PositionHeadQuickly:
     LDX.W #$0008 
-    LDA.W $0FBE 
-    CMP.W $0AFA 
+    LDA.W $0FBE : CMP.W $0AFA 
     BPL + 
     LDX.W #$0006 
 
@@ -5689,8 +5669,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_LowerHead_return:
 Function_MBBody_Phase2_FiringRainbowBeam_DecideNextAction:
     DEC.W $0FB2 
     BPL Function_MBBody_Phase2_FiringRainbowBeam_LowerHead_return 
-    LDA.W $09C2 
-    CMP.W #$0190 
+    LDA.W $09C2 : CMP.W #$0190 
     BMI .lessThan190 
     LDA.W #Function_MotherBrainBody_Phase2_FiringRainbowBeam_ExtendNeck : STA.W $0FA8 
     RTS 
@@ -6068,8 +6047,7 @@ Function_MBBody_DrainedByBabyMetroid_FiringRainbowBeam:
     TAY 
     LDA.W .walkingAnimationDelays,Y : AND.W #$00FF : STA.L $7E784E 
     LDA.W .neckAngleDeltas,Y : STA.L $7E8068 
-    LDA.L $7E784C 
-    CMP.W #$0006 
+    LDA.L $7E784C : CMP.W #$0006 
     BNE .return 
     LDA.W #$0000 : STA.L $7E782C 
     STA.L $7E7860 
@@ -6094,8 +6072,7 @@ Function_MBBody_DrainedByBabyMetroid_RainbowBeamHasRunOut:
 
 
 .manualReturn:
-    LDA.L $7E784C 
-    CMP.W #$0008 
+    LDA.L $7E784C : CMP.W #$0008 
     BMI Function_MotherBrainBody_DrainedByBabyMetroid_return 
     LDA.W #$0040 : STA.L $7E8068 
     LDA.W #$0008 : STA.L $7E8064 
@@ -6683,8 +6660,7 @@ DecrementAmmoDueToRainbowBeam:
     LDA.W $09C6 : BEQ .superMissiles 
     SEC : SBC.W .decrementValue : CMP.W #$0001 
     BPL .writeMissiles 
-    LDA.W $09D2 
-    CMP.W #$0001 
+    LDA.W $09D2 : CMP.W #$0001 
     BNE .resetAutoCancel 
     LDA.W #$0000 : STA.W $09D2 
 
@@ -6700,8 +6676,7 @@ DecrementAmmoDueToRainbowBeam:
     LDA.W $09CA : BEQ .powerBombs 
     SEC : SBC.W .decrementValue : CMP.W #$0001 
     BPL .writeSuperMissiles 
-    LDA.W $09D2 
-    CMP.W #$0002 
+    LDA.W $09D2 : CMP.W #$0002 
     BNE ..resetAutoCancel 
     LDA.W #$0000 : STA.W $09D2 
 
@@ -6715,8 +6690,7 @@ DecrementAmmoDueToRainbowBeam:
     LDA.W $09CE : BEQ .return 
     SEC : SBC.W .decrementValue : CMP.W #$0001 
     BPL .writePowerBombs 
-    LDA.W $09D2 
-    CMP.W #$0003 
+    LDA.W $09D2 : CMP.W #$0003 
     BNE ..resetAutoCancel 
     LDA.W #$0000 : STA.W $09D2 
 
@@ -6735,8 +6709,7 @@ DecrementAmmoDueToRainbowBeam:
 
 HandlePlayingGainingLosingIncrementalEnergySFX:
     PHA 
-    LDA.W $09C2 
-    CMP.W #$0051 
+    LDA.W $09C2 : CMP.W #$0051 
     BMI .return 
     LDA.W $0E44 : AND.W #$0007 
     BNE .return 
@@ -6834,8 +6807,7 @@ MakeMotherBrainWalkForwards:
     CMP.W $0F7A 
     BMI .returnReachedTarget 
     LDA.L $7E7804 : BNE .returnNotReached 
-    LDA.W $0F7A 
-    CMP.W #$0080 
+    LDA.W $0F7A : CMP.W #$0080 
     BPL .returnReachedTarget 
     LDA.W .pointers,Y : JSR.W SetMotherBrainBodyInstList 
 
@@ -6862,8 +6834,7 @@ UNUSED_MakeMotherBrainWalkBackwards_A9C62A:
     CMP.W $0F7A 
     BPL .returnCarrySet 
     LDA.L $7E7804 : BNE .returnCarryClear 
-    LDA.W $0F7A 
-    CMP.W #$0010 
+    LDA.W $0F7A : CMP.W #$0010 
     BMI .returnCarrySet 
     LDA.W MakeMotherBrainWalkBackwards_pointers,Y : JSR.W SetMotherBrainBodyInstList 
 
@@ -6882,8 +6853,7 @@ MakeMotherBrainWalkBackwards:
     CMP.W $0F7A 
     BPL .returnTargetReached 
     LDA.L $7E7804 : BNE .returnNotReached 
-    LDA.W $0F7A 
-    CMP.W #$0030 
+    LDA.W $0F7A : CMP.W #$0030 
     BMI .returnTargetReached 
     LDA.W MakeMotherBrainWalkBackwards_pointers,Y : JSR.W SetMotherBrainBodyInstList 
 
@@ -6976,8 +6946,7 @@ HandleMotherBrainWalking:
 
 .walkForwards:
     LDA.W #$0080 : STA.L $7E780E 
-    LDA.W $0F7A 
-    CMP.W #$0080 
+    LDA.W $0F7A : CMP.W #$0080 
     BPL .return 
     LDA.W #InstList_MotherBrainBody_WalkingForwards_Medium 
     JMP.W SetMotherBrainBodyInstList 
@@ -6985,16 +6954,14 @@ HandleMotherBrainWalking:
 
 .walkBackwards:
     LDA.W #$0001 : STA.L $7E780E 
-    LDA.W $0F7A 
-    CMP.W #$0030 
+    LDA.W $0F7A : CMP.W #$0030 
     BMI .maybeWalkForwards 
     LDA.W #InstList_MotherBrainBody_WalkingBackwards_Fast 
     JMP.W SetMotherBrainBodyInstList 
 
 
 .maybeWalkForwardsIfFarLeft:
-    LDA.W $0F7A 
-    CMP.W #$0030 
+    LDA.W $0F7A : CMP.W #$0030 
     BPL .return 
 
 .maybeWalkForwards:
@@ -7567,8 +7534,7 @@ SamusRainbowPaletteFunction_GraduallySlowAnimationDown:
 
 
 FadeBabyMetroidCutsceneToBlack:
-    LDA.W $0F7E,X 
-    CMP.W #$0080 
+    LDA.W $0F7E,X : CMP.W #$0080 
     BMI .returnNotFaded 
     PHB : PEA.W $AD00 
     PLB : PLB 
@@ -7675,8 +7641,7 @@ AccelerateBabyMetroidCutsceneDownwards:
 
 HandleBabyMetroidCutsceneHealthBasedPalette:
     LDA.L $7E7812,X : BEQ .return 
-    LDA.W $0F8C,X 
-    CMP.W #$0A00 
+    LDA.W $0F8C,X : CMP.W #$0A00 
     BMI .health80 
 
 .return:
@@ -7733,8 +7698,7 @@ ShakeBabyMetroidCutscene:
 
 EnemyTouch_BabyMetroidCutscene:
     LDX.W $0E54 
-    LDA.W $0FA8,X 
-    CMP.W #Function_BabyMetroidCutscene_LatchOntoSamus 
+    LDA.W $0FA8,X : CMP.W #Function_BabyMetroidCutscene_LatchOntoSamus 
     BNE .return 
     LDA.W $0AF6 : STA.B $12 
     LDA.W $0AFA : SEC : SBC.W #$0014 : STA.B $14 
@@ -7749,8 +7713,7 @@ EnemyTouch_BabyMetroidCutscene:
 
 
 UpdateBabyMetroidCutsceneSpeedAndAngle:
-    LDA.B $16 
-    CMP.L $7E7816,X 
+    LDA.B $16 : CMP.L $7E7816,X 
     BEQ .speedCalculated 
     BPL .notReachedTargedSpeed 
     LDA.L $7E7816,X : SEC : SBC.W #$0020 : CMP.B $16 
@@ -7836,8 +7799,7 @@ InstList_BabyMetroid_TookFatalBlow:
     dw Instruction_CommonA9_Sleep 
 
 ProcessMotherBrainInvincibilityPalette:
-    LDA.L $7E7800 
-    CMP.W #$0004 
+    LDA.L $7E7800 : CMP.W #$0004 
     BNE .return 
     LDA.W $0FDC 
     LSR A 
@@ -8083,8 +8045,7 @@ HandleMotherBrainHeadPalette:
     ASL #3
     ADC.B $12 : TAY 
     LDX.W #$0122 
-    LDA.L $7E781A 
-    CMP.W #$0200 
+    LDA.L $7E781A : CMP.W #$0200 
     BEQ + 
     LDX.W #$01E2 
 
@@ -8651,8 +8612,7 @@ InitAI_CorpseSkree:
 
 PowerBombReaction_CorpseSidehopper:
     LDX.W $0E54 
-    LDA.L $7E7810,X 
-    CMP.W #$0008 
+    LDA.L $7E7810,X : CMP.W #$0008 
     BCC MainAI_HurtAI_CorpseEnemies 
     JMP.W EnemyShot_CorpseSidehopper 
 
@@ -8664,8 +8624,7 @@ MainAI_HurtAI_CorpseEnemies:
 
 
 Function_CorpseSidehopper_Alive_WaitingForActivation:
-    LDA.W $0911 
-    CMP.W #$0201 
+    LDA.W $0911 : CMP.W #$0201 
     BMI .activate 
     RTS 
 
@@ -8730,8 +8689,7 @@ CorpseSidehopperMovement:
     TYA 
     CLC : ADC.L $7E7816,X : STA.L $7E7816,X 
     STA.B $12 
-    LDA.W $0F7A,X 
-    CMP.W #$0220 
+    LDA.W $0F7A,X : CMP.W #$0220 
     BMI .lessThan220 
     LDA.B $12 
     SEP #$20 
@@ -8772,8 +8730,7 @@ CorpseSidehopperMovement:
 
 CorpseSidehopperMovement_Horizontal:
     STA.B $12 
-    LDA.W $0F7A,X 
-    CMP.W #$0220 
+    LDA.W $0F7A,X : CMP.W #$0220 
     BMI .lessThan220 
     LDA.B $12 
     SEP #$20 
@@ -8892,8 +8849,7 @@ Function_CorpseSkree_PreRotDelay:
 
 CorpseCommonAI_PreRotDelay:
     INC.W $0FAA,X 
-    LDA.W $0FAA,X 
-    CMP.W #$0010 
+    LDA.W $0FAA,X : CMP.W #$0010 
     BCC .return 
     TYA 
     STA.W $0FA8,X 
@@ -8975,8 +8931,7 @@ ProcessCorpseRotting:
     CMP.W #$0004 
     BCS .next 
     LDA.W $8804 : STA.B $12 
-    LDA.B $01,S 
-    CMP.W $880E 
+    LDA.B $01,S : CMP.W $880E 
     BCC + 
     LDA.W $8806 : STA.B $12 
 
@@ -9005,8 +8960,7 @@ ProcessCorpseRotting:
 .manualReturn:
     PEA.W $7E7E 
     PLB : PLB 
-    LDA.B $01,S 
-    CMP.W $880C 
+    LDA.B $01,S : CMP.W $880C 
     BCS .returnFinishedRotting 
     LDA.W #$FFFF 
 
@@ -9168,8 +9122,7 @@ EnemyShot_CorpseSidehopper:
     LDX.W $0E54 
     LDA.W $0F86,X : AND.W #$0400 
     BNE CorpseCommonContactReaction_return 
-    LDA.L $7E7810,X 
-    CMP.W #$0008 
+    LDA.L $7E7810,X : CMP.W #$0008 
     BCC CorpseCommonContactReaction_return 
 
 CorpseSidehopperContactReaction_Rottable:
@@ -9186,8 +9139,7 @@ CorpseCommonContactReaction_return:
 
 EnemyTouch_CorpseSidehopper:
     LDX.W $0E54 
-    LDA.L $7E7810,X 
-    CMP.W #$0008 
+    LDA.L $7E7810,X : CMP.W #$0008 
     BCS CorpseSidehopperContactReaction_Rottable 
     LDX.W $0E54 
     JSL.L NormalEnemyTouchAI_NoDeathCheck_External 
@@ -9703,8 +9655,7 @@ CorpseRottingTileRowOffsets_MotherBrain:
     dw $0000,$00E0,$01C0,$02A0,$0380,$0460,$0540,$0620 
 
 CorpseRottingRotEntry_Move_Torizo:
-    LDA.W $8802 
-    CMP.W #$0050 
+    LDA.W $8802 : CMP.W #$0050 
     BCC .column1 
     CMP.W #$005E 
     BPL .offsetGreaterThan5D 
@@ -9716,8 +9667,7 @@ CorpseRottingRotEntry_Move_Torizo:
     STZ.W $2010,X 
 
 .column1:
-    LDA.W $8802 
-    CMP.W #$0048 
+    LDA.W $8802 : CMP.W #$0048 
     BCC .column2 
     CMP.W #$005E 
     BPL ..offsetGreaterThan5E 
@@ -9729,8 +9679,7 @@ CorpseRottingRotEntry_Move_Torizo:
     STZ.W $2030,X 
 
 .column2:
-    LDA.W $8802 
-    CMP.W #$0010 
+    LDA.W $8802 : CMP.W #$0010 
     BCC .column3 
     CMP.W #$005E 
     BPL ..offsetGreaterThan5E 
@@ -9742,8 +9691,7 @@ CorpseRottingRotEntry_Move_Torizo:
     STZ.W $2050,X 
 
 .column3:
-    LDA.W $8802 
-    CMP.W #$005E 
+    LDA.W $8802 : CMP.W #$005E 
     BPL ..offsetGreaterThan5E 
     LDA.W $2060,X : STA.W $2062,Y 
     LDA.W $2070,X : STA.W $2072,Y 
@@ -9751,48 +9699,42 @@ CorpseRottingRotEntry_Move_Torizo:
 ..offsetGreaterThan5E:
     STZ.W $2060,X 
     STZ.W $2070,X 
-    LDA.W $8802 
-    CMP.W #$005E 
+    LDA.W $8802 : CMP.W #$005E 
     BPL + 
     LDA.W $2080,X : STA.W $2082,Y 
     LDA.W $2090,X : STA.W $2092,Y 
 
   + STZ.W $2080,X 
     STZ.W $2090,X 
-    LDA.W $8802 
-    CMP.W #$005E 
+    LDA.W $8802 : CMP.W #$005E 
     BPL + 
     LDA.W $20A0,X : STA.W $20A2,Y 
     LDA.W $20B0,X : STA.W $20B2,Y 
 
   + STZ.W $20A0,X 
     STZ.W $20B0,X 
-    LDA.W $8802 
-    CMP.W #$005E 
+    LDA.W $8802 : CMP.W #$005E 
     BPL + 
     LDA.W $20C0,X : STA.W $20C2,Y 
     LDA.W $20D0,X : STA.W $20D2,Y 
 
   + STZ.W $20C0,X 
     STZ.W $20D0,X 
-    LDA.W $8802 
-    CMP.W #$005E 
+    LDA.W $8802 : CMP.W #$005E 
     BPL + 
     LDA.W $20E0,X : STA.W $20E2,Y 
     LDA.W $20F0,X : STA.W $20F2,Y 
 
   + STZ.W $20E0,X 
     STZ.W $20F0,X 
-    LDA.W $8802 
-    CMP.W #$005E 
+    LDA.W $8802 : CMP.W #$005E 
     BPL + 
     LDA.W $2100,X : STA.W $2102,Y 
     LDA.W $2110,X : STA.W $2112,Y 
 
   + STZ.W $2100,X 
     STZ.W $2110,X 
-    LDA.W $8802 
-    CMP.W #$0010 
+    LDA.W $8802 : CMP.W #$0010 
     BCC .return 
     CMP.W #$005E 
     BPL + 
@@ -9807,68 +9749,58 @@ CorpseRottingRotEntry_Move_Torizo:
 
 
 CorpseRottingRotEntry_Copy_Torizo:
-    LDA.W $8802 
-    CMP.W #$0050 
+    LDA.W $8802 : CMP.W #$0050 
     BCC + 
     CMP.W #$005E 
     BPL + 
     LDA.W $2000,X : STA.W $2002,Y 
     LDA.W $2010,X : STA.W $2012,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0048 
+  + LDA.W $8802 : CMP.W #$0048 
     BCC + 
     CMP.W #$005E 
     BPL + 
     LDA.W $2020,X : STA.W $2022,Y 
     LDA.W $2030,X : STA.W $2032,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0010 
+  + LDA.W $8802 : CMP.W #$0010 
     BCC + 
     CMP.W #$005E 
     BPL + 
     LDA.W $2040,X : STA.W $2042,Y 
     LDA.W $2050,X : STA.W $2052,Y 
 
-  + LDA.W $8802 
-    CMP.W #$005E 
+  + LDA.W $8802 : CMP.W #$005E 
     BPL + 
     LDA.W $2060,X : STA.W $2062,Y 
     LDA.W $2070,X : STA.W $2072,Y 
 
-  + LDA.W $8802 
-    CMP.W #$005E 
+  + LDA.W $8802 : CMP.W #$005E 
     BPL + 
     LDA.W $2080,X : STA.W $2082,Y 
     LDA.W $2090,X : STA.W $2092,Y 
 
-  + LDA.W $8802 
-    CMP.W #$005E 
+  + LDA.W $8802 : CMP.W #$005E 
     BPL + 
     LDA.W $20A0,X : STA.W $20A2,Y 
     LDA.W $20B0,X : STA.W $20B2,Y 
 
-  + LDA.W $8802 
-    CMP.W #$005E 
+  + LDA.W $8802 : CMP.W #$005E 
     BPL + 
     LDA.W $20C0,X : STA.W $20C2,Y 
     LDA.W $20D0,X : STA.W $20D2,Y 
 
-  + LDA.W $8802 
-    CMP.W #$005E 
+  + LDA.W $8802 : CMP.W #$005E 
     BPL + 
     LDA.W $20E0,X : STA.W $20E2,Y 
     LDA.W $20F0,X : STA.W $20F2,Y 
 
-  + LDA.W $8802 
-    CMP.W #$005E 
+  + LDA.W $8802 : CMP.W #$005E 
     BPL + 
     LDA.W $2100,X : STA.W $2102,Y 
     LDA.W $2110,X : STA.W $2112,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0010 
+  + LDA.W $8802 : CMP.W #$0010 
     BCC .return 
     CMP.W #$005E 
     BPL .return 
@@ -9880,8 +9812,7 @@ CorpseRottingRotEntry_Copy_Torizo:
 
 
 CorpseRottingRotEntry_Move_Sidehopper_Param1_0:
-    LDA.W $8802 
-    CMP.W #$0008 
+    LDA.W $8802 : CMP.W #$0008 
     BCC .column1 
     CMP.W #$0026 
     BPL .offsetGreaterThan25 
@@ -9893,8 +9824,7 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_0:
     STZ.W $2010,X 
 
 .column1:
-    LDA.W $8802 
-    CMP.W #$0008 
+    LDA.W $8802 : CMP.W #$0008 
     BCC .column2 
     CMP.W #$0026 
     BPL ..offsetGreaterThan25 
@@ -9906,24 +9836,21 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_0:
     STZ.W $2030,X 
 
 .column2:
-    LDA.W $8802 
-    CMP.W #$0026 
+    LDA.W $8802 : CMP.W #$0026 
     BPL + 
     LDA.W $2040,X : STA.W $2042,Y 
     LDA.W $2050,X : STA.W $2052,Y 
 
   + STZ.W $2040,X 
     STZ.W $2050,X 
-    LDA.W $8802 
-    CMP.W #$0026 
+    LDA.W $8802 : CMP.W #$0026 
     BPL + 
     LDA.W $2060,X : STA.W $2062,Y 
     LDA.W $2070,X : STA.W $2072,Y 
 
   + STZ.W $2060,X 
     STZ.W $2070,X 
-    LDA.W $8802 
-    CMP.W #$0026 
+    LDA.W $8802 : CMP.W #$0026 
     BPL + 
     LDA.W $2080,X : STA.W $2082,Y 
     LDA.W $2090,X : STA.W $2092,Y 
@@ -9934,36 +9861,31 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_0:
 
 
 CorpseRottingRotEntry_Copy_Sidehopper_Param1_0:
-    LDA.W $8802 
-    CMP.W #$0008 
+    LDA.W $8802 : CMP.W #$0008 
     BCC + 
     CMP.W #$0026 
     BPL + 
     LDA.W $2000,X : STA.W $2002,Y 
     LDA.W $2010,X : STA.W $2012,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0008 
+  + LDA.W $8802 : CMP.W #$0008 
     BCC + 
     CMP.W #$0026 
     BPL + 
     LDA.W $2020,X : STA.W $2022,Y 
     LDA.W $2030,X : STA.W $2032,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0026 
+  + LDA.W $8802 : CMP.W #$0026 
     BPL + 
     LDA.W $2040,X : STA.W $2042,Y 
     LDA.W $2050,X : STA.W $2052,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0026 
+  + LDA.W $8802 : CMP.W #$0026 
     BPL + 
     LDA.W $2060,X : STA.W $2062,Y 
     LDA.W $2070,X : STA.W $2072,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0026 
+  + LDA.W $8802 : CMP.W #$0026 
     BPL .return 
     LDA.W $2080,X : STA.W $2082,Y 
     LDA.W $2090,X : STA.W $2092,Y 
@@ -9973,24 +9895,21 @@ CorpseRottingRotEntry_Copy_Sidehopper_Param1_0:
 
 
 CorpseRottingRotEntry_Move_Sidehopper_Param1_2:
-    LDA.W $8802 
-    CMP.W #$0026 
+    LDA.W $8802 : CMP.W #$0026 
     BPL + 
     LDA.W $2320,X : STA.W $2322,Y 
     LDA.W $2330,X : STA.W $2332,Y 
 
   + STZ.W $2320,X 
     STZ.W $2330,X 
-    LDA.W $8802 
-    CMP.W #$0026 
+    LDA.W $8802 : CMP.W #$0026 
     BPL + 
     LDA.W $2340,X : STA.W $2342,Y 
     LDA.W $2350,X : STA.W $2352,Y 
 
   + STZ.W $2340,X 
     STZ.W $2350,X 
-    LDA.W $8802 
-    CMP.W #$0008 
+    LDA.W $8802 : CMP.W #$0008 
     BCC .column3 
     CMP.W #$0026 
     BPL + 
@@ -10001,8 +9920,7 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_2:
     STZ.W $2370,X 
 
 .column3:
-    LDA.W $8802 
-    CMP.W #$0008 
+    LDA.W $8802 : CMP.W #$0008 
     BCC .column4 
     CMP.W #$0026 
     BPL + 
@@ -10013,8 +9931,7 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_2:
     STZ.W $2390,X 
 
 .column4:
-    LDA.W $8802 
-    CMP.W #$0008 
+    LDA.W $8802 : CMP.W #$0008 
     BCC .return 
     CMP.W #$0026 
     BPL + 
@@ -10029,36 +9946,31 @@ CorpseRottingRotEntry_Move_Sidehopper_Param1_2:
 
 
 CorpseRottingRotEntry_Copy_Sidehopper_Param1_2:
-    LDA.W $8802 
-    CMP.W #$0026 
+    LDA.W $8802 : CMP.W #$0026 
     BPL + 
     LDA.W $2320,X : STA.W $2322,Y 
     LDA.W $2330,X : STA.W $2332,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0026 
+  + LDA.W $8802 : CMP.W #$0026 
     BPL + 
     LDA.W $2340,X : STA.W $2342,Y 
     LDA.W $2350,X : STA.W $2352,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0008 
+  + LDA.W $8802 : CMP.W #$0008 
     BCC + 
     CMP.W #$0026 
     BPL + 
     LDA.W $2360,X : STA.W $2362,Y 
     LDA.W $2370,X : STA.W $2372,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0008 
+  + LDA.W $8802 : CMP.W #$0008 
     BCC + 
     CMP.W #$0026 
     BPL + 
     LDA.W $2380,X : STA.W $2382,Y 
     LDA.W $2390,X : STA.W $2392,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0008 
+  + LDA.W $8802 : CMP.W #$0008 
     BCC .return 
     CMP.W #$0026 
     BPL .return 
@@ -10070,24 +9982,21 @@ CorpseRottingRotEntry_Copy_Sidehopper_Param1_2:
 
 
 CorpseRottingRotEntry_Move_Zoomer_Param1_0:
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2940,X : STA.W $2942,Y 
     LDA.W $2950,X : STA.W $2952,Y 
 
   + STZ.W $2940,X 
     STZ.W $2950,X 
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2960,X : STA.W $2962,Y 
     LDA.W $2970,X : STA.W $2972,Y 
 
   + STZ.W $2960,X 
     STZ.W $2970,X 
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2980,X : STA.W $2982,Y 
     LDA.W $2990,X : STA.W $2992,Y 
@@ -10098,20 +10007,17 @@ CorpseRottingRotEntry_Move_Zoomer_Param1_0:
 
 
 CorpseRottingRotEntry_Copy_Zoomer_Param1_0:
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2940,X : STA.W $2942,Y 
     LDA.W $2950,X : STA.W $2952,Y 
 
-  + LDA.W $8802 
-    CMP.W #$000E 
+  + LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2960,X : STA.W $2962,Y 
     LDA.W $2970,X : STA.W $2972,Y 
 
-  + LDA.W $8802 
-    CMP.W #$000E 
+  + LDA.W $8802 : CMP.W #$000E 
     BPL .return 
     LDA.W $2980,X : STA.W $2982,Y 
     LDA.W $2990,X : STA.W $2992,Y 
@@ -10121,24 +10027,21 @@ CorpseRottingRotEntry_Copy_Zoomer_Param1_0:
 
 
 CorpseRottingRotEntry_Move_Zoomer_Param1_2:
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2A00,X : STA.W $2A02,Y 
     LDA.W $2A10,X : STA.W $2A12,Y 
 
   + STZ.W $2A00,X 
     STZ.W $2A10,X 
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2A20,X : STA.W $2A22,Y 
     LDA.W $2A30,X : STA.W $2A32,Y 
 
   + STZ.W $2A20,X 
     STZ.W $2A30,X 
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2A40,X : STA.W $2A42,Y 
     LDA.W $2A50,X : STA.W $2A52,Y 
@@ -10149,20 +10052,17 @@ CorpseRottingRotEntry_Move_Zoomer_Param1_2:
 
 
 CorpseRottingRotEntry_Copy_Zoomer_Param1_2:
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2A00,X : STA.W $2A02,Y 
     LDA.W $2A10,X : STA.W $2A12,Y 
 
-  + LDA.W $8802 
-    CMP.W #$000E 
+  + LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2A20,X : STA.W $2A22,Y 
     LDA.W $2A30,X : STA.W $2A32,Y 
 
-  + LDA.W $8802 
-    CMP.W #$000E 
+  + LDA.W $8802 : CMP.W #$000E 
     BPL .return 
     LDA.W $2A40,X : STA.W $2A42,Y 
     LDA.W $2A50,X : STA.W $2A52,Y 
@@ -10172,24 +10072,21 @@ CorpseRottingRotEntry_Copy_Zoomer_Param1_2:
 
 
 CorpseRottingRotEntry_Move_Zoomer_Param1_4:
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2AC0,X : STA.W $2AC2,Y 
     LDA.W $2AD0,X : STA.W $2AD2,Y 
 
   + STZ.W $2AC0,X 
     STZ.W $2AD0,X 
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2AE0,X : STA.W $2AE2,Y 
     LDA.W $2AF0,X : STA.W $2AF2,Y 
 
   + STZ.W $2AE0,X 
     STZ.W $2AF0,X 
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2B00,X : STA.W $2B02,Y 
     LDA.W $2B10,X : STA.W $2B12,Y 
@@ -10200,20 +10097,17 @@ CorpseRottingRotEntry_Move_Zoomer_Param1_4:
 
 
 CorpseRottingRotEntry_Copy_Zoomer_Param1_4:
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2AC0,X : STA.W $2AC2,Y 
     LDA.W $2AD0,X : STA.W $2AD2,Y 
 
-  + LDA.W $8802 
-    CMP.W #$000E 
+  + LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2AE0,X : STA.W $2AE2,Y 
     LDA.W $2AF0,X : STA.W $2AF2,Y 
 
-  + LDA.W $8802 
-    CMP.W #$000E 
+  + LDA.W $8802 : CMP.W #$000E 
     BPL .return 
     LDA.W $2B00,X : STA.W $2B02,Y 
     LDA.W $2B10,X : STA.W $2B12,Y 
@@ -10223,24 +10117,21 @@ CorpseRottingRotEntry_Copy_Zoomer_Param1_4:
 
 
 CorpseRottingRotEntry_Move_Ripper_Param1_0:
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2B80,X : STA.W $2B82,Y 
     LDA.W $2B90,X : STA.W $2B92,Y 
 
   + STZ.W $2B80,X 
     STZ.W $2B90,X 
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2BA0,X : STA.W $2BA2,Y 
     LDA.W $2BB0,X : STA.W $2BB2,Y 
 
   + STZ.W $2BA0,X 
     STZ.W $2BB0,X 
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2BC0,X : STA.W $2BC2,Y 
     LDA.W $2BD0,X : STA.W $2BD2,Y 
@@ -10251,20 +10142,17 @@ CorpseRottingRotEntry_Move_Ripper_Param1_0:
 
 
 CorpseRottingRotEntry_Copy_Ripper_Param1_0:
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2B80,X : STA.W $2B82,Y 
     LDA.W $2B90,X : STA.W $2B92,Y 
 
-  + LDA.W $8802 
-    CMP.W #$000E 
+  + LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2BA0,X : STA.W $2BA2,Y 
     LDA.W $2BB0,X : STA.W $2BB2,Y 
 
-  + LDA.W $8802 
-    CMP.W #$000E 
+  + LDA.W $8802 : CMP.W #$000E 
     BPL .return 
     LDA.W $2BC0,X : STA.W $2BC2,Y 
     LDA.W $2BD0,X : STA.W $2BD2,Y 
@@ -10274,24 +10162,21 @@ CorpseRottingRotEntry_Copy_Ripper_Param1_0:
 
 
 CorpseRottingRotEntry_Move_Ripper_Param1_2:
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2C40,X : STA.W $2C42,Y 
     LDA.W $2C50,X : STA.W $2C52,Y 
 
   + STZ.W $2C40,X 
     STZ.W $2C50,X 
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2C60,X : STA.W $2C62,Y 
     LDA.W $2C70,X : STA.W $2C72,Y 
 
   + STZ.W $2C60,X 
     STZ.W $2C70,X 
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2C80,X : STA.W $2C82,Y 
     LDA.W $2C90,X : STA.W $2C92,Y 
@@ -10302,20 +10187,17 @@ CorpseRottingRotEntry_Move_Ripper_Param1_2:
 
 
 CorpseRottingRotEntry_Copy_Ripper_Param1_2:
-    LDA.W $8802 
-    CMP.W #$000E 
+    LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2C40,X : STA.W $2C42,Y 
     LDA.W $2C50,X : STA.W $2C52,Y 
 
-  + LDA.W $8802 
-    CMP.W #$000E 
+  + LDA.W $8802 : CMP.W #$000E 
     BPL + 
     LDA.W $2C60,X : STA.W $2C62,Y 
     LDA.W $2C70,X : STA.W $2C72,Y 
 
-  + LDA.W $8802 
-    CMP.W #$000E 
+  + LDA.W $8802 : CMP.W #$000E 
     BPL .return 
     LDA.W $2C80,X : STA.W $2C82,Y 
     LDA.W $2C90,X : STA.W $2C92,Y 
@@ -10325,16 +10207,14 @@ CorpseRottingRotEntry_Copy_Ripper_Param1_2:
 
 
 CorpseRottingRotEntry_Move_Skree_Param1_0:
-    LDA.W $8802 
-    CMP.W #$001E 
+    LDA.W $8802 : CMP.W #$001E 
     BPL + 
     LDA.W $2640,X : STA.W $2642,Y 
     LDA.W $2650,X : STA.W $2652,Y 
 
   + STZ.W $2640,X 
     STZ.W $2650,X 
-    LDA.W $8802 
-    CMP.W #$001E 
+    LDA.W $8802 : CMP.W #$001E 
     BPL + 
     LDA.W $2660,X : STA.W $2662,Y 
     LDA.W $2670,X : STA.W $2672,Y 
@@ -10345,14 +10225,12 @@ CorpseRottingRotEntry_Move_Skree_Param1_0:
 
 
 CorpseRottingRotEntry_Copy_Skree_Param1_0:
-    LDA.W $8802 
-    CMP.W #$001E 
+    LDA.W $8802 : CMP.W #$001E 
     BPL + 
     LDA.W $2640,X : STA.W $2642,Y 
     LDA.W $2650,X : STA.W $2652,Y 
 
-  + LDA.W $8802 
-    CMP.W #$001E 
+  + LDA.W $8802 : CMP.W #$001E 
     BPL .return 
     LDA.W $2660,X : STA.W $2662,Y 
     LDA.W $2670,X : STA.W $2672,Y 
@@ -10362,16 +10240,14 @@ CorpseRottingRotEntry_Copy_Skree_Param1_0:
 
 
 CorpseRottingRotEntry_Move_Skree_Param1_2:
-    LDA.W $8802 
-    CMP.W #$001E 
+    LDA.W $8802 : CMP.W #$001E 
     BPL + 
     LDA.W $2740,X : STA.W $2742,Y 
     LDA.W $2750,X : STA.W $2752,Y 
 
   + STZ.W $2740,X 
     STZ.W $2750,X 
-    LDA.W $8802 
-    CMP.W #$001E 
+    LDA.W $8802 : CMP.W #$001E 
     BPL + 
     LDA.W $2760,X : STA.W $2762,Y 
     LDA.W $2770,X : STA.W $2772,Y 
@@ -10382,14 +10258,12 @@ CorpseRottingRotEntry_Move_Skree_Param1_2:
 
 
 CorpseRottingRotEntry_Copy_Skree_Param1_2:
-    LDA.W $8802 
-    CMP.W #$001E 
+    LDA.W $8802 : CMP.W #$001E 
     BPL + 
     LDA.W $2740,X : STA.W $2742,Y 
     LDA.W $2750,X : STA.W $2752,Y 
 
-  + LDA.W $8802 
-    CMP.W #$001E 
+  + LDA.W $8802 : CMP.W #$001E 
     BPL .return 
     LDA.W $2760,X : STA.W $2762,Y 
     LDA.W $2770,X : STA.W $2772,Y 
@@ -10399,16 +10273,14 @@ CorpseRottingRotEntry_Copy_Skree_Param1_2:
 
 
 CorpseRottingRotEntry_Move_Skree_Param1_4:
-    LDA.W $8802 
-    CMP.W #$001E 
+    LDA.W $8802 : CMP.W #$001E 
     BPL + 
     LDA.W $2840,X : STA.W $2842,Y 
     LDA.W $2850,X : STA.W $2852,Y 
 
   + STZ.W $2840,X 
     STZ.W $2850,X 
-    LDA.W $8802 
-    CMP.W #$001E 
+    LDA.W $8802 : CMP.W #$001E 
     BPL + 
     LDA.W $2860,X : STA.W $2862,Y 
     LDA.W $2870,X : STA.W $2872,Y 
@@ -10419,14 +10291,12 @@ CorpseRottingRotEntry_Move_Skree_Param1_4:
 
 
 CorpseRottingRotEntry_Copy_Skree_Param1_4:
-    LDA.W $8802 
-    CMP.W #$001E 
+    LDA.W $8802 : CMP.W #$001E 
     BPL + 
     LDA.W $2840,X : STA.W $2842,Y 
     LDA.W $2850,X : STA.W $2852,Y 
 
-  + LDA.W $8802 
-    CMP.W #$001E 
+  + LDA.W $8802 : CMP.W #$001E 
     BPL .return 
     LDA.W $2860,X : STA.W $2862,Y 
     LDA.W $2870,X : STA.W $2872,Y 
@@ -10436,8 +10306,7 @@ CorpseRottingRotEntry_Copy_Skree_Param1_4:
 
 
 CorpseRottingRotEntry_Move_MotherBrain:
-    LDA.W $8802 
-    CMP.W #$0010 
+    LDA.W $8802 : CMP.W #$0010 
     BCC .column1 
     CMP.W #$002E 
     BPL + 
@@ -10448,8 +10317,7 @@ CorpseRottingRotEntry_Move_MotherBrain:
     STZ.W $9010,X 
 
 .column1:
-    LDA.W $8802 
-    CMP.W #$0008 
+    LDA.W $8802 : CMP.W #$0008 
     BCC .column2 
     CMP.W #$002E 
     BPL + 
@@ -10460,32 +10328,28 @@ CorpseRottingRotEntry_Move_MotherBrain:
     STZ.W $9030,X 
 
 .column2:
-    LDA.W $8802 
-    CMP.W #$002E 
+    LDA.W $8802 : CMP.W #$002E 
     BPL + 
     LDA.W $9040,X : STA.W $9042,Y 
     LDA.W $9050,X : STA.W $9052,Y 
 
   + STZ.W $9040,X 
     STZ.W $9050,X 
-    LDA.W $8802 
-    CMP.W #$002E 
+    LDA.W $8802 : CMP.W #$002E 
     BPL + 
     LDA.W $9060,X : STA.W $9062,Y 
     LDA.W $9070,X : STA.W $9072,Y 
 
   + STZ.W $9060,X 
     STZ.W $9070,X 
-    LDA.W $8802 
-    CMP.W #$002E 
+    LDA.W $8802 : CMP.W #$002E 
     BPL + 
     LDA.W $9080,X : STA.W $9082,Y 
     LDA.W $9090,X : STA.W $9092,Y 
 
   + STZ.W $9080,X 
     STZ.W $9090,X 
-    LDA.W $8802 
-    CMP.W #$0008 
+    LDA.W $8802 : CMP.W #$0008 
     BCC .column6 
     CMP.W #$002E 
     BPL + 
@@ -10496,8 +10360,7 @@ CorpseRottingRotEntry_Move_MotherBrain:
     STZ.W $90B0,X 
 
 .column6:
-    LDA.W $8802 
-    CMP.W #$0020 
+    LDA.W $8802 : CMP.W #$0020 
     BCC .return 
     CMP.W #$002E 
     BPL + 
@@ -10512,50 +10375,43 @@ CorpseRottingRotEntry_Move_MotherBrain:
 
 
 CorpseRottingRotEntry_Copy_MotherBrain:
-    LDA.W $8802 
-    CMP.W #$0010 
+    LDA.W $8802 : CMP.W #$0010 
     BCC + 
     CMP.W #$002E 
     BPL + 
     LDA.W $9000,X : STA.W $9002,Y 
     LDA.W $9010,X : STA.W $9012,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0008 
+  + LDA.W $8802 : CMP.W #$0008 
     BCC + 
     CMP.W #$002E 
     BPL + 
     LDA.W $9020,X : STA.W $9022,Y 
     LDA.W $9030,X : STA.W $9032,Y 
 
-  + LDA.W $8802 
-    CMP.W #$002E 
+  + LDA.W $8802 : CMP.W #$002E 
     BPL + 
     LDA.W $9040,X : STA.W $9042,Y 
     LDA.W $9050,X : STA.W $9052,Y 
 
-  + LDA.W $8802 
-    CMP.W #$002E 
+  + LDA.W $8802 : CMP.W #$002E 
     BPL + 
     LDA.W $9060,X : STA.W $9062,Y 
     LDA.W $9070,X : STA.W $9072,Y 
 
-  + LDA.W $8802 
-    CMP.W #$002E 
+  + LDA.W $8802 : CMP.W #$002E 
     BPL + 
     LDA.W $9080,X : STA.W $9082,Y 
     LDA.W $9090,X : STA.W $9092,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0008 
+  + LDA.W $8802 : CMP.W #$0008 
     BCC + 
     CMP.W #$002E 
     BPL + 
     LDA.W $90A0,X : STA.W $90A2,Y 
     LDA.W $90B0,X : STA.W $90B2,Y 
 
-  + LDA.W $8802 
-    CMP.W #$0020 
+  + LDA.W $8802 : CMP.W #$0020 
     BCC .return 
     CMP.W #$002E 
     BPL .return 
@@ -11005,8 +10861,7 @@ Function_BabyMetroid_Disappeared:
 
 
 Function_BabyMetroid_WaitForCamera:
-    LDA.W $0911 
-    CMP.W #$0201 
+    LDA.W $0911 : CMP.W #$0201 
     BPL .return 
     LDA.W #$0200 : STA.W $0911 
     LDA.L $7ECD20 : AND.W #$00FF : STA.L $7ECD20 
@@ -11150,8 +11005,7 @@ Function_BabyMetroid_StareDownSamus:
   + STA.L $7E7804,X 
     CMP.W #$0100 
     BCS .done 
-    LDA.W $0AF6 
-    CMP.W #$0200 
+    LDA.W $0AF6 : CMP.W #$0200 
     BMI .done 
     LDA.L $7E7802,X : BEQ .zeroAggroTimer 
     DEC A 
@@ -11193,14 +11047,12 @@ Function_BabyMetroid_StartDrainingSamus:
     LDA.W #Function_BabyMetroid_DrainingSamus : STA.W $0FA8 ; fallthrough to Function_BabyMetroid_DrainingSamus
 
 Function_BabyMetroid_DrainingSamus:
-    LDA.W $09C2 
-    CMP.W #$0002 
+    LDA.W $09C2 : CMP.W #$0002 
     BCC .done 
     LDA.W #$0008 : STA.W $0CCC 
     LDA.W #$0005 : STA.W $0CD2 
     LDA.W #$0002 : STA.W $0A66 
-    LDA.W $0B2E 
-    CMP.W #$0004 
+    LDA.W $0B2E : CMP.W #$0004 
     BMI .lessThan4 
     LDA.W #$0002 : STA.W $0B2E 
 
@@ -11343,8 +11195,7 @@ MakeBabyMetroidFlee:
 
 
 SignalBabyMetroidToLeave:
-    LDA.W $0FA8,X 
-    CMP.W #Function_BabyMetroid_Remorse 
+    LDA.W $0FA8,X : CMP.W #Function_BabyMetroid_Remorse 
     BEQ MakeBabyMetroidFlee 
     RTS 
 
@@ -11384,11 +11235,9 @@ GraduallyAccelerateTowardSamus:
     LDX.W $0E54 
     LDY.W #$0008 
     JSR.W GradduallyAccelerateTowardsPoint_1A_400 
-    LDA.L $7E7804,X 
-    CMP.W #$0400 
+    LDA.L $7E7804,X : CMP.W #$0400 
     BCS .returnReadyToFlee 
-    LDA.W $0AF6 
-    CMP.W #$0080 
+    LDA.W $0AF6 : CMP.W #$0080 
     BMI .returnReadyToFlee 
     CLC 
     RTS 
@@ -11763,13 +11612,11 @@ EnemyTouch_BabyMetroid:
     LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0003 
     BNE .notSpinJumping 
-    LDA.W $0AF6 
-    CMP.W #$0200 
+    LDA.W $0AF6 : CMP.W #$0200 
     BPL .repelled 
 
 .notSpinJumping:
-    LDA.W $0FA8,X 
-    CMP.W #Function_BabyMetroid_LatchOntoSamus 
+    LDA.W $0FA8,X : CMP.W #Function_BabyMetroid_LatchOntoSamus 
     BEQ .latchedOntoSamus 
     CMP.W #Function_BabyMetroid_StareDownSamus 
     BNE .return 

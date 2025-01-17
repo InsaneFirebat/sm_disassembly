@@ -60,8 +60,7 @@ SendAPUData:
     LDA.W #$3000 : STA.L $000641 
 
 .retry:
-    LDA.W #$BBAA 
-    CMP.L $002140 
+    LDA.W #$BBAA : CMP.L $002140 
     BEQ .AABB ; Wait until [APU IO 0..1] = AAh BBh
     LDA.L $000641 
     DEC A 
@@ -360,8 +359,7 @@ CheckForNonCorruptSRAM:
     LDX.W #$000A 
 
 .nonCorruptLoop:
-    LDA.L $701FE0,X 
-    CMP.L Text_supermetroid,X 
+    LDA.L $701FE0,X : CMP.L Text_supermetroid,X 
     BNE .return ; If $70:1FE0..1FEB = 'supermetroid':
     DEX #2
     BPL .nonCorruptLoop 
@@ -785,8 +783,7 @@ NTSC_PAL_SRAM_MappingCheck:
 
 
 .region:
-    LDA.L ROM_HEADER_country&$00FFFF 
-    CMP.B #$00 ; If country code != Japan:
+    LDA.L ROM_HEADER_country&$00FFFF : CMP.B #$00 ; If country code != Japan:
     BEQ .japan 
     LDA.W $213F : BIT.B #$10 ; If PPU set to PAL:
     BEQ .failedRegion 
@@ -1146,8 +1143,7 @@ HandleFadingIn:
 Finalise_OAM:
     PHP 
     REP #$30 
-    LDA.W $0590 
-    CMP.W #$0200 
+    LDA.W $0590 : CMP.W #$0200 
     BPL .clearOAMStackPointer 
     LSR A 
     STA.B $12 
@@ -2409,8 +2405,7 @@ ReadControllerInput:
 .held2End:
     LDA.B $8D : STA.B $99 
     LDA.W $0617 : BNE .checkDebug 
-    LDA.B $8B 
-    CMP.W #$3030 
+    LDA.B $8B : CMP.W #$3030 
     BNE .checkDebug 
     STZ.W $05F5 
     JMP.W SoftReset 
@@ -3100,8 +3095,7 @@ HandleHUDTilemap_PausedAndRunning:
     SEP #$20 
     STZ.B $02 
     REP #$30 
-    LDA.W $09C0 
-    CMP.W #$0001 
+    LDA.W $09C0 : CMP.W #$0001 
     BNE .handleSamusHealth 
     LDY.W #Tilemap_HUD_autoReserve 
     LDA.W $09D6 : BNE .drawAutoReserve 
@@ -3116,8 +3110,7 @@ HandleHUDTilemap_PausedAndRunning:
     LDA.W $000A,Y : STA.L $7EC69A 
 
 .handleSamusHealth:
-    LDA.W $09C2 
-    CMP.W $0A06 
+    LDA.W $09C2 : CMP.W $0A06 
     BEQ .handleSamusMissiles 
     STA.W $0A06 
     LDA.W $09C2 : STA.W $4204 
@@ -3161,8 +3154,7 @@ HandleHUDTilemap_PausedAndRunning:
 .handleSamusMissiles:
     LDA.W #Tilemap_HUDDigits_ammo : STA.B $00 
     LDA.W $09C8 : BEQ .handleSuperMissiles 
-    LDA.W $09C6 
-    CMP.W $0A08 
+    LDA.W $09C6 : CMP.W $0A08 
     BEQ .handleSuperMissiles 
     STA.W $0A08 
     LDX.W #$0094 
@@ -3170,8 +3162,7 @@ HandleHUDTilemap_PausedAndRunning:
 
 .handleSuperMissiles:
     LDA.W $09CC : BEQ .handlePowerBombs 
-    LDA.W $09CA 
-    CMP.W $0A0A 
+    LDA.W $09CA : CMP.W $0A0A 
     BEQ .handlePowerBombs 
     STA.W $0A0A 
     LDX.W #$009C 
@@ -3186,16 +3177,14 @@ HandleHUDTilemap_PausedAndRunning:
 
 .handlePowerBombs:
     LDA.W $09D0 : BEQ .handleHighlighter 
-    LDA.W $09CE 
-    CMP.W $0A0C 
+    LDA.W $09CE : CMP.W $0A0C 
     BEQ .handleHighlighter 
     STA.W $0A0C 
     LDX.W #$00A2 
     JSR.W DrawTwoHUDDigits 
 
 .handleHighlighter:
-    LDA.W $09D2 
-    CMP.W $0A0E 
+    LDA.W $09D2 : CMP.W $0A0E 
     BEQ .handleAutoCancel 
     LDX.W #$1000 
     JSR.W ToggleHUDItemHighlight 
@@ -3208,8 +3197,7 @@ HandleHUDTilemap_PausedAndRunning:
     BEQ .handleAutoCancel 
     CMP.W #$0014 
     BEQ .handleAutoCancel 
-    LDA.W $0D32 
-    CMP.W #GrappleBeamFunction_Inactive 
+    LDA.W $0D32 : CMP.W #GrappleBeamFunction_Inactive 
     BNE .handleAutoCancel 
     LDA.W $0A78 : BNE .handleAutoCancel 
     LDA.W #$0039 : JSL.L QueueSound_Lib1_Max6 
@@ -3248,32 +3236,28 @@ ToggleHUDItemHighlight:
     ASL A 
     TAY 
     LDX.W .HUDItemOffsets,Y 
-    LDA.L $7EC608,X 
-    CMP.W #$2C0F 
+    LDA.L $7EC608,X : CMP.W #$2C0F 
     BEQ .topRightMiddle 
     AND.W #$E3FF 
     ORA.W $077C 
     STA.L $7EC608,X 
 
 .topRightMiddle:
-    LDA.L $7EC60A,X 
-    CMP.W #$2C0F 
+    LDA.L $7EC60A,X : CMP.W #$2C0F 
     BEQ .bottomLeft 
     AND.W #$E3FF 
     ORA.W $077C 
     STA.L $7EC60A,X 
 
 .bottomLeft:
-    LDA.L $7EC648,X 
-    CMP.W #$2C0F 
+    LDA.L $7EC648,X : CMP.W #$2C0F 
     BEQ .bottomRightMiddle 
     AND.W #$E3FF 
     ORA.W $077C 
     STA.L $7EC648,X 
 
 .bottomRightMiddle:
-    LDA.L $7EC64A,X 
-    CMP.W #$2C0F 
+    LDA.L $7EC64A,X : CMP.W #$2C0F 
     BEQ .checkY 
     AND.W #$E3FF 
     ORA.W $077C 
@@ -3286,16 +3270,14 @@ ToggleHUDItemHighlight:
 
 
 .topRight:
-    LDA.L $7EC60C,X 
-    CMP.W #$2C0F 
+    LDA.L $7EC60C,X : CMP.W #$2C0F 
     BEQ .bottomRight 
     AND.W #$E3FF 
     ORA.W $077C 
     STA.L $7EC60C,X 
 
 .bottomRight:
-    LDA.L $7EC64C,X 
-    CMP.W #$2C0F 
+    LDA.L $7EC64C,X : CMP.W #$2C0F 
     BEQ .return 
     AND.W #$E3FF 
     ORA.W $077C 
@@ -3390,8 +3372,7 @@ ProcessTimer_MotherBrainStart:
 ProcessTimer_InitialDelay:
     SEP #$20 
     INC.W $0948 
-    LDA.W $0948 
-    CMP.B #$10 
+    LDA.W $0948 : CMP.B #$10 
     BCC .return 
     INC.W $0943 
 
@@ -3403,8 +3384,7 @@ ProcessTimer_InitialDelay:
 ProcessTimer_RunningMovementDelayed:
     SEP #$20 
     INC.W $0948 
-    LDA.W $0948 
-    CMP.B #$60 
+    LDA.W $0948 : CMP.B #$60 
     BCC .return 
     STZ.W $0948 
     INC.W $0943 
@@ -3933,8 +3913,7 @@ UpdateBGGraphics_WhenScrolling:
     REP #$20 
     JSR.W Calculate_BGScroll_LayerPositionBlocks 
     LDX.W #$0000 
-    LDA.W $08F7 
-    CMP.W $08FF 
+    LDA.W $08F7 : CMP.W $08FF 
     BEQ .layer1HorizontalEnd 
     STA.W $08FF 
     BMI .updateLayer1 
@@ -3954,8 +3933,7 @@ UpdateBGGraphics_WhenScrolling:
     LSR A 
     BCS .layer2HorizontalEnd 
     LDX.W #$0000 
-    LDA.W $08FB 
-    CMP.W $0903 
+    LDA.W $08FB : CMP.W $0903 
     BEQ .layer2HorizontalEnd 
     STA.W $0903 
     BMI .updateLayer2 
@@ -3972,8 +3950,7 @@ UpdateBGGraphics_WhenScrolling:
 
 .layer2HorizontalEnd:
     LDX.W #$0001 
-    LDA.W $08F9 
-    CMP.W $0901 
+    LDA.W $08F9 : CMP.W $0901 
     BEQ .layer1VerticalEnd 
     STA.W $0901 
     BMI + 
@@ -3992,8 +3969,7 @@ UpdateBGGraphics_WhenScrolling:
     LSR A 
     BCS .return 
     LDX.W #$0001 
-    LDA.W $08FD 
-    CMP.W $0905 
+    LDA.W $08FD : CMP.W $0905 
     BEQ .return 
     STA.W $0905 
     BMI .finish 
@@ -4159,8 +4135,7 @@ HandleScrollZones_ScrollingRight:
     PHA : PLB 
     REP #$30 
     LDA.W $0911 : STA.W $0939 
-    LDA.W $0B0A 
-    CMP.W $0911 
+    LDA.W $0B0A : CMP.W $0911 
     BPL + 
     LDA.W $0B0A : STA.W $0911 
     STZ.W $090F 
@@ -4371,8 +4346,7 @@ HandleScrollZones_ScrollingDown:
     LDY.W #$001F 
 
   + STY.W $0933 
-    LDA.W $0B0E 
-    CMP.W $0915 
+    LDA.W $0B0E : CMP.W $0915 
     BPL + 
     LDA.W $0B0E : STA.W $0915 
     STZ.W $0913 

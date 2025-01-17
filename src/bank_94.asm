@@ -1288,8 +1288,7 @@ CLCRTS_948E81:
 
 
 SamusBlockCollisionReaction_SpikeBlock_BTS0_GenericSpike:
-    LDA.W $079F 
-    CMP.W #$0003 
+    LDA.W $079F : CMP.W #$0003 
     BNE .notWreckedShip 
     LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .return 
@@ -1992,8 +1991,7 @@ SamusBlockCollisionReaction_Horizontal_Door:
 
 
 .notAPointer:
-    LDA.W $0A1C 
-    CMP.W #$0009 
+    LDA.W $0A1C : CMP.W #$0009 
     BCS .gotoSolidShootableGrapple 
     LDA.W #$0001 : STA.W $0E16 
 
@@ -2020,8 +2018,7 @@ SamusBlockCollisionReaction_Vertical_Door:
 
 
 .notAPointer:
-    LDA.W $0A1C 
-    CMP.W #$0009 
+    LDA.W $0A1C : CMP.W #$0009 
     BCS .gotoSolidShootableGrapple 
     LDA.W #$0001 : STA.W $0E16 
 
@@ -2286,8 +2283,7 @@ SamusBlockCollisionDetection_Vertical_RightToLeft:
     BCS .returnCollision 
     DEX #2
     INC.B $1A 
-    LDA.B $1C 
-    CMP.B $1A 
+    LDA.B $1C : CMP.B $1A 
     BCS .loop 
     CLC 
     RTS 
@@ -2520,8 +2516,7 @@ CLCRTS_9497D8:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SomeKindOfUpwardsBoost_9497F2:
-    LDA.W $0B36 
-    CMP.W #$0001 
+    LDA.W $0B36 : CMP.W #$0001 
     BNE .down 
     LDA.W #$0000 : STA.W $0B32 
     LDA.W #$0002 : STA.W $0B34 
@@ -2554,8 +2549,7 @@ CLCRTS_949812:
     LDA.W #SamusXSpeedTable_InLavaAcid : STA.W $0A6C 
     STZ.W $0B32 
     STZ.W $0B34 
-    LDA.W $0B36 
-    CMP.W #$0001 
+    LDA.W $0B36 : CMP.W #$0001 
     BNE .down 
     LDA.W .data1,Y : STA.W $0B32 
     LDA.W .data2,Y : STA.W $0B34 
@@ -2646,8 +2640,7 @@ BlockInsideReaction_SpecialAir_Default:
 
 
 BlockInsideReaction_SpecialAir_BTS8_WSTreadmill_Right:
-    LDA.W $079F 
-    CMP.W #$0003 
+    LDA.W $079F : CMP.W #$0003 
     BNE .notWreckedShip 
     LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .return 
@@ -2663,8 +2656,7 @@ BlockInsideReaction_SpecialAir_BTS8_WSTreadmill_Right:
 
 
 BlockInsideReaction_SpecialAir_BTS9_WSTreadmill_Left:
-    LDA.W $079F 
-    CMP.W #$0003 
+    LDA.W $079F : CMP.W #$0003 
     BNE .notWreckedShip 
     LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .return 
@@ -2694,8 +2686,7 @@ BlockInsideReaction_SpecialAir_BTSB_LeftwardsTreadmill:
 
 
 BlockInsideReaction_SpecialAir_BTS46_ScrollPLMTrigger:
-    LDA.W $1E73 
-    CMP.W #$0001 
+    LDA.W $1E73 : CMP.W #$0001 
     BNE .return 
     LDA.W #PLMEntries_scrollPLMTrigger : JSL.L Spawn_PLM_to_CurrentBlockIndex 
 
@@ -3128,8 +3119,7 @@ BombAndPowerBombExplosionBlockCollisionHandling:
     PHX 
     JSR.W CalculateBlockAt_12_1E_1C_20 
     PLX 
-    LDA.W $0DD2 
-    CMP.W #$0002 
+    LDA.W $0DD2 : CMP.W #$0002 
     BEQ .bomb 
     JSR.W PowerBombExplosionBlockCollisionHandling 
     BRA .return 
@@ -3149,8 +3139,7 @@ BombExplosionBlockCollisionHandling:
     BNE .return 
     ORA.W #$0001 
     STA.W $0C18,X 
-    LDA.W $0DC4 
-    CMP.W #$FFFF 
+    LDA.W $0DC4 : CMP.W #$FFFF 
     BEQ .return 
     LDY.W #$0000 
     LDA.W $0DC4 
@@ -3934,8 +3923,7 @@ MoveBeamHorizontally_NoWaveBeam:
     LSR #4
     CLC : ADC.W $4216 : ASL A 
     TAX 
-    LDA.B $26 
-    CMP.W #$0010 
+    LDA.B $26 : CMP.W #$0010 
     BPL .noCollision 
     LDA.B $1D : AND.W #$00FF 
     CMP.W $07A9 
@@ -3995,8 +3983,7 @@ MoveBeamVertically_NoWaveBeam:
     LDA.W $0B64,X : SEC : SBC.W $0BB4,X : LSR #4
     CLC : ADC.W $4216 : ASL A 
     TAX 
-    LDA.B $26 
-    CMP.W #$0010 
+    LDA.B $26 : CMP.W #$0010 
     BPL .noCollision 
     LDA.B $1D : AND.W #$00FF 
     CMP.W $07AB 
@@ -4055,8 +4042,7 @@ MoveBeamHorizontally_WaveBeam:
     LSR #4
     CLC : ADC.W $4216 : ASL A 
     TAY 
-    LDA.B $26 
-    CMP.W #$0010 
+    LDA.B $26 : CMP.W #$0010 
     BPL .returnNoCollision 
     LDA.W $0B78,X 
     XBA 
@@ -4114,8 +4100,7 @@ MoveBeamVertically_WaveBeam:
     LDA.W $0B64,X : SEC : SBC.W $0BB4,X : LSR #4
     CLC : ADC.W $4216 : ASL A 
     TAY 
-    LDA.B $26 
-    CMP.W #$0010 
+    LDA.B $26 : CMP.W #$0010 
     BPL .returnNoCollision 
     LDA.W $0B64,X 
     XBA 
@@ -4355,8 +4340,7 @@ BombSpreadBlockCollisionDetection:
 
 
 .nonZeroTimer:
-    LDA.W $0DC4 
-    CMP.W #$FFFF 
+    LDA.W $0DC4 : CMP.W #$FFFF 
     BEQ .returnCollision 
     ASL A 
     TAX 
@@ -5038,8 +5022,7 @@ HandleGrappleBeamLengthChange:
     LDA.W $0CFB : AND.W #$00FF 
     ASL A 
     STA.W $0D82 
-    LDA.W $0CFE 
-    CMP.W $0D8C 
+    LDA.W $0CFE : CMP.W $0D8C 
     BEQ .decreasedToTargetLength 
 
 .decreaseLength:
@@ -5050,8 +5033,7 @@ HandleGrappleBeamLengthChange:
     JSR.W GrappleSwingCollisionReaction 
     BCS .collision 
     DEC.W $0D8A 
-    LDA.W $0D8A 
-    CMP.W $0D8C 
+    LDA.W $0D8A : CMP.W $0D8C 
     BNE .decreaseLength 
 
 .decreasedToTargetLength:
@@ -5080,8 +5062,7 @@ HandleGrappleBeamLengthChange:
     LDA.W $0CFB : AND.W #$00FF 
     ASL A 
     STA.W $0D82 
-    LDA.W $0CFE 
-    CMP.W $0D8C 
+    LDA.W $0CFE : CMP.W $0D8C 
     BEQ .increasedToTargetLength 
 
 .loopIncreaseLength:
@@ -5092,8 +5073,7 @@ HandleGrappleBeamLengthChange:
     JSR.W GrappleSwingCollisionReaction 
     BCS .collision 
     INC.W $0D8A 
-    LDA.W $0D8A 
-    CMP.W $0D8C 
+    LDA.W $0D8A : CMP.W $0D8C 
     BNE .loopIncreaseLength 
 
 .increasedToTargetLength:
@@ -5206,15 +5186,13 @@ HandleGrappleBeamSwingingMovement:
     ORA.W #$0080 
     STA.W $0CFA 
     STA.W $0CFC 
-    LDA.W $0D98 
-    CMP.W #$0006 
+    LDA.W $0D98 : CMP.W #$0006 
     BEQ ..noBounce 
     CMP.W #$0005 
     BNE ..bounce 
 
 ..noBounce:
-    LDA.W $0CFE 
-    CMP.W #$0008 
+    LDA.W $0CFE : CMP.W #$0008 
     BNE ..bounce 
     LDA.W #$8000 
     TSB.W $0D36 
@@ -5306,14 +5284,12 @@ HandleGrappleBeamSwingingMovement:
     ORA.W #$0080 
     STA.W $0CFA 
     STA.W $0CFC 
-    LDA.W $0D98 
-    CMP.W #$0006 
+    LDA.W $0D98 : CMP.W #$0006 
     BEQ + 
     CMP.W #$0005 
     BNE ..bounce 
 
-  + LDA.W $0CFE 
-    CMP.W #$0008 
+  + LDA.W $0CFE : CMP.W #$0008 
     BNE ..bounce 
     LDA.W #$8000 
     TSB.W $0D36 
@@ -5354,8 +5330,7 @@ HandleGrappleBeamSwingingMovement:
     EOR.W $0D26 
     BMI ..rising 
     INC.W $0D38 
-    LDA.W $0D38 
-    CMP.W #$0020 
+    LDA.W $0D38 : CMP.W #$0020 
     BNE ..lessThan20 
     LDA.W #GrappleBeamFunction_Dropped : STA.W $0D32 
 
@@ -5525,8 +5500,7 @@ DrawGrappleBeam:
     DEC.B $28 
     BPL .loopAnimations 
 
-  + LDA.W $0A1C 
-    CMP.W #$00B2 
+  + LDA.W $0A1C : CMP.W #$00B2 
     BEQ .connectedEnd 
     CMP.W #$00B3 
     BEQ .connectedEnd 

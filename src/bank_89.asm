@@ -3473,16 +3473,13 @@ RoomMainASM_CeresElevatorShaft:
     BPL .handleRotationMatrix 
     LDA.W #$0080 : CLC : ADC.W #$0010 : CMP.W $0AF6 
     BMI .handleRotationMatrix 
-    LDA.W $0AFA 
-    CMP.W #$0080 
+    LDA.W $0AFA : CMP.W #$0080 
     BPL .handleRotationMatrix 
-    LDA.W $0AFA 
-    CMP.W #$004B 
+    LDA.W $0AFA : CMP.W #$004B 
     BMI .handleRotationMatrix 
     LDA.W $0B2E : BNE .handleRotationMatrix 
     LDA.W $0B2C : BNE .handleRotationMatrix 
-    LDA.W $0998 
-    CMP.W #$0008 
+    LDA.W $0998 : CMP.W #$0008 
     BNE .handleRotationMatrix 
     LDA.W #$0002 : JSL.L Run_Samus_Command 
     STZ.W $0723 

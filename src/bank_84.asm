@@ -180,8 +180,7 @@ Load_Item_and_Room_Special_Xray_Blocks:
     LDX.W #$004E 
 
 .loopPLM:
-    LDA.W $1C37,X 
-    CMP.W #PreInstruction_PLM_GotoLinkInstructionIfTriggered 
+    LDA.W $1C37,X : CMP.W #PreInstruction_PLM_GotoLinkInstructionIfTriggered 
     BCC .next 
     PHX 
     LDA.W $1DC7,X : BMI .next 
@@ -1019,8 +1018,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_WaitUntil_Enemy0_IsDead_848A40:
     LDA.W $0F86 : AND.W #$0200 
     BNE .return 
-    LDA.W $0F78 
-    CMP.W #EnemyHeaders_Respawn 
+    LDA.W $0F78 : CMP.W #EnemyHeaders_Respawn 
     BEQ .return 
     PLA 
     LDA.W #$0001 : STA.L $7EDE1C,X 
@@ -1032,8 +1030,7 @@ UNUSED_Instruction_PLM_WaitUntil_Enemy0_IsDead_848A40:
 UNUSED_Instruction_PLM_WaitUntil_Enemy0_IsDead_848A59:
     LDA.W $0FC6 : AND.W #$0200 
     BNE .return 
-    LDA.W $0FB8 
-    CMP.W #EnemyHeaders_Respawn 
+    LDA.W $0FB8 : CMP.W #EnemyHeaders_Respawn 
     BEQ .return 
     PLA 
     LDA.W #$0001 : STA.L $7EDE1C,X 
@@ -1357,8 +1354,7 @@ Instruction_PLM_Activate_MapStation:
 
 Instruction_PLM_Activate_EnergyStation:
     PHX : PHY 
-    LDA.W $09C4 
-    CMP.W $09C2 
+    LDA.W $09C4 : CMP.W $09C2 
     BEQ .unlockSamus 
     LDA.W #$0015 : JSL.L MessageBox_Routine 
     LDA.W $09C4 : STA.W $09C2 
@@ -1371,8 +1367,7 @@ Instruction_PLM_Activate_EnergyStation:
 
 Instruction_PLM_Activate_MissileStation:
     PHX : PHY 
-    LDA.W $09C8 
-    CMP.W $09C6 
+    LDA.W $09C8 : CMP.W $09C6 
     BEQ .unlockSamus 
     LDA.W #$0016 : JSL.L MessageBox_Routine 
     LDA.W $09C8 : STA.W $09C6 
@@ -1513,8 +1508,7 @@ DrawPLM:
     AND.W #$7FFF 
     STA.B $14 
     STZ.B $1C 
-    LDA.B $20 
-    CMP.B $1A 
+    LDA.B $20 : CMP.B $1A 
     BMI .return8E2F 
     STA.B $1A 
     STZ.B $12 
@@ -4515,8 +4509,7 @@ InstList_PLM_EnergyStationLeftAccess_1:
     dw Instruction_PLM_Delete 
 
 Instruction_PLM_GotoY_EnableMovementIfSamusEnergyIsFull:
-    LDA.W $09C4 
-    CMP.W $09C2 
+    LDA.W $09C4 : CMP.W $09C2 
     BEQ .fullEnergy 
     INY #2
     RTS 
@@ -4587,8 +4580,7 @@ InstList_PLM_MissileStationLeftAccess_1:
     dw Instruction_PLM_Delete 
 
 Instruction_PLM_GotoY_EnableMovementIfSamusMissilesAreFull:
-    LDA.W $09C8 
-    CMP.W $09C6 
+    LDA.W $09C8 : CMP.W $09C6 
     BEQ .missilesFull 
     INY #2
     RTS 
@@ -4979,8 +4971,7 @@ Setup_MapStation:
 Setup_MapStationRightAccess:
     LDA.W $0B02 : AND.W #$000F 
     BNE .connected 
-    LDA.W $0A1C 
-    CMP.W #$008A 
+    LDA.W $0A1C : CMP.W #$008A 
     BNE .connected 
     LDA.W $0A1E : AND.W #$0004 
     BEQ .connected 
@@ -4999,8 +4990,7 @@ Setup_MapStationLeftAccess:
     LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0001 
     BNE .connected 
-    LDA.W $0A1C 
-    CMP.W #$0089 
+    LDA.W $0A1C : CMP.W #$0089 
     BNE .connected 
     LDA.W $0A1E : AND.W #$0008 
     BEQ .connected 
@@ -5046,13 +5036,11 @@ Setup_MissileStation:
 Setup_EnergyStationRightAccess:
     LDA.W $0B02 : AND.W #$000F 
     BNE .connected 
-    LDA.W $0A1C 
-    CMP.W #$008A 
+    LDA.W $0A1C : CMP.W #$008A 
     BNE .connected 
     LDA.W $0A1E : AND.W #$0004 
     BEQ .connected 
-    LDA.W $09C2 
-    CMP.W $09C4 
+    LDA.W $09C2 : CMP.W $09C4 
     BEQ .connected 
     LDA.W $1C87,Y 
     DEC #2
@@ -5069,13 +5057,11 @@ Setup_EnergyStationLeftAccess:
     LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0001 
     BNE .connected 
-    LDA.W $0A1C 
-    CMP.W #$0089 
+    LDA.W $0A1C : CMP.W #$0089 
     BNE .connected 
     LDA.W $0A1E : AND.W #$0008 
     BEQ .connected 
-    LDA.W $09C2 
-    CMP.W $09C4 
+    LDA.W $09C2 : CMP.W $09C4 
     BEQ .connected 
     LDA.W $1C87,Y 
     INC #2
@@ -5091,13 +5077,11 @@ Setup_EnergyStationLeftAccess:
 Setup_MissileStationRightAccess:
     LDA.W $0B02 : AND.W #$000F 
     BNE .connected 
-    LDA.W $0A1C 
-    CMP.W #$008A 
+    LDA.W $0A1C : CMP.W #$008A 
     BNE .connected 
     LDA.W $0A1E : AND.W #$0004 
     BEQ .connected 
-    LDA.W $09C6 
-    CMP.W $09C8 
+    LDA.W $09C6 : CMP.W $09C8 
     BEQ .connected 
     LDA.W $1C87,Y 
     DEC #2
@@ -5114,13 +5098,11 @@ Setup_MissileStationLeftAccess:
     LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0001 
     BNE .connected 
-    LDA.W $0A1C 
-    CMP.W #$0089 
+    LDA.W $0A1C : CMP.W #$0089 
     BNE .connected 
     LDA.W $0A1E : AND.W #$0008 
     BEQ .connected 
-    LDA.W $09C6 
-    CMP.W $09C8 
+    LDA.W $09C6 : CMP.W $09C8 
     BEQ .connected 
     LDA.W $1C87,Y 
     INC #2
@@ -5296,8 +5278,7 @@ InsideReaction_QuicksandSurface_SamusIsGrounded:
 
 
 InsideReaction_QuicksandSurface_SamusIsMovingUp:
-    LDA.W QuicksandSurface_InsideReaction_maxVelocity,Y 
-    CMP.W $0B2D 
+    LDA.W QuicksandSurface_InsideReaction_maxVelocity,Y : CMP.W $0B2D 
     BCS + 
     STZ.W $0B2C 
     STZ.W $0B2E 
@@ -5393,11 +5374,9 @@ CollisionReaction_QuicksandSurface_SamusIsGrounded:
 
 
 .up:
-    LDA.W $0A6E 
-    CMP.W #$0001 
+    LDA.W $0A6E : CMP.W #$0001 
     BEQ CollisionReaction_QuicksandSurface_QuicksandSpeedBoosting 
-    LDA.W QuicksandSurface_MaxSinkingSpeed,Y 
-    CMP.B $13 
+    LDA.W QuicksandSurface_MaxSinkingSpeed,Y : CMP.B $13 
     BCS + 
     STA.B $13 
 
@@ -5414,8 +5393,7 @@ ClearCarry_84B528:
 
 
 CollisionReaction_QuicksandSurface_SamusIsMovingDown:
-    LDA.W $0A6E 
-    CMP.W #$0001 
+    LDA.W $0A6E : CMP.W #$0001 
     BEQ CollisionReaction_QuicksandSurface_QuicksandSpeedBoosting 
     INC.W $1E71 
     CLC 
@@ -5479,8 +5457,7 @@ CreateBabyMetroidInvisibleWall:
 
 Setup_CollisionReaction_SaveStationTrigger:
     LDA.W $0592 : BNE .collisionReturn 
-    LDA.W $0A1C 
-    CMP.W #$0001 
+    LDA.W $0A1C : CMP.W #$0001 
     BEQ .standing 
     CMP.W #$0002 
     BNE .collisionReturn 
@@ -5962,8 +5939,7 @@ PLMEntries_crumbleKraidSpikeBlocks:
     dw InstList_PLM_CrumbleKraidSpikeBlocks_0 
 
 Setup_EnableSoundsIn20Frames_F0FramesIfCeres:
-    LDA.W $079F 
-    CMP.W #$0006 
+    LDA.W $079F : CMP.W #$0006 
     BNE .ceres 
     LDA.W #$0020 : BRA + 
 
@@ -6020,8 +5996,7 @@ PreInst_PLM_WakePLM_StartLavaquakeIfSpeedBoosterCollected:
 
 
 PreInst_PLM_WakePLM_StartFXMotionIfSamusIsFarEnoughLeft:
-    LDA.W #$0AE0 
-    CMP.W $0AF6 
+    LDA.W #$0AE0 : CMP.W $0AF6 
     BCC .return 
     LDA.W #$0001 : STA.W $1980 
     STA.L $7EDE1C,X 
@@ -6039,8 +6014,7 @@ PreInst_PLM_AdvanceLavaAsSamusMovesLeft_SetLavaquakeEvent:
     LDA.W .targetSamusXpos,Y : BMI .setLavaquake 
     CMP.W $0AF6 
     BCC .return 
-    LDA.W .maxFXYpos,Y 
-    CMP.W $1978 
+    LDA.W .maxFXYpos,Y : CMP.W $1978 
     BCS + 
     STA.W $1978 
 
@@ -6100,8 +6074,7 @@ PreInstruction_PLM_ShaktoolsRoom:
     LDA.W #$0101 : STA.L $7ECD22 
 
 .powerBombNotActive:
-    LDA.W #$0348 
-    CMP.W $0AF6 
+    LDA.W #$0348 : CMP.W $0AF6 
     BCS .return 
     LDA.W #$000D : JSL.L MarkEvent_inA 
     STZ.W $1C37,X 
@@ -6139,11 +6112,9 @@ PLMEntries_maridiaElevatube:
     dw InstList_PLM_MaridiaElevatube 
 
 WakePLMIfSamusIsBelowRightOfTarget:
-    LDA.B $12 
-    CMP.W $0AF6 
+    LDA.B $12 : CMP.W $0AF6 
     BCS .return 
-    LDA.B $14 
-    CMP.W $0AFA 
+    LDA.B $14 : CMP.W $0AFA 
     BCS .return 
     INC.W $1D27,X 
     INC.W $1D27,X 
@@ -6775,8 +6746,7 @@ PreInstruction_PLM_GotoLinkInstructionIfAreaTorizoIsDead:
 
 PreInst_PLM_GotoLinkInst_SetZebesAwakeEventIfEnemiesDead:
     PHY : PHX 
-    LDA.W $0E50 
-    CMP.W $0E52 
+    LDA.W $0E50 : CMP.W $0E52 
     BCC .playSFX 
     LDA.W #$0000 : JSL.L MarkEvent_inA 
     PLX : PLY 
@@ -8660,8 +8630,7 @@ InstList_PLM_BreakableGrappleBlock:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Setup_84CDC2:
-    LDA.W $0A1C 
-    CMP.W #$0081 
+    LDA.W $0A1C : CMP.W #$0081 
     BEQ .screwAttacking 
     CMP.W #$0082 
     BNE .deletePLM 
@@ -8686,8 +8655,7 @@ Setup_Collision_RespawningSpeedBoostBlock:
     LDA.W $0B3E : AND.W #$0F00 
     CMP.W #$0400 
     BEQ .speed 
-    LDA.W $0A1C 
-    CMP.W #$00C9 
+    LDA.W $0A1C : CMP.W #$00C9 
     BEQ .speed 
     CMP.W #$00CA 
     BEQ .speed 
@@ -8751,8 +8719,7 @@ Setup_Collision_RespawningBombBlock:
     LDA.W $0B3E : AND.W #$0F00 
     CMP.W #$0400 
     BEQ .screwOrSpeed 
-    LDA.W $0A1C 
-    CMP.W #$0081 
+    LDA.W $0A1C : CMP.W #$0081 
     BEQ .screwOrSpeed 
     CMP.W #$0082 
     BEQ .screwOrSpeed 
@@ -9255,8 +9222,7 @@ PreInstruction_DeletePLM_SpawnTriggerBlockIf_4_8_IsBlankAir:
     AND.W #$00FF 
     CLC : ADC.W $4216 : ASL A 
     TAX 
-    LDA.L $7F0002,X 
-    CMP.W #$00FF 
+    LDA.L $7F0002,X : CMP.W #$00FF 
     BNE .return 
     LDA.W #$B083 : JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
@@ -9277,8 +9243,7 @@ Setup_Reaction_LowerNorfairChozoHandTrigger:
     LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0003 
     BNE .return 
-    LDA.W $0A1C 
-    CMP.W #$001D 
+    LDA.W $0A1C : CMP.W #$001D 
     BEQ .react 
     CMP.W #$0079 
     BEQ .react 
@@ -9408,8 +9373,7 @@ InstList_PLM_UnusedMotherBrainsGlass_NoGlassState:
     dw Instruction_PLM_Delete 
 
 Instruction_PLM_GotoY_IfRoomArgGreaterThanY:
-    LDA.W $1DC7,X 
-    CMP.W $0000,Y 
+    LDA.W $1DC7,X : CMP.W $0000,Y 
     BCS .next 
     LDA.W $0002,Y 
     TAY 
@@ -9789,8 +9753,7 @@ Setup_Collision_WreckedShipChozoHandTrigger:
     LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0003 
     BNE .return 
-    LDA.W $0A1C 
-    CMP.W #$001D 
+    LDA.W $0A1C : CMP.W #$001D 
     BEQ .trigger 
     CMP.W #$0079 
     BEQ .trigger 
@@ -10392,8 +10355,7 @@ RTS_84DADD:
 
 
 PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg12:
-    LDA.W $0E50 
-    CMP.W $0E52 
+    LDA.W $0E50 : CMP.W $0E52 
     BCC .return 
     LDA.W #$0010 : JSL.L MarkEvent_inA 
 
@@ -10402,8 +10364,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg12:
 
 
 PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg14:
-    LDA.W $0E50 
-    CMP.W $0E52 
+    LDA.W $0E50 : CMP.W $0E52 
     BCC .return 
     LDA.W #$0011 : JSL.L MarkEvent_inA 
 
@@ -10412,8 +10373,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg14:
 
 
 PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg16:
-    LDA.W $0E50 
-    CMP.W $0E52 
+    LDA.W $0E50 : CMP.W $0E52 
     BCC .return 
     LDA.W #$0012 : JSL.L MarkEvent_inA 
 
@@ -10422,8 +10382,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg16:
 
 
 PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg18:
-    LDA.W $0E50 
-    CMP.W $0E52 
+    LDA.W $0E50 : CMP.W $0E52 
     BCC .return 
     LDA.W #$0013 : JSL.L MarkEvent_inA 
 
@@ -10994,8 +10953,7 @@ InstList_PLM_Callable_EmptyItemOrb_1:
     dw Instruction_PLM_Return 
 
 PreInstruction_PLM_WakePLMIfTriggered_WithDeadCodePBCheck:
-    LDA.W $1D77,X 
-    CMP.W #$0300 
+    LDA.W $1D77,X : CMP.W #$0300 
     BEQ .return 
     AND.W #$00FF 
     CMP.W #$00FF 

@@ -11045,8 +11045,7 @@ Setup_PaletteFXObject_OldMotherBrainFightBackgroundLights:
 
 
 PreInstruction_PaletteFXObject_DeleteIfIntroPage2IsActive:
-    LDA.W $1F51 
-    CMP.W #CinematicFunction_Intro_Page2 
+    LDA.W $1F51 : CMP.W #CinematicFunction_Intro_Page2 
     BNE .return 
     LDA.W #InstList_PaletteFXObject_Delete : STA.W $1EBD,X 
     LDA.W #$0001 : STA.W $1ECD,X 
@@ -11172,13 +11171,11 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     LDA.W $0A50 : ADC.W #$0000 : STA.W $0A50 
     LDA.W $05B6 : BIT.W #$0007 
     BNE + 
-    LDA.W #$0046 
-    CMP.W $09C2 
+    LDA.W #$0046 : CMP.W $09C2 
     BCS + 
     LDA.W #$002D : JSL.L QueueSound_Lib3_Max6 
 
-  + LDA.W $1EED 
-    CMP.W $1EEF 
+  + LDA.W $1EED : CMP.W $1EEF 
     BEQ .return 
     STA.W $1EEF 
     ASL A 
@@ -11654,8 +11651,7 @@ InstList_PaletteFXObject_Crateria1_3:
     dw InstList_PaletteFXObject_Crateria1_1 
 
 PreInst_PaletteFXObject_RestartCrateria1IfSamusIsntLowEnough:
-    LDA.W $0AFA 
-    CMP.W #$0380 
+    LDA.W $0AFA : CMP.W #$0380 
     BCS .return 
     LDA.W #$0001 : STA.W $1ECD,X 
     LDA.W #InstList_PaletteFXObject_Crateria1_1 : STA.W $1EBD,X 
@@ -11716,8 +11712,7 @@ UNUSED_InstList_PaletteFXObject_DarkLightning_3_8DED34:
     dw UNUSED_InstList_PaletteFXObject_DarkLightning_1_8DEC76 
 
 UNUSED_PreInst_PalFXObj_RestartDarkLightningIfSamus_8DED84:
-    LDA.W $0AFA 
-    CMP.W #$0380 
+    LDA.W $0AFA : CMP.W #$0380 
     BCS .return 
     LDA.W #$0001 : STA.W $1ECD,X 
     LDA.W #UNUSED_InstList_PaletteFXObject_DarkLightning_1_8DEC76 : STA.W $1EBD,X 

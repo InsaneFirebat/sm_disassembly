@@ -2348,8 +2348,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 .loop:
     LDX.W $0E26 
-    LDA.L $B40000,X 
-    CMP.W #$FFFF 
+    LDA.L $B40000,X : CMP.W #$FFFF 
     BEQ .endLoop 
     TAX 
     LDA.L $A0003E,X 
@@ -2400,8 +2399,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 .checkTerminator:
     LDA.W $07D1 : CLC : ADC.W $1864 : TAX 
-    LDA.L $B40000,X 
-    CMP.W #$FFFF 
+    LDA.L $B40000,X : CMP.W #$FFFF 
     BNE + 
     STZ.W $1864 
     LDX.W $07D1 
@@ -2572,8 +2570,7 @@ DebugHandler_10_EnemyDebugger_EnemyAllocationViewer:
 
 .loop:
     LDX.W $0E26 
-    LDA.L $B40000,X 
-    CMP.W #$FFFF 
+    LDA.L $B40000,X : CMP.W #$FFFF 
     BEQ .terminated 
     TAX 
     LDA.L $A00000,X 
@@ -2661,8 +2658,7 @@ DebugHandler_4_SpriteTilesViewer_FirstHalf:
 DebugHandler_3_SpriteTilesViewer_SecondHalf:
     LDA.W $05C5 : BIT.W #$0080 
     BEQ .noChange 
-    LDA.W $185A 
-    CMP.W #$0000 
+    LDA.W $185A : CMP.W #$0000 
     BNE + 
     LDA.W #$0200 : STA.W $185A 
     BRA .merge 
@@ -2905,13 +2901,11 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     JSL.L Debug_MoveEnemyWithDpad_QuarterPixelPerFrame 
 
   + LDX.W $1846 
-    LDA.W $0F7A,X 
-    CMP.W $0911 
+    LDA.W $0F7A,X : CMP.W $0911 
     BMI + 
     LDA.W $0911 : CLC : ADC.W #$0100 : CMP.W $0F7A,X 
     BMI + 
-    LDA.W $0F7E,X 
-    CMP.W $0915 
+    LDA.W $0F7E,X : CMP.W $0915 
     BMI + 
     LDA.W $0915 : CLC : ADC.W #$0100 : CMP.W $0F7E,X 
     BMI + 
@@ -6522,8 +6516,7 @@ HandleSpriteObjects:
     INC #4
     STA.L $7EEF78,X 
     TAX 
-    LDA.L $B40000,X 
-    CMP.W #$8000 
+    LDA.L $B40000,X : CMP.W #$8000 
     BPL .ASMInstruction 
     LDX.W $1844 
     STA.L $7EEFF8,X 

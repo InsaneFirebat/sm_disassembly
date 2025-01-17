@@ -77,8 +77,7 @@ LoadFromSRAM:
     CPY.W #$DE1C ; $7E
     BNE .loop 
     LDX.B $12 
-    LDA.B $14 
-    CMP.L $700000,X 
+    LDA.B $14 : CMP.L $700000,X 
     BNE .doubleCheck 
     EOR.W #$FFFF 
     CMP.L $700008,X 
@@ -87,8 +86,7 @@ LoadFromSRAM:
 
 
 .doubleCheck:
-    LDA.B $14 
-    CMP.L $701FF0,X 
+    LDA.B $14 : CMP.L $701FF0,X 
     BNE .corrupt 
     EOR.W #$FFFF 
     CMP.L $701FF8,X 
@@ -381,8 +379,7 @@ LoadMap:
     DEC.B $12 
     BNE .loopRoom 
     INC.B $16 
-    LDA.B $16 
-    CMP.W #$0006 
+    LDA.B $16 : CMP.W #$0006 
     BMI .loopArea 
     PLP : PLB 
     RTS 
@@ -420,8 +417,7 @@ SaveMap:
     DEC.B $16 
     BNE .loopRooms 
     INC.B $1A 
-    LDA.B $1A 
-    CMP.W #$0006 
+    LDA.B $1A : CMP.W #$0006 
     BMI .loopAreas 
     PLP : PLB 
     RTS 
@@ -1272,8 +1268,7 @@ LoadDebugGameOverMenuTilemap:
     LDY.W #$0000 
 
 .loop:
-    LDA.B [$00],Y 
-    CMP.W #$FFFF 
+    LDA.B [$00],Y : CMP.W #$FFFF 
     BEQ .return 
     STA.B $D0,X 
     INY #2
@@ -1493,8 +1488,7 @@ GameOverMenu_Index4_Main:
     RTS 
 
 
-  + LDA.L $7ED914 
-    CMP.W #$001F 
+  + LDA.L $7ED914 : CMP.W #$001F 
     BEQ + 
     INC.W $0727 
     LDA.W $0952 : JSL.L LoadFromSRAM 
@@ -2050,8 +2044,7 @@ FileSelectMenu_Index8_FileCopy_SelectSource:
 .select:
     REP #$30 
     LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
-    LDA.W $19B5 
-    CMP.W #$0003 
+    LDA.W $19B5 : CMP.W #$0003 
     BEQ + 
     STA.W $19B7 
     INC.W $0727 
@@ -2118,8 +2111,7 @@ Draw_FileCopy_SelectDestination_SaveFileInfo:
     JSR.W Draw_FileCopyClear_SaveSlotAInfo 
     LDA.W #$0001 : JSR.W LoadFromSRAM_external 
     LDX.W #$0400 
-    LDA.W $19B7 
-    CMP.W #$0001 
+    LDA.W $19B7 : CMP.W #$0001 
     BEQ + 
     LDX.W #$0000 
 
@@ -2128,8 +2120,7 @@ Draw_FileCopy_SelectDestination_SaveFileInfo:
     JSR.W Draw_FileCopyClear_SaveSlotBInfo 
     LDA.W #$0002 : JSR.W LoadFromSRAM_external 
     LDX.W #$0400 
-    LDA.W $19B7 
-    CMP.W #$0002 
+    LDA.W $19B7 : CMP.W #$0002 
     BEQ + 
     LDX.W #$0000 
 
@@ -2184,8 +2175,7 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
 
 .select:
     LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
-    LDA.W $19B5 
-    CMP.W #$0003 
+    LDA.W $19B5 : CMP.W #$0003 
     BEQ + 
     STA.W $19B9 
     INC.W $0727 
@@ -2273,11 +2263,9 @@ Draw_FileCopyClear_Confirmation_SaveFileInfo:
     JSR.W Draw_FileCopyClear_SaveSlotBInfo 
     LDA.W #$0002 : JSR.W LoadFromSRAM_external 
     LDX.W #$0000 
-    LDA.W $19B7 
-    CMP.W #$0002 
+    LDA.W $19B7 : CMP.W #$0002 
     BEQ + 
-    LDA.W $19B9 
-    CMP.W #$0002 
+    LDA.W $19B9 : CMP.W #$0002 
     BEQ + 
     LDX.W #$0400 
 
@@ -2438,8 +2426,7 @@ FileSelectMenu_IndexE_FileCopy_CopyCompleted:
     LDA.B $8F : BEQ .return 
     LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     INC.W $0727 
-    LDA.L $701FEC 
-    CMP.W #$0000 
+    LDA.L $701FEC : CMP.W #$0000 
     BMI .zero 
     CMP.W #$0003 
     BPL .zero 
@@ -2539,8 +2526,7 @@ FileSelectMenu_Index16_FileClear_SelectSlot:
 .select:
     REP #$30 
     LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
-    LDA.W $19B5 
-    CMP.W #$0003 
+    LDA.W $19B5 : CMP.W #$0003 
     BEQ .exit 
     STA.W $19B7 
     INC.W $0727 
@@ -2710,18 +2696,15 @@ FileSelectMenu_Index1F_MainToOptionsMenu_TurnSamusHelmet:
     JSR.W Draw_FileSelect_Slot_SamusHelmet 
     LDA.B $8F : BIT.W #$1080 
     BNE .advance 
-    LDA.W $199B 
-    CMP.W #$0007 
+    LDA.W $199B : CMP.W #$0007 
     BNE + 
     LDA.W $1991 : BEQ .advance 
 
-  + LDA.W $199D 
-    CMP.W #$0007 
+  + LDA.W $199D : CMP.W #$0007 
     BNE + 
     LDA.W $1993 : BEQ .advance 
 
-  + LDA.W $199F 
-    CMP.W #$0007 
+  + LDA.W $199F : CMP.W #$0007 
     BNE .return 
     LDA.W $1995 : BNE .return 
 
@@ -2852,8 +2835,7 @@ FileSelectMenu_Index1_TitleSequenceToMain_LoadBG2:
 
 FileSelectMenu_Index2_TitleSequenceToMain:
     REP #$30 
-    LDA.L $701FEC 
-    CMP.W #$0000 
+    LDA.L $701FEC : CMP.W #$0000 
     BMI + 
     CMP.W #$0003 
     BPL + 
@@ -3130,8 +3112,7 @@ FileSelectMenu_Index4_Main:
 
 
 .select:
-    LDA.W $0952 
-    CMP.W #$0003 
+    LDA.W $0952 : CMP.W #$0003 
     BMI + 
     JMP.W .fileOperation 
 
@@ -3352,8 +3333,7 @@ LoadInactiveAreaMapForegroundColors:
     TAY 
 
 LoadAreaMapForegroundColors:
-    LDA.W AreaSelectMap_ForegroundPaletteTable_data,Y 
-    CMP.W #$FFFF 
+    LDA.W AreaSelectMap_ForegroundPaletteTable_data,Y : CMP.W #$FFFF 
     BEQ .return 
     PHY : PHA 
     LDA.W AreaSelectMap_ForegroundPaletteTable_RAM,Y 
@@ -3771,8 +3751,7 @@ Select_FileSelectMap_Area:
     TXA 
     ASL #2
     TAY 
-    LDA.B [$00],Y 
-    CMP.W #$FFFE 
+    LDA.B [$00],Y : CMP.W #$FFFE 
     BEQ + 
     CMP.W #$FFFF 
     BNE .found 
@@ -3787,8 +3766,7 @@ Select_FileSelectMap_Area:
     TXA 
     ASL #2
     TAY 
-    LDA.B [$00],Y 
-    CMP.W #$FFFE 
+    LDA.B [$00],Y : CMP.W #$FFFE 
     BEQ + 
     CMP.W #$FFFF 
     BNE .found 
@@ -3857,8 +3835,7 @@ DrawAreaSelectMapLabels:
 
 .loopAreas:
     LDX.W #$0200 
-    LDA.B $1C 
-    CMP.W $0950 
+    LDA.B $1C : CMP.W $0950 
     BNE + 
     LDX.W #$0000 
 
@@ -3878,8 +3855,7 @@ DrawAreaSelectMapLabels:
     LDA.W #$0010 : STA.B $1E 
 
 .loopSavePoints:
-    LDA.W $0000,X 
-    CMP.W #$FFFF 
+    LDA.W $0000,X : CMP.W #$FFFF 
     BEQ .PLBNext 
     LSR.B $24 
     BCC + 
@@ -3891,8 +3867,7 @@ DrawAreaSelectMapLabels:
     DEC.B $1E 
     BNE .loopSavePoints 
     LDA.W $05D1 : BEQ .PLBNext 
-    LDA.W $0000,X 
-    CMP.W #$FFFF 
+    LDA.W $0000,X : CMP.W #$FFFF 
     BEQ .PLBNext 
 
 .foundUsedSavePoint:
@@ -3916,8 +3891,7 @@ DrawAreaSelectMapLabels:
 
 .next:
     INC.B $1C 
-    LDA.B $1C 
-    CMP.W #$0006 
+    LDA.B $1C : CMP.W #$0006 
     BPL .return 
     JMP.W .loopAreas 
 
@@ -4282,8 +4256,7 @@ FileSelectMap_IndexA_RoomSelectMap:
     LDA.B [$00],Y : STA.B $12 
     INY #2
     LDA.B [$00],Y : STA.B $14 
-    LDA.W $078B 
-    CMP.W #$0010 
+    LDA.W $078B : CMP.W #$0010 
     BPL .debugSavePoints 
     BRA .savesElevators 
 
@@ -4294,24 +4267,21 @@ FileSelectMap_IndexA_RoomSelectMap:
     LDA.W $078B 
     ASL #2
     TAY 
-    LDA.B [$00],Y 
-    CMP.W #$FFFE 
+    LDA.B [$00],Y : CMP.W #$FFFE 
     BEQ .savesElevators 
     CMP.W #$FFFF 
     BNE .found 
 
 .savesElevators:
     INC.W $078B 
-    LDA.W $078B 
-    CMP.W #$0010 
+    LDA.W $078B : CMP.W #$0010 
     BMI .loopSavesElevators 
 
 .loopDebugSavePoints:
     LDA.W $078B 
     ASL #2
     TAY 
-    LDA.B [$00],Y 
-    CMP.W #$FFFF 
+    LDA.B [$00],Y : CMP.W #$FFFF 
     BEQ .finishedDebugSavePoints 
     CMP.W #$FFFE 
     BNE .found 
@@ -4334,8 +4304,7 @@ FileSelectMap_IndexA_RoomSelectMap:
     LDA.W $078B 
     ASL #2
     TAY 
-    LDA.B [$00],Y 
-    CMP.B $B1 
+    LDA.B [$00],Y : CMP.B $B1 
     BMI + 
     SEC : SBC.W #$0100 : CMP.B $B1 
     BMI .noXScroll 
@@ -4353,8 +4322,7 @@ FileSelectMap_IndexA_RoomSelectMap:
 
 .noXScroll:
     INY #2
-    LDA.B [$00],Y 
-    CMP.B $B3 
+    LDA.B [$00],Y : CMP.B $B3 
     BMI + 
     SEC : SBC.W #$00A1 : CMP.B $B3 
     BMI .return 
@@ -4404,8 +4372,7 @@ Handle_FileSelectMap_ScrollArrows:
 
 
 .cancelScrollDown:
-    LDA.W $05FD 
-    CMP.W MapScroll_ArrowData_mapScrollDirection_end 
+    LDA.W $05FD : CMP.W MapScroll_ArrowData_mapScrollDirection_end 
     BNE .return 
     STZ.W $05FB 
     STZ.W $05FD 
@@ -4709,8 +4676,7 @@ Load_Tilemap_in_Y_to_X_Coordinates:
     PHX 
 
 .loop:
-    LDA.W $0000,Y 
-    CMP.W #$FFFE 
+    LDA.W $0000,Y : CMP.W #$FFFE 
     BEQ + 
     CMP.W #$FFFF 
     BEQ .return 

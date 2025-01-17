@@ -498,8 +498,7 @@ Function_Boulder_Falling:
     ASL #3
     TAY 
     JSR.W MoveBoulderVertically 
-    LDA.W $0F7E,X 
-    CMP.L $7E780A,X 
+    LDA.W $0F7E,X : CMP.L $7E780A,X 
     BMI .notReachedTarget 
     LDA.L $7E780A,X : STA.W $0F7E,X 
     LDA.W #Function_Boulder_Bounce_Rising : STA.W $0FA8,X 
@@ -561,8 +560,7 @@ Function_Boulder_Bounce_Falling:
     JSL.L MoveEnemyDownBy_14_12 
     BCC .noCollision 
     LDA.W #$0042 : JSL.L QueueSound_Lib2_Max6 
-    LDA.W $0FB0,X 
-    CMP.W #$0002 
+    LDA.W $0FB0,X : CMP.W #$0002 
     BNE .right 
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     LDA.W $0F7A,X : STA.B $12 
@@ -648,11 +646,9 @@ Function_Boulder_Rolling:
     BMI + 
     LDA.W #$4000 : STA.W $0FAA,X 
 
-  + LDA.W $0F7E,X 
-    CMP.L $7E7806,X 
+  + LDA.W $0F7E,X : CMP.L $7E7806,X 
     BNE .return 
-    LDA.W $0F80,X 
-    CMP.L $7E7804,X 
+    LDA.W $0F80,X : CMP.L $7E7804,X 
     BNE .return 
     LDA.W #$0000 : STA.L $7E7802,X 
 
@@ -873,8 +869,7 @@ Function_Kzan_Falling:
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,X : STA.B $12 
     LDX.W $0E54 
     JSL.L MoveEnemyY_plus_12_14 
-    LDA.W $0F7E,X 
-    CMP.W $0FAE,X 
+    LDA.W $0F7E,X : CMP.W $0FAE,X 
     BMI .notReachedTarget 
     LDA.W #$0040 : STA.L $7E7806,X 
     LDA.W #Function_Kzan_WaitingToRise : STA.W $0FA8,X 
@@ -916,8 +911,7 @@ Function_Kzan_Rising:
     LDA.W #$8000 : STA.B $12 
     LDA.W #$0000 : STA.B $14 
     JSL.L MoveEnemyY_minus_12_14 
-    LDA.W $0F7E,X 
-    CMP.W $0FAC,X 
+    LDA.W $0F7E,X : CMP.W $0FAC,X 
     BPL .notReachedTarget 
     LDA.W #Function_Kzan_WaitingToFall : STA.W $0FA8,X 
     LDA.W $0FAC,X : STA.W $0F7E,X 
@@ -2282,8 +2276,7 @@ CheckExplosionCondition:
 
 PlayPuromiExplosionSFX:
     PHY : PHX 
-    LDA.B $1E 
-    CMP.W #$0002 
+    LDA.B $1E : CMP.W #$0002 
     BEQ .return 
     LDA.W #$005E : JSL.L QueueSound_Lib2_Max6 
 
@@ -3225,8 +3218,7 @@ InitAI_Ridley:
     STZ.W $1840 
     JSR.W InitializeTailParts 
     JSR.W InitializeRibAnimation 
-    LDA.W $079F 
-    CMP.W #$0002 
+    LDA.W $079F : CMP.W #$0002 
     BEQ .norfair 
     JMP.W .ceres 
 
@@ -3329,8 +3321,7 @@ MainAI_RidleyCeres:
 
 
 RNGChanceToChooseNewTailSwingDelay:
-    LDA.W $05E5 
-    CMP.W #$FF00 
+    LDA.W $05E5 : CMP.W #$FF00 
     BCC .return 
     LDA.W $05E5 ; >.<
     AND.W #$000F 
@@ -3430,8 +3421,7 @@ Function_Ridley_Startup_EyesAppear_Wait:
     LDA.W $0FB0 : BMI .return 
     TAY 
     INC.W $0FB2 
-    LDA.W $0FB2 
-    CMP.W #$0001 
+    LDA.W $0FB2 : CMP.W #$0001 
     BCC .return 
     STZ.W $0FB2 
     TYX 
@@ -3462,8 +3452,7 @@ Function_Ridley_Startup_EyesAppear_Wait:
 
 Function_Ridley_Startup_MainBodyAppears:
     INC.W $0FB2 
-    LDA.W $0FB2 
-    CMP.W #$0002 
+    LDA.W $0FB2 : CMP.W #$0002 
     BCC .return 
     STZ.W $0FB2 
     LDY.W $0FB0 
@@ -3495,8 +3484,7 @@ Function_Ridley_Startup_MainBodyAppears:
 
 
 .done:
-    LDA.W $079F 
-    CMP.W #$0002 
+    LDA.W $079F : CMP.W #$0002 
     BNE .notCeres 
     LDA.W #$0002 : STA.W $0F9A 
 
@@ -3516,8 +3504,7 @@ Function_Ridley_Startup_RidleyRoars:
     LDA.W #InstList_Ridley_FacingLeft_OpeningRoar : JSR.W SetRidleyInstList 
     STZ.W $0FB2 
     LDA.W #Function_Ridley_Startup_ColorBGInNorfair_RaiseAcid_MainAI : STA.W $0FA8 
-    LDA.W $079F 
-    CMP.W #$0002 
+    LDA.W $079F : CMP.W #$0002 
     BEQ Function_Ridley_Startup_RidleyRoars_return 
     LDA.W #$00FC : STA.W $0FB2 
 
@@ -3526,8 +3513,7 @@ Function_Ridley_Startup_RidleyRoars_return:
 
 
 Function_Ridley_Startup_ColorBGInNorfair_RaiseAcid_MainAI:
-    LDA.W $079F 
-    CMP.W #$0002 
+    LDA.W $079F : CMP.W #$0002 
     BNE .ceres 
     DEC.W $0FB2 
     BPL Function_Ridley_Startup_RidleyRoars_return 
@@ -3655,8 +3641,7 @@ AdjustRidleyBackgroundColorsIfNecessary:
 
 Function_RidleyCeres_StartupLiftoff_FacingLeft:
     LDA.W $0FAC : CLC : ADC.W #$FFF0 : STA.W $0FAC 
-    LDA.W $0F7E 
-    CMP.W #$0070 
+    LDA.W $0F7E : CMP.W #$0070 
     BMI .reachedTarget 
     RTS 
 
@@ -3666,8 +3651,7 @@ Function_RidleyCeres_StartupLiftoff_FacingLeft:
 
 Function_RidleyCeres_StartupLiftoff_FacingLeft_SlowingDown:
     LDA.W $0FAC : CLC : ADC.W #$0014 : STA.W $0FAC 
-    LDA.W $0F7E 
-    CMP.W #$0050 
+    LDA.W $0F7E : CMP.W #$0050 
     BPL .return 
     LDA.W #Function_RidleyCeres_MainAI : STA.W $0FA8 
     LDA.W #$0001 : STA.L $7E7802 
@@ -3677,11 +3661,9 @@ Function_RidleyCeres_StartupLiftoff_FacingLeft_SlowingDown:
 
 
 Function_RidleyCeres_MainAI:
-    LDA.L $7E781A 
-    CMP.W #$0064 
+    LDA.L $7E781A : CMP.W #$0064 
     BCS .shot100Times 
-    LDA.W $09C2 
-    CMP.W #$001E 
+    LDA.W $09C2 : CMP.W #$001E 
     BPL .SamusNotLowEnergy 
     LDA.W #$0000 : STA.L $7E7802 
     LDA.W #Function_RidleyCeres_FlyAwayToEndFight : STA.W $0FA8 
@@ -3767,8 +3749,7 @@ Function_RidleyCeres_StartFireballing:
     LDX.W #$0000 
     LDY.W #$0000 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
-    LDA.W $0F7E 
-    CMP.W #$0050 
+    LDA.W $0F7E : CMP.W #$0050 
     BMI .reachedTarget 
     CMP.W #$0080 
     BPL .return 
@@ -3862,8 +3843,7 @@ Function_RidleyCeres_FlyToSwoopSetupPosition:
     LDX.W #$0000 
     LDY.W #$0001 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
-    LDA.W $0F7E 
-    CMP.W #$0060 
+    LDA.W $0F7E : CMP.W #$0060 
     BMI .reachedTarget 
     RTS 
 
@@ -3941,8 +3921,7 @@ Function_RidleyCeres_FlyAwayToEndFight:
     LDX.W #$0000 
     LDY.W #$0001 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
-    LDA.W $0F7E 
-    CMP.W #$FF80 
+    LDA.W $0F7E : CMP.W #$FF80 
     BMI Function_RidleyCeres_FlyAwayToEndFight_reachedTarget 
 
 Function_RidleyCeres_FlyAwayToEndFight_return:
@@ -4064,8 +4043,7 @@ ExecuteCeresRidleyGetawayCutscene:
     LDA.W #$0040 : STA.W $1840 
 
 .dontPushSamus:
-    LDA.W CeresRidleyMode7GetawayBackgroundParameters,X 
-    CMP.W #$FFFF 
+    LDA.W CeresRidleyMode7GetawayBackgroundParameters,X : CMP.W #$FFFF 
     BEQ .done 
     STA.L $7E8020 
     LDA.L $7E802A : CLC : ADC.W CeresRidleyGetawayYVelocityTable,X : STA.L $7E802A 
@@ -4693,8 +4671,7 @@ GetNewRidleyAIScript:
 
 CheckIfRidleyBelowHalfHealth:
     LDY.W #.belowHalfHealth 
-    LDA.W $0F8C 
-    CMP.W #$2328 
+    LDA.W $0F8C : CMP.W #$2328 
     BPL .notBelowHalf 
     LDY.W #.aboveHalfHealth 
 
@@ -5020,8 +4997,7 @@ Function_Ridley_HoverWhileSamusIsSpinJumping:
     dw $0040,$0080,$00C0 
 
 FlyTowardTargetXPositionAndSamusYPosition:
-    LDA.W $0AFA 
-    CMP.W #$0160 
+    LDA.W $0AFA : CMP.W #$0160 
     BMI .minY160 
     LDA.W #$0160 
 
@@ -5062,8 +5038,7 @@ SetupRidleyTailForTailbouncing:
 
 
 Function_Ridley_FlyToTailbouncingStartPosition:
-    LDA.W $0F7E 
-    CMP.W #$0120 
+    LDA.W $0F7E : CMP.W #$0120 
     BMI .startTailbouncing 
     LDA.L $7E7820 
     ASL A 
@@ -5269,13 +5244,11 @@ CheckForTurnaroundDuringTailbounce_RandomlyChangeDirection:
 .storeXSpeed:
     LDA.W $0F7A : SEC : SBC.W $0AF6 : EOR.W $0FAA 
     BMI + 
-    LDA.W $0F7A 
-    CMP.L $7E8004 
+    LDA.W $0F7A : CMP.L $7E8004 
     BMI .crossedLeftBoundary 
     CMP.L $7E8006 
     BPL .crossedRightBoundary 
-    LDA.W $05E5 
-    CMP.W #$0555 
+    LDA.W $05E5 : CMP.W #$0555 
     BCC .return 
 
 .changeDirection:
@@ -5288,13 +5261,11 @@ CheckForTurnaroundDuringTailbounce_RandomlyChangeDirection:
     RTS 
 
 
-  + LDA.W $0F7A 
-    CMP.L $7E8004 
+  + LDA.W $0F7A : CMP.L $7E8004 
     BMI .crossedLeftBoundary 
     CMP.L $7E8006 
     BPL .crossedRightBoundary 
-    LDA.W $05E5 
-    CMP.W #$0555 
+    LDA.W $05E5 : CMP.W #$0555 
     BCC .changeDirection 
     RTS 
 
@@ -5443,8 +5414,7 @@ SetDisplacementForRidleyGrabbingSamus:
 
 
 CheckIfRidleyIsReadyToExplode:
-    LDA.L $7E800A 
-    CMP.W #$000A 
+    LDA.L $7E800A : CMP.W #$000A 
     BMI .notDead 
     JSL.L SetRidleyAsDead 
     LDA.W #Function_Ridley_FinalRoar : STA.W $0FA8 
@@ -5699,8 +5669,7 @@ CheckIfSpinJumpGrapplingDamageBoosting:
     db $80,$FF,$FF,$FF,$80,$80,$00,$80,$80,$00,$00,$80 
 
 CheckIfSamusIsBelowTailbounceThreshold:
-    LDA.W $0AFA 
-    CMP.W #$0160 
+    LDA.W $0AFA : CMP.W #$0160 
     BPL .aboveThreshold 
     CLC 
     RTS 
@@ -5730,15 +5699,13 @@ Function_Ridley_DodgingPowerbomb_MaybeHoldingSamus:
     LDA.W $0CEE : BEQ .powerBombActive 
     LDA.W #$0002 : STA.L $7E7802 
     LDY.W #$0050 
-    LDA.W $0CE2 
-    CMP.W #$0080 
+    LDA.W $0CE2 : CMP.W #$0080 
     BPL + 
     LDY.W #$00C0 
 
   + STY.B $12 
     LDY.W #$00C0 
-    LDA.W $0CE4 
-    CMP.W #$0100 
+    LDA.W $0CE4 : CMP.W #$0100 
     BPL + 
     LDY.W #$0180 
 
@@ -5765,8 +5732,7 @@ Function_RidleyCeres_InitializeBabyMetroidDrop:
     LDX.W #$0000 
     LDY.W #$0001 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
-    LDA.W $0F7A 
-    CMP.W #$00C0 
+    LDA.W $0F7A : CMP.W #$00C0 
     BMI .return 
     LDA.W #Function_RidleyCeres_DropBabyMetroid : STA.W $0FA8 
 
@@ -5781,8 +5747,7 @@ Function_RidleyCeres_DropBabyMetroid:
     LDX.W #$0000 
     LDY.W #$0001 
     JSR.W AccelerateCeresRidleyTowardDesiredXY 
-    LDA.W $0F7E 
-    CMP.W #$0020 
+    LDA.W $0F7E : CMP.W #$0020 
     BPL Function_RidleyCeres_PickupBabyMetroid_return 
     LDA.W #DropBabyMetroid : STA.L $7E8800 
     LDA.W #Function_RidleyCeres_PickupBabyMetroidDelay : STA.W $0FA8 
@@ -6349,8 +6314,7 @@ HandleTypewriterText:
     CMP.W #$0002 
     BMI .returnStillTyping 
     LDA.W #$0000 : STA.L $7E803E 
-    LDA.W $079F 
-    CMP.W #$0006 
+    LDA.W $079F : CMP.W #$0006 
     BNE .introTypewriterSFX 
     LDA.W #$0045 : JSL.L QueueSound_Lib2_Max3 
     BRA .returnStillTyping 
@@ -7584,8 +7548,7 @@ RidleyTailExtending:
 
 
 .reachedTargetDistanceFromPreviousTailPart:
-    LDA.W #$0800 
-    CMP.W $203A 
+    LDA.W #$0800 : CMP.W $203A 
     BPL + 
     LDA.W $203A : SEC : SBC.W #$0080 : STA.W $203A 
 
@@ -7603,8 +7566,7 @@ RidleyTailExtending:
 
 
 .reachedTargetDistanceFromPreviousTailPart2:
-    LDA.W #$0800 
-    CMP.W $204E 
+    LDA.W #$0800 : CMP.W $204E 
     BPL + 
     LDA.W $204E : SEC : SBC.W #$0080 : STA.W $204E 
 
@@ -7622,8 +7584,7 @@ RidleyTailExtending:
 
 
 .reachedTargetDistanceFromPreviousTailPart3:
-    LDA.W #$0800 
-    CMP.W $2062 
+    LDA.W #$0800 : CMP.W $2062 
     BPL + 
     LDA.W $2062 : SEC : SBC.W #$0080 : STA.W $2062 
 
@@ -7641,8 +7602,7 @@ RidleyTailExtending:
 
 
 .reachedTargetDistanceFromPreviousTailPart4:
-    LDA.W #$0800 
-    CMP.W $2076 
+    LDA.W #$0800 : CMP.W $2076 
     BPL + 
     LDA.W $2076 : SEC : SBC.W #$0080 : STA.W $2076 
 
@@ -7660,8 +7620,7 @@ RidleyTailExtending:
 
 
 .reachedTargetDistanceFromPreviousTailPart5:
-    LDA.W #$0800 
-    CMP.W $208A 
+    LDA.W #$0800 : CMP.W $208A 
     BPL + 
     LDA.W $208A : SEC : SBC.W #$0080 : STA.W $208A 
 
@@ -7679,8 +7638,7 @@ RidleyTailExtending:
 
 
 .reachedTargetDistanceFromPreviousTailPart6:
-    LDA.W #$0500 
-    CMP.W $209E 
+    LDA.W #$0500 : CMP.W $209E 
     BPL .return 
     LDA.W $209E : SEC : SBC.W #$0080 : STA.W $209E 
 
@@ -7706,8 +7664,7 @@ SetRidleyTailAngles:
 
 
 .tailPartMoving:
-    LDA.W $2022,X 
-    CMP.W $201E 
+    LDA.W $2022,X : CMP.W $201E 
     BCC - 
     CMP.W #$FFFF 
     BEQ + 
@@ -7820,8 +7777,7 @@ TargetAnAngleTowardMissileOrSamus:
     AND.W #$00FF 
     STA.B $12 
     LDA.W $7820 : BNE .facingRight 
-    LDA.B $12 
-    CMP.W #$0018 
+    LDA.B $12 : CMP.W #$0018 
     BCC + 
     CMP.W #$00E8 
     BCS + 
@@ -7837,8 +7793,7 @@ TargetAnAngleTowardMissileOrSamus:
 
 
 .facingRight:
-    LDA.B $12 
-    CMP.W #$0018 
+    LDA.B $12 : CMP.W #$0018 
     BCC + 
     CMP.W #$00E8 
     BCS + 
@@ -7906,8 +7861,7 @@ TargetAMissileOrSuperMissileIfAvailable:
 
 
 PlaySwishingSFXIfTailIsMovingFast:
-    LDA.L $7E2014 
-    CMP.W #$0008 
+    LDA.L $7E2014 : CMP.W #$0008 
     BMI .noSFX 
     LDA.L $7E781C 
     INC A 
@@ -8108,8 +8062,7 @@ HandleRidleyHealthBasedPalette_return:
 
 DetermineAndSetCeresRidleysColorPalette:
     LDA.L $7E7802 : BEQ HandleRidleyHealthBasedPalette_return 
-    LDA.L $7E781A 
-    CMP.W #$0032 
+    LDA.L $7E781A : CMP.W #$0032 
     BCC HandleRidleyHealthBasedPalette_return 
     LDY.W #$0000 
     CMP.W #$0046 
@@ -8496,8 +8449,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 UpdateRidleysUSwoopSpeedAndAngle:
-    LDA.B $16 
-    CMP.L $7E7816 
+    LDA.B $16 : CMP.L $7E7816 
     BEQ .checkAngle 
     BPL + 
     LDA.L $7E7816 : SEC : SBC.W #$0020 : CMP.B $16 
@@ -8605,8 +8557,7 @@ HandleMovementAndMainBodyWallCollisions:
 
 
 CeresRidleyRoomShaking:
-    LDA.W $079F 
-    CMP.W #$0002 
+    LDA.W $079F : CMP.W #$0002 
     BEQ .return 
     LDA.W $0FAA,X : BPL .movingRight 
     EOR.W #$FFFF 
@@ -8626,8 +8577,7 @@ CeresRidleyRoomShaking:
 .XSpeedGreater:
     CMP.W #$0280 
     BCC .return 
-    LDA.W $079F 
-    CMP.W #$0002 
+    LDA.W $079F : CMP.W #$0002 
     BEQ .norfair 
     LDA.W #$0021 : BRA + 
 
@@ -9409,8 +9359,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 EnemyShot_Ridley:
-    LDA.W $079F 
-    CMP.W #$0002 
+    LDA.W $079F : CMP.W #$0002 
     BEQ .NorfairRidley 
     LDY.W #$000D 
     LDA.W $0F9C : BEQ .oddFlashTimer 
@@ -9697,11 +9646,9 @@ Instruction_Ridley_ResetRoarFlag:
 
 
 Inst_Ridley_GotoYAndSetTimerTo8IfNotNorfairOrSamusLowEnergy:
-    LDA.W $079F 
-    CMP.W #$0002 
+    LDA.W $079F : CMP.W #$0002 
     BEQ Instruction_Ridley_SkipToNextInstruction 
-    LDA.W $09C2 
-    CMP.W #$001E 
+    LDA.W $09C2 : CMP.W #$001E 
     BPL Instruction_Ridley_SkipToNextInstruction 
     LDA.W #$0008 : STA.L $7E7800 
 
@@ -11913,8 +11860,7 @@ InitAI_CeresDoor:
     STZ.W $0FAA,X 
     JSR.W LoadRotatingElevatorRoomPreExplosioNDoorOverlayTilesIfNeeded 
     LDA.W $093F : BNE .escapeSequence 
-    LDA.W $0FB4,X 
-    CMP.W #$0003 
+    LDA.W $0FB4,X : CMP.W #$0003 
     BNE .notRidleysRoom 
     LDY.W #Palette_CeresDoor_BeforeEscape+2 
     LDX.W #$0142 
@@ -11947,8 +11893,7 @@ InitAI_CeresDoor:
     dw Function_CeresDoor_RidleyEscapeMode7Wall 
 
 LoadRotatingElevatorRoomPreExplosioNDoorOverlayTilesIfNeeded:
-    LDA.W $0FB4,X 
-    CMP.W #$0002 
+    LDA.W $0FB4,X : CMP.W #$0002 
     BNE .return 
     LDY.W $0330 
     LDA.W #$0400 : STA.W $00D0,Y 
@@ -11976,8 +11921,7 @@ Function_CeresDoor_HandleEarthquakeDuringEscapeInRidleysRoom:
     LDY.W #$001D ; fallthrough to HandleEarthquakeDuringEscape
 
 HandleEarthquakeDuringEscape:
-    LDA.W $093F 
-    CMP.W #$0002 
+    LDA.W $093F : CMP.W #$0002 
     BCC .return 
     LDA.W $1840 : BNE .return 
     LDA.W $05E5 : AND.W #$0FFF 
@@ -12013,8 +11957,7 @@ Function_CeresDoor_RidleyEscapeMode7Wall:
 
 Function_CeresDoor_RotatingElevatorRoom_Default:
     JSL.L Function_CeresDoor_RotatingElevatorRoom_ElevatorAnimations 
-    LDA.W $093F 
-    CMP.W #$0002 
+    LDA.W $093F : CMP.W #$0002 
     BCC .return 
     LDA.W #Function_CeresDoor_RotatingElevatorRoom_Rumbling_Explosions : STA.W $0FA8,X 
     LDA.W #$0030 : STA.W $0FAE,X 
@@ -12516,8 +12459,7 @@ Function_Zebetite_Active:
 .singlePart:
     JSR.W MarkZebetiteDestroyedEvent 
     LDX.W $0E54 
-    LDA.W $0FAE,X 
-    CMP.W #$0004 
+    LDA.W $0FAE,X : CMP.W #$0004 
     BPL .noMore 
     LDA.W #$0000 : JSL.L EnemyDeath 
     JSR.W SpawnTopZebetite 
@@ -12573,8 +12515,7 @@ SpawnBottomZebetite:
 SetZebetiteInstList:
     LDX.W $0E54 
     LDY.W #$0000 
-    LDA.W $0F8C,X 
-    CMP.W #$0320 
+    LDA.W $0F8C,X : CMP.W #$0320 
     BPL .indexInY 
     LDY.W #$0002 
     CMP.W #$0258 

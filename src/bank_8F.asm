@@ -8712,11 +8712,9 @@ MainASM_ScrollScreenRightInDachoraRoom:
     LDA.L $7ECD2B : AND.W #$00FF 
     CMP.W #$0002 
     BNE .return 
-    LDA.W $0915 
-    CMP.W #$0500 
+    LDA.W $0915 : CMP.W #$0500 
     BCS .return 
-    LDA.W $0911 
-    CMP.W #$0380 
+    LDA.W $0911 : CMP.W #$0380 
     BCS .return 
     ADC.W #$0003 : STA.W $0911 
 
@@ -9783,8 +9781,7 @@ PauseHook_Draygon:
 
 
 UnpauseHook_Draygon:
-    LDA.W $18B6 
-    CMP.W #$0008 
+    LDA.W $18B6 : CMP.W #$0008 
     BNE .return 
     LDA.W #$000C : STA.B $A7 
 
@@ -13661,8 +13658,7 @@ Use_StatePointer_inX:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomStateCheck_Door_8FE5EB:
-    LDA.W $0000,X 
-    CMP.W $078D 
+    LDA.W $0000,X : CMP.W $078D 
     BNE + 
     LDA.W $0002,X 
     TAX 
@@ -14067,8 +14063,7 @@ Execute_Room_Main_ASM:
 MainASM_CrocomiresRoomShaking:
     LDA.W $0F86 : BIT.W #$0200 
     BNE .return 
-    LDA.W $0FA8 
-    CMP.W #$0040 
+    LDA.W $0FA8 : CMP.W #$0040 
     BEQ .behindWallRumbling 
     LDA.W $0FAA : BIT.W #$0400 
     BEQ .branch 
@@ -14094,8 +14089,7 @@ MainASM_CrocomiresRoomShaking:
 
 
 .branch:
-    LDA.W $0FAC 
-    CMP.W #$0022 
+    LDA.W $0FAC : CMP.W #$0022 
     BNE .return 
     LDA.W $0FAE : BEQ .return 
     DEC A 

@@ -134,8 +134,7 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
     LDA.W #$001E : STA.W $1840 
 
 .setCooldown:
-    LDA.W $0CCC 
-    CMP.W #$0015 
+    LDA.W $0CCC : CMP.W #$0015 
     BMI .return 
     LDA.W #$0014 : STA.W $0CCC 
 
@@ -257,8 +256,7 @@ Instruction_SamusProjectile_GotoY:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_SamusProj_GotoY_BasedOnBombTimer_938240:
     REP #$30 
-    LDA.W $0000,Y 
-    CMP.W $0C7C,X 
+    LDA.W $0000,Y : CMP.W $0C7C,X 
     BPL .lessThanY 
     LDA.W $0004,Y 
     TAY 
@@ -14158,8 +14156,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawShinesparkWindupEffectSprite_93F5E2:
     PHP : PHB : PHK : PLB 
     REP #$30 
-    LDA.W $0A1C 
-    CMP.W #$00C7 
+    LDA.W $0A1C : CMP.W #$00C7 
     BEQ .verticalShinesparkWindup 
     CMP.W #$00C8 
     BNE .return 

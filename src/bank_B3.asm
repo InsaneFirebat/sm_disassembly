@@ -690,11 +690,9 @@ Function_Zeb_Zebbo_WaitForSamusToGetNear:
 Function_Zeb_Zebbo_Rising:
     LDA.W #$FFFF : CLC : ADC.W $0F80,X : STA.W $0F80,X 
     LDA.W #$FFFE : ADC.W $0F7E,X : STA.W $0F7E,X 
-    LDA.L $7E7800,X 
-    CMP.W $0F7E,X 
+    LDA.L $7E7800,X : CMP.W $0F7E,X 
     BMI .return 
-    LDA.W $0F7E,X 
-    CMP.W $0AFA 
+    LDA.W $0F7E,X : CMP.W $0AFA 
     BCC .targetHeight 
     BRA .return 
 
@@ -752,8 +750,7 @@ Function_Zeb_Zebbo_SpawnDelay:
 
 Set_Zeb_Zebbo_InstList:
     LDX.W $0E54 
-    LDA.W $0FB0,X 
-    CMP.L $7E7802,X 
+    LDA.W $0FB0,X : CMP.L $7E7802,X 
     BEQ .return 
     STA.L $7E7802,X 
     ASL A 
@@ -1051,17 +1048,13 @@ Function_Gamet_WaitUntilAllReady:
     LDX.W $0E54 
     LDA.W $0FB6,X : AND.W #$00FF 
     BEQ .return 
-    LDA.W $0FE8,X 
-    CMP.W #Function_Gamet_WaitUntilAllReady 
+    LDA.W $0FE8,X : CMP.W #Function_Gamet_WaitUntilAllReady 
     BNE .return 
-    LDA.W $1028,X 
-    CMP.W #Function_Gamet_WaitUntilAllReady 
+    LDA.W $1028,X : CMP.W #Function_Gamet_WaitUntilAllReady 
     BNE .return 
-    LDA.W $1068,X 
-    CMP.W #Function_Gamet_WaitUntilAllReady 
+    LDA.W $1068,X : CMP.W #Function_Gamet_WaitUntilAllReady 
     BNE .return 
-    LDA.W $10A8,X 
-    CMP.W #Function_Gamet_WaitUntilAllReady 
+    LDA.W $10A8,X : CMP.W #Function_Gamet_WaitUntilAllReady 
     BNE .return 
     LDA.W #Function_Gamet_WaitForSamusToGetNear : STA.W $0FA8,X 
 
@@ -1074,8 +1067,7 @@ Function_Gamet_WaitForSamusToGetNear:
     LDA.W $0FB6,X : AND.W #$00FF 
     JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
-    LDA.W $0F7E,X 
-    CMP.W $0AFA 
+    LDA.W $0F7E,X : CMP.W $0AFA 
     BMI .return 
     INC.W $0FAC,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -1273,8 +1265,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Function_Gamet_ShootDelay:
     LDX.W $0E54 
     INC.W $0FAC,X 
-    LDA.W $0FAC,X 
-    CMP.L $7E7804,X 
+    LDA.W $0FAC,X : CMP.L $7E7804,X 
     BMI .return 
     STZ.W $0FAC,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -1586,8 +1577,7 @@ Function_Geega_DippingLeft:
     JSR.W MoveGeegaLeft 
     LDA.W $0FB2,X : BNE .moveDown 
     JSR.W MoveGeegaUp 
-    LDA.W $0F7E,X 
-    CMP.L $7E7810,X 
+    LDA.W $0F7E,X : CMP.L $7E7810,X 
     BPL .return 
     LDA.W #$0001 : STA.L $7E780C,X 
     STA.W $0FB2,X 
@@ -1626,8 +1616,7 @@ Function_Geega_DippingRight:
     JSR.W MoveGeegaRight 
     LDA.W $0FB2,X : BNE .moveDown 
     JSR.W MoveGeegaUp 
-    LDA.L $7E7810,X 
-    CMP.W $0F7E,X 
+    LDA.L $7E7810,X : CMP.W $0F7E,X 
     BMI .return 
     LDA.W #$0001 : STA.L $7E780C,X 
     STA.W $0FB2,X 
@@ -2257,12 +2246,10 @@ BotwoonHealthThresholdsForPaletteChange:
 
 BotwoonHealthBasedPaletteHandling:
     LDX.W $0E54 
-    LDA.L $7E881E,X 
-    CMP.W #$0010 
+    LDA.L $7E881E,X : CMP.W #$0010 
     BEQ .return 
     TAY 
-    LDA.W $0F8C,X 
-    CMP.W BotwoonHealthThresholdsForPaletteChange,Y 
+    LDA.W $0F8C,X : CMP.W BotwoonHealthThresholdsForPaletteChange,Y 
     BPL .return 
     LDA.L $7E881E,X 
     ASL #4
@@ -2277,8 +2264,7 @@ BotwoonHealthBasedPaletteHandling:
     INC.B $12 
     INC.B $14 
     INC.B $14 
-    LDA.B $14 
-    CMP.W #$0200 
+    LDA.B $14 : CMP.W #$0200 
     BNE .loop 
     LDX.W $0E54 
     LDA.L $7E881E,X 
@@ -2538,8 +2524,7 @@ SpawnBotwoonItemDrops_StartCrumblingWall:
 
 
 Function_Botwoon_DeathSequence_CrumblingWall:
-    LDA.L $7E8006,X 
-    CMP.W #$00C0 
+    LDA.L $7E8006,X : CMP.W #$00C0 
     BPL .end 
     CMP.W #$0040 
     BPL .wall 
@@ -2607,8 +2592,7 @@ Function_Botwoon_Movement_DirectlyTowardTargetHole:
     INC A 
     CLC : ADC.W #$0100 : AND.W #$00FF 
     STA.L $7E8034,X 
-    LDA.L $7E8026,X 
-    CMP.L $7E8028,X 
+    LDA.L $7E8026,X : CMP.L $7E8028,X 
     BEQ .move 
     LDA.L $7E8026,X : STA.L $7E8028,X 
     LDA.W #$0001 : STA.L $7E8038,X 
@@ -2695,8 +2679,7 @@ UpdateBotwonBodyProjectilePositions:
     LDA.L $7E7800,X 
     TAY 
     LDX.W $0E54 
-    LDA.L $7E802C,X 
-    CMP.B $12 
+    LDA.L $7E802C,X : CMP.B $12 
     BNE .toggleVisibilityEnd 
     LDX.B $14 
     LDA.L $7E7820,X : EOR.W #$0001 : STA.L $7E7820,X 
@@ -2762,8 +2745,7 @@ SetBotwoonInstListTableIndices:
     LDA.W #$0100 : STA.B $18 
 
 .nothidden:
-    LDA.B $16 
-    CMP.W #$0018 
+    LDA.B $16 : CMP.W #$0018 
     BEQ .first 
     CMP.W #$0000 
     BNE .notZero 
@@ -2822,8 +2804,7 @@ Function_Botwoon_Head_MovingAround:
     LSR #5
     ASL A 
     TAY 
-    LDA.W InstListPointers_Botwoon,Y 
-    CMP.L $7E8036,X 
+    LDA.W InstListPointers_Botwoon,Y : CMP.L $7E8036,X 
     BEQ .noHeadUpdate 
     STA.W $0F92,X 
     STA.L $7E8036,X 
@@ -2864,8 +2845,7 @@ Function_Botwoon_Head_Spitting_SetAngleAndShow:
     CLC : ADC.W #$0100 : AND.W #$00FF 
     STA.L $7E803A,X 
     LDA.W #Function_Botwoon_Head_Spitting_Spawn5SpitProjectiles : STA.W $0FB2,X 
-    LDA.W $0FAE,X 
-    CMP.W #Function_Botwoon_Spitting 
+    LDA.W $0FAE,X : CMP.W #Function_Botwoon_Spitting 
     BEQ .gotoHeadFunction 
     LDA.W #Function_Botwoon_Head_Spitting_Spawn3SpitProjectiles : STA.W $0FB2,X 
 
@@ -2944,17 +2924,13 @@ Botwoon_vs_Hole_CollisionDetection:
 .loop:
     LDY.B $12 
     LDX.W $0E54 
-    LDA.W $0F7A,X 
-    CMP.W BotwoonHoleHitboxes_leftBoundary,Y 
+    LDA.W $0F7A,X : CMP.W BotwoonHoleHitboxes_leftBoundary,Y 
     BMI .notInHole 
-    LDA.W $0F7A,X 
-    CMP.W BotwoonHoleHitboxes_rightBoundary,Y 
+    LDA.W $0F7A,X : CMP.W BotwoonHoleHitboxes_rightBoundary,Y 
     BPL .notInHole 
-    LDA.W $0F7E,X 
-    CMP.W BotwoonHoleHitboxes_topBoundary,Y 
+    LDA.W $0F7E,X : CMP.W BotwoonHoleHitboxes_topBoundary,Y 
     BMI .notInHole 
-    LDA.W $0F7E,X 
-    CMP.W BotwoonHoleHitboxes_bottomBoundary,Y 
+    LDA.W $0F7E,X : CMP.W BotwoonHoleHitboxes_bottomBoundary,Y 
     BPL .notInHole 
     LDA.W #$0001 : STA.L $7E802A,X 
     LDA.L $7E8026,X : EOR.W #$0001 : STA.L $7E8026,X 
@@ -2991,8 +2967,7 @@ EnemyShot_Botwoon:
     LDX.W $0E54 
     LDA.W $0F8C,X : STA.L $7E8818,X 
     JSL.L CommonB3_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic 
-    LDA.L $7E8818,X 
-    CMP.W $0F8C,X 
+    LDA.L $7E8818,X : CMP.W $0F8C,X 
     BEQ .healthUnchanged 
     JSL.L RTL_B3957A ; >.<
 
@@ -4553,8 +4528,7 @@ Palette_EtecoonEscape:
     dw $31C9,$57FF,$42F7,$2610,$158C,$03FF,$0279,$0029 
 
 Instruction_EtecoonEscape_GotoY_IfAcidPositionLessThanCE:
-    LDA.W $1962 
-    CMP.W #$00CE 
+    LDA.W $1962 : CMP.W #$00CE 
     BCS .greaterThanCE 
     LDA.W $0000,Y 
     TAY 
@@ -5260,8 +5234,7 @@ InstList_DachoraEscape_RunningForEscape_2:
     dw InstList_DachoraEscape_RunningForEscape_2 
 
 InstList_DachoraEscape_GotoY_IfAcidLessThanCE:
-    LDA.W $1962 
-    CMP.W #$00CE 
+    LDA.W $1962 : CMP.W #$00CE 
     BCS .greaterThanCE 
     LDA.W $0000,Y 
     TAY 

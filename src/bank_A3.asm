@@ -515,8 +515,7 @@ MainAI_Waver:
 
 SetWaverInstList:
     LDX.W $0E54 
-    LDA.W $0FB2,X 
-    CMP.W $0FAC,X 
+    LDA.W $0FB2,X : CMP.W $0FAC,X 
     BEQ .return 
     STA.W $0FAC,X 
     ASL A 
@@ -768,8 +767,7 @@ Function_Metaree_LaunchedAttack:
     LDX.W $0E54 
     LDA.W $0F7E,X : CLC : ADC.W $0FB2,X : STA.W $0F7E,X 
     LDA.W #$0002 : STA.W $0E24 
-    LDA.W $0F7A,X 
-    CMP.W $0AF6 
+    LDA.W $0F7A,X : CMP.W $0AF6 
     BMI .steerLeft 
     LDA.W #$FFFE : STA.W $0E24 
 
@@ -793,8 +791,7 @@ Function_Metaree_Burrowing:
     LDX.W $0E54 
     DEC.W $0FA8,X 
     BEQ .delete 
-    LDA.W $0FA8,X 
-    CMP.W #$0008 
+    LDA.W $0FA8,X : CMP.W #$0008 
     BNE .timerNot8 
     LDX.W $0E54 
     LDY.W #EnemyProjectile_MetalSkreeParticles_DownRight 
@@ -823,8 +820,7 @@ Function_Metaree_Burrowing:
 
 SetMetareeInstListPointer:
     LDX.W $0E54 
-    LDA.W $0FAC,X 
-    CMP.W $0FAE,X 
+    LDA.W $0FAC,X : CMP.W $0FAE,X 
     BEQ .return 
     STA.W $0FAE,X 
     ASL A 
@@ -1191,11 +1187,9 @@ MainAI_Fireflea:
     CLC 
     LDA.W $0F80,X : ADC.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W $0F80,X 
     LDA.W $0F7E,X : ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W $0F7E,X 
-    LDA.W $0F7E,X 
-    CMP.L $7E7800,X 
+    LDA.W $0F7E,X : CMP.L $7E7800,X 
     BMI + 
-    LDA.W $0F7E,X 
-    CMP.L $7E7802,X 
+    LDA.W $0F7E,X : CMP.L $7E7802,X 
     BPL + 
     RTL 
 
@@ -1969,8 +1963,7 @@ InitAI_Elevator:
     LDA.W #InstList_Elevator : STA.W $0F92,X 
     ASL.W $0FB4,X 
     LDA.W $0F7E,X : STA.W $0FA8,X 
-    LDA.W $0E18 
-    CMP.W #$0002 
+    LDA.W $0E18 : CMP.W #$0002 
     BEQ .doorTransition 
     STZ.W $0E16 
     STZ.W $0E18 
@@ -3039,8 +3032,7 @@ MainAI_Tripper_Kamer2:
     TAX 
     JSR.W (FunctionPointers_Tripper_Kamer2_YMovement,X) 
     LDX.W $0E54 
-    LDA.L $7E7800,X 
-    CMP.L $7E780C,X 
+    LDA.L $7E7800,X : CMP.L $7E780C,X 
     BEQ .noChange 
     STZ.W $0FB2,X 
 
@@ -3079,13 +3071,11 @@ Function_Tripper_Kamer2_XMovement_1_MovingRight:
 
 Function_Tripper_Kamer2_YMovement_Rising:
     LDX.W $0E54 
-    LDA.W $0F7E,X 
-    CMP.W $0FA8,X 
+    LDA.W $0F7E,X : CMP.W $0FA8,X 
     BMI .notMoving 
     JSR.W SetPlatformInstList_VerticallyMoving 
     INC.W $0FB2,X 
-    LDA.W $0FB2,X 
-    CMP.L $7E780A,X 
+    LDA.W $0FB2,X : CMP.L $7E780A,X 
     BMI + 
     LDA.L $7E780A,X : STA.W $0FB2,X 
 
@@ -3106,12 +3096,10 @@ Function_Tripper_Kamer2_YMovement_Rising:
 
 Function_Tripper_Kamer2_YMovement_1_Sinking:
     LDX.W $0E54 
-    LDA.W $0F7E,X 
-    CMP.W $0FA8,X 
+    LDA.W $0F7E,X : CMP.W $0FA8,X 
     JSR.W RTS_A39E46 
     INC.W $0FB2,X 
-    LDA.W $0FB2,X 
-    CMP.L $7E780A,X 
+    LDA.W $0FB2,X : CMP.L $7E780A,X 
     BMI + 
     LDA.L $7E780A,X : STA.W $0FB2,X 
 
@@ -3525,8 +3513,7 @@ ActivateFunctionPointers_Sbug:
 
 SetSbugInstList:
     LDX.W $0E54 
-    LDA.L $7E8008,X 
-    CMP.L $7E800A,X 
+    LDA.L $7E8008,X : CMP.L $7E800A,X 
     BEQ .return 
     STA.L $7E800A,X 
     STA.W $0F92,X 
@@ -4277,8 +4264,7 @@ UNUSED_Function_Mochtroid_2_Shaking_A3A88F:
 
 Function_Mochtroid_1_TouchingSamus:
     LDX.W $0E54 
-    LDA.W $0F7A,X 
-    CMP.W $0AF6 
+    LDA.W $0F7A,X : CMP.W $0AF6 
     BEQ .centeredX 
     BPL .moveLeft 
     BMI .moveRight 
@@ -4305,8 +4291,7 @@ Function_Mochtroid_1_TouchingSamus:
     LDA.W $0FA8,X : STA.B $12 
     LDA.W $0FAA,X : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
-    LDA.W $0F7E,X 
-    CMP.W $0AFA 
+    LDA.W $0F7E,X : CMP.W $0AFA 
     BEQ .centeredY 
     BPL .moveUp 
     BMI .moveDown 
@@ -4359,14 +4344,12 @@ EnemyTouch_Mochtroid:
     LDA.W $0E44 : AND.W #$0007 
     CMP.W #$0007 
     BNE .skipSFX 
-    LDA.W $09C2 
-    CMP.W #$001E 
+    LDA.W $09C2 : CMP.W #$001E 
     BMI .skipSFX 
     LDA.W #$002D : JSL.L QueueSound_Lib3_Max6 
 
 .skipSFX:
-    LDA.L $7E8000,X 
-    CMP.W #$0050 
+    LDA.L $7E8000,X : CMP.W #$0050 
     BMI .return 
     LDA.W #$0000 : STA.L $7E8000,X 
 
@@ -5728,8 +5711,7 @@ Function_Zoa_Shooting:
 
 SetZoaInstList:
     LDX.W $0E54 
-    LDA.W $0FAE,X 
-    CMP.W $0FB0,X 
+    LDA.W $0FAE,X : CMP.W $0FB0,X 
     BEQ .return 
     STA.W $0FB0,X 
     ASL A 
@@ -6587,8 +6569,7 @@ BangAI_Core:
 
 
   + LDA.W #$0000 : STA.L $7E8004,X 
-    LDA.L $7E8000,X 
-    CMP.W #$0009 
+    LDA.L $7E8000,X : CMP.W #$0009 
     BNE + 
     LDA.W #$0010 : STA.W $0FA0,X 
     LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
@@ -6612,8 +6593,7 @@ BangAI_Core:
 FireChargedBeamAtSamus:
     STA.W $1872 
     LDX.W $0E54 
-    LDA.W $0CCE 
-    CMP.W #$0005 
+    LDA.W $0CCE : CMP.W #$0005 
     BPL .fail 
     LDA.W #$0000 
     TAY 
@@ -6746,8 +6726,7 @@ AccelerateBang:
     STA.L $7E7818,X 
     BPL .return 
     LDA.L $7E781A,X : STA.L $7E7818,X 
-    LDA.L $7E7814,X 
-    CMP.L $7E7816,X 
+    LDA.L $7E7814,X : CMP.L $7E7816,X 
     BPL .return 
     LDA.L $7E7812,X : CLC : ADC.W #$0016 : STA.L $7E7812,X 
     LDA.L $7E7814,X : CLC : ADC.L $7E7812,X : STA.L $7E7814,X 
@@ -6875,8 +6854,7 @@ StrugglingWithMultiWordNegation:
 
 SetBangInstList:
     LDX.W $0E54 
-    LDA.L $7E8000,X 
-    CMP.L $7E8002,X 
+    LDA.L $7E8000,X : CMP.L $7E8002,X 
     BEQ .return 
     STA.L $7E8002,X 
     ASL A 
@@ -6891,8 +6869,7 @@ SetBangInstList:
 
 EnemyShot_Bang:
     LDX.W $0E54 
-    LDA.W $0FB2,X 
-    CMP.W #Function_Bang_Movement_GetEnemyIndex 
+    LDA.W $0FB2,X : CMP.W #Function_Bang_Movement_GetEnemyIndex 
     BEQ .RTSFunction 
     LDA.W $18A6 
     ASL A 
@@ -6908,8 +6885,7 @@ EnemyShot_Bang:
     LDA.W #$0600 : STA.L $7E7814,X 
 
 .RTSFunction:
-    LDA.L $7E8000,X 
-    CMP.W #$0009 
+    LDA.L $7E8000,X : CMP.W #$0009 
     BNE .notIndex9 
     RTL 
 
@@ -6925,8 +6901,7 @@ EnemyShot_Bang:
     LDA.W $0C2C,Y : CLC : ADC.W $0FB0,X : STA.W $0FB0,X 
     LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
     LDX.W $0E54 
-    LDA.L $7E8000,X 
-    CMP.W #$0009 
+    LDA.L $7E8000,X : CMP.W #$0009 
     BEQ + 
     RTL 
 
@@ -8031,8 +8006,7 @@ Function_Skree_LaunchedAttack:
     LDX.W $0E54 
     LDA.W $0F7E,X : CLC : ADC.W #$0006 : STA.W $0F7E,X 
     LDA.W #$0001 : STA.W $0E24 
-    LDA.W $0F7A,X 
-    CMP.W $0AF6 
+    LDA.W $0F7A,X : CMP.W $0AF6 
     BMI .steerRight 
     LDA.W #$FFFF : STA.W $0E24 
 
@@ -8056,8 +8030,7 @@ Function_Skree_Burrowing:
     LDX.W $0E54 
     DEC.W $0FA8,X 
     BEQ .delete 
-    LDA.W $0FA8,X 
-    CMP.W #$0008 
+    LDA.W $0FA8,X : CMP.W #$0008 
     BNE .timerNot8 
     LDX.W $0E54 
     LDY.W #EnemyProjectile_SkreeParticles_DownRight 
@@ -8086,8 +8059,7 @@ Function_Skree_Burrowing:
 
 SetSkreeInstListPointer:
     LDX.W $0E54 
-    LDA.W $0FAC,X 
-    CMP.W $0FAE,X 
+    LDA.W $0FAC,X : CMP.W $0FAE,X 
     BEQ .return 
     STA.W $0FAE,X 
     ASL A 
@@ -8718,8 +8690,7 @@ Instruction_Yard_MoveByPixelsInY:
 
 
 Instruction_Yard_GoBack4BytesIfHidingOr50PercentChance:
-    LDA.L $7E7810,X 
-    CMP.W #$0002 
+    LDA.L $7E7810,X : CMP.W #$0002 
     BEQ .goBack 
     JSL.L GenerateRandomNumber 
     BIT.W #$0001 
@@ -8928,18 +8899,15 @@ MainAI_Yard:
 
 
 DropYardIfSuperMissileQuake:
-    LDA.L $7E7810,X 
-    CMP.W #$0003 
+    LDA.L $7E7810,X : CMP.W #$0003 
     BEQ .return 
     CMP.W #$0004 
     BEQ .return 
     CMP.W #$0005 
     BEQ .return 
-    LDA.W $1840 
-    CMP.W #$001E 
+    LDA.W $1840 : CMP.W #$001E 
     BNE .return 
-    LDA.W $183E 
-    CMP.W #$0014 
+    LDA.W $183E : CMP.W #$0014 
     BNE .return 
     JSR.W DropYard 
 
@@ -8948,8 +8916,7 @@ DropYardIfSuperMissileQuake:
 
 
 HandleYardHiding:
-    LDA.L $7E7810,X 
-    CMP.W #$0001 
+    LDA.L $7E7810,X : CMP.W #$0001 
     BEQ .return1 
     CMP.W #$0003 
     BEQ .return1 
@@ -8959,8 +8926,7 @@ HandleYardHiding:
     BEQ .return1 
     LDA.W $0F7E,X : SEC : SBC.W $0AFA : CMP.W #$FFA0 
     BMI .crawl 
-    LDA.W $0F7A,X 
-    CMP.W $0AF6 
+    LDA.W $0F7A,X : CMP.W $0AF6 
     BMI .leftOfSamus 
     LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0008 
@@ -8973,11 +8939,9 @@ HandleYardHiding:
     CMP.W #$0004 
     BNE .crawl 
 
-  + LDA.L $7E7810,X 
-    CMP.W #$0002 
+  + LDA.L $7E7810,X : CMP.W #$0002 
     BEQ .return0 
-    LDA.W $0FAE,X 
-    CMP.W #RTL_A3CF5F 
+    LDA.W $0FAE,X : CMP.W #RTL_A3CF5F 
     BEQ .crawl 
     STA.W $0F92,X 
     LDA.W #Spritemap_CommonA3_Nothing : STA.W $0F8E,X 
@@ -8997,15 +8961,12 @@ HandleYardHiding:
 
 
 DetermineIfYardHitboxIsSolidToSamus:
-    LDA.W $0FB2,X 
-    CMP.W #Function_Yard_Movement_Airborne 
+    LDA.W $0FB2,X : CMP.W #Function_Yard_Movement_Airborne 
     BEQ .notSolid 
-    LDA.L $7E7810,X 
-    CMP.W #$0001 
+    LDA.L $7E7810,X : CMP.W #$0001 
     BEQ .aggressivelyCrawling 
     LDA.W $0B3C : BNE .notSolid 
-    LDA.L $7E7810,X 
-    CMP.W #$0002 
+    LDA.L $7E7810,X : CMP.W #$0002 
     BEQ .solid 
     CMP.W #$0003 
     BEQ .notSolid 
@@ -9016,8 +8977,7 @@ DetermineIfYardHitboxIsSolidToSamus:
 
 .aggressivelyCrawling:
     LDA.W $0B3C : BNE .notSolid 
-    LDA.W $0FB2,X 
-    CMP.W #RTL_A3CF5F 
+    LDA.W $0FB2,X : CMP.W #RTL_A3CF5F 
     BEQ .solid 
     BRA .notSolid 
 
@@ -9037,8 +8997,7 @@ RTL_A3CF5F:
 
 
 Function_Yard_Movement_Hiding:
-    LDA.L $7E780E,X 
-    CMP.W #$0004 
+    LDA.L $7E780E,X : CMP.W #$0004 
     BCS .notMovingVertically 
     STZ.B $12 
     STZ.B $14 
@@ -9329,8 +9288,7 @@ SetYardInstList_DisableTurnTransition:
 
 DropYard:
     PHY 
-    LDA.L $7E7810,X 
-    CMP.W #$0003 
+    LDA.L $7E7810,X : CMP.W #$0003 
     BEQ .return 
     LDA.W #$0003 : STA.L $7E7810,X 
     LDA.W #Function_Yard_Movement_Airborne : STA.W $0FB2,X 
@@ -9360,8 +9318,7 @@ DropYard:
     dw InstList_Yard_Hidden_UpsideUp_MovingRight 
 
 Function_Yard_Movement_Airborne:
-    LDA.L $7E7810,X 
-    CMP.W #$0003 
+    LDA.L $7E7810,X : CMP.W #$0003 
     BEQ .XMovementEnd 
     LDA.L $7E7804,X : STA.B $12 
     LDA.L $7E7806,X : STA.B $14 
@@ -9443,8 +9400,7 @@ Function_Yard_Movement_Airborne:
     STA.W $0FB0,X 
     STA.L $7E7808,X 
     LDA.W #$0001 : STA.L $7E780A,X 
-    LDA.L $7E7810,X 
-    CMP.W #$0003 
+    LDA.L $7E7810,X : CMP.W #$0003 
     BEQ .dropped 
     LDA.W #$0001 : STA.L $7E7810,X 
     LDA.W #$0008 : STA.W $0FB4,X 
@@ -9492,21 +9448,18 @@ UNUSED_MakeYardFaceSamus_A3D315:
 
 
 .turningEnabled:
-    LDA.L $7E780E,X 
-    CMP.W #$0004 
+    LDA.L $7E780E,X : CMP.W #$0004 
     BCS MakeYardFaceSamusHorizontally 
     BIT.W #$0001 
     BNE .movingDown 
-    LDA.W $0F7E,X 
-    CMP.W $0AFA 
+    LDA.W $0F7E,X : CMP.W $0AFA 
     BCC TurnYardAround 
     CLC 
     RTL 
 
 
 .movingDown:
-    LDA.W $0F7E,X 
-    CMP.W $0AFA 
+    LDA.W $0F7E,X : CMP.W $0AFA 
     BCS TurnYardAround 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -9514,26 +9467,22 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 MakeYardFaceSamusHorizontally:
     LDA.W $0FAC,X : BNE .facingRight 
-    LDA.W $0F7A,X 
-    CMP.W $0AF6 
+    LDA.W $0F7A,X : CMP.W $0AF6 
     BCC TurnYardAround 
     CLC 
     RTL 
 
 
 .facingRight:
-    LDA.W $0F7A,X 
-    CMP.W $0AF6 
+    LDA.W $0F7A,X : CMP.W $0AF6 
     BCS TurnYardAround 
     RTL 
 
 
 TurnYardAround:
-    LDA.L $7E7810,X 
-    CMP.W #$0002 
+    LDA.L $7E7810,X : CMP.W #$0002 
     BEQ .failed 
-    LDA.W $0FB2,X 
-    CMP.W #RTL_A3CF5F 
+    LDA.W $0FB2,X : CMP.W #RTL_A3CF5F 
     BEQ .failed 
     LDA.L $7E780E,X 
     ASL A 
@@ -9562,11 +9511,9 @@ TurnYardAround:
 
 EnemyTouch_Yard:
     LDX.W $0E54 
-    LDA.L $7E7810,X 
-    CMP.W #$0001 
+    LDA.L $7E7810,X : CMP.W #$0001 
     BNE .notAggressiveCrawling 
-    LDA.W $0FB2,X 
-    CMP.W #RTL_A3CF5F 
+    LDA.W $0FB2,X : CMP.W #RTL_A3CF5F 
     BEQ .notAggressiveCrawling 
     JSR.W CheckIfSamusIsDirectingTowardsYard 
     BCC .notAggressiveCrawling 
@@ -9574,15 +9521,13 @@ EnemyTouch_Yard:
 
 
 .notAggressiveCrawling:
-    LDA.W $0FB2,X 
-    CMP.W #Function_Yard_Movement_Airborne 
+    LDA.W $0FB2,X : CMP.W #Function_Yard_Movement_Airborne 
     BEQ .kicked 
     LDA.W $0B3C : BEQ .notKicked 
 
 .kicked:
     JSR.W KickYardIntoAIr 
-    LDA.W $0FB2,X 
-    CMP.W #Function_Yard_Movement_Airborne 
+    LDA.W $0FB2,X : CMP.W #Function_Yard_Movement_Airborne 
     BNE .returnUpper 
     LDA.W #$0070 : JSL.L QueueSound_Lib2_Max3 
 
@@ -9591,18 +9536,15 @@ EnemyTouch_Yard:
 
 
 .notKicked:
-    LDA.W $0FB2,X 
-    CMP.W #RTL_A3CF5F 
+    LDA.W $0FB2,X : CMP.W #RTL_A3CF5F 
     BEQ .returnLower 
-    LDA.L $7E7810,X 
-    CMP.W #$0004 
+    LDA.L $7E7810,X : CMP.W #$0004 
     BEQ .returnLower 
     CMP.W #$0003 
     BEQ .returnLower 
     JSL.L CommonA3_NormalEnemyTouchAI 
     LDA.L $7E780C,X : STA.W $0FB4,X 
-    LDA.L $7E7810,X 
-    CMP.W #$0000 
+    LDA.L $7E7810,X : CMP.W #$0000 
     BEQ .setIdleCrawling 
     JSL.L TurnYardAround 
 
@@ -9683,8 +9625,7 @@ EnemyShot_Yard:
 
 
 .shot:
-    LDA.L $7E7810,X 
-    CMP.W #$0003 
+    LDA.L $7E7810,X : CMP.W #$0003 
     BEQ .playSFX 
     CMP.W #$0004 
     BEQ .playSFX 
@@ -10717,8 +10658,7 @@ EnemyShot_Reflec:
     ASL A 
     CLC : ADC.W $0E32 : TAX 
     STA.W $0E32 
-    LDA.W ReflectedDirectionTable,X 
-    CMP.W #$8000 
+    LDA.W ReflectedDirectionTable,X : CMP.W #$8000 
     BEQ + 
     LDA.W ReflectedDirectionTable,X : BMI .executeFunction 
     BRA .skipFunction 
@@ -11147,11 +11087,9 @@ MainAI_HZoomer:
 
 
 Function_HZoomer_CrawlingVertically:
-    LDA.W $1840 
-    CMP.W #$001E 
+    LDA.W $1840 : CMP.W #$001E 
     BNE .noQuake 
-    LDA.W $183E 
-    CMP.W #$0014 
+    LDA.W $183E : CMP.W #$0014 
     BNE .noQuake 
     LDA.W $0FB2,X : STA.L $7E7806,X 
     LDA.W #Function_Crawlers_Falling : STA.W $0FB2,X 
@@ -11249,11 +11187,9 @@ Function_HZoomer_CrawlingVertically:
 
 
 Function_HZoomer_CrawlingHorizontally:
-    LDA.W $1840 
-    CMP.W #$001E 
+    LDA.W $1840 : CMP.W #$001E 
     BNE .noQuake 
-    LDA.W $183E 
-    CMP.W #$0014 
+    LDA.W $183E : CMP.W #$0014 
     BNE .noQuake 
     LDA.W $0FB2,X : STA.L $7E7806,X 
     LDA.W #Function_Crawlers_Falling : STA.W $0FB2,X 
@@ -11848,8 +11784,7 @@ InitAI_Crawlers_Common:
     LDA.W #Spritemap_CommonA3_Nothing : STA.W $0F8E,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #.return : STA.W $0FB2,X 
-    LDA.W $0FB4,X 
-    CMP.W #$00FF 
+    LDA.W $0FB4,X : CMP.W #$00FF 
     BEQ .skipSpeedTable 
     ASL A 
     TAY 
@@ -11884,11 +11819,9 @@ MainAI_Crawlers:
 
 
 Function_Crawlers_CrawlingVertically:
-    LDA.W $1840 
-    CMP.W #$001E 
+    LDA.W $1840 : CMP.W #$001E 
     BNE .noQuake 
-    LDA.W $183E 
-    CMP.W #$0014 
+    LDA.W $183E : CMP.W #$0014 
     BNE .noQuake 
     LDA.W $0FB2,X : STA.L $7E7806,X 
     LDA.W #Function_Crawlers_Falling : STA.W $0FB2,X 
@@ -11980,8 +11913,7 @@ Function_Crawlers_Falling:
     LDA.L $7E7804,X : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .noCollision 
-    LDA.W $0FB4,X 
-    CMP.W #$00FF 
+    LDA.W $0FB4,X : CMP.W #$00FF 
     BNE .skipSpeed 
     LDA.W #$0080 : STA.W $0FA8,X 
     STA.W $0FAA,X 
@@ -11995,8 +11927,7 @@ Function_Crawlers_Falling:
 
 
 .noCollision:
-    LDA.L $7E7804,X 
-    CMP.W #$0004 
+    LDA.L $7E7804,X : CMP.W #$0004 
     BPL .fallSpeedCapped 
     LDA.L $7E7802,X : CLC : ADC.W #$8000 : STA.L $7E7802,X 
     LDA.L $7E7804,X : ADC.W #$0000 : STA.L $7E7804,X 
@@ -12011,11 +11942,9 @@ Function_Crawlers_Falling:
 
 
 Function_Crawlers_CrawlingHorizontally:
-    LDA.W $1840 
-    CMP.W #$001E 
+    LDA.W $1840 : CMP.W #$001E 
     BNE .noQuake 
-    LDA.W $183E 
-    CMP.W #$0014 
+    LDA.W $183E : CMP.W #$0014 
     BNE .noQuake 
     LDA.W $0FB2,X : STA.L $7E7806,X 
     LDA.W #Function_Crawlers_Falling : STA.W $0FB2,X 
@@ -12564,8 +12493,7 @@ EnemyTouch_Metroid:
     LDA.W $0AFA : SEC : SBC.W #$0008 : STA.W $0E32 
     LDA.W $0A6E : BEQ .normal 
     LDX.W $0E54 
-    LDA.W $0FB2,X 
-    CMP.W #$0002 
+    LDA.W $0FB2,X : CMP.W #$0002 
     BEQ .return 
     STZ.W $0FA8,X 
     STZ.W $0FAC,X 
@@ -12599,22 +12527,19 @@ EnemyTouch_Metroid:
 
 .normal:
     LDX.W $0E54 
-    LDA.W $0FB2,X 
-    CMP.W #$0003 
+    LDA.W $0FB2,X : CMP.W #$0003 
     BEQ + 
     LDA.W $0E44 : AND.W #$0007 
     CMP.W #$0007 
     BNE .skipSFX 
-    LDA.W $09C2 
-    CMP.W #$001E 
+    LDA.W $09C2 : CMP.W #$001E 
     BMI .skipSFX 
     LDA.W #$002D : JSL.L QueueSound_Lib3_Max6 
 
 .skipSFX:
     JSR.W DealMetroidContactDamageToSamus 
 
-  + LDA.W $0FB2,X 
-    CMP.W #$0002 
+  + LDA.W $0FB2,X : CMP.W #$0002 
     BCS .return 
     LDY.W #$0001 
     LDA.W $0F7A,X : SEC : SBC.W $0AF6 : BPL + 
@@ -12704,8 +12629,7 @@ EnemyShot_Metroid:
 
 
 .notFrozen:
-    LDA.W $0FB2,X 
-    CMP.W #$0002 
+    LDA.W $0FB2,X : CMP.W #$0002 
     BNE .notLatched 
     LDA.W $0C18,Y : AND.W #$0F00 
     CMP.W #$0500 

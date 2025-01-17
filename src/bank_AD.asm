@@ -598,8 +598,7 @@ SealMotherBrainsWallFunction_FakeDeath_Descent:
 
 
 MotherBrainHealthBasedPaletteHandling:
-    LDA.L $7E783E 
-    CMP.W #$0002 
+    LDA.L $7E783E : CMP.W #$0002 
     BCS .recovered 
     RTL 
 
@@ -608,8 +607,7 @@ MotherBrainHealthBasedPaletteHandling:
     PHB : PEA.W $AD00 
     PLB : PLB 
     LDY.W #$0000 
-    LDA.W $0FCC 
-    CMP.W #$2328 
+    LDA.W $0FCC : CMP.W #$2328 
     BCS .writePalette 
     LDY.W #$0002 
     CMP.W #$1518 

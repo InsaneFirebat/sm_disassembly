@@ -133,8 +133,7 @@ NormalSamusPoseInputHandler_Falling:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_AutoJumpFromCrouchFall_9180BE:
-    LDA.W $0A1C 
-    CMP.W #$0029 
+    LDA.W $0A1C : CMP.W #$0029 
     BEQ .fallingNotAiming 
     CMP.W #$002A 
     BNE .return 
@@ -364,8 +363,7 @@ DetermineProspectivePoseFromTransitionTable:
 
 
 .foundTransition:
-    LDA.W $0004,Y 
-    CMP.W $0A1C 
+    LDA.W $0004,Y : CMP.W $0A1C 
     BEQ .notFound 
     STA.W $0A28 
     STZ.W $0A56 
@@ -799,8 +797,7 @@ InstList_DemoInput_BabyMetroidDiscovery_End:
     dw Instruction_DemoInputObject_Delete 
 
 PreInstruction_DemoInput_BabyMetroidDiscovery_RunningLeft:
-    LDA.W $0AF6 
-    CMP.W #$00B2 
+    LDA.W $0AF6 : CMP.W #$00B2 
     BPL .return 
     LDA.W #PreInstruction_DemoInput_BabyMetroidDiscovery_StopAndLook : STA.W $0A7A 
     LDA.W #InstList_DemoInput_BabyMetroidDiscovery_StopAndLook_0 : STA.W $0A7E 
@@ -1129,8 +1126,7 @@ RTS_918A9A:
 
 
 PreInstruction_DemoInput_Normal:
-    LDA.W $0998 
-    CMP.W #$002C 
+    LDA.W $0998 : CMP.W #$002C 
     BNE .return 
     LDA.W #InstList_DemoInput_Delete : STA.W $0A7E 
     LDA.W #$0001 : STA.W $0A7C 
@@ -3908,27 +3904,23 @@ Calc_Xray_HDMADataTable_OffScreen:
     SEC : SBC.W #$0100 : STA.B $1C 
 
   + LDA.B $14 : BNE + 
-    LDA.B $12 
-    CMP.W #$0040 
+    LDA.B $12 : CMP.W #$0040 
     BEQ .strictlyHorizontal 
     CMP.W #$00C0 
     BEQ .strictlyHorizontal 
 
-  + LDA.B $1A 
-    CMP.W #$0080 
+  + LDA.B $1A : CMP.W #$0080 
     BPL + 
     CMP.W #$0040 
     BPL .bottomHalf 
-    LDA.B $1C 
-    CMP.W #$0040 
+    LDA.B $1C : CMP.W #$0040 
     BMI .topHalf 
     BRA .right 
 
 
   + CMP.W #$00C0 
     BPL .topHalf 
-    LDA.B $1C 
-    CMP.W #$00C0 
+    LDA.B $1C : CMP.W #$00C0 
     BMI .bottomHalf 
     BRA .left 
 
@@ -3957,16 +3949,14 @@ Calc_Xray_HDMADataTable_OffScreen:
     LDY.W #$0008 
 
 .merge:
-    LDA.B $1A 
-    CMP.W #$0080 
+    LDA.B $1A : CMP.W #$0080 
     BMI + 
     SEC : SBC.W #$0080 
 
   + ASL A 
     TAX 
     LDA.W AbsoluteTangentTable,X : STA.B $1E 
-    LDA.B $1C 
-    CMP.W #$0080 
+    LDA.B $1C : CMP.W #$0080 
     BMI + 
     SEC : SBC.W #$0080 
 
@@ -4173,15 +4163,13 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards:
     TAY 
     LDA.B $16 : STA.B $22 
     STA.B $24 
-    LDA.B $1A 
-    CMP.W #$00C0 
+    LDA.B $1A : CMP.W #$00C0 
     BPL + 
     LDX.W #$0000 
     BRA .merge 
 
 
-  + LDA.B $1C 
-    CMP.W #$00C0 
+  + LDA.B $1C : CMP.W #$00C0 
     BPL + 
     LDX.W #$0002 
     BRA .merge 
@@ -4521,15 +4509,13 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards:
     TAY 
     LDA.B $16 : STA.B $22 
     STA.B $24 
-    LDA.B $1C 
-    CMP.W #$0080 
+    LDA.B $1C : CMP.W #$0080 
     BPL + 
     LDX.W #$0000 
     BRA .merge 
 
 
-  + LDA.B $1A 
-    CMP.W #$0080 
+  + LDA.B $1A : CMP.W #$0080 
     BPL .index4 
     LDX.W #$0002 
     BRA .merge 
@@ -4879,8 +4865,7 @@ Calc_Xray_HDMADataTable_OffScreen_HorizontalLine:
     DEC A 
     ASL A 
     TAY 
-    LDA.B $12 
-    CMP.W #$0040 
+    LDA.B $12 : CMP.W #$0040 
     BNE + 
     LDA.W #$FF00 : STA.B [$00],Y 
     BRA .next 
@@ -4891,8 +4876,7 @@ Calc_Xray_HDMADataTable_OffScreen_HorizontalLine:
 .next:
     DEY #2
     .loopTop:
-    LDA.B [$00],Y 
-    CMP.W #$00FF 
+    LDA.B [$00],Y : CMP.W #$00FF 
     BEQ .loopBottom 
     LDA.W #$00FF : STA.B [$00],Y 
     DEY #2
@@ -4904,8 +4888,7 @@ Calc_Xray_HDMADataTable_OffScreen_HorizontalLine:
     TAY 
 
 .loop:
-    LDA.B [$00],Y 
-    CMP.W #$00FF 
+    LDA.B [$00],Y : CMP.W #$00FF 
     BEQ .return 
     LDA.W #$00FF : STA.B [$00],Y 
     INY #2
@@ -4935,27 +4918,23 @@ Calc_Xray_HDMADataTable_OnScreen:
     SEC : SBC.W #$0100 : STA.B $1C 
 
   + LDA.B $14 : BNE + 
-    LDA.B $12 
-    CMP.W #$0040 
+    LDA.B $12 : CMP.W #$0040 
     BEQ .strictlyHorizontal 
     CMP.W #$00C0 
     BEQ .strictlyHorizontal 
 
-  + LDA.B $1A 
-    CMP.W #$0080 
+  + LDA.B $1A : CMP.W #$0080 
     BPL + 
     CMP.W #$0040 
     BPL .bottomHalf 
-    LDA.B $1C 
-    CMP.W #$0040 
+    LDA.B $1C : CMP.W #$0040 
     BMI .topHalf 
     BRA .right 
 
 
   + CMP.W #$00C0 
     BPL .topHalf 
-    LDA.B $1C 
-    CMP.W #$00C0 
+    LDA.B $1C : CMP.W #$00C0 
     BMI .bottomHalf 
     BRA .left 
 
@@ -4984,16 +4963,14 @@ Calc_Xray_HDMADataTable_OnScreen:
     LDY.W #$0008 
 
 .merge:
-    LDA.B $1A 
-    CMP.W #$0080 
+    LDA.B $1A : CMP.W #$0080 
     BMI + 
     SEC : SBC.W #$0080 
 
   + ASL A 
     TAX 
     LDA.W AbsoluteTangentTable,X : STA.B $1E 
-    LDA.B $1C 
-    CMP.W #$0080 
+    LDA.B $1C : CMP.W #$0080 
     BMI + 
     SEC : SBC.W #$0080 
 
@@ -5133,15 +5110,13 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards:
     DEY #3
     LDA.B $16 : STA.B $22 
     STA.B $24 
-    LDA.B $1A 
-    CMP.W #$00C0 
+    LDA.B $1A : CMP.W #$00C0 
     BPL + 
     LDX.W #$0000 
     BRA .merge 
 
 
-  + LDA.B $1C 
-    CMP.W #$00C0 
+  + LDA.B $1C : CMP.W #$00C0 
     BPL + 
     LDX.W #$0002 
     BRA .merge 
@@ -5156,8 +5131,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards:
     TAY 
 
 .loop:
-    LDA.B [$00],Y 
-    CMP.W #$00FF 
+    LDA.B [$00],Y : CMP.W #$00FF 
     BEQ .return 
     LDA.W #$00FF : STA.B [$00],Y 
     INY #2
@@ -5366,15 +5340,13 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards:
     INY 
     LDA.B $16 : STA.B $22 
     STA.B $24 
-    LDA.B $1C 
-    CMP.W #$0080 
+    LDA.B $1C : CMP.W #$0080 
     BPL + 
     LDX.W #$0000 
     BRA .merge 
 
 
-  + LDA.B $1A 
-    CMP.W #$0080 
+  + LDA.B $1A : CMP.W #$0080 
     BPL + 
     LDX.W #$0002 
     BRA .merge 
@@ -5390,8 +5362,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards:
     TAY 
 
 .loop:
-    LDA.B [$00],Y 
-    CMP.W #$00FF 
+    LDA.B [$00],Y : CMP.W #$00FF 
     BEQ .return 
     LDA.W #$00FF : STA.B [$00],Y 
     DEY #2
@@ -5591,8 +5562,7 @@ Calc_Xray_HDMADataTable_OnScreen_HorizontalLine:
     DEC A 
     ASL A 
     TAY 
-    LDA.B $12 
-    CMP.W #$0040 
+    LDA.B $12 : CMP.W #$0040 
     BNE .not40 
     LDA.B $17 : ORA.W #$FF00 : STA.B [$00],Y 
     BRA + 
@@ -5924,8 +5894,7 @@ LoadRevealedBlockCommand:
     LDX.W #$0000 
 
 .loopBlockType:
-    LDA.W RevealedBlockTable_0_blockType,X 
-    CMP.W #$FFFF 
+    LDA.W RevealedBlockTable_0_blockType,X : CMP.W #$FFFF 
     BEQ .return 
     CMP.B $28 
     BEQ + 
@@ -5937,8 +5906,7 @@ LoadRevealedBlockCommand:
     LDY.W #$0000 
 
 .loopBTS:
-    LDA.B ($00),Y 
-    CMP.W #$FFFF 
+    LDA.B ($00),Y : CMP.W #$FFFF 
     BEQ .return 
     CMP.W #$FF00 
     BEQ + 
@@ -6043,15 +6011,13 @@ RevealedBlockExtensionLoop_Horizontal:
 
 
 Copy1x1BlockToXrayBG2TilemapIfScrollPLMTrigger:
-    LDA.W RevealedBlockTable_1_blockType 
-    CMP.B $30 
+    LDA.W RevealedBlockTable_1_blockType : CMP.B $30 
     BNE .gotoDone 
     LDA.W RevealedBlockTable_1_pointers : STA.B $00 
     LDY.W #$0000 
 
 .loop:
-    LDA.B ($00),Y 
-    CMP.W #$FFFF 
+    LDA.B ($00),Y : CMP.W #$FFFF 
     BEQ .gotoDone 
     CMP.W #$FF00 
     BEQ + 
@@ -6082,8 +6048,7 @@ RevealedBlockCommand_Copy1x1BlockToXrayBG2Tilemap:
 
 RevealedBlockCommand_Copy1x1BlockToXrayBG2TilemapIfBrinstar:
     INY #2
-    LDA.W $079F 
-    CMP.W #$0001 
+    LDA.W $079F : CMP.W #$0001 
     BNE .gotoDone 
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap 
 
@@ -6094,8 +6059,7 @@ RevealedBlockCommand_Copy1x1BlockToXrayBG2TilemapIfBrinstar:
 RevealedBlockCommand_Copy2x1BlockToXrayBG2Tilemap:
     INY #2
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap 
-    LDA.B $12 
-    CMP.W #$0001 
+    LDA.B $12 : CMP.W #$0001 
     BEQ .gotoDone 
     INY #2
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockRight 
@@ -6116,16 +6080,14 @@ RevealedBlockCommand_Copy2x2BlockToXrayBG2Tilemap:
     INY #2
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap 
     INY #2
-    LDA.B $12 
-    CMP.W #$0001 
+    LDA.B $12 : CMP.W #$0001 
     BEQ + 
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockRight 
 
   + INY #2
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockDown 
     INY #2
-    LDA.B $12 
-    CMP.W #$0001 
+    LDA.B $12 : CMP.W #$0001 
     BEQ .gotoDone 
     LDA.B ($03),Y 
     ASL #3
@@ -6312,16 +6274,13 @@ REP30_91D141:
     REP #$30 
 
 CheckIfXrayShouldShowAnyBlocks:
-    LDA.W $079B 
-    CMP.W #RoomHeader_Statues 
+    LDA.W $079B : CMP.W #RoomHeader_Statues 
     BEQ .return 
     CMP.W #RoomHeader_GlassTunnel 
     BEQ .return 
-    LDA.W $196E 
-    CMP.W #$0024 
+    LDA.W $196E : CMP.W #$0024 
     BEQ .return 
-    LDA.W $179C 
-    CMP.W #$0003 
+    LDA.W $179C : CMP.W #$0003 
     BEQ .return 
     CMP.W #$0006 
     BEQ .return 
@@ -6444,8 +6403,7 @@ PreInstruction_HDMAObject_XraySetup:
     REP #$30 
     PHX 
     LDX.W #$1000 
-    LDA.W $196E 
-    CMP.W #$0024 
+    LDA.W $196E : CMP.W #$0024 
     BEQ .fireflea 
     LDX.W #$2000 
     JSL.L CheckIfXrayShouldShowAnyBlocks 
@@ -7089,14 +7047,12 @@ HandleSamusPalette:
 
 HandleBeamChargePalettes:
     LDA.W $0B18 : BNE .chargedShotGlow 
-    LDA.W $0D32 
-    CMP.W #GrappleBeamFunction_Inactive 
+    LDA.W $0D32 : CMP.W #GrappleBeamFunction_Inactive 
     BNE .noChargeGlow 
     LDA.W $0CD0 : BEQ .noChargeGlow 
     CMP.W #$003C 
     BMI .noChargeGlow 
-    LDA.W $0A6E 
-    CMP.W #$0004 
+    LDA.W $0A6E : CMP.W #$0004 
     BNE .notPseudoScrew 
     LDX.W $0A74 
     LDA.W SamusPaletteTable_PseudoScrewAttack_pointers,X : STA.B $24 
@@ -7242,8 +7198,7 @@ SamusPaletteTable_HyperBeam:
     dw SamusPalettes_HyperBeam_0 
 
 HandleVisorPalette:
-    LDA.W $0ACC 
-    CMP.W #$0008 
+    LDA.W $0ACC : CMP.W #$0008 
     BNE + 
 
 .return:
@@ -7251,8 +7206,7 @@ HandleVisorPalette:
     RTS 
 
 
-  + LDA.W $1982 
-    CMP.W #$0028 
+  + LDA.W $1982 : CMP.W #$0028 
     BEQ + 
     CMP.W #$002A 
     BNE .normal 
@@ -7310,11 +7264,9 @@ HandleMiscSamusPalette:
     CMP.W #$0002 
     BNE .notHurtFrame2 
     LDA.W $1F51 : BNE .noSFX 
-    LDA.W $0A44 
-    CMP.W #RTL_90E8D9 
+    LDA.W $0A44 : CMP.W #RTL_90E8D9 
     BNE .notDrained 
-    LDA.W $0A1C 
-    CMP.W #$0054 
+    LDA.W $0A1C : CMP.W #$0054 
     BEQ .noSFX 
 
 .notDrained:
@@ -7360,16 +7312,14 @@ HandleMiscSamusPalette:
 
 
 .nonHurtSFX:
-    LDA.W $0D32 
-    CMP.W #GrappleBeamFunction_Inactive 
+    LDA.W $0D32 : CMP.W #GrappleBeamFunction_Inactive 
     BNE .grappleActive 
     LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0003 
     BEQ .spinning 
     CMP.W #$0014 
     BEQ .spinning 
-    LDA.W $0CD0 
-    CMP.W #$0010 
+    LDA.W $0CD0 : CMP.W #$0010 
     BMI .returnUpper 
     LDA.B $8B : BIT.W $09B2 
     BEQ .returnUpper 
@@ -7495,8 +7445,7 @@ Handle_ScrewAttack_SpeedBoosting_Palette:
 .wallJumping:
     LDA.W $09A2 : BIT.W #$0008 
     BEQ .returnWallJump 
-    LDA.W $0A96 
-    CMP.W #$0003 
+    LDA.W $0A96 : CMP.W #$0003 
     BMI .resetIndex 
 
 .merge:
@@ -7611,8 +7560,7 @@ Handle_ScrewAttack_SpeedBoosting_Palette:
     dw SamusPalettes_GravitySuit_SpeedBoosting_BabyMetroidDrain_3 
 
 HandleSpeedBoosterShinePalette:
-    LDA.W $0A68 
-    CMP.W #$00AA 
+    LDA.W $0A68 : CMP.W #$00AA 
     BNE .notAA 
     PHA 
     LDA.W #$000C : JSL.L QueueSound_Lib3_Max9 
@@ -7851,8 +7799,7 @@ SetCrystalFlashBubbleColors:
 HandleXrayPalette:
     LDA.W $0A80 : BMI .finish 
     BNE .paletteSet 
-    LDA.W $0A7A 
-    CMP.W #$0002 
+    LDA.W $0A7A : CMP.W #$0002 
     BPL .notWidening 
     DEC.W $0AD0 
     BEQ .timerExpired 
@@ -7862,8 +7809,7 @@ HandleXrayPalette:
     LDA.W #$0005 : STA.W $0AD0 
     LDX.W $0ACE 
     LDA.L SamusPalettes_Visor,X : STA.L $7EC188 
-    LDA.W $0ACE 
-    CMP.W #$0004 
+    LDA.W $0ACE : CMP.W #$0004 
     BPL .returnCarrySet 
     INC #2
     STA.W $0ACE 
@@ -8138,8 +8084,7 @@ Restore_A_Missiles_ToSamus:
     CMP.W $09C8 
     BMI .return 
     SEC : SBC.W $09C8 : STA.B $12 
-    LDA.W $09C8 
-    CMP.W #$0063 
+    LDA.W $09C8 : CMP.W #$0063 
     BMI .lessThan99 
     LDA.B $12 : CLC : ADC.W $09D8 : STA.W $09D8 
     CMP.W #$0063 
@@ -8204,11 +8149,9 @@ InitializeSamus:
     CPX.W #$0A02 
     BPL .loopClearSamusRAM 
     REP #$20 
-    LDA.W $0998 
-    CMP.W #$0028 
+    LDA.W $0998 : CMP.W #$0028 
     BEQ .demo 
-    LDA.L $7ED914 
-    CMP.W #$0022 
+    LDA.L $7ED914 : CMP.W #$0022 
     BNE .notZebesLanding 
     LDA.W #RTL_90E8CD : STA.W $0A42 
     LDA.W #SamusNewStateHandler_SamusIsLocked : STA.W $0A44 
@@ -8235,8 +8178,7 @@ InitializeSamus:
     LDA.W #$FFFF : STA.W $0A28 
     STA.W $0A2A 
     STA.W $0A2C 
-    LDA.W $079F 
-    CMP.W #$0006 
+    LDA.W $079F : CMP.W #$0006 
     BNE .notCeres 
     LDA.W #SamusTimerHackHandler_HandleTimer : STA.W $0A5A 
     BRA + 
@@ -8290,8 +8232,7 @@ InitializeSamus:
     STZ.W $18AA 
     STZ.W $0A48 
     STZ.W $0DE0 
-    LDA.W $0998 
-    CMP.W #$0028 
+    LDA.W $0998 : CMP.W #$0028 
     BNE .notDemo 
     JSR.W LoadDemoData 
 
@@ -8304,18 +8245,14 @@ InitializeSamus:
 XraySetup:
     PHP : PHB : PHK : PLB 
     REP #$30 
-    LDA.W $0CCC 
-    CMP.W #$0007 
+    LDA.W $0CCC : CMP.W #$0007 
     BNE + 
-    LDA.W $0CD2 
-    CMP.W #$0005 
+    LDA.W $0CD2 : CMP.W #$0005 
     BNE + 
-    LDA.W $0A66 
-    CMP.W #$0002 
+    LDA.W $0A66 : CMP.W #$0002 
     BEQ .returnCarryClear 
 
-  + LDA.W $0A1C 
-    CMP.W #$00A4 
+  + LDA.W $0A1C : CMP.W #$00A4 
     BMI .notLanding 
     CMP.W #$00A8 
     BMI .returnCarryClear 
@@ -8325,8 +8262,7 @@ XraySetup:
     BMI .returnCarryClear 
 
 .notLanding:
-    LDA.W $0998 
-    CMP.W #$0008 
+    LDA.W $0998 : CMP.W #$0008 
     BNE .returnCarryClear 
     LDA.W $0592 : BNE .returnCarryClear 
     LDA.W $0B2E : BNE .returnCarryClear 
@@ -8561,8 +8497,7 @@ MakeSamusFaceForward:
     LDA.W $0A22 : STA.W $0A26 
     LDA.W $0A1C : STA.W $0A20 
     LDA.W $0A1E : STA.W $0A22 
-    LDA.W $0B00 
-    CMP.W #$0018 
+    LDA.W $0B00 : CMP.W #$0018 
     BEQ .facingForwardRadius18 
     LDA.W $0AFA : SEC : SBC.W #$0003 : STA.W $0AFA 
     STA.W $0B14 
@@ -8686,8 +8621,7 @@ DrainedSamusController_1_PutSamusIntoStandingDrainedPose:
 
 
 DrainedSamusController_2_ReleaseSamusFromDrainedPose:
-    LDA.W $0A1C 
-    CMP.W #$00E8 
+    LDA.W $0A1C : CMP.W #$00E8 
     BEQ .crouchingFalling 
     CMP.W #$00E9 
     BEQ .crouchingFalling 
@@ -8778,8 +8712,7 @@ UpdateSamusPoseDueToChangeOfEquipment:
     STZ.W $0ACE 
     LDA.W SpeedBoostTimerResetValues : STA.W $0B3E 
 
-  + LDA.W $0D32 
-    CMP.W #GrappleBeamFunction_Inactive 
+  + LDA.W $0D32 : CMP.W #GrappleBeamFunction_Inactive 
     BEQ .checkCharge 
     LDA.W #$0002 : JSL.L Load_Beam_Palette_External 
     LDA.W #$0006 : JSL.L QueueSound_Lib1_Max6 
@@ -8800,15 +8733,13 @@ UpdateSamusPoseDueToChangeOfEquipment:
 
 
 .chargeEquipped:
-    LDA.W $0CD0 
-    CMP.W #$0010 
+    LDA.W $0CD0 : CMP.W #$0010 
     BMI .playedSFX 
     LDA.W #$0041 : JSL.L QueueSound_Lib1_Max6 
 
 .playedSFX:
     JSL.L LoadSamusSuitPalette 
-    LDA.W $09C2 
-    CMP.W #$001F 
+    LDA.W $09C2 : CMP.W #$001F 
     BPL .return 
     LDA.W #$0002 : JSL.L QueueSound_Lib3_Max6 
 
@@ -8860,8 +8791,7 @@ RTS_91E732:
 
 
 UpdateSamusPoseEquipment_Standing:
-    LDA.W $0A1C 
-    CMP.W #$0000 ; >.<
+    LDA.W $0A1C : CMP.W #$0000 ; >.<
     BEQ .facingForward 
     CMP.W #$009B 
     BEQ .suited 
@@ -8909,8 +8839,7 @@ UpdateSamusPoseEquipment_SpinJumping:
     LDA.W #$0104 : STA.W $0A22 
 
 .checkSpaceScrew:
-    LDA.W $0A1C 
-    CMP.W #$0081 
+    LDA.W $0A1C : CMP.W #$0081 
     BEQ .screwAttack 
     CMP.W #$0082 
     BEQ .screwAttack 
@@ -9237,8 +9166,7 @@ PSP_Landed_MorphBallGrounded:
     dw PSP_Landed_MorphBallGrounded_SecondBounce 
 
 PSP_Landed_MorphBallGrounded_NotBouncing:
-    LDA.W $0B2E 
-    CMP.W #$0003 
+    LDA.W $0B2E : CMP.W #$0003 
     BMI PSP_Landed_MorphBallGrounded_SecondBounce 
     LDA.W $0A1C : STA.W $0A28 
     CLC 
@@ -9304,8 +9232,7 @@ PSP_Landed_SpringBallGrounded:
     dw PSP_Landed_SpringBallGrounded_SecondBounce 
 
 PSP_Landed_SpringBallGrounded_NotBouncing:
-    LDA.W $0B2E 
-    CMP.W #$0003 
+    LDA.W $0B2E : CMP.W #$0003 
     BMI PSP_Landed_SpringBallGrounded_SecondBounce 
     LDA.W $0A1C : STA.W $0A28 
     CLC 
@@ -9362,8 +9289,7 @@ CheckIfProspectivePoseRunsIntoAWall:
     BEQ .ranIntoWall 
 
 .notKilledBySolidCollision:
-    LDA.W $0A28 
-    CMP.W #$FFFF 
+    LDA.W $0A28 : CMP.W #$FFFF 
     BEQ .returnPoseUnchanged 
     ASL #3
     TAX 
@@ -9438,8 +9364,7 @@ UpdateSamusPose:
     REP #$30 
     LDA.W $0A2C : BMI .notSuperSpecialProspectivePose 
     PHA 
-    LDA.W $0A32 
-    CMP.W #$0003 
+    LDA.W $0A32 : CMP.W #$0003 
     BEQ .animationFinished 
     CMP.W #$0001 
     BNE .superSpecialProspectivePose 
@@ -9448,8 +9373,7 @@ UpdateSamusPose:
 
 
 .animationFinished:
-    LDA.W $0A30 
-    CMP.W #$0009 
+    LDA.W $0A30 : CMP.W #$0009 
     BNE .superSpecialProspectivePose 
     PLA 
     BRA .notSuperSpecialProspectivePose 
@@ -9606,8 +9530,7 @@ RTS_91ECD9:
 
 
 ProspectivePoseCmd_7_StartTransitionAnimation:
-    LDA.W $0A1C 
-    CMP.W #$00DB 
+    LDA.W $0A1C : CMP.W #$00DB 
     BPL .aiming 
     SEC : SBC.W #$0035 : ASL A 
     TAX 
@@ -9702,8 +9625,7 @@ CLCRTS_91EDA4:
 
 
 DetermineKnockbackDirection_Falling:
-    LDA.W $0A5A 
-    CMP.W #UNUSED_SamusTimerHackHandler_SpecialFalling_90E41B 
+    LDA.W $0A5A : CMP.W #UNUSED_SamusTimerHackHandler_SpecialFalling_90E41B 
     BNE DetermineKnockbackDirection_Normal 
     CLC 
     RTS 
@@ -9812,8 +9734,7 @@ SpecialProspectivePoseCmd_3_StartBombJump:
     ORA.W #$0800 
     STA.W $0A56 
     LDA.W #SamusMovementHandler_BombJump_Start : STA.W $0A58 
-    LDA.W $0A60 
-    CMP.W #SamusPoseInputHandler_Demo 
+    LDA.W $0A60 : CMP.W #SamusPoseInputHandler_Demo 
     BEQ .return 
     LDA.W #RTS_90E90E : STA.W $0A60 
 
@@ -9974,8 +9895,7 @@ SolidVerticalCollision_HitCeiling:
 
 
 SolidVerticalCollision_Falling:
-    LDA.W $0B36 
-    CMP.W #$0001 
+    LDA.W $0B36 : CMP.W #$0001 
     BEQ .fallingUp 
     STZ.W $0B20 
     STZ.W $0B2C 
@@ -10031,8 +9951,7 @@ HandleLandingSoundEffectsAndGraphics:
 
 .spinJumping:
     LDA.W $1F51 : BNE .notEndingSFX 
-    LDA.W $0A20 
-    CMP.W #$0081 
+    LDA.W $0A20 : CMP.W #$0081 
     BEQ .screwAttack 
     CMP.W #$0082 
     BEQ .screwAttack 
@@ -10092,8 +10011,7 @@ DeleteLandingAtmosphericGraphics:
 
 HandleLandingGraphics_Crateria:
     LDA.W $1F51 : BNE DeleteLandingAtmosphericGraphics 
-    LDA.W $079D 
-    CMP.W #$001C 
+    LDA.W $079D : CMP.W #$001C 
     BEQ .crateriaSpacePirateShaft 
     TAX 
     CPX.W #$0010 
@@ -10119,15 +10037,13 @@ HandleLandingGraphics_Crateria:
     db $00 
 
 .wreckedShipEntrance:
-    LDA.W $0AFA 
-    CMP.W #$03B0 
+    LDA.W $0AFA : CMP.W #$03B0 
     BPL HandleLandingGraphics_Maridia_HandleLandingFootstepSplashes 
     BRA DeleteLandingAtmosphericGraphics 
 
 
 .landingSite:
-    LDA.W $196E 
-    CMP.W #$000A 
+    LDA.W $196E : CMP.W #$000A 
     BNE DeleteLandingAtmosphericGraphics 
 
 HandleLandingGraphics_Maridia_HandleLandingFootstepSplashes:
@@ -10189,13 +10105,11 @@ HandleLandingGraphics_Norfair_WreckedShip_HandleLandingDust:
 
 
 HandleLandingGraphics_Brinstar:
-    LDA.W $079D 
-    CMP.W #$0008 
+    LDA.W $079D : CMP.W #$0008 
     BEQ HandleLandingGraphics_Norfair_WreckedShip_HandleLandingDust ; fallthrough to HandleLandingGraphics_Tourian
 
 HandleLandingGraphics_Tourian:
-    LDA.W $079D 
-    CMP.W #$0005 
+    LDA.W $079D : CMP.W #$0005 
     BMI .greaterThan4 
     CMP.W #$0009 
     BMI HandleLandingGraphics_Norfair_WreckedShip_HandleLandingDust 
@@ -10221,8 +10135,7 @@ SolidVerticalCollision_Landed_SetSamusAsNotBouncing:
 
 
 SolidVerticalCollision_Landed_Grounded:
-    LDA.W $0A60 
-    CMP.W #SamusPoseInputHandler_Demo 
+    LDA.W $0A60 : CMP.W #SamusPoseInputHandler_Demo 
     BEQ .return 
     LDA.W #SamusPoseInputHandler_AutoJumpHack : STA.W $0A60 
 
@@ -10244,8 +10157,7 @@ SolidVerticalCollision_Landed_MorphBallGrounded:
     dw MorphBallBounce_MorphBall_SecondBounce 
 
 MorphBallBounce_MorphBall_NotBouncing:
-    LDA.W $0B2E 
-    CMP.W #$0003 
+    LDA.W $0B2E : CMP.W #$0003 
     BMI MorphBallBounce_MorphBall_SecondBounce 
     INC.W $0B20 
     LDA.W #$0001 : STA.W $0B36 
@@ -10304,8 +10216,7 @@ SolidVerticalCollision_Landed_SpringBallGrounded:
     dw MorphBallBounce_SpringBall_SecondBounce 
 
 MorphBallBounce_SpringBall_NotBouncing:
-    LDA.W $0B2E 
-    CMP.W #$0003 
+    LDA.W $0B2E : CMP.W #$0003 
     BMI MorphBallBounce_SpringBall_SecondBounce 
     LDA.W #$0601 : STA.W $0B20 
     LDA.W #$0001 : STA.W $0B36 
@@ -10388,8 +10299,7 @@ SuperSpecialProspectivePoseCmd_1_KnockbackFinished:
     LDA.W #$0001 : STA.W $0B22 
     LDA.W #$0002 : STA.W $0B36 
     JSL.L AlignSamusBottomPositionWithPreviousPose 
-    LDA.W $0A60 
-    CMP.W #SamusPoseInputHandler_Demo 
+    LDA.W $0A60 : CMP.W #SamusPoseInputHandler_Demo 
     BEQ .return 
     LDA.W #SamusPoseInputHandler_Normal : STA.W $0A60 
 
@@ -10400,8 +10310,7 @@ SuperSpecialProspectivePoseCmd_1_KnockbackFinished:
 SuperSpecialProspectivePoseCmd_2_ShinesparkFinished:
     JSL.L AlignSamusBottomPositionWithPreviousPose 
     LDA.W #SamusMovementHandler_Normal : STA.W $0A58 
-    LDA.W $0998 
-    CMP.W #$002A 
+    LDA.W $0998 : CMP.W #$002A 
     BEQ .demo 
     LDA.W #SamusPoseInputHandler_Normal : STA.W $0A60 
     RTS 
@@ -10620,8 +10529,7 @@ InitializeSamusPose_Running:
 
 .notRunning:
     LDA.W $0DF8 : BEQ .returnCarryClear 
-    LDA.W $0A1C 
-    CMP.W #$0045 
+    LDA.W $0A1C : CMP.W #$0045 
     BEQ .turnLeft 
     CMP.W #$0046 
     BEQ .turnRight 
@@ -10647,8 +10555,7 @@ InitializeSamusPose_Running:
 
 
 InitializeSamusPose_NormalJumping:
-    LDA.W $0A1C 
-    CMP.W #$004E 
+    LDA.W $0A1C : CMP.W #$004E 
     BEQ .shinesparkFacingLeft 
     CMP.W #$004D 
     BEQ .shinesparkFacingRight 
@@ -10694,15 +10601,13 @@ InitializeSamusPose_NormalJumping:
 .nonZeroExtraRunSpeed:
     LDA.W #$0002 : STA.W $0B4A 
 
-  + LDA.W $0A1C 
-    CMP.W #$0015 
+  + LDA.W $0A1C : CMP.W #$0015 
     BEQ .normalJump 
     CMP.W #$0016 
     BNE .noAnimationSkip 
 
 .normalJump:
-    LDA.W $0A20 
-    CMP.W #$0055 
+    LDA.W $0A20 : CMP.W #$0055 
     BEQ .skipArmCannonMovingUp 
     CMP.W #$0056 
     BNE .noAnimationSkip 
@@ -10726,15 +10631,13 @@ InitializeSamusPose_NormalJumping:
 
 
 InitializeSamusPose_Crouching:
-    LDA.W $0A1C 
-    CMP.W #$0085 
+    LDA.W $0A1C : CMP.W #$0085 
     BEQ .crouchingAimingUp 
     CMP.W #$0086 
     BNE .returnCarryClear 
 
 .crouchingAimingUp:
-    LDA.W $0A20 
-    CMP.W #$00F1 
+    LDA.W $0A20 : CMP.W #$00F1 
     BEQ .skipArmCannonMovingUp 
     CMP.W #$00F2 
     BNE .returnCarryClear 
@@ -10776,14 +10679,12 @@ InitializeSamusPose_SpinJumping:
     BEQ + 
     CMP.W #$0004 
     BNE .notTurningAround 
-    LDA.W $0A1E 
-    CMP.W #$0308 
+    LDA.W $0A1E : CMP.W #$0308 
     BEQ .speed 
     BRA .notTurningAround 
 
 
-  + LDA.W $0A1E 
-    CMP.W #$0304 
+  + LDA.W $0A1E : CMP.W #$0304 
     BNE .notTurningAround 
 
 .speed:
@@ -10901,8 +10802,7 @@ InitializeSamusPose_SpinJumping:
 
 
 InitializeSamusPose_TransitionPoses:
-    LDA.W $0A1C 
-    CMP.W #$00F1 
+    LDA.W $0A1C : CMP.W #$00F1 
     BPL .aiming 
     CMP.W #$00DB 
     BPL .unused 
@@ -11308,8 +11208,7 @@ InitializeSamusPose_WallJumping:
 
 
 InitializeSamusPose_Shinespark_CF_Drained_DamagedMB:
-    LDA.W $0A1C 
-    CMP.W #$00CF 
+    LDA.W $0A1C : CMP.W #$00CF 
     BPL .returnCarryClear 
     SEC : SBC.W #$00C9 : ASL A 
     TAX 
@@ -11374,8 +11273,7 @@ Set_Samus_AnimationFrame_if_PoseChanged:
 
 .merge:
     LDA.W $0A9A : BMI .return 
-    LDA.W $0A1C 
-    CMP.W $0A20 
+    LDA.W $0A1C : CMP.W $0A20 
     BEQ .return 
     LDA.W #$0000 : CLC : ADC.W $0A9A : STA.W $0A96 
     TAY 
@@ -11470,8 +11368,7 @@ HandleJumpTransition_WallJumping:
 
 
 HandleJumpTransition_SpringBall_InAir:
-    LDA.W $0A1C 
-    CMP.W #$007F 
+    LDA.W $0A1C : CMP.W #$007F 
     BNE .facingLeft 
     LDA.W $0A23 : AND.W #$00FF 
     CMP.W #$0011 
@@ -11494,11 +11391,9 @@ HandleJumpTransition_SpringBall_InAir:
 
 
 UNUSED_HandleJumpTransition_MovementTypeD_91FC42:
-    LDA.W $0A1C 
-    CMP.W #$0065 
+    LDA.W $0A1C : CMP.W #$0065 
     BNE .notPose65 
-    LDA.W $0A20 
-    CMP.W #$0064 
+    LDA.W $0A20 : CMP.W #$0064 
     BEQ .jump 
     BRA .return 
 
@@ -11506,8 +11401,7 @@ UNUSED_HandleJumpTransition_MovementTypeD_91FC42:
 .notPose65:
     CMP.W #$0066 
     BNE .return 
-    LDA.W $0A20 
-    CMP.W #$0063 
+    LDA.W $0A20 : CMP.W #$0063 
     BNE .return 
 
 .jump:
@@ -11518,8 +11412,7 @@ UNUSED_HandleJumpTransition_MovementTypeD_91FC42:
 
 
 HandleJumpTransition_NormalJumping:
-    LDA.W $0A1C 
-    CMP.W #$004B 
+    LDA.W $0A1C : CMP.W #$004B 
     BEQ .normalJump 
     CMP.W #$004C 
     BEQ .normalJump 
@@ -11529,8 +11422,7 @@ HandleJumpTransition_NormalJumping:
     BPL .return 
 
 .normalJump:
-    LDA.W $0A20 
-    CMP.W #$0027 
+    LDA.W $0A20 : CMP.W #$0027 
     BEQ .crouchJump 
     CMP.W #$0028 
     BNE .jump 
@@ -11617,17 +11509,14 @@ XraySamusPoseInputHandler:
 
 
 .turningOnGround:
-    LDA.W $0A96 
-    CMP.W #$0002 
+    LDA.W $0A96 : CMP.W #$0002 
     BNE .returnLower 
-    LDA.W $0A94 
-    CMP.W #$0001 
+    LDA.W $0A94 : CMP.W #$0001 
     BNE .returnLower 
     LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .turningFacingLeft 
-    LDA.W $0A1C 
-    CMP.W #$0026 
+    LDA.W $0A1C : CMP.W #$0026 
     BNE ..crouching 
     LDA.W #$00D5 : STA.W $0A1C 
     BRA .turningMerge 
@@ -11639,8 +11528,7 @@ XraySamusPoseInputHandler:
 
 
 .turningFacingLeft:
-    LDA.W $0A1C 
-    CMP.W #$0025 
+    LDA.W $0A1C : CMP.W #$0025 
     BNE ..XrayCrouching 
     LDA.W #$00D6 : STA.W $0A1C 
     BRA .turningMerge 
@@ -11905,8 +11793,7 @@ HandleBlockCollisionToPoseChange_NoCollision_Enemy_FromBelow:
 
 
 HandleCollisionFromBothSidesDueToPoseChange:
-    LDA.W $0B00 
-    CMP.W #$0008 
+    LDA.W $0B00 : CMP.W #$0008 
     BPL .notMorphBall 
     SEC 
     RTS 
@@ -11926,8 +11813,7 @@ HandleCollisionFromBothSidesDueToPoseChange:
     ASL #3
     TAX 
     LDA.L PoseDefinitions_YRadius,X : AND.W #$00FF : STA.B $12 
-    LDA.W $0B00 
-    CMP.B $12 
+    LDA.W $0B00 : CMP.B $12 
     BPL .returnCarryClear 
     SEC : SBC.B $12 : STA.B $12 
     LDA.W $0AFA : CLC : ADC.B $12 : STA.W $0AFA 

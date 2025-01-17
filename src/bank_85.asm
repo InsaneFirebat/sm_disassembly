@@ -57,8 +57,7 @@ MessageBox_Routine:
     JSR.W Initialise_MessageBox 
     JSR.W Play_2_Lag_Frames_of_Music_and_Sound_Effects 
     JSR.W Open_MessageBox 
-    LDA.W $1C1F 
-    CMP.W #$001C 
+    LDA.W $1C1F : CMP.W #$001C 
     BEQ .gunship 
     JSR.W Handle_MessageBox_Interaction 
     JSR.W Close_MessageBox 
@@ -75,8 +74,7 @@ MessageBox_Routine:
 .gunship:
     JSR.W Handle_MessageBox_Interaction 
     JSR.W Close_MessageBox 
-    LDA.W $05F9 
-    CMP.W #$0002 
+    LDA.W $05F9 : CMP.W #$0002 
     BEQ .no 
     LDA.W #$0018 : STA.W $1C1F 
     JSR.W Clear_MessageBox_BG3Tilemap 
@@ -98,8 +96,7 @@ MessageBox_Routine:
 
 MaybeTriggerPauseScreen_or_ReturnSaveConfirmationSelection:
     REP #$30 
-    LDA.W $1C1F 
-    CMP.W #$0014 
+    LDA.W $1C1F : CMP.W #$0014 
     BNE .notMapPause 
     LDA.W #$000C : STA.W $0998 
     RTS 
@@ -462,14 +459,12 @@ Open_MessageBox:
 
 Handle_MessageBox_Interaction:
     SEP #$20 
-    LDA.W $1C1F 
-    CMP.B #$17 
+    LDA.W $1C1F : CMP.B #$17 
     BEQ .save 
     CMP.B #$1C 
     BEQ .save 
     LDX.W #$000A 
-    LDA.W $1C1F 
-    CMP.B #$14 
+    LDA.W $1C1F : CMP.B #$14 
     BEQ .lagLoop 
     CMP.B #$15 
     BEQ .lagLoop 

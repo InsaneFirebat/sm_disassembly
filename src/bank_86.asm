@@ -585,8 +585,7 @@ Draw_EnemyProjectile:
 Get_Values_for_Screen_Shaking:
     LDA.W $1840 : BEQ .returnZero 
     LDA.W $0A78 : BNE .returnZero 
-    LDA.W $183E 
-    CMP.W #$0024 
+    LDA.W $183E : CMP.W #$0024 
     BPL .returnZero 
     ASL #2
     TAX 
@@ -2029,8 +2028,7 @@ InitAI_EnemyProjectile_CrocomireSpikeWallPieces:
 
 PreInstruction_EnemyProjectile_CrocomireSpikeWallPieces:
     REP #$20 
-    LDA.W $1AFF,X 
-    CMP.W .maxAcceleration,X 
+    LDA.W $1AFF,X : CMP.W .maxAcceleration,X 
     BEQ .storeAcceleration 
     CLC : ADC.W .accelerationDelta,X : CMP.W .maxAcceleration,X 
     BCC .storeAcceleration 
@@ -2054,8 +2052,7 @@ PreInstruction_EnemyProjectile_CrocomireSpikeWallPieces:
     LDA.W $1ADB,X : ADC.W #$0000 : STA.W $1ADB,X 
     LDA.W $1A6F,X : CLC : ADC.W $1B23,X : STA.W $1A6F,X 
     LDA.W $1A93,X : ADC.W $1ADB,X : STA.W $1A93,X 
-    LDA.W $1A93,X 
-    CMP.W #$00A8 
+    LDA.W $1A93,X : CMP.W #$00A8 
     BCC .return 
     STZ.W $1997,X 
     TXA 
@@ -2200,8 +2197,7 @@ Move_EnemyProjectile_Horizontally_AccordingToVelocity:
 
 
 Set_RidleysFireball_Afterburn_Damage:
-    LDA.W $079F 
-    CMP.W #$0002 
+    LDA.W $079F : CMP.W #$0002 
     BEQ .norfair 
     CMP.W #$0005 
     BEQ .tourian 
@@ -2242,8 +2238,7 @@ UNUSED_InitAI_EnemyProj_RidleysFireball_Afterburn_86934D:
 
 
 UNUSED_PreInst_EnemyProj_RidleyFireball_Afterburn_869392:
-    LDA.W $1AFF,X 
-    CMP.W #$0008 
+    LDA.W $1AFF,X : CMP.W #$0008 
     BCS .greaterThan8 
     INC.W $1AFF,X 
     RTS 
@@ -3959,8 +3954,7 @@ PreInstruction_EnemyProjectile_CeresElevatorPad:
 
 
 PreInst_EnemyProjectile_CeresElevatorPadLevelDataConcealer:
-    LDA.W $0AFA 
-    CMP.W #$0048 
+    LDA.W $0AFA : CMP.W #$0048 
     BNE .return 
     LDA.W #$0001 : STA.W $1B8F,X 
     LDA.W #InstList_EnemyProjectile_Delete_A28B : STA.W $1B47,X 
@@ -6759,13 +6753,11 @@ Delete_EnemyProjectile_IfOffScreen:
 
 
 CheckIf_EnemyProjectile_IsOffScreen:
-    LDA.W $1A4B,X 
-    CMP.W $0911 
+    LDA.W $1A4B,X : CMP.W $0911 
     BMI .offScreen 
     LDA.W $0911 : CLC : ADC.W #$0100 : CMP.W $1A4B,X 
     BMI .offScreen 
-    LDA.W $1A93,X 
-    CMP.W $0915 
+    LDA.W $1A93,X : CMP.W $0915 
     BMI .offScreen 
     LDA.W $0915 : CLC : ADC.W #$0100 : CMP.W $1A93,X 
     BMI .offScreen 
@@ -7544,8 +7536,7 @@ Check_for_Collision_with_BabyMetroid:
 
 
 Check_for_OnionRing_Collision_with_Room:
-    LDA.W $1A93,X 
-    CMP.W #$0020 
+    LDA.W $1A93,X : CMP.W #$0020 
     BMI .returnCollision 
     CMP.W #$00D8 
     BCS .returnCollision 
@@ -7729,16 +7720,14 @@ MotherBrainsBomb_Bomb_Collision_Detection:
 Move_MotherBrains_Bomb:
     CLC : ADC.W $1ADB,X : STA.W $1ADB,X 
     JSR.W Move_EnemyProjectile_AccordingToVelocity 
-    LDA.W $1A4B,X 
-    CMP.W #$00F0 
+    LDA.W $1A4B,X : CMP.W #$00F0 
     BMI + 
     LDA.W $1AB7,X 
     EOR.W #$FFFF 
     INC A 
     STA.W $1AB7,X 
 
-  + LDA.W $1A93,X 
-    CMP.W #$00D0 
+  + LDA.W $1A93,X : CMP.W #$00D0 
     BMI .returnNoBounce 
     LDA.W #$00D0 : STA.W $1A93,X 
     LDA.W $1AFF,X : BIT.W $1AB7,X 
@@ -7815,13 +7804,11 @@ InitAI_EnemyProjectile_MotherBrainRedBeam_Fired:
     PLX 
     STA.W $1ADB,X 
     JSR.W Move_EnemyProjectile_AccordingToVelocity 
-    LDA.W $1A93,X 
-    CMP.W #$0022 
+    LDA.W $1A93,X : CMP.W #$0022 
     BMI .delete 
     CMP.W #$00CE 
     BPL .delete 
-    LDA.W $1A4B,X 
-    CMP.W #$0002 
+    LDA.W $1A4B,X : CMP.W #$0002 
     BMI .delete 
     CMP.W #$00EE 
     BPL .delete 
@@ -9608,8 +9595,7 @@ InitAI_EnemyProjectile_NoobTubeReleasedAirBubbles:
 
 
 PreInstruction_EnemyProjectile_NoobTubeCrack_Flickering:
-    LDA.W $1A4B,X 
-    CMP.W #$EE00 
+    LDA.W $1A4B,X : CMP.W #$EE00 
     BEQ + 
     STA.W $1AFF,X 
 
@@ -9822,8 +9808,7 @@ InitAI_EnemyProjectile_CacatacSpike:
     LDA.W $0F80,X : STA.W $1A6F,Y 
     LDA.W #$FE00 : STA.W $1ADB,Y 
     LDA.W #$0200 : STA.W $1AB7,Y 
-    LDA.W $1993 
-    CMP.W #$000C 
+    LDA.W $1993 : CMP.W #$000C 
     BMI .return 
     LDA.W #$FE80 : STA.W $1ADB,Y 
     LDA.W #$0180 : STA.W $1AB7,Y 
@@ -9970,13 +9955,11 @@ Delete_EnemyProjectile_IfOffScreen_duplicate:
 
 
 CheckIf_EnemyProjectile_IsOffScreen_duplicate:
-    LDA.W $1A4B,X 
-    CMP.W $0911 
+    LDA.W $1A4B,X : CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 : CLC : ADC.W #$0100 : CMP.W $1A4B,X 
     BMI .returnOffScreen 
-    LDA.W $1A93,X 
-    CMP.W $0915 
+    LDA.W $1A93,X : CMP.W $0915 
     BMI .returnOffScreen 
     LDA.W $0915 : CLC : ADC.W #$0100 : CMP.W $1A93,X 
     BMI .returnOffScreen 
@@ -10070,13 +10053,11 @@ UNUSED_Delete_EnemyProjectile_IfOffScreen_86DBB6:
 
 
 CheckIf_EnemyProjectile_IsOffScreen_duplicate_again:
-    LDA.W $1A4B,X 
-    CMP.W $0911 
+    LDA.W $1A4B,X : CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 : CLC : ADC.W #$0100 : CMP.W $1A4B,X 
     BMI .returnOffScreen 
-    LDA.W $1A93,X 
-    CMP.W $0915 
+    LDA.W $1A93,X : CMP.W $0915 
     BMI .returnOffScreen 
     LDA.W $0915 : CLC : ADC.W #$0100 : CMP.W $1A93,X 
     BMI .returnOffScreen 
@@ -10398,8 +10379,7 @@ Delete_EnemyProjectile_ifOffScreen_duplicate_again:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CheckIf_EnemyProj_isHorizontallyOffScreen_86DFA0:
-    LDA.W $1A4B,X 
-    CMP.W $0911 
+    LDA.W $1A4B,X : CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 : CLC : ADC.W #$0100 : CMP.W $1A4B,X 
     BMI .returnOffScreen 
@@ -10519,13 +10499,11 @@ Delete_EnemyProjectile_IfOffScreen_duplicate_again2:
 
 
 CheckIf_EnemyProjectile_IsOffScreen_duplicate_again3:
-    LDA.W $1A4B,X 
-    CMP.W $0911 
+    LDA.W $1A4B,X : CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 : CLC : ADC.W #$0100 : CMP.W $1A4B,X 
     BMI .returnOffScreen 
-    LDA.W $1A93,X 
-    CMP.W $0915 
+    LDA.W $1A93,X : CMP.W $0915 
     BMI .returnOffScreen 
     LDA.W $0915 : CLC : ADC.W #$0100 : CMP.W $1A93,X 
     BMI .returnOffScreen 
@@ -11156,19 +11134,15 @@ EnemyProjectile_SaveStationElectricity:
 
 CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4:
     PHX : PHY 
-    LDA.W $1A4B,X 
-    CMP.W $0911 
+    LDA.W $1A4B,X : CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 : CLC : ADC.W #$0100 : STA.W $0E20 
-    LDA.W $1A4B,X 
-    CMP.W $0E20 
+    LDA.W $1A4B,X : CMP.W $0E20 
     BPL .returnOffScreen 
-    LDA.W $1A93,X 
-    CMP.W $0915 
+    LDA.W $1A93,X : CMP.W $0915 
     BMI .returnOffScreen 
     LDA.W $0915 : CLC : ADC.W #$0100 : STA.W $0E20 
-    LDA.W $1A93,X 
-    CMP.W $0E20 
+    LDA.W $1A93,X : CMP.W $0E20 
     BPL .returnOffScreen 
     PLY : PLX 
     LDA.W #$0000 
@@ -11546,8 +11520,7 @@ InitAI_EnemyProjectile_BotwoonsBody:
 
 PreInstruction_EnemyProjectile_BotwoonsBody:
     LDA.L $7E8020 : BEQ .executeFunction 
-    LDA.W $1AB7,X 
-    CMP.W #Function_EnemyProjectile_BotwoonsBody_Main 
+    LDA.W $1AB7,X : CMP.W #Function_EnemyProjectile_BotwoonsBody_Main 
     BNE .executeFunction 
     LDA.W #Function_EnemyProjectile_BotwoonsBody_Dying_SetDelay : STA.W $1AB7,X 
 
@@ -11559,8 +11532,7 @@ PreInstruction_EnemyProjectile_BotwoonsBody:
 Function_EnemyProjectile_BotwoonsBody_Main:
     LDA.W $1AFF,X 
     TAY 
-    LDA.W BotwoonsBodyTail_InstListPointers,Y 
-    CMP.W $1B23,X 
+    LDA.W BotwoonsBodyTail_InstListPointers,Y : CMP.W $1B23,X 
     BEQ .noChange 
     STA.W $1B47,X 
     STA.W $1B23,X 
@@ -11601,8 +11573,7 @@ Function_EnemyProjectile_BotwoonsBody_Dying_SetDelay:
 
 Function_EnemyProjectile_BotwoonsBody_Dying_Waiting:
     INC.W $1AFF,X 
-    LDA.W $1AFF,X 
-    CMP.W #$0100 
+    LDA.W $1AFF,X : CMP.W #$0100 
     BMI .greaterThanEqualTo100 
     LDA.W #Function_EnemyProjectile_BotwoonsBody_Dying_Falling : STA.W $1AB7,X 
 
@@ -11713,13 +11684,11 @@ Delete_EnemyProjectile_IfOffScreen_duplicate_again3:
 
 
 CheckIf_EnemyProjectile_IsOffScreen_duplicate_again5:
-    LDA.W $1A4B,X 
-    CMP.W $0911 
+    LDA.W $1A4B,X : CMP.W $0911 
     BMI .returnOffScreen 
     LDA.W $0911 : CLC : ADC.W #$0100 : CMP.W $1A4B,X 
     BMI .returnOffScreen 
-    LDA.W $1A93,X 
-    CMP.W $0915 
+    LDA.W $1A93,X : CMP.W $0915 
     BMI .returnOffScreen 
     LDA.W $0915 : CLC : ADC.W #$0100 : CMP.W $1A93,X 
     BMI .returnOffScreen 
@@ -12030,8 +11999,7 @@ EnemyProjectile_Pickup_InstListPointers:
 
 Instruction_EnemyProjectile_Pickup_HandleRespawningEnemy:
     PHY : PHX 
-    LDA.L $7EF410,X 
-    CMP.W #$FFFF 
+    LDA.L $7EF410,X : CMP.W #$FFFF 
     BEQ .return 
     BIT.W #$8000 
     BEQ .return 
@@ -12115,8 +12083,7 @@ PreInstruction_EnemyProjectile_Pickup:
     LDA.W #$000D : JSL.L Run_Samus_Command 
     AND.W #$FFFF 
     BEQ .notGrappled 
-    LDA.W $1B23,X 
-    CMP.W #$0180 
+    LDA.W $1B23,X : CMP.W #$0180 
     BPL .notGrappled 
     LDA.W $1A4B,X : SEC : SBC.W $0D08 : BPL + 
     EOR.W #$FFFF 

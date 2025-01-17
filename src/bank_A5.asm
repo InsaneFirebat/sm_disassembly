@@ -416,8 +416,7 @@ MainAI_DraygonBody:
 Function_DraygonBody_FightIntro_InitialDelay:
     JSR.W HandleFiringWallTurret 
     LDX.W $0E54 ; >.<
-    LDA.W $0FAA 
-    CMP.W #$0100 
+    LDA.W $0FAA : CMP.W #$0100 
     BPL .done 
     LDA.W $0FAA : BNE .incFunctionTimer 
     LDX.W $0330 
@@ -448,8 +447,7 @@ Function_DraygonBody_FightIntro_InitialDelay:
 Function_DraygonBody_FightIntro_Dance:
     JSR.W HandleFiringWallTurret 
     LDX.W $0E54 ; >.<
-    LDA.W $0FAA 
-    CMP.W #$04D0 
+    LDA.W $0FAA : CMP.W #$04D0 
     BPL .startFight 
     JSR.W HandleDraygonFightIntroDance 
     INC.W $0FAA 
@@ -522,8 +520,7 @@ CalculateDraygonSwoopYPositions:
     INC.W $0E26 
     INC.W $0E26 
     INC.W $0E26 
-    LDA.W $0E26 
-    CMP.W #$0800 
+    LDA.W $0E26 : CMP.W #$0800 
     BMI .loop 
 
 .crash:
@@ -630,8 +627,7 @@ Function_DraygonBody_SwoopRight_Ascending:
     INC.W $0FAA 
     INC.W $0FAA 
     INC.W $0FAA 
-    LDA.W $0FAA 
-    CMP.W $0FAC 
+    LDA.W $0FAA : CMP.W $0FAC 
     BEQ + 
     LDA.W $0F7C : CLC : ADC.W $0FB0 : STA.W $0F7C 
     LDA.W $0F7A : ADC.W $0FAE : STA.W $0F7A 
@@ -738,8 +734,7 @@ Function_DraygonBody_SwoopLeft_Ascending:
     INC.W $0FAA 
     INC.W $0FAA 
     INC.W $0FAA 
-    LDA.W $0FAA 
-    CMP.W $0FAC 
+    LDA.W $0FAA : CMP.W $0FAC 
     BEQ .chooseAttack 
     LDA.W $0F7C : SEC : SBC.W $0FB0 : STA.W $0F7C 
     LDA.W $0F7A : SBC.W $0FAE : STA.W $0F7A 
@@ -1356,8 +1351,7 @@ Function_DraygonBody_DeathSequence_BuriedByEvirs:
     JSR.W HandleDyingDraygonSmoke 
     JSR.W HandleDeathSequenceEvirMovement 
     INC.W $0F7E 
-    LDA.W $0F7E 
-    CMP.W #$0240 
+    LDA.W $0F7E : CMP.W #$0240 
     BMI .return 
     LDA.W #InstList_Draygon_Delete : STA.W $0F92 
     LDA.W #$0001 : STA.W $0F94 
@@ -1513,8 +1507,7 @@ Debug_MoveDraygonWithDpad_Fast:
     LDA.B $8D : BIT.W #$0200 
     BEQ .noPressingLeft 
     LDA.W $0F7A : SEC : SBC.W #$0004 : STA.W $0F7A 
-    LDA.B $8D 
-    CMP.W $1866 
+    LDA.B $8D : CMP.W $1866 
     BEQ .noPressingLeft 
     STA.W $1866 
     LDY.W #InstList_DraygonBody_FacingLeft_Reset 
@@ -1526,8 +1519,7 @@ Debug_MoveDraygonWithDpad_Fast:
     BIT.W #$0100 
     BEQ .noHorizontalMovement 
     LDA.W $0F7A : CLC : ADC.W #$0004 : STA.W $0F7A 
-    LDA.B $8D 
-    CMP.W $1866 
+    LDA.B $8D : CMP.W $1866 
     BEQ .noHorizontalMovement 
     STA.W $1866 
     LDY.W #InstList_DraygonBody_FacingRight_Reset 
@@ -1768,8 +1760,7 @@ DraygonHealthBasedPaletteHandling:
     LDX.W #$0000 
 
 .loopFindThreshold:
-    LDA.W $0F8C 
-    CMP.W DraygonHealthBasedPaletteThresholds,X 
+    LDA.W $0F8C : CMP.W DraygonHealthBasedPaletteThresholds,X 
     BPL .found 
     INX #2
     BRA .loopFindThreshold 
@@ -3024,8 +3015,7 @@ HandleDraygonFightIntroDance:
     SEC : SBC.W #$0038 : TAY 
     LDA.W MovementLatencyForEachEvirSpriteObject,Y : CLC : ADC.L $7E880C : BMI .next 
     TAY 
-    LDA.W DraygonFightIntroDanceData_KeikoLove,Y 
-    CMP.W #$8080 
+    LDA.W DraygonFightIntroDanceData_KeikoLove,Y : CMP.W #$8080 
     BEQ .deleteSpriteObject 
     LDA.W DraygonFightIntroDanceData_KeikoLove,Y : AND.W #$00FF 
     JSL.L Sign_Extend_A 
@@ -7349,8 +7339,7 @@ EnemyShot_SporeSpawn_Vulnerable:
     LDA.W $0F9C,X : BEQ EnemyShot_SporeSpawn 
     LDA.W #Function_SporeSpawn_Moving : STA.W $0FA8,X 
     LDY.W #$0002 
-    LDA.W $0F8C,X 
-    CMP.W #$0190 
+    LDA.W $0F8C,X : CMP.W #$0190 
     BPL .noSpeedUp 
     LDA.L $7E7818 : BPL .negativeAngleDelta 
     TYA 
@@ -7372,8 +7361,7 @@ EnemyShot_SporeSpawn_Vulnerable:
     LDA.W #InstList_SporeSpawn_CloseAndMove : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDY.W #$0060 
-    LDA.W $0F8C,X 
-    CMP.W #$0046 
+    LDA.W $0F8C,X : CMP.W #$0046 
     BMI .paletteChosen 
     LDY.W #$0040 
     CMP.W #$019A 

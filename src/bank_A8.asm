@@ -509,8 +509,7 @@ Instruction_Evir_PlaySpitSFX:
 
 Instruction_Evir_SetInitialRegenerationXOffset:
     LDX.W $0E54 
-    LDA.L $7E7782,X 
-    CMP.W #InstList_Evir_Body_FacingRight 
+    LDA.L $7E7782,X : CMP.W #InstList_Evir_Body_FacingRight 
     BEQ .facingRight 
     LDA.W #$0008 : STA.W $0FB2,X 
     BRA .return 
@@ -525,8 +524,7 @@ Instruction_Evir_SetInitialRegenerationXOffset:
 
 Instruction_Evir_AdvanceRegenerationXOffset:
     LDX.W $0E54 
-    LDA.L $7E7782,X 
-    CMP.W #InstList_Evir_Body_FacingRight 
+    LDA.L $7E7782,X : CMP.W #InstList_Evir_Body_FacingRight 
     BEQ .facingRight 
     DEC.W $0FB2,X 
     BRA .return 
@@ -816,8 +814,7 @@ StartEvirProjectileRegeneratingIfFarOffScreen:
 
 SetEvirInstList:
     LDX.W $0E54 
-    LDA.L $7E7804,X 
-    CMP.L $7E7802,X 
+    LDA.L $7E7804,X : CMP.L $7E7802,X 
     BEQ .return 
     STA.W $0F92,X 
     STA.L $7E7802,X 
@@ -851,8 +848,7 @@ ContactReaction_Evir_Common:
     LDA.W $0F9E,X : BEQ .return 
     STA.W $0FDE,X 
     LDA.W $0FCA,X : ORA.W #$0004 : STA.W $0FCA,X 
-    LDA.W $102C,X 
-    CMP.W #Function_EvirProjectile_Moving 
+    LDA.W $102C,X : CMP.W #Function_EvirProjectile_Moving 
     BEQ .return 
     LDA.W $100A,X : ORA.W #$0004 : STA.W $100A,X 
     LDA.W $0F9E,X : STA.W $101E,X 
@@ -2314,8 +2310,7 @@ MainAI_Fune_Namihe:
 Function_Fune_WaitForTimer:
     LDX.W $0E54 
     INC.W $0FB0,X 
-    LDA.W $0FB0,X 
-    CMP.W $0FB2,X 
+    LDA.W $0FB0,X : CMP.W $0FB2,X 
     BMI .return 
     LDA.W $0FA8,X 
     DEC #4
@@ -2819,8 +2814,7 @@ Function_Coven_Dematerializing:
 Function_Coven_Materialized:
     LDA.W $0F80,X : CLC : ADC.L $7E7802,X : STA.W $0F80,X 
     LDA.W $0F7E,X : ADC.L $7E7804,X : STA.W $0F7E,X 
-    LDA.W $0F7E,X 
-    CMP.L $7E7800,X 
+    LDA.W $0F7E,X : CMP.L $7E7800,X 
     BMI .subvelocity 
     LDA.L $7E7802,X : SEC : SBC.W CovenConstants_HoveringYAccelerationDeceleration : STA.L $7E7802,X 
     LDA.L $7E7804,X : SBC.W #$0000 : STA.L $7E7804,X 
@@ -2881,13 +2875,11 @@ CovenStationaryZoneYRadius:
     dw $0001 
 
 Function_Coven_Dematerialized_Awake:
-    LDA.W $0AF6 
-    CMP.L $7E780E,X 
+    LDA.W $0AF6 : CMP.L $7E780E,X 
     BMI .breakLockOn 
     CMP.L $7E7810,X 
     BPL .breakLockOn 
-    LDA.W $0AFA,X 
-    CMP.L $7E7816,X 
+    LDA.W $0AFA,X : CMP.L $7E7816,X 
     BMI .breakLockOn 
     CMP.L $7E7818,X 
     BPL .breakLockOn 
@@ -3030,8 +3022,7 @@ AdvanceCovenPaletteTransition:
     CLC : ADC.W #$0020 : STA.B $14 
 
 .loop:
-    LDA.L $7EC200,X 
-    CMP.L $7EC000,X 
+    LDA.L $7EC200,X : CMP.L $7EC000,X 
     BNE .notReachedTarget 
     JMP.W .next 
 
@@ -3668,8 +3659,7 @@ Function_YappingMaw_Attacking:
     LDA.L $7E7818,X : CLC : ADC.L $7E780C,X : STA.W $0F7A,X 
     LDA.L $7E781A,X : CLC : ADC.L $7E780E,X : STA.W $0F7E,X 
     JSR.W UpdateYappingMawAngularSpeed 
-    LDA.W $0FAA,X 
-    CMP.W #$0000 
+    LDA.W $0FAA,X : CMP.W #$0000 
     BMI .cooldown 
     CMP.W #$0080 
     BMI .gotoMoveSamus 
@@ -3685,8 +3675,7 @@ Function_YappingMaw_Attacking:
 .cooldown:
     LDA.W #Function_YappingMaw_Cooldown : STA.W $0FA8,X 
     LDA.W #$0030 : STA.L $7E802A,X 
-    LDA.L $7E8028,X 
-    CMP.W #$0004 
+    LDA.L $7E8028,X : CMP.W #$0004 
     BEQ .upRight 
     CMP.W #$000C 
     BEQ .upLeft 
@@ -3712,8 +3701,7 @@ Function_YappingMaw_Attacking:
 
 .upMerge:
     LDA.W $0FB6,X : BNE .return 
-    LDA.L $7E8028,X 
-    CMP.W #$0004 
+    LDA.L $7E8028,X : CMP.W #$0004 
     BEQ .downRight 
     CMP.W #$000C 
     BEQ .downLeft 
@@ -3771,8 +3759,7 @@ Function_YappingMaw_Cooldown:
 .notGrabbingSamus:
     DEC.W $0FB0,X 
     BPL .return 
-    LDA.W $0A60 
-    CMP.W #SamusPoseInputHandler_Demo 
+    LDA.W $0A60 : CMP.W #SamusPoseInputHandler_Demo 
     BEQ .return 
     LDA.W #SamusPoseInputHandler_Normal : STA.W $0A60 
     LDA.W #$0000 : STA.L $7E8020,X 
@@ -3896,8 +3883,7 @@ EnemyShot_YappingMaw:
     TAX 
     LDA.W #$0000 : STA.L $7EEF78,X 
     PLX 
-    LDA.W $0A60 
-    CMP.W #SamusPoseInputHandler_Demo 
+    LDA.W $0A60 : CMP.W #SamusPoseInputHandler_Demo 
     BEQ .notDemo 
     LDA.W #SamusPoseInputHandler_Normal : STA.W $0A60 
 
@@ -3908,8 +3894,7 @@ EnemyShot_YappingMaw:
 
 .alive:
     LDA.W $0F9E,X : BEQ .return 
-    LDA.W $0A60 
-    CMP.W #SamusPoseInputHandler_Demo 
+    LDA.W $0A60 : CMP.W #SamusPoseInputHandler_Demo 
     BEQ .alsoNotDemo 
     LDA.W #SamusPoseInputHandler_Normal : STA.W $0A60 
 
@@ -3947,8 +3932,7 @@ SetYappingMawBodySegmentFrozenPalette:
     LDA.W $19BB,Y : AND.W #$F1FF 
     ORA.W #$0C00 
     STA.W $19BB,Y 
-    LDA.W $0F9E,X 
-    CMP.W #$005A 
+    LDA.W $0F9E,X : CMP.W #$005A 
     BPL .return 
     BIT.W #$0002 
     BNE .return 
@@ -3975,8 +3959,7 @@ SetYappingMawBaseFrozenPalette:
     ORA.W #$0C00 
     STA.L $7EF078,X 
     LDX.W $0E54 
-    LDA.W $0F9E,X 
-    CMP.W #$005A 
+    LDA.W $0F9E,X : CMP.W #$005A 
     BPL .return 
     BIT.W #$0002 
     BNE .return 
@@ -5082,8 +5065,7 @@ RemoveMagdollitePillarStacksUntilBackToBaseHeight:
 
 Function_Magdollite_Slave2_Idling_WaitingForTrigger:
     LDX.W $0E54 
-    LDA.W $0F32,X 
-    CMP.W #Function_Magdollite_WaitUntilBasePillarFormed 
+    LDA.W $0F32,X : CMP.W #Function_Magdollite_WaitUntilBasePillarFormed 
     BNE .return 
     LDA.W #Function_Magdollite_Slave2_SetToThrowFireballsAfterGrowing : STA.W $0FB2,X 
 
@@ -5136,8 +5118,7 @@ Function_Magdollite_Slave2_SetToThrowFireballsAfterGrowing:
 
 Function_Magdollite_Slave2_GoBackToIdlingAfterPillarShrinks:
     LDX.W $0E54 
-    LDA.W $0F32,X 
-    CMP.W #Function_Magdollite_WaitForSamusToGetNear 
+    LDA.W $0F32,X : CMP.W #Function_Magdollite_WaitForSamusToGetNear 
     BNE .notWaitingForTrigger 
     LDA.W #Function_Magdollite_Slave2_Idling_WaitingForTrigger : STA.W $0FB2,X 
     BRA .done 
@@ -5164,8 +5145,7 @@ SetMagdolliteYRadius:
 
 CheckIfMagdolliteInstListChanged:
     LDX.W $0E54 
-    LDA.W $0FAE,X 
-    CMP.W $0FAC,X 
+    LDA.W $0FAE,X : CMP.W $0FAC,X 
     BEQ .return 
     STA.W $0F92,X 
     STA.W $0FAC,X 
@@ -6239,8 +6219,7 @@ Function_Beetom_DrainingSamus_FacingRight:
 
 UpdateBeetomButtonCounter:
     LDX.W $0E54 
-    LDA.B $8B 
-    CMP.W $0FB2,X 
+    LDA.B $8B : CMP.W $0FB2,X 
     BEQ .return 
     STA.W $0FB2,X 
     DEC.W $0FB0,X 
@@ -6333,8 +6312,7 @@ EnemyTouch_Beetom:
     LDA.W $0E44 : AND.W #$0007 
     CMP.W #$0007 
     BNE + 
-    LDA.W $09C2 
-    CMP.W #$001E 
+    LDA.W $09C2 : CMP.W #$001E 
     BMI + 
     LDA.W #$002D : JSL.L QueueSound_Lib3_Max6 
 
@@ -6355,8 +6333,7 @@ EnemyShot_Beetom:
     JSL.L CommonA8_NormalEnemyShotAI 
     LDX.W $0E54 
     LDA.W $0F9E,X : BEQ .return 
-    LDA.W $0FAC,X 
-    CMP.W #Function_Beetom_DrainingSamus_FacingRight 
+    LDA.W $0FAC,X : CMP.W #Function_Beetom_DrainingSamus_FacingRight 
     BEQ .startDropping 
     CMP.W #Function_Beetom_DrainingSamus_FacingLeft 
     BNE .return 
@@ -6782,8 +6759,7 @@ FirePowampSpikesIn8Directions:
 
 
 HandlePowampBalloonYOffset:
-    LDA.W $0F52,X 
-    CMP.W #InstList_Powamp_Balloon_StartSinking 
+    LDA.W $0F52,X : CMP.W #InstList_Powamp_Balloon_StartSinking 
     BPL .sinking 
     SEC : SBC.W #$0004 : SEC : SBC.W #InstList_Powamp_Balloon_StartingToRise : LSR A 
     CMP.W #$0006 
@@ -7086,8 +7062,7 @@ Function_Powamp_Deflated_Sinking:
     LDA.W $0FA8,X : STA.B $14 
     LDA.W $0FAA,X : STA.B $12 
     JSL.L MoveEnemyDownBy_14_12 
-    LDA.W $0F7E,X 
-    CMP.W $0F6A,X 
+    LDA.W $0F7E,X : CMP.W $0F6A,X 
     BMI .done 
     LDA.W $0F6A,X : STA.W $0F7E,X 
     LDA.W #Function_Powamp_Deflated_Resting : STA.W $0FB2,X 
@@ -7105,8 +7080,7 @@ RTL_A8C568:
 
 
 Function_Powamp_FatalDamage:
-    LDA.W $0F52,X 
-    CMP.W #InstList_Powamp_Balloon_StartSinking 
+    LDA.W $0F52,X : CMP.W #InstList_Powamp_Balloon_StartSinking 
     BMI + 
     SEC : SBC.W #$0004 : SEC : SBC.W #InstList_Powamp_Balloon_StartSinking : LSR A 
     BEQ + 
@@ -7923,8 +7897,7 @@ InitAI_Robot:
 
 InitAI_RobotNoPower:
     LDX.W $0E54 
-    LDA.W $0FB4,X 
-    CMP.W #$0000 
+    LDA.W $0FB4,X : CMP.W #$0000 
     BMI .zeroParam1 
     CMP.W #$0004 
     BMI .valid 
@@ -8353,13 +8326,11 @@ Instruction_Robot_FacingRight_MoveBackward_HandleHittingWall:
 Instruction_Robot_PlaySFXIfOnScreen:
     PHX : PHY 
     LDX.W $0E54 
-    LDA.W $0911 
-    CMP.W $0F7A,X 
+    LDA.W $0911 : CMP.W $0F7A,X 
     BPL .return 
     CLC : ADC.W #$0100 : CMP.W $0F7A,X 
     BMI .return 
-    LDA.W $0915 
-    CMP.W $0F7E,X 
+    LDA.W $0915 : CMP.W $0F7E,X 
     BPL .return 
     CLC : ADC.W #$00E0 : CMP.W $0F7E,X 
     BMI .return 
@@ -8467,8 +8438,7 @@ Instruction_Robot_DecrementLaserCooldown:
 
 EnemyTouch_Robot:
     LDX.W $0E54 
-    LDA.W $0F7A,X 
-    CMP.W $0AF6 
+    LDA.W $0F7A,X : CMP.W $0AF6 
     BMI .rightOfSamus 
     LDA.W #$FFFC : STA.W $0B58 
     RTL 
@@ -8495,8 +8465,7 @@ EnemyShot_Robot:
     LDX.W $0E54 
     LDA.W $0F8C,X : BEQ .return 
     LDA.W $0FA8,X : BMI .facingLeft 
-    LDA.W $0AF6 
-    CMP.W $0F7A,X 
+    LDA.W $0AF6 : CMP.W $0F7A,X 
     BMI .facingRight_behind 
     LDA.W #InstList_Robot_FacingRight_Shot_SamusIsAhead : BRA .merge 
 
@@ -8511,8 +8480,7 @@ EnemyShot_Robot:
 
 
 .facingLeft:
-    LDA.W $0AF6 
-    CMP.W $0F7A,X 
+    LDA.W $0AF6 : CMP.W $0F7A,X 
     BPL .facingLeft_behind 
     LDA.W #InstList_Robot_FacingLeft_Shot_SamusIsAhead 
 
@@ -9355,8 +9323,7 @@ Function_Bull_TargetSamus:
 
 Function_Bull_Accelerating:
     LDX.W $0E54 
-    LDA.W $0FAE,X 
-    CMP.L $7E7800,X 
+    LDA.W $0FAE,X : CMP.L $7E7800,X 
     BPL .maxSpeed 
     JSR.W AccelerateBull 
 
@@ -9535,8 +9502,7 @@ EnemyShot_Bull:
     LDX.W $0E54 
     LDA.W $0F8C,X : STA.L $7E8800,X 
     JSL.L CommonA8_NormalEnemyShotAI 
-    LDA.W $0F8C,X 
-    CMP.L $7E8800,X 
+    LDA.W $0F8C,X : CMP.L $7E8800,X 
     BEQ .noDamage 
     RTL 
 
@@ -12188,8 +12154,7 @@ Function_Kihunter_Winged_IdleFlying:
     LDA.L $7E7812,X : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
-    LDA.W $0F7E,X 
-    CMP.L $7E7814,X 
+    LDA.W $0F7E,X : CMP.L $7E7814,X 
     BMI .idleDown 
     CMP.L $7E7816,X 
     BMI .noChangeY 
@@ -12295,15 +12260,13 @@ Function_Kihunter_Winged_IdleFlying:
 
 Function_Kihunter_Winged_Swoop:
     LDA.L $7E7808,X : BPL .arcingRight 
-    LDA.W $0FB2,X 
-    CMP.L $7E781C,X 
+    LDA.W $0FB2,X : CMP.L $7E781C,X 
     BPL .noInstListChange 
     BRA + 
 
 
 .arcingRight:
-    LDA.W $0FB2,X 
-    CMP.L $7E781C,X 
+    LDA.W $0FB2,X : CMP.L $7E781C,X 
     BMI .noInstListChange 
 
   + LDA.L $7E7820,X : BNE .noInstListChange 
@@ -12391,8 +12354,7 @@ Function_Kihunter_Winged_BackOff:
     LDA.L $7E7812,X : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCS .collidedWithBlock 
-    LDA.W $0F7E,X 
-    CMP.L $7E781A,X 
+    LDA.W $0F7E,X : CMP.L $7E781A,X 
     BMI .collidedWithBlock 
     RTL 
 
@@ -12413,8 +12375,7 @@ Instruction_Kihunter_SetIdlingInstListsFacingForwards:
     TYA 
     STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
-    LDA.W $0FE8,X 
-    CMP.W #Function_KihunterWings_Attached 
+    LDA.W $0FE8,X : CMP.W #Function_KihunterWings_Attached 
     BNE .return 
     LDA.B $12 : STA.W $0FD2,X 
     LDA.W #$0001 : STA.W $0FD4,X 
@@ -12443,8 +12404,7 @@ Function_Kihunter_Wingless_PrepareToHop:
     LDA.W #$0000 : STA.L $7E7810,X 
     LDA.W $05E5 : AND.W #$0001 
     CLC : ADC.W #$FFF8 : STA.L $7E7812,X 
-    LDA.W $0F7A,X 
-    CMP.W $0AF6 
+    LDA.W $0F7A,X : CMP.W $0AF6 
     BPL .rightOfSamus 
     LDA.W #$0000 : STA.L $7E780C,X 
     LDA.W #$0002 : STA.L $7E780E,X 
@@ -12501,8 +12461,7 @@ Function_Kihunter_Wingless_Hop:
     LDA.W #RTL_A8F5E3 : STA.W $0FA8,X 
     LDA.W #$000C : STA.L $7E781E,X 
     LDY.W #InstList_Kihunter_LandedFromHop_FacingLeft 
-    LDA.W $0F92,X 
-    CMP.W #InstList_Kihunter_Hop_FacingRight 
+    LDA.W $0F92,X : CMP.W #InstList_Kihunter_Hop_FacingRight 
     BMI .keepLeft 
     LDY.W #InstList_Kihunter_LandedFromHop_FacingRight 
 
@@ -12550,8 +12509,7 @@ Function_Kihunter_Wingless_Thinking:
 
 Function_Kihunter_Wingless_FireAcidSpit:
     LDY.W #InstList_Kihunter_AcidSpitAttack_FacingLeft 
-    LDA.W $0F7A,X 
-    CMP.W $0AF6 
+    LDA.W $0F7A,X : CMP.W $0AF6 
     BPL .keepLeft 
     LDY.W #InstList_Kihunter_AcidSpitAttack_FacingRight 
 
@@ -12623,8 +12581,7 @@ EnemyShot_Kihunter:
     TXA 
     CLC : ADC.W #$0040 : STA.W $0E54 
     TAX 
-    LDA.W $0FA8,X 
-    CMP.W #Function_KihunterWings_Falling 
+    LDA.W $0FA8,X : CMP.W #Function_KihunterWings_Falling 
     BEQ .returnLower 
     LDA.W $0F7E,X : STA.L $7E780E,X 
     LDA.W $0F7A,X : STA.L $7E7810,X 
@@ -12674,8 +12631,7 @@ Function_KihunterWings_Falling_DriftingLeft:
     AND.W #$00FF 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     SEC : SBC.L $7E7806,X : CLC : ADC.L $7E780A,X : STA.W $0F7A,X 
-    LDA.W $0FB2,X 
-    CMP.W #$C000 
+    LDA.W $0FB2,X : CMP.W #$C000 
     BPL + 
     JSR.W SetupFallingKihunterWingsDriftingRight 
     RTL 
@@ -12741,8 +12697,7 @@ Function_KihunterWings_Falling_DriftingRight:
     AND.W #$00FF 
     JSL.L EightBitCosineMultiplication_A0B0B2 
     SEC : SBC.L $7E7802,X : CLC : ADC.L $7E780A,X : STA.W $0F7A,X 
-    LDA.W $0FB2,X 
-    CMP.W #$C000 
+    LDA.W $0FB2,X : CMP.W #$C000 
     BMI + 
     JSR.W SetupFallingKihunterWingsDriftingLeft 
     RTL 
