@@ -502,8 +502,7 @@ InstList_Evir_Projectile_Regenerating_1:
 
 Instruction_Evir_PlaySpitSFX:
     PHX : PHY 
-    LDA.W #$005E 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$005E : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
@@ -734,8 +733,7 @@ MainAI_EvirProjectile:
 
 ShootEvirProjectileAtSamus:
     LDA.W $0E54 : SEC : SBC.W #$0080 : TAX 
-    LDA.W #$0080 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W #$0080 : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
     LDA.W #$0004 : STA.W $0E32 
     JSL.L CalculateAngleOfSamusFromEnemy 
@@ -746,8 +744,7 @@ ShootEvirProjectileAtSamus:
     JSL.L EightBitCosineMultiplication_A0B0B2 
     STA.L $7E780E,X 
     LDA.W $0E38 : STA.L $7E7810,X 
-    LDA.B $16 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.B $16 : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     STA.L $7E7812,X 
     LDA.W $0E38 : STA.L $7E7814,X 
     LDA.W #InstList_Evir_Projectile_Normal : STA.L $7E7804,X 
@@ -803,8 +800,7 @@ Function_EvirProjectile_Regenerating:
 
 StartEvirProjectileRegeneratingIfFarOffScreen:
     LDX.W $0E54 
-    LDA.W #$0100 
-    JSL.L CheckIfEnemyCenterIsOverAPixelsOffScreen 
+    LDA.W #$0100 : JSL.L CheckIfEnemyCenterIsOverAPixelsOffScreen 
     BEQ .return 
     LDA.W $0F1E,X : BNE .return 
     LDA.W #$0000 : STA.L $7E7816,X 
@@ -1551,12 +1547,10 @@ MainAI_Eye:
 
 
 Function_Eye_WaitForSamusToGetNear:
-    LDA.W EyeConstants_YProximityToActivate 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W EyeConstants_YProximityToActivate : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     TAY 
     BEQ .return 
-    LDA.W EyeConstants_XProximityToActivate 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W EyeConstants_XProximityToActivate : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     TAY 
     BEQ .return 
     LDA.W #$0020 : STA.W $0FB0,X 
@@ -1582,8 +1576,7 @@ Function_Eye_Activating:
     BPL .return 
 
 .timerExpired:
-    LDA.W #$0017 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0017 : JSL.L QueueSound_Lib2_Max6 
     JSL.L Spawn_MorphBallEyeBeam_HDMAObject 
     LDA.W #Function_Eye_Active : STA.W $0FB2,X 
     LDA.W $0AF6 : SEC : SBC.W $0F7A,X : STA.B $12 
@@ -1596,18 +1589,15 @@ Function_Eye_Activating:
 
 
 Function_Eye_Active:
-    LDA.W EyeConstants_YProximityToDeactivate 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W EyeConstants_YProximityToDeactivate : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     TAY 
     BEQ .notInProximity 
-    LDA.W EyeConstants_XProximityToDeactivate 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W EyeConstants_XProximityToDeactivate : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     TAY 
     BNE .inProximity 
 
 .notInProximity:
-    LDA.W #$0071 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0071 : JSL.L QueueSound_Lib2_Max6 
     STZ.W $0FAC,X 
     LDA.W #$0020 : STA.W $0FB0,X 
     LDA.W $0FB4,X : BIT.W #$0001 
@@ -2207,8 +2197,7 @@ InstList_Namihe_FacingRight_Active:
 
 Instruction_FuneNamihe_QueueSpitSFX:
     PHY : PHX 
-    LDA.W #$001F 
-    JSL.L QueueSound_Lib2_Max9 
+    LDA.W #$001F : JSL.L QueueSound_Lib2_Max9 
     PLX : PLY 
     RTL 
 
@@ -2366,8 +2355,7 @@ RTS_A8978F:
 
 Namihe_CheckIfSamusIsInProximity:
     LDX.W $0E54 
-    LDA.W $0FAC,X 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W $0FAC,X : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     RTS 
 
 
@@ -3413,8 +3401,7 @@ Instruction_YappingMaw_QueueSFXIfOnScreen:
     PHY : PHX 
     LDX.W $0E54 
     LDA.L $7E802C,X : BNE .return 
-    LDA.W #$002F 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$002F : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     PLX : PLY 
@@ -3558,14 +3545,12 @@ Function_YappingMaw_Attack:
 CalculateYappingMawOriginPosition:
     LDX.W $0E54 
     LDA.L $7E7812,X : STA.W $0E32 
-    LDA.W #$0080 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.W #$0080 : JSL.L Math_Cosine_A8A73E 
     STA.L $7E781C,X 
     LDA.L $7E7812,X 
     LSR A 
     STA.W $0E32 
-    LDA.W #$0080 
-    JSL.L Math_Sine_A8A742 
+    LDA.W #$0080 : JSL.L Math_Sine_A8A742 
     STA.L $7E781E,X 
     RTS 
 
@@ -3573,17 +3558,13 @@ CalculateYappingMawOriginPosition:
 CalculateBodySegment1Velocities:
     LDX.W $0E54 
     LDA.L $7E7800,X : STA.W $0E32 
-    LDA.W #$0000 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.W #$0000 : JSL.L Math_Cosine_A8A73E 
     STA.L $7E7820,X 
-    LDA.W #$0000 
-    JSL.L Math_Sine_A8A742 
+    LDA.W #$0000 : JSL.L Math_Sine_A8A742 
     STA.L $7E7822,X 
-    LDA.L $7E7816,X 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.L $7E7816,X : JSL.L Math_Cosine_A8A73E 
     SEC : SBC.L $7E7820,X : STA.L $7E800E,X 
-    LDA.L $7E7816,X 
-    JSL.L Math_Sine_A8A742 
+    LDA.L $7E7816,X : JSL.L Math_Sine_A8A742 
     SEC : SBC.L $7E7822,X : STA.L $7E8010,X 
     RTS 
 
@@ -3591,17 +3572,13 @@ CalculateBodySegment1Velocities:
 CalculateBodySegment2Velocities:
     LDX.W $0E54 
     LDA.L $7E7804,X : STA.W $0E32 
-    LDA.W #$0000 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.W #$0000 : JSL.L Math_Cosine_A8A73E 
     STA.L $7E7820,X 
-    LDA.W #$0000 
-    JSL.L Math_Sine_A8A742 
+    LDA.W #$0000 : JSL.L Math_Sine_A8A742 
     STA.L $7E7822,X 
-    LDA.L $7E7816,X 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.L $7E7816,X : JSL.L Math_Cosine_A8A73E 
     SEC : SBC.L $7E7820,X : STA.L $7E8012,X 
-    LDA.L $7E7816,X 
-    JSL.L Math_Sine_A8A742 
+    LDA.L $7E7816,X : JSL.L Math_Sine_A8A742 
     SEC : SBC.L $7E7822,X : STA.L $7E8014,X 
     RTS 
 
@@ -3609,17 +3586,13 @@ CalculateBodySegment2Velocities:
 CalculateBodySegment3Velocities:
     LDX.W $0E54 
     LDA.L $7E7808,X : STA.W $0E32 
-    LDA.W #$0000 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.W #$0000 : JSL.L Math_Cosine_A8A73E 
     STA.L $7E7820,X 
-    LDA.W #$0000 
-    JSL.L Math_Sine_A8A742 
+    LDA.W #$0000 : JSL.L Math_Sine_A8A742 
     STA.L $7E7822,X 
-    LDA.L $7E7816,X 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.L $7E7816,X : JSL.L Math_Cosine_A8A73E 
     SEC : SBC.L $7E7820,X : STA.L $7E8016,X 
-    LDA.L $7E7816,X 
-    JSL.L Math_Sine_A8A742 
+    LDA.L $7E7816,X : JSL.L Math_Sine_A8A742 
     SEC : SBC.L $7E7822,X : STA.L $7E8018,X 
     RTS 
 
@@ -3627,17 +3600,13 @@ CalculateBodySegment3Velocities:
 CalculateHeadSegmentVelocities:
     LDX.W $0E54 
     LDA.L $7E780C,X : STA.W $0E32 
-    LDA.W #$0000 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.W #$0000 : JSL.L Math_Cosine_A8A73E 
     STA.L $7E7820,X 
-    LDA.W #$0000 
-    JSL.L Math_Sine_A8A742 
+    LDA.W #$0000 : JSL.L Math_Sine_A8A742 
     STA.L $7E7822,X 
-    LDA.L $7E7816,X 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.L $7E7816,X : JSL.L Math_Cosine_A8A73E 
     SEC : SBC.L $7E7820,X : STA.L $7E801A,X 
-    LDA.L $7E7816,X 
-    JSL.L Math_Sine_A8A742 
+    LDA.L $7E7816,X : JSL.L Math_Sine_A8A742 
     SEC : SBC.L $7E7822,X : STA.L $7E801C,X 
     RTS 
 
@@ -3664,32 +3633,24 @@ Function_YappingMaw_Attacking:
     ADC.B $14 : STA.L $7E8008,X 
 
   + LDA.L $7E7812,X : STA.W $0E32 
-    LDA.L $7E8002,X 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.L $7E8002,X : JSL.L Math_Cosine_A8A73E 
     SEC : SBC.L $7E781C,X : STA.L $7E7800,X 
-    LDA.L $7E8004,X 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.L $7E8004,X : JSL.L Math_Cosine_A8A73E 
     SEC : SBC.L $7E781C,X : STA.L $7E7804,X 
-    LDA.L $7E8006,X 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.L $7E8006,X : JSL.L Math_Cosine_A8A73E 
     SEC : SBC.L $7E781C,X : STA.L $7E7808,X 
-    LDA.L $7E8008,X 
-    JSL.L Math_Cosine_A8A73E 
+    LDA.L $7E8008,X : JSL.L Math_Cosine_A8A73E 
     SEC : SBC.L $7E781C,X : STA.L $7E780C,X 
     LDA.L $7E7812,X 
     LSR A 
     STA.W $0E32 
-    LDA.L $7E8002,X 
-    JSL.L Math_Sine_A8A742 
+    LDA.L $7E8002,X : JSL.L Math_Sine_A8A742 
     SEC : SBC.L $7E781E,X : STA.L $7E7802,X 
-    LDA.L $7E8004,X 
-    JSL.L Math_Sine_A8A742 
+    LDA.L $7E8004,X : JSL.L Math_Sine_A8A742 
     SEC : SBC.L $7E781E,X : STA.L $7E7806,X 
-    LDA.L $7E8006,X 
-    JSL.L Math_Sine_A8A742 
+    LDA.L $7E8006,X : JSL.L Math_Sine_A8A742 
     SEC : SBC.L $7E781E,X : STA.L $7E780A,X 
-    LDA.L $7E8008,X 
-    JSL.L Math_Sine_A8A742 
+    LDA.L $7E8008,X : JSL.L Math_Sine_A8A742 
     SEC : SBC.L $7E781E,X : STA.L $7E780E,X 
     JSR.W CalculateBodySegment1Velocities 
     JSR.W CalculateBodySegment2Velocities 
@@ -3795,8 +3756,7 @@ UpdateYappingMawAngularSpeed:
 
 MoveSamusWithYappingMawPincers:
     LDX.W $0E54 
-    LDA.W #$0003 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0003 : JSL.L Run_Samus_Command 
     LDA.W $0F7A,X : CLC : ADC.L $7E8024,X : STA.W $0AF6 
     LDA.W $0F7E,X : CLC : ADC.L $7E8026,X : STA.W $0AFA 
     JSL.L CapScrollingSpeed 
@@ -4364,15 +4324,13 @@ EnemyShot_Kago:
 .takenHit:
     LDA.L $7E7808,X : SEC : SBC.W #$0001 : STA.L $7E7808,X 
     BPL .notDead 
-    LDA.W #$0004 
-    JSL.L EnemyDeath 
+    LDA.W #$0004 : JSL.L EnemyDeath 
     LDX.W $0E54 
     LDA.W #$0001 : STA.W $0FB2,X 
 
 .notDead:
     LDY.W #EnemyProjectile_KagoBug 
-    LDA.W $0F7E,X 
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
+    LDA.W $0F7E,X : JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY : PLX 
     RTL 
 
@@ -4665,8 +4623,7 @@ Instruction_Magdollite_QueueSFXInY_Lib2_Max6_IfOnScreen:
     PHX : PHY 
     JSL.L CheckIfEnemyCenterIsOnScreen 
     BNE .offScreen 
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max6 
 
 .offScreen:
     PLY : PLX 
@@ -4743,8 +4700,7 @@ Instruction_Magdollite_SpawnLavaProjectile:
     PHY 
     LDX.W $0E54 
     LDY.W #EnemyProjectile_Magdollite 
-    LDA.W $0FAA,X 
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
+    LDA.W $0FAA,X : JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY 
     RTL 
 
@@ -5749,8 +5705,7 @@ MainAI_Beetom:
 
 Function_Beetom_DecideAction:
     LDX.W $0E54 
-    LDA.W #$0060 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W #$0060 : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .notInProximity 
     LDA.W #Function_Beetom_DecideAction_SamusInProximity : STA.W $0FAC,X 
     BRA .return 
@@ -6381,8 +6336,7 @@ EnemyTouch_Beetom:
     LDA.W $09C2 
     CMP.W #$001E 
     BMI + 
-    LDA.W #$002D 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$002D : JSL.L QueueSound_Lib3_Max6 
 
   + LDA.W $0FA4,X : AND.W #$003F 
     CMP.W #$003F 
@@ -8409,8 +8363,7 @@ Instruction_Robot_PlaySFXIfOnScreen:
     BPL .return 
     CLC : ADC.W #$00E0 : CMP.W $0F7E,X 
     BMI .return 
-    LDA.W #$0068 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0068 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     PLY : PLX 
@@ -9466,8 +9419,7 @@ BullXMovement:
     INC.B $1A 
 
 .positive:
-    LDA.B $12 
-    JSL.L NegateA_A0B067 
+    LDA.B $12 : JSL.L NegateA_A0B067 
     AND.W #$FF00 
     XBA 
     STA.B $16 
@@ -9497,8 +9449,7 @@ BullYMovement:
     INC.B $1A 
 
 .positive:
-    LDA.B $12 
-    JSL.L NegateA_A0B067 
+    LDA.B $12 : JSL.L NegateA_A0B067 
     AND.W #$FF00 
     XBA 
     STA.B $16 
@@ -9879,8 +9830,7 @@ Function_Alcoon_WaitForSamusToGetNear:
     STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #Function_Alcoon_Emerging_Rising : STA.W $0FA8,X 
-    LDA.W #$005E 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$005E : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 
@@ -10039,8 +9989,7 @@ Instruction_Alcoon_SpawnAlcoonFireballUpward_loop:
     LDY.W #EnemyProjectile_AlcoonFireball 
     LDX.W $0E54 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    LDA.W #$003F 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$003F : JSL.L QueueSound_Lib2_Max6 
     PLY 
     RTL 
 
@@ -12399,16 +12348,14 @@ Function_Kihunter_Winged_Swoop:
 
 .swoopContinues:
     LDA.L $7E7822,X : STA.W $0E32 
-    LDA.W $0FB2,X 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.W $0FB2,X : JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.W $0FAA,X : SEC : SBC.W $0F7A,X : STA.B $14 
     STZ.B $12 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
     BCS .collidedHorizontally 
     JSL.L AlignEnemyYPositionWIthNonSquareSlope 
     LDA.L $7E7824,X : STA.W $0E32 
-    LDA.W $0FB2,X 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.W $0FB2,X : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC : ADC.W $0FAC,X : SEC : SBC.W $0F7E,X : STA.B $14 
     STZ.B $12 
     JSL.L MoveEnemyDownBy_14_12 
@@ -12627,8 +12574,7 @@ Instruction_Kihunter_FireAcidSpitRight:
     LDY.W #EnemyProjectile_KiHunterAcidSpit_Right ; fallthrough to FireAcidSpit
 
 FireAcidSpit:
-    LDA.W #$004C 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$004C : JSL.L QueueSound_Lib2_Max6 
     LDX.W $0E54 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     LDA.W #$0018 : STA.L $7E781E,X 

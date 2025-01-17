@@ -430,8 +430,7 @@ NormalPirateShot:
     CMP.W #EnemyHeaders_PirateGoldNinja 
     BNE .notGold 
     STZ.W $0FAA,X 
-    LDA.W #$0004 
-    JSL.L EnemyDeath 
+    LDA.W #$0004 : JSL.L EnemyDeath 
     JSL.L MetalNinjaPirateDeathItemDropRoutine 
 
 .return:
@@ -440,8 +439,7 @@ NormalPirateShot:
 
 .notGold:
     STZ.W $0FAA,X 
-    LDA.W #$0004 
-    JSL.L EnemyDeath 
+    LDA.W #$0004 : JSL.L EnemyDeath 
     RTL 
 
 
@@ -549,8 +547,7 @@ EnemyShot_SpacePirate_GoldNinjaIsInvincible:
     STA.W $0C04,Y 
     STY.B $14 
     JSL.L ProjectileReflection 
-    LDA.W #$0066 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0066 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 
@@ -11915,8 +11912,7 @@ Instruction_PirateWall_FunctionInY:
 
 Instruction_PirateWall_QueueSpacePirateAttackSFX:
     PHX : PHY 
-    LDA.W #$0066 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0066 : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
@@ -11973,8 +11969,7 @@ MainAI_PirateWall:
 
 Function_PirateWall_ClimbingLeftWall:
     LDX.W $0E54 
-    LDA.W #$0020 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W #$0020 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     BEQ RTS_B2F04D 
     LDA.W #InstList_PirateWall_FireLaser_WallJumpRight : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -11998,14 +11993,12 @@ Function_PirateWall_WallJumpingRight:
     LDA.W $0FB6,X 
     LSR A 
     STA.W $0E32 
-    LDA.W $0FB2,X 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.W $0FB2,X : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC : ADC.W $0FAE,X : STA.W $0F7A,X 
     LDA.W $0FB6,X 
     LSR #2
     STA.W $0E32 
-    LDA.W $0FB2,X 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.W $0FB2,X : JSL.L EightBitCosineMultiplication_A0B0B2 
     EOR.W #$FFFF 
     INC A 
     CLC : ADC.W $0FB0,X : STA.W $0F7E,X 
@@ -12034,8 +12027,7 @@ Function_PirateWall_WallJumpingRight:
 
 Function_PirateWall_ClimbingRightWall:
     LDX.W $0E54 
-    LDA.W #$0020 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W #$0020 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     BEQ RTS_B2F0E1 
     LDA.W #InstList_PirateWall_FireLaser_WallJumpLeft : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
@@ -12059,14 +12051,12 @@ Function_PirateWall_WallJumpingLeft:
     LDA.W $0FB6,X 
     LSR A 
     STA.W $0E32 
-    LDA.W $0FB2,X 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.W $0FB2,X : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC : ADC.W $0FAE,X : STA.W $0F7A,X 
     LDA.W $0FB6,X 
     LSR #2
     STA.W $0E32 
-    LDA.W $0FB2,X 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.W $0FB2,X : JSL.L EightBitCosineMultiplication_A0B0B2 
     EOR.W #$FFFF 
     INC A 
     CLC : ADC.W $0FB0,X : STA.W $0F7E,X 
@@ -12648,8 +12638,7 @@ Instruction_PirateNinja_PaletteIndexInY:
 
 Instruction_PirateNinja_QueueSoundInY_Lib2_Max6:
     PHX : PHY 
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     INY #2
     RTL 
@@ -13483,8 +13472,7 @@ MainAI_PirateWalking:
 
 Function_PirateWalking_WalkingLeft:
     LDX.W $0E54 
-    LDA.W #$0010 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W #$0010 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     BEQ .walk 
     LDY.W #InstList_PirateWalking_FireLasersLeft 
     LDA.W $0AF6 : SEC : SBC.W $0F7A,X : BMI .keepLeft 
@@ -13532,8 +13520,7 @@ Function_PirateWalking_WalkingLeft:
 
 Function_PirateWalking_WalkingRight:
     LDX.W $0E54 
-    LDA.W #$0010 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W #$0010 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     BEQ .walk 
     LDY.W #InstList_PirateWalking_FireLasersLeft 
     LDA.W $0AF6 : SEC : SBC.W $0F7A,X : BMI .keepLeft 

@@ -3484,8 +3484,7 @@ RoomMainASM_CeresElevatorShaft:
     LDA.W $0998 
     CMP.W #$0008 
     BNE .handleRotationMatrix 
-    LDA.W #$0002 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0002 : JSL.L Run_Samus_Command 
     STZ.W $0723 
     STZ.W $0725 
     LDA.W #$0020 : STA.W $0998 

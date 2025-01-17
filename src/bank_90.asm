@@ -81,8 +81,7 @@ AnimateSamus_FX_None:
 
 
   + STZ.W $0AD2 
-    LDA.W #$000E 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$000E : JSL.L QueueSound_Lib2_Max6 
     LDA.W $0A74 : BIT.W #$0004 
     BNE .goto_Spawn_WaterSplash_AirBubbles 
     LDA.W $0A1F : AND.W #$00FF 
@@ -91,8 +90,7 @@ AnimateSamus_FX_None:
     CMP.W #$0014 
     BNE .goto_Spawn_WaterSplash_AirBubbles 
 
-  + LDA.W #$0030 
-    JSL.L QueueSound_Lib1_Max6 
+  + LDA.W #$0030 : JSL.L QueueSound_Lib1_Max6 
 
 .goto_Spawn_WaterSplash_AirBubbles:
     BRA Spawn_WaterSplash_AirBubbles 
@@ -116,8 +114,7 @@ AnimateSamus_FX_Water:
     CMP.W #$0001 
     BEQ Spawn_AirBubbles 
     LDA.W #$0001 : STA.W $0AD2 
-    LDA.W #$000D 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$000D : JSL.L QueueSound_Lib2_Max6 
 
 Spawn_WaterSplash_AirBubbles:
     LDA.W $0A1F : AND.W #$00FF 
@@ -200,8 +197,7 @@ AnimateSamus_FX_Lava:
     LDA.W $09C2 
     CMP.W #$0047 
     BMI .periodicDamage 
-    LDA.W #$002D 
-    JSL.L QueueSound_Lib3_Max3 
+    LDA.W #$002D : JSL.L QueueSound_Lib3_Max3 
 
 .periodicDamage:
     LDA.W $0A4E : CLC : ADC.W SamusPhysicsConstants_LavaSubDamagePerFrame : STA.W $0A4E 
@@ -228,8 +224,7 @@ AnimateSamus_FX_Acid:
     LDA.W $09C2 
     CMP.W #$0047 
     BMI + 
-    LDA.W #$002D 
-    JSL.L QueueSound_Lib3_Max3 
+    LDA.W #$002D : JSL.L QueueSound_Lib3_Max3 
 
   + LDA.W $0A4E : CLC : ADC.W SamusPhysicsConstants_AcidSubDamagePerFrame : STA.W $0A4E 
     LDA.W $0A50 : ADC.W SamusPhysicsConstants_AcidDamagePerFrame : STA.W $0A50 
@@ -260,8 +255,7 @@ AnimateSamus_SubmergedInLavaAcid:
     SBC.W #$0006 : STA.W $0AE2 
     LDA.W $09DA : BIT.W #$0001 
     BNE .fullySubmerged 
-    LDA.W #$0010 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0010 : JSL.L QueueSound_Lib2_Max6 
 
 .fullySubmerged:
     LDA.W $0A1C 
@@ -465,8 +459,7 @@ AnimDelay_B_SelectAnimDelaySequenceForWallJump:
     BNE .spaceJump 
 
 .submerged:
-    LDA.W #$0031 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0031 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $0A96 
     INC A 
     STA.W $0A96 
@@ -476,8 +469,7 @@ AnimDelay_B_SelectAnimDelaySequenceForWallJump:
 
 
 .spaceJump:
-    LDA.W #$003E 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$003E : JSL.L QueueSound_Lib1_Max6 
     LDA.W $0A96 : CLC : ADC.W #$000B : STA.W $0A96 
     TAY 
     SEC 
@@ -485,8 +477,7 @@ AnimDelay_B_SelectAnimDelaySequenceForWallJump:
 
 
 .screwAttack:
-    LDA.W #$0033 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0033 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $0A96 : CLC : ADC.W #$0015 : STA.W $0A96 
     TAY 
     SEC 
@@ -614,8 +605,7 @@ Handle_SpeedBooster_AnimationDelay:
     BIT.W #$0400 
     BEQ + 
     LDA.W #$0001 : STA.W $0B40 
-    LDA.W #$0003 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0003 : JSL.L QueueSound_Lib3_Max6 
 
   + XBA 
     AND.W #$00FF 
@@ -1013,8 +1003,7 @@ DrawSamusEcho:
 
 .addSpritemap:
     TAY 
-    LDA.W $0AC8 
-    JSL.L AddSamusSpritemapToOAM 
+    LDA.W $0AC8 : JSL.L AddSamusSpritemapToOAM 
     PLY 
     LDA.W $0ACA : BEQ .return 
     LDA.W $0A1C 
@@ -1024,8 +1013,7 @@ DrawSamusEcho:
     PHY 
     LDA.W $0AB0,Y : SEC : SBC.W $0911 : TAX 
     LDA.W $0AB8,Y : SEC : SBC.B $12 : SBC.W $0915 : TAY 
-    LDA.W $0ACA 
-    JSL.L AddSamusSpritemapToOAM 
+    LDA.W $0ACA : JSL.L AddSamusSpritemapToOAM 
     PLY 
 
 .return:
@@ -3875,8 +3863,7 @@ SamusMovement_Running:
     LDA.W $0A68 : BNE .return 
     LDA.W $0B3E : BIT.W #$0400 
     BNE .return 
-    LDA.W #$0006 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0006 : JSL.L QueueSound_Lib3_Max6 
 
 .return:
     PLP 
@@ -3980,8 +3967,7 @@ SamusMovement_SpinJumping:
     BNE + 
     LDA.W .framesSFX,X : AND.W #$00FF 
     BEQ + 
-    LDA.W #$002F 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$002F : JSL.L QueueSound_Lib1_Max6 
 
   + LDA.W $0CD0 
     CMP.W #$003C 
@@ -6425,8 +6411,7 @@ Fire_Uncharge_Beam:
 
 
   + STZ.W $0DC0 
-    LDA.W #$0002 
-    JSL.L QueueSound 
+    LDA.W #$0002 : JSL.L QueueSound 
     PLP 
     RTS 
 
@@ -6451,8 +6436,7 @@ Fire_Uncharge_Beam:
     AND.W #$000F 
     ASL A 
     TAY 
-    LDA.W ProjectileSFX_Uncharged,Y 
-    JSL.L QueueSound 
+    LDA.W ProjectileSFX_Uncharged,Y : JSL.L QueueSound 
     STZ.W $0DC0 
     JSL.L InitializeProjectile 
     LDA.W $09A6 : BIT.W #$1000 
@@ -6538,8 +6522,7 @@ FireChargeBeam:
 
 
   + STZ.W $0DC0 
-    LDA.W #$0002 
-    JSL.L QueueSound 
+    LDA.W #$0002 : JSL.L QueueSound 
     PLP 
     RTS 
 
@@ -6566,8 +6549,7 @@ FireChargeBeam:
     AND.W #$000F 
     ASL A 
     TAY 
-    LDA.W ProjectileSFX_Charged,Y 
-    JSL.L QueueSound 
+    LDA.W ProjectileSFX_Charged,Y : JSL.L QueueSound 
     STZ.W $0DC0 
     JSL.L InitializeProjectile 
     LDA.W $0C18,X 
@@ -6723,8 +6705,7 @@ HandleChargingBeamGraphicsAudio:
 
   + CMP.W #$0010 
     BNE .zeroIndex 
-    LDA.W #$0008 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0008 : JSL.L QueueSound_Lib1_Max9 
 
 .zeroIndex:
     LDX.W #$0000 
@@ -6871,14 +6852,12 @@ DrawFlareAnimationComponent:
 
   + AND.W #$FF00 
     BNE .greaterThanEqualTo100 
-    LDA.B $16 
-    JSL.L AddSpritemapFrom_93A1A1_TableToOAM 
+    LDA.B $16 : JSL.L AddSpritemapFrom_93A1A1_TableToOAM 
     BRA + 
 
 
 .greaterThanEqualTo100:
-    LDA.B $16 
-    JSL.L RTL_818AB7 
+    LDA.B $16 : JSL.L RTL_818AB7 
 
   + LDA.W $093F : BPL .returnLower 
     LDA.W $0D84 : STA.W $0AFA 
@@ -6927,8 +6906,7 @@ FireHyperBeam:
     AND.W #$000F 
     ASL A 
     TAX 
-    LDA.W ProjectileSFX_Charged,X 
-    JSL.L QueueSound 
+    LDA.W ProjectileSFX_Charged,X : JSL.L QueueSound 
     STZ.W $0DC0 
     PLX 
     JSL.L InitializeProjectile 
@@ -7180,8 +7158,7 @@ HUDSelectionHandler_Missiles_SuperMissiles:
     ASL A 
     TAX 
     LDA.W $1F51 : BNE .init 
-    LDA.W ProjectileSFX_NonBeamProjectiles,X 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W ProjectileSFX_NonBeamProjectiles,X : JSL.L QueueSound_Lib1_Max6 
 
 .init:
     JSR.W InitializeMissileVelocities 
@@ -7275,8 +7252,7 @@ HUDSelectionHandler_MorphBall:
 
 .notPressingShot:
     LDA.W $0CD0 : BEQ .return 
-    LDA.W #$0002 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0002 : JSL.L QueueSound_Lib1_Max9 
     STZ.W $0CD0 
     JSR.W ClearFlareAnimationState 
     JSL.L LoadSamusSuitPalette 
@@ -7395,8 +7371,7 @@ FireBombOrBombSpread:
 .bombSpread:
     JSR.W BombSpread 
     JSL.L LoadSamusSuitPalette 
-    LDA.W #$0002 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0002 : JSL.L QueueSound_Lib1_Max9 
 
 .return:
     CLC 
@@ -7424,8 +7399,7 @@ FireBomb:
 
 .noFire:
     LDA.W $0CD0 : BEQ .returnCarryClear 
-    LDA.W #$0002 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0002 : JSL.L QueueSound_Lib1_Max9 
     STZ.W $0CD0 
     JSR.W ClearFlareAnimationState 
     JSL.L LoadSamusSuitPalette 
@@ -7450,8 +7424,7 @@ HandleBomb:
 
 
 .explosion:
-    LDA.W #$0008 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0008 : JSL.L QueueSound_Lib2_Max6 
     JSL.L Initialize_Bomb_Explosion 
 
 .return:
@@ -8656,8 +8629,7 @@ FireWaveSBA:
     TAY 
     LDA.W ProjectileCooldowns_Uncharged,Y : AND.W #$00FF : STA.W $0CCC 
     LDA.W #$0004 : STA.W $0B60 
-    LDA.W #$0028 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0028 : JSL.L QueueSound_Lib1_Max6 
     SEC 
     RTS 
 
@@ -8710,8 +8682,7 @@ FireIceSBA:
     LDA.W #$FFFC : STA.W $0B60 
 
 .finish:
-    LDA.W #$0023 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0023 : JSL.L QueueSound_Lib1_Max6 
     SEC 
     RTS 
 
@@ -8750,8 +8721,7 @@ FireSpazerSBA:
     TAY 
     LDA.W ProjectileCooldowns_Uncharged,Y : AND.W #$00FF : STA.W $0CCC 
     STZ.W $0B60 
-    LDA.W #$0025 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0025 : JSL.L QueueSound_Lib1_Max6 
     SEC 
     RTS 
 
@@ -8799,8 +8769,7 @@ FirePlasmaSBA:
     LDA.W #$FFFC : STA.W $0B60 
 
 .playSFX:
-    LDA.W #$0027 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0027 : JSL.L QueueSound_Lib1_Max6 
     SEC 
     RTS 
 
@@ -8808,8 +8777,7 @@ FirePlasmaSBA:
 ProjectilePreInstruction_IceSBA_Main:
     LDA.W $0C04,X : AND.W #$00F0 
     BEQ .trail 
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0024 : JSL.L QueueSound_Lib1_Max6 
     JSL.L Clear_Projectile 
     RTS 
 
@@ -8833,8 +8801,7 @@ ProjectilePreInstruction_IceSBA_Main:
     BNE .done 
     LDA.W #ProjectilePreInstruction_IceSBA_End : STA.W $0C68,X 
     LDA.W #$0028 : STA.W $0BDC,X 
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0024 : JSL.L QueueSound_Lib1_Max6 
 
 .done:
     LDA.W #$0002 : STA.W $0CCC 
@@ -8908,8 +8875,7 @@ TriggerShinesparkWindup:
     LDA.W $0CD0 : BEQ .return 
     CMP.W #$0010 
     BMI .resetFlare 
-    LDA.W #$0002 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0002 : JSL.L QueueSound_Lib1_Max9 
 
 .resetFlare:
     STZ.W $0CD0 
@@ -8943,8 +8909,7 @@ SamusMovementHandler_ShinesparkWindup:
     STZ.W $0AC2 
     STZ.W $0AB0 
     STZ.W $0AB2 
-    LDA.W #$000F 
-    JSL.L QueueSound_Lib3_Max9 
+    LDA.W #$000F : JSL.L QueueSound_Lib3_Max9 
 
 .return:
     RTS 
@@ -9199,10 +9164,8 @@ EndShinesparkIfCollisionDetectedOrLowEnergy:
     STA.W $0ABA 
     STZ.W $0AC4 
     STZ.W $0A48 
-    LDA.W #$0035 
-    JSL.L QueueSound_Lib1_Max6 
-    LDA.W #$0010 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0035 : JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0010 : JSL.L QueueSound_Lib3_Max6 
     SEC 
     RTS 
 
@@ -9514,8 +9477,7 @@ SamusMovementHandler_CrystalFlash_RaiseSamus_GenerateBubble:
     LDA.W #SamusMovementHandler_CrystalFlash_DecrementAmmo : STA.W $0A58 
     STZ.W $18A8 
     STZ.W $18AA 
-    LDA.W #$0001 
-    JSL.L QueueSound_Lib3_Max15 
+    LDA.W #$0001 : JSL.L QueueSound_Lib3_Max15 
     STZ.W $0CEE 
     LDA.W $0AF6 : STA.W $0CE2 
     LDA.W $0AFA : STA.W $0CE4 
@@ -9547,8 +9509,7 @@ CrystalFlash_DecrementMissiles:
     LDA.W $05B6 : BIT.W #$0007 
     BNE .return 
     DEC.W $09C6 
-    LDA.W #$0032 
-    JSL.L Restore_A_Energy_ToSamus 
+    LDA.W #$0032 : JSL.L Restore_A_Energy_ToSamus 
     DEC.W $0DEC 
     BEQ .timerExpired 
     BPL .return 
@@ -9565,8 +9526,7 @@ CrystalFlash_DecrementSuperMissiles:
     LDA.W $05B6 : BIT.W #$0007 
     BNE .return 
     DEC.W $09CA 
-    LDA.W #$0032 
-    JSL.L Restore_A_Energy_ToSamus 
+    LDA.W #$0032 : JSL.L Restore_A_Energy_ToSamus 
     DEC.W $0DEC 
     BEQ .timerExpired 
     BPL .return 
@@ -9583,8 +9543,7 @@ CrystalFlash_DecrementPowerBombs:
     LDA.W $05B6 : BIT.W #$0007 
     BNE .return 
     DEC.W $09CE 
-    LDA.W #$0032 
-    JSL.L Restore_A_Energy_ToSamus 
+    LDA.W #$0032 : JSL.L Restore_A_Energy_ToSamus 
     DEC.W $0DEC 
     BEQ .timerExpired 
     BPL .return 
@@ -9858,8 +9817,7 @@ ProjectilePreInstruction_WaveSBA:
     BPL .alive 
 
 .deleted:
-    LDA.W #$0029 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0029 : JSL.L QueueSound_Lib1_Max6 
     JSL.L Clear_Projectile 
     RTS 
 
@@ -9946,8 +9904,7 @@ ProjectilePreInstruction_WaveSBA:
     LDA.B $22 : BMI .return 
 
 .playSFX:
-    LDA.W #$0028 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0028 : JSL.L QueueSound_Lib1_Max6 
 
 .return:
     LDA.W #$0002 : STA.W $0CCC 
@@ -10063,8 +10020,7 @@ SpazerSBA_Phase2_FlyingUpTowardsPoint:
     LDA.W #$0004 : STA.W $0CA4,Y 
     CPY.W #$0000 
     BNE .return 
-    LDA.W #$0026 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0026 : JSL.L QueueSound_Lib1_Max6 
 
 .return:
     RTS 
@@ -10353,8 +10309,7 @@ SamusIsHit_Interruption:
     LDA.W $0CD0 
     CMP.W #$0010 
     BMI .lessThan10 
-    LDA.W #$0041 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0041 : JSL.L QueueSound_Lib1_Max6 
 
 .lessThan10:
     LDA.W $0A1E : AND.W #$00FF 
@@ -11855,15 +11810,13 @@ LowEnergyCheck:
     BMI .lowEnergy 
     LDA.W $0A6A : BEQ .return 
     STZ.W $0A6A 
-    LDA.W #$0001 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0001 : JSL.L QueueSound_Lib3_Max6 
     BRA .return 
 
 
 .lowEnergy:
     LDA.W $0A6A : BNE .return 
-    LDA.W #$0002 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0002 : JSL.L QueueSound_Lib3_Max6 
     LDA.W #$0001 : STA.W $0A6A 
 
 .return:
@@ -12691,8 +12644,7 @@ SamusCommand_6_LockSamusIntoRefillStation:
     LDA.W $0CD0 
     CMP.W #$000F 
     BMI .gotoEndChargeBeam 
-    LDA.W #$0002 
-    JSL.L QueueSound 
+    LDA.W #$0002 : JSL.L QueueSound 
 
 .gotoEndChargeBeam:
     JMP.W EndChargeBeam 
@@ -12869,15 +12821,13 @@ SamusCommand_14_QueueLowEnergyAndGrappleSFX:
     LDA.W $09C2 
     CMP.W #$001F 
     BPL .notLowEnergy 
-    LDA.W #$0002 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0002 : JSL.L QueueSound_Lib3_Max6 
 
 .notLowEnergy:
     JSR.W SamusCommand_D_CheckIfGrappleBeamIsActive 
     TAY 
     BEQ .grappleInactive 
-    LDA.W #$0006 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0006 : JSL.L QueueSound_Lib1_Max6 
     CLC 
     RTS 
 
@@ -12899,22 +12849,19 @@ SamusCommand_14_QueueLowEnergyAndGrappleSFX:
     BEQ .spaceJump 
     CMP.W #$001C 
     BEQ .spaceJump 
-    LDA.W #$0031 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0031 : JSL.L QueueSound_Lib1_Max6 
     CLC 
     RTS 
 
 
 .spaceJump:
-    LDA.W #$003E 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$003E : JSL.L QueueSound_Lib1_Max6 
     CLC 
     RTS 
 
 
 .screwAttack:
-    LDA.W #$0033 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0033 : JSL.L QueueSound_Lib1_Max6 
     CLC 
     RTS 
 
@@ -13020,22 +12967,19 @@ SamusCommand_1C_PlaySpinJumpSoundIfSpinJumping:
     BPL .spaceJump 
 
 .spinJump:
-    LDA.W #$0031 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0031 : JSL.L QueueSound_Lib1_Max9 
     CLC 
     RTS 
 
 
 .spaceJump:
-    LDA.W #$003E 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$003E : JSL.L QueueSound_Lib1_Max9 
     CLC 
     RTS 
 
 
 .screwAttack:
-    LDA.W #$0033 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0033 : JSL.L QueueSound_Lib1_Max9 
     CLC 
     RTS 
 
@@ -13048,8 +12992,7 @@ SamusCommand_1D_ClearSoundsWhenGoingThroughDoor:
     BNE .notSpinning 
 
 .endSpaceJumpSFX:
-    LDA.W #$0032 
-    JSL.L QueueSound 
+    LDA.W #$0032 : JSL.L QueueSound 
     CLC 
     RTS 
 
@@ -13060,8 +13003,7 @@ SamusCommand_1D_ClearSoundsWhenGoingThroughDoor:
     LDA.W $0CD0 
     CMP.W #$0010 
     BPL .returnCarryClear 
-    LDA.W #$0002 
-    JSL.L QueueSound 
+    LDA.W #$0002 : JSL.L QueueSound 
 
 .returnCarryClear:
     CLC 
@@ -13088,8 +13030,7 @@ SamusCommand_1E_ResumeSoundsAfterPowerBombExplosion:
     LDA.W $0CD0 
     CMP.W #$0010 
     BMI .returnCarryClear 
-    LDA.W #$0041 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0041 : JSL.L QueueSound_Lib1_Max9 
 
 .returnCarryClear:
     CLC 
@@ -13113,8 +13054,7 @@ SamusCommand_1F_KillGrappleBeam:
     STZ.W $0CF8 
     STZ.W $0CF6 
     STZ.W $0CF4 
-    LDA.W $09A6 
-    JSL.L Load_Beam_Palette_External 
+    LDA.W $09A6 : JSL.L Load_Beam_Palette_External 
     LDA.W #GrappleBeamFunction_Inactive : STA.W $0D32 
     LDA.W #SamusDrawingHandler_Default : STA.W $0A5C 
     CLC 
@@ -13133,8 +13073,7 @@ UNUSED_ResumeSounds_90F507:
     LDA.W $0CD0 
     CMP.W #$0010 
     BMI .return 
-    LDA.W #$0041 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0041 : JSL.L QueueSound_Lib1_Max9 
 
 .return:
     CLC 
@@ -13170,8 +13109,7 @@ DebugCommandHandler_GiveSamusAShinesparkIfYNewlyPressed:
 DebugCommandHandler_DisableRainbowSamus_StandHerUp:
     LDA.B $91 : BIT.W #$4000 
     BEQ .return 
-    LDA.W #$0017 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0017 : JSL.L Run_Samus_Command 
     LDA.W #RTS_90F534 : STA.W $0A5E 
 
 .return:
@@ -13182,8 +13120,7 @@ DebugCommandHandler_ReleaseSamusFromDrainedPoseIfYNewlyPress:
     LDA.B $8F : BIT.W #$4000 
     BEQ .return 
     LDA.W #RTS_90F534 : STA.W $0A5E 
-    LDA.W #$0002 
-    JSL.L DrainedSamusController 
+    LDA.W #$0002 : JSL.L DrainedSamusController 
 
 .return:
     RTS 
@@ -13196,8 +13133,7 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
     BEQ .notSet 
     LDA.B $8B : BIT.W $09B2 
     BEQ .pressingShot 
-    LDA.W #$0041 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0041 : JSL.L QueueSound_Lib1_Max9 
 
 .pressingShot:
     STZ.W $0DC0 
@@ -13207,8 +13143,7 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
     LDA.W $0B3E : BIT.W #$0400 
     BNE .echoes 
     STZ.W $0B40 
-    LDA.W #$0025 
-    JSL.L QueueSound_Lib3_Max15 
+    LDA.W #$0025 : JSL.L QueueSound_Lib3_Max15 
 
 .echoes:
     LDA.W $0A11 : AND.W #$00FF 
@@ -13223,8 +13158,7 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
     BEQ .checkDebug 
     CMP.W #$0014 
     BEQ .checkDebug 
-    LDA.W #$0032 
-    JSL.L QueueSound 
+    LDA.W #$0032 : JSL.L QueueSound 
     LDA.W $0CD0 
     CMP.W #$0010 
     BMI .checkDebug 
@@ -13260,8 +13194,7 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
     STZ.W $0DE0 
 
 .debugEnd:
-    LDA.W #$000E 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000E : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .return 
     LDA.W $0A5A 
     CMP.W #SamusTimerHackHandler_DrawTimer 

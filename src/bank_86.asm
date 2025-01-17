@@ -424,109 +424,94 @@ UNUSED_Instruction_EnemyProjectile_QueueMusicTrackInY:
 
 
 UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib1_Max6_868309:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib1_Max6 
     INY 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max6 
     INY 
     RTS 
 
 
 Instruction_EnemyProjectile_QueueSoundInY_Lib3_Max6:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max6 
     INY 
     RTS 
 
 
 Instruction_EnemyProjectile_QueueSoundInY_Lib1_Max15:
-    LDA.W $0000,Y 
-    JSL.L QueueSound 
+    LDA.W $0000,Y : JSL.L QueueSound 
     INY 
     RTS 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib2_Max15_86832D:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max15 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max15 
     INY 
     RTS 
 
 
 UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib3_Max15_868336:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max15 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max15 
     INY 
     RTS 
 
 
 UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib1_Max3_86833F:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib1_Max3 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib1_Max3 
     INY 
     RTS 
 
 
 UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib2_Max3_868348:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max3 
     INY 
     RTS 
 
 
 UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib3_Max3_868351:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max3 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max3 
     INY 
     RTS 
 
 
 UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib1_Max9_86835A:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib1_Max9 
     INY 
     RTS 
 
 
 UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib2_Max9_868363:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max9 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max9 
     INY 
     RTS 
 
 
 UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib1_Max9_86836C:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max9 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max9 
     INY 
     RTS 
 
 
 UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib1_Max1_868375:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib1_Max1 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib1_Max1 
     INY 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max1:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max1 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max1 
     INY 
     RTS 
 
 
 Instruction_EnemyProjectile_QueueSoundInY_Lib3_Max1:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max1 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max1 
     INY 
     RTS 
 
@@ -1538,8 +1523,7 @@ Instruction_SpawnEnemyDropsWIthDraygonEyeDropChances:
     PHY : PHX 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
-    LDA.W #EnemyHeaders_DraygonEye 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_DraygonEye : JSL.L Spawn_Enemy_Drops 
     PLX : PLY 
     RTS 
 
@@ -2078,8 +2062,7 @@ PreInstruction_EnemyProjectile_CrocomireSpikeWallPieces:
     BIT.W #$0002 
     BNE + 
     PHX 
-    LDA.W #$0029 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0029 : JSL.L QueueSound_Lib2_Max6 
     PLX 
 
   + LDA.W $1A4B,X : STA.B $12 
@@ -2087,8 +2070,7 @@ PreInstruction_EnemyProjectile_CrocomireSpikeWallPieces:
     LDA.W #$0015 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0025 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0025 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTS 
@@ -2140,8 +2122,7 @@ Instruction_SpawnEnemyDropsWithCrocomiresDropChances:
     PHY : PHX 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
-    LDA.W #EnemyHeaders_Crocomire 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_Crocomire : JSL.L Spawn_Enemy_Drops 
     PLX : PLY 
     RTS 
 
@@ -2282,8 +2263,7 @@ UNUSED_PreInst_EnemyProj_RidleyFireball_Afterburn_869392:
     STZ.W $1AB7,X 
     STZ.W $1ADB,X 
     LDA.W #$0A00 : STA.W $19BB,X 
-    LDA.W #$002B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$002B : JSL.L QueueSound_Lib2_Max6 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -2337,10 +2317,8 @@ PreInstruction_EnemyProjectile_RidleyFireball:
     LDA.W $1B23,X : BNE .return 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
-    LDA.W #$0003 
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$002B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0003 : JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
+    LDA.W #$002B : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTS 
@@ -2722,8 +2700,7 @@ PreInstruction_EnemyProjectile_CeresFallingTile:
     LDA.W #$0009 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$006D 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$006D : JSL.L QueueSound_Lib2_Max6 
     RTS 
 
 
@@ -2838,8 +2815,7 @@ Instruction_SpawnPhantoonDrop:
     PHY : PHX 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
-    LDA.W #EnemyHeaders_PhantoonEye 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_PhantoonEye : JSL.L Spawn_Enemy_Drops 
     PLX : PLY 
     RTS 
 
@@ -3068,8 +3044,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Rain:
     BPL .return 
 
 .playSFX:
-    LDA.W #$001D 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$001D : JSL.L QueueSound_Lib3_Max6 
 
 .falling:
     LDA.W $1ADB,X : CLC : ADC.W #$0010 : STA.W $1ADB,X 
@@ -3079,8 +3054,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Rain:
     LDA.W #$0001 : STA.W $1B8F,X 
     LDA.W $1A93,X : CLC : ADC.W #$0008 : STA.W $1A93,X 
     LDA.W #RTS_869A44 : STA.W $1A03,X 
-    LDA.W #$001D 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$001D : JSL.L QueueSound_Lib3_Max6 
 
 .return:
     RTS 
@@ -3332,8 +3306,7 @@ Instruction_EnemyProjectile_KraidRisingRocks:
     LDA.W $1993 : STA.W $1AB7,Y 
     LDA.W #$FB00 : STA.W $1ADB,Y 
     LDA.W #$0600 : STA.W $19BB,Y 
-    LDA.W #$001E 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$001E : JSL.L QueueSound_Lib3_Max6 
     PLX 
     RTS 
 
@@ -3657,8 +3630,7 @@ InitAI_EnemyProjectile_Pirate_MotherBrain_Laser:
     LDA.L $A00006,X : ORA.W #$1000 : STA.W $1BD7,Y 
     LDX.W $0E54 
     LDA.W $0FB4,X : STA.W $1AFF,Y 
-    LDA.W #$0067 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0067 : JSL.L QueueSound_Lib2_Max6 
     PLX : PLY 
     RTS 
 
@@ -3984,8 +3956,7 @@ PreInstruction_EnemyProjectile_CeresElevatorPad:
     LDA.W #$0048 : STA.W $0AFA 
     LDA.W #$0001 : STA.W $1B8F,X 
     LDA.W #InstList_EnemyProjectile_Delete_A28B : STA.W $1B47,X 
-    LDA.W #$000E 
-    JSL.L Run_Samus_Command 
+    LDA.W #$000E : JSL.L Run_Samus_Command 
 
 .return:
     RTS 
@@ -6132,8 +6103,7 @@ PreInstruction_EnemyProjectile_EyeDoorProjectile_Moving:
 
 .addYvelocity:
     CLC : ADC.W $1ADB,Y : STA.W $1ADB,Y 
-    LDA.W $1B23,Y 
-    JSL.L BitIndexToByteIndexAndBitmask 
+    LDA.W $1B23,Y : JSL.L BitIndexToByteIndexAndBitmask 
     LDA.L $7ED8B0,X : AND.W $05E7 
     BNE .collision 
     RTS 
@@ -7614,8 +7584,7 @@ OnionRing_Contact_Explosion:
     LDA.W #$0003 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0013 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0013 : JSL.L QueueSound_Lib3_Max6 
 
 Instruction_EnemyProjectile_UsePalette0_duplicate:
     STZ.W $19BB,X 
@@ -7718,8 +7687,7 @@ PreInstruction_EnemyProjectile_MotherBrainsBomb:
     LDA.W #$0003 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0013 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0013 : JSL.L QueueSound_Lib3_Max6 
     RTS 
 
 
@@ -7816,11 +7784,9 @@ InitAI_EnemyProjectile_MotherBrainRedBeam_Charging:
     AND.W #$00FF 
     STA.B $12 
     STA.L $7E8012 
-    LDA.W #$0C00 
-    JSL.L Math_86C26C 
+    LDA.W #$0C00 : JSL.L Math_86C26C 
     STA.L $7E800E 
-    LDA.W #$0C00 
-    JSL.L Math_86C272 
+    LDA.W #$0C00 : JSL.L Math_86C272 
     STA.L $7E8010 
     RTS 
 
@@ -7879,10 +7845,8 @@ InitAI_EnemyProjectile_MotherBrainRedBeam_Fired:
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
     LDY.W #EnemyProjectile_MiscDust 
-    LDA.W #$001D 
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0013 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$001D : JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
+    LDA.W #$0013 : JSL.L QueueSound_Lib3_Max6 
     LDA.W #$000A : STA.W $1840 
     LDA.W #$0005 : STA.W $183E 
     RTS 
@@ -8860,8 +8824,7 @@ Handle_KagoBug_SoundEffect:
     DEC A 
     STA.W $1AFF,X 
     BNE .return 
-    LDA.W #$006C 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$006C : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     PLY : PLX 
@@ -9001,8 +8964,7 @@ PreInstruction_EnemyProjectile_KagoBug_SpawnDrop:
     PHY : PHX 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
-    LDA.W #EnemyHeaders_Kago 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_Kago : JSL.L Spawn_Enemy_Drops 
     PLX : PLY 
     RTS 
 
@@ -9207,8 +9169,7 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_Common:
     LDA.W $0F7E,X : CLC : ADC.W $0F84,X : CMP.W $0915 
     BMI .return 
     LDA.W $0F7E,X : SEC : SBC.W $0F84,X : SEC : SBC.W #$00E0 : BPL .return 
-    LDA.W #$0067 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0067 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     PLX 
@@ -10188,8 +10149,7 @@ Instruction_EnemyProjectile_Spores_SpawnEnemyDrops:
     PHX : PHY 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
-    LDA.W #EnemyHeaders_SporeSpawnStalk 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_SporeSpawnStalk : JSL.L Spawn_Enemy_Drops 
     PLY : PLX 
     RTS 
 
@@ -10491,8 +10451,7 @@ Instruction_EnemyProjectile_MagdolliteFlame_SpawnDrops:
     PHY : PHX 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
-    LDA.W #EnemyHeaders_Magdollite 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_Magdollite : JSL.L Spawn_Enemy_Drops 
     PLX : PLY 
     RTS 
 
@@ -11702,8 +11661,7 @@ RTS_86EB93:
 
 Function_EnemyProj_BotwoonsBody_QueueSmallExplosionSoundFX:
     PHY : PHX 
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0024 : JSL.L QueueSound_Lib2_Max6 
     PLX : PLY 
     RTS 
 
@@ -12018,24 +11976,21 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_EnemyProj_EnemyDeathExpl_QueueEnemyKilledSoundFX:
     PHX : PHY 
-    LDA.W #$0009 
-    JSL.L QueueSound_Lib2_Max1 
+    LDA.W #$0009 : JSL.L QueueSound_Lib2_Max1 
     PLY : PLX 
     RTS 
 
 
 Instruction_EnemyProj_EDeathExplo_QueueSmallExplosionSoundFX:
     PHX : PHY 
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib2_Max1 
+    LDA.W #$0024 : JSL.L QueueSound_Lib2_Max1 
     PLY : PLX 
     RTS 
 
 
 Instruction_EnemyProj_EDeathExplo_QueueContactKilledSoundFX:
     PHX : PHY 
-    LDA.W #$000B 
-    JSL.L QueueSound_Lib2_Max1 
+    LDA.W #$000B : JSL.L QueueSound_Lib2_Max1 
     PLY : PLX 
     RTS 
 
@@ -12162,8 +12117,7 @@ PreInstruction_EnemyProjectile_Pickup:
     PHX : PHY 
     DEC.W $1B23,X 
     LDA.W $1B23,X : BEQ .timerExpired 
-    LDA.W #$000D 
-    JSL.L Run_Samus_Command 
+    LDA.W #$000D : JSL.L Run_Samus_Command 
     AND.W #$FFFF 
     BEQ .notGrappled 
     LDA.W $1B23,X 
@@ -12241,42 +12195,32 @@ PreInstruction_EnemyProjectile_Pickup:
     dw $0000 
 
 Function_EnemyProjectile_Pickup_ApplySmallEnergy:
-    LDA.W #$0005 
-    JSL.L Restore_A_Energy_ToSamus 
-    LDA.W #$0001 
-    JSL.L QueueSound_Lib2_Max1 
+    LDA.W #$0005 : JSL.L Restore_A_Energy_ToSamus 
+    LDA.W #$0001 : JSL.L QueueSound_Lib2_Max1 
     RTS 
 
 
 Function_EnemyProjectile_Pickup_ApplyBigEnergy:
-    LDA.W #$0014 
-    JSL.L Restore_A_Energy_ToSamus 
-    LDA.W #$0002 
-    JSL.L QueueSound_Lib2_Max1 
+    LDA.W #$0014 : JSL.L Restore_A_Energy_ToSamus 
+    LDA.W #$0002 : JSL.L QueueSound_Lib2_Max1 
     RTS 
 
 
 Function_EnemyProjectile_Pickup_ApplyPowerBombs:
-    LDA.W #$0001 
-    JSL.L Restore_A_PowerBombs_ToSamus 
-    LDA.W #$0005 
-    JSL.L QueueSound_Lib2_Max1 
+    LDA.W #$0001 : JSL.L Restore_A_PowerBombs_ToSamus 
+    LDA.W #$0005 : JSL.L QueueSound_Lib2_Max1 
     RTS 
 
 
 Function_EnemyProjectile_Pickup_ApplyMissiles:
-    LDA.W #$0002 
-    JSL.L Restore_A_Missiles_ToSamus 
-    LDA.W #$0003 
-    JSL.L QueueSound_Lib2_Max1 
+    LDA.W #$0002 : JSL.L Restore_A_Missiles_ToSamus 
+    LDA.W #$0003 : JSL.L QueueSound_Lib2_Max1 
     RTS 
 
 
 Function_EnemyProjectile_Pickup_ApplySuperMissiles:
-    LDA.W #$0001 
-    JSL.L Restore_A_SuperMissiles_ToSamus 
-    LDA.W #$0004 
-    JSL.L QueueSound_Lib2_Max1 
+    LDA.W #$0001 : JSL.L Restore_A_SuperMissiles_ToSamus 
+    LDA.W #$0004 : JSL.L QueueSound_Lib2_Max1 
     RTS 
 
 

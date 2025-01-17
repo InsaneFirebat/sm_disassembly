@@ -6893,8 +6893,7 @@ VariaSuit_Pickup:
     BNE notSpinning 
 
 .playSFX:
-    LDA.W #$0032 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0032 : JSL.L QueueSound_Lib1_Max9 
 
 notSpinning:
     LDA.W $09A2 : BIT.W #$0020 
@@ -6909,14 +6908,12 @@ notSpinning:
 .initSamus:
     JSL.L InitializeSamusPose_1 
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged 
-    LDA.W #$0015 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0015 : JSL.L Run_Samus_Command 
     LDA.W $0911 : CLC : ADC.W #$0078 : STA.W $0AF6 
     STA.W $0B10 
     LDA.W $0915 : CLC : ADC.W #$0088 : STA.W $0AFA 
     STA.W $0B14 
-    LDA.W #$0056 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0056 : JSL.L QueueSound_Lib2_Max6 
     JSL.L Spawn_HDMAObject 
     db $41,$26 
     dw InstList_HDMAObject_Window1Position_VariaSuitPickup 
@@ -6973,8 +6970,7 @@ GravitySuit_Pickup:
     BNE .notSpinning 
 
 .playSFX:
-    LDA.W #$0032 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0032 : JSL.L QueueSound_Lib1_Max9 
 
 .notSpinning:
     LDA.W $09A2 : BIT.W #$0001 
@@ -6989,14 +6985,12 @@ GravitySuit_Pickup:
 .initSamus:
     JSL.L InitializeSamusPose_1 
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged 
-    LDA.W #$0015 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0015 : JSL.L Run_Samus_Command 
     LDA.W $0911 : CLC : ADC.W #$0078 : STA.W $0AF6 
     STA.W $0B10 
     LDA.W $0915 : CLC : ADC.W #$0088 : STA.W $0AFA 
     STA.W $0B14 
-    LDA.W #$0056 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0056 : JSL.L QueueSound_Lib2_Max6 
     JSL.L Spawn_HDMAObject 
     db $41,$26 
     dw InstList_HDMAObject_Window1Position_GravitySuitPickup 
@@ -7326,8 +7320,7 @@ HandleMiscSamusPalette:
     BEQ .noSFX 
 
 .notDrained:
-    LDA.W #$0035 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0035 : JSL.L QueueSound_Lib1_Max6 
     BRA .notHurtFlash 
 
 
@@ -7389,14 +7382,12 @@ HandleMiscSamusPalette:
 .grappleActive:
     CMP.W #GrappleBeamFunction_HitNothing_Cancel 
     BPL .returnUpper 
-    LDA.W #$0006 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W #$0006 : JSL.L QueueSound_Lib1_Max9 
     RTS 
 
 
 .spinning:
-    LDA.W #$001C 
-    JSL.L Run_Samus_Command 
+    LDA.W #$001C : JSL.L Run_Samus_Command 
     RTS 
 
 
@@ -7626,8 +7617,7 @@ HandleSpeedBoosterShinePalette:
     CMP.W #$00AA 
     BNE .notAA 
     PHA 
-    LDA.W #$000C 
-    JSL.L QueueSound_Lib3_Max9 
+    LDA.W #$000C : JSL.L QueueSound_Lib3_Max9 
     PLA 
 
 .notAA:
@@ -7789,8 +7779,7 @@ HandleCrystalFlashPalette:
 
 
 .finish:
-    LDA.W $09A6 
-    JSL.L Load_Beam_Palette_Setup 
+    LDA.W $09A6 : JSL.L Load_Beam_Palette_Setup 
     STZ.W $0ACC 
     STZ.W $0ACE 
     STZ.W $0AD0 
@@ -8589,8 +8578,7 @@ MakeSamusFaceForward:
     STZ.W $0A2E 
     STZ.W $0A30 
     STZ.W $0A32 
-    LDA.W #$001F 
-    JSL.L Run_Samus_Command 
+    LDA.W #$001F : JSL.L Run_Samus_Command 
     STZ.W $0B42 
     STZ.W $0B44 
     STZ.W $0B46 
@@ -8795,10 +8783,8 @@ UpdateSamusPoseDueToChangeOfEquipment:
   + LDA.W $0D32 
     CMP.W #GrappleBeamFunction_Inactive 
     BEQ .checkCharge 
-    LDA.W #$0002 
-    JSL.L Load_Beam_Palette_External 
-    LDA.W #$0006 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0002 : JSL.L Load_Beam_Palette_External 
+    LDA.W #$0006 : JSL.L QueueSound_Lib1_Max6 
     BRA .playedSFX 
 
 
@@ -8819,16 +8805,14 @@ UpdateSamusPoseDueToChangeOfEquipment:
     LDA.W $0CD0 
     CMP.W #$0010 
     BMI .playedSFX 
-    LDA.W #$0041 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0041 : JSL.L QueueSound_Lib1_Max6 
 
 .playedSFX:
     JSL.L LoadSamusSuitPalette 
     LDA.W $09C2 
     CMP.W #$001F 
     BPL .return 
-    LDA.W #$0002 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0002 : JSL.L QueueSound_Lib3_Max6 
 
 .return:
     PLB : PLP 
@@ -9896,8 +9880,7 @@ SpecialProspectivePoseCmd_5_Xray:
     STZ.W $0CDC 
     STZ.W $0CDE 
     STZ.W $0CE0 
-    LDA.W #$0009 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0009 : JSL.L QueueSound_Lib1_Max6 
     RTS 
 
 
@@ -10055,14 +10038,12 @@ HandleLandingSoundEffectsAndGraphics:
     BEQ .screwAttack 
     CMP.W #$0082 
     BEQ .screwAttack 
-    LDA.W #$0032 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0032 : JSL.L QueueSound_Lib1_Max6 
     BRA .notEndingSFX 
 
 
 .screwAttack:
-    LDA.W #$0034 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0034 : JSL.L QueueSound_Lib1_Max6 
 
 .notEndingSFX:
     LDA.W $0B2E : BEQ .zeroYSpeed 
@@ -10072,15 +10053,13 @@ HandleLandingSoundEffectsAndGraphics:
 .zeroYSpeed:
     LDA.W $0B2C : BEQ .return 
     LDA.W $1F51 : BNE .merge 
-    LDA.W #$0005 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0005 : JSL.L QueueSound_Lib3_Max6 
     BRA .merge 
 
 
 .hardLanding:
     LDA.W $1F51 : BNE .merge 
-    LDA.W #$0004 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0004 : JSL.L QueueSound_Lib3_Max6 
 
 .merge:
     JSR.W HandleLandingGraphics 
@@ -10372,8 +10351,7 @@ SolidVerticalCollision_WallJumpTriggered:
     STZ.W $0B46 
     STZ.W $0B48 
     STZ.W $0A18 
-    LDA.W #$0005 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0005 : JSL.L QueueSound_Lib3_Max6 
     RTS 
 
 
@@ -10852,15 +10830,13 @@ InitializeSamusPose_SpinJumping:
 
 .spinJumpRight:
     LDA.W $1F51 : BNE .returnUpperCarryClear 
-    LDA.W #$0031 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0031 : JSL.L QueueSound_Lib1_Max6 
     CLC 
     RTS 
 
 
 .spaceJumpRight:
-    LDA.W #$003E 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$003E : JSL.L QueueSound_Lib1_Max6 
     LDA.W #$001B : STA.W $0A1C 
     CLC 
     RTS 
@@ -10902,15 +10878,13 @@ InitializeSamusPose_SpinJumping:
 
 .spinJumpLeft:
     LDA.W $1F51 : BNE .returnMiddleCarryClear 
-    LDA.W #$0031 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0031 : JSL.L QueueSound_Lib1_Max6 
     CLC 
     RTS 
 
 
 .spaceJumpLeft:
-    LDA.W #$003E 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$003E : JSL.L QueueSound_Lib1_Max6 
     LDA.W #$001C : STA.W $0A1C 
     CLC 
     RTS 
@@ -10921,8 +10895,7 @@ InitializeSamusPose_SpinJumping:
 
 .screwAttackSFX:
     LDA.W $0A9A : BNE .returnLowerCarryClear 
-    LDA.W #$0033 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0033 : JSL.L QueueSound_Lib1_Max6 
 
 .returnLowerCarryClear:
     CLC 
@@ -11349,8 +11322,7 @@ InitializeSamusPose_Shinespark_CF_Drained_DamagedMB:
     STZ.W $0AC2 
     STZ.W $0AB0 
     STZ.W $0AB2 
-    LDA.W #$000F 
-    JSL.L QueueSound_Lib3_Max9 
+    LDA.W #$000F : JSL.L QueueSound_Lib3_Max9 
 
 .returnCarryClear:
     CLC 

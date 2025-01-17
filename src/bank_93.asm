@@ -107,15 +107,13 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
     ORA.W #$0700 
     STA.W $0C18,X 
     LDA.W ProjectileDataTable_NonBeam_BeamExplosion_pointer : STA.W $0C40,X 
-    LDA.W #$000C 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$000C : JSL.L QueueSound_Lib2_Max6 
     BRA .return 
 
 
 .notBeam:
     LDA.W $1F51 : BNE .setExplosion 
-    LDA.W #$0007 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0007 : JSL.L QueueSound_Lib2_Max6 
 
 .setExplosion:
     LDA.W $0C18,X 
@@ -430,15 +428,13 @@ DrawBombsAndProjectileExplosions:
 .calculatedPosition:
     AND.W #$FF00 
     BNE .offScreen 
-    LDA.W $0CB8,X 
-    JSL.L AddProjectileSpritemapToOAM 
+    LDA.W $0CB8,X : JSL.L AddProjectileSpritemapToOAM 
     LDX.W $0DDE 
     BRA .next 
 
 
 .offScreen:
-    LDA.W $0CB8,X 
-    JSL.L RTL_818AB7 
+    LDA.W $0CB8,X : JSL.L RTL_818AB7 
     LDX.W $0DDE 
 
 .next:

@@ -9805,8 +9805,7 @@ RTS_8FC91E:
 
 
 SetupASM_SetZebesTimebombEvent_SetLightHorizontalRoomShaking:
-    LDA.W #$000E 
-    JSL.L MarkEvent_inA 
+    LDA.W #$000E : JSL.L MarkEvent_inA 
     LDA.W #$0012 : STA.W $183E 
     LDA.W #$FFFF : STA.W $1840 
     RTS 
@@ -13264,8 +13263,7 @@ DoorASM_SetupElevatubeFromSouth:
     STZ.W $07E3 
     LDA.W #$09C0 : STA.W $07E3 
     LDA.W #$FFE0 : STA.W $07E7 
-    LDA.W #$0000 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0000 : JSL.L Run_Samus_Command 
     JSL.L Spawn_Hardcoded_PLM 
     db $01,$00 
     dw PLMEntries_maridiaElevatube 
@@ -13277,8 +13275,7 @@ DoorASM_SetupElevatubeFromNorth:
     STZ.W $07E3 
     LDA.W #$0040 : STA.W $07E3 
     LDA.W #$0020 : STA.W $07E7 
-    LDA.W #$0000 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0000 : JSL.L Run_Samus_Command 
     JSL.L Spawn_Hardcoded_PLM 
     db $01,$00 
     dw PLMEntries_maridiaElevatube 
@@ -13310,15 +13307,13 @@ MainASM_Elevatube:
 
 
 DoorASM_ResetElevatubeOnNorthExit:
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     RTS 
 
 
 DoorASM_ResetElevatubeOnSouthExit:
     LDA.W #$0202 : STA.L $7ECD20 
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     RTS 
 
 
@@ -13586,8 +13581,7 @@ MainASM_SpawnCeresPreElevatorHallFallingDebris:
   + LDA.W $05E5 : AND.W #$000F 
     ASL A 
     TAX 
-    LDA.W .debrisXpos,X 
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
+    LDA.W .debrisXpos,X : JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     RTS 
 
 
@@ -13681,8 +13675,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RoomStateCheck_MainAreaBossIsDead:
-    LDA.W #$0001 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC + 
     LDA.W $0000,X 
     TAX 

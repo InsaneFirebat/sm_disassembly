@@ -226,22 +226,19 @@ Instruction_AnimatedTilesObject_GotoYIfEventYSet:
 
 
 Instruction_AnimatedTilesObject_SetEventY:
-    LDA.W $0000,Y 
-    JSL.L MarkEvent_inA 
+    LDA.W $0000,Y : JSL.L MarkEvent_inA 
     INY #2
     RTS 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_AnimatedTilesObject_LockSamus_87815A:
-    LDA.W #$0000 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0000 : JSL.L Run_Samus_Command 
     RTS 
 
 
 UNUSED_Instruction_AnimatedTilesObject_UnlockSamus_878162:
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -279,8 +276,7 @@ UNUSED_InstList_AnimatedTilesObject_CrateriaLava_8781A6:
     dw UNUSED_InstList_AnimatedTilesObject_CrateriaLava_8781A6 
 
 Instruction_AnimatedTilesObject_WaitUntilAreaBossIsDead:
-    LDA.W #$0001 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCS .return 
     PLA 
     LDA.W #$0001 : STA.W $1F19,X 

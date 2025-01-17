@@ -1446,8 +1446,7 @@ Function_Geega_WaitForSamusToGetNear:
     CMP.W #$FF40 
     BMI .return 
 
-  + LDA.W #$0030 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+  + LDA.W #$0030 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     BEQ .return 
     LDA.W $0F86,X : AND.W #$FEFF : STA.W $0F86,X 
     LDA.W #$0018 : STA.L $7E8000,X 
@@ -2089,8 +2088,7 @@ Instruction_Botwoon_SetSpittingFlag:
 
 
 Instruction_Botwoon_QueueSpitSFX:
-    LDA.W #$007C 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$007C : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -2099,8 +2097,7 @@ RTL_B3957A:
 
 
 QueueSmallExplosionSFX:
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0024 : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -2551,10 +2548,8 @@ Function_Botwoon_DeathSequence_CrumblingWall:
 
 .end:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    LDA.W #$0002 
-    JSL.L SetBossBitsInAForCurrentArea 
-    LDA.W #$0003 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0002 : JSL.L SetBossBitsInAForCurrentArea 
+    LDA.W #$0003 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     RTS 
 
 
@@ -2895,8 +2890,7 @@ Function_Botwoon_Head_Spitting_Spawn5SpitProjectiles:
 
 .loop:
     LDY.W #EnemyProjectile_BotwoonsSpit 
-    LDA.W $0E32 
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
+    LDA.W $0E32 : JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     LDA.W $060B : CLC : ADC.W #$0010 : AND.W #$00FF 
     STA.W $060B 
     DEC.W $060D 
@@ -2918,8 +2912,7 @@ Function_Botwoon_Head_Spitting_Spawn3SpitProjectiles:
 
 .loop:
     LDY.W #EnemyProjectile_BotwoonsSpit 
-    LDA.W $0E32 
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
+    LDA.W $0E32 : JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     LDA.W $060B : CLC : ADC.W #$0010 : AND.W #$00FF 
     STA.W $060B 
     DEC.W $060D 
@@ -4746,8 +4739,7 @@ Function_EtecoonEscape_RunningForEscape:
 
 
 Function_EtecoonEscape_StationaryWaitingToExpressGratitude:
-    LDA.W #$000F 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000F : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .return 
     LDA.W #InstList_EtecoonEscape_ExpressGratitudeThenEscape_0 : STA.W $0F92,X 
 
@@ -4777,8 +4769,7 @@ Function_EtecoonEscape_RunningAroundAimlessly:
     LDA.W #InstList_EtecoonEscape_RunningRight_LowTide_0 
 
   + STA.W $0F92,X 
-    LDA.W #$000F 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000F : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .noCollision 
     LDA.W #InstList_EtecoonEscape_RunningForEscape_0 : STA.W $0F92,X 
 
@@ -4791,8 +4782,7 @@ Function_EtecoonEscape_RunningAroundAimlessly:
 
 InitAI_EtecoonEscape:
     LDX.W $0E54 
-    LDA.W #$000F 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000F : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .notEscaped 
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     RTL 
@@ -5284,8 +5274,7 @@ InstList_DachoraEscape_GotoY_IfAcidLessThanCE:
 
 
 InstList_DachoraEscape_GotoY_IfCrittersEscaped:
-    LDA.W #$000F 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000F : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .notEscaped 
     LDA.W $0000,Y 
     TAY 
@@ -5311,8 +5300,7 @@ InstList_DachoraEscape_XPositionPlus6:
 
 InitAI_DachoraEscape:
     LDX.W $0E54 
-    LDA.W #$000F 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000F : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .notEscaped 
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     RTL 

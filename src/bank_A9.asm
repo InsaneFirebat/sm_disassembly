@@ -384,19 +384,16 @@ InitAI_MotherBrainBody:
     LDA.W #$0000 : STA.W $0F96 
     LDY.W #Palette_MotherBrain_GlassShards+2 
     LDX.W #$0162 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYToTargetColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYToTargetColorIndexX 
     LDY.W #Palette_MotherBrain_TubeProjectiles+2 
     LDX.W #$01E2 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYToTargetColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYToTargetColorIndexX 
     LDA.W #$0000 : STA.L $7E7800 
     STA.L $7E7844 
     LDA.W #$0002 : STA.L $7E7808 
     LDA.W #Function_MotherBrain_SetupBrainToBeDrawn : STA.W $0FE8 
     LDA.W #Function_MotherBrain_FirstPhase : STA.W $0FA8 
-    LDA.W #$0001 
-    JSL.L Load_FX_Entry 
+    LDA.W #$0001 : JSL.L Load_FX_Entry 
     LDA.W #$0000 
 
 .loopProjectiles:
@@ -448,8 +445,7 @@ MainAI_HurtAI_MotherBrainBody:
 
 UnpauseHook_MotherBrainBody:
     LDA.L $7E782C : BEQ .noRainbowSFX 
-    LDA.W #$0040 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0040 : JSL.L QueueSound_Lib1_Max6 
 
 .noRainbowSFX:
     LDA.W $0F88 : AND.W #$0004 
@@ -510,8 +506,7 @@ EnemyGraphicsDrawnHook_MotherBrain_DrawBrain:
 
 
 Function_MotherBrain_FirstPhase:
-    LDA.W #$0002 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$0002 : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .runCollisionDetection 
     LDA.W $1840 : STA.L $7E7840 
     LDA.W $0AF6 
@@ -521,8 +516,7 @@ Function_MotherBrain_FirstPhase:
     LDA.W #$0001 : STA.L $7E783A 
     STA.L $7E7800 
     JSL.L DisableMinimap_MarkBossRoomTilesExplored 
-    LDA.W #$0006 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0006 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     JSL.L SealMotherBrainsWallFunction_FakeDeath_Descent 
 
 .runCollisionDetection:
@@ -542,8 +536,7 @@ Function_MBBody_FakeDeath_Descent_LockSamus_SetScrollRegion:
 
 
 .timerExpired:
-    LDA.W #$0000 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0000 : JSL.L Run_Samus_Command 
     LDA.L $7ECD20 : AND.W #$00FF : STA.L $7ECD20 
     LDA.W #Function_MotherBrainBody_FakeDeath_Descent_QueueMusic : STA.W $0FA8 
     LDA.W #$0020 : STA.W $0FB2 
@@ -551,18 +544,15 @@ Function_MBBody_FakeDeath_Descent_LockSamus_SetScrollRegion:
 Function_MotherBrainBody_FakeDeath_Descent_QueueMusic:
     DEC.W $0FB2 
     BPL Function_MBBody_FakeDeath_Descent_return 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FF21 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF21 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #Function_MotherBrainBody_FakeDeath_Descent_UnlockSamus : STA.W $0FA8 
     LDA.W #$000C : STA.W $0FB2 ; fallthrough to Function_MotherBrainBody_FakeDeath_Descent_UnlockSamus
 
 Function_MotherBrainBody_FakeDeath_Descent_UnlockSamus:
     DEC.W $0FB2 
     BPL Function_MBBody_FakeDeath_Descent_return 
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     LDA.W #Function_MBBody_FakeDeath_Descent_BeginScnFlashing_LowerAcid : STA.W $0FA8 
     LDA.W #$0008 : STA.W $0FB2 ; fallthrough to Function_MBBody_FakeDeath_Descent_BeginScnFlashing_LowerAcid
 
@@ -570,8 +560,7 @@ Function_MBBody_FakeDeath_Descent_BeginScnFlashing_LowerAcid:
     DEC.W $0FB2 
     BPL Function_MBBody_FakeDeath_Descent_return 
     JSR.W MotherBrainPalette_BeginScreenFlashing 
-    LDA.W #$0002 
-    JSL.L Load_FX_Entry 
+    LDA.W #$0002 : JSL.L Load_FX_Entry 
     LDA.W #Function_MotherBrainBody_SpawnTubesFallingWhenLessThan4Proj : STA.W $0FF0 
     LDA.W #Function_MBBody_FakeDeath_Descent_TransitionMBPaletteToGrey : STA.W $0FA8 
     STZ.W $0FB2 
@@ -635,8 +624,7 @@ HandleFakeDeathExplosions:
   + TYA 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W #$0024 : JSL.L QueueSound_Lib2_Max3 
     RTS 
 
 
@@ -935,8 +923,7 @@ ExplodeMotherBrainTubes:
     LDA.W #$0003 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W #$0024 : JSL.L QueueSound_Lib2_Max3 
     RTL 
 
 
@@ -964,8 +951,7 @@ Function_MotherBrainTubes_MainTube_Falling:
 
 .greaterThanEqualToC4:
     JSR.W MotherBrainPalette_EndScreenFlashing 
-    LDA.W #$0019 
-    JSL.L EnableEarthquakeTypeInAFor20Frames 
+    LDA.W #$0019 : JSL.L EnableEarthquakeTypeInAFor20Frames 
     STZ.W $18B4 
     STZ.W $18B6 
     STZ.W $0FAC,X 
@@ -1093,12 +1079,10 @@ Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2GFX:
     LDA.B $59 : AND.W #$FFFC : STA.B $59 
     LDY.W #Palette_MotherBrain_Attacks+2 
     LDX.W #$0142 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     LDY.W #Palette_MotherBrain_BackLeg+2 
     LDX.W #$0162 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     LDA.W #Function_MotherBrainBody_FakeDeath_Ascent_SetupMBPhase2Brain : STA.W $0FA8 
     LDA.W #$0001 : STA.W $0E1E 
     STA.L $7E7844 
@@ -1173,8 +1157,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_StartMusic_Quake:
     LDA.W #$0117 : STA.W $0F7E 
     LDA.W #$FFE5 : STA.B $B5 
     LDA.W #$FF27 : STA.B $B7 
-    LDA.W #$0005 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0002 : STA.W $183E 
     LDA.W #$0100 : STA.W $1840 
     LDA.W #$0050 : STA.L $7E8068 
@@ -1292,8 +1275,7 @@ SpawnDustCloudsForMotherBrainsAscent:
     LDA.W .explosionType,X : AND.W #$00FF 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0029 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W #$0029 : JSL.L QueueSound_Lib2_Max3 
     RTS 
 
 
@@ -1519,36 +1501,26 @@ HandleMotherBrainsNeck:
 
 .neckMovementDisabled:
     LDA.L $7E8041 : AND.W #$00FF : STA.B $12 
-    LDA.L $7E8048 
-    JSL.L GetSineMathInA_A9C460 
+    LDA.L $7E8048 : JSL.L GetSineMathInA_A9C460 
     CLC : ADC.L $7E7814 : CLC : ADC.W #$0070 : STA.L $7E8044 
-    LDA.L $7E8048 
-    JSL.L GetCosineMathInA_A9C465 
+    LDA.L $7E8048 : JSL.L GetCosineMathInA_A9C465 
     CLC : ADC.L $7E7816 : CLC : ADC.W #$FFA0 : STA.L $7E8046 
-    LDA.L $7E804E 
-    JSL.L GetSineMathInA_A9C460 
+    LDA.L $7E804E : JSL.L GetSineMathInA_A9C460 
     CLC : ADC.L $7E7814 : CLC : ADC.W #$0070 : STA.L $7E804A 
-    LDA.L $7E804E 
-    JSL.L GetCosineMathInA_A9C465 
+    LDA.L $7E804E : JSL.L GetCosineMathInA_A9C465 
     CLC : ADC.L $7E7816 : CLC : ADC.W #$FFA0 : STA.L $7E804C 
-    LDA.L $7E8054 
-    JSL.L GetSineMathInA_A9C460 
+    LDA.L $7E8054 : JSL.L GetSineMathInA_A9C460 
     CLC : ADC.L $7E7814 : CLC : ADC.W #$0070 : STA.L $7E8050 
-    LDA.L $7E8054 
-    JSL.L GetCosineMathInA_A9C465 
+    LDA.L $7E8054 : JSL.L GetCosineMathInA_A9C465 
     CLC : ADC.L $7E7816 : CLC : ADC.W #$FFA0 : STA.L $7E8052 
     LDA.L $7E8043 : AND.W #$00FF : STA.B $12 
-    LDA.L $7E805A 
-    JSL.L GetSineMathInA_A9C460 
+    LDA.L $7E805A : JSL.L GetSineMathInA_A9C460 
     CLC : ADC.L $7E8050 : STA.L $7E8056 
-    LDA.L $7E805A 
-    JSL.L GetCosineMathInA_A9C465 
+    LDA.L $7E805A : JSL.L GetCosineMathInA_A9C465 
     CLC : ADC.L $7E8052 : STA.L $7E8058 
-    LDA.L $7E8060 
-    JSL.L GetSineMathInA_A9C460 
+    LDA.L $7E8060 : JSL.L GetSineMathInA_A9C460 
     CLC : ADC.L $7E8050 : STA.L $7E805C 
-    LDA.L $7E8060 
-    JSL.L GetCosineMathInA_A9C465 
+    LDA.L $7E8060 : JSL.L GetCosineMathInA_A9C465 
     CLC : ADC.L $7E8052 : STA.L $7E805E 
     RTS 
 
@@ -2469,8 +2441,7 @@ Instruction_MotherBrainBody_SpawnDustCloudExplosionProj:
 
 Instruction_MotherBrainBody_SpawnDeathBeamProjectile:
     PHX : PHY 
-    LDA.W #$0063 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0063 : JSL.L QueueSound_Lib2_Max6 
     LDX.W #$0040 
     LDY.W #EnemyProjectile_MotherBrainRedBeam_Charging 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
@@ -2504,15 +2475,13 @@ Instruction_MotherBrainHead_DisableNeckMovement:
 
 
 Instruction_MotherBrainHead_QueueSoundX_Lib2_Max6:
-    LDA.W $0000,X 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W $0000,X : JSL.L QueueSound_Lib2_Max6 
     INX #2
     RTS 
 
 
 Instruction_MotherBrainHead_QueueSoundX_Lib3_Max6:
-    LDA.W $0000,X 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W $0000,X : JSL.L QueueSound_Lib3_Max6 
     INX #2
     RTS 
 
@@ -2534,8 +2503,7 @@ Instruction_MotherBrainHead_SpawnDroolProjectile:
     LDY.W #EnemyProjectile_MotherBrainDyingDrool 
 
 .lessThan80:
-    LDA.L $7E7866 
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
+    LDA.L $7E7866 : JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
 
 .return:
@@ -2949,8 +2917,7 @@ Instruction_MotherBrainHead_QueueBabyMetroidAttackSFX:
     LDA.W #$0000 
     ASL A 
     TAY 
-    LDA.W .sfx,Y 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W .sfx,Y : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     PLY 
@@ -2964,8 +2931,7 @@ Instruction_MotherBrainHead_QueueBabyMetroidAttackSFX:
 Instruction_MotherBrainHead_SpawnOnionRingsProjectile:
     PHY 
     LDY.W #EnemyProjectile_MotherBrainOnionRings 
-    LDA.L $7E7834 
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
+    LDA.L $7E7834 : JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
     RTS 
 
@@ -3141,8 +3107,7 @@ Instruction_MotherBrainHead_SpawnRainbowBeamChargingProj:
 Instruction_MotherBrainHead_SetupEffectsForRainbowBeamCharge:
     LDA.W #$0000 : STA.L $7E7868 
     JSR.W SetupMotherBrainHeadPaletteForChargingHerLaser 
-    LDA.W #$007F 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$007F : JSL.L QueueSound_Lib2_Max6 
     RTS 
 
 
@@ -4654,8 +4619,7 @@ GenerateExplosionsAroundMotherBrainBody:
     INX #4
     DEC A 
     BNE .loop 
-    LDA.W #$0013 
-    JSL.L QueueSound_Lib3_Max3 
+    LDA.W #$0013 : JSL.L QueueSound_Lib3_Max3 
     RTS 
 
 
@@ -4690,8 +4654,7 @@ Function_MBBody_Phase3_DeathSequence_BrainFallsToGround:
     AND.W #$00FF 
     CLC : ADC.W $0FBE : CMP.W #$00C4 
     BCC .hitGround 
-    LDA.W #$0002 
-    JSL.L EnableEarthquakeTypeInAFor20Frames 
+    LDA.W #$0002 : JSL.L EnableEarthquakeTypeInAFor20Frames 
     LDA.W #Function_MBBody_Phase3_DeathSequence_LoadCorpseTiles : STA.W $0FA8 
     LDA.W #$0100 : STA.W $0FB2 
     LDA.W #$00C4 
@@ -4773,10 +4736,8 @@ Function_MBBody_Phase3_DeathSequence_CorpseRotsAway:
     AND.W #$DFFF 
     STA.W $0FC6 
     STZ.W $0FC8 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FF24 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF24 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #Function_MBBody_Phase3_DeathSequence_20FrameDelay : STA.W $0FA8 
     LDA.W #$0014 : STA.W $0FB2 ; fallthrough to Function_MBBody_Phase3_DeathSequence_20FrameDelay
 
@@ -4801,8 +4762,7 @@ CorpseRottingRotEntryFinishedHook_MotherBrain:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     LDA.W $0E44 : AND.W #$0007 
     BNE .return 
-    LDA.W #$0010 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W #$0010 : JSL.L QueueSound_Lib2_Max3 
 
 .return:
     PLX 
@@ -4824,10 +4784,8 @@ Function_MBBody_Phase3_DeathSequence_StartEscape:
     BCC Function_MBBody_Phase3_DeathSequence_StartEscape_return 
     LDY.W #Palette_MotherBrain_ExplodedDoor+2 
     LDX.W #$0122 
-    LDA.W #$000E 
-    JSL.L WriteAColorsFromYtoColorIndexX 
-    LDA.W #$0007 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$000E : JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0007 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0005 : STA.W $183E 
     LDA.W #$FFFF : STA.W $1840 
     LDY.W #PaletteFXObjects_Tourian8_ShutterRedFlashing 
@@ -4860,8 +4818,7 @@ Function_MBBody_Phase3_DeathSequence_SpawnTimeBombSetJapanText:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics ; fallthrough to Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText
 
 Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText:
-    LDA.W #$2610 
-    JSL.L HandleTypewriterText_External 
+    LDA.W #$2610 : JSL.L HandleTypewriterText_External 
     BCC .return 
     LDA.W #Function_MBBody_Phase3_DeathSequence_DoorExploding_StartTimer : STA.W $0FA8 
     LDA.W #$0020 : STA.W $0FB2 
@@ -4874,12 +4831,10 @@ Function_MBBody_Phase3_DeathSequence_DoorExploding_StartTimer:
     JSL.L GenerateEscapeDoorExplosion 
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #$000F 
-    JSL.L Run_Samus_Command 
+    LDA.W #$000F : JSL.L Run_Samus_Command 
     LDA.W #$0002 : STA.W $0943 
     JSL.L SetBossBitsInAForCurrentArea 
-    LDA.W #$000E 
-    JSL.L MarkEvent_inA 
+    LDA.W #$000E : JSL.L MarkEvent_inA 
     LDA.W #Function_MBBody_Phase3_DeathSequence_BlowUpEscapeDoor : STA.W $0FA8 
     LDA.W #$0000 : STA.W $0FF0 
     STA.W $0FF2 
@@ -4934,8 +4889,7 @@ GenerateEscapeDoorExplosion:
     TYA 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W #$0024 : JSL.L QueueSound_Lib2_Max3 
 
 .return:
     RTL 
@@ -5107,8 +5061,7 @@ EnemyShot_MotherBrainHead:
     BEQ .return 
     LDX.W #$004E 
     CLC : ADC.W $1DC7,X : STA.W $1DC7,X 
-    LDA.W #$006E 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$006E : JSL.L QueueSound_Lib2_Max6 
     LDY.W #$000D 
     LDA.W $0FDC : BEQ + 
     LSR A 
@@ -5607,8 +5560,7 @@ Function_MotherBrainBody_Phase2_FiringRainbowBeam_RetractNeck:
 Function_MBBody_Phase2_FiringRainbowBeam_WaitForBeamToCharge:
     DEC.W $0FB2 
     BPL Function_MotherBrainBody_Phase2_FiringRainbowBeam_return 
-    LDA.W #$0071 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0071 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_ExtendNeckDown : STA.W $0FA8 ; fallthrough to Function_MBBody_Phase2_FiringRainbowBeam_ExtendNeckDown
 
 Function_MBBody_Phase2_FiringRainbowBeam_ExtendNeckDown:
@@ -5726,11 +5678,9 @@ Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring:
     JSR.W SetMotherBrainHeadInstList 
     JSR.W SetupMotherBrainHeadNormalPalette 
     JSR.W WriteMotherBrainDefaultPalette 
-    LDA.W #$0002 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0002 : JSL.L QueueSound_Lib1_Max6 
     LDA.W #$0000 : STA.L $7E782C 
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     LDA.W #$0008 : STA.W $0CCC 
     LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_LetSamusFall : STA.W $0FA8 
 
@@ -5739,8 +5689,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring_return:
 
 
 Function_MBBody_Phase2_FiringRainbowBeam_LetSamusFall:
-    LDA.W #$0000 
-    JSL.L DrainedSamusController 
+    LDA.W #$0000 : JSL.L DrainedSamusController 
     LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_WaitForSamusToLand : STA.W $0FA8 
 
 Function_MBBody_Phase2_FiringRainbowBeam_WaitForSamusToLand:
@@ -5785,8 +5734,7 @@ PlayMotherBrainRainbowBeamSFX:
     LDA.L $7E782A : BMI .return 
     DEC A 
     STA.L $7E782A 
-    LDA.W #$0040 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0040 : JSL.L QueueSound_Lib1_Max6 
     LDA.W #$0001 : STA.L $7E782C 
 
 .return:
@@ -5836,8 +5784,7 @@ MoveSamusTowardsWallDueToRainbowBeam:
     JSR.W MoveSamusHorizontallyTowardsWall 
     BCS .return 
     LDA.L $7E8022 : STA.B $12 
-    LDA.W #$1000 
-    JSL.L Math_86C272 
+    LDA.W #$1000 : JSL.L Math_86C272 
     JSR.W MoveSamusVerticallyTowardsCeilingFloor 
     CLC 
 
@@ -5942,8 +5889,7 @@ HandleMotherBrainRainbowBeamExplosions:
     LDA.W .data1,X : STA.B $14 
     LDY.W #EnemyProjectile_MotherBrainRainbowBeam_Explosion 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0024 : JSL.L QueueSound_Lib2_Max6 
     RTS 
 
 
@@ -5961,16 +5907,13 @@ ResetMotherBrainBodyRainbowBeamPaletteAnimationIndex:
 WriteMotherBrainDefaultPalette:
     LDY.W #Palette_MotherBrain+2 
     LDX.W #$0082 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     LDY.W #Palette_MotherBrain+2 
     LDX.W #$0122 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     LDY.W #Palette_MotherBrain_BackLeg+2 
     LDX.W #$0162 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     RTS 
 
 
@@ -6002,30 +5945,25 @@ WriteMotherBrainPalette:
     PHB : PEA.W $AD00 
     PLB : PLB : PHY 
     LDX.W #$0082 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     PLY 
     LDX.W #$0122 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W #$0162 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     PLB 
     RTS 
 
 
 Function_MBBody_Phase2_FinishSamusOff_GetSamusToLowEnergy:
-    LDA.W #$0050 
-    JSL.L Suit_Damage_Division 
+    LDA.W #$0050 : JSL.L Suit_Damage_Division 
     ASL #2
     ADC.W #$0014 : CMP.W $09C2 
     BPL .done 
     LDA.W $05E5 : AND.W #$0FFF 
     CMP.W #$0FA0 
     BCC .noAttack 
-    LDA.W #$00A0 
-    JSL.L Suit_Damage_Division 
+    LDA.W #$00A0 : JSL.L Suit_Damage_Division 
     CLC : ADC.W #$0014 : CMP.W $09C2 
     BPL .onionRings 
     LDY.W #InstList_MotherBrainHead_Attacking_Bomb_Phase2 
@@ -6099,8 +6037,7 @@ Function_MBBody_Phase2_FinishSamusOff_FireFinalRainbowBeam:
     LDA.W #$0006 : STA.L $7E8064 
     STA.L $7E8066 
     LDA.W #$0500 : STA.L $7E8068 
-    LDA.W #$0071 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0071 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #RTS_A9BE1A : STA.W $0FA8 
 
 RTS_A9BE1A:
@@ -6168,8 +6105,7 @@ Function_MBBody_DrainedByBabyMetroid_FiringRainbowBeam:
     LDA.W #$0000 : STA.L $7E782C 
     STA.L $7E7860 
     JSR.W WriteMotherBrainPhase2DeathPalette 
-    LDA.W #$0002 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0002 : JSL.L QueueSound_Lib1_Max6 
     LDA.W #Function_MBBody_DrainedByBabyMetroid_RainbowBeamHasRunOut : STA.W $0FA8 
 
 .return:
@@ -6847,8 +6783,7 @@ HandlePlayingGainingLosingIncrementalEnergySFX:
     BMI .return 
     LDA.W $0E44 : AND.W #$0007 
     BNE .return 
-    LDA.W #$002D 
-    JSL.L QueueSound_Lib3_Max3 
+    LDA.W #$002D : JSL.L QueueSound_Lib3_Max3 
 
 .return:
     PLA 
@@ -7177,8 +7112,7 @@ HandleBabyMetroidCutsceneFlashing:
 HandlePlayingBabyMetroidCutsceneCrySFX:
     LDA.L $7E7828 : BEQ .return 
     LDA.W #$0000 : STA.L $7E7828 
-    LDA.W #$0072 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0072 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTS 
@@ -7231,8 +7165,7 @@ Function_BabyMetroidCutscene_GetRightUpInMotherBrainsFace:
 .timerExpired:
     STA.W $0FA8,X 
     LDA.W #Function_BabyMetroidCutscene_LatchOntoMotherBrain : STA.W $0FA8,X 
-    LDA.W #$0001 
-    JSL.L DrainedSamusController 
+    LDA.W #$0001 : JSL.L DrainedSamusController 
     RTS 
 
 
@@ -7272,13 +7205,11 @@ Function_BabyMetroidCutscene_ActivateRainbowBeamAndMBBody:
     STZ.W $0FAC,X 
     LDA.W $0FBA : STA.W $0F7A,X 
     LDA.W $0FBE : CLC : ADC.W #$FFE8 : STA.W $0F7E,X 
-    LDA.W #InstList_BabyMetroid_DrainingMotherBrain 
-    JSL.L SetEnemyInstList 
+    LDA.W #InstList_BabyMetroid_DrainingMotherBrain : JSL.L SetEnemyInstList 
     LDA.W #Function_BabyMetroidCutscene_WaitForMBToTurnToCorpse : STA.W $0FA8,X 
     LDA.W #$0001 : STA.W $0FB0,X 
     LDA.W #Function_MotherBrainBody_DrainedByBabyMetroid_TakenAback : STA.W $0FA8 
-    LDA.W #$0040 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0040 : JSL.L QueueSound_Lib1_Max6 
     LDA.W #$0001 : STA.L $7E782C 
     RTS 
 
@@ -7307,8 +7238,7 @@ Function_BabyMetroidCutscene_StopDraining:
 
 
 .timerExpired:
-    LDA.W #InstList_BabyMetroid_Initial 
-    JSL.L SetEnemyInstList 
+    LDA.W #InstList_BabyMetroid_Initial : JSL.L SetEnemyInstList 
     LDA.W #$000A : STA.W $0FB0,X 
     LDA.W #Function_BabyMetroidCutscene_LetGo_SpawnDustClouds : STA.W $0FA8,X 
     LDA.W #$0020 : STA.W $0FB2,X 
@@ -7336,8 +7266,7 @@ Function_BabyMetroidCutscene_MoveToTheCeiling:
 
 
 .collision:
-    LDA.W #$0004 
-    JSL.L DrainedSamusController 
+    LDA.W #$0004 : JSL.L DrainedSamusController 
     LDA.W #Function_BabyMetroidCutscene_MoveToSamus : STA.W $0FA8,X 
     LDA.W #BabyMetroidCutscene_MovementTable_CeilingToSamus : STA.L $7E781C,X 
     RTS 
@@ -7369,8 +7298,7 @@ Function_BabyMetroidCutscene_MoveToSamus:
     LDA.W $05E5 : AND.W #$0FFF 
     CMP.W #$0FA0 
     BCC .skipSFX 
-    LDA.W #$0052 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0052 : JSL.L QueueSound_Lib2_Max6 
 
 .skipSFX:
     LDA.L $7E781C,X 
@@ -7476,8 +7404,7 @@ Function_BabyMetroidCutscene_IdleUntilRunOutOfHealth:
 
 
 Function_BabyMetroidCutscene_ReleaseSamus:
-    LDA.W #$0072 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0072 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #$0001 : STA.L $7E7856 
     LDA.W #Function_BabyMetroidCutscene_StaredownMotherBrain : STA.W $0FA8,X 
     LDA.W #Function_MBBody_Phase2_PrepareForFinalBabyMetroidAttack : STA.W $0FA8 ; fallthrough to Function_BabyMetroidCutscene_StaredownMotherBrain
@@ -7565,16 +7492,13 @@ Function_BabyMetroidCutscene_FinalCharge:
 .zeroHealth:
     LDA.W #Function_BabyMetroidCutscene_PrepareForHyperBeam_return : STA.L $7E781E,X 
     LDA.W #$10A0 : STA.W $0F98,X 
-    LDA.W #$0019 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0019 : JSL.L QueueSound_Lib3_Max6 
     JSL.L FadeOutBackgroundForBabyMetroidDeathSequence 
-    LDA.W #InstList_BabyMetroid_TookFatalBlow 
-    JSL.L SetEnemyInstList 
+    LDA.W #InstList_BabyMetroid_TookFatalBlow : JSL.L SetEnemyInstList 
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
     LDA.W #RTS_A9C18D : STA.W $0FA8 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #Function_BabyMetroidCutscene_TakeFinalBlow : STA.W $0FA8,X 
     LDA.W #$0010 : STA.W $0FB2,X 
     LDA.W $0F7A,X : STA.L $7E7820,X 
@@ -7592,18 +7516,15 @@ Function_BabyMetroidCutscene_TakeFinalBlow:
 Function_BabyMetroidCutscene_PlaySamusTheme:
     DEC.W $0FB2,X 
     BPL Function_BabyMetroidCutscene_PrepareForHyperBeam_return 
-    LDA.W #$FF48 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$0005 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF48 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #Function_BabyMetroidCutscene_PrepareForHyperBeam : STA.W $0FA8,X 
     LDA.W #$000C : STA.W $0FB2,X ; fallthrough to Function_BabyMetroidCutscene_PrepareForHyperBeam
 
 Function_BabyMetroidCutscene_PrepareForHyperBeam:
     DEC.W $0FB2,X 
     BPL Function_BabyMetroidCutscene_PrepareForHyperBeam_return 
-    LDA.W #$0019 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0019 : JSL.L Run_Samus_Command 
     LDA.W #SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow : STA.L $7E786C 
     LDA.W #Function_BabyMetroidCutscene_DeathSequence : STA.W $0FA8,X 
 
@@ -7657,10 +7578,8 @@ Function_BabyMetroidCutscene_FinalCutscene:
     PLX 
     BCC Function_BabyMetroidCutscene_DeathSequence_return 
     LDA.W #Function_MBBody_Phase3_RecoverFromCutscene_MakeSomeDistance : STA.W $0FA8 
-    LDA.W #$0017 
-    JSL.L Run_Samus_Command 
-    LDA.W #$0003 
-    JSL.L DrainedSamusController 
+    LDA.W #$0017 : JSL.L Run_Samus_Command 
+    LDA.W #$0003 : JSL.L DrainedSamusController 
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
     LDA.W #$0000 : STA.L $7E7854 
     RTS 
@@ -7674,8 +7593,7 @@ HandleSamusRainbowPaletteAnimation:
 SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow:
     LDA.W $0F7E,X : CLC : ADC.W #$0010 : CMP.W $0AFA 
     BMI .return 
-    LDA.W #$0016 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0016 : JSL.L Run_Samus_Command 
     LDA.W #SamusRainbowPaletteFunction_GraduallySlowAnimationDown : STA.L $7E786C 
 
 .return:
@@ -7733,8 +7651,7 @@ FadeBabyMetroidCutsceneToBlack:
     TAX 
     LDY.W BabyMetroidFadingToBlackPalettes,X 
     LDX.W #$01E2 
-    LDA.W #$000E 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000E : JSL.L WriteAColorsFromYtoColorIndexX 
     PLX : PLB 
     CLC 
     RTS 
@@ -7764,8 +7681,7 @@ HandleBabyMetroidCutsceneDeathExplosions:
     LDA.W #$0003 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0013 
-    JSL.L QueueSound_Lib3_Max3 
+    LDA.W #$0013 : JSL.L QueueSound_Lib3_Max3 
     RTS 
 
 
@@ -7844,17 +7760,14 @@ HandleBabyMetroidCutsceneHealthBasedPalette:
     LDA.W BabyMetroidHealthBasedPalette_Shell,Y 
     TAY 
     LDX.W #$01E2 
-    LDA.W #$0004 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0004 : JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W #$01F4 
-    LDA.W #$0005 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0005 : JSL.L WriteAColorsFromYtoColorIndexX 
     PLY 
     LDA.W BabyMetroidHealthBasedPalette_Innards,Y 
     TAY 
     LDX.W #$01EA 
-    LDA.W #$0005 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0005 : JSL.L WriteAColorsFromYtoColorIndexX 
     PLB 
     RTS 
 
@@ -7927,12 +7840,10 @@ UpdateBabyMetroidCutsceneSpeedAndAngle:
     XBA 
     AND.W #$00FF 
     STA.B $12 
-    LDA.L $7E7816,X 
-    JSL.L Math_86C26C 
+    LDA.L $7E7816,X : JSL.L Math_86C26C 
     LDX.W $0E54 
     STA.W $0FAA,X 
-    LDA.L $7E7816,X 
-    JSL.L Math_86C272 
+    LDA.L $7E7816,X : JSL.L Math_86C272 
     LDX.W $0E54 
     STA.W $0FAC,X 
     RTS 
@@ -8018,16 +7929,13 @@ MotherBrainPalette_HandleRoomPalette:
 
 MotherBrainPalette_WriteRoomPalette:
     LDX.W #$0068 
-    LDA.W #$000C 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000C : JSL.L WriteAColorsFromYtoColorIndexX 
     PHY 
     LDX.W #$00A6 
-    LDA.W #$000C 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000C : JSL.L WriteAColorsFromYtoColorIndexX 
     PLY 
     LDX.W #$00E6 
-    LDA.W #$000C 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000C : JSL.L WriteAColorsFromYtoColorIndexX 
     RTS 
 
 
@@ -8102,15 +8010,12 @@ UNUSED_HandleMotherBrainsPalette_A9D160:
     BCC .return 
     PHY 
     LDX.W #$0082 
-    LDA.W #$000D 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000D : JSL.L WriteAColorsFromYtoColorIndexX 
     PLY 
     LDX.W #$0122 
-    LDA.W #$000D 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000D : JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W #$0168 
-    LDA.W #$0005 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0005 : JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W #$017C 
     LDA.W $0000,Y : STA.W $0000,X 
 
@@ -8236,8 +8141,7 @@ HandleMotherBrainHeadPalette:
     BEQ + 
     LDX.W #$01E2 
 
-  + LDA.W #$0003 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+  + LDA.W #$0003 : JSL.L WriteAColorsFromYtoColorIndexX 
     RTS 
 
 
@@ -8559,8 +8463,7 @@ CorpseRottingRotEntryFinishedHook_CorpseTorizo:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     LDA.W $0E44 : AND.W #$0007 
     BNE .return 
-    LDA.W #$0010 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0010 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     PLX 
@@ -8718,8 +8621,7 @@ CorpseSidehopperInit_Param1_0_InitiallyAlive:
     LDA.W #Function_CorpseSidehopper_Alive_WaitingForActivation : STA.W $0FA8,X 
     LDA.W #$0200 : STA.W $0F96,X 
     LDA.W #$0015 : STA.W $0F84,X 
-    LDA.W #InstList_CorpseSidehopper_Alive_Idle 
-    JSL.L SetEnemyInstList 
+    LDA.W #InstList_CorpseSidehopper_Alive_Idle : JSL.L SetEnemyInstList 
     LDY.W #CorpseRottingDefinitions_Sidehopper_Param1_0 
     JSR.W InitializeEnemyCorpseRotting 
     RTL 
@@ -8730,8 +8632,7 @@ CorpseSidehopperInit_Param1_2_InitiallyDead:
     LDA.W #$FFFF : STA.L $7E7810,X 
     LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision : STA.W $0FA8,X 
     LDA.W #$0E00 : STA.W $0F96,X 
-    LDA.W #InstList_CorpseSidehopper_Alive_Dead 
-    JSL.L SetEnemyInstList 
+    LDA.W #InstList_CorpseSidehopper_Alive_Dead : JSL.L SetEnemyInstList 
     LDY.W #CorpseRottingDefinitions_Sidehopper_Param1_2 
     JSR.W InitializeEnemyCorpseRotting 
     RTL 
@@ -8742,8 +8643,7 @@ InitAI_CorpseZoomer:
     LDA.W #$0E00 : STA.W $0F96,X 
     LDA.W #Function_CorpseZoomer_WaitForSamusCollision : STA.W $0FA8,X 
     LDY.W $0FB4,X 
-    LDA.W .instListPointers,Y 
-    JSL.L SetEnemyInstList 
+    LDA.W .instListPointers,Y : JSL.L SetEnemyInstList 
     LDA.W .corpseRottingDefinitionPointers,Y 
     TAY 
     JSR.W InitializeEnemyCorpseRotting 
@@ -8765,8 +8665,7 @@ InitAI_CorpseRipper:
     LDA.W #$0E00 : STA.W $0F96,X 
     LDA.W #Function_CorpseRipper_WaitForSamusCollision : STA.W $0FA8,X 
     LDY.W $0FB4,X 
-    LDA.W .instListPointers,Y 
-    JSL.L SetEnemyInstList 
+    LDA.W .instListPointers,Y : JSL.L SetEnemyInstList 
     LDA.W .corpseRottingDefinitionPointers,Y 
     TAY 
     JSR.W InitializeEnemyCorpseRotting 
@@ -8786,8 +8685,7 @@ InitAI_CorpseSkree:
     LDA.W #$0E00 : STA.W $0F96,X 
     LDA.W #Function_CorpseSkree_WaitForSamusCollision : STA.W $0FA8,X 
     LDY.W $0FB4,X 
-    LDA.W .instListPointers,Y 
-    JSL.L SetEnemyInstList 
+    LDA.W .instListPointers,Y : JSL.L SetEnemyInstList 
     LDA.W .corpseRottingDefinitionPointers,Y 
     TAY 
     JSR.W InitializeEnemyCorpseRotting 
@@ -8835,8 +8733,7 @@ Function_CorpseSidehopper_Hopping:
     INC A 
     AND.W #$0003 
     STA.L $7E780C,X 
-    LDA.W #InstList_CorpseSidehopper_Alive_Hopping 
-    JSL.L SetEnemyInstList 
+    LDA.W #InstList_CorpseSidehopper_Alive_Hopping : JSL.L SetEnemyInstList 
     LDA.W #.return : STA.W $0FA8,X 
 
 .return:
@@ -8859,8 +8756,7 @@ Function_CorpseSidehopper_Idling:
 
 .notDone:
     LDA.W #Function_CorpseSidehopper_Hopping : STA.W $0FA8,X 
-    LDA.W #InstList_CorpseSidehopper_Alive_Idle 
-    JSL.L SetEnemyInstList 
+    LDA.W #InstList_CorpseSidehopper_Alive_Idle : JSL.L SetEnemyInstList 
     LDA.L $7E780C,X 
     ASL A 
     TAY 
@@ -8974,16 +8870,14 @@ Function_CorpseSidehopper_BeingDrained:
     ASL #5
     ADC.W #Palette_SidehopperCorpseBeingDrained_0 : TAY 
     LDX.W #$0122 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W $0E54 
     LDA.L $7E7810,X 
     INC A 
     STA.L $7E7810,X 
     CMP.W #$0008 
     BCC .return 
-    LDA.W #InstList_CorpseSidehopper_Alive_Corpse 
-    JSL.L SetEnemyInstList 
+    LDA.W #InstList_CorpseSidehopper_Alive_Corpse : JSL.L SetEnemyInstList 
     LDA.W #Function_CorpseSidehopper_Dead_WaitForSamusCollision : STA.W $0FA8,X 
     LDA.W $0F86,X : ORA.W #$8000 : STA.W $0F86,X 
     LDA.W #$000C : STA.W $0F84,X 
@@ -9232,8 +9126,7 @@ CorpseRotEntryFinishedHook_Normal:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     LDA.W $0E44 : AND.W #$0007 
     BNE .return 
-    LDA.W #$0010 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W #$0010 : JSL.L QueueSound_Lib2_Max3 
 
 .return:
     PLX 
@@ -11135,16 +11028,13 @@ InitAI_BabyMetroid:
     STZ.W $0FB6,X 
     LDY.W #Palette_CorpseSidehopper 
     LDX.W #$0120 
-    LDA.W #$0010 
-    JSL.L WriteAColorsFromYToTargetColorIndexX 
+    LDA.W #$0010 : JSL.L WriteAColorsFromYToTargetColorIndexX 
     LDY.W #Palette_BabyMetroid 
     LDX.W #$0140 
-    LDA.W #$0010 
-    JSL.L WriteAColorsFromYToTargetColorIndexX 
+    LDA.W #$0010 : JSL.L WriteAColorsFromYToTargetColorIndexX 
     LDY.W #Palette_CorpseCommon 
     LDX.W #$01E0 
-    LDA.W #$0010 
-    JSL.L WriteAColorsFromYToTargetColorIndexX 
+    LDA.W #$0010 : JSL.L WriteAColorsFromYToTargetColorIndexX 
     RTL 
 
 
@@ -11199,8 +11089,7 @@ Function_BabyMetroid_LetSidehopperLiveForABit:
 Function_BabyMetroid_QueueBattleMusic:
     DEC.W $0FB2,X 
     BPL Function_BabyMetroid_RushToMiddleOfRoom_return 
-    LDA.W #$0005 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #Function_BabyMetroid_RushToMiddleOfRoom : STA.W $0FA8,X ; fallthrough to Function_BabyMetroid_RushToMiddleOfRoom
 
 Function_BabyMetroid_RushToMiddleOfRoom:
@@ -11358,8 +11247,7 @@ Function_BabyMetroid_LatchOntoSamus:
 
 
 Function_BabyMetroid_StartDrainingSamus:
-    LDA.W #$0012 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0012 : JSL.L Run_Samus_Command 
     LDA.W #Function_BabyMetroid_DrainingSamus : STA.W $0FA8 ; fallthrough to Function_BabyMetroid_DrainingSamus
 
 Function_BabyMetroid_DrainingSamus:
@@ -11389,16 +11277,12 @@ Function_BabyMetroid_DrainingSamus:
     LDA.W #Function_BabyMetroid_StartHeelRealization : STA.W $0FA8,X 
     STZ.W $0FAA,X 
     STZ.W $0FAC,X 
-    LDA.W #InstList_BabyMetroid_FinishDraining 
-    JSL.L SetEnemyInstList 
+    LDA.W #InstList_BabyMetroid_FinishDraining : JSL.L SetEnemyInstList 
     LDA.W #$000A : STA.W $0FB0,X 
-    LDA.W #$0013 
-    JSL.L Run_Samus_Command 
-    LDA.W #$0000 
-    JSL.L DrainedSamusController 
+    LDA.W #$0013 : JSL.L Run_Samus_Command 
+    LDA.W #$0000 : JSL.L DrainedSamusController 
     LDA.W #$0000 : STA.L $7E7808,X 
-    LDA.W #$0007 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0007 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     RTS 
 
 
@@ -11428,8 +11312,7 @@ Function_BabyMetroid_BackOffGuiltily:
 
 
 .timerExpired:
-    LDA.W #$007D 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$007D : JSL.L QueueSound_Lib2_Max6 
     LDA.W #Function_BabyMetroid_GoLeftGuiltily : STA.W $0FA8,X 
     LDA.W #$0058 : STA.W $0FB2,X 
     LDA.W #InstList_BabyMetroid_LatchedOn : STA.W $0F92,X 
@@ -11473,8 +11356,7 @@ Function_BabyMetroid_GoRightGuiltily:
 
 
 Function_BabyMetroid_FleeRemorsefully:
-    LDA.W #$0052 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0052 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #Function_BabyMetroid_Fleeing : STA.W $0FA8,X ; fallthrough to Function_BabyMetroid_Fleeing
 
 Function_BabyMetroid_Fleeing:
@@ -11503,8 +11385,7 @@ Function_BabyMetroid_SamusRecovering:
 
 
 .timerExpired:
-    LDA.W #$0002 
-    JSL.L DrainedSamusController 
+    LDA.W #$0002 : JSL.L DrainedSamusController 
     LDA.W #$0001 : STA.W $0FB6,X 
     LDA.W #Function_BabyMetroid_Remorse : STA.W $0FA8,X ; fallthrough to Function_BabyMetroid_Remorse
 
@@ -11888,8 +11769,7 @@ HandleBabyMetroidPalette:
     ASL #3
     ADC.B $16 : TAY 
     LDX.B $12 
-    LDA.W #$0004 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0004 : JSL.L WriteAColorsFromYtoColorIndexX 
     RTS 
 
 
@@ -12130,8 +12010,7 @@ Instruction_BabyMetroid_GotoRemorse:
 
 Instruction_BabyMetroid_GotoY_OrPlayRemorseSFX:
     LDA.W $05E5 : BPL .gotoY 
-    LDA.W #$0052 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0052 : JSL.L QueueSound_Lib2_Max6 
     INY #2
     RTL 
 

@@ -120,8 +120,7 @@ MaybeTriggerPauseScreen_or_ReturnSaveConfirmationSelection:
 
 Play_Saving_Sound_Effect:
     REP #$30 
-    LDA.W #$002E 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$002E : JSL.L QueueSound_Lib1_Max6 
     LDA.W #$00A0 
 
 .loop:
@@ -526,8 +525,7 @@ Handle_MessageBox_Interaction:
     BEQ .saveInput 
     JSR.W Toggle_Save_Confirmation_Selection 
     REP #$30 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     REP #$30 
     BRA .saveInput 
 

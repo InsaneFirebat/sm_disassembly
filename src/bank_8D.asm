@@ -9836,24 +9836,21 @@ UNUSED_Instruction_PaletteFXObject_QueueMusicTrackInY_8DC65E:
 
 
 UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib1_Max6_8DC66A:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib1_Max6 
     INY 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib2_Max6_8DC673:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max6 
     INY 
     RTS 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib3_Max6_8DC67C:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max6 
     INY 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -11178,8 +11175,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     LDA.W #$0046 
     CMP.W $09C2 
     BCS + 
-    LDA.W #$002D 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$002D : JSL.L QueueSound_Lib3_Max6 
 
   + LDA.W $1EED 
     CMP.W $1EEF 
@@ -11586,8 +11582,7 @@ InstList_PaletteFXObject_WreckedShip1_1:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PreInstruction_PaletteFXObject_WaitUntilAreBossIsDead:
-    LDA.W #$0001 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCS .return 
     PLA 
     LDA.W #$0001 : STA.W $1ECD,X 

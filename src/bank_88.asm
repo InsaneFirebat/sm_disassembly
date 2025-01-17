@@ -1313,8 +1313,7 @@ HandleXrayScope_State5_DeactivateBeam_Finish:
     JSL.L Set_NonXray_SamusPose 
     LDX.W $18B2 
     STZ.W $18B4,X 
-    LDA.W #$000A 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$000A : JSL.L QueueSound_Lib1_Max6 
     SEP #$20 
     LDA.W $196E 
     CMP.B #$24 
@@ -1345,8 +1344,7 @@ HandleXrayScope_State5_DeactivateBeam_Finish:
 
 Spawn_PowerBombExplosion:
     LDA.W $0A78 : BNE .pending 
-    LDA.W #$0001 
-    JSL.L QueueSound 
+    LDA.W #$0001 : JSL.L QueueSound 
     LDA.W #$8000 : STA.W $0592 
     JSL.L Spawn_HDMAObject 
     db $40,$28 
@@ -1440,8 +1438,7 @@ PowerBombExplosion_ClearnUp_TryCrystalFlash:
     STZ.W $18B6,X 
     STZ.W $0CEC 
     STZ.W $0CEA 
-    LDA.W #$001E 
-    JSL.L Run_Samus_Command 
+    LDA.W #$001E : JSL.L Run_Samus_Command 
     RTL 
 
 
@@ -2571,8 +2568,7 @@ CrystalFlash_Setup_1:
     REP #$20 
     LDA.W #$0400 : STA.W $0CEC 
     LDA.L PowerBomb_PreExplosion_InitialRadiusSpeed : STA.W $0CF0 
-    LDA.W #$0001 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0001 : JSL.L QueueSound_Lib1_Max6 
     RTL 
 
 
@@ -7691,8 +7687,7 @@ PreInstruction_Fog_BG3Scroll:
 
 
 FXType_26_TourianEntranceStatue:
-    LDA.W #$000A 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000A : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .tourianLocked 
     JSL.L Spawn_Hardcoded_PLM 
     db $06,$0C 
@@ -7723,17 +7718,13 @@ Set_TourianEntranceStatue_BG2_Yscroll:
 PreInst_TourianEntranceStatue_BG2_Yscroll_WaitForUnlock:
     PHP 
     REP #$30 
-    LDA.W #$0006 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$0006 : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .setYscroll 
-    LDA.W #$0007 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$0007 : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .setYscroll 
-    LDA.W #$0008 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$0008 : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .setYscroll 
-    LDA.W #$0009 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$0009 : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .setYscroll 
     LDA.W #$0010 
     TSB.W $1E6F 
@@ -7793,8 +7784,7 @@ PreInstruction_TourianEntranceStatue_BG2_Yscroll_Descending:
     db $06,$0C 
     dw PLMEntries_crumbleAccessToTourianElevator 
     PLP : PLX 
-    LDA.W #$000A 
-    JSL.L MarkEvent_inA 
+    LDA.W #$000A : JSL.L MarkEvent_inA 
     LDA.W #$0001 : STA.W $18E4,X 
     INC.W $18CC,X 
     INC.W $18CC,X 
@@ -7816,8 +7806,7 @@ PreInst_TourianEntranceStatue_BG2Yscroll_EnableScrolling:
 Instruction_GotoY_ifEntranceToTourianUnlocked:
     STZ.W $192C,X 
     STZ.W $1914,X 
-    LDA.W #$000A 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000A : JSL.L CheckIfEvent_inA_HasHappened 
     BCS .gotoY 
     STZ.W $1920,X 
     STA.L $7E9E00 
@@ -7944,8 +7933,7 @@ HDMATable_BombTorizoHaze_ColorMathSubScnBackdropColor_Blue:
     db $00
 
 FXType_2C_CeresHaze:
-    LDA.W #$0001 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCS .alive 
     JSL.L Spawn_HDMAObject 
     db $40,$32 
@@ -8550,8 +8538,7 @@ SuitPickup_Stage5_LightBeamDissipates:
 
 
 VariaSuitPickup_Stage6:
-    LDA.W #$0003 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0003 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
 GravitySuitPickup_Stage6:
     SEP #$20 
@@ -8576,8 +8563,7 @@ GravitySuitPickup_Stage6:
     INC #2
     STA.W $18CC,X 
     LDA.W #$0001 : STA.W $18E4,X 
-    LDA.W #$000B 
-    JSL.L Run_Samus_Command 
+    LDA.W #$000B : JSL.L Run_Samus_Command 
     CLC 
     RTS 
 

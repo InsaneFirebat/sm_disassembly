@@ -5174,10 +5174,8 @@ Instruction_Torizo_SetupPaletteTransitionToBlack:
 
 
 Instruction_Torizo_SetBossBit_QueueElevatorMusic_SpawnDrops:
-    LDA.W #$0004 
-    JSL.L SetBossBitsInAForCurrentArea 
-    LDA.W TorizoMusicTracks_elevator 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0004 : JSL.L SetBossBitsInAForCurrentArea 
+    LDA.W TorizoMusicTracks_elevator : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     PHY : PHX : PHP 
     LDA.W $079F : BNE .notCrateria 
     JSL.L BombTorizoDeathItemDropRoutine 
@@ -5193,8 +5191,7 @@ Instruction_Torizo_SetBossBit_QueueElevatorMusic_SpawnDrops:
 
 
 Instruction_Torizo_AdvanceGradualColorChange:
-    LDA.W #$0600 
-    JSL.L Advance_GradualColorChange_ofPalettesInA_Denominator_C 
+    LDA.W #$0600 : JSL.L Advance_GradualColorChange_ofPalettesInA_Denominator_C 
     RTL 
 
 
@@ -5428,8 +5425,7 @@ Instruction_Torizo_SetupPaletteTransitionToNormalTorizo:
 
 
 Instruction_Torizo_StartFightMusic_BombTorizoBellyPaletteFX:
-    LDA.W TorizoMusicTracks_song0 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W TorizoMusicTracks_song0 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     PHY 
     LDY.W #PaletteFXObjects_BombTorizoBelly 
     JSL.L Spawn_PaletteFXObject 
@@ -6974,8 +6970,7 @@ Instruction_Torizo_GotoY_IfRising:
 
 
 Instruction_Torizo_CallYIfSamusIsLessThan38PixelsInFront:
-    LDA.W #$0038 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$0038 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCC .near 
 
 .return:
@@ -6995,8 +6990,7 @@ Instruction_Torizo_CallYIfSamusIsLessThan38PixelsInFront:
 
 
 Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels:
-    LDA.W #$0020 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$0020 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCS .return 
     JSR.W CheckIfTorizoIsFacingSamus 
     BMI .return 
@@ -7078,14 +7072,12 @@ Instruction_Torizo_SpawnBombTorizoExplosiveSwipeWithParamY:
 
 
 Instruction_Torizo_PlayShotTorizoSFX:
-    LDA.W #$0027 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0027 : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
 Instruction_Torizo_PlayTorizoFootstepsSFX:
-    LDA.W #$004B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$004B : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -7174,8 +7166,7 @@ RTS_AAC6AB:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Torizo_AAC6AC:
     JSR.W HandleFalling 
-    LDA.W #$0600 
-    JSL.L Advance_GradualColorChange_ofPalettesInA_Denominator_C 
+    LDA.W #$0600 : JSL.L Advance_GradualColorChange_ofPalettesInA_Denominator_C 
     BCS .return 
     LDA.W #RTS_AAC6AB : STA.W $0FB0,X 
 
@@ -7202,8 +7193,7 @@ Function_Torizo_WakeWhenBombTorizoChozoFinishesCrumbling:
     DEX #2
     BPL .loop 
     PLX 
-    LDA.W TorizoMusicTracks_song1 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W TorizoMusicTracks_song1 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W $0F86,X : AND.W #$FBFF : STA.W $0F86,X 
     INC.W $0F92,X 
     INC.W $0F92,X 
@@ -7391,8 +7381,7 @@ Function_Torizo_Movement_Jumping_Falling:
 
 
 InitAI_Torizo:
-    LDA.W #$0004 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0004 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .notDead 
     LDX.W $0E54 
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
@@ -7657,8 +7646,7 @@ Instruction_Torizo_LoadGoldenTorizoPalettes:
 
 
 Inst_Torizo_StartFightMusic_GoldenTorizoBellyPaletteFX:
-    LDA.W #$0005 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0012 : STA.W $0F82,X 
     LDA.W #$0030 : STA.W $0F84,X 
     PHY 
@@ -8804,20 +8792,17 @@ MainAI_GoldenTorizo:
 
 
 Instruction_GoldenTorizo_QueueEggReleasedSFX:
-    LDA.W #$0034 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0034 : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
 Instruction_GoldenTorizo_QueueLaserSFX:
-    LDA.W #$0067 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0067 : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
 Instruction_Torizo_QueueSonicBoomSFX:
-    LDA.W #$0048 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0048 : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -8827,8 +8812,7 @@ CheckIfTorizoIsFacingSamus:
 
 
 Goto_GoldenTorizoHealthBasedPaletteHandling:
-    LDA.W $0F8C,X 
-    JSL.L GoldenTorizo_HealthBasedPalette_Handling 
+    LDA.W $0F8C,X : JSL.L GoldenTorizo_HealthBasedPalette_Handling 
     RTS 
 
 
@@ -8868,11 +8852,9 @@ Instruction_GoldenTorizo_SpawnSuperMissile:
 Instruction_GoldenTorizo_GotoY_IfSamusIsMorphedBehindTorizo:
     JSR.W CheckIfTorizoIsFacingSamus 
     BPL .noGo 
-    LDA.W #$0004 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$0004 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCC .noGo 
-    LDA.W #$0028 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$0028 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCS .noGo 
     LDA.W $0A1C 
     CMP.W #$001D 
@@ -8915,11 +8897,9 @@ Instruction_GoldenTorizo_SpawnEyeBeam:
 Instruction_GT_CallY_25Chance_IfSamusMorphedInFrontOfTorizo:
     JSR.W CheckIfTorizoIsFacingSamus 
     BMI .noGo 
-    LDA.W #$0020 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$0020 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCC .noGo 
-    LDA.W #$0060 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$0060 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCS .noGo 
     JSL.L GenerateRandomNumber 
     AND.W #$0110 
@@ -8978,8 +8958,7 @@ Instruction_GoldenTorizo_CallY_IfStunHealthGreaterThan2A31:
 
 
 Instruction_GoldenTorizo_GotoY_JumpForwards_IfAtLeast70Pixel:
-    LDA.W #$0070 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$0070 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCC .noGo 
     JSR.W CheckIfTorizoIsFacingSamus 
     BMI .noGo 
@@ -9017,8 +8996,7 @@ Instruction_GoldenTorizo_GotoY_JumpBack_IfLessThan20Pixels:
     LDA.L $7E7812,X 
     CMP.W #$0008 
     BCS .jump 
-    LDA.W #$0020 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$0020 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCS .noGo 
     JSR.W CheckIfTorizoIsFacingSamus 
     BMI .noGo 
@@ -10473,8 +10451,7 @@ Instruction_Chozo_SetLoweredAcidPosition:
 
 
 Instruction_Chozo_UnlockSamus:
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     RTL 
 
 
@@ -10624,14 +10601,12 @@ InstList_Chozo_WreckedShip_Activated_2:
     dw Instruction_Common_Sleep 
 
 Instruction_Chozo_PlayChozoGrabsSamusSFX:
-    LDA.W #$001C 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$001C : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
 Instruction_Chozo_PlayChozoFootstepsSFX:
-    LDA.W #$004B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$004B : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -10647,8 +10622,7 @@ Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
     BNE .return 
     TXA 
     SEC : SBC.W $07A5 : TAX 
-    LDA.W #PLMEntries_CrumbleLowerNorfairChozoRoomPlug 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W #PLMEntries_CrumbleLowerNorfairChozoRoomPlug : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     PLY : PHY 
     LDA.W $0000,Y 
     LDY.W #EnemyProjectile_WreckedShipChozoSpikeClearingFootsteps 
@@ -10717,8 +10691,7 @@ Instruction_Chozo_Movement_IndexInY:
     dw $FFE9,$FFE8,$FFE7,$FFE8,$FFE9,$FFE9,$FFE9,$FFE9 
 
 Instruction_Chozo_ReleaseSamus_BlockSlopeAccess:
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     LDA.W #$0000 : STA.L $7ECD26 
     STA.L $7ECD28 
     STA.L $7ECD29 

@@ -65,8 +65,7 @@ Load_Room_PLM_Graphics:
 
 
 Clear_Sounds_When_Going_Through_Door:
-    LDA.W #$001D 
-    JSL.L Run_Samus_Command 
+    LDA.W #$001D : JSL.L Run_Samus_Command 
     RTL 
 
 
@@ -79,8 +78,7 @@ UNUSED_Clear_SpinJumpSound_GoingThroughDoor_848258:
     BNE .return 
 
 .playSound:
-    LDA.W #$0032 
-    JSL.L QueueSound 
+    LDA.W #$0032 : JSL.L QueueSound 
 
 .return:
     RTL 
@@ -88,8 +86,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Play_SpinJumpSound_if_SpinJumping:
-    LDA.W #$001C 
-    JSL.L Run_Samus_Command 
+    LDA.W #$001C : JSL.L Run_Samus_Command 
     RTL 
 
 
@@ -102,8 +99,7 @@ UNUSED_Play_Resumed_SpinJumpSound_848278:
     BNE .return 
 
 .playSound:
-    LDA.W #$0030 
-    JSL.L QueueSound 
+    LDA.W #$0030 : JSL.L QueueSound 
 
 .return:
     RTL 
@@ -827,8 +823,7 @@ Instruction_PLM_GotoY_ifEventIsSet:
 
 
 Instruction_PLM_SetTheEvent:
-    LDA.W $0000,Y 
-    JSL.L MarkEvent_inA 
+    LDA.W $0000,Y : JSL.L MarkEvent_inA 
     INY #2
     RTS 
 
@@ -911,8 +906,7 @@ Instruction_PLM_PickUpBeam_DisplayMessageBox:
     PHX : PHY 
     JSL.L Update_Beam_Tiles_and_Palette 
     PLY : PLX 
-    LDA.W #$0168 
-    JSL.L Play_Room_Music_Track_After_A_Frames 
+    LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
     LDA.W $0002,Y : AND.W #$00FF 
     JSL.L MessageBox_Routine 
     INY #3
@@ -922,8 +916,7 @@ Instruction_PLM_PickUpBeam_DisplayMessageBox:
 Instruction_PLM_PickUpEquipment_DisplayMessageBox:
     LDA.W $09A2 : ORA.W $0000,Y : STA.W $09A2 
     LDA.W $09A4 : ORA.W $0000,Y : STA.W $09A4 
-    LDA.W #$0168 
-    JSL.L Play_Room_Music_Track_After_A_Frames 
+    LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
     LDA.W $0002,Y : AND.W #$00FF 
     JSL.L MessageBox_Routine 
     INY #3
@@ -934,10 +927,8 @@ Inst_PLM_PickUpEquipment_AddGrappleHUD_DisplayMessageBox:
     LDA.W $09A2 : ORA.W $0000,Y : STA.W $09A2 
     LDA.W $09A4 : ORA.W $0000,Y : STA.W $09A4 
     JSL.L AddGrappleToHUDTilemap 
-    LDA.W #$0168 
-    JSL.L Play_Room_Music_Track_After_A_Frames 
-    LDA.W #$0005 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
+    LDA.W #$0005 : JSL.L MessageBox_Routine 
     INY #2
     RTS 
 
@@ -946,10 +937,8 @@ Inst_PLM_PickUpEquipment_AddXrayToHUD_DisplayMessageBox:
     LDA.W $09A2 : ORA.W $0000,Y : STA.W $09A2 
     LDA.W $09A4 : ORA.W $0000,Y : STA.W $09A4 
     JSL.L AddXrayToHUDTilemap 
-    LDA.W #$0168 
-    JSL.L Play_Room_Music_Track_After_A_Frames 
-    LDA.W #$0006 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
+    LDA.W #$0006 : JSL.L MessageBox_Routine 
     INY #2
     RTS 
 
@@ -957,10 +946,8 @@ Inst_PLM_PickUpEquipment_AddXrayToHUD_DisplayMessageBox:
 Instruction_PLM_CollectHealth_EnergyTank:
     LDA.W $09C4 : CLC : ADC.W $0000,Y : STA.W $09C4 
     STA.W $09C2 
-    LDA.W #$0168 
-    JSL.L Play_Room_Music_Track_After_A_Frames 
-    LDA.W #$0001 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
+    LDA.W #$0001 : JSL.L MessageBox_Routine 
     INY #2
     RTS 
 
@@ -971,10 +958,8 @@ Instruction_PLM_CollectHealth_ReserveTank:
     INC.W $09C0 
 
 .playMusic:
-    LDA.W #$0168 
-    JSL.L Play_Room_Music_Track_After_A_Frames 
-    LDA.W #$0019 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
+    LDA.W #$0019 : JSL.L MessageBox_Routine 
     INY #2
     RTS 
 
@@ -983,10 +968,8 @@ Instruction_PLM_CollectAmmo_MissileTank:
     LDA.W $09C8 : CLC : ADC.W $0000,Y : STA.W $09C8 
     LDA.W $09C6 : CLC : ADC.W $0000,Y : STA.W $09C6 
     JSL.L AddMissilesToHUDTilemap 
-    LDA.W #$0168 
-    JSL.L Play_Room_Music_Track_After_A_Frames 
-    LDA.W #$0002 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
+    LDA.W #$0002 : JSL.L MessageBox_Routine 
     INY #2
     RTS 
 
@@ -995,10 +978,8 @@ Instruction_PLM_CollectAmmo_SuperMissileTank:
     LDA.W $09CC : CLC : ADC.W $0000,Y : STA.W $09CC 
     LDA.W $09CA : CLC : ADC.W $0000,Y : STA.W $09CA 
     JSL.L AddSuperMissilesToHUDTilemap 
-    LDA.W #$0168 
-    JSL.L Play_Room_Music_Track_After_A_Frames 
-    LDA.W #$0003 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
+    LDA.W #$0003 : JSL.L MessageBox_Routine 
     INY #2
     RTS 
 
@@ -1007,10 +988,8 @@ Instruction_PLM_CollectAmmo_PowerBombTank:
     LDA.W $09D0 : CLC : ADC.W $0000,Y : STA.W $09D0 
     LDA.W $09CE : CLC : ADC.W $0000,Y : STA.W $09CE 
     JSL.L AddPowerBombsToHUDTilemap 
-    LDA.W #$0168 
-    JSL.L Play_Room_Music_Track_After_A_Frames 
-    LDA.W #$0004 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
+    LDA.W #$0004 : JSL.L MessageBox_Routine 
     INY #2
     RTS 
 
@@ -1267,111 +1246,96 @@ Instruction_PLM_ClearMusicQueue_QueueMusicTrack:
 
 
 Instruction_PLM_QueueSound_Y_Lib1_Max6:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib1_Max6 
     INY 
     RTS 
 
 
 Instruction_PLM_QueueSound_Y_Lib2_Max6:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max6 
     INY 
     RTS 
 
 
 Instruction_PLM_QueueSound_Y_Lib3_Max6:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max6 
     INY 
     RTS 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_QueueSound_Y_Lib1_Max15_848C22:
-    LDA.W $0000,Y 
-    JSL.L QueueSound 
+    LDA.W $0000,Y : JSL.L QueueSound 
     INY 
     RTS 
 
 
 UNUSED_Instruction_PLM_QueueSound_Y_Lib2_Max15_848C2B:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max15 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max15 
     INY 
     RTS 
 
 
 UNUSED_Instruction_PLM_QueueSound_Y_Lib3_Max15_848C34:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max15 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max15 
     INY 
     RTS 
 
 
 UNUSED_Instruction_PLM_QueueSound_Y_Lib1_Max3_848C3D:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib1_Max3 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib1_Max3 
     INY 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_QueueSound_Y_Lib2_Max3:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max3 
     INY 
     RTS 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_QueueSound_Y_Lib3_Max3_848C4F:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max3 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max3 
     INY 
     RTS 
 
 
 UNUSED_Instruction_PLM_QueueSound_Y_Lib1_Max9_848C58:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib1_Max9 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib1_Max9 
     INY 
     RTS 
 
 
 UNUSED_Instruction_PLM_QueueSound_Y_Lib2_Max9_848C61:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max9 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max9 
     INY 
     RTS 
 
 
 UNUSED_Instruction_PLM_QueueSound_Y_Lib3_Max9_848C6A:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max9 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max9 
     INY 
     RTS 
 
 
 UNUSED_Instruction_PLM_QueueSound_Y_Lib1_Max1_848C73:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib1_Max1 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib1_Max1 
     INY 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PLM_QueueSound_Y_Lib2_Max1:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max1 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max1 
     INY 
     RTS 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_QueueSound_Y_Lib3_Max1_848C85:
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max1 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max1 
     INY 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -1385,8 +1349,7 @@ Instruction_PLM_Activate_MapStation:
     PHX : PHY 
     LDX.W $079F 
     LDA.L $7ED908,X : ORA.W #$00FF : STA.L $7ED908,X 
-    LDA.W #$0014 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0014 : JSL.L MessageBox_Routine 
     LDA.W #$0001 : STA.W $0789 
     PLY : PLX 
     RTS 
@@ -1397,13 +1360,11 @@ Instruction_PLM_Activate_EnergyStation:
     LDA.W $09C4 
     CMP.W $09C2 
     BEQ .unlockSamus 
-    LDA.W #$0015 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0015 : JSL.L MessageBox_Routine 
     LDA.W $09C4 : STA.W $09C2 
 
 .unlockSamus:
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     PLY : PLX 
     RTS 
 
@@ -1413,21 +1374,18 @@ Instruction_PLM_Activate_MissileStation:
     LDA.W $09C8 
     CMP.W $09C6 
     BEQ .unlockSamus 
-    LDA.W #$0016 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0016 : JSL.L MessageBox_Routine 
     LDA.W $09C8 : STA.W $09C6 
 
 .unlockSamus:
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     PLY : PLX 
     RTS 
 
 
 Instruction_PLM_GotoY_or_ActivateSaveStation:
     PHX : PHY 
-    LDA.W #$0017 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0017 : JSL.L MessageBox_Routine 
     CMP.W #$0002 
     BEQ .gotoY 
     LDX.W $1C27 
@@ -1439,8 +1397,7 @@ Instruction_PLM_GotoY_or_ActivateSaveStation:
     ASL A 
     TAX 
     LDA.L $7ED8F8,X : ORA.W $05E7 : STA.L $7ED8F8,X 
-    LDA.W $0952 
-    JSL.L SaveToSRAM 
+    LDA.W $0952 : JSL.L SaveToSRAM 
     PLY : PLX 
     INY #2
     RTS 
@@ -1455,8 +1412,7 @@ Instruction_PLM_GotoY_or_ActivateSaveStation:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_ResumeMusicIn6Seconds_848D39:
-    LDA.W #$0168 
-    JSL.L Play_Room_Music_Track_After_A_Frames 
+    LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -4567,8 +4523,7 @@ Instruction_PLM_GotoY_EnableMovementIfSamusEnergyIsFull:
 
 
 .fullEnergy:
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     LDA.W $0000,Y 
     TAY 
     RTS 
@@ -4640,8 +4595,7 @@ Instruction_PLM_GotoY_EnableMovementIfSamusMissilesAreFull:
 
 
 .missilesFull:
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     LDA.W $0000,Y 
     TAY 
     RTS 
@@ -4817,15 +4771,13 @@ Instruction_PLM_PlaceSamusOnSaveStation:
 
 Instruction_PLM_DisplayGameSavedMessageBox:
     PHX : PHY 
-    LDA.W #$0018 
-    JSL.L MessageBox_Routine 
+    LDA.W #$0018 : JSL.L MessageBox_Routine 
     PLY : PLX 
     RTS 
 
 
 Instruction_PLM_EnableMovement_SetSaveStationUsed:
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     LDA.W #$0001 : STA.W $1E75 
     RTS 
 
@@ -4991,8 +4943,7 @@ ActivateStationIfSamusArmCannonLinedUp:
     BNE .delete 
     LDA.L $7EDEBC,X : STA.W $1D27,X 
     LDA.W #$0001 : STA.L $7EDE1C,X 
-    LDA.W #$0006 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0006 : JSL.L Run_Samus_Command 
     SEC 
     RTS 
 
@@ -6119,8 +6070,7 @@ PreInst_PLM_AdvanceLavaAsSamusMovesLeft_SetLavaquakeEvent:
 
 
 .setLavaquake:
-    LDA.W #$0015 
-    JSL.L MarkEvent_inA 
+    LDA.W #$0015 : JSL.L MarkEvent_inA 
     RTS 
 
 ;        _______________ Target Samus X position
@@ -6149,8 +6099,7 @@ InstList_PLM_SpeedBoosterEscape:
     dw Instruction_PLM_Sleep 
 
 Setup_SpeedBoosterEscape:
-    LDA.W #$0015 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$0015 : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .return 
     LDA.W #$0000 : STA.W $1C37,Y 
 
@@ -6171,8 +6120,7 @@ PreInstruction_PLM_ShaktoolsRoom:
     LDA.W #$0348 
     CMP.W $0AF6 
     BCS .return 
-    LDA.W #$000D 
-    JSL.L MarkEvent_inA 
+    LDA.W #$000D : JSL.L MarkEvent_inA 
     STZ.W $1C37,X 
 
 .return:
@@ -6308,8 +6256,7 @@ InstList_PLM_CrittersEscapeBlock:
     dw Instruction_PLM_Delete 
 
 Instruction_PLM_SetCrittersEscapedEvent:
-    LDA.W #$000F 
-    JSL.L MarkEvent_inA 
+    LDA.W #$000F : JSL.L MarkEvent_inA 
     RTS 
 
 
@@ -6466,8 +6413,7 @@ PLMEntries_wreckedShipAttic:
     dw InstList_PLM_WreckedShipAttic 
 
 Setup_ClearCrateriaMainstreetEscapePassageIfCrittersEscaped:
-    LDA.W #$000F 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000F : JSL.L CheckIfEvent_inA_HasHappened 
     BCS .return 
     LDA.W #$0000 : STA.W $1C37,Y 
 
@@ -6748,8 +6694,7 @@ PreInstruction_PLM_GotoLinkInstructionIfHitWithPowerBomb:
 
 
 .playSFX:
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
 
 .clearPLMShotStatus:
     STZ.W $1D77,X 
@@ -6772,8 +6717,7 @@ PreInstruction_PLM_GotoLinkInstructionIfShotWithAMissile:
 
 
 .dud:
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
 
 .clearPLMShotStatus:
     STZ.W $1D77,X 
@@ -6797,8 +6741,7 @@ PreInstruction_PLM_GotoLinkInstIfShotWithASuperMissile:
 
 
 .playSFX:
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
 
 .clearPLMShotStatus:
     STZ.W $1D77,X 
@@ -6814,8 +6757,7 @@ Goto_Link_Instruction:
 
 Play_Dud_Sound:
     LDA.W $1D77,X : BEQ .clearPLMShotStatus 
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
 
 .clearPLMShotStatus:
     STZ.W $1D77,X 
@@ -6823,8 +6765,7 @@ Play_Dud_Sound:
 
 
 PreInstruction_PLM_GotoLinkInstructionIfAreaBossDead:
-    LDA.W #$0001 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .playSFX 
     JMP.W Goto_Link_Instruction 
 
@@ -6834,8 +6775,7 @@ PreInstruction_PLM_GotoLinkInstructionIfAreaBossDead:
 
 
 PreInstruction_PLM_GotoLinkInstructionIfAreaMiniBossIsDead:
-    LDA.W #$0002 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0002 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .playSFX 
     JMP.W Goto_Link_Instruction 
 
@@ -6845,8 +6785,7 @@ PreInstruction_PLM_GotoLinkInstructionIfAreaMiniBossIsDead:
 
 
 PreInstruction_PLM_GotoLinkInstructionIfAreaTorizoIsDead:
-    LDA.W #$0004 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0004 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .playSFX 
     JMP.W Goto_Link_Instruction 
 
@@ -6860,8 +6799,7 @@ PreInst_PLM_GotoLinkInst_SetZebesAwakeEventIfEnemiesDead:
     LDA.W $0E50 
     CMP.W $0E52 
     BCC .playSFX 
-    LDA.W #$0000 
-    JSL.L MarkEvent_inA 
+    LDA.W #$0000 : JSL.L MarkEvent_inA 
     PLX : PLY 
     JMP.W Goto_Link_Instruction 
 
@@ -6888,8 +6826,7 @@ PreInst_PLM_GotoLinkInstIfTourianStatueFinishedProcessing:
 
 
 PreInstruction_PLM_GotoLinkInstructionIfCrittersEscaped:
-    LDA.W #$000F 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000F : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .playSFX 
     JMP.W Goto_Link_Instruction 
 
@@ -7689,8 +7626,7 @@ Setup_LeftGreenGateTrigger:
 
 
 .playSFX:
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
@@ -7704,8 +7640,7 @@ Setup_RightGreenGateTrigger:
 
 
 .playSFX:
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
@@ -7723,8 +7658,7 @@ Setup_LeftRedGateTrigger:
 
 
 .playSFX:
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
@@ -7742,8 +7676,7 @@ Setup_RightRedGateTrigger:
 
 
 .playSFX:
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
@@ -7757,8 +7690,7 @@ Setup_LeftYellowGateTrigger:
 
 
 .playSFX:
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #$0000 : STA.W $1C37,Y 
 
 RightYellowGateTrigger:
@@ -7770,8 +7702,7 @@ RightYellowGateTrigger:
 
 
 .playSFX:
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #$0000 : STA.W $1C37,Y 
     RTS 
 
@@ -9381,13 +9312,11 @@ Setup_Reaction_LowerNorfairChozoHandTrigger:
     BNE .return 
 
 .react:
-    LDA.W #$000C 
-    JSL.L MarkEvent_inA 
+    LDA.W #$000C : JSL.L MarkEvent_inA 
     LDA.W #$0001 : STA.W $0FB4 
     LDX.W $1C87,Y 
     LDA.L $7F0002,X : AND.W #$0FFF : STA.L $7F0002,X 
-    LDA.W #$0000 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0000 : JSL.L Run_Samus_Command 
     JSL.L Spawn_Hardcoded_PLM 
     db $0C,$1D 
     dw PLMEntries_CrumbleLowerNorfairChozoRoomPlug 
@@ -9519,8 +9448,7 @@ Instruction_PLM_GotoY_IfRoomArgGreaterThanY:
 
 
 Inst_PLM_Spawn4MotherBrainsGlassShatteringShardsWithArgs:
-    LDA.W #$002E 
-    JSL.L QueueSound_Lib3_Max15 
+    LDA.W #$002E : JSL.L QueueSound_Lib3_Max15 
     LDA.W $0000,Y 
     JSR.W Spawn4MotherBrainsGlassShatteringShardsWithArgA 
     LDA.W $0002,Y 
@@ -9593,8 +9521,7 @@ InstList_PLM_BombTorizosCrumblingChozo:
     dw Instruction_PLM_Delete 
 
 Instruction_PLM_QueueSong1MusicTrack:
-    LDA.W #$0006 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0006 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     RTS 
 
 
@@ -9856,14 +9783,12 @@ Inst_PLM_SpawnANoobTubeShards_6NoobTubeReleasedAirBubbles:
 
 
 Instruction_PLM_LockSamus:
-    LDA.W #$0000 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0000 : JSL.L Run_Samus_Command 
     RTS 
 
 
 Instruction_PLM_UnlockSamus:
-    LDA.W #$0001 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0001 : JSL.L Run_Samus_Command 
     RTS 
 
 
@@ -9878,8 +9803,7 @@ Setup_MotherBrainsGlass:
 
 
 Setup_BombTorizosCrumblingChozo:
-    LDA.W #$0004 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0004 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .return 
     LDA.W #$0000 : STA.W $1C37,Y 
 
@@ -9895,8 +9819,7 @@ Setup_WreckedShipChozoHand:
 
 
 Setup_Collision_WreckedShipChozoHandTrigger:
-    LDA.W #$0001 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .return 
     LDA.W $0B02 : AND.W #$000F 
     CMP.W #$0003 
@@ -9915,8 +9838,7 @@ Setup_Collision_WreckedShipChozoHandTrigger:
     LDA.W #$0101 : STA.L $7ECD2D 
     LDX.W $1C87,Y 
     LDA.L $7F0002,X : AND.W #$0FFF : STA.L $7F0002,X 
-    LDA.W #$0000 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0000 : JSL.L Run_Samus_Command 
     JSL.L Spawn_Hardcoded_PLM 
     db $17,$1D 
     dw PLMEntries_ClearSlopeAccessForWreckedShipChozo 
@@ -10069,8 +9991,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 PreInstruction_PLM_WakePLMIfRoomArgDoorIsSet:
     TXY 
-    LDA.W $1DC7,X 
-    JSL.L BitIndexToByteIndexAndBitmask 
+    LDA.W $1DC7,X : JSL.L BitIndexToByteIndexAndBitmask 
     LDA.L $7ED8B0,X : AND.W $05E7 
     BEQ .return 
     TYX 
@@ -10087,8 +10008,7 @@ Instruction_PLM_ShootEyeDoorProjectileWithEnemyProjArgY:
     PHY 
     LDY.W #EnemyProjectile_EyeDoorProjectile 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$004C 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$004C : JSL.L QueueSound_Lib2_Max6 
     PLY 
     INY #2
     RTS 
@@ -10454,8 +10374,7 @@ InstList_PLM_EyeDoorBottomFacingRight_4:
 
 Setup_EyeDoorEye:
     PHY 
-    LDA.W $1DC7,Y 
-    JSL.L BitIndexToByteIndexAndBitmask 
+    LDA.W $1DC7,Y : JSL.L BitIndexToByteIndexAndBitmask 
     LDA.L $7ED8B0,X 
     PLY 
     AND.W $05E7 
@@ -10473,8 +10392,7 @@ Setup_EyeDoorEye:
 
 Setup_EyeDoor:
     PHY 
-    LDA.W $1DC7,Y 
-    JSL.L BitIndexToByteIndexAndBitmask 
+    LDA.W $1DC7,Y : JSL.L BitIndexToByteIndexAndBitmask 
     LDA.L $7ED8B0,X 
     PLY 
     AND.W $05E7 
@@ -10527,8 +10445,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg12:
     LDA.W $0E50 
     CMP.W $0E52 
     BCC .return 
-    LDA.W #$0010 
-    JSL.L MarkEvent_inA 
+    LDA.W #$0010 : JSL.L MarkEvent_inA 
 
 .return:
     RTS 
@@ -10538,8 +10455,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg14:
     LDA.W $0E50 
     CMP.W $0E52 
     BCC .return 
-    LDA.W #$0011 
-    JSL.L MarkEvent_inA 
+    LDA.W #$0011 : JSL.L MarkEvent_inA 
 
 .return:
     RTS 
@@ -10549,8 +10465,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg16:
     LDA.W $0E50 
     CMP.W $0E52 
     BCC .return 
-    LDA.W #$0012 
-    JSL.L MarkEvent_inA 
+    LDA.W #$0012 : JSL.L MarkEvent_inA 
 
 .return:
     RTS 
@@ -10560,8 +10475,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg18:
     LDA.W $0E50 
     CMP.W $0E52 
     BCC .return 
-    LDA.W #$0013 
-    JSL.L MarkEvent_inA 
+    LDA.W #$0013 : JSL.L MarkEvent_inA 
 
 .return:
     RTS 

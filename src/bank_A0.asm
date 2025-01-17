@@ -1292,8 +1292,7 @@ Main_Enemy_Routine:
     BNE .paralysedEnd 
 
   + LDA.W #$0000 : STA.L $7E7002,X 
-    LDA.W #$0000 
-    JSL.L EnemyDeath 
+    LDA.W #$0000 : JSL.L EnemyDeath 
 
 .paralysedEnd:
     LDX.W $0E54 
@@ -1401,8 +1400,7 @@ Spawn_Enemy_Drops:
     PLB : PLB 
     REP #$30 
     LDY.W #EnemyProjectile_EnemyDeathPickup 
-    LDA.W $0E20 
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
+    LDA.W $0E20 : JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLX : PLY : PLB : PLP 
     RTL 
 
@@ -2025,8 +2023,7 @@ Samus_Projectiles_Interaction_Handling:
 
 .notABomb:
     LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
-    LDA.W $0C2C,Y 
-    JSL.L Suit_Damage_Division 
+    LDA.W $0C2C,Y : JSL.L Suit_Damage_Division 
     JSL.L Deal_A_Damage_to_Samus 
     LDA.W #$0060 : STA.W $18A8 
     LDA.W #$0005 : STA.W $18AA 
@@ -2228,8 +2225,7 @@ HandleEnemyProjectileCollisionWithProjectile:
     LDA.W #$0006 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
-    LDA.W #$003D 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$003D : JSL.L QueueSound_Lib1_Max6 
     RTS 
 
 
@@ -2634,8 +2630,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
 
 EnemyGrappleBeamCollisionDetection:
     PHB : PHX : PHY 
-    LDA.W #$000D 
-    JSL.L Run_Samus_Command 
+    LDA.W #$000D : JSL.L Run_Samus_Command 
     BNE + 
     JMP.W .grappleIndexDetermined 
 
@@ -2774,8 +2769,7 @@ GrappleAI_EnemyGrappleDeath:
     LDX.W $0E54 
     LDX.W $0E54 
     LDA.W #$0004 : STA.L $7E7002,X 
-    LDA.W #$0000 
-    JSL.L EnemyDeath 
+    LDA.W #$0000 : JSL.L EnemyDeath 
     LDX.W $0E54 
     STZ.W $0F8A,X 
     RTL 
@@ -3231,8 +3225,7 @@ EnemyDeath:
     STA.W $0E20 
     LDX.W $0E54 
     LDY.W #EnemyProjectile_EnemyDeathExplosion 
-    LDA.W $0E20 
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
+    LDA.W $0E20 : JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     LDA.W $0F86,X : AND.W #$4000 : STA.B $12 
     LDY.W #$003E 
     LDX.W $0E54 
@@ -3265,8 +3258,7 @@ RinkaDeath:
     STA.W $0E20 
     LDX.W $0E54 
     LDY.W #EnemyProjectile_EnemyDeathExplosion 
-    LDA.W $0E20 
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
+    LDA.W $0E20 : JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     LDA.W $0F86,X : AND.W #$4000 : STA.B $12 
     LDY.W #$003E 
     LDX.W $0E54 
@@ -3312,8 +3304,7 @@ NormalEnemyTouchAI:
     LDX.W $0E54 
     LDA.W $0F8C,X : BNE .return 
     LDA.W #$0006 : STA.L $7E7002,X 
-    LDA.W #$0001 
-    JSL.L EnemyDeath 
+    LDA.W #$0001 : JSL.L EnemyDeath 
 
 .return:
     LDX.W $0E54 
@@ -3348,8 +3339,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     LDY.W #$00C8 
     CMP.W #$0004 
     BNE .defaultDamage 
-    LDA.W #$0004 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0004 : JSL.L Run_Samus_Command 
     BRA .damageCalculated 
 
 
@@ -3406,8 +3396,7 @@ NormalEnemyTouchAI_NoDeathCheck:
 
 .storeHealth:
     STA.W $0F8C,X 
-    LDA.W #$000B 
-    JSL.L QueueSound_Lib2_Max1 
+    LDA.W #$000B : JSL.L QueueSound_Lib2_Max1 
     RTS 
 
 
@@ -3415,8 +3404,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     LDX.W $0E54 
     LDA.W $0F78,X 
     TAX 
-    LDA.L $A00006,X 
-    JSL.L Suit_Damage_Division 
+    LDA.L $A00006,X : JSL.L Suit_Damage_Division 
     JSL.L Deal_A_Damage_to_Samus 
     LDA.W #$0060 : STA.W $18A8 
     LDA.W #$0005 : STA.W $18AA 
@@ -3436,8 +3424,7 @@ NormalEnemyPowerBombAI:
     LDX.W $0E54 
     LDA.W $0F8C,X : BNE .return 
     LDA.W #$0003 : STA.L $7E7002,X 
-    LDA.W #$0000 
-    JSL.L EnemyDeath 
+    LDA.W #$0000 : JSL.L EnemyDeath 
 
 .return:
     LDX.W $0E54 
@@ -3665,8 +3652,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     LDA.W #$0006 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
-    LDA.W #$003D 
-    JSL.L QueueSound_Lib1_Max3 
+    LDA.W #$003D : JSL.L QueueSound_Lib1_Max3 
     PLX : PLB 
     RTS 
 
@@ -3674,8 +3660,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 .freeze:
     LDX.W $0E54 
     LDA.W $0F9E,X : BNE .timerNotExpired 
-    LDA.W #$000A 
-    JSL.L QueueSound_Lib3_Max3 
+    LDA.W #$000A : JSL.L QueueSound_Lib3_Max3 
 
 .timerNotExpired:
     LDY.W #$0190 
@@ -3751,8 +3736,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     STA.W $0F9E,X 
     LDA.W $0F8A,X : ORA.W #$0004 : STA.W $0F8A,X 
     LDA.W #$000A : STA.W $0FA0,X 
-    LDA.W #$000A 
-    JSL.L QueueSound_Lib3_Max3 
+    LDA.W #$000A : JSL.L QueueSound_Lib3_Max3 
     PLB 
     RTS 
 
@@ -3776,8 +3760,7 @@ CreateADudShot:
     LDA.W #$0006 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
-    LDA.W #$003D 
-    JSL.L QueueSound_Lib1_Max3 
+    LDA.W #$003D : JSL.L QueueSound_Lib1_Max3 
     LDA.W $18A6 
     ASL A 
     TAX 
@@ -4204,8 +4187,7 @@ CalculateDistanceAndAngleOfSamusFromEnemy:
     JSL.L CalculateAngleOf_12_14_Offset 
     STA.W $0E24 
     LDA.W $0E20 : STA.W $0E32 
-    LDA.W $0E24 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.W $0E24 : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     BIT.W #$8000 
     BEQ + 
     EOR.W #$FFFF 
@@ -4213,8 +4195,7 @@ CalculateDistanceAndAngleOfSamusFromEnemy:
 
   + STA.W $0E26 
     LDA.W $0E22 : STA.W $0E32 
-    LDA.W $0E24 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.W $0E24 : JSL.L EightBitCosineMultiplication_A0B0B2 
     BIT.W #$8000 
     BEQ + 
     EOR.W #$FFFF 
@@ -4355,8 +4336,7 @@ CheckIfEnemyIsOnScreen:
 
 DetermineDirectionOfSamusFromEnemy:
     LDX.W $0E54 
-    LDA.W #$0020 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W #$0020 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     BEQ notLeftNorRight 
     LDY.W #$0002 
     JSL.L Get_SamusX_minus_EnemyX 
@@ -4368,8 +4348,7 @@ DetermineDirectionOfSamusFromEnemy:
 
 
 notLeftNorRight:
-    LDA.W #$0020 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W #$0020 : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ notAboveOrBelow 
     LDY.W #$0004 
     JSL.L Get_SamusY_minus_EnemyY 
@@ -5075,8 +5054,7 @@ MiniKraidDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$1F00 
     XBA 
     SEC : SBC.W #$0010 : CLC : ADC.L $7EF436 : STA.B $14 
-    LDA.W #EnemyHeaders_MiniKraid 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_MiniKraid : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -5094,8 +5072,7 @@ MetalNinjaPirateDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$1F00 
     XBA 
     SEC : SBC.W #$0010 : CLC : ADC.L $7EF436 : STA.B $14 
-    LDA.W #EnemyHeaders_PirateGoldNinja 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_PirateGoldNinja : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -5113,8 +5090,7 @@ MetroidDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$1F00 
     XBA 
     SEC : SBC.W #$0010 : CLC : ADC.L $7EF436 : STA.B $14 
-    LDA.W #EnemyHeaders_Metroid 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_Metroid : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -5132,8 +5108,7 @@ RidleyDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$3F00 
     XBA 
     CLC : ADC.W #$0140 : STA.B $14 
-    LDA.W #EnemyHeaders_Ridley 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_Ridley : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -5151,8 +5126,7 @@ CrocomireDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$3F00 
     XBA 
     CLC : ADC.W #$0060 : STA.B $14 
-    LDA.W #EnemyHeaders_Crocomire 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_Crocomire : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -5170,8 +5144,7 @@ PhantoonDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$3F00 
     XBA 
     CLC : ADC.W #$0060 : STA.B $14 
-    LDA.W #EnemyHeaders_PhantoonBody 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_PhantoonBody : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -5189,8 +5162,7 @@ BotwoonDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$3F00 
     XBA 
     CLC : ADC.W #$0080 : STA.B $14 
-    LDA.W #EnemyHeaders_Botwoon 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_Botwoon : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -5208,8 +5180,7 @@ KraidDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$3F00 
     XBA 
     CLC : ADC.W #$0160 : STA.B $14 
-    LDA.W #EnemyHeaders_Kraid 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_Kraid : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -5227,8 +5198,7 @@ BombTorizoDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$3F00 
     XBA 
     CLC : ADC.W #$0060 : STA.B $14 
-    LDA.W #EnemyHeaders_BombTorizo 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_BombTorizo : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -5246,8 +5216,7 @@ GoldenTorizoDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$3F00 
     XBA 
     CLC : ADC.W #$0120 : STA.B $14 
-    LDA.W #EnemyHeaders_BombTorizo 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_BombTorizo : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -5265,8 +5234,7 @@ SporeSpawnDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$3F00 
     XBA 
     CLC : ADC.W #$0210 : STA.B $14 
-    LDA.W #EnemyHeaders_SporeSpawn 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_SporeSpawn : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -5284,8 +5252,7 @@ DraygonDeathItemDropRoutine:
     LDA.W $05E5 : AND.W #$3F00 
     XBA 
     CLC : ADC.W #$0160 : STA.B $14 
-    LDA.W #EnemyHeaders_DraygonBody 
-    JSL.L Spawn_Enemy_Drops 
+    LDA.W #EnemyHeaders_DraygonBody : JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
     PLP : PLY : PLX 
@@ -6340,8 +6307,7 @@ EnemyBlockCollisionReaction_Horizontal_Slope_NonSquare:
 
   + LDA.L .adjustedDistanceMult,X 
     TAY 
-    LDA.B $13 
-    JSL.L A_Y_16bit_UnsignedMultiplication 
+    LDA.B $13 : JSL.L A_Y_16bit_UnsignedMultiplication 
     LDA.W $05F1 : STA.B $12 
     LDA.W $05F3 : STA.B $14 
     CLC 

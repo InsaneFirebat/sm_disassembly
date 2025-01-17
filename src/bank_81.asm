@@ -1119,8 +1119,7 @@ Debug_GameOverMenu_Index0_FadeOut_ConfigureGraphicsForMenu:
 
 
   + JSL.L SetForceBlankAndWaitForNMI 
-    LDA.W #$0001 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0001 : JSL.L QueueSound_Lib3_Max6 
     JSL.L Disable_HDMAObjects 
     JSL.L Wait_End_VBlank_Clear_HDMA 
     LDX.W #$0000 
@@ -1153,10 +1152,8 @@ Debug_GameOverMenu_Index0_FadeOut_ConfigureGraphicsForMenu:
 
 Debug_GameOverMenu_Index1_Initialise:
     REP #$30 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FF03 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF03 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     SEP #$20 
     LDA.B #$11 : STA.B $69 
     REP #$30 
@@ -1351,8 +1348,7 @@ DebugGameOverMenu_Index3_Main:
     BIT.W #$9080 
     BEQ .noChange 
     LDA.W $0950 : BNE + 
-    LDA.W $0952 
-    JSL.L SaveToSRAM 
+    LDA.W $0952 : JSL.L SaveToSRAM 
     JML.L SoftReset 
 
 
@@ -1501,20 +1497,17 @@ GameOverMenu_Index4_Main:
     CMP.W #$001F 
     BEQ + 
     INC.W $0727 
-    LDA.W $0952 
-    JSL.L LoadFromSRAM 
+    LDA.W $0952 : JSL.L LoadFromSRAM 
     RTS 
 
 
   + STA.W $0998 
-    LDA.W $0952 
-    JSL.L LoadFromSRAM 
+    LDA.W $0952 : JSL.L LoadFromSRAM 
     RTS 
 
 
 .toggleSelection:
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $0950 : EOR.W #$0001 : STA.W $0950 
 
 .noChange:
@@ -1536,10 +1529,8 @@ GameOverMenu_Index1_Initialise:
     LDA.B #$40 : STA.B $75 
     LDA.B #$80 : STA.B $76 
     REP #$30 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FF03 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF03 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0001 : STA.W $198D 
     DEC A 
     STA.W $1997 
@@ -1686,8 +1677,7 @@ GameOverMenu_Index2_PlayMusicTrack:
     JSL.L CheckIfMusicIsQueued 
     BCS .return 
     INC.W $0727 
-    LDA.W #$0004 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0004 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
 .return:
     RTS 
@@ -1749,8 +1739,7 @@ FileSelectMenu_Index0_TitleSequenceToMain_FadeOutConfigGfx:
 
 
   + JSL.L SetForceBlankAndWaitForNMI 
-    LDA.W #$0001 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0001 : JSL.L QueueSound_Lib3_Max6 
     JSL.L Disable_HDMAObjects 
     JSL.L Wait_End_VBlank_Clear_HDMA 
     INC.W $0727 
@@ -2034,16 +2023,14 @@ FileSelectMenu_Index8_FileCopy_SelectSource:
 
   + STX.W $19B5 
     REP #$30 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     BRA Set_FileCopyMenu_SelectionMissile_Position 
 
     REP #$30 
 
 .B:
     LDA.W $0727 : CLC : ADC.W #$0007 : STA.W $0727 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     RTS 
 
 
@@ -2059,15 +2046,13 @@ FileSelectMenu_Index8_FileCopy_SelectSource:
     BEQ .loopUp 
     STX.W $19B5 
     REP #$30 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     BRA Set_FileCopyMenu_SelectionMissile_Position 
 
 
 .select:
     REP #$30 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $19B5 
     CMP.W #$0003 
     BEQ + 
@@ -2172,8 +2157,7 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
     BNE .up 
     BIT.W #$0400 
     BEQ .setMissilePosition 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDX.W $19B5 
 
 .loopDown:
@@ -2200,14 +2184,12 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
 .B:
     LDA.W $0727 : SEC : SBC.W #$0002 : STA.W $0727 
     LDA.W $19B7 : STA.W $19B5 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     JMP.W Initialise_FileSelectMenu_FileCopy 
 
 
 .select:
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $19B5 
     CMP.W #$0003 
     BEQ + 
@@ -2221,8 +2203,7 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
 
 
 .up:
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDX.W $19B5 
 
 .loopUp:
@@ -2326,8 +2307,7 @@ FileSelectMenu_IndexC_FileCopy_Confirmation:
     BNE .B 
     BIT.W #$1080 
     BEQ .setMissilePosition 
-    LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $19B5 : BEQ .yes 
     LDA.W $0727 : SEC : SBC.W #$0004 : STA.W $0727 
     JMP.W Initialise_FileSelectMenu_FileCopy 
@@ -2336,8 +2316,7 @@ FileSelectMenu_IndexC_FileCopy_Confirmation:
 .B:
     LDA.W $0727 : SEC : SBC.W #$0003 : STA.W $0727 
     LDA.W $19B9 : STA.W $19B5 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     RTS 
 
 
@@ -2348,8 +2327,7 @@ FileSelectMenu_IndexC_FileCopy_Confirmation:
 
 .toggle:
     LDA.W $19B5 : EOR.W #$0001 : STA.W $19B5 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
 
 .setMissilePosition:
     LDY.W #$00B8 
@@ -2467,8 +2445,7 @@ FileSelectMenu_Index0_FileCopy_DoFileCopy:
 FileSelectMenu_IndexE_FileCopy_CopyCompleted:
     JSL.L Draw_Border_Around_DATA_COPY_MODE 
     LDA.B $8F : BEQ .return 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     INC.W $0727 
     LDA.L $701FEC 
     CMP.W #$0000 
@@ -2542,15 +2519,13 @@ FileSelectMenu_Index16_FileClear_SelectSlot:
     BEQ .loopDown 
 
   + STX.W $19B5 
-    LDA.B #$37 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.B #$37 : JSL.L QueueSound_Lib1_Max6 
     BRA Set_FileClearMenuSelection_MissilePosition 
 
 
 .exit:
     REP #$30 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $0727 : CLC : ADC.W #$0005 : STA.W $0727 
     RTS 
 
@@ -2566,15 +2541,13 @@ FileSelectMenu_Index16_FileClear_SelectSlot:
     BIT.W .data,X 
     BEQ .loopUp 
     STX.W $19B5 
-    LDA.B #$37 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.B #$37 : JSL.L QueueSound_Lib1_Max6 
     BRA Set_FileClearMenuSelection_MissilePosition 
 
 
 .select:
     REP #$30 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $19B5 
     CMP.W #$0003 
     BEQ .exit 
@@ -2622,15 +2595,13 @@ FileSelectMenu_Index18_FileClear_Confirmation:
     BNE .B 
     BIT.W #$1080 
     BEQ .setMissilePosition 
-    LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $19B5 : BEQ .yes 
 
 .B:
     LDA.W $0727 : SEC : SBC.W #$0002 : STA.W $0727 
     LDA.W $19B7 : STA.W $19B5 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     JMP.W Initialise_FileSelectMenu_FileClear 
 
 
@@ -2641,8 +2612,7 @@ FileSelectMenu_Index18_FileClear_Confirmation:
 
 .toggle:
     LDA.W $19B5 : EOR.W #$0001 : STA.W $19B5 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
 
 .setMissilePosition:
     LDY.W #$00B8 
@@ -2679,8 +2649,7 @@ FileSelectMenu_Index19_FileClear_DoFileClear:
     STA.L $701FF8,X 
     INC.W $0727 
     JSR.W NewSaveFile 
-    LDA.W $19B7 
-    JSL.L LoadFromSRAM 
+    LDA.W $19B7 : JSL.L LoadFromSRAM 
     LDA.W $19B7 : STA.W $079F 
     JSL.L LoadMirrorOfCurrentAreasMapExplored 
     LDX.W #$0500 
@@ -2708,11 +2677,9 @@ FileSelectMenu_Index19_FileClear_DoFileClear:
 FileSelectMenu_Index1A_FileClear_ClearCompleted:
     JSL.L Draw_Border_Around_DATA_CLEAR_MODE 
     LDA.B $8F : BEQ .return 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     INC.W $0727 
-    LDA.W #$0000 
-    JSL.L LoadFromSRAM 
+    LDA.W #$0000 : JSL.L LoadFromSRAM 
     BCS .slotACorrupt 
 
 .selectSlotA:
@@ -2721,15 +2688,13 @@ FileSelectMenu_Index1A_FileClear_ClearCompleted:
 
 
 .slotACorrupt:
-    LDA.W #$0001 
-    JSL.L LoadFromSRAM 
+    LDA.W #$0001 : JSL.L LoadFromSRAM 
     BCS + 
     LDA.W #$0001 : STA.W $0952 
     RTS 
 
 
-  + LDA.W #$0002 
-    JSL.L LoadFromSRAM 
+  + LDA.W #$0002 : JSL.L LoadFromSRAM 
     BCS .selectSlotA 
     LDA.W #$0002 : STA.W $0952 
 
@@ -3168,11 +3133,9 @@ FileSelectMenu_Index4_Main:
 
   + BIT.W #$8000 
     BEQ .goto_done 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W #$0021 : STA.W $0727 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
 
 .goto_done:
     JMP.W .done 
@@ -3185,8 +3148,7 @@ FileSelectMenu_Index4_Main:
     JMP.W .fileOperation 
 
 
-  + LDA.W #$002A 
-    JSL.L QueueSound_Lib1_Max6 
+  + LDA.W #$002A : JSL.L QueueSound_Lib1_Max6 
     LDA.W $0727 : CLC : ADC.W #$001B : STA.W $0727 
     LDA.W $0952 : CLC : ADC.W #$0002 : ASL A 
     TAX 
@@ -3194,8 +3156,7 @@ FileSelectMenu_Index4_Main:
     LDA.W $0952 : STA.L $701FEC 
     EOR.W #$FFFF 
     STA.L $701FEE 
-    LDA.W $0952 
-    JSL.L LoadFromSRAM 
+    LDA.W $0952 : JSL.L LoadFromSRAM 
     BCS + 
     JSL.L LoadMirrorOfCurrentAreasMapExplored 
     BRA .done 
@@ -3254,8 +3215,7 @@ FileSelectMenu_Index4_Main:
     STA.W $0952 
 
 .cursorSound:
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
 
 .done:
     LDA.W $0952 
@@ -3269,8 +3229,7 @@ FileSelectMenu_Index4_Main:
 .fileOperation:
     CMP.W #$0003 
     BNE + 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     INC.W $0727 
     LDA.B $57 : AND.W #$FF0F 
     ORA.W #$0003 
@@ -3280,8 +3239,7 @@ FileSelectMenu_Index4_Main:
 
   + CMP.W #$0004 
     BNE .checkFive 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $0727 : CLC : ADC.W #$000F : STA.W $0727 
     LDA.B $57 : AND.W #$FF0F 
     ORA.W #$0003 
@@ -3725,8 +3683,7 @@ FineSelectMap_Index6_AreaSelectMap:
 
   + BIT.W #$1080 
     BEQ JMP_DrawAreaSelectMapLabels 
-    LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
     JMP.W Select_FileSelectMap_Area 
 
 
@@ -3751,8 +3708,7 @@ FineSelectMap_Index6_AreaSelectMap_Debug:
     BEQ JMP_DrawAreaSelectMapLabels 
 
 .selected:
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     JSR.W Switch_Active_FileSelectMapArea 
     JMP.W DrawAreaSelectMapLabels 
 
@@ -3773,8 +3729,7 @@ FineSelectMap_Index6_AreaSelectMap_Debug_debugNext:
 
 .switch:
     JSR.W Switch_Active_FileSelectMapArea 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     JMP.W DrawAreaSelectMapLabels 
 
 
@@ -3913,8 +3868,7 @@ DrawAreaSelectMapLabels:
     STZ.B $03 
     LDX.W #$0080 
     LDY.W #$0010 
-    LDA.L AreaSelect_SpritemapBaseIndex 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.L AreaSelect_SpritemapBaseIndex : JSL.L AddSpritemapFrom_82C569_TableToOAM 
     STZ.B $1C 
 
 .loopAreas:
@@ -4109,8 +4063,7 @@ FileSelectMap_Index7_AreaSelectMapToRoomSelectMap:
     STA.W $420C 
     REP #$20 
     INC.W $0727 
-    LDA.W #$003B 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$003B : JSL.L QueueSound_Lib1_Max6 
     RTS 
 
 
@@ -4286,8 +4239,7 @@ FileSelectMap_IndexA_RoomSelectMap:
     BIT.W #$1080 
     BEQ .earlyReturn 
     INC.W $0727 
-    LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
 
 .earlyReturn:
     RTS 
@@ -4311,14 +4263,12 @@ FileSelectMap_IndexA_RoomSelectMap:
   + TXA 
     LSR A 
     STA.W $0950 
-    LDA.W #$003C 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$003C : JSL.L QueueSound_Lib1_Max6 
     RTS 
 
 
 .debug:
-    LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
     PHB 
     SEP #$20 
     LDA.B #$82 : STA.B $02 
@@ -4582,8 +4532,7 @@ FileSelectMap_Index14_PrepContractSquareTransToAreaSelect:
     SEP #$20 
     LDA.B #$00 : STA.B $85 
     REP #$30 
-    LDA.W #$003C 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$003C : JSL.L QueueSound_Lib1_Max6 
     LDA.W $079F 
     ASL A 
     TAX 

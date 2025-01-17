@@ -79,8 +79,7 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
   + LDA.L $7ED914 
     CMP.W #$0022 
     BNE .notZebesLanding 
-    LDA.W #$0005 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$000F : STA.W $0DA0 
 
 .loopAlpha:
@@ -127,15 +126,13 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     CMP.W #$001F 
     BNE .runSamusCmd 
     LDA.W #$0000 : STA.L $7EC1BE 
-    LDA.W #$0008 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0008 : JSL.L Run_Samus_Command 
     PLP 
     RTS 
 
 
 .runSamusCmd:
-    LDA.W #$0009 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0009 : JSL.L Run_Samus_Command 
     PLP 
     RTS 
 
@@ -403,19 +400,14 @@ GameState_21_BlackoutFromCeres:
     STZ.W $0725 
     LDA.W #$0022 : STA.L $7ED914 
     STA.W $0998 
-    LDA.W $0952 
-    JSL.L SaveToSRAM 
+    LDA.W $0952 : JSL.L SaveToSRAM 
     LDA.W #CinematicFunction_CeresGoesBoom_Initial : STA.W $1F51 
     STZ.W $093F 
     STZ.W $0943 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$0002 
-    JSL.L QueueSound 
-    LDA.W #$0071 
-    JSL.L QueueSound_Lib2_Max15 
-    LDA.W #$0001 
-    JSL.L QueueSound_Lib3_Max15 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0002 : JSL.L QueueSound 
+    LDA.W #$0071 : JSL.L QueueSound_Lib2_Max15 
+    LDA.W #$0001 : JSL.L QueueSound_Lib3_Max15 
     PLP 
     RTS 
 
@@ -468,14 +460,10 @@ GameState_24_WhitingOutFromTimeUp:
     STZ.W $0725 
     STZ.W $093F 
     STZ.W $0943 
-    LDA.W #$0002 
-    JSL.L QueueSound 
-    LDA.W #$0071 
-    JSL.L QueueSound_Lib2_Max15 
-    LDA.W #$0001 
-    JSL.L QueueSound_Lib3_Max15 
-    LDA.W #$000E 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$0002 : JSL.L QueueSound 
+    LDA.W #$0071 : JSL.L QueueSound_Lib2_Max15 
+    LDA.W #$0001 : JSL.L QueueSound_Lib3_Max15 
+    LDA.W #$000E : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .notZebesTimebomb 
     STZ.W $0DE2 
     STZ.W $0727 
@@ -530,14 +518,10 @@ GameState_26_SamusEscapesFromZebes:
     LDA.W #$0027 : STA.W $0998 
     LDA.W #CinematicFunction_Ending_Setup : STA.W $1F51 
     STZ.W $0943 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$0002 
-    JSL.L QueueSound 
-    LDA.W #$0071 
-    JSL.L QueueSound_Lib2_Max15 
-    LDA.W #$0001 
-    JSL.L QueueSound_Lib3_Max15 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0002 : JSL.L QueueSound 
+    LDA.W #$0071 : JSL.L QueueSound_Lib2_Max15 
+    LDA.W #$0001 : JSL.L QueueSound_Lib3_Max15 
     PLP 
     RTS 
 
@@ -651,8 +635,7 @@ GameState_2C_TransitionFromDemo:
     LDA.W #$0001 : STA.W $0998 
     LDA.W $0DEC : BMI .nextDemoScene 
     BNE .titleSequence 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     STZ.W $05F5 
     LDA.W #CinematicFunction_LoadTitleSequence : STA.W $1F51 
     PLP 
@@ -1827,8 +1810,7 @@ GameState_E_Paused_LoadingPauseScreen:
 
 GameState_F_Paused_MapAndItemScreens:
     PHB : PHK : PLB 
-    LDA.W #$0003 
-    JSL.L UpdateHeldInput 
+    LDA.W #$0003 : JSL.L UpdateHeldInput 
     JSL.L MainPauseRoutine 
     JSL.L HandleHUDTilemap_PausedAndRunning 
     JSR.W Handle_PauseScreen_PaletteAnimation 
@@ -2034,8 +2016,7 @@ MapScrolling_Common:
     INC.W $05FF 
     LDA.W $05FF : AND.W #$000F 
     BNE .return 
-    LDA.W #$0036 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0036 : JSL.L QueueSound_Lib1_Max6 
     STZ.W $05FD 
     STZ.W $05FF 
     LDA.W $05FB : BEQ .return 
@@ -3450,8 +3431,7 @@ ContinueInitialising_GameplayResume:
     JSR.W JSL_to_Update_BeamTiles_and_Palette 
     JSR.W Clear_PauseMenu_Data 
     REP #$30 
-    LDA.W #$000C 
-    JSL.L Run_Samus_Command 
+    LDA.W #$000C : JSL.L Run_Samus_Command 
     RTS 
 
 
@@ -3744,8 +3724,7 @@ Handle_PauseScreen_L_R_Input:
     JSR.W Set_PauseScreen_ButtonLabelPalettes 
 
 .merge:
-    LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
 
 .return:
     PLP 
@@ -3798,8 +3777,7 @@ Handle_PauseScreen_StartButton:
     REP #$30 
     LDA.W $05E1 : BIT.W #$1000 
     BEQ + 
-    LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
     LDA.W #$0001 : STA.W $0723 
     STA.W $0725 
     LDA.W $0753 
@@ -3825,8 +3803,7 @@ Handle_PauseMenu_StartPressedHighlight:
     LDA.W #$0000 : STA.B $03 
     LDX.W #$0090 
     LDY.W #$00D0 
-    LDA.W #$002B 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.W #$002B : JSL.L AddSpritemapFrom_82C569_TableToOAM 
 
 .return:
     PLB : PLP 
@@ -4200,8 +4177,7 @@ Handle_PauseScreen_PaletteAnimation:
     CMP.B #$FF 
     BNE + 
     REP #$30 
-    LDA.W #$002A 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$002A : JSL.L QueueSound_Lib3_Max6 
     SEP #$20 
     LDA.B #$00 
     XBA 
@@ -4442,8 +4418,7 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     BEQ .moveToBeams 
     LDA.W $0755 : CLC : ADC.W #$0100 : STA.W $0755 
     LDA.W $09D6 : BEQ .moveToBeams 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     BRA .return 
 
 
@@ -4456,8 +4431,7 @@ EquipmentScreen_Main_Tanks_DPadResponse:
 .up:
     LDA.W $0755 : AND.W #$FF00 
     BEQ .return 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $0755 : SEC : SBC.W #$0100 : STA.W $0755 
 
 .return:
@@ -4601,8 +4575,7 @@ EquipmentScreen_Main_Tanks_Mode:
     LDA.B $8F : BIT.W #$0080 
     BEQ .return 
     LDA.W $09D4 : BEQ .return 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $09C0 
     CMP.W #$0001 
     BNE .manual 
@@ -4686,8 +4659,7 @@ EquipmentScreen_Main_Tanks_ReserveTank:
     AND.W #$0007 
     CMP.W #$0007 
     BNE .incrementEnergy 
-    LDA.W #$002D 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$002D : JSL.L QueueSound_Lib3_Max6 
 
 .incrementEnergy:
     LDA.W $09C2 : CLC : ADC.W ReserveTank_TransferEnergyPerFrame : STA.W $09C2 
@@ -5109,8 +5081,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     TAX 
     LDY.W EquipmentScreen_ReserveTank_Yposition 
     DEY 
-    LDA.W #$001B 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.W #$001B : JSL.L AddSpritemapFrom_82C569_TableToOAM 
     PLY 
     INY #2
     DEC.B $2E 
@@ -5161,8 +5132,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     TAX 
     LDY.W EquipmentScreen_ReserveTank_Yposition 
     DEY 
-    LDA.W #$0020 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.W #$0020 : JSL.L AddSpritemapFrom_82C569_TableToOAM 
     INC.B $34 
     INC.B $34 
     INC.B $30 
@@ -5174,8 +5144,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     TAX 
     LDY.W EquipmentScreen_ReserveTank_Yposition 
     DEY 
-    LDA.W #$001F 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.W #$001F : JSL.L AddSpritemapFrom_82C569_TableToOAM 
     SEP #$20 
     LDA.B $32 : STA.W $4204 
     LDA.B $33 : STA.W $4205 
@@ -5238,8 +5207,7 @@ EquipmentScreen_MoveToReserveTanks:
     REP #$30 
     LDA.W $09D4 : BEQ .return 
     STZ.W $0755 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W #$0001 
 
 .return:
@@ -5271,8 +5239,7 @@ EquipmentScreen_MoveLowerOnBeams:
     AND.W #$FF00 
     ORA.W #$0001 
     STA.W $0755 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
 
 .return:
     PLP 
@@ -5295,8 +5262,7 @@ EquipmentScreen_MoveHigherOnBeams:
 
 
 .found:
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     TXA 
     LSR A 
     XBA 
@@ -5322,8 +5288,7 @@ EquipmentScreen_MoveLowerOnSuitsMisc:
     LDA.W #$FFFF : BRA .return 
 
 
-  + LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+  + LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     TXA 
     LSR A 
     XBA 
@@ -5350,8 +5315,7 @@ EquipmentScreen_MoveHigherOnSuitsMisc:
     BRA .return 
 
 
-  + LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+  + LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     TXA 
     LSR A 
     XBA 
@@ -5378,8 +5342,7 @@ EquipmentScreen_MoveLowerOnBoots:
     BRA .return 
 
 
-  + LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+  + LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     TXA 
     LSR A 
     XBA 
@@ -5404,8 +5367,7 @@ EquipmentScreen_MoveHigherOnBoots:
     LDA.W #$FFFF : BRA .return 
 
 
-  + LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+  + LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     TXA 
     LSR A 
     XBA 
@@ -5427,8 +5389,7 @@ EquipmentScreen_Main_ButtonResponse:
     RTS 
 
 
-  + LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+  + LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $0755 : AND.W #$00FF 
     ASL A 
     TAX 
@@ -5572,8 +5533,7 @@ Draw_Map_Icons:
     LDA.W #$0E00 : STA.B $03 
     LDA.W Crateria_MapIconPositions_savePoints2 : SEC : SBC.B $B3 : TAY 
     LDA.W Crateria_MapIconPositions_savePoints : SEC : SBC.B $B1 : TAX 
-    LDA.W #$0063 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.W #$0063 : JSL.L AddSpritemapFrom_82C569_TableToOAM 
 
 .return:
     PLB 
@@ -5616,8 +5576,7 @@ Draw_FileSelectMap_Icons:
     PHY 
     LDA.W $077A : BIT.W #$0001 
     BNE + 
-    LDA.W #$0012 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.W #$0012 : JSL.L AddSpritemapFrom_82C569_TableToOAM 
 
   + PLY : PLX : PLA 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
@@ -5637,8 +5596,7 @@ Draw_FileSelectMap_Icons:
     LDA.W #$0E00 : STA.B $03 
     LDA.W Crateria_MapIconPositions_savePoints2 : SEC : SBC.B $B3 : TAY 
     LDA.W Crateria_MapIconPositions_savePoints : SEC : SBC.B $B1 : TAX 
-    LDA.W #$0063 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.W #$0063 : JSL.L AddSpritemapFrom_82C569_TableToOAM 
 
 .return:
     PLB 
@@ -5725,8 +5683,7 @@ Draw_MapIcons_ofGivenType:
     PLX : PHX 
     LDA.W $0002,X : SEC : SBC.B $B3 : TAY 
     LDA.W $0000,X : SEC : SBC.B $B1 : TAX 
-    LDA.B $22 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.B $22 : JSL.L AddSpritemapFrom_82C569_TableToOAM 
 
 .restoreX:
     PLX 
@@ -5793,8 +5750,7 @@ Display_Map_Boss_Icons:
     PHX 
     LDA.W $0002,X : SEC : SBC.B $B3 : TAY 
     LDA.W $0000,X : SEC : SBC.B $B1 : TAX 
-    LDA.B $22 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.B $22 : JSL.L AddSpritemapFrom_82C569_TableToOAM 
     PLX 
 
 .next:
@@ -5815,8 +5771,7 @@ Display_Map_Boss_Icons:
     PHX 
     LDA.W $0002,X : SEC : SBC.B $B3 : TAY 
     LDA.W $0000,X : SEC : SBC.B $B1 : TAX 
-    LDA.W #$0062 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.W #$0062 : JSL.L AddSpritemapFrom_82C569_TableToOAM 
     PLX 
     LDA.W #$0C00 : STA.B $03 
     BRA .drawBossIcon 
@@ -5949,8 +5904,7 @@ Draw_Border_Around_SAMUS_DATA:
     LDA.W #$0E00 : STA.B $03 
     LDX.W #$0080 
     LDY.W #$0010 
-    LDA.W #$0048 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.W #$0048 : JSL.L AddSpritemapFrom_82C569_TableToOAM 
     RTL 
 
 
@@ -5958,8 +5912,7 @@ Draw_Border_Around_DATA_COPY_MODE:
     LDA.W #$0E00 : STA.B $03 
     LDX.W #$0080 
     LDY.W #$0010 
-    LDA.W #$0049 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.W #$0049 : JSL.L AddSpritemapFrom_82C569_TableToOAM 
     RTL 
 
 
@@ -5967,8 +5920,7 @@ Draw_Border_Around_DATA_CLEAR_MODE:
     LDA.W #$0E00 : STA.B $03 
     LDX.W #$007C 
     LDY.W #$0010 
-    LDA.W #$004A 
-    JSL.L AddSpritemapFrom_82C569_TableToOAM 
+    LDA.W #$004A : JSL.L AddSpritemapFrom_82C569_TableToOAM 
     RTL 
 
 
@@ -6163,20 +6115,17 @@ FinishProcessing_GameOver_BabyMetroid_ASMInstruction:
 
 
 Instruction_Queue_BabyMetroid_Cry1_SoundEffect:
-    LDA.W #$0023 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0023 : JSL.L QueueSound_Lib3_Max6 
     BRA FinishProcessing_GameOver_BabyMetroid_ASMInstruction 
 
 
 Instruction_Queue_BabyMetroid_Cry2_SoundEffect:
-    LDA.W #$0026 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0026 : JSL.L QueueSound_Lib3_Max6 
     BRA FinishProcessing_GameOver_BabyMetroid_ASMInstruction 
 
 
 Instruction_Queue_BabyMetroid_Cry3_SoundEffect:
-    LDA.W #$0027 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0027 : JSL.L QueueSound_Lib3_Max6 
     BRA FinishProcessing_GameOver_BabyMetroid_ASMInstruction 
 
 
@@ -6261,12 +6210,9 @@ GameOver_BabyMetroid_Palettes_3:
 
 Cancel_Sound_Effects:
     REP #$30 
-    LDA.W #$0002 
-    JSL.L QueueSound_Lib1_Max6 
-    LDA.W #$0071 
-    JSL.L QueueSound_Lib2_Max6 
-    LDA.W #$0001 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0002 : JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0071 : JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0001 : JSL.L QueueSound_Lib3_Max6 
     RTL 
 
 
@@ -6275,17 +6221,14 @@ Queue_Samus_Movement_SoundEffects:
     LDA.W $0B3E : AND.W #$FF00 
     CMP.W #$0400 
     BNE + 
-    LDA.W #$002B 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$002B : JSL.L QueueSound_Lib3_Max6 
 
   + LDA.W $0CD0 
     CMP.W #$0010 
     BMI + 
-    LDA.W #$0041 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0041 : JSL.L QueueSound_Lib1_Max6 
 
-  + LDA.W #$0014 
-    JSL.L Run_Samus_Command 
+  + LDA.W #$0014 : JSL.L Run_Samus_Command 
     RTL 
 
 
@@ -8466,8 +8409,7 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
     LDA.W $09D6 : BEQ .noAutoReserve 
     LDA.W #$8000 : STA.W $0A78 
     LDA.W #$001B : STA.W $0998 
-    LDA.W #$001B 
-    JSL.L Run_Samus_Command 
+    LDA.W #$001B : JSL.L Run_Samus_Command 
     BRA .tickGameTime 
 
 
@@ -8481,8 +8423,7 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
 
 .normalGameplay:
     LDA.W #$8000 : STA.W $0A78 
-    LDA.W #$0011 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0011 : JSL.L Run_Samus_Command 
     LDA.W #$0013 : STA.W $0998 
 
 .tickGameTime:
@@ -8524,8 +8465,7 @@ GameState_1B_ReserveTankAuto:
     BCC + 
     STZ.W $0A78 
     LDA.W #$0008 : STA.W $0998 
-    LDA.W #$0010 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0010 : JSL.L Run_Samus_Command 
 
   + JSR.W GameState_8_MainGameplay 
     JSL.L Low_Health_Check_external 
@@ -8537,8 +8477,7 @@ Reserve_Tank_Auto_Refill:
     LDA.W $09D6 : BEQ .return 
     LDA.W $05B6 : BIT.W #$0007 
     BNE + 
-    LDA.W #$002D 
-    JSL.L QueueSound_Lib3_Max3 
+    LDA.W #$002D : JSL.L QueueSound_Lib3_Max3 
 
   + LDA.W $09C2 : CLC : ADC.W #$0001 : STA.W $09C2 
     CMP.W $09C4 
@@ -8643,16 +8582,11 @@ GameState_14_DeathSequence_BlackOutSurroundings:
     STZ.W $0DE6 
     INC.W $0998 
     STZ.W $0592 
-    LDA.W #$0002 
-    JSL.L QueueSound 
-    LDA.W #$0071 
-    JSL.L QueueSound_Lib2_Max15 
-    LDA.W #$0001 
-    JSL.L QueueSound_Lib3_Max15 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FF39 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0002 : JSL.L QueueSound 
+    LDA.W #$0071 : JSL.L QueueSound_Lib2_Max15 
+    LDA.W #$0001 : JSL.L QueueSound_Lib3_Max15 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF39 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0005 
     LDY.W #$000E 
     JSL.L QueueMusicDataOrTrack_YFrameDelay 
@@ -8990,8 +8924,7 @@ Queue_Room_Music_Data:
     LDA.W $07CB : BEQ .return 
     CMP.W $07F3 
     BEQ .return 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W $07CB 
     ORA.W #$FF00 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
@@ -9041,8 +8974,7 @@ Load_New_Music_Track_If_Changed:
     CMP.B $14 
     BEQ .return 
     LDY.W #$0006 
-    LDA.W $07C9 
-    JSL.L QueueMusicDataOrTrack_YFrameDelay 
+    LDA.W $07C9 : JSL.L QueueMusicDataOrTrack_YFrameDelay 
 
 .return:
     PLB : PLP 
@@ -9064,10 +8996,8 @@ Play_Room_Music_Track_After_A_Frames:
     LDA.W $0998 
     CMP.W #$0028 
     BCS .return 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_YFrameDelay 
-    LDA.W $07F5 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_YFrameDelay 
+    LDA.W $07F5 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
 .return:
     PLY : PLB : PLP 
@@ -9119,8 +9049,7 @@ GameState_9_HitADoorBlock:
 
 DoorTransitionFunction_HandleElevator:
     LDA.W $0E16 : BEQ .return 
-    LDA.W #$0000 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0000 : JSL.L Run_Samus_Command 
     LDA.W $0799 : BMI .return 
     LDA.W #$0030 : STA.W $092F 
     LDA.W #DoorTransitionFunction_Wait48FramesForDownElevator : STA.W $099C 
@@ -9195,8 +9124,7 @@ GameState_A_LoadingNextRoom:
 
 .clearSounds:
     JSL.L Clear_Sounds_When_Going_Through_Door 
-    LDA.W #$0071 
-    JSL.L QueueSound_Lib2_Max15 
+    LDA.W #$0071 : JSL.L QueueSound_Lib2_Max15 
     LDA.W #$FFFF : STA.W $05F5 
     LDA.W #DoorTransitionFunction_WaitForSoundsToFinish : STA.W $099C 
     INC.W $0998 
@@ -9715,14 +9643,12 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
     LDA.W $0E16 : BEQ .notElevator 
     BIT.W $0799 
     BPL .samusCmd 
-    LDA.W #$0000 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0000 : JSL.L Run_Samus_Command 
     BRA .notElevator 
 
 
 .samusCmd:
-    LDA.W #$0007 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0007 : JSL.L Run_Samus_Command 
 
 .notElevator:
     JSL.L SetLiquidPhysicsType 
@@ -10444,8 +10370,7 @@ GameOptionsMenu_3_OptionsMenu:
     REP #$30 
     LDA.B $8F : AND.W #$0800 
     BEQ .checkDown 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     DEC.W $099E 
     BPL .checkB 
     LDA.W #$0004 : STA.W $099E 
@@ -10455,8 +10380,7 @@ GameOptionsMenu_3_OptionsMenu:
 .checkDown:
     LDA.B $8F : AND.W #$0400 
     BEQ .checkB 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $099E 
     INC A 
     STA.W $099E 
@@ -10473,8 +10397,7 @@ GameOptionsMenu_3_OptionsMenu:
     BEQ .return 
 
 .actiate:
-    LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $099E 
     ASL A 
     TAX 
@@ -10659,8 +10582,7 @@ GameOptionsMenu_4_StartGame:
     BEQ .fileSelectMap 
     LDA.W #$0005 : STA.W $0998 
     STA.L $7ED914 
-    LDA.W $0952 
-    JSL.L SaveToSRAM 
+    LDA.W $0952 : JSL.L SaveToSRAM 
     RTS 
 
 
@@ -10811,8 +10733,7 @@ GameOptionsMenu_6_DissolveInScreen:
 GameOptionsMenu_8_SpecialSettings:
     LDA.B $8F : AND.W #$0800 
     BEQ .checkDown 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     DEC.W $099E 
     BPL .checkB 
     LDA.W #$0002 : STA.W $099E 
@@ -10822,8 +10743,7 @@ GameOptionsMenu_8_SpecialSettings:
 .checkDown:
     LDA.B $8F : AND.W #$0400 
     BEQ .checkB 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $099E 
     INC A 
     STA.W $099E 
@@ -10834,8 +10754,7 @@ GameOptionsMenu_8_SpecialSettings:
 .checkB:
     LDA.B $8F : BIT.W #$8000 
     BEQ .checkActivate 
-    LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
     STZ.W $099E 
     JSR.W Start_GameOptionsMenu_DissolveTransition 
     RTS 
@@ -10844,8 +10763,7 @@ GameOptionsMenu_8_SpecialSettings:
 .checkActivate:
     LDA.B $8F : BIT.W #$1380 
     BEQ .return 
-    LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $099E 
     ASL A 
     TAX 
@@ -10978,8 +10896,7 @@ Set_SpecialSetting_Highlights:
 GameOptionsMenu_7_ControllerSettings:
     LDA.B $8F : AND.W #$0800 
     BEQ .upEnd 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $099E 
     DEC A 
     STA.W $099E 
@@ -11001,8 +10918,7 @@ GameOptionsMenu_7_ControllerSettings:
 .upEnd:
     LDA.B $8F : AND.W #$0400 
     BEQ .downEnd 
-    LDA.W #$0037 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0037 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $099E 
     INC A 
     STA.W $099E 
@@ -11026,8 +10942,7 @@ GameOptionsMenu_7_ControllerSettings:
 
 .downEnd:
     LDA.B $8F : BEQ .misplacedCode 
-    LDA.W #$0038 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0038 : JSL.L QueueSound_Lib1_Max6 
     LDA.W $099E 
     ASL A 
     TAX 

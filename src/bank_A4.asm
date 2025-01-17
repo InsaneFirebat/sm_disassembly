@@ -529,8 +529,7 @@ FightAI_Crocomire_8_ProjectileAttack:
     LDX.W $0E54 
     LDY.W #EnemyProjectile_CrocomiresProjectile 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    LDA.W #$001C 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$001C : JSL.L QueueSound_Lib3_Max6 
     PLY : PLX 
     RTS 
 
@@ -677,8 +676,7 @@ UNUSED_FightAI_Crocomire_1A_DoNearSpikeWallCharge_A4889A:
     LDA.W #$0001 : STA.W $0FAE 
     LDA.W #$000A : STA.W $0FB0 
     LDA.W #$000C : STA.W $0FAC 
-    LDA.W #$0054 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0054 : JSL.L QueueSound_Lib2_Max6 
     RTS 
 
 
@@ -818,8 +816,7 @@ UNUSED_FightAI_Crocomire_28_MovingClaws_A489F9:
     LDA.W $0FAA : BIT.W #$4000 
     BEQ .steppingBack 
     DEC.W $0FAE 
-    LDA.W #$003B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$003B : JSL.L QueueSound_Lib2_Max6 
     LDY.W #InstList_Crocomire_WaitForFirstSecondDamage_MovingClaws 
     RTS 
 
@@ -1110,24 +1107,21 @@ CrocomireHurtFlashHandling:
 
 Instruction_Crocomire_QueueCrySFX:
     PHX : PHY 
-    LDA.W #$0074 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0074 : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
 
 Instruction_Crocomire_QueueBigExplosionSFX:
     PHX : PHY 
-    LDA.W #$0025 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0025 : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
 
 Instruction_Crocomire_QueueSkeletonCollapseSFX:
     PHX : PHY 
-    LDA.W #$0075 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0075 : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
@@ -1139,8 +1133,7 @@ HandlePlayingCrocomireAcidDamageSFX:
     STA.L $7E8000 
     BNE .return 
     LDA.W #$0020 : STA.L $7E8000 
-    LDA.W #$0022 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0022 : JSL.L QueueSound_Lib3_Max6 
 
 .return:
     PLY : PLX 
@@ -1282,8 +1275,7 @@ HandleCrocomiresBridge:
     STA.L $7E78C2 
     STA.L $7E7902 
     STA.L $7E7942 
-    LDA.W #$003B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$003B : JSL.L QueueSound_Lib2_Max6 
     LDA.W #$0000 : STA.L $7E9016 
     JSL.L Spawn_Hardcoded_PLM 
     db $4E,$03 
@@ -1382,8 +1374,7 @@ Instruction_Crocomire_ShakeScreen:
     PHX : PHY 
     LDA.W #$0004 : STA.W $183E 
     LDA.W #$0005 : STA.W $1840 
-    LDA.W #$0076 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0076 : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
@@ -1496,8 +1487,7 @@ MainAI_Crocomire_DeathSequence_3C_Hop_6_Sinking:
     LDA.W $0FA8 
     CMP.W #$003E 
     BNE .return 
-    LDA.W #$0006 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0006 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0058 : STA.W $0FA8 
     LDA.W #InstList_CrocomireCorpse_Skeleton_FlowingDownTheRiver : STA.W $0F92 
     LDA.W #$0101 : STA.L $7ECD24 
@@ -1936,15 +1926,13 @@ MainAI_Crocomire_DeathSequence_14_30_Hop_3_6_UploadingToVRAM:
 
 MainAI_Crocomire_DeathSequence_18_Hop_3_QueueCry_HDMAObject:
     REP #$30 
-    LDA.W #$0077 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0077 : JSL.L QueueSound_Lib2_Max6 
     BRA CreateCrocomireMeltingHDMAObject 
 
 
 MainAI_Crocomire_DeathSequence_36_Hop_6_QueueCry_HDMAObject:
     REP #$30 
-    LDA.W #$002D 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$002D : JSL.L QueueSound_Lib2_Max6 
 
 CreateCrocomireMeltingHDMAObject:
     LDA.W $0FBE : SEC : SBC.W #$0048 : ASL A 
@@ -2220,8 +2208,7 @@ MainAI_Crocomire_DeathSequence_3E_BehindWall_WaitForSamus:
     LDA.W $0AF6 
     CMP.W #$0280 
     BPL .return 
-    LDA.W #$0005 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0100 : STA.L $7ECD23 
     JSL.L Spawn_Hardcoded_PLM 
     db $30,$03 
@@ -2297,8 +2284,7 @@ MainAI_Crocomire_DeathSequence_40_BehindWall_Rumbling:
     STA.W $102E 
     DEX #2
     STX.W $0FAE 
-    LDA.W #$002B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$002B : JSL.L QueueSound_Lib2_Max6 
     RTS 
 
 
@@ -2362,8 +2348,7 @@ MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
     JSL.L Spawn_Hardcoded_PLM 
     db $70,$0B 
     dw PLMEntries_clearCrocomiresBridge 
-    LDA.W #$0029 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0029 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #InstList_CrocomireCorpse_Skeleton_FallsApart_0 : STA.W $0F92 
     LDA.W #$0001 : STA.W $0F94 
     LDA.W #$0000 : STA.W $0F96 
@@ -2382,8 +2367,7 @@ MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     DEC.B $12 
     BNE .loop 
-    LDA.W #$0030 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0030 : JSL.L QueueSound_Lib2_Max6 
     JMP.W NextCrocomireDeathSequenceIndex 
 
 
@@ -2442,8 +2426,7 @@ MainAI_Crocomire_DeathSequence_46_SkeletonFalls:
     LDA.W $0F7A : ADC.W $0FB2 : STA.W $0F7A 
     CMP.W #$0240 
     BMI .return 
-    LDA.W #$0025 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0025 : JSL.L QueueSound_Lib2_Max6 
     LDA.W $0F96 : STA.W $0FD6 
     LDA.W #InstList_CrocomireCorpse_Skeleton_FallsApart_0 : STA.W $0F92 
     LDA.W #$0001 : STA.W $0F94 
@@ -2566,17 +2549,13 @@ MainAI_Crocomire_DeathSequence_4C_SetIndex4E:
 
 
 MainAI_Crocomire_DeathSequence_50_MarkEvent_PostDeathMusic:
-    LDA.W #$0006 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0006 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     STZ.W $0941 
     LDX.W $079F 
     LDA.L $7ED828,X : ORA.W #$0002 : STA.L $7ED828,X 
-    LDA.W #$0006 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FFF0 
-    JSL.L SpawnBigDustCloudProjectile 
-    LDA.W #$0010 
-    JSL.L SpawnBigDustCloudProjectile 
+    LDA.W #$0006 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FFF0 : JSL.L SpawnBigDustCloudProjectile 
+    LDA.W #$0010 : JSL.L SpawnBigDustCloudProjectile 
 
 NextCrocomireDeathSequenceIndex:
     INC.W $0FA8 

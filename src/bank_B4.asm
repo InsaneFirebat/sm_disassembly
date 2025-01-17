@@ -2204,13 +2204,11 @@ DebugHandler_7_EnemyDebugger_EnemySpawnDataEditor:
     LDA.W #$0800 : STA.B $26 
     LDA.W $1860 : STA.B $14 
     LDA.W $1862 : STA.B $12 
-    LDA.W #$001C 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$001C : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00B0 : STA.B $14 
     LDA.W #$0048 : STA.B $12 
-    LDA.W #$002F 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$002F : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00B0 : STA.B $14 
     LDA.W #$0048 : STA.B $12 
@@ -2310,24 +2308,21 @@ Debug_Draw_Enemy_Set_Name:
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00A8 : STA.B $14 
     LDA.W #$0058 : STA.B $12 
-    LDA.B $16 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.B $16 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $07D1 : SEC : SBC.W #$0007 : TAX 
     LDA.L $B40004,X : AND.W #$00FF 
     SEC : SBC.W #$002C : STA.B $16 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00B8 : STA.B $14 
     LDA.W #$0058 : STA.B $12 
-    LDA.B $16 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.B $16 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $07D1 : SEC : SBC.W #$0007 : TAX 
     LDA.L $B40005,X : AND.W #$00FF 
     SEC : SBC.W #$002C : STA.B $16 
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$00C0 : STA.B $14 
     LDA.W #$0058 : STA.B $12 
-    LDA.B $16 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.B $16 : JSL.L Add_Debug_Spritemap_to_OAM 
     PLX 
     RTS 
 
@@ -2650,8 +2645,7 @@ DebugHandler_4_SpriteTilesViewer_FirstHalf:
     LDA.W #$0A00 : STA.B $26 
     LDA.W #$0080 : STA.B $14 
     LDA.W #$0080 : STA.B $12 
-    LDA.W #$0003 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$0003 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $05C5 : BIT.W #$0040 
     BNE .resetIndex 
     LDA.W #$0001 
@@ -2703,8 +2697,7 @@ DebugHandler_3_SpriteTilesViewer_SecondHalf:
     STA.B $26 
     LDA.W #$0080 : STA.B $14 
     LDA.W #$0080 : STA.B $12 
-    LDA.W #$0002 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$0002 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $05C5 : BIT.W #$0040 
     BNE .incIndex 
     LDA.W #$0001 
@@ -2721,13 +2714,11 @@ DebugHandler_1_PaletteViewer_SpritePalettes:
     LDA.W #$0000 : STA.B $26 
     LDA.W #$0060 : STA.B $14 
     STA.B $12 
-    LDA.W #$0000 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$0000 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W #$0000 : STA.B $26 
     LDA.W #$00A0 : STA.B $14 
     LDA.W #$0060 : STA.B $12 
-    LDA.W #$0001 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$0001 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $05C5 : BIT.W #$0080 
     BNE .setupLoop 
     LDA.W #$0001 
@@ -2750,13 +2741,11 @@ DebugHandler_2_PaletteViewer_BGPalettes:
     LDA.W #$0000 : STA.B $26 
     LDA.W #$0060 : STA.B $14 
     STA.B $12 
-    LDA.W #$0000 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$0000 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W #$0000 : STA.B $26 
     LDA.W #$00A0 : STA.B $14 
     LDA.W #$0060 : STA.B $12 
-    LDA.W #$0001 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$0001 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDA.W $05C5 : BIT.W #$0080 
     BNE .resetIndex 
     LDA.W #$0001 
@@ -2934,14 +2923,12 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     LDA.W $0E22 : CLC : ADC.W #$0020 : STA.B $14 
     LDA.W $0E20 : CLC : ADC.W #$0004 : STA.B $12 
     LDA.W #$0A00 : STA.B $26 
-    LDA.W #$0025 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$0025 : JSL.L Add_Debug_Spritemap_to_OAM 
 
   + LDA.W #$00B0 : STA.B $14 
     LDA.W #$0050 : STA.B $12 
     LDA.W #$0A00 : STA.B $26 
-    LDA.W #$0027 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$0027 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
     LDA.W $0F7A,X : STA.W $0E24 
     LDA.W #$00E0 : STA.W $0E20 
@@ -2994,8 +2981,7 @@ DebugHandler_A_EnemyDebugger_RAMViewer_0:
   + LDA.W #$00B0 : STA.B $14 
     LDA.W #$0050 : STA.B $12 
     LDA.W #$0A00 : STA.B $26 
-    LDA.W #$0029 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$0029 : JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
     LDA.W $0FA4,X : STA.W $0E24 
     LDA.W #$00E0 : STA.W $0E20 
@@ -3031,8 +3017,7 @@ DebugHandler_B_EnemyDebugger_RAMViewer_1:
   + LDA.W #$00B0 : STA.B $14 
     LDA.W #$0050 : STA.B $12 
     LDA.W #$0A00 : STA.B $26 
-    LDA.W #$002A 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$002A : JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
     LDA.W $0F86,X : STA.W $0E24 
     LDA.W #$00E0 : STA.W $0E20 
@@ -3068,8 +3053,7 @@ DebugHandler_C_EnemyDebugger_RAMViewer_2:
   + LDA.W #$00B0 : STA.B $14 
     LDA.W #$0050 : STA.B $12 
     LDA.W #$0A00 : STA.B $26 
-    LDA.W #$002B 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$002B : JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
     LDA.W $0F92,X : STA.W $0E24 
     LDA.W #$00E0 : STA.W $0E20 
@@ -3105,8 +3089,7 @@ DebugHandler_D_EnemyDebugger_RAMViewer_3:
   + LDA.W #$00B0 : STA.B $14 
     LDA.W #$0050 : STA.B $12 
     LDA.W #$0A00 : STA.B $26 
-    LDA.W #$002C 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$002C : JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
     LDA.W $0F9C,X : STA.W $0E24 
     LDA.W #$00E0 : STA.W $0E20 
@@ -3142,8 +3125,7 @@ DebugHandler_E_EnemyDebugger_RAMViewer_4:
   + LDA.W #$00B0 : STA.B $14 
     LDA.W #$0050 : STA.B $12 
     LDA.W #$0A00 : STA.B $26 
-    LDA.W #$002D 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$002D : JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
     LDA.W $0FA8,X : STA.W $0E24 
     LDA.W #$00E0 : STA.W $0E20 
@@ -3179,8 +3161,7 @@ DebugHandler_F_EnemyDebugger_RAMViewer_5:
   + LDA.W #$00B0 : STA.B $14 
     LDA.W #$0050 : STA.B $12 
     LDA.W #$0A00 : STA.B $26 
-    LDA.W #$002E 
-    JSL.L Add_Debug_Spritemap_to_OAM 
+    LDA.W #$002E : JSL.L Add_Debug_Spritemap_to_OAM 
     LDX.W $1846 
     LDA.W $0FB0,X : STA.W $0E24 
     LDA.W #$00E0 : STA.W $0E20 

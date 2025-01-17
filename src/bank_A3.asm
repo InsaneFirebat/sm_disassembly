@@ -750,8 +750,7 @@ Function_Metaree_PrepareToLaunchAttack:
     INC.W $0FAC,X 
     JSR.W SetMetareeInstListPointer 
     LDA.W #Function_Metaree_LaunchedAttack : STA.W $0FAA,X 
-    LDA.W #$005B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$005B : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 
@@ -784,8 +783,7 @@ Function_Metaree_LaunchedAttack:
     LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDA.W #Function_Metaree_Burrowing : STA.W $0FAA,X 
-    LDA.W #$005C 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$005C : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 
@@ -1155,12 +1153,10 @@ SetFirefleaRadius:
 
 SetInitialCirclingFirefleaPosition:
     LDA.W $0FAC,X : STA.W $0E32 
-    LDA.W $0FAE,X 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.W $0FAE,X : JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.W $0FB0,X : STA.W $0F7A,X 
     LDA.W $0FAC,X : STA.W $0E32 
-    LDA.W $0FAE,X 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.W $0FAE,X : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC : ADC.W $0FB2,X : STA.W $0F7E,X 
     RTS 
 
@@ -1537,8 +1533,7 @@ InitAI_Skultera:
     LDA.W #$0000 : STA.W $0FB2,X 
     STA.L $7E7802,X 
     LDA.L $7E7800,X : STA.W $0E32 
-    LDA.W $0FB2,X 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.W $0FB2,X : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     STA.L $7E7806,X 
     RTL 
 
@@ -1564,8 +1559,7 @@ Function_Skultera_SwimmingLeft:
 
 .noWallCollision:
     LDA.L $7E7800,X : STA.W $0E32 
-    LDA.W $0FB2,X 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.W $0FB2,X : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     STA.L $7E7808,X 
     SEC : SBC.L $7E7806,X : STA.B $14 
     STZ.B $12 
@@ -1602,8 +1596,7 @@ Function_Skultera_SwimmingRight:
 
 .noWallCollision:
     LDA.L $7E7800,X : STA.W $0E32 
-    LDA.W $0FB2,X 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.W $0FB2,X : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     STA.L $7E7808,X 
     SEC : SBC.L $7E7806,X : STA.B $14 
     STZ.B $12 
@@ -2019,12 +2012,9 @@ ElevatorAI_0_LeavingRoom:
     LDY.W $0FB4,X 
     LDA.B $8F : AND.W ElevatorControllerInputs,Y 
     BEQ .notRiding 
-    LDA.W #$000B 
-    JSL.L QueueSound_Lib3_Max6 
-    LDA.W #$0032 
-    JSL.L QueueSound_Lib1_Max6 
-    LDA.W #$0007 
-    JSL.L Run_Samus_Command 
+    LDA.W #$000B : JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0032 : JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0007 : JSL.L Run_Samus_Command 
     JSL.L Reset_Projectile_Data 
     JSR.W PlaceSamusOnElevator 
     INC.W $0E18 
@@ -2078,11 +2068,9 @@ ElevatorAI_3_EnteringRoom:
 .reachedTarget:
     STZ.W $0E18 
     STZ.W $0E16 
-    LDA.W #$0025 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0025 : JSL.L QueueSound_Lib3_Max6 
     LDA.W $0FA8,X : STA.W $0F7E,X 
-    LDA.W #$000B 
-    JSL.L Run_Samus_Command ; fallthrough to PlaceSamusOnElevator
+    LDA.W #$000B : JSL.L Run_Samus_Command ; fallthrough to PlaceSamusOnElevator
 
 PlaceSamusOnElevator:
     LDX.W $0E54 
@@ -3747,13 +3735,11 @@ DetermineCustomInstListIndex:
 
 CalculateCustomVelocities:
     LDA.W $0FB4,X : AND.W #$00FF : STA.W $0E32 
-    LDA.W $0FAC,X 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.W $0FAC,X : JSL.L EightBitCosineMultiplication_A0B0B2 
     LDA.W $0E36 : STA.L $7E781A,X 
     LDA.W $0E38 : STA.L $7E7818,X 
     LDA.W $0FB4,X : AND.W #$00FF : STA.W $0E32 
-    LDA.W $0FAC,X 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.W $0FAC,X : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     LDA.W $0E36 : STA.L $7E781E,X 
     LDA.W $0E38 : STA.L $7E781C,X 
     RTS 
@@ -4380,8 +4366,7 @@ EnemyTouch_Mochtroid:
     LDA.W $09C2 
     CMP.W #$001E 
     BMI .skipSFX 
-    LDA.W #$002D 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$002D : JSL.L QueueSound_Lib3_Max6 
 
 .skipSFX:
     LDA.L $7E8000,X 
@@ -4484,8 +4469,7 @@ Palette_Sidehopper:
 
 Instruction_Sidehopper_QueueSoundInY_Lib2_Max3:
     PHY : PHX 
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max3 
     PLX : PLY 
     INY #2
     RTL 
@@ -5676,8 +5660,7 @@ MainAI_Zoa:
 
 Function_Zoa_WaitForSamusToGetNear:
     LDX.W $0E54 
-    LDA.W #$0080 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W #$0080 : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
     LDY.W #$0001 
     JSL.L Get_SamusX_minus_EnemyX 
@@ -6519,8 +6502,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_Bang_PlayAcquiredSuitSFX:
     PHY : PHX 
-    LDA.W #$0056 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0056 : JSL.L QueueSound_Lib2_Max6 
     PLX : PLY 
     RTL 
 
@@ -6660,8 +6642,7 @@ FireChargedBeamAtSamus:
     LDA.W $0C18,Y : AND.W #$000F 
     ASL A 
     TAX 
-    LDA.W .beamTypes,X 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W .beamTypes,X : JSL.L QueueSound_Lib1_Max6 
     LDA.W #$0000 
     RTS 
 
@@ -6805,8 +6786,7 @@ BangXMovement:
     LDA.B $12 : BPL + 
     LDA.W #$0001 : STA.L $7E780E,X 
 
-  + LDA.B $12 
-    JSL.L NegateA_A0B067 
+  + LDA.B $12 : JSL.L NegateA_A0B067 
     AND.W #$FF00 
     XBA 
     STA.B $16 
@@ -6837,8 +6817,7 @@ BangYMovement:
     LDA.B $12 : BPL + 
     LDA.W #$0001 : STA.L $7E7810,X 
 
-  + LDA.B $12 
-    JSL.L NegateA_A0B067 
+  + LDA.B $12 : JSL.L NegateA_A0B067 
     AND.W #$FF00 
     XBA 
     STA.B $16 
@@ -8038,8 +8017,7 @@ Function_Skree_PrepareToLaunchAttack:
     INC.W $0FAC,X 
     JSR.W SetSkreeInstListPointer 
     LDA.W #Function_Skree_LaunchedAttack : STA.W $0FAA,X 
-    LDA.W #$005B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$005B : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 
@@ -8072,8 +8050,7 @@ Function_Skree_LaunchedAttack:
     LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
     LDA.W #Function_Skree_Burrowing : STA.W $0FAA,X 
-    LDA.W #$005C 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$005C : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 
@@ -9432,8 +9409,7 @@ Function_Yard_Movement_Airborne:
     INC A 
     STA.L $7E7806,X 
     LDA.W #$0001 : STA.L $7E8000,X 
-    LDA.W #$0070 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W #$0070 : JSL.L QueueSound_Lib2_Max3 
     JMP.W .XMovementEnd ; >_<
 
 
@@ -9618,8 +9594,7 @@ EnemyTouch_Yard:
     LDA.W $0FB2,X 
     CMP.W #Function_Yard_Movement_Airborne 
     BNE .returnUpper 
-    LDA.W #$0070 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W #$0070 : JSL.L QueueSound_Lib2_Max3 
 
 .returnUpper:
     RTL 
@@ -9726,8 +9701,7 @@ EnemyShot_Yard:
     JSR.W ShootYardIntoAir 
 
 .playSFX:
-    LDA.W #$0070 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W #$0070 : JSL.L QueueSound_Lib2_Max3 
     RTL 
 
 
@@ -10772,8 +10746,7 @@ EnemyShot_Reflec:
     LDA.W $0C18,Y : AND.W #$7FFF : STA.W $0C18,Y 
     STY.B $14 
     JSL.L ProjectileReflection 
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -12296,8 +12269,7 @@ InitAI_Metroid:
 
 Instruction_Metroid_PlayDrainingSamusSFX:
     PHX : PHY 
-    LDA.W #$0050 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0050 : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
@@ -12308,8 +12280,7 @@ Instruction_Metroid_PlayRandomMetroidSFX:
     AND.W #$0007 
     ASL A 
     TAX 
-    LDA.W .SFX,X 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W .SFX,X : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
@@ -12647,8 +12618,7 @@ EnemyTouch_Metroid:
     LDA.W $09C2 
     CMP.W #$001E 
     BMI .skipSFX 
-    LDA.W #$002D 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$002D : JSL.L QueueSound_Lib3_Max6 
 
 .skipSFX:
     JSR.W DealMetroidContactDamageToSamus 
@@ -12670,8 +12640,7 @@ EnemyTouch_Metroid:
   + CMP.W #$0008 
     BCS .setFunction 
     LDY.W #$0002 
-    LDA.W #$0012 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0012 : JSL.L Run_Samus_Command 
 
 .setFunction:
     TYA 
@@ -12703,8 +12672,7 @@ DealMetroidContactDamageToSamus:
     STA.B $12 
     LDA.L $7E7804,X : SEC : SBC.B $12 : STA.L $7E7804,X 
     BCS .return 
-    LDA.W #$0001 
-    JSL.L Deal_A_Damage_to_Samus 
+    LDA.W #$0001 : JSL.L Deal_A_Damage_to_Samus 
 
 .return:
     RTS 
@@ -12729,10 +12697,8 @@ EnemyShot_Metroid:
     JSL.L CommonA3_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic 
     LDA.W $0F8C,X : BNE .returnUpper 
     STZ.W $0FAA,X 
-    LDA.W #$0004 
-    JSL.L EnemyDeath 
-    LDA.W #$0013 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0004 : JSL.L EnemyDeath 
+    LDA.W #$0013 : JSL.L Run_Samus_Command 
     LDX.W $0E54 
     LDA.L $7E7800,X 
     TAX 
@@ -12758,8 +12724,7 @@ EnemyShot_Metroid:
     LDA.W #$0003 : STA.W $0FB2,X 
     LDA.W #InstList_Metroid_ChasingSamus : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
-    LDA.W #$0013 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0013 : JSL.L Run_Samus_Command 
 
 .returnLower:
     RTL 
@@ -12796,8 +12761,7 @@ EnemyShot_Metroid:
     TAY 
     LDA.W $0C18,Y : AND.W #$0002 
     BEQ .notIceBeam 
-    LDA.W #$000A 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$000A : JSL.L QueueSound_Lib3_Max6 
     LDA.W $0C2C,Y : STA.B $12 
     LDA.W #$0004 : STA.W $0F9C,X 
     LDA.W $0FB6,X : SEC : SBC.B $12 : BEQ .freeze 
@@ -12814,16 +12778,14 @@ EnemyShot_Metroid:
     STA.W $0FB6,X 
 
 .notIceBeam:
-    LDA.W #$005A 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$005A : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
 PowerBombReaction_Metroid:
     JSL.L NormalEnemyPowerBombAI 
     LDA.W $0F8C,X : BNE .return 
-    LDA.W #$0013 
-    JSL.L Run_Samus_Command 
+    LDA.W #$0013 : JSL.L Run_Samus_Command 
     LDX.W $0E54 
     LDA.L $7E7800,X 
     TAX 

@@ -569,8 +569,7 @@ Function_Boyon_Jumping:
 
 CheckIfSamusIsInProximity:
     LDX.W $0E54 
-    LDA.W $0FB6,X 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W $0FB6,X : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     RTS 
 
 
@@ -597,8 +596,7 @@ RTL_A288C5:
 Instruction_Boyon_88C6:
     LDX.W $0E54 
     LDA.W #$0000 : STA.L $7E7804,X 
-    LDA.W #$000E 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$000E : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -1524,8 +1522,7 @@ Function_MamaTurtle_Hovering:
     STA.L $7E7804,X 
     LDA.W #$0000 : STA.W $183E 
     LDA.W #$0010 : STA.W $1840 
-    LDA.W #$001B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$001B : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -2009,8 +2006,7 @@ Instruction_BabyTurtle_Set_Spinning_Stoppable:
 
 
 Instruction_MamaTurtle_PlaySpinningSFX:
-    LDA.W #$003A 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$003A : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -2727,8 +2723,7 @@ InitiateHop:
 
 Puyo_CheckIfSamusIsInProximity:
     LDX.W $0E54 
-    LDA.W $0FB6,X 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W $0FB6,X : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     STA.L $7E7800,X 
     RTS 
 
@@ -3263,8 +3258,7 @@ InstList_Cacatac_UpsideDown_Attacking:
 
 Instruction_Cacatac_PlaySpikesSFX:
     PHX : PHY 
-    LDA.W #$0034 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0034 : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
@@ -4159,8 +4153,7 @@ MainAI_ShipTop:
     BPL .noSFX 
 
 .SFX:
-    LDA.W #$004D 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$004D : JSL.L QueueSound_Lib2_Max6 
     LDA.W #$0046 : STA.W $0FEE,X 
 
 .noSFX:
@@ -4294,8 +4287,7 @@ Function_Ship_LandingOnZebes_ApplyBrakes:
     LDA.W #$0001 : STA.W $1014,X 
     LDA.W #InstList_ShipEntrancePad_Opening_0 : STA.W $1012,X 
     LDA.W #$0090 : STA.W $0FA8 
-    LDA.W #$0014 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0014 : JSL.L QueueSound_Lib3_Max6 
 
 .return:
     RTL 
@@ -4322,8 +4314,7 @@ Function_Ship_LandingOnZebes_EjectSamus:
     LDA.W #$0001 : STA.W $1014,X 
     LDA.W #InstList_ShipEntrancePad_Closing : STA.W $1012,X 
     LDA.W #$0090 : STA.W $0FA8 
-    LDA.W #$0015 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0015 : JSL.L QueueSound_Lib3_Max6 
 
 .return:
     RTL 
@@ -4341,8 +4332,7 @@ Function_Ship_LandOnZebes_WaitForShipEntranceToClose_UnlockSamus:
     LDA.W #$0005 : STA.L $7ED914 
     LDA.L $7ED8F8 : ORA.W #$0001 : STA.L $7ED8F8 
     STZ.W $078B 
-    LDA.W $0952 
-    JSL.L SaveToSRAM 
+    LDA.W $0952 : JSL.L SaveToSRAM 
 
 .return:
     RTL 
@@ -4383,8 +4373,7 @@ Function_Ship_Idle_HandleLettingSamusEnter:
 
 .skipMovingSamus:
     JSL.L MakeSamusFaceForward 
-    LDA.W #$001A 
-    JSL.L Run_Samus_Command 
+    LDA.W #$001A : JSL.L Run_Samus_Command 
     STZ.W $0E18 
     LDA.W $0F7E,X 
     DEC A 
@@ -4392,8 +4381,7 @@ Function_Ship_Idle_HandleLettingSamusEnter:
     LDA.W #$0001 : STA.W $1014,X 
     LDA.W #InstList_ShipEntrancePad_Opening_0 : STA.W $1012,X 
     LDA.W #$0090 : STA.W $0FA8 
-    LDA.W #$0014 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0014 : JSL.L QueueSound_Lib3_Max6 
     RTL 
 
 
@@ -4418,8 +4406,7 @@ Function_Ship_SamusEntering_LowerSamus:
     LDA.W #$0001 : STA.W $1014,X 
     LDA.W #InstList_ShipEntrancePad_Closing : STA.W $1012,X 
     LDA.W #$0090 : STA.W $0FA8 
-    LDA.W #$0015 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0015 : JSL.L QueueSound_Lib3_Max6 
 
 .return:
     RTL 
@@ -4438,17 +4425,12 @@ Function_Ship_SamusEntering_WaitForEntrancePadToClose:
 
 
 Function_Ship_SamusEntered_LiftoffOrRestoreSamusEnergyAmmo:
-    LDA.W #$000E 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000E : JSL.L CheckIfEvent_inA_HasHappened 
     BCS .liftoff 
-    LDA.W #$0002 
-    JSL.L Restore_A_Energy_ToSamus 
-    LDA.W #$0002 
-    JSL.L Restore_A_Missiles_ToSamus 
-    LDA.W #$0002 
-    JSL.L Restore_A_SuperMissiles_ToSamus 
-    LDA.W #$0002 
-    JSL.L Restore_A_PowerBombs_ToSamus 
+    LDA.W #$0002 : JSL.L Restore_A_Energy_ToSamus 
+    LDA.W #$0002 : JSL.L Restore_A_Missiles_ToSamus 
+    LDA.W #$0002 : JSL.L Restore_A_SuperMissiles_ToSamus 
+    LDA.W #$0002 : JSL.L Restore_A_PowerBombs_ToSamus 
     LDA.W $09D6 
     CMP.W $09D4 
     BMI .return 
@@ -4477,8 +4459,7 @@ Function_Ship_SamusEntered_LiftoffOrRestoreSamusEnergyAmmo:
     STZ.W $0DEE 
     STZ.W $0DF0 
     STZ.W $0DF2 
-    LDA.W #$000A 
-    JSL.L Run_Samus_Command 
+    LDA.W #$000A : JSL.L Run_Samus_Command 
     RTL 
 
 
@@ -4490,22 +4471,19 @@ Function_Ship_SamusEntered_LiftoffOrRestoreSamusEnergyAmmo:
 
 
 Function_Ship_SamusEntered_HandleSaveConfirmation:
-    LDA.W #$001C 
-    JSL.L MessageBox_Routine 
+    LDA.W #$001C : JSL.L MessageBox_Routine 
     CMP.W #$0002 
     BEQ .selectedNo 
     LDA.L $7ED8F8 : ORA.W #$0001 : STA.L $7ED8F8 
     STZ.W $078B 
-    LDA.W $0952 
-    JSL.L SaveToSRAM 
+    LDA.W $0952 : JSL.L SaveToSRAM 
 
 .selectedNo:
     LDA.W #Function_Ship_SamusExiting_WaitForEntrancePadToOpen : STA.W $0FB2,X 
     LDA.W #$0001 : STA.W $1014,X 
     LDA.W #InstList_ShipEntrancePad_Opening_0 : STA.W $1012,X 
     LDA.W #$0090 : STA.W $0FA8 
-    LDA.W #$0014 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0014 : JSL.L QueueSound_Lib3_Max6 
     RTL 
 
 
@@ -4530,8 +4508,7 @@ Function_Ship_SamusExiting_RaiseSamus:
     LDA.W #$0001 : STA.W $1014,X 
     LDA.W #InstList_ShipEntrancePad_Closing : STA.W $1012,X 
     LDA.W #$0090 : STA.W $0FA8 
-    LDA.W #$0015 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0015 : JSL.L QueueSound_Lib3_Max6 
 
 .return:
     RTL 
@@ -5130,8 +5107,7 @@ Function_Flies_IdleMovement_ClockwiseCircle:
 
 
 .retreatTimerExpired:
-    LDA.W #$0070 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$0070 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCC SetFlyToAttackSamus 
 
 .move:
@@ -5155,8 +5131,7 @@ Function_Flies_IdleMovement_AntiClockwiseCircle:
 
 
 .retreatTimerExpired:
-    LDA.W #$0070 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$0070 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCC SetFlyToAttackSamus 
 
 .move:
@@ -5625,11 +5600,9 @@ MainAI_Polyp:
 
 Function_Polyp_WaitForSamusToGetNear:
     LDX.W $0E54 
-    LDA.W #$0040 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W #$0040 : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
-    LDA.W #$0040 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W #$0040 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     BEQ .return 
     LDA.W #Function_Polyp_ShootRock : STA.W $0FA8,X 
 
@@ -5899,12 +5872,10 @@ Function_Rinka_Fire:
     INC A 
     AND.W #$00FF 
     STA.B $12 
-    LDA.W #$0120 
-    JSL.L Math_86C26C 
+    LDA.W #$0120 : JSL.L Math_86C26C 
     LDX.W $0E54 
     STA.W $0FAA,X 
-    LDA.W #$0120 
-    JSL.L Math_86C272 
+    LDA.W #$0120 : JSL.L Math_86C272 
     LDX.W $0E54 
     STA.W $0FAC,X 
 
@@ -6077,8 +6048,7 @@ ContactReaction_Rinka_Common:
     LDA.W $0F7A,X : STA.B $12 
     LDA.W $0F7E,X : STA.B $14 
     LDY.W #EnemyProjectile_MiscDust 
-    LDA.W #$0003 
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
+    LDA.W #$0003 : JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     LDA.W #Function_Rinka_Killed : STA.W $0FA8,X 
     LDA.W #$0001 : STA.W $0FB2,X 
     RTL 
@@ -6402,8 +6372,7 @@ MainAI_Rio:
 
 
 Function_Rio_WaitForSamusToGetNear:
-    LDA.W #$00A0 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$00A0 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCC .SamusNear 
     RTL 
 
@@ -6425,8 +6394,7 @@ Function_Rio_WaitForSamusToGetNear:
     JSL.L CheckIfEnemyCenterIsOnScreen 
     AND.W #$FFFF 
     BNE .return 
-    LDA.W #$0065 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0065 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 
@@ -6781,8 +6749,7 @@ Function_Squeept_Jump:
     LDA.W SqueeptInitialYVelocities,Y : STA.W $0FAC,X 
     LDA.W #Function_Squeept_Rising : STA.W $0FB2,X 
     LDA.W $0F86,X : ORA.W #$0800 : STA.W $0F86,X 
-    LDA.W #$000D 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$000D : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -7232,8 +7199,7 @@ Function_Geruta_Flames:
 Function_Geruta_Idle:
     LDA.W $05E5 : AND.W #$0101 
     BEQ + 
-    LDA.W #$00C0 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$00C0 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCC .swoop 
 
   + LDA.L $7E7802,X : BEQ .return 
@@ -7277,8 +7243,7 @@ Function_Geruta_StartSwoop:
     LDA.W #InstList_Geruta_Main_Swoop_Descending 
     JSR.W SetGerutaInstList 
     LDA.W #Function_Geruta_Swoop_Descending : STA.W $0FB2,X 
-    LDA.W #$0065 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0065 : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -7804,8 +7769,7 @@ Function_Holtz_Flames:
 Function_Holtz_Idle:
     LDA.W $05E5 : AND.W #$0101 
     BEQ .quarterChancestayIdle 
-    LDA.W #$0070 
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
+    LDA.W #$0070 : JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA 
     BCC .triggered 
 
 .quarterChancestayIdle:
@@ -7878,8 +7842,7 @@ Function_Holtz_Swoop_Descending:
     LDA.W #InstList_Holtz_Swoop_Ascending_Part1 
     JSR.W SetHoltzInstList 
     LDA.W #Function_Holtz_Swoop_Ascending : STA.W $0FB2,X 
-    LDA.W #$0064 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0064 : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -8301,8 +8264,7 @@ InstList_Oum_FacingRight_RollingBackwards:
 
 Instruction_Oum_PlaySplashedOutOfWaterSFX:
     PHX : PHY 
-    LDA.W #$000E 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$000E : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
@@ -8596,8 +8558,7 @@ Function_Oum_Idle:
 
 .SamusToTheLeft:
     JSR.W SetOumInstList 
-    LDA.W #$0018 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W #$0018 : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
     LDA.L $7E7800,X : ORA.W #$0002 : STA.L $7E7800,X 
     JSR.W SetOumInstList 
@@ -8633,8 +8594,7 @@ Function_Oum_Rolling:
     DEC.W $0FAC,X 
     BPL .noAttack 
     STZ.W $0FAC,X 
-    LDA.W #$0020 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W #$0020 : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .noAttack 
     LDA.L $7E7806,X : BEQ .noAttack 
     LDA.W $0FB0,X : BNE .noAttack 
@@ -8764,8 +8724,7 @@ Function_Oum_Rising:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PlayKetchupBeamSFX_A2CFD7:
-    LDA.W #$0063 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0063 : JSL.L QueueSound_Lib2_Max6 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -8789,11 +8748,9 @@ CheckIfTouchingSamus:
     LDX.W $0E54 
     LDA.W #$0000 : STA.L $7E7808,X 
     STA.L $7E780A,X 
-    LDA.W #$0020 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W #$0020 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     BEQ .return 
-    LDA.W #$0018 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W #$0018 : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
     LDA.W #$0001 : STA.L $7E7808,X 
     JSL.L Get_SamusX_minus_EnemyX 
@@ -9083,8 +9040,7 @@ EnemyTouch_Oum_DoesNotHurtSamus:
 
 EnemyShot_Oum:
     JSL.L NormalEnemyShotAI 
-    LDA.W #$0057 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0057 : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 
@@ -9849,8 +9805,7 @@ MainAI_Choot:
 
 Function_Choot_WaitForSamusToGetNear:
     LDX.W $0E54 
-    LDA.W #$0050 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W #$0050 : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
     LDA.W $0FB6,X : STA.L $7E780E,X 
     LDA.W #Function_Choot_PrepareToJump : STA.W $0FA8,X 
@@ -10621,8 +10576,7 @@ Function_Dragon_Attacking:
     LDA.W #$FFFF : STA.L $7E7802,X 
     LDY.W #EnemyProjectile_DragonFireball 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    LDA.W #$0061 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0061 : JSL.L QueueSound_Lib2_Max6 
     DEC.W $0FAE,X 
     BNE .return 
     LDA.L $7E7800,X : SEC : SBC.W #$0004 : STA.L $7E7800,X 
@@ -11018,8 +10972,7 @@ Function_ShutterGrowing_Initial_Upwards_WaitForTimer:
 
 
 Func_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear:
-    LDA.W $0FB4,X 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W $0FB4,X : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     AND.W #$FFFF 
     BEQ .return 
     JSR.W PlayGateOpeningClosingSFXIfOnScreen 
@@ -11030,8 +10983,7 @@ Func_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear:
 
 
 Func_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear:
-    LDA.W $0FB4,X 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W $0FB4,X : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     AND.W #$FFFF 
     BEQ .return 
     JSR.W PlayGateOpeningClosingSFXIfOnScreen 
@@ -11435,8 +11387,7 @@ Function_Shutter_Kamer_WaitForTimer:
 
 Function_Shutter_Kamer_WaitForSamusToGetNear:
     LDX.W $0E54 
-    LDA.L $7E780C,X 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.L $7E780C,X : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
     JSR.W ActivateKamer 
 
@@ -11468,8 +11419,7 @@ ActivateKamer:
 PlayGateOpeningClosingSFXIfOnScreen:
     JSL.L CheckIfEnemyCenterIsOnScreen 
     BNE .return 
-    LDA.W #$000E 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$000E : JSL.L QueueSound_Lib3_Max6 
 
 .return:
     RTS 
@@ -11744,8 +11694,7 @@ Function_HorizontalShutter_Initial_WaitForTimer:
 
 Function_HorizontalShutter_Initial_WaitForSamusToGetNear:
     LDX.W $0E54 
-    LDA.L $7E780C,X 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.L $7E780C,X : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     BEQ .return 
     JSR.W ActivateHorizontalShutter 
 

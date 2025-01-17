@@ -560,8 +560,7 @@ Function_Boulder_Bounce_Falling:
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y : STA.B $14 
     JSL.L MoveEnemyDownBy_14_12 
     BCC .noCollision 
-    LDA.W #$0042 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0042 : JSL.L QueueSound_Lib2_Max6 
     LDA.W $0FB0,X 
     CMP.W #$0002 
     BNE .right 
@@ -571,8 +570,7 @@ Function_Boulder_Bounce_Falling:
     LDA.W #$0011 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0043 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0043 : JSL.L QueueSound_Lib2_Max6 
     BRA .return 
 
 
@@ -634,15 +632,13 @@ Function_Boulder_Rolling:
     ORA.W #$0200 
     STA.W $0F86,X 
     LDA.W #Function_Boulder_LoadEnemyIndex : STA.W $0FA8,X 
-    LDA.W #$0042 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0042 : JSL.L QueueSound_Lib2_Max6 
     LDA.W $0F7A,X : STA.B $12 
     LDA.W $0F7E,X : STA.B $14 
     LDA.W #$0011 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0043 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0043 : JSL.L QueueSound_Lib2_Max6 
     BRA .return 
 
 
@@ -883,8 +879,7 @@ Function_Kzan_Falling:
     LDA.W #$0040 : STA.L $7E7806,X 
     LDA.W #Function_Kzan_WaitingToRise : STA.W $0FA8,X 
     LDA.W $0FAE,X : STA.W $0F7E,X 
-    LDA.W #$001B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$001B : JSL.L QueueSound_Lib2_Max6 
 
 .notReachedTarget:
     JSL.L CheckIfKzanIsTouchingSamusFromBelow 
@@ -1071,8 +1066,7 @@ InstList_Hibashi_HitboxPart:
 
 Instruction_Hibashi_PlaySFX:
     PHX : PHY 
-    LDA.W #$0061 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0061 : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
@@ -1947,13 +1941,11 @@ InitAI_Puromi:
     LDA.W $0F7A,X : STA.L $7E800C,X 
     LDA.W $0F7E,X : STA.L $7E800E,X 
     LDA.W $0FAE,X : STA.W $0E32 
-    LDA.L $7E8006,X 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.L $7E8006,X : JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.L $7E800C,X : STA.L $7E8010,X 
     STA.W $0F7A,X 
     LDA.W $0FAE,X : STA.W $0E32 
-    LDA.L $7E8006,X 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.L $7E8006,X : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC : ADC.L $7E800E,X : STA.L $7E8012,X 
     STA.W $0F7E,X 
     LDA.W #$0008 : STA.L $7E8014,X 
@@ -2302,8 +2294,7 @@ PlayPuromiExplosionSFX:
     LDA.B $1E 
     CMP.W #$0002 
     BEQ .return 
-    LDA.W #$005E 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$005E : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     PLX : PLY 
@@ -2559,8 +2550,7 @@ HandleMiniKraidSpike:
     JSL.L CheckIfEnemyCenterIsOnScreen 
     AND.L $00FFFF ; >.<
     BNE .return 
-    LDA.W #$003F 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$003F : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTS 
@@ -2633,8 +2623,7 @@ Instruction_MiniKraid_PlayCrySFX:
     JSL.L CheckIfEnemyCenterIsOnScreen 
     AND.L $00FFFF ; >.<
     BNE .return 
-    LDA.W #$0016 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0016 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 
@@ -2697,8 +2686,7 @@ EnemyShot_PowerBombReaction_MiniKraid:
 Reaction_MiniKraid_Common:
     LDX.W $0E54 
     LDA.W $0F8C,X : BNE .return 
-    LDA.W #$0003 
-    JSL.L EnemyDeath 
+    LDA.W #$0003 : JSL.L EnemyDeath 
     JSL.L MiniKraidDeathItemDropRoutine 
 
 .return:
@@ -3273,8 +3261,7 @@ InitAI_Ridley:
     LDA.W #$0078 : STA.L $7E7838 
     LDY.W #Palette_NorfairRidleyInit 
     LDX.W #$0140 
-    LDA.W #$0020 
-    JSL.L WriteAColorsFromYToTargetColorIndexX 
+    LDA.W #$0020 : JSL.L WriteAColorsFromYToTargetColorIndexX 
     LDX.W #$00E2 
     LDX.W #$0000 
     LDY.W #$000F 
@@ -3308,8 +3295,7 @@ InitAI_Ridley:
     LDA.W #$00E0 : STA.L $7E8006 
     LDY.W #Palette_CeresRidleyInit 
     LDX.W #$0140 
-    LDA.W #$0020 
-    JSL.L WriteAColorsFromYToTargetColorIndexX 
+    LDA.W #$0020 : JSL.L WriteAColorsFromYToTargetColorIndexX 
     LDX.W #$01E2 
     LDY.W #$000F 
     LDA.W #$0000 
@@ -3323,8 +3309,7 @@ InitAI_Ridley:
     LDA.W #$0001 : STA.L $7E7808 
     LDA.W #UpdateBabyMetroidPosition_CarriedInArms : STA.L $7E8800 
     LDA.W #$0005 : STA.L $7E780E 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     RTL 
 
 
@@ -3531,8 +3516,7 @@ Function_Ridley_Startup_MainBodyAppears:
     STY.W $0FB0 
     LDA.W #Function_Ridley_Startup_RidleyRoars : STA.W $0FA8 
     LDA.W #$0004 : STA.W $0FB2 
-    LDA.W #$0005 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     RTS 
 
 
@@ -3598,8 +3582,7 @@ AdjustRidleyBackgroundColorsIfNecessary:
 
 .adjust:
     LDX.W #$00E2 
-    LDA.W #$000E 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000E : JSL.L WriteAColorsFromYtoColorIndexX 
     CLC 
     RTS 
 
@@ -3994,16 +3977,13 @@ Function_RidleyCeres_SpawnWallsAndUpdatePalettesForGetaway:
     LDA.W #Function_RidleyCeres_DisableAI_SetupMode7Ridley : STA.W $0FA8 
     LDY.W #.BG2Palette5 
     LDX.W #$00A2 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     LDY.W #.spritePalette7 
     LDX.W #$0042 
-    LDA.W #$0008 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0008 : JSL.L WriteAColorsFromYtoColorIndexX 
     LDY.W #.spritePalette7 
     LDX.W #$01E2 
-    LDA.W #$0008 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0008 : JSL.L WriteAColorsFromYtoColorIndexX 
     RTS 
 
 
@@ -4088,8 +4068,7 @@ ExecuteCeresRidleyGetawayCutscene:
     STA.L $7E8026 
     CPX.W #$0000 
     BNE .notFirstExecution 
-    LDA.W #$004E 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$004E : JSL.L QueueSound_Lib2_Max6 
 
 .notFirstExecution:
     CPX.W #$00D0 
@@ -4144,8 +4123,7 @@ HandleCeresRidleyMode7TransformationMatrix:
     XBA 
     AND.W #$00FF 
     STA.B $12 
-    LDA.W #$0100 
-    JSL.L Mode7Math_A6AC1E 
+    LDA.W #$0100 : JSL.L Mode7Math_A6AC1E 
     STA.B $18 
     BIT.B $18 
     BPL + 
@@ -4161,8 +4139,7 @@ HandleCeresRidleyMode7TransformationMatrix:
     INC A 
 
   + STA.B $78 
-    LDA.W #$0100 
-    JSL.L Mode7Math_A6AC0E 
+    LDA.W #$0100 : JSL.L Mode7Math_A6AC0E 
     STA.B $18 
     BIT.B $18 
     BPL + 
@@ -4178,8 +4155,7 @@ HandleCeresRidleyMode7TransformationMatrix:
     INC A 
 
   + STA.B $7A 
-    LDA.W #$0100 
-    JSL.L Mode7Math_A6AC0E 
+    LDA.W #$0100 : JSL.L Mode7Math_A6AC0E 
     EOR.W #$FFFF 
     INC A 
     STA.B $18 
@@ -4197,8 +4173,7 @@ HandleCeresRidleyMode7TransformationMatrix:
     INC A 
 
   + STA.B $7C 
-    LDA.W #$0100 
-    JSL.L Mode7Math_A6AC1E 
+    LDA.W #$0100 : JSL.L Mode7Math_A6AC1E 
     STA.B $18 
     BIT.B $18 
     BPL + 
@@ -4526,8 +4501,7 @@ RidleyCeres_UpdateBG12Palette5:
     ASL #5
     ADC.W #.palette0 : TAY 
     LDX.W #$00A2 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     RTS 
 
 
@@ -5169,8 +5143,7 @@ Function_Ridley_Tailbouncing_AttemptToGrabSamus:
     LDA.W #$0009 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0076 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0076 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #$000D : STA.W $183E 
     LDA.W #$0004 : STA.W $1840 
     JSR.W CheckForTurnaroundDuringTailbounce_RandomlyChangeDirection 
@@ -6032,8 +6005,7 @@ Instruction_BabyMetroidCutscene_PlayCrySFXOrGotoX:
     BNE Instruction_BabyMetroidCutscene_GotoX 
 
 .playSFX:
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0024 : JSL.L QueueSound_Lib3_Max6 
 
 Instruction_BabyMetroidCutscene_NextInstruction:
     INX #2
@@ -6044,8 +6016,7 @@ Instruction_BabyMetroidCutscene_UpdateColors:
     LDY.W $0000,X 
     PHX 
     LDX.W #$0162 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     PLX 
     BRA Instruction_BabyMetroidCutscene_NextInstruction 
 
@@ -6137,8 +6108,7 @@ PostGetawayFunction_TransferEscapeTiles_ProcessEmergencyText:
     INC.W $0FB2 
     JSR.W DrawEmergencyText 
     LDA.W #$0080 : STA.W $0FB0 
-    LDA.W #$0007 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0007 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
 PostGetawayFunction_return:
     RTS 
@@ -6175,8 +6145,7 @@ PostGetawayFunction_Wait20f_QueueTilemapTransfers:
 
 PostGetawayFunction_CycleEmergencyTextColors_HandleTyping:
     JSR.W CycleEmergencyTextColors 
-    LDA.W #$3582 
-    JSL.L HandleTypewriterText_External 
+    LDA.W #$3582 : JSL.L HandleTypewriterText_External 
     BCC .return 
     INC.W $0FB2 
     INC.W $0FB2 
@@ -6402,14 +6371,12 @@ HandleTypewriterText:
     LDA.W $079F 
     CMP.W #$0006 
     BNE .introTypewriterSFX 
-    LDA.W #$0045 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W #$0045 : JSL.L QueueSound_Lib2_Max3 
     BRA .returnStillTyping 
 
 
 .introTypewriterSFX:
-    LDA.W #$000D 
-    JSL.L QueueSound_Lib3_Max3 
+    LDA.W #$000D : JSL.L QueueSound_Lib3_Max3 
 
 .returnStillTyping:
     CLC 
@@ -6609,11 +6576,9 @@ Function_Ridley_Wait20Frames:
 Function_Ridley_Wait100f_SpawnDrops_ChangeMusic_MarkBossDead:
     DEC.W $0FB2 
     BPL .return 
-    LDA.W #$0001 
-    JSL.L SetBossBitsInAForCurrentArea 
+    LDA.W #$0001 : JSL.L SetBossBitsInAForCurrentArea 
     JSL.L RidleyDeathItemDropRoutine 
-    LDA.W #$0003 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0003 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W $0F86 : ORA.W #$0200 : STA.W $0F86 
     LDA.W #.return : STA.W $0FA8 
 
@@ -6661,8 +6626,7 @@ SpawnRidleyExplosions:
     LDA.W #$0003 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib2_Max3 
+    LDA.W #$0024 : JSL.L QueueSound_Lib2_Max3 
     RTS 
 
 
@@ -7973,8 +7937,7 @@ PlaySwishingSFXIfTailIsMovingFast:
     CMP.W #$0010 
     BMI .return 
     LDA.L $7E781E : BNE .noSFX 
-    LDA.W #$0021 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0021 : JSL.L QueueSound_Lib3_Max6 
 
 .noSFX:
     LDA.W #$0000 : STA.L $7E781C 
@@ -8122,8 +8085,7 @@ DealSuitAdjustedEnemyDamageToSamus:
     LDX.W $0E54 
     LDA.W $0F78,X 
     TAX 
-    LDA.L $A00006,X 
-    JSL.L Suit_Damage_Division 
+    LDA.L $A00006,X : JSL.L Suit_Damage_Division 
     JSL.L Deal_A_Damage_to_Samus 
     RTL 
 
@@ -8160,8 +8122,7 @@ HandleRidleyHealthBasedPalette:
     SEC : SBC.B $12 : ASL #2
     CLC : ADC.W #Palette_Ridley_HealthBased_Below9000 : TAY 
     LDX.W #$01E2 
-    LDA.W #$000E 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000E : JSL.L WriteAColorsFromYtoColorIndexX 
 
 HandleRidleyHealthBasedPalette_return:
     RTS 
@@ -8594,11 +8555,9 @@ UpdateRidleysUSwoopSpeedAndAngle:
     XBA 
     AND.W #$00FF 
     STA.B $12 
-    LDA.L $7E7816 
-    JSL.L Math_86C26C 
+    LDA.L $7E7816 : JSL.L Math_86C26C 
     STA.W $0FAA 
-    LDA.L $7E7816 
-    JSL.L Math_86C272 
+    LDA.L $7E7816 : JSL.L Math_86C272 
     STA.W $0FAC 
     RTS 
 
@@ -9519,8 +9478,7 @@ RidleyTail_vs_Samus_Interaction:
     LDA.L $7E20A6 : STA.B $14 
     JSR.W EfficientCollisionDetectionForSamusAt_12_14 
     BCC .return 
-    LDA.L $7E7838 
-    JSL.L Suit_Damage_Division 
+    LDA.L $7E7838 : JSL.L Suit_Damage_Division 
     JSL.L Deal_A_Damage_to_Samus 
     LDA.W #$0060 : STA.W $18A8 
     LDA.W #$0005 : STA.W $18AA 
@@ -9634,8 +9592,7 @@ TailProjectileCollision:
     LDY.W #$000C 
     DEC A 
     BNE .notAMissile 
-    LDA.W #$003D 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$003D : JSL.L QueueSound_Lib1_Max6 
     LDY.W #$0006 
 
 .notAMissile:
@@ -10232,12 +10189,9 @@ InstList_Ridley_FacingRight_Fireballing_1:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SpawnUnusedEnemyProjectiles_A6E828:
-    LDA.W #$0000 
-    JSL.L UNUSED_SpawnUnusedEnemyProjectile_A6E840 
-    LDA.W #$0001 
-    JSL.L UNUSED_SpawnUnusedEnemyProjectile_A6E840 
-    LDA.W #$0002 
-    JSL.L UNUSED_SpawnUnusedEnemyProjectile_A6E840 
+    LDA.W #$0000 : JSL.L UNUSED_SpawnUnusedEnemyProjectile_A6E840 
+    LDA.W #$0001 : JSL.L UNUSED_SpawnUnusedEnemyProjectile_A6E840 
+    LDA.W #$0002 : JSL.L UNUSED_SpawnUnusedEnemyProjectile_A6E840 
     LDA.W #$0003 
 
 UNUSED_SpawnUnusedEnemyProjectile_A6E840:
@@ -10305,11 +10259,9 @@ Instruction_Ridley_CalculateFireballAngleAndXYSpeeds:
   + STA.B $12 
 
 .merge:
-    LDA.W #$0500 
-    JSL.L Math_86C26C 
+    LDA.W #$0500 : JSL.L Math_86C26C 
     STA.L $7E7832 
-    LDA.W #$0500 
-    JSL.L Math_86C272 
+    LDA.W #$0500 : JSL.L Math_86C272 
     STA.L $7E7834 
     PLY : PLX 
     RTL 
@@ -11964,8 +11916,7 @@ Instruction_CeresDoor_SetAsVisible:
 
 
 Instruction_CeresDoor_QueueOpeningSFX:
-    LDA.W #$002C 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$002C : JSL.L QueueSound_Lib3_Max6 
     RTL 
 
 
@@ -11989,8 +11940,7 @@ InitAI_CeresDoor:
     BNE .notRidleysRoom 
     LDY.W #Palette_CeresDoor_BeforeEscape+2 
     LDX.W #$0142 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYToTargetColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYToTargetColorIndexX 
     RTL 
 
 
@@ -12005,8 +11955,7 @@ InitAI_CeresDoor:
 .merge:
     LDA.W #$0E00 : STA.W $0F96,X 
     LDX.W #$01E2 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYToTargetColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYToTargetColorIndexX 
     RTL 
 
 
@@ -12130,8 +12079,7 @@ Function_CeresDoor_RotatingElevatorRoom_Rumbling_Explosions:
     TYA 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0025 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0025 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 
@@ -12151,8 +12099,7 @@ Function_CeresDoor_RotatingElevatorRoom_ElevatorAnimations:
     ASL A 
     ADC.W #.paletteAnimation : TAY 
     LDX.W #$0052 
-    LDA.W #$0006 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0006 : JSL.L WriteAColorsFromYtoColorIndexX 
 
 .return:
     PLX 
@@ -12487,14 +12434,11 @@ InitAI_Zebetite:
     TYA 
     STA.W $0FA8,X 
     STZ.B $12 
-    LDA.W #$0005 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$0005 : JSL.L CheckIfEvent_inA_HasHappened 
     ROL.B $12 
-    LDA.W #$0004 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$0004 : JSL.L CheckIfEvent_inA_HasHappened 
     ROL.B $12 
-    LDA.W #$0003 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$0003 : JSL.L CheckIfEvent_inA_HasHappened 
     ROL.B $12 
     LDA.B $12 : STA.W $0FAE,X 
     CMP.W #$0004 
@@ -12597,8 +12541,7 @@ Function_Zebetite_Active:
     LDA.W $0FAE,X 
     CMP.W #$0004 
     BPL .noMore 
-    LDA.W #$0000 
-    JSL.L EnemyDeath 
+    LDA.W #$0000 : JSL.L EnemyDeath 
     JSR.W SpawnTopZebetite 
     RTL 
 
@@ -12703,8 +12646,7 @@ HandleZebetitePaletteAnimation:
     ASL #2
     ADC.W #.colors : TAY 
     LDX.W #$0158 
-    LDA.W #$0002 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0002 : JSL.L WriteAColorsFromYtoColorIndexX 
 
 .return:
     RTS 
@@ -12721,8 +12663,7 @@ EnemyTouch_Zebetite:
 
 EnemyShot_Zebetite:
     PHA 
-    LDA.W #$0009 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0009 : JSL.L QueueSound_Lib3_Max6 
     PLA 
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External 
     LDX.W $0E54 

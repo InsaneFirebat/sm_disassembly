@@ -344,14 +344,11 @@ Write_supermetroid_ToSRAM:
 CheckForNonCorruptSRAM:
     PHX 
     LDA.W #$0003 : STA.W $1F59 ; Number of demo sets = 3
-    LDA.W #$0000 
-    JSL.L LoadFromSRAM ; Load SRAM slot A
+    LDA.W #$0000 : JSL.L LoadFromSRAM ; Load SRAM slot A
     BCC .nonCorrupt ; If not corrupt, go to .nonCorrupt
-    LDA.W #$0001 
-    JSL.L LoadFromSRAM ; Load SRAM slot B
+    LDA.W #$0001 : JSL.L LoadFromSRAM ; Load SRAM slot B
     BCC .nonCorrupt ; If not corrupt, go to .nonCorrupt
-    LDA.W #$0002 
-    JSL.L LoadFromSRAM ; Load SRAM slot C
+    LDA.W #$0002 : JSL.L LoadFromSRAM ; Load SRAM slot C
     BCC .nonCorrupt ; If not corrupt, go to .nonCorrupt
     LDX.W #$000A 
 
@@ -1060,12 +1057,9 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 WriteALoadOf_1C2F:
     REP #$30 
-    LDA.W #$1C2F 
-    JSL.L Write_800h_Bytes_Of_A_To_7E3000 ; $7E:3000..37FF = 1C2Fh
-    LDA.W #$1C2F 
-    JSL.L Write_800h_Bytes_Of_A_To_7E4000 ; $7E:4000..47FF = 1C2Fh
-    LDA.W #$1C2F 
-    JSL.L Write_800h_Bytes_Of_A_To_7E6000 ; $7E:6000..67FF = 1C2Fh
+    LDA.W #$1C2F : JSL.L Write_800h_Bytes_Of_A_To_7E3000 ; $7E:3000..37FF = 1C2Fh
+    LDA.W #$1C2F : JSL.L Write_800h_Bytes_Of_A_To_7E4000 ; $7E:4000..47FF = 1C2Fh
+    LDA.W #$1C2F : JSL.L Write_800h_Bytes_Of_A_To_7E6000 ; $7E:6000..67FF = 1C2Fh
     SEP #$30 
     RTS 
 
@@ -3226,8 +3220,7 @@ HandleHUDTilemap_PausedAndRunning:
     CMP.W #GrappleBeamFunction_Inactive 
     BNE .handleAutoCancel 
     LDA.W $0A78 : BNE .handleAutoCancel 
-    LDA.W #$0039 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0039 : JSL.L QueueSound_Lib1_Max6 
 
 .handleAutoCancel:
     LDX.W #$1400 
@@ -3387,8 +3380,7 @@ ProcessTimer:
 
 ProcessTimer_CeresStart:
     JSL.L ClearTimerRAM 
-    LDA.W #$0100 
-    JSL.L SetTimer 
+    LDA.W #$0100 : JSL.L SetTimer 
     LDA.W #$8003 : STA.W $0943 
 
 ProcessTimer_Inactive:
@@ -3398,8 +3390,7 @@ ProcessTimer_Inactive:
 
 ProcessTimer_MotherBrainStart:
     JSL.L ClearTimerRAM 
-    LDA.W #$0300 
-    JSL.L SetTimer 
+    LDA.W #$0300 : JSL.L SetTimer 
     LDA.W #$8003 : STA.W $0943 
     CLC 
     RTS 

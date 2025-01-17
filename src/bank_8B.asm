@@ -874,8 +874,7 @@ IndirectInstructionFunction_DrawTextCharacter:
     CMP.W #IndirectInstructions_IntroText_Space 
     BEQ .fallthrough 
     LDA.W $1BA1 : BEQ .fallthrough 
-    LDA.W #$000D 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$000D : JSL.L QueueSound_Lib3_Max6 
 
 .fallthrough:
     PLY 
@@ -2992,8 +2991,7 @@ SkipToTitleScreenHandler_1_FadeOut:
     BCC .return 
     LDA.W #$0002 : STA.W $1A53 
     LDA.W #RTS_8B9F28 : STA.W $1F51 
-    LDA.W #$0006 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0006 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
 .return:
     RTS 
@@ -3075,13 +3073,11 @@ SkipToTitleScreenHandler_3_FadeIn:
 
 CinematicFunction_LoadTitleSequence:
     JSL.L Load_Title_Sequence_Graphics 
-    LDA.W #$FF03 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF03 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #RTS_8B9A47 : STA.W $1F51 
     LDY.W #CinematicSpriteObjectDefinitions_TitleSequence_1994ScrollingText 
     JSR.W Spawn_CinematicSpriteObject_Y 
-    LDA.W #$0005 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     RTS 
 
 
@@ -3794,20 +3790,17 @@ Mode7Object_InstList_TitleSequenceBabyMetroid_3:
     dw Mode7Object_InstList_TitleSequenceBabyMetroid_0 
 
 Instruction_PlayBabyMetroid_Cry1:
-    LDA.W #$0023 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0023 : JSL.L QueueSound_Lib3_Max6 
     RTS 
 
 
 Instruction_PlayBabyMetroid_Cry2:
-    LDA.W #$0026 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0026 : JSL.L QueueSound_Lib3_Max6 
     RTS 
 
 
 Instruction_PlayBabyMetroid_Cry3:
-    LDA.W #$0027 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0027 : JSL.L QueueSound_Lib3_Max6 
     RTS 
 
 
@@ -4078,10 +4071,8 @@ CinematicFunction_Intro_Initial:
     BPL .loopJapanText 
     LDA.W #$FFFF : STA.W $1B9F 
     LDA.W #CinematicFunction_Intro_WaitForMusicQueue_FadeIn : STA.W $1F51 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FF3F 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF3F : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     RTS 
 
 
@@ -4127,8 +4118,7 @@ CinematicFunction_Intro_PlayTheLastMetroidMusicFor200Frames:
 .timerExpired:
     LDA.W #CinematicFunction_Intro_PlayGalaxyIsAtPeaceMusic : STA.W $1F51 
     LDA.W #$00C8 : STA.W $1A49 
-    LDA.W #$0005 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
 .return:
     RTS 
@@ -4140,10 +4130,8 @@ CinematicFunction_Intro_PlayGalaxyIsAtPeaceMusic:
     BPL .return 
 
 .timerExpired:
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FF42 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF42 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0005 
     LDY.W #$000E 
     JSL.L QueueMusicDataOrTrack_YFrameDelay 
@@ -4201,8 +4189,7 @@ CinematicFunction_Intro_SetupIntroTextPage1:
     LDA.B #$16 : STA.W $212C 
     STA.B $69 
     REP #$30 
-    LDA.W #$002F 
-    JSL.L Clear_CinematicBGObjects_CinematicBGTilemap 
+    LDA.W #$002F : JSL.L Clear_CinematicBGObjects_CinematicBGTilemap 
     JSL.L Enable_CinematicBGObjects 
     JSL.L Enable_CinematicBGTilemap_Updates 
     LDA.W #$4C00 : STA.W $19F5 
@@ -4236,10 +4223,8 @@ CinematicFunction_Intro_SetupIntroTextPage1:
     STA.B $BB 
     JSR.W Clear_EnglishText_Tilemap 
     JSR.W RestIntroTextCaret 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FF36 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF36 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0005 
     LDY.W #$000E 
     JSL.L QueueMusicDataOrTrack_YFrameDelay 
@@ -4385,8 +4370,7 @@ Instruction_SpawnMetroidEggParticles:
     LDA.W #$0005 
     LDY.W #CinematicSpriteObjectDefinitions_MetroidEggParticle6 
     JSR.W Spawn_CinematicSpriteObject_Y 
-    LDA.W #$000B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$000B : JSL.L QueueSound_Lib2_Max6 
     PLY 
     RTS 
 
@@ -5065,8 +5049,7 @@ CinematicFunction_Intro_Page6:
     JSR.W Spawn_CinematicBGObject 
     LDA.W #RTS_8BA390 : STA.W $1F51 
     JSR.W RestIntroTextCaret 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     RTS 
 
 
@@ -5967,8 +5950,7 @@ PreInstruction_ConfusedBabyMetroid_Hatched:
     LDA.W #$0003 
     LDY.W #CinematicSpriteObjectDefinitions_MetroidEggSlimeDrops 
     JSR.W Spawn_CinematicSpriteObject_Y 
-    LDA.W #$0023 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0023 : JSL.L QueueSound_Lib3_Max6 
 
   + LDA.W $0AFA : SEC : SBC.W #$0020 : CMP.W $1A9D,X 
     BMI + 
@@ -6038,8 +6020,7 @@ PreInstruction_ConfusedBabyMetroid_Dancing:
     STA.W $1B7D,X 
     BIT.W #$003F 
     BNE + 
-    LDA.W #$0023 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0023 : JSL.L QueueSound_Lib3_Max6 
 
   + LDA.W $0AF6 
     CMP.W $1A7D,X 
@@ -6227,16 +6208,14 @@ CinematicFunction_FlyToCeres_Initial:
     LDA.W #$0200 : STA.W $198F 
     JSL.L Clear_PaletteFXObjects 
     JSL.L Enable_PaletteFXObjects 
-    LDA.W #$0000 
-    JSL.L Clear_CinematicBGObjects_CinematicBGTilemap 
+    LDA.W #$0000 : JSL.L Clear_CinematicBGObjects_CinematicBGTilemap 
     LDA.W #$5C00 : STA.W $19F5 
     JSL.L EnableNMI 
     LDY.W #CinematicSpriteObjectDefinitions_CeresStars 
     LDA.W #$0000 
     JSR.W Spawn_CinematicSpriteObject_Y 
     LDA.W #CinematicFunction_FlyToCeres_WaitForMusicQueue_EnableDisplay : STA.W $1F51 
-    LDA.W #$FF2D 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF2D : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0005 
     LDY.W #$000E 
     JSL.L QueueMusicDataOrTrack_YFrameDelay 
@@ -6544,8 +6523,7 @@ CinematicFunction_FlyToCeres_StartGameAtCeres:
     STA.W $0998 
     LDA.W #$0006 : STA.W $079F 
     STZ.W $078B 
-    LDA.W $0952 
-    JSL.L SaveToSRAM 
+    LDA.W $0952 : JSL.L SaveToSRAM 
     RTS 
 
 
@@ -6653,8 +6631,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     JSL.L Wait_End_VBlank_Clear_HDMA 
     JSL.L Clear_PaletteFXObjects 
     JSL.L Enable_PaletteFXObjects 
-    LDA.W #$002F 
-    JSL.L Clear_CinematicBGObjects_CinematicBGTilemap 
+    LDA.W #$002F : JSL.L Clear_CinematicBGObjects_CinematicBGTilemap 
     LDA.W #$0000 : STA.W $19F5 
     LDY.W #CinematicSpriteObjectDefs_CeresUnderAttackLargeAsteroids 
     JSR.W Spawn_CinematicSpriteObject_Y 
@@ -6673,10 +6650,8 @@ CinematicFunction_CeresGoesBoom_Initial:
     LDA.W #$0001 : STA.W $0723 
     STA.W $0725 
     LDA.W #CinematicFunction_CeresGoesBoom_WaitForMusicQueue : STA.W $1F51 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FF2D 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF2D : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W $0998 
     CMP.W #$0025 
     BNE .notState25 
@@ -7016,8 +6991,7 @@ CinematicFunction_CeresGoesBoom_FadeOut:
 
 
 .gameState25:
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     STZ.W $09D2 
     STZ.W $0A04 
     STZ.W $18A8 
@@ -8758,10 +8732,8 @@ CinematicFunction_Ending_Setup:
     STZ.W $0723 
     LDA.W #$0002 : STA.W $0725 
     LDA.W #CinematicFunction_Ending_WaitForMusicToChange : STA.W $1F51 
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FF33 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF33 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0005 
     LDY.W #$000E 
     JSL.L QueueMusicDataOrTrack_YFrameDelay 
@@ -9168,10 +9140,8 @@ CinematicFunc_Ending_SpaceView_ChangeMusic:
     BPL .return 
 
 .changeMusic:
-    LDA.W #$0000 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    LDA.W #$FF3C 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0000 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$FF3C : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$0005 
     LDY.W #$000E 
     JSL.L QueueMusicDataOrTrack_YFrameDelay 
@@ -9330,8 +9300,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningSlow:
     LDA.W #CinematicFunc_Ending_SpaceView_GunshipEmergence_FlyToCamera : STA.W $1F51 
     LDA.W #$8000 : STA.W $1A4D 
     STZ.W $1A4B 
-    LDA.W #$000F 
-    JSL.L CheckIfEvent_inA_HasHappened 
+    LDA.W #$000F : JSL.L CheckIfEvent_inA_HasHappened 
     BCC .return 
     LDY.W #CinematicSpriteObjectDefinitions_CrittersEscape 
     LDA.W #$0004 : STA.B $12 
@@ -9566,8 +9535,7 @@ CinematicFunction_Credits_Setup:
     LDA.W #Credits_Tilemap : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
     dl $7F0000 
-    LDA.W #$007F 
-    JSL.L Clear_CinematicBGObjects_CinematicBGTilemap 
+    LDA.W #$007F : JSL.L Clear_CinematicBGObjects_CinematicBGTilemap 
     LDA.W #$007F 
     JSR.W Clear_CreditsObject_CinematicBGTilemapInA 
     JSR.W Enable_CreditsObject 
@@ -11905,8 +11873,7 @@ Instruction_CinematicSpriteObject_SamusShootsScreen:
     STA.W $1A4F 
     JSR.W PaletteCrossFading_CopyCurrentPalettesToFadingPalettes 
     JSR.W PaletteCrossFading_DecomposePaletteDataForFading 
-    LDA.W #$0022 
-    JSL.L QueueSound 
+    LDA.W #$0022 : JSL.L QueueSound 
     PLY : PLX 
     RTS 
 

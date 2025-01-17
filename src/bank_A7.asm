@@ -3721,16 +3721,14 @@ ProcessNextKraidInstruction:
 
 Instruction_Kraid_PlayRoarSFX:
     PHX 
-    LDA.W #$002D 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$002D : JSL.L QueueSound_Lib2_Max6 
     PLX 
     BRA ProcessNextKraidInstruction 
 
 
 Instruction_Kraid_PlayDyingSFX:
     PHX 
-    LDA.W #$002E 
-    JSL.L QueueSound_Lib2_Max15 
+    LDA.W #$002E : JSL.L QueueSound_Lib2_Max15 
     PLX 
     BRA ProcessNextKraidInstruction 
 
@@ -3855,8 +3853,7 @@ SpawnExplosionProjectile:
     TYA 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$003D 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$003D : JSL.L QueueSound_Lib1_Max6 
     RTS 
 
 
@@ -4066,8 +4063,7 @@ UNUSED_HandleProjectileDamageAndSound:
 
 .tripleDamageEnd:
     LDX.W $0F78 
-    LDA.L $A0000E,X 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.L $A0000E,X : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     PLY : PLX 
@@ -4252,8 +4248,7 @@ Instruction_Kraid_IncrementYPosition_SetScreenShaking:
 
 Instruction_Kraid_QueueSFX76_Lib2_Max6:
     PHX : PHY 
-    LDA.W #$0076 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0076 : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     RTL 
 
@@ -4487,8 +4482,7 @@ Function_KraidLint_ChargeLint:
     DEC.W $0FB2,X 
     BNE .return 
     LDA.W #Function_KraidLint_FireLint : STA.W $0FA8,X 
-    LDA.W #$001F 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$001F : JSL.L QueueSound_Lib3_Max6 
 
 .return:
     RTL 
@@ -4822,10 +4816,8 @@ Function_KraidMainLoop_AttackingWithMouthOpen:
     LDY.W #EnemyProjectile_KraidRockSpit 
     LDA.W $05E5 : AND.W #$000E 
     TAX 
-    LDA.W .rockSpitXVelocities,X 
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    LDA.W #$001E 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W .rockSpitXVelocities,X : JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
+    LDA.W #$001E : JSL.L QueueSound_Lib3_Max6 
 
 .return:
     RTL 
@@ -5658,8 +5650,7 @@ PlaySoundEveryHalfSecond:
     DEC A 
     STA.L $7E9000 
     BNE .return 
-    LDA.W #$001E 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$001E : JSL.L QueueSound_Lib3_Max6 
     LDA.W #$001E : STA.L $7E9000 
 
 .return:
@@ -5954,8 +5945,7 @@ Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_3:
 Function_Kraid_FadeInRegularBG_FadeInBGPalette6:
     JSL.L Advance_GradualColorChange_ofBGPalette6 
     BCC .return 
-    LDA.W #$0003 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0003 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDX.W $079F 
     LDA.L $7ED828,X : BIT.W #$0001 
     BNE .KraidIsDead 
@@ -6026,8 +6016,7 @@ Function_Kraid_RaiseThruFloor_LoadTilemapBottomHalf_ShakeScn:
     LDA.W #Function_Kraid_RaiseThruFloor_SpawnRNGEarthquakeProjEvery10f : STA.W $0FA8 
     LDA.W #$0078 : STA.W $0FB2 
     LDA.W #$01F0 : STA.W $1840 
-    LDA.W #$0005 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay ; fallthrough to UpdateBG2TilemapBottomHalf
+    LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay ; fallthrough to UpdateBG2TilemapBottomHalf
 
 UpdateBG2TilemapBottomHalf:
     LDX.W $0330 
@@ -6562,8 +6551,7 @@ PlayPhantoonMaterializationSFX:
     LDA.L $7E9032 
     ASL A 
     TAY 
-    LDA.W Phantoon_MaterializationSFX,Y 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W Phantoon_MaterializationSFX,Y : JSL.L QueueSound_Lib2_Max6 
     LDA.L $7E9032 
     INC A 
     CMP.W #$0003 
@@ -6623,8 +6611,7 @@ SpawnCasualFlame:
     LDA.W #$0000 
     LDY.W #EnemyProjectile_PhantoonDestroyableFlames 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    LDA.W #$001D 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$001D : JSL.L QueueSound_Lib3_Max6 
     RTS 
 
 
@@ -6640,8 +6627,7 @@ PhantoonMaterializationFlameSpiral:
     PLY 
     DEY 
     BPL .loop 
-    LDA.W #$0028 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0028 : JSL.L QueueSound_Lib3_Max6 
     RTS 
 
 
@@ -7225,8 +7211,7 @@ Function_Phantoon_FightIntro_SpawnCircleOfFlames:
     LDA.W $0FA8 
     LDY.W #EnemyProjectile_PhantoonStartingFlames 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    LDA.W #$001D 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$001D : JSL.L QueueSound_Lib3_Max6 
     LDA.W #$001E : STA.W $0FB0,X 
     LDA.W $0FA8 
     INC A 
@@ -7271,12 +7256,10 @@ Function_Phantoon_FightIntro_StartWavyFadeIn:
     LDA.W #$8001 : STA.W $1074 
     LDA.W #$0078 : STA.W $0FB0,X 
     LDA.W WavyPhantoonConstants_phaseDelta : STA.B $16 
-    LDA.W #$0002 
-    JSL.L Spawn_WavyPhantoon_HDMAObject 
+    LDA.W #$0002 : JSL.L Spawn_WavyPhantoon_HDMAObject 
     LDA.W WavyPhantoonConstants_Intro_maxAmplitude : STA.W $106E 
     STZ.W $0FF2 
-    LDA.W #$0005 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0005 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
 .return:
     RTS 
@@ -7689,8 +7672,7 @@ Function_Phantoon_Enraged_Rage:
     BPL .loopOddWave 
 
 .merge:
-    LDA.W #$0029 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W #$0029 : JSL.L QueueSound_Lib3_Max6 
     LDA.W $0FF2 
     INC A 
     STA.W $0FF2 
@@ -7799,14 +7781,12 @@ Function_Phantoon_DeathSequence_Exploding:
     PLA 
     CMP.W #$001D 
     BNE .PhantoonExplosion 
-    LDA.W #$0024 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0024 : JSL.L QueueSound_Lib2_Max6 
     BRA + 
 
 
 .PhantoonExplosion:
-    LDA.W #$002B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$002B : JSL.L QueueSound_Lib2_Max6 
 
   + PLY 
     LDA.W .timer,Y : AND.W #$00FF : STA.W $0FB0,X 
@@ -7844,8 +7824,7 @@ Function_Phantoon_DeathSequence_Exploding:
 
 Function_Phantoon_DeathSequence_SetupWavyMosaicPhantoon:
     LDA.W WavyPhantoonConstants_phaseDelta : STA.B $16 
-    LDA.W #$0001 
-    JSL.L Spawn_WavyPhantoon_HDMAObject 
+    LDA.W #$0001 : JSL.L Spawn_WavyPhantoon_HDMAObject 
     STZ.W $106E 
     LDA.W #Function_Phantoon_DeathSequence_WavyMosaicPhantoon : STA.W $0FB2,X 
     LDA.W #$0002 : STA.W $0FEC 
@@ -7854,8 +7833,7 @@ Function_Phantoon_DeathSequence_SetupWavyMosaicPhantoon:
     STA.W $0FC6 
     STA.W $1006 
     STA.W $1046 
-    LDA.W #$007E 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$007E : JSL.L QueueSound_Lib2_Max6 
     RTS 
 
 
@@ -7956,8 +7934,7 @@ Function_Phantoon_DeathSequence_ActivateWreckedShip:
     JSL.L Spawn_Hardcoded_PLM 
     db $00,$06 
     dw PLMEntries_restorePhantoonsDoorDuringBossFight 
-    LDA.W #$0003 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0003 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
 .return:
     PLX 
@@ -8260,8 +8237,7 @@ EnemyShot_Phantoon:
     PLA 
     STA.B $12 
     LDA.W $0F8C,X : BNE .alive 
-    LDA.W #$0073 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0073 : JSL.L QueueSound_Lib2_Max6 
     LDA.W #$0001 : STA.W $1036 
     LDA.W $0F86 : ORA.W #$0400 : STA.W $0F86 
     JSR.W StartPhantoonDeathSequence 
@@ -8274,8 +8250,7 @@ EnemyShot_Phantoon:
 .alive:
     LDA.W $0F8A,X : BIT.W #$0002 
     BEQ .returnUpper 
-    LDA.W #$0073 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0073 : JSL.L QueueSound_Lib2_Max6 
     LDA.W $0FB2,X 
     CMP.W #Function_Phantoon_Figure8_VulnerableWindow 
     BEQ .vulnerableWindow 
@@ -8995,14 +8970,12 @@ Function_Etecoon_Initial:
 
 .notDoorTransition:
     LDA.W $0FB0,X : BPL .positive 
-    LDA.W #$0080 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W #$0080 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     TAY 
     BEQ .return 
     LDA.W $0FB6,X : BIT.W #$0003 
     BNE .flex 
-    LDA.W #$0035 
-    JSL.L QueueSound_Lib2_Max15 
+    LDA.W #$0035 : JSL.L QueueSound_Lib2_Max15 
 
 .flex:
     LDA.W #$0001 : STA.W $0F94,X 
@@ -9041,8 +9014,7 @@ Function_Etecoon_StartHop_BottomOfRoom:
     LDA.W $0AF6 
     CMP.W #$0100 
     BMI .return 
-    LDA.W #$0033 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0033 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 
@@ -9064,12 +9036,10 @@ Function_Etecoon_Hopping_BottomOfRoom:
 
 
 .notRising:
-    LDA.W #$0040 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W #$0040 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     TAY 
     BEQ .hopMore 
-    LDA.W EtecoonConstants_SamusXProximityThresholdAtBottomOfRoom 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W EtecoonConstants_SamusXProximityThresholdAtBottomOfRoom : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     TAY 
     BEQ .hopMore 
     JSL.L DetermineDirectionOfSamusFromEnemy 
@@ -9177,8 +9147,7 @@ Function_Etecoon_Jumping:
     LDA.W $0AF6 
     CMP.W #$0100 
     BMI .returnUpper 
-    LDA.W #$0032 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0032 : JSL.L QueueSound_Lib2_Max6 
 
 .returnUpper:
     RTL 
@@ -9443,8 +9412,7 @@ Function_Etecoon_StartHop_TopOfRoom:
     LDA.W $0AF6 
     CMP.W #$0100 
     BMI .return 
-    LDA.W #$0033 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0033 : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 
@@ -9457,12 +9425,10 @@ Function_Etecoon_HopUntilSamusIsNear:
     BPL .return 
 
 .timerExpired:
-    LDA.W #$0040 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W #$0040 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     TAY 
     BEQ .notClose 
-    LDA.W #$0030 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W #$0030 : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     TAY 
     BEQ .notClose 
     LDA.W #InstList_Etecoon_RunningRight : STA.W $0F92,X 
@@ -9480,8 +9446,7 @@ Function_Etecoon_HopUntilSamusIsNear:
     LDA.W $0AF6 
     CMP.W #$0100 
     BMI .skipSFX 
-    LDA.W #$0033 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0033 : JSL.L QueueSound_Lib2_Max6 
 
 .skipSFX:
     LDA.W #$0001 : STA.W $0F94,X 
@@ -10299,12 +10264,10 @@ Function_Dachora_WaitForSamusToBeNear:
     LDA.W #$0001 : STA.B $14 
     STZ.B $12 
     JSL.L MoveEnemyDownBy_14_12 
-    LDA.W #$0040 
-    JSL.L IsSamusWithingAPixelRowsOfEnemy 
+    LDA.W #$0040 : JSL.L IsSamusWithingAPixelRowsOfEnemy 
     TAY 
     BEQ .return 
-    LDA.W DachoraConstants_SamusProximityXThreshold 
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy 
+    LDA.W DachoraConstants_SamusProximityXThreshold : JSL.L IsSamusWithinAPixelColumnsOfEnemy 
     TAY 
     BEQ .return 
     LDA.W $0FB4,X : BEQ .left 
@@ -10318,8 +10281,7 @@ Function_Dachora_WaitForSamusToBeNear:
   + LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #Function_Dachora_StartRunning : STA.W $0FB2,X 
     LDA.W DachoraConstants_blinkingDuration : STA.W $0FA8,X 
-    LDA.W #$001D 
-    JSL.L QueueSound_Lib2_Max15 
+    LDA.W #$001D : JSL.L QueueSound_Lib2_Max15 
 
 .return:
     RTL 
@@ -10401,8 +10363,7 @@ Function_Dachora_RunningRight:
 
 
 .collision:
-    LDA.W #$0071 
-    JSL.L QueueSound_Lib2_Max15 
+    LDA.W #$0071 : JSL.L QueueSound_Lib2_Max15 
     LDA.W #InstList_Dachora_RunningLeft : STA.W $0F92,X 
     LDA.W #Function_Dachora_RunningLeft : STA.W $0FB2,X 
 
@@ -10430,8 +10391,7 @@ Function_Dachora_RunningRight:
     LDA.W #Function_Dachora_ActivateShinespark : STA.W $0FB2,X 
     LDA.W DachoraConstants_delayBeforeActivatingShinespark : STA.W $0FA8,X 
     LDA.W $0F7E,X : CLC : ADC.W #$0008 : STA.W $0F7E,X 
-    LDA.W #$003D 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$003D : JSL.L QueueSound_Lib2_Max6 
     BRA .newAnimation 
 
     LDA.W #InstList_Dachora_Idling_FacingLeft ; dead code
@@ -10447,8 +10407,7 @@ AccelerateRunningDachora:
     LDA.W $0FB0,X 
     CMP.W #$0001 
     BNE .animTimer 
-    LDA.W #$0039 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0039 : JSL.L QueueSound_Lib2_Max6 
 
 .animTimer:
     LDA.W $0FB0,X 
@@ -10539,8 +10498,7 @@ Function_Dachora_ActivateShinespark:
     STZ.W $0FAC,X 
     STZ.W $0FAE,X 
     LDA.W $0F7E,X : SEC : SBC.W #$0008 : STA.W $0F7E,X 
-    LDA.W #$003B 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$003B : JSL.L QueueSound_Lib2_Max6 
     LDA.W $0FB4,X : BEQ .left 
     LDA.W #InstList_Dachora_Echo_FacingRight : STA.W $0FD2,X 
     STA.W $1012,X 
@@ -10605,8 +10563,7 @@ Function_Dachora_Shinesparking:
     STZ.W $0FB0,X 
     LDY.W #Palette_Dachora 
     JSR.W LoadDachoraPalette 
-    LDA.W #$003C 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$003C : JSL.L QueueSound_Lib2_Max6 
 
 .return:
     RTL 

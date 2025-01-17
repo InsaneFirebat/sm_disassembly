@@ -1287,8 +1287,7 @@ SetSamusDeathSequencePose:
     PHA 
     CMP.W #$0003 
     BNE .noSpinJumpSFX 
-    LDA.W #$0032 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0032 : JSL.L QueueSound_Lib1_Max6 
 
 .noSpinJumpSFX:
     PLA 
@@ -1755,8 +1754,7 @@ CancelGrappleBeamIfInIncompatiblePose:
 
 
   + LDA.W $0CF6 : BEQ .cancelGrapple 
-    LDA.W #$0007 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0007 : JSL.L QueueSound_Lib1_Max6 
     LDA.W #GrappleBeamFunction_Fire_GotoCancel : STA.W $0D32 
     RTS 
 
@@ -2703,13 +2701,11 @@ HandleGrappleBeamFlare:
     LDA.W $0D1C : SEC : SBC.W $0915 : STA.B $12 
     AND.W #$FF00 
     BNE + 
-    LDA.B $16 
-    JSL.L AddSpritemapFrom_93A1A1_TableToOAM 
+    LDA.B $16 : JSL.L AddSpritemapFrom_93A1A1_TableToOAM 
     BRA .return 
 
 
-  + LDA.B $16 
-    JSL.L RTL_818AB7 
+  + LDA.B $16 : JSL.L RTL_818AB7 
 
 .return:
     PLB : PLP 
@@ -3186,12 +3182,10 @@ GrappleBeamFunction_Fire_GotoCancel:
     JSL.L InitializeGrappleSegmentAnimations 
     LDA.W #SamusDrawingHandler_FiringGrappleBeam : STA.W $0A5C 
     STZ.W $0A9E 
-    LDA.W #$0002 
-    JSL.L Load_Beam_Palette_External 
+    LDA.W #$0002 : JSL.L Load_Beam_Palette_External 
     LDA.W #$7F91 : STA.L $7EC1BE 
     LDA.W #GrappleBeamFunction_Firing : STA.W $0D32 
-    LDA.W #$0005 
-    JSL.L QueueSound_Lib1_Max1 
+    LDA.W #$0005 : JSL.L QueueSound_Lib1_Max1 
     LDA.W #$0001 : STA.W $0CD0 
     STZ.W $0DC0 
     LDA.W $0A58 
@@ -3300,8 +3294,7 @@ GrappleBeamFunction_Firing:
     BVC .gotoCancel 
 
 .connected:
-    LDA.W #$0006 
-    JSL.L QueueSound_Lib1_Max6 
+    LDA.W #$0006 : JSL.L QueueSound_Lib1_Max6 
     JSR.W HandleConnectingGrapple 
     LDA.W #$0008 
     EOR.W #$FFFF 
@@ -3445,8 +3438,7 @@ GrappleBeamFunction_WallGrabRelease:
 
 
 GrappleBeamFunction_HitNothing_Cancel:
-    LDA.W #$0007 
-    JSL.L QueueSound 
+    LDA.W #$0007 : JSL.L QueueSound 
     LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0016 
     BNE .notGrappling 
@@ -3455,8 +3447,7 @@ GrappleBeamFunction_HitNothing_Cancel:
 
 
 .notGrappling:
-    LDA.W #$001C 
-    JSL.L Run_Samus_Command 
+    LDA.W #$001C : JSL.L Run_Samus_Command 
 
   + STZ.W $0D1E 
     STZ.W $0D20 
@@ -3473,8 +3464,7 @@ GrappleBeamFunction_HitNothing_Cancel:
     STZ.W $0CDC 
     STZ.W $0CDE 
     STZ.W $0CE0 
-    LDA.W $09A6 
-    JSL.L Load_Beam_Palette_External 
+    LDA.W $09A6 : JSL.L Load_Beam_Palette_External 
     LDA.W #GrappleBeamFunction_Inactive : STA.W $0D32 
     LDA.W #SamusDrawingHandler_Default : STA.W $0A5C 
     JSL.L PostGrappleCollisionDetection 
@@ -3487,8 +3477,7 @@ GrappleBeamFunction_HitNothing_Cancel:
 
 
 GrappleBeamFunction_Dropped:
-    LDA.W #$0007 
-    JSL.L QueueSound 
+    LDA.W #$0007 : JSL.L QueueSound 
     LDA.W $0A1C 
     CMP.W #$00B2 
     BEQ .clockwise 
@@ -3572,8 +3561,7 @@ GrappleBeamFunction_Dropped:
     STZ.W $0CDC 
     STZ.W $0CDE 
     STZ.W $0CE0 
-    LDA.W $09A6 
-    JSL.L Load_Beam_Palette_External 
+    LDA.W $09A6 : JSL.L Load_Beam_Palette_External 
     LDA.W #GrappleBeamFunction_Inactive : STA.W $0D32 
     LDA.W #SamusDrawingHandler_Default : STA.W $0A5C 
     JSL.L PostGrappleCollisionDetection 
@@ -3592,8 +3580,7 @@ GrappleBeamFunction_Dropped:
     db $85,$71,$27,$73,$27,$28,$74,$28,$72,$86 
 
 GrappleBeamFunction_WallJumping:
-    LDA.W #$0007 
-    JSL.L QueueSound 
+    LDA.W #$0007 : JSL.L QueueSound 
     LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0008 
     BEQ .right 
@@ -3631,8 +3618,7 @@ GrappleBeamFunction_WallJumping:
     STZ.W $0CDC 
     STZ.W $0CDE 
     STZ.W $0CE0 
-    LDA.W $09A6 
-    JSL.L Load_Beam_Palette_External 
+    LDA.W $09A6 : JSL.L Load_Beam_Palette_External 
     LDA.W #GrappleBeamFunction_Inactive : STA.W $0D32 
     LDA.W #SamusDrawingHandler_Default : STA.W $0A5C 
     JSL.L PostGrappleCollisionDetection 
@@ -3759,8 +3745,7 @@ PropelSamusFromGrappleSwing:
 
 
 GrappleBeamFunction_ReleasedFromSwing:
-    LDA.W #$0007 
-    JSL.L QueueSound 
+    LDA.W #$0007 : JSL.L QueueSound 
     LDA.W $0D26 : BPL .facingLeft 
     LDA.W #$0051 : STA.W $0A2C 
     BRA + 
@@ -3785,8 +3770,7 @@ GrappleBeamFunction_ReleasedFromSwing:
     STZ.W $0CDC 
     STZ.W $0CDE 
     STZ.W $0CE0 
-    LDA.W $09A6 
-    JSL.L Load_Beam_Palette_External 
+    LDA.W $09A6 : JSL.L Load_Beam_Palette_External 
     LDA.W #GrappleBeamFunction_Inactive : STA.W $0D32 
     LDA.W #SamusDrawingHandler_Default : STA.W $0A5C 
     JSL.L PostGrappleCollisionDetection 

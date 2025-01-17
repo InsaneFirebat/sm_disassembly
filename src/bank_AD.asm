@@ -624,21 +624,18 @@ MotherBrainHealthBasedPaletteHandling:
     LDA.W MotherBrainHealthBasedPalettes_BrainBody,Y 
     TAY 
     LDX.W #$0082 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     LDA.B $01,S 
     TAY 
     LDA.W MotherBrainHealthBasedPalettes_BrainBody,Y 
     TAY 
     LDX.W #$0122 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     PLY 
     LDA.W MotherBrainHealthBasedPalettes_BackLeg,Y 
     TAY 
     LDX.W #$0162 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     PLB 
     RTL 
 
@@ -899,15 +896,12 @@ FadeMotherBrainPaletteToBlack:
     TAY 
     PHY 
     LDX.W #$0082 
-    LDA.W #$000E 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000E : JSL.L WriteAColorsFromYtoColorIndexX 
     PLY 
     LDX.W #$0122 
-    LDA.W #$000E 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000E : JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W #$0162 
-    LDA.W #$000E 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000E : JSL.L WriteAColorsFromYtoColorIndexX 
     PLB 
     CLC 
     RTL 
@@ -1115,8 +1109,7 @@ TransitionMotherBrainPaletteToFromGrey_FakeDeath:
     PLB : PLB 
     TAY 
     LDX.W #$0122 
-    LDA.W #$0003 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0003 : JSL.L WriteAColorsFromYtoColorIndexX 
     PLB : PLY : PLX 
     CLC 
     RTL 
@@ -1136,15 +1129,12 @@ TransitionMotherBrainPaletteFromGrey_DrainedByBabyMetroid:
     TAY 
     PHY 
     LDX.W #$0082 
-    LDA.W #$000D 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000D : JSL.L WriteAColorsFromYtoColorIndexX 
     PLY 
     LDX.W #$0122 
-    LDA.W #$000D 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000D : JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W #$0168 
-    LDA.W #$0005 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0005 : JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W #$017C 
     LDA.W $0000,Y : STA.W $0000,X 
     PLB 
@@ -1166,15 +1156,12 @@ TransitionMotherBrainPaletteToGrey_DrainedByBabyMetroid:
     TAY 
     PHY 
     LDX.W #$0082 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     PLY 
     LDX.W #$0122 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W #$0168 
-    LDA.W #$0005 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$0005 : JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W #$017C 
     LDA.W $0000,Y : STA.W $0000,X 
     PLB 
@@ -1246,8 +1233,7 @@ TransitionMotherBrainPaletteToGrey_RealDeath:
     PLB : PLB 
     TAY 
     LDX.W #$01E2 
-    LDA.W #$000F 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000F : JSL.L WriteAColorsFromYtoColorIndexX 
     PLB 
     CLC 
     RTL 
@@ -1301,12 +1287,10 @@ FadeOutBackgroundForBabyMetroidDeathSequence:
     PLB : PLB : PHX : PHY 
     LDY.W #.justZeroes 
     LDX.W #$0062 
-    LDA.W #$000E 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000E : JSL.L WriteAColorsFromYtoColorIndexX 
     LDY.W #.justZeroes 
     LDX.W #$00A2 
-    LDA.W #$000E 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000E : JSL.L WriteAColorsFromYtoColorIndexX 
     PLY : PLX : PLB 
     RTL 
 
@@ -1328,11 +1312,9 @@ FadeInBackgroundForMotherBrainPhase3:
     PLB : PLB 
     TAY 
     LDX.W #$0062 
-    LDA.W #$000E 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000E : JSL.L WriteAColorsFromYtoColorIndexX 
     LDX.W #$00A2 
-    LDA.W #$000E 
-    JSL.L WriteAColorsFromYtoColorIndexX 
+    LDA.W #$000E : JSL.L WriteAColorsFromYtoColorIndexX 
     PLB 
     CLC 
     RTL 
@@ -1393,8 +1375,7 @@ FadeInBackgroundForMotherBrainPhase3:
 EnableEarthquakeTypeInAFor20Frames:
     STA.W $183E 
     LDA.W #$0014 : STA.W $1840 
-    LDA.W #$0025 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0025 : JSL.L QueueSound_Lib2_Max6 
     RTL 
 
 

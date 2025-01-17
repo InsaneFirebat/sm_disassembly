@@ -1291,8 +1291,7 @@ SamusBlockCollisionReaction_SpikeBlock_BTS0_GenericSpike:
     LDA.W $079F 
     CMP.W #$0003 
     BNE .notWreckedShip 
-    LDA.W #$0001 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .return 
 
 .notWreckedShip:
@@ -1529,8 +1528,7 @@ SamusBlockCollisionReaction_Horizontal_SpecialAir:
     BMI .blockBTSMSB 
     ASL A 
     TAX 
-    LDA.W SamusBlockCollisionReaction_Special_PLMTable_areaIndependent,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W SamusBlockCollisionReaction_Special_PLMTable_areaIndependent,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     CLC 
     RTS 
 
@@ -1543,8 +1541,7 @@ SamusBlockCollisionReaction_Horizontal_SpecialAir:
     ASL A 
     TAX 
     LDA.W SamusBlockCollisionReaction_Special_PLMTable_AirPointers,X : STA.B $22 
-    LDA.B ($22),Y 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.B ($22),Y : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     RTS 
 
 
@@ -1555,8 +1552,7 @@ SamusBlockCollisionReaction_Vertical_SpecialAir:
     BMI .blockBTSMSB 
     ASL A 
     TAX 
-    LDA.W SamusBlockCollisionReaction_Special_PLMTable_areaIndependent,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W SamusBlockCollisionReaction_Special_PLMTable_areaIndependent,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     CLC 
     RTS 
 
@@ -1569,8 +1565,7 @@ SamusBlockCollisionReaction_Vertical_SpecialAir:
     ASL A 
     TAX 
     LDA.W SamusBlockCollisionReaction_Special_PLMTable_AirPointers,X : STA.B $22 
-    LDA.B ($22),Y 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.B ($22),Y : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     RTS 
 
 
@@ -1581,8 +1576,7 @@ SamusBlockCollisionReaction_Horizontal_SpecialBlock:
     BMI .areaDependent 
     ASL A 
     TAX 
-    LDA.W SamusBlockCollisionReaction_Special_PLMTable_areaIndependent,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W SamusBlockCollisionReaction_Special_PLMTable_areaIndependent,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     BCC .return 
     JMP.W SamusBlockCollisionReaction_Horizontal_SolidShootableGrapple 
 
@@ -1599,8 +1593,7 @@ SamusBlockCollisionReaction_Horizontal_SpecialBlock:
     ASL A 
     TAX 
     LDA.W SamusBlockCollisionReaction_Special_PLMTable_BlockPointers,X : STA.B $22 
-    LDA.B ($22),Y 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.B ($22),Y : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     BCC ..return 
     JMP.W SamusBlockCollisionReaction_Horizontal_SolidShootableGrapple 
 
@@ -1616,8 +1609,7 @@ SamusBlockCollisionReaction_Vertical_SpecialBlock:
     BMI .areaDependent 
     ASL A 
     TAX 
-    LDA.W SamusBlockCollisionReaction_Special_PLMTable_areaIndependent,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W SamusBlockCollisionReaction_Special_PLMTable_areaIndependent,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     BCC .return 
     JMP.W SamusBlockCollisionReaction_Vertical_SolidShootableGrapple 
 
@@ -1634,8 +1626,7 @@ SamusBlockCollisionReaction_Vertical_SpecialBlock:
     ASL A 
     TAX 
     LDA.W SamusBlockCollisionReaction_Special_PLMTable_BlockPointers,X : STA.B $22 
-    LDA.B ($22),Y 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.B ($22),Y : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     BCC ..return 
     JMP.W SamusBlockCollisionReaction_Vertical_SolidShootableGrapple 
 
@@ -1897,8 +1888,7 @@ SamusBlockCollisionReaction_Horizontal_BombableAir:
     BMI .returnNoCollision 
     ASL A 
     TAX 
-    LDA.W SamusBlockCollisionReaction_Bombable_PLMTable,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W SamusBlockCollisionReaction_Bombable_PLMTable,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     CLC 
     RTS 
 
@@ -1915,8 +1905,7 @@ SamusBlockCollisionReaction_Vertical_BombableAir:
     BMI .returnNoCollision 
     ASL A 
     TAX 
-    LDA.W SamusBlockCollisionReaction_Bombable_PLMTable,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W SamusBlockCollisionReaction_Bombable_PLMTable,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     CLC 
     RTS 
 
@@ -1933,8 +1922,7 @@ SamusBlockCollisionReaction_Horizontal_BombBlock:
     BMI .gotoSolidShootableGrapple 
     ASL A 
     TAX 
-    LDA.W SamusBlockCollisionReaction_Bombable_PLMTable,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W SamusBlockCollisionReaction_Bombable_PLMTable,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     BCC .return 
     JMP.W SamusBlockCollisionReaction_Horizontal_SolidShootableGrapple 
 
@@ -1954,8 +1942,7 @@ SamusBlockCollisionReaction_Vertical_BombBlock:
     BMI .gotoSolidShootableGrapple 
     ASL A 
     TAX 
-    LDA.W SamusBlockCollisionReaction_Bombable_PLMTable,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W SamusBlockCollisionReaction_Bombable_PLMTable,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     BCC .return 
     JMP.W SamusBlockCollisionReaction_Vertical_SolidShootableGrapple 
 
@@ -2662,8 +2649,7 @@ BlockInsideReaction_SpecialAir_BTS8_WSTreadmill_Right:
     LDA.W $079F 
     CMP.W #$0003 
     BNE .notWreckedShip 
-    LDA.W #$0001 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .return 
 
 .notWreckedShip:
@@ -2680,8 +2666,7 @@ BlockInsideReaction_SpecialAir_BTS9_WSTreadmill_Left:
     LDA.W $079F 
     CMP.W #$0003 
     BNE .notWreckedShip 
-    LDA.W #$0001 
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
+    LDA.W #$0001 : JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA 
     BCC .return 
 
 .notWreckedShip:
@@ -2712,8 +2697,7 @@ BlockInsideReaction_SpecialAir_BTS46_ScrollPLMTrigger:
     LDA.W $1E73 
     CMP.W #$0001 
     BNE .return 
-    LDA.W #PLMEntries_scrollPLMTrigger 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W #PLMEntries_scrollPLMTrigger : JSL.L Spawn_PLM_to_CurrentBlockIndex 
 
 .return:
     RTS 
@@ -2975,8 +2959,7 @@ BlockInsideReaction_SpecialAir:
     ASL A 
     TAX 
     LDA.W BlockInsideReaction_SpecialAir_PLMTable_Pointers,X : STA.B $22 
-    LDA.B ($22),Y 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.B ($22),Y : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     RTS 
 
 
@@ -3248,8 +3231,7 @@ BlockBombedReaction_SpecialBlock:
     BMI .areaDependent 
     ASL A 
     TAX 
-    LDA.W BlockBombedReaction_SpecialBlock_PLMTable_areaIndependent,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W BlockBombedReaction_SpecialBlock_PLMTable_areaIndependent,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     REP #$40 
     SEC 
     RTS 
@@ -3263,8 +3245,7 @@ BlockBombedReaction_SpecialBlock:
     ASL A 
     TAX 
     LDA.W BlockBombedReaction_SpecialBlock_PLMTable_areaPointers,X : STA.B $12 
-    LDA.B ($12),Y 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.B ($12),Y : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     REP #$40 
     SEC 
     RTS 
@@ -3389,8 +3370,7 @@ BlockBombShotGrappledReaction_ShootableAir:
     BMI .returnDuplicate 
     ASL A 
     TAX 
-    LDA.W BlockBombShotGrappledReaction_Shootable_PLMTable_noArea,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W BlockBombShotGrappledReaction_Shootable_PLMTable_noArea,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     REP #$40 
     CLC ; >.<
     RTS 
@@ -3409,8 +3389,7 @@ BlockBombShotGrappledReaction_ShootableBlock:
     BMI .areaDependent 
     ASL A 
     TAX 
-    LDA.W BlockBombShotGrappledReaction_Shootable_PLMTable_noArea,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W BlockBombShotGrappledReaction_Shootable_PLMTable_noArea,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     REP #$40 
     SEC 
     RTS 
@@ -3424,8 +3403,7 @@ BlockBombShotGrappledReaction_ShootableBlock:
     ASL A 
     TAX 
     LDA.W BlockBombShotGrappledReaction_Shootable_PLMTable_areaPointer,X : STA.B $12 
-    LDA.B ($12),Y 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.B ($12),Y : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     REP #$40 
     SEC 
     RTS 
@@ -3610,8 +3588,7 @@ BlockShotBombedGrappledReaction_BombableAir:
     BMI .returnDuplicate 
     ASL A 
     TAX 
-    LDA.W BlockShotBombedGrappledReaction_Bombable_PLMTable,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W BlockShotBombedGrappledReaction_Bombable_PLMTable,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     REP #$40 
     CLC ; >.<
     RTS 
@@ -3630,8 +3607,7 @@ BlockShotBombedGrappledReaction_BombableBlock:
     BMI .returnDuplicate 
     ASL A 
     TAX 
-    LDA.W BlockShotBombedGrappledReaction_Bombable_PLMTable,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W BlockShotBombedGrappledReaction_Bombable_PLMTable,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     REP #$40 
     SEC 
     RTS 
@@ -4614,8 +4590,7 @@ BlockGrappleReaction_GrappleBlock:
     AND.W #$007F 
     ASL A 
     TAX 
-    LDA.W .PLMs,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W .PLMs,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     RTS 
 
 
@@ -4639,8 +4614,7 @@ BlockGrappleReaction_SpikeBlock:
     AND.W #$007F 
     ASL A 
     TAX 
-    LDA.W .PLMs,X 
-    JSL.L Spawn_PLM_to_CurrentBlockIndex 
+    LDA.W .PLMs,X : JSL.L Spawn_PLM_to_CurrentBlockIndex 
     RTS 
 
 

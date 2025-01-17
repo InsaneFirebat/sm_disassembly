@@ -475,8 +475,7 @@ HandleFiringWallTurret:
     LDA.W .XPosition,Y : STA.B $12 
     LDA.W .YPosition,Y : STA.B $14 
     LDY.W #EnemyProjectile_DraygonWallTurret 
-    LDA.W #$0003 
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
+    LDA.W #$0003 : JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
 
 .return:
     RTS 
@@ -792,8 +791,7 @@ Function_DraygonBody_GoopRight_MoveUntilSamusInRange:
 
 .tooFar:
     LDA.W #$0020 : STA.W $0E32 
-    LDA.L $7E781A 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.L $7E781A : JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.W #$0180 : STA.W $0F7E 
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
@@ -817,8 +815,7 @@ Function_DraygonBody_GoopRight_FiringGoops:
 
 .noGoop:
     LDA.W #$0020 : STA.W $0E32 
-    LDA.L $7E781A 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.L $7E781A : JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.W #$0180 : STA.W $0F7E 
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
@@ -850,8 +847,7 @@ Function_DraygonBody_GoopRight_FiringGoops:
 Function_DraygonBody_GoopRight_MoveUntilOffScreen:
     JSR.W HandleShortDraygonBreathBubbles 
     LDA.W #$0020 : STA.W $0E32 
-    LDA.L $7E781A 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.L $7E781A : JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.W #$0180 : STA.W $0F7E 
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
@@ -901,8 +897,7 @@ Function_DraygonBody_GoopLeft_MoveUntilSamusInRange:
 
 .tooFar:
     LDA.W #$0020 : STA.W $0E32 
-    LDA.L $7E781A 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.L $7E781A : JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.W #$0180 : STA.W $0F7E 
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
@@ -925,8 +920,7 @@ Function_DraygonBody_GoopLeft_FiringGoops:
 
 .noGoop:
     LDA.W #$0020 : STA.W $0E32 
-    LDA.L $7E781A 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.L $7E781A : JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.W #$0180 : STA.W $0F7E 
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
@@ -959,8 +953,7 @@ Function_DraygonBody_GoopLeft_MoveUntilOffScreen:
     JSR.W HandleShortDraygonBreathBubbles 
     LDA.W $0A66 : BNE .SamusGooped 
     LDA.W #$0020 : STA.W $0E32 
-    LDA.L $7E781A 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.L $7E781A : JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.W #$0180 : STA.W $0F7E 
     LDA.L $7E781A : CLC : ADC.W #$0001 : AND.W #$00FF 
     STA.L $7E781A 
@@ -1038,8 +1031,7 @@ Function_DraygonBody_ChaseSamus:
 .keepLeft:
     STY.W $1052 
     LDA.W #$0001 : STA.W $1054 
-    LDA.W #$000D 
-    JSL.L Run_Samus_Command 
+    LDA.W #$000D : JSL.L Run_Samus_Command 
     AND.W #$FFFF 
     BNE .retreat 
     LDY.W #$0000 
@@ -1152,14 +1144,12 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
 
 .noSpank:
     LDA.L $7E780A : STA.W $0E32 
-    LDA.L $7E7810 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.L $7E7810 : JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.L $7E780C : STA.W $0F7A 
     LDA.L $7E780A 
     LSR #2
     STA.W $0E32 
-    LDA.L $7E7810 
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6 
+    LDA.L $7E7810 : JSL.L EightBitNegativeSineMultiplication_A0B0C6 
     CLC : ADC.L $7E780E : STA.W $0F7E 
     LDA.W $0FA4,X : AND.W #$0007 
     BNE .noFoam 
@@ -1328,8 +1318,7 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
 .done:
     JSR.W SpawnDeathSequenceEvirSpriteObjects 
     LDA.W #Function_DraygonBody_DeathSequence_WaitForEvirs : STA.W $0FA8 
-    LDA.W #$0003 
-    JSL.L QueueMusicDataOrTrack_8FrameDelay 
+    LDA.W #$0003 : JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDA.W #$01A0 : STA.W $0FAA 
     LDA.W #InstList_Draygon_Sleep : STA.W $0F92 
     LDA.W #$0001 : STA.W $0F94 
@@ -2386,8 +2375,7 @@ Instruction_DraygonTail_TailWhipHit:
     PHX : PHY 
     LDA.W #$0018 : STA.L $7E781E 
     LDX.W $0F78 
-    LDA.L $A00006,X 
-    JSL.L Suit_Damage_Division 
+    LDA.L $A00006,X : JSL.L Suit_Damage_Division 
     JSL.L Deal_A_Damage_to_Samus 
     LDA.W #$0020 : STA.W $1840 
     LDA.W #$0007 : STA.W $183E 
@@ -2871,8 +2859,7 @@ Instruction_Draygon_BodyFunctionInY:
 
 Instruction_Draygon_QueueSFXInY_Lib2_Max6:
     PHX : PHY 
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     INY #2
     RTL 
@@ -2880,8 +2867,7 @@ Instruction_Draygon_QueueSFXInY_Lib2_Max6:
 
 Instruction_Draygon_QueueSFXInY_Lib3_Max6:
     PHX : PHY 
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max6 
     PLY : PLX 
     INY #2
     RTL 
@@ -2896,8 +2882,7 @@ Instruction_Draygon_SpawnGoop_Leftwards:
     AND.W #$003F 
     CLC : ADC.W #$0080 : STA.W $1995 
     LDY.W #EnemyProjectile_DraygonGoop 
-    LDA.W #$0002 
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
+    LDA.W #$0002 : JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY : PLX 
     RTL 
 
@@ -2911,8 +2896,7 @@ Instruction_Draygon_SpawnGoop_Rightwards:
     AND.W #$003F 
     CLC : ADC.W #$00C0 : STA.W $1995 
     LDY.W #EnemyProjectile_DraygonGoop 
-    LDA.W #$0002 
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
+    LDA.W #$0002 : JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY : PLX 
     RTL 
 
@@ -6966,8 +6950,7 @@ Instruction_SporeSpawn_Harden:
 
 Instruction_SporeSpawn_QueueSFXInY_Lib2_Max6:
     PHX : PHY 
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib2_Max6 
     PLY : PLX 
     INY #2
     RTL 
@@ -6975,8 +6958,7 @@ Instruction_SporeSpawn_QueueSFXInY_Lib2_Max6:
 
 Instruction_SporeSpawn_QueueSFXInY_Lib3_Max6:
     PHX : PHY 
-    LDA.W $0000,Y 
-    JSL.L QueueSound_Lib3_Max6 
+    LDA.W $0000,Y : JSL.L QueueSound_Lib3_Max6 
     PLY : PLX 
     INY #2
     RTL 
@@ -7091,8 +7073,7 @@ Instruction_SporeSpawn_SpawnHardeningDustCloud:
     LDA.W #$0015 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    LDA.W #$0029 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0029 : JSL.L QueueSound_Lib2_Max6 
     PLX : PLY 
     RTL 
 
@@ -7110,8 +7091,7 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
     LDA.W #$0003 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
-    LDA.W #$0025 
-    JSL.L QueueSound_Lib2_Max6 
+    LDA.W #$0025 : JSL.L QueueSound_Lib2_Max6 
     PLX : PLY 
     RTL 
 
@@ -7231,8 +7211,7 @@ Function_SporeSpawn_Descent:
 Function_SporeSpawn_Moving:
     JSR.W UpdateSporeSpawnStalkSegmentPositions 
     LDA.L $7E7816 : STA.W $0E32 
-    LDA.L $7E7814 
-    JSL.L EightBitCosineMultiplication_A0B0B2 
+    LDA.L $7E7814 : JSL.L EightBitCosineMultiplication_A0B0B2 
     CLC : ADC.W $0FAC,X : STA.W $0F7A,X 
     LDA.L $7E7816 : SEC : SBC.W #$0010 : STA.W $0E32 
     LDA.L $7E7814 : SEC : SBC.W #$0040 : ASL A 

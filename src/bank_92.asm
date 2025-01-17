@@ -11933,8 +11933,7 @@ PlaySamusFanfare:
 .nonZero:
     CMP.W #$0005 
     BNE .not5 
-    LDA.W #$0168 
-    JSL.L Play_Room_Music_Track_After_A_Frames 
+    LDA.W #$0168 : JSL.L Play_Room_Music_Track_After_A_Frames 
     BRA .not5 
 
 
@@ -12005,8 +12004,7 @@ DrawSamusSuitExploding:
     TAX 
     LDA.W $0AFA 
     TAY 
-    LDA.B $12 
-    JSL.L AddSamusSpritemapToOAM 
+    LDA.B $12 : JSL.L AddSamusSpritemapToOAM 
     PLB : PLP 
     RTL 
 
