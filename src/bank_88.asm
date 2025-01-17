@@ -388,8 +388,7 @@ Delete_HDMAObjects:
     STZ.W $18B4,X 
     DEX #2
     BPL .loop 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
@@ -501,8 +500,7 @@ RTL_8883E1:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SpawnHDMAObject_Slot0_Channel4_Index20_8883E2:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$20 
     LDA.W #$0400 : STA.B $12 
     LDA.W #$0020 : STA.B $14 
@@ -511,8 +509,7 @@ UNUSED_SpawnHDMAObject_Slot0_Channel4_Index20_8883E2:
 
 
 UNUSED_SpawnHDMAObject_Slot8_Channel40_Index60_8883F6:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$20 
     LDA.W #$4000 : STA.B $12 
     LDA.W #$0060 : STA.B $14 
@@ -522,8 +519,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 SpawnHDMAObject_SlotA_Channel80_Index70:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$20 
     LDA.W #$8000 : STA.B $12 
     LDA.W #$0070 : STA.B $14 
@@ -532,8 +528,7 @@ SpawnHDMAObject_SlotA_Channel80_Index70:
 SpawnHDMAObject_SlotX_Hardcoded:
     SEP #$20 
     LDA.B $05,S 
-    PHA 
-    PLB 
+    PHA : PLB 
     XBA 
     LDA.B #$00 
     REP #$30 
@@ -546,12 +541,10 @@ SpawnHDMAObject_SlotX_Hardcoded:
 
 
 Spawn_HDMAObject:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.B $05,S 
-    PHA 
-    PLB 
+    PHA : PLB 
     XBA 
     LDA.B #$00 
     REP #$30 
@@ -574,8 +567,7 @@ Spawn_HDMAObject:
     BNE .loop 
 
 .returnFullArray:
-    PLB 
-    PLP 
+    PLB : PLP 
     SEC 
     RTL 
 
@@ -597,9 +589,7 @@ Spawn_HDMAObject_to_Slot_X:
     PHX 
     LDX.B $14 
     LDA.W $0000,Y : STA.W $4300,X 
-    PLA 
-    PLB 
-    PLP 
+    PLA : PLB : PLP 
     CLC 
 
   .return
@@ -607,8 +597,7 @@ Spawn_HDMAObject_to_Slot_X:
 
 
 HDMAObjectHandler_HandleMusicQueue:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     JSL.L HandleMusicQueue 
     LDA.W $0A78 : BNE + 
@@ -622,8 +611,7 @@ HDMAObjectHandler_HandleMusicQueue:
     db $40,$29 
     dw InstList_PowerBombExplosion_Window2_RightPosition 
 
-  + PHK 
-    PLB 
+  + PHK : PLB 
     REP #$30 
     LDA.W $1982 : STA.W $1986 
     BIT.W $18B0 
@@ -646,15 +634,13 @@ HDMAObjectHandler_HandleMusicQueue:
     CPX.B #$0C 
     BNE .loop 
     JSR.W LayerBlending_Handler 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
     STZ.B $85 ; dead code
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -662,8 +648,7 @@ HDMAObject_Instruction_Handler:
     REP #$20 
     LDA.W $18F0,X : STA.B $12 
     LDA.W $18FC,X : STA.B $14 
-    PHK 
-    PEA.W .manualReturn-1 
+    PHK : PEA.W .manualReturn-1 
     JML.W [$0012] 
 
 
@@ -674,8 +659,7 @@ HDMAObject_Instruction_Handler:
     DEC.W $18E4,X 
     BNE .return 
     LDY.W $18C1,X 
-    PHY 
-    PLB 
+    PHY : PLB 
     LDA.W $18CC,X 
     REP #$10 
     TAY 
@@ -725,15 +709,12 @@ UNUSED_Instruction_HDMAObject_ClearPreInstruction_888584:
 
 UNUSED_Instruction_HDMAObject_CallFunctionY_88858B:
     LDA.W $0000,Y : STA.B $12 
-    PHX 
-    PHY 
-    PEA.W .return-1 
+    PHX : PHY : PEA.W .return-1 
     JMP.W ($0012) 
 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTS 
 
@@ -741,15 +722,12 @@ UNUSED_Instruction_HDMAObject_CallFunctionY_88858B:
 UNUSED_Instruction_HDMAObject_CallFunctionYWithA_88859D:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHX 
-    PHY 
-    PEA.W .return-1 
+    PHX : PHY : PEA.W .return-1 
     JMP.W ($0012) 
 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #4
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -758,11 +736,9 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Instruction_HDMAObject_CallExternalFunctionInY:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTS 
 
@@ -776,11 +752,9 @@ UNUSED_Instruction_HDMAObject_CallExternalFuncYWithA_8885CD:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTS 
@@ -1782,15 +1756,12 @@ PreInstruction_PowerBombExplosion_3_Explosion_Yellow:
 
 
 .exploding:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L Calculate_PowerBombExplosion_HDMADataTablePointers 
     PEA.W $8800 
-    PLB 
-    PLB 
+    PLB : PLB 
     SEP #$30 
     LDA.B #$00 
     XBA 
@@ -1849,8 +1820,7 @@ PreInstruction_PowerBombExplosion_3_Explosion_Yellow:
     LDA.L PowerBombExplosion_Colors_green,X : ORA.B #$40 : STA.W $0075 ; >.<
     LDA.L PowerBombExplosion_Colors_blue,X : ORA.B #$80 : STA.W $0076 ; >.<
     REP #$30 
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.W $0CEA : CLC : ADC.W $0CF0 : STA.W $0CEA 
     CMP.W #$8600 
     BCC .lessThan8600 
@@ -1865,8 +1835,7 @@ PreInstruction_PowerBombExplosion_3_Explosion_Yellow:
     LDA.W $0CF0 : CLC : ADC.L PowerBombExplosion_RadiusAcceleration : STA.W $0CF0 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -1876,15 +1845,12 @@ PreInstruction_PowerBombExplosion_4_Explosion_White:
 
 
 .exploding:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L Calculate_PowerBombExplosion_HDMADataTablePointers 
     PEA.W $8800 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDY.W $0CF2 
     LDX.W #$0000 
     SEP #$20 
@@ -1918,8 +1884,7 @@ PreInstruction_PowerBombExplosion_4_Explosion_White:
     LDA.L PowerBombExplosion_Colors_green,X : ORA.B #$40 : STA.W $0075 ; >.<
     LDA.L PowerBombExplosion_Colors_blue,X : ORA.B #$80 : STA.W $0076 ; >.<
     REP #$30 
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.W $0CF2 : CLC : ADC.W #$00C0 : STA.W $0CF2 
     CMP.W #PowerBomb_PreExplosion_ShapeDefinitionTables_PreScaled 
     BNE .notPreExplosion 
@@ -1935,8 +1900,7 @@ PreInstruction_PowerBombExplosion_4_Explosion_White:
     LDA.W $0CF0 : CLC : ADC.L PowerBombExplosion_RadiusAcceleration : STA.W $0CF0 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2137,15 +2101,12 @@ PreInstruction_PowerBombExplosion_1_PreExplosion_White:
 
 
 .exploding:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L Calculate_PowerBombPreExplosion_HDMAObjectTablePointers 
     PEA.W $8800 
-    PLB 
-    PLB 
+    PLB : PLB 
     SEP #$30 
     LDA.B #$00 
     XBA 
@@ -2204,8 +2165,7 @@ PreInstruction_PowerBombExplosion_1_PreExplosion_White:
     LDA.L PowerBomb_PreExplosion_Colors_green,X : ORA.B #$40 : STA.W $0075 ; >.<
     LDA.L PowerBomb_PreExplosion_Colors_blue,X : ORA.B #$80 : STA.W $0076 ; >.<
     REP #$30 
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.W $0CEC : CLC : ADC.W $0CF0 : STA.W $0CEC 
     CMP.W #$9200 ; radius
     BCC .lessThan9200 
@@ -2220,8 +2180,7 @@ PreInstruction_PowerBombExplosion_1_PreExplosion_White:
     LDA.W $0CF0 : SEC : SBC.L PowerBomb_PreExplosion_RadiusAcceleration : STA.W $0CF0 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2231,15 +2190,12 @@ PreInstruction_PowerBombExplosion_2_PreExplosion_Yellow:
 
 
 .exploding:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L Calculate_PowerBombPreExplosion_HDMAObjectTablePointers 
     PEA.W $8800 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDY.W $0CF2 
     LDX.W #$0000 
     SEP #$20 
@@ -2273,8 +2229,7 @@ PreInstruction_PowerBombExplosion_2_PreExplosion_Yellow:
     LDA.L PowerBomb_PreExplosion_Colors_green,X : ORA.B #$40 : STA.W $0075 
     LDA.L PowerBomb_PreExplosion_Colors_blue,X : ORA.B #$80 : STA.W $0076 
     REP #$30 
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.W $0CF2 : CLC : ADC.W #$00C0 : STA.W $0CF2 
     CMP.W #PowerBomb_ShapeDefinitionTiles_Optimization_A206 
     BNE .notA206 
@@ -2289,8 +2244,7 @@ PreInstruction_PowerBombExplosion_2_PreExplosion_Yellow:
     LDA.W $0CF0 : SEC : SBC.L PowerBomb_PreExplosion_RadiusAcceleration : STA.W $0CF0 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2909,15 +2863,12 @@ PreInstruction_CrystalFlash_1_Explosion:
 
 
 .exploding:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L Calculate_CrystalFlash_HDMAObjectTablePointers 
     PEA.W $8800 
-    PLB 
-    PLB 
+    PLB : PLB 
     SEP #$30 
     LDA.B #$00 
     XBA 
@@ -2976,8 +2927,7 @@ PreInstruction_CrystalFlash_1_Explosion:
     LDA.L PowerBombExplosion_Colors_green,X : ORA.B #$40 : STA.W $0075 
     LDA.L PowerBombExplosion_Colors_blue,X : ORA.B #$80 : STA.W $0076 
     REP #$30 
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.W $0CEA : CLC : ADC.W $0CF0 : STA.W $0CEA 
     CMP.W #$2000 
     BCC .lessThan2000 
@@ -2992,8 +2942,7 @@ PreInstruction_CrystalFlash_1_Explosion:
     LDA.W $0CF0 : CLC : ADC.L PowerBombExplosion_RadiusAcceleration : STA.W $0CF0 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -3034,9 +2983,7 @@ Instruction_HDMAObjectPhaseIncreaseTimer_1:
 PreInstruction_FXType_22_BG3XScroll:
     PHP 
     REP #$30 
-    PHB 
-    PHX 
-    PHY 
+    PHB : PHX : PHY 
     LDA.W $0915 
     CMP.W #$0400 
     BPL .wavy 
@@ -3136,10 +3083,7 @@ PreInstruction_FXType_22_BG3XScroll:
     STA.L $7E9F01,X 
     LDA.W #$0000 : STA.L $7E9E03,X 
     STA.L $7E9F03,X 
-    PLY 
-    PLX 
-    PLB 
-    PLP 
+    PLY : PLX : PLB : PLP 
     RTL 
 
 
@@ -3209,9 +3153,7 @@ RoomSetupASM_ScrollingSkyOcean:
 
 
 Calculate_FXType_22_BG3YScrollHDMATable:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W #$0020 : STA.W $0598 
     DEC A 
     STA.L $7E9C00 
@@ -3851,9 +3793,7 @@ PreInstruction_ExpandingContractingEffect_BG2YScroll:
 
 
 Handle_Earthquake_SoundEffect:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     REP #$30 
     LDA.W $0609 : BMI .return 
     DEC A 
@@ -3872,9 +3812,7 @@ Handle_Earthquake_SoundEffect:
     STX.W $0607 
 
 .return:
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTS 
 
 ;        _________ Sound index (sound library 2)
@@ -5584,8 +5522,7 @@ PreInstruction_Water_BG3_Xscroll:
 
 
 .notFrozen:
-    PHX 
-    PHY 
+    PHX : PHY 
     REP #$30 
     PEA.W .functionReturn-1 
     JMP.W ($196C) 
@@ -5681,9 +5618,7 @@ PreInstruction_Water_BG3_Xscroll:
     LDA.B $12 
     ASL A 
     CLC : ADC.B $12 : ADC.W #IndirectHDMATable_WaterBG3XScroll_0 : STA.W $18D8,X 
-    PLY 
-    PLX 
-    PLB 
+    PLY : PLX : PLB 
     RTL 
 
 
@@ -7852,14 +7787,12 @@ PreInstruction_TourianEntranceStatue_BG2_Yscroll_Descending:
     LDA.W $1920,X : ADC.W #$FFFF : STA.W $1920,X 
     CMP.W #$FF10 
     BNE .setYscroll 
-    PHX 
-    PHP 
+    PHX : PHP 
     REP #$10 
     JSL.L Spawn_Hardcoded_PLM 
     db $06,$0C 
     dw PLMEntries_crumbleAccessToTourianElevator 
-    PLP 
-    PLX 
+    PLP : PLX 
     LDA.W #$000A 
     JSL.L MarkEvent_inA 
     LDA.W #$0001 : STA.W $18E4,X 
@@ -8086,8 +8019,7 @@ PreInstruction_CeresHaze_ColorMathSubScnBackColor_FadingIn:
     LDA.W $1914,X 
     CMP.W #$0010 
     BEQ .done 
-    PHX 
-    PHP 
+    PHX : PHP 
     SEP #$20 
     LDA.W $1920,X : STA.B $14 
     LDA.W $1914,X 
@@ -8105,8 +8037,7 @@ PreInstruction_CeresHaze_ColorMathSubScnBackColor_FadingIn:
 .next:
     DEX 
     BPL .loop 
-    PLP 
-    PLX 
+    PLP : PLX 
     INC.W $1914,X 
     RTL 
 
@@ -8144,8 +8075,7 @@ PreInstruction_CeresHaze_ColorMathSubScnBackColor_FadingOut:
     STY.B $76 
     LDA.W #$002C : STA.W $1986 
     LDA.W $1914,X : BEQ .return 
-    PHX 
-    PHP 
+    PHX : PHP 
     SEP #$20 
     LDA.W $1920,X : STA.B $14 
     LDA.W $1914,X 
@@ -8163,8 +8093,7 @@ PreInstruction_CeresHaze_ColorMathSubScnBackColor_FadingOut:
 .next:
     DEX 
     BPL .loop 
-    PLP 
-    PLX 
+    PLP : PLX 
     DEC.W $1914,X 
 
 .return:
@@ -8827,10 +8756,7 @@ PreInstruction_PhantoonSemiTransparency:
 
 
 Spawn_WavyPhantoon_HDMAObject:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PHX 
     STA.W $1034 
@@ -8840,9 +8766,7 @@ Spawn_WavyPhantoon_HDMAObject:
     JSL.L Spawn_HDMAObject 
     db $42,$0F 
     dw InstList_WavyPhantoon_BG2_Xscroll 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTL 
 
 
@@ -9061,8 +8985,7 @@ PreInstruction_WavyPhantoon:
     BPL .loopDoubled 
 
 .return:
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
@@ -9130,13 +9053,10 @@ Initialise_Rainbow_Beam:
     LDA.W #$8020 ; $7E:9D02 = 20h,80h
     STA.L $7E9D02 
     LDA.W #$0000 : STA.L $7E9D04 
-    PHB 
-    PEA.W $A900 
-    PLB 
-    PLB 
+    PHB : PEA.W $A900 
+    PLB : PLB 
     JSL.L Calculate_MotherBrain_RainbowBeam_HDMATables 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -9150,10 +9070,8 @@ PreInstruction_MotherBrainRainbowBeam:
     LDA.W $0998 
     CMP.W #$001B 
     BEQ .return 
-    PHB 
-    PEA.W $A900 
-    PLB 
-    PLB 
+    PHB : PEA.W $A900 
+    PLB : PLB 
     JSL.L Calculate_MotherBrain_RainbowBeam_HDMATables 
     PLB 
     JSR.W Set_RainbowBeam_ColorMathSubscreenBackdropColor 
@@ -9225,18 +9143,13 @@ Set_RainbowBeam_ColorMathSubscreenBackdropColor:
 
 
 Spawn_MorphBallEyeBeam_HDMAObject:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PHX 
     JSL.L Spawn_HDMAObject 
     db $41,$26 
     dw InstList_MorphBallEyeBeam_Window1Position 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTL 
 
 
@@ -9476,10 +9389,7 @@ PreInstruction_MorphBallEyeBeamHDMA_DeactivateBeam:
 
 
 Spawn_TitleSequenceGradient_HDMAObjects:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PHX 
     JSL.L Spawn_HDMAObject 
@@ -9488,9 +9398,7 @@ Spawn_TitleSequenceGradient_HDMAObjects:
     JSL.L Spawn_HDMAObject 
     db $00,$31 
     dw InstList_ColorMathControlRegB_TitleSequenceGradient 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTL 
 
 
@@ -9522,13 +9430,10 @@ Instruction_Setup_TitleSequenceGradient_HDMATable:
     PHP 
     SEP #$20 
     REP #$10 
-    PHX 
-    PHY 
+    PHX : PHY 
     STZ.B $6F 
     JSL.L Configure_TitleScreen_GradientHDMATable 
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTS 
 
 
@@ -9568,18 +9473,13 @@ PreInstruction_ColorMathControlRegB_TitleSequenceGradient:
 
 
 SpawnIntroCutsceneCrossFade_HDMAObject:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PHX 
     JSL.L Spawn_HDMAObject 
     db $00,$31 
     dw InstList_IntroCutsceneCrossFade 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTL 
 
 
@@ -9616,10 +9516,7 @@ PreInstruction_IntroCutsceneCrossFade:
 
 
 Spawn_WavySamus_HDMAObject:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PHX 
     LDA.W #$0001 : STA.W $0D9C 
@@ -9641,9 +9538,7 @@ Spawn_WavySamus_HDMAObject:
     JSL.L Spawn_HDMAObject 
     db $42,$11 
     dw InstList_WavySamus 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTL 
 
 
@@ -9792,8 +9687,7 @@ PreInstruction_WavySamus:
     LDA.B $B9 : SEC : SBC.L $7E9800,X : CLC : ADC.B $B9 : STA.L $7E9880,X 
     DEX #2
     BPL .loopBG3XScroll 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 

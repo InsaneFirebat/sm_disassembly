@@ -49,12 +49,7 @@ MessageBox_Routine:
 
 ; This routine does not return until the message box has disappeared (~6 seconds)
 ; This is the only routine in this bank that's externally callable
-    PHP 
-    PHB 
-    PHX 
-    PHY 
-    PHK 
-    PLB 
+    PHP : PHB : PHX : PHY : PHK : PLB 
     STA.W $1C1F 
     JSL.L Cancel_Sound_Effects 
     JSR.W Initialise_PPU_for_MessageBoxes 
@@ -74,10 +69,7 @@ MessageBox_Routine:
     JSR.W MaybeTriggerPauseScreen_or_ReturnSaveConfirmationSelection 
 
 .return:
-    PLY 
-    PLX 
-    PLB 
-    PLP 
+    PLY : PLX : PLB : PLP 
     RTL 
 
 .gunship:

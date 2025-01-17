@@ -120,22 +120,18 @@ RTS_A8807B:
 
 Instruction_CommonA8_DeleteEnemy:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
 Instruction_CommonA8_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
@@ -143,15 +139,12 @@ Instruction_CommonA8_CallFunctionInY:
 Instruction_CommonA8_CallFunctionInY_WithA:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     RTL 
@@ -161,11 +154,9 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA8_CallExternalFunctionInY_A880B5:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTL 
 
@@ -178,11 +169,9 @@ UNUSED_Inst_CommonA8_CallExternalFunctionInY_WithA_A880CE:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTL 
@@ -254,8 +243,7 @@ Instruction_CommonA8_Sleep:
     DEY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -264,8 +252,7 @@ Instruction_CommonA8_WaitYFrames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -514,12 +501,10 @@ InstList_Evir_Projectile_Regenerating_1:
     dw Instruction_Common_Sleep 
 
 Instruction_Evir_PlaySpitSFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$005E 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -2221,12 +2206,10 @@ InstList_Namihe_FacingRight_Active:
     dw InstList_Namihe_FacingRight_Idling 
 
 Instruction_FuneNamihe_QueueSpitSFX:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W #$001F 
     JSL.L QueueSound_Lib2_Max9 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTL 
 
 
@@ -3043,9 +3026,7 @@ Spritemap_Coven_2:
     dw $3100 
 
 AdvanceCovenPaletteTransition:
-    PHP 
-    PHX 
-    PHY 
+    PHP : PHX : PHY 
     REP #$30 
     LDY.W #$0000 
     LDA.W $0797 : BEQ .notDoorTransition 
@@ -3132,9 +3113,7 @@ AdvanceCovenPaletteTransition:
 
 .return:
     TYA 
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTS 
 
 
@@ -3431,16 +3410,14 @@ Instruction_YappingMaw_OffsetSamusDown:
 
 
 Instruction_YappingMaw_QueueSFXIfOnScreen:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDX.W $0E54 
     LDA.L $7E802C,X : BNE .return 
     LDA.W #$002F 
     JSL.L QueueSound_Lib2_Max6 
 
 .return:
-    PLX 
-    PLY 
+    PLX : PLY 
     RTL 
 
 
@@ -4374,8 +4351,7 @@ RTL_A8AB82:
 
 
 EnemyShot_Kago:
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L NormalEnemyShotAI 
     LDA.W #$0002 : STA.W $183E 
     LDA.W #$0010 : STA.W $1840 
@@ -4397,8 +4373,7 @@ EnemyShot_Kago:
     LDY.W #EnemyProjectile_KagoBug 
     LDA.W $0F7E,X 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -4687,16 +4662,14 @@ InstList_Magdollite_Slave2_PillarCap:
     dw Instruction_CommonA8_Sleep 
 
 Instruction_Magdollite_QueueSFXInY_Lib2_Max6_IfOnScreen:
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L CheckIfEnemyCenterIsOnScreen 
     BNE .offScreen 
     LDA.W $0000,Y 
     JSL.L QueueSound_Lib2_Max6 
 
 .offScreen:
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTL 
 
@@ -8111,8 +8084,7 @@ DecrementRobotLaserCooldown:
 
 
 Instruction_Robot_FacingLeft_MoveForward_HandleWallOrFall:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
     LDA.W #$FE00 : STA.W $0FA8,X 
@@ -8156,14 +8128,12 @@ Instruction_Robot_FacingLeft_MoveForward_HandleWallOrFall:
 .collidedWithBlock:
     LDA.W $0FAC,X : STA.W $0F7A,X 
     LDA.W $0FAE,X : STA.W $0F7E,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Robot_FacingLeft_MoveForward_HandleHittingWall:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
     LDA.W #$FE00 : STA.W $0FA8,X 
@@ -8186,14 +8156,12 @@ Instruction_Robot_FacingLeft_MoveForward_HandleHittingWall:
     LDA.W #$FFFC : STA.W $0B58 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Robot_FacingLeft_MoveBackward_HandleWallOrFall:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
     LDA.W #$FE00 : STA.W $0FA8,X 
@@ -8237,14 +8205,12 @@ Instruction_Robot_FacingLeft_MoveBackward_HandleWallOrFall:
 .collidedWithBlock:
     LDA.W $0FAC,X : STA.W $0F7A,X 
     LDA.W $0FAE,X : STA.W $0F7E,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Robot_FacingLeft_MoveBackward_HandleHittingWall:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
     LDA.W #$FE00 : STA.W $0FA8,X 
@@ -8267,8 +8233,7 @@ Instruction_Robot_FacingLeft_MoveBackward_HandleHittingWall:
     LDA.W #$0004 : STA.W $0B58 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -8278,8 +8243,7 @@ Instruction_Robot_SetInstListTo_FacingRight_WalkingForwards:
 
 
 Instruction_Robot_FacingRight_MoveForward_HandleWallOrFall:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
     LDA.W #$0200 : STA.W $0FA8,X 
@@ -8323,14 +8287,12 @@ Instruction_Robot_FacingRight_MoveForward_HandleWallOrFall:
 .collidedWithBlock:
     LDA.W $0FAC,X : STA.W $0F7A,X 
     LDA.W $0FAE,X : STA.W $0F7E,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Robot_FacingRight_MoveForward_HandleHittingWall:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
     LDA.W #$0200 : STA.W $0FA8,X 
@@ -8353,14 +8315,12 @@ Instruction_Robot_FacingRight_MoveForward_HandleHittingWall:
     LDA.W #$0004 : STA.W $0B58 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Robot_FacingRight_MoveBackward_HandleWallOrFall:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
     LDA.W #$0200 : STA.W $0FA8,X 
@@ -8404,14 +8364,12 @@ Instruction_Robot_FacingRight_MoveBackward_HandleWallOrFall:
 .collidedWithBlock:
     LDA.W $0FAE,X : STA.W $0F7E,X 
     LDA.W $0FAC,X : STA.W $0F7A,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Robot_FacingRight_MoveBackward_HandleHittingWall:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     JSR.W DecrementRobotLaserCooldown 
     LDA.W #$0200 : STA.W $0FA8,X 
@@ -8434,14 +8392,12 @@ Instruction_Robot_FacingRight_MoveBackward_HandleHittingWall:
     LDA.W #$FFFC : STA.W $0B58 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Robot_PlaySFXIfOnScreen:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0911 
     CMP.W $0F7A,X 
@@ -8457,8 +8413,7 @@ Instruction_Robot_PlaySFXIfOnScreen:
     JSL.L QueueSound_Lib2_Max6 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -8578,8 +8533,7 @@ EnemyShot_RobotNoPower:
 
 EnemyShot_Robot:
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $079F 
     LDA.L $7ED828,X : BIT.W #$0001 
     BEQ .return 
@@ -8599,8 +8553,7 @@ EnemyShot_Robot:
 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -8614,8 +8567,7 @@ EnemyShot_Robot:
     STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W $0FAA,X : CLC : ADC.W #$0040 : STA.W $0FAA,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -10008,8 +9960,7 @@ Function_Alcoon_MoveHorizontally_SpitFireballsAtSamus:
     EOR.W #$FFFF 
     INC A 
 
-  + LDA.L $7E7808,X : BNE .returnPLP 
-    PLP 
+  + LDA.L $7E7808,X : BNE .returnPLP : PLP 
     BMI .facingLeft 
     LDY.W #InstList_Alcoon_FacingRight_SpawnFireballs 
     LDA.W $0FAE,X : BPL .fireballs 

@@ -38,8 +38,7 @@ UploadToAPU:
 
 
 .upload:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     LDA.W #$FFFF : STA.L $000617 ; Set uploading to APU flag
     SEP #$20 
@@ -47,13 +46,11 @@ UploadToAPU:
     LDA.B #$FF : STA.L $002140 ; APU IO 0 = FFh (request APU upload)
     LDY.B $00 ; Y = parameter short address
     LDA.B $02 
-    PHA 
-    PLB ; Set DB to parameter bank
+    PHA : PLB ; Set DB to parameter bank
     REP #$30 
     JSR.W SendAPUData 
     LDA.W #$0000 : STA.L $000617 ; Clear uploading to APU flag
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -155,8 +152,7 @@ SendAPUData:
     STZ.W $2141 
     STZ.W $2142 
     STZ.W $2143 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTS 
 
 
@@ -202,12 +198,9 @@ GenerateRandomNumber:
 
 
 UpdateHeldInput:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
-    PHX 
-    PHK 
-    PLB 
+    PHX : PHK : PLB 
     STA.W $05DD ; Timed held input timer reset value = [A]
     LDA.B $8B : STA.B $12 
     LDA.B $8F 
@@ -236,9 +229,7 @@ UpdateHeldInput:
     EOR.W $05E3 
     AND.W $05DF ; Newly held down timed held input = newly held down timed held input
     STA.W $05E1 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTL 
 
 
@@ -264,106 +255,78 @@ BitIndexToByteIndexAndBitmask:
 
 
 SetBossBitsInAForCurrentArea:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$20 
     STA.W $05E7 
     LDX.W $079F 
     LDA.L $7ED828,X : ORA.W $05E7 : STA.L $7ED828,X 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ClearBossBitsInAForCurrentArea_8081C0:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$20 
     EOR.B #$FF 
     STA.W $05E7 
     LDX.W $079F 
     LDA.L $7ED828,X : AND.W $05E7 : STA.L $7ED828,X 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 CheckIfBossBitsForCurrentAreaMatchAnyBitsInA:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$20 
     STA.W $05E7 
     LDX.W $079F 
     LDA.L $7ED828,X : AND.W $05E7 
     BNE .match 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     CLC 
     RTL 
 
 
 .match:
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     SEC 
     RTL 
 
 
 MarkEvent_inA:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     REP #$30 
     JSL.L BitIndexToByteIndexAndBitmask 
     LDA.L $7ED820,X : ORA.W $05E7 : STA.L $7ED820,X 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 UnmarkEvent_inA:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     REP #$30 
     JSL.L BitIndexToByteIndexAndBitmask 
     LDA.W $05E7 : EOR.W #$FFFF : STA.W $05E7 
     LDA.L $7ED820,X : AND.W $05E7 : STA.L $7ED820,X 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 CheckIfEvent_inA_HasHappened:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     REP #$30 
     JSL.L BitIndexToByteIndexAndBitmask 
     LDA.L $7ED820,X : AND.W $05E7 
     BNE .marked 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     CLC 
     RTL 
 
 
 .marked:
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     SEC 
     RTL 
 
@@ -425,8 +388,7 @@ Text_supermetroid:
     db "supermetroid" ; 'supermetroid'
 
 WaitUntilTheEndOfAVBlank:
-    PHA 
-    PHP 
+    PHA : PHP 
     SEP #$20 
 
 .waitVBlankStart:
@@ -434,8 +396,7 @@ WaitUntilTheEndOfAVBlank:
 
 .waitVBlankEnd:
     LDA.W $4212 : BMI .waitVBlankEnd ; Wait until v-blank has finished
-    PLP 
-    PLA 
+    PLP : PLA 
     RTL 
 
 
@@ -475,69 +436,49 @@ A_Y_16bit_UnsignedMultiplication:
 
 
 WaitForNMI:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$30 
     LDA.B #$01 : STA.W $05B4 ; Set NMI request flag
 
 .wait:
     LDA.W $05B4 : BNE .wait ; Wait until NMI request acknowledged
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 EnableNMI:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$20 
     LDA.B $84 : ORA.B #$80 : STA.W $4200 
     STA.B $84 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 DisableNMI:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$20 
     LDA.B $84 : AND.B #$7F : STA.W $4200 
     STA.B $84 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 SetForceBlankAndWaitForNMI:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$20 
     LDA.B $51 : ORA.B #$80 : STA.B $51 
     JSL.L WaitForNMI 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 ClearForceBlankAndWaitForNMI:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$20 
     LDA.B $51 : AND.B #$7F : STA.B $51 
     JSL.L WaitForNMI 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -560,10 +501,7 @@ UNUSED_UpdateCGRAM_808395:
 
 
 UNUSED_WriteYBytesOfATo_000000_X_8bit_8083BD:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$20 
     REP #$10 
 
@@ -572,16 +510,12 @@ UNUSED_WriteYBytesOfATo_000000_X_8bit_8083BD:
     INX 
     DEY 
     BNE .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 UNUSED_WriteYBytesOfATo_000000_X_16bit_8083D0:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
 
 .loop:
@@ -589,16 +523,12 @@ UNUSED_WriteYBytesOfATo_000000_X_16bit_8083D0:
     INX #2
     DEY #2
     BNE .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 UNUSED_WriteYBytesOfATo_7E0000_X_8bit_8083E3:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$20 
     REP #$10 
 
@@ -607,17 +537,13 @@ UNUSED_WriteYBytesOfATo_7E0000_X_8bit_8083E3:
     INX 
     DEY 
     BNE .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 WriteYBytesOfATo_7E0000_X_16bit:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
 
 .loop:
@@ -625,16 +551,12 @@ WriteYBytesOfATo_7E0000_X_16bit:
     INX #2
     DEY #2
     BNE .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 WriteYBytesOfATo_7F0000_X_16bit:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
 
 .loop:
@@ -642,8 +564,7 @@ WriteYBytesOfATo_7F0000_X_16bit:
     INX #2
     DEY #2
     BNE .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -663,8 +584,7 @@ Boot:
     TXS ; Allocate stack memory
     LDA.W #$0000 
     TCD ; Clear direct page
-    PHK 
-    PLB ; DB = $80
+    PHK : PLB ; DB = $80
     SEP #$30 
     LDX.B #$04 
 
@@ -698,8 +618,7 @@ SoftReset:
     TXS ; Allocate stack memory
     LDA.W #$0000 
     TCD ; Clear direct page
-    PHK 
-    PLB ; DB = $80
+    PHK : PLB ; DB = $80
     SEP #$30 
     LDX.B #$04 
 
@@ -716,8 +635,7 @@ CommonBootSection:
     LDA.B #$8F : STA.W $2100 ; Enable forced blank
     REP #$30 
     PEA.W $7E00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDX.W #$1FFE 
 
 .clearBank7E:
@@ -731,8 +649,7 @@ CommonBootSection:
     STZ.W $E000,X 
     DEX #2
     BPL .clearBank7E 
-    PHK 
-    PLB 
+    PHK : PLB 
     SEP #$30 
     STZ.W $4200 
     STZ.B $84 ; Disable NMI and auto-joypad read
@@ -808,10 +725,7 @@ Crash_Handler:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_WaitAFrames_808577:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$20 
     STA.W $071C 
 
@@ -819,8 +733,7 @@ UNUSED_WaitAFrames_808577:
     JSL.L WaitForNMI 
     DEC.W $071C 
     BNE .waitNMI 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -1160,44 +1073,32 @@ WriteALoadOf_1C2F:
 
 
 Write_800h_Bytes_Of_A_To_7E3000:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDX.W #$3000 
     LDY.W #$0800 
     JSL.L WriteYBytesOfATo_7E0000_X_16bit 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Write_800h_Bytes_Of_A_To_7E4000:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDX.W #$4000 
     LDY.W #$0800 
     JSL.L WriteYBytesOfATo_7E0000_X_16bit 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Write_800h_Bytes_Of_A_To_7E6000:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDX.W #$6000 
     LDY.W #$0800 
     JSL.L WriteYBytesOfATo_7E0000_X_16bit 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -1434,8 +1335,7 @@ ClearHighOAM:
 
 
 QueueMode7Transfers:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDY.W $0334 
     DEX 
 
@@ -1444,8 +1344,7 @@ QueueMode7Transfers:
     BMI .VRAM 
     BVS .CGRAM 
     STY.W $0334 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -1816,15 +1715,13 @@ CheckIfMusicIsQueued:
     LDA.W $0629,X : BNE .nonZeroTimer 
     DEX #2
     BPL .loop 
-    PLX 
-    PLP 
+    PLX : PLP 
     CLC 
     RTL 
 
 
 .nonZeroTimer:
-    PLX 
-    PLP 
+    PLX : PLP 
     SEC 
     RTL 
 
@@ -1902,8 +1799,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_QueueMusicDataOrTrack_808FA3:
     PHP 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0639 
     STA.W $0619,X 
     LDA.W #$0010 : STA.W $0629,X 
@@ -1911,9 +1807,7 @@ UNUSED_QueueMusicDataOrTrack_808FA3:
     TXA 
     AND.W #$000E 
     STA.W $0639 
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -1921,8 +1815,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 QueueMusicDataOrTrack_8FrameDelay:
     PHP 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0998 
     CPX.W #$0028 
     BCS .return 
@@ -1943,9 +1836,7 @@ QueueMusicDataOrTrack_8FrameDelay:
     STA.W $0639 
 
 .return:
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTL 
 
 
@@ -1971,51 +1862,40 @@ QueueMusicDataOrTrack_YFrameDelay:
     STA.W $0639 
 
 .return:
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
 QueueSound:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$0F : BRA QueueSound_Lib1 
 
 
 QueueSound_Lib1_Max9:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$09 : BRA QueueSound_Lib1 
 
 
 QueueSound_Lib1_Max3:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$03 : BRA QueueSound_Lib1 
 
 
 QueueSound_Lib1_Max1:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$01 : BRA QueueSound_Lib1 
 
 
 QueueSound_Lib1_Max6:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$06 
@@ -2050,9 +1930,7 @@ QueueSound_Lib1:
     STZ.W $0656,X 
 
 .return:
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
@@ -2065,45 +1943,35 @@ QueueSound_Lib1:
 
 
 QueueSound_Lib2_Max15:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$0F : BRA QueueSound_Lib2 
 
 
 QueueSound_Lib2_Max9:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$09 : BRA QueueSound_Lib2 
 
 
 QueueSound_Lib2_Max3:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$03 : BRA QueueSound_Lib2 
 
 
 QueueSound_Lib2_Max1:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$01 : BRA QueueSound_Lib2 
 
 
 QueueSound_Lib2_Max6:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$06 
@@ -2138,9 +2006,7 @@ QueueSound_Lib2:
     STZ.W $0666,X 
 
 .return:
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
@@ -2153,45 +2019,35 @@ QueueSound_Lib2:
 
 
 QueueSound_Lib3_Max15:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$0F : BRA QueueSound_Lib3 
 
 
 QueueSound_Lib3_Max9:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$09 : BRA QueueSound_Lib3 
 
 
 QueueSound_Lib3_Max3:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$03 : BRA QueueSound_Lib3 
 
 
 QueueSound_Lib3_Max1:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$01 : BRA QueueSound_Lib3 
 
 
 QueueSound_Lib3_Max6:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     SEP #$30 
     XBA 
     LDA.B #$06 
@@ -2226,9 +2082,7 @@ QueueSound_Lib3:
     STZ.W $0676,X 
 
 .return:
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
@@ -2246,13 +2100,10 @@ NOPRTS_8091A7:
 
 
 SetupHDMATransfer:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     LDA.B $04,S 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     LDA.B $03,S 
     TAY 
     LDA.W $0001,Y : AND.W #$00FF 
@@ -2265,8 +2116,7 @@ SetupHDMATransfer:
     LDA.W $0007,Y : STA.W $4305,X 
     TYA 
     CLC : ADC.W #$0008 : STA.B $03,S 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2435,8 +2285,7 @@ UpdateOAM_CGRAM:
 TransferSamusTilesToVRAM:
     PHB 
     LDX.B #$92 
-    PHX 
-    PLB 
+    PHX : PLB 
     LDX.B #$02 
     LDY.B #$80 
     STY.W $2115 
@@ -2489,8 +2338,7 @@ TransferSamusTilesToVRAM:
 ProcessAnimatedTilesObjectVRAMTransfers:
     PHB 
     LDX.B #$87 
-    PHX 
-    PLB 
+    PHX : PLB 
     LDA.W $1EF1 : BPL .return 
     LDX.B #$0A 
 
@@ -2656,13 +2504,7 @@ NMI:
 
 
 .bank80:
-    PHB 
-    PHD 
-    PHA 
-    PHX 
-    PHY 
-    PHK 
-    PLB 
+    PHB : PHD : PHA : PHX : PHY : PHK : PLB 
     LDA.W #$0000 
     TCD 
     SEP #$10 
@@ -2713,11 +2555,7 @@ NMI:
 .return:
     REP #$30 
     INC.W $05B8 
-    PLY 
-    PLX 
-    PLA 
-    PLD 
-    PLB 
+    PLY : PLX : PLA : PLD : PLB 
     RTI 
 
 
@@ -3065,22 +2903,14 @@ IRQ:
 
 
 .bank80:
-    PHB 
-    PHA 
-    PHX 
-    PHY 
-    PHK 
-    PLB 
+    PHB : PHA : PHX : PHY : PHK : PLB 
     LDA.W $4211 
     LDX.B $AB 
     JSR.W (InterruptCommandPointers,X) 
     STA.B $AB 
     STY.W $4209 
     STX.W $4207 
-    PLY 
-    PLX 
-    PLA 
-    PLB 
+    PLY : PLX : PLA : PLB 
     RTI 
 
 
@@ -3138,10 +2968,7 @@ Tilemap_HUD:
     dw $343B,$743B 
 
 AddMissilesToHUDTilemap:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.L $7EC61C : AND.W #$03FF 
     CMP.W #$000F 
@@ -3154,18 +2981,12 @@ AddMissilesToHUDTilemap:
     LDA.W Tilemap_HUD_missiles+$A : STA.L $7EC660 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 AddSuperMissilesToHUDTilemap:
-    PHP 
-    PHX 
-    PHY 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHX : PHY : PHB : PHK : PLB 
     REP #$30 
     LDY.W #Tilemap_HUD_superMissiles 
     LDX.W #$001C 
@@ -3173,12 +2994,7 @@ AddSuperMissilesToHUDTilemap:
 
 
 AddPowerBombsToHUDTilemap:
-    PHP 
-    PHX 
-    PHY 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHX : PHY : PHB : PHK : PLB 
     REP #$30 
     LDY.W #Tilemap_HUD_powerBombs 
     LDX.W #$0022 
@@ -3186,12 +3002,7 @@ AddPowerBombsToHUDTilemap:
 
 
 AddGrappleToHUDTilemap:
-    PHP 
-    PHX 
-    PHY 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHX : PHY : PHB : PHK : PLB 
     REP #$30 
     LDY.W #Tilemap_HUD_grapple 
     LDX.W #$0028 
@@ -3199,12 +3010,7 @@ AddGrappleToHUDTilemap:
 
 
 AddXrayToHUDTilemap:
-    PHP 
-    PHX 
-    PHY 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHX : PHY : PHB : PHK : PLB 
     REP #$30 
     LDY.W #Tilemap_HUD_xray 
     LDX.W #$002E 
@@ -3219,18 +3025,12 @@ Write2x2TileIconToHUDTilemap:
     LDA.W $0006,Y : STA.L $7EC64A,X 
 
 .return:
-    PLB 
-    PLY 
-    PLX 
-    PLP 
+    PLB : PLY : PLX : PLP 
     RTL 
 
 
 InitialiseHUD_GameLoading:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W #$5800 : STA.W $2116 
     LDA.W #$0080 : STA.W $2115 
@@ -3304,16 +3104,12 @@ InitialiseHUD_GameLoading:
     LDX.W #$1400 
     JSR.W ToggleHUDItemHighlight 
     JSL.L HandleHUDTilemap_PausedAndRunning 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 HandleHUDTilemap_PausedAndRunning:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$20 
     STZ.B $02 
     REP #$30 
@@ -3340,20 +3136,14 @@ HandleHUDTilemap_PausedAndRunning:
     LDA.W $09C2 : STA.W $4204 
     SEP #$20 
     LDA.B #$64 : STA.W $4206 
-    PHA 
-    PLA 
-    PHA 
-    PLA 
+    PHA : PLA : PHA : PLA 
     REP #$20 
     LDA.W $4214 : STA.B $14 
     LDA.W $4216 : STA.B $12 
     LDA.W $09C4 : STA.W $4204 
     SEP #$20 
     LDA.B #$64 : STA.W $4206 
-    PHA 
-    PLA 
-    PHA 
-    PLA 
+    PHA : PLA : PHA : PLA 
     REP #$30 
     LDY.W #$0000 
     LDA.W $4214 
@@ -3461,8 +3251,7 @@ HandleHUDTilemap_PausedAndRunning:
     LDA.W #$5820 : STA.B $D0,X 
     INX #2
     STX.W $0330 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -3544,10 +3333,7 @@ DrawThreeHUDDigits:
     STA.W $4204 
     SEP #$20 
     LDA.B #$64 : STA.W $4206 
-    PHA 
-    PLA 
-    PHA 
-    PLA 
+    PHA : PLA : PHA : PLA 
     REP #$20 
     LDA.W $4214 
     ASL A 
@@ -3560,10 +3346,7 @@ DrawTwoHUDDigits:
     STA.W $4204 
     SEP #$20 
     LDA.B #$0A : STA.W $4206 
-    PHA 
-    PLA 
-    PHA 
-    PLA 
+    PHA : PLA : PHA : PLA 
     REP #$20 
     LDA.W $4214 
     ASL A 
@@ -3586,18 +3369,12 @@ Tilemap_HUDDigits:
     dw $2C07,$2C08 
 
 ProcessTimer:
-    PHB 
-    PHK 
-    PLB 
-    PHX 
-    PHY 
+    PHB : PHK : PLB : PHX : PHY 
     LDA.W $0943 : AND.W #$00FF 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
-    PLY 
-    PLX 
-    PLB 
+    PLY : PLX : PLB 
     RTL 
 
 
@@ -3737,9 +3514,7 @@ DecrementTimer:
     db $01,$02,$02,$01,$02,$02,$01,$02,$02,$01,$02,$02,$02,$01,$02,$02 
 
 DrawTimer:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDY.W #Spritemap_Timer_TIME 
     LDA.W #$0000 
     JSR.W DrawTimerSpritemap 
@@ -3757,8 +3532,7 @@ DrawTimer:
 
 
 DrawTwoTimerDigits:
-    PHX 
-    PHA 
+    PHX : PHA 
     AND.W #$00F0 
     LSR #3
     TAX 
@@ -3859,10 +3633,7 @@ Spritemap_Timer_TIME:
     %spritemapEntry(0, $1F0, $F8, 0, 0, 3, 5, $1F4)
 
 StartGameplay:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     SEI 
     STZ.W $420B 
@@ -3911,8 +3682,7 @@ StartGameplay:
     db $08,$08 
     dw PLMEntries_enableSoundsIn20Frames_F0FramesIfCeres 
     LDA.W #DoorTransitionFunction_FadeInTheScreen_and_RunEnemies_Finish : STA.W $099C 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -3923,12 +3693,10 @@ HandleMusicQueueFor20Frames:
     LDX.B #$14 
 
 .loop:
-    PHX 
-    PHP 
+    PHX : PHP 
     JSL.L HandleMusicQueue 
     JSL.L WaitForNMI 
-    PLP 
-    PLX 
+    PLP : PLX 
     DEX 
     BNE .loop 
     JSL.L DisableNMI 
@@ -3937,10 +3705,7 @@ HandleMusicQueueFor20Frames:
 
 
 ResumeGameplay:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     SEI 
     STZ.W $420B 
@@ -3952,8 +3717,7 @@ ResumeGameplay:
     JSL.L Load_Room_PLM_Graphics 
     JSL.L EnableNMI 
     JSL.L EnableHVCounterInterrupts 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -4100,8 +3864,7 @@ CalculateLayer2XPosition:
     STA.W $4202 
     LDA.W $0911 : STA.W $4203 
     STZ.W $0934 
-    PHA 
-    PLA 
+    PHA : PLA 
     LDA.W $4217 : STA.W $0933 
     LDA.W $0912 : STA.W $4203 
     REP #$20 
@@ -4133,8 +3896,7 @@ CalculateLayer2YPosition:
     STA.W $4202 
     LDA.W $0915 : STA.W $4203 
     STZ.W $0934 
-    PHA 
-    PLA 
+    PHA : PLA 
     LDA.W $4217 : STA.W $0933 
     LDA.W $0916 : STA.W $4203 
     REP #$20 
@@ -4164,10 +3926,7 @@ CalculateBGScrolls:
 
 
 CalculateBGScrolls_UpdateBGGraphics_WhenScrolling:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W CalculateBGScrolls 
     BRA UpdateBGGraphics_WhenScrolling 
@@ -4179,10 +3938,7 @@ Calc_Layer2Position_BGScrolls_UpdateBGGraphics_WhenScrolling:
 
 
 .continue:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0911 : CLC : ADC.W $091D : STA.B $B1 
     LDA.W $0915 : CLC : ADC.W $091F : STA.B $B3 
@@ -4275,8 +4031,7 @@ UpdateBGGraphics_WhenScrolling:
     JSR.W UpdateBackgroundDataRow 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -4325,8 +4080,7 @@ Calculate_BGScroll_LayerPositionBlocks:
 
 
 HandleScrollZones_HorizontalAutoscrolling:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.W $0A78 
     ORA.W $0A79 
@@ -4335,8 +4089,7 @@ HandleScrollZones_HorizontalAutoscrolling:
 
 
   + LDA.B #$8F 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $0911 : STA.W $0939 
     BPL + 
@@ -4417,18 +4170,15 @@ HandleScrollZones_HorizontalAutoscrolling:
   + STA.W $0911 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 HandleScrollZones_ScrollingRight:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.B #$8F 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $0911 : STA.W $0939 
     LDA.W $0B0A 
@@ -4464,18 +4214,15 @@ HandleScrollZones_ScrollingRight:
   + STA.W $0911 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 HandleScrollZones_ScrollingLeft:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.B #$8F 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $0911 : STA.W $0939 
     CMP.W $0B0A 
@@ -4506,14 +4253,12 @@ HandleScrollZones_ScrollingLeft:
   + STA.W $0911 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 HandleScrollZones_VerticalAutoscrolling:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.W $0A78 
     ORA.W $0A79 
@@ -4522,8 +4267,7 @@ HandleScrollZones_VerticalAutoscrolling:
 
 
   + LDA.B #$8F 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDY.W #$0000 
     SEP #$20 
@@ -4623,18 +4367,15 @@ HandleScrollZones_VerticalAutoscrolling:
     STA.W $0915 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 HandleScrollZones_ScrollingDown:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.B #$8F 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $0915 : STA.W $0939 
     LDY.W #$0000 
@@ -4680,18 +4421,15 @@ HandleScrollZones_ScrollingDown:
   + STA.W $0915 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 HandleScrollZones_ScrollingUp:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.B #$8F 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $0915 : STA.W $0939 
     CMP.W $0B0E 
@@ -4722,8 +4460,7 @@ HandleScrollZones_ScrollingUp:
   + STA.W $0915 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -4810,8 +4547,7 @@ UpdateLevelBackgroundDataColumn:
     STY.W $0937 
     SEP #$20 
     LDA.B #$7E 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$20 
     PHX 
     LDY.W #$0000 
@@ -4869,8 +4605,7 @@ UpdateLevelBackgroundDataColumn:
 .return:
     PLX 
     INC.W $0962,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -4945,8 +4680,7 @@ UpdateBackgroundLevelDataRow:
     STY.W $0937 
     SEP #$20 
     LDA.B #$7E 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$20 
     PHX 
     LDY.W #$0000 
@@ -5004,8 +4738,7 @@ UpdateBackgroundLevelDataRow:
 .return:
     PLX 
     INC.W $0970,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -5115,10 +4848,7 @@ UpdateBGScrollOffsets:
 
 
 DoorTransitionScrolling:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0791 : AND.W #$0003 
     ASL A 
@@ -5131,8 +4861,7 @@ DoorTransitionScrolling:
     TSB.W $0931 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -5398,13 +5127,11 @@ Decompression_HardcodedDestination:
     LDA.B [$44],Y : STA.B $4D 
 
 Decompression_VariableDestination:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     REP #$10 
     LDA.B $49 
-    PHA 
-    PLB 
+    PHA : PLB 
     STZ.B $50 
     LDY.W #$0000 
 
@@ -5421,8 +5148,7 @@ Decompression_VariableDestination:
     STA.B $4A 
     CMP.B #$FF 
     BNE + 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -5589,8 +5315,7 @@ Decompression_VariableDestination:
     SEP #$20 
 
 .loopDictionaryCopy:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDY.B $4A 
     LDA.B [$4C],Y 
     INY 
@@ -5630,24 +5355,18 @@ Decompression_VariableDestination:
 
 SourceBankOverflowCorrection:
     LDX.W #$8000 
-    PHA 
-    PHB 
-    PLA 
+    PHA : PHB : PLA 
     INC A 
-    PHA 
-    PLB 
-    PLA 
+    PHA : PLB : PLA 
     RTS 
 
 
 DecompressionToVRAM:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$10 
     SEP #$20 
     LDA.B $49 
-    PHA 
-    PLB 
+    PHA : PLB 
     STZ.B $50 
     LDY.B $4C 
 
@@ -5664,8 +5383,7 @@ DecompressionToVRAM:
     STA.B $4A 
     CMP.B #$FF 
     BNE + 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -5722,8 +5440,7 @@ DecompressionToVRAM:
     JSR.W SourceBankOverflowCorrection 
 
   + STX.B $47 
-    PLX 
-    PHA 
+    PLX : PHA 
     TYA 
     LSR A 
     PLA 
@@ -5917,8 +5634,7 @@ DecompressionToVRAM:
     LSR A 
     STA.L $002116 
     SEP #$20 
-    PLA 
-    PHA 
+    PLA : PHA 
     TYA 
     LSR A 
     PLA 
@@ -6219,10 +5935,7 @@ Tilemap_FailedSRAMMappingCheck:
     dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F 
 
 LoadFromLoadStation:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W #$0001 : STA.W $1E75 
     LDA.W $079F 
@@ -6249,13 +5962,11 @@ LoadFromLoadStation:
     STZ.B $B3 
     SEP #$20 
     LDA.B #$8F 
-    PHA 
-    PLB 
+    PHA : PLB 
     LDX.W $079B 
     LDA.W $0001,X : STA.W $079F 
     STZ.W $05F7 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -6890,10 +6601,7 @@ LoadStations_Debug:
 
 
 SetDebugElevatorAsUsed:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $079F 
     ASL A 
@@ -6910,8 +6618,7 @@ SetDebugElevatorAsUsed:
     LDA.W $0002,Y 
     TAX 
     LDA.W $0003,Y : ORA.L $7ED8F8,X : STA.L $7ED8F8,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 

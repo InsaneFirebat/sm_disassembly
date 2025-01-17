@@ -284,8 +284,7 @@ Handle_Samus_AnimationDelay:
     SEP #$20 
     PHB 
     LDA.B #$91 : STA.B $02 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDY.W $0A96 
     LDA.W $0A1C 
@@ -311,8 +310,7 @@ Handle_Samus_AnimationDelay:
     CLC : ADC.W $0A9C : STA.W $0A94 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -544,8 +542,7 @@ Handle_NormalAnimationDelay:
     SEP #$20 
     PHB 
     LDA.B #$91 : STA.B $02 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $0B3C : BEQ .return 
     LDA.W $0A1F : AND.W #$00FF 
@@ -566,8 +563,7 @@ Handle_NormalAnimationDelay:
 .return:
     LDA.B [$00],Y : AND.W #$00FF 
     CLC : ADC.W $0A9C : STA.W $0A94 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -576,8 +572,7 @@ Handle_SpeedBooster_AnimationDelay:
     SEP #$20 
     PHB 
     LDA.B #$91 : STA.B $02 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $0B3C : BNE .checkPressingRun 
     JMP.W .finish 
@@ -641,18 +636,15 @@ Handle_SpeedBooster_AnimationDelay:
     LDA.B [$00],Y : AND.W #$00FF 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
 Draw_Samus:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.B #$92 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $18AA : BNE + 
     LDA.W $18A8 : BEQ + 
@@ -686,8 +678,7 @@ Draw_Samus:
 
 .invisible:
     JSL.L Set_SamusTilesDefinitions_ForCurrentAnimation 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -1042,12 +1033,10 @@ DrawSamusEcho:
 
 
 DrawShinesparkCrashEchoCircle:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.B #$92 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     TXY 
     LDA.W $05B6 : BIT.W #$0001 
@@ -1058,8 +1047,7 @@ DrawShinesparkCrashEchoCircle:
   + LDA.W $0A1C 
     ASL A 
     TAX 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.L SamusSpritemapTableIndices_TopHalf,X : CLC : ADC.W $0A96 : PHA 
     TXA 
     ASL #2
@@ -1071,17 +1059,14 @@ DrawShinesparkCrashEchoCircle:
     BMI + 
 
 .pullReturn:
-    PLA 
-    PLY 
-    PLX 
+    PLA : PLY : PLX 
     BRA .return 
 
 
   + TAY 
     PLA 
     JSL.L AddSamusSpritemapToOAM 
-    PLY 
-    PLX 
+    PLY : PLX 
     STX.B $24 
     LDA.W $0A1F : AND.W #$00FF 
     ASL A 
@@ -1100,8 +1085,7 @@ DrawShinesparkCrashEchoCircle:
     JSL.L AddSamusSpritemapToOAM 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -1124,10 +1108,7 @@ DrawShinesparkCrashEchoProjectiles:
 
 
 Draw_Samus_Starting_Death_Animation:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A94 
     DEC A 
@@ -1142,18 +1123,15 @@ Draw_Samus_Starting_Death_Animation:
 
 .drawDeath:
     JSL.L Draw_Samus_During_Death_Animation 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Draw_Samus_During_Death_Animation:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.B #$92 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $0A1C 
     ASL A 
@@ -1181,18 +1159,15 @@ Draw_Samus_During_Death_Animation:
 
 .setDefinitions:
     JSL.L Set_SamusTilesDefinitions_ForCurrentAnimation 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Draw_Inanimate_Samus:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.B #$92 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $0A1C 
     ASL A 
@@ -1216,8 +1191,7 @@ Draw_Inanimate_Samus:
 
 .setDefinitions:
     JSL.L Set_SamusTilesDefinitions_ForCurrentAnimation 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -1310,8 +1284,7 @@ AtmosphericEffects_1_2_FootstepSplashes:
 
 
 .return:
-    PLY 
-    PLY 
+    PLY : PLY 
     RTS 
 
 
@@ -1360,8 +1333,7 @@ AddAtmosphericSpritemapToOAM:
 
 
 .return:
-    PLA 
-    PLY 
+    PLA : PLY 
     RTS 
 
 
@@ -1491,9 +1463,7 @@ CalculateUsualSamusSpritemapPosition:
 
 
 CalculateSamusSpritemapPosition_Standing:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     TYA 
     LSR A 
     CMP.W #$0000 
@@ -1538,9 +1508,7 @@ Goto_CalculateUsualSamusSpritemapPosition:
 
 
 CalculateSamusSpritemapPosition_TransitionPoses:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     TYA 
     LSR A 
     CMP.W #$0035 
@@ -1568,9 +1536,7 @@ CalculateSamusSpritemapPosition_TransitionPoses:
     db $05,$04,$05,$04,$00,$00,$00,$00 
 
 CalculateSamusSpritemapPosition_Shinespark_CF_Drained:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     TYA 
     LSR A 
     CMP.W #$00E8 
@@ -1614,17 +1580,13 @@ CalculateSamusSpritemapPosition_Shinespark_CF_Drained:
     db $FB,$00,$00,$04,$FD,$FB,$FD,$04,$00,$00,$04,$00,$00,$04,$00,$00 
 
 SetLiquidPhysicsType:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSL.L Get_Samus_BottomTop_Boundary 
     LDA.W $196E : AND.W #$000F 
     TAX 
     JSR.W (.pointers,X) 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2509,10 +2471,7 @@ SamusMovementHandler_SamusDrained_Falling:
 
 
 Main_Scrolling_Routine:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0CF8 : BEQ .normalScrolling 
     LDA.W $0AF6 : BMI .grappleScrollVerticalEnd 
@@ -2566,8 +2525,7 @@ Main_Scrolling_Routine:
     LDA.W $0AF8 : STA.W $0B12 
     LDA.W $0AFA : STA.W $0B14 
     LDA.W $0AFC : STA.W $0B16 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2897,10 +2855,7 @@ MoveSamus_Up_NoCollisionDetection:
 
 
 Make_Samus_Jump:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $09A2 : BIT.W #$0020 
     BNE .normalGravity 
@@ -2954,16 +2909,12 @@ Make_Samus_Jump:
   + STZ.W $0A9E 
     STZ.W $0AA0 
     LDA.W #$0001 : STA.W $0B36 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Make_Samus_WallJump:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $09A2 : BIT.W #$0020 
     BNE .normalGravity 
@@ -3017,16 +2968,12 @@ Make_Samus_WallJump:
   + STZ.W $0A9E 
     STZ.W $0AA0 
     LDA.W #$0001 : STA.W $0B36 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 SetSamusYSpeedForKnockback:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $09A2 : BIT.W #$0020 
     BNE .inAir 
@@ -3063,8 +3010,7 @@ SetSamusYSpeedForKnockback:
     STZ.W $0A9E 
     STZ.W $0AA0 
     LDA.W #$0001 : STA.W $0B36 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -3353,10 +3299,7 @@ Determine_Samus_YAcceleration:
 
 
 Grapple_WallJump_Check:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W #$FFFF : STA.W $0E1C 
     LDA.W $0A1E : AND.W #$00FF 
@@ -3414,22 +3357,19 @@ Grapple_WallJump_Check:
 
 .wallJumpEnemy:
     LDA.B $16 : STA.W $0E1C 
-    PLB 
-    PLP 
+    PLB : PLP 
     SEC 
     RTL 
 
 
 .returnCarrySet:
-    PLB 
-    PLP 
+    PLB : PLP 
     SEC 
     RTL 
 
 
 .returnCarryClear:
-    PLB 
-    PLP 
+    PLB : PLP 
     CLC 
     RTL 
 
@@ -4488,11 +4428,9 @@ SamusMovement_Shinespark_CF_Drained_DamagedByMotherBrain:
 
 
 DisableMinimap_MarkBossRoomTilesExplored:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
-    PHK 
-    PLB 
+    PHK : PLB 
     LDA.W #$0001 : STA.W $05F7 
     LDA.W #$001F 
     ORA.W #$2C00 
@@ -4513,8 +4451,7 @@ DisableMinimap_MarkBossRoomTilesExplored:
     BEQ + 
     DEX #4
     BPL .loopBossID 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -4531,8 +4468,7 @@ DisableMinimap_MarkBossRoomTilesExplored:
 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -4574,9 +4510,7 @@ DisableMinimap_MarkBossRoomTilesExplored:
     dw $0000,$0000,$0000,$0100,$FFFF 
 
 MarkMapTilesExplored:
-    PHP 
-    PHX 
-    PHY 
+    PHP : PHX : PHY 
     LDA.B $12 : AND.W #$FF00 
     XBA 
     CLC : ADC.W $07A1 : PHA 
@@ -4598,9 +4532,7 @@ MarkMapTilesExplored:
     CLC : ADC.B $14 : TAX 
     SEP #$20 
     LDA.W $07F7,X : ORA.W Bitmasks_1bit_90AC04,Y : STA.W $07F7,X 
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTS 
 
 
@@ -4800,8 +4732,7 @@ Update_HUD_Minimap_Tilemap:
     ASL.B $26 
     BCC .row0BlankTile 
     LDA.B [$00],Y 
-    PLP 
-    PHP 
+    PLP : PHP 
     BNE .row0NotBlank 
 
 .row0BlankTile:
@@ -4820,8 +4751,7 @@ Update_HUD_Minimap_Tilemap:
   + ASL.B $28 
     BCC .row1BlankTile 
     LDA.B [$03],Y 
-    PLP 
-    PHP 
+    PLP : PHP 
     BNE .row1NotBlank 
 
 .row1BlankTile:
@@ -4847,8 +4777,7 @@ Update_HUD_Minimap_Tilemap:
   + ASL.B $2A 
     BCC .row2BlankTile 
     LDA.B [$06],Y 
-    PLP 
-    PHP 
+    PLP : PHP 
     BNE .row2NotBlank 
 
 .row2BlankTile:
@@ -4891,15 +4820,13 @@ Update_HUD_Minimap_Tilemap:
 
 
 MarkMapTileAboveSamusExplored:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.B $1E 
     SEP #$20 
     LDY.B $20 
     LDA.W $07F3,X : ORA.W Bitmasks_1bit_90AC04,Y : STA.W $07F3,X 
     REP #$20 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -5042,10 +4969,7 @@ Check_if_Samus_Can_Fire_Missile:
 
 
 Update_Beam_Tiles_and_Palette:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $09A6 : AND.W #$0FFF 
     ASL A 
@@ -5066,10 +4990,7 @@ Update_Beam_Tiles_and_Palette:
 
 
 Load_Beam_Palette_Setup:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     AND.W #$0FFF 
     ASL A 
@@ -5089,20 +5010,15 @@ Load_Beam_Palette_withStackPrepped:
     INY #2
     CPY.W #$0020 
     BMI .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Load_Beam_Palette_External:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W Load_Beam_Palette 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -5222,18 +5138,14 @@ Clear_Projectile:
 
 
 Kill_Projectile:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0C19,X : AND.W #$000F 
     BEQ .beam 
     CMP.W #$0003 
     BMI .missile 
     JSL.L Clear_Projectile 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -5248,8 +5160,7 @@ Kill_Projectile:
 .missile:
     JSL.L PartOfKillProjectile_QueueSFX_SetInstruction 
     LDA.W #RTS_90B169 : STA.W $0C68,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -5697,10 +5608,7 @@ DeleteProjectileIfTooFarOffScreen:
 
 
 InitializeBeamVelocities:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDX.B $14 
     LDA.W $0C18,X : AND.W #$000F 
@@ -5724,8 +5632,7 @@ InitializeBeamVelocities:
     LDX.B $14 
     STX.B $12 
     JSR.W InitializeProjectileVelocities 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -5886,8 +5793,7 @@ InitializeProjectileVelocities_UpLeft:
 AccelerateMissile:
     PHP 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0C7C,X : AND.W #$FF00 
     BNE .initialized 
     LDA.W $0C7C,X : CLC : ADC.W MissileInitializedBitset : STA.W $0C7C,X 
@@ -5920,9 +5826,7 @@ AccelerateMissile:
     LDA.W $0BF0,X : CLC : ADC.W $0002,Y : STA.W $0BF0,X 
 
 .return:
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTS 
 
 
@@ -6279,8 +6183,7 @@ Spawn_ProjectileTrail:
   + ASL A 
     TAX 
     PEA.W $7E7E 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDY.W #$0022 
 
 .loop:
@@ -6307,10 +6210,8 @@ Spawn_ProjectileTrail:
 
 
 HandleProjectileTrails:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W $0A78 : BEQ .notFrozen 
     JMP.W .timeIsFrozen 
 
@@ -7159,10 +7060,7 @@ InitialWaveBeamBlockCollision_Left:
 
 
 ProjectileReflection:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PHX 
     LDX.B $14 
@@ -7198,9 +7096,7 @@ ProjectileReflection:
     LDA.W #$00F0 : STA.W $0C7C,X 
 
 .return:
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTL 
 
 
@@ -7580,16 +7476,10 @@ HandlePowerBomb:
 .explosion:
     LDA.W $0B64,X : STA.W $0CE2 
     LDA.W $0B78,X : STA.W $0CE4 
-    PHX 
-    PHY 
-    PHP 
-    PHB 
+    PHX : PHY : PHP : PHB 
     JSL.L Enable_HDMAObjects 
     JSL.L Spawn_PowerBombExplosion 
-    PLB 
-    PLP 
-    PLY 
-    PLX 
+    PLB : PLP : PLY : PLX 
     LDA.W #$FFFF : STA.W $0C7C,X 
     BRA .return 
 
@@ -8672,8 +8562,7 @@ Math_90CC39:
     INC A 
 
   + STA.B $16 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTS 
 
 
@@ -8996,10 +8885,7 @@ ProjectilePreInstruction_IceSBA_End:
 
 
 TriggerShinesparkWindup:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W #SamusMovementHandler_ShinesparkWindup : STA.W $0A58 
     LDA.W #$0001 : STA.W $0B36 
@@ -9030,8 +8916,7 @@ TriggerShinesparkWindup:
     JSR.W ClearFlareAnimationState 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -9634,16 +9519,10 @@ SamusMovementHandler_CrystalFlash_RaiseSamus_GenerateBubble:
     STZ.W $0CEE 
     LDA.W $0AF6 : STA.W $0CE2 
     LDA.W $0AFA : STA.W $0CE4 
-    PHX 
-    PHY 
-    PHP 
-    PHB 
+    PHX : PHY : PHP : PHB 
     JSL.L Enable_HDMAObjects 
     JSL.L Spawn_CrystalFlash_HDMAObjects 
-    PLB 
-    PLP 
-    PLY 
-    PLX 
+    PLB : PLP : PLY : PLX 
 
 .return:
     RTS 
@@ -10899,15 +10778,11 @@ SamusTimerHackHandler_DrawTimer:
 
 
 SetSamusToBePushedOutOfCeresRidleysWay:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W #RTS_90E90E : STA.W $0A58 
     LDA.W #SamusTimerHackHandler_PushSamusOutOfCeresRidleysWay : STA.W $0A5A 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -11018,10 +10893,7 @@ PushingSamusOutOfCeresRidleysWay_Rightwards:
 
 
 SetSamusIntoTheGrabbedByDraygonPose:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     BIT.W #$0001 
     BEQ .facingLeft 
@@ -11050,8 +10922,7 @@ SetSamusIntoTheGrabbedByDraygonPose:
     STZ.W $0A2E 
     STZ.W $0A30 
     STZ.W $0A32 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -11084,13 +10955,9 @@ SamusTimerHackHandler_GrabbedByDraygon:
 
 
 ReleaseSamusFromDraygon_external:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     JSR.W ReleaseSamusFromDraygon 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -11135,18 +11002,14 @@ Merge:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_90E35A:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W #$00C5 : STA.W $0A2A 
     STZ.W $0A30 
     LDA.W #RTS_90E90E : STA.W $0A58 
     LDA.W #RTS_90E37E : STA.W $0A5A 
     LDA.W #RTS_90EBF2 : STA.W $0A5C 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -11155,18 +11018,14 @@ RTS_90E37E:
 
 
 UNUSED_PushMorphBallSamusOutOfCeresRidleysWay_90E37F:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W #$0003 : STA.W $0B2E 
     STZ.W $0B2C 
     LDA.W #$0001 : STA.W $0A62 
     LDA.W #UNUSED_SamusTimerHackHandler_PushMorphBallCeresRidley_90E3A3 : STA.W $0A5A 
     LDA.W #SamusDrawingHandler_Default : STA.W $0A5C 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -11189,10 +11048,7 @@ UNUSED_SamusTimerHackHandler_PushMorphBallCeresRidley_90E3A3:
 
 
 UNUSED_SetSamusSpecialFalling_90E3CF:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
@@ -11207,23 +11063,18 @@ UNUSED_SetSamusSpecialFalling_90E3CF:
   + STZ.W $0A30 
     LDA.W #RTS_90E90E : STA.W $0A58 
     LDA.W #UNUSED_SamusTimerHackHandler_SpecialFalling_90E41B : STA.W $0A5A 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 UNUSED_ClearSamusSpecialFalling_90E400:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     STZ.W $0B2C 
     STZ.W $0B2E 
     LDA.W #SamusMovementHandler_Normal : STA.W $0A58 
     LDA.W #RTS_90E90E : STA.W $0A5A 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -11527,10 +11378,7 @@ SamusCurrentStateHandler:
 
 
 SamusCurrentStateHandler_Normal:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W #$FFFF : STA.W $0A28 
     STA.W $0A2A 
@@ -11545,16 +11393,12 @@ SamusCurrentStateHandler_Normal:
     JSL.L SamusBlockInsideHandling 
     JSR.W HandleHUDSpecificBehaviorAndProjectiles 
     JSR.W ResetMovementAndPoseChangeVariables 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 SamusCurrentStateHandler_Demo:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W #$FFFF : STA.W $0A28 
     STA.W $0A2A 
@@ -11573,21 +11417,16 @@ SamusCurrentStateHandler_Demo:
     JSL.L SamusBlockInsideHandling 
     JSR.W HandleHUDSpecificBehaviorAndProjectiles 
     JSR.W ResetMovementAndPoseChangeVariables 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 SamusCurrentStateHandler_SamusIsLocked:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W Handle_Projectiles 
     JSR.W ResetMovementAndPoseChangeVariables 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -11596,10 +11435,7 @@ SamusNewStateHandler:
 
 
 SamusNewStateHandler_Normal:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W DebugCommandHandler 
     STZ.W $0A6E 
@@ -11614,8 +11450,7 @@ SamusNewStateHandler_Normal:
     JSR.W HandlePeriodicDamageToSamus 
     JSR.W PauseCheck 
     JSR.W LowEnergyCheck 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
     LDA.W $09E6 ; Demo recorder. Remove the three instructions above and set DebugConst_DemoRecorder at $808002 to enable
@@ -11635,8 +11470,7 @@ SamusNewStateHandler_Normal:
 
 .togglePlacementMode:
     JSR.W HandleSamusPlacementModeToggles 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -11672,10 +11506,7 @@ HandleSamusPlacementModeToggles:
 
 
 SamusNewStateHandler_Debug:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.B $91 : BIT.W #$0080 
     BEQ .return 
@@ -11685,16 +11516,12 @@ SamusNewStateHandler_Debug:
     STZ.W $0A78 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 SamusNewStateHandler_TitleDemo:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     STZ.W $0A6E 
     JSR.W Execute_SamusMovementHandler 
@@ -11709,16 +11536,12 @@ SamusNewStateHandler_TitleDemo:
     LDA.W $0A16 : STA.B $8F 
     LDA.W $0A90 : STA.W $0DFE 
     LDA.W $0A92 : STA.W $0E00 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 SamusNewStateHandler_IntroDemo:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     STZ.W $0A6E 
     JSR.W Execute_SamusMovementHandler 
@@ -11731,16 +11554,12 @@ SamusNewStateHandler_IntroDemo:
     LDA.W $0A16 : STA.B $8F 
     LDA.W $0A90 : STA.W $0DFE 
     LDA.W $0A92 : STA.W $0E00 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 SamusNewStateHandler_SamusAppearance:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W SetSamusRadius 
     JSL.L Update_Minimap 
@@ -11763,16 +11582,12 @@ SamusNewStateHandler_SamusAppearance:
     LDA.W #SamusNewStateHandler_Normal : STA.W $0A44 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 SamusNewStateHandler_Ceres:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSL.L SamusNewStateHandler_Normal 
     LDA.W $0A5A 
@@ -11784,19 +11599,14 @@ SamusNewStateHandler_Ceres:
     LDA.W #$0023 : STA.W $0998 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 RTL_90E8CD:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -11809,42 +11619,30 @@ RTL_90E8D9:
 
 
 SamusNewStateHandler_SamusIsLocked:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     STZ.W $0A6E 
     JSL.L Update_Minimap 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 SamusNewStateHandler_RidingElevator:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     STZ.W $0A6E 
     JSR.W Execute_SamusMovementHandler 
     JSL.L Update_Minimap 
     JSR.W AnimateSamus 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 SamusNewStateHandler_EnteringExitingGunship:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W LowEnergyCheck 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -12142,17 +11940,13 @@ ResetMovementAndPoseChangeVariables:
 
 
 DrawSamusAndProjectiles:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W DrawSamusSprites 
     JSL.L DrawProjectiles 
     JSR.W HandleSamus_AutoJumpTimer_HurtFlashCounter_PrevInputEnergy 
     JSR.W Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -12744,10 +12538,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Run_Samus_Command:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PHX 
     AND.W #$001F 
@@ -12763,9 +12554,7 @@ Run_Samus_Command:
     STZ.W $0A32 
 
 .return:
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTL 
 
 

@@ -3,17 +3,13 @@ org $918000
 
 
 NormalSamusPoseInputHandler:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A1F : AND.W #$00FF 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -468,10 +464,7 @@ TranslateCustomControllerBindingsToDefaultBindings:
 
 
 HandleTransitionTableLookupFailure:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W Set_ProspectivePoseChangeCommand 
     BCC .consultPoseDefinition 
@@ -491,8 +484,7 @@ HandleTransitionTableLookupFailure:
     STA.W $0A28 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -559,16 +551,12 @@ Clear_DemoInput_RAM:
     STZ.W $0A8C 
     STZ.W $0A8E 
     STZ.W $0A88 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
 Load_DemoInputObject:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PHX 
     STA.W $0A82 
@@ -578,9 +566,7 @@ Load_DemoInputObject:
     LDA.W #$0001 : STA.W $0A7C 
     LDA.W #$0000 : STA.W $0A80 
     JSR.W ($0000,X) 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTL 
 
 
@@ -589,10 +575,7 @@ RTS_9183BF:
 
 
 DemoInputObjectHandler:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     BIT.W $0A88 
     BPL .return 
@@ -606,8 +589,7 @@ DemoInputObjectHandler:
     STA.W $0A8E 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -684,10 +666,7 @@ Instruction_DemoInputObject_TimerInY:
 
 
 RecordDemoInputFrame:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A8A : AND.W #$7FFF : STA.W $0E24 
     LDA.W #$00E0 : STA.W $0E20 
@@ -720,16 +699,12 @@ RecordDemoInputFrame:
     STA.W $0A8A 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Pause_Terminate_Reset_DemoRecorder:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.B $91 : BIT.W #$0040 
     BEQ .checkA 
@@ -754,8 +729,7 @@ Pause_Terminate_Reset_DemoRecorder:
     LDA.W #$0000 : STA.W $0A8A 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -847,13 +821,11 @@ PreInstruction_DemoInput_BabyMetroidDiscovery_StopAndLook:
 
 
 Instruction_EndDemoInput:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #RTL_90E8CD : STA.W $0A42 
     STA.W $0A44 
     JSL.L Disable_DemoInput 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -873,8 +845,7 @@ UNUSED_InstList_DemoInput_OldMotherBrainFight_9186B8:
     dw Instruction_DemoInputObject_Delete 
 
 UNUSED_Instruction_EndDemoInputWithSamusFacingLeft_9186FE:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #SamusCurrentStateHandler_SamusIsLocked : STA.W $0A42 
     LDA.W #$0002 : STA.W $0A1C 
     JSL.L InitializeSamusPose_1 
@@ -885,15 +856,13 @@ UNUSED_Instruction_EndDemoInputWithSamusFacingLeft_9186FE:
     LDA.W $0A1E : STA.W $0A22 
     JSL.L Disable_DemoInput 
     LDA.W #RTS_90E90E : STA.W $0A60 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_EndDemoInputWithSamusFacingLeft:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #SamusCurrentStateHandler_SamusIsLocked : STA.W $0A42 
     LDA.W #$0002 : STA.W $0A1C 
     JSL.L InitializeSamusPose_1 
@@ -904,8 +873,7 @@ Instruction_EndDemoInputWithSamusFacingLeft:
     LDA.W $0A1E : STA.W $0A22 
     JSL.L Disable_DemoInput 
     LDA.W #RTS_90E90E : STA.W $0A60 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -3923,10 +3891,7 @@ PoseDefinitions_FC:
     db $04,$0F,$FF,$06,$03,$00,$15,$00 
 
 Calc_Xray_HDMADataTable_OffScreen:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     TXA 
     XBA 
@@ -4010,8 +3975,7 @@ Calc_Xray_HDMADataTable_OffScreen:
     LDA.W AbsoluteTangentTable,X : STA.B $20 
     TYX 
     JSR.W (.pointers,X) 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -4954,10 +4918,7 @@ Calc_Xray_HDMADataTable_OffScreen_HorizontalLine:
 
 
 Calc_Xray_HDMADataTable_OnScreen:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     TXA 
     XBA 
@@ -5042,8 +5003,7 @@ Calc_Xray_HDMADataTable_OnScreen:
     TYX 
     STZ.W $0D1E 
     JSR.W (.pointers,X) 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -5682,10 +5642,7 @@ AbsoluteTangentTable:
     dw $0000 
 
 XrayHandler:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A78 : BNE .return 
     LDA.B $8B : BIT.W $09B6 
@@ -5697,8 +5654,7 @@ XrayHandler:
     dw InstList_HDMAObject_Xray_0 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -6265,9 +6221,7 @@ CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockDown:
 
 
 LoadBlockToXrayBG2Tilemap:
-    PHP 
-    PHX 
-    PHY 
+    PHP : PHX : PHY 
     REP #$30 
     STA.B $28 
     LDA.W $0911 
@@ -6300,9 +6254,7 @@ LoadBlockToXrayBG2Tilemap:
     JSR.W CopyYFlippedBlockToXrayBG2Tilemap 
 
 .return:
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTL 
 
 
@@ -6510,8 +6462,7 @@ PreInstruction_HDMAObject_XraySetup:
 .setBackdropColorEnd:
     TXA 
     TSB.W $1986 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
@@ -6523,15 +6474,11 @@ PreInstruction_HDMAObject_XraySetup:
 
 
 XraySetup_8_BackdropColor:
-    PHP 
-    PHX 
-    PHY 
+    PHP : PHX : PHY 
     SEP #$20 
     LDA.B #$63 : STA.L $7EC000 
     LDA.B #$0C : STA.L $7EC001 
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTL 
 
 
@@ -6911,10 +6858,7 @@ PLPRTL_91D4E2:
 
 
 VariaSuit_Pickup:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$30 
     LDA.B #$30 : STA.W $0DF0 
     LDA.B #$50 : STA.W $0DF1 
@@ -6976,8 +6920,7 @@ notSpinning:
     JSL.L Spawn_HDMAObject 
     db $41,$26 
     dw InstList_HDMAObject_Window1Position_VariaSuitPickup 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -6995,10 +6938,7 @@ InstList_HDMAObject_Window1Position_VariaSuitPickup:
     dw Instruction_HDMAObject_Delete 
 
 GravitySuit_Pickup:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$30 
     LDA.B #$30 : STA.W $0DF0 
     LDA.B #$49 : STA.W $0DF1 
@@ -7060,8 +7000,7 @@ GravitySuit_Pickup:
     JSL.L Spawn_HDMAObject 
     db $41,$26 
     dw InstList_HDMAObject_Window1Position_GravitySuitPickup 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -7079,10 +7018,7 @@ InstList_HDMAObject_Window1Position_GravitySuitPickup:
     dw Instruction_HDMAObject_Delete 
 
 InitializeSuitPickupHDMA:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$30 
     LDA.B #$13 : STA.B $69 
     LDA.B #$13 : STA.B $6C 
@@ -7107,21 +7043,16 @@ InitializeSuitPickupHDMA:
     LDA.W #$9990 ; $7E
     STA.W $0A8F 
     STZ.W $0A91 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 HandleSamusPalette:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A4A : BPL .notHyper 
     JSR.W HandleMiscSamusPalette 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -7142,8 +7073,7 @@ HandleSamusPalette:
 
 .return:
     JSR.W HandleMiscSamusPalette 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -7902,10 +7832,8 @@ HandleCrystalFlashPalette:
     dw SamusPalettes_CrystalFlash_5_bubble 
 
 SetCrystalFlashSamusColors:
-    PHB 
-    PEA.W $9B00 
-    PLB 
-    PLB 
+    PHB : PEA.W $9B00 
+    PLB : PLB 
     LDA.W $0000,Y : STA.L $7EC1C0 
     LDA.W $0002,Y : STA.L $7EC1C2 
     LDA.W $0004,Y : STA.L $7EC1C4 
@@ -7921,10 +7849,8 @@ SetCrystalFlashSamusColors:
 
 
 SetCrystalFlashBubbleColors:
-    PHB 
-    PEA.W $9B00 
-    PLB 
-    PLB 
+    PHB : PEA.W $9B00 
+    PLB : PLB 
     LDA.W $0000,Y : STA.L $7EC1D4 
     LDA.W $0002,Y : STA.L $7EC1D6 
     LDA.W $0004,Y : STA.L $7EC1D8 
@@ -8005,15 +7931,11 @@ UNUSED_91DD32:
     db $01,$00,$01,$00,$01,$00,$01,$00,$01,$00 
 
 UNUSED_SetSamusPaletteToSolidWhite_91DD4C:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDX.W #UNUSED_SamusPalettes_9B9500 
     JSR.W Load20BytesOfSamusPaletteInX 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -8021,10 +7943,8 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Load20BytesOfSamusPaletteInX:
     PHP 
     REP #$30 
-    PHB 
-    PEA.W $9B00 
-    PLB 
-    PLB 
+    PHB : PEA.W $9B00 
+    PLB : PLB 
     LDA.W $0000,X : STA.L $7EC180 
     LDA.W $0002,X : STA.L $7EC182 
     LDA.W $0004,X : STA.L $7EC184 
@@ -8041,18 +7961,15 @@ Load20BytesOfSamusPaletteInX:
     LDA.W $001A,X : STA.L $7EC19A 
     LDA.W $001C,X : STA.L $7EC19C 
     LDA.W $001E,X : STA.L $7EC19E 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
 Load20BytesOfSamusTargetPaletteInX:
     PHP 
     REP #$30 
-    PHB 
-    PEA.W $9B00 
-    PLB 
-    PLB 
+    PHB : PEA.W $9B00 
+    PLB : PLB 
     LDA.W $0000,X : STA.L $7EC380 
     LDA.W $0002,X : STA.L $7EC382 
     LDA.W $0004,X : STA.L $7EC384 
@@ -8069,16 +7986,12 @@ Load20BytesOfSamusTargetPaletteInX:
     LDA.W $001A,X : STA.L $7EC39A 
     LDA.W $001C,X : STA.L $7EC39C 
     LDA.W $001E,X : STA.L $7EC39E 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
 Cancel_SpeedBoosting:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0B3C : BEQ .merge 
     STZ.W $0B3C 
@@ -8120,16 +8033,12 @@ Cancel_SpeedBoosting:
     STA.W $0AC2 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 LoadSamusSuitPalette:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $09A2 : BIT.W #$0020 
     BNE .gravitySuit 
@@ -8151,16 +8060,12 @@ LoadSamusSuitPalette:
     JSR.W Load20BytesOfSamusPaletteInX 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 LoadSamusSuitTargetPalette:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $09A2 : BIT.W #$0020 
     BNE .gravitySuit 
@@ -8182,16 +8087,12 @@ LoadSamusSuitTargetPalette:
     JSR.W Load20BytesOfSamusTargetPaletteInX 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Restore_A_Energy_ToSamus:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     STA.B $12 
     LDA.W $09C2 : CLC : ADC.B $12 : STA.W $09C2 
@@ -8211,16 +8112,12 @@ Restore_A_Energy_ToSamus:
     LDA.W $09C4 : STA.W $09C2 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Deal_A_Damage_to_Samus:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PHX 
     STA.B $12 
@@ -8238,9 +8135,7 @@ Deal_A_Damage_to_Samus:
     STZ.W $09C2 
 
 .return:
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTL 
 
 
@@ -8250,10 +8145,7 @@ Deal_A_Damage_to_Samus:
 
 
 Restore_A_Missiles_ToSamus:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     CLC : ADC.W $09C6 : STA.W $09C6 
     CMP.W $09C8 
@@ -8279,16 +8171,12 @@ Restore_A_Missiles_ToSamus:
     LDA.W $09C8 : STA.W $09C6 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Restore_A_SuperMissiles_ToSamus:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     CLC : ADC.W $09CA : STA.W $09CA 
     CMP.W $09CC 
@@ -8297,16 +8185,12 @@ Restore_A_SuperMissiles_ToSamus:
     LDA.W $09CC : STA.W $09CA 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Restore_A_PowerBombs_ToSamus:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     CLC : ADC.W $09CE : STA.W $09CE 
     CMP.W $09D0 
@@ -8315,16 +8199,12 @@ Restore_A_PowerBombs_ToSamus:
     LDA.W $09D0 : STA.W $09CE 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 InitializeSamus:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0DE0 : STA.B $12 
     LDX.W #$0E0B 
@@ -8430,16 +8310,12 @@ InitializeSamus:
 
 .notDemo:
     LDA.W $09C2 : STA.W $0A12 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 XraySetup:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0CCC 
     CMP.W #$0007 
@@ -8481,8 +8357,7 @@ XraySetup:
     BEQ .crouching 
 
 .returnCarryClear:
-    PLB 
-    PLP 
+    PLB : PLP 
     CLC 
     RTL 
 
@@ -8552,8 +8427,7 @@ XraySetup:
     STA.W $0A82 
 
 .returnCarrySet:
-    PLB 
-    PLP 
+    PLB : PLP 
     SEC 
     RTL 
 
@@ -8679,10 +8553,7 @@ Debug_HandleSelectL_B:
 
 
 MakeSamusFaceForward:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PHX 
     LDA.W $09A2 : BIT.W #$0020 
@@ -8737,20 +8608,14 @@ MakeSamusFaceForward:
     STZ.W $0CDE 
     STZ.W $0CE0 
     JSL.L LoadSamusSuitPalette 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTL 
 
 
 DrainedSamusController:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
@@ -8767,10 +8632,7 @@ DrainedSamusController:
     STZ.W $0A32 
 
 .return:
-    PLY 
-    PLX 
-    PLB 
-    PLP 
+    PLY : PLX : PLB : PLP 
     RTL 
 
 
@@ -8901,10 +8763,7 @@ DrainedSamusController_4_SetSamusCrouchingFallingDrainedPose:
 
 
 UpdateSamusPoseDueToChangeOfEquipment:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A1F : AND.W #$00FF 
     ASL A 
@@ -8972,8 +8831,7 @@ UpdateSamusPoseDueToChangeOfEquipment:
     JSL.L QueueSound_Lib3_Max6 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -9213,10 +9071,7 @@ UpdateSamusPoseEquipment_WallJumping:
 
 
 SetProspectiveSamusPoseAccordingToSolidVerticalCollision_PSP:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0DC6 : BEQ .return 
     AND.W #$00FF 
@@ -9225,8 +9080,7 @@ SetProspectiveSamusPoseAccordingToSolidVerticalCollision_PSP:
     JSR.W (.pointers,X) 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -9598,10 +9452,7 @@ CheckIfProspectivePoseRunsIntoAWall:
     dw $00D0,$0004 
 
 UpdateSamusPose:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A2C : BMI .notSuperSpecialProspectivePose 
     PHA 
@@ -9671,8 +9522,7 @@ UpdateSamusPose:
 
 .return:
     STZ.W $0DC6 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -10646,10 +10496,7 @@ SuperSpecialProspectivePoseCmd_8_KnockbackAndTransAnimFinish:
 
 
 HandleSamusPoseChange:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A1C 
     PHA 
@@ -10665,24 +10512,19 @@ HandleSamusPoseChange:
     PLA 
     CMP.W $0A1C 
     BNE .poseChange 
-    PLB 
-    PLP 
+    PLB : PLP 
     CLC 
     RTL 
 
 
 .poseChange:
-    PLB 
-    PLP 
+    PLB : PLP 
     SEC 
     RTL 
 
 
 InitializeSamusPose_1:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A1C 
     ASL #3
@@ -10701,8 +10543,7 @@ InitializeSamusPose_1:
     JSL.L LoadSamusSuitPalette 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -11525,10 +11366,7 @@ InitializeSamusPose_Shinespark_CF_Drained_DamagedMB:
     dw SamusMovementHandler_DiagonalShinespark 
 
 Set_Samus_AnimationFrame_if_PoseChanged:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $09A2 : BIT.W #$0020 
     BNE .normalGravity 
@@ -11580,16 +11418,12 @@ Set_Samus_AnimationFrame_if_PoseChanged:
     CLC : ADC.B $12 : STA.W $0A94 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 PossiblyNoPurpose_91FB8E:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A23 : AND.W #$00FF 
     CMP.W #$0006 
@@ -11606,23 +11440,18 @@ PossiblyNoPurpose_91FB8E:
     LDA.W #$0002 : STA.W $0B36 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 HandleJumpTransition:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A1F : AND.W #$00FF 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 

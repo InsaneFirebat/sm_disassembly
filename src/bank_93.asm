@@ -3,10 +3,7 @@ org $938000
 
 
 InitializeProjectile:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0C04,X : AND.W #$000F 
     ASL A 
@@ -55,16 +52,12 @@ InitializeProjectile:
     LDA.W $0004,Y : AND.W #$00FF : STA.W $0BB4,X 
     LDA.W $0005,Y : AND.W #$00FF : STA.W $0BC8,X 
     LDA.W #$0001 : STA.W $0C54,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 InitializeSuperMissileLink:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0C19,X : AND.W #$000F 
     ASL A 
@@ -80,16 +73,12 @@ InitializeSuperMissileLink:
     INY #2
     LDA.W $0000,Y : STA.W $0C40,X 
     LDA.W #$0001 : STA.W $0C54,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 InitializeBomb:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0C19,X : AND.W #$000F 
     ASL A 
@@ -105,16 +94,12 @@ InitializeBomb:
     INY #2
     LDA.W $0000,Y : STA.W $0C40,X 
     LDA.W #$0001 : STA.W $0C54,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 PartOfKillProjectile_QueueSFX_SetInstruction:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0C18,X : BIT.W #$0F00 
     BNE .notBeam 
@@ -159,29 +144,21 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
 .return:
     LDA.W #$0001 : STA.W $0C54,X 
     LDA.W #$0008 : STA.W $0C2C,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Initialize_Bomb_Explosion:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W ProjectileDataTable_NonBeam_BombExplosion_pointer : STA.W $0C40,X 
     LDA.W #$0001 : STA.W $0C54,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0C04,X : AND.W #$000F 
     ASL A 
@@ -202,16 +179,12 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
     CLC : ADC.B $12 : TAY 
     LDA.W $0000,Y : STA.W $0C40,X 
     LDA.W #$0001 : STA.W $0C54,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 InitializeSBAProjectile:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0C18,X : AND.W #$000F 
     ASL A 
@@ -226,31 +199,22 @@ InitializeSBAProjectile:
 .dontCrash:
     LDA.W $0002,Y : STA.W $0C40,X 
     LDA.W #$0001 : STA.W $0C54,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Get_ProjectileTrailFrame:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PHY 
     LDA.W $0C40,X : SEC : SBC.W #$0008 : TAY 
     LDA.W $0006,Y : STA.B $16 
-    PLY 
-    PLB 
-    PLP 
+    PLY : PLB : PLP 
     RTL 
 
 
 ProjectileInstructionHandler:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDX.W $0DDE 
     DEC.W $0C54,X 
@@ -274,17 +238,14 @@ ProjectileInstructionHandler:
     CLC : ADC.W #$0008 : STA.W $0C40,X 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Instruction_SamusProjectile_Delete:
     REP #$30 
     JSL.L Clear_Projectile 
-    PLA 
-    PLB 
-    PLP 
+    PLA : PLB : PLP 
     RTL 
 
 
@@ -14199,10 +14160,7 @@ ProjectileFlareSpritemaps_Charged_P_PI_PW_PIW_1F:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DrawShinesparkWindupEffectSprite_93F5E2:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A1C 
     CMP.W #$00C7 
@@ -14218,8 +14176,7 @@ UNUSED_DrawShinesparkWindupEffectSprite_93F5E2:
     LDA.W #$003C : CLC : ADC.W #$0002 : JSL.L AddSpritemapFrom_93A1A1_TableToOAM 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 

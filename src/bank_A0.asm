@@ -120,22 +120,18 @@ RTS_A0807B:
 
 Instruction_Common_DeleteEnemy:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
 Instruction_Common_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
@@ -143,15 +139,12 @@ Instruction_Common_CallFunctionInY:
 Instruction_Common_CallFunctionInY_WithA:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     RTL 
@@ -161,11 +154,9 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_Common_CallExternalFunctionInY_A080B5:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTL 
 
@@ -178,11 +169,9 @@ UNUSED_Inst_Common_CallExternalFunctionInY_WithA_A080CE:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTL 
@@ -254,8 +243,7 @@ Instruction_Common_Sleep:
     DEY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -264,8 +252,7 @@ Instruction_Common_WaitYFrames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -380,10 +367,8 @@ CommonEnemySpeeds_QuadraticallyIncreasing:
     dw $74F9,$0011,$8B07,$FFEE 
 
 Handle_Room_Shaking:
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     LDA.W $1840 : BEQ .return 
     LDA.W $0A78 : BNE .return 
@@ -433,8 +418,7 @@ Handle_Room_Shaking:
 
 
 SetAllActiveEnemiesToShakeHorizontallyFor2Frames:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDY.W #$0000 
 
 .loop:
@@ -448,8 +432,7 @@ SetAllActiveEnemiesToShakeHorizontallyFor2Frames:
 
 
 .return:
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
@@ -483,10 +466,8 @@ BGShakeDisplacements_BG2Y:
     dw $0003,$0000,$0000,$0003,$0003 
 
 Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles:
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     JSL.L DrawSpriteObjects 
     JSL.L DrawBombsAndProjectileExplosions 
@@ -544,9 +525,7 @@ Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles:
 .executeHook:
     LDA.W $178E 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     JML.W [$178C] 
 
 
@@ -556,8 +535,7 @@ Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles:
 
 
 Record_EnemySpawnData:
-    PHX 
-    PHY 
+    PHX : PHY 
     TYX 
     LDA.W $0F78,X : STA.L $7E701E,X 
     LDA.W $0F7A,X : STA.L $7E7020,X 
@@ -593,8 +571,7 @@ Record_EnemySpawnData:
     LDA.B $18 : STA.L $7E7034,X 
     LDA.B $1A : STA.L $7E7036,X 
     LDA.B $1C : STA.L $7E7038,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -639,8 +616,7 @@ Debug_LoadEnemySetData:
     LDA.B $16 : STA.L $7ED556,X 
     LDA.B $18 : STA.L $7ED558,X 
     LDA.B $1A : STA.L $7ED55A,X 
-    PLX 
-    PHX 
+    PLX : PHX 
     LDA.L $B40002,X 
     TYX 
     STA.L $7ED55C,X 
@@ -657,11 +633,8 @@ Debug_LoadEnemySetData:
 
 
 Load_Enemies:
-    PHP 
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHP : PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     JSL.L Debug_LoadEnemySetData 
     STZ.W $185E 
@@ -679,17 +652,13 @@ Load_Enemies:
     STZ.W $0E7C 
     STZ.W $18AE 
     JSL.L ClearSpriteObjects 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 ClearEnemyData_ProcessEnemySet:
-    PHP 
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHP : PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     LDA.W #$0000 
     LDY.W #$0800 
@@ -713,14 +682,12 @@ ClearEnemyData_ProcessEnemySet:
     JSR.W ProcessEnemySet_LoadPalettesAndEnemyLoadingData 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Initialise_Enemies:
-    PHP 
-    PHB 
+    PHP : PHB 
     LDY.W #$1400 
     LDX.W #$0000 
     LDA.W #$0000 
@@ -731,8 +698,7 @@ Initialise_Enemies:
     DEY 
     BNE .loopExtraEnemyRAM 
     PEA.W $A000 
-    PLB 
-    PLB 
+    PLB : PLB 
     REP #$30 
     STZ.W $0E4E 
     STZ.W $0E50 
@@ -788,22 +754,18 @@ Initialise_Enemies:
     LDA.W #$0001 : STA.W $0F94,Y 
     LDA.W #$0000 : STA.W $0FA4,Y 
     JSL.L Record_EnemySpawnData 
-    PHX 
-    PHY 
+    PHX : PHY 
     STY.W $0E54 
     LDX.W $0F78,Y 
     LDA.W $0012,X : STA.W $1784 
     LDA.W $000C,X : STA.W $1786 
     PHB 
     JSL.L .executeInitAI 
-    PLB 
-    PLY 
-    PLX 
+    PLB : PLY : PLX 
     LDA.W #$0000 : STA.W $0F8E,Y 
     LDA.W $0F86,Y : BIT.W #$2000 
     BEQ .noInstructions 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W #Spritemap_Common_Nothing 
     LDA.W $0F88,Y : BIT.W #$0004 
     BEQ + 
@@ -811,8 +773,7 @@ Initialise_Enemies:
 
   + TXA 
     STA.W $0F8E,Y 
-    PLY 
-    PLX 
+    PLY : PLX 
 
 .noInstructions:
     TYA 
@@ -832,23 +793,19 @@ Initialise_Enemies:
     LDA.L $A10002,X : AND.W #$00FF : STA.W $0E52 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 .executeInitAI:
     LDA.W $0FA6,Y 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     JML.W [$1784] 
 
 
 LoadEnemyGFXIndices:
-    PHX 
-    PHY 
+    PHX : PHY 
     STX.B $12 
     STY.B $14 
     LDA.W $07D1 : STA.B $1C 
@@ -878,8 +835,7 @@ LoadEnemyGFXIndices:
     LDA.W #$0000 : STA.L $7E7006,X 
     LDA.W #$0A00 : STA.W $0F96,X 
     STA.L $7E7008,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -893,8 +849,7 @@ LoadEnemyGFXIndices:
     STA.L $7E7008,X 
     LDA.B $1E : STA.W $0F98,X 
     STA.L $7E7006,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -915,9 +870,7 @@ LoadEnemyTileData:
     TAY 
     CLC : ADC.W $0E5A,X : STA.B $12 
     LDA.W $0E5D,X 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     TXA 
     CLC : ADC.W #$0007 : PHA 
     LDA.W $0E5F,X 
@@ -987,8 +940,7 @@ TransferEnemyTilesToVRAM_InitialiseEnemies:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LoadEnemyWidthHeightHealthLayerBank_A08D3A:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0000,X 
     TAX 
     LDA.W $0008,X : STA.W $0F82,Y 
@@ -996,15 +948,13 @@ UNUSED_LoadEnemyWidthHeightHealthLayerBank_A08D3A:
     LDA.W $0004,X : STA.W $0F8C,Y 
     LDA.W $0039,X : AND.W #$00FF : STA.W $0F9A,Y 
     LDA.W $000C,X : STA.W $0FA6,Y 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
-    PHX 
-    PHY 
+    PHX : PHY 
     STZ.W $0E7A 
     LDA.W #$0800 : STA.B $1E 
     LDA.W #$0000 : STA.L $7EEF5C 
@@ -1043,9 +993,7 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
     PHB 
     LDA.W $0E20 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     LDA.W #$0010 : STA.W $0E2E 
     LDX.B $16 
     LDY.B $14 
@@ -1079,8 +1027,7 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
     LDA.B $1A : STA.W $0E5E,X 
     REP #$20 
     LDA.W $0E7A : CLC : ADC.W #$0007 : STA.W $0E7A 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.L $7EEF74 
     TAX 
     LDA.L $7EEF76 : STA.L $7EEF64,X 
@@ -1095,8 +1042,7 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
     PLX 
     STA.L $7EEF6C,X 
     LDA.L $7EEF74 : CLC : ADC.W #$0002 : STA.L $7EEF74 
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.B $12 
     LSR #5
     CLC : ADC.L $7EEF76 : STA.L $7EEF76 
@@ -1109,16 +1055,13 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 Determine_Which_Enemies_to_Process:
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     INC.W $0E46 
     STZ.W $0E54 
@@ -1228,10 +1171,8 @@ Determine_Which_Enemies_to_Process:
 
 
 Main_Enemy_Routine:
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     LDA.W $0E4C : BNE .processEnemies 
     JMP.W .return 
@@ -1325,9 +1266,7 @@ Main_Enemy_Routine:
     LDX.W $0E54 
     LDA.W $0FA6,X : STA.W $1786 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     JML.W [$1784] 
 
 
@@ -1456,22 +1395,15 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Spawn_Enemy_Drops:
-    PHP 
-    PHB 
-    PHX 
-    PHY 
+    PHP : PHB : PHX : PHY 
     STA.W $0E24 
     PEA.W $A000 
-    PLB 
-    PLB 
+    PLB : PLB 
     REP #$30 
     LDY.W #EnemyProjectile_EnemyDeathPickup 
     LDA.W $0E20 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    PLX 
-    PLY 
-    PLB 
-    PLP 
+    PLX : PLY : PLB : PLP 
     RTL 
 
 
@@ -1612,8 +1544,7 @@ SpawnEnemy_AlwaysSucceed:
     LDA.W #$0001 : STA.W $0F94,Y 
     LDA.W #$0000 : STA.W $0FA4,Y 
     JSL.L Record_EnemySpawnData 
-    PHX 
-    PHY 
+    PHX : PHY 
     STY.W $0E54 
     LDX.W $0F78,Y 
     LDA.L $A00012,X 
@@ -1626,8 +1557,7 @@ SpawnEnemy_AlwaysSucceed:
     PLB 
 
 .processInstructions:
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.W $0F86,Y : BIT.W #$2000 
     BEQ .nextEnemy 
     LDA.W #Spritemap_Common_Nothing : STA.W $0F8E,Y 
@@ -1653,15 +1583,12 @@ SpawnEnemy_AlwaysSucceed:
 
 .executeAI:
     LDA.W $0FA5,Y 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     JML.W [$1784] 
 
 
 AddEnemyToDrawingQueue:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0F9A,X 
     ASL A 
@@ -1672,8 +1599,7 @@ AddEnemyToDrawingQueue:
     LDX.W $0E34 
     INC.W $0F68,X 
     INC.W $0F68,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -1681,9 +1607,7 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
     PHB 
     LDX.W $0E54 
     LDA.W $0FA5,X 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     REP #$30 
     LDX.W $0E54 
     LDA.W $0F7A,X : SEC : SBC.W $0911 : CLC : ADC.L $7E7010,X : STA.W $0E22 
@@ -1797,8 +1721,7 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
 
 
 NormalEnemyFrozenAI:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     STZ.W $0F9C,X 
     LDA.W $0F9E,X : BEQ .unsetFrozenAI 
@@ -1814,18 +1737,14 @@ NormalEnemyFrozenAI:
     LDA.W #$0000 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExecuteEnemyAI_A095AD:
-    PHB 
-    PHP 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHB : PHP : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     LDX.W #$0000 
     LDY.W $0E54 
@@ -1844,8 +1763,7 @@ UNUSED_ExecuteEnemyAI_A095AD:
     LDA.W $0018,X : STA.W $1784 
     LDA.W $0FA6,Y : STA.W $1786 
     JSL.L .executeAI 
-    PLP 
-    PLB 
+    PLP : PLB 
     RTL 
 
 
@@ -1853,17 +1771,13 @@ UNUSED_ExecuteEnemyAI_A095AD:
     LDX.W $0E54 
     LDA.W $0FA6,X : STA.W $1786 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     JML.W [$1784] 
 
 
 UNUSED_RespawnEnemy_A095F1:
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     LDA.W $0E54 
     LSR #2
@@ -1914,9 +1828,7 @@ UNUSED_RespawnEnemy_A095F1:
     LDX.W $0E54 
     LDA.W $0FA6,X : STA.W $1786 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     JML.W [$1784] 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -1983,11 +1895,8 @@ Handle_Queuing_Enemy_BG2_Tilemap_VRAM_Transfer:
 
 
 EnemyCollisionHandling:
-    PHP 
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHP : PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     LDX.W $0E54 
     LDA.W $0F88,X : BIT.W #$0004 
@@ -1995,8 +1904,7 @@ EnemyCollisionHandling:
     JSR.W Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap 
     JSR.W Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap 
     JSR.W EnemySamusCollisionHandling_ExtendedSpritemap 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -2004,8 +1912,7 @@ EnemyCollisionHandling:
     JSR.W Enemy_vs_ProjectileCollisionHandling 
     JSR.W Enemy_vs_Bomb_CollisionHandling 
     JSR.W Enemy_vs_Samus_CollisionHandling 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -2014,10 +1921,8 @@ RTL_A09784:
 
 
 Samus_Projectiles_Interaction_Handling:
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     LDA.W #$000A : STA.L $7EF378 
     LDA.W $18AE : BNE .returnUpper 
@@ -2148,16 +2053,12 @@ Samus_Projectiles_Interaction_Handling:
 
 
 EnemyProjectile_Samus_Collision_Handling:
-    PHP 
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHP : PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     LDA.W #$000B : STA.L $7EF378 
     LDA.W $18A8 : BEQ .notInvincible 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2208,8 +2109,7 @@ EnemyProjectile_Samus_Collision_Handling:
     LDA.W $18A6 : BPL .loop 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2242,16 +2142,12 @@ HandleEnemyProjectileCollisionWithSamus:
 
 
 Projectile_vs_Projectile_Collision_Handling:
-    PHP 
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHP : PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     LDA.W #$000C : STA.L $7EF378 
     LDA.W $0CCE : BNE .setIndex 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2299,8 +2195,7 @@ Projectile_vs_Projectile_Collision_Handling:
 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2343,9 +2238,7 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
     LDX.W $0E54 
     LDA.W $0FA6,X : STA.W $1786 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     LDA.W #$0006 : STA.L $7EF378 
     LDY.W $0E54 
     LDA.W $0F8E,Y : BEQ .returnUpper 
@@ -2444,9 +2337,7 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     LDX.W $0E54 
     LDA.W $0FA6,X : STA.W $1786 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     LDA.W #$0003 : STA.L $7EF378 
     LDA.W $0CCE : BNE .nonZeroCounter 
     PLB 
@@ -2607,9 +2498,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
     LDX.W $0E54 
     LDA.W $0FA6,X : STA.W $1786 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     LDA.W #$0004 : STA.L $7EF378 
     LDY.W $0E54 
     LDA.W $0F8E,Y : BEQ .returnUpper 
@@ -2744,9 +2633,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
 
 
 EnemyGrappleBeamCollisionDetection:
-    PHB 
-    PHX 
-    PHY 
+    PHB : PHX : PHY 
     LDA.W #$000D 
     JSL.L Run_Samus_Command 
     BNE + 
@@ -2763,9 +2650,7 @@ EnemyGrappleBeamCollisionDetection:
     BNE .notFFFF 
     STZ.B $12 
     LDA.W #$0000 
-    PLY 
-    PLX 
-    PLB 
+    PLY : PLX : PLB 
     RTL 
 
 
@@ -2834,9 +2719,7 @@ EnemyGrappleBeamCollisionDetection:
     BEQ .attachGrapple 
 
 .return:
-    PLY 
-    PLX 
-    PLB 
+    PLY : PLX : PLB 
     RTL 
 
 
@@ -2925,9 +2808,7 @@ GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility:
     LDX.W $0E54 
     LDA.W $0FA6,X : STA.W $1786 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     JML.W [$1784] 
 
 
@@ -2968,8 +2849,7 @@ Enemy_vs_Samus_CollisionHandling:
     PHB 
     REP #$30 
     PEA.W $A000 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDA.W #$0009 : STA.L $7EF378 
     LDY.W $0E54 
     LDA.W $0F8E,Y : BEQ .return 
@@ -3055,9 +2935,7 @@ Enemy_vs_Samus_CollisionHandling:
     LDY.W $0E54 
     LDA.W $0FA6,Y 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     LDX.W $0F78,Y 
     LDA.L $A00030,X : STA.W $1784 
     LDA.W $0FA6,Y : STA.W $1786 
@@ -3069,9 +2947,7 @@ Enemy_vs_ProjectileCollisionHandling:
     LDX.W $0E54 
     LDA.W $0FA6,X : STA.W $1786 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     LDA.W #$0007 : STA.L $7EF378 
     LDA.W $0CCE : BNE .nonZeroCounter 
 
@@ -3181,9 +3057,7 @@ Enemy_vs_Bomb_CollisionHandling:
     LDX.W $0E54 
     LDA.W $0FA6,X : STA.W $1786 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     LDA.W #$0008 : STA.L $7EF378 
     LDA.W $0CD2 : BNE .nonZeroCounter 
 
@@ -3333,18 +3207,13 @@ Process_Enemy_PowerBomb_Interaction:
     LDX.W $0E54 
     LDA.W $0FA6,X : STA.W $1786 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     JML.W [$1784] 
 
 
 EnemyDeath:
-    PHP 
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHP : PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     PHA 
     LDA.W $0F8A,X 
@@ -3380,17 +3249,13 @@ EnemyDeath:
 
 .incEnemiesKilled:
     INC.W $0E50 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 RinkaDeath:
-    PHP 
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHP : PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     CMP.W #$0003 
     BMI .AIsValid 
@@ -3417,8 +3282,7 @@ RinkaDeath:
     LDA.W #$00A3 : STA.W $0FA6,X 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -3803,8 +3667,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     JSL.L Create_Sprite_Object 
     LDA.W #$003D 
     JSL.L QueueSound_Lib1_Max3 
-    PLX 
-    PLB 
+    PLX : PLB 
     RTS 
 
 
@@ -3826,8 +3689,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     STA.W $0F9E,X 
     LDA.W $0F8A,X : ORA.W #$0004 : STA.W $0F8A,X 
     LDA.W #$000A : STA.W $0FA0,X 
-    PLX 
-    PLB 
+    PLX : PLB 
     RTS 
 
 
@@ -3845,16 +3707,14 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     STA.W $0F9C,X 
     LDA.W $0F8A,X : ORA.W #$0002 : STA.W $0F8A,X 
     LDA.W $0F9E,X : BNE .noFlashNoCry 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0F78,X 
     TAX 
     LDA.L $A0000E,X : BEQ .setEnemyHit 
     JSL.L QueueSound_Lib2_Max3 
 
 .setEnemyHit:
-    PLY 
-    PLX 
+    PLY : PLX 
     INC.W $0E2E 
 
 .noFlashNoCry:
@@ -3907,8 +3767,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
 
 CreateADudShot:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $18A6 
     ASL A 
     TAX 
@@ -3923,17 +3782,13 @@ CreateADudShot:
     ASL A 
     TAX 
     LDA.W $0C04,X : ORA.W #$0010 : STA.W $0C04,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Samus_vs_SolidEnemy_CollisionDetection:
-    PHP 
-    PHB 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHP : PHB : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     LDA.W $17A6 : BEQ .returnZeroUpper 
     BRA .execute 
@@ -3941,8 +3796,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
 
 .returnZeroUpper:
     LDA.W #$0000 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -4156,8 +4010,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     LDA.W $18A6 : STA.W $182C,X 
     STZ.W $1834,X 
     LDA.W #$FFFF 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -4183,15 +4036,13 @@ Samus_vs_SolidEnemy_CollisionDetection:
     LDA.W $18A6 : STA.B $16 
     LDA.W $18A6 : STA.W $182C,X 
     LDA.W #$FFFF 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 .returnZeroLower:
     LDA.W #$0000 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -4224,15 +4075,13 @@ if !FEATURE_KEEP_UNREFERENCED
     LDA.W $18A6 : STA.B $16 
     LDA.W $18A6 : STA.W $182C,X 
     LDA.W #$FFFF 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 ..return:
     LDA.W #$0000 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -4333,8 +4182,7 @@ CheckIfEnemyIsTouchingSamus:
 
 
 CalculateDistanceAndAngleOfSamusFromEnemy:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0E36 : SEC : SBC.W $0E32 : STA.W $0E3C 
     BPL + 
     EOR.W #$FFFF 
@@ -4377,16 +4225,13 @@ CalculateDistanceAndAngleOfSamusFromEnemy:
     LDA.W $0E3E : STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     STA.W $0E3A 
-    PLA 
-    PLY 
-    PLX 
+    PLA : PLY : PLX 
     CLC 
     RTL 
 
 
 .returnError:
-    PLY 
-    PLX 
+    PLY : PLX 
     SEC 
     RTL 
 
@@ -4396,8 +4241,7 @@ UNUSED_EnemyVariable_ZeroOrMax_A0AD33:
     PHB 
     SEP #$20 
     LDA.B #$A0 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $0FB0,X : BEQ UNUSED_SignedA_ZeroIsSpecialCase_A0AD4A 
     DEC.W $0FB0,X 
@@ -4822,8 +4666,7 @@ NegateA_A0B067:
 
 
 GetSignedYMinusX_A0B07D:
-    PHX 
-    PHY 
+    PHX : PHY 
     TXA ; >.<
     STA.W $0E32 
     TYA 
@@ -4836,8 +4679,7 @@ GetSignedYMinusX_A0B07D:
     STA.W $0E34 
 
   + LDA.W $0E34 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -4863,34 +4705,25 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 EightBitCosineMultiplication_A0B0B2:
     CLC : ADC.W #$0040 : AND.W #$00FF 
     STA.W $0E34 
-    PHX 
-    PHY 
-    PHB 
+    PHX : PHY : PHB 
     JSR.W EightBitSineMultiplication_A0B0DA 
-    PLB 
-    PLY 
-    PLX 
+    PLB : PLY : PLX 
     RTL 
 
 
 EightBitNegativeSineMultiplication_A0B0C6:
     CLC : ADC.W #$0080 : AND.W #$00FF 
     STA.W $0E34 
-    PHX 
-    PHY 
-    PHB 
+    PHX : PHY : PHB 
     JSR.W EightBitSineMultiplication_A0B0DA 
-    PLB 
-    PLY 
-    PLX 
+    PLB : PLY : PLX 
     RTL 
 
 
 EightBitSineMultiplication_A0B0DA:
     SEP #$20 
     LDA.B #$A0 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $0E34 : AND.W #$007F 
     TAY 
@@ -5047,11 +4880,8 @@ Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name:
 ;          C0h
 ;
 ; Where # is the origin and | is the negative y axis
-    PHB 
-    PHX 
-    PEA.W UnsignedSineTable>>8&$FF00 ; $A000
-    PLB 
-    PLB 
+    PHB : PHX : PEA.W UnsignedSineTable>>8&$FF00 ; $A000
+    PLB : PLB 
     REP #$30 
     LDA.B $12 : CLC : ADC.W #$0080 : AND.W #$007F 
     ASL A 
@@ -5069,8 +4899,7 @@ Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name:
     JSL.L Multiplication_32bit_A0B6FF 
     LDA.B $2C : STA.B $16 
     LDA.B $2A : STA.B $18 
-    PLX 
-    PLB 
+    PLX : PLB 
     RTL 
 
 
@@ -5105,9 +4934,7 @@ MoveEnemyAccordingToAngleAndXYSpeeds:
 
 
 Multiplication_32bit_A0B6FF:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     REP #$20 
     SEP #$10 
     LDX.B $26 
@@ -5145,17 +4972,12 @@ Multiplication_32bit_A0B6FF:
 
 .carryClearAgain:
     STY.B $2D 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 UnsignedDivision_32bit_A0B761:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     STZ.B $28 
     STZ.B $26 
@@ -5189,14 +5011,12 @@ UnsignedDivision_32bit_A0B761:
 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 CapScrollingSpeed:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0AFA : SEC : SBC.W $0B14 : STA.B $12 
     JSL.L NegateA_A0B067 
     CMP.W #$000C 
@@ -5222,8 +5042,7 @@ CapScrollingSpeed:
     CLC : ADC.W $0AF6 : STA.W $0B10 
 
 .retrun:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -5246,9 +5065,7 @@ UnsignedSineTable:
     dw $31F1,$2BC3,$258F,$1F56,$1917,$12D5,$0C8F,$0648 
 
 MiniKraidDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0004 : STA.W $060B 
 
 .loop:
@@ -5262,16 +5079,12 @@ MiniKraidDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 MetalNinjaPirateDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0005 : STA.W $060B 
 
 .loop:
@@ -5285,16 +5098,12 @@ MetalNinjaPirateDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 MetroidDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0005 : STA.W $060B 
 
 .loop:
@@ -5308,16 +5117,12 @@ MetroidDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 RidleyDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0010 : STA.W $060B 
 
 .loop:
@@ -5331,16 +5136,12 @@ RidleyDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 CrocomireDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0010 : STA.W $060B 
 
 .loop:
@@ -5354,16 +5155,12 @@ CrocomireDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 PhantoonDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0010 : STA.W $060B 
 
 .loop:
@@ -5377,16 +5174,12 @@ PhantoonDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 BotwoonDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0010 : STA.W $060B 
 
 .loop:
@@ -5400,16 +5193,12 @@ BotwoonDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 KraidDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0010 : STA.W $060B 
 
 .loop:
@@ -5423,16 +5212,12 @@ KraidDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 BombTorizoDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0010 : STA.W $060B 
 
 .loop:
@@ -5446,16 +5231,12 @@ BombTorizoDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 GoldenTorizoDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0010 : STA.W $060B 
 
 .loop:
@@ -5469,16 +5250,12 @@ GoldenTorizoDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 SporeSpawnDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0010 : STA.W $060B 
 
 .loop:
@@ -5492,16 +5269,12 @@ SporeSpawnDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
 DraygonDeathItemDropRoutine:
-    PHX 
-    PHY 
-    PHP 
+    PHX : PHY : PHP 
     LDA.W #$0010 : STA.W $060B 
 
 .loop:
@@ -5515,9 +5288,7 @@ DraygonDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops 
     DEC.W $060B 
     BNE .loop 
-    PLP 
-    PLY 
-    PLX 
+    PLP : PLY : PLX 
     RTL 
 
 
@@ -5533,8 +5304,7 @@ CalculateTheBlockContainingAPixelPosition:
     CLC : ADC.W $4216 : STA.W $0DC4 
     LDA.B $02,S : STA.B $06,S 
     LDA.B $01,S : STA.B $05,S 
-    PLA 
-    PLA 
+    PLA : PLA 
     RTL 
 
 
@@ -5566,8 +5336,7 @@ CheckForHorizontalSolidBlockCollision:
     PHB 
     SEP #$20 
     LDA.B #$A0 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     PHX 
     LDA.W $0F7E,X : SEC : SBC.W $0F84,X : AND.W #$FFF0 
@@ -5640,8 +5409,7 @@ CheckForVerticalSolidBlockCollision:
     PHB 
     SEP #$20 
     LDA.B #$A0 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     PHX 
     LDA.W $0F7A,X : SEC : SBC.W $0F82,X : AND.W #$FFF0 
@@ -5715,8 +5483,7 @@ UNUSED_MoveEnemyRight_NoBlockCollisionReactions_A0BD26:
     PHB 
     SEP #$20 
     LDA.B #$A0 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     PHX 
     STA.B $1C 
@@ -5801,8 +5568,7 @@ UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6:
     PHB 
     SEP #$20 
     LDA.B #$A0 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     STA.B $1C 
     PHX 
@@ -5887,8 +5653,7 @@ UNUSED_CheckForHorizontalSolidBlockCollision_A0BEBF:
     PHB 
     SEP #$20 
     LDA.B #$A0 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     PHX 
     LDA.W $0F7E,X : SEC : SBC.W $0F84,X : AND.W #$FFF0 
@@ -5968,8 +5733,7 @@ CheckForVerticalSolidBlockCollision_SkreeMetaree:
     PHB 
     SEP #$20 
     LDA.B #$A0 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     PHX 
     LDA.W $0F7A,X : SEC : SBC.W $0F82,X : AND.W #$FFF0 
@@ -6106,8 +5870,7 @@ CalculateAngleOfXYOffset:
     NOP 
     REP #$20 
     JSR.W (.pointers,X) 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
@@ -6125,8 +5888,7 @@ CalculateAngleOfXYOffset:
     NOP 
     REP #$20 
     JSR.W (..pointers,X) 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
@@ -6308,17 +6070,14 @@ ProcessEnemyInstructions:
     DEC.W $0F94,X 
     BNE ProcessEnemyInstructions_noUpdate 
     LDA.W $0FA5,X 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     LDY.W $0F92,X 
 
 .loop:
     LDA.W $0000,Y : BPL .timer 
     STA.W $1784 
     INY #2
-    PHK 
-    PEA.W .loop-1 
+    PHK : PEA.W .loop-1 
     JML.W [$1784] 
 
 
@@ -7039,8 +6798,7 @@ EnemyVerticalBlockReaction:
     dw SECRTS_A0C2BE 
 
 AlignEnemyYPositionWIthNonSquareSlope:
-    PHY 
-    PHX 
+    PHY : PHX 
     CLC 
     PHP 
     TXY 
@@ -7131,9 +6889,7 @@ AlignEnemyYPositionWIthNonSquareSlope:
     CLC : ADC.W $0F7E,Y : STA.W $0F7E,Y 
 
 .return:
-    PLP 
-    PLX 
-    PLY 
+    PLP : PLX : PLY 
     RTL 
 
 

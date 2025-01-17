@@ -120,22 +120,18 @@ RTS_B3807B:
 
 Instruction_CommonB3_DeleteEnemy:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
 Instruction_CommonB3_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
@@ -143,15 +139,12 @@ Instruction_CommonB3_CallFunctionInY:
 Instruction_CommonB3_CallFunctionInY_WithA:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     RTL 
@@ -161,11 +154,9 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonB3_CallExternalFunctionInY_B380B5:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTL 
 
@@ -178,11 +169,9 @@ UNUSED_Inst_CommonB3_CallExternalFunctionInY_WithA_B380CE:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTL 
@@ -254,8 +243,7 @@ Instruction_CommonB3_Sleep:
     DEY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -264,8 +252,7 @@ Instruction_CommonB3_WaitYFrames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 

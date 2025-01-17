@@ -120,22 +120,18 @@ RTS_A2807B:
 
 Instruction_CommonA2_DeleteEnemy:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    PLA 
-    PEA.W  ProcessEnemyInstructions_return-1 
+    PLA : PEA.W  ProcessEnemyInstructions_return-1 
     RTL 
 
 
 Instruction_CommonA2_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
@@ -143,15 +139,12 @@ Instruction_CommonA2_CallFunctionInY:
 Instruction_CommonA2_CallFunctionInY_WithA:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     RTL 
@@ -161,11 +154,9 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA2_CallExternalFunctionInY_A280B5:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTL 
 
@@ -178,11 +169,9 @@ UNUSED_Inst_CommonA2_CallExternalFunctionInY_WithA_A280CE:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTL 
@@ -254,8 +243,7 @@ Instruction_CommonA2_Sleep:
     DEY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -264,8 +252,7 @@ Instruction_CommonA2_WaitYFrames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -1351,8 +1338,7 @@ Function_MamaTurtle_Asleep:
     INC A 
 
   + CMP.W #$0018 
-    BPL .returnPLP 
-    PLP 
+    BPL .returnPLP : PLP 
     BPL .SamusToTheRight 
     CLC : ADC.W #$0018 
 
@@ -1857,8 +1843,7 @@ MamaTurtle_vs_Samus_CollisionDetection:
 
 
 Instruction_BabyTurtle_Crawl:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0000 : STA.B $30 
     LDX.W $0E54 
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow 
@@ -1909,8 +1894,7 @@ Instruction_BabyTurtle_Crawl:
     LDA.W $0F7E,X : SEC : SBC.B $32 : CLC : ADC.W $0B5C : STA.W $0B5C 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -1983,8 +1967,7 @@ Instruction_BabyTurtle_LeaveShell:
     LDX.W $0E54 
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow 
     AND.W #$FFFF 
-    BEQ .returnPLY 
-    PLY 
+    BEQ .returnPLY : PLY 
     LDY.W #InstList_BabyTurtle_FacingLeft_LeaveShell 
     LDA.W $0FB0,X : BMI .return 
     LDY.W #InstList_BabyTurtle_FacingRight_LeaveShell 
@@ -3279,12 +3262,10 @@ InstList_Cacatac_UpsideDown_Attacking:
     dw InstList_Cacatac_UpsideDown_Idling_0 
 
 Instruction_Cacatac_PlaySpikesSFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0034 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -8319,12 +8300,10 @@ InstList_Oum_FacingRight_RollingBackwards:
     dw InstList_Oum_FacingRight_RollingBackwards 
 
 Instruction_Oum_PlaySplashedOutOfWaterSFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$000E 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 

@@ -3,11 +3,7 @@ org $848000
 
 
 GoldenTorizo_HealthBasedPalette_Handling:
-    PHX 
-    PHY 
-    PHB 
-    PHK 
-    PLB 
+    PHX : PHY : PHB : PHK : PLB 
     XBA 
     AND.W #$0078 
     BIT.W #$0040 
@@ -25,9 +21,7 @@ GoldenTorizo_HealthBasedPalette_Handling:
     DEY #2
     DEX #2
     BPL .loop 
-    PLB 
-    PLY 
-    PLX 
+    PLB : PLY : PLX 
     RTL 
 
 
@@ -52,11 +46,9 @@ GoldenTorizo_HealthBasedPalette_Handling:
     dw $1000,$3719,$0214,$0003,$0000,$0295,$01D1,$014D,$00A8,$4B40,$25E0,$00E0,$6B40,$4600,$4480,$0000 ; 3800h+
 
 Load_Room_PLM_Graphics:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
-    PHK 
-    PLB 
+    PHK : PLB 
     STZ.W $1C2D 
     LDX.W #$0000 
 
@@ -68,8 +60,7 @@ Load_Room_PLM_Graphics:
     INX #2
     CPX.W #$0008 
     BNE .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -151,8 +142,7 @@ Write_Level_Data_Block_Type_and_BTS:
 
 
 Write_Row_of_Level_Data_Block_and_BTS:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDY.W #$0001 
     LDA.B ($05,S),Y : STA.B $12 
     INY #2
@@ -183,19 +173,14 @@ Write_Row_of_Level_Data_Block_and_BTS:
     DEY 
     BNE .loopBTS 
     REP #$20 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 Load_Item_and_Room_Special_Xray_Blocks:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
-    PHX 
-    PHY 
-    PHK 
-    PLB 
+    PHX : PHY : PHK : PLB 
     LDX.W #$004E 
 
 .loopPLM:
@@ -244,10 +229,7 @@ Load_Item_and_Room_Special_Xray_Blocks:
 
 
 .return:
-    PLY 
-    PLX 
-    PLB 
-    PLP 
+    PLY : PLX : PLB : PLP 
     RTL 
 
 
@@ -290,17 +272,12 @@ Clear_PLMs:
     DEX #2
     BPL .loop 
     STZ.W $1C2D 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
 Spawn_Hardcoded_PLM:
-    PHB 
-    PHY 
-    PHX 
-    PHK 
-    PLB 
+    PHB : PHY : PHX : PHK : PLB 
     LDY.W #$004E 
 
 .loop:
@@ -308,9 +285,7 @@ Spawn_Hardcoded_PLM:
     DEY #2
     BPL .loop 
     LDA.B $06,S : CLC : ADC.W #$0004 : STA.B $06,S 
-    PLX 
-    PLY 
-    PLB 
+    PLX : PLY : PLB 
     SEC 
     RTL 
 
@@ -318,8 +293,7 @@ Spawn_Hardcoded_PLM:
 .found:
     SEP #$20 
     LDA.B $08,S 
-    PHA 
-    PLB 
+    PHA : PLB 
     TYX 
     LDY.W #$0002 
     LDA.B ($06,S),Y : STA.W $4202 
@@ -335,8 +309,7 @@ Spawn_Hardcoded_PLM:
     TXY 
     TAX 
     LDA.B $06,S : CLC : ADC.W #$0004 : STA.B $06,S 
-    PHK 
-    PLB 
+    PHK : PLB 
     TXA 
     STA.W $1C37,Y 
     TYX 
@@ -352,9 +325,7 @@ Spawn_Hardcoded_PLM:
     TYX 
     LDY.W $1C27 
     JSR.W ($0000,X) 
-    PLX 
-    PLY 
-    PLB 
+    PLX : PLY : PLB 
     CLC 
     RTL 
 
@@ -364,22 +335,14 @@ RTS_848469:
 
 
 Spawn_Room_PLM:
-    PHP 
-    PHB 
-    PHY 
-    PHX 
-    PHK 
-    PLB 
+    PHP : PHB : PHY : PHX : PHK : PLB 
     LDY.W #$004E 
 
 .loop:
     LDA.W $1C37,Y : BEQ .found 
     DEY #2
     BPL .loop 
-    PLX 
-    PLY 
-    PLB 
-    PLP 
+    PLX : PLY : PLB : PLP 
     SEC 
     RTL 
 
@@ -407,10 +370,7 @@ Spawn_Room_PLM:
     TYX 
     LDY.W $1C27 
     JSR.W ($0000,X) 
-    PLX 
-    PLY 
-    PLB 
-    PLP 
+    PLX : PLY : PLB : PLP 
     CLC 
     RTL 
 
@@ -420,11 +380,7 @@ RTS_8484E6:
 
 
 Spawn_PLM_to_CurrentBlockIndex:
-    PHB 
-    PHY 
-    PHX 
-    PHK 
-    PLB 
+    PHB : PHY : PHX : PHK : PLB 
     TAY 
     LDX.W #$004E 
 
@@ -432,9 +388,7 @@ Spawn_PLM_to_CurrentBlockIndex:
     LDA.W $1C37,X : BEQ .found 
     DEX #2
     BPL .loop 
-    PLX 
-    PLY 
-    PLB 
+    PLX : PLY : PLB 
     RTL 
 
 
@@ -455,9 +409,7 @@ Spawn_PLM_to_CurrentBlockIndex:
     TYX 
     LDY.W $1C27 
     JSR.W ($0000,X) 
-    PLX 
-    PLY 
-    PLB 
+    PLX : PLY : PLB 
     RTL 
 
 
@@ -467,11 +419,7 @@ RTS_84853D:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spawn_Enemy_PLM_84853E:
-    PHB 
-    PHY 
-    PHX 
-    PHK 
-    PLB 
+    PHB : PHY : PHX : PHK : PLB 
     TXY 
     PHA 
     LDX.W #$004E 
@@ -480,10 +428,7 @@ UNUSED_Spawn_Enemy_PLM_84853E:
     LDA.W $1C37,X : BEQ .found 
     DEX #2
     BPL .loop 
-    PLA 
-    PLX 
-    PLY 
-    PLB 
+    PLA : PLX : PLY : PLB 
     RTL 
 
 
@@ -512,9 +457,7 @@ UNUSED_Spawn_Enemy_PLM_84853E:
     TYX 
     LDY.W $1C27 
     JSR.W ($0000,X) 
-    PLX 
-    PLY 
-    PLB 
+    PLX : PLY : PLB 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -524,10 +467,7 @@ RTS_8485B3:
 
 
 PLM_Handler:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     BIT.W $1C23 
     BPL .return 
@@ -545,8 +485,7 @@ PLM_Handler:
     BPL .loop 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -722,11 +661,9 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Instruction_PLM_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTS 
 
@@ -971,11 +908,9 @@ Instruction_PLM_PickUpBeam_DisplayMessageBox:
     LSR A 
     AND.W #$0004 
     TRB.W $09A6 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L Update_Beam_Tiles_and_Palette 
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.W #$0168 
     JSL.L Play_Room_Music_Track_After_A_Frames 
     LDA.W $0002,Y : AND.W #$00FF 
@@ -1214,8 +1149,7 @@ Instruction_PLM_PLMBTS_Y:
 
 Instruction_PLM_DrawPLMBlock_Clone:
     REP #$20 
-    PHX 
-    PHY 
+    PHX : PHY 
     TXY 
     LDX.W $1C87,Y 
     LDA.W $1E17,Y : STA.L $7F0002,X 
@@ -1224,8 +1158,7 @@ Instruction_PLM_DrawPLMBlock_Clone:
 
 Instruction_PLM_DrawPLMBlock:
     REP #$20 
-    PHX 
-    PHY 
+    PHX : PHY 
     TXY 
     LDX.W $1C87,Y 
     LDA.W $1E17,Y : STA.L $7F0002,X 
@@ -1234,8 +1167,7 @@ Instruction_PLM_DrawPLMBlock_draw:
     STA.W $1E69 
     LDA.W #$0001 : STA.W $1E67 
     STZ.W $1E6B 
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.W #$0001 : STA.L $7EDE1C,X 
     LDA.W #$1E67 : STA.L $7EDE6C,X 
     TYA 
@@ -1249,14 +1181,11 @@ Instruction_PLM_DrawPLMBlock_draw:
 
 
 Instruction_PLM_ProcessAirScrollUpdate:
-    PHB 
-    PHX 
-    PHY 
+    PHB : PHX : PHY 
     STZ.W $1E17,X 
     LDY.W $1DC7,X 
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDA.W #$0000 
     SEP #$20 
 
@@ -1270,10 +1199,7 @@ Instruction_PLM_ProcessAirScrollUpdate:
 
 .specialAir:
     REP #$20 
-    PLY 
-    PLX 
-    PLB 
-    PHX 
+    PLY : PLX : PLB : PHX 
     LDA.W $1C87,X 
     TAX 
     LDA.L $7F0002,X : AND.W #$0FFF 
@@ -1284,14 +1210,11 @@ Instruction_PLM_ProcessAirScrollUpdate:
 
 
 Instruction_PLM_ProcessSolidScrollUpdate:
-    PHB 
-    PHX 
-    PHY 
+    PHB : PHX : PHY 
     STZ.W $1E17,X 
     LDY.W $1DC7,X 
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDA.W #$0000 
     SEP #$20 
 
@@ -1305,10 +1228,7 @@ Instruction_PLM_ProcessSolidScrollUpdate:
 
 .specialBlock:
     REP #$20 
-    PLY 
-    PLX 
-    PLB 
-    PHX 
+    PLY : PLX : PLB : PHX 
     LDA.W $1C87,X 
     TAX 
     LDA.L $7F0002,X : AND.W #$0FFF 
@@ -1462,21 +1382,18 @@ RTS_848C8E:
 
 
 Instruction_PLM_Activate_MapStation:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $079F 
     LDA.L $7ED908,X : ORA.W #$00FF : STA.L $7ED908,X 
     LDA.W #$0014 
     JSL.L MessageBox_Routine 
     LDA.W #$0001 : STA.W $0789 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 Instruction_PLM_Activate_EnergyStation:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $09C4 
     CMP.W $09C2 
     BEQ .unlockSamus 
@@ -1487,14 +1404,12 @@ Instruction_PLM_Activate_EnergyStation:
 .unlockSamus:
     LDA.W #$0001 
     JSL.L Run_Samus_Command 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 Instruction_PLM_Activate_MissileStation:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $09C8 
     CMP.W $09C6 
     BEQ .unlockSamus 
@@ -1505,14 +1420,12 @@ Instruction_PLM_Activate_MissileStation:
 .unlockSamus:
     LDA.W #$0001 
     JSL.L Run_Samus_Command 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 Instruction_PLM_GotoY_or_ActivateSaveStation:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0017 
     JSL.L MessageBox_Routine 
     CMP.W #$0002 
@@ -1528,15 +1441,13 @@ Instruction_PLM_GotoY_or_ActivateSaveStation:
     LDA.L $7ED8F8,X : ORA.W $05E7 : STA.L $7ED8F8,X 
     LDA.W $0952 
     JSL.L SaveToSRAM 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTS 
 
 
 .gotoY:
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.W $0000,Y 
     TAY 
     RTS 
@@ -1721,8 +1632,7 @@ DrawPLM:
   + LDA.B $14 
     ASL A 
     STA.B $1E 
-    PLA 
-    PHA 
+    PLA : PHA 
     AND.W #$001F 
     STA.B $22 
     CLC : ADC.B $1E : DEC A 
@@ -1770,8 +1680,7 @@ DrawPLM:
 
 
 .return8F2C:
-    PLA 
-    PLX 
+    PLA : PLX 
     RTS 
 
 
@@ -4900,21 +4809,17 @@ InstList_PLM_SaveStation_2:
 Instruction_PLM_PlaceSamusOnSaveStation:
     LDA.W $0AF6 : CLC : ADC.W #$0008 : AND.W #$FFF0 
     STA.W $0AF6 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L MakeSamusFaceForward 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 Instruction_PLM_DisplayGameSavedMessageBox:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0018 
     JSL.L MessageBox_Routine 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -4950,11 +4855,8 @@ Setup_WreckedShipEntranceTreadmill:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_LoadFXEntry_CompletelyBroken_84B05D:
-    PHB 
-    PHA 
-    PEA.W $8F00 
-    PLB 
-    PLB 
+    PHB : PHA : PEA.W $8F00 
+    PLB : PLB 
     ASL #4
     TAX 
     CMP.W $1968 
@@ -4964,8 +4866,7 @@ UNUSED_LoadFXEntry_CompletelyBroken_84B05D:
     TYA 
     CLC : ADC.W $07CD : TAX 
     CMP.W $0002,X 
-    PLA 
-    PLB 
+    PLA : PLB 
     BCC .return 
 
 .loadFXEntry:
@@ -6669,20 +6570,17 @@ Instruction_PLM_ClearTrigger:
 
 
 Instruction_PLM_SpawnEnemyProjectileY:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0000,Y 
     TAY 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTS 
 
 
 Instruction_PLM_WakeEnemyProjectileAtPLMsPosition:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $1C87,X 
     LDX.W #$0022 
 
@@ -6697,8 +6595,7 @@ Instruction_PLM_WakeEnemyProjectileAtPLMsPosition:
     LDA.W #$0001 : STA.W $1B8F,X 
     INC.W $1B47,X 
     INC.W $1B47,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTS 
 
@@ -6959,21 +6856,18 @@ PreInstruction_PLM_GotoLinkInstructionIfAreaTorizoIsDead:
 
 
 PreInst_PLM_GotoLinkInst_SetZebesAwakeEventIfEnemiesDead:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $0E50 
     CMP.W $0E52 
     BCC .playSFX 
     LDA.W #$0000 
     JSL.L MarkEvent_inA 
-    PLX 
-    PLY 
+    PLX : PLY 
     JMP.W Goto_Link_Instruction 
 
 
 .playSFX:
-    PLX 
-    PLY 
+    PLX : PLY 
     JMP.W Play_Dud_Sound 
 
 
@@ -6982,17 +6876,14 @@ PreInstruction_PLM_PlayDudSound:
 
 
 PreInst_PLM_GotoLinkInstIfTourianStatueFinishedProcessing:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $1E6D : BPL .playSFX 
-    PLX 
-    PLY 
+    PLX : PLY 
     JMP.W Goto_Link_Instruction 
 
 
 .playSFX:
-    PLX 
-    PLY 
+    PLX : PLY 
     JMP.W Play_Dud_Sound 
 
 
@@ -9664,13 +9555,11 @@ PreInstruction_PLM_WakePLMIfSamusHasBombs:
 
 
 Instruction_PLM_SpawnBombTorizoStatueBreakingWIthArgY:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0000,Y 
     LDY.W #EnemyProjectile_BombTorizoStatueBreaking 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTS 
 

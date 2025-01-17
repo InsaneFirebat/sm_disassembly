@@ -120,22 +120,18 @@ RTS_B2807B:
 
 Instruction_CommonB2_DeleteEnemy:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
 Instruction_CommonB2_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
@@ -143,15 +139,12 @@ Instruction_CommonB2_CallFunctionInY:
 Instruction_CommonB2_CallFunctionInY_WithA:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     RTL 
@@ -161,11 +154,9 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonB2_CallExternalFunctionInY_B280B5:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTL 
 
@@ -178,11 +169,9 @@ UNUSED_Inst_CommonB2_CallExternalFunctionInY_WithA_B280CE:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTL 
@@ -254,8 +243,7 @@ Instruction_CommonB2_Sleep:
     DEY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -264,8 +252,7 @@ Instruction_CommonB2_WaitYFrames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -11788,11 +11775,9 @@ Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left:
     LDX.W $0E54 
     LDA.W #$0000 : STA.B $12 
     LDA.W $0000,Y : STA.B $14 
-    PHY 
-    PHX 
+    PHY : PHX 
     JSL.L MoveEnemyDownBy_14_12 
-    PLX 
-    PLY 
+    PLX : PLY 
     BCC .noCOllision 
     LDA.W $0FAC,X : EOR.W #$0001 : STA.W $0FAC,X 
     LDY.W #InstList_PirateWall_MovingDownLeftWall_0 
@@ -11815,11 +11800,9 @@ Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right:
     LDX.W $0E54 
     LDA.W #$0000 : STA.B $12 
     LDA.W $0000,Y : STA.B $14 
-    PHY 
-    PHX 
+    PHY : PHX 
     JSL.L MoveEnemyDownBy_14_12 
-    PLX 
-    PLY 
+    PLX : PLY 
     BCC .noCollision 
     LDA.W $0FAC,X : EOR.W #$0001 : STA.W $0FAC,X 
     LDY.W #InstList_PirateWall_MovingDownRightWall_0 
@@ -11868,8 +11851,7 @@ Instruction_PirateWall_RandomlyChooseADirection_RightWall:
 
 
 Instruction_PirateWall_PrepareWallJumpToRight:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0FB6,X : CLC : ADC.W $0F7A,X : STA.W $0FAA,X 
     LDA.W $0FB6,X 
@@ -11877,14 +11859,12 @@ Instruction_PirateWall_PrepareWallJumpToRight:
     CLC : ADC.W $0F7A,X : STA.W $0FAE,X 
     LDA.W $0F7E,X : STA.W $0FB0,X 
     LDA.W #$0040 : STA.W $0FB2,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_PirateWall_PrepareWallJumpToLeft:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0F7A,X : SEC : SBC.W $0FB6,X : STA.W $0FAA,X 
     LDA.W $0FB6,X 
@@ -11893,14 +11873,12 @@ Instruction_PirateWall_PrepareWallJumpToLeft:
     LDA.W $0F7A,X : SEC : SBC.B $12 : STA.W $0FAE,X 
     LDA.W $0F7E,X : STA.W $0FB0,X 
     LDA.W #$00C0 : STA.W $0FB2,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_PirateWall_FireLaserLeft:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDY.W $0E54 
     LDX.W $0F78,Y 
     LDA.L $A00006,X : STA.W $1993 
@@ -11910,43 +11888,36 @@ Instruction_PirateWall_FireLaserLeft:
     LDA.W #$0000 : STA.B $16 
     LDY.W #EnemyProjectile_PirateMotherBrainLaser 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_PirateWall_FireLaserRight:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0F7A,X : CLC : ADC.W #$0018 : STA.B $12 
     LDA.W $0F7E,X : SEC : SBC.W #$0010 : STA.B $14 
     LDA.W #$0001 : STA.B $16 
     LDY.W #EnemyProjectile_PirateMotherBrainLaser 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_PirateWall_FunctionInY:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDX.W $0E54 
     LDA.W $0000,Y : STA.W $0FA8,X 
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
 
 Instruction_PirateWall_QueueSpacePirateAttackSFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0066 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -12667,23 +12638,19 @@ InstList_PirateNinja_StandingKick_FacingRight:
     dw InstList_PirateNinja_Active_FacingRight_0 
 
 Instruction_PirateNinja_PaletteIndexInY:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0000,Y : STA.W $0F96,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTL 
 
 
 Instruction_PirateNinja_QueueSoundInY_Lib2_Max6:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0000,Y 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTL 
 
@@ -12701,8 +12668,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0002,Y : STA.B $16 
     LDA.W $0004,Y : STA.B $18 
@@ -12711,8 +12677,7 @@ Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset:
     LDA.W $0000,Y 
     LDY.W #EnemyProjectile_PirateClaw 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #6
     RTL 
 
@@ -13127,13 +13092,11 @@ PirateNinja_DivekickTrigger:
     dw InstList_PirateNinja_DivekickRight_Jump_0 
 
 Instruction_PirateNinja_SetLeftDivekickJumpInitialYSpeed:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0600 : STA.L $7E7800,X 
     LDA.W $0FB2,X : SEC : SBC.W $0FAE,X : LSR A 
     CLC : ADC.W $0FAE,X : STA.L $7E7806,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -13193,13 +13156,11 @@ Instruction_PirateNinja_DivekickLeft_WalkToLeftPost:
 
 
 Instruction_PirateNinja_SetRightDivekickJumpInitialYSpeed:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0600 : STA.L $7E7800,X 
     LDA.W $0FAE,X : SEC : SBC.W $0FB0,X : LSR A 
     CLC : ADC.W $0FB0,X : STA.L $7E7806,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -13429,42 +13390,36 @@ InstList_PirateWalking_LookingAround_FacingRight:
     dw InstList_PirateWalking_WalkingLeft_0 
 
 Instruction_PirateWalking_FireLaserLeftWithYOffsetInY:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0F7A,X : SEC : SBC.W #$0018 : STA.B $12 
     LDA.W $0F7E,X : SEC : SBC.W $0000,Y : STA.B $14 
     LDA.W #$0000 : STA.B $16 
     LDY.W #EnemyProjectile_PirateMotherBrainLaser 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTL 
 
 
 Instruction_PirateWalking_FireLaserRightWithYOffsetInY:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0F7A,X : CLC : ADC.W #$0018 : STA.B $12 
     LDA.W $0F7E,X : SEC : SBC.W $0000,Y : STA.B $14 
     LDA.W #$0001 : STA.B $16 
     LDY.W #EnemyProjectile_PirateMotherBrainLaser 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTL 
 
 
 Instruction_PirateWalking_FunctionInY:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDX.W $0E54 
     LDA.W $0000,Y : STA.W $0FA8,X 
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 

@@ -30,26 +30,19 @@ Clear_AnimatedTilesObjects:
     STZ.W $1EF5,X 
     DEX #2
     BPL .loop 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
 Spawn_AnimatedTilesObject:
-    PHP 
-    PHB 
-    PHX 
-    PHK 
-    PLB 
+    PHP : PHB : PHX : PHK : PLB 
     LDX.W #$000A 
 
 .loop:
     LDA.W $1EF5,X : BEQ .found 
     DEX #2
     BPL .loop 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     SEC 
     RTL 
 
@@ -63,18 +56,13 @@ Spawn_AnimatedTilesObject:
     LDA.W $0002,Y : STA.W $1F31,X 
     LDA.W $0004,Y : STA.W $1F3D,X 
     LDA.W #$0001 : STA.W $1F19,X 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     CLC 
     RTL 
 
 
 AnimatedTilesObject_Handler:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     BIT.W $1EF1 
     BPL .return 
     LDX.W #$000A 
@@ -90,8 +78,7 @@ AnimatedTilesObject_Handler:
     BPL .loop 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -546,8 +533,7 @@ Instruction_AnimatedTilesObject_SpawnPaletteFXObjectInY:
 
 
 Instruction_AnimatedTilesObject_Write8ColorsOfTargetPaletteD:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0000,Y 
     LDY.W #$0000 
 
@@ -557,8 +543,7 @@ Instruction_AnimatedTilesObject_Write8ColorsOfTargetPaletteD:
     INY #2
     CPY.W #$0010 
     BNE .loop 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTS 
 

@@ -94,10 +94,8 @@ CalculateMotherBrainRainbowBeamHDMATable_AimedRight:
 
 
 CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$00FF : STA.W $9D00 
     STA.W $9D02 
     LDA.W $8034 : AND.W #$00FF 
@@ -228,10 +226,8 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpwards:
     dw CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpLeft 
 
 CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpRight:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$00FF : STA.W $9D00 
     STA.W $9D02 
     LDA.W $8036 : AND.W #$00FF 
@@ -278,10 +274,8 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpRight:
 
 
 CalculateMotherBrainRainbowBeamHDMADataTable_AimedUp:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$00FF : STA.W $9D00 
     STA.W $9D02 
     LDA.W $8036 
@@ -331,10 +325,8 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUp:
 
 
 CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpLeft:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$00FF : STA.W $9D00 
     STA.W $9D02 
     LDA.W $8036 
@@ -421,10 +413,8 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownwards:
     dw CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownLeft 
 
 CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownRight:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$00FF : STA.W $9D00 
     STA.W $9D02 
     LDA.W $8034 : AND.W #$00FF 
@@ -475,10 +465,8 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownRight:
 
 
 CalculateMotherBrainRainbowBeamHDMADataTable_AimedDown:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$00FF : STA.W $9D00 
     STA.W $9D02 
     LDA.W $8034 
@@ -532,10 +520,8 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDown:
 
 
 CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownLeft:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$00FF : STA.W $9D00 
     STA.W $9D02 
     LDA.W $8034 
@@ -619,10 +605,8 @@ MotherBrainHealthBasedPaletteHandling:
 
 
 .recovered:
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
+    PHB : PEA.W $AD00 
+    PLB : PLB 
     LDY.W #$0000 
     LDA.W $0FCC 
     CMP.W #$2328 
@@ -910,10 +894,8 @@ FadeMotherBrainPaletteToBlack:
 
 
 .notZero:
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
+    PHB : PEA.W $AD00 
+    PLB : PLB 
     TAY 
     PHY 
     LDX.W #$0082 
@@ -1129,18 +1111,13 @@ TransitionMotherBrainPaletteFromGrey_FakeDeath:
 
 
 TransitionMotherBrainPaletteToFromGrey_FakeDeath:
-    PHY 
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
+    PHY : PHB : PEA.W $AD00 
+    PLB : PLB 
     TAY 
     LDX.W #$0122 
     LDA.W #$0003 
     JSL.L WriteAColorsFromYtoColorIndexX 
-    PLB 
-    PLY 
-    PLX 
+    PLB : PLY : PLX 
     CLC 
     RTL 
 
@@ -1154,10 +1131,8 @@ TransitionMotherBrainPaletteFromGrey_DrainedByBabyMetroid:
 
 
 .notZero:
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
+    PHB : PEA.W $AD00 
+    PLB : PLB 
     TAY 
     PHY 
     LDX.W #$0082 
@@ -1186,10 +1161,8 @@ TransitionMotherBrainPaletteToGrey_DrainedByBabyMetroid:
 
 
 .notZero:
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
+    PHB : PEA.W $AD00 
+    PLB : PLB 
     TAY 
     PHY 
     LDX.W #$0082 
@@ -1269,10 +1242,8 @@ TransitionMotherBrainPaletteToGrey_RealDeath:
 
 
 .notZero:
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
+    PHB : PEA.W $AD00 
+    PLB : PLB 
     TAY 
     LDX.W #$01E2 
     LDA.W #$000F 
@@ -1326,12 +1297,8 @@ TransitionMotherBrainPaletteToGrey_RealDeath:
     dw $4F38,$42B4,$3631,$29CD,$1949,$7FFF,$0000 
 
 FadeOutBackgroundForBabyMetroidDeathSequence:
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
-    PHX 
-    PHY 
+    PHB : PEA.W $AD00 
+    PLB : PLB : PHX : PHY 
     LDY.W #.justZeroes 
     LDX.W #$0062 
     LDA.W #$000E 
@@ -1340,9 +1307,7 @@ FadeOutBackgroundForBabyMetroidDeathSequence:
     LDX.W #$00A2 
     LDA.W #$000E 
     JSL.L WriteAColorsFromYtoColorIndexX 
-    PLY 
-    PLX 
-    PLB 
+    PLY : PLX : PLB 
     RTL 
 
 
@@ -1359,10 +1324,8 @@ FadeInBackgroundForMotherBrainPhase3:
 
 
 .notZero:
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
+    PHB : PEA.W $AD00 
+    PLB : PLB 
     TAY 
     LDX.W #$0062 
     LDA.W #$000E 

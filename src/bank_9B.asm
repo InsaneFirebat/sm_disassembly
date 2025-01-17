@@ -551,10 +551,7 @@ SamusPalettes_Visor:
     dw $43FF,$2F5A,$1AB5 ; In room with layer blending configuration = 28h/2Ah (with colour math backdrops)
 
 SetProjectileTrailPosition:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSL.L Get_ProjectileTrailFrame 
     LDA.W $093F : BPL .notRotatingRoom 
@@ -653,8 +650,7 @@ SetProjectileTrailPosition:
     ORA.W #$FF00 
 
   + CLC : ADC.B $12 : SEC : SBC.W #$0004 : STA.L $7ED754,X 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -1285,10 +1281,7 @@ UNSUED_SpazerSBATrail_Spazer_IceSpazer_1_9BB39B:
     db $00,$00,$00,$00, $F8,$F8,$08,$F8, $F0,$F8,$10,$F8 
 
 SetSamusDeathSequencePose:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A1F : AND.W #$00FF 
     PHA 
@@ -1324,8 +1317,7 @@ SetSamusDeathSequencePose:
     STA.W $0A96 
     LDA.W $0AF6 : SEC : SBC.W $0911 : STA.W $0AF6 
     LDA.W $0AFA : SEC : SBC.W $0915 : STA.W $0AFA 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -1365,10 +1357,7 @@ Draw_Samus_Starting_Death_Animation_JSL:
 
 
 Handle_Death_Animation_Flashing:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0DE6 
     CMP.W #$0004 
@@ -1407,8 +1396,7 @@ Handle_Death_Animation_Flashing:
 
 .returnFlashing:
     LDA.W #$0000 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -1426,8 +1414,7 @@ Handle_Death_Animation_Flashing:
 
 .returnFlashingEnded:
     LDA.W #$0001 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -1439,10 +1426,8 @@ FinishDeathAnimationFlashing:
     TAX 
     LDA.W $0000,X 
     TAX 
-    PHB 
-    PEA.W $9B00 
-    PLB 
-    PLB 
+    PHB : PEA.W $9B00 
+    PLB : PLB 
     LDA.W $0000,X : STA.L $7EC180 
     LDA.W $0002,X : STA.L $7EC182 
     LDA.W $0004,X : STA.L $7EC184 
@@ -1502,10 +1487,8 @@ WriteDeathAnimationSpritePalettes:
     CLC : ADC.B $14 : TAX 
     LDA.W $0000,X 
     TAX 
-    PHB 
-    PEA.W $9B00 
-    PLB 
-    PLB 
+    PHB : PEA.W $9B00 
+    PLB : PLB 
     LDA.W $0000,X : STA.L $7EC180 
     LDA.W $0002,X : STA.L $7EC182 
     LDA.W $0004,X : STA.L $7EC184 
@@ -1539,8 +1522,7 @@ WriteDeathAnimationSpritePalettes:
     LDA.W $001A,X : STA.L $7EC1FA 
     LDA.W $001C,X : STA.L $7EC1FC 
     LDA.W $001E,X : STA.L $7EC1FE 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -1569,15 +1551,11 @@ QueueTransferOfSegmentOfSamusDeathSequenceToVRAM:
 
 
 Handle_DeathSequence_SuitExplosionWhiteOut:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W HandleDeathSequenceWhiteOut 
     JSR.W HandleDeathSequenceSuitExplosion 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2426,10 +2404,7 @@ HandleGrappleKick:
 
 
 SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0D26 : BPL + 
     EOR.W #$FFFF 
@@ -2502,8 +2477,7 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
     LDA.W $0D16 : STA.W $0D1A 
     LDA.W $0D18 : STA.W $0D1C 
     JSR.W ClampScrollingSpeed 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2523,8 +2497,7 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
     LDA.W $0D16 : STA.W $0D1A 
     LDA.W $0D18 : STA.W $0D1C 
     JSR.W ClampScrollingSpeed 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2557,10 +2530,7 @@ ClampScrollingSpeed:
 
 
 SetSamusAnimationFrameAndPositionForConnectingGrapple_Stuck:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0D34 
     ASL A 
@@ -2569,16 +2539,12 @@ SetSamusAnimationFrameAndPositionForConnectingGrapple_Stuck:
     CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareX,X : STA.W $0D1A 
     LDA.W $0D18 : SEC : SBC.W GrappleBeamFireOffsets_NotRunning_OriginY,X : STA.W $0AFA 
     CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareY,X : STA.W $0D1C 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 UpdateGrappleBeamStartPositionDuringGrappleFire:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A1C 
     ASL #3
@@ -2621,16 +2587,12 @@ UpdateGrappleBeamStartPositionDuringGrappleFire:
     CLC : ADC.W GrappleBeamFireOffsets_Running_FlareY,X : STA.W $0D1C 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 UpdateGrappleBeamTiles_IncrementFlareCounter:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W UpdateGrappleBeamTiles 
     LDA.W $0CD0 
@@ -2640,8 +2602,7 @@ UpdateGrappleBeamTiles_IncrementFlareCounter:
     STA.W $0CD0 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2690,14 +2651,10 @@ UpdateGrappleBeamTiles:
 
 
 HandleGrappleBeamFlare:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0CD0 : BNE .nonZeroCounter 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2755,8 +2712,7 @@ HandleGrappleBeamFlare:
     JSL.L RTL_818AB7 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 ;        _______________________________________________________ 0: Up, facing right
@@ -3067,10 +3023,7 @@ UNUSED_9BC48E:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 GrappleBeamHandler:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0CF6 : BEQ + 
     DEC A 
@@ -3096,15 +3049,13 @@ GrappleBeamHandler:
     CMP.B $12 
     BPL .clearLiquidPhysics 
     LDA.W $0CF4 : ORA.W #$0001 : STA.W $0CF4 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 .clearLiquidPhysics:
     LDA.W $0CF4 : AND.W #$FFFE : STA.W $0CF4 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 

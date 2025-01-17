@@ -120,22 +120,18 @@ RTS_A9807B:
 
 Instruction_CommonA9_DeleteEnemy:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
 Instruction_CommonA9_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
@@ -143,15 +139,12 @@ Instruction_CommonA9_CallFunctionInY:
 Instruction_CommonA9_CallFunctionInY_WithA:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     RTL 
@@ -161,11 +154,9 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA9_CallExternalFunctionInY_A980B5:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTL 
 
@@ -178,11 +169,9 @@ UNUSED_Inst_CommonA9_CallExternalFunctionInY_WithA_A980CE:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTL 
@@ -254,8 +243,7 @@ Instruction_CommonA9_Sleep:
     DEY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -264,8 +252,7 @@ Instruction_CommonA9_WaitYFrames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -380,10 +367,8 @@ CommonA9EnemySpeeds_QuadraticallyIncreasing:
     dw $74F9,$0011,$8B07,$FFEE 
 
 InitAI_MotherBrainBody:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$0338 
     LDX.W #$0FFE 
 
@@ -1738,10 +1723,8 @@ AddSpritemapToOAM_RoomCoordinates:
 
 
 Calculate_MotherBrain_RainbowBeam_HDMATables:
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
+    PHB : PEA.W $AD00 
+    PLB : PLB 
     JSL.L CalculateMotherBrainRainbowBeamHDMATables 
     PLB 
     RTL 
@@ -2473,29 +2456,25 @@ InstList_MotherBrainBody_DeathBeamMode:
     dw Instruction_Common_Sleep 
 
 Instruction_MotherBrainBody_SpawnDustCloudExplosionProj:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $0000,Y : CLC : ADC.W $0F7A : STA.B $12 
     LDA.W $0002,Y : CLC : ADC.W $0F7E : STA.B $14 
     LDA.W $0004,Y 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #6
     RTL 
 
 
 Instruction_MotherBrainBody_SpawnDeathBeamProjectile:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0063 
     JSL.L QueueSound_Lib2_Max6 
     LDX.W #$0040 
     LDY.W #EnemyProjectile_MotherBrainRedBeam_Charging 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -2992,8 +2971,7 @@ Instruction_MotherBrainHead_SpawnOnionRingsProjectile:
 
 
 Instruction_MotherBrainHead_AimOnionRingsAtBabyMetroid:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.L $7E7854 
     TAX 
     LDA.W $0F7A,X : SEC : SBC.W $0FBA : SEC : SBC.W #$000A : STA.B $12 
@@ -3002,8 +2980,7 @@ Instruction_MotherBrainHead_AimOnionRingsAtBabyMetroid:
 
 
 Instruction_MotherBrainHead_AimOnionRingsAtSamus:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0AF6 : SEC : SBC.W $0FBA : SEC : SBC.W #$000A : STA.B $12 
     LDA.W $0AFA : SEC : SBC.W $0FBE : SEC : SBC.W #$0010 : STA.B $14 
 
@@ -3029,8 +3006,7 @@ AimMotherBrainOnionRings:
 .merge:
     REP #$20 
     STA.L $7E7834 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -4601,10 +4577,8 @@ Function_MBBody_Phase3_DeathSequence_FadeOutBody:
 .fadedToBlack:
     LDA.W #$02C6 : STA.W $179A 
     TAX 
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$0338 ; >.< off by one, causing a few black pixels to remain
 
 .loopTilemap:
@@ -4659,8 +4633,7 @@ GenerateExplosionsAroundMotherBrainBody:
     LDA.B $18 
 
 .loop:
-    PHA 
-    PHX 
+    PHA : PHX 
     LDA.W .XOffset,X : STA.B $12 
     LDA.W .YOffset,X : STA.B $14 
     LDX.B $16 
@@ -4677,8 +4650,7 @@ GenerateExplosionsAroundMotherBrainBody:
     TYA 
     LDY.W #EnemyProjectile_MotherBrainDeathExplosion 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLX 
-    PLA 
+    PLX : PLA 
     INX #4
     DEC A 
     BNE .loop 
@@ -4838,10 +4810,8 @@ CorpseRottingRotEntryFinishedHook_MotherBrain:
 
 
 Function_MBBody_Phase3_DeathSequence_LoadEscapeTimerTiles:
-    PHB 
-    PEA.W $A600 
-    PLB 
-    PLB 
+    PHB : PEA.W $A600 
+    PLB : PLB 
     LDX.W #ZebesEscapeTimerSpriteTileTransferEntries_size 
     JSR.W ProcessSpriteTilesTransfers 
     PLB 
@@ -6029,11 +5999,8 @@ HandleMotherBrainBodyRainbowBeamPalette:
     TAY 
 
 WriteMotherBrainPalette:
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $AD00 
+    PLB : PLB : PHY 
     LDX.W #$0082 
     LDA.W #$000F 
     JSL.L WriteAColorsFromYtoColorIndexX 
@@ -7735,10 +7702,8 @@ FadeBabyMetroidCutsceneToBlack:
     LDA.W $0F7E,X 
     CMP.W #$0080 
     BMI .returnNotFaded 
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
+    PHB : PEA.W $AD00 
+    PLB : PLB 
     LDA.L $7E7818,X 
     DEC A 
     BMI .advancePalette 
@@ -7770,8 +7735,7 @@ FadeBabyMetroidCutsceneToBlack:
     LDX.W #$01E2 
     LDA.W #$000E 
     JSL.L WriteAColorsFromYtoColorIndexX 
-    PLX 
-    PLB 
+    PLX : PLB 
     CLC 
     RTS 
 
@@ -7875,11 +7839,8 @@ HandleBabyMetroidCutsceneHealthBasedPalette:
     LDY.W #$000E 
 
 .setPalette:
-    PHB 
-    PEA.W $AD00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $AD00 
+    PLB : PLB : PHY 
     LDA.W BabyMetroidHealthBasedPalette_Shell,Y 
     TAY 
     LDX.W #$01E2 
@@ -8321,10 +8282,8 @@ WriteAColorsFromYToTargetColorIndexX:
 
 
 InitAI_CorpseTorizo:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$0000 
     LDX.W #$0FFE 
 
@@ -8617,10 +8576,8 @@ CopyLineOfSandHeapTileData:
     PLX 
     LDA.W .srcOffsets,X 
     TAX 
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.L Tiles_CorpseTorizo,X : STA.W $9500,Y 
     LDA.L Tiles_CorpseTorizo+$10,X : STA.W $9510,Y 
     LDA.L Tiles_CorpseTorizo+$20,X : STA.W $9520,Y 
@@ -9155,10 +9112,8 @@ Function_CorpseSkree_Rotting:
 
 
 ProcessCorpseRotting:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W $882E,X : STA.W $880A 
     LDA.W $8830,X : STA.W $880C 
     LDA.W $8832,X : STA.W $880E 
@@ -9205,16 +9160,13 @@ ProcessCorpseRotting:
     LDA.W $0000,X : CLC : ADC.W #$0002 : CMP.W $880C 
     BCC .store 
     LDA.W $8812 : STA.B $12 
-    PHK 
-    PLB 
-    PEA.W .manualReturn-1 
+    PHK : PLB : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
     PEA.W $7E7E 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDA.B $01,S 
     CMP.W $880C 
     BCS .returnFinishedRotting 
@@ -9239,8 +9191,7 @@ ProcessCorpseRotting:
 
 
 .returnFinishedRotting:
-    PLA 
-    PLB 
+    PLA : PLB 
     CLC 
     RTS 
 
@@ -9541,68 +9492,57 @@ CorpseRottingInit_Torizo:
     LDY.W #$2060 
     LDA.W #$00BF 
     MVN $7E,Tiles_CorpseTorizo>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseTorizo+$320 
     LDY.W #$21A0 
     LDA.W #$00BF 
     MVN $7E,Tiles_CorpseTorizo>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseTorizo+$500 
     LDY.W #$22C0 
     LDA.W #$00FF 
     MVN $7E,Tiles_CorpseTorizo>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseTorizo+$700 
     LDY.W #$2400 
     LDA.W #$00FF 
     MVN $7E,Tiles_CorpseTorizo>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseTorizo+$900 
     LDY.W #$2540 
     LDA.W #$00FF 
     MVN $7E,Tiles_CorpseTorizo>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseTorizo+$B00 
     LDY.W #$2680 
     LDA.W #$00FF 
     MVN $7E,Tiles_CorpseTorizo>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseTorizo+$D00 
     LDY.W #$27C0 
     LDA.W #$00FF 
     MVN $7E,Tiles_CorpseTorizo>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseTorizo+$F00 
     LDY.W #$2900 
     LDA.W #$00FF 
     MVN $7E,Tiles_CorpseTorizo>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseTorizo+$1100 
     LDY.W #$2A40 
     LDA.W #$00FF 
     MVN $7E,Tiles_CorpseTorizo>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseTorizo+$12E0 
     LDY.W #$2B60 
     LDA.W #$011F 
     MVN $7E,Tiles_CorpseTorizo>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseTorizo+$14C0 
     LDY.W #$2C80 
     LDA.W #$013F 
     MVN $7E,Tiles_CorpseTorizo>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseTorizo+$16C0 
     LDY.W #$2DC0 
     LDA.W #$013F 
@@ -9617,26 +9557,22 @@ CorpseRottingInit_Sidehopper_Param1_0:
     LDY.W #$2040 
     LDA.W #$005F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$200 
     LDY.W #$20A0 
     LDA.W #$009F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$400 
     LDY.W #$2140 
     LDA.W #$009F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$600 
     LDY.W #$21E0 
     LDA.W #$009F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$800 
     LDY.W #$2280 
     LDA.W #$009F 
@@ -9651,26 +9587,22 @@ CorpseRottingInit_Sidehopper_Param1_2:
     LDY.W #$2320 
     LDA.W #$003F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$320 
     LDY.W #$23C0 
     LDA.W #$009F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$520 
     LDY.W #$2460 
     LDA.W #$009F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$720 
     LDY.W #$2500 
     LDA.W #$009F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$920 
     LDY.W #$25A0 
     LDA.W #$009F 
@@ -9685,8 +9617,7 @@ CorpseRottingInit_Zoomer_Param1_0:
     LDY.W #$2940 
     LDA.W #$005F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$C60 
     LDY.W #$29A0 
     LDA.W #$005F 
@@ -9701,8 +9632,7 @@ CorpseRottingInit_Zoomer_Param1_2:
     LDY.W #$2A00 
     LDA.W #$005F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$CC0 
     LDY.W #$2A60 
     LDA.W #$005F 
@@ -9717,8 +9647,7 @@ CorpseRottingInit_Zoomer_Param1_4:
     LDY.W #$2AC0 
     LDA.W #$005F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$D20 
     LDY.W #$2B20 
     LDA.W #$005F 
@@ -9733,8 +9662,7 @@ CorpseRottingInit_Ripper_Param1_0:
     LDY.W #$2B80 
     LDA.W #$005F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$C00 
     LDY.W #$2BE0 
     LDA.W #$005F 
@@ -9749,8 +9677,7 @@ CorpseRottingInit_Ripper_Param1_2:
     LDY.W #$2C40 
     LDA.W #$005F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$D80 
     LDY.W #$2CA0 
     LDA.W #$005F 
@@ -9765,20 +9692,17 @@ CorpseRottingInit_Skree_Param1_0:
     LDY.W #$2640 
     LDA.W #$003F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$4A0 
     LDY.W #$2680 
     LDA.W #$003F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$6A0 
     LDY.W #$26C0 
     LDA.W #$003F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$8A0 
     LDY.W #$2700 
     LDA.W #$003F 
@@ -9793,20 +9717,17 @@ CorpseRottingInit_Skree_Param1_2:
     LDY.W #$2740 
     LDA.W #$003F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$2E0 
     LDY.W #$2780 
     LDA.W #$003F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$4E0 
     LDY.W #$27C0 
     LDA.W #$003F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$6E0 
     LDY.W #$2800 
     LDA.W #$003F 
@@ -9821,20 +9742,17 @@ CorpseRottingInit_Skree_Param1_4:
     LDY.W #$2840 
     LDA.W #$003F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$3C0 
     LDY.W #$2880 
     LDA.W #$003F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$5C0 
     LDY.W #$28C0 
     LDA.W #$003F 
     MVN $7E,Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$7C0 
     LDY.W #$2900 
     LDA.W #$003F 
@@ -9849,32 +9767,27 @@ CorpseRottingInit_MotherBrain:
     LDY.W #$9000 
     LDA.W #$00BF 
     MVN $7E,Tiles_CorpseMotherBrain>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseMotherBrain+$2C0 
     LDY.W #$90E0 
     LDA.W #$00BF 
     MVN $7E,Tiles_CorpseMotherBrain>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseMotherBrain+$4C0 
     LDY.W #$91C0 
     LDA.W #$00BF 
     MVN $7E,Tiles_CorpseMotherBrain>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseMotherBrain+$6C0 
     LDY.W #$92A0 
     LDA.W #$00BF 
     MVN $7E,Tiles_CorpseMotherBrain>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseMotherBrain+$8C0 
     LDY.W #$9380 
     LDA.W #$00DF 
     MVN $7E,Tiles_CorpseMotherBrain>>16 
-    PLB 
-    PHB 
+    PLB : PHB 
     LDX.W #Tiles_CorpseMotherBrain+$AC0 
     LDY.W #$9460 
     LDA.W #$00DF 
@@ -11193,10 +11106,8 @@ CheckForEnemyCollisionWithRectangle:
 
 
 InitAI_BabyMetroid:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$0000 
     LDX.W #$0FFE 
 
@@ -12001,8 +11912,7 @@ HandleBabyMetroidCrySFX:
 
 
 .timerExpired:
-    PHA 
-    PHY 
+    PHA : PHY 
     LDA.L $7E7808,X : BEQ .return 
     LDA.L $7E780A,X 
     INC A 
@@ -12020,8 +11930,7 @@ HandleBabyMetroidCrySFX:
     JSL.L QueueSound_Lib2_Max6 
 
 .return:
-    PLY 
-    PLA 
+    PLY : PLA 
     RTS 
 
 

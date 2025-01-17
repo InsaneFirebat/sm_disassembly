@@ -827,17 +827,14 @@ CinematicBGObjects_Update32x32CinematicBGTilemap:
 CinematicBGObjects_ProcessIndirectInstruction:
     PHP 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDY.W $19B5,X 
     LDA.W $0000,Y : STA.B $1C 
     JMP.W ($001C) 
 
 
 IndirectInstructionFunction_Nothing:
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTS 
 
 
@@ -907,9 +904,7 @@ IndirectInstructionFunction_DrawTextToTilemap:
 
 
 .return:
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTS 
 
 
@@ -937,9 +932,7 @@ IndirectInstructionFunction_DrawSamusEyesToTilemap:
 
 
 .return:
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTS 
 
 
@@ -986,9 +979,7 @@ UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B896B:
 
 .return:
     STX.W $0334 
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTS 
 
 
@@ -1020,9 +1011,7 @@ UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B89CF:
 
 .return:
     STX.W $0334 
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTS 
 
 
@@ -1039,10 +1028,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Calculate_SamusPosition_InRotatingElevatorRoom:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0AF6 : SEC : SBC.B $80 : STA.B $22 
     LDA.B $82 : SEC : SBC.W $0AFA : STA.B $24 
@@ -1084,16 +1070,12 @@ Calculate_SamusPosition_InRotatingElevatorRoom:
     REP #$20 
     CLC : ADC.B $1A : STA.B $1A 
     LDA.B $82 : SEC : SBC.B $1A : STA.W $0AFA 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Calculate_ProjectilePosition_InRotatingElevatorRoom:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0B64,X : SEC : SBC.B $80 : STA.B $22 
     LDA.B $82 : SEC : SBC.W $0B78,X : STA.B $24 
@@ -1135,16 +1117,12 @@ Calculate_ProjectilePosition_InRotatingElevatorRoom:
     REP #$20 
     CLC : ADC.B $1A : STA.B $1A 
     LDA.B $82 : SEC : SBC.B $1A : SEC : SBC.W $0915 : STA.B $12 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Calculate_CeresSteamPosition_InRotatingElevatorRoom:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.B $12 : SEC : SBC.B $80 : STA.B $22 
     LDA.B $82 : SEC : SBC.B $14 : STA.B $24 
@@ -1186,18 +1164,15 @@ Calculate_CeresSteamPosition_InRotatingElevatorRoom:
     REP #$20 
     CLC : ADC.B $1A : STA.B $1A 
     LDA.B $82 : SEC : SBC.B $1A : STA.B $14 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 PaletteCrossFading_CopyCurrentPalettesToFadingPalettes:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$30 
     LDA.B #$7F 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDY.W #$0100 
     LDX.W #$0000 
@@ -1207,18 +1182,15 @@ PaletteCrossFading_CopyCurrentPalettesToFadingPalettes:
     INX #2
     DEY 
     BNE .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
 PaletteCrossFading_DecomposePaletteDataForFading:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$30 
     LDA.B #$7F 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDX.W #$0000 
     LDY.W #$0100 
@@ -1246,18 +1218,15 @@ PaletteCrossFading_DecomposePaletteDataForFading:
     INX #2
     DEY 
     BNE .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
 PaletteCrossFading_ClearYColorsStartingFromColorIndexX:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.B #$7F 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
 
 .loop:
@@ -1268,8 +1237,7 @@ PaletteCrossFading_ClearYColorsStartingFromColorIndexX:
     INX #2
     DEY 
     BNE .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -1344,10 +1312,8 @@ LoadJapanTextIntroTiles:
     LDA.W $0004,Y : STA.B $16 
     PHY 
     LDA.W #$A000 : CLC : ADC.B $16 : TAY 
-    PHB 
-    PEA.W $7F00 
-    PLB 
-    PLB 
+    PHB : PEA.W $7F00 
+    PLB : PLB 
     LDA.W $0000,Y : STA.L $7E4000,X 
     LDA.W $0002,Y : STA.L $7E4002,X 
     LDA.W $0004,Y : STA.L $7E4004,X 
@@ -1356,17 +1322,14 @@ LoadJapanTextIntroTiles:
     LDA.W $000A,Y : STA.L $7E400A,X 
     LDA.W $000C,Y : STA.L $7E400C,X 
     LDA.W $000E,Y : STA.L $7E400E,X 
-    PLB 
-    PLY 
+    PLB : PLY 
     LDA.W $0006,Y : STA.B $16 
     TXA 
     CLC : ADC.W #$0300 : TAX 
     PHY 
     LDA.W #$A000 : CLC : ADC.B $16 : TAY 
-    PHB 
-    PEA.W $7F00 
-    PLB 
-    PLB 
+    PHB : PEA.W $7F00 
+    PLB : PLB 
     LDA.W $0000,Y : STA.L $7E4000,X 
     LDA.W $0002,Y : STA.L $7E4002,X 
     LDA.W $0004,Y : STA.L $7E4004,X 
@@ -1375,8 +1338,7 @@ LoadJapanTextIntroTiles:
     LDA.W $000A,Y : STA.L $7E400A,X 
     LDA.W $000C,Y : STA.L $7E400C,X 
     LDA.W $000E,Y : STA.L $7E400E,X 
-    PLB 
-    PLY 
+    PLB : PLY 
     TXA 
     SEC : SBC.W #$02F0 : TAX 
     TYA 
@@ -1387,8 +1349,7 @@ LoadJapanTextIntroTiles:
 
 
 .return:
-    PLX 
-    PLP 
+    PLX : PLP 
     RTS 
 
 
@@ -1493,8 +1454,7 @@ UNUSED_CalculateXYComponentsOfRadiusAAngleY_8B8E52:
 
 .storeYComponent:
     STA.B $16 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTS 
 
 
@@ -1805,10 +1765,7 @@ AdvanceSlowScreenFadeIn:
 
 
 Initialise_IO_Registers_and_Display_Nintendo_Logo:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$30 
     LDA.B #$8F : STA.W $2100 
     STA.B $51 
@@ -2000,25 +1957,21 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
     LDA.B #$8F : STA.W $2100 
     STA.B $51 
     REP #$30 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 AddNintendoBootLogoSpritemapToOAM:
     PHP 
     REP #$30 
-    PHB 
-    PEA.W TitleSequenceSpritemaps_NintendoBootLogo>>8&$FF00 
-    PLB 
-    PLB 
+    PHB : PEA.W TitleSequenceSpritemaps_NintendoBootLogo>>8&$FF00 
+    PLB : PLB 
     LDY.W #TitleSequenceSpritemaps_NintendoBootLogo 
     STZ.B $16 
     LDA.W #$0080 : STA.B $14 
     LDA.W #$0070 : STA.B $12 
     JSL.L AddSpritemapToOAM 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -2034,8 +1987,7 @@ Spawn_CinematicSpriteObject_Y:
     LDA.W $1B1D,Y : BEQ SpawnCinematicSpriteObject_XToIndexY 
     DEY #2
     BPL .loop 
-    PLX 
-    PLP 
+    PLX : PLP 
     SEC 
     RTS 
 
@@ -2058,8 +2010,7 @@ SpawnCinematicSpriteObject_XToIndexY:
     STA.W $1ADD,Y 
     STA.W $1AFD,Y 
     JSR.W ($0000,X) 
-    PLX 
-    PLP 
+    PLX : PLP 
     CLC 
     RTS 
 
@@ -2266,8 +2217,7 @@ Spawn_Mode7Objects:
     LDA.W $19A1,Y : BEQ .spawn 
     DEY #2
     BPL .loop 
-    PLX 
-    PLP 
+    PLX : PLP 
     SEC 
     RTS 
 
@@ -2279,8 +2229,7 @@ Spawn_Mode7Objects:
     LDA.W #$0001 : STA.W $19A9,Y 
     LDA.W #$0000 : STA.W $19AD,Y 
     JSR.W ($0000,X) 
-    PLX 
-    PLP 
+    PLX : PLP 
     CLC 
     RTS 
 
@@ -2320,12 +2269,10 @@ Process_Mode7Objects_InstList:
 
 .timer:
     STA.W $19A9,X 
-    PHY 
-    PHX 
+    PHY : PHX 
     LDX.W $0002,Y 
     JSL.L QueueMode7Transfers 
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : STA.W $19A1,X 
 
@@ -2433,8 +2380,7 @@ Clear_CinematicBGObjects_CinematicBGTilemap:
     DEX #2
     BPL .loopObjects 
     STZ.W $1BA1 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
@@ -2450,8 +2396,7 @@ Spawn_CinematicBGObject:
     LDA.W $19CD,Y : BEQ .spawn 
     DEY #2
     BPL .loop 
-    PLX 
-    PLP 
+    PLX : PLP 
     SEC 
     RTS 
 
@@ -2464,8 +2409,7 @@ Spawn_CinematicBGObject:
     LDA.W #$0000 : STA.W $19B5,Y 
     LDA.W #$0000 : STA.W $19E5,Y 
     JSR.W ($0000,X) 
-    PLX 
-    PLP 
+    PLX : PLP 
     CLC 
     RTS 
 
@@ -2500,10 +2444,8 @@ Handle_CinematicBGObjects:
 
 Process_CinematicBGObject_InstList:
     JSR.W ($19D5,X) 
-    PHB 
-    PEA.W $8C00 
-    PLB 
-    PLB 
+    PHB : PEA.W $8C00 
+    PLB : PLB 
     LDX.W $19ED 
     DEC.W $19DD,X 
     BNE .return 
@@ -2534,8 +2476,7 @@ CinematicBGObject_Instruction_Delete:
     REP #$30 
     STZ.W $19B5,X 
     STZ.W $19CD,X 
-    PLA 
-    PLB 
+    PLA : PLB 
     RTS 
 
 
@@ -2545,8 +2486,7 @@ UNUSED_CinematicBGObject_Instruction_Sleep_8B96A3:
     DEY #2
     TYA 
     STA.W $19CD,X 
-    PLA 
-    PLB 
+    PLA : PLB 
     RTS 
 
 
@@ -2664,8 +2604,7 @@ Draw_CinematicSpriteObjects_IntroTitleSequence:
 .loop:
     LDA.W $1A5D,X : BEQ .next 
     PEA.W $8C00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDY.W $1A5D,X 
     LDA.W $1ABD,X : STA.B $16 
     LDA.W $1A7D,X : SEC : SBC.W $0911 : STA.B $14 
@@ -2685,8 +2624,7 @@ Draw_CinematicSpriteObjects_IntroTitleSequence:
 .next:
     DEX #2
     BPL .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -2699,8 +2637,7 @@ Draw_CinematicSpriteObjects_EndingCredits:
 .loop:
     LDA.W $1A5D,X : BEQ .next 
     PEA.W $8C00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDY.W $1A5D,X 
     LDA.W $1ABD,X : STA.B $16 
     LDA.W $1A7D,X : SEC : SBC.W $0911 : STA.B $14 
@@ -2757,10 +2694,8 @@ Spawn_TextGlowObject:
 Handle_TextGlowObject:
     PHP 
     REP #$30 
-    PHB 
-    PEA.W $8C00 
-    PLB 
-    PLB 
+    PHB : PEA.W $8C00 
+    PLB : PLB 
     LDX.W #$000E 
 
 .loop:
@@ -2772,8 +2707,7 @@ Handle_TextGlowObject:
 .next:
     DEX #2
     BPL .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -2872,8 +2806,7 @@ Clear_CreditsObject_CinematicBGTilemapInA:
     STZ.W $1993 
     STZ.W $1995 
     STZ.W $1997 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTS 
 
 
@@ -2887,8 +2820,7 @@ Spawn_CreditsObject:
     LDA.W #$0001 : STA.W $19F9 
     LDA.W #$0000 : STA.W $19FB 
     JSR.W ($0000,X) 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTS 
 
 
@@ -2911,10 +2843,8 @@ Handle_CreditsObject:
 Process_CreditsObject_InstList:
     LDX.W #$0000 
     JSR.W ($19FD,X) 
-    PHB 
-    PEA.W $8C00 
-    PLB 
-    PLB 
+    PHB : PEA.W $8C00 
+    PLB : PLB 
     LDA.W $1995 : CLC : ADC.W #$8000 : STA.W $1995 
     LDA.W $1997 : ADC.W #$0000 : STA.W $1997 
     SEC : SBC.W $1A03 : CMP.W #$0008 
@@ -2967,16 +2897,14 @@ Copy_CreditsRow_ToCinematicBGTilemap:
     INY #2
     DEC.W $0014 
     BPL .loop 
-    PLY 
-    PLP 
+    PLY : PLP 
     RTS 
 
 
 Instruction_CreditsObject_Delete:
     REP #$30 
     STZ.W $19F7 
-    PLA 
-    PLB 
+    PLA : PLB 
     RTS 
 
 
@@ -3003,10 +2931,7 @@ Instruction_CreditsObject_TimerInY:
 
 
 GameState1_TitleSequence:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PEA.W .manualReturn-1 
     JMP.W ($1F51) 
@@ -3020,8 +2945,7 @@ GameState1_TitleSequence:
     JSR.W SkipToTitleScreenCheck 
     JSR.W SkipToTitleScreenHandler 
     JSR.W HandleMode7TransformMatrixAndBG1Position_NoRotation 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -3162,10 +3086,7 @@ CinematicFunction_LoadTitleSequence:
 
 
 Load_Title_Sequence_Graphics:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W Setup_PPU_TitleSequence 
     STZ.B $AB 
@@ -3255,8 +3176,7 @@ Load_Title_Sequence_Graphics:
     JSL.L Spawn_PaletteFXObject 
     LDY.W #Mode7Object_TitleSequenceBabyMetroid 
     JSR.W Spawn_Mode7Objects 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -3610,20 +3530,15 @@ CinematicFunction_TransitionToDemos:
 
 
 Configure_TitleScreen_GradientHDMATable:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $198F : AND.W #$00F0 
     LSR #3
     TAX 
     LDA.L TitleSequenceHDMATables,X 
     TAY 
-    PHB 
-    PEA.W $8C00 
-    PLB 
-    PLB 
+    PHB : PEA.W $8C00 
+    PLB : PLB 
     LDX.W #$0000 
 
 .loop:
@@ -3635,9 +3550,7 @@ Configure_TitleScreen_GradientHDMATable:
 
 
 .return:
-    PLB 
-    PLB 
-    PLP 
+    PLB : PLB : PLP 
     RTL 
 
 
@@ -3987,10 +3900,7 @@ Mode7Object_TitleSequenceBabyMetroid:
     dw Mode7Object_InstList_TitleSequenceBabyMetroid_0 
 
 GameState_1E_22_25_Intro_CeresGoesBoom_SamusGoesToZebes_8B:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PEA.W .manualReturn-1 
     JMP.W ($1F51) 
@@ -4010,8 +3920,7 @@ GameState_1E_22_25_Intro_CeresGoesBoom_SamusGoesToZebes_8B:
     JSL.L PaletteFXObject_Handler 
     JSR.W DrawIntroSprites 
     JSR.W HandleMode7TransformMatrixAndBG1Position 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -4396,8 +4305,7 @@ Clear_EnglishText_Tilemap:
 BlankOut_JapanText_Tiles:
     PHP 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W #$0000 
 
 .loop:
@@ -4413,9 +4321,7 @@ BlankOut_JapanText_Tiles:
     CLC : ADC.W #$0010 : TAX 
     CPX.W #$0600 
     BMI .loop 
-    PLY 
-    PLX 
-    PLP 
+    PLY : PLX : PLP 
     RTS 
 
 
@@ -4750,15 +4656,11 @@ PreInst_CinematicSpriteObject_IntroJapanTextNextPageArrow:
 Instruction_HandleCreatingJapanText_Page1:
     STZ.W $1BA1 
     LDA.W $09E2 : BEQ .return 
-    PHB 
-    PEA.W $8B00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $8B00 
+    PLB : PLB : PHY 
     LDY.W #Mode7Objects_IntroJapanText_Page1 
     JSR.W Spawn_Mode7Objects 
-    PLY 
-    PLB 
+    PLY : PLB 
 
 .return:
     RTS 
@@ -4767,15 +4669,11 @@ Instruction_HandleCreatingJapanText_Page1:
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page1:
     JSR.W Instruction_SetCaretToBlink 
     LDA.W $09E2 : BEQ .waitForInput 
-    PHB 
-    PEA.W $8B00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $8B00 
+    PLB : PLB : PHY 
     LDY.W #CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow 
     JSR.W Spawn_CinematicSpriteObject_Y 
-    PLY 
-    PLB 
+    PLY : PLB 
 
 .waitForInput:
     LDA.W #CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight : STA.W $1F51 
@@ -4785,15 +4683,11 @@ Instruction_SpawnBlinkingMarkers_WaitForInput_Page1:
 Instruction_HandleCreatingJapanText_Page2:
     STZ.W $1BA1 
     LDA.W $09E2 : BEQ .return 
-    PHB 
-    PEA.W $8B00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $8B00 
+    PLB : PLB : PHY 
     LDY.W #Mode7Objects_IntroJapanText_Page2_Subpage1 
     JSR.W Spawn_Mode7Objects 
-    PLY 
-    PLB 
+    PLY : PLB 
 
 .return:
     RTS 
@@ -4802,19 +4696,14 @@ Instruction_HandleCreatingJapanText_Page2:
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page2:
     JSR.W Instruction_SetCaretToBlink 
     LDA.W $09E2 : BEQ .noJapanText 
-    PHB 
-    PEA.W $8B00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $8B00 
+    PLB : PLB : PHY 
     LDY.W #CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow 
     JSR.W Spawn_CinematicSpriteObject_Y 
-    PLY 
-    PHY 
+    PLY : PHY 
     LDY.W #Mode7Objects_IntroJapanText_Page2_Subpage2 
     JSR.W Spawn_Mode7Objects 
-    PLY 
-    PLB 
+    PLY : PLB 
     RTS 
 
 
@@ -4978,15 +4867,11 @@ Setup_Intro_CrossFade_Into_SamusGameplay:
 Instruction_HandleCreatingJapanText_Page3:
     STZ.W $1BA1 
     LDA.W $09E2 : BEQ .return 
-    PHB 
-    PEA.W $8B00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $8B00 
+    PLB : PLB : PHY 
     LDY.W #Mode7Objects_IntroJapanText_Page3_Subpage1 
     JSR.W Spawn_Mode7Objects 
-    PLY 
-    PLB 
+    PLY : PLB 
 
 .return:
     RTS 
@@ -4995,19 +4880,14 @@ Instruction_HandleCreatingJapanText_Page3:
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page3:
     JSR.W Instruction_SetCaretToBlink 
     LDA.W $09E2 : BEQ .waitForInput 
-    PHB 
-    PEA.W $8B00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $8B00 
+    PLB : PLB : PHY 
     LDY.W #CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow 
     JSR.W Spawn_CinematicSpriteObject_Y 
-    PLY 
-    PHY 
+    PLY : PHY 
     LDY.W #Mode7Objects_IntroJapanText_Page3_Subpage2 
     JSR.W Spawn_Mode7Objects 
-    PLY 
-    PLB 
+    PLY : PLB 
     RTS 
 
 
@@ -5019,15 +4899,11 @@ Instruction_SpawnBlinkingMarkers_WaitForInput_Page3:
 Instruction_HandleCreatingJapanText_Page4:
     STZ.W $1BA1 
     LDA.W $09E2 : BEQ .return 
-    PHB 
-    PEA.W $8B00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $8B00 
+    PLB : PLB : PHY 
     LDY.W #Mode7Objects_IntroJapanText_Page4_Subpage1 
     JSR.W Spawn_Mode7Objects 
-    PLY 
-    PLB 
+    PLY : PLB 
 
 .return:
     RTS 
@@ -5036,19 +4912,14 @@ Instruction_HandleCreatingJapanText_Page4:
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page4:
     JSR.W Instruction_SetCaretToBlink 
     LDA.W $09E2 : BEQ .waitForInput 
-    PHB 
-    PEA.W $8B00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $8B00 
+    PLB : PLB : PHY 
     LDY.W #CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow 
     JSR.W Spawn_CinematicSpriteObject_Y 
-    PLY 
-    PHY 
+    PLY : PHY 
     LDY.W #Mode7Objects_IntroJapanText_Page4_Subpage2 
     JSR.W Spawn_Mode7Objects 
-    PLY 
-    PLB 
+    PLY : PLB 
     RTS 
 
 
@@ -5136,15 +5007,11 @@ SetupIntroCrossFadeIntoScientistCutscene:
 Instruction_HandleCreatingJapanText_Page5:
     STZ.W $1BA1 
     LDA.W $09E2 : BEQ .return 
-    PHB 
-    PEA.W $8B00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $8B00 
+    PLB : PLB : PHY 
     LDY.W #Mode7Objects_IntroJaanText_Page5_Subpage1 
     JSR.W Spawn_Mode7Objects 
-    PLY 
-    PLB 
+    PLY : PLB 
 
 .return:
     RTS 
@@ -5153,19 +5020,14 @@ Instruction_HandleCreatingJapanText_Page5:
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page5:
     JSR.W Instruction_SetCaretToBlink 
     LDA.W $09E2 : BEQ .waitForInput 
-    PHB 
-    PEA.W $8B00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $8B00 
+    PLB : PLB : PHY 
     LDY.W #CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow 
     JSR.W Spawn_CinematicSpriteObject_Y 
-    PLY 
-    PHY 
+    PLY : PHY 
     LDY.W #Mode7Objects_IntroJapanText_Page5_Subpage2 
     JSR.W Spawn_Mode7Objects 
-    PLY 
-    PLB 
+    PLY : PLB 
     RTS 
 
 
@@ -5211,15 +5073,11 @@ CinematicFunction_Intro_Page6:
 Instruction_HandleCreatingJapanText_Page6:
     STZ.W $1BA1 
     LDA.W $09E2 : BEQ .return 
-    PHB 
-    PEA.W $8B00 
-    PLB 
-    PLB 
-    PHY 
+    PHB : PEA.W $8B00 
+    PLB : PLB : PHY 
     LDY.W #Mode7Objects_IntroJapanText_Page6 
     JSR.W Spawn_Mode7Objects 
-    PLY 
-    PLB 
+    PLY : PLB 
 
 .return:
     RTS 
@@ -6886,16 +6744,10 @@ CinematicFunction_CeresGoesBoom_CeresExplosions:
     EOR.W #$FFFF 
     INC A 
     CLC : ADC.B $82 : STA.W $0CE4 
-    PHX 
-    PHY 
-    PHP 
-    PHB 
+    PHX : PHY : PHP : PHB 
     JSL.L Enable_HDMAObjects 
     JSL.L Spawn_PowerBombExplosion 
-    PLB 
-    PLP 
-    PLY 
-    PLX 
+    PLB : PLP : PLY : PLX 
     SEP #$20 
     LDA.B #$10 : STA.B $6F 
     LDA.B #$37 : STA.B $72 
@@ -8709,10 +8561,7 @@ UNUSED_Mode7Objects_8BD43D:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 GameState27_EndingAndCredits:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     PEA.W .manualReturn-1 
     JMP.W ($1F51) 
@@ -8732,8 +8581,7 @@ GameState27_EndingAndCredits:
     JSR.W Draw_CinematicSpriteObjects_EndingCredits 
     JSR.W Handle_ShootingStars 
     JSR.W HandleMode7TransformMatrixAndBG1Position 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -10252,9 +10100,7 @@ CinematicFunction_PostCredits_FadeFromWhite:
 
 
 CinematicFunction_PostCredits_GreyOutSuperMetroidIcon:
-    PHX 
-    PHY 
-    PHB 
+    PHX : PHY : PHB 
     LDA.W $1A49 
     ASL #2
     TAX 
@@ -10263,8 +10109,7 @@ CinematicFunction_PostCredits_GreyOutSuperMetroidIcon:
     LDA.W .BGPalette,X 
     TAY 
     PEA.W $8C00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDX.W #$001E 
 
 .loopBGPalette:
@@ -10291,15 +10136,12 @@ CinematicFunction_PostCredits_GreyOutSuperMetroidIcon:
     LDY.W #CinematicBGObjectDefinitions_PostCredits_ItemPercentage 
     LDA.W #$4C00 
     JSR.W Spawn_CinematicBGObject 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 .return:
-    PLB 
-    PLY 
-    PLX 
+    PLB : PLY : PLX 
     RTS 
 
 ; Pointers to (the last colour of) increasingly grey palettes
@@ -10339,13 +10181,9 @@ CinematicFunction_PostCredits_GreyOutSuperMetroidIcon:
     dw Palettes_EndingSuperMetroidIconFadingToGrey_Sprite_10 
 
 Instruction_DrawItemPercentageCount:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W #$0008 
     STZ.B $12 
 
@@ -10416,10 +10254,7 @@ Instruction_DrawItemPercentageCount:
     LDA.W TilemapValuesForDecimalDigits_bottomHalf,Y : STA.L $7E33E0 
     LDA.W #$386A : STA.L $7E33A2 
     LDA.W #$387A : STA.L $7E33E2 
-    PLY 
-    PLX 
-    PLB 
-    PLP 
+    PLY : PLX : PLB : PLP 
     RTS 
 
 
@@ -12054,8 +11889,7 @@ PreInstruction_CinematicSpriteObject_Samus_Jump_Falling:
 
 
 Instruction_CinematicSpriteObject_SamusShootsScreen:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0E00 : STA.W $1ABD,X 
     LDA.W #CinematicFunction_PostCredits_SamusShootsScreen : STA.W $1F51 
     SEP #$20 
@@ -12073,8 +11907,7 @@ Instruction_CinematicSpriteObject_SamusShootsScreen:
     JSR.W PaletteCrossFading_DecomposePaletteDataForFading 
     LDA.W #$0022 
     JSL.L QueueSound 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -12093,8 +11926,7 @@ MoveJumpingEndingSamus:
 
 
 TransferPostCreditsSamusBeamToVRAM:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $1A4D 
     CMP.W #$0010 
     BPL .return 
@@ -12115,8 +11947,7 @@ TransferPostCreditsSamusBeamToVRAM:
     INC.W $1A4D 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -12134,13 +11965,9 @@ CreditsObjectDefinition:
     dw InstList_Credits_Start 
 
 Instruction_EndCredits:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSR.W Disable_CreditsObject 
     LDX.W #$0008 
 
@@ -12160,10 +11987,7 @@ Instruction_EndCredits:
     LDA.W #$0001 : STA.W $1A05 
     LDA.W #CinematicFunction_PostCredits_BlankScreen : STA.W $1F51 
     LDA.W #$003C : STA.W $1A49 
-    PLY 
-    PLX 
-    PLB 
-    PLP 
+    PLY : PLX : PLB : PLP 
     RTS 
 
 

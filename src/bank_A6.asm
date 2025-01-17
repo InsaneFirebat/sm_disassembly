@@ -120,22 +120,18 @@ RTS_A6807B:
 
 Instruction_CommonA6_DeleteEnemy:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
 Instruction_CommonA6_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
@@ -143,15 +139,12 @@ Instruction_CommonA6_CallFunctionInY:
 Instruction_CommonA6_CallFunctionInY_WithA:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     RTL 
@@ -161,11 +154,9 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA6_CallExternalFunctionInY_A680B5:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTL 
 
@@ -178,11 +169,9 @@ UNUSED_Inst_CommonA6_CallExternalFunctionInY_WithA_A680CE:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTL 
@@ -254,8 +243,7 @@ Instruction_CommonA6_Sleep:
     DEY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -264,8 +252,7 @@ Instruction_CommonA6_WaitYFrames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -1083,12 +1070,10 @@ InstList_Hibashi_HitboxPart:
     dw Instruction_Common_Sleep 
 
 Instruction_Hibashi_PlaySFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0061 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -2231,8 +2216,7 @@ HandlePuromiSpriteObjects:
 
 
 ClampAngle_CheckInactivityCondition:
-    PHX 
-    PHA 
+    PHX : PHA 
     LDX.W $0E54 
     STZ.B $1C 
     LDA.W $0FB0,X : BNE .notClockwise 
@@ -2268,8 +2252,7 @@ ClampAngle_CheckInactivityCondition:
 
 
 CheckExplosionCondition:
-    PHX 
-    PHA 
+    PHX : PHA 
     LDX.W $0E54 
     LDA.W $0FB0,X : BNE .notClockwise 
     PLA 
@@ -2315,8 +2298,7 @@ CheckExplosionCondition:
 
 
 PlayPuromiExplosionSFX:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.B $1E 
     CMP.W #$0002 
     BEQ .return 
@@ -2324,8 +2306,7 @@ PlayPuromiExplosionSFX:
     JSL.L QueueSound_Lib2_Max6 
 
 .return:
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
@@ -2666,15 +2647,13 @@ Instruction_MiniKraid_FireSpitLeft:
 
 FireMiniKraidSpit_Common:
     LDX.W $0E54 
-    PHY 
-    PHX 
+    PHY : PHX 
     STA.L $7E7804,X 
     LDA.W MiniKraidSpitVelocityTable_leftward_X1,Y : STA.L $7E7800,X 
     LDA.W MiniKraidSpitVelocityTable_leftward_Y1,Y : STA.L $7E7802,X 
     LDY.W #EnemyProjectile_MiniKraidSpit 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    PLX 
-    PLY 
+    PLX : PLY 
     LDA.W MiniKraidSpitVelocityTable_leftward_X2,Y : STA.L $7E7800,X 
     LDA.W MiniKraidSpitVelocityTable_leftward_Y2,Y : STA.L $7E7802,X 
     LDY.W #EnemyProjectile_MiniKraidSpit 
@@ -3244,10 +3223,8 @@ InitAI_Ridley:
 
 
 .notDead:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$0000 
     LDX.W #$0FFE 
 
@@ -4095,9 +4072,7 @@ SetupMode7ForCeresRidleyEscape:
 
 
 HandleCeresRidleyGetawayCutscene:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.L $7E8024 : BNE .return 
     JSR.W ExecuteCeresRidleyGetawayCutscene 
 
@@ -4291,10 +4266,7 @@ Mode7Math_Common_A6AC30:
 
 
 Mode7Math_A6AC58:
-    PHX 
-    PHY 
-    PHA 
-    PHP 
+    PHX : PHY : PHA : PHP 
     REP #$20 
     SEP #$10 
     LDX.B $26 
@@ -4330,10 +4302,7 @@ Mode7Math_A6AC58:
     INY 
 
   + STY.B $2D 
-    PLP 
-    PLA 
-    PLY 
-    PLX 
+    PLP : PLA : PLY : PLX 
     RTS 
 
 
@@ -6351,9 +6320,7 @@ ProcessEscapeTimerTileTransfers:
 
 HandleTypewriterText_External:
     STA.B $12 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     JSR.W HandleTypewriterText 
     PLB 
     RTL 
@@ -6451,9 +6418,7 @@ HandleTypewriterText:
 
 QueueCeresEscapeJapaneseTextTilemapTransfers:
     LDX.W #TypewriterCeresEscapeJapaneseTextTilemapTransfer_size 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDY.W $0330 
 
 .loop:
@@ -7192,10 +7157,8 @@ HandleRidleyTailAI:
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     JSR.W UpdateRidleyTailPositions 
     JSR.W RidleyTailExtending 
     PLB 
@@ -7296,11 +7259,8 @@ Function_RidleyTail_TailSpin:
 
 
 ExecuteRidleyTailAI:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
-    PEA.W .manualReturn-1 
+    PHB : PEA.W $7E7E 
+    PLB : PLB : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
@@ -7910,9 +7870,7 @@ TargetAnAngleTowardMissileOrSamus:
     LDA.W $0AF6 : SEC : SBC.W $202C : STA.B $12 
     LDA.W $0AFA : CLC : ADC.W #$0018 : SEC : SBC.W $202E : STA.B $14 
 
-  + PHB 
-    PHK 
-    PLB 
+  + PHB : PHK : PLB 
     JSL.L CalculateAngleOf_12_14_Offset 
     PLB 
     SEC : SBC.W #$0080 : EOR.W #$FFFF 
@@ -8120,8 +8078,7 @@ SetAllTailPartsToMovingOrNotMoving:
 
 
 Update_TailRotationDirection_Angle_DistanceFromRidley:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W #InitializeTailParts_distanceFromRidleyToTailParts 
     LDY.W #$2026 
     JSR.W UpdateTailPartRAMFromXToY 
@@ -8138,8 +8095,7 @@ Update_TailRotationDirection_Angle_DistanceFromRidley:
     CLC : ADC.W #$0014 : TAX 
     DEY 
     BNE .loop 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -10295,8 +10251,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_Ridley_CalculateFireballAngleAndXYSpeeds:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.L $7E7820 : BNE .facingRight 
     LDA.W #$FFE7 : CLC : ADC.W $0F7A : STA.B $12 
     LDA.W $0AF6 : SEC : SBC.B $12 : STA.B $12 
@@ -10356,8 +10311,7 @@ Instruction_Ridley_CalculateFireballAngleAndXYSpeeds:
     LDA.W #$0500 
     JSL.L Math_86C272 
     STA.L $7E7834 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 

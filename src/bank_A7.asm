@@ -120,22 +120,18 @@ RTS_A7807B:
 
 Instruction_CommonA7_DeleteEnemy:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
 Instruction_CommonA7_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
@@ -143,15 +139,12 @@ Instruction_CommonA7_CallFunctionInY:
 Instruction_CommonA7_CallFunctionInY_WithA:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     RTL 
@@ -161,11 +154,9 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA7_CallExternalFunctionInY_A780B5:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTL 
 
@@ -178,11 +169,9 @@ UNUSED_Inst_CommonA7_CallExternalFunctionInY_WithA_A780CE:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTL 
@@ -254,8 +243,7 @@ Instruction_CommonA7_Sleep:
     DEY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -264,8 +252,7 @@ Instruction_CommonA7_WaitYFrames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -3799,8 +3786,7 @@ KraidsMouth_vs_Projectile_CollisionHandling:
     STA.W $18A6 
     PHP 
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External 
-    PLP 
-    PLX 
+    PLP : PLX 
     LDA.W $0C04,X : ORA.W #$0010 : STA.W $0C04,X 
     LDY.W #$0001 
 
@@ -4008,8 +3994,7 @@ KraidBody_vs_Projectile_CollisionHandling:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_HandleProjectileDamageAndSound:
-    PHX 
-    PHY 
+    PHX : PHY 
     TXY 
     LDX.W $0E54 
     LDA.W $0C2C,Y : STA.W $187A 
@@ -4085,15 +4070,13 @@ UNUSED_HandleProjectileDamageAndSound:
     JSL.L QueueSound_Lib2_Max6 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 KraidPaletteHandling:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0F8C 
     CMP.W #$0001 
     BPL .alive 
@@ -4116,8 +4099,7 @@ KraidPaletteHandling:
     JSR.W KraidHealthBasedPaletteHandling 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -4248,8 +4230,7 @@ Palette_Kraid_Sprite_8_8:
     dw $2608,$1DA6,$1125,$08C5,$0003,$6318,$7FFF,$0000 
 
 Instruction_Kraid_NOP_A7B633:
-    PHX 
-    PLX 
+    PHX : PLX 
     RTL 
 
 
@@ -4270,12 +4251,10 @@ Instruction_Kraid_IncrementYPosition_SetScreenShaking:
 
 
 Instruction_Kraid_QueueSFX76_Lib2_Max6:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0076 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -4294,18 +4273,15 @@ Instruction_Kraid_XPositionMinus3_duplicate:
 
 
 Instruction_Kraid_XPositionPlus3:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W KraidBackwardsSpeed : CLC : ADC.W $0F7A : STA.W $0F7A 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_Kraid_MoveRight_A7B683:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0F7A 
     CMP.W #$0140 
     BMI .leftScreen 
@@ -4322,8 +4298,7 @@ UNUSED_Instruction_Kraid_MoveRight_A7B683:
     BCS .collision 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -4342,8 +4317,7 @@ Function_Kraid_KraidShot_InitializeEyeGlowing:
     LDA.W InstList_Kraid_EyeGlowing_0 : STA.W $0FAC ; fallthrough to Function_Kraid_KraidShot_GlowEye
 
 Function_Kraid_KraidShot_GlowEye:
-    PHX 
-    PHY 
+    PHX : PHY 
     JSR.W KraidInstListHandling 
     CMP.W #$FFFF 
     BNE .notTerminator 
@@ -4381,14 +4355,12 @@ Function_Kraid_KraidShot_GlowEye:
     LDA.W #Function_Kraid_KraidShot_UnglowEye : STA.W $0FA8 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Function_Kraid_KraidShot_UnglowEye:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W #$000E 
     LDA.W $0F8C 
 
@@ -4434,8 +4406,7 @@ Function_Kraid_KraidShot_UnglowEye:
     LDA.W InstList_Kraid_Roar_0 : STA.W $0FAC 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -4631,11 +4602,9 @@ KraidLint_vs_Samus_CollisionHandling:
     LDA.W #$0010 
 
   + STA.W $0B58 
-    PHX 
-    PHP 
+    PHX : PHP 
     JSL.L NormalEnemyTouchAI 
-    PLP 
-    PLX 
+    PLP : PLX 
     LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
 
 .return:
@@ -5482,9 +5451,7 @@ UnpauseHook_KraidIsSinking:
     dw $0400 
     LDA.B #$02 : STA.W $420B 
     REP #$30 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $0F7E 
     CMP.W ShrinkingKraidTable_KraidYPosition 
     BMI .return 
@@ -8140,10 +8107,7 @@ AdvanceWreckedShipPowerOnPaletteTransition:
 
 
 CalculateAthTransitionalColorFromXToY:
-    PHA 
-    PHA 
-    PHX 
-    PHY 
+    PHA : PHA : PHX : PHY 
     LDA.B $01,S : AND.W #$001F 
     TAY 
     LDA.B $03,S : AND.W #$001F 
@@ -8182,10 +8146,7 @@ CalculateAthTransitionalColorFromXToY:
     XBA 
     ORA.B $07,S 
     STA.B $07,S 
-    PLY 
-    PLX 
-    PLA 
-    PLA 
+    PLY : PLX : PLA : PLA 
     RTS 
 
 
@@ -10316,8 +10277,7 @@ LoadDachoraPalette:
     INY #2
     CPY.W #$0020 
     BMI .loop 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTS 
 
 

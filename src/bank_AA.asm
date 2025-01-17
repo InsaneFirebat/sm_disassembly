@@ -120,22 +120,18 @@ RTS_AA807B:
 
 Instruction_CommonAA_DeleteEnemy:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
 Instruction_CommonAA_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
@@ -143,15 +139,12 @@ Instruction_CommonAA_CallFunctionInY:
 Instruction_CommonAA_CallFunctionInY_WithA:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     RTL 
@@ -161,11 +154,9 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonAA_CallExternalFunctionInY_AA80B5:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTL 
 
@@ -178,11 +169,9 @@ UNUSED_Inst_CommonAA_CallExternalFunctionInY_WithA_AA80CE:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTL 
@@ -254,8 +243,7 @@ Instruction_CommonAA_Sleep:
     DEY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -264,8 +252,7 @@ Instruction_CommonAA_WaitYFrames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -5038,8 +5025,7 @@ InstList_Torizo_SpecialCallable_BlowUpBombTorizosGut:
 
 Instruction_Torizo_MarkBTGutBlownUp_Spawn6BTDroolProjectiles:
     LDA.W $0FB6,X : ORA.W #$8000 : STA.W $0FB6,X 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDY.W #EnemyProjectile_BombTorizoContinuousDrool 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     LDY.W #EnemyProjectile_BombTorizoContinuousDrool 
@@ -5052,8 +5038,7 @@ Instruction_Torizo_MarkBTGutBlownUp_Spawn6BTDroolProjectiles:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     LDY.W #EnemyProjectile_BombTorizoContinuousDrool 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -5193,9 +5178,7 @@ Instruction_Torizo_SetBossBit_QueueElevatorMusic_SpawnDrops:
     JSL.L SetBossBitsInAForCurrentArea 
     LDA.W TorizoMusicTracks_elevator 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
-    PHY 
-    PHX 
-    PHP 
+    PHY : PHX : PHP 
     LDA.W $079F : BNE .notCrateria 
     JSL.L BombTorizoDeathItemDropRoutine 
     BRA .return 
@@ -5205,9 +5188,7 @@ Instruction_Torizo_SetBossBit_QueueElevatorMusic_SpawnDrops:
     JSL.L GoldenTorizoDeathItemDropRoutine 
 
 .return:
-    PLP 
-    PLX 
-    PLY 
+    PLP : PLX : PLY 
     RTL 
 
 
@@ -6763,15 +6744,13 @@ Instruction_Torizo_Spawn5LowHealthExplosion_SleepFor28Frames:
     PLY 
     DEY 
     BPL .loop 
-    PLA 
-    PLY 
+    PLA : PLY 
     INY #2
     TYA 
     STA.W $0F92,X 
     LDA.W #$0028 : STA.W $0F9C,X 
     STA.W $0F94,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -6784,8 +6763,7 @@ Instruction_Torizo_SpawnTorizoDeathExplosion_SleepFor1IFrame:
     STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F9C,X 
     STA.W $0F94,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -9523,8 +9501,7 @@ Instruction_Shaktool_Raise1Pixel:
     LDA.W $0FA9,X 
 
 MoveShaktoolPiece1Pixel:
-    PHX 
-    PHY 
+    PHX : PHY 
     TXY 
     AND.W #$00FF 
     ASL A 
@@ -9545,8 +9522,7 @@ MoveShaktoolPiece1Pixel:
   + STA.B $13 
     LDA.W $0F80,Y : CLC : ADC.B $12 : STA.W $0F80,Y 
     LDA.W $0F7E,Y : ADC.B $14 : STA.W $0F7E,Y 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -10009,8 +9985,7 @@ Function_Shaktool_FinalPiece:
     STA.W $0F7A,X 
     PLA 
     STA.W $0F7E,X 
-    PLA 
-    PLA 
+    PLA : PLA 
     BIT.W $0FB4,X 
     BVC .notFullyCurled 
     LDA.W #$0100 : CLC : ADC.W $0FA8,X : STA.W $0FA8,X 
@@ -10044,10 +10019,7 @@ Function_Shaktool_FinalPiece:
 .collision:
     LDA.W $0FB4,X : BIT.W #$2000 
     BEQ .curling 
-    PLA 
-    PLA 
-    PLA 
-    PLA 
+    PLA : PLA : PLA : PLA 
     LDA.W $0FB4,X 
     EOR.W #$8000 
     AND.W #$8FFF 
@@ -10056,9 +10028,7 @@ Function_Shaktool_FinalPiece:
 
 
 .curling:
-    PLA 
-    PLA 
-    PLA 
+    PLA : PLA : PLA 
     STA.W $0F7A,X 
     PLA 
     STA.W $0F7E,X 
@@ -10676,8 +10646,7 @@ Instruction_Chozo_PlayChozoFootstepsSFX:
 
 
 Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0F7A,X : CLC : ADC.W $0000,Y : PHA 
     LDA.W $0F7E,X : CLC : ADC.W #$001C : PHA 
     JSL.L CalculateTheBlockContainingAPixelPosition 
@@ -10690,15 +10659,13 @@ Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
     SEC : SBC.W $07A5 : TAX 
     LDA.W #PLMEntries_CrumbleLowerNorfairChozoRoomPlug 
     JSL.L Spawn_PLM_to_CurrentBlockIndex 
-    PLY 
-    PHY 
+    PLY : PHY 
     LDA.W $0000,Y 
     LDY.W #EnemyProjectile_WreckedShipChozoSpikeClearingFootsteps 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTL 
 

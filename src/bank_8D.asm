@@ -9559,26 +9559,19 @@ Clear_PaletteFXObjects:
     STZ.W $1E7D,X 
     DEX #2
     BPL .loop 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
 Spawn_PaletteFXObject:
-    PHP 
-    PHB 
-    PHX 
-    PHK 
-    PLB 
+    PHP : PHB : PHX : PHK : PLB 
     LDX.W #$000E 
 
 .loop:
     LDA.W $1E7D,X : BEQ .zero 
     DEX #2
     BPL .loop 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     SEC 
     RTL 
 
@@ -9595,9 +9588,7 @@ Spawn_PaletteFXObject:
     TYX 
     TAY 
     JSR.W ($0000,X) 
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     CLC 
     RTL 
 
@@ -9607,10 +9598,7 @@ RTS_8DC526:
 
 
 PaletteFXObject_Handler:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     BIT.W $1E79 
     BPL .return 
@@ -9627,8 +9615,7 @@ PaletteFXObject_Handler:
     BPL .loop 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 

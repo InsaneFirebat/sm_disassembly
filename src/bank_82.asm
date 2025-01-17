@@ -99,8 +99,7 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     INX #2
     DEY #2
     BNE .loopAlphaPalettes 
-    PLP 
-    PLP 
+    PLP : PLP 
     RTS 
 
 
@@ -173,8 +172,7 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     INX #2
     DEY #2
     BNE .loopDemoPalettes 
-    PLP 
-    PLP 
+    PLP : PLP 
     RTS 
 
 
@@ -306,8 +304,7 @@ LoadInitialPalette:
     INX #2
     DEY #2
     BNE .loop 
-    PLP 
-    PLP 
+    PLP : PLP 
     RTS 
 
 
@@ -736,8 +733,7 @@ LoadDemoRoomData:
     PHB 
     SEP #$20 
     LDA.B #$8F 
-    PHA 
-    PLB 
+    PHA : PLB 
     LDX.W $079B 
     LDA.W $0001,X : STA.W $079F 
     REP #$20 
@@ -945,8 +941,7 @@ DemoRoomCode_TourianEntrance_KraidIsDead:
 
 
 MainGameLoop:
-    PHK 
-    PLB 
+    PHK : PLB 
     REP #$20 
     STZ.W $0998 
     STZ.W $0DF4 
@@ -1334,8 +1329,7 @@ Spawn_GameOptionsMenu_Object:
     LDA.W $1AFD,Y : BEQ .instruction 
     DEY #2
     BPL .loop 
-    PLX 
-    PLP 
+    PLX : PLP 
     SEC 
     RTS 
 
@@ -1350,8 +1344,7 @@ Spawn_GameOptionsMenu_Object:
     STA.W $1ADD,Y 
     STA.W $1AED,Y 
     JSR.W ($0000,X) 
-    PLX 
-    PLP 
+    PLX : PLP 
     CLC 
     RTS 
 
@@ -1471,8 +1464,7 @@ Draw_GameOptionsMenu_Spritemaps:
 .loop:
     LDA.W $1A9D,X : BEQ .next 
     PEA.W $8200 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDY.W $1A9D,X 
     LDA.W $1ACD,X : STA.B $16 
     LDA.W $1AAD,X : STA.B $14 
@@ -1482,8 +1474,7 @@ Draw_GameOptionsMenu_Spritemaps:
 .next:
     DEX #2
     BPL .loop 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -1507,9 +1498,7 @@ GameState_C_Pausing_NormalGameplayDarkening:
 GameState_D_Pausing_LoadingPauseScreen:
     PHP 
     REP #$30 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     JSL.L Disable_HDMAObjects 
     SEP #$20 
     LDA.B #$00 : STA.B $85 
@@ -1517,16 +1506,12 @@ GameState_D_Pausing_LoadingPauseScreen:
     REP #$20 
     JSL.L Disable_AnimatedTilesObjects 
     JSR.W Backup_BG2Tilemap_for_PauseMenu 
-    PHP 
-    PHB 
-    PHK 
-    PEA.W .returnPEA-1 
+    PHP : PHB : PHK : PEA.W .returnPEA-1 
     JML.W [$0601] 
 
 
 .returnPEA:
-    PLB 
-    PLP 
+    PLB : PLP 
     JSL.L Cancel_Sound_Effects 
     JSR.W Backup_SomeGraphicsState_for_PauseScreen 
     JSL.L LoadPauseMenuTiles_ClearBG2Tilemap 
@@ -1542,8 +1527,7 @@ GameState_D_Pausing_LoadingPauseScreen:
     STZ.W $05FF 
     JSL.L QueueClearingOfFXTilemap 
     INC.W $0998 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -1750,8 +1734,7 @@ BackupGameplayPalettes_LoadPauseScreenPalettes:
     INX #2
     DEY #2
     BNE .loopBackupGameplay 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$0200 
     LDX.W #$0000 
@@ -1761,16 +1744,12 @@ BackupGameplayPalettes_LoadPauseScreenPalettes:
     INX #2
     DEY #2
     BNE .loopLoadPause 
-    PLP 
-    PLP 
+    PLP : PLP 
     RTS 
 
 
 ContinueInitializingPauseMenu:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     JSR.W SetupPPUForPauseMenu 
     JSR.W ResetPauseMenuAnimations 
     JSR.W Load_EquipmentScreen_EquipmentTilemaps 
@@ -1779,8 +1758,7 @@ ContinueInitializingPauseMenu:
     JSR.W DetermineMapScrollLimits 
     LDA.W #$0080 
     JSR.W SetupMapScrollingForPauseMenu 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -1848,9 +1826,7 @@ GameState_E_Paused_LoadingPauseScreen:
 
 
 GameState_F_Paused_MapAndItemScreens:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W #$0003 
     JSL.L UpdateHeldInput 
     JSL.L MainPauseRoutine 
@@ -1861,17 +1837,13 @@ GameState_F_Paused_MapAndItemScreens:
 
 
 MainPauseRoutine:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0727 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2021,17 +1993,13 @@ PauseMenu_4_MapScreenToEquipmentScreen_FadingIn:
 
 
 MapScrolling:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $05FD 
     ASL A 
     TAX 
     JSR.W (.pointers,X) 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2148,10 +2116,7 @@ GameState_11_Unpausing_LoadingNormalGameplay:
     REP #$30 
     LDA.W #$0001 : STA.W $0723 
     STA.W $0725 
-    PHP 
-    PHB 
-    PHK 
-    PEA.W .returnPEA-1 
+    PHP : PHB : PHK : PEA.W .returnPEA-1 
     JML.W [$0604] ; Execute unpause hook
 
 
@@ -2159,8 +2124,7 @@ GameState_11_Unpausing_LoadingNormalGameplay:
     JSL.L Enable_HDMAObjects 
     JSL.L Enable_AnimatedTilesObjects 
     JSL.L Queue_Samus_Movement_SoundEffects 
-    PLB 
-    PLP 
+    PLB : PLP 
     INC.W $0998 
     PLP 
     RTS 
@@ -2186,10 +2150,7 @@ GameState_12_Unpausing_NormalGameplayBrightening:
 
 
 Load_PauseMenuMapTilemap_and_AreaLabel:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.B $BD : STA.B $B1 
     LDA.B $BF : STA.B $B3 
@@ -2222,8 +2183,7 @@ Load_PauseMenuMapTilemap_and_AreaLabel:
     SEP #$20 
     LDA.B #$82 : STA.W $4314 
     LDA.B #$02 : STA.W $420B 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -2345,8 +2305,7 @@ DrawRoomSelectMap:
     LDA.B #$D8 : STA.B $B3 
     LDA.B #$FF : STA.B $B4 
     REP #$30 
-    PHK 
-    PLB 
+    PHK : PLB 
     LDA.W $079F 
     CMP.W #$0007 
     BMI + 
@@ -2466,9 +2425,7 @@ DrawRoomSelectMap:
 
 
 DrawRoomSelectMap_AreaLabel:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $079F 
     ASL A 
     TAX 
@@ -3043,8 +3000,7 @@ SetupMapScrollingForPauseMenu:
 
 
 DetermineMapScrollLimits:
-    PHP 
-    PHB 
+    PHP : PHB 
     LDA.W $0789 : BEQ .areaMapNotCollected 
     LDA.W #$0082 : STA.B $08 
     LDA.W #MapData_pointers : STA.B $06 
@@ -3059,8 +3015,7 @@ DetermineMapScrollLimits:
     LDA.W #$0000 : STA.B $08 
     LDA.W #$07F7 : STA.B $06 
 
-  + PHK 
-    PLB 
+  + PHK : PLB 
     SEP #$20 
     LDA.B $08 : STA.B $02 
     REP #$20 
@@ -3085,8 +3040,7 @@ DetermineMapScrollLimits:
     JSR.W DetermineLeftmostMapRow 
     JSR.W A_equals_X_times_8 
     STA.W $05B2 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -3427,8 +3381,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
 
 
 Copy_Bytes_from_X_to_7ERAM:
-    PHP 
-    PHY 
+    PHP : PHY 
     SEP #$20 
     LDA.B #$7E : STA.B $02 
     REP #$30 
@@ -3441,14 +3394,12 @@ Copy_Bytes_from_X_to_7ERAM:
     DEC.B $16 
     DEC.B $16 
     BNE .loop 
-    PLY 
-    PLP 
+    PLY : PLP 
     RTS 
 
 
 Copy_Bytes_of_Palette_from_7E_to_12:
-    PHP 
-    PHY 
+    PHP : PHY 
     SEP #$20 
     LDA.B #$7E : STA.B $02 
     REP #$30 
@@ -3462,8 +3413,7 @@ Copy_Bytes_of_Palette_from_7E_to_12:
     DEC.B $16 
     DEC.B $16 
     BNE .loop 
-    PLY 
-    PLP 
+    PLY : PLP 
     RTS 
 
 
@@ -3867,10 +3817,7 @@ Handle_PauseScreen_StartButton:
 
 
 Handle_PauseMenu_StartPressedHighlight:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0729 : BEQ .return 
     DEC A 
@@ -3882,8 +3829,7 @@ Handle_PauseMenu_StartPressedHighlight:
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -3917,8 +3863,7 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     INX #2
     DEY #2
     BNE .loopTopMAP 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$000A 
     LDX.W #$0000 
@@ -3930,8 +3875,7 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     INX #2
     DEY #2
     BNE .loopBottomMAP 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$0008 
     LDX.W #$0000 
@@ -3943,8 +3887,7 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     INX #2
     DEY #2
     BNE .loopTopEXIT 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$0008 
     LDX.W #$0000 
@@ -3956,8 +3899,7 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     INX #2
     DEY #2
     BNE .loopBottomEXIT 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$000A 
     LDX.W #$0000 
@@ -3969,8 +3911,7 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     INX #2
     DEY #2
     BNE .loopTopSAMUS 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$000A 
     LDX.W #$0000 
@@ -4000,8 +3941,7 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     INX #2
     DEY #2
     BNE .loopTopEXIT 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$0008 
     LDX.W #$0000 
@@ -4013,8 +3953,7 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     INX #2
     DEY #2
     BNE .loopBottomEXIT 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$000A 
     LDX.W #$0000 
@@ -4026,8 +3965,7 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     INX #2
     DEY #2
     BNE .loopTopMAP 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$000A 
     LDX.W #$0000 
@@ -4039,8 +3977,7 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     INX #2
     DEY #2
     BNE .loopBottomMAP 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$000A 
     LDX.W #$0000 
@@ -4052,8 +3989,7 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     INX #2
     DEY #2
     BNE .loopTopSAMUS 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$000A 
     LDX.W #$0000 
@@ -4083,8 +4019,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     INX #2
     DEY #2
     BNE .loopTopSAMUS 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$000A 
     LDX.W #$0000 
@@ -4096,8 +4031,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     INX #2
     DEY #2
     BNE .loopBottomSAMUS 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$0008 
     LDX.W #$0000 
@@ -4109,8 +4043,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     INX #2
     DEY #2
     BNE .loopTopEXIT 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$0008 
     LDX.W #$0000 
@@ -4122,8 +4055,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     INX #2
     DEY #2
     BNE .loopBottomEXIT 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$000A 
     LDX.W #$0000 
@@ -4135,8 +4067,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     INX #2
     DEY #2
     BNE .loopTopMAP 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$000A 
     LDX.W #$0000 
@@ -4181,8 +4112,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Draw_PauseScreen_SpriteAnimation:
-    PHP 
-    PHX 
+    PHP : PHX 
     REP #$30 
     STX.B $12 
     STY.B $14 
@@ -4245,8 +4175,7 @@ Draw_PauseScreen_SpriteAnimation:
     LDY.B $14 
     DEY 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTS 
 
 
@@ -4423,10 +4352,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
 
 
 EquipmentScreen_TransferBG1Tilemap:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     SEP #$30 
     LDA.B #$00 : STA.W $2116 
     LDA.B #$30 : STA.W $2117 
@@ -4438,8 +4364,7 @@ EquipmentScreen_TransferBG1Tilemap:
     LDA.B #$02 : STA.W $420B 
     STZ.B $B3 
     STZ.B $B4 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -4622,8 +4547,7 @@ EquipmentScreen_Enable_EnergyArrowGlow:
     CLC : ADC.W #$0040 : TAX 
     DEY #2
     BNE .loopVertical 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$0004 
     LDX.W #$0000 
@@ -4635,8 +4559,7 @@ EquipmentScreen_Enable_EnergyArrowGlow:
     INX #2
     DEY #2
     BNE .loopHorizontal 
-    PLP 
-    PLP 
+    PLP : PLP 
     RTS 
 
 
@@ -4656,8 +4579,7 @@ EquipmentScreen_Disable_EnergyArrowGlow:
     CLC : ADC.W #$0040 : TAX 
     DEY #2
     BNE .loopVertical 
-    PLP 
-    PHP 
+    PLP : PHP 
     REP #$30 
     LDY.W #$0004 
     LDX.W #$0000 
@@ -4669,8 +4591,7 @@ EquipmentScreen_Disable_EnergyArrowGlow:
     INX #2
     DEY #2
     BNE .loopHorizontal 
-    PLP 
-    PLP 
+    PLP : PLP 
     RTS 
 
 
@@ -5586,17 +5507,13 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Draw_PauseMenu_during_FadeIn:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0753 
     LDA.W $0727 : BEQ .mapScreen 
     JSR.W EquipmentScreen_DrawItemSelector 
     JSR.W EquipmentScreen_DisplayReserveTankAmount_shell 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -5604,31 +5521,25 @@ Draw_PauseMenu_during_FadeIn:
     JSR.W MapScreen_DrawSamusPositionIndicator 
     JSL.L Draw_Map_Icons 
     JSL.L Display_Map_Elevator_Destinations 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_82B650:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0753 : BNE + 
     JSR.W EquipmentScreen_DrawItemSelector 
     JSR.W EquipmentScreen_DisplayReserveTankAmount_shell 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
   + JSL.L Display_Map_Elevator_Destinations 
     JSR.W MapScreen_DrawSamusPositionIndicator 
     JSL.L Draw_Map_Icons 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -5636,8 +5547,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Draw_Map_Icons:
     PHB 
     REP #$30 
-    PHK 
-    PLB 
+    PHK : PLB 
     LDX.W #MapIcon_PositionTablePointers_bossIcons 
     LDA.W #$0009 
     JSR.W Display_Map_Boss_Icons 
@@ -5675,8 +5585,7 @@ Draw_Map_Icons:
 Draw_FileSelectMap_Icons:
     PHB 
     REP #$30 
-    PHK 
-    PLB 
+    PHK : PLB 
     JSR.W Handle_PauseScreen_PaletteAnimation 
     LDX.W #MapIcon_PositionTablePointers_bossIcons 
     LDA.W #$0009 
@@ -5712,9 +5621,7 @@ Draw_FileSelectMap_Icons:
     LDA.W #$0012 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
 
-  + PLY 
-    PLX 
-    PLA 
+  + PLY : PLX : PLA 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
     LDA.W $05D1 : BEQ + 
     LDA.W #$0600 : STA.B $03 
@@ -5817,8 +5724,7 @@ Draw_MapIcons_ofGivenType:
     TAX 
     JSR.W Check_if_MapPosition_isExplored 
     BEQ .restoreX 
-    PLX 
-    PHX 
+    PLX : PHX 
     LDA.W $0002,X : SEC : SBC.B $B3 : TAY 
     LDA.W $0000,X : SEC : SBC.B $B1 : TAX 
     LDA.B $22 
@@ -5925,13 +5831,9 @@ Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction:
     LDA.W $0002,X 
     TAY 
     LDA.W $0004,X 
-    PLX 
-    PHB 
-    PHK 
-    PLB 
+    PLX : PHB : PHK : PLB 
     JSR.W Draw_PauseScreen_SpriteAnimation 
-    PLB 
-    PLX 
+    PLB : PLX 
     LDA.W $0006,X : BIT.B $8B 
     BEQ .return 
     LDA.W $05FD : BNE .return 
@@ -5947,12 +5849,10 @@ UNUSED_REP30_82B932:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Handle_MapScrollArrows:
-    PHP 
-    PHB 
+    PHP : PHB 
     SEP #$20 
     LDA.B #$82 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$20 
     LDA.W $05AC : SEC : SBC.W #$0018 : CMP.B $B1 
     BPL + 
@@ -5975,8 +5875,7 @@ Handle_MapScrollArrows:
     JSL.L Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -6076,9 +5975,7 @@ Draw_Border_Around_DATA_CLEAR_MODE:
 
 
 Draw_Menu_Selection_Missile:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $198D : BEQ + 
     DEC A 
     STA.W $198D 
@@ -6101,8 +5998,7 @@ Draw_Menu_Selection_Missile:
     TAY 
     LDA.W $19A1 
     TAX 
-    PLA 
-    PLB 
+    PLA : PLB 
     JML.L AddSpritemapFrom_82C569_TableToOAM 
 
 
@@ -6113,9 +6009,7 @@ Draw_Menu_Selection_Missile:
     dw $0037,$0036,$0035,$0034 
 
 Draw_FileCopy_Arrow:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $19B7 : SEC : SBC.W $19B9 : BPL .upwards 
     EOR.W #$FFFF 
     INC A 
@@ -6147,8 +6041,7 @@ Draw_FileCopy_Arrow:
     TAY 
     LDA.W .tableXpos,X 
     TAX 
-    PLA 
-    PLB 
+    PLA : PLB 
     JML.L AddSpritemapFrom_82C569_TableToOAM 
 
 
@@ -6170,9 +6063,7 @@ Draw_FileCopy_Arrow:
 
 Display_Map_Elevator_Destinations:
     REP #$30 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W #$0000 : STA.B $03 
     LDX.W $079F 
     LDA.L $7ED908,X : AND.W #$00FF 
@@ -6206,8 +6097,7 @@ Display_Map_Elevator_Destinations:
 Handle_GameOver_BabyMetroid:
     PHB 
     REP #$30 
-    PHK 
-    PLB 
+    PHK : PLB 
     LDA.W $0F94 : BEQ Restart_GameOver_BabyMetroid_InstructionList 
 
 Process_GameOver_BabyMetroid_InstructionList:
@@ -8304,10 +8194,8 @@ Advance_GradualColorChange_ofBGPalette6:
 
 
 .advance:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDX.W #$00C0 
 
 .loop:
@@ -8343,10 +8231,8 @@ Advance_GradualColorChange_ofPaletteRAM:
 
 .advance:
     STY.B $22 
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
 
 .loop:
     PHX 
@@ -8382,10 +8268,8 @@ Advance_GradualColorChange_ofAllPalettes:
 
 
 .advance:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDX.W #$0000 
 
 .loop:
@@ -8412,10 +8296,7 @@ Advance_GradualColorChange_ofAllPalettes:
 
 
 CalculateTheAth_TransitionalColor_fromXtoY:
-    PHA 
-    PHA 
-    PHX 
-    PHY 
+    PHA : PHA : PHX : PHY 
     LDA.B $01,S : AND.W #$001F 
     TAY 
     LDA.B $03,S : AND.W #$001F 
@@ -8454,10 +8335,7 @@ CalculateTheAth_TransitionalColor_fromXtoY:
     XBA 
     ORA.B $07,S 
     STA.B $07,S 
-    PLY 
-    PLX 
-    PLA 
-    PLA 
+    PLY : PLX : PLA : PLA 
     RTS 
 
 
@@ -8509,18 +8387,12 @@ CalculateTheAth_TransitionalColorComponent_fromXtoY:
 
 
 Advance_GradualColorChange_ofPalettesInA_Denominator_C:
-    PHX 
-    PHY 
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHX : PHY : PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDX.W #$000C 
     STX.W $C402 
     JSR.W Advance_GradualColorChange_ofPalettesInA 
-    PLB 
-    PLY 
-    PLX 
+    PLB : PLY : PLX 
     RTL 
 
 
@@ -8878,25 +8750,20 @@ GameState_19_DeathSequence_BlackOut:
 
 
 Load_Destination_RoomCRE_Bitset:
-    PHB 
-    PHX 
-    PEA.W $8F00 
-    PLB 
-    PLB 
+    PHB : PHX : PEA.W $8F00 
+    PLB : PLB 
     LDX.W $078D 
     LDA.L $830000,X 
     TAX 
     LDA.W $07B3 : STA.W $07B1 
     LDA.W $0008,X : AND.W #$00FF : STA.W $07B3 
-    PLX 
-    PLB 
+    PLX : PLB 
     RTS 
 
 
 Load_Door_Header:
     PEA.W $8300 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDX.W $078D 
     LDA.W $0000,X : STA.W $079B 
     LDA.W $0002,X : STA.W $0793 
@@ -8929,8 +8796,7 @@ Load_Door_Header:
 
 Load_Room_Header:
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDX.W $079B 
     LDA.W $0000,X : AND.W #$00FF : STA.W $079D 
     LDA.W $0001,X : AND.W #$00FF : STA.W $079F 
@@ -8959,8 +8825,7 @@ Load_Room_Header:
 
 Load_State_Header:
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDX.W $07BB 
     LDA.W $0003,X : AND.W #$00FF 
     ASL A 
@@ -9096,9 +8961,7 @@ Perform_Door_Transition_VRAM_Update:
     LDA.B $01,S 
     INC A 
     STA.B $AD 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.B ($AD) : STA.W $05C0 
     INC.B $AD 
     LDA.B ($AD) : STA.W $05C1 
@@ -9121,8 +8984,7 @@ Perform_Door_Transition_VRAM_Update:
 
 
 Queue_Room_Music_Data:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     LDA.W $0998 
     CMP.W #$0028 
@@ -9137,14 +8999,12 @@ Queue_Room_Music_Data:
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Update_Music_Track_Index:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     LDA.W $0998 
     CMP.W #$0028 
@@ -9162,14 +9022,12 @@ Update_Music_Track_Index:
     LDA.W $07C9 : STA.W $07F5 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Load_New_Music_Track_If_Changed:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     LDA.W $0998 
     CMP.W #$0028 
@@ -9189,8 +9047,7 @@ Load_New_Music_Track_If_Changed:
     JSL.L QueueMusicDataOrTrack_YFrameDelay 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -9202,8 +9059,7 @@ RTL_82E113:
 
 
 Play_Room_Music_Track_After_A_Frames:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     PHY 
     TAY 
@@ -9216,9 +9072,7 @@ Play_Room_Music_Track_After_A_Frames:
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
 
 .return:
-    PLY 
-    PLB 
-    PLP 
+    PLY : PLB : PLP 
     RTL 
 
 
@@ -9297,8 +9151,7 @@ DoorTransitionFunction_Wait48FramesForDownElevator:
 
 
 GameState_A_LoadingNextRoom:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     LDA.W #$0001 : STA.W $0797 
     STA.W $0795 
@@ -9310,8 +9163,7 @@ GameState_A_LoadingNextRoom:
     JSR.W Draw_Inanimate_Samus_Bank82 
     JSR.W Load_Destination_RoomCRE_Bitset 
     PEA.W $7E00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDX.W #$00FE 
     LDA.W #$0000 
 
@@ -9350,14 +9202,12 @@ GameState_A_LoadingNextRoom:
     LDA.W #$FFFF : STA.W $05F5 
     LDA.W #DoorTransitionFunction_WaitForSoundsToFinish : STA.W $099C 
     INC.W $0998 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
 GameState_B_LoadingNextRoom:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     PEA.W .manualReturn-1 
     JMP.W ($099C) 
@@ -9368,8 +9218,7 @@ GameState_B_LoadingNextRoom:
     JSL.L DrawTimer 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -9420,8 +9269,7 @@ DoorTransitionFunction_LoadDoorHeader_DeleteHDMAObjects_IRQ:
 
 DoorTransitionFunction_ScrollScreenToAlignment:
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDA.W $0791 : BIT.W #$0002 
     BNE .vertical 
     LDA.W $0914 : BIT.W #$FF00 
@@ -9458,8 +9306,7 @@ DoorTransitionFunction_ScrollScreenToAlignment:
 
 DoorTransitionFunction_FixDoorsMovingUp:
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDA.W $0791 : AND.W #$0003 
     CMP.W #$0003 
     BNE + 
@@ -9471,8 +9318,7 @@ DoorTransitionFunction_FixDoorsMovingUp:
 
 DoorTransitionFunction_LoadRoomHeader_SetupMap_Decompress:
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     JSR.W Save_Map_Explored_If_Elevator 
     JSR.W Load_Room_Header 
     JSR.W Load_State_Header 
@@ -9485,8 +9331,7 @@ DoorTransitionFunction_LoadRoomHeader_SetupMap_Decompress:
 
 DoorTransitionFunction_SetupScrolling:
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     STZ.B $B5 
     STZ.B $B7 
     STZ.W $07E9 
@@ -9507,8 +9352,7 @@ DoorTransitionFunction_SetupScrolling:
 
 DoorTransitionFunction_PlaceSamus_LoadTiles:
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDA.W $0AF6 : AND.W #$00FF 
     CLC : ADC.W $0911 : STA.W $0AF6 
     STA.W $0B10 
@@ -9599,10 +9443,8 @@ DoorTransitionFunction_LoadSpritesBGPLMsAudio_RunDoorRoomASM:
     JSL.L Initialise_Enemies 
     JSL.L Reset_Projectile_Data 
     JSL.L LoadSamusSuitTargetPalette 
-    PLP 
-    PEA.W $8F00 
-    PLB 
-    PLB 
+    PLP : PEA.W $8F00 
+    PLB : PLB 
     JSR.W Clear_FX_Tilemap_bank82 
     LDA.W #$8A00 : STA.W $05C1 
     LDA.W $1964 : BEQ + 
@@ -9857,10 +9699,8 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
 .what:
     CMP.W #$00E0 
 
-  + PHB 
-    PEA.W $7E00 
-    PLB 
-    PLB 
+  + PHB : PEA.W $7E00 
+    PLB : PLB 
     LDX.W #$01FE 
 
 .loop:
@@ -9914,12 +9754,10 @@ DoorTransitionFunction_FadeInTheScreen_and_RunEnemies_Finish:
 
 
 Load_Destination_Room:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     JSR.W Load_Destination_RoomCRE_Bitset 
     JSR.W Load_Door_Header 
     JSR.W Load_Room_Header 
@@ -9928,12 +9766,10 @@ Load_Destination_Room:
 
 
 Load_CRETiles_TilesetTiles_and_TilesetPalette_DB_8F:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
 
 Load_CRETiles_TilesetTiles_and_TilesetPalette:
     STZ.W $0E16 
@@ -9954,18 +9790,15 @@ Load_CRETiles_TilesetTiles_and_TilesetPalette:
     STY.B $47 
     JSL.L Decompression_HardcodedDestination 
     dl $7EC200 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDX.W #$63FE 
     LDA.W #$8000 
 
@@ -9977,10 +9810,8 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     LDA.W $07BD : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
     dl $7F0000 
-    PHB 
-    PEA.W $7F00 
-    PLB 
-    PLB 
+    PHB : PEA.W $7F00 
+    PLB : PLB 
     LDA.W $0000 
     TAX 
     LSR A 
@@ -10093,18 +9924,15 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     LDA.W #$0002 : STA.W $0E18 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Spawn_Door_Closing_PLM:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     JSR.W CheckIfColoredDoorcapWasSpawned_SwitchDoorPLMInstruction 
     BCS .return 
     LDA.W $0791 
@@ -10118,8 +9946,7 @@ Spawn_Door_Closing_PLM:
     JSL.L Spawn_Room_PLM 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -10167,8 +9994,7 @@ CheckIfColoredDoorcapWasSpawned_SwitchDoorPLMInstruction:
 
 
 LoadLibraryBackground_LoadingPausing:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     JSL.L ClearFXTilemap 
     LDA.W $1964 : BEQ + 
@@ -10186,8 +10012,7 @@ LoadLibraryBackground_LoadingPausing:
     CLC 
 
   + PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     REP #$20 
     LDX.W $07BB 
     LDY.W $0016,X 
@@ -10200,8 +10025,7 @@ LoadLibraryBackground_LoadingPausing:
     BCC .loop 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -10295,8 +10119,7 @@ LoadLibraryBackgroundLP_8_TransferVRAM_and_SetBG3TilesAddr:
 
 Load_Level_Scroll_and_CRE_Data:
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDX.W #$18FE 
     LDA.W #$8000 
 
@@ -10310,10 +10133,8 @@ Load_Level_Scroll_and_CRE_Data:
     LDA.W $07BD : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
     dl $7F0000 
-    PHB 
-    PEA.W $7F00 
-    PLB 
-    PLB 
+    PHB : PEA.W $7F00 
+    PLB : PLB 
     LDA.W $0000 
     TAX 
     LSR A 
@@ -10411,8 +10232,7 @@ Load_Level_Scroll_and_CRE_Data:
 
 CreatePLMs_ExecuteDoorASM_RoomSetupASM_SetElevatorStatus:
     PEA.W $8F00 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDX.W $07BB 
     LDA.W $0014,X : BEQ .noPLMs 
     TAX 
@@ -10436,10 +10256,7 @@ CreatePLMs_ExecuteDoorASM_RoomSetupASM_SetElevatorStatus:
 
 
 GameState_2_GameOptionsMenu:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0DE2 
     ASL A 
@@ -10453,8 +10270,7 @@ GameState_2_GameOptionsMenu:
     JSR.W Draw_GameOptionsMenu_BG1 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
@@ -11092,15 +10908,13 @@ Set_SpecialSetting_Highlights:
     LDY.W #$000C 
     LDA.W #$0400 
     JSR.W Set_GameOptionsMenu_TilePalettes 
-    PLX 
-    PHX 
+    PLX : PHX 
     LDA.W .iconCancelManualRow1,X 
     TAX 
     LDY.W #$000C 
     LDA.W #$0400 
     JSR.W Set_GameOptionsMenu_TilePalettes 
-    PLX 
-    PHX 
+    PLX : PHX 
     LDA.W .iconCancelAutoRow0,X 
     TAX 
     LDY.W #$000C 
@@ -11125,15 +10939,13 @@ Set_SpecialSetting_Highlights:
     LDY.W #$000C 
     LDA.W #$0000 
     JSR.W Set_GameOptionsMenu_TilePalettes 
-    PLX 
-    PHX 
+    PLX : PHX 
     LDA.W .iconCancelManualRow1,X 
     TAX 
     LDY.W #$000C 
     LDA.W #$0000 
     JSR.W Set_GameOptionsMenu_TilePalettes 
-    PLX 
-    PHX 
+    PLX : PHX 
     LDA.W .iconCancelAutoRow0,X 
     TAX 
     LDY.W #$000C 

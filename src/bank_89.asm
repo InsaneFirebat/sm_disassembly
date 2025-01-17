@@ -3293,16 +3293,14 @@ PaletteBlends_Bank89_E0:
     dw $1C45,$0000,$6318,$6318,$0000,$6318,$6318,$0000 
 
 Load_FX_Entry:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     AND.W #$0007 
     ASL #4
     STA.W $1968 
     CLC : ADC.W $07CD : STA.W $1966 
     PEA.W $8300 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDX.W $1966 
     LDA.W $0002,X : STA.W $1978 
     LDA.W $0004,X : STA.W $197A 
@@ -3324,22 +3322,18 @@ Load_FX_Entry:
     LDA.W #$0000 : STA.L $7EC036 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Load_FX_Header:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     PEA.W $8300 
-    PLB 
-    PLB 
+    PLB : PLB 
     LDX.W $07CD 
     BNE + 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -3350,8 +3344,7 @@ Load_FX_Header:
     LDA.W $0000,X : BEQ .load 
     CMP.W #$FFFF 
     BNE + 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -3399,8 +3392,7 @@ Load_FX_Header:
     TAY 
     LDA.W #$8800 : STA.B $13 
     LDA.W FXType_Function_Pointers,Y : STA.B $12 
-    PHK 
-    PEA.W .JMLreturn-1 
+    PHK : PEA.W .JMLreturn-1 
     JML.W [$0012] 
 
 
@@ -3465,15 +3457,12 @@ Load_FX_Header:
 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 RoomMainASM_CeresElevatorShaft:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $093F : BMI .rotating 
     PLB 
     RTL 

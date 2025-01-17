@@ -3,10 +3,7 @@ org $928000
 
 
 Set_SamusTilesDefinitions_ForCurrentAnimation:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A96 
     ASL #2
@@ -47,8 +44,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     REP #$20 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -11925,10 +11921,7 @@ SamusTilesAnimation_AnimationDefinitions_EBA4:
     db $08,$08,$08,$01,$08,$00,$08,$01,$08,$09,$08,$01,$08,$00,$08,$01 
 
 PlaySamusFanfare:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0DEC : BNE .nonZero 
     LDA.W #$0001 
@@ -11960,24 +11953,19 @@ PlaySamusFanfare:
     LDA.W $0A1C : STA.W $0A20 
     LDA.W $0A1E : STA.W $0A22 
     STZ.W $0DEC 
-    PLB 
-    PLP 
+    PLB : PLP 
     SEC 
     RTL 
 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     CLC 
     RTL 
 
 
 Debug_SamusTileViewer:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W #$0182 
     LDX.W #$0040 
@@ -11996,16 +11984,12 @@ Debug_SamusTileViewer:
     LDA.W #$0182 : CLC : ADC.W #$0003 : LDX.W #$0080 
     LDY.W #$0050 
     JSL.L AddSamusSpritemapToOAM 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 DrawSamusSuitExploding:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
@@ -12023,8 +12007,7 @@ DrawSamusSuitExploding:
     TAY 
     LDA.B $12 
     JSL.L AddSamusSpritemapToOAM 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 

@@ -120,22 +120,18 @@ RTS_A4807B:
 
 Instruction_CommonA4_DeleteEnemy:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
 Instruction_CommonA4_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
@@ -143,15 +139,12 @@ Instruction_CommonA4_CallFunctionInY:
 Instruction_CommonA4_CallFunctionInY_WithA:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     RTL 
@@ -161,11 +154,9 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA4_CallExternalFunctionInY_A480B5:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTL 
 
@@ -178,11 +169,9 @@ UNUSED_Inst_CommonA4_CallExternalFunctionInY_WithA_A480CE:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTL 
@@ -254,8 +243,7 @@ Instruction_CommonA4_Sleep:
     DEY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -264,8 +252,7 @@ Instruction_CommonA4_WaitYFrames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -538,15 +525,13 @@ FightAI_Crocomire_8_ProjectileAttack:
     BPL .stepForward 
     INC.W $0FB2 
     INC.W $0FB2 
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDY.W #EnemyProjectile_CrocomiresProjectile 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     LDA.W #$001C 
     JSL.L QueueSound_Lib3_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -1124,38 +1109,31 @@ CrocomireHurtFlashHandling:
 
 
 Instruction_Crocomire_QueueCrySFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0074 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Crocomire_QueueBigExplosionSFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0025 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Crocomire_QueueSkeletonCollapseSFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0075 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 HandlePlayingCrocomireAcidDamageSFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.L $7E8000 : BEQ .return 
     DEC A 
     STA.L $7E8000 
@@ -1165,8 +1143,7 @@ HandlePlayingCrocomireAcidDamageSFX:
     JSL.L QueueSound_Lib3_Max6 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -1402,20 +1379,17 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_Crocomire_ShakeScreen:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0004 : STA.W $183E 
     LDA.W #$0005 : STA.W $1840 
     LDA.W #$0076 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Crocomire_MoveLeft4Pixels:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0FAA : BIT.W #$0800 
     BNE .return 
@@ -1424,8 +1398,7 @@ Instruction_Crocomire_MoveLeft4Pixels:
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -1455,8 +1428,7 @@ SpawnBigDustCloudProjectileWithRandomXOffset:
 
 
 Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     STZ.B $12 
     LDA.W #$FFFC : STA.B $14 
@@ -1472,8 +1444,7 @@ Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall:
     LDA.W $05E5 : AND.W #$000F 
     STX.B $12 
     CLC : ADC.B $12 : JSL.L SpawnBigDustCloudProjectile 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -1486,8 +1457,7 @@ Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall:
 
 
 Instruction_Crocomire_MoveRight4PixelsIfOnScreen:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     STZ.B $12 
     LDA.W #$0004 : STA.B $14 
@@ -1496,19 +1466,16 @@ Instruction_Crocomire_MoveRight4PixelsIfOnScreen:
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Crocomire_MoveRight4Pixels:
-    PHX 
-    PHY 
+    PHX : PHY 
     STZ.B $12 
     LDA.W #$0004 : STA.B $14 
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -2539,8 +2506,7 @@ Instruction_Crocomire_SpawnBigDustCloudProjectile_40:
     LDA.W #$0040 
 
 SpawnBigDustCloudProjectile:
-    PHX 
-    PHY 
+    PHX : PHY 
     STA.B $12 
     LDA.W $05E5 : AND.W #$0007 
     CLC : ADC.W $0F7A : ADC.B $12 : STA.B $12 
@@ -2548,8 +2514,7 @@ SpawnBigDustCloudProjectile:
     LDA.W #$0015 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -3193,8 +3158,7 @@ EnemyShot_Crocomire_Nothing:
 
 
 EnemyShot_Crocomire_SpawnShotExplosion:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $18A6 
     ASL A 
     TAX 
@@ -3210,8 +3174,7 @@ EnemyShot_Crocomire_SpawnShotExplosion:
     TYA 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -3319,8 +3282,7 @@ EnemyShot_Crocomire_OpenMouth:
 
 
 EnemyShot_Crocomire_SpawnShotExplosion_duplicate:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $18A6 
     ASL A 
     TAX 
@@ -3336,8 +3298,7 @@ EnemyShot_Crocomire_SpawnShotExplosion_duplicate:
     TYA 
     LDY.W #EnemyProjectile_MiscDust 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 

@@ -2333,10 +2333,8 @@ Debug_Draw_Enemy_Set_Name:
 
 
 DebugHandler_8_EnemyDebugger_RespawnEnemy:
-    PHB 
-    PEA.W $7E7E 
-    PLB 
-    PLB 
+    PHB : PEA.W $7E7E 
+    PLB : PLB 
     LDA.W #$701E : CLC : ADC.W $1846 : TAX 
     LDY.W $1846 
     JSL.L Debug_SpawnEnemy_ToEnemyIndex_inY 
@@ -2454,10 +2452,8 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
   + LDY.W $1846 
     LDA.W $0F7A,Y : STA.W $1868 
     LDA.W $0F7E,Y : STA.W $186A 
-    PHB 
-    PEA.W $B4B4 
-    PLB 
-    PLB 
+    PHB : PEA.W $B4B4 
+    PLB : PLB 
     LDY.W $1846 
     LDX.W $1866 
     JSL.L Debug_SpawnEnemy_ToEnemyIndex_inY 
@@ -2465,12 +2461,10 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     LDY.W $1846 
     LDA.W $1868 : STA.W $0F7A,Y 
     LDA.W $186A : STA.W $0F7E,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     TYX 
     JSL.L Record_EnemySpawnData 
-    PLY 
-    PLX 
+    PLY : PLX 
     STZ.W $185C 
     LDA.W #$0001 
     RTS 
@@ -2623,8 +2617,7 @@ DebugHandler:
     PHB 
     SEP #$20 
     LDA.B #$B4 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$30 
     LDA.W $185C : AND.W #$00FF 
     ASL A 
@@ -3302,9 +3295,7 @@ Draw4DigitHexValue:
 Add_Debug_Spritemap_to_OAM:
     PHP 
     SEP #$20 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     REP #$30 
     ASL A 
     TAX 
@@ -6491,13 +6482,8 @@ DebugSpritemaps_92_EnemyNames_ROBO2:
     dw $30C3 
 
 Create_Sprite_Object:
-    PHX 
-    PHY 
-    PHP 
-    PHB 
-    PEA.W $B400 
-    PLB 
-    PLB 
+    PHX : PHY : PHP : PHB : PEA.W $B400 
+    PLB : PLB 
     REP #$30 
     LDX.W #$003E 
 
@@ -6528,21 +6514,13 @@ Create_Sprite_Object:
     STX.B $12 
 
 .return:
-    PLB 
-    PLP 
-    PLY 
-    PLX 
+    PLB : PLP : PLY : PLX 
     RTL 
 
 
 HandleSpriteObjects:
-    PHX 
-    PHY 
-    PHP 
-    PHB 
-    PEA.W $B400 
-    PLB 
-    PLB 
+    PHX : PHY : PHP : PHB : PEA.W $B400 
+    PLB : PLB 
     REP #$30 
     LDA.W $0A78 
     ORA.W $185E 
@@ -6584,10 +6562,7 @@ HandleSpriteObjects:
 
 
 .return:
-    PLB 
-    PLP 
-    PLY 
-    PLX 
+    PLB : PLP : PLY : PLX 
     RTL 
 
 
@@ -6621,13 +6596,8 @@ Instruction_SpriteObject_GotoParameter:
 
 
 DrawSpriteObjects:
-    PHX 
-    PHY 
-    PHP 
-    PHB 
-    PEA.W $B400 
-    PLB 
-    PLB 
+    PHX : PHY : PHP : PHB : PEA.W $B400 
+    PLB : PLB 
     REP #$30 
     LDX.W #$003E 
 
@@ -6654,10 +6624,7 @@ DrawSpriteObjects:
 .next:
     DEX #2
     BPL .loop 
-    PLB 
-    PLP 
-    PLY 
-    PLX 
+    PLB : PLP : PLY : PLX 
     RTL 
 
 

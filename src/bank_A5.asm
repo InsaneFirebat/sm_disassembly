@@ -120,22 +120,18 @@ RTS_A5807B:
 
 Instruction_CommonA5_DeleteEnemy:
     LDA.W $0F86,X : ORA.W #$0200 : STA.W $0F86,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
 Instruction_CommonA5_CallFunctionInY:
     LDA.W $0000,Y : STA.B $12 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
@@ -143,15 +139,12 @@ Instruction_CommonA5_CallFunctionInY:
 Instruction_CommonA5_CallFunctionInY_WithA:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0002,Y 
-    PHY 
-    PHX 
-    PEA.W .manualReturn-1 
+    PHY : PHX : PEA.W .manualReturn-1 
     JMP.W ($0012) 
 
 
 .manualReturn:
-    PLX 
-    PLY 
+    PLX : PLY 
     TYA 
     CLC : ADC.W #$0004 : TAY 
     RTL 
@@ -161,11 +154,9 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_CommonA5_CallExternalFunctionInY_A580B5:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #3
     RTL 
 
@@ -178,11 +169,9 @@ UNUSED_Inst_CommonA5_CallExternalFunctionInY_WithA_A580CE:
     LDA.W $0000,Y : STA.B $12 
     LDA.W $0001,Y : STA.B $13 
     LDA.W $0003,Y 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L .externalFunction 
-    PLY 
-    PLX 
+    PLY : PLX 
     TYA 
     CLC : ADC.W #$0005 : TAY 
     RTL 
@@ -254,8 +243,7 @@ Instruction_CommonA5_Sleep:
     DEY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -264,8 +252,7 @@ Instruction_CommonA5_WaitYFrames:
     INY #2
     TYA 
     STA.W $0F92,X 
-    PLA 
-    PEA.W ProcessEnemyInstructions_return-1 
+    PLA : PEA.W ProcessEnemyInstructions_return-1 
     RTL 
 
 
@@ -1397,8 +1384,7 @@ Function_DraygonBody_DeathSequence_BuriedByEvirs:
 
 
 HandleDyingDraygonSmoke:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $05B6 : AND.W #$0007 
     BNE .return 
     JSL.L GenerateRandomNumber 
@@ -1412,8 +1398,7 @@ HandleDyingDraygonSmoke:
     JSL.L Create_Sprite_Object 
 
 .return:
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
@@ -1829,50 +1814,42 @@ Instruction_Draygon_FunctionInY:
 
 
 Inst_Draygon_SpawnDyingDraygonSpriteObject_BigDustCloud:
-    PHY 
-    PHX 
+    PHY : PHX 
     JSR.W GenerateRandomDyingDraygonSpriteObjectPosition 
     LDA.W #$0015 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTL 
 
 
 Inst_Draygon_SpawnDyingDraygonSpriteObject_SmallExplosion:
-    PHY 
-    PHX 
+    PHY : PHX 
     JSR.W GenerateRandomDyingDraygonSpriteObjectPosition 
     LDA.W #$0003 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTL 
 
 
 Inst_Draygon_SpawnDyingDraygonSpriteObject_BigExplosion:
-    PHY 
-    PHX 
+    PHY : PHX 
     JSR.W GenerateRandomDyingDraygonSpriteObjectPosition 
     LDA.W #$001D : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTL 
 
 
 Inst_Draygon_SpawnDyingDraygonSpriteObject_BreathBubbles:
-    PHY 
-    PHX 
+    PHY : PHX 
     JSR.W GenerateRandomDyingDraygonSpriteObjectPosition 
     LDA.W #$0018 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTL 
 
 
@@ -2066,14 +2043,12 @@ InstList_DraygonBody_Dying_2:
     dw InstList_DraygonBody_Dying_2 
 
 Instruction_Draygon_ParalyseDraygonTailAndArms:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0001 : STA.W $1014 
     STA.W $1054 
     LDA.W #InstList_Draygon_Sleep : STA.W $1012 
     LDA.W #InstList_Draygon_Sleep : STA.W $1052 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -2408,8 +2383,7 @@ InstList_DraygonTail_FacingLeft_TailFlail:
     dw InstList_DraygonTail_FacingLeft_Idle_0 
 
 Instruction_DraygonTail_TailWhipHit:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0018 : STA.L $7E781E 
     LDX.W $0F78 
     LDA.L $A00006,X 
@@ -2422,8 +2396,7 @@ Instruction_DraygonTail_TailWhipHit:
     LDA.W #$0015 : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -2746,12 +2719,10 @@ Debug_InstList_DraygonTail_FacingRight_FakeTailWhip:
     dw InstList_DraygonTail_FacingRight_Idle_0 
 
 Instruction_DraygonBody_DisplaceGraphics:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0000,Y : STA.L $7E883C 
     LDA.W $0002,Y : STA.L $7E883E 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #4
     RTL 
 
@@ -2899,30 +2870,25 @@ Instruction_Draygon_BodyFunctionInY:
 
 
 Instruction_Draygon_QueueSFXInY_Lib2_Max6:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0000,Y 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTL 
 
 
 Instruction_Draygon_QueueSFXInY_Lib3_Max6:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0000,Y 
     JSL.L QueueSound_Lib3_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTL 
 
 
 Instruction_Draygon_SpawnGoop_Leftwards:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0F7A : CLC : ADC.W #$FFE4 : STA.B $12 
     LDA.W $0F7E : CLC : ADC.W #$FFF0 : STA.B $14 
@@ -2932,14 +2898,12 @@ Instruction_Draygon_SpawnGoop_Leftwards:
     LDY.W #EnemyProjectile_DraygonGoop 
     LDA.W #$0002 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_Draygon_SpawnGoop_Rightwards:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W $0E54 
     LDA.W $0F7A : CLC : ADC.W #$0018 : STA.B $12 
     LDA.W $0F7E : CLC : ADC.W #$FFF0 : STA.B $14 
@@ -2949,8 +2913,7 @@ Instruction_Draygon_SpawnGoop_Rightwards:
     LDY.W #EnemyProjectile_DraygonGoop 
     LDA.W #$0002 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -2994,8 +2957,7 @@ HandleDeathSequenceEvirMovement:
 
 
 SpawnDeathSequenceEvirSpriteObjects:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W #$003E 
     LDA.W #$0000 
 
@@ -3026,14 +2988,12 @@ loopLeft:
     DEY #4
     DEX 
     BPL .loopRight 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 Draygon_ClearSpriteObjects:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDX.W #$003E 
     LDA.W #$0000 
 
@@ -3041,14 +3001,12 @@ Draygon_ClearSpriteObjects:
     STA.L $7EEF78,X 
     DEX #2
     BPL .loop 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 SpawnFightIntroEvirSpriteObjects:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0010 : STA.B $12 
     LDA.W #$0180 : STA.B $14 
     LDA.W #$003B : STA.B $16 
@@ -3069,8 +3027,7 @@ SpawnFightIntroEvirSpriteObjects:
     LDA.W #$003B : STA.B $16 
     LDA.W #$0E00 : STA.B $18 
     JSL.L Create_Sprite_Object 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -6861,11 +6818,9 @@ Instruction_SporeSpawn_IncreaseMaxXRadius:
 
 
 Instruction_SporeSpawn_ClearDamagedFlag:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0000 : STA.L $7E801E 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -7010,50 +6965,41 @@ Instruction_SporeSpawn_Harden:
 
 
 Instruction_SporeSpawn_QueueSFXInY_Lib2_Max6:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0000,Y 
     JSL.L QueueSound_Lib2_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTL 
 
 
 Instruction_SporeSpawn_QueueSFXInY_Lib3_Max6:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0000,Y 
     JSL.L QueueSound_Lib3_Max6 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTL 
 
 
 Instruction_SporeSpawn_CallSporeSpawnDeathItemDropRoutine:
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L SporeSpawnDeathItemDropRoutine 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
 Instruction_SporeSpawn_FunctionInY:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDX.W $0E54 
     LDA.W $0000,Y : STA.W $0FA8,X 
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
 
 Instruction_SporeSpawn_LoadDeathSequencePalette:
-    PHY 
-    PHX 
+    PHY : PHX 
     STY.B $12 
     LDA.W $0000,Y 
     TAY 
@@ -7087,15 +7033,13 @@ Instruction_SporeSpawn_.loopBG12Palette7:
     INX #2
     CPX.W #$0020 
     BNE Instruction_SporeSpawn_.loopBG12Palette7 
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
 
 Instruction_SporeSpawn_LoadDeathSequenceTargetPalette:
-    PHY 
-    PHX 
+    PHY : PHX 
     STY.B $12 
     LDA.W $0000,Y 
     TAY 
@@ -7129,15 +7073,13 @@ Instruction_SporeSpawn_LoadDeathSequenceTargetPalette:
     INX #2
     CPX.W #$0020 
     BNE .loopBG12Palette7 
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #2
     RTL 
 
 
 Instruction_SporeSpawn_SpawnHardeningDustCloud:
-    PHY 
-    PHX 
+    PHY : PHX 
     JSL.L GenerateRandomNumber 
     LDA.W $05E5 : AND.W #$007F 
     SEC : SBC.W #$0040 : STA.B $12 
@@ -7151,14 +7093,12 @@ Instruction_SporeSpawn_SpawnHardeningDustCloud:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     LDA.W #$0029 
     JSL.L QueueSound_Lib2_Max6 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTL 
 
 
 Instruction_SporeSpawn_SpawnDyingExplosion:
-    PHY 
-    PHX 
+    PHY : PHX 
     JSL.L GenerateRandomNumber 
     LDA.W $05E5 : AND.W #$007F 
     SEC : SBC.W #$0040 : STA.B $12 
@@ -7172,14 +7112,12 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
     JSL.L Create_Sprite_Object 
     LDA.W #$0025 
     JSL.L QueueSound_Lib2_Max6 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTL 
 
 
 SpawnSporeSpawnCeilingDustCloud:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $05B6 : AND.W #$000F 
     BNE .return 
     JSL.L GenerateRandomNumber 
@@ -7193,8 +7131,7 @@ SpawnSporeSpawnCeilingDustCloud:
     JSL.L Create_Sprite_Object 
 
 .return:
-    PLX 
-    PLY 
+    PLX : PLY 
     RTL 
 
 
@@ -7517,8 +7454,7 @@ SporeSpawnReaction_Common:
 
 
 LoadSporeSpawnHealthBasedPalette:
-    PHY 
-    PHX 
+    PHY : PHX 
     STA.B $12 
     TAY 
     LDX.W #$0000 
@@ -7529,8 +7465,7 @@ LoadSporeSpawnHealthBasedPalette:
     INX #2
     CPX.W #$0020 
     BNE .loopSpritePalette1 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTL 
 
 

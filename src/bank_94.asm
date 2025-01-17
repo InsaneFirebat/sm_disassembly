@@ -436,9 +436,7 @@ PostGrappleCollisionDetection_Vertical_SingleBlock:
 
 
 PostGrappleCollisionDetection_Rightwards:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W #$0001 : STA.W $0B02 
     STZ.W $0E04 
     JSR.W CalculateSamusYBlockSpan 
@@ -474,9 +472,7 @@ PostGrappleCollisionDetection_Rightwards:
 
 
 PostGrappleCollisionDetection_Leftwards:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     STZ.W $0B02 
     STZ.W $0E06 
     JSR.W CalculateSamusYBlockSpan 
@@ -511,9 +507,7 @@ PostGrappleCollisionDetection_Leftwards:
 
 
 PostGrappleCollisionDetection_Downwards:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W #$0003 : STA.W $0B02 
     STZ.W $0E08 
     JSR.W CalculateSamusXBlockSpan 
@@ -548,9 +542,7 @@ PostGrappleCollisionDetection_Downwards:
 
 
 PostGrappleCollisionDetection_Upwards:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W #$0002 : STA.W $0B02 
     STZ.W $0E0A 
     JSR.W CalculateSamusXBlockSpan 
@@ -940,9 +932,7 @@ SamusBlockCollisionReaction_Vertical_Slope_NonSquare:
 
 
 Align_SamusYPosition_WithNonSquareSlope:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $0A46 : BIT.W #$0002 
     BNE .bottom 
     JMP.W .return 
@@ -2352,17 +2342,13 @@ Get_12_14_949669:
 
 
 WallJumpBlockCollisionDetection:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     LDA.W $0B02 : ORA.W #$000F : STA.W $0B02 
     STZ.W $1E71 
     JSR.W SamusBlockCollisionDetection_Horizontal 
     BCC .noCollision 
     JSR.W Get_12_14_949653 
-    PLB 
-    PLP 
+    PLB : PLP 
     SEC 
     LDA.W #$0001 : STA.W $0DD0 
     RTL 
@@ -2370,8 +2356,7 @@ WallJumpBlockCollisionDetection:
 
 .noCollision:
     JSR.W Get_12_14_949653 
-    PLB 
-    PLP 
+    PLB : PLP 
     CLC 
     STZ.W $0DD0 
     RTL 
@@ -2399,8 +2384,7 @@ BlockCollisionDetectionDueToChangeOfPose:
     STZ.B $14 
     JSL.L BlockCollisionDetectionDueToChangeOfPose_SingleBlock 
     BCC .noCollision 
-    PLA 
-    PLA 
+    PLA : PLA 
     RTL 
 
 
@@ -2414,11 +2398,9 @@ BlockCollisionDetectionDueToChangeOfPose:
 
 
 BlockCollisionDetectionDueToChangeOfPose_SingleBlock:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
-    PHK 
-    PLB 
+    PHK : PLB 
     LDA.W $0B02 : ORA.W #$000F : STA.W $0B02 
     STZ.W $1E71 
     LDA.W $05B6 
@@ -2434,8 +2416,7 @@ BlockCollisionDetectionDueToChangeOfPose_SingleBlock:
 
 .collision:
     JSR.W Get_12_14_949669 
-    PLB 
-    PLP 
+    PLB : PLP 
     SEC 
     LDA.W #$0001 : STA.W $0DD0 
     RTL 
@@ -2443,18 +2424,14 @@ BlockCollisionDetectionDueToChangeOfPose_SingleBlock:
 
 .noCollision:
     JSR.W Get_12_14_949669 
-    PLB 
-    PLP 
+    PLB : PLP 
     CLC 
     STZ.W $0DD0 
     RTL 
 
 
 MoveSamusRight_NoSolidEnemyCollision:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     LDA.B $14 
     ORA.B $12 
     BEQ .noCollision 
@@ -2463,8 +2440,7 @@ MoveSamusRight_NoSolidEnemyCollision:
     BCC .noCollision 
     LDA.W $0AF8 : CLC : ADC.B $14 : STA.W $0AF8 
     LDA.W $0AF6 : ADC.B $12 : STA.W $0AF6 
-    PLB 
-    PLP 
+    PLB : PLP 
     SEC 
     LDA.W #$0001 : STA.W $0DD0 
     RTL 
@@ -2473,19 +2449,16 @@ MoveSamusRight_NoSolidEnemyCollision:
 .noCollision:
     LDA.W $0AF8 : CLC : ADC.B $14 : STA.W $0AF8 
     LDA.W $0AF6 : ADC.B $12 : STA.W $0AF6 
-    PLB 
-    PLP 
+    PLB : PLP 
     CLC 
     STZ.W $0DD0 
     RTL 
 
 
 MoveSamusDown_NoSolidEnemyCollision:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
-    PHK 
-    PLB 
+    PHK : PLB 
     LDA.B $14 
     ORA.B $12 
     BEQ .noCollision 
@@ -2507,8 +2480,7 @@ MoveSamusDown_NoSolidEnemyCollision:
     LDA.W $0AFA : ADC.B $12 : STA.W $0AFA 
 
 .collision:
-    PLB 
-    PLP 
+    PLB : PLP 
     SEC 
     LDA.W #$0001 : STA.W $0DD0 
     RTL 
@@ -2518,8 +2490,7 @@ MoveSamusDown_NoSolidEnemyCollision:
     LDA.W $0AFC : CLC : ADC.B $14 : STA.W $0AFC 
     LDA.W $0AFA : ADC.B $12 : STA.W $0AFA 
     LDA.W $1E71 : BNE .collision 
-    PLB 
-    PLP 
+    PLB : PLP 
     CLC 
     STZ.W $0DD0 
     RTL 
@@ -3028,9 +2999,7 @@ BlockInsideReactionPointers:
     dw BlockInsideReaction_SolidDoorSpikeSpecialShotGrappleBomb 
 
 SamusBlockInsideHandling:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     STZ.W $0B4C 
     STZ.W $0B56 
     STZ.W $0B58 
@@ -3133,12 +3102,8 @@ CalculateBlockAt_12_1E_1C_20:
 
 
 DetermineProjectile_Prototype:
-    PHP 
-    PHB 
-    PHX 
-    PEA.W $9000 
-    PLB 
-    PLB 
+    PHP : PHB : PHX : PEA.W $9000 
+    PLB : PLB 
     LDA.W $0C19,X : AND.W #$000F 
     BNE .notBeam 
     LDA.W $0C18,X : AND.W #$000F : STA.B $12 
@@ -3156,17 +3121,12 @@ DetermineProjectile_Prototype:
     LDA.W ProtoWeaponConstants_NonBeams,X : AND.W #$00FF : STA.W $0DD2 
 
 .return:
-    PLX 
-    PLB 
-    PLP 
+    PLX : PLB : PLP 
     RTS 
 
 
 BombAndPowerBombExplosionBlockCollisionHandling:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     JSR.W DetermineProjectile_Prototype 
     LDA.W $0B64,X : BMI .return 
@@ -3198,8 +3158,7 @@ BombAndPowerBombExplosionBlockCollisionHandling:
     JSR.W BombExplosionBlockCollisionHandling 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -3970,10 +3929,7 @@ CalculateProjectileXBlockSpan:
 
 
 MoveBeamHorizontally_NoWaveBeam:
-    PHB 
-    PHX 
-    PHK 
-    PLB 
+    PHB : PHX : PHK : PLB 
     STZ.B $1E 
     STZ.B $12 
     STZ.B $14 
@@ -4020,8 +3976,7 @@ MoveBeamHorizontally_NoWaveBeam:
     LDA.B $28 : BMI .completeCollision 
 
 .noCollision:
-    PLX 
-    PLB 
+    PLX : PLB 
     CLC 
     RTL 
 
@@ -4035,10 +3990,7 @@ MoveBeamHorizontally_NoWaveBeam:
 
 
 MoveBeamVertically_NoWaveBeam:
-    PHB 
-    PHX 
-    PHK 
-    PLB 
+    PHB : PHX : PHK : PLB 
     STZ.B $1E 
     STZ.B $12 
     STZ.B $14 
@@ -4084,8 +4036,7 @@ MoveBeamVertically_NoWaveBeam:
     LDA.B $28 : BMI .completeCollision 
 
 .noCollision:
-    PLX 
-    PLB 
+    PLX : PLB 
     CLC 
     RTL 
 
@@ -4099,10 +4050,7 @@ MoveBeamVertically_NoWaveBeam:
 
 
 MoveBeamHorizontally_WaveBeam:
-    PHB 
-    PHX 
-    PHK 
-    PLB 
+    PHB : PHX : PHK : PLB 
     STZ.B $1E 
     STZ.B $12 
     STZ.B $14 
@@ -4155,17 +4103,13 @@ MoveBeamHorizontally_WaveBeam:
     BPL .loop 
 
 .returnNoCollision:
-    PLX 
-    PLB 
+    PLX : PLB 
     CLC 
     RTL 
 
 
 MoveBeamVertically_WaveBeam:
-    PHB 
-    PHX 
-    PHK 
-    PLB 
+    PHB : PHX : PHK : PLB 
     STZ.B $1E 
     STZ.B $12 
     STZ.B $14 
@@ -4217,17 +4161,13 @@ MoveBeamVertically_WaveBeam:
     BPL .loop 
 
 .returnNoCollision:
-    PLX 
-    PLB 
+    PLX : PLB 
     CLC 
     RTL 
 
 
 MoveMissileHorizontally:
-    PHB 
-    PHX 
-    PHK 
-    PLB 
+    PHB : PHX : PHK : PLB 
     LDA.W #$0001 : STA.B $1E 
     STZ.B $26 
     STZ.B $1A 
@@ -4258,8 +4198,7 @@ MoveMissileHorizontally:
     BCS .collision 
 
 .noCollision:
-    PLX 
-    PLB 
+    PLX : PLB 
     CLC 
     RTL 
 
@@ -4273,10 +4212,7 @@ MoveMissileHorizontally:
 
 
 MoveMissileVertically:
-    PHB 
-    PHX 
-    PHK 
-    PLB 
+    PHB : PHX : PHK : PLB 
     LDA.W #$0001 : STA.B $1E 
     STZ.B $26 
     STZ.B $1A 
@@ -4307,8 +4243,7 @@ MoveMissileVertically:
     BCS .collision 
 
 .noCollision:
-    PLX 
-    PLB 
+    PLX : PLB 
     CLC 
     RTL 
 
@@ -4430,10 +4365,7 @@ BombSpreadBlockReaction_Pointers:
     dw SECRTS_949D5B 
 
 BombSpreadBlockCollisionDetection:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$30 
     LDA.W $0B64,X : STA.B $1A 
     LDA.W $0B78,X : STA.B $1C 
@@ -4462,15 +4394,13 @@ BombSpreadBlockCollisionDetection:
     BCS .returnCollision 
 
 .returnNoCollision:
-    PLB 
-    PLP 
+    PLB : PLP 
     CLC 
     RTL 
 
 
 .returnCollision:
-    PLB 
-    PLP 
+    PLB : PLP 
     SEC 
     RTL 
 
@@ -4759,9 +4689,7 @@ BlockGrappleReaction_Pointers:
     dw BlockShotBombedGrappledReaction_BombableBlock 
 
 GrappleBeamBlockCollisionDetection:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $0D22 : STA.W $0D83 
     CLC 
     ROR.W $0D84 
@@ -4805,8 +4733,7 @@ GrappleBeamBlockCollisionDetection:
     LDA.W $0D0C : AND.W #$FFF0 
     ORA.W #$0008 
     STA.W $0D0C 
-    PLP 
-    PLB 
+    PLP : PLB 
     RTL 
 
 
@@ -4818,9 +4745,7 @@ GrappleBeamBlockCollisionDetection:
 
 
 BlockGrappleReaction:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $0D0C 
     LSR #4
     SEP #$20 
@@ -4962,22 +4887,19 @@ GrappleSwingCollisionReaction:
     ASL A 
     TAX 
     LDA.L $7F0002,X : AND.W #$F000 
-    PHA 
-    PHX 
+    PHA : PHX 
     XBA 
     LSR #3
     TAX 
     JSR.W (GrappleSwingCollisionReaction_Pointers,X) 
     BCS .returnCollision 
-    PLX 
-    PLA 
+    PLX : PLA 
     CLC 
     RTS 
 
 
 .returnCollision:
-    PLX 
-    PLA 
+    PLX : PLA 
     SEC 
     RTS 
 
@@ -5073,22 +4995,19 @@ GrappleSwingCollisionReaction_duplicate:
     ASL A 
     TAX 
     LDA.L $7F0002,X : AND.W #$F000 
-    PHA 
-    PHX 
+    PHA : PHX 
     XBA 
     LSR #3
     TAX 
     JSR.W (GrappleSwingCollisionReaction_Pointers,X) 
     BCS .returnCollision 
-    PLX 
-    PLA 
+    PLX : PLA 
     CLC 
     RTS 
 
 
 .returnCollision:
-    PLX 
-    PLA 
+    PLX : PLA 
     SEC 
     RTS 
 
@@ -5125,9 +5044,7 @@ UpdateGrappleBeamStartPositionDuringGrappleSwinging:
 
 
 HandleGrappleBeamLengthChange:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $0D00 : BNE .nonZeroLengthDelta 
     JMP.W .returnCarryClear 
 
@@ -5227,9 +5144,7 @@ HandleGrappleBeamLengthChange:
 
 
 HandleGrappleBeamSwingingMovement:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDY.W #$0100 
     LDA.W $0CF4 : BIT.W #$0001 
     BEQ .nonLiquidPhysics 
@@ -5492,8 +5407,7 @@ CLCRTL_94AF0B:
     RTL 
 
     PHB ; dead code
-    PHK 
-    PLB 
+    PHK : PLB 
     LDA.W $0D08 
     LSR #4
     AND.W #$00FF 
@@ -5559,9 +5473,7 @@ InitializeGrappleSegmentAnimations:
 
 
 DrawGrappleBeam:
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $0D08 : SEC : SBC.W $0D1A : STA.B $12 
     LDA.W $0D0C : SEC : SBC.W $0D1C : STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 

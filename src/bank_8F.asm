@@ -14032,46 +14032,37 @@ UNUSED_UnknownUnreferenced_8FE881:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Execute_Room_Setup_ASM:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     LDX.W $07BB 
     LDA.W $0018,X : BEQ .return 
-    PHK 
-    PLB 
+    PHK : PLB 
     JSR.W ($0018,X) 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Execute_Door_ASM:
-    PHP 
-    PHB 
+    PHP : PHB 
     REP #$30 
     LDX.W $078D 
     LDA.L $83000A,X : BEQ .return 
     STA.B $12 
-    PHK 
-    PLB 
-    PEA.W .return-1 
+    PHK : PLB : PEA.W .return-1 
     JMP.W ($0012) 
 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 Execute_Room_Main_ASM:
     LDX.W $07DF 
     BEQ .return 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDX.W #$0000 
     JSR.W ($07DF,X) 
     PLB 

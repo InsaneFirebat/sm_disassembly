@@ -30,19 +30,14 @@ Clear_Enemy_Projectiles:
     STZ.W $1997,X 
     DEX #2
     BPL .loop 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTL 
 
 
 SpawnEnemyProjectileY_ParameterA_XGraphics:
-    PHP 
-    PHB 
-    PHX 
-    PHY 
+    PHP : PHB : PHX : PHY 
     STA.W $1993 
-    PHK 
-    PLB 
+    PHK : PLB 
     LDA.W $0F96,X 
     ORA.W $0F98,X 
     PHA 
@@ -53,11 +48,7 @@ SpawnEnemyProjectileY_ParameterA_XGraphics:
     LDA.W $1997,Y : BEQ .found 
     DEY #2
     BPL .loop 
-    PLA 
-    PLY 
-    PLX 
-    PLB 
-    PLP 
+    PLA : PLY : PLX : PLB : PLP 
     SEC 
     RTL 
 
@@ -81,23 +72,15 @@ SpawnEnemyProjectileY_ParameterA_XGraphics:
     STA.W $1BFB,Y 
     PHY 
     JSR.W ($0000,X) 
-    PLA 
-    PLY 
-    PLX 
-    PLB 
-    PLP 
+    PLA : PLY : PLX : PLB : PLP 
     CLC 
     RTL 
 
 
 SpawnEnemyProjectileY_ParameterA_RoomGraphics:
-    PHP 
-    PHB 
-    PHX 
-    PHY 
+    PHP : PHB : PHX : PHY 
     STA.W $1993 
-    PHK 
-    PLB 
+    PHK : PLB 
     TYX 
     LDY.W #$0022 
 
@@ -105,10 +88,7 @@ SpawnEnemyProjectileY_ParameterA_RoomGraphics:
     LDA.W $1997,Y : BEQ .found 
     DEY #2
     BPL .loop 
-    PLY 
-    PLX 
-    PLB 
-    PLP 
+    PLY : PLX : PLB : PLP 
     SEC 
     RTL 
 
@@ -132,20 +112,13 @@ SpawnEnemyProjectileY_ParameterA_RoomGraphics:
     STA.W $1BFB,Y 
     PHY 
     JSR.W ($0000,X) 
-    PLA 
-    PLY 
-    PLX 
-    PLB 
-    PLP 
+    PLA : PLY : PLX : PLB : PLP 
     CLC 
     RTL 
 
 
 Enemy_Projectile_Handler:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     BIT.W $198D 
     BPL .return 
     LDX.W #$0022 
@@ -161,8 +134,7 @@ Enemy_Projectile_Handler:
     BPL .loop 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
@@ -427,8 +399,7 @@ Instruction_EnemyProjectile_CalculateDirectionTowardsSamus:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Inst_EnemyProj_WriteColorsFromYToColorIndex_8682D5:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDX.W $0002,Y 
     LDA.W $0004,Y : AND.W #$00FF : STA.B $12 
     LDA.W $0000,Y 
@@ -440,8 +411,7 @@ UNUSED_Inst_EnemyProj_WriteColorsFromYToColorIndex_8682D5:
     INX #2
     DEC.B $12 
     BPL .loop 
-    PLX 
-    PLA 
+    PLX : PLA 
     CLC : ADC.W #$0005 : TAY 
     RTS 
 
@@ -562,10 +532,8 @@ Instruction_EnemyProjectile_QueueSoundInY_Lib3_Max1:
 
 
 Draw_HighPriority_EnemyProjectile:
-    PHB 
-    PEA.W EnemyProjSpritemaps>>8&$FF00 
-    PLB 
-    PLB 
+    PHB : PEA.W EnemyProjSpritemaps>>8&$FF00 
+    PLB : PLB 
     JSR.W Get_Values_for_Screen_Shaking 
     LDX.W #$0022 
 
@@ -586,8 +554,7 @@ Draw_LowPriority_EnemyProjectile:
     PHB 
     REP #$30 
     PEA.W EnemyProjSpritemaps>>8&$FF00 
-    PLB 
-    PLB 
+    PLB : PLB 
     JSR.W Get_Values_for_Screen_Shaking 
     LDX.W #$0022 
 
@@ -1568,14 +1535,12 @@ InstList_EnemyProjectile_DraygonGoop_Shot:
     dw Instruction_EnemyProjectile_Delete 
 
 Instruction_SpawnEnemyDropsWIthDraygonEyeDropChances:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
     LDA.W #EnemyHeaders_DraygonEye 
     JSL.L Spawn_Enemy_Drops 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
@@ -1633,8 +1598,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 InitAI_EnemyProjectile_DraygonGoop:
-    PHY 
-    PHX 
+    PHY : PHX 
     TYX 
     LDA.B $12 : STA.W $1A4B,Y 
     LDA.B $14 : STA.W $1A93,Y 
@@ -1647,19 +1611,16 @@ InitAI_EnemyProjectile_DraygonGoop:
     LDA.B $1A : STA.W $1ADB,Y 
     LDA.B $1C : STA.W $1B23,Y 
     LDA.W #$0400 : STA.W $19BB,Y 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
 InitAI_EnemyProjectile_DraygonsWallTurretProjectile:
-    PHY 
-    PHX 
+    PHY : PHX 
     JSR.W PlaceAndAim_DraygonsWallTurretProjectile 
     LDA.W #$0A00 : STA.W $19BB,Y 
     LDA.W #RTS_868D54 : STA.W $1A03,Y 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
@@ -1675,8 +1636,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Delete_EnemyProjectile_IfPowerBombed:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $0CEB : AND.W #$00FF : STA.B $12 
     BEQ .return 
     LSR A 
@@ -1698,8 +1658,7 @@ Delete_EnemyProjectile_IfPowerBombed:
     STZ.W $0A66 
 
 .return:
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
@@ -2178,14 +2137,12 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_SpawnEnemyDropsWithCrocomiresDropChances:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
     LDA.W #EnemyHeaders_Crocomire 
     JSL.L Spawn_Enemy_Drops 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
@@ -2878,14 +2835,12 @@ InstList_EnemyProjectile_Shot_PhantoonDestroyableFlames:
     dw Instruction_EnemyProjectile_Delete 
 
 Instruction_SpawnPhantoonDrop:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
     LDA.W #EnemyHeaders_PhantoonEye 
     JSL.L Spawn_Enemy_Drops 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
@@ -3241,8 +3196,7 @@ Calculate_XY_ComponentsOf_RadiusA_AngleY:
     INC A 
 
   + STA.B $16 
-    PLX 
-    PLP 
+    PLX : PLP 
     RTS 
 
 
@@ -3686,8 +3640,7 @@ InstList_EnemyProjectile_PirateClaw_Right_1:
     dw InstList_EnemyProjectile_PirateClaw_Right_1 
 
 InitAI_EnemyProjectile_Pirate_MotherBrain_Laser:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDX.W #InstList_EnemyProjectile_Pirate_MotherBrain_Laser_Left_0 
     LDA.B $16 : AND.W #$FFFF 
     BEQ + 
@@ -3706,17 +3659,14 @@ InitAI_EnemyProjectile_Pirate_MotherBrain_Laser:
     LDA.W $0FB4,X : STA.W $1AFF,Y 
     LDA.W #$0067 
     JSL.L QueueSound_Lib2_Max6 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
 Instruction_PreInstructionInY_ExecuteY:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $0000,Y : STA.W $1A03,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -3761,8 +3711,7 @@ PreInst_EnemyProjectile_Pirate_MotherBrain_Laser_Right:
 
 
 PreInstruction_EnemyProjectile_PirateClaw:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.B $14 : CLC : ADC.B $18 : STA.W $1A93,Y 
     LDA.B $12 : CLC : ADC.B $16 : STA.W $1A4B,Y 
     LDX.W #InstList_EnemyProjectile_PirateClaw_Left_0 
@@ -3775,8 +3724,7 @@ PreInstruction_EnemyProjectile_PirateClaw:
     LDA.W #RTS_86A05B : STA.W $1A03,Y 
     LDA.W #$0800 : STA.W $1AFF,Y 
     LDA.W #$0001 : STA.W $1B23,Y 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
@@ -4864,8 +4812,7 @@ InstList_EnemyProjectile_Shot_TorizoChozoOrbs:
     dw Instruction_EnemyProjectile_Delete 
 
 Instruction_EnemyProjectile_SpawnEnemyDropsWIthYDropChances:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
     LDA.W $079F : BEQ .crateria 
@@ -4877,8 +4824,7 @@ Instruction_EnemyProjectile_SpawnEnemyDropsWIthYDropChances:
 
 .spawnDrops:
     JSL.L Spawn_Enemy_Drops 
-    PLX 
-    PLY 
+    PLX : PLY 
     INY #4
     RTS 
 
@@ -5688,8 +5634,7 @@ Instruction_AimSuperMissile_Leftwards:
     ORA.W #$0080 
 
 CalculateGoldenTorizoSuperMissileVelocitiesFromAngle:
-    PHX 
-    PHY 
+    PHX : PHY 
     TXY 
     ASL A 
     TAX 
@@ -5699,8 +5644,7 @@ CalculateGoldenTorizoSuperMissileVelocitiesFromAngle:
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X 
     ASL #2
     STA.W $1ADB,Y 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -7813,11 +7757,9 @@ MotherBrainsBomb_Bomb_Collision_Detection:
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
     LDA.W #EnemyHeaders_MotherBrainHead 
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L Spawn_Enemy_Drops 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -7999,13 +7941,11 @@ InstList_EnemyProjectile_MotherBrainRedBeam:
     dw Instruction_EnemyProjectile_Delete 
 
 Spawn_MotherBrainRedBeam_Fired:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $1AFF,X 
     LDY.W #EnemyProjectile_MotherBrainRedBeam_Fired 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTL 
 
 
@@ -8915,8 +8855,7 @@ InitAI_EnemyProjectile_KagoBug:
 
 
 Handle_KagoBug_SoundEffect:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $1AFF,X : BEQ .return 
     DEC A 
     STA.W $1AFF,X 
@@ -8925,8 +8864,7 @@ Handle_KagoBug_SoundEffect:
     JSL.L QueueSound_Lib2_Max6 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -9060,20 +8998,17 @@ Instruction_EnemyProjectile_UsePalette0_duplicate_again:
 
 
 PreInstruction_EnemyProjectile_KagoBug_SpawnDrop:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
     LDA.W #EnemyHeaders_Kago 
     JSL.L Spawn_Enemy_Drops 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
 Enable_KagoBug_Collision_with_SamusProj_IfFarEnoughFromKago:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $1B23,X 
     TAY 
     LDA.W $0F7A,Y : SEC : SBC.W $1A4B,X : BPL .enable 
@@ -9086,8 +9021,7 @@ Enable_KagoBug_Collision_with_SamusProj_IfFarEnoughFromKago:
     LDA.W $1BD7,X : ORA.W #$8000 : STA.W $1BD7,X 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -10251,26 +10185,22 @@ Instruction_EnemyProjectile_Spores_SetProperties3000:
 
 
 Instruction_EnemyProjectile_Spores_SpawnEnemyDrops:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
     LDA.W #EnemyHeaders_SporeSpawnStalk 
     JSL.L Spawn_Enemy_Drops 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 Instruction_EnemyProjectile_SporeSpawner_SpawnSpore:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
     LDY.W #EnemyProjectile_SporeSpawnSpores 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -10558,14 +10488,12 @@ InstList_EnemyProjectile_Shot_MagdolliteFlame:
     dw InstList_EnemyProjectile_Delete 
 
 Instruction_EnemyProjectile_MagdolliteFlame_SpawnDrops:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 
     LDA.W #EnemyHeaders_Magdollite 
     JSL.L Spawn_Enemy_Drops 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
@@ -11273,8 +11201,7 @@ EnemyProjectile_SaveStationElectricity:
     dw InstList_EnemyProjectile_Delete ; Shot instruction list
 
 CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W $1A4B,X 
     CMP.W $0911 
     BMI .returnOffScreen 
@@ -11289,15 +11216,13 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4:
     LDA.W $1A93,X 
     CMP.W $0E20 
     BPL .returnOffScreen 
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.W #$0000 
     RTS 
 
 
 .returnOffScreen:
-    PLY 
-    PLX 
+    PLY : PLX 
     LDA.W #$0001 
     RTS 
 
@@ -11776,12 +11701,10 @@ RTS_86EB93:
 
 
 Function_EnemyProj_BotwoonsBody_QueueSmallExplosionSoundFX:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.W #$0024 
     JSL.L QueueSound_Lib2_Max6 
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
@@ -11936,8 +11859,7 @@ InstList_EnemyProj_EnemyDeathExplosion_MiniKraidExplosion_1:
     dw Instruction_EnemyProjectile_Delete 
 
 Instruction_EnemyProj_EnemyDeathExpl_SpawnSpriteObjectInY_20:
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L GenerateRandomNumber 
     AND.W #$003F 
     SEC : SBC.W #$0020 : CLC : ADC.W $1A4B,X : STA.B $12 
@@ -11947,15 +11869,13 @@ Instruction_EnemyProj_EnemyDeathExpl_SpawnSpriteObjectInY_20:
     LDA.W $0000,Y : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTS 
 
 
 Instruction_EnemyProj_EnemyDeathExpl_SpawnSpriteObjectInY_10:
-    PHX 
-    PHY 
+    PHX : PHY 
     JSL.L GenerateRandomNumber 
     AND.W #$001F 
     SEC : SBC.W #$0010 : CLC : ADC.W $1A4B,X : STA.B $12 
@@ -11965,8 +11885,7 @@ Instruction_EnemyProj_EnemyDeathExpl_SpawnSpriteObjectInY_10:
     LDA.W $0000,Y : STA.B $16 
     STZ.B $18 
     JSL.L Create_Sprite_Object 
-    PLY 
-    PLX 
+    PLY : PLX 
     INY #2
     RTS 
 
@@ -12098,38 +12017,31 @@ UNUSED_InstList_EnemyProj_EnemyDeathExplo_KillContact_86EE45:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_EnemyProj_EnemyDeathExpl_QueueEnemyKilledSoundFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0009 
     JSL.L QueueSound_Lib2_Max1 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 Instruction_EnemyProj_EDeathExplo_QueueSmallExplosionSoundFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$0024 
     JSL.L QueueSound_Lib2_Max1 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 Instruction_EnemyProj_EDeathExplo_QueueContactKilledSoundFX:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.W #$000B 
     JSL.L QueueSound_Lib2_Max1 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 Instruction_EnemyProjectile_EnemyDeathExplosion_BecomePickup:
-    PHX 
-    PHY 
+    PHX : PHY 
     JSR.W Random_Drop_Routine 
     BEQ .nothingDrop 
     CMP.W #$0006 
@@ -12143,8 +12055,7 @@ Instruction_EnemyProjectile_EnemyDeathExplosion_BecomePickup:
     LDA.W #PreInstruction_EnemyProjectile_Pickup : STA.W $1A03,X 
     LDA.W $1BD7,X : AND.W #$BFFF : STA.W $1BD7,X 
     LDA.W $1B47,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     TAY 
     RTS 
 
@@ -12154,8 +12065,7 @@ Instruction_EnemyProjectile_EnemyDeathExplosion_BecomePickup:
     LDA.W #$3000 : STA.W $1BD7,X 
     LDA.W #RTS_86EFDF : STA.W $1A03,X 
     LDA.W #InstList_EnemyProjectile_Pickup_HandleRespawningEnemy : STA.W $1B47,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     TAY 
     RTS 
 
@@ -12169,8 +12079,7 @@ EnemyProjectile_Pickup_InstListPointers:
     dw InstList_EnemyProjectile_Pickup_SuperMissiles 
 
 Instruction_EnemyProjectile_Pickup_HandleRespawningEnemy:
-    PHY 
-    PHX 
+    PHY : PHX 
     LDA.L $7EF410,X 
     CMP.W #$FFFF 
     BEQ .return 
@@ -12180,14 +12089,12 @@ Instruction_EnemyProjectile_Pickup_HandleRespawningEnemy:
     JSR.W Respawn_Enemy 
 
 .return:
-    PLX 
-    PLY 
+    PLX : PLY 
     RTS 
 
 
 InitAI_EnemyProjectile_Pickup:
-    PHX 
-    PHY 
+    PHX : PHY 
     LDA.B $12 : STA.W $1A4B,Y 
     LDA.B $14 : STA.W $1A93,Y 
     LDA.W #$0000 : STA.W $19BB,Y 
@@ -12204,8 +12111,7 @@ InitAI_EnemyProjectile_Pickup:
     LDA.W #$0190 : STA.W $1B23,Y 
     TYX 
     LDA.W #$FFFF : STA.L $7EF410,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -12214,14 +12120,12 @@ InitAI_EnemyProjectile_Pickup:
     LDA.W #$0001 : STA.W $1B8F,Y 
     LDA.W #$3000 : STA.W $1BD7,Y 
     LDA.W #RTS_86EFDF : STA.W $1A03,Y 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
 InitAI_EnemyProjectile_EnemyDeathExplosion:
-    PHX 
-    PHY 
+    PHX : PHY 
     TYX 
     LDY.W $0E54 
     LDA.W $0F7A,Y : STA.W $1A4B,X 
@@ -12239,8 +12143,7 @@ InitAI_EnemyProjectile_EnemyDeathExplosion:
     TAY 
     LDA.W .InstListPointers,Y : STA.W $1B47,X 
     LDA.W #$0001 : STA.W $1B8F,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -12256,8 +12159,7 @@ RTS_86EFDF:
 
 
 PreInstruction_EnemyProjectile_Pickup:
-    PHX 
-    PHY 
+    PHX : PHY 
     DEC.W $1B23,X 
     LDA.W $1B23,X : BEQ .timerExpired 
     LDA.W #$000D 
@@ -12325,8 +12227,7 @@ PreInstruction_EnemyProjectile_Pickup:
     LDA.W #RTS_86EFDF : STA.W $1A03,X 
 
 .return:
-    PLY 
-    PLX 
+    PLY : PLX 
     RTS 
 
 
@@ -12380,12 +12281,8 @@ Function_EnemyProjectile_Pickup_ApplySuperMissiles:
 
 
 Random_Drop_Routine:
-    PHX 
-    PHY 
-    PHB 
-    PEA.W EnemyHeaders>>8&$FF00 
-    PLB 
-    PLB 
+    PHX : PHY : PHB : PEA.W EnemyHeaders>>8&$FF00 
+    PLB : PLB 
     LDA.L $7EF410,X : AND.W #$7FFF : STA.W $0E2A 
     LDA.L $7EF3C8,X 
     TAX 
@@ -12525,9 +12422,7 @@ Random_Drop_Routine:
     REP #$20 
     TYX 
     LDA.L .drops,X : AND.W #$00FF 
-    PLB 
-    PLY 
-    PLX 
+    PLB : PLY : PLX 
     RTS 
 
 
@@ -12540,12 +12435,8 @@ Random_Drop_Routine:
     db $03 ; Power bombs
 
 Respawn_Enemy:
-    PHB 
-    PHX 
-    PHY 
-    PEA.W $A000 
-    PLB 
-    PLB 
+    PHB : PHX : PHY : PEA.W $A000 
+    PLB : PLB 
     REP #$30 
     STA.W $0E54 
     LSR #2
@@ -12587,9 +12478,7 @@ Respawn_Enemy:
     LDA.W $000C,X : STA.W $0FA6,Y 
     STA.W $1786 
     JSL.L .executeEnemyInitAI 
-    PLY 
-    PLX 
-    PLB 
+    PLY : PLX : PLB 
     RTS 
 
 
@@ -12597,9 +12486,7 @@ Respawn_Enemy:
     LDX.W $0E54 
     LDA.W $0FA6,X : STA.W $1786 
     XBA 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     JML.W [$1784] 
 
 

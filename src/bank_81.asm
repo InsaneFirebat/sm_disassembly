@@ -5,12 +5,8 @@ org $818000
 SaveToSRAM:
     PHP 
     REP #$30 
-    PHB 
-    PHX 
-    PHY 
-    PEA.W $7E00 
-    PLB 
-    PLB 
+    PHB : PHX : PHY : PEA.W $7E00 
+    PLB : PLB 
     STZ.B $14 
     AND.W #$0003 
     ASL A 
@@ -54,22 +50,16 @@ SaveToSRAM:
     EOR.W #$FFFF 
     STA.L $700008,X 
     STA.L $701FF8,X 
-    PLY 
-    PLX 
+    PLY : PLX 
     CLC 
-    PLB 
-    PLP 
+    PLB : PLP 
     RTL 
 
 
 LoadFromSRAM:
     REP #$30 
-    PHB 
-    PHX 
-    PHY 
-    PEA.W $7E00 
-    PLB 
-    PLB 
+    PHB : PHX : PHY : PEA.W $7E00 
+    PLB : PLB 
     STZ.B $14 
     AND.W #$0003 
     ASL A 
@@ -114,8 +104,7 @@ LoadFromSRAM:
     JSR.W LoadMap 
     LDA.W $D916 : STA.W $078B 
     LDA.W $D918 : STA.W $079F 
-    PLY 
-    PLX 
+    PLY : PLX 
     CLC 
     PLB 
     RTL 
@@ -138,8 +127,7 @@ LoadFromSRAM:
     BNE .loopCorrupt 
     LDA.W #$0000 : STA.W $078B 
     STA.W $079F 
-    PLY 
-    PLX 
+    PLY : PLX 
     SEC 
     PLB 
     RTL 
@@ -354,10 +342,7 @@ MapRoomPointers:
     dw SRAMMapData_ceres 
 
 LoadMap:
-    PHB 
-    PHP 
-    PHK 
-    PLB 
+    PHB : PHP : PHK : PLB 
     REP #$30 
     LDX.W #$0700 
     LDA.W #$0000 
@@ -399,16 +384,12 @@ LoadMap:
     LDA.B $16 
     CMP.W #$0006 
     BMI .loopArea 
-    PLP 
-    PLB 
+    PLP : PLB 
     RTS 
 
 
 SaveMap:
-    PHB 
-    PHP 
-    PHK 
-    PLB 
+    PHB : PHP : PHK : PLB 
     REP #$30 
     STZ.B $1A 
 
@@ -442,8 +423,7 @@ SaveMap:
     LDA.B $1A 
     CMP.W #$0006 
     BMI .loopAreas 
-    PLP 
-    PLB 
+    PLP : PLB 
     RTS 
 
 
@@ -715,10 +695,8 @@ OAMEntry_XPosition_180h:
 
 
 AddSpritemapFrom_82C569_TableToOAM:
-    PHB 
-    PEA.W $8200 
-    PLB 
-    PLB 
+    PHB : PEA.W $8200 
+    PLB : PLB 
     STY.B $12 
     STX.B $14 
     ASL A 
@@ -771,10 +749,8 @@ AddSpritemapFrom_82C569_TableToOAM:
 
 
 AddSamusSpritemapToOAM:
-    PHB 
-    PEA.W $9200 
-    PLB 
-    PLB 
+    PHB : PEA.W $9200 
+    PLB : PLB 
     STY.B $12 
     STX.B $14 
     ASL A 
@@ -825,10 +801,8 @@ AddSamusSpritemapToOAM:
 
 
 AddSpritemapFrom_93A1A1_TableToOAM:
-    PHB 
-    PEA.W $9300 
-    PLB 
-    PLB 
+    PHB : PEA.W $9300 
+    PLB : PLB 
     ASL A 
     TAX 
     LDY.W FlareSpritemapPointers,X 
@@ -838,10 +812,8 @@ AddSpritemapFrom_93A1A1_TableToOAM:
 
 
 AddProjectileSpritemapToOAM:
-    PHB 
-    PEA.W $9300 
-    PLB 
-    PLB 
+    PHB : PEA.W $9300 
+    PLB : PLB 
     LDY.W $0CB8,X 
     LDA.W $0000,Y : BNE + 
     PLB 
@@ -1121,9 +1093,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8C7F:
 
 Debug_GameOverMenu:
     REP #$30 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $0727 
     ASL A 
     TAX 
@@ -1444,9 +1414,7 @@ DebugGameOverMenu_Index5_Continue:
 
 GameOverMenu:
     REP #$30 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $0727 
     ASL A 
     TAX 
@@ -1727,9 +1695,7 @@ GameOverMenu_Index2_PlayMusicTrack:
 
 FileSelectMenu:
     REP #$30 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $0727 
     ASL A 
     TAX 
@@ -2833,10 +2799,7 @@ Draw_FileSelect_SamusHelmets:
     LDA.W #$0000 : STA.W $198D,X 
 
 Draw_FileSelect_Slot_SamusHelmet:
-    PHX 
-    PHB 
-    PHK 
-    PLB 
+    PHX : PHB : PHK : PLB 
     LDA.W $198D,X : BEQ timerHandled 
     DEC A 
     STA.W $198D,X 
@@ -2864,8 +2827,7 @@ timerHandled:
     TAX 
     PLA 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
-    PLB 
-    PLX 
+    PLB : PLX 
     RTS 
 
 
@@ -2874,9 +2836,7 @@ timerHandled:
 
 FileSelectMap:
     REP #$30 
-    PHB 
-    PHK 
-    PLB 
+    PHB : PHK : PLB 
     LDA.W $0727 
     ASL A 
     TAX 
@@ -3117,20 +3077,14 @@ Draw_FileSelection_Health:
     LDA.W $09C2 : STA.W $4204 
     SEP #$20 
     LDA.B #$64 : STA.W $4206 
-    PHA 
-    PLA 
-    PHA 
-    PLA 
+    PHA : PLA : PHA : PLA 
     REP #$20 
     LDA.W $4214 : STA.B $14 
     LDA.W $4216 : STA.B $12 
     LDA.W $09C4 : STA.W $4204 
     SEP #$20 
     LDA.B #$64 : STA.W $4206 
-    PHA 
-    PLA 
-    PHA 
-    PLA 
+    PHA : PLA : PHA : PLA 
     REP #$20 
     LDA.W $4214 : STA.B $16 
     LDA.W #$0007 : STA.B $18 
@@ -3162,10 +3116,7 @@ Draw_FileSelection_Health:
     LDA.B $12 : STA.W $4204 
     SEP #$20 
     LDA.B #$0A : STA.W $4206 
-    PHA 
-    PLA 
-    PHA 
-    PLA 
+    PHA : PLA : PHA : PLA 
     REP #$20 
     LDA.W $4214 : STA.B $14 
     LDA.W $4216 : STA.B $12 
@@ -3183,10 +3134,7 @@ Draw_FileSelection_Time:
     LDA.W $09E0 : STA.W $4204 
     SEP #$20 
     LDA.B #$0A : STA.W $4206 
-    PHA 
-    PLA 
-    PHA 
-    PLA 
+    PHA : PLA : PHA : PLA 
     REP #$20 
     LDX.B $1A 
     LDA.W $4216 : CLC : ADC.W #$2060 : ORA.W $0F96 
@@ -3199,10 +3147,7 @@ Draw_FileSelection_Time:
     LDA.W $09DE : STA.W $4204 
     SEP #$20 
     LDA.B #$0A : STA.W $4206 
-    PHA 
-    PLA 
-    PHA 
-    PLA 
+    PHA : PLA : PHA : PLA 
     REP #$20 
     LDX.B $1A 
     LDA.W $4216 : CLC : ADC.W #$2060 : ORA.W $0F96 
@@ -3476,8 +3421,7 @@ LoadAreaMapForegroundColors:
     LDA.W AreaSelectMap_ForegroundPaletteTable_data,Y 
     CMP.W #$FFFF 
     BEQ .return 
-    PHY 
-    PHA 
+    PHY : PHA 
     LDA.W AreaSelectMap_ForegroundPaletteTable_RAM,Y 
     TAX 
     PLY 
@@ -3946,9 +3890,7 @@ Debug_Check_FileSelectMapArea_CanBeSelected:
     LDA.L $7ED8F8,X : BNE .return 
     PHB 
     LDA.W #$8200 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     LDA.L MapIcon_PositionTablePointers_savePoints,X : CLC : ADC.W #$0040 : TAX 
     LDA.W $0000,X 
     PLB 
@@ -4003,9 +3945,7 @@ DrawAreaSelectMapLabels:
     TAX 
     PHB 
     LDA.W #$8200 
-    PHA 
-    PLB 
-    PLB 
+    PHA : PLB : PLB 
     LDA.L $7ED8F8,X : STA.B $24 
     LDA.L MapIcon_PositionTablePointers_savePoints,X 
     TAX 
@@ -4214,9 +4154,7 @@ Setup_FileSelectMap_ExpandingSquareTransition_HDMA:
 
 
 AddExpandingSquareTransition_LeftPos_IndirectHDMATable:
-    PHA 
-    PHY 
-    PHP 
+    PHA : PHY : PHP 
     SEP #$20 
     BIT.B #$80 
     BNE + 
@@ -4224,9 +4162,7 @@ AddExpandingSquareTransition_LeftPos_IndirectHDMATable:
     REP #$20 
     TYA 
     STA.L $7E9E01,X 
-    PLP 
-    PLY 
-    PLA 
+    PLP : PLY : PLA 
     RTS 
 
     SEP #$20 
@@ -4237,9 +4173,7 @@ AddExpandingSquareTransition_LeftPos_IndirectHDMATable:
     TYA 
     STA.L $7E9E01,X 
     STA.L $7E9E04,X 
-    PLP 
-    PLY 
-    PLA 
+    PLP : PLY : PLA 
     RTS 
 
 
@@ -4329,8 +4263,7 @@ FileSelectMap_Index9_AreaSelectMapToRoomSelectMap_Init:
     PHB 
     SEP #$20 
     LDA.B #$8F 
-    PHA 
-    PLB 
+    PHA : PLB 
     LDX.W $079B 
     LDA.W $0001,X : AND.B #$FF : STA.W $079F 
     LDA.W $0002,X : AND.B #$FF : STA.W $07A1 
@@ -4401,8 +4334,7 @@ FileSelectMap_IndexA_RoomSelectMap:
     PHB 
     SEP #$20 
     LDA.B #$82 : STA.B $02 
-    PHA 
-    PLB 
+    PHA : PLB 
     REP #$20 
     LDA.W $079F 
     ASL A 
@@ -4522,10 +4454,7 @@ UNUSED_REP30_81AEC8:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Handle_FileSelectMap_ScrollArrows:
-    PHP 
-    PHB 
-    PHK 
-    PLB 
+    PHP : PHB : PHK : PLB 
     REP #$20 
     LDA.W $05AC : SEC : SBC.W #$0018 : CMP.B $B1 
     BPL + 
@@ -4548,8 +4477,7 @@ Handle_FileSelectMap_ScrollArrows:
     JSL.L Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction 
 
 .return:
-    PLB 
-    PLP 
+    PLB : PLP 
     RTS 
 
 
