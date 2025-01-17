@@ -2301,8 +2301,7 @@ UNUSED_DoFireballDamageToSamus_TurnIntoSmoke_869442:
     LDA.W #$0001 : STA.W $1B8F,X 
     LDA.W #$0003 
     LDY.W $079F 
-    CPY.W #$0002 
-    BNE .gotoHurtSamus 
+    CPY.W #$0002 : BNE .gotoHurtSamus 
     LDA.W #$003C 
 
 .gotoHurtSamus:
@@ -2827,8 +2826,7 @@ PhantoonDestroyableFlameInit_Type2_Enraged:
     STA.W $1ADB,Y 
     LDA.W $1993 : AND.W #$00FF 
     TAX 
-    CPX.W #$0008 
-    BPL .greaterThan7 
+    CPX.W #$0008 : BPL .greaterThan7 
     LDA.W #$0002 : STA.W $1AB7,Y 
     BRA + 
 
@@ -6233,8 +6231,7 @@ InitAI_EnemyProjectile_TourianStatueEyeGlow:
     LDA.W TourianStatueEyeData_Phantoon,Y : STA.L $7EC000,X 
     INY #2
     INX #2
-    CPX.W #$01FA 
-    BNE .loop 
+    CPX.W #$01FA : BNE .loop 
     RTS 
 
 
@@ -7240,8 +7237,7 @@ Check_for_Bomb_Collision_with_Rectangle:
 
 .next:
     INY #2
-    CPY.W #$0014 
-    BMI .loop 
+    CPY.W #$0014 : BMI .loop 
     CLC 
     RTS 
 
@@ -11497,8 +11493,7 @@ Function_EnemyProjectile_BotwoonsBody_Dying_Falling:
     LDA.W #$0A00 : STA.W $19BB,Y 
     LDA.W #$0001 : STA.W $1B8F,Y 
     JSR.W Function_EnemyProj_BotwoonsBody_QueueSmallExplosionSoundFX 
-    CPY.W #$000A 
-    BNE .return 
+    CPY.W #$000A : BNE .return 
     LDA.W #$0001 : STA.L $7E883E 
 
 .return:
@@ -12107,11 +12102,9 @@ Random_Drop_Routine:
     LDA.L $B40003,X : STA.B $12 
     LDA.B #$08 : STA.B $16 
     LDY.W $09C2 
-    CPY.W $09C4 
-    BNE .energyAllowed 
+    CPY.W $09C4 : BNE .energyAllowed 
     LDY.W $09D6 
-    CPY.W $09D4 
-    BEQ .fullEnergy 
+    CPY.W $09D4 : BEQ .fullEnergy 
 
 .energyAllowed:
     LDA.B $12 : CLC : ADC.L EnemyDropChances_smallEnergy-(EnemyDropChances&$00FFFF),X ; $B40000
@@ -12121,24 +12114,21 @@ Random_Drop_Routine:
 
 .fullEnergy:
     LDY.W $09C6 
-    CPY.W $09C8 
-    BEQ .checkSuperMissiles 
+    CPY.W $09C8 : BEQ .checkSuperMissiles 
     LDA.B $12 : CLC : ADC.L EnemyDropChances_missiles-(EnemyDropChances&$00FFFF),X ; $B40002
     STA.B $12 
     LDA.B $16 : ORA.B #$04 : STA.B $16 
 
 .checkSuperMissiles:
     LDY.W $09CA 
-    CPY.W $09CC 
-    BEQ .checkPowerBombs 
+    CPY.W $09CC : BEQ .checkPowerBombs 
     LDA.B $14 : SEC : SBC.L EnemyDropChances_superMissiles-(EnemyDropChances&$00FFFF),X ; $B40004
     STA.B $14 
     LDA.B $16 : ORA.B #$10 : STA.B $16 
 
 .checkPowerBombs:
     LDY.W $09CE 
-    CPY.W $09D0 
-    BEQ .dropChancesPooled 
+    CPY.W $09D0 : BEQ .dropChancesPooled 
     LDA.B $14 : SEC : SBC.L EnemyDropChances_powerBombs-(EnemyDropChances&$00FFFF),X ; $B40005
     STA.B $14 
     LDA.B $16 : ORA.B #$20 : STA.B $16 
@@ -12168,8 +12158,7 @@ Random_Drop_Routine:
 .nextMinorDrop:
     INX 
     INY 
-    CPY.W #$0004 
-    BNE .loopMinorDrops 
+    CPY.W #$0004 : BNE .loopMinorDrops 
     BRA .loopMajorDrops 
 
 
@@ -12193,8 +12182,7 @@ Random_Drop_Routine:
 .nextMajorDrop:
     INX 
     INY 
-    CPY.W #$0006 
-    BNE .loopMajorDrops 
+    CPY.W #$0006 : BNE .loopMajorDrops 
 
 .returnNothing:
     LDY.W #$0003 

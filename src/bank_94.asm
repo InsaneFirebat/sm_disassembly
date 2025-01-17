@@ -3783,8 +3783,7 @@ BlockShotReactionPointers_Vertical:
     dw BlockShotBombedGrappledReaction_BombableBlock 
 
 BlockShotReaction_Horizontal:
-    CPX.W $07B9 
-    BCS .return 
+    CPX.W $07B9 : BCS .return 
     PHX 
     STX.W $0DC4 
     LSR.W $0DC4 
@@ -3804,8 +3803,7 @@ BlockShotReaction_Horizontal:
 
 
 BlockShotReaction_Vertical:
-    CPX.W $07B9 
-    BCS .return 
+    CPX.W $07B9 : BCS .return 
     PHX 
     STX.W $0DC4 
     LSR.W $0DC4 

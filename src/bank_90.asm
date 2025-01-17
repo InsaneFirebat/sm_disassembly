@@ -1430,8 +1430,7 @@ CalculateSamusSpritemapPosition_Shinespark_CF_Drained:
     CMP.W #$00EB : BNE .goto_CalculateUsualSamusSpritemapPosition 
 
   + LDX.W $0A96 
-    CPX.W #$0005 
-    BMI .goto_CalculateUsualSamusSpritemapPosition 
+    CPX.W #$0005 : BMI .goto_CalculateUsualSamusSpritemapPosition 
     LDA.W #$FFFD : BRA .merge 
 
 
@@ -4143,8 +4142,7 @@ DisableMinimap_MarkBossRoomTilesExplored:
     STA.L $7EC67C,X 
     STA.L $7EC6BC,X 
     INX #2
-    CPX.W #$000A 
-    BMI .loop 
+    CPX.W #$000A : BMI .loop 
     LDA.W $179C 
     LDX.W #$0014 
 
@@ -4686,8 +4684,7 @@ Load_Beam_Palette_withStackPrepped:
     LDA.B [$00],Y : STA.L $7EC1C0,X 
     INX #2
     INY #2
-    CPY.W #$0020 
-    BMI .loop 
+    CPY.W #$0020 : BMI .loop 
     PLB : PLP 
     RTL 
 
@@ -4715,8 +4712,7 @@ Load_Beam_Palette:
     LDA.B [$00],Y : STA.L $7EC1C0,X 
     INX #2
     INY #2
-    CPY.W #$0020 
-    BMI .loop 
+    CPY.W #$0020 : BMI .loop 
     RTS 
 
 
@@ -4742,8 +4738,7 @@ Reset_Projectile_Data:
     STZ.W $0CB8,X 
     LDA.W #RTS_90B169 : STA.W $0C68,X 
     INX #2
-    CPX.W #$0014 
-    BMI .loop 
+    CPX.W #$0014 : BMI .loop 
     STZ.W $0CD2 
     STZ.W $0CCC 
     STZ.W $0CCE 
@@ -4798,8 +4793,7 @@ Clear_Projectile:
     STZ.W $0C7C,X 
     STZ.W $0CB8,X 
     LDA.W #RTS_90B169 : STA.W $0C68,X 
-    CPX.W #$000A 
-    BPL + 
+    CPX.W #$000A : BPL + 
     DEC.W $0CCE 
     BPL .return 
     STZ.W $0CCE 
@@ -5900,8 +5894,7 @@ HandleProjectileTrails:
 
 .leftInstructionsEnd:
     LDX.W $0590 
-    CPX.W #$0200 
-    BPL .leftTrailEnd 
+    CPX.W #$0200 : BPL .leftTrailEnd 
     LDA.W $D730,Y : SEC : SBC.W $0911 : BIT.W #$FF00 
     BNE .leftTrailEnd 
     STA.W $0370,X 
@@ -5936,8 +5929,7 @@ HandleProjectileTrails:
 
 .rightInstructionsEnd:
     LDX.W $0590 
-    CPX.W #$0200 
-    BPL .rightTrailEnd 
+    CPX.W #$0200 : BPL .rightTrailEnd 
     LDA.W $D754,Y : SEC : SBC.W $0911 : BIT.W #$FF00 
     BNE .rightTrailEnd 
     STA.W $0370,X 
@@ -5964,8 +5956,7 @@ HandleProjectileTrails:
 
 .loopTimeIsFrozen:
     LDX.W $0590 
-    CPX.W #$0200 
-    BPL + 
+    CPX.W #$0200 : BPL + 
     LDA.W $D658,Y : BEQ + 
     LDA.W $D730,Y : SEC : SBC.W $0911 : BIT.W #$FF00 
     BNE + 
@@ -5978,8 +5969,7 @@ HandleProjectileTrails:
     CLC : ADC.W #$0004 : STA.W $0590 
 
   + LDX.W $0590 
-    CPX.W #$0200 
-    BPL .next 
+    CPX.W #$0200 : BPL .next 
     LDA.W $D67C,Y : BEQ .next 
     LDA.W $D754,Y : SEC : SBC.W $0911 : BIT.W #$FF00 
     BNE .next 
@@ -6085,8 +6075,7 @@ Fire_Uncharge_Beam:
 .loop:
     LDA.W $0C2C,X : BEQ .zeroDamage 
     INX #2
-    CPX.W #$000A 
-    BMI .loop 
+    CPX.W #$000A : BMI .loop 
     DEX #2
     .zeroDamage:
     STX.B $14 
@@ -6194,8 +6183,7 @@ FireChargeBeam:
 .loop:
     LDA.W $0C2C,X : BEQ .zeroDamage 
     INX #2
-    CPX.W #$000A 
-    BMI .loop 
+    CPX.W #$000A : BMI .loop 
     DEX #2
     .zeroDamage:
     STX.B $14 
@@ -6402,8 +6390,7 @@ HandleChargingBeamGraphicsAudio:
     PLX 
     LDA.W $0CD0 : CMP.W #$001E : BMI .returnMiddle 
     INX #2
-    CPX.W #$0006 
-    BMI .loopChargeBeam 
+    CPX.W #$0006 : BMI .loopChargeBeam 
 
 .returnMiddle:
     PLP 
@@ -6422,8 +6409,7 @@ HandleChargingBeamGraphicsAudio:
 .timerExpired:
     DEC.W $0CD6,X 
     BNE .nonZeroAnimationFrame 
-    CPX.W #$0004 
-    BNE .hyperBeamAnimationUpdateEnd 
+    CPX.W #$0004 : BNE .hyperBeamAnimationUpdateEnd 
     STZ.W $0CD0 
     BRA .hyperBeamAnimationUpdateEnd 
 
@@ -6534,8 +6520,7 @@ FireHyperBeam:
 .loop:
     LDA.W $0C2C,X : BEQ .zeroDamage 
     INX #2
-    CPX.W #$000A 
-    BMI .loop 
+    CPX.W #$000A : BMI .loop 
     DEX #2
     .zeroDamage:
     STX.B $14 
@@ -6762,8 +6747,7 @@ HUDSelectionHandler_Missiles_SuperMissiles:
 .loop:
     LDA.W $0C2C,X : BEQ + 
     INX #2
-    CPX.W #$000A 
-    BMI .loop 
+    CPX.W #$000A : BMI .loop 
     BRA .cannotFire 
 
 
@@ -6846,8 +6830,7 @@ Spawn_SuperMissileLink:
 .loop:
     LDA.W $0C2C,X : BEQ .zeroDamage 
     INX #2
-    CPX.W #$000A 
-    BMI .loop 
+    CPX.W #$000A : BMI .loop 
     BRA .return 
 
 
@@ -6905,8 +6888,7 @@ HUDSelectionHandler_MorphBall:
 .loopBomb:
     LDA.W $0C18,X : BEQ .noProjectileType 
     INX #2
-    CPX.W #$0014 
-    BMI .loopBomb 
+    CPX.W #$0014 : BMI .loopBomb 
     DEX #2
     .noProjectileType:
     STX.B $14 
@@ -6950,8 +6932,7 @@ HUDSelectionHandler_MorphBall:
 .loopPowerBomb:
     LDA.W $0C18,X : BEQ + 
     INX #2
-    CPX.W #$0014 
-    BMI .loopPowerBomb 
+    CPX.W #$0014 : BMI .loopPowerBomb 
     DEX #2
     + STX.B $14 
     LDA.W $09D2 
@@ -8306,8 +8287,7 @@ FireSpazerSBA:
     STZ.W $0CA4,X 
     STZ.W $0B8C,X 
     STZ.W $0BA0,X 
-    CPX.W #$0004 
-    BPL .greaterThanEqualTo4 
+    CPX.W #$0004 : BPL .greaterThanEqualTo4 
     LDA.W $09A6 : AND.W #$100F 
     ORA.W #$8010 
     STA.W $0C18,X 
@@ -9222,8 +9202,7 @@ BombSpread:
     STA.W $0CA4,X 
     LDA.W BombSpreadData_timers,Y : STA.W $0C7C,X 
     INX #2
-    CPX.W #$0014 
-    BMI .loop 
+    CPX.W #$0014 : BMI .loop 
     LDA.W #$0005 : STA.W $0CD2 
     LDA.W $0C22 
     XBA 
@@ -9416,8 +9395,7 @@ ProjectilePreInstruction_WaveSBA:
   + STA.B $12 
     LDA.W $0BA0,X : CLC : ADC.B $14 : STA.W $0BA0,X 
     LDA.W $0B78,X : ADC.B $12 : STA.W $0B78,X 
-    CPX.W #$0006 
-    BNE .return 
+    CPX.W #$0006 : BNE .return 
     LDA.W $0BDC,X : BMI .negativeXVelocity 
     LDA.B $22 : BPL .return 
     BRA .playSFX 
@@ -9538,8 +9516,7 @@ SpazerSBA_Phase2_FlyingUpTowardsPoint:
     LDA.W $0C7C,Y : CLC : ADC.W #$0080 : AND.W #$00FF 
     STA.W $0C7C,Y 
     LDA.W #$0004 : STA.W $0CA4,Y 
-    CPY.W #$0000 
-    BNE .return 
+    CPY.W #$0000 : BNE .return 
     LDA.W #$0026 : JSL.L QueueSound_Lib1_Max6 
 
 .return:
@@ -9571,8 +9548,7 @@ FireEndOfSpazerSBA:
     LDA.W #$0005 : STA.W $0C04,Y 
     LDA.W #$0004 : STA.W $0C90,Y 
     LDA.W #ProjectilePreInstruction_EndOfSpazerSBA : STA.W $0C68,Y 
-    CPY.W #$0004 
-    BPL .return 
+    CPY.W #$0004 : BPL .return 
     LDA.W #$8024 : STA.W $0C18,Y 
     TYX 
     JSL.L Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile 
@@ -11639,8 +11615,7 @@ FootstepGraphics_Crateria:
 
 .notCinematic:
     LDX.W $079D 
-    CPX.W #$0010 
-    BPL .gotoCommon 
+    CPX.W #$0010 : BPL .gotoCommon 
     LDA.W .footstepTypes,X : AND.W #$00FF 
     BIT.W #$0001 
     BNE .landingSite 
@@ -11750,8 +11725,7 @@ UpdateSamusEchoPosition:
     LDA.W $0AF6 : STA.W $0AB0,X 
     LDA.W $0AFA : STA.W $0AB8,X 
     INX #2
-    CPX.W #$0004 
-    BMI .storeDistance 
+    CPX.W #$0004 : BMI .storeDistance 
     LDX.W #$0000 
 
 .storeDistance:
@@ -11830,8 +11804,7 @@ UNUSED_ProjectilePreInstruction_UnknownProjectile27_90EFD3:
     LDA.W $0B78,X : CLC : ADC.W .YVelocities,X : STA.W $0B78,X 
     CMP.W $0AFA : BNE .return 
     LDA.W $0C7C,X : CMP.W #$0001 : BNE .not1 
-    CPX.W #$0006 
-    BNE .clear 
+    CPX.W #$0006 : BNE .clear 
     LDA.W #UNUSED_SamusMovementHandler_90F04B : STA.W $0A58 
 
 .clear:

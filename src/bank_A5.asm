@@ -554,8 +554,7 @@ Function_DraygonBody_SwoopRight_Descending:
     JSR.W HandleShortDraygonBreathBubbles 
     LDY.W $0E54 
     LDX.W $0FAA 
-    CPX.W #$0068 
-    BNE .notIndex68 
+    CPX.W #$0068 : BNE .notIndex68 
     LDA.W #InstList_DraygonArms_FacingRight_NearSwoopApex : STA.W $1052 
     LDA.W #$0001 : STA.W $1054 
 
@@ -612,8 +611,7 @@ Function_DraygonBody_SwoopRight_Ascending:
     JSR.W HandleFiringWallTurret 
     LDY.W $0E54 
     LDX.W $0FAA 
-    CPX.W #$0068 
-    BNE .notIndex68 
+    CPX.W #$0068 : BNE .notIndex68 
     LDA.W #InstList_DraygonArms_FacingRight_Idle_0 : STA.W $1052 
     LDA.W #$0001 : STA.W $1054 
 
@@ -667,8 +665,7 @@ Function_DraygonBody_SwoopLeft_Descending:
     JSR.W HandleShortDraygonBreathBubbles 
     LDY.W $0E54 
     LDX.W $0FAA 
-    CPX.W #$0068 
-    BNE .notIndex68 
+    CPX.W #$0068 : BNE .notIndex68 
     LDA.W #InstList_DraygonArms_FacingLeft_NearSwoopApex : STA.W $1052 
     LDA.W #$0001 : STA.W $1054 
 
@@ -719,8 +716,7 @@ Function_DraygonBody_SwoopLeft_Ascending:
     JSR.W HandleShortDraygonBreathBubbles 
     LDY.W $0E54 
     LDX.W $0FAA 
-    CPX.W #$0068 
-    BNE + 
+    CPX.W #$0068 : BNE + 
     LDA.W #InstList_DraygonArms_FacingLeft_Idle_0 : STA.W $1052 
     LDA.W #$0001 : STA.W $1054 
 
@@ -1619,8 +1615,7 @@ HurtAI_Draygon:
     LDA.W DraygonHealthBasedPaletteTable,Y : STA.L $7EC0B2,X 
     INY #2
     INX #2
-    CPX.W #$0008 
-    BNE .loopHealthBasedPalette 
+    CPX.W #$0008 : BNE .loopHealthBasedPalette 
 
 .flashing:
     LDY.W #Palette_Draygon_Sprite7 
@@ -1751,8 +1746,7 @@ DraygonHealthBasedPaletteHandling:
     LDA.W DraygonHealthBasedPaletteTable,Y : STA.L $7EC0B2,X 
     INY #2
     INX #2
-    CPX.W #$0008 
-    BNE .loopPalette 
+    CPX.W #$0008 : BNE .loopPalette 
 
 .return:
     RTS 
@@ -2996,8 +2990,7 @@ HandleDraygonFightIntroDance:
 
 .next:
     DEX #2
-    CPX.W #$0038 
-    BPL .loop 
+    CPX.W #$0038 : BPL .loop 
     LDA.L $7E880C 
     INC #4
     STA.L $7E880C 
@@ -6932,8 +6925,7 @@ Instruction_SporeSpawn_LoadDeathSequencePalette:
     LDA.W Palette_SporeSpawn_DeathSequence_0,Y : STA.L $7EC120,X 
     INY #2
     INX #2
-    CPX.W #$0020 
-    BNE .loopSpritePalette1 
+    CPX.W #$0020 : BNE .loopSpritePalette1 
     LDY.B $12 
     LDA.W $0000,Y 
     TAY 
@@ -6943,8 +6935,7 @@ Instruction_SporeSpawn_LoadDeathSequencePalette:
     LDA.W Palette_SporeSpawn_DeathSequence_Level_0,Y : STA.L $7EC080,X 
     INY #2
     INX #2
-    CPX.W #$0020 
-    BNE .loopBG12Palette4 
+    CPX.W #$0020 : BNE .loopBG12Palette4 
     LDY.B $12 
     LDA.W $0000,Y 
     TAY 
@@ -6954,8 +6945,7 @@ Instruction_SporeSpawn_.loopBG12Palette7:
     LDA.W Palette_SporeSpawn_DeathSequence_Background_0,Y : STA.L $7EC0E0,X 
     INY #2
     INX #2
-    CPX.W #$0020 
-    BNE Instruction_SporeSpawn_.loopBG12Palette7 
+    CPX.W #$0020 : BNE Instruction_SporeSpawn_.loopBG12Palette7 
     PLX : PLY 
     INY #2
     RTL 
@@ -6972,8 +6962,7 @@ Instruction_SporeSpawn_LoadDeathSequenceTargetPalette:
     LDA.W Palette_SporeSpawn_DeathSequence_0,Y : STA.L $7EC320,X 
     INY #2
     INX #2
-    CPX.W #$0020 
-    BNE .loopSpritePalette1 
+    CPX.W #$0020 : BNE .loopSpritePalette1 
     LDY.B $12 
     LDA.W $0000,Y 
     TAY 
@@ -6983,8 +6972,7 @@ Instruction_SporeSpawn_LoadDeathSequenceTargetPalette:
     LDA.W Palette_SporeSpawn_DeathSequence_Level_0,Y : STA.L $7EC280,X 
     INY #2
     INX #2
-    CPX.W #$0020 
-    BNE .loopBG12Palette4 
+    CPX.W #$0020 : BNE .loopBG12Palette4 
     LDY.B $12 
     LDA.W $0000,Y 
     TAY 
@@ -6994,8 +6982,7 @@ Instruction_SporeSpawn_LoadDeathSequenceTargetPalette:
     LDA.W Palette_SporeSpawn_DeathSequence_Background_0,Y : STA.L $7EC2E0,X 
     INY #2
     INX #2
-    CPX.W #$0020 
-    BNE .loopBG12Palette7 
+    CPX.W #$0020 : BNE .loopBG12Palette7 
     PLX : PLY 
     INY #2
     RTL 
@@ -7064,8 +7051,7 @@ InitAI_SporeSpawn:
     LDA.W Palette_SporeSpawn,Y : STA.L $7EC3E0,X 
     INY #2
     INX #2
-    CPX.W #$0020 
-    BNE .loopSpritePalette7 
+    CPX.W #$0020 : BNE .loopSpritePalette7 
     LDX.W $0E54 
     LDA.W #$0000 
     LDY.W #EnemyProjectile_SporeSpawnStalk 
@@ -7371,8 +7357,7 @@ LoadSporeSpawnHealthBasedPalette:
     LDA.W Palette_SporeSpawn_HealthBased_0,Y : STA.L $7EC120,X 
     INY #2
     INX #2
-    CPX.W #$0020 
-    BNE .loopSpritePalette1 
+    CPX.W #$0020 : BNE .loopSpritePalette1 
     PLX : PLY 
     RTL 
 

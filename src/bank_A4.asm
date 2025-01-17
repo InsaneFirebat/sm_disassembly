@@ -478,8 +478,7 @@ FightAI_Crocomire_6_SteppingForward:
 
 .step:
     LDA.W $0F7A : CMP.W CrocomireConstants_XThresholdSpikeWall : BMI .nearSpikeWall 
-    CPY.W #InstList_Crocomire_SteppingBack 
-    BMI .return 
+    CPY.W #InstList_Crocomire_SteppingBack : BMI .return 
     LDY.W #InstList_Crocomire_StepForward 
 
 .return:
@@ -593,8 +592,7 @@ FightAI_Crocomire_12_WaitForFirstDamage:
 
 
 .notDamaged:
-    CPY.W #InstList_Crocomire_WaitForFirstSecondDamage_RoarCloseMouth_1 
-    BMI .return 
+    CPY.W #InstList_Crocomire_WaitForFirstSecondDamage_RoarCloseMouth_1 : BMI .return 
     LDY.W #InstList_Crocomire_WaitForFirstSecondDamage_Roar 
 
 .return:
@@ -611,8 +609,7 @@ FightAI_Crocomire_14_WaitForSecondDamage:
 
 
 .notDamaged:
-    CPY.W #InstList_Crocomire_WaitForFirstSecondDamage_RoarCloseMouth_1 
-    BMI .return 
+    CPY.W #InstList_Crocomire_WaitForFirstSecondDamage_RoarCloseMouth_1 : BMI .return 
     LDY.W #InstList_Crocomire_WaitForFirstSecondDamage_Roar 
 
 .return:
@@ -629,8 +626,7 @@ UNUSED_FightAI_Crocomire_16_WaitForSecondDamage_A4885A:
 
 
 .notDamaged:
-    CPY.W #InstList_Crocomire_WaitForFirstSecondDamage_RoarCloseMouth_1 
-    BMI .return 
+    CPY.W #InstList_Crocomire_WaitForFirstSecondDamage_RoarCloseMouth_1 : BMI .return 
     LDY.W #InstList_Crocomire_WaitForFirstSecondDamage_Roar 
 
 .return:
@@ -832,8 +828,7 @@ InitAI_Crocomire:
 .loopBG2Tilemap:
     STA.L $7E2000,X 
     INX #2
-    CPX.W #$1000 
-    BMI .loopBG2Tilemap 
+    CPX.W #$1000 : BMI .loopBG2Tilemap 
     LDX.W $079F 
     LDA.L $7ED828,X : BIT.W #$0002 
     BNE .dead 
@@ -1377,8 +1372,7 @@ SpawnBigDustCloudProjectileWithRandomXOffset:
     PHX 
     LDA.W $05E5 : AND.W #$001F 
     LDX.W $05E5 
-    CPX.W #$1000 
-    BMI .spawn 
+    CPX.W #$1000 : BMI .spawn 
     EOR.W #$FFFF 
     INC A 
 
@@ -1689,8 +1683,7 @@ MainAI_Crocomire_DeathSequence_10_Hop_3_LoadMeltingTilemap:
     STA.L $7E2000,X 
     STA.L $7E2002,X 
     INX #4
-    CPX.W #$0400 
-    BMI .loopClearTilemap 
+    CPX.W #$0400 : BMI .loopClearTilemap 
     LDX.W #$0000 
 
 .loopMeltingTilemap:
@@ -1745,8 +1738,7 @@ MainAI_Crocomire_DeathSequence_2C_Hop_6_LoadMeltingTilemap:
 .loopClearTilemap:
     STA.L $7E2000,X 
     INX #2
-    CPX.W #$0800 
-    BMI .loopClearTilemap 
+    CPX.W #$0800 : BMI .loopClearTilemap 
     LDX.W #$0000 
 
 .loopMeltingTilemap:
@@ -1786,8 +1778,7 @@ MainAI_Crocomire_DeathSequence_12_2E_Hop_3_4_LoadMeltTiles:
 
 .loop:
     LDY.W MeltingCrocomireTilesLoadingTable_Melting1_0,X 
-    CPY.W #$FFFF 
-    BEQ .done 
+    CPY.W #$FFFF : BEQ .done 
     PHX 
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+2,X 
     TAX 
@@ -1954,8 +1945,7 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
     XBA 
     STA.B $12 
     LDA.W $0694 : SEC : SBC.W #$0003 : CMP.W #$0010 : BPL + 
-    CPX.W #$5000 
-    BPL .finished 
+    CPX.W #$5000 : BPL .finished 
     LDA.W #$0010 
 
   + STA.W $0694 
@@ -1981,17 +1971,14 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
 .carrySet:
     INC.W $05A6 
     INX #2
-    CPY.W $0698 
-    BMI .loopMeltingRows 
-    CPX.W #$0200 
-    BPL .return 
+    CPY.W $0698 : BMI .loopMeltingRows 
+    CPX.W #$0200 : BPL .return 
     LDA.B $B7 
 
 .loopTablePadding:
     STA.L $7ECAF0,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loopTablePadding 
+    CPX.W #$0200 : BMI .loopTablePadding 
 
 .return:
     RTS 
@@ -2046,8 +2033,7 @@ EraseMeltingCrocomirePixelColumn:
     TAY 
     LDA.W $069C,Y : CMP.W $0688 : BMI + 
     INX 
-    CPX.W #$0080 
-    BMI .loopFindColumnToErase 
+    CPX.W #$0080 : BMI .loopFindColumnToErase 
     STZ.W $0690 
     LDA.B #$00 
     PLP 

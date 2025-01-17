@@ -123,8 +123,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
     STA.W $0000,X 
     DEX #2
     DEY 
-    CPY.W #$0020 
-    BNE .loopLeftEdge 
+    CPY.W #$0020 : BNE .loopLeftEdge 
 
 ..done:
     LDA.W #$00FF 
@@ -133,8 +132,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
     STA.W $0000,X 
     DEX #2
     DEY 
-    CPY.W #$0020 
-    BNE .loopLeftSidePadding 
+    CPY.W #$0020 : BNE .loopLeftSidePadding 
     PLX 
     INX #2
     LDA.W $803E 
@@ -149,8 +147,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
     STA.W $0000,X 
     INX #2
     INY 
-    CPY.W #$00E8 
-    BNE .loopRightEdge 
+    CPY.W #$00E8 : BNE .loopRightEdge 
     PLB 
     RTS 
 
@@ -162,8 +159,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
     STA.W $0000,X 
     INX #2
     INY 
-    CPY.W #$00E8 
-    BNE .loopRightSidePadding 
+    CPY.W #$00E8 : BNE .loopRightSidePadding 
     PLB 
     RTS 
 
@@ -265,8 +261,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpRight:
     STA.W $0000,X 
     DEX #2
     DEY 
-    CPY.W #$0020 
-    BNE .loop 
+    CPY.W #$0020 : BNE .loop 
     PLB 
     RTS 
 
@@ -315,8 +310,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUp:
     STA.W $0000,X 
     DEX #2
     DEY 
-    CPY.W #$0020 
-    BNE .loop 
+    CPY.W #$0020 : BNE .loop 
     PLB 
     RTS 
 
@@ -368,8 +362,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpLeft:
     STA.W $0000,X 
     DEX #2
     DEY 
-    CPY.W #$0020 
-    BNE .loop 
+    CPY.W #$0020 : BNE .loop 
     PLB 
     RTS 
 
@@ -453,8 +446,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownRight:
   + STA.W $0000,X 
     INX #2
     INY 
-    CPY.W #$00E8 
-    BNE .loopBeam 
+    CPY.W #$00E8 : BNE .loopBeam 
     PLB 
     RTS 
 
@@ -507,8 +499,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDown:
   + STA.W $0000,X 
     INX #2
     INY 
-    CPY.W #$00E8 
-    BNE .loopBeam 
+    CPY.W #$00E8 : BNE .loopBeam 
     PLB 
     RTS 
 
@@ -564,8 +555,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownLeft:
   + STA.W $0000,X 
     INX #2
     INY 
-    CPY.W #$00E8 
-    BNE .loopBeam 
+    CPY.W #$00E8 : BNE .loopBeam 
     PLB 
     RTS 
 

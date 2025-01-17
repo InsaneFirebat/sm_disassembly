@@ -3368,8 +3368,7 @@ Function_Ridley_Startup_FirstRun:
     LDA.W #Function_Ridley_Startup_InitalWait : STA.W $0FA8 
     LDA.W #$0200 
     LDY.W $079F 
-    CPY.W #$0002 
-    BNE .notNorfar 
+    CPY.W #$0002 : BNE .notNorfar 
     LDA.W #$00AA 
 
 .notNorfar:
@@ -3441,8 +3440,7 @@ Function_Ridley_Startup_MainBodyAppears:
     PLA 
     DEC A 
     BNE .loop 
-    CPY.W #$0160 
-    BCS .done 
+    CPY.W #$0160 : BCS .done 
     STY.W $0FB0 
 
 .return:
@@ -3982,13 +3980,11 @@ ExecuteCeresRidleyGetawayCutscene:
     TAX 
     INC #2
     STA.L $7E8026 
-    CPX.W #$0000 
-    BNE .notFirstExecution 
+    CPX.W #$0000 : BNE .notFirstExecution 
     LDA.W #$004E : JSL.L QueueSound_Lib2_Max6 
 
 .notFirstExecution:
-    CPX.W #$00D0 
-    BNE .dontPushSamus 
+    CPX.W #$00D0 : BNE .dontPushSamus 
     JSL.L SetSamusToBePushedOutOfCeresRidleysWay 
     LDA.W #$0023 : STA.W $183E 
     LDA.W #$0040 : STA.W $1840 
@@ -7154,8 +7150,7 @@ RidleyTailAI_FlingTailAtSamus:
     STA.W $201C 
     LDA.W #$0002 
     LDY.W $0AF6 
-    CPY.W #$0070 
-    BCS .SamusNotLeftSide 
+    CPY.W #$0070 : BCS .SamusNotLeftSide 
     LDA.W #$0001 
 
 .SamusNotLeftSide:
@@ -7217,8 +7212,7 @@ SwingRidleyTailInCircles:
     STA.L $7E201C 
     LDA.W #$0002 
     LDY.W $0AF6 
-    CPY.W #$0070 
-    BCS + 
+    CPY.W #$0070 : BCS + 
     LDA.W #$0001 
 
   + STA.L $7E2014 
@@ -7720,8 +7714,7 @@ TargetAMissileOrSuperMissileIfAvailable:
 
 .nextProjectile:
     INY #2
-    CPY.W #$000A 
-    BMI .loop 
+    CPY.W #$000A : BMI .loop 
     CLC 
     RTS 
 
@@ -7903,14 +7896,11 @@ SetRidleyInstList:
 DetermineAndSetRidleySpeedAndColorPalette:
     LDA.W #$0000 
     LDY.W $0F8C 
-    CPY.W #$2328 
-    BCS + 
+    CPY.W #$2328 : BCS + 
     INC A 
-    CPY.W #$1518 
-    BCS + 
+    CPY.W #$1518 : BCS + 
     INC A 
-    CPY.W #$0708 
-    BCS + 
+    CPY.W #$0708 : BCS + 
     INC A 
 
   + STA.L $7E7824 
@@ -9096,8 +9086,7 @@ RidleyTail_vs_SamusProjectile_CollisionDetection:
 
 .nextProjectile:
     INY #2
-    CPY.W #$000A 
-    BMI .loop 
+    CPY.W #$000A : BMI .loop 
     CLC 
     RTS 
 

@@ -537,8 +537,7 @@ Instruction_AnimatedTilesObject_Write8ColorsOfTargetPaletteD:
     LDA.W .palleteData,Y : STA.L $7EC200,X 
     INX #2
     INY #2
-    CPY.W #$0010 
-    BNE .loop 
+    CPY.W #$0010 : BNE .loop 
     PLY : PLX 
     INY #2
     RTS 

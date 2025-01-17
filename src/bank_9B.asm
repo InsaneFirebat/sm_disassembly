@@ -1567,15 +1567,13 @@ HandleDeathSequenceWhiteOut:
 .loopFirstFourPalettes:
     LDA.W ShadesOfWhite,X : STA.B [$00],Y 
     INY #2
-    CPY.W #$0180 
-    BMI .loopFirstFourPalettes 
+    CPY.W #$0180 : BMI .loopFirstFourPalettes 
     LDY.W #$01A0 
 
 .loopLastFourPalettes:
     LDA.W ShadesOfWhite,X : STA.B [$00],Y 
     INY #2
-    CPY.W #$01E0 
-    BMI .loopLastFourPalettes 
+    CPY.W #$01E0 : BMI .loopLastFourPalettes 
     LDA.W $0DE6 : CMP.W #$0014 : BPL .return 
     INC A 
     STA.W $0DE6 

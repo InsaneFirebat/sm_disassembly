@@ -714,24 +714,21 @@ LoadDemoRoomData:
     STA.L $7ED820,X 
     STA.L $7ED828,X 
     INX #2
-    CPX.W #$0008 
-    BMI .loopEvents 
+    CPX.W #$0008 : BMI .loopEvents 
 
 .loopItems:
     LDA.W #$FFFF : STA.L $7ED830,X 
     STA.L $7ED870,X 
     LDA.W #$0000 : STA.L $7ED8B0,X 
     INX #2
-    CPX.W #$0040 
-    BMI .loopItems 
+    CPX.W #$0040 : BMI .loopItems 
     LDA.W #$0000 
     LDX.W #$0000 
 
 .loopMapData:
     STA.L $7ECD52,X 
     INX #2
-    CPX.W #$0600 
-    BMI .loopMapData 
+    CPX.W #$0600 : BMI .loopMapData 
     LDA.W #$0000 : STA.W $09D4 
     STA.W $09D6 
     STA.W $09C0 
@@ -1012,8 +1009,7 @@ HandleSounds:
     JSR.W (.pointers,X) 
     PLY 
     INY 
-    CPY.B #$03 
-    BCC .loop 
+    CPY.B #$03 : BCC .loop 
     PLP 
     RTL 
 
@@ -2155,8 +2151,7 @@ LoadPauseMenuMapTilemap:
     LDA.B $12 : CMP.B #$08 : BMI .loopWithoutMapData 
     STZ.B $12 
     INX 
-    CPX.W #$0100 
-    BMI .loopWithoutMapData 
+    CPX.W #$0100 : BMI .loopWithoutMapData 
     PLP 
     RTS 
 
@@ -2216,8 +2211,7 @@ LoadPauseMenuMapTilemap:
 
 .next:
     INY #2
-    CPY.W #$1000 
-    BMI .loopWithMapData 
+    CPY.W #$1000 : BMI .loopWithMapData 
     PLP 
     RTS 
 
@@ -2267,8 +2261,7 @@ DrawRoomSelectMap:
     LDA.B $12 : CMP.B #$08 : BMI .loopWithoutMapData 
     STZ.B $12 
     INX 
-    CPX.W #$0100 
-    BMI .loopWithoutMapData 
+    CPX.W #$0100 : BMI .loopWithoutMapData 
     JMP.W .return 
 
 
@@ -2327,8 +2320,7 @@ DrawRoomSelectMap:
 
 .next:
     INY #2
-    CPY.W #$1000 
-    BMI .loopWithMapData 
+    CPY.W #$1000 : BMI .loopWithMapData 
 
 .return:
     REP #$30 
@@ -2357,8 +2349,7 @@ DrawRoomSelectMap_AreaLabel:
     LDA.W $0000,X : AND.W #$EFFF : STA.B [$00],Y 
     INX #2
     INY #2
-    CPY.W #$0018 
-    BMI .loop 
+    CPY.W #$0018 : BMI .loop 
     PLB 
     RTL 
 
@@ -2986,19 +2977,16 @@ DetermineLeftmostMapColumn:
     LDA.B [$00],Y : BIT.B $12 
     BNE .return 
     INY #4
-    CPY.W #$0080 
-    BMI .loopRows 
+    CPY.W #$0080 : BMI .loopRows 
     INX 
-    CPX.W #$0040 
-    BPL .emptyMap 
+    CPX.W #$0040 : BPL .emptyMap 
     TXA 
     AND.B #$07 
     BNE + 
     LDA.B $00 : CLC : ADC.B #$01 : STA.B $00 
     LDA.B $01 : ADC.B #$00 : STA.B $01 
 
-  + CPX.W #$0020 
-    BNE .loopColumns 
+  + CPX.W #$0020 : BNE .loopColumns 
     LDA.B $00 : CLC : ADC.B #$7B : STA.B $00 
     LDA.B $01 : ADC.B #$00 : STA.B $01 
     BRA .loopColumns 
@@ -3034,8 +3022,7 @@ DetermineRightmostMapColumn:
     LDA.B [$00],Y : BIT.B $12 
     BNE .return 
     INY #4
-    CPY.W #$0080 
-    BMI .loopRows 
+    CPY.W #$0080 : BMI .loopRows 
     DEX 
     BMI .emptyMap 
     TXA 
@@ -3044,8 +3031,7 @@ DetermineRightmostMapColumn:
     LDA.B $00 : SEC : SBC.B #$01 : STA.B $00 
     LDA.B $01 : SBC.B #$00 : STA.B $01 
 
-  + CPX.W #$001F 
-    BNE .loopColumns 
+  + CPX.W #$001F : BNE .loopColumns 
     REP #$20 
     LDA.B $00 : SEC : SBC.W #$007C : STA.B $00 
     LDA.W #$0000 
@@ -3078,16 +3064,14 @@ DetermineTopmostMapRow:
     LDA.B [$00],Y : BNE .return 
     LDA.B [$03],Y : BNE .return 
     INY 
-    CPY.W #$0004 
-    BMI .loop 
+    CPY.W #$0004 : BMI .loop 
     LDY.W #$0000 
     REP #$20 
     LDA.B $00 : CLC : ADC.W #$0004 : STA.B $00 
     LDA.B $03 : CLC : ADC.W #$0004 : STA.B $03 
     SEP #$20 
     INX 
-    CPX.W #$001F 
-    BMI .loop 
+    CPX.W #$001F : BMI .loop 
     LDX.W #$0001 
 
 .return:
@@ -3109,8 +3093,7 @@ DetermineLeftmostMapRow:
     LDA.B [$00],Y : BNE .return 
     LDA.B [$03],Y : BNE .return 
     INY 
-    CPY.W #$0004 
-    BMI .loop 
+    CPY.W #$0004 : BMI .loop 
     LDY.W #$0000 
     REP #$20 
     LDA.B $00 : SEC : SBC.W #$0004 : STA.B $00 
@@ -3219,8 +3202,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
 .nextWeapon:
     INY #2
     LDA.B [$03],Y : STA.B $00 
-    CPY.W #$000C 
-    BMI .loopWeapons 
+    CPY.W #$000C : BMI .loopWeapons 
     BRA .merge 
 
 
@@ -3233,8 +3215,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     JSR.W Copy_Bytes_from_X_to_7ERAM 
     INY #2
     LDA.B [$03],Y : STA.B $00 
-    CPY.W #$000C 
-    BMI .loopHyperBeamWeapons 
+    CPY.W #$000C : BMI .loopHyperBeamWeapons 
 
 .merge:
     LDY.W #$0000 
@@ -3263,8 +3244,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
 .nextSuitMisc:
     INY #2
     LDA.B [$03],Y : STA.B $00 
-    CPY.W #$000C 
-    BMI .loopSuitMisc 
+    CPY.W #$000C : BMI .loopSuitMisc 
     LDY.W #$0000 
     LDA.W #EquipmentScreenData_RAMTilemapOffsets_boots : STA.B $03 
     LDA.W #$0082 : STA.B $05 
@@ -3291,8 +3271,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
 .nextBoots:
     INY #2
     LDA.B [$03],Y : STA.B $00 
-    CPY.W #$0006 
-    BMI .loopBoots 
+    CPY.W #$0006 : BMI .loopBoots 
     RTS 
 
 
@@ -4185,8 +4164,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     BIT.W EquipmentScreenData_EquipmentBitmasks_weapons,X 
     BNE + 
     INX #2
-    CPX.W #$000A 
-    BMI .loopBeams 
+    CPX.W #$000A : BMI .loopBeams 
     BRA .noBeams 
 
 
@@ -4206,8 +4184,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X 
     BNE + 
     INX #2
-    CPX.W #$000C 
-    BMI .loopSuitMisc 
+    CPX.W #$000C : BMI .loopSuitMisc 
     BRA .noSuitMisc 
 
 
@@ -4225,8 +4202,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
 .loopNoSuitMisc:
     BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X 
     INX #2
-    CPX.W #$0006 
-    BMI .loopNoSuitMisc 
+    CPX.W #$0006 : BMI .loopNoSuitMisc 
     BRA .return 
 
     TXA ; dead code
@@ -5110,8 +5086,7 @@ EquipmentScreen_MoveLowerOnBeams:
     LDA.W $09A8 : BIT.W EquipmentScreenData_EquipmentBitmasks_weapons,X 
     BNE .found 
     INX #2
-    CPX.W #$000A 
-    BMI .loop 
+    CPX.W #$000A : BMI .loop 
 
 .cancel:
     LDA.B $12 : STA.W $0755 
@@ -5222,8 +5197,7 @@ EquipmentScreen_MoveLowerOnBoots:
     LDA.W $09A4 : BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X 
     BNE + 
     INX #2
-    CPX.W #$0006 
-    BMI .loop 
+    CPX.W #$0006 : BMI .loop 
     LDA.B $12 : STA.W $0755 
     BRA .return 
 
@@ -5740,8 +5714,7 @@ Update_Samus_Position_Indicator_Animation:
     LDA.W $0778 : BNE .nonZero 
     LDX.W $0776 
     INX #2
-    CPX.W #$0008 
-    BMI + 
+    CPX.W #$0008 : BMI + 
     INC.W $077A 
     LDX.W #$0000 
 
@@ -5926,8 +5899,7 @@ Draw_GameOver_BabyMetroid:
     LDA.W $0000,Y : STA.L $7EC180,X 
     INY #2
     INX #2
-    CPX.W #$0020 
-    BMI .loop 
+    CPX.W #$0020 : BMI .loop 
     PLX 
     LDA.W #$0800 : STA.B $03 
     LDA.W $0002,X 
@@ -7992,8 +7964,7 @@ Advance_GradualColorChange_ofBGPalette6:
     PLX 
     STA.L $7EC000,X 
     INX #2
-    CPX.W #$00E0 
-    BCC .loop 
+    CPX.W #$00E0 : BCC .loop 
     PLB 
     LDA.L $7EC400 
     INC A 
@@ -8028,8 +7999,7 @@ Advance_GradualColorChange_ofPaletteRAM:
     PLX 
     STA.L $7EC000,X 
     INX #2
-    CPX.B $22 
-    BCC .loop 
+    CPX.B $22 : BCC .loop 
     PLB 
     LDA.L $7EC400 
     INC A 
@@ -8065,8 +8035,7 @@ Advance_GradualColorChange_ofAllPalettes:
 
 .next:
     INX #2
-    CPX.W #$0200 
-    BCC .loop 
+    CPX.W #$0200 : BCC .loop 
     INC.W $C400 
     PLB 
     CLC 
@@ -9579,8 +9548,7 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     LDA.W $0000,Y : STA.L $7ECD20,X 
     INY #2
     INX #2
-    CPX.W #$0032 
-    BNE .loopD 
+    CPX.W #$0032 : BNE .loopD 
     BRA .scrollsEnd 
 
 
@@ -9595,8 +9563,7 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     LDY.B #$00 
 
 .loop:
-    CPY.B $14 
-    BNE + 
+    CPY.B $14 : BNE + 
     LDA.B $12 
     INC A 
 
@@ -9607,12 +9574,10 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     STA.L $7ECD20,X 
     INX 
     INY 
-    CPY.W $07A9 
-    BNE .loopE 
+    CPY.W $07A9 : BNE .loopE 
     PLY 
     INY 
-    CPY.W $07AB 
-    BNE .loop 
+    CPY.W $07AB : BNE .loop 
 
 .scrollsEnd:
     REP #$30 
@@ -9896,8 +9861,7 @@ Load_Level_Scroll_and_CRE_Data:
   - LDA.W $0000,Y : STA.L $7ECD20,X 
     INY #2
     INX #2
-    CPX.W #$0032 
-    BNE - 
+    CPX.W #$0032 : BNE - 
     BRA .return 
 
 
@@ -9912,8 +9876,7 @@ Load_Level_Scroll_and_CRE_Data:
     LDY.B #$00 
 
 .loop:
-    CPY.B $14 
-    BNE + 
+    CPY.B $14 : BNE + 
     LDA.B $12 
     INC A 
 
@@ -9923,12 +9886,10 @@ Load_Level_Scroll_and_CRE_Data:
   - STA.L $7ECD20,X 
     INX 
     INY 
-    CPY.W $07A9 
-    BNE - 
+    CPY.W $07A9 : BNE - 
     PLY 
     INY 
-    CPY.W $07AB 
-    BNE .loop 
+    CPY.W $07AB : BNE .loop 
 
 .return:
     REP #$30 
@@ -11122,8 +11083,7 @@ GameOptionsMenu_ControllerBindings:
 
 .next:
     INX #2
-    CPX.W #$000E 
-    BPL .return 
+    CPX.W #$000E : BPL .return 
     JMP.W .loop 
 
 
@@ -11155,8 +11115,7 @@ Save_GameOptionsMenu_ControllerBindings:
     LDA.W Controller_Input_Bitmasks,X : STA.W $0000,Y 
     PLX 
     INX #2
-    CPX.W #$000E 
-    BMI .loop 
+    CPX.W #$000E : BMI .loop 
     CLC 
     RTS 
 
@@ -11192,8 +11151,7 @@ Draw_GameOptionsMenu_ControllerBindings:
     LDA.W $000A,Y : STA.L $7E3044,X 
     PLX 
     INX #2
-    CPX.W #$000E 
-    BMI .loop 
+    CPX.W #$000E : BMI .loop 
     LDA.W $1B47 : CMP.W #$0005 : BEQ .shoulderButton 
     CMP.W #$0006 : BEQ .shoulderButton 
     LDA.W ButtonTilemaps_OFF : STA.L $7E352E 
@@ -11289,8 +11247,7 @@ GameOptions_ControllerSettings_SetBinding:
 .loopFindExisting:
     LDA.W $1B3D,Y : CMP.B $12 : BEQ .found 
     INY #2
-    CPY.W #$000E 
-    BMI .next 
+    CPY.W #$000E : BMI .next 
     LDY.W #$0000 
 
 .next:

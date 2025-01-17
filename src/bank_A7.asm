@@ -3158,8 +3158,7 @@ InitAI_Kraid:
     LDA.W Palette_KraidRoomBackground,Y : STA.L $7EC200,X 
     INX #2
     INY #2
-    CPY.W #$0020 
-    BMI .loopBGPalette6 
+    CPY.W #$0020 : BMI .loopBGPalette6 
     LDX.W #$07FE 
     LDA.W #$0338 
 
@@ -3201,8 +3200,7 @@ InitAI_Kraid:
 .loopKraidHealth:
     STA.L $7E780C,X 
     CLC : ADC.B $12 : INX #2
-    CPX.W #$0010 
-    BMI .loopKraidHealth 
+    CPX.W #$0010 : BMI .loopKraidHealth 
     LDA.W #$DFFF : STA.B $12 
     LDX.W $0E54 
     JSR.W SetupKraidGFXWithTheTilePriorityCleared 
@@ -3234,8 +3232,7 @@ InitAI_Kraid:
 .loopSpritePalette3:
     LDA.W .spritePalette3,X : STA.L $7EC360,X 
     INX #2
-    CPX.W #$0020 
-    BMI .loopSpritePalette3 
+    CPX.W #$0020 : BMI .loopSpritePalette3 
     RTL 
 
 
@@ -3265,15 +3262,13 @@ SetupKraidGFXWithTheTilePriorityCleared:
 .loop0:
     LDA.L $7E2000,X : AND.W #$DFFF : STA.L $7E2800,X 
     INX #2
-    CPX.W #$0600 
-    BMI .loop0 
+    CPX.W #$0600 : BMI .loop0 
     LDX.W #$0000 
 
 .loop1:
     LDA.L $7E4000,X : AND.B $12 : STA.L $7E2000,X 
     INX #2
-    CPX.W #$0800 
-    BMI .loop1 
+    CPX.W #$0800 : BMI .loop1 
     RTS 
 
 
@@ -3389,8 +3384,7 @@ Function_Kraid_KraidGetsBig_BreakCeilingIntoPlatforms:
     LDA.W $0F7E : AND.W #$0003 
     BNE .done 
     LDX.W $0FB2 
-    CPX.W #$0012 
-    BPL .done 
+    CPX.W #$0012 : BPL .done 
     LDA.W .XPositions,X 
     LDY.W #EnemyProjectile_KraidCeilingRocks 
     LDX.W $0E54 
@@ -3497,8 +3491,7 @@ Function_Kraid_KraidGetsBig_SetBG2TilemapPriorityBits:
 .loop:
     LDA.L $7E2000,X : ORA.W #$2000 : STA.L $7E2000,X 
     INX #2
-    CPX.W #$1000 
-    BMI .loop 
+    CPX.W #$1000 : BMI .loop 
     LDA.W $0FC6 : AND.W #$FBFF : STA.W $0FC6 
     LDA.W #Function_Kraid_KraidGetsBig_FinishUpdatingBG2Tilemap : STA.W $0FA8 
     JMP.W UpdateBG2TilemapTopHalf 
@@ -3530,8 +3523,7 @@ DrawKraidsRoomBackground:
     LDA.W Palette_KraidRoomBackground,Y : STA.L $7EC200,X 
     INX #2
     INY #2
-    CPY.W #$0020 
-    BMI .loop 
+    CPY.W #$0020 : BMI .loop 
     LDA.W #$0000 : STA.L $7EC400 
     LDX.W $0330 
     LDA.W #$0200 : STA.B $D0,X 
@@ -3775,8 +3767,7 @@ KraidsMouth_vs_Projectile_CollisionHandling:
 
 .noProjectiles:
     PLX 
-    CPY.W #$0000 
-    BNE .collision 
+    CPY.W #$0000 : BNE .collision 
     RTS 
 
 
@@ -3806,8 +3797,7 @@ KraidsMouth_vs_Projectile_CollisionHandling:
     LDA.W $0F86,X : ORA.W #$0400 : STA.W $0F86,X 
     TXA 
     CLC : ADC.W #$0040 : TAX 
-    CPX.W #$0180 
-    BMI .loopSetIntangible 
+    CPX.W #$0180 : BMI .loopSetIntangible 
     LDA.W $0FAA : CMP.W #InstList_Kraid_DyingRoar_0 : BPL .return 
     CLC : ADC.W #$003C : STA.W $0FAA 
 
@@ -3920,8 +3910,7 @@ KraidBody_vs_Projectile_CollisionHandling:
 .noProjectiles:
     PLX 
     LDY.B $30 
-    CPY.W #$0000 
-    BEQ .return 
+    CPY.W #$0000 : BEQ .return 
     LDA.W $0FA8 : CMP.W #Function_Kraid_MainLoop_Thinking : BNE .return 
     LDA.W #Function_Kraid_KraidShot_InitializeEyeGlowing : STA.W $0FA8 
     LDA.L $7E780A : BIT.W #$0001 
@@ -4065,8 +4054,7 @@ KraidHurtFlashHandling:
     LDA.W Palette_Kraid_Sprite_HurtFlash,Y : STA.L $7EC1E0,X 
     INX #2
     INY #2
-    CPX.W #$0020 
-    BMI .loop 
+    CPX.W #$0020 : BMI .loop 
     RTS 
 
 
@@ -4096,8 +4084,7 @@ KraidHealthBasedPaletteHandling:
     LDA.W Palette_Kraid_Sprite_HurtFlash,Y : STA.L $7EC1E0,X 
     INY #2
     INX #2
-    CPX.W #$0020 
-    BMI .loopPalette 
+    CPX.W #$0020 : BMI .loopPalette 
     RTS 
 
 
@@ -4290,10 +4277,8 @@ Function_Kraid_KraidShot_GlowEye:
     ORA.B $14 
     STA.L $7EC000,X 
     INX #2
-    CPX.W #$00E8 
-    BMI .loop 
-    CPY.W #$0006 
-    BMI .return 
+    CPX.W #$00E8 : BMI .loop 
+    CPY.W #$0006 : BMI .return 
     LDA.W #Function_Kraid_KraidShot_UnglowEye : STA.W $0FA8 
 
 .return:
@@ -4337,8 +4322,7 @@ Function_Kraid_KraidShot_UnglowEye:
 .next:
     INX #2
     INY #2
-    CPX.W #$00E8 
-    BMI .loop 
+    CPX.W #$00E8 : BMI .loop 
     LDA.B $14 : BNE .return 
     LDA.W #Function_Kraid_KraidShot_KraidsMouthIsOpen : STA.W $0FA8 
     LDA.W #InstList_Kraid_Roar_1 : STA.W $0FAA 
@@ -4355,10 +4339,8 @@ MainAI_KraidArm:
     TAY 
     LDA.W $0FC6 
     ORA.W #$0100 
-    CPY.W $0915 
-    BMI + 
-    CPY.B $12 
-    BPL + 
+    CPY.W $0915 : BMI + 
+    CPY.B $12 : BPL + 
     AND.W #$FEFF 
 
   + STA.W $0FC6 
@@ -4544,15 +4526,13 @@ MainAI_KraidFoot:
     TAY 
     SEC : SBC.W #$00E0 : TAX 
     LDA.W $10C6 : AND.W #$FEFF 
-    CPY.W $0915 
-    BPL .offScreen 
+    CPY.W $0915 : BPL .offScreen 
     ORA.W #$0100 
     BRA + 
 
 
 .offScreen:
-    CPX.W $0915 
-    BMI + 
+    CPX.W $0915 : BMI + 
     ORA.W #$0100 
 
   + STA.W $10C6 
@@ -4574,8 +4554,7 @@ Function_KraidFoot_Phase2_Thinking:
 .loopXPositions:
     LDA.W $0F7A : CMP.W .XPosition,X : BEQ + 
     INX #4
-    CPX.W #$0018 
-    BMI .loopXPositions 
+    CPX.W #$0018 : BMI .loopXPositions 
     LDX.W #$0004 
 
   + LDA.W $05E5 : AND.W #$001C 
@@ -4858,8 +4837,7 @@ Function_KraidNail_Initialize:
     TAY 
     LDA.W $1130 
     LDX.W $0E54 
-    CPX.W #$0180 
-    BNE + 
+    CPX.W #$0180 : BNE + 
     LDA.W $1170 
 
   + CMP.W #$0000 : BPL .positiveYVelocity 
@@ -4894,8 +4872,7 @@ Function_KraidNail_Initialize:
 
 .horizontal:
     LDA.L $7E798E 
-    CPX.W #$01C0 
-    BEQ .notKraidNailBad 
+    CPX.W #$01C0 : BEQ .notKraidNailBad 
     LDA.L $7E79CE 
 
 .notKraidNailBad:
@@ -5379,8 +5356,7 @@ KraidDeath_Initialize:
 .loopPalette6:
     STA.L $7EC200,X 
     INX #2
-    CPX.W #$00E0 
-    BMI .loopPalette6 
+    CPX.W #$00E0 : BMI .loopPalette6 
     LDX.W #$001E 
 
 .loopPalette7:
@@ -5429,8 +5405,7 @@ KraidDeath_FadeOutBackground:
     STA.L $7E4000,X 
     STA.L $7E4002,X 
     INX #4
-    CPX.W #$0200 
-    BMI .loopClearRoomBackground 
+    CPX.W #$0200 : BMI .loopClearRoomBackground 
     LDX.W $0330 
     LDA.W #$0200 : STA.B $D0,X 
     LDA.W #$4000 : STA.B $D2,X 
@@ -6510,8 +6485,7 @@ SpawnFlameRainProjectiles:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY 
     INY 
-    CPY.W #$0009 
-    BMI + 
+    CPY.W #$0009 : BMI + 
     LDY.W #$0000 
 
   + LDA.B $14 : CLC : ADC.W #$0010 : STA.B $14 
@@ -7490,8 +7464,7 @@ Function_Phantoon_Enraged_Rage:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY 
     DEY 
-    CPY.W #$0008 
-    BPL .loopOddWave 
+    CPY.W #$0008 : BPL .loopOddWave 
 
 .merge:
     LDA.W #$0029 : JSL.L QueueSound_Lib3_Max6 
@@ -7770,8 +7743,7 @@ AdvancePhantoonFadeOut:
     PLX 
     STA.L $7EC0E0,X 
     INX #2
-    CPX.W #$0020 
-    BCC .loop 
+    CPX.W #$0020 : BCC .loop 
     LDA.W $0FF0 
     INC A 
     STA.W $0FF0 
@@ -7801,8 +7773,7 @@ AdvancePhantoonFadeIn:
     PLX 
     STA.L $7EC0E0,X 
     INX #2
-    CPX.W #$0020 
-    BCC .loop 
+    CPX.W #$0020 : BCC .loop 
     LDA.W $0FF0 
     INC A 
     STA.W $0FF0 
@@ -7871,8 +7842,7 @@ AdvanceWreckedShipPowerOnPaletteTransition:
     PLX 
     STA.L $7EC000,X 
     INX #2
-    CPX.W #$00E0 
-    BCC .loop 
+    CPX.W #$00E0 : BCC .loop 
     LDA.W $0FF0 
     INC A 
     STA.W $0FF0 
@@ -9990,8 +9960,7 @@ LoadDachoraPalette:
     LDA.W $0000,X : STA.B [$00],Y 
     INX #2
     INY #2
-    CPY.W #$0020 
-    BMI .loop 
+    CPY.W #$0020 : BMI .loop 
     PLX : PLP 
     RTS 
 

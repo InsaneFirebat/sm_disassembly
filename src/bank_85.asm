@@ -244,8 +244,7 @@ Write_Large_MessageBox_Tilemap:
 .topBorderLoop:
     LDA.W Large_MessageBox_TopBottomBorder_Tilemap,X : STA.L $7E3200,X 
     INX #2
-    CPX.W #$0040 
-    BNE .topBorderLoop 
+    CPX.W #$0040 : BNE .topBorderLoop 
     LDY.W #$0000 
     JSR.W Write_Message_Tilemap 
     LDA.W #$0020 : STA.B $16 
@@ -267,8 +266,7 @@ Write_Small_MessageBox_Tilemap:
 .topBorderLoop:
     LDA.W Small_MessageBox_TopBottomBorder_Tilemap,X : STA.L $7E3200,X 
     INX #2
-    CPX.W #$0040 
-    BNE .topBorderLoop 
+    CPX.W #$0040 : BNE .topBorderLoop 
     JSR.W Write_Message_Tilemap 
     LDA.W #$0020 : STA.B $16 
     LDY.W #$0000 
@@ -296,8 +294,7 @@ Write_Message_Tilemap:
 .zeroLoop:
     STA.L $7E3000,X 
     INX #2
-    CPX.W #$00E0 
-    BNE .zeroLoop 
+    CPX.W #$00E0 : BNE .zeroLoop 
     LDA.W $1C1F 
     DEC A 
     ASL A 
@@ -622,8 +619,7 @@ Write_MessageBox_BG3_Yscroll_HDMA_DataTable:
 .zeroLoop:
     STA.L $7E3000,X 
     INX #2
-    CPX.W #$01E0 
-    BMI .zeroLoop 
+    CPX.W #$01E0 : BMI .zeroLoop 
     PLP 
     RTS 
 

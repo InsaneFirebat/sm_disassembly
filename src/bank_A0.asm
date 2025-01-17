@@ -862,11 +862,9 @@ LoadEnemyTileData:
     CLC : ADC.W #$0008 : TAX 
     TYA 
     CLC : ADC.W #$0008 : TAY 
-    CPY.B $12 
-    BNE .loopTiles 
+    CPY.B $12 : BNE .loopTiles 
     PLX 
-    CPX.W $0E7A 
-    BNE .loopEnemies 
+    CPX.W $0E7A : BNE .loopEnemies 
     STZ.W $0E7A 
     PLB 
 
@@ -1423,8 +1421,7 @@ SpawnEnemy:
     DEC.W $0E22 
     TXA 
     CLC : ADC.W #$0040 : TAX 
-    CPX.W #$0800 
-    BMI .loopOtherEnemies 
+    CPX.W #$0800 : BMI .loopOtherEnemies 
     BRA .notFound 
 
 
@@ -2097,8 +2094,7 @@ Projectile_vs_Projectile_Collision_Handling:
 
 .nextProjectile:
     INY #2
-    CPY.W #$000A 
-    BMI .loopProjectile 
+    CPY.W #$000A : BMI .loopProjectile 
 
 .nextEnemyProjectile:
     DEC.W $18A6 

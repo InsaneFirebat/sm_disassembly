@@ -637,10 +637,8 @@ Function_MotherBrainBody_SpawnTubesFallingWhenLessThan4Proj:
 
 .nextProj:
     INY #2
-    CPY.W #$0024 
-    BMI .loop 
-    CPX.W #$0004 
-    BPL .tooManyProjs 
+    CPY.W #$0024 : BMI .loop 
+    CPX.W #$0004 : BPL .tooManyProjs 
     RTS 
 
 
@@ -5490,8 +5488,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam:
     STZ.W $0FB6 
     LDA.W #$0005 
     LDY.W $09C2 
-    CPY.W #$02BC 
-    BPL .greaterThan2BC 
+    CPY.W #$02BC : BPL .greaterThan2BC 
     LDA.W #$0018 
 
 .greaterThan2BC:
@@ -5681,8 +5678,7 @@ MoveSamusTowardsWallDueToRainbowBeam:
 MoveSamusTowardsMiddleOfWall:
     LDA.W #$0040 
     LDY.W #$007C 
-    CPY.W $0AFA 
-    BPL .lessThanEqualTo7C 
+    CPY.W $0AFA : BPL .lessThanEqualTo7C 
     EOR.W #$FFFF 
     INC A 
 
@@ -7901,8 +7897,7 @@ HandleMotherBrainHeadPalette:
     LDA.W $0FB0 : STA.W $0FAF 
     LDA.W $0FAE : BNE .zeroCounter 
     LDY.W $0FE8 
-    CPY.W #Function_MotherBrain_SetupBrainAndNeckToBeDrawn 
-    BNE .return 
+    CPY.W #Function_MotherBrain_SetupBrainAndNeckToBeDrawn : BNE .return 
 
 .zeroCounter:
     INC A 
@@ -8015,14 +8010,10 @@ EnemyGraphicsDrawnHook_CorpseTorizo:
 
 
 Function_CorpseTorizo_WaitForSamusCollision:
-    CPX.W $182C 
-    BEQ .collision 
-    CPX.W $182E 
-    BEQ .collision 
-    CPX.W $1830 
-    BEQ .collision 
-    CPX.W $1832 
-    BNE .return 
+    CPX.W $182C : BEQ .collision 
+    CPX.W $182E : BEQ .collision 
+    CPX.W $1830 : BEQ .collision 
+    CPX.W $1832 : BNE .return 
 
 .collision:
     LDA.W #Function_CorpseTorizo_PreRotDelay : STA.W $0FA8 
@@ -8669,14 +8660,10 @@ Function_CorpseRipper_WaitForSamusCollision:
     LDY.W #Function_CorpseRipper_PreRotDelay 
 
 CorpseCommonAI_WaitForSamusCollision:
-    CPX.W $182C 
-    BEQ .collision 
-    CPX.W $182E 
-    BEQ .collision 
-    CPX.W $1830 
-    BEQ .collision 
-    CPX.W $1832 
-    BNE .return 
+    CPX.W $182C : BEQ .collision 
+    CPX.W $182E : BEQ .collision 
+    CPX.W $1830 : BEQ .collision 
+    CPX.W $1832 : BNE .return 
 
 .collision:
     TYA 
@@ -11289,8 +11276,7 @@ HandleBabyMetroidCrySFX:
     LDA.W #$0000 : STA.L $7E780A,X 
     LDA.W #$0072 
     LDY.W $0FB0,X 
-    CPY.W #$000A 
-    BCS .queueSFX 
+    CPY.W #$000A : BCS .queueSFX 
     LDA.W #$0078 
 
 .queueSFX:

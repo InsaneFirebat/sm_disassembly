@@ -2195,8 +2195,7 @@ UNUSED_SetBotwoonBodyProjectilesAsIntangible_B396FF:
     LDA.W $1BD7,Y : ORA.W #$2000 : STA.W $1BD7,Y 
     LDA.W #$0002 : STA.L $7EF380,X 
     DEY #2
-    CPY.W #$000A 
-    BPL .loop 
+    CPY.W #$000A : BPL .loop 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -2662,8 +2661,7 @@ UpdateBotwonBodyProjectilePositions:
     LDA.W #$0001 : STA.L $7EF380,X 
     PLX 
 
-  + CPX.W #$0000 
-    BNE .toggleVisibilityEnd 
+  + CPX.W #$0000 : BNE .toggleVisibilityEnd 
     LDX.W $0E54 
     LDA.W #$0000 : STA.L $7E802A,X 
     STA.L $7E803C,X 

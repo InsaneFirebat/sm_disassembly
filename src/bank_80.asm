@@ -734,8 +734,7 @@ LoadMirrorOfCurrentAreasMapExplored:
     LDA.L $7ECD52,X : STA.W $07F7,Y 
     INX #2
     INY #2
-    CPY.W #$0100 
-    BMI .loop 
+    CPY.W #$0100 : BMI .loop 
     LDX.W $079F 
     LDA.L $7ED908,X : AND.W #$00FF : STA.W $0789 
     PLP 
@@ -759,8 +758,7 @@ MirrorCurrentAreasMapExplored:
     LDA.W $07F7,Y : STA.L $7ECD52,X 
     INX #2
     INY #2
-    CPY.W #$0100 
-    BMI .loop 
+    CPY.W #$0100 : BMI .loop 
     LDA.W $0789 : BEQ .return 
     LDX.W $079F 
     LDA.L $7ED908,X : ORA.W #$00FF : STA.L $7ED908,X 
@@ -1733,8 +1731,7 @@ HandleMusicQueue:
 
 .negative:
     LDX.W $063B 
-    CPX.W $0639 
-    BEQ .clearTimer 
+    CPX.W $0639 : BEQ .clearTimer 
     LDA.W $0619,X : STA.W $063D 
     LDA.W $0629,X : STA.W $063F 
     PLP 
@@ -1794,16 +1791,14 @@ QueueMusicDataOrTrack_8FrameDelay:
     REP #$30 
     PHX : PHY 
     LDX.W $0998 
-    CPX.W #$0028 
-    BCS .return 
+    CPX.W #$0028 : BCS .return 
     PHA 
     LDA.W $0639 
     INC #2
     AND.W #$000E 
     TAX 
     PLA 
-    CPX.W $063B 
-    BEQ .return 
+    CPX.W $063B : BEQ .return 
     LDX.W $0639 
     STA.W $0619,X 
     LDA.W #$0008 : STA.W $0629,X 
@@ -1822,8 +1817,7 @@ QueueMusicDataOrTrack_YFrameDelay:
     REP #$30 
     PHX 
     LDX.W $0998 
-    CPX.W #$0028 
-    BCS .return 
+    CPX.W #$0028 : BCS .return 
     LDX.W $0639 
     STA.W $0619,X 
     TYA 
@@ -1885,21 +1879,18 @@ QueueSound_Lib1:
     LDX.W $05F5 
     BNE .return 
     LDX.W $0998 
-    CPX.W #$0028 
-    BCS .return 
+    CPX.W #$0028 : BCS .return 
     LDX.W $0592 
     BMI .return 
     SEP #$30 
     LDY.W $0646 
     TYX 
     INX 
-    CPX.B #$10 
-    BCC .queueSound 
+    CPX.B #$10 : BCC .queueSound 
     LDX.B #$00 
 
 .queueSound:
-    CPX.W $0643 
-    BEQ .queueFull 
+    CPX.W $0643 : BEQ .queueFull 
     STA.W $0656,Y 
     STX.W $0646 
     STZ.W $0656,X 
@@ -1959,21 +1950,18 @@ QueueSound_Lib2:
     LDX.W $05F5 
     BNE .return 
     LDX.W $0998 
-    CPX.W #$0028 
-    BCS .return 
+    CPX.W #$0028 : BCS .return 
     LDX.W $0592 
     BMI .return 
     SEP #$30 
     LDY.W $0647 
     TYX 
     INX 
-    CPX.B #$10 
-    BCC .queueSound 
+    CPX.B #$10 : BCC .queueSound 
     LDX.B #$00 
 
 .queueSound:
-    CPX.W $0644 
-    BEQ .queueFull 
+    CPX.W $0644 : BEQ .queueFull 
     STA.W $0666,Y 
     STX.W $0647 
     STZ.W $0666,X 
@@ -2033,21 +2021,18 @@ QueueSound_Lib3:
     LDX.W $05F5 
     BNE .return 
     LDX.W $0998 
-    CPX.W #$0028 
-    BCS .return 
+    CPX.W #$0028 : BCS .return 
     LDX.W $0592 
     BMI .return 
     SEP #$30 
     LDY.W $0648 
     TYX 
     INX 
-    CPX.B #$10 
-    BCC .queueSound 
+    CPX.B #$10 : BCC .queueSound 
     LDX.B #$00 
 
 .queueSound:
-    CPX.W $0645 
-    BEQ .queueFull 
+    CPX.W $0645 : BEQ .queueFull 
     STA.W $0676,Y 
     STX.W $0648 
     STZ.W $0676,X 
@@ -2486,14 +2471,11 @@ NMI:
 
 .next:
     INX #2
-    CPX.B #$0C 
-    BNE .handleHDMAQueue 
+    CPX.B #$0C : BNE .handleHDMAQueue 
     LDX.B $55 
-    CPX.B #$07 
-    BEQ .mode7Enabled 
+    CPX.B #$07 : BEQ .mode7Enabled 
     LDX.B $56 
-    CPX.B #$07 
-    BNE .mode7Disabled 
+    CPX.B #$07 : BNE .mode7Disabled 
 
 .mode7Enabled:
     JSL.L HandleMode7Transfers 
@@ -2526,8 +2508,7 @@ NMI:
     INX 
     STX.W $05BA 
     LDX.W $05BA 
-    CPX.W $05BB 
-    BCC .return 
+    CPX.W $05BB : BCC .return 
     STX.W $05BB 
     BRA .return 
 
@@ -3006,8 +2987,7 @@ InitialiseHUD_GameLoading:
 .loopRows123:
     LDA.W Tilemap_HUD_rows123,X : STA.L $7EC608,X 
     INX #2
-    CPX.W #$00C0 
-    BNE .loopRows123 
+    CPX.W #$00C0 : BNE .loopRows123 
     LDA.W $09A2 : BIT.W #$8000 
     BEQ .grapple 
     JSL.L AddXrayToHUDTilemap 
@@ -3118,8 +3098,7 @@ HandleHUDTilemap_PausedAndRunning:
     LDX.W .etankIconOffsets,Y 
     STA.L $7EC608,X 
     INY #2
-    CPY.W #$001C 
-    BMI .loopEtanks 
+    CPY.W #$001C : BMI .loopEtanks 
 
 .drawEtanksDigits:
     LDA.W #Tilemap_HUDDigits_health : STA.B $00 
@@ -3228,8 +3207,7 @@ ToggleHUDItemHighlight:
     STA.L $7EC64A,X 
 
 .checkY:
-    CPY.W #$0000 
-    BEQ .topRight 
+    CPY.W #$0000 : BEQ .topRight 
     RTS 
 
 
@@ -3368,8 +3346,7 @@ ProcessTimer_RunningMovingIntoPlace:
 
 .YinPosition:
     STA.W $094A 
-    CPY.W #$0002 
-    BNE ProcessTimer_RunningMovingIntoPlace_return 
+    CPY.W #$0002 : BNE ProcessTimer_RunningMovingIntoPlace_return 
     INC.W $0943 
 
 ProcessTimer_RunningMovingIntoPlace_return:
@@ -3671,8 +3648,7 @@ DisplayViewablePartOfRoom:
     INC.W $08FB 
     INC.W $090B 
     INX 
-    CPX.W #$0011 
-    BNE .loop 
+    CPX.W #$0011 : BNE .loop 
     PLP 
     RTL 
 
@@ -4408,8 +4384,7 @@ UpdateLevelBackgroundDataColumn:
     CLC : ADC.W $4216 : STA.W $0933 
     LDA.W #$5000 
     LDY.W $0935 
-    CPY.W #$0010 
-    BCC + 
+    CPY.W #$0010 : BCC + 
     LDA.W #$53E0 
 
   + TXY 
@@ -4421,8 +4396,7 @@ UpdateLevelBackgroundDataColumn:
     LDA.W $0937 : CLC : ADC.W $0935 : ADC.W $0935 : STA.W $095C,X 
     LDA.W #$C8C8 ; $7E
     LDY.W #$0000 
-    CPX.W #$0000 
-    BEQ + 
+    CPX.W #$0000 : BEQ + 
     LDA.W #$C9D0 ; $7E
     LDY.W #$0108 
 
@@ -4534,8 +4508,7 @@ UpdateBackgroundLevelDataRow:
     LDA.W #$5400 : STA.W $0937 
     LDA.W #$5000 
     LDY.W $0935 
-    CPY.W #$0010 
-    BCC + 
+    CPY.W #$0010 : BCC + 
     LDA.W #$5000 : STA.W $0937 
     LDA.W #$53E0 
 
@@ -4552,8 +4525,7 @@ UpdateBackgroundLevelDataRow:
   + CLC : ADC.W $4216 : STA.W $096A,X 
     LDA.W #$C948 ; $7E
     LDY.W #$0000 
-    CPX.W #$0000 
-    BEQ + 
+    CPX.W #$0000 : BEQ + 
     LDA.W #$CA50 ; $7E
     LDY.W #$0108 
 
@@ -4763,8 +4735,7 @@ DoorTransitionScrolling_Right:
     PLX 
     INX 
     STX.W $0925 
-    CPX.W #$0040 
-    BNE + 
+    CPX.W #$0040 : BNE + 
     JSL.L CalculateBGScrolls_UpdateBGGraphics_WhenScrolling 
     SEC 
     RTS 
@@ -4786,8 +4757,7 @@ DoorTransitionScrolling_Left:
     PLX 
     INX 
     STX.W $0925 
-    CPX.W #$0040 
-    BNE + 
+    CPX.W #$0040 : BNE + 
     SEC 
     RTS 
 
@@ -4826,8 +4796,7 @@ DoorTransitionScrolling_Down:
     BRA .finish 
 
 
-  + CPX.W #$0039 
-    BCS .finish 
+  + CPX.W #$0039 : BCS .finish 
     LDA.W $0AFC : CLC : ADC.W $092B : STA.W $0AFC 
     LDA.W $0AFA : ADC.W $092D : STA.W $0AFA 
     STA.W $0B14 
@@ -4839,8 +4808,7 @@ DoorTransitionScrolling_Down:
     PLX 
     INX 
     STX.W $0925 
-    CPX.W #$0039 
-    BCC + 
+    CPX.W #$0039 : BCC + 
     JSL.L CalculateBGScrolls_UpdateBGGraphics_WhenScrolling 
     SEC 
     RTS 
@@ -4885,8 +4853,7 @@ DoorTransitionScrolling_Up:
     STA.W $0B14 
     LDA.W $0915 : SEC : SBC.W #$0004 : STA.W $0915 
     LDA.W $0919 : SEC : SBC.W #$0004 : STA.W $0919 
-    CPX.W #$0005 
-    BCS + 
+    CPX.W #$0005 : BCS + 
     LDA.W $0911 : CLC : ADC.W $091D : STA.B $B1 
     LDA.W $0915 : CLC : ADC.W $091F : STA.B $B3 
     LDA.W $0917 : CLC : ADC.W $0921 : STA.B $B5 
@@ -4900,8 +4867,7 @@ DoorTransitionScrolling_Up:
     PLX 
     INX 
     STX.W $0925 
-    CPX.W #$0039 
-    BNE + 
+    CPX.W #$0039 : BNE + 
     SEC 
     RTS 
 
@@ -4955,8 +4921,7 @@ UNUSED_SetupRotatingMode7Background_80B032:
     PLA 
     CLC : ADC.W #$0080 : TAY 
     SEP #$20 
-    CPX.W #$0400 
-    BNE .loop 
+    CPX.W #$0400 : BNE .loop 
     LDA.B #$07 : STA.B $55 
     REP #$20 
     LDA.W #$0100 : STA.B $78 

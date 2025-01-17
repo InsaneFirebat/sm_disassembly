@@ -2706,8 +2706,7 @@ Function_Coven_Materialize_FadeToWhite:
     INX #2
     DEC.B $12 
     BNE .loopUpper 
-    CPY.W #$0010 
-    BMI .return 
+    CPY.W #$0010 : BMI .return 
     LDX.W $0E54 
     LDA.W #Function_Coven_Materialize_FadeFromWhite : STA.W $0FA8,X 
     LDA.W $0F96,X 
@@ -2720,8 +2719,7 @@ Function_Coven_Materialize_FadeToWhite:
     LDA.W Palette_Coven,Y : STA.L $7EC200,X 
     INX #2
     INY #2
-    CPY.W #$0020 
-    BMI .loopLower 
+    CPY.W #$0020 : BMI .loopLower 
 
 .return:
     PLX 
@@ -3067,8 +3065,7 @@ AdvanceCovenPaletteTransition:
 
 .next:
     INX #2
-    CPX.B $14 
-    BPL .return 
+    CPX.B $14 : BPL .return 
     JMP.W .loop 
 
 

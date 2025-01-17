@@ -424,8 +424,7 @@ Initialise_Special_Effects_for_New_Room:
     STZ.W $4309,X 
     TXA 
     CLC : ADC.B #$10 : TAX 
-    CPX.B #$80 
-    BNE .loopClearHDMARegisters 
+    CPX.B #$80 : BNE .loopClearHDMARegisters 
     REP #$30 
     LDA.W #$FFFF 
     STZ.W $195C 
@@ -554,8 +553,7 @@ Spawn_HDMAObject:
     BCS .returnFullArray 
     LDA.B $14 : CLC : ADC.W #$0010 : STA.B $14 
     INX #2
-    CPX.W #$000C 
-    BNE .loop 
+    CPX.W #$000C : BNE .loop 
 
 .returnFullArray:
     PLB : PLP 
@@ -622,8 +620,7 @@ HDMAObjectHandler_HandleMusicQueue:
 
 .next:
     INX #2
-    CPX.B #$0C 
-    BNE .loop 
+    CPX.B #$0C : BNE .loop 
     JSR.W LayerBlending_Handler 
     PLB : PLP 
     RTL 
@@ -1128,10 +1125,8 @@ Calculate_Xray_HDMADataTable:
     LDA.W $0AFA : SEC : SBC.W $0915 : SBC.W #$000C : TAY 
 
 .checkScreenPosition:
-    CPX.W #$0000 
-    BMI .leftOfScreen 
-    CPX.W #$0100 
-    BMI .onScreen 
+    CPX.W #$0000 : BMI .leftOfScreen 
+    CPX.W #$0100 : BMI .onScreen 
     LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0008 : BEQ .offScreen 
     BRA .onScreenFromOffScreen 
@@ -1195,8 +1190,7 @@ HandleXrayScope_State3_DeactivateBeam_RestoreBG2_FirstHalf:
     LDA.W $192C,X : STA.B $59 
     REP #$20 
     LDX.W $0330 
-    CPX.W #$00F0 
-    BPL .return 
+    CPX.W #$00F0 : BPL .return 
     LDA.W #$0800 : STA.B $D0,X 
     LDA.W #$5000 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 
@@ -1225,8 +1219,7 @@ HandleXrayScope_State4_DeactivateBeam_RestoreBG2_SecondHalf:
   + TXA 
     TSB.W $1986 
     LDX.W $0330 
-    CPX.W #$00F0 
-    BPL .return 
+    CPX.W #$00F0 : BPL .return 
     LDA.W #$0800 : STA.B $D0,X 
     LDA.W #$5800 : STA.B $D2,X 
     LDA.W #$007E : STA.B $D4,X 
@@ -1478,8 +1471,7 @@ Calc_PowerBombExplo_HDMADataTables_PreScaled_LeftOfScreen:
 .next:
     INY 
     INX 
-    CPX.W #$00C0 
-    BNE Calc_PowerBombExplo_HDMADataTables_PreScaled_LeftOfScreen 
+    CPX.W #$00C0 : BNE Calc_PowerBombExplo_HDMADataTables_PreScaled_LeftOfScreen 
     RTS 
 
 
@@ -1496,8 +1488,7 @@ Calculate_PowerBombExplo_HDMADataTables_PreScaled_OnScreen:
     STA.L $7EC406,X 
     INY 
     INX 
-    CPX.W #$00C0 
-    BNE Calculate_PowerBombExplo_HDMADataTables_PreScaled_OnScreen 
+    CPX.W #$00C0 : BNE Calculate_PowerBombExplo_HDMADataTables_PreScaled_OnScreen 
 
 .return:
     RTS 
@@ -1517,8 +1508,7 @@ Calc_PowerBombExplo_HDMADataTables_PreScaled_RightOfScreen:
 .next:
     INY 
     INX 
-    CPX.W #$00C0 
-    BNE Calc_PowerBombExplo_HDMADataTables_PreScaled_RightOfScreen 
+    CPX.W #$00C0 : BNE Calc_PowerBombExplo_HDMADataTables_PreScaled_RightOfScreen 
     RTS 
 
 
@@ -1576,8 +1566,7 @@ Calculate_PowerBombExplo_HDMADataTables_Scaled_LeftOfScreen:
     XBA 
     STA.L $7EC506,X 
     XBA 
-    CPX.B $14 
-    BEQ .nextShapeDefinite 
+    CPX.B $14 : BEQ .nextShapeDefinite 
     DEX 
     JMP.W .loopDataTable 
 
@@ -1607,8 +1596,7 @@ Calculate_PowerBombExplosion_HDMADataTables_Scaled_OnScreen:
     XBA 
     STA.L $7EC506,X 
     XBA 
-    CPX.B $14 
-    BEQ .next 
+    CPX.B $14 : BEQ .next 
     DEX 
     JMP.W .loopDataTable 
 
@@ -1642,8 +1630,7 @@ Calculate_PowerBombExplo_HDMADataTables_Scaled_RightOfScreen:
     XBA 
     STA.L $7EC506,X 
     XBA 
-    CPX.B $14 
-    BEQ .nextShapeDefinition 
+    CPX.B $14 : BEQ .nextShapeDefinition 
     DEX 
     JMP.W .loopDataTable 
 
@@ -1749,8 +1736,7 @@ PreInstruction_PowerBombExplosion_3_Explosion_Yellow:
     BPL .loopPadDataTableBegin 
     LDX.B $12 
     INX 
-    CPX.B #$C0 
-    BEQ .finishedTable 
+    CPX.B #$C0 : BEQ .finishedTable 
     LDA.B #$FF 
 
 .loopPadDataTableEnd:
@@ -1759,8 +1745,7 @@ PreInstruction_PowerBombExplosion_3_Explosion_Yellow:
     STA.L $7EC506,X 
     DEC A 
     INX 
-    CPX.B #$C0 
-    BNE .loopPadDataTableEnd 
+    CPX.B #$C0 : BNE .loopPadDataTableEnd 
 
 .finishedTable:
     LDA.W $0CEB 
@@ -1909,8 +1894,7 @@ UNUSED_CalcPowerBombRelatedHDMATables_Scaled_Left_888FBA:
     XBA 
     STA.L $7EC506,X 
     XBA 
-    CPX.B $14 
-    BEQ .next 
+    CPX.B $14 : BEQ .next 
     DEX 
     JMP.W .loop 
 
@@ -1939,8 +1923,7 @@ UNUSED_CalcPBRelatedHDMADataTables_Scaled_OnScreen_888FF8:
     XBA 
     STA.L $7EC506,X 
     XBA 
-    CPX.B $14 
-    BEQ .next 
+    CPX.B $14 : BEQ .next 
     DEX 
     JMP.W .loop 
 
@@ -1974,8 +1957,7 @@ UNUSED_CalPBRelatedHDMADataTables_Scaled_OnScreen_88903A:
     XBA 
     STA.L $7EC506,X 
     XBA 
-    CPX.B $14 
-    BEQ .next 
+    CPX.B $14 : BEQ .next 
     DEX 
     JMP.W .loop 
 
@@ -2090,8 +2072,7 @@ PreInstruction_PowerBombExplosion_1_PreExplosion_White:
     BPL .loopPadDataTableBegin 
     LDX.B $12 
     INX 
-    CPX.B #$C0 
-    BEQ .finishedTable 
+    CPX.B #$C0 : BEQ .finishedTable 
     LDA.B #$FF 
 
 .loopPadDataTableEnd:
@@ -2100,8 +2081,7 @@ PreInstruction_PowerBombExplosion_1_PreExplosion_White:
     STA.L $7EC506,X 
     DEC A 
     INX 
-    CPX.B #$C0 
-    BNE .loopPadDataTableEnd 
+    CPX.B #$C0 : BNE .loopPadDataTableEnd 
 
 .finishedTable:
     LDA.W $0CED 
@@ -2627,8 +2607,7 @@ UNUSED_CalcCrystalFlashHDMADataTables_PreScaled_Left_88A3B7:
 .loop:
     INY 
     INX 
-    CPX.W #$00C0 
-    BNE UNUSED_CalcCrystalFlashHDMADataTables_PreScaled_Left_88A3B7 
+    CPX.W #$00C0 : BNE UNUSED_CalcCrystalFlashHDMADataTables_PreScaled_Left_88A3B7 
     RTS 
 
 
@@ -2644,8 +2623,7 @@ UNUSED_Calc_CF_HDMADataTables_PreScaled_OnScreen_88A3DF:
   + STA.L $7EC406,X 
     INY 
     INX 
-    CPX.W #$00C0 
-    BNE UNUSED_Calc_CF_HDMADataTables_PreScaled_OnScreen_88A3DF 
+    CPX.W #$00C0 : BNE UNUSED_Calc_CF_HDMADataTables_PreScaled_OnScreen_88A3DF 
 
 .return:
     RTS 
@@ -2665,8 +2643,7 @@ UNUSED_Calc_CF_HDMADataTables_PreScaled_RightOfScreen_88A407:
 .next:
     INY 
     INX 
-    CPX.W #$00C0 
-    BNE UNUSED_Calc_CF_HDMADataTables_PreScaled_RightOfScreen_88A407 
+    CPX.W #$00C0 : BNE UNUSED_Calc_CF_HDMADataTables_PreScaled_RightOfScreen_88A407 
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -2725,8 +2702,7 @@ Calculate_CrystalFlash_HDMADataTables_Scaled_LeftOfScreen:
     XBA 
     STA.L $7EC506,X 
     XBA 
-    CPX.B $14 
-    BEQ .next 
+    CPX.B $14 : BEQ .next 
     DEX 
     JMP.W .loop 
 
@@ -2755,8 +2731,7 @@ Calculate_CrystalFlash_HDMADataTables_Scaled_OnScreen:
     XBA 
     STA.L $7EC506,X 
     XBA 
-    CPX.B $14 
-    BEQ .next 
+    CPX.B $14 : BEQ .next 
     DEX 
     JMP.W .loop 
 
@@ -2790,8 +2765,7 @@ Calculate_CrystalFlash_HDMADataTables_Scaled_RightOfScreen:
     XBA 
     STA.L $7EC506,X 
     XBA 
-    CPX.B $14 
-    BEQ .next 
+    CPX.B $14 : BEQ .next 
     DEX 
     JMP.W .loop 
 
@@ -2848,8 +2822,7 @@ PreInstruction_CrystalFlash_1_Explosion:
     BPL .loopPadDataTableBegin 
     LDX.B $12 
     INX 
-    CPX.B #$C0 
-    BEQ .finishedTable 
+    CPX.B #$C0 : BEQ .finishedTable 
     LDA.B #$FF 
 
 .loopPadDataTableEnd:
@@ -2858,8 +2831,7 @@ PreInstruction_CrystalFlash_1_Explosion:
     STA.L $7EC506,X 
     DEC A 
     INX 
-    CPX.B #$C0 
-    BNE .loopPadDataTableEnd 
+    CPX.B #$C0 : BNE .loopPadDataTableEnd 
 
 .finishedTable:
     LDA.W $0CEB 
@@ -2943,8 +2915,7 @@ PreInstruction_FXType_22_BG3XScroll:
     LDA.W FXType_22_BG3XScrollHDMAData,Y : STA.L $7E9E80,X 
     INX #2
     INY #2
-    CPY.W #$0020 
-    BMI .loop 
+    CPY.W #$0020 : BMI .loop 
     BRA .merge 
 
 
@@ -3104,8 +3075,7 @@ Calculate_FXType_22_BG3YScrollHDMATable:
     CMP.B ($09),Y : BMI .foundFirstStrip 
 
   + INY #6
-    CPY.B $18 
-    BMI .loopFirstStrip 
+    CPY.B $18 : BMI .loopFirstStrip 
     PLB 
     RTS 
 
@@ -3133,8 +3103,7 @@ Calculate_FXType_22_BG3YScrollHDMATable:
     CMP.B ($09),Y : BMI .foundStrip 
 
   + INY #6
-    CPY.B $18 
-    BMI .loopStrip 
+    CPY.B $18 : BMI .loopStrip 
     PLB 
     RTS 
 
@@ -8323,8 +8292,7 @@ SuitPickup_Stage3_LightBeamWidens_Curved:
   + STA.L $7E9800,X 
     INX 
     INY 
-    CPX.W #$0100 
-    BMI .loopUpperHalf 
+    CPX.W #$0100 : BMI .loopUpperHalf 
     DEY 
 
 .loopLowerHalf:
@@ -8339,8 +8307,7 @@ SuitPickup_Stage3_LightBeamWidens_Curved:
   + STA.L $7E9800,X 
     INX 
     DEY 
-    CPX.W #$0200 
-    BMI .loopLowerHalf 
+    CPX.W #$0200 : BMI .loopLowerHalf 
     REP #$20 
     LDA.W $0DDC : CLC : ADC.W #$0060 : STA.W $0DDC 
     LDA.W $0DEE : CMP.W #$FF00 : BNE .return 
@@ -8573,8 +8540,7 @@ PreInstruction_PhantoonSemiTransparency:
     BVS .semiTransparent 
     LDX.W $1074 
     BEQ .BG2Disabled 
-    CPX.B #$FF 
-    BEQ .delete 
+    CPX.B #$FF : BEQ .delete 
     BRA .return 
 
 
@@ -8807,8 +8773,7 @@ PreInstruction_WavyPhantoon:
 
 .next:
     INX #2
-    CPX.B $1E 
-    BPL + 
+    CPX.B $1E : BPL + 
     JMP.W .loop 
 
 
@@ -9503,8 +9468,7 @@ PreInstruction_WavySamus:
 
 .next:
     INX #2
-    CPX.B $1E 
-    BPL + 
+    CPX.B $1E : BPL + 
     JMP.W .loop 
 
 

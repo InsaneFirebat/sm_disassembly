@@ -447,8 +447,7 @@ CalculateInitialBounceSpeed:
     LDY.W $0FB0,X 
     SEP #$20 
     LDA.W BoyonData_speedTable,Y 
-    CPY.W #$0017 
-    BMI + 
+    CPY.W #$0017 : BMI + 
     LDA.B #$FF 
 
   + STA.W $4202 
@@ -510,8 +509,7 @@ Function_Boyon_Falling:
     LDY.W $0FB0,X 
     SEP #$20 
     LDA.W BoyonData_speedTable,Y 
-    CPY.W #$0017 
-    BMI .lessThan17 
+    CPY.W #$0017 : BMI .lessThan17 
     LDA.B #$FF 
 
 .lessThan17:
@@ -537,8 +535,7 @@ Function_Boyon_Jumping:
     LDY.W $0FB0,X 
     SEP #$20 
     LDA.W BoyonData_speedTable,Y 
-    CPY.W #$0017 
-    BMI .lessThan17 
+    CPY.W #$0017 : BMI .lessThan17 
     LDA.B #$FF 
 
 .lessThan17:
@@ -5632,8 +5629,7 @@ SpawnMotherBrainsRoomRinka:
 
 .next:
     INY #6
-    CPY.W #$0042 
-    BMI .loopOnScreen 
+    CPY.W #$0042 : BMI .loopOnScreen 
     JMP.W .notFound 
 
     RTS 
@@ -5664,8 +5660,7 @@ SpawnMotherBrainsRoomRinka:
     LSR A 
     BCC .spawn 
     INY #6
-    CPY.W #$0042 
-    BMI .loopAny 
+    CPY.W #$0042 : BMI .loopAny 
     RTS 
 
 

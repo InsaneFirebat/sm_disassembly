@@ -728,8 +728,7 @@ Debug_DisplayVersionInfo:
     TXA 
     CLC : ADC.W #$0004 : TAX 
     INY #2
-    CPY.W #$0006 
-    BMI .loopVer 
+    CPY.W #$0006 : BMI .loopVer 
     STX.W $0590 
     PLP 
     RTS 
@@ -1479,14 +1478,12 @@ MoveUnusedSpritesOffScreen:
     LSR #2
     TAX 
     LDA.W $0570,X : ORA.W .Xpos,Y : STA.W $0570,X 
-    CPX.W #$001E 
-    BPL .setXpos 
+    CPX.W #$001E : BPL .setXpos 
     INX #2
     .loop:
     LDA.W #$5555 : STA.W $0570,X 
     INX #2
-    CPX.W #$0020 
-    BMI .loop 
+    CPX.W #$0020 : BMI .loop 
 
 .setXpos:
     LDA.W $0590 
@@ -1885,8 +1882,7 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
 .loop:
     LDA.L Palettes_TitleScreen,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loop 
+    CPX.W #$0200 : BMI .loop 
     JSL.L EnableNMI 
     LDA.W #$0001 : STA.W $0723 
     STA.W $0725 
@@ -2995,8 +2991,7 @@ SkipToTitleScreenHandler_2_PrepareTitleScreen:
 .loop:
     LDA.L Palettes_TitleScreen,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loop 
+    CPX.W #$0200 : BMI .loop 
     LDA.W #$7FFF : STA.L $7EC192 
     LDA.W #$7D80 : STA.L $7EC194 
     JSL.L Clear_PaletteFXObjects 
@@ -3067,8 +3062,7 @@ Load_Title_Sequence_Graphics:
 .loopTitleScreenPalette:
     LDA.L Palettes_TitleScreen,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loopTitleScreenPalette 
+    CPX.W #$0200 : BMI .loopTitleScreenPalette 
     LDA.W #Tiles_Title_Background_Mode7>>8&$FF00 : STA.B $48 
     LDA.W #Tiles_Title_Background_Mode7 : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
@@ -3929,8 +3923,7 @@ CinematicFunction_Intro_Initial:
 .loopPalettes:
     LDA.L Palettes_Intro,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loopPalettes 
+    CPX.W #$0200 : BMI .loopPalettes 
     LDA.W #Tiles_Intro_BG1_BG2>>8&$FF00 : STA.B $48 
     LDA.W #Tiles_Intro_BG1_BG2 : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
@@ -4178,8 +4171,7 @@ CinematicFunction_Intro_SetupIntroTextPage1:
     LDA.W .IntroJapanTextTilemap,Y : STA.L $7E3000,X 
     INY #2
     INX #2
-    CPX.W #$0700 
-    BMI .loopJapanTextTilemap 
+    CPX.W #$0700 : BMI .loopJapanTextTilemap 
     LDA.W #$1C29 : STA.L $7E371E 
     STA.L $7E3720 
     LDY.W #CinematicSpriteObjectDefinitions_IntroTextCaret 
@@ -4249,8 +4241,7 @@ Clear_EnglishText_Tilemap:
 .loop:
     STA.L $7E3000,X 
     INX #2
-    CPX.W #$0600 
-    BMI .loop 
+    CPX.W #$0600 : BMI .loop 
     PLX 
     RTS 
 
@@ -4272,8 +4263,7 @@ BlankOut_JapanText_Tiles:
     LDA.L $7F829E : STA.L $7E400E,X 
     TXA 
     CLC : ADC.W #$0010 : TAX 
-    CPX.W #$0600 
-    BMI .loop 
+    CPX.W #$0600 : BMI .loop 
     PLY : PLX : PLP 
     RTS 
 
@@ -4692,16 +4682,14 @@ CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight:
 .loopLevelData:
     LDA.L LevelData_OldMotherBrainRoomFromCutscene,X : STA.L $7F0002,X 
     INX #2
-    CPX.W #$01C0 
-    BMI .loopLevelData 
+    CPX.W #$01C0 : BMI .loopLevelData 
     LDX.W #$0000 
     LDA.W #$0000 
 
 .loopBTS:
     STA.L $7F6402,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loopBTS 
+    CPX.W #$0200 : BMI .loopBTS 
     LDA.W #$0001 : STA.W $09D2 
     LDA.W #SamusCurrentStateHandler_Demo : STA.W $0A42 
     LDA.W #SamusNewStateHandler_IntroDemo : STA.W $0A44 
@@ -4756,8 +4744,7 @@ CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDiscovery:
 .loopLevelData:
     LDA.L LevelData_RoomWithBabyMetroidHatchingFromCutscene,X : STA.L $7F0002,X 
     INX #2
-    CPX.W #$0300 
-    BMI .loopLevelData 
+    CPX.W #$0300 : BMI .loopLevelData 
     STZ.W $09D2 
     LDA.W #SamusCurrentStateHandler_Demo : STA.W $0A42 
     LDA.W #SamusNewStateHandler_IntroDemo : STA.W $0A44 
@@ -4786,8 +4773,7 @@ Setup_Intro_CrossFade_Into_SamusGameplay:
 .loopPalettes:
     LDA.L Palettes_Intro,X : STA.L $7E2200,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loopPalettes 
+    CPX.W #$0200 : BMI .loopPalettes 
     JSR.W PaletteCrossFading_DecomposePaletteDataForFading 
     LDX.W #$0028 
     LDY.W #$0003 
@@ -4932,8 +4918,7 @@ SetupIntroCrossFadeIntoScientistCutscene:
 .loop:
     LDA.L Palettes_Intro,X : STA.L $7E2200,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loop 
+    CPX.W #$0200 : BMI .loop 
     JSR.W PaletteCrossFading_DecomposePaletteDataForFading 
     LDX.W #$0040 
     LDY.W #$0010 
@@ -5069,8 +5054,7 @@ CinematicFunction_Intro_CrossFadeToSamusGameplay:
 .loop:
     STA.L $7E3000,X 
     INX #2
-    CPX.W #$0600 
-    BMI .loop 
+    CPX.W #$0600 : BMI .loop 
     JSR.W BlankOut_JapanText_Tiles 
     LDA.W #CinematicFunction_Nothing : STA.W $1F51 
     LDA.W $1A57 : BPL .return 
@@ -5115,8 +5099,7 @@ CinematicFunction_Intro_CrossFadeToScientistCutscene:
 .loopEnglishText:
     STA.L $7E3000,X 
     INX #2
-    CPX.W #$0600 
-    BMI .loopEnglishText 
+    CPX.W #$0600 : BMI .loopEnglishText 
     JSR.W BlankOut_JapanText_Tiles 
     LDA.W #CinematicFunction_Nothing : STA.W $1F51 
 
@@ -5187,8 +5170,7 @@ Setup_Intro_CrossFade_Into_Text:
 .loopPalettes:
     LDA.L Palettes_Intro,X : STA.L $7E2200,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loopPalettes 
+    CPX.W #$0200 : BMI .loopPalettes 
     JSR.W PaletteCrossFading_DecomposePaletteDataForFading 
     LDX.W #$0000 
     LDY.W #$0010 
@@ -5281,8 +5263,7 @@ CinematicFunction_Intro_CrossFadeFromScientistCutscene:
 .loopPalettes:
     LDA.L Palettes_Intro_CrossFade,X : STA.L $7EC1C0,X 
     INX #2
-    CPX.W #$000E 
-    BMI .loopPalettes 
+    CPX.W #$000E : BMI .loopPalettes 
     LDA.W #CinematicFunction_Nothing : STA.W $1F51 
 
 .return:
@@ -6049,8 +6030,7 @@ CinematicFunction_FlyToCeres_Initial:
 .loopPalettes:
     LDA.L Palettes_SpaceGunshipCeres,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loopPalettes 
+    CPX.W #$0200 : BMI .loopPalettes 
     LDA.W #Tiles_Gunship_Ceres_Mode7>>8&$FF00 : STA.B $48 
     LDA.W #Tiles_Gunship_Ceres_Mode7 : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
@@ -6445,8 +6425,7 @@ CinematicFunction_CeresGoesBoom_Initial:
 .loopPalettes:
     LDA.L Palettes_SpaceGunshipCeres,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loopPalettes 
+    CPX.W #$0200 : BMI .loopPalettes 
     LDA.W #Tiles_Gunship_Ceres_Mode7>>8&$FF00 : STA.B $48 
     LDA.W #Tiles_Gunship_Ceres_Mode7 : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
@@ -8449,8 +8428,7 @@ CinematicFunction_Ending_Setup:
 .loopPalettes:
     LDA.L Palettes_CloudSpritesInZebesExplosionScene,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loopPalettes 
+    CPX.W #$0200 : BMI .loopPalettes 
     LDA.W #Tiles_Zebes_Being_Zoomed_Out_during_Zebes_Explosion_Mode7>>8&$FF00 : STA.B $48 
     LDA.W #Tiles_Zebes_Being_Zoomed_Out_during_Zebes_Explosion_Mode7 : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
@@ -8515,8 +8493,7 @@ CinematicFunction_Ending_Setup:
 .loopTilemap:
     STA.L $7F4000,X 
     INX #2
-    CPX.W #$4000 
-    BMI .loopTilemap 
+    CPX.W #$4000 : BMI .loopTilemap 
     LDA.W #Wide_Part_of_Zebes_Explosion_Tilemap>>8&$FF00 : STA.B $48 
     LDA.W #Wide_Part_of_Zebes_Explosion_Tilemap : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
@@ -8809,8 +8786,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
 .loopPalettes:
     LDA.L Palettes_ZebesExplosionScene,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loopPalettes 
+    CPX.W #$0200 : BMI .loopPalettes 
     LDY.W #CinematicSpriteObjectDefinitions_ExplodingZebes_Zebes 
     JSR.W Spawn_CinematicSpriteObject_Y 
     LDY.W #CinematicSpriteObjectDefinitions_ExplodingZebes_Lava 
@@ -8888,8 +8864,7 @@ CinematicFunction_Ending_ZebesDestruction2_CrossFade:
 .loopPalettes:
     LDA.L Palettes_ZebesExplosionScene,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$0100 
-    BMI .loopPalettes 
+    CPX.W #$0100 : BMI .loopPalettes 
     SEP #$20 
     STZ.B $5F 
     LDA.B #$70 : STA.B $58 
@@ -9214,8 +9189,7 @@ CinematicFunction_Credits_Setup:
 .loopPalettes:
     LDA.L Palettes_Credits,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$0100 
-    BMI .loopPalettes 
+    CPX.W #$0100 : BMI .loopPalettes 
     LDA.W #Tiles_Samus_Waiting_for_Credits_to_End>>8&$FF00 : STA.B $48 
     LDA.W #Tiles_Samus_Waiting_for_Credits_to_End : STA.B $47 
     JSL.L Decompression_HardcodedDestination 
@@ -9457,8 +9431,7 @@ CinematicFunction_PostCredits_WavySamus:
 .loopTilemap:
     LDA.L Tilemap_PostCredits_DeeRForCe,X : STA.L $7E3240,X 
     INX #2
-    CPX.W #$0240 
-    BMI .loopTilemap 
+    CPX.W #$0240 : BMI .loopTilemap 
     JSR.W CinematicBGObjects_Update32x32CinematicBGTilemap 
     SEP #$20 
     LDA.B #$01 : STA.B $69 
@@ -9570,8 +9543,7 @@ CinematicFunction_PostCredits_IdleSamus1:
 .loopTilemapC:
     LDA.L Tilemap_PostCredits_1994Nintendo,X : STA.L $7E3300,X 
     INX #2
-    CPX.W #$0080 
-    BMI .loopTilemapC 
+    CPX.W #$0080 : BMI .loopTilemapC 
     JSR.W CinematicBGObjects_Update32x32CinematicBGTilemap 
     SEP #$20 
     LDA.B #$01 : STA.B $69 
@@ -9804,8 +9776,7 @@ CinematicFunction_PostCredits_FadeToWhite:
 .loopPalettes:
     LDA.L Palettes_PostCredits,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$01A0 
-    BMI .loopPalettes 
+    CPX.W #$01A0 : BMI .loopPalettes 
     STZ.W $1993 
     STZ.W $1997 
     LDA.W #CinematicFunction_PostCredits_FadeFromWhite : STA.W $1F51 
@@ -10154,8 +10125,7 @@ Initialize_ShootingStars:
     TYA 
     CLC : ADC.W #$0010 : TAY 
     INX 
-    CPX.W #$0028 
-    BMI .loop 
+    CPX.W #$0028 : BMI .loop 
     PLP 
     RTS 
 
@@ -11707,8 +11677,7 @@ Instruction_EndCredits:
 .loop:
     LDA.L Palettes_PostCredits,X : STA.L $7EC000,X 
     INX #2
-    CPX.W #$0200 
-    BMI .loop 
+    CPX.W #$0200 : BMI .loop 
     SEP #$20 
     STZ.B $69 
     LDA.B #$80 : STA.B $51 

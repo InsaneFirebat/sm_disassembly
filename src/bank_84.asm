@@ -58,8 +58,7 @@ Load_Room_PLM_Graphics:
     JSR.W Instruction_PLM_LoadItemPLMGFX 
     PLX 
     INX #2
-    CPX.W #$0008 
-    BNE .loop 
+    CPX.W #$0008 : BNE .loop 
     PLB : PLP 
     RTL 
 
@@ -754,8 +753,7 @@ Instruction_PLM_LoadItemPLMGFX:
     INC.B $16 
     INY 
     INX #2
-    CPX.B $18 
-    BNE .loop 
+    CPX.B $18 : BNE .loop 
     LDX.W $1C27 
     RTS 
 
@@ -1529,8 +1527,7 @@ DrawPLM:
 
   + PHX 
     LDX.W $0330 
-    CPX.W #$01E0 
-    BMI + 
+    CPX.W #$01E0 : BMI + 
 
 .pullXreturn:
     PLX 
@@ -1575,8 +1572,7 @@ DrawPLM:
     JMP.W .horizOneScreen 
 
 
-  + CPX.W #$00E4 
-    BPL .return8F2C 
+  + CPX.W #$00E4 : BPL .return8F2C 
     LDA.W #$0020 : SEC : SBC.B $22 : BMI .return8F2C 
     ASL A 
     STA.B $D0,X 
@@ -1732,8 +1728,7 @@ DrawPLM:
 
   + PHX 
     LDX.W $0330 
-    CPX.W #$00F0 
-    BMI + 
+    CPX.W #$00F0 : BMI + 
 
 .return908C:
     PLX 

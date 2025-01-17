@@ -3336,8 +3336,7 @@ Add_Debug_Spritemap_to_OAM:
     STA.W $0370,X 
     INY #2
     INX #2
-    CPX.W #$01FF 
-    BPL .return 
+    CPX.W #$01FF : BPL .return 
     DEC.B $18 
     BEQ .return 
     JMP.W .loop 
