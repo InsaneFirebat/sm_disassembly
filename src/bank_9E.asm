@@ -337,5 +337,5 @@ UNUSED_SamusTiles_Bottom_Set3_Entry10_9EF5C0:
 incbin "../data/UNUSED_SamusTiles_Bottom_Set3_Entry10_9EF5C0.bin" ; $100 bytes
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-Freespace_Bank9E_F6C0:                                                   ;9EF6C0;
+Freespace_Bank9E_F6C0: 
 ; $940 bytes
