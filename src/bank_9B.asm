@@ -562,12 +562,9 @@ SetProjectileTrailPosition:
     JSL.L Calculate_ProjectilePosition_InRotatingElevatorRoom 
     LDA.B $12 
     PHA 
-    LDA.B $14 
-    CLC : ADC.W $0911 
-    STA.B $12 
+    LDA.B $14 : CLC : ADC.W $0911 : STA.B $12 
     PLA 
-    CLC : ADC.W $0915 
-    STA.B $14 
+    CLC : ADC.W $0915 : STA.B $14 
     BRA + 
 
 
@@ -587,8 +584,7 @@ SetProjectileTrailPosition:
     LDA.W $0C04,X 
     AND.W #$000F 
     ASL A 
-    CLC : ADC.W BeamTrailOffsets_uncharged,Y 
-    BRA .merge 
+    CLC : ADC.W BeamTrailOffsets_uncharged,Y : BRA .merge 
 
 
 .getOffset:
@@ -598,8 +594,7 @@ SetProjectileTrailPosition:
     LDA.W $0C04,X 
     AND.W #$000F 
     ASL A 
-    CLC : ADC.W BeamTrailOffsets_charged,Y 
-    BRA .merge 
+    CLC : ADC.W BeamTrailOffsets_charged,Y : BRA .merge 
 
 
 .SBATrail:
@@ -615,8 +610,7 @@ SetProjectileTrailPosition:
     TAY 
     LDA.B $16 
     ASL #2
-    CLC : ADC.W $0000,Y 
-    TAY 
+    CLC : ADC.W $0000,Y : TAY 
     PLX 
     LDA.W $0000,Y 
     XBA 
@@ -628,9 +622,7 @@ SetProjectileTrailPosition:
 .leftYHighByte:
     ORA.W #$FF00 
 
-  + CLC : ADC.B $14 
-    SEC : SBC.W #$0004 
-    STA.L $7ED778,X 
+  + CLC : ADC.B $14 : SEC : SBC.W #$0004 : STA.L $7ED778,X 
     DEY 
     LDA.W $0000,Y 
     XBA 
@@ -642,9 +634,7 @@ SetProjectileTrailPosition:
 .leftXHighByte:
     ORA.W #$FF00 
 
-  + CLC : ADC.B $12 
-    SEC : SBC.W #$0004 
-    STA.L $7ED730,X 
+  + CLC : ADC.B $12 : SEC : SBC.W #$0004 : STA.L $7ED730,X 
     INY 
     LDA.W $0002,Y 
     XBA 
@@ -656,9 +646,7 @@ SetProjectileTrailPosition:
 .rightYHighByte:
     ORA.W #$FF00 
 
-  + CLC : ADC.B $14 
-    SEC : SBC.W #$0004 
-    STA.L $7ED79C,X 
+  + CLC : ADC.B $14 : SEC : SBC.W #$0004 : STA.L $7ED79C,X 
     LDA.W $0001,Y 
     XBA 
     BMI .rightXHighByte 
@@ -669,9 +657,7 @@ SetProjectileTrailPosition:
 .rightXHighByte:
     ORA.W #$FF00 
 
-  + CLC : ADC.B $12 
-    SEC : SBC.W #$0004 
-    STA.L $7ED754,X 
+  + CLC : ADC.B $12 : SEC : SBC.W #$0004 : STA.L $7ED754,X 
     PLB 
     PLP 
     RTL 
@@ -1344,12 +1330,8 @@ SetSamusDeathSequencePose:
     STZ.W $0A9A 
     PLA 
     STA.W $0A96 
-    LDA.W $0AF6 
-    SEC : SBC.W $0911 
-    STA.W $0AF6 
-    LDA.W $0AFA 
-    SEC : SBC.W $0915 
-    STA.W $0AFA 
+    LDA.W $0AF6 : SEC : SBC.W $0911 : STA.W $0AF6 
+    LDA.W $0AFA : SEC : SBC.W $0915 : STA.W $0AFA 
     PLB 
     PLP 
     RTL 
@@ -1529,8 +1511,7 @@ WriteDeathAnimationSpritePalettes:
     LDA.W .suitPalettes,Y : STA.B $14 
     LDA.W SamusDeathSequencePalettePointers_Suitless,X : STA.B $12 
     TXA 
-    CLC : ADC.B $14 
-    TAX 
+    CLC : ADC.B $14 : TAX 
     LDA.W $0000,X 
     TAX 
     PHB 
@@ -2104,12 +2085,8 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 HandleConnectingGrapple_Swinging:
     LDA.W #$0009 : STA.W $0A30 
-    LDA.W $0AF6 
-    SEC : SBC.W $0D08 
-    STA.B $12 
-    LDA.W $0AFA 
-    SEC : SBC.W $0D0C 
-    STA.B $14 
+    LDA.W $0AF6 : SEC : SBC.W $0D08 : STA.B $12 
+    LDA.W $0AFA : SEC : SBC.W $0D0C : STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     XBA 
     STA.W $0CFA 
@@ -2118,8 +2095,7 @@ HandleConnectingGrapple_Swinging:
     LDA.W $0CFE 
     CMP.W #$0040 
     BMI .lessThan40 
-    SEC : SBC.W #$0018 
-    STA.W $0CFE 
+    SEC : SBC.W #$0018 : STA.W $0CFE 
 
 .lessThan40:
     JSL.L UpdateGrappleBeamStartPositionDuringGrappleSwinging 
@@ -2128,12 +2104,8 @@ HandleConnectingGrapple_Swinging:
 
 HandleConnectingGrapple_StuckInPlace:
     LDA.W #$000A : STA.W $0A30 
-    LDA.W $0AF6 
-    SEC : SBC.W $0D08 
-    STA.B $12 
-    LDA.W $0AFA 
-    SEC : SBC.W $0D0C 
-    STA.B $14 
+    LDA.W $0AF6 : SEC : SBC.W $0D08 : STA.B $12 
+    LDA.W $0AFA : SEC : SBC.W $0D0C : STA.B $14 
     JSL.L CalculateAngleOf_12_14_Offset 
     XBA 
     STA.W $0CFA 
@@ -2142,8 +2114,7 @@ HandleConnectingGrapple_StuckInPlace:
     LDA.W $0CFE 
     CMP.W #$0040 
     BMI .lessThan40 
-    SEC : SBC.W #$0018 
-    STA.W $0CFE 
+    SEC : SBC.W #$0018 : STA.W $0CFE 
 
 .lessThan40:
     JSL.L UpdateGrappleBeamStartPositionDuringGrappleSwinging 
@@ -2158,8 +2129,7 @@ HandleSpecialGrappleBeamAngles:
     CMP.W GrappleBeamSpecialAngles_angle,X 
     BEQ .specialAngle 
     TXA 
-    SEC : SBC.W #$000A 
-    TAX 
+    SEC : SBC.W #$000A : TAX 
     BPL .loop 
     CLC 
     RTS 
@@ -2167,50 +2137,34 @@ HandleSpecialGrappleBeamAngles:
 
 .specialAngle:
     LDA.W GrappleBeamSpecialAngles_pose,X : STA.W $0A2A 
-    LDA.W GrappleBeamSpecialAngles_XOffset,X 
-    CLC : ADC.W $0D08 
-    STA.W $0AF6 
-    LDA.W GrappleBeamSpecialAngles_YOffset,X 
-    CLC : ADC.W $0D0C 
-    STA.W $0AFA 
+    LDA.W GrappleBeamSpecialAngles_XOffset,X : CLC : ADC.W $0D08 : STA.W $0AF6 
+    LDA.W GrappleBeamSpecialAngles_YOffset,X : CLC : ADC.W $0D0C : STA.W $0AFA 
     LDA.W GrappleBeamSpecialAngles_grappleFunction,X : STA.W $0D32 
     STZ.W $0A30 
     STZ.W $0CF8 
-    LDA.W $0AF6 
-    SEC : SBC.W $0B10 
-    BMI .checkNegativeX 
+    LDA.W $0AF6 : SEC : SBC.W $0B10 : BMI .checkNegativeX 
     CMP.W #$000D 
     BMI + 
-    LDA.W $0AF6 
-    SEC : SBC.W #$000C 
-    STA.W $0B10 
+    LDA.W $0AF6 : SEC : SBC.W #$000C : STA.W $0B10 
     BRA + 
 
 
 .checkNegativeX:
     CMP.W #$FFF4 
     BPL + 
-    LDA.W $0AF6 
-    CLC : ADC.W #$000C 
-    STA.W $0B10 
+    LDA.W $0AF6 : CLC : ADC.W #$000C : STA.W $0B10 
 
-  + LDA.W $0AFA 
-    SEC : SBC.W $0B14 
-    BMI .checkNegativeY 
+  + LDA.W $0AFA : SEC : SBC.W $0B14 : BMI .checkNegativeY 
     CMP.W #$000D 
     BMI .returnCarrySet 
-    LDA.W $0AFA 
-    SEC : SBC.W #$000C 
-    STA.W $0B14 
+    LDA.W $0AFA : SEC : SBC.W #$000C : STA.W $0B14 
     BRA .returnCarrySet 
 
 
 .checkNegativeY:
     CMP.W #$FFF4 
     BPL .returnCarrySet 
-    LDA.W $0AFA 
-    CLC : ADC.W #$000C 
-    STA.W $0B14 
+    LDA.W $0AFA : CLC : ADC.W #$000C : STA.W $0B14 
 
 .returnCarrySet:
     SEC 
@@ -2446,16 +2400,11 @@ DetermineGrappleSwingAngularAccelerationDueToAngleOfSwing:
 
 
 UpdateGrappleSwingAngularVelocity:
-    LDA.W $0D26 
-    CLC : ADC.W $0D28 
-    CLC : ADC.W $0D2A 
-    STA.W $0D26 
+    LDA.W $0D26 : CLC : ADC.W $0D28 : CLC : ADC.W $0D2A : STA.W $0D26 
     LDA.W $0CFA 
     EOR.W $0D26 
     BPL .notRising 
-    LDA.W $0D26 
-    CLC : ADC.W $0D2C 
-    STA.W $0D26 
+    LDA.W $0D26 : CLC : ADC.W $0D2C : STA.W $0D26 
 
 .notRising:
     LDA.W $0D26 
@@ -2596,8 +2545,7 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
     LDA.W #$0010 
 
 .grappleKicking:
-    CLC : ADC.W #$0020 
-    STA.W $0A96 
+    CLC : ADC.W #$0020 : STA.W $0A96 
 
 .notGrappleKicking:
     LDA.W $0A1E 
@@ -2610,16 +2558,14 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
     BPL + 
     ORA.W #$FF00 
 
-  + CLC : ADC.W $0D16 
-    STA.W $0AF6 
+  + CLC : ADC.W $0D16 : STA.W $0AF6 
     LDA.W GrappleSwingSamusXYOffsets_Right,X 
     AND.W #$FF00 
     XBA 
     BPL + 
     ORA.W #$FF00 
 
-  + CLC : ADC.W $0D18 
-    STA.W $0AFA 
+  + CLC : ADC.W $0D18 : STA.W $0AFA 
     LDA.W $0D16 : STA.W $0D1A 
     LDA.W $0D18 : STA.W $0D1C 
     JSR.W ClampScrollingSpeed 
@@ -2635,16 +2581,14 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
     BPL + 
     ORA.W #$FF00 
 
-  + CLC : ADC.W $0D16 
-    STA.W $0AF6 
+  + CLC : ADC.W $0D16 : STA.W $0AF6 
     LDA.W GrappleSwingSamusXYOffsets_Left,X 
     AND.W #$FF00 
     XBA 
     BPL + 
     ORA.W #$FF00 
 
-  + CLC : ADC.W $0D18 
-    STA.W $0AFA 
+  + CLC : ADC.W $0D18 : STA.W $0AFA 
     LDA.W $0D16 : STA.W $0D1A 
     LDA.W $0D18 : STA.W $0D1C 
     JSR.W ClampScrollingSpeed 
@@ -2654,40 +2598,28 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
 
 
 ClampScrollingSpeed:
-    LDA.W $0AF6 
-    SEC : SBC.W $0B10 
-    BMI + 
+    LDA.W $0AF6 : SEC : SBC.W $0B10 : BMI + 
     CMP.W #$000D 
     BMI .previousY 
-    LDA.W $0AF6 
-    SEC : SBC.W #$000C 
-    STA.W $0B10 
+    LDA.W $0AF6 : SEC : SBC.W #$000C : STA.W $0B10 
     BRA .previousY 
 
 
   + CMP.W #$FFF4 
     BPL .previousY 
-    LDA.W $0AF6 
-    CLC : ADC.W #$000C 
-    STA.W $0B10 
+    LDA.W $0AF6 : CLC : ADC.W #$000C : STA.W $0B10 
 
 .previousY:
-    LDA.W $0AFA 
-    SEC : SBC.W $0B14 
-    BMI + 
+    LDA.W $0AFA : SEC : SBC.W $0B14 : BMI + 
     CMP.W #$000D 
     BMI .return 
-    LDA.W $0AFA 
-    SEC : SBC.W #$000C 
-    STA.W $0B14 
+    LDA.W $0AFA : SEC : SBC.W #$000C : STA.W $0B14 
     BRA .return 
 
 
   + CMP.W #$FFF4 
     BPL .return 
-    LDA.W $0AFA 
-    CLC : ADC.W #$000C 
-    STA.W $0B14 
+    LDA.W $0AFA : CLC : ADC.W #$000C : STA.W $0B14 
 
 .return:
     RTS 
@@ -2702,16 +2634,10 @@ SetSamusAnimationFrameAndPositionForConnectingGrapple_Stuck:
     LDA.W $0D34 
     ASL A 
     TAX 
-    LDA.W $0D16 
-    SEC : SBC.W GrappleBeamFireOffsets_NotRunning_OriginX,X 
-    STA.W $0AF6 
-    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareX,X 
-    STA.W $0D1A 
-    LDA.W $0D18 
-    SEC : SBC.W GrappleBeamFireOffsets_NotRunning_OriginY,X 
-    STA.W $0AFA 
-    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareY,X 
-    STA.W $0D1C 
+    LDA.W $0D16 : SEC : SBC.W GrappleBeamFireOffsets_NotRunning_OriginX,X : STA.W $0AF6 
+    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareX,X : STA.W $0D1A 
+    LDA.W $0D18 : SEC : SBC.W GrappleBeamFireOffsets_NotRunning_OriginY,X : STA.W $0AFA 
+    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareY,X : STA.W $0D1C 
     PLB 
     PLP 
     RTL 
@@ -2745,38 +2671,26 @@ UpdateGrappleBeamStartPositionDuringGrappleFire:
 .moonwalking:
     LDA.W $0AF6 
     PHA 
-    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_OriginX,X 
-    STA.W $0D16 
+    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_OriginX,X : STA.W $0D16 
     PLA 
-    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareX,X 
-    STA.W $0D1A 
-    LDA.W $0AFA 
-    SEC : SBC.B $16 
-    PHA 
-    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_OriginY,X 
-    STA.W $0D18 
+    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareX,X : STA.W $0D1A 
+    LDA.W $0AFA : SEC : SBC.B $16 : PHA 
+    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_OriginY,X : STA.W $0D18 
     PLA 
-    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareY,X 
-    STA.W $0D1C 
+    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareY,X : STA.W $0D1C 
     BRA .return 
 
 
 .running:
     LDA.W $0AF6 
     PHA 
-    CLC : ADC.W GrappleBeamFireOffsets_Running_OriginX,X 
-    STA.W $0D16 
+    CLC : ADC.W GrappleBeamFireOffsets_Running_OriginX,X : STA.W $0D16 
     PLA 
-    CLC : ADC.W GrappleBeamFireOffsets_Running_FlareX,X 
-    STA.W $0D1A 
-    LDA.W $0AFA 
-    SEC : SBC.B $16 
-    PHA 
-    CLC : ADC.W GrappleBeamFireOffsets_Running_OriginY,X 
-    STA.W $0D18 
+    CLC : ADC.W GrappleBeamFireOffsets_Running_FlareX,X : STA.W $0D1A 
+    LDA.W $0AFA : SEC : SBC.B $16 : PHA 
+    CLC : ADC.W GrappleBeamFireOffsets_Running_OriginY,X : STA.W $0D18 
     PLA 
-    CLC : ADC.W GrappleBeamFireOffsets_Running_FlareY,X 
-    STA.W $0D1C 
+    CLC : ADC.W GrappleBeamFireOffsets_Running_FlareY,X : STA.W $0D1C 
 
 .return:
     PLB 
@@ -2809,9 +2723,7 @@ UpdateGrappleBeamTiles:
     STA.W $0D3E 
     BPL .timerNotExpired 
     LDA.W #$0005 : STA.W $0D3E 
-    LDA.W $0D40 
-    CLC : ADC.W #$0200 
-    STA.W $0D40 
+    LDA.W $0D40 : CLC : ADC.W #$0200 : STA.W $0D40 
     CMP.W GrappleBeamStartTilesBeginEndPointers_1 
     BMI .timerNotExpired 
     LDA.W GrappleBeamStartTilesBeginEndPointers_0 : STA.W $0D40 
@@ -2890,9 +2802,7 @@ HandleGrappleBeamFlare:
     LDA.L FlareAnimationDelays_MainFlare,X 
     AND.W #$00FF 
     STA.B $12 
-    LDA.W $0CD6 
-    SEC : SBC.B $12 
-    STA.W $0CD6 
+    LDA.W $0CD6 : SEC : SBC.B $12 : STA.W $0CD6 
     TAX 
 
 .setAnimationTimer:
@@ -2905,23 +2815,15 @@ HandleGrappleBeamFlare:
     AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
-    LDA.L FlareSpritemapTable_IndexOffsets_facingRight 
-    CLC : ADC.W $0CD6 
-    STA.B $16 
+    LDA.L FlareSpritemapTable_IndexOffsets_facingRight : CLC : ADC.W $0CD6 : STA.B $16 
     BRA + 
 
 
 .facingLeft:
-    LDA.L FlareSpritemapTable_IndexOffsets_facingLeft 
-    CLC : ADC.W $0CD6 
-    STA.B $16 
+    LDA.L FlareSpritemapTable_IndexOffsets_facingLeft : CLC : ADC.W $0CD6 : STA.B $16 
 
-  + LDA.W $0D1A 
-    SEC : SBC.W $0911 
-    STA.B $14 
-    LDA.W $0D1C 
-    SEC : SBC.W $0915 
-    STA.B $12 
+  + LDA.W $0D1A : SEC : SBC.W $0911 : STA.B $14 
+    LDA.W $0D1C : SEC : SBC.W $0915 : STA.B $12 
     AND.W #$FF00 
     BNE + 
     LDA.B $16 
@@ -3364,51 +3266,35 @@ GrappleBeamFunction_Fire_GotoCancel:
 
 .moonwalkingNotRunning:
     LDA.W GrappleBeamFireOffsets_NotRunning_OriginX,X : STA.W $0D02 
-    LDA.W GrappleBeamFireOffsets_NotRunning_OriginY,X 
-    SEC : SBC.B $16 
-    STA.W $0D04 
+    LDA.W GrappleBeamFireOffsets_NotRunning_OriginY,X : SEC : SBC.B $16 : STA.W $0D04 
     LDA.W $0AF6 
     PHA 
-    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_OriginX,X 
-    STA.W $0D08 
+    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_OriginX,X : STA.W $0D08 
     STA.W $0D16 
     PLA 
-    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareX,X 
-    STA.W $0D1A 
-    LDA.W $0AFA 
-    SEC : SBC.B $16 
-    PHA 
-    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_OriginY,X 
-    STA.W $0D0C 
+    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareX,X : STA.W $0D1A 
+    LDA.W $0AFA : SEC : SBC.B $16 : PHA 
+    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_OriginY,X : STA.W $0D0C 
     STA.W $0D18 
     PLA 
-    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareY,X 
-    STA.W $0D1C 
+    CLC : ADC.W GrappleBeamFireOffsets_NotRunning_FlareY,X : STA.W $0D1C 
     BRA .merge 
 
 
 .running:
     LDA.W GrappleBeamFireOffsets_Running_OriginX,X : STA.W $0D02 
-    LDA.W GrappleBeamFireOffsets_Running_OriginY,X 
-    SEC : SBC.B $16 
-    STA.W $0D04 
+    LDA.W GrappleBeamFireOffsets_Running_OriginY,X : SEC : SBC.B $16 : STA.W $0D04 
     LDA.W $0AF6 
     PHA 
-    CLC : ADC.W GrappleBeamFireOffsets_Running_OriginX,X 
-    STA.W $0D08 
+    CLC : ADC.W GrappleBeamFireOffsets_Running_OriginX,X : STA.W $0D08 
     STA.W $0D16 
     PLA 
-    CLC : ADC.W GrappleBeamFireOffsets_Running_FlareX,X 
-    STA.W $0D1A 
-    LDA.W $0AFA 
-    SEC : SBC.B $16 
-    PHA 
-    CLC : ADC.W GrappleBeamFireOffsets_Running_OriginY,X 
-    STA.W $0D0C 
+    CLC : ADC.W GrappleBeamFireOffsets_Running_FlareX,X : STA.W $0D1A 
+    LDA.W $0AFA : SEC : SBC.B $16 : PHA 
+    CLC : ADC.W GrappleBeamFireOffsets_Running_OriginY,X : STA.W $0D0C 
     STA.W $0D18 
     PLA 
-    CLC : ADC.W GrappleBeamFireOffsets_Running_FlareY,X 
-    STA.W $0D1C 
+    CLC : ADC.W GrappleBeamFireOffsets_Running_FlareY,X : STA.W $0D1C 
 
 .merge:
     STZ.W $0D06 
@@ -3540,9 +3426,7 @@ GrappleBeamFunction_Firing:
 
 .firing:
     JSR.W RTS_9BB8D4 
-    LDA.W $0CFE 
-    CLC : ADC.W $0D00 
-    STA.W $0CFE 
+    LDA.W $0CFE : CLC : ADC.W $0D00 : STA.W $0CFE 
     CMP.W #$0080 
     BMI .enemyCollisionCheck 
 
@@ -3592,9 +3476,7 @@ UNUSED_GrappleBeamFunction_Unfiring_9BC759:
 
 .firing:
     JSR.W RTS_9BB8D4 
-    LDA.W $0CFE 
-    SEC : SBC.W $0D00 
-    STA.W $0CFE 
+    LDA.W $0CFE : SEC : SBC.W $0D00 : STA.W $0CFE 
     CMP.W #$000D 
     BMI .cancel 
     JSL.L GrappleBeamBlockCollisionDetection 
@@ -3980,16 +3862,12 @@ PropelSamusFromGrappleSwing:
     AND.W #$00FF 
     STA.B $12 
     ASL A 
-    CLC : ADC.B $12 
-    STA.B $12 
-    LDA.W #$0040 
-    SEC : SBC.B $12 
-    STA.B $12 
+    CLC : ADC.B $12 : STA.B $12 
+    LDA.W #$0040 : SEC : SBC.B $12 : STA.B $12 
     LDA.W $0CFA 
     XBA 
     AND.W #$00FF 
-    SEC : SBC.B $12 
-    AND.W #$00FF 
+    SEC : SBC.B $12 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L SineCosineTables_8bitSine_SignExtended,X 
@@ -4039,16 +3917,12 @@ PropelSamusFromGrappleSwing:
     AND.W #$00FF 
     STA.B $12 
     ASL A 
-    CLC : ADC.B $12 
-    STA.B $12 
-    LDA.W #$0040 
-    SEC : SBC.B $12 
-    STA.B $12 
+    CLC : ADC.B $12 : STA.B $12 
+    LDA.W #$0040 : SEC : SBC.B $12 : STA.B $12 
     LDA.W $0CFA 
     XBA 
     AND.W #$00FF 
-    SEC : SBC.B $12 
-    AND.W #$00FF 
+    SEC : SBC.B $12 : AND.W #$00FF 
     ASL A 
     TAX 
     LDA.L SineCosineTables_8bitSine_SignExtended,X 

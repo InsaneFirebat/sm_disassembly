@@ -243,8 +243,7 @@ Initialise_MessageBox:
     ASL A 
     STA.B $34 
     ASL A 
-    CLC : ADC.B $34 
-    TAX 
+    CLC : ADC.B $34 : TAX 
     PHX 
     JSR.W (MessageDefinitionsPointers_drawInitialMessageBox,X) 
     PLX 
@@ -322,17 +321,12 @@ Write_Message_Tilemap:
     ASL A 
     STA.B $34 
     ASL A 
-    CLC : ADC.B $34 
-    TAX 
+    CLC : ADC.B $34 : TAX 
     LDA.W MessageDefinitionsPointers_messageTilemap,X : STA.B $00 
-    LDA.W MessageDefinitionsPointers_nextEntryMessageTilemap,X 
-    SEC : SBC.B $00 
-    STA.B $09 
+    LDA.W MessageDefinitionsPointers_nextEntryMessageTilemap,X : SEC : SBC.B $00 : STA.B $09 
     LSR A 
     STA.B $16 
-    LDA.B $09 
-    CLC : ADC.W #$0080 
-    STA.B $09 
+    LDA.B $09 : CLC : ADC.W #$0080 : STA.B $09 
     LDX.W #$0040 
     LDY.W #$0000 
 
@@ -349,9 +343,7 @@ Setup_PPU_for_Active_MessageBox:
     JSR.W Setup_MessageBox_BG3_Yscroll_HDMA 
     JSR.W Wait_for_Lag_Frame 
     REP #$20 
-    LDA.W #$5800 
-    CLC : ADC.B $34 
-    STA.B $34 
+    LDA.W #$5800 : CLC : ADC.B $34 : STA.B $34 
     STA.W $2116 
     LDA.W #$1801 : STA.W $4310 
     LDA.W #$3200 : STA.W $4312 
@@ -470,9 +462,7 @@ Open_MessageBox:
 
 .loop:
     JSR.W Write_MessageBox_BG3_Yscroll_HDMA_DataTable 
-    LDA.W $05A2 
-    CLC : ADC.W #$0200 
-    STA.W $05A2 
+    LDA.W $05A2 : CLC : ADC.W #$0200 : STA.W $05A2 
     CMP.W #$1800 
     BMI .loop 
     LDA.W #$1800 : STA.W $05A2 
@@ -627,9 +617,7 @@ Close_MessageBox:
 
 .loop:
     JSR.W Write_MessageBox_BG3_Yscroll_HDMA_DataTable 
-    LDA.W $05A2 
-    SEC : SBC.W #$0200 
-    STA.W $05A2 
+    LDA.W $05A2 : SEC : SBC.W #$0200 : STA.W $05A2 
     BPL .loop 
     RTS 
 
@@ -640,15 +628,11 @@ Write_MessageBox_BG3_Yscroll_HDMA_DataTable:
     REP #$30 
     JSL.L HandleMusicQueue 
     JSL.L HandleSounds 
-    LDA.W #$7B00 
-    SEC : SBC.W $05A2 
-    XBA 
+    LDA.W #$7B00 : SEC : SBC.W $05A2 : XBA 
     AND.W #$00FF 
     STA.W $05A8 
     LDA.W #$0063 : STA.W $05AA 
-    LDA.W #$7C00 
-    CLC : ADC.W $05A2 
-    XBA 
+    LDA.W #$7C00 : CLC : ADC.W $05A2 : XBA 
     AND.W #$00FF 
     STA.W $05A4 
     LDA.W #$0094 : STA.W $05A6 
@@ -657,17 +641,13 @@ Write_MessageBox_BG3_Yscroll_HDMA_DataTable:
     LDA.W #$001E : STA.B $14 
 
 .loop:
-    LDA.W $05AA 
-    SEC : SBC.W $05A8 
-    STA.L $7E3000,X 
+    LDA.W $05AA : SEC : SBC.W $05A8 : STA.L $7E3000,X 
     DEC.W $05AA 
     DEC.W $05A8 
     DEX #2
     PHX 
     TYX 
-    LDA.W $05A6 
-    SEC : SBC.W $05A4 
-    STA.L $7E3000,X 
+    LDA.W $05A6 : SEC : SBC.W $05A4 : STA.L $7E3000,X 
     PLX 
     INC.W $05A6 
     INC.W $05A4 

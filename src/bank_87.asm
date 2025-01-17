@@ -116,8 +116,7 @@ Process_AnimatedTilesObject:
     STA.W $1F19,X 
     LDA.W $0002,Y : STA.W $1F25,X 
     TYA 
-    CLC : ADC.W #$0004 
-    STA.W $1F0D,X 
+    CLC : ADC.W #$0004 : STA.W $1F0D,X 
 
 .return:
     RTS 
@@ -149,8 +148,7 @@ UNUSED_Instruction_AnimatedTilesObject_GotoYPlusY_8780BC:
 .highByte:
     ORA.W #$FF00 
 
-  + CLC : ADC.W $1F49 
-    TAY 
+  + CLC : ADC.W $1F49 : TAY 
     RTS 
 
 

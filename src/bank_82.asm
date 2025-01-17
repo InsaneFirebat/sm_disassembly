@@ -153,15 +153,12 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     DEC A 
     STA.B $12 
     ASL #3
-    ADC.B $12 
-    ASL A 
+    ADC.B $12 : ASL A 
     STA.B $12 
     LDA.W $1F55 
     ASL A 
     TAX 
-    LDA.W DemoRoomData_pointers,X 
-    CLC : ADC.B $12 
-    TAX 
+    LDA.W DemoRoomData_pointers,X : CLC : ADC.B $12 : TAX 
     LDA.W $0010,X : STA.B $12 
     LDX.W #$0000 
     JSR.W ($0012,X) 
@@ -629,8 +626,7 @@ GameState_2B_UnloadGameData:
     JSL.L Clear_PaletteFXObjects 
     LDA.W #$1C1F 
     DEC #2
-    SEC : SBC.W #$198D 
-    TAX 
+    SEC : SBC.W #$198D : TAX 
 
 .clearNonGameplayRAM:
     STZ.W $198D,X 
@@ -638,8 +634,7 @@ GameState_2B_UnloadGameData:
     BPL .clearNonGameplayRAM 
     LDA.W #$0998 
     DEC #2
-    SEC : SBC.W #$077C 
-    TAX 
+    SEC : SBC.W #$077C : TAX 
 
 .clearGameplayRAM:
     STZ.W $077C,X 
@@ -691,15 +686,12 @@ CheckForNextDemo:
     REP #$30 
     LDA.W $1F57 
     ASL #3
-    ADC.W $1F57 
-    ASL A 
+    ADC.W $1F57 : ASL A 
     STA.B $12 
     LDA.W $1F55 
     ASL A 
     TAX 
-    LDA.W DemoRoomData_pointers,X 
-    CLC : ADC.B $12 
-    TAX 
+    LDA.W DemoRoomData_pointers,X : CLC : ADC.B $12 : TAX 
     LDA.W $0000,X 
     CMP.W #$FFFF 
     BNE .nextDemoScene 
@@ -728,15 +720,12 @@ LoadDemoRoomData:
     STZ.W $078D 
     LDA.W $1F57 
     ASL #3
-    ADC.W $1F57 
-    ASL A 
+    ADC.W $1F57 : ASL A 
     STA.B $12 
     LDA.W $1F55 
     ASL A 
     TAX 
-    LDA.W DemoRoomData_pointers,X 
-    CLC : ADC.B $12 
-    TAX 
+    LDA.W DemoRoomData_pointers,X : CLC : ADC.B $12 : TAX 
     LDA.W $0000,X : STA.W $079B 
     LDA.W $0002,X : STA.W $078D 
     LDA.W $0004,X : STA.W $078F 
@@ -744,14 +733,9 @@ LoadDemoRoomData:
     STA.W $091D 
     LDA.W $0008,X : STA.W $0915 
     STA.W $091F 
-    LDA.W $000A,X 
-    CLC : ADC.W $0915 
-    STA.W $0AFA 
+    LDA.W $000A,X : CLC : ADC.W $0915 : STA.W $0AFA 
     STA.W $0B14 
-    LDA.W $0911 
-    CLC : ADC.W #$0080 
-    CLC : ADC.W $000C,X 
-    STA.W $0AF6 
+    LDA.W $0911 : CLC : ADC.W #$0080 : CLC : ADC.W $000C,X : STA.W $0AF6 
     STA.W $0B10 
     LDA.W $000E,X : STA.W $1F53 
     PHB 
@@ -1109,9 +1093,7 @@ SoundState_0_SendAPUSoundRequestFromQueue:
     LDA.W $0643,X 
     CMP.W $0646,X 
     BEQ .return 
-    LDA.L .data,X 
-    CLC : ADC.W $0643,X 
-    TAY 
+    LDA.L .data,X : CLC : ADC.W $0643,X : TAY 
     LDA.W $0656,Y : STA.W $2141,X 
     STA.W $064D,X 
     INY 
@@ -1431,8 +1413,7 @@ Process_GameOptionsMenu_Object:
     STA.W $1B1D,X 
     LDA.W $0002,Y : STA.W $1A9D,X 
     TYA 
-    CLC : ADC.W #$0004 
-    STA.W $1AFD,X 
+    CLC : ADC.W #$0004 : STA.W $1AFD,X 
 
 .return:
     RTS 
@@ -1745,8 +1726,7 @@ LoadPauseScreen_BaseTilemaps:
     DEC.B $12 
     BNE .loopColumns 
     TXA 
-    CLC : ADC.W #$0010 
-    TAX 
+    CLC : ADC.W #$0010 : TAX 
     DEC.B $14 
     BNE .loopRows 
     JSR.W EquipmentScreen_WriteSamusWireframeTilemap 
@@ -1771,15 +1751,9 @@ Load_EquipmentScreen_ReserveHealth_Tilemap:
     LDA.B #$0A : STA.W $4206 
     REP #$20 
     NOP #7
-    LDA.W $4216 
-    CLC : ADC.W #$0804 
-    STA.L $7E3B14 
-    LDA.W $4214 
-    CLC : ADC.W #$0804 
-    STA.L $7E3B12 
-    LDA.B $2A 
-    CLC : ADC.W #$0804 
-    STA.L $7E3B10 
+    LDA.W $4216 : CLC : ADC.W #$0804 : STA.L $7E3B14 
+    LDA.W $4214 : CLC : ADC.W #$0804 : STA.L $7E3B12 
+    LDA.B $2A : CLC : ADC.W #$0804 : STA.L $7E3B10 
 
 .return:
     PLP 
@@ -1836,66 +1810,40 @@ ContinueInitializingPauseMenu:
 Setup_MapScrolling_for_FileSelectMap:
     JSR.W ResetPauseMenuAnimations 
     JSR.W DetermineMapScrollLimits 
-    LDA.W $05AE 
-    SEC : SBC.W $05AC 
-    LSR A 
-    CLC : ADC.W $05AC 
-    SEC : SBC.W #$0080 
-    STA.B $B1 
+    LDA.W $05AE : SEC : SBC.W $05AC : LSR A 
+    CLC : ADC.W $05AC : SEC : SBC.W #$0080 : STA.B $B1 
     LDA.W $0AF6 
     AND.W #$FF00 
     XBA 
-    CLC : ADC.W $07A1 
-    ASL #3
-    SEC : SBC.B $B1 
+    CLC : ADC.W $07A1 : ASL #3
+    SEC : SBC.B $B1 : STA.B $12 
+    LDA.W #$00E0 : SEC : SBC.B $12 : BPL .Xscroll 
     STA.B $12 
-    LDA.W #$00E0 
-    SEC : SBC.B $12 
-    BPL .Xscroll 
-    STA.B $12 
-    LDA.B $B1 
-    SEC : SBC.B $12 
-    STA.B $B1 
+    LDA.B $B1 : SEC : SBC.B $12 : STA.B $B1 
     BRA .Yscroll 
 
 
 .Xscroll:
-    LDA.W #$0020 
-    SEC : SBC.B $12 
-    STA.B $12 
+    LDA.W #$0020 : SEC : SBC.B $12 : STA.B $12 
     BMI .Yscroll 
-    LDA.B $B1 
-    SEC : SBC.B $12 
-    STA.B $B1 
+    LDA.B $B1 : SEC : SBC.B $12 : STA.B $B1 
 
 .Yscroll:
-    LDA.W $05B2 
-    SEC : SBC.W $05B0 
-    LSR A 
-    CLC : ADC.W #$0010 
-    CLC : ADC.W $05B0 
-    STA.B $12 
-    LDA.W #$0070 
-    SEC : SBC.B $12 
-    AND.W #$FFF8 
+    LDA.W $05B2 : SEC : SBC.W $05B0 : LSR A 
+    CLC : ADC.W #$0010 : CLC : ADC.W $05B0 : STA.B $12 
+    LDA.W #$0070 : SEC : SBC.B $12 : AND.W #$FFF8 
     EOR.W #$FFFF 
     INC A 
     STA.B $B3 
     LDA.W $0AFA 
     XBA 
     AND.W #$00FF 
-    CLC : ADC.W $07A3 
-    INC A 
+    CLC : ADC.W $07A3 : INC A 
     ASL #3
-    SEC : SBC.B $B3 
+    SEC : SBC.B $B3 : STA.B $12 
+    LDA.W #$0040 : SEC : SBC.B $12 : BMI .return 
     STA.B $12 
-    LDA.W #$0040 
-    SEC : SBC.B $12 
-    BMI .return 
-    STA.B $12 
-    LDA.B $B3 
-    SEC : SBC.B $12 
-    STA.B $B3 
+    LDA.B $B3 : SEC : SBC.B $12 : STA.B $B3 
     CMP.W #$FFD8 
     BPL .return 
     LDA.W #$FFD8 : STA.B $B3 
@@ -2130,8 +2078,7 @@ GetMapScrollSpeedIndexInX:
     LDA.W $05FB 
     BNE .return 
     TXA 
-    CLC : ADC.W #$0020 
-    TAX 
+    CLC : ADC.W #$0020 : TAX 
 
 .return:
     RTS 
@@ -2139,9 +2086,7 @@ GetMapScrollSpeedIndexInX:
 
 MapScrolling_Left:
     JSR.W GetMapScrollSpeedIndexInX 
-    LDA.B $B1 
-    SEC : SBC.W MapScrolling_SpeedTable,X 
-    STA.B $B1 
+    LDA.B $B1 : SEC : SBC.W MapScrolling_SpeedTable,X : STA.B $B1 
 
 MapScrolling_Common:
     INC.W $05FF 
@@ -2163,25 +2108,19 @@ MapScrolling_Common:
 
 MapScrolling_Right:
     JSR.W GetMapScrollSpeedIndexInX 
-    LDA.W MapScrolling_SpeedTable,X 
-    CLC : ADC.B $B1 
-    STA.B $B1 
+    LDA.W MapScrolling_SpeedTable,X : CLC : ADC.B $B1 : STA.B $B1 
     BRA MapScrolling_Common 
 
 
 MapScrolling_Up:
     JSR.W GetMapScrollSpeedIndexInX 
-    LDA.B $B3 
-    SEC : SBC.W MapScrolling_SpeedTable,X 
-    STA.B $B3 
+    LDA.B $B3 : SEC : SBC.W MapScrolling_SpeedTable,X : STA.B $B3 
     BRA MapScrolling_Common 
 
 
 MapScrolling_Down:
     JSR.W GetMapScrollSpeedIndexInX 
-    LDA.W MapScrolling_SpeedTable,X 
-    CLC : ADC.B $B3 
-    STA.B $B3 
+    LDA.W MapScrolling_SpeedTable,X : CLC : ADC.B $B3 : STA.B $B3 
     BRA MapScrolling_Common 
 
 
@@ -2327,8 +2266,7 @@ LoadPauseMenuMapTilemap:
 
   + STA.B $12 
     ASL A 
-    CLC : ADC.B $12 
-    TAX 
+    CLC : ADC.B $12 : TAX 
     LDA.W AreaMapPointers,X : STA.B $00 
     LDA.W AreaMapPointers+2,X : STA.B $02 
     LDA.W #$4000 : STA.B $03 
@@ -2448,8 +2386,7 @@ DrawRoomSelectMap:
 
   + STA.B $12 
     ASL A 
-    CLC : ADC.B $12 
-    TAX 
+    CLC : ADC.B $12 : TAX 
     LDA.W AreaMapPointers,X : STA.B $00 
     LDA.W AreaMapPointers+2,X : STA.B $02 
     LDA.W #$3000 : STA.B $03 
@@ -2560,8 +2497,7 @@ DrawRoomSelectMap:
     XBA 
     STA.B $D5,X 
     TXA 
-    CLC : ADC.W #$0007 
-    STA.W $0330 
+    CLC : ADC.W #$0007 : STA.W $0330 
     RTL 
 
 
@@ -3103,66 +3039,40 @@ MapData_ceres:
 SetupMapScrollingForPauseMenu:
     REP #$30 
     STA.B $14 
-    LDA.W $05AE 
-    SEC : SBC.W $05AC 
-    LSR A 
-    CLC : ADC.W $05AC 
-    SEC : SBC.W #$0080 
-    STA.B $B1 
+    LDA.W $05AE : SEC : SBC.W $05AC : LSR A 
+    CLC : ADC.W $05AC : SEC : SBC.W #$0080 : STA.B $B1 
     LDA.W $0AF6 
     AND.W #$FF00 
     XBA 
-    CLC : ADC.W $07A1 
-    ASL #3
-    SEC : SBC.B $B1 
+    CLC : ADC.W $07A1 : ASL #3
+    SEC : SBC.B $B1 : STA.B $12 
+    LDA.W #$00E0 : SEC : SBC.B $12 : BPL .Xscroll 
     STA.B $12 
-    LDA.W #$00E0 
-    SEC : SBC.B $12 
-    BPL .Xscroll 
-    STA.B $12 
-    LDA.B $B1 
-    SEC : SBC.B $12 
-    STA.B $B1 
+    LDA.B $B1 : SEC : SBC.B $12 : STA.B $B1 
     BRA .Yscroll 
 
 
 .Xscroll:
-    LDA.W #$0020 
-    SEC : SBC.B $12 
-    STA.B $12 
+    LDA.W #$0020 : SEC : SBC.B $12 : STA.B $12 
     BMI .Yscroll 
-    LDA.B $B1 
-    SEC : SBC.B $12 
-    STA.B $B1 
+    LDA.B $B1 : SEC : SBC.B $12 : STA.B $B1 
 
 .Yscroll:
-    LDA.W $05B2 
-    SEC : SBC.W $05B0 
-    LSR A 
-    CLC : ADC.W #$0010 
-    CLC : ADC.W $05B0 
-    STA.B $12 
-    LDA.B $14 
-    SEC : SBC.B $12 
-    AND.W #$FFF8 
+    LDA.W $05B2 : SEC : SBC.W $05B0 : LSR A 
+    CLC : ADC.W #$0010 : CLC : ADC.W $05B0 : STA.B $12 
+    LDA.B $14 : SEC : SBC.B $12 : AND.W #$FFF8 
     EOR.W #$FFFF 
     INC A 
     STA.B $B3 
     LDA.W $0AFA 
     XBA 
     AND.W #$00FF 
-    CLC : ADC.W $07A3 
-    INC A 
+    CLC : ADC.W $07A3 : INC A 
     ASL #3
-    SEC : SBC.B $B3 
+    SEC : SBC.B $B3 : STA.B $12 
+    LDA.W #$0040 : SEC : SBC.B $12 : BMI .return 
     STA.B $12 
-    LDA.W #$0040 
-    SEC : SBC.B $12 
-    BMI .return 
-    STA.B $12 
-    LDA.B $B3 
-    SEC : SBC.B $12 
-    STA.B $B3 
+    LDA.B $B3 : SEC : SBC.B $12 : STA.B $B3 
     CMP.W #$FFD8 
     BPL .return 
     LDA.W #$FFD8 : STA.B $B3 
@@ -3201,13 +3111,9 @@ DetermineMapScrollLimits:
     LDA.W $079F 
     CMP.W #$0004 
     BNE + 
-    LDA.W $05AC 
-    SEC : SBC.W #$0018 
-    STA.W $05AC 
+    LDA.W $05AC : SEC : SBC.W #$0018 : STA.W $05AC 
 
-  + LDA.B $06 
-    CLC : ADC.W #$0083 
-    STA.B $00 
+  + LDA.B $06 : CLC : ADC.W #$0083 : STA.B $00 
     JSR.W DetermineRightmostMapColumn 
     JSR.W A_equals_X_times_8 
     STA.W $05AE 
@@ -3215,9 +3121,7 @@ DetermineMapScrollLimits:
     JSR.W DetermineTopmostMapRow 
     JSR.W A_equals_X_times_8 
     STA.W $05B0 
-    LDA.B $06 
-    CLC : ADC.W #$007C 
-    STA.B $00 
+    LDA.B $06 : CLC : ADC.W #$007C : STA.B $00 
     JSR.W DetermineLeftmostMapRow 
     JSR.W A_equals_X_times_8 
     STA.W $05B2 
@@ -3260,21 +3164,15 @@ DetermineLeftmostMapColumn:
     TXA 
     AND.B #$07 
     BNE + 
-    LDA.B $00 
-    CLC : ADC.B #$01 
-    STA.B $00 
+    LDA.B $00 : CLC : ADC.B #$01 : STA.B $00 
     LDA.B $01 
-    ADC.B #$00 
-    STA.B $01 
+    ADC.B #$00 : STA.B $01 
 
   + CPX.W #$0020 
     BNE .loopColumns 
-    LDA.B $00 
-    CLC : ADC.B #$7B 
-    STA.B $00 
+    LDA.B $00 : CLC : ADC.B #$7B : STA.B $00 
     LDA.B $01 
-    ADC.B #$00 
-    STA.B $01 
+    ADC.B #$00 : STA.B $01 
     BRA .loopColumns 
 
 
@@ -3317,19 +3215,14 @@ DetermineRightmostMapColumn:
     AND.B #$07 
     CMP.B #$07 
     BNE + 
-    LDA.B $00 
-    SEC : SBC.B #$01 
-    STA.B $00 
+    LDA.B $00 : SEC : SBC.B #$01 : STA.B $00 
     LDA.B $01 
-    SBC.B #$00 
-    STA.B $01 
+    SBC.B #$00 : STA.B $01 
 
   + CPX.W #$001F 
     BNE .loopColumns 
     REP #$20 
-    LDA.B $00 
-    SEC : SBC.W #$007C 
-    STA.B $00 
+    LDA.B $00 : SEC : SBC.W #$007C : STA.B $00 
     LDA.W #$0000 
     SEP #$20 
     BRA .loopColumns 
@@ -3349,9 +3242,7 @@ DetermineRightmostMapColumn:
 DetermineTopmostMapRow:
     PHP 
     REP #$20 
-    LDA.B $00 
-    CLC : ADC.W #$0080 
-    STA.B $03 
+    LDA.B $00 : CLC : ADC.W #$0080 : STA.B $03 
     LDA.W #$0000 
     SEP #$20 
     LDA.B $02 : STA.B $05 
@@ -3368,12 +3259,8 @@ DetermineTopmostMapRow:
     BMI .loop 
     LDY.W #$0000 
     REP #$20 
-    LDA.B $00 
-    CLC : ADC.W #$0004 
-    STA.B $00 
-    LDA.B $03 
-    CLC : ADC.W #$0004 
-    STA.B $03 
+    LDA.B $00 : CLC : ADC.W #$0004 : STA.B $00 
+    LDA.B $03 : CLC : ADC.W #$0004 : STA.B $03 
     SEP #$20 
     INX 
     CPX.W #$001F 
@@ -3388,9 +3275,7 @@ DetermineTopmostMapRow:
 DetermineLeftmostMapRow:
     PHP 
     REP #$20 
-    LDA.B $00 
-    CLC : ADC.W #$0080 
-    STA.B $03 
+    LDA.B $00 : CLC : ADC.W #$0080 : STA.B $03 
     LDA.W #$0000 
     SEP #$20 
     LDA.B $02 : STA.B $05 
@@ -3407,12 +3292,8 @@ DetermineLeftmostMapRow:
     BMI .loop 
     LDY.W #$0000 
     REP #$20 
-    LDA.B $00 
-    SEC : SBC.W #$0004 
-    STA.B $00 
-    LDA.B $03 
-    SEC : SBC.W #$0004 
-    STA.B $03 
+    LDA.B $00 : SEC : SBC.W #$0004 : STA.B $00 
+    LDA.B $03 : SEC : SBC.W #$0004 : STA.B $03 
     SEP #$20 
     DEX 
     BNE .loop 
@@ -3714,18 +3595,10 @@ Setup_PPU_for_GameplayResume:
 Calculate_BG_Scrolls_bank82:
     PHP 
     REP #$30 
-    LDA.W $0911 
-    CLC : ADC.W $091D 
-    STA.B $B1 
-    LDA.W $0915 
-    CLC : ADC.W $091F 
-    STA.B $B3 
-    LDA.W $0917 
-    CLC : ADC.W $0921 
-    STA.B $B5 
-    LDA.W $0919 
-    CLC : ADC.W $0923 
-    STA.B $B7 
+    LDA.W $0911 : CLC : ADC.W $091D : STA.B $B1 
+    LDA.W $0915 : CLC : ADC.W $091F : STA.B $B3 
+    LDA.W $0917 : CLC : ADC.W $0921 : STA.B $B5 
+    LDA.W $0919 : CLC : ADC.W $0923 : STA.B $B7 
     PLP 
     RTS 
 
@@ -4393,8 +4266,7 @@ Update_PauseMenu_L_R_Start_VRAMTilemap:
     LDA.B $59 
     AND.W #$00FC 
     XBA 
-    CLC : ADC.W #$0320 
-    STA.B $D0,X 
+    CLC : ADC.W #$0320 : STA.B $D0,X 
     INX #2
     STX.W $0330 
     PLP 
@@ -4432,11 +4304,8 @@ Draw_PauseScreen_SpriteAnimation:
     INC A 
     STA.W $0000,Y 
     ASL A 
-    CLC : ADC.W $0000,Y 
-    STA.B $16 
-    LDA.W PauseScreen_SpriteAnimationData_data,X 
-    CLC : ADC.B $16 
-    TAY 
+    CLC : ADC.W $0000,Y : STA.B $16 
+    LDA.W PauseScreen_SpriteAnimationData_data,X : CLC : ADC.B $16 : TAY 
     LDA.W $0000,Y 
     AND.W #$00FF 
     CMP.W #$00FF 
@@ -4457,11 +4326,8 @@ Draw_PauseScreen_SpriteAnimation:
     TAY 
     LDA.W $0000,Y 
     ASL A 
-    CLC : ADC.W $0000,Y 
-    STA.B $18 
-    LDA.W PauseScreen_SpriteAnimationData_data,X 
-    CLC : ADC.B $18 
-    INC A 
+    CLC : ADC.W $0000,Y : STA.B $18 
+    LDA.W PauseScreen_SpriteAnimationData_data,X : CLC : ADC.B $18 : INC A 
     TAY 
     PHY 
     LDA.W #$0003 
@@ -4479,12 +4345,8 @@ Draw_PauseScreen_SpriteAnimation:
     AND.W #$00FF 
     ASL A 
     STA.B $1A 
-    LDA.W AnimationSpritemapBaseIDPointers,X 
-    CLC : ADC.B $1A 
-    TAY 
-    LDA.W $0000,Y 
-    CLC : ADC.B $18 
-    LDX.B $12 
+    LDA.W AnimationSpritemapBaseIDPointers,X : CLC : ADC.B $1A : TAY 
+    LDA.W $0000,Y : CLC : ADC.B $18 : LDX.B $12 
     LDY.B $14 
     DEY 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
@@ -4510,8 +4372,7 @@ Handle_PauseScreen_PaletteAnimation:
 .loop:
     STA.W $074F 
     ASL A 
-    CLC : ADC.W $074F 
-    TAX 
+    CLC : ADC.W $074F : TAX 
     LDA.W L_R_HighlightAnimationData_PauseScreenPaletteAnimationDelays,X 
     CMP.B #$FF 
     BNE + 
@@ -4530,8 +4391,7 @@ Handle_PauseScreen_PaletteAnimation:
     REP #$30 
     XBA 
     LSR #3
-    CLC : ADC.W #$001E 
-    TAY 
+    CLC : ADC.W #$001E : TAY 
     LDX.W #$001E 
 
 .loopAnimationTimer:
@@ -4775,9 +4635,7 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     LDA.W $09C0 
     CMP.W #$0001 
     BEQ .moveToBeams 
-    LDA.W $0755 
-    CLC : ADC.W #$0100 
-    STA.W $0755 
+    LDA.W $0755 : CLC : ADC.W #$0100 : STA.W $0755 
     LDA.W $09D6 
     BEQ .moveToBeams 
     LDA.W #$0037 
@@ -4797,9 +4655,7 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     BEQ .return 
     LDA.W #$0037 
     JSL.L QueueSound_Lib1_Max6 
-    LDA.W $0755 
-    SEC : SBC.W #$0100 
-    STA.W $0755 
+    LDA.W $0755 : SEC : SBC.W #$0100 : STA.W $0755 
 
 .return:
     PLP 
@@ -4888,8 +4744,7 @@ EquipmentScreen_Enable_EnergyArrowGlow:
     ORA.W #$1800 
     STA.L $7E3902,X 
     TXA 
-    CLC : ADC.W #$0040 
-    TAX 
+    CLC : ADC.W #$0040 : TAX 
     DEY #2
     BNE .loopVertical 
     PLP 
@@ -4925,8 +4780,7 @@ EquipmentScreen_Disable_EnergyArrowGlow:
     ORA.W #$1C00 
     STA.L $7E3902,X 
     TXA 
-    CLC : ADC.W #$0040 
-    TAX 
+    CLC : ADC.W #$0040 : TAX 
     DEY #2
     BNE .loopVertical 
     PLP 
@@ -5036,9 +4890,7 @@ EquipmentScreen_Main_Tanks_ReserveTank:
     LDA.B $8F 
     BIT.W #$0080 
     BEQ .return 
-    LDA.W $09D6 
-    CLC : ADC.W #$0007 
-    AND.W #$FFF8 
+    LDA.W $09D6 : CLC : ADC.W #$0007 : AND.W #$FFF8 
     STA.W $0757 
 
 .soundTimer:
@@ -5052,9 +4904,7 @@ EquipmentScreen_Main_Tanks_ReserveTank:
     JSL.L QueueSound_Lib3_Max6 
 
 .incrementEnergy:
-    LDA.W $09C2 
-    CLC : ADC.W ReserveTank_TransferEnergyPerFrame 
-    STA.W $09C2 
+    LDA.W $09C2 : CLC : ADC.W ReserveTank_TransferEnergyPerFrame : STA.W $09C2 
     CMP.W $09C4 
     BMI .decrementReserve 
     LDA.W $09C4 : STA.W $09C2 
@@ -5062,14 +4912,10 @@ EquipmentScreen_Main_Tanks_ReserveTank:
 
 
 .decrementReserve:
-    LDA.W $09D6 
-    SEC : SBC.W ReserveTank_TransferEnergyPerFrame 
-    STA.W $09D6 
+    LDA.W $09D6 : SEC : SBC.W ReserveTank_TransferEnergyPerFrame : STA.W $09D6 
     BEQ .emptyReserve 
     BPL .return 
-    LDA.W $09C2 
-    CLC : ADC.W $09D6 
-    STA.W $09C2 
+    LDA.W $09C2 : CLC : ADC.W $09D6 : STA.W $09C2 
 
 .emptyReserve:
     STZ.W $09D6 
@@ -5130,9 +4976,7 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     LDA.W $0755 
     AND.W #$FF00 
     BEQ .moveToReserve 
-    LDA.W $0755 
-    SEC : SBC.W #$0100 
-    STA.W $0755 
+    LDA.W $0755 : SEC : SBC.W #$0100 : STA.W $0755 
     XBA 
     AND.W #$00FF 
     ASL A 
@@ -5156,9 +5000,7 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     LDA.W $0755 
     CMP.W #$0401 
     BEQ .return 
-    LDA.W $0755 
-    CLC : ADC.W #$0100 
-    STA.W $0755 
+    LDA.W $0755 : CLC : ADC.W #$0100 : STA.W $0755 
     XBA 
     AND.W #$00FF 
     ASL A 
@@ -5253,9 +5095,7 @@ EquipmentScreen_SuitsMisc_MoveResponse:
     AND.W #$FF00 
     CMP.W #$0500 
     BEQ .moveToBoots 
-    LDA.W $0755 
-    CLC : ADC.W #$0100 
-    STA.W $0755 
+    LDA.W $0755 : CLC : ADC.W #$0100 : STA.W $0755 
     XBA 
     AND.W #$00FF 
     ASL A 
@@ -5274,9 +5114,7 @@ EquipmentScreen_SuitsMisc_MoveResponse:
     LDA.W $0755 
     AND.W #$FF00 
     BEQ .return 
-    LDA.W $0755 
-    SEC : SBC.W #$0100 
-    STA.W $0755 
+    LDA.W $0755 : SEC : SBC.W #$0100 : STA.W $0755 
     XBA 
     AND.W #$00FF 
     ASL A 
@@ -5329,9 +5167,7 @@ EquipmentScreen_Main_Boots_MoveResponse:
     LDA.W $0755 
     AND.W #$FF00 
     BEQ .moveToSuitsMisc 
-    LDA.W $0755 
-    SEC : SBC.W #$0100 
-    STA.W $0755 
+    LDA.W $0755 : SEC : SBC.W #$0100 : STA.W $0755 
     XBA 
     AND.W #$00FF 
     ASL A 
@@ -5350,9 +5186,7 @@ EquipmentScreen_Main_Boots_MoveResponse:
     LDA.W $0755 
     CMP.W #$0203 
     BEQ .return 
-    LDA.W $0755 
-    CLC : ADC.W #$0100 
-    STA.W $0755 
+    LDA.W $0755 : CLC : ADC.W #$0100 : STA.W $0755 
     XBA 
     AND.W #$00FF 
     ASL A 
@@ -5416,8 +5250,7 @@ EquipmentScreen_WriteSamusWireframeTilemap:
     BNE .loop 
     PLX 
     TXA 
-    CLC : ADC.W #$0040 
-    TAX 
+    CLC : ADC.W #$0040 : TAX 
     DEC.B $14 
     BNE .loopRow 
     PLP 
@@ -5449,8 +5282,7 @@ EquipmentScreen_DrawItemSelector:
     XBA 
     AND.W #$00FF 
     ASL #2
-    CLC : ADC.B $12 
-    TAY 
+    CLC : ADC.B $12 : TAY 
     LDA.W $0000,Y 
     TAX 
     DEX 
@@ -5540,8 +5372,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     CMP.W #$0064 
     BMI + 
     TXA 
-    CLC : ADC.W #$0010 
-    TAX 
+    CLC : ADC.W #$0010 : TAX 
 
   + LDA.W .spritemapIDs,X 
     PHA 
@@ -5586,15 +5417,9 @@ EquipmentScreen_DisplayReserveTankAmount:
     LDA.B #$0A : STA.W $4206 
     REP #$20 
     NOP #7
-    LDA.W $4216 
-    CLC : ADC.W #$0804 
-    STA.L $7E3B14 
-    LDA.W $4214 
-    CLC : ADC.W #$0804 
-    STA.L $7E3B12 
-    LDA.B $2A 
-    CLC : ADC.W #$0804 
-    STA.L $7E3B10 
+    LDA.W $4216 : CLC : ADC.W #$0804 : STA.L $7E3B14 
+    LDA.W $4214 : CLC : ADC.W #$0804 : STA.L $7E3B12 
+    LDA.B $2A : CLC : ADC.W #$0804 : STA.L $7E3B10 
     PLP 
     RTS 
 
@@ -5865,15 +5690,11 @@ EquipmentScreen_Main_ButtonResponse:
     AND.W #$00FF 
     ASL A 
     STA.B $12 
-    LDA.W EquipmentScreenDataPointers_tilemapOffsets,X 
-    CLC : ADC.B $12 
-    TAY 
+    LDA.W EquipmentScreenDataPointers_tilemapOffsets,X : CLC : ADC.B $12 : TAY 
     LDA.W $0000,Y : STA.B $00 
     LDA.W EquipmentScreenDataPointers_equipmentBitmasks,X 
     TAY 
-    LDA.W EquipmentScreenDataPointers_listsEquipmentBitmasks,X 
-    CLC : ADC.B $12 
-    TAX 
+    LDA.W EquipmentScreenDataPointers_listsEquipmentBitmasks,X : CLC : ADC.B $12 : TAX 
     LDA.W $0000,Y 
     BIT.W $0000,X 
     BNE + 
@@ -5881,9 +5702,7 @@ EquipmentScreen_Main_ButtonResponse:
     STA.W $0000,Y 
     LDA.B $18 : STA.B $16 
     LDX.B $1A 
-    LDA.W EquipmentScreenDataPointers_listsPointsToEquipmentTilemaps,X 
-    CLC : ADC.B $12 
-    TAY 
+    LDA.W EquipmentScreenDataPointers_listsPointsToEquipmentTilemaps,X : CLC : ADC.B $12 : TAY 
     LDA.W $0000,Y 
     TAX 
     JSR.W Copy_Bytes_from_X_to_7ERAM 
@@ -5914,31 +5733,23 @@ UNUSED_ConvertAToThreeDecimalDigits:
     STZ.B $14 
     STZ.B $16 
 
-  - LDA.B $18 
-    SEC : SBC.W #$0064 
-    STA.B $18 
+  - LDA.B $18 : SEC : SBC.W #$0064 : STA.B $18 
     BMI + 
     INC.B $16 
     BRA - 
 
 
-  + CLC : ADC.W #$0064 
-    STA.B $18 
+  + CLC : ADC.W #$0064 : STA.B $18 
 
-  - LDA.B $18 
-    SEC : SBC.W #$000A 
-    STA.B $18 
+  - LDA.B $18 : SEC : SBC.W #$000A : STA.B $18 
     BMI + 
     INC.B $14 
     BRA - 
 
 
-  + CLC : ADC.W #$000A 
-    STA.B $18 
+  + CLC : ADC.W #$000A : STA.B $18 
 
-  - LDA.B $18 
-    SEC : SBC.W #$0001 
-    STA.B $18 
+  - LDA.B $18 : SEC : SBC.W #$0001 : STA.B $18 
     BMI .return 
     INC.B $12 
     BRA - 
@@ -6031,12 +5842,8 @@ Draw_Map_Icons:
   + LDA.W $079F 
     BNE .return 
     LDA.W #$0E00 : STA.B $03 
-    LDA.W Crateria_MapIconPositions_savePoints2 
-    SEC : SBC.B $B3 
-    TAY 
-    LDA.W Crateria_MapIconPositions_savePoints 
-    SEC : SBC.B $B1 
-    TAX 
+    LDA.W Crateria_MapIconPositions_savePoints2 : SEC : SBC.B $B3 : TAY 
+    LDA.W Crateria_MapIconPositions_savePoints : SEC : SBC.B $B1 : TAX 
     LDA.W #$0063 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
 
@@ -6075,14 +5882,10 @@ Draw_FileSelectMap_Icons:
     LDA.W $078B 
     ASL #2
     TAY 
-    LDA.B [$00],Y 
-    SEC : SBC.B $B1 
-    TAX 
+    LDA.B [$00],Y : SEC : SBC.B $B1 : TAX 
     PHX 
     INY #2
-    LDA.B [$00],Y 
-    SEC : SBC.B $B3 
-    TAY 
+    LDA.B [$00],Y : SEC : SBC.B $B3 : TAY 
     PHY 
     LDA.W $077A 
     BIT.W #$0001 
@@ -6110,12 +5913,8 @@ Draw_FileSelectMap_Icons:
   + LDA.W $079F 
     BNE .return 
     LDA.W #$0E00 : STA.B $03 
-    LDA.W Crateria_MapIconPositions_savePoints2 
-    SEC : SBC.B $B3 
-    TAY 
-    LDA.W Crateria_MapIconPositions_savePoints 
-    SEC : SBC.B $B1 
-    TAX 
+    LDA.W Crateria_MapIconPositions_savePoints2 : SEC : SBC.B $B3 : TAY 
+    LDA.W Crateria_MapIconPositions_savePoints : SEC : SBC.B $B1 : TAX 
     LDA.W #$0063 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
 
@@ -6141,8 +5940,7 @@ Draw_SaveStation_MapIcons:
     REP #$20 
     LDA.W $079F 
     ASL A 
-    CLC : ADC.B $20 
-    TAX 
+    CLC : ADC.B $20 : TAX 
     LDA.W $0000,X 
     BNE Draw_MapIcons_ofGivenType 
 
@@ -6161,8 +5959,7 @@ Draw_Debug_Save_MapIcons:
     TAX 
     LDA.L $7ED8F8,X : STA.B $24 
     TXA 
-    CLC : ADC.B $20 
-    TAX 
+    CLC : ADC.B $20 : TAX 
     LDA.W $0000,X 
     BNE Draw_MapIcons_ofGivenType 
     RTS 
@@ -6176,8 +5973,7 @@ Draw_Debug_Elevator_Map_Icons:
     TAX 
     LDA.L $7ED8F9,X : STA.B $24 
     TXA 
-    CLC : ADC.B $20 
-    TAX 
+    CLC : ADC.B $20 : TAX 
     LDA.W $0000,X 
     BNE Draw_MapIcons_ofGivenType 
     RTS 
@@ -6189,8 +5985,7 @@ Draw_Simple_MapIcons:
     LDA.W #$FFFF : STA.B $24 
     LDA.W $079F 
     ASL A 
-    CLC : ADC.B $20 
-    TAX 
+    CLC : ADC.B $20 : TAX 
     LDA.W $0000,X 
     BNE Draw_MapIcons_ofGivenType 
     RTS 
@@ -6214,12 +6009,8 @@ Draw_MapIcons_ofGivenType:
     BEQ .restoreX 
     PLX 
     PHX 
-    LDA.W $0002,X 
-    SEC : SBC.B $B3 
-    TAY 
-    LDA.W $0000,X 
-    SEC : SBC.B $B1 
-    TAX 
+    LDA.W $0002,X : SEC : SBC.B $B3 : TAY 
+    LDA.W $0000,X : SEC : SBC.B $B1 : TAX 
     LDA.B $22 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
 
@@ -6243,13 +6034,11 @@ Check_if_MapPosition_isExplored:
     TXA 
     AND.W #$00FF 
     LSR #6
-    CLC : ADC.B $12 
-    STA.B $12 
+    CLC : ADC.B $12 : STA.B $12 
     TYA 
     AND.W #$FFF8 
     LSR A 
-    CLC : ADC.B $12 
-    STA.B $12 
+    CLC : ADC.B $12 : STA.B $12 
     TXA 
     LSR #3
     AND.W #$0007 
@@ -6274,8 +6063,7 @@ Display_Map_Boss_Icons:
     STA.B $24 
     LDA.W $079F 
     ASL A 
-    CLC : ADC.B $20 
-    TAX 
+    CLC : ADC.B $20 : TAX 
     LDA.W $0000,X 
     BEQ .return 
     TAX 
@@ -6294,12 +6082,8 @@ Display_Map_Boss_Icons:
 
 .drawBossIcon:
     PHX 
-    LDA.W $0002,X 
-    SEC : SBC.B $B3 
-    TAY 
-    LDA.W $0000,X 
-    SEC : SBC.B $B1 
-    TAX 
+    LDA.W $0002,X : SEC : SBC.B $B3 : TAY 
+    LDA.W $0000,X : SEC : SBC.B $B1 : TAX 
     LDA.B $22 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
     PLX 
@@ -6320,12 +6104,8 @@ Display_Map_Boss_Icons:
 
 .bossDead:
     PHX 
-    LDA.W $0002,X 
-    SEC : SBC.B $B3 
-    TAY 
-    LDA.W $0000,X 
-    SEC : SBC.B $B1 
-    TAX 
+    LDA.W $0002,X : SEC : SBC.B $B3 : TAY 
+    LDA.W $0000,X : SEC : SBC.B $B1 : TAX 
     LDA.W #$0062 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
     PLX 
@@ -6371,31 +6151,22 @@ Handle_MapScrollArrows:
     PHA 
     PLB 
     REP #$20 
-    LDA.W $05AC 
-    SEC : SBC.W #$0018 
-    CMP.B $B1 
+    LDA.W $05AC : SEC : SBC.W #$0018 : CMP.B $B1 
     BPL + 
     LDX.W #MapScrollArrows_left 
     JSL.L Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction 
 
-  + LDA.W $05AE 
-    CLC : ADC.W #$0018 
-    SEC : SBC.W #$0100 
-    CMP.B $B1 
+  + LDA.W $05AE : CLC : ADC.W #$0018 : SEC : SBC.W #$0100 : CMP.B $B1 
     BMI + 
     LDX.W #MapScrollArrows_right 
     JSL.L Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction 
 
-  + LDA.W $05B0 
-    SEC : SBC.W #$0038 
-    CMP.B $B3 
+  + LDA.W $05B0 : SEC : SBC.W #$0038 : CMP.B $B3 
     BPL + 
     LDX.W #MapScrollArrows_up 
     JSL.L Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction 
 
-  + LDA.W $05B2 
-    SEC : SBC.W #$00B1 
-    CMP.B $B3 
+  + LDA.W $05B2 : SEC : SBC.W #$00B1 : CMP.B $B3 
     BMI .cancelScrollDown 
     LDX.W #MapScrollArrows_down 
     JSL.L Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction 
@@ -6435,18 +6206,14 @@ MapScreen_DrawSamusPositionIndicator:
     LDA.W $0AF6 
     XBA 
     AND.W #$00FF 
-    CLC : ADC.W $07A1 
-    ASL #3
-    SEC : SBC.B $B1 
-    TAX 
+    CLC : ADC.W $07A1 : ASL #3
+    SEC : SBC.B $B1 : TAX 
     LDA.W $0AFA 
     XBA 
     AND.W #$00FF 
-    CLC : ADC.W $07A3 
-    INC A 
+    CLC : ADC.W $07A3 : INC A 
     ASL #3
-    SEC : SBC.B $B3 
-    TAY 
+    SEC : SBC.B $B3 : TAY 
     PLA 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
     RTS 
@@ -6548,9 +6315,7 @@ Draw_FileCopy_Arrow:
     PHB 
     PHK 
     PLB 
-    LDA.W $19B7 
-    SEC : SBC.W $19B9 
-    BPL .upwards 
+    LDA.W $19B7 : SEC : SBC.W $19B9 : BPL .upwards 
     EOR.W #$FFFF 
     INC A 
     LDX.W #$0000 
@@ -6624,17 +6389,13 @@ Display_Map_Elevator_Destinations:
     CMP.W #$FFFF 
     BEQ .return 
     PHX 
-    SEC : SBC.B $B1 
-    PHA 
-    LDA.W $0002,X 
-    SEC : SBC.B $B3 
-    TAY 
+    SEC : SBC.B $B1 : PHA 
+    LDA.W $0002,X : SEC : SBC.B $B3 : TAY 
     LDA.W $0004,X 
     PLX 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
     PLA 
-    CLC : ADC.W #$0006 
-    TAX 
+    CLC : ADC.W #$0006 : TAX 
     BRA .loop 
 
 
@@ -6662,8 +6423,7 @@ Process_GameOver_BabyMetroid_InstructionList:
     BMI Goto_A_82BBEB 
     STA.W $0F94 
     TXA 
-    CLC : ADC.W #$0006 
-    STA.W $0F92 
+    CLC : ADC.W #$0006 : STA.W $0F92 
     TAX 
 
 Draw_GameOver_BabyMetroid:
@@ -6708,8 +6468,7 @@ FinishProcessing_GameOver_BabyMetroid_ASMInstruction:
     LDX.W $0F92 
     LDA.W $0008,X : STA.W $0F94 
     TXA 
-    CLC : ADC.W #$0008 
-    STA.W $0F92 
+    CLC : ADC.W #$0008 : STA.W $0F92 
     TAX 
     LDA.W $0000,X 
     CMP.W #$FFFF 
@@ -6850,8 +6609,7 @@ UNUSED_82BE5A:
     REP #$30 
     LDA.W $079F : STA.B $12 
     ASL A 
-    CLC : ADC.B $12 
-    TAX 
+    CLC : ADC.B $12 : TAX 
     LDA.W AreaMapPointers,X : STA.B $00 
     LDA.W AreaMapPointers+2,X : STA.B $02 
     LDY.W #$0000 
@@ -8929,8 +8687,7 @@ CalculateTheAth_TransitionalColorComponent_fromXtoY:
     INC A 
     STA.B $14 
     TYA 
-    SEC : SBC.B $01,S 
-    STA.B $12 
+    SEC : SBC.B $01,S : STA.B $12 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -8940,8 +8697,7 @@ CalculateTheAth_TransitionalColorComponent_fromXtoY:
     STA.L $004204 
     SEP #$21 
     LDA.W $C402 
-    SBC.B $14 
-    INC A 
+    SBC.B $14 : INC A 
     STA.L $004206 
     REP #$20 
     XBA 
@@ -8956,8 +8712,7 @@ CalculateTheAth_TransitionalColorComponent_fromXtoY:
   + STA.B $12 
     PLA 
     XBA 
-    CLC : ADC.B $12 
-    XBA 
+    CLC : ADC.B $12 : XBA 
     AND.W #$00FF 
     RTS 
 
@@ -9000,8 +8755,7 @@ Advance_GradualColorChange_ofPalettesInA:
     PHA 
     BCS .advance 
     LDA.W $C404 
-    ADC.W #$0020 
-    STA.W $C404 
+    ADC.W #$0020 : STA.W $C404 
     BRA .loop 
 
 
@@ -9075,27 +8829,19 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
     LDA.W #$0013 : STA.W $0998 
 
 .tickGameTime:
-    LDA.W $09DA 
-    CLC : ADC.W #$0001 
-    STA.W $09DA 
+    LDA.W $09DA : CLC : ADC.W #$0001 : STA.W $09DA 
     CMP.W #$003C 
     BMI .checkGameTime 
     STZ.W $09DA 
-    LDA.W $09DC 
-    CLC : ADC.W #$0001 
-    STA.W $09DC 
+    LDA.W $09DC : CLC : ADC.W #$0001 : STA.W $09DC 
     CMP.W #$003C 
     BMI .checkGameTime 
     STZ.W $09DC 
-    LDA.W $09DE 
-    CLC : ADC.W #$0001 
-    STA.W $09DE 
+    LDA.W $09DE : CLC : ADC.W #$0001 : STA.W $09DE 
     CMP.W #$003C 
     BMI .checkGameTime 
     STZ.W $09DE 
-    LDA.W $09E0 
-    CLC : ADC.W #$0001 
-    STA.W $09E0 
+    LDA.W $09E0 : CLC : ADC.W #$0001 : STA.W $09E0 
 
 .checkGameTime:
     LDA.W $09E0 
@@ -9139,23 +8885,17 @@ Reserve_Tank_Auto_Refill:
     LDA.W #$002D 
     JSL.L QueueSound_Lib3_Max3 
 
-  + LDA.W $09C2 
-    CLC : ADC.W #$0001 
-    STA.W $09C2 
+  + LDA.W $09C2 : CLC : ADC.W #$0001 : STA.W $09C2 
     CMP.W $09C4 
     BMI + 
     LDA.W $09C4 : STA.W $09C2 
     BRA .zeroReserve 
 
 
-  + LDA.W $09D6 
-    SEC : SBC.W #$0001 
-    STA.W $09D6 
+  + LDA.W $09D6 : SEC : SBC.W #$0001 : STA.W $09D6 
     BEQ .zeroReserve 
     BPL .return 
-    LDA.W $09C2 
-    CLC : ADC.W $09D6 
-    STA.W $09C2 
+    LDA.W $09C2 : CLC : ADC.W $09D6 : STA.W $09C2 
 
 .zeroReserve:
     STZ.W $09D6 
@@ -9577,8 +9317,7 @@ Load_EnemyGFX_to_VRAM:
     LDA.B $12 : STA.W $05BE 
     LDA.L $A00000,X 
     LSR A 
-    CLC : ADC.B $12 
-    STA.B $12 
+    CLC : ADC.B $12 : STA.B $12 
     BRA .doorFlag 
 
 
@@ -9911,17 +9650,11 @@ DoorTransitionFunction_WaitForSoundsToFinish:
     JSL.L Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles 
     JSR.W Draw_Inanimate_Samus_Bank82 
     SEP #$20 
-    LDA.W $0646 
-    SEC : SBC.W $0643 
-    AND.B #$0F 
+    LDA.W $0646 : SEC : SBC.W $0643 : AND.B #$0F 
     BNE .return 
-    LDA.W $0647 
-    SEC : SBC.W $0644 
-    AND.B #$0F 
+    LDA.W $0647 : SEC : SBC.W $0644 : AND.B #$0F 
     BNE .return 
-    LDA.W $0648 
-    SEC : SBC.W $0645 
-    AND.B #$0F 
+    LDA.W $0648 : SEC : SBC.W $0645 : AND.B #$0F 
     BNE .return 
     REP #$20 
     LDA.W #DoorTransitionFunction_FadeOutTheScreen : STA.W $099C 
@@ -10054,13 +9787,11 @@ DoorTransitionFunction_PlaceSamus_LoadTiles:
     PLB 
     LDA.W $0AF6 
     AND.W #$00FF 
-    CLC : ADC.W $0911 
-    STA.W $0AF6 
+    CLC : ADC.W $0911 : STA.W $0AF6 
     STA.W $0B10 
     LDA.W $0AFA 
     AND.W #$00FF 
-    CLC : ADC.W $0915 
-    STA.W $0AFA 
+    CLC : ADC.W $0915 : STA.W $0AFA 
     STA.W $0B14 
     STZ.W $0931 
     STZ.W $05BC 
@@ -10278,8 +10009,7 @@ LoadLibraryBackground_E_DoorDependentTransferToVRAM:
     CMP.W $0000,Y 
     BEQ + 
     TYA 
-    CLC : ADC.W #$0009 
-    TAY 
+    CLC : ADC.W #$0009 : TAY 
     CLC 
     RTS 
 
@@ -10297,8 +10027,7 @@ LoadLibraryBackground_E_DoorDependentTransferToVRAM:
     BIT.W $05BC 
     BMI .wait 
     TYA 
-    CLC : ADC.W #$0007 
-    TAY 
+    CLC : ADC.W #$0007 : TAY 
     CLC 
     RTS 
 
@@ -10311,8 +10040,7 @@ LoadLibraryBackground_4_Decompression:
     LDA.W $0003,Y : STA.B $4C 
     JSL.L Decompression_VariableDestination 
     PLA 
-    CLC : ADC.W #$0005 
-    TAY 
+    CLC : ADC.W #$0005 : TAY 
     CLC 
     RTS 
 
@@ -10393,8 +10121,7 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
     BNE .X 
     LDA.W $0AF6 
     ORA.W #$000F 
-    CLC : ADC.W #$0008 
-    STA.W $0AF6 
+    CLC : ADC.W #$0008 : STA.W $0AF6 
     BRA .Y 
 
 
@@ -10403,8 +10130,7 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
     BNE .Y 
     LDA.W $0AF6 
     AND.W #$FFF0 
-    SEC : SBC.W #$0008 
-    STA.W $0AF6 
+    SEC : SBC.W #$0008 : STA.W $0AF6 
 
 .Y:
     LDA.W $0AFA 
@@ -10413,8 +10139,7 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
     BNE .what 
     LDA.W $0AFA 
     ORA.W #$000F 
-    CLC : ADC.W #$0008 
-    STA.W $0AFA 
+    CLC : ADC.W #$0008 : STA.W $0AFA 
     BRA + 
 
 
@@ -10552,9 +10277,7 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     LDA.W $0000 
     TAX 
     LSR A 
-    ADC.W $0000 
-    ADC.W $0000 
-    TAY 
+    ADC.W $0000 : ADC.W $0000 : TAY 
     BRA + 
 
 
@@ -10567,8 +10290,7 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     LDA.W $0000 
     LSR A 
     TAX 
-    ADC.W $0000 
-    TAY 
+    ADC.W $0000 : TAY 
     BRA + 
 
 
@@ -10656,8 +10378,7 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     BEQ + 
     JSL.L Spawn_Room_PLM 
     TXA 
-    CLC : ADC.W #$0006 
-    TAX 
+    CLC : ADC.W #$0006 : TAX 
     BRA .loopF 
 
 
@@ -10684,8 +10405,7 @@ Spawn_Door_Closing_PLM:
     BCS .return 
     LDA.W $0791 
     ASL A 
-    CLC : ADC.W #Door_Closing_PLMs 
-    TAX 
+    CLC : ADC.W #Door_Closing_PLMs : TAX 
     LDA.W $0000,X 
     BEQ .return 
     STA.B $12 
@@ -10709,8 +10429,7 @@ CheckIfColoredDoorcapWasSpawned_SwitchDoorPLMInstruction:
     LDA.L $830004,X 
     REP #$20 
     AND.W #$00FF 
-    CLC : ADC.W $4216 
-    ASL A 
+    CLC : ADC.W $4216 : ASL A 
     CLI 
     LDX.W #$004E 
 
@@ -10764,8 +10483,7 @@ LoadLibraryBackground_LoadingPausing:
     LDA.B #$02 : STA.W $420B 
     REP #$20 
     TYA 
-    CLC : ADC.W #$0007 
-    TAY 
+    CLC : ADC.W #$0007 : TAY 
     CLC 
 
   + PEA.W $8F00 
@@ -10808,8 +10526,7 @@ LoadLibraryBackgroundLP_E_DoorDependentTransferToVRAM:
     CMP.W $0000,Y 
     BEQ + 
     TYA 
-    CLC : ADC.W #$0009 
-    TAY 
+    CLC : ADC.W #$0009 : TAY 
     CLC 
     RTS 
 
@@ -10826,8 +10543,7 @@ LoadLibraryBackgroundLP_E_DoorDependentTransferToVRAM:
     LDA.B #$02 : STA.W $420B 
     REP #$20 
     TYA 
-    CLC : ADC.W #$0007 
-    TAY 
+    CLC : ADC.W #$0007 : TAY 
     CLC 
     RTS 
 
@@ -10840,8 +10556,7 @@ LoadLibraryBackgroundLP_4_Decompression:
     LDA.W $0003,Y : STA.B $4C 
     JSL.L Decompression_VariableDestination 
     PLA 
-    CLC : ADC.W #$0005 
-    TAY 
+    CLC : ADC.W #$0005 : TAY 
     CLC 
     RTS 
 
@@ -10903,9 +10618,7 @@ Load_Level_Scroll_and_CRE_Data:
     LDA.W $0000 
     TAX 
     LSR A 
-    ADC.W $0000 
-    ADC.W $0000 
-    TAY 
+    ADC.W $0000 : ADC.W $0000 : TAY 
     BRA + 
 
 
@@ -10917,8 +10630,7 @@ Load_Level_Scroll_and_CRE_Data:
     LDA.W $0000 
     LSR A 
     TAX 
-    ADC.W $0000 
-    TAY 
+    ADC.W $0000 : TAY 
     BRA + 
 
 
@@ -11013,8 +10725,7 @@ CreatePLMs_ExecuteDoorASM_RoomSetupASM_SetElevatorStatus:
     BEQ .noPLMs 
     JSL.L Spawn_Room_PLM 
     TXA 
-    CLC : ADC.W #$0006 
-    TAX 
+    CLC : ADC.W #$0006 : TAX 
     BRA .loop 
 
 
@@ -11467,8 +11178,7 @@ GameOptionsMenu_5_DissolveOutScreen:
     LDA.B $57 
     CMP.B #$F3 
     BEQ .notFinishedFadingOut 
-    CLC : ADC.B #$10 
-    STA.B $57 
+    CLC : ADC.B #$10 : STA.B $57 
 
 .notFinishedFadingOut:
     LDA.B $51 
@@ -11570,8 +11280,7 @@ GameOptionsMenu_6_DissolveInScreen:
     LDA.B $57 
     CMP.B #$03 
     BEQ .brightness 
-    SEC : SBC.B #$10 
-    STA.B $57 
+    SEC : SBC.B #$10 : STA.B $57 
 
 .brightness:
     LDA.B $51 
@@ -11934,9 +11643,7 @@ GameOptions_ControllerSettings_End:
 
 
 GameOptionsMenu_9_ScrollControllerSettingsDown:
-    LDA.B $B3 
-    CLC : ADC.W #$0002 
-    STA.B $B3 
+    LDA.B $B3 : CLC : ADC.W #$0002 : STA.B $B3 
     CMP.W #$0020 
     BNE .return 
     LDA.W #$0007 : STA.W $0DE2 
@@ -11946,9 +11653,7 @@ GameOptionsMenu_9_ScrollControllerSettingsDown:
 
 
 GameOptionsMenu_A_ScrollControllerSettingsUp:
-    LDA.B $B3 
-    SEC : SBC.W #$0002 
-    STA.B $B3 
+    LDA.B $B3 : SEC : SBC.W #$0002 : STA.B $B3 
     BNE RTS_82F295 
     LDA.W #$0007 : STA.W $0DE2 
 
@@ -11980,8 +11685,7 @@ PreInstruction_MenuSelectionMissile:
     STA.B $12 
     LDA.W $099E 
     ASL #2
-    CLC : ADC.B $12 
-    TAY 
+    CLC : ADC.B $12 : TAY 
     LDA.W $0000,Y : STA.W $1AAD,X 
     LDA.W $0002,Y : STA.W $1ABD,X 
     RTS 
@@ -12102,18 +11806,14 @@ PreInstruction_BorderAround_CONTRLLER_SETTING_MODE:
 .dissolveInEnd:
     CMP.W #$0009 
     BNE .checkScrollingUp 
-    LDA.W $1ABD,X 
-    SEC : SBC.W #$0002 
-    STA.W $1ABD,X 
+    LDA.W $1ABD,X : SEC : SBC.W #$0002 : STA.W $1ABD,X 
     RTS 
 
 
 .checkScrollingUp:
     CMP.W #$000A 
     BNE .return 
-    LDA.W $1ABD,X 
-    CLC : ADC.W #$0002 
-    STA.W $1ABD,X 
+    LDA.W $1ABD,X : CLC : ADC.W #$0002 : STA.W $1ABD,X 
 
 .return:
     RTS 
@@ -12489,8 +12189,7 @@ GameOptions_ControllerSettings_SetBinding:
     STA.B $12 
     LDA.W $099E 
     ASL A 
-    CLC : ADC.W #$0002 
-    CMP.W #$000E 
+    CLC : ADC.W #$0002 : CMP.W #$000E 
     BMI + 
     LDA.W #$0000 
 

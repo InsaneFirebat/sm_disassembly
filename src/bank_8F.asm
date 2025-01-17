@@ -8648,13 +8648,11 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     JSL.L GenerateRandomNumber 
     PHA 
     AND.W #$00FF 
-    CLC : ADC.W $0911 
-    STA.B $12 
+    CLC : ADC.W $0911 : STA.B $12 
     PLA 
     XBA 
     AND.W #$00FF 
-    CLC : ADC.W $0915 
-    STA.B $14 
+    CLC : ADC.W $0915 : STA.B $14 
     LSR #4
     SEP #$20 
     PHA 
@@ -8664,8 +8662,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     REP #$20 
     LDA.B $12 
     LSR #4
-    CLC : ADC.W $4216 
-    ASL A 
+    CLC : ADC.W $4216 : ASL A 
     TAX 
     LDA.L $7F0002,X 
     AND.W #$03FF 
@@ -8685,13 +8682,11 @@ GenerateRandomExplosionOnEveryFourthFrame:
     JSL.L GenerateRandomNumber 
     PHA 
     AND.W #$00FF 
-    CLC : ADC.W $0911 
-    STA.B $12 
+    CLC : ADC.W $0911 : STA.B $12 
     PLA 
     XBA 
     AND.W #$00FF 
-    CLC : ADC.W $0915 
-    STA.B $14 
+    CLC : ADC.W $0915 : STA.B $14 
 
 GenerateRandomExplosionAt_12_14:
     JSL.L GenerateRandomNumber 
@@ -8734,8 +8729,7 @@ MainASM_ScrollScreenRightInDachoraRoom:
     LDA.W $0911 
     CMP.W #$0380 
     BCS .return 
-    ADC.W #$0003 
-    STA.W $0911 
+    ADC.W #$0003 : STA.W $0911 
 
 .return:
     RTS 
@@ -13314,24 +13308,17 @@ MainASM_Elevatube:
     DEC.B $14 
 
   + STA.B $13 
-    LDA.W $07E1 
-    CLC : ADC.B $12 
-    STA.W $07E1 
+    LDA.W $07E1 : CLC : ADC.B $12 : STA.W $07E1 
     LDA.W $07E3 
-    ADC.B $14 
-    STA.W $07E3 
+    ADC.B $14 : STA.W $07E3 
     LDA.B $12 
     LDX.B $14 
     STX.B $12 
     STA.B $14 
     JSL.L MoveSamusDown_NoSolidEnemyCollision 
-    LDA.W $07E5 
-    CLC : ADC.W $07E7 
-    CLC : ADC.W #$0E20 
-    CMP.W #$1C41 
+    LDA.W $07E5 : CLC : ADC.W $07E7 : CLC : ADC.W #$0E20 : CMP.W #$1C41 
     BCS .return 
-    SEC : SBC.W #$0E20 
-    STA.W $07E5 
+    SEC : SBC.W #$0E20 : STA.W $07E5 
 
 .return:
     RTS 
@@ -13684,8 +13671,7 @@ MainASM_ShakeScreenSwitchingBetweenMediumHorizAndStrongDiag:
 
 Room_State_Checking_Handler:
     TXA 
-    CLC : ADC.W #$000B 
-    TAX 
+    CLC : ADC.W #$000B : TAX 
 
 .loop:
     LDA.W $0000,X : STA.W $07B7 
@@ -14143,20 +14129,14 @@ MainASM_CrocomiresRoomShaking:
     BRA .scroll 
 
 
-  + LDA.W #$0007 
-    CLC : ADC.W $0FEE 
-    ASL A 
+  + LDA.W #$0007 : CLC : ADC.W $0FEE : ASL A 
     STA.B $12 
-    LDA.W $0FEE 
-    SEC : SBC.B $12 
+    LDA.W $0FEE : SEC : SBC.B $12 
 
 .scroll:
     STA.B $12 
-    CLC : ADC.B $B3 
-    STA.B $B3 
-    LDA.W #$FFD0 
-    CLC : ADC.B $12 
-    STA.B $B7 
+    CLC : ADC.B $B3 : STA.B $B3 
+    LDA.W #$FFD0 : CLC : ADC.B $12 : STA.B $B7 
 
 .return:
     RTS 
@@ -14172,23 +14152,16 @@ MainASM_CrocomiresRoomShaking:
     STA.W $0FAE 
     BIT.W #$0001 
     BNE + 
-    LDA.W $0911 
-    CLC : ADC.W #$0004 
-    STA.W $0911 
+    LDA.W $0911 : CLC : ADC.W #$0004 : STA.W $0911 
     RTS 
 
 
-  + LDA.W $0911 
-    SEC : SBC.W #$0004 
-    STA.W $0911 
+  + LDA.W $0911 : SEC : SBC.W #$0004 : STA.W $0911 
     RTS 
 
 
 .behindWallRumbling:
-    LDA.W $0915 
-    CLC : ADC.W $091F 
-    CLC : ADC.W $0FEE 
-    STA.B $B3 
+    LDA.W $0915 : CLC : ADC.W $091F : CLC : ADC.W $0FEE : STA.B $B3 
     RTS 
 
 
@@ -14200,17 +14173,10 @@ MainASM_RidleysRoomShaking:
     ASL A 
     TAX 
     LDA.B $B1 
-    ADC.W .Xspeeds,X 
-    STA.B $B1 
-    LDA.B $B5 
-    CLC : ADC.W .Xspeeds,X 
-    STA.B $B5 
-    LDA.B $B3 
-    CLC : ADC.W .Yspeeds,X 
-    STA.B $B3 
-    LDA.B $B7 
-    CLC : ADC.W .Yspeeds,X 
-    STA.B $B7 
+    ADC.W .Xspeeds,X : STA.B $B1 
+    LDA.B $B5 : CLC : ADC.W .Xspeeds,X : STA.B $B5 
+    LDA.B $B3 : CLC : ADC.W .Yspeeds,X : STA.B $B3 
+    LDA.B $B7 : CLC : ADC.W .Yspeeds,X : STA.B $B7 
 
 .return:
     RTS 

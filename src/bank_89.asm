@@ -3299,8 +3299,7 @@ Load_FX_Entry:
     AND.W #$0007 
     ASL #4
     STA.W $1968 
-    CLC : ADC.W $07CD 
-    STA.W $1966 
+    CLC : ADC.W $07CD : STA.W $1966 
     PEA.W $8300 
     PLB 
     PLB 
@@ -3369,11 +3368,9 @@ Load_FX_Header:
   + CMP.W $078D 
     BEQ .load 
     TXA 
-    CLC : ADC.W #$0010 
-    TAX 
+    CLC : ADC.W #$0010 : TAX 
     TYA 
-    CLC : ADC.W #$0010 
-    TAY 
+    CLC : ADC.W #$0010 : TAY 
     BRA .loopDoor 
 
 
@@ -3508,13 +3505,9 @@ RoomMainASM_CeresElevatorShaft:
 
 
 .rotating:
-    LDA.W #$0080 
-    SEC : SBC.W #$0010 
-    CMP.W $0AF6 
+    LDA.W #$0080 : SEC : SBC.W #$0010 : CMP.W $0AF6 
     BPL .handleRotationMatrix 
-    LDA.W #$0080 
-    CLC : ADC.W #$0010 
-    CMP.W $0AF6 
+    LDA.W #$0080 : CLC : ADC.W #$0010 : CMP.W $0AF6 
     BMI .handleRotationMatrix 
     LDA.W $0AFA 
     CMP.W #$0080 
@@ -3540,8 +3533,7 @@ RoomMainASM_CeresElevatorShaft:
     BPL .return 
     LDA.W $07E1 
     ASL A 
-    CLC : ADC.W $07E1 
-    ASL A 
+    CLC : ADC.W $07E1 : ASL A 
     TAX 
     LDA.W .timer,X : STA.W $07E3 
     LDA.W .sinT,X : STA.B $7A 
