@@ -498,8 +498,7 @@ Handle_MessageBox_Interaction:
     BNE .lagLoop 
 
 .loopInput:
-    LDA.W $4212 
-    BIT.B #$01 
+    LDA.W $4212 : BIT.B #$01 
     BNE .loopInput 
     LDA.W $4218 : BNE .busyReturn 
     LDA.W $4219 : BEQ .loopInput 

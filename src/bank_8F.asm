@@ -13734,8 +13734,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 RoomStateCheck_MorphballAndMissiles:
-    LDA.W $09A4 
-    BIT.W #$0004 
+    LDA.W $09A4 : BIT.W #$0004 
     BEQ + 
     LDA.W $09C8 : BEQ + 
     LDA.W $0000,X 
@@ -14082,14 +14081,12 @@ Execute_Room_Main_ASM:
 
 
 MainASM_CrocomiresRoomShaking:
-    LDA.W $0F86 
-    BIT.W #$0200 
+    LDA.W $0F86 : BIT.W #$0200 
     BNE .return 
     LDA.W $0FA8 
     CMP.W #$0040 
     BEQ .behindWallRumbling 
-    LDA.W $0FAA 
-    BIT.W #$0400 
+    LDA.W $0FAA : BIT.W #$0400 
     BEQ .branch 
     LDA.W $0FEE 
     DEC A 

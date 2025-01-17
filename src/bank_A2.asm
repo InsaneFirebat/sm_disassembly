@@ -1406,8 +1406,7 @@ Function_MamaTurtle_LeaveShell:
     DEC.W $0F7E,X 
     STZ.B $12 
     LDA.W #$0010 : STA.W $0F84,X 
-    LDA.W $0F7E,X 
-    BIT.W #$0001 
+    LDA.W $0F7E,X : BIT.W #$0001 
     BNE .odd 
     INC.W $0F7A,X 
     BRA + 
@@ -1508,8 +1507,7 @@ Function_MamaTurtle_Hovering:
     BMI .pullA 
     PLA 
     LDY.W MamaTurtleConstants_maxHoveringXSpeed 
-    LDA.W $0FB0,X 
-    BIT.W #$8000 
+    LDA.W $0FB0,X : BIT.W #$8000 
     BEQ + 
     LDA.W MamaTurtleConstants_maxHoveringXSpeed 
     EOR.W #$FFFF 
@@ -1772,8 +1770,7 @@ Function_BabyTurtle_Crawling_CarryingSamus:
 
 EnemyTouch_MamaTurtle:
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    BIT.W #$8000 
+    LDA.W $0F86,X : BIT.W #$8000 
     BNE .return 
     JSL.L CommonA2_NormalEnemyTouchAI 
     LDA.W #Function_MamaTurtle_Falling : STA.W $0FA8,X 
@@ -4388,8 +4385,7 @@ Function_Ship_Idle_HandleLettingSamusEnter:
     BMI .return 
     LDA.W $0A1F : AND.W #$00FF 
     BNE .return 
-    LDA.B $8F 
-    BIT.W #$0400 
+    LDA.B $8F : BIT.W #$0400 
     BNE .enterShip 
 
 .return:
@@ -4489,8 +4485,7 @@ Function_Ship_SamusEntered_LiftoffOrRestoreSamusEnergyAmmo:
     BMI .return 
     BRA .continue 
 
-    LDA.B $8D 
-    BIT.W #$8000 
+    LDA.B $8D : BIT.W #$8000 
     BEQ .continue 
 
 .liftoff:
@@ -10046,8 +10041,7 @@ InitAI_GRipper:
     ASL #3
     STA.W $0FB0,X 
     TAY 
-    LDA.W $0F92,X 
-    BIT.W #$FEFF 
+    LDA.W $0F92,X : BIT.W #$FEFF 
     BEQ .negateSpeed 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W $0FAE,X 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W $0FAC,X 

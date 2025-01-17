@@ -536,8 +536,7 @@ AddSpritemapToOAM:
 
   + STA.B $18 
     INY #2
-    LDA.W $0590 
-    BIT.W #$FE00 
+    LDA.W $0590 : BIT.W #$FE00 
     BNE .gotoReturn 
     TAX 
     CLC 
@@ -628,8 +627,7 @@ AddSpritemapToOAM_Offscreen:
 
   + STA.B $18 
     INY #2
-    LDA.W $0590 
-    BIT.W #$FE00 
+    LDA.W $0590 : BIT.W #$FE00 
     BNE .goto_return 
     TAX 
     CLC 
@@ -1374,8 +1372,7 @@ Tilemap_DebugGameOverMenu:
 
 DebugGameOverMenu_Index3_Main:
     REP #$30 
-    LDA.B $8F 
-    BIT.W #$2000 
+    LDA.B $8F : BIT.W #$2000 
     BNE .toggleSelection 
     BIT.W #$0800 
     BNE .toggleSelection 
@@ -1518,8 +1515,7 @@ GameOverMenu_Index4_Main:
     REP #$30 
     JSL.L Handle_GameOver_BabyMetroid 
     JSL.L Draw_Menu_Selection_Missile 
-    LDA.B $8F 
-    BIT.W #$2000 
+    LDA.B $8F : BIT.W #$2000 
     BNE .toggleSelection 
     BIT.W #$0800 
     BNE .toggleSelection 
@@ -1963,8 +1959,7 @@ Draw_FileCopyClear_SaveFileInfo:
     LDA.W #$0000 
     JSR.W LoadFromSRAM_external 
     STZ.W $0F96 
-    LDA.W $0954 
-    BIT.W #$0001 
+    LDA.W $0954 : BIT.W #$0001 
     BNE + 
     LDA.W #$0400 : STA.W $0F96 
 
@@ -1972,8 +1967,7 @@ Draw_FileCopyClear_SaveFileInfo:
     LDA.W #$0001 
     JSR.W LoadFromSRAM_external 
     STZ.W $0F96 
-    LDA.W $0954 
-    BIT.W #$0002 
+    LDA.W $0954 : BIT.W #$0002 
     BNE + 
     LDA.W #$0400 : STA.W $0F96 
 
@@ -1981,8 +1975,7 @@ Draw_FileCopyClear_SaveFileInfo:
     LDA.W #$0002 
     JSR.W LoadFromSRAM_external 
     STZ.W $0F96 
-    LDA.W $0954 
-    BIT.W #$0004 
+    LDA.W $0954 : BIT.W #$0004 
     BNE + 
     LDA.W #$0400 : STA.W $0F96 
 
@@ -2064,8 +2057,7 @@ FileSelectMenu_Index8_FileCopy_SelectSource:
     REP #$30 
     JSL.L Draw_Border_Around_DATA_COPY_MODE 
     JSL.L Draw_Menu_Selection_Missile 
-    LDA.B $8F 
-    BIT.W #$1080 
+    LDA.B $8F : BIT.W #$1080 
     BNE .select 
     BIT.W #$8000 
     BNE .B 
@@ -2218,8 +2210,7 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
     REP #$30 
     JSL.L Draw_Border_Around_DATA_COPY_MODE 
     JSL.L Draw_Menu_Selection_Missile 
-    LDA.B $8F 
-    BIT.W #$1080 
+    LDA.B $8F : BIT.W #$1080 
     BNE .select 
     BIT.W #$8000 
     BNE .B 
@@ -2375,8 +2366,7 @@ FileSelectMenu_IndexC_FileCopy_Confirmation:
     JSL.L Draw_Menu_Selection_Missile 
     JSR.W HandleFileCopyArrowPalette 
     JSL.L Draw_FileCopy_Arrow 
-    LDA.B $8F 
-    BIT.W #$0C00 
+    LDA.B $8F : BIT.W #$0C00 
     BNE .toggle 
     BIT.W #$8000 
     BNE .B 
@@ -2576,8 +2566,7 @@ FileSelectMenu_Index16_FileClear_SelectSlot:
     REP #$30 
     JSL.L Draw_Border_Around_DATA_CLEAR_MODE 
     JSL.L Draw_Menu_Selection_Missile 
-    LDA.B $8F 
-    BIT.W #$1080 
+    LDA.B $8F : BIT.W #$1080 
     BNE .select 
     BIT.W #$8000 
     BNE .exit 
@@ -2673,8 +2662,7 @@ FileSelectMenu_Index17_FileClear_InitialiseConfirmation:
 FileSelectMenu_Index18_FileClear_Confirmation:
     JSL.L Draw_Border_Around_DATA_CLEAR_MODE 
     JSL.L Draw_Menu_Selection_Missile 
-    LDA.B $8F 
-    BIT.W #$0C00 
+    LDA.B $8F : BIT.W #$0C00 
     BNE .toggle 
     BIT.W #$8000 
     BNE .B 
@@ -2810,8 +2798,7 @@ FileSelectMenu_Index1F_MainToOptionsMenu_TurnSamusHelmet:
     JSR.W Draw_FileSelect_Slot_SamusHelmet 
     LDX.W #$0008 
     JSR.W Draw_FileSelect_Slot_SamusHelmet 
-    LDA.B $8F 
-    BIT.W #$1080 
+    LDA.B $8F : BIT.W #$1080 
     BNE .advance 
     LDA.W $199B 
     CMP.W #$0007 
@@ -2995,12 +2982,10 @@ FileSelectMenu_Index10_1C_ReloadMain:
     JSR.W LoadFromSRAM_external 
     ROR.W $0954 
     LDX.W #$015C 
-    LDA.W $0954 
-    BIT.W #$8000 
+    LDA.W $0954 : BIT.W #$8000 
     JSR.W Draw_FileSelection_Health 
     LDX.W #$01B4 
-    LDA.W $0954 
-    BIT.W #$8000 
+    LDA.W $0954 : BIT.W #$8000 
     JSR.W Draw_FileSelection_Time 
     LDY.W #Tilemap_FileSelect_time 
     LDX.W #($1B<<1)|($5<<6) ; $0176
@@ -3013,12 +2998,10 @@ FileSelectMenu_Index10_1C_ReloadMain:
     JSR.W LoadFromSRAM_external 
     ROR.W $0954 
     LDX.W #$029C 
-    LDA.W $0954 
-    BIT.W #$8000 
+    LDA.W $0954 : BIT.W #$8000 
     JSR.W Draw_FileSelection_Health 
     LDX.W #$02F4 
-    LDA.W $0954 
-    BIT.W #$8000 
+    LDA.W $0954 : BIT.W #$8000 
     JSR.W Draw_FileSelection_Time 
     LDY.W #Tilemap_FileSelect_time 
     LDX.W #($1B<<1)|($A<<6) ; $02B6
@@ -3031,12 +3014,10 @@ FileSelectMenu_Index10_1C_ReloadMain:
     JSR.W LoadFromSRAM_external 
     ROR.W $0954 
     LDX.W #$03DC 
-    LDA.W $0954 
-    BIT.W #$8000 
+    LDA.W $0954 : BIT.W #$8000 
     JSR.W Draw_FileSelection_Health 
     LDX.W #$0434 
-    LDA.W $0954 
-    BIT.W #$8000 
+    LDA.W $0954 : BIT.W #$8000 
     JSR.W Draw_FileSelection_Time 
     LDY.W #Tilemap_FileSelect_time 
     LDX.W #($1B<<1)|($F<<6) ; $03F6
@@ -3243,8 +3224,7 @@ FileSelectMenu_Index4_Main:
     JSR.W Draw_FileSelect_Slot_SamusHelmet 
     LDX.W #$0008 
     JSR.W Draw_FileSelect_Slot_SamusHelmet 
-    LDA.B $8F 
-    BIT.W #$1080 
+    LDA.B $8F : BIT.W #$1080 
     BNE .select 
     BIT.W #$0800 
     BNE .up 
@@ -3792,8 +3772,7 @@ FileSelectMap_Index5_GameOptionsToAreaSelectMap_ExpSqrTrans:
 
 FineSelectMap_Index6_AreaSelectMap:
     REP #$30 
-    LDA.B $8F 
-    BIT.W #$0A00 
+    LDA.B $8F : BIT.W #$0A00 
     BEQ + 
     LDA.W $05D1 : BEQ .checkB 
     JMP.W FineSelectMap_Index6_AreaSelectMap_Debug 
@@ -4378,12 +4357,10 @@ FileSelectMap_IndexA_RoomSelectMap:
     JSL.L MapScrolling 
     JSL.L Display_Map_Elevator_Destinations 
     LDA.W $05D1 : BEQ + 
-    LDA.B $91 
-    BIT.W #$2000 
+    LDA.B $91 : BIT.W #$2000 
     BNE .debug 
 
-  + LDA.B $8F 
-    BIT.W #$8000 
+  + LDA.B $8F : BIT.W #$8000 
     BNE .exit 
     BIT.W #$1080 
     BEQ .earlyReturn 

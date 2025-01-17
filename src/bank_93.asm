@@ -11,8 +11,7 @@ InitializeProjectile:
     LDA.W $0C04,X : AND.W #$000F 
     ASL A 
     STA.B $12 
-    LDA.W $0C18,X 
-    BIT.W #$0F00 
+    LDA.W $0C18,X : BIT.W #$0F00 
     BNE .notBeam 
     BIT.W #$0010 
     BNE .charged 
@@ -117,8 +116,7 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $0C18,X 
-    BIT.W #$0F00 
+    LDA.W $0C18,X : BIT.W #$0F00 
     BNE .notBeam 
     LDA.W $0C18,X : AND.W #$F0FF 
     ORA.W #$0700 
@@ -326,22 +324,19 @@ DrawProjectiles:
     JMP.W .next 
 
 
-  + LDA.W $0C18,X 
-    BIT.W #$0F10 
+  + LDA.W $0C18,X : BIT.W #$0F10 
     BNE .noFlickering 
     BIT.W #$000C 
     BNE .spazerPlasma 
     TXA 
     BIT.W #$0002 
     BNE + 
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BNE .draw 
     BRA .next 
 
 
-  + LDA.W $05B6 
-    BIT.W #$0001 
+  + LDA.W $05B6 : BIT.W #$0001 
     BNE .next 
     BRA .draw 
 
@@ -350,14 +345,12 @@ DrawProjectiles:
     TXA 
     BIT.W #$0002 
     BNE + 
-    LDA.W $05B6 
-    BIT.W #$0002 
+    LDA.W $05B6 : BIT.W #$0002 
     BNE .next 
     BRA .draw 
 
 
-  + LDA.W $05B6 
-    BIT.W #$0002 
+  + LDA.W $05B6 : BIT.W #$0002 
     BEQ .next 
     BRA .draw 
 
@@ -14218,8 +14211,7 @@ UNUSED_DrawShinesparkWindupEffectSprite_93F5E2:
     BNE .return 
 
 .verticalShinesparkWindup:
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BNE .return 
     LDA.W $0AF6 : SEC : SBC.W $0911 : STA.B $14 
     LDA.W $0AFA : SEC : SBC.W $0915 : STA.B $12 

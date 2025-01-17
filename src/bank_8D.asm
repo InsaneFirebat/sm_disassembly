@@ -11186,8 +11186,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     BNE + 
     LDA.W $0A4E : CLC : ADC.W #$4000 : STA.W $0A4E 
     LDA.W $0A50 : ADC.W #$0000 : STA.W $0A50 
-    LDA.W $05B6 
-    BIT.W #$0007 
+    LDA.W $05B6 : BIT.W #$0007 
     BNE + 
     LDA.W #$0046 
     CMP.W $09C2 
@@ -11202,8 +11201,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     ASL A 
     TAY 
     LDA.W #$0001 : STA.W $1ECD,X 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BEQ .checkVaria 
     LDA.W #.InstListPointers_gravity : BRA .setInstListPointer 
 
@@ -11281,8 +11279,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_10 
 
 Setup_PaletteFXObject_Norfair1_Tourian1:
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BEQ .checkVaria 
     LDA.W #InstList_PaletteFXObject_SamusInHeat_GravitySuit_0 : BRA + 
 

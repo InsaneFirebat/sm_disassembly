@@ -392,8 +392,7 @@ Handle_Room_Shaking:
     BPL .return 
     ASL #3
     TAX 
-    LDA.W $1840 
-    BIT.W #$0002 
+    LDA.W $1840 : BIT.W #$0002 
     BEQ .timerExpired 
     LDA.W BGShakeDisplacements_BG1X,X 
     EOR.W #$FFFF 
@@ -801,14 +800,12 @@ Initialise_Enemies:
     PLY 
     PLX 
     LDA.W #$0000 : STA.W $0F8E,Y 
-    LDA.W $0F86,Y 
-    BIT.W #$2000 
+    LDA.W $0F86,Y : BIT.W #$2000 
     BEQ .noInstructions 
     PHX 
     PHY 
     LDX.W #Spritemap_Common_Nothing 
-    LDA.W $0F88,Y 
-    BIT.W #$0004 
+    LDA.W $0F88,Y : BIT.W #$0004 
     BEQ + 
     LDX.W #ExtendedSpritemap_Common_Nothing 
 
@@ -1068,8 +1065,7 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
     LDX.W $0E7A 
     LDA.B $12 : AND.W #$7FFF : STA.W $0E5A,X 
     LDA.B $16 : STA.W $0E5C,X 
-    LDA.B $1E 
-    BIT.B $12 
+    LDA.B $1E : BIT.B $12 
     BPL .noMSB 
     PHX 
     LDX.B $1C 
@@ -1141,8 +1137,7 @@ Determine_Which_Enemies_to_Process:
     LDA.W $0F78,X : BEQ .next 
     CMP.W #EnemyHeaders_Respawn 
     BEQ .next 
-    LDA.W $0F86,X 
-    BIT.W #$0200 
+    LDA.W $0F86,X : BIT.W #$0200 
     BEQ ..notDeleted 
     STZ.W $0F78,X 
     JMP.W .next 
@@ -1151,8 +1146,7 @@ Determine_Which_Enemies_to_Process:
 ..notDeleted:
     BIT.W #$0800 
     BNE .activeEnemies 
-    LDA.W $0F8A,X 
-    BIT.W #$0004 
+    LDA.W $0F8A,X : BIT.W #$0004 
     BNE .activeEnemies 
     LDA.W $0F7A,X : CLC : ADC.W $0F82,X : CMP.W $0911 
     BMI .next 
@@ -1169,8 +1163,7 @@ Determine_Which_Enemies_to_Process:
     STA.W $17AC,Y 
     INY #2
     STY.W $17A4 
-    LDA.W $0F86,X 
-    BIT.W #$0400 
+    LDA.W $0F86,X : BIT.W #$0400 
     BNE .next 
     TXA 
     LDY.W $17A6 
@@ -1200,8 +1193,7 @@ Determine_Which_Enemies_to_Process:
     LDA.W $0F78,X : BEQ .nextProcessOffscreen 
     CMP.W #EnemyHeaders_Respawn 
     BEQ .nextProcessOffscreen 
-    LDA.W $0F86,X 
-    BIT.W #$0200 
+    LDA.W $0F86,X : BIT.W #$0200 
     BEQ ..notDeleted 
     STZ.W $0F78,X 
     BRA .nextProcessOffscreen 
@@ -1214,8 +1206,7 @@ Determine_Which_Enemies_to_Process:
     STA.W $17EC,Y 
     INY #2
     STY.W $17A4 
-    LDA.W $0F86,X 
-    BIT.W #$0400 
+    LDA.W $0F86,X : BIT.W #$0400 
     BNE .nextProcessOffscreen 
     TXA 
     LDY.W $17A6 
@@ -1271,8 +1262,7 @@ Main_Enemy_Routine:
     TAX 
     CLC : ADC.W #$0F78 : STA.W $0E58 
     LDA.W $0FA6,X : STA.W $1786 
-    LDA.W $0F86,X 
-    BIT.W #$0400 
+    LDA.W $0F86,X : BIT.W #$0400 
     BNE .interactEnd 
     LDA.W $0FA0,X : BEQ .notInvincible 
     DEC.W $0FA0,X 
@@ -1292,8 +1282,7 @@ Main_Enemy_Routine:
 
 .checkParalyzed:
     LDX.W $0E54 
-    LDA.W $0F88,X 
-    BIT.W #$0001 
+    LDA.W $0F88,X : BIT.W #$0001 
     BNE .processAIEnd 
 
 .interactEnd:
@@ -1347,16 +1336,14 @@ Main_Enemy_Routine:
     BNE .processAIEnd 
     LDX.W $0E54 
     INC.W $0FA4,X 
-    LDA.W $0F86,X 
-    BIT.W #$2000 
+    LDA.W $0F86,X : BIT.W #$2000 
     BEQ .processAIEnd 
     LDA.W #$0002 : STA.L $7EF378 
     JSR.W ProcessEnemyInstructions 
 
 .processAIEnd:
     LDX.W $0E54 
-    LDA.W $0F88,X 
-    BIT.W #$0001 
+    LDA.W $0F88,X : BIT.W #$0001 
     BEQ .paralysedEnd 
     LDA.W $0F9C,X 
     CMP.W #$0001 
@@ -1371,8 +1358,7 @@ Main_Enemy_Routine:
 
 .paralysedEnd:
     LDX.W $0E54 
-    LDA.W $0F88,X 
-    BIT.W #$0004 
+    LDA.W $0F88,X : BIT.W #$0004 
     BNE + 
     JSL.L CheckIfEnemyIsOnScreen 
     BEQ + 
@@ -1380,11 +1366,9 @@ Main_Enemy_Routine:
 
 
   + LDX.W $0E54 
-    LDA.W $0F86,X 
-    BIT.W #$0300 
+    LDA.W $0F86,X : BIT.W #$0300 
     BNE .drawEnemyEnd 
-    LDA.W $17A2 
-    BIT.W #$0001 
+    LDA.W $17A2 : BIT.W #$0001 
     BNE .drawEnemyEnd 
     JSR.W AddEnemyToDrawingQueue 
 
@@ -1644,8 +1628,7 @@ SpawnEnemy_AlwaysSucceed:
 .processInstructions:
     PLY 
     PLX 
-    LDA.W $0F86,Y 
-    BIT.W #$2000 
+    LDA.W $0F86,Y : BIT.W #$2000 
     BEQ .nextEnemy 
     LDA.W #Spritemap_Common_Nothing : STA.W $0F8E,Y 
 
@@ -1746,8 +1729,7 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
 .determinedPalette:
     STA.B $03 
     LDA.W $0F98,X : STA.B $00 
-    LDA.W $0F88,X 
-    BIT.W #$0004 
+    LDA.W $0F88,X : BIT.W #$0004 
     BNE .extendedSpritemap 
     LDA.W $0F78,X : STA.L $7EF37E 
     LDA.W $0F92,X : STA.L $7EF37A 
@@ -1791,8 +1773,7 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
     ADC.W #$0080 : BIT.W #$FE00 
     BNE .next 
     PHY 
-    LDA.B $12 
-    BIT.W #$FF00 
+    LDA.B $12 : BIT.W #$FF00 
     BNE .offScreen 
     LDY.B $16 
     JSL.L AddSpritemapToOAM_WithBaseTileNumber_8B22 
@@ -2009,8 +1990,7 @@ EnemyCollisionHandling:
     PLB 
     REP #$30 
     LDX.W $0E54 
-    LDA.W $0F88,X 
-    BIT.W #$0004 
+    LDA.W $0F88,X : BIT.W #$0004 
     BEQ .notExtendedSpritemap 
     JSR.W Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap 
     JSR.W Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap 
@@ -2077,8 +2057,7 @@ Samus_Projectiles_Interaction_Handling:
 
 
 .hasDamage:
-    LDA.W $0C18,Y 
-    BIT.W #$8000 
+    LDA.W $0C18,Y : BIT.W #$8000 
     BNE .gotoNext 
     AND.W #$0F00 
     CMP.W #$0700 
@@ -2189,8 +2168,7 @@ EnemyProjectile_Samus_Collision_Handling:
 .loop:
     LDX.W $18A6 
     LDA.W $1997,X : BEQ .next 
-    LDA.W $1BD7,X 
-    BIT.W #$2000 
+    LDA.W $1BD7,X : BIT.W #$2000 
     BNE .next 
     LDA.W $1BB3,X : AND.W #$00FF 
     BNE .hasXHitbox 
@@ -2327,8 +2305,7 @@ Projectile_vs_Projectile_Collision_Handling:
 
 
 HandleEnemyProjectileCollisionWithProjectile:
-    LDA.W $0C18,Y 
-    BIT.W #$0008 
+    LDA.W $0C18,Y : BIT.W #$0008 
     BNE .plasmaBeam 
     LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
 
@@ -2495,8 +2472,7 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
 
 
   + LDX.W $0E54 
-    LDA.W $0F86,X 
-    BIT.W #$0400 
+    LDA.W $0F86,X : BIT.W #$0400 
     BNE .returnUpper 
     LDA.W $0FA0,X : BNE .returnUpper 
     LDA.W $0F78,X 
@@ -2578,8 +2554,7 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
 
 .notSuperMissile:
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    BIT.W #$1000 
+    LDA.W $0F86,X : BIT.W #$1000 
     BNE .delete 
     LDA.W $0C18,Y : AND.W #$0008 
     BNE .noDelete 
@@ -2639,8 +2614,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
     LDY.W $0E54 
     LDA.W $0F8E,Y : BEQ .returnUpper 
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    BIT.W #$0400 
+    LDA.W $0F86,X : BIT.W #$0400 
     BNE .returnUpper 
     LDA.W $0FA0,X : BNE .returnUpper 
     LDY.W $0E54 
@@ -3111,8 +3085,7 @@ Enemy_vs_ProjectileCollisionHandling:
     LDA.W $0F8E,Y : BEQ .returnUpper 
     CMP.W #Spritemap_Common_Nothing 
     BEQ .returnUpper 
-    LDA.W $0F86,Y 
-    BIT.W #$0400 
+    LDA.W $0F86,Y : BIT.W #$0400 
     BNE .returnUpper 
     LDA.W $0F78,Y 
     CMP.W #EnemyHeaders_Respawn 
@@ -3170,11 +3143,9 @@ Enemy_vs_ProjectileCollisionHandling:
     ASL A 
     TAY 
     LDX.W $0E54 
-    LDA.W $0F86,X 
-    BIT.W #$1000 
+    LDA.W $0F86,X : BIT.W #$1000 
     BNE .delete 
-    LDA.W $0C18,Y 
-    BIT.W #$0008 
+    LDA.W $0C18,Y : BIT.W #$0008 
     BNE .noDelete 
 
 .delete:
@@ -3245,8 +3216,7 @@ Enemy_vs_Bomb_CollisionHandling:
     LDA.W $0C18,Y : AND.W #$0F00 
     CMP.W #$0500 
     BEQ .bomb 
-    LDA.W $0C18,Y 
-    BIT.W #$8000 
+    LDA.W $0C18,Y : BIT.W #$8000 
     BNE .bomb 
     JMP.W .next 
 
@@ -3454,8 +3424,7 @@ RinkaDeath:
 
 Suit_Damage_Division:
     STA.B $12 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .quarterDamage 
     LSR A 
     BCC .fullDamage 
@@ -3758,8 +3727,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
 .nonZero:
     STA.B $14 
-    LDA.B $12 
-    BIT.W #$0F00 
+    LDA.B $12 : BIT.W #$0F00 
     BNE .notBeam 
     LDA.B $12 : AND.W #$000F 
     CLC : ADC.B $14 : TAX 
@@ -3773,8 +3741,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
 
 .checkCharge:
-    LDA.B $12 
-    BIT.W #$0010 
+    LDA.B $12 : BIT.W #$0010 
     BEQ .calculateDamage 
     LDX.B $14 
     LDA.L $B40013,X : AND.W #$00FF 
@@ -3895,8 +3862,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     LDA.W $18A6 
     ASL A 
     TAY 
-    LDA.W $0C18,Y 
-    BIT.W #$0008 
+    LDA.W $0C18,Y : BIT.W #$0008 
     BEQ .notPlasma 
     LDA.W #$0010 : STA.W $0FA0,X 
 
@@ -4072,8 +4038,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     STA.W $18A6 
     TAX 
     LDA.W $0F9E,X : BNE .notFrozenNotSolid 
-    LDA.W $0F86,X 
-    BIT.W #$8000 
+    LDA.W $0F86,X : BIT.W #$8000 
     BNE .notFrozenNotSolid 
     JMP.W .next 
 
@@ -5645,8 +5610,7 @@ CheckForHorizontalSolidBlockCollision:
 
   + PLX 
     STZ.B $12 
-    LDA.B $22 
-    BIT.B $14 
+    LDA.B $22 : BIT.B $14 
     BMI .movingLeft 
     AND.W #$FFF0 
     SEC : SBC.W $0F82,X : SEC : SBC.W $0F7A,X : BPL + 
@@ -5719,8 +5683,7 @@ CheckForVerticalSolidBlockCollision:
 
   + PLX 
     STZ.B $12 
-    LDA.B $22 
-    BIT.B $14 
+    LDA.B $22 : BIT.B $14 
     BMI .movingUp 
     AND.W #$FFF0 
     SEC : SBC.W $0F84,X : SEC : SBC.W $0F7E,X : BPL .returnCarrySet 
@@ -6496,8 +6459,7 @@ EnemyBlockCollisionReaction_Horizontal_Slope_Square:
 .deadCode:
     TYX 
     STZ.W $0F7C,X 
-    LDA.B $1A 
-    BIT.B $14 
+    LDA.B $1A : BIT.B $14 
     BMI ..right 
     AND.W #$FFF8 
     SEC : SBC.W $0F82,X : STA.W $0F7A,X 
@@ -6563,8 +6525,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_Square:
 .deadCode:
     TYX 
     STZ.W $0F80,X 
-    LDA.B $1A 
-    BIT.B $14 
+    LDA.B $1A : BIT.B $14 
     BMI ..bottom 
     AND.W #$FFF8 
     SEC : SBC.W $0F84,X : STA.W $0F7E,X 
@@ -6883,8 +6844,7 @@ MoveEnemyRightBy_14_12_Common:
 
 .solid:
     PLX 
-    LDA.B $1A 
-    BIT.B $14 
+    LDA.B $1A : BIT.B $14 
     BMI .movingLeft 
     AND.W #$FFF0 
     SEC : SBC.W $0F82,X : CMP.W $0F7A,X 
@@ -6984,8 +6944,7 @@ MoveEnemyDownBy_14_12_BranchEntry:
 
 .solid:
     PLX 
-    LDA.B $1A 
-    BIT.B $14 
+    LDA.B $1A : BIT.B $14 
     BMI .movingUp 
     AND.W #$FFF0 
     SEC : SBC.W $0F84,X : CMP.W $0F7E,X 

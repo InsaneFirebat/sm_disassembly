@@ -26,16 +26,14 @@ LayerBlending_Handler:
 
 
 .xrayHideBlocks:
-    LDA.W $1987 
-    BIT.B #$20 
+    LDA.W $1987 : BIT.B #$20 
     BEQ .xrayFirefleaRoom 
     JSR.W Handle_LayerBlending_Xray_CantShowBlocks 
     BRA .return 
 
 
 .xrayFirefleaRoom:
-    LDA.W $1987 
-    BIT.B #$10 
+    LDA.W $1987 : BIT.B #$10 
     BEQ .return 
     JSR.W Handle_LayerBlending_Xray_FirefleaRoom 
     BRA .return ; >_<
@@ -992,8 +990,7 @@ PreInstruction_Xray_Main:
 HandleXrayScope_State0_NoBeam:
     PHP 
     REP #$30 
-    LDA.B $8B 
-    BIT.W $09B6 
+    LDA.B $8B : BIT.W $09B6 
     BNE .calculateHDMATable 
     LDA.W #$0003 : STA.W $0A7A 
     BRA .return 
@@ -1018,8 +1015,7 @@ RTS_888753:
 HandleXrayScope_State1_BeamIsWidening:
     PHP 
     REP #$30 
-    LDA.B $8B 
-    BIT.W $09B6 
+    LDA.B $8B : BIT.W $09B6 
     BNE + 
     LDA.W #$0003 : STA.W $0A7A 
     BRA .return 
@@ -1050,8 +1046,7 @@ HandleXrayScope_State1_BeamIsWidening:
 HandleXrayScope_State2_FullBeam:
     PHP 
     REP #$30 
-    LDA.B $8B 
-    BIT.W $09B6 
+    LDA.B $8B : BIT.W $09B6 
     BEQ .state3 
     JSR.W HandleMovingXray_UpDown 
     JSR.W Calculate_Xray_HDMADataTable 
@@ -1069,8 +1064,7 @@ HandleXrayScope_State2_FullBeam:
 HandleMovingXray_UpDown:
     PHP 
     REP #$30 
-    LDA.B $8B 
-    BIT.W $09AA 
+    LDA.B $8B : BIT.W $09AA 
     BNE .up 
     BIT.W $09AC 
     BNE .down 
@@ -4170,8 +4164,7 @@ PreInstruction_LavaAcid_BG2YScroll:
     PHB 
     LDA.B $B7 : STA.L $7E9C44 
     LDA.W $0A78 : BNE .timeNotFrozen 
-    LDA.W $197E 
-    BIT.W #$0006 
+    LDA.W $197E : BIT.W #$0006 
     BNE .wavy 
 
 .timeNotFrozen:
@@ -8303,8 +8296,7 @@ RTL_88DF93:
 
 
 PreInstruction_DraygonMainScreenLayers:
-    LDA.W $0F86 
-    BIT.W #$0200 
+    LDA.W $0F86 : BIT.W #$0200 
     BNE .offScreen 
     LDA.W $0F7A : SEC : SBC.W $0911 : CLC : ADC.W #$0040 : BMI .offScreen 
     CMP.W #$0180 
@@ -8561,8 +8553,7 @@ SuitPickup_Stage3_LightBeamWidens_Curved:
 
 
 SuitPickup_Stage4_LightBeamShrinks:
-    LDA.W $0DF2 
-    BIT.W #$FF00 
+    LDA.W $0DF2 : BIT.W #$FF00 
     BNE .advanceToOrange 
     JSR.W AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToOrange 
     BRA + 
@@ -9050,8 +9041,7 @@ PreInstruction_WavyPhantoon:
     JMP.W .loop 
 
 
-  + LDA.W $0FF4 
-    BIT.W #$0001 
+  + LDA.W $0FF4 : BIT.W #$0001 
     BNE .doubledE706 
     LDX.W #$003E 
 

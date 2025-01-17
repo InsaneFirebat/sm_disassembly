@@ -600,8 +600,7 @@ PostGrappleCollisionDetection_Vertical:
 
 
 SamusBlockCollisionDetection_Horizontal_Slope_NonSquare:
-    LDA.W $1E77 
-    BIT.W #$0080 
+    LDA.W $1E77 : BIT.W #$0080 
     BNE .returnNoCollision 
     LDA.W $0B2C 
     ORA.W $0B2E 
@@ -620,8 +619,7 @@ SamusBlockCollisionDetection_Horizontal_Slope_NonSquare:
     LDA.W $0B48 
     ORA.W $0B46 
     BEQ .backToReality 
-    LDA.W $1E77 
-    BIT.W #$0040 
+    LDA.W $1E77 : BIT.W #$0040 
     BNE + 
     LDA.W $0B48 : CLC : ADC.W .speedModifiers,X : BCC .backToReality 
     BRA .backToReality 
@@ -653,8 +651,7 @@ SamusBlockCollisionDetection_Horizontal_Slope_NonSquare:
     LDA.W $0B48 
     ORA.W $0B46 
     BEQ ..backToReality 
-    LDA.W $1E77 
-    BIT.W #$0040 
+    LDA.W $1E77 : BIT.W #$0040 
     BEQ + 
     LDA.W $0B48 : CLC : ADC.W .speedModifiers,X : BCC ..backToReality 
     BRA ..backToReality 
@@ -946,8 +943,7 @@ Align_SamusYPosition_WithNonSquareSlope:
     PHB 
     PHK 
     PLB 
-    LDA.W $0A46 
-    BIT.W #$0002 
+    LDA.W $0A46 : BIT.W #$0002 
     BNE .bottom 
     JMP.W .return 
 
@@ -1162,8 +1158,7 @@ SamusBlockCollisionReaction_Horizontal_Slope_Square:
 
 .solid:
     STZ.B $14 
-    LDA.B $20 
-    BIT.B $12 
+    LDA.B $20 : BIT.B $12 
     BMI .negative12 
     AND.W #$FFF8 
     SEC : SBC.W $0AFE : SBC.W $0AF6 : BPL .notMinimum 
@@ -1232,8 +1227,7 @@ SamusBlockCollisionReaction_Vertical_Slope_Square:
 
 .solid:
     STZ.B $14 
-    LDA.B $20 
-    BIT.B $12 
+    LDA.B $20 : BIT.B $12 
     BMI .negative12 
     AND.W #$FFF8 
     SEC : SBC.W $0B00 : SBC.W $0AFA : BPL .notMin 
@@ -1277,8 +1271,7 @@ SquareSlopeDefinitions_Bank94:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DetermineSamusSuitPaletteIndex_948E68:
     LDY.W #$0004 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .return 
     DEY #2
     BIT.W #$0001 
@@ -1387,8 +1380,7 @@ CLCRTS_948F47:
 
 SamusBlockCollisionReaction_Horizontal_SolidShootableGrapple:
     STZ.B $14 
-    LDA.B $20 
-    BIT.B $12 
+    LDA.B $20 : BIT.B $12 
     BMI .negative12 
     AND.W #$FFF0 
     SEC : SBC.W $0AFE : SEC : SBC.W $0AF6 : BPL .leftNotMin 
@@ -1416,8 +1408,7 @@ SamusBlockCollisionReaction_Horizontal_SolidShootableGrapple:
 
 SamusBlockCollisionReaction_Vertical_SolidShootableGrapple:
     STZ.B $14 
-    LDA.B $20 
-    BIT.B $12 
+    LDA.B $20 : BIT.B $12 
     BMI .negative12 
     AND.W #$FFF0 
     SEC : SBC.W $0B00 : SEC : SBC.W $0AFA : BPL .bottomNotMin 
@@ -3214,8 +3205,7 @@ BombAndPowerBombExplosionBlockCollisionHandling:
 
 BombExplosionBlockCollisionHandling:
     LDA.W $0C7C,X : BNE .return 
-    LDA.W $0C18,X 
-    BIT.W #$0001 
+    LDA.W $0C18,X : BIT.W #$0001 
     BNE .return 
     ORA.W #$0001 
     STA.W $0C18,X 
@@ -5241,8 +5231,7 @@ HandleGrappleBeamSwingingMovement:
     PHK 
     PLB 
     LDY.W #$0100 
-    LDA.W $0CF4 
-    BIT.W #$0001 
+    LDA.W $0CF4 : BIT.W #$0001 
     BEQ .nonLiquidPhysics 
     LDY.W #$00A0 
 

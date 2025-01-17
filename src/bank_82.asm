@@ -3112,8 +3112,7 @@ DetermineLeftmostMapColumn:
     LDY.W #$0000 
 
 .loopRows:
-    LDA.B [$00],Y 
-    BIT.B $12 
+    LDA.B [$00],Y : BIT.B $12 
     BNE .return 
     INY #4
     CPY.W #$0080 
@@ -3161,8 +3160,7 @@ DetermineRightmostMapColumn:
     LDY.W #$0000 
 
 .loopRows:
-    LDA.B [$00],Y 
-    BIT.B $12 
+    LDA.B [$00],Y : BIT.B $12 
     BNE .return 
     INY #4
     CPY.W #$0080 
@@ -3331,8 +3329,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     LDA.W $0A76 : BNE .hyperBeam 
 
 .loopWeapons:
-    LDA.W EquipmentScreenData_EquipmentBitmasks_weapons,Y 
-    BIT.W $09A8 
+    LDA.W EquipmentScreenData_EquipmentBitmasks_weapons,Y : BIT.W $09A8 
     BNE + 
     LDX.W #EquipmentScreenTilemaps_blankPlaceholder 
     LDA.W #$000A : STA.B $16 
@@ -3343,8 +3340,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
   + LDX.W EquipmentScreenData_PointersEquipmentTIlemaps_weapons,Y 
     LDA.W #$000A : STA.B $16 
     JSR.W Copy_Bytes_from_X_to_7ERAM 
-    LDA.W EquipmentScreenData_EquipmentBitmasks_weapons,Y 
-    BIT.W $09A6 
+    LDA.W EquipmentScreenData_EquipmentBitmasks_weapons,Y : BIT.W $09A6 
     BNE .nextWeapon 
     LDA.W #$0C00 : STA.B $12 
     LDA.W #$000A : STA.B $16 
@@ -3377,8 +3373,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     LDA.B [$03],Y : STA.B $00 
 
 .loopSuitMisc:
-    LDA.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,Y 
-    BIT.W $09A4 
+    LDA.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,Y : BIT.W $09A4 
     BNE + 
     LDX.W #EquipmentScreenTilemaps_blankPlaceholder 
     LDA.W #$0012 : STA.B $16 
@@ -3389,8 +3384,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
   + LDX.W EquipmentScreenData_PointersEquipmentTIlemaps_suitsMisc,Y 
     LDA.W #$0012 : STA.B $16 
     JSR.W Copy_Bytes_from_X_to_7ERAM 
-    LDA.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,Y 
-    BIT.W $09A2 
+    LDA.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,Y : BIT.W $09A2 
     BNE .nextSuitMisc 
     LDA.W #$0C00 : STA.B $12 
     LDA.W #$0012 : STA.B $16 
@@ -3407,8 +3401,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     LDA.B [$03],Y : STA.B $00 
 
 .loopBoots:
-    LDA.W EquipmentScreenData_EquipmentBitmasks_boots,Y 
-    BIT.W $09A4 
+    LDA.W EquipmentScreenData_EquipmentBitmasks_boots,Y : BIT.W $09A4 
     BNE + 
     LDX.W #EquipmentScreenTilemaps_blankPlaceholder 
     LDA.W #$0012 : STA.B $16 
@@ -3419,8 +3412,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
   + LDA.W #$0012 : STA.B $16 
     LDX.W EquipmentScreenData_PointersEquipmentTIlemaps_boots,Y 
     JSR.W Copy_Bytes_from_X_to_7ERAM 
-    LDA.W EquipmentScreenData_EquipmentBitmasks_boots,Y 
-    BIT.W $09A2 
+    LDA.W EquipmentScreenData_EquipmentBitmasks_boots,Y : BIT.W $09A2 
     BNE .nextBoots 
     LDA.W #$0C00 : STA.B $12 
     LDA.W #$0012 : STA.B $16 
@@ -3657,15 +3649,13 @@ ChangePose_DueTo_EquipmentChange_SpinJumping:
 
 
 .spaceJump:
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .return 
     BRA .merge 
 
 
 .screwAttack:
-    LDA.W $09A2 
-    BIT.W #$0008 
+    LDA.W $09A2 : BIT.W #$0008 
     BNE .return 
 
 .merge:
@@ -3691,8 +3681,7 @@ ChangePose_DueTo_EquipmentChange_SpinJumping:
 Change_Pose_due_to_Equipment_Change_MovementTypes_7_9:
     PHP 
     REP #$30 
-    LDA.W $09A2 
-    BIT.W #$0004 
+    LDA.W $09A2 : BIT.W #$0004 
     BNE .return 
     LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
@@ -3716,8 +3705,7 @@ Change_Pose_due_to_Equipment_Change_MovementTypes_7_9:
 ChangePose_DueTo_EquipmentChange_MorphBall:
     PHP 
     REP #$30 
-    LDA.W $09A2 
-    BIT.W #$0002 
+    LDA.W $09A2 : BIT.W #$0002 
     BEQ .return 
     LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
@@ -3741,8 +3729,7 @@ ChangePose_DueTo_EquipmentChange_MorphBall:
 ChangePose_DueTo_EquipmentChange_SpringBall:
     PHP 
     REP #$30 
-    LDA.W $09A2 
-    BIT.W #$0002 
+    LDA.W $09A2 : BIT.W #$0002 
     BNE .return 
     LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
@@ -3772,8 +3759,7 @@ Handle_PauseScreen_L_R:
 Handle_PauseScreen_L_R_Input:
     PHP 
     REP #$30 
-    LDA.W $05E1 
-    BIT.W #$0020 
+    LDA.W $05E1 : BIT.W #$0020 
     BNE .L 
     BIT.W #$0010 
     BNE .R 
@@ -3860,8 +3846,7 @@ EquipmentScreen_Draw_L_R_Highlight:
 Handle_PauseScreen_StartButton:
     PHP 
     REP #$30 
-    LDA.W $05E1 
-    BIT.W #$1000 
+    LDA.W $05E1 : BIT.W #$1000 
     BEQ + 
     LDA.W #$0038 
     JSL.L QueueSound_Lib1_Max6 
@@ -4501,8 +4486,7 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     PHP 
     REP #$30 
     LDA.W $0755 : STA.B $12 
-    LDA.B $8F 
-    BIT.W #$0100 
+    LDA.B $8F : BIT.W #$0100 
     BEQ .notRight 
     BIT.W #$0400 
     BNE .moveToBoots 
@@ -4559,8 +4543,7 @@ EquipmentScreen_Main_Tanks_DPadResponse:
 EquipmentScreen_Main_Tanks_GlowingArrow:
     PHP 
     REP #$30 
-    LDA.W $0755 
-    BIT.W #$00FF 
+    LDA.W $0755 : BIT.W #$00FF 
     BNE .solidOff 
     XBA 
     AND.W #$00FF 
@@ -4694,8 +4677,7 @@ EquipmentScreen_Disable_EnergyArrowGlow:
 EquipmentScreen_Main_Tanks_Mode:
     PHP 
     REP #$30 
-    LDA.B $8F 
-    BIT.W #$0080 
+    LDA.B $8F : BIT.W #$0080 
     BEQ .return 
     LDA.W $09D4 : BEQ .return 
     LDA.W #$0037 
@@ -4771,8 +4753,7 @@ EquipmentScreen_Main_Tanks_ReserveTank:
     PHP 
     REP #$30 
     LDA.W $0757 : BNE .soundTimer 
-    LDA.B $8F 
-    BIT.W #$0080 
+    LDA.B $8F : BIT.W #$0080 
     BEQ .return 
     LDA.W $09D6 : CLC : ADC.W #$0007 : AND.W #$FFF8 
     STA.W $0757 
@@ -4831,8 +4812,7 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     PHP 
     REP #$30 
     LDA.W $0755 : STA.B $12 
-    LDA.B $8F 
-    BIT.W #$0100 
+    LDA.B $8F : BIT.W #$0100 
     BEQ .rightEnd 
     BIT.W #$0800 
     BNE .top 
@@ -4903,11 +4883,9 @@ EquipmentScreen_Main_Weapons_PlasmaSpazerCheck:
     BNE .spazerToggled 
     BIT.W #$0008 
     BEQ .return 
-    LDA.B $24 
-    BIT.W #$0008 
+    LDA.B $24 : BIT.W #$0008 
     BNE .return 
-    LDA.W $09A6 
-    BIT.W #$0004 
+    LDA.W $09A6 : BIT.W #$0004 
     BEQ .return 
     AND.W #$FFFB 
     STA.W $09A6 
@@ -4916,11 +4894,9 @@ EquipmentScreen_Main_Weapons_PlasmaSpazerCheck:
 
 
 .spazerToggled:
-    LDA.B $24 
-    BIT.W #$0004 
+    LDA.B $24 : BIT.W #$0004 
     BNE .return 
-    LDA.W $09A6 
-    BIT.W #$0008 
+    LDA.W $09A6 : BIT.W #$0008 
     BEQ .return 
     AND.W #$FFF7 
     STA.W $09A6 
@@ -4950,8 +4926,7 @@ EquipmentScreen_SuitsMisc_MoveResponse:
     PHP 
     REP #$30 
     LDA.W $0755 : STA.B $12 
-    LDA.B $8F 
-    BIT.W #$0200 
+    LDA.B $8F : BIT.W #$0200 
     BEQ .leftEnd 
     BIT.W #$0400 
     BNE .topOfBeams 
@@ -5019,8 +4994,7 @@ EquipmentScreen_Main_Boots_MoveResponse:
     PHP 
     REP #$30 
     LDA.W $0755 : STA.B $12 
-    LDA.B $8F 
-    BIT.W #$0200 
+    LDA.B $8F : BIT.W #$0200 
     BEQ .leftEnd 
     BIT.W #$0800 
     BNE .moveToReserve 
@@ -5237,8 +5211,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     CMP.W #$0007 
     BPL + 
     LDA.W $4216 : BEQ + 
-    LDA.W $05B5 
-    BIT.W #$0004 
+    LDA.W $05B5 : BIT.W #$0004 
     BNE + 
     INX #2
     + LDA.W $09D6 
@@ -5361,8 +5334,7 @@ EquipmentScreen_MoveLowerOnBeams:
     LDA.W $0A76 : BNE .cancel 
 
 .loop:
-    LDA.W $09A8 
-    BIT.W EquipmentScreenData_EquipmentBitmasks_weapons,X 
+    LDA.W $09A8 : BIT.W EquipmentScreenData_EquipmentBitmasks_weapons,X 
     BNE .found 
     INX #2
     CPX.W #$000A 
@@ -5394,8 +5366,7 @@ EquipmentScreen_MoveHigherOnBeams:
     LDA.W $0A76 : BNE .cancel 
 
 .loop:
-    LDA.W $09A8 
-    BIT.W EquipmentScreenData_EquipmentBitmasks_weapons,X 
+    LDA.W $09A8 : BIT.W EquipmentScreenData_EquipmentBitmasks_weapons,X 
     BNE .found 
     DEX #2
     BPL .loop 
@@ -5424,8 +5395,7 @@ EquipmentScreen_MoveLowerOnSuitsMisc:
     REP #$30 
 
 .loop:
-    LDA.W $09A4 
-    BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X 
+    LDA.W $09A4 : BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X 
     BNE + 
     INX #2
     CPX.W #$000A ; Bug: $B4C4 should be CPX #$000C. Can't access Screw Attack without Spring Ball or Boots
@@ -5453,8 +5423,7 @@ EquipmentScreen_MoveHigherOnSuitsMisc:
     REP #$30 
 
 .loop:
-    LDA.W $09A4 
-    BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X 
+    LDA.W $09A4 : BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X 
     BNE + 
     DEX #2
     BPL .loop 
@@ -5481,8 +5450,7 @@ EquipmentScreen_MoveLowerOnBoots:
     REP #$30 
 
 .loop:
-    LDA.W $09A4 
-    BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X 
+    LDA.W $09A4 : BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X 
     BNE + 
     INX #2
     CPX.W #$0006 
@@ -5510,8 +5478,7 @@ EquipmentScreen_MoveHigherOnBoots:
     REP #$30 
 
 .loop:
-    LDA.W $09A4 
-    BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X 
+    LDA.W $09A4 : BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X 
     BNE + 
     DEX #2
     BPL .loop 
@@ -5535,8 +5502,7 @@ EquipmentScreen_MoveHigherOnBoots:
 EquipmentScreen_Main_ButtonResponse:
     PHP 
     REP #$30 
-    LDA.B $8F 
-    BIT.W #$0080 
+    LDA.B $8F : BIT.W #$0080 
     BNE + 
     PLP 
     RTS 
@@ -5558,8 +5524,7 @@ EquipmentScreen_Main_ButtonResponse:
     LDA.W EquipmentScreenDataPointers_equipmentBitmasks,X 
     TAY 
     LDA.W EquipmentScreenDataPointers_listsEquipmentBitmasks,X : CLC : ADC.B $12 : TAX 
-    LDA.W $0000,Y 
-    BIT.W $0000,X 
+    LDA.W $0000,Y : BIT.W $0000,X 
     BNE + 
     ORA.W $0000,X 
     STA.W $0000,Y 
@@ -5742,8 +5707,7 @@ Draw_FileSelectMap_Icons:
     INY #2
     LDA.B [$00],Y : SEC : SBC.B $B3 : TAY 
     PHY 
-    LDA.W $077A 
-    BIT.W #$0001 
+    LDA.W $077A : BIT.W #$0001 
     BNE + 
     LDA.W #$0012 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
@@ -5842,8 +5806,7 @@ Draw_MapIcons_ofGivenType:
     TAX 
 
 .loop:
-    LDA.W $0000,X 
-    BIT.W #$8000 
+    LDA.W $0000,X : BIT.W #$8000 
     BNE .return 
     LSR.B $24 
     BCC .next 
@@ -5892,8 +5855,7 @@ Check_if_MapPosition_isExplored:
     TAX 
     LDY.B $12 
     SEP #$20 
-    LDA.W $07F7,Y 
-    BIT.W .bits,X 
+    LDA.W $07F7,Y : BIT.W .bits,X 
     REP #$20 
     RTS 
 
@@ -5970,8 +5932,7 @@ Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction:
     JSR.W Draw_PauseScreen_SpriteAnimation 
     PLB 
     PLX 
-    LDA.W $0006,X 
-    BIT.B $8B 
+    LDA.W $0006,X : BIT.B $8B 
     BEQ .return 
     LDA.W $05FD : BNE .return 
     LDA.W $0008,X : STA.W $05FD 
@@ -8534,8 +8495,7 @@ CalculateTheAth_TransitionalColorComponent_fromXtoY:
     XBA 
     XBA 
     NOP #2
-    LDA.L $004214 
-    BIT.B $12 
+    LDA.L $004214 : BIT.B $12 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -8631,8 +8591,7 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
     BPL .tickGameTime 
 
 .zeroEnergy:
-    LDA.W $09C0 
-    BIT.W #$0001 
+    LDA.W $09C0 : BIT.W #$0001 
     BEQ .noAutoReserve 
     LDA.W $09D6 : BEQ .noAutoReserve 
     LDA.W #$8000 : STA.W $0A78 
@@ -8706,8 +8665,7 @@ GameState_1B_ReserveTankAuto:
 
 Reserve_Tank_Auto_Refill:
     LDA.W $09D6 : BEQ .return 
-    LDA.W $05B6 
-    BIT.W #$0007 
+    LDA.W $05B6 : BIT.W #$0007 
     BNE + 
     LDA.W #$002D 
     JSL.L QueueSound_Lib3_Max3 
@@ -8954,8 +8912,7 @@ Load_Door_Header:
     STZ.B $12 
     STZ.B $14 
     LDA.W $0008,X : BPL .positive 
-    LDA.W $0791 
-    BIT.W #$0002 
+    LDA.W $0791 : BIT.W #$0002 
     BNE .vertical 
     LDA.W #$00C8 : BRA .positive 
 
@@ -9064,8 +9021,7 @@ Save_Map_Explored_If_Elevator:
     JSL.L SetDebugElevatorAsUsed 
 
   + LDX.W $078D 
-    LDA.L $830002,X 
-    BIT.W #$0040 
+    LDA.L $830002,X : BIT.W #$0040 
     BEQ .return 
     JSL.L MirrorCurrentAreasMapExplored 
 
@@ -9075,8 +9031,7 @@ Save_Map_Explored_If_Elevator:
 
 Load_Map_Explored_If_Elevator:
     LDX.W $078D 
-    LDA.L $830002,X 
-    BIT.W #$0040 
+    LDA.L $830002,X : BIT.W #$0040 
     BEQ .return 
     JSL.L LoadMirrorOfCurrentAreasMapExplored 
 
@@ -9467,11 +9422,9 @@ DoorTransitionFunction_ScrollScreenToAlignment:
     PEA.W $8F00 
     PLB 
     PLB 
-    LDA.W $0791 
-    BIT.W #$0002 
+    LDA.W $0791 : BIT.W #$0002 
     BNE .vertical 
-    LDA.W $0914 
-    BIT.W #$FF00 
+    LDA.W $0914 : BIT.W #$FF00 
     BEQ .done 
     BMI + 
     DEC.W $0915 
@@ -9483,8 +9436,7 @@ DoorTransitionFunction_ScrollScreenToAlignment:
 
 
 .vertical:
-    LDA.W $0910 
-    BIT.W #$FF00 
+    LDA.W $0910 : BIT.W #$FF00 
     BEQ .done 
     BMI + 
     DEC.W $0911 
@@ -9577,8 +9529,7 @@ DoorTransitionFunction_PlaceSamus_LoadTiles:
 .vertical:
     STA.B $A7 
     JSR.W WaitUntilTheEndOfAVBlank_and_Enable_H_V_CounterInterrupts 
-    LDA.W $07B3 
-    BIT.W #$0002 
+    LDA.W $07B3 : BIT.W #$0002 
     BEQ .decompress 
     LDA.W $078D 
     CMP.W #Door_PostCrocShaft_0 
@@ -9606,8 +9557,7 @@ DoorTransitionFunction_PlaceSamus_LoadTiles:
     JSR.W Perform_Door_Transition_VRAM_Update 
     dl $7E6000 
     dw $2000,$1000 
-    LDA.W $07B3 
-    BIT.W #$0006 
+    LDA.W $07B3 : BIT.W #$0006 
     BEQ .checkUp 
     LDA.W $078D 
     CMP.W #Door_PostCrocShaft_0 
@@ -9687,8 +9637,7 @@ DoorTransitionFunction_LoadSpritesBGPLMsAudio_RunDoorRoomASM:
     TSB.W $18B0 
     JSL.L PLM_Handler 
     JSL.L WaitForNMI 
-    LDA.W $0791 
-    BIT.W #$0002 
+    LDA.W $0791 : BIT.W #$0002 
     BNE .return 
     AND.W #$0003 
     BEQ .right 
@@ -10393,8 +10342,7 @@ Load_Level_Scroll_and_CRE_Data:
     LDA.W $079F 
     CMP.W #$0006 
     BEQ .inCeres 
-    LDA.W $07B3 
-    BIT.W #$0002 
+    LDA.W $07B3 : BIT.W #$0002 
     BEQ + 
     LDA.W #CRE_TileTable_Compressed>>8&$FF00 : STA.B $48 
     LDA.W #CRE_TileTable_Compressed : STA.B $47 
@@ -10543,8 +10491,7 @@ GameOptionsMenu_0_FinishFadingOut:
     LDA.B $51 
     CMP.B #$0E 
     BNE .return 
-    LDA.B $6B 
-    BIT.B #$04 
+    LDA.B $6B : BIT.B #$04 
     BNE .return 
     REP #$20 
     LDY.W #GameOptionsMenu_Objects_SAMUS_DATA_Border 
@@ -10704,8 +10651,7 @@ GameOptionsMenu_3_OptionsMenu:
     STZ.W $099E 
 
 .checkB:
-    LDA.B $8F 
-    BIT.W #$8000 
+    LDA.B $8F : BIT.W #$8000 
     BNE .cancel 
     BIT.W #$0080 
     BNE .actiate 
@@ -10740,8 +10686,7 @@ GameOptionsMenu_3_OptionsMenu:
 
 GameOptionsMenu_StartGame:
     LDA.W $05D1 : BEQ .debug 
-    LDA.B $8B 
-    BIT.W #$0020 
+    LDA.B $8B : BIT.W #$0020 
     BEQ .startGame 
 
 .debug:
@@ -10867,8 +10812,7 @@ GameOptionsMenu_C_FadingOutOptionsMenuToStartGame:
 GameOptionsMenu_4_StartGame:
     STZ.W $0DE2 
     LDA.W $05D1 : BEQ .checkLoadingState 
-    LDA.B $8B 
-    BIT.W #$0020 
+    LDA.B $8B : BIT.W #$0020 
     BEQ .debug 
 
 .checkLoadingState:
@@ -11074,8 +11018,7 @@ GameOptionsMenu_8_SpecialSettings:
     STZ.W $099E 
 
 .checkB:
-    LDA.B $8F 
-    BIT.W #$8000 
+    LDA.B $8F : BIT.W #$8000 
     BEQ .checkActivate 
     LDA.W #$0038 
     JSL.L QueueSound_Lib1_Max6 
@@ -11085,8 +11028,7 @@ GameOptionsMenu_8_SpecialSettings:
 
 
 .checkActivate:
-    LDA.B $8F 
-    BIT.W #$1380 
+    LDA.B $8F : BIT.W #$1380 
     BEQ .return 
     LDA.W #$0038 
     JSL.L QueueSound_Lib1_Max6 
@@ -11333,8 +11275,7 @@ GameOptionsMenu_7_ControllerSettings:
     dw $0080,$0080,$0080 ; A
 
 GameOptions_ControllerSettings_ResetToDefault:
-    LDA.B $8F 
-    BIT.W #$1080 
+    LDA.B $8F : BIT.W #$1080 
     BNE .reset 
     RTS 
 
@@ -11353,8 +11294,7 @@ GameOptions_ControllerSettings_ResetToDefault:
 
 
 GameOptions_ControllerSettings_End:
-    LDA.B $8F 
-    BIT.W #$1080 
+    LDA.B $8F : BIT.W #$1080 
     BNE .end 
     RTS 
 
@@ -11700,8 +11640,7 @@ GameOptionsMenu_ControllerBindings:
 .loop:
     LDA.W Configurable_Controller_Binding_RAM_Addresses,X 
     TAY 
-    LDA.W $0000,Y 
-    BIT.W #$0040 
+    LDA.W $0000,Y : BIT.W #$0040 
     BNE .X 
     BIT.W #$0080 
     BNE .A 

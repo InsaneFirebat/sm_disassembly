@@ -486,8 +486,7 @@ EnemyShot_SpacePirate_GoldNinjaIsVulnerable:
 
 .zeroVuln:
     STA.B $14 
-    LDA.B $12 
-    BIT.W #$0F00 
+    LDA.B $12 : BIT.W #$0F00 
     BNE .notBeam 
     LDA.B $12 : AND.W #$000F 
     CLC : ADC.B $14 : TAX 
@@ -11954,8 +11953,7 @@ Instruction_PirateWall_QueueSpacePirateAttackSFX:
 InitAI_PirateWall:
     LDX.W $0E54 
     LDY.W #InstList_PirateWall_MovingDownLeftWall_0 
-    LDA.W $0FB4,X 
-    BIT.W #$0001 
+    LDA.W $0FB4,X : BIT.W #$0001 
     BEQ .zeroParam 
     LDY.W #InstList_PirateWall_MovingDownRightWall_0 
 
@@ -11965,8 +11963,7 @@ InitAI_PirateWall:
     LDA.W #$00BE : STA.L $7E8000,X 
     LDA.W #$0042 : STA.L $7E8002,X 
     LDA.W #$0002 : STA.L $7E8004,X 
-    LDA.W $0FB4,X 
-    BIT.W #$8000 
+    LDA.W $0FB4,X : BIT.W #$8000 
     BNE .notFastJump 
     LDA.L $7E8000,X : CLC : ADC.W #$0002 : STA.L $7E8000,X 
     LDA.L $7E8002,X : SEC : SBC.W #$0002 : STA.L $7E8002,X 
@@ -11974,8 +11971,7 @@ InitAI_PirateWall:
 
 .notFastJump:
     LDY.W #Function_PirateWall_ClimbingLeftWall 
-    LDA.W $0FB4,X 
-    BIT.W #$0001 
+    LDA.W $0FB4,X : BIT.W #$0001 
     BEQ + 
     LDY.W #Function_PirateWall_ClimbingRightWall 
 
@@ -12763,8 +12759,7 @@ Instruction_PirateNinja_ResetSpeed:
 InitAI_PirateNinja:
     LDX.W $0E54 
     LDY.W #InstList_PirateNinja_Initial_FacingLeft_0 
-    LDA.W $0FB4,X 
-    BIT.W #$0001 
+    LDA.W $0FB4,X : BIT.W #$0001 
     BEQ .zeroParam1 
     LDY.W #InstList_PirateNinja_Initial_FacingRight_0 
 
@@ -12772,8 +12767,7 @@ InitAI_PirateNinja:
     TYA 
     STA.W $0F92,X 
     STA.W $0FAC,X 
-    LDA.W $0FB4,X 
-    BIT.W #$0001 
+    LDA.W $0FB4,X : BIT.W #$0001 
     BEQ .zeroParam1again 
     LDA.W $0F7A,X : STA.W $0FB0,X 
     CLC : ADC.W $0FB6,X : STA.W $0FB2,X 
@@ -12806,8 +12800,7 @@ InitAI_PirateNinja:
     CLC : ADC.W $0FAE,X : STA.W $0FB2,X 
     LDA.W $0FAE,X : SEC : SBC.B $18 : STA.W $0FB0,X 
     LDY.W $0FB0,X 
-    LDA.W $0FB4,X 
-    BIT.W #$0001 
+    LDA.W $0FB4,X : BIT.W #$0001 
     BNE .zeroParam1again2 
     LDY.W $0FB2,X 
 
@@ -13509,8 +13502,7 @@ Instruction_PirateWalking_ChooseAMovement:
 InitAI_PirateWalking:
     LDX.W $0E54 
     LDY.W #InstList_PirateWalking_WalkingLeft_0 
-    LDA.W $0FB4,X 
-    BIT.W #$0001 
+    LDA.W $0FB4,X : BIT.W #$0001 
     BEQ .keepLeft 
     LDY.W #InstList_PirateWalking_WalkingRight_0 
 
@@ -13526,8 +13518,7 @@ InitAI_PirateWalking:
 MainAI_PirateWalking:
     LDX.W $0E54 
     JSR.W ($0FA8,X) 
-    LDA.W $0FB4,X 
-    BIT.W #$8000 
+    LDA.W $0FB4,X : BIT.W #$8000 
     BEQ .return 
     JSR.W PirateWalking_FlinchTrigger 
 

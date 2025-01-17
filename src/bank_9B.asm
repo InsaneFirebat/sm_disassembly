@@ -572,8 +572,7 @@ SetProjectileTrailPosition:
     LDA.W $0B78,X : STA.B $14 
 
   + PHY 
-    LDA.W $0C18,X 
-    BIT.W #$0020 
+    LDA.W $0C18,X : BIT.W #$0020 
     BNE .SBATrail 
     BIT.W #$0010 
     BNE .getOffset 
@@ -1899,8 +1898,7 @@ ReturnZero_SECRTS_9BB92D:
 ProcessEnemyGrappleBeamCollisionResult_HurtSamus:
     LDX.B $12 
     LDA.L $A00006,X : STA.B $12 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .gravitySuit 
     LSR A 
     BCC .suitless 
@@ -2141,8 +2139,7 @@ HandleSpecialGrappleBeamAngles:
 
 
 HandleGrappleDpadInput:
-    LDA.B $8F 
-    BIT.W #$0800 
+    LDA.B $8F : BIT.W #$0800 
     BNE .decreaseLength 
     BIT.W #$0400 
     BNE .increaseLength 
@@ -2177,8 +2174,7 @@ HandleGrappleDpadInput:
     BMI .resetAccel 
     CMP.W #$C000 
     BPL .resetAccel 
-    LDA.B $8B 
-    BIT.W #$0200 
+    LDA.B $8B : BIT.W #$0200 
     BNE .left 
     BIT.W #$0100 
     BNE .right 
@@ -2384,8 +2380,7 @@ UpdateGrappleSwingAngularVelocity:
 
 HandleGrappleKick:
     LDA.W $0D30 : BEQ .return 
-    LDA.B $8F 
-    BIT.W $09B4 
+    LDA.B $8F : BIT.W $09B4 
     BEQ .return 
     LDA.W $0D26 : BNE .nonZeroAngularVelocity 
     STZ.W $0D2E 
@@ -3093,8 +3088,7 @@ GrappleBeamHandler:
     BEQ .clearLiquidPhysics 
     CMP.W #GrappleBeamFunction_HitNothing_Cancel 
     BPL .clearLiquidPhysics 
-    LDA.W $0A74 
-    BIT.W #$0004 
+    LDA.W $0A74 : BIT.W #$0004 
     BNE .clearLiquidPhysics 
     LDA.W $196E : BEQ .clearLiquidPhysics 
     JSL.L Get_Samus_BottomTop_Boundary 
@@ -3115,11 +3109,9 @@ GrappleBeamHandler:
 
 
 GrappleBeamFunction_Inactive:
-    LDA.B $8F 
-    BIT.W $09B2 
+    LDA.B $8F : BIT.W $09B2 
     BNE GrappleBeamFunction_Fire_GotoCancel 
-    LDA.W $0E00 
-    BIT.W $09B2 
+    LDA.W $0E00 : BIT.W $09B2 
     BNE GrappleBeamFunction_Fire_GotoCancel 
     LDA.W $0CD0 : BEQ .return 
     STZ.W $0CD0 
@@ -3264,8 +3256,7 @@ GetDirectionGrappleIsFiredWhenHeldByDraygon:
     CMP.W #$00BE 
     BEQ facingLeft 
     LDA.W #$0006 : STA.B $16 
-    LDA.B $8B 
-    BIT.W #$0100 
+    LDA.B $8B : BIT.W #$0100 
     BEQ .right 
     BIT.W #$0400 
     BNE .downRight 
@@ -3292,8 +3283,7 @@ GetDirectionGrappleIsFiredWhenHeldByDraygon:
 
 facingLeft:
     LDA.W #$0006 : STA.B $16 
-    LDA.B $8B 
-    BIT.W #$0200 
+    LDA.B $8B : BIT.W #$0200 
     BEQ .left 
     BIT.W #$0400 
     BNE .downLeft 
@@ -3326,8 +3316,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 GrappleBeamFunction_Firing:
-    LDA.B $8B 
-    BIT.W $09B2 
+    LDA.B $8B : BIT.W $09B2 
     BNE .firing 
 
 .cancel:
@@ -3374,8 +3363,7 @@ GrappleBeamFunction_Firing:
 
 
 UNUSED_GrappleBeamFunction_Unfiring_9BC759:
-    LDA.B $8B 
-    BIT.W $09B2 
+    LDA.B $8B : BIT.W $09B2 
     BNE .firing 
 
 .cancel:
@@ -3393,8 +3381,7 @@ UNUSED_GrappleBeamFunction_Unfiring_9BC759:
 
 
 GrappleBeamFunction_Connected_LockedInPlace:
-    LDA.B $8B 
-    BIT.W $09B2 
+    LDA.B $8B : BIT.W $09B2 
     BNE .firing 
 
 .cancel:
@@ -3415,8 +3402,7 @@ GrappleBeamFunction_Connected_LockedInPlace:
 
 
 GrappleBeamFunction_Connected_Swinging:
-    LDA.B $8B 
-    BIT.W $09B2 
+    LDA.B $8B : BIT.W $09B2 
     BNE .firing 
 
 .cancel:
@@ -3471,8 +3457,7 @@ GrappleBeamFunction_Connected_Swinging:
 
 
 GrappleBeamFunction_WallGrab:
-    LDA.B $8B 
-    BIT.W $09B2 
+    LDA.B $8B : BIT.W $09B2 
     BNE .firing 
 
 .cancel:

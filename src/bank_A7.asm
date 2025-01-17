@@ -3131,8 +3131,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 CheckIfKraidHasDied:
     PHX 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    BIT.W #$0001 
+    LDA.L $7ED828,X : BIT.W #$0001 
     BEQ .returnAlive 
     PLX 
     LDA.W #$0001 
@@ -3397,8 +3396,7 @@ Function_Kraid_KraidGetsBig_BreakCeilingIntoPlatforms:
 
 .nonZeroCounter:
     LDY.W #$0001 
-    LDA.W $0F7E 
-    BIT.W #$0002 
+    LDA.W $0F7E : BIT.W #$0002 
     BEQ + 
     LDY.W #$FFFF 
 
@@ -3663,8 +3661,7 @@ Function_Kraid_KraidShot_KraidsMouthIsOpen:
     BNE .return 
     LDA.W #Function_Kraid_MainLoop_Thinking : STA.W $0FA8 
     LDA.W #$005A : STA.W $0FAC 
-    LDA.L $7E780A 
-    BIT.W #$0004 
+    LDA.L $7E780A : BIT.W #$0004 
     BEQ .done 
     SEC : SBC.W #$0100 : STA.L $7E780A 
     AND.W #$FF00 
@@ -3789,8 +3786,7 @@ KraidsMouth_vs_Projectile_CollisionHandling:
     BMI .next 
     LDA.W $0B64,X : CLC : ADC.W $0BB4,X : CMP.B $16 
     BMI .next 
-    LDA.W $0C18,X 
-    BIT.W #$0F00 
+    LDA.W $0C18,X : BIT.W #$0F00 
     BNE .notBeam 
     BIT.W #$0010 
     BEQ .next 
@@ -3822,8 +3818,7 @@ KraidsMouth_vs_Projectile_CollisionHandling:
 .collision:
     LDA.W #$0006 : STA.L $7E782A 
     LDA.W #$0002 : STA.L $7E782C 
-    LDA.L $7E780A 
-    BIT.W #$0002 
+    LDA.L $7E780A : BIT.W #$0002 
     BEQ .notChargedBeam 
     ORA.W #$0004 
     STA.L $7E780A 
@@ -3966,8 +3961,7 @@ KraidBody_vs_Projectile_CollisionHandling:
 .hit:
     JSR.W SpawnExplosionProjectile 
     LDA.W $0C04,X : ORA.W #$0010 : STA.W $0C04,X 
-    LDA.W $0C18,X 
-    BIT.W #$0010 
+    LDA.W $0C18,X : BIT.W #$0010 
     BEQ + 
     LDA.L $7E780A : ORA.W #$0001 : STA.L $7E780A 
 
@@ -3986,8 +3980,7 @@ KraidBody_vs_Projectile_CollisionHandling:
     CMP.W #Function_Kraid_MainLoop_Thinking 
     BNE .return 
     LDA.W #Function_Kraid_KraidShot_InitializeEyeGlowing : STA.W $0FA8 
-    LDA.L $7E780A 
-    BIT.W #$0001 
+    LDA.L $7E780A : BIT.W #$0001 
     BEQ .return 
     ORA.W #$0302 
     STA.L $7E780A 
@@ -4021,8 +4014,7 @@ UNUSED_HandleProjectileDamageAndSound:
     LDX.W $0E54 
     LDA.W $0C2C,Y : STA.W $187A 
     LDA.W $0C18,Y : STA.B $12 
-    LDA.W $0C18,Y 
-    BIT.W #$0018 
+    LDA.W $0C18,Y : BIT.W #$0018 
     BEQ .notPlasmaOrCharge 
     LDA.W #$0010 : STA.W $0FA0 
 
@@ -4033,8 +4025,7 @@ UNUSED_HandleProjectileDamageAndSound:
 
 .vulnerabilities:
     STA.B $14 
-    LDA.B $12 
-    BIT.W #$0F00 
+    LDA.B $12 : BIT.W #$0F00 
     BNE .notBeam 
     AND.W #$00FF 
     CLC : ADC.B $14 : TAX 
@@ -4132,8 +4123,7 @@ KraidPaletteHandling:
 
 KraidHurtFlashHandling:
     LDY.W #$0000 
-    LDA.L $7E782A 
-    BIT.W #$0001 
+    LDA.L $7E782A : BIT.W #$0001 
     BNE .loopSetup 
     LDY.W #$0020 
 
@@ -4151,8 +4141,7 @@ KraidHurtFlashHandling:
 
 KraidHealthBasedPaletteHandling:
     LDY.W #$0000 
-    LDA.L $7E782A 
-    BIT.W #$0001 
+    LDA.L $7E782A : BIT.W #$0001 
     BNE .hurtFlashFrame 
     LDX.W #$000E 
     LDA.W $0F8C 
@@ -4464,8 +4453,7 @@ MainAI_KraidArm:
 
   + STA.W $0FC6 
     LDA.W $0F7A : CLC : ADC.W #$0000 : STA.W $0FBA 
-    LDA.L $7E780A 
-    BIT.W #$FF00 
+    LDA.L $7E780A : BIT.W #$FF00 
     BEQ .return 
     LDA.W $0FD4 
     INC A 
@@ -4517,8 +4505,7 @@ Function_KraidLint_ProduceLint:
 
 Function_KraidLint_ChargeLint:
     LDY.W #$0000 
-    LDA.W $0FB2,X 
-    BIT.W #$0001 
+    LDA.W $0FB2,X : BIT.W #$0001 
     BEQ .zeroTimer 
     LDY.W #$0E00 
 
@@ -4620,8 +4607,7 @@ Function_Kraid_ProcessKraidInstruction:
 
 
 KraidLint_vs_Samus_CollisionHandling:
-    LDA.W $0F86,X 
-    BIT.W #$0400 
+    LDA.W $0F86,X : BIT.W #$0400 
     BEQ .notIntangible 
     RTS 
 
@@ -4879,8 +4865,7 @@ Function_KraidMainLoop_AttackingWithMouthOpen:
 .finishedInstructions:
     JSR.W SetupKraidMainLoop_Thinking 
     LDA.W #$005A : STA.W $0FAC 
-    LDA.L $7E780A 
-    BIT.W #$0004 
+    LDA.L $7E780A : BIT.W #$0004 
     BEQ .done 
     SEC : SBC.W #$0100 : STA.L $7E780A 
     AND.W #$FF00 
@@ -5034,8 +5019,7 @@ Function_KraidNail_Initialize:
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #InstList_KraidNail : STA.W $0F92,X 
     LDA.W #Function_KraidNail_Fire : STA.W $0FA8,X 
-    LDA.W $05E5 
-    BIT.W #$0001 
+    LDA.W $05E5 : BIT.W #$0001 
     BNE .horizontal 
 
 .diagonal:
@@ -6006,8 +5990,7 @@ Function_Kraid_FadeInRegularBG_FadeInBGPalette6:
     LDA.W #$0003 
     JSL.L QueueMusicDataOrTrack_8FrameDelay 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    BIT.W #$0001 
+    LDA.L $7ED828,X : BIT.W #$0001 
     BNE .KraidIsDead 
     ORA.W #$0001 
     STA.L $7ED828,X 
@@ -6136,14 +6119,12 @@ Function_Kraid_RaiseThruFloor_SpawnRNGEarthquakeProjEvery8f:
 
 Function_Kraid_RaiseThruFloor_RaiseKraid:
     JSR.W RestrictSamusXPositionToFirstScreen 
-    LDA.W $1840 
-    BIT.W #$0005 
+    LDA.W $1840 : BIT.W #$0005 
     BNE + 
     JSR.W SpawnRandomEarthquakeProjectile 
 
   + LDY.W #$0001 
-    LDA.W $0F7E 
-    BIT.W #$0002 
+    LDA.W $0F7E : BIT.W #$0002 
     BNE + 
     LDY.W #$FFFF 
 
@@ -6168,12 +6149,10 @@ Function_Kraid_RaiseThruFloor_RaiseKraid:
 
 
 SpawnRandomEarthquakeProjectile:
-    LDA.W $05B5 
-    BIT.W #$0002 
+    LDA.W $05B5 : BIT.W #$0002 
     LDA.W $05E5 : AND.W #$003F 
     TAX 
-    LDA.W $05E5 
-    BIT.W #$0002 
+    LDA.W $05E5 : BIT.W #$0002 
     BNE + 
     TXA 
     EOR.W #$FFFF 
@@ -6189,8 +6168,7 @@ SpawnRandomEarthquakeProjectile:
     STZ.B $18 
     JSL.L Create_Sprite_Object 
     LDY.W #EnemyProjectile_KraidFloorRocks_Left 
-    LDA.W $05E5 
-    BIT.W #$0010 
+    LDA.W $05E5 : BIT.W #$0010 
     BEQ .keepLeft 
     LDY.W #EnemyProjectile_KraidFloorRocks_Right 
 
@@ -6633,8 +6611,7 @@ PlayPhantoonMaterializationSFX:
 Phantoon_BrokenNothingness:
     TXA 
     BNE .return 
-    LDA.B $8F 
-    BIT.W #$4000 
+    LDA.B $8F : BIT.W #$4000 
     BEQ .return 
     LDA.W $9030,X : BNE .nonZero 
     LDA.W #$0001 : STA.W $9030,X 
@@ -6809,8 +6786,7 @@ PickNewPhantoonPattern:
     ASL A 
     TAY 
     LDA.W Phantoon_EyeClosedTimers,Y : STA.W $0FE8 
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BNE .reversed 
     LDA.W $0FEC : BEQ + 
     LDA.W $0FA8 
@@ -7240,8 +7216,7 @@ StartPhantoonDeathSequence:
 AdvancePhantoonFadeOut_DenominatorInA:
     PHX 
     STA.B $12 
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BNE .return 
     LDA.W $0FF2 : BNE .return 
     LDA.B $12 : STA.W $0FEE 
@@ -7257,8 +7232,7 @@ AdvancePhantoonFadeOut_DenominatorInA:
 AdvancePhantoonFadeIn_DenominatorInA:
     PHX 
     STA.B $12 
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BNE .return 
     LDA.W $0FF2 : BNE .return 
     LDA.B $12 : STA.W $0FEE 
@@ -7717,8 +7691,7 @@ Function_Phantoon_Enraged_Rage:
     BPL .return 
 
 .timerExpired:
-    LDA.W $0FF2 
-    BIT.W #$0001 
+    LDA.W $0FF2 : BIT.W #$0001 
     BNE .oddWave 
     LDY.W #$0006 
 
@@ -7797,8 +7770,7 @@ Function_Phantoon_Swooping_FatalDamage:
 
 Function_Phantoon_DeathSequence_FadingInAndOut:
     NOP 
-    LDA.W $0FEC 
-    BIT.W #$0001 
+    LDA.W $0FEC : BIT.W #$0001 
     BNE .advanceFade 
     LDA.W #$000C 
     JSR.W AdvancePhantoonFadeOut_DenominatorInA 
@@ -7927,8 +7899,7 @@ Function_Phantoon_DeathSequence_WavyMosaicPhantoon:
     LDA.W $0FEC 
     CMP.W #$FFFF 
     BEQ .doneMosaic 
-    LDA.W $05B6 
-    BIT.W #$000F 
+    LDA.W $05B6 : BIT.W #$000F 
     BNE .return 
     SEP #$20 
     LDA.W $0FEC 
@@ -8000,8 +7971,7 @@ Function_Phantoon_DeathSequence_ActivateWreckedShip:
 
 
 .timerExpired:
-    LDA.W $05B6 
-    BIT.W #$0003 
+    LDA.W $05B6 : BIT.W #$0003 
     BNE .return 
     LDA.W #$000C : STA.W $0FEE 
     JSR.W AdvanceWreckedShipPowerOnPaletteTransition 
@@ -8250,8 +8220,7 @@ CalculateTheAthTransitionalColorComponentFromXToY:
     STA.W $4206 
     REP #$20 
     NOP #5
-    LDA.W $4214 
-    BIT.B $12 
+    LDA.W $4214 : BIT.B $12 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -8270,11 +8239,9 @@ HurtAI_Phantoon:
     LDA.W $0F9C 
     CMP.W #$0008 
     BEQ .healthBased 
-    LDA.W $0FA4 
-    BIT.W #$0002 
+    LDA.W $0FA4 : BIT.W #$0002 
     BNE .white 
-    LDA.W $1036 
-    BIT.W #$FF00 
+    LDA.W $1036 : BIT.W #$FF00 
     BEQ .return 
 
 .healthBased:
@@ -8291,8 +8258,7 @@ HurtAI_Phantoon:
 
 
 .white:
-    LDA.W $1036 
-    BIT.W #$FF00 
+    LDA.W $1036 : BIT.W #$FF00 
     BNE .return 
     LDX.W #$001E 
 
@@ -8345,8 +8311,7 @@ EnemyShot_Phantoon:
 
 
 .alive:
-    LDA.W $0F8A,X 
-    BIT.W #$0002 
+    LDA.W $0F8A,X : BIT.W #$0002 
     BEQ .returnUpper 
     LDA.W #$0073 
     JSL.L QueueSound_Lib2_Max6 
@@ -9016,8 +8981,7 @@ InitAI_Etecoon:
 
 MainAI_Etecoon:
     LDX.W $0E54 
-    LDA.W $0FB6,X 
-    BIT.W #$FF00 
+    LDA.W $0FB6,X : BIT.W #$FF00 
     BEQ .executeFunction 
     SEC : SBC.W #$0100 : STA.W $0FB6,X 
     BRA .return 
@@ -9074,8 +9038,7 @@ Function_Etecoon_Initial:
     JSL.L IsSamusWithingAPixelRowsOfEnemy 
     TAY 
     BEQ .return 
-    LDA.W $0FB6,X 
-    BIT.W #$0003 
+    LDA.W $0FB6,X : BIT.W #$0003 
     BNE .flex 
     LDA.W #$0035 
     JSL.L QueueSound_Lib2_Max15 
@@ -9467,8 +9430,7 @@ Function_Etecoon_Hopping_TopOfRoom:
     LDA.W #$000B : STA.W $0FB0,X 
     LDA.W #$0001 : STA.W $0F94,X 
     LDA.W #InstList_Etecoon_Hopping_FacingLeft : STA.W $0F92,X 
-    LDA.W $0FB6,X 
-    BIT.W #$0002 
+    LDA.W $0FB6,X : BIT.W #$0002 
     BNE .successEtecoon 
 
 .hop:
@@ -9498,8 +9460,7 @@ Function_Etecoon_StartHop_TopOfRoom:
     CMP.W #$0400 
     BMI .notFailedJump 
     LDA.W $0FB4,X : AND.W #$00FF : STA.W $0FB4,X 
-    LDA.W $0FB6,X 
-    BIT.W #$0002 
+    LDA.W $0FB6,X : BIT.W #$0002 
     BNE .notFailedJump 
     LDA.W #Function_Etecoon_RunningForFailedMorphTunnelJump : STA.W $0FB2,X 
     LDA.W #InstList_Etecoon_RunningRight : STA.W $0F92,X 
@@ -10794,14 +10755,12 @@ Function_Dachora_Echo:
     TXA 
     BIT.W #$0040 
     BEQ + 
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BNE .visible 
     BRA .invisible 
 
 
-  + LDA.W $05B6 
-    BIT.W #$0001 
+  + LDA.W $05B6 : BIT.W #$0001 
     BEQ .visible 
 
 .invisible:

@@ -638,8 +638,7 @@ Get_Values_for_Screen_Shaking:
     BPL .returnZero 
     ASL #2
     TAX 
-    LDA.W $1840 
-    BIT.W #$0002 
+    LDA.W $1840 : BIT.W #$0002 
     BEQ + 
     LDA.L .horizontalX,X 
     EOR.W #$FFFF 
@@ -878,8 +877,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
 .collision:
     LDX.W $1991 
     STZ.W $1A27,X 
-    LDA.B $22 
-    BIT.B $14 
+    LDA.B $22 : BIT.B $14 
     BMI + 
     AND.W #$FFF8 
     SEC : SBC.B $1C : STA.W $1A4B,X 
@@ -965,8 +963,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
 .collision:
     LDX.W $1991 
     STZ.W $1A6F,X 
-    LDA.B $22 
-    BIT.B $14 
+    LDA.B $22 : BIT.B $14 
     BMI + 
     AND.W #$FFF8 
     SEC : SBC.B $1E : STA.W $1A93,X 
@@ -1235,8 +1232,7 @@ Move_EnemyProjectile_Horizontally:
 .solid:
     PLX 
     STZ.W $1A27,X 
-    LDA.B $22 
-    BIT.B $14 
+    LDA.B $22 : BIT.B $14 
     BMI .movingLeft 
     AND.W #$FFF0 
     SEC : SBC.B $1C : CMP.W $1A4B,X 
@@ -1315,8 +1311,7 @@ Move_EnemyProjectile_Vertically:
 .solid:
     PLX 
     STZ.W $1A6F,X 
-    LDA.B $22 
-    BIT.B $14 
+    LDA.B $22 : BIT.B $14 
     BMI .movingUp 
     AND.W #$FFF0 
     SEC : SBC.B $1E : CMP.W $1A93,X 
@@ -3040,8 +3035,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Casual_HitGround:
     LDA.W $1A93,X : SEC : SBC.W #$0008 : STA.W $1A93,X 
     LDA.W #$FD00 : STA.W $1ADB,X 
     STZ.W $1AFF,X 
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BNE .negative 
     LDA.W #$0080 : STA.W $1AB7,X 
     RTS 
@@ -3178,8 +3172,7 @@ PreInst_EnemyProjectile_PhantoonStartingFlames_Activated:
 
 
 .timerExpired:
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BEQ + 
     LDA.W $1ADB,X 
     DEC A 
@@ -3370,8 +3363,7 @@ Instruction_EnemyProjectile_KraidRisingRocks:
     PHX 
     LDA.W $05E5 : AND.W #$003F 
     TAX 
-    LDA.W $05E5 
-    BIT.W #$0001 
+    LDA.W $05E5 : BIT.W #$0001 
     BNE + 
     TXA 
     EOR.W #$FFFF 
@@ -3735,8 +3727,7 @@ RTS_86A05B:
 PreInstruction_EnemyProjectile_Pirate_MotherBrain_Laser_Left:
     DEC.W $1A4B,X 
     DEC.W $1A4B,X 
-    LDA.W $1AFF,X 
-    BIT.W #$8000 
+    LDA.W $1AFF,X : BIT.W #$8000 
     BNE + 
     DEC.W $1A4B,X 
     DEC.W $1A4B,X 
@@ -3754,8 +3745,7 @@ PreInstruction_EnemyProjectile_Pirate_MotherBrain_Laser_Left:
 PreInst_EnemyProjectile_Pirate_MotherBrain_Laser_Right:
     INC.W $1A4B,X 
     INC.W $1A4B,X 
-    LDA.W $1AFF,X 
-    BIT.W #$8000 
+    LDA.W $1AFF,X : BIT.W #$8000 
     BNE + 
     INC.W $1A4B,X 
     INC.W $1A4B,X 
@@ -4659,28 +4649,24 @@ RTS_86A919:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Debug_MoveEnemyProjectileWithController2:
     STZ.W $1AB7,X 
-    LDA.B $8D 
-    BIT.W #$0100 
+    LDA.B $8D : BIT.W #$0100 
     BEQ .checkLeft 
     LDA.W #$0100 : STA.W $1AB7,X 
 
 .checkLeft:
-    LDA.B $8D 
-    BIT.W #$0200 
+    LDA.B $8D : BIT.W #$0200 
     BEQ .moveHorizontally 
     LDA.W #$FF00 : STA.W $1AB7,X 
 
 .moveHorizontally:
     JSR.W Move_EnemyProjectile_Horizontally 
     STZ.W $1ADB,X 
-    LDA.B $8D 
-    BIT.W #$0400 
+    LDA.B $8D : BIT.W #$0400 
     BEQ .checkUp 
     LDA.W #$0100 : STA.W $1ADB,X 
 
 .checkUp:
-    LDA.B $8D 
-    BIT.W #$0800 
+    LDA.B $8D : BIT.W #$0800 
     BEQ .moveVertically 
     LDA.W #$FF00 : STA.W $1ADB,X 
 
@@ -7498,8 +7484,7 @@ Math_86C27A:
 
   + STA.B $28 
     JSR.W Math_16bitUnsignedMultiplication_86C29B 
-    LDA.B $2B 
-    BIT.B $2E 
+    LDA.B $2B : BIT.B $2E 
     BPL .return 
     EOR.W #$FFFF 
     INC A 
@@ -7851,8 +7836,7 @@ Move_MotherBrains_Bomb:
     CMP.W #$00D0 
     BMI .returnNoBounce 
     LDA.W #$00D0 : STA.W $1A93,X 
-    LDA.W $1AFF,X 
-    BIT.W $1AB7,X 
+    LDA.W $1AFF,X : BIT.W $1AB7,X 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -10338,8 +10322,7 @@ PreInstruction_EnemyProjectile_Spores:
     LDA.W SporeMovementData,Y : AND.W #$00FF 
     JSL.L Sign_Extend_A 
     STA.B $12 
-    LDA.W $1B23,X 
-    BIT.W #$0080 
+    LDA.W $1B23,X : BIT.W #$0080 
     BEQ + 
     LDA.B $12 
     EOR.W #$FFFF 
@@ -11712,8 +11695,7 @@ Function_EnemyProjectile_BotwoonsBody_Main:
 Function_EnemyProjectile_BotwoonsBody_HurtFlashHandling:
     LDA.W $19BB,X : ORA.W #$0E00 : STA.W $19BB,X 
     LDA.W $0F9C : BEQ .return 
-    LDA.W $0E44 
-    BIT.W #$0002 
+    LDA.W $0E44 : BIT.W #$0002 
     BEQ .return 
     LDA.W $19BB,X : AND.W #$F1FF : STA.W $19BB,X 
 
@@ -11724,8 +11706,7 @@ Function_EnemyProjectile_BotwoonsBody_HurtFlashHandling:
 Function_EnemyProj_BotwoonsBody_HurtFlashHandling_duplicate:
     LDA.W $19BB,Y : ORA.W #$0E00 : STA.W $19BB,Y 
     LDA.W $0F9C : BEQ .return 
-    LDA.W $0E44 
-    BIT.W #$0002 
+    LDA.W $0E44 : BIT.W #$0002 
     BEQ .return 
     LDA.W $19BB,Y : AND.W #$F1FF : STA.W $19BB,Y 
 
@@ -12246,8 +12227,7 @@ InitAI_EnemyProjectile_EnemyDeathExplosion:
     LDA.W $0F7A,Y : STA.W $1A4B,X 
     LDA.W $0F7E,Y : STA.W $1A93,X 
     LDA.W $0E54 : STA.L $7EF410,X 
-    LDA.W $0F86,Y 
-    BIT.W #$4000 
+    LDA.W $0F86,Y : BIT.W #$4000 
     BEQ .noRespawn 
     LDA.W $0E54 : ORA.W #$8000 : STA.L $7EF410,X 
 
@@ -12706,8 +12686,7 @@ PreInstruction_EnemyProjectile_FallingSpark:
     CLC 
     LDA.W $1A27,X : ADC.W $1AFF,X : STA.W $1A27,X 
     LDA.W $1A4B,X : ADC.W $1B23,X : STA.W $1A4B,X 
-    LDA.W $05B5 
-    BIT.W #$0003 
+    LDA.W $05B5 : BIT.W #$0003 
     BNE .return 
     LDA.W $1A4B,X : STA.B $12 
     LDA.W $1A93,X : STA.B $14 

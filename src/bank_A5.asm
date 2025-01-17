@@ -1088,8 +1088,7 @@ RTS_A58F1D:
 
 
 Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
-    LDA.W $0A64 
-    BIT.W #$0001 
+    LDA.W $0A64 : BIT.W #$0001 
     BEQ .notGrappled 
     PHX 
     LDX.W $0F78 
@@ -1145,8 +1144,7 @@ Function_DraygonBody_GrabbedSamus_MovingToTargetPosition:
 
 
 Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
-    LDA.W $0A64 
-    BIT.W #$0001 
+    LDA.W $0A64 : BIT.W #$0001 
     BEQ .notGrappled 
     PHX 
     LDX.W $0F78 
@@ -1440,8 +1438,7 @@ EnemyGraphicsDrawnHook_Draygon_SetBG2XYScroll:
 
 Debug_DraygonController2InputHandling:
     LDX.W #$0000 
-    LDA.B $8D 
-    BIT.W #$0040 
+    LDA.B $8D : BIT.W #$0040 
     BEQ .notPressingX 
     JSL.L Debug_MoveDraygonWithDpad_Fast 
     BRA + 
@@ -1451,8 +1448,7 @@ Debug_DraygonController2InputHandling:
     JSL.L Debug_MoveDraygonWithDpad_Slow 
 
   + LDX.W #$0000 
-    LDA.B $91 
-    BIT.W #$4000 
+    LDA.B $91 : BIT.W #$4000 
     BEQ .fireGoopEnd 
     LDY.W #InstList_DraygonBody_FacingLeft_FireGoop 
     LDA.L $7E8000,X : BEQ .keepLeft 
@@ -1499,8 +1495,7 @@ Debug_DraygonController2InputHandling:
 
 
 Debug_MoveDraygonWithDpad_Slow:
-    LDA.B $8D 
-    BIT.W #$0200 
+    LDA.B $8D : BIT.W #$0200 
     BEQ .notPressingLeft 
     DEC.W $0F7A 
     CMP.W $1866 
@@ -1525,8 +1520,7 @@ Debug_MoveDraygonWithDpad_Slow:
     LDA.W #$0001 : STA.W $0F94 
 
 .noHorizontalMovement:
-    LDA.B $8D 
-    BIT.W #$0800 
+    LDA.B $8D : BIT.W #$0800 
     BEQ .notPressingUp 
     DEC.W $0F7E 
     BRA .return 
@@ -1542,8 +1536,7 @@ Debug_MoveDraygonWithDpad_Slow:
 
 
 Debug_MoveDraygonWithDpad_Fast:
-    LDA.B $8D 
-    BIT.W #$0200 
+    LDA.B $8D : BIT.W #$0200 
     BEQ .noPressingLeft 
     LDA.W $0F7A : SEC : SBC.W #$0004 : STA.W $0F7A 
     LDA.B $8D 
@@ -1570,8 +1563,7 @@ Debug_MoveDraygonWithDpad_Fast:
     LDA.W #$0001 : STA.W $0F94 
 
 .noHorizontalMovement:
-    LDA.B $8D 
-    BIT.W #$0800 
+    LDA.B $8D : BIT.W #$0800 
     BEQ .notPressingUp 
     LDA.W $0F7E : SEC : SBC.W #$0004 : STA.W $0F7E 
     BRA .return 
@@ -1597,8 +1589,7 @@ MoveSamusWithDraygon:
     CLC : ADC.W $0F7A : STA.W $0AF6 
     LDA.W $0F7E : CLC : ADC.W #$0028 : STA.W $0AFA 
     JSL.L CapScrollingSpeed 
-    LDA.W $0A64 
-    BIT.W #$0002 
+    LDA.W $0A64 : BIT.W #$0002 
     BEQ .return 
     STZ.W $0A64 
     LDA.W #Function_DraygonBody_GrabbedSamus_FlyStraightUp : STA.W $0FA8 
@@ -1662,8 +1653,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 HurtAI_Draygon:
     LDY.W #Palette_Draygon_BG12_5 
     LDX.W $0E54 
-    LDA.W $0F9C,X 
-    BIT.W #$0002 
+    LDA.W $0F9C,X : BIT.W #$0002 
     BEQ .noFlash 
     LDY.W #Palette_Draygon_WhiteFlash 
 
@@ -1678,8 +1668,7 @@ HurtAI_Draygon:
     DEC.W $060B 
     BNE .loopBG12Palette5 
     LDX.W $0E54 
-    LDA.W $0F9C,X 
-    BIT.W #$0002 
+    LDA.W $0F9C,X : BIT.W #$0002 
     BNE .flashing 
     LDA.L $7E781C 
     ASL #2
@@ -1696,8 +1685,7 @@ HurtAI_Draygon:
 .flashing:
     LDY.W #Palette_Draygon_Sprite7 
     LDX.W $0E54 
-    LDA.W $0F9C,X 
-    BIT.W #$0002 
+    LDA.W $0F9C,X : BIT.W #$0002 
     BEQ ..noFlash 
     LDY.W #Palette_Draygon_WhiteFlash 
 
@@ -1711,8 +1699,7 @@ HurtAI_Draygon:
     INY #2
     DEC.W $060B 
     BNE .loopSpritePalette7 
-    LDA.W $0A64 
-    BIT.W #$0001 
+    LDA.W $0A64 : BIT.W #$0001 
     BEQ .return 
     LDA.W $0FA4 : AND.W #$0007 
     BNE .return 
@@ -7434,8 +7421,7 @@ EnemyShot_SporeSpawn_Vulnerable:
     LDA.W $18A6 
     ASL A 
     TAX 
-    LDA.W $0C18,X 
-    BIT.W #$0700 
+    LDA.W $0C18,X : BIT.W #$0700 
     BNE .notBeam 
     BIT.W #$0010 
     BNE .notBeam 

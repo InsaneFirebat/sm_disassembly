@@ -1512,8 +1512,7 @@ InitAI_Eye:
     STZ.W $0F90,X 
     LDA.W $0FB6,X : BMI .mountPart 
     LDA.W #Function_Eye_WaitForSamusToGetNear : STA.W $0FB2,X 
-    LDA.W $0FB4,X 
-    BIT.W #$0001 
+    LDA.W $0FB4,X : BIT.W #$0001 
     BEQ .facingRight 
     LDA.W #InstList_Eye_FacingLeft_Closed : STA.W $0F92,X 
     BRA .return 
@@ -1557,8 +1556,7 @@ InitAI_Eye:
 
 MainAI_Eye:
     LDX.W $0E54 
-    LDA.W $09A4 
-    BIT.W #$0004 
+    LDA.W $09A4 : BIT.W #$0004 
     BEQ .return 
     JMP.W ($0FB2,X) 
 
@@ -1578,8 +1576,7 @@ Function_Eye_WaitForSamusToGetNear:
     BEQ .return 
     LDA.W #$0020 : STA.W $0FB0,X 
     LDA.W #$0001 : STA.W $0F94,X 
-    LDA.W $0FB4,X 
-    BIT.W #$0001 
+    LDA.W $0FB4,X : BIT.W #$0001 
     BEQ .zeroParam 
     LDA.W #InstList_Eye_FacingLeft_Activating : STA.W $0F92,X 
     BRA + 
@@ -1628,8 +1625,7 @@ Function_Eye_Active:
     JSL.L QueueSound_Lib2_Max6 
     STZ.W $0FAC,X 
     LDA.W #$0020 : STA.W $0FB0,X 
-    LDA.W $0FB4,X 
-    BIT.W #$0001 
+    LDA.W $0FB4,X : BIT.W #$0001 
     BEQ .zeroParam 
     LDA.W #InstList_Eye_FacingLeft_Deactivating : STA.W $0F92,X 
     BRA + 
@@ -6925,8 +6921,7 @@ Function_Powamp_Inflating:
 
 
 Function_Powamp_Inflated_RiseToTargetHeight:
-    LDA.W $0F8A,X 
-    BIT.W #$0001 
+    LDA.W $0F8A,X : BIT.W #$0001 
     BEQ .notGrappleAI 
     LDA.W #Function_Powamp_Grappled_RiseToTargetHeight : STA.W $0FB2,X 
     JMP.W Function_Powamp_Grappled_RiseToTargetHeight 
@@ -7028,8 +7023,7 @@ Function_Powamp_Inflated_FinishWiggle:
 
 
 Function_Powamp_Grappled_RiseToTargetHeight:
-    LDA.W $0F8A,X 
-    BIT.W #$0001 
+    LDA.W $0F8A,X : BIT.W #$0001 
     BNE .grappleAI 
     LDA.W #Function_Powamp_Inflated_FinishWiggle : STA.W $0FB2,X 
     RTL 
@@ -7083,8 +7077,7 @@ Function_Powamp_Grappled_RiseToTargetHeight:
 
 
 Function_Powamp_Grappled_FinishWiggle:
-    LDA.W $0F8A,X 
-    BIT.W #$0001 
+    LDA.W $0F8A,X : BIT.W #$0001 
     BNE .GrappleAI 
     LDA.W #Function_Powamp_Inflated_FinishWiggle : STA.W $0FB2,X 
     RTL 
@@ -7133,8 +7126,7 @@ Function_Powamp_Grappled_FinishWiggle:
 
 
 Function_Powamp_Grappled_Resting:
-    LDA.W $0F8A,X 
-    BIT.W #$0001 
+    LDA.W $0F8A,X : BIT.W #$0001 
     BNE .done 
     LDA.W #Function_Powamp_Deflating : STA.W $0FB2,X 
     LDA.W #$000A : STA.W $0FB0,X 
@@ -7257,15 +7249,13 @@ EnemyShot_Powamp:
 
 .body:
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External 
-    LDA.W $0F8A,X 
-    BIT.W #$0004 
+    LDA.W $0F8A,X : BIT.W #$0004 
     BEQ .notFrozenAI 
     LDA.W $0F9E,X : STA.W $0F5E,X 
     LDA.W $0F4A,X : ORA.W #$0004 : STA.W $0F4A,X 
 
 .notFrozenAI:
-    LDA.W $0F8A,X 
-    BIT.W #$0002 
+    LDA.W $0F8A,X : BIT.W #$0002 
     BEQ .notHurtAI 
     LDA.W $0F9C,X : STA.W $0F5C,X 
     LDA.W $0F4A,X : ORA.W #$0002 : STA.W $0F4A,X 
@@ -7985,8 +7975,7 @@ InstList_Robot_ApproachingAFallToTheLeft:
 
 InitAI_Robot:
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    BIT.W #$0001 
+    LDA.L $7ED828,X : BIT.W #$0001 
     BEQ InitAI_RobotNoPower 
     LDX.W $0E54 
     SEP #$20 
@@ -8592,8 +8581,7 @@ EnemyShot_Robot:
     PHX 
     PHY 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    BIT.W #$0001 
+    LDA.L $7ED828,X : BIT.W #$0001 
     BEQ .return 
     LDX.W $0E54 
     JSL.L NormalEnemyShotAI 
@@ -11127,8 +11115,7 @@ InitAI_FaceBlock:
     LDX.W $0E54 
     LDA.W #InstList_FaceBlock_FacingForward : STA.W $0F92,X 
     LDY.W #EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes 
-    LDA.W $09A4 
-    BIT.W #$0004 
+    LDA.W $09A4 : BIT.W #$0004 
     BNE .morphBallCollected 
     LDY.W #RTL_A8804C 
 
@@ -11179,8 +11166,7 @@ EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes:
 
 MainAI_FaceBlock:
     LDX.W $0E54 
-    LDA.W $09A4 
-    BIT.W #$0004 
+    LDA.W $09A4 : BIT.W #$0004 
     BEQ .return 
     LDY.W #EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes 
     STY.W $178C 

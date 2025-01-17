@@ -11211,8 +11211,7 @@ InitAI_BabyMetroid:
     LDA.W #InstList_BabyMetroid_Normal : STA.W $0F92,X 
     LDA.W #$0001 : STA.W $0F94,X 
     STZ.W $0F90,X 
-    LDA.W #Function_BabyMetroid_WaitForCamera 
-    BIT.W $0911 
+    LDA.W #Function_BabyMetroid_WaitForCamera : BIT.W $0911 
     BPL .notLeftDoor 
     LDA.W $0F86,X : ORA.W #$0500 : STA.W $0F86,X 
     LDA.W #Function_BabyMetroid_Disappeared 

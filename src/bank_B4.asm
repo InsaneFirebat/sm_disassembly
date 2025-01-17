@@ -2228,8 +2228,7 @@ DebugHandler_7_EnemyDebugger_EnemySpawnDataEditor:
 .draw:
     JSL.L Add_Debug_Spritemap_to_OAM 
     JSR.W Draw_Debug_Enemy_Spawn_Values 
-    LDA.B $91 
-    BIT.W #$0010 
+    LDA.B $91 : BIT.W #$0010 
     BEQ .checkSelect 
     STZ.W $185C 
     LDA.W #$0001 
@@ -2237,23 +2236,20 @@ DebugHandler_7_EnemyDebugger_EnemySpawnDataEditor:
 
 
 .checkSelect:
-    LDA.B $91 
-    BIT.W #$2000 
+    LDA.B $91 : BIT.W #$2000 
     BEQ .checkA 
     INC.W $185C 
     STZ.W $185E 
 
 .checkA:
-    LDA.B $91 
-    BIT.W #$0080 
+    LDA.B $91 : BIT.W #$0080 
     BEQ .checkL 
     LDX.W $1846 
     LDA.W $0F7A,X : STA.L $7E7020,X 
     LDA.W $0F7E,X : STA.L $7E7022,X 
 
 .checkL:
-    LDA.B $91 
-    BIT.W #$0020 
+    LDA.B $91 : BIT.W #$0020 
     BEQ .return 
     INC.W $185C 
     INC.W $185C 
@@ -2401,8 +2397,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 .resolvedName:
     JSL.L Add_Debug_Spritemap_to_OAM 
-    LDA.B $91 
-    BIT.W #$0400 
+    LDA.B $91 : BIT.W #$0400 
     BEQ .checkTerminator 
     LDA.W $1864 : CLC : ADC.W #$0004 : CMP.W #$0010 
     BNE + 
@@ -2428,8 +2423,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     STX.W $1866 
     LDX.W $1846 
     LDA.B $12 : STA.L $7E701E,X 
-    LDA.B $91 
-    BIT.W #$0010 
+    LDA.B $91 : BIT.W #$0010 
     BEQ .checkL 
     STZ.W $185C 
     LDA.W #$0001 
@@ -2437,8 +2431,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 
 .checkL:
-    LDA.B $91 
-    BIT.W #$0020 
+    LDA.B $91 : BIT.W #$0020 
     BNE .checkB 
     LDA.W #$0001 
     RTS 
@@ -2484,8 +2477,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
 
 
 Debug_HandleCursorMovement:
-    LDA.B $91 
-    BIT.W #$0100 
+    LDA.B $91 : BIT.W #$0100 
     BEQ .noRight 
     LDA.W $1860 : CLC : ADC.W #$0008 : CMP.W #$00E0 
     BNE + 
@@ -2540,8 +2532,7 @@ Debug_HandleDigitModification:
     LDA.L $7E7028,X : STA.B $1A 
     LDA.L $7E702A,X : STA.B $1C 
     LDA.L $7E702C,X : STA.B $1E 
-    LDA.B $91 
-    BIT.W #$0040 
+    LDA.B $91 : BIT.W #$0040 
     BEQ .notNewlyPressedX 
     LDA.W $1860 : SEC : SBC.W #$00C0 : LSR #2
     TAX 
@@ -2575,8 +2566,7 @@ Debug_HandleDigitModification:
     dw $1000,$0100,$0010,$0001 
 
 DebugHandler_10_EnemyDebugger_EnemyAllocationViewer:
-    LDA.B $91 
-    BIT.W #$2000 
+    LDA.B $91 : BIT.W #$2000 
     BEQ .notNewlyPressedSelect 
     STZ.W $185C 
     LDA.W #$0000 
@@ -2669,8 +2659,7 @@ DebugHandler_4_SpriteTilesViewer_FirstHalf:
     LDA.W #$0080 : STA.B $12 
     LDA.W #$0003 
     JSL.L Add_Debug_Spritemap_to_OAM 
-    LDA.W $05C5 
-    BIT.W #$0040 
+    LDA.W $05C5 : BIT.W #$0040 
     BNE .resetIndex 
     LDA.W #$0001 
     RTS 
@@ -2683,8 +2672,7 @@ DebugHandler_4_SpriteTilesViewer_FirstHalf:
 
 
 DebugHandler_3_SpriteTilesViewer_SecondHalf:
-    LDA.W $05C5 
-    BIT.W #$0080 
+    LDA.W $05C5 : BIT.W #$0080 
     BEQ .noChange 
     LDA.W $185A 
     CMP.W #$0000 
@@ -2724,8 +2712,7 @@ DebugHandler_3_SpriteTilesViewer_SecondHalf:
     LDA.W #$0080 : STA.B $12 
     LDA.W #$0002 
     JSL.L Add_Debug_Spritemap_to_OAM 
-    LDA.W $05C5 
-    BIT.W #$0040 
+    LDA.W $05C5 : BIT.W #$0040 
     BNE .incIndex 
     LDA.W #$0001 
     RTS 
@@ -2748,8 +2735,7 @@ DebugHandler_1_PaletteViewer_SpritePalettes:
     LDA.W #$0060 : STA.B $12 
     LDA.W #$0001 
     JSL.L Add_Debug_Spritemap_to_OAM 
-    LDA.W $05C5 
-    BIT.W #$0080 
+    LDA.W $05C5 : BIT.W #$0080 
     BNE .setupLoop 
     LDA.W #$0001 
     RTS 
@@ -2778,8 +2764,7 @@ DebugHandler_2_PaletteViewer_BGPalettes:
     LDA.W #$0060 : STA.B $12 
     LDA.W #$0001 
     JSL.L Add_Debug_Spritemap_to_OAM 
-    LDA.W $05C5 
-    BIT.W #$0080 
+    LDA.W $05C5 : BIT.W #$0080 
     BNE .resetIndex 
     LDA.W #$0001 
     RTS 
@@ -2792,33 +2777,27 @@ DebugHandler_2_PaletteViewer_BGPalettes:
 
 
 DebugHandler_0_Default:
-    LDA.B $91 
-    BIT.W #$1000 
+    LDA.B $91 : BIT.W #$1000 
     BEQ .checkL 
     LDX.W #$001D 
     STX.W $0998 
     STZ.W $0727 
 
 .checkL:
-    LDA.B $91 
-    BIT.W #$0020 
+    LDA.B $91 : BIT.W #$0020 
     BEQ .notNewlyPressedStartL 
     LDA.W $185E : EOR.W #$0001 : STA.W $185E 
 
 .notNewlyPressedStartL:
-    LDA.W $05C5 
-    BIT.W #$0080 
+    LDA.W $05C5 : BIT.W #$0080 
     BNE .SelectLA 
-    LDA.W $05C5 
-    BIT.W #$0040 
+    LDA.W $05C5 : BIT.W #$0040 
     BNE .SelectLX 
     LDA.B $91 : AND.W #$0010 
     BNE .R 
-    LDA.B $91 
-    BIT.W #$2000 
+    LDA.B $91 : BIT.W #$2000 
     BNE .Select 
-    LDA.B $91 
-    BIT.W #$0080 
+    LDA.B $91 : BIT.W #$0080 
     BNE .A 
     STZ.W $185C 
     LDA.W #$0000 
@@ -2899,8 +2878,7 @@ DebugHandler_5_EnemyDebugger_Initialize:
 
 
 DebugHandler_6_EnemyDebugger_EnemyMover:
-    LDA.B $91 
-    BIT.W #$0010 
+    LDA.B $91 : BIT.W #$0010 
     BEQ .checkSelect 
     INC.W $185C 
     LDA.W #$0000 
@@ -2908,11 +2886,9 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
 
 
 .checkSelect:
-    LDA.B $91 
-    BIT.W #$2000 
+    LDA.B $91 : BIT.W #$2000 
     BEQ .checkA 
-    LDA.B $8D 
-    BIT.W #$8000 
+    LDA.B $8D : BIT.W #$8000 
     BNE .pressingB 
     LDA.W $1846 : CLC : ADC.W #$0040 : CMP.W #$0800 
     BMI + 
@@ -2929,8 +2905,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
   + STA.W $1846 
 
 .checkA:
-    LDA.B $91 
-    BIT.W #$0080 
+    LDA.B $91 : BIT.W #$0080 
     BEQ .checkX 
     LDX.W $1846 
     LDA.W $0AF6 : CLC : ADC.W #$0020 : STA.W $0F7A,X 
@@ -2938,8 +2913,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
 
 .checkX:
     LDX.W $1846 
-    LDA.B $8D 
-    BIT.W #$0040 
+    LDA.B $8D : BIT.W #$0040 
     BEQ .moveWithDpad 
     JSL.L Debug_MoveEnemyWithDpad_4PixelsPerFrame 
     BRA + 
@@ -3017,8 +2991,7 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
 
 
 DebugHandler_A_EnemyDebugger_RAMViewer_0:
-    LDA.B $91 
-    BIT.W #$0010 
+    LDA.B $91 : BIT.W #$0010 
     BEQ + 
     INC.W $185C 
     LDA.W #$0000 
@@ -3055,8 +3028,7 @@ DebugHandler_A_EnemyDebugger_RAMViewer_0:
 
 
 DebugHandler_B_EnemyDebugger_RAMViewer_1:
-    LDA.B $91 
-    BIT.W #$0010 
+    LDA.B $91 : BIT.W #$0010 
     BEQ + 
     INC.W $185C 
     LDA.W #$0000 
@@ -3093,8 +3065,7 @@ DebugHandler_B_EnemyDebugger_RAMViewer_1:
 
 
 DebugHandler_C_EnemyDebugger_RAMViewer_2:
-    LDA.B $91 
-    BIT.W #$0010 
+    LDA.B $91 : BIT.W #$0010 
     BEQ + 
     INC.W $185C 
     LDA.W #$0000 
@@ -3131,8 +3102,7 @@ DebugHandler_C_EnemyDebugger_RAMViewer_2:
 
 
 DebugHandler_D_EnemyDebugger_RAMViewer_3:
-    LDA.B $91 
-    BIT.W #$0010 
+    LDA.B $91 : BIT.W #$0010 
     BEQ + 
     INC.W $185C 
     LDA.W #$0000 
@@ -3169,8 +3139,7 @@ DebugHandler_D_EnemyDebugger_RAMViewer_3:
 
 
 DebugHandler_E_EnemyDebugger_RAMViewer_4:
-    LDA.B $91 
-    BIT.W #$0010 
+    LDA.B $91 : BIT.W #$0010 
     BEQ + 
     INC.W $185C 
     LDA.W #$0000 
@@ -3207,8 +3176,7 @@ DebugHandler_E_EnemyDebugger_RAMViewer_4:
 
 
 DebugHandler_F_EnemyDebugger_RAMViewer_5:
-    LDA.B $91 
-    BIT.W #$0010 
+    LDA.B $91 : BIT.W #$0010 
     BEQ + 
     INC.W $185C 
     LDA.W #$0000 
@@ -3247,8 +3215,7 @@ DebugHandler_F_EnemyDebugger_RAMViewer_5:
 Debug_MoveEnemyWithDpad_QuarterPixelPerFrame:
     LDA.W $05B6 : AND.W #$0003 
     BNE .return 
-    LDA.B $8D 
-    BIT.W #$0200 
+    LDA.B $8D : BIT.W #$0200 
     BEQ .notPressingLeft 
     DEC.W $0F7A,X 
     BRA .checkUp 
@@ -3260,8 +3227,7 @@ Debug_MoveEnemyWithDpad_QuarterPixelPerFrame:
     INC.W $0F7A,X 
 
 .checkUp:
-    LDA.B $8D 
-    BIT.W #$0800 
+    LDA.B $8D : BIT.W #$0800 
     BEQ .notPressingUp 
     DEC.W $0F7E,X 
     BRA .return 
@@ -3277,8 +3243,7 @@ Debug_MoveEnemyWithDpad_QuarterPixelPerFrame:
 
 
 Debug_MoveEnemyWithDpad_4PixelsPerFrame:
-    LDA.B $8D 
-    BIT.W #$0200 
+    LDA.B $8D : BIT.W #$0200 
     BEQ .notPressingLeft 
     LDA.W $0F7A,X : SEC : SBC.W #$0004 : STA.W $0F7A,X 
     BRA .checkUp 
@@ -3290,8 +3255,7 @@ Debug_MoveEnemyWithDpad_4PixelsPerFrame:
     LDA.W $0F7A,X : CLC : ADC.W #$0004 : STA.W $0F7A,X 
 
 .checkUp:
-    LDA.B $8D 
-    BIT.W #$0800 
+    LDA.B $8D : BIT.W #$0800 
     BEQ .notPressingUp 
     LDA.W $0F7E,X : SEC : SBC.W #$0004 : STA.W $0F7E,X 
     BRA .return 
@@ -6589,8 +6553,7 @@ HandleSpriteObjects:
 .loop:
     LDX.W $1844 
     LDA.L $7EEF78,X : BEQ .next 
-    LDA.L $7EF2F8,X 
-    BIT.W #$0001 
+    LDA.L $7EF2F8,X : BIT.W #$0001 
     BNE .next 
     LDA.L $7EEFF8,X : BMI .ASMInstruction 
     DEC A 

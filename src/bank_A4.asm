@@ -481,8 +481,7 @@ FightAI_Crocomire_4_Asleep:
 
 
 FightAI_Crocomire_6_SteppingForward:
-    LDA.W $0FAA 
-    BIT.W #$0800 
+    LDA.W $0FAA : BIT.W #$0800 
     BEQ .step 
     LDA.W $0FAA : AND.W #$F7FF : STA.W $0FAA 
     LDA.W $0FAE : BEQ .step 
@@ -524,8 +523,7 @@ Instruction_Crocomire_MaybeStartProjectileAttack:
 
 
 FightAI_Crocomire_8_ProjectileAttack:
-    LDA.W $0FAA 
-    BIT.W #$0800 
+    LDA.W $0FAA : BIT.W #$0800 
     BEQ .notDamaged 
     AND.W #$F7FF 
     STA.W $0FAA 
@@ -559,8 +557,7 @@ FightAI_Crocomire_8_ProjectileAttack:
 
 
 FightAI_Crocomire_A_NearSpikeWallCharge:
-    LDA.W $0FAA 
-    BIT.W #$0800 
+    LDA.W $0FAA : BIT.W #$0800 
     BEQ .return 
     AND.W #$F7FF 
     STA.W $0FAA 
@@ -611,8 +608,7 @@ UNUSED_SetFightIntroMovingClawsInstList_A48805:
 
 
 FightAI_Crocomire_12_WaitForFirstDamage:
-    LDA.W $0FAA 
-    BIT.W #$0800 
+    LDA.W $0FAA : BIT.W #$0800 
     BEQ .notDamaged 
     LDA.W $0FAA : AND.W #$F7FF : STA.W $0FAA 
     LDY.W #InstList_Crocomire_StepBack 
@@ -630,8 +626,7 @@ FightAI_Crocomire_12_WaitForFirstDamage:
 
 
 FightAI_Crocomire_14_WaitForSecondDamage:
-    LDA.W $0FAA 
-    BIT.W #$0800 
+    LDA.W $0FAA : BIT.W #$0800 
     BEQ .notDamaged 
     LDA.W $0FAA : AND.W #$F7FF : STA.W $0FAA 
     LDY.W #InstList_Crocomire_StepBack 
@@ -649,8 +644,7 @@ FightAI_Crocomire_14_WaitForSecondDamage:
 
 
 UNUSED_FightAI_Crocomire_16_WaitForSecondDamage_A4885A:
-    LDA.W $0FAA 
-    BIT.W #$0800 
+    LDA.W $0FAA : BIT.W #$0800 
     BEQ .notDamaged 
     LDA.W $0FAA : AND.W #$F7FF : STA.W $0FAA 
     LDY.W #InstList_Crocomire_StepBack 
@@ -684,8 +678,7 @@ FightAI_Crocomire_18_PowerBombedCharge:
 
 UNUSED_FightAI_Crocomire_1A_DoNearSpikeWallCharge_A4889A:
     LDX.W $0E54 
-    LDA.W $0FAA 
-    BIT.W #$0800 
+    LDA.W $0FAA : BIT.W #$0800 
     BNE .SamusNotHitByClaw 
     LDA.W #$000A : STA.W $0FAC,X 
     LDY.W #InstList_Crocomire_WaitForFirstSecondDamage_RoarCloseMouth_0 
@@ -740,8 +733,7 @@ ChargeCrocomireForwardOneStep:
 
 UNUSED_FightAI_Crocomire_1E_ChooseForwardMovingAttack_A4891B:
     LDX.W $0E54 
-    LDA.W $0FAA 
-    BIT.W #$0100 
+    LDA.W $0FAA : BIT.W #$0100 
     BNE .setInstList 
     JSR.W ChargeCrocomireForwardOneStep 
     LDA.W #$0020 : STA.W $0FAC 
@@ -779,15 +771,13 @@ UNUSED_FightAI_Crocomire_22_MoveForwardUntilHitSamus_A4895E:
 
 
 .notAgainstSpikes:
-    LDA.W $0FAA 
-    BIT.W #$4000 
+    LDA.W $0FAA : BIT.W #$4000 
     BNE .SamusHitByClaw 
     LDA.W #$0026 : STA.W $0FAC 
     JSR.W UNUSED_SetFightIntroMovingClawsInstList_A48805 
 
 .SamusHitByClaw:
-    LDA.W $0FAA 
-    BIT.W #$4000 
+    LDA.W $0FAA : BIT.W #$4000 
     BEQ .return 
     LDA.W #$0005 : STA.W $0FAE 
     LDY.W #InstList_Crocomire_WaitForFirstSecondDamage_MovingClaws 
@@ -818,8 +808,7 @@ UNUSED_FightAI_Crocomire_24_MoveClaws_StepForward_A489A8:
 
 
 UNUSED_FightAI_Crocomire_26_StepForward_A489DE:
-    LDA.W $0FAA 
-    BIT.W #$2000 
+    LDA.W $0FAA : BIT.W #$2000 
     BNE .stepForward 
     AND.W #$FCFF 
     STA.W $0FAA 
@@ -841,8 +830,7 @@ UNUSED_FightAI_Crocomire_28_MovingClaws_A489F9:
 
 
 .timerNotExpired:
-    LDA.W $0FAA 
-    BIT.W #$4000 
+    LDA.W $0FAA : BIT.W #$4000 
     BEQ .steppingBack 
     DEC.W $0FAE 
     LDA.W #$003B 
@@ -876,8 +864,7 @@ InitAI_Crocomire:
     CPX.W #$1000 
     BMI .loopBG2Tilemap 
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    BIT.W #$0002 
+    LDA.L $7ED828,X : BIT.W #$0002 
     BNE .dead 
     JSL.L DisableMinimap_MarkBossRoomTilesExplored 
     STZ.W $069A 
@@ -1112,8 +1099,7 @@ Crocomire_vs_Samus_CollisionHandling:
 CrocomireHurtFlashHandling:
     LDA.W $0797 : BNE .return 
     LDA.W $0F9C : BEQ .palette 
-    LDA.W $0E44 
-    BIT.W #$0002 
+    LDA.W $0E44 : BIT.W #$0002 
     BEQ .palette 
     LDA.W #$7FFF 
     LDX.W #$000E 
@@ -1431,8 +1417,7 @@ Instruction_Crocomire_MoveLeft4Pixels:
     PHX 
     PHY 
     LDX.W $0E54 
-    LDA.W $0FAA 
-    BIT.W #$0800 
+    LDA.W $0FAA : BIT.W #$0800 
     BNE .return 
     STZ.B $12 
     LDA.W #$FFFC : STA.B $14 
@@ -1631,8 +1616,7 @@ HandleCrocomireAcidDamageSmoke:
     LDA.W #$0006 : STA.L $7E9018 
     LDA.W $05E5 : AND.W #$003F 
     TAX 
-    LDA.W $05E5 
-    BIT.W #$0002 
+    LDA.W $05E5 : BIT.W #$0002 
     BNE + 
     TXA 
     EOR.W #$FFFF 
@@ -3277,8 +3261,7 @@ EnemyShot_Crocomire_OpenMouth:
     LDA.W $18A6 
     ASL A 
     TAX 
-    LDA.W $0C18,X 
-    BIT.W #$0F00 
+    LDA.W $0C18,X : BIT.W #$0F00 
     BNE .notBeam 
     LDX.W CrocomireConstants_stepsWhenDamagedByChargeBeam 
     BIT.W #$0010 
@@ -3311,8 +3294,7 @@ EnemyShot_Crocomire_OpenMouth:
     INC A 
 
   + STA.B $12 
-    LDA.W $0FAA 
-    BIT.W #$0800 
+    LDA.W $0FAA : BIT.W #$0800 
     BNE .damaged 
     LDX.W CrocomireConstants_mouthCloseDelayWhenDamaged_NotProjAttack 
     LDA.W $0FAC 
@@ -9145,8 +9127,7 @@ Spritemap_CrocomireCorpse_1F:
 
 InitAI_CrocomireTongue:
     LDX.W $079F 
-    LDA.L $7ED828,X 
-    BIT.W #$0002 
+    LDA.L $7ED828,X : BIT.W #$0002 
     BNE .dead 
     LDX.W $0E54 
     LDA.W #InstList_CrocomireTongue_Fight : STA.W $0F92,X 

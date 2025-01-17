@@ -5426,8 +5426,7 @@ Setup_QuicksandSurface:
     TRB.W $0B48 
     STZ.W $0B46 
     LDY.W #$0000 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BEQ + 
     LDY.W #$0002 
 
@@ -5521,8 +5520,7 @@ Setup_QuicksandSurface_BTS85:
 
 .vertical:
     LDY.W #$0000 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BEQ + 
     LDY.W #$0002 
 
@@ -6478,8 +6476,7 @@ InstList_PLM_BombTorizoGreyDoor:
     dw InstList_PLM_BombTorizoGreyDoor_0 
 
 Instruction_PLM_GotoYIfSamusDoesntHaveBombs:
-    LDA.W $09A4 
-    BIT.W #$1000 
+    LDA.W $09A4 : BIT.W #$1000 
     BEQ .noBombs 
     INY #2
     RTS 

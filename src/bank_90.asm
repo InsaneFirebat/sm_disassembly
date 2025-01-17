@@ -83,8 +83,7 @@ AnimateSamus_FX_None:
   + STZ.W $0AD2 
     LDA.W #$000E 
     JSL.L QueueSound_Lib2_Max6 
-    LDA.W $0A74 
-    BIT.W #$0004 
+    LDA.W $0A74 : BIT.W #$0004 
     BNE .goto_Spawn_WaterSplash_AirBubbles 
     LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0003 
@@ -110,8 +109,7 @@ AnimateSamus_FX_Water:
     BRA AnimateSamus_FX_None 
 
 
-  + LDA.W $197E 
-    BIT.W #$0004 
+  + LDA.W $197E : BIT.W #$0004 
     BNE AnimateSamus_FX_None 
     LDA.W SamusPhysicsConstants_AnimationDelayInWater : STA.W $0A9C 
     LDA.W $0AD2 
@@ -146,8 +144,7 @@ Spawn_WaterSplash_AirBubbles:
 Spawn_AirBubbles:
     LDA.B $14 : SEC : SBC.W #$0018 : CMP.W $195E 
     BMI .noBubbles 
-    LDA.W $05B6 
-    BIT.W #$007F 
+    LDA.W $05B6 : BIT.W #$007F 
     BNE .noBubbles 
     LDA.W $0AF0 : BNE .noBubbles 
     LDA.W #$0500 : STA.W $0AF0 
@@ -172,8 +169,7 @@ Spawn_AirBubbles:
     BEQ .zeroFrameBuffer 
     CMP.W #$009B 
     BEQ .zeroFrameBuffer 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BEQ .return 
 
 .zeroFrameBuffer:
@@ -197,11 +193,9 @@ AnimateSamus_FX_Lava:
     STZ.W $0B44 
 
 .zeroSpeedTimer:
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .gravityEquipped 
-    LDA.W $09DA 
-    BIT.W #$0007 
+    LDA.W $09DA : BIT.W #$0007 
     BNE .periodicDamage 
     LDA.W $09C2 
     CMP.W #$0047 
@@ -229,8 +223,7 @@ AnimateSamus_FX_Acid:
     LDA.W $1962 : BMI AnimateSamus_FX_Lava_goto_AnimateSamus_FX_None 
     CMP.B $12 
     BPL AnimateSamus_FX_Lava_goto_AnimateSamus_FX_None 
-    LDA.W $09DA 
-    BIT.W #$0007 
+    LDA.W $09DA : BIT.W #$0007 
     BNE + 
     LDA.W $09C2 
     CMP.W #$0047 
@@ -247,8 +240,7 @@ AnimateSamus_SubmergedInLavaAcid:
     LDA.B $14 
     CMP.W $1962 
     BPL .fullySubmerged 
-    LDA.W $0AEC 
-    BIT.W #$0400 
+    LDA.W $0AEC : BIT.W #$0400 
     BNE .fullySubmerged 
     LDA.W #$0400 : STA.W $0AEC 
     STA.W $0AEE 
@@ -266,8 +258,7 @@ AnimateSamus_SubmergedInLavaAcid:
     SEC : SBC.W #$0006 : STA.W $0ADE 
     SBC.W #$0000 : STA.W $0AE0 
     SBC.W #$0006 : STA.W $0AE2 
-    LDA.W $09DA 
-    BIT.W #$0001 
+    LDA.W $09DA : BIT.W #$0001 
     BNE .fullySubmerged 
     LDA.W #$0010 
     JSL.L QueueSound_Lib2_Max6 
@@ -278,8 +269,7 @@ AnimateSamus_SubmergedInLavaAcid:
     BEQ .zeroBuffer 
     CMP.W #$009B 
     BEQ .zeroBuffer 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BEQ .return 
 
 .zeroBuffer:
@@ -405,8 +395,7 @@ AnimDelay_8_EnableAutoJumpHack_TransitionToPoseIfNotJumping:
 AnimDelay_9_TransitionToPoseDependingOnItemEquippedAndYSpeed:
     INY 
     LDA.B [$00],Y : STA.B $12 
-    LDA.W $09A2 
-    BIT.B $12 
+    LDA.W $09A2 : BIT.B $12 
     BNE .equippedItems 
     LDA.W $0B2E : BNE + 
     LDA.W $0B2C : BNE + 
@@ -455,15 +444,13 @@ UNUSED_AnimDelay_A_TransitionToPoseDependingOnYSpeed_9083F6:
 
 
 AnimDelay_B_SelectAnimDelaySequenceForWallJump:
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .notSubmerged 
     JSL.L Get_Samus_BottomTop_Boundary 
     LDA.W $195E : BMI .lessThanZero 
     CMP.B $14 
     BPL .notSubmerged 
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .notSubmerged 
     BRA .submerged 
 
@@ -474,8 +461,7 @@ AnimDelay_B_SelectAnimDelaySequenceForWallJump:
     BMI .submerged 
 
 .notSubmerged:
-    LDA.W $09A2 
-    BIT.W #$0008 
+    LDA.W $09A2 : BIT.W #$0008 
     BNE .screwAttack 
     BIT.W #$0200 
     BNE .spaceJump 
@@ -512,8 +498,7 @@ AnimDelay_B_SelectAnimDelaySequenceForWallJump:
 UNUSED_AnimDelay_C_TransToPoseDependingOnItemEquipped_90848B:
     INY 
     LDA.B [$00],Y : STA.B $12 
-    LDA.W $09A2 
-    BIT.B $12 
+    LDA.W $09A2 : BIT.B $12 
     BNE .equippedItems 
     INY #2
     LDA.B [$00],Y : AND.W #$00FF : STA.W $0A2C 
@@ -566,8 +551,7 @@ Handle_NormalAnimationDelay:
     LDA.W $0A1F : AND.W #$00FF 
     CMP.W #$0001 
     BNE .return 
-    LDA.W $09A2 
-    BIT.W #$2000 
+    LDA.W $09A2 : BIT.W #$2000 
     BEQ .noSpeedBooster 
     LDA.W $0B3F : AND.W #$00FF 
     ASL A 
@@ -600,8 +584,7 @@ Handle_SpeedBooster_AnimationDelay:
 
 
 .checkPressingRun:
-    LDA.B $8B 
-    BIT.W $09B6 
+    LDA.B $8B : BIT.W $09B6 
     BNE .checkMovementType 
     JMP.W .finish 
 
@@ -614,8 +597,7 @@ Handle_SpeedBooster_AnimationDelay:
 
 
 .speedBoosterEquipped:
-    LDA.W $09A2 
-    BIT.W #$2000 
+    LDA.W $09A2 : BIT.W #$2000 
     BNE .speedBoostTimer 
     LDY.W #$0000 
     STY.W $0A96 
@@ -631,8 +613,7 @@ Handle_SpeedBooster_AnimationDelay:
     STA.W $0B3E 
     BIT.W #$00FF 
     BNE .finish 
-    LDA.W $0B3E 
-    BIT.W #$0400 
+    LDA.W $0B3E : BIT.W #$0400 
     BNE + 
     CLC : ADC.W #$0100 : STA.W $0B3E 
     BIT.W #$0400 
@@ -676,8 +657,7 @@ Draw_Samus:
     LDA.W $18AA : BNE + 
     LDA.W $18A8 : BEQ + 
     LDA.W $0A68 : BNE + 
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BEQ + 
     JMP.W .invisible 
 
@@ -1070,8 +1050,7 @@ DrawShinesparkCrashEchoCircle:
     PLB 
     REP #$30 
     TXY 
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BNE + 
     JMP.W .return 
 
@@ -1129,8 +1108,7 @@ DrawShinesparkCrashEchoCircle:
 DrawShinesparkCrashEchoProjectiles:
     PHP 
     REP #$30 
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BEQ .return 
     LDA.W $0AC6 : BEQ + 
     LDY.W #$0006 
@@ -1680,8 +1658,7 @@ SetLiquidPhysicsType_Water:
     BRA SetLiquidPhysicsType_Air 
 
 
-  + LDA.W $197E 
-    BIT.W #$0004 
+  + LDA.W $197E : BIT.W #$0004 
     BNE SetLiquidPhysicsType_Air 
     LDA.W #$0001 : STA.W $0AD2 
     RTS 
@@ -1705,8 +1682,7 @@ UNUSED_SamusMovement_908E75:
     JSR.W Determine_SamusXSpeedTable_EntryPointer 
     JSR.W CalculateSamusXBaseSpeed_DecelerationDisallowed 
     LDA.W $0B4A : BNE .decelerating 
-    LDA.B $8B 
-    BIT.W #$0100 
+    LDA.B $8B : BIT.W #$0100 
     BNE + 
     BIT.W #$0200 
     BNE + 
@@ -1913,8 +1889,7 @@ Samus_Jumping_Movement:
     CMP.W #$0014 
     BEQ .wallJumping 
     LDA.W $0B4A : BNE .XMovement 
-    LDA.B $8B 
-    BIT.W #$0100 
+    LDA.B $8B : BIT.W #$0100 
     BNE .XMovement 
     BIT.W #$0200 
     BNE .XMovement 
@@ -1966,15 +1941,13 @@ Samus_SpinJumping_Movement:
     LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .leftwards 
-    LDA.B $8B 
-    BIT.W #$0100 
+    LDA.B $8B : BIT.W #$0100 
     BEQ + 
     BRA .allowXMovement 
 
 
 .leftwards:
-    LDA.B $8B 
-    BIT.W #$0200 
+    LDA.B $8B : BIT.W #$0200 
     BEQ + 
     BRA .allowXMovement 
 
@@ -2080,8 +2053,7 @@ Samus_Falling_Movement:
     JSR.W Determine_SamusXSpeedTable_EntryPointer 
     JSR.W CalculateSamusXBaseSpeed_DecelerationDisallowed 
     LDA.W $0B4A : BNE .pressingLeftRight 
-    LDA.B $8B 
-    BIT.W #$0100 
+    LDA.B $8B : BIT.W #$0100 
     BNE .pressingLeftRight 
     BIT.W #$0200 
     BNE .pressingLeftRight 
@@ -2108,8 +2080,7 @@ Samus_Morphed_Falling_Movement:
     JSR.W Determine_SamusXSpeedTable_EntryPointer 
     JSR.W CalculateSamusXBaseSpeed_DecelerationDisallowed 
     LDA.W $0B4A : BNE .moveHorizontally 
-    LDA.B $8B 
-    BIT.W #$0100 
+    LDA.B $8B : BIT.W #$0100 
     BNE .moveHorizontally 
     BIT.W #$0200 
     BNE .moveHorizontally 
@@ -2133,8 +2104,7 @@ Samus_Morphed_Bouncing_Movement:
     JSR.W Determine_SamusXSpeedTable_EntryPointer 
     JSR.W CalculateSamusXBaseSpeed_DecelerationDisallowed 
     LDA.W $0B4A : BNE .pressingLeftRight 
-    LDA.B $8B 
-    BIT.W #$0100 
+    LDA.B $8B : BIT.W #$0100 
     BNE .pressingLeftRight 
     BIT.W #$0200 
     BNE .pressingLeftRight 
@@ -2299,15 +2269,13 @@ RTS_9092E9:
     LDA.W $0A1E : AND.W #$00FF 
     CMP.W #$0004 
     BEQ .facingLeft 
-    LDA.B $8B 
-    BIT.W #$0100 
+    LDA.B $8B : BIT.W #$0100 
     BNE .rightwards 
     BRA .return 
 
 
 .facingLeft:
-    LDA.B $8B 
-    BIT.W #$0200 
+    LDA.B $8B : BIT.W #$0200 
     BNE .leftwards 
     BRA .return 
 
@@ -2390,8 +2358,7 @@ MoveSamus_Left:
     JSL.L MoveSamusRight_NoSolidEnemyCollision 
     LDA.B $14 : STA.W $0DAC 
     LDA.B $12 : STA.W $0DAA 
-    LDA.W $0B02 
-    BIT.W #$0001 
+    LDA.W $0B02 : BIT.W #$0001 
     BEQ + 
     STZ.W $0DD0 
 
@@ -2418,8 +2385,7 @@ MoveSamus_Right:
   + JSL.L MoveSamusRight_NoSolidEnemyCollision 
     LDA.B $14 : STA.W $0DB0 
     LDA.B $12 : STA.W $0DAE 
-    LDA.W $0B02 
-    BIT.W #$0001 
+    LDA.W $0B02 : BIT.W #$0001 
     BNE + 
     STZ.W $0DD0 
 
@@ -2505,8 +2471,7 @@ SamusMovementHandler_ReleasedFromGrappleSwing:
     JSR.W DetermineGrappleSwing_SamusXSpeedTable_EntryPointer 
     JSR.W CalculateSamusXBaseSpeed_DecelerationAllowed 
     LDA.W $0B4A : BNE .pressingLeftRight 
-    LDA.B $8B 
-    BIT.W #$0100 
+    LDA.B $8B : BIT.W #$0100 
     BNE .pressingLeftRight 
     BIT.W #$0200 
     BNE .pressingLeftRight 
@@ -2784,8 +2749,7 @@ CalculateVerticalDistanceSamusMovedLastFrame:
 Handle_Samus_XExtraRunSpeed:
     PHP 
     REP #$30 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .gravity 
     JSL.L Get_Samus_Bottom_Boundary 
     LDA.W $195E : BMI .negativeYPosition 
@@ -2805,8 +2769,7 @@ Handle_Samus_XExtraRunSpeed:
 
 
 .submerged:
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .gravity 
 
 .gotoNotRunning:
@@ -2827,8 +2790,7 @@ Handle_Samus_XExtraRunSpeed:
 
 
 .running:
-    LDA.W $09A2 
-    BIT.W #$2000 
+    LDA.W $09A2 : BIT.W #$2000 
     BEQ .noSpeedBooster 
     LDA.W $0B3C : BNE .hasMomentum 
     LDA.W #$0001 : STA.W $0B3C 
@@ -2940,8 +2902,7 @@ Make_Samus_Jump:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .normalGravity 
     JSL.L Get_Samus_Bottom_Boundary 
     LDA.W $195E : BMI .negativeYPosition 
@@ -2961,8 +2922,7 @@ Make_Samus_Jump:
 
 
 .submergedInWater:
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .normalGravity 
     LDX.W #$0002 
     BRA .merge 
@@ -2972,8 +2932,7 @@ Make_Samus_Jump:
     LDX.W #$0004 
 
 .merge:
-    LDA.W $09A2 
-    BIT.W #$0100 
+    LDA.W $09A2 : BIT.W #$0100 
     BNE .hiJumpEquipped 
     LDA.W SamusPhysicsConstants_InitialYSubSpeeds_Jumping,X : STA.W $0B2C 
     LDA.W SamusPhysicsConstants_InitialYSpeeds_Jumping,X : STA.W $0B2E 
@@ -2984,8 +2943,7 @@ Make_Samus_Jump:
     LDA.W SamusPhysicsConstants_InitialYSubSpeeds_HiJumpJumping,X : STA.W $0B2C 
     LDA.W SamusPhysicsConstants_InitialYSpeeds_HiJumpJumping,X : STA.W $0B2E 
 
-  + LDA.W $09A2 
-    BIT.W #$2000 
+  + LDA.W $09A2 : BIT.W #$2000 
     BEQ + 
     LDA.W $0B42 
     LSR A 
@@ -3007,8 +2965,7 @@ Make_Samus_WallJump:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .normalGravity 
     JSL.L Get_Samus_Bottom_Boundary 
     LDA.W $195E : BMI .negativeYPosition 
@@ -3028,8 +2985,7 @@ Make_Samus_WallJump:
 
 
 .submergedInWater:
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .normalGravity 
     LDX.W #$0002 
     BRA .merge 
@@ -3039,8 +2995,7 @@ Make_Samus_WallJump:
     LDX.W #$0004 
 
 .merge:
-    LDA.W $09A2 
-    BIT.W #$0100 
+    LDA.W $09A2 : BIT.W #$0100 
     BNE .hiJumpEquipped 
     LDA.W SamusPhysicsConstants_InitialYSubSpeeds_WallJumping,X : STA.W $0B2C 
     LDA.W SamusPhysicsConstants_InitialYSpeeds_WallJumping,X : STA.W $0B2E 
@@ -3051,8 +3006,7 @@ Make_Samus_WallJump:
     LDA.W SamusPhysicsConstants_InitialYSubSpeeds_HiJumpWallJumping,X : STA.W $0B2C 
     LDA.W SamusPhysicsConstants_InitialYSpeeds_HiJumpWallJumping,X : STA.W $0B2E 
 
-  + LDA.W $09A2 
-    BIT.W #$2000 
+  + LDA.W $09A2 : BIT.W #$2000 
     BEQ + 
     LDA.W $0B42 
     LSR A 
@@ -3074,8 +3028,7 @@ SetSamusYSpeedForKnockback:
     PHK 
     PLB 
     REP #$30 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .inAir 
     JSL.L Get_Samus_Bottom_Boundary 
     LDA.W $195E : BMI .negativeYPosition 
@@ -3095,8 +3048,7 @@ SetSamusYSpeedForKnockback:
 
 
 .inWater:
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .inAir 
     LDX.W #$0002 
     BRA .merge 
@@ -3119,8 +3071,7 @@ SetSamusYSpeedForKnockback:
 Make_Samus_BombJump:
     PHP 
     REP #$30 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .normalGravity 
     JSL.L Get_Samus_Bottom_Boundary 
     LDA.W $195E : BMI .negativeYPosition 
@@ -3140,8 +3091,7 @@ Make_Samus_BombJump:
 
 
 .submergedInWater:
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .normalGravity 
     LDX.W #$0002 
     BRA .merge 
@@ -3222,8 +3172,7 @@ CalculateSamusXBaseSpeed_DecelerationAllowed:
 CalculateSamusXBaseSpeed_DecelerationDisallowed:
     PHP 
     REP #$30 
-    LDA.W $0B4A 
-    BIT.W #$0001 
+    LDA.W $0B4A : BIT.W #$0001 
     BNE .turningAround 
     LDA.W $0B48 : CLC : ADC.W $0002,X : STA.W $0B48 
     LDA.W $0B46 : ADC.W $0000,X : STA.W $0B46 
@@ -3292,8 +3241,7 @@ CalculateSamusXBaseSpeed_DecelerationDisallowed:
 Determine_SamusXSpeedTable_EntryPointer:
     PHP 
     REP #$30 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .gotoSpeedTableSet 
     JSL.L Get_Samus_Bottom_Boundary 
     LDA.W $195E : BMI .negativeYPosition 
@@ -3312,8 +3260,7 @@ Determine_SamusXSpeedTable_EntryPointer:
 
 
 .submergedInWater:
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .gotoSpeedTableSet 
     LDA.W #SamusXSpeedTable_InWater : STA.W $0A6C 
     BRA .speedTableSet 
@@ -3334,8 +3281,7 @@ Determine_SamusXSpeedTable_EntryPointer:
 DetermineGrappleSwing_SamusXSpeedTable_EntryPointer:
     PHP 
     REP #$30 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .normalGravity 
     JSL.L Get_Samus_Bottom_Boundary 
     LDA.W $195E : BMI .negativeYPosition 
@@ -3355,8 +3301,7 @@ DetermineGrappleSwing_SamusXSpeedTable_EntryPointer:
 
 
 .submergedInWater:
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .normalGravity 
     LDX.W #SamusPhysicsConstants_XAccelSpeeds_DisconnectGrappleInWater 
     BRA .return 
@@ -3371,8 +3316,7 @@ DetermineGrappleSwing_SamusXSpeedTable_EntryPointer:
 
 
 Determine_Samus_YAcceleration:
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .notSubmerged 
     JSL.L Get_Samus_Bottom_Boundary 
     LDA.W $195E : BMI .negativeYPosition 
@@ -3393,8 +3337,7 @@ Determine_Samus_YAcceleration:
 
 
 .submergedInWater:
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .notSubmerged 
     LDA.W SamusPhysicsConstants_YSubAccelerationInWater : STA.W $0B32 
     LDA.W SamusPhysicsConstants_YAccelerationInWater : STA.W $0B34 
@@ -3433,15 +3376,13 @@ Grapple_WallJump_Check:
     BNE .checkJump 
     JSL.L WallJumpBlockCollisionDetection 
     BCC .gotoReturnCarryClear 
-    LDA.B $8F 
-    BIT.W $09B4 
+    LDA.B $8F : BIT.W $09B4 
     BNE .returnCarrySet 
     JMP.W .returnCarryClear 
 
 
 .checkJump:
-    LDA.B $8F 
-    BIT.W $09B4 
+    LDA.B $8F : BIT.W $09B4 
     BNE .wallJumpEnemy 
     BRA .returnCarryClear 
 
@@ -3462,15 +3403,13 @@ Grapple_WallJump_Check:
 .wallJumpCollision:
     JSL.L WallJumpBlockCollisionDetection 
     BCC .returnCarryClear 
-    LDA.B $8F 
-    BIT.W $09B4 
+    LDA.B $8F : BIT.W $09B4 
     BNE .returnCarrySet 
     BRA .returnCarryClear 
 
 
 .collisionDetected:
-    LDA.B $8F 
-    BIT.W $09B4 
+    LDA.B $8F : BIT.W $09B4 
     BEQ .returnCarryClear 
 
 .wallJumpEnemy:
@@ -3524,8 +3463,7 @@ WallJump_Check:
 
 
 .spinningAnimation:
-    LDA.B $8B 
-    BIT.W #$0200 
+    LDA.B $8B : BIT.W #$0200 
     BNE .spinningPressingLeft 
     BIT.W #$0100 
     BNE .spinningPressingRight 
@@ -3582,8 +3520,7 @@ WallJump_Check:
 
 .wallJumpEligibleAnimation:
     LDA.W #$FFFF : STA.W $0E1C 
-    LDA.B $8B 
-    BIT.W #$0200 
+    LDA.B $8B : BIT.W #$0200 
     BNE .wallJumpEligiblePressingLeft 
     BIT.W #$0100 
     BNE .wallJumpEligiblePressingRight 
@@ -3599,15 +3536,13 @@ WallJump_Check:
     BNE .collision 
     JSL.L WallJumpBlockCollisionDetection 
     BCC .gotoReturnCarryClear 
-    LDA.B $8F 
-    BIT.W $09B4 
+    LDA.B $8F : BIT.W $09B4 
     BNE .wallJumpBlock 
     JMP.W .returnCarryClear 
 
 
 .collision:
-    LDA.B $8F 
-    BIT.W $09B4 
+    LDA.B $8F : BIT.W $09B4 
     BNE .wallJumpEnemy 
     BRA .returnCarryClear 
 
@@ -3628,15 +3563,13 @@ WallJump_Check:
 .wallJumpBlockCollisionDetection:
     JSL.L WallJumpBlockCollisionDetection 
     BCC .returnCarryClear 
-    LDA.B $8F 
-    BIT.W $09B4 
+    LDA.B $8F : BIT.W $09B4 
     BNE .wallJumpBlock 
     BRA .returnCarryClear 
 
 
 .leftCollisionDetected:
-    LDA.B $8F 
-    BIT.W $09B4 
+    LDA.B $8F : BIT.W $09B4 
     BEQ .returnCarryClear 
 
 .wallJumpEnemy:
@@ -3965,8 +3898,7 @@ SamusMovement_Standing:
     BNE .moveSamus 
 
 .checkPressingShot:
-    LDA.B $8B 
-    BIT.W $09B2 
+    LDA.B $8B : BIT.W $09B2 
     BEQ .moveSamus 
     LDA.W #$0010 : STA.W $0A94 
     STZ.W $0A96 
@@ -4001,8 +3933,7 @@ SamusMovement_Running:
     LDA.W $1F51 : BNE .return 
     LDA.W $179C : BNE .return 
     LDA.W $0A68 : BNE .return 
-    LDA.W $0B3E 
-    BIT.W #$0400 
+    LDA.W $0B3E : BIT.W #$0400 
     BNE .return 
     LDA.W #$0006 
     JSL.L QueueSound_Lib3_Max6 
@@ -4026,15 +3957,13 @@ SamusMovement_Jumping:
 SamusMovement_SpinJumping:
     PHP 
     REP #$30 
-    LDA.W $0A74 
-    BIT.W #$0004 
+    LDA.W $0A74 : BIT.W #$0004 
     BNE .nonLiquidPhysics 
     JSL.L Get_Samus_BottomTop_Boundary 
     LDA.W $195E : BMI .negativeYPosition 
     CMP.B $14 
     BPL .nonLiquidPhysics 
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .nonLiquidPhysics 
     BRA + 
 
@@ -4053,8 +3982,7 @@ SamusMovement_SpinJumping:
 
 .determinedLiquidPhysics:
     LDA.B $12 : BNE .liquidPhysics 
-    LDA.W $09A2 
-    BIT.W #$0200 
+    LDA.W $09A2 : BIT.W #$0200 
     BNE .spaceJumpEligible 
     LDA.W $0A1C 
     CMP.W #$0081 
@@ -4226,8 +4154,7 @@ SamusMovement_Falling:
 SamusMovement_MorphBall_Falling:
     PHP 
     REP #$30 
-    LDA.B $8B 
-    BIT.W #$0300 
+    LDA.B $8B : BIT.W #$0300 
     BNE .pressingLeftRight 
     LDA.W $0B4A : BNE .pressingLeftRight 
     JSL.L Cancel_SpeedBoosting 
@@ -4427,8 +4354,7 @@ SamusMovement_SpringBall_InAir:
 SamusMovement_SpringBall_Falling:
     PHP 
     REP #$30 
-    LDA.B $8B 
-    BIT.W #$0300 
+    LDA.B $8B : BIT.W #$0300 
     BNE .checkBounce 
     LDA.W $0B4A : BNE .checkBounce 
     JSL.L Cancel_SpeedBoosting 
@@ -5852,8 +5778,7 @@ InitializeProjectileVelocities:
 
 InitializeProjectileVelocities_Up:
     LDX.B $12 
-    LDA.W $0DB1 
-    BIT.W #$FF00 
+    LDA.W $0DB1 : BIT.W #$FF00 
     BNE .left 
     STZ.B $12 
     BRA + 
@@ -5874,8 +5799,7 @@ InitializeProjectileVelocities_Up:
 
 InitializeProjectileVelocities_UpRight:
     LDX.B $12 
-    LDA.W $0DB1 
-    BIT.W #$FF00 
+    LDA.W $0DB1 : BIT.W #$FF00 
     BNE .left 
     STZ.B $12 
     BRA + 
@@ -5937,8 +5861,7 @@ InitializeProjectileVelocities_Left:
 
 InitializeProjectileVelocities_UpLeft:
     LDX.B $12 
-    LDA.W $0DB1 
-    BIT.W #$FF00 
+    LDA.W $0DB1 : BIT.W #$FF00 
     BNE .left 
     STZ.B $12 
     BRA + 
@@ -5973,8 +5896,7 @@ AccelerateMissile:
     LDA.W $0C7C,X : STA.B $16 
     STX.B $12 
     JSR.W InitializeProjectileVelocities 
-    LDA.W $0C18,X 
-    BIT.W #$0200 
+    LDA.W $0C18,X : BIT.W #$0200 
     BEQ .return 
     JSR.W Spawn_SuperMissileLink 
     BRA .return 
@@ -6015,8 +5937,7 @@ SuperMissileLink:
 
 
 .superMissile:
-    LDA.W $0C7C,X 
-    BIT.W #$FF00 
+    LDA.W $0C7C,X : BIT.W #$FF00 
     BNE .initialized 
     RTS 
 
@@ -6090,8 +6011,7 @@ SuperMissileLink_HorizontalBlockCollisionDetection:
 
 
 .superMissile:
-    LDA.W $0C7C,X 
-    BIT.W #$FF00 
+    LDA.W $0C7C,X : BIT.W #$FF00 
     BNE .initialized 
     RTS 
 
@@ -6158,8 +6078,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ClearLinkedSuperMissileIfSuperMissileExplosion_90B4A6:
     PHP 
     REP #$30 
-    LDA.W $0C7C,X 
-    BIT.W #$FF00 
+    LDA.W $0C7C,X : BIT.W #$FF00 
     BNE .initialized 
     PLP 
     RTL 
@@ -6344,8 +6263,7 @@ ProjectileTrail_InstListPointers_Right:
 
 Spawn_ProjectileTrail:
     PHB 
-    LDA.W $0C18,X 
-    BIT.W #$0F00 
+    LDA.W $0C18,X : BIT.W #$0F00 
     BNE .notBeam 
     AND.W #$003F 
     BRA + 
@@ -6531,8 +6449,7 @@ HUDSelectionHandler_Nothing_PowerBombs:
     REP #$30 
     LDA.W $0CD0 : STA.W $0DC2 
     LDA.W $0A76 : BNE + 
-    LDA.W $09A6 
-    BIT.W #$1000 
+    LDA.W $09A6 : BIT.W #$1000 
     BNE .charge 
 
   + LDA.B $8B : AND.W $09B2 
@@ -6637,14 +6554,11 @@ Fire_Uncharge_Beam:
     JSL.L QueueSound 
     STZ.W $0DC0 
     JSL.L InitializeProjectile 
-    LDA.W $09A6 
-    BIT.W #$1000 
+    LDA.W $09A6 : BIT.W #$1000 
     BNE .chargeEquippedOrPreviouslyPressedShot 
-    LDA.B $8F 
-    BIT.W $09B2 
+    LDA.B $8F : BIT.W $09B2 
     BNE .chargeEquippedOrPreviouslyPressedShot 
-    LDA.W $0E00 
-    BIT.W $09B2 
+    LDA.W $0E00 : BIT.W $09B2 
     BNE .chargeEquippedOrPreviouslyPressedShot 
     LDA.W $0C18,X 
     PHA 
@@ -6672,8 +6586,7 @@ Fire_Uncharge_Beam:
     STX.W $0DDE 
     JSR.W InitialBeamBlockCollision_NoWaveBeam 
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    BIT.W #$0F00 
+    LDA.W $0C18,X : BIT.W #$0F00 
     BNE .return 
     BRA .merge 
 
@@ -6769,8 +6682,7 @@ FireChargeBeam:
     STX.W $0DDE 
     JSR.W InitialBeamBlockCollision_NoWaveBeam 
     LDX.W $0DDE 
-    LDA.W $0C18,X 
-    BIT.W #$0F00 
+    LDA.W $0C18,X : BIT.W #$0F00 
     BNE .return 
     BRA + 
 
@@ -6860,8 +6772,7 @@ InitializeProjectilePositionDirection:
     LDA.W $0A24 
     ASL #3
     TAX 
-    LDA.L PoseDefinitions_directionShotsFired,X 
-    BIT.W #$00F0 
+    LDA.L PoseDefinitions_directionShotsFired,X : BIT.W #$00F0 
     BNE + 
     AND.W #$00FF 
     PLX 
@@ -7255,8 +7166,7 @@ ProjectileReflection:
     REP #$30 
     PHX 
     LDX.B $14 
-    LDA.W $0C18,X 
-    BIT.W #$0100 
+    LDA.W $0C18,X : BIT.W #$0100 
     BNE .missile 
     BIT.W #$0200 
     BNE .super 
@@ -7297,11 +7207,9 @@ ProjectileReflection:
 HUDSelectionHandler_Missiles_SuperMissiles:
     PHP 
     REP #$30 
-    LDA.B $8F 
-    BIT.W $09B2 
+    LDA.B $8F : BIT.W $09B2 
     BNE .checkIfCanFire 
-    LDA.W $0E00 
-    BIT.W $09B2 
+    LDA.W $0E00 : BIT.W $09B2 
     BNE .checkIfCanFire 
     PLP 
     RTS 
@@ -7573,15 +7481,13 @@ HUDSelectionHandler_MorphBall:
 
 
 FireBombOrBombSpread:
-    LDA.W $09A2 
-    BIT.W #$1000 
+    LDA.W $09A2 : BIT.W #$1000 
     BEQ .return 
     LDA.W $0CD0 
     CMP.W #$003C 
     BMI FireBomb 
     LDA.W $0CD2 : BNE FireBomb 
-    LDA.B $8B 
-    BIT.W #$0400 
+    LDA.B $8B : BIT.W #$0400 
     BEQ .bombSpread 
     LDA.W $0CD4 : AND.W #$00C0 
     CMP.W #$00C0 
@@ -7602,8 +7508,7 @@ FireBombOrBombSpread:
 
 
 FireBomb:
-    LDA.B $8F 
-    BIT.W $09B2 
+    LDA.B $8F : BIT.W $09B2 
     BEQ .noFire 
     LDA.W $0CD2 : BEQ + 
     CMP.W #$0005 
@@ -7864,16 +7769,14 @@ HandleSwitchingHUDSelection:
     PHP 
     REP #$30 
     LDA.W $09D2 : STA.B $12 
-    LDA.B $8F 
-    BIT.W $09B8 
+    LDA.B $8F : BIT.W $09B8 
     BEQ .notItemCancel 
     STZ.W $0A04 
     BRA .itemCancel 
 
 
 .notItemCancel:
-    LDA.B $8B 
-    BIT.W $09B8 
+    LDA.B $8B : BIT.W $09B8 
     BNE + 
     STZ.B $16 
     BRA .checkItemSelect 
@@ -7882,8 +7785,7 @@ HandleSwitchingHUDSelection:
   + LDA.W #$0001 : STA.B $16 
 
 .checkItemSelect:
-    LDA.B $8F 
-    BIT.W $09BA 
+    LDA.B $8F : BIT.W $09BA 
     BEQ .itemSelectEnd 
     LDA.W $09D2 
     INC A 
@@ -8001,8 +7903,7 @@ SwitchedToHUDItemHandler_PowerBombs:
 
 
 SwitchedToHUDItemHandler_GrappleBeam:
-    LDA.W $09A2 
-    BIT.W #$4000 
+    LDA.W $09A2 : BIT.W #$4000 
     BNE .hasGrappleBeam 
     SEC 
     RTS 
@@ -8023,8 +7924,7 @@ SwitchedToHUDItemHandler_GrappleBeam:
 
 
 SwitchedToHUDItemHandler_XrayScope:
-    LDA.W $09A2 
-    BIT.W #$8000 
+    LDA.W $09A2 : BIT.W #$8000 
     BNE .hasXrayScope 
     SEC 
     RTS 
@@ -9590,8 +9490,7 @@ ProjectilePreInstruction_SpeedEcho:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_GrappleBeam_90D525:
-    LDA.B $8B 
-    BIT.W $09B2 
+    LDA.B $8B : BIT.W $09B2 
     BNE .holdingShot 
 
 .cancel:
@@ -9766,8 +9665,7 @@ SamusMovementHandler_CrystalFlash_DecrementAmmo:
     dw CrystalFlash_DecrementPowerBombs 
 
 CrystalFlash_DecrementMissiles:
-    LDA.W $05B6 
-    BIT.W #$0007 
+    LDA.W $05B6 : BIT.W #$0007 
     BNE .return 
     DEC.W $09C6 
     LDA.W #$0032 
@@ -9785,8 +9683,7 @@ CrystalFlash_DecrementMissiles:
 
 
 CrystalFlash_DecrementSuperMissiles:
-    LDA.W $05B6 
-    BIT.W #$0007 
+    LDA.W $05B6 : BIT.W #$0007 
     BNE .return 
     DEC.W $09CA 
     LDA.W #$0032 
@@ -9804,8 +9701,7 @@ CrystalFlash_DecrementSuperMissiles:
 
 
 CrystalFlash_DecrementPowerBombs:
-    LDA.W $05B6 
-    BIT.W #$0007 
+    LDA.W $05B6 : BIT.W #$0007 
     BNE .return 
     DEC.W $09CE 
     LDA.W #$0032 
@@ -10076,8 +9972,7 @@ ProjectilePreInstruction_BombSpread:
 
 
 ProjectilePreInstruction_WaveSBA:
-    LDA.W $0C04,X 
-    BIT.W #$00F0 
+    LDA.W $0C04,X : BIT.W #$00F0 
     BNE .deleted 
     DEC.W $0BF0,X 
     BEQ .deleted 
@@ -10504,8 +10399,7 @@ HUDSelectionHandler_SpinWallJump_Knockback_Shinespark_CF_etc:
 
 
 HUDSelectionHandler_Xray:
-    LDA.B $8B 
-    BIT.W $09B6 
+    LDA.B $8B : BIT.W $09B6 
     BNE .Xray 
     JSR.W HUDSelectionHandler_Nothing_PowerBombs 
     RTS 
@@ -10783,8 +10677,7 @@ HandleKnockbackVerticalCollision:
 
 
 SerupBombJump:
-    LDA.W $0A56 
-    BIT.W #$FF00 
+    LDA.W $0A56 : BIT.W #$FF00 
     BNE .return 
     LDA.W $0A1F : AND.W #$00FF 
     ASL A 
@@ -10953,8 +10846,7 @@ SamusTimerHackHandler_HandleLettingSamusUpFromBeingDrained:
     LDA.W $0A96 
     CMP.W #$0008 
     BMI .return 
-    LDA.B $8F 
-    BIT.W #$0800 
+    LDA.B $8F : BIT.W #$0800 
     BEQ .return 
     LDA.W #$0001 : STA.W $0A94 
     LDA.W #$000D : STA.W $0A96 
@@ -10970,8 +10862,7 @@ SamusTimerHackHandler_LetSamusFailToStandUpFromBeingDrained:
     BMI .return 
     CMP.W #$000C 
     BPL .return 
-    LDA.B $8F 
-    BIT.W #$0800 
+    LDA.B $8F : BIT.W #$0800 
     BEQ .return 
     LDA.W #$0001 : STA.W $0A94 
     LDA.W #$0012 : STA.W $0A96 
@@ -11752,8 +11643,7 @@ SamusNewStateHandler_Normal:
 HandleSamusPlacementModeToggles:
     PHP 
     REP #$30 
-    LDA.B $91 
-    BIT.W #$8000 
+    LDA.B $91 : BIT.W #$8000 
     BEQ .pressedB 
     LDA.W $09E6 : BEQ .enabled 
     LDA.W #RTS_90E90E : STA.W $0A5C 
@@ -11769,8 +11659,7 @@ HandleSamusPlacementModeToggles:
 
 .pressedB:
     LDA.W $09E6 : BNE .return 
-    LDA.B $91 
-    BIT.W #$0080 
+    LDA.B $91 : BIT.W #$0080 
     BEQ .return 
     JSL.L Disable_Enemy_Projectiles 
     LDA.W #$0001 : STA.W $0A78 
@@ -11788,8 +11677,7 @@ SamusNewStateHandler_Debug:
     PHK 
     PLB 
     REP #$30 
-    LDA.B $91 
-    BIT.W #$0080 
+    LDA.B $91 : BIT.W #$0080 
     BEQ .return 
     LDA.W #SamusCurrentStateHandler_Normal : STA.W $0A42 
     LDA.W #SamusNewStateHandler_Normal : STA.W $0A44 
@@ -11864,8 +11752,7 @@ SamusNewStateHandler_SamusAppearance:
     LDA.W $0DE0 
     CMP.W #$0007 
     BMI .disableInvincibility 
-    LDA.B $8D 
-    BIT.W #$8000 
+    LDA.B $8D : BIT.W #$8000 
     BNE .keepInvincibility 
 
 .disableInvincibility:
@@ -12088,8 +11975,7 @@ HandlePeriodicDamageToSamus:
 
 
 .timeIsNotFrozen:
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .gravitySuit 
     BIT.W #$0001 
     BEQ .crashIfNegative 
@@ -12154,8 +12040,7 @@ PauseCheck:
     LDA.W $0998 
     CMP.W #$0008 
     BNE .return 
-    LDA.B $8F 
-    BIT.W #$1000 
+    LDA.B $8F : BIT.W #$1000 
     BEQ .return 
     LDA.W #$0001 : STA.W $0723 
     STA.W $0725 
@@ -12198,11 +12083,9 @@ Low_Health_Check_external:
 HandleSamus_AutoJumpTimer_HurtFlashCounter_PrevInputEnergy:
     PHP 
     REP #$30 
-    LDA.B $8B 
-    BIT.W $09B4 
+    LDA.B $8B : BIT.W $09B4 
     BEQ .noJump 
-    LDA.W $0DFE 
-    BIT.W $09B4 
+    LDA.W $0DFE : BIT.W $09B4 
     BEQ .noJump 
     INC.W $0AF4 
     BRA .previousInput 
@@ -12398,8 +12281,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 SamusDisplayHandler_UsingElevator:
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BEQ SamusDisplayHandler_InanimateSamus 
     RTS 
 
@@ -12470,8 +12352,7 @@ AlignSamusBottomPositionWithPreviousPose:
 
 
 Determine_SamusSuitPalette_Index:
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .gravity 
     BIT.W #$0001 
     BNE .varia 
@@ -12492,32 +12373,28 @@ Determine_SamusSuitPalette_Index:
 DemoRecorder_MoveSamusWithControlPad:
     PHP 
     REP #$30 
-    LDA.B $8B 
-    BIT.W #$0800 
+    LDA.B $8B : BIT.W #$0800 
     BEQ .checkDown 
     LDA.W #$FFFC : STA.B $12 
     STZ.B $14 
     JSR.W MoveSamus_Up 
 
 .checkDown:
-    LDA.B $8B 
-    BIT.W #$0400 
+    LDA.B $8B : BIT.W #$0400 
     BEQ .checkLeft 
     LDA.W #$0004 : STA.B $12 
     STZ.B $14 
     JSR.W MoveSamus_Down 
 
 .checkLeft:
-    LDA.B $8B 
-    BIT.W #$0200 
+    LDA.B $8B : BIT.W #$0200 
     BEQ .checkRight 
     LDA.W #$FFFC : STA.B $12 
     STZ.B $14 
     JSR.W MoveSamus_Left 
 
 .checkRight:
-    LDA.B $8B 
-    BIT.W #$0100 
+    LDA.B $8B : BIT.W #$0100 
     BEQ .return 
     LDA.W #$0004 : STA.B $12 
     STZ.B $14 
@@ -12636,8 +12513,7 @@ FootstepGraphics_Maridia:
     LDA.W $195E : BMI .negativeYPosition 
     CMP.B $12 
     BPL .nonLiquidPhysics 
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .nonLiquidPhysics 
     BRA .return 
 
@@ -12680,8 +12556,7 @@ FootstepGraphics_Common:
     LDA.W $195E : BMI .negativeYPosition 
     CMP.B $12 
     BPL .nonLiquidPhysics 
-    LDA.W $197E 
-    BIT.W #$0004 
+    LDA.W $197E : BIT.W #$0004 
     BNE .nonLiquidPhysics 
     BRA .return 
 
@@ -12721,8 +12596,7 @@ UpdateSamusEchoPosition:
     CMP.W #$0400 
     BNE .return 
     LDA.W $0AAE : BMI .return 
-    LDA.W $09DA 
-    BIT.W #$0003 
+    LDA.W $09DA : BIT.W #$0003 
     BNE .return 
     LDX.W $0AAE 
     LDA.W $0AF6 : STA.W $0AB0,X 
@@ -13071,8 +12945,7 @@ SamusCommand_8_SetupSamusForCeresStart:
 
 
 SamusCommand_9_SetupSamusForZebesStart:
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .gravity 
     BIT.W #$0001 
     BNE .varia 
@@ -13393,8 +13266,7 @@ SamusCommand_1D_ClearSoundsWhenGoingThroughDoor:
 
 
 .notSpinning:
-    LDA.B $8B 
-    BIT.W $09B2 
+    LDA.B $8B : BIT.W $09B2 
     BNE .returnCarryClear 
     LDA.W $0CD0 
     CMP.W #$0010 
@@ -13467,8 +13339,7 @@ UNUSED_ResumeSounds_90F507:
     BEQ .return 
     CMP.W #$0014 
     BEQ .return 
-    LDA.B $8B 
-    BIT.W $09B2 
+    LDA.B $8B : BIT.W $09B2 
     BEQ .return 
     LDA.W $0CD0 
     CMP.W #$0010 
@@ -13497,8 +13368,7 @@ RTS_90F534:
 
 
 DebugCommandHandler_GiveSamusAShinesparkIfYNewlyPressed:
-    LDA.B $8F 
-    BIT.W #$4000 
+    LDA.B $8F : BIT.W #$4000 
     BEQ .return 
     LDA.W #$00B4 : STA.W $0A68 
     LDA.W #$0001 : STA.W $0ACC 
@@ -13509,8 +13379,7 @@ DebugCommandHandler_GiveSamusAShinesparkIfYNewlyPressed:
 
 
 DebugCommandHandler_DisableRainbowSamus_StandHerUp:
-    LDA.B $91 
-    BIT.W #$4000 
+    LDA.B $91 : BIT.W #$4000 
     BEQ .return 
     LDA.W #$0017 
     JSL.L Run_Samus_Command 
@@ -13521,8 +13390,7 @@ DebugCommandHandler_DisableRainbowSamus_StandHerUp:
 
 
 DebugCommandHandler_ReleaseSamusFromDrainedPoseIfYNewlyPress:
-    LDA.B $8F 
-    BIT.W #$4000 
+    LDA.B $8F : BIT.W #$4000 
     BEQ .return 
     LDA.W #RTS_90F534 : STA.W $0A5E 
     LDA.W #$0002 
@@ -13537,8 +13405,7 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
     REP #$30 
     LDA.W $0DC0 : BMI .negative 
     BEQ .notSet 
-    LDA.B $8B 
-    BIT.W $09B2 
+    LDA.B $8B : BIT.W $09B2 
     BEQ .pressingShot 
     LDA.W #$0041 
     JSL.L QueueSound_Lib1_Max9 
@@ -13548,8 +13415,7 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
 
 .notSet:
     LDA.W $0B40 : BEQ .echoes 
-    LDA.W $0B3E 
-    BIT.W #$0400 
+    LDA.W $0B3E : BIT.W #$0400 
     BNE .echoes 
     STZ.W $0B40 
     LDA.W #$0025 
@@ -13573,8 +13439,7 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
     LDA.W $0CD0 
     CMP.W #$0010 
     BMI .checkDebug 
-    LDA.B $8B 
-    BIT.W $09B2 
+    LDA.B $8B : BIT.W $09B2 
     BEQ .checkDebug 
 
 .negative:
@@ -13596,8 +13461,7 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
     LDA.B $8D : AND.W #$0030 
     CMP.W #$0030 
     BNE .debugEnd 
-    LDA.B $91 
-    BIT.W #$0080 
+    LDA.B $91 : BIT.W #$0080 
     BEQ .debugEnd 
     LDA.W #$0007 : STA.W $0DE0 
     BRA .debugEnd 

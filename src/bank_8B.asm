@@ -431,32 +431,27 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ModifyMode7TransformAndBG1PosWithController_8B8488:
     PHP 
     REP #$30 
-    LDA.B $8B 
-    BIT.W #$0200 
+    LDA.B $8B : BIT.W #$0200 
     BEQ .checkRight 
     LDA.W $1993 : CLC : ADC.W #$0002 : STA.W $1993 
 
 .checkRight:
-    LDA.B $8B 
-    BIT.W #$0100 
+    LDA.B $8B : BIT.W #$0100 
     BEQ .checkUp 
     LDA.W $1993 : SEC : SBC.W #$0002 : STA.W $1993 
 
 .checkUp:
-    LDA.B $8B 
-    BIT.W #$0800 
+    LDA.B $8B : BIT.W #$0800 
     BEQ .checkDown 
     LDA.W $1997 : CLC : ADC.W #$0002 : STA.W $1997 
 
 .checkDown:
-    LDA.B $8B 
-    BIT.W #$0400 
+    LDA.B $8B : BIT.W #$0400 
     BEQ .checkLR 
     LDA.W $1997 : SEC : SBC.W #$0002 : STA.W $1997 
 
 .checkLR:
-    LDA.B $8B 
-    BIT.W #$0010 
+    LDA.B $8B : BIT.W #$0010 
     BNE .pressingR 
     BIT.W #$0020 
     BEQ .checkB 
@@ -474,8 +469,7 @@ UNUSED_ModifyMode7TransformAndBG1PosWithController_8B8488:
     STA.W $198D 
 
 .checkB:
-    LDA.B $8B 
-    BIT.W #$8000 
+    LDA.B $8B : BIT.W #$8000 
     BNE .zoomOut 
     BIT.W #$0040 
     BNE .zoomIn 
@@ -3039,8 +3033,7 @@ SkipToTitleScreenCheck:
     LDA.W $1F51 
     CMP.W #RTS_8B9F28 
     BPL .return 
-    LDA.B $8F 
-    BIT.W #$9080 
+    LDA.B $8F : BIT.W #$9080 
     BEQ .return 
     LDA.W $1A53 : BNE .return 
     LDA.W #$0001 : STA.W $1A53 
@@ -3434,8 +3427,7 @@ Instruction_TriggerTitleSequenceScene3:
 
 
 CinematicFunction_TitleSequenceScene3_ZoomingOut:
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BNE .return 
     LDA.W $198F 
     CMP.W #$0100 
@@ -3524,8 +3516,7 @@ CinematicFunction_TitleScreen:
 
 
 .notDemo:
-    LDA.B $8F 
-    BIT.W #$9080 
+    LDA.B $8F : BIT.W #$9080 
     BEQ .merge 
     LDA.W #CinematicFunction_TransitionToFileSelectMenu : STA.W $1F51 
 
@@ -4575,8 +4566,7 @@ PreInstruction_CinematicSpriteObject_MetroidEggSlimeDrops:
     TAY 
     LDA.W $1ADD,X : CLC : ADC.W .Xvelocities+2,Y : STA.W $1ADD,X 
     LDA.W $1A7D,X : ADC.W .Xvelocities,Y : STA.W $1A7D,X 
-    LDA.W $1B7D,X 
-    BIT.W #$0001 
+    LDA.W $1B7D,X : BIT.W #$0001 
     BNE .nonZero 
     XBA 
     AND.W #$00FF 
@@ -4670,8 +4660,7 @@ PreInst_CinematicSpriteObject_BabyMetroidBeingDelivered:
 
 
 .crossFading:
-    LDA.W $1A49 
-    BIT.W #$0003 
+    LDA.W $1A49 : BIT.W #$0003 
     BNE .return 
     LDA.W $1993 : BEQ .return 
     DEC A 
@@ -4699,8 +4688,7 @@ PreInst_CinematicSpriteObject_BabyMetroidBeingExamined:
 
 
 .crossFading:
-    LDA.W $1A49 
-    BIT.W #$0003 
+    LDA.W $1A49 : BIT.W #$0003 
     BNE .return 
     LDA.W $1997 
     CMP.W #$0008 
@@ -5245,8 +5233,7 @@ Instruction_FinishIntro:
 
 
 CinematicFunction_Intro_CrossFadeToSamusGameplay:
-    LDA.W $1A49 
-    BIT.W #$0003 
+    LDA.W $1A49 : BIT.W #$0003 
     BNE .decTimer 
     LDX.W #$0000 
     LDY.W #$0014 
@@ -5298,8 +5285,7 @@ CinematicFunction_Intro_CrossFadeToSamusGameplay:
 
 
 CinematicFunction_Intro_CrossFadeToScientistCutscene:
-    LDA.W $1A49 
-    BIT.W #$0003 
+    LDA.W $1A49 : BIT.W #$0003 
     BNE .decTimer 
     LDX.W #$0000 
     LDY.W #$0014 
@@ -5428,8 +5414,7 @@ Setup_Intro_CrossFade_Into_Text:
 
 
 CinematicFunction_Intro_CrossFadeFromSamusGameplay:
-    LDA.W $1A4B 
-    BIT.W #$0003 
+    LDA.W $1A4B : BIT.W #$0003 
     BNE .decTimer 
     LDX.W #$0000 
     LDY.W #$0010 
@@ -5470,8 +5455,7 @@ CinematicFunction_Intro_CrossFadeFromSamusGameplay:
 
 
 CinematicFunction_Intro_CrossFadeFromScientistCutscene:
-    LDA.W $1A4B 
-    BIT.W #$0003 
+    LDA.W $1A4B : BIT.W #$0003 
     BNE .decTimer 
     LDX.W #$0000 
     LDY.W #$0010 
@@ -5752,8 +5736,7 @@ Instruction_EnableCinematicBGTilemapUpdates_duplicate_again:
 RTS_BackgroundFLickeringEffect:
     RTS 
 
-    LDA.W $05B6 
-    BIT.W #$0001 
+    LDA.W $05B6 : BIT.W #$0001 
     BEQ .enableBG2 
     SEP #$20 
     LDA.B $69 : AND.B #$FD : STA.B $69 
@@ -5924,8 +5907,7 @@ IntroMotherBrain_HurtFlashHandling:
 
 
 IntroMotherBrain_ScreenShaking:
-    LDA.W $1A51 
-    BIT.W #$0001 
+    LDA.W $1A51 : BIT.W #$0001 
     BNE .subtract4 
     LDA.W $1997 : CLC : ADC.W #$0004 : STA.W $1997 
     BRA .return 
@@ -7291,8 +7273,7 @@ CinematicFunction_FlyToZebes_Initial:
 
 
 CinematicFunction_FlyToZebes_FadingIn:
-    LDA.W $1A51 
-    BIT.W #$0003 
+    LDA.W $1A51 : BIT.W #$0003 
     BNE .fadeIn 
     SEP #$20 
     LDA.B $57 : SEC : SBC.B #$10 : STA.B $57 
@@ -7314,8 +7295,7 @@ CinematicFunction_FlyToZebes_FadingIn:
 
 
 CinematicFunction_FlyToZebes_MosaicTransition:
-    LDA.W $1A51 
-    BIT.W #$0003 
+    LDA.W $1A51 : BIT.W #$0003 
     BNE .return 
     SEP #$20 
     LDA.B $57 : SEC : SBC.B #$10 : STA.B $57 
@@ -8964,8 +8944,7 @@ CinematicFunc_Ending_ZebesDestruction0_CloudsOnSide_FadingIn:
 
 
 CinematicFunction_Ending_ZebesDestruction0_CloudsOnSide:
-    LDA.W $1A51 
-    BIT.W #$0001 
+    LDA.W $1A51 : BIT.W #$0001 
     BNE .zoomOut 
     LDA.W $198D : SEC : SBC.W #$0001 : AND.W #$00FF 
     STA.W $198D 
@@ -9050,8 +9029,7 @@ CineFunc_Ending_ZebesDestruction1_CloudsOnTopBottom_FadingIn:
 
 
 CinematicFunction_Ending_ZebesDestruction1_CloudsOnTopBottom:
-    LDA.W $1A51 
-    BIT.W #$0001 
+    LDA.W $1A51 : BIT.W #$0001 
     BNE + 
     LDA.W $198D : SEC : SBC.W #$0001 : AND.W #$00FF 
     STA.W $198D 
@@ -9210,8 +9188,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_FadingIn:
 
 CinematicFunction_Ending_ZebesDestruction2_CrossFade:
     LDA.W $198F : CLC : ADC.W #$0004 : STA.W $198F 
-    LDA.W $1A49 
-    BIT.W #$0001 
+    LDA.W $1A49 : BIT.W #$0001 
     BNE .decTimer 
     LDX.W #$00E0 
     LDY.W #$0010 
@@ -9529,8 +9506,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_FlyToCamera:
     LDA.W $198F 
     CMP.W #$0180 
     BPL + 
-    LDA.W $1A51 
-    BIT.W #$0003 
+    LDA.W $1A51 : BIT.W #$0003 
     BNE + 
     LDA.W $198D 
     CMP.W #$0010 
@@ -9920,8 +9896,7 @@ CinematicFunction_PostCredits_DeerForce:
 
 
 CinematicFunc_PostCredits_IdleSamus_1_CrossFadeOutSamusSuit:
-    LDA.W $1A49 
-    BIT.W #$0003 
+    LDA.W $1A49 : BIT.W #$0003 
     BNE CinematicFunction_PostCredits_IdleSamus1 
     LDX.W #$0040 
     LDY.W #$0010 
@@ -10002,8 +9977,7 @@ CinematicFunction_PostCredits_1994Nintendo:
 
 
 CinematicFunc_PostCredits_IdleSamus2_CrossFadeOutSamusSuit:
-    LDA.W $1A49 
-    BIT.W #$0003 
+    LDA.W $1A49 : BIT.W #$0003 
     BNE CinematicFunction_PostCredits_IdleSamus2 
     LDX.W #$0040 
     LDY.W #$0010 
@@ -10389,8 +10363,7 @@ Instruction_DrawItemPercentageCount:
     LDX.W #$0014 
 
 .loopItems:
-    LDA.W $09A4 
-    BIT.W .itemBits,X 
+    LDA.W $09A4 : BIT.W .itemBits,X 
     BEQ .nextItem 
     INC.B $12 
 
@@ -10400,8 +10373,7 @@ Instruction_DrawItemPercentageCount:
     LDX.W #$0008 
 
 .loopBeams:
-    LDA.W $09A8 
-    BIT.W .beamBits,X 
+    LDA.W $09A8 : BIT.W .beamBits,X 
     BEQ .nextBeam 
     INC.B $12 
 
@@ -10676,14 +10648,12 @@ Handle_ShootingStars:
 
 .loopDraw:
     LDA.W $0000,Y : BMI .nextDraw 
-    LDA.W $0002,Y 
-    BIT.W #$FF00 
+    LDA.W $0002,Y : BIT.W #$FF00 
     BNE .offScreen 
     SEC : SBC.W #$0004 : BIT.W #$FF00 
     BNE .offScreen 
     STA.W $0370,X 
-    LDA.W $0006,Y 
-    BIT.W #$FF00 
+    LDA.W $0006,Y : BIT.W #$FF00 
     BNE .offScreen 
     SEC : SBC.W #$0004 : BIT.W #$FF00 
     BNE .offScreen 
@@ -10707,8 +10677,7 @@ Handle_ShootingStars:
     PLX 
 
 .nonZero:
-    LDA.W $0000,Y 
-    BIT.W #$FF00 
+    LDA.W $0000,Y : BIT.W #$FF00 
     BEQ .nextDraw 
     PHY 
     XBA 

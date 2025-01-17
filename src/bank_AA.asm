@@ -8984,8 +8984,7 @@ Instruction_GoldenTorizo_CallY_IfStunHealthGreaterThan2A31:
     LDA.W #$2A30 
     CMP.W $0F8C,X 
     BCS .noGo 
-    LDA.W $0FB6,X 
-    BIT.W #$2000 
+    LDA.W $0FB6,X : BIT.W #$2000 
     BEQ .noGo 
     TYA 
     INC #2
@@ -9231,8 +9230,7 @@ ShotReaction_GoldenTorizo_Normal:
 
 
 .flashOrAnimLock:
-    LDA.W $0FB6,X 
-    BIT.W #$1000 
+    LDA.W $0FB6,X : BIT.W #$1000 
     BNE .stun 
     LDA.W $18A6 
     ASL A 
@@ -9286,8 +9284,7 @@ ShotReaction_GoldenTorizo_Normal_SuperMissile:
     LDA.W #RTS_AAC6AB : STA.W $0FB0,X 
     LDA.W $0C04,Y : ORA.W #$0010 : STA.W $0C04,Y 
     LDA.W #$0001 : STA.W $0F94,X 
-    LDA.W $0FB4,X 
-    BIT.W #$2000 
+    LDA.W $0FB4,X : BIT.W #$2000 
     BNE .backgroundLegForward 
     BIT.W $0FB4,X 
     BMI .facingRight 
@@ -10045,8 +10042,7 @@ Function_Shaktool_FinalPiece:
 
 
 .collision:
-    LDA.W $0FB4,X 
-    BIT.W #$2000 
+    LDA.W $0FB4,X : BIT.W #$2000 
     BEQ .curling 
     PLA 
     PLA 

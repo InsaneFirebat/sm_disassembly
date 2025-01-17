@@ -884,15 +884,13 @@ NTSC_PAL_SRAM_MappingCheck:
     LDA.L ROM_HEADER_country&$00FFFF 
     CMP.B #$00 ; If country code != Japan:
     BEQ .japan 
-    LDA.W $213F 
-    BIT.B #$10 ; If PPU set to PAL:
+    LDA.W $213F : BIT.B #$10 ; If PPU set to PAL:
     BEQ .failedRegion 
     JMP.W .SRAMCheck 
 
 
 .japan:
-    LDA.W $213F 
-    BIT.B #$10 ; If PPU set to NTSC: go to .SRAMCheck
+    LDA.W $213F : BIT.B #$10 ; If PPU set to NTSC: go to .SRAMCheck
     BEQ .SRAMCheck 
 
 .failedRegion:
@@ -2619,14 +2617,12 @@ ReadControllerInput:
     STZ.B $8F 
 
 .checkToggleHUD:
-    LDA.W $05C7 
-    BIT.W #$0080 
+    LDA.W $05C7 : BIT.W #$0080 
     BEQ .checkAmmoSwap 
     LDA.B $84 : EOR.W #$0030 : STA.B $84 
 
 .checkAmmoSwap:
-    LDA.W $05C7 
-    BIT.W #$8000 
+    LDA.W $05C7 : BIT.W #$8000 
     BEQ .swapEnd 
     LDA.W $05CF : EOR.W #$8000 : STA.W $05CF 
     BPL .swapAmmo 
@@ -2645,8 +2641,7 @@ ReadControllerInput:
     LDA.W $05CD : STA.W $09CE 
 
 .swapEnd:
-    LDA.W $05C7 
-    BIT.W #$0040 
+    LDA.W $05C7 : BIT.W #$0040 
     BEQ .return 
     LDA.W $05CF : EOR.W #$2000 : STA.W $05CF 
 
@@ -3253,14 +3248,12 @@ InitialiseHUD_GameLoading:
     INX #2
     CPX.W #$00C0 
     BNE .loopRows123 
-    LDA.W $09A2 
-    BIT.W #$8000 
+    LDA.W $09A2 : BIT.W #$8000 
     BEQ .grapple 
     JSL.L AddXrayToHUDTilemap 
 
 .grapple:
-    LDA.W $09A2 
-    BIT.W #$4000 
+    LDA.W $09A2 : BIT.W #$4000 
     BEQ .missiles 
     JSL.L AddGrappleToHUDTilemap 
 
@@ -3406,8 +3399,7 @@ HandleHUDTilemap_PausedAndRunning:
     BEQ .handlePowerBombs 
     STA.W $0A0A 
     LDX.W #$009C 
-    LDA.W $05CF 
-    BIT.W #$1F40 
+    LDA.W $05CF : BIT.W #$1F40 
     BNE .debugSuperMissiles 
     LDA.W $0A0A 
     JSR.W DrawTwoHUDDigits 
@@ -3451,8 +3443,7 @@ HandleHUDTilemap_PausedAndRunning:
 
 .handleAutoCancel:
     LDX.W #$1400 
-    LDA.W $05B5 
-    BIT.W #$0010 
+    LDA.W $05B5 : BIT.W #$0010 
     BEQ .highlight 
     LDX.W #$1000 
 

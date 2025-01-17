@@ -9770,8 +9770,7 @@ KickYardIntoAIr:
     TAY 
     LDA.W .YSubVelocity,Y : STA.L $7E7800,X 
     LDA.W .YVelocity,Y : STA.L $7E7802,X 
-    LDA.W $0A1E 
-    BIT.W #$0004 
+    LDA.W $0A1E : BIT.W #$0004 
     BEQ .return 
     LDA.L $7E7804,X 
     EOR.W #$FFFF 
@@ -12155,8 +12154,7 @@ Function_Crawlers_CrawlingHorizontally:
 AdjustEnemyXVelocityForSlopes:
     LDA.W $0F7A,X 
     PHA 
-    LDA.W $0F7E,X 
-    BIT.W $0FAA,X 
+    LDA.W $0F7E,X : BIT.W $0FAA,X 
     BPL .negativeYVelocity 
     SEC : SBC.W $0F84,X : BRA .positiveYVelocity 
 
@@ -12372,8 +12370,7 @@ FrozenAI_Metroid:
 HurtAI_Metroid:
     LDX.W $0E54 
     LDY.W #$F1FF ; >.<
-    LDA.W $0F9C,X 
-    BIT.W #$0002 
+    LDA.W $0F9C,X : BIT.W #$0002 
     BEQ .flash 
     LDA.W $0F96,X : STA.B $12 
     LDX.W $0E54 
@@ -12711,8 +12708,7 @@ EnemyTouch_Metroid:
 
 DealMetroidContactDamageToSamus:
     LDA.W $0AFA : SEC : SBC.W #$0008 : STA.W $0E32 
-    LDA.W $09A2 
-    BIT.W #$0020 
+    LDA.W $09A2 : BIT.W #$0020 
     BNE .gravitySuit 
     LSR A 
     BCC .powerSuit 

@@ -4180,8 +4180,7 @@ HandleCeresRidleyMode7TransformationMatrix:
   + STA.B $26 
     LDA.L $7E8020 : STA.B $28 
     JSR.W Mode7Math_A6AC58 
-    LDA.B $2B 
-    BIT.B $18 
+    LDA.B $2B : BIT.B $18 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -4198,8 +4197,7 @@ HandleCeresRidleyMode7TransformationMatrix:
   + STA.B $26 
     LDA.L $7E8020 : STA.B $28 
     JSR.W Mode7Math_A6AC58 
-    LDA.B $2B 
-    BIT.B $18 
+    LDA.B $2B : BIT.B $18 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -4218,8 +4216,7 @@ HandleCeresRidleyMode7TransformationMatrix:
   + STA.B $26 
     LDA.L $7E8020 : STA.B $28 
     JSR.W Mode7Math_A6AC58 
-    LDA.B $2B 
-    BIT.B $18 
+    LDA.B $2B : BIT.B $18 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -4236,8 +4233,7 @@ HandleCeresRidleyMode7TransformationMatrix:
   + STA.B $26 
     LDA.L $7E8020 : STA.B $28 
     JSR.W Mode7Math_A6AC58 
-    LDA.B $2B 
-    BIT.B $18 
+    LDA.B $2B : BIT.B $18 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -5338,8 +5334,7 @@ GrabbingSamus_SetMinimumYSpeed_ResetTailAI:
 
 CheckForTurnaroundDuringTailbounce_RandomlyChangeDirection:
     LDA.W $0FAA : BNE .storeXSpeed 
-    LDA.W #$00C0 
-    BIT.W $0F79 
+    LDA.W #$00C0 : BIT.W $0F79 
     BPL + 
     EOR.W #$FFFF 
     INC A 
@@ -8823,8 +8818,7 @@ CalculateWingFlapSpeed:
 
 .maxE:
     TAX 
-    LDA.W .wingFlapSpeeds,X 
-    BIT.W $0FAC 
+    LDA.W .wingFlapSpeeds,X : BIT.W $0FAC 
     BMI .movingUp 
     LSR A 
 
@@ -12719,8 +12713,7 @@ SetZebetiteInstList:
     LDY.W #$0008 
 
 .indexInY:
-    LDA.W .bigZebetite,Y 
-    BIT.W $0FB2,X 
+    LDA.W .bigZebetite,Y : BIT.W $0FB2,X 
     BPL .keepBig 
     LDA.W .smallZebetite,Y 
 
