@@ -2487,10 +2487,7 @@ Instruction_Fune_SpawnFireball_FacingRight:
 Instruction_FuneNamihe_FinishActivity:
     LDX.W $0E54 
     LDA.W $0FA8,X 
-    INC A 
-    INC A 
-    INC A 
-    INC A 
+    INC #4
     STA.W $0FA8,X 
     LDA.W #Function_Fune_WaitForTimer 
     STA.W $0FAA,X 
@@ -2506,10 +2503,7 @@ Instruction_FuneNamihe_FinishActivity:
 Instruction_FuneNamihe_FinishActivity_duplicate:
     LDX.W $0E54 
     LDA.W $0FA8,X 
-    INC A 
-    INC A 
-    INC A 
-    INC A 
+    INC #4
     STA.W $0FA8,X 
     LDA.W #Function_Fune_WaitForTimer 
     STA.W $0FAA,X 
@@ -2579,10 +2573,7 @@ Function_Fune_WaitForTimer:
     CMP.W $0FB2,X 
     BMI .return 
     LDA.W $0FA8,X 
-    DEC A 
-    DEC A 
-    DEC A 
-    DEC A 
+    DEC #4
     STA.W $0FA8,X 
     JSR.W SetFuneNamiheInstList 
     LDA.W #RTS_A8978E 
@@ -2601,10 +2592,7 @@ Function_Namihe_WaitForSamusToGetNear:
     BEQ .notInProximity 
     LDA.L $7E7800,X 
     STA.W $0FA8,X 
-    DEC A 
-    DEC A 
-    DEC A 
-    DEC A 
+    DEC #4
     STA.L $7E7800,X 
     STA.W $0FA8,X 
     JSR.W SetFuneNamiheInstList 
@@ -3095,8 +3083,7 @@ HandleFadeInTimerAndIndex:
     BMI .terminator 
     STA.W $0FAA,X 
     TYA 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0FAC,X 
     TYA 
     BIT.W #$0002 

@@ -11,8 +11,7 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     LDA.W $0A96 
     ASL #2
     STA.B $12 
-    INC A 
-    INC A 
+    INC #2
     STA.B $14 
     LDA.W $0A1C 
     ASL A 
@@ -12020,8 +12019,7 @@ Debug_SamusTileViewer:
     LDY.W #$0040 
     JSL.L AddSamusSpritemapToOAM 
     LDA.W #$0182 
-    INC A 
-    INC A 
+    INC #2
     LDX.W #$0080 
     LDY.W #$0060 
     JSL.L AddSamusSpritemapToOAM 

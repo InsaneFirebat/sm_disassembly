@@ -901,8 +901,7 @@ Instruction_PLM_LoadItemPLMGFX:
     LDA.W $1C2D 
     STA.L $7EDF0C,X 
     TAX 
-    INC A 
-    INC A 
+    INC #2
     AND.W #$0006 
     STA.W $1C2D 
     LDA.W .VRAMAddresses,X 
@@ -1266,8 +1265,7 @@ Instruction_PLM_LinkInstruction_Y:
 
 Instruction_PLM_Call_Y:
     TYA 
-    INC A 
-    INC A 
+    INC #2
     STA.L $7EDEBC,X 
     LDA.W $0000,Y 
     TAY 
@@ -5614,8 +5612,7 @@ Setup_MapStationRightAccess:
     AND.W #$0004 
     BEQ .connected 
     LDA.W $1C87,Y 
-    DEC A 
-    DEC A 
+    DEC #2
     JMP.W ActivateStationIfSamusArmCannonLinedUp 
 
 
@@ -5638,10 +5635,7 @@ Setup_MapStationLeftAccess:
     AND.W #$0008 
     BEQ .connected 
     LDA.W $1C87,Y 
-    INC A 
-    INC A 
-    INC A 
-    INC A 
+    INC #4
     JMP.W ActivateStationIfSamusArmCannonLinedUp 
 
 
@@ -5700,8 +5694,7 @@ Setup_EnergyStationRightAccess:
     CMP.W $09C4 
     BEQ .connected 
     LDA.W $1C87,Y 
-    DEC A 
-    DEC A 
+    DEC #2
     JMP.W ActivateStationIfSamusArmCannonLinedUp 
 
 
@@ -5727,8 +5720,7 @@ Setup_EnergyStationLeftAccess:
     CMP.W $09C4 
     BEQ .connected 
     LDA.W $1C87,Y 
-    INC A 
-    INC A 
+    INC #2
     JMP.W ActivateStationIfSamusArmCannonLinedUp 
 
 
@@ -5753,8 +5745,7 @@ Setup_MissileStationRightAccess:
     CMP.W $09C8 
     BEQ .connected 
     LDA.W $1C87,Y 
-    DEC A 
-    DEC A 
+    DEC #2
     JMP.W ActivateStationIfSamusArmCannonLinedUp 
 
 
@@ -5780,8 +5771,7 @@ Setup_MissileStationLeftAccess:
     CMP.W $09C8 
     BEQ .connected 
     LDA.W $1C87,Y 
-    INC A 
-    INC A 
+    INC #2
     JMP.W ActivateStationIfSamusArmCannonLinedUp 
 
 
@@ -8581,17 +8571,14 @@ Setup_RightBlueGateTrigger:
 
 TriggerPLMOfBlockToTheRight:
     LDA.W $1C87,Y 
-    INC A 
-    INC A 
+    INC #2
     JMP.W TriggerPLMAtBlockIndex_A 
 
 
 TriggerPLMOfBlockToTheLeft:
     LDA.W $1C87,Y 
-    DEC A 
-    DEC A 
-
-TriggerPLMAtBlockIndex_A:
+    DEC #2
+    TriggerPLMAtBlockIndex_A:
     LDX.W #$004E 
 
 .loop:

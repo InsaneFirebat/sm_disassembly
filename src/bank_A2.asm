@@ -5292,8 +5292,7 @@ Function_Ship_Liftoff_LoadDustCloudTiles:
     STX.W $0330 
     PLX 
     LDA.W $0DEC 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0DEC 
     CMP.W #$000A 
     BMI .return 

@@ -1074,8 +1074,7 @@ IndirectInstructionFunction_DrawTextCharacter:
     STA.W $1A7D,X 
     LDA.W $0003,Y 
     AND.W #$00FF 
-    INC A 
-    INC A 
+    INC #2
     ASL #3
     SEC 
     SBC.W #$0008 
@@ -4282,8 +4281,7 @@ CinematicFunction_TransitionToFileSelectMenu:
     JSL.L Disable_PaletteFXObjects 
     JSL.L Clear_PaletteFXObjects 
     LDA.W #$1C1F 
-    DEC A 
-    DEC A 
+    DEC #2
     SEC 
     SBC.W #$198D 
     TAX 
@@ -4328,8 +4326,7 @@ CinematicFunction_TransitionToDemos:
     JSL.L Disable_PaletteFXObjects 
     JSL.L Clear_PaletteFXObjects 
     LDA.W #$1C1F 
-    DEC A 
-    DEC A 
+    DEC #2
     SEC 
     SBC.W #$198D 
     TAX 
@@ -4799,8 +4796,7 @@ CinematicFunction_Intro_Initial:
     STZ.W $18A8 
     STZ.W $18AA 
     LDA.W #$1C1F 
-    DEC A 
-    DEC A 
+    DEC #2
     SEC 
     SBC.W #$198D 
     TAX 
@@ -6862,8 +6858,7 @@ CinematicFunction_Intro_Finish:
     STZ.B $BB 
     STZ.W $198D 
     LDA.W #$1C1F 
-    DEC A 
-    DEC A 
+    DEC #2
     SEC 
     SBC.W #$198D 
     TAX 
@@ -8067,8 +8062,7 @@ CinematicFunction_FlyToCeres_Finish:
     STZ.B $BB 
     STZ.W $198D 
     LDA.W #$1C1F 
-    DEC A 
-    DEC A 
+    DEC #2
     SEC 
     SBC.W #$198D 
     TAX 
@@ -8105,8 +8099,7 @@ CinematicFunction_CeresGoesBoom_Initial:
     BPL .wait 
     JSR.W Setup_PPU_CeresCutscene 
     LDA.W #$1C1F 
-    DEC A 
-    DEC A 
+    DEC #2
     SEC 
     SBC.W #$198D 
     TAX 
@@ -8742,8 +8735,7 @@ CinematicFunction_CeresGoesBoom_FadeOut:
 CinematicFunction_FlyToZebes_Initial:
     JSR.W Setup_PPU_SamusGoesToZebesCutscene 
     LDA.W #$1C1F 
-    DEC A 
-    DEC A 
+    DEC #2
     SEC 
     SBC.W #$198D 
     TAX 
@@ -9303,8 +9295,7 @@ CinematicFunction_FlyToZebes_LoadGameData:
     STA.B $51 
     REP #$20 
     LDA.W #$1C1F 
-    DEC A 
-    DEC A 
+    DEC #2
     SEC 
     SBC.W #$198D 
     TAX 
@@ -10461,8 +10452,7 @@ CinematicFunction_Ending_Setup:
     BPL .wait8Frames 
     JSR.W Setup_PPU_ZebesDestruction 
     LDA.W #$1C1F 
-    DEC A 
-    DEC A 
+    DEC #2
     SEC 
     SBC.W #$198D 
     TAX 

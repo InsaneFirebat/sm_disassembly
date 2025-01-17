@@ -7882,8 +7882,7 @@ UpdateReversedFigure8PhantoonSpeed:
     BPL .stage0_return 
 
   + LDA.W Phantoon_ReverseFigure8_SpeedCaps_Stage0Max 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0FAC 
     STZ.W $0FAA 
     INC.W $0FAE 
@@ -10384,8 +10383,7 @@ Function_Etecoon_StartHop_BottomOfRoom:
     LDA.W EtecoonConstants_initialYVelocityOfHopsAndFailedJumps+2 
     STA.W $0FAA,X 
     LDA.W $0F92,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0F92,X 
     LDA.W #$0001 
     STA.W $0F94,X 
@@ -10471,8 +10469,7 @@ Function_Etecoon_LookAtSamus:
 
 .timerExpired:
     LDA.W $0F92,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0F92,X 
     LDA.W #$0001 
     STA.W $0F94,X 
@@ -10705,8 +10702,7 @@ HopAtCenterRunUpPoint:
     LDA.W #Function_Etecoon_Hopping_TopOfRoom 
     STA.W $0FB2,X 
     LDA.W $0F92,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0F92,X 
     LDA.W EtecoonConstants_XVelocityRight 
     STA.W $0FAC,X 
@@ -10907,8 +10903,7 @@ Function_Etecoon_StartHop_TopOfRoom:
     LDA.W #Function_Etecoon_Hopping_TopOfRoom 
     STA.W $0FB2,X 
     LDA.W $0F92,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0F92,X 
 
 .merge:
@@ -10956,8 +10951,7 @@ Function_Etecoon_HopUntilSamusIsNear:
     LDA.W EtecoonConstants_initialYVelocityOfHopsAndFailedJumps+2 
     STA.W $0FAA,X 
     LDA.W $0F92,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0F92,X 
     LDA.W #Function_Etecoon_Hopping_TopOfRoom 
     STA.W $0FB2,X 
@@ -12085,8 +12079,7 @@ Function_Dachora_ActivateShinespark:
     DEC.W $0FA8,X 
     BNE .return 
     LDA.W $0F92,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0F92,X 
     LDA.W #$0001 
     STA.W $0F94,X 

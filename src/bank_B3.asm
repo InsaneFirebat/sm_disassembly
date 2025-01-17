@@ -2659,8 +2659,7 @@ BotwoonHealthBasedPaletteHandling:
     BNE .loop 
     LDX.W $0E54 
     LDA.L $7E881E,X 
-    INC A 
-    INC A 
+    INC #2
     STA.L $7E881E,X 
 
 .return:

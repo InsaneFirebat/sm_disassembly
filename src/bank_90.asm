@@ -5594,8 +5594,7 @@ Update_Minimap:
     REP #$30 
     DEX #4
     TYA 
-    DEC A 
-    DEC A 
+    DEC #2
     BPL + 
     AND.W #$0007 
     DEX 
@@ -9569,8 +9568,7 @@ DrawArmCannon:
     ASL A 
     TAX 
     TYA 
-    INC A 
-    INC A 
+    INC #2
     STA.B $16 
 
 .merge:
@@ -11441,8 +11439,7 @@ CrystalFlash:
 
 SamusMovementHandler_CrystalFlash_RaiseSamus_GenerateBubble:
     LDA.W $0AFA 
-    DEC A 
-    DEC A 
+    DEC #2
     STA.W $0AFA 
     LDA.W $0AA2 
     DEC A 

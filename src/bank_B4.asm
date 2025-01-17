@@ -7034,10 +7034,7 @@ HandleSpriteObjects:
     STA.L $7EEFF8,X 
     BNE .next 
     LDA.L $7EEF78,X 
-    INC A 
-    INC A 
-    INC A 
-    INC A 
+    INC #4
     STA.L $7EEF78,X 
     TAX 
     LDA.L $B40000,X 
@@ -7048,8 +7045,7 @@ HandleSpriteObjects:
 
 .next:
     LDA.W $1844 
-    DEC A 
-    DEC A 
+    DEC #2
     STA.W $1844 
     BPL .loop 
     BRA .return 
@@ -7072,10 +7068,7 @@ HandleSpriteObjects:
 Instruction_SpriteObject_GoBack4Bytes:
     LDX.W $1844 
     LDA.L $7EEF78,X 
-    DEC A 
-    DEC A 
-    DEC A 
-    DEC A 
+    DEC #4
     STA.L $7EEF78,X 
     LDA.W #$7FFF 
     STA.L $7EEFF8,X 

@@ -694,8 +694,7 @@ GameState_2B_UnloadGameData:
     JSL.L Disable_PaletteFXObjects 
     JSL.L Clear_PaletteFXObjects 
     LDA.W #$1C1F 
-    DEC A 
-    DEC A 
+    DEC #2
     SEC 
     SBC.W #$198D 
     TAX 
@@ -705,8 +704,7 @@ GameState_2B_UnloadGameData:
     DEX #2
     BPL .clearNonGameplayRAM 
     LDA.W #$0998 
-    DEC A 
-    DEC A 
+    DEC #2
     SEC 
     SBC.W #$077C 
     TAX 

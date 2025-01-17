@@ -3784,10 +3784,7 @@ HandleDraygonFightIntroDance:
     CPX.W #$0038 
     BPL .loop 
     LDA.L $7E880C 
-    INC A 
-    INC A 
-    INC A 
-    INC A 
+    INC #4
     STA.L $7E880C 
     PLY 
     RTS 

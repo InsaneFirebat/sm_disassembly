@@ -2153,8 +2153,7 @@ QueueMusicDataOrTrack_8FrameDelay:
     BCS .return 
     PHA 
     LDA.W $0639 
-    INC A 
-    INC A 
+    INC #2
     AND.W #$000E 
     TAX 
     PLA 

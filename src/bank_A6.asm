@@ -601,10 +601,7 @@ Function_Boulder_Bounce_Rising:
     AND.W #$FF00 
     XBA 
     ASL #3
-    INC A 
-    INC A 
-    INC A 
-    INC A 
+    INC #4
     TAY 
     JSR.W MoveBoulderVertically 
     LDA.W $0FAC,X 
@@ -3017,8 +3014,7 @@ MainAI_MiniKraid:
     LDX.W $0E54 
     LDA.L $7E780E,X 
     TAY 
-    INC A 
-    INC A 
+    INC #2
     CMP.W #$0006 
     BMI + 
     LDA.W #$0000 
@@ -4789,8 +4785,7 @@ HandleCeresRidleyGetawayCutscene:
 ExecuteCeresRidleyGetawayCutscene:
     LDA.L $7E8026 
     TAX 
-    INC A 
-    INC A 
+    INC #2
     STA.L $7E8026 
     CPX.W #$0000 
     BNE .notFirstExecution 
@@ -10685,8 +10680,7 @@ GeneralPurposeRidleyDrawing_SetPalette:
 
 GetBabyMetroidSpritemapPointerFromInstList:
     STA.B $00 
-    INC A 
-    INC A 
+    INC #2
     STA.B $03 
     SEP #$20 
     LDA.B #$7E 

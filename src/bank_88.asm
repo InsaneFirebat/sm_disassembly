@@ -3647,8 +3647,7 @@ PreInstruction_FXType_22_BG3XScroll:
     AND.W #$0001 
     BNE + 
     LDA.W $0596 
-    INC A 
-    INC A 
+    INC #2
     AND.W #$001E 
     STA.W $0596 
 
@@ -3671,8 +3670,7 @@ PreInstruction_FXType_22_BG3XScroll:
     LDA.W #$0006 
     STA.W $1920,X 
     LDA.W $1914,X 
-    INC A 
-    INC A 
+    INC #2
     AND.W #$001F 
     STA.W $1914,X 
 
@@ -3686,8 +3684,7 @@ PreInstruction_FXType_22_BG3XScroll:
     ADC.W WaveDisplacementTable_Water,Y 
     STA.L $7E9E80,X 
     TXA 
-    DEC A 
-    DEC A 
+    DEC #2
     AND.W #$001F 
     TAX 
     DEY #2
@@ -4239,8 +4236,7 @@ Handle_ScrollingSky_BG2XScroll_HDMATables:
     LDA.W #$007F 
     STA.L $7E9F00,X 
     LDA.W ScrollingSky_ScrollingTable_HDMADataTableEntryPointer,Y 
-    INC A 
-    INC A 
+    INC #2
     STA.L $7E9F01,X 
     INX #3
     LDA.B $18 
@@ -5082,8 +5078,7 @@ Setup_LavaAcid_BG2YScrollDataTable_HorizontallyWavy:
     LDA.W #$0006 
     STA.W $1920,X 
     LDA.W $1914,X 
-    DEC A 
-    DEC A 
+    DEC #2
     AND.W #$001E 
     STA.W $1914,X 
 
@@ -5101,13 +5096,11 @@ Setup_LavaAcid_BG2YScrollDataTable_HorizontallyWavy:
     AND.W #$01FF 
     STA.L $7E9C46,X 
     TYA 
-    DEC A 
-    DEC A 
+    DEC #2
     AND.W #$001E 
     TAY 
     TXA 
-    DEC A 
-    DEC A 
+    DEC #2
     AND.W #$001E 
     TAX 
     DEC.B $12 
@@ -5131,8 +5124,7 @@ Setup_LavaAcid_BG2YScrollDataTable_VerticallyWavy:
     LDA.W #$0004 
     STA.W $1920,X 
     LDA.W $1914,X 
-    DEC A 
-    DEC A 
+    DEC #2
     AND.W #$001E 
     STA.W $1914,X 
 
@@ -5161,13 +5153,11 @@ Setup_LavaAcid_BG2YScrollDataTable_VerticallyWavy:
     AND.W #$01FF 
     STA.L $7E9C46,X 
     TXA 
-    DEC A 
-    DEC A 
+    DEC #2
     AND.W #$001E 
     TAX 
     TYA 
-    DEC A 
-    DEC A 
+    DEC #2
     AND.W #$001E 
     TAY 
     DEC.B $12 
@@ -6540,8 +6530,7 @@ PreInstruction_Water_BG3_Xscroll:
     LDA.W #$000A 
     STA.W $1920,X 
     LDA.W $1914,X 
-    INC A 
-    INC A 
+    INC #2
     AND.W #$001E 
     STA.W $1914,X 
 
@@ -6675,8 +6664,7 @@ Setup_Water_BG2_Xscroll_DataTable_Wavy:
     LDA.W #$0006 
     STA.W $1920,X 
     LDA.W $1914,X 
-    INC A 
-    INC A 
+    INC #2
     AND.W #$001E 
     STA.W $1914,X 
 
@@ -8631,8 +8619,7 @@ UNUSED_HandleSporesWaviness_88DA9F:
     LDA.W #$000A 
     STA.W $1920,X 
     LDA.W $1914,X 
-    INC A 
-    INC A 
+    INC #2
     AND.W #$001F 
     STA.W $1914,X 
 
@@ -8648,8 +8635,7 @@ UNUSED_HandleSporesWaviness_88DA9F:
     ADC.W .waveDisplacementTable,Y 
     STA.L $7E9C04,X 
     TXA 
-    DEC A 
-    DEC A 
+    DEC #2
     AND.W #$001F 
     TAX 
     DEY #2
@@ -9774,8 +9760,7 @@ GravitySuitPickup_Stage6:
     STZ.W $0DF2 
     LDX.W $18B2 
     LDA.W $18CC,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $18CC,X 
     LDA.W #$0001 
     STA.W $18E4,X 
@@ -9790,8 +9775,7 @@ AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToWhite:
     LDA.W $0DF0 
     CMP.B #$3F 
     BEQ .green 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0DF0 
     CMP.B #$40 
     BMI .green 
@@ -9802,8 +9786,7 @@ AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToWhite:
     LDA.W $0DF1 
     CMP.B #$5F 
     BEQ .blue 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0DF1 
     CMP.B #$60 
     BMI .blue 
@@ -9814,8 +9797,7 @@ AdvanceSuitPickup_ColorMathSubScnBackdrop_TransitionToWhite:
     LDA.W $0DF2 
     CMP.B #$9F 
     BEQ .return 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0DF2 
     CMP.B #$A0 
     BMI .return 
@@ -9978,8 +9960,7 @@ PreInstruction_PhantoonSemiTransparency:
     STA.W $1986 
     LDX.W $18B2 
     LDA.W $18CC,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $18CC,X 
     LDA.W #$0001 
     STA.W $18E4,X 
@@ -10084,8 +10065,7 @@ PreInstruction_WavyPhantoon:
     BNE .phantoonEnabled 
     LDX.W $18B2 
     LDA.W $18CC,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $18CC,X 
     LDA.W #$0001 
     STA.W $18E4,X 
@@ -10625,8 +10605,7 @@ PreInstruction_MorphBallEyeBeam_BeamIsWidening:
     STA.W $192C,X 
     LDX.W $18B2 
     LDA.W $18CC,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $18CC,X 
     LDA.W #$0001 
     STA.W $18E4,X 
@@ -10646,8 +10625,7 @@ PreInstruction_MorphBallEyeBeamHDMA_FullBeam:
     BNE .update 
     LDX.W $18B2 
     LDA.W $18CC,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $18CC,X 
     LDA.W #$0001 
     STA.W $18E4,X 
@@ -10734,8 +10712,7 @@ PreInstruction_MorphBallEyeBeamHDMA_DeactivateBeam:
     STA.L $7E9008 
     LDX.W $18B2 
     LDA.W $18CC,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $18CC,X 
     LDA.W #$0001 
     STA.W $18E4,X 
@@ -10841,8 +10818,7 @@ PreInst_ColorMathSubScnBackdropColor_TitleSequenceGradient:
     BNE .return 
     LDX.W $18B2 
     LDA.W $18CC,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $18CC,X 
     LDA.W #$0001 
     STA.W $18E4,X 
@@ -10860,8 +10836,7 @@ PreInstruction_ColorMathControlRegB_TitleSequenceGradient:
     BNE .return 
     LDX.W $18B2 
     LDA.W $18CC,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $18CC,X 
     LDA.W #$0001 
     STA.W $18E4,X 
@@ -10910,8 +10885,7 @@ PreInstruction_IntroCutsceneCrossFade:
     BNE .return 
     LDX.W $18B2 
     LDA.W $18CC,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $18CC,X 
     LDA.W #$0001 
     STA.W $18E4,X 
@@ -10987,8 +10961,7 @@ PreInstruction_WavySamus:
     BNE .enabled 
     LDX.W $18B2 
     LDA.W $18CC,X 
-    INC A 
-    INC A 
+    INC #2
     STA.W $18CC,X 
     LDA.W #$0001 
     STA.W $18E4,X 

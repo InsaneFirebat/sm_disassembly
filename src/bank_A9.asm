@@ -9398,8 +9398,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 HandleRoomPaletteInstList:
     STA.B $00 
-    INC A 
-    INC A 
+    INC #2
     STA.B $03 
     SEP #$20 
     LDA.B #$7E 

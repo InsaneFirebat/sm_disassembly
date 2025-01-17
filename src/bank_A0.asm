@@ -584,8 +584,7 @@ Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles:
     STA.W $0E54 
     JSR.W WriteEnemyOAM_IfNotFrozenOrInvincibleFrame 
     LDA.W $0E38 
-    INC A 
-    INC A 
+    INC #2
     CMP.W $0E36 
     BNE .loopOAM 
 

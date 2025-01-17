@@ -1854,8 +1854,7 @@ MainAI_Crocomire_DeathSequence_2_Falling:
 
 .indexLessThan16:
     TAX 
-    INC A 
-    INC A 
+    INC #2
     STA.L $7E9016 
     LDA.W .XPositions,X 
     LDY.W #EnemyProjectile_CrocomireBridgeCrumbling 

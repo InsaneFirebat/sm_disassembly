@@ -3700,8 +3700,7 @@ DetermineProjectile_Prototype:
     STA.B $12 
     ASL A 
     ADC.B $12 
-    INC A 
-    INC A 
+    INC #2
     TAX 
     LDA.W ProtoWeaponConstants_Beams,X 
     AND.W #$00FF 
@@ -6199,15 +6198,13 @@ HandleGrappleBeamSwingingMovement:
 
 ..loop:
     STA.W $0D86 
-    INC A 
-    INC A 
+    INC #2
     AND.W #$01FF 
     STA.W $0D82 
     JSR.W GrappleSwingCollisionDetectionDueToSwinging 
     BCS ..collision 
     LDA.W $0D86 
-    INC A 
-    INC A 
+    INC #2
     AND.W #$01FF 
     CMP.W $0D88 
     BNE ..loop 
@@ -6314,15 +6311,13 @@ HandleGrappleBeamSwingingMovement:
 
 ..loop:
     STA.W $0D86 
-    DEC A 
-    DEC A 
+    DEC #2
     AND.W #$01FF 
     STA.W $0D82 
     JSR.W GrappleSwingCollisionDetectionDueToSwinging 
     BCS ..collision 
     LDA.W $0D86 
-    DEC A 
-    DEC A 
+    DEC #2
     AND.W #$01FF 
     CMP.W $0D88 
     BNE ..loop 

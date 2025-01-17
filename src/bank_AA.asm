@@ -7114,8 +7114,7 @@ Instruction_Torizo_CallYIfSamusIsLessThan38PixelsInFront:
     EOR.W $0FB4,X 
     BPL .return 
     TYA 
-    INC A 
-    INC A 
+    INC #2
     STA.L $7E7800,X 
     LDA.W $0000,Y 
     TAY 
@@ -7141,10 +7140,7 @@ Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels:
 
 Instruction_Torizo_CallY_OrY2_ForBombTorizoAttack:
     TYA 
-    INC A 
-    INC A 
-    INC A 
-    INC A 
+    INC #4
     STA.L $7E7800,X 
     LDA.W $09C6 
     CMP.W #$0005 
@@ -9165,8 +9161,7 @@ Instruction_GT_CallY_25Chance_IfSamusMorphedInFrontOfTorizo:
     AND.W #$0110 
     BNE .noGo 
     TYA 
-    INC A 
-    INC A 
+    INC #2
     STA.L $7E7800,X 
     LDA.W $0000,Y 
     TAY 
@@ -9188,8 +9183,7 @@ Instruction_GoldenTorizo_CallY_25Chance_IfHealthLessThan789:
     LDA.W #$0000 
     STA.L $7E7812,X 
     TYA 
-    INC A 
-    INC A 
+    INC #2
     STA.L $7E7800,X 
     LDA.W $0000,Y 
     TAY 
@@ -9209,8 +9203,7 @@ Instruction_GoldenTorizo_CallY_IfStunHealthGreaterThan2A31:
     BIT.W #$2000 
     BEQ .noGo 
     TYA 
-    INC A 
-    INC A 
+    INC #2
     STA.L $7E7800,X 
     LDA.W $0000,Y 
     TAY 
@@ -9286,10 +9279,7 @@ Instruction_GoldenTorizo_GotoY_JumpBack_IfLessThan20Pixels:
 
 Instruction_GoldenTorizo_CallY_OrY2_ForAttack:
     TYA 
-    INC A 
-    INC A 
-    INC A 
-    INC A 
+    INC #4
     STA.L $7E7800,X 
     LDA.W $09C6 
     CMP.W #$0020 

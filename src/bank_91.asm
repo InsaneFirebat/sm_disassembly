@@ -5955,8 +5955,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards:
 .merge:
     JSR.W (.pointers,X) 
     LDA.B $18 
-    DEC A 
-    DEC A 
+    DEC #2
     ASL A 
     TAY 
 
@@ -6815,8 +6814,7 @@ Copy1x1BlockToXrayBG2TilemapIfScrollPLMTrigger:
 
   + INY #2
     LDA.B ($00),Y 
-    INC A 
-    INC A 
+    INC #2
     STA.B $03 
     LDY.W #$0000 
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap 
@@ -8007,8 +8005,7 @@ HandleBeamChargePalettes:
     TAX 
     JSR.W Load20BytesOfSamusPaletteInX 
     LDA.W $0B62 
-    INC A 
-    INC A 
+    INC #2
     CMP.W #$000C 
     BMI .setPaletteIndex 
     LDA.W #$0000 
@@ -8170,8 +8167,7 @@ HandleVisorPalette:
     LDA.L SamusPalettes_Visor,X 
     STA.L $7EC188 
     TXA 
-    INC A 
-    INC A 
+    INC #2
     CMP.W #$000C 
     BMI + 
     LDA.W $0A72 
@@ -8434,8 +8430,7 @@ Handle_ScrewAttack_SpeedBoosting_Palette:
     TAX 
     JSR.W Load20BytesOfSamusPaletteInX 
     LDA.W $0ACE 
-    INC A 
-    INC A 
+    INC #2
     CMP.W #$000C 
     BMI .storeIndex 
     LDA.W #$0000 
@@ -8507,8 +8502,7 @@ Handle_ScrewAttack_SpeedBoosting_Palette:
     TAX 
     JSR.W Load20BytesOfSamusPaletteInX 
     LDA.W $0ACE 
-    INC A 
-    INC A 
+    INC #2
     CMP.W #$0008 
     BMI .storeIndexSpeedBooster 
     LDA.W #$0006 
@@ -8569,8 +8563,7 @@ HandleSpeedBoosterShinePalette:
     TAX 
     JSR.W Load20BytesOfSamusPaletteInX 
     LDA.W $0ACE 
-    INC A 
-    INC A 
+    INC #2
     CMP.W #$000C 
     BMI .storeIndex 
     LDA.W #$0000 
@@ -8634,8 +8627,7 @@ HandleShinesparkingPalette:
     TAX 
     JSR.W Load20BytesOfSamusPaletteInX 
     LDA.W $0ACE 
-    INC A 
-    INC A 
+    INC #2
     CMP.W #$0008 
     BMI .storeIndex 
     LDA.W #$0000 
@@ -8692,8 +8684,7 @@ HandleCrystalFlashPalette:
     TAY 
     JSR.W SetCrystalFlashBubbleColors 
     LDA.W $0ACE 
-    INC A 
-    INC A 
+    INC #2
     CMP.W #$000C 
     BMI .storeIndex 
     LDA.W #$0000 
@@ -8841,8 +8832,7 @@ HandleXrayPalette:
     LDA.W $0ACE 
     CMP.W #$0004 
     BPL .returnCarrySet 
-    INC A 
-    INC A 
+    INC #2
     STA.W $0ACE 
 
 .returnCarrySet:
@@ -8869,8 +8859,7 @@ HandleXrayPalette:
     LDA.L SamusPalettes_Visor,X 
     STA.L $7EC188 
     LDA.W $0ACE 
-    INC A 
-    INC A 
+    INC #2
     CMP.W #$000C 
     BMI .storeIndex 
     LDA.W #$0006 

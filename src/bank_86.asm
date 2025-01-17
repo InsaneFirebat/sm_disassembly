@@ -6059,8 +6059,7 @@ PreInstruction_EnemyProjectile_BombTorizosChozoOrbs:
     LDA.W $1A93,X 
     AND.W #$FFF0 
     ORA.W #$0008 
-    DEC A 
-    DEC A 
+    DEC #2
     STA.W $1A93,X 
     LDA.W #InstList_EnemyProjectile_TorizoChozoOrbs_BreakOnFloor 
     STA.W $1B47,X 
@@ -6115,8 +6114,7 @@ PreInstruction_EnemyProjectile_GoldenTorizosChozoOrbs:
     LDA.W $1A93,X 
     AND.W #$FFF0 
     ORA.W #$0008 
-    DEC A 
-    DEC A 
+    DEC #2
     STA.W $1A93,X 
     LDA.W #InstList_EnemyProjectile_TorizoChozoOrbs_BreakOnFloor 
     STA.W $1B47,X 
@@ -6995,8 +6993,7 @@ PreInstruction_EnemyProjectile_GoldenTorizoEyeBeam:
     LDA.W $1A93,X 
     AND.W #$FFF0 
     ORA.W #$0008 
-    DEC A 
-    DEC A 
+    DEC #2
     STA.W $1A93,X 
     LDA.W #InstList_EnemyProjectile_GoldenTorizoEyeBeam_HitFloor_0 
     STA.W $1B47,X 
@@ -8101,10 +8098,7 @@ NorfairLavaquakeRocksFunction_Rising:
     LDA.W #$0000 
 
   + ASL #3
-    INC A 
-    INC A 
-    INC A 
-    INC A 
+    INC #4
     TAX 
     LDA.L CommonEnemyProjectileSpeeds_QuadraticallyIncreasing,X 
     PLX 
@@ -8125,12 +8119,7 @@ NorfairLavaquakeRocksFunction_Rising:
     LDA.W #$0000 
 
   + ASL #3
-    INC A 
-    INC A 
-    INC A 
-    INC A 
-    INC A 
-    INC A 
+    INC #6
     TAX 
     LDA.L CommonEnemyProjectileSpeeds_QuadraticallyIncreasing,X 
     PLX 
@@ -8184,8 +8173,7 @@ NorfairLavaquakeRocks_Falling:
     SBC.B $12 
     INC A 
     ASL #3
-    INC A 
-    INC A 
+    INC #2
     TAX 
     LDA.L CommonEnemyProjectileSpeeds_QuadraticallyIncreasing,X 
     PLX 
@@ -12374,8 +12362,7 @@ PreInstruction_EnemyProjectile_Spores:
     STZ.W $1997,X 
 
   + LDA.W $1AFF,X 
-    INC A 
-    INC A 
+    INC #2
     AND.W #$00FF 
     STA.W $1AFF,X 
     RTS 
