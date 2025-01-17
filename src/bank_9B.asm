@@ -1682,12 +1682,10 @@ QueueTransferOfSegmentOfSamusDeathSequenceToVRAM:
     LDX.W $0330 
     LDA.W #$0400 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W SamusDeathSequencePointers_Source,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$9B 
     STA.B $D0,X 
@@ -1695,8 +1693,7 @@ QueueTransferOfSegmentOfSamusDeathSequenceToVRAM:
     INX 
     LDA.W SamusDeathSequencePointers_Destination,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     PLP 
     RTS 
@@ -1734,8 +1731,7 @@ HandleDeathSequenceWhiteOut:
 .loopFirstFourPalettes:
     LDA.W ShadesOfWhite,X 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$0180 
     BMI .loopFirstFourPalettes 
     LDY.W #$01A0 
@@ -1743,8 +1739,7 @@ HandleDeathSequenceWhiteOut:
 .loopLastFourPalettes:
     LDA.W ShadesOfWhite,X 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01E0 
     BMI .loopLastFourPalettes 
     LDA.W $0DE6 
@@ -3027,12 +3022,10 @@ UpdateGrappleBeamTiles:
     LDX.W $0330 
     LDA.W #$0020 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W $0D40 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$9A 
     STA.B $D0,X 
@@ -3040,8 +3033,7 @@ UpdateGrappleBeamTiles:
     INX 
     LDA.W #$6200 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     LDA.W $0CFA 
     AND.W #$FF00 
@@ -3052,12 +3044,10 @@ UpdateGrappleBeamTiles:
     LDX.W $0330 
     LDA.W #$0080 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W GrappleBeamTilesPointers,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$9A 
     STA.B $D0,X 
@@ -3065,8 +3055,7 @@ UpdateGrappleBeamTiles:
     INX 
     LDA.W #$6210 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     RTS 
 

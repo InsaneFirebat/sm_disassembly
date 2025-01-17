@@ -13850,8 +13850,7 @@ Room_State_Checking_Handler:
 .loop:
     LDA.W $0000,X 
     STA.W $07B7 
-    INX 
-    INX 
+    INX #2
     PEA.W .loop-1 
     JMP.W ($07B7) 
 
@@ -13872,10 +13871,7 @@ UNUSED_RoomStateCheck_Door_8FE5EB:
     JMP.W Use_StatePointer_inX 
 
 
-  + INX 
-    INX 
-    INX 
-    INX 
+  + INX #4
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -13889,8 +13885,7 @@ RoomStateCheck_MainAreaBossIsDead:
     JMP.W Use_StatePointer_inX 
 
 
-  + INX 
-    INX 
+  + INX #2
     RTS 
 
 
@@ -13904,9 +13899,7 @@ RoomStateCheck_EventHasBeenSet:
     JMP.W Use_StatePointer_inX 
 
 
-  + INX 
-    INX 
-    INX 
+  + INX #3
     RTS 
 
 
@@ -13920,9 +13913,7 @@ RoomStateCheck_BossIsDead:
     JMP.W Use_StatePointer_inX 
 
 
-  + INX 
-    INX 
-    INX 
+  + INX #3
     RTS 
 
 
@@ -13936,8 +13927,7 @@ UNUSED_RoomStateCheck_Morphball_8FE640:
     JMP.W Use_StatePointer_inX 
 
 
-  + INX 
-    INX 
+  + INX #2
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -13953,8 +13943,7 @@ RoomStateCheck_MorphballAndMissiles:
     JMP.W Use_StatePointer_inX 
 
 
-  + INX 
-    INX 
+  + INX #2
     RTS 
 
 
@@ -13966,8 +13955,7 @@ RoomStateCheck_PowerBombs:
     JMP.W Use_StatePointer_inX 
 
 
-  + INX 
-    INX 
+  + INX #2
     RTS 
 
 
@@ -13981,8 +13969,7 @@ UNUSED_RoomStateCheck_SpeedBooster_8FE678:
     JMP.W Use_StatePointer_inX 
 
 
-  + INX 
-    INX 
+  + INX #2
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 

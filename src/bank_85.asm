@@ -201,8 +201,7 @@ Initialise_PPU_for_MessageBoxes:
 
 .loop:
     STA.L $7E3000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     JSR.W Wait_for_Lag_Frame 
     REP #$20 
@@ -236,8 +235,7 @@ Clear_MessageBox_BG3Tilemap:
 
 .loop:
     STA.L $7E3800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     JSR.W Wait_for_Lag_Frame 
     LDA.W #$5880 
@@ -293,8 +291,7 @@ Write_Large_MessageBox_Tilemap:
 .topBorderLoop:
     LDA.W Large_MessageBox_TopBottomBorder_Tilemap,X 
     STA.L $7E3200,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0040 
     BNE .topBorderLoop 
     LDY.W #$0000 
@@ -306,10 +303,8 @@ Write_Large_MessageBox_Tilemap:
 .bottomBorderLoop:
     LDA.W Large_MessageBox_TopBottomBorder_Tilemap,Y 
     STA.L $7E3200,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     DEC.B $16 
     BNE .bottomBorderLoop 
     RTS 
@@ -322,8 +317,7 @@ Write_Small_MessageBox_Tilemap:
 .topBorderLoop:
     LDA.W Small_MessageBox_TopBottomBorder_Tilemap,X 
     STA.L $7E3200,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0040 
     BNE .topBorderLoop 
     JSR.W Write_Message_Tilemap 
@@ -334,10 +328,8 @@ Write_Small_MessageBox_Tilemap:
 .bottomBorderLoop:
     LDA.W Small_MessageBox_TopBottomBorder_Tilemap,Y 
     STA.L $7E3200,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     DEC.B $16 
     BNE .bottomBorderLoop 
     RTS 
@@ -358,8 +350,7 @@ Write_Message_Tilemap:
 
 .zeroLoop:
     STA.L $7E3000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$00E0 
     BNE .zeroLoop 
     LDA.W $1C1F 
@@ -388,10 +379,8 @@ Write_Message_Tilemap:
 .messageLoop:
     LDA.B ($00),Y 
     STA.L $7E3200,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.B $16 
     BNE .messageLoop 
     RTS 
@@ -665,10 +654,8 @@ Toggle_Save_Confirmation_Selection:
 .loop:
     LDA.W UNUSED_MessageTilemaps_YES_859581,Y 
     STA.L $7E3200,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.B $34 
     BNE .loop 
     JSR.W Wait_for_Lag_Frame 
@@ -759,8 +746,7 @@ Write_MessageBox_BG3_Yscroll_HDMA_DataTable:
     STA.L $7E3000,X 
     DEC.W $05AA 
     DEC.W $05A8 
-    DEX 
-    DEX 
+    DEX #2
     PHX 
     TYX 
     LDA.W $05A6 
@@ -770,8 +756,7 @@ Write_MessageBox_BG3_Yscroll_HDMA_DataTable:
     PLX 
     INC.W $05A6 
     INC.W $05A4 
-    INY 
-    INY 
+    INY #2
     DEC.B $14 
     BNE .loop 
     TYX 
@@ -779,8 +764,7 @@ Write_MessageBox_BG3_Yscroll_HDMA_DataTable:
 
 .zeroLoop:
     STA.L $7E3000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$01E0 
     BMI .zeroLoop 
     PLP 

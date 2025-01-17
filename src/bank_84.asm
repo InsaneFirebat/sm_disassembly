@@ -24,10 +24,8 @@ GoldenTorizo_HealthBasedPalette_Handling:
     STA.L $7EC140,X 
     LDA.W .palette1,Y 
     STA.L $7EC120,X 
-    DEY 
-    DEY 
-    DEX 
-    DEX 
+    DEY #2
+    DEX #2
     BPL .loop 
     PLB 
     PLY 
@@ -69,8 +67,7 @@ Load_Room_PLM_Graphics:
     LDY.W $1C2F,X 
     JSR.W Instruction_PLM_LoadItemPLMGFX 
     PLX 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0008 
     BNE .loop 
     PLB 
@@ -173,12 +170,10 @@ Write_Row_of_Level_Data_Block_and_BTS:
     LDY.W #$0001 
     LDA.B ($05,S),Y 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     LDA.B ($05,S),Y 
     STA.B $14 
-    INY 
-    INY 
+    INY #2
     LDA.B ($05,S),Y 
     STA.B $16 
     LDA.B $05,S 
@@ -194,8 +189,7 @@ Write_Row_of_Level_Data_Block_and_BTS:
 
 .loopLevelData:
     STA.L $7F0002,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loopLevelData 
     SEP #$20 
@@ -249,8 +243,7 @@ Load_Item_and_Room_Special_Xray_Blocks:
     PLX 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopPLM 
     LDX.W $07BB 
     LDA.L $8F0010,X 
@@ -322,8 +315,7 @@ Clear_PLMs:
 
 .loop:
     STZ.W $1C37,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     STZ.W $1C2D 
     PLX 
@@ -342,8 +334,7 @@ Spawn_Hardcoded_PLM:
 .loop:
     LDA.W $1C37,Y 
     BEQ .found 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     LDA.B $06,S 
     CLC 
@@ -428,8 +419,7 @@ Spawn_Room_PLM:
 .loop:
     LDA.W $1C37,Y 
     BEQ .found 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     PLX 
     PLY 
@@ -497,8 +487,7 @@ Spawn_PLM_to_CurrentBlockIndex:
 .loop:
     LDA.W $1C37,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     PLY 
@@ -552,8 +541,7 @@ UNUSED_Spawn_Enemy_PLM_84853E:
 .loop:
     LDA.W $1C37,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLA 
     PLX 
@@ -625,8 +613,7 @@ PLM_Handler:
     LDX.W $1C27 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .return:
@@ -648,8 +635,7 @@ Process_PLM:
     LDA.W $0000,Y 
     BPL .nonZeroTimer 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     PEA.W .loop-1 
     JMP.W ($0012) ; Execute ASM Instruction
 
@@ -683,16 +669,12 @@ Process_PLM_Draw_Instruction:
     BMI .column 
     AND.W #$00FF 
     STA.B $16 
-    INY 
-    INY 
-
-.loopRow:
+    INY #2
+    .loopRow:
     LDA.W $0000,Y 
     STA.L $7F0002,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     DEC.B $16 
     BNE .loopRow 
     JMP.W .next 
@@ -701,14 +683,11 @@ Process_PLM_Draw_Instruction:
 .column:
     AND.W #$00FF 
     STA.B $16 
-    INY 
-    INY 
-
-.loopColumn:
+    INY #2
+    .loopColumn:
     LDA.W $0000,Y 
     STA.L $7F0002,X 
-    INY 
-    INY 
+    INY #2
     TXA 
     CLC 
     ADC.W $07A5 
@@ -769,15 +748,12 @@ Process_PLM_Draw_Instruction:
     CLC 
     ADC.B $14 
     TAX 
-    INY 
-    INY 
-    INY 
+    INY #3
     JMP.W .loopDrawEntry 
 
 
 Instruction_PLM_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $1D27,X 
     PLA 
@@ -793,8 +769,7 @@ Instruction_PLM_Delete:
 Instruction_PLM_PreInstruction_inY:
     LDA.W $0000,Y 
     STA.W $1CD7,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -816,9 +791,7 @@ UNUSED_Instruction_PLM_CallFuctionInY_8486D1:
     JSL.L UNUSED_Instruction_PLM_CallFuctionInY_withA_8486E8 
     PLY 
     LDX.W $1C27 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTS 
 
 
@@ -856,9 +829,7 @@ Instruction_PLM_CallFunctionInY:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTS 
 
 
@@ -896,8 +867,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Instruction_PLM_DecrementTimer_GotoYIfNonZero:
     DEC.W $1D77,X 
     BNE Instruction_PLM_GotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -923,8 +893,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_PLM_TimerEqualsY_16Bit_84875A:
     LDA.W $0000,Y 
     STA.W $1D77,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -962,8 +931,7 @@ Instruction_PLM_LoadItemPLMGFX:
     CLC 
     ADC.W #$0007 
     STA.W $0330 
-    INY 
-    INY 
+    INY #2
     LDX.B $14 
     TXA 
     CLC 
@@ -980,8 +948,7 @@ Instruction_PLM_LoadItemPLMGFX:
     STA.L $7EA000,X 
     INC.B $16 
     INY 
-    INX 
-    INX 
+    INX #2
     CPX.B $18 
     BNE .loop 
     LDX.W $1C27 
@@ -1026,8 +993,7 @@ Instruction_PLM_GotoY_ifBossBitsSet:
     JMP.W Instruction_PLM_GotoY 
 
 
-  + INY 
-    INY 
+  + INY #2
     RTS 
 
 
@@ -1043,24 +1009,21 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_PLM_GotoY_ifEventIsSet:
     LDA.W $0000,Y 
-    INY 
-    INY 
+    INY #2
     JSL.L CheckIfEvent_inA_HasHappened 
     BCC .return 
     JMP.W Instruction_PLM_GotoY 
 
 
 .return:
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
 Instruction_PLM_SetTheEvent:
     LDA.W $0000,Y 
     JSL.L MarkEvent_inA 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1077,8 +1040,7 @@ Instruction_PLM_GotoY_ifRoomArg_ChozoBlockDestroyed:
 
 
 .return:
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1114,8 +1076,7 @@ Instruction_PLM_GotoY_ifRoomArg_ItemIsCollected:
 
 
 .return:
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1163,9 +1124,7 @@ Instruction_PLM_PickUpBeam_DisplayMessageBox:
     LDA.W $0002,Y 
     AND.W #$00FF 
     JSL.L MessageBox_Routine 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTS 
 
 
@@ -1181,9 +1140,7 @@ Instruction_PLM_PickUpEquipment_DisplayMessageBox:
     LDA.W $0002,Y 
     AND.W #$00FF 
     JSL.L MessageBox_Routine 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTS 
 
 
@@ -1199,8 +1156,7 @@ Inst_PLM_PickUpEquipment_AddGrappleHUD_DisplayMessageBox:
     JSL.L Play_Room_Music_Track_After_A_Frames 
     LDA.W #$0005 
     JSL.L MessageBox_Routine 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1216,8 +1172,7 @@ Inst_PLM_PickUpEquipment_AddXrayToHUD_DisplayMessageBox:
     JSL.L Play_Room_Music_Track_After_A_Frames 
     LDA.W #$0006 
     JSL.L MessageBox_Routine 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1231,8 +1186,7 @@ Instruction_PLM_CollectHealth_EnergyTank:
     JSL.L Play_Room_Music_Track_After_A_Frames 
     LDA.W #$0001 
     JSL.L MessageBox_Routine 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1250,8 +1204,7 @@ Instruction_PLM_CollectHealth_ReserveTank:
     JSL.L Play_Room_Music_Track_After_A_Frames 
     LDA.W #$0019 
     JSL.L MessageBox_Routine 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1269,8 +1222,7 @@ Instruction_PLM_CollectAmmo_MissileTank:
     JSL.L Play_Room_Music_Track_After_A_Frames 
     LDA.W #$0002 
     JSL.L MessageBox_Routine 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1288,8 +1240,7 @@ Instruction_PLM_CollectAmmo_SuperMissileTank:
     JSL.L Play_Room_Music_Track_After_A_Frames 
     LDA.W #$0003 
     JSL.L MessageBox_Routine 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1307,16 +1258,14 @@ Instruction_PLM_CollectAmmo_PowerBombTank:
     JSL.L Play_Room_Music_Track_After_A_Frames 
     LDA.W #$0004 
     JSL.L MessageBox_Routine 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
 Instruction_PLM_LinkInstruction_Y:
     LDA.W $0000,Y 
     STA.L $7EDEBC,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1383,8 +1332,7 @@ Instruction_PLM_GotoY_ifRoomArg_DoorIsSet:
 
 
 .return:
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1401,11 +1349,8 @@ Instruction_PLM_IncDoorHit_SetRoomArgDoor_GotoY:
     CMP.W $0000,Y 
     REP #$20 
     BCS .carrySet 
-    INY 
-    INY 
-    INY 
-
-  .return:
+    INY #3
+    .return:
     RTS 
 
 .carrySet:
@@ -1435,11 +1380,8 @@ Instruction_PLM_IncRoomArg_RoomArgFFFF_GotoY:
     REP #$20 
     BCS .FFFF 
     STA.W $1DC7,X 
-    INY 
-    INY 
-    INY 
-
-  .return
+    INY #3
+    .return
     RTS 
 
 
@@ -1525,8 +1467,7 @@ Instruction_PLM_ProcessAirScrollUpdate:
     TAX 
     LDA.W $0001,Y 
     STA.L $7ECD20,X 
-    INY 
-    INY 
+    INY #2
     BRA .loop 
 
 
@@ -1564,8 +1505,7 @@ Instruction_PLM_ProcessSolidScrollUpdate:
     TAX 
     LDA.W $0001,Y 
     STA.L $7ECD20,X 
-    INY 
-    INY 
+    INY #2
     BRA .loop 
 
 
@@ -1602,8 +1542,7 @@ Instruction_PLM_ClearMusicQueue_QueueMusicTrack:
 .loop:
     STZ.W $0619,X 
     STZ.W $0629,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     LDA.W $0639 
@@ -1811,8 +1750,7 @@ Instruction_PLM_GotoY_or_ActivateSaveStation:
     JSL.L SaveToSRAM 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -2154,8 +2092,7 @@ DrawPLM:
     LDA.B $12 
     ASL A 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     TYA 
     CLC 
     ADC.B $12 
@@ -2175,8 +2112,7 @@ DrawPLM:
     STA.B [$00],Y 
     LDA.L $7EA004,X 
     STA.B [$06],Y 
-    INY 
-    INY 
+    INY #2
     LDA.L $7EA002,X 
     STA.B [$00],Y 
     LDA.L $7EA006,X 
@@ -2193,8 +2129,7 @@ DrawPLM:
     LDA.L $7EA006,X 
     EOR.W #$4000 
     STA.B [$06],Y 
-    INY 
-    INY 
+    INY #2
     LDA.L $7EA000,X 
     EOR.W #$4000 
     STA.B [$00],Y 
@@ -2203,8 +2138,7 @@ DrawPLM:
     STA.B [$06],Y 
 
 .horizNextBlock:
-    INY 
-    INY 
+    INY #2
     INC.B $03 
     INC.B $03 
     LDA.W $1C25 
@@ -2232,8 +2166,7 @@ DrawPLM:
     LDA.L $7EA000,X 
     EOR.W #$8000 
     STA.B [$06],Y 
-    INY 
-    INY 
+    INY #2
     LDA.L $7EA006,X 
     EOR.W #$8000 
     STA.B [$00],Y 
@@ -2250,8 +2183,7 @@ DrawPLM:
     LDA.L $7EA002,X 
     EOR.W #$C000 
     STA.B [$06],Y 
-    INY 
-    INY 
+    INY #2
     LDA.L $7EA004,X 
     EOR.W #$C000 
     STA.B [$00],Y 
@@ -2355,8 +2287,7 @@ DrawPLM:
     LDA.B $12 
     ASL A 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     TYA 
     CLC 
     ADC.B $12 
@@ -2376,8 +2307,7 @@ DrawPLM:
     STA.B [$00],Y 
     LDA.L $7EA002,X 
     STA.B [$06],Y 
-    INY 
-    INY 
+    INY #2
     LDA.L $7EA004,X 
     STA.B [$00],Y 
     LDA.L $7EA006,X 
@@ -2394,8 +2324,7 @@ DrawPLM:
     LDA.L $7EA000,X 
     EOR.W #$4000 
     STA.B [$06],Y 
-    INY 
-    INY 
+    INY #2
     LDA.L $7EA006,X 
     EOR.W #$4000 
     STA.B [$00],Y 
@@ -2414,8 +2343,7 @@ DrawPLM:
     LDA.L $7EA006,X 
     EOR.W #$8000 
     STA.B [$06],Y 
-    INY 
-    INY 
+    INY #2
     LDA.L $7EA000,X 
     EOR.W #$8000 
     STA.B [$00],Y 
@@ -2432,8 +2360,7 @@ DrawPLM:
     LDA.L $7EA004,X 
     EOR.W #$C000 
     STA.B [$06],Y 
-    INY 
-    INY 
+    INY #2
     LDA.L $7EA002,X 
     EOR.W #$C000 
     STA.B [$00],Y 
@@ -2442,8 +2369,7 @@ DrawPLM:
     STA.B [$06],Y 
 
 .vertNextBlock:
-    INY 
-    INY 
+    INY #2
     INC.B $03 
     INC.B $03 
     LDA.W $1C25 
@@ -5181,8 +5107,7 @@ Instruction_PLM_GotoY_EnableMovementIfSamusEnergyIsFull:
     LDA.W $09C4 
     CMP.W $09C2 
     BEQ .fullEnergy 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -5255,8 +5180,7 @@ Instruction_PLM_GotoY_EnableMovementIfSamusMissilesAreFull:
     LDA.W $09C8 
     CMP.W $09C6 
     BEQ .missilesFull 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -5476,8 +5400,7 @@ Setup_WreckedShipEntranceTreadmill:
 
 .loop:
     STA.L $7F0002,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loop 
     RTS 
@@ -5626,8 +5549,7 @@ ActivateStationIfSamusArmCannonLinedUp:
 .loop:
     CMP.W $1C87,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     BRA .delete 
 
@@ -5670,15 +5592,11 @@ Setup_MapStation:
     AND.W #$00FF 
     BNE .setInstruction 
     LDX.W $1C87,Y 
-    INX 
-    INX 
+    INX #2
     LDA.W #$B047 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C87,Y 
-    DEX 
-    DEX 
-    DEX 
-    DEX 
+    DEX #4
     LDA.W #$B048 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
@@ -5746,13 +5664,11 @@ Setup_EnergyStation:
     ORA.W #$8000 
     STA.L $7F0002,X 
     LDX.W $1C87,Y 
-    INX 
-    INX 
+    INX #2
     LDA.W #$B049 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C87,Y 
-    DEX 
-    DEX 
+    DEX #2
     LDA.W #$B04A 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
@@ -5765,13 +5681,11 @@ Setup_MissileStation:
     ORA.W #$8000 
     STA.L $7F0002,X 
     LDX.W $1C87,Y 
-    INX 
-    INX 
+    INX #2
     LDA.W #$B04B 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C87,Y 
-    DEX 
-    DEX 
+    DEX #2
     LDA.W #$B04C 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
@@ -5952,8 +5866,7 @@ Setup_ScrollBlockTouchPLM:
 .loop:
     CMP.W $1C87,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .crash:
@@ -6312,8 +6225,7 @@ Setup_CollisionReaction_SaveStationTrigger:
 .loop:
     CMP.W $1C87,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     SEC 
     RTS 
@@ -7186,8 +7098,7 @@ Instruction_PLM_GotoYIfSamusDoesntHaveBombs:
     LDA.W $09A4 
     BIT.W #$1000 
     BEQ .noBombs 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -7405,8 +7316,7 @@ Instruction_PLM_SpawnEnemyProjectileY:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -7419,8 +7329,7 @@ Instruction_PLM_WakeEnemyProjectileAtPLMsPosition:
 .loop:
     CMP.W $1AFF,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     db $00 ; BRK with no operand
 
@@ -7431,8 +7340,7 @@ Instruction_PLM_WakeEnemyProjectileAtPLMsPosition:
     INC.W $1B47,X 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -8694,8 +8602,7 @@ TriggerPLMAtBlockIndex_A:
 .loop:
     CMP.W $1C87,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     BRA .return 
 
@@ -8796,8 +8703,7 @@ Setup_DownwardsGateShotblock:
     LDA.W .leftBlock,X 
     BEQ .noRoomArg 
     LDX.W $1C87,Y 
-    DEX 
-    DEX 
+    DEX #2
     JSR.W Write_Level_Data_Block_Type_and_BTS 
 
 .noRoomArg:
@@ -8805,8 +8711,7 @@ Setup_DownwardsGateShotblock:
     LDA.W .rightBlock,X 
     BEQ .return 
     LDX.W $1C87,Y 
-    INX 
-    INX 
+    INX #2
     JSR.W Write_Level_Data_Block_Type_and_BTS 
 
 .return:
@@ -8844,8 +8749,7 @@ Setup_UpwardsGateShotblock:
     LDA.W .leftBlock,X 
     BEQ .noRoomArg 
     LDX.W $1C87,Y 
-    DEX 
-    DEX 
+    DEX #2
     JSR.W Write_Level_Data_Block_Type_and_BTS 
 
 .noRoomArg:
@@ -8853,8 +8757,7 @@ Setup_UpwardsGateShotblock:
     LDA.W .rightBlock,X 
     BEQ .return 
     LDX.W $1C87,Y 
-    INX 
-    INX 
+    INX #2
     JSR.W Write_Level_Data_Block_Type_and_BTS 
 
 .return:
@@ -8934,8 +8837,7 @@ Setup_GenericShotTriggerForAPLM:
 .loop:
     CMP.W $1C87,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     RTS 
 
@@ -10471,10 +10373,7 @@ Instruction_PLM_GotoY_IfRoomArgGreaterThanY:
 
 
 .next:
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     RTS 
 
 
@@ -10527,8 +10426,7 @@ Instruction_PLM_SpawnBombTorizoStatueBreakingWIthArgY:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -10934,8 +10832,7 @@ Setup_UnusedLowerNorfair2x2ChozoShotBlock:
     LDA.W #$8044 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C87,Y 
-    INX 
-    INX 
+    INX #2
     LDA.W #$50FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y 
@@ -10950,8 +10847,7 @@ Setup_UnusedLowerNorfair2x2ChozoShotBlock:
     ADC.W $07A5 
     ADC.W $07A5 
     TAX 
-    INX 
-    INX 
+    INX #2
     LDA.W #$D0FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
@@ -11097,8 +10993,7 @@ Instruction_PLM_ShootEyeDoorProjectileWithEnemyProjArgY:
     LDA.W #$004C 
     JSL.L QueueSound_Lib2_Max6 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -11108,8 +11003,7 @@ Instruction_PLM_SpawnEyeDoorSweatEnemyProjectileWithArgY:
     LDY.W #EnemyProjectile_EyeDoorSweat 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -11710,8 +11604,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownRight:
     TAX 
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    INX 
-    INX 
+    INX #2
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
@@ -11722,8 +11615,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownRight:
     TAX 
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    INX 
-    INX 
+    INX #2
     LDA.W #$0000 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
@@ -11741,8 +11633,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpRight:
     TAX 
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    INX 
-    INX 
+    INX #2
     LDA.W #$0000 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
@@ -11753,8 +11644,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpRight:
     TAX 
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    INX 
-    INX 
+    INX #2
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
@@ -11794,8 +11684,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownLeft:
     TAX 
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    DEX 
-    DEX 
+    DEX #2
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
@@ -11806,8 +11695,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownLeft:
     TAX 
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    DEX 
-    DEX 
+    DEX #2
     LDA.W #$0000 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
@@ -11825,8 +11713,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpLeft:
     TAX 
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    DEX 
-    DEX 
+    DEX #2
     LDA.W #$0000 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
@@ -11837,8 +11724,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpLeft:
     TAX 
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    DEX 
-    DEX 
+    DEX #2
     LDA.W #$A003 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDX.W $1C27 
@@ -12086,8 +11972,7 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpRight_84DEB9:
     LDX.W $1C87,Y 
     LDA.W #$C044 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    INX 
-    INX 
+    INX #2
     LDA.W #$50FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y 
@@ -12097,8 +11982,7 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpRight_84DEB9:
     TAX 
     LDA.W #$D0FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    INX 
-    INX 
+    INX #2
     LDA.W #$D0FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
@@ -12132,8 +12016,7 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpLeft_84DF15:
     LDX.W $1C87,Y 
     LDA.W #$C044 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    DEX 
-    DEX 
+    DEX #2
     LDA.W #$5001 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     LDA.W $1C87,Y 
@@ -12143,8 +12026,7 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpLeft_84DF15:
     TAX 
     LDA.W #$D0FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
-    DEX 
-    DEX 
+    DEX #2
     LDA.W #$D0FF 
     JSR.W Write_Level_Data_Block_Type_and_BTS 
     RTS 
@@ -14348,8 +14230,7 @@ Setup_ItemCollisionDetection:
 .loop:
     CMP.W $1C87,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     db $00 ; BRK with no operand
 

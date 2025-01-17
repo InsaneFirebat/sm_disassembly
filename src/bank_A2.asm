@@ -108,8 +108,7 @@ NOPNOP_A28069:
 Instruction_CommonA2_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_CommonA2_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_CommonA2_CallExternalFunctionInY_A280B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_CommonA2_GotoY_PlusY:
 Instruction_CommonA2_DecrementTimer_GotoYIfNonZero:
     DEC.W $0F90,X 
     BNE Instruction_CommonA2_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA2_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_CommonA2_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_CommonA2_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_CommonA2_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA2_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA2_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_CommonA2_Sleep:
 Instruction_CommonA2_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -810,8 +800,7 @@ Instruction_Stoke_SpawnProjectileWithDirectionInY:
     LDY.W #UNUSED_EnemyProjectile_Stoke_86DBF2 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -3211,12 +3200,8 @@ PuyoMovement:
     TAY 
     LDA.L $7E7806,X 
     BEQ .notFalling 
-    DEY 
-    DEY 
-    DEY 
-    DEY 
-
-.notFalling:
+    DEY #4
+    .notFalling:
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y 
     STA.B $12 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y 
@@ -3916,8 +3901,7 @@ Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY:
     LDY.W #EnemyProjectile_Cacatac 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -5301,12 +5285,10 @@ Function_Ship_Liftoff_LoadDustCloudTiles:
     LDX.W $0330 
     LDA.W #$0400 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W .src,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$94 
     STA.B $D0,X 
@@ -5314,8 +5296,7 @@ Function_Ship_Liftoff_LoadDustCloudTiles:
     INX 
     LDA.W .dest,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     PLX 
     LDA.W $0DEC 
@@ -6673,12 +6654,7 @@ SpawnMotherBrainsRoomRinka:
     BCC .found 
 
 .next:
-    INY 
-    INY 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #6
     CPY.W #$0042 
     BMI .loopOnScreen 
     JMP.W .notFound 
@@ -6713,12 +6689,7 @@ SpawnMotherBrainsRoomRinka:
     PLX 
     LSR A 
     BCC .spawn 
-    INY 
-    INY 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #6
     CPY.W #$0042 
     BMI .loopAny 
     RTS 
@@ -7060,8 +7031,7 @@ UNUSED_Instruction_Rinka_GotoYIfCounterGreaterThan2_A2B9A2:
     LDA.L $7E783C 
     CMP.W #$0003 
     BPL .gotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9897,12 +9867,8 @@ Function_Oum_Rolling:
     TAY 
     LDA.W $0FAE,X 
     BEQ .notLeft 
-    INY 
-    INY 
-    INY 
-    INY 
-
-.notLeft:
+    INY #4
+    .notLeft:
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y 
     STA.B $12 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 

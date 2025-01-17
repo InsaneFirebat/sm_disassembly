@@ -28,8 +28,7 @@ Clear_Enemy_Projectiles:
 
 .loop:
     STZ.W $1997,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     PLP 
@@ -53,8 +52,7 @@ SpawnEnemyProjectileY_ParameterA_XGraphics:
 .loop:
     LDA.W $1997,Y 
     BEQ .found 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     PLA 
     PLY 
@@ -114,8 +112,7 @@ SpawnEnemyProjectileY_ParameterA_RoomGraphics:
 .loop:
     LDA.W $1997,Y 
     BEQ .found 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     PLY 
     PLX 
@@ -178,8 +175,7 @@ Enemy_Projectile_Handler:
     LDX.W $1991 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .return:
@@ -199,8 +195,7 @@ Process_Enemy_Projectile:
     LDA.W $0000,Y 
     BPL .timer 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     PEA.W .loop-1 
     JMP.W ($0012) 
 
@@ -225,8 +220,7 @@ Instruction_EnemyProjectile_Delete:
 
 
 Instruction_EnemyProjectile_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $1B47,X 
     PLA 
@@ -236,8 +230,7 @@ Instruction_EnemyProjectile_Sleep:
 Instruction_EnemyProjectile_PreInstructionInY:
     LDA.W $0000,Y 
     STA.W $1A03,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -258,9 +251,7 @@ Instruction_EnemyProjectile_CallExternalFunctionInY:
     JSL.L .externalFunction 
     PLY 
     LDX.W $1991 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTS 
 
 
@@ -319,8 +310,7 @@ Instruction_EnemyProjectile_GotoY_Y:
 Instruction_EnemyProjectile_DecrementTimer_GotoYIfNonZero:
     DEC.W $19DF,X 
     BNE Instruction_EnemyProjectile_GotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -336,8 +326,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Instruction_EnemyProjectile_TimerInY:
     LDA.W $0000,Y 
     STA.W $19DF,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -386,10 +375,7 @@ Instruction_MoveRandomlyWithinXRadius_YRadius:
     CLC 
     ADC.W $1A93,X 
     STA.W $1A93,X 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     RTS 
 
 
@@ -397,8 +383,7 @@ Instruction_EnemyProjectile_Properties_OrY:
     LDA.W $1BD7,X 
     ORA.W $0000,Y 
     STA.W $1BD7,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -406,8 +391,7 @@ Instruction_EnemyProjectile_Properties_AndY:
     LDA.W $1BD7,X 
     AND.W $0000,Y 
     STA.W $1BD7,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -476,8 +460,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Instruction_EnemyProjectile_XYRadiusInY:
     LDA.W $0000,Y 
     STA.W $1BB3,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -526,10 +509,8 @@ UNUSED_Inst_EnemyProj_WriteColorsFromYToColorIndex_8682D5:
 .loop:
     LDA.W $0000,Y 
     STA.L $7EC000,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     DEC.B $12 
     BPL .loop 
     PLX 
@@ -673,8 +654,7 @@ Draw_HighPriority_EnemyProjectile:
     JSR.W Draw_EnemyProjectile 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLB 
     RTL 
@@ -698,8 +678,7 @@ Draw_LowPriority_EnemyProjectile:
     JSR.W Draw_EnemyProjectile 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLB 
     RTL 
@@ -1588,8 +1567,7 @@ Move_EnemyProjectile_Vertically:
 .loop:
     JSR.W EnemyProjectile_BlockReaction_Vertical 
     BCS .solid 
-    INX 
-    INX 
+    INX #2
     DEC.B $1A 
     BPL .loop 
     PLX 
@@ -5056,8 +5034,7 @@ Instruction_EnemyProjectile_GotoY_Probability_1_4:
     AND.W #$C000 
     CMP.W #$C000 
     BEQ .gotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -5911,10 +5888,7 @@ Instruction_EnemyProjectile_SpawnEnemyDropsWIthYDropChances:
     JSL.L Spawn_Enemy_Drops 
     PLX 
     PLY 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     RTS 
 
 
@@ -7044,8 +7018,7 @@ Instruction_EnemyProjectile_GotoYIfEyeBeamExplosionsDisabled:
     LDA.L $7E780C,X 
     BPL .gotoY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -7143,8 +7116,7 @@ UNUSED_Instruction_GotoY_Probability_1_4:
     AND.W #$C000 
     CMP.W #$C000 
     BEQ .gotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -7605,8 +7577,7 @@ Instruction_EnemyProjectile_YPositionInY:
     CLC 
     ADC.W $0000,Y 
     STA.W $1A93,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -7661,10 +7632,8 @@ InitAI_EnemyProjectile_TourianStatueEyeGlow:
 .loop:
     LDA.W TourianStatueEyeData_Phantoon,Y 
     STA.L $7EC000,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$01FA 
     BNE .loop 
     RTS 
@@ -8896,8 +8865,7 @@ Check_for_Bomb_Collision_with_Rectangle:
     BCC .returnCollision 
 
 .next:
-    INY 
-    INY 
+    INY #2
     CPY.W #$0014 
     BMI .loop 
     CLC 
@@ -11476,10 +11444,7 @@ Instruction_EnemyProj_FlickerNoobTubeShardLeftRightSpritemap:
     STA.W $1B6B,X 
 
 .merge:
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     TYA 
     STA.W $1B47,X 
     LDA.W #$0001 
@@ -11503,8 +11468,7 @@ Instruction_EnemyProjectile_NoobTubeShard_FlickerSpritemap:
 
   + LDA.W $0000,Y 
     STA.W $1B6B,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $1B47,X 
     LDA.W #$0001 
@@ -13241,8 +13205,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Instruction_EnemyProjectile_ShotGate_EnemyVelocityInY:
     LDA.W $0000,Y 
     STA.W $1ADB,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -14258,8 +14221,7 @@ Instruction_EnemyProj_EnemyDeathExpl_SpawnSpriteObjectInY_20:
     JSL.L Create_Sprite_Object 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -14287,8 +14249,7 @@ Instruction_EnemyProj_EnemyDeathExpl_SpawnSpriteObjectInY_10:
     JSL.L Create_Sprite_Object 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -14914,10 +14875,7 @@ Random_Drop_Routine:
     LDA.B $16 
     LSR #4
     STA.B $16 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     LDY.W #$0004 
 
 .loopMajorDrops:

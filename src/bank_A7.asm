@@ -108,8 +108,7 @@ NOPNOP_A78069:
 Instruction_CommonA7_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_CommonA7_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_CommonA7_CallExternalFunctionInY_A780B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_CommonA7_GotoY_PlusY:
 Instruction_CommonA7_DecrementTimer_GotoYIfNonZero:
     DEC.W $0F90,X 
     BNE Instruction_CommonA7_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA7_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_CommonA7_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_CommonA7_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_CommonA7_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA7_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA7_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_CommonA7_Sleep:
 Instruction_CommonA7_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -3227,10 +3217,8 @@ InitAI_Kraid:
 .loopBGPalette6:
     LDA.W Palette_KraidRoomBackground,Y 
     STA.L $7EC200,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0020 
     BMI .loopBGPalette6 
     LDX.W #$07FE 
@@ -3238,8 +3226,7 @@ InitAI_Kraid:
 
 .loopBG2Tilemap:
     STA.L $7E2000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopBG2Tilemap 
     LDA.W #$0000 
     STA.L $7E7804 
@@ -3291,8 +3278,7 @@ InitAI_Kraid:
     STA.L $7E780C,X 
     CLC 
     ADC.B $12 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0010 
     BMI .loopKraidHealth 
     LDA.W #$DFFF 
@@ -3334,8 +3320,7 @@ InitAI_Kraid:
 
 .loopKraidGFX:
     STA.L $7E2FC0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopKraidGFX 
     LDA.W #$0005 
     STA.W $183E 
@@ -3344,8 +3329,7 @@ InitAI_Kraid:
 .loopSpritePalette3:
     LDA.W .spritePalette3,X 
     STA.L $7EC360,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0020 
     BMI .loopSpritePalette3 
     RTL 
@@ -3389,8 +3373,7 @@ SetupKraidGFXWithTheTilePriorityCleared:
     LDA.L $7E2000,X 
     AND.W #$DFFF 
     STA.L $7E2800,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0600 
     BMI .loop0 
     LDX.W #$0000 
@@ -3399,8 +3382,7 @@ SetupKraidGFXWithTheTilePriorityCleared:
     LDA.L $7E4000,X 
     AND.B $12 
     STA.L $7E2000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0800 
     BMI .loop1 
     RTS 
@@ -3575,8 +3557,7 @@ Function_Kraid_KraidGetsBig_BreakCeilingIntoPlatforms:
 
 .manualReturn:
     LDX.W $0FB2 
-    INX 
-    INX 
+    INX #2
     STX.W $0FB2 
 
 .done:
@@ -3675,8 +3656,7 @@ Function_Kraid_KraidGetsBig_SetBG2TilemapPriorityBits:
     LDA.L $7E2000,X 
     ORA.W #$2000 
     STA.L $7E2000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$1000 
     BMI .loop 
     LDA.W $0FC6 
@@ -3718,10 +3698,8 @@ DrawKraidsRoomBackground:
 .loop:
     LDA.W Palette_KraidRoomBackground,Y 
     STA.L $7EC200,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0020 
     BMI .loop 
     LDA.W #$0000 
@@ -3931,11 +3909,9 @@ ProcessKraidInstList:
     LDX.W $0330 
     LDA.W #$02C0 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STY.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$A7 
     STA.B $D0,X 
@@ -3945,8 +3921,7 @@ ProcessKraidInstList:
     AND.W #$00FC 
     XBA 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     PLX 
     LDA.W #$0001 
@@ -4069,8 +4044,7 @@ KraidsMouth_vs_Projectile_CollisionHandling:
     LDY.W #$0001 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .noProjectiles:
@@ -4173,10 +4147,7 @@ KraidBody_vs_Samus_CollisionHandling:
     BPL + 
     CMP.W HitboxDefinitionTable_KraidBody_top,X 
     BPL + 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     BRA .loop 
 
 
@@ -4298,8 +4269,7 @@ KraidBody_vs_Projectile_CollisionHandling:
   + INC.B $30 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .noProjectiles:
@@ -4337,10 +4307,7 @@ KraidBody_vs_Projectile_CollisionHandling:
     BPL + 
     CMP.W HitboxDefinitionTable_KraidBody_top,Y 
     BPL + 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     BRA .loopBody 
 
 
@@ -4514,10 +4481,8 @@ KraidHurtFlashHandling:
 .loop:
     LDA.W Palette_Kraid_Sprite_HurtFlash,Y 
     STA.L $7EC1E0,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPX.W #$0020 
     BMI .loop 
     RTS 
@@ -4534,13 +4499,11 @@ KraidHealthBasedPaletteHandling:
 .loop:
     CMP.L $7E780C,X 
     BPL .getIndex 
-    DEX 
-    DEX 
+    DEX #2
     BNE .loop 
 
 .getIndex:
-    INX 
-    INX 
+    INX #2
     TXA 
     ASL #4
     TAY 
@@ -4553,10 +4516,8 @@ KraidHealthBasedPaletteHandling:
     STA.L $7EC0E0,X 
     LDA.W Palette_Kraid_Sprite_HurtFlash,Y 
     STA.L $7EC1E0,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0020 
     BMI .loopPalette 
     RTS 
@@ -4790,8 +4751,7 @@ Function_Kraid_KraidShot_GlowEye:
     ORA.B $12 
     ORA.B $14 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$00E8 
     BMI .loop 
     CPY.W #$0006 
@@ -4814,13 +4774,11 @@ Function_Kraid_KraidShot_UnglowEye:
 .loopHealth:
     CMP.L $7E780C,X 
     BPL .getIndexY 
-    DEX 
-    DEX 
+    DEX #2
     BNE .loopHealth 
 
 .getIndexY:
-    INX 
-    INX 
+    INX #2
     TXA 
     ASL #4
     TAY 
@@ -4854,10 +4812,8 @@ Function_Kraid_KraidShot_UnglowEye:
     STA.L $7EC000,X 
 
 .next:
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPX.W #$00E8 
     BMI .loop 
     LDA.B $14 
@@ -5220,10 +5176,7 @@ Function_KraidFoot_Phase2_Thinking:
     LDA.W $0F7A 
     CMP.W .XPosition,X 
     BEQ + 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     CPX.W #$0018 
     BMI .loopXPositions 
     LDX.W #$0004 
@@ -5754,10 +5707,7 @@ Function_KraidNail_Fire:
     ADC.W .topBoundaryOffset,Y 
     CMP.W $0F7E,X 
     BMI + 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     BRA .loop 
 
 
@@ -6303,8 +6253,7 @@ KraidDeath_Initialize:
 
 .loopPalette6:
     STA.L $7EC200,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$00E0 
     BMI .loopPalette6 
     LDX.W #$001E 
@@ -6312,8 +6261,7 @@ KraidDeath_Initialize:
 .loopPalette7:
     LDA.W Palette_Kraid_Death,X 
     STA.L $7EC0E0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopPalette7 
     LDA.W #InstList_KraidArm_Dying_PreparingToLungeForward 
     STA.W $0FD2 
@@ -6372,10 +6320,7 @@ KraidDeath_FadeOutBackground:
 .loopClearRoomBackground:
     STA.L $7E4000,X 
     STA.L $7E4002,X 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     CPX.W #$0200 
     BMI .loopClearRoomBackground 
     LDX.W $0330 
@@ -6427,11 +6372,9 @@ UNUSED_ProcessKraidInstruction_WithNoASMInstructions_A7C457:
     LDX.W $0330 
     LDA.W #$02C0 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STY.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$A7 
     STA.B $D0,X 
@@ -6441,8 +6384,7 @@ UNUSED_ProcessKraidInstruction_WithNoASMInstructions_A7C457:
     AND.W #$00FC 
     XBA 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
 
 .return:
@@ -6740,8 +6682,7 @@ Function_Kraid_FadeInRegularBG_ClearBG2TilemapTopHalf:
 
 .loop:
     STA.L $7E2000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDX.W $0330 
     LDA.W #$0400 
@@ -7439,24 +7380,21 @@ InitAI_PhantoonBody:
 
 .loopBG2Tilemap:
     STA.L $7E2000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopBG2Tilemap 
     LDX.W #$07FE 
     LDA.W #$0000 
 
 .loop9000:
     STA.L $7E9000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop9000 
     LDX.W #$001E 
     LDA.W #$0000 
 
 .loopBGPalette:
     STA.L $7EC2E0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopBGPalette 
     LDA.W #$0360 
     STA.L $00179A 
@@ -8315,8 +8253,7 @@ StartPhantoonDeathSequence:
 
 .loopBG2XScroll:
     STA.L $7E9100,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopBG2XScroll 
     LDA.W $1988 
     ORA.W #$4000 
@@ -8488,8 +8425,7 @@ UNUSED_Function_Phantoon_FightIntro_A7D581:
 
 .loop:
     STA.L $7E9100,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #Function_Phantoon_FightIntro_PickFirstPattern 
     STA.W $0FB2,X 
@@ -9216,18 +9152,15 @@ Function_Phantoon_DeathSequence_ClearGraphics:
 
 .loop:
     STA.L $7E2000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDX.W $0330 
     LDA.W #$0400 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W #$2000 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$7E 
     STA.B $D0,X 
@@ -9235,8 +9168,7 @@ Function_Phantoon_DeathSequence_ClearGraphics:
     INX 
     LDA.W #$4800 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     RTS 
 
@@ -9310,8 +9242,7 @@ AdvancePhantoonFadeOut:
     JSR.W CalculateAthTransitionalColorFromXToY 
     PLX 
     STA.L $7EC0E0,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0020 
     BCC .loop 
     LDA.W $0FF0 
@@ -9345,8 +9276,7 @@ AdvancePhantoonFadeIn:
     JSR.W CalculateAthTransitionalColorFromXToY 
     PLX 
     STA.L $7EC0E0,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0020 
     BCC .loop 
     LDA.W $0FF0 
@@ -9428,8 +9358,7 @@ AdvanceWreckedShipPowerOnPaletteTransition:
     JSR.W CalculateAthTransitionalColorFromXToY 
     PLX 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$00E0 
     BCC .loop 
     LDA.W $0FF0 
@@ -9566,8 +9495,7 @@ HurtAI_Phantoon:
     JSR.W GetPhantoonHealthBasedPaletteColor 
     TYA 
     STA.L $7EC0E0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopPalette 
     LDA.W $1036 
     AND.W #$00FF 
@@ -9584,8 +9512,7 @@ HurtAI_Phantoon:
 .loopWhite:
     LDA.W #$7FFF 
     STA.L $7EC0E0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopWhite 
     LDA.W $1036 
     ORA.W #$0100 
@@ -11865,10 +11792,8 @@ LoadDachoraPalette:
 .loop:
     LDA.W $0000,X 
     STA.B [$00],Y 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0020 
     BMI .loop 
     PLX 

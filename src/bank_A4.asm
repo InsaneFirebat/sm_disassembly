@@ -108,8 +108,7 @@ NOPNOP_A48069:
 Instruction_CommonA4_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_CommonA4_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_CommonA4_CallExternalFunctionInY_A480B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_CommonA4_GotoY_PlusY:
 Instruction_CommonA4_DecrementTimer_GotoYIfNonZero:
     DEC.W $0F90,X 
     BNE Instruction_CommonA4_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA4_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_CommonA4_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_CommonA4_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_CommonA4_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA4_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA4_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_CommonA4_Sleep:
 Instruction_CommonA4_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -989,8 +979,7 @@ InitAI_Crocomire:
 
 .loopBG2Tilemap:
     STA.L $7E2000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$1000 
     BMI .loopBG2Tilemap 
     LDX.W $079F 
@@ -1011,8 +1000,7 @@ InitAI_Crocomire:
     STA.L $7EC340,X 
     LDA.W Palette_Crocomire_Sprite5,X 
     STA.L $7EC3A0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTargetPalette 
     LDX.W $0E54 
     LDA.W #$0004 
@@ -1096,8 +1084,7 @@ UpdateCrocomireBG2Scroll:
     LDA.W $0F8E 
     CMP.W .pointers,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     BRA UpdateCrocomireBG2XScroll 
 
@@ -1306,8 +1293,7 @@ CrocomireHurtFlashHandling:
 
 .loopWhite:
     STA.L $7EC0E0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopWhite 
     RTS 
 
@@ -1318,8 +1304,7 @@ CrocomireHurtFlashHandling:
 .loopPalette:
     LDA.W Palette_Crocomire_BG12,X 
     STA.L $7EC0E0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopPalette 
 
 .return:
@@ -1962,8 +1947,7 @@ SinkCrocomireDown:
 
 .loopTilemap:
     STA.L $7E2000,X 
-    INX 
-    INX 
+    INX #2
     DEC.B $12 
     BNE .loopTilemap 
     LDA.W #$0001 
@@ -2142,10 +2126,7 @@ MainAI_Crocomire_DeathSequence_10_Hop_3_LoadMeltingTilemap:
 .loopClearTilemap:
     STA.L $7E2000,X 
     STA.L $7E2002,X 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     CPX.W #$0400 
     BMI .loopClearTilemap 
     LDX.W #$0000 
@@ -2155,8 +2136,7 @@ MainAI_Crocomire_DeathSequence_10_Hop_3_LoadMeltingTilemap:
     CMP.W #$FFFF 
     BEQ .done 
     STA.L $7E2040,X 
-    INX 
-    INX 
+    INX #2
     BRA .loopMeltingTilemap 
 
 
@@ -2191,8 +2171,7 @@ ResetCrocomireBG2YScrollHDMADataTable:
 
 .loop:
     STA.L $7ECAF0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     RTS 
 
@@ -2214,8 +2193,7 @@ MainAI_Crocomire_DeathSequence_2C_Hop_6_LoadMeltingTilemap:
 
 .loopClearTilemap:
     STA.L $7E2000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0800 
     BMI .loopClearTilemap 
     LDX.W #$0000 
@@ -2225,8 +2203,7 @@ MainAI_Crocomire_DeathSequence_2C_Hop_6_LoadMeltingTilemap:
     CMP.W #$FFFF 
     BEQ .done 
     STA.L $7E2040,X 
-    INX 
-    INX 
+    INX #2
     BRA .loopMeltingTilemap 
 
 
@@ -2280,31 +2257,24 @@ MainAI_Crocomire_DeathSequence_12_2E_Hop_3_4_LoadMeltTiles:
 .loopInner:
     LDA.B [$00],Y 
     STA.L $7E0000,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.B $12 
     BPL .loopInner 
     PLX 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     BRA .loop 
 
 
 .done:
-    INX 
-    INX 
+    INX #2
     STX.W $069A 
     STX.W $068A 
     LDX.W #$0080 
 
 .loopYOffsets:
     STZ.W $069C,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopYOffsets 
     PLB 
     RTS 
@@ -2373,8 +2343,7 @@ CreateCrocomireMeltingHDMAObject:
 
 .loop:
     STA.L $7ECAF0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDX.W $0E54 
     INC.W $0FA8,X 
@@ -2457,8 +2426,7 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
 
 
 .terminator:
-    INX 
-    INX 
+    INX #2
     STX.W $069A 
     LDA.L $7E783E 
     TAX 
@@ -2520,8 +2488,7 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
 
 .carrySet:
     INC.W $05A6 
-    INX 
-    INX 
+    INX #2
     CPY.W $0698 
     BMI .loopMeltingRows 
     CPX.W #$0200 
@@ -2530,8 +2497,7 @@ MainAI_Crocomire_DeathSequence_1A_38_Hop_3_6_Melting:
 
 .loopTablePadding:
     STA.L $7ECAF0,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopTablePadding 
 
@@ -2551,8 +2517,7 @@ MainAI_Crocomire_DeathSequence_1C_3A_Hop_3_6_ClearTilemap:
 
 .loop:
     STA.L $7E2000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDX.W $0330 
     LDA.W #$0800 
@@ -2776,8 +2741,7 @@ MainAI_Crocomire_DeathSequence_40_BehindWall_Rumbling:
 .loopSpritePalette:
     LDA.W Palette_Crocomire_Sprite3,X 
     STA.L $7EC160,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopSpritePalette 
     JMP.W NextCrocomireDeathSequenceIndex 
 
@@ -2807,8 +2771,7 @@ MainAI_Crocomire_DeathSequence_40_BehindWall_Rumbling:
     BEQ .rumbleTimerExpired 
     DEC A 
     STA.W $102E 
-    DEX 
-    DEX 
+    DEX #2
     STX.W $0FAE 
     LDA.W #$002B 
     JSL.L QueueSound_Lib2_Max6 
@@ -2816,18 +2779,15 @@ MainAI_Crocomire_DeathSequence_40_BehindWall_Rumbling:
 
 
 .rumbleTimerExpired:
-    INX 
-    INX 
+    INX #2
     LDA.W .targetYOffset,X 
     STA.W $102E 
-    INX 
-    INX 
+    INX #2
     LDA.W .targetYOffset,X 
     STA.W $106E 
 
 .positive:
-    INX 
-    INX 
+    INX #2
     STX.W $0FAE 
     RTS 
 
@@ -2869,8 +2829,7 @@ MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
     CLC 
     ADC.W #$0007 
     STA.W $0330 
-    INY 
-    INY 
+    INY #2
     STY.W $0688 
     RTS 
 
@@ -2906,8 +2865,7 @@ MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
 .loopSpritePalette:
     LDA.W Palette_Crocomire_Sprite1,X 
     STA.L $7EC120,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopSpritePalette 
     JSL.L Clear_Enemy_Projectiles 
     LDA.W #$0008 

@@ -2957,8 +2957,7 @@ DebugHandler_1_PaletteViewer_SpritePalettes:
 .loop:
     LDA.L $7EC000,X 
     STA.L $7EC100,X 
-    DEX 
-    DEX 
+    DEX #2
     BNE .loop 
     INC.W $185C 
     LDA.W #$0001 
@@ -3761,8 +3760,7 @@ Add_Debug_Spritemap_to_OAM:
     LDA.W Debug_Spritemap_Addresses,X 
     TAY 
     LDA.W $0000,Y 
-    INY 
-    INY 
+    INY #2
     STA.B $18 
     LDX.W $0590 
 
@@ -3770,8 +3768,7 @@ Add_Debug_Spritemap_to_OAM:
     LDA.W $0000,Y 
     STA.B $1A 
     AND.W #$01FF 
-    INY 
-    INY 
+    INY #2
     CLC 
     ADC.B $14 
     STA.W $0370,X 
@@ -3858,10 +3855,8 @@ Add_Debug_Spritemap_to_OAM:
 
 .next:
     STA.W $0370,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$01FF 
     BPL .return 
     DEC.B $18 
@@ -6974,8 +6969,7 @@ Create_Sprite_Object:
 .loop:
     LDA.L $7EEF78,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     BRA .return 
 
@@ -7154,8 +7148,7 @@ DrawSpriteObjects:
     PLX 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLB 
     PLP 
@@ -7170,8 +7163,7 @@ ClearSpriteObjects:
 
 .loop:
     STA.L $7EEF78,X 
-    DEX 
-    DEX 
+    DEX #2
     BNE .loop 
     RTL 
 

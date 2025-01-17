@@ -108,8 +108,7 @@ NOPNOP_A88069:
 Instruction_CommonA8_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_CommonA8_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_CommonA8_CallExternalFunctionInY_A880B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_CommonA8_GotoY_PlusY:
 Instruction_CommonA8_DecrementTimer_GotoYIfNonZero:
     DEC.W $0F90,X 
     BNE Instruction_CommonA8_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA8_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_CommonA8_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_CommonA8_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_CommonA8_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA8_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA8_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_CommonA8_Sleep:
 Instruction_CommonA8_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -1720,8 +1710,7 @@ InitAI_Eye:
 .loop:
     LDA.W #$00FF 
     STA.L $7E9100,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .return:
@@ -2983,8 +2972,7 @@ InitAI_Coven:
 
 .loop:
     STA.L $7EC200,X 
-    INX 
-    INX 
+    INX #2
     DEC.B $12 
     BPL .loop 
     RTL 
@@ -3021,8 +3009,7 @@ Function_Coven_Materialize_FadeToWhite:
     DEY 
 
 .next:
-    INX 
-    INX 
+    INX #2
     DEC.B $12 
     BNE .loopUpper 
     CPY.W #$0010 
@@ -3041,10 +3028,8 @@ Function_Coven_Materialize_FadeToWhite:
 .loopLower:
     LDA.W Palette_Coven,Y 
     STA.L $7EC200,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0020 
     BMI .loopLower 
 
@@ -3206,8 +3191,7 @@ Function_Coven_Materialized:
 
 .loop:
     STA.L $7EC200,X 
-    INX 
-    INX 
+    INX #2
     DEC.B $12 
     BPL .loop 
 
@@ -3515,8 +3499,7 @@ AdvanceCovenPaletteTransition:
     INY 
 
 .next:
-    INX 
-    INX 
+    INX #2
     CPX.B $14 
     BPL .return 
     JMP.W .loop 
@@ -5326,8 +5309,7 @@ Instruction_Magdollite_QueueSFXInY_Lib2_Max6_IfOnScreen:
 .offScreen:
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -5898,8 +5880,7 @@ Function_Magdollite_Slave1_HandlePillarShrinking:
 
 RemoveMagdollitePillarStacksUntilBackToBaseHeight:
     LDY.W $0FAA,X 
-    DEY 
-    DEY 
+    DEY #2
     LDA.W $0FB0,X 
     BPL .doneShrinking 
     EOR.W #$FFFF 
@@ -12813,10 +12794,8 @@ EnemyGraphicsDrawnHook_FaceBlock_PeriodicallyCyclePalettes:
 .loopColors:
     LDA.W FaceBlockGlowColors,Y 
     STA.L $7EC112,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     DEC.W $060B 
     BNE .loopColors 
     LDA.W $1796 

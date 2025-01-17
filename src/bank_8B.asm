@@ -919,8 +919,7 @@ Debug_DisplayVersionInfo:
     CLC 
     ADC.W #$0004 
     TAX 
-    INY 
-    INY 
+    INY #2
     CPY.W #$0006 
     BMI .loopVer 
     STX.W $0590 
@@ -952,12 +951,10 @@ CinematicBGObjects_Update32x30CinematicBGTilemap:
     LDX.W $0330 
     LDA.W #$0780 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W #$3000 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$7E 
     STA.B $D0,X 
@@ -965,8 +962,7 @@ CinematicBGObjects_Update32x30CinematicBGTilemap:
     INX 
     LDA.W $19F5 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
 
 .return:
@@ -984,12 +980,10 @@ CinematicBGObjects_UpdateSamusEyesTilemap:
     LDX.W $0330 
     LDA.W #$0080 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W #$3B40 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$7E 
     STA.B $D0,X 
@@ -997,8 +991,7 @@ CinematicBGObjects_UpdateSamusEyesTilemap:
     INX 
     LDA.W #$49A0 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
 
 .return:
@@ -1016,12 +1009,10 @@ CinematicBGObjects_Update32x32CinematicBGTilemap:
     LDX.W $0330 
     LDA.W #$0800 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W #$3000 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$7E 
     STA.B $D0,X 
@@ -1029,8 +1020,7 @@ CinematicBGObjects_Update32x32CinematicBGTilemap:
     INX 
     LDA.W $19F5 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
 
 .return:
@@ -1124,10 +1114,8 @@ IndirectInstructionFunction_DrawTextToTilemap:
 .loop:
     LDA.W $0004,Y 
     STA.L $7E3000,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     DEC.W $0012 
     BEQ + 
     BRA .loop 
@@ -1165,10 +1153,8 @@ IndirectInstructionFunction_DrawSamusEyesToTilemap:
 .loops:
     LDA.W $0004,Y 
     STA.L $7E3800,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     DEC.W $0012 
     BEQ + 
     BRA .loops 
@@ -1581,8 +1567,7 @@ PaletteCrossFading_CopyCurrentPalettesToFadingPalettes:
 .loop:
     LDA.L $7EC000,X 
     STA.L $7E2200,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loop 
     PLB 
@@ -1624,8 +1609,7 @@ PaletteCrossFading_DecomposePaletteDataForFading:
     XBA 
     ASL #3
     STA.L $7E2E00,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loop 
     PLB 
@@ -1648,8 +1632,7 @@ PaletteCrossFading_ClearYColorsStartingFromColorIndexX:
     STA.L $7E2400,X 
     STA.L $7E2600,X 
     STA.L $7E2800,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loop 
     PLB 
@@ -1673,8 +1656,7 @@ PaletteCrossFading_FadeOutYColorsStartingFromColorIndexX:
     SEC 
     SBC.L $7E2E00,X 
     STA.L $7E2800,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loop 
     PLP 
@@ -1700,8 +1682,7 @@ PaletteCrossFading_FadeInYColorsStartingFromColorIndexX:
     ADC.L $7E2E00,X 
     AND.W #$1FFF 
     STA.L $7E2800,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loop 
     PLP 
@@ -1729,8 +1710,7 @@ PaletteCrossFading_ComposeFadingPalettes:
     ORA.B $12 
     STA.L $7E2000,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loop 
     PLP 
@@ -1833,12 +1813,10 @@ TransferJapanTextTilesToVRAM:
     LDX.W $0330 
     LDA.W #$0600 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W #$4000 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$7E 
     STA.B $D0,X 
@@ -1846,8 +1824,7 @@ TransferJapanTextTilesToVRAM:
     INX 
     LDA.W #$4180 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     PLX 
     RTS 
@@ -2001,14 +1978,11 @@ MoveUnusedSpritesOffScreen:
     STA.W $0570,X 
     CPX.W #$001E 
     BPL .setXpos 
-    INX 
-    INX 
-
-.loop:
+    INX #2
+    .loop:
     LDA.W #$5555 
     STA.W $0570,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0020 
     BMI .loop 
 
@@ -2449,8 +2423,7 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
 .loop:
     LDA.L Palettes_TitleScreen,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loop 
     JSL.L EnableNMI 
@@ -2547,8 +2520,7 @@ Spawn_CinematicSpriteObject_Y:
 .loop:
     LDA.W $1B1D,Y 
     BEQ SpawnCinematicSpriteObject_XToIndexY 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     PLX 
     PLP 
@@ -2598,8 +2570,7 @@ Clear_CinematicSpriteObjects:
 .loop:
     STA.W $1B1D,X 
     STA.W $1A5D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLP 
     RTS 
@@ -2618,8 +2589,7 @@ Handle_CinematicSpriteObjects:
     LDX.W $1A59 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLP 
     RTS 
@@ -2636,8 +2606,7 @@ Process_CinematicSpriteObjects_InstList:
     LDA.W $0000,Y 
     BPL + 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     PEA.W .loop-1 
     JMP.W ($0012) 
 
@@ -2665,8 +2634,7 @@ CinematicSpriteObject_Instruction_Delete:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicSpriteObject_Instruction_Sleep_8B9442:
     REP #$30 
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $1B1D,X 
     PLA 
@@ -2678,8 +2646,7 @@ CinematicSpriteObject_Instruction_PreInstructionY:
     REP #$30 
     LDA.W $0000,Y 
     STA.W $1B3D,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -2704,9 +2671,7 @@ CinematicSpriteObject_Inst_CallExternalFunctionY_8B9460:
     JSL.L .externalFunction 
     PLY 
     LDX.W $1A59 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTS 
 
 
@@ -2769,8 +2734,7 @@ CinematicSpriteObject_Inst_DecrementTimer_GotoYIfNonZero:
     REP #$30 
     DEC.W $1B7D,X 
     BNE CinematicSpriteObject_Instruction_GotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -2788,8 +2752,7 @@ CinematicSpriteObject_Instruction_TimerInY:
     REP #$30 
     LDA.W $0000,Y 
     STA.W $1B7D,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -2811,8 +2774,7 @@ Spawn_Mode7Objects:
 .loop:
     LDA.W $19A1,Y 
     BEQ .spawn 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     PLX 
     PLP 
@@ -2850,8 +2812,7 @@ Handle_Mode7Objects:
     LDX.W $19B1 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLP 
     RTS 
@@ -2868,8 +2829,7 @@ Process_Mode7Objects_InstList:
     LDA.W $0000,Y 
     BPL .timer 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     PEA.W .loop-1 
     JMP.W ($0012) 
 
@@ -2903,8 +2863,7 @@ UNUSED_Mode7Objects_Instruction_PreInstructionY_8B9572:
     REP #$30 
     LDA.W $0000,Y 
     STA.W $19A5,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -2929,8 +2888,7 @@ Mode7Objects_Instruction_DecrementTimer_GotoYIfNonZero:
     REP #$30 
     DEC.W $19AD,X 
     BNE Mode7Objects_Instruction_GotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -2938,8 +2896,7 @@ Mode7Objects_Instruction_TimerInY:
     REP #$30 
     LDA.W $0000,Y 
     STA.W $19AD,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -2987,16 +2944,14 @@ Clear_CinematicBGObjects_CinematicBGTilemap:
 
 .loopTilemap:
     STA.L $7E3000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTilemap 
     LDX.W #$0006 
 
 .loopObjects:
     STZ.W $19B5,X 
     STZ.W $19CD,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopObjects 
     STZ.W $1BA1 
     PLX 
@@ -3015,8 +2970,7 @@ Spawn_CinematicBGObject:
 .loop:
     LDA.W $19CD,Y 
     BEQ .spawn 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     PLX 
     PLP 
@@ -3058,8 +3012,7 @@ Handle_CinematicBGObjects:
     LDX.W $19ED 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     BIT.W $19F3 
     BPL .updateEyes 
@@ -3088,8 +3041,7 @@ Process_CinematicBGObject_InstList:
     LDA.W $0000,Y 
     BPL .timer 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     PEA.W .loop-1 
     JMP.W ($0012) 
 
@@ -3123,8 +3075,7 @@ CinematicBGObject_Instruction_Delete:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CinematicBGObject_Instruction_Sleep_8B96A3:
     REP #$30 
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $19CD,X 
     PLA 
@@ -3136,8 +3087,7 @@ UNUSED_CinematicBGObject_Instruction_PreInstructionY_8B96AE:
     REP #$30 
     LDA.W $0000,Y 
     STA.W $19D5,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -3160,9 +3110,7 @@ UNUSED_CinematicBGObjects_Inst_CallExternalFunction_8B96C2:
     JSL.L .externalFunction 
     PLY 
     LDX.W $19ED 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTS 
 
 
@@ -3225,8 +3173,7 @@ UNUSED_CinematicBGObjects_Inst_DecrementTimer_GotoY_8B9724:
     REP #$30 
     DEC.W $19E5,X 
     BNE CinematicBGObject_Instruction_GotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -3242,8 +3189,7 @@ UNUSED_CinematicBGObjects_Inst_TimerInY_8B9738:
     REP #$30 
     LDA.W $0000,Y 
     STA.W $19E5,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -3293,8 +3239,7 @@ Draw_CinematicSpriteObjects_IntroTitleSequence:
     JSL.L AddSpritemapToOAM_Offscreen 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLB 
     PLP 
@@ -3341,8 +3286,7 @@ Draw_CinematicSpriteObjects_EndingCredits:
     JSL.L AddSpritemapToOAM_Offscreen 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLB 
     LDA.W $1F51 
@@ -3362,8 +3306,7 @@ Spawn_TextGlowObject:
 .loop:
     LDA.W $19F7,X 
     BEQ .spawn 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -3403,8 +3346,7 @@ Handle_TextGlowObject:
     LDX.W $1A47 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLB 
     PLP 
@@ -3452,10 +3394,8 @@ Process_TextGlowObject:
     AND.W #$E3FF 
     ORA.B $1C 
     STA.L $7E3000,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     DEC.W $0012 
     BEQ + 
     BRA .loop 
@@ -3516,8 +3456,7 @@ Clear_CreditsObject_CinematicBGTilemapInA:
 
 .loop:
     STA.L $7E3000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #$0000 
     STA.W $1A01 
@@ -3599,8 +3538,7 @@ Process_CreditsObject_InstList:
     LDA.W $0000,Y 
     BPL .copyRow 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     PEA.W .loop-1 
     JMP.W ($0012) 
 
@@ -3647,10 +3585,8 @@ Copy_CreditsRow_ToCinematicBGTilemap:
 .loop:
     LDA.B [$00],Y 
     STA.L $7E3000,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.W $0014 
     BPL .loop 
     PLY 
@@ -3677,8 +3613,7 @@ Instruction_CreditsObject_DecrementTimer_GotoYIfNonZero:
     REP #$30 
     DEC.W $19FB 
     BNE Instruction_CreditsObject_GotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -3686,8 +3621,7 @@ Instruction_CreditsObject_TimerInY:
     REP #$30 
     LDA.W $0000,Y 
     STA.W $19FB 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -3797,8 +3731,7 @@ SkipToTitleScreenHandler_2_PrepareTitleScreen:
 .loop:
     LDA.L Palettes_TitleScreen,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loop 
     LDA.W #$7FFF 
@@ -3891,8 +3824,7 @@ Load_Title_Sequence_Graphics:
 .loopTitleScreenPalette:
     LDA.L Palettes_TitleScreen,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopTitleScreenPalette 
     LDA.W #Tiles_Title_Background_Mode7>>8&$FF00 
@@ -4378,16 +4310,14 @@ CinematicFunction_TransitionToFileSelectMenu:
 
 .loopClearNonGameplayRAM:
     STZ.W $198D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopClearNonGameplayRAM 
     LDX.W #$01FE 
     LDA.W #$0000 
 
 .loopClearGradient:
     STA.L $7E9800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopClearGradient 
     LDA.W #$0004 
     STA.W $0998 
@@ -4426,16 +4356,14 @@ CinematicFunction_TransitionToDemos:
 
 .loopClearNonGameplayRAM:
     STZ.W $198D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopClearNonGameplayRAM 
     LDX.W #$01FE 
     LDA.W #$0000 
 
 .loopClearGradient:
     STA.L $7E9800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopClearGradient 
     LDA.W #$0028 
     STA.W $0998 
@@ -4467,10 +4395,8 @@ Configure_TitleScreen_GradientHDMATable:
     LDA.W $0000,Y 
     STA.L $7E9800,X 
     BEQ .return 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     BRA .loop 
 
 
@@ -4745,8 +4671,7 @@ Instruction_LoadBabyMetroid_Colors0:
 .loop:
     LDA.W TitleSequenceBabyMetroid_Colors_0,X 
     STA.L $7EC060,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -4759,8 +4684,7 @@ Instruction_LoadBabyMetroid_Colors1:
 .loop:
     LDA.W TitleSequenceBabyMetroid_Colors_1,X 
     STA.L $7EC060,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -4773,8 +4697,7 @@ Instruction_LoadBabyMetroid_Colors2:
 .loop:
     LDA.W TitleSequenceBabyMetroid_Colors_2,X 
     STA.L $7EC060,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -4787,8 +4710,7 @@ Instruction_LoadBabyMetroid_Colors3:
 .loop:
     LDA.W TitleSequenceBabyMetroid_Colors_3,X 
     STA.L $7EC060,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -4905,16 +4827,14 @@ CinematicFunction_Intro_Initial:
 
 .loopClearNonGameplayRAM:
     STZ.W $198D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopClearNonGameplayRAM 
     LDX.W #$0000 
 
 .loopPalettes:
     LDA.L Palettes_Intro,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopPalettes 
     LDA.W #Tiles_Intro_BG1_BG2>>8&$FF00 
@@ -5061,16 +4981,14 @@ CinematicFunction_Intro_Initial:
 .loopSamusHead:
     LDA.L $7F9000,X 
     STA.L $7E3800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopSamusHead 
     LDX.W #$00FE 
 
 .loopJapanText:
     LDA.L InitialIntroJapanTextTilemap,X 
     STA.L $7E3000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopJapanText 
     LDA.W #$FFFF 
     STA.W $1B9F 
@@ -5108,12 +5026,10 @@ CinematicFunction_Intro_HandleDrawingInitialJapanText_Wait60f:
     LDX.W $0330 
     LDA.W #$0100 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W #$3000 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$7E 
     STA.B $D0,X 
@@ -5121,8 +5037,7 @@ CinematicFunction_Intro_HandleDrawingInitialJapanText_Wait60f:
     INX 
     LDA.W #$4EE0 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
 
 .return:
@@ -5236,8 +5151,7 @@ CinematicFunction_Intro_SetupIntroTextPage1:
 .loopTopBottomMargins:
     STA.L $7E3000,X 
     STA.L $7E3700,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTopBottomMargins 
     LDX.W #$0600 
     LDY.W #$0000 
@@ -5245,10 +5159,8 @@ CinematicFunction_Intro_SetupIntroTextPage1:
 .loopJapanTextTilemap:
     LDA.W .IntroJapanTextTilemap,Y 
     STA.L $7E3000,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0700 
     BMI .loopJapanTextTilemap 
     LDA.W #$1C29 
@@ -5330,8 +5242,7 @@ Clear_EnglishText_Tilemap:
 
 .loop:
     STA.L $7E3000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0600 
     BMI .loop 
     PLX 
@@ -5927,8 +5838,7 @@ CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight:
 .loopLevelData:
     LDA.L LevelData_OldMotherBrainRoomFromCutscene,X 
     STA.L $7F0002,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$01C0 
     BMI .loopLevelData 
     LDX.W #$0000 
@@ -5936,8 +5846,7 @@ CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight:
 
 .loopBTS:
     STA.L $7F6402,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopBTS 
     LDA.W #$0001 
@@ -6011,8 +5920,7 @@ CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDiscovery:
 .loopLevelData:
     LDA.L LevelData_RoomWithBabyMetroidHatchingFromCutscene,X 
     STA.L $7F0002,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0300 
     BMI .loopLevelData 
     STZ.W $09D2 
@@ -6050,8 +5958,7 @@ Setup_Intro_CrossFade_Into_SamusGameplay:
 .loopPalettes:
     LDA.L Palettes_Intro,X 
     STA.L $7E2200,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopPalettes 
     JSR.W PaletteCrossFading_DecomposePaletteDataForFading 
@@ -6237,8 +6144,7 @@ SetupIntroCrossFadeIntoScientistCutscene:
 .loop:
     LDA.L Palettes_Intro,X 
     STA.L $7E2200,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loop 
     JSR.W PaletteCrossFading_DecomposePaletteDataForFading 
@@ -6404,8 +6310,7 @@ CinematicFunction_Intro_CrossFadeToSamusGameplay:
 
 .loop:
     STA.L $7E3000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0600 
     BMI .loop 
     JSR.W BlankOut_JapanText_Tiles 
@@ -6455,8 +6360,7 @@ CinematicFunction_Intro_CrossFadeToScientistCutscene:
 
 .loopEnglishText:
     STA.L $7E3000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0600 
     BMI .loopEnglishText 
     JSR.W BlankOut_JapanText_Tiles 
@@ -6545,8 +6449,7 @@ Setup_Intro_CrossFade_Into_Text:
 .loopPalettes:
     LDA.L Palettes_Intro,X 
     STA.L $7E2200,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopPalettes 
     JSR.W PaletteCrossFading_DecomposePaletteDataForFading 
@@ -6647,8 +6550,7 @@ CinematicFunction_Intro_CrossFadeFromScientistCutscene:
 .loopPalettes:
     LDA.L Palettes_Intro_CrossFade,X 
     STA.L $7EC1C0,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000E 
     BMI .loopPalettes 
     LDA.W #CinematicFunction_Nothing 
@@ -6988,8 +6890,7 @@ CinematicFunction_Intro_Finish:
 
 .loop:
     STZ.W $198D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #CinematicFunction_FlyToCeres_Initial 
     STA.W $1F51 
@@ -7020,8 +6921,7 @@ PreInstruction_CinematicSpriteObject_IntroMotherBrain:
     AND.W #$0FFF 
     CMP.W #$0100 
     BEQ .missile 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     RTS 
 
@@ -7115,8 +7015,7 @@ IntroMotherBrain_HurtFlashHandling:
 
 .loopWhitePalette:
     STA.L $7EC1E0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopWhitePalette 
     PLX 
     BRA .decFlashTimer 
@@ -7128,8 +7027,7 @@ IntroMotherBrain_HurtFlashHandling:
 .loopPalette:
     LDA.L Palettes_Intro_MotherBrain,X 
     STA.L $7EC1E0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopPalette 
     PLX 
 
@@ -7674,8 +7572,7 @@ CinematicFunction_FlyToCeres_Initial:
 .loopPalettes:
     LDA.L Palettes_SpaceGunshipCeres,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopPalettes 
     LDA.W #Tiles_Gunship_Ceres_Mode7>>8&$FF00 
@@ -8198,8 +8095,7 @@ CinematicFunction_FlyToCeres_Finish:
 
 .loop:
     STZ.W $198D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #CinematicFunction_FlyToCeres_StartGameAtCeres 
     STA.W $1F51 
@@ -8237,8 +8133,7 @@ CinematicFunction_CeresGoesBoom_Initial:
 
 .loop:
     STZ.W $198D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     STZ.W $078D 
     STZ.W $0911 
@@ -8248,8 +8143,7 @@ CinematicFunction_CeresGoesBoom_Initial:
 .loopPalettes:
     LDA.L Palettes_SpaceGunshipCeres,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopPalettes 
     LDA.W #Tiles_Gunship_Ceres_Mode7>>8&$FF00 
@@ -8856,8 +8750,7 @@ CinematicFunction_CeresGoesBoom_FadeOut:
 
 .loop:
     STZ.W $1A8D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #$0019 
     STA.W $0998 
@@ -8877,8 +8770,7 @@ CinematicFunction_FlyToZebes_Initial:
 
 .loop:
     STZ.W $198D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #Zebes_Tilemap>>8&$FF00 
     STA.B $48 
@@ -9439,8 +9331,7 @@ CinematicFunction_FlyToZebes_LoadGameData:
 
 .loop:
     STZ.W $198D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #$0006 
     STA.W $0998 
@@ -10598,16 +10489,14 @@ CinematicFunction_Ending_Setup:
 
 .loopClearRAM:
     STZ.W $198D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopClearRAM 
     LDX.W #$0000 
 
 .loopPalettes:
     LDA.L Palettes_CloudSpritesInZebesExplosionScene,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopPalettes 
     LDA.W #Tiles_Zebes_Being_Zoomed_Out_during_Zebes_Explosion_Mode7>>8&$FF00 
@@ -10701,8 +10590,7 @@ CinematicFunction_Ending_Setup:
 
 .loopTilemap:
     STA.L $7F4000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$4000 
     BMI .loopTilemap 
     LDA.W #Wide_Part_of_Zebes_Explosion_Tilemap>>8&$FF00 
@@ -11102,8 +10990,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
 .loopPalettes:
     LDA.L Palettes_ZebesExplosionScene,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopPalettes 
     LDY.W #CinematicSpriteObjectDefinitions_ExplodingZebes_Zebes 
@@ -11198,8 +11085,7 @@ CinematicFunction_Ending_ZebesDestruction2_CrossFade:
 .loopPalettes:
     LDA.L Palettes_ZebesExplosionScene,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0100 
     BMI .loopPalettes 
     SEP #$20 
@@ -11621,8 +11507,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_FlyToCamera:
 .loopPalette:
     LDA.W .greyGunshipPalette,X 
     STA.L $7EC0A0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopPalette 
     RTS 
 
@@ -11659,8 +11544,7 @@ CinematicFunction_Credits_Setup:
 .loopPalettes:
     LDA.L Palettes_Credits,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0100 
     BMI .loopPalettes 
     LDA.W #Tiles_Samus_Waiting_for_Credits_to_End>>8&$FF00 
@@ -11867,8 +11751,7 @@ CinematicFunction_Credits_Setup:
 
 .loop:
     STA.L $7E9800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     JSR.W Initialize_ShootingStars 
     LDA.W #Credits_Tilemap>>8&$FF00 
@@ -11992,8 +11875,7 @@ CinematicFunction_PostCredits_WavySamus:
 .loopTilemap:
     LDA.L Tilemap_PostCredits_DeeRForCe,X 
     STA.L $7E3240,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0240 
     BMI .loopTilemap 
     JSR.W CinematicBGObjects_Update32x32CinematicBGTilemap 
@@ -12118,16 +12000,14 @@ CinematicFunction_PostCredits_IdleSamus1:
 
 .loopTilemap9:
     STA.L $7E3240,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTilemap9 
     LDX.W #$0000 
 
 .loopTilemapC:
     LDA.L Tilemap_PostCredits_1994Nintendo,X 
     STA.L $7E3300,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0080 
     BMI .loopTilemapC 
     JSR.W CinematicBGObjects_Update32x32CinematicBGTilemap 
@@ -12334,12 +12214,10 @@ TransferPostCreditsSuperMetroidIconToVRAM:
     LDX.W $0330 
     LDA.W .size,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W .source,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.W .source+2,Y 
     STA.B $D0,X 
@@ -12347,8 +12225,7 @@ TransferPostCreditsSuperMetroidIconToVRAM:
     INX 
     LDA.W .destination,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     INC.W $1A4D 
     RTS 
@@ -12417,8 +12294,7 @@ CinematicFunction_PostCredits_FadeToWhite:
 .loopPalettes:
     LDA.L Palettes_PostCredits,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$01A0 
     BMI .loopPalettes 
     STZ.W $1993 
@@ -12436,8 +12312,7 @@ CinematicFunction_PostCredits_FadeToWhite:
 
 .loopTilemap:
     STA.L $7E3300,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTilemap 
     JSR.W CinematicBGObjects_Update32x32CinematicBGTilemap 
     RTS 
@@ -12499,16 +12374,14 @@ CinematicFunction_PostCredits_FadeFromWhite:
 
 .loopBGPalette:
     STA.L $7EC020,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopBGPalette 
     LDX.W #$001E 
 
 .loopSpirtePalette:
     LDA.L Palettes_EndingSuperMetroidIconFadingToGrey_Sprite_0,X 
     STA.L $7EC1E0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopSpirtePalette 
 
 .return:
@@ -12534,10 +12407,8 @@ CinematicFunction_PostCredits_GreyOutSuperMetroidIcon:
 .loopBGPalette:
     LDA.W $0000,Y 
     STA.L $7EC020,X 
-    DEY 
-    DEY 
-    DEX 
-    DEX 
+    DEY #2
+    DEX #2
     BPL .loopBGPalette 
     PLY 
     LDX.W #$001E 
@@ -12545,10 +12416,8 @@ CinematicFunction_PostCredits_GreyOutSuperMetroidIcon:
 .loopSpritePalette:
     LDA.W $0000,Y 
     STA.L $7EC1E0,X 
-    DEY 
-    DEY 
-    DEX 
-    DEX 
+    DEY #2
+    DEX #2
     BPL .loopSpritePalette 
     LDA.W $1A49 
     INC A 
@@ -12640,8 +12509,7 @@ Instruction_DrawItemPercentageCount:
     CLC 
     ADC.B $12 
     STA.B $12 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTanks 
     LDX.W #$0014 
 
@@ -12652,8 +12520,7 @@ Instruction_DrawItemPercentageCount:
     INC.B $12 
 
 .nextItem:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopItems 
     LDX.W #$0008 
 
@@ -12664,8 +12531,7 @@ Instruction_DrawItemPercentageCount:
     INC.B $12 
 
 .nextBeam:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopBeams 
     LDA.B $12 
     STA.W $4204 
@@ -12794,8 +12660,7 @@ Instruction_DrawItemPercentageJapanText:
 .loop:
     LDA.L Tilemap_PostCredits_ItemPercentageJapanText,X 
     STA.L $7E35C0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .return:
@@ -12810,8 +12675,7 @@ Instruction_ClearItemPercentageJapanText:
 
 .loop:
     STA.L $7E35C0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #CinematicFunction_PostCredits_ScrollItemPercentageDown 
     STA.W $1F51 
@@ -14267,8 +14131,7 @@ Instruction_EndZebesExplosion:
 
 .loop:
     STA.L $7EC020,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     LDA.W #CinematicFunc_Ending_SpaceView_ChangeMusic 
@@ -14755,12 +14618,10 @@ TransferPostCreditsSamusBeamToVRAM:
     LDX.W $0330 
     LDA.W #$0800 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W .sourceAddresses,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$7F 
     STA.B $D0,X 
@@ -14768,8 +14629,7 @@ TransferPostCreditsSamusBeamToVRAM:
     INX 
     LDA.W .VRAMAddresses,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     INC.W $1A4D 
 
@@ -14806,8 +14666,7 @@ Instruction_EndCredits:
 .loop:
     LDA.L Palettes_PostCredits,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loop 
     SEP #$20 

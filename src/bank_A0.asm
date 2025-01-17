@@ -108,8 +108,7 @@ NOPNOP_A08069:
 Instruction_Common_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_Common_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_Common_CallExternalFunctionInY_A080B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_Common_GotoY_PlusY:
 Instruction_Common_DecrementTimer_GotoYIfNonZero:
     DEC.W $0F90,X 
     BNE Instruction_Common_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_Common_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_Common_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_Common_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_Common_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_Common_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_Common_Sleep:
 Instruction_Common_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -509,8 +499,7 @@ SetAllActiveEnemiesToShakeHorizontallyFor2Frames:
     TAX 
     LDA.W #$0002 
     STA.W $0FA2,X 
-    INY 
-    INY 
+    INY #2
     BRA .loop 
 
 
@@ -699,10 +688,8 @@ Debug_LoadEnemySetData:
 
 .loopUpper:
     STA.L $7ED552,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopUpper 
     LDA.W $07D1 
     SEC 
@@ -850,8 +837,7 @@ Initialise_Enemies:
 
 .loopExtraEnemyRAM:
     STA.L $7E7000,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loopExtraEnemyRAM 
     PEA.W $A000 
@@ -866,16 +852,14 @@ Initialise_Enemies:
 
 .loopExtraEnemyProjectileRAM:
     STA.L $7EF380,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopExtraEnemyProjectileRAM 
     LDX.W #$0022 
     LDA.W #$FFFF 
 
 .loopEnemyProjectileKilledEnemyIndices:
     STA.L $7EF410,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopEnemyProjectileKilledEnemyIndices 
     LDX.W $07CF 
     LDA.L $A10000,X 
@@ -1070,8 +1054,7 @@ LoadEnemyTileData:
 .loopSprites:
     LDA.L Tiles_Standard_Sprite_1,X 
     STA.L $7E7000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopSprites 
     LDA.W $0E7A 
     BEQ .return 
@@ -1265,10 +1248,8 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
 .loopTargetEnemyPalette:
     LDA.W $0000,Y 
     STA.L $7E0000,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.W $0E2E 
     BNE .loopTargetEnemyPalette 
     PLB 
@@ -1418,8 +1399,7 @@ Determine_Which_Enemies_to_Process:
     TXA 
     LDY.W $17A4 
     STA.W $17AC,Y 
-    INY 
-    INY 
+    INY #2
     STY.W $17A4 
     LDA.W $0F86,X 
     BIT.W #$0400 
@@ -1427,8 +1407,7 @@ Determine_Which_Enemies_to_Process:
     TXA 
     LDY.W $17A6 
     STA.W $17EC,Y 
-    INY 
-    INY 
+    INY #2
     STY.W $17A6 
 
 .next:
@@ -1469,8 +1448,7 @@ Determine_Which_Enemies_to_Process:
     LDY.W $17A4 
     STA.W $17AC,Y 
     STA.W $17EC,Y 
-    INY 
-    INY 
+    INY #2
     STY.W $17A4 
     LDA.W $0F86,X 
     BIT.W #$0400 
@@ -1478,8 +1456,7 @@ Determine_Which_Enemies_to_Process:
     TXA 
     LDY.W $17A6 
     STA.W $17EC,Y 
-    INY 
-    INY 
+    INY #2
     STY.W $17A6 
 
 .nextProcessOffscreen:
@@ -2148,10 +2125,8 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
     LDA.W $0000,Y 
     AND.W #$00FF 
     STA.W $060B 
-    INY 
-    INY 
-
-.loop:
+    INY #2
+    .loop:
     LDA.W $0004,Y 
     STA.B $16 
     TAX 
@@ -2380,30 +2355,23 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ProcessExtendedTilemap:
     PHY 
     LDY.B $16 
-    INY 
-    INY 
-
-.loop:
+    INY #2
+    .loop:
     LDA.W $0000,Y 
     CMP.W #$FFFF 
     BEQ .return 
     TAX 
     LDA.W $0002,Y 
     STA.W $060D 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     LSR A 
     BCC .unrolled 
 
 .innerLoop:
     LDA.W $0000,Y 
     STA.L $7E0000,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.W $060D 
     BNE .innerLoop 
     JMP.W .loop 
@@ -2414,14 +2382,8 @@ ProcessExtendedTilemap:
     STA.L $7E0000,X 
     LDA.W $0002,Y 
     STA.L $7E0002,X 
-    INX 
-    INX 
-    INX 
-    INX 
-    INY 
-    INY 
-    INY 
-    INY 
+    INX #4
+    INY #4
     CPX.W #$2800 
 
 .crash:
@@ -2840,8 +2802,7 @@ Projectile_vs_Projectile_Collision_Handling:
     JSR.W HandleEnemyProjectileCollisionWithProjectile 
 
 .nextProjectile:
-    INY 
-    INY 
+    INY #2
     CPY.W #$000A 
     BMI .loopProjectile 
 
@@ -2968,8 +2929,7 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
     LDA.W $0000,X 
     AND.W #$00FF 
     STA.W $060B 
-    INX 
-    INX 
+    INX #2
     STX.W $186E 
 
 .loopSpritemapEntries:
@@ -2988,8 +2948,7 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
     LDA.W $0000,X 
     BEQ .nextSpritemapEntry 
     STA.W $060D 
-    INX 
-    INX 
+    INX #2
     STX.W $1878 
 
 .loopHitboxes:
@@ -3131,8 +3090,7 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     LDA.W $0000,X 
     AND.W #$00FF 
     STA.W $060B 
-    INX 
-    INX 
+    INX #2
     STX.W $186E 
 
 .loopSpritemapEntries:
@@ -3155,8 +3113,7 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
 
 .entriesRemaining:
     STA.W $060D 
-    INX 
-    INX 
+    INX #2
     STX.W $1878 
 
 .loopHitboxes:
@@ -3348,8 +3305,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
     LDA.W $0000,X 
     AND.W #$00FF 
     STA.W $060B 
-    INX 
-    INX 
+    INX #2
     STX.W $186E 
 
 .loopSpritemapEntries:
@@ -3371,8 +3327,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
 
 
   + STA.W $060D 
-    INX 
-    INX 
+    INX #2
     STX.W $1878 
 
 .loopHitboxes:
@@ -4223,10 +4178,8 @@ EnemyDeath:
 
 .loopClearEnemySlot:
     STZ.W $0F78,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BPL .loopClearEnemySlot 
     LDA.B $12 
     BEQ .incEnemiesKilled 
@@ -4268,10 +4221,8 @@ RinkaDeath:
 
 .loopClearEnemySlot:
     STZ.W $0F78,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BPL .loopClearEnemySlot 
     LDA.B $12 
     BEQ .return 
@@ -5763,12 +5714,10 @@ UNUSED_ProtoInstructionListHandler_A0AE7C:
 
 .notTerminated:
     STA.W $0F8E,X 
-    INY 
-    INY 
+    INY #2
     LDA.B ($00),Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F90,X 
     LDA.W #$0000 
@@ -7140,8 +7089,7 @@ CheckForVerticalSolidBlockCollision:
 .loop:
     LDA.L $7F0002,X 
     BMI + 
-    INX 
-    INX 
+    INX #2
     DEC.B $1A 
     BPL .loop 
     PLX 
@@ -7379,8 +7327,7 @@ UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6:
 .loop:
     LDA.L $7F0002,X 
     BMI + 
-    INX 
-    INX 
+    INX #2
     DEC.B $1A 
     BPL .loop 
     PLX 
@@ -7618,8 +7565,7 @@ CheckForVerticalSolidBlockCollision_SkreeMetaree:
 .loop:
     LDA.L $7F0002,X 
     BMI + 
-    INX 
-    INX 
+    INX #2
     DEC.B $1A 
     BPL .loop 
     PLX 
@@ -7740,8 +7686,7 @@ CalculateAngleOfXYOffset:
     STA.B $12 
     LDA.B $14 
     BPL .positive14 
-    INX 
-    INX 
+    INX #2
     EOR.W #$FFFF 
     INC A 
 
@@ -8021,8 +7966,7 @@ ProcessEnemyInstructions:
     LDA.W $0000,Y 
     BPL .timer 
     STA.W $1784 
-    INY 
-    INY 
+    INY #2
     PHK 
     PEA.W .loop-1 
     JML.W [$1784] 
@@ -8792,8 +8736,7 @@ MoveEnemyDownBy_14_12_BranchEntry:
     LDA.L $7F0002,X 
     JSR.W EnemyVerticalBlockReaction 
     BCS .solid 
-    INX 
-    INX 
+    INX #2
     DEC.B $1C 
     BPL .loop 
     PLX 

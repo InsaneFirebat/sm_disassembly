@@ -108,8 +108,7 @@ NOPNOP_A58069:
 Instruction_CommonA5_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_CommonA5_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_CommonA5_CallExternalFunctionInY_A580B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_CommonA5_GotoY_PlusY:
 Instruction_CommonA5_DecrementTimer_GotoYIfNonZero:
     DEC.W $0F90,X 
     BNE Instruction_CommonA5_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA5_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_CommonA5_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_CommonA5_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_CommonA5_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA5_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA5_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_CommonA5_Sleep:
 Instruction_CommonA5_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -427,16 +417,14 @@ InitAI_DraygonBody:
 .loopTargetPalette:
     LDA.W Palette_Draygon_Sprite1,X 
     STA.L $7EC320,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTargetPalette 
     LDX.W #$0FFE 
     LDA.W #$0338 
 
 .loopBG2Tilemap:
     STA.L $7E2000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopBG2Tilemap 
     LDX.W $0E54 
     LDA.W #$0700 
@@ -2214,10 +2202,8 @@ HurtAI_Draygon:
 .loopBG12Palette5:
     LDA.W $0000,Y 
     STA.L $7E0000,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.W $060B 
     BNE .loopBG12Palette5 
     LDX.W $0E54 
@@ -2232,10 +2218,8 @@ HurtAI_Draygon:
 .loopHealthBasedPalette:
     LDA.W DraygonHealthBasedPaletteTable,Y 
     STA.L $7EC0B2,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0008 
     BNE .loopHealthBasedPalette 
 
@@ -2255,10 +2239,8 @@ HurtAI_Draygon:
 .loopSpritePalette7:
     LDA.W $0000,Y 
     STA.L $7E0000,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.W $060B 
     BNE .loopSpritePalette7 
     LDA.W $0A64 
@@ -2390,8 +2372,7 @@ DraygonHealthBasedPaletteHandling:
     LDA.W $0F8C 
     CMP.W DraygonHealthBasedPaletteThresholds,X 
     BPL .found 
-    INX 
-    INX 
+    INX #2
     BRA .loopFindThreshold 
 
 
@@ -2408,10 +2389,8 @@ DraygonHealthBasedPaletteHandling:
 .loopPalette:
     LDA.W DraygonHealthBasedPaletteTable,Y 
     STA.L $7EC0B2,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0008 
     BNE .loopPalette 
 
@@ -2422,8 +2401,7 @@ DraygonHealthBasedPaletteHandling:
 Instruction_Draygon_FunctionInY:
     LDA.W $0000,Y 
     STA.W $0FA8,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -3384,10 +3362,7 @@ Instruction_DraygonBody_DisplaceGraphics:
     STA.L $7E883E 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     RTL 
 
 
@@ -3530,8 +3505,7 @@ InstList_DraygonTail_FacingRight_TailFlail_1:
 Instruction_Draygon_BodyFunctionInY:
     LDA.W $0000,Y 
     STA.W $0FA8 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -3542,8 +3516,7 @@ Instruction_Draygon_QueueSFXInY_Lib2_Max6:
     JSL.L QueueSound_Lib2_Max6 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -3554,8 +3527,7 @@ Instruction_Draygon_QueueSFXInY_Lib3_Max6:
     JSL.L QueueSound_Lib3_Max6 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -3663,12 +3635,8 @@ HandleDeathSequenceEvirMovement:
     STA.L $7EF1F8,X 
 
 .nextSpriteObject:
-    DEX 
-    DEX 
-    DEY 
-    DEY 
-    DEY 
-    DEY 
+    DEX #2
+    DEY #4
     BPL .gotoLoop 
     PLY 
     RTS 
@@ -3686,8 +3654,7 @@ SpawnDeathSequenceEvirSpriteObjects:
 
 .loopClearSpriteObjects:
     STA.L $7EEF78,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopClearSpriteObjects 
     LDX.W #$0002 
     LDY.W #$0014 
@@ -3702,10 +3669,7 @@ loopLeft:
     LDA.W #$0E00 
     STA.B $18 
     JSL.L Create_Sprite_Object 
-    DEY 
-    DEY 
-    DEY 
-    DEY 
+    DEY #4
     DEX 
     BPL loopLeft 
     LDX.W #$0002 
@@ -3720,10 +3684,7 @@ loopLeft:
     LDA.W #$0E00 
     STA.B $18 
     JSL.L Create_Sprite_Object 
-    DEY 
-    DEY 
-    DEY 
-    DEY 
+    DEY #4
     DEX 
     BPL .loopRight 
     PLY 
@@ -3739,8 +3700,7 @@ Draygon_ClearSpriteObjects:
 
 .loop:
     STA.L $7EEF78,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLY 
     PLX 
@@ -3822,8 +3782,7 @@ HandleDraygonFightIntroDance:
     STA.L $7EF1F8,X 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     CPX.W #$0038 
     BPL .loop 
     LDA.L $7E880C 
@@ -6762,8 +6721,7 @@ Instruction_Draygon_EyeFunctionInY:
     LDA.W $0000,Y 
     STA.W $0FE8 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7754,10 +7712,7 @@ Instruction_SporeSpawn_SetMaxXRadiusAndAngleDelta:
     STA.L $7E7816 
     LDA.W $0002,Y 
     STA.L $7E7818 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     RTL 
 
 
@@ -7765,16 +7720,14 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_SporeSpawn_MaxXRadiusInY_A5E840:
     LDA.W $0000,Y 
     STA.L $7E7816 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 UNUSED_Instruction_SporeSpawn_AngleDeltaInY_A5E84A:
     LDA.W $0000,Y 
     STA.L $7E7818 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7783,8 +7736,7 @@ UNUSED_Instruction_SporeSpawn_MaxXRadiusPlusY_A5E854:
     CLC 
     ADC.W $0000,Y 
     STA.L $7E7816 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7793,8 +7745,7 @@ UNUSED_Instruction_SporeSpawn_AngleDeltaPlusY_A5E863:
     CLC 
     ADC.W $0000,Y 
     STA.L $7E7818 
-    INY 
-    INY 
+    INY #2
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -7802,8 +7753,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Instruction_SporeSpawn_SporeGenerationFlagInY:
     LDA.W $0000,Y 
     STA.L $7E9000 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7826,8 +7776,7 @@ Instruction_SporeSpawn_QueueSFXInY_Lib2_Max6:
     JSL.L QueueSound_Lib2_Max6 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7838,8 +7787,7 @@ Instruction_SporeSpawn_QueueSFXInY_Lib3_Max6:
     JSL.L QueueSound_Lib3_Max6 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7860,8 +7808,7 @@ Instruction_SporeSpawn_FunctionInY:
     STA.W $0FA8,X 
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7876,10 +7823,8 @@ Instruction_SporeSpawn_LoadDeathSequencePalette:
 .loopSpritePalette1:
     LDA.W Palette_SporeSpawn_DeathSequence_0,Y 
     STA.L $7EC120,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0020 
     BNE .loopSpritePalette1 
     LDY.B $12 
@@ -7890,10 +7835,8 @@ Instruction_SporeSpawn_LoadDeathSequencePalette:
 .loopBG12Palette4:
     LDA.W Palette_SporeSpawn_DeathSequence_Level_0,Y 
     STA.L $7EC080,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0020 
     BNE .loopBG12Palette4 
     LDY.B $12 
@@ -7904,16 +7847,13 @@ Instruction_SporeSpawn_LoadDeathSequencePalette:
 Instruction_SporeSpawn_.loopBG12Palette7:
     LDA.W Palette_SporeSpawn_DeathSequence_Background_0,Y 
     STA.L $7EC0E0,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0020 
     BNE Instruction_SporeSpawn_.loopBG12Palette7 
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7928,10 +7868,8 @@ Instruction_SporeSpawn_LoadDeathSequenceTargetPalette:
 .loopSpritePalette1:
     LDA.W Palette_SporeSpawn_DeathSequence_0,Y 
     STA.L $7EC320,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0020 
     BNE .loopSpritePalette1 
     LDY.B $12 
@@ -7942,10 +7880,8 @@ Instruction_SporeSpawn_LoadDeathSequenceTargetPalette:
 .loopBG12Palette4:
     LDA.W Palette_SporeSpawn_DeathSequence_Level_0,Y 
     STA.L $7EC280,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0020 
     BNE .loopBG12Palette4 
     LDY.B $12 
@@ -7956,16 +7892,13 @@ Instruction_SporeSpawn_LoadDeathSequenceTargetPalette:
 .loopBG12Palette7:
     LDA.W Palette_SporeSpawn_DeathSequence_Background_0,Y 
     STA.L $7EC2E0,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0020 
     BNE .loopBG12Palette7 
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -8072,10 +8005,8 @@ InitAI_SporeSpawn:
 .loopSpritePalette7:
     LDA.W Palette_SporeSpawn,Y 
     STA.L $7EC3E0,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0020 
     BNE .loopSpritePalette7 
     LDX.W $0E54 
@@ -8507,8 +8438,7 @@ SporeSpawnReaction_Common:
 
 .loopClearProjectiles:
     STA.W $1997,Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopClearProjectiles 
     LDA.W #InstList_SporeSpawn_DeathSequence_0 
     STA.W $0F92 
@@ -8537,10 +8467,8 @@ LoadSporeSpawnHealthBasedPalette:
 .loopSpritePalette1:
     LDA.W Palette_SporeSpawn_HealthBased_0,Y 
     STA.L $7EC120,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0020 
     BNE .loopSpritePalette1 
     PLX 

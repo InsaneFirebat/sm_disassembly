@@ -3465,8 +3465,7 @@ Load_FX_Header:
 .loopPaletteFX:
     LSR.W $196A 
     BCS .spawnPaletteFX 
-    INY 
-    INY 
+    INY #2
     CPY.W #$0010 
     BNE .loopPaletteFX 
     BRA .paletteFXEnd 
@@ -3478,8 +3477,7 @@ Load_FX_Header:
     TAY 
     JSL.L Spawn_PaletteFXObject 
     PLY 
-    INY 
-    INY 
+    INY #2
     BRA .loopPaletteFX 
 
 
@@ -3499,8 +3497,7 @@ Load_FX_Header:
 .loopAnimatedTiles:
     LSR.W $196A 
     BCS .spawnAnimatedTiles 
-    INY 
-    INY 
+    INY #2
     CPY.W #$0010 
     BNE .loopAnimatedTiles 
     BRA .return 
@@ -3512,8 +3509,7 @@ Load_FX_Header:
     TAY 
     JSL.L Spawn_AnimatedTilesObject 
     PLY 
-    INY 
-    INY 
+    INY #2
     BRA .loopAnimatedTiles 
 
 

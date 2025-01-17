@@ -108,8 +108,7 @@ NOPNOP_A68069:
 Instruction_CommonA6_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_CommonA6_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_CommonA6_CallExternalFunctionInY_A680B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_CommonA6_GotoY_PlusY:
 Instruction_CommonA6_DecrementTimer_GotoYIfNonZero:
     DEC.W $0F90,X 
     BNE Instruction_CommonA6_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA6_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_CommonA6_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_CommonA6_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_CommonA6_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA6_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA6_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_CommonA6_Sleep:
 Instruction_CommonA6_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -638,12 +628,8 @@ Function_Boulder_Bounce_Rising:
     TAY 
     LDA.W $0FB0,X 
     BEQ .right 
-    INY 
-    INY 
-    INY 
-    INY 
-
-.right:
+    INY #4
+    .right:
     JSR.W MoveBoulderHorizontally 
     LDA.W $0FAA,X 
     CLC 
@@ -723,12 +709,8 @@ Function_Boulder_Bounce_Falling:
     TAY 
     LDA.W $0FB0,X 
     BEQ ..right 
-    INY 
-    INY 
-    INY 
-    INY 
-
-..right:
+    INY #4
+    ..right:
     JSR.W MoveBoulderHorizontally 
     LDA.W $0FAA,X 
     CLC 
@@ -765,12 +747,8 @@ Function_Boulder_Rolling:
     STA.W $0F7E,X 
     LDA.W $0FB0,X 
     BEQ .right 
-    INY 
-    INY 
-    INY 
-    INY 
-
-.right:
+    INY #4
+    .right:
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y 
     STA.B $12 
     LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y 
@@ -2312,12 +2290,8 @@ InitAI_Puromi:
     TAY 
     LDA.W $0FB0,X 
     BNE .firingUp 
-    INY 
-    INY 
-    INY 
-    INY 
-
-.firingUp:
+    INY #4
+    .firingUp:
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.L $7E800A,X 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y 
@@ -3797,8 +3771,7 @@ InitAI_Ridley:
 
 .loopClearExtraRAM:
     STA.W $2000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopClearExtraRAM 
     PLB 
     JSL.L DisableMinimap_MarkBossRoomTilesExplored 
@@ -3868,8 +3841,7 @@ InitAI_Ridley:
 .loopClearPalettes:
     STA.L $7EC2E2,X 
     STA.L $7EC3E2,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loopClearPalettes 
     RTL 
@@ -3913,8 +3885,7 @@ InitAI_Ridley:
 
 .loopClearSpritePalette7:
     STA.L $7EC200,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loopClearSpritePalette7 
     LDA.W #InstList_BabyMetroidCutscene_0 
@@ -4134,8 +4105,7 @@ Function_Ridley_Startup_MainBodyAppears:
     STA.L $7EC000,X 
     LDX.B $14 
     STA.L $7EC000,X 
-    INY 
-    INY 
+    INY #2
     INC.B $12 
     INC.B $12 
     INC.B $14 
@@ -7154,8 +7124,7 @@ Instruction_BabyMetroidCutscene_PlayCrySFXOrGotoX:
     JSL.L QueueSound_Lib3_Max6 
 
 Instruction_BabyMetroidCutscene_NextInstruction:
-    INX 
-    INX 
+    INX #2
     RTS 
 
 
@@ -7506,23 +7475,19 @@ HandleTypewriterText:
 
   + CMP.W #$0001 
     BNE + 
-    INX 
-    INX 
+    INX #2
     LDA.W $0000,X 
     STA.L $7E803C 
-    INX 
-    INX 
+    INX #2
     JMP.W .loop 
 
 
   + CMP.W #$000D 
     BNE + 
-    INX 
-    INX 
+    INX #2
     LDA.W $0000,X 
     STA.L $7E8038 
-    INX 
-    INX 
+    INX #2
     JMP.W .loop 
 
 
@@ -9481,8 +9446,7 @@ TargetAMissileOrSuperMissileIfAvailable:
     BCC .targetProjectile 
 
 .nextProjectile:
-    INY 
-    INY 
+    INY #2
     CPY.W #$000A 
     BMI .loop 
     CLC 
@@ -9594,8 +9558,7 @@ UpdateTailPartRAMFromXToY:
     PHA 
     LDA.W $0000,X 
     STA.B [$12],Y 
-    INX 
-    INX 
+    INX #2
     TYA 
     CLC 
     ADC.W #$0014 
@@ -10758,19 +10721,14 @@ GetBabyMetroidSpritemapPointerFromInstList:
     BMI .instruction 
     CMP.B [$03] 
     BNE .timerDoesNotMatchCounter 
-    INX 
-    INX 
-    INX 
-    INX 
-
-.manualReturn:
+    INX #4
+    .manualReturn:
     LDA.W $0000,X 
     BPL .notInstruction 
 
 .instruction:
     STA.B $06 
-    INX 
-    INX 
+    INX #2
     PEA.W .manualReturn-1 
     JMP.W ($0006) 
 
@@ -10794,8 +10752,7 @@ GetBabyMetroidSpritemapPointerFromInstList:
 
 RidleyGeneralUseDrawing:
     LDA.W $0000,Y 
-    INY 
-    INY 
+    INY #2
     STA.B $18 
     LDX.W $0590 
     CLC 
@@ -11209,8 +11166,7 @@ RidleyTail_vs_SamusProjectile_CollisionDetection:
     BCC .collision 
 
 .nextProjectile:
-    INY 
-    INY 
+    INY #2
     CPY.W #$000A 
     BMI .loop 
     CLC 
@@ -11688,16 +11644,14 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingBaby_A6E4EE:
     LDA.L $7E7836 
     BNE Instruction_Ridley_GotoY 
-    INY 
-    INY 
+    INY #2
     BRA Instruction_Ridley_GotoY 
 
 
 UNUSED_Instruction_RidleyCeres_GotoYIfHoldingBaby_A6E4F8:
     LDA.L $7E7836 
     BEQ Instruction_Ridley_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -11711,8 +11665,7 @@ Inst_RidleyCeres_UpdateSamusPrevPosition_HeldYDisplacement:
     STA.L $7E783A 
 
 Instruction_Ridley_SkipToNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -11731,10 +11684,7 @@ Instruction_Ridley_MoveRidleyWithArgsInY:
     CLC 
     ADC.W $0F7E 
     STA.W $0F7E 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     RTL 
 
 
@@ -13896,8 +13846,7 @@ Inst_CeresDoor_GotoYIfSamusIsNotWithing30Pixels:
     BCS Inst_CeresDoor_GotoYIfSamusIsNotWithin30Pixels_gotoY 
 
 Inst_CeresDoor_GotoYIfSamusIsNotWithin30Pixels_outOfRange:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 

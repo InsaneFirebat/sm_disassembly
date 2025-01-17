@@ -485,17 +485,14 @@ AnimDelay_9_TransitionToPoseDependingOnItemEquippedAndYSpeed:
     BNE + 
     LDA.W $0B2C 
     BNE + 
-    INY 
-    INY 
+    INY #2
     LDA.B [$00],Y 
     AND.W #$00FF 
     STA.W $0A2C 
     BRA .return 
 
 
-  + INY 
-    INY 
-    INY 
+  + INY #3
     LDA.B [$00],Y 
     AND.W #$00FF 
     STA.W $0A2C 
@@ -507,21 +504,14 @@ AnimDelay_9_TransitionToPoseDependingOnItemEquippedAndYSpeed:
     BNE + 
     LDA.W $0B2C 
     BNE + 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     LDA.B [$00],Y 
     AND.W #$00FF 
     STA.W $0A2C 
     BRA .return 
 
 
-  + INY 
-    INY 
-    INY 
-    INY 
-    INY 
+  + INY #5
     LDA.B [$00],Y 
     AND.W #$00FF 
     STA.W $0A2C 
@@ -546,8 +536,7 @@ UNUSED_AnimDelay_A_TransitionToPoseDependingOnYSpeed_9083F6:
 
 
 .nonZeroYSpeed:
-    INY 
-    INY 
+    INY #2
     LDA.B [$00],Y 
     AND.W #$00FF 
     STA.W $0A2C 
@@ -628,8 +617,7 @@ UNUSED_AnimDelay_C_TransToPoseDependingOnItemEquipped_90848B:
     LDA.W $09A2 
     BIT.B $12 
     BNE .equippedItems 
-    INY 
-    INY 
+    INY #2
     LDA.B [$00],Y 
     AND.W #$00FF 
     STA.W $0A2C 
@@ -637,9 +625,7 @@ UNUSED_AnimDelay_C_TransToPoseDependingOnItemEquipped_90848B:
 
 
 .equippedItems:
-    INY 
-    INY 
-    INY 
+    INY #3
     LDA.B [$00],Y 
     AND.W #$00FF 
     STA.W $0A2C 
@@ -1213,8 +1199,7 @@ DrawSamusEchoes:
     JSR.W DrawSamusEcho 
 
 .next:
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     LDA.W $0AB2 
     BNE .returnLower 
@@ -1575,8 +1560,7 @@ Handle_AtmosphericEffects:
     JSR.W (.pointers,X) 
 
 .next:
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     PLP 
     RTS 
@@ -5413,8 +5397,7 @@ DisableMinimap_MarkBossRoomTilesExplored:
     STA.L $7EC63C,X 
     STA.L $7EC67C,X 
     STA.L $7EC6BC,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000A 
     BMI .loop 
     LDA.W $179C 
@@ -5423,10 +5406,7 @@ DisableMinimap_MarkBossRoomTilesExplored:
 .loopBossID:
     CMP.W .bossID,X 
     BEQ + 
-    DEX 
-    DEX 
-    DEX 
-    DEX 
+    DEX #4
     BPL .loopBossID 
     PLB 
     PLP 
@@ -5443,10 +5423,7 @@ DisableMinimap_MarkBossRoomTilesExplored:
     LDA.W $0002,X 
     STA.B $18 
     JSR.W MarkMapTilesExplored 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     BRA .loopMapTiles 
 
 
@@ -5623,10 +5600,7 @@ Update_Minimap:
     STY.B $20 
     STX.B $1E 
     REP #$30 
-    DEX 
-    DEX 
-    DEX 
-    DEX 
+    DEX #4
     TYA 
     DEC A 
     DEC A 
@@ -5861,10 +5835,8 @@ Update_HUD_Minimap_Tilemap:
     STA.L $7EC6BC,X 
 
 .next:
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     TYA 
     AND.W #$003F 
     CMP.W #$0000 
@@ -6093,12 +6065,10 @@ Update_Beam_Tiles_and_Palette:
     LDX.W $0330 
     LDA.W #$0100 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W BeamTilesPointers,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$9A 
     STA.B $D0,X 
@@ -6106,8 +6076,7 @@ Update_Beam_Tiles_and_Palette:
     INX 
     LDA.W #$6300 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     JMP.W Load_Beam_Palette_withStackPrepped 
 
@@ -6134,10 +6103,8 @@ Load_Beam_Palette_withStackPrepped:
 .loop:
     LDA.B [$00],Y 
     STA.L $7EC1C0,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0020 
     BMI .loop 
     PLB 
@@ -6172,10 +6139,8 @@ Load_Beam_Palette:
 .loop:
     LDA.B [$00],Y 
     STA.L $7EC1C0,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0020 
     BMI .loop 
     RTS 
@@ -6203,8 +6168,7 @@ Reset_Projectile_Data:
     STZ.W $0CB8,X 
     LDA.W #RTS_90B169 
     STA.W $0C68,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0014 
     BMI .loop 
     STZ.W $0CD2 
@@ -6424,8 +6388,7 @@ Handle_Projectiles:
     LDX.W $0DDE 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     STX.W $0DDE 
     BPL .loop 
     STZ.W $0DD2 
@@ -6616,8 +6579,7 @@ ProjectilePreInstruction_SuperMissile:
     JSL.L Clear_Projectile 
 
 .next:
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     RTS 
 
@@ -6679,8 +6641,7 @@ ProjectilePreInstruction_SuperMissileLink:
     JSL.L Clear_Projectile 
 
 .next:
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
 
 .return:
@@ -7530,8 +7491,7 @@ Spawn_ProjectileTrail:
 .loop:
     LDA.W $D658,Y 
     BEQ .found 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
 
 .returnCarrySet:
@@ -7579,8 +7539,7 @@ HandleProjectileTrails:
 .loopLeft:
     LDA.L $900000,X 
     BPL .notAPointer 
-    INX 
-    INX 
+    INX #2
     PEA.W .loopLeft-1 
     STA.B $12 
     JMP.W ($0012) 
@@ -7630,8 +7589,7 @@ HandleProjectileTrails:
 .loop:
     LDA.L $900000,X 
     BPL .notPointer 
-    INX 
-    INX 
+    INX #2
     PEA.W .loop-1 
     STA.B $12 
     JMP.W ($0012) 
@@ -7671,8 +7629,7 @@ HandleProjectileTrails:
     STA.W $0590 
 
 .rightTrailEnd:
-    DEY 
-    DEY 
+    DEY #2
     BMI .return 
     JMP.W .main 
 
@@ -7735,8 +7692,7 @@ HandleProjectileTrails:
     STA.W $0590 
 
 .next:
-    DEY 
-    DEY 
+    DEY #2
     BMI .returnFrozen 
     JMP.W .loopTimeIsFrozen 
 
@@ -7846,14 +7802,11 @@ Fire_Uncharge_Beam:
 .loop:
     LDA.W $0C2C,X 
     BEQ .zeroDamage 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000A 
     BMI .loop 
-    DEX 
-    DEX 
-
-.zeroDamage:
+    DEX #2
+    .zeroDamage:
     STX.B $14 
     JSR.W InitializeProjectilePositionDirection 
     BCS .cannotFire 
@@ -7977,14 +7930,11 @@ FireChargeBeam:
 .loop:
     LDA.W $0C2C,X 
     BEQ .zeroDamage 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000A 
     BMI .loop 
-    DEX 
-    DEX 
-
-.zeroDamage:
+    DEX #2
+    .zeroDamage:
     STX.B $14 
     JSR.W InitializeProjectilePositionDirection 
     BCS .cannotFire 
@@ -8251,8 +8201,7 @@ HandleChargingBeamGraphicsAudio:
     LDA.W $0CD0 
     CMP.W #$001E 
     BMI .returnMiddle 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0006 
     BMI .loopChargeBeam 
 
@@ -8288,8 +8237,7 @@ HandleChargingBeamGraphicsAudio:
     PHX 
     JSR.W DrawFlareAnimationComponent 
     PLX 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopHyperBeam 
 
 .returnLower:
@@ -8437,14 +8385,11 @@ FireHyperBeam:
 .loop:
     LDA.W $0C2C,X 
     BEQ .zeroDamage 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000A 
     BMI .loop 
-    DEX 
-    DEX 
-
-.zeroDamage:
+    DEX #2
+    .zeroDamage:
     STX.B $14 
     JSR.W InitializeProjectilePositionDirection 
     BCS .return 
@@ -8701,8 +8646,7 @@ HUDSelectionHandler_Missiles_SuperMissiles:
 .loop:
     LDA.W $0C2C,X 
     BEQ + 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000A 
     BMI .loop 
     BRA .cannotFire 
@@ -8802,8 +8746,7 @@ Spawn_SuperMissileLink:
 .loop:
     LDA.W $0C2C,X 
     BEQ .zeroDamage 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000A 
     BMI .loop 
     BRA .return 
@@ -8877,14 +8820,11 @@ HUDSelectionHandler_MorphBall:
 .loopBomb:
     LDA.W $0C18,X 
     BEQ .noProjectileType 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0014 
     BMI .loopBomb 
-    DEX 
-    DEX 
-
-.noProjectileType:
+    DEX #2
+    .noProjectileType:
     STX.B $14 
     LDA.W #$0500 
     STA.W $0C18,X 
@@ -8937,14 +8877,11 @@ HUDSelectionHandler_MorphBall:
 .loopPowerBomb:
     LDA.W $0C18,X 
     BEQ + 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0014 
     BMI .loopPowerBomb 
-    DEX 
-    DEX 
-
-  + STX.B $14 
+    DEX #2
+    + STX.B $14 
     LDA.W $09D2 
     XBA 
     STA.B $12 
@@ -9716,8 +9653,7 @@ DrawArmCannon:
 
 
 .nonZeroAnimFrame:
-    INY 
-    INY 
+    INY #2
     LDA.W $0000,Y 
     AND.W #$007F 
 
@@ -9734,12 +9670,10 @@ DrawArmCannon:
     LDX.W $0330 
     LDA.W #$0020 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W $0000,Y 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$9A 
     STA.B $D0,X 
@@ -9747,8 +9681,7 @@ DrawArmCannon:
     INX 
     LDA.W #$61F0 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     PLP 
     RTS 
@@ -10400,8 +10333,7 @@ FireWaveSBA:
     ADC.W .YOffsets,X 
     STA.W $0B78,X 
     JSL.L InitializeSBAProjectile 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #$0004 
     STA.W $0CCE 
@@ -10455,8 +10387,7 @@ FireIceSBA:
     LDA.W #$0258 
     STA.W $0BF0,X 
     JSL.L InitializeProjectile 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #$0004 
     STA.W $0CCE 
@@ -10520,8 +10451,7 @@ FireSpazerSBA:
     JSL.L Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #$0004 
     STA.W $0CCE 
@@ -10568,8 +10498,7 @@ FirePlasmaSBA:
     STA.W $0BDC,X 
     STZ.W $0BF0,X 
     JSL.L InitializeSBAProjectile 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #$0004 
     STA.W $0CCE 
@@ -11147,8 +11076,7 @@ SamusMovementHandler_ShinesparkCrash_EchoesCircleSamus:
     CLC 
     ADC.B $16 
     STA.W $0AB8,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     RTS 
 
@@ -11815,8 +11743,7 @@ BombSpread:
     STA.W $0CA4,X 
     LDA.W BombSpreadData_timers,Y 
     STA.W $0C7C,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0014 
     BMI .loop 
     LDA.W #$0005 
@@ -13039,8 +12966,7 @@ SamusTimerHackHandler_HandleTimer:
 
 .loop:
     STA.L $7EC200,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #SamusTimerHackHandler_DrawTimer 
     STA.W $0A5A 
@@ -14642,8 +14568,7 @@ SamusDisplayHandler_ShinesparkCrashCircle:
     PHX 
     JSR.W DrawShinesparkCrashEchoCircle 
     PLX 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     RTS 
 
@@ -14657,8 +14582,7 @@ UNUSED_SamusDisplayHandler_DrawSamusEchoes_90EC03:
     PHX 
     JSR.W DrawSamusEchoes 
     PLX 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     RTS 
 
@@ -15080,8 +15004,7 @@ UpdateSamusEchoPosition:
     STA.W $0AB0,X 
     LDA.W $0AFA 
     STA.W $0AB8,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0004 
     BMI .storeDistance 
     LDX.W #$0000 
@@ -15167,8 +15090,7 @@ UNUSED_FireUnknownProjectile27_90EF5E:
     ADC.W .YOffsets,X 
     STA.W $0B78,X 
     JSL.L Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #$0004 
     STA.W $0CCE 

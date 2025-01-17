@@ -405,8 +405,7 @@ Write_supermetroid_ToSRAM:
 .loop:
     LDA.L Text_supermetroid,X 
     STA.L $701FE0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTL 
@@ -430,8 +429,7 @@ CheckForNonCorruptSRAM:
 .corruptLoop:
     LDA.L Text_madadameyohn,X 
     STA.L $701FE0,X ; $70:1FE0..1FEB = 'madadameyohn' (all SRAM is corrupt)
-    DEX 
-    DEX 
+    DEX #2
     BPL .corruptLoop 
     PLX 
     RTL ; Return
@@ -444,8 +442,7 @@ CheckForNonCorruptSRAM:
     LDA.L $701FE0,X 
     CMP.L Text_supermetroid,X 
     BNE .return ; If $70:1FE0..1FEB = 'supermetroid':
-    DEX 
-    DEX 
+    DEX #2
     BPL .nonCorruptLoop 
     LDA.W #$0004 
     STA.W $1F59 ; Number of demo sets = 4
@@ -648,10 +645,8 @@ UNUSED_WriteYBytesOfATo_000000_X_16bit_8083D0:
 
 .loop:
     STA.L $000000,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loop 
     PLB 
     PLP 
@@ -686,10 +681,8 @@ WriteYBytesOfATo_7E0000_X_16bit:
 
 .loop:
     STA.L $7E0000,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loop 
     PLB 
     PLP 
@@ -705,10 +698,8 @@ WriteYBytesOfATo_7F0000_X_16bit:
 
 .loop:
     STA.L $7F0000,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loop 
     PLB 
     PLP 
@@ -803,8 +794,7 @@ CommonBootSection:
     STZ.W $A000,X 
     STZ.W $C000,X 
     STZ.W $E000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .clearBank7E 
     PHK 
     PLB 
@@ -917,10 +907,8 @@ LoadMirrorOfCurrentAreasMapExplored:
 .loop:
     LDA.L $7ECD52,X 
     STA.W $07F7,Y 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0100 
     BMI .loop 
     LDX.W $079F 
@@ -947,10 +935,8 @@ MirrorCurrentAreasMapExplored:
 .loop:
     LDA.W $07F7,Y 
     STA.L $7ECD52,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0100 
     BMI .loop 
     LDA.W $0789 
@@ -1045,16 +1031,14 @@ NTSC_PAL_SRAM_MappingCheck:
 .backupSRAM:
     LDA.L $700000,X 
     STA.L $7F0000,X ; $7F:0000..1FFF = [$70:0000..1FFF]
-    DEX 
-    DEX 
+    DEX #2
     BPL .backupSRAM 
     LDA.W #$0000 
     LDX.W #$1FFE 
 
 .clearSRAM:
     STA.L $700000,X ; Clear $70:0000..1FFF
-    DEX 
-    DEX 
+    DEX #2
     BPL .clearSRAM 
     LDA.W #$0000 
     LDX.W #$1FFE 
@@ -1062,8 +1046,7 @@ NTSC_PAL_SRAM_MappingCheck:
 .writeSRAM:
     STA.L $702000,X 
     INC A ; $70:2000..3FFF = 0..FFFh
-    DEX 
-    DEX 
+    DEX #2
     BPL .writeSRAM 
     LDA.W #$0000 
     LDX.W #$1FFE 
@@ -1072,18 +1055,15 @@ NTSC_PAL_SRAM_MappingCheck:
     CMP.L $700000,X 
     BNE .failedSRAMCheck ; If [$70:0000..1FFF] != 0..FFFh: go to .failedSRAMCheck
     INC A 
-    DEX 
-    DEX 
-
-.verifySRAM:
+    DEX #2
+    .verifySRAM:
     BPL .loop 
     LDX.W #$1FFE 
 
 .restoreSRAM:
     LDA.L $7F0000,X 
     STA.L $700000,X ; $70:0000..1FFF = [$7F:0000..1FFF]
-    DEX 
-    DEX 
+    DEX #2
     BPL .restoreSRAM 
 
 .return:
@@ -2052,8 +2032,7 @@ CheckIfMusicIsQueued:
 .loop:
     LDA.W $0629,X 
     BNE .nonZeroTimer 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     PLP 
@@ -2093,8 +2072,7 @@ HandleMusicQueue:
     LDX.W $063B 
     STZ.W $0619,X 
     STZ.W $0629,X 
-    INX 
-    INX 
+    INX #2
     TXA 
     AND.W #$000E 
     STA.W $063B 
@@ -2136,8 +2114,7 @@ HandleMusicQueue:
     LDX.W $063B 
     STZ.W $0619,X 
     STZ.W $0629,X 
-    INX 
-    INX 
+    INX #2
     TXA 
     AND.W #$000E 
     STA.W $063B 
@@ -2157,8 +2134,7 @@ UNUSED_QueueMusicDataOrTrack_808FA3:
     STA.W $0619,X 
     LDA.W #$0010 
     STA.W $0629,X 
-    INX 
-    INX 
+    INX #2
     TXA 
     AND.W #$000E 
     STA.W $0639 
@@ -2190,8 +2166,7 @@ QueueMusicDataOrTrack_8FrameDelay:
     STA.W $0619,X 
     LDA.W #$0008 
     STA.W $0629,X 
-    INX 
-    INX 
+    INX #2
     TXA 
     AND.W #$000E 
     STA.W $0639 
@@ -2219,8 +2194,7 @@ QueueMusicDataOrTrack_YFrameDelay:
 
 .setTimer:
     STA.W $0629,X 
-    INX 
-    INX 
+    INX #2
     TXA 
     AND.W #$000E 
     STA.W $0639 
@@ -2751,8 +2725,7 @@ TransferSamusTilesToVRAM:
     CLC 
     ADC.B $14 
     STA.B $14 
-    INY 
-    INY 
+    INY #2
     STX.W $420B 
     LDA.W #$6100 
     STA.W $2116 
@@ -2784,8 +2757,7 @@ TransferSamusTilesToVRAM:
     CLC 
     ADC.B $14 
     STA.B $14 
-    INY 
-    INY 
+    INY #2
     STX.W $420B 
     LDA.W #$6180 
     STA.W $2116 
@@ -2831,8 +2803,7 @@ ProcessAnimatedTilesObjectVRAMTransfers:
     STZ.W $1F25,X 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .return:
@@ -3040,8 +3011,7 @@ NMI:
     STA.W $4302,Y 
 
 .next:
-    INX 
-    INX 
+    INX #2
     CPX.B #$0C 
     BNE .handleHDMAQueue 
     LDX.B $55 
@@ -3656,8 +3626,7 @@ InitialiseHUD_GameLoading:
 .loopRows123:
     LDA.W Tilemap_HUD_rows123,X 
     STA.L $7EC608,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$00C0 
     BNE .loopRows123 
     LDA.W $09A2 
@@ -3807,8 +3776,7 @@ HandleHUDTilemap_PausedAndRunning:
     TXA 
     LDX.W .etankIconOffsets,Y 
     STA.L $7EC608,X 
-    INY 
-    INY 
+    INY #2
     CPY.W #$001C 
     BMI .loopEtanks 
 
@@ -3899,19 +3867,16 @@ HandleHUDTilemap_PausedAndRunning:
     LDX.W $0330 
     LDA.W #$00C0 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W #$C608 ; $7E
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W #$007E 
     STA.B $D0,X 
     INX 
     LDA.W #$5820 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     PLB 
     PLP 
@@ -4007,8 +3972,7 @@ DrawThreeHUDDigits:
     TAY 
     LDA.B [$00],Y 
     STA.L $7EC608,X 
-    INX 
-    INX 
+    INX #2
     LDA.W $4216 
 
 DrawTwoHUDDigits:
@@ -4500,8 +4464,7 @@ UNUSED_QueueClearingOfBG2Tilemap_80A1E3:
 
 .loop:
     STA.L $7E4000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDX.W $0330 
     LDA.W #$1000 
@@ -4526,8 +4489,7 @@ QueueClearingOfFXTilemap:
 
 .loop:
     STA.L $7E4000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDX.W $0330 
     LDA.W #$0F00 
@@ -5697,10 +5659,7 @@ UpdateLevelBackgroundDataColumn:
     STA.W $C90A,Y 
 
 .next:
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     STY.W $0937 
     PLA 
     CLC 
@@ -5903,14 +5862,10 @@ UpdateBackgroundLevelDataRow:
     STA.W $C98E,Y 
 
 .next:
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     STY.W $0937 
     PLY 
-    INY 
-    INY 
+    INY #2
     DEC.W $0939 
     BEQ .return 
     JMP.W .loop 

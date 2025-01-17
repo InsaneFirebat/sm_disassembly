@@ -662,8 +662,7 @@ PostGrappleCollisionDetection_Downwards:
     STA.W $0E08 
 
 .nocollision:
-    INX 
-    INX 
+    INX #2
     DEC.B $1A 
     BPL .loop 
     PLB 
@@ -710,8 +709,7 @@ PostGrappleCollisionDetection_Upwards:
     STA.W $0E0A 
 
 .noCollision:
-    INX 
-    INX 
+    INX #2
     DEC.B $1A 
     BPL .loop 
     PLB 
@@ -1573,14 +1571,11 @@ UNUSED_DetermineSamusSuitPaletteIndex_948E68:
     LDA.W $09A2 
     BIT.W #$0020 
     BNE .return 
-    DEY 
-    DEY 
+    DEY #2
     BIT.W #$0001 
     BNE .return 
-    DEY 
-    DEY 
-
-.return:
+    DEY #2
+    .return:
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -2710,8 +2705,7 @@ SamusBlockCollisionDetection_Vertical_LeftToRight:
 .loop:
     JSR.W SamusBlockCollisionReaction_Vertical 
     BCS .returnCollision 
-    INX 
-    INX 
+    INX #2
     DEC.B $1A 
     BPL .loop 
     CLC 
@@ -2766,8 +2760,7 @@ SamusBlockCollisionDetection_Vertical_RightToLeft:
 .loop:
     JSR.W SamusBlockCollisionReaction_Vertical 
     BCS .returnCollision 
-    DEX 
-    DEX 
+    DEX #2
     INC.B $1A 
     LDA.B $1C 
     CMP.B $1A 
@@ -3829,10 +3822,7 @@ MoveBlockIndexX_OneRowDown_OneColumnRight:
 
 
 MoveBlockIndexX_TwoColumnsLeft:
-    DEX 
-    DEX 
-    DEX 
-    DEX 
+    DEX #4
     RTS 
 
 
@@ -4425,8 +4415,7 @@ PowerBombExplosionBlockCollisionHandling_Row:
     PHY 
     JSR.W BlockBombedReaction 
     PLY 
-    INX 
-    INX 
+    INX #2
     DEY 
     BPL .loop 
     RTS 
@@ -4761,8 +4750,7 @@ MoveBeamVertically_NoWaveBeam:
 
 .loop:
     JSR.W BlockShotReaction_Vertical 
-    INX 
-    INX 
+    INX #2
     DEC.B $26 
     BPL .loop 
     LDA.B $28 
@@ -4932,8 +4920,7 @@ MoveBeamVertically_WaveBeam:
 
 .loop:
     JSR.W BlockShotReaction_Vertical 
-    INX 
-    INX 
+    INX #2
     DEC.B $26 
     BPL .loop 
 
@@ -6633,8 +6620,7 @@ DrawGrappleBeam:
     BPL .notInstruction 
     STA.B $24 
     PEA.W .loopInstructions-1 
-    INY 
-    INY 
+    INY #2
     JMP.W ($0024) 
 
 
@@ -6652,14 +6638,12 @@ DrawGrappleBeam:
     BNE + 
     PHX 
     LDY.W $0D62,X 
-    DEY 
-    DEY 
+    DEY #2
     LDA.W $0000,Y 
     TAY 
     JSR.W DrawGrappleSegment 
     PLX 
-    DEX 
-    DEX 
+    DEX #2
     DEC.B $28 
     BPL .loopAnimations 
 

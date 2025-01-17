@@ -28,8 +28,7 @@ Clear_AnimatedTilesObjects:
 
 .loop:
     STZ.W $1EF5,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     PLP 
@@ -47,8 +46,7 @@ Spawn_AnimatedTilesObject:
 .loop:
     LDA.W $1EF5,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     PLB 
@@ -94,8 +92,7 @@ AnimatedTilesObject_Handler:
     LDX.W $1EF3 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .return:
@@ -114,8 +111,7 @@ Process_AnimatedTilesObject:
     LDA.W $0000,Y 
     BPL .notInstruction 
     STA.W $1F49 
-    INY 
-    INY 
+    INY #2
     PEA.W .loop-1 
     JMP.W ($1F49) 
 
@@ -168,8 +164,7 @@ UNUSED_Instruction_AnimatedTilesObject_GotoYPlusY_8780BC:
 UNUSED_Inst_AnimTilesObject_DecTimer_GotoYIfNonZero_8780D4:
     DEC.W $1F01,X 
     BNE Instruction_AnimatedTilesObject_GotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -235,8 +230,7 @@ UNUSED_Inst_AnimTilesObject_GotoYIfBossBitsInYSet_878120:
 
 
 .notSet:
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -251,24 +245,21 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 Instruction_AnimatedTilesObject_GotoYIfEventYSet:
     LDA.W $0000,Y 
-    INY 
-    INY 
+    INY #2
     JSL.L CheckIfEvent_inA_HasHappened 
     BCC .notSet 
     JMP.W Instruction_AnimatedTilesObject_GotoY 
 
 
 .notSet:
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
 Instruction_AnimatedTilesObject_SetEventY:
     LDA.W $0000,Y 
     JSL.L MarkEvent_inA 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -498,16 +489,14 @@ Instruction_AnimTilesObject_GotoYIfAnyBossBitsYSetForAreaY:
     LDA.L $7ED828,X 
     PLX 
     AND.W $0000,Y 
-    INY 
-    INY 
+    INY #2
     AND.W #$00FF 
     BEQ .notSet 
     JMP.W Instruction_AnimatedTilesObject_GotoY 
 
 
 .notSet:
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -517,8 +506,7 @@ Instruction_AnimTilesObject_SpawnTourianStatueEyeGlowParamY:
     LDY.W #EnemyProjectile_TourianStatueEyeGlow 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -528,8 +516,7 @@ Instruction_AnimTilesObject_SpawnTourianStatuesSoulParamY:
     LDY.W #EnemyProjectile_TourianStatueSoul 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -540,24 +527,21 @@ Instruction_AnimatedTilesObject_GotoYIfTourianStatueBusy:
 
 
 .notBusy:
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
 Instruction_AnimatedTilesObject_TourianStatueSetAnimStateY:
     LDA.W $0000,Y 
     TSB.W $1E6F 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
 Instruction_AnimatedTilesObject_TourianStatueResetAnimStateY:
     LDA.W $0000,Y 
     TRB.W $1E6F 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -569,8 +553,7 @@ Instruction_AnimatedTilesObject_Clear3ColorsOfPaletteData:
     STA.L $7EC002,X 
     STA.L $7EC004,X 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -580,8 +563,7 @@ Instruction_AnimatedTilesObject_SpawnPaletteFXObjectInY:
     TAY 
     JSL.L Spawn_PaletteFXObject 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -594,16 +576,13 @@ Instruction_AnimatedTilesObject_Write8ColorsOfTargetPaletteD:
 .loop:
     LDA.W .palleteData,Y 
     STA.L $7EC200,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0010 
     BNE .loop 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 

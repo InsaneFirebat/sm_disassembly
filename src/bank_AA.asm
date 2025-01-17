@@ -108,8 +108,7 @@ NOPNOP_AA8069:
 Instruction_CommonAA_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_CommonAA_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_CommonAA_CallExternalFunctionInY_AA80B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_CommonAA_GotoY_PlusY:
 Instruction_CommonAA_DecrementTimer_GotoYIfNonZero:
     DEC.W $0F90,X 
     BNE Instruction_CommonAA_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonAA_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_CommonAA_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_CommonAA_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_CommonAA_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonAA_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonAA_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_CommonAA_Sleep:
 Instruction_CommonAA_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -5041,8 +5031,7 @@ TorizoMusicTracks_elevator:
 Instruction_Torizo_FunctionInY:
     LDA.W $0000,Y 
     STA.W $0FB0,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -5234,8 +5223,7 @@ Instruction_Torizo_SetupPaletteTransitionToBlack:
 .loop:
     STA.L $7EC340,X 
     STA.L $7EC320,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTL 
@@ -6710,8 +6698,7 @@ LoadInitialBombTorizoPalettes:
     STA.L $7EC340,X 
     LDA.W Palette_Torizo_InitialBombTorizo_SpritePalette1,X 
     STA.L $7EC320,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -6726,8 +6713,7 @@ LoadNormalTorizoTargetPalettes:
     STA.L $7EC340,X 
     LDA.W Palette_Torizo_Normal_SpritePalette1,X 
     STA.L $7EC320,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -6742,8 +6728,7 @@ LoadInitialGoldenTorizoPalettes:
     STA.L $7EC340,X 
     LDA.W Palette_Torizo_InitialGoldenTorizo_SpritePalette1,X 
     STA.L $7EC320,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -6758,8 +6743,7 @@ LoadGoldenTorizoPalettes:
     STA.L $7EC340,X 
     LDA.W Palette_Torizo_GoldenTorizo_SpritePalette1,X 
     STA.L $7EC320,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -6774,8 +6758,7 @@ LoadNormalTorizoPalettes:
     STA.L $7EC140,X 
     LDA.W Palette_Torizo_Normal_SpritePalette1,X 
     STA.L $7EC120,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -6800,12 +6783,10 @@ Instruction_Torizo_ClearAnimationLock:
 Instruction_Torizo_GotoY_IfFaceBlownUp_ElseGotoY2_IfGolden:
     BIT.W $0FB6,X 
     BVS .faceBlownUp 
-    INY 
-    INY 
+    INY #2
     LDA.W $079F 
     BNE .faceBlownUp 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -6818,8 +6799,7 @@ Instruction_Torizo_GotoY_IfFaceBlownUp_ElseGotoY2_IfGolden:
 Instruction_Torizo_LinkInstructionInY:
     LDA.W $0000,Y 
     STA.L $7E7800,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -6851,8 +6831,7 @@ Instruction_Torizo_Spawn5LowHealthExplosion_SleepFor28Frames:
     BPL .loop 
     PLA 
     PLY 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     LDA.W #$0028 
@@ -6967,8 +6946,7 @@ Instruction_Torizo_StandingUpMovement_IndexInY:
     ADC.W .YVelocities,Y 
     STA.W $0F7E,X 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -6995,8 +6973,7 @@ Instruction_Torizo_SittingDownMovement_IndexInY:
     SBC.W .negatedYVelocities,Y 
     STA.W $0F7E,X 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7038,8 +7015,7 @@ Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY:
     SBC.W $0F7A,X 
     EOR.W $0FB4,X 
     BPL .facingAway 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7050,8 +7026,7 @@ Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY:
     STA.L $7E7806,X 
 
 .return:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7091,8 +7066,7 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
     SBC.W $0F7A,X 
     EOR.W $0FB4,X 
     BPL .facingAway 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7103,8 +7077,7 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
     STA.L $7E7806,X 
 
 .return:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7116,8 +7089,7 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
 Instruction_Torizo_GotoY_IfRising:
     LDA.W $0FAA,X 
     BMI .rising 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7133,8 +7105,7 @@ Instruction_Torizo_CallYIfSamusIsLessThan38PixelsInFront:
     BCC .near 
 
 .return:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7166,8 +7137,7 @@ Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels:
 
 
 .return:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7218,8 +7188,7 @@ Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY:
     LDY.W #EnemyProjectile_BombTorizoSonicBoom 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7229,8 +7198,7 @@ Instruction_Torizo_SpawnGoldenTorizoSonicBoomWithParameterY:
     LDY.W #EnemyProjectile_GoldenTorizoSonicBoom 
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7240,8 +7208,7 @@ Instruction_Torizo_SpawnBombTorizoExplosiveSwipeWithParamY:
     LDY.W #EnemyProjectile_BombTorizoExplosiveSwipe 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7333,8 +7300,7 @@ HurtAI_BombTorizo:
     LDA.W #$7FFF 
     STA.L $7EC140,X 
     STA.L $7EC120,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
 
@@ -7383,8 +7349,7 @@ Function_Torizo_WakeWhenBombTorizoChozoFinishesCrumbling:
     LDA.W $1C37,X 
     CMP.W #PLMEntries_BombTorizosCrumblingChozo 
     BEQ .return 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     LDA.W TorizoMusicTracks_song1 
@@ -7665,8 +7630,7 @@ InitAI_Torizo:
     STA.L $7EC3E0,X 
     LDA.W Palette_Torizo_OrbProjectile,X 
     STA.L $7EC360,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTargetPalettes 
     LDA.W $079F 
     BNE .GTCode 
@@ -7909,8 +7873,7 @@ Instruction_Torizo_GotoY_IfNotHitGround:
 
 
 .notHitGround:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -8729,12 +8692,10 @@ Instruction_GoldenTorizo_EyeBeamAttack_0:
     LDA.W $1997,X 
     CMP.W #EnemyProjectile_GoldenTorizoEgg 
     BEQ .gotoY 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9129,8 +9090,7 @@ HurtAI_GoldenTorizo:
     LDA.W #$7FFF 
     STA.L $7EC140,X 
     STA.L $7EC120,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopPalettes 
     PLX 
 
@@ -9180,8 +9140,7 @@ Instruction_GoldenTorizo_GotoY_IfSamusIsMorphedBehindTorizo:
 
 
 .noGo:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9191,8 +9150,7 @@ Instruction_GoldenTorizo_SpawnEyeBeam:
     LDY.W #EnemyProjectile_GoldenTorizoEyeBeam 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9218,8 +9176,7 @@ Instruction_GT_CallY_25Chance_IfSamusMorphedInFrontOfTorizo:
 
 
 .noGo:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9242,8 +9199,7 @@ Instruction_GoldenTorizo_CallY_25Chance_IfHealthLessThan789:
 
 
 .noGo:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9264,8 +9220,7 @@ Instruction_GoldenTorizo_CallY_IfStunHealthGreaterThan2A31:
 
 
 .noGo:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9295,8 +9250,7 @@ Instruction_GoldenTorizo_GotoY_JumpForwards_IfAtLeast70Pixel:
 
 
 .noGo:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9328,8 +9282,7 @@ Instruction_GoldenTorizo_GotoY_JumpBack_IfLessThan20Pixels:
 
 
 .noGo:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9393,8 +9346,7 @@ Instruction_GoldenTorizo_WalkingMovement_IndexInY:
     SBC.W $0F7A,X 
     EOR.W $0FB4,X 
     BPL .facingAway 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9405,8 +9357,7 @@ Instruction_GoldenTorizo_WalkingMovement_IndexInY:
     STA.L $7E7806,X 
 
 .return:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9711,8 +9662,7 @@ InitAI_TourianStatue:
     STA.L $7EC3E0,X 
     LDA.W Palettes_TourianStatue_Phantoon,X 
     STA.L $7EC340,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopPalettes 
     RTL 
 
@@ -10122,8 +10072,7 @@ RTS_AADAE4:
     SEC 
     SBC.W #$0040 
     TAX 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
 
 .return:
@@ -10533,8 +10482,7 @@ Function_Shaktool_FinalPiece:
     SEC 
     SBC.W #$0040 
     TAX 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     RTS 
 
@@ -11173,8 +11121,7 @@ Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
 .return:
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -11221,8 +11168,7 @@ Instruction_Chozo_Movement_IndexInY:
     ADC.W .YOffsets,Y 
     STA.W $0AFA 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -11265,8 +11211,7 @@ InitAI_NoobTubeCrack:
 .loop:
     LDA.W Palette_NoobTubeCrack_SpritePalette1,X 
     STA.L $7EC320,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     RTL 
 
@@ -11299,8 +11244,7 @@ InitAI_Chozo:
     STA.L $7EC340,X 
     LDA.W Palette_Chozo_WreckedShip_SpritePalette1,X 
     STA.L $7EC320,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopWreckedShip 
     JSL.L Spawn_Hardcoded_PLM 
     db $4A,$17 
@@ -11319,8 +11263,7 @@ InitAI_Chozo:
     STA.L $7EC340,X 
     LDA.W Palette_Chozo_LowerNorfair_SpritePalette1,X 
     STA.L $7EC320,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     JSL.L Spawn_Hardcoded_PLM 
     db $0C,$1D 

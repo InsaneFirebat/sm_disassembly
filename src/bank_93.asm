@@ -50,8 +50,7 @@ InitializeProjectile:
 
 
 .dontCrash:
-    INY 
-    INY 
+    INY #2
     TYA 
     CLC 
     ADC.B $12 
@@ -91,8 +90,7 @@ InitializeSuperMissileLink:
 
 
 .dontCrash:
-    INY 
-    INY 
+    INY #2
     LDA.W $0000,Y 
     STA.W $0C40,X 
     LDA.W #$0001 
@@ -121,8 +119,7 @@ InitializeBomb:
 
 
 .dontCrash:
-    INY 
-    INY 
+    INY #2
     LDA.W $0000,Y 
     STA.W $0C40,X 
     LDA.W #$0001 
@@ -237,8 +234,7 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
 
 
 .dontCrash:
-    INY 
-    INY 
+    INY #2
     TYA 
     CLC 
     ADC.B $12 
@@ -314,8 +310,7 @@ ProjectileInstructionHandler:
     LDA.W $0000,Y 
     BPL .timer 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     PEA.W .loop-1 
     JMP.W ($0012) 
 
@@ -463,8 +458,7 @@ DrawProjectiles:
     LDX.W $0DDE 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     STX.W $0DDE 
     BMI .echoes 
     JMP.W .loop 
@@ -513,8 +507,7 @@ UNUSED_PartialDrawProjectiles_9282FD:
     LDX.W $0DDE 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     STX.W $0DDE 
     BMI .timerExpired 
     JMP.W .loop 
@@ -583,8 +576,7 @@ DrawBombsAndProjectileExplosions:
     LDX.W $0DDE 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     STX.W $0DDE 
     BPL .loop 
     PLP 

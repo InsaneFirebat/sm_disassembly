@@ -108,8 +108,7 @@ NOPNOP_A38069:
 Instruction_CommonA3_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_CommonA3_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_CommonA3_CallExternalFunctionInY_A380B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_CommonA3_GotoY_PlusY:
 
 Instruction_CommonA3_DecrementTimer_GotoYIfNonZero:
     BNE Instruction_CommonA3_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA3_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_CommonA3_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_CommonA3_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_CommonA3_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA3_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA3_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_CommonA3_Sleep:
 Instruction_CommonA3_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -1276,12 +1266,8 @@ SetFirefleaSpeed:
     LDA.B $12 
     AND.W #$0001 
     BNE + 
-    INY 
-    INY 
-    INY 
-    INY 
-
-  + TYA 
+    INY #4
+    + TYA 
     STA.L $7E7804,X 
     LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y 
     STA.W $0FAA,X 
@@ -5067,8 +5053,7 @@ Instruction_Sidehopper_QueueSoundInY_Lib2_Max3:
     JSL.L QueueSound_Lib2_Max3 
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -7385,8 +7370,7 @@ FireChargedBeamAtSamus:
 .loop:
     LDA.W $0C2C,Y 
     BEQ .zeroDamage 
-    INY 
-    INY 
+    INY #2
     BRA .loop 
 
 
@@ -9589,16 +9573,14 @@ InstList_Yard_Airborne_FacingRight_1:
 Instruction_Yard_MovementFunctionInY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_Yard_HidingInstListInY:
     LDA.W $0000,Y 
     STA.W $0FAE,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9611,8 +9593,7 @@ Instruction_Yard_DirectionInY:
     LDA.W YardDirectionData_airborneFacingDirection,Y 
     STA.L $000FAC,X 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -9625,10 +9606,7 @@ Instruction_Yard_MoveByPixelsInY:
     CLC 
     ADC.W $0F7E,X 
     STA.W $0F7E,X 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     RTL 
 
 
@@ -11653,10 +11631,8 @@ EnemyGraphicsDrawnHook_Reflec_PeriodicallyCyclePalettes:
 .loop:
     LDA.W ReflecPaletteCycleColors,Y 
     STA.L $7EC112,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     DEC.W $060B 
     BNE .loop 
     LDA.W $1796 
@@ -11747,8 +11723,7 @@ Instruction_Reflec_Param2InY:
     LDA.W $0000,Y 
     STA.W $0FB6,X 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -12184,8 +12159,7 @@ Palette_HZoomer:
 Instruction_HZoomer_FunctionInY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -13035,8 +13009,7 @@ CrawlersInstListPointerTable_upsideLeft:
 Instruction_Crawlers_FunctionInY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 

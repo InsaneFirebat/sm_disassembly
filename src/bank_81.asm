@@ -20,8 +20,7 @@ SaveToSRAM:
 .loopSamus:
     LDA.W $09A2,Y 
     STA.W $D7C0,Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopSamus 
     LDX.W #$0000 
     LDA.W $079F 
@@ -32,10 +31,8 @@ SaveToSRAM:
 .loopMap:
     LDA.W $07F7,Y 
     STA.W $CD52,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPY.W #$0100 
     BMI .loopMap 
     JSR.W SaveMap 
@@ -54,10 +51,8 @@ SaveToSRAM:
     CLC 
     ADC.B $14 
     STA.B $14 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$DE1C ; $7E
     BNE .loopToSRAM 
     LDX.B $12 
@@ -98,10 +93,8 @@ LoadFromSRAM:
     CLC 
     ADC.B $14 
     STA.B $14 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$DE1C ; $7E
     BNE .loop 
     LDX.B $12 
@@ -128,8 +121,7 @@ LoadFromSRAM:
 .loopSuccess:
     LDA.W $D7C0,Y 
     STA.W $09A2,Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopSuccess 
     JSR.W LoadMap 
     LDA.W $D916 
@@ -156,10 +148,8 @@ LoadFromSRAM:
     CLC 
     ADC.B $14 
     STA.B $14 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$DE1C ; $7E
     BNE .loopCorrupt 
     LDA.W #$0000 
@@ -391,8 +381,7 @@ LoadMap:
 
 .loopTilesExplored:
     STA.L $7ECD52,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTilesExplored 
     STZ.B $16 
 
@@ -581,8 +570,7 @@ AddSpritemapToOAM:
 
 
   + STA.B $18 
-    INY 
-    INY 
+    INY #2
     LDA.W $0590 
     BIT.W #$FE00 
     BNE .gotoReturn 
@@ -693,8 +681,7 @@ AddSpritemapToOAM_Offscreen:
 
 
   + STA.B $18 
-    INY 
-    INY 
+    INY #2
     LDA.W $0590 
     BIT.W #$FE00 
     BNE .goto_return 
@@ -818,8 +805,7 @@ AddSpritemapFrom_82C569_TableToOAM:
     LDA.W $0000,Y 
     BEQ .return 
     STA.B $18 
-    INY 
-    INY 
+    INY #2
     LDX.W $0590 
     CLC 
 
@@ -897,8 +883,7 @@ AddSamusSpritemapToOAM:
     LDA.W $0000,Y 
     BEQ .return 
     STA.B $18 
-    INY 
-    INY 
+    INY #2
     LDX.W $0590 
     CLC 
 
@@ -970,8 +955,7 @@ AddSpritemapFrom_93A1A1_TableToOAM:
     LDY.W FlareSpritemapPointers,X 
     LDA.W $0000,Y 
     STA.B $18 
-    INY 
-    INY 
+    INY #2
     BRA AddSpritemapToOAM_Common 
 
 
@@ -988,8 +972,8 @@ AddProjectileSpritemapToOAM:
 
 
   + STA.B $18 
-    INY 
-    INY ; fallthrough to AddSpritemapToOAM_Common
+    INY #2
+    ; fallthrough to AddSpritemapToOAM_Common
 
 AddSpritemapToOAM_Common:
     LDX.W $0590 
@@ -1044,8 +1028,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8AB8:
     PHY 
     LDA.W $0000,Y 
     BEQ .return 
-    INY 
-    INY 
+    INY #2
     STA.B $18 
     LDX.W $0590 
     CLC 
@@ -1104,8 +1087,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8B22:
     PHY 
     LDA.W $0000,Y 
     BEQ .return 
-    INY 
-    INY 
+    INY #2
     STA.B $18 
     LDX.W $0590 
     CLC 
@@ -1170,8 +1152,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8B96:
     PHY 
     LDA.W $0000,Y 
     BEQ .return 
-    INY 
-    INY 
+    INY #2
     STA.B $18 
     LDX.W $0590 
     CLC 
@@ -1239,8 +1220,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8C0A:
 
 
   + STA.B $18 
-    INY 
-    INY 
+    INY #2
     LDX.W $0590 
     CLC 
 
@@ -1306,8 +1286,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8C7F:
 
 
   + STA.B $18 
-    INY 
-    INY 
+    INY #2
     LDX.W $0590 
     CLC 
 
@@ -1406,8 +1385,7 @@ Debug_GameOverMenu_Index0_FadeOut_ConfigureGraphicsForMenu:
 .loopPalettes:
     LDA.L $7EC000,X 
     STA.L $7E3300,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopPalettes 
     LDX.W #$0000 
@@ -1415,8 +1393,7 @@ Debug_GameOverMenu_Index0_FadeOut_ConfigureGraphicsForMenu:
 .loopIORegisterMirrors:
     LDA.B $51,X 
     STA.L $7E3500,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0036 
     BMI .loopIORegisterMirrors 
     JSR.W MapVRAMForMenu 
@@ -1558,10 +1535,7 @@ LoadMenuPalettes:
     STA.L $7EC000,X 
     LDA.L Menu_Palettes+2,X 
     STA.L $7EC002,X 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     CPX.W #$0200 
     BMI .loop 
     RTS 
@@ -1573,8 +1547,7 @@ LoadDebugGameOverMenuTilemap:
 
 .loopClear:
     STA.L $7E3800,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0800 
     BMI .loopClear 
     LDX.W $0330 
@@ -1600,24 +1573,20 @@ LoadDebugGameOverMenuTilemap:
     CMP.W #$FFFF 
     BEQ .return 
     STA.B $D0,X 
-    INY 
-    INY 
+    INY #2
     LDA.B [$00],Y 
     STA.B $D2,X 
-    INY 
-    INY 
+    INY #2
     LDA.B [$00],Y 
     STA.B $D4,X 
-    INY 
-    INY 
+    INY #2
     LDA.B [$00],Y 
     STA.B $D5,X 
     TXA 
     CLC 
     ADC.W #$0007 
     TAX 
-    INY 
-    INY 
+    INY #2
     BRA .loop 
 
 
@@ -1709,10 +1678,7 @@ DebugGameOverMenu_Index3_Main:
     STA.W $0370,X 
     LDA.W #$00B6 
     STA.W $0372,X 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     STX.W $0590 
     RTS 
 
@@ -1723,8 +1689,7 @@ RestorePalettesAndIORegistersFromDebugGameOverMenu:
 .loopPalettes:
     LDA.L $7E3300,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BMI .loopPalettes 
     LDX.W #$0000 
@@ -1732,8 +1697,7 @@ RestorePalettesAndIORegistersFromDebugGameOverMenu:
 .loopIORegisters:
     LDA.L $7E3500,X 
     STA.B $51,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0036 
     BMI .loopIORegisters 
     RTS 
@@ -1915,8 +1879,7 @@ GameOverMenu_Index1_Initialise:
 
 .loop:
     STA.L $7E3600,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0800 
     BMI .loop 
     LDX.W $0330 
@@ -2153,10 +2116,7 @@ LoadFileSelectPalettes:
     STA.L $7EC000,X 
     LDA.L Menu_Palettes+2,X 
     STA.L $7EC002,X 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     CPX.W #$0200 
     BMI .loop 
     RTS 
@@ -2179,8 +2139,7 @@ FileSelectMenu_Index20_MainToOptionsMenu_FadeOut:
 
 .loop:
     STA.W $198D,Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$0030 
     BMI .loop 
 
@@ -2310,8 +2269,7 @@ ClearMenuTilemap:
 
 .loop:
     STA.L $7E3600,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     RTS 
 
@@ -2720,8 +2678,7 @@ Draw_FileCopyClear_Confirmation:
 
 .loop:
     STA.L $7E3600,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$06C0 
     BMI .loop 
     LDY.W #Tilemap_FileSelect_no 
@@ -2847,8 +2804,7 @@ HandleFileCopyArrowPalette:
 .loop:
     LDA.L $7EC124,X 
     STA.L $7EC122,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000C 
     BMI .loop 
     TYA 
@@ -2881,8 +2837,7 @@ FileSelectMenu_Index0_FileCopy_DoFileCopy:
 .loop:
     LDA.B [$00],Y 
     STA.B [$03],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$065C 
     BMI .loop 
     LDA.W $19B7 
@@ -2913,8 +2868,7 @@ FileSelectMenu_Index0_FileCopy_DoFileCopy:
 
 .loopRows:
     STA.L $7E3600,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0740 
     BMI .loopRows 
     LDA.W $19B9 
@@ -2937,10 +2891,8 @@ FileSelectMenu_Index0_FileCopy_DoFileCopy:
 .loopColumns:
     STA.L $7E3600,X 
     STA.L $7E35C0,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0016 
     BMI .loopColumns 
     LDY.W #Tilemap_FileSelect_copyCompleted 
@@ -3182,8 +3134,7 @@ FileSelectMenu_Index19_FileClear_DoFileClear:
 
 .loopClear:
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$065C 
     BMI .loopClear 
     LDA.W $19B7 
@@ -3206,8 +3157,7 @@ FileSelectMenu_Index19_FileClear_DoFileClear:
 
 .loopRows:
     STA.L $7E3600,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0740 
     BMI .loopRows 
     LDA.W $19B7 
@@ -3425,8 +3375,7 @@ FileSelectMenu_Index1_TitleSequenceToMain_LoadBG2:
 .loop:
     LDA.L Zebes_and_Stars_Tilemap,X 
     STA.L $7E3600,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDX.W $0330 
     LDA.W #$0800 
@@ -3472,8 +3421,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
 
 .loopTilemap:
     STA.L $7E3600,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTilemap 
     LDA.W #$FFFF 
     STA.W $0954 
@@ -3685,8 +3633,7 @@ Draw_FileSelection_Health:
   + TYA 
     ORA.W $0F96 
     STA.L $7E3600,X 
-    INX 
-    INX 
+    INX #2
     DEC.B $18 
     BNE .loop 
     TXA 
@@ -3994,8 +3941,7 @@ FileSelectMap_Index0_GameOptionsToAreaSelectMap_ClearBG2:
 .loop:
     LDA.L $7EC000,X 
     STA.L $7EC200,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0040 
     BMI .loop 
     LDA.W #$0000 
@@ -4021,8 +3967,7 @@ FileSelectMap_Index1_GameOptionsToAreaSelectMap_FadeOut:
 .loopMapAreaIndex:
     CMP.W FileSelectMapArea_IndexTable,X 
     BEQ + 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000C 
     BMI .loopMapAreaIndex 
     LDX.W #$0000 
@@ -4093,17 +4038,12 @@ LoadAreaMapForegroundColors:
 .loopColors:
     LDA.W AreaSelectMap_ForgegroundPaletteTable,Y 
     STA.L $7EC000,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.B $12 
     BNE .loopColors 
     PLY 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     BRA LoadAreaMapForegroundColors 
 
 
@@ -4436,16 +4376,14 @@ FileSelectMap_Index5_GameOptionsToAreaSelectMap_ExpSqrTrans:
 .copyTilemap:
     LDA.L Tilemap_BG2PauseScreen_BG2RoomSelectMap_0,X 
     STA.L $7E4000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0640 
     BMI .copyTilemap 
     LDA.W #$2801 
 
 .loopTilemap:
     STA.L $7E4000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0800 
     BMI .loopTilemap 
     LDA.W #$4154 
@@ -4459,10 +4397,8 @@ FileSelectMap_Index5_GameOptionsToAreaSelectMap_ExpSqrTrans:
 .loopMapControls:
     LDA.W Tilemap_RoomSelectMap_Controls,Y 
     STA.L $7E4000,X 
-    DEX 
-    DEX 
-    DEY 
-    DEY 
+    DEX #2
+    DEY #2
     BNE .loopMapControls 
     LDX.W $0330 
     LDA.W #$0800 
@@ -5031,9 +4967,7 @@ AddExpandingSquareTransition_RightPos_IndirectHDMATable:
     REP #$20 
     TYA 
     STA.L $7E9E11,X 
-    INX 
-    INX 
-    INX 
+    INX #3
     PLP 
     RTS 
 
@@ -5206,8 +5140,7 @@ FileSelectMap_IndexA_RoomSelectMap:
 .loopMapAreaIndex:
     CMP.W FileSelectMapArea_IndexTable,X 
     BEQ + 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000C 
     BMI .loopMapAreaIndex 
     STZ.W $0950 
@@ -5258,8 +5191,7 @@ FileSelectMap_IndexA_RoomSelectMap:
     TAY 
     LDA.B [$00],Y 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     LDA.B [$00],Y 
     STA.B $14 
     LDA.W $078B 
@@ -5341,8 +5273,7 @@ FileSelectMap_IndexA_RoomSelectMap:
     STA.B $B1 
 
 .noXScroll:
-    INY 
-    INY 
+    INY #2
     LDA.B [$00],Y 
     CMP.B $B3 
     BMI + 
@@ -5495,8 +5426,7 @@ FileSelectMap_IndexF_RoomSelectMapToAreaSelectMap_ClearBG1:
 
 .loop:
     STA.L $7E3000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDX.W $0330 
     LDA.W #$0800 
@@ -5755,8 +5685,7 @@ NewSaveFile:
     STA.L $7ED908,X 
     STA.L $7ED8F8,X 
     STA.L $7ED900,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0008 
     BMI .loopClearEvents 
     LDA.W #$0000 
@@ -5766,8 +5695,7 @@ NewSaveFile:
     STA.L $7ED870,X 
     STA.L $7ED870,X 
     STA.L $7ED8B0,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0040 
     BMI .loopClearEventsAgain 
     LDX.W #$0000 
@@ -5775,8 +5703,7 @@ NewSaveFile:
 
 .loopClearMapData:
     STA.L $7ECD52,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0700 
     BMI .loopClearMapData 
     RTS 
@@ -5795,8 +5722,7 @@ ClearResetOfMenuTilemapRow:
 
 .loop:
     STA.L $7E3600,X 
-    INX 
-    INX 
+    INX #2
     DEC.B $12 
     BNE .loop 
     RTS 
@@ -5813,15 +5739,12 @@ Load_Tilemap_in_Y_to_X_Coordinates:
     BEQ .return 
     ORA.W $0F96 
     STA.L $7E3600,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     BRA .loop 
 
 
-  + INY 
-    INY 
+  + INY #2
     PLA 
     CLC 
     ADC.W #$0040 

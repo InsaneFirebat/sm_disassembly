@@ -9557,8 +9557,7 @@ Clear_PaletteFXObjects:
 
 .loop:
     STZ.W $1E7D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     PLP 
@@ -9576,8 +9575,7 @@ Spawn_PaletteFXObject:
 .loop:
     LDA.W $1E7D,X 
     BEQ .zero 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     PLB 
@@ -9630,8 +9628,7 @@ PaletteFXObject_Handler:
     LDX.W $1E7B 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .return:
@@ -9653,8 +9650,7 @@ Process_PaleteFXObject:
     LDA.W $0000,Y 
     BPL .timer 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     PEA.W .loopDetermineColorIndex-1 
     JMP.W ($0012) 
 
@@ -9674,10 +9670,8 @@ Process_PaleteFXObject:
 
 .storeColor:
     STA.L $7EC000,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     JMP.W .loopWriteColors 
 
 
@@ -9702,8 +9696,7 @@ Instruction_PaletteFXObject_ColorIndex_Plus4:
     CLC 
     ADC.W #$0004 
     TAX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -9712,8 +9705,7 @@ Instruction_PaletteFXObject_ColorIndex_Plus6:
     CLC 
     ADC.W #$0006 
     TAX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -9722,8 +9714,7 @@ Instruction_PaletteFXObject_ColorIndex_Plus8:
     CLC 
     ADC.W #$0008 
     TAX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -9732,8 +9723,7 @@ Instruction_PaletteFXObject_ColorIndex_Plus10:
     CLC 
     ADC.W #$0010 
     TAX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -9742,8 +9732,7 @@ Instruction_PaletteFXObject_ColorIndex_Plus12:
     CLC 
     ADC.W #$0012 
     TAX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -9753,8 +9742,7 @@ UNUSED_Instruction_PaletteFXObject_ColorIndex_Plus1E_8DC5C6:
     CLC 
     ADC.W #$001E 
     TAX 
-    INY 
-    INY 
+    INY #2
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -9768,8 +9756,7 @@ Instruction_Delete_8DC5CF:
 Instruction_PaletteFXObject_PreInstructionInY:
     LDA.W $0000,Y 
     STA.W $1EAD,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -9793,9 +9780,7 @@ UNUSED_Inst_PaletteFXObject_CallExternalFunctionInY_8DC5E4:
     JSL.L .externalFunction 
     PLY 
     LDX.W $1E7B 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTS 
 
 
@@ -9855,8 +9840,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Instruction_PaletteFXObject_DecrementTimer_GotoYIfNonZero:
     DEC.W $1EDD,X 
     BNE Instruction_PaletteFXObject_GotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -9885,8 +9869,7 @@ RTS_8DC654:
 Instruction_PaletteFXObject_ColorIndexInY:
     LDA.W $0000,Y 
     STA.W $1E8D,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 

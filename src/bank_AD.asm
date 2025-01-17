@@ -162,8 +162,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
     AND.W #$00FF 
     ORA.W #$FF00 
     STA.W $0000,X 
-    DEX 
-    DEX 
+    DEX #2
     DEY 
     CPY.W #$0020 
     BNE .loopLeftEdge 
@@ -173,14 +172,12 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
 
 .loopLeftSidePadding:
     STA.W $0000,X 
-    DEX 
-    DEX 
+    DEX #2
     DEY 
     CPY.W #$0020 
     BNE .loopLeftSidePadding 
     PLX 
-    INX 
-    INX 
+    INX #2
     LDA.W $803E 
     TAY 
 
@@ -194,8 +191,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
     AND.W #$00FF 
     ORA.W #$FF00 
     STA.W $0000,X 
-    INX 
-    INX 
+    INX #2
     INY 
     CPY.W #$00E8 
     BNE .loopRightEdge 
@@ -208,8 +204,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
 
 .loopRightSidePadding:
     STA.W $0000,X 
-    INX 
-    INX 
+    INX #2
     INY 
     CPY.W #$00E8 
     BNE .loopRightSidePadding 
@@ -354,8 +349,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpRight:
 
 .next:
     STA.W $0000,X 
-    DEX 
-    DEX 
+    DEX #2
     DEY 
     CPY.W #$0020 
     BNE .loop 
@@ -423,8 +417,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUp:
 
 .next:
     STA.W $0000,X 
-    DEX 
-    DEX 
+    DEX #2
     DEY 
     CPY.W #$0020 
     BNE .loop 
@@ -494,8 +487,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpLeft:
 
 .next:
     STA.W $0000,X 
-    DEX 
-    DEX 
+    DEX #2
     DEY 
     CPY.W #$0020 
     BNE .loop 
@@ -577,8 +569,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownRight:
 
 .loopPadAbove:
     STA.W $0000,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loopPadAbove 
     LDA.W $803A 
@@ -609,8 +600,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownRight:
     LDA.W #$00FF 
 
   + STA.W $0000,X 
-    INX 
-    INX 
+    INX #2
     INY 
     CPY.W #$00E8 
     BNE .loopBeam 
@@ -649,8 +639,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDown:
 
 .loopPadAbove:
     STA.W $0000,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loopPadAbove 
     LDA.W $803A 
@@ -681,8 +670,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDown:
     LDA.W #$00FF 
 
   + STA.W $0000,X 
-    INX 
-    INX 
+    INX #2
     INY 
     CPY.W #$00E8 
     BNE .loopBeam 
@@ -723,8 +711,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownLeft:
 
 .loopPadAbove:
     STA.W $0000,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BNE .loopPadAbove 
     LDA.W $803A 
@@ -754,8 +741,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownLeft:
     LDA.W #$00FF 
 
   + STA.W $0000,X 
-    INX 
-    INX 
+    INX #2
     INY 
     CPY.W #$00E8 
     BNE .loopBeam 

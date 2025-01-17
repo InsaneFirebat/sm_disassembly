@@ -108,8 +108,7 @@ NOPNOP_B28069:
 Instruction_CommonB2_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_CommonB2_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_CommonB2_CallExternalFunctionInY_B280B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_CommonB2_GotoY_PlusY:
 Instruction_CommonB2_DecrementTimer_GotoYIfNonZero:
     DEC.W $0F90,X 
     BNE Instruction_CommonB2_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonB2_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_CommonB2_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_CommonB2_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_CommonB2_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonB2_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonB2_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_CommonB2_Sleep:
 Instruction_CommonB2_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -11873,8 +11863,7 @@ Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left:
 
 .noCOllision:
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -11906,8 +11895,7 @@ Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right:
 
 .noCollision:
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -12041,8 +12029,7 @@ Instruction_PirateWall_FunctionInY:
     STA.W $0FA8,X 
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -12835,8 +12822,7 @@ Instruction_PirateNinja_PaletteIndexInY:
     STA.W $0F96,X 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -12847,8 +12833,7 @@ Instruction_PirateNinja_QueueSoundInY_Lib2_Max6:
     JSL.L QueueSound_Lib2_Max6 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -12882,12 +12867,7 @@ Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #6
     RTL 
 
 
@@ -13031,10 +13011,8 @@ InitAI_PirateNinja:
 .loopPalette:
     LDA.W Palette_Pirate_Gold_NonNinja,Y 
     STA.L $7EC3E0,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     DEC.B $12 
     BPL .loopPalette 
     RTL 
@@ -13134,8 +13112,7 @@ PirateNinja_FlinchTrigger:
 .loop:
     LDA.W $0C18,Y 
     BNE .checkProjectile 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     BRA .returnNoFlinch 
 
@@ -13857,8 +13834,7 @@ Instruction_PirateWalking_FireLaserLeftWithYOffsetInY:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -13880,8 +13856,7 @@ Instruction_PirateWalking_FireLaserRightWithYOffsetInY:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -13893,8 +13868,7 @@ Instruction_PirateWalking_FunctionInY:
     STA.W $0FA8,X 
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -14107,8 +14081,7 @@ PirateWalking_FlinchTrigger:
 .loopProjectiles:
     LDA.W $0C18,Y 
     BNE .checkProjectile 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopProjectiles 
     BRA .returnNoFlinch 
 

@@ -108,8 +108,7 @@ NOPNOP_B38069:
 Instruction_CommonB3_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_CommonB3_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_CommonB3_CallExternalFunctionInY_B380B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_CommonB3_GotoY_PlusY:
 Instruction_CommonB3_DecrementTimer_GotoYIfNonZero:
     DEC.W $0F90,X 
     BNE Instruction_CommonB3_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonB3_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_CommonB3_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_CommonB3_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_CommonB3_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonB3_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonB3_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_CommonB3_Sleep:
 Instruction_CommonB3_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -2614,8 +2604,7 @@ UNUSED_SetBotwoonBodyProjectilesAsIntangible_B396FF:
     STA.W $1BD7,Y 
     LDA.W #$0002 
     STA.L $7EF380,X 
-    DEY 
-    DEY 
+    DEY #2
     CPY.W #$000A 
     BPL .loop 
     RTS 
@@ -5226,8 +5215,7 @@ Instruction_EtecoonEscape_GotoY_IfAcidPositionLessThanCE:
 
 
 .greaterThanCE:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -5352,8 +5340,7 @@ Instruction_EtecoonEscape_XPositionPlusY:
     CLC 
     ADC.W $0000,Y 
     STA.W $0F7A,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -5962,8 +5949,7 @@ InstList_DachoraEscape_GotoY_IfAcidLessThanCE:
 
 
 .greaterThanCE:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -5977,8 +5963,7 @@ InstList_DachoraEscape_GotoY_IfCrittersEscaped:
 
 
 .notEscaped:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 

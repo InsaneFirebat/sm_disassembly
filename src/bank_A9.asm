@@ -108,8 +108,7 @@ NOPNOP_A98069:
 Instruction_CommonA9_Enemy0FB2_InY:
     LDA.W $0000,Y 
     STA.W $0FB2,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -144,8 +143,7 @@ Instruction_CommonA9_CallFunctionInY:
 .manualReturn:
     PLX 
     PLY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -180,9 +178,7 @@ UNUSED_Instruction_CommonA9_CallExternalFunctionInY_A980B5:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTL 
 
 
@@ -241,16 +237,14 @@ Instruction_CommonA9_GotoY_PlusY:
 Instruction_CommonA9_DecrementTimer_GotoYIfNonZero:
     DEC.W $0F90,X 
     BNE Instruction_CommonA9_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA9_DecrementTimer_GotoYIfNonZero_duplicate:
     DEC.W $0F90,X 
     BNE Instruction_CommonA9_GotoY 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
@@ -266,20 +260,17 @@ Instruction_CommonA9_DecrementTimer_GotoY_PlusY_IfNonZero:
 Instruction_CommonA9_TimerInY:
     LDA.W $0000,Y 
     STA.W $0F90,X 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA9_SkipNextInstruction:
-    INY 
-    INY 
+    INY #2
     RTL 
 
 
 Instruction_CommonA9_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -290,8 +281,7 @@ Instruction_CommonA9_Sleep:
 Instruction_CommonA9_WaitYFrames:
     LDA.W $0000,Y 
     STA.W $0F94,X 
-    INY 
-    INY 
+    INY #2
     TYA 
     STA.W $0F92,X 
     PLA 
@@ -431,8 +421,7 @@ InitAI_MotherBrainBody:
 
 .loopTilemap:
     STA.W $2000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTilemap 
     PLB 
     LDA.W #InstList_MotherBrainHead_InitialDummy 
@@ -766,8 +755,7 @@ Function_MotherBrainBody_SpawnTubesFallingWhenLessThan4Proj:
     INX 
 
 .nextProj:
-    INY 
-    INY 
+    INY #2
     CPY.W #$0024 
     BMI .loop 
     CPX.W #$0004 
@@ -1923,19 +1911,14 @@ GetMotherBrainHeadSpritemapPointerInY:
     BMI .ASMInstruction 
     CMP.L $7E8000 
     BPL .tick 
-    INX 
-    INX 
-    INX 
-    INX 
-
-.loop:
+    INX #4
+    .loop:
     LDA.W $0000,X 
     BPL .specialInstruction 
 
 .ASMInstruction:
     STA.B $00 
-    INX 
-    INX 
+    INX #2
     PEA.W .loop-1 
     JMP.W ($0000) 
 
@@ -2073,8 +2056,7 @@ DrawMotherBrainNeckSegment:
 
 AddSpritemapToOAM_RoomCoordinates:
     LDA.W $0000,Y 
-    INY 
-    INY 
+    INY #2
     STA.B $18 
     LDX.W $0590 
     CLC 
@@ -2955,12 +2937,7 @@ Instruction_MotherBrainBody_SpawnDustCloudExplosionProj:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLX 
     PLY 
-    INY 
-    INY 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #6
     RTL 
 
 
@@ -3007,16 +2984,14 @@ Instruction_MotherBrainHead_DisableNeckMovement:
 Instruction_MotherBrainHead_QueueSoundX_Lib2_Max6:
     LDA.W $0000,X 
     JSL.L QueueSound_Lib2_Max6 
-    INX 
-    INX 
+    INX #2
     RTS 
 
 
 Instruction_MotherBrainHead_QueueSoundX_Lib3_Max6:
     LDA.W $0000,X 
     JSL.L QueueSound_Lib3_Max6 
-    INX 
-    INX 
+    INX #2
     RTS 
 
 
@@ -3567,8 +3542,7 @@ Instruction_MotherBrainHead_SpawnBombProjectileWithParamX:
     LDY.W #EnemyProjectile_MotherBrainBomb 
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLY 
-    INX 
-    INX 
+    INX #2
     RTS 
 
 
@@ -5094,8 +5068,7 @@ Function_MBBody_Phase3_DeathSequence_DisableBrainEffects:
 .loopPalette:
     LDA.L $7EC122,X 
     STA.L $7EC1E2,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopPalette 
     JSL.L MotherBrainHealthBasedPaletteHandling 
     LDA.W #$0E00 
@@ -5149,8 +5122,7 @@ Function_MBBody_Phase3_DeathSequence_FadeOutBody:
 
 .loopTilemap:
     STA.W $2000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopTilemap 
     PLB 
     LDA.W #$0001 
@@ -5232,10 +5204,7 @@ GenerateExplosionsAroundMotherBrainBody:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics 
     PLX 
     PLA 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     DEC A 
     BNE .loop 
     LDA.W #$0013 
@@ -5665,10 +5634,8 @@ MotherBrainPart_vs_Samus_CollisionDetection:
     LDA.W $0000,X 
     BEQ .returnNoCollision 
     STA.B $16 
-    INX 
-    INX 
-
-.loop:
+    INX #2
+    .loop:
     LDA.W $0AFA 
     SEC 
     SBC.B $14 
@@ -6001,18 +5968,14 @@ TryMotherBrainAttack_Phase2_TryAttack:
     LDA.W $05E5 
     CMP.W $0000,X 
     BCC + 
-    INY 
-    INY 
+    INY #2
     CMP.W $0001,X 
     BCC + 
-    INY 
-    INY 
+    INY #2
     CMP.W $0002,X 
     BCC + 
-    INY 
-    INY 
-
-  + TYX 
+    INY #2
+    + TYX 
     REP #$20 
     LDA.W .instListPointers,X 
     CMP.W #InstList_MotherBrainHead_Attacking_Bomb_Phase2 
@@ -6835,8 +6798,7 @@ HandleMotherBrainBodyRainbowBeamPalette:
     TAX 
     LDA.L MotherBrainBodyRainbowBeamPalette_Pointers,X 
     BEQ .restart 
-    INX 
-    INX 
+    INX #2
     TXA 
     STA.L $7E7842 
     LDA.L MotherBrainBodyRainbowBeamPalette_Pointers-2,X 
@@ -9298,8 +9260,7 @@ ProcessMotherBrainInvincibilityPalette:
     STA.L $7EC122,X 
     STA.L $7EC162,X 
     STA.L $7EC082,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .return:
@@ -9459,20 +9420,15 @@ HandleRoomPaletteInstList:
     BMI .instruction 
     CMP.B [$03] 
     BNE .tick 
-    INX 
-    INX 
-    INX 
-    INX 
-
-.loop:
+    INX #4
+    .loop:
     LDA.W $0000,X 
     BEQ .terminator 
     BPL .specialInstruction 
 
 .instruction:
     STA.B $06 
-    INX 
-    INX 
+    INX #2
     PEA.W .loop-1 
     JMP.W ($0006) 
 
@@ -9600,10 +9556,8 @@ WriteAColorsFromYtoColorIndexX:
 .loop:
     LDA.W $0000,Y 
     STA.L $7EC000,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.B $12 
     BNE .loop 
     RTL 
@@ -9615,10 +9569,8 @@ WriteAColorsFromYToTargetColorIndexX:
 .loop:
     LDA.W $0000,Y 
     STA.L $7EC200,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.B $12 
     BNE .loop 
     RTL 
@@ -9634,8 +9586,7 @@ InitAI_CorpseTorizo:
 
 .loop:
     STA.W $2000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLB 
     LDA.W #Function_CorpseTorizo_WaitForSamusCollision 
@@ -9789,10 +9740,8 @@ CorpseTorizo_vs_Samus_CollisionDetection:
     LDA.W $0000,X 
     BEQ .returnNoCollision 
     STA.B $16 
-    INX 
-    INX 
-
-.loop:
+    INX #2
+    .loop:
     LDA.W $0AFA 
     SEC 
     SBC.B $14 
@@ -10781,11 +10730,9 @@ InitializeCorpseRottingDataTable:
     PHA 
     STA.L $7E0000,X 
     LDA.B $12 
-    INX 
-    INX 
+    INX #2
     STA.L $7E0000,X 
-    INX 
-    INX 
+    INX #2
     LDA.B $12 
     CLC 
     ADC.W #$0002 
@@ -12936,8 +12883,7 @@ InitAI_BabyMetroid:
 
 .loop:
     STA.W $2000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLB 
     LDX.W $0E54 
@@ -14237,8 +14183,7 @@ Instruction_BabyMetroid_GotoY_OrPlayRemorseSFX:
     BPL .gotoY 
     LDA.W #$0052 
     JSL.L QueueSound_Lib2_Max6 
-    INY 
-    INY 
+    INY #2
     RTL 
 
 

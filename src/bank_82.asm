@@ -60,10 +60,8 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
 .loopTargetSamusPalette:
     LDA.L $7EC180,X 
     STA.L $7EC380,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopTargetSamusPalette 
     PLP 
     LDA.W #$0001 
@@ -104,10 +102,8 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
 .loopAlphaPalettes:
     LDA.L $7EC200,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopAlphaPalettes 
     PLP 
     PLP 
@@ -133,10 +129,8 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
 .loopBetaPalettes:
     LDA.L $7EC200,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopBetaPalettes 
     PLP 
     LDA.L $7ED914 
@@ -193,10 +187,8 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
 .loopDemoPalettes:
     LDA.L $7EC200,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopDemoPalettes 
     PLP 
     PLP 
@@ -344,10 +336,8 @@ LoadInitialPalette:
 .loop:
     LDA.L Initial_Palette_BGPalette0,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loop 
     PLP 
     PLP 
@@ -555,8 +545,7 @@ GameState_24_WhitingOutFromTimeUp:
 
 .loop:
     STZ.W $1A8D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #$0019 
     STA.W $0998 
@@ -713,8 +702,7 @@ GameState_2B_UnloadGameData:
 
 .clearNonGameplayRAM:
     STZ.W $198D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .clearNonGameplayRAM 
     LDA.W #$0998 
     DEC A 
@@ -725,8 +713,7 @@ GameState_2B_UnloadGameData:
 
 .clearGameplayRAM:
     STZ.W $077C,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .clearGameplayRAM 
     SEP #$20 
     STZ.B $6E 
@@ -882,8 +869,7 @@ LoadDemoRoomData:
     STA.L $7ED8B0,X 
     STA.L $7ED820,X 
     STA.L $7ED828,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0008 
     BMI .loopEvents 
 
@@ -893,8 +879,7 @@ LoadDemoRoomData:
     STA.L $7ED870,X 
     LDA.W #$0000 
     STA.L $7ED8B0,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0040 
     BMI .loopItems 
     LDA.W #$0000 
@@ -902,8 +887,7 @@ LoadDemoRoomData:
 
 .loopMapData:
     STA.L $7ECD52,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0600 
     BMI .loopMapData 
     LDA.W #$0000 
@@ -1468,8 +1452,7 @@ Delete_GameOptionsMenu_Objects:
 .loop:
     STZ.W $1A9D,X 
     STZ.W $1AFD,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLP 
     RTS 
@@ -1486,8 +1469,7 @@ Spawn_GameOptionsMenu_Object:
 .loop:
     LDA.W $1AFD,Y 
     BEQ .instruction 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     PLX 
     PLP 
@@ -1533,8 +1515,7 @@ GameOptionsMenu_ObjectHandler:
     LDX.W $1A8F 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLP 
     RTS 
@@ -1551,8 +1532,7 @@ Process_GameOptionsMenu_Object:
     LDA.W $0000,Y 
     BPL .instruction 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     PEA.W .returnPEA-1 
     JMP.W ($0012) 
 
@@ -1580,8 +1560,7 @@ Instruction_GameOptionsMenu_Delete:
 
 Instruction_GameOptionsMenu_Sleep:
     REP #$30 
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $1AFD,X 
     PLA 
@@ -1592,8 +1571,7 @@ Instruction_GameOptionsMenu_PreInstruction_inY:
     REP #$30 
     LDA.W $0000,Y 
     STA.W $1B0D,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1617,8 +1595,7 @@ Instruction_GameOptionsMenu_DecTimer_and_GotoY_if_NonZero:
     REP #$30 
     DEC.W $1B2D,X 
     BNE Instruction_GameOptionsMenu_GotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1626,8 +1603,7 @@ Instruction_GameOptionsMenu_TimerInY:
     REP #$30 
     LDA.W $0000,Y 
     STA.W $1B2D,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1658,8 +1634,7 @@ Draw_GameOptionsMenu_Spritemaps:
     JSL.L AddSpritemapToOAM 
 
 .next:
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLB 
     PLP 
@@ -1959,10 +1934,8 @@ LoadPauseScreen_BaseTilemaps:
 .loopColumns:
     LDA.W $0000,Y 
     STA.L $7E3000,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.B $12 
     BNE .loopColumns 
     TXA 
@@ -2043,10 +2016,8 @@ BackupGameplayPalettes_LoadPauseScreenPalettes:
 .loopBackupGameplay:
     LDA.L $7EC000,X 
     STA.L $7E3300,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopBackupGameplay 
     PLP 
     PHP 
@@ -2057,10 +2028,8 @@ BackupGameplayPalettes_LoadPauseScreenPalettes:
 .loopLoadPause:
     LDA.L Palettes_PauseScreen,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopLoadPause 
     PLP 
     PLP 
@@ -2669,8 +2638,7 @@ LoadPauseMenuMapTilemap:
 
 .nextWithoutMapData:
     SEP #$20 
-    INY 
-    INY 
+    INY #2
     INC.B $12 
     LDA.B $12 
     CMP.B #$08 
@@ -2741,8 +2709,7 @@ LoadPauseMenuMapTilemap:
     INC.B $09 
 
 .next:
-    INY 
-    INY 
+    INY #2
     CPY.W #$1000 
     BMI .loopWithMapData 
     PLP 
@@ -2806,8 +2773,7 @@ DrawRoomSelectMap:
 
 .nextWithoutMapData:
     SEP #$20 
-    INY 
-    INY 
+    INY #2
     INC.B $12 
     LDA.B $12 
     CMP.B #$08 
@@ -2877,8 +2843,7 @@ DrawRoomSelectMap:
     INC.B $09 
 
 .next:
-    INY 
-    INY 
+    INY #2
     CPY.W #$1000 
     BMI .loopWithMapData 
 
@@ -2917,10 +2882,8 @@ DrawRoomSelectMap_AreaLabel:
     LDA.W $0000,X 
     AND.W #$EFFF 
     STA.B [$00],Y 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0018 
     BMI .loop 
     PLB 
@@ -3620,10 +3583,7 @@ DetermineLeftmostMapColumn:
     LDA.B [$00],Y 
     BIT.B $12 
     BNE .return 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     CPY.W #$0080 
     BMI .loopRows 
     INX 
@@ -3683,10 +3643,7 @@ DetermineRightmostMapColumn:
     LDA.B [$00],Y 
     BIT.B $12 
     BNE .return 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     CPY.W #$0080 
     BMI .loopRows 
     DEX 
@@ -3941,8 +3898,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     JSR.W Copy_Bytes_of_Palette_from_7E_to_12 
 
 .nextWeapon:
-    INY 
-    INY 
+    INY #2
     LDA.B [$03],Y 
     STA.B $00 
     CPY.W #$000C 
@@ -3958,8 +3914,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     LDA.W #$000A 
     STA.B $16 
     JSR.W Copy_Bytes_from_X_to_7ERAM 
-    INY 
-    INY 
+    INY #2
     LDA.B [$03],Y 
     STA.B $00 
     CPY.W #$000C 
@@ -3999,8 +3954,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     JSR.W Copy_Bytes_of_Palette_from_7E_to_12 
 
 .nextSuitMisc:
-    INY 
-    INY 
+    INY #2
     LDA.B [$03],Y 
     STA.B $00 
     CPY.W #$000C 
@@ -4038,8 +3992,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     JSR.W Copy_Bytes_of_Palette_from_7E_to_12 
 
 .nextBoots:
-    INY 
-    INY 
+    INY #2
     LDA.B [$03],Y 
     STA.B $00 
     CPY.W #$0006 
@@ -4059,10 +4012,8 @@ Copy_Bytes_from_X_to_7ERAM:
 .loop:
     LDA.W $0000,X 
     STA.B [$00],Y 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.B $16 
     DEC.B $16 
     BNE .loop 
@@ -4085,8 +4036,7 @@ Copy_Bytes_of_Palette_from_7E_to_12:
     AND.W #$E3FF 
     ORA.B $12 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     DEC.B $16 
     DEC.B $16 
     BNE .loop 
@@ -4124,10 +4074,8 @@ ContinueInitialising_GameplayResume:
 .loop:
     LDA.L $7E3300,X 
     STA.L $7EC000,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loop 
     PLP 
     JSR.W Setup_PPU_for_GameplayResume 
@@ -4605,10 +4553,8 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E364A,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopTopMAP 
     PLP 
     PHP 
@@ -4621,10 +4567,8 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E368A,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopBottomMAP 
     PLP 
     PHP 
@@ -4637,10 +4581,8 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3658,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopTopEXIT 
     PLP 
     PHP 
@@ -4653,10 +4595,8 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3698,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopBottomEXIT 
     PLP 
     PHP 
@@ -4669,10 +4609,8 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E366C,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopTopSAMUS 
     PLP 
     PHP 
@@ -4685,10 +4623,8 @@ Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
     AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E36AC,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopBottomSAMUS 
     PLP 
     RTS 
@@ -4706,10 +4642,8 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3658,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopTopEXIT 
     PLP 
     PHP 
@@ -4722,10 +4656,8 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3698,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopBottomEXIT 
     PLP 
     PHP 
@@ -4738,10 +4670,8 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E364A,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopTopMAP 
     PLP 
     PHP 
@@ -4754,10 +4684,8 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E368A,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopBottomMAP 
     PLP 
     PHP 
@@ -4770,10 +4698,8 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E366C,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopTopSAMUS 
     PLP 
     PHP 
@@ -4786,10 +4712,8 @@ Set_PauseScreen_ButtonLabelPalettes_Unpausing:
     AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E36AC,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopBottomSAMUS 
     PLP 
     RTS 
@@ -4807,10 +4731,8 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E366C,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopTopSAMUS 
     PLP 
     PHP 
@@ -4823,10 +4745,8 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E36AC,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopBottomSAMUS 
     PLP 
     PHP 
@@ -4839,10 +4759,8 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3658,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopTopEXIT 
     PLP 
     PHP 
@@ -4855,10 +4773,8 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     AND.W #$E3FF 
     ORA.W #$0800 
     STA.L $7E3698,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopBottomEXIT 
     PLP 
     PHP 
@@ -4871,10 +4787,8 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E364A,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopTopMAP 
     PLP 
     PHP 
@@ -4887,10 +4801,8 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
     AND.W #$E3FF 
     ORA.W #$1400 
     STA.L $7E368A,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopBottomMAP 
     PLP 
     RTS 
@@ -4902,12 +4814,10 @@ Update_PauseMenu_L_R_Start_VRAMTilemap:
     LDX.W $0330 
     LDA.W #$0080 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W #$3640 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$7E 
     STA.B $D0,X 
@@ -4919,8 +4829,7 @@ Update_PauseMenu_L_R_Start_VRAMTilemap:
     CLC 
     ADC.W #$0320 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     PLP 
     RTS 
@@ -5072,10 +4981,8 @@ Handle_PauseScreen_PaletteAnimation:
 .loopAnimationTimer:
     LDA.W .paletteData,Y 
     STA.L $7EC160,X 
-    DEY 
-    DEY 
-    DEX 
-    DEX 
+    DEY #2
+    DEX #2
     BPL .loopAnimationTimer 
 
 .return:
@@ -5131,10 +5038,8 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     AND.W #$FC00 
     ORA.B [$00],Y 
     STA.L $7E3A8E,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     DEC.B $12 
     BNE .loopTilemap 
 
@@ -5162,8 +5067,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
 .loopBeams:
     BIT.W EquipmentScreenData_EquipmentBitmasks_weapons,X 
     BNE + 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000A 
     BMI .loopBeams 
     BRA .noBeams 
@@ -5184,8 +5088,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
 .loopSuitMisc:
     BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X 
     BNE + 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000C 
     BMI .loopSuitMisc 
     BRA .noSuitMisc 
@@ -5204,8 +5107,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
 
 .loopNoSuitMisc:
     BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0006 
     BMI .loopNoSuitMisc 
     BRA .return 
@@ -5453,8 +5355,7 @@ EquipmentScreen_Enable_EnergyArrowGlow:
     CLC 
     ADC.W #$0040 
     TAX 
-    DEY 
-    DEY 
+    DEY #2
     BNE .loopVertical 
     PLP 
     PHP 
@@ -5467,10 +5368,8 @@ EquipmentScreen_Enable_EnergyArrowGlow:
     AND.W #$E3FF 
     ORA.W #$1800 
     STA.L $7E3B02,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopHorizontal 
     PLP 
     PLP 
@@ -5494,8 +5393,7 @@ EquipmentScreen_Disable_EnergyArrowGlow:
     CLC 
     ADC.W #$0040 
     TAX 
-    DEY 
-    DEY 
+    DEY #2
     BNE .loopVertical 
     PLP 
     PHP 
@@ -5508,10 +5406,8 @@ EquipmentScreen_Disable_EnergyArrowGlow:
     AND.W #$E3FF 
     ORA.W #$1C00 
     STA.L $7E3B02,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopHorizontal 
     PLP 
     PLP 
@@ -5544,10 +5440,8 @@ EquipmentScreen_Main_Tanks_Mode:
     AND.W #$FC00 
     ORA.L EquipmentScreenTilemaps_manual,X 
     STA.L $7E3A8E,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopAuto 
     PLP 
     BRA .return 
@@ -5567,10 +5461,8 @@ EquipmentScreen_Main_Tanks_Mode:
     AND.W #$FC00 
     ORA.L EquipmentScreenTilemaps_auto,X 
     STA.L $7E3A8E,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loopManual 
     PLP 
 
@@ -5979,12 +5871,10 @@ EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM:
     LDX.W $0330 
     LDA.W #$0500 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W #$3900 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$7E 
     STA.B $D0,X 
@@ -5992,8 +5882,7 @@ EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM:
     INX 
     LDA.W #$3080 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     PLP 
     RTS 
@@ -6009,8 +5898,7 @@ EquipmentScreen_WriteSamusWireframeTilemap:
 .loopSuit:
     CMP.W .bitmaps,X 
     BEQ + 
-    INX 
-    INX 
+    INX #2
     BRA .loopSuit 
 
 
@@ -6031,10 +5919,8 @@ EquipmentScreen_WriteSamusWireframeTilemap:
 .loop:
     LDA.B [$00],Y 
     STA.L $7E3800,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     DEC.B $12 
     BNE .loop 
     PLX 
@@ -6080,8 +5966,7 @@ EquipmentScreen_DrawItemSelector:
     LDA.W $0000,Y 
     TAX 
     DEX 
-    INY 
-    INY 
+    INY #2
     LDA.W $0000,Y 
     TAY 
     LDA.W #$0003 
@@ -6157,8 +6042,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     LDA.W #$001B 
     JSL.L AddSpritemapFrom_82C569_TableToOAM 
     PLY 
-    INY 
-    INY 
+    INY #2
     DEC.B $2E 
     BNE .loopFullTanks 
     STY.B $34 
@@ -6188,10 +6072,8 @@ EquipmentScreen_DisplayReserveTankAmount:
     LDA.W $05B5 
     BIT.W #$0004 
     BNE + 
-    INX 
-    INX 
-
-  + LDA.W $09D6 
+    INX #2
+    + LDA.W $09D6 
     CMP.W #$0064 
     BMI + 
     TXA 
@@ -6341,8 +6223,7 @@ EquipmentScreen_MoveLowerOnBeams:
     LDA.W $09A8 
     BIT.W EquipmentScreenData_EquipmentBitmasks_weapons,X 
     BNE .found 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000A 
     BMI .loop 
 
@@ -6377,8 +6258,7 @@ EquipmentScreen_MoveHigherOnBeams:
     LDA.W $09A8 
     BIT.W EquipmentScreenData_EquipmentBitmasks_weapons,X 
     BNE .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .cancel:
@@ -6409,8 +6289,7 @@ EquipmentScreen_MoveLowerOnSuitsMisc:
     LDA.W $09A4 
     BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X 
     BNE + 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000A ; Bug: $B4C4 should be CPX #$000C. Can't access Screw Attack without Spring Ball or Boots
     BMI .loop 
     LDA.W #$FFFF 
@@ -6440,8 +6319,7 @@ EquipmentScreen_MoveHigherOnSuitsMisc:
     LDA.W $09A4 
     BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X 
     BNE + 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.B $12 
     STA.W $0755 
@@ -6470,8 +6348,7 @@ EquipmentScreen_MoveLowerOnBoots:
     LDA.W $09A4 
     BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X 
     BNE + 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0006 
     BMI .loop 
     LDA.B $12 
@@ -6501,8 +6378,7 @@ EquipmentScreen_MoveHigherOnBoots:
     LDA.W $09A4 
     BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X 
     BNE + 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #$FFFF 
     BRA .return 
@@ -6780,8 +6656,7 @@ Draw_FileSelectMap_Icons:
     SBC.B $B1 
     TAX 
     PHX 
-    INY 
-    INY 
+    INY #2
     LDA.B [$00],Y 
     SEC 
     SBC.B $B3 
@@ -6944,10 +6819,7 @@ Draw_MapIcons_ofGivenType:
     PLX 
 
 .next:
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     BRA .loop 
 
 
@@ -7031,10 +6903,7 @@ Display_Map_Boss_Icons:
     PLX 
 
 .next:
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     BRA .bossIcons 
 
 
@@ -7199,8 +7068,7 @@ Update_Samus_Position_Indicator_Animation:
     LDA.W $0778 
     BNE .nonZero 
     LDX.W $0776 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0008 
     BMI + 
     INC.W $077A 
@@ -7432,10 +7300,8 @@ Draw_GameOver_BabyMetroid:
 .loop:
     LDA.W $0000,Y 
     STA.L $7EC180,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0020 
     BMI .loop 
     PLX 
@@ -7642,8 +7508,7 @@ UNUSED_82BE5A:
     CLC 
 
   + ROL.B $12 
-    INY 
-    INY 
+    INY #2
     TYA 
     AND.W #$000F 
     BNE .loop 
@@ -7669,8 +7534,7 @@ UNUSED_82BEA3:
 .loop:
     STA.L $7E3000,X 
     STA.L $7E4000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     STA.L $7E4000 
     STA.L $7E4002 
@@ -9544,8 +9408,7 @@ Advance_GradualColorChange_ofBGPalette6:
     JSR.W CalculateTheAth_TransitionalColor_fromXtoY 
     PLX 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$00E0 
     BCC .loop 
     PLB 
@@ -9586,8 +9449,7 @@ Advance_GradualColorChange_ofPaletteRAM:
     JSR.W CalculateTheAth_TransitionalColor_fromXtoY 
     PLX 
     STA.L $7EC000,X 
-    INX 
-    INX 
+    INX #2
     CPX.B $22 
     BCC .loop 
     PLB 
@@ -9631,8 +9493,7 @@ Advance_GradualColorChange_ofAllPalettes:
     STA.W $C000,X 
 
 .next:
-    INX 
-    INX 
+    INX #2
     CPX.W #$0200 
     BCC .loop 
     INC.W $C400 
@@ -9819,8 +9680,7 @@ Advance_GradualColorChange_ofPaletteX_DividedBy_20:
     STA.W $C000,X 
 
 .next:
-    INX 
-    INX 
+    INX #2
     STX.W $C404 
     TXA 
     AND.W #$001F 
@@ -9983,29 +9843,25 @@ GameState_13_DeathSequence_Start:
 
   - LDA.L $7EC000,X 
     STA.L $7E3300,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     LDX.W #$017E 
     LDA.W #$0000 
 
   - STA.L $7EC200,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     LDX.W #$005E 
     LDA.W #$0000 
 
   - STA.L $7EC3A0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     LDX.W #$001E 
 
   - LDA.L $7EC180,X 
     STA.L $7EC380,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     LDA.W #$0003 
     STA.W $0DE2 
@@ -10054,8 +9910,7 @@ GameState_14_DeathSequence_BlackOutSurroundings:
     LDX.W #$00FE 
 
   - STZ.W $1A8D,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     LDA.W #$0010 
     STA.W $0DE8 
@@ -10443,10 +10298,7 @@ Load_EnemyGFX_to_VRAM:
 .wait:
     LDA.W $05BC 
     BMI .wait 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     TYX 
     BRA .loop 
 
@@ -10612,22 +10464,19 @@ Load_Target_Colors_for_Common_SpritesBeamsFlashingEnemies:
 
   - LDA.L Initial_Palette_spritePalette5,X 
     STA.L $7EC3A0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     LDX.W #$001E 
 
   - LDA.L $7EC1C0,X 
     STA.L $7EC3C0,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     LDX.W #$001E 
 
   - LDA.L Standard_Target_Sprite_Palette_Line0,X 
     STA.L $7EC300,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     RTL 
 
@@ -10708,8 +10557,7 @@ GameState_A_LoadingNextRoom:
 
   - STA.W $C200,X 
     STA.W $C300,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     LDA.W $C012 
     STA.W $C212 
@@ -11081,8 +10929,7 @@ DoorTransitionFunction_LoadSpritesBGPLMsAudio_RunDoorRoomASM:
 
 .loop:
     LDX.W $0000,Y 
-    INY 
-    INY 
+    INY #2
     JSR.W (Library_Background_Function_Pointers,X) 
     BCC .loop 
 
@@ -11126,8 +10973,7 @@ Clear_FX_Tilemap_bank82:
 .loop:
     STA.L $7E4000,X 
     STA.L $7E4780,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     JSR.W Perform_Door_Transition_VRAM_Update 
     dl $7E4000 
@@ -11142,8 +10988,7 @@ Clear_BG2_Tilemap_bank82:
 .loop:
     STA.L $7E4000,X 
     STA.L $7E4800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     JSR.W Perform_Door_Transition_VRAM_Update 
     dl $7E4000 
@@ -11158,8 +11003,7 @@ Clear_Kraids_BG2_Tilemap:
 .loop:
     STA.L $7E4000,X 
     STA.L $7E4800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     JSR.W Perform_Door_Transition_VRAM_Update 
     dl $7E4000 
@@ -11197,10 +11041,8 @@ LoadLibraryBackground_E_DoorDependentTransferToVRAM:
     RTS 
 
 
-  + INY 
-    INY 
-
-LoadLibraryBackground_2_TransferToVRAM:
+  + INY #2
+    LoadLibraryBackground_2_TransferToVRAM:
     LDA.W $0003,Y 
     STA.W $05BE 
     LDA.W $0000,Y 
@@ -11362,8 +11204,7 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
 .loop:
     STZ.W $9C00,X 
     STZ.W $9E00,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLB 
     LDA.B $A9 
@@ -11481,8 +11322,7 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
 
 .loopA:
     STA.L $7F0002,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopA 
     LDA.W $07BE 
     STA.B $48 
@@ -11507,10 +11347,8 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     LDA.W $0002,Y 
     STA.W $9602,X 
 
-  + DEY 
-    DEY 
-    DEX 
-    DEX 
+  + DEY #2
+    DEX #2
     BPL .loopB 
     LDA.W $0000 
     LSR A 
@@ -11524,10 +11362,8 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     LDA.W $0002,Y 
     STA.W $6402,X 
 
-  + DEY 
-    DEY 
-    DEX 
-    DEX 
+  + DEY #2
+    DEX #2
     BPL .loopC 
     PLB 
     LDA.W $079F 
@@ -11565,10 +11401,8 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
 .loopD:
     LDA.W $0000,Y 
     STA.L $7ECD20,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0032 
     BNE .loopD 
     BRA .scrollsEnd 
@@ -11684,8 +11518,7 @@ CheckIfColoredDoorcapWasSpawned_SwitchDoorPLMInstruction:
 .loop:
     CMP.W $1C87,X 
     BEQ .found 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
 
 .noColoredDoor:
@@ -11755,8 +11588,7 @@ LoadLibraryBackground_LoadingPausing:
 
 .loop:
     LDX.W $0000,Y 
-    INY 
-    INY 
+    INY #2
     JSR.W (.pointers,X) 
     BCC .loop 
 
@@ -11793,10 +11625,8 @@ LoadLibraryBackgroundLP_E_DoorDependentTransferToVRAM:
     RTS 
 
 
-  + INY 
-    INY 
-
-LoadLibraryBackgroundLP_2_TransferToVRAM:
+  + INY #2
+    LoadLibraryBackgroundLP_2_TransferToVRAM:
     LDA.W $0003,Y 
     STA.W $2116 
     LDA.W #$1801 
@@ -11885,8 +11715,7 @@ Load_Level_Scroll_and_CRE_Data:
     STA.L $7F1902,X 
     STA.L $7F3202,X 
     STA.L $7F4B02,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     LDA.W $07BE 
     STA.B $48 
@@ -11910,10 +11739,8 @@ Load_Level_Scroll_and_CRE_Data:
   - LDA.W $0002,Y 
     STA.W $9602,X 
 
-  + DEY 
-    DEY 
-    DEX 
-    DEX 
+  + DEY #2
+    DEX #2
     BPL - 
     LDA.W $0000 
     LSR A 
@@ -11926,10 +11753,8 @@ Load_Level_Scroll_and_CRE_Data:
   - LDA.W $0002,Y 
     STA.W $6402,X 
 
-  + DEY 
-    DEY 
-    DEX 
-    DEX 
+  + DEY #2
+    DEX #2
     BPL - 
     PLB 
     LDA.W $079F 
@@ -11969,10 +11794,8 @@ Load_Level_Scroll_and_CRE_Data:
 
   - LDA.W $0000,Y 
     STA.L $7ECD20,X 
-    INY 
-    INY 
-    INX 
-    INX 
+    INY #2
+    INX #2
     CPX.W #$0032 
     BNE - 
     BRA .return 
@@ -12150,8 +11973,7 @@ GameOptionsMenu_1_LoadingOptionsMenu:
 
   - LDA.L Menu_Palettes,X 
     STA.L $7EC000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     LDA.W #GameOptionsMenu_OptionsScreen_Tilemap>>8&$FF00 
     STA.B $48 
@@ -12187,8 +12009,7 @@ GameOptionsMenu_1_LoadingOptionsMenu:
 
   - LDA.L $7FC000,X 
     STA.L $7E3000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL - 
     STZ.W $099E 
     JSR.W Delete_GameOptionsMenu_Objects 
@@ -12226,12 +12047,10 @@ Draw_GameOptionsMenu_BG1:
     LDX.W $0330 
     LDA.W #$0800 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     LDA.W #$3000 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     SEP #$20 
     LDA.B #$7E 
     STA.B $D0,X 
@@ -12239,8 +12058,7 @@ Draw_GameOptionsMenu_BG1:
     INX 
     LDA.W #$5000 
     STA.B $D0,X 
-    INX 
-    INX 
+    INX #2
     STX.W $0330 
     PLP 
     RTS 
@@ -12256,10 +12074,8 @@ Set_GameOptionsMenu_TilePalettes:
     AND.W #$E3FF 
     ORA.B $12 
     STA.L $7E3000,X 
-    INX 
-    INX 
-    DEY 
-    DEY 
+    INX #2
+    DEY #2
     BNE .loop 
     PLP 
     RTS 
@@ -12555,8 +12371,7 @@ GameOptionsMenu_5_DissolveOutScreen:
 .englishCtrlLoop:
     LDA.L $7FC800,X 
     STA.L $7E3000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .englishCtrlLoop 
     BRA .continueControllerSettingsSettings 
 
@@ -12567,8 +12382,7 @@ GameOptionsMenu_5_DissolveOutScreen:
 .japaneseCtrlLoop:
     LDA.L $7FD000,X 
     STA.L $7E3000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .japaneseCtrlLoop 
 
 .continueControllerSettingsSettings:
@@ -12591,8 +12405,7 @@ GameOptionsMenu_5_DissolveOutScreen:
 .englishSettingsLoop:
     LDA.L $7FD800,X 
     STA.L $7E3000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .englishSettingsLoop 
     BRA .continueSpecial 
 
@@ -12603,8 +12416,7 @@ GameOptionsMenu_5_DissolveOutScreen:
 .japaneseSettingsLoop:
     LDA.L $7FE000,X 
     STA.L $7E3000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .japaneseSettingsLoop 
 
 .continueSpecial:
@@ -12626,8 +12438,7 @@ GameOptionsMenu_5_DissolveOutScreen:
 .optionsMenuLoop:
     LDA.L $7FC000,X 
     STA.L $7E3000,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .optionsMenuLoop 
     JSR.W Set_Language_Text_Option_Highlight 
     LDY.W #GameOptionsMenu_Objects_OPTION_MODE_Border 
@@ -13453,8 +13264,7 @@ GameOptionsMenu_ControllerBindings:
     STA.W $1B3D,X 
 
 .next:
-    INX 
-    INX 
+    INX #2
     CPX.W #$000E 
     BPL .return 
     JMP.W .loop 
@@ -13488,8 +13298,7 @@ Save_GameOptionsMenu_ControllerBindings:
     LDA.W Controller_Input_Bitmasks,X 
     STA.W $0000,Y 
     PLX 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000E 
     BMI .loop 
     CLC 
@@ -13532,8 +13341,7 @@ Draw_GameOptionsMenu_ControllerBindings:
     LDA.W $000A,Y 
     STA.L $7E3044,X 
     PLX 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000E 
     BMI .loop 
     LDA.W $1B47 
@@ -13630,8 +13438,7 @@ GameOptions_ControllerSettings_SetBinding:
 .loopInput:
     BIT.W Controller_Input_Bitmasks,X 
     BNE + 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopInput 
     RTS 
 
@@ -13654,8 +13461,7 @@ GameOptions_ControllerSettings_SetBinding:
     LDA.W $1B3D,Y 
     CMP.B $12 
     BEQ .found 
-    INY 
-    INY 
+    INY #2
     CPY.W #$000E 
     BMI .next 
     LDY.W #$0000 

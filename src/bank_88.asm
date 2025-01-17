@@ -490,8 +490,7 @@ Delete_HDMAObjects:
 
 .loop:
     STZ.W $18B4,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     PLP 
@@ -709,8 +708,7 @@ Spawn_HDMAObject:
     CLC 
     ADC.W #$0010 
     STA.B $14 
-    INX 
-    INX 
+    INX #2
     CPX.W #$000C 
     BNE .loop 
 
@@ -794,8 +792,7 @@ HDMAObjectHandler_HandleMusicQueue:
     LDX.W $18B2 
 
 .next:
-    INX 
-    INX 
+    INX #2
     CPX.B #$0C 
     BNE .loop 
     JSR.W LayerBlending_Handler 
@@ -839,8 +836,7 @@ HDMAObject_Instruction_Handler:
     LDA.W $0000,Y 
     BPL .timer 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     PEA.W .loop-1 
     JMP.W ($0012) 
 
@@ -873,9 +869,7 @@ Instruction_HDMAObject_PreInstructionInY:
     LDA.W $0002,Y 
     STA.W $18FC,X 
     REP #$20 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTS 
 
 
@@ -900,8 +894,7 @@ UNUSED_Instruction_HDMAObject_CallFunctionY_88858B:
 .return:
     PLY 
     PLX 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -918,10 +911,7 @@ UNUSED_Instruction_HDMAObject_CallFunctionYWithA_88859D:
 .return:
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -936,9 +926,7 @@ Instruction_HDMAObject_CallExternalFunctionInY:
     JSL.L .externalFunction 
     PLY 
     PLX 
-    INY 
-    INY 
-    INY 
+    INY #3
     RTS 
 
 
@@ -997,8 +985,7 @@ UNUSED_Instruction_HDMAObject_GotoY_Y_8885F1:
 
     DEC.W $1908,X 
     BNE Instruction_HDMAObject_GotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -1049,8 +1036,7 @@ UNUSED_Instruction_HDMAObject_HDMATargetInY:
 UNUSED_Instruction_HDMAObject_HDMATablePointerInY_88864C:
     LDA.W $0000,Y 
     STA.W $18D8,X 
-    INY 
-    INY 
+    INY #2
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -1085,15 +1071,13 @@ Instruction_HDMAObject_IndirectHDMATableBank:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_HDMAObject_SkipNextInstruction_88867F:
-    INY 
-    INY 
+    INY #2
     RTS 
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Instruction_HDMAObject_Sleep:
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     STA.W $18CC,X 
     PLA 
@@ -1502,8 +1486,7 @@ Calculate_Xray_HDMADataTable:
 
 .loop:
     STA.L $7E9800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLP 
     RTS 
@@ -1670,8 +1653,7 @@ HandleXrayScope_State5_DeactivateBeam_Finish:
 
 .loop:
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     LDA.W $0A04 
     BEQ .return 
@@ -3700,10 +3682,8 @@ PreInstruction_FXType_22_BG3XScroll:
 .loop:
     LDA.W FXType_22_BG3XScrollHDMAData,Y 
     STA.L $7E9E80,X 
-    INX 
-    INX 
-    INY 
-    INY 
+    INX #2
+    INY #2
     CPY.W #$0020 
     BMI .loop 
     BRA .merge 
@@ -3734,8 +3714,7 @@ PreInstruction_FXType_22_BG3XScroll:
     DEC A 
     AND.W #$001F 
     TAX 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopWavy 
 
 .merge:
@@ -3787,9 +3766,7 @@ PreInstruction_FXType_22_BG3XScroll:
     LDA.W #$9E80 ; $7E
     STA.L $7E9E01,X 
     STA.L $7E9F01,X 
-    INX 
-    INX 
-    INX 
+    INX #3
     BRA .loopPad 
 
 
@@ -3844,9 +3821,7 @@ Calculate_FXType_22_IndirectHDMATable:
     LDA.B $14 
     STA.L $7E9E01,X 
     LDA.B $18 
-    INX 
-    INX 
-    INX 
+    INX #3
     BRA .loop 
 
 
@@ -3859,11 +3834,8 @@ Calculate_FXType_22_IndirectHDMATable:
     STA.L $7E9E00,X 
     LDA.B $14 
     STA.L $7E9E01,X 
-    INX 
-    INX 
-    INX 
-
-.return:
+    INX #3
+    .return:
     RTS 
 
 
@@ -3926,12 +3898,7 @@ Calculate_FXType_22_BG3YScrollHDMATable:
     CMP.B ($09),Y 
     BMI .foundFirstStrip 
 
-  + INY 
-    INY 
-    INY 
-    INY 
-    INY 
-    INY 
+  + INY #6
     CPY.B $18 
     BMI .loopFirstStrip 
     PLB 
@@ -3972,12 +3939,7 @@ Calculate_FXType_22_BG3YScrollHDMATable:
     CMP.B ($09),Y 
     BMI .foundStrip 
 
-  + INY 
-    INY 
-    INY 
-    INY 
-    INY 
-    INY 
+  + INY #6
     CPY.B $18 
     BMI .loopStrip 
     PLB 
@@ -3999,9 +3961,7 @@ Calculate_FXType_22_BG3YScrollHDMATable:
     CLC 
     ADC.B $12 
     STA.B $12 
-    INX 
-    INX 
-    INX 
+    INX #3
     LDA.B $14 
     CLC 
     ADC.W $0598 
@@ -4277,9 +4237,7 @@ Handle_ScrollingSky_BG2XScroll_HDMATables:
     STA.L $7E9F00,X 
     LDA.W #$00B5 
     STA.L $7E9F01,X 
-    INX 
-    INX 
-    INX 
+    INX #3
     LDA.B $18 
     SEC 
     SBC.W #$007F 
@@ -4308,9 +4266,7 @@ Handle_ScrollingSky_BG2XScroll_HDMATables:
     INC A 
     INC A 
     STA.L $7E9F01,X 
-    INX 
-    INX 
-    INX 
+    INX #3
     LDA.B $18 
     SEC 
     SBC.W #$007F 
@@ -4325,9 +4281,7 @@ Handle_ScrollingSky_BG2XScroll_HDMATables:
     CLC 
     ADC.B $12 
     STA.B $12 
-    INX 
-    INX 
-    INX 
+    INX #3
     LDA.B $12 
     CMP.B $14 
     BPL .terminateTable 
@@ -4702,10 +4656,8 @@ PreInstruction_ExpandingContractingEffect_BG2YScroll:
 
   + INC.W $05A4 
     DEC.W $05A8 
-    DEY 
-    DEY 
-    INX 
-    INX 
+    DEY #2
+    INX #2
     DEC.B $14 
     BNE .loop 
     PLP 
@@ -4734,10 +4686,7 @@ Handle_Earthquake_SoundEffect:
     AND.W #$0003 
     ADC.W .baseTimer,X 
     STA.W $0609 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     STX.W $0607 
 
 .return:
@@ -5140,8 +5089,7 @@ Setup_LavaAcid_BG2YScrollDataTable_NotWavy:
 
 .loop:
     STA.L $7E9C46,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -6631,13 +6579,11 @@ PreInstruction_Water_BG3_Xscroll:
     CLC 
     ADC.W WaveDisplacementTable_Water,Y 
     STA.L $7E9C04,X 
-    DEX 
-    DEX 
+    DEX #2
     TXA 
     AND.W #$001E 
     TAX 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     LDX.W $18B2 
     LDA.W $197E 
@@ -6780,13 +6726,11 @@ Setup_Water_BG2_Xscroll_DataTable_Wavy:
     CLC 
     ADC.W WaveDisplacementTable_Water,Y 
     STA.L $7E9C48,X 
-    DEX 
-    DEX 
+    DEX #2
     TXA 
     AND.W #$001E 
     TAX 
-    DEY 
-    DEY 
+    DEY #2
     TYA 
     AND.W #$001E 
     TAY 
@@ -6803,8 +6747,7 @@ Setup_Water_BG2_Xscroll_DataTable_NotWavy:
 
 .loop:
     STA.L $7E9C48,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     PLX 
     RTS 
@@ -8733,8 +8676,7 @@ UNUSED_HandleSporesWaviness_88DA9F:
     DEC A 
     AND.W #$001F 
     TAX 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     LDX.W $18B2 
     LDA.W #$FFF0 
@@ -8996,8 +8938,7 @@ Instruction_GotoY_ifEntranceToTourianUnlocked:
     STA.L $7E9E00 
     LDA.W #$0001 
     STA.L $7ECD20 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -9585,8 +9526,7 @@ SuitPickup_Stage0_LightBeamAppears:
 .loopUpperHalf:
     LDA.W .positions 
     STA.L $7E9800,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BEQ + 
     BPL .loopUpperHalf 
@@ -9597,8 +9537,7 @@ SuitPickup_Stage0_LightBeamAppears:
 .loopLowerHalf:
     LDA.W .positions 
     STA.L $7E9800,X 
-    DEX 
-    DEX 
+    DEX #2
     DEY 
     BEQ + 
     BPL .loopLowerHalf 
@@ -9634,8 +9573,7 @@ SuitPickup_Stage1_LightBeamWidens_Linear:
 .loop:
     LDA.W $0DEE 
     STA.L $7E9800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W $0DEE 
     AND.W #$00FF 
@@ -9768,8 +9706,7 @@ SuitPickup_Stage4_LightBeamShrinks:
 .loopUpperHalf:
     LDA.W #$00FF 
     STA.L $7E9800,X 
-    INX 
-    INX 
+    INX #2
     DEY 
     BEQ .setupLowerLoop 
     BPL .loopUpperHalf 
@@ -9782,8 +9719,7 @@ SuitPickup_Stage4_LightBeamShrinks:
 .loopLowerHalf:
     LDA.W #$00FF 
     STA.L $7E9800,X 
-    DEX 
-    DEX 
+    DEX #2
     DEY 
     BEQ + 
     BPL .loopLowerHalf 
@@ -10361,8 +10297,7 @@ PreInstruction_WavyPhantoon:
     STA.L $7E9100,X 
 
 .next:
-    INX 
-    INX 
+    INX #2
     CPX.B $1E 
     BPL + 
     JMP.W .loop 
@@ -10380,8 +10315,7 @@ PreInstruction_WavyPhantoon:
     CLC 
     ADC.B $B5 
     STA.L $7E9140,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopNotDoubled 
     BRA .return 
 
@@ -10396,8 +10330,7 @@ PreInstruction_WavyPhantoon:
     CLC 
     ADC.B $B5 
     STA.L $7E9180,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopDoubled 
 
 .return:
@@ -10827,8 +10760,7 @@ PreInstruction_MorphBallEyeBeamHDMA_DeactivateBeam:
 .loop:
     LDA.W #$00FF 
     STA.L $7E9100,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W #$0000 
     STA.L $7E9000 
@@ -11262,8 +11194,7 @@ PreInstruction_WavySamus:
     STA.L $7E9800,X 
 
 .next:
-    INX 
-    INX 
+    INX #2
     CPX.B $1E 
     BPL + 
     JMP.W .loop 
@@ -11278,8 +11209,7 @@ PreInstruction_WavySamus:
     CLC 
     ADC.B $B9 
     STA.L $7E9880,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopBG3XScroll 
     PLX 
     PLP 

@@ -704,8 +704,7 @@ ProcessDemoInputObject:
     LDA.W $0000,Y 
     BPL .processInput 
     STA.B $12 
-    INY 
-    INY 
+    INY #2
     PEA.W .loop-1 
     JMP.W ($0012) 
 
@@ -738,8 +737,7 @@ Instruction_DemoInputObject_PreInstructionInY:
     REP #$30 
     LDA.W $0000,Y 
     STA.W $0A7A 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -763,8 +761,7 @@ Instruction_DemoInputObject_DecrementTimer_GotoYIfNonZero:
     REP #$30 
     DEC.W $0A80 
     BNE Instruction_DemoInputObject_GotoY 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -772,8 +769,7 @@ Instruction_DemoInputObject_TimerInY:
     REP #$30 
     LDA.W $0000,Y 
     STA.W $0A80 
-    INY 
-    INY 
+    INY #2
     RTS 
 
 
@@ -4279,8 +4275,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
     ADC.B $1E 
     STA.B $22 
     BCS + 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOffScreen 
     STZ.B $12 
     JMP.W .leftEdgeEnd 
@@ -4289,8 +4284,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
   + LDA.B $23 
     ORA.W #$FF00 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     STY.B $12 
     TYA 
     SEC 
@@ -4306,8 +4300,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
     LDA.B $23 
     ORA.W #$FF00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOnScreen 
     BRA .leftEdgeEnd 
 
@@ -4315,8 +4308,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
 ..loop:
     LDA.W #$00FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL ..loop 
 
 .leftEdgeEnd:
@@ -4330,8 +4322,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
     ADC.B $20 
     STA.B $24 
     BCS + 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOffScreen 
     STY.B $14 
@@ -4341,8 +4332,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
   + LDA.B $25 
     ORA.W #$FF00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     STY.B $14 
     TYA 
     CLC 
@@ -4358,8 +4348,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
     LDA.B $25 
     ORA.W #$FF00 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOnScreen 
     BRA .rightEdgeEnd 
@@ -4368,8 +4357,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
 ..loop:
     LDA.W #$00FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI ..loop 
 
@@ -4379,8 +4367,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
 ..loop:
     LDA.W #$FF00 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.B $14 
     BMI ..loop 
     BEQ ..loop 
@@ -4405,8 +4392,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
     SBC.B $20 
     STA.B $24 
     BCC + 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOffScreen 
     STZ.B $12 
     JMP.W .rightEdgeEnd 
@@ -4415,8 +4401,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
   + LDA.B $24 
     AND.W #$FF00 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     STY.B $12 
     TYA 
     SEC 
@@ -4432,8 +4417,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
     LDA.B $24 
     AND.W #$FF00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOnScreen 
     BRA .rightEdgeEnd 
 
@@ -4441,8 +4425,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
 ..loop:
     LDA.W #$00FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL ..loop 
 
 .rightEdgeEnd:
@@ -4456,8 +4439,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
     SBC.B $1E 
     STA.B $22 
     BCC + 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeftOffScreen 
     STY.B $14 
@@ -4467,8 +4449,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
   + LDA.B $22 
     AND.W #$FF00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     STY.B $14 
     TYA 
     CLC 
@@ -4484,8 +4465,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
     LDA.B $22 
     AND.W #$FF00 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .leftOnScreen 
     BRA .leftEdgeEnd 
@@ -4494,8 +4474,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
 ..loop:
     LDA.W #$00FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI ..loop 
 
@@ -4505,8 +4484,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
 .leftHighByteFF:
     LDA.W #$FF00 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.B $14 
     BMI .leftHighByteFF 
     BEQ .leftHighByteFF 
@@ -4550,8 +4528,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards:
 .loop:
     LDA.W #$00FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loop 
     PLP 
@@ -4574,8 +4551,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpRight:
     ADC.B $1E 
     STA.B $22 
     BCS + 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOffScreen 
     STZ.B $12 
     BRA .leftEdgeEnd 
@@ -4585,8 +4561,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpRight:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL + 
     LDA.W #$0002 
     STA.B $12 
@@ -4608,8 +4583,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpRight:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOnScreen 
     BRA .leftEdgeEnd 
 
@@ -4620,8 +4594,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpRight:
 .loopLeft:
     LDA.B #$FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeft 
 
 .leftEdgeEnd:
@@ -4635,8 +4608,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpRight:
     ADC.B $20 
     STA.B $24 
     BCS + 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOffScreen 
     LDA.W #$0001 
     STA.B $14 
@@ -4647,8 +4619,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpRight:
     LDA.B $25 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL + 
     LDA.W #$0003 
     STA.B $14 
@@ -4670,8 +4641,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpRight:
     LDA.B $25 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOnScreen 
     BRA .rightEdgeEnd 
 
@@ -4682,8 +4652,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpRight:
 .loopFF:
     LDA.B #$FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopFF 
 
 .rightEdgeEnd:
@@ -4693,8 +4662,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpRight:
 .loop00:
     LDA.B #$00 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.B $14 
     BMI .loop00 
     REP #$20 
@@ -4716,8 +4684,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_Up:
     SBC.B $1E 
     STA.B $22 
     BCC + 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOffScreen 
     STZ.B $12 
     BRA .leftEdgeEnd 
@@ -4727,8 +4694,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_Up:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL + 
     LDA.W #$0002 
     STA.B $12 
@@ -4750,8 +4716,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_Up:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOnScreen 
     BRA .leftEdgeEnd 
 
@@ -4761,8 +4726,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_Up:
 .loopLeft:
     LDA.B #$00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeft 
 
 .leftEdgeEnd:
@@ -4776,8 +4740,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_Up:
     ADC.B $20 
     STA.B $24 
     BCS + 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOffScreen 
     LDA.W #$0001 
     STA.B $14 
@@ -4788,8 +4751,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_Up:
     LDA.B $25 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL + 
     LDA.W #$0003 
     STA.B $14 
@@ -4811,8 +4773,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_Up:
     LDA.B $25 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOnScreen 
     BRA .return 
 
@@ -4822,8 +4783,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_Up:
 .loopRight:
     LDA.B #$FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRight 
 
 .return:
@@ -4843,8 +4803,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpLeft:
     SBC.B $1E 
     STA.B $22 
     BCC + 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOffScreen 
     STZ.B $12 
     BRA .leftEdgeEnd 
@@ -4854,8 +4813,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpLeft:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL + 
     LDA.W #$0002 
     STA.B $12 
@@ -4877,8 +4835,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpLeft:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOnScreen 
     BRA .leftEdgeEnd 
 
@@ -4888,8 +4845,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpLeft:
 .loopLeft:
     LDA.B #$00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeft 
 
 .leftEdgeEnd:
@@ -4903,8 +4859,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpLeft:
     SBC.B $20 
     STA.B $24 
     BCC + 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOffScreen 
     LDA.W #$0001 
     STA.B $14 
@@ -4915,8 +4870,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpLeft:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL + 
     LDA.W #$0003 
     STA.B $14 
@@ -4938,8 +4892,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpLeft:
     LDA.B $25 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOnScreen 
     BRA .rightEdgeEnd 
 
@@ -4949,8 +4902,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpLeft:
 .loopRight:
     LDA.B #$00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRight 
 
 .rightEdgeEnd:
@@ -4960,8 +4912,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpLeft:
 .endLoop:
     LDA.B #$FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.B $12 
     BMI .endLoop 
     REP #$20 
@@ -5002,8 +4953,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards:
 
 .loop:
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
     PLP 
     RTS 
@@ -5025,8 +4975,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownRight:
     ADC.B $20 
     STA.B $24 
     BCS + 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOffScreen 
     STY.B $12 
@@ -5035,8 +4984,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownRight:
 
   + LDA.B $25 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI + 
     LDA.W #$01CA 
@@ -5057,8 +5005,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownRight:
     BCS .loopRight 
     LDA.B $25 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOnScreen 
     BRA .rightEdgeEnd 
@@ -5067,8 +5014,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownRight:
 .loopRight:
     LDA.W #$00FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRight 
 
@@ -5082,8 +5028,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownRight:
     ADC.B $1E 
     STA.B $22 
     BCS + 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeftOffScreen 
     STY.B $14 
@@ -5094,8 +5039,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownRight:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI + 
     LDA.W #$01CB 
@@ -5118,8 +5062,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownRight:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeftOnScreen 
     BRA .leftEdgeEnd 
@@ -5130,8 +5073,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownRight:
 .loopLeft:
     LDA.B #$FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeft 
 
@@ -5142,8 +5084,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownRight:
 .loopEnd:
     LDA.B #$00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     CPY.B $14 
     BPL .loopEnd 
     REP #$20 
@@ -5165,8 +5106,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_Down:
 
 .loopClear:
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopClear 
     BRA .rightEdgeEnd 
@@ -5178,8 +5118,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_Down:
     SBC.B $20 
     STA.B $24 
     BCC + 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOffScreen 
     STY.B $12 
@@ -5188,8 +5127,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_Down:
 
   + LDA.B $25 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI + 
     LDA.W #$01CA 
@@ -5210,8 +5148,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_Down:
     BCC ..loop 
     LDA.B $25 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOnScreen 
     BRA .rightEdgeEnd 
@@ -5220,8 +5157,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_Down:
 ..loop:
     LDA.W #$0000 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI ..loop 
 
@@ -5235,8 +5171,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_Down:
     ADC.B $1E 
     STA.B $22 
     BCS + 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeftOffScreen 
     STY.B $14 
@@ -5247,8 +5182,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_Down:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI + 
     LDA.W #$01CB 
@@ -5271,8 +5205,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_Down:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeftOnScreen 
     BRA .return 
@@ -5283,8 +5216,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_Down:
 
 ..loop:
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI ..loop 
     REP #$20 
@@ -5305,8 +5237,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownLeft:
     SBC.B $20 
     STA.B $24 
     BCC + 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOffScreen 
     STY.B $12 
@@ -5315,8 +5246,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownLeft:
 
   + LDA.B $25 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI + 
     LDA.W #$01CA 
@@ -5337,8 +5267,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownLeft:
     BCC .loopRight 
     LDA.B $25 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOnScreen 
     BRA .rightEdgeEnd 
@@ -5347,8 +5276,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownLeft:
 .loopRight:
     LDA.W #$0000 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRight 
 
@@ -5362,8 +5290,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownLeft:
     SBC.B $1E 
     STA.B $22 
     BCC + 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeftOffScreen 
     STY.B $14 
@@ -5374,8 +5301,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownLeft:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI + 
     LDA.W #$01CB 
@@ -5398,8 +5324,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownLeft:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeftOnScreen 
     BRA .leftEdgeEnd 
@@ -5410,8 +5335,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownLeft:
 .loopLeft:
     LDA.B #$00 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeft 
 
@@ -5422,8 +5346,7 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownLeft:
 .loopEnd:
     LDA.B #$FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     CPY.B $12 
     BPL .loopEnd 
     REP #$20 
@@ -5450,17 +5373,14 @@ Calc_Xray_HDMADataTable_OffScreen_HorizontalLine:
     STA.B [$00],Y 
 
 .next:
-    DEY 
-    DEY 
-
-.loopTop:
+    DEY #2
+    .loopTop:
     LDA.B [$00],Y 
     CMP.W #$00FF 
     BEQ .loopBottom 
     LDA.W #$00FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopTop 
 
 .loopBottom:
@@ -5474,8 +5394,7 @@ Calc_Xray_HDMADataTable_OffScreen_HorizontalLine:
     BEQ .return 
     LDA.W #$00FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loop 
 
@@ -5611,8 +5530,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedRight:
     LDA.B $17 
     ORA.W #$FF00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     LDA.B $16 
     STA.B $22 
     STA.B $24 
@@ -5626,8 +5544,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedRight:
     LDA.B $23 
     ORA.W #$FF00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOnScreen 
     BRA .leftEdgeEnd 
 
@@ -5635,8 +5552,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedRight:
 .loopLeft:
     LDA.W #$00FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeft 
 
 .leftEdgeEnd:
@@ -5653,8 +5569,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedRight:
     LDA.B $25 
     ORA.W #$FF00 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOnScreen 
     BRA .return 
@@ -5663,8 +5578,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedRight:
 .loopRight:
     LDA.W #$00FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRight 
 
@@ -5683,8 +5597,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedLeft:
     LDA.B $16 
     AND.W #$FF00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     LDA.B $16 
     STA.B $22 
     STA.B $24 
@@ -5698,8 +5611,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedLeft:
     LDA.B $24 
     AND.W #$FF00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOnScreen 
     BRA .rightEdgeEnd 
 
@@ -5707,8 +5619,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedLeft:
 .loopRight:
     LDA.W #$00FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRight 
 
 .rightEdgeEnd:
@@ -5725,8 +5636,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedLeft:
     LDA.B $22 
     AND.W #$FF00 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeftOnScreen 
     BRA .return 
@@ -5735,8 +5645,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedLeft:
 .loopLeft:
     LDA.W #$00FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeft 
 
@@ -5759,9 +5668,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards:
     LDA.B $17 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
-    DEY 
+    DEY #3
     LDA.B $16 
     STA.B $22 
     STA.B $24 
@@ -5793,8 +5700,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards:
     BEQ .return 
     LDA.W #$00FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loop 
 
@@ -5823,8 +5729,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpRight:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOnScreen 
     BRA .leftEdgeEnd 
 
@@ -5835,8 +5740,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpRight:
 
 .loopLeft:
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeft 
     REP #$20 
 
@@ -5854,8 +5758,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpRight:
     LDA.B $25 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOnScreen 
     BRA .return 
 
@@ -5865,21 +5768,18 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpRight:
 .loopRight:
     LDA.B #$FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRight 
     REP #$20 
     LDY.W $0D1E 
     BEQ .return 
-    DEY 
-    DEY 
+    DEY #2
     BMI .return 
     LDA.W #$00FF 
 
 .loopEnd:
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopEnd 
 
 .return:
@@ -5902,8 +5802,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_Up:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOnScreen 
     BRA .leftEdgeEnd 
 
@@ -5913,8 +5812,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_Up:
 .loopLeft:
     LDA.B #$00 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeft 
     REP #$20 
 
@@ -5932,8 +5830,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_Up:
     LDA.B $25 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOnScreen 
     BRA .return 
 
@@ -5943,8 +5840,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_Up:
 .loopRIght:
     LDA.B #$FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRIght 
 
 .return:
@@ -5967,8 +5863,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpLeft:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeftOnScreen 
     BRA .leftEdgeEnd 
 
@@ -5978,8 +5873,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpLeft:
 
 .loopLeft:
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopLeft 
     REP #$20 
 
@@ -5997,8 +5891,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpLeft:
     LDA.B $25 
     STA.B [$00],Y 
     REP #$20 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRightOnScreen 
     BRA .return 
 
@@ -6009,8 +5902,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpLeft:
 
 .loopRight:
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopRight 
     PLY 
     DEY 
@@ -6018,8 +5910,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpLeft:
 
 .loopEnd:
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopEnd 
 
 .return:
@@ -6075,8 +5966,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards:
     BEQ .return 
     LDA.W #$00FF 
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loop 
 
 .return:
@@ -6102,8 +5992,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownRight:
     BCS + 
     LDA.B $25 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOnScreen 
     BRA .rightEdgeEnd 
@@ -6114,8 +6003,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownRight:
 
 .loopRight:
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRight 
 
@@ -6133,8 +6021,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownRight:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeftOnScreen 
     BRA .return 
@@ -6145,23 +6032,20 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownRight:
 .loopLeft:
     LDA.B #$FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeft 
     REP #$20 
     LDY.W $0D1E 
     BEQ .return 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BPL .return 
     LDA.W #$00FF 
 
 .loopEnd:
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopEnd 
 
@@ -6183,8 +6067,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_Down:
     BCC .loopRight 
     LDA.B $25 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOnScreen 
     BRA .rightEdgeEnd 
@@ -6193,8 +6076,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_Down:
 .loopRight:
     LDA.W #$0000 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRight 
 
@@ -6212,8 +6094,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_Down:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeftOnScreen 
     BRA .return 
@@ -6224,8 +6105,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_Down:
 .loopLeft:
     LDA.B #$FF 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeft 
 
@@ -6247,8 +6127,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownLeft:
     BCC .loopRight 
     LDA.B $25 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRightOnScreen 
     BRA .rightEdgeEnd 
@@ -6257,8 +6136,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownLeft:
 .loopRight:
     LDA.W #$0000 
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopRight 
 
@@ -6276,8 +6154,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownLeft:
     LDA.B $23 
     STA.B [$00],Y 
     REP #$20 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeftOnScreen 
     BRA .return 
@@ -6289,8 +6166,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownLeft:
 
 .loopLeft:
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLeft 
     PLY 
@@ -6299,8 +6175,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownLeft:
 
 .loopEnd:
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopEnd 
 
@@ -6330,14 +6205,12 @@ Calc_Xray_HDMADataTable_OnScreen_HorizontalLine:
     AND.W #$FF00 
     STA.B [$00],Y 
 
-  + DEY 
-    DEY 
+  + DEY #2
     LDA.W #$00FF 
 
 .loopUpper:
     STA.B [$00],Y 
-    DEY 
-    DEY 
+    DEY #2
     BPL .loopUpper 
     LDA.B $18 
     ASL A 
@@ -6346,8 +6219,7 @@ Calc_Xray_HDMADataTable_OnScreen_HorizontalLine:
 
 .loopLower:
     STA.B [$00],Y 
-    INY 
-    INY 
+    INY #2
     CPY.W #$01CC 
     BMI .loopLower 
     PLP 
@@ -6779,10 +6651,7 @@ LoadRevealedBlockCommand:
     BEQ .return 
     CMP.B $28 
     BEQ + 
-    INX 
-    INX 
-    INX 
-    INX 
+    INX #4
     BRA .loopBlockType 
 
 
@@ -6798,15 +6667,11 @@ LoadRevealedBlockCommand:
     BEQ + 
     CMP.B $26 
     BEQ + 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     BRA .loopBTS 
 
 
-  + INY 
-    INY 
+  + INY #2
     LDA.B ($00),Y 
     STA.B $03 
     LDY.W #$0000 
@@ -6950,15 +6815,11 @@ Copy1x1BlockToXrayBG2TilemapIfScrollPLMTrigger:
     BEQ + 
     CMP.B $2E 
     BEQ + 
-    INY 
-    INY 
-    INY 
-    INY 
+    INY #4
     BRA .loop 
 
 
-  + INY 
-    INY 
+  + INY #2
     LDA.B ($00),Y 
     INC A 
     INC A 
@@ -6973,15 +6834,13 @@ Copy1x1BlockToXrayBG2TilemapIfScrollPLMTrigger:
 
 
 RevealedBlockCommand_Copy1x1BlockToXrayBG2Tilemap:
-    INY 
-    INY 
+    INY #2
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap 
     JMP.W LoadRevealedBlock_Done 
 
 
 RevealedBlockCommand_Copy1x1BlockToXrayBG2TilemapIfBrinstar:
-    INY 
-    INY 
+    INY #2
     LDA.W $079F 
     CMP.W #$0001 
     BNE .gotoDone 
@@ -6992,14 +6851,12 @@ RevealedBlockCommand_Copy1x1BlockToXrayBG2TilemapIfBrinstar:
 
 
 RevealedBlockCommand_Copy2x1BlockToXrayBG2Tilemap:
-    INY 
-    INY 
+    INY #2
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap 
     LDA.B $12 
     CMP.W #$0001 
     BEQ .gotoDone 
-    INY 
-    INY 
+    INY #2
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockRight 
 
 .gotoDone:
@@ -7007,31 +6864,25 @@ RevealedBlockCommand_Copy2x1BlockToXrayBG2Tilemap:
 
 
 RevealedBlockCommand_Copy1x2BlockToXrayBG2Tilemap:
-    INY 
-    INY 
+    INY #2
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap 
-    INY 
-    INY 
+    INY #2
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockDown 
     JMP.W LoadRevealedBlock_Done 
 
 
 RevealedBlockCommand_Copy2x2BlockToXrayBG2Tilemap:
-    INY 
-    INY 
+    INY #2
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap 
-    INY 
-    INY 
+    INY #2
     LDA.B $12 
     CMP.W #$0001 
     BEQ + 
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockRight 
 
-  + INY 
-    INY 
+  + INY #2
     JSR.W CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockDown 
-    INY 
-    INY 
+    INY #2
     LDA.B $12 
     CMP.W #$0001 
     BEQ .gotoDone 
@@ -7864,8 +7715,7 @@ VariaSuit_Pickup:
 
 .loop:
     STA.L $7E9800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W $0A1F 
     AND.W #$00FF 
@@ -7964,8 +7814,7 @@ GravitySuit_Pickup:
 
 .loop:
     STA.L $7E9800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     LDA.W $0A1F 
     AND.W #$00FF 
@@ -8186,8 +8035,7 @@ HandleBeamChargePalettes:
 
 .loop:
     STA.L $7EC182,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     CLC 
     RTS 
@@ -9532,8 +9380,7 @@ InitializeSamus:
 .loopProjectilePreInstructions:
     LDA.W #RTS_90B169 
     STA.W $0C68,X 
-    INX 
-    INX 
+    INX #2
     CPX.W #$0014 
     BMI .loopProjectilePreInstructions 
     LDA.W #GrappleBeamFunction_Inactive 
@@ -9555,8 +9402,7 @@ InitializeSamus:
 
 .loopSamusHDMATables:
     STA.L $7E9800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loopSamusHDMATables 
     LDA.L SamusPhysicsConstants_YSubAccelerationInAir 
     STA.W $0B32 
@@ -9693,8 +9539,7 @@ XraySetup:
 .loop:
     LDA.W #$00FF 
     STA.L $7E9800,X 
-    DEX 
-    DEX 
+    DEX #2
     BPL .loop 
     JSL.L Disable_Enemy_Projectiles 
     JSL.L Disable_PLMs 
