@@ -554,7 +554,7 @@ GameState_24_WhitingOutFromTimeUp:
     LDA.W #$000E                                                         ;82848E;
     JSL.L CheckIfEvent_inA_HasHappened                                   ;828491;
     BCC .notZebesTimebomb                                                ;828495;
-    STZ.W DeathAnimation_Timer                                                          ;828497;
+    STZ.W GameOptionsMenuIndex                                                          ;828497;
     STZ.W $0727                                                          ;82849A;
     LDX.W #$00FE                                                         ;82849D;
 
@@ -10773,7 +10773,7 @@ GameState_13_DeathSequence_Start:
     DEX                                                                  ;82DCBD;
     BPL -                                                                ;82DCBE;
     LDA.W #$0003                                                         ;82DCC0;
-    STA.W DeathAnimation_Timer                                                          ;82DCC3;
+    STA.W GameOptionsMenuIndex                                                          ;82DCC3;
     STZ.W $0DE4                                                          ;82DCC6;
     STZ.W $0DE6                                                          ;82DCC9;
     STZ.W $0DE8                                                          ;82DCCC;
@@ -10813,7 +10813,7 @@ GameState_14_DeathSequence_BlackOutSurroundings:
     LDA.B #$09                                                           ;82DD11;
     STA.B $55                                                            ;82DD13;
     REP #$20                                                             ;82DD15;
-    STZ.W DeathAnimation_Timer                                                          ;82DD17;
+    STZ.W GameOptionsMenuIndex                                                          ;82DD17;
     STZ.W ScreenFadeDelay                                                          ;82DD1A;
     STZ.W ScreenFadeCounter                                                          ;82DD1D;
     LDX.W #$00FE                                                         ;82DD20;
@@ -10825,7 +10825,7 @@ GameState_14_DeathSequence_BlackOutSurroundings:
     LDA.W #$0010                                                         ;82DD2A;
     STA.W $0DE8                                                          ;82DD2D;
     LDA.W #$0003                                                         ;82DD30;
-    STA.W DeathAnimation_Timer                                                          ;82DD33;
+    STA.W GameOptionsMenuIndex                                                          ;82DD33;
     STZ.W $0DE4                                                          ;82DD36;
     STZ.W $0DE6                                                          ;82DD39;
     INC.W GameState                                                      ;82DD3C;
@@ -13031,13 +13031,13 @@ GameState_2_GameOptionsMenu:
     PHK                                                                  ;82EBA1;
     PLB                                                                  ;82EBA2;
     REP #$30                                                             ;82EBA3;
-    LDA.W DeathAnimation_Timer                                                          ;82EBA5;
+    LDA.W GameOptionsMenuIndex                                                          ;82EBA5;
     ASL                                                                  ;82EBA8;
     TAX                                                                  ;82EBA9;
     JSR.W (.pointers,X)                                                  ;82EBAA;
     JSR.W GameOptionsMenu_ObjectHandler                                  ;82EBAD;
     JSR.W Draw_GameOptionsMenu_Spritemaps                                ;82EBB0;
-    LDA.W DeathAnimation_Timer                                                          ;82EBB3;
+    LDA.W GameOptionsMenuIndex                                                          ;82EBB3;
     CMP.W #$0002                                                         ;82EBB6;
     BMI .return                                                          ;82EBB9;
     JSR.W Draw_GameOptionsMenu_BG1                                       ;82EBBB;
@@ -13074,7 +13074,7 @@ GameOptionsMenu_0_FinishFadingOut:
     REP #$20                                                             ;82EBEB;
     STZ.W ScreenFadeDelay                                                          ;82EBED;
     STZ.W ScreenFadeCounter                                                          ;82EBF0;
-    INC.W DeathAnimation_Timer                                                          ;82EBF3;
+    INC.W GameOptionsMenuIndex                                                          ;82EBF3;
     RTS                                                                  ;82EBF6;
 
 +   SEP #$20                                                             ;82EBF7;
@@ -13178,7 +13178,7 @@ GameOptionsMenu_1_LoadingOptionsMenu:
     JSR.W Spawn_GameOptionsMenu_Object                                   ;82ECD3;
     LDY.W #GameOptionsMenu_Objects_OPTION_MODE_Border                    ;82ECD6;
     JSR.W Spawn_GameOptionsMenu_Object                                   ;82ECD9;
-    INC.W DeathAnimation_Timer                                                          ;82ECDC;
+    INC.W GameOptionsMenuIndex                                                          ;82ECDC;
     JSR.W Set_Language_Text_Option_Highlight                             ;82ECDF;
     PLP                                                                  ;82ECE2;
     RTS                                                                  ;82ECE3;
@@ -13194,7 +13194,7 @@ GameOptionsMenu_2_FadingInOptionsMenu:
     REP #$20                                                             ;82ECF0;
     STZ.W ScreenFadeDelay                                                          ;82ECF2;
     STZ.W ScreenFadeCounter                                                          ;82ECF5;
-    INC.W DeathAnimation_Timer                                                          ;82ECF8;
+    INC.W GameOptionsMenuIndex                                                          ;82ECF8;
     RTS                                                                  ;82ECFB;
 
   .return:
@@ -13305,7 +13305,7 @@ GameOptionsMenu_3_OptionsMenu:
 
   .cancel:
     LDA.W #$000B                                                         ;82ED9F;
-    STA.W DeathAnimation_Timer                                                          ;82EDA2;
+    STA.W GameOptionsMenuIndex                                                          ;82EDA2;
     PLP                                                                  ;82EDA5;
     RTS                                                                  ;82EDA6;
 
@@ -13332,14 +13332,14 @@ GameOptionsMenu_StartGame:
 
   .startGame:
     LDA.W #$0004                                                         ;82EDC6;
-    STA.W DeathAnimation_Timer                                                          ;82EDC9;
+    STA.W GameOptionsMenuIndex                                                          ;82EDC9;
     RTS                                                                  ;82EDCC;
 
   .fadeScreen:
     STZ.W ScreenFadeDelay                                                          ;82EDCD;
     STZ.W ScreenFadeCounter                                                          ;82EDD0;
     LDA.W #$000C                                                         ;82EDD3;
-    STA.W DeathAnimation_Timer                                                          ;82EDD6;
+    STA.W GameOptionsMenuIndex                                                          ;82EDD6;
     RTS                                                                  ;82EDD9;
 
 
@@ -13409,7 +13409,7 @@ Start_GameOptionsMenu_DissolveTransition:
     STZ.W ScreenFadeDelay                                                          ;82EE5D;
     STZ.W ScreenFadeCounter                                                          ;82EE60;
     LDA.W #$0005                                                         ;82EE63;
-    STA.W DeathAnimation_Timer                                                          ;82EE66;
+    STA.W GameOptionsMenuIndex                                                          ;82EE66;
     RTS                                                                  ;82EE69;
 
 
@@ -13427,7 +13427,7 @@ GameOptionsMenu_B_TransitionBackToFileSelect:
     LDA.W #$0004                                                         ;82EE82;
     STA.W GameState                                                      ;82EE85;
     STZ.W $0727                                                          ;82EE88;
-    STZ.W DeathAnimation_Timer                                                          ;82EE8B;
+    STZ.W GameOptionsMenuIndex                                                          ;82EE8B;
     RTS                                                                  ;82EE8E;
 
   .return:
@@ -13447,7 +13447,7 @@ GameOptionsMenu_C_FadingOutOptionsMenuToStartGame:
     STZ.W ScreenFadeDelay                                                          ;82EEA4;
     STZ.W ScreenFadeCounter                                                          ;82EEA7;
     LDA.W #$0004                                                         ;82EEAA;
-    STA.W DeathAnimation_Timer                                                          ;82EEAD;
+    STA.W GameOptionsMenuIndex                                                          ;82EEAD;
     RTS                                                                  ;82EEB0;
 
   .return:
@@ -13457,7 +13457,7 @@ GameOptionsMenu_C_FadingOutOptionsMenuToStartGame:
 
 ;;; $EEB4: Game options menu - [menu index] = 4 (start game) ;;;
 GameOptionsMenu_4_StartGame:
-    STZ.W DeathAnimation_Timer                                                          ;82EEB4;
+    STZ.W GameOptionsMenuIndex                                                          ;82EEB4;
     LDA.W $05D1                                                          ;82EEB7;
     BEQ .checkLoadingState                                               ;82EEBA;
     LDA.B $8B                                                            ;82EEBC;
@@ -13486,7 +13486,7 @@ GameOptionsMenu_4_StartGame:
 
   .cutscene:
     STZ.W MenuOptionIndex                                                          ;82EEEF;
-    STZ.W DeathAnimation_Timer                                                          ;82EEF2;
+    STZ.W GameOptionsMenuIndex                                                          ;82EEF2;
     RTS                                                                  ;82EEF5;
 
   .debug:
@@ -13530,7 +13530,7 @@ GameOptionsMenu_5_DissolveOutScreen:
     STZ.W ScreenFadeDelay                                                          ;82EF38;
     STZ.W ScreenFadeCounter                                                          ;82EF3B;
     STZ.B $B3                                                            ;82EF3E;
-    INC.W DeathAnimation_Timer                                                          ;82EF40;
+    INC.W GameOptionsMenuIndex                                                          ;82EF40;
     LDA.W MenuOptionIndex                                                          ;82EF43;
     BEQ .gotoOptionsMenu                                                 ;82EF46;
     BIT.W #$0004                                                         ;82EF48;
@@ -13641,19 +13641,19 @@ GameOptionsMenu_6_DissolveInScreen:
     BIT.W #$0004                                                         ;82F001;
     BNE .specialSubmenu                                                  ;82F004;
     LDA.W #$0007                                                         ;82F006;
-    STA.W DeathAnimation_Timer                                                          ;82F009;
+    STA.W GameOptionsMenuIndex                                                          ;82F009;
     STZ.W MenuOptionIndex                                                          ;82F00C;
     RTS                                                                  ;82F00F;
 
   .specialSubmenu:
     LDA.W #$0008                                                         ;82F010;
-    STA.W DeathAnimation_Timer                                                          ;82F013;
+    STA.W GameOptionsMenuIndex                                                          ;82F013;
     STZ.W MenuOptionIndex                                                          ;82F016;
     RTS                                                                  ;82F019;
 
   .OptionsMenu:
     LDA.W #$0003                                                         ;82F01A;
-    STA.W DeathAnimation_Timer                                                          ;82F01D;
+    STA.W GameOptionsMenuIndex                                                          ;82F01D;
     RTS                                                                  ;82F020;
 
   .return:
@@ -13888,12 +13888,12 @@ GameOptionsMenu_7_ControllerSettings:
 
   .scrollDown:
     LDA.W #$0009                                                         ;82F1A3;
-    STA.W DeathAnimation_Timer                                                          ;82F1A6;
+    STA.W GameOptionsMenuIndex                                                          ;82F1A6;
     RTS                                                                  ;82F1A9;
 
   .scrollUp:
     LDA.W #$000A                                                         ;82F1AA;
-    STA.W DeathAnimation_Timer                                                          ;82F1AD;
+    STA.W GameOptionsMenuIndex                                                          ;82F1AD;
     RTS                                                                  ;82F1B0;
 
   .downEnd:
@@ -14008,7 +14008,7 @@ GameOptionsMenu_9_ScrollControllerSettingsDown:
     CMP.W #$0020                                                         ;82F279;
     BNE .return                                                          ;82F27C;
     LDA.W #$0007                                                         ;82F27E;
-    STA.W DeathAnimation_Timer                                                          ;82F281;
+    STA.W GameOptionsMenuIndex                                                          ;82F281;
 
   .return:
     RTS                                                                  ;82F284;
@@ -14022,7 +14022,7 @@ GameOptionsMenu_A_ScrollControllerSettingsUp:
     STA.B $B3                                                            ;82F28B;
     BNE .return                                                          ;82F28D;
     LDA.W #$0007                                                         ;82F28F;
-    STA.W DeathAnimation_Timer                                                          ;82F292;
+    STA.W GameOptionsMenuIndex                                                          ;82F292;
 
   .return:
     RTS                                                                  ;82F295;
@@ -14054,7 +14054,7 @@ PreInstruction_MenuSelectionMissile:
     STA.W $1AFD,X                                                        ;82F2BA;
     RTS                                                                  ;82F2BD;
 
-+   LDA.W DeathAnimation_Timer                                                          ;82F2BE;
++   LDA.W GameOptionsMenuIndex                                                          ;82F2BE;
     ASL                                                                  ;82F2C1;
     TAY                                                                  ;82F2C2;
     LDA.W .pointers,Y                                                    ;82F2C3;
@@ -14172,7 +14172,7 @@ PreInstruction_BorderAround_OPTIONS_MODE:
     LDA.W GameState                                                      ;82F376;
     CMP.W #$0002                                                         ;82F379;
     BNE .delete                                                          ;82F37C;
-    LDA.W DeathAnimation_Timer                                                          ;82F37E;
+    LDA.W GameOptionsMenuIndex                                                          ;82F37E;
     CMP.W #$0006                                                         ;82F381;
     BNE .return                                                          ;82F384;
     SEP #$20                                                             ;82F386;
@@ -14197,7 +14197,7 @@ PreInstruction_BorderAround_OPTIONS_MODE:
 PreInstruction_BorderAround_CONTRLLER_SETTING_MODE:
 ;; Parameters:
 ;;     X: Game options menu object index
-    LDA.W DeathAnimation_Timer                                                          ;82F3A0;
+    LDA.W GameOptionsMenuIndex                                                          ;82F3A0;
     CMP.W #$0006                                                         ;82F3A3;
     BNE .dissolveInEnd                                                   ;82F3A6;
     SEP #$20                                                             ;82F3A8;
@@ -14240,7 +14240,7 @@ PreInstruction_BorderAround_CONTRLLER_SETTING_MODE:
 PreInstruction_BorderAround_SPECIAL_SETTING_MODE:
 ;; Parameters:
 ;;     X: Game options menu object index
-    LDA.W DeathAnimation_Timer                                                          ;82F3E2;
+    LDA.W GameOptionsMenuIndex                                                          ;82F3E2;
     CMP.W #$0006                                                         ;82F3E5;
     BNE .return                                                          ;82F3E8;
     SEP #$20                                                             ;82F3EA;
@@ -14266,7 +14266,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PreInstruction_82F404:
 ;; Parameters:
 ;;     X: Game options menu object index
-    LDA.W DeathAnimation_Timer                                                          ;82F404;
+    LDA.W GameOptionsMenuIndex                                                          ;82F404;
     CMP.W #$0001                                                         ;82F407;
     BNE .return                                                          ;82F40A;
     LDA.W #$0001                                                         ;82F40C;
