@@ -369,9 +369,10 @@ PauseMenu_Backup0071: skip 1 ; $0775
 PauseMenu_SamusPositionIndicatorAnimFrame: skip 2 ; $0776
 PauseMenu_SamusPositionIndicatorAnimTimer: skip 2 ; $0778
 PauseMenu_SamusPositionIndicatorAnimLoopCount: skip 2 ; $077A
+PauseMenu_End: ; $077C
 
 HUDItemTilemapPaletteBits: skip 2 ; $077C
-skip 5 ; $077C..82
+skip 5 ; $077E..82
 Mode7Flag: skip 2 ; $0783
 UnusedMode7RotationAngle: skip 2 ; $0785
 NeverRead0787: skip 2 ; $0787
@@ -891,7 +892,7 @@ PreviousBeamChargeCounter: skip 2 ; $0DC2
 CurrentBlockIndex: skip 2 ; $0DC4
 SamusSolidVerticalCollisionResult: skip 1 ; $0DC6
 SamusDownwardsMovementSolidCollisionResult: skip 1 ; $0DC7
-unused0DC8: skip 2 ; $0DC8..CD
+unused0DC8: skip 6 ; $0DC8..CD
 SamusXSpeedKilledDueToCollisionFlag: skip 2 ; $0DCE
 SamusSolidCollisionFlag: skip 2 ; $0DD0
 ProjectileProtoType: skip 2 ; $0DD2
@@ -905,8 +906,8 @@ CollisionProjectileYOffset: skip 2 ; $0DD4
 SlopeCollisionFlipFlags: skip 0 ; $0DD6
 SlopeCOllisionDefinitionTableBaseIndex: skip 2 ; $0DD6
 unused0DD8: skip 4 ; $0DD8
-SuitPickupLightBeamWideningSpeed: skip 0 ; $0DDC
-ProjectileIndex: skip 0 ; $0DDE
+SuitPickupLightBeamWideningSpeed: skip 2 ; $0DDC
+ProjectileIndex: skip 2 ; $0DDE
 DebugInvincibility: skip 2 ; $0DE0
 
 DeathAnimation_Timer: skip 2 ; $0DE2
@@ -1390,6 +1391,7 @@ org $1A8F
 GameOptionsMenuObject_Index: skip 2 ; $1A8F
 skip 2
 GameOptionsMenuObject_InitParam: skip 2 ; $1A93
+skip 8
 GameOptionsMenuObject_SpritemapPointers: skip $10 ; $1A9D..AC
 GameOptionsMenuObject_XPositions: skip $10 ; $1AAD..BC
 GameOptionsMenuObject_YPositions: skip $10 ; $1ABD..CC
