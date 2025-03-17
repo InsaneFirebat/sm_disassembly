@@ -20,10 +20,10 @@ SaveToSRAM:
     AND.W #$0003                                                         ;81800D;
     ASL                                                                  ;818010;
     STA.B DP_Temp12                                                      ;818011;
-    LDY.W #$005E                                                         ;818013;
+    LDY.W #EquipmentEnd-EquipmentStart-2                                 ;818013;
 
   .loopSamus:
-    LDA.W EquippedItems,Y                                                ;818016;
+    LDA.W EquipmentStart,Y                                               ;818016;
     STA.W SRAMMirror_Equipment,Y                                         ;818019;
     DEY                                                                  ;81801C;
     DEY                                                                  ;81801D;
@@ -142,11 +142,11 @@ LoadFromSRAM:
     BNE .corrupt                                                         ;8180D9;
 
   .success:
-    LDY.W #$005E                                                         ;8180DB;
+    LDY.W #EquipmentEnd-EquipmentStart-2                                 ;8180DB;
 
   .loopSuccess:
     LDA.W SRAMMirror_Equipment,Y                                         ;8180DE;
-    STA.W EquippedItems,Y                                                ;8180E1;
+    STA.W EquipmentStart,Y                                               ;8180E1;
     DEY                                                                  ;8180E4;
     DEY                                                                  ;8180E5;
     BPL .loopSuccess                                                     ;8180E6;

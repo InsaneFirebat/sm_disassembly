@@ -11904,14 +11904,14 @@ InitializeSamus:
     REP #$30                                                             ;91E011;
     LDA.W $0DE0                                                          ;91E013;
     STA.B $12                                                            ;91E016;
-    LDX.W #$0E0B                                                         ;91E018;
+    LDX.W #SamusEnd-1                                                    ;91E018;
     SEP #$20                                                             ;91E01B;
     LDA.B #$00                                                           ;91E01D;
 
   .loopClearSamusRAM:
     STA.W $0000,X                                                        ;91E01F;
     DEX                                                                  ;91E022;
-    CPX.W #$0A02                                                         ;91E023;
+    CPX.W #SamusStart                                                    ;91E023;
     BPL .loopClearSamusRAM                                               ;91E026;
     REP #$20                                                             ;91E028;
     LDA.W $0998                                                          ;91E02A;

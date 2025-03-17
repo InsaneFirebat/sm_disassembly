@@ -523,6 +523,7 @@ DoorTransitionFunction: skip 2 ; $099C
 MenuOptionIndex: skip 2 ; $099E
 Unused09A0: skip 2 ; $09A0
 
+EquipmentStart:
 EquippedItems: skip 2 ; $09A2
 CollectedItems: skip 2 ; $09A4
 EquippedBeams: skip 2 ; $09A6
@@ -561,7 +562,9 @@ SamusPlacementMode: skip 2 ; $09E6
 NeverRead09E8: skip 2 ; $09E8
 IconCancel: skip 2 ; $09EA
 Unused09EC: skip $16 ; $09EC..0A01
+EquipmentEnd:
 
+SamusStart:
 Unused0A02: skip 2 ; $0A02
 AutoCancelHUDItemIndex: skip 2 ; $0A04
 PreviousEnergy: skip 2 ; $0A06
@@ -962,6 +965,7 @@ DistanceToEjectSamusLeftDueToPostGrappleCollision: skip 2 ; $0E04
 DistanceToEjectSamusRightDueToPostGrappleCollision: skip 2 ; $0E06
 DistanceToEjectSamusUpDueToPostGrappleCollision: skip 2 ; $0E08
 DistanceToEjectSamusDownDueToPostGrappleCollision: skip 2 ; $0E0A
+SamusEnd:
 
 ShootingStars_StarIndex: skip 2 ; $0E0C
 ShootingStars_AnimationFrame: skip 2 ; $0E0D
@@ -973,7 +977,7 @@ ShootingStars_AnimationTimer: skip 2 ; $0E16
 ShootingStars_XVelocity: skip 2 ; $0E18
 ShootingStars_YVelocity: skip 2 ; $0E1A
 
-org $0E0C
+org SamusEnd
 skip 6 ; unused $0E0C..11
 DebugDisableSpriteInteractions: skip 2 ; $0E12
 unused0E14: skip 2 ; $0E14
@@ -1882,7 +1886,8 @@ ProjectileTrail_RightXPosition: skip $24 ; $7ED754..77
 ProjectileTrail_LeftYPosition: skip $24 ; $7ED778..9B
 ProjectileTrail_RightYPosition: skip $24 ; $7ED79C..BF
 
-SRAMMirror_Equipment: skip $60 ; $7ED7C0..D81F
+SRAMMirror_Equipment: ; $7ED7C0..D81F
+org SRAMMirror_Equipment+EquipmentEnd-EquipmentStart ; workaround for a bug that "skip EquipmentEnd-EquipmentStart" can't be used
 SRAMMirror_Event: skip 0 ; $7ED820
 SRAMMirror_Event0: skip 1 ; $7ED820
 SRAMMirror_Event1: skip 1 ; $7ED821
