@@ -21,18 +21,18 @@ UploadToAPU_Hardcoded:
 ;; Parameter:
 ;;     [[S] + 1] + 1: APU data pointer ($CF:8000)
     LDA.B $02,S                                                          ;80800A;
-    STA.B DP_Temp04                                                      ;80800C;
+    STA.B $04                                                            ;80800C;
     LDA.B $01,S                                                          ;80800E;
-    STA.B DP_Temp03                                                      ;808010; DP_Temp03 = return address
+    STA.B $03                                                            ;808010; $03 = return address
     CLC                                                                  ;808012;
     ADC.W #$0003                                                         ;808013; adjust return address
     STA.B $01,S                                                          ;808016;
     LDY.W #$0001                                                         ;808018;
-    LDA.B [DP_Temp03],Y                                                  ;80801B;
-    STA.B DP_Temp00                                                      ;80801D;
+    LDA.B [$03],Y                                                        ;80801B;
+    STA.B $00                                                            ;80801D;
     INY                                                                  ;80801F;
-    LDA.B [DP_Temp03],Y                                                  ;808020;
-    STA.B DP_Temp01                                                      ;808022; DP_Temp00 = [(return address) + 1] (parameter address)
+    LDA.B [$03],Y                                                        ;808020;
+    STA.B $01                                                            ;808022; $00 = [(return address) + 1] (parameter address)
 
 
 ;;; $8024: Upload to APU (from [$00]) (external) ;;;
@@ -56,19 +56,19 @@ UploadToAPU:
     PHB                                                                  ;808030;
     REP #$30                                                             ;808031;
     LDA.W #$FFFF                                                         ;808033;
-    STA.L APU_UploadingFlag                                              ;808036; Set uploading to APU flag
+    STA.L $000617                                                        ;808036; Set uploading to APU flag
     SEP #$20                                                             ;80803A;
     REP #$10                                                             ;80803C;
     LDA.B #$FF                                                           ;80803E;
     STA.L $002140                                                        ;808040; APU IO 0 = FFh (request APU upload)
-    LDY.B DP_Temp00                                                      ;808044; Y = parameter short address
-    LDA.B DP_Temp02                                                      ;808046;
+    LDY.B $00                                                            ;808044; Y = parameter short address
+    LDA.B $02                                                            ;808046;
     PHA                                                                  ;808048;
     PLB                                                                  ;808049; Set DB to parameter bank
     REP #$30                                                             ;80804A;
     JSR.W SendAPUData                                                    ;80804C;
     LDA.W #$0000                                                         ;80804F;
-    STA.L APU_UploadingFlag                                              ;808052; Clear uploading to APU flag
+    STA.L $000617                                                        ;808052; Clear uploading to APU flag
     PLB                                                                  ;808056;
     PLP                                                                  ;808057;
     RTS                                                                  ;808058;
@@ -114,15 +114,15 @@ SendAPUData:
     PHP                                                                  ;808059;
     REP #$30                                                             ;80805A;
     LDA.W #$3000                                                         ;80805C;
-    STA.L APU_RemainingPollAttempts                                      ;80805F;
+    STA.L $000641                                                        ;80805F;
 
   .retry:
     LDA.W #$BBAA                                                         ;808063;
     CMP.L $002140                                                        ;808066;
     BEQ .AABB                                                            ;80806A; Wait until [APU IO 0..1] = AAh BBh
-    LDA.L APU_RemainingPollAttempts                                      ;80806C;
-    DEC                                                                  ;808070;
-    STA.L APU_RemainingPollAttempts                                      ;808071;
+    LDA.L $000641                                                        ;80806C;
+    DEC A                                                                ;808070;
+    STA.L $000641                                                        ;808071;
     BNE .retry                                                           ;808075;
 
   .crash:
@@ -244,8 +244,8 @@ IncY_OverflowCheck_overflow:
 ;; Returns:
 ;;     Y: $8000
 ;;     DB/$02: Incremented bank
-    INC.B DP_Temp02                                                      ;808107; Increment $02
-    PEI.B (DP_Temp01)                                                    ;808109;
+    INC.B $02                                                            ;808107; Increment $02
+    PEI.B ($01)                                                          ;808109;
     PLB                                                                  ;80810B; DB = [$02]
     PLB                                                                  ;80810C;
     LDY.W #$8000                                                         ;80810D; Y = 8000h
@@ -259,7 +259,7 @@ GenerateRandomNumber:
 
 ; r(t+1) = r(t) * 5 + 0x111 (roughly; if the adding of x * 100h causes overflow, then a further 1 is added)
     SEP #$20                                                             ;808111;
-    LDA.W RandomNumberSeed                                               ;808113;
+    LDA.W $05E5                                                          ;808113;
     STA.W $4202                                                          ;808116;
     LDA.B #$05                                                           ;808119;
     STA.W $4203                                                          ;80811B;
@@ -268,7 +268,7 @@ GenerateRandomNumber:
     LDA.W $4216                                                          ;808121; A += ([random number high] * 5 + 1) * 100h
     PHA                                                                  ;808124;
     SEP #$20                                                             ;808125;
-    LDA.W RandomNumberSeed+1                                             ;808127;
+    LDA.W $05E6                                                          ;808127;
     STA.W $4202                                                          ;80812A;
     LDA.B #$05                                                           ;80812D;
     STA.W $4203                                                          ;80812F;
@@ -281,7 +281,7 @@ GenerateRandomNumber:
     REP #$20                                                             ;80813C;
     PLA                                                                  ;80813E;
     ADC.W #$0011                                                         ;80813F;
-    STA.W RandomNumberSeed                                               ;808142; Random number = [A] + 11h
+    STA.W $05E5                                                          ;808142; Random number = [A] + 11h
     RTL                                                                  ;808145;
 
 
@@ -300,35 +300,35 @@ UpdateHeldInput:
     PHX                                                                  ;80814A;
     PHK                                                                  ;80814B;
     PLB                                                                  ;80814C;
-    STA.W Input_TimedHeldReset                                           ;80814D; Timed held input timer reset value = [A]
-    LDA.B DP_Controller1Input                                            ;808150;
-    STA.B DP_Temp12                                                      ;808152;
-    LDA.B DP_Controller1New                                              ;808154;
-    TRB.B DP_Temp12                                                      ;808156;
-    LDA.B DP_Temp12                                                      ;808158; If held input != [previous held input]: go to .unheld
-    CMP.W Input_HeldPrev                                                 ;80815A;
-    STA.W Input_HeldPrev                                                 ;80815D; Previous held input = held input
+    STA.W $05DD                                                          ;80814D; Timed held input timer reset value = [A]
+    LDA.B $8B                                                            ;808150;
+    STA.B $12                                                            ;808152;
+    LDA.B $8F                                                            ;808154;
+    TRB.B $12                                                            ;808156;
+    LDA.B $12                                                            ;808158; If held input != [previous held input]: go to .unheld
+    CMP.W $05D9                                                          ;80815A;
+    STA.W $05D9                                                          ;80815D; Previous held input = held input
     BNE .unheld                                                          ;808160;
-    DEC.W Input_TimedHeldTimer                                           ;808162; Decrement timed held input timer
+    DEC.W $05DB                                                          ;808162; Decrement timed held input timer
     BPL .positive                                                        ;808165; If [timed held input timer] >= 0: go to .positive
-    STZ.W Input_TimedHeldTimer                                           ;808167; Timed held input timer = 0
-    LDX.W Input_TimedHeldInput                                           ;80816A;
-    STX.W Input_TimedHeldPrev                                            ;80816D; Previous timed held input = [timed held input]
-    STA.W Input_TimedHeldInput                                           ;808170; Timed held input = [held input]
+    STZ.W $05DB                                                          ;808167; Timed held input timer = 0
+    LDX.W $05DF                                                          ;80816A;
+    STX.W $05E3                                                          ;80816D; Previous timed held input = [timed held input]
+    STA.W $05DF                                                          ;808170; Timed held input = [held input]
     BRA .return                                                          ;808173; Go to .return
 
   .unheld:
-    LDA.W Input_TimedHeldReset                                           ;808175;
-    STA.W Input_TimedHeldTimer                                           ;808178; Timed held input timer = [timed held input timer reset value]
+    LDA.W $05DD                                                          ;808175;
+    STA.W $05DB                                                          ;808178; Timed held input timer = [timed held input timer reset value]
 
   .positive:
-    STZ.W Input_TimedHeldInput                                           ;80817B; Timed held input = 0
+    STZ.W $05DF                                                          ;80817B; Timed held input = 0
 
   .return:
-    LDA.W Input_TimedHeldInput                                           ;80817E;
-    EOR.W Input_TimedHeldPrev                                            ;808181;
-    AND.W Input_TimedHeldInput                                           ;808184; Newly held down timed held input = newly held down timed held input
-    STA.W Input_TimedHeldNew                                             ;808187;
+    LDA.W $05DF                                                          ;80817E;
+    EOR.W $05E3                                                          ;808181;
+    AND.W $05DF                                                          ;808184; Newly held down timed held input = newly held down timed held input
+    STA.W $05E1                                                          ;808187;
     PLX                                                                  ;80818A;
     PLB                                                                  ;80818B;
     PLP                                                                  ;80818C;
@@ -349,19 +349,19 @@ BitIndexToByteIndexAndBitmask:
     db $00                                                               ;808191; BRK with no operand
 
   .dontCrash:
-    STZ.W Bitmask                                                        ;808192;
+    STZ.W $05E7                                                          ;808192;
     PHA                                                                  ;808195;
     AND.W #$0007                                                         ;808196;
     SEC                                                                  ;808199;
 
   .loop:
-    ROL.W Bitmask                                                        ;80819A;
-    DEC                                                                  ;80819D;
+    ROL.W $05E7                                                          ;80819A;
+    DEC A                                                                ;80819D;
     BPL .loop                                                            ;80819E;
     PLA                                                                  ;8081A0;
-    LSR                                                                  ;8081A1;
-    LSR                                                                  ;8081A2;
-    LSR                                                                  ;8081A3;
+    LSR A                                                                ;8081A1;
+    LSR A                                                                ;8081A2;
+    LSR A                                                                ;8081A3;
     TAX                                                                  ;8081A4;
     RTL                                                                  ;8081A5;
 
@@ -377,11 +377,11 @@ SetBossBitsInAForCurrentArea:
     PHY                                                                  ;8081A7;
     PHP                                                                  ;8081A8;
     SEP #$20                                                             ;8081A9;
-    STA.W Bitmask                                                        ;8081AB;
-    LDX.W AreaIndex                                                      ;8081AE;
-    LDA.L SRAMMirror_Boss,X                                              ;8081B1;
-    ORA.W Bitmask                                                        ;8081B5;
-    STA.L SRAMMirror_Boss,X                                              ;8081B8;
+    STA.W $05E7                                                          ;8081AB;
+    LDX.W $079F                                                          ;8081AE;
+    LDA.L $7ED828,X                                                      ;8081B1;
+    ORA.W $05E7                                                          ;8081B5;
+    STA.L $7ED828,X                                                      ;8081B8;
     PLP                                                                  ;8081BC;
     PLY                                                                  ;8081BD;
     PLX                                                                  ;8081BE;
@@ -401,11 +401,11 @@ UNUSED_ClearBossBitsInAForCurrentArea_8081C0:
     PHP                                                                  ;8081C2;
     SEP #$20                                                             ;8081C3;
     EOR.B #$FF                                                           ;8081C5;
-    STA.W Bitmask                                                        ;8081C7;
-    LDX.W AreaIndex                                                      ;8081CA;
-    LDA.L SRAMMirror_Boss,X                                              ;8081CD;
-    AND.W Bitmask                                                        ;8081D1;
-    STA.L SRAMMirror_Boss,X                                              ;8081D4;
+    STA.W $05E7                                                          ;8081C7;
+    LDX.W $079F                                                          ;8081CA;
+    LDA.L $7ED828,X                                                      ;8081CD;
+    AND.W $05E7                                                          ;8081D1;
+    STA.L $7ED828,X                                                      ;8081D4;
     PLP                                                                  ;8081D8;
     PLY                                                                  ;8081D9;
     PLX                                                                  ;8081DA;
@@ -426,10 +426,10 @@ CheckIfBossBitsForCurrentAreaMatchAnyBitsInA:
     PHY                                                                  ;8081DD;
     PHP                                                                  ;8081DE;
     SEP #$20                                                             ;8081DF;
-    STA.W Bitmask                                                        ;8081E1;
-    LDX.W AreaIndex                                                      ;8081E4;
-    LDA.L SRAMMirror_Boss,X                                              ;8081E7;
-    AND.W Bitmask                                                        ;8081EB;
+    STA.W $05E7                                                          ;8081E1;
+    LDX.W $079F                                                          ;8081E4;
+    LDA.L $7ED828,X                                                      ;8081E7;
+    AND.W $05E7                                                          ;8081EB;
     BNE .match                                                           ;8081EE;
     PLP                                                                  ;8081F0;
     PLY                                                                  ;8081F1;
@@ -476,9 +476,9 @@ MarkEvent_inA:
     PHP                                                                  ;8081FC;
     REP #$30                                                             ;8081FD;
     JSL.L BitIndexToByteIndexAndBitmask                                  ;8081FF;
-    LDA.L SRAMMirror_Event,X                                             ;808203;
-    ORA.W Bitmask                                                        ;808207;
-    STA.L SRAMMirror_Event,X                                             ;80820A;
+    LDA.L $7ED820,X                                                      ;808203;
+    ORA.W $05E7                                                          ;808207;
+    STA.L $7ED820,X                                                      ;80820A;
     PLP                                                                  ;80820E;
     PLY                                                                  ;80820F;
     PLX                                                                  ;808210;
@@ -497,12 +497,12 @@ UnmarkEvent_inA:
     PHP                                                                  ;808214;
     REP #$30                                                             ;808215;
     JSL.L BitIndexToByteIndexAndBitmask                                  ;808217;
-    LDA.W Bitmask                                                        ;80821B;
+    LDA.W $05E7                                                          ;80821B;
     EOR.W #$FFFF                                                         ;80821E;
-    STA.W Bitmask                                                        ;808221;
-    LDA.L SRAMMirror_Event,X                                             ;808224;
-    AND.W Bitmask                                                        ;808228;
-    STA.L SRAMMirror_Event,X                                             ;80822B;
+    STA.W $05E7                                                          ;808221;
+    LDA.L $7ED820,X                                                      ;808224;
+    AND.W $05E7                                                          ;808228;
+    STA.L $7ED820,X                                                      ;80822B;
     PLP                                                                  ;80822F;
     PLY                                                                  ;808230;
     PLX                                                                  ;808231;
@@ -522,8 +522,8 @@ CheckIfEvent_inA_HasHappened:
     PHP                                                                  ;808235;
     REP #$30                                                             ;808236;
     JSL.L BitIndexToByteIndexAndBitmask                                  ;808238;
-    LDA.L SRAMMirror_Event,X                                             ;80823C;
-    AND.W Bitmask                                                        ;808240;
+    LDA.L $7ED820,X                                                      ;80823C;
+    AND.W $05E7                                                          ;808240;
     BNE .marked                                                          ;808243;
     PLP                                                                  ;808245;
     PLY                                                                  ;808246;
@@ -562,7 +562,7 @@ Write_supermetroid_ToSRAM:
 CheckForNonCorruptSRAM:
     PHX                                                                  ;808261;
     LDA.W #$0003                                                         ;808262;
-    STA.W NumberOfDemoSets                                               ;808265; Number of demo sets = 3
+    STA.W $1F59                                                          ;808265; Number of demo sets = 3
     LDA.W #$0000                                                         ;808268;
     JSL.L LoadFromSRAM                                                   ;80826B; Load SRAM slot A
     BCC .nonCorrupt                                                      ;80826F; If not corrupt, go to .nonCorrupt
@@ -594,7 +594,7 @@ CheckForNonCorruptSRAM:
     DEX                                                                  ;8082A2;
     BPL .nonCorruptLoop                                                  ;8082A3;
     LDA.W #$0004                                                         ;8082A5;
-    STA.W NumberOfDemoSets                                               ;8082A8; Number of demo sets = 4
+    STA.W $1F59                                                          ;8082A8; Number of demo sets = 4
 
   .return:
     PLX                                                                  ;8082AB;
