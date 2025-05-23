@@ -26727,7 +26727,7 @@ $A6AE0F,10923535,.tilemap8,,USED
 $A6AE1E,10923550,.tilemap9,,USED
 $A6AE2D,10923565,.tilemapA,,USED
 $A6AE3D,10923581,.tilemapB,,USED
-$A6AE4D,10923597,CeresRidleyMode7GetawayBackgroundParameters,,USED
+$A6AE4D,10923597,CeresRidleyMode7GetawayZoomLevelTable,,USED
 $A6AF2F,10923823,CeresRidleyGetawayYVelocityTable,,USED
 $A6B00F,10924047,CeresRidleyGetawayXVelocityTable,,USED
 $A6B0EF,10924271,RidleyCeres_UpdateBG12Palette5,,USED
