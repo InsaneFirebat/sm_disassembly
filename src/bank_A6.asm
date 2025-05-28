@@ -12516,7 +12516,7 @@ EnemyTouch_CeresSteam:
     LDX.W EnemyIndex                                                     ;A6F03F;
     LDA.W #$7FFF                                                         ;A6F042;
     STA.W Enemy.health,X                                                 ;A6F045;
-    JSL.L NormalEnemyTouchAI_External                                    ;A6F048;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;A6F048;
     RTL                                                                  ;A6F04C;
 
 

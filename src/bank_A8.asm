@@ -579,7 +579,7 @@ PowerBombReaction_Evir:
 
 ;;; $8B12: Enemy touch - enemy $E63F (evir) ;;;
 EnemyTouch_Evir:
-    JSL.L NormalEnemyShotAI_External                                     ;A88B12; fallthrough to ContactReaction_Evir_Common
+    JSL.L NormalEnemyShotAI_Internal                                     ;A88B12; fallthrough to ContactReaction_Evir_Common
 
 
 ;;; $8B16: Evir shared contact reaction ;;;
@@ -3715,7 +3715,7 @@ EnemyTouch_YappingMaw:
 ;;; $A7BD: Enemy shot - enemy $E7BF (yapping maw) ;;;
 EnemyShot_YappingMaw:
 ; BUG: Yapping maw shinespark crash crash applies here too if a yapping maw is frozen or killed, see Function_YappingMaw_Cooldown
-    JSL.L NormalEnemyShotAI_External                                     ;A8A7BD;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A8A7BD;
     LDX.W EnemyIndex                                                     ;A8A7C1;
     LDA.W Enemy.health,X                                                 ;A8A7C4;
     BNE .alive                                                           ;A8A7C7;
@@ -4094,7 +4094,7 @@ RTL_A8AB82:
 EnemyShot_Kago:
     PHX                                                                  ;A8AB83;
     PHY                                                                  ;A8AB84;
-    JSL.L NormalEnemyShotAI_External                                     ;A8AB85;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A8AB85;
     LDA.W #$0002                                                         ;A8AB89;
     STA.W EarthquakeType                                                 ;A8AB8C;
     LDA.W #$0010                                                         ;A8AB8F;
@@ -5195,7 +5195,7 @@ EnemyTouch_Magdollite:
 
 ;;; $B40C: Enemy shot - enemy $E83F (magdollite) ;;;
 EnemyShot_Magdollite:
-    JSL.L NormalEnemyShotAI_External                                     ;A8B40C; fallthrough to ContactReaction_Magdollite_Common
+    JSL.L NormalEnemyShotAI_Internal                                     ;A8B40C; fallthrough to ContactReaction_Magdollite_Common
 
 
 ;;; $B410: Magdollite shared contact reaction ;;;
@@ -7373,7 +7373,7 @@ EnemyTouch_Powamp:
     BNE .return                                                          ;A8C5C4;
     LDA.W Enemy.palette,X                                                ;A8C5C6;
     PHA                                                                  ;A8C5C9;
-    JSL.L NormalEnemyTouchAI_External                                    ;A8C5CA;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;A8C5CA;
     LDX.W EnemyIndex                                                     ;A8C5CE;
     LDA.W Enemy.health,X                                                 ;A8C5D1;
     BEQ .dead                                                            ;A8C5D4;
@@ -8780,7 +8780,7 @@ EnemyTouch_Robot:
 
 ;;; $D18D: Enemy shot - enemy $E93F (work robot deactivated) ;;;
 EnemyShot_RobotNoPower:
-    JSL.L NormalEnemyShotAI_External                                     ;A8D18D;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A8D18D;
     RTL                                                                  ;A8D191;
 
 
@@ -8794,7 +8794,7 @@ EnemyShot_Robot:
     BIT.W #$0001                                                         ;A8D19D;
     BEQ .return                                                          ;A8D1A0;
     LDX.W EnemyIndex                                                     ;A8D1A2;
-    JSL.L NormalEnemyShotAI_External                                     ;A8D1A5;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A8D1A5;
     LDX.W EnemyIndex                                                     ;A8D1A9;
     LDA.W Enemy.health,X                                                 ;A8D1AC;
     BEQ .return                                                          ;A8D1AF;
@@ -10257,7 +10257,7 @@ RTL_A8DF9C:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $DF9D: Unused. Normal enemy shot AI ;;;
 UNUSED_NormalEnemyShotAI_A8DF9D:
-    JSL.L NormalEnemyShotAI_External                                     ;A8DF9D;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A8DF9D;
     RTL                                                                  ;A8DFA1;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -12549,7 +12549,7 @@ RTL_A8F700:
 
 ;;; $F701: Enemy shot - enemy $EABF/$EB3F/$EBBF (ki-hunter) ;;;
 EnemyShot_Kihunter:
-    JSL.L NormalEnemyShotAI_External                                     ;A8F701;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A8F701;
     LDX.W EnemyIndex                                                     ;A8F705;
     LDA.W Enemy.health,X                                                 ;A8F708;
     BEQ .dead                                                            ;A8F70B;

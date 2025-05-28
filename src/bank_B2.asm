@@ -55,7 +55,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $8767: Power bomb reaction - enemy $F353/$F4D3/$F513/$F553/$F593/$F5D3/$F613/$F653/$F693/$F6D3/$F713/$F753/$F793 (grey wall space pirate / ninja space pirates / walking space pirates) ;;;
 PowerBombReaction_Ninja_Walking_GreyWall:
-    JSL.L NormalEnemyPowerBombAI_External                                ;B28767;
+    JSL.L NormalEnemyPowerBombAI_Internal                                ;B28767;
     RTL                                                                  ;B2876B;
 
 
@@ -64,7 +64,7 @@ EnemyTouch_SpacePirate:
     LDX.W EnemyIndex                                                     ;B2876C;
     LDA.W Enemy.freezeTimer,X                                            ;B2876F;
     BNE .return                                                          ;B28772;
-    JSL.L NormalEnemyTouchAI_External                                    ;B28774;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;B28774;
 
   .return:
     RTL                                                                  ;B28778;
@@ -76,7 +76,7 @@ EnemyShot_SpacePirate_Normal:
     LDA.W Enemy.ID,X                                                     ;B2877C;
     CMP.W #EnemyHeaders_PirateGoldNinja                                  ;B2877F;
     BEQ NormalPirateShot                                                 ;B28782;
-    JSL.L NormalEnemyShotAI_External                                     ;B28784;
+    JSL.L NormalEnemyShotAI_Internal                                     ;B28784;
     RTL                                                                  ;B28788;
 
 

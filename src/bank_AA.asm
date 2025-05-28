@@ -8464,7 +8464,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $DF2F: Enemy touch - enemy $F07F (Shaktool) ;;;
 EnemyTouch_Shaktool:
-    JSL.L NormalEnemyTouchAI_External                                    ;AADF2F;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;AADF2F;
     RTL                                                                  ;AADF33;
 
 
@@ -8472,7 +8472,7 @@ EnemyTouch_Shaktool:
 EnemyShot_Shaktool:
 ; Bug: when an enemy dies and goes through its death animation, its enemy RAM is cleared,
 ; so the LDY always loads 0, meaning this only works out if Shaktool is the first enemy in the room
-    JSL.L NormalEnemyShotAI_External                                     ;AADF34;
+    JSL.L NormalEnemyShotAI_Internal                                     ;AADF34;
     LDX.W EnemyIndex                                                     ;AADF38;
     LDA.W Enemy.health,X                                                 ;AADF3B;
     BNE .return                                                          ;AADF3E;

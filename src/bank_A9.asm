@@ -5333,7 +5333,7 @@ MotherBrainPart_vs_Samus_CollisionDetection:
 
 ;;; $B503: Enemy shot - enemy $EC7F (Mother Brain body) ;;;
 EnemyShot_MotherBrainBody:
-    JML.L CreateADudShot_External                                        ;A9B503; fallthrough to EnemyShot_MotherBrainHead
+    JML.L CreateADudShot_Internal                                        ;A9B503; fallthrough to EnemyShot_MotherBrainHead
 
 
 ;;; $B507: Enemy shot - enemy $EC3F (Mother Brain brain) ;;;
@@ -5384,7 +5384,7 @@ EnemyShot_MotherBrainHead:
     LDA.L MotherBrainBody.form                                           ;A9B551;
     CMP.W #$0001                                                         ;A9B555;
     BNE .gotoNormalShotAI                                                ;A9B558;
-    JML.L CreateADudShot_External                                        ;A9B55A;
+    JML.L CreateADudShot_Internal                                        ;A9B55A;
 
   .gotoNormalShotAI:
     JML.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A9B55E;

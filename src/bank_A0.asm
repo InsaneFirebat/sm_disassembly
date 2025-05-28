@@ -1919,7 +1919,7 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
 
 
 ;;; $957E: Normal enemy frozen AI ;;;
-NormalEnemyFrozenAI_External:
+NormalEnemyFrozenAI_Internal:
     PHX                                                                  ;A0957E;
     PHY                                                                  ;A0957F;
     LDX.W EnemyIndex                                                     ;A09580;
@@ -4038,7 +4038,7 @@ Suit_Damage_Division:
 
 
 ;;; $A477: Normal enemy touch AI ;;;
-NormalEnemyTouchAI_External:
+NormalEnemyTouchAI_Internal:
     LDX.W EnemyIndex                                                     ;A0A477;
     JSR.W NormalEnemyTouchAI_NoDeathCheck                                ;A0A47A;
     LDX.W EnemyIndex                                                     ;A0A47D;
@@ -4187,7 +4187,7 @@ NormalEnemyTouchAI_NoDeathCheck:
 
 
 ;;; $A597: Normal enemy power bomb AI ;;;
-NormalEnemyPowerBombAI_External:
+NormalEnemyPowerBombAI_Internal:
     LDX.W EnemyIndex                                                     ;A0A597;
     JSR.W NormalEnemyPowerBombAI_NoDeathCheck                            ;A0A59A;
     LDX.W EnemyIndex                                                     ;A0A59D;
@@ -4275,7 +4275,7 @@ NormalEnemyPowerBombAI_NoDeathCheck:
 
 
 ;;; $A63D: Normal enemy shot AI ;;;
-NormalEnemyShotAI_External:
+NormalEnemyShotAI_Internal:
     STZ.W Temp_ShotAIHitFlag                                             ;A0A63D;
     LDX.W EnemyIndex                                                     ;A0A640;
     JSR.W NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic              ;A0A643;
@@ -4608,7 +4608,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
 
 ;;; $A8BC: Creates a dud shot ;;;
-CreateADudShot_External:
+CreateADudShot_Internal:
     PHX                                                                  ;A0A8BC;
     PHY                                                                  ;A0A8BD;
     LDA.W CollisionIndex                                                 ;A0A8BE;

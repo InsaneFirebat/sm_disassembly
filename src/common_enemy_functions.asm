@@ -98,7 +98,7 @@ GrappleAI_HurtSamus:
 
 ;;; $8023: Normal enemy touch AI ;;;
 NormalEnemyTouchAI:
-    JSL.L NormalEnemyTouchAI_External                                    ;A08023;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;A08023;
     RTL                                                                  ;A08027;
 
 
@@ -110,7 +110,7 @@ NormalTouchAI_NoDeathCheck:
 
 ;;; $802D: Normal enemy shot AI ;;;
 NormalEnemyShotAI:
-    JSL.L NormalEnemyShotAI_External                                     ;A0802D;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A0802D;
     RTL                                                                  ;A08031;
 
 
@@ -122,7 +122,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
 ;;; $8037: Normal enemy power bomb AI ;;;
 NormalEnemyPowerBombAI:
-    JSL.L NormalEnemyPowerBombAI_External                                ;A08037;
+    JSL.L NormalEnemyPowerBombAI_Internal                                ;A08037;
     RTL                                                                  ;A0803B;
 
 
@@ -135,13 +135,13 @@ NormalEnemyPowerBombAI_NoDeathCheck:
 
 ;;; $8041: Normal enemy frozen AI ;;;
 NormalEnemyFrozenAI:
-    JSL.L NormalEnemyFrozenAI_External                                   ;A08041;
+    JSL.L NormalEnemyFrozenAI_Internal                                   ;A08041;
     RTL                                                                  ;A08045;
 
 
 ;;; $8046: Creates a dud shot ;;;
 CreateADudShot:
-    JSL.L CreateADudShot_External                                        ;A08046;
+    JSL.L CreateADudShot_Internal                                        ;A08046;
     RTL                                                                  ;A0804A;
 
 

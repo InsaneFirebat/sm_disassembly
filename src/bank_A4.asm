@@ -953,7 +953,7 @@ Crocomire_vs_Samus_CollisionHandling:
     SBC.W SamusXRadius                                                   ;A48CA1;
     SBC.W SamusXPosition                                                 ;A48CA4;
     BPL .return                                                          ;A48CA7;
-    JSL.L NormalEnemyTouchAI_External                                    ;A48CA9;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;A48CA9;
     LDA.W Enemy.XPosition                                                ;A48CAD;
     SEC                                                                  ;A48CB0;
     SBC.W Enemy.XHitboxRadius                                            ;A48CB1;
@@ -3210,7 +3210,7 @@ Palette_Crocomire_Sprite3:
 ;;; $B93D: Enemy touch - Crocomire - claws ;;;
 EnemyTouch_Crocomire_Claws:
 ; Used for some other hitboxes, but those are placed behind Crocomire's invisible wall (Crocomire_vs_Samus_CollisionHandling)
-    JSL.L NormalEnemyTouchAI_External                                    ;A4B93D;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;A4B93D;
     LDA.W Crocomire.fightFlags                                           ;A4B941;
     ORA.W #$4000                                                         ;A4B944;
     STA.W Crocomire.fightFlags                                           ;A4B947;

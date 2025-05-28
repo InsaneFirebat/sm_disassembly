@@ -1645,7 +1645,7 @@ AwakenTurtle:
 
 ;;; $930F: Enemy shot - enemy $CF7F (mini-tatori) ;;;
 EnemyShot_BabyTurtle:
-    JSL.L NormalEnemyShotAI_External                                     ;A2930F;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A2930F;
     BRA AwakenTurtle                                                     ;A29313;
 
 
@@ -1699,7 +1699,7 @@ MamaTurtle_vs_Samus_CollisionDetection:
     BMI .return                                                          ;A29375;
     LDA.W SamusInvincibilityTimer                                        ;A29377;
     BNE .return                                                          ;A2937A;
-    JSL.L NormalEnemyTouchAI_External                                    ;A2937C;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;A2937C;
 
   .return:
     RTS                                                                  ;A29380;
@@ -6117,7 +6117,7 @@ FrozenAI_Rinka:
     STZ.W Enemy.freezeTimer,X                                            ;A2B92F;
 
   .onScreen:
-    JSL.L NormalEnemyFrozenAI_External                                   ;A2B932;
+    JSL.L NormalEnemyFrozenAI_Internal                                   ;A2B932;
     LDA.L MotherBrainBody.deleteTurretsRinkasFlag                        ;A2B936;
     BNE .delete                                                          ;A2B93A;
     RTL                                                                  ;A2B93C;
@@ -9280,7 +9280,7 @@ EnemyTouch_Oum_DoesNotHurtSamus:
 
 ;;; $D3B4: Enemy shot - enemy $D37F (oum) ;;;
 EnemyShot_Oum:
-    JSL.L NormalEnemyShotAI_External                                     ;A2D3B4;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A2D3B4;
     LDA.W #$0057                                                         ;A2D3B8;
     JSL.L QueueSound_Lib2_Max6                                           ;A2D3BB;
     RTL                                                                  ;A2D3BF;
@@ -10231,7 +10231,7 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $E2A4: Unused. Enemy shot ;;;
 UNUSED_EnemyShot_A2E2A4:
 ; Clone of EnemyShot_GRipper_Ripper2
-    JSL.L NormalEnemyShotAI_External                                     ;A2E2A4;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A2E2A4;
     LDX.W EnemyIndex                                                     ;A2E2A8;
     LDA.W Enemy.freezeTimer,X                                            ;A2E2AB;
     BEQ .return                                                          ;A2E2AE;
@@ -10376,7 +10376,7 @@ RTL_A2E3A8:
 
 ;;; $E3A9: Enemy shot - enemy $D3FF/$D43F (gripper / ripper ii) ;;;
 EnemyShot_GRipper_Ripper2:
-    JSL.L NormalEnemyShotAI_External                                     ;A2E3A9;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A2E3A9;
     LDX.W EnemyIndex                                                     ;A2E3AD;
     LDA.W Enemy.freezeTimer,X                                            ;A2E3B0;
     BEQ .return                                                          ;A2E3B3;
@@ -11954,7 +11954,7 @@ EnemyShot_ShutterShootable_Kamer:
 ;;; $F0AA: Enemy shot - enemy $B5BF (destroyable shutter) ;;;
 EnemyTouch_ShutterDestroyable:
     LDX.W EnemyIndex                                                     ;A2F0AA;
-    JSL.L NormalEnemyShotAI_External                                     ;A2F0AD;
+    JSL.L NormalEnemyShotAI_Internal                                     ;A2F0AD;
     JSL.L PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer    ;A2F0B1;
     RTL                                                                  ;A2F0B5;
 

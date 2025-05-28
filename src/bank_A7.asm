@@ -1560,7 +1560,7 @@ Hitbox_KraidArm_Dying_PreparingToLungeForward_1:
 
 ;;; $948B: Enemy touch - Kraid arm/foot - normal ;;;
 EnemyTouch_KraidArm_KraidFoot_Normal:
-    JSL.L NormalEnemyTouchAI_External                                    ;A7948B; fallthrough to RTL_A7948F
+    JSL.L NormalEnemyTouchAI_Internal                                    ;A7948B; fallthrough to RTL_A7948F
 
 
 RTL_A7948F:
@@ -1596,7 +1596,7 @@ PushSamusBack:
 
 ;;; $94B1: Normal enemy shot ;;;
 NormalEnemyShot:
-    JSL.L NormalEnemyShotAI_External                                     ;A794B1; fallthrough to RTL_A794B5
+    JSL.L NormalEnemyShotAI_Internal                                     ;A794B1; fallthrough to RTL_A794B5
 
 
 RTL_A794B5:
@@ -3636,7 +3636,7 @@ KraidBody_vs_Samus_CollisionHandling:
     JSR.W PushSamusBack                                                  ;A7B153;
     LDA.W SamusInvincibilityTimer                                        ;A7B156;
     BNE .return1                                                         ;A7B159;
-    JSL.L NormalEnemyTouchAI_External                                    ;A7B15B;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;A7B15B;
 
   .return0:
     RTS                                                                  ;A7B15F;
@@ -4660,7 +4660,7 @@ KraidLint_vs_Samus_CollisionHandling:
 +   STA.W ExtraSamusXDisplacement                                        ;A7B9E1;
     PHX                                                                  ;A7B9E4;
     PHP                                                                  ;A7B9E5;
-    JSL.L NormalEnemyTouchAI_External                                    ;A7B9E6;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;A7B9E6;
     PLP                                                                  ;A7B9EA;
     PLX                                                                  ;A7B9EB;
     LDA.W Enemy.properties,X                                             ;A7B9EC;
@@ -5010,7 +5010,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $BCCF: Enemy touch - enemy $E43F (Kraid good fingernail) ;;;
 EnemyTouch_KraidNail:
-    JSL.L NormalEnemyTouchAI_External                                    ;A7BCCF;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;A7BCCF;
     LDX.W EnemyIndex                                                     ;A7BCD3;
     JSL.L EnemyDeath                                                     ;A7BCD6;
     LDX.W EnemyIndex                                                     ;A7BCDA;
@@ -5019,7 +5019,7 @@ EnemyTouch_KraidNail:
 
 ;;; $BCDE: Enemy touch - enemy $E47F (Kraid bad fingernail) ;;;
 EnemyTouch_KraidNailBad:
-    JSL.L NormalEnemyTouchAI_External                                    ;A7BCDE;
+    JSL.L NormalEnemyTouchAI_Internal                                    ;A7BCDE;
     LDX.W EnemyIndex                                                     ;A7BCE2;
     JSL.L EnemyDeath                                                     ;A7BCE5;
     LDX.W EnemyIndex                                                     ;A7BCE9;

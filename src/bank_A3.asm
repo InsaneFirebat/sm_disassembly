@@ -12712,7 +12712,7 @@ EnemyShot_Metroid:
 
 ;;; $F042: Power bomb reaction - enemy $DD7F (metroid) ;;;
 PowerBombReaction_Metroid:
-    JSL.L NormalEnemyPowerBombAI_External                                ;A3F042;
+    JSL.L NormalEnemyPowerBombAI_Internal                                ;A3F042;
     LDA.W Enemy.health,X                                                 ;A3F046;
     BNE .return                                                          ;A3F049;
     LDA.W #$0013                                                         ;A3F04B;
