@@ -3,591 +3,9 @@ org $A78000
 
 
 ; Common to all enemy code banks
-
-;;; $8000: Grapple AI - no interaction. Also unfreezes enemies(!) ;;;
-CommonA7_GrappleAI_NoInteraction:
-; Used by skultera, Draygon body, fire arc, Phantoon, etecoon, dachora and WS ghost
-    JSL.L GrappleAI_SwitchEnemyAIToMainAI                                ;A78000;
-    RTL                                                                  ;A78004;
-
-
-;;; $8005: Grapple AI - Samus latches on ;;;
-CommonA7_GrappleAI_SamusLatchesOn:
-; Used by gripper and Crocomire
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple                            ;A78005;
-    RTL                                                                  ;A78009;
-
-
-;;; $800A: Grapple AI - kill enemy ;;;
-CommonA7_GrappleAI_KillEnemy:
-; Common
-    JSL.L GrappleAI_EnemyGrappleDeath                                    ;A7800A;
-    RTL                                                                  ;A7800E;
-
-
-;;; $800F: Grapple AI - cancel grapple beam ;;;
-CommonA7_GrappleAI_CancelGrappleBeam:
-; Common
-    JSL.L GrappleAI_SwitchToFrozenAI                                     ;A7800F;
-    RTL                                                                  ;A78013;
-
-
-;;; $8014: Grapple AI - Samus latches on - no invincibility ;;;
-CommonA7_GrappleAI_SamusLatchesOn_NoInvincibility:
-; Used by powamp
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility            ;A78014;
-    RTL                                                                  ;A78018;
-
-
-;;; $8019: Unused. Grapple AI - Samus latches on - paralyse enemy ;;;
-UNUSED_CommonA7_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A78019:
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy              ;A78019;
-    RTL                                                                  ;A7801D;
-
-
-;;; $801E: Grapple AI - hurt Samus ;;;
-CommonA7_GrappleAI_HurtSamus:
-; Used by WS spark
-; Hurt reaction happens in $9B:B932
-    JSL.L GrappleAI_SwitchToFrozenAI_duplicate                           ;A7801E;
-    RTL                                                                  ;A78022;
-
-
-;;; $8023: Normal enemy touch AI ;;;
-CommonA7_NormalEnemyTouchAI:
-    JSL.L NormalEnemyTouchAI                                             ;A78023;
-    RTL                                                                  ;A78027;
-
-
-;;; $8028: Normal touch AI - no death check ;;;
-CommonA7_NormalTouchAI_NoDeathCheck:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A78028;
-    RTL                                                                  ;A7802C;
-
-
-;;; $802D: Normal enemy shot AI ;;;
-CommonA7_NormalEnemyShotAI:
-    JSL.L NormalEnemyShotAI                                              ;A7802D;
-    RTL                                                                  ;A78031;
-
-
-;;; $8032: Normal enemy shot AI - no death check, no enemy shot graphic ;;;
-CommonA7_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A78032;
-    RTL                                                                  ;A78036;
-
-
-;;; $8037: Normal enemy power bomb AI ;;;
-CommonA7_NormalEnemyPowerBombAI:
-    JSL.L NormalEnemyPowerBombAI                                         ;A78037;
-    RTL                                                                  ;A7803B;
-
-
-;;; $803C: Normal enemy power bomb AI - no death check ;;;
-CommonA7_NormalEnemyPowerBombAI_NoDeathCheck:
-; Kraid's power bomb AI
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A7803C;
-    RTL                                                                  ;A78040;
-
-
-;;; $8041: Normal enemy frozen AI ;;;
-CommonA7_NormalEnemyFrozenAI:
-    JSL.L NormalEnemyFrozenAI                                            ;A78041;
-    RTL                                                                  ;A78045;
-
-
-;;; $8046: Creates a dud shot ;;;
-CommonA7_CreateADudShot:
-    JSL.L CreateADudShot                                                 ;A78046;
-    RTL                                                                  ;A7804A;
-
-
-;;; $804B: RTS ;;;
-RTS_A7804B:
-    RTS                                                                  ;A7804B;
-
-
-;;; $804C: RTL ;;;
-RTL_A7804C:
-    RTL                                                                  ;A7804C;
-
-
-;;; $804D: Spritemap - nothing ;;;
-Spritemap_CommonA7_Nothing:
-    dw $0000                                                             ;A7804D;
-
-
-;;; $804F: Extended spritemap - nothing ;;;
-ExtendedSpritemap_CommonA7_Nothing:
-    dw $0001                                                             ;A7804F;
-    dw $0000,$0000
-    dw Spritemap_CommonA7_Nothing                                        ;A78055;
-    dw Hitbox_CommonA7_Nothing                                           ;A78057;
-
-
-;;; $8059: Hitbox - nothing ;;;
-Hitbox_CommonA7_Nothing:
-; [n entries] [[left offset] [top offset] [right offset] [bottom offset] [p touch] [p shot]]...
-    dw $0001                                                             ;A78059;
-    dw $0000,$0000,$0000,$0000
-    dw CommonA7_NormalEnemyTouchAI                                       ;A78063;
-    dw CommonA7_NormalEnemyShotAI                                        ;A78065;
-
-
-;;; $8067: Instruction list - delete enemy ;;;
-InstList_CommonA7_DeleteEnemy:
-    dw Instruction_CommonA7_DeleteEnemy                                  ;A78067;
-
-
-;;; $8069: Two NOPs ;;;
-NOPNOP_A78069:
-; Used as palette by respawning enemy placeholder and Draygon's eye o_O
-    NOP                                                                  ;A78069;
-    NOP                                                                  ;A7806A;
-
-
-;;; $806B: Instruction - Enemy.var5 = [[Y]] ;;;
-Instruction_CommonA7_Enemy0FB2_InY:
-; Used only by torizos (for enemy movement function) and escape etecoon (for enemy function)
-    LDA.W $0000,Y                                                        ;A7806B;
-    STA.W Enemy.var5,X                                                        ;A7806E;
-    INY                                                                  ;A78071;
-    INY                                                                  ;A78072;
-    RTL                                                                  ;A78073;
-
-
-;;; $8074: Instruction - Enemy.var5 = RTS ;;;
-Instruction_CommonA7_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_A7807B                                                    ;A78074;
-    STA.W Enemy.var5,X                                                   ;A78077;
-    RTL                                                                  ;A7807A;
-
-
-RTS_A7807B:
-    RTS                                                                  ;A7807B;
-
-
-;;; $807C: Instruction - delete enemy ;;;
-Instruction_CommonA7_DeleteEnemy:
-    LDA.W Enemy.properties,X                                             ;A7807C;
-    ORA.W #$0200                                                         ;A7807F;
-    STA.W Enemy.properties,X                                             ;A78082;
-    PLA                                                                  ;A78085;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A78086;
-    RTL                                                                  ;A78089;
-
-
-;;; $808A: Instruction - call function [[Y]] ;;;
-Instruction_CommonA7_CallFunctionInY:
-    LDA.W $0000,Y                                                        ;A7808A;
-    STA.B DP_Temp12                                                      ;A7808D;
-    PHY                                                                  ;A7808F;
-    PHX                                                                  ;A78090;
-    PEA.W .manualReturn-1                                                ;A78091;
-    JMP.W (DP_Temp12)                                                    ;A78094;
-
-  .manualReturn:
-    PLX                                                                  ;A78097;
-    PLY                                                                  ;A78098;
-    INY                                                                  ;A78099;
-    INY                                                                  ;A7809A;
-    RTL                                                                  ;A7809B;
-
-
-;;; $809C: Instruction - call function [[Y]] with A = [[Y] + 2] ;;;
-Instruction_CommonA7_CallFunctionInY_WithA:
-    LDA.W $0000,Y                                                        ;A7809C;
-    STA.B DP_Temp12                                                      ;A7809F;
-    LDA.W $0002,Y                                                        ;A780A1;
-    PHY                                                                  ;A780A4;
-    PHX                                                                  ;A780A5;
-    PEA.W .manualReturn-1                                                ;A780A6;
-    JMP.W (DP_Temp12)                                                    ;A780A9;
-
-  .manualReturn:
-    PLX                                                                  ;A780AC;
-    PLY                                                                  ;A780AD;
-    TYA                                                                  ;A780AE;
-    CLC                                                                  ;A780AF;
-    ADC.W #$0004                                                         ;A780B0;
-    TAY                                                                  ;A780B3;
-    RTL                                                                  ;A780B4;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA7_CallExternalFunctionInY_A780B5:
-    LDA.W $0000,Y                                                        ;A780B5;
-    STA.B DP_Temp12                                                      ;A780B8;
-    LDA.W $0001,Y                                                        ;A780BA;
-    STA.B DP_Temp13                                                      ;A780BD;
-    PHX                                                                  ;A780BF;
-    PHY                                                                  ;A780C0;
-    JSL.L .externalFunction                                              ;A780C1;
-    PLY                                                                  ;A780C5;
-    PLX                                                                  ;A780C6;
-    INY                                                                  ;A780C7;
-    INY                                                                  ;A780C8;
-    INY                                                                  ;A780C9;
-    RTL                                                                  ;A780CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A780CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA7_CallExternalFunctionInY_WithA_A780CE:
-    LDA.W $0000,Y                                                        ;A780CE;
-    STA.B DP_Temp12                                                      ;A780D1;
-    LDA.W $0001,Y                                                        ;A780D3;
-    STA.B DP_Temp13                                                      ;A780D6;
-    LDA.W $0003,Y                                                        ;A780D8;
-    PHX                                                                  ;A780DB;
-    PHY                                                                  ;A780DC;
-    JSL.L .externalFunction                                              ;A780DD;
-    PLY                                                                  ;A780E1;
-    PLX                                                                  ;A780E2;
-    TYA                                                                  ;A780E3;
-    CLC                                                                  ;A780E4;
-    ADC.W #$0005                                                         ;A780E5;
-    TAY                                                                  ;A780E8;
-    RTL                                                                  ;A780E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A780EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $80ED: Instruction - go to [[Y]] ;;;
-Instruction_CommonA7_GotoY:
-    LDA.W $0000,Y                                                        ;A780ED;
-    TAY                                                                  ;A780F0;
-    RTL                                                                  ;A780F1;
-
-
-;;; $80F2: Instruction - go to [[Y]] + ±[[Y]] ;;;
-Instruction_CommonA7_GotoY_PlusY:
-    STY.B DP_Temp12                                                      ;A780F2;
-    DEY                                                                  ;A780F4;
-    LDA.W $0000,Y                                                        ;A780F5;
-    XBA                                                                  ;A780F8;
-    BMI .highByte                                                        ;A780F9;
-    AND.W #$00FF                                                         ;A780FB;
-    BRA +                                                                ;A780FE;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;A78100;
-
-+   CLC                                                                  ;A78103;
-    ADC.B DP_Temp12                                                      ;A78104;
-    TAY                                                                  ;A78106;
-    RTL                                                                  ;A78107;
-
-
-;;; $8108: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA7_DecrementTimer_GotoYIfNonZero:
-    DEC.W Enemy.loopCounter,X                                            ;A78108;
-    BNE Instruction_CommonA7_GotoY                                       ;A7810B;
-    INY                                                                  ;A7810D;
-    INY                                                                  ;A7810E;
-    RTL                                                                  ;A7810F;
-
-
-;;; $8110: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA7_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W Enemy.loopCounter,X                                            ;A78110;
-    BNE Instruction_CommonA7_GotoY                                       ;A78113;
-    INY                                                                  ;A78115;
-    INY                                                                  ;A78116;
-    RTL                                                                  ;A78117;
-
-
-;;; $8118: Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-Instruction_CommonA7_DecrementTimer_GotoY_PlusY_IfNonZero:
-    SEP #$20                                                             ;A78118;
-    DEC.W Enemy.loopCounter,X                                            ;A7811A;
-    REP #$20                                                             ;A7811D;
-    BNE Instruction_CommonA7_GotoY_PlusY                                 ;A7811F;
-    INY                                                                  ;A78121;
-    RTL                                                                  ;A78122;
-
-
-;;; $8123: Instruction - timer = [[Y]] ;;;
-Instruction_CommonA7_TimerInY:
-    LDA.W $0000,Y                                                        ;A78123;
-    STA.W Enemy.loopCounter,X                                            ;A78126;
-    INY                                                                  ;A78129;
-    INY                                                                  ;A7812A;
-    RTL                                                                  ;A7812B;
-
-
-;;; $812C: Instruction - skip next instruction ;;;
-Instruction_CommonA7_SkipNextInstruction:
-    INY                                                                  ;A7812C;
-    INY                                                                  ;A7812D;
-    RTL                                                                  ;A7812E;
-
-
-;;; $812F: Instruction - sleep ;;;
-Instruction_CommonA7_Sleep:
-    DEY                                                                  ;A7812F;
-    DEY                                                                  ;A78130;
-    TYA                                                                  ;A78131;
-    STA.W Enemy.instList,X                                               ;A78132;
-    PLA                                                                  ;A78135;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A78136;
-    RTL                                                                  ;A78139;
-
-
-;;; $813A: Instruction - wait [[Y]] frames ;;;
-Instruction_CommonA7_WaitYFrames:
-; Set instruction timer and terminate processing enemy instructions
-; Used for running a delay that doesn't update graphics,
-; useful for e.g. GT eye beam attack ($AA:D10D), implemented by an instruction list that has no graphical instructions,
-; which allows it to be called from multiple different poses
-    LDA.W $0000,Y                                                        ;A7813A;
-    STA.W Enemy.instTimer,X                                              ;A7813D;
-    INY                                                                  ;A78140;
-    INY                                                                  ;A78141;
-    TYA                                                                  ;A78142;
-    STA.W Enemy.instList,X                                               ;A78143;
-    PLA                                                                  ;A78146;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A78147;
-    RTL                                                                  ;A7814A;
-
-
-;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
-Instruction_CommonA7_TransferYBytesInYToVRAM:
-    PHX                                                                  ;A7814B;
-    LDX.W VRAMWriteStack                                                 ;A7814C;
-    LDA.W $0000,Y                                                        ;A7814F;
-    STA.B VRAMWrite.size,X                                               ;A78152;
-    LDA.W $0002,Y                                                        ;A78154;
-    STA.B VRAMWrite.src,X                                                ;A78157;
-    LDA.W $0003,Y                                                        ;A78159;
-    STA.B VRAMWrite.src+1,X                                              ;A7815C;
-    LDA.W $0005,Y                                                        ;A7815E;
-    STA.B VRAMWrite.dest,X                                               ;A78161;
-    TXA                                                                  ;A78163;
-    CLC                                                                  ;A78164;
-    ADC.W #$0007                                                         ;A78165;
-    STA.W VRAMWriteStack                                                 ;A78168;
-    TYA                                                                  ;A7816B;
-    CLC                                                                  ;A7816C;
-    ADC.W #$0007                                                         ;A7816D;
-    TAY                                                                  ;A78170;
-    PLX                                                                  ;A78171;
-    RTL                                                                  ;A78172;
-
-
-;;; $8173: Instruction - enable off-screen processing ;;;
-Instruction_CommonA7_EnableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A78173;
-    ORA.W #$0800                                                         ;A78176;
-    STA.W Enemy.properties,X                                             ;A78179;
-    RTL                                                                  ;A7817C;
-
-
-;;; $817D: Instruction - disable off-screen processing ;;;
-Instruction_CommonA7_DisableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A7817D;
-    AND.W #$F7FF                                                         ;A78180;
-    STA.W Enemy.properties,X                                             ;A78183;
-    RTL                                                                  ;A78186;
-
-
-;;; $8187: Common enemy speeds - linearly increasing ;;;
-CommonA7EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A78187;
-  .subspeed:
-    dw       $0000                                                       ;A78189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A7818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A7818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
-
-
-;;; $838F: Common enemy speeds - quadratically increasing ;;;
-CommonA7EnemySpeeds_QuadraticallyIncreasing:
-; I.e. gravity
-; Used by e.g. Botwoon when dying and falling to the floor
-;        _____________________ Subspeed
-;       |      _______________ Speed
-;       |     |      _________ Negated subspeed
-;       |     |     |      ___ Negated speed
-;       |     |     |     |
-  .subspeed:
-    dw $0000                                                             ;A7838F;
-  .speed:
-    dw       $0000                                                       ;A78391;
-  .negatedSubspeed:
-    dw             $0000                                                 ;A78393;
-  .negatedSpeed:
-    dw                   $0000                                           ;A78395;
-    dw $0109,$0000,$FEF7,$FFFF
-    dw $031B,$0000,$FCE5,$FFFF
-    dw $0636,$0000,$F9CA,$FFFF
-    dw $0A5A,$0000,$F5A6,$FFFF
-    dw $0F87,$0000,$F079,$FFFF
-    dw $15BD,$0000,$EA43,$FFFF
-    dw $1CFC,$0000,$E304,$FFFF
-    dw $2544,$0000,$DABC,$FFFF
-    dw $2E95,$0000,$D16B,$FFFF
-    dw $38EF,$0000,$C711,$FFFF
-    dw $4452,$0000,$BBAE,$FFFF
-    dw $50BE,$0000,$AF42,$FFFF
-    dw $5E33,$0000,$A1CD,$FFFF
-    dw $6CB1,$0000,$934F,$FFFF
-    dw $7C38,$0000,$83C8,$FFFF
-    dw $8CC8,$0000,$7338,$FFFF
-    dw $9E61,$0000,$619F,$FFFF
-    dw $B103,$0000,$4EFD,$FFFF
-    dw $C4AE,$0000,$3B52,$FFFF
-    dw $D962,$0000,$269E,$FFFF
-    dw $EF1F,$0000,$10E1,$FFFF
-    dw $05E5,$0000,$FA1B,$FFFF
-    dw $14B4,$0001,$EB4C,$FFFE
-    dw $2D8C,$0001,$D274,$FFFE
-    dw $476D,$0001,$B893,$FFFE
-    dw $6257,$0001,$9DA9,$FFFE
-    dw $7E4A,$0001,$81B6,$FFFE
-    dw $9B46,$0001,$64BA,$FFFE
-    dw $B94B,$0001,$46B5,$FFFE
-    dw $D859,$0001,$27A7,$FFFE
-    dw $F870,$0001,$0790,$FFFE
-    dw $1090,$0002,$EF70,$FFFD
-    dw $32B9,$0002,$CD47,$FFFD
-    dw $55EB,$0002,$AA15,$FFFD
-    dw $7A26,$0002,$85DA,$FFFD
-    dw $9F6A,$0002,$6096,$FFFD
-    dw $C5B7,$0002,$3A49,$FFFD
-    dw $ED0D,$0002,$12F3,$FFFD
-    dw $0C6C,$0003,$F394,$FFFC
-    dw $35D4,$0003,$CA2C,$FFFC
-    dw $6045,$0003,$9FBB,$FFFC
-    dw $8BBF,$0003,$7441,$FFFC
-    dw $B842,$0003,$47BE,$FFFC
-    dw $E5CE,$0003,$1A32,$FFFC
-    dw $0B63,$0004,$F49D,$FFFB
-    dw $3B01,$0004,$C4FF,$FFFB
-    dw $6BA8,$0004,$9458,$FFFB
-    dw $9D58,$0004,$62A8,$FFFB
-    dw $D011,$0004,$2FEF,$FFFB
-    dw $03D3,$0004,$FC2D,$FFFB
-    dw $2F9E,$0005,$D062,$FFFA
-    dw $6572,$0005,$9A8E,$FFFA
-    dw $9C4F,$0005,$63B1,$FFFA
-    dw $D435,$0005,$2BCB,$FFFA
-    dw $0424,$0006,$FBDC,$FFF9
-    dw $3E1C,$0006,$C1E4,$FFF9
-    dw $791D,$0006,$86E3,$FFF9
-    dw $B527,$0006,$4AD9,$FFF9
-    dw $F23A,$0006,$0DC6,$FFF9
-    dw $2756,$0007,$D8AA,$FFF8
-    dw $667B,$0007,$9985,$FFF8
-    dw $A6A9,$0007,$5957,$FFF8
-    dw $E7E0,$0007,$1820,$FFF8
-    dw $2120,$0008,$DEE0,$FFF7
-    dw $6469,$0008,$9B97,$FFF7
-    dw $A8BB,$0008,$5745,$FFF7
-    dw $EE16,$0008,$11EA,$FFF7
-    dw $2B7A,$0009,$D486,$FFF6
-    dw $72E7,$0009,$8D19,$FFF6
-    dw $BB5D,$0009,$44A3,$FFF6
-    dw $04DC,$0009,$FB24,$FFF6
-    dw $4664,$000A,$B99C,$FFF5
-    dw $91F5,$000A,$6E0B,$FFF5
-    dw $DE8F,$000A,$2171,$FFF5
-    dw $2332,$000B,$DCCE,$FFF4
-    dw $71DE,$000B,$8E22,$FFF4
-    dw $C193,$000B,$3E6D,$FFF4
-    dw $0951,$000C,$F6AF,$FFF3
-    dw $5B18,$000C,$A4E8,$FFF3
-    dw $ADE8,$000C,$5218,$FFF3
-    dw $01C1,$000C,$FE3F,$FFF3
-    dw $4DA3,$000D,$B25D,$FFF2
-    dw $A38E,$000D,$5C72,$FFF2
-    dw $FA82,$000D,$057E,$FFF2
-    dw $497F,$000E,$B681,$FFF1
-    dw $A285,$000E,$5D7B,$FFF1
-    dw $FC94,$000E,$036C,$FFF1
-    dw $4EAC,$000F,$B154,$FFF0
-    dw $AACD,$000F,$5533,$FFF0
-    dw $07F7,$000F,$F809,$FFF0
-    dw $5D2A,$0010,$A2D6,$FFEF
-    dw $BC66,$0010,$439A,$FFEF
-    dw $13AB,$0011,$EC55,$FFEE
-    dw $74F9,$0011,$8B07,$FFEE
+namespace CommonA7
+incsrc "common_enemy_functions.asm"
+namespace off
 
 
 ;;; $8687: Palette - enemy $E2BF/$E2FF/$E33F/$E37F/$E3BF/$E3FF/$E43F/$E47F (Kraid) ;;;
@@ -615,13 +33,13 @@ Palette_KraidRoomBackground:
 ;;; $86E7: Instruction list - Kraid foot - initial ;;;
 InstList_KraidFoot_Initial:
     dw $7FFF,ExtendedSpritemap_KraidFoot_Initial                         ;A786E7;
-    dw Instruction_Common_Sleep                                          ;A786EB;
+    dw Common_Instruction_Sleep                                          ;A786EB;
 
 
 ;;; $86ED: Instruction list - Kraid foot - Kraid is big - neutral ;;;
 InstList_KraidFoot_KraidIsBig_Neutral:
     dw $7FFF,ExtendedSpritemap_KraidFoot_0                               ;A786ED;
-    dw Instruction_Common_Sleep                                          ;A786F1;
+    dw Common_Instruction_Sleep                                          ;A786F1;
 
 
 ;;; $86F3: Instruction list - Kraid foot - Kraid is big - walking forwards ;;;
@@ -692,7 +110,7 @@ InstList_KraidFoot_KraidIsBig_WalkingForward_0:
     dw $0001,ExtendedSpritemap_KraidFoot_0                               ;A787B7;
 
 InstList_KraidFoot_KraidIsBig_WalkingForward_1:
-    dw Instruction_Common_Sleep                                          ;A787BB;
+    dw Common_Instruction_Sleep                                          ;A787BB;
 
 
 ;;; $87BD: Instruction list - Kraid foot - lunge forward ;;;
@@ -764,7 +182,7 @@ InstList_KraidFoot_LungeForward_0:
     dw $0001,ExtendedSpritemap_KraidFoot_0                               ;A78881;
 
 InstList_KraidFoot_LungeForward_1:
-    dw Instruction_Common_Sleep                                          ;A78885;
+    dw Common_Instruction_Sleep                                          ;A78885;
 
 
 ;;; $8887: Instruction list - Kraid foot - Kraid is big - walking backwards ;;;
@@ -828,7 +246,7 @@ InstList_KraidFoot_KraidIsBig_WalkingBackwards_0:
     dw $0001,ExtendedSpritemap_KraidFoot_1                               ;A78935;
 
 InstList_KraidFoot_KraidIsBig_WalkingBackwards_1:
-    dw Instruction_Common_GotoY                                          ;A78939;
+    dw Common_Instruction_GotoY                                          ;A78939;
     dw InstList_KraidFoot_KraidIsBig_WalkingBackwards_0                  ;A7893B;
 
 
@@ -892,7 +310,7 @@ UNUSED_InstList_KraidFoot_WalkingBackwards_Fast_A7893D:
     dw $0001,ExtendedSpritemap_KraidFoot_3                               ;A789E3;
     dw $0001,ExtendedSpritemap_KraidFoot_2                               ;A789E7;
     dw $0001,ExtendedSpritemap_KraidFoot_1                               ;A789EB;
-    dw Instruction_Common_GotoY                                          ;A789EF;
+    dw Common_Instruction_GotoY                                          ;A789EF;
     dw UNUSED_InstList_KraidFoot_WalkingBackwards_Fast_A7893D            ;A789F1;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -920,7 +338,7 @@ InstList_KraidArm_Normal_0:
 InstList_KraidArm_Normal_1:
     dw $0020,ExtendedSpritemap_KraidArm_General_0                        ;A78A37;
     dw Instruction_KraidArm_SlowArmIfLessThanHalfHealth                  ;A78A3B;
-    dw Instruction_Common_GotoY                                          ;A78A3D;
+    dw Common_Instruction_GotoY                                          ;A78A3D;
     dw InstList_KraidArm_Normal_0                                        ;A78A3F;
 
 
@@ -945,7 +363,7 @@ InstList_KraidArm_Slow:
     dw $0008,ExtendedSpritemap_KraidArm_General_1                        ;A78A81;
     dw $0030,ExtendedSpritemap_KraidArm_General_0                        ;A78A85;
     dw Instruction_KraidArm_SlowArmIfLessThanHalfHealth                  ;A78A89;
-    dw Instruction_Common_GotoY                                          ;A78A8B;
+    dw Common_Instruction_GotoY                                          ;A78A8B;
     dw InstList_KraidArm_Slow                                            ;A78A8D;
 
 
@@ -984,7 +402,7 @@ InstList_KraidArm_RisingSinking:
     dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_2                  ;A78AE0;
     dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_1                  ;A78AE4;
     dw $0020,ExtendedSpritemap_KraidArm_RisingSinking_0                  ;A78AE8;
-    dw Instruction_Common_GotoY                                          ;A78AEC;
+    dw Common_Instruction_GotoY                                          ;A78AEC;
     dw InstList_KraidArm_RisingSinking                                   ;A78AEE;
 
 
@@ -993,19 +411,19 @@ InstList_KraidArm_Dying_PreparingToLungeForward:
     dw $0006,ExtendedSpritemap_KraidArm_General_0                        ;A78AF0;
     dw $0006,ExtendedSpritemap_KraidArm_Dying_PreparingToLungeForward_0  ;A78AF4;
     dw $7FFF,ExtendedSpritemap_KraidArm_Dying_PreparingToLungeForward_1  ;A78AF8;
-    dw Instruction_Common_Sleep                                          ;A78AFC;
+    dw Common_Instruction_Sleep                                          ;A78AFC;
 
 
 ;;; $8AFE: Instruction list - Kraid lint - initial ;;;
 InstList_KraidLint_Initial:
     dw $7FFF,Spritemap_KraidLint_Initial                                 ;A78AFE;
-    dw Instruction_Common_Sleep                                          ;A78B02;
+    dw Common_Instruction_Sleep                                          ;A78B02;
 
 
 ;;; $8B04: Instruction list - Kraid lint - Kraid is big ;;;
 InstList_KraidLint_KraidIsBig:
     dw $7FFF,Spritemap_KraidLint_KraidIsBig                              ;A78B04;
-    dw Instruction_Common_Sleep                                          ;A78B08;
+    dw Common_Instruction_Sleep                                          ;A78B08;
 
 
 ;;; $8B0A: Instruction list - fingernail ;;;
@@ -1018,7 +436,7 @@ InstList_KraidNail:
     dw $0003,Spritemap_KraidNail_5                                       ;A78B1E;
     dw $0003,Spritemap_KraidNail_6                                       ;A78B22;
     dw $0003,Spritemap_KraidNail_7                                       ;A78B26;
-    dw Instruction_Common_GotoY                                          ;A78B2A;
+    dw Common_Instruction_GotoY                                          ;A78B2A;
     dw InstList_KraidNail                                                ;A78B2C;
 
 
@@ -2142,7 +1560,7 @@ Hitbox_KraidArm_Dying_PreparingToLungeForward_1:
 
 ;;; $948B: Enemy touch - Kraid arm/foot - normal ;;;
 EnemyTouch_KraidArm_KraidFoot_Normal:
-    JSL.L NormalEnemyTouchAI                                             ;A7948B; fallthrough to RTL_A7948F
+    JSL.L NormalEnemyTouchAI_External                                    ;A7948B; fallthrough to RTL_A7948F
 
 
 RTL_A7948F:
@@ -2178,7 +1596,7 @@ PushSamusBack:
 
 ;;; $94B1: Normal enemy shot ;;;
 NormalEnemyShot:
-    JSL.L NormalEnemyShotAI                                              ;A794B1; fallthrough to RTL_A794B5
+    JSL.L NormalEnemyShotAI_External                                     ;A794B1; fallthrough to RTL_A794B5
 
 
 RTL_A794B5:
@@ -4218,7 +3636,7 @@ KraidBody_vs_Samus_CollisionHandling:
     JSR.W PushSamusBack                                                  ;A7B153;
     LDA.W SamusInvincibilityTimer                                        ;A7B156;
     BNE .return1                                                         ;A7B159;
-    JSL.L NormalEnemyTouchAI                                             ;A7B15B;
+    JSL.L NormalEnemyTouchAI_External                                    ;A7B15B;
 
   .return0:
     RTS                                                                  ;A7B15F;
@@ -5242,7 +4660,7 @@ KraidLint_vs_Samus_CollisionHandling:
 +   STA.W ExtraSamusXDisplacement                                        ;A7B9E1;
     PHX                                                                  ;A7B9E4;
     PHP                                                                  ;A7B9E5;
-    JSL.L NormalEnemyTouchAI                                             ;A7B9E6;
+    JSL.L NormalEnemyTouchAI_External                                    ;A7B9E6;
     PLP                                                                  ;A7B9EA;
     PLX                                                                  ;A7B9EB;
     LDA.W Enemy.properties,X                                             ;A7B9EC;
@@ -5592,7 +5010,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $BCCF: Enemy touch - enemy $E43F (Kraid good fingernail) ;;;
 EnemyTouch_KraidNail:
-    JSL.L NormalEnemyTouchAI                                             ;A7BCCF;
+    JSL.L NormalEnemyTouchAI_External                                    ;A7BCCF;
     LDX.W EnemyIndex                                                     ;A7BCD3;
     JSL.L EnemyDeath                                                     ;A7BCD6;
     LDX.W EnemyIndex                                                     ;A7BCDA;
@@ -5601,7 +5019,7 @@ EnemyTouch_KraidNail:
 
 ;;; $BCDE: Enemy touch - enemy $E47F (Kraid bad fingernail) ;;;
 EnemyTouch_KraidNailBad:
-    JSL.L NormalEnemyTouchAI                                             ;A7BCDE;
+    JSL.L NormalEnemyTouchAI_External                                    ;A7BCDE;
     LDX.W EnemyIndex                                                     ;A7BCE2;
     JSL.L EnemyDeath                                                     ;A7BCE5;
     LDX.W EnemyIndex                                                     ;A7BCE9;
@@ -6670,7 +6088,7 @@ KraidDeath_SinkThroughFloor:
     STA.W EnemyBG2TilemapSize                                            ;A7C557;
     LDY.W EnemyIndex                                                     ;A7C55A;
     LDX.W Enemy.ID,Y                                                     ;A7C55D;
-    LDA.W #RTL_A7804C                                                    ;A7C560;
+    LDA.W #Common_RTL_A0804C                                                    ;A7C560;
     STA.L EnemyHeaders_enemyShot,X                                       ;A7C563;
     LDA.W Enemy[1].properties                                            ;A7C567;
     ORA.W #$0200                                                         ;A7C56A; >.< #$0600
@@ -7384,19 +6802,19 @@ Palette_Phantoon_HealthBased_7:
 ;;; $CC41: Instruction list - body - invulnerable ;;;
 InstList_Phantoon_Body_Invulnerable:
     dw $0001,ExtendedSpritemap_Phantoon_Body_Invulnerable                ;A7CC41;
-    dw Instruction_Common_Sleep                                          ;A7CC45;
+    dw Common_Instruction_Sleep                                          ;A7CC45;
 
 
 ;;; $CC47: Instruction list - body - full hitbox ;;;
 InstList_Phantoon_Body_FullHitbox:
     dw $0001,ExtendedSpritemap_Phantoon_Body_FullHitbox                  ;A7CC47;
-    dw Instruction_Common_Sleep                                          ;A7CC4B;
+    dw Common_Instruction_Sleep                                          ;A7CC4B;
 
 
 ;;; $CC4D: Instruction list - body - eye hitbox only ;;;
 InstList_Phantoon_Body_EyeHitboxOnly:
     dw $0001,ExtendedSpritemap_Phantoon_Body_EyeHitbox                   ;A7CC4D;
-    dw Instruction_Common_Sleep                                          ;A7CC51;
+    dw Common_Instruction_Sleep                                          ;A7CC51;
 
 
 ;;; $CC53: Instruction list - eye - open ;;;
@@ -7404,11 +6822,11 @@ InstList_Phantoon_Eye_Open:
     dw $000A,ExtendedSpritemap_Phantoon_Eye_Opening                      ;A7CC53;
     dw $000A,ExtendedSpritemap_Phantoon_Eye_OpeningClosing               ;A7CC57;
     dw $0001,ExtendedSpritemap_Phantoon_Eye_Open                         ;A7CC5B;
-    dw Instruction_Common_CallFunctionInY                                ;A7CC5F;
+    dw Common_Instruction_CallFunctionInY                                ;A7CC5F;
     dw PlayPhantoonMaterializationSFX                                    ;A7CC61;
-    dw Instruction_Common_CallFunctionInY                                ;A7CC63;
+    dw Common_Instruction_CallFunctionInY                                ;A7CC63;
     dw SetupEyeOpenPhantoonState                                         ;A7CC65;
-    dw Instruction_Common_Sleep                                          ;A7CC67;
+    dw Common_Instruction_Sleep                                          ;A7CC67;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -7417,25 +6835,25 @@ UNUSED_InstList_Phantoon_Eye_Open_IgnoringSamus_A7CC69:
     dw $000A,ExtendedSpritemap_Phantoon_Eye_Opening                      ;A7CC69;
     dw $000A,ExtendedSpritemap_Phantoon_Eye_OpeningClosing               ;A7CC6D;
     dw $0001,ExtendedSpritemap_Phantoon_Eye_Open                         ;A7CC71;
-    dw Instruction_Common_CallFunctionInY                                ;A7CC75;
+    dw Common_Instruction_CallFunctionInY                                ;A7CC75;
     dw PlayPhantoonMaterializationSFX                                    ;A7CC77;
-    dw Instruction_Common_Sleep                                          ;A7CC79;
+    dw Common_Instruction_Sleep                                          ;A7CC79;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CC7B: Instruction list - eye - closed ;;;
 InstList_Phantoon_Eye_Closed:
     dw $0001,ExtendedSpritemap_Phantoon_Eye_Closed                       ;A7CC7B;
-    dw Instruction_Common_Sleep                                          ;A7CC7F;
+    dw Common_Instruction_Sleep                                          ;A7CC7F;
 
 
 ;;; $CC81: Instruction list - eye - close and pick new pattern ;;;
 InstList_Phantoon_Eye_Close_PickNewPattern:
     dw $0001,ExtendedSpritemap_Phantoon_Eye_Open                         ;A7CC81;
     dw $000A,ExtendedSpritemap_Phantoon_Eye_OpeningClosing               ;A7CC85;
-    dw Instruction_Common_CallFunctionInY                                ;A7CC89;
+    dw Common_Instruction_CallFunctionInY                                ;A7CC89;
     dw PickNewPhantoonPattern                                            ;A7CC8B;
-    dw Instruction_Common_GotoY                                          ;A7CC8D;
+    dw Common_Instruction_GotoY                                          ;A7CC8D;
     dw InstList_Phantoon_Eye_Closed                                      ;A7CC8F;
 
 
@@ -7443,64 +6861,64 @@ InstList_Phantoon_Eye_Close_PickNewPattern:
 InstList_Phantoon_Eye_Close:
     dw $0001,ExtendedSpritemap_Phantoon_Eye_Open                         ;A7CC91;
     dw $000A,ExtendedSpritemap_Phantoon_Eye_OpeningClosing               ;A7CC95;
-    dw Instruction_Common_GotoY                                          ;A7CC99;
+    dw Common_Instruction_GotoY                                          ;A7CC99;
     dw InstList_Phantoon_Eye_Closed                                      ;A7CC9B;
 
 
 ;;; $CC9D: Instruction list - eyeball - centred ;;;
 InstList_Phantoon_Eyeball_Centered:
     dw $0001,ExtendedSpritemap_Phantoon_Eyeball_Centered                 ;A7CC9D;
-    dw Instruction_Common_CallFunctionInY                                ;A7CCA1;
+    dw Common_Instruction_CallFunctionInY                                ;A7CCA1;
     dw PlayPhantoonMaterializationSFX                                    ;A7CCA3;
-    dw Instruction_Common_Sleep                                          ;A7CCA5;
+    dw Common_Instruction_Sleep                                          ;A7CCA5;
 
 
 ;;; $CCA7: Instruction list - eyeball - looking up ;;;
 InstList_Phantoon_Eyeball_LookingUp:
     dw $0001,ExtendedSpritemap_Phantoon_Eyeball_LookingUp                ;A7CCA7;
-    dw Instruction_Common_Sleep                                          ;A7CCAB;
+    dw Common_Instruction_Sleep                                          ;A7CCAB;
 
 
 ;;; $CCAD: Instruction list - eyeball - looking up-right ;;;
 InstList_Phantoon_Eyeball_LookingUpRight:
     dw $0001,ExtendedSpritemap_Phantoon_Eyeball_LookingUpRight           ;A7CCAD;
-    dw Instruction_Common_Sleep                                          ;A7CCB1;
+    dw Common_Instruction_Sleep                                          ;A7CCB1;
 
 
 ;;; $CCB3: Instruction list - eyeball - looking right ;;;
 InstList_Phantoon_Eyeball_LookingRight:
     dw $0001,ExtendedSpritemap_Phantoon_Eyeball_LookingRight             ;A7CCB3;
-    dw Instruction_Common_Sleep                                          ;A7CCB7;
+    dw Common_Instruction_Sleep                                          ;A7CCB7;
 
 
 ;;; $CCB9: Instruction list - eyeball - looking down-right ;;;
 InstList_Phantoon_Eyeball_LookingDownRight:
     dw $0001,ExtendedSpritemap_Phantoon_Eyeball_LookingDownRight         ;A7CCB9;
-    dw Instruction_Common_Sleep                                          ;A7CCBD;
+    dw Common_Instruction_Sleep                                          ;A7CCBD;
 
 
 ;;; $CCBF: Instruction list - eyeball - looking down ;;;
 InstList_Phantoon_Eyeball_LookingDown:
     dw $0001,ExtendedSpritemap_Phantoon_Eyeball_LookingDown              ;A7CCBF;
-    dw Instruction_Common_Sleep                                          ;A7CCC3;
+    dw Common_Instruction_Sleep                                          ;A7CCC3;
 
 
 ;;; $CCC5: Instruction list - eyeball - looking down-left ;;;
 InstList_Phantoon_Eyeball_LookingDownLeft:
     dw $0001,ExtendedSpritemap_Phantoon_Eyeball_LookingDownLeft          ;A7CCC5;
-    dw Instruction_Common_Sleep                                          ;A7CCC9;
+    dw Common_Instruction_Sleep                                          ;A7CCC9;
 
 
 ;;; $CCCB: Instruction list - eyeball - looking left ;;;
 InstList_Phantoon_Eyeball_LookingLeft:
     dw $0001,ExtendedSpritemap_Phantoon_Eyeball_LookingLeft              ;A7CCCB;
-    dw Instruction_Common_Sleep                                          ;A7CCCF;
+    dw Common_Instruction_Sleep                                          ;A7CCCF;
 
 
 ;;; $CCD1: Instruction list - eyeball - looking up-left ;;;
 InstList_Phantoon_Eyeball_LookingUpLeft:
     dw $0001,ExtendedSpritemap_Phantoon_Eyeball_LookingUpLeft            ;A7CCD1;
-    dw Instruction_Common_Sleep                                          ;A7CCD5;
+    dw Common_Instruction_Sleep                                          ;A7CCD5;
 
 
 ;;; $CCD7: Instruction list - tentacles ;;;
@@ -7509,7 +6927,7 @@ InstList_Phantoon_Tentacles:
     dw $0008,ExtendedSpritemap_Phantoon_Tentacles_1                      ;A7CCDB;
     dw $0008,ExtendedSpritemap_Phantoon_Tentacles_2                      ;A7CCDF;
     dw $0008,ExtendedSpritemap_Phantoon_Tentacles_1                      ;A7CCE3;
-    dw Instruction_Common_GotoY                                          ;A7CCE7;
+    dw Common_Instruction_GotoY                                          ;A7CCE7;
     dw InstList_Phantoon_Tentacles                                       ;A7CCE9;
 
 
@@ -7517,14 +6935,14 @@ InstList_Phantoon_Tentacles:
 InstList_Phantoon_Mouth_SpawnFlame:
     dw $0005,ExtendedSpritemap_Phantoon_Mouth_SpawningFlame_1            ;A7CCEB;
     dw $0005,ExtendedSpritemap_Phantoon_Mouth_SpawningFlame_0            ;A7CCEF;
-    dw Instruction_Common_CallFunctionInY                                ;A7CCF3;
+    dw Common_Instruction_CallFunctionInY                                ;A7CCF3;
     dw SpawnCasualFlame                                                  ;A7CCF5;
 
 
 ;;; $CCF7: Instruction list - mouth - initial ;;;
 InstList_Phantoon_Mouth_Initial:
     dw $0001,ExtendedSpritemap_Phantoon_Mouth_Normal                     ;A7CCF7;
-    dw Instruction_Common_Sleep                                          ;A7CCFB;
+    dw Common_Instruction_Sleep                                          ;A7CCFB;
 
 
 ;;; $CCFD: Casual flame timers ;;;
@@ -7723,7 +7141,7 @@ InitAI_PhantoonBody:
 InitAI_Phantoon_Eye_Tentacles_Mouth:
 ; Phantoon body also executes this as part of initialisation AI, so all Phantoon parts are doing this
     LDX.W EnemyIndex                                                     ;A7CE55;
-    LDA.W #Spritemap_Common_Nothing                                      ;A7CE58;
+    LDA.W #Common_Spritemap_Nothing                                      ;A7CE58;
     STA.W Enemy.spritemap,X                                              ;A7CE5B;
     LDA.W #$0001                                                         ;A7CE5E;
     STA.W Enemy.instTimer,X                                              ;A7CE61;
@@ -10305,8 +9723,8 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Hitbox_Phantoon_0:
     dw $0001                                                             ;A7E020;
     dw $0000,$0000,$0000,$0000
-    dw RTL_A7804C                                                        ;A7E02A;
-    dw RTL_A7804C                                                        ;A7E02C;
+    dw Common_RTL_A0804C                                                        ;A7E02A;
+    dw Common_RTL_A0804C                                                        ;A7E02C;
 
 Hitbox_Phantoon_1:
     dw $0005                                                             ;A7E02E;
@@ -10588,7 +10006,7 @@ Palette_Etecoon:
 ;;; $E81E: Instruction list - look right at Samus and run left ;;;
 InstList_Etecoon_LookRightAtSamusAndRunLeft:
     dw $0005,Spritemap_Etecoon_C                                         ;A7E81E;
-    dw Instruction_Common_Sleep                                          ;A7E822;
+    dw Common_Instruction_Sleep                                          ;A7E822;
     dw $0001,Spritemap_Etecoon_D                                         ;A7E824;
 
 
@@ -10598,7 +10016,7 @@ InstList_Etecoon_RunningLeft:
     dw $0005,Spritemap_Etecoon_1                                         ;A7E82C;
     dw $0005,Spritemap_Etecoon_2                                         ;A7E830;
     dw $0005,Spritemap_Etecoon_1                                         ;A7E834;
-    dw Instruction_Common_GotoY                                          ;A7E838;
+    dw Common_Instruction_GotoY                                          ;A7E838;
     dw InstList_Etecoon_RunningLeft                                      ;A7E83A;
 
 
@@ -10611,14 +10029,14 @@ InstList_Etecoon_WallJump_1:
     dw $0003,Spritemap_Etecoon_4                                         ;A7E844;
     dw $0003,Spritemap_Etecoon_5                                         ;A7E848;
     dw $0003,Spritemap_Etecoon_6                                         ;A7E84C;
-    dw Instruction_Common_GotoY                                          ;A7E850;
+    dw Common_Instruction_GotoY                                          ;A7E850;
     dw InstList_Etecoon_WallJump_1                                       ;A7E852;
 
 
 ;;; $E854: Instruction list - hopping - facing left ;;;
 InstList_Etecoon_Hopping_FacingLeft:
     dw $0001,Spritemap_Etecoon_8                                         ;A7E854;
-    dw Instruction_Common_Sleep                                          ;A7E858;
+    dw Common_Instruction_Sleep                                          ;A7E858;
     dw $000C,Spritemap_Etecoon_9                                         ;A7E85A;
     dw $000C,Spritemap_Etecoon_A                                         ;A7E85E;
 
@@ -10628,19 +10046,19 @@ InstList_Etecoon_HitCeiling:
     dw $0006,Spritemap_Etecoon_B                                         ;A7E862;
     dw $000C,Spritemap_Etecoon_A                                         ;A7E866;
     dw $000C,Spritemap_Etecoon_9                                         ;A7E86A;
-    dw Instruction_Common_Sleep                                          ;A7E86E;
+    dw Common_Instruction_Sleep                                          ;A7E86E;
 
 
 ;;; $E870: Instruction list - wall-jump left eligible ;;;
 InstList_Etecoon_WallJumpLeftEligible:
     dw $0001,Spritemap_Etecoon_F                                         ;A7E870;
-    dw Instruction_Common_Sleep                                          ;A7E874;
+    dw Common_Instruction_Sleep                                          ;A7E874;
 
 
 ;;; $E876: Instruction list - look left at Samus and run right ;;;
 InstList_Etecoon_LookLeftAtSamusAndRunRight:
     dw $0005,Spritemap_Etecoon_1E                                        ;A7E876;
-    dw Instruction_Common_Sleep                                        ;A7E87A;
+    dw Common_Instruction_Sleep                                        ;A7E87A;
     dw $0001,Spritemap_Etecoon_1D                                        ;A7E87C;
 
 
@@ -10650,7 +10068,7 @@ InstList_Etecoon_RunningRight:
     dw $0005,Spritemap_Etecoon_11                                        ;A7E884;
     dw $0005,Spritemap_Etecoon_12                                        ;A7E888;
     dw $0005,Spritemap_Etecoon_11                                        ;A7E88C;
-    dw Instruction_Common_GotoY                                          ;A7E890;
+    dw Common_Instruction_GotoY                                          ;A7E890;
     dw InstList_Etecoon_RunningRight                                     ;A7E892;
 
 
@@ -10665,38 +10083,38 @@ InstList_Etecoon_JumpingRight:
     dw $0003,Spritemap_Etecoon_14                                        ;A7E89C;
     dw $0003,Spritemap_Etecoon_15                                        ;A7E8A0;
     dw $0003,Spritemap_Etecoon_16                                        ;A7E8A4;
-    dw Instruction_Common_GotoY                                          ;A7E8A8;
+    dw Common_Instruction_GotoY                                          ;A7E8A8;
     dw InstList_Etecoon_JumpingRight                                     ;A7E8AA;
 
 
 ;;; $E8AC: Instruction list - hopping - facing right ;;;
 InstList_Etecoon_Hopping_FacingRight:
     dw $0001,Spritemap_Etecoon_18                                        ;A7E8AC;
-    dw Instruction_Common_Sleep                                          ;A7E8B0;
+    dw Common_Instruction_Sleep                                          ;A7E8B0;
     dw $000C,Spritemap_Etecoon_19                                        ;A7E8B2;
     dw $000C,Spritemap_Etecoon_1A                                        ;A7E8B6;
     dw $0006,Spritemap_Etecoon_1B                                        ;A7E8BA;
     dw $000C,Spritemap_Etecoon_1A                                        ;A7E8BE;
     dw $000C,Spritemap_Etecoon_19                                        ;A7E8C2;
-    dw Instruction_Common_Sleep                                        ;A7E8C6;
+    dw Common_Instruction_Sleep                                        ;A7E8C6;
 
 
 ;;; $E8C8: Instruction list - wall-jump right eligible ;;;
 InstList_Etecoon_WallJumpRightEligible:
     dw $0001,Spritemap_Etecoon_1F                                        ;A7E8C8;
-    dw Instruction_Common_Sleep                                          ;A7E8CC;
+    dw Common_Instruction_Sleep                                          ;A7E8CC;
 
 
 ;;; $E8CE: Instruction list - initial ;;;
 InstList_Etecoon_Initial:
     dw $0008,Spritemap_Etecoon_18                                        ;A7E8CE;
-    dw Instruction_Common_GotoY                                          ;A7E8D2;
+    dw Common_Instruction_GotoY                                          ;A7E8D2;
     dw InstList_Etecoon_Initial                                          ;A7E8D4;
 
 
 ;;; $E8D6: Instruction list - flexing ;;;
 InstList_Etecoon_Flexing_0:
-    dw Instruction_Common_TimerInY                                       ;A7E8D6;
+    dw Common_Instruction_TimerInY                                       ;A7E8D6;
     dw $0004                                                             ;A7E8D8;
 
 InstList_Etecoon_Flexing_1:
@@ -10706,11 +10124,11 @@ InstList_Etecoon_Flexing_1:
     dw $0008,Spritemap_Etecoon_1B                                        ;A7E8E6;
     dw $0008,Spritemap_Etecoon_1A                                        ;A7E8EA;
     dw $0008,Spritemap_Etecoon_19                                        ;A7E8EE;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;A7E8F2;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;A7E8F2;
     dw InstList_Etecoon_Flexing_1                                        ;A7E8F4;
     dw $0020,Spritemap_Etecoon_1C                                        ;A7E8F6;
     dw $0020,Spritemap_Etecoon_1E                                        ;A7E8FA;
-    dw Instruction_Common_Sleep                                          ;A7E8FE;
+    dw Common_Instruction_Sleep                                          ;A7E8FE;
 
 
 ;;; $E900: Etecoon constants ;;;
@@ -10742,7 +10160,7 @@ InitAI_Etecoon:
     LDA.W Enemy.properties,X                                             ;A7E915;
     ORA.W #$2000                                                         ;A7E918;
     STA.W Enemy.properties,X                                             ;A7E91B;
-    LDA.W #Spritemap_Common_Nothing                                      ;A7E91E;
+    LDA.W #Common_Spritemap_Nothing                                      ;A7E91E;
     STA.W Enemy.spritemap,X                                              ;A7E921;
     LDA.W #$0001                                                         ;A7E924;
     STA.W Enemy.instTimer,X                                              ;A7E927;
@@ -11829,7 +11247,7 @@ InstList_Dachora_RunningLeft:
     dw $0005,Spritemap_Dachora_3                                         ;A7F351;
     dw $0005,Spritemap_Dachora_4                                         ;A7F355;
     dw $0005,Spritemap_Dachora_5                                         ;A7F359;
-    dw Instruction_Common_GotoY                                          ;A7F35D;
+    dw Common_Instruction_GotoY                                          ;A7F35D;
     dw InstList_Dachora_RunningLeft                                      ;A7F35F;
 
 InstList_Dachora_RunningLeft_FastAnimation:
@@ -11839,7 +11257,7 @@ InstList_Dachora_RunningLeft_FastAnimation:
     dw $0003,Spritemap_Dachora_3                                         ;A7F36D;
     dw $0003,Spritemap_Dachora_4                                         ;A7F371;
     dw $0003,Spritemap_Dachora_5                                         ;A7F375;
-    dw Instruction_Common_GotoY                                          ;A7F379;
+    dw Common_Instruction_GotoY                                          ;A7F379;
     dw InstList_Dachora_RunningLeft_FastAnimation                        ;A7F37B;
 
 InstList_Dachora_RunningLeft_VeryFastAnimation:
@@ -11849,7 +11267,7 @@ InstList_Dachora_RunningLeft_VeryFastAnimation:
     dw $0001,Spritemap_Dachora_3                                         ;A7F389;
     dw $0001,Spritemap_Dachora_4                                         ;A7F38D;
     dw $0001,Spritemap_Dachora_5                                         ;A7F391;
-    dw Instruction_Common_GotoY                                          ;A7F395;
+    dw Common_Instruction_GotoY                                          ;A7F395;
     dw InstList_Dachora_RunningLeft_VeryFastAnimation                    ;A7F397;
 
 
@@ -11866,7 +11284,7 @@ InstList_Dachora_Idling_FacingLeft:
     dw $0007,Spritemap_Dachora_E                                         ;A7F3B9;
     dw $0007,Spritemap_Dachora_D                                         ;A7F3BD;
     dw $000A,Spritemap_Dachora_B                                         ;A7F3C1;
-    dw Instruction_Common_GotoY                                          ;A7F3C5;
+    dw Common_Instruction_GotoY                                          ;A7F3C5;
     dw InstList_Dachora_Idling_FacingLeft                                ;A7F3C7;
 
 
@@ -11881,7 +11299,7 @@ InstList_Dachora_Blinking_FacingLeft:
     dw $000A,Spritemap_Dachora_8                                         ;A7F3E1;
     dw $0005,Spritemap_Dachora_9                                         ;A7F3E5;
     dw $000B,Spritemap_Dachora_A                                         ;A7F3E9;
-    dw Instruction_Common_GotoY                                          ;A7F3ED;
+    dw Common_Instruction_GotoY                                          ;A7F3ED;
     dw InstList_Dachora_Blinking_FacingLeft                              ;A7F3EF;
 
 
@@ -11889,21 +11307,21 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $F3F1: Unused. Instruction list - charge shinespark - facing left ;;;
 UNUSED_InstList_Dachora_ChargeShinespark_FacingLeft_A7F3F1:
     dw $0001,Spritemap_Dachora_6                                         ;A7F3F1;
-    dw Instruction_Common_Sleep                                          ;A7F3F5;
+    dw Common_Instruction_Sleep                                          ;A7F3F5;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $F3F7: Instruction list - echo - facing left ;;;
 InstList_Dachora_Echo_FacingLeft:
     dw $000A,Spritemap_Dachora_7                                         ;A7F3F7;
-    dw Instruction_Common_GotoY                                          ;A7F3FB;
+    dw Common_Instruction_GotoY                                          ;A7F3FB;
     dw InstList_Dachora_Echo_FacingLeft                                  ;A7F3FD;
 
 
 ;;; $F3FF: Instruction list - falling - facing left ;;;
 InstList_Dachora_Falling_FacingLeft:
     dw $0005,Spritemap_Dachora_4                                         ;A7F3FF;
-    dw Instruction_Common_GotoY                                          ;A7F403;
+    dw Common_Instruction_GotoY                                          ;A7F403;
     dw InstList_Dachora_Falling_FacingLeft                               ;A7F405;
 
 
@@ -11915,7 +11333,7 @@ InstList_Dachora_RunningRight:
     dw $0005,Spritemap_Dachora_12                                        ;A7F413;
     dw $0005,Spritemap_Dachora_13                                        ;A7F417;
     dw $0005,Spritemap_Dachora_14                                        ;A7F41B;
-    dw Instruction_Common_GotoY                                          ;A7F41F;
+    dw Common_Instruction_GotoY                                          ;A7F41F;
     dw InstList_Dachora_RunningRight                                     ;A7F421;
 
 InstList_Dachora_RunningRight_FastAnimation:
@@ -11925,7 +11343,7 @@ InstList_Dachora_RunningRight_FastAnimation:
     dw $0003,Spritemap_Dachora_12                                        ;A7F42F;
     dw $0003,Spritemap_Dachora_13                                        ;A7F433;
     dw $0003,Spritemap_Dachora_14                                        ;A7F437;
-    dw Instruction_Common_GotoY                                          ;A7F43B;
+    dw Common_Instruction_GotoY                                          ;A7F43B;
     dw InstList_Dachora_RunningRight_FastAnimation                       ;A7F43D;
 
 InstList_Dachora_RunningRight_VeryFastAnimation:
@@ -11935,7 +11353,7 @@ InstList_Dachora_RunningRight_VeryFastAnimation:
     dw $0001,Spritemap_Dachora_12                                        ;A7F44B;
     dw $0001,Spritemap_Dachora_13                                        ;A7F44F;
     dw $0001,Spritemap_Dachora_14                                        ;A7F453;
-    dw Instruction_Common_GotoY                                          ;A7F457;
+    dw Common_Instruction_GotoY                                          ;A7F457;
     dw InstList_Dachora_RunningRight_VeryFastAnimation                   ;A7F459;
 
 
@@ -11952,7 +11370,7 @@ InstList_Dachora_Idling_FacingRight:
     dw $0007,Spritemap_Dachora_1D                                        ;A7F47B;
     dw $0007,Spritemap_Dachora_1C                                        ;A7F47F;
     dw $000A,Spritemap_Dachora_1A                                        ;A7F483;
-    dw Instruction_Common_GotoY                                          ;A7F487;
+    dw Common_Instruction_GotoY                                          ;A7F487;
     dw InstList_Dachora_Idling_FacingRight                               ;A7F489;
 
 
@@ -11967,27 +11385,27 @@ InstList_Dachora_Blinking_FacingRight:
     dw $000A,Spritemap_Dachora_17                                        ;A7F4A3;
     dw $0005,Spritemap_Dachora_18                                        ;A7F4A7;
     dw $000B,Spritemap_Dachora_19                                        ;A7F4AB;
-    dw Instruction_Common_GotoY                                          ;A7F4AF;
+    dw Common_Instruction_GotoY                                          ;A7F4AF;
     dw InstList_Dachora_Blinking_FacingRight                             ;A7F4B1;
 
 
 ;;; $F4B3: Instruction list - charge shinespark - facing right ;;;
 InstList_Dachora_ChargeShinespark_FacingRight:
     dw $0001,Spritemap_Dachora_15                                        ;A7F4B3;
-    dw Instruction_Common_Sleep                                          ;A7F4B7;
+    dw Common_Instruction_Sleep                                          ;A7F4B7;
 
 
 ;;; $F4B9: Instruction list - echo - facing right ;;;
 InstList_Dachora_Echo_FacingRight:
     dw $000A,Spritemap_Dachora_16                                        ;A7F4B9;
-    dw Instruction_Common_GotoY                                          ;A7F4BD;
+    dw Common_Instruction_GotoY                                          ;A7F4BD;
     dw InstList_Dachora_Echo_FacingRight                                 ;A7F4BF;
 
 
 ;;; $F4C1: Instruction list - falling - facing right ;;;
 InstList_Dachora_Falling_FacingRight:
     dw $0005,Spritemap_Dachora_13                                        ;A7F4C1;
-    dw Instruction_Common_GotoY                                          ;A7F4C5;
+    dw Common_Instruction_GotoY                                          ;A7F4C5;
     dw InstList_Dachora_Falling_FacingRight                              ;A7F4C7;
 
 
@@ -12031,7 +11449,7 @@ InitAI_Dachora:
     LDA.W Enemy.properties,X                                             ;A7F4E0;
     ORA.W #$2000                                                         ;A7F4E3;
     STA.W Enemy.properties,X                                             ;A7F4E6;
-    LDA.W #Spritemap_Common_Nothing                                      ;A7F4E9;
+    LDA.W #Common_Spritemap_Nothing                                      ;A7F4E9;
     STA.W Enemy.spritemap,X                                              ;A7F4EC;
     LDA.W #$0001                                                         ;A7F4EF;
     STA.W Enemy.instTimer,X                                              ;A7F4F2;

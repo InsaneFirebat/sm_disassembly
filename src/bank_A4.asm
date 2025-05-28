@@ -3,591 +3,9 @@ org $A48000
 
 
 ; Common to all enemy code banks
-
-;;; $8000: Grapple AI - no interaction. Also unfreezes enemies(!) ;;;
-CommonA4_GrappleAI_NoInteraction:
-; Used by skultera, Draygon body, fire arc, Phantoon, etecoon, dachora and WS ghost
-    JSL.L GrappleAI_SwitchEnemyAIToMainAI                                ;A48000;
-    RTL                                                                  ;A48004;
-
-
-;;; $8005: Grapple AI - Samus latches on ;;;
-CommonA4_GrappleAI_SamusLatchesOn:
-; Used by gripper and Crocomire
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple                            ;A48005;
-    RTL                                                                  ;A48009;
-
-
-;;; $800A: Grapple AI - kill enemy ;;;
-CommonA4_GrappleAI_KillEnemy:
-; Common
-    JSL.L GrappleAI_EnemyGrappleDeath                                    ;A4800A;
-    RTL                                                                  ;A4800E;
-
-
-;;; $800F: Grapple AI - cancel grapple beam ;;;
-CommonA4_GrappleAI_CancelGrappleBeam:
-; Common
-    JSL.L GrappleAI_SwitchToFrozenAI                                     ;A4800F;
-    RTL                                                                  ;A48013;
-
-
-;;; $8014: Grapple AI - Samus latches on - no invincibility ;;;
-CommonA4_GrappleAI_SamusLatchesOn_NoInvincibility:
-; Used by powamp
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility            ;A48014;
-    RTL                                                                  ;A48018;
-
-
-;;; $8019: Unused. Grapple AI - Samus latches on - paralyse enemy ;;;
-UNUSED_CommonA4_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A48019:
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy              ;A48019;
-    RTL                                                                  ;A4801D;
-
-
-;;; $801E: Grapple AI - hurt Samus ;;;
-CommonA4_GrappleAI_HurtSamus:
-; Used by WS spark
-; Hurt reaction happens in $9B:B932
-    JSL.L GrappleAI_SwitchToFrozenAI_duplicate                           ;A4801E;
-    RTL                                                                  ;A48022;
-
-
-;;; $8023: Normal enemy touch AI ;;;
-CommonA4_NormalEnemyTouchAI:
-    JSL.L NormalEnemyTouchAI                                             ;A48023;
-    RTL                                                                  ;A48027;
-
-
-;;; $8028: Normal touch AI - no death check ;;;
-CommonA4_NormalTouchAI_NoDeathCheck:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A48028;
-    RTL                                                                  ;A4802C;
-
-
-;;; $802D: Normal enemy shot AI ;;;
-CommonA4_NormalEnemyShotAI:
-    JSL.L NormalEnemyShotAI                                              ;A4802D;
-    RTL                                                                  ;A48031;
-
-
-;;; $8032: Normal enemy shot AI - no death check, no enemy shot graphic ;;;
-CommonA4_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A48032;
-    RTL                                                                  ;A48036;
-
-
-;;; $8037: Normal enemy power bomb AI ;;;
-CommonA4_NormalEnemyPowerBombAI:
-    JSL.L NormalEnemyPowerBombAI                                         ;A48037;
-    RTL                                                                  ;A4803B;
-
-
-;;; $803C: Normal enemy power bomb AI - no death check ;;;
-CommonA4_NormalEnemyPowerBombAI_NoDeathCheck:
-; Kraid's power bomb AI
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A4803C;
-    RTL                                                                  ;A48040;
-
-
-;;; $8041: Normal enemy frozen AI ;;;
-CommonA4_NormalEnemyFrozenAI:
-    JSL.L NormalEnemyFrozenAI                                            ;A48041;
-    RTL                                                                  ;A48045;
-
-
-;;; $8046: Creates a dud shot ;;;
-CommonA4_CreateADudShot:
-    JSL.L CreateADudShot                                                 ;A48046;
-    RTL                                                                  ;A4804A;
-
-
-;;; $804B: RTS ;;;
-RTS_A4804B:
-    RTS                                                                  ;A4804B;
-
-
-;;; $804C: RTL ;;;
-RTL_A4804C:
-    RTL                                                                  ;A4804C;
-
-
-;;; $804D: Spritemap - nothing ;;;
-Spritemap_CommonA4_Nothing:
-    dw $0000                                                             ;A4804D;
-
-
-;;; $804F: Extended spritemap - nothing ;;;
-ExtendedSpritemap_CommonA4_Nothing:
-    dw $0001                                                             ;A4804F;
-    dw $0000,$0000
-    dw Spritemap_CommonA4_Nothing                                        ;A48055;
-    dw Hitbox_CommonA4_Nothing                                           ;A48057;
-
-
-;;; $8059: Hitbox - nothing ;;;
-Hitbox_CommonA4_Nothing:
-; [n entries] [[left offset] [top offset] [right offset] [bottom offset] [p touch] [p shot]]...
-    dw $0001                                                             ;A48059;
-    dw $0000,$0000,$0000,$0000
-    dw CommonA4_NormalEnemyTouchAI                                       ;A48063;
-    dw CommonA4_NormalEnemyShotAI                                        ;A48065;
-
-
-;;; $8067: Instruction list - delete enemy ;;;
-InstList_CommonA4_DeleteEnemy:
-    dw Instruction_CommonA4_DeleteEnemy                                  ;A48067;
-
-
-;;; $8069: Two NOPs ;;;
-NOPNOP_A48069:
-; Used as palette by respawning enemy placeholder and Draygon's eye o_O
-    NOP                                                                  ;A48069;
-    NOP                                                                  ;A4806A;
-
-
-;;; $806B: Instruction - Enemy.var5 = [[Y]] ;;;
-Instruction_CommonA4_Enemy0FB2_InY:
-; Used only by torizos (for enemy movement function) and escape etecoon (for enemy function)
-    LDA.W $0000,Y                                                        ;A4806B;
-    STA.W Enemy.var5,X                                                   ;A4806E;
-    INY                                                                  ;A48071;
-    INY                                                                  ;A48072;
-    RTL                                                                  ;A48073;
-
-
-;;; $8074: Instruction - Enemy.var5 = RTS ;;;
-Instruction_CommonA4_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_A4807B                                                    ;A48074;
-    STA.W Enemy.var5,X                                                   ;A48077;
-    RTL                                                                  ;A4807A;
-
-
-RTS_A4807B:
-    RTS                                                                  ;A4807B;
-
-
-;;; $807C: Instruction - delete enemy ;;;
-Instruction_CommonA4_DeleteEnemy:
-    LDA.W Enemy.properties,X                                             ;A4807C;
-    ORA.W #$0200                                                         ;A4807F;
-    STA.W Enemy.properties,X                                             ;A48082;
-    PLA                                                                  ;A48085;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A48086;
-    RTL                                                                  ;A48089;
-
-
-;;; $808A: Instruction - call function [[Y]] ;;;
-Instruction_CommonA4_CallFunctionInY:
-    LDA.W $0000,Y                                                        ;A4808A;
-    STA.B DP_Temp12                                                      ;A4808D;
-    PHY                                                                  ;A4808F;
-    PHX                                                                  ;A48090;
-    PEA.W .manualReturn-1                                                ;A48091;
-    JMP.W (DP_Temp12)                                                    ;A48094;
-
-  .manualReturn:
-    PLX                                                                  ;A48097;
-    PLY                                                                  ;A48098;
-    INY                                                                  ;A48099;
-    INY                                                                  ;A4809A;
-    RTL                                                                  ;A4809B;
-
-
-;;; $809C: Instruction - call function [[Y]] with A = [[Y] + 2] ;;;
-Instruction_CommonA4_CallFunctionInY_WithA:
-    LDA.W $0000,Y                                                        ;A4809C;
-    STA.B DP_Temp12                                                      ;A4809F;
-    LDA.W $0002,Y                                                        ;A480A1;
-    PHY                                                                  ;A480A4;
-    PHX                                                                  ;A480A5;
-    PEA.W .manualReturn-1                                                ;A480A6;
-    JMP.W (DP_Temp12)                                                    ;A480A9;
-
-  .manualReturn:
-    PLX                                                                  ;A480AC;
-    PLY                                                                  ;A480AD;
-    TYA                                                                  ;A480AE;
-    CLC                                                                  ;A480AF;
-    ADC.W #$0004                                                         ;A480B0;
-    TAY                                                                  ;A480B3;
-    RTL                                                                  ;A480B4;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA4_CallExternalFunctionInY_A480B5:
-    LDA.W $0000,Y                                                        ;A480B5;
-    STA.B DP_Temp12                                                      ;A480B8;
-    LDA.W $0001,Y                                                        ;A480BA;
-    STA.B DP_Temp13                                                      ;A480BD;
-    PHX                                                                  ;A480BF;
-    PHY                                                                  ;A480C0;
-    JSL.L .externalFunction                                              ;A480C1;
-    PLY                                                                  ;A480C5;
-    PLX                                                                  ;A480C6;
-    INY                                                                  ;A480C7;
-    INY                                                                  ;A480C8;
-    INY                                                                  ;A480C9;
-    RTL                                                                  ;A480CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A480CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA4_CallExternalFunctionInY_WithA_A480CE:
-    LDA.W $0000,Y                                                        ;A480CE;
-    STA.B DP_Temp12                                                      ;A480D1;
-    LDA.W $0001,Y                                                        ;A480D3;
-    STA.B DP_Temp13                                                      ;A480D6;
-    LDA.W $0003,Y                                                        ;A480D8;
-    PHX                                                                  ;A480DB;
-    PHY                                                                  ;A480DC;
-    JSL.L .externalFunction                                              ;A480DD;
-    PLY                                                                  ;A480E1;
-    PLX                                                                  ;A480E2;
-    TYA                                                                  ;A480E3;
-    CLC                                                                  ;A480E4;
-    ADC.W #$0005                                                         ;A480E5;
-    TAY                                                                  ;A480E8;
-    RTL                                                                  ;A480E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A480EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $80ED: Instruction - go to [[Y]] ;;;
-Instruction_CommonA4_GotoY:
-    LDA.W $0000,Y                                                        ;A480ED;
-    TAY                                                                  ;A480F0;
-    RTL                                                                  ;A480F1;
-
-
-;;; $80F2: Instruction - go to [[Y]] + ±[[Y]] ;;;
-Instruction_CommonA4_GotoY_PlusY:
-    STY.B DP_Temp12                                                      ;A480F2;
-    DEY                                                                  ;A480F4;
-    LDA.W $0000,Y                                                        ;A480F5;
-    XBA                                                                  ;A480F8;
-    BMI .highByte                                                        ;A480F9;
-    AND.W #$00FF                                                         ;A480FB;
-    BRA +                                                                ;A480FE;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;A48100;
-
-+   CLC                                                                  ;A48103;
-    ADC.B DP_Temp12                                                      ;A48104;
-    TAY                                                                  ;A48106;
-    RTL                                                                  ;A48107;
-
-
-;;; $8108: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA4_DecrementTimer_GotoYIfNonZero:
-    DEC.W Enemy.loopCounter,X                                            ;A48108;
-    BNE Instruction_CommonA4_GotoY                                       ;A4810B;
-    INY                                                                  ;A4810D;
-    INY                                                                  ;A4810E;
-    RTL                                                                  ;A4810F;
-
-
-;;; $8110: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA4_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W Enemy.loopCounter,X                                            ;A48110;
-    BNE Instruction_CommonA4_GotoY                                       ;A48113;
-    INY                                                                  ;A48115;
-    INY                                                                  ;A48116;
-    RTL                                                                  ;A48117;
-
-
-;;; $8118: Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-Instruction_CommonA4_DecrementTimer_GotoY_PlusY_IfNonZero:
-    SEP #$20                                                             ;A48118;
-    DEC.W Enemy.loopCounter,X                                            ;A4811A;
-    REP #$20                                                             ;A4811D;
-    BNE Instruction_CommonA4_GotoY_PlusY                                 ;A4811F;
-    INY                                                                  ;A48121;
-    RTL                                                                  ;A48122;
-
-
-;;; $8123: Instruction - timer = [[Y]] ;;;
-Instruction_CommonA4_TimerInY:
-    LDA.W $0000,Y                                                        ;A48123;
-    STA.W Enemy.loopCounter,X                                            ;A48126;
-    INY                                                                  ;A48129;
-    INY                                                                  ;A4812A;
-    RTL                                                                  ;A4812B;
-
-
-;;; $812C: Instruction - skip next instruction ;;;
-Instruction_CommonA4_SkipNextInstruction:
-    INY                                                                  ;A4812C;
-    INY                                                                  ;A4812D;
-    RTL                                                                  ;A4812E;
-
-
-;;; $812F: Instruction - sleep ;;;
-Instruction_CommonA4_Sleep:
-    DEY                                                                  ;A4812F;
-    DEY                                                                  ;A48130;
-    TYA                                                                  ;A48131;
-    STA.W Enemy.instList,X                                               ;A48132;
-    PLA                                                                  ;A48135;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A48136;
-    RTL                                                                  ;A48139;
-
-
-;;; $813A: Instruction - wait [[Y]] frames ;;;
-Instruction_CommonA4_WaitYFrames:
-; Set instruction timer and terminate processing enemy instructions
-; Used for running a delay that doesn't update graphics,
-; useful for e.g. GT eye beam attack ($AA:D10D), implemented by an instruction list that has no graphical instructions,
-; which allows it to be called from multiple different poses
-    LDA.W $0000,Y                                                        ;A4813A;
-    STA.W Enemy.instTimer,X                                              ;A4813D;
-    INY                                                                  ;A48140;
-    INY                                                                  ;A48141;
-    TYA                                                                  ;A48142;
-    STA.W Enemy.instList,X                                               ;A48143;
-    PLA                                                                  ;A48146;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A48147;
-    RTL                                                                  ;A4814A;
-
-
-;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
-Instruction_CommonA4_TransferYBytesInYToVRAM:
-    PHX                                                                  ;A4814B;
-    LDX.W VRAMWriteStack                                                 ;A4814C;
-    LDA.W $0000,Y                                                        ;A4814F;
-    STA.B VRAMWrite.size,X                                               ;A48152;
-    LDA.W $0002,Y                                                        ;A48154;
-    STA.B VRAMWrite.src,X                                                ;A48157;
-    LDA.W $0003,Y                                                        ;A48159;
-    STA.B VRAMWrite.src+1,X                                              ;A4815C;
-    LDA.W $0005,Y                                                        ;A4815E;
-    STA.B VRAMWrite.dest,X                                               ;A48161;
-    TXA                                                                  ;A48163;
-    CLC                                                                  ;A48164;
-    ADC.W #$0007                                                         ;A48165;
-    STA.W VRAMWriteStack                                                 ;A48168;
-    TYA                                                                  ;A4816B;
-    CLC                                                                  ;A4816C;
-    ADC.W #$0007                                                         ;A4816D;
-    TAY                                                                  ;A48170;
-    PLX                                                                  ;A48171;
-    RTL                                                                  ;A48172;
-
-
-;;; $8173: Instruction - enable off-screen processing ;;;
-Instruction_CommonA4_EnableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A48173;
-    ORA.W #$0800                                                         ;A48176;
-    STA.W Enemy.properties,X                                             ;A48179;
-    RTL                                                                  ;A4817C;
-
-
-;;; $817D: Instruction - disable off-screen processing ;;;
-Instruction_CommonA4_DisableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A4817D;
-    AND.W #$F7FF                                                         ;A48180;
-    STA.W Enemy.properties,X                                             ;A48183;
-    RTL                                                                  ;A48186;
-
-
-;;; $8187: Common enemy speeds - linearly increasing ;;;
-CommonA4EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A48187;
-  .subspeed:
-    dw       $0000                                                       ;A48189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A4818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A4818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
-
-
-;;; $838F: Common enemy speeds - quadratically increasing ;;;
-CommonA4EnemySpeeds_QuadraticallyIncreasing:
-;        _____________________ Subspeed
-;       |      _______________ Speed
-;       |     |      _________ Negated subspeed
-;       |     |     |      ___ Negated speed
-;       |     |     |     |
-; I.e. gravity
-; Used by e.g. Botwoon when dying and falling to the floor
-  .subspeed:
-    dw $0000                                                             ;A4838F;
-  .speed:
-    dw       $0000                                                       ;A48391;
-  .negatedSubspeed:
-    dw             $0000                                                 ;A48393;
-  .negatedSpeed:
-    dw                   $0000                                           ;A48395;
-    dw $0109,$0000,$FEF7,$FFFF
-    dw $031B,$0000,$FCE5,$FFFF
-    dw $0636,$0000,$F9CA,$FFFF
-    dw $0A5A,$0000,$F5A6,$FFFF
-    dw $0F87,$0000,$F079,$FFFF
-    dw $15BD,$0000,$EA43,$FFFF
-    dw $1CFC,$0000,$E304,$FFFF
-    dw $2544,$0000,$DABC,$FFFF
-    dw $2E95,$0000,$D16B,$FFFF
-    dw $38EF,$0000,$C711,$FFFF
-    dw $4452,$0000,$BBAE,$FFFF
-    dw $50BE,$0000,$AF42,$FFFF
-    dw $5E33,$0000,$A1CD,$FFFF
-    dw $6CB1,$0000,$934F,$FFFF
-    dw $7C38,$0000,$83C8,$FFFF
-    dw $8CC8,$0000,$7338,$FFFF
-    dw $9E61,$0000,$619F,$FFFF
-    dw $B103,$0000,$4EFD,$FFFF
-    dw $C4AE,$0000,$3B52,$FFFF
-    dw $D962,$0000,$269E,$FFFF
-    dw $EF1F,$0000,$10E1,$FFFF
-    dw $05E5,$0000,$FA1B,$FFFF
-    dw $14B4,$0001,$EB4C,$FFFE
-    dw $2D8C,$0001,$D274,$FFFE
-    dw $476D,$0001,$B893,$FFFE
-    dw $6257,$0001,$9DA9,$FFFE
-    dw $7E4A,$0001,$81B6,$FFFE
-    dw $9B46,$0001,$64BA,$FFFE
-    dw $B94B,$0001,$46B5,$FFFE
-    dw $D859,$0001,$27A7,$FFFE
-    dw $F870,$0001,$0790,$FFFE
-    dw $1090,$0002,$EF70,$FFFD
-    dw $32B9,$0002,$CD47,$FFFD
-    dw $55EB,$0002,$AA15,$FFFD
-    dw $7A26,$0002,$85DA,$FFFD
-    dw $9F6A,$0002,$6096,$FFFD
-    dw $C5B7,$0002,$3A49,$FFFD
-    dw $ED0D,$0002,$12F3,$FFFD
-    dw $0C6C,$0003,$F394,$FFFC
-    dw $35D4,$0003,$CA2C,$FFFC
-    dw $6045,$0003,$9FBB,$FFFC
-    dw $8BBF,$0003,$7441,$FFFC
-    dw $B842,$0003,$47BE,$FFFC
-    dw $E5CE,$0003,$1A32,$FFFC
-    dw $0B63,$0004,$F49D,$FFFB
-    dw $3B01,$0004,$C4FF,$FFFB
-    dw $6BA8,$0004,$9458,$FFFB
-    dw $9D58,$0004,$62A8,$FFFB
-    dw $D011,$0004,$2FEF,$FFFB
-    dw $03D3,$0004,$FC2D,$FFFB
-    dw $2F9E,$0005,$D062,$FFFA
-    dw $6572,$0005,$9A8E,$FFFA
-    dw $9C4F,$0005,$63B1,$FFFA
-    dw $D435,$0005,$2BCB,$FFFA
-    dw $0424,$0006,$FBDC,$FFF9
-    dw $3E1C,$0006,$C1E4,$FFF9
-    dw $791D,$0006,$86E3,$FFF9
-    dw $B527,$0006,$4AD9,$FFF9
-    dw $F23A,$0006,$0DC6,$FFF9
-    dw $2756,$0007,$D8AA,$FFF8
-    dw $667B,$0007,$9985,$FFF8
-    dw $A6A9,$0007,$5957,$FFF8
-    dw $E7E0,$0007,$1820,$FFF8
-    dw $2120,$0008,$DEE0,$FFF7
-    dw $6469,$0008,$9B97,$FFF7
-    dw $A8BB,$0008,$5745,$FFF7
-    dw $EE16,$0008,$11EA,$FFF7
-    dw $2B7A,$0009,$D486,$FFF6
-    dw $72E7,$0009,$8D19,$FFF6
-    dw $BB5D,$0009,$44A3,$FFF6
-    dw $04DC,$0009,$FB24,$FFF6
-    dw $4664,$000A,$B99C,$FFF5
-    dw $91F5,$000A,$6E0B,$FFF5
-    dw $DE8F,$000A,$2171,$FFF5
-    dw $2332,$000B,$DCCE,$FFF4
-    dw $71DE,$000B,$8E22,$FFF4
-    dw $C193,$000B,$3E6D,$FFF4
-    dw $0951,$000C,$F6AF,$FFF3
-    dw $5B18,$000C,$A4E8,$FFF3
-    dw $ADE8,$000C,$5218,$FFF3
-    dw $01C1,$000C,$FE3F,$FFF3
-    dw $4DA3,$000D,$B25D,$FFF2
-    dw $A38E,$000D,$5C72,$FFF2
-    dw $FA82,$000D,$057E,$FFF2
-    dw $497F,$000E,$B681,$FFF1
-    dw $A285,$000E,$5D7B,$FFF1
-    dw $FC94,$000E,$036C,$FFF1
-    dw $4EAC,$000F,$B154,$FFF0
-    dw $AACD,$000F,$5533,$FFF0
-    dw $07F7,$000F,$F809,$FFF0
-    dw $5D2A,$0010,$A2D6,$FFEF
-    dw $BC66,$0010,$439A,$FFEF
-    dw $13AB,$0011,$EC55,$FFEE
-    dw $74F9,$0011,$8B07,$FFEE
+namespace CommonA4
+incsrc "common_enemy_functions.asm"
+namespace off
 
 
 ;;; $8687: Hurt AI - enemy $DD8F (Crocomire) ;;;
@@ -1535,7 +953,7 @@ Crocomire_vs_Samus_CollisionHandling:
     SBC.W SamusXRadius                                                   ;A48CA1;
     SBC.W SamusXPosition                                                 ;A48CA4;
     BPL .return                                                          ;A48CA7;
-    JSL.L NormalEnemyTouchAI                                             ;A48CA9;
+    JSL.L NormalEnemyTouchAI_External                                    ;A48CA9;
     LDA.W Enemy.XPosition                                                ;A48CAD;
     SEC                                                                  ;A48CB0;
     SBC.W Enemy.XHitboxRadius                                            ;A48CB1;
@@ -3792,7 +3210,7 @@ Palette_Crocomire_Sprite3:
 ;;; $B93D: Enemy touch - Crocomire - claws ;;;
 EnemyTouch_Crocomire_Claws:
 ; Used for some other hitboxes, but those are placed behind Crocomire's invisible wall (Crocomire_vs_Samus_CollisionHandling)
-    JSL.L NormalEnemyTouchAI                                             ;A4B93D;
+    JSL.L NormalEnemyTouchAI_External                                    ;A4B93D;
     LDA.W Crocomire.fightFlags                                           ;A4B941;
     ORA.W #$4000                                                         ;A4B944;
     STA.W Crocomire.fightFlags                                           ;A4B947;
@@ -4023,9 +3441,9 @@ EnemyShot_Crocomire_SpawnShotExplosion_duplicate:
 InstList_Crocomire_Initial:
     dw $0001,ExtendedSpritemap_Crocomire_0                               ;A4BADE;
     dw Instruction_Crocomire_FightAI                                     ;A4BAE2;
-    dw Instruction_Common_GotoY                                          ;A4BAE4;
+    dw Common_Instruction_GotoY                                          ;A4BAE4;
     dw InstList_Crocomire_Initial                                        ;A4BAE6;
-    dw Instruction_Common_Sleep                                          ;A4BAE8;
+    dw Common_Instruction_Sleep                                          ;A4BAE8;
 
 
 ;;; $BAEA: Instruction list - Crocomire - charge forward one step (unused) ;;;
@@ -4097,7 +3515,7 @@ InstList_Crocomire_ProjectileAttack_1:
     dw $0007,ExtendedSpritemap_Crocomire_22                              ;A4BB9E;
     dw $0007,ExtendedSpritemap_Crocomire_23                              ;A4BBA2;
     dw $0007,ExtendedSpritemap_Crocomire_24                              ;A4BBA6;
-    dw Instruction_Common_GotoY                                          ;A4BBAA;
+    dw Common_Instruction_GotoY                                          ;A4BBAA;
     dw InstList_Crocomire_ProjectileAttack_1                             ;A4BBAC;
 
 
@@ -4160,7 +3578,7 @@ InstList_Crocomire_StepForward:
     dw Instruction_Crocomire_FightAI                                     ;A4BC24;
     dw $0004,ExtendedSpritemap_Crocomire_1F                              ;A4BC26;
     dw Instruction_Crocomire_FightAI                                     ;A4BC2A;
-    dw Instruction_Common_GotoY                                          ;A4BC2C;
+    dw Common_Instruction_GotoY                                          ;A4BC2C;
     dw InstList_Crocomire_StepForward                                    ;A4BC2E;
 
 
@@ -4373,7 +3791,7 @@ InstList_Crocomire_PowerBombReaction_MouthNotOpen_1:
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BE4A;
     dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_B        ;A4BE4C;
     dw Instruction_Crocomire_FightAI                                     ;A4BE50;
-    dw Instruction_Common_GotoY                                          ;A4BE52;
+    dw Common_Instruction_GotoY                                          ;A4BE52;
     dw InstList_Crocomire_PowerBombReaction_MouthNotOpen_1               ;A4BE54;
 
 
@@ -4383,7 +3801,7 @@ InstList_CrocomireTongue_Fight:
     dw $0005,ExtendedSpritemap_Crocomire_11                              ;A4BE5A;
     dw $0005,ExtendedSpritemap_Crocomire_12                              ;A4BE5E;
     dw $0005,ExtendedSpritemap_Crocomire_13                              ;A4BE62;
-    dw Instruction_Common_GotoY                                          ;A4BE66;
+    dw Common_Instruction_GotoY                                          ;A4BE66;
     dw InstList_CrocomireTongue_Fight                                    ;A4BE68;
 
 
@@ -4394,7 +3812,7 @@ UNUSED_InstList_CrocomireTongue_ReverseVersionOfFight_A4BE6A:
     dw $0005,ExtendedSpritemap_Crocomire_12                              ;A4BE6E;
     dw $0005,ExtendedSpritemap_Crocomire_11                              ;A4BE72;
     dw $0005,ExtendedSpritemap_Crocomire_10                              ;A4BE76;
-    dw Instruction_Common_GotoY                                          ;A4BE7A;
+    dw Common_Instruction_GotoY                                          ;A4BE7A;
     dw InstList_CrocomireTongue_Fight                                    ;A4BE7C;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -4466,7 +3884,7 @@ InstList_CrocomireTongue_NearSpikeWallCharge_1:
     dw Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall         ;A4BF30;
     dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_B        ;A4BF32;
     dw Instruction_Crocomire_FightAI                                     ;A4BF36;
-    dw Instruction_Common_GotoY                                          ;A4BF38;
+    dw Common_Instruction_GotoY                                          ;A4BF38;
     dw InstList_CrocomireTongue_NearSpikeWallCharge_1                    ;A4BF3A;
 
 
@@ -4484,63 +3902,63 @@ InstList_Crocomire_BackOffFromSpikeWall:
     dw Instruction_Crocomire_ShakeScreen                                 ;A4BF58;
     dw Instruction_Crocomire_MoveRight4Pixels                            ;A4BF5A;
     dw Instruction_Crocomire_FightAI                                     ;A4BF5C;
-    dw Instruction_Common_GotoY                                          ;A4BF5E;
+    dw Common_Instruction_GotoY                                          ;A4BF5E;
     dw InstList_Crocomire_BackOffFromSpikeWall                           ;A4BF60;
 
 
 ;;; $BF62: Instruction list - sleep ;;;
 InstList_Crocomire_Sleep:
-    dw Instruction_Common_Sleep                                          ;A4BF62;
+    dw Common_Instruction_Sleep                                          ;A4BF62;
 
 
 ;;; $BF64: Instruction list - Crocomire - melting 1 - top row ;;;
 InstList_Crocomire_Melting1_TopRow:
     dw $7FFF,ExtendedSpritemap_Crocomire_25                              ;A4BF64;
-    dw Instruction_Common_GotoY                                          ;A4BF68;
+    dw Common_Instruction_GotoY                                          ;A4BF68;
     dw InstList_Crocomire_Melting1_TopRow                                ;A4BF6A;
 
 
 ;;; $BF6C: Instruction list - Crocomire - melting 1 - top 2 rows ;;;
 InstList_Crocomire_Melting1_Top2Rows:
     dw $7FFF,ExtendedSpritemap_Crocomire_26                              ;A4BF6C;
-    dw Instruction_Common_Sleep                                          ;A4BF70;
+    dw Common_Instruction_Sleep                                          ;A4BF70;
 
 
 ;;; $BF72: Instruction list - Crocomire - melting 1 - top 3 rows ;;;
 InstList_Crocomire_Melting1_Top3Rows:
     dw $7FFF,ExtendedSpritemap_Crocomire_27                              ;A4BF72;
-    dw Instruction_Common_Sleep                                          ;A4BF76;
+    dw Common_Instruction_Sleep                                          ;A4BF76;
 
 
 ;;; $BF78: Instruction list - Crocomire - melting 1 - top 4 rows ;;;
 InstList_Crocomire_Melting1_Top4Rows:
     dw $7FFF,ExtendedSpritemap_Crocomire_28                              ;A4BF78;
-    dw Instruction_Common_Sleep                                          ;A4BF7C;
+    dw Common_Instruction_Sleep                                          ;A4BF7C;
 
 
 ;;; $BF7E: Instruction list - Crocomire - melting 2 - top row ;;;
 InstList_Crocomire_Melting2_TopRow:
     dw $7FFF,ExtendedSpritemap_Crocomire_29                              ;A4BF7E;
-    dw Instruction_Common_GotoY                                          ;A4BF82;
+    dw Common_Instruction_GotoY                                          ;A4BF82;
     dw InstList_Crocomire_Melting2_TopRow                                ;A4BF84;
 
 
 ;;; $BF86: Instruction list - Crocomire - melting 2 - top 2 rows ;;;
 InstList_Crocomire_Melting2_Top2Rows:
     dw $7FFF,ExtendedSpritemap_Crocomire_2A                              ;A4BF86;
-    dw Instruction_Common_Sleep                                          ;A4BF8A;
+    dw Common_Instruction_Sleep                                          ;A4BF8A;
 
 
 ;;; $BF8C: Instruction list - Crocomire - melting 2 - top 3 rows ;;;
 InstList_Crocomire_Melting2_Top3Rows:
     dw $7FFF,ExtendedSpritemap_Crocomire_2B                              ;A4BF8C;
-    dw Instruction_Common_Sleep                                          ;A4BF90;
+    dw Common_Instruction_Sleep                                          ;A4BF90;
 
 
 ;;; $BF92: Instruction list - Crocomire - melting 2 - top 4 rows ;;;
 InstList_Crocomire_Melting2_Top4Rows:
     dw $7FFF,ExtendedSpritemap_Crocomire_2C                              ;A4BF92;
-    dw Instruction_Common_Sleep                                          ;A4BF96;
+    dw Common_Instruction_Sleep                                          ;A4BF96;
 
 
 ;;; $BF98: Instruction list - Crocomire tongue - melting ;;;
@@ -4550,7 +3968,7 @@ InstList_CrocomireTongue_Melting:
     dw $0005,ExtendedSpritemap_Crocomire_2F                              ;A4BFA0;
     dw $0005,ExtendedSpritemap_Crocomire_30                              ;A4BFA4;
     dw $0005,ExtendedSpritemap_Crocomire_31                              ;A4BFA8;
-    dw Instruction_Common_GotoY                                          ;A4BFAC;
+    dw Common_Instruction_GotoY                                          ;A4BFAC;
     dw InstList_CrocomireTongue_Melting                                  ;A4BFAE;
 
 
@@ -4561,7 +3979,7 @@ InstList_CrocomireTongue_BridgeCollapsed:
     dw Instruction_Crocomire_QueueCrySFX                                 ;A4BFB8;
     dw $0005,ExtendedSpritemap_Crocomire_8                               ;A4BFBA;
     dw $0005,ExtendedSpritemap_Crocomire_9                               ;A4BFBE;
-    dw Instruction_Common_Sleep                                          ;A4BFC2;
+    dw Common_Instruction_Sleep                                          ;A4BFC2;
 
 
 ;;; $BFC4: Crocomire extended spritemaps ;;;
@@ -7053,7 +6471,7 @@ InstList_CrocomireCorpse_Skeleton_Falling:
     dw $000A,ExtendedSpritemap_CrocomireCorpse_0                         ;A4E14A;
     dw $000A,ExtendedSpritemap_CrocomireCorpse_1                         ;A4E14E;
     dw $000A,ExtendedSpritemap_CrocomireCorpse_2                         ;A4E152;
-    dw Instruction_Common_Sleep                                          ;A4E156;
+    dw Common_Instruction_Sleep                                          ;A4E156;
 
 
 ;;; $E158: Instruction list - Crocomire - skeleton - falls apart ;;;
@@ -7096,13 +6514,13 @@ InstList_CrocomireCorpse_Skeleton_FallsApart_0:
 
 InstList_CrocomireCorpse_Skeleton_1:
     dw $7FFF,ExtendedSpritemap_CrocomireCorpse_15                        ;A4E1C6;
-    dw Instruction_Common_Sleep                                          ;A4E1CA;
+    dw Common_Instruction_Sleep                                          ;A4E1CA;
 
 
 ;;; $E1CC: Instruction list - Crocomire - dead ;;;
 InstList_CrocomireCorpse_Skeleton_Dead:
     dw $7FFF,ExtendedSpritemap_CrocomireCorpse_16                        ;A4E1CC;
-    dw Instruction_Common_Sleep                                          ;A4E1D0;
+    dw Common_Instruction_Sleep                                          ;A4E1D0;
 
 
 ;;; $E1D2: Instruction list - Crocomire - skeleton - flowing down the river ;;;
@@ -7117,7 +6535,7 @@ InstList_CrocomireCorpse_Skeleton_FlowingDownTheRiver:
     dw $0004,ExtendedSpritemap_CrocomireCorpse_1E                        ;A4E1EE;
     dw $0004,ExtendedSpritemap_CrocomireCorpse_1F                        ;A4E1F2;
     dw $0014,ExtendedSpritemap_CrocomireCorpse_20                        ;A4E1F6;
-    dw Instruction_Common_GotoY                                          ;A4E1FA;
+    dw Common_Instruction_GotoY                                          ;A4E1FA;
     dw InstList_CrocomireCorpse_Skeleton_FlowingDownTheRiver             ;A4E1FC;
 
 

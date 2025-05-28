@@ -3,591 +3,9 @@ org $A68000
 
 
 ; Common to all enemy code banks
-
-;;; $8000: Grapple AI - no interaction. Also unfreezes enemies(!) ;;;
-CommonA6_GrappleAI_NoInteraction:
-; Used by skultera, Draygon body, fire arc, Phantoon, etecoon, dachora and WS ghost
-    JSL.L GrappleAI_SwitchEnemyAIToMainAI                                ;A68000;
-    RTL                                                                  ;A68004;
-
-
-;;; $8005: Grapple AI - Samus latches on ;;;
-CommonA6_GrappleAI_SamusLatchesOn:
-; Used by gripper and Crocomire
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple                            ;A68005;
-    RTL                                                                  ;A68009;
-
-
-;;; $800A: Grapple AI - kill enemy ;;;
-CommonA6_GrappleAI_KillEnemy:
-; Common
-    JSL.L GrappleAI_EnemyGrappleDeath                                    ;A6800A;
-    RTL                                                                  ;A6800E;
-
-
-;;; $800F: Grapple AI - cancel grapple beam ;;;
-CommonA6_GrappleAI_CancelGrappleBeam:
-; Common
-    JSL.L GrappleAI_SwitchToFrozenAI                                     ;A6800F;
-    RTL                                                                  ;A68013;
-
-
-;;; $8014: Grapple AI - Samus latches on - no invincibility ;;;
-CommonA6_GrappleAI_SamusLatchesOn_NoInvincibility:
-; Used by powamp
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility            ;A68014;
-    RTL                                                                  ;A68018;
-
-
-;;; $8019: Unused. Grapple AI - Samus latches on - paralyse enemy ;;;
-UNUSED_CommonA6_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A68019:
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy              ;A68019;
-    RTL                                                                  ;A6801D;
-
-
-;;; $801E: Grapple AI - hurt Samus ;;;
-CommonA6_GrappleAI_HurtSamus:
-; Used by WS spark
-; Hurt reaction happens in $9B:B932
-    JSL.L GrappleAI_SwitchToFrozenAI_duplicate                           ;A6801E;
-    RTL                                                                  ;A68022;
-
-
-;;; $8023: Normal enemy touch AI ;;;
-CommonA6_NormalEnemyTouchAI:
-    JSL.L NormalEnemyTouchAI                                             ;A68023;
-    RTL                                                                  ;A68027;
-
-
-;;; $8028: Normal touch AI - no death check ;;;
-CommonA6_NormalTouchAI_NoDeathCheck:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A68028;
-    RTL                                                                  ;A6802C;
-
-
-;;; $802D: Normal enemy shot AI ;;;
-CommonA6_NormalEnemyShotAI:
-    JSL.L NormalEnemyShotAI                                              ;A6802D;
-    RTL                                                                  ;A68031;
-
-
-;;; $8032: Normal enemy shot AI - no death check, no enemy shot graphic ;;;
-CommonA6_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A68032;
-    RTL                                                                  ;A68036;
-
-
-;;; $8037: Normal enemy power bomb AI ;;;
-CommonA6_NormalEnemyPowerBombAI:
-    JSL.L NormalEnemyPowerBombAI                                         ;A68037;
-    RTL                                                                  ;A6803B;
-
-
-;;; $803C: Normal enemy power bomb AI - no death check ;;;
-CommonA6_NormalEnemyPowerBombAI_NoDeathCheck:
-; Kraid's power bomb AI
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A6803C;
-    RTL                                                                  ;A68040;
-
-
-;;; $8041: Normal enemy frozen AI ;;;
-CommonA6_NormalEnemyFrozenAI:
-    JSL.L NormalEnemyFrozenAI                                            ;A68041;
-    RTL                                                                  ;A68045;
-
-
-;;; $8046: Creates a dud shot ;;;
-CommonA6_CreateADudShot:
-    JSL.L CreateADudShot                                                 ;A68046;
-    RTL                                                                  ;A6804A;
-
-
-;;; $804B: RTS ;;;
-RTS_A6804B:
-    RTS                                                                  ;A6804B;
-
-
-;;; $804C: RTL ;;;
-RTL_A6804C:
-    RTL                                                                  ;A6804C;
-
-
-;;; $804D: Spritemap - nothing ;;;
-Spritemap_CommonA6_Nothing:
-    dw $0000                                                             ;A6804D;
-
-
-;;; $804F: Extended spritemap - nothing ;;;
-ExtendedSpritemap_CommonA6_Nothing:
-    dw $0001                                                             ;A6804F;
-    dw $0000,$0000
-    dw Spritemap_CommonA6_Nothing                                        ;A68055;
-    dw Hitbox_CommonA6_Nothing                                           ;A68057;
-
-
-;;; $8059: Hitbox - nothing ;;;
-Hitbox_CommonA6_Nothing:
-; [n entries] [[left offset] [top offset] [right offset] [bottom offset] [p touch] [p shot]]...
-    dw $0001                                                             ;A68059;
-    dw $0000,$0000,$0000,$0000
-    dw CommonA6_NormalEnemyTouchAI                                       ;A68063;
-    dw CommonA6_NormalEnemyShotAI                                        ;A68065;
-
-
-;;; $8067: Instruction list - delete enemy ;;;
-InstList_CommonA6_DeleteEnemy:
-    dw Instruction_CommonA6_DeleteEnemy                                  ;A68067;
-
-
-;;; $8069: Two NOPs ;;;
-NOPNOP_A68069:
-; Used as palette by respawning enemy placeholder and Draygon's eye o_O
-    NOP                                                                  ;A68069;
-    NOP                                                                  ;A6806A;
-
-
-;;; $806B: Instruction - Enemy.var5 = [[Y]] ;;;
-Instruction_CommonA6_Enemy0FB2_InY:
-; Used only by torizos (for enemy movement function) and escape etecoon (for enemy function)
-    LDA.W $0000,Y                                                        ;A6806B;
-    STA.W Enemy.var5,X                                                   ;A6806E;
-    INY                                                                  ;A68071;
-    INY                                                                  ;A68072;
-    RTL                                                                  ;A68073;
-
-
-;;; $8074: Instruction - Enemy.var5 = RTS ;;;
-Instruction_CommonA6_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_A6807B                                                    ;A68074;
-    STA.W Enemy.var5,X                                                   ;A68077;
-    RTL                                                                  ;A6807A;
-
-
-RTS_A6807B:
-    RTS                                                                  ;A6807B;
-
-
-;;; $807C: Instruction - delete enemy ;;;
-Instruction_CommonA6_DeleteEnemy:
-    LDA.W Enemy.properties,X                                             ;A6807C;
-    ORA.W #$0200                                                         ;A6807F;
-    STA.W Enemy.properties,X                                             ;A68082;
-    PLA                                                                  ;A68085;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A68086;
-    RTL                                                                  ;A68089;
-
-
-;;; $808A: Instruction - call function [[Y]] ;;;
-Instruction_CommonA6_CallFunctionInY:
-    LDA.W $0000,Y                                                        ;A6808A;
-    STA.B DP_Temp12                                                      ;A6808D;
-    PHY                                                                  ;A6808F;
-    PHX                                                                  ;A68090;
-    PEA.W .manualReturn-1                                                ;A68091;
-    JMP.W (DP_Temp12)                                                    ;A68094;
-
-  .manualReturn:
-    PLX                                                                  ;A68097;
-    PLY                                                                  ;A68098;
-    INY                                                                  ;A68099;
-    INY                                                                  ;A6809A;
-    RTL                                                                  ;A6809B;
-
-
-;;; $809C: Instruction - call function [[Y]] with A = [[Y] + 2] ;;;
-Instruction_CommonA6_CallFunctionInY_WithA:
-    LDA.W $0000,Y                                                        ;A6809C;
-    STA.B DP_Temp12                                                      ;A6809F;
-    LDA.W $0002,Y                                                        ;A680A1;
-    PHY                                                                  ;A680A4;
-    PHX                                                                  ;A680A5;
-    PEA.W .manualReturn-1                                                ;A680A6;
-    JMP.W (DP_Temp12)                                                    ;A680A9;
-
-  .manualReturn:
-    PLX                                                                  ;A680AC;
-    PLY                                                                  ;A680AD;
-    TYA                                                                  ;A680AE;
-    CLC                                                                  ;A680AF;
-    ADC.W #$0004                                                         ;A680B0;
-    TAY                                                                  ;A680B3;
-    RTL                                                                  ;A680B4;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA6_CallExternalFunctionInY_A680B5:
-    LDA.W $0000,Y                                                        ;A680B5;
-    STA.B DP_Temp12                                                      ;A680B8;
-    LDA.W $0001,Y                                                        ;A680BA;
-    STA.B DP_Temp13                                                      ;A680BD;
-    PHX                                                                  ;A680BF;
-    PHY                                                                  ;A680C0;
-    JSL.L .externalFunction                                              ;A680C1;
-    PLY                                                                  ;A680C5;
-    PLX                                                                  ;A680C6;
-    INY                                                                  ;A680C7;
-    INY                                                                  ;A680C8;
-    INY                                                                  ;A680C9;
-    RTL                                                                  ;A680CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A680CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA6_CallExternalFunctionInY_WithA_A680CE:
-    LDA.W $0000,Y                                                        ;A680CE;
-    STA.B DP_Temp12                                                      ;A680D1;
-    LDA.W $0001,Y                                                        ;A680D3;
-    STA.B DP_Temp13                                                      ;A680D6;
-    LDA.W $0003,Y                                                        ;A680D8;
-    PHX                                                                  ;A680DB;
-    PHY                                                                  ;A680DC;
-    JSL.L .externalFunction                                              ;A680DD;
-    PLY                                                                  ;A680E1;
-    PLX                                                                  ;A680E2;
-    TYA                                                                  ;A680E3;
-    CLC                                                                  ;A680E4;
-    ADC.W #$0005                                                         ;A680E5;
-    TAY                                                                  ;A680E8;
-    RTL                                                                  ;A680E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A680EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $80ED: Instruction - go to [[Y]] ;;;
-Instruction_CommonA6_GotoY:
-    LDA.W $0000,Y                                                        ;A680ED;
-    TAY                                                                  ;A680F0;
-    RTL                                                                  ;A680F1;
-
-
-;;; $80F2: Instruction - go to [[Y]] + ±[[Y]] ;;;
-Instruction_CommonA6_GotoY_PlusY:
-    STY.B DP_Temp12                                                      ;A680F2;
-    DEY                                                                  ;A680F4;
-    LDA.W $0000,Y                                                        ;A680F5;
-    XBA                                                                  ;A680F8;
-    BMI .highByte                                                        ;A680F9;
-    AND.W #$00FF                                                         ;A680FB;
-    BRA +                                                                ;A680FE;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;A68100;
-
-+   CLC                                                                  ;A68103;
-    ADC.B DP_Temp12                                                      ;A68104;
-    TAY                                                                  ;A68106;
-    RTL                                                                  ;A68107;
-
-
-;;; $8108: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA6_DecrementTimer_GotoYIfNonZero:
-    DEC.W Enemy.loopCounter,X                                            ;A68108;
-    BNE Instruction_CommonA6_GotoY                                       ;A6810B;
-    INY                                                                  ;A6810D;
-    INY                                                                  ;A6810E;
-    RTL                                                                  ;A6810F;
-
-
-;;; $8110: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA6_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W Enemy.loopCounter,X                                            ;A68110;
-    BNE Instruction_CommonA6_GotoY                                       ;A68113;
-    INY                                                                  ;A68115;
-    INY                                                                  ;A68116;
-    RTL                                                                  ;A68117;
-
-
-;;; $8118: Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-Instruction_CommonA6_DecrementTimer_GotoY_PlusY_IfNonZero:
-    SEP #$20                                                             ;A68118;
-    DEC.W Enemy.loopCounter,X                                            ;A6811A;
-    REP #$20                                                             ;A6811D;
-    BNE Instruction_CommonA6_GotoY_PlusY                                 ;A6811F;
-    INY                                                                  ;A68121;
-    RTL                                                                  ;A68122;
-
-
-;;; $8123: Instruction - timer = [[Y]] ;;;
-Instruction_CommonA6_TimerInY:
-    LDA.W $0000,Y                                                        ;A68123;
-    STA.W Enemy.loopCounter,X                                            ;A68126;
-    INY                                                                  ;A68129;
-    INY                                                                  ;A6812A;
-    RTL                                                                  ;A6812B;
-
-
-;;; $812C: Instruction - skip next instruction ;;;
-Instruction_CommonA6_SkipNextInstruction:
-    INY                                                                  ;A6812C;
-    INY                                                                  ;A6812D;
-    RTL                                                                  ;A6812E;
-
-
-;;; $812F: Instruction - sleep ;;;
-Instruction_CommonA6_Sleep:
-    DEY                                                                  ;A6812F;
-    DEY                                                                  ;A68130;
-    TYA                                                                  ;A68131;
-    STA.W Enemy.instList,X                                               ;A68132;
-    PLA                                                                  ;A68135;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A68136;
-    RTL                                                                  ;A68139;
-
-
-;;; $813A: Instruction - wait [[Y]] frames ;;;
-Instruction_CommonA6_WaitYFrames:
-; Set instruction timer and terminate processing enemy instructions
-; Used for running a delay that doesn't update graphics,
-; useful for e.g. GT eye beam attack ($AA:D10D), implemented by an instruction list that has no graphical instructions,
-; which allows it to be called from multiple different poses
-    LDA.W $0000,Y                                                        ;A6813A;
-    STA.W Enemy.instTimer,X                                              ;A6813D;
-    INY                                                                  ;A68140;
-    INY                                                                  ;A68141;
-    TYA                                                                  ;A68142;
-    STA.W Enemy.instList,X                                               ;A68143;
-    PLA                                                                  ;A68146;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A68147;
-    RTL                                                                  ;A6814A;
-
-
-;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
-Instruction_CommonA6_TransferYBytesInYToVRAM:
-    PHX                                                                  ;A6814B;
-    LDX.W VRAMWriteStack                                                 ;A6814C;
-    LDA.W $0000,Y                                                        ;A6814F;
-    STA.B VRAMWrite.size,X                                               ;A68152;
-    LDA.W $0002,Y                                                        ;A68154;
-    STA.B VRAMWrite.src,X                                                ;A68157;
-    LDA.W $0003,Y                                                        ;A68159;
-    STA.B VRAMWrite.src+1,X                                              ;A6815C;
-    LDA.W $0005,Y                                                        ;A6815E;
-    STA.B $D5,X                                                          ;A68161;
-    TXA                                                                  ;A68163;
-    CLC                                                                  ;A68164;
-    ADC.W #$0007                                                         ;A68165;
-    STA.W VRAMWriteStack                                                 ;A68168;
-    TYA                                                                  ;A6816B;
-    CLC                                                                  ;A6816C;
-    ADC.W #$0007                                                         ;A6816D;
-    TAY                                                                  ;A68170;
-    PLX                                                                  ;A68171;
-    RTL                                                                  ;A68172;
-
-
-;;; $8173: Instruction - enable off-screen processing ;;;
-Instruction_CommonA6_EnableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A68173;
-    ORA.W #$0800                                                         ;A68176;
-    STA.W Enemy.properties,X                                             ;A68179;
-    RTL                                                                  ;A6817C;
-
-
-;;; $817D: Instruction - disable off-screen processing ;;;
-Instruction_CommonA6_DisableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A6817D;
-    AND.W #$F7FF                                                         ;A68180;
-    STA.W Enemy.properties,X                                             ;A68183;
-    RTL                                                                  ;A68186;
-
-
-;;; $8187: Common enemy speeds - linearly increasing ;;;
-CommonA6EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A68187;
-  .subspeed:
-    dw       $0000                                                       ;A68189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A6818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A6818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
-
-
-;;; $838F: Common enemy speeds - quadratically increasing ;;;
-CommonA6EnemySpeeds_QuadraticallyIncreasing:
-; I.e. gravity
-; Used by e.g. Botwoon when dying and falling to the floor
-;        _____________________ Subspeed
-;       |      _______________ Speed
-;       |     |      _________ Negated subspeed
-;       |     |     |      ___ Negated speed
-;       |     |     |     |
-  .subspeed:
-    dw $0000                                                             ;A6838F;
-  .speed:
-    dw       $0000                                                       ;A68391;
-  .negatedSubspeed:
-    dw             $0000                                                 ;A68393;
-  .negatedSpeed:
-    dw                   $0000                                           ;A68395;
-    dw $0109,$0000,$FEF7,$FFFF
-    dw $031B,$0000,$FCE5,$FFFF
-    dw $0636,$0000,$F9CA,$FFFF
-    dw $0A5A,$0000,$F5A6,$FFFF
-    dw $0F87,$0000,$F079,$FFFF
-    dw $15BD,$0000,$EA43,$FFFF
-    dw $1CFC,$0000,$E304,$FFFF
-    dw $2544,$0000,$DABC,$FFFF
-    dw $2E95,$0000,$D16B,$FFFF
-    dw $38EF,$0000,$C711,$FFFF
-    dw $4452,$0000,$BBAE,$FFFF
-    dw $50BE,$0000,$AF42,$FFFF
-    dw $5E33,$0000,$A1CD,$FFFF
-    dw $6CB1,$0000,$934F,$FFFF
-    dw $7C38,$0000,$83C8,$FFFF
-    dw $8CC8,$0000,$7338,$FFFF
-    dw $9E61,$0000,$619F,$FFFF
-    dw $B103,$0000,$4EFD,$FFFF
-    dw $C4AE,$0000,$3B52,$FFFF
-    dw $D962,$0000,$269E,$FFFF
-    dw $EF1F,$0000,$10E1,$FFFF
-    dw $05E5,$0000,$FA1B,$FFFF
-    dw $14B4,$0001,$EB4C,$FFFE
-    dw $2D8C,$0001,$D274,$FFFE
-    dw $476D,$0001,$B893,$FFFE
-    dw $6257,$0001,$9DA9,$FFFE
-    dw $7E4A,$0001,$81B6,$FFFE
-    dw $9B46,$0001,$64BA,$FFFE
-    dw $B94B,$0001,$46B5,$FFFE
-    dw $D859,$0001,$27A7,$FFFE
-    dw $F870,$0001,$0790,$FFFE
-    dw $1090,$0002,$EF70,$FFFD
-    dw $32B9,$0002,$CD47,$FFFD
-    dw $55EB,$0002,$AA15,$FFFD
-    dw $7A26,$0002,$85DA,$FFFD
-    dw $9F6A,$0002,$6096,$FFFD
-    dw $C5B7,$0002,$3A49,$FFFD
-    dw $ED0D,$0002,$12F3,$FFFD
-    dw $0C6C,$0003,$F394,$FFFC
-    dw $35D4,$0003,$CA2C,$FFFC
-    dw $6045,$0003,$9FBB,$FFFC
-    dw $8BBF,$0003,$7441,$FFFC
-    dw $B842,$0003,$47BE,$FFFC
-    dw $E5CE,$0003,$1A32,$FFFC
-    dw $0B63,$0004,$F49D,$FFFB
-    dw $3B01,$0004,$C4FF,$FFFB
-    dw $6BA8,$0004,$9458,$FFFB
-    dw $9D58,$0004,$62A8,$FFFB
-    dw $D011,$0004,$2FEF,$FFFB
-    dw $03D3,$0004,$FC2D,$FFFB
-    dw $2F9E,$0005,$D062,$FFFA
-    dw $6572,$0005,$9A8E,$FFFA
-    dw $9C4F,$0005,$63B1,$FFFA
-    dw $D435,$0005,$2BCB,$FFFA
-    dw $0424,$0006,$FBDC,$FFF9
-    dw $3E1C,$0006,$C1E4,$FFF9
-    dw $791D,$0006,$86E3,$FFF9
-    dw $B527,$0006,$4AD9,$FFF9
-    dw $F23A,$0006,$0DC6,$FFF9
-    dw $2756,$0007,$D8AA,$FFF8
-    dw $667B,$0007,$9985,$FFF8
-    dw $A6A9,$0007,$5957,$FFF8
-    dw $E7E0,$0007,$1820,$FFF8
-    dw $2120,$0008,$DEE0,$FFF7
-    dw $6469,$0008,$9B97,$FFF7
-    dw $A8BB,$0008,$5745,$FFF7
-    dw $EE16,$0008,$11EA,$FFF7
-    dw $2B7A,$0009,$D486,$FFF6
-    dw $72E7,$0009,$8D19,$FFF6
-    dw $BB5D,$0009,$44A3,$FFF6
-    dw $04DC,$0009,$FB24,$FFF6
-    dw $4664,$000A,$B99C,$FFF5
-    dw $91F5,$000A,$6E0B,$FFF5
-    dw $DE8F,$000A,$2171,$FFF5
-    dw $2332,$000B,$DCCE,$FFF4
-    dw $71DE,$000B,$8E22,$FFF4
-    dw $C193,$000B,$3E6D,$FFF4
-    dw $0951,$000C,$F6AF,$FFF3
-    dw $5B18,$000C,$A4E8,$FFF3
-    dw $ADE8,$000C,$5218,$FFF3
-    dw $01C1,$000C,$FE3F,$FFF3
-    dw $4DA3,$000D,$B25D,$FFF2
-    dw $A38E,$000D,$5C72,$FFF2
-    dw $FA82,$000D,$057E,$FFF2
-    dw $497F,$000E,$B681,$FFF1
-    dw $A285,$000E,$5D7B,$FFF1
-    dw $FC94,$000E,$036C,$FFF1
-    dw $4EAC,$000F,$B154,$FFF0
-    dw $AACD,$000F,$5533,$FFF0
-    dw $07F7,$000F,$F809,$FFF0
-    dw $5D2A,$0010,$A2D6,$FFEF
-    dw $BC66,$0010,$439A,$FFEF
-    dw $13AB,$0011,$EC55,$FFEE
-    dw $74F9,$0011,$8B07,$FFEE
+namespace CommonA6
+incsrc "common_enemy_functions.asm"
+namespace off
 
 
 ;;; $8687: Palette - enemy $DFBF (boulder) ;;;
@@ -606,7 +24,7 @@ InstList_Boulder_FacingLeft:
     dw $0008,Spritemap_Boulder_5                                         ;A686BB;
     dw $0008,Spritemap_Boulder_6                                         ;A686BF;
     dw $0008,Spritemap_Boulder_7                                         ;A686C3;
-    dw Instruction_Common_GotoY                                          ;A686C7;
+    dw Common_Instruction_GotoY                                          ;A686C7;
     dw InstList_Boulder_FacingLeft                                       ;A686C9;
 
 
@@ -620,7 +38,7 @@ InstList_Boulder_FacingRight:
     dw $0008,Spritemap_Boulder_3                                         ;A686DF;
     dw $0008,Spritemap_Boulder_2                                         ;A686E3;
     dw $0008,Spritemap_Boulder_1                                         ;A686E7;
-    dw Instruction_Common_GotoY                                          ;A686EB;
+    dw Common_Instruction_GotoY                                          ;A686EB;
     dw InstList_Boulder_FacingRight                                      ;A686ED;
 
 
@@ -839,9 +257,9 @@ Function_Boulder_Bounce_Falling:
     ASL                                                                  ;A68896;
     ASL                                                                  ;A68897;
     TAY                                                                  ;A68898;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A68899;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing,Y                    ;A68899;
     STA.B DP_Temp12                                                      ;A6889C;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A6889E;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A6889E;
     STA.B DP_Temp14                                                      ;A688A1;
     JSL.L MoveEnemyDownBy_14_12                                          ;A688A3;
     BCC .noCollision                                                     ;A688A7;
@@ -927,9 +345,9 @@ Function_Boulder_Rolling:
     ASL                                                                  ;A6894D;
     ASL                                                                  ;A6894E;
     TAY                                                                  ;A6894F;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A68950;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing,Y                    ;A68950;
     STA.B DP_Temp12                                                      ;A68953;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A68955;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A68955;
     CLC                                                                  ;A68958;
     ADC.L Boulder.minimumDistanceFromGround,X                            ;A68959;
     STA.B DP_Temp14                                                      ;A6895D;
@@ -948,9 +366,9 @@ Function_Boulder_Rolling:
     INY                                                                  ;A68978;
 
   .right:
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A68979;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing,Y                    ;A68979;
     STA.B DP_Temp12                                                      ;A6897C;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A6897E;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A6897E;
     STA.B DP_Temp14                                                      ;A68981;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A68983;
     BCC .notCollidedWithWall                                             ;A68987;
@@ -1013,14 +431,14 @@ MoveBoulderHorizontally:
     LDX.W EnemyIndex                                                     ;A68A00;
     LDA.W Enemy.XSubPosition,X                                           ;A68A03;
     CLC                                                                  ;A68A06;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A68A07;
+    ADC.W Common_EnemySpeeds_QuadraticallyIncreasing,Y                    ;A68A07;
     BCC +                                                                ;A68A0A;
     INC.W Enemy.XPosition,X                                              ;A68A0C;
 
 +   STA.W Enemy.XSubPosition,X                                           ;A68A0F;
     LDA.W Enemy.XPosition,X                                              ;A68A12;
     CLC                                                                  ;A68A15;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A68A16;
+    ADC.W Common_EnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A68A16;
     STA.W Enemy.XPosition,X                                              ;A68A19;
     RTS                                                                  ;A68A1C;
 
@@ -1033,14 +451,14 @@ UNUSED_MoveBoulderHorizontallyWithLinearSpeedTable_A68A1D:
     LDX.W EnemyIndex                                                     ;A68A1D;
     LDA.W Enemy.XSubPosition,X                                           ;A68A20;
     CLC                                                                  ;A68A23;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A68A24;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+2,Y                       ;A68A24;
     BCC +                                                                ;A68A27;
     INC.W Enemy.XPosition,X                                              ;A68A29;
 
 +   STA.W Enemy.XSubPosition,X                                           ;A68A2C;
     LDA.W Enemy.XPosition,X                                              ;A68A2F;
     CLC                                                                  ;A68A32;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A68A33;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing,Y                         ;A68A33;
     STA.W Enemy.XPosition,X                                              ;A68A36;
     RTS                                                                  ;A68A39;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -1053,14 +471,14 @@ MoveBoulderVertically:
     LDX.W EnemyIndex                                                     ;A68A3A;
     LDA.W Enemy.YSubPosition,X                                           ;A68A3D;
     CLC                                                                  ;A68A40;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A68A41;
+    ADC.W Common_EnemySpeeds_QuadraticallyIncreasing,Y                    ;A68A41;
     BCC +                                                                ;A68A44;
     INC.W Enemy.YPosition,X                                              ;A68A46;
 
 +   STA.W Enemy.YSubPosition,X                                           ;A68A49;
     LDA.W Enemy.YPosition,X                                              ;A68A4C;
     CLC                                                                  ;A68A4F;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A68A50;
+    ADC.W Common_EnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A68A50;
     STA.W Enemy.YPosition,X                                              ;A68A53;
     RTS                                                                  ;A68A56;
 
@@ -1142,7 +560,7 @@ Palette_Kzan:
 ;;; $8B29: Instruction list - spike platform ;;;
 InstList_Kzan:
     dw $0001,Spritemap_Kzan                                              ;A68B29;
-    dw Instruction_Common_Sleep                                          ;A68B2D;
+    dw Common_Instruction_Sleep                                          ;A68B2D;
 
 
 ;;; $8B2F: Initialisation AI - enemy $DFFF (spike platform top) ;;;
@@ -1159,9 +577,9 @@ InitAI_KzanTop:
     ASL                                                                  ;A68B46;
     STA.L Kzan.fallingYSpeedTableIndex,X                                 ;A68B47;
     TAX                                                                  ;A68B4B;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,X                         ;A68B4C;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing,X                         ;A68B4C;
     STA.B DP_Temp12                                                      ;A68B4F;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,X                       ;A68B51;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+2,X                       ;A68B51;
     STA.B DP_Temp14                                                      ;A68B54;
     LDX.W EnemyIndex                                                     ;A68B56;
     LDA.B DP_Temp14                                                      ;A68B59;
@@ -1245,9 +663,9 @@ Function_Kzan_Falling:
     STA.L Kzan.previousYPosition,X                                       ;A68BE3;
     LDA.L Kzan.fallingYSpeedTableIndex,X                                 ;A68BE7;
     TAX                                                                  ;A68BEB;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,X                         ;A68BEC;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing,X                         ;A68BEC;
     STA.B DP_Temp14                                                      ;A68BEF;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,X                       ;A68BF1;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+2,X                       ;A68BF1;
     STA.B DP_Temp12                                                      ;A68BF4;
     LDX.W EnemyIndex                                                     ;A68BF6;
     JSL.L MoveEnemyY_plus_12_14                                          ;A68BF9;
@@ -1454,13 +872,13 @@ InstList_Hibashi_GraphicsPart:
     dw Instruction_Hibashi_ActivityFrame15                               ;A68D9F;
     dw $0004,Spritemap_Hibashi_16                                        ;A68DA1;
     dw Instruction_Hibashi_FinishActivity                                ;A68DA5;
-    dw Instruction_Common_Sleep                                          ;A68DA7;
+    dw Common_Instruction_Sleep                                          ;A68DA7;
 
 
 ;;; $8DA9: Instruction list - hitbox part ;;;
 InstList_Hibashi_HitboxPart:
     dw $0002,Spritemap_Hibashi_0                                         ;A68DA9;
-    dw Instruction_Common_Sleep                                          ;A68DAD;
+    dw Common_Instruction_Sleep                                          ;A68DAD;
 
 
 ;;; $8DAF: Instruction - queue fire pillar sound effect ;;;
@@ -2218,7 +1636,7 @@ InstList_Puromi:
     dw $0003,Spritemap_Puromi_2                                          ;A694B4;
     dw $0003,Spritemap_Puromi_3                                          ;A694B8;
     dw $0003,Spritemap_Puromi_7                                          ;A694BC;
-    dw Instruction_Common_GotoY                                          ;A694C0;
+    dw Common_Instruction_GotoY                                          ;A694C0;
     dw InstList_Puromi                                                   ;A694C2;
 
 
@@ -2272,9 +1690,9 @@ InitAI_Puromi:
     INY                                                                  ;A6953D;
 
   .firingUp:
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A6953E;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing,Y                         ;A6953E;
     STA.L Puromi.angleDelta,X                                            ;A69541;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A69545;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+2,Y                       ;A69545;
     STA.L Puromi.subAngleDelta,X                                         ;A69548;
     LDA.W Enemy.XPosition,X                                              ;A6954C;
     STA.L Puromi.arcOriginXPosition,X                                    ;A6954F;
@@ -2833,7 +2251,7 @@ InstList_MiniKraid_StepForwards_FacingLeft:
     dw $0008,Spritemap_MiniKraid_Stepping_FacingLeft_2                   ;A699B6;
     dw $000C,Spritemap_MiniKraid_Stepping_FacingLeft_3                   ;A699BA;
     dw Instruction_MiniKraid_Move                                        ;A699BE;
-    dw Instruction_Common_GotoY                                          ;A699C0;
+    dw Common_Instruction_GotoY                                          ;A699C0;
     dw InstList_MiniKraid_ChooseAction                                   ;A699C2;
 
 
@@ -2849,7 +2267,7 @@ InstList_MiniKraid_StepBackwards_FacingLeft:
     dw $000C,Spritemap_MiniKraid_Stepping_FacingLeft_3                   ;A699CC;
     dw $0008,Spritemap_MiniKraid_Stepping_FacingLeft_2                   ;A699D0;
     dw $000C,Spritemap_MiniKraid_Stepping_FacingLeft_1                   ;A699D4;
-    dw Instruction_Common_GotoY                                          ;A699D8;
+    dw Common_Instruction_GotoY                                          ;A699D8;
     dw InstList_MiniKraid_ChooseAction_duplicate                         ;A699DA;
 
 
@@ -2861,7 +2279,7 @@ InstList_MiniKraid_FireSpit_FacingLeft:
     dw Instruction_MiniKraid_FireSpitLeft                                ;A699E6;
     dw $0010,Spritemap_MiniKraid_FiringSpit_FacingLeft_2                 ;A699E8;
     dw $0008,Spritemap_MiniKraid_FiringSpit_FacingLeft_1                 ;A699EC;
-    dw Instruction_Common_GotoY                                          ;A699F0;
+    dw Common_Instruction_GotoY                                          ;A699F0;
     dw InstList_MiniKraid_ChooseAction                                   ;A699F2;
 
 
@@ -2869,7 +2287,7 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $99F4: Unused. Instruction list - standing - facing left ;;;
 UNUSED_InstList_MiniKraid_Standing_FacingLeft_A699F4:
     dw $7FFF,Spritemap_MiniKraid_FiringSpit_FacingLeft_0                 ;A699F4;
-    dw Instruction_Common_Sleep                                          ;A699F8;
+    dw Common_Instruction_Sleep                                          ;A699F8;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -2885,7 +2303,7 @@ InstList_MiniKraid_StepForwards_FacingRight:
     dw $0008,Spritemap_MiniKraid_Stepping_FacingRight_2                  ;A69A04;
     dw $000C,Spritemap_MiniKraid_Stepping_FacingRight_3                  ;A69A08;
     dw Instruction_MiniKraid_Move                                        ;A69A0C;
-    dw Instruction_Common_GotoY                                          ;A69A0E;
+    dw Common_Instruction_GotoY                                          ;A69A0E;
     dw InstList_MiniKraid_ChooseAction_duplicate_again2                  ;A69A10;
 
 
@@ -2901,7 +2319,7 @@ InstList_MiniKraid_StepBackwards_FacingRight:
     dw $000C,Spritemap_MiniKraid_Stepping_FacingRight_3                  ;A69A1A;
     dw $0008,Spritemap_MiniKraid_Stepping_FacingRight_2                  ;A69A1E;
     dw $000C,Spritemap_MiniKraid_Stepping_FacingRight_1                  ;A69A22;
-    dw Instruction_Common_GotoY                                          ;A69A26;
+    dw Common_Instruction_GotoY                                          ;A69A26;
     dw InstList_MiniKraid_ChooseAction_duplicate_again3                  ;A69A28;
 
 
@@ -2913,7 +2331,7 @@ InstList_MiniKraid_FireSpit_FacingRight:
     dw Instruction_MiniKraid_FireSpitRight                               ;A69A34;
     dw $0010,Spritemap_MiniKraid_FiringSpit_FacingRight_2                ;A69A36;
     dw $0008,Spritemap_MiniKraid_FiringSpit_FacingRight_1                ;A69A3A;
-    dw Instruction_Common_GotoY                                          ;A69A3E;
+    dw Common_Instruction_GotoY                                          ;A69A3E;
     dw InstList_MiniKraid_ChooseAction_duplicate_again2                  ;A69A40;
 
 
@@ -2921,7 +2339,7 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $9A42: Unused. Instruction list - standing - facing right ;;;
 UNUSED_InstList_MiniKraid_Standing_FacingRight_A69A42:
     dw $7FFF,Spritemap_MiniKraid_FiringSpit_FacingRight_0                ;A69A42;
-    dw Instruction_Common_Sleep                                          ;A69A46;
+    dw Common_Instruction_Sleep                                          ;A69A46;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -8371,175 +7789,175 @@ RidleyExplosionEntry_B:
 ;;; $CA47: Instruction list -  ;;;
 InstList_RidleyTail_Large:
     dw $0001,Spritemap_RidleyTail_Large                                  ;A6CA47;
-    dw Instruction_Common_Sleep                                          ;A6CA4B;
+    dw Common_Instruction_Sleep                                          ;A6CA4B;
 
 
 ;;; $CA4D: Instruction list -  ;;;
 InstList_RidleyTail_Medium:
     dw $0001,Spritemap_RidleyTail_Medium                                 ;A6CA4D;
-    dw Instruction_Common_Sleep                                          ;A6CA51;
+    dw Common_Instruction_Sleep                                          ;A6CA51;
 
 
 ;;; $CA53: Instruction list -  ;;;
 InstList_RidleyTail_Small:
     dw $0001,Spritemap_RidleyTail_Small                                  ;A6CA53;
-    dw Instruction_Common_Sleep                                          ;A6CA57;
+    dw Common_Instruction_Sleep                                          ;A6CA57;
 
 
 ;;; $CA59: Instruction list -  ;;;
 InstList_RidleyWings_FullyRaised_FacingLeft:
     dw $0001,Spritemap_RidleyWings_FacingLeft_FullyRaised                ;A6CA59;
-    dw Instruction_Common_Sleep                                          ;A6CA5D;
+    dw Common_Instruction_Sleep                                          ;A6CA5D;
 
 
 ;;; $CA5F: Instruction list -  ;;;
 InstList_RidleyWings_FullyRaised_FacingRight:
     dw $0001,Spritemap_RidleyWings_FacingRight_FullyRaised               ;A6CA5F;
-    dw Instruction_Common_Sleep                                          ;A6CA63;
+    dw Common_Instruction_Sleep                                          ;A6CA63;
 
 
 ;;; $CA65: Instruction list -  ;;;
 InstList_RidleyLegs_PulledUp_FacingLeft:
     dw $0001,Spritemap_Ridley_FacingLeft_Legs_PulledUp                   ;A6CA65;
-    dw Instruction_Common_Sleep                                          ;A6CA69;
+    dw Common_Instruction_Sleep                                          ;A6CA69;
 
 
 ;;; $CA6B: Instruction list -  ;;;
 InstList_RidleyLegs_PulledUp_FacingRight:
     dw $0001,Spritemap_Ridley_FacingRight_Legs_PulledUp                  ;A6CA6B;
-    dw Instruction_Common_Sleep                                          ;A6CA6F;
+    dw Common_Instruction_Sleep                                          ;A6CA6F;
 
 
 ;;; $CA71: Instruction list -  ;;;
 InstList_RidleyHead_MouthOpen_FacingLeft:
     dw $0001,Spritemap_Ridley_FacingLeft_HeadNeck_MouthOpen              ;A6CA71;
-    dw Instruction_Common_Sleep                                          ;A6CA75;
+    dw Common_Instruction_Sleep                                          ;A6CA75;
 
 
 ;;; $CA77: Instruction list -  ;;;
 InstList_RidleyHead_MouthOpen_FacingRight:
     dw $0001,Spritemap_Ridley_FacingRight_HeadNeck_MouthOpen             ;A6CA77;
-    dw Instruction_Common_Sleep                                          ;A6CA7B;
+    dw Common_Instruction_Sleep                                          ;A6CA7B;
 
 
 ;;; $CA7D: Instruction list -  ;;;
 InstList_RidleyTorso_FacingLeft:
     dw $0001,Spritemap_Ridley_FacingLeft_Torso                           ;A6CA7D;
-    dw Instruction_Common_Sleep                                          ;A6CA81;
+    dw Common_Instruction_Sleep                                          ;A6CA81;
 
 
 ;;; $CA83: Instruction list -  ;;;
 InstList_RidleyTorso_FacingRight:
     dw $0001,Spritemap_Ridley_FacingRight_Torso                          ;A6CA83;
-    dw Instruction_Common_Sleep                                          ;A6CA87;
+    dw Common_Instruction_Sleep                                          ;A6CA87;
 
 
 ;;; $CA89: Instruction list -  ;;;
 InstList_RidleyClaw_FacingLeft:
     dw $0001,Spritemap_Ridley_FacingLeft_Claws                           ;A6CA89;
-    dw Instruction_Common_Sleep                                          ;A6CA8D;
+    dw Common_Instruction_Sleep                                          ;A6CA8D;
 
 
 ;;; $CA8F: Instruction list -  ;;;
 InstList_RidleyClaw_FacingRight:
     dw $0001,Spritemap_Ridley_FacingRight_Claws                          ;A6CA8F;
-    dw Instruction_Common_Sleep                                          ;A6CA93;
+    dw Common_Instruction_Sleep                                          ;A6CA93;
 
 
 ;;; $CA95: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingDown:
     dw $0001,Spritemap_RidleyTailTip_PointingDown                        ;A6CA95;
-    dw Instruction_Common_Sleep                                          ;A6CA99;
+    dw Common_Instruction_Sleep                                          ;A6CA99;
 
 
 ;;; $CA9B: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingDownDownRight:
     dw $0001,Spritemap_RidleyTailTip_PointingDownDownRight               ;A6CA9B;
-    dw Instruction_Common_Sleep                                          ;A6CA9F;
+    dw Common_Instruction_Sleep                                          ;A6CA9F;
 
 
 ;;; $CAA1: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingDownRight:
     dw $0001,Spritemap_RidleyTailTip_PointingDownRight                   ;A6CAA1;
-    dw Instruction_Common_Sleep                                          ;A6CAA5;
+    dw Common_Instruction_Sleep                                          ;A6CAA5;
 
 
 ;;; $CAA7: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingRightDownRight:
     dw $0001,Spritemap_RidleyTailTip_PointingRightDownRight              ;A6CAA7;
-    dw Instruction_Common_Sleep                                          ;A6CAAB;
+    dw Common_Instruction_Sleep                                          ;A6CAAB;
 
 
 ;;; $CAAD: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingRight:
     dw $0001,Spritemap_RidleyTailTip_PointingRight                       ;A6CAAD;
-    dw Instruction_Common_Sleep                                          ;A6CAB1;
+    dw Common_Instruction_Sleep                                          ;A6CAB1;
 
 
 ;;; $CAB3: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingRightUpRight:
     dw $0001,Spritemap_RidleyTailTip_PointingRightUpRight                ;A6CAB3;
-    dw Instruction_Common_Sleep                                          ;A6CAB7;
+    dw Common_Instruction_Sleep                                          ;A6CAB7;
 
 
 ;;; $CAB9: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingUpRight:
     dw $0001,Spritemap_RidleyTailTip_PointingUpRight                     ;A6CAB9;
-    dw Instruction_Common_Sleep                                          ;A6CABD;
+    dw Common_Instruction_Sleep                                          ;A6CABD;
 
 
 ;;; $CABF: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingUpUpRight:
     dw $0001,Spritemap_RidleyTailTip_PointingUpUpRight                   ;A6CABF;
-    dw Instruction_Common_Sleep                                          ;A6CAC3;
+    dw Common_Instruction_Sleep                                          ;A6CAC3;
 
 
 ;;; $CAC5: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingUp:
     dw $0001,Spritemap_RidleyTailTip_PointingUp                          ;A6CAC5;
-    dw Instruction_Common_Sleep                                          ;A6CAC9;
+    dw Common_Instruction_Sleep                                          ;A6CAC9;
 
 
 ;;; $CACB: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingUpUpLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingUpUpLeft                    ;A6CACB;
-    dw Instruction_Common_Sleep                                          ;A6CACF;
+    dw Common_Instruction_Sleep                                          ;A6CACF;
 
 
 ;;; $CAD1: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingUpLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingUpLeft                      ;A6CAD1;
-    dw Instruction_Common_Sleep                                          ;A6CAD5;
+    dw Common_Instruction_Sleep                                          ;A6CAD5;
 
 
 ;;; $CAD7: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingLeftUpLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingLeftUpLeft                  ;A6CAD7;
-    dw Instruction_Common_Sleep                                          ;A6CADB;
+    dw Common_Instruction_Sleep                                          ;A6CADB;
 
 
 ;;; $CADD: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingLeft                        ;A6CADD;
-    dw Instruction_Common_Sleep                                          ;A6CAE1;
+    dw Common_Instruction_Sleep                                          ;A6CAE1;
 
 
 ;;; $CAE3: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingLeftDownLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingLeftDownLeft                ;A6CAE3;
-    dw Instruction_Common_Sleep                                          ;A6CAE7;
+    dw Common_Instruction_Sleep                                          ;A6CAE7;
 
 
 ;;; $CAE9: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingDownLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingDownLeft                    ;A6CAE9;
-    dw Instruction_Common_Sleep                                          ;A6CAED;
+    dw Common_Instruction_Sleep                                          ;A6CAED;
 
 
 ;;; $CAEF: Instruction list -  ;;;
 InstList_RidleyTailTip_PointingDownDownLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingDownDownLeft                ;A6CAEF;
-    dw Instruction_Common_Sleep                                          ;A6CAF3;
+    dw Common_Instruction_Sleep                                          ;A6CAF3;
 
 
 ;;; $CAF5:  ;;;
@@ -11924,13 +11342,13 @@ InstList_Ridley_FacingLeft_Initial:
     dw Instruction_Ridley_GotoYIfNotFacingLeft                           ;A6E538;
     dw InstList_Ridley_FacingRight_Initial                               ;A6E53A;
     dw $000C,ExtendedSpritemap_Ridley_FacingLeft                         ;A6E53C;
-    dw Instruction_Common_Sleep                                          ;A6E540;
+    dw Common_Instruction_Sleep                                          ;A6E540;
 
 
 ;;; $E542: Instruction list -  ;;;
 InstList_Ridley_FacingRight_Initial:
     dw $000C,ExtendedSpritemap_Ridley_FacingRight                        ;A6E542;
-    dw Instruction_Common_Sleep                                          ;A6E546;
+    dw Common_Instruction_Sleep                                          ;A6E546;
 
 
 ;;; $E548: Instruction list -  ;;;
@@ -11947,7 +11365,7 @@ InstList_RidleyCeres_FacingLeft_Lunging:
     dw $0006,ExtendedSpritemap_Ridley_FacingLeft_LegsHalfExtended        ;A6E566;
     dw Inst_RidleyCeres_UpdateSamusPrevPosition_HeldYDisplacement,$0000  ;A6E56C;
     dw $0004,ExtendedSpritemap_Ridley_FacingLeft                         ;A6E56E;
-    dw Instruction_Common_Sleep                                          ;A6E574;
+    dw Common_Instruction_Sleep                                          ;A6E574;
 
 
 ;;; $E576: Instruction list -  ;;;
@@ -11962,7 +11380,7 @@ UNUSED_InstList_RidleyCeres_FacingRight_Lunging_A6E576:
     dw $0006,ExtendedSpritemap_Ridley_FacingRight_LegsHalfExtended       ;A6E590;
     dw Inst_RidleyCeres_UpdateSamusPrevPosition_HeldYDisplacement,$0000  ;A6E596;
     dw $0004,ExtendedSpritemap_Ridley_FacingRight                        ;A6E598;
-    dw Instruction_Common_Sleep                                          ;A6E59E;
+    dw Common_Instruction_Sleep                                          ;A6E59E;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -11974,7 +11392,7 @@ UNUSED_InstList_RidleyCeres_FacingLeft_A6E5A0:
     dw $0002,ExtendedSpritemap_Ridley_FacingLeft                         ;A6E5A6;
     dw UNUSED_Instruction_RidleyCeres_GotoYIfHoldingBaby_A6E4F8          ;A6E5AC;
     dw UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5B2         ;A6E5AE;
-    dw Instruction_Common_Sleep                                          ;A6E5B0;
+    dw Common_Instruction_Sleep                                          ;A6E5B0;
 
 
 ;;; $E5B2: Instruction list -  ;;;
@@ -12017,7 +11435,7 @@ UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5EA:
 UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5F4:
     dw Inst_RidleyCeres_UpdateSamusPrevPosition_HeldYDisplacement,$0000  ;A6E5F4;
     dw $0002,ExtendedSpritemap_Ridley_FacingLeft                         ;A6E5F6;
-    dw Instruction_Common_Sleep                                          ;A6E5FC;
+    dw Common_Instruction_Sleep                                          ;A6E5FC;
 
 
 ;;; $E5FE: Instruction list -  ;;;
@@ -12026,7 +11444,7 @@ UNUSED_InstList_RidleyCeres_FacingRight_A6E5FE:
     dw $0002,ExtendedSpritemap_Ridley_FacingRight                        ;A6E600;
     dw UNUSED_Instruction_RidleyCeres_GotoYIfHoldingBaby_A6E4F8          ;A6E606;
     dw UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E60C        ;A6E608;
-    dw Instruction_Common_Sleep                                          ;A6E60A;
+    dw Common_Instruction_Sleep                                          ;A6E60A;
 
 
 ;;; $E60C: Instruction list -  ;;;
@@ -12069,7 +11487,7 @@ UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E644:
 UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E64E:
     dw Inst_RidleyCeres_UpdateSamusPrevPosition_HeldYDisplacement,$0000  ;A6E64E;
     dw $0002,ExtendedSpritemap_Ridley_FacingRight                        ;A6E650;
-    dw Instruction_Common_Sleep                                          ;A6E656;
+    dw Common_Instruction_Sleep                                          ;A6E656;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -12083,7 +11501,7 @@ InstList_RidleyCeres_FacingLeft_ExtendLegs:
     dw $0006,ExtendedSpritemap_Ridley_FacingLeft_LegsHalfExtended        ;A6E666;
     dw Inst_RidleyCeres_UpdateSamusPrevPosition_HeldYDisplacement,$0004  ;A6E66C;
     dw $0001,ExtendedSpritemap_Ridley_FacingLeft_LegsExtended            ;A6E66E;
-    dw Instruction_Common_Sleep                                          ;A6E674;
+    dw Common_Instruction_Sleep                                          ;A6E674;
 
 
 ;;; $E676: Instruction list -  ;;;
@@ -12094,7 +11512,7 @@ InstList_RidleyCeres_FacingRight_ExtendLegs:
     dw $0006,ExtendedSpritemap_Ridley_FacingRight_LegsHalfExtended       ;A6E680;
     dw Inst_RidleyCeres_UpdateSamusPrevPosition_HeldYDisplacement,$0004  ;A6E686;
     dw $0001,ExtendedSpritemap_Ridley_FacingRight_LegsExtended           ;A6E688;
-    dw Instruction_Common_Sleep                                          ;A6E68E;
+    dw Common_Instruction_Sleep                                          ;A6E68E;
 
 
 ;;; $E690: Instruction list -  ;;;
@@ -12109,7 +11527,7 @@ InstList_Ridley_FacingLeft_OpeningRoar:
     dw $0008,ExtendedSpritemap_Ridley_FacingLeft_MouthHalfOpen           ;A6E6A2;
     dw Instruction_Ridley_ResetRoarFlag                                  ;A6E6A6;
     dw $0001,ExtendedSpritemap_Ridley_FacingLeft                         ;A6E6A8;
-    dw Instruction_Common_Sleep                                          ;A6E6AC;
+    dw Common_Instruction_Sleep                                          ;A6E6AC;
 
 
 ;;; $E6AE: Instruction list -  ;;;
@@ -12121,7 +11539,7 @@ InstList_Ridley_FacingRight_OpeningRoar:
     dw $0008,ExtendedSpritemap_Ridley_FacingRight_MouthHalfOpen          ;A6E6BC;
     dw Instruction_Ridley_ResetRoarFlag                                  ;A6E6C0;
     dw $0001,ExtendedSpritemap_Ridley_FacingRight                        ;A6E6C2;
-    dw Instruction_Common_Sleep                                          ;A6E6C6;
+    dw Common_Instruction_Sleep                                          ;A6E6C6;
 
 
 ;;; $E6C8: Instruction list -  ;;;
@@ -12133,7 +11551,7 @@ InstList_Ridley_FacingLeft_DeathRoar:
     dw $0008,ExtendedSpritemap_Ridley_FacingLeft_MouthHalfOpen           ;A6E6D2;
     dw $0010,ExtendedSpritemap_Ridley_FacingLeft_MouthOpen               ;A6E6D6;
     dw Instruction_Ridley_ResetRoarFlag                                  ;A6E6DA;
-    dw Instruction_Common_Sleep                                          ;A6E6DC;
+    dw Common_Instruction_Sleep                                          ;A6E6DC;
 
 
 ;;; $E6DE: Instruction list -  ;;;
@@ -12143,7 +11561,7 @@ InstList_Ridley_FacingRight_DeathRoar:
     dw $0008,ExtendedSpritemap_Ridley_FacingRight_MouthHalfOpen          ;A6E6E4;
     dw $0010,ExtendedSpritemap_Ridley_FacingRight_MouthOpen              ;A6E6E8;
     dw Instruction_Ridley_ResetRoarFlag                                  ;A6E6EC;
-    dw Instruction_Common_Sleep                                          ;A6E6EE;
+    dw Common_Instruction_Sleep                                          ;A6E6EE;
 
 
 ;;; $E6F0: Instruction list -  ;;;
@@ -12155,7 +11573,7 @@ InstList_Ridley_TurnFromLeftToRight:
     dw Instruction_Ridley_SetDirectionToRight_UpdateTailParts            ;A6E6FA;
     dw $0001,ExtendedSpritemap_Ridley_FacingForward                      ;A6E6FC;
     dw $0001,ExtendedSpritemap_Ridley_FacingRight                        ;A6E700;
-    dw Instruction_Common_Sleep                                          ;A6E704;
+    dw Common_Instruction_Sleep                                          ;A6E704;
 
 
 ;;; $E706: Instruction list -  ;;;
@@ -12167,7 +11585,7 @@ InstList_Ridley_TurnFromRightToLeft:
     dw Instruction_Ridley_SetDirectionToLeft_UpdateTailParts             ;A6E710;
     dw $0001,ExtendedSpritemap_Ridley_FacingForward                      ;A6E712;
     dw $0001,ExtendedSpritemap_Ridley_FacingLeft                         ;A6E716;
-    dw Instruction_Common_Sleep                                          ;A6E71A;
+    dw Common_Instruction_Sleep                                          ;A6E71A;
 
 
 ;;; $E71C: Instruction ;;;
@@ -12246,7 +11664,7 @@ InstList_Ridley_FacingLeft_Fireballing_0:
 InstList_Ridley_FacingLeft_Fireballing_1:
     dw Instruction_Ridley_ResetRoarFlag                                  ;A6E7AC;
     dw $0001,ExtendedSpritemap_Ridley_FacingLeft                         ;A6E7AE;
-    dw Instruction_Common_Sleep                                          ;A6E7B2;
+    dw Common_Instruction_Sleep                                          ;A6E7B2;
 
 
 ;;; $E7B4: Instruction list -  ;;;
@@ -12293,7 +11711,7 @@ InstList_Ridley_FacingRight_Fireballing_0:
 InstList_Ridley_FacingRight_Fireballing_1:
     dw Instruction_Ridley_ResetRoarFlag                                  ;A6E820;
     dw $0001,ExtendedSpritemap_Ridley_FacingRight                        ;A6E822;
-    dw Instruction_Common_Sleep                                          ;A6E826;
+    dw Common_Instruction_Sleep                                          ;A6E826;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -12453,7 +11871,7 @@ InstList_RidleyCeres_FacingLeft_FlyUp_StartMainAI:
     dw Instruction_RidleyCeres_SetRidleyMainAI_SetVerticalSpeed          ;A6E939;
     dw $0011,ExtendedSpritemap_Ridley_FacingLeft_LegsHalfExtended        ;A6E93B;
     dw $0011,ExtendedSpritemap_Ridley_FacingLeft                         ;A6E93F;
-    dw Instruction_Common_Sleep                                          ;A6E943;
+    dw Common_Instruction_Sleep                                          ;A6E943;
 
 
 ;;; $E945: Instruction list -  ;;;
@@ -12466,7 +11884,7 @@ InstList_RidleyCeres_FacingRight_FlyUp_StartMainAI:
     dw Instruction_Ridley_SetRidleyMainAI_SetVerticalSpeed               ;A6E95D;
     dw $0011,ExtendedSpritemap_Ridley_FacingRight_LegsHalfExtended       ;A6E95F;
     dw $0011,ExtendedSpritemap_Ridley_FacingRight                        ;A6E963;
-    dw Instruction_Common_Sleep                                          ;A6E967;
+    dw Common_Instruction_Sleep                                          ;A6E967;
 
 
 ;;; $E969: Instruction ;;;
@@ -13098,7 +12516,7 @@ EnemyTouch_CeresSteam:
     LDX.W EnemyIndex                                                     ;A6F03F;
     LDA.W #$7FFF                                                         ;A6F042;
     STA.W Enemy.health,X                                                 ;A6F045;
-    JSL.L NormalEnemyTouchAI                                             ;A6F048;
+    JSL.L NormalEnemyTouchAI_External                                    ;A6F048;
     RTL                                                                  ;A6F04C;
 
 
@@ -13123,7 +12541,7 @@ InstList_CeresSteam_Up_2:
     dw $0003,ExtendedSpritemap_CeresSteam_Up_4                           ;A6F071;
     dw $0003,ExtendedSpritemap_CeresSteam_Up_5                           ;A6F075;
     dw $0003,ExtendedSpritemap_CeresSteam_Up_6                           ;A6F079;
-    dw Instruction_Common_GotoY                                          ;A6F07D;
+    dw Common_Instruction_GotoY                                          ;A6F07D;
     dw InstList_CeresSteam_Up_1                                          ;A6F07F;
 
 
@@ -13148,7 +12566,7 @@ InstList_CeresSteam_Left_2:
     dw $0003,ExtendedSpritemap_CeresSteam_Left_4                         ;A6F0A5;
     dw $0003,ExtendedSpritemap_CeresSteam_Left_5                         ;A6F0A9;
     dw $0003,ExtendedSpritemap_CeresSteam_Left_6                         ;A6F0AD;
-    dw Instruction_Common_GotoY                                          ;A6F0B1;
+    dw Common_Instruction_GotoY                                          ;A6F0B1;
     dw InstList_CeresSteam_Left_1                                        ;A6F0B3;
 
 
@@ -13173,7 +12591,7 @@ InstList_CeresSteam_Down_2:
     dw $0003,ExtendedSpritemap_CeresSteam_Down_4                         ;A6F0D9;
     dw $0003,ExtendedSpritemap_CeresSteam_Down_5                         ;A6F0DD;
     dw $0003,ExtendedSpritemap_CeresSteam_Down_6                         ;A6F0E1;
-    dw Instruction_Common_GotoY                                          ;A6F0E5;
+    dw Common_Instruction_GotoY                                          ;A6F0E5;
     dw InstList_CeresSteam_Down_1                                        ;A6F0E7;
 
 
@@ -13198,7 +12616,7 @@ InstList_CeresSteam_Right_2:
     dw $0003,ExtendedSpritemap_CeresSteam_Right_4                        ;A6F10D;
     dw $0003,ExtendedSpritemap_CeresSteam_Right_5                        ;A6F111;
     dw $0003,ExtendedSpritemap_CeresSteam_Right_6                        ;A6F115;
-    dw Instruction_Common_GotoY                                          ;A6F119;
+    dw Common_Instruction_GotoY                                          ;A6F119;
     dw InstList_CeresSteam_Right_1                                       ;A6F11B;
 
 
@@ -13411,121 +12829,121 @@ Hitbox_CeresSteam_Up_0:
     dw $0001                                                             ;A6F25C;
     dw $FFF8,$FFF0,$0007,$FFFF
     dw EnemyTouch_CeresSteam                                             ;A6F266;
-    dw RTL_A6804C                                                        ;A6F268;
+    dw Common_RTL_A0804C                                                        ;A6F268;
 
 Hitbox_CeresSteam_Up_1:
     dw $0001                                                             ;A6F26A;
     dw $FFF8,$FFE9,$0007,$FFFE
     dw EnemyTouch_CeresSteam                                             ;A6F274;
-    dw RTL_A6804C                                                        ;A6F276;
+    dw Common_RTL_A0804C                                                        ;A6F276;
 
 Hitbox_CeresSteam_Up_2:
     dw $0001                                                             ;A6F278;
     dw $FFF8,$FFE0,$0007,$FFF8
     dw EnemyTouch_CeresSteam                                             ;A6F282;
-    dw RTL_A6804C                                                        ;A6F284;
+    dw Common_RTL_A0804C                                                        ;A6F284;
 
 Hitbox_CeresSteam_Up_3:
     dw $0001                                                             ;A6F286;
     dw $FFF8,$FFD8,$0007,$FFF0
     dw EnemyTouch_CeresSteam                                             ;A6F290;
-    dw RTL_A6804C                                                        ;A6F292;
+    dw Common_RTL_A0804C                                                        ;A6F292;
 
 Hitbox_CeresSteam_Up_4:
     dw $0001                                                             ;A6F294;
     dw $FFF8,$FFD8,$0006,$FFE8
     dw EnemyTouch_CeresSteam                                             ;A6F29E;
-    dw RTL_A6804C                                                        ;A6F2A0;
+    dw Common_RTL_A0804C                                                        ;A6F2A0;
 
 Hitbox_CeresSteam_Left_0:
     dw $0001                                                             ;A6F2A2;
     dw $FFF0,$FFF8,$FFFF,$0007
     dw EnemyTouch_CeresSteam                                             ;A6F2AC;
-    dw RTL_A6804C                                                        ;A6F2AE;
+    dw Common_RTL_A0804C                                                        ;A6F2AE;
 
 Hitbox_CeresSteam_Left_1:
     dw $0001                                                             ;A6F2B0;
     dw $FFE8,$FFF8,$FFFE,$0007
     dw EnemyTouch_CeresSteam                                             ;A6F2BA;
-    dw RTL_A6804C                                                        ;A6F2BC;
+    dw Common_RTL_A0804C                                                        ;A6F2BC;
 
 Hitbox_CeresSteam_Left_2:
     dw $0001                                                             ;A6F2BE;
     dw $FFE0,$FFF9,$FFF7,$0007
     dw EnemyTouch_CeresSteam                                             ;A6F2C8;
-    dw RTL_A6804C                                                        ;A6F2CA;
+    dw Common_RTL_A0804C                                                        ;A6F2CA;
 
 Hitbox_CeresSteam_Left_3:
     dw $0001                                                             ;A6F2CC;
     dw $FFD8,$FFF7,$FFEF,$0005
     dw EnemyTouch_CeresSteam                                             ;A6F2D6;
-    dw RTL_A6804C                                                        ;A6F2D8;
+    dw Common_RTL_A0804C                                                        ;A6F2D8;
 
 Hitbox_CeresSteam_Left_4:
     dw $0001                                                             ;A6F2DA;
     dw $FFD8,$FFF5,$FFE6,$0002
     dw EnemyTouch_CeresSteam                                             ;A6F2E4;
-    dw RTL_A6804C                                                        ;A6F2E6;
+    dw Common_RTL_A0804C                                                        ;A6F2E6;
 
 Hitbox_CeresSteam_Down_0:
     dw $0001                                                             ;A6F2E8;
     dw $FFF8,$0000,$0007,$000E
     dw EnemyTouch_CeresSteam                                             ;A6F2F2;
-    dw RTL_A6804C                                                        ;A6F2F4;
+    dw Common_RTL_A0804C                                                        ;A6F2F4;
 
 Hitbox_CeresSteam_Down_1:
     dw $0001                                                             ;A6F2F6;
     dw $FFF8,$0000,$0007,$0017
     dw EnemyTouch_CeresSteam                                             ;A6F300;
-    dw RTL_A6804C                                                        ;A6F302;
+    dw Common_RTL_A0804C                                                        ;A6F302;
 
 Hitbox_CeresSteam_Down_2:
     dw $0001                                                             ;A6F304;
     dw $FFF8,$0008,$0007,$001F
     dw EnemyTouch_CeresSteam                                             ;A6F30E;
-    dw RTL_A6804C                                                        ;A6F310;
+    dw Common_RTL_A0804C                                                        ;A6F310;
 
 Hitbox_CeresSteam_Down_3:
     dw $0001                                                             ;A6F312;
     dw $FFF8,$000F,$0007,$0027
     dw EnemyTouch_CeresSteam                                             ;A6F31C;
-    dw RTL_A6804C                                                        ;A6F31E;
+    dw Common_RTL_A0804C                                                        ;A6F31E;
 
 Hitbox_CeresSteam_Down_4:
     dw $0001                                                             ;A6F320;
     dw $FFF8,$0017,$0006,$0026
     dw EnemyTouch_CeresSteam                                             ;A6F32A;
-    dw RTL_A6804C                                                        ;A6F32C;
+    dw Common_RTL_A0804C                                                        ;A6F32C;
 
 Hitbox_CeresSteam_Right_0:
     dw $0001                                                             ;A6F32E;
     dw $0000,$FFF8,$000F,$0007
     dw EnemyTouch_CeresSteam                                             ;A6F338;
-    dw RTL_A6804C                                                        ;A6F33A;
+    dw Common_RTL_A0804C                                                        ;A6F33A;
 
 Hitbox_CeresSteam_Right_1:
     dw $0001                                                             ;A6F33C;
     dw $0001,$FFF8,$0017,$0007
     dw EnemyTouch_CeresSteam                                             ;A6F346;
-    dw RTL_A6804C                                                        ;A6F348;
+    dw Common_RTL_A0804C                                                        ;A6F348;
 
 Hitbox_CeresSteam_Right_2:
     dw $0001                                                             ;A6F34A;
     dw $0009,$FFF8,$001F,$0007
     dw EnemyTouch_CeresSteam                                             ;A6F354;
-    dw RTL_A6804C                                                        ;A6F356;
+    dw Common_RTL_A0804C                                                        ;A6F356;
 
 Hitbox_CeresSteam_Right_3:
     dw $0001                                                             ;A6F358;
     dw $0012,$FFF7,$0026,$0005
     dw EnemyTouch_CeresSteam                                             ;A6F362;
-    dw RTL_A6804C                                                        ;A6F364;
+    dw Common_RTL_A0804C                                                        ;A6F364;
 
 Hitbox_CeresSteam_Right_4:
     dw $0001                                                             ;A6F366;
     dw $0019,$FFF5,$0028,$0003
     dw EnemyTouch_CeresSteam                                             ;A6F370;
-    dw RTL_A6804C                                                        ;A6F372;
+    dw Common_RTL_A0804C                                                        ;A6F372;
 
 
 ;;; $F374: Ceres steam spritemaps ;;;
@@ -13722,7 +13140,7 @@ InstList_CeresDoor_RidleysRoom_FacingRight_1:
     dw Instruction_CeresDoor_GotoYIfAreaBossIsAlive                      ;A6F562;
     dw InstList_CeresDoor_RidleysRoom_FacingRight_1                      ;A6F564;
     dw Instruction_CeresDoor_SetAsVisible_ClearDrawnByRidleyFlag         ;A6F566;
-    dw Instruction_Common_GotoY                                          ;A6F568;
+    dw Common_Instruction_GotoY                                          ;A6F568;
     dw InstList_CeresDoor_Closed_FacingRight_0                           ;A6F56A;
 
 
@@ -13740,7 +13158,7 @@ InstList_CeresDoor_Open_FacingRight_0:
     dw $0002,Spritemap_CeresDoor_FacingRight_Open                        ;A6F578;
     dw Inst_CeresDoor_GotoYIfSamusIsNotWithing30Pixels                   ;A6F57C;
     dw InstList_CeresDoor_Open_FacingRight_1                             ;A6F57E;
-    dw Instruction_Common_GotoY                                          ;A6F580;
+    dw Common_Instruction_GotoY                                          ;A6F580;
     dw InstList_CeresDoor_Open_FacingRight_0                             ;A6F582;
 
 InstList_CeresDoor_Open_FacingRight_1:
@@ -13768,7 +13186,7 @@ InstList_CeresDoor_Closed_FacingRight_1:
     dw $0005,Spritemap_CeresDoor_FacingRight_Open                        ;A6F5B2;
     dw Instruction_CeresDoor_SetAsIntangible                             ;A6F5B6;
     dw Instruction_CeresDoor_SetAsInvisible                              ;A6F5B8;
-    dw Instruction_Common_GotoY                                          ;A6F5BA;
+    dw Common_Instruction_GotoY                                          ;A6F5BA;
     dw InstList_CeresDoor_Open_FacingRight_0                             ;A6F5BC;
 
 
@@ -13784,7 +13202,7 @@ InstList_CeresDoor_Normal_FacingLeft_1:
     dw $0002,Spritemap_CeresDoor_FacingLeft_Closed                       ;A6F5CA;
     dw Inst_CeresDoor_GotoYIfSamusIsNotWithing30Pixels                   ;A6F5CE;
     dw InstList_CeresDoor_Normal_FacingLeft_2                            ;A6F5D0;
-    dw Instruction_Common_GotoY                                          ;A6F5D2;
+    dw Common_Instruction_GotoY                                          ;A6F5D2;
     dw InstList_CeresDoor_Normal_FacingLeft_1                            ;A6F5D4;
 
 InstList_CeresDoor_Normal_FacingLeft_2:
@@ -13810,7 +13228,7 @@ InstList_CeresDoor_Normal_FacingLeft_4:
     dw $0005,Spritemap_CeresDoor_FacingLeft_Open                         ;A6F604;
     dw Instruction_CeresDoor_SetAsIntangible                             ;A6F608;
     dw Instruction_CeresDoor_SetAsInvisible                              ;A6F60A;
-    dw Instruction_Common_GotoY                                          ;A6F60C;
+    dw Common_Instruction_GotoY                                          ;A6F60C;
     dw InstList_CeresDoor_Normal_FacingLeft_1                            ;A6F60E;
 
 
@@ -13820,7 +13238,7 @@ InstList_CeresDoor_RotatingElevRoom_PreExploDoorOverlay_0:
 
 InstList_CeresDoor_RotatingElevRoom_PreExploDoorOverlay_1:
     dw $0001,Spritemap_CeresDoor_RotatingElevRoomPreExplosionDoorOverlay ;A6F612;
-    dw Instruction_Common_GotoY                                          ;A6F616;
+    dw Common_Instruction_GotoY                                          ;A6F616;
     dw InstList_CeresDoor_RotatingElevRoom_PreExploDoorOverlay_1         ;A6F618;
 
 
@@ -13833,7 +13251,7 @@ InstList_CeresDoor_RotatingElevatorRoom_InvisibleWall_0:
 
 InstList_CeresDoor_RotatingElevatorRoom_InvisibleWall_1:
     dw $0001,Spritemap_CeresDoor_FacingLeft_Closed                       ;A6F622;
-    dw Instruction_Common_GotoY                                          ;A6F626;
+    dw Common_Instruction_GotoY                                          ;A6F626;
     dw InstList_CeresDoor_RotatingElevatorRoom_InvisibleWall_1           ;A6F628;
 
 
@@ -13843,7 +13261,7 @@ InstList_CeresDoor_RidleyEscapeMode7LeftWall_0:
 
 InstList_CeresDoor_RidleyEscapeMode7LeftWall_1:
     dw $0001,Spritemap_CeresDoor_RidleyEscapeMode7LeftWall               ;A6F62C;
-    dw Instruction_Common_GotoY                                          ;A6F630;
+    dw Common_Instruction_GotoY                                          ;A6F630;
     dw InstList_CeresDoor_RidleyEscapeMode7LeftWall_1                    ;A6F632;
 
 
@@ -13853,7 +13271,7 @@ InstList_CeresDoor_RidleyEscapeMode7RightWall_0:
 
 InstList_CeresDoor_RidleyEscapeMode7RightWall_1:
     dw $0001,Spritemap_CeresDoor_RidleyEscapeMode7RightWall              ;A6F636;
-    dw Instruction_Common_GotoY                                          ;A6F63A;
+    dw Common_Instruction_GotoY                                          ;A6F63A;
     dw InstList_CeresDoor_RidleyEscapeMode7RightWall_1                   ;A6F63C;
 
 
@@ -14771,70 +14189,70 @@ EnemyShot_Zebetite:
 InstList_Big_HealthGreaterThanEqualTo800:
     dw $0001                                                             ;A6FDCC;
     dw Spritemap_Zebetite_Big_HealthGreaterThanEqualTo800                ;A6FDCE;
-    dw Instruction_Common_Sleep                                          ;A6FDD0;
+    dw Common_Instruction_Sleep                                          ;A6FDD0;
 
 
 ;;; $FDD2: Instruction list - big zebetite - HP < 800 ;;;
 InstList_Big_HealthLessThan800:
     dw $0001                                                             ;A6FDD2;
     dw SpritemapZebetite_Big_HealthLessThan800                           ;A6FDD4;
-    dw Instruction_Common_Sleep                                          ;A6FDD6;
+    dw Common_Instruction_Sleep                                          ;A6FDD6;
 
 
 ;;; $FDD8: Instruction list - big zebetite - HP < 600 ;;;
 InstList_Big_HealthLessThan600:
     dw $0001                                                             ;A6FDD8;
     dw SpritemapZebetite_Big_HealthLessThan600                           ;A6FDDA;
-    dw Instruction_Common_Sleep                                          ;A6FDDC;
+    dw Common_Instruction_Sleep                                          ;A6FDDC;
 
 
 ;;; $FDDE: Instruction list - big zebetite - HP < 400 ;;;
 InstList_Big_HealthLessThan400:
     dw $0001                                                             ;A6FDDE;
     dw SpritemapZebetite_Big_HealthLessThan400                           ;A6FDE0;
-    dw Instruction_Common_Sleep                                          ;A6FDE2;
+    dw Common_Instruction_Sleep                                          ;A6FDE2;
 
 
 ;;; $FDE4: Instruction list - big zebetite - HP < 200 ;;;
 InstList_Big_HealthLessThan200:
     dw $0001                                                             ;A6FDE4;
     dw SpritemapZebetite_Big_HealthLessThan200                           ;A6FDE6;
-    dw Instruction_Common_Sleep                                          ;A6FDE8;
+    dw Common_Instruction_Sleep                                          ;A6FDE8;
 
 
 ;;; $FDEA: Instruction list - small zebetite pair - HP >= 800 ;;;
 InstList_Small_HealthGreaterThanEqualTo800:
     dw $0001                                                             ;A6FDEA;
     dw Spritemap_Zebetite_Small_HealthGreaterThanEqualTo800              ;A6FDEC;
-    dw Instruction_Common_Sleep                                          ;A6FDEE;
+    dw Common_Instruction_Sleep                                          ;A6FDEE;
 
 
 ;;; $FDF0: Instruction list - small zebetite pair - HP < 800 ;;;
 InstList_Small_HealthLessThan800:
     dw $0001                                                             ;A6FDF0;
     dw SpritemapZebetite_Small_HealthLessThan800                         ;A6FDF2;
-    dw Instruction_Common_Sleep                                          ;A6FDF4;
+    dw Common_Instruction_Sleep                                          ;A6FDF4;
 
 
 ;;; $FDF6: Instruction list - small zebetite pair - HP < 600 ;;;
 InstList_Small_HealthLessThan600:
     dw $0001                                                             ;A6FDF6;
     dw SpritemapZebetite_Small_HealthLessThan600                         ;A6FDF8;
-    dw Instruction_Common_Sleep                                          ;A6FDFA;
+    dw Common_Instruction_Sleep                                          ;A6FDFA;
 
 
 ;;; $FDFC: Instruction list - small zebetite pair - HP < 400 ;;;
 InstList_Small_HealthLessThan400:
     dw $0001                                                             ;A6FDFC;
     dw SpritemapZebetite_Small_HealthLessThan400                         ;A6FDFE;
-    dw Instruction_Common_Sleep                                          ;A6FE00;
+    dw Common_Instruction_Sleep                                          ;A6FE00;
 
 
 ;;; $FE02: Instruction list - small zebetite pair - HP < 200 ;;;
 InstList_Small_HealthLessThan200:
     dw $0001                                                             ;A6FE02;
     dw SpritemapZebetite_Small_HealthLessThan200                         ;A6FE04;
-    dw Instruction_Common_Sleep                                          ;A6FE06;
+    dw Common_Instruction_Sleep                                          ;A6FE06;
 
 
 ;;; $FE08: Spritemaps - zebetites ;;;

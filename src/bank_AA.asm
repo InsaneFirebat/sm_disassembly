@@ -3,591 +3,9 @@ org $AA8000
 
 
 ; Common to all enemy code banks
-
-;;; $8000: Grapple AI - no interaction. Also unfreezes enemies(!) ;;;
-CommonAA_GrappleAI_NoInteraction:
-; Used by skultera, Draygon body, fire arc, Phantoon, etecoon, dachora and WS ghost
-    JSL.L GrappleAI_SwitchEnemyAIToMainAI                                ;AA8000;
-    RTL                                                                  ;AA8004;
-
-
-;;; $8005: Grapple AI - Samus latches on ;;;
-CommonAA_GrappleAI_SamusLatchesOn:
-; Used by gripper and Crocomire
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple                            ;AA8005;
-    RTL                                                                  ;AA8009;
-
-
-;;; $800A: Grapple AI - kill enemy ;;;
-CommonAA_GrappleAI_KillEnemy:
-; Common
-    JSL.L GrappleAI_EnemyGrappleDeath                                    ;AA800A;
-    RTL                                                                  ;AA800E;
-
-
-;;; $800F: Grapple AI - cancel grapple beam ;;;
-CommonAA_GrappleAI_CancelGrappleBeam:
-; Common
-    JSL.L GrappleAI_SwitchToFrozenAI                                     ;AA800F;
-    RTL                                                                  ;AA8013;
-
-
-;;; $8014: Grapple AI - Samus latches on - no invincibility ;;;
-CommonAA_GrappleAI_SamusLatchesOn_NoInvincibility:
-; Used by powamp
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility            ;AA8014;
-    RTL                                                                  ;AA8018;
-
-
-;;; $8019: Unused. Grapple AI - Samus latches on - paralyse enemy ;;;
-UNUSED_CommonAA_GrappleAI_SamusLatchesOn_ParalyzeEnemy_AA8019:
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy              ;AA8019;
-    RTL                                                                  ;AA801D;
-
-
-;;; $801E: Grapple AI - hurt Samus ;;;
-CommonAA_GrappleAI_HurtSamus:
-; Used by WS spark
-; Hurt reaction happens in $9B:B932
-    JSL.L GrappleAI_SwitchToFrozenAI_duplicate                           ;AA801E;
-    RTL                                                                  ;AA8022;
-
-
-;;; $8023: Normal enemy touch AI ;;;
-CommonAA_NormalEnemyTouchAI:
-    JSL.L NormalEnemyTouchAI                                             ;AA8023;
-    RTL                                                                  ;AA8027;
-
-
-;;; $8028: Normal touch AI - no death check ;;;
-CommonAA_NormalTouchAI_NoDeathCheck:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;AA8028;
-    RTL                                                                  ;AA802C;
-
-
-;;; $802D: Normal enemy shot AI ;;;
-CommonAA_NormalEnemyShotAI:
-    JSL.L NormalEnemyShotAI                                              ;AA802D;
-    RTL                                                                  ;AA8031;
-
-
-;;; $8032: Normal enemy shot AI - no death check, no enemy shot graphic ;;;
-CommonAA_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;AA8032;
-    RTL                                                                  ;AA8036;
-
-
-;;; $8037: Normal enemy power bomb AI ;;;
-CommonAA_NormalEnemyPowerBombAI:
-    JSL.L NormalEnemyPowerBombAI                                         ;AA8037;
-    RTL                                                                  ;AA803B;
-
-
-;;; $803C: Normal enemy power bomb AI - no death check ;;;
-CommonAA_NormalEnemyPowerBombAI_NoDeathCheck:
-; Kraid's power bomb AI
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;AA803C;
-    RTL                                                                  ;AA8040;
-
-
-;;; $8041: Normal enemy frozen AI ;;;
-CommonAA_NormalEnemyFrozenAI:
-    JSL.L NormalEnemyFrozenAI                                            ;AA8041;
-    RTL                                                                  ;AA8045;
-
-
-;;; $8046: Creates a dud shot ;;;
-CommonAA_CreateADudShot:
-    JSL.L CreateADudShot                                                 ;AA8046;
-    RTL                                                                  ;AA804A;
-
-
-;;; $804B: RTS ;;;
-RTS_AA804B:
-    RTS                                                                  ;AA804B;
-
-
-;;; $804C: RTL ;;;
-RTL_AA804C:
-    RTL                                                                  ;AA804C;
-
-
-;;; $804D: Spritemap - nothing ;;;
-Spritemap_CommonAA_Nothing:
-    dw $0000                                                             ;AA804D;
-
-
-;;; $804F: Extended spritemap - nothing ;;;
-ExtendedSpritemap_CommonAA_Nothing:
-    dw $0001                                                             ;AA804F;
-    dw $0000,$0000
-    dw Spritemap_CommonAA_Nothing                                        ;AA8055;
-    dw Hitbox_CommonAA_Nothing                                           ;AA8057;
-
-
-;;; $8059: Hitbox - nothing ;;;
-Hitbox_CommonAA_Nothing:
-; [n entries] [[left offset] [top offset] [right offset] [bottom offset] [p touch] [p shot]]...
-    dw $0001                                                             ;AA8059;
-    dw $0000,$0000,$0000,$0000
-    dw CommonAA_NormalEnemyTouchAI                                       ;AA8063;
-    dw CommonAA_NormalEnemyShotAI                                        ;AA8065;
-
-
-;;; $8067: Instruction list - delete enemy ;;;
-InstList_CommonAA_DeleteEnemy:
-    dw Instruction_CommonAA_DeleteEnemy                                  ;AA8067;
-
-
-;;; $8069: Two NOPs ;;;
-NOPNOP_AA8069:
-; Used as palette by respawning enemy placeholder and Draygon's eye o_O
-    NOP                                                                  ;AA8069;
-    NOP                                                                  ;AA806A;
-
-
-;;; $806B: Instruction - Enemy.var5 = [[Y]] ;;;
-Instruction_CommonAA_Enemy0FB2_InY:
-; Used only by torizos (for enemy movement function) and escape etecoon (for enemy function)
-    LDA.W $0000,Y                                                        ;AA806B;
-    STA.W Enemy.var5,X                                                   ;AA806E;
-    INY                                                                  ;AA8071;
-    INY                                                                  ;AA8072;
-    RTL                                                                  ;AA8073;
-
-
-;;; $8074: Instruction - Enemy.var5 = RTS ;;;
-Instruction_CommonAA_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_AA807B                                                    ;AA8074;
-    STA.W Enemy.var5,X                                                   ;AA8077;
-    RTL                                                                  ;AA807A;
-
-
-RTS_AA807B:
-    RTS                                                                  ;AA807B;
-
-
-;;; $807C: Instruction - delete enemy ;;;
-Instruction_CommonAA_DeleteEnemy:
-    LDA.W Enemy.properties,X                                             ;AA807C;
-    ORA.W #$0200                                                         ;AA807F;
-    STA.W Enemy.properties,X                                             ;AA8082;
-    PLA                                                                  ;AA8085;
-    PEA.W ProcessEnemyInstructions_return-1                              ;AA8086;
-    RTL                                                                  ;AA8089;
-
-
-;;; $808A: Instruction - call function [[Y]] ;;;
-Instruction_CommonAA_CallFunctionInY:
-    LDA.W $0000,Y                                                        ;AA808A;
-    STA.B DP_Temp12                                                      ;AA808D;
-    PHY                                                                  ;AA808F;
-    PHX                                                                  ;AA8090;
-    PEA.W .manualReturn-1                                                ;AA8091;
-    JMP.W (DP_Temp12)                                                    ;AA8094;
-
-  .manualReturn:
-    PLX                                                                  ;AA8097;
-    PLY                                                                  ;AA8098;
-    INY                                                                  ;AA8099;
-    INY                                                                  ;AA809A;
-    RTL                                                                  ;AA809B;
-
-
-;;; $809C: Instruction - call function [[Y]] with A = [[Y] + 2] ;;;
-Instruction_CommonAA_CallFunctionInY_WithA:
-    LDA.W $0000,Y                                                        ;AA809C;
-    STA.B DP_Temp12                                                      ;AA809F;
-    LDA.W $0002,Y                                                        ;AA80A1;
-    PHY                                                                  ;AA80A4;
-    PHX                                                                  ;AA80A5;
-    PEA.W .manualReturn-1                                                ;AA80A6;
-    JMP.W (DP_Temp12)                                                    ;AA80A9;
-
-  .manualReturn:
-    PLX                                                                  ;AA80AC;
-    PLY                                                                  ;AA80AD;
-    TYA                                                                  ;AA80AE;
-    CLC                                                                  ;AA80AF;
-    ADC.W #$0004                                                         ;AA80B0;
-    TAY                                                                  ;AA80B3;
-    RTL                                                                  ;AA80B4;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonAA_CallExternalFunctionInY_AA80B5:
-    LDA.W $0000,Y                                                        ;AA80B5;
-    STA.B DP_Temp12                                                      ;AA80B8;
-    LDA.W $0001,Y                                                        ;AA80BA;
-    STA.B DP_Temp13                                                      ;AA80BD;
-    PHX                                                                  ;AA80BF;
-    PHY                                                                  ;AA80C0;
-    JSL.L .externalFunction                                              ;AA80C1;
-    PLY                                                                  ;AA80C5;
-    PLX                                                                  ;AA80C6;
-    INY                                                                  ;AA80C7;
-    INY                                                                  ;AA80C8;
-    INY                                                                  ;AA80C9;
-    RTL                                                                  ;AA80CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;AA80CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonAA_CallExternalFunctionInY_WithA_AA80CE:
-    LDA.W $0000,Y                                                        ;AA80CE;
-    STA.B DP_Temp12                                                      ;AA80D1;
-    LDA.W $0001,Y                                                        ;AA80D3;
-    STA.B DP_Temp13                                                      ;AA80D6;
-    LDA.W $0003,Y                                                        ;AA80D8;
-    PHX                                                                  ;AA80DB;
-    PHY                                                                  ;AA80DC;
-    JSL.L .externalFunction                                              ;AA80DD;
-    PLY                                                                  ;AA80E1;
-    PLX                                                                  ;AA80E2;
-    TYA                                                                  ;AA80E3;
-    CLC                                                                  ;AA80E4;
-    ADC.W #$0005                                                         ;AA80E5;
-    TAY                                                                  ;AA80E8;
-    RTL                                                                  ;AA80E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;AA80EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $80ED: Instruction - go to [[Y]] ;;;
-Instruction_CommonAA_GotoY:
-    LDA.W $0000,Y                                                        ;AA80ED;
-    TAY                                                                  ;AA80F0;
-    RTL                                                                  ;AA80F1;
-
-
-;;; $80F2: Instruction - go to [[Y]] + ±[[Y]] ;;;
-Instruction_CommonAA_GotoY_PlusY:
-    STY.B DP_Temp12                                                      ;AA80F2;
-    DEY                                                                  ;AA80F4;
-    LDA.W $0000,Y                                                        ;AA80F5;
-    XBA                                                                  ;AA80F8;
-    BMI .highByte                                                        ;AA80F9;
-    AND.W #$00FF                                                         ;AA80FB;
-    BRA +                                                                ;AA80FE;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;AA8100;
-
-+   CLC                                                                  ;AA8103;
-    ADC.B DP_Temp12                                                      ;AA8104;
-    TAY                                                                  ;AA8106;
-    RTL                                                                  ;AA8107;
-
-
-;;; $8108: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonAA_DecrementTimer_GotoYIfNonZero:
-    DEC.W Enemy.loopCounter,X                                            ;AA8108;
-    BNE Instruction_CommonAA_GotoY                                       ;AA810B;
-    INY                                                                  ;AA810D;
-    INY                                                                  ;AA810E;
-    RTL                                                                  ;AA810F;
-
-
-;;; $8110: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonAA_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W Enemy.loopCounter,X                                            ;AA8110;
-    BNE Instruction_CommonAA_GotoY                                       ;AA8113;
-    INY                                                                  ;AA8115;
-    INY                                                                  ;AA8116;
-    RTL                                                                  ;AA8117;
-
-
-;;; $8118: Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-Instruction_CommonAA_DecrementTimer_GotoY_PlusY_IfNonZero:
-    SEP #$20                                                             ;AA8118;
-    DEC.W Enemy.loopCounter,X                                            ;AA811A;
-    REP #$20                                                             ;AA811D;
-    BNE Instruction_CommonAA_GotoY_PlusY                                 ;AA811F;
-    INY                                                                  ;AA8121;
-    RTL                                                                  ;AA8122;
-
-
-;;; $8123: Instruction - timer = [[Y]] ;;;
-Instruction_CommonAA_TimerInY:
-    LDA.W $0000,Y                                                        ;AA8123;
-    STA.W Enemy.loopCounter,X                                            ;AA8126;
-    INY                                                                  ;AA8129;
-    INY                                                                  ;AA812A;
-    RTL                                                                  ;AA812B;
-
-
-;;; $812C: Instruction - skip next instruction ;;;
-Instruction_CommonAA_SkipNextInstruction:
-    INY                                                                  ;AA812C;
-    INY                                                                  ;AA812D;
-    RTL                                                                  ;AA812E;
-
-
-;;; $812F: Instruction - sleep ;;;
-Instruction_CommonAA_Sleep:
-    DEY                                                                  ;AA812F;
-    DEY                                                                  ;AA8130;
-    TYA                                                                  ;AA8131;
-    STA.W Enemy.instList,X                                               ;AA8132;
-    PLA                                                                  ;AA8135;
-    PEA.W ProcessEnemyInstructions_return-1                              ;AA8136;
-    RTL                                                                  ;AA8139;
-
-
-;;; $813A: Instruction - wait [[Y]] frames ;;;
-Instruction_CommonAA_WaitYFrames:
-; Set instruction timer and terminate processing enemy instructions
-; Used for running a delay that doesn't update graphics,
-; useful for e.g. GT eye beam attack ($AA:D10D), implemented by an instruction list that has no graphical instructions,
-; which allows it to be called from multiple different poses
-    LDA.W $0000,Y                                                        ;AA813A;
-    STA.W Enemy.instTimer,X                                              ;AA813D;
-    INY                                                                  ;AA8140;
-    INY                                                                  ;AA8141;
-    TYA                                                                  ;AA8142;
-    STA.W Enemy.instList,X                                               ;AA8143;
-    PLA                                                                  ;AA8146;
-    PEA.W ProcessEnemyInstructions_return-1                              ;AA8147;
-    RTL                                                                  ;AA814A;
-
-
-;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
-Instruction_CommonAA_TransferYBytesInYToVRAM:
-    PHX                                                                  ;AA814B;
-    LDX.W VRAMWriteStack                                                 ;AA814C;
-    LDA.W $0000,Y                                                        ;AA814F;
-    STA.B VRAMWrite.size,X                                               ;AA8152;
-    LDA.W $0002,Y                                                        ;AA8154;
-    STA.B VRAMWrite.src,X                                                ;AA8157;
-    LDA.W $0003,Y                                                        ;AA8159;
-    STA.B VRAMWrite.src+1,X                                              ;AA815C;
-    LDA.W $0005,Y                                                        ;AA815E;
-    STA.B VRAMWrite.dest,X                                               ;AA8161;
-    TXA                                                                  ;AA8163;
-    CLC                                                                  ;AA8164;
-    ADC.W #$0007                                                         ;AA8165;
-    STA.W VRAMWriteStack                                                 ;AA8168;
-    TYA                                                                  ;AA816B;
-    CLC                                                                  ;AA816C;
-    ADC.W #$0007                                                         ;AA816D;
-    TAY                                                                  ;AA8170;
-    PLX                                                                  ;AA8171;
-    RTL                                                                  ;AA8172;
-
-
-;;; $8173: Instruction - enable off-screen processing ;;;
-Instruction_CommonAA_EnableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;AA8173;
-    ORA.W #$0800                                                         ;AA8176;
-    STA.W Enemy.properties,X                                             ;AA8179;
-    RTL                                                                  ;AA817C;
-
-
-;;; $817D: Instruction - disable off-screen processing ;;;
-Instruction_CommonAA_DisableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;AA817D;
-    AND.W #$F7FF                                                         ;AA8180;
-    STA.W Enemy.properties,X                                             ;AA8183;
-    RTL                                                                  ;AA8186;
-
-
-;;; $8187: Common enemy speeds - linearly increasing ;;;
-CommonAAEnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;AA8187;
-  .subspeed:
-    dw       $0000                                                       ;AA8189;
-  .negatedSpeed:
-    dw             $0000                                                 ;AA818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;AA818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
-
-
-;;; $838F: Common enemy speeds - quadratically increasing ;;;
-CommonAAEnemySpeeds_QuadraticallyIncreasing:
-; I.e. gravity
-; Used by e.g. Botwoon when dying and falling to the floor
-;        _____________________ Subspeed
-;       |      _______________ Speed
-;       |     |      _________ Negated subspeed
-;       |     |     |      ___ Negated speed
-;       |     |     |     |
-  .subspeed:
-    dw $0000                                                             ;AA838F;
-  .speed:
-    dw       $0000                                                       ;AA8391;
-  .negatedSubspeed:
-    dw             $0000                                                 ;AA8393;
-  .negatedSpeed:
-    dw                   $0000                                           ;AA8395;
-    dw $0109,$0000,$FEF7,$FFFF
-    dw $031B,$0000,$FCE5,$FFFF
-    dw $0636,$0000,$F9CA,$FFFF
-    dw $0A5A,$0000,$F5A6,$FFFF
-    dw $0F87,$0000,$F079,$FFFF
-    dw $15BD,$0000,$EA43,$FFFF
-    dw $1CFC,$0000,$E304,$FFFF
-    dw $2544,$0000,$DABC,$FFFF
-    dw $2E95,$0000,$D16B,$FFFF
-    dw $38EF,$0000,$C711,$FFFF
-    dw $4452,$0000,$BBAE,$FFFF
-    dw $50BE,$0000,$AF42,$FFFF
-    dw $5E33,$0000,$A1CD,$FFFF
-    dw $6CB1,$0000,$934F,$FFFF
-    dw $7C38,$0000,$83C8,$FFFF
-    dw $8CC8,$0000,$7338,$FFFF
-    dw $9E61,$0000,$619F,$FFFF
-    dw $B103,$0000,$4EFD,$FFFF
-    dw $C4AE,$0000,$3B52,$FFFF
-    dw $D962,$0000,$269E,$FFFF
-    dw $EF1F,$0000,$10E1,$FFFF
-    dw $05E5,$0000,$FA1B,$FFFF
-    dw $14B4,$0001,$EB4C,$FFFE
-    dw $2D8C,$0001,$D274,$FFFE
-    dw $476D,$0001,$B893,$FFFE
-    dw $6257,$0001,$9DA9,$FFFE
-    dw $7E4A,$0001,$81B6,$FFFE
-    dw $9B46,$0001,$64BA,$FFFE
-    dw $B94B,$0001,$46B5,$FFFE
-    dw $D859,$0001,$27A7,$FFFE
-    dw $F870,$0001,$0790,$FFFE
-    dw $1090,$0002,$EF70,$FFFD
-    dw $32B9,$0002,$CD47,$FFFD
-    dw $55EB,$0002,$AA15,$FFFD
-    dw $7A26,$0002,$85DA,$FFFD
-    dw $9F6A,$0002,$6096,$FFFD
-    dw $C5B7,$0002,$3A49,$FFFD
-    dw $ED0D,$0002,$12F3,$FFFD
-    dw $0C6C,$0003,$F394,$FFFC
-    dw $35D4,$0003,$CA2C,$FFFC
-    dw $6045,$0003,$9FBB,$FFFC
-    dw $8BBF,$0003,$7441,$FFFC
-    dw $B842,$0003,$47BE,$FFFC
-    dw $E5CE,$0003,$1A32,$FFFC
-    dw $0B63,$0004,$F49D,$FFFB
-    dw $3B01,$0004,$C4FF,$FFFB
-    dw $6BA8,$0004,$9458,$FFFB
-    dw $9D58,$0004,$62A8,$FFFB
-    dw $D011,$0004,$2FEF,$FFFB
-    dw $03D3,$0004,$FC2D,$FFFB
-    dw $2F9E,$0005,$D062,$FFFA
-    dw $6572,$0005,$9A8E,$FFFA
-    dw $9C4F,$0005,$63B1,$FFFA
-    dw $D435,$0005,$2BCB,$FFFA
-    dw $0424,$0006,$FBDC,$FFF9
-    dw $3E1C,$0006,$C1E4,$FFF9
-    dw $791D,$0006,$86E3,$FFF9
-    dw $B527,$0006,$4AD9,$FFF9
-    dw $F23A,$0006,$0DC6,$FFF9
-    dw $2756,$0007,$D8AA,$FFF8
-    dw $667B,$0007,$9985,$FFF8
-    dw $A6A9,$0007,$5957,$FFF8
-    dw $E7E0,$0007,$1820,$FFF8
-    dw $2120,$0008,$DEE0,$FFF7
-    dw $6469,$0008,$9B97,$FFF7
-    dw $A8BB,$0008,$5745,$FFF7
-    dw $EE16,$0008,$11EA,$FFF7
-    dw $2B7A,$0009,$D486,$FFF6
-    dw $72E7,$0009,$8D19,$FFF6
-    dw $BB5D,$0009,$44A3,$FFF6
-    dw $04DC,$0009,$FB24,$FFF6
-    dw $4664,$000A,$B99C,$FFF5
-    dw $91F5,$000A,$6E0B,$FFF5
-    dw $DE8F,$000A,$2171,$FFF5
-    dw $2332,$000B,$DCCE,$FFF4
-    dw $71DE,$000B,$8E22,$FFF4
-    dw $C193,$000B,$3E6D,$FFF4
-    dw $0951,$000C,$F6AF,$FFF3
-    dw $5B18,$000C,$A4E8,$FFF3
-    dw $ADE8,$000C,$5218,$FFF3
-    dw $01C1,$000C,$FE3F,$FFF3
-    dw $4DA3,$000D,$B25D,$FFF2
-    dw $A38E,$000D,$5C72,$FFF2
-    dw $FA82,$000D,$057E,$FFF2
-    dw $497F,$000E,$B681,$FFF1
-    dw $A285,$000E,$5D7B,$FFF1
-    dw $FC94,$000E,$036C,$FFF1
-    dw $4EAC,$000F,$B154,$FFF0
-    dw $AACD,$000F,$5533,$FFF0
-    dw $07F7,$000F,$F809,$FFF0
-    dw $5D2A,$0010,$A2D6,$FFEF
-    dw $BC66,$0010,$439A,$FFEF
-    dw $13AB,$0011,$EC55,$FFEE
-    dw $74F9,$0011,$8B07,$FFEE
+namespace CommonAA
+incsrc "common_enemy_functions.asm"
+namespace off
 
 
 ;;; $8687: Torizo palettes ;;;
@@ -4112,13 +3530,13 @@ InstList_Torizo_SpecialCallable_BlowUpBombTorizosGut:
     dw Instruction_Torizo_SetAnimationLock                               ;AAB0E9;
     dw Instruction_Torizo_Spawn5LowHealthExplosion_SleepFor28Frames,$0000 ;AAB0EB;
     dw Instruction_Torizo_MarkBTGutBlownUp_Spawn6BTDroolProjectiles      ;AAB0EF;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB0F1;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB0F1;
     dw $0040 : dl Tiles_Torizo+$200 : dw $7300                           ;AAB0F3;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB0FA;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB0FA;
     dw $0040 : dl Tiles_Torizo+$400 : dw $7400                           ;AAB0FC;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB103;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB103;
     dw $0020 : dl Tiles_Torizo+$240 : dw $7E70                           ;AAB105;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB10C;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB10C;
     dw $0020 : dl Tiles_Torizo+$440 : dw $7F70                           ;AAB10E;
     dw Instruction_Torizo_FunctionInY                                    ;AAB115;
     dw Function_Torizo_NormalMovement                                    ;AAB117;
@@ -4157,24 +3575,24 @@ InstList_Torizo_Callable_BlowUpBombTorizosFace:
     dw Instruction_Torizo_SetAnimationLock                               ;AAB159;
     dw Instruction_Torizo_Spawn5LowHealthExplosion_SleepFor28Frames,$0006 ;AAB15B;
     dw Instruction_Torizo_MarkBombTorizoFaceBlownUp                      ;AAB15F;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB161;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB161;
     dw $0020 : dl Tiles_Torizo+$260 : dw $7E50                           ;AAB163;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB16A;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB16A;
     dw $0020 : dl Tiles_Torizo+$460 : dw $7F50                           ;AAB16C;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB173;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB173;
     dw $0040 : dl Tiles_Blank : dw $7C80                                 ;AAB175;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB17C;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB17C;
     dw $0040 : dl Tiles_Blank : dw $7CA0                                 ;AAB17E;
-    dw Instruction_Common_WaitYFrames,$0001                              ;AAB185;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB189;
+    dw Common_Instruction_WaitYFrames,$0001                              ;AAB185;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB189;
     dw $0040 : dl Tiles_Blank : dw $7D80                                 ;AAB18B;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB192;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB192;
     dw $0040 : dl Tiles_Blank : dw $7DA0                                 ;AAB194;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB19B;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB19B;
     dw $0040 : dl Tiles_Blank : dw $7E80                                 ;AAB19D;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB1A4;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB1A4;
     dw $0040 : dl Tiles_Blank : dw $7F80                                 ;AAB1A6;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB1AD;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB1AD;
     dw $0020 : dl Tiles_Blank : dw $79F0                                 ;AAB1AF;
     dw Instruction_Torizo_FunctionInY                                    ;AAB1B6;
     dw Function_Torizo_NormalMovement                                    ;AAB1B8;
@@ -4195,41 +3613,41 @@ InstList_Torizo_DeathSequence_0:
     dw Instruction_Torizo_FunctionInY                                    ;AAB1C8;
     dw RTS_AAC6AB                                                        ;AAB1CA;
     dw Instruction_Torizo_SetAnimationLock                               ;AAB1CC;
-    dw Instruction_Common_TimerInY,$0008                                 ;AAB1CE;
+    dw Common_Instruction_TimerInY,$0008                                 ;AAB1CE;
 
 InstList_Torizo_DeathSequence_1:
     dw Instruction_Torizo_SpawnTorizoDeathExplosion_SleepFor1IFrame      ;AAB1D2;
-    dw Instruction_Common_WaitYFrames,$0006                              ;AAB1D4;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAB1D8;
+    dw Common_Instruction_WaitYFrames,$0006                              ;AAB1D4;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AAB1D8;
     dw InstList_Torizo_DeathSequence_1                                   ;AAB1DA;
     dw Instruction_Torizo_SetupPaletteTransitionToBlack                  ;AAB1DC;
-    dw Instruction_Common_TimerInY,$000E                                 ;AAB1DE;
+    dw Common_Instruction_TimerInY,$000E                                 ;AAB1DE;
 
 InstList_Torizo_DeathSequence_2:
     dw Instruction_Torizo_SpawnTorizoDeathExplosion_SleepFor1IFrame      ;AAB1E2;
     dw Instruction_Torizo_SetAsVisible                                   ;AAB1E4;
-    dw Instruction_Common_WaitYFrames,$0002                              ;AAB1E6;
+    dw Common_Instruction_WaitYFrames,$0002                              ;AAB1E6;
     dw Instruction_Torizo_SetAsInvisible                                 ;AAB1EA;
-    dw Instruction_Common_WaitYFrames,$0002                              ;AAB1EC;
+    dw Common_Instruction_WaitYFrames,$0002                              ;AAB1EC;
     dw Instruction_Torizo_SpawnTorizoDeathExplosion_SleepFor1IFrame      ;AAB1F0;
     dw Instruction_Torizo_SetAsVisible                                   ;AAB1F2;
-    dw Instruction_Common_WaitYFrames,$0002                              ;AAB1F4;
+    dw Common_Instruction_WaitYFrames,$0002                              ;AAB1F4;
     dw Instruction_Torizo_SetAsInvisible                                 ;AAB1F8;
-    dw Instruction_Common_WaitYFrames,$0002                              ;AAB1FA;
+    dw Common_Instruction_WaitYFrames,$0002                              ;AAB1FA;
     dw Instruction_Torizo_SetAsVisible                                   ;AAB1FE;
-    dw Instruction_Common_WaitYFrames,$0002                              ;AAB200;
+    dw Common_Instruction_WaitYFrames,$0002                              ;AAB200;
     dw Instruction_Torizo_SetAsInvisible                                 ;AAB204;
-    dw Instruction_Common_WaitYFrames,$0002                              ;AAB206;
+    dw Common_Instruction_WaitYFrames,$0002                              ;AAB206;
     dw Instruction_Torizo_SetAsVisible                                   ;AAB20A;
-    dw Instruction_Common_WaitYFrames,$0002                              ;AAB20C;
+    dw Common_Instruction_WaitYFrames,$0002                              ;AAB20C;
     dw Instruction_Torizo_SetAsInvisible                                 ;AAB210;
-    dw Instruction_Common_WaitYFrames,$0002                              ;AAB212;
+    dw Common_Instruction_WaitYFrames,$0002                              ;AAB212;
     dw Instruction_Torizo_AdvanceGradualColorChange                      ;AAB216;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAB218;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AAB218;
     dw InstList_Torizo_DeathSequence_2                                   ;AAB21A;
-    dw Instruction_Common_WaitYFrames,$0040                              ;AAB21C;
+    dw Common_Instruction_WaitYFrames,$0040                              ;AAB21C;
     dw Instruction_Torizo_SetBossBit_QueueElevatorMusic_SpawnDrops       ;AAB220;
-    dw Instruction_Common_DeleteEnemy                                    ;AAB222;
+    dw Common_Instruction_DeleteEnemy                                    ;AAB222;
 
 
 ;;; $B224: Instruction - set enemy as visible ;;;
@@ -4312,38 +3730,38 @@ InstList_Torizo_BombTorizo_Initial_0:
     dw $0001,ExtendedSpritemap_Torizo_Blank                              ;AAB87D;
     dw Instruction_Torizo_FunctionInY                                    ;AAB881;
     dw Function_Torizo_WakeWhenBombTorizoChozoFinishesCrumbling          ;AAB883;
-    dw Instruction_Common_Sleep                                          ;AAB885;
+    dw Common_Instruction_Sleep                                          ;AAB885;
     dw Instruction_Torizo_FunctionInY                                    ;AAB887;
     dw Function_Torizo_SimpleMovement                                    ;AAB889;
     dw $0030,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB88B;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB88F;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB88F;
     dw $0040 : dl Tiles_Torizo : dw $7D80                                ;AAB891;
     dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB896;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB89C;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB89C;
     dw $0040 : dl Tiles_Torizo+$40 : dw $7D80                            ;AAB89E;
     dw $0010,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8A3;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB8A9;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB8A9;
     dw $0040 : dl Tiles_Torizo+$80 : dw $7D80                            ;AAB8AB;
     dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8B0;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB8B6;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB8B6;
     dw $0040 : dl Tiles_Torizo+$C0 : dw $7D80                            ;AAB8B8;
     dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8BD;
-    dw Instruction_Common_TimerInY,$0002                                 ;AAB8C3;
+    dw Common_Instruction_TimerInY,$0002                                 ;AAB8C3;
 
 InstList_Torizo_BombTorizo_Initial_1:
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8C7;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB8CB;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB8CB;
     dw $0040 : dl Tiles_Torizo : dw $7D80                                ;AAB8CD;
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8D6;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB8D8;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB8D8;
     dw $0040 : dl Tiles_Torizo+$40 : dw $7D80                            ;AAB8DA;
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8E3;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB8E5;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB8E5;
     dw $0040 : dl Tiles_Torizo+$80 : dw $7D80                            ;AAB8E7;
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8F0;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB8F2;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAB8F2;
     dw $0040 : dl Tiles_Torizo+$C0 : dw $7D80                            ;AAB8F4;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAB8FB;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AAB8FB;
     dw InstList_Torizo_BombTorizo_Initial_1                              ;AAB8FD;
     dw $0030,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8FF;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0000              ;AAB903;
@@ -4358,18 +3776,18 @@ InstList_Torizo_BombTorizo_Initial_1:
     dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5      ;AAB925;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$000A              ;AAB92B;
     dw Instruction_Torizo_SetupPaletteTransitionToNormalTorizo           ;AAB92F;
-    dw Instruction_Common_TimerInY,$0010                                 ;AAB931;
+    dw Common_Instruction_TimerInY,$0010                                 ;AAB931;
 
 InstList_Torizo_BombTorizo_Initial_2:
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6      ;AAB935;
     dw Instruction_Torizo_AdvanceGradualColorChange                      ;AAB939;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAB93B;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AAB93B;
     dw InstList_Torizo_BombTorizo_Initial_2                              ;AAB93D;
     dw RTL_AAC2C8                                                        ;AAB93F;
     dw Instruction_Torizo_ClearAnimationLock                             ;AAB941;
     dw Instruction_Torizo_StartFightMusic_BombTorizoBellyPaletteFX       ;AAB943;
     dw $0010,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6      ;AAB945;
-    dw Instruction_Common_GotoY                                          ;AAB949;
+    dw Common_Instruction_GotoY                                          ;AAB949;
     dw InstList_Torizo_FacingLeft_Walking_LeftLegMoving                  ;AAB94B;
 
 
@@ -4403,7 +3821,7 @@ InstList_Torizo_FacingLeft_Walking_RightLegMoving:
     dw Instruction_Torizo_SetSteppedLeftWithLeftFootState                ;AAB96C;
     dw Instruction_Torizo_FunctionInY                                    ;AAB96E;
     dw Function_Torizo_NormalMovement                                    ;AAB970;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAB972;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAB972;
     dw Function_Torizo_Movement_Walking                                  ;AAB974;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AAB976;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAB978;
@@ -4434,7 +3852,7 @@ InstList_Torizo_FacingLeft_Walking_LeftLegMoving:
     dw Instruction_Torizo_SetSteppedLeftWithRightFootState               ;AAB9B6;
     dw Instruction_Torizo_FunctionInY                                    ;AAB9B8;
     dw Function_Torizo_NormalMovement                                    ;AAB9BA;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAB9BC;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAB9BC;
     dw Function_Torizo_Movement_Walking                                  ;AAB9BE;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AAB9C0;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAB9C2;
@@ -4458,13 +3876,13 @@ InstList_Torizo_FacingLeft_Walking_LeftLegMoving:
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0012 ;AAB9F4;
     dw $0006,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_4       ;AAB9F6;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0000 ;AAB9FC;
-    dw Instruction_Common_GotoY                                          ;AABA00;
+    dw Common_Instruction_GotoY                                          ;AABA00;
     dw InstList_Torizo_FacingLeft_Walking_RightLegMoving                 ;AABA02;
 
 
 ;;; $BA04: Instruction list - callable - spewing chozo orbs - facing left - right foot forward ;;;
 InstList_Torizo_FacingLeft_SpewingChozoOrbs_RightFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABA04;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABA04;
     dw Function_Torizo_Movement_Attacking                                ;AABA06;
     dw $0010,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AABA08;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_0  ;AABA0C;
@@ -4473,25 +3891,25 @@ InstList_Torizo_FacingLeft_SpewingChozoOrbs_RightFootFwd_0:
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3  ;AABA18;
     dw $0010,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_4  ;AABA1C;
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AABA20;
-    dw Instruction_Common_TimerInY,$0003                                 ;AABA22;
+    dw Common_Instruction_TimerInY,$0003                                 ;AABA22;
 
 InstList_Torizo_FacingLeft_SpewingChozoOrbs_RightFootFwd_1:
     dw Instruction_Torizo_SpawnBombTorizosChozoOrbs                      ;AABA26;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AABA28;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABA2C;
+    dw Common_Instruction_WaitYFrames,$0010                              ;AABA28;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AABA2C;
     dw InstList_Torizo_FacingLeft_SpewingChozoOrbs_RightFootFwd_1        ;AABA2E;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3  ;AABA30;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_2  ;AABA34;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_1  ;AABA38;
     dw $0048,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_0  ;AABA3C;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABA40;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABA40;
     dw Function_Torizo_Movement_Walking                                  ;AABA42;
     dw Instruction_Torizo_Return                                         ;AABA44;
 
 
 ;;; $BA46: Instruction list - callable - spewing chozo orbs - facing left - left foot forward ;;;
 InstList_Torizo_FacingLeft_SpewingChozoOrbs_LeftFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABA46;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABA46;
     dw Function_Torizo_Movement_Attacking                                ;AABA48;
     dw $0010,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward  ;AABA4A;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_0   ;AABA4E;
@@ -4500,27 +3918,27 @@ InstList_Torizo_FacingLeft_SpewingChozoOrbs_LeftFootFwd_0:
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3   ;AABA5A;
     dw $0010,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_4   ;AABA5E;
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AABA62;
-    dw Instruction_Common_TimerInY,$0003                                 ;AABA64;
+    dw Common_Instruction_TimerInY,$0003                                 ;AABA64;
 
 InstList_Torizo_FacingLeft_SpewingChozoOrbs_LeftFootFwd_1:
     dw Instruction_Torizo_SpawnBombTorizosChozoOrbs                      ;AABA68;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AABA6A;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABA6E;
+    dw Common_Instruction_WaitYFrames,$0010                              ;AABA6A;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AABA6E;
     dw InstList_Torizo_FacingLeft_SpewingChozoOrbs_LeftFootFwd_1         ;AABA70;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3   ;AABA72;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_2   ;AABA76;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_1   ;AABA7A;
     dw $0048,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_0   ;AABA7E;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABA82;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABA82;
     dw Function_Torizo_Movement_Walking                                  ;AABA84;
     dw Instruction_Torizo_Return                                         ;AABA86;
 
 
 ;;; $BA88: Instruction list - callable - sonic booms - facing left - right foot forward ;;;
 InstList_Torizo_FacingLeft_SonicBooms_RightFootForward_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABA88;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABA88;
     dw Function_Torizo_Movement_Attacking                                ;AABA8A;
-    dw Instruction_Common_TimerInY,$0004                                 ;AABA8C;
+    dw Common_Instruction_TimerInY,$0004                                 ;AABA8C;
 
 InstList_Torizo_FacingLeft_SonicBooms_RightFootForward_1:
     dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AABA90;
@@ -4545,18 +3963,18 @@ InstList_Torizo_FacingLeft_SonicBooms_RightFootForward_1:
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0001   ;AABADC;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_0 ;AABADE;
     dw $0038,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AABAE4;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABAE8;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AABAE8;
     dw InstList_Torizo_FacingLeft_SonicBooms_RightFootForward_1          ;AABAEA;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABAEC;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABAEC;
     dw Function_Torizo_Movement_Walking                                  ;AABAEE;
     dw Instruction_Torizo_Return                                         ;AABAF0;
 
 
 ;;; $BAF2: Instruction list - callable - sonic booms - facing left - left foot forward ;;;
 InstList_Torizo_FacingLeft_SonicBooms_LeftFootForward_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABAF2;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABAF2;
     dw Function_Torizo_Movement_Attacking                                ;AABAF4;
-    dw Instruction_Common_TimerInY,$0004                                 ;AABAF6;
+    dw Common_Instruction_TimerInY,$0004                                 ;AABAF6;
 
 InstList_Torizo_FacingLeft_SonicBooms_LeftFootForward_1:
     dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward  ;AABAFA;
@@ -4581,16 +3999,16 @@ InstList_Torizo_FacingLeft_SonicBooms_LeftFootForward_1:
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0001   ;AABB46;
     dw $0002,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_0  ;AABB4A;
     dw $0038,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AABB4E;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABB52;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AABB52;
     dw InstList_Torizo_FacingLeft_SonicBooms_LeftFootForward_1           ;AABB54;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABB56;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABB56;
     dw Function_Torizo_Movement_Walking                                  ;AABB58;
     dw Instruction_Torizo_Return                                         ;AABB5A;
 
 
 ;;; $BB5C: Instruction list - callable - explosive swipe - facing left - right foot forward ;;;
 InstList_Torizo_FacingLeft_ExplosiveSwipe_RightFootForward:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABB5C;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABB5C;
     dw Function_Torizo_Movement_Attacking                                ;AABB5E;
     dw $0003,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AABB60;
     dw $0003,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_0 ;AABB64;
@@ -4622,14 +4040,14 @@ InstList_Torizo_FacingLeft_ExplosiveSwipe_RightFootForward:
     dw Instruction_Torizo_SpawnBombTorizoExplosiveSwipeWithParamY,$0012  ;AABBCC;
     dw $0001,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_0 ;AABBCE;
     dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AABBD4;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABBD8;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABBD8;
     dw Function_Torizo_Movement_Walking                                  ;AABBDA;
     dw Instruction_Torizo_Return                                         ;AABBDC;
 
 
 ;;; $BBDE: Instruction list - callable - explosive swipe - facing left - left foot forward ;;;
 InstList_Torizo_FacingLeft_ExplosiveSwipe_LeftFootForward:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABBDE;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABBDE;
     dw Function_Torizo_Movement_Attacking                                ;AABBE0;
     dw $0003,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward  ;AABBE2;
     dw $0003,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_0 ;AABBE6;
@@ -4661,14 +4079,14 @@ InstList_Torizo_FacingLeft_ExplosiveSwipe_LeftFootForward:
     dw Instruction_Torizo_SpawnBombTorizoExplosiveSwipeWithParamY,$0012  ;AABC4E;
     dw $0001,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_0  ;AABC50;
     dw $0010,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AABC56;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABC5A;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABC5A;
     dw Function_Torizo_Movement_Walking                                  ;AABC5C;
     dw Instruction_Torizo_Return                                         ;AABC5E;
 
 
 ;;; $BC60: Instruction list - jumping forwards - facing left ;;;
 InstList_Torizo_FacingLeft_JumpingForwards_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABC60;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABC60;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AABC62;
     dw Instruction_Torizo_LinkInstructionInY                             ;AABC64;
     dw InstList_Torizo_FacingLeft_Falling_0                              ;AABC66;
@@ -4683,14 +4101,14 @@ InstList_Torizo_FacingLeft_JumpingForwards_1:
 
 ;;; $BC78: Instruction list - falling - facing left ;;;
 InstList_Torizo_FacingLeft_Falling_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABC78;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABC78;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AABC7A;
     dw Instruction_Torizo_LinkInstructionInY                             ;AABC7C;
     dw InstList_Torizo_FacingLeft_Falling_2                              ;AABC7E;
 
 InstList_Torizo_FacingLeft_Falling_1:
     dw $0005,ExtendedSpritemaps_Torizo_Jumping_Falling_FacingLeft_1      ;AABC80;
-    dw Instruction_Common_GotoY                                          ;AABC84;
+    dw Common_Instruction_GotoY                                          ;AABC84;
     dw InstList_Torizo_FacingLeft_Falling_1                              ;AABC86;
 
 InstList_Torizo_FacingLeft_Falling_2:
@@ -4699,13 +4117,13 @@ InstList_Torizo_FacingLeft_Falling_2:
     dw Instruction_Torizo_GotoY_IfFaceBlownUp_ElseGotoY2_IfGolden        ;AABC8C;
     dw InstList_Torizo_FacingLeft_Faceless_Walking_LeftLegMoving         ;AABC8E;
     dw InstList_GoldenTorizo_WalkingLeft_LeftLegMoving                   ;AABC90;
-    dw Instruction_Common_GotoY                                          ;AABC92;
+    dw Common_Instruction_GotoY                                          ;AABC92;
     dw InstList_Torizo_FacingLeft_Walking_LeftLegMoving                  ;AABC94;
 
 
 ;;; $BC96: Instruction list - jumping backwards - facing left - landing left foot forward ;;;
 InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABC96;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABC96;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AABC98;
     dw Instruction_Torizo_LinkInstructionInY                             ;AABC9A;
     dw InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_2      ;AABC9C;
@@ -4718,14 +4136,14 @@ InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_1:
     dw InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_1      ;AABCAC;
 
 InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_2:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABCAE;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABCAE;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AABCB0;
     dw Instruction_Torizo_LinkInstructionInY                             ;AABCB2;
     dw InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_4      ;AABCB4;
 
 InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_3:
     dw $0005,ExtendedSpritemaps_Torizo_Jumping_Falling_FacingLeft_1      ;AABCB6;
-    dw Instruction_Common_GotoY                                          ;AABCBA;
+    dw Common_Instruction_GotoY                                          ;AABCBA;
     dw InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_3      ;AABCBC;
 
 InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_4:
@@ -4737,13 +4155,13 @@ InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_4:
     dw Instruction_Torizo_CallY_OrY2_ForBombTorizoAttack                 ;AABCC8;
     dw InstList_Torizo_FacingLeft_SpewingChozoOrbs_LeftFootFwd_0         ;AABCCA;
     dw InstList_Torizo_FacingLeft_SonicBooms_LeftFootForward_0           ;AABCCC;
-    dw Instruction_Common_GotoY                                          ;AABCCE;
+    dw Common_Instruction_GotoY                                          ;AABCCE;
     dw InstList_Torizo_FacingLeft_Walking_RightLegMoving                 ;AABCD0;
 
 
 ;;; $BCD2: Instruction list - jumping backwards - facing left - landing right foot forward ;;;
 InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABCD2;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABCD2;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AABCD4;
     dw Instruction_Torizo_LinkInstructionInY                             ;AABCD6;
     dw InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_2         ;AABCD8;
@@ -4756,14 +4174,14 @@ InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_1:
     dw InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_1         ;AABCE8;
 
 InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_2:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABCEA;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABCEA;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AABCEC;
     dw Instruction_Torizo_LinkInstructionInY                             ;AABCEE;
     dw InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_4         ;AABCF0;
 
 InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_3:
     dw $0005,ExtendedSpritemaps_Torizo_Jumping_Falling_FacingLeft_1      ;AABCF2;
-    dw Instruction_Common_GotoY                                          ;AABCF6;
+    dw Common_Instruction_GotoY                                          ;AABCF6;
     dw InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_3         ;AABCF8;
 
 InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_4:
@@ -4775,7 +4193,7 @@ InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_4:
     dw Instruction_Torizo_CallY_OrY2_ForBombTorizoAttack                 ;AABD04;
     dw InstList_Torizo_FacingLeft_SpewingChozoOrbs_RightFootFwd_0        ;AABD06;
     dw InstList_Torizo_FacingLeft_SonicBooms_RightFootForward_0          ;AABD08;
-    dw Instruction_Common_GotoY                                          ;AABD0A;
+    dw Common_Instruction_GotoY                                          ;AABD0A;
     dw InstList_Torizo_FacingLeft_Walking_LeftLegMoving                  ;AABD0C;
 
 
@@ -4792,7 +4210,7 @@ InstList_Torizo_FacingLeft_Faceless_Walking_RightLegMoving:
     dw Instruction_Torizo_SetSteppedLeftWithLeftFootState                ;AABD18;
     dw Instruction_Torizo_FunctionInY                                    ;AABD1A;
     dw Function_Torizo_NormalMovement                                    ;AABD1C;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABD1E;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABD1E;
     dw Function_Torizo_Movement_Walking                                  ;AABD20;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AABD22;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AABD24;
@@ -4815,7 +4233,7 @@ InstList_Torizo_FacingLeft_Faceless_Walking_LeftLegMoving:
     dw Instruction_Torizo_SetSteppedLeftWithRightFootState               ;AABD52;
     dw Instruction_Torizo_FunctionInY                                    ;AABD54;
     dw Function_Torizo_NormalMovement                                    ;AABD56;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABD58;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABD58;
     dw Function_Torizo_Movement_Walking                                  ;AABD5A;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AABD5C;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AABD5E;
@@ -4831,7 +4249,7 @@ InstList_Torizo_FacingLeft_Faceless_Walking_LeftLegMoving:
     dw Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY,$0012      ;AABD80;
     dw $0005,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_4       ;AABD82;
     dw Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY,$0000      ;AABD88;
-    dw Instruction_Common_GotoY                                          ;AABD8C;
+    dw Common_Instruction_GotoY                                          ;AABD8C;
     dw InstList_Torizo_FacingLeft_Faceless_Walking_RightLegMoving        ;AABD8E;
 
 
@@ -4843,7 +4261,7 @@ UNUSED_InstList_Torizo_FacingRight_StandUp_AABD90:
     dw ExtendedSpritemap_Torizo_Blank                                    ;AABD94;
     dw Instruction_Torizo_FunctionInY                                    ;AABD96;
     dw Function_Torizo_WakeWhenBombTorizoChozoFinishesCrumbling          ;AABD98;
-    dw Instruction_Common_Sleep                                          ;AABD9A;
+    dw Common_Instruction_Sleep                                          ;AABD9A;
     dw Instruction_Torizo_FunctionInY                                    ;AABD9C;
     dw Function_Torizo_SimpleMovement                                    ;AABD9E;
     dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_0     ;AABDA0;
@@ -4859,7 +4277,7 @@ UNUSED_InstList_Torizo_FacingRight_StandUp_AABD90:
     dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_5     ;AABDC6;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$001A              ;AABDCC;
     dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_6     ;AABDCE;
-    dw Instruction_Common_GotoY                                          ;AABDD4;
+    dw Common_Instruction_GotoY                                          ;AABDD4;
     dw InstList_Torizo_FacingRight_Walking_RightLegMoving                ;AABDD6;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -4877,7 +4295,7 @@ InstList_Torizo_FacingRight_Walking_LeftLegMoving:
     dw Instruction_Torizo_SetSteppedRightWithRightFootState              ;AABDE2;
     dw Instruction_Torizo_FunctionInY                                    ;AABDE4;
     dw Function_Torizo_NormalMovement                                    ;AABDE6;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABDE8;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABDE8;
     dw Function_Torizo_Movement_Walking                                  ;AABDEA;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AABDEC;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AABDEE;
@@ -4910,7 +4328,7 @@ InstList_Torizo_FacingRight_Walking_RightLegMoving:
     dw Instruction_Torizo_SetSteppedRightWithLeftFootState               ;AABE30;
     dw Instruction_Torizo_FunctionInY                                    ;AABE32;
     dw Function_Torizo_NormalMovement                                    ;AABE34;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABE36;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABE36;
     dw Function_Torizo_Movement_Walking                                  ;AABE38;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AABE3A;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AABE3C;
@@ -4934,13 +4352,13 @@ InstList_Torizo_FacingRight_Walking_RightLegMoving:
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0026;AABE6E;
     dw $0006,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_4     ;AABE70;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0014;AABE76;
-    dw Instruction_Common_GotoY                                          ;AABE7A;
+    dw Common_Instruction_GotoY                                          ;AABE7A;
     dw InstList_Torizo_FacingRight_Walking_LeftLegMoving                 ;AABE7C;
 
 
 ;;; $BE7E: Instruction list - callable - spewing chozo orbs - facing right - left foot forward ;;;
 InstList_Torizo_FacingRight_SpewingChozoOrbs_LeftFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABE7E;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABE7E;
     dw Function_Torizo_Movement_Attacking                                ;AABE80;
     dw $0010,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AABE82;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_0  ;AABE86;
@@ -4949,25 +4367,25 @@ InstList_Torizo_FacingRight_SpewingChozoOrbs_LeftFootFwd_0:
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3  ;AABE92;
     dw $0010,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_4  ;AABE96;
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AABE9A;
-    dw Instruction_Common_TimerInY,$0003                                 ;AABE9C;
+    dw Common_Instruction_TimerInY,$0003                                 ;AABE9C;
 
 InstList_Torizo_FacingRight_SpewingChozoOrbs_LeftFootFwd_1:
     dw Instruction_Torizo_SpawnBombTorizosChozoOrbs                      ;AABEA0;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AABEA2;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABEA6;
+    dw Common_Instruction_WaitYFrames,$0010                              ;AABEA2;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AABEA6;
     dw InstList_Torizo_FacingRight_SpewingChozoOrbs_LeftFootFwd_1        ;AABEA8;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3  ;AABEAA;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_2  ;AABEAE;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_1  ;AABEB2;
     dw $0048,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_0  ;AABEB6;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABEBA;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABEBA;
     dw Function_Torizo_Movement_Walking                                  ;AABEBC;
     dw Instruction_Torizo_Return                                         ;AABEBE;
 
 
 ;;; $BEC0: Instruction list - callable - spewing chozo orbs - facing right - right foot forward ;;;
 InstList_Torizo_FacingRight_SpewingChozoOrbs_RightFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABEC0;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABEC0;
     dw Function_Torizo_Movement_Attacking                                ;AABEC2;
     dw $0010,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AABEC4;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_0 ;AABEC8;
@@ -4976,27 +4394,27 @@ InstList_Torizo_FacingRight_SpewingChozoOrbs_RightFootFwd_0:
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3 ;AABED4;
     dw $0010,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_4 ;AABED8;
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AABEDC;
-    dw Instruction_Common_TimerInY,$0003                                 ;AABEDE;
+    dw Common_Instruction_TimerInY,$0003                                 ;AABEDE;
 
 InstList_Torizo_FacingRight_SpewingChozoOrbs_RightFootFwd_1:
     dw Instruction_Torizo_SpawnBombTorizosChozoOrbs                      ;AABEE2;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AABEE4;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABEE8;
+    dw Common_Instruction_WaitYFrames,$0010                              ;AABEE4;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AABEE8;
     dw InstList_Torizo_FacingRight_SpewingChozoOrbs_RightFootFwd_1       ;AABEEA;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3 ;AABEEC;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_2 ;AABEF0;
     dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_1 ;AABEF4;
     dw $0048,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_0 ;AABEF8;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABEFC;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABEFC;
     dw Function_Torizo_Movement_Walking                                  ;AABEFE;
     dw Instruction_Torizo_Return                                         ;AABF00;
 
 
 ;;; $BF02: Instruction list - callable - sonic booms - facing right - left foot forward ;;;
 InstList_Torizo_FacingRight_SonicBooms_LeftFootForward_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABF02;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABF02;
     dw Function_Torizo_Movement_Attacking                                ;AABF04;
-    dw Instruction_Common_TimerInY,$0004                                 ;AABF06;
+    dw Common_Instruction_TimerInY,$0004                                 ;AABF06;
 
 InstList_Torizo_FacingRight_SonicBooms_LeftFootForward_1:
     dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AABF0A;
@@ -5021,18 +4439,18 @@ InstList_Torizo_FacingRight_SonicBooms_LeftFootForward_1:
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0001   ;AABF56;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_6   ;AABF58;
     dw $0038,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5   ;AABF5E;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABF62;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AABF62;
     dw InstList_Torizo_FacingRight_SonicBooms_LeftFootForward_1          ;AABF64;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABF66;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABF66;
     dw Function_Torizo_Movement_Walking                                  ;AABF68;
     dw Instruction_Torizo_Return                                         ;AABF6A;
 
 
 ;;; $BF6C: Instruction list - callable - sonic booms - facing right - right foot forward ;;;
 InstList_Torizo_FacingRight_SonicBooms_RightFootForward_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABF6C;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABF6C;
     dw Function_Torizo_Movement_Attacking                                ;AABF6E;
-    dw Instruction_Common_TimerInY,$0004                                 ;AABF70;
+    dw Common_Instruction_TimerInY,$0004                                 ;AABF70;
 
 InstList_Torizo_FacingRight_SonicBooms_RightFootForward_1:
     dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AABF74;
@@ -5057,16 +4475,16 @@ InstList_Torizo_FacingRight_SonicBooms_RightFootForward_1:
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0001   ;AABFC0;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_6  ;AABFC2;
     dw $0038,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5  ;AABFC8;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABFCC;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AABFCC;
     dw InstList_Torizo_FacingRight_SonicBooms_RightFootForward_1         ;AABFCE;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABFD0;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABFD0;
     dw Function_Torizo_Movement_Walking                                  ;AABFD2;
     dw Instruction_Torizo_Return                                         ;AABFD4;
 
 
 ;;; $BFD6: Instruction list - callable - explosive swipe - facing right - left foot forward ;;;
 InstList_Torizo_FacingRight_ExplosiveSwipe_LeftFootForward:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AABFD6;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AABFD6;
     dw Function_Torizo_Movement_Attacking                                ;AABFD8;
     dw $0003,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AABFDA;
     dw $0003,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_0   ;AABFDE;
@@ -5098,14 +4516,14 @@ InstList_Torizo_FacingRight_ExplosiveSwipe_LeftFootForward:
     dw Instruction_Torizo_SpawnBombTorizoExplosiveSwipeWithParamY,$0012  ;AAC046;
     dw $0001,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_6   ;AAC048;
     dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5   ;AAC04E;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAC052;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAC052;
     dw Function_Torizo_Movement_Walking                                  ;AAC054;
     dw Instruction_Torizo_Return                                         ;AAC056;
 
 
 ;;; $C058: Instruction list - callable - explosive swipe - facing right - right foot forward ;;;
 InstList_Torizo_FacingRight_ExplosiveSwipe_RightFootForward:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAC058;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAC058;
     dw Function_Torizo_Movement_Attacking                                ;AAC05A;
     dw $0003,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AAC05C;
     dw $0003,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_0  ;AAC060;
@@ -5137,14 +4555,14 @@ InstList_Torizo_FacingRight_ExplosiveSwipe_RightFootForward:
     dw Instruction_Torizo_SpawnBombTorizoExplosiveSwipeWithParamY,$0012  ;AAC0C8;
     dw $0001,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_6  ;AAC0CA;
     dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5  ;AAC0D0;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAC0D4;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAC0D4;
     dw Function_Torizo_Movement_Walking                                  ;AAC0D6;
     dw Instruction_Torizo_Return                                         ;AAC0D8;
 
 
 ;;; $C0DA: Instruction list - jumping forwards - facing right ;;;
 InstList_Torizo_FacingRight_JumpingForwards_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAC0DA;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAC0DA;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AAC0DC;
     dw Instruction_Torizo_LinkInstructionInY                             ;AAC0DE;
     dw InstList_Torizo_FacingRight_Falling_0                             ;AAC0E0;
@@ -5159,14 +4577,14 @@ InstList_Torizo_FacingRight_JumpingForwards_1:
 
 ;;; $C0F2: Instruction list - falling - facing right ;;;
 InstList_Torizo_FacingRight_Falling_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAC0F2;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAC0F2;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AAC0F4;
     dw Instruction_Torizo_LinkInstructionInY                             ;AAC0F6;
     dw InstList_Torizo_FacingRight_Falling_2                             ;AAC0F8;
 
 InstList_Torizo_FacingRight_Falling_1:
     dw $0005,ExtendedSpritemaps_Torizo_Jumping_Falling_FacingRight_1     ;AAC0FA;
-    dw Instruction_Common_GotoY                                          ;AAC0FE;
+    dw Common_Instruction_GotoY                                          ;AAC0FE;
     dw InstList_Torizo_FacingRight_Falling_1                             ;AAC100;
 
 InstList_Torizo_FacingRight_Falling_2:
@@ -5175,13 +4593,13 @@ InstList_Torizo_FacingRight_Falling_2:
     dw Instruction_Torizo_GotoY_IfFaceBlownUp_ElseGotoY2_IfGolden        ;AAC106;
     dw InstList_Torizo_FacingRight_Faceless_Walking_RightLegMoving       ;AAC108;
     dw InstList_GoldenTorizo_WalkingRight_RightLegMoving                 ;AAC10A;
-    dw Instruction_Common_GotoY                                          ;AAC10C;
+    dw Common_Instruction_GotoY                                          ;AAC10C;
     dw InstList_Torizo_FacingRight_Walking_RightLegMoving                ;AAC10E;
 
 
 ;;; $C110: Instruction list - jumping backwards - facing right - landing right foot forward ;;;
 InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAC110;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAC110;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AAC112;
     dw Instruction_Torizo_LinkInstructionInY                             ;AAC114;
     dw InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_2       ;AAC116;
@@ -5194,14 +4612,14 @@ InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_1:
     dw InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_1       ;AAC126;
 
 InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_2:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAC128;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAC128;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AAC12A;
     dw Instruction_Torizo_LinkInstructionInY                             ;AAC12C;
     dw InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_4       ;AAC12E;
 
 InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_3:
     dw $0005,ExtendedSpritemaps_Torizo_Jumping_Falling_FacingRight_1     ;AAC130;
-    dw Instruction_Common_GotoY                                          ;AAC134;
+    dw Common_Instruction_GotoY                                          ;AAC134;
     dw InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_3       ;AAC136;
 
 InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_4:
@@ -5213,13 +4631,13 @@ InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_4:
     dw Instruction_Torizo_CallY_OrY2_ForBombTorizoAttack                 ;AAC142;
     dw InstList_Torizo_FacingRight_SpewingChozoOrbs_RightFootFwd_0       ;AAC144;
     dw InstList_Torizo_FacingRight_SonicBooms_RightFootForward_0         ;AAC146;
-    dw Instruction_Common_GotoY                                          ;AAC148;
+    dw Common_Instruction_GotoY                                          ;AAC148;
     dw InstList_Torizo_FacingRight_Walking_LeftLegMoving                 ;AAC14A;
 
 
 ;;; $C14C: Instruction list - jumping backwards - facing right - landing left foot forward ;;;
 InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAC14C;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAC14C;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AAC14E;
     dw Instruction_Torizo_LinkInstructionInY                             ;AAC150;
     dw InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_2       ;AAC152;
@@ -5232,14 +4650,14 @@ InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_1:
     dw InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_1       ;AAC162;
 
 InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_2:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAC164;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAC164;
     dw Function_Torizo_Movement_Jumping_Falling                          ;AAC166;
     dw Instruction_Torizo_LinkInstructionInY                             ;AAC168;
     dw InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_4       ;AAC16A;
 
 InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_3:
     dw $0005,ExtendedSpritemaps_Torizo_Jumping_Falling_FacingRight_1     ;AAC16C;
-    dw Instruction_Common_GotoY                                          ;AAC170;
+    dw Common_Instruction_GotoY                                          ;AAC170;
     dw InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_3       ;AAC172;
 
 InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_4:
@@ -5251,7 +4669,7 @@ InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_4:
     dw Instruction_Torizo_CallY_OrY2_ForBombTorizoAttack                 ;AAC17E;
     dw InstList_Torizo_FacingRight_SpewingChozoOrbs_LeftFootFwd_0        ;AAC180;
     dw InstList_Torizo_FacingRight_SonicBooms_LeftFootForward_0          ;AAC182;
-    dw Instruction_Common_GotoY                                          ;AAC184;
+    dw Common_Instruction_GotoY                                          ;AAC184;
     dw InstList_Torizo_FacingRight_Walking_RightLegMoving                ;AAC186;
 
 
@@ -5268,7 +4686,7 @@ InstList_Torizo_FacingRight_Faceless_Walking_LeftLegMoving:
     dw Instruction_Torizo_SetSteppedRightWithRightFootState              ;AAC192;
     dw Instruction_Torizo_FunctionInY                                    ;AAC194;
     dw Function_Torizo_NormalMovement                                    ;AAC196;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAC198;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAC198;
     dw Function_Torizo_Movement_Walking                                  ;AAC19A;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AAC19C;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAC19E;
@@ -5291,7 +4709,7 @@ InstList_Torizo_FacingRight_Faceless_Walking_RightLegMoving:
     dw Instruction_Torizo_SetSteppedRightWithLeftFootState               ;AAC1CC;
     dw Instruction_Torizo_FunctionInY                                    ;AAC1CE;
     dw Function_Torizo_NormalMovement                                    ;AAC1D0;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAC1D2;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAC1D2;
     dw Function_Torizo_Movement_Walking                                  ;AAC1D4;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AAC1D6;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAC1D8;
@@ -5307,7 +4725,7 @@ InstList_Torizo_FacingRight_Faceless_Walking_RightLegMoving:
     dw Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY,$0026      ;AAC1FA;
     dw $0005,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_4     ;AAC1FC;
     dw Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY,$0014      ;AAC202;
-    dw Instruction_Common_GotoY                                          ;AAC206;
+    dw Common_Instruction_GotoY                                          ;AAC206;
     dw InstList_Torizo_FacingRight_Faceless_Walking_LeftLegMoving        ;AAC208;
 
 
@@ -6461,14 +5879,14 @@ EnemyShot_Torizo_StandUp_SitDown:
 
 ;;; $C9CB: Instruction list - Golden Torizo - initial ;;;
 InstList_GoldenTorizo_Initial_0:
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAC9CB;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAC9CB;
     dw $0600 : dl Tiles_GoldenTorizoEgg : dw $6D00                       ;AAC9CD;
     dw Instruction_Torizo_SetSteppedLeftWithRightFootState               ;AAC9D4;
     dw Instruction_Torizo_SetAnimationLock                               ;AAC9D6;
     dw Instruction_Torizo_FunctionInY                                    ;AAC9D8;
     dw Function_GoldenTorizo_WakeIfSamusIsBelowAndRightOfTargetPos       ;AAC9DA;
     dw $0001,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_3      ;AAC9DC;
-    dw Instruction_Common_Sleep                                          ;AAC9E0;
+    dw Common_Instruction_Sleep                                          ;AAC9E0;
     dw Instruction_Torizo_FunctionInY                                    ;AAC9E2;
     dw Function_Torizo_SimpleMovement                                    ;AAC9E4;
 
@@ -6486,34 +5904,34 @@ InstList_GoldenTorizo_Initial_1:
     dw Instruction_Torizo_FunctionInY                                    ;AACA08;
     dw RTS_AAC6AB                                                        ;AACA0A;
     dw $0030,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA0C;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA10;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AACA10;
     dw $0040 : dl Tiles_Torizo : dw $7D80                                ;AACA12;
     dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA17;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA1D;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AACA1D;
     dw $0040 : dl Tiles_Torizo+$40 : dw $7D80                            ;AACA1F;
     dw $0010,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA24;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA2A;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AACA2A;
     dw $0040 : dl Tiles_Torizo+$80 : dw $7D80                            ;AACA2C;
     dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA31;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA37;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AACA37;
     dw $0040 : dl Tiles_Torizo+$C0 : dw $7D80                            ;AACA39;
     dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA3E;
-    dw Instruction_Common_TimerInY,$0002                                 ;AACA44;
+    dw Common_Instruction_TimerInY,$0002                                 ;AACA44;
 
 InstList_GoldenTorizo_Initial_2:
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA48;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA4C;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AACA4C;
     dw $0040 : dl Tiles_Torizo : dw $7D80                                ;AACA4E;
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA53;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA59;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AACA59;
     dw $0040 : dl Tiles_Torizo+$40 : dw $7D80                            ;AACA5B;
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA60;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA66;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AACA66;
     dw $0040 : dl Tiles_Torizo+$80 : dw $7D80                            ;AACA68;
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA6D;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA73;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AACA73;
     dw $0040 : dl Tiles_Torizo+$C0 : dw $7D80                            ;AACA75;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACA7C;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AACA7C;
     dw InstList_GoldenTorizo_Initial_2                                   ;AACA7E;
     dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA80;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0000              ;AACA84;
@@ -6528,18 +5946,18 @@ InstList_GoldenTorizo_Initial_2:
     dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5      ;AACAA6;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$000A              ;AACAAC;
     dw Instruction_Torizo_LoadGoldenTorizoPalettes                       ;AACAB0;
-    dw Instruction_Common_TimerInY,$0010                                 ;AACAB2;
+    dw Common_Instruction_TimerInY,$0010                                 ;AACAB2;
 
 InstList_GoldenTorizo_Initial_3:
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6      ;AACAB6;
     dw Instruction_Torizo_AdvanceGradualColorChange                      ;AACABA;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACABC;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AACABC;
     dw InstList_GoldenTorizo_Initial_3                                   ;AACABE;
     dw RTL_AAC2C8                                                        ;AACAC0;
     dw Instruction_Torizo_ClearAnimationLock                             ;AACAC2;
     dw Inst_Torizo_StartFightMusic_GoldenTorizoBellyPaletteFX            ;AACAC4;
     dw $0010,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6      ;AACAC6;
-    dw Instruction_Common_GotoY                                          ;AACACA;
+    dw Common_Instruction_GotoY                                          ;AACACA;
     dw InstList_GoldenTorizo_WalkingLeft_LeftLegMoving                   ;AACACC;
 
 
@@ -6581,7 +5999,7 @@ Inst_Torizo_StartFightMusic_GoldenTorizoBellyPaletteFX:
 
 ;;; $CAFF: Instruction list - callable - Golden Torizo - spewing chozo orbs - facing left - right foot forward ;;;
 InstList_GoldenTorizo_SpewChozoOrbs_FaceLeft_RightFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACAFF;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACAFF;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACB01;
     dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AACB03;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_0  ;AACB07;
@@ -6589,26 +6007,26 @@ InstList_GoldenTorizo_SpewChozoOrbs_FaceLeft_RightFootFwd_0:
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_2  ;AACB0F;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3  ;AACB13;
     dw $0006,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_4  ;AACB17;
-    dw Instruction_Common_TimerInY,$0006                                 ;AACB1B;
+    dw Common_Instruction_TimerInY,$0006                                 ;AACB1B;
 
 InstList_GoldenTorizo_SpewChozoOrbs_FaceLeft_RightFootFwd_1:
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AACB1F;
     dw Instruction_GoldenTorizo_SpawnChozoOrbs                           ;AACB21;
-    dw Instruction_Common_WaitYFrames,$0006                              ;AACB23;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACB27;
+    dw Common_Instruction_WaitYFrames,$0006                              ;AACB23;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AACB27;
     dw InstList_GoldenTorizo_SpewChozoOrbs_FaceLeft_RightFootFwd_1       ;AACB29;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3  ;AACB2B;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_2  ;AACB2F;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_1  ;AACB33;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_0  ;AACB37;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACB3B;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACB3B;
     dw Function_GoldenTorizo_Movement_Walking                            ;AACB3D;
     dw Instruction_Torizo_Return                                         ;AACB3F;
 
 
 ;;; $CB41: Instruction list - callable - Golden Torizo - spewing chozo orbs - facing left - left foot forward ;;;
 InstList_GoldenTorizo_SpewChozoOrbs_FacingLeft_LeftFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACB41;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACB41;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACB43;
     dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward  ;AACB45;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_0   ;AACB49;
@@ -6616,28 +6034,28 @@ InstList_GoldenTorizo_SpewChozoOrbs_FacingLeft_LeftFootFwd_0:
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_2   ;AACB51;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3   ;AACB55;
     dw $0006,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_4   ;AACB59;
-    dw Instruction_Common_TimerInY,$0006                                 ;AACB5D;
+    dw Common_Instruction_TimerInY,$0006                                 ;AACB5D;
 
 InstList_GoldenTorizo_SpewChozoOrbs_FacingLeft_LeftFootFwd_1:
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AACB61;
     dw Instruction_GoldenTorizo_SpawnChozoOrbs                           ;AACB63;
-    dw Instruction_Common_WaitYFrames,$0006                              ;AACB65;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACB69;
+    dw Common_Instruction_WaitYFrames,$0006                              ;AACB65;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AACB69;
     dw InstList_GoldenTorizo_SpewChozoOrbs_FacingLeft_LeftFootFwd_1      ;AACB6B;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3   ;AACB6D;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_2   ;AACB71;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_1   ;AACB75;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_0   ;AACB79;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACB7D;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACB7D;
     dw Function_GoldenTorizo_Movement_Walking                            ;AACB7F;
     dw Instruction_Torizo_Return                                         ;AACB81;
 
 
 ;;; $CB83: Instruction list - callable - Golden Torizo - sonic booms - facing left - right foot forward ;;;
 InstList_GoldenTorizo_SonicBooms_FacingLeft_RightFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACB83;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACB83;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACB85;
-    dw Instruction_Common_TimerInY,$0004                                 ;AACB87;
+    dw Common_Instruction_TimerInY,$0004                                 ;AACB87;
 
 InstList_GoldenTorizo_SonicBooms_FacingLeft_RightFootFwd_1:
     dw $0003,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AACB8B;
@@ -6662,18 +6080,18 @@ InstList_GoldenTorizo_SonicBooms_FacingLeft_RightFootFwd_1:
     dw Instruction_Torizo_SpawnGoldenTorizoSonicBoomWithParameterY,$0001 ;AACBD7;
     dw $0001,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_0 ;AACBD9;
     dw $0004,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AACBDF;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACBE3;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AACBE3;
     dw InstList_GoldenTorizo_SonicBooms_FacingLeft_RightFootFwd_1        ;AACBE5;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACBE7;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACBE7;
     dw Function_GoldenTorizo_Movement_Walking                            ;AACBE9;
     dw Instruction_Torizo_Return                                         ;AACBEB;
 
 
 ;;; $CBED: Instruction list - callable - Golden Torizo - sonic booms - facing left - left foot forward ;;;
 InstList_GoldenTorizo_SonicBooms_FacingLeft_LeftFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACBED;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACBED;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACBEF;
-    dw Instruction_Common_TimerInY,$0004                                 ;AACBF1;
+    dw Common_Instruction_TimerInY,$0004                                 ;AACBF1;
 
 InstList_GoldenTorizo_SonicBooms_FacingLeft_LeftFootFwd_1:
     dw $0003,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward  ;AACBF5;
@@ -6698,16 +6116,16 @@ InstList_GoldenTorizo_SonicBooms_FacingLeft_LeftFootFwd_1:
     dw Instruction_Torizo_SpawnGoldenTorizoSonicBoomWithParameterY,$0001 ;AACC41;
     dw $0001,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_0  ;AACC43;
     dw $0004,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AACC49;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACC4D;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AACC4D;
     dw InstList_GoldenTorizo_SonicBooms_FacingLeft_LeftFootFwd_1         ;AACC4F;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACC51;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACC51;
     dw Function_GoldenTorizo_Movement_Walking                            ;AACC53;
     dw Instruction_Torizo_Return                                         ;AACC55;
 
 
 ;;; $CC57: Instruction list - callable - Golden Torizo - spewing chozo orbs - facing right - left foot forward ;;;
 InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_LeftFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACC57;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACC57;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACC59;
     dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AACC5B;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_0  ;AACC5F;
@@ -6715,26 +6133,26 @@ InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_LeftFootFwd_0:
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_2  ;AACC67;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3  ;AACC6B;
     dw $0006,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_4  ;AACC6F;
-    dw Instruction_Common_TimerInY,$0006                                 ;AACC73;
+    dw Common_Instruction_TimerInY,$0006                                 ;AACC73;
 
 InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_LeftFootFwd_1:
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AACC77;
     dw Instruction_GoldenTorizo_SpawnChozoOrbs                           ;AACC79;
-    dw Instruction_Common_WaitYFrames,$0006                              ;AACC7B;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACC7F;
+    dw Common_Instruction_WaitYFrames,$0006                              ;AACC7B;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AACC7F;
     dw InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_LeftFootFwd_1       ;AACC81;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3  ;AACC83;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_2  ;AACC87;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_1  ;AACC8B;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_0  ;AACC8F;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACC93;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACC93;
     dw Function_GoldenTorizo_Movement_Walking                            ;AACC95;
     dw Instruction_Torizo_Return                                         ;AACC97;
 
 
 ;;; $CC99: Instruction list - callable - Golden Torizo - spewing chozo orbs - facing right - right foot forward ;;;
 InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_RightFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACC99;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACC99;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACC9B;
     dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AACC9D;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_0 ;AACCA1;
@@ -6742,28 +6160,28 @@ InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_RightFootFwd_0:
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_2 ;AACCA9;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3 ;AACCAD;
     dw $0006,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_4 ;AACCB1;
-    dw Instruction_Common_TimerInY,$0006                                 ;AACCB5;
+    dw Common_Instruction_TimerInY,$0006                                 ;AACCB5;
 
 InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_RightFootFwd_1:
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AACCB9;
     dw Instruction_GoldenTorizo_SpawnChozoOrbs                           ;AACCBB;
-    dw Instruction_Common_WaitYFrames,$0006                              ;AACCBD;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACCC1;
+    dw Common_Instruction_WaitYFrames,$0006                              ;AACCBD;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AACCC1;
     dw InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_RightFootFwd_1      ;AACCC3;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3 ;AACCC5;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_2 ;AACCC9;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_1 ;AACCCD;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_0 ;AACCD1;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACCD5;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACCD5;
     dw Function_GoldenTorizo_Movement_Walking                            ;AACCD7;
     dw Instruction_Torizo_Return                                         ;AACCD9;
 
 
 ;;; $CCDB: Instruction list - callable - Golden Torizo - sonic booms - facing right - left foot forward ;;;
 InstList_GoldenTorizo_SonicBooms_FacingRight_LeftFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACCDB;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACCDB;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACCDD;
-    dw Instruction_Common_TimerInY,$0004                                 ;AACCDF;
+    dw Common_Instruction_TimerInY,$0004                                 ;AACCDF;
 
 InstList_GoldenTorizo_SonicBooms_FacingRight_LeftFootFwd_1:
     dw $0003,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AACCE3;
@@ -6788,18 +6206,18 @@ InstList_GoldenTorizo_SonicBooms_FacingRight_LeftFootFwd_1:
     dw Instruction_Torizo_SpawnGoldenTorizoSonicBoomWithParameterY,$0001 ;AACD2F;
     dw $0001,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_6   ;AACD31;
     dw $0004,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5   ;AACD37;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACD3B;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AACD3B;
     dw InstList_GoldenTorizo_SonicBooms_FacingRight_LeftFootFwd_1        ;AACD3D;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACD3F;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACD3F;
     dw Function_GoldenTorizo_Movement_Walking                            ;AACD41;
     dw Instruction_Torizo_Return                                         ;AACD43;
 
 
 ;;; $CD45: Instruction list - callable - Golden Torizo - sonic booms - facing right - right foot forward ;;;
 InstList_GoldenTorizo_SonicBooms_FacingRight_RightFootFwd_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACD45;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACD45;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACD47;
-    dw Instruction_Common_TimerInY,$0004                                 ;AACD49;
+    dw Common_Instruction_TimerInY,$0004                                 ;AACD49;
 
 InstList_GoldenTorizo_SonicBooms_FacingRight_RightFootFwd_1:
     dw $0003,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AACD4D;
@@ -6824,9 +6242,9 @@ InstList_GoldenTorizo_SonicBooms_FacingRight_RightFootFwd_1:
     dw Instruction_Torizo_SpawnGoldenTorizoSonicBoomWithParameterY,$0001 ;AACD99;
     dw $0001,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_6  ;AACD9B;
     dw $0004,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5  ;AACDA1;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACDA5;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AACDA5;
     dw InstList_GoldenTorizo_SonicBooms_FacingRight_RightFootFwd_1       ;AACDA7;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACDA9;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACDA9;
     dw Function_GoldenTorizo_Movement_Walking                            ;AACDAB;
     dw Instruction_Torizo_Return                                         ;AACDAD;
 
@@ -6836,7 +6254,7 @@ InstList_GT_LandedFromBackwardsJump_FacingLeft_LeftFootFwd:
     dw Instruction_GoldenTorizo_CallY_OrY2_ForAttack                     ;AACDAF;
     dw InstList_GoldenTorizo_SpewChozoOrbs_FacingLeft_LeftFootFwd_0      ;AACDB1;
     dw InstList_GoldenTorizo_SonicBooms_FacingLeft_LeftFootFwd_0         ;AACDB3;
-    dw Instruction_Common_GotoY                                          ;AACDB5;
+    dw Common_Instruction_GotoY                                          ;AACDB5;
     dw InstList_GoldenTorizo_WalkingLeft_RightLegMoving                  ;AACDB7;
 
 
@@ -6845,7 +6263,7 @@ InstList_GT_LandedFromBackwardsJump_FacingLeft_RightFootFwd:
     dw Instruction_GoldenTorizo_CallY_OrY2_ForAttack                     ;AACDB9;
     dw InstList_GoldenTorizo_SpewChozoOrbs_FaceLeft_RightFootFwd_0       ;AACDBB;
     dw InstList_GoldenTorizo_SonicBooms_FacingLeft_RightFootFwd_0        ;AACDBD;
-    dw Instruction_Common_GotoY                                          ;AACDBF;
+    dw Common_Instruction_GotoY                                          ;AACDBF;
     dw InstList_GoldenTorizo_WalkingLeft_LeftLegMoving                   ;AACDC1;
 
 
@@ -6854,7 +6272,7 @@ InstList_GT_LandedFromBackwardsJump_FacingRight_RightFootFwd:
     dw Instruction_GoldenTorizo_CallY_OrY2_ForAttack                     ;AACDC3;
     dw InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_RightFootFwd_0      ;AACDC5;
     dw InstList_GoldenTorizo_SonicBooms_FacingRight_RightFootFwd_0       ;AACDC7;
-    dw Instruction_Common_GotoY                                          ;AACDC9;
+    dw Common_Instruction_GotoY                                          ;AACDC9;
     dw InstList_GoldenTorizo_WalkingRight_LeftLegMoving                  ;AACDCB;
 
 
@@ -6863,7 +6281,7 @@ InstList_GT_LandedFromBackwardsJump_FacingRight_LeftFootFwd:
     dw Instruction_GoldenTorizo_CallY_OrY2_ForAttack                     ;AACDCD;
     dw InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_LeftFootFwd_0       ;AACDCF;
     dw InstList_GoldenTorizo_SonicBooms_FacingRight_LeftFootFwd_0        ;AACDD1;
-    dw Instruction_Common_GotoY                                          ;AACDD3;
+    dw Common_Instruction_GotoY                                          ;AACDD3;
     dw InstList_GoldenTorizo_WalkingRight_RightLegMoving                 ;AACDD5;
 
 
@@ -6903,7 +6321,7 @@ InstList_GoldenTorizo_CaughtSuper_FacingLeft_LeftLegFwd:
     dw $0002,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward  ;AACE35;
     dw $0010,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AACE39;
     dw Instruction_GoldenTorizo_ClearCaughtSuperMissileFlag              ;AACE3D;
-    dw Instruction_Common_GotoY                                          ;AACE3F;
+    dw Common_Instruction_GotoY                                          ;AACE3F;
     dw InstList_GoldenTorizo_WalkingLeft_RightLegMoving                  ;AACE41;
 
 
@@ -6935,7 +6353,7 @@ InstList_GoldenTorizo_CaughtSuper_FacingLeft_RightLegFwd:
     dw $0002,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AACE97;
     dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AACE9B;
     dw Instruction_GoldenTorizo_ClearCaughtSuperMissileFlag              ;AACE9F;
-    dw Instruction_Common_GotoY                                          ;AACEA1;
+    dw Common_Instruction_GotoY                                          ;AACEA1;
     dw InstList_GoldenTorizo_WalkingLeft_LeftLegMoving                   ;AACEA3;
 
 
@@ -6965,7 +6383,7 @@ InstList_GoldenTorizo_CaughtSuper_FacingRight_RightLegFwd:
     dw $0002,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AACEF1;
     dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5  ;AACEF5;
     dw Instruction_GoldenTorizo_ClearCaughtSuperMissileFlag              ;AACEF9;
-    dw Instruction_Common_GotoY                                          ;AACEFB;
+    dw Common_Instruction_GotoY                                          ;AACEFB;
     dw InstList_GoldenTorizo_WalkingRight_LeftLegMoving                  ;AACEFD;
 
 
@@ -6995,13 +6413,13 @@ InstList_GoldenTorizo_CaughtSuper_FacingRight_LeftLegFwd:
     dw $0002,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AACF4B;
     dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5   ;AACF4F;
     dw Instruction_GoldenTorizo_ClearCaughtSuperMissileFlag              ;AACF53;
-    dw Instruction_Common_GotoY                                          ;AACF55;
+    dw Common_Instruction_GotoY                                          ;AACF55;
     dw InstList_GoldenTorizo_WalkingRight_RightLegMoving                 ;AACF57;
 
 
 ;;; $CF59: Instruction list - sit down attack - facing left ;;;
 InstList_GoldenTorizo_SitDownAttack_FacingLeft:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACF59;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACF59;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACF5B;
     dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6      ;AACF5D;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$000A             ;AACF61;
@@ -7027,15 +6445,15 @@ InstList_GoldenTorizo_SitDownAttack_FacingLeft:
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0008              ;AACFB1;
     dw $000A,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5      ;AACFB3;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$000A              ;AACFB9;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACFBD;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACFBD;
     dw Function_GoldenTorizo_Movement_Walking                            ;AACFBF;
-    dw Instruction_Common_GotoY                                          ;AACFC1;
+    dw Common_Instruction_GotoY                                          ;AACFC1;
     dw InstList_GoldenTorizo_WalkingLeft_LeftLegMoving                   ;AACFC3;
 
 
 ;;; $CFC5: Instruction list - sit down attack - facing right ;;;
 InstList_GoldenTorizo_SitDownAttack_FacingRight:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AACFC5;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AACFC5;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACFC7;
     dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_6     ;AACFC9;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$001A             ;AACFCD;
@@ -7061,64 +6479,64 @@ InstList_GoldenTorizo_SitDownAttack_FacingRight:
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0018              ;AAD01D;
     dw $000A,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_5     ;AAD01F;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$001A              ;AAD025;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAD029;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAD029;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD02B;
-    dw Instruction_Common_GotoY                                          ;AAD02D;
+    dw Common_Instruction_GotoY                                          ;AAD02D;
     dw InstList_GoldenTorizo_WalkingRight_RightLegMoving                 ;AAD02F;
 
 
 ;;; $D031: Instruction list - callable - release Golden Torizo eggs ;;;
 InstList_GoldenTorizo_ReleaseGoldenTorizoEggs_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAD031;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAD031;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AAD033;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD035;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD035;
     dw $0040 : dl Tiles_Torizo+$280 : dw $7300                           ;AAD037;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD03E;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD03E;
     dw $0040 : dl Tiles_Torizo+$480 : dw $7400                           ;AAD040;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD047;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD04B;
+    dw Common_Instruction_WaitYFrames,$0008                              ;AAD047;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD04B;
     dw $0040 : dl Tiles_Torizo+$2C0 : dw $7300                           ;AAD04D;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD054;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD054;
     dw $0040 : dl Tiles_Torizo+$4C0 : dw $7400                           ;AAD056;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD05D;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD061;
+    dw Common_Instruction_WaitYFrames,$0008                              ;AAD05D;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD061;
     dw $0040 : dl Tiles_Torizo+$300 : dw $7300                           ;AAD063;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD06A;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD06A;
     dw $0040 : dl Tiles_Torizo+$500 : dw $7400                           ;AAD06C;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AAD073;
-    dw Instruction_Common_TimerInY,$0006                                 ;AAD077;
+    dw Common_Instruction_WaitYFrames,$0010                              ;AAD073;
+    dw Common_Instruction_TimerInY,$0006                                 ;AAD077;
 
 InstList_GoldenTorizo_ReleaseGoldenTorizoEggs_1:
     dw Instruction_GoldenTorizo_QueueEggReleasedSFX                      ;AAD07B;
     dw Instruction_GoldenTorizo_SpawnGoldenTorizoEgg                     ;AAD07D;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD07F;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD083;
+    dw Common_Instruction_WaitYFrames,$0008                              ;AAD07F;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD083;
     dw InstList_GoldenTorizo_ReleaseGoldenTorizoEggs_1                   ;AAD085;
 
 InstList_GoldenTorizo_ReleaseGoldenTorizoEggs_2:
-    dw Instruction_Common_WaitYFrames,$0001                              ;AAD087;
+    dw Common_Instruction_WaitYFrames,$0001                              ;AAD087;
     dw Instruction_GoldenTorizo_EyeBeamAttack_0                          ;AAD08B;
     dw InstList_GoldenTorizo_ReleaseGoldenTorizoEggs_2                   ;AAD08D;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD08F;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD08F;
     dw $0040 : dl Tiles_Torizo+$300 : dw $7300                           ;AAD091;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD098;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD098;
     dw $0040 : dl Tiles_Torizo+$500 : dw $7400                           ;AAD09A;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD0A1;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0A5;
+    dw Common_Instruction_WaitYFrames,$0008                              ;AAD0A1;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD0A5;
     dw $0040 : dl Tiles_Torizo+$2C0 : dw $7300                           ;AAD0A7;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0AE;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD0AE;
     dw $0040 : dl Tiles_Torizo+$4C0 : dw $7400                           ;AAD0B0;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD0B7;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0BB;
+    dw Common_Instruction_WaitYFrames,$0008                              ;AAD0B7;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD0BB;
     dw $0040 : dl Tiles_Torizo+$280 : dw $7300                           ;AAD0BD;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0C4;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD0C4;
     dw $0040 : dl Tiles_Torizo+$480 : dw $7400                           ;AAD0C6;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD0CD;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0D1;
+    dw Common_Instruction_WaitYFrames,$0008                              ;AAD0CD;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD0D1;
     dw $0040 : dl Tiles_BombTorizo_GoldenTorizo+$600 : dw $7300          ;AAD0D3;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0DA;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD0DA;
     dw $0040 : dl Tiles_BombTorizo_GoldenTorizo+$800 : dw $7400          ;AAD0DC;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAD0E3;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAD0E3;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD0E5;
     dw Instruction_Torizo_Return                                         ;AAD0E7;
 
@@ -7162,35 +6580,35 @@ InstList_GoldenTorizo_EyeBeamAttack_0:
     dw Function_GoldenTorizo_SimpleMovement                              ;AAD10F;
     dw Instruction_GoldenTorizo_DisableEyeBeamExplosions                 ;AAD111;
     dw Instruction_Torizo_SetAnimationLock                               ;AAD113;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD115;
-    dw Instruction_Common_TimerInY,$0004                                 ;AAD119;
+    dw Common_Instruction_WaitYFrames,$0008                              ;AAD115;
+    dw Common_Instruction_TimerInY,$0004                                 ;AAD119;
     dw Instruction_GoldenTorizo_QueueLaserSFX                            ;AAD11D;
 
 InstList_GoldenTorizo_EyeBeamAttack_1:
     dw Instruction_GoldenTorizo_SpawnEyeBeam,$0000                       ;AAD11F;
-    dw Instruction_Common_WaitYFrames,$0004                              ;AAD123;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD127;
+    dw Common_Instruction_WaitYFrames,$0004                              ;AAD123;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD127;
     dw InstList_GoldenTorizo_EyeBeamAttack_1                             ;AAD129;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD12B;
-    dw Instruction_Common_TimerInY,$0002                                 ;AAD12F;
+    dw Common_Instruction_WaitYFrames,$0008                              ;AAD12B;
+    dw Common_Instruction_TimerInY,$0002                                 ;AAD12F;
 
 InstList_GoldenTorizo_EyeBeamAttack_2:
-    dw Instruction_Common_WaitYFrames,$0003                              ;AAD133;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD137;
+    dw Common_Instruction_WaitYFrames,$0003                              ;AAD133;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD137;
     dw $0040 : dl Tiles_Torizo : dw $7D80                                ;AAD139;
-    dw Instruction_Common_WaitYFrames,$0003                              ;AAD140;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD144;
+    dw Common_Instruction_WaitYFrames,$0003                              ;AAD140;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD144;
     dw $0040 : dl Tiles_Torizo+$40 : dw $7D80                            ;AAD146;
-    dw Instruction_Common_WaitYFrames,$0003                              ;AAD14D;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD151;
+    dw Common_Instruction_WaitYFrames,$0003                              ;AAD14D;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD151;
     dw $0040 : dl Tiles_Torizo+$80 : dw $7D80                            ;AAD153;
-    dw Instruction_Common_WaitYFrames,$0003                              ;AAD15A;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD15E;
+    dw Common_Instruction_WaitYFrames,$0003                              ;AAD15A;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD15E;
     dw $0040 : dl Tiles_Torizo+$C0 : dw $7D80                            ;AAD160;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD167;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD167;
     dw InstList_GoldenTorizo_EyeBeamAttack_2                             ;AAD169;
     dw Instruction_GoldenTorizo_EnableEyeBeamExplosions                  ;AAD16B;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD16D;
+    dw Common_Instruction_WaitYFrames,$0008                              ;AAD16D;
     dw Instruction_GoldenTorizo_DisableEyeBeamExplosions                 ;AAD171;
     dw Instruction_Torizo_ClearAnimationLock                             ;AAD173;
     dw Instruction_Torizo_FunctionInY                                    ;AAD175;
@@ -7216,31 +6634,31 @@ Instruction_GoldenTorizo_EnableEyeBeamExplosions:
 
 ;;; $D193: Instruction list - callable - stunned ;;;
 InstList_Torizo_Stunned_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAD193;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAD193;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AAD195;
     dw Instruction_Torizo_SetAnimationLock                               ;AAD197;
-    dw Instruction_Common_WaitYFrames,$0018                              ;AAD199;
-    dw Instruction_Common_TimerInY,$0002                                 ;AAD19D;
+    dw Common_Instruction_WaitYFrames,$0018                              ;AAD199;
+    dw Common_Instruction_TimerInY,$0002                                 ;AAD19D;
 
 InstList_Torizo_Stunned_1:
-    dw Instruction_Common_WaitYFrames,$0003                              ;AAD1A1;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD1A5;
+    dw Common_Instruction_WaitYFrames,$0003                              ;AAD1A1;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD1A5;
     dw $0040 : dl Tiles_Torizo : dw $7D80                                ;AAD1A7;
-    dw Instruction_Common_WaitYFrames,$0003                              ;AAD1AE;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD1B2;
+    dw Common_Instruction_WaitYFrames,$0003                              ;AAD1AE;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD1B2;
     dw $0040 : dl Tiles_Torizo+$40 : dw $7D80                            ;AAD1B4;
-    dw Instruction_Common_WaitYFrames,$0003                              ;AAD1BB;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD1BF;
+    dw Common_Instruction_WaitYFrames,$0003                              ;AAD1BB;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD1BF;
     dw $0040 : dl Tiles_Torizo+$80 : dw $7D80                            ;AAD1C1;
-    dw Instruction_Common_WaitYFrames,$0003                              ;AAD1C8;
-    dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD1CC;
+    dw Common_Instruction_WaitYFrames,$0003                              ;AAD1C8;
+    dw Common_Instruction_TransferYBytesInYToVRAM                        ;AAD1CC;
     dw $0040 : dl Tiles_Torizo+$C0 : dw $7D80                            ;AAD1CE;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD1D5;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD1D5;
     dw InstList_Torizo_Stunned_1                                         ;AAD1D7;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AAD1D9;
+    dw Common_Instruction_WaitYFrames,$0010                              ;AAD1D9;
     dw Instruction_Torizo_ClearAnimationLock                             ;AAD1DD;
     dw Instruction_GoldenTorizo_UnmarkStunned                            ;AAD1DF;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAD1E1;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAD1E1;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD1E3;
     dw Instruction_Torizo_Return                                         ;AAD1E5;
 
@@ -7261,7 +6679,7 @@ InstList_GoldenTorizo_Dodge_TurningLeft:
     dw Instruction_Torizo_SetTorizoTurningAroundFlag                     ;AAD1F7;
     dw $0018,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging      ;AAD1F9;
     dw Instruction_Torizo_ClearAnimationLock                             ;AAD1FD;
-    dw Instruction_Common_GotoY                                          ;AAD1FF;
+    dw Common_Instruction_GotoY                                          ;AAD1FF;
     dw InstList_GoldenTorizo_WalkingLeft_RightLegMoving                  ;AAD201;
 
 
@@ -7278,7 +6696,7 @@ InstList_GoldenTorizo_WalkingLeft_RightLegMoving:
     dw Instruction_Torizo_SetSteppedLeftWithLeftFootState                ;AAD20D;
     dw Instruction_Torizo_FunctionInY                                    ;AAD20F;
     dw Function_GoldenTorizo_NormalMovement                              ;AAD211;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAD213;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAD213;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD215;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAD217;
     dw $0008,ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_0      ;AAD219;
@@ -7310,7 +6728,7 @@ InstList_GoldenTorizo_WalkingLeft_LeftLegMoving:
     dw Instruction_Torizo_SetSteppedLeftWithRightFootState               ;AAD259;
     dw Instruction_Torizo_FunctionInY                                    ;AAD25B;
     dw Function_GoldenTorizo_NormalMovement                              ;AAD25D;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAD25F;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAD25F;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD261;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAD263;
     dw $0008,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_0       ;AAD265;
@@ -7337,7 +6755,7 @@ InstList_GoldenTorizo_WalkingLeft_LeftLegMoving:
     dw Instruction_GoldenTorizo_WalkingMovement_IndexInY,$0012           ;AAD29D;
     dw $0004,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_4       ;AAD29F;
     dw Instruction_GoldenTorizo_WalkingMovement_IndexInY,$0000           ;AAD2A5;
-    dw Instruction_Common_GotoY                                          ;AAD2A9;
+    dw Common_Instruction_GotoY                                          ;AAD2A9;
     dw InstList_GoldenTorizo_WalkingLeft_RightLegMoving                  ;AAD2AB;
 
 
@@ -7349,7 +6767,7 @@ InstList_GoldenTorizo_Dodge_TurningRight:
     dw Instruction_Torizo_SetTorizoTurningAroundFlag                     ;AAD2B3;
     dw $0018,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging      ;AAD2B5;
     dw Instruction_Torizo_ClearAnimationLock                             ;AAD2B9;
-    dw Instruction_Common_GotoY                                          ;AAD2BB;
+    dw Common_Instruction_GotoY                                          ;AAD2BB;
     dw InstList_GoldenTorizo_WalkingRight_LeftLegMoving                  ;AAD2BD;
 
 
@@ -7366,7 +6784,7 @@ InstList_GoldenTorizo_WalkingRight_LeftLegMoving:
     dw Instruction_Torizo_SetSteppedRightWithRightFootState              ;AAD2C9;
     dw Instruction_Torizo_FunctionInY                                    ;AAD2CB;
     dw Function_GoldenTorizo_NormalMovement                              ;AAD2CD;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAD2CF;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAD2CF;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD2D1;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAD2D3;
     dw $0008,ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_0      ;AAD2D5;
@@ -7398,7 +6816,7 @@ InstList_GoldenTorizo_WalkingRight_RightLegMoving:
     dw Instruction_Torizo_SetSteppedRightWithLeftFootState               ;AAD315;
     dw Instruction_Torizo_FunctionInY                                    ;AAD317;
     dw Function_GoldenTorizo_NormalMovement                              ;AAD319;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAD31B;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAD31B;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD31D;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAD31F;
     dw $0008,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_0     ;AAD321;
@@ -7425,7 +6843,7 @@ InstList_GoldenTorizo_WalkingRight_RightLegMoving:
     dw Instruction_GoldenTorizo_WalkingMovement_IndexInY,$0026           ;AAD359;
     dw $0004,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_4     ;AAD35B;
     dw Instruction_GoldenTorizo_WalkingMovement_IndexInY,$0014           ;AAD361;
-    dw Instruction_Common_GotoY                                          ;AAD365;
+    dw Common_Instruction_GotoY                                          ;AAD365;
     dw InstList_GoldenTorizo_WalkingRight_LeftLegMoving                  ;AAD367;
 
 
@@ -8047,32 +7465,32 @@ Palettes_TourianStatue_BaseDecoration:
 
 ;;; $D7A5: Instruction list - Tourian entrance statue - Ridley ;;;
 InstList_TourianStatue_Ridley_0:
-    dw Instruction_Common_DeleteEnemy                                    ;AAD7A5;
+    dw Common_Instruction_DeleteEnemy                                    ;AAD7A5;
 
 InstList_TourianStatue_Ridley_1:
     dw $7777,UNUSED_Spritemaps_TourianStatue_Ridley_AAD83B               ;AAD7A7;
-    dw Instruction_Common_GotoY                                          ;AAD7AB;
+    dw Common_Instruction_GotoY                                          ;AAD7AB;
     dw InstList_TourianStatue_Ridley_1                                   ;AAD7AD;
 
 
 ;;; $D7AF: Instruction list - Tourian entrance statue - Phantoon ;;;
 InstList_TourianStatue_Phantoon_0:
-    dw Instruction_Common_DeleteEnemy                                    ;AAD7AF;
+    dw Common_Instruction_DeleteEnemy                                    ;AAD7AF;
 
 InstList_TourianStatue_Phantoon_1:
     dw $7777,UNUSED_Spritemaps_TourianStatue_Phantoon_AAD8B0             ;AAD7B1;
-    dw Instruction_Common_GotoY                                          ;AAD7B5;
+    dw Common_Instruction_GotoY                                          ;AAD7B5;
     dw InstList_TourianStatue_Phantoon_1                                 ;AAD7B7;
 
 
 ;;; $D7B9: Instruction list - Tourian entrance statue - base decoration ;;;
 InstList_TourianStatue_BaseDecoration_0:
-    dw Instruction_Common_DeleteEnemy                                    ;AAD7B9;
+    dw Common_Instruction_DeleteEnemy                                    ;AAD7B9;
     dw $0100,UNUSED_Spritemaps_TourianStatue_BaseDecoration_AAD816       ;AAD7BB;
 
 InstList_TourianStatue_BaseDecoration_1:
     dw $7777,UNUSED_Spritemaps_TourianStatue_BaseDecoration_AAD816       ;AAD7BF;
-    dw Instruction_Common_GotoY                                          ;AAD7C3;
+    dw Common_Instruction_GotoY                                          ;AAD7C3;
     dw InstList_TourianStatue_BaseDecoration_1                           ;AAD7C5;
 
 
@@ -8304,31 +7722,31 @@ Instruction_Shaktool_ResetShaktoolFunctions:
 
 ;;; $D9EA: Unused. Instruction list - Shaktool saw hand - attack - primary piece ;;;
 UNUSED_InstList_Shaktool_SawHand_Attack_PrimaryPiece_AAD9EA:
-    dw Instruction_Common_WaitYFrames,$0240                              ;AAD9EA;
-    dw Instruction_Common_GotoY                                          ;AAD9EE;
+    dw Common_Instruction_WaitYFrames,$0240                              ;AAD9EA;
+    dw Common_Instruction_GotoY                                          ;AAD9EE;
     dw InstList_Shaktool_SawHand_PrimaryPiece                            ;AAD9F0;
 
 
 ;;; $D9F2: Unused. Instruction list - Shaktool saw hand - attack - final piece ;;;
 UNUSED_InstList_Shaktool_SawHand_Attack_FinalPiece_AAD9F2:
-    dw Instruction_Common_WaitYFrames,$0240                              ;AAD9F2;
+    dw Common_Instruction_WaitYFrames,$0240                              ;AAD9F2;
     dw Instruction_Shaktool_ResetShaktoolFunctions                       ;AAD9F6;
-    dw Instruction_Common_GotoY                                          ;AAD9F8;
+    dw Common_Instruction_GotoY                                          ;AAD9F8;
     dw InstList_Shaktool_SawHand_FinalPiece                              ;AAD9FA;
 
 
 ;;; $D9FC: Instruction list - Shaktool saw hand - head bob - primary piece ;;;
 InstList_Shaktool_SawHand_HeadBob_PrimaryPiece:
-    dw Instruction_Common_WaitYFrames,$0014                              ;AAD9FC;
-    dw Instruction_Common_GotoY                                          ;AADA00;
+    dw Common_Instruction_WaitYFrames,$0014                              ;AAD9FC;
+    dw Common_Instruction_GotoY                                          ;AADA00;
     dw InstList_Shaktool_SawHand_PrimaryPiece                            ;AADA02;
 
 
 ;;; $DA04: Instruction list - Shaktool saw hand - head bob - final piece ;;;
 InstList_Shaktool_SawHand_HeadBob_FinalPiece:
-    dw Instruction_Common_WaitYFrames,$0014                              ;AADA04;
+    dw Common_Instruction_WaitYFrames,$0014                              ;AADA04;
     dw Instruction_Shaktool_ResetShaktoolFunctions                       ;AADA08;
-    dw Instruction_Common_GotoY                                          ;AADA0A;
+    dw Common_Instruction_GotoY                                          ;AADA0A;
     dw InstList_Shaktool_SawHand_FinalPiece                              ;AADA0C;
 
 
@@ -8338,7 +7756,7 @@ InstList_Shaktool_SawHand_PrimaryPiece:
     dw $000A,Spritemaps_Shaktool_SawHand_PrimaryPiece_0                  ;AADA0E;
     dw $000A,Spritemaps_Shaktool_SawHand_PrimaryPiece_1                  ;AADA12;
     dw $000A,Spritemaps_Shaktool_SawHand_PrimaryPiece_2                  ;AADA16;
-    dw Instruction_Common_GotoY                                          ;AADA1A;
+    dw Common_Instruction_GotoY                                          ;AADA1A;
     dw InstList_Shaktool_SawHand_PrimaryPiece                            ;AADA1C;
 
 
@@ -8347,132 +7765,132 @@ InstList_Shaktool_SawHand_FinalPiece:
     dw $0003,Spritemaps_Shaktool_SawHand_FinalPiece_0                    ;AADA1E;
     dw $0003,Spritemaps_Shaktool_SawHand_FinalPiece_1                    ;AADA22;
     dw $0003,Spritemaps_Shaktool_SawHand_FinalPiece_2                    ;AADA26;
-    dw Instruction_Common_GotoY                                          ;AADA2A;
+    dw Common_Instruction_GotoY                                          ;AADA2A;
     dw InstList_Shaktool_SawHand_FinalPiece                              ;AADA2C;
 
 
 ;;; $DA2E: Unused. Instruction list - Shaktool arm piece - attack - back ;;;
 UNUSED_InstList_Shaktool_ArmPiece_Attack_Back_AADA2E:
-    dw Instruction_Common_WaitYFrames,$00C0                              ;AADA2E;
+    dw Common_Instruction_WaitYFrames,$00C0                              ;AADA2E;
     dw UNUSED_Instruction_Shaktool_Lower1PixelAwayFromProj_AAD931        ;AADA32;
-    dw Instruction_Common_WaitYFrames,$0080                              ;AADA34;
+    dw Common_Instruction_WaitYFrames,$0080                              ;AADA34;
     dw UNUSED_Instruction_Shaktool_Raise1PixelTowardsProj_AAD93F         ;AADA38;
-    dw Instruction_Common_WaitYFrames,$0100                              ;AADA3A;
-    dw Instruction_Common_GotoY                                          ;AADA3E;
+    dw Common_Instruction_WaitYFrames,$0100                              ;AADA3A;
+    dw Common_Instruction_GotoY                                          ;AADA3E;
     dw InstList_Shaktool_ArmPiece_Normal                                 ;AADA40;
 
 
 ;;; $DA42: Unused. Instruction list - Shaktool arm piece - attack - front ;;;
 UNUSED_InstList_Shaktool_ArmPiece_Attack_Front_AADA42:
-    dw Instruction_Common_WaitYFrames,$0100                              ;AADA42;
+    dw Common_Instruction_WaitYFrames,$0100                              ;AADA42;
     dw UNUSED_Instruction_Shaktool_Lower1PixelAwayFromProj_AAD931        ;AADA46;
-    dw Instruction_Common_WaitYFrames,$0080                              ;AADA48;
+    dw Common_Instruction_WaitYFrames,$0080                              ;AADA48;
     dw UNUSED_Instruction_Shaktool_Raise1PixelTowardsProj_AAD93F         ;AADA4C;
-    dw Instruction_Common_WaitYFrames,$00C0                              ;AADA4E;
-    dw Instruction_Common_GotoY                                          ;AADA52;
+    dw Common_Instruction_WaitYFrames,$00C0                              ;AADA4E;
+    dw Common_Instruction_GotoY                                          ;AADA52;
     dw InstList_Shaktool_ArmPiece_Normal                                 ;AADA54;
 
 
 ;;; $DA56: Instruction list - Shaktool arm piece - head bob - back ;;;
 InstList_Shaktool_ArmPiece_HeadBob_Back:
     dw Instruction_Shaktool_Lower1Pixel                                  ;AADA56;
-    dw Instruction_Common_WaitYFrames,$0014                              ;AADA58;
+    dw Common_Instruction_WaitYFrames,$0014                              ;AADA58;
     dw Instruction_Shaktool_Raise1Pixel                                  ;AADA5C;
-    dw Instruction_Common_GotoY                                          ;AADA5E;
+    dw Common_Instruction_GotoY                                          ;AADA5E;
     dw InstList_Shaktool_ArmPiece_Normal                                 ;AADA60;
 
 
 ;;; $DA62: Instruction list - Shaktool arm piece - head bob - front ;;;
 InstList_Shaktool_ArmPiece_HeadBob_Front:
-    dw Instruction_Common_WaitYFrames,$0004                              ;AADA62;
+    dw Common_Instruction_WaitYFrames,$0004                              ;AADA62;
     dw Instruction_Shaktool_Lower1Pixel                                  ;AADA66;
-    dw Instruction_Common_WaitYFrames,$000C                              ;AADA68;
+    dw Common_Instruction_WaitYFrames,$000C                              ;AADA68;
     dw Instruction_Shaktool_Raise1Pixel                                  ;AADA6C;
-    dw Instruction_Common_WaitYFrames,$0004                              ;AADA6E;
+    dw Common_Instruction_WaitYFrames,$0004                              ;AADA6E;
 
 
 ;;; $DA72: Instruction list - Shaktool arm piece - normal ;;;
 InstList_Shaktool_ArmPiece_Normal:
     dw $0077,Spritemaps_Shaktool_ArmPiece                                ;AADA72;
-    dw Instruction_Common_GotoY                                          ;AADA76;
+    dw Common_Instruction_GotoY                                          ;AADA76;
     dw InstList_Shaktool_ArmPiece_Normal                                 ;AADA78;
 
 
 ;;; $DA7A: Unused. Instruction list - Shaktool head - attack ;;;
 UNUSED_InstList_Shaktool_Head_Attack_AADA7A:
-    dw Instruction_Common_WaitYFrames,$0080                              ;AADA7A;
+    dw Common_Instruction_WaitYFrames,$0080                              ;AADA7A;
     dw UNUSED_Instruction_Shaktool_Lower1PixelAwayFromProj_AAD931        ;AADA7E;
     dw RTL_AAD99F                                                        ;AADA80;
-    dw Instruction_Common_WaitYFrames,$0080                              ;AADA82;
+    dw Common_Instruction_WaitYFrames,$0080                              ;AADA82;
     dw UNUSED_Instruction_Shaktool_Raise1PixelTowardsProj_AAD93F         ;AADA86;
-    dw Instruction_Common_WaitYFrames,$0140                              ;AADA88;
-    dw Instruction_Common_WaitYFrames,$0001                              ;AADA8C;
+    dw Common_Instruction_WaitYFrames,$0140                              ;AADA88;
+    dw Common_Instruction_WaitYFrames,$0001                              ;AADA8C;
 
 
 ;;; $DA90: Instruction list - Shaktool head - head bob ;;;
 InstList_Shaktool_Head_HeadBob:
-    dw Instruction_Common_WaitYFrames,$0008                              ;AADA90;
+    dw Common_Instruction_WaitYFrames,$0008                              ;AADA90;
     dw Instruction_Shaktool_Lower1Pixel                                  ;AADA94;
-    dw Instruction_Common_WaitYFrames,$0004                              ;AADA96;
+    dw Common_Instruction_WaitYFrames,$0004                              ;AADA96;
     dw Instruction_Shaktool_Raise1Pixel                                  ;AADA9A;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AADA9C;
-    dw Instruction_Common_WaitYFrames,$0001                              ;AADAA0;
+    dw Common_Instruction_WaitYFrames,$0008                              ;AADA9C;
+    dw Common_Instruction_WaitYFrames,$0001                              ;AADAA0;
 
 
 ;;; $DAA4: Instruction list - Shaktool head - aiming left ;;;
 InstList_Shaktool_Head_AimingLeft:
 ; Useless observation: the graphical instruction delay is increasing by one for each of these instruction lists ^^;
     dw $0774,Spritemaps_Shaktool_Head_0                                  ;AADAA4;
-    dw Instruction_Common_GotoY                                          ;AADAA8;
+    dw Common_Instruction_GotoY                                          ;AADAA8;
     dw InstList_Shaktool_Head_AimingLeft                                 ;AADAAA;
 
 
 ;;; $DAAC: Instruction list - Shaktool head - aiming up-left ;;;
 InstList_Shaktool_Head_AimingUpLeft:
     dw $0775,Spritemaps_Shaktool_Head_1                                  ;AADAAC;
-    dw Instruction_Common_GotoY                                          ;AADAB0;
+    dw Common_Instruction_GotoY                                          ;AADAB0;
     dw InstList_Shaktool_Head_AimingUpLeft                               ;AADAB2;
 
 
 ;;; $DAB4: Instruction list - Shaktool head - aiming up ;;;
 InstList_Shaktool_Head_AimingUp:
     dw $0776,Spritemaps_Shaktool_Head_2                                  ;AADAB4;
-    dw Instruction_Common_GotoY                                          ;AADAB8;
+    dw Common_Instruction_GotoY                                          ;AADAB8;
     dw InstList_Shaktool_Head_AimingUp                                   ;AADABA;
 
 
 ;;; $DABC: Instruction list - Shaktool head - aiming up-right ;;;
 InstList_Shaktool_Head_AimingUpRight:
     dw $0777,Spritemaps_Shaktool_Head_3                                  ;AADABC;
-    dw Instruction_Common_GotoY                                          ;AADAC0;
+    dw Common_Instruction_GotoY                                          ;AADAC0;
     dw InstList_Shaktool_Head_AimingUpRight                              ;AADAC2;
 
 
 ;;; $DAC4: Instruction list - Shaktool head - aiming right ;;;
 InstList_Shaktool_Head_AimingRight:
     dw $0778,Spritemaps_Shaktool_Head_4                                  ;AADAC4;
-    dw Instruction_Common_GotoY                                          ;AADAC8;
+    dw Common_Instruction_GotoY                                          ;AADAC8;
     dw InstList_Shaktool_Head_AimingRight                                ;AADACA;
 
 
 ;;; $DACC: Instruction list - Shaktool head - aiming down-right ;;;
 InstList_Shaktool_Head_AimingDownRight:
     dw $0779,Spritemaps_Shaktool_Head_5                                  ;AADACC;
-    dw Instruction_Common_GotoY                                          ;AADAD0;
+    dw Common_Instruction_GotoY                                          ;AADAD0;
     dw InstList_Shaktool_Head_AimingDownRight                            ;AADAD2;
 
 
 ;;; $DAD4: Instruction list - Shaktool head - aiming down ;;;
 InstList_Shaktool_Head_AimingDown:
     dw $077A,Spritemaps_Shaktool_Head_6                                  ;AADAD4;
-    dw Instruction_Common_GotoY                                          ;AADAD8;
+    dw Common_Instruction_GotoY                                          ;AADAD8;
     dw InstList_Shaktool_Head_AimingDown                                 ;AADADA;
 
 
 ;;; $DADC: Instruction list - Shaktool head - aiming down-left ;;;
 InstList_Shaktool_Head_AimingDownLeft:
     dw $077B,Spritemaps_Shaktool_Head_7                                  ;AADADC;
-    dw Instruction_Common_GotoY                                          ;AADAE0;
+    dw Common_Instruction_GotoY                                          ;AADAE0;
     dw InstList_Shaktool_Head_AimingDownLeft                             ;AADAE2;
 
 
@@ -9046,7 +8464,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $DF2F: Enemy touch - enemy $F07F (Shaktool) ;;;
 EnemyTouch_Shaktool:
-    JSL.L NormalEnemyTouchAI                                             ;AADF2F;
+    JSL.L NormalEnemyTouchAI_External                                    ;AADF2F;
     RTL                                                                  ;AADF33;
 
 
@@ -9054,7 +8472,7 @@ EnemyTouch_Shaktool:
 EnemyShot_Shaktool:
 ; Bug: when an enemy dies and goes through its death animation, its enemy RAM is cleared,
 ; so the LDY always loads 0, meaning this only works out if Shaktool is the first enemy in the room
-    JSL.L NormalEnemyShotAI                                              ;AADF34;
+    JSL.L NormalEnemyShotAI_External                                     ;AADF34;
     LDX.W EnemyIndex                                                     ;AADF38;
     LDA.W Enemy.health,X                                                 ;AADF3B;
     BNE .return                                                          ;AADF3E;
@@ -9246,15 +8664,15 @@ Palette_Chozo_LowerNorfair_SpritePalette2:
 
 ;;; $E39D: Instruction list - chozo statue - Lower Norfair - initial ;;;
 InstList_Chozo_LowerNorfair_Initial:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAE39D;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAE39D;
     dw Function_Chozo_LowerNorfair                                       ;AAE39F;
     dw $0001,Spritemaps_Chozo_13                                         ;AAE3A1;
-    dw Instruction_Common_Sleep                                          ;AAE3A5;
+    dw Common_Instruction_Sleep                                          ;AAE3A5;
 
 
 ;;; $E3A7: Instruction list - chozo statue - Lower Norfair - activated ;;;
 InstList_Chozo_LowerNorfair_Activated_0:
-    dw Instruction_Common_SetEnemy0FB2ToRTS                              ;AAE3A7;
+    dw Common_Instruction_SetEnemy0FB2ToRTS                              ;AAE3A7;
     dw Instruction_Chozo_Movement_IndexInY,$0020                         ;AAE3A9;
     dw $0020,Spritemaps_Chozo_13                                         ;AAE3AB;
     dw Instruction_Chozo_Movement_IndexInY,$0022                         ;AAE3B1;
@@ -9270,7 +8688,7 @@ InstList_Chozo_LowerNorfair_Activated_0:
     dw $000C,Spritemaps_Chozo_22                                         ;AAE3D7;
     dw $0060,Spritemaps_Chozo_23                                         ;AAE3DB;
     dw Instruction_Chozo_StartLoweringAcid                               ;AAE3DF;
-    dw Instruction_Common_TimerInY,$0005                                 ;AAE3E1;
+    dw Common_Instruction_TimerInY,$0005                                 ;AAE3E1;
 
 InstList_Chozo_LowerNorfair_Activated_1:
     dw $000B,Spritemaps_Chozo_20                                         ;AAE3E5;
@@ -9279,9 +8697,9 @@ InstList_Chozo_LowerNorfair_Activated_1:
     dw $0008,Spritemaps_Chozo_23                                         ;AAE3F1;
     dw $0006,Spritemaps_Chozo_22                                         ;AAE3F5;
     dw $0008,Spritemaps_Chozo_21                                         ;AAE3F9;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAE3FD;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AAE3FD;
     dw InstList_Chozo_LowerNorfair_Activated_1                           ;AAE3FF;
-    dw Instruction_Common_SetEnemy0FB2ToRTS                              ;AAE401;
+    dw Common_Instruction_SetEnemy0FB2ToRTS                              ;AAE401;
     dw Instruction_Chozo_Movement_IndexInY,$0026                         ;AAE403;
     dw $0080,Spritemaps_Chozo_16                                         ;AAE405;
     dw Instruction_Chozo_Movement_IndexInY,$0024                         ;AAE40B;
@@ -9292,7 +8710,7 @@ InstList_Chozo_LowerNorfair_Activated_1:
     dw $0020,Spritemaps_Chozo_13                                         ;AAE41D;
     dw Instruction_Chozo_UnlockSamus                                     ;AAE423;
     dw Instruction_Chozo_SetLoweredAcidPosition                          ;AAE425;
-    dw Instruction_Common_Sleep                                          ;AAE427;
+    dw Common_Instruction_Sleep                                          ;AAE427;
 
 
 ;;; $E429: Instruction - start lowering acid ;;;
@@ -9333,15 +8751,15 @@ Function_Chozo_LowerNorfair:
 
 ;;; $E457: Instruction list - chozo statue - Wrecked Ship - initial ;;;
 InstList_Chozo_WreckedShip_Initial:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAE457;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAE457;
     dw Function_Chozo_WreckedShip                                        ;AAE459;
     dw $0001,Spritemaps_Chozo_0                                          ;AAE45B;
-    dw Instruction_Common_Sleep                                          ;AAE45F;
+    dw Common_Instruction_Sleep                                          ;AAE45F;
 
 
 ;;; $E461: Instruction list - chozo statue - Wrecked Ship - activated ;;;
 InstList_Chozo_WreckedShip_Activated_0:
-    dw Instruction_Common_SetEnemy0FB2ToRTS                              ;AAE461;
+    dw Common_Instruction_SetEnemy0FB2ToRTS                              ;AAE461;
     dw Instruction_Chozo_Movement_IndexInY,$0000                         ;AAE463;
     dw $0020,Spritemaps_Chozo_0                                          ;AAE465;
     dw Instruction_Chozo_Movement_IndexInY,$0002                         ;AAE46B;
@@ -9356,7 +8774,7 @@ InstList_Chozo_WreckedShip_Activated_0:
     dw $000A,Spritemaps_Chozo_E                                          ;AAE48D;
     dw $000C,Spritemaps_Chozo_F                                          ;AAE491;
     dw $0080,Spritemaps_Chozo_10                                         ;AAE495;
-    dw Instruction_Common_TimerInY,$0004                                 ;AAE499;
+    dw Common_Instruction_TimerInY,$0004                                 ;AAE499;
 
 InstList_Chozo_WreckedShip_Activated_1:
     dw $000B,Spritemaps_Chozo_D                                          ;AAE49D;
@@ -9365,11 +8783,11 @@ InstList_Chozo_WreckedShip_Activated_1:
     dw $0008,Spritemaps_Chozo_10                                         ;AAE4A9;
     dw $0006,Spritemaps_Chozo_F                                          ;AAE4AD;
     dw $0008,Spritemaps_Chozo_E                                          ;AAE4B1;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAE4B5;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AAE4B5;
     dw InstList_Chozo_WreckedShip_Activated_1                            ;AAE4B7;
-    dw Instruction_Common_Enemy0FB2_InY                                  ;AAE4B9;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;AAE4B9;
     dw RTS_AAE7DA                                                        ;AAE4BB;
-    dw Instruction_Common_TimerInY,$0010                                 ;AAE4BD;
+    dw Common_Instruction_TimerInY,$0010                                 ;AAE4BD;
 
 InstList_Chozo_WreckedShip_Activated_2:
     dw Instruction_Chozo_Movement_IndexInY,$0016                         ;AAE4C1;
@@ -9398,7 +8816,7 @@ InstList_Chozo_WreckedShip_Activated_2:
     dw Instruction_Chozo_Movement_IndexInY,$0014                         ;AAE519;
     dw Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile,$0000 ;AAE51D;
     dw $0006,Spritemaps_Chozo_A                                          ;AAE51F;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAE525;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;AAE525;
     dw InstList_Chozo_WreckedShip_Activated_2                            ;AAE527;
     dw Instruction_Chozo_Movement_IndexInY,$0016                         ;AAE529;
     dw Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile,$FFF8 ;AAE52D;
@@ -9412,7 +8830,7 @@ InstList_Chozo_WreckedShip_Activated_2:
     dw Instruction_Chozo_Movement_IndexInY,$000C                         ;AAE54D;
     dw Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile,$0000 ;AAE551;
     dw $0006,Spritemaps_Chozo_6                                          ;AAE553;
-    dw Instruction_Common_SetEnemy0FB2ToRTS                              ;AAE559;
+    dw Common_Instruction_SetEnemy0FB2ToRTS                              ;AAE559;
     dw Instruction_Chozo_Movement_IndexInY,$0006                         ;AAE55B;
     dw $0080,Spritemaps_Chozo_3                                          ;AAE55D;
     dw Instruction_Chozo_Movement_IndexInY,$0004                         ;AAE563;
@@ -9422,7 +8840,7 @@ InstList_Chozo_WreckedShip_Activated_2:
     dw Instruction_Chozo_Movement_IndexInY,$0000                         ;AAE573;
     dw $0020,Spritemaps_Chozo_0                                          ;AAE575;
     dw Instruction_Chozo_ReleaseSamus_BlockSlopeAccess                   ;AAE57B;
-    dw Instruction_Common_Sleep                                          ;AAE57D;
+    dw Common_Instruction_Sleep                                          ;AAE57D;
 
 
 ;;; $E57F: Instruction - queue chozo grabs Samus sound effect ;;;
@@ -9586,7 +9004,7 @@ InitAI_Chozo:
     LDA.W Enemy.properties,X                                             ;AAE728;
     ORA.W #$A800                                                         ;AAE72B;
     STA.W Enemy.properties,X                                             ;AAE72E;
-    LDA.W #Spritemap_Common_Nothing                                      ;AAE731;
+    LDA.W #Common_Spritemap_Nothing                                      ;AAE731;
     STA.W Enemy.spritemap,X                                              ;AAE734;
     LDA.W #$0001                                                         ;AAE737;
     STA.W Enemy.instTimer,X                                              ;AAE73A;
