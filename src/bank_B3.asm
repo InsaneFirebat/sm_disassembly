@@ -3,591 +3,9 @@ org $B38000
 
 
 ; Common to all enemy code banks
-
-;;; $8000: Grapple AI - no interaction. Also unfreezes enemies(!) ;;;
-CommonB3_GrappleAI_NoInteraction:
-; Used by skultera, Draygon body, fire arc, Phantoon, etecoon, dachora and WS ghost
-    JSL.L GrappleAI_SwitchEnemyAIToMainAI                                ;B38000;
-    RTL                                                                  ;B38004;
-
-
-;;; $8005: Grapple AI - Samus latches on ;;;
-CommonB3_GrappleAI_SamusLatchesOn:
-; Used by gripper and Crocomire
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple                            ;B38005;
-    RTL                                                                  ;B38009;
-
-
-;;; $800A: Grapple AI - kill enemy ;;;
-CommonB3_GrappleAI_KillEnemy:
-; Common
-    JSL.L GrappleAI_EnemyGrappleDeath                                    ;B3800A;
-    RTL                                                                  ;B3800E;
-
-
-;;; $800F: Grapple AI - cancel grapple beam ;;;
-CommonB3_GrappleAI_CancelGrappleBeam:
-; Common
-    JSL.L GrappleAI_SwitchToFrozenAI                                     ;B3800F;
-    RTL                                                                  ;B38013;
-
-
-;;; $8014: Grapple AI - Samus latches on - no invincibility ;;;
-CommonB3_GrappleAI_SamusLatchesOn_NoInvincibility:
-; Used by powamp
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility            ;B38014;
-    RTL                                                                  ;B38018;
-
-
-;;; $8019: Unused. Grapple AI - Samus latches on - paralyse enemy ;;;
-UNUSED_CommonB3_GrappleAI_SamusLatchesOn_ParalyzeEnemy_B38019:
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy              ;B38019;
-    RTL                                                                  ;B3801D;
-
-
-;;; $801E: Grapple AI - hurt Samus ;;;
-CommonB3_GrappleAI_HurtSamus:
-; Used by WS spark
-; Hurt reaction happens in $9B:B932
-    JSL.L GrappleAI_SwitchToFrozenAI_duplicate                           ;B3801E;
-    RTL                                                                  ;B38022;
-
-
-;;; $8023: Normal enemy touch AI ;;;
-CommonB3_NormalEnemyTouchAI:
-    JSL.L NormalEnemyTouchAI                                             ;B38023;
-    RTL                                                                  ;B38027;
-
-
-;;; $8028: Normal touch AI - no death check ;;;
-CommonB3_NormalTouchAI_NoDeathCheck:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;B38028;
-    RTL                                                                  ;B3802C;
-
-
-;;; $802D: Normal enemy shot AI ;;;
-CommonB3_NormalEnemyShotAI:
-    JSL.L NormalEnemyShotAI                                              ;B3802D;
-    RTL                                                                  ;B38031;
-
-
-;;; $8032: Normal enemy shot AI - no death check, no enemy shot graphic ;;;
-CommonB3_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;B38032;
-    RTL                                                                  ;B38036;
-
-
-;;; $8037: Normal enemy power bomb AI ;;;
-CommonB3_NormalEnemyPowerBombAI:
-    JSL.L NormalEnemyPowerBombAI                                         ;B38037;
-    RTL                                                                  ;B3803B;
-
-
-;;; $803C: Normal enemy power bomb AI - no death check ;;;
-CommonB3_NormalEnemyPowerBombAI_NoDeathCheck:
-; Kraid's power bomb AI
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;B3803C;
-    RTL                                                                  ;B38040;
-
-
-;;; $8041: Normal enemy frozen AI ;;;
-CommonB3_NormalEnemyFrozenAI:
-    JSL.L NormalEnemyFrozenAI                                            ;B38041;
-    RTL                                                                  ;B38045;
-
-
-;;; $8046: Creates a dud shot ;;;
-CommonB3_CreateADudShot:
-    JSL.L CreateADudShot                                                 ;B38046;
-    RTL                                                                  ;B3804A;
-
-
-;;; $804B: RTS ;;;
-RTS_B3804B:
-    RTS                                                                  ;B3804B;
-
-
-;;; $804C: RTL ;;;
-RTL_B3804C:
-    RTL                                                                  ;B3804C;
-
-
-;;; $804D: Spritemap - nothing ;;;
-Spritemap_CommonB3_Nothing:
-    dw $0000                                                             ;B3804D;
-
-
-;;; $804F: Extended spritemap - nothing ;;;
-ExtendedSpritemap_CommonB3_Nothing:
-    dw $0001                                                             ;B3804F;
-    dw $0000,$0000
-    dw Spritemap_CommonB3_Nothing                                        ;B38055;
-    dw Hitbox_CommonB3_Nothing                                           ;B38057;
-
-
-;;; $8059: Hitbox - nothing ;;;
-Hitbox_CommonB3_Nothing:
-; [n entries] [[left offset] [top offset] [right offset] [bottom offset] [p touch] [p shot]]...
-    dw $0001                                                             ;B38059;
-    dw $0000,$0000,$0000,$0000
-    dw CommonB3_NormalEnemyTouchAI                                       ;B38063;
-    dw CommonB3_NormalEnemyShotAI                                        ;B38065;
-
-
-;;; $8067: Instruction list - delete enemy ;;;
-InstList_CommonB3_DeleteEnemy:
-    dw Instruction_CommonB3_DeleteEnemy                                  ;B38067;
-
-
-;;; $8069: Two NOPs ;;;
-NOPNOP_B38069:
-; Used as palette by respawning enemy placeholder and Draygon's eye o_O
-    NOP                                                                  ;B38069;
-    NOP                                                                  ;B3806A;
-
-
-;;; $806B: Instruction - Enemy.var5 = [[Y]] ;;;
-Instruction_CommonB3_Enemy0FB2_InY:
-; Used only by torizos (for enemy movement function) and escape etecoon (for enemy function)
-    LDA.W $0000,Y                                                        ;B3806B;
-    STA.W Enemy.var5,X                                                   ;B3806E;
-    INY                                                                  ;B38071;
-    INY                                                                  ;B38072;
-    RTL                                                                  ;B38073;
-
-
-;;; $8074: Instruction - Enemy.var5 = RTS ;;;
-Instruction_CommonB3_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_B3807B                                                    ;B38074;
-    STA.W Enemy.var5,X                                                   ;B38077;
-    RTL                                                                  ;B3807A;
-
-
-RTS_B3807B:
-    RTS                                                                  ;B3807B;
-
-
-;;; $807C: Instruction - delete enemy ;;;
-Instruction_CommonB3_DeleteEnemy:
-    LDA.W Enemy.properties,X                                             ;B3807C;
-    ORA.W #$0200                                                         ;B3807F;
-    STA.W Enemy.properties,X                                             ;B38082;
-    PLA                                                                  ;B38085;
-    PEA.W ProcessEnemyInstructions_return-1                              ;B38086;
-    RTL                                                                  ;B38089;
-
-
-;;; $808A: Instruction - call function [[Y]] ;;;
-Instruction_CommonB3_CallFunctionInY:
-    LDA.W $0000,Y                                                        ;B3808A;
-    STA.B DP_Temp12                                                      ;B3808D;
-    PHY                                                                  ;B3808F;
-    PHX                                                                  ;B38090;
-    PEA.W .manualReturn-1                                                ;B38091;
-    JMP.W (DP_Temp12)                                                    ;B38094;
-
-  .manualReturn:
-    PLX                                                                  ;B38097;
-    PLY                                                                  ;B38098;
-    INY                                                                  ;B38099;
-    INY                                                                  ;B3809A;
-    RTL                                                                  ;B3809B;
-
-
-;;; $809C: Instruction - call function [[Y]] with A = [[Y] + 2] ;;;
-Instruction_CommonB3_CallFunctionInY_WithA:
-    LDA.W $0000,Y                                                        ;B3809C;
-    STA.B DP_Temp12                                                      ;B3809F;
-    LDA.W $0002,Y                                                        ;B380A1;
-    PHY                                                                  ;B380A4;
-    PHX                                                                  ;B380A5;
-    PEA.W .manualReturn-1                                                ;B380A6;
-    JMP.W (DP_Temp12)                                                    ;B380A9;
-
-  .manualReturn:
-    PLX                                                                  ;B380AC;
-    PLY                                                                  ;B380AD;
-    TYA                                                                  ;B380AE;
-    CLC                                                                  ;B380AF;
-    ADC.W #$0004                                                         ;B380B0;
-    TAY                                                                  ;B380B3;
-    RTL                                                                  ;B380B4;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonB3_CallExternalFunctionInY_B380B5:
-    LDA.W $0000,Y                                                        ;B380B5;
-    STA.B DP_Temp12                                                      ;B380B8;
-    LDA.W $0001,Y                                                        ;B380BA;
-    STA.B DP_Temp13                                                      ;B380BD;
-    PHX                                                                  ;B380BF;
-    PHY                                                                  ;B380C0;
-    JSL.L .externalFunction                                              ;B380C1;
-    PLY                                                                  ;B380C5;
-    PLX                                                                  ;B380C6;
-    INY                                                                  ;B380C7;
-    INY                                                                  ;B380C8;
-    INY                                                                  ;B380C9;
-    RTL                                                                  ;B380CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;B380CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonB3_CallExternalFunctionInY_WithA_B380CE:
-    LDA.W $0000,Y                                                        ;B380CE;
-    STA.B DP_Temp12                                                      ;B380D1;
-    LDA.W $0001,Y                                                        ;B380D3;
-    STA.B DP_Temp13                                                      ;B380D6;
-    LDA.W $0003,Y                                                        ;B380D8;
-    PHX                                                                  ;B380DB;
-    PHY                                                                  ;B380DC;
-    JSL.L .externalFunction                                              ;B380DD;
-    PLY                                                                  ;B380E1;
-    PLX                                                                  ;B380E2;
-    TYA                                                                  ;B380E3;
-    CLC                                                                  ;B380E4;
-    ADC.W #$0005                                                         ;B380E5;
-    TAY                                                                  ;B380E8;
-    RTL                                                                  ;B380E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;B380EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $80ED: Instruction - go to [[Y]] ;;;
-Instruction_CommonB3_GotoY:
-    LDA.W $0000,Y                                                        ;B380ED;
-    TAY                                                                  ;B380F0;
-    RTL                                                                  ;B380F1;
-
-
-;;; $80F2: Instruction - go to [[Y]] + ±[[Y]] ;;;
-Instruction_CommonB3_GotoY_PlusY:
-    STY.B DP_Temp12                                                      ;B380F2;
-    DEY                                                                  ;B380F4;
-    LDA.W $0000,Y                                                        ;B380F5;
-    XBA                                                                  ;B380F8;
-    BMI .highByte                                                        ;B380F9;
-    AND.W #$00FF                                                         ;B380FB;
-    BRA +                                                                ;B380FE;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;B38100;
-
-+   CLC                                                                  ;B38103;
-    ADC.B DP_Temp12                                                      ;B38104;
-    TAY                                                                  ;B38106;
-    RTL                                                                  ;B38107;
-
-
-;;; $8108: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonB3_DecrementTimer_GotoYIfNonZero:
-    DEC.W Enemy.loopCounter,X                                            ;B38108;
-    BNE Instruction_CommonB3_GotoY                                       ;B3810B;
-    INY                                                                  ;B3810D;
-    INY                                                                  ;B3810E;
-    RTL                                                                  ;B3810F;
-
-
-;;; $8110: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonB3_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W Enemy.loopCounter,X                                            ;B38110;
-    BNE Instruction_CommonB3_GotoY                                       ;B38113;
-    INY                                                                  ;B38115;
-    INY                                                                  ;B38116;
-    RTL                                                                  ;B38117;
-
-
-;;; $8118: Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-Instruction_CommonB3_DecrementTimer_GotoY_PlusY_IfNonZero:
-    SEP #$20                                                             ;B38118;
-    DEC.W Enemy.loopCounter,X                                            ;B3811A;
-    REP #$20                                                             ;B3811D;
-    BNE Instruction_CommonB3_GotoY_PlusY                                 ;B3811F;
-    INY                                                                  ;B38121;
-    RTL                                                                  ;B38122;
-
-
-;;; $8123: Instruction - timer = [[Y]] ;;;
-Instruction_CommonB3_TimerInY:
-    LDA.W $0000,Y                                                        ;B38123;
-    STA.W Enemy.loopCounter,X                                            ;B38126;
-    INY                                                                  ;B38129;
-    INY                                                                  ;B3812A;
-    RTL                                                                  ;B3812B;
-
-
-;;; $812C: Instruction - skip next instruction ;;;
-Instruction_CommonB3_SkipNextInstruction:
-    INY                                                                  ;B3812C;
-    INY                                                                  ;B3812D;
-    RTL                                                                  ;B3812E;
-
-
-;;; $812F: Instruction - sleep ;;;
-Instruction_CommonB3_Sleep:
-    DEY                                                                  ;B3812F;
-    DEY                                                                  ;B38130;
-    TYA                                                                  ;B38131;
-    STA.W Enemy.instList,X                                               ;B38132;
-    PLA                                                                  ;B38135;
-    PEA.W ProcessEnemyInstructions_return-1                              ;B38136;
-    RTL                                                                  ;B38139;
-
-
-;;; $813A: Instruction - wait [[Y]] frames ;;;
-Instruction_CommonB3_WaitYFrames:
-; Set instruction timer and terminate processing enemy instructions
-; Used for running a delay that doesn't update graphics,
-; useful for e.g. GT eye beam attack ($AA:D10D), implemented by an instruction list that has no graphical instructions,
-; which allows it to be called from multiple different poses
-    LDA.W $0000,Y                                                        ;B3813A;
-    STA.W Enemy.instTimer,X                                              ;B3813D;
-    INY                                                                  ;B38140;
-    INY                                                                  ;B38141;
-    TYA                                                                  ;B38142;
-    STA.W Enemy.instList,X                                               ;B38143;
-    PLA                                                                  ;B38146;
-    PEA.W ProcessEnemyInstructions_return-1                              ;B38147;
-    RTL                                                                  ;B3814A;
-
-
-;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
-Instruction_CommonB3_TransferYBytesInYToVRAM:
-    PHX                                                                  ;B3814B;
-    LDX.W VRAMWriteStack                                                 ;B3814C;
-    LDA.W $0000,Y                                                        ;B3814F;
-    STA.B VRAMWrite.size,X                                               ;B38152;
-    LDA.W $0002,Y                                                        ;B38154;
-    STA.B VRAMWrite.src,X                                                ;B38157;
-    LDA.W $0003,Y                                                        ;B38159;
-    STA.B VRAMWrite.src+1,X                                              ;B3815C;
-    LDA.W $0005,Y                                                        ;B3815E;
-    STA.B VRAMWrite.dest,X                                               ;B38161;
-    TXA                                                                  ;B38163;
-    CLC                                                                  ;B38164;
-    ADC.W #$0007                                                         ;B38165;
-    STA.W VRAMWriteStack                                                 ;B38168;
-    TYA                                                                  ;B3816B;
-    CLC                                                                  ;B3816C;
-    ADC.W #$0007                                                         ;B3816D;
-    TAY                                                                  ;B38170;
-    PLX                                                                  ;B38171;
-    RTL                                                                  ;B38172;
-
-
-;;; $8173: Instruction - enable off-screen processing ;;;
-Instruction_CommonB3_EnableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;B38173;
-    ORA.W #$0800                                                         ;B38176;
-    STA.W Enemy.properties,X                                             ;B38179;
-    RTL                                                                  ;B3817C;
-
-
-;;; $817D: Instruction - disable off-screen processing ;;;
-Instruction_CommonB3_DisableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;B3817D;
-    AND.W #$F7FF                                                         ;B38180;
-    STA.W Enemy.properties,X                                             ;B38183;
-    RTL                                                                  ;B38186;
-
-
-;;; $8187: Common enemy speeds - linearly increasing ;;;
-CommonB3EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;B38187;
-  .subspeed:
-    dw       $0000                                                       ;B38189;
-  .negatedSpeed:
-    dw             $0000                                                 ;B3818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;B3818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
-
-
-;;; $838F: Common enemy speeds - quadratically increasing ;;;
-CommonB3EnemySpeeds_QuadraticallyIncreasing:
-; I.e. gravity
-; Used by e.g. Botwoon when dying and falling to the floor
-;        _____________________ Subspeed
-;       |      _______________ Speed
-;       |     |      _________ Negated subspeed
-;       |     |     |      ___ Negated speed
-;       |     |     |     |
-  .subspeed:
-    dw $0000                                                             ;B3838F;
-  .speed:
-    dw       $0000                                                       ;B38391;
-  .negatedSubspeed:
-    dw             $0000                                                 ;B38393;
-  .negatedSpeed:
-    dw                   $0000                                           ;B38395;
-    dw $0109,$0000,$FEF7,$FFFF
-    dw $031B,$0000,$FCE5,$FFFF
-    dw $0636,$0000,$F9CA,$FFFF
-    dw $0A5A,$0000,$F5A6,$FFFF
-    dw $0F87,$0000,$F079,$FFFF
-    dw $15BD,$0000,$EA43,$FFFF
-    dw $1CFC,$0000,$E304,$FFFF
-    dw $2544,$0000,$DABC,$FFFF
-    dw $2E95,$0000,$D16B,$FFFF
-    dw $38EF,$0000,$C711,$FFFF
-    dw $4452,$0000,$BBAE,$FFFF
-    dw $50BE,$0000,$AF42,$FFFF
-    dw $5E33,$0000,$A1CD,$FFFF
-    dw $6CB1,$0000,$934F,$FFFF
-    dw $7C38,$0000,$83C8,$FFFF
-    dw $8CC8,$0000,$7338,$FFFF
-    dw $9E61,$0000,$619F,$FFFF
-    dw $B103,$0000,$4EFD,$FFFF
-    dw $C4AE,$0000,$3B52,$FFFF
-    dw $D962,$0000,$269E,$FFFF
-    dw $EF1F,$0000,$10E1,$FFFF
-    dw $05E5,$0000,$FA1B,$FFFF
-    dw $14B4,$0001,$EB4C,$FFFE
-    dw $2D8C,$0001,$D274,$FFFE
-    dw $476D,$0001,$B893,$FFFE
-    dw $6257,$0001,$9DA9,$FFFE
-    dw $7E4A,$0001,$81B6,$FFFE
-    dw $9B46,$0001,$64BA,$FFFE
-    dw $B94B,$0001,$46B5,$FFFE
-    dw $D859,$0001,$27A7,$FFFE
-    dw $F870,$0001,$0790,$FFFE
-    dw $1090,$0002,$EF70,$FFFD
-    dw $32B9,$0002,$CD47,$FFFD
-    dw $55EB,$0002,$AA15,$FFFD
-    dw $7A26,$0002,$85DA,$FFFD
-    dw $9F6A,$0002,$6096,$FFFD
-    dw $C5B7,$0002,$3A49,$FFFD
-    dw $ED0D,$0002,$12F3,$FFFD
-    dw $0C6C,$0003,$F394,$FFFC
-    dw $35D4,$0003,$CA2C,$FFFC
-    dw $6045,$0003,$9FBB,$FFFC
-    dw $8BBF,$0003,$7441,$FFFC
-    dw $B842,$0003,$47BE,$FFFC
-    dw $E5CE,$0003,$1A32,$FFFC
-    dw $0B63,$0004,$F49D,$FFFB
-    dw $3B01,$0004,$C4FF,$FFFB
-    dw $6BA8,$0004,$9458,$FFFB
-    dw $9D58,$0004,$62A8,$FFFB
-    dw $D011,$0004,$2FEF,$FFFB
-    dw $03D3,$0004,$FC2D,$FFFB
-    dw $2F9E,$0005,$D062,$FFFA
-    dw $6572,$0005,$9A8E,$FFFA
-    dw $9C4F,$0005,$63B1,$FFFA
-    dw $D435,$0005,$2BCB,$FFFA
-    dw $0424,$0006,$FBDC,$FFF9
-    dw $3E1C,$0006,$C1E4,$FFF9
-    dw $791D,$0006,$86E3,$FFF9
-    dw $B527,$0006,$4AD9,$FFF9
-    dw $F23A,$0006,$0DC6,$FFF9
-    dw $2756,$0007,$D8AA,$FFF8
-    dw $667B,$0007,$9985,$FFF8
-    dw $A6A9,$0007,$5957,$FFF8
-    dw $E7E0,$0007,$1820,$FFF8
-    dw $2120,$0008,$DEE0,$FFF7
-    dw $6469,$0008,$9B97,$FFF7
-    dw $A8BB,$0008,$5745,$FFF7
-    dw $EE16,$0008,$11EA,$FFF7
-    dw $2B7A,$0009,$D486,$FFF6
-    dw $72E7,$0009,$8D19,$FFF6
-    dw $BB5D,$0009,$44A3,$FFF6
-    dw $04DC,$0009,$FB24,$FFF6
-    dw $4664,$000A,$B99C,$FFF5
-    dw $91F5,$000A,$6E0B,$FFF5
-    dw $DE8F,$000A,$2171,$FFF5
-    dw $2332,$000B,$DCCE,$FFF4
-    dw $71DE,$000B,$8E22,$FFF4
-    dw $C193,$000B,$3E6D,$FFF4
-    dw $0951,$000C,$F6AF,$FFF3
-    dw $5B18,$000C,$A4E8,$FFF3
-    dw $ADE8,$000C,$5218,$FFF3
-    dw $01C1,$000C,$FE3F,$FFF3
-    dw $4DA3,$000D,$B25D,$FFF2
-    dw $A38E,$000D,$5C72,$FFF2
-    dw $FA82,$000D,$057E,$FFF2
-    dw $497F,$000E,$B681,$FFF1
-    dw $A285,$000E,$5D7B,$FFF1
-    dw $FC94,$000E,$036C,$FFF1
-    dw $4EAC,$000F,$B154,$FFF0
-    dw $AACD,$000F,$5533,$FFF0
-    dw $07F7,$000F,$F809,$FFF0
-    dw $5D2A,$0010,$A2D6,$FFEF
-    dw $BC66,$0010,$439A,$FFEF
-    dw $13AB,$0011,$EC55,$FFEE
-    dw $74F9,$0011,$8B07,$FFEE
+namespace CommonB3
+incsrc "common_enemy_functions.asm"
+namespace off
 
 
 ;;; $8687: Palette - enemy $F153 (unused spinning turtle eye) ;;;
@@ -606,7 +24,7 @@ UNUSED_InstList_SpinningTurtleEye_Initial_B386A7:
     dw $000A,UNUSED_Spritemaps_SpinningTurtleEye_5_B38737                ;B386BB;
     dw $000A,UNUSED_Spritemaps_SpinningTurtleEye_6_B3873E                ;B386BF;
     dw $000A,UNUSED_Spritemaps_SpinningTurtleEye_7_B38745                ;B386C3;
-    dw Instruction_Common_GotoY                                          ;B386C7;
+    dw Common_Instruction_GotoY                                          ;B386C7;
     dw UNUSED_InstList_SpinningTurtleEye_Initial_B386A7                  ;B386C9;
 
 
@@ -616,7 +34,7 @@ UNUSED_InstList_SpinningTurtleEye_B386CB:
     dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_8_B3874C                ;B386CB;
     dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_9_B38753                ;B386CF;
     dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_A_B3875A                ;B386D3;
-    dw Instruction_Common_GotoY                                          ;B386D7;
+    dw Common_Instruction_GotoY                                          ;B386D7;
     dw UNUSED_InstList_SpinningTurtleEye_B386CB                          ;B386D9;
 
 
@@ -625,7 +43,7 @@ UNUSED_InstList_SpinningTurtleEye_B386DB:
     dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_B_B38761                ;B386DB;
     dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_C_B38768                ;B386DF;
     dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_D_B3876F                ;B386E3;
-    dw Instruction_Common_GotoY                                          ;B386E7;
+    dw Common_Instruction_GotoY                                          ;B386E7;
     dw UNUSED_InstList_SpinningTurtleEye_B386DB                          ;B386E9;
 
 
@@ -634,7 +52,7 @@ UNUSED_InstList_SpinningTurtleEye_B386EB:
     dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_E_B38776                ;B386EB;
     dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_F_B3877D                ;B386EF;
     dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_10_B38784               ;B386F3;
-    dw Instruction_Common_GotoY                                          ;B386F7;
+    dw Common_Instruction_GotoY                                          ;B386F7;
     dw UNUSED_InstList_SpinningTurtleEye_B386EB                          ;B386F9;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -754,7 +172,7 @@ InstList_Zeb_FacingLeft_Rising:
     dw $0002,Spritemaps_Zeb_3                                            ;B387BF;
     dw $0002,Spritemaps_Zeb_2                                            ;B387C3;
     dw $0002,Spritemaps_Zeb_1                                            ;B387C7;
-    dw Instruction_Common_GotoY                                          ;B387CB;
+    dw Common_Instruction_GotoY                                          ;B387CB;
     dw InstList_Zeb_FacingLeft_Rising                                    ;B387CD;
 
 
@@ -766,7 +184,7 @@ InstList_Zeb_FacingLeft_Shooting:
     dw $0001,Spritemaps_Zeb_4                                            ;B387DB;
     dw $0001,Spritemaps_Zeb_3                                            ;B387DF;
     dw $0001,Spritemaps_Zeb_1                                            ;B387E3;
-    dw Instruction_Common_GotoY                                          ;B387E7;
+    dw Common_Instruction_GotoY                                          ;B387E7;
     dw InstList_Zeb_FacingLeft_Shooting                                  ;B387E9;
 
 
@@ -780,7 +198,7 @@ InstList_Zeb_FacingRight_Rising:
     dw $0002,Spritemaps_Zeb_8                                            ;B387FF;
     dw $0002,Spritemaps_Zeb_7                                            ;B38803;
     dw $0002,Spritemaps_Zeb_6                                            ;B38807;
-    dw Instruction_Common_GotoY                                          ;B3880B;
+    dw Common_Instruction_GotoY                                          ;B3880B;
     dw InstList_Zeb_FacingRight_Rising                                   ;B3880D;
 
 
@@ -792,7 +210,7 @@ InstList_Zeb_FacingRight_Shooting:
     dw $0001,Spritemaps_Zeb_9                                            ;B3881B;
     dw $0001,Spritemaps_Zeb_8                                            ;B3881F;
     dw $0001,Spritemaps_Zeb_6                                            ;B38823;
-    dw Instruction_Common_GotoY                                          ;B38827;
+    dw Common_Instruction_GotoY                                          ;B38827;
     dw InstList_Zeb_FacingRight_Shooting                                 ;B38829;
 
 
@@ -1070,7 +488,7 @@ InstList_Zebbo_FacingLeft_Rising:
     dw $0001,Spritemaps_Zebbo_4                                          ;B38A21;
     dw $0002,Spritemaps_Zebbo_5                                          ;B38A25;
     dw $0001,Spritemaps_Zebbo_4                                          ;B38A29;
-    dw Instruction_Common_GotoY                                          ;B38A2D;
+    dw Common_Instruction_GotoY                                          ;B38A2D;
     dw InstList_Zebbo_FacingLeft_Rising                                  ;B38A2F;
 
 
@@ -1080,7 +498,7 @@ InstList_Zebbo_FacingLeft_Shooting:
     dw $0003,Spritemaps_Zebbo_1                                          ;B38A35;
     dw $0003,Spritemaps_Zebbo_2                                          ;B38A39;
     dw $0003,Spritemaps_Zebbo_1                                          ;B38A3D;
-    dw Instruction_Common_GotoY                                          ;B38A41;
+    dw Common_Instruction_GotoY                                          ;B38A41;
     dw InstList_Zebbo_FacingLeft_Shooting                                ;B38A43;
 
 
@@ -1090,7 +508,7 @@ InstList_Zebbo_FacingRight_Rising:
     dw $0001,Spritemaps_Zebbo_A                                          ;B38A49;
     dw $0002,Spritemaps_Zebbo_B                                          ;B38A4D;
     dw $0001,Spritemaps_Zebbo_A                                          ;B38A51;
-    dw Instruction_Common_GotoY                                          ;B38A55;
+    dw Common_Instruction_GotoY                                          ;B38A55;
     dw InstList_Zebbo_FacingRight_Rising                                 ;B38A57;
 
 
@@ -1100,7 +518,7 @@ InstList_Zebbo_FacingRight_Shooting:
     dw $0003,Spritemaps_Zebbo_7                                          ;B38A5D;
     dw $0003,Spritemaps_Zebbo_8                                          ;B38A61;
     dw $0003,Spritemaps_Zebbo_7                                          ;B38A65;
-    dw Instruction_Common_GotoY                                          ;B38A69;
+    dw Common_Instruction_GotoY                                          ;B38A69;
     dw InstList_Zebbo_FacingRight_Shooting                               ;B38A6B;
 
 
@@ -1170,7 +588,7 @@ InstList_Gamet_FacingLeft_Rising:
     dw $0002,Spritemaps_Gamet_3                                          ;B38AF5;
     dw $0002,Spritemaps_Gamet_2                                          ;B38AF9;
     dw $0002,Spritemaps_Gamet_1                                          ;B38AFD;
-    dw Instruction_Common_GotoY                                          ;B38B01;
+    dw Common_Instruction_GotoY                                          ;B38B01;
     dw InstList_Gamet_FacingLeft_Rising                                  ;B38B03;
 
 
@@ -1182,7 +600,7 @@ InstList_Gamet_FacingLeft_Shooting:
     dw $0001,Spritemaps_Gamet_4                                          ;B38B11;
     dw $0001,Spritemaps_Gamet_3                                          ;B38B15;
     dw $0001,Spritemaps_Gamet_1                                          ;B38B19;
-    dw Instruction_Common_GotoY                                          ;B38B1D;
+    dw Common_Instruction_GotoY                                          ;B38B1D;
     dw InstList_Gamet_FacingLeft_Shooting                                ;B38B1F;
 
 
@@ -1196,7 +614,7 @@ InstList_Gamet_FacingRight_Rising:
     dw $0002,Spritemaps_Gamet_8                                          ;B38B35;
     dw $0002,Spritemaps_Gamet_7                                          ;B38B39;
     dw $0002,Spritemaps_Gamet_6                                          ;B38B3D;
-    dw Instruction_Common_GotoY                                          ;B38B41;
+    dw Common_Instruction_GotoY                                          ;B38B41;
     dw InstList_Gamet_FacingRight_Rising                                 ;B38B43;
 
 
@@ -1208,7 +626,7 @@ InstList_Gamet_FacingRight_Shooting:
     dw $0001,Spritemaps_Gamet_9                                          ;B38B51;
     dw $0001,Spritemaps_Gamet_8                                          ;B38B55;
     dw $0001,Spritemaps_Gamet_6                                          ;B38B59;
-    dw Instruction_Common_GotoY                                          ;B38B5D;
+    dw Common_Instruction_GotoY                                          ;B38B5D;
     dw InstList_Gamet_FacingRight_Shooting                               ;B38B5F;
 
 
@@ -1371,14 +789,14 @@ Function_Gamet_Rising:
     TAY                                                                  ;B38CB5;
     LDA.W Enemy.YSubPosition,X                                           ;B38CB6;
     CLC                                                                  ;B38CB9;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;B38CBA;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+6,Y                       ;B38CBA;
     BCC +                                                                ;B38CBD;
     INC.W Enemy.YPosition,X                                              ;B38CBF;
 
 +   STA.W Enemy.YSubPosition,X                                           ;B38CC2;
     LDA.W Enemy.YPosition,X                                              ;B38CC5;
     CLC                                                                  ;B38CC8;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;B38CC9;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+4,Y                       ;B38CC9;
     STA.W Enemy.YPosition,X                                              ;B38CCC;
     CMP.W SamusYPosition                                                 ;B38CCF;
     BPL .return                                                          ;B38CD2;
@@ -1420,14 +838,14 @@ Function_Gamet_MoveToFormation_UpperMiddle:
     TAY                                                                  ;B38D15;
     LDA.W Enemy.YSubPosition,X                                           ;B38D16;
     CLC                                                                  ;B38D19;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;B38D1A;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+6,Y                       ;B38D1A;
     BCC +                                                                ;B38D1D;
     INC.W Enemy.YPosition,X                                              ;B38D1F;
 
 +   STA.W Enemy.YSubPosition,X                                           ;B38D22;
     LDA.W Enemy.YPosition,X                                              ;B38D25;
     CLC                                                                  ;B38D28;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;B38D29;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+4,Y                       ;B38D29;
     STA.W Enemy.YPosition,X                                              ;B38D2C;
     CLC                                                                  ;B38D2F;
     ADC.W #$0010                                                         ;B38D30;
@@ -1453,14 +871,14 @@ Function_Gamet_MoveToFormation_Top:
     TAY                                                                  ;B38D57;
     LDA.W Enemy.YSubPosition,X                                           ;B38D58;
     CLC                                                                  ;B38D5B;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;B38D5C;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+6,Y                       ;B38D5C;
     BCC +                                                                ;B38D5F;
     INC.W Enemy.YPosition,X                                              ;B38D61;
 
 +   STA.W Enemy.YSubPosition,X                                           ;B38D64;
     LDA.W Enemy.YPosition,X                                              ;B38D67;
     CLC                                                                  ;B38D6A;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;B38D6B;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+4,Y                       ;B38D6B;
     STA.W Enemy.YPosition,X                                              ;B38D6E;
     CLC                                                                  ;B38D71;
     ADC.W #$0020                                                         ;B38D72;
@@ -1486,14 +904,14 @@ Function_Gamet_MoveToFormation_LowerMiddle:
     TAY                                                                  ;B38D99;
     LDA.W Enemy.YSubPosition,X                                           ;B38D9A;
     CLC                                                                  ;B38D9D;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;B38D9E;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+2,Y                       ;B38D9E;
     BCC +                                                                ;B38DA1;
     INC.W Enemy.YPosition,X                                              ;B38DA3;
 
 +   STA.W Enemy.YSubPosition,X                                           ;B38DA6;
     LDA.W Enemy.YPosition,X                                              ;B38DA9;
     CLC                                                                  ;B38DAC;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;B38DAD;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing,Y                         ;B38DAD;
     STA.W Enemy.YPosition,X                                              ;B38DB0;
     SEC                                                                  ;B38DB3;
     SBC.W #$0010                                                         ;B38DB4;
@@ -1519,14 +937,14 @@ Function_Gamet_MoveToFormation_Bottom:
     TAY                                                                  ;B38DDB;
     LDA.W Enemy.YSubPosition,X                                           ;B38DDC;
     CLC                                                                  ;B38DDF;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;B38DE0;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+2,Y                       ;B38DE0;
     BCC +                                                                ;B38DE3;
     INC.W Enemy.YPosition,X                                              ;B38DE5;
 
 +   STA.W Enemy.YSubPosition,X                                           ;B38DE8;
     LDA.W Enemy.YPosition,X                                              ;B38DEB;
     CLC                                                                  ;B38DEE;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;B38DEF;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing,Y                         ;B38DEF;
     STA.W Enemy.YPosition,X                                              ;B38DF2;
     SEC                                                                  ;B38DF5;
     SBC.W #$0020                                                         ;B38DF6;
@@ -1551,14 +969,14 @@ Function_Gamet_ShootingLeft:
     TAY                                                                  ;B38E1A;
     LDA.W Enemy.XSubPosition,X                                           ;B38E1B;
     CLC                                                                  ;B38E1E;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;B38E1F;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+6,Y                       ;B38E1F;
     BCC +                                                                ;B38E22;
     INC.W Enemy.XPosition,X                                              ;B38E24;
 
 +   STA.W Enemy.XSubPosition,X                                           ;B38E27;
     LDA.W Enemy.XPosition,X                                              ;B38E2A;
     CLC                                                                  ;B38E2D;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;B38E2E;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+4,Y                       ;B38E2E;
     STA.W Enemy.XPosition,X                                              ;B38E31;
     RTS                                                                  ;B38E34;
 
@@ -1570,14 +988,14 @@ Function_Gamet_ShootingRight:
     TAY                                                                  ;B38E3B;
     LDA.W Enemy.XSubPosition,X                                           ;B38E3C;
     CLC                                                                  ;B38E3F;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;B38E40;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+2,Y                       ;B38E40;
     BCC +                                                                ;B38E43;
     INC.W Enemy.XPosition,X                                              ;B38E45;
 
 +   STA.W Enemy.XSubPosition,X                                           ;B38E48;
     LDA.W Enemy.XPosition,X                                              ;B38E4B;
     CLC                                                                  ;B38E4E;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;B38E4F;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing,Y                         ;B38E4F;
     STA.W Enemy.XPosition,X                                              ;B38E52;
     RTS                                                                  ;B38E55;
 
@@ -1680,7 +1098,7 @@ InstList_Geega_FacingLeft_Rising:
     dw $0004,Spritemaps_Geega_1                                          ;B38F00;
     dw $0004,Spritemaps_Geega_2                                          ;B38F04;
     dw $0004,Spritemaps_Geega_1                                          ;B38F08;
-    dw Instruction_Common_GotoY                                          ;B38F0C;
+    dw Common_Instruction_GotoY                                          ;B38F0C;
     dw InstList_Geega_FacingLeft_Rising                                  ;B38F0E;
 
 
@@ -1690,7 +1108,7 @@ InstList_Geega_FacingLeft_Shooting:
     dw $0001,Spritemaps_Geega_4                                          ;B38F14;
     dw $0001,Spritemaps_Geega_5                                          ;B38F18;
     dw $0001,Spritemaps_Geega_4                                          ;B38F1C;
-    dw Instruction_Common_GotoY                                          ;B38F20;
+    dw Common_Instruction_GotoY                                          ;B38F20;
     dw InstList_Geega_FacingLeft_Shooting                                ;B38F22;
 
 
@@ -1700,7 +1118,7 @@ InstList_Geega_FacingRight_Rising:
     dw $0004,Spritemaps_Geega_7                                          ;B38F28;
     dw $0004,Spritemaps_Geega_8                                          ;B38F2C;
     dw $0004,Spritemaps_Geega_7                                          ;B38F30;
-    dw Instruction_Common_GotoY                                          ;B38F34;
+    dw Common_Instruction_GotoY                                          ;B38F34;
     dw InstList_Geega_FacingRight_Rising                                 ;B38F36;
 
 
@@ -1710,7 +1128,7 @@ InstList_Geega_FacingRight_Shooting:
     dw $0001,Spritemaps_Geega_A                                          ;B38F3C;
     dw $0001,Spritemaps_Geega_B                                          ;B38F40;
     dw $0001,Spritemaps_Geega_A                                          ;B38F44;
-    dw Instruction_Common_GotoY                                          ;B38F48;
+    dw Common_Instruction_GotoY                                          ;B38F48;
     dw InstList_Geega_FacingRight_Shooting                               ;B38F4A;
 
 
@@ -1738,13 +1156,13 @@ InitAI_Geega:
     ASL                                                                  ;B38F81;
     ASL                                                                  ;B38F82;
     TAY                                                                  ;B38F83;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;B38F84;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing,Y                         ;B38F84;
     STA.L Geega.rightVelocity,X                                          ;B38F87;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;B38F8B;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+2,Y                       ;B38F8B;
     STA.L Geega.rightSubVelocity,X                                       ;B38F8E;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;B38F92;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+4,Y                       ;B38F92;
     STA.L Geega.leftVelocity,X                                           ;B38F95;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;B38F99;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+6,Y                       ;B38F99;
     STA.L Geega.leftSubVelocity,X                                        ;B38F9C;
     LDA.W #Function_Geega_WaitForSamusToGetNear                          ;B38FA0;
     STA.W Geega.function,X                                               ;B38FA3;
@@ -2067,14 +1485,14 @@ MoveGeegaUp:
     TAY                                                                  ;B3925F;
     LDA.W Enemy.YSubPosition,X                                           ;B39260;
     CLC                                                                  ;B39263;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y                  ;B39264;
+    ADC.W Common_EnemySpeeds_QuadraticallyIncreasing+4,Y                  ;B39264;
     BCC +                                                                ;B39267;
     INC.W Enemy.YPosition,X                                              ;B39269;
 
 +   STA.W Enemy.YSubPosition,X                                           ;B3926C;
     LDA.W Enemy.YPosition,X                                              ;B3926F;
     CLC                                                                  ;B39272;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y                  ;B39273;
+    ADC.W Common_EnemySpeeds_QuadraticallyIncreasing+6,Y                  ;B39273;
     STA.W Enemy.YPosition,X                                              ;B39276;
     RTS                                                                  ;B39279;
 
@@ -2095,14 +1513,14 @@ MoveGeegaDown:
     TAY                                                                  ;B39290;
     LDA.W Enemy.YSubPosition,X                                           ;B39291;
     CLC                                                                  ;B39294;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;B39295;
+    ADC.W Common_EnemySpeeds_QuadraticallyIncreasing,Y                    ;B39295;
     BCC +                                                                ;B39298;
     INC.W Enemy.YPosition,X                                              ;B3929A;
 
 +   STA.W Enemy.YSubPosition,X                                           ;B3929D;
     LDA.W Enemy.YPosition,X                                              ;B392A0;
     CLC                                                                  ;B392A3;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;B392A4;
+    ADC.W Common_EnemySpeeds_QuadraticallyIncreasing+2,Y                  ;B392A4;
     STA.W Enemy.YPosition,X                                              ;B392A7;
 
   .return:
@@ -2197,76 +1615,76 @@ Palette_Botwoon:
 InstList_Botwoon_MouthClosed_AimingUp_FacingLeft:
     dw Instruction_Botwoon_EnemyRadius_8x10                              ;B39339;
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority2_AimingUp_FacingLeft;B3933B;
-    dw Instruction_Common_Sleep                                          ;B3933F;
+    dw Common_Instruction_Sleep                                          ;B3933F;
 
 
 ;;; $9341: Instruction list - mouth closed - aiming up-left ;;;
 InstList_Botwoon_MouthClosed_AimingUpLeft:
     dw Instruction_Botwoon_EnemyRadius_CxC                               ;B39341;
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority2_AimingUpLeft       ;B39343;
-    dw Instruction_Common_Sleep                                          ;B39347;
+    dw Common_Instruction_Sleep                                          ;B39347;
 
 
 ;;; $9349: Instruction list - mouth closed - aiming left ;;;
 InstList_Botwoon_MouthClosed_AimingLeft:
     dw Instruction_Botwoon_EnemyRadius_10x8                              ;B39349;
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority2_AimingLeft         ;B3934B;
-    dw Instruction_Common_Sleep                                          ;B3934F;
+    dw Common_Instruction_Sleep                                          ;B3934F;
 
 
 ;;; $9351: Instruction list - mouth closed - aiming down-left ;;;
 InstList_Botwoon_MouthClosed_AimingDownLeft:
     dw Instruction_Botwoon_EnemyRadius_CxC_duplicate                     ;B39351;
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority2_AimingDownLeft     ;B39353;
-    dw Instruction_Common_Sleep                                          ;B39357;
+    dw Common_Instruction_Sleep                                          ;B39357;
 
 
 ;;; $9359: Unused. Instruction list - mouth closed - aiming down (facing left) ;;;
 UNSUED_InstList_Botwoon_MouthClosed_AimDown_FaceLeft_B39359:
     dw Instruction_Botwoon_EnemyRadius_8x10_duplicate                    ;B39359;
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority2_AimDown_FacingLeft ;B3935B;
-    dw Instruction_Common_Sleep                                          ;B3935F;
+    dw Common_Instruction_Sleep                                          ;B3935F;
 
 
 ;;; $9361: Instruction list - mouth closed - aiming down (facing right) ;;;
 InstList_Botwoon_MouthClosed_AimingDown_FacingRight:
     dw Instruction_Botwoon_EnemyRadius_8x10_duplicate_again              ;B39361;
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority2_AimDown_FacingRight;B39363;
-    dw Instruction_Common_Sleep                                          ;B39367;
+    dw Common_Instruction_Sleep                                          ;B39367;
 
 
 ;;; $9369: Instruction list - mouth closed - aiming down-right ;;;
 InstList_Botwoon_MouthClosed_AimingDownRight:
     dw Instruction_Botwoon_EnemyRadius_CxC_duplicate_again               ;B39369;
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority2_AimingDownRight    ;B3936B;
-    dw Instruction_Common_Sleep                                          ;B3936F;
+    dw Common_Instruction_Sleep                                          ;B3936F;
 
 
 ;;; $9371: Instruction list - mouth closed - aiming right ;;;
 InstList_Botwoon_MouthClosed_AimingRight:
     dw Instruction_Botwoon_EnemyRadius_10x8_duplicate                    ;B39371;
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority2_AimingRight        ;B39373;
-    dw Instruction_Common_Sleep                                          ;B39377;
+    dw Common_Instruction_Sleep                                          ;B39377;
 
 
 ;;; $9379: Instruction list - mouth closed - aiming up-right ;;;
 InstList_Botwoon_MouthClosed_AimingUpRight:
     dw Instruction_Botwoon_EnemyRadius_CxC_duplicate_again2              ;B39379;
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority2_AimingUpRight      ;B3937B;
-    dw Instruction_Common_Sleep                                          ;B3937F;
+    dw Common_Instruction_Sleep                                          ;B3937F;
 
 
 ;;; $9381: Instruction list - mouth closed - aiming up (facing right) ;;;
 InstList_Botwoon_MouthClosed_AimingUp_FacingRight:
     dw Instruction_Botwoon_EnemyRadius_8x10_duplicate_again2             ;B39381;
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority2_AimUp_FacingRight  ;B39383;
-    dw Instruction_Common_Sleep                                          ;B39387;
+    dw Common_Instruction_Sleep                                          ;B39387;
 
 
 ;;; $9389: Instruction list - hide ;;;
 InstList_Botwoon_Hide:
-    dw $0001,Spritemap_Common_Nothing                                    ;B39389;
-    dw Instruction_Common_Sleep                                          ;B3938D;
+    dw $0001,Common_Spritemap_Nothing                                    ;B39389;
+    dw Common_Instruction_Sleep                                          ;B3938D;
 
 
 ;;; $938F: Unused. Instruction list - spit - aiming up (facing left) ;;;
@@ -2276,7 +1694,7 @@ UNSUED_InstList_Botwoon_Spit_AimingUp_FacingLeft:
     dw Instruction_Botwoon_QueueSpitSFX                                  ;B39395;
     dw Instruction_Botwoon_SetSpittingFlag                               ;B39397;
     dw $0010,Spritemaps_Botwoon_MouthOpen_Priority2_AimingUp_FacingLeft  ;B39399;
-    dw Instruction_Common_Sleep                                          ;B3939D;
+    dw Common_Instruction_Sleep                                          ;B3939D;
 
 
 ;;; $939F: Instruction list - spit - aiming up-left ;;;
@@ -2286,7 +1704,7 @@ InstList_Botwoon_Spit_AimingUpLeft:
     dw Instruction_Botwoon_QueueSpitSFX                                  ;B393A5;
     dw Instruction_Botwoon_SetSpittingFlag                               ;B393A7;
     dw $0010,Spritemaps_Botwoon_MouthOpen_Priority2_AimingUpLeft         ;B393A9;
-    dw Instruction_Common_Sleep                                          ;B393AD;
+    dw Common_Instruction_Sleep                                          ;B393AD;
 
 
 ;;; $93AF: Instruction list - spit - aiming left ;;;
@@ -2296,7 +1714,7 @@ InstList_Botwoon_Spit_AimingLeft:
     dw Instruction_Botwoon_QueueSpitSFX                                  ;B393B5;
     dw Instruction_Botwoon_SetSpittingFlag                               ;B393B7;
     dw $0019,Spritemaps_Botwoon_MouthOpen_Priority2_AimingLeft           ;B393B9;
-    dw Instruction_Common_Sleep                                          ;B393BD;
+    dw Common_Instruction_Sleep                                          ;B393BD;
 
 
 ;;; $93BF: Instruction list - spit - aiming down-left ;;;
@@ -2306,7 +1724,7 @@ InstList_Botwoon_Spit_AimingDownLeft:
     dw Instruction_Botwoon_QueueSpitSFX                                  ;B393C5;
     dw Instruction_Botwoon_SetSpittingFlag                               ;B393C7;
     dw $0010,Spritemaps_Botwoon_MouthOpen_Priority2_AimingDownLeft       ;B393C9;
-    dw Instruction_Common_Sleep                                          ;B393CD;
+    dw Common_Instruction_Sleep                                          ;B393CD;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -2317,7 +1735,7 @@ UNUSED_InstList_Botwoon_Spit_AimingDown_FacingLeft_B393CF:
     dw Instruction_Botwoon_QueueSpitSFX                                  ;B393D5;
     dw Instruction_Botwoon_SetSpittingFlag                               ;B393D7;
     dw $0010,Spritemaps_Botwoon_MouthOpen_Priority2_AimingDown_FacingLeft;B393D9;
-    dw Instruction_Common_Sleep                                          ;B393DD;
+    dw Common_Instruction_Sleep                                          ;B393DD;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -2328,7 +1746,7 @@ InstList_Botwoon_Spit_AimingDown_FacingRight:
     dw Instruction_Botwoon_QueueSpitSFX                                  ;B393E5;
     dw Instruction_Botwoon_SetSpittingFlag                               ;B393E7;
     dw $0010,Spritemaps_Botwoon_MouthOpen_Priority2_AimDown_FacingRight  ;B393E9;
-    dw Instruction_Common_Sleep                                          ;B393ED;
+    dw Common_Instruction_Sleep                                          ;B393ED;
 
 
 ;;; $93EF: Instruction list - spit - aiming down-right ;;;
@@ -2338,7 +1756,7 @@ InstList_Botwoon_Spit_AimingDownRight:
     dw Instruction_Botwoon_QueueSpitSFX                                  ;B393F5;
     dw Instruction_Botwoon_SetSpittingFlag                               ;B393F7;
     dw $0010,Spritemaps_Botwoon_MouthOpen_Priority2_AimingDownRight      ;B393F9;
-    dw Instruction_Common_Sleep                                          ;B393FD;
+    dw Common_Instruction_Sleep                                          ;B393FD;
 
 
 ;;; $93FF: Instruction list - spit - aiming right ;;;
@@ -2348,7 +1766,7 @@ InstList_Botwoon_Spit_AimingRight:
     dw Instruction_Botwoon_QueueSpitSFX                                  ;B39405;
     dw Instruction_Botwoon_SetSpittingFlag                               ;B39407;
     dw $0010,Spritemaps_Botwoon_MouthOpen_Priority2_AimingRight          ;B39409;
-    dw Instruction_Common_Sleep                                          ;B3940D;
+    dw Common_Instruction_Sleep                                          ;B3940D;
 
 
 ;;; $940F: Instruction list - spit - aiming up-right ;;;
@@ -2358,7 +1776,7 @@ InstList_Botwoon_Spit_AimingUpRight:
     dw Instruction_Botwoon_QueueSpitSFX                                  ;B39415;
     dw Instruction_Botwoon_SetSpittingFlag                               ;B39417;
     dw $0010,Spritemaps_Botwoon_MouthOpen_Priority2_AimingUpRight        ;B39419;
-    dw Instruction_Common_Sleep                                          ;B3941D;
+    dw Common_Instruction_Sleep                                          ;B3941D;
 
 
 ;;; $941F: Instruction list - spit - aiming up (facing right) ;;;
@@ -2368,71 +1786,71 @@ InstList_Botwoon_Spit_AimingUp_FacingRight:
     dw Instruction_Botwoon_QueueSpitSFX                                  ;B39425;
     dw Instruction_Botwoon_SetSpittingFlag                               ;B39427;
     dw $0010,Spritemaps_Botwoon_MouthOpen_Priority2_AimingUp_FacingRight ;B39429;
-    dw Instruction_Common_Sleep                                          ;B3942D;
+    dw Common_Instruction_Sleep                                          ;B3942D;
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $942F: Unused. Instruction list - hidden - aiming up (facing left) ;;;
 UNUSED_InstList_Botwoon_Hidden_AimingUp_FacingLeft_B3942F:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimingUp_FacingLeft;B3942F;
-    dw Instruction_Common_Sleep                                          ;B39433;
+    dw Common_Instruction_Sleep                                          ;B39433;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9435: Instruction list - hidden - aiming up-left ;;;
 InstList_Botwoon_Hidden_AimingUpLeft:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimingUpLeft       ;B39435;
-    dw Instruction_Common_Sleep                                          ;B39439;
+    dw Common_Instruction_Sleep                                          ;B39439;
 
 
 ;;; $943B: Instruction list - hidden - aiming left ;;;
 InstList_Botwoon_Hidden_AimingLeft:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimingLeft         ;B3943B;
-    dw Instruction_Common_Sleep                                          ;B3943F;
+    dw Common_Instruction_Sleep                                          ;B3943F;
 
 
 ;;; $9441: Instruction list - hidden - aiming down-left ;;;
 InstList_Botwoon_Hidden_AimingDownLeft:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimingDownLeft     ;B39441;
-    dw Instruction_Common_Sleep                                          ;B39445;
+    dw Common_Instruction_Sleep                                          ;B39445;
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $9447: Unused. Instruction list - hidden - aiming down (facing left) ;;;
 UNUSED_InstList_Botwoon_Hidden_AimingDown_FacingLeft_B39447:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimDown_FacingLeft ;B39447;
-    dw Instruction_Common_Sleep                                          ;B3944B;
+    dw Common_Instruction_Sleep                                          ;B3944B;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $944D: Instruction list - hidden - aiming down (facing right) ;;;
 InstList_Botwoon_Hidden_AimingDown_FacingRight:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimDown_FacingRight;B3944D;
-    dw Instruction_Common_Sleep                                          ;B39451;
+    dw Common_Instruction_Sleep                                          ;B39451;
 
 
 ;;; $9453: Instruction list - hidden - aiming down-right ;;;
 InstList_Botwoon_Hidden_AimingDownRight:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimingDownRight    ;B39453;
-    dw Instruction_Common_Sleep                                          ;B39457;
+    dw Common_Instruction_Sleep                                          ;B39457;
 
 
 ;;; $9459: Instruction list - hidden - aiming right ;;;
 InstList_Botwoon_Hidden_AimingRight:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimingRight        ;B39459;
-    dw Instruction_Common_Sleep                                          ;B3945D;
+    dw Common_Instruction_Sleep                                          ;B3945D;
 
 
 ;;; $945F: Instruction list - hidden - aiming up-right ;;;
 InstList_Botwoon_Hidden_AimingUpRight:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimingUpRight      ;B3945F;
-    dw Instruction_Common_Sleep                                          ;B39463;
+    dw Common_Instruction_Sleep                                          ;B39463;
 
 
 ;;; $9465: Instruction list - hidden - aiming up (facing right) ;;;
 InstList_Botwoon_Hidden_AimingUp_FacingRight:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimUp_FacingRight  ;B39465;
-    dw Instruction_Common_Sleep                                          ;B39469;
+    dw Common_Instruction_Sleep                                          ;B39469;
 
 
 ;;; $946B: Botwoon instruction list pointers ;;;
@@ -3138,14 +2556,14 @@ Function_Botwoon_DeathSequence_FallingToGround:
     TAY                                                                  ;B39A6C;
     LDA.W Enemy.YSubPosition,X                                           ;B39A6D;
     CLC                                                                  ;B39A70;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;B39A71;
+    ADC.W Common_EnemySpeeds_QuadraticallyIncreasing,Y                    ;B39A71;
     BCC +                                                                ;B39A74;
     INC.W Enemy.YPosition,X                                              ;B39A76;
 
 +   STA.W Enemy.YSubPosition,X                                           ;B39A79;
     LDA.W Enemy.YPosition,X                                              ;B39A7C;
     CLC                                                                  ;B39A7F;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;B39A80;
+    ADC.W Common_EnemySpeeds_QuadraticallyIncreasing+2,Y                  ;B39A80;
     STA.W Enemy.YPosition,X                                              ;B39A83;
     CMP.W #$00C8                                                         ;B39A86;
     BMI .lessThanC8                                                      ;B39A89;
@@ -5402,7 +4820,7 @@ InstList_EtecoonEscape_RunningLeft_LowTide_1:
     dw $0005,Spritemaps_EtecoonEscape_1                                  ;B3E55E;
     dw $0005,Spritemaps_EtecoonEscape_2                                  ;B3E562;
     dw $0005,Spritemaps_EtecoonEscape_1                                  ;B3E566;
-    dw Instruction_Common_GotoY                                          ;B3E56A;
+    dw Common_Instruction_GotoY                                          ;B3E56A;
     dw InstList_EtecoonEscape_RunningLeft_LowTide_1                      ;B3E56C;
 
 
@@ -5412,7 +4830,7 @@ InstList_EtecoonEscape_RunningLeft_HighTide:
     dw $0003,Spritemaps_EtecoonEscape_1                                  ;B3E572;
     dw $0003,Spritemaps_EtecoonEscape_2                                  ;B3E576;
     dw $0003,Spritemaps_EtecoonEscape_1                                  ;B3E57A;
-    dw Instruction_Common_GotoY                                          ;B3E57E;
+    dw Common_Instruction_GotoY                                          ;B3E57E;
     dw InstList_EtecoonEscape_RunningLeft_HighTide                       ;B3E580;
 
 
@@ -5426,7 +4844,7 @@ InstList_EtecoonEscape_RunningRight_LowTide_1:
     dw $0006,Spritemaps_EtecoonEscape_4                                  ;B3E58A;
     dw $0006,Spritemaps_EtecoonEscape_5                                  ;B3E58E;
     dw $0006,Spritemaps_EtecoonEscape_4                                  ;B3E592;
-    dw Instruction_Common_GotoY                                          ;B3E596;
+    dw Common_Instruction_GotoY                                          ;B3E596;
     dw InstList_EtecoonEscape_RunningRight_LowTide_1                     ;B3E598;
 
 
@@ -5436,13 +4854,13 @@ InstList_EtecoonEscape_RunningRight_HighTide:
     dw $0003,Spritemaps_EtecoonEscape_4                                  ;B3E59E;
     dw $0003,Spritemaps_EtecoonEscape_5                                  ;B3E5A2;
     dw $0003,Spritemaps_EtecoonEscape_4                                  ;B3E5A6;
-    dw Instruction_Common_GotoY                                          ;B3E5AA;
+    dw Common_Instruction_GotoY                                          ;B3E5AA;
     dw InstList_EtecoonEscape_RunningRight_HighTide                      ;B3E5AC;
 
 
 ;;; $E5AE: Instruction list - running for escape ;;;
 InstList_EtecoonEscape_RunningForEscape_0:
-    dw Instruction_Common_Enemy0FB2_InY                                  ;B3E5AE;
+    dw Common_Instruction_Enemy0FB2_InY                                  ;B3E5AE;
     dw Function_EtecoonEscape_RunningForEscape                           ;B3E5B0;
 
 InstList_EtecoonEscape_RunningForEscape_1:
@@ -5450,7 +4868,7 @@ InstList_EtecoonEscape_RunningForEscape_1:
     dw $0003,Spritemaps_EtecoonEscape_4                                  ;B3E5B6;
     dw $0003,Spritemaps_EtecoonEscape_5                                  ;B3E5BA;
     dw $0003,Spritemaps_EtecoonEscape_4                                  ;B3E5BE;
-    dw Instruction_Common_GotoY                                          ;B3E5C2;
+    dw Common_Instruction_GotoY                                          ;B3E5C2;
     dw InstList_EtecoonEscape_RunningForEscape_1                         ;B3E5C4;
 
 
@@ -5460,14 +4878,14 @@ InstList_EtecoonEscape_Stationary:
     dw $0008,Spritemaps_EtecoonEscape_F                                  ;B3E5CA;
     dw $0040,Spritemaps_EtecoonEscape_11                                 ;B3E5CE;
     dw $0008,Spritemaps_EtecoonEscape_10                                 ;B3E5D2;
-    dw Instruction_Common_GotoY                                          ;B3E5D6;
+    dw Common_Instruction_GotoY                                          ;B3E5D6;
     dw InstList_EtecoonEscape_Stationary                                 ;B3E5D8;
 
 
 ;;; $E5DA: Instruction list - express gratitude then escape ;;;
 InstList_EtecoonEscape_ExpressGratitudeThenEscape_0:
-    dw Instruction_Common_SetEnemy0FB2ToRTS                              ;B3E5DA;
-    dw Instruction_Common_TimerInY,$0008                                 ;B3E5DC;
+    dw Common_Instruction_SetEnemy0FB2ToRTS                              ;B3E5DA;
+    dw Common_Instruction_TimerInY,$0008                                 ;B3E5DC;
 
 InstList_EtecoonEscape_ExpressGratitudeThenEscape_1:
     dw $0008,Spritemaps_EtecoonEscape_0                                  ;B3E5E0;
@@ -5478,11 +4896,11 @@ InstList_EtecoonEscape_ExpressGratitudeThenEscape_1:
     dw Instruction_EtecoonEscape_XPositionPlusY,$FFFD                    ;B3E5F4;
     dw $0008,Spritemaps_EtecoonEscape_1                                  ;B3E5F6;
     dw Instruction_EtecoonEscape_XPositionPlusY,$FFFD                    ;B3E5FC;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;B3E600;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;B3E600;
     dw InstList_EtecoonEscape_ExpressGratitudeThenEscape_1               ;B3E602;
     dw $0040,Spritemaps_EtecoonEscape_E                                  ;B3E604;
     dw $0008,Spritemaps_EtecoonEscape_F                                  ;B3E608;
-    dw Instruction_Common_GotoY                                          ;B3E60C;
+    dw Common_Instruction_GotoY                                          ;B3E60C;
     dw InstList_EtecoonEscape_RunningForEscape_0                         ;B3E60E;
 
 
@@ -5501,7 +4919,7 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $E61D: Unused. Instruction list ;;;
 UNUSED_InstList_EtecoonEscape_B3E61D:
     dw $0001,Spritemaps_EtecoonEscape_6                                  ;B3E61D;
-    dw Instruction_Common_Sleep                                          ;B3E621;
+    dw Common_Instruction_Sleep                                          ;B3E621;
 
 
 ;;; $E623: Unused. Instruction list ;;;
@@ -5511,13 +4929,13 @@ UNUSED_InstList_EtecoonEscape_B3E623:
     dw $0006,Spritemaps_EtecoonEscape_9                                  ;B3E62B;
     dw $000C,Spritemaps_EtecoonEscape_8                                  ;B3E62F;
     dw $000C,Spritemaps_EtecoonEscape_7                                  ;B3E633;
-    dw Instruction_Common_Sleep                                          ;B3E637;
+    dw Common_Instruction_Sleep                                          ;B3E637;
 
 
 ;;; $E639: Unused. Instruction list ;;;
 UNUSED_InstList_EtecoonEscape_B3E639:
     dw $0001,Spritemaps_EtecoonEscape_A                                  ;B3E639;
-    dw Instruction_Common_Sleep                                          ;B3E63D;
+    dw Common_Instruction_Sleep                                          ;B3E63D;
 
 
 ;;; $E63F: Unused. Instruction list ;;;
@@ -5527,7 +4945,7 @@ UNUSED_InstList_EtecoonEscape_B3E63F:
     dw $0006,Spritemaps_EtecoonEscape_D                                  ;B3E647;
     dw $000C,Spritemaps_EtecoonEscape_C                                  ;B3E64B;
     dw $000C,Spritemaps_EtecoonEscape_B                                  ;B3E64F;
-    dw Instruction_Common_Sleep                                          ;B3E653;
+    dw Common_Instruction_Sleep                                          ;B3E653;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -5816,7 +5234,7 @@ Palette_DachoraEscape:
 
 ;;; $E964: Instruction list - running around aimlessly - low tide ;;;
 InstList_DachoraEscape_RunningAroundAimlessly_LowTide_0:
-    dw Instruction_Common_TimerInY,$0005                                 ;B3E964;
+    dw Common_Instruction_TimerInY,$0005                                 ;B3E964;
 
 InstList_DachoraEscape_RunningAroundAimlessly_LowTide_1:
     dw $0003,Spritemaps_DachoraEscape_0                                  ;B3E968;
@@ -5835,9 +5253,9 @@ InstList_DachoraEscape_RunningAroundAimlessly_LowTide_1:
     dw InstList_DachoraEscape_RunningAroundAimlessly_HighTide_2          ;B3E98E;
     dw InstList_DachoraEscape_GotoY_IfCrittersEscaped                    ;B3E990;
     dw InstList_DachoraEscape_RunningForEscape_0                         ;B3E992;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;B3E994;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;B3E994;
     dw InstList_DachoraEscape_RunningAroundAimlessly_LowTide_1           ;B3E996;
-    dw Instruction_Common_TimerInY,$0005                                 ;B3E998;
+    dw Common_Instruction_TimerInY,$0005                                 ;B3E998;
 
 InstList_DachoraEscape_RunningAroundAimlessly_LowTide_2:
     dw $0003,Spritemaps_DachoraEscape_6                                  ;B3E99C;
@@ -5856,16 +5274,16 @@ InstList_DachoraEscape_RunningAroundAimlessly_LowTide_2:
     dw InstList_DachoraEscape_RunningAroundAimlessly_HighTide_4          ;B3E9C2;
     dw InstList_DachoraEscape_GotoY_IfCrittersEscaped                    ;B3E9C4;
     dw InstList_DachoraEscape_RunningForEscape_1                         ;B3E9C6;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;B3E9C8;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;B3E9C8;
     dw InstList_DachoraEscape_RunningAroundAimlessly_LowTide_2           ;B3E9CA;
-    dw Instruction_Common_GotoY                                          ;B3E9CC;
+    dw Common_Instruction_GotoY                                          ;B3E9CC;
     dw InstList_DachoraEscape_RunningAroundAimlessly_LowTide_0           ;B3E9CE;
 
 
 ;;; $E9D0: Instruction list - running around aimlessly - high tide ;;;
 ; Parts of this instruction list are jumped to from the low tide instruction list
 InstList_DachoraEscape_RunningAroundAimlessly_HighTide_0:
-    dw Instruction_Common_TimerInY,$0005                                 ;B3E9D0;
+    dw Common_Instruction_TimerInY,$0005                                 ;B3E9D0;
 
 InstList_DachoraEscape_RunningAroundAimlessly_HighTide_1:
     dw $0002,Spritemaps_DachoraEscape_0                                  ;B3E9D4;
@@ -5884,9 +5302,9 @@ InstList_DachoraEscape_RunningAroundAimlessly_HighTide_1:
     dw InstList_DachoraEscape_RunningForEscape_0                         ;B3E9FA;
 
 InstList_DachoraEscape_RunningAroundAimlessly_HighTide_2:
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;B3E9FC;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;B3E9FC;
     dw InstList_DachoraEscape_RunningAroundAimlessly_HighTide_1          ;B3E9FE;
-    dw Instruction_Common_TimerInY,$0005                                 ;B3EA00;
+    dw Common_Instruction_TimerInY,$0005                                 ;B3EA00;
 
 InstList_DachoraEscape_RunningAroundAimlessly_HighTide_3:
     dw $0002,Spritemaps_DachoraEscape_6                                  ;B3EA04;
@@ -5905,9 +5323,9 @@ InstList_DachoraEscape_RunningAroundAimlessly_HighTide_3:
     dw InstList_DachoraEscape_RunningForEscape_1                         ;B3EA2A;
 
 InstList_DachoraEscape_RunningAroundAimlessly_HighTide_4:
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;B3EA2C;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;B3EA2C;
     dw InstList_DachoraEscape_RunningAroundAimlessly_HighTide_3          ;B3EA2E;
-    dw Instruction_Common_GotoY                                          ;B3EA30;
+    dw Common_Instruction_GotoY                                          ;B3EA30;
     dw InstList_DachoraEscape_RunningAroundAimlessly_HighTide_0          ;B3EA32;
 
 
@@ -5955,7 +5373,7 @@ InstList_DachoraEscape_RunningForEscape_2:
     dw Instruction_DachoraEscape_XPositionPlus6                          ;B3EA9C;
     dw $0001,Spritemaps_DachoraEscape_B                                  ;B3EA9E;
     dw Instruction_DachoraEscape_XPositionPlus6                          ;B3EAA2;
-    dw Instruction_Common_GotoY                                          ;B3EAA4;
+    dw Common_Instruction_GotoY                                          ;B3EAA4;
     dw InstList_DachoraEscape_RunningForEscape_2                         ;B3EAA6;
 
 
@@ -6024,7 +5442,7 @@ InitAI_DachoraEscape:
     LDA.W Enemy.properties,X                                             ;B3EAFB;
     ORA.W #$2000                                                         ;B3EAFE;
     STA.W Enemy.properties,X                                             ;B3EB01;
-    LDA.W #Spritemap_Common_Nothing                                      ;B3EB04;
+    LDA.W #Common_Spritemap_Nothing                                      ;B3EB04;
     STA.W Enemy.spritemap,X                                              ;B3EB07;
     LDA.W #$0001                                                         ;B3EB0A;
     STA.W Enemy.instTimer,X                                              ;B3EB0D;

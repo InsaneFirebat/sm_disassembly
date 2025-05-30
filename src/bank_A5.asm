@@ -3,591 +3,9 @@ org $A58000
 
 
 ; Common to all enemy code banks
-
-;;; $8000: Grapple AI - no interaction. Also unfreezes enemies(!) ;;;
-CommonA5_GrappleAI_NoInteraction:
-; Used by skultera, Draygon body, fire arc, Phantoon, etecoon, dachora and WS ghost
-    JSL.L GrappleAI_SwitchEnemyAIToMainAI                                ;A58000;
-    RTL                                                                  ;A58004;
-
-
-;;; $8005: Grapple AI - Samus latches on ;;;
-CommonA5_GrappleAI_SamusLatchesOn:
-; Used by gripper and Crocomire
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple                            ;A58005;
-    RTL                                                                  ;A58009;
-
-
-;;; $800A: Grapple AI - kill enemy ;;;
-CommonA5_GrappleAI_KillEnemy:
-; Common
-    JSL.L GrappleAI_EnemyGrappleDeath                                    ;A5800A;
-    RTL                                                                  ;A5800E;
-
-
-;;; $800F: Grapple AI - cancel grapple beam ;;;
-CommonA5_GrappleAI_CancelGrappleBeam:
-; Common
-    JSL.L GrappleAI_SwitchToFrozenAI                                     ;A5800F;
-    RTL                                                                  ;A58013;
-
-
-;;; $8014: Grapple AI - Samus latches on - no invincibility ;;;
-CommonA5_GrappleAI_SamusLatchesOn_NoInvincibility:
-; Used by powamp
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility            ;A58014;
-    RTL                                                                  ;A58018;
-
-
-;;; $8019: Unused. Grapple AI - Samus latches on - paralyse enemy ;;;
-UNUSED_CommonA5_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A58019:
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy              ;A58019;
-    RTL                                                                  ;A5801D;
-
-
-;;; $801E: Grapple AI - hurt Samus ;;;
-CommonA5_GrappleAI_HurtSamus:
-; Used by WS spark
-; Hurt reaction happens in $9B:B932
-    JSL.L GrappleAI_SwitchToFrozenAI_duplicate                           ;A5801E;
-    RTL                                                                  ;A58022;
-
-
-;;; $8023: Normal enemy touch AI ;;;
-CommonA5_NormalEnemyTouchAI:
-    JSL.L NormalEnemyTouchAI                                             ;A58023;
-    RTL                                                                  ;A58027;
-
-
-;;; $8028: Normal touch AI - no death check ;;;
-CommonA5_NormalTouchAI_NoDeathCheck:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A58028;
-    RTL                                                                  ;A5802C;
-
-
-;;; $802D: Normal enemy shot AI ;;;
-CommonA5_NormalEnemyShotAI:
-    JSL.L NormalEnemyShotAI                                              ;A5802D;
-    RTL                                                                  ;A58031;
-
-
-;;; $8032: Normal enemy shot AI - no death check, no enemy shot graphic ;;;
-CommonA5_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A58032;
-    RTL                                                                  ;A58036;
-
-
-;;; $8037: Normal enemy power bomb AI ;;;
-CommonA5_NormalEnemyPowerBombAI:
-    JSL.L NormalEnemyPowerBombAI                                         ;A58037;
-    RTL                                                                  ;A5803B;
-
-
-;;; $803C: Normal enemy power bomb AI - no death check ;;;
-CommonA5_NormalEnemyPowerBombAI_NoDeathCheck:
-; Kraid's power bomb AI
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A5803C;
-    RTL                                                                  ;A58040;
-
-
-;;; $8041: Normal enemy frozen AI ;;;
-CommonA5_NormalEnemyFrozenAI:
-    JSL.L NormalEnemyFrozenAI                                            ;A58041;
-    RTL                                                                  ;A58045;
-
-
-;;; $8046: Creates a dud shot ;;;
-CommonA5_CreateADudShot:
-    JSL.L CreateADudShot                                                 ;A58046;
-    RTL                                                                  ;A5804A;
-
-
-;;; $804B: RTS ;;;
-RTS_A5804B:
-    RTS                                                                  ;A5804B;
-
-
-;;; $804C: RTL ;;;
-RTL_A5804C:
-    RTL                                                                  ;A5804C;
-
-
-;;; $804D: Spritemap - nothing ;;;
-Spritemap_CommonA5_Nothing:
-    dw $0000                                                             ;A5804D;
-
-
-;;; $804F: Extended spritemap - nothing ;;;
-ExtendedSpritemap_CommonA5_Nothing:
-    dw $0001                                                             ;A5804F;
-    dw $0000,$0000
-    dw Spritemap_CommonA5_Nothing                                        ;A58055;
-    dw Hitbox_CommonA5_Nothing                                           ;A58057;
-
-
-;;; $8059: Hitbox - nothing ;;;
-Hitbox_CommonA5_Nothing:
-; [n entries] [[left offset] [top offset] [right offset] [bottom offset] [p touch] [p shot]]...
-    dw $0001                                                             ;A58059;
-    dw $0000,$0000,$0000,$0000
-    dw CommonA5_NormalEnemyTouchAI                                       ;A58063;
-    dw CommonA5_NormalEnemyShotAI                                        ;A58065;
-
-
-;;; $8067: Instruction list - delete enemy ;;;
-InstList_CommonA5_DeleteEnemy:
-    dw Instruction_CommonA5_DeleteEnemy                                  ;A58067;
-
-
-;;; $8069: Two NOPs ;;;
-NOPNOP_A58069:
-; Used as palette by respawning enemy placeholder and Draygon's eye o_O
-    NOP                                                                  ;A58069;
-    NOP                                                                  ;A5806A;
-
-
-;;; $806B: Instruction - Enemy.var5 = [[Y]] ;;;
-Instruction_CommonA5_Enemy0FB2_InY:
-; Used only by torizos (for enemy movement function) and escape etecoon (for enemy function)
-    LDA.W $0000,Y                                                        ;A5806B;
-    STA.W Enemy.var5,X                                                   ;A5806E;
-    INY                                                                  ;A58071;
-    INY                                                                  ;A58072;
-    RTL                                                                  ;A58073;
-
-
-;;; $8074: Instruction - Enemy.var5 = RTS ;;;
-Instruction_CommonA5_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_A5807B                                                    ;A58074;
-    STA.W Enemy.var5,X                                                   ;A58077;
-    RTL                                                                  ;A5807A;
-
-
-RTS_A5807B:
-    RTS                                                                  ;A5807B;
-
-
-;;; $807C: Instruction - delete enemy ;;;
-Instruction_CommonA5_DeleteEnemy:
-    LDA.W Enemy.properties,X                                             ;A5807C;
-    ORA.W #$0200                                                         ;A5807F;
-    STA.W Enemy.properties,X                                             ;A58082;
-    PLA                                                                  ;A58085;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A58086;
-    RTL                                                                  ;A58089;
-
-
-;;; $808A: Instruction - call function [[Y]] ;;;
-Instruction_CommonA5_CallFunctionInY:
-    LDA.W $0000,Y                                                        ;A5808A;
-    STA.B DP_Temp12                                                      ;A5808D;
-    PHY                                                                  ;A5808F;
-    PHX                                                                  ;A58090;
-    PEA.W .manualReturn-1                                                ;A58091;
-    JMP.W (DP_Temp12)                                                    ;A58094;
-
-  .manualReturn:
-    PLX                                                                  ;A58097;
-    PLY                                                                  ;A58098;
-    INY                                                                  ;A58099;
-    INY                                                                  ;A5809A;
-    RTL                                                                  ;A5809B;
-
-
-;;; $809C: Instruction - call function [[Y]] with A = [[Y] + 2] ;;;
-Instruction_CommonA5_CallFunctionInY_WithA:
-    LDA.W $0000,Y                                                        ;A5809C;
-    STA.B DP_Temp12                                                      ;A5809F;
-    LDA.W $0002,Y                                                        ;A580A1;
-    PHY                                                                  ;A580A4;
-    PHX                                                                  ;A580A5;
-    PEA.W .manualReturn-1                                                ;A580A6;
-    JMP.W (DP_Temp12)                                                    ;A580A9;
-
-  .manualReturn:
-    PLX                                                                  ;A580AC;
-    PLY                                                                  ;A580AD;
-    TYA                                                                  ;A580AE;
-    CLC                                                                  ;A580AF;
-    ADC.W #$0004                                                         ;A580B0;
-    TAY                                                                  ;A580B3;
-    RTL                                                                  ;A580B4;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA5_CallExternalFunctionInY_A580B5:
-    LDA.W $0000,Y                                                        ;A580B5;
-    STA.B DP_Temp12                                                      ;A580B8;
-    LDA.W $0001,Y                                                        ;A580BA;
-    STA.B DP_Temp13                                                      ;A580BD;
-    PHX                                                                  ;A580BF;
-    PHY                                                                  ;A580C0;
-    JSL.L .externalFunction                                              ;A580C1;
-    PLY                                                                  ;A580C5;
-    PLX                                                                  ;A580C6;
-    INY                                                                  ;A580C7;
-    INY                                                                  ;A580C8;
-    INY                                                                  ;A580C9;
-    RTL                                                                  ;A580CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A580CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA5_CallExternalFunctionInY_WithA_A580CE:
-    LDA.W $0000,Y                                                        ;A580CE;
-    STA.B DP_Temp12                                                      ;A580D1;
-    LDA.W $0001,Y                                                        ;A580D3;
-    STA.B DP_Temp13                                                      ;A580D6;
-    LDA.W $0003,Y                                                        ;A580D8;
-    PHX                                                                  ;A580DB;
-    PHY                                                                  ;A580DC;
-    JSL.L .externalFunction                                              ;A580DD;
-    PLY                                                                  ;A580E1;
-    PLX                                                                  ;A580E2;
-    TYA                                                                  ;A580E3;
-    CLC                                                                  ;A580E4;
-    ADC.W #$0005                                                         ;A580E5;
-    TAY                                                                  ;A580E8;
-    RTL                                                                  ;A580E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A580EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $80ED: Instruction - go to [[Y]] ;;;
-Instruction_CommonA5_GotoY:
-    LDA.W $0000,Y                                                        ;A580ED;
-    TAY                                                                  ;A580F0;
-    RTL                                                                  ;A580F1;
-
-
-;;; $80F2: Instruction - go to [[Y]] + ±[[Y]] ;;;
-Instruction_CommonA5_GotoY_PlusY:
-    STY.B DP_Temp12                                                      ;A580F2;
-    DEY                                                                  ;A580F4;
-    LDA.W $0000,Y                                                        ;A580F5;
-    XBA                                                                  ;A580F8;
-    BMI .highByte                                                        ;A580F9;
-    AND.W #$00FF                                                         ;A580FB;
-    BRA +                                                                ;A580FE;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;A58100;
-
-+   CLC                                                                  ;A58103;
-    ADC.B DP_Temp12                                                      ;A58104;
-    TAY                                                                  ;A58106;
-    RTL                                                                  ;A58107;
-
-
-;;; $8108: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA5_DecrementTimer_GotoYIfNonZero:
-    DEC.W Enemy.loopCounter,X                                            ;A58108;
-    BNE Instruction_CommonA5_GotoY                                       ;A5810B;
-    INY                                                                  ;A5810D;
-    INY                                                                  ;A5810E;
-    RTL                                                                  ;A5810F;
-
-
-;;; $8110: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA5_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W Enemy.loopCounter,X                                            ;A58110;
-    BNE Instruction_CommonA5_GotoY                                       ;A58113;
-    INY                                                                  ;A58115;
-    INY                                                                  ;A58116;
-    RTL                                                                  ;A58117;
-
-
-;;; $8118: Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-Instruction_CommonA5_DecrementTimer_GotoY_PlusY_IfNonZero:
-    SEP #$20                                                             ;A58118;
-    DEC.W Enemy.loopCounter,X                                            ;A5811A;
-    REP #$20                                                             ;A5811D;
-    BNE Instruction_CommonA5_GotoY_PlusY                                 ;A5811F;
-    INY                                                                  ;A58121;
-    RTL                                                                  ;A58122;
-
-
-;;; $8123: Instruction - timer = [[Y]] ;;;
-Instruction_CommonA5_TimerInY:
-    LDA.W $0000,Y                                                        ;A58123;
-    STA.W Enemy.loopCounter,X                                            ;A58126;
-    INY                                                                  ;A58129;
-    INY                                                                  ;A5812A;
-    RTL                                                                  ;A5812B;
-
-
-;;; $812C: Instruction - skip next instruction ;;;
-Instruction_CommonA5_SkipNextInstruction:
-    INY                                                                  ;A5812C;
-    INY                                                                  ;A5812D;
-    RTL                                                                  ;A5812E;
-
-
-;;; $812F: Instruction - sleep ;;;
-Instruction_CommonA5_Sleep:
-    DEY                                                                  ;A5812F;
-    DEY                                                                  ;A58130;
-    TYA                                                                  ;A58131;
-    STA.W Enemy.instList,X                                               ;A58132;
-    PLA                                                                  ;A58135;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A58136;
-    RTL                                                                  ;A58139;
-
-
-;;; $813A: Instruction - wait [[Y]] frames ;;;
-Instruction_CommonA5_WaitYFrames:
-; Set instruction timer and terminate processing enemy instructions
-; Used for running a delay that doesn't update graphics,
-; useful for e.g. GT eye beam attack ($AA:D10D), implemented by an instruction list that has no graphical instructions,
-; which allows it to be called from multiple different poses
-    LDA.W $0000,Y                                                        ;A5813A;
-    STA.W Enemy.instTimer,X                                              ;A5813D;
-    INY                                                                  ;A58140;
-    INY                                                                  ;A58141;
-    TYA                                                                  ;A58142;
-    STA.W Enemy.instList,X                                               ;A58143;
-    PLA                                                                  ;A58146;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A58147;
-    RTL                                                                  ;A5814A;
-
-
-;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
-Instruction_CommonA5_TransferYBytesInYToVRAM:
-    PHX                                                                  ;A5814B;
-    LDX.W VRAMWriteStack                                                 ;A5814C;
-    LDA.W $0000,Y                                                        ;A5814F;
-    STA.B VRAMWrite.size,X                                               ;A58152;
-    LDA.W $0002,Y                                                        ;A58154;
-    STA.B VRAMWrite.src,X                                                ;A58157;
-    LDA.W $0003,Y                                                        ;A58159;
-    STA.B VRAMWrite.src+1,X                                              ;A5815C;
-    LDA.W $0005,Y                                                        ;A5815E;
-    STA.B VRAMWrite.dest,X                                               ;A58161;
-    TXA                                                                  ;A58163;
-    CLC                                                                  ;A58164;
-    ADC.W #$0007                                                         ;A58165;
-    STA.W VRAMWriteStack                                                 ;A58168;
-    TYA                                                                  ;A5816B;
-    CLC                                                                  ;A5816C;
-    ADC.W #$0007                                                         ;A5816D;
-    TAY                                                                  ;A58170;
-    PLX                                                                  ;A58171;
-    RTL                                                                  ;A58172;
-
-
-;;; $8173: Instruction - enable off-screen processing ;;;
-Instruction_CommonA5_EnableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A58173;
-    ORA.W #$0800                                                         ;A58176;
-    STA.W Enemy.properties,X                                             ;A58179;
-    RTL                                                                  ;A5817C;
-
-
-;;; $817D: Instruction - disable off-screen processing ;;;
-Instruction_CommonA5_DisableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A5817D;
-    AND.W #$F7FF                                                         ;A58180;
-    STA.W Enemy.properties,X                                             ;A58183;
-    RTL                                                                  ;A58186;
-
-
-;;; $8187: Common enemy speeds - linearly increasing ;;;
-CommonA5EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A58187;
-  .subspeed:
-    dw       $0000                                                       ;A58189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A5818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A5818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
-
-
-;;; $838F: Common enemy speeds - quadratically increasing ;;;
-CommonA5EnemySpeeds_QuadraticallyIncreasing:
-; I.e. gravity
-; Used by e.g. Botwoon when dying and falling to the floor
-;        _____________________ Subspeed
-;       |      _______________ Speed
-;       |     |      _________ Negated subspeed
-;       |     |     |      ___ Negated speed
-;       |     |     |     |
-  .subspeed:
-    dw $0000                                                             ;A5838F;
-  .speed:
-    dw       $0000                                                       ;A58391;
-  .negatedSubspeed:
-    dw             $0000                                                 ;A58393;
-  .negatedSpeed:
-    dw                   $0000                                           ;A58395;
-    dw $0109,$0000,$FEF7,$FFFF
-    dw $031B,$0000,$FCE5,$FFFF
-    dw $0636,$0000,$F9CA,$FFFF
-    dw $0A5A,$0000,$F5A6,$FFFF
-    dw $0F87,$0000,$F079,$FFFF
-    dw $15BD,$0000,$EA43,$FFFF
-    dw $1CFC,$0000,$E304,$FFFF
-    dw $2544,$0000,$DABC,$FFFF
-    dw $2E95,$0000,$D16B,$FFFF
-    dw $38EF,$0000,$C711,$FFFF
-    dw $4452,$0000,$BBAE,$FFFF
-    dw $50BE,$0000,$AF42,$FFFF
-    dw $5E33,$0000,$A1CD,$FFFF
-    dw $6CB1,$0000,$934F,$FFFF
-    dw $7C38,$0000,$83C8,$FFFF
-    dw $8CC8,$0000,$7338,$FFFF
-    dw $9E61,$0000,$619F,$FFFF
-    dw $B103,$0000,$4EFD,$FFFF
-    dw $C4AE,$0000,$3B52,$FFFF
-    dw $D962,$0000,$269E,$FFFF
-    dw $EF1F,$0000,$10E1,$FFFF
-    dw $05E5,$0000,$FA1B,$FFFF
-    dw $14B4,$0001,$EB4C,$FFFE
-    dw $2D8C,$0001,$D274,$FFFE
-    dw $476D,$0001,$B893,$FFFE
-    dw $6257,$0001,$9DA9,$FFFE
-    dw $7E4A,$0001,$81B6,$FFFE
-    dw $9B46,$0001,$64BA,$FFFE
-    dw $B94B,$0001,$46B5,$FFFE
-    dw $D859,$0001,$27A7,$FFFE
-    dw $F870,$0001,$0790,$FFFE
-    dw $1090,$0002,$EF70,$FFFD
-    dw $32B9,$0002,$CD47,$FFFD
-    dw $55EB,$0002,$AA15,$FFFD
-    dw $7A26,$0002,$85DA,$FFFD
-    dw $9F6A,$0002,$6096,$FFFD
-    dw $C5B7,$0002,$3A49,$FFFD
-    dw $ED0D,$0002,$12F3,$FFFD
-    dw $0C6C,$0003,$F394,$FFFC
-    dw $35D4,$0003,$CA2C,$FFFC
-    dw $6045,$0003,$9FBB,$FFFC
-    dw $8BBF,$0003,$7441,$FFFC
-    dw $B842,$0003,$47BE,$FFFC
-    dw $E5CE,$0003,$1A32,$FFFC
-    dw $0B63,$0004,$F49D,$FFFB
-    dw $3B01,$0004,$C4FF,$FFFB
-    dw $6BA8,$0004,$9458,$FFFB
-    dw $9D58,$0004,$62A8,$FFFB
-    dw $D011,$0004,$2FEF,$FFFB
-    dw $03D3,$0004,$FC2D,$FFFB
-    dw $2F9E,$0005,$D062,$FFFA
-    dw $6572,$0005,$9A8E,$FFFA
-    dw $9C4F,$0005,$63B1,$FFFA
-    dw $D435,$0005,$2BCB,$FFFA
-    dw $0424,$0006,$FBDC,$FFF9
-    dw $3E1C,$0006,$C1E4,$FFF9
-    dw $791D,$0006,$86E3,$FFF9
-    dw $B527,$0006,$4AD9,$FFF9
-    dw $F23A,$0006,$0DC6,$FFF9
-    dw $2756,$0007,$D8AA,$FFF8
-    dw $667B,$0007,$9985,$FFF8
-    dw $A6A9,$0007,$5957,$FFF8
-    dw $E7E0,$0007,$1820,$FFF8
-    dw $2120,$0008,$DEE0,$FFF7
-    dw $6469,$0008,$9B97,$FFF7
-    dw $A8BB,$0008,$5745,$FFF7
-    dw $EE16,$0008,$11EA,$FFF7
-    dw $2B7A,$0009,$D486,$FFF6
-    dw $72E7,$0009,$8D19,$FFF6
-    dw $BB5D,$0009,$44A3,$FFF6
-    dw $04DC,$0009,$FB24,$FFF6
-    dw $4664,$000A,$B99C,$FFF5
-    dw $91F5,$000A,$6E0B,$FFF5
-    dw $DE8F,$000A,$2171,$FFF5
-    dw $2332,$000B,$DCCE,$FFF4
-    dw $71DE,$000B,$8E22,$FFF4
-    dw $C193,$000B,$3E6D,$FFF4
-    dw $0951,$000C,$F6AF,$FFF3
-    dw $5B18,$000C,$A4E8,$FFF3
-    dw $ADE8,$000C,$5218,$FFF3
-    dw $01C1,$000C,$FE3F,$FFF3
-    dw $4DA3,$000D,$B25D,$FFF2
-    dw $A38E,$000D,$5C72,$FFF2
-    dw $FA82,$000D,$057E,$FFF2
-    dw $497F,$000E,$B681,$FFF1
-    dw $A285,$000E,$5D7B,$FFF1
-    dw $FC94,$000E,$036C,$FFF1
-    dw $4EAC,$000F,$B154,$FFF0
-    dw $AACD,$000F,$5533,$FFF0
-    dw $07F7,$000F,$F809,$FFF0
-    dw $5D2A,$0010,$A2D6,$FFEF
-    dw $BC66,$0010,$439A,$FFEF
-    dw $13AB,$0011,$EC55,$FFEE
-    dw $74F9,$0011,$8B07,$FFEE
+namespace CommonA5
+incsrc "common_enemy_functions.asm"
+namespace off
 
 
 ;;; $8687: Initialisation AI - enemy $DE3F (Draygon body) ;;;
@@ -2011,7 +1429,7 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     STY.W Enemy[1].instList                                              ;A59284;
     LDA.W #$0001                                                         ;A59287;
     STA.W Enemy[1].instTimer                                             ;A5928A;
-    LDA.W #RTS_A5804B                                                    ;A5928D;
+    LDA.W #Common_RTS_A0804B                                                    ;A5928D;
     STA.W DraygonEye.function                                            ;A59290;
 
   .return:
@@ -2536,7 +1954,7 @@ DraygonReaction_Common:
 +   STY.W Enemy[1].instList                                              ;A5963F;
     LDA.W #$0001                                                         ;A59642;
     STA.W Enemy[1].instTimer                                             ;A59645;
-    LDA.W #RTS_A5804B                                                    ;A59648;
+    LDA.W #Common_RTS_A0804B                                                    ;A59648;
     STA.W DraygonEye.function                                            ;A5964B;
     LDA.W #Function_DraygonBody_DeathSequence_DriftToDeathSpot           ;A5964E;
     STA.W DraygonBody.function                                           ;A59651;
@@ -2733,7 +2151,7 @@ GenerateRandomDyingDraygonSpriteObjectPosition:
 
 ;;; $97B9: Instruction list - sleep ;;;
 InstList_Draygon_Sleep:
-    dw Instruction_Common_Sleep                                          ;A597B9;
+    dw Common_Instruction_Sleep                                          ;A597B9;
 
 
 ;;; $97BB: Instruction list - Draygon body - facing left - reset ;;;
@@ -2747,7 +2165,7 @@ InstList_DraygonBody_FacingLeft_Reset:
     dw Instruction_Draygon_EyeFunctionInY                                ;A597C7;
     dw Function_DraygonEye_FacingLeft                                    ;A597C9;
     dw $0001,ExtendedSpritemap_Draygon_1A                                ;A597CB;
-    dw Instruction_Common_Sleep                                          ;A597CF;
+    dw Common_Instruction_Sleep                                          ;A597CF;
 
 
 ;;; $97D1: Instruction list - Draygon body - facing right - reset ;;;
@@ -2761,7 +2179,7 @@ InstList_DraygonBody_FacingRight_Reset:
     dw Instruction_Draygon_EyeFunctionInY                                ;A597DD;
     dw Function_DraygonEye_FacingRight                                   ;A597DF;
     dw $0001,ExtendedSpritemap_Draygon_4A                                ;A597E1;
-    dw Instruction_Common_Sleep                                          ;A597E5;
+    dw Common_Instruction_Sleep                                          ;A597E5;
 
 
 ;;; $97E7: Instruction list - Draygon arms - facing left - idle ;;;
@@ -2772,11 +2190,11 @@ InstList_DraygonArms_FacingLeft_Idle_0:
     dw $0005,ExtendedSpritemap_Draygon_7                                 ;A597F3;
     dw $0005,ExtendedSpritemap_Draygon_8                                 ;A597F7;
     dw $0005,ExtendedSpritemap_Draygon_9                                 ;A597FB;
-    dw Instruction_Common_GotoY                                          ;A597FF;
+    dw Common_Instruction_GotoY                                          ;A597FF;
     dw InstList_DraygonArms_FacingLeft_Idle_0                            ;A59801;
 
 InstList_DraygonArms_FacingLeft_Idle_1:
-    dw Instruction_Common_Sleep                                          ;A59803;
+    dw Common_Instruction_Sleep                                          ;A59803;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -2785,7 +2203,7 @@ UNUSED_InstList_DraygonArms_A59805:
     dw $0001,ExtendedSpritemap_Draygon_1D                                ;A59805;
     dw $0001,ExtendedSpritemap_Draygon_1C                                ;A59809;
     dw $0040,ExtendedSpritemap_Draygon_1B                                ;A5980D;
-    dw Instruction_Common_Sleep                                          ;A59811;
+    dw Common_Instruction_Sleep                                          ;A59811;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -2795,7 +2213,7 @@ InstList_DraygonArms_FacingLeft_NearSwoopApex:
     dw $0001,ExtendedSpritemap_Draygon_1C                                ;A59817;
     dw $0001,ExtendedSpritemap_Draygon_1D                                ;A5981B;
     dw $0040,ExtendedSpritemap_Draygon_1E                                ;A5981F;
-    dw Instruction_Common_Sleep                                          ;A59823;
+    dw Common_Instruction_Sleep                                          ;A59823;
 
 
 ;;; $9825: Instruction list - Draygon arms - facing left - fake grab ;;;
@@ -2808,7 +2226,7 @@ Debug_InstList_DraygonArms_FacingLeft_FakeGrab:
     dw $0001,ExtendedSpritemap_Draygon_1D                                ;A59835;
     dw $0001,ExtendedSpritemap_Draygon_1C                                ;A59839;
     dw $0040,ExtendedSpritemap_Draygon_1B                                ;A5983D;
-    dw Instruction_Common_GotoY                                          ;A59841;
+    dw Common_Instruction_GotoY                                          ;A59841;
     dw InstList_DraygonArms_FacingLeft_Idle_0                            ;A59843;
 
 
@@ -2822,7 +2240,7 @@ InstList_DraygonArms_FacingLeft_Grab:
     dw $0001,ExtendedSpritemap_Draygon_1C                                ;A59859;
     dw $0001,ExtendedSpritemap_Draygon_1B                                ;A5985D;
     dw $0001,ExtendedSpritemap_Draygon_1C                                ;A59861;
-    dw Instruction_Common_Sleep                                          ;A59865;
+    dw Common_Instruction_Sleep                                          ;A59865;
 
 
 ;;; $9867: Instruction list - Draygon body - facing left - dying ;;;
@@ -2831,7 +2249,7 @@ InstList_DraygonArms_FacingLeft_Dying:
     dw $0005,ExtendedSpritemap_Draygon_B                                 ;A5986B;
     dw $0005,ExtendedSpritemap_Draygon_C                                 ;A5986F;
     dw $0005,ExtendedSpritemap_Draygon_D                                 ;A59873;
-    dw Instruction_Common_GotoY                                          ;A59877;
+    dw Common_Instruction_GotoY                                          ;A59877;
     dw InstList_DraygonBody_Dying_0                                      ;A59879;
 
 
@@ -2841,7 +2259,7 @@ UNUSED_InstList_DraygonBody_A5987B:
     dw $0005,ExtendedSpritemap_Draygon_C                                 ;A5987B;
     dw $0005,ExtendedSpritemap_Draygon_B                                 ;A5987F;
     dw $0005,ExtendedSpritemap_Draygon_A                                 ;A59883;
-    dw Instruction_Common_Sleep                                          ;A59887;
+    dw Common_Instruction_Sleep                                          ;A59887;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -2851,7 +2269,7 @@ InstList_DraygonBody_FacingLeft_Idle:
     dw Instruction_Draygon_EyeFunctionInY                                ;A5988B;
     dw Function_DraygonEye_FacingLeft                                    ;A5988D;
     dw $0001,ExtendedSpritemap_Draygon_1A                                ;A5988F;
-    dw Instruction_Common_Sleep                                          ;A59893;
+    dw Common_Instruction_Sleep                                          ;A59893;
 
 
 ;;; $9895: Instruction - room loading interrupt command = Draygon's room - begin HUD drawing ;;;
@@ -2865,28 +2283,28 @@ Instruction_Draygon_RoomLoadingInterruptCmd_BeginHUDDraw:
 InstList_DraygonBody_Dying_0:
     dw Instruction_Draygon_QueueSFXInY_Lib3_Max6,$001B                   ;A5989B;
     dw Instruction_DraygonBody_SetAsIntangible                           ;A5989F;
-    dw Instruction_Common_TimerInY,$0008                                 ;A598A1;
+    dw Common_Instruction_TimerInY,$0008                                 ;A598A1;
 
 InstList_DraygonBody_Dying_1:
-    dw Instruction_Common_WaitYFrames,$000C                              ;A598A5;
+    dw Common_Instruction_WaitYFrames,$000C                              ;A598A5;
     dw Inst_Draygon_SpawnDyingDraygonSpriteObject_BigExplosion           ;A598A9;
     dw Inst_Draygon_SpawnDyingDraygonSpriteObject_SmallExplosion         ;A598AB;
     dw Inst_Draygon_SpawnDyingDraygonSpriteObject_BigDustCloud           ;A598AD;
     dw Inst_Draygon_SpawnDyingDraygonSpriteObject_BreathBubbles          ;A598AF;
     dw Instruction_Draygon_QueueSFXInY_Lib2_Max6,$0025                   ;A598B1;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;A598B5;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;A598B5;
     dw InstList_DraygonBody_Dying_1                                      ;A598B7;
-    dw Instruction_Common_WaitYFrames,$0001                              ;A598B9;
+    dw Common_Instruction_WaitYFrames,$0001                              ;A598B9;
     dw Instruction_Draygon_ParalyseDraygonTailAndArms                    ;A598BD;
 
 InstList_DraygonBody_Dying_2:
-    dw Instruction_Common_WaitYFrames,$0010                              ;A598BF;
+    dw Common_Instruction_WaitYFrames,$0010                              ;A598BF;
     dw Inst_Draygon_SpawnDyingDraygonSpriteObject_BigExplosion           ;A598C3;
     dw Inst_Draygon_SpawnDyingDraygonSpriteObject_SmallExplosion         ;A598C5;
     dw Inst_Draygon_SpawnDyingDraygonSpriteObject_BigDustCloud           ;A598C7;
     dw Inst_Draygon_SpawnDyingDraygonSpriteObject_BreathBubbles          ;A598C9;
     dw Instruction_Draygon_QueueSFXInY_Lib2_Max6,$0025                   ;A598CB;
-    dw Instruction_Common_GotoY                                          ;A598CF;
+    dw Common_Instruction_GotoY                                          ;A598CF;
     dw InstList_DraygonBody_Dying_2                                      ;A598D1;
 
 
@@ -2908,7 +2326,7 @@ Instruction_Draygon_ParalyseDraygonTailAndArms:
 
 ;;; $98ED: Instruction list - delete ;;;
 InstList_Draygon_Delete:
-    dw Instruction_Common_DeleteEnemy                                    ;A598ED;
+    dw Common_Instruction_DeleteEnemy                                    ;A598ED;
 
 
 ;;; $98EF: Instruction - set Draygon body as intangible ;;;
@@ -2933,7 +2351,7 @@ InstList_DraygonBody_FacingLeft_FireGoop:
     dw $0002,ExtendedSpritemap_Draygon_10                                ;A59914;
     dw $0002,ExtendedSpritemap_Draygon_F                                 ;A59918;
     dw $0001,ExtendedSpritemap_Draygon_E                                 ;A5991C;
-    dw Instruction_Common_Sleep                                          ;A59920;
+    dw Common_Instruction_Sleep                                          ;A59920;
 
 
 ;;; $9922: Instruction list - Draygon body - facing left - roar ;;;
@@ -2946,7 +2364,7 @@ InstList_DraygonBody_FacingLeft_Roar:
     dw $0006,ExtendedSpritemap_Draygon_10                                ;A59936;
     dw $0006,ExtendedSpritemap_Draygon_F                                 ;A5993A;
     dw $0006,ExtendedSpritemap_Draygon_E                                 ;A5993E;
-    dw Instruction_Common_Sleep                                          ;A59942;
+    dw Common_Instruction_Sleep                                          ;A59942;
 
 
 ;;; $9944: Instruction list - Draygon eye - facing left - idle ;;;
@@ -2965,23 +2383,23 @@ InstList_DraygonEye_FacingLeft_Idle:
     dw $0005,ExtendedSpritemap_Draygon_12                                ;A59970;
     dw Instruction_Draygon_FunctionInY                                   ;A59974;
     dw Function_DraygonEye_FacingLeft                                    ;A59976;
-    dw Instruction_Common_Sleep                                          ;A59978;
+    dw Common_Instruction_Sleep                                          ;A59978;
 
 
 ;;; $997A: Instruction list - Draygon eye - facing left - dying ;;;
 InstList_DraygonEye_FacingLeft_Dying_0:
-    dw Instruction_Common_TimerInY,$0004                                 ;A5997A;
+    dw Common_Instruction_TimerInY,$0004                                 ;A5997A;
 
 InstList_DraygonEye_FacingLeft_Dying_1:
     dw $0004,ExtendedSpritemap_Draygon_16                                ;A5997E;
     dw $0004,ExtendedSpritemap_Draygon_18                                ;A59982;
     dw $0004,ExtendedSpritemap_Draygon_17                                ;A59986;
     dw $0004,ExtendedSpritemap_Draygon_19                                ;A5998A;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;A5998E;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;A5998E;
     dw InstList_DraygonEye_FacingLeft_Dying_1                            ;A59990;
     dw $0020,ExtendedSpritemap_Draygon_15                                ;A59992;
     dw $0010,ExtendedSpritemap_Draygon_14                                ;A59996;
-    dw Instruction_Common_Sleep                                          ;A5999A;
+    dw Common_Instruction_Sleep                                          ;A5999A;
 
 
 ;;; $999C: Instruction list - Draygon eye - facing left - dead ;;;
@@ -2990,31 +2408,31 @@ InstList_DraygonEye_FacingLeft_Dead:
     dw $0020,ExtendedSpritemap_Draygon_14                                ;A599A0;
     dw $0020,ExtendedSpritemap_Draygon_13                                ;A599A4;
     dw $0001,ExtendedSpritemap_Draygon_12                                ;A599A8;
-    dw Instruction_Common_Sleep                                          ;A599AC;
+    dw Common_Instruction_Sleep                                          ;A599AC;
 
 
 ;;; $99AE: Instruction list - Draygon eye - facing left - looking left ;;;
 InstList_DraygonEye_FacingLeft_LookingLeft:
     dw $0001,ExtendedSpritemap_Draygon_16                                ;A599AE;
-    dw Instruction_Common_Sleep                                          ;A599B2;
+    dw Common_Instruction_Sleep                                          ;A599B2;
 
 
 ;;; $99B4: Instruction list - Draygon eye - facing left - looking right ;;;
 InstList_DraygonEye_FacingLeft_LookingRight:
     dw $0001,ExtendedSpritemap_Draygon_17                                ;A599B4;
-    dw Instruction_Common_Sleep                                          ;A599B8;
+    dw Common_Instruction_Sleep                                          ;A599B8;
 
 
 ;;; $99BA: Instruction list - Draygon eye - facing left - looking up ;;;
 InstList_DraygonEye_FacingLeft_LookingUp:
     dw $0001,ExtendedSpritemap_Draygon_18                                ;A599BA;
-    dw Instruction_Common_Sleep                                          ;A599BE;
+    dw Common_Instruction_Sleep                                          ;A599BE;
 
 
 ;;; $99C0: Instruction list - Draygon eye - facing left - looking down ;;;
 InstList_DraygonEye_FacingLeft_LookingDown:
     dw $0001,ExtendedSpritemap_Draygon_19                                ;A599C0;
-    dw Instruction_Common_Sleep                                          ;A599C4;
+    dw Common_Instruction_Sleep                                          ;A599C4;
 
 
 ;;; $99C6: Instruction list - Draygon tail - facing left - idle ;;;
@@ -3031,11 +2449,11 @@ InstList_DraygonTail_FacingLeft_Idle_0:
     dw $0006,ExtendedSpritemap_Draygon_25                                ;A599EA;
     dw $0006,ExtendedSpritemap_Draygon_24                                ;A599EE;
     dw $0007,ExtendedSpritemap_Draygon_23                                ;A599F2;
-    dw Instruction_Common_GotoY                                          ;A599F6;
+    dw Common_Instruction_GotoY                                          ;A599F6;
     dw InstList_DraygonTail_FacingLeft_Idle_0                            ;A599F8;
 
 InstList_DraygonTail_FacingLeft_Idle_1:
-    dw Instruction_Common_Sleep                                          ;A599FA;
+    dw Common_Instruction_Sleep                                          ;A599FA;
 
 
 ;;; $99FC: Instruction list - Draygon tail - facing left - fake tail whip ;;;
@@ -3063,13 +2481,13 @@ InstList_DraygonTail_FacingLeft_FakeTailWhip:
     dw $0004,ExtendedSpritemap_Draygon_2B                                ;A59A58;
     dw $0005,ExtendedSpritemap_Draygon_2A                                ;A59A5C;
     dw $0006,ExtendedSpritemap_Draygon_29                                ;A59A60;
-    dw Instruction_Common_GotoY                                          ;A59A64;
+    dw Common_Instruction_GotoY                                          ;A59A64;
     dw InstList_DraygonTail_FacingLeft_Idle_0                            ;A59A66;
 
 
 ;;; $9A68: Instruction list - Draygon tail - facing left - final tail whips ;;;
 InstList_DraygonTail_FacingLeft_FinalTailWhips_0:
-    dw Instruction_Common_TimerInY,$0004                                 ;A59A68;
+    dw Common_Instruction_TimerInY,$0004                                 ;A59A68;
 
 InstList_DraygonTail_FacingLeft_FinalTailWhips_1:
     dw Instruction_DraygonBody_DisplaceGraphics,$FFFF,$FFFF              ;A59A6C;
@@ -3096,15 +2514,15 @@ InstList_DraygonTail_FacingLeft_FinalTailWhips_1:
     dw $0004,ExtendedSpritemap_Draygon_2B                                ;A59ACE;
     dw $0005,ExtendedSpritemap_Draygon_2A                                ;A59AD2;
     dw $0006,ExtendedSpritemap_Draygon_29                                ;A59AD6;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;A59ADA;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;A59ADA;
     dw InstList_DraygonTail_FacingLeft_FinalTailWhips_1                  ;A59ADC;
     dw Instruction_Draygon_BodyFunctionInY                               ;A59ADE;
     dw Function_DraygonBody_GrabbedSamus_FlailTail_FlyStraightUp         ;A59AE0;
-    dw Instruction_Common_GotoY                                          ;A59AE2;
+    dw Common_Instruction_GotoY                                          ;A59AE2;
     dw InstList_DraygonTail_FacingLeft_Idle_0                            ;A59AE4;
 
 InstList_DraygonTail_FacingLeft_FinalTailWhips_2:
-    dw Instruction_Common_Sleep                                          ;A59AE6;
+    dw Common_Instruction_Sleep                                          ;A59AE6;
 
 
 ;;; $9AE8: Instruction list - Draygon tail - facing left - tail whip ;;;
@@ -3133,7 +2551,7 @@ InstList_DraygonTail_FacingLeft_TailWhip:
     dw $0004,ExtendedSpritemap_Draygon_2B                                ;A59B4A;
     dw $0005,ExtendedSpritemap_Draygon_2A                                ;A59B4E;
     dw $0006,ExtendedSpritemap_Draygon_29                                ;A59B52;
-    dw Instruction_Common_GotoY                                          ;A59B56;
+    dw Common_Instruction_GotoY                                          ;A59B56;
     dw InstList_DraygonTail_FacingLeft_Idle_0                            ;A59B58;
 
 
@@ -3155,7 +2573,7 @@ InstList_DraygonTail_FacingLeft_TailFlail:
     dw $0004,ExtendedSpritemap_Draygon_2B                                ;A59B8A;
     dw $0005,ExtendedSpritemap_Draygon_2A                                ;A59B8E;
     dw $0006,ExtendedSpritemap_Draygon_29                                ;A59B92;
-    dw Instruction_Common_GotoY                                          ;A59B96;
+    dw Common_Instruction_GotoY                                          ;A59B96;
     dw InstList_DraygonTail_FacingLeft_Idle_0                            ;A59B98;
 
 
@@ -3197,11 +2615,11 @@ InstList_DraygonArms_FacingRight_Idle_0:
     dw $0005,ExtendedSpritemap_Draygon_37                                ;A59BE6;
     dw $0005,ExtendedSpritemap_Draygon_38                                ;A59BEA;
     dw $0005,ExtendedSpritemap_Draygon_39                                ;A59BEE;
-    dw Instruction_Common_GotoY                                          ;A59BF2;
+    dw Common_Instruction_GotoY                                          ;A59BF2;
     dw InstList_DraygonArms_FacingRight_Idle_0                           ;A59BF4;
 
 InstList_DraygonArms_FacingRight_Idle_1:
-    dw Instruction_Common_Sleep                                          ;A59BF6;
+    dw Common_Instruction_Sleep                                          ;A59BF6;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -3210,7 +2628,7 @@ UNUSED_InstList_DraygonArms_A59BF8:
     dw $0001,ExtendedSpritemap_Draygon_4D                                ;A59BF8;
     dw $0001,ExtendedSpritemap_Draygon_4C                                ;A59BFC;
     dw $0040,ExtendedSpritemap_Draygon_4B                                ;A59C00;
-    dw Instruction_Common_Sleep                                          ;A59C04;
+    dw Common_Instruction_Sleep                                          ;A59C04;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -3220,7 +2638,7 @@ InstList_DraygonArms_FacingRight_NearSwoopApex:
     dw $0001,ExtendedSpritemap_Draygon_4C                                ;A59C0A;
     dw $0001,ExtendedSpritemap_Draygon_4D                                ;A59C0E;
     dw $0040,ExtendedSpritemap_Draygon_4E                                ;A59C12;
-    dw Instruction_Common_Sleep                                          ;A59C16;
+    dw Common_Instruction_Sleep                                          ;A59C16;
 
 
 ;;; $9C18: Instruction list - Draygon arms - facing right - fake grab ;;;
@@ -3233,7 +2651,7 @@ Debug_InstList_DraygonArms_FacingRight_FakeGrab:
     dw $0001,ExtendedSpritemap_Draygon_4D                                ;A59C28;
     dw $0001,ExtendedSpritemap_Draygon_4C                                ;A59C2C;
     dw $0040,ExtendedSpritemap_Draygon_4B                                ;A59C30;
-    dw Instruction_Common_GotoY                                          ;A59C34;
+    dw Common_Instruction_GotoY                                          ;A59C34;
     dw InstList_DraygonArms_FacingRight_Idle_0                           ;A59C36;
 
 
@@ -3247,7 +2665,7 @@ InstList_DraygonArms_FacingRight_Grab:
     dw $0001,ExtendedSpritemap_Draygon_4C                                ;A59C4C;
     dw $0001,ExtendedSpritemap_Draygon_4B                                ;A59C50;
     dw $0001,ExtendedSpritemap_Draygon_4C                                ;A59C54;
-    dw Instruction_Common_Sleep                                          ;A59C58;
+    dw Common_Instruction_Sleep                                          ;A59C58;
 
 
 ;;; $9C5A: Instruction list - Draygon body - facing right - dying ;;;
@@ -3256,11 +2674,11 @@ InstList_DraygonArms_FacingRight_Dying_0:
     dw $0005,ExtendedSpritemap_Draygon_3B                                ;A59C5E;
     dw $0005,ExtendedSpritemap_Draygon_3C                                ;A59C62;
     dw $0005,ExtendedSpritemap_Draygon_3D                                ;A59C66;
-    dw Instruction_Common_GotoY                                          ;A59C6A;
+    dw Common_Instruction_GotoY                                          ;A59C6A;
     dw InstList_DraygonBody_Dying_0                                      ;A59C6C;
 
 InstList_DraygonBody_FacingRight_Dying_1:
-    dw Instruction_Common_Sleep                                          ;A59C6E;
+    dw Common_Instruction_Sleep                                          ;A59C6E;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -3269,7 +2687,7 @@ UNUSED_InstList_DraygonBody_A59C70:
     dw $0005,ExtendedSpritemap_Draygon_3C                                ;A59C70;
     dw $0005,ExtendedSpritemap_Draygon_3B                                ;A59C74;
     dw $0005,ExtendedSpritemap_Draygon_3A                                ;A59C78;
-    dw Instruction_Common_Sleep                                          ;A59C7C;
+    dw Common_Instruction_Sleep                                          ;A59C7C;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -3279,7 +2697,7 @@ InstList_DraygonBody_FacingRight_Idle:
     dw Instruction_Draygon_EyeFunctionInY                                ;A59C80;
     dw Function_DraygonEye_FacingRight                                   ;A59C82;
     dw $0001,ExtendedSpritemap_Draygon_4A                                ;A59C84;
-    dw Instruction_Common_Sleep                                          ;A59C88;
+    dw Common_Instruction_Sleep                                          ;A59C88;
 
 
 ;;; $9C8A: Instruction - room loading interrupt command = Draygon's room - begin HUD drawing ;;;
@@ -3300,7 +2718,7 @@ InstList_DraygonBody_FacingRight_FireGoop:
     dw $0002,ExtendedSpritemap_Draygon_40                                ;A59CA6;
     dw $0002,ExtendedSpritemap_Draygon_3F                                ;A59CAA;
     dw $0001,ExtendedSpritemap_Draygon_3E                                ;A59CAE;
-    dw Instruction_Common_Sleep                                          ;A59CB2;
+    dw Common_Instruction_Sleep                                          ;A59CB2;
 
 
 ;;; $9CB4: Instruction list - Draygon body - facing right - roar ;;;
@@ -3313,7 +2731,7 @@ InstList_DraygonBody_FacingRight_Roar:
     dw $0006,ExtendedSpritemap_Draygon_40                                ;A59CC8;
     dw $0006,ExtendedSpritemap_Draygon_3F                                ;A59CCC;
     dw $0006,ExtendedSpritemap_Draygon_3E                                ;A59CD0;
-    dw Instruction_Common_Sleep                                          ;A59CD4;
+    dw Common_Instruction_Sleep                                          ;A59CD4;
 
 
 ;;; $9CD6: Instruction list - Draygon eye - facing right - idle ;;;
@@ -3332,7 +2750,7 @@ InstList_DraygonEye_FacingRight_Idle:
     dw $0005,ExtendedSpritemap_Draygon_42                                ;A59D02;
     dw Instruction_Draygon_FunctionInY                                   ;A59D06;
     dw Function_DraygonEye_FacingLeft                                    ;A59D08;
-    dw Instruction_Common_Sleep                                          ;A59D0A;
+    dw Common_Instruction_Sleep                                          ;A59D0A;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -3347,18 +2765,18 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $9D1C: Instruction list - Draygon eye - facing right - dying ;;;
 InstList_DraygonEye_FacingRight_Dying_0:
-    dw Instruction_Common_TimerInY,$0004                                 ;A59D1C;
+    dw Common_Instruction_TimerInY,$0004                                 ;A59D1C;
 
 InstList_DraygonEye_FacingRight_Dying_1:
     dw $0004,ExtendedSpritemap_Draygon_46                                ;A59D20;
     dw $0004,ExtendedSpritemap_Draygon_48                                ;A59D24;
     dw $0004,ExtendedSpritemap_Draygon_47                                ;A59D28;
     dw $0004,ExtendedSpritemap_Draygon_49                                ;A59D2C;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;A59D30;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;A59D30;
     dw InstList_DraygonEye_FacingRight_Dying_1                           ;A59D32;
     dw $0020,ExtendedSpritemap_Draygon_45                                ;A59D34;
     dw $0010,ExtendedSpritemap_Draygon_44                                ;A59D38;
-    dw Instruction_Common_Sleep                                          ;A59D3C;
+    dw Common_Instruction_Sleep                                          ;A59D3C;
 
 
 ;;; $9D3E: Instruction list - Draygon eye - facing right - dead ;;;
@@ -3367,31 +2785,31 @@ InstList_DraygonEye_FacingRight_Dead:
     dw $0020,ExtendedSpritemap_Draygon_44                                ;A59D42;
     dw $0020,ExtendedSpritemap_Draygon_43                                ;A59D46;
     dw $0001,ExtendedSpritemap_Draygon_42                                ;A59D4A;
-    dw Instruction_Common_Sleep                                          ;A59D4E;
+    dw Common_Instruction_Sleep                                          ;A59D4E;
 
 
 ;;; $9D50: Instruction list - Draygon eye - facing right - looking right ;;;
 InstList_DraygonEye_FacingRight_LookingRight:
     dw $0001,ExtendedSpritemap_Draygon_46                                ;A59D50;
-    dw Instruction_Common_Sleep                                          ;A59D54;
+    dw Common_Instruction_Sleep                                          ;A59D54;
 
 
 ;;; $9D56: Instruction list - Draygon eye - facing right - looking left ;;;
 InstList_DraygonEye_FacingRight_LookingLeft:
     dw $0001,ExtendedSpritemap_Draygon_47                                ;A59D56;
-    dw Instruction_Common_Sleep                                          ;A59D5A;
+    dw Common_Instruction_Sleep                                          ;A59D5A;
 
 
 ;;; $9D5C: Instruction list - Draygon eye - facing right - looking up ;;;
 InstList_DraygonEye_FacingRight_LookingUp:
     dw $0001,ExtendedSpritemap_Draygon_48                                ;A59D5C;
-    dw Instruction_Common_Sleep                                          ;A59D60;
+    dw Common_Instruction_Sleep                                          ;A59D60;
 
 
 ;;; $9D62: Instruction list - Draygon eye - facing right - looking down ;;;
 InstList_DraygonEye_FacingRight_LookingDown:
     dw $0001,ExtendedSpritemap_Draygon_49                                ;A59D62;
-    dw Instruction_Common_Sleep                                          ;A59D66;
+    dw Common_Instruction_Sleep                                          ;A59D66;
 
 
 ;;; $9D68: Instruction list - Draygon tail - facing right - idle ;;;
@@ -3408,11 +2826,11 @@ InstList_DraygonTail_FacingRight_Idle_0:
     dw $0006,ExtendedSpritemap_Draygon_5C                                ;A59D8C;
     dw $0006,ExtendedSpritemap_Draygon_5B                                ;A59D90;
     dw $0007,ExtendedSpritemap_Draygon_5A                                ;A59D94;
-    dw Instruction_Common_GotoY                                          ;A59D98;
+    dw Common_Instruction_GotoY                                          ;A59D98;
     dw InstList_DraygonTail_FacingRight_Idle_0                           ;A59D9A;
 
 InstList_DraygonTail_FacingRight_Idle_1:
-    dw Instruction_Common_Sleep                                          ;A59D9C;
+    dw Common_Instruction_Sleep                                          ;A59D9C;
 
 
 ;;; $9D9E: Instruction list - Draygon tail - facing right - fake tail whip ;;;
@@ -3440,7 +2858,7 @@ Debug_InstList_DraygonTail_FacingRight_FakeTailWhip:
     dw $0004,ExtendedSpritemap_Draygon_62                                ;A59DFA;
     dw $0005,ExtendedSpritemap_Draygon_61                                ;A59DFE;
     dw $0006,ExtendedSpritemap_Draygon_60                                ;A59E02;
-    dw Instruction_Common_GotoY                                          ;A59E06;
+    dw Common_Instruction_GotoY                                          ;A59E06;
     dw InstList_DraygonTail_FacingRight_Idle_0                           ;A59E08;
 
 
@@ -3463,7 +2881,7 @@ Instruction_DraygonBody_DisplaceGraphics:
 
 ;;; $9E21: Instruction list - Draygon tail - facing right - final tail whips ;;;
 InstList_DraygonTail_FacingRight_FinalTailWhips_0:
-    dw Instruction_Common_TimerInY,$0004                                 ;A59E21;
+    dw Common_Instruction_TimerInY,$0004                                 ;A59E21;
 
 InstList_DraygonTail_FacingRight_FinalTailWhips_1:
     dw Instruction_DraygonBody_DisplaceGraphics,$0001,$FFFF              ;A59E25;
@@ -3490,15 +2908,15 @@ InstList_DraygonTail_FacingRight_FinalTailWhips_1:
     dw $0004,ExtendedSpritemap_Draygon_62                                ;A59E87;
     dw $0005,ExtendedSpritemap_Draygon_61                                ;A59E8B;
     dw $0006,ExtendedSpritemap_Draygon_60                                ;A59E8F;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;A59E93;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;A59E93;
     dw InstList_DraygonTail_FacingRight_FinalTailWhips_1                 ;A59E95;
     dw Instruction_Draygon_BodyFunctionInY                               ;A59E97;
     dw Function_DraygonBody_GrabbedSamus_FlailTail_FlyStraightUp         ;A59E99;
-    dw Instruction_Common_GotoY                                          ;A59E9B;
+    dw Common_Instruction_GotoY                                          ;A59E9B;
     dw InstList_DraygonTail_FacingRight_Idle_0                           ;A59E9D;
 
 InstList_DraygonTail_FacingRight_FinalTailWhips_2:
-    dw Instruction_Common_Sleep                                          ;A59E9F;
+    dw Common_Instruction_Sleep                                          ;A59E9F;
 
 
 ;;; $9EA1: Instruction list - Draygon tail - facing right - tail whip ;;;
@@ -3527,11 +2945,11 @@ InstList_DraygonTail_FacingRight_TailWhip_0:
     dw $0004,ExtendedSpritemap_Draygon_62                                ;A59F03;
     dw $0005,ExtendedSpritemap_Draygon_61                                ;A59F07;
     dw $0006,ExtendedSpritemap_Draygon_60                                ;A59F0B;
-    dw Instruction_Common_GotoY                                          ;A59F0F;
+    dw Common_Instruction_GotoY                                          ;A59F0F;
     dw InstList_DraygonTail_FacingRight_Idle_0                           ;A59F11;
 
 InstList_DraygonTail_FacingRight_TailWhip_1:
-    dw Instruction_Common_Sleep                                          ;A59F13;
+    dw Common_Instruction_Sleep                                          ;A59F13;
 
 
 ;;; $9F15: Instruction list - Draygon tail - facing right - tail flail ;;;
@@ -3552,11 +2970,11 @@ InstList_DraygonTail_FacingRight_TailFlail_0:
     dw $0004,ExtendedSpritemap_Draygon_62                                ;A59F45;
     dw $0005,ExtendedSpritemap_Draygon_61                                ;A59F49;
     dw $0006,ExtendedSpritemap_Draygon_60                                ;A59F4D;
-    dw Instruction_Common_GotoY                                          ;A59F51;
+    dw Common_Instruction_GotoY                                          ;A59F51;
     dw InstList_DraygonTail_FacingRight_Idle_0                           ;A59F53;
 
 InstList_DraygonTail_FacingRight_TailFlail_1:
-    dw Instruction_Common_Sleep                                          ;A59F55;
+    dw Common_Instruction_Sleep                                          ;A59F55;
 
 
 ;;; $9F57: Instruction - Draygon body function = [[Y]] ;;;
@@ -4885,8 +4303,8 @@ Hitbox_Draygon_6:
 Hitbox_Draygon_7:
     dw $0001                                                             ;A5A9AF;
     dw $FFF7,$FFF7,$0004,$0007
-    dw RTL_A5804C                                                        ;A5A9B9;
-    dw RTL_A5804C                                                        ;A5A9BB;
+    dw Common_RTL_A0804C                                                        ;A5A9B9;
+    dw Common_RTL_A0804C                                                        ;A5A9BB;
 
 Hitbox_Draygon_8:
     dw $0000                                                             ;A5A9BD;
@@ -4990,7 +4408,7 @@ Hitbox_Draygon_19:
 Hitbox_Draygon_1A:
     dw $0004                                                             ;A5AA95;
     dw $FFEF,$FFF0,$0012,$001E
-    dw RTL_A5804C                                                        ;A5AA9F;
+    dw Common_RTL_A0804C                                                        ;A5AA9F;
     dw EnemyShot_Draygon                                                 ;A5AAA1;
     dw $FFC5,$FFBE,$0003,$FFE2                                           ;A5AAA3;
     dw EnemyTouch_Draygon                                                ;A5AAAB;
@@ -5032,8 +4450,8 @@ Hitbox_Draygon_1F:
 Hitbox_Draygon_20:
     dw $0001                                                             ;A5AB01;
     dw $FFFB,$FFF7,$0007,$0007
-    dw RTL_A5804C                                                        ;A5AB0B;
-    dw RTL_A5804C                                                        ;A5AB0D;
+    dw Common_RTL_A0804C                                                        ;A5AB0B;
+    dw Common_RTL_A0804C                                                        ;A5AB0D;
 
 Hitbox_Draygon_21:
     dw $0001                                                             ;A5AB0F;
@@ -5107,7 +4525,7 @@ Hitbox_Draygon_2C:
 Hitbox_Draygon_2D:
     dw $0004                                                             ;A5ABAB;
     dw $FFEE,$FFF9,$0012,$001E
-    dw RTL_A5804C                                                        ;A5ABB5;
+    dw Common_RTL_A0804C                                                        ;A5ABB5;
     dw EnemyShot_Draygon                                                 ;A5ABB7;
     dw $FFF6,$FFC1,$003E,$FFE6                                           ;A5ABB9;
     dw EnemyTouch_Draygon                                                ;A5ABC1;
@@ -6434,7 +5852,7 @@ InitAI_DraygonEye:
     LDX.W EnemyIndex                                                     ;A5C46B;
     LDA.W #InstList_DraygonEye_FacingLeft_Idle                           ;A5C46E;
     STA.W Enemy.instList,X                                               ;A5C471;
-    LDA.W #RTS_A5804B                                                    ;A5C474;
+    LDA.W #Common_RTS_A0804B                                                    ;A5C474;
     STA.W DraygonBody.function,X                                         ;A5C477;
     RTL                                                                  ;A5C47A;
 
@@ -7253,7 +6671,7 @@ InstList_SporeSpawn_Initial_Dead:
     dw Instruction_SporeSpawn_FunctionInY                                ;A5E6BD;
     dw RTS_A5EB1A                                                        ;A5E6BF;
     dw $0001,ExtendedSpritemap_SporeSpawn_Dead                           ;A5E6C1;
-    dw Instruction_Common_Sleep                                          ;A5E6C5;
+    dw Common_Instruction_Sleep                                          ;A5E6C5;
 
 
 ;;; $E6C7: Instruction list - initial - Spore Spawn is alive ;;;
@@ -7262,7 +6680,7 @@ InstList_SporeSpawn_Initial_Alive:
     dw Instruction_SporeSpawn_FunctionInY                                ;A5E6CB;
     dw Function_SporeSpawn_Descent                                       ;A5E6CD;
     dw $0001,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_0       ;A5E6CF;
-    dw Instruction_Common_Sleep                                          ;A5E6D3;
+    dw Common_Instruction_Sleep                                          ;A5E6D3;
 
 
 ;;; $E6D5: Instruction list - fight has started ;;;
@@ -7288,14 +6706,14 @@ InstList_SporeSpawn_OpenAndStop_0:
     dw Instruction_SporeSpawn_ClearDamagedFlag                           ;A5E70B;
     dw Instruction_SporeSpawn_FunctionInY                                ;A5E70D;
     dw RTS_A5EB1A                                                        ;A5E70F;
-    dw Instruction_Common_TimerInY,$0005                                 ;A5E711;
+    dw Common_Instruction_TimerInY,$0005                                 ;A5E711;
 
 InstList_SporeSpawn_OpenAndStop_1:
     dw $0008,ExtendedSpritemap_SporeSpawn_FullyOpen_0                    ;A5E715;
     dw $0008,ExtendedSpritemap_SporeSpawn_FullyOpen_1                    ;A5E719;
     dw $0008,ExtendedSpritemap_SporeSpawn_FullyOpen_2                    ;A5E71D;
     dw $0008,ExtendedSpritemap_SporeSpawn_FullyOpen_1                    ;A5E721;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;A5E725;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;A5E725;
     dw InstList_SporeSpawn_OpenAndStop_1                                 ;A5E727;
 
 
@@ -7315,7 +6733,7 @@ InstList_SporeSpawn_CloseAndMove:
     dw $0200,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_0       ;A5E74F;
     dw Instruction_SporeSpawn_SporeGenerationFlagInY,$0001               ;A5E753;
     dw $00D0,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_0       ;A5E755;
-    dw Instruction_Common_GotoY                                          ;A5E75B;
+    dw Common_Instruction_GotoY                                          ;A5E75B;
     dw InstList_SporeSpawn_OpenAndStop_0                                 ;A5E75D;
 
 
@@ -7351,13 +6769,13 @@ InstList_SporeSpawn_DeathSequence_0:
     dw $0001,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_6       ;A5E781;
     dw Instruction_SporeSpawn_FunctionInY                                ;A5E785;
     dw Function_SporeSpawn_Dying                                         ;A5E787;
-    dw Instruction_Common_TimerInY,$000A                                 ;A5E789;
+    dw Common_Instruction_TimerInY,$000A                                 ;A5E789;
 
 InstList_SporeSpawn_DeathSequence_1:
     dw $0001,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_6       ;A5E78D;
     dw Instruction_SporeSpawn_SpawnDyingExplosion                        ;A5E791;
-    dw Instruction_Common_WaitYFrames,$0008                              ;A5E793;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;A5E797;
+    dw Common_Instruction_WaitYFrames,$0008                              ;A5E793;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;A5E797;
     dw InstList_SporeSpawn_DeathSequence_1                               ;A5E799;
     dw $0008,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_6       ;A5E79B;
     dw $0008,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_5       ;A5E79F;
@@ -7367,12 +6785,12 @@ InstList_SporeSpawn_DeathSequence_1:
     dw $0008,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_1       ;A5E7AF;
     dw $0001,ExtendedSpritemap_SporeSpawn_Dead                           ;A5E7B3;
     dw Instruction_SporeSpawn_Harden                                     ;A5E7B7;
-    dw Instruction_Common_TimerInY,$000A                                 ;A5E7B9;
+    dw Common_Instruction_TimerInY,$000A                                 ;A5E7B9;
 
 InstList_SporeSpawn_DeathSequence_2:
     dw Instruction_SporeSpawn_SpawnHardeningDustCloud                    ;A5E7BD;
-    dw Instruction_Common_WaitYFrames,$0008                              ;A5E7BF;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;A5E7C3;
+    dw Common_Instruction_WaitYFrames,$0008                              ;A5E7BF;
+    dw Common_Instruction_DecrementTimer_GotoYIfNonZero_duplicate        ;A5E7C3;
     dw InstList_SporeSpawn_DeathSequence_2                               ;A5E7C5;
     dw Instruction_SporeSpawn_LoadDeathSequencePalette,$0000             ;A5E7C7;
     dw Instruction_SporeSpawn_SpawnHardeningDustCloud                    ;A5E7CB;
@@ -7396,7 +6814,7 @@ InstList_SporeSpawn_DeathSequence_2:
     dw Instruction_SporeSpawn_SpawnHardeningDustCloud                    ;A5E807;
     dw $0010,ExtendedSpritemap_SporeSpawn_Dead                           ;A5E809;
     dw Instruction_SporeSpawn_CallSporeSpawnDeathItemDropRoutine         ;A5E80D;
-    dw Instruction_Common_Sleep                                          ;A5E80F;
+    dw Common_Instruction_Sleep                                          ;A5E80F;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -8400,10 +7818,10 @@ ExtendedSpritemap_SporeSpawn_FullyOpen_2:
 Hitbox_SporeSpawn_0:
     dw $0002                                                             ;A5EF73;
     dw $FFD7,$FFE2,$0029,$001E
-    dw RTL_A5804C                                                        ;A5EF7D;
+    dw Common_RTL_A0804C                                                        ;A5EF7D;
     dw Common_CreateADudShot                                             ;A5EF7F;
     dw $FFF0,$FFD3,$000F,$FFE2                                           ;A5EF81;
-    dw RTL_A5804C                                                        ;A5EF89;
+    dw Common_RTL_A0804C                                                        ;A5EF89;
     dw Common_CreateADudShot                                             ;A5EF8B;
 
 Hitbox_SporeSpawn_1:
