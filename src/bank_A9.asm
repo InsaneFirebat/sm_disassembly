@@ -3,591 +3,9 @@ org $A98000
 
 
 ; Common to all enemy code banks
-
-;;; $8000: Grapple AI - no interaction. Also unfreezes enemies(!) ;;;
-CommonA9_GrappleAI_NoInteraction:
-; Used by skultera, Draygon body, fire arc, Phantoon, etecoon, dachora and WS ghost
-    JSL.L GrappleAI_SwitchEnemyAIToMainAI                                ;A98000;
-    RTL                                                                  ;A98004;
-
-
-;;; $8005: Grapple AI - Samus latches on ;;;
-CommonA9_GrappleAI_SamusLatchesOn:
-; Used by gripper and Crocomire
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple                            ;A98005;
-    RTL                                                                  ;A98009;
-
-
-;;; $800A: Grapple AI - kill enemy ;;;
-CommonA9_GrappleAI_KillEnemy:
-; Common
-    JSL.L GrappleAI_EnemyGrappleDeath                                    ;A9800A;
-    RTL                                                                  ;A9800E;
-
-
-;;; $800F: Grapple AI - cancel grapple beam ;;;
-CommonA9_GrappleAI_CancelGrappleBeam:
-; Common
-    JSL.L GrappleAI_SwitchToFrozenAI                                     ;A9800F;
-    RTL                                                                  ;A98013;
-
-
-;;; $8014: Grapple AI - Samus latches on - no invincibility ;;;
-CommonA9_GrappleAI_SamusLatchesOn_NoInvincibility:
-; Used by powamp
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility            ;A98014;
-    RTL                                                                  ;A98018;
-
-
-;;; $8019: Unused. Grapple AI - Samus latches on - paralyse enemy ;;;
-UNUSED_CommonA9_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A98019:
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy              ;A98019;
-    RTL                                                                  ;A9801D;
-
-
-;;; $801E: Grapple AI - hurt Samus ;;;
-CommonA9_GrappleAI_HurtSamus:
-; Used by WS spark
-; Hurt reaction happens in $9B:B932
-    JSL.L GrappleAI_SwitchToFrozenAI_duplicate                           ;A9801E;
-    RTL                                                                  ;A98022;
-
-
-;;; $8023: Normal enemy touch AI ;;;
-CommonA9_NormalEnemyTouchAI:
-    JSL.L NormalEnemyTouchAI                                             ;A98023;
-    RTL                                                                  ;A98027;
-
-
-;;; $8028: Normal touch AI - no death check ;;;
-CommonA9_NormalTouchAI_NoDeathCheck:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A98028;
-    RTL                                                                  ;A9802C;
-
-
-;;; $802D: Normal enemy shot AI ;;;
-CommonA9_NormalEnemyShotAI:
-    JSL.L NormalEnemyShotAI                                              ;A9802D;
-    RTL                                                                  ;A98031;
-
-
-;;; $8032: Normal enemy shot AI - no death check, no enemy shot graphic ;;;
-CommonA9_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A98032;
-    RTL                                                                  ;A98036;
-
-
-;;; $8037: Normal enemy power bomb AI ;;;
-CommonA9_NormalEnemyPowerBombAI:
-    JSL.L NormalEnemyPowerBombAI                                         ;A98037;
-    RTL                                                                  ;A9803B;
-
-
-;;; $803C: Normal enemy power bomb AI - no death check ;;;
-CommonA9_NormalEnemyPowerBombAI_NoDeathCheck:
-; Kraid's power bomb AI
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A9803C;
-    RTL                                                                  ;A98040;
-
-
-;;; $8041: Normal enemy frozen AI ;;;
-CommonA9_NormalEnemyFrozenAI:
-    JSL.L NormalEnemyFrozenAI                                            ;A98041;
-    RTL                                                                  ;A98045;
-
-
-;;; $8046: Creates a dud shot ;;;
-CommonA9_CreateADudShot:
-    JSL.L CreateADudShot                                                 ;A98046;
-    RTL                                                                  ;A9804A;
-
-
-;;; $804B: RTS ;;;
-RTS_A9804B:
-    RTS                                                                  ;A9804B;
-
-
-;;; $804C: RTL ;;;
-RTL_A9804C:
-    RTL                                                                  ;A9804C;
-
-
-;;; $804D: Spritemap - nothing ;;;
-Spritemap_CommonA9_Nothing:
-    dw $0000                                                             ;A9804D;
-
-
-;;; $804F: Extended spritemap - nothing ;;;
-ExtendedSpritemap_CommonA9_Nothing:
-    dw $0001                                                             ;A9804F;
-    dw $0000,$0000
-    dw Spritemap_CommonA9_Nothing                                        ;A98055;
-    dw Hitbox_CommonA9_Nothing                                           ;A98057;
-
-
-;;; $8059: Hitbox - nothing ;;;
-Hitbox_CommonA9_Nothing:
-; [n entries] [[left offset] [top offset] [right offset] [bottom offset] [p touch] [p shot]]...
-    dw $0001                                                             ;A98059;
-    dw $0000,$0000,$0000,$0000
-    dw CommonA9_NormalEnemyTouchAI                                       ;A98063;
-    dw CommonA9_NormalEnemyShotAI                                        ;A98065;
-
-
-;;; $8067: Instruction list - delete enemy ;;;
-InstList_CommonA9_DeleteEnemy:
-    dw Instruction_CommonA9_DeleteEnemy                                  ;A98067;
-
-
-;;; $8069: Two NOPs ;;;
-NOPNOP_A98069:
-; Used as palette by respawning enemy placeholder and Draygon's eye o_O
-    NOP                                                                  ;A98069;
-    NOP                                                                  ;A9806A;
-
-
-;;; $806B: Instruction - Enemy.var5 = [[Y]] ;;;
-Instruction_CommonA9_Enemy0FB2_InY:
-; Used only by torizos (for enemy movement function) and escape etecoon (for enemy function)
-    LDA.W $0000,Y                                                        ;A9806B;
-    STA.W Enemy.var5,X                                                   ;A9806E;
-    INY                                                                  ;A98071;
-    INY                                                                  ;A98072;
-    RTL                                                                  ;A98073;
-
-
-;;; $8074: Instruction - Enemy.var5 = RTS ;;;
-Instruction_CommonA9_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_A9807B                                                    ;A98074;
-    STA.W Enemy.var5,X                                                   ;A98077;
-    RTL                                                                  ;A9807A;
-
-
-RTS_A9807B:
-    RTS                                                                  ;A9807B;
-
-
-;;; $807C: Instruction - delete enemy ;;;
-Instruction_CommonA9_DeleteEnemy:
-    LDA.W Enemy.properties,X                                             ;A9807C;
-    ORA.W #$0200                                                         ;A9807F;
-    STA.W Enemy.properties,X                                             ;A98082;
-    PLA                                                                  ;A98085;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A98086;
-    RTL                                                                  ;A98089;
-
-
-;;; $808A: Instruction - call function [[Y]] ;;;
-Instruction_CommonA9_CallFunctionInY:
-    LDA.W $0000,Y                                                        ;A9808A;
-    STA.B DP_Temp12                                                      ;A9808D;
-    PHY                                                                  ;A9808F;
-    PHX                                                                  ;A98090;
-    PEA.W .manualReturn-1                                                ;A98091;
-    JMP.W (DP_Temp12)                                                    ;A98094;
-
-  .manualReturn:
-    PLX                                                                  ;A98097;
-    PLY                                                                  ;A98098;
-    INY                                                                  ;A98099;
-    INY                                                                  ;A9809A;
-    RTL                                                                  ;A9809B;
-
-
-;;; $809C: Instruction - call function [[Y]] with A = [[Y] + 2] ;;;
-Instruction_CommonA9_CallFunctionInY_WithA:
-    LDA.W $0000,Y                                                        ;A9809C;
-    STA.B DP_Temp12                                                      ;A9809F;
-    LDA.W $0002,Y                                                        ;A980A1;
-    PHY                                                                  ;A980A4;
-    PHX                                                                  ;A980A5;
-    PEA.W .manualReturn-1                                                ;A980A6;
-    JMP.W (DP_Temp12)                                                    ;A980A9;
-
-  .manualReturn:
-    PLX                                                                  ;A980AC;
-    PLY                                                                  ;A980AD;
-    TYA                                                                  ;A980AE;
-    CLC                                                                  ;A980AF;
-    ADC.W #$0004                                                         ;A980B0;
-    TAY                                                                  ;A980B3;
-    RTL                                                                  ;A980B4;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA9_CallExternalFunctionInY_A980B5:
-    LDA.W $0000,Y                                                        ;A980B5;
-    STA.B DP_Temp12                                                      ;A980B8;
-    LDA.W $0001,Y                                                        ;A980BA;
-    STA.B DP_Temp13                                                      ;A980BD;
-    PHX                                                                  ;A980BF;
-    PHY                                                                  ;A980C0;
-    JSL.L .externalFunction                                              ;A980C1;
-    PLY                                                                  ;A980C5;
-    PLX                                                                  ;A980C6;
-    INY                                                                  ;A980C7;
-    INY                                                                  ;A980C8;
-    INY                                                                  ;A980C9;
-    RTL                                                                  ;A980CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A980CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA9_CallExternalFunctionInY_WithA_A980CE:
-    LDA.W $0000,Y                                                        ;A980CE;
-    STA.B DP_Temp12                                                      ;A980D1;
-    LDA.W $0001,Y                                                        ;A980D3;
-    STA.B DP_Temp13                                                      ;A980D6;
-    LDA.W $0003,Y                                                        ;A980D8;
-    PHX                                                                  ;A980DB;
-    PHY                                                                  ;A980DC;
-    JSL.L .externalFunction                                              ;A980DD;
-    PLY                                                                  ;A980E1;
-    PLX                                                                  ;A980E2;
-    TYA                                                                  ;A980E3;
-    CLC                                                                  ;A980E4;
-    ADC.W #$0005                                                         ;A980E5;
-    TAY                                                                  ;A980E8;
-    RTL                                                                  ;A980E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A980EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $80ED: Instruction - go to [[Y]] ;;;
-Instruction_CommonA9_GotoY:
-    LDA.W $0000,Y                                                        ;A980ED;
-    TAY                                                                  ;A980F0;
-    RTL                                                                  ;A980F1;
-
-
-;;; $80F2: Instruction - go to [[Y]] + ±[[Y]] ;;;
-Instruction_CommonA9_GotoY_PlusY:
-    STY.B DP_Temp12                                                      ;A980F2;
-    DEY                                                                  ;A980F4;
-    LDA.W $0000,Y                                                        ;A980F5;
-    XBA                                                                  ;A980F8;
-    BMI .highByte                                                        ;A980F9;
-    AND.W #$00FF                                                         ;A980FB;
-    BRA +                                                                ;A980FE;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;A98100;
-
-+   CLC                                                                  ;A98103;
-    ADC.B DP_Temp12                                                      ;A98104;
-    TAY                                                                  ;A98106;
-    RTL                                                                  ;A98107;
-
-
-;;; $8108: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA9_DecrementTimer_GotoYIfNonZero:
-    DEC.W Enemy.loopCounter,X                                            ;A98108;
-    BNE Instruction_CommonA9_GotoY                                       ;A9810B;
-    INY                                                                  ;A9810D;
-    INY                                                                  ;A9810E;
-    RTL                                                                  ;A9810F;
-
-
-;;; $8110: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA9_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W Enemy.loopCounter,X                                            ;A98110;
-    BNE Instruction_CommonA9_GotoY                                       ;A98113;
-    INY                                                                  ;A98115;
-    INY                                                                  ;A98116;
-    RTL                                                                  ;A98117;
-
-
-;;; $8118: Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-Instruction_CommonA9_DecrementTimer_GotoY_PlusY_IfNonZero:
-    SEP #$20                                                             ;A98118;
-    DEC.W Enemy.loopCounter,X                                            ;A9811A;
-    REP #$20                                                             ;A9811D;
-    BNE Instruction_CommonA9_GotoY_PlusY                                 ;A9811F;
-    INY                                                                  ;A98121;
-    RTL                                                                  ;A98122;
-
-
-;;; $8123: Instruction - timer = [[Y]] ;;;
-Instruction_CommonA9_TimerInY:
-    LDA.W $0000,Y                                                        ;A98123;
-    STA.W Enemy.loopCounter,X                                            ;A98126;
-    INY                                                                  ;A98129;
-    INY                                                                  ;A9812A;
-    RTL                                                                  ;A9812B;
-
-
-;;; $812C: Instruction - skip next instruction ;;;
-Instruction_CommonA9_SkipNextInstruction:
-    INY                                                                  ;A9812C;
-    INY                                                                  ;A9812D;
-    RTL                                                                  ;A9812E;
-
-
-;;; $812F: Instruction - sleep ;;;
-Instruction_CommonA9_Sleep:
-    DEY                                                                  ;A9812F;
-    DEY                                                                  ;A98130;
-    TYA                                                                  ;A98131;
-    STA.W Enemy.instList,X                                               ;A98132;
-    PLA                                                                  ;A98135;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A98136;
-    RTL                                                                  ;A98139;
-
-
-;;; $813A: Instruction - wait [[Y]] frames ;;;
-Instruction_CommonA9_WaitYFrames:
-; Set instruction timer and terminate processing enemy instructions
-; Used for running a delay that doesn't update graphics,
-; useful for e.g. GT eye beam attack ($AA:D10D), implemented by an instruction list that has no graphical instructions,
-; which allows it to be called from multiple different poses
-    LDA.W $0000,Y                                                        ;A9813A;
-    STA.W Enemy.instTimer,X                                              ;A9813D;
-    INY                                                                  ;A98140;
-    INY                                                                  ;A98141;
-    TYA                                                                  ;A98142;
-    STA.W Enemy.instList,X                                               ;A98143;
-    PLA                                                                  ;A98146;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A98147;
-    RTL                                                                  ;A9814A;
-
-
-;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
-Instruction_CommonA9_TransferYBytesInYToVRAM:
-    PHX                                                                  ;A9814B;
-    LDX.W VRAMWriteStack                                                 ;A9814C;
-    LDA.W $0000,Y                                                        ;A9814F;
-    STA.B VRAMWrite.size,X                                               ;A98152;
-    LDA.W $0002,Y                                                        ;A98154;
-    STA.B VRAMWrite.src,X                                                ;A98157;
-    LDA.W $0003,Y                                                        ;A98159;
-    STA.B VRAMWrite.src+1,X                                              ;A9815C;
-    LDA.W $0005,Y                                                        ;A9815E;
-    STA.B VRAMWrite.dest,X                                               ;A98161;
-    TXA                                                                  ;A98163;
-    CLC                                                                  ;A98164;
-    ADC.W #$0007                                                         ;A98165;
-    STA.W VRAMWriteStack                                                 ;A98168;
-    TYA                                                                  ;A9816B;
-    CLC                                                                  ;A9816C;
-    ADC.W #$0007                                                         ;A9816D;
-    TAY                                                                  ;A98170;
-    PLX                                                                  ;A98171;
-    RTL                                                                  ;A98172;
-
-
-;;; $8173: Instruction - enable off-screen processing ;;;
-Instruction_CommonA9_EnableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A98173;
-    ORA.W #$0800                                                         ;A98176;
-    STA.W Enemy.properties,X                                             ;A98179;
-    RTL                                                                  ;A9817C;
-
-
-;;; $817D: Instruction - disable off-screen processing ;;;
-Instruction_CommonA9_DisableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A9817D;
-    AND.W #$F7FF                                                         ;A98180;
-    STA.W Enemy.properties,X                                             ;A98183;
-    RTL                                                                  ;A98186;
-
-
-;;; $8187: Common enemy speeds - linearly increasing ;;;
-CommonA9EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A98187;
-  .subspeed:
-    dw       $0000                                                       ;A98189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A9818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A9818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
-
-
-;;; $838F: Common enemy speeds - quadratically increasing ;;;
-CommonA9EnemySpeeds_QuadraticallyIncreasing:
-; I.e. gravity
-; Used by e.g. Botwoon when dying and falling to the floor
-;        _____________________ Subspeed
-;       |      _______________ Speed
-;       |     |      _________ Negated subspeed
-;       |     |     |      ___ Negated speed
-;       |     |     |     |
-  .subspeed:
-    dw $0000                                                             ;A9838F;
-  .speed:
-    dw       $0000                                                       ;A98391;
-  .negatedSubspeed:
-    dw             $0000                                                 ;A98393;
-  .negatedSpeed:
-    dw                   $0000                                           ;A98395;
-    dw $0109,$0000,$FEF7,$FFFF
-    dw $031B,$0000,$FCE5,$FFFF
-    dw $0636,$0000,$F9CA,$FFFF
-    dw $0A5A,$0000,$F5A6,$FFFF
-    dw $0F87,$0000,$F079,$FFFF
-    dw $15BD,$0000,$EA43,$FFFF
-    dw $1CFC,$0000,$E304,$FFFF
-    dw $2544,$0000,$DABC,$FFFF
-    dw $2E95,$0000,$D16B,$FFFF
-    dw $38EF,$0000,$C711,$FFFF
-    dw $4452,$0000,$BBAE,$FFFF
-    dw $50BE,$0000,$AF42,$FFFF
-    dw $5E33,$0000,$A1CD,$FFFF
-    dw $6CB1,$0000,$934F,$FFFF
-    dw $7C38,$0000,$83C8,$FFFF
-    dw $8CC8,$0000,$7338,$FFFF
-    dw $9E61,$0000,$619F,$FFFF
-    dw $B103,$0000,$4EFD,$FFFF
-    dw $C4AE,$0000,$3B52,$FFFF
-    dw $D962,$0000,$269E,$FFFF
-    dw $EF1F,$0000,$10E1,$FFFF
-    dw $05E5,$0000,$FA1B,$FFFF
-    dw $14B4,$0001,$EB4C,$FFFE
-    dw $2D8C,$0001,$D274,$FFFE
-    dw $476D,$0001,$B893,$FFFE
-    dw $6257,$0001,$9DA9,$FFFE
-    dw $7E4A,$0001,$81B6,$FFFE
-    dw $9B46,$0001,$64BA,$FFFE
-    dw $B94B,$0001,$46B5,$FFFE
-    dw $D859,$0001,$27A7,$FFFE
-    dw $F870,$0001,$0790,$FFFE
-    dw $1090,$0002,$EF70,$FFFD
-    dw $32B9,$0002,$CD47,$FFFD
-    dw $55EB,$0002,$AA15,$FFFD
-    dw $7A26,$0002,$85DA,$FFFD
-    dw $9F6A,$0002,$6096,$FFFD
-    dw $C5B7,$0002,$3A49,$FFFD
-    dw $ED0D,$0002,$12F3,$FFFD
-    dw $0C6C,$0003,$F394,$FFFC
-    dw $35D4,$0003,$CA2C,$FFFC
-    dw $6045,$0003,$9FBB,$FFFC
-    dw $8BBF,$0003,$7441,$FFFC
-    dw $B842,$0003,$47BE,$FFFC
-    dw $E5CE,$0003,$1A32,$FFFC
-    dw $0B63,$0004,$F49D,$FFFB
-    dw $3B01,$0004,$C4FF,$FFFB
-    dw $6BA8,$0004,$9458,$FFFB
-    dw $9D58,$0004,$62A8,$FFFB
-    dw $D011,$0004,$2FEF,$FFFB
-    dw $03D3,$0004,$FC2D,$FFFB
-    dw $2F9E,$0005,$D062,$FFFA
-    dw $6572,$0005,$9A8E,$FFFA
-    dw $9C4F,$0005,$63B1,$FFFA
-    dw $D435,$0005,$2BCB,$FFFA
-    dw $0424,$0006,$FBDC,$FFF9
-    dw $3E1C,$0006,$C1E4,$FFF9
-    dw $791D,$0006,$86E3,$FFF9
-    dw $B527,$0006,$4AD9,$FFF9
-    dw $F23A,$0006,$0DC6,$FFF9
-    dw $2756,$0007,$D8AA,$FFF8
-    dw $667B,$0007,$9985,$FFF8
-    dw $A6A9,$0007,$5957,$FFF8
-    dw $E7E0,$0007,$1820,$FFF8
-    dw $2120,$0008,$DEE0,$FFF7
-    dw $6469,$0008,$9B97,$FFF7
-    dw $A8BB,$0008,$5745,$FFF7
-    dw $EE16,$0008,$11EA,$FFF7
-    dw $2B7A,$0009,$D486,$FFF6
-    dw $72E7,$0009,$8D19,$FFF6
-    dw $BB5D,$0009,$44A3,$FFF6
-    dw $04DC,$0009,$FB24,$FFF6
-    dw $4664,$000A,$B99C,$FFF5
-    dw $91F5,$000A,$6E0B,$FFF5
-    dw $DE8F,$000A,$2171,$FFF5
-    dw $2332,$000B,$DCCE,$FFF4
-    dw $71DE,$000B,$8E22,$FFF4
-    dw $C193,$000B,$3E6D,$FFF4
-    dw $0951,$000C,$F6AF,$FFF3
-    dw $5B18,$000C,$A4E8,$FFF3
-    dw $ADE8,$000C,$5218,$FFF3
-    dw $01C1,$000C,$FE3F,$FFF3
-    dw $4DA3,$000D,$B25D,$FFF2
-    dw $A38E,$000D,$5C72,$FFF2
-    dw $FA82,$000D,$057E,$FFF2
-    dw $497F,$000E,$B681,$FFF1
-    dw $A285,$000E,$5D7B,$FFF1
-    dw $FC94,$000E,$036C,$FFF1
-    dw $4EAC,$000F,$B154,$FFF0
-    dw $AACD,$000F,$5533,$FFF0
-    dw $07F7,$000F,$F809,$FFF0
-    dw $5D2A,$0010,$A2D6,$FFEF
-    dw $BC66,$0010,$439A,$FFEF
-    dw $13AB,$0011,$EC55,$FFEE
-    dw $74F9,$0011,$8B07,$FFEE
+namespace CommonA9
+incsrc "common_enemy_functions.asm"
+namespace off
 
 
 ;;; $8687: Initialisation AI - enemy $EC7F (Mother Brain body) ;;;
@@ -1437,31 +855,31 @@ SpawnFallingTubeSmoke:
 ;;; $8C69: Instruction list - Mother Brain tubes falling 0 ;;;
 InstList_MotherBrainTubes_0:
     dw $0001,Spritemaps_MotherBrainTubes_0                               ;A98C69;
-    dw Instruction_Common_Sleep                                          ;A98C6D;
+    dw Common_Instruction_Sleep                                          ;A98C6D;
 
 
 ;;; $8C6F: Instruction list - Mother Brain tubes falling 1 ;;;
 InstList_MotherBrainTubes_1:
     dw $0001,Spritemaps_MotherBrainTubes_1                               ;A98C6F;
-    dw Instruction_Common_Sleep                                          ;A98C73;
+    dw Common_Instruction_Sleep                                          ;A98C73;
 
 
 ;;; $8C75: Instruction list - Mother Brain tubes falling 2 ;;;
 InstList_MotherBrainTubes_2:
     dw $0001,Spritemaps_MotherBrainTubes_2                               ;A98C75;
-    dw Instruction_Common_Sleep                                          ;A98C79;
+    dw Common_Instruction_Sleep                                          ;A98C79;
 
 
 ;;; $8C7B: Instruction list - Mother Brain tubes falling 3 ;;;
 InstList_MotherBrainTubes_3:
     dw $0001,Spritemaps_MotherBrainTubes_3                               ;A98C7B;
-    dw Instruction_Common_Sleep                                          ;A98C7F;
+    dw Common_Instruction_Sleep                                          ;A98C7F;
 
 
 ;;; $8C81: Instruction list - Mother Brain tubes falling 4 ;;;
 InstList_MotherBrainTubes_4:
     dw $0001,Spritemaps_MotherBrainTubes_4                               ;A98C81;
-    dw Instruction_Common_Sleep                                          ;A98C85;
+    dw Common_Instruction_Sleep                                          ;A98C85;
 
 
 ;;; $8C87: Mother Brain body function - fake death - ascent - draw room background on BG1 - rows 2/3 ;;;
@@ -2935,7 +2353,7 @@ InstList_MotherBrainBody_WalkingForwards_ReallyFast:
     dw Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep        ;A99760;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A99762;
     dw $0002,ExtendedSpritemap_MotherBrainBody_Walking_7                 ;A99764;
-    dw Instruction_Common_Sleep                                          ;A99768;
+    dw Common_Instruction_Sleep                                          ;A99768;
 
 
 ;;; $976A: Instruction list - Mother Brain body - walking forwards - fast ;;;
@@ -2959,7 +2377,7 @@ InstList_MotherBrainBody_WalkingForwards_Fast:
     dw Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep        ;A9979A;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A9979C;
     dw $0004,ExtendedSpritemap_MotherBrainBody_Walking_7                 ;A9979E;
-    dw Instruction_Common_Sleep                                          ;A997A2;
+    dw Common_Instruction_Sleep                                          ;A997A2;
 
 
 ;;; $97A4: Instruction list - Mother Brain body - walking forwards - medium ;;;
@@ -2983,7 +2401,7 @@ InstList_MotherBrainBody_WalkingForwards_Medium:
     dw Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep        ;A997D4;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A997D6;
     dw $0006,ExtendedSpritemap_MotherBrainBody_Walking_7                 ;A997D8;
-    dw Instruction_Common_Sleep                                          ;A997DC;
+    dw Common_Instruction_Sleep                                          ;A997DC;
 
 
 ;;; $97DE: Instruction list - Mother Brain body - walking forwards - slow ;;;
@@ -3007,7 +2425,7 @@ InstList_MotherBrainBody_WalkingForwards_Slow:
     dw Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep        ;A9980E;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A99810;
     dw $0008,ExtendedSpritemap_MotherBrainBody_Walking_7                 ;A99812;
-    dw Instruction_Common_Sleep                                          ;A99816;
+    dw Common_Instruction_Sleep                                          ;A99816;
 
 
 ;;; $9818: Instruction list - Mother Brain body - walking forwards - really slow ;;;
@@ -3031,7 +2449,7 @@ InstList_MotherBrainBody_WalkingForwards_ReallySlow:
     dw Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep        ;A99848;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A9984A;
     dw $000A,ExtendedSpritemap_MotherBrainBody_Walking_7                 ;A9984C;
-    dw Instruction_Common_Sleep                                          ;A99850;
+    dw Common_Instruction_Sleep                                          ;A99850;
 
 
 ;;; $9852: Instruction list - Mother Brain body - walking backwards - slow ;;;
@@ -3055,7 +2473,7 @@ InstList_MotherBrainBody_WalkingBackwards_Slow:
     dw Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep_duplicate ;A99882;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A99884;
     dw $0008,ExtendedSpritemap_MotherBrainBody_Standing                  ;A99886;
-    dw Instruction_Common_Sleep                                          ;A9988A;
+    dw Common_Instruction_Sleep                                          ;A9988A;
 
 
 ;;; $988C: Instruction list - Mother Brain body - walking backwards - really fast ;;;
@@ -3079,7 +2497,7 @@ InstList_MotherBrainBody_WalkingBackwards_ReallyFast:
     dw Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep_duplicate ;A998BC;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A998BE;
     dw $0002,ExtendedSpritemap_MotherBrainBody_Standing                  ;A998C0;
-    dw Instruction_Common_Sleep                                          ;A998C4;
+    dw Common_Instruction_Sleep                                          ;A998C4;
 
 
 ;;; $98C6: Instruction list - Mother Brain body - walking backwards - fast ;;;
@@ -3103,7 +2521,7 @@ InstList_MotherBrainBody_WalkingBackwards_Fast:
     dw Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep_duplicate ;A998F6;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A998F8;
     dw $0004,ExtendedSpritemap_MotherBrainBody_Standing                  ;A998FA;
-    dw Instruction_Common_Sleep                                          ;A998FE;
+    dw Common_Instruction_Sleep                                          ;A998FE;
 
 
 ;;; $9900: Instruction list - Mother Brain body - walking backwards - medium ;;;
@@ -3127,7 +2545,7 @@ InstList_MotherBrainBody_WalkingBackwards_Medium:
     dw Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep_duplicate ;A99930;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A99932;
     dw $0006,ExtendedSpritemap_MotherBrainBody_Standing                  ;A99934;
-    dw Instruction_Common_Sleep                                          ;A99938;
+    dw Common_Instruction_Sleep                                          ;A99938;
 
 
 ;;; $993A: Instruction list - Mother Brain body - walking backwards - really slow ;;;
@@ -3151,7 +2569,7 @@ InstList_MotherBrainBody_WalkingBackwards_ReallySlow:
     dw Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep_duplicate ;A9996A;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A9996C;
     dw $000A,ExtendedSpritemap_MotherBrainBody_Standing                  ;A9996E;
-    dw Instruction_Common_Sleep                                          ;A99972;
+    dw Common_Instruction_Sleep                                          ;A99972;
 
 
 ;;; $9974: Instruction list - Mother Brain body - crouch and then stand up ;;;
@@ -3174,7 +2592,7 @@ InstList_MotherBrainBody_CrouchAndThenStandUp:
     dw Instruction_MotherBrainBody_MoveBodyUpBy12_ScrollRightBy2         ;A999A0;
     dw $0008,ExtendedSpritemap_MotherBrainBody_Standing                  ;A999A2;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A999A6;
-    dw Instruction_Common_Sleep                                          ;A999A8;
+    dw Common_Instruction_Sleep                                          ;A999A8;
 
 
 ;;; $99AA: Instruction list - Mother Brain body - standing up after crouching - slow ;;;
@@ -3188,7 +2606,7 @@ InstList_MotherBrainBody_StandingUpAfterCrouching_Slow:
     dw Instruction_MotherBrainBody_MoveBodyUpBy12_ScrollRightBy2         ;A999BC;
     dw $0010,ExtendedSpritemap_MotherBrainBody_Standing                  ;A999BE;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A999C2;
-    dw Instruction_Common_Sleep                                          ;A999C4;
+    dw Common_Instruction_Sleep                                          ;A999C4;
 
 
 ;;; $99C6: Instruction list - Mother Brain body - standing up after crouching - fast ;;;
@@ -3202,7 +2620,7 @@ InstList_MotherBrainBody_StandingUpAfterCrouching_Fast:
     dw Instruction_MotherBrainBody_MoveBodyUpBy12_ScrollRightBy2         ;A999D8;
     dw $0008,ExtendedSpritemap_MotherBrainBody_Standing                  ;A999DA;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A999DE;
-    dw Instruction_Common_Sleep                                          ;A999E0;
+    dw Common_Instruction_Sleep                                          ;A999E0;
 
 
 ;;; $99E2: Instruction list - Mother Brain body - standing up after leaning down ;;;
@@ -3212,7 +2630,7 @@ InstList_MotherBrainBody_StandingUpAfterLeaningDown:
     dw Instruction_MotherBrainBody_MoveBodyUpBy12_ScrollRightBy2         ;A999E8;
     dw $0008,ExtendedSpritemap_MotherBrainBody_Standing                  ;A999EA;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A999EE;
-    dw Instruction_Common_Sleep                                          ;A999F0;
+    dw Common_Instruction_Sleep                                          ;A999F0;
 
 
 ;;; $99F2: Instruction list - Mother Brain body - leaning down ;;;
@@ -3222,14 +2640,14 @@ InstList_MotherBrainBody_LeaningDown:
     dw Instruction_MotherBrainBody_MoveBodyDownBy12_ScrollLeftBy4        ;A999F8;
     dw Instruction_MotherBrainBody_SetPoseToLeaningDown                  ;A999FA;
     dw $0008,ExtendedSpritemap_MotherBrainBody_LeaningDown               ;A999FC;
-    dw Instruction_Common_Sleep                                          ;A99A00;
+    dw Common_Instruction_Sleep                                          ;A99A00;
 
 
 ;;; $9A02: Instruction list - Mother Brain body - crouched ;;;
 InstList_MotherBrainBody_Crouched:
     dw Instruction_MotherBrainBody_SetPoseToCrouching                    ;A99A02;
     dw $0008,ExtendedSpritemap_MotherBrainBody_Crouched                  ;A99A04;
-    dw Instruction_Common_Sleep                                          ;A99A08;
+    dw Common_Instruction_Sleep                                          ;A99A08;
 
 
 ;;; $9A0A: Instruction list - Mother Brain body - crouch - slow ;;;
@@ -3243,7 +2661,7 @@ InstList_MotherBrainBody_Crouch_Slow:
     dw Instruction_MotherBrainBody_MoveBodyDownBy10_ScrollRightBy2       ;A99A1C;
     dw Instruction_MotherBrainBody_SetPoseToCrouching                    ;A99A1E;
     dw $0008,ExtendedSpritemap_MotherBrainBody_Crouched                  ;A99A20;
-    dw Instruction_Common_Sleep                                          ;A99A24;
+    dw Common_Instruction_Sleep                                          ;A99A24;
 
 
 ;;; $9A26: Instruction list - Mother Brain body - crouch - fast ;;;
@@ -3257,7 +2675,7 @@ InstList_MotherBrainBody_Crouch_Fast:
     dw Instruction_MotherBrainBody_MoveBodyDownBy10_ScrollRightBy2       ;A99A38;
     dw Instruction_MotherBrainBody_SetPoseToCrouching                    ;A99A3A;
     dw $0008,ExtendedSpritemap_MotherBrainBody_Crouched                  ;A99A3C;
-    dw Instruction_Common_Sleep                                          ;A99A40;
+    dw Common_Instruction_Sleep                                          ;A99A40;
 
 
 ;;; $9A42: Instruction list - Mother Brain body - death beam mode ;;;
@@ -3297,7 +2715,7 @@ InstList_MotherBrainBody_DeathBeamMode:
     dw $00F0,ExtendedSpritemap_MotherBrainBody_Standing                  ;A99ABE;
     dw Instruction_MotherBrainBody_IncrementDeathBeamAttackPhase         ;A99AC2;
     dw Instruction_MotherBrainBody_SetPoseToStanding                     ;A99AC4;
-    dw Instruction_Common_Sleep                                          ;A99AC6;
+    dw Common_Instruction_Sleep                                          ;A99AC6;
 
 
 ;;; $9AC8: Instruction - spawn enemy projectile $E509 to offset ([[Y]], [[Y] + 2]) with parameter [[Y] + 4] ;;;
@@ -3501,7 +2919,7 @@ InstList_MotherBrainHead_HyperBeamRecoil_1:
 ;;; $9C13: Instruction list - Mother Brain body - initial (dummy) ;;;
 InstList_MotherBrainHead_InitialDummy:
     dw $0000,UNUSED_ExtendedSpritemap_MotherBrainBrain_A9A320            ;A99C13;
-    dw Instruction_Common_Sleep                                          ;A99C17;
+    dw Common_Instruction_Sleep                                          ;A99C17;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -5935,7 +5353,7 @@ MotherBrainPart_vs_Samus_CollisionDetection:
 
 ;;; $B503: Enemy shot - enemy $EC7F (Mother Brain body) ;;;
 EnemyShot_MotherBrainBody:
-    JML.L CreateADudShot                                                 ;A9B503; fallthrough to EnemyShot_MotherBrainHead
+    JML.L CreateADudShot_Internal                                        ;A9B503; fallthrough to EnemyShot_MotherBrainHead
 
 
 ;;; $B507: Enemy shot - enemy $EC3F (Mother Brain brain) ;;;
@@ -5986,7 +5404,7 @@ EnemyShot_MotherBrainHead:
     LDA.L MotherBrainBody.form                                           ;A9B551;
     CMP.W #$0001                                                         ;A9B555;
     BNE .gotoNormalShotAI                                                ;A9B558;
-    JML.L CreateADudShot                                                 ;A9B55A;
+    JML.L CreateADudShot_Internal                                        ;A9B55A;
 
   .gotoNormalShotAI:
     JML.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A9B55E;
@@ -9755,7 +9173,7 @@ Instruction_BabyMetroid_GotoDrainingMotherBrain:
 ;;; $CFCE: Instruction list - Shitroid - took fatal blow ;;;
 InstList_BabyMetroid_TookFatalBlow:
     dw $0080,Spritemap_BabyMetroid_2                                     ;A9CFCE;
-    dw Instruction_Common_Sleep                                          ;A9CFD2;
+    dw Common_Instruction_Sleep                                          ;A9CFD2;
 
 
 ;;; $CFD4: Process Mother Brain invincibility palette ;;;
@@ -10588,7 +10006,7 @@ Palette_CorpseTorizo:
 ;;; $D6DC: Instruction list - torizo corpse ;;;
 InstList_CorpseTorizo:
     dw $0001,Spritemaps_CorpseTorizo                                     ;A9D6DC;
-    dw Instruction_Common_Sleep                                          ;A9D6E0;
+    dw Common_Instruction_Sleep                                          ;A9D6E0;
 
 
 ;;; $D6E2: Torizo corpse spritemaps ;;;
@@ -13820,7 +13238,7 @@ InstList_CorpseSidehopper_Alive_Hopping:
     dw $0005,Spritemap_CorpseSidehopper_Alive_0                          ;A9ECC4;
     dw $0004,Spritemap_CorpseSidehopper_Alive_1                          ;A9ECC8;
     dw Instruction_SidehopperCorpse_EndHop                               ;A9ECCC;
-    dw Instruction_Common_Sleep                                          ;A9ECCE;
+    dw Common_Instruction_Sleep                                          ;A9ECCE;
 
 
 ;;; $ECD0: Instruction - end hop ;;;
@@ -13841,67 +13259,67 @@ Instruction_SidehopperCorpse_EndHop:
 ;;; $ECE3: Instruction list - sidehopper corpse - alive - idle ;;;
 InstList_CorpseSidehopper_Alive_Idle:
     dw $0001,Spritemap_CorpseSidehopper_Alive_2                          ;A9ECE3;
-    dw Instruction_Common_Sleep                                          ;A9ECE7;
+    dw Common_Instruction_Sleep                                          ;A9ECE7;
 
 
 ;;; $ECE9: Instruction list - sidehopper corpse - alive - corpse ;;;
 InstList_CorpseSidehopper_Alive_Corpse:
     dw $0001,Spritemap_CorpseSidehopper_Dead_0                           ;A9ECE9;
-    dw Instruction_Common_Sleep                                          ;A9ECED;
+    dw Common_Instruction_Sleep                                          ;A9ECED;
 
 
 ;;; $ECEF: Instruction list - sidehopper corpse - dead ;;;
 InstList_CorpseSidehopper_Alive_Dead:
     dw $0001,Spritemap_CorpseSidehopper_Dead_1                           ;A9ECEF;
-    dw Instruction_Common_Sleep                                          ;A9ECF3;
+    dw Common_Instruction_Sleep                                          ;A9ECF3;
 
 
 ;;; $ECF5: Instruction list - zoomer corpse - enemy parameter 1 = 0 ;;;
 InstList_CorpseZoomer_Param1_0:
     dw $0001,Spritemap_CorpseZoomer_0                                    ;A9ECF5;
-    dw Instruction_Common_Sleep                                          ;A9ECF9;
+    dw Common_Instruction_Sleep                                          ;A9ECF9;
 
 
 ;;; $ECFB: Instruction list - zoomer corpse - enemy parameter 1 = 2 ;;;
 InstList_CorpseZoomer_Param1_2:
     dw $0001,Spritemap_CorpseZoomer_1                                    ;A9ECFB;
-    dw Instruction_Common_Sleep                                          ;A9ECFF;
+    dw Common_Instruction_Sleep                                          ;A9ECFF;
 
 
 ;;; $ED01: Instruction list - zoomer corpse - enemy parameter 1 = 4 ;;;
 InstList_CorpseZoomer_Param1_4:
     dw $0001,Spritemap_CorpseZoomer_2                                    ;A9ED01;
-    dw Instruction_Common_Sleep                                          ;A9ED05;
+    dw Common_Instruction_Sleep                                          ;A9ED05;
 
 
 ;;; $ED07: Instruction list - ripper corpse - enemy parameter 1 = 0 ;;;
 InstList_CorpseRipper_Param1_0:
     dw $0001,Spritemap_CorpseRipper_0                                    ;A9ED07;
-    dw Instruction_Common_Sleep                                          ;A9ED0B;
+    dw Common_Instruction_Sleep                                          ;A9ED0B;
 
 
 ;;; $ED0D: Instruction list - ripper corpse - enemy parameter 1 = 2 ;;;
 InstList_CorpseRipper_Param1_2:
     dw $0001,Spritemap_CorpseRipper_1                                    ;A9ED0D;
-    dw Instruction_Common_Sleep                                          ;A9ED11;
+    dw Common_Instruction_Sleep                                          ;A9ED11;
 
 
 ;;; $ED13: Instruction list - skree corpse - enemy parameter 1 = 0 ;;;
 InstList_CorpseSkree_Param1_0:
     dw $0001,Spritemap_CorpseSkree_0                                     ;A9ED13;
-    dw Instruction_Common_Sleep                                          ;A9ED17;
+    dw Common_Instruction_Sleep                                          ;A9ED17;
 
 
 ;;; $ED19: Instruction list - skree corpse - enemy parameter 1 = 2 ;;;
 InstList_CorpseSkree_Param1_2:
     dw $0001,Spritemap_CorpseSkree_1                                     ;A9ED19;
-    dw Instruction_Common_Sleep                                          ;A9ED1D;
+    dw Common_Instruction_Sleep                                          ;A9ED1D;
 
 
 ;;; $ED1F: Instruction list - skree corpse - enemy parameter 1 = 4 ;;;
 InstList_CorpseSkree_Param1_4:
     dw $0001,Spritemap_CorpseSkree_2                                     ;A9ED1F;
-    dw Instruction_Common_Sleep                                          ;A9ED23;
+    dw Common_Instruction_Sleep                                          ;A9ED23;
 
 
 ;;; $ED25: Dead monster spritemaps ;;;

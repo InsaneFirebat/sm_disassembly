@@ -3,591 +3,9 @@ org $A38000
 
 
 ; Common to all enemy code banks
-
-;;; $8000: Grapple AI - no interaction. Also unfreezes enemies(!) ;;;
-CommonA3_GrappleAI_NoInteraction:
-; Used by skultera, Draygon body, fire arc, Phantoon, etecoon, dachora and WS ghost
-    JSL.L GrappleAI_SwitchEnemyAIToMainAI                                ;A38000;
-    RTL                                                                  ;A38004;
-
-
-;;; $8005: Grapple AI - Samus latches on ;;;
-CommonA3_GrappleAI_SamusLatchesOn:
-; Used by gripper and Crocomire
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple                            ;A38005;
-    RTL                                                                  ;A38009;
-
-
-;;; $800A: Grapple AI - kill enemy ;;;
-CommonA3_GrappleAI_KillEnemy:
-; Common
-    JSL.L GrappleAI_EnemyGrappleDeath                                    ;A3800A;
-    RTL                                                                  ;A3800E;
-
-
-;;; $800F: Grapple AI - cancel grapple beam ;;;
-CommonA3_GrappleAI_CancelGrappleBeam:
-; Common
-    JSL.L GrappleAI_SwitchToFrozenAI                                     ;A3800F;
-    RTL                                                                  ;A38013;
-
-
-;;; $8014: Grapple AI - Samus latches on - no invincibility ;;;
-CommonA3_GrappleAI_SamusLatchesOn_NoInvincibility:
-; Used by powamp
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility            ;A38014;
-    RTL                                                                  ;A38018;
-
-
-;;; $8019: Unused. Grapple AI - Samus latches on - paralyse enemy ;;;
-UNUSED_CommonA3_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A38019:
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy              ;A38019;
-    RTL                                                                  ;A3801D;
-
-
-;;; $801E: Grapple AI - hurt Samus ;;;
-CommonA3_GrappleAI_HurtSamus:
-; Used by WS spark
-; Hurt reaction happens in $9B:B932
-    JSL.L GrappleAI_SwitchToFrozenAI_duplicate                           ;A3801E;
-    RTL                                                                  ;A38022;
-
-
-;;; $8023: Normal enemy touch AI ;;;
-CommonA3_NormalEnemyTouchAI:
-    JSL.L NormalEnemyTouchAI                                             ;A38023;
-    RTL                                                                  ;A38027;
-
-
-;;; $8028: Normal touch AI - no death check ;;;
-CommonA3_NormalTouchAI_NoDeathCheck:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A38028;
-    RTL                                                                  ;A3802C;
-
-
-;;; $802D: Normal enemy shot AI ;;;
-CommonA3_NormalEnemyShotAI:
-    JSL.L NormalEnemyShotAI                                              ;A3802D;
-    RTL                                                                  ;A38031;
-
-
-;;; $8032: Normal enemy shot AI - no death check, no enemy shot graphic ;;;
-CommonA3_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A38032;
-    RTL                                                                  ;A38036;
-
-
-;;; $8037: Normal enemy power bomb AI ;;;
-CommonA3_NormalEnemyPowerBombAI:
-    JSL.L NormalEnemyPowerBombAI                                         ;A38037;
-    RTL                                                                  ;A3803B;
-
-
-;;; $803C: Normal enemy power bomb AI - no death check ;;;
-CommonA3_NormalEnemyPowerBombAI_NoDeathCheck:
-; Kraid's power bomb AI
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A3803C;
-    RTL                                                                  ;A38040;
-
-
-;;; $8041: Normal enemy frozen AI ;;;
-CommonA3_NormalEnemyFrozenAI:
-    JSL.L NormalEnemyFrozenAI                                            ;A38041;
-    RTL                                                                  ;A38045;
-
-
-;;; $8046: Creates a dud shot ;;;
-CommonA3_CreateADudShot:
-    JSL.L CreateADudShot                                                 ;A38046;
-    RTL                                                                  ;A3804A;
-
-
-;;; $804B: RTS ;;;
-RTS_A3804B:
-    RTS                                                                  ;A3804B;
-
-
-;;; $804C: RTL ;;;
-RTL_A3804C:
-    RTL                                                                  ;A3804C;
-
-
-;;; $804D: Spritemap - nothing ;;;
-Spritemap_CommonA3_Nothing:
-    dw $0000                                                             ;A3804D;
-
-
-;;; $804F: Extended spritemap - nothing ;;;
-ExtendedSpritemap_CommonA3_Nothing:
-    dw $0001                                                             ;A3804F;
-    dw $0000,$0000
-    dw Spritemap_CommonA3_Nothing                                        ;A38055;
-    dw Hitbox_CommonA3_Nothing                                           ;A38057;
-
-
-;;; $8059: Hitbox - nothing ;;;
-Hitbox_CommonA3_Nothing:
-; [n entries] [[left offset] [top offset] [right offset] [bottom offset] [p touch] [p shot]]...
-    dw $0001                                                             ;A38059;
-    dw $0000,$0000,$0000,$0000
-    dw CommonA3_NormalEnemyTouchAI                                       ;A38063;
-    dw CommonA3_NormalEnemyShotAI                                        ;A38065;
-
-
-;;; $8067: Instruction list - delete enemy ;;;
-InstList_CommonA3_DeleteEnemy:
-    dw Instruction_CommonA3_DeleteEnemy                                  ;A38067;
-
-
-;;; $8069: Two NOPs ;;;
-NOPNOP_A38069:
-; Used as palette by respawning enemy placeholder and Draygon's eye o_O
-    NOP                                                                  ;A38069;
-    NOP                                                                  ;A3806A;
-
-
-;;; $806B: Instruction - Enemy.var5 = [[Y]] ;;;
-Instruction_CommonA3_Enemy0FB2_InY:
-; Used only by torizos (for enemy movement function) and escape etecoon (for enemy function)
-    LDA.W $0000,Y                                                        ;A3806B;
-    STA.W Enemy.var5,X                                                   ;A3806E;
-    INY                                                                  ;A38071;
-    INY                                                                  ;A38072;
-    RTL                                                                  ;A38073;
-
-
-;;; $8074: Instruction - Enemy.var5 = RTS ;;;
-Instruction_CommonA3_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_A3807B                                                    ;A38074;
-    STA.W Enemy.var5,X                                                   ;A38077;
-    RTL                                                                  ;A3807A;
-
-
-RTS_A3807B:
-    RTS                                                                  ;A3807B;
-
-
-;;; $807C: Instruction - delete enemy ;;;
-Instruction_CommonA3_DeleteEnemy:
-    LDA.W Enemy.properties,X                                             ;A3807C;
-    ORA.W #$0200                                                         ;A3807F;
-    STA.W Enemy.properties,X                                             ;A38082;
-    PLA                                                                  ;A38085;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A38086;
-    RTL                                                                  ;A38089;
-
-
-;;; $808A: Instruction - call function [[Y]] ;;;
-Instruction_CommonA3_CallFunctionInY:
-    LDA.W $0000,Y                                                        ;A3808A;
-    STA.B DP_Temp12                                                      ;A3808D;
-    PHY                                                                  ;A3808F;
-    PHX                                                                  ;A38090;
-    PEA.W .manualReturn-1                                                ;A38091;
-    JMP.W (DP_Temp12)                                                    ;A38094;
-
-  .manualReturn:
-    PLX                                                                  ;A38097;
-    PLY                                                                  ;A38098;
-    INY                                                                  ;A38099;
-    INY                                                                  ;A3809A;
-    RTL                                                                  ;A3809B;
-
-
-;;; $809C: Instruction - call function [[Y]] with A = [[Y] + 2] ;;;
-Instruction_CommonA3_CallFunctionInY_WithA:
-    LDA.W $0000,Y                                                        ;A3809C;
-    STA.B DP_Temp12                                                      ;A3809F;
-    LDA.W $0002,Y                                                        ;A380A1;
-    PHY                                                                  ;A380A4;
-    PHX                                                                  ;A380A5;
-    PEA.W .manualReturn-1                                                ;A380A6;
-    JMP.W (DP_Temp12)                                                    ;A380A9;
-
-  .manualReturn:
-    PLX                                                                  ;A380AC;
-    PLY                                                                  ;A380AD;
-    TYA                                                                  ;A380AE;
-    CLC                                                                  ;A380AF;
-    ADC.W #$0004                                                         ;A380B0;
-    TAY                                                                  ;A380B3;
-    RTL                                                                  ;A380B4;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA3_CallExternalFunctionInY_A380B5:
-    LDA.W $0000,Y                                                        ;A380B5;
-    STA.B DP_Temp12                                                      ;A380B8;
-    LDA.W $0001,Y                                                        ;A380BA;
-    STA.B DP_Temp13                                                      ;A380BD;
-    PHX                                                                  ;A380BF;
-    PHY                                                                  ;A380C0;
-    JSL.L .externalFunction                                              ;A380C1;
-    PLY                                                                  ;A380C5;
-    PLX                                                                  ;A380C6;
-    INY                                                                  ;A380C7;
-    INY                                                                  ;A380C8;
-    INY                                                                  ;A380C9;
-    RTL                                                                  ;A380CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A380CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA3_CallExternalFunctionInY_WithA_A380CE:
-    LDA.W $0000,Y                                                        ;A380CE;
-    STA.B DP_Temp12                                                      ;A380D1;
-    LDA.W $0001,Y                                                        ;A380D3;
-    STA.B DP_Temp13                                                      ;A380D6;
-    LDA.W $0003,Y                                                        ;A380D8;
-    PHX                                                                  ;A380DB;
-    PHY                                                                  ;A380DC;
-    JSL.L .externalFunction                                              ;A380DD;
-    PLY                                                                  ;A380E1;
-    PLX                                                                  ;A380E2;
-    TYA                                                                  ;A380E3;
-    CLC                                                                  ;A380E4;
-    ADC.W #$0005                                                         ;A380E5;
-    TAY                                                                  ;A380E8;
-    RTL                                                                  ;A380E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A380EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $80ED: Instruction - go to [[Y]] ;;;
-Instruction_CommonA3_GotoY:
-    LDA.W $0000,Y                                                        ;A380ED;
-    TAY                                                                  ;A380F0;
-    RTL                                                                  ;A380F1;
-
-
-;;; $80F2: Instruction - go to [[Y]] + ±[[Y]] ;;;
-Instruction_CommonA3_GotoY_PlusY:
-    STY.B DP_Temp12                                                      ;A380F2;
-    DEY                                                                  ;A380F4;
-    LDA.W $0000,Y                                                        ;A380F5;
-    XBA                                                                  ;A380F8;
-    BMI .highByte                                                        ;A380F9;
-    AND.W #$00FF                                                         ;A380FB;
-    BRA +                                                                ;A380FE;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;A38100;
-
-+   CLC                                                                  ;A38103;
-    ADC.B DP_Temp12                                                      ;A38104;
-    TAY                                                                  ;A38106;
-    RTL                                                                  ;A38107;
-
-
-;;; $8108: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA3_DecrementTimer_GotoYIfNonZero:
-    DEC.W Enemy.loopCounter,X                                            ;A38108;
-    BNE Instruction_CommonA3_GotoY                                       ;A3810B;
-    INY                                                                  ;A3810D;
-    INY                                                                  ;A3810E;
-    RTL                                                                  ;A3810F;
-
-
-;;; $8110: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-Instruction_CommonA3_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W Enemy.loopCounter,X                                            ;A38110;
-    BNE Instruction_CommonA3_GotoY                                       ;A38113;
-    INY                                                                  ;A38115;
-    INY                                                                  ;A38116;
-    RTL                                                                  ;A38117;
-
-
-;;; $8118: Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-Instruction_CommonA3_DecrementTimer_GotoY_PlusY_IfNonZero:
-    SEP #$20                                                             ;A38118;
-    DEC.W Enemy.loopCounter,X                                            ;A3811A;
-    REP #$20                                                             ;A3811D;
-    BNE Instruction_CommonA3_GotoY_PlusY                                 ;A3811F;
-    INY                                                                  ;A38121;
-    RTL                                                                  ;A38122;
-
-
-;;; $8123: Instruction - timer = [[Y]] ;;;
-Instruction_CommonA3_TimerInY:
-    LDA.W $0000,Y                                                        ;A38123;
-    STA.W Enemy.loopCounter,X                                            ;A38126;
-    INY                                                                  ;A38129;
-    INY                                                                  ;A3812A;
-    RTL                                                                  ;A3812B;
-
-
-;;; $812C: Instruction - skip next instruction ;;;
-Instruction_CommonA3_SkipNextInstruction:
-    INY                                                                  ;A3812C;
-    INY                                                                  ;A3812D;
-    RTL                                                                  ;A3812E;
-
-
-;;; $812F: Instruction - sleep ;;;
-Instruction_CommonA3_Sleep:
-    DEY                                                                  ;A3812F;
-    DEY                                                                  ;A38130;
-    TYA                                                                  ;A38131;
-    STA.W Enemy.instList,X                                               ;A38132;
-    PLA                                                                  ;A38135;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A38136;
-    RTL                                                                  ;A38139;
-
-
-;;; $813A: Instruction - wait [[Y]] frames ;;;
-Instruction_CommonA3_WaitYFrames:
-; Set instruction timer and terminate processing enemy instructions
-; Used for running a delay that doesn't update graphics,
-; useful for e.g. GT eye beam attack ($AA:D10D), implemented by an instruction list that has no graphical instructions,
-; which allows it to be called from multiple different poses
-    LDA.W $0000,Y                                                        ;A3813A;
-    STA.W Enemy.instTimer,X                                              ;A3813D;
-    INY                                                                  ;A38140;
-    INY                                                                  ;A38141;
-    TYA                                                                  ;A38142;
-    STA.W Enemy.instList,X                                               ;A38143;
-    PLA                                                                  ;A38146;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A38147;
-    RTL                                                                  ;A3814A;
-
-
-;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
-Instruction_CommonA3_TransferYBytesInYToVRAM:
-    PHX                                                                  ;A3814B;
-    LDX.W VRAMWriteStack                                                 ;A3814C;
-    LDA.W $0000,Y                                                        ;A3814F;
-    STA.B VRAMWrite.size,X                                               ;A38152;
-    LDA.W $0002,Y                                                        ;A38154;
-    STA.B VRAMWrite.src,X                                                ;A38157;
-    LDA.W $0003,Y                                                        ;A38159;
-    STA.B VRAMWrite.src+1,X                                              ;A3815C;
-    LDA.W $0005,Y                                                        ;A3815E;
-    STA.B VRAMWrite.dest,X                                               ;A38161;
-    TXA                                                                  ;A38163;
-    CLC                                                                  ;A38164;
-    ADC.W #$0007                                                         ;A38165;
-    STA.W VRAMWriteStack                                                 ;A38168;
-    TYA                                                                  ;A3816B;
-    CLC                                                                  ;A3816C;
-    ADC.W #$0007                                                         ;A3816D;
-    TAY                                                                  ;A38170;
-    PLX                                                                  ;A38171;
-    RTL                                                                  ;A38172;
-
-
-;;; $8173: Instruction - enable off-screen processing ;;;
-Instruction_CommonA3_EnableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A38173;
-    ORA.W #$0800                                                         ;A38176;
-    STA.W Enemy.properties,X                                             ;A38179;
-    RTL                                                                  ;A3817C;
-
-
-;;; $817D: Instruction - disable off-screen processing ;;;
-Instruction_CommonA3_DisableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A3817D;
-    AND.W #$F7FF                                                         ;A38180;
-    STA.W Enemy.properties,X                                             ;A38183;
-    RTL                                                                  ;A38186;
-
-
-;;; $8187: Common enemy speeds - linearly increasing ;;;
-CommonA3EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A38187;
-  .subspeed:
-    dw       $0000                                                       ;A38189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A3818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A3818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
-
-
-;;; $838F: Common enemy speeds - quadratically increasing ;;;
-CommonA3EnemySpeeds_QuadraticallyIncreasing:
-; I.e. gravity
-; Used by e.g. Botwoon when dying and falling to the floor
-;        _____________________ Subspeed
-;       |      _______________ Speed
-;       |     |      _________ Negated subspeed
-;       |     |     |      ___ Negated speed
-;       |     |     |     |
-  .subspeed:
-    dw $0000                                                             ;A3838F;
-  .speed:
-    dw       $0000                                                       ;A38391;
-  .negatedSubspeed:
-    dw             $0000                                                 ;A38393;
-  .negatedSpeed:
-    dw                   $0000                                           ;A38395;
-    dw $0109,$0000,$FEF7,$FFFF
-    dw $031B,$0000,$FCE5,$FFFF
-    dw $0636,$0000,$F9CA,$FFFF
-    dw $0A5A,$0000,$F5A6,$FFFF
-    dw $0F87,$0000,$F079,$FFFF
-    dw $15BD,$0000,$EA43,$FFFF
-    dw $1CFC,$0000,$E304,$FFFF
-    dw $2544,$0000,$DABC,$FFFF
-    dw $2E95,$0000,$D16B,$FFFF
-    dw $38EF,$0000,$C711,$FFFF
-    dw $4452,$0000,$BBAE,$FFFF
-    dw $50BE,$0000,$AF42,$FFFF
-    dw $5E33,$0000,$A1CD,$FFFF
-    dw $6CB1,$0000,$934F,$FFFF
-    dw $7C38,$0000,$83C8,$FFFF
-    dw $8CC8,$0000,$7338,$FFFF
-    dw $9E61,$0000,$619F,$FFFF
-    dw $B103,$0000,$4EFD,$FFFF
-    dw $C4AE,$0000,$3B52,$FFFF
-    dw $D962,$0000,$269E,$FFFF
-    dw $EF1F,$0000,$10E1,$FFFF
-    dw $05E5,$0000,$FA1B,$FFFF
-    dw $14B4,$0001,$EB4C,$FFFE
-    dw $2D8C,$0001,$D274,$FFFE
-    dw $476D,$0001,$B893,$FFFE
-    dw $6257,$0001,$9DA9,$FFFE
-    dw $7E4A,$0001,$81B6,$FFFE
-    dw $9B46,$0001,$64BA,$FFFE
-    dw $B94B,$0001,$46B5,$FFFE
-    dw $D859,$0001,$27A7,$FFFE
-    dw $F870,$0001,$0790,$FFFE
-    dw $1090,$0002,$EF70,$FFFD
-    dw $32B9,$0002,$CD47,$FFFD
-    dw $55EB,$0002,$AA15,$FFFD
-    dw $7A26,$0002,$85DA,$FFFD
-    dw $9F6A,$0002,$6096,$FFFD
-    dw $C5B7,$0002,$3A49,$FFFD
-    dw $ED0D,$0002,$12F3,$FFFD
-    dw $0C6C,$0003,$F394,$FFFC
-    dw $35D4,$0003,$CA2C,$FFFC
-    dw $6045,$0003,$9FBB,$FFFC
-    dw $8BBF,$0003,$7441,$FFFC
-    dw $B842,$0003,$47BE,$FFFC
-    dw $E5CE,$0003,$1A32,$FFFC
-    dw $0B63,$0004,$F49D,$FFFB
-    dw $3B01,$0004,$C4FF,$FFFB
-    dw $6BA8,$0004,$9458,$FFFB
-    dw $9D58,$0004,$62A8,$FFFB
-    dw $D011,$0004,$2FEF,$FFFB
-    dw $03D3,$0004,$FC2D,$FFFB
-    dw $2F9E,$0005,$D062,$FFFA
-    dw $6572,$0005,$9A8E,$FFFA
-    dw $9C4F,$0005,$63B1,$FFFA
-    dw $D435,$0005,$2BCB,$FFFA
-    dw $0424,$0006,$FBDC,$FFF9
-    dw $3E1C,$0006,$C1E4,$FFF9
-    dw $791D,$0006,$86E3,$FFF9
-    dw $B527,$0006,$4AD9,$FFF9
-    dw $F23A,$0006,$0DC6,$FFF9
-    dw $2756,$0007,$D8AA,$FFF8
-    dw $667B,$0007,$9985,$FFF8
-    dw $A6A9,$0007,$5957,$FFF8
-    dw $E7E0,$0007,$1820,$FFF8
-    dw $2120,$0008,$DEE0,$FFF7
-    dw $6469,$0008,$9B97,$FFF7
-    dw $A8BB,$0008,$5745,$FFF7
-    dw $EE16,$0008,$11EA,$FFF7
-    dw $2B7A,$0009,$D486,$FFF6
-    dw $72E7,$0009,$8D19,$FFF6
-    dw $BB5D,$0009,$44A3,$FFF6
-    dw $04DC,$0009,$FB24,$FFF6
-    dw $4664,$000A,$B99C,$FFF5
-    dw $91F5,$000A,$6E0B,$FFF5
-    dw $DE8F,$000A,$2171,$FFF5
-    dw $2332,$000B,$DCCE,$FFF4
-    dw $71DE,$000B,$8E22,$FFF4
-    dw $C193,$000B,$3E6D,$FFF4
-    dw $0951,$000C,$F6AF,$FFF3
-    dw $5B18,$000C,$A4E8,$FFF3
-    dw $ADE8,$000C,$5218,$FFF3
-    dw $01C1,$000C,$FE3F,$FFF3
-    dw $4DA3,$000D,$B25D,$FFF2
-    dw $A38E,$000D,$5C72,$FFF2
-    dw $FA82,$000D,$057E,$FFF2
-    dw $497F,$000E,$B681,$FFF1
-    dw $A285,$000E,$5D7B,$FFF1
-    dw $FC94,$000E,$036C,$FFF1
-    dw $4EAC,$000F,$B154,$FFF0
-    dw $AACD,$000F,$5533,$FFF0
-    dw $07F7,$000F,$F809,$FFF0
-    dw $5D2A,$0010,$A2D6,$FFEF
-    dw $BC66,$0010,$439A,$FFEF
-    dw $13AB,$0011,$EC55,$FFEE
-    dw $74F9,$0011,$8B07,$FFEE
+namespace CommonA3
+incsrc "common_enemy_functions.asm"
+namespace off
 
 
 ;;; $8687: Palette - enemy $D63F (waver) ;;;
@@ -599,13 +17,13 @@ Palette_Waver:
 ;;; $86A7: Instruction list - steady - facing left ;;;
 InstList_Waver_Steady_FacingLeft:
     dw $0001,Spritemap_Waver_2                                           ;A386A7;
-    dw Instruction_Common_Sleep                                          ;A386AB;
+    dw Common_Instruction_Sleep                                          ;A386AB;
 
 
 ;;; $86AD: Instruction list - steady - facing right ;;;
 InstList_Waver_Steady_FacingRight:
     dw $0001,Spritemap_Waver_7                                           ;A386AD;
-    dw Instruction_Common_Sleep                                          ;A386B1;
+    dw Common_Instruction_Sleep                                          ;A386B1;
 
 
 ;;; $86B3: Instruction list - spinning - facing left ;;;
@@ -615,7 +33,7 @@ InstList_Waver_Spinning_FacingLeft:
     dw $0008,Spritemap_Waver_0                                           ;A386BB;
     dw $0008,Spritemap_Waver_1                                           ;A386BF;
     dw Instruction_Waver_SetSpinFinishedFlag                             ;A386C3;
-    dw Instruction_Common_Sleep                                          ;A386C5;
+    dw Common_Instruction_Sleep                                          ;A386C5;
 
 
 ;;; $86C7: Instruction list - spinning - facing right ;;;
@@ -625,7 +43,7 @@ InstList_Waver_Spinning_FacingRight:
     dw $0008,Spritemap_Waver_5                                           ;A386CF;
     dw $0008,Spritemap_Waver_6                                           ;A386D3;
     dw Instruction_Waver_SetSpinFinishedFlag                             ;A386D7;
-    dw Instruction_Common_Sleep                                          ;A386D9;
+    dw Common_Instruction_Sleep                                          ;A386D9;
 
 
 ;;; $86DB: Instruction list pointers ;;;
@@ -868,7 +286,7 @@ InstList_Metaree_Idling:
     dw $000A,Spritemap_Metaree_2                                         ;A38914;
     dw $000A,Spritemap_Metaree_3                                         ;A38918;
     dw $000A,Spritemap_Metaree_4                                         ;A3891C;
-    dw Instruction_Common_GotoY                                          ;A38920;
+    dw Common_Instruction_GotoY                                          ;A38920;
     dw InstList_Metaree_Idling                                           ;A38922;
 
 
@@ -877,27 +295,27 @@ InstList_Metaree_PrepareToLaunchAttack:
     dw $0010,Spritemap_Metaree_0                                         ;A38924;
     dw $0008,Spritemap_Metaree_1                                         ;A38928;
     dw Instruction_Metaree_SetAttackReadyFlag                            ;A3892C;
-    dw Instruction_Common_Sleep                                          ;A3892E;
+    dw Common_Instruction_Sleep                                          ;A3892E;
 
 
 ;;; $8930: Instruction list - launched attack ;;;
 InstList_Metaree_LaunchedAttack_0:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A38930;
+    dw Common_Instruction_EnableOffScreenProcessing                      ;A38930;
 
 InstList_Metaree_LaunchedAttack_1:
     dw $0002,Spritemap_Metaree_2                                         ;A38932;
     dw $0002,Spritemap_Metaree_3                                         ;A38936;
     dw $0002,Spritemap_Metaree_4                                         ;A3893A;
     dw $0002,Spritemap_Metaree_0                                         ;A3893E;
-    dw Instruction_Common_GotoY                                          ;A38942;
+    dw Common_Instruction_GotoY                                          ;A38942;
     dw InstList_Metaree_LaunchedAttack_1                                 ;A38944;
 
 
 ;;; $8946: Unused. Instruction list - stop animating ;;;
 UNUSED_InstList_Metaree_StopAnimating_A38946:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A38946;
+    dw Common_Instruction_DisableOffScreenProcessing                     ;A38946;
     dw $0001,Spritemap_Metaree_0                                         ;A38948;
-    dw Instruction_Common_Sleep                                          ;A3894C;
+    dw Common_Instruction_Sleep                                          ;A3894C;
 
 
 ;;; $894E: Metaree instruction list pointers ;;;
@@ -1294,7 +712,7 @@ InstList_Fireflea:
     dw $0001,Spritemap_Fireflea_4                                        ;A38CF3;
     dw $0002,Spritemap_Fireflea_5                                        ;A38CF7;
     dw $0001,Spritemap_Fireflea_4                                        ;A38CFB;
-    dw Instruction_Common_GotoY                                          ;A38CFF;
+    dw Common_Instruction_GotoY                                          ;A38CFF;
     dw InstList_Fireflea                                                 ;A38D01;
 
 
@@ -1372,9 +790,9 @@ SetFirefleaSpeed:
 
 +   TYA                                                                  ;A38D8A;
     STA.L Fireflea.speedTableIndex,X                                     ;A38D8B;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A38D8F;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing,Y                         ;A38D8F;
     STA.W Fireflea.angleDelta,X                                          ;A38D92;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A38D95;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+2,Y                       ;A38D95;
     STA.W Fireflea.subAngleDelta,X                                       ;A38D98;
     RTS                                                                  ;A38D9B;
 
@@ -1460,10 +878,10 @@ MainAI_Fireflea:
     TAY                                                                  ;A38E38;
     CLC                                                                  ;A38E39;
     LDA.W Enemy.YSubPosition,X                                           ;A38E3A;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A38E3D;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing+2,Y                       ;A38E3D;
     STA.W Enemy.YSubPosition,X                                           ;A38E40;
     LDA.W Enemy.YPosition,X                                              ;A38E43;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A38E46;
+    ADC.W Common_EnemySpeeds_LinearlyIncreasing,Y                         ;A38E46;
     STA.W Enemy.YPosition,X                                              ;A38E49;
     LDA.W Enemy.YPosition,X                                              ;A38E4C;
     CMP.L Fireflea.minimumYPosition,X                                    ;A38E4F;
@@ -1679,7 +1097,7 @@ InstList_Skultera_SwimmingLeft_1:
     dw $000E,Spritemap_Skultera_0                                        ;A3902C;
     dw $000E,Spritemap_Skultera_1                                        ;A39030;
     dw $000E,Spritemap_Skultera_2                                        ;A39034;
-    dw Instruction_Common_GotoY                                          ;A39038;
+    dw Common_Instruction_GotoY                                          ;A39038;
     dw InstList_Skultera_SwimmingLeft_1                                  ;A3903A;
 
 
@@ -1694,7 +1112,7 @@ InstList_Skultera_TurningRight:
     dw $000A,Spritemap_Skultera_9                                        ;A39054;
     dw $000D,Spritemap_Skultera_A                                        ;A39058;
     dw Instruction_Skultera_SetTurnFinishedFlag                          ;A3905C;
-    dw Instruction_Common_Sleep                                          ;A3905E;
+    dw Common_Instruction_Sleep                                          ;A3905E;
 
 
 ;;; $9060: Instruction list - swimming right ;;;
@@ -1705,7 +1123,7 @@ InstList_Skultera_SwimmingRight_1:
     dw $000E,Spritemap_Skultera_B                                        ;A39062;
     dw $000E,Spritemap_Skultera_C                                        ;A39066;
     dw $000E,Spritemap_Skultera_D                                        ;A3906A;
-    dw Instruction_Common_GotoY                                          ;A3906E;
+    dw Common_Instruction_GotoY                                          ;A3906E;
     dw InstList_Skultera_SwimmingRight_1                                 ;A39070;
 
 
@@ -1720,7 +1138,7 @@ InstList_Skultera_TurningLeft:
     dw $000A,Spritemap_Skultera_14                                       ;A3908A;
     dw $000D,Spritemap_Skultera_15                                       ;A3908E;
     dw Instruction_Skultera_SetTurnFinishedFlag                          ;A39092;
-    dw Instruction_Common_Sleep                                          ;A39094;
+    dw Common_Instruction_Sleep                                          ;A39094;
 
 
 ;;; $9096: Instruction - enemy layer = 6 ;;;
@@ -1769,13 +1187,13 @@ InitAI_Skultera:
     ASL                                                                  ;A390DF;
     ASL                                                                  ;A390E0;
     TAY                                                                  ;A390E1;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A390E2;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing,Y                         ;A390E2;
     STA.W Skulltera.rightVelocity,X                                      ;A390E5;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A390E8;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+2,Y                       ;A390E8;
     STA.W Skulltera.rightSubVelocity,X                                   ;A390EB;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A390EE;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+4,Y                       ;A390EE;
     STA.W Skulltera.leftVelocity,X                                       ;A390F1;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A390F4;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+6,Y                       ;A390F4;
     STA.W Skulltera.leftSubVelocity,X                                    ;A390F7;
     LDA.W Enemy.init1,X                                                  ;A390FA;
     AND.W #$00FF                                                         ;A390FD;
@@ -2159,7 +1577,7 @@ UNUSED_SpritemapPointers_Skultera:
 InstList_Elevator:
     dw $0002,Spritemap_Elevator_0                                        ;A394D6;
     dw $0002,Spritemap_Elevator_1                                        ;A394DA;
-    dw Instruction_Common_GotoY                                          ;A394DE;
+    dw Common_Instruction_GotoY                                          ;A394DE;
     dw InstList_Elevator                                                 ;A394E0;
 
 
@@ -2173,7 +1591,7 @@ ElevatorControllerInputs:
 ;;; $94E6: Initialisation AI - enemy $D73F (elevator) ;;;
 InitAI_Elevator:
     LDX.W EnemyIndex                                                     ;A394E6;
-    LDA.W #Spritemap_Common_Nothing                                      ;A394E9;
+    LDA.W #Common_Spritemap_Nothing                                      ;A394E9;
     STA.W Enemy.spritemap,X                                              ;A394EC;
     LDA.W #$0001                                                         ;A394EF;
     STA.W Enemy.instTimer,X                                              ;A394F2;
@@ -2369,7 +1787,7 @@ InstList_Sciser_UpsideRight_1:
     dw $0008,Spritemap_Sciser_UpsideRight_1                              ;A39683;
     dw $0008,Spritemap_Sciser_UpsideRight_2                              ;A39687;
     dw $0008,Spritemap_Sciser_UpsideRight_1                              ;A3968B;
-    dw Instruction_Common_GotoY                                          ;A3968F;
+    dw Common_Instruction_GotoY                                          ;A3968F;
     dw InstList_Sciser_UpsideRight_1                                     ;A39691;
 
 
@@ -2383,7 +1801,7 @@ InstList_Sciser_UpsideLeft_1:
     dw $0008,Spritemap_Sciser_UpsideLeft_1                               ;A3969B;
     dw $0008,Spritemap_Sciser_UpsideLeft_2                               ;A3969F;
     dw $0008,Spritemap_Sciser_UpsideLeft_1                               ;A396A3;
-    dw Instruction_Common_GotoY                                          ;A396A7;
+    dw Common_Instruction_GotoY                                          ;A396A7;
     dw InstList_Sciser_UpsideLeft_1                                      ;A396A9;
 
 
@@ -2397,7 +1815,7 @@ InstList_Sciser_UpsideDown_1:
     dw $0008,Spritemap_Sciser_UpsideDown_1                               ;A396B3;
     dw $0008,Spritemap_Sciser_UpsideDown_2                               ;A396B7;
     dw $0008,Spritemap_Sciser_UpsideDown_1                               ;A396BB;
-    dw Instruction_Common_GotoY                                          ;A396BF;
+    dw Common_Instruction_GotoY                                          ;A396BF;
     dw InstList_Sciser_UpsideDown_1                                      ;A396C1;
 
 
@@ -2411,7 +1829,7 @@ InstList_Sciser_UpsideUp_1:
     dw $0008,Spritemap_Sciser_UpsideUp_1                                 ;A396CB;
     dw $0008,Spritemap_Sciser_UpsideUp_2                                 ;A396CF;
     dw $0008,Spritemap_Sciser_UpsideUp_1                                 ;A396D3;
-    dw Instruction_Common_GotoY                                          ;A396D7;
+    dw Common_Instruction_GotoY                                          ;A396D7;
     dw InstList_Sciser_UpsideUp_1                                        ;A396D9;
 
 
@@ -2560,7 +1978,7 @@ UNUSED_InstList_Zero_UpsideRight_FacingUp_A3982F:
     dw $0004,Spritemap_Zero_UpsideRight_FacingUp_3                       ;A3983B;
     dw $0004,Spritemap_Zero_UpsideRight_FacingUp_2                       ;A3983F;
     dw $0004,Spritemap_Zero_UpsideRight_FacingUp_1                       ;A39843;
-    dw Instruction_Common_GotoY                                          ;A39847;
+    dw Common_Instruction_GotoY                                          ;A39847;
     dw UNUSED_InstList_Zero_UpsideRight_FacingUp_A3982F                  ;A39849;
 
 
@@ -2576,7 +1994,7 @@ InstList_Zero_UpsideRight_FacingDown_1:
     dw $0004,Spritemap_Zero_UpsideRight_FacingDown_3                     ;A3985B;
     dw $0004,Spritemap_Zero_UpsideRight_FacingDown_2                     ;A3985F;
     dw $0004,Spritemap_Zero_UpsideRight_FacingDown_1                     ;A39863;
-    dw Instruction_Common_GotoY                                          ;A39867;
+    dw Common_Instruction_GotoY                                          ;A39867;
     dw InstList_Zero_UpsideRight_FacingDown_1                            ;A39869;
 
 
@@ -2592,7 +2010,7 @@ UNUSED_InstList_Zero_UpsideLeft_FacingDown_A3986F:
     dw $0004,Spritemap_Zero_UpsideLeft_FacingDown_3                      ;A3987B;
     dw $0004,Spritemap_Zero_UpsideLeft_FacingDown_2                      ;A3987F;
     dw $0004,Spritemap_Zero_UpsideLeft_FacingDown_1                      ;A39883;
-    dw Instruction_Common_GotoY                                          ;A39887;
+    dw Common_Instruction_GotoY                                          ;A39887;
     dw UNUSED_InstList_Zero_UpsideLeft_FacingDown_A3986F                 ;A39889;
 
 
@@ -2608,7 +2026,7 @@ InstList_Zero_UpsideLeft_FacingUp_1:
     dw $0004,Spritemap_Zero_UpsideLeft_FacingUp_3                        ;A3989B;
     dw $0004,Spritemap_Zero_UpsideLeft_FacingUp_2                        ;A3989F;
     dw $0004,Spritemap_Zero_UpsideLeft_FacingUp_1                        ;A398A3;
-    dw Instruction_Common_GotoY                                          ;A398A7;
+    dw Common_Instruction_GotoY                                          ;A398A7;
     dw InstList_Zero_UpsideLeft_FacingUp_1                               ;A398A9;
 
 
@@ -2624,7 +2042,7 @@ InstList_Zero_UpsideDown_FacingLeft_1:
     dw $0004,Spritemap_Zero_UpsideDown_FacingLeft_3                      ;A398BB;
     dw $0004,Spritemap_Zero_UpsideDown_FacingLeft_2                      ;A398BF;
     dw $0004,Spritemap_Zero_UpsideDown_FacingLeft_1                      ;A398C3;
-    dw Instruction_Common_GotoY                                          ;A398C7;
+    dw Common_Instruction_GotoY                                          ;A398C7;
     dw InstList_Zero_UpsideDown_FacingLeft_1                             ;A398C9;
 
 
@@ -2640,7 +2058,7 @@ UNUSED_InstList_Zero_UpsideUp_FacingLeft_A398CF:
     dw $0004,Spritemap_Zero_UpsideUp_FacingLeft_3                        ;A398DB;
     dw $0004,Spritemap_Zero_UpsideUp_FacingLeft_2                        ;A398DF;
     dw $0004,Spritemap_Zero_UpsideUp_FacingLeft_1                        ;A398E3;
-    dw Instruction_Common_GotoY                                          ;A398E7;
+    dw Common_Instruction_GotoY                                          ;A398E7;
     dw UNUSED_InstList_Zero_UpsideUp_FacingLeft_A398CF                   ;A398E9;
 
 
@@ -2656,7 +2074,7 @@ UNUSED_InstList_Zero_UpsideDown_FacingRight_A398EF:
     dw $0004,Spritemap_Zero_UpsideDown_FacingRight_3                     ;A398FB;
     dw $0004,Spritemap_Zero_UpsideDown_FacingRight_2                     ;A398FF;
     dw $0004,Spritemap_Zero_UpsideDown_FacingRight_1                     ;A39903;
-    dw Instruction_Common_GotoY                                          ;A39907;
+    dw Common_Instruction_GotoY                                          ;A39907;
     dw UNUSED_InstList_Zero_UpsideDown_FacingRight_A398EF                ;A39909;
 
 
@@ -2672,7 +2090,7 @@ UNUSED_InstList_Zero_UpsideUp_FacingRight_A3990F:
     dw $0004,Spritemap_Zero_UpsideUp_FacingRight_3                       ;A3991B;
     dw $0004,Spritemap_Zero_UpsideUp_FacingRight_2                       ;A3991F;
     dw $0004,Spritemap_Zero_UpsideUp_FacingRight_1                       ;A39923;
-    dw Instruction_Common_GotoY                                          ;A39927;
+    dw Common_Instruction_GotoY                                          ;A39927;
     dw UNUSED_InstList_Zero_UpsideUp_FacingRight_A3990F                  ;A39929;
 
 
@@ -2935,7 +2353,7 @@ InstList_Kamer2_VerticallyMoving_Left_1:
     dw $000A,Spritemap_Kamer2_1                                          ;A39BC1;
     dw $000A,Spritemap_Kamer2_2                                          ;A39BC5;
     dw $000A,Spritemap_Kamer2_3                                          ;A39BC9;
-    dw Instruction_Common_GotoY                                          ;A39BCD;
+    dw Common_Instruction_GotoY                                          ;A39BCD;
     dw InstList_Kamer2_VerticallyMoving_Left_1                           ;A39BCF;
 
 
@@ -2948,7 +2366,7 @@ InstList_Kamer2_VerticallyMoving_Right_1:
     dw $000A,Spritemap_Kamer2_1                                          ;A39BD7;
     dw $000A,Spritemap_Kamer2_2                                          ;A39BDB;
     dw $000A,Spritemap_Kamer2_3                                          ;A39BDF;
-    dw Instruction_Common_GotoY                                          ;A39BE3;
+    dw Common_Instruction_GotoY                                          ;A39BE3;
     dw InstList_Kamer2_VerticallyMoving_Right_1                          ;A39BE5;
 
 
@@ -2961,7 +2379,7 @@ InstList_Kamer2_VerticallyStill_Left_1:
     dw $000A,Spritemap_Kamer2_1                                          ;A39BED;
     dw $000A,Spritemap_Kamer2_2                                          ;A39BF1;
     dw $000A,Spritemap_Kamer2_3                                          ;A39BF5;
-    dw Instruction_Common_GotoY                                          ;A39BF9;
+    dw Common_Instruction_GotoY                                          ;A39BF9;
     dw InstList_Kamer2_VerticallyStill_Left_1                            ;A39BFB;
 
 
@@ -2974,7 +2392,7 @@ InstList_Kamer2_VerticallyStill_Right_1:
     dw $000A,Spritemap_Kamer2_1                                          ;A39C03;
     dw $000A,Spritemap_Kamer2_2                                          ;A39C07;
     dw $000A,Spritemap_Kamer2_3                                          ;A39C0B;
-    dw Instruction_Common_GotoY                                          ;A39C0F;
+    dw Common_Instruction_GotoY                                          ;A39C0F;
     dw InstList_Kamer2_VerticallyStill_Right_1                           ;A39C11;
 
 
@@ -2987,7 +2405,7 @@ InstList_Tripper_VerticallyMoving_Left_1:
     dw $0008,Spritemap_Tripper_VerticallyMoving_Left_1                   ;A39C19;
     dw $0007,Spritemap_Tripper_VerticallyMoving_Left_0                   ;A39C1D;
     dw $0008,Spritemap_Tripper_VerticallyMoving_Left_2                   ;A39C21;
-    dw Instruction_Common_GotoY                                          ;A39C25;
+    dw Common_Instruction_GotoY                                          ;A39C25;
     dw InstList_Tripper_VerticallyMoving_Left_1                          ;A39C27;
 
 
@@ -3000,7 +2418,7 @@ InstList_Tripper_VerticallyMoving_Right_1:
     dw $0008,Spritemap_Tripper_VerticallyMoving_Right_1                  ;A39C2F;
     dw $0007,Spritemap_Tripper_VerticallyMoving_Right_0                  ;A39C33;
     dw $0008,Spritemap_Tripper_VerticallyMoving_Right_2                  ;A39C37;
-    dw Instruction_Common_GotoY                                          ;A39C3B;
+    dw Common_Instruction_GotoY                                          ;A39C3B;
     dw InstList_Tripper_VerticallyMoving_Right_1                         ;A39C3D;
 
 
@@ -3013,7 +2431,7 @@ InstList_Tripper_VerticallyStill_Right_1:
     dw $0008,Spritemap_Tripper_VerticallyStill_Right_1                   ;A39C45;
     dw $0007,Spritemap_Tripper_VerticallyStill_Right_0                   ;A39C49;
     dw $0008,Spritemap_Tripper_VerticallyStill_Right_2                   ;A39C4D;
-    dw Instruction_Common_GotoY                                          ;A39C51;
+    dw Common_Instruction_GotoY                                          ;A39C51;
     dw InstList_Tripper_VerticallyStill_Right_1                          ;A39C53;
 
 
@@ -3026,7 +2444,7 @@ InstList_Tripper_VerticallyStill_Left_1:
     dw $0008,Spritemap_Tripper_VerticallyStill_Left_1                    ;A39C5B;
     dw $0007,Spritemap_Tripper_VerticallyStill_Left_0                    ;A39C5F;
     dw $0008,Spritemap_Tripper_VerticallyStill_Left_2                    ;A39C63;
-    dw Instruction_Common_GotoY                                          ;A39C67;
+    dw Common_Instruction_GotoY                                          ;A39C67;
     dw InstList_Tripper_VerticallyStill_Left_1                           ;A39C69;
 
 
@@ -3110,13 +2528,13 @@ InitAI_Tripper_Kamer2_Common:
     ASL                                                                  ;A39CD7;
     ASL                                                                  ;A39CD8;
     TAY                                                                  ;A39CD9;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A39CDA;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing,Y                         ;A39CDA;
     STA.W Platform.rightVelocity,X                                       ;A39CDD;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A39CE0;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+2,Y                       ;A39CE0;
     STA.W Platform.rightSubVelocity,X                                    ;A39CE3;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A39CE6;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+4,Y                       ;A39CE6;
     STA.W Platform.leftVelocity,X                                        ;A39CE9;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A39CEC;
+    LDA.W Common_EnemySpeeds_LinearlyIncreasing+6,Y                       ;A39CEC;
     STA.W Platform.leftSubVelocity,X                                     ;A39CEF;
     LDA.W #$0000                                                         ;A39CF2;
     STA.L Platform.YMovementFunctionIndex,X                              ;A39CF5;
@@ -3221,9 +2639,9 @@ Function_Tripper_Kamer2_YMovement_Rising:
     ASL                                                                  ;A39DCA;
     ASL                                                                  ;A39DCB;
     TAY                                                                  ;A39DCC;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y                  ;A39DCD;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+4,Y                  ;A39DCD;
     STA.B DP_Temp12                                                      ;A39DD0;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y                  ;A39DD2;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+6,Y                  ;A39DD2;
     STA.B DP_Temp14                                                      ;A39DD5;
     JSL.L MoveEnemyDownBy_14_12                                          ;A39DD7;
     BCC .return                                                          ;A39DDB;
@@ -3262,9 +2680,9 @@ Function_Tripper_Kamer2_YMovement_1_Sinking:
     ASL                                                                  ;A39E1D;
     ASL                                                                  ;A39E1E;
     TAY                                                                  ;A39E1F;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A39E20;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing,Y                    ;A39E20;
     STA.B DP_Temp12                                                      ;A39E23;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A39E25;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A39E25;
     STA.B DP_Temp14                                                      ;A39E28;
     JSL.L MoveEnemyDownBy_14_12                                          ;A39E2A;
     BCC .notCollidedWithBlock                                            ;A39E2E;
@@ -3542,7 +2960,7 @@ InstList_Sbug_FacingUp:
     dw $0005,Spritemap_Sbug_FacingUp_1                                   ;A3A075;
     dw $0005,Spritemap_Sbug_FacingUp_0                                   ;A3A079;
     dw $0005,Spritemap_Sbug_FacingUp_2                                   ;A3A07D;
-    dw Instruction_Common_GotoY                                          ;A3A081;
+    dw Common_Instruction_GotoY                                          ;A3A081;
     dw InstList_Sbug_FacingUp                                            ;A3A083;
 
 
@@ -3552,7 +2970,7 @@ InstList_Sbug_FacingUpLeft:
     dw $0005,Spritemap_Sbug_FacingUpLeft_1                               ;A3A089;
     dw $0005,Spritemap_Sbug_FacingUpLeft_0                               ;A3A08D;
     dw $0005,Spritemap_Sbug_FacingUpLeft_2                               ;A3A091;
-    dw Instruction_Common_GotoY                                          ;A3A095;
+    dw Common_Instruction_GotoY                                          ;A3A095;
     dw InstList_Sbug_FacingUpLeft                                        ;A3A097;
 
 
@@ -3562,7 +2980,7 @@ InstList_Sbug_FacingLeft:
     dw $0005,Spritemap_Sbug_FacingLeft_1                                 ;A3A09D;
     dw $0005,Spritemap_Sbug_FacingLeft_0                                 ;A3A0A1;
     dw $0005,Spritemap_Sbug_FacingLeft_2                                 ;A3A0A5;
-    dw Instruction_Common_GotoY                                          ;A3A0A9;
+    dw Common_Instruction_GotoY                                          ;A3A0A9;
     dw InstList_Sbug_FacingLeft                                          ;A3A0AB;
 
 
@@ -3572,7 +2990,7 @@ InstList_Sbug_FacingDownLeft:
     dw $0005,Spritemap_Sbug_FacingDownLeft_1                             ;A3A0B1;
     dw $0005,Spritemap_Sbug_FacingDownLeft_0                             ;A3A0B5;
     dw $0005,Spritemap_Sbug_FacingDownLeft_2                             ;A3A0B9;
-    dw Instruction_Common_GotoY                                          ;A3A0BD;
+    dw Common_Instruction_GotoY                                          ;A3A0BD;
     dw InstList_Sbug_FacingDownLeft                                      ;A3A0BF;
 
 
@@ -3582,7 +3000,7 @@ InstList_Sbug_FacingDown:
     dw $0005,Spritemap_Sbug_FacingDown_1                                 ;A3A0C5;
     dw $0005,Spritemap_Sbug_FacingDown_0                                 ;A3A0C9;
     dw $0005,Spritemap_Sbug_FacingDown_2                                 ;A3A0CD;
-    dw Instruction_Common_GotoY                                          ;A3A0D1;
+    dw Common_Instruction_GotoY                                          ;A3A0D1;
     dw InstList_Sbug_FacingDown                                          ;A3A0D3;
 
 
@@ -3592,7 +3010,7 @@ InstList_Sbug_FacingDownRight:
     dw $0005,Spritemap_Sbug_FacingDownRight_1                            ;A3A0D9;
     dw $0005,Spritemap_Sbug_FacingDownRight_0                            ;A3A0DD;
     dw $0005,Spritemap_Sbug_FacingDownRight_2                            ;A3A0E1;
-    dw Instruction_Common_GotoY                                          ;A3A0E5;
+    dw Common_Instruction_GotoY                                          ;A3A0E5;
     dw InstList_Sbug_FacingDownRight                                     ;A3A0E7;
 
 
@@ -3602,7 +3020,7 @@ InstList_Sbug_FacingRight:
     dw $0005,Spritemap_Sbug_FacingRight_1                                ;A3A0ED;
     dw $0005,Spritemap_Sbug_FacingRight_0                                ;A3A0F1;
     dw $0005,Spritemap_Sbug_FacingRight_2                                ;A3A0F5;
-    dw Instruction_Common_GotoY                                          ;A3A0F9;
+    dw Common_Instruction_GotoY                                          ;A3A0F9;
     dw InstList_Sbug_FacingRight                                         ;A3A0FB;
 
 
@@ -3612,7 +3030,7 @@ InstList_Sbug_FacingUpRight:
     dw $0005,Spritemap_Sbug_FacingUpRight_1                              ;A3A101;
     dw $0005,Spritemap_Sbug_FacingUpRight_0                              ;A3A105;
     dw $0005,Spritemap_Sbug_FacingUpRight_2                              ;A3A109;
-    dw Instruction_Common_GotoY                                          ;A3A10D;
+    dw Common_Instruction_GotoY                                          ;A3A10D;
     dw InstList_Sbug_FacingUpRight                                       ;A3A10F;
 
 
@@ -4448,7 +3866,7 @@ InstList_Mochtroid_NotTouchingSamus:
     dw $000E,Spritemap_Mochtroid_NotTouchingSamus_1                      ;A3A749;
     dw $000E,Spritemap_Mochtroid_NotTouchingSamus_2                      ;A3A74D;
     dw $000E,Spritemap_Mochtroid_NotTouchingSamus_1                      ;A3A751;
-    dw Instruction_Common_GotoY                                          ;A3A755;
+    dw Common_Instruction_GotoY                                          ;A3A755;
     dw InstList_Mochtroid_NotTouchingSamus                               ;A3A757;
 
 
@@ -4458,7 +3876,7 @@ InstList_Mochtroid_TouchingSamus:
     dw $0005,Spritemap_Mochtroid_TouchingSamus_1                         ;A3A75D;
     dw $0005,Spritemap_Mochtroid_TouchingSamus_2                         ;A3A761;
     dw $0005,Spritemap_Mochtroid_TouchingSamus_1                         ;A3A765;
-    dw Instruction_Common_GotoY                                          ;A3A769;
+    dw Common_Instruction_GotoY                                          ;A3A769;
     dw InstList_Mochtroid_TouchingSamus                                  ;A3A76B;
 
 
@@ -4844,42 +4262,42 @@ Instruction_Sidehopper_QueueSoundInY_Lib2_Max3:
 
 ;;; $AA76: Instruction list - sidehopper - hopping - upside up ;;;
 InstList_Sidehopper_Hopping_UpsideUp:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A3AA76;
+    dw Common_Instruction_EnableOffScreenProcessing                      ;A3AA76;
     dw Instruction_Sidehopper_QueueSoundInY_Lib2_Max3,$005D              ;A3AA78;
     dw $0001,Spritemap_Sidehopper_2                                      ;A3AA7A;
-    dw Instruction_Common_Sleep                                          ;A3AA80;
+    dw Common_Instruction_Sleep                                          ;A3AA80;
 
 
 ;;; $AA82: Instruction list - sidehopper - landed - upside up ;;;
 InstList_Sidehopper_Landed_UpsideUp:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A3AA82;
+    dw Common_Instruction_DisableOffScreenProcessing                     ;A3AA82;
     dw Instruction_Sidehopper_QueueSoundInY_Lib2_Max3,$005E              ;A3AA84;
     dw $0002,Spritemap_Sidehopper_0                                      ;A3AA86;
     dw $0005,Spritemap_Sidehopper_1                                      ;A3AA8C;
     dw $0002,Spritemap_Sidehopper_0                                      ;A3AA90;
     dw $0003,Spritemap_Sidehopper_1                                      ;A3AA94;
     dw Instruction_Hopper_ReadyToHop                                     ;A3AA98;
-    dw Instruction_Common_Sleep                                          ;A3AA9A;
+    dw Common_Instruction_Sleep                                          ;A3AA9A;
 
 
 ;;; $AA9C: Instruction list - sidehopper - hopping - upside down ;;;
 InstList_Sidehopper_Hopping_UpsideDown:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A3AA9C;
+    dw Common_Instruction_EnableOffScreenProcessing                      ;A3AA9C;
     dw Instruction_Sidehopper_QueueSoundInY_Lib2_Max3,$005D              ;A3AA9E;
     dw $0001,Spritemap_Sidehopper_5                                      ;A3AAA0;
-    dw Instruction_Common_Sleep                                          ;A3AAA6;
+    dw Common_Instruction_Sleep                                          ;A3AAA6;
 
 
 ;;; $AAA8: Instruction list - sidehopper - landed - upside down ;;;
 InstList_Sidehopper_Landed_UpsideDown:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A3AAA8;
+    dw Common_Instruction_DisableOffScreenProcessing                     ;A3AAA8;
     dw Instruction_Sidehopper_QueueSoundInY_Lib2_Max3,$005E              ;A3AAAA;
     dw $0002,Spritemap_Sidehopper_3                                      ;A3AAAC;
     dw $0005,Spritemap_Sidehopper_4                                      ;A3AAB2;
     dw $0002,Spritemap_Sidehopper_3                                      ;A3AAB6;
     dw $0003,Spritemap_Sidehopper_4                                      ;A3AABA;
     dw Instruction_Hopper_ReadyToHop                                     ;A3AABE;
-    dw Instruction_Common_Sleep                                          ;A3AAC0;
+    dw Common_Instruction_Sleep                                          ;A3AAC0;
 
 
 ;;; $AAC2: Sidehopper data ;;;
@@ -5026,7 +4444,7 @@ Hoppers_CalculateInitialHopSpeed:
     TAY                                                                  ;A3ABAB;
     LDA.B DP_Temp14                                                      ;A3ABAC;
     CLC                                                                  ;A3ABAE;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+1,Y                  ;A3ABAF;
+    ADC.W Common_EnemySpeeds_QuadraticallyIncreasing+1,Y                  ;A3ABAF;
     STA.B DP_Temp14                                                      ;A3ABB2;
     CMP.B DP_Temp16                                                      ;A3ABB4;
     BMI .loop                                                            ;A3ABB6;
@@ -5300,9 +4718,9 @@ HopperMovement_Jumping_UpsideUp:
     ASL                                                                  ;A3AD74;
     ASL                                                                  ;A3AD75;
     TAY                                                                  ;A3AD76;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y                  ;A3AD77;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+6,Y                  ;A3AD77;
     STA.B DP_Temp14                                                      ;A3AD7A;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y                  ;A3AD7C;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+4,Y                  ;A3AD7C;
     STA.B DP_Temp12                                                      ;A3AD7F;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3AD81;
     BCC .notCollidedWithBlock                                            ;A3AD85;
@@ -5351,9 +4769,9 @@ HopperMovement_Falling_UpsideUp:
     ASL                                                                  ;A3ADDB;
     ASL                                                                  ;A3ADDC;
     TAY                                                                  ;A3ADDD;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A3ADDE;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A3ADDE;
     STA.B DP_Temp14                                                      ;A3ADE1;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A3ADE3;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing,Y                    ;A3ADE3;
     STA.B DP_Temp12                                                      ;A3ADE6;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3ADE8;
     BCC .notCollidedWithBlock                                            ;A3ADEC;
@@ -5396,9 +4814,9 @@ HopperMovement_Jumping_UpsideDown:
     ASL                                                                  ;A3AE2E;
     ASL                                                                  ;A3AE2F;
     TAY                                                                  ;A3AE30;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A3AE31;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A3AE31;
     STA.B DP_Temp14                                                      ;A3AE34;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A3AE36;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing,Y                    ;A3AE36;
     STA.B DP_Temp12                                                      ;A3AE39;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3AE3B;
     BCC .notCollidedWithBlock                                            ;A3AE3F;
@@ -5447,9 +4865,9 @@ HopperMovement_Falling_UpsideDown:
     ASL                                                                  ;A3AE95;
     ASL                                                                  ;A3AE96;
     TAY                                                                  ;A3AE97;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y                  ;A3AE98;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+6,Y                  ;A3AE98;
     STA.B DP_Temp14                                                      ;A3AE9B;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y                  ;A3AE9D;
+    LDA.W Common_EnemySpeeds_QuadraticallyIncreasing+4,Y                  ;A3AE9D;
     STA.B DP_Temp12                                                      ;A3AEA0;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3AEA2;
     BCC .notCollidedWithBlock                                            ;A3AEA6;
@@ -5552,38 +4970,38 @@ Palette_Dessgeega:
 
 ;;; $AFA5: Instruction list - desgeega - hopping - upside up ;;;
 InstList_Dessgeega_Hopping_UpsideUp:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A3AFA5;
+    dw Common_Instruction_EnableOffScreenProcessing                      ;A3AFA5;
     dw $0001,Spritemap_Dessgeega_2                                       ;A3AFA7;
-    dw Instruction_Common_Sleep                                          ;A3AFAB;
+    dw Common_Instruction_Sleep                                          ;A3AFAB;
 
 
 ;;; $AFAD: Instruction list - desgeega - landed - upside up ;;;
 InstList_Dessgeega_Landed_UpsideUp:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A3AFAD;
+    dw Common_Instruction_DisableOffScreenProcessing                     ;A3AFAD;
     dw $0002,Spritemap_Dessgeega_0                                       ;A3AFAF;
     dw $0005,Spritemap_Dessgeega_1                                       ;A3AFB3;
     dw $0002,Spritemap_Dessgeega_0                                       ;A3AFB7;
     dw $0003,Spritemap_Dessgeega_1                                       ;A3AFBB;
     dw Instruction_Hopper_ReadyToHop                                     ;A3AFBF;
-    dw Instruction_Common_Sleep                                          ;A3AFC1;
+    dw Common_Instruction_Sleep                                          ;A3AFC1;
 
 
 ;;; $AFC3: Instruction list - desgeega - hopping - upside down ;;;
 InstList_Dessgeega_Hopping_UpsideDown:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A3AFC3;
+    dw Common_Instruction_EnableOffScreenProcessing                      ;A3AFC3;
     dw $0001,Spritemap_Dessgeega_5                                       ;A3AFC5;
-    dw Instruction_Common_Sleep                                          ;A3AFC9;
+    dw Common_Instruction_Sleep                                          ;A3AFC9;
 
 
 ;;; $AFCB: Instruction list - desgeega - landed - upside down ;;;
 InstList_Dessgeega_Landed_UpsideDown:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A3AFCB;
+    dw Common_Instruction_DisableOffScreenProcessing                     ;A3AFCB;
     dw $0002,Spritemap_Dessgeega_3                                       ;A3AFCD;
     dw $0005,Spritemap_Dessgeega_4                                       ;A3AFD1;
     dw $0002,Spritemap_Dessgeega_3                                       ;A3AFD5;
     dw $0003,Spritemap_Dessgeega_4                                       ;A3AFD9;
     dw Instruction_Hopper_ReadyToHop                                     ;A3AFDD;
-    dw Instruction_Common_Sleep                                          ;A3AFDF;
+    dw Common_Instruction_Sleep                                          ;A3AFDF;
 
 
 ;;; $AFE1: RTL ;;;
@@ -5660,42 +5078,42 @@ Palette_SidehopperTourian:
 
 ;;; $B0C5: Instruction list - super-sidehopper - hopping - upside up ;;;
 InstList_SidehopperLarge_Hopping_UpsideUp:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A3B0C5;
+    dw Common_Instruction_EnableOffScreenProcessing                      ;A3B0C5;
     dw Instruction_Sidehopper_QueueSoundInY_Lib2_Max3,$005D              ;A3B0C7;
     dw $0001,Spritemap_SidehopperTourian_2                               ;A3B0C9;
-    dw Instruction_Common_Sleep                                          ;A3B0CF;
+    dw Common_Instruction_Sleep                                          ;A3B0CF;
 
 
 ;;; $B0D1: Instruction list - super-sidehopper - landed - upside up ;;;
 InstList_SidehopperLarge_Landed_UpsideUp:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A3B0D1;
+    dw Common_Instruction_DisableOffScreenProcessing                     ;A3B0D1;
     dw Instruction_Sidehopper_QueueSoundInY_Lib2_Max3,$005E              ;A3B0D3;
     dw $0002,Spritemap_SidehopperTourian_0                               ;A3B0D5;
     dw $0005,Spritemap_SidehopperTourian_1                               ;A3B0DB;
     dw $0002,Spritemap_SidehopperTourian_0                               ;A3B0DF;
     dw $0003,Spritemap_SidehopperTourian_1                               ;A3B0E3;
     dw Instruction_Hopper_ReadyToHop                                     ;A3B0E7;
-    dw Instruction_Common_Sleep                                          ;A3B0E9;
+    dw Common_Instruction_Sleep                                          ;A3B0E9;
 
 
 ;;; $B0EB: Instruction list - super-sidehopper - hopping - upside down ;;;
 InstList_SidehopperLarge_Hopping_UpsideDown:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A3B0EB;
+    dw Common_Instruction_EnableOffScreenProcessing                      ;A3B0EB;
     dw Instruction_Sidehopper_QueueSoundInY_Lib2_Max3,$005D              ;A3B0ED;
     dw $0001,Spritemap_SidehopperTourian_5                               ;A3B0EF;
-    dw Instruction_Common_Sleep                                          ;A3B0F5;
+    dw Common_Instruction_Sleep                                          ;A3B0F5;
 
 
 ;;; $B0F7: Instruction list - super-sidehopper - landed - upside down ;;;
 InstList_SidehopperLarge_Landed_UpsideDown:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A3B0F7;
+    dw Common_Instruction_DisableOffScreenProcessing                     ;A3B0F7;
     dw Instruction_Sidehopper_QueueSoundInY_Lib2_Max3,$005E              ;A3B0F9;
     dw $0002,Spritemap_SidehopperTourian_3                               ;A3B0FB;
     dw $0005,Spritemap_SidehopperTourian_4                               ;A3B101;
     dw $0002,Spritemap_SidehopperTourian_3                               ;A3B105;
     dw $0003,Spritemap_SidehopperTourian_4                               ;A3B109;
     dw Instruction_Hopper_ReadyToHop                                     ;A3B10D;
-    dw Instruction_Common_Sleep                                          ;A3B10F;
+    dw Common_Instruction_Sleep                                          ;A3B10F;
 
 
 ;;; $B111: Tourian super-sidehopper spritemaps ;;;
@@ -5776,38 +5194,38 @@ Palette_DessgeegaLarge:
 
 ;;; $B237: Instruction list - super-desgeega - hopping - upside up ;;;
 InstList_DessgeegaLarge_Hopping_UpsideUp:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A3B237;
+    dw Common_Instruction_EnableOffScreenProcessing                      ;A3B237;
     dw $0001,Spritemap_DessgeegaLarge_2                                  ;A3B239;
-    dw Instruction_Common_Sleep                                          ;A3B23D;
+    dw Common_Instruction_Sleep                                          ;A3B23D;
 
 
 ;;; $B23F: Instruction list - super-desgeega - landed - upside up ;;;
 InstList_DessgeegaLarge_Landed_UpsideUp:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A3B23F;
+    dw Common_Instruction_DisableOffScreenProcessing                     ;A3B23F;
     dw $0002,Spritemap_DessgeegaLarge_0                                  ;A3B241;
     dw $0005,Spritemap_DessgeegaLarge_1                                  ;A3B245;
     dw $0002,Spritemap_DessgeegaLarge_0                                  ;A3B249;
     dw $0003,Spritemap_DessgeegaLarge_1                                  ;A3B24D;
     dw Instruction_Hopper_ReadyToHop                                     ;A3B251;
-    dw Instruction_Common_Sleep                                          ;A3B253;
+    dw Common_Instruction_Sleep                                          ;A3B253;
 
 
 ;;; $B255: Instruction list - super-desgeega - hopping - upside down ;;;
 InstList_DessgeegaLarge_Hopping_UpsideDown:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A3B255;
+    dw Common_Instruction_EnableOffScreenProcessing                      ;A3B255;
     dw $0001,Spritemap_DessgeegaLarge_5                                  ;A3B257;
-    dw Instruction_Common_Sleep                                          ;A3B25B;
+    dw Common_Instruction_Sleep                                          ;A3B25B;
 
 
 ;;; $B25D: Instruction list - super-desgeega - landed - upside down ;;;
 InstList_DessgeegaLarge_Landed_UpsideDown:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A3B25D;
+    dw Common_Instruction_DisableOffScreenProcessing                     ;A3B25D;
     dw $0002,Spritemap_DessgeegaLarge_3                                  ;A3B25F;
     dw $0005,Spritemap_DessgeegaLarge_4                                  ;A3B263;
     dw $0002,Spritemap_DessgeegaLarge_3                                  ;A3B267;
     dw $0003,Spritemap_DessgeegaLarge_4                                  ;A3B26B;
     dw Instruction_Hopper_ReadyToHop                                     ;A3B26F;
-    dw Instruction_Common_Sleep                                          ;A3B271;
+    dw Common_Instruction_Sleep                                          ;A3B271;
 
 
 ;;; $B273: Super-desgeega spritemaps ;;;
@@ -5902,7 +5320,7 @@ InstList_Zoa_FacingLeft_Shooting:
     dw $0008,Spritemap_Zoa_1                                             ;A3B3C9;
     dw Instruction_Zoa_SetXSpeedTableIndexToC                            ;A3B3CD;
     dw $0030,Spritemap_Zoa_2                                             ;A3B3CF;
-    dw Instruction_Common_GotoY                                          ;A3B3D3;
+    dw Common_Instruction_GotoY                                          ;A3B3D3;
     dw InstList_Zoa_FacingLeft_Shooting                                  ;A3B3D5;
 
 
@@ -5911,7 +5329,7 @@ InstList_Zoa_FacingLeft_Rising:
     dw $0004,Spritemap_Zoa_4                                             ;A3B3D7;
     dw $0004,Spritemap_Zoa_3                                             ;A3B3DB;
     dw $0004,Spritemap_Zoa_5                                             ;A3B3DF;
-    dw Instruction_Common_GotoY                                          ;A3B3E3;
+    dw Common_Instruction_GotoY                                          ;A3B3E3;
     dw InstList_Zoa_FacingLeft_Rising                                    ;A3B3E5;
 
 
@@ -5923,7 +5341,7 @@ InstList_Zoa_FacingRight_Shooting:
     dw $0008,Spritemap_Zoa_7                                             ;A3B3EF;
     dw Instruction_Zoa_SetXSpeedTableIndexToC                            ;A3B3F3;
     dw $0030,Spritemap_Zoa_8                                             ;A3B3F5;
-    dw Instruction_Common_GotoY                                          ;A3B3F9;
+    dw Common_Instruction_GotoY                                          ;A3B3F9;
     dw InstList_Zoa_FacingRight_Shooting                                 ;A3B3FB;
 
 
@@ -5932,7 +5350,7 @@ InstList_Zoa_FacingRight_Rising:
     dw $0004,Spritemap_Zoa_A                                             ;A3B3FD;
     dw $0004,Spritemap_Zoa_9                                             ;A3B401;
     dw $0004,Spritemap_Zoa_B                                             ;A3B405;
-    dw Instruction_Common_GotoY                                          ;A3B409;
+    dw Common_Instruction_GotoY                                          ;A3B409;
     dw InstList_Zoa_FacingRight_Rising                                   ;A3B40B;
 
 
@@ -6193,7 +5611,7 @@ Palette_Viola:
 InstList_Viola_UpsideDown:
     dw Instruction_Crawlers_FunctionInY                                  ;A3B5D3;
     dw Function_Crawlers_CrawlingHorizontally                            ;A3B5D5;
-    dw Instruction_Common_GotoY                                          ;A3B5D7;
+    dw Common_Instruction_GotoY                                          ;A3B5D7;
     dw InstList_Viola_Normal                                             ;A3B5D9;
 
 
@@ -6201,7 +5619,7 @@ InstList_Viola_UpsideDown:
 InstList_Viola_UpsideUp:
     dw Instruction_Crawlers_FunctionInY                                  ;A3B5DB;
     dw Function_Crawlers_CrawlingHorizontally                            ;A3B5DD;
-    dw Instruction_Common_GotoY                                          ;A3B5DF;
+    dw Common_Instruction_GotoY                                          ;A3B5DF;
     dw InstList_Viola_Normal                                             ;A3B5E1;
 
 
@@ -6209,7 +5627,7 @@ InstList_Viola_UpsideUp:
 InstList_Viola_UpsideRight:
     dw Instruction_Crawlers_FunctionInY                                  ;A3B5E3;
     dw Function_Crawlers_CrawlingVertically                              ;A3B5E5;
-    dw Instruction_Common_GotoY                                          ;A3B5E7;
+    dw Common_Instruction_GotoY                                          ;A3B5E7;
     dw InstList_Viola_Normal                                             ;A3B5E9;
 
 
@@ -6235,7 +5653,7 @@ InstList_Viola_Normal:
     dw $000A,Spritemap_Viola_Normal_3                                    ;A3B61B;
     dw $000A,Spritemap_Viola_Normal_2                                    ;A3B61F;
     dw $000A,Spritemap_Viola_Normal_1                                    ;A3B623;
-    dw Instruction_Common_GotoY                                          ;A3B627;
+    dw Common_Instruction_GotoY                                          ;A3B627;
     dw InstList_Viola_Normal                                             ;A3B629;
 
 
@@ -6256,7 +5674,7 @@ UNUSED_InstList_Viola_XFlipped_A3B62B:
     dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6D6                      ;A3B657;
     dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6CF                      ;A3B65B;
     dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6C8                      ;A3B65F;
-    dw Instruction_Common_GotoY                                          ;A3B663;
+    dw Common_Instruction_GotoY                                          ;A3B663;
     dw UNUSED_InstList_Viola_XFlipped_A3B62B                             ;A3B665;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -6411,7 +5829,7 @@ InstList_Bang_Core_Growth0_Idling:
     dw $000D,Spritemap_Bang_Growth0_Idling_2                             ;A3B762;
     dw $0010,Spritemap_Bang_Growth0_Idling_4                             ;A3B766;
     dw $000D,Spritemap_Bang_Growth0_Idling_2                             ;A3B76A;
-    dw Instruction_Common_GotoY                                          ;A3B76E;
+    dw Common_Instruction_GotoY                                          ;A3B76E;
     dw InstList_Bang_Core_Growth0_Idling                                 ;A3B770;
 
 
@@ -6425,7 +5843,7 @@ InstList_Bang_Core_Growth0_Growing:
     dw $0004,Spritemap_Bang_Growth0_Growing_4                            ;A3B784;
     dw $0010,Spritemap_Bang_Growth0_Growing_6                            ;A3B788;
     dw Instruction_Bang_SetFinishedGrowingFlagTo1                        ;A3B78C;
-    dw Instruction_Common_Sleep                                          ;A3B78E;
+    dw Common_Instruction_Sleep                                          ;A3B78E;
 
 
 ;;; $B790: Instruction list - core - growth level 1 - idling ;;;
@@ -6434,7 +5852,7 @@ InstList_Bang_Core_Growth1_Idling:
     dw $0008,Spritemap_Bang_Growth1_Idling_2                             ;A3B794;
     dw $000D,Spritemap_Bang_Growth1_Idling_4                             ;A3B798;
     dw $0008,Spritemap_Bang_Growth1_Idling_2                             ;A3B79C;
-    dw Instruction_Common_GotoY                                          ;A3B7A0;
+    dw Common_Instruction_GotoY                                          ;A3B7A0;
     dw InstList_Bang_Core_Growth1_Idling                                 ;A3B7A2;
 
 
@@ -6448,7 +5866,7 @@ InstList_Bang_Core_Growth1_Growing:
     dw $0004,Spritemap_Bang_Growth1_Growing_4                            ;A3B7B6;
     dw $0010,Spritemap_Bang_Growth1_Growing_6                            ;A3B7BA;
     dw Instruction_Bang_SetFinishedGrowingFlagTo1                        ;A3B7BE;
-    dw Instruction_Common_Sleep                                          ;A3B7C0;
+    dw Common_Instruction_Sleep                                          ;A3B7C0;
 
 
 ;;; $B7C2: Instruction list - core - growth level 2 - idling ;;;
@@ -6457,7 +5875,7 @@ InstList_Bang_Core_Growth2_Idling:
     dw $0006,Spritemap_Bang_Growth2_Idling_2                             ;A3B7C6;
     dw $0004,Spritemap_Bang_Growth2_Idling_4                             ;A3B7CA;
     dw $0006,Spritemap_Bang_Growth2_Idling_2                             ;A3B7CE;
-    dw Instruction_Common_GotoY                                          ;A3B7D2;
+    dw Common_Instruction_GotoY                                          ;A3B7D2;
     dw InstList_Bang_Core_Growth2_Idling                                 ;A3B7D4;
 
 
@@ -6471,7 +5889,7 @@ InstList_Bang_Core_Growth2_Growing:
     dw $0004,Spritemap_Bang_Growth2_Growing_6                            ;A3B7E8;
     dw $0010,Spritemap_Bang_Growth2_Growing_8                            ;A3B7EC;
     dw Instruction_Bang_SetFinishedGrowingFlagTo1                        ;A3B7F0;
-    dw Instruction_Common_Sleep                                          ;A3B7F2;
+    dw Common_Instruction_Sleep                                          ;A3B7F2;
 
 
 ;;; $B7F4: Instruction list - core - growth level 3 - idling ;;;
@@ -6492,7 +5910,7 @@ InstList_Bang_Core_Growth3_Idling:
     dw $0003,Spritemap_Bang_Growth3_Idling_E                             ;A3B828;
     dw $0002,Spritemap_Bang_Growth3_Idling_10                            ;A3B82C;
     dw $0003,Spritemap_Bang_Growth3_Idling_E                             ;A3B830;
-    dw Instruction_Common_GotoY                                          ;A3B834;
+    dw Common_Instruction_GotoY                                          ;A3B834;
     dw InstList_Bang_Core_Growth3_Idling                                 ;A3B836;
 
 
@@ -6507,7 +5925,7 @@ InstList_Bang_Core_Growth3_Growing:
     dw $0004,Spritemap_Bang_Growth3_Growing_8                            ;A3B84E;
     dw $0010,Spritemap_Bang_Growth3_Growing_A                            ;A3B852;
     dw Instruction_Bang_SetFinishedGrowingFlagTo1                        ;A3B856;
-    dw Instruction_Common_Sleep                                          ;A3B858;
+    dw Common_Instruction_Sleep                                          ;A3B858;
 
 
 ;;; $B85A: Instruction list - core - growth level 4 - idling ;;;
@@ -6523,7 +5941,7 @@ InstList_Bang_Core_Growth4_Idling:
     dw $0002,Spritemap_Bang_Growth4_Idling_A                             ;A3B87A;
     dw $0001,Spritemap_Bang_Growth4_Idling_C                             ;A3B87E;
     dw $0002,Spritemap_Bang_Growth4_Idling_A                             ;A3B882;
-    dw Instruction_Common_GotoY                                          ;A3B886;
+    dw Common_Instruction_GotoY                                          ;A3B886;
     dw InstList_Bang_Core_Growth4_Idling                                 ;A3B888;
 
 
@@ -6538,7 +5956,7 @@ InstList_Bang_Core_Growth4_Growing:
     dw $0004,Spritemap_Bang_Growth4_Growing_8                            ;A3B8A0;
     dw $0010,Spritemap_Bang_Growth4_Growing_A                            ;A3B8A4;
     dw Instruction_Bang_SetFinishedGrowingFlagTo1                        ;A3B8A8;
-    dw Instruction_Common_Sleep                                          ;A3B8AA;
+    dw Common_Instruction_Sleep                                          ;A3B8AA;
 
 
 ;;; $B8AC: Instruction list - shell - growth level 0 - idling ;;;
@@ -6547,21 +5965,21 @@ InstList_Bang_Shell_Growth0_Idling:
     dw $000D,Spritemap_Bang_Growth0_Idling_3                             ;A3B8B0;
     dw $0010,Spritemap_Bang_Growth0_Idling_5                             ;A3B8B4;
     dw $000D,Spritemap_Bang_Growth0_Idling_3                             ;A3B8B8;
-    dw Instruction_Common_GotoY                                          ;A3B8BC;
+    dw Common_Instruction_GotoY                                          ;A3B8BC;
     dw InstList_Bang_Shell_Growth0_Idling                                ;A3B8BE;
 
 
 ;;; $B8C0: Instruction list - shell - growth level 0 - growing ;;;
 InstList_Bang_Shell_Growth0_Growing:
     dw Instruction_Bang_PlayAcquiredSuitSFX                              ;A3B8C0;
-    dw $0004,Spritemap_Common_Nothing                                    ;A3B8C2;
-    dw $0008,Spritemap_Common_Nothing                                    ;A3B8C6;
-    dw $0004,Spritemap_Common_Nothing                                    ;A3B8CA;
+    dw $0004,Common_Spritemap_Nothing                                    ;A3B8C2;
+    dw $0008,Common_Spritemap_Nothing                                    ;A3B8C6;
+    dw $0004,Common_Spritemap_Nothing                                    ;A3B8CA;
     dw $0002,Spritemap_Bang_Growth0_Growing_3                            ;A3B8CE;
     dw $0004,Spritemap_Bang_Growth0_Growing_5                            ;A3B8D2;
     dw $0010,Spritemap_Bang_Growth0_Growing_7                            ;A3B8D6;
     dw Instruction_Bang_SetFinishedGrowingFlagTo1                        ;A3B8DA;
-    dw Instruction_Common_Sleep                                          ;A3B8DC;
+    dw Common_Instruction_Sleep                                          ;A3B8DC;
 
 
 ;;; $B8DE: Instruction list - shell - growth level 1 - idling ;;;
@@ -6570,21 +5988,21 @@ InstList_Bang_Shell_Growth1_Idling:
     dw $0008,Spritemap_Bang_Growth1_Idling_3                             ;A3B8E2;
     dw $000D,Spritemap_Bang_Growth1_Idling_5                             ;A3B8E6;
     dw $0008,Spritemap_Bang_Growth1_Idling_3                             ;A3B8EA;
-    dw Instruction_Common_GotoY                                          ;A3B8EE;
+    dw Common_Instruction_GotoY                                          ;A3B8EE;
     dw InstList_Bang_Shell_Growth1_Idling                                ;A3B8F0;
 
 
 ;;; $B8F2: Instruction list - shell - growth level 1 - growing ;;;
 InstList_Bang_Shell_Growth1_Growing:
     dw Instruction_Bang_PlayAcquiredSuitSFX                              ;A3B8F2;
-    dw $0004,Spritemap_Common_Nothing                                    ;A3B8F4;
-    dw $0008,Spritemap_Common_Nothing                                    ;A3B8F8;
-    dw $0004,Spritemap_Common_Nothing                                    ;A3B8FC;
+    dw $0004,Common_Spritemap_Nothing                                    ;A3B8F4;
+    dw $0008,Common_Spritemap_Nothing                                    ;A3B8F8;
+    dw $0004,Common_Spritemap_Nothing                                    ;A3B8FC;
     dw $0002,Spritemap_Bang_Growth1_Growing_3                            ;A3B900;
     dw $0004,Spritemap_Bang_Growth1_Growing_5                            ;A3B904;
     dw $0010,Spritemap_Bang_Growth1_Growing_7                            ;A3B908;
     dw Instruction_Bang_SetFinishedGrowingFlagTo1                        ;A3B90C;
-    dw Instruction_Common_Sleep                                          ;A3B90E;
+    dw Common_Instruction_Sleep                                          ;A3B90E;
 
 
 ;;; $B910: Instruction list - shell - growth level 2 - idling ;;;
@@ -6593,7 +6011,7 @@ InstList_Bang_Shell_Growth2_Idling:
     dw $0006,Spritemap_Bang_Growth2_Idling_3                             ;A3B914;
     dw $0004,Spritemap_Bang_Growth2_Idling_5                             ;A3B918;
     dw $0006,Spritemap_Bang_Growth2_Idling_3                             ;A3B91C;
-    dw Instruction_Common_GotoY                                          ;A3B920;
+    dw Common_Instruction_GotoY                                          ;A3B920;
     dw InstList_Bang_Shell_Growth2_Idling                                ;A3B922;
 
 
@@ -6607,7 +6025,7 @@ InstList_Bang_Shell_Growth2_Growing:
     dw $0004,Spritemap_Bang_Growth2_Growing_7                            ;A3B936;
     dw $0010,Spritemap_Bang_Growth2_Growing_9                            ;A3B93A;
     dw Instruction_Bang_SetFinishedGrowingFlagTo1                        ;A3B93E;
-    dw Instruction_Common_Sleep                                          ;A3B940;
+    dw Common_Instruction_Sleep                                          ;A3B940;
 
 
 ;;; $B942: Instruction list - shell - growth level 3 - idling ;;;
@@ -6628,7 +6046,7 @@ InstList_Bang_Shell_Growth3_Idling:
     dw $0003,Spritemap_Bang_Growth3_Idling_F                             ;A3B976;
     dw $0002,Spritemap_Bang_Growth3_Idling_11                            ;A3B97A;
     dw $0003,Spritemap_Bang_Growth3_Idling_F                             ;A3B97E;
-    dw Instruction_Common_GotoY                                          ;A3B982;
+    dw Common_Instruction_GotoY                                          ;A3B982;
     dw InstList_Bang_Shell_Growth3_Idling                                ;A3B984;
 
 
@@ -6643,7 +6061,7 @@ InstList_Bang_Shell_Growth3_Growing:
     dw $0004,Spritemap_Bang_Growth3_Growing_9                            ;A3B99C;
     dw $0010,Spritemap_Bang_Growth3_Growing_B                            ;A3B9A0;
     dw Instruction_Bang_SetFinishedGrowingFlagTo1                        ;A3B9A4;
-    dw Instruction_Common_Sleep                                          ;A3B9A6;
+    dw Common_Instruction_Sleep                                          ;A3B9A6;
 
 
 ;;; $B9A8: Instruction list - shell - growth level 4 - idling ;;;
@@ -6659,7 +6077,7 @@ InstList_Bang_Shell_Growth4_Idling:
     dw $0002,Spritemap_Bang_Growth4_Idling_B                             ;A3B9C8;
     dw $0001,Spritemap_Bang_Growth4_Idling_D                             ;A3B9CC;
     dw $0002,Spritemap_Bang_Growth4_Idling_B                             ;A3B9D0;
-    dw Instruction_Common_GotoY                                          ;A3B9D4;
+    dw Common_Instruction_GotoY                                          ;A3B9D4;
     dw InstList_Bang_Shell_Growth4_Idling                                ;A3B9D6;
 
 
@@ -6672,15 +6090,15 @@ InstList_Bang_Shell_Growth4_Growing:
     dw $0002,Spritemap_Bang_Growth4_Growing_5                            ;A3B9E6;
     dw $0004,Spritemap_Bang_Growth4_Growing_7                            ;A3B9EA;
     dw $0004,Spritemap_Bang_Growth4_Growing_9                            ;A3B9EE;
-    dw $0010,Spritemap_Common_Nothing                                    ;A3B9F2;
+    dw $0010,Common_Spritemap_Nothing                                    ;A3B9F2;
     dw Instruction_Bang_SetFinishedGrowingFlagTo1                        ;A3B9F6;
-    dw Instruction_Common_Sleep                                          ;A3B9F8;
+    dw Common_Instruction_Sleep                                          ;A3B9F8;
 
 
 ;;; $B9FA: Instruction list - electricity - none ;;;
 InstList_Bang_Electricity_None:
-    dw $0001,Spritemap_Common_Nothing                                    ;A3B9FA;
-    dw Instruction_Common_Sleep                                          ;A3B9FE;
+    dw $0001,Common_Spritemap_Nothing                                    ;A3B9FA;
+    dw Common_Instruction_Sleep                                          ;A3B9FE;
 
 
 ;;; $BA00: Instruction list - electricity - growth level 3/4 - growing ;;;
@@ -6688,18 +6106,18 @@ InstList_Bang_Electricity_Growth3_4_Growing:
     dw $0002,Spritemap_Bang_Electricity_Growth3_4_Growing_0              ;A3BA00;
     dw $0003,Spritemap_Bang_Electricity_Growth3_4_Growing_1              ;A3BA04;
     dw $0004,Spritemap_Bang_Electricity_Growth3_4_Growing_2              ;A3BA08;
-    dw $0002,Spritemap_Common_Nothing                                    ;A3BA0C;
+    dw $0002,Common_Spritemap_Nothing                                    ;A3BA0C;
     dw $0004,Spritemap_Bang_Electricity_Growth3_4_Growing_3              ;A3BA10;
     dw $0002,Spritemap_Bang_Electricity_Growth3_4_Growing_4              ;A3BA14;
     dw $0003,Spritemap_Bang_Electricity_Growth3_4_Growing_5              ;A3BA18;
     dw $0002,Spritemap_Bang_Electricity_Growth3_4_Growing_6              ;A3BA1C;
     dw $0004,Spritemap_Bang_Electricity_Growth3_4_Growing_7              ;A3BA20;
     dw $0003,Spritemap_Bang_Electricity_Growth3_4_Growing_8              ;A3BA24;
-    dw $000A,Spritemap_Common_Nothing                                    ;A3BA28;
+    dw $000A,Common_Spritemap_Nothing                                    ;A3BA28;
     dw $0003,Spritemap_Bang_Electricity_Growth3_4_Growing_9              ;A3BA2C;
     dw $0002,Spritemap_Bang_Electricity_Growth3_4_Growing_A              ;A3BA30;
     dw $0004,Spritemap_Bang_Electricity_Growth3_4_Growing_B              ;A3BA34;
-    dw Instruction_Common_GotoY                                          ;A3BA38;
+    dw Common_Instruction_GotoY                                          ;A3BA38;
     dw InstList_Bang_Electricity_Growth3_4_Growing                       ;A3BA3A;
 
 
@@ -6710,18 +6128,18 @@ UNSUED_InstList_Bang_Electricity_Growing_A3BA3C:
     dw $0002,UNUSED_Spritemap_Bang_Electricity_A3C5AE                    ;A3BA3C;
     dw $0003,UNUSED_Spritemap_Bang_Electricity_A3C5BA                    ;A3BA40;
     dw $0004,UNUSED_Spritemap_Bang_Electricity_A3C5C6                    ;A3BA44;
-    dw $0002,Spritemap_Common_Nothing                                    ;A3BA48;
+    dw $0002,Common_Spritemap_Nothing                                    ;A3BA48;
     dw $0004,UNUSED_Spritemap_Bang_Electricity_A3C5D2                    ;A3BA4C;
     dw $0002,UNUSED_Spritemap_Bang_Electricity_A3C5DE                    ;A3BA50;
     dw $0003,UNUSED_Spritemap_Bang_Electricity_A3C5EA                    ;A3BA54;
     dw $0002,UNUSED_Spritemap_Bang_Electricity_A3C5F6                    ;A3BA58;
     dw $0004,UNUSED_Spritemap_Bang_Electricity_A3C602                    ;A3BA5C;
     dw $0003,UNUSED_Spritemap_Bang_Electricity_A3C60E                    ;A3BA60;
-    dw $000A,Spritemap_Common_Nothing                                    ;A3BA64;
+    dw $000A,Common_Spritemap_Nothing                                    ;A3BA64;
     dw $0003,UNUSED_Spritemap_Bang_Electricity_A3C61A                    ;A3BA68;
     dw $0002,UNUSED_Spritemap_Bang_Electricity_A3C626                    ;A3BA6C;
     dw $0004,UNUSED_Spritemap_Bang_Electricity_A3C632                    ;A3BA70;
-    dw Instruction_Common_GotoY                                          ;A3BA74;
+    dw Common_Instruction_GotoY                                          ;A3BA74;
     dw UNSUED_InstList_Bang_Electricity_Growing_A3BA3C                   ;A3BA76;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -8073,7 +7491,7 @@ InstList_Skree_Idling:
     dw $000A,Spritemap_Skree_2                                           ;A3C662;
     dw $000A,Spritemap_Skree_3                                           ;A3C666;
     dw $000A,Spritemap_Skree_4                                           ;A3C66A;
-    dw Instruction_Common_GotoY                                          ;A3C66E;
+    dw Common_Instruction_GotoY                                          ;A3C66E;
     dw InstList_Skree_Idling                                             ;A3C670;
 
 
@@ -8082,27 +7500,27 @@ InstList_Skree_PrepareToLaunchAttack:
     dw $0010,Spritemap_Skree_0                                           ;A3C672;
     dw $0008,Spritemap_Skree_1                                           ;A3C676;
     dw Instruction_Skree_SetAttackReadyFlag                              ;A3C67A;
-    dw Instruction_Common_Sleep                                          ;A3C67C;
+    dw Common_Instruction_Sleep                                          ;A3C67C;
 
 
 ;;; $C67E: Instruction list - launched attack ;;;
 InstList_Skree_LaunchedAttack_0:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A3C67E;
+    dw Common_Instruction_EnableOffScreenProcessing                      ;A3C67E;
 
 InstList_Skree_LaunchedAttack_1:
     dw $0002,Spritemap_Skree_2                                           ;A3C680;
     dw $0002,Spritemap_Skree_3                                           ;A3C684;
     dw $0002,Spritemap_Skree_4                                           ;A3C688;
     dw $0002,Spritemap_Skree_0                                           ;A3C68C;
-    dw Instruction_Common_GotoY                                          ;A3C690;
+    dw Common_Instruction_GotoY                                          ;A3C690;
     dw InstList_Skree_LaunchedAttack_1                                   ;A3C692;
 
 
 ;;; $C694: Unused. Instruction list - stop animating ;;;
 UNUSED_InstList_Skree_StopAnimating_A3C694:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A3C694;
+    dw Common_Instruction_DisableOffScreenProcessing                     ;A3C694;
     dw $0001,Spritemap_Skree_0                                           ;A3C696;
-    dw Instruction_Common_Sleep                                          ;A3C69A;
+    dw Common_Instruction_Sleep                                          ;A3C69A;
 
 
 ;;; $C69C: Skree instruction list pointers ;;;
@@ -8392,7 +7810,7 @@ InstList_Yard_Crawling_UpsideUp_MovingLeft:
     dw $0009,Spritemap_Yard_0                                            ;A3C8EA;
     dw $000D,Spritemap_Yard_1                                            ;A3C8F0;
     dw $0009,Spritemap_Yard_2                                            ;A3C8F4;
-    dw Instruction_Common_GotoY                                          ;A3C8F8;
+    dw Common_Instruction_GotoY                                          ;A3C8F8;
     dw InstList_Yard_Crawling_UpsideUp_MovingLeft                        ;A3C8FA;
 
 
@@ -8418,7 +7836,7 @@ InstList_Yard_Crawling_UpsideLeft_MovingDown:
     dw $0009,Spritemap_Yard_6                                            ;A3C920;
     dw $000D,Spritemap_Yard_7                                            ;A3C926;
     dw $0009,Spritemap_Yard_8                                            ;A3C92A;
-    dw Instruction_Common_GotoY                                          ;A3C92E;
+    dw Common_Instruction_GotoY                                          ;A3C92E;
     dw InstList_Yard_Crawling_UpsideLeft_MovingDown                      ;A3C930;
 
 
@@ -8444,7 +7862,7 @@ InstList_Yard_Crawling_UpsideDown_MovingRight:
     dw $0009,Spritemap_Yard_C                                            ;A3C956;
     dw $000D,Spritemap_Yard_D                                            ;A3C95C;
     dw $0009,Spritemap_Yard_E                                            ;A3C960;
-    dw Instruction_Common_GotoY                                          ;A3C964;
+    dw Common_Instruction_GotoY                                          ;A3C964;
     dw InstList_Yard_Crawling_UpsideDown_MovingRight                     ;A3C966;
 
 
@@ -8470,7 +7888,7 @@ InstList_Yard_Crawling_UpsideRight_MovingUp:
     dw $0009,Spritemap_Yard_12                                           ;A3C98C;
     dw $000D,Spritemap_Yard_13                                           ;A3C992;
     dw $0009,Spritemap_Yard_14                                           ;A3C996;
-    dw Instruction_Common_GotoY                                          ;A3C99A;
+    dw Common_Instruction_GotoY                                          ;A3C99A;
     dw InstList_Yard_Crawling_UpsideRight_MovingUp                       ;A3C99C;
 
 
@@ -8496,7 +7914,7 @@ InstList_Yard_Crawling_UpsideUp_MovingRight:
     dw $0009,Spritemap_Yard_20                                           ;A3C9C2;
     dw $000D,Spritemap_Yard_21                                           ;A3C9C8;
     dw $0009,Spritemap_Yard_22                                           ;A3C9CC;
-    dw Instruction_Common_GotoY                                          ;A3C9D0;
+    dw Common_Instruction_GotoY                                          ;A3C9D0;
     dw InstList_Yard_Crawling_UpsideUp_MovingRight                       ;A3C9D2;
 
 
@@ -8522,7 +7940,7 @@ InstList_Yard_Crawling_UpsideRight_MovingDown:
     dw $0009,Spritemap_Yard_26                                           ;A3C9F8;
     dw $000D,Spritemap_Yard_27                                           ;A3C9FE;
     dw $0009,Spritemap_Yard_28                                           ;A3CA02;
-    dw Instruction_Common_GotoY                                          ;A3CA06;
+    dw Common_Instruction_GotoY                                          ;A3CA06;
     dw InstList_Yard_Crawling_UpsideRight_MovingDown                     ;A3CA08;
 
 
@@ -8548,7 +7966,7 @@ InstList_Yard_Crawling_UpsideDown_MovingLeft:
     dw $0009,Spritemap_Yard_2C                                           ;A3CA2E;
     dw $000D,Spritemap_Yard_2D                                           ;A3CA34;
     dw $0009,Spritemap_Yard_2E                                           ;A3CA38;
-    dw Instruction_Common_GotoY                                          ;A3CA3C;
+    dw Common_Instruction_GotoY                                          ;A3CA3C;
     dw InstList_Yard_Crawling_UpsideDown_MovingLeft                      ;A3CA3E;
 
 
@@ -8574,7 +7992,7 @@ InstList_Yard_Crawling_UpsideLeft_MovingUp:
     dw $0009,Spritemap_Yard_32                                           ;A3CA64;
     dw $000D,Spritemap_Yard_33                                           ;A3CA6A;
     dw $0009,Spritemap_Yard_34                                           ;A3CA6E;
-    dw Instruction_Common_GotoY                                          ;A3CA72;
+    dw Common_Instruction_GotoY                                          ;A3CA72;
     dw InstList_Yard_Crawling_UpsideLeft_MovingUp                        ;A3CA74;
 
 
@@ -8587,7 +8005,7 @@ InstList_Yard_InsideTurn_UpsideUp_MovingLeft:
     dw $0007,Spritemap_Yard_40                                           ;A3CA7E;
     dw $0004,Spritemap_Yard_41                                           ;A3CA82;
     dw $0007,Spritemap_Yard_42                                           ;A3CA86;
-    dw Instruction_Common_GotoY                                          ;A3CA8A;
+    dw Common_Instruction_GotoY                                          ;A3CA8A;
     dw InstList_Yard_Crawling_UpsideRight_MovingUp                       ;A3CA8C;
 
 
@@ -8600,7 +8018,7 @@ InstList_Yard_InsideTurn_UpsideRight_MovingUp:
     dw $0007,Spritemap_Yard_43                                           ;A3CA96;
     dw $0004,Spritemap_Yard_44                                           ;A3CA9A;
     dw $0007,Spritemap_Yard_45                                           ;A3CA9E;
-    dw Instruction_Common_GotoY                                          ;A3CAA2;
+    dw Common_Instruction_GotoY                                          ;A3CAA2;
     dw InstList_Yard_Crawling_UpsideDown_MovingRight                     ;A3CAA4;
 
 
@@ -8613,7 +8031,7 @@ InstList_Yard_InsideTurn_UpsideDown_MovingRight:
     dw $0007,Spritemap_Yard_46                                           ;A3CAAE;
     dw $0004,Spritemap_Yard_47                                           ;A3CAB2;
     dw $0007,Spritemap_Yard_48                                           ;A3CAB6;
-    dw Instruction_Common_GotoY                                          ;A3CABA;
+    dw Common_Instruction_GotoY                                          ;A3CABA;
     dw InstList_Yard_Crawling_UpsideLeft_MovingDown                      ;A3CABC;
 
 
@@ -8626,7 +8044,7 @@ InstList_Yard_InsideTurn_UpsideLeft_MovingDown:
     dw $0007,Spritemap_Yard_49                                           ;A3CAC6;
     dw $0004,Spritemap_Yard_4A                                           ;A3CACA;
     dw $0007,Spritemap_Yard_4B                                           ;A3CACE;
-    dw Instruction_Common_GotoY                                          ;A3CAD2;
+    dw Common_Instruction_GotoY                                          ;A3CAD2;
     dw InstList_Yard_Crawling_UpsideUp_MovingLeft                        ;A3CAD4;
 
 
@@ -8639,7 +8057,7 @@ InstList_Yard_InsideTurn_UpsideUp_MovingRight:
     dw $0007,Spritemap_Yard_54                                           ;A3CADE;
     dw $0004,Spritemap_Yard_55                                           ;A3CAE2;
     dw $0007,Spritemap_Yard_56                                           ;A3CAE6;
-    dw Instruction_Common_GotoY                                          ;A3CAEA;
+    dw Common_Instruction_GotoY                                          ;A3CAEA;
     dw InstList_Yard_Crawling_UpsideLeft_MovingUp                        ;A3CAEC;
 
 
@@ -8652,7 +8070,7 @@ InstList_Yard_InsideTurn_UpsideLeft_MovingUp:
     dw $0007,Spritemap_Yard_57                                           ;A3CAF6;
     dw $0004,Spritemap_Yard_58                                           ;A3CAFA;
     dw $0007,Spritemap_Yard_59                                           ;A3CAFE;
-    dw Instruction_Common_GotoY                                          ;A3CB02;
+    dw Common_Instruction_GotoY                                          ;A3CB02;
     dw InstList_Yard_Crawling_UpsideDown_MovingLeft                      ;A3CB04;
 
 
@@ -8665,7 +8083,7 @@ InstList_Yard_InsideTurn_UpsideDown_MovingLeft:
     dw $0007,Spritemap_Yard_5A                                           ;A3CB0E;
     dw $0004,Spritemap_Yard_5B                                           ;A3CB12;
     dw $0007,Spritemap_Yard_5C                                           ;A3CB16;
-    dw Instruction_Common_GotoY                                          ;A3CB1A;
+    dw Common_Instruction_GotoY                                          ;A3CB1A;
     dw InstList_Yard_Crawling_UpsideRight_MovingDown                     ;A3CB1C;
 
 
@@ -8678,7 +8096,7 @@ InstList_Yard_InsideTurn_UpsideRight_MovingDown:
     dw $0007,Spritemap_Yard_5D                                           ;A3CB26;
     dw $0004,Spritemap_Yard_5E                                           ;A3CB2A;
     dw $0007,Spritemap_Yard_5F                                           ;A3CB2E;
-    dw Instruction_Common_GotoY                                          ;A3CB32;
+    dw Common_Instruction_GotoY                                          ;A3CB32;
     dw InstList_Yard_Crawling_UpsideUp_MovingRight                       ;A3CB34;
 
 
@@ -8695,7 +8113,7 @@ InstList_Yard_Hiding_UpsideUp_MovingLeft:
 InstList_Yard_Hidden_UpsideUp_MovingLeft:
     dw $0030,Spritemap_Yard_4C                                           ;A3CB44;
     dw $0010,Spritemap_Yard_4D                                           ;A3CB48;
-    dw Instruction_Common_GotoY                                          ;A3CB4C;
+    dw Common_Instruction_GotoY                                          ;A3CB4C;
     dw InstList_Yard_Crawling_UpsideUp_MovingLeft                        ;A3CB4E;
 
 
@@ -8708,7 +8126,7 @@ InstList_Yard_Hiding_UpsideDown_MovingLeft:
     dw Instruction_Yard_GoBack4BytesIfHidingOr50PercentChance            ;A3CB5C;
     dw $0030,Spritemap_Yard_64                                           ;A3CB5E;
     dw $0010,Spritemap_Yard_65                                           ;A3CB62;
-    dw Instruction_Common_GotoY                                          ;A3CB66;
+    dw Common_Instruction_GotoY                                          ;A3CB66;
     dw InstList_Yard_Crawling_UpsideDown_MovingLeft                      ;A3CB68;
 
 
@@ -8721,7 +8139,7 @@ InstList_Yard_Hiding_UpsideDown_MovingRight:
     dw Instruction_Yard_GoBack4BytesIfHidingOr50PercentChance            ;A3CB76;
     dw $0030,Spritemap_Yard_50                                           ;A3CB78;
     dw $0010,Spritemap_Yard_51                                           ;A3CB7C;
-    dw Instruction_Common_GotoY                                          ;A3CB80;
+    dw Common_Instruction_GotoY                                          ;A3CB80;
     dw InstList_Yard_Crawling_UpsideDown_MovingRight                     ;A3CB82;
 
 
@@ -8738,7 +8156,7 @@ InstList_Yard_Hiding_UpsideUp_MovingRight:
 InstList_Yard_Hidden_UpsideUp_MovingRight:
     dw $0030,Spritemap_Yard_60                                           ;A3CB92;
     dw $0010,Spritemap_Yard_61                                           ;A3CB96;
-    dw Instruction_Common_GotoY                                          ;A3CB9A;
+    dw Common_Instruction_GotoY                                          ;A3CB9A;
     dw InstList_Yard_Crawling_UpsideUp_MovingRight                       ;A3CB9C;
 
 
@@ -8751,7 +8169,7 @@ InstList_Yard_Hiding_UpsideRight_MovingUp:
     dw Instruction_Yard_GoBack4BytesIfHidingOr50PercentChance            ;A3CBAA;
     dw $0030,Spritemap_Yard_4E                                           ;A3CBAC;
     dw $0010,Spritemap_Yard_4F                                           ;A3CBB0;
-    dw Instruction_Common_GotoY                                          ;A3CBB4;
+    dw Common_Instruction_GotoY                                          ;A3CBB4;
     dw InstList_Yard_Crawling_UpsideRight_MovingUp                       ;A3CBB6;
 
 
@@ -8764,7 +8182,7 @@ InstList_Yard_Hiding_UpsideLeft_MovingUp:
     dw Instruction_Yard_GoBack4BytesIfHidingOr50PercentChance            ;A3CBC4;
     dw $0030,Spritemap_Yard_62                                           ;A3CBC6;
     dw $0010,Spritemap_Yard_63                                           ;A3CBCA;
-    dw Instruction_Common_GotoY                                          ;A3CBCE;
+    dw Common_Instruction_GotoY                                          ;A3CBCE;
     dw InstList_Yard_Crawling_UpsideLeft_MovingUp                        ;A3CBD0;
 
 
@@ -8777,7 +8195,7 @@ InstList_Yard_Hiding_UpsideLeft_MovingDown:
     dw Instruction_Yard_GoBack4BytesIfHidingOr50PercentChance            ;A3CBDE;
     dw $0030,Spritemap_Yard_52                                           ;A3CBE0;
     dw $0010,Spritemap_Yard_53                                           ;A3CBE4;
-    dw Instruction_Common_GotoY                                          ;A3CBE8;
+    dw Common_Instruction_GotoY                                          ;A3CBE8;
     dw InstList_Yard_Crawling_UpsideLeft_MovingDown                      ;A3CBEA;
 
 
@@ -8790,7 +8208,7 @@ InstList_Yard_Hiding_UpsideRight_MovingDown:
     dw Instruction_Yard_GoBack4BytesIfHidingOr50PercentChance            ;A3CBF8;
     dw $0030,Spritemap_Yard_66                                           ;A3CBFA;
     dw $0010,Spritemap_Yard_67                                           ;A3CBFE;
-    dw Instruction_Common_GotoY                                          ;A3CC02;
+    dw Common_Instruction_GotoY                                          ;A3CC02;
     dw InstList_Yard_Crawling_UpsideRight_MovingDown                     ;A3CC04;
 
 
@@ -8804,7 +8222,7 @@ InstList_Yard_Airborne_FacingLeft_1:
     dw $0003,Spritemap_Yard_1B                                           ;A3CC0E;
     dw $0003,Spritemap_Yard_1D                                           ;A3CC12;
     dw $0003,Spritemap_Yard_1F                                           ;A3CC16;
-    dw Instruction_Common_GotoY                                          ;A3CC1A;
+    dw Common_Instruction_GotoY                                          ;A3CC1A;
     dw InstList_Yard_Airborne_FacingLeft_1                               ;A3CC1C;
 
 
@@ -8818,7 +8236,7 @@ InstList_Yard_Airborne_FacingRight_1:
     dw $0003,Spritemap_Yard_3B                                           ;A3CC26;
     dw $0003,Spritemap_Yard_3D                                           ;A3CC2A;
     dw $0003,Spritemap_Yard_3F                                           ;A3CC2E;
-    dw Instruction_Common_GotoY                                          ;A3CC32;
+    dw Common_Instruction_GotoY                                          ;A3CC32;
     dw InstList_Yard_Airborne_FacingRight_1                              ;A3CC34;
 
 
@@ -9089,7 +8507,7 @@ InitAI_Yard:
     LDX.W EnemyIndex                                                     ;A3CDE2;
     LDA.W #RTL_A3CF5F                                                    ;A3CDE5;
     STA.W Yard.movementFunction,X                                        ;A3CDE8;
-    LDA.W #Spritemap_Common_Nothing                                      ;A3CDEB;
+    LDA.W #Common_Spritemap_Nothing                                      ;A3CDEB;
     STA.W Enemy.spritemap,X                                              ;A3CDEE;
     LDA.W #$0001                                                         ;A3CDF1;
     STA.W Enemy.instTimer,X                                              ;A3CDF4;
@@ -9219,7 +8637,7 @@ HandleYardHiding:
     CMP.W #RTL_A3CF5F                                                    ;A3CEEA;
     BEQ .crawl                                                           ;A3CEED;
     STA.W Enemy.instList,X                                               ;A3CEEF;
-    LDA.W #Spritemap_Common_Nothing                                      ;A3CEF2;
+    LDA.W #Common_Spritemap_Nothing                                      ;A3CEF2;
     STA.W Enemy.spritemap,X                                              ;A3CEF5;
     LDA.W #$0001                                                         ;A3CEF8;
     STA.W Enemy.instTimer,X                                              ;A3CEFB;
@@ -10804,7 +10222,7 @@ EnemyGraphicsDrawnHook_Reflec_PeriodicallyCyclePalettes:
 InstList_Reflec_FacingLeft:
     dw Instruction_Reflec_Param2InY,$0000                                ;A3DB4C;
     dw $0040,Spritemap_Reflec_FacingLeft                                 ;A3DB4E;
-    dw Instruction_Common_GotoY                                          ;A3DB54;
+    dw Common_Instruction_GotoY                                          ;A3DB54;
     dw InstList_Reflec_FacingLeft                                        ;A3DB56;
 
 
@@ -10812,7 +10230,7 @@ InstList_Reflec_FacingLeft:
 InstList_Reflec_FacingUpLeft:
     dw Instruction_Reflec_Param2InY,$0001                                ;A3DB58;
     dw $0040,Spritemap_Reflec_FacingUpLeft                               ;A3DB5A;
-    dw Instruction_Common_GotoY                                          ;A3DB60;
+    dw Common_Instruction_GotoY                                          ;A3DB60;
     dw InstList_Reflec_FacingUpLeft                                      ;A3DB62;
 
 
@@ -10820,70 +10238,70 @@ InstList_Reflec_FacingUpLeft:
 InstList_Reflec_FacingUp:
     dw Instruction_Reflec_Param2InY,$0002                                ;A3DB64;
     dw $0040,Spritemap_Reflec_FacingUp                                   ;A3DB66;
-    dw Instruction_Common_Sleep                                          ;A3DB6C;
+    dw Common_Instruction_Sleep                                          ;A3DB6C;
 
 
 ;;; $DB6E: Instruction list - facing up-right ;;;
 InstList_Reflec_FacingUpRight:
     dw Instruction_Reflec_Param2InY,$0003                                ;A3DB6E;
     dw $0040,Spritemap_Reflec_FacingUpRight                              ;A3DB70;
-    dw Instruction_Common_Sleep                                          ;A3DB76;
+    dw Common_Instruction_Sleep                                          ;A3DB76;
 
 
 ;;; $DB78: Instruction list - facing right ;;;
 InstList_Reflec_FacingRight:
     dw Instruction_Reflec_Param2InY,$0000                                ;A3DB78;
     dw $0040,Spritemap_Reflec_FacingRight                                ;A3DB7A;
-    dw Instruction_Common_Sleep                                          ;A3DB80;
+    dw Common_Instruction_Sleep                                          ;A3DB80;
 
 
 ;;; $DB82: Instruction list - facing down-right ;;;
 InstList_Reflec_FacingDownRight:
     dw Instruction_Reflec_Param2InY,$0001                                ;A3DB82;
     dw $0040,Spritemap_Reflec_FacingDownRight                            ;A3DB84;
-    dw Instruction_Common_Sleep                                          ;A3DB8A;
+    dw Common_Instruction_Sleep                                          ;A3DB8A;
 
 
 ;;; $DB8C: Instruction list - facing down ;;;
 InstList_Reflec_FacingDown:
     dw Instruction_Reflec_Param2InY,$0002                                ;A3DB8C;
     dw $0040,Spritemap_Reflec_FacingDown                                 ;A3DB8E;
-    dw Instruction_Common_Sleep                                          ;A3DB94;
+    dw Common_Instruction_Sleep                                          ;A3DB94;
 
 
 ;;; $DB96: Instruction list - facing down-left ;;;
 InstList_Reflec_FacingDownLeft:
     dw Instruction_Reflec_Param2InY,$0003                                ;A3DB96;
     dw $0040,Spritemap_Reflec_FacingDownLeft                             ;A3DB98;
-    dw Instruction_Common_Sleep                                          ;A3DB9E;
+    dw Common_Instruction_Sleep                                          ;A3DB9E;
 
 
 ;;; $DBA0: Instruction list - health reached zero - facing left ;;;
 InstList_Reflec_ZeroHealth_FacingLeft:
     dw Instruction_Reflec_Param2InY,$0000                                ;A3DBA0;
     dw $0001,Spritemap_Reflec_FacingLeft                                 ;A3DBA2;
-    dw Instruction_Common_Sleep                                          ;A3DBA8;
+    dw Common_Instruction_Sleep                                          ;A3DBA8;
 
 
 ;;; $DBAA: Instruction list - health reached zero - facing up-left ;;;
 InstList_Reflec_ZeroHealth_FacingUpLeft:
     dw Instruction_Reflec_Param2InY,$0001                                ;A3DBAA;
     dw $0001,Spritemap_Reflec_FacingUpLeft                               ;A3DBAC;
-    dw Instruction_Common_Sleep                                          ;A3DBB2;
+    dw Common_Instruction_Sleep                                          ;A3DBB2;
 
 
 ;;; $DBB4: Instruction list - health reached zero - facing up ;;;
 InstList_Reflec_ZeroHealth_FacingUp:
     dw Instruction_Reflec_Param2InY,$0002                                ;A3DBB4;
     dw $0001,Spritemap_Reflec_FacingUp                                   ;A3DBB6;
-    dw Instruction_Common_Sleep                                          ;A3DBBC;
+    dw Common_Instruction_Sleep                                          ;A3DBBC;
 
 
 ;;; $DBBE: Instruction list - health reached zero - facing up-right ;;;
 InstList_Reflec_ZeroHealth_FacingUpRight:
     dw Instruction_Reflec_Param2InY,$0003                                ;A3DBBE;
     dw $0001,Spritemap_Reflec_FacingUpRight                              ;A3DBC0;
-    dw Instruction_Common_Sleep                                          ;A3DBC6;
+    dw Common_Instruction_Sleep                                          ;A3DBC6;
 
 
 ;;; $DBC8: Instruction - enemy reflection axis = [[Y]] ;;;
@@ -11353,7 +10771,7 @@ InstList_HZoomer_UpsideRight_1:
     dw $0003,Spritemap_Crawlers_UpsideRight_2                            ;A3DFD7;
     dw $0003,Spritemap_Crawlers_UpsideRight_3                            ;A3DFDB;
     dw $0003,Spritemap_Crawlers_UpsideRight_4                            ;A3DFDF;
-    dw Instruction_Common_GotoY                                          ;A3DFE3;
+    dw Common_Instruction_GotoY                                          ;A3DFE3;
     dw InstList_HZoomer_UpsideRight_1                                    ;A3DFE5;
 
 
@@ -11368,7 +10786,7 @@ InstList_HZoomer_UpsideLeft_1:
     dw $0003,Spritemap_Crawlers_UpsideLeft_2                             ;A3DFF3;
     dw $0003,Spritemap_Crawlers_UpsideLeft_3                             ;A3DFF7;
     dw $0003,Spritemap_Crawlers_UpsideLeft_4                             ;A3DFFB;
-    dw Instruction_Common_GotoY                                          ;A3DFFF;
+    dw Common_Instruction_GotoY                                          ;A3DFFF;
     dw InstList_HZoomer_UpsideLeft_1                                     ;A3E001;
 
 
@@ -11383,7 +10801,7 @@ InstList_HZoomer_UpsideDown_1:
     dw $0003,Spritemap_Crawlers_UpsideDown_FacingLeft_2                  ;A3E00F;
     dw $0003,Spritemap_Crawlers_UpsideDown_FacingLeft_3                  ;A3E013;
     dw $0003,Spritemap_Crawlers_UpsideDown_FacingLeft_4                  ;A3E017;
-    dw Instruction_Common_GotoY                                          ;A3E01B;
+    dw Common_Instruction_GotoY                                          ;A3E01B;
     dw InstList_HZoomer_UpsideDown_1                                     ;A3E01D;
 
 
@@ -11398,7 +10816,7 @@ InstList_HZoomer_UpsideUp_1:
     dw $0003,Spritemap_Crawlers_UpsideUp_FacingRight_2                   ;A3E02B;
     dw $0003,Spritemap_Crawlers_UpsideUp_FacingRight_3                   ;A3E02F;
     dw $0003,Spritemap_Crawlers_UpsideUp_FacingRight_4                   ;A3E033;
-    dw Instruction_Common_GotoY                                          ;A3E037;
+    dw Common_Instruction_GotoY                                          ;A3E037;
     dw InstList_HZoomer_UpsideUp_1                                       ;A3E039;
 
 
@@ -11701,7 +11119,7 @@ InstList_Zeela_Zoomer_UpsideRight_1:
     dw $0003,Spritemap_Crawlers_UpsideRight_2                            ;A3E268;
     dw $0003,Spritemap_Crawlers_UpsideRight_3                            ;A3E26C;
     dw $0003,Spritemap_Crawlers_UpsideRight_4                            ;A3E270;
-    dw Instruction_Common_GotoY                                          ;A3E274;
+    dw Common_Instruction_GotoY                                          ;A3E274;
     dw InstList_Zeela_Zoomer_UpsideRight_1                               ;A3E276;
 
 
@@ -11716,7 +11134,7 @@ InstList_Zeela_Zoomer_UpsideLeft_1:
     dw $0003,Spritemap_Crawlers_UpsideLeft_2                             ;A3E284;
     dw $0003,Spritemap_Crawlers_UpsideLeft_3                             ;A3E288;
     dw $0003,Spritemap_Crawlers_UpsideLeft_4                             ;A3E28C;
-    dw Instruction_Common_GotoY                                          ;A3E290;
+    dw Common_Instruction_GotoY                                          ;A3E290;
     dw InstList_Zeela_Zoomer_UpsideLeft_1                                ;A3E292;
 
 
@@ -11731,7 +11149,7 @@ InstList_Zeela_Zoomer_UpsideDown_1:
     dw $0003,Spritemap_Crawlers_UpsideDown_FacingLeft_2                  ;A3E2A0;
     dw $0003,Spritemap_Crawlers_UpsideDown_FacingLeft_3                  ;A3E2A4;
     dw $0003,Spritemap_Crawlers_UpsideDown_FacingLeft_4                  ;A3E2A8;
-    dw Instruction_Common_GotoY                                          ;A3E2AC;
+    dw Common_Instruction_GotoY                                          ;A3E2AC;
     dw InstList_Zeela_Zoomer_UpsideDown_1                                ;A3E2AE;
 
 
@@ -11746,7 +11164,7 @@ InstList_Zeela_Zoomer_UpsideUp_1:
     dw $0003,Spritemap_Crawlers_UpsideUp_FacingRight_2                   ;A3E2BC;
     dw $0003,Spritemap_Crawlers_UpsideUp_FacingRight_3                   ;A3E2C0;
     dw $0003,Spritemap_Crawlers_UpsideUp_FacingRight_4                   ;A3E2C4;
-    dw Instruction_Common_GotoY                                          ;A3E2C8;
+    dw Common_Instruction_GotoY                                          ;A3E2C8;
     dw InstList_Zeela_Zoomer_UpsideUp_1                                  ;A3E2CA;
 
 
@@ -12085,7 +11503,7 @@ InitAI_Zoomer_MZoomer:
 ;;; $E67A: Creepy crawly common initialisation AI ;;;
 InitAI_Crawlers_Common:
 ; Used by: sciser, zero, viola, yard, zeela, zoomer, sova, stone zoomer
-    LDA.W #Spritemap_Common_Nothing                                      ;A3E67A;
+    LDA.W #Common_Spritemap_Nothing                                      ;A3E67A;
     STA.W Enemy.spritemap,X                                              ;A3E67D;
     LDA.W #$0001                                                         ;A3E680;
     STA.W Enemy.instTimer,X                                              ;A3E683;
@@ -12511,7 +11929,7 @@ InstList_Metroid_ChasingSamus:
     dw $000A,Spritemap_Metroid_Insides_3                                 ;A3EA17;
     dw $0010,Spritemap_Metroid_Insides_1                                 ;A3EA1B;
     dw Instruction_Metroid_PlayRandomMetroidSFX                          ;A3EA1F;
-    dw Instruction_Common_GotoY                                          ;A3EA21;
+    dw Common_Instruction_GotoY                                          ;A3EA21;
     dw InstList_Metroid_ChasingSamus                                     ;A3EA23;
 
 
@@ -12523,7 +11941,7 @@ InstList_Metroid_DrainingSamus:
     dw $000A,Spritemap_Metroid_Insides_3                                 ;A3EA31;
     dw $0010,Spritemap_Metroid_Insides_1                                 ;A3EA35;
     dw Instruction_Metroid_PlayDrainingSamusSFX                          ;A3EA39;
-    dw Instruction_Common_GotoY                                          ;A3EA3B;
+    dw Common_Instruction_GotoY                                          ;A3EA3B;
     dw InstList_Metroid_DrainingSamus                                    ;A3EA3D;
 
 
@@ -13294,7 +12712,7 @@ EnemyShot_Metroid:
 
 ;;; $F042: Power bomb reaction - enemy $DD7F (metroid) ;;;
 PowerBombReaction_Metroid:
-    JSL.L NormalEnemyPowerBombAI                                         ;A3F042;
+    JSL.L NormalEnemyPowerBombAI_Internal                                ;A3F042;
     LDA.W Enemy.health,X                                                 ;A3F046;
     BNE .return                                                          ;A3F049;
     LDA.W #$0013                                                         ;A3F04B;
