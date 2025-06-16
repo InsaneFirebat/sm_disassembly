@@ -3,7 +3,7 @@ org $8F8000
 
 
 ;;; $8000: PLM populations ;;;
-PLMPopulation_LandingSite_State0_1_2:                                    ;8F8000;
+PLMPopulation_LandingSite_State0_1_2:
 ; Room $91F8, state $9213: PLM
 ; Room $91F8, state $922D: PLM
 ; Room $91F8, state $9247: PLM
@@ -15,7 +15,7 @@ PLMPopulation_LandingSite_State0_1_2:                                    ;8F8000
     %PLMPopEntry(PLMEntries_yellowDoorFacingLeft, $8E, $16, $0001)
     dw $0000
 
-PLMPopulation_LandingSite_State3:                                        ;8F8026;
+PLMPopulation_LandingSite_State3:
 ; Room $91F8, state $9261: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $1E, $28, RoomPLM_LandingSite_0)
     %PLMPopEntry(PLMEntries_upwardsExtension, $1E, $27, $8000)
@@ -30,9 +30,9 @@ PLMPopulation_LandingSite_State3:                                        ;8F8026
 PLMPopulation_GauntletEntrance_State0_1:
 ; Room $92B3, state $92C5: PLM
 ; Room $92B3, state $92DF: PLM
-    dw $0000                                                             ;8F8058;
+    dw $0000
 
-PLMPopulation_Parlor_State0_1:                                           ;8F805A;
+PLMPopulation_Parlor_State0_1:
 ; Room $92FD, state $9314: PLM
 ; Room $92FD, state $932E: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $3F, $0B, RoomPLM_Parlor_0)
@@ -65,7 +65,7 @@ PLMPopulation_Parlor_State0_1:                                           ;8F805A
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $1E, $36, $0005)
     dw $0000
 
-PLMPopulation_Parlor_State2:                                             ;8F8104;
+PLMPopulation_Parlor_State2:
 ; Room $92FD, state $9348: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $3F, $0B, RoomPLM_Parlor_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $43, $0B, RoomPLM_Parlor_1)
@@ -102,17 +102,17 @@ PLMPopulation_Parlor_State2:                                             ;8F8104
     %PLMPopEntry(PLMEntries_greyDoorFacingUp, $16, $4D, $900A)
     dw $0000
 
-PLMPopulation_CrateriaPowerBombs:                                        ;8F81CC;
+PLMPopulation_CrateriaPowerBombs:
 ; Room $93AA, state $93B7: PLM
     %PLMPopEntry(PLMEntries_PowerBombTank, $1D, $07, $0000)
     dw $0000
 
-PLMPopulation_CrateriaSave:                                              ;8F81D4;
+PLMPopulation_CrateriaSave:
 ; Room $93D5, state $93E2: PLM
     %PLMPopEntry(PLMEntries_saveStation, $05, $0B, $0001)
     dw $0000
 
-PLMPopulation_WestOcean:                                                 ;8F81DC;
+PLMPopulation_WestOcean:
 ; Room $93FE, state $940B: PLM
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $5E, $36, $900B)
     %PLMPopEntry(PLMEntries_greenDoorFacingLeft, $7E, $46, $000C)
@@ -123,9 +123,9 @@ PLMPopulation_WestOcean:                                                 ;8F81DC
 
 PLMPopulation_BowlingAlleyPath:
 ; Room $9461, state $946E: PLM
-    dw $0000                                                             ;8F81FC;
+    dw $0000
 
-PLMPopulation_CrateriaKihunter:                                          ;8F81FE;
+PLMPopulation_CrateriaKihunter:
 ; Room $948C, state $9499: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $17, $0F, RoomPLM_CrateriaKihunter_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $18, $0F, $8000)
@@ -137,44 +137,44 @@ PLMPopulation_CrateriaKihunter:                                          ;8F81FE
     %PLMPopEntry(PLMEntries_yellowDoorFacingUp, $16, $2D, $000E)
     dw $0000
 
-PLMPopulation_ForgottenHighwayElev:                                      ;8F8230;
+PLMPopulation_ForgottenHighwayElev:
 ; Room $94CC, state $94D9: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $08, $0D, RoomPLM_ForgottenHighwayElev_0)
     dw $0000
 
 PLMPopulation_EastOcean:
 ; Room $94FD, state $950A: PLM
-    dw $0000                                                             ;8F8238;
+    dw $0000
 
 PLMPopulation_ForgottenHighwayKagos:
 ; Room $9552, state $955F: PLM
-    dw $0000                                                             ;8F823A;
+    dw $0000
 
 PLMPopulation_CrabMaze:
 ; Room $957D, state $958A: PLM
-    dw $0000                                                             ;8F823C;
+    dw $0000
 
-PLMPopulation_ForgottenHighwayElbow:                                     ;8F823E;
+PLMPopulation_ForgottenHighwayElbow:
 ; Room $95A8, state $95B5: PLM
     %PLMPopEntry(PLMEntries_yellowDoorFacingUp, $06, $0D, $000F)
     dw $0000
 
 PLMPopulation_CrateriaTube:
 ; Room $95D4, state $95E1: PLM
-    dw $0000                                                             ;8F8246;
+    dw $0000
 
-PLMPopulation_Moat:                                                      ;8F8248;
+PLMPopulation_Moat:
 ; Room $95FF, state $960C: PLM
     %PLMPopEntry(PLMEntries_MissileTank, $0E, $09, $0004)
     dw $0000
 
-PLMPopulation_RedBinstarElev:                                            ;8F8250;
+PLMPopulation_RedBinstarElev:
 ; Room $962A, state $9637: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $08, $0D, RoomPLM_RedBinstarElev_0)
     %PLMPopEntry(PLMEntries_yellowDoorFacingDown, $06, $02, $0010)
     dw $0000
 
-PLMPopulation_GauntletETank:                                             ;8F825E;
+PLMPopulation_GauntletETank:
 ; Room $965B, state $9668: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $54, $0C, RoomPLM_GauntletETank_0)
     %PLMPopEntry(PLMEntries_EnergyTank, $53, $08, $0005)
@@ -182,9 +182,9 @@ PLMPopulation_GauntletETank:                                             ;8F825E
 
 PLMPopulation_PreBowling:
 ; Room $968F, state $969C: PLM
-    dw $0000                                                             ;8F826C;
+    dw $0000
 
-PLMPopulation_Climb_State_0_1:                                           ;8F826E;
+PLMPopulation_Climb_State_0_1:
 ; Room $96BA, state $96D1: PLM
 ; Room $96BA, state $96EB: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $1D, $05, RoomPLM_Climb_0)
@@ -215,7 +215,7 @@ PLMPopulation_Climb_State_0_1:                                           ;8F826E
     %PLMPopEntry(PLMEntries_yellowDoorFacingLeft, $2E, $76, $0013)
     dw $0000
 
-PLMPopulation_Climb_State2:                                              ;8F830C;
+PLMPopulation_Climb_State2:
 ; Room $96BA, state $9705: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $1D, $05, RoomPLM_Climb_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $20, $05, RoomPLM_Climb_1)
@@ -247,7 +247,7 @@ PLMPopulation_Climb_State2:                                              ;8F830C
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $86, $9017)
     dw $0000
 
-PLMPopulation_Pit_0:                                                     ;8F83B6;
+PLMPopulation_Pit_0:
 ; Room $975C, state $976D: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $04, $0F, $97AB)
     %PLMPopEntry(PLMEntries_ScrollPLM, $06, $0F, RoomPLM_Pit_0_1)
@@ -255,7 +255,7 @@ PLMPopulation_Pit_0:                                                     ;8F83B6
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $9018)
     dw $0000
 
-PLMPopulation_Pit_1:                                                     ;8F83D0;
+PLMPopulation_Pit_1:
 ; Room $975C, state $9787: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $04, $0F, RoomPLM_Pit_0_1)
     %PLMPopEntry(PLMEntries_ScrollPLM, $06, $0F, RoomPLM_Pit_0_1)
@@ -265,13 +265,13 @@ PLMPopulation_Pit_1:                                                     ;8F83D0
     %PLMPopEntry(PLMEntries_MissileTank, $05, $1A, $0006)
     dw $0000
 
-PLMPopulation_ElevToBlueBrinstar_State0_1:                               ;8F83F6;
+PLMPopulation_ElevToBlueBrinstar_State0_1:
 ; Room $97B5, state $97C6: PLM
 ; Room $97B5, state $97E0: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $0D, RoomPLM_ElevToBlueBrinstar)
     dw $0000
 
-PLMPopulation_BombTorizo_State0_1:                                       ;8F83FE;
+PLMPopulation_BombTorizo_State0_1:
 ; Room $9804, state $981B: PLM
 ; Room $9804, state $9835: PLM
     %PLMPopEntry(PLMEntries_bombTorizoGreyDoor, $01, $06, $081B)
@@ -279,47 +279,47 @@ PLMPopulation_BombTorizo_State0_1:                                       ;8F83FE
     %PLMPopEntry(PLMEntries_BombTorizosCrumblingChozo, $0D, $0B, $0000)
     dw $0000
 
-PLMPopulation_BombTorizo_State2:                                         ;8F8412;
+PLMPopulation_BombTorizo_State2:
 ; Room $9804, state $984F: PLM
     %PLMPopEntry(PLMEntries_SetsMetroidsClearedStatesWhenRequired, $08, $08, $000E)
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $181C)
     dw $0000
 
-PLMPopulation_Flyway_State0_1:                                           ;8F8420;
+PLMPopulation_Flyway_State0_1:
 ; Room $9879, state $9890: PLM
 ; Room $9879, state $98AA: PLM
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $2E, $06, $001D)
     dw $0000
 
-PLMPopulation_Flyway_State2:                                             ;8F8428;
+PLMPopulation_Flyway_State2:
 ; Room $9879, state $98C4: PLM
     %PLMPopEntry(PLMEntries_SetsMetroidsClearedStatesWhenRequired, $08, $08, $0010)
     dw $0000
 
 PLMPopulation_PreMapFlyway:
 ; Room $98E2, state $98EF: PLM
-    dw $0000                                                             ;8F8430;
+    dw $0000
 
-PLMPopulation_Terminator:                                                ;8F8432;
+PLMPopulation_Terminator:
 ; Room $990D, state $991A: PLM
     %PLMPopEntry(PLMEntries_EnergyTank, $07, $2A, $0008)
     dw $0000
 
-PLMPopulation_GreenBrinstarElev:                                         ;8F843A;
+PLMPopulation_GreenBrinstarElev:
 ; Room $9938, state $9945: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $0D, RoomPLM_GreenBrinstarElev_0)
     dw $0000
 
 PLMPopulation_LowerMushrooms:
 ; Room $9969, state $9976: PLM
-    dw $0000                                                             ;8F8442;
+    dw $0000
 
-PLMPopulation_CrateriaMap:                                               ;8F8444;
+PLMPopulation_CrateriaMap:
 ; Room $9994, state $99A1: PLM
     %PLMPopEntry(PLMEntries_mapStation, $0B, $0A, $8000)
     dw $0000
 
-PLMPopulation_GreenPiratesShaft:                                         ;8F844C;
+PLMPopulation_GreenPiratesShaft:
 ; Room $99BD, state $99CA: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $43, RoomPLM_GreenPiratesShaft_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $08, $43, $8000)
@@ -330,29 +330,29 @@ PLMPopulation_GreenPiratesShaft:                                         ;8F844C
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $0E, $66, $001E)
     dw $0000
 
-PLMPopulation_CrateriaSuper:                                             ;8F8478;
+PLMPopulation_CrateriaSuper:
 ; Room $99F9, state $9A06: PLM
     %PLMPopEntry(PLMEntries_SuperMissileTank, $3B, $09, $000B)
     dw $0000
 
 PLMPopulation_FinalMissileBombway_State0:
 ; Room $9A44, state $9A56: PLM
-    dw $0000                                                             ;8F8480;
+    dw $0000
 
 PLMPopulation_FinalMissileBombway_State1:
 ; Room $9A44, state $9A70: PLM
-    dw $0000                                                             ;8F8482;
+    dw $0000
 
 PLMPopulation_FinalMissile_State0:
 ; Room $9A90, state $9AA2: PLM
-    dw $0000                                                             ;8F8484;
+    dw $0000
 
-PLMPopulation_FinalMissile_State1:                                       ;8F8486;
+PLMPopulation_FinalMissile_State1:
 ; Room $9A90, state $9ABC: PLM
     %PLMPopEntry(PLMEntries_MissileTank, $04, $07, $000C)
     dw $0000
 
-PLMPopulation_GreenBrinstarMainShaft:                                    ;8F848E;
+PLMPopulation_GreenBrinstarMainShaft:
 ; Room $9AD9, state $9AE6: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $71, RoomPLM_GreenBrinstarMainShaft_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $10, $A8, RoomPLM_GreenBrinstarMainShaft_1_2)
@@ -368,19 +368,19 @@ PLMPopulation_GreenBrinstarMainShaft:                                    ;8F848E
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $0E, $76, $9024)
     dw $0000
 
-PLMPopulation_SporeSpawnSuper:                                           ;8F84D8;
+PLMPopulation_SporeSpawnSuper:
 ; Room $9B5B, state $9B68: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $17, $0B, RoomPLM_SporeSpawnSuper_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $18, $0B, $8000)
     %PLMPopEntry(PLMEntries_SuperMissileTankChozoOrb, $1A, $87, $000E)
     dw $0000
 
-PLMPopulation_BrinstarPreMap:                                            ;8F84EC;
+PLMPopulation_BrinstarPreMap:
 ; Room $9B9D, state $9BAA: PLM
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $2E, $06, $0C25)
     dw $0000
 
-PLMPopulation_EarlySupers:                                               ;8F84F4;
+PLMPopulation_EarlySupers:
 ; Room $9BC8, state $9BD5: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $29, $0E, RoomPLM_EarlySupers_0_4)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $2A, $0E, $8000)
@@ -392,7 +392,7 @@ PLMPopulation_EarlySupers:                                               ;8F84F4
     %PLMPopEntry(PLMEntries_SuperMissileTank, $04, $06, $0010)
     dw $0000
 
-PLMPopulation_BrinstarReserveTank:                                       ;8F8526;
+PLMPopulation_BrinstarReserveTank:
 ; Room $9C07, state $9C14: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $0E, $0B, RoomPLM_BrinstarReserveTank_0)
     %PLMPopEntry(PLMEntries_ReserveTankChozoOrb, $0B, $07, $0011)
@@ -400,22 +400,22 @@ PLMPopulation_BrinstarReserveTank:                                       ;8F8526
     %PLMPopEntry(PLMEntries_MissileTank, $19, $07, $0013)
     dw $0000
 
-PLMPopulation_GreenBrinstarMap:                                          ;8F8540;
+PLMPopulation_GreenBrinstarMap:
 ; Room $9C35, state $9C42: PLM
     %PLMPopEntry(PLMEntries_mapStation, $05, $0A, $8000)
     dw $0000
 
-PLMPopulation_GreenBrinstarFirefleas:                                    ;8F8548;
+PLMPopulation_GreenBrinstarFirefleas:
 ; Room $9C5E, state $9C6B: PLM
     %PLMPopEntry(PLMEntries_greenDoorFacingRight, $01, $26, $0027)
     dw $0000
 
-PLMPopulation_GreenBrinstarMissileRefill:                                ;8F8550;
+PLMPopulation_GreenBrinstarMissileRefill:
 ; Room $9C89, state $9C96: PLM
     %PLMPopEntry(PLMEntries_missileStation, $04, $0A, $0014)
     dw $0000
 
-PLMPopulation_Dachora:                                                   ;8F8558;
+PLMPopulation_Dachora:
 ; Room $9CB3, state $9CC0: PLM
     %PLMPopEntry(PLMEntries_downwardsExtension, $45, $0E, $8000)
     %PLMPopEntry(PLMEntries_leftwardsExtension, $45, $0D, $8000)
@@ -440,9 +440,9 @@ PLMPopulation_Dachora:                                                   ;8F8558
     %PLMPopEntry(PLMEntries_upwardsExtension, $44, $09, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $44, $0A, $8000)
     %PLMPopEntry(PLMEntries_ScrollPLM, $44, $0B, RoomPLM_Dachora_A_16)
-    dw $0000                                                             ;8F85E2;
+    dw $0000
 
-PLMPopulation_BigPink:                                                   ;8F8550;
+PLMPopulation_BigPink:
 ; Room $9D19, state $9D26: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $2E, $6B, RoomPLM_BigPink_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $20, $7A, RoomPLM_BigPink_1)
@@ -459,19 +459,19 @@ PLMPopulation_BigPink:                                                   ;8F8550
     %PLMPopEntry(PLMEntries_redDoorFacingRight, $01, $96, $002B)
     dw $0000
 
-PLMPopulation_SporeSpawnKihunters:                                       ;8F8634;
+PLMPopulation_SporeSpawnKihunters:
 ; Room $9D9C, state $9DA9: PLM
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $0C2C)
     %PLMPopEntry(PLMEntries_greyDoorFacingDown, $36, $03, $0C2D)
     dw $0000
 
-PLMPopulation_SporeSpawn_State0_1:                                       ;8F8642;
+PLMPopulation_SporeSpawn_State0_1:
 ; Room $9DC7, state $9DD9: PLM
 ; Room $9DC7, state $9DF3: PLM
     %PLMPopEntry(PLMEntries_greenDoorFacingUp, $06, $2E, $002E)
     dw $0000
 
-PLMPopulation_PinkBrinstarPowerBombs:                                    ;8F864A;
+PLMPopulation_PinkBrinstarPowerBombs:
 ; Room $9E11, state $9E1E: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $08, $0E, RoomPLM_PinkBrinstarPowerBombs_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $08, $0B, RoomPLM_PinkBrinstarPowerBombs_1)
@@ -479,7 +479,7 @@ PLMPopulation_PinkBrinstarPowerBombs:                                    ;8F864A
     %PLMPopEntry(PLMEntries_PowerBombTank, $06, $17, $0018)
     dw $0000
 
-PLMPopulation_GreenHillZone:                                             ;8F8664;
+PLMPopulation_GreenHillZone:
 ; Room $9E52, state $9E5F: PLM
     %PLMPopEntry(PLMEntries_downwardsClosedGate, $64, $37, $8000)
     %PLMPopEntry(PLMEntries_downwardsGateShotblock, $64, $37, $0000)
@@ -487,7 +487,7 @@ PLMPopulation_GreenHillZone:                                             ;8F8664
     %PLMPopEntry(PLMEntries_MissileTank, $3D, $18, $0019)
     dw $0000
 
-PLMPopulation_MorphBall_State0:                                          ;8F867E;
+PLMPopulation_MorphBall_State0:
 ; Room $9E9F, state $9EB1: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $1F, $2B, RoomPLM_MorphBall_0)
     %PLMPopEntry(PLMEntries_upwardsExtension, $08, $23, $8000)
@@ -508,7 +508,7 @@ PLMPopulation_MorphBall_State0:                                          ;8F867E
     %PLMPopEntry(PLMEntries_MorphBall, $45, $29, $001A)
     dw $0000
 
-PLMPopulation_MorphBall_State1:                                          ;8F86E6;
+PLMPopulation_MorphBall_State1:
 ; Room $9E9F, state $9ECB: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $1F, $2B, RoomPLM_MorphBall_0)
     %PLMPopEntry(PLMEntries_upwardsExtension, $08, $23, $8000)
@@ -530,7 +530,7 @@ PLMPopulation_MorphBall_State1:                                          ;8F86E6
     %PLMPopEntry(PLMEntries_PowerBombTank, $28, $2A, $001B)
     dw $0000
 
-PLMPopulation_ConstructionZone_State0_1:                                 ;8F8754;
+PLMPopulation_ConstructionZone_State0_1:
 ; Room $9F11, state $9F23: PLM
 ; Room $9F11, state $9F3D: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $04, $0B, RoomPLM_ConstructionZone_0)
@@ -544,7 +544,7 @@ PLMPopulation_ConstructionZone_State0_1:                                 ;8F8754
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $0E, $06, $0032)
     dw $0000
 
-PLMPopulation_BlueBrinstarETank_State0_1:                                ;8F878C;
+PLMPopulation_BlueBrinstarETank_State0_1:
 ; Room $9F64, state $9F76: PLM
 ; Room $9F64, state $9F90: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $27, $0B, RoomPLM_BlueBrinstarETank_0_1)
@@ -553,16 +553,16 @@ PLMPopulation_BlueBrinstarETank_State0_1:                                ;8F878C
     %PLMPopEntry(PLMEntries_EnergyTankShotBlock, $1C, $22, $001D)
     dw $0000
 
-PLMPopulation_NoobBridge:                                                ;8F87A6;
+PLMPopulation_NoobBridge:
 ; Room $9FBA, state $9FC7: PLM
     %PLMPopEntry(PLMEntries_greenDoorFacingLeft, $5E, $06, $0033)
     dw $0000
 
 PLMPopulation_GreenBrinstarBeetoms:
 ; Room $9FE5, state $9FF2: PLM
-    dw $0000                                                             ;8F87AE;
+    dw $0000
 
-PLMPopulation_EtecoonETank:                                              ;8F87B0;
+PLMPopulation_EtecoonETank:
 ; Room $A011, state $A01E: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $0B, RoomPLM_EtecoonETank_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $08, $0B, $8000)
@@ -571,22 +571,22 @@ PLMPopulation_EtecoonETank:                                              ;8F87B0
     %PLMPopEntry(PLMEntries_greenDoorFacingRight, $01, $06, $0034)
     dw $0000
 
-PLMPopulation_EtecoonSuper:                                              ;8F87D0;
+PLMPopulation_EtecoonSuper:
 ; Room $A051, state $A05E: PLM
     %PLMPopEntry(PLMEntries_SuperMissileTank, $07, $09, $001F)
     dw $0000
 
-PLMPopulation_DachoraEnergyRefill:                                       ;8F87D8;
+PLMPopulation_DachoraEnergyRefill:
 ; Room $A07B, state $A088: PLM
     %PLMPopEntry(PLMEntries_energyStation, $04, $0A, $0020)
     dw $0000
 
-PLMPopulation_SporeSpawnFarming:                                         ;8F87E0;
+PLMPopulation_SporeSpawnFarming:
 ; Room $A0A4, state $A0B1: PLM
     %PLMPopEntry(PLMEntries_greenDoorFacingRight, $01, $06, $0035)
     dw $0000
 
-PLMPopulation_WaterwayETank:                                             ;8F87E8;
+PLMPopulation_WaterwayETank:
 ; Room $A0D2, state $A0DF: PLM
     %PLMPopEntry(PLMEntries_upwardsExtension, $0F, $09, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $0F, $0A, $8000)
@@ -594,12 +594,12 @@ PLMPopulation_WaterwayETank:                                             ;8F87E8
     %PLMPopEntry(PLMEntries_EnergyTank, $04, $09, $0021)
     dw $0000
 
-PLMPopulation_FirstMissile:                                              ;8F8802;
+PLMPopulation_FirstMissile:
 ; Room $A107, state $A114: PLM
     %PLMPopEntry(PLMEntries_MissileTankChozoOrb, $04, $07, $0022)
     dw $0000
 
-PLMPopulation_PinkBrinstarHoppers:                                       ;8F880A;
+PLMPopulation_PinkBrinstarHoppers:
 ; Room $A130, state $A13D: PLM
     %PLMPopEntry(PLMEntries_downwardsClosedGate, $11, $04, $8000)
     %PLMPopEntry(PLMEntries_downwardsGateShotblock, $11, $04, $0002)
@@ -607,37 +607,37 @@ PLMPopulation_PinkBrinstarHoppers:                                       ;8F880A
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $1E, $16, $0C37)
     dw $0000
 
-PLMPopulation_HopperETank:                                               ;8F8824;
+PLMPopulation_HopperETank:
 ; Room $A15B, state $A168: PLM
     %PLMPopEntry(PLMEntries_EnergyTank, $0B, $09, $0023)
     dw $0000
 
-PLMPopulation_BigPinkSaveRoom:                                           ;8F882C;
+PLMPopulation_BigPinkSaveRoom:
 ; Room $A184, state $A191: PLM
     %PLMPopEntry(PLMEntries_saveStation, $05, $0B, $0000)
     dw $0000
 
 PLMPopulation_BlueBrinstarBoulders:
-    dw $0000                                                             ;8F8834;
+    dw $0000
 ; Room $A1AD, state $A1BA: PLM
 
-PLMPopulation_BillyMays:                                                 ;8F8836;
+PLMPopulation_BillyMays:
 ; Room $A1D8, state $A1E5: PLM
     %PLMPopEntry(PLMEntries_MissileTank, $07, $09, $0024)
     %PLMPopEntry(PLMEntries_MissileTankShotBlock, $05, $0C, $0025)
     dw $0000
 
-PLMPopulation_GreenBrinstarSave:                                         ;8F8844;
+PLMPopulation_GreenBrinstarSave:
 ; Room $A201, state $A20E: PLM
     %PLMPopEntry(PLMEntries_saveStation, $05, $0B, $0001)
     dw $0000
 
-PLMPopulation_EtecoonSave:                                               ;8F884C;
+PLMPopulation_EtecoonSave:
 ; Room $A22A, state $A237: PLM
     %PLMPopEntry(PLMEntries_saveStation, $05, $0B, $0002)
     dw $0000
 
-PLMPopulation_RedTower:                                                  ;8F8854;
+PLMPopulation_RedTower:
 ; Room $A253, state $A260: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $09, $6A, RoomPLM_RedTower_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $0A, $6A, $8000)
@@ -645,21 +645,21 @@ PLMPopulation_RedTower:                                                  ;8F8854
     %PLMPopEntry(PLMEntries_yellowDoorFacingRight, $01, $66, $0039)
     dw $0000
 
-PLMPopulation_RedBrinstarFirefleas:                                      ;8F886E;
+PLMPopulation_RedBrinstarFirefleas:
 ; Room $A293, state $A2A0: PLM
     %PLMPopEntry(PLMEntries_redDoorFacingRight, $01, $06, $003A)
     dw $0000
 
-PLMPopulation_XrayScope:                                                 ;8F8876;
+PLMPopulation_XrayScope:
 ; Room $A2CE, state $A2DB: PLM
     %PLMPopEntry(PLMEntries_XrayScopeChozoOrb, $05, $07, $0026)
     dw $0000
 
 PLMPopulation_Hellway:
 ; Room $A2F7, state $A304: PLM
-    dw $0000                                                             ;8F887E;
+    dw $0000
 
-PLMPopulation_Caterpillar:                                               ;8F8880;
+PLMPopulation_Caterpillar:
 ; Room $A322, state $A32F: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $05, $5E, RoomPLM_Caterpillar_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $06, $5E, $8000)
@@ -673,7 +673,7 @@ PLMPopulation_Caterpillar:                                               ;8F8880
     %PLMPopEntry(PLMEntries_greenDoorFacingRight, $01, $76, $003D)
     dw $0000
 
-PLMPopulation_BetaPowerBomb:                                             ;8F88BE;
+PLMPopulation_BetaPowerBomb:
 ; Room $A37C, state $A389: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $0E, RoomPLM_BetaPowerBomb_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $08, $0E, $8000)
@@ -681,7 +681,7 @@ PLMPopulation_BetaPowerBomb:                                             ;8F88BE
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $1E, $06, $0C3E)
     dw $0000
 
-PLMPopulation_AlphaPowerBomb:                                            ;8F88D8;
+PLMPopulation_AlphaPowerBomb:
 ; Room $A3AE, state $A3BB: PLM
     %PLMPopEntry(PLMEntries_upwardsExtension, $0F, $04, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $0F, $05, $8000)
@@ -698,9 +698,9 @@ PLMPopulation_AlphaPowerBomb:                                            ;8F88D8
 
 PLMPopulation_SkreeBoost:
 ; Room $A3DD, state $A3EA: PLM
-    dw $0000                                                             ;8F891C;
+    dw $0000
 
-PLMPopulation_BelowSpazer:                                               ;8F891E;
+PLMPopulation_BelowSpazer:
 ; Room $A408, state $A415: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $10, $11, RoomPLM_BelowSpazer_0_8_A)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $11, $11, $8000)
@@ -717,12 +717,12 @@ PLMPopulation_BelowSpazer:                                               ;8F891E
     %PLMPopEntry(PLMEntries_greenDoorFacingLeft, $1E, $06, $003F)
     dw $0000
 
-PLMPopulation_Spazer:                                                    ;8F896E;
+PLMPopulation_Spazer:
 ; Room $A447, state $A454: PLM
     %PLMPopEntry(PLMEntries_SpazerChozoOrb, $0B, $09, $002A)
     dw $0000
 
-PLMPopulation_WarehouseZeela:                                            ;8F8976;
+PLMPopulation_WarehouseZeela:
 ; Room $A471, state $A47E: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $02, $0B, RoomPLM_WarehouseZeela_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $02, $19, RoomPLM_WarehouseZeela_1_3)
@@ -731,13 +731,13 @@ PLMPopulation_WarehouseZeela:                                            ;8F8976
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $16, $0040)
     dw $0000
 
-PLMPopulation_WarehouseETank:                                            ;8F8996;
+PLMPopulation_WarehouseETank:
 ; Room $A4B1, state $A4BE: PLM
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $0E, $06, $0C41)
     %PLMPopEntry(PLMEntries_EnergyTankShotBlock, $05, $04, $002B)
     dw $0000
 
-PLMPopulation_WarehouseKihunter:                                         ;8F89A4;
+PLMPopulation_WarehouseKihunter:
 ; Room $A4DA, state $A4E7: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $17, $0B, RoomPLM_WarehouseKihunter_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $17, $0E, RoomPLM_WarehouseKihunter_1)
@@ -754,14 +754,14 @@ PLMPopulation_WarehouseKihunter:                                         ;8F89A4
     %PLMPopEntry(PLMEntries_MissileTankShotBlock, $2E, $08, $002C)
     dw $0000
 
-PLMPopulation_MiniKraid_State0_1:                                        ;8F89F4;
+PLMPopulation_MiniKraid_State0_1:
 ; Room $A521, state $A533: PLM
 ; Room $A521, state $A54D: PLM
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $5E, $06, $0C42)
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $0C43)
     dw $0000
 
-PLMPopulation_KraidEyeDoor:                                              ;8F8A02;
+PLMPopulation_KraidEyeDoor:
 ; Room $A56B, state $A578: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $03, $12, RoomPLM_KraidEyeDoor_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $04, $12, $8000)
@@ -772,7 +772,7 @@ PLMPopulation_KraidEyeDoor:                                              ;8F8A02
     %PLMPopEntry(PLMEntries_EyeDoorEyeFacingLeft, $1E, $17, $0045)
     dw $0000
 
-PLMPopulation_Kraid_State0_1:                                            ;8F8A2E;
+PLMPopulation_Kraid_State0_1:
 ; Room $A59F, state $A5B1: PLM
 ; Room $A59F, state $A5CB: PLM
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $1E, $16, $0046)
@@ -781,25 +781,25 @@ PLMPopulation_Kraid_State0_1:                                            ;8F8A2E
 
 PLMPopulation_StatuesHallway:
 ; Room $A5ED, state $A5FA: PLM
-    dw $0000                                                             ;8F8A3C;
+    dw $0000
 
-PLMPopulation_RedTowerRefill:                                            ;8F8A3E;
+PLMPopulation_RedTowerRefill:
 ; Room $A618, state $A625: PLM
     %PLMPopEntry(PLMEntries_energyStation, $04, $0A, $002D)
     dw $0000
 
-PLMPopulation_KraidRefill:                                               ;8F8A46;
+PLMPopulation_KraidRefill:
 ; Room $A641, state $A64E: PLM
     %PLMPopEntry(PLMEntries_missileStation, $09, $0A, $002E)
     %PLMPopEntry(PLMEntries_energyStation, $07, $0A, $002F)
     dw $0000
 
-PLMPopulation_Statues:                                                   ;8F8A54;
+PLMPopulation_Statues:
 ; Room $A66A, state $A677: PLM
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $9448)
     dw $0000
 
-PLMPopulation_WarehouseEntrance:                                         ;8F8A5C;
+PLMPopulation_WarehouseEntrance:
 ; Room $A6A1, state $A6AE: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $0C, RoomPLM_WarehouseEntrance_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $08, $0C, $8000)
@@ -821,37 +821,37 @@ PLMPopulation_WarehouseEntrance:                                         ;8F8A5C
     %PLMPopEntry(PLMEntries_upwardsExtension, $14, $04, $8000)
     dw $0000
 
-PLMPopulation_VariaSuit:                                                 ;8F8ACA;
+PLMPopulation_VariaSuit:
 ; Room $A6E2, state $A6EF: PLM
     %PLMPopEntry(PLMEntries_VariaSuitChozoOrb, $07, $09, $0030)
     dw $0000
 
-PLMPopulation_WarehouseSave:                                             ;8F8AD2;
+PLMPopulation_WarehouseSave:
 ; Room $A70B, state $A718: PLM
     %PLMPopEntry(PLMEntries_saveStation, $07, $0B, $0003)
     dw $0000
 
-PLMPopulation_RedBrinstarSave:                                           ;8F8ADA;
+PLMPopulation_RedBrinstarSave:
 ; Room $A734, state $A741: PLM
     %PLMPopEntry(PLMEntries_saveStation, $07, $0B, $0004)
     dw $0000
 
 PLMPopulation_IceBeamAcid:
 ; Room $A75D, state $A76A: PLM
-    dw $0000                                                             ;8F8AE2;
+    dw $0000
 
-PLMPopulation_Cathedral:                                                 ;8F8AE4;
+PLMPopulation_Cathedral:
 ; Room $A788, state $A795: PLM
     %PLMPopEntry(PLMEntries_MissileTankShotBlock, $22, $1C, $0031)
     %PLMPopEntry(PLMEntries_greenDoorFacingLeft, $2E, $16, $0049)
     dw $0000
 
-PLMPopulation_CathedralEntrance:                                         ;8F8AF2;
+PLMPopulation_CathedralEntrance:
 ; Room $A7B3, state $A7C0: PLM
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $2E, $06, $004A)
     dw $0000
 
-PLMPopulation_BusinessCenter:                                            ;8F8AFA;
+PLMPopulation_BusinessCenter:
 ; Room $A7DE, state $A7EB: PLM
     %PLMPopEntry(PLMEntries_elevatorPlatform, $06, $2C, $8000)
     %PLMPopEntry(PLMEntries_greenDoorFacingRight, $01, $36, $004B)
@@ -859,7 +859,7 @@ PLMPopulation_BusinessCenter:                                            ;8F8AFA
     %PLMPopEntry(PLMEntries_redDoorFacingRight, $01, $56, $004D)
     dw $0000
 
-PLMPopulation_IceBeamGate:                                               ;8F8B14;
+PLMPopulation_IceBeamGate:
 ; Room $A815, state $A822: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $37, $2D, RoomPLM_IceBeamGate_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $38, $2D, $8000)
@@ -867,14 +867,14 @@ PLMPopulation_IceBeamGate:                                               ;8F8B14
 
 PLMPopulation_IceBeamTutorial:
 ; Room $A865, state $A872: PLM
-    dw $0000                                                             ;8F8B22;
+    dw $0000
 
-PLMPopulation_IceBeam:                                                   ;8F8B24;
+PLMPopulation_IceBeam:
 ; Room $A890, state $A89D: PLM
     %PLMPopEntry(PLMEntries_IceBeamChozoOrb, $0C, $07, $0032)
     dw $0000
 
-PLMPopulation_IceBeamSnake:                                              ;8F8B2C;
+PLMPopulation_IceBeamSnake:
 ; Room $A8B9, state $A8C6: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $0F, $17, RoomPLM_IceBeamSnake_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $0D, $17, RoomPLM_IceBeamSnake_1)
@@ -882,12 +882,12 @@ PLMPopulation_IceBeamSnake:                                              ;8F8B2C
     %PLMPopEntry(PLMEntries_ScrollPLM, $13, $17, RoomPLM_IceBeamSnake_3)
     dw $0000
 
-PLMPopulation_CrumbleShaft:                                              ;8F8B46;
+PLMPopulation_CrumbleShaft:
 ; Room $A8F8, state $A905: PLM
     %PLMPopEntry(PLMEntries_MissileTankShotBlock, $01, $08, $0033)
     dw $0000
 
-PLMPopulation_CrocomireSpeedway:                                         ;8F8B4E;
+PLMPopulation_CrocomireSpeedway:
 ; Room $A923, state $A930: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $9E, $28, RoomPLM_CrocomireSpeedway_0)
     %PLMPopEntry(PLMEntries_upwardsExtension, $9E, $27, $8000)
@@ -904,26 +904,26 @@ PLMPopulation_CrocomireSpeedway:                                         ;8F8B4E
     %PLMPopEntry(PLMEntries_greenDoorFacingUp, $C6, $2D, $004E)
     dw $0000
 
-PLMPopulation_Crocomire_State0_1:                                        ;8F8B9E;
+PLMPopulation_Crocomire_State0_1:
 ; Room $A98D, state $A99F: PLM
 ; Room $A98D, state $A9B9: PLM
     %PLMPopEntry(PLMEntries_greyDoorFacingDown, $36, $02, $044F)
     %PLMPopEntry(PLMEntries_EnergyTank, $7D, $06, $0034)
     dw $0000
 
-PLMPopulation_HiJumpBoots:                                               ;8F8BAC;
+PLMPopulation_HiJumpBoots:
 ; Room $A9E5, state $A9F2: PLM
     %PLMPopEntry(PLMEntries_HiJumpBootsChozoOrb, $03, $0A, $0035)
     dw $0000
 
-PLMPopulation_CrocomireEscape:                                           ;8F8BB4;
+PLMPopulation_CrocomireEscape:
 ; Room $AA0E, state $AA1B: PLM
     %PLMPopEntry(PLMEntries_downwardsClosedGate, $06, $05, $8000)
     %PLMPopEntry(PLMEntries_downwardsGateShotblock, $06, $05, $000A)
     %PLMPopEntry(PLMEntries_MissileTank, $0D, $09, $0036)
     dw $0000
 
-PLMPopulation_HiJumpETank:                                               ;8F8BC8;
+PLMPopulation_HiJumpETank:
 ; Room $AA41, state $AA4E: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $10, $0C, RoomPLM_HiJumpETank_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $0F, $05, RoomPLM_HiJumpETank_1)
@@ -934,87 +934,87 @@ PLMPopulation_HiJumpETank:                                               ;8F8BC8
     %PLMPopEntry(PLMEntries_EnergyTank, $17, $08, $0038)
     dw $0000
 
-PLMPopulation_PostCrocFarming:                                           ;8F8BF4;
+PLMPopulation_PostCrocFarming:
 ; Room $AA82, state $AA8F: PLM
     %PLMPopEntry(PLMEntries_redDoorFacingRight, $01, $06, $0051)
     dw $0000
 
-PLMPopulation_PostCrocSave:                                              ;8F8BFC;
+PLMPopulation_PostCrocSave:
 ; Room $AAB5, state $AAC2: PLM
     %PLMPopEntry(PLMEntries_saveStation, $07, $0B, $0000)
     dw $0000
 
-PLMPopulation_PostCrocPowerBombs:                                        ;8F8C04;
+PLMPopulation_PostCrocPowerBombs:
 ; Room $AADE, state $AAEB: PLM
     %PLMPopEntry(PLMEntries_PowerBombTank, $07, $08, $0039)
     dw $0000
 
-PLMPopulation_PostCrocShaft:                                             ;8F8C0C;
+PLMPopulation_PostCrocShaft:
 ; Room $AB07, state $AB14: PLM
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $0E, $36, $0052)
     dw $0000
 
-PLMPopulation_PostCrocMissile:                                           ;8F8C14;
+PLMPopulation_PostCrocMissile:
 ; Room $AB3B, state $AB48: PLM
     %PLMPopEntry(PLMEntries_MissileTank, $3C, $09, $003A)
     dw $0000
 
-PLMPopulation_GrappleTutorial3:                                          ;8F8C1C;
+PLMPopulation_GrappleTutorial3:
 ; Room $AB64, state $AB71: PLM
     %PLMPopEntry(PLMEntries_downwardsClosedGate, $2A, $05, $8000)
     %PLMPopEntry(PLMEntries_downwardsGateShotblock, $2A, $05, $0008)
     dw $0000
 
-PLMPopulation_PostCrocJump:                                              ;8F8C2A;
+PLMPopulation_PostCrocJump:
 ; Room $AB8F, state $AB9C: PLM
     %PLMPopEntry(PLMEntries_MissileTank, $43, $09, $003B)
     dw $0000
 
 PLMPopulation_GrappleTutorial2:
 ; Room $ABD2, state $ABDF: PLM
-    dw $0000                                                             ;8F8C32;
+    dw $0000
 
 PLMPopulation_GrappleTutorial1:
 ; Room $AC00, state $AC0D: PLM
-    dw $0000                                                             ;8F8C34;
+    dw $0000
 
-PLMPopulation_GrappleBeam:                                               ;8F8C36;
+PLMPopulation_GrappleBeam:
 ; Room $AC2B, state $AC38: PLM
     %PLMPopEntry(PLMEntries_GrappleBeamChozoOrb, $04, $27, $003C)
     dw $0000
 
-PLMPopulation_NorfairReserveTank:                                        ;8F8C3E;
+PLMPopulation_NorfairReserveTank:
 ; Room $AC5A, state $AC67: PLM
     %PLMPopEntry(PLMEntries_ReserveTankChozoOrb, $02, $07, $003D)
     %PLMPopEntry(PLMEntries_MissileTankShotBlock, $07, $0B, $003E)
     dw $0000
 
-PLMPopulation_GreenBubblesMissiles:                                      ;8F8C4C;
+PLMPopulation_GreenBubblesMissiles:
 ; Room $AC83, state $AC90: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $10, $05, RoomPLM_GreenBubblesMissiles_0)
     %PLMPopEntry(PLMEntries_MissileTank, $14, $0A, $003F)
     dw $0000
 
-PLMPopulation_BubbleMountain:                                            ;8F8C5A;
+PLMPopulation_BubbleMountain:
 ; Room $ACB3, state $ACC0: PLM
     %PLMPopEntry(PLMEntries_greenDoorFacingRight, $01, $06, $0053)
     %PLMPopEntry(PLMEntries_greenDoorFacingLeft, $1E, $06, $0054)
     %PLMPopEntry(PLMEntries_MissileTank, $14, $3C, $0040)
     dw $0000
 
-PLMPopulation_SpeedBoosterHall:                                          ;8F8C6E;
+PLMPopulation_SpeedBoosterHall:
 ; Room $ACF0, state $ACFD: PLM
     %PLMPopEntry(PLMEntries_SpeedBoosterEscape, $00, $00, $8000)
     %PLMPopEntry(PLMEntries_MissileTankShotBlock, $BC, $13, $0041)
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $BE, $16, $0055)
     dw $0000
 
-PLMPopulation_SpeedBooster:                                              ;8F8C82;
+PLMPopulation_SpeedBooster:
 ; Room $AD1B, state $AD28: PLM
     %PLMPopEntry(PLMEntries_SpeedBoosterChozoOrb, $0B, $06, $0042)
     dw $0000
 
-PLMPopulation_SingleChamber:                                             ;8F8C8A;
+PLMPopulation_SingleChamber:
 ; Room $AD5E, state $AD6B: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $0D, $08, RoomPLM_SingleChamber_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $10, $08, RoomPLM_SingleChamber_1_4)
@@ -1024,7 +1024,7 @@ PLMPopulation_SingleChamber:                                             ;8F8C8A
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $0E, $16, $0056)
     dw $0000
 
-PLMPopulation_DoubleChamber:                                             ;8F8CB0;
+PLMPopulation_DoubleChamber:
 ; Room $ADAD, state $ADBA: PLM
     %PLMPopEntry(PLMEntries_downwardsClosedGate, $1A, $05, $8000)
     %PLMPopEntry(PLMEntries_downwardsGateShotblock, $1A, $05, $0000)
@@ -1032,16 +1032,16 @@ PLMPopulation_DoubleChamber:                                             ;8F8CB0
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $3E, $06, $0057)
     dw $0000
 
-PLMPopulation_WaveBeam:                                                  ;8F8CCA;
+PLMPopulation_WaveBeam:
 ; Room $ADDE, state $ADEB: PLM
     %PLMPopEntry(PLMEntries_WaveBeamChozoOrb, $0B, $06, $0044)
     dw $0000
 
 PLMPopulation_SpikyPlatformsTunnel:
 ; Room $AE07, state $AE14: PLM
-    dw $0000                                                             ;8F8CD2;
+    dw $0000
 
-PLMPopulation_Volcano:                                                   ;8F8CD4;
+PLMPopulation_Volcano:
 ; Room $AE32, state $AE3F: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $20, $29, RoomPLM_Volcano_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $1F, $29, RoomPLM_Volcano_1)
@@ -1057,7 +1057,7 @@ PLMPopulation_Volcano:                                                   ;8F8CD4
     %PLMPopEntry(PLMEntries_ScrollPLM, $26, $29, RoomPLM_Volcano_B)
     dw $0000
 
-PLMPopulation_KronicBoost:                                               ;8F8D1E;
+PLMPopulation_KronicBoost:
 ; Room $AE74, state $AE81: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $0F, $17, RoomPLM_KronicBoost_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $11, $17, RoomPLM_KronicBoost_1)
@@ -1072,9 +1072,9 @@ PLMPopulation_KronicBoost:                                               ;8F8D1E
 
 PLMPopulation_MagdolliteTunnel:
 ; Room $AEB4, state $AEC1: PLM
-    dw $0000                                                             ;8F8D56;
+    dw $0000
 
-PLMPopulation_PurpleShaft:                                               ;8F8D58;
+PLMPopulation_PurpleShaft:
 ; Room $AEDF, state $AEEC: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $02, $0B, RoomPLM_PurpleShaft_0_3)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $03, $0B, $8000)
@@ -1086,14 +1086,14 @@ PLMPopulation_PurpleShaft:                                               ;8F8D58
 
 PLMPopulation_LavaDive:
 ; Room $AF14, state $AF21: PLM
-    dw $0000                                                             ;8F8D7E;
+    dw $0000
 
-PLMPopulation_LowerNorfairElev:                                          ;8F8D80;
+PLMPopulation_LowerNorfairElev:
 ; Room $AF3F, state $AF4C: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $08, $0B, RoomPLM_LowerNorfairElev_0)
     dw $0000
 
-PLMPopulation_UpperNorfairFarming:                                       ;8F8D88;
+PLMPopulation_UpperNorfairFarming:
 ; Room $AF72, state $AF7F: PLM
     %PLMPopEntry(PLMEntries_downwardsClosedGate, $06, $15, $8000)
     %PLMPopEntry(PLMEntries_downwardsGateShotblock, $06, $15, $0000)
@@ -1101,26 +1101,26 @@ PLMPopulation_UpperNorfairFarming:                                       ;8F8D88
 
 PLMPopulation_RisingTide:
 ; Room $AFA3, state $AFB0: PLM
-    dw $0000                                                             ;8F8D96;
+    dw $0000
 
 PLMPopulation_AcidSnakesTunnel:
 ; Room $AFCE, state $AFDB: PLM
-    dw $0000                                                             ;8F8D98;
+    dw $0000
 
 PLMPopulation_SpikyAcidSnakesTunnel:
 ; Room $AFFB, state $B008: PLM
-    dw $0000                                                             ;8F8D9A;
+    dw $0000
 
-PLMPopulation_UpperNorfairRefill:                                        ;8F8D9C;
+PLMPopulation_UpperNorfairRefill:
 ; Room $B026, state $B033: PLM
     %PLMPopEntry(PLMEntries_energyStation, $07, $0A, $0045)
     dw $0000
 
 PLMPopulation_PurpleFarming:
 ; Room $B051, state $B05E: PLM
-    dw $0000                                                             ;8F8DA4;
+    dw $0000
 
-PLMPopulation_BatCave:                                                   ;8F8DA6;
+PLMPopulation_BatCave:
 ; Room $B07A, state $B087: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $09, $0C, RoomPLM_BatCave_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $0A, $0C, $8000)
@@ -1132,46 +1132,46 @@ PLMPopulation_BatCave:                                                   ;8F8DA6
     %PLMPopEntry(PLMEntries_rightwardsExtension, $09, $13, $8000)
     dw $0000
 
-PLMPopulation_NorfairMap:                                                ;8F8DD8;
+PLMPopulation_NorfairMap:
 ; Room $B0B4, state $B0C1: PLM
     %PLMPopEntry(PLMEntries_mapStation, $05, $0A, $8000)
     dw $0000
 
-PLMPopulation_BubbleMountainSave:                                        ;8F8DE0;
+PLMPopulation_BubbleMountainSave:
 ; Room $B0DD, state $B0EA: PLM
     %PLMPopEntry(PLMEntries_saveStation, $05, $0B, $0001)
     dw $0000
 
 PLMPopulation_FrogSpeedway:
 ; Room $B106, state $B113: PLM
-    dw $0000                                                             ;8F8DE8;
+    dw $0000
 
 PLMPopulation_RedPirateShaft:
 ; Room $B139, state $B146: PLM
-    dw $0000                                                             ;8F8DEA;
+    dw $0000
 
-PLMPopulation_FrogSave:                                                  ;8F8DEC;
+PLMPopulation_FrogSave:
 ; Room $B167, state $B174: PLM
     %PLMPopEntry(PLMEntries_saveStation, $07, $0B, $0002)
     dw $0000
 
-PLMPopulation_CrocomireSave:                                             ;8F8DF4;
+PLMPopulation_CrocomireSave:
 ; Room $B192, state $B19F: PLM
     %PLMPopEntry(PLMEntries_saveStation, $07, $0B, $0003)
     dw $0000
 
-PLMPopulation_LNElevSave:                                                ;8F8DFC;
+PLMPopulation_LNElevSave:
 ; Room $B1BB, state $B1C8: PLM
     %PLMPopEntry(PLMEntries_saveStation, $05, $0B, $0004)
     dw $0000
 
-PLMPopulation_AcidStatue:                                                ;8F8E04;
+PLMPopulation_AcidStatue:
 ; Room $B1E5, state $B1F2: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $0C, $1E, RoomPLM_AcidStatue_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $0C, $23, RoomPLM_AcidStatue_1)
     dw $0000
 
-PLMPopulation_MainHall:                                                  ;8F8E12;
+PLMPopulation_MainHall:
 ; Room $B236, state $B243: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $47, $08, RoomPLM_MainHall_0_2)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $48, $08, $8000)
@@ -1182,7 +1182,7 @@ PLMPopulation_MainHall:                                                  ;8F8E12
     %PLMPopEntry(PLMEntries_elevatorPlatform, $46, $2A, $8000)
     dw $0000
 
-PLMPopulation_GoldenTorizo_State0_1:                                     ;8F8E3E;
+PLMPopulation_GoldenTorizo_State0_1:
 ; Room $B283, state $B295: PLM
 ; Room $B283, state $B2AF: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $04, $0C, RoomPLM_GoldenTorizo_0)
@@ -1198,32 +1198,32 @@ PLMPopulation_GoldenTorizo_State0_1:                                     ;8F8E3E
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $1E, $16, $0859)
     dw $0000
 
-PLMPopulation_FastRipper:                                                ;8F8E82;
+PLMPopulation_FastRipper:
 ; Room $B2DA, state $B2E7: PLM
     %PLMPopEntry(PLMEntries_downwardsClosedGate, $34, $05, $8000)
     %PLMPopEntry(PLMEntries_downwardsGateShotblock, $34, $05, $0008)
     dw $0000
 
-PLMPopulation_GTEnergyRefill:                                            ;8F8E90;
+PLMPopulation_GTEnergyRefill:
 ; Room $B305, state $B312: PLM
     %PLMPopEntry(PLMEntries_energyStation, $08, $0A, $0048)
     dw $0000
 
-PLMPopulation_Ridley_State0_1:                                           ;8F8E98;
+PLMPopulation_Ridley_State0_1:
 ; Room $B32E, state $B340: PLM
 ; Room $B32E, state $B35A: PLM
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $0E, $06, $005A)
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $16, $005B)
     dw $0000
 
-PLMPopulation_LNFarming:                                                 ;8F8EA6;
+PLMPopulation_LNFarming:
 ; Room $B37A, state $B387: PLM
     %PLMPopEntry(PLMEntries_EyeDoorFacingRight, $01, $06, $005C)
     %PLMPopEntry(PLMEntries_EyeDoorBottomFacingRight, $01, $09, $005C)
     %PLMPopEntry(PLMEntries_EyeDoorEyeFacingRight, $01, $07, $005C)
     dw $0000
 
-PLMPopulation_FastPillarsSetup:                                          ;8F8EBA;
+PLMPopulation_FastPillarsSetup:
 ; Room $B3A5, state $B3B2: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $21, RoomPLM_FastPillarsSetup_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $08, $21, $8000)
@@ -1234,10 +1234,10 @@ PLMPopulation_FastPillarsSetup:                                          ;8F8EBA
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMPopulation_8FB3EE:
 ; Room $B3E1, state $B3EE: PLM
-    dw $0000                                                             ;8F8ED4;
+    dw $0000
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-PLMPopulation_MickeyMouse:                                               ;8F8ED6;
+PLMPopulation_MickeyMouse:
 ; Room $B40A, state $B417: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $30, $16, RoomPLM_MickeyMouse_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $32, $16, RoomPLM_MickeyMouse_1)
@@ -1259,13 +1259,13 @@ PLMPopulation_MickeyMouse:                                               ;8F8ED6
 
 PLMPopulation_Pillar:
 ; Room $B457, state $B464: PLM
-    dw $0000                                                             ;8F8F38;
+    dw $0000
 
 PLMPopulation_Plowerhouse:
 ; Room $B482, state $B48F: PLM
-    dw $0000                                                             ;8F8F3A;
+    dw $0000
 
-PLMPopulation_WorstRoomInTheGame:                                        ;8F8F3C;
+PLMPopulation_WorstRoomInTheGame:
 ; Room $B4AD, state $B4BA: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $03, $10, RoomPLM_WorstRoomInTheGame_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $04, $10, $8000)
@@ -1281,9 +1281,9 @@ PLMPopulation_WorstRoomInTheGame:                                        ;8F8F3C
 
 PLMPopulation_Amphitheatre:
 ; Room $B4E5, state $B4F2: PLM
-    dw $0000                                                             ;8F8F7A;
+    dw $0000
 
-PLMPopulation_LNSpringBallMaze:                                          ;8F8F7C;
+PLMPopulation_LNSpringBallMaze:
 ; Room $B510, state $B51D: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $0C, $09, RoomPLM_LNSpringBallMaze_0)
     %PLMPopEntry(PLMEntries_upwardsExtension, $0C, $08, $8000)
@@ -1301,12 +1301,12 @@ PLMPopulation_LNSpringBallMaze:                                          ;8F8F7C
     %PLMPopEntry(PLMEntries_MissileTank, $2B, $07, $004A)
     dw $0000
 
-PLMPopulation_LNEscapePowerBombs:                                        ;8F8FD2;
+PLMPopulation_LNEscapePowerBombs:
 ; Room $B55A, state $B567: PLM
     %PLMPopEntry(PLMEntries_PowerBombTank, $0C, $08, $004B)
     dw $0000
 
-PLMPopulation_RedKihunterShaft:                                          ;8F8FDA;
+PLMPopulation_RedKihunterShaft:
 ; Room $B585, state $B592: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $11, $48, RoomPLM_RedKihunterShaft_0_4)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $09, $46, $8000)
@@ -1325,7 +1325,7 @@ PLMPopulation_RedKihunterShaft:                                          ;8F8FDA
     %PLMPopEntry(PLMEntries_yellowDoorFacingUp, $26, $4D, $005E)
     dw $0000
 
-PLMPopulation_Wasteland:                                                 ;8F9036;
+PLMPopulation_Wasteland:
 ; Room $B5D5, state $B5E2: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $17, $0D, RoomPLM_Wasteland_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $18, $0D, $8000)
@@ -1353,12 +1353,12 @@ PLMPopulation_Wasteland:                                                 ;8F9036
     %PLMPopEntry(PLMEntries_PowerBombTank, $07, $08, $004C)
     dw $0000
 
-PLMPopulation_MetalPirates:                                              ;8F90C8;
+PLMPopulation_MetalPirates:
 ; Room $B62B, state $B638: PLM
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $0C60)
     dw $0000
 
-PLMPopulation_ThreeMusketeers:                                           ;8F90D0;
+PLMPopulation_ThreeMusketeers:
 ; Room $B656, state $B663: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $0B, $2A, RoomPLM_ThreeMusketeers_0)
     %PLMPopEntry(PLMEntries_upwardsExtension, $0B, $29, $8000)
@@ -1371,17 +1371,17 @@ PLMPopulation_ThreeMusketeers:                                           ;8F90D0
     %PLMPopEntry(PLMEntries_MissileTank, $08, $29, $004D)
     dw $0000
 
-PLMPopulation_RidleyETank:                                               ;8F9108;
+PLMPopulation_RidleyETank:
 ; Room $B698, state $B6A5: PLM
     %PLMPopEntry(PLMEntries_EnergyTankShotBlock, $0E, $0B, $004E)
     dw $0000
 
-PLMPopulation_ScrewAttack:                                               ;8F9110;
+PLMPopulation_ScrewAttack:
 ; Room $B6C1, state $B6CE: PLM
     %PLMPopEntry(PLMEntries_ScrewAttackChozoOrb, $0B, $28, $004F)
     dw $0000
 
-PLMPopulation_LNFireflea:                                                ;8F9118;
+PLMPopulation_LNFireflea:
 ; Room $B6EE, state $B6FB: PLM
     %PLMPopEntry(PLMEntries_upwardsExtension, $1F, $36, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $1F, $37, $8000)
@@ -1404,7 +1404,7 @@ PLMPopulation_LNFireflea:                                                ;8F9118
     %PLMPopEntry(PLMEntries_EnergyTank, $2A, $51, $0050)
     dw $0000
 
-PLMPopulation_LNSave:                                                    ;8F918C;
+PLMPopulation_LNSave:
 ; Room $B741, state $B74E: PLM
     %PLMPopEntry(PLMEntries_saveStation, $07, $0B, $0005)
     dw $0000
@@ -1413,38 +1413,36 @@ PLMPopulation_LNSave:                                                    ;8F918C
 ;;; $9194: Room setup ASM - clear Crateria mainstreet escape passage if critters escaped and shake screen ;;;
 SetupASM_ClearBlocksAfterSavingAnimalsAndShakeScreen:
 ; Room $92FD, state $9348. Crateria mainstreet, Zebes timebomb set
-    JSL.L Spawn_Hardcoded_PLM                                            ;8F9194;
-    db $3D,$0B                                                           ;8F9198;
-    dw PLMEntries_ClearCrateriaMainstreetEscapePassageIfCrittersEsc      ;8F919A;
-    LDA.W #$0018                                                         ;8F919C;
-    STA.W EarthquakeType                                                 ;8F919F;
-    LDA.W #$FFFF                                                         ;8F91A2;
-    STA.W EarthquakeTimer                                                ;8F91A5;
-    RTS                                                                  ;8F91A8;
+    JSL Spawn_Hardcoded_PLM
+    db $3D,$0B
+    dw PLMEntries_ClearCrateriaMainstreetEscapePassageIfCrittersEsc
+    LDA.W #$0018 : STA.W EarthquakeType
+    LDA.W #$FFFF : STA.W EarthquakeTimer
+    RTS
 
 
 ;;; $91A9: Room setup ASM - make old Tourian escape shaft fake wall explode ;;;
 SetupASM_AutoDestroyWallDuringEscape:
 ; Room $96BA, state $9705. Old Tourian escape shaft, Zebes timebomb set
-    JSL.L Spawn_Hardcoded_PLM                                            ;8F91A9;
-    db $10,$87                                                           ;8F91AD;
-    dw PLMEntries_MakeOldTourianEscapeShaftFakeWallExplode               ;8F91AF;
-    RTS                                                                  ;8F91B1;
+    JSL Spawn_Hardcoded_PLM
+    db $10,$87
+    dw PLMEntries_MakeOldTourianEscapeShaftFakeWallExplode
+    RTS
 
 
 ;;; $91B2: Room setup ASM - spawn critters escape block ;;;
 SetupASM_TurnWallIntoShotBlocksDuringEscape:
 ; Room $9804, state $984F. Bomb Torizo's room, Zebes timebomb set
-    JSL.L Spawn_Hardcoded_PLM                                            ;8F91B2;
-    db $0F,$0A                                                           ;8F91B6;
-    dw PLMEntries_CrittersEscapeBlock                                    ;8F91B8;
-    RTS                                                                  ;8F91BA;
+    JSL Spawn_Hardcoded_PLM
+    db $0F,$0A
+    dw PLMEntries_CrittersEscapeBlock
+    RTS
 
 
 ;;; $91BB: RTS. Room setup ASM ;;;
 RTS_8F91BB:
 ; Room $9879, state $98C4. Pre Bomb Torizo room, Zebes timebomb set
-    RTS                                                                  ;8F91BB;
+    RTS
 
 
 ;;; $91BC: RTS. Room setup ASM ;;;
@@ -1456,16 +1454,15 @@ RTS_8F91BC:
 ; Room $9E9F, state $9ECB. Morph ball room, Zebes is awake
 ; Room $9F11, state $9F3D. Pre-missiles room, Zebes is awake
 ; Room $9F64, state $9F90. Ceiling E-tank room, Zebes is awake
-    RTS                                                                  ;8F91BC;
+    RTS
 
 
 ;;; $91BD: Room setup ASM - scrolling sky land, shake screen ;;;
 SetupASM_ShakeScreenAndCallFX20DuringEscape:
 ; Room $91F8, state $9261. Landing site, Zebes timebomb set
-    LDA.W #$0006                                                         ;8F91BD;
-    STA.W EarthquakeType                                                 ;8F91C0;
-    LDA.W #$FFFF                                                         ;8F91C3;
-    STA.W EarthquakeTimer                                                ;8F91C6; fallthrough to SetupASM_ScrollingSkyLand
+    LDA.W #$0006 : STA.W EarthquakeType
+    LDA.W #$FFFF : STA.W EarthquakeTimer
+; fallthrough to SetupASM_ScrollingSkyLand
 
 
 ;;; $91C9: Room setup ASM - scrolling sky land ;;;
@@ -1473,8 +1470,8 @@ SetupASM_ScrollingSkyLand:
 ; Room $91F8, state $9213. Landing site, power bombs
 ; Room $91F8, state $922D. Landing site, Zebes is awake
 ; Room $91F8, state $9247. Landing site, default
-    JSL.L FXType_20_ScrollingSky_RoomSetupASM_ScrollingSkyLand           ;8F91C9;
-    RTS                                                                  ;8F91CD;
+    JSL FXType_20_ScrollingSky_RoomSetupASM_ScrollingSkyLand
+    RTS
 
 
 ;;; $91CE: Room setup ASM - scrolling sky ocean ;;;
@@ -1482,8 +1479,8 @@ SetupASM_ScrollingSkyOcean:
 ; Room $93FE. Wrecked Ship entrance
 ; Room $94FD. Wrecked Ship back door
 ; Room $968F. Orange zoomer room
-    JSL.L RoomSetupASM_ScrollingSkyOcean                                 ;8F91CE;
-    RTS                                                                  ;8F91D2;
+    JSL RoomSetupASM_ScrollingSkyOcean
+    RTS
 
 
 ;;; $91D3: RTS. Room setup ASM ;;;
@@ -1502,7 +1499,7 @@ RTS_8F91D3:
 ; Room $95FF. Moat
 ; Room $962A. Crateria -> Red Brinstar
 ; Room $965B. Gauntlet west
-    RTS                                                                  ;8F91D3;
+    RTS
 
 
 ;;; $91D4: Setup ASM: RTS ;;;
@@ -1523,7 +1520,7 @@ RTS_8F91D4:
 ; Room $99F9. Old Tourian escape shaft parallel
 ; Room $9A44. Crateria bomb hall
 ; Room $9A90. Crateria missile room
-    RTS                                                                  ;8F91D4;
+    RTS
 
 
 ;;; $91D5: Setup ASM: RTS ;;;
@@ -1560,7 +1557,7 @@ RTS_8F91D5:
 ; Room $A1D8. Blue Brinstar double missile room
 ; Room $A201. Green Brinstar save room
 ; Room $A22A. Brinstar false floor save room
-    RTS                                                                  ;8F91D5;
+    RTS
 
 
 ;;; $91D6: Setup ASM: RTS ;;;
@@ -1584,21 +1581,21 @@ RTS_8F91D6:
 ; Room $A5ED. Crateria pre Tourian hall
 ; Room $A618. Red Brinstar energy station
 ; Room $A641. Kraid refill station
-    RTS                                                                  ;8F91D6;
+    RTS
 
 
 ;;; $91D7: Room setup ASM - run statue unlocking animations ;;;
 SetupASM_RunStatueUnlockingAnimations:
 ; Room $A66A. Tourian entrance
-    LDY.W #AnimatedTilesObject_TourianStatueKraid                        ;8F91D7;
-    JSL.L Spawn_AnimatedTilesObject                                      ;8F91DA;
-    LDY.W #AnimatedTilesObject_TourianStatuePhantoon                     ;8F91DE;
-    JSL.L Spawn_AnimatedTilesObject                                      ;8F91E1;
-    LDY.W #AnimatedTilesObject_TourianStatueDraygon                      ;8F91E5;
-    JSL.L Spawn_AnimatedTilesObject                                      ;8F91E8;
-    LDY.W #AnimatedTilesObject_TourianStatueRidley                       ;8F91EC;
-    JSL.L Spawn_AnimatedTilesObject                                      ;8F91EF;
-    RTS                                                                  ;8F91F3;
+    LDY.W #AnimatedTilesObject_TourianStatueKraid
+    JSL Spawn_AnimatedTilesObject
+    LDY.W #AnimatedTilesObject_TourianStatuePhantoon
+    JSL Spawn_AnimatedTilesObject
+    LDY.W #AnimatedTilesObject_TourianStatueDraygon
+    JSL Spawn_AnimatedTilesObject
+    LDY.W #AnimatedTilesObject_TourianStatueRidley
+    JSL Spawn_AnimatedTilesObject
+    RTS
 
 
 ;;; $91F4: Setup ASM: RTS ;;;
@@ -1607,7 +1604,7 @@ RTS_8F91F4:
 ; Room $A6E2: Varia suit room
 ; Room $A70B: Kraid's lair save room
 ; Room $A734: Red Brinstar save room
-    RTS                                                                  ;8F91F4;
+    RTS
 
 
 ;;; $91F5: Setup ASM: RTS ;;;
@@ -1622,7 +1619,7 @@ RTS_8F91F5:
 ; Room $A8B9. Pre ice beam room
 ; Room $A8F8. Impossible to find missile shaft
 ; Room $A923. Norfair diagonal room
-    RTS                                                                  ;8F91F5;
+    RTS
 
 
 ;;; $91F6: Setup ASM: RTS ;;;
@@ -1669,7 +1666,7 @@ RTS_8F91F6:
 ; Room $B139. Norfair stone zoomer shaft
 ; Room $B167. Norfair mainstreet save room
 ; Room $B192. Pre Crocomire save room
-    RTS                                                                  ;8F91F6;
+    RTS
 
 
 ;;; $91F7: Setup ASM: RTS ;;;
@@ -1696,7 +1693,7 @@ RTS_8F91F7:
 ; Room $B656. Lower Norfair oscillating lava kihunter room
 ; Room $B698. Ridley's energy tank
 ; Room $B6C1. Screw attack room
-    RTS                                                                  ;8F91F7;
+    RTS
 
 
 ; see labels.asm for RoomHeaders: RoomStates: and RoomDoors:
@@ -1745,7 +1742,7 @@ RTS_8F91F7:
 ;     |       |   |  |   |     |     |     |  |   |     |     |     |     |      _ Setup ASM
 ;     |       |   |  |   |     |     |     |  |   |     |     |     |     |     |
 ;     llllll, tt, MM,mm, ffff, eeee, EEEE, xx,yy, ssss, xxxx, AAAA, pppp, bbbb, aaaa
-RoomHeader_LandingSite:                                                  ;8F91F8;
+RoomHeader_LandingSite:
     %RoomHeader(\
     %room(0),
     %area(0),
@@ -1759,7 +1756,7 @@ RoomHeader_LandingSite:                                                  ;8F91F8
     %stateCheckPowerBombs(RoomState_LandingSite_2),
     %stateCheckEventSet(0, RoomState_LandingSite_1))
 
-RoomState_LandingSite_0:                                                 ;8F9213;
+RoomState_LandingSite_0:
     %StateHeader(\
     %levelData(LevelData_LandingSite),
     %tileset(0),
@@ -1775,7 +1772,7 @@ RoomState_LandingSite_0:                                                 ;8F9213
     %libraryBG(LibBG_ScrollingSky_Tilemaps_LandingSite),
     %setupASM(SetupASM_ScrollingSkyLand))
 
-RoomState_LandingSite_1:                                                 ;8F922D;
+RoomState_LandingSite_1:
     %StateHeader(\
     %levelData(LevelData_LandingSite),
     %tileset(0),
@@ -1791,7 +1788,7 @@ RoomState_LandingSite_1:                                                 ;8F922D
     %libraryBG(LibBG_ScrollingSky_Tilemaps_LandingSite),
     %setupASM(SetupASM_ScrollingSkyLand))
 
-RoomState_LandingSite_2:                                                 ;8F9247;
+RoomState_LandingSite_2:
     %StateHeader(\
     %levelData(LevelData_LandingSite),
     %tileset(0),
@@ -1807,7 +1804,7 @@ RoomState_LandingSite_2:                                                 ;8F9247
     %libraryBG(LibBG_ScrollingSky_Tilemaps_LandingSite),
     %setupASM(SetupASM_ScrollingSkyLand))
 
-RoomState_LandingSite_3:                                                 ;8F9261;
+RoomState_LandingSite_3:
     %StateHeader(\
     %levelData(LevelData_LandingSite),
     %tileset(0),
@@ -1824,20 +1821,20 @@ RoomState_LandingSite_3:                                                 ;8F9261
     %setupASM(SetupASM_ShakeScreenAndCallFX20DuringEscape))
 
 RoomDoors_LandingSite:
-    dw Door_LandingSite_0                                                ;8F927B;
-    dw Door_LandingSite_1                                                ;8F927D;
-    dw Door_LandingSite_2                                                ;8F927F;
-    dw Door_LandingSite_3                                                ;8F9281;
+    dw Door_LandingSite_0
+    dw Door_LandingSite_1
+    dw Door_LandingSite_2
+    dw Door_LandingSite_3
 
 RoomScrolls_LandingSite:
-    db $00,$00,$02,$02,$02,$02,$02,$02,$02,$00,$00,$02,$02,$02,$02,$02   ;8F9283;
-    db $02,$02,$01,$00,$02,$02,$02,$02,$02,$02,$02,$00,$00,$02,$02,$02   ;8F9293;
-    db $02,$02,$02,$02,$01,$01,$01,$01,$01,$01,$01,$01,$01               ;8F92A3;
+    db $00,$00,$02,$02,$02,$02,$02,$02,$02,$00,$00,$02,$02,$02,$02,$02
+    db $02,$02,$01,$00,$02,$02,$02,$02,$02,$02,$02,$00,$00,$02,$02,$02
+    db $02,$02,$02,$02,$01,$01,$01,$01,$01,$01,$01,$01,$01
 
 RoomPLM_LandingSite_0:
-    db $13,$01, $80                                                      ;8F92B0;
+    db $13,$01, $80
 
-RoomHeader_GauntletEntrance:                                             ;8F92B3;
+RoomHeader_GauntletEntrance:
     %RoomHeader(\
     %room(1),
     %area(0),
@@ -1849,7 +1846,7 @@ RoomHeader_GauntletEntrance:                                             ;8F92B3
     %stateChecks(1,
     %stateCheckEventSet(0, RoomState_GauntletEntrance_1))
 
-RoomState_GauntletEntrance_0:                                            ;8F92C5;
+RoomState_GauntletEntrance_0:
     %StateHeader(\
     %levelData(LevelData_GauntletEntrance),
     %tileset(0),
@@ -1865,7 +1862,7 @@ RoomState_GauntletEntrance_0:                                            ;8F92C5
     %libraryBG(LibBG_Crateria_0_HorizontalPatternRocks),
     %setupASM(RTS_8F91D3))
 
-RoomState_GauntletEntrance_1:                                            ;8F92DF;
+RoomState_GauntletEntrance_1:
     %StateHeader(\
     %levelData(LevelData_GauntletEntrance),
     %tileset(0),
@@ -1882,10 +1879,10 @@ RoomState_GauntletEntrance_1:                                            ;8F92DF
     %setupASM(RTS_8F91D3))
 
 RoomDoors_GauntletEntrance:
-    dw Door_GauntletEntrance_0                                           ;8F92F9;
-    dw Door_GauntletEntrance_1                                           ;8F92FB;
+    dw Door_GauntletEntrance_0
+    dw Door_GauntletEntrance_1
 
-RoomHeader_Parlor:                                                       ;8F92FD;
+RoomHeader_Parlor:
     %RoomHeader(\
     %room(2),
     %area(0),
@@ -1898,7 +1895,7 @@ RoomHeader_Parlor:                                                       ;8F92FD
     %stateCheckEventSet($0E, RoomState_Parlor_2),
     %stateCheckEventSet(0, RoomState_Parlor_1))
 
-RoomState_Parlor_0:                                                      ;8F9314;
+RoomState_Parlor_0:
     %StateHeader(\
     %levelData(LevelData_Parlor),
     %tileset(0),
@@ -1914,7 +1911,7 @@ RoomState_Parlor_0:                                                      ;8F9314
     %libraryBG(LibBG_Crateria_0_Rocks),
     %setupASM(RTS_8F91D3))
 
-RoomState_Parlor_1:                                                      ;8F932E;
+RoomState_Parlor_1:
     %StateHeader(\
     %levelData(LevelData_Parlor),
     %tileset(0),
@@ -1930,7 +1927,7 @@ RoomState_Parlor_1:                                                      ;8F932E
     %libraryBG(LibBG_Crateria_0_Rocks),
     %setupASM(RTS_8F91BC))
 
-RoomState_Parlor_2:                                                      ;8F9348;
+RoomState_Parlor_2:
     %StateHeader(\
     %levelData(LevelData_Parlor),
     %tileset(0),
@@ -1947,46 +1944,46 @@ RoomState_Parlor_2:                                                      ;8F9348
     %setupASM(SetupASM_ClearBlocksAfterSavingAnimalsAndShakeScreen))
 
 RoomDoors_Parlor:
-    dw Door_Parlor_0                                                     ;8F9362;
-    dw Door_Parlor_1                                                     ;8F9364;
-    dw Door_Parlor_2                                                     ;8F9366;
-    dw Door_Parlor_3                                                     ;8F9368;
-    dw Door_Parlor_4                                                     ;8F936A;
-    dw Door_Parlor_5                                                     ;8F936C;
-    dw Door_Parlor_6                                                     ;8F936E;
+    dw Door_Parlor_0
+    dw Door_Parlor_1
+    dw Door_Parlor_2
+    dw Door_Parlor_3
+    dw Door_Parlor_4
+    dw Door_Parlor_5
+    dw Door_Parlor_6
 
 RoomScrolls_Parlor:
-    db $00,$01,$01,$01,$01,$00,$00,$00,$00,$00,$00,$02,$00,$01,$00,$00   ;8F9370;
-    db $02,$00,$00,$00,$00,$02,$00,$00,$00                               ;8F9380;
+    db $00,$01,$01,$01,$01,$00,$00,$00,$00,$00,$00,$02,$00,$01,$00,$00
+    db $02,$00,$00,$00,$00,$02,$00,$00,$00
 
 RoomPLM_Parlor_0:
-    db $08,$02, $80                                                      ;8F9389;
+    db $08,$02, $80
 
 RoomPLM_Parlor_1:
-    db $08,$00, $80                                                      ;8F938C;
+    db $08,$00, $80
 
 RoomPLM_Parlor_2:
-    db $00,$00, $02,$00, $06,$02, $80                                    ;8F938F;
+    db $00,$00, $02,$00, $06,$02, $80
 
 RoomPLM_Parlor_6:
-    db $06,$00, $80                                                      ;8F9396;
+    db $06,$00, $80
 
 RoomPLM_Parlor_A:
-    db $00,$01, $80                                                      ;8F9399;
+    db $00,$01, $80
 
 RoomPLM_Parlor_D:
-    db $02,$01, $80                                                      ;8F939C;
+    db $02,$01, $80
 
 RoomPLM_Parlor_13_14:
-    db $04,$01, $80                                                      ;8F939F;
+    db $04,$01, $80
 
 RoomPLM_Parlor_15:
-    db $04,$00, $80                                                      ;8F93A2;
+    db $04,$00, $80
 
 RoomPLM_Parlor_1A:
-    db $04,$00, $08,$02, $80                                             ;8F93A5;
+    db $04,$00, $08,$02, $80
 
-RoomHeader_CrateriaPowerBombs:                                           ;8F93AA;
+RoomHeader_CrateriaPowerBombs:
     %RoomHeader(\
     %room(3),
     %area(0),
@@ -1997,7 +1994,7 @@ RoomHeader_CrateriaPowerBombs:                                           ;8F93AA
     %doorList(RoomDoors_CrateriaPowerBombs))
     %stateChecks(0)
 
-RoomState_CrateriaPowerBombs:                                            ;8F93B7;
+RoomState_CrateriaPowerBombs:
     %StateHeader(\
     %levelData(LevelData_CrateriaPowerBombs),
     %tileset(0),
@@ -2014,12 +2011,12 @@ RoomState_CrateriaPowerBombs:                                            ;8F93B7
     %setupASM(RTS_8F91D3))
 
 RoomDoors_CrateriaPowerBombs:
-    dw Door_CrateriaPowerBombs_0                                         ;8F93D1;
+    dw Door_CrateriaPowerBombs_0
 
 RoomScrolls_CrateriaPowerBomb:
-    db $01,$01                                                           ;8F93D3;
+    db $01,$01
 
-RoomHeader_CrateriaSave:                                                 ;8F93D5;
+RoomHeader_CrateriaSave:
     %RoomHeader(\
     %room(4),
     %area(0),
@@ -2030,7 +2027,7 @@ RoomHeader_CrateriaSave:                                                 ;8F93D5
     %doorList(RoomDoors_CrateriaSave))
     %stateChecks(0)
 
-RoomState_CrateriaSave:                                                  ;8F93E2;
+RoomState_CrateriaSave:
     %StateHeader(\
     %levelData(LevelData_SaveStation_RightSideDoor),
     %tileset($19),
@@ -2047,9 +2044,9 @@ RoomState_CrateriaSave:                                                  ;8F93E2
     %setupASM(RTS_8F91D3))
 
 RoomDoors_CrateriaSave:
-    dw Door_CrateriaSave_0                                               ;8F93FC;
+    dw Door_CrateriaSave_0
 
-RoomHeader_WestOcean:                                                    ;8F93FE;
+RoomHeader_WestOcean:
     %RoomHeader(\
     %room(5),
     %area(0),
@@ -2060,7 +2057,7 @@ RoomHeader_WestOcean:                                                    ;8F93FE
     %doorList(RoomDoors_WestOcean))
     %stateChecks(0)
 
-RoomState_WestOcean:                                                     ;8F940B;
+RoomState_WestOcean:
     %StateHeader(\
     %levelData(LevelData_WestOcean),
     %tileset(0),
@@ -2077,19 +2074,19 @@ RoomState_WestOcean:                                                     ;8F940B
     %setupASM(SetupASM_ScrollingSkyOcean))
 
 RoomDoors_WestOcean:
-    dw Door_WestOcean_0                                                  ;8F9425;
-    dw Door_WestOcean_1                                                  ;8F9427;
-    dw Door_WestOcean_2                                                  ;8F9429;
-    dw Door_WestOcean_3                                                  ;8F942B;
-    dw Door_WestOcean_4                                                  ;8F942D;
-    dw Door_WestOcean_5                                                  ;8F942F;
+    dw Door_WestOcean_0
+    dw Door_WestOcean_1
+    dw Door_WestOcean_2
+    dw Door_WestOcean_3
+    dw Door_WestOcean_4
+    dw Door_WestOcean_5
 
 RoomScrolls_WestOcean:
-    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02   ;8F9431;
-    db $02,$02,$02,$00,$00,$02,$00,$00,$02,$02,$02,$02,$02,$02,$00,$00   ;8F9441;
-    db $02,$02,$02,$02,$02,$02,$02,$02,$01,$01,$01,$01,$01,$01,$01,$01   ;8F9451;
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02
+    db $02,$02,$02,$00,$00,$02,$00,$00,$02,$02,$02,$02,$02,$02,$00,$00
+    db $02,$02,$02,$02,$02,$02,$02,$02,$01,$01,$01,$01,$01,$01,$01,$01
 
-RoomHeader_BowlingAlleyPath:                                             ;8F9461;
+RoomHeader_BowlingAlleyPath:
     %RoomHeader(\
     %room(6),
     %area(0),
@@ -2100,7 +2097,7 @@ RoomHeader_BowlingAlleyPath:                                             ;8F9461
     %doorList(RoomDoors_BowlingAlleyPath))
     %stateChecks(0)
 
-RoomState_BowlingAlleyPath:                                              ;8F946E;
+RoomState_BowlingAlleyPath:
     %StateHeader(\
     %levelData(LevelData_BowlingAlleyPath),
     %tileset(0),
@@ -2117,10 +2114,10 @@ RoomState_BowlingAlleyPath:                                              ;8F946E
     %setupASM(RTS_8F91D3))
 
 RoomDoors_BowlingAlleyPath:
-    dw Door_BowlingAlleyPath_0                                           ;8F9488;
-    dw Door_BowlingAlleyPath_1                                           ;8F948A;
+    dw Door_BowlingAlleyPath_0
+    dw Door_BowlingAlleyPath_1
 
-RoomHeader_CrateriaKihunter:                                             ;8F948C;
+RoomHeader_CrateriaKihunter:
     %RoomHeader(\
     %room(7),
     %area(0),
@@ -2131,7 +2128,7 @@ RoomHeader_CrateriaKihunter:                                             ;8F948C
     %doorList(RoomDoors_CrateriaKihunter))
     %stateChecks(0)
 
-RoomState_CrateriaKihunter:                                              ;8F9499;
+RoomState_CrateriaKihunter:
     %StateHeader(\
     %levelData(LevelData_CrateriaKihunter),
     %tileset(0),
@@ -2148,20 +2145,20 @@ RoomState_CrateriaKihunter:                                              ;8F9499
     %setupASM(RTS_8F91D3))
 
 RoomDoors_CrateriaKihunter:
-    dw Door_CrateriaKihunter_0                                           ;8F94B3;
-    dw Door_CrateriaKihunter_1                                           ;8F94B5;
-    dw Door_CrateriaKihunter_2                                           ;8F94B7;
+    dw Door_CrateriaKihunter_0
+    dw Door_CrateriaKihunter_1
+    dw Door_CrateriaKihunter_2
 
 RoomScroll_CrateriaKihunter:
-    db $01,$01,$01,$00,$00,$00,$00,$02,$00                               ;8F94B9;
+    db $01,$01,$01,$00,$00,$00,$00,$02,$00
 
 RoomPLM_CrateriaKihunter_0:
-    db $01,$02, $04,$02, $80                                             ;8F94C2;
+    db $01,$02, $04,$02, $80
 
 RoomPLM_CrateriaKihunter_2:
-    db $01,$01, $04,$00, $80                                             ;8F94C7;
+    db $01,$01, $04,$00, $80
 
-RoomHeader_ForgottenHighwayElev:                                         ;8F94CC;
+RoomHeader_ForgottenHighwayElev:
     %RoomHeader(\
     %room(8),
     %area(0),
@@ -2172,7 +2169,7 @@ RoomHeader_ForgottenHighwayElev:                                         ;8F94CC
     %doorList(RoomDoors_ForgottenHighwayElev))
     %stateChecks(0)
 
-RoomState_ForgottenHighwayElev:                                          ;8F94D9;
+RoomState_ForgottenHighwayElev:
     %StateHeader(\
     %levelData(LevelData_ForgottenHighwayElev),
     %tileset(2),
@@ -2189,17 +2186,17 @@ RoomState_ForgottenHighwayElev:                                          ;8F94D9
     %setupASM(RTS_8F91D3))
 
 RoomDoors_ForgottenHighwayElev:
-    dw Door_ForgottenHighwayElev_0                                       ;8F94F3;
-    dw Door_ForgottenHighwayElev_1                                       ;8F94F5;
-    dw Door_VariousRooms_Elevator                                        ;8F94F7;
+    dw Door_ForgottenHighwayElev_0
+    dw Door_ForgottenHighwayElev_1
+    dw Door_VariousRooms_Elevator
 
 RoomScrolls_ForgottenHighwayElev:
-    db $01                                                               ;8F94F9;
+    db $01
 
 RoomPLM_ForgottenHighwayElev_0:
-    db $00,$02, $80                                                      ;8F94FA;
+    db $00,$02, $80
 
-RoomHeader_EastOcean:                                                    ;8F94FD;
+RoomHeader_EastOcean:
     %RoomHeader(\
     %room(9),
     %area(0),
@@ -2210,7 +2207,7 @@ RoomHeader_EastOcean:                                                    ;8F94FD
     %doorList(RoomDoors_EastOcean))
     %stateChecks(0)
 
-RoomState_EastOcean:                                                     ;8F950A;
+RoomState_EastOcean:
     %StateHeader(\
     %levelData(LevelData_EastOcean),
     %tileset(0),
@@ -2227,15 +2224,15 @@ RoomState_EastOcean:                                                     ;8F950A
     %setupASM(SetupASM_ScrollingSkyOcean))
 
 RoomDoors_EastOcean:
-    dw Door_EastOcean_0                                                  ;8F9524;
-    dw Door_EastOcean_1                                                  ;8F9526;
+    dw Door_EastOcean_0
+    dw Door_EastOcean_1
 
 RoomScrolls_EastOcean:
-    db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00   ;8F9528;
-    db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$02,$02,$02   ;8F9538;
-    db $02,$02,$02,$01,$01,$01,$01,$01,$01,$01                           ;8F9548;
+    db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+    db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$02,$02,$02
+    db $02,$02,$02,$01,$01,$01,$01,$01,$01,$01
 
-RoomHeader_ForgottenHighwayKagos:                                        ;8F9552;
+RoomHeader_ForgottenHighwayKagos:
     %RoomHeader(\
     %room($0A),
     %area(0),
@@ -2246,7 +2243,7 @@ RoomHeader_ForgottenHighwayKagos:                                        ;8F9552
     %doorList(RoomDoors_ForgottenHighwayKagos))
     %stateChecks(0)
 
-RoomState_ForgottenHighwayKagos:                                         ;8F955F;
+RoomState_ForgottenHighwayKagos:
     %StateHeader(\
     %levelData(LevelData_ForgottenHighwayKagos),
     %tileset(0),
@@ -2263,10 +2260,10 @@ RoomState_ForgottenHighwayKagos:                                         ;8F955F
     %setupASM(RTS_8F91D3))
 
 RoomDoors_ForgottenHighwayKagos:
-    dw Door_ForgottenHighwayKagos_0                                      ;8F9579;
-    dw Door_ForgottenHighwayKagos_1                                      ;8F957B;
+    dw Door_ForgottenHighwayKagos_0
+    dw Door_ForgottenHighwayKagos_1
 
-RoomHeader_CrabMaze:                                                     ;8F957D;
+RoomHeader_CrabMaze:
     %RoomHeader(\
     %room($0B),
     %area(0),
@@ -2277,7 +2274,7 @@ RoomHeader_CrabMaze:                                                     ;8F957D
     %doorList(RoomDoors_CrabMaze))
     %stateChecks(0)
 
-RoomState_CrabMaze:                                                      ;8F958A;
+RoomState_CrabMaze:
     %StateHeader(\
     %levelData(LevelData_CrabMaze),
     %tileset(0),
@@ -2294,10 +2291,10 @@ RoomState_CrabMaze:                                                      ;8F958A
     %setupASM(RTS_8F91D3))
 
 RoomDoors_CrabMaze:
-    dw Door_CrabMaze_0                                                   ;8F95A4;
-    dw Door_CrabMaze_1                                                   ;8F95A6;
+    dw Door_CrabMaze_0
+    dw Door_CrabMaze_1
 
-RoomHeader_ForgottenHighwayElbow:                                        ;8F95A8;
+RoomHeader_ForgottenHighwayElbow:
     %RoomHeader(\
     %room($0C),
     %area(0),
@@ -2308,7 +2305,7 @@ RoomHeader_ForgottenHighwayElbow:                                        ;8F95A8
     %doorList(RoomDoors_ForgottenHighwayElbow))
     %stateChecks(0)
 
-RoomState_ForgottenHighwayElbow:                                         ;8F95B5;
+RoomState_ForgottenHighwayElbow:
     %StateHeader(\
     %levelData(LevelData_ForgottenHighwayElbow),
     %tileset(0),
@@ -2325,13 +2322,13 @@ RoomState_ForgottenHighwayElbow:                                         ;8F95B5
     %setupASM(RTS_8F91D3))
 
 RoomDoors_ForgottenHighwayElbow:
-    dw Door_ForgottenHighwayElbow_0                                      ;8F95CF;
-    dw Door_ForgottenHighwayElbow_1                                      ;8F95D1;
+    dw Door_ForgottenHighwayElbow_0
+    dw Door_ForgottenHighwayElbow_1
 
 RoomScrolls_ForgottenHighwayElbow:
-    db $02                                                               ;8F95D3;
+    db $02
 
-RoomHeader_CrateriaTube:                                                 ;8F95D4;
+RoomHeader_CrateriaTube:
     %RoomHeader(\
     %room($0D),
     %area(0),
@@ -2342,7 +2339,7 @@ RoomHeader_CrateriaTube:                                                 ;8F95D4
     %doorList(RoomDoors_CrateriaTube))
     %stateChecks(0)
 
-RoomState_CrateriaTube:                                                  ;8F95E1;
+RoomState_CrateriaTube:
     %StateHeader(\
     %levelData(LevelData_CrateriaTube),
     %tileset(0),
@@ -2359,10 +2356,10 @@ RoomState_CrateriaTube:                                                  ;8F95E1
     %setupASM(RTS_8F91D3))
 
 RoomDoors_CrateriaTube:
-    dw Door_CrateriaTube_0                                               ;8F95FB;
-    dw Door_CrateriaTube_1                                               ;8F95FD;
+    dw Door_CrateriaTube_0
+    dw Door_CrateriaTube_1
 
-RoomHeader_Moat:                                                         ;8F95FF;
+RoomHeader_Moat:
     %RoomHeader(\
     %room($0E),
     %area(0),
@@ -2373,7 +2370,7 @@ RoomHeader_Moat:                                                         ;8F95FF
     %doorList(RoomDoors_Moat))
     %stateChecks(0)
 
-RoomState_Moat:                                                          ;8F960C;
+RoomState_Moat:
     %StateHeader(\
     %levelData(LevelData_Moat),
     %tileset(0),
@@ -2390,10 +2387,10 @@ RoomState_Moat:                                                          ;8F960C
     %setupASM(RTS_8F91D3))
 
 RoomDoors_Moat:
-    dw Door_Moat_0                                                       ;8F9626;
-    dw Door_Moat_1                                                       ;8F9628;
+    dw Door_Moat_0
+    dw Door_Moat_1
 
-RoomHeader_RedBinstarElev:                                               ;8F962A;
+RoomHeader_RedBinstarElev:
     %RoomHeader(\
     %room($0F),
     %area(0),
@@ -2404,7 +2401,7 @@ RoomHeader_RedBinstarElev:                                               ;8F962A
     %doorList(RoomDoors_RedBinstarElev))
     %stateChecks(0)
 
-RoomState_RedBinstarElev:                                                ;8F9637;
+RoomState_RedBinstarElev:
     %StateHeader(\
     %levelData(LevelData_RedBinstarElev),
     %tileset(2),
@@ -2421,17 +2418,17 @@ RoomState_RedBinstarElev:                                                ;8F9637
     %setupASM(RTS_8F91D3))
 
 RoomDoors_RedBinstarElev:
-    dw Door_RedBinstarElev_0                                             ;8F9651;
-    dw Door_RedBinstarElev_1                                             ;8F9653;
-    dw Door_VariousRooms_Elevator                                        ;8F9655;
+    dw Door_RedBinstarElev_0
+    dw Door_RedBinstarElev_1
+    dw Door_VariousRooms_Elevator
 
 RoomScrolls_RedBinstarElev:
-    db $01                                                               ;8F9657;
+    db $01
 
 RoomPLM_RedBinstarElev_0:
-    db $00,$02, $80                                                      ;8F9658;
+    db $00,$02, $80
 
-RoomHeader_GauntletETank:                                                ;8F965B;
+RoomHeader_GauntletETank:
     %RoomHeader(\
     %room($10),
     %area(0),
@@ -2442,7 +2439,7 @@ RoomHeader_GauntletETank:                                                ;8F965B
     %doorList(RoomDoors_GauntletETank))
     %stateChecks(0)
 
-RoomState_GauntletETank:                                                 ;8F9668;
+RoomState_GauntletETank:
     %StateHeader(\
     %levelData(LevelData_GauntletETank),
     %tileset(0),
@@ -2459,16 +2456,16 @@ RoomState_GauntletETank:                                                 ;8F9668
     %setupASM(RTS_8F91D3))
 
 RoomDoors_GauntletETank:
-    dw Door_GauntletETank_0                                              ;8F9682;
-    dw Door_GauntletETank_1                                              ;8F9684;
+    dw Door_GauntletETank_0
+    dw Door_GauntletETank_1
 
 RoomScrolls_GauntletETank:
-    db $01,$01,$01,$01,$00,$01                                           ;8F9686;
+    db $01,$01,$01,$01,$00,$01
 
 RoomPLM_GauntletETank_0:
-    db $04,$01, $80                                                      ;8F968C;
+    db $04,$01, $80
 
-RoomHeader_PreBowling:                                                   ;8F968F;
+RoomHeader_PreBowling:
     %RoomHeader(\
     %room($11),
     %area(0),
@@ -2479,7 +2476,7 @@ RoomHeader_PreBowling:                                                   ;8F968F
     %doorList(RoomDoors_PreBowling))
     %stateChecks(0)
 
-RoomState_PreBowling:                                                    ;8F969C;
+RoomState_PreBowling:
     %StateHeader(\
     %levelData(LevelData_PreBowling),
     %tileset(0),
@@ -2496,10 +2493,10 @@ RoomState_PreBowling:                                                    ;8F969C
     %setupASM(SetupASM_ScrollingSkyOcean))
 
 RoomDoors_PreBowling:
-    dw Door_PreBowling_0                                                 ;8F96B6;
-    dw Door_PreBowling_1                                                 ;8F96B8;
+    dw Door_PreBowling_0
+    dw Door_PreBowling_1
 
-RoomHeader_Climb:                                                        ;8F96BA;
+RoomHeader_Climb:
     %RoomHeader(\
     %room($12),
     %area(0),
@@ -2512,7 +2509,7 @@ RoomHeader_Climb:                                                        ;8F96BA
     %stateCheckEventSet($0E, RoomState_Climb_2),
     %stateCheckEventSet(0, RoomState_Climb_1))
 
-RoomState_Climb_0:                                                       ;8F96D1;
+RoomState_Climb_0:
     %StateHeader(\
     %levelData(LevelData_Climb),
     %tileset(3),
@@ -2528,7 +2525,7 @@ RoomState_Climb_0:                                                       ;8F96D1
     %libraryBG(LibBG_Crateria_2_3_Mechanical),
     %setupASM(RTS_8F91D4))
 
-RoomState_Climb_1:                                                       ;8F96EB;
+RoomState_Climb_1:
     %StateHeader(\
     %levelData(LevelData_Climb),
     %tileset(2),
@@ -2544,7 +2541,7 @@ RoomState_Climb_1:                                                       ;8F96EB
     %libraryBG(LibBG_Crateria_2_3_Mechanical),
     %setupASM(RTS_8F91BC))
 
-RoomState_Climb_2:                                                       ;8F9705;
+RoomState_Climb_2:
     %StateHeader(\
     %levelData(LevelData_Climb),
     %tileset(2),
@@ -2561,41 +2558,41 @@ RoomState_Climb_2:                                                       ;8F9705
     %setupASM(SetupASM_AutoDestroyWallDuringEscape))
 
 RoomDoors_Climb:
-    dw Door_Climb_0                                                      ;8F971F;
-    dw Door_Climb_1                                                      ;8F9721;
-    dw Door_Climb_2                                                      ;8F9723;
-    dw Door_Climb_3                                                      ;8F9725;
-    dw Door_Climb_4                                                      ;8F9727;
+    dw Door_Climb_0
+    dw Door_Climb_1
+    dw Door_Climb_2
+    dw Door_Climb_3
+    dw Door_Climb_4
 
 RoomScrolls_Climb:
-    db $00,$02,$00,$00,$02,$00,$00,$02,$00,$00,$02,$00,$00,$02,$00,$00   ;8F9729;
-    db $02,$00,$00,$02,$00,$00,$02,$00,$00,$01,$00                       ;8F9739;
+    db $00,$02,$00,$00,$02,$00,$00,$02,$00,$00,$02,$00,$00,$02,$00,$00
+    db $02,$00,$00,$02,$00,$00,$02,$00,$00,$01,$00
 
 RoomPLM_Climb_1:
-    db $02,$01, $80                                                      ;8F9744;
+    db $02,$01, $80
 
 RoomPLM_Climb_0:
-    db $02,$00, $80                                                      ;8F9747;
+    db $02,$00, $80
 
 RoomPLM_Climb_3:
-    db $17,$01, $80                                                      ;8F974A;
+    db $17,$01, $80
 
 RoomPLM_Climb_2:
-    db $17,$00, $80                                                      ;8F974D;
+    db $17,$00, $80
 
 RoomPLM_Climb_E:
-    db $18,$01, $80                                                      ;8F9750;
+    db $18,$01, $80
 
 RoomPLM_Climb_A:
-    db $18,$00, $80                                                      ;8F9753;
+    db $18,$00, $80
 
 RoomPLM_Climb_12:
-    db $19,$01, $80                                                      ;8F9756;
+    db $19,$01, $80
 
 RoomPLM_Climb_16:
-    db $19,$00, $80                                                      ;8F9759;
+    db $19,$00, $80
 
-RoomHeader_Pit:                                                          ;8F975C;
+RoomHeader_Pit:
     %RoomHeader(\
     %room($13),
     %area(0),
@@ -2607,7 +2604,7 @@ RoomHeader_Pit:                                                          ;8F975C
     %stateChecks(1,
     %stateCheckMorphMissiles(RoomState_Pit_1))
 
-RoomState_Pit_0:                                                         ;8F976D;
+RoomState_Pit_0:
     %StateHeader(\
     %levelData(LevelData_Pit),
     %tileset(3),
@@ -2623,7 +2620,7 @@ RoomState_Pit_0:                                                         ;8F976D
     %libraryBG(LibBG_Crateria_2_3_Mechanical),
     %setupASM(RTS_8F91D4))
 
-RoomState_Pit_1:                                                         ;8F9787;
+RoomState_Pit_1:
     %StateHeader(\
     %levelData(LevelData_Pit),
     %tileset(2),
@@ -2640,19 +2637,19 @@ RoomState_Pit_1:                                                         ;8F9787
     %setupASM(RTS_8F91BC))
 
 RoomDoors_Pit:
-    dw Door_Pit_0                                                        ;8F97A1;
-    dw Door_Pit_1                                                        ;8F97A3;
+    dw Door_Pit_0
+    dw Door_Pit_1
 
 RoomScrolls_Pit:
-    db $01,$01,$01,$00,$00,$00                                           ;8F97A5;
+    db $01,$01,$01,$00,$00,$00
 
 RoomPLM_Pit_0_1:
-    db $00,$02, $03,$02, $80                                             ;8F97AB;
+    db $00,$02, $03,$02, $80
 
 RoomPLM_Pit_2:
-    db $00,$01, $03,$00, $80                                             ;8F97B0;
+    db $00,$01, $03,$00, $80
 
-RoomHeader_ElevToBlueBrinstar:                                           ;8F97B5;
+RoomHeader_ElevToBlueBrinstar:
     %RoomHeader(\
     %room($14),
     %area(0),
@@ -2664,7 +2661,7 @@ RoomHeader_ElevToBlueBrinstar:                                           ;8F97B5
     %stateChecks(1,
     %stateCheckMorphMissiles(RoomState_ElevToBlueBrinstar_1))
 
-RoomState_ElevToBlueBrinstar_0:                                          ;8F97C6;
+RoomState_ElevToBlueBrinstar_0:
     %StateHeader(\
     %levelData(LevelData_ElevToBlueBrinstar),
     %tileset(2),
@@ -2680,7 +2677,7 @@ RoomState_ElevToBlueBrinstar_0:                                          ;8F97C6
     %libraryBG(0),
     %setupASM(RTS_8F91D4))
 
-RoomState_ElevToBlueBrinstar_1:                                          ;8F97E0;
+RoomState_ElevToBlueBrinstar_1:
     %StateHeader(\
     %levelData(LevelData_ElevToBlueBrinstar),
     %tileset(2),
@@ -2697,17 +2694,17 @@ RoomState_ElevToBlueBrinstar_1:                                          ;8F97E0
     %setupASM(RTS_8F91BC))
 
 RoomDoors_ElevToBlueBrinstar:
-    dw Door_ElevToBlueBrinstar_0                                         ;8F97FA;
-    dw Door_ElevToBlueBrinstar_1                                         ;8F97FC;
-    dw Door_VariousRooms_Elevator                                        ;8F97FE;
+    dw Door_ElevToBlueBrinstar_0
+    dw Door_ElevToBlueBrinstar_1
+    dw Door_VariousRooms_Elevator
 
 RoomScrolls_ElevToBlueBrinstar:
-    db $01                                                               ;8F9800;
+    db $01
 
 RoomPLM_ElevToBlueBrinstar:
-    db $00,$02, $80                                                      ;8F9801;
+    db $00,$02, $80
 
-RoomHeader_BombTorizo:                                                   ;8F9804;
+RoomHeader_BombTorizo:
     %RoomHeader(\
     %room($15),
     %area(0),
@@ -2720,7 +2717,7 @@ RoomHeader_BombTorizo:                                                   ;8F9804
     %stateCheckEventSet($0E, RoomState_BombTorizo_2),
     %stateCheckBossDead(4, RoomState_BombTorizo_1))
 
-RoomState_BombTorizo_0:                                                  ;8F981B;
+RoomState_BombTorizo_0:
     %StateHeader(\
     %levelData(LevelData_BombTorizo),
     %tileset(2),
@@ -2736,7 +2733,7 @@ RoomState_BombTorizo_0:                                                  ;8F981B
     %libraryBG(LibBG_Crateria_2_3_Mechanical),
     %setupASM(RTS_8F91D4))
 
-RoomState_BombTorizo_1:                                                  ;8F9835;
+RoomState_BombTorizo_1:
     %StateHeader(\
     %levelData(LevelData_BombTorizo),
     %tileset(2),
@@ -2752,7 +2749,7 @@ RoomState_BombTorizo_1:                                                  ;8F9835
     %libraryBG(LibBG_Crateria_2_3_Mechanical),
     %setupASM(RTS_8F91D4))
 
-RoomState_BombTorizo_2:                                                  ;8F984F;
+RoomState_BombTorizo_2:
     %StateHeader(\
     %levelData(LevelData_BombTorizo),
     %tileset(2),
@@ -2769,15 +2766,15 @@ RoomState_BombTorizo_2:                                                  ;8F984F
     %setupASM(SetupASM_TurnWallIntoShotBlocksDuringEscape))
 
 RoomDoors_BombTorizo:
-    dw Door_BombTorizo_0                                                 ;8F9869;
+    dw Door_BombTorizo_0
 
 RoomVar_BombTorizo:
-    db $0F,$0A : dw $0052                                                ;8F986B;
+    db $0F,$0A : dw $0052
     db $0F,$0B : dw $0052
     db $0F,$0C : dw $0052
     db $00,$00
 
-RoomHeader_Flyway:                                                       ;8F9879;
+RoomHeader_Flyway:
     %RoomHeader(\
     %room($16),
     %area(0),
@@ -2790,7 +2787,7 @@ RoomHeader_Flyway:                                                       ;8F9879
     %stateCheckEventSet($0E, RoomState_Flyway_2),
     %stateCheckBossDead(4, RoomState_Flyway_1))
 
-RoomState_Flyway_0:                                                      ;8F9890;
+RoomState_Flyway_0:
     %StateHeader(\
     %levelData(LevelData_Flyway),
     %tileset(2),
@@ -2806,7 +2803,7 @@ RoomState_Flyway_0:                                                      ;8F9890
     %libraryBG(LibBG_Crateria_2_BrickRoom_WallArt_Dark),
     %setupASM(RTS_8F91D4))
 
-RoomState_Flyway_1:                                                      ;8F98AA;
+RoomState_Flyway_1:
     %StateHeader(\
     %levelData(LevelData_Flyway),
     %tileset(2),
@@ -2822,7 +2819,7 @@ RoomState_Flyway_1:                                                      ;8F98AA
     %libraryBG(LibBG_Crateria_2_BrickRoom_WallArt_Dark),
     %setupASM(RTS_8F91D4))
 
-RoomState_Flyway_2:                                                      ;8F98C4;
+RoomState_Flyway_2:
     %StateHeader(\
     %levelData(LevelData_Flyway),
     %tileset(2),
@@ -2839,10 +2836,10 @@ RoomState_Flyway_2:                                                      ;8F98C4
     %setupASM(RTS_8F91BB))
 
 RoomDoors_Flyway:
-    dw Door_Flyway_0                                                     ;8F98DE;
-    dw Door_Flyway_1                                                     ;8F98E0;
+    dw Door_Flyway_0
+    dw Door_Flyway_1
 
-RoomHeader_PreMapFlyway:                                                 ;8F98E2;
+RoomHeader_PreMapFlyway:
     %RoomHeader(\
     %room($17),
     %area(0),
@@ -2853,7 +2850,7 @@ RoomHeader_PreMapFlyway:                                                 ;8F98E2
     %doorList(RoomDoors_PreMapFlyway))
     %stateChecks(0)
 
-RoomState_PreMapFlyway:                                                  ;8F98EF;
+RoomState_PreMapFlyway:
     %StateHeader(\
     %levelData(LevelData_PreMapFlyway),
     %tileset(2),
@@ -2870,10 +2867,10 @@ RoomState_PreMapFlyway:                                                  ;8F98EF
     %setupASM(RTS_8F91D4))
 
 RoomDoors_PreMapFlyway:
-    dw Door_PreMapFlyway_0                                               ;8F9909;
-    dw Door_PreMapFlyway_1                                               ;8F990B;
+    dw Door_PreMapFlyway_0
+    dw Door_PreMapFlyway_1
 
-RoomHeader_Terminator:                                                   ;8F990D;
+RoomHeader_Terminator:
     %RoomHeader(\
     %room($18),
     %area(0),
@@ -2884,7 +2881,7 @@ RoomHeader_Terminator:                                                   ;8F990D
     %doorList(RoomDoors_Terminator))
     %stateChecks(0)
 
-RoomState_Terminator:                                                    ;8F991A;
+RoomState_Terminator:
     %StateHeader(\
     %levelData(LevelData_Terminator),
     %tileset(2),
@@ -2901,10 +2898,10 @@ RoomState_Terminator:                                                    ;8F991A
     %setupASM(RTS_8F91D4))
 
 RoomDoors_Terminator:
-    dw Door_Terminator_0                                                 ;8F9934;
-    dw Door_Terminator_1                                                 ;8F9936;
+    dw Door_Terminator_0
+    dw Door_Terminator_1
 
-RoomHeader_GreenBrinstarElev:                                            ;8F9938;
+RoomHeader_GreenBrinstarElev:
     %RoomHeader(\
     %room($19),
     %area(0),
@@ -2915,7 +2912,7 @@ RoomHeader_GreenBrinstarElev:                                            ;8F9938
     %doorList(RoomDoors_GreenBrinstarElev))
     %stateChecks(0)
 
-RoomState_GreenBrinstarElev:                                             ;8F9945;
+RoomState_GreenBrinstarElev:
     %StateHeader(\
     %levelData(LevelData_GreenBrinstarElev),
     %tileset(2),
@@ -2932,17 +2929,17 @@ RoomState_GreenBrinstarElev:                                             ;8F9945
     %setupASM(RTS_8F91D4))
 
 RoomDoors_GreenBrinstarElev:
-    dw Door_GreenBrinstarElev_0                                          ;8F995F;
-    dw Door_GreenBrinstarElev_1                                          ;8F9961;
-    dw Door_VariousRooms_Elevator                                        ;8F9963;
+    dw Door_GreenBrinstarElev_0
+    dw Door_GreenBrinstarElev_1
+    dw Door_VariousRooms_Elevator
 
 RoomScrolls_GreenBrinstarElev:
-    db $01                                                               ;8F9965;
+    db $01
 
 RoomPLM_GreenBrinstarElev_0:
-    db $00,$02, $80                                                      ;8F9966;
+    db $00,$02, $80
 
-RoomHeader_LowerMushrooms:                                               ;8F9969;
+RoomHeader_LowerMushrooms:
     %RoomHeader(\
     %room($1A),
     %area(0),
@@ -2953,7 +2950,7 @@ RoomHeader_LowerMushrooms:                                               ;8F9969
     %doorList(RoomDoors_LowerMushrooms))
     %stateChecks(0)
 
-RoomState_LowerMushrooms:                                                ;8F9976;
+RoomState_LowerMushrooms:
     %StateHeader(\
     %levelData(LevelData_LowerMushrooms),
     %tileset(2),
@@ -2970,10 +2967,10 @@ RoomState_LowerMushrooms:                                                ;8F9976
     %setupASM(RTS_8F91D4))
 
 RoomDoors_LowerMushrooms:
-    dw Door_LowerMushrooms_0                                             ;8F9990;
-    dw Door_LowerMushrooms_1                                             ;8F9992;
+    dw Door_LowerMushrooms_0
+    dw Door_LowerMushrooms_1
 
-RoomHeader_CrateriaMap:                                                  ;8F9994;
+RoomHeader_CrateriaMap:
     %RoomHeader(\
     %room($1B),
     %area(0),
@@ -2984,7 +2981,7 @@ RoomHeader_CrateriaMap:                                                  ;8F9994
     %doorList(RoomDoors_CrateriaMap))
     %stateChecks(0)
 
-RoomState_CrateriaMap:                                                   ;8F99A1;
+RoomState_CrateriaMap:
     %StateHeader(\
     %levelData(LevelData_MapStation_LeftSideDoor),
     %tileset($15),
@@ -3001,9 +2998,9 @@ RoomState_CrateriaMap:                                                   ;8F99A1
     %setupASM(RTS_8F91D4))
 
 RoomDoors_CrateriaMap:
-    dw Door_CrateriaMap_0                                                ;8F99BB;
+    dw Door_CrateriaMap_0
 
-RoomHeader_GreenPiratesShaft:                                            ;8F99BD;
+RoomHeader_GreenPiratesShaft:
     %RoomHeader(\
     %room($1C),
     %area(0),
@@ -3014,7 +3011,7 @@ RoomHeader_GreenPiratesShaft:                                            ;8F99BD
     %doorList(RoomDoors_GreenPiratesShaft))
     %stateChecks(0)
 
-RoomState_GreenPiratesShaft:                                             ;8F99CA;
+RoomState_GreenPiratesShaft:
     %StateHeader(\
     %levelData(LevelData_GreenPiratesShaft),
     %tileset(2),
@@ -3031,21 +3028,21 @@ RoomState_GreenPiratesShaft:                                             ;8F99CA
     %setupASM(RTS_8F91D4))
 
 RoomDoors_GreenPiratesShaft:
-    dw Door_GreenPiratesShaft_0                                          ;8F99E4;
-    dw Door_GreenPiratesShaft_1                                          ;8F99E6;
-    dw Door_GreenPiratesShaft_2                                          ;8F99E8;
-    dw Door_GreenPiratesShaft_3                                          ;8F99EA;
+    dw Door_GreenPiratesShaft_0
+    dw Door_GreenPiratesShaft_1
+    dw Door_GreenPiratesShaft_2
+    dw Door_GreenPiratesShaft_3
 
 RoomScrolls_GreenPiratesShaft:
-    db $02,$02,$02,$00,$02,$02,$01                                       ;8F99EC;
+    db $02,$02,$02,$00,$02,$02,$01
 
 RoomPLM_GreenPiratesShaft_0:
-    db $03,$02, $80                                                      ;8F99F3;
+    db $03,$02, $80
 
 RoomPLM_GreenPiratesShaft_2:
-    db $03,$00, $80                                                      ;8F99F6;
+    db $03,$00, $80
 
-RoomHeader_CrateriaSuper:                                                ;8F99F9;
+RoomHeader_CrateriaSuper:
     %RoomHeader(\
     %room($1D),
     %area(0),
@@ -3056,7 +3053,7 @@ RoomHeader_CrateriaSuper:                                                ;8F99F9
     %doorList(RoomDoors_CrateriaSuper))
     %stateChecks(0)
 
-RoomState_CrateriaSuper:                                                 ;8F9A06;
+RoomState_CrateriaSuper:
     %StateHeader(\
     %levelData(LevelData_CrateriaSuper),
     %tileset(2),
@@ -3073,14 +3070,14 @@ RoomState_CrateriaSuper:                                                 ;8F9A06
     %setupASM(RTS_8F91D4))
 
 RoomDoors_CrateriaSuper:
-    dw Door_CrateriaSuper_0                                              ;8F9A20;
-    dw Door_CrateriaSuper_1                                              ;8F9A22;
+    dw Door_CrateriaSuper_0
+    dw Door_CrateriaSuper_1
 
 RoomScrolls_CrateriaSuper:
-    db $01,$01,$01,$02,$00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00,$02   ;8F9A24;
-    db $00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00,$02,$01,$01,$01,$01   ;8F9A34;
+    db $01,$01,$01,$02,$00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00,$02
+    db $00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00,$02,$01,$01,$01,$01
 
-RoomHeader_FinalMissileBombway:                                          ;8F9A44;
+RoomHeader_FinalMissileBombway:
     %RoomHeader(\
     %room($1E),
     %area(0),
@@ -3092,7 +3089,7 @@ RoomHeader_FinalMissileBombway:                                          ;8F9A44
     %stateChecks(1,
     %stateCheckEventSet(0, RoomState_FinalMissileBombway_1))
 
-RoomState_FinalMissileBombway_0:                                         ;8F9A56;
+RoomState_FinalMissileBombway_0:
     %StateHeader(\
     %levelData(LevelData_FinalMissileBombway),
     %tileset(2),
@@ -3108,7 +3105,7 @@ RoomState_FinalMissileBombway_0:                                         ;8F9A56
     %libraryBG(LibBG_Crateria_2_BrickRoom),
     %setupASM(RTS_8F91D4))
 
-RoomState_FinalMissileBombway_1:                                         ;8F9A70;
+RoomState_FinalMissileBombway_1:
     %StateHeader(\
     %levelData(LevelData_FinalMissileBombway),
     %tileset(2),
@@ -3125,13 +3122,13 @@ RoomState_FinalMissileBombway_1:                                         ;8F9A70
     %setupASM(RTS_8F91D4))
 
 RoomDoors_FinalMissileBombway:
-    dw Door_FinalMissileBombway_0                                        ;8F9A8A;
-    dw Door_FinalMissileBombway_1                                        ;8F9A8C;
+    dw Door_FinalMissileBombway_0
+    dw Door_FinalMissileBombway_1
 
 RoomScrolls_FinalMissileBombway:
-    db $01,$01                                                           ;8F9A8E;
+    db $01,$01
 
-RoomHeader_FinalMissile:                                                 ;8F9A90;
+RoomHeader_FinalMissile:
     %RoomHeader(\
     %room($1F),
     %area(0),
@@ -3143,7 +3140,7 @@ RoomHeader_FinalMissile:                                                 ;8F9A90
     %stateChecks(1,
     %stateCheckEventSet(0, RoomState_FinalMissile_1))
 
-RoomState_FinalMissile_0:                                                ;8F9AA2;
+RoomState_FinalMissile_0:
     %StateHeader(\
     %levelData(LevelData_FinalMissile),
     %tileset(2),
@@ -3159,7 +3156,7 @@ RoomState_FinalMissile_0:                                                ;8F9AA2
     %libraryBG(LibBG_Crateria_2_3_Mechanical),
     %setupASM(RTS_8F91D4))
 
-RoomState_FinalMissile_1:                                                ;8F9ABC;
+RoomState_FinalMissile_1:
     %StateHeader(\
     %levelData(LevelData_FinalMissile),
     %tileset(2),
@@ -3176,12 +3173,12 @@ RoomState_FinalMissile_1:                                                ;8F9ABC
     %setupASM(RTS_8F91D4))
 
 RoomDoors_FinalMissile:
-    dw Door_FinalMissile_0                                               ;8F9AD6;
+    dw Door_FinalMissile_0
 
 RoomScrolls_FinalMissile:
-    db $01                                                               ;8F9AD8;
+    db $01
 
-RoomHeader_GreenBrinstarMainShaft:                                       ;8F9AD9;
+RoomHeader_GreenBrinstarMainShaft:
     %RoomHeader(\
     %room(0),
     %area(1),
@@ -3192,7 +3189,7 @@ RoomHeader_GreenBrinstarMainShaft:                                       ;8F9AD9
     %doorList(RoomDoors_GreenBrinstarMainShaft))
     %stateChecks(0)
 
-RoomState_GreenBrinstarMainShaft:                                        ;8F9AE6;
+RoomState_GreenBrinstarMainShaft:
     %StateHeader(\
     %levelData(LevelData_GreenBrinstarMainShaft),
     %tileset(6),
@@ -3209,33 +3206,33 @@ RoomState_GreenBrinstarMainShaft:                                        ;8F9AE6
     %setupASM(RTS_8F91D5))
 
 RoomDoors_GreenBrinstarMainShaft:
-    dw Door_GreenBrinstarMainShaft_0                                     ;8F9B00;
-    dw Door_GreenBrinstarMainShaft_1                                     ;8F9B02;
-    dw Door_GreenBrinstarMainShaft_2                                     ;8F9B04;
-    dw Door_GreenBrinstarMainShaft_3                                     ;8F9B06;
-    dw Door_GreenBrinstarMainShaft_4                                     ;8F9B08;
-    dw Door_GreenBrinstarMainShaft_5                                     ;8F9B0A;
-    dw Door_GreenBrinstarMainShaft_6                                     ;8F9B0C;
-    dw Door_GreenBrinstarMainShaft_7                                     ;8F9B0E;
-    dw Door_GreenBrinstarMainShaft_8                                     ;8F9B10;
-    dw Door_VariousRooms_Elevator                                        ;8F9B12;
-    dw Door_GreenBrinstarMainShaft_A                                     ;8F9B14;
+    dw Door_GreenBrinstarMainShaft_0
+    dw Door_GreenBrinstarMainShaft_1
+    dw Door_GreenBrinstarMainShaft_2
+    dw Door_GreenBrinstarMainShaft_3
+    dw Door_GreenBrinstarMainShaft_4
+    dw Door_GreenBrinstarMainShaft_5
+    dw Door_GreenBrinstarMainShaft_6
+    dw Door_GreenBrinstarMainShaft_7
+    dw Door_GreenBrinstarMainShaft_8
+    dw Door_VariousRooms_Elevator
+    dw Door_GreenBrinstarMainShaft_A
 
 RoomScrolls_GreenBrinstarMainShaft:
-    db $02,$00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00   ;8F9B16;
-    db $02,$00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00,$00,$00,$02,$01   ;8F9B26;
-    db $02,$00,$02,$00,$02,$00,$02,$00,$02,$00,$02,$00,$00,$00,$02,$00   ;8F9B36;
+    db $02,$00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00
+    db $02,$00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00,$00,$00,$02,$01
+    db $02,$00,$02,$00,$02,$00,$02,$00,$02,$00,$02,$00,$00,$00,$02,$00
 
 RoomPLM_GreenBrinstarMainShaft_0:
-    db $1C,$02, $1D,$00, $80                                             ;8F9B46;
+    db $1C,$02, $1D,$00, $80
 
 RoomPLM_GreenBrinstarMainShaft_1_2:
-    db $1C,$00, $1D,$01, $29,$01, $80                                    ;8F9B4B;
+    db $1C,$00, $1D,$01, $29,$01, $80
 
 RoomPLM_GreenBrinstarMainShaft_3:
-    db $18,$02, $1C,$02, $1D,$00, $29,$00, $80                           ;8F9B52;
+    db $18,$02, $1C,$02, $1D,$00, $29,$00, $80
 
-RoomHeader_SporeSpawnSuper:                                              ;8F9B5B;
+RoomHeader_SporeSpawnSuper:
     %RoomHeader(\
     %room(1),
     %area(1),
@@ -3246,7 +3243,7 @@ RoomHeader_SporeSpawnSuper:                                              ;8F9B5B
     %doorList(RoomDoors_SporeSpawnSuper))
     %stateChecks(0)
 
-RoomState_SporeSpawnSuper:                                               ;8F9B68;
+RoomState_SporeSpawnSuper:
     %StateHeader(\
     %levelData(LevelData_SporeSpawnSuper),
     %tileset(6),
@@ -3263,17 +3260,17 @@ RoomState_SporeSpawnSuper:                                               ;8F9B68
     %setupASM(RTS_8F91D5))
 
 RoomDoors_SporeSpawnSuper:
-    dw Door_SporeSpawnSuper_0                                            ;8F9B82;
-    dw Door_SporeSpawnSuper_1                                            ;8F9B84;
+    dw Door_SporeSpawnSuper_0
+    dw Door_SporeSpawnSuper_1
 
 RoomScrolls_SporeSpawnSuper:
-    db $01,$02,$00,$02,$00,$02,$00,$02,$00,$02,$00,$02,$00,$02,$00,$02   ;8F9B86;
-    db $01,$01                                                           ;8F9B96;
+    db $01,$02,$00,$02,$00,$02,$00,$02,$00,$02,$00,$02,$00,$02,$00,$02
+    db $01,$01
 
 RoomPLM_SporeSpawnSuper_0:
-    db $01,$02, $03,$02, $80                                             ;8F9B98;
+    db $01,$02, $03,$02, $80
 
-RoomHeader_BrinstarPreMap:                                               ;8F9B9D;
+RoomHeader_BrinstarPreMap:
     %RoomHeader(\
     %room(2),
     %area(1),
@@ -3284,7 +3281,7 @@ RoomHeader_BrinstarPreMap:                                               ;8F9B9D
     %doorList(RoomDoors_BrinstarPreMap))
     %stateChecks(0)
 
-RoomState_BrinstarPreMap:                                                ;8F9BAA;
+RoomState_BrinstarPreMap:
     %StateHeader(\
     %levelData(LevelData_BrinstarPreMap),
     %tileset(6),
@@ -3301,10 +3298,10 @@ RoomState_BrinstarPreMap:                                                ;8F9BAA
     %setupASM(RTS_8F91D5))
 
 RoomDoors_BrinstarPreMap:
-    dw Door_BrinstarPreMap_0                                             ;8F9BC4;
-    dw Door_BrinstarPreMap_1                                             ;8F9BC6;
+    dw Door_BrinstarPreMap_0
+    dw Door_BrinstarPreMap_1
 
-RoomHeader_EarlySupers:                                                  ;8F9BC8;
+RoomHeader_EarlySupers:
     %RoomHeader(\
     %room(3),
     %area(1),
@@ -3315,7 +3312,7 @@ RoomHeader_EarlySupers:                                                  ;8F9BC8
     %doorList(RoomDoors_EarlySupers))
     %stateChecks(0)
 
-RoomState_EarlySupers:                                                   ;8F9BD5;
+RoomState_EarlySupers:
     %StateHeader(\
     %levelData(LevelData_EarlySupers),
     %tileset(6),
@@ -3332,19 +3329,19 @@ RoomState_EarlySupers:                                                   ;8F9BD5
     %setupASM(RTS_8F91D5))
 
 RoomDoors_EarlySupers:
-    dw Door_EarlySupers_0                                                ;8F9BEF;
-    dw Door_EarlySupers_1                                                ;8F9BF1;
+    dw Door_EarlySupers_0
+    dw Door_EarlySupers_1
 
 RoomScrolls_EarlySupers:
-    db $00,$00,$00,$01,$01,$01                                           ;8F9BF3;
+    db $00,$00,$00,$01,$01,$01
 
 RoomPLM_EarlySupers_0_4:
-    db $00,$02, $01,$02, $02,$02, $80                                    ;8F9BF9;
+    db $00,$02, $01,$02, $02,$02, $80
 
 RoomPLM_EarlySupers_3:
-    db $00,$00, $01,$00, $02,$00, $80                                    ;8F9C00;
+    db $00,$00, $01,$00, $02,$00, $80
 
-RoomHeader_BrinstarReserveTank:                                          ;8F9C07;
+RoomHeader_BrinstarReserveTank:
     %RoomHeader(\
     %room(4),
     %area(1),
@@ -3355,7 +3352,7 @@ RoomHeader_BrinstarReserveTank:                                          ;8F9C07
     %doorList(RoomDoors_BrinstarReserveTank))
     %stateChecks(0)
 
-RoomState_BrinstarReserveTank:                                           ;8F9C14;
+RoomState_BrinstarReserveTank:
     %StateHeader(\
     %levelData(LevelData_BrinstarReserveTank),
     %tileset(6),
@@ -3372,15 +3369,15 @@ RoomState_BrinstarReserveTank:                                           ;8F9C14
     %setupASM(RTS_8F91D5))
 
 RoomDoors_BrinstarReserveTank:
-    dw Door_BrinstarReserveTank_0                                        ;8F9C2E;
+    dw Door_BrinstarReserveTank_0
 
 RoomScrolls_BrinstarReserveTank:
-    db $01,$00                                                           ;8F9C30;
+    db $01,$00
 
 RoomPLM_BrinstarReserveTank_0:
-    db $01,$01, $80                                                      ;8F9C32;
+    db $01,$01, $80
 
-RoomHeader_GreenBrinstarMap:                                             ;8F9C35;
+RoomHeader_GreenBrinstarMap:
     %RoomHeader(\
     %room(5),
     %area(1),
@@ -3391,7 +3388,7 @@ RoomHeader_GreenBrinstarMap:                                             ;8F9C35
     %doorList(RoomDoors_GreenBrinstarMap))
     %stateChecks(0)
 
-RoomState_GreenBrinstarMap:                                              ;8F9C42;
+RoomState_GreenBrinstarMap:
     %StateHeader(\
     %levelData(LevelData_MapStation_RightSideDoor),
     %tileset($15),
@@ -3408,9 +3405,9 @@ RoomState_GreenBrinstarMap:                                              ;8F9C42
     %setupASM(RTS_8F91D5))
 
 RoomDoors_GreenBrinstarMap:
-    dw Door_GreenBrinstarMap_0                                           ;8F9C5C;
+    dw Door_GreenBrinstarMap_0
 
-RoomHeader_GreenBrinstarFirefleas:                                       ;8F9C5E;
+RoomHeader_GreenBrinstarFirefleas:
     %RoomHeader(\
     %room(6),
     %area(1),
@@ -3421,7 +3418,7 @@ RoomHeader_GreenBrinstarFirefleas:                                       ;8F9C5E
     %doorList(RoomDoors_GreenBrinstarFirefleas))
     %stateChecks(0)
 
-RoomState_GreenBrinstarFirefleas:                                        ;8F9C6B;
+RoomState_GreenBrinstarFirefleas:
     %StateHeader(\
     %levelData(LevelData_GreenBrinstarFirefleas),
     %tileset(6),
@@ -3438,10 +3435,10 @@ RoomState_GreenBrinstarFirefleas:                                        ;8F9C6B
     %setupASM(RTS_8F91D5))
 
 RoomDoors_GreenBrinstarFirefleas:
-    dw Door_GreenBrinstarFirefleas_0                                     ;8F9C85;
-    dw Door_GreenBrinstarFirefleas_1                                     ;8F9C87;
+    dw Door_GreenBrinstarFirefleas_0
+    dw Door_GreenBrinstarFirefleas_1
 
-RoomHeader_GreenBrinstarMissileRefill:                                   ;8F9C89;
+RoomHeader_GreenBrinstarMissileRefill:
     %RoomHeader(\
     %room(7),
     %area(1),
@@ -3452,7 +3449,7 @@ RoomHeader_GreenBrinstarMissileRefill:                                   ;8F9C89
     %doorList(RoomDoors_GreenBrinstarMissileRefill))
     %stateChecks(0)
 
-RoomState_GreenBrinstarMissileRefill:                                    ;8F9C96;
+RoomState_GreenBrinstarMissileRefill:
     %StateHeader(\
     %levelData(LevelData_MissileRefill_RightSideDoor),
     %tileset($18),
@@ -3469,12 +3466,12 @@ RoomState_GreenBrinstarMissileRefill:                                    ;8F9C96
     %setupASM(RTS_8F91D5))
 
 RoomDoors_GreenBrinstarMissileRefill:
-    dw Door_GreenBrinstarMissileRefill_0                                 ;8F9CB0;
+    dw Door_GreenBrinstarMissileRefill_0
 
 RoomScrolls_GreenBrinstarMissileRefill:
-    db $01                                                               ;8F9CB2;
+    db $01
 
-RoomHeader_Dachora:                                                      ;8F9CB3;
+RoomHeader_Dachora:
     %RoomHeader(\
     %room(8),
     %area(1),
@@ -3486,37 +3483,37 @@ RoomHeader_Dachora:                                                      ;8F9CB3
     %stateChecks(0)
 
 RoomState_Dachora:
-    dl LevelData_Dachora                                                 ;8F9CC0;
-    db $06,$00,$00                                                       ;8F9CC3;
-    dw FXHeader_Dachora                                                  ;8F9CC6;
-    dw EnemyPopulations_Dachora                                          ;8F9CC8;
-    dw EnemySets_Dachora                                                 ;8F9CCA;
-    db $C0,$00                                                           ;8F9CCC;
-    dw RoomScrolls_Dachora                                               ;8F9CCE;
-    dw $0000                                                             ;8F9CD0;
-    dw MainASM_ScrollScreenRightInDachoraRoom                            ;8F9CD2;
-    dw PLMPopulation_Dachora                                             ;8F9CD4;
-    dw $0000                                                             ;8F9CD6;
-    dw RTS_8F91D5                                                        ;8F9CD8;
+    dl LevelData_Dachora
+    db $06,$00,$00
+    dw FXHeader_Dachora
+    dw EnemyPopulations_Dachora
+    dw EnemySets_Dachora
+    db $C0,$00
+    dw RoomScrolls_Dachora
+    dw $0000
+    dw MainASM_ScrollScreenRightInDachoraRoom
+    dw PLMPopulation_Dachora
+    dw $0000
+    dw RTS_8F91D5
 
 RoomDoors_Dachora:
-    dw Door_Dachora_0                                                    ;8F9CDA;
-    dw Door_Dachora_1                                                    ;8F9CDC;
-    dw Door_Dachora_2                                                    ;8F9CDE;
+    dw Door_Dachora_0
+    dw Door_Dachora_1
+    dw Door_Dachora_2
 
 RoomScrolls_Dachora:
-    db $01,$01,$01,$01,$01,$01,$01,$00,$00,$00,$00,$00,$00,$00,$00,$00   ;8F9CE0;
-    db $00,$00,$02,$00,$00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$00   ;8F9CF0;
-    db $02,$00,$00,$00,$00,$00,$00,$02,$00,$00,$02,$02,$02,$02,$02,$00   ;8F9D00;
-    db $00                                                               ;8F9D10;
+    db $01,$01,$01,$01,$01,$01,$01,$00,$00,$00,$00,$00,$00,$00,$00,$00
+    db $00,$00,$02,$00,$00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$00
+    db $02,$00,$00,$00,$00,$00,$00,$02,$00,$00,$02,$02,$02,$02,$02,$00
+    db $00
 
 RoomPLM_Dachora_6:
-    db $0B,$02, $80                                                      ;8F9D11;
+    db $0B,$02, $80
 
 RoomPLM_Dachora_A_16:
-    db $04,$01, $0B,$00, $80                                             ;8F9D14;
+    db $04,$01, $0B,$00, $80
 
-RoomHeader_BigPink:                                                      ;8F9D19;
+RoomHeader_BigPink:
     %RoomHeader(\
     %room(9),
     %area(1),
@@ -3527,7 +3524,7 @@ RoomHeader_BigPink:                                                      ;8F9D19
     %doorList(RoomDoors_BigPink))
     %stateChecks(0)
 
-RoomState_BigPink:                                                       ;8F9D26;
+RoomState_BigPink:
     %StateHeader(\
     %levelData(LevelData_BigPink),
     %tileset(6),
@@ -3544,41 +3541,41 @@ RoomState_BigPink:                                                       ;8F9D26
     %setupASM(RTS_8F91D5))
 
 RoomDoors_BigPink:
-    dw Door_BigPink_0                                                    ;8F9D40;
-    dw Door_BigPink_1                                                    ;8F9D42;
-    dw Door_BigPink_2                                                    ;8F9D44;
-    dw Door_BigPink_3                                                    ;8F9D46;
-    dw Door_BigPink_4                                                    ;8F9D48;
-    dw Door_BigPink_5                                                    ;8F9D4A;
-    dw Door_BigPink_6                                                    ;8F9D4C;
-    dw Door_BigPink_7                                                    ;8F9D4E;
-    dw Door_BigPink_8                                                    ;8F9D50;
+    dw Door_BigPink_0
+    dw Door_BigPink_1
+    dw Door_BigPink_2
+    dw Door_BigPink_3
+    dw Door_BigPink_4
+    dw Door_BigPink_5
+    dw Door_BigPink_6
+    dw Door_BigPink_7
+    dw Door_BigPink_8
 
 RoomScrolls_BigPink:
-    db $00,$00,$02,$02,$00,$00,$00,$02,$02,$00,$00,$00,$02,$02,$00,$00   ;8F9D52;
-    db $00,$02,$02,$00,$00,$00,$02,$02,$00,$00,$00,$02,$02,$00,$00,$00   ;8F9D62;
-    db $01,$01,$00,$02,$00,$00,$00,$00,$02,$00,$00,$00,$00,$02,$00,$00   ;8F9D72;
-    db $00,$00                                                           ;8F9D82;
+    db $00,$00,$02,$02,$00,$00,$00,$02,$02,$00,$00,$00,$02,$02,$00,$00
+    db $00,$02,$02,$00,$00,$00,$02,$02,$00,$00,$00,$02,$02,$00,$00,$00
+    db $01,$01,$00,$02,$00,$00,$00,$00,$02,$00,$00,$00,$00,$02,$00,$00
+    db $00,$00
 
 RoomPLM_BigPink_0:
-    db $20,$02, $25,$02, $26,$02, $80                                    ;8F9D84;
+    db $20,$02, $25,$02, $26,$02, $80
 
 RoomPLM_BigPink_1:
-    db $24,$02, $80                                                      ;8F9D8B;
+    db $24,$02, $80
 
 RoomPLM_BigPink_2:
-    db $1D,$00, $80                                                      ;8F9D8E;
+    db $1D,$00, $80
 
 RoomPLM_BigPink_3:
-    db $1C,$01, $1D,$01, $80                                             ;8F9D91;
+    db $1C,$01, $1D,$01, $80
 
 RoomPLM_BigPink_4:
-    db $01,$02, $80                                                      ;8F9D96;
+    db $01,$02, $80
 
 RoomPLM_BigPink_5:
-    db $01,$00, $80                                                      ;8F9D99;
+    db $01,$00, $80
 
-RoomHeader_SporeSpawnKihunters:                                          ;8F9D9C;
+RoomHeader_SporeSpawnKihunters:
     %RoomHeader(\
     %room($0A),
     %area(1),
@@ -3589,7 +3586,7 @@ RoomHeader_SporeSpawnKihunters:                                          ;8F9D9C
     %doorList(RoomDoors_SporeSpawnKihunters))
     %stateChecks(0)
 
-RoomState_SporeSpawnKihunters:                                           ;8F9DA9;
+RoomState_SporeSpawnKihunters:
     %StateHeader(\
     %levelData(LevelData_SporeSpawnKihunters),
     %tileset(6),
@@ -3606,10 +3603,10 @@ RoomState_SporeSpawnKihunters:                                           ;8F9DA9
     %setupASM(RTS_8F91D5))
 
 RoomDoors_SporeSpawnKihunters:
-    dw Door_SporeSpawnKihunters_0                                        ;8F9DC3;
-    dw Door_SporeSpawnKihunters_1                                        ;8F9DC5;
+    dw Door_SporeSpawnKihunters_0
+    dw Door_SporeSpawnKihunters_1
 
-RoomHeader_SporeSpawn:                                                   ;8F9DC7;
+RoomHeader_SporeSpawn:
     %RoomHeader(\
     %room($0B),
     %area(1),
@@ -3621,7 +3618,7 @@ RoomHeader_SporeSpawn:                                                   ;8F9DC7
     %stateChecks(1,
     %stateCheckBossDead(2, RoomState_SporeSpawn_1))
 
-RoomState_SporeSpawn_0:                                                  ;8F9DD9;
+RoomState_SporeSpawn_0:
     %StateHeader(\
     %levelData(LevelData_SporeSpawn),
     %tileset(6),
@@ -3637,7 +3634,7 @@ RoomState_SporeSpawn_0:                                                  ;8F9DD9
     %libraryBG(0),
     %setupASM(RTS_8F91D5))
 
-RoomState_SporeSpawn_1:                                                  ;8F9DF3;
+RoomState_SporeSpawn_1:
     %StateHeader(\
     %levelData(LevelData_SporeSpawn),
     %tileset(6),
@@ -3654,10 +3651,10 @@ RoomState_SporeSpawn_1:                                                  ;8F9DF3
     %setupASM(RTS_8F91D5))
 
 RoomDoors_SporeSpawn:
-    dw Door_SporeSpawn_0                                                 ;8F9E0D;
-    dw Door_SporeSpawn_1                                                 ;8F9E0F;
+    dw Door_SporeSpawn_0
+    dw Door_SporeSpawn_1
 
-RoomHeader_PinkBrinstarPowerBombs:                                       ;8F9E11;
+RoomHeader_PinkBrinstarPowerBombs:
     %RoomHeader(\
     %room($0C),
     %area(1),
@@ -3668,7 +3665,7 @@ RoomHeader_PinkBrinstarPowerBombs:                                       ;8F9E11
     %doorList(RoomDoors_PinkBrinstarPowerBombs))
     %stateChecks(0)
 
-RoomState_PinkBrinstarPowerBombs:                                        ;8F9E1E;
+RoomState_PinkBrinstarPowerBombs:
     %StateHeader(\
     %levelData(LevelData_PinkBrinstarPowerBombs),
     %tileset(6),
@@ -3685,19 +3682,19 @@ RoomState_PinkBrinstarPowerBombs:                                        ;8F9E1E
     %setupASM(RTS_8F91D5))
 
 RoomDoors_PinkBrinstarPowerBombs:
-    dw Door_PinkBrinstarPowerBombs_0                                     ;8F9E38;
-    dw Door_PinkBrinstarPowerBombs_1                                     ;8F9E3A;
+    dw Door_PinkBrinstarPowerBombs_0
+    dw Door_PinkBrinstarPowerBombs_1
 
 RoomScrolls_PinkBrinstarPowerBombs:
-    db $01,$01,$00,$00                                                   ;8F9E3C;
+    db $01,$01,$00,$00
 
 RoomPLM_PinkBrinstarPowerBombs_0:
-    db $00,$02, $01,$00, $02,$01, $03,$01, $80                           ;8F9E40;
+    db $00,$02, $01,$00, $02,$01, $03,$01, $80
 
 RoomPLM_PinkBrinstarPowerBombs_1:
-    db $00,$01, $01,$01, $02,$00, $03,$00, $80                           ;8F9E49;
+    db $00,$01, $01,$01, $02,$00, $03,$00, $80
 
-RoomHeader_GreenHillZone:                                                ;8F9E52;
+RoomHeader_GreenHillZone:
     %RoomHeader(\
     %room($0D),
     %area(1),
@@ -3708,7 +3705,7 @@ RoomHeader_GreenHillZone:                                                ;8F9E52
     %doorList(RoomDoors_GreenHillZone))
     %stateChecks(0)
 
-RoomState_GreenHillZone:                                                 ;8F9E5F;
+RoomState_GreenHillZone:
     %StateHeader(\
     %levelData(LevelData_GreenHillZone),
     %tileset(6),
@@ -3725,15 +3722,15 @@ RoomState_GreenHillZone:                                                 ;8F9E5F
     %setupASM(RTS_8F91D5))
 
 RoomDoors_GreenHillZone:
-    dw Door_GreenHillZone_0                                              ;8F9E79;
-    dw Door_GreenHillZone_1                                              ;8F9E7B;
-    dw Door_GreenHillZone_2                                              ;8F9E7D;
+    dw Door_GreenHillZone_0
+    dw Door_GreenHillZone_1
+    dw Door_GreenHillZone_2
 
 RoomScrolls_GreenHillZone:
-    db $02,$02,$00,$00,$00,$00,$00,$00,$02,$02,$02,$02,$00,$00,$00,$00   ;8F9E7F;
-    db $02,$02,$02,$02,$02,$02,$02,$02,$01,$01,$01,$01,$01,$01,$01,$01   ;8F9E8F;
+    db $02,$02,$00,$00,$00,$00,$00,$00,$02,$02,$02,$02,$00,$00,$00,$00
+    db $02,$02,$02,$02,$02,$02,$02,$02,$01,$01,$01,$01,$01,$01,$01,$01
 
-RoomHeader_MorphBall:                                                    ;8F9E9F;
+RoomHeader_MorphBall:
     %RoomHeader(\
     %room($0E),
     %area(1),
@@ -3745,7 +3742,7 @@ RoomHeader_MorphBall:                                                    ;8F9E9F
     %stateChecks(1,
     %stateCheckEventSet(0, RoomState_MorphBall_1))
 
-RoomState_MorphBall_0:                                                   ;8F9EB1;
+RoomState_MorphBall_0:
     %StateHeader(\
     %levelData(LevelData_MorphBall),
     %tileset(6),
@@ -3761,7 +3758,7 @@ RoomState_MorphBall_0:                                                   ;8F9EB1
     %libraryBG(LibBG_Brinstar_6_SmallPattern_Variety_0),
     %setupASM(RTS_8F91D5))
 
-RoomState_MorphBall_1:                                                   ;8F9ECB;
+RoomState_MorphBall_1:
     %StateHeader(\
     %levelData(LevelData_MorphBall),
     %tileset(6),
@@ -3778,28 +3775,28 @@ RoomState_MorphBall_1:                                                   ;8F9ECB
     %setupASM(RTS_8F91BC))
 
 RoomDoors_MorphBall:
-    dw Door_MorphBall_0                                                  ;8F9EE5;
-    dw Door_MorphBall_1                                                  ;8F9EE7;
-    dw Door_MorphBall_2                                                  ;8F9EE9;
-    dw Door_VariousRooms_Elevator                                        ;8F9EEB;
+    dw Door_MorphBall_0
+    dw Door_MorphBall_1
+    dw Door_MorphBall_2
+    dw Door_VariousRooms_Elevator
 
 RoomScrolls_MorphBall:
-    db $00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00   ;8F9EED;
-    db $01,$01,$01,$01,$01,$01,$01,$01                                   ;8F9EFD;
+    db $00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+    db $01,$01,$01,$01,$01,$01,$01,$01
 
 RoomPLM_MorphBall_0:
-    db $12,$01, $80                                                      ;8F9F05;
+    db $12,$01, $80
 
 RoomPLM_MorphBall_9:
-    db $12,$00, $80                                                      ;8F9F08;
+    db $12,$00, $80
 
 RoomPLM_MorphBall_B_D:
-    db $0D,$02, $80                                                      ;8F9F0B;
+    db $0D,$02, $80
 
 RoomPLM_MorphBall_F:
-    db $0D,$00, $80                                                      ;8F9F0E;
+    db $0D,$00, $80
 
-RoomHeader_ConstructionZone:                                             ;8F9F11;
+RoomHeader_ConstructionZone:
     %RoomHeader(\
     %room($0F),
     %area(1),
@@ -3811,7 +3808,7 @@ RoomHeader_ConstructionZone:                                             ;8F9F11
     %stateChecks(1,
     %stateCheckEventSet(0, RoomState_ConstructionZone_1))
 
-RoomState_ConstructionZone_0:                                            ;8F9F23;
+RoomState_ConstructionZone_0:
     %StateHeader(\
     %levelData(LevelData_ConstructionZone),
     %tileset(6),
@@ -3827,7 +3824,7 @@ RoomState_ConstructionZone_0:                                            ;8F9F23
     %libraryBG(LibBG_Brinstar_6_SmallPattern),
     %setupASM(RTS_8F91D5))
 
-RoomState_ConstructionZone_1:                                            ;8F9F3D;
+RoomState_ConstructionZone_1:
     %StateHeader(\
     %levelData(LevelData_ConstructionZone),
     %tileset(6),
@@ -3844,17 +3841,17 @@ RoomState_ConstructionZone_1:                                            ;8F9F3D
     %setupASM(RTS_8F91BC))
 
 RoomDoors_ConstructionZone:
-    dw Door_ConstructionZone_0                                           ;8F9F57;
-    dw Door_ConstructionZone_1                                           ;8F9F59;
-    dw Door_ConstructionZone_2                                           ;8F9F5B;
+    dw Door_ConstructionZone_0
+    dw Door_ConstructionZone_1
+    dw Door_ConstructionZone_2
 
 RoomScrolls_ConstructionZone:
-    db $01,$00                                                           ;8F9F5D;
+    db $01,$00
 
 RoomPLM_ConstructionZone_0:
-    db $00,$02, $01,$01, $80                                             ;8F9F5F;
+    db $00,$02, $01,$01, $80
 
-RoomHeader_BlueBrinstarETank:                                            ;8F9F64;
+RoomHeader_BlueBrinstarETank:
     %RoomHeader(\
     %room($10),
     %area(1),
@@ -3866,7 +3863,7 @@ RoomHeader_BlueBrinstarETank:                                            ;8F9F64
     %stateChecks(1,
     %stateCheckEventSet(0, RoomState_BlueBrinstarETank_1))
 
-RoomState_BlueBrinstarETank_0:                                           ;8F9F76;
+RoomState_BlueBrinstarETank_0:
     %StateHeader(\
     %levelData(LevelData_BlueBrinstarETank),
     %tileset(6),
@@ -3882,7 +3879,7 @@ RoomState_BlueBrinstarETank_0:                                           ;8F9F76
     %libraryBG(LibBG_Brinstar_6_SmallPattern_Variety_0),
     %setupASM(RTS_8F91D5))
 
-RoomState_BlueBrinstarETank_1:                                           ;8F9F90;
+RoomState_BlueBrinstarETank_1:
     %StateHeader(\
     %levelData(LevelData_BlueBrinstarETank),
     %tileset(6),
@@ -3899,16 +3896,16 @@ RoomState_BlueBrinstarETank_1:                                           ;8F9F90
     %setupASM(RTS_8F91BC))
 
 RoomDoors_BlueBrinstarETank:
-    dw Door_BlueBrinstarETank_0                                          ;8F9FAA;
-    dw Door_BlueBrinstarETank_1                                          ;8F9FAC;
+    dw Door_BlueBrinstarETank_0
+    dw Door_BlueBrinstarETank_1
 
 RoomScrolls_BlueBrinstarETank:
-    db $00,$00,$02,$00,$00,$00,$01,$01,$01                               ;8F9FAE;
+    db $00,$00,$02,$00,$00,$00,$01,$01,$01
 
 RoomPLM_BlueBrinstarETank_0_1:
-    db $05,$02, $80                                                      ;8F9FB7;
+    db $05,$02, $80
 
-RoomHeader_NoobBridge:                                                   ;8F9FBA;
+RoomHeader_NoobBridge:
     %RoomHeader(\
     %room($11),
     %area(1),
@@ -3919,7 +3916,7 @@ RoomHeader_NoobBridge:                                                   ;8F9FBA
     %doorList(RoomDoors_NoobBridge))
     %stateChecks(0)
 
-RoomState_NoobBridge:                                                    ;8F9FC7;
+RoomState_NoobBridge:
     %StateHeader(\
     %levelData(LevelData_NoobBridge),
     %tileset(6),
@@ -3936,10 +3933,10 @@ RoomState_NoobBridge:                                                    ;8F9FC7
     %setupASM(RTS_8F91D5))
 
 RoomDoors_NoobBridge:
-    dw Door_NoobBridge_0                                                 ;8F9FE1;
-    dw Door_NoobBridge_1                                                 ;8F9FE3;
+    dw Door_NoobBridge_0
+    dw Door_NoobBridge_1
 
-RoomHeader_GreenBrinstarBeetoms:                                         ;8F9FE5;
+RoomHeader_GreenBrinstarBeetoms:
     %RoomHeader(\
     %room($12),
     %area(1),
@@ -3950,7 +3947,7 @@ RoomHeader_GreenBrinstarBeetoms:                                         ;8F9FE5
     %doorList(RoomDoors_GreenBrinstarBeetoms))
     %stateChecks(0)
 
-RoomState_GreenBrinstarBeetoms:                                          ;8F9FF2;
+RoomState_GreenBrinstarBeetoms:
     %StateHeader(\
     %levelData(LevelData_GreenBrinstarBeetoms),
     %tileset(6),
@@ -3967,13 +3964,13 @@ RoomState_GreenBrinstarBeetoms:                                          ;8F9FF2
     %setupASM(RTS_8F91D5))
 
 RoomDoors_GreenBrinstarBeetoms:
-    dw Door_GreenBrinstarBeetoms_0                                       ;8FA00C;
-    dw Door_GreenBrinstarBeetoms_1                                       ;8FA00E;
+    dw Door_GreenBrinstarBeetoms_0
+    dw Door_GreenBrinstarBeetoms_1
 
 RoomScrolls_GreenBrinstarBeetoms:
-    db $01                                                               ;8FA010;
+    db $01
 
-RoomHeader_EtecoonETank:                                                 ;8FA011;
+RoomHeader_EtecoonETank:
     %RoomHeader(\
     %room($13),
     %area(1),
@@ -3984,7 +3981,7 @@ RoomHeader_EtecoonETank:                                                 ;8FA011
     %doorList(RoomDoors_EtecoonETank))
     %stateChecks(0)
 
-RoomState_EtecoonETank:                                                  ;8FA01E;
+RoomState_EtecoonETank:
     %StateHeader(\
     %levelData(LevelData_EtecoonETank),
     %tileset(6),
@@ -4001,18 +3998,18 @@ RoomState_EtecoonETank:                                                  ;8FA01E
     %setupASM(RTS_8F91D5))
 
 RoomDoors_EtecoonETank:
-    dw Door_EtecoonETank_0                                               ;8FA038;
-    dw Door_EtecoonETank_1                                               ;8FA03A;
-    dw Door_EtecoonETank_2                                               ;8FA03C;
-    dw Door_EtecoonETank_3                                               ;8FA03E;
+    dw Door_EtecoonETank_0
+    dw Door_EtecoonETank_1
+    dw Door_EtecoonETank_2
+    dw Door_EtecoonETank_3
 
 RoomScrolls_EtecoonETank:
-    db $01,$01,$00,$00,$00,$00,$00,$01,$01,$01                           ;8FA040;
+    db $01,$01,$00,$00,$00,$00,$00,$01,$01,$01
 
 RoomPLM_EtecoonETank_0:
-    db $01,$02, $05,$01, $06,$01, $80                                    ;8FA04A;
+    db $01,$02, $05,$01, $06,$01, $80
 
-RoomHeader_EtecoonSuper:                                                 ;8FA051;
+RoomHeader_EtecoonSuper:
     %RoomHeader(\
     %room($14),
     %area(1),
@@ -4023,7 +4020,7 @@ RoomHeader_EtecoonSuper:                                                 ;8FA051
     %doorList(RoomDoors_EtecoonSuper))
     %stateChecks(0)
 
-RoomState_EtecoonSuper:                                                  ;8FA05E;
+RoomState_EtecoonSuper:
     %StateHeader(\
     %levelData(LevelData_EtecoonSuper),
     %tileset(6),
@@ -4040,12 +4037,12 @@ RoomState_EtecoonSuper:                                                  ;8FA05E
     %setupASM(RTS_8F91D5))
 
 RoomDoors_EtecoonSuper:
-    dw Door_EtecoonSuper_0                                               ;8FA078;
+    dw Door_EtecoonSuper_0
 
 RoomScrolls_EtecoonSuper:
-    db $01                                                               ;8FA07A;
+    db $01
 
-RoomHeader_DachoraEnergyRefill:                                          ;8FA07B;
+RoomHeader_DachoraEnergyRefill:
     %RoomHeader(\
     %room($15),
     %area(1),
@@ -4056,7 +4053,7 @@ RoomHeader_DachoraEnergyRefill:                                          ;8FA07B
     %doorList(RoomDoors_DachoraEnergyRefill))
     %stateChecks(0)
 
-RoomState_DachoraEnergyRefill:                                           ;8FA088;
+RoomState_DachoraEnergyRefill:
     %StateHeader(\
     %levelData(LevelData_EnergyRefill_RightSideDoor),
     %tileset($17),
@@ -4073,9 +4070,9 @@ RoomState_DachoraEnergyRefill:                                           ;8FA088
     %setupASM(RTS_8F91D5))
 
 RoomDoors_DachoraEnergyRefill:
-    dw Door_DachoraEnergyRefill_0                                        ;8FA0A2;
+    dw Door_DachoraEnergyRefill_0
 
-RoomHeader_SporeSpawnFarming:                                            ;8FA0A4;
+RoomHeader_SporeSpawnFarming:
     %RoomHeader(\
     %room($16),
     %area(1),
@@ -4086,7 +4083,7 @@ RoomHeader_SporeSpawnFarming:                                            ;8FA0A4
     %doorList(RoomDoors_SporeSpawnFarming))
     %stateChecks(0)
 
-RoomState_SporeSpawnFarming:                                             ;8FA0B1;
+RoomState_SporeSpawnFarming:
     %StateHeader(\
     %levelData(LevelData_SporeSpawnFarming),
     %tileset(6),
@@ -4103,13 +4100,13 @@ RoomState_SporeSpawnFarming:                                             ;8FA0B1
     %setupASM(RTS_8F91D5))
 
 RoomDoors_SporeSpawnFarming:
-    dw Door_SporeSpawnFarming_0                                          ;8FA0CB;
-    dw Door_SporeSpawnFarming_1                                          ;8FA0CD;
+    dw Door_SporeSpawnFarming_0
+    dw Door_SporeSpawnFarming_1
 
 RoomScrolls_SporeSpawnFarming:
-    db $01,$01,$01                                                       ;8FA0CF;
+    db $01,$01,$01
 
-RoomHeader_WaterwayETank:                                                ;8FA0D2;
+RoomHeader_WaterwayETank:
     %RoomHeader(\
     %room($17),
     %area(1),
@@ -4120,7 +4117,7 @@ RoomHeader_WaterwayETank:                                                ;8FA0D2
     %doorList(RoomDoors_WaterwayETank))
     %stateChecks(0)
 
-RoomState_WaterwayETank:                                                 ;8FA0DF;
+RoomState_WaterwayETank:
     %StateHeader(\
     %levelData(LevelData_WaterwayETank),
     %tileset(6),
@@ -4137,16 +4134,16 @@ RoomState_WaterwayETank:                                                 ;8FA0DF
     %setupASM(RTS_8F91D5))
 
 RoomDoors_WaterwayETank:
-    dw Door_WaterwayETank_0                                              ;8FA0F9;
-    dw Door_WaterwayETank_1                                              ;8FA0FB;
+    dw Door_WaterwayETank_0
+    dw Door_WaterwayETank_1
 
 RoomScrolls_WaterwayETank:
-    db $00,$01,$01,$01,$01,$01,$01                                       ;8FA0FD;
+    db $00,$01,$01,$01,$01,$01,$01
 
 RoomPLM_WaterwayETank:
-    db $00,$01, $80                                                      ;8FA104;
+    db $00,$01, $80
 
-RoomHeader_FirstMissile:                                                 ;8FA107;
+RoomHeader_FirstMissile:
     %RoomHeader(\
     %room($18),
     %area(1),
@@ -4157,7 +4154,7 @@ RoomHeader_FirstMissile:                                                 ;8FA107
     %doorList(RoomDoors_FirstMissile))
     %stateChecks(0)
 
-RoomState_FirstMissile:                                                  ;8FA114;
+RoomState_FirstMissile:
     %StateHeader(\
     %levelData(LevelData_FirstMissile),
     %tileset(6),
@@ -4174,9 +4171,9 @@ RoomState_FirstMissile:                                                  ;8FA114
     %setupASM(RTS_8F91D5))
 
 RoomDoors_FirstMissile:
-    dw Door_FirstMissile_0                                               ;8FA12E;
+    dw Door_FirstMissile_0
 
-RoomHeader_PinkBrinstarHoppers:                                          ;8FA130;
+RoomHeader_PinkBrinstarHoppers:
     %RoomHeader(\
     %room($19),
     %area(1),
@@ -4187,7 +4184,7 @@ RoomHeader_PinkBrinstarHoppers:                                          ;8FA130
     %doorList(RoomDoors_PinkBrinstarHoppers))
     %stateChecks(0)
 
-RoomState_PinkBrinstarHoppers:                                           ;8FA13D;
+RoomState_PinkBrinstarHoppers:
     %StateHeader(\
     %levelData(LevelData_PinkBrinstarHoppers),
     %tileset(6),
@@ -4204,10 +4201,10 @@ RoomState_PinkBrinstarHoppers:                                           ;8FA13D
     %setupASM(RTS_8F91D5))
 
 RoomDoors_PinkBrinstarHoppers:
-    dw Door_PinkBrinstarHoppers_0                                        ;8FA157;
-    dw Door_PinkBrinstarHoppers_1                                        ;8FA159;
+    dw Door_PinkBrinstarHoppers_0
+    dw Door_PinkBrinstarHoppers_1
 
-RoomHeader_HopperETank:                                                  ;8FA15B;
+RoomHeader_HopperETank:
     %RoomHeader(\
     %room($1A),
     %area(1),
@@ -4218,7 +4215,7 @@ RoomHeader_HopperETank:                                                  ;8FA15B
     %doorList(RoomDoors_HopperETank))
     %stateChecks(0)
 
-RoomState_HopperETank:                                                   ;8FA168;
+RoomState_HopperETank:
     %StateHeader(\
     %levelData(LevelData_HopperETank),
     %tileset(6),
@@ -4235,9 +4232,9 @@ RoomState_HopperETank:                                                   ;8FA168
     %setupASM(RTS_8F91D5))
 
 RoomDoors_HopperETank:
-    dw Door_HopperETank_0                                                ;8FA182;
+    dw Door_HopperETank_0
 
-RoomHeader_BigPinkSaveRoom:                                              ;8FA184;
+RoomHeader_BigPinkSaveRoom:
     %RoomHeader(\
     %room($1B),
     %area(1),
@@ -4248,7 +4245,7 @@ RoomHeader_BigPinkSaveRoom:                                              ;8FA184
     %doorList(RoomDoors_BigPinkSaveRoom))
     %stateChecks(0)
 
-RoomState_BigPinkSaveRoom:                                               ;8FA191;
+RoomState_BigPinkSaveRoom:
     %StateHeader(\
     %levelData(LevelData_SaveStation_RightSideDoor),
     %tileset($19),
@@ -4265,9 +4262,9 @@ RoomState_BigPinkSaveRoom:                                               ;8FA191
     %setupASM(RTS_8F91D5))
 
 RoomDoors_BigPinkSaveRoom:
-    dw Door_BigPinkSaveRoom_0                                            ;8FA1AB;
+    dw Door_BigPinkSaveRoom_0
 
-RoomHeader_BlueBrinstarBoulders:                                         ;8FA1AD;
+RoomHeader_BlueBrinstarBoulders:
     %RoomHeader(\
     %room($1C),
     %area(1),
@@ -4278,7 +4275,7 @@ RoomHeader_BlueBrinstarBoulders:                                         ;8FA1AD
     %doorList(RoomDoors_BlueBrinstarBoulders))
     %stateChecks(0)
 
-RoomState_BlueBrinstarBoulders:                                          ;8FA1BA;
+RoomState_BlueBrinstarBoulders:
     %StateHeader(\
     %levelData(LevelData_BlueBrinstarBoulders),
     %tileset(6),
@@ -4295,10 +4292,10 @@ RoomState_BlueBrinstarBoulders:                                          ;8FA1BA
     %setupASM(RTS_8F91D5))
 
 RoomDoors_BlueBrinstarBoulders:
-    dw Door_BlueBrinstarBoulders_0                                       ;8FA1D4;
-    dw Door_BlueBrinstarBoulders_1                                       ;8FA1D6;
+    dw Door_BlueBrinstarBoulders_0
+    dw Door_BlueBrinstarBoulders_1
 
-RoomHeader_BillyMays:                                                    ;8FA1D8;
+RoomHeader_BillyMays:
     %RoomHeader(\
     %room($1D),
     %area(1),
@@ -4309,7 +4306,7 @@ RoomHeader_BillyMays:                                                    ;8FA1D8
     %doorList(RoomDoors_BillyMays))
     %stateChecks(0)
 
-RoomState_BillyMays:                                                     ;8FA1E5;
+RoomState_BillyMays:
     %StateHeader(\
     %levelData(LevelData_BillyMays),
     %tileset(6),
@@ -4326,9 +4323,9 @@ RoomState_BillyMays:                                                     ;8FA1E5
     %setupASM(RTS_8F91D5))
 
 RoomDoors_BillyMays:
-    dw Door_BillyMays_0                                                  ;8FA1FF;
+    dw Door_BillyMays_0
 
-RoomHeader_GreenBrinstarSave:                                            ;8FA201;
+RoomHeader_GreenBrinstarSave:
     %RoomHeader(\
     %room($1E),
     %area(1),
@@ -4339,7 +4336,7 @@ RoomHeader_GreenBrinstarSave:                                            ;8FA201
     %doorList(RoomDoors_GreenBrinstarSave))
     %stateChecks(0)
 
-RoomState_GreenBrinstarSave:                                             ;8FA20E;
+RoomState_GreenBrinstarSave:
     %StateHeader(\
     %levelData(LevelData_SaveStation_RightSideDoor),
     %tileset($19),
@@ -4356,9 +4353,9 @@ RoomState_GreenBrinstarSave:                                             ;8FA20E
     %setupASM(RTS_8F91D5))
 
 RoomDoors_GreenBrinstarSave:
-    dw Door_GreenBrinstarSave_0                                          ;8FA228;
+    dw Door_GreenBrinstarSave_0
 
-RoomHeader_EtecoonSave:                                                  ;8FA22A;
+RoomHeader_EtecoonSave:
     %RoomHeader(\
     %room($1F),
     %area(1),
@@ -4369,7 +4366,7 @@ RoomHeader_EtecoonSave:                                                  ;8FA22A
     %doorList(RoomDoors_EtecoonSave))
     %stateChecks(0)
 
-RoomState_EtecoonSave:                                                   ;8FA237;
+RoomState_EtecoonSave:
     %StateHeader(\
     %levelData(LevelData_SaveStation_RightSideDoor),
     %tileset($19),
@@ -4386,9 +4383,9 @@ RoomState_EtecoonSave:                                                   ;8FA237
     %setupASM(RTS_8F91D5))
 
 RoomDoors_EtecoonSave:
-    dw Door_EtecoonSave_0                                                ;8FA251;
+    dw Door_EtecoonSave_0
 
-RoomHeader_RedTower:                                                     ;8FA253;
+RoomHeader_RedTower:
     %RoomHeader(\
     %room($20),
     %area(1),
@@ -4399,7 +4396,7 @@ RoomHeader_RedTower:                                                     ;8FA253
     %doorList(RoomDoors_RedTower))
     %stateChecks(0)
 
-RoomState_RedTower:                                                      ;8FA260;
+RoomState_RedTower:
     %StateHeader(\
     %levelData(LevelData_RedTower),
     %tileset(7),
@@ -4416,19 +4413,19 @@ RoomState_RedTower:                                                      ;8FA260
     %setupASM(RTS_8F91D6))
 
 RoomDoors_RedTower:
-    dw Door_RedTower_0                                                   ;8FA27A;
-    dw Door_RedTower_1                                                   ;8FA27C;
-    dw Door_RedTower_2                                                   ;8FA27E;
-    dw Door_RedTower_3                                                   ;8FA280;
-    dw Door_RedTower_4                                                   ;8FA282;
+    dw Door_RedTower_0
+    dw Door_RedTower_1
+    dw Door_RedTower_2
+    dw Door_RedTower_3
+    dw Door_RedTower_4
 
 RoomScrolls_RedTower:
-    db $02,$02,$02,$02,$02,$02,$01,$00,$02,$02                           ;8FA284;
+    db $02,$02,$02,$02,$02,$02,$01,$00,$02,$02
 
 RoomPLM_RedTower_0:
-    db $06,$02, $07,$02, $80                                             ;8FA28E;
+    db $06,$02, $07,$02, $80
 
-RoomHeader_RedBrinstarFirefleas:                                         ;8FA293;
+RoomHeader_RedBrinstarFirefleas:
     %RoomHeader(\
     %room($21),
     %area(1),
@@ -4439,7 +4436,7 @@ RoomHeader_RedBrinstarFirefleas:                                         ;8FA293
     %doorList(RoomDoors_RedBrinstarFirefleas))
     %stateChecks(0)
 
-RoomState_RedBrinstarFirefleas:                                          ;8FA2A0;
+RoomState_RedBrinstarFirefleas:
     %StateHeader(\
     %levelData(LevelData_RedBrinstarFirefleas),
     %tileset(7),
@@ -4456,13 +4453,13 @@ RoomState_RedBrinstarFirefleas:                                          ;8FA2A0
     %setupASM(RTS_8F91D6))
 
 RoomDoors_RedBrinstarFirefleas:
-    dw Door_RedBrinstarFirefleas_0                                       ;8FA2BA;
-    dw Door_RedBrinstarFirefleas_1                                       ;8FA2BC;
+    dw Door_RedBrinstarFirefleas_0
+    dw Door_RedBrinstarFirefleas_1
 
 RoomScrolls_RedBrinstarFirefleas:
-    db $02,$02,$01,$01,$02,$02,$01,$01,$01,$01,$00,$00,$01,$01,$00,$00   ;8FA2BE;
+    db $02,$02,$01,$01,$02,$02,$01,$01,$01,$01,$00,$00,$01,$01,$00,$00
 
-RoomHeader_XrayScope:                                                    ;8FA2CE;
+RoomHeader_XrayScope:
     %RoomHeader(\
     %room($22),
     %area(1),
@@ -4473,7 +4470,7 @@ RoomHeader_XrayScope:                                                    ;8FA2CE
     %doorList(RoomDoors_XrayScope))
     %stateChecks(0)
 
-RoomState_XrayScope:                                                     ;8FA2DB;
+RoomState_XrayScope:
     %StateHeader(\
     %levelData(LevelData_XrayScope),
     %tileset(7),
@@ -4490,9 +4487,9 @@ RoomState_XrayScope:                                                     ;8FA2DB
     %setupASM(RTS_8F91D6))
 
 RoomDoors_XrayScope:
-    dw Door_XrayScope_0                                                  ;8FA2F5;
+    dw Door_XrayScope_0
 
-RoomHeader_Hellway:                                                      ;8FA2F7;
+RoomHeader_Hellway:
     %RoomHeader(\
     %room($23),
     %area(1),
@@ -4503,7 +4500,7 @@ RoomHeader_Hellway:                                                      ;8FA2F7
     %doorList(RoomDoors_Hellway))
     %stateChecks(0)
 
-RoomState_Hellway:                                                       ;8FA304;
+RoomState_Hellway:
     %StateHeader(\
     %levelData(LevelData_Hellway),
     %tileset(7),
@@ -4520,10 +4517,10 @@ RoomState_Hellway:                                                       ;8FA304
     %setupASM(RTS_8F91D6))
 
 RoomDoors_Hellway:
-    dw Door_Hellway_0                                                    ;8FA31E;
-    dw Door_Hellway_1                                                    ;8FA320;
+    dw Door_Hellway_0
+    dw Door_Hellway_1
 
-RoomHeader_Caterpillar:                                                  ;8FA322;
+RoomHeader_Caterpillar:
     %RoomHeader(\
     %room($24),
     %area(1),
@@ -4534,7 +4531,7 @@ RoomHeader_Caterpillar:                                                  ;8FA322
     %doorList(RoomDoors_Caterpillar))
     %stateChecks(0)
 
-RoomState_Caterpillar:                                                   ;8FA32F;
+RoomState_Caterpillar:
     %StateHeader(\
     %levelData(LevelData_Caterpillar),
     %tileset(7),
@@ -4551,28 +4548,28 @@ RoomState_Caterpillar:                                                   ;8FA32F
     %setupASM(RTS_8F91D6))
 
 RoomDoors_Caterpillar:
-    dw Door_Caterpillar_0                                                ;8FA349;
-    dw Door_Caterpillar_1                                                ;8FA34B;
-    dw Door_Caterpillar_2                                                ;8FA34D;
-    dw Door_Caterpillar_3                                                ;8FA34F;
-    dw Door_Caterpillar_4                                                ;8FA351;
-    dw Door_VariousRooms_Elevator                                        ;8FA353;
-    dw Door_Caterpillar_6                                                ;8FA355;
+    dw Door_Caterpillar_0
+    dw Door_Caterpillar_1
+    dw Door_Caterpillar_2
+    dw Door_Caterpillar_3
+    dw Door_Caterpillar_4
+    dw Door_VariousRooms_Elevator
+    dw Door_Caterpillar_6
 
 RoomScrolls_Caterpillar:
-    db $02,$00,$00,$02,$00,$00,$02,$00,$00,$02,$00,$01,$02,$00,$00,$01   ;8FA357;
-    db $00,$00,$00,$00,$00,$02,$00,$00                                   ;8FA367;
+    db $02,$00,$00,$02,$00,$00,$02,$00,$00,$02,$00,$01,$02,$00,$00,$01
+    db $00,$00,$00,$00,$00,$02,$00,$00
 
 RoomPLM_Caterpillar_0:
-    db $0F,$02, $12,$02, $80                                             ;8FA36F;
+    db $0F,$02, $12,$02, $80
 
 RoomPLM_Caterpillar_2:
-    db $0A,$01, $09,$02, $80                                             ;8FA374;
+    db $0A,$01, $09,$02, $80
 
 RoomPLM_Caterpillar_3:
-    db $0A,$00, $80                                                      ;8FA379;
+    db $0A,$00, $80
 
-RoomHeader_BetaPowerBomb:                                                ;8FA37C;
+RoomHeader_BetaPowerBomb:
     %RoomHeader(\
     %room($25),
     %area(1),
@@ -4583,7 +4580,7 @@ RoomHeader_BetaPowerBomb:                                                ;8FA37C
     %doorList(RoomDoors_BetaPowerBomb))
     %stateChecks(0)
 
-RoomState_BetaPowerBomb:                                                 ;8FA389;
+RoomState_BetaPowerBomb:
     %StateHeader(\
     %levelData(LevelData_BetaPowerBomb),
     %tileset(7),
@@ -4600,15 +4597,15 @@ RoomState_BetaPowerBomb:                                                 ;8FA389
     %setupASM(RTS_8F91D6))
 
 RoomDoors_BetaPowerBomb:
-    dw Door_BetaPowerBomb_0                                              ;8FA3A3;
+    dw Door_BetaPowerBomb_0
 
 RoomScrolls_BetaPowerBomb:
-    db $01,$01,$00,$00                                                   ;8FA3A5;
+    db $01,$01,$00,$00
 
 RoomPLM_BetaPowerBomb_0:
-    db $00,$02, $02,$01, $80                                             ;8FA3A9;
+    db $00,$02, $02,$01, $80
 
-RoomHeader_AlphaPowerBomb:                                               ;8FA3AE;
+RoomHeader_AlphaPowerBomb:
     %RoomHeader(\
     %room($26),
     %area(1),
@@ -4619,7 +4616,7 @@ RoomHeader_AlphaPowerBomb:                                               ;8FA3AE
     %doorList(RoomDoors_AlphaPowerBomb))
     %stateChecks(0)
 
-RoomState_AlphaPowerBomb:                                                ;8FA3BB;
+RoomState_AlphaPowerBomb:
     %StateHeader(\
     %levelData(LevelData_AlphaPowerBomb),
     %tileset(7),
@@ -4636,15 +4633,15 @@ RoomState_AlphaPowerBomb:                                                ;8FA3BB
     %setupASM(RTS_8F91D6))
 
 RoomDoors_AlphaPowerBomb:
-    dw Door_AlphaPowerBomb_0                                             ;8FA3D5;
+    dw Door_AlphaPowerBomb_0
 
 RoomScrolls_AlphaPowerBomb:
-    db $00,$01,$01                                                       ;8FA3D7;
+    db $00,$01,$01
 
 RoomPLM_AlphaPowerBomb_8:
-    db $00,$01, $80                                                      ;8FA3DA;
+    db $00,$01, $80
 
-RoomHeader_SkreeBoost:                                                   ;8FA3DD;
+RoomHeader_SkreeBoost:
     %RoomHeader(\
     %room($27),
     %area(1),
@@ -4655,7 +4652,7 @@ RoomHeader_SkreeBoost:                                                   ;8FA3DD
     %doorList(RoomDoors_SkreeBoost))
     %stateChecks(0)
 
-RoomState_SkreeBoost:                                                    ;8FA3EA;
+RoomState_SkreeBoost:
     %StateHeader(\
     %levelData(LevelData_SkreeBoost),
     %tileset(7),
@@ -4672,10 +4669,10 @@ RoomState_SkreeBoost:                                                    ;8FA3EA
     %setupASM(RTS_8F91D6))
 
 RoomDoors_SkreeBoost:
-    dw Door_SkreeBoost_0                                                 ;8FA404;
-    dw Door_SkreeBoost_1                                                 ;8FA406;
+    dw Door_SkreeBoost_0
+    dw Door_SkreeBoost_1
 
-RoomHeader_BelowSpazer:                                                  ;8FA408;
+RoomHeader_BelowSpazer:
     %RoomHeader(\
     %room($28),
     %area(1),
@@ -4686,7 +4683,7 @@ RoomHeader_BelowSpazer:                                                  ;8FA408
     %doorList(RoomDoors_BelowSpazer))
     %stateChecks(0)
 
-RoomState_BelowSpazer:                                                   ;8FA415;
+RoomState_BelowSpazer:
     %StateHeader(\
     %levelData(LevelData_BelowSpazer),
     %tileset(7),
@@ -4703,20 +4700,20 @@ RoomState_BelowSpazer:                                                   ;8FA415
     %setupASM(RTS_8F91D6))
 
 RoomDoors_BelowSpazer:
-    dw Door_BelowSpazer_0                                                ;8FA42F;
-    dw Door_BelowSpazer_1                                                ;8FA431;
-    dw Door_BelowSpazer_2                                                ;8FA433;
+    dw Door_BelowSpazer_0
+    dw Door_BelowSpazer_1
+    dw Door_BelowSpazer_2
 
 RoomScrolls_BelowSpazer:
-    db $00,$00,$01,$01                                                   ;8FA435;
+    db $00,$00,$01,$01
 
 RoomPLM_BelowSpazer_0_8_A:
-    db $00,$02, $01,$02, $80                                             ;8FA439;
+    db $00,$02, $01,$02, $80
 
 RoomPLM_BelowSpazer_4_9_B:
-    db $00,$00, $01,$00, $02,$01, $03,$01, $80                           ;8FA43E;
+    db $00,$00, $01,$00, $02,$01, $03,$01, $80
 
-RoomHeader_Spazer:                                                       ;8FA447;
+RoomHeader_Spazer:
     %RoomHeader(\
     %room($29),
     %area(1),
@@ -4727,7 +4724,7 @@ RoomHeader_Spazer:                                                       ;8FA447
     %doorList(RoomDoors_Spazer))
     %stateChecks(0)
 
-RoomState_Spazer:                                                        ;8FA454;
+RoomState_Spazer:
     %StateHeader(\
     %levelData(LevelData_Spazer),
     %tileset(7),
@@ -4744,12 +4741,12 @@ RoomState_Spazer:                                                        ;8FA454
     %setupASM(RTS_8F91D6))
 
 RoomDoors_Spazer:
-    dw Door_Spazer_0                                                     ;8FA46E;
+    dw Door_Spazer_0
 
 RoomScrolls_Spazer:
-    db $01                                                               ;8FA470;
+    db $01
 
-RoomHeader_WarehouseZeela:                                               ;8FA471;
+RoomHeader_WarehouseZeela:
     %RoomHeader(\
     %room($2A),
     %area(1),
@@ -4760,7 +4757,7 @@ RoomHeader_WarehouseZeela:                                               ;8FA471
     %doorList(RoomDoors_WarehouseZeela))
     %stateChecks(0)
 
-RoomState_WarehouseZeela:                                                ;8FA47E;
+RoomState_WarehouseZeela:
     %StateHeader(\
     %levelData(LevelData_WarehouseZeela),
     %tileset(7),
@@ -4777,23 +4774,23 @@ RoomState_WarehouseZeela:                                                ;8FA47E
     %setupASM(RTS_8F91D6))
 
 RoomDoors_WarehouseZeela:
-    dw Door_WarehouseZeela_0                                             ;8FA498;
-    dw Door_WarehouseZeela_1                                             ;8FA49A;
-    dw Door_WarehouseZeela_2                                             ;8FA49C;
+    dw Door_WarehouseZeela_0
+    dw Door_WarehouseZeela_1
+    dw Door_WarehouseZeela_2
 
 RoomScrolls_WarehouseZeela:
-    db $01,$00,$00,$01                                                   ;8FA49E;
+    db $01,$00,$00,$01
 
 RoomPLM_WarehouseZeela_0:
-    db $00,$02, $02,$01, $03,$00, $80                                    ;8FA4A2;
+    db $00,$02, $02,$01, $03,$00, $80
 
 RoomPLM_WarehouseZeela_1_3:
-    db $00,$02, $02,$01, $80                                             ;8FA4A9;
+    db $00,$02, $02,$01, $80
 
 RoomPLM_WarehouseZeela_2:
-    db $03,$01, $80                                                      ;8FA4AE;
+    db $03,$01, $80
 
-RoomHeader_WarehouseETank:                                               ;8FA4B1;
+RoomHeader_WarehouseETank:
     %RoomHeader(\
     %room($2B),
     %area(1),
@@ -4804,7 +4801,7 @@ RoomHeader_WarehouseETank:                                               ;8FA4B1
     %doorList(RoomDoors_WarehouseETank))
     %stateChecks(0)
 
-RoomState_WarehouseETank:                                                ;8FA4BE;
+RoomState_WarehouseETank:
     %StateHeader(\
     %levelData(LevelData_WarehouseETank),
     %tileset(7),
@@ -4821,9 +4818,9 @@ RoomState_WarehouseETank:                                                ;8FA4BE
     %setupASM(RTS_8F91D6))
 
 RoomDoors_WarehouseETank:
-    dw Door_WarehouseETank_0                                             ;8FA4D8;
+    dw Door_WarehouseETank_0
 
-RoomHeader_WarehouseKihunter:                                            ;8FA4DA;
+RoomHeader_WarehouseKihunter:
     %RoomHeader(\
     %room($2C),
     %area(1),
@@ -4834,7 +4831,7 @@ RoomHeader_WarehouseKihunter:                                            ;8FA4DA
     %doorList(RoomDoors_WarehouseKihunter))
     %stateChecks(0)
 
-RoomState_WarehouseKihunter:                                             ;8FA4E7;
+RoomState_WarehouseKihunter:
     %StateHeader(\
     %levelData(LevelData_WarehouseKihunter),
     %tileset(7),
@@ -4851,26 +4848,26 @@ RoomState_WarehouseKihunter:                                             ;8FA4E7
     %setupASM(RTS_8F91D6))
 
 RoomDoors_WarehouseKihunter:
-    dw Door_WarehouseKihunter_0                                          ;8FA501;
-    dw Door_WarehouseKihunter_1                                          ;8FA503;
-    dw Door_WarehouseKihunter_2                                          ;8FA505;
+    dw Door_WarehouseKihunter_0
+    dw Door_WarehouseKihunter_1
+    dw Door_WarehouseKihunter_2
 
 RoomScrolls_WarehouseKihunter:
-    db $02,$01,$01,$00,$00,$01,$00,$00                                   ;8FA507;
+    db $02,$01,$01,$00,$00,$01,$00,$00
 
 RoomPLM_WarehouseKihunter_0:
-    db $01,$01, $05,$00, $80                                             ;8FA50F;
+    db $01,$01, $05,$00, $80
 
 RoomPLM_WarehouseKihunter_1:
-    db $01,$02, $05,$01, $80                                             ;8FA514;
+    db $01,$02, $05,$01, $80
 
 RoomPLM_WarehouseKihunter_9:
-    db $05,$00, $80                                                      ;8FA519;
+    db $05,$00, $80
 
 RoomPLM_WarehouseKihunter_A_B:
-    db $03,$01, $05,$00, $80                                             ;8FA51C;
+    db $03,$01, $05,$00, $80
 
-RoomHeader_MiniKraid:                                                    ;8FA521;
+RoomHeader_MiniKraid:
     %RoomHeader(\
     %room($2D),
     %area(1),
@@ -4882,7 +4879,7 @@ RoomHeader_MiniKraid:                                                    ;8FA521
     %stateChecks(1,
     %stateCheckBossDead(1, RoomState_MiniKraid_1))
 
-RoomState_MiniKraid_0:                                                   ;8FA533;
+RoomState_MiniKraid_0:
     %StateHeader(\
     %levelData(LevelData_MiniKraid),
     %tileset(7),
@@ -4898,7 +4895,7 @@ RoomState_MiniKraid_0:                                                   ;8FA533
     %libraryBG(LibBG_Brinstar_7_NarrowVerticalTower_Brick_Vines_0),
     %setupASM(RTS_8F91D6))
 
-RoomState_MiniKraid_1:                                                   ;8FA54D;
+RoomState_MiniKraid_1:
     %StateHeader(\
     %levelData(LevelData_MiniKraid),
     %tileset(7),
@@ -4915,10 +4912,10 @@ RoomState_MiniKraid_1:                                                   ;8FA54D
     %setupASM(RTS_8F91D6))
 
 RoomDoors_MiniKraid:
-    dw Door_MiniKraid_0                                                  ;8FA567;
-    dw Door_MiniKraid_1                                                  ;8FA569;
+    dw Door_MiniKraid_0
+    dw Door_MiniKraid_1
 
-RoomHeader_KraidEyeDoor:                                                 ;8FA56B;
+RoomHeader_KraidEyeDoor:
     %RoomHeader(\
     %room($2E),
     %area(1),
@@ -4929,7 +4926,7 @@ RoomHeader_KraidEyeDoor:                                                 ;8FA56B
     %doorList(RoomDoors_KraidEyeDoor))
     %stateChecks(0)
 
-RoomState_KraidEyeDoor:                                                  ;8FA578;
+RoomState_KraidEyeDoor:
     %StateHeader(\
     %levelData(LevelData_KraidEyeDoor),
     %tileset(7),
@@ -4946,17 +4943,17 @@ RoomState_KraidEyeDoor:                                                  ;8FA578
     %setupASM(RTS_8F91D6))
 
 RoomDoors_KraidEyeDoor:
-    dw Door_KraidEyeDoor_0                                               ;8FA592;
-    dw Door_KraidEyeDoor_1                                               ;8FA594;
-    dw Door_KraidEyeDoor_2                                               ;8FA596;
+    dw Door_KraidEyeDoor_0
+    dw Door_KraidEyeDoor_1
+    dw Door_KraidEyeDoor_2
 
 RoomScrolls_KraidEyeDoor:
-    db $00,$00,$01,$01                                                   ;8FA598;
+    db $00,$00,$01,$01
 
 RoomPLM_KraidEyeDoor_0:
-    db $00,$02, $80                                                      ;8FA59C;
+    db $00,$02, $80
 
-RoomHeader_Kraid:                                                        ;8FA59F;
+RoomHeader_Kraid:
     %RoomHeader(\
     %room($2F),
     %area(1),
@@ -4968,7 +4965,7 @@ RoomHeader_Kraid:                                                        ;8FA59F
     %stateChecks(1,
     %stateCheckBossDead(1, RoomState_Kraid_1))
 
-RoomState_Kraid_0:                                                       ;8FA5B1;
+RoomState_Kraid_0:
     %StateHeader(\
     %levelData(LevelData_Kraid),
     %tileset($1A),
@@ -4984,7 +4981,7 @@ RoomState_Kraid_0:                                                       ;8FA5B1
     %libraryBG(LibBG_Brinstar_1A_Kraid_Upper_Lower),
     %setupASM(RTS_8F91D6))
 
-RoomState_Kraid_1:                                                       ;8FA5CB;
+RoomState_Kraid_1:
     %StateHeader(\
     %levelData(LevelData_Kraid),
     %tileset($1A),
@@ -5001,13 +4998,13 @@ RoomState_Kraid_1:                                                       ;8FA5CB
     %setupASM(RTS_8F91D6))
 
 RoomDoors_Kraid:
-    dw Door_Kraid_0                                                      ;8FA5E5;
-    dw Door_Kraid_1                                                      ;8FA5E7;
+    dw Door_Kraid_0
+    dw Door_Kraid_1
 
 RoomScrolls_Kraid:
-    db $02,$02,$01,$01                                                   ;8FA5E9;
+    db $02,$02,$01,$01
 
-RoomHeader_StatuesHallway:                                               ;8FA5ED;
+RoomHeader_StatuesHallway:
     %RoomHeader(\
     %room($30),
     %area(0),
@@ -5018,7 +5015,7 @@ RoomHeader_StatuesHallway:                                               ;8FA5ED
     %doorList(RoomDoors_StatuesHallway))
     %stateChecks(0)
 
-RoomState_StatuesHallway:                                                ;8FA5FA;
+RoomState_StatuesHallway:
     %StateHeader(\
     %levelData(LevelData_StatuesHallway),
     %tileset(8),
@@ -5035,10 +5032,10 @@ RoomState_StatuesHallway:                                                ;8FA5FA
     %setupASM(RTS_8F91D6))
 
 RoomDoors_StatuesHallway:
-    dw Door_StatuesHallway_0                                             ;8FA614;
-    dw Door_StatuesHallway_1                                             ;8FA616;
+    dw Door_StatuesHallway_0
+    dw Door_StatuesHallway_1
 
-RoomHeader_RedTowerRefill:                                               ;8FA618;
+RoomHeader_RedTowerRefill:
     %RoomHeader(\
     %room($31),
     %area(1),
@@ -5049,7 +5046,7 @@ RoomHeader_RedTowerRefill:                                               ;8FA618
     %doorList(RoomDoors_RedTowerRefill))
     %stateChecks(0)
 
-RoomState_RedTowerRefill:                                                ;8FA625;
+RoomState_RedTowerRefill:
     %StateHeader(\
     %levelData(LevelData_EnergyRefill_RightSideDoor),
     %tileset($17),
@@ -5066,9 +5063,9 @@ RoomState_RedTowerRefill:                                                ;8FA625
     %setupASM(RTS_8F91D6))
 
 RoomDoors_RedTowerRefill:
-    dw Door_RedTowerRefill_0                                             ;8FA63F;
+    dw Door_RedTowerRefill_0
 
-RoomHeader_KraidRefill:                                                  ;8FA641;
+RoomHeader_KraidRefill:
     %RoomHeader(\
     %room($32),
     %area(1),
@@ -5079,7 +5076,7 @@ RoomHeader_KraidRefill:                                                  ;8FA641
     %doorList(RoomDoors_KraidRefill))
     %stateChecks(0)
 
-RoomState_KraidRefill:                                                   ;8FA64E;
+RoomState_KraidRefill:
     %StateHeader(\
     %levelData(LevelData_RefillStation_LeftSideDoor),
     %tileset($18),
@@ -5096,9 +5093,9 @@ RoomState_KraidRefill:                                                   ;8FA64E
     %setupASM(RTS_8F91D6))
 
 RoomDoors_KraidRefill:
-    dw Door_KraidRefill_0                                                ;8FA668;
+    dw Door_KraidRefill_0
 
-RoomHeader_Statues:                                                      ;8FA66A;
+RoomHeader_Statues:
     %RoomHeader(\
     %room($33),
     %area(0),
@@ -5109,7 +5106,7 @@ RoomHeader_Statues:                                                      ;8FA66A
     %doorList(RoomDoors_Statues))
     %stateChecks(0)
 
-RoomState_Statues:                                                       ;8FA677;
+RoomState_Statues:
     %StateHeader(\
     %levelData(LevelData_Statues),
     %tileset($15),
@@ -5126,22 +5123,22 @@ RoomState_Statues:                                                       ;8FA677
     %setupASM(SetupASM_RunStatueUnlockingAnimations))
 
 RoomDoors_Statues:
-    dw Door_Statues_0                                                    ;8FA691;
-    dw Door_Statues_1                                                    ;8FA693;
-    dw Door_VariousRooms_Elevator                                        ;8FA695;
+    dw Door_Statues_0
+    dw Door_Statues_1
+    dw Door_VariousRooms_Elevator
 
 RoomScrolls_Statues:
-    db $01,$00                                                           ;8FA697;
+    db $01,$00
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FA699:
-    db $00,$02, $01,$01, $80                                             ;8FA699;
+    db $00,$02, $01,$01, $80
 
 UNUSED_RoomPLM_8FA69E:
-    db $01,$02, $80                                                      ;8FA69E;
+    db $01,$02, $80
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-RoomHeader_WarehouseEntrance:                                            ;8FA6A1;
+RoomHeader_WarehouseEntrance:
     %RoomHeader(\
     %room($34),
     %area(1),
@@ -5152,7 +5149,7 @@ RoomHeader_WarehouseEntrance:                                            ;8FA6A1
     %doorList(RoomDoors_WarehouseEntrance))
     %stateChecks(0)
 
-RoomState_WarehouseEntrance:                                             ;8FA6AE;
+RoomState_WarehouseEntrance:
     %StateHeader(\
     %levelData(LevelData_WarehouseEntrance),
     %tileset(7),
@@ -5169,27 +5166,27 @@ RoomState_WarehouseEntrance:                                             ;8FA6AE
     %setupASM(RTS_8F91F4))
 
 RoomDoors_WarehouseEntrance:
-    dw Door_WarehouseEntrance_0                                          ;8FA6C8;
-    dw Door_WarehouseEntrance_1                                          ;8FA6CA;
-    dw Door_WarehouseEntrance_2                                          ;8FA6CC;
-    dw Door_VariousRooms_Elevator                                        ;8FA6CE;
+    dw Door_WarehouseEntrance_0
+    dw Door_WarehouseEntrance_1
+    dw Door_WarehouseEntrance_2
+    dw Door_VariousRooms_Elevator
 
 RoomScrolls_WarehouseEntrance:
-    db $01,$00,$02,$00,$01,$01                                           ;8FA6D0;
+    db $01,$00,$02,$00,$01,$01
 
 RoomPLM_WarehouseEntrance_0:
-    db $00,$02, $80                                                      ;8FA6D6;
+    db $00,$02, $80
 
 RoomPLM_WarehouseEntrance_2:
-    db $01,$02, $80                                                      ;8FA6D9;
+    db $01,$02, $80
 
 RoomPLM_WarehouseEntrance_5:
-    db $00,$01, $80                                                      ;8FA6DC;
+    db $00,$01, $80
 
 RoomPLM_WarehouseEntrance_9:
-    db $00,$00, $80                                                      ;8FA6DF;
+    db $00,$00, $80
 
-RoomHeader_VariaSuit:                                                    ;8FA6E2;
+RoomHeader_VariaSuit:
     %RoomHeader(\
     %room($35),
     %area(1),
@@ -5200,7 +5197,7 @@ RoomHeader_VariaSuit:                                                    ;8FA6E2
     %doorList(RoomDoors_VariaSuit))
     %stateChecks(0)
 
-RoomState_VariaSuit:                                                     ;8FA6EF;
+RoomState_VariaSuit:
     %StateHeader(\
     %levelData(LevelData_VariaSuit),
     %tileset(7),
@@ -5217,9 +5214,9 @@ RoomState_VariaSuit:                                                     ;8FA6EF
     %setupASM(RTS_8F91F4))
 
 RoomDoors_VariaSuit:
-    dw Door_VariaSuit_0                                                  ;8FA709;
+    dw Door_VariaSuit_0
 
-RoomHeader_WarehouseSave:                                                ;8FA70B;
+RoomHeader_WarehouseSave:
     %RoomHeader(\
     %room($36),
     %area(1),
@@ -5230,7 +5227,7 @@ RoomHeader_WarehouseSave:                                                ;8FA70B
     %doorList(RoomDoors_WarehouseSave))
     %stateChecks(0)
 
-RoomState_WarehouseSave:                                                 ;8FA718;
+RoomState_WarehouseSave:
     %StateHeader(\
     %levelData(LevelData_SaveStation_LeftSideDoor),
     %tileset($19),
@@ -5247,9 +5244,9 @@ RoomState_WarehouseSave:                                                 ;8FA718
     %setupASM(RTS_8F91F4))
 
 RoomDoors_WarehouseSave:
-    dw Door_WarehouseSave_0                                              ;8FA732;
+    dw Door_WarehouseSave_0
 
-RoomHeader_RedBrinstarSave:                                              ;8FA734;
+RoomHeader_RedBrinstarSave:
     %RoomHeader(\
     %room($37),
     %area(1),
@@ -5260,7 +5257,7 @@ RoomHeader_RedBrinstarSave:                                              ;8FA734
     %doorList(RoomDoors_RedBrinstarSave))
     %stateChecks(0)
 
-RoomState_RedBrinstarSave:                                               ;8FA741;
+RoomState_RedBrinstarSave:
     %StateHeader(\
     %levelData(LevelData_SaveStation_LeftSideDoor),
     %tileset($19),
@@ -5277,9 +5274,9 @@ RoomState_RedBrinstarSave:                                               ;8FA741
     %setupASM(RTS_8F91F4))
 
 RoomDoors_RedBrinstarSave:
-    dw Door_RedBrinstarSave_0                                            ;8FA75B;
+    dw Door_RedBrinstarSave_0
 
-RoomHeader_IceBeamAcid:                                                  ;8FA75D;
+RoomHeader_IceBeamAcid:
     %RoomHeader(\
     %room(0),
     %area(2),
@@ -5290,7 +5287,7 @@ RoomHeader_IceBeamAcid:                                                  ;8FA75D
     %doorList(RoomDoors_IceBeamAcid))
     %stateChecks(0)
 
-RoomState_IceBeamAcid:                                                   ;8FA76A;
+RoomState_IceBeamAcid:
     %StateHeader(\
     %levelData(LevelData_IceBeamAcid),
     %tileset(9),
@@ -5307,10 +5304,10 @@ RoomState_IceBeamAcid:                                                   ;8FA76A
     %setupASM(RTS_8F91F5))
 
 RoomDoors_IceBeamAcid:
-    dw Door_IceBeamAcid_0                                                ;8FA784;
-    dw Door_IceBeamAcid_1                                                ;8FA786;
+    dw Door_IceBeamAcid_0
+    dw Door_IceBeamAcid_1
 
-RoomHeader_Cathedral:                                                    ;8FA788;
+RoomHeader_Cathedral:
     %RoomHeader(\
     %room(1),
     %area(2),
@@ -5321,7 +5318,7 @@ RoomHeader_Cathedral:                                                    ;8FA788
     %doorList(RoomDoors_Cathedral))
     %stateChecks(0)
 
-RoomState_Cathedral:                                                     ;8FA795;
+RoomState_Cathedral:
     %StateHeader(\
     %levelData(LevelData_Cathedral),
     %tileset(9),
@@ -5338,10 +5335,10 @@ RoomState_Cathedral:                                                     ;8FA795
     %setupASM(RTS_8F91F5))
 
 RoomDoors_Cathedral:
-    dw Door_Cathedral_0                                                  ;8FA7AF;
-    dw Door_Cathedral_1                                                  ;8FA7B1;
+    dw Door_Cathedral_0
+    dw Door_Cathedral_1
 
-RoomHeader_CathedralEntrance:                                            ;8FA7B3;
+RoomHeader_CathedralEntrance:
     %RoomHeader(\
     %room(2),
     %area(2),
@@ -5352,7 +5349,7 @@ RoomHeader_CathedralEntrance:                                            ;8FA7B3
     %doorList(RoomDoors_CathedralEntrance))
     %stateChecks(0)
 
-RoomState_CathedralEntrance:                                             ;8FA7C0;
+RoomState_CathedralEntrance:
     %StateHeader(\
     %levelData(LevelData_CathedralEntrance),
     %tileset(9),
@@ -5369,10 +5366,10 @@ RoomState_CathedralEntrance:                                             ;8FA7C0
     %setupASM(RTS_8F91F5))
 
 RoomDoors_CathedralEntrance:
-    dw Door_CathedralEntrance_0                                          ;8FA7DA;
-    dw Door_CathedralEntrance_1                                          ;8FA7DC;
+    dw Door_CathedralEntrance_0
+    dw Door_CathedralEntrance_1
 
-RoomHeader_BusinessCenter:                                               ;8FA7DE;
+RoomHeader_BusinessCenter:
     %RoomHeader(\
     %room(3),
     %area(2),
@@ -5383,7 +5380,7 @@ RoomHeader_BusinessCenter:                                               ;8FA7DE
     %doorList(RoomDoors_BusinessCenter))
     %stateChecks(0)
 
-RoomState_BusinessCenter:                                                ;8FA7EB;
+RoomState_BusinessCenter:
     %StateHeader(\
     %levelData(LevelData_BusinessCenter),
     %tileset($0A),
@@ -5400,16 +5397,16 @@ RoomState_BusinessCenter:                                                ;8FA7EB
     %setupASM(RTS_8F91F5))
 
 RoomDoors_BusinessCenter:
-    dw Door_BusinessCenter_0                                             ;8FA805;
-    dw Door_BusinessCenter_1                                             ;8FA807;
-    dw Door_BusinessCenter_2                                             ;8FA809;
-    dw Door_BusinessCenter_3                                             ;8FA80B;
-    dw Door_BusinessCenter_4                                             ;8FA80D;
-    dw Door_VariousRooms_Elevator                                        ;8FA80F;
-    dw Door_BusinessCenter_6                                             ;8FA811;
-    dw Door_BusinessCenter_7                                             ;8FA813;
+    dw Door_BusinessCenter_0
+    dw Door_BusinessCenter_1
+    dw Door_BusinessCenter_2
+    dw Door_BusinessCenter_3
+    dw Door_BusinessCenter_4
+    dw Door_VariousRooms_Elevator
+    dw Door_BusinessCenter_6
+    dw Door_BusinessCenter_7
 
-RoomHeader_IceBeamGate:                                                  ;8FA815;
+RoomHeader_IceBeamGate:
     %RoomHeader(\
     %room(4),
     %area(2),
@@ -5420,7 +5417,7 @@ RoomHeader_IceBeamGate:                                                  ;8FA815
     %doorList(RoomDoors_IceBeamGate))
     %stateChecks(0)
 
-RoomState_IceBeamGate:                                                   ;8FA822;
+RoomState_IceBeamGate:
     %StateHeader(\
     %levelData(LevelData_IceBeamGate),
     %tileset($0A),
@@ -5437,19 +5434,19 @@ RoomState_IceBeamGate:                                                   ;8FA822
     %setupASM(RTS_8F91F5))
 
 RoomDoors_IceBeamGate:
-    dw Door_IceBeamGate_0                                                ;8FA83C;
-    dw Door_IceBeamGate_1                                                ;8FA83E;
-    dw Door_IceBeamGate_2                                                ;8FA840;
-    dw Door_IceBeamGate_3                                                ;8FA842;
+    dw Door_IceBeamGate_0
+    dw Door_IceBeamGate_1
+    dw Door_IceBeamGate_2
+    dw Door_IceBeamGate_3
 
 RoomScrolls_IceBeamGate:
-    db $00,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00   ;8FA844;
-    db $00,$01,$01,$01,$01,$01,$01,$01,$00,$00,$00,$00                   ;8FA854;
+    db $00,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+    db $00,$01,$01,$01,$01,$01,$01,$01,$00,$00,$00,$00
 
 RoomPLM_IceBeamGate_0:
-    db $11,$02, $18,$01, $80                                             ;8FA860;
+    db $11,$02, $18,$01, $80
 
-RoomHeader_IceBeamTutorial:                                              ;8FA865;
+RoomHeader_IceBeamTutorial:
     %RoomHeader(\
     %room(5),
     %area(2),
@@ -5460,7 +5457,7 @@ RoomHeader_IceBeamTutorial:                                              ;8FA865
     %doorList(RoomDoors_IceBeamTutorial))
     %stateChecks(0)
 
-RoomState_IceBeamTutorial:                                               ;8FA872;
+RoomState_IceBeamTutorial:
     %StateHeader(\
     %levelData(LevelData_IceBeamTutorial),
     %tileset(9),
@@ -5477,10 +5474,10 @@ RoomState_IceBeamTutorial:                                               ;8FA872
     %setupASM(RTS_8F91F5))
 
 RoomDoors_IceBeamTutorial:
-    dw Door_IceBeamTutorial_0                                            ;8FA88C;
-    dw Door_IceBeamTutorial_1                                            ;8FA88E;
+    dw Door_IceBeamTutorial_0
+    dw Door_IceBeamTutorial_1
 
-RoomHeader_IceBeam:                                                      ;8FA890;
+RoomHeader_IceBeam:
     %RoomHeader(\
     %room(6),
     %area(2),
@@ -5491,7 +5488,7 @@ RoomHeader_IceBeam:                                                      ;8FA890
     %doorList(RoomDoors_IceBeam))
     %stateChecks(0)
 
-RoomState_IceBeam:                                                       ;8FA89D;
+RoomState_IceBeam:
     %StateHeader(\
     %levelData(LevelData_IceBeam),
     %tileset($0A),
@@ -5508,9 +5505,9 @@ RoomState_IceBeam:                                                       ;8FA89D
     %setupASM(RTS_8F91F5))
 
 RoomDoors_IceBeam:
-    dw Door_IceBeam_0                                                    ;8FA8B7;
+    dw Door_IceBeam_0
 
-RoomHeader_IceBeamSnake:                                                 ;8FA8B9;
+RoomHeader_IceBeamSnake:
     %RoomHeader(\
     %room(7),
     %area(2),
@@ -5521,7 +5518,7 @@ RoomHeader_IceBeamSnake:                                                 ;8FA8B9
     %doorList(RoomDoors_IceBeamSnake))
     %stateChecks(0)
 
-RoomState_IceBeamSnake:                                                  ;8FA8C6;
+RoomState_IceBeamSnake:
     %StateHeader(\
     %levelData(LevelData_IceBeamSnake),
     %tileset(9),
@@ -5538,26 +5535,26 @@ RoomState_IceBeamSnake:                                                  ;8FA8C6
     %setupASM(RTS_8F91F5))
 
 RoomDoors_IceBeamSnake:
-    dw Door_IceBeamSnake_0                                               ;8FA8E0;
-    dw Door_IceBeamSnake_1                                               ;8FA8E2;
-    dw Door_IceBeamSnake_2                                               ;8FA8E4;
+    dw Door_IceBeamSnake_0
+    dw Door_IceBeamSnake_1
+    dw Door_IceBeamSnake_2
 
 RoomScrolls_IceBeamSnake:
-    db $02,$00,$02,$00,$01,$00                                           ;8FA8E6;
+    db $02,$00,$02,$00,$01,$00
 
 RoomPLM_IceBeamSnake_0:
-    db $03,$01, $80                                                      ;8FA8EC;
+    db $03,$01, $80
 
 RoomPLM_IceBeamSnake_1:
-    db $03,$00, $80                                                      ;8FA8EF;
+    db $03,$00, $80
 
 RoomPLM_IceBeamSnake_2:
-    db $02,$02, $80                                                      ;8FA8F2;
+    db $02,$02, $80
 
 RoomPLM_IceBeamSnake_3:
-    db $02,$00, $80                                                      ;8FA8F5;
+    db $02,$00, $80
 
-RoomHeader_CrumbleShaft:                                                 ;8FA8F8;
+RoomHeader_CrumbleShaft:
     %RoomHeader(\
     %room(8),
     %area(2),
@@ -5568,7 +5565,7 @@ RoomHeader_CrumbleShaft:                                                 ;8FA8F8
     %doorList(RoomDoors_CrumbleShaft))
     %stateChecks(0)
 
-RoomState_CrumbleShaft:                                                  ;8FA905;
+RoomState_CrumbleShaft:
     %StateHeader(\
     %levelData(LevelData_CrumbleShaft),
     %tileset(9),
@@ -5585,10 +5582,10 @@ RoomState_CrumbleShaft:                                                  ;8FA905
     %setupASM(RTS_8F91F5))
 
 RoomDoors_CrumbleShaft:
-    dw Door_CrumbleShaft_0                                               ;8FA91F;
-    dw Door_CrumbleShaft_1                                               ;8FA921;
+    dw Door_CrumbleShaft_0
+    dw Door_CrumbleShaft_1
 
-RoomHeader_CrocomireSpeedway:                                            ;8FA923;
+RoomHeader_CrocomireSpeedway:
     %RoomHeader(\
     %room(9),
     %area(2),
@@ -5599,7 +5596,7 @@ RoomHeader_CrocomireSpeedway:                                            ;8FA923
     %doorList(RoomDoors_CrocomireSpeedway))
     %stateChecks(0)
 
-RoomState_CrocomireSpeedway:                                             ;8FA930;
+RoomState_CrocomireSpeedway:
     %StateHeader(\
     %levelData(LevelData_CrocomireSpeedway),
     %tileset(9),
@@ -5616,32 +5613,32 @@ RoomState_CrocomireSpeedway:                                             ;8FA930
     %setupASM(RTS_8F91F5))
 
 RoomDoors_CrocomireSpeedway:
-    dw Door_CrocomireSpeedway_0                                          ;8FA94A;
-    dw Door_CrocomireSpeedway_1                                          ;8FA94C;
-    dw Door_CrocomireSpeedway_2                                          ;8FA94E;
-    dw Door_CrocomireSpeedway_3                                          ;8FA950;
-    dw Door_CrocomireSpeedway_4                                          ;8FA952;
+    dw Door_CrocomireSpeedway_0
+    dw Door_CrocomireSpeedway_1
+    dw Door_CrocomireSpeedway_2
+    dw Door_CrocomireSpeedway_3
+    dw Door_CrocomireSpeedway_4
 
 RoomScrolls_CrocomireSpeedway:
-    db $01,$01,$01,$02,$02,$00,$00,$00,$00,$00,$00,$00,$02,$00,$00,$00   ;8FA954;
-    db $02,$02,$02,$02,$00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$02   ;8FA964;
-    db $02,$02,$02,$02,$02,$00,$02                                       ;8FA974;
+    db $01,$01,$01,$02,$02,$00,$00,$00,$00,$00,$00,$00,$02,$00,$00,$00
+    db $02,$02,$02,$02,$00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$02
+    db $02,$02,$02,$02,$02,$00,$02
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FA97B:
-    db $19,$02, $26,$02, $80                                             ;8FA97B;
+    db $19,$02, $26,$02, $80
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomPLM_CrocomireSpeedway_0:
-    db $19,$02, $25,$02, $26,$02, $80                                    ;8FA980;
+    db $19,$02, $25,$02, $26,$02, $80
 
 RoomPLM_CrocomireSpeedway_5:
-    db $25,$02, $80                                                      ;8FA987;
+    db $25,$02, $80
 
 RoomPLM_CrocomireSpeedway_8:
-    db $25,$00, $80                                                      ;8FA98A;
+    db $25,$00, $80
 
-RoomHeader_Crocomire:                                                    ;8FA98D;
+RoomHeader_Crocomire:
     %RoomHeader(\
     %room($0A),
     %area(2),
@@ -5653,7 +5650,7 @@ RoomHeader_Crocomire:                                                    ;8FA98D
     %stateChecks(1,
     %stateCheckBossDead(2, RoomState_Crocomire_1))
 
-RoomState_Crocomire_0:                                                   ;8FA99F;
+RoomState_Crocomire_0:
     %StateHeader(\
     %levelData(LevelData_Crocomire),
     %tileset($1B),
@@ -5669,7 +5666,7 @@ RoomState_Crocomire_0:                                                   ;8FA99F
     %libraryBG(LibBG_Crocomire_State0),
     %setupASM(RTS_8F91F6))
 
-RoomState_Crocomire_1:                                                   ;8FA9B9;
+RoomState_Crocomire_1:
     %StateHeader(\
     %levelData(LevelData_Crocomire),
     %tileset($1B),
@@ -5686,21 +5683,21 @@ RoomState_Crocomire_1:                                                   ;8FA9B9
     %setupASM(RTS_8F91F6))
 
 RoomDoors_Crocomire:
-    dw Door_Crocomire_0                                                  ;8FA9D3;
-    dw Door_Crocomire_1                                                  ;8FA9D5;
+    dw Door_Crocomire_0
+    dw Door_Crocomire_1
 
 RoomScrolls_Crocomire:
-    db $00,$00,$01,$01,$01,$01,$01,$01                                   ;8FA9D7;
+    db $00,$00,$01,$01,$01,$01,$01,$01
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FA9DF:
-    db $01,$01, $80                                                      ;8FA9DF;
+    db $01,$01, $80
 
 UNUSED_RoomPLM_8FA9E2:
-    db $00,$01, $80                                                      ;8FA9E2;
+    db $00,$01, $80
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-RoomHeader_HiJumpBoots:                                                  ;8FA9E5;
+RoomHeader_HiJumpBoots:
     %RoomHeader(\
     %room($0B),
     %area(2),
@@ -5711,7 +5708,7 @@ RoomHeader_HiJumpBoots:                                                  ;8FA9E5
     %doorList(RoomDoors_HiJumpBoots))
     %stateChecks(0)
 
-RoomState_HiJumpBoots:                                                   ;8FA9F2;
+RoomState_HiJumpBoots:
     %StateHeader(\
     %levelData(LevelData_HiJumpBoots),
     %tileset($0A),
@@ -5728,9 +5725,9 @@ RoomState_HiJumpBoots:                                                   ;8FA9F2
     %setupASM(RTS_8F91F6))
 
 RoomDoors_HiJumpBoots:
-    dw Door_HiJumpBoots_0                                                ;8FAA0C;
+    dw Door_HiJumpBoots_0
 
-RoomHeader_CrocomireEscape:                                              ;8FAA0E;
+RoomHeader_CrocomireEscape:
     %RoomHeader(\
     %room($0C),
     %area(2),
@@ -5741,7 +5738,7 @@ RoomHeader_CrocomireEscape:                                              ;8FAA0E
     %doorList(RoomDoors_CrocomireEscape))
     %stateChecks(0)
 
-RoomState_CrocomireEscape:                                               ;8FAA1B;
+RoomState_CrocomireEscape:
     %StateHeader(\
     %levelData(LevelData_CrocomireEscape),
     %tileset(9),
@@ -5758,13 +5755,13 @@ RoomState_CrocomireEscape:                                               ;8FAA1B
     %setupASM(RTS_8F91F6))
 
 RoomDoors_CrocomireEscape:
-    dw Door_CrocomireEscape_0                                            ;8FAA35;
-    dw Door_CrocomireEscape_1                                            ;8FAA37;
+    dw Door_CrocomireEscape_0
+    dw Door_CrocomireEscape_1
 
 RoomScrolls_CrocomireEscape:
-    db $02,$02,$02,$02,$01,$01,$01,$01                                   ;8FAA39;
+    db $02,$02,$02,$02,$01,$01,$01,$01
 
-RoomHeader_HiJumpETank:                                                  ;8FAA41;
+RoomHeader_HiJumpETank:
     %RoomHeader(\
     %room($0D),
     %area(2),
@@ -5775,7 +5772,7 @@ RoomHeader_HiJumpETank:                                                  ;8FAA41
     %doorList(RoomDoors_HiJumpETank))
     %stateChecks(0)
 
-RoomState_HiJumpETank:                                                   ;8FAA4E;
+RoomState_HiJumpETank:
     %StateHeader(\
     %levelData(LevelData_HiJumpETank),
     %tileset($0A),
@@ -5792,25 +5789,25 @@ RoomState_HiJumpETank:                                                   ;8FAA4E
     %setupASM(RTS_8F91F6))
 
 RoomDoors_HiJumpETank:
-    dw Door_HiJumpETank_0                                                ;8FAA68;
-    dw Door_HiJumpETank_1                                                ;8FAA6A;
+    dw Door_HiJumpETank_0
+    dw Door_HiJumpETank_1
 
 RoomScrolls_HiJumpETank:
-    db $00,$01,$00,$00                                                   ;8FAA6C;
+    db $00,$01,$00,$00
 
 RoomPLM_HiJumpETank_1:
-    db $00,$02, $02,$02, $80                                             ;8FAA70;
+    db $00,$02, $02,$02, $80
 
 RoomPLM_HiJumpETank_0:
-    db $00,$02, $02,$02, $03,$02, $80                                    ;8FAA75;
+    db $00,$02, $02,$02, $03,$02, $80
 
 RoomPLM_HiJumpETank_2:
-    db $03,$00, $80                                                      ;8FAA7C;
+    db $03,$00, $80
 
 RoomPLM_HiJumpETank_3:
-    db $03,$02, $80                                                      ;8FAA7F;
+    db $03,$02, $80
 
-RoomHeader_PostCrocFarming:                                              ;8FAA82;
+RoomHeader_PostCrocFarming:
     %RoomHeader(\
     %room($0E),
     %area(2),
@@ -5821,7 +5818,7 @@ RoomHeader_PostCrocFarming:                                              ;8FAA82
     %doorList(RoomDoors_PostCrocFarming))
     %stateChecks(0)
 
-RoomState_PostCrocFarming:                                               ;8FAA8F;
+RoomState_PostCrocFarming:
     %StateHeader(\
     %levelData(LevelData_PostCrocFarming),
     %tileset(9),
@@ -5838,15 +5835,15 @@ RoomState_PostCrocFarming:                                               ;8FAA8F
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PostCrocFarming:
-    dw Door_PostCrocFarming_0                                            ;8FAAA9;
-    dw Door_PostCrocFarming_1                                            ;8FAAAB;
-    dw Door_PostCrocFarming_2                                            ;8FAAAD;
-    dw Door_PostCrocFarming_3                                            ;8FAAAF;
+    dw Door_PostCrocFarming_0
+    dw Door_PostCrocFarming_1
+    dw Door_PostCrocFarming_2
+    dw Door_PostCrocFarming_3
 
 RoomScrolls_PostCrocFarming:
-    db $02,$02,$02,$02                                                   ;8FAAB1;
+    db $02,$02,$02,$02
 
-RoomHeader_PostCrocSave:                                                 ;8FAAB5;
+RoomHeader_PostCrocSave:
     %RoomHeader(\
     %room($0F),
     %area(2),
@@ -5857,7 +5854,7 @@ RoomHeader_PostCrocSave:                                                 ;8FAAB5
     %doorList(RoomDoors_PostCrocSave))
     %stateChecks(0)
 
-RoomState_PostCrocSave:                                                  ;8FAAC2;
+RoomState_PostCrocSave:
     %StateHeader(\
     %levelData(LevelData_SaveStation_LeftSideDoor),
     %tileset($19),
@@ -5874,9 +5871,9 @@ RoomState_PostCrocSave:                                                  ;8FAAC2
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PostCrocSave:
-    dw Door_PostCrocSave_0                                               ;8FAADC;
+    dw Door_PostCrocSave_0
 
-RoomHeader_PostCrocPowerBombs:                                           ;8FAADE;
+RoomHeader_PostCrocPowerBombs:
     %RoomHeader(\
     %room($10),
     %area(2),
@@ -5887,7 +5884,7 @@ RoomHeader_PostCrocPowerBombs:                                           ;8FAADE
     %doorList(RoomDoors_PostCrocPowerBombs))
     %stateChecks(0)
 
-RoomState_PostCrocPowerBombs:                                            ;8FAAEB;
+RoomState_PostCrocPowerBombs:
     %StateHeader(\
     %levelData(LevelData_PostCrocPowerBombs),
     %tileset(9),
@@ -5904,9 +5901,9 @@ RoomState_PostCrocPowerBombs:                                            ;8FAAEB
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PostCrocPowerBombs:
-    dw Door_PostCrocPowerBombs_0                                         ;8FAB05;
+    dw Door_PostCrocPowerBombs_0
 
-RoomHeader_PostCrocShaft:                                                ;8FAB07;
+RoomHeader_PostCrocShaft:
     %RoomHeader(\
     %room($11),
     %area(2),
@@ -5917,7 +5914,7 @@ RoomHeader_PostCrocShaft:                                                ;8FAB07
     %doorList(RoomDoors_PostCrocShaft))
     %stateChecks(0)
 
-RoomState_PostCrocShaft:                                                 ;8FAB14;
+RoomState_PostCrocShaft:
     %StateHeader(\
     %levelData(LevelData_PostCrocShaft),
     %tileset($0A),
@@ -5934,15 +5931,15 @@ RoomState_PostCrocShaft:                                                 ;8FAB14
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PostCrocShaft:
-    dw Door_PostCrocShaft_0                                              ;8FAB2E;
-    dw Door_PostCrocShaft_1                                              ;8FAB30;
-    dw Door_PostCrocShaft_2                                              ;8FAB32;
-    dw Door_PostCrocShaft_3                                              ;8FAB34;
+    dw Door_PostCrocShaft_0
+    dw Door_PostCrocShaft_1
+    dw Door_PostCrocShaft_2
+    dw Door_PostCrocShaft_3
 
 RoomScrolls_PostCrocShaft:
-    db $02,$02,$02,$02,$02                                               ;8FAB36;
+    db $02,$02,$02,$02,$02
 
-RoomHeader_PostCrocMissile:                                              ;8FAB3B;
+RoomHeader_PostCrocMissile:
     %RoomHeader(\
     %room($12),
     %area(2),
@@ -5953,7 +5950,7 @@ RoomHeader_PostCrocMissile:                                              ;8FAB3B
     %doorList(RoomDoors_PostCrocMissile))
     %stateChecks(0)
 
-RoomState_PostCrocMissile:                                               ;8FAB48;
+RoomState_PostCrocMissile:
     %StateHeader(\
     %levelData(LevelData_PostCrocMissile),
     %tileset($0A),
@@ -5970,9 +5967,9 @@ RoomState_PostCrocMissile:                                               ;8FAB48
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PostCrocMissile:
-    dw Door_PostCrocMissile_0                                            ;8FAB62;
+    dw Door_PostCrocMissile_0
 
-RoomHeader_GrappleTutorial3:                                             ;8FAB64;
+RoomHeader_GrappleTutorial3:
     %RoomHeader(\
     %room($13),
     %area(2),
@@ -5983,7 +5980,7 @@ RoomHeader_GrappleTutorial3:                                             ;8FAB64
     %doorList(RoomDoors_GrappleTutorial3))
     %stateChecks(0)
 
-RoomState_GrappleTutorial3:                                              ;8FAB71;
+RoomState_GrappleTutorial3:
     %StateHeader(\
     %levelData(LevelData_GrappleTutorial3),
     %tileset($0A),
@@ -6000,10 +5997,10 @@ RoomState_GrappleTutorial3:                                              ;8FAB71
     %setupASM(RTS_8F91F6))
 
 RoomDoors_GrappleTutorial3:
-    dw Door_GrappleTutorial3_0                                           ;8FAB8B;
-    dw Door_GrappleTutorial3_1                                           ;8FAB8D;
+    dw Door_GrappleTutorial3_0
+    dw Door_GrappleTutorial3_1
 
-RoomHeader_PostCrocJump:                                                 ;8FAB8F;
+RoomHeader_PostCrocJump:
     %RoomHeader(\
     %room($14),
     %area(2),
@@ -6014,7 +6011,7 @@ RoomHeader_PostCrocJump:                                                 ;8FAB8F
     %doorList(RoomDoors_PostCrocJump))
     %stateChecks(0)
 
-RoomState_PostCrocJump:                                                  ;8FAB9C;
+RoomState_PostCrocJump:
     %StateHeader(\
     %levelData(LevelData_PostCrocJump),
     %tileset($0A),
@@ -6031,14 +6028,14 @@ RoomState_PostCrocJump:                                                  ;8FAB9C
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PostCrocJump:
-    dw Door_PostCrocJump_0                                               ;8FABB6;
-    dw Door_PostCrocJump_1                                               ;8FABB8;
+    dw Door_PostCrocJump_0
+    dw Door_PostCrocJump_1
 
 RoomScrolls_PostCrocJump:
-    db $02,$02,$02,$02,$02,$00,$00,$00,$02,$02,$02,$02,$02,$00,$00,$00   ;8FABBA;
-    db $01,$01,$01,$01,$01,$01,$01,$01                                   ;8FABCA;
+    db $02,$02,$02,$02,$02,$00,$00,$00,$02,$02,$02,$02,$02,$00,$00,$00
+    db $01,$01,$01,$01,$01,$01,$01,$01
 
-RoomHeader_GrappleTutorial2:                                             ;8FABD2;
+RoomHeader_GrappleTutorial2:
     %RoomHeader(\
     %room($15),
     %area(2),
@@ -6049,7 +6046,7 @@ RoomHeader_GrappleTutorial2:                                             ;8FABD2
     %doorList(RoomDoors_GrappleTutorial2))
     %stateChecks(0)
 
-RoomState_GrappleTutorial2:                                              ;8FABDF;
+RoomState_GrappleTutorial2:
     %StateHeader(\
     %levelData(LevelData_GrappleTutorial2),
     %tileset($0A),
@@ -6066,13 +6063,13 @@ RoomState_GrappleTutorial2:                                              ;8FABDF
     %setupASM(RTS_8F91F6))
 
 RoomDoors_GrappleTutorial2:
-    dw Door_GrappleTutorial2_0                                           ;8FABF9;
-    dw Door_GrappleTutorial2_1                                           ;8FABFB;
+    dw Door_GrappleTutorial2_0
+    dw Door_GrappleTutorial2_1
 
 RoomScrolls_GrappleTutorial2:
-    db $02,$02,$01                                                       ;8FABFD;
+    db $02,$02,$01
 
-RoomHeader_GrappleTutorial1:                                             ;8FAC00;
+RoomHeader_GrappleTutorial1:
     %RoomHeader(\
     %room($16),
     %area(2),
@@ -6083,7 +6080,7 @@ RoomHeader_GrappleTutorial1:                                             ;8FAC00
     %doorList(RoomDoors_GrappleTutorial1))
     %stateChecks(0)
 
-RoomState_GrappleTutorial1:                                              ;8FAC0D;
+RoomState_GrappleTutorial1:
     %StateHeader(\
     %levelData(LevelData_GrappleTutorial1),
     %tileset($0A),
@@ -6100,10 +6097,10 @@ RoomState_GrappleTutorial1:                                              ;8FAC0D
     %setupASM(RTS_8F91F6))
 
 RoomDoors_GrappleTutorial1:
-    dw Door_GrappleTutorial1_0                                           ;8FAC27;
-    dw Door_GrappleTutorial1_1                                           ;8FAC29;
+    dw Door_GrappleTutorial1_0
+    dw Door_GrappleTutorial1_1
 
-RoomHeader_GrappleBeam:                                                  ;8FAC2B;
+RoomHeader_GrappleBeam:
     %RoomHeader(\
     %room($17),
     %area(2),
@@ -6114,7 +6111,7 @@ RoomHeader_GrappleBeam:                                                  ;8FAC2B
     %doorList(RoomDoors_GrappleBeam))
     %stateChecks(0)
 
-RoomState_GrappleBeam:                                                   ;8FAC38;
+RoomState_GrappleBeam:
     %StateHeader(\
     %levelData(LevelData_GrappleBeam),
     %tileset($0A),
@@ -6131,13 +6128,13 @@ RoomState_GrappleBeam:                                                   ;8FAC38
     %setupASM(RTS_8F91F6))
 
 RoomDoors_GrappleBeam:
-    dw Door_GrappleBeam_0                                                ;8FAC52;
-    dw Door_GrappleBeam_1                                                ;8FAC54;
+    dw Door_GrappleBeam_0
+    dw Door_GrappleBeam_1
 
 RoomScrolls_GrappleBeam:
-    db $02,$02,$01,$00                                                   ;8FAC56;
+    db $02,$02,$01,$00
 
-RoomHeader_NorfairReserveTank:                                           ;8FAC5A;
+RoomHeader_NorfairReserveTank:
     %RoomHeader(\
     %room($18),
     %area(2),
@@ -6148,7 +6145,7 @@ RoomHeader_NorfairReserveTank:                                           ;8FAC5A
     %doorList(RoomDoors_NorfairReserveTank))
     %stateChecks(0)
 
-RoomState_NorfairReserveTank:                                            ;8FAC67;
+RoomState_NorfairReserveTank:
     %StateHeader(\
     %levelData(LevelData_NorfairReserveTank),
     %tileset(9),
@@ -6165,9 +6162,9 @@ RoomState_NorfairReserveTank:                                            ;8FAC67
     %setupASM(RTS_8F91F6))
 
 RoomDoors_NorfairReserveTank:
-    dw Door_NorfairReserveTank                                           ;8FAC81;
+    dw Door_NorfairReserveTank
 
-RoomHeader_GreenBubblesMissiles:                                         ;8FAC83;
+RoomHeader_GreenBubblesMissiles:
     %RoomHeader(\
     %room($19),
     %area(2),
@@ -6178,7 +6175,7 @@ RoomHeader_GreenBubblesMissiles:                                         ;8FAC83
     %doorList(RoomDoors_GreenBubblesMissiles))
     %stateChecks(0)
 
-RoomState_GreenBubblesMissiles:                                          ;8FAC90;
+RoomState_GreenBubblesMissiles:
     %StateHeader(\
     %levelData(LevelData_GreenBubblesMissiles),
     %tileset(9),
@@ -6195,16 +6192,16 @@ RoomState_GreenBubblesMissiles:                                          ;8FAC90
     %setupASM(RTS_8F91F6))
 
 RoomDoors_GreenBubblesMissiles:
-    dw Door_GreenBubblesMissiles_0                                       ;8FACAA;
-    dw Door_GreenBubblesMissiles_1                                       ;8FACAC;
+    dw Door_GreenBubblesMissiles_0
+    dw Door_GreenBubblesMissiles_1
 
 RoomScrolls_GreenBubblesMissiles:
-    db $00,$01                                                           ;8FACAE;
+    db $00,$01
 
 RoomPLM_GreenBubblesMissiles_0:
-    db $00,$01, $80                                                      ;8FACB0;
+    db $00,$01, $80
 
-RoomHeader_BubbleMountain:                                               ;8FACB3;
+RoomHeader_BubbleMountain:
     %RoomHeader(\
     %room($1A),
     %area(2),
@@ -6215,7 +6212,7 @@ RoomHeader_BubbleMountain:                                               ;8FACB3
     %doorList(RoomDoors_BubbleMountain))
     %stateChecks(0)
 
-RoomState_BubbleMountain:                                                ;8FACC0;
+RoomState_BubbleMountain:
     %StateHeader(\
     %levelData(LevelData_BubbleMountain),
     %tileset(9),
@@ -6232,18 +6229,18 @@ RoomState_BubbleMountain:                                                ;8FACC0
     %setupASM(RTS_8F91F6))
 
 RoomDoors_BubbleMountain:
-    dw Door_BubbleMountain_0                                             ;8FACDA;
-    dw Door_BubbleMountain_1                                             ;8FACDC;
-    dw Door_BubbleMountain_2                                             ;8FACDE;
-    dw Door_BubbleMountain_3                                             ;8FACE0;
-    dw Door_BubbleMountain_4                                             ;8FACE2;
-    dw Door_BubbleMountain_5                                             ;8FACE4;
-    dw Door_BubbleMountain_6                                             ;8FACE6;
+    dw Door_BubbleMountain_0
+    dw Door_BubbleMountain_1
+    dw Door_BubbleMountain_2
+    dw Door_BubbleMountain_3
+    dw Door_BubbleMountain_4
+    dw Door_BubbleMountain_5
+    dw Door_BubbleMountain_6
 
 RoomScrolls_BubbleMountain:
-    db $02,$02,$02,$02,$02,$02,$02,$02                                   ;8FACE8;
+    db $02,$02,$02,$02,$02,$02,$02,$02
 
-RoomHeader_SpeedBoosterHall:                                             ;8FACF0;
+RoomHeader_SpeedBoosterHall:
     %RoomHeader(\
     %room($1B),
     %area(2),
@@ -6254,7 +6251,7 @@ RoomHeader_SpeedBoosterHall:                                             ;8FACF0
     %doorList(RoomDoors_SpeedBoosterHall))
     %stateChecks(0)
 
-RoomState_SpeedBoosterHall:                                              ;8FACFD;
+RoomState_SpeedBoosterHall:
     %StateHeader(\
     %levelData(LevelData_SpeedBoosterHall),
     %tileset(9),
@@ -6271,10 +6268,10 @@ RoomState_SpeedBoosterHall:                                              ;8FACFD
     %setupASM(RTS_8F91F6))
 
 RoomDoors_SpeedBoosterHall:
-    dw Door_SpeedBoosterHall_0                                           ;8FAD17;
-    dw Door_SpeedBoosterHall_1                                           ;8FAD19;
+    dw Door_SpeedBoosterHall_0
+    dw Door_SpeedBoosterHall_1
 
-RoomHeader_SpeedBooster:                                                 ;8FAD1B;
+RoomHeader_SpeedBooster:
     %RoomHeader(\
     %room($1C),
     %area(2),
@@ -6285,7 +6282,7 @@ RoomHeader_SpeedBooster:                                                 ;8FAD1B
     %doorList(RoomDoors_SpeedBooster))
     %stateChecks(0)
 
-RoomState_SpeedBooster:                                                  ;8FAD28;
+RoomState_SpeedBooster:
     %StateHeader(\
     %levelData(LevelData_SpeedBooster),
     %tileset(9),
@@ -6303,24 +6300,24 @@ RoomState_SpeedBooster:                                                  ;8FAD28
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomState_8FAD42:
-    dl LevelData_SpeedBooster                                            ;8FAD42;
-    db $09,$00,$03                                                       ;8FAD45;
-    dw FXHeader_SpeedBooster                                             ;8FAD48;
-    dw EnemyPopulations_SpeedBooster                                     ;8FAD4A;
-    dw EnemySets_SpeedBooster                                            ;8FAD4C;
-    db $C1,$C1                                                           ;8FAD4E;
-    dw $0000                                                             ;8FAD50;
-    dw $0000                                                             ;8FAD52;
-    dw $0000                                                             ;8FAD54;
-    dw PLMPopulation_SpeedBooster                                        ;8FAD56;
-    dw LibBG_Norfair_9_A_SmallPatternBrownPurple_Bright                  ;8FAD58;
-    dw RTS_8F91F6                                                        ;8FAD5A;
+    dl LevelData_SpeedBooster
+    db $09,$00,$03
+    dw FXHeader_SpeedBooster
+    dw EnemyPopulations_SpeedBooster
+    dw EnemySets_SpeedBooster
+    db $C1,$C1
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_SpeedBooster
+    dw LibBG_Norfair_9_A_SmallPatternBrownPurple_Bright
+    dw RTS_8F91F6
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomDoors_SpeedBooster:
-    dw Door_SpeedBooster_0                                               ;8FAD5C;
+    dw Door_SpeedBooster_0
 
-RoomHeader_SingleChamber:                                                ;8FAD5E;
+RoomHeader_SingleChamber:
     %RoomHeader(\
     %room($1D),
     %area(2),
@@ -6331,7 +6328,7 @@ RoomHeader_SingleChamber:                                                ;8FAD5E
     %doorList(RoomDoors_SingleChamber))
     %stateChecks(0)
 
-RoomState_SingleChamber:                                                 ;8FAD6B;
+RoomState_SingleChamber:
     %StateHeader(\
     %levelData(LevelData_SingleChamber),
     %tileset(9),
@@ -6348,23 +6345,23 @@ RoomState_SingleChamber:                                                 ;8FAD6B
     %setupASM(RTS_8F91F6))
 
 RoomDoors_SingleChamber:
-    dw Door_SingleChamber_0                                              ;8FAD85;
-    dw Door_SingleChamber_1                                              ;8FAD87;
-    dw Door_SingleChamber_2                                              ;8FAD89;
-    dw Door_SingleChamber_3                                              ;8FAD8B;
-    dw Door_SingleChamber_4                                              ;8FAD8D;
+    dw Door_SingleChamber_0
+    dw Door_SingleChamber_1
+    dw Door_SingleChamber_2
+    dw Door_SingleChamber_3
+    dw Door_SingleChamber_4
 
 RoomScrolls_SingleChamber:
-    db $02,$00,$01,$01,$01,$01,$02,$00,$00,$00,$00,$00,$02,$00,$00,$00   ;8FAD8F;
-    db $00,$00,$01,$00,$00,$00,$00,$00                                   ;8FAD9F;
+    db $02,$00,$01,$01,$01,$01,$02,$00,$00,$00,$00,$00,$02,$00,$00,$00
+    db $00,$00,$01,$00,$00,$00,$00,$00
 
 RoomPLM_SingleChamber_0:
-    db $01,$00, $80                                                      ;8FADA7;
+    db $01,$00, $80
 
 RoomPLM_SingleChamber_1_4:
-    db $01,$01, $80                                                      ;8FADAA;
+    db $01,$01, $80
 
-RoomHeader_DoubleChamber:                                                ;8FADAD;
+RoomHeader_DoubleChamber:
     %RoomHeader(\
     %room($1E),
     %area(2),
@@ -6375,7 +6372,7 @@ RoomHeader_DoubleChamber:                                                ;8FADAD
     %doorList(RoomDoors_DoubleChamber))
     %stateChecks(0)
 
-RoomState_DoubleChamber:                                                 ;8FADBA;
+RoomState_DoubleChamber:
     %StateHeader(\
     %levelData(LevelData_DoubleChamber),
     %tileset(9),
@@ -6392,14 +6389,14 @@ RoomState_DoubleChamber:                                                 ;8FADBA
     %setupASM(RTS_8F91F6))
 
 RoomDoors_DoubleChamber:
-    dw Door_DoubleChamber_0                                              ;8FADD4;
-    dw Door_DoubleChamber_1                                              ;8FADD6;
-    dw Door_DoubleChamber_2                                              ;8FADD8;
+    dw Door_DoubleChamber_0
+    dw Door_DoubleChamber_1
+    dw Door_DoubleChamber_2
 
 RoomScrolls_DoubleChamber:
-    db $02,$02,$02,$02                                                   ;8FADDA;
+    db $02,$02,$02,$02
 
-RoomHeader_WaveBeam:                                                     ;8FADDE;
+RoomHeader_WaveBeam:
     %RoomHeader(\
     %room($1F),
     %area(2),
@@ -6410,7 +6407,7 @@ RoomHeader_WaveBeam:                                                     ;8FADDE
     %doorList(RoomDoors_WaveBeam))
     %stateChecks(0)
 
-RoomState_WaveBeam:                                                      ;8FADEB;
+RoomState_WaveBeam:
     %StateHeader(\
     %levelData(LevelData_WaveBeam),
     %tileset(9),
@@ -6427,9 +6424,9 @@ RoomState_WaveBeam:                                                      ;8FADEB
     %setupASM(RTS_8F91F6))
 
 RoomDoors_WaveBeam:
-    dw Door_WaveBeam_0                                                   ;8FAE05;
+    dw Door_WaveBeam_0
 
-RoomHeader_SpikyPlatformsTunnel:                                         ;8FAE07;
+RoomHeader_SpikyPlatformsTunnel:
     %RoomHeader(\
     %room($20),
     %area(2),
@@ -6440,7 +6437,7 @@ RoomHeader_SpikyPlatformsTunnel:                                         ;8FAE07
     %doorList(RoomDoors_SpikyPlatformsTunnel))
     %stateChecks(0)
 
-RoomState_SpikyPlatformsTunnel:                                          ;8FAE14;
+RoomState_SpikyPlatformsTunnel:
     %StateHeader(\
     %levelData(LevelData_SpikyPlatformsTunnel),
     %tileset(9),
@@ -6457,10 +6454,10 @@ RoomState_SpikyPlatformsTunnel:                                          ;8FAE14
     %setupASM(RTS_8F91F6))
 
 RoomDoors_SpikyPlatformsTunnel:
-    dw Door_SpikyPlatformsTunnel_0                                       ;8FAE2E;
-    dw Door_SpikyPlatformsTunnel_1                                       ;8FAE30;
+    dw Door_SpikyPlatformsTunnel_0
+    dw Door_SpikyPlatformsTunnel_1
 
-RoomHeader_Volcano:                                                      ;8FAE32;
+RoomHeader_Volcano:
     %RoomHeader(\
     %room($21),
     %area(2),
@@ -6471,7 +6468,7 @@ RoomHeader_Volcano:                                                      ;8FAE32
     %doorList(RoomDoors_Volcano))
     %stateChecks(0)
 
-RoomState_Volcano:                                                       ;8FAE3F;
+RoomState_Volcano:
     %StateHeader(\
     %levelData(LevelData_Volcano),
     %tileset(9),
@@ -6488,25 +6485,25 @@ RoomState_Volcano:                                                       ;8FAE3F
     %setupASM(RTS_8F91F6))
 
 RoomDoors_Volcano:
-    dw Door_Volcano_0                                                    ;8FAE59;
-    dw Door_Volcano_1                                                    ;8FAE5B;
+    dw Door_Volcano_0
+    dw Door_Volcano_1
 
 RoomScrolls_Volcano:
-    db $00,$00,$02,$00,$00,$02,$00,$00,$01                               ;8FAE5D;
+    db $00,$00,$02,$00,$00,$02,$00,$00,$01
 
 RoomPLM_Volcano_0:
-    db $06,$01, $07,$01, $80                                             ;8FAE66;
+    db $06,$01, $07,$01, $80
 
 RoomPLM_Volcano_1:
-    db $08,$01, $80                                                      ;8FAE6B;
+    db $08,$01, $80
 
 RoomPLM_Volcano_7:
-    db $08,$00, $80                                                      ;8FAE6E;
+    db $08,$00, $80
 
 RoomPLM_Volcano_B:
-    db $07,$00, $80                                                      ;8FAE71;
+    db $07,$00, $80
 
-RoomHeader_KronicBoost:                                                  ;8FAE74;
+RoomHeader_KronicBoost:
     %RoomHeader(\
     %room($22),
     %area(2),
@@ -6517,7 +6514,7 @@ RoomHeader_KronicBoost:                                                  ;8FAE74
     %doorList(RoomDoors_KronicBoost))
     %stateChecks(0)
 
-RoomState_KronicBoost:                                                   ;8FAE81;
+RoomState_KronicBoost:
     %StateHeader(\
     %levelData(LevelData_KronicBoost),
     %tileset(9),
@@ -6534,24 +6531,24 @@ RoomState_KronicBoost:                                                   ;8FAE81
     %setupASM(RTS_8F91F6))
 
 RoomDoors_KronicBoost:
-    dw Door_KronicBoost_0                                                ;8FAE9B;
-    dw Door_KronicBoost_1                                                ;8FAE9D;
-    dw Door_KronicBoost_2                                                ;8FAE9F;
-    dw Door_KronicBoost_3                                                ;8FAEA1;
+    dw Door_KronicBoost_0
+    dw Door_KronicBoost_1
+    dw Door_KronicBoost_2
+    dw Door_KronicBoost_3
 
 RoomScrolls_KronicBoost:
-    db $00,$02,$00,$02,$00,$01                                           ;8FAEA3;
+    db $00,$02,$00,$02,$00,$01
 
 RoomPLM_KronicBoost_0:
-    db $02,$01, $80                                                      ;8FAEA9;
+    db $02,$01, $80
 
 RoomPLM_KronicBoost_1:
-    db $02,$00, $03,$02, $80                                             ;8FAEAC;
+    db $02,$00, $03,$02, $80
 
 RoomPLM_KronicBoost_5:
-    db $03,$00, $80                                                      ;8FAEB1;
+    db $03,$00, $80
 
-RoomHeader_MagdolliteTunnel:                                             ;8FAEB4;
+RoomHeader_MagdolliteTunnel:
     %RoomHeader(\
     %room($23),
     %area(2),
@@ -6562,7 +6559,7 @@ RoomHeader_MagdolliteTunnel:                                             ;8FAEB4
     %doorList(RoomDoors_MagdolliteTunnel))
     %stateChecks(0)
 
-RoomState_MagdolliteTunnel:                                              ;8FAEC1;
+RoomState_MagdolliteTunnel:
     %StateHeader(\
     %levelData(LevelData_MagdolliteTunnel),
     %tileset(9),
@@ -6579,10 +6576,10 @@ RoomState_MagdolliteTunnel:                                              ;8FAEC1
     %setupASM(RTS_8F91F6))
 
 RoomDoors_MagdolliteTunnel:
-    dw Door_MagdolliteTunnel_0                                           ;8FAEDB;
-    dw Door_MagdolliteTunnel_1                                           ;8FAEDD;
+    dw Door_MagdolliteTunnel_0
+    dw Door_MagdolliteTunnel_1
 
-RoomHeader_PurpleShaft:                                                  ;8FAEDF;
+RoomHeader_PurpleShaft:
     %RoomHeader(\
     %room($24),
     %area(2),
@@ -6593,7 +6590,7 @@ RoomHeader_PurpleShaft:                                                  ;8FAEDF
     %doorList(RoomDoors_PurpleShaft))
     %stateChecks(0)
 
-RoomState_PurpleShaft:                                                   ;8FAEEC;
+RoomState_PurpleShaft:
     %StateHeader(\
     %levelData(LevelData_PurpleShaft),
     %tileset(9),
@@ -6610,17 +6607,17 @@ RoomState_PurpleShaft:                                                   ;8FAEEC
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PurpleShaft:
-    dw Door_PurpleShaft_0                                                ;8FAF06;
-    dw Door_PurpleShaft_1                                                ;8FAF08;
-    dw Door_PurpleShaft_2                                                ;8FAF0A;
+    dw Door_PurpleShaft_0
+    dw Door_PurpleShaft_1
+    dw Door_PurpleShaft_2
 
 RoomScrolls_PurpleShaft:
-    db $02,$02,$01                                                       ;8FAF0C;
+    db $02,$02,$01
 
 RoomPLM_PurpleShaft_0_3:
-    db $00,$02, $01,$02, $80                                             ;8FAF0F;
+    db $00,$02, $01,$02, $80
 
-RoomHeader_LavaDive:                                                     ;8FAF14;
+RoomHeader_LavaDive:
     %RoomHeader(\
     %room($25),
     %area(2),
@@ -6631,7 +6628,7 @@ RoomHeader_LavaDive:                                                     ;8FAF14
     %doorList(RoomDoors_LavaDive))
     %stateChecks(0)
 
-RoomState_LavaDive:                                                      ;8FAF21;
+RoomState_LavaDive:
     %StateHeader(\
     %levelData(LevelData_LavaDive),
     %tileset(9),
@@ -6648,10 +6645,10 @@ RoomState_LavaDive:                                                      ;8FAF21
     %setupASM(RTS_8F91F6))
 
 RoomDoors_LavaDive:
-    dw Door_LavaDive_0                                                   ;8FAF3B;
-    dw Door_LavaDive_1                                                   ;8FAF3D;
+    dw Door_LavaDive_0
+    dw Door_LavaDive_1
 
-RoomHeader_LowerNorfairElev:                                             ;8FAF3F;
+RoomHeader_LowerNorfairElev:
     %RoomHeader(\
     %room($26),
     %area(2),
@@ -6662,7 +6659,7 @@ RoomHeader_LowerNorfairElev:                                             ;8FAF3F
     %doorList(RoomDoors_LowerNorfairElev))
     %stateChecks(0)
 
-RoomState_LowerNorfairElev:                                              ;8FAF4C;
+RoomState_LowerNorfairElev:
     %StateHeader(\
     %levelData(LevelData_LowerNorfairElev),
     %tileset(9),
@@ -6679,18 +6676,18 @@ RoomState_LowerNorfairElev:                                              ;8FAF4C
     %setupASM(RTS_8F91F6))
 
 RoomDoors_LowerNorfairElev:
-    dw Door_LowerNorfairElev_0                                           ;8FAF66;
-    dw Door_LowerNorfairElev_1                                           ;8FAF68;
-    dw Door_VariousRooms_Elevator                                        ;8FAF6A;
-    dw Door_LowerNorfairElev_3                                           ;8FAF6C;
+    dw Door_LowerNorfairElev_0
+    dw Door_LowerNorfairElev_1
+    dw Door_VariousRooms_Elevator
+    dw Door_LowerNorfairElev_3
 
 RoomScrolls_LowerNorfairElev:
-    db $01                                                               ;8FAF6E;
+    db $01
 
 RoomPLM_LowerNorfairElev_0:
-    db $00,$02, $80                                                      ;8FAF6F;
+    db $00,$02, $80
 
-RoomHeader_UpperNorfairFarming:                                          ;8FAF72;
+RoomHeader_UpperNorfairFarming:
     %RoomHeader(\
     %room($27),
     %area(2),
@@ -6701,7 +6698,7 @@ RoomHeader_UpperNorfairFarming:                                          ;8FAF72
     %doorList(RoomDoors_UpperNorfairFarming))
     %stateChecks(0)
 
-RoomState_UpperNorfairFarming:                                           ;8FAF7F;
+RoomState_UpperNorfairFarming:
     %StateHeader(\
     %levelData(LevelData_UpperNorfairFarming),
     %tileset(9),
@@ -6718,14 +6715,14 @@ RoomState_UpperNorfairFarming:                                           ;8FAF7F
     %setupASM(RTS_8F91F6))
 
 RoomDoors_UpperNorfairFarming:
-    dw Door_UpperNorfairFarming_0                                        ;8FAF99;
-    dw Door_UpperNorfairFarming_1                                        ;8FAF9B;
-    dw Door_UpperNorfairFarming_2                                        ;8FAF9D;
+    dw Door_UpperNorfairFarming_0
+    dw Door_UpperNorfairFarming_1
+    dw Door_UpperNorfairFarming_2
 
 RoomScrolls_UpperNorfairFarming:
-    db $02,$02,$01,$01                                                   ;8FAF9F;
+    db $02,$02,$01,$01
 
-RoomHeader_RisingTide:                                                   ;8FAFA3;
+RoomHeader_RisingTide:
     %RoomHeader(\
     %room($28),
     %area(2),
@@ -6736,7 +6733,7 @@ RoomHeader_RisingTide:                                                   ;8FAFA3
     %doorList(RoomDoors_RisingTide))
     %stateChecks(0)
 
-RoomState_RisingTide:                                                    ;8FAFB0;
+RoomState_RisingTide:
     %StateHeader(\
     %levelData(LevelData_RisingTide),
     %tileset(9),
@@ -6753,10 +6750,10 @@ RoomState_RisingTide:                                                    ;8FAFB0
     %setupASM(RTS_8F91F6))
 
 RoomDoors_RisingTide:
-    dw Door_RisingTide_0                                                 ;8FAFCA;
-    dw Door_RisingTide_1                                                 ;8FAFCC;
+    dw Door_RisingTide_0
+    dw Door_RisingTide_1
 
-RoomHeader_AcidSnakesTunnel:                                             ;8FAFCE;
+RoomHeader_AcidSnakesTunnel:
     %RoomHeader(\
     %room($29),
     %area(2),
@@ -6767,7 +6764,7 @@ RoomHeader_AcidSnakesTunnel:                                             ;8FAFCE
     %doorList(RoomDoors_AcidSnakesTunnel))
     %stateChecks(0)
 
-RoomState_AcidSnakesTunnel:                                              ;8FAFDB;
+RoomState_AcidSnakesTunnel:
     %StateHeader(\
     %levelData(LevelData_AcidSnakesTunnel),
     %tileset(9),
@@ -6784,11 +6781,11 @@ RoomState_AcidSnakesTunnel:                                              ;8FAFDB
     %setupASM(RTS_8F91F6))
 
 RoomDoors_AcidSnakesTunnel:
-    dw Door_AcidSnakesTunnel_0                                           ;8FAFF5;
-    dw Door_AcidSnakesTunnel_1                                           ;8FAFF7;
-    dw Door_AcidSnakesTunnel_2                                           ;8FAFF9;
+    dw Door_AcidSnakesTunnel_0
+    dw Door_AcidSnakesTunnel_1
+    dw Door_AcidSnakesTunnel_2
 
-RoomHeader_SpikyAcidSnakesTunnel:                                        ;8FAFFB;
+RoomHeader_SpikyAcidSnakesTunnel:
     %RoomHeader(\
     %room($2A),
     %area(2),
@@ -6799,7 +6796,7 @@ RoomHeader_SpikyAcidSnakesTunnel:                                        ;8FAFFB
     %doorList(RoomDoors_SpikyAcidSnakesTunnel))
     %stateChecks(0)
 
-RoomState_SpikyAcidSnakesTunnel:                                         ;8FB008;
+RoomState_SpikyAcidSnakesTunnel:
     %StateHeader(\
     %levelData(LevelData_SpikyAcidSnakesTunnel),
     %tileset(9),
@@ -6816,10 +6813,10 @@ RoomState_SpikyAcidSnakesTunnel:                                         ;8FB008
     %setupASM(RTS_8F91F6))
 
 RoomDoors_SpikyAcidSnakesTunnel:
-    dw Door_SpikyAcidSnakesTunnel_0                                      ;8FB022;
-    dw Door_SpikyAcidSnakesTunnel_1                                      ;8FB024;
+    dw Door_SpikyAcidSnakesTunnel_0
+    dw Door_SpikyAcidSnakesTunnel_1
 
-RoomHeader_UpperNorfairRefill:                                           ;8FB026;
+RoomHeader_UpperNorfairRefill:
     %RoomHeader(\
     %room($2B),
     %area(2),
@@ -6830,7 +6827,7 @@ RoomHeader_UpperNorfairRefill:                                           ;8FB026
     %doorList(RoomDoors_UpperNorfairRefill))
     %stateChecks(0)
 
-RoomState_UpperNorfairRefill:                                            ;8FB033;
+RoomState_UpperNorfairRefill:
     %StateHeader(\
     %levelData(LevelData_EnergyRefeill_BothDoors),
     %tileset($17),
@@ -6847,10 +6844,10 @@ RoomState_UpperNorfairRefill:                                            ;8FB033
     %setupASM(RTS_8F91F6))
 
 RoomDoors_UpperNorfairRefill:
-    dw Door_UpperNorfairRefill_0                                         ;8FB04D;
-    dw Door_UpperNorfairRefill_1                                         ;8FB04F;
+    dw Door_UpperNorfairRefill_0
+    dw Door_UpperNorfairRefill_1
 
-RoomHeader_PurpleFarming:                                                ;8FB051;
+RoomHeader_PurpleFarming:
     %RoomHeader(\
     %room($2C),
     %area(2),
@@ -6861,7 +6858,7 @@ RoomHeader_PurpleFarming:                                                ;8FB051
     %doorList(RoomDoors_PurpleFarming))
     %stateChecks(0)
 
-RoomState_PurpleFarming:                                                 ;8FB05E;
+RoomState_PurpleFarming:
     %StateHeader(\
     %levelData(LevelData_PurpleFarming),
     %tileset(9),
@@ -6878,9 +6875,9 @@ RoomState_PurpleFarming:                                                 ;8FB05E
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PurpleFarming:
-    dw Door_PurpleFarming_0                                              ;8FB078;
+    dw Door_PurpleFarming_0
 
-RoomHeader_BatCave:                                                      ;8FB07A;
+RoomHeader_BatCave:
     %RoomHeader(\
     %room($2D),
     %area(2),
@@ -6891,7 +6888,7 @@ RoomHeader_BatCave:                                                      ;8FB07A
     %doorList(RoomDoors_BatCave))
     %stateChecks(0)
 
-RoomState_BatCave:                                                       ;8FB087;
+RoomState_BatCave:
     %StateHeader(\
     %levelData(LevelData_BatCave),
     %tileset(9),
@@ -6908,22 +6905,22 @@ RoomState_BatCave:                                                       ;8FB087
     %setupASM(RTS_8F91F6))
 
 RoomDoors_BatCave:
-    dw Door_BatCave_0                                                    ;8FB0A1;
-    dw Door_BatCave_1                                                    ;8FB0A3;
+    dw Door_BatCave_0
+    dw Door_BatCave_1
 
 RoomScrolls_BatCave:
-    db $00,$01                                                           ;8FB0A5;
+    db $00,$01
 
 RoomPLM_BatCave_0:
-    db $00,$02, $01,$02, $80                                             ;8FB0A7;
+    db $00,$02, $01,$02, $80
 
 RoomPLM_BatCave_2:
-    db $00,$02, $01,$01, $80                                             ;8FB0AC;
+    db $00,$02, $01,$01, $80
 
 RoomPLM_BatCave_4:
-    db $00,$00, $80                                                      ;8FB0B1;
+    db $00,$00, $80
 
-RoomHeader_NorfairMap:                                                   ;8FB0B4;
+RoomHeader_NorfairMap:
     %RoomHeader(\
     %room($2E),
     %area(2),
@@ -6934,7 +6931,7 @@ RoomHeader_NorfairMap:                                                   ;8FB0B4
     %doorList(RoomDoors_NorfairMap))
     %stateChecks(0)
 
-RoomState_NorfairMap:                                                    ;8FB0C1;
+RoomState_NorfairMap:
     %StateHeader(\
     %levelData(LevelData_MapStation_RightSideDoor),
     %tileset($15),
@@ -6951,9 +6948,9 @@ RoomState_NorfairMap:                                                    ;8FB0C1
     %setupASM(RTS_8F91F6))
 
 RoomDoors_NorfairMap:
-    dw Door_NorfairMap_0                                                 ;8FB0DB;
+    dw Door_NorfairMap_0
 
-RoomHeader_BubbleMountainSave:                                           ;8FB0DD;
+RoomHeader_BubbleMountainSave:
     %RoomHeader(\
     %room($2F),
     %area(2),
@@ -6964,7 +6961,7 @@ RoomHeader_BubbleMountainSave:                                           ;8FB0DD
     %doorList(RoomDoors_BubbleMountainSave))
     %stateChecks(0)
 
-RoomState_BubbleMountainSave:                                            ;8FB0EA;
+RoomState_BubbleMountainSave:
     %StateHeader(\
     %levelData(LevelData_SaveStation_RightSideDoor),
     %tileset($19),
@@ -6981,9 +6978,9 @@ RoomState_BubbleMountainSave:                                            ;8FB0EA
     %setupASM(RTS_8F91F6))
 
 RoomDoors_BubbleMountainSave:
-    dw Door_BubbleMountainSave_0                                         ;8FB104;
+    dw Door_BubbleMountainSave_0
 
-RoomHeader_FrogSpeedway:                                                 ;8FB106;
+RoomHeader_FrogSpeedway:
     %RoomHeader(\
     %room($30),
     %area(2),
@@ -6994,7 +6991,7 @@ RoomHeader_FrogSpeedway:                                                 ;8FB106
     %doorList(RoomDoors_FrogSpeedway))
     %stateChecks(0)
 
-RoomState_FrogSpeedway:                                                  ;8FB113;
+RoomState_FrogSpeedway:
     %StateHeader(\
     %levelData(LevelData_FrogSpeedway),
     %tileset($0A),
@@ -7011,13 +7008,13 @@ RoomState_FrogSpeedway:                                                  ;8FB113
     %setupASM(RTS_8F91F6))
 
 RoomDoors_FrogSpeedway:
-    dw Door_FrogSpeedway_0                                               ;8FB12D;
-    dw Door_FrogSpeedway_1                                               ;8FB12F;
+    dw Door_FrogSpeedway_0
+    dw Door_FrogSpeedway_1
 
 RoomScrolls_FrogSpeedway:
-    db $01,$01,$01,$01,$01,$01,$01,$01                                   ;8FB131;
+    db $01,$01,$01,$01,$01,$01,$01,$01
 
-RoomHeader_RedPirateShaft:                                               ;8FB139;
+RoomHeader_RedPirateShaft:
     %RoomHeader(\
     %room($31),
     %area(2),
@@ -7028,7 +7025,7 @@ RoomHeader_RedPirateShaft:                                               ;8FB139
     %doorList(RoomDoors_RedPirateShaft))
     %stateChecks(0)
 
-RoomState_RedPirateShaft:                                                ;8FB146;
+RoomState_RedPirateShaft:
     %StateHeader(\
     %levelData(LevelData_RedPirateShaft),
     %tileset(9),
@@ -7045,13 +7042,13 @@ RoomState_RedPirateShaft:                                                ;8FB146
     %setupASM(RTS_8F91F6))
 
 RoomDoors_RedPirateShaft:
-    dw Door_RedPirateShaft_0                                             ;8FB160;
-    dw Door_RedPirateShaft_1                                             ;8FB162;
+    dw Door_RedPirateShaft_0
+    dw Door_RedPirateShaft_1
 
 RoomScrolls_RedPirateShaft:
-    db $02,$02,$02                                                       ;8FB164;
+    db $02,$02,$02
 
-RoomHeader_FrogSave:                                                     ;8FB167;
+RoomHeader_FrogSave:
     %RoomHeader(\
     %room($32),
     %area(2),
@@ -7062,7 +7059,7 @@ RoomHeader_FrogSave:                                                     ;8FB167
     %doorList(RoomDoors_FrogSave))
     %stateChecks(0)
 
-RoomState_FrogSave:                                                      ;8FB174;
+RoomState_FrogSave:
     %StateHeader(\
     %levelData(LevelData_SaveStation_BothDoors),
     %tileset($19),
@@ -7079,10 +7076,10 @@ RoomState_FrogSave:                                                      ;8FB174
     %setupASM(RTS_8F91F6))
 
 RoomDoors_FrogSave:
-    dw Door_FrogSave_0                                                   ;8FB18E;
-    dw Door_FrogSave_1                                                   ;8FB190;
+    dw Door_FrogSave_0
+    dw Door_FrogSave_1
 
-RoomHeader_CrocomireSave:                                                ;8FB192;
+RoomHeader_CrocomireSave:
     %RoomHeader(\
     %room($33),
     %area(2),
@@ -7093,7 +7090,7 @@ RoomHeader_CrocomireSave:                                                ;8FB192
     %doorList(RoomDoors_CrocomireSave))
     %stateChecks(0)
 
-RoomState_CrocomireSave:                                                 ;8FB19F;
+RoomState_CrocomireSave:
     %StateHeader(\
     %levelData(LevelData_SaveStation_LeftSideDoor),
     %tileset($19),
@@ -7110,9 +7107,9 @@ RoomState_CrocomireSave:                                                 ;8FB19F
     %setupASM(RTS_8F91F6))
 
 RoomDoors_CrocomireSave:
-    dw Door_CrocomireSave_0                                              ;8FB1B9;
+    dw Door_CrocomireSave_0
 
-RoomHeader_LNElevSave:                                                   ;8FB1BB;
+RoomHeader_LNElevSave:
     %RoomHeader(\
     %room($34),
     %area(2),
@@ -7123,7 +7120,7 @@ RoomHeader_LNElevSave:                                                   ;8FB1BB
     %doorList(RoomDoors_LNElevSave))
     %stateChecks(0)
 
-RoomState_LNElevSave:                                                    ;8FB1C8;
+RoomState_LNElevSave:
     %StateHeader(\
     %levelData(LevelData_SaveStation_RightSideDoor),
     %tileset($19),
@@ -7140,12 +7137,12 @@ RoomState_LNElevSave:                                                    ;8FB1C8
     %setupASM(0))
 
 RoomDoors_LNElevSave:
-    dw Door_LNElevSave_0                                                 ;8FB1E2;
+    dw Door_LNElevSave_0
 
 RoomScrolls_LNElevSave:
-    db $01                                                               ;8FB1E4;
+    db $01
 
-RoomHeader_AcidStatue:                                                   ;8FB1E5;
+RoomHeader_AcidStatue:
     %RoomHeader(\
     %room($35),
     %area(2),
@@ -7156,7 +7153,7 @@ RoomHeader_AcidStatue:                                                   ;8FB1E5
     %doorList(RoomDoors_AcidStatue))
     %stateChecks(0)
 
-RoomState_AcidStatue:                                                    ;8FB1F2;
+RoomState_AcidStatue:
     %StateHeader(\
     %levelData(LevelData_AcidStatue),
     %tileset(9),
@@ -7173,24 +7170,24 @@ RoomState_AcidStatue:                                                    ;8FB1F2
     %setupASM(RTS_8F91F7))
 
 RoomDoors_AcidStatue:
-    dw Door_AcidStatue_0                                                 ;8FB20C;
-    dw Door_AcidStatue_1                                                 ;8FB20E;
+    dw Door_AcidStatue_0
+    dw Door_AcidStatue_1
 
 RoomScrolls_AcidStatue:
-    db $02,$02,$00,$01,$01,$00,$00,$00,$00                               ;8FB210;
+    db $02,$02,$00,$01,$01,$00,$00,$00,$00
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FB219:
-    db $03,$01, $04,$01, $06,$00, $07,$00, $08,$00, $80                  ;8FB219;
+    db $03,$01, $04,$01, $06,$00, $07,$00, $08,$00, $80
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomPLM_AcidStatue_0:
-    db $03,$02, $04,$02, $06,$02, $07,$02, $80                           ;8FB224;
+    db $03,$02, $04,$02, $06,$02, $07,$02, $80
 
 RoomPLM_AcidStatue_1:
-    db $04,$00, $06,$01, $07,$01, $08,$01, $80                           ;8FB22D;
+    db $04,$00, $06,$01, $07,$01, $08,$01, $80
 
-RoomHeader_MainHall:                                                     ;8FB236;
+RoomHeader_MainHall:
     %RoomHeader(\
     %room($36),
     %area(2),
@@ -7201,7 +7198,7 @@ RoomHeader_MainHall:                                                     ;8FB236
     %doorList(RoomDoors_MainHall))
     %stateChecks(0)
 
-RoomState_MainHall:                                                      ;8FB243;
+RoomState_MainHall:
     %StateHeader(\
     %levelData(LevelData_MainHall),
     %tileset(9),
@@ -7218,22 +7215,22 @@ RoomState_MainHall:                                                      ;8FB243
     %setupASM(RTS_8F91F7))
 
 RoomDoors_MainHall:
-    dw Door_MainHall_0                                                   ;8FB25D;
-    dw Door_MainHall_1                                                   ;8FB25F;
-    dw Door_MainHall_2                                                   ;8FB261;
-    dw Door_VariousRooms_Elevator                                        ;8FB263;
+    dw Door_MainHall_0
+    dw Door_MainHall_1
+    dw Door_MainHall_2
+    dw Door_VariousRooms_Elevator
 
 RoomScrolls_MainHall:
-    db $00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00   ;8FB265;
-    db $01,$01,$01,$01,$01,$01,$01,$01                                   ;8FB275;
+    db $00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+    db $01,$01,$01,$01,$01,$01,$01,$01
 
 RoomPLM_MainHall_0_2:
-    db $0C,$02, $80                                                      ;8FB27D;
+    db $0C,$02, $80
 
 RoomPLM_MainHall_4:
-    db $0C,$00, $80                                                      ;8FB280;
+    db $0C,$00, $80
 
-RoomHeader_GoldenTorizo:                                                 ;8FB283;
+RoomHeader_GoldenTorizo:
     %RoomHeader(\
     %room($37),
     %area(2),
@@ -7245,7 +7242,7 @@ RoomHeader_GoldenTorizo:                                                 ;8FB283
     %stateChecks(1,
     %stateCheckBossDead(4, RoomState_GoldenTorizo_1))
 
-RoomState_GoldenTorizo_0:                                                ;8FB295;
+RoomState_GoldenTorizo_0:
     %StateHeader(\
     %levelData(LevelData_GoldenTorizo),
     %tileset(9),
@@ -7261,7 +7258,7 @@ RoomState_GoldenTorizo_0:                                                ;8FB295
     %libraryBG(0),
     %setupASM(RTS_8F91F7))
 
-RoomState_GoldenTorizo_1:                                                ;8FB2AF;
+RoomState_GoldenTorizo_1:
     %StateHeader(\
     %levelData(LevelData_GoldenTorizo),
     %tileset(9),
@@ -7278,16 +7275,16 @@ RoomState_GoldenTorizo_1:                                                ;8FB2AF
     %setupASM(RTS_8F91F7))
 
 RoomDoors_GoldenTorizo:
-    dw Door_GoldenTorizo_0                                               ;8FB2C9;
-    dw Door_GoldenTorizo_1                                               ;8FB2CB;
+    dw Door_GoldenTorizo_0
+    dw Door_GoldenTorizo_1
 
 RoomScrolls_GoldenTorizo:
-    db $02,$02,$01,$01                                                   ;8FB2CD;
+    db $02,$02,$01,$01
 
 RoomPLM_GoldenTorizo_0:
-    db $00,$02, $01,$02, $02,$01, $03,$01, $80                           ;8FB2D1;
+    db $00,$02, $01,$02, $02,$01, $03,$01, $80
 
-RoomHeader_FastRipper:                                                   ;8FB2DA;
+RoomHeader_FastRipper:
     %RoomHeader(\
     %room($38),
     %area(2),
@@ -7298,7 +7295,7 @@ RoomHeader_FastRipper:                                                   ;8FB2DA
     %doorList(RoomDoors_FastRipper))
     %stateChecks(0)
 
-RoomState_FastRipper:                                                    ;8FB2E7;
+RoomState_FastRipper:
     %StateHeader(\
     %levelData(LevelData_FastRipper),
     %tileset(9),
@@ -7315,10 +7312,10 @@ RoomState_FastRipper:                                                    ;8FB2E7
     %setupASM(RTS_8F91F7))
 
 RoomDoors_FastRipper:
-    dw Door_FastRipper_0                                                 ;8FB301;
-    dw Door_FastRipper_1                                                 ;8FB303;
+    dw Door_FastRipper_0
+    dw Door_FastRipper_1
 
-RoomHeader_GTEnergyRefill:                                               ;8FB305;
+RoomHeader_GTEnergyRefill:
     %RoomHeader(\
     %room($39),
     %area(2),
@@ -7329,7 +7326,7 @@ RoomHeader_GTEnergyRefill:                                               ;8FB305
     %doorList(RoomDoors_GTEnergyRefill))
     %stateChecks(0)
 
-RoomState_GTEnergyRefill:                                                ;8FB312;
+RoomState_GTEnergyRefill:
     %StateHeader(\
     %levelData(LevelData_EnergyRefill_LeftSideDoor),
     %tileset($17),
@@ -7346,9 +7343,9 @@ RoomState_GTEnergyRefill:                                                ;8FB312
     %setupASM(RTS_8F91F7))
 
 RoomDoors_GTEnergyRefill:
-    dw Door_GTEnergyRefill_0                                             ;8FB32C;
+    dw Door_GTEnergyRefill_0
 
-RoomHeader_Ridley:                                                       ;8FB32E;
+RoomHeader_Ridley:
     %RoomHeader(\
     %room($3A),
     %area(2),
@@ -7360,7 +7357,7 @@ RoomHeader_Ridley:                                                       ;8FB32E
     %stateChecks(1,
     %stateCheckBossDead(1, RoomState_Ridley_1))
 
-RoomState_Ridley_0:                                                      ;8FB340;
+RoomState_Ridley_0:
     %StateHeader(\
     %levelData(LevelData_Ridley),
     %tileset(9),
@@ -7376,7 +7373,7 @@ RoomState_Ridley_0:                                                      ;8FB340
     %libraryBG(LibBG_Norfair_9_CavernRoomPillars),
     %setupASM(RTS_8F91F7))
 
-RoomState_Ridley_1:                                                      ;8FB35A;
+RoomState_Ridley_1:
     %StateHeader(\
     %levelData(LevelData_Ridley),
     %tileset(9),
@@ -7393,13 +7390,13 @@ RoomState_Ridley_1:                                                      ;8FB35A
     %setupASM(RTS_8F91F7))
 
 RoomDoors_Ridley:
-    dw Door_Ridley_0                                                     ;8FB374;
-    dw Door_Ridley_1                                                     ;8FB376;
+    dw Door_Ridley_0
+    dw Door_Ridley_1
 
 RoomScrolls_Ridley:
-    db $02,$02                                                           ;8FB378;
+    db $02,$02
 
-RoomHeader_LNFarming:                                                    ;8FB37A;
+RoomHeader_LNFarming:
     %RoomHeader(\
     %room($3B),
     %area(2),
@@ -7410,7 +7407,7 @@ RoomHeader_LNFarming:                                                    ;8FB37A
     %doorList(RoomDoors_LNFarming))
     %stateChecks(0)
 
-RoomState_LNFarming:                                                     ;8FB387;
+RoomState_LNFarming:
     %StateHeader(\
     %levelData(LevelData_LNFarming),
     %tileset(9),
@@ -7427,10 +7424,10 @@ RoomState_LNFarming:                                                     ;8FB387
     %setupASM(RTS_8F91F7))
 
 RoomDoors_LNFarming:
-    dw Door_LNFarming_0                                                  ;8FB3A1;
-    dw Door_LNFarming_1                                                  ;8FB3A3;
+    dw Door_LNFarming_0
+    dw Door_LNFarming_1
 
-RoomHeader_FastPillarsSetup:                                             ;8FB3A5;
+RoomHeader_FastPillarsSetup:
     %RoomHeader(\
     %room($3C),
     %area(2),
@@ -7441,7 +7438,7 @@ RoomHeader_FastPillarsSetup:                                             ;8FB3A5
     %doorList(RoomDoors_FastPillarsSetup))
     %stateChecks(0)
 
-RoomState_FastPillarsSetup:                                              ;8FB3B2;
+RoomState_FastPillarsSetup:
     %StateHeader(\
     %levelData(LevelData_FastPillarsSetup),
     %tileset(9),
@@ -7458,20 +7455,20 @@ RoomState_FastPillarsSetup:                                              ;8FB3B2
     %setupASM(RTS_8F91F7))
 
 RoomDoors_FastPillarsSetup:
-    dw Door_FastPillarsSetup_0                                           ;8FB3CC;
-    dw Door_FastPillarsSetup_1                                           ;8FB3CE;
-    dw Door_FastPillarsSetup_2                                           ;8FB3D0;
-    dw Door_FastPillarsSetup_3                                           ;8FB3D2;
-    dw Door_FastPillarsSetup_4                                           ;8FB3D4;
+    dw Door_FastPillarsSetup_0
+    dw Door_FastPillarsSetup_1
+    dw Door_FastPillarsSetup_2
+    dw Door_FastPillarsSetup_3
+    dw Door_FastPillarsSetup_4
 
 RoomScrolls_FastPillarsSetup:
-    db $02,$01,$00                                                       ;8FB3D6;
+    db $02,$01,$00
 
 RoomPLM_FastPillarsSetup_0:
-    db $01,$02, $80                                                      ;8FB3D9;
+    db $01,$02, $80
 
 RoomPLM_FastPillarsSetup_2:
-    db $01,$02, $02,$01, $80                                             ;8FB3DC;
+    db $01,$02, $02,$01, $80
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomHeader_8FB3E1:
@@ -7485,7 +7482,7 @@ UNUSED_RoomHeader_8FB3E1:
     %doorList(UNUSED_RoomDoors_8FB408))
     %stateChecks(0)
 
-UNUSED_RoomState_8FB3EE:                                                 ;8FB3EE;
+UNUSED_RoomState_8FB3EE:
     %StateHeader(\
     %levelData(UNUSED_LevelData_C8F40B),
     %tileset(9),
@@ -7502,10 +7499,10 @@ UNUSED_RoomState_8FB3EE:                                                 ;8FB3EE
     %setupASM(RTS_8F91F7))
 
 UNUSED_RoomDoors_8FB408:
-    dw UNUSED_Door_83991E                                                ;8FB408;
+    dw UNUSED_Door_83991E
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-RoomHeader_MickeyMouse:                                                  ;8FB40A;
+RoomHeader_MickeyMouse:
     %RoomHeader(\
     %room($3E),
     %area(2),
@@ -7516,7 +7513,7 @@ RoomHeader_MickeyMouse:                                                  ;8FB40A
     %doorList(RoomDoors_MickeyMouse))
     %stateChecks(0)
 
-RoomState_MickeyMouse:                                                   ;8FB417;
+RoomState_MickeyMouse:
     %StateHeader(\
     %levelData(LevelData_MickeyMouse),
     %tileset(9),
@@ -7533,31 +7530,31 @@ RoomState_MickeyMouse:                                                   ;8FB417
     %setupASM(RTS_8F91F7))
 
 RoomDoors_MickeyMouse:
-    dw Door_MickeyMouse_0                                                ;8FB431;
-    dw Door_MickeyMouse_1                                                ;8FB433;
+    dw Door_MickeyMouse_0
+    dw Door_MickeyMouse_1
 
 RoomScrolls_MickeyMouse:
-    db $00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00,$02,$01,$01,$01,$01   ;8FB435;
+    db $00,$00,$00,$02,$00,$00,$00,$02,$00,$00,$00,$02,$01,$01,$01,$01
 
 RoomPLM_MickeyMouse_0:
-    db $06,$01, $80                                                      ;8FB445;
+    db $06,$01, $80
 
 RoomPLM_MickeyMouse_1:
-    db $06,$00, $80                                                      ;8FB448;
+    db $06,$00, $80
 
 RoomPLM_MickeyMouse_2:
-    db $07,$01, $80                                                      ;8FB44B;
+    db $07,$01, $80
 
 RoomPLM_MickeyMouse_6:
-    db $07,$00, $80                                                      ;8FB44E;
+    db $07,$00, $80
 
 RoomPLM_MickeyMouse_A:
-    db $0E,$01, $80                                                      ;8FB451;
+    db $0E,$01, $80
 
 RoomPLM_MickeyMouse_D:
-    db $0E,$00, $80                                                      ;8FB454;
+    db $0E,$00, $80
 
-RoomHeader_Pillar:                                                       ;8FB457;
+RoomHeader_Pillar:
     %RoomHeader(\
     %room($3F),
     %area(2),
@@ -7568,7 +7565,7 @@ RoomHeader_Pillar:                                                       ;8FB457
     %doorList(RoomDoors_Pillar))
     %stateChecks(0)
 
-RoomState_Pillar:                                                        ;8FB464;
+RoomState_Pillar:
     %StateHeader(\
     %levelData(LevelData_Pillar),
     %tileset(9),
@@ -7585,10 +7582,10 @@ RoomState_Pillar:                                                        ;8FB464
     %setupASM(RTS_8F91F7))
 
 RoomDoors_Pillar:
-    dw Door_Pillar_0                                                     ;8FB47E;
-    dw Door_Pillar_1                                                     ;8FB480;
+    dw Door_Pillar_0
+    dw Door_Pillar_1
 
-RoomHeader_Plowerhouse:                                                  ;8FB482;
+RoomHeader_Plowerhouse:
     %RoomHeader(\
     %room($40),
     %area(2),
@@ -7597,9 +7594,9 @@ RoomHeader_Plowerhouse:                                                  ;8FB482
     %scrollers($70, $A0),
     %CRE(0),
     %doorList(RoomDoors_Plowerhouse))
-    dw Use_StatePointer_inX                                              ;8FB48D;
+    dw Use_StatePointer_inX
 
-RoomState_Plowerhouse:                                                   ;8FB48F;
+RoomState_Plowerhouse:
     %StateHeader(\
     %levelData(LevelData_Plowerhouse),
     %tileset(9),
@@ -7616,10 +7613,10 @@ RoomState_Plowerhouse:                                                   ;8FB48F
     %setupASM(RTS_8F91F7))
 
 RoomDoors_Plowerhouse:
-    dw Door_Plowerhouse_0                                                ;8FB4A9;
-    dw Door_Plowerhouse_1                                                ;8FB4AB;
+    dw Door_Plowerhouse_0
+    dw Door_Plowerhouse_1
 
-RoomHeader_WorstRoomInTheGame:                                           ;8FB4AD;
+RoomHeader_WorstRoomInTheGame:
     %RoomHeader(\
     %room($41),
     %area(2),
@@ -7630,7 +7627,7 @@ RoomHeader_WorstRoomInTheGame:                                           ;8FB4AD
     %doorList(RoomDoors_WorstRoomInTheGame))
     %stateChecks(0)
 
-RoomState_WorstRoomInTheGame:                                            ;8FB4BA;
+RoomState_WorstRoomInTheGame:
     %StateHeader(\
     %levelData(LevelData_WorstRoomInTheGame),
     %tileset(9),
@@ -7647,17 +7644,17 @@ RoomState_WorstRoomInTheGame:                                            ;8FB4BA
     %setupASM(RTS_8F91F7))
 
 RoomDoors_WorstRoomInTheGame:
-    dw Door_WorstRoomInTheGame_0                                         ;8FB4D4;
-    dw Door_WorstRoomInTheGame_1                                         ;8FB4D6;
-    dw Door_WorstRoomInTheGame_2                                         ;8FB4D8;
+    dw Door_WorstRoomInTheGame_0
+    dw Door_WorstRoomInTheGame_1
+    dw Door_WorstRoomInTheGame_2
 
 RoomScrolls_WorstRoomInTheGame:
-    db $00,$02,$02,$02,$02,$01                                           ;8FB4DA;
+    db $00,$02,$02,$02,$02,$01
 
 RoomPLM_WorstRoomInTheGame_0:
-    db $00,$02, $01,$02, $80                                             ;8FB4E0;
+    db $00,$02, $01,$02, $80
 
-RoomHeader_Amphitheatre:                                                 ;8FB4E5;
+RoomHeader_Amphitheatre:
     %RoomHeader(\
     %room($42),
     %area(2),
@@ -7668,7 +7665,7 @@ RoomHeader_Amphitheatre:                                                 ;8FB4E5
     %doorList(RoomDoors_Amphitheatre))
     %stateChecks(0)
 
-RoomState_Amphitheatre:                                                  ;8FB4F2;
+RoomState_Amphitheatre:
     %StateHeader(\
     %levelData(LevelData_Amphitheatre),
     %tileset(9),
@@ -7685,10 +7682,10 @@ RoomState_Amphitheatre:                                                  ;8FB4F2
     %setupASM(RTS_8F91F7))
 
 RoomDoors_Amphitheatre:
-    dw Door_Amphitheatre_0                                               ;8FB50C;
-    dw Door_Amphitheatre_1                                               ;8FB50E;
+    dw Door_Amphitheatre_0
+    dw Door_Amphitheatre_1
 
-RoomHeader_LNSpringBallMaze:                                             ;8FB510;
+RoomHeader_LNSpringBallMaze:
     %RoomHeader(\
     %room($43),
     %area(2),
@@ -7699,7 +7696,7 @@ RoomHeader_LNSpringBallMaze:                                             ;8FB510
     %doorList(RoomDoors_LNSpringBallMaze))
     %stateChecks(0)
 
-RoomState_LNSpringBallMaze:                                              ;8FB51D;
+RoomState_LNSpringBallMaze:
     %StateHeader(\
     %levelData(LevelData_LNSpringBallMaze),
     %tileset(9),
@@ -7716,23 +7713,23 @@ RoomState_LNSpringBallMaze:                                              ;8FB51D
     %setupASM(RTS_8F91F7))
 
 RoomDoors_LNSpringBallMaze:
-    dw Door_LNSpringBallMaze_0                                           ;8FB537;
-    dw Door_LNSpringBallMaze_1                                           ;8FB539;
-    dw Door_LNSpringBallMaze_2                                           ;8FB53B;
+    dw Door_LNSpringBallMaze_0
+    dw Door_LNSpringBallMaze_1
+    dw Door_LNSpringBallMaze_2
 
 RoomScrolls_LNSpringBallMaze:
-    db $02,$00,$00,$00,$00,$01,$01,$00,$00,$00                           ;8FB53D;
+    db $02,$00,$00,$00,$00,$01,$01,$00,$00,$00
 
 RoomPLM_LNSpringBallMaze_0:
-    db $01,$01, $02,$01, $06,$00, $80                                    ;8FB547;
+    db $01,$01, $02,$01, $06,$00, $80
 
 RoomPLM_LNSpringBallMaze_4:
-    db $01,$00, $02,$00, $06,$01, $80                                    ;8FB54E;
+    db $01,$00, $02,$00, $06,$01, $80
 
 RoomPLM_LNSpringBallMaze_C:
-    db $03,$01, $04,$02, $80                                             ;8FB555;
+    db $03,$01, $04,$02, $80
 
-RoomHeader_LNEscapePowerBombs:                                           ;8FB55A;
+RoomHeader_LNEscapePowerBombs:
     %RoomHeader(\
     %room($44),
     %area(2),
@@ -7743,7 +7740,7 @@ RoomHeader_LNEscapePowerBombs:                                           ;8FB55A
     %doorList(RoomDoors_LNEscapePowerBombs))
     %stateChecks(0)
 
-RoomState_LNEscapePowerBombs:                                            ;8FB567;
+RoomState_LNEscapePowerBombs:
     %StateHeader(\
     %levelData(LevelData_LNEscapePowerBombs),
     %tileset(9),
@@ -7760,10 +7757,10 @@ RoomState_LNEscapePowerBombs:                                            ;8FB567
     %setupASM(RTS_8F91F7))
 
 RoomDoors_LNEscapePowerBombs:
-    dw Door_LNEscapePowerBombs_0                                         ;8FB581;
-    dw Door_LNEscapePowerBombs_1                                         ;8FB583;
+    dw Door_LNEscapePowerBombs_0
+    dw Door_LNEscapePowerBombs_1
 
-RoomHeader_RedKihunterShaft:                                             ;8FB585;
+RoomHeader_RedKihunterShaft:
     %RoomHeader(\
     %room($45),
     %area(2),
@@ -7774,7 +7771,7 @@ RoomHeader_RedKihunterShaft:                                             ;8FB585
     %doorList(RoomDoors_RedKihunterShaft))
     %stateChecks(0)
 
-RoomState_RedKihunterShaft:                                              ;8FB592;
+RoomState_RedKihunterShaft:
     %StateHeader(\
     %levelData(LevelData_RedKihunterShaft),
     %tileset(9),
@@ -7791,27 +7788,27 @@ RoomState_RedKihunterShaft:                                              ;8FB592
     %setupASM(RTS_8F91F7))
 
 RoomDoors_RedKihunterShaft:
-    dw Door_RedKihunterShaft_0                                           ;8FB5AC;
-    dw Door_RedKihunterShaft_1                                           ;8FB5AE;
-    dw Door_RedKihunterShaft_2                                           ;8FB5B0;
-    dw Door_RedKihunterShaft_3                                           ;8FB5B2;
+    dw Door_RedKihunterShaft_0
+    dw Door_RedKihunterShaft_1
+    dw Door_RedKihunterShaft_2
+    dw Door_RedKihunterShaft_3
 
 RoomScrolls_RedKihunterShaft:
-    db $02,$00,$00,$02,$00,$00,$02,$00,$00,$02,$00,$00,$02,$00,$02       ;8FB5B4;
+    db $02,$00,$00,$02,$00,$00,$02,$00,$00,$02,$00,$00,$02,$00,$02
 
 RoomPLM_RedKihunterShaft_0_4:
-    db $0A,$02, $0D,$02, $80                                             ;8FB5C3;
+    db $0A,$02, $0D,$02, $80
 
 RoomPLM_RedKihunterShaft_3_5:
-    db $0A,$00, $0D,$00, $80                                             ;8FB5C8;
+    db $0A,$00, $0D,$00, $80
 
 RoomPLM_RedKihunterShaft_6:
-    db $00,$02, $03,$02, $80                                             ;8FB5CD;
+    db $00,$02, $03,$02, $80
 
 RoomPLM_RedKihunterShaft_A:
-    db $00,$02, $80                                                      ;8FB5D2;
+    db $00,$02, $80
 
-RoomHeader_Wasteland:                                                    ;8FB5D5;
+RoomHeader_Wasteland:
     %RoomHeader(\
     %room($46),
     %area(2),
@@ -7822,7 +7819,7 @@ RoomHeader_Wasteland:                                                    ;8FB5D5
     %doorList(RoomDoors_Wasteland))
     %stateChecks(0)
 
-RoomState_Wasteland:                                                     ;8FB5E2;
+RoomState_Wasteland:
     %StateHeader(\
     %levelData(LevelData_Wasteland),
     %tileset(9),
@@ -7839,35 +7836,35 @@ RoomState_Wasteland:                                                     ;8FB5E2
     %setupASM(RTS_8F91F7))
 
 RoomDoors_Wasteland:
-    dw Door_Wasteland_0                                                  ;8FB5FC;
-    dw Door_Wasteland_1                                                  ;8FB5FE;
+    dw Door_Wasteland_0
+    dw Door_Wasteland_1
 
 RoomScrolls_Wasteland:
-    db $00,$01,$01,$01,$00,$01,$00,$00,$00,$00,$00,$00,$00,$02,$00,$00   ;8FB600;
-    db $00,$00                                                           ;8FB610;
+    db $00,$01,$01,$01,$00,$01,$00,$00,$00,$00,$00,$00,$00,$02,$00,$00
+    db $00,$00
 
 RoomPLM_Wasteland_0:
-    db $07,$02, $80                                                      ;8FB612;
+    db $07,$02, $80
 
 RoomPLM_Wasteland_2:
-    db $01,$01, $07,$00, $80                                             ;8FB615;
+    db $01,$01, $07,$00, $80
 
 RoomPLM_Wasteland_8_C:
-    db $04,$01, $80                                                      ;8FB61A;
+    db $04,$01, $80
 
 RoomPLM_Wasteland_A:
-    db $00,$01, $01,$01, $80                                             ;8FB61D;
+    db $00,$01, $01,$01, $80
 
 RoomPLM_Wasteland_9_B:
-    db $04,$00, $80                                                      ;8FB622;
+    db $04,$00, $80
 
 RoomPLM_Wasteland_D:
-    db $00,$00, $80                                                      ;8FB625;
+    db $00,$00, $80
 
 RoomPLM_Wasteland_11:
-    db $01,$00, $80                                                      ;8FB628;
+    db $01,$00, $80
 
-RoomHeader_MetalPirates:                                                 ;8FB62B;
+RoomHeader_MetalPirates:
     %RoomHeader(\
     %room($47),
     %area(2),
@@ -7878,7 +7875,7 @@ RoomHeader_MetalPirates:                                                 ;8FB62B
     %doorList(RoomDoors_MetalPirates))
     %stateChecks(0)
 
-RoomState_MetalPirates:                                                  ;8FB638;
+RoomState_MetalPirates:
     %StateHeader(\
     %levelData(LevelData_MetalPirates),
     %tileset(9),
@@ -7895,10 +7892,10 @@ RoomState_MetalPirates:                                                  ;8FB638
     %setupASM(RTS_8F91F7))
 
 RoomDoors_MetalPirates:
-    dw Door_MetalPirates_0                                               ;8FB652;
-    dw Door_MetalPirates_1                                               ;8FB654;
+    dw Door_MetalPirates_0
+    dw Door_MetalPirates_1
 
-RoomHeader_ThreeMusketeers:                                              ;8FB656;
+RoomHeader_ThreeMusketeers:
     %RoomHeader(\
     %room($48),
     %area(2),
@@ -7909,7 +7906,7 @@ RoomHeader_ThreeMusketeers:                                              ;8FB656
     %doorList(RoomDoors_ThreeMusketeers))
     %stateChecks(0)
 
-RoomState_ThreeMusketeers:                                               ;8FB663;
+RoomState_ThreeMusketeers:
     %StateHeader(\
     %levelData(LevelData_ThreeMusketeers),
     %tileset(9),
@@ -7926,22 +7923,22 @@ RoomState_ThreeMusketeers:                                               ;8FB663
     %setupASM(RTS_8F91F7))
 
 RoomDoors_ThreeMusketeers:
-    dw Door_ThreeMusketeers_0                                            ;8FB67D;
-    dw Door_ThreeMusketeers_1                                            ;8FB67F;
+    dw Door_ThreeMusketeers_0
+    dw Door_ThreeMusketeers_1
 
 RoomScrolls_ThreeMusketeers:
-    db $00,$02,$00,$00,$00,$02,$00,$00,$00,$01,$01,$01                   ;8FB681;
+    db $00,$02,$00,$00,$00,$02,$00,$00,$00,$01,$01,$01
 
 RoomPLM_ThreeMusketeers_0:
-    db $09,$00, $80                                                      ;8FB68D;
+    db $09,$00, $80
 
 RoomPLM_ThreeMusketeers_6:
-    db $08,$01, $09,$01, $80                                             ;8FB690;
+    db $08,$01, $09,$01, $80
 
 RoomPLM_ThreeMusketeers_7:
-    db $08,$00, $80                                                      ;8FB695;
+    db $08,$00, $80
 
-RoomHeader_RidleyETank:                                                  ;8FB698;
+RoomHeader_RidleyETank:
     %RoomHeader(\
     %room($49),
     %area(2),
@@ -7952,7 +7949,7 @@ RoomHeader_RidleyETank:                                                  ;8FB698
     %doorList(RoomDoors_RidleyETank))
     %stateChecks(0)
 
-RoomState_RidleyETank:                                                   ;8FB6A5;
+RoomState_RidleyETank:
     %StateHeader(\
     %levelData(LevelData_RidleyETank),
     %tileset(9),
@@ -7969,9 +7966,9 @@ RoomState_RidleyETank:                                                   ;8FB6A5
     %setupASM(RTS_8F91F7))
 
 RoomDoors_RidleyETank:
-    dw Door_RidleyETank_0                                                ;8FB6BF;
+    dw Door_RidleyETank_0
 
-RoomHeader_ScrewAttack:                                                  ;8FB6C1;
+RoomHeader_ScrewAttack:
     %RoomHeader(\
     %room($4A),
     %area(2),
@@ -7982,7 +7979,7 @@ RoomHeader_ScrewAttack:                                                  ;8FB6C1
     %doorList(RoomDoors_ScrewAttack))
     %stateChecks(0)
 
-RoomState_ScrewAttack:                                                   ;8FB6CE;
+RoomState_ScrewAttack:
     %StateHeader(\
     %levelData(LevelData_ScrewAttack),
     %tileset(9),
@@ -7999,11 +7996,11 @@ RoomState_ScrewAttack:                                                   ;8FB6CE
     %setupASM(RTS_8F91F7))
 
 RoomDoors_ScrewAttack:
-    dw Door_ScrewAttack_0                                                ;8FB6E8;
-    dw Door_ScrewAttack_1                                                ;8FB6EA;
-    dw Door_ScrewAttack_2                                                ;8FB6EC;
+    dw Door_ScrewAttack_0
+    dw Door_ScrewAttack_1
+    dw Door_ScrewAttack_2
 
-RoomHeader_LNFireflea:                                                   ;8FB6EE;
+RoomHeader_LNFireflea:
     %RoomHeader(\
     %room($4B),
     %area(2),
@@ -8014,7 +8011,7 @@ RoomHeader_LNFireflea:                                                   ;8FB6EE
     %doorList(RoomDoors_LNFireflea))
     %stateChecks(0)
 
-RoomState_LNFireflea:                                                    ;8FB6FB;
+RoomState_LNFireflea:
     %StateHeader(\
     %levelData(LevelData_LNFireflea),
     %tileset($0A),
@@ -8031,27 +8028,27 @@ RoomState_LNFireflea:                                                    ;8FB6FB
     %setupASM(0))
 
 RoomDoors_LNFireflea:
-    dw Door_LNFireflea_0                                                 ;8FB715;
-    dw Door_LNFireflea_1                                                 ;8FB717;
-    dw Door_LNFireflea_2                                                 ;8FB719;
+    dw Door_LNFireflea_0
+    dw Door_LNFireflea_1
+    dw Door_LNFireflea_2
 
 RoomScrolls_LNFireflea:
-    db $00,$02,$00,$00,$02,$00,$00,$02,$00,$00,$01,$00,$00,$00,$00,$00   ;8FB71B;
-    db $01,$01                                                           ;8FB72B;
+    db $00,$02,$00,$00,$02,$00,$00,$02,$00,$00,$01,$00,$00,$00,$00,$00
+    db $01,$01
 
 RoomPLM_LNFireflea_2:
-    db $0B,$01, $80                                                      ;8FB72D;
+    db $0B,$01, $80
 
 RoomPLM_LNFireflea_5:
-    db $0B,$02, $0D,$02, $0E,$02, $80                                    ;8FB730;
+    db $0B,$02, $0D,$02, $0E,$02, $80
 
 RoomPLM_LNFireflea_9:
-    db $00,$01, $04,$00, $80                                             ;8FB737;
+    db $00,$01, $04,$00, $80
 
 RoomPLM_LNFireflea_11:
-    db $01,$02, $04,$02, $80                                             ;8FB73C;
+    db $01,$02, $04,$02, $80
 
-RoomHeader_LNSave:                                                       ;8FB741;
+RoomHeader_LNSave:
     %RoomHeader(\
     %room($4C),
     %area(2),
@@ -8062,7 +8059,7 @@ RoomHeader_LNSave:                                                       ;8FB741
     %doorList(RoomDoors_LNSave))
     %stateChecks(0)
 
-RoomState_LNSave:                                                        ;8FB74E;
+RoomState_LNSave:
     %StateHeader(\
     %levelData(LevelData_SaveStation_LeftSideDoor),
     %tileset($19),
@@ -8079,11 +8076,12 @@ RoomState_LNSave:                                                        ;8FB74E
     %setupASM(0))
 
 RoomDoors_LNSave:
-    dw Door_LNSave_0                                                     ;8FB768;
+    dw Door_LNSave_0
+
 
 
 ;;; $B76A: Library backgrounds ;;;
-LibBG_ScrollingSky_Tilemaps_LandingSite:                                 ;8FB76A;
+LibBG_ScrollingSky_Tilemaps_LandingSite:
     dw $000E,Door_GauntletEntrance_0 : dl ScrollingSky_Tilemaps_2 : dw $4800,$0800
     dw $000E,Door_Parlor_1 : dl ScrollingSky_Tilemaps_4 : dw $4800,$0800
     dw $000E,Door_CrateriaPowerBombs_0 : dl ScrollingSky_Tilemaps_1 : dw $4C00,$0800
@@ -8092,7 +8090,7 @@ LibBG_ScrollingSky_Tilemaps_LandingSite:                                 ;8FB76A
     dw $000E,Door_DemoSet3_0_2_4 : dl ScrollingSky_Tilemaps_2 : dw $4800,$0800
     dw $0000
 
-LibBG_ScrollingSky_Tilemaps_WreckedShipEntrance:                         ;8FB7AE;
+LibBG_ScrollingSky_Tilemaps_WreckedShipEntrance:
     dw $000E,Door_BowlingAlleyPath_0 : dl ScrollingSky_Tilemaps_2 : dw $4800,$0800
     dw $000E,Door_Moat_1 : dl ScrollingSky_Tilemaps_5 : dw $4800,$0800
     dw $000E,Door_BowlingAlley_0 : dl ScrollingSky_Tilemaps_1 : dw $4C00,$0800
@@ -8101,16 +8099,16 @@ LibBG_ScrollingSky_Tilemaps_WreckedShipEntrance:                         ;8FB7AE
     dw $000E,Door_GravitySuit_0 : dl ScrollingSky_Tilemaps_3 : dw $4C00,$0800
     dw $0000
 
-LibBG_ScrollingSky_Tilemaps_EastOcean:                                   ;8FB7F2;
+LibBG_ScrollingSky_Tilemaps_EastOcean:
     dw $000E,Door_ForgottenHighwayKagos_0 : dl ScrollingSky_Tilemaps_5 : dw $4800,$0800
     dw $000E,Door_ElectricDeath_0 : dl ScrollingSky_Tilemaps_5 : dw $4800,$0800
     dw $0000
 
-LibBG_ScrollingSky_Tilemaps_BowlingAlley:                                ;8FB80A;
+LibBG_ScrollingSky_Tilemaps_BowlingAlley:
     dw $0002 : dl ScrollingSky_Tilemaps_2 : dw $4800,$0800
     dw $0000
 
-LibBG_Brinstar_1A_Kraid_Upper_Lower:                                     ;8FB815;
+LibBG_Brinstar_1A_Kraid_Upper_Lower:
     dw $0008 : dl Tiles_Standard_BG3 : dw $2000,$1000
     dw $0004 : dl Background_Brinstar_1A_Kraid_Upper : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4000,$1000
@@ -8118,74 +8116,74 @@ LibBG_Brinstar_1A_Kraid_Upper_Lower:                                     ;8FB815
     dw $0002 : dl BG2Tilemap : dw $4800,$1000
     dw $0000
 
-LibBG_Standard_BG3_Tiles:                                                ;8FB840;
+LibBG_Standard_BG3_Tiles:
     dw $0008 : dl Tiles_Standard_BG3 : dw $2000,$1000,$000C,$0000
 
-LibBG_Crocomire_State0:                                                  ;8FB84D;
+LibBG_Crocomire_State0:
     dw $0002 : dl $7E2000 : dw $4800,$1000
     dw $0000
 
-LibBG_Crocomire_State1:                                                  ;8FB858;
+LibBG_Crocomire_State1:
     dw $0002 : dl $7E2000 : dw $4800,$1000
     dw $0000
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brinstar_1A_Kraid_Lower_8FB863:                             ;8FB863;
+UNUSED_LibBG_Brinstar_1A_Kraid_Lower_8FB863:
     dw $0004 : dl Background_Brinstar_1A_Kraid_Lower_1 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-LibBG_Crateria_0_VerticalPatternRocks:                                   ;8FB87E;
+LibBG_Crateria_0_VerticalPatternRocks:
     dw $0004 : dl Background_Crateria_0_VerticalPatternRocks : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Crateria_0_HorizontalPatternRocks:                                 ;8FB899;
+LibBG_Crateria_0_HorizontalPatternRocks:
     dw $0004 : dl Background_Crateria_0_HorizontalPatternRocks : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Crateria_0_Rocks:                                                  ;8FB8B4;
+LibBG_Crateria_0_Rocks:
     dw $0004 : dl Background_Crateria_0_Rocks : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Crateria_2_PurpleRocks:                                            ;8FB8CF;
+LibBG_Crateria_2_PurpleRocks:
     dw $0004 : dl Background_Crateria_2_PurpleRocks : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Crateria_2_BrickRoom_WallArt_Dark:                                 ;8FB8EA;
+LibBG_Crateria_2_BrickRoom_WallArt_Dark:
     dw $0004 : dl Background_Crateria_2_BrickRoom_WallArt_Dark : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Crateria_2_3_Mechanical:                                           ;8FB905;
+LibBG_Crateria_2_3_Mechanical:
     dw $0004 : dl Background_Crateria_2_3_Mechanical : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Crateria_2_BrickRoom_WallArt:                                      ;8FB920;
+LibBG_Crateria_2_BrickRoom_WallArt:
     dw $0004 : dl Background_Crateria_2_BrickRoom_WallArt : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Crateria_2_Elevator:                                               ;8FB93B;
+LibBG_Crateria_2_Elevator:
     dw $0004 : dl Background_Crateria_2_Elevator : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Crateria_2_BrickRoom:                                              ;8FB956;
+LibBG_Crateria_2_BrickRoom:
     dw $0004 : dl Background_Crateria_2_BrickRoom : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
@@ -8195,12 +8193,12 @@ LibBG_Crateria_2_BrickRoom:                                              ;8FB956
 ;;; $B971: Door ASM: start Wrecked Ship treadmill west entrance ;;;
 DoorASM_StartWreckedShipTreadmillWestEntrance:
 ; Room $93FE, door list index 1: Door
-    LDY.W #AnimatedTilesObjects_FX_wreckedShipTreadmillRightwards        ;8FB971;
-    JSL.L Spawn_AnimatedTilesObject                                      ;8FB974;
-    JSL.L Spawn_Hardcoded_PLM                                            ;8FB978;
-    db $04,$09                                                           ;8FB97C;
-    dw PLMEntries_wreckedShipEntranceTreadmillFromWest                   ;8FB97E;
-    RTS                                                                  ;8FB980;
+    LDY.W #AnimatedTilesObjects_FX_wreckedShipTreadmillRightwards
+    JSL Spawn_AnimatedTilesObject
+    JSL Spawn_Hardcoded_PLM
+    db $04,$09
+    dw PLMEntries_wreckedShipEntranceTreadmillFromWest
+    RTS
 
 
 ;;; $B981: Door ASM: scroll 6 = green ;;;
@@ -8210,320 +8208,302 @@ DoorASM_Scroll_6_Green:
 ; Room $96BA, door 0. Old Tourian escape shaft
 ; Room $98E2, door 0. Pre Crateria map station hall
 ; Room $9A44, door 1. Crateria bomb block hall
-    PHP                                                                  ;8FB981;
-    SEP #$20                                                             ;8FB982;
-    LDA.B #$02                                                           ;8FB984;
-    STA.L Scrolls+6                                                      ;8FB986;
-    PLP                                                                  ;8FB98A;
-    RTS                                                                  ;8FB98B;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+6
+    PLP
+    RTS
 
 
 ;;; $B98C: Door ASM: scroll 0 = blue ;;;
 DoorASM_Scroll_0_Blue:
 ; Door destination: Crateria mainstreet
 ; Room $990D, door list index 1: Door
-    PHP                                                                  ;8FB98C;
-    SEP #$20                                                             ;8FB98D;
-    LDA.B #$01                                                           ;8FB98F;
-    STA.L Scrolls                                                        ;8FB991;
-    PLP                                                                  ;8FB995;
-    RTS                                                                  ;8FB996;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls
+    PLP
+    RTS
 
 
 ;;; $B997: Door ASM: scroll 13h = blue ;;;
 DoorASM_Scroll_13_Blue:
 ; Door destination: Landing site
 ; Room $92B3, door list index 0: Door
-    PHP                                                                  ;8FB997;
-    SEP #$20                                                             ;8FB998;
-    LDA.B #$01                                                           ;8FB99A;
-    STA.L Scrolls+$13                                                    ;8FB99C;
-    PLP                                                                  ;8FB9A0;
-    RTS                                                                  ;8FB9A1;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+$13
+    PLP
+    RTS
 
 
 ;;; $B9A2: Door ASM: scroll 4 = red, 8 = green ;;;
 DoorASM_Scroll_4_Red_8_Green:
 ; Door destination: Wrecked Ship chozo room
 ; Room $9879, door list index 0: Door
-    PHP                                                                  ;8FB9A2;
-    SEP #$20                                                             ;8FB9A3;
-    LDA.B #$00                                                           ;8FB9A5;
-    STA.L Scrolls+4                                                      ;8FB9A7;
-    LDA.B #$02                                                           ;8FB9AB;
-    STA.L Scrolls+8                                                      ;8FB9AD;
-    PLP                                                                  ;8FB9B1;
-    RTS                                                                  ;8FB9B2;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+4
+    LDA.B #$02 : STA.L Scrolls+8
+    PLP
+    RTS
 
 
 ;;; $B9B3: Door ASM: scroll 8..Bh = red ;;;
 DoorASM_Scroll_8_9_A_B_Red:
 ; Door destination: Wrecked Ship chozo room
 ; Room $93FE, door list index 4: Door
-    PHP                                                                  ;8FB9B3;
-    SEP #$20                                                             ;8FB9B4;
-    LDA.B #$00                                                           ;8FB9B6;
-    STA.L Scrolls+8                                                      ;8FB9B8;
-    STA.L Scrolls+9                                                      ;8FB9BC;
-    STA.L Scrolls+$A                                                     ;8FB9C0;
-    STA.L Scrolls+$B                                                     ;8FB9C4;
-    PLP                                                                  ;8FB9C8;
-    RTS                                                                  ;8FB9C9;
+    PHP
+    SEP #$20
+    LDA.B #$00
+    STA.L Scrolls+8 : STA.L Scrolls+9
+    STA.L Scrolls+$A : STA.L Scrolls+$B
+    PLP
+    RTS
 
 
 ;;; $B9CA: Door ASM: scroll 2..5,Bh..Dh,11h = red ;;;
 DoorASM_Scroll_2_3_4_5_B_C_D_11_Red:
 ; Door destination: Wrecked Ship chozo room
 ; Room $968F, door list index 1: Door
-    PHP                                                                  ;8FB9CA;
-    SEP #$20                                                             ;8FB9CB;
-    LDA.B #$00                                                           ;8FB9CD;
-    STA.L Scrolls+2                                                      ;8FB9CF;
-    STA.L Scrolls+3                                                      ;8FB9D3;
-    STA.L Scrolls+4                                                      ;8FB9D7;
-    STA.L Scrolls+5                                                      ;8FB9DB;
-    STA.L Scrolls+$B                                                     ;8FB9DF;
-    STA.L Scrolls+$C                                                     ;8FB9E3;
-    STA.L Scrolls+$D                                                     ;8FB9E7;
-    STA.L Scrolls+$11                                                    ;8FB9EB;
-    PLP                                                                  ;8FB9EF;
-    RTS                                                                  ;8FB9F0;
+    PHP
+    SEP #$20
+    LDA.B #$00
+    STA.L Scrolls+2 : STA.L Scrolls+3
+    STA.L Scrolls+4 : STA.L Scrolls+5
+    STA.L Scrolls+$B : STA.L Scrolls+$C
+    STA.L Scrolls+$D : STA.L Scrolls+$11
+    PLP
+    RTS
 
 
 ;;; $B9F1: Door ASM: scroll 1,4 = green ;;;
 DoorASM_Scroll_1_4_Green:
 ; Room $962A, door list index 0: Door
-    PHP                                                                  ;8FB9F1;
-    SEP #$20                                                             ;8FB9F2;
-    LDA.B #$02                                                           ;8FB9F4;
-    STA.L Scrolls+1                                                      ;8FB9F6;
-    STA.L Scrolls+4                                                      ;8FB9FA;
-    PLP                                                                  ;8FB9FE;
-    RTS                                                                  ;8FB9FF;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+1 : STA.L Scrolls+4
+    PLP
+    RTS
 
 
 ;;; $BA00: Door ASM: scroll 2 = blue ;;;
 DoorASM_Scroll_2_Blue:
 ; Room $99F9, door list index 0: Door
-    PHP                                                                  ;8FBA00;
-    SEP #$20                                                             ;8FBA01;
-    LDA.B #$01                                                           ;8FBA03;
-    STA.L Scrolls+2                                                      ;8FBA05;
-    PLP                                                                  ;8FBA09;
-    RTS                                                                  ;8FBA0A;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+2
+    PLP
+    RTS
 
 
 ;;; $BA0B: Door ASM: scroll 17h = blue ;;;
 DoorASM_Scroll_17_Blue:
 ; Room $99F9, door list index 1: Door
-    PHP                                                                  ;8FBA0B;
-    SEP #$20                                                             ;8FBA0C;
-    LDA.B #$01                                                           ;8FBA0E;
-    STA.L Scrolls+$17                                                    ;8FBA10;
-    PLP                                                                  ;8FBA14;
-    RTS                                                                  ;8FBA15;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+$17
+    PLP
+    RTS
 
 
 ;;; $BA16: Door ASM: scroll 4 = blue ;;;
 DoorASM_Scroll_4_Blue:
 ; Room $99BD, door list index 3: Door
-    PHP                                                                  ;8FBA16;
-    SEP #$20                                                             ;8FBA17;
-    LDA.B #$01                                                           ;8FBA19;
-    STA.L Scrolls+4                                                      ;8FBA1B;
-    PLP                                                                  ;8FBA1F;
-    RTS                                                                  ;8FBA20;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+4
+    PLP
+    RTS
 
 
 ;;; $BA21: Door ASM: scroll 6 = green ;;;
 DoorASM_Scroll_6_Green_duplicate:
 ; Room $962A, door list index 1: Door
-    PHP                                                                  ;8FBA21;
-    SEP #$20                                                             ;8FBA22;
-    LDA.B #$02                                                           ;8FBA24;
-    STA.L Scrolls+6                                                      ;8FBA26;
-    PLP                                                                  ;8FBA2A;
-    RTS                                                                  ;8FBA2B;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+6
+    PLP
+    RTS
 
 
 ;;; $BA2C: Door ASM: scroll 3 = green ;;;
 DoorASM_Scroll_3_Green:
 ; Room $965B, door list index 1: Door
-    PHP                                                                  ;8FBA2C;
-    SEP #$20                                                             ;8FBA2D;
-    LDA.B #$02                                                           ;8FBA2F;
-    STA.L Scrolls+3                                                      ;8FBA31;
-    PLP                                                                  ;8FBA35;
-    RTS                                                                  ;8FBA36;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+3
+    PLP
+    RTS
 
 
 ;;; $BA37: Library background ;;;
-LibBG_Brinstar_6_Vertical_GlowPatches:                                   ;8FBA37;
+LibBG_Brinstar_6_Vertical_GlowPatches:
     dw $0004 : dl Background_Brinstar_6_Vertical_GlowPatches : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Brinstar_6_Horizontal_GlowPatches:                                 ;8FBA52;
+LibBG_Brinstar_6_Horizontal_GlowPatches:
     dw $0004 : dl Background_Brinstar_6_Horizontal_GlowPatches : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Brinstar_6_LargeHorizontalPattern:                                 ;8FBA6D;
+LibBG_Brinstar_6_LargeHorizontalPattern:
     dw $0004 : dl Background_Brinstar_6_LargeHorizontalPattern : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Brinstar_6_MediumHorizontalPattern:                                ;8FBA88;
+LibBG_Brinstar_6_MediumHorizontalPattern:
     dw $0004 : dl Background_Brinstar_6_MediumHorizontalPattern : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Brinstar_6_ThinHorizontalPattern:                                  ;8FBAA3;
+LibBG_Brinstar_6_ThinHorizontalPattern:
     dw $0004 : dl Background_Brinstar_6_ThinHorizontalPattern : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Brinstar_6_SmallPattern:                                           ;8FBABE;
+LibBG_Brinstar_6_SmallPattern:
     dw $0004 : dl Background_Brinstar_6_SmallPattern : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Brinstar_6_SpheresPattern:                                         ;8FBAD9;
+LibBG_Brinstar_6_SpheresPattern:
     dw $0004 : dl Background_Brinstar_6_SpheresPattern : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Brinstar_6_SmallPattern_Variety_0:                                 ;8FBAF4;
+LibBG_Brinstar_6_SmallPattern_Variety_0:
     dw $0004 : dl Background_Brinstar_6_SmallPattern_Variety_0 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brinstar_6_SmallPattern_Variety_1_8FBB0F:                   ;8FBB0F;
+UNUSED_LibBG_Brinstar_6_SmallPattern_Variety_1_8FBB0F:
     dw $0004 : dl Background_Brinstar_6_SmallPattern_Variety_1 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-UNUSED_LibBG_Brinstar_6_SmallPattern_Variety_2_8FBB2A:                   ;8FBB2A;
+UNUSED_LibBG_Brinstar_6_SmallPattern_Variety_2_8FBB2A:
     dw $0004 : dl Background_Brinstar_6_SmallPattern_Variety_2 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-LibBG_Brinstar_6_DarkPattern:                                            ;8FBB45;
+LibBG_Brinstar_6_DarkPattern:
     dw $0004 : dl Background_Brinstar_6_DarkPattern : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Tourian_15_Statues:                                                ;8FBB60;
+LibBG_Tourian_15_Statues:
     dw $0004 : dl Background_Tourian_15_Statues : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$1000
     dw $0002 : dl Tiles_TourianStatuesSoul : dw $6D00,$0600
     dw $0000
 
-LibBG_Brinstar_7_WideVerticalTower_Brick_0:                              ;8FBB7B;
+LibBG_Brinstar_7_WideVerticalTower_Brick_0:
     dw $0004 : dl Background_Brinstar_7_WideVerticalTower_Brick_0 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brinstar_7_WideVerticalTower_Brick_1_8FBB96:                ;8FBB96;
+UNUSED_LibBG_Brinstar_7_WideVerticalTower_Brick_1_8FBB96:
     dw $0004 : dl Background_Brinstar_7_WideVerticalTower_Brick_1 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-UNUSED_LibBG_Brinstar_7_WideVerticalTower_Brick_2_8FBBB1:                ;8FBBB1;
+UNUSED_LibBG_Brinstar_7_WideVerticalTower_Brick_2_8FBBB1:
     dw $0004 : dl Background_Brinstar_7_WideVerticalTower_Brick_2 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-LibBG_Brinstar_7_VerticalTower:                                          ;8FBBCC;
+LibBG_Brinstar_7_VerticalTower:
     dw $0004 : dl Background_Brinstar_7_VerticalTower : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Brinstar_7_NarrowVerticalTower_Brick:                              ;8FBBE7;
+LibBG_Brinstar_7_NarrowVerticalTower_Brick:
     dw $0004 : dl Background_Brinstar_7_NarrowVerticalTower_Brick : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Brinstar_7_VerticalBrick_0:                                        ;8FBC02;
+LibBG_Brinstar_7_VerticalBrick_0:
     dw $0004 : dl Background_Brinstar_7_VerticalBrick_0 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brinstar_7_VerticalBrick_1_8FBC1D:                          ;8FBC1D;
+UNUSED_LibBG_Brinstar_7_VerticalBrick_1_8FBC1D:
     dw $0004 : dl Background_Brinstar_7_VerticalBrick_1 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-LibBG_Brinstar_7_MechanicalRoom_SpikeFloor:                              ;8FBC38;
+LibBG_Brinstar_7_MechanicalRoom_SpikeFloor:
     dw $0004 : dl Background_Brinstar_7_MechanicalRoom_SpikeFloor : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Brinstar_7_MechanicalRoom:                                         ;8FBC53;
+LibBG_Brinstar_7_MechanicalRoom:
     dw $0004 : dl Background_Brinstar_7_MechanicalRoom : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Brinstar_7_NarrowVerticalTower_Brick_Vines_0:                      ;8FBC6E;
+LibBG_Brinstar_7_NarrowVerticalTower_Brick_Vines_0:
     dw $0004 : dl Background_Brinstar_7_NarrowVerticalTower_Brick_Vines_0 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brin_7_NarrowVerticalTower_Brick_Vines_1_8FBC89:            ;8FBC89;
+UNUSED_LibBG_Brin_7_NarrowVerticalTower_Brick_Vines_1_8FBC89:
     dw $0004 : dl Background_Brinstar_7_NarrowVerticalTower_Brick_Vines_1 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-LibBG_Brinstar_8_NarrowVerticalTower_Brick_Grey_0:                       ;8FBCA4;
+LibBG_Brinstar_8_NarrowVerticalTower_Brick_Grey_0:
     dw $0004 : dl Background_Brinstar_8_NarrowVerticalTower_Brick_Grey_0 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$1000
     dw $0000
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brin_8_NarrowVerticalTower_Brick_Grey_1_8FBCB6:             ;8FBCB6;
+UNUSED_LibBG_Brin_8_NarrowVerticalTower_Brick_Grey_1_8FBCB6:
     dw $0004 : dl Background_Brinstar_8_NarrowVerticalTower_Brick_Grey_1 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-UNUSED_LibBG_Brin_8_NarrowVerticalTower_Brick_Grey_2_8FBCD1:             ;8FBCD1;
+UNUSED_LibBG_Brin_8_NarrowVerticalTower_Brick_Grey_2_8FBCD1:
     dw $0004 : dl Background_Brinstar_8_NarrowVerticalTower_Brick_Grey_2 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-LibBG_Brinstar_7_BlueGridBlocks:                                         ;8FBCEC;
+LibBG_Brinstar_7_BlueGridBlocks:
     dw $0004 : dl Background_Brinstar_7_BlueGridBlocks : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
@@ -8534,26 +8514,22 @@ LibBG_Brinstar_7_BlueGridBlocks:                                         ;8FBCEC
 DoorASM_Scroll_18_1C_Green:
 ; Room $9AD9, door list index 8: Door
 ; Room $9FE5, door list index 0: Door
-    PHP                                                                  ;8FBD07;
-    SEP #$20                                                             ;8FBD08;
-    LDA.B #$02                                                           ;8FBD0A;
-    STA.L Scrolls+$18                                                    ;8FBD0C;
-    STA.L Scrolls+$1C                                                    ;8FBD10;
-    PLP                                                                  ;8FBD14;
-    RTS                                                                  ;8FBD15;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+$18 : STA.L Scrolls+$1C
+    PLP
+    RTS
 
 
 ;;; $BD16: Door ASM: scroll 5..6 = blue ;;;
 DoorASM_Scroll_5_6_Blue:
 ; Room $9AD9, door list index 7: Door
 ; Room $A22A, door list index 0: Door
-    PHP                                                                  ;8FBD16;
-    SEP #$20                                                             ;8FBD17;
-    LDA.B #$01                                                           ;8FBD19;
-    STA.L Scrolls+5                                                      ;8FBD1B;
-    STA.L Scrolls+6                                                      ;8FBD1F;
-    PLP                                                                  ;8FBD23;
-    RTS                                                                  ;8FBD24;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+5 : STA.L Scrolls+6
+    PLP
+    RTS
 
 
 ;;; $BD25: Door ASM: scroll 1Dh = blue ;;;
@@ -8561,243 +8537,211 @@ DoorASM_Scroll_1D_Blue:
 ; Room $9938, door list index 1: Door
 ; Room $9AD9, door list index 6: Door
 ; Room $A011, door list index 2: Door
-    PHP                                                                  ;8FBD25;
-    SEP #$20                                                             ;8FBD26;
-    LDA.B #$01                                                           ;8FBD28;
-    STA.L Scrolls+$1D                                                    ;8FBD2A;
-    PLP                                                                  ;8FBD2E;
-    RTS                                                                  ;8FBD2F;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+$1D
+    PLP
+    RTS
 
 
 ;;; $BD30: Door ASM: scroll 2..3 = green ;;;
 DoorASM_Scroll_2_3_Green:
 ; Room $9D19, door list index 2: Door
-    PHP                                                                  ;8FBD30;
-    SEP #$20                                                             ;8FBD31;
-    LDA.B #$02                                                           ;8FBD33;
-    STA.L Scrolls+2                                                      ;8FBD35;
-    STA.L Scrolls+3                                                      ;8FBD39;
-    PLP                                                                  ;8FBD3D;
-    RTS                                                                  ;8FBD3E;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+2 : STA.L Scrolls+3
+    PLP
+    RTS
 
 
 ;;; $BD3F: Door ASM: scroll 0 = red, 1 = green ;;;
 DoorASM_Scroll_0_Red_1_Green:
 ; Room $A471, door list index 0: Door
-    PHP                                                                  ;8FBD3F;
-    SEP #$20                                                             ;8FBD40;
-    LDA.B #$00                                                           ;8FBD42;
-    STA.L Scrolls                                                        ;8FBD44;
-    LDA.B #$02                                                           ;8FBD48;
-    STA.L Scrolls+1                                                      ;8FBD4A;
-    PLP                                                                  ;8FBD4E;
-    RTS                                                                  ;8FBD4F;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls
+    LDA.B #$02 : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $BD50: Door ASM: scroll Bh = green ;;;
 DoorASM_Scroll_B_Green:
 ; Room $A07B, door list index 0: Door
-    PHP                                                                  ;8FBD50;
-    SEP #$20                                                             ;8FBD51;
-    LDA.B #$02                                                           ;8FBD53;
-    STA.L Scrolls+$B                                                     ;8FBD55;
-    PLP                                                                  ;8FBD59;
-    RTS                                                                  ;8FBD5A;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+$B
+    PLP
+    RTS
 
 
 ;;; $BD5B: Door ASM: scroll 1Ch = red, 1Dh = blue ;;;
 DoorASM_Scroll_Scroll_1C_Red_1D_Blue:
 ; Room $A0A4, door list index 1: Door
-    PHP                                                                  ;8FBD5B;
-    SEP #$20                                                             ;8FBD5C;
-    LDA.B #$00                                                           ;8FBD5E;
-    STA.L Scrolls+$1C                                                    ;8FBD60;
-    LDA.B #$01                                                           ;8FBD64;
-    STA.L Scrolls+$1D                                                    ;8FBD66;
-    PLP                                                                  ;8FBD6A;
-    RTS                                                                  ;8FBD6B;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+$1C
+    LDA.B #$01 : STA.L Scrolls+$1D
+    PLP
+    RTS
 
 
 ;;; $BD6C: Door ASM: scroll 4 = red ;;;
 DoorASM_Scroll_4_Red:
 ; Room $9AD9, door list index 5: Door
-    PHP                                                                  ;8FBD6C;
-    SEP #$20                                                             ;8FBD6D;
-    LDA.B #$00                                                           ;8FBD6F;
-    STA.L Scrolls+4                                                      ;8FBD71;
-    PLP                                                                  ;8FBD75;
-    RTS                                                                  ;8FBD76;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+4
+    PLP
+    RTS
 
 
 ;;; $BD77: Door ASM: scroll 20h,24h..25h = green ;;;
 DoorASM_Scroll_20_24_25_Green:
 ; Room $A0D2, door list index 0: Door
-    PHP                                                                  ;8FBD77;
-    SEP #$20                                                             ;8FBD78;
-    LDA.B #$02                                                           ;8FBD7A;
-    STA.L Scrolls+$20                                                    ;8FBD7C;
-    STA.L Scrolls+$24                                                    ;8FBD80;
-    STA.L Scrolls+$25                                                    ;8FBD84;
-    PLP                                                                  ;8FBD88;
-    RTS                                                                  ;8FBD89;
+    PHP
+    SEP #$20
+    LDA.B #$02
+    STA.L Scrolls+$20 : STA.L Scrolls+$24 : STA.L Scrolls+$25
+    PLP
+    RTS
 
 
 ;;; $BD8A: Door ASM: scroll 2 = blue ;;;
 DoorASM_Scroll_2_Blue_duplicate:
 ; Room $A1AD, door list index 0: Door
-    PHP                                                                  ;8FBD8A;
-    SEP #$20                                                             ;8FBD8B;
-    LDA.B #$01                                                           ;8FBD8D;
-    STA.L Scrolls+2                                                      ;8FBD8F;
-    PLP                                                                  ;8FBD93;
-    RTS                                                                  ;8FBD94;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+2
+    PLP
+    RTS
 
 
 ;;; $BD95: Door ASM: scroll 0 = green ;;;
 DoorASM_Scroll_0_Green:
 ; Room $A641, door list index 0: Door
-    PHP                                                                  ;8FBD95;
-    SEP #$20                                                             ;8FBD96;
-    LDA.B #$02                                                           ;8FBD98;
-    STA.L Scrolls                                                        ;8FBD9A;
-    PLP                                                                  ;8FBD9E;
-    RTS                                                                  ;8FBD9F;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls
+    PLP
+    RTS
 
 
 ;;; $BDA0: Door ASM: scroll 6..7 = green ;;;
 DoorASM_Scroll_6_7_Green:
 ; Room $A3DD, door list index 0: Door
 ; Room $A618, door list index 0: Door
-    PHP                                                                  ;8FBDA0;
-    SEP #$20                                                             ;8FBDA1;
-    LDA.B #$02                                                           ;8FBDA3;
-    STA.L Scrolls+6                                                      ;8FBDA5;
-    STA.L Scrolls+7                                                      ;8FBDA9;
-    PLP                                                                  ;8FBDAD;
-    RTS                                                                  ;8FBDAE;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+6 : STA.L Scrolls+7
+    PLP
+    RTS
 
 
 ;;; $BDAF: Door ASM: scroll 1 = blue, 2 = red ;;;
 DoorASM_Scroll_1_Blue_2_Red:
 ; Room $A322, door list index 4: Door
-    PHP                                                                  ;8FBDAF;
-    SEP #$20                                                             ;8FBDB0;
-    LDA.B #$01                                                           ;8FBDB2;
-    STA.L Scrolls+1                                                      ;8FBDB4;
-    LDA.B #$00                                                           ;8FBDB8;
-    STA.L Scrolls+2                                                      ;8FBDBA;
-    PLP                                                                  ;8FBDBE;
-    RTS                                                                  ;8FBDBF;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+1
+    LDA.B #$00 : STA.L Scrolls+2
+    PLP
+    RTS
 
 
 ;;; $BDC0: Door ASM: scroll 1 = blue, 3 = red ;;;
 DoorASM_Scroll_1_Blue_3_Red:
 ; Room $9DC7, door list index 0: Door
-    PHP                                                                  ;8FBDC0;
-    SEP #$20                                                             ;8FBDC1;
-    LDA.B #$01                                                           ;8FBDC3;
-    STA.L Scrolls+1                                                      ;8FBDC5;
-    LDA.B #$00                                                           ;8FBDC9;
-    STA.L Scrolls+3                                                      ;8FBDCB;
-    PLP                                                                  ;8FBDCF;
-    RTS                                                                  ;8FBDD0;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+1
+    LDA.B #$00 : STA.L Scrolls+3
+    PLP
+    RTS
 
 
 ;;; $BDD1: Door ASM: scroll 0 = red, 4 = blue ;;;
 DoorASM_Scroll_0_Red_4_Blue:
 ; Room $A6A1, door list index 0: Door
-    PHP                                                                  ;8FBDD1;
-    SEP #$20                                                             ;8FBDD2;
-    LDA.B #$00                                                           ;8FBDD4;
-    STA.L Scrolls                                                        ;8FBDD6;
-    LDA.B #$01                                                           ;8FBDDA;
-    STA.L Scrolls+4                                                      ;8FBDDC;
-    PLP                                                                  ;8FBDE0;
-    RTS                                                                  ;8FBDE1;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls
+    LDA.B #$01 : STA.L Scrolls+4
+    PLP
+    RTS
 
 
 ;;; $BDE2: Door ASM: scroll 2..3 = blue ;;;
 DoorASM_Scroll_2_3_Blue:
 ; Room $A70B, door list index 0: Door
-    PHP                                                                  ;8FBDE2;
-    SEP #$20                                                             ;8FBDE3;
-    LDA.B #$01                                                           ;8FBDE5;
-    STA.L Scrolls+2                                                      ;8FBDE7;
-    STA.L Scrolls+3                                                      ;8FBDEB;
-    PLP                                                                  ;8FBDEF;
-    RTS                                                                  ;8FBDF0;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+2 : STA.L Scrolls+3
+    PLP
+    RTS
 
 
 ;;; $BDF1: Door ASM: scroll 0..1 = green ;;;
 DoorASM_Scroll_0_1_Green:
 ; Room $A447, door list index 0: Door
-    PHP                                                                  ;8FBDF1;
-    SEP #$20                                                             ;8FBDF2;
-    LDA.B #$02                                                           ;8FBDF4;
-    STA.L Scrolls                                                        ;8FBDF6;
-    STA.L Scrolls+1                                                      ;8FBDFA;
-    PLP                                                                  ;8FBDFE;
-    RTS                                                                  ;8FBDFF;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $BE00: Door ASM: scroll 1 = green ;;;
 DoorASM_Scroll_1_Green:
 ; Room $A184, door list index 0: Door
-    PHP                                                                  ;8FBE00;
-    SEP #$20                                                             ;8FBE01;
-    LDA.B #$02                                                           ;8FBE03;
-    STA.L Scrolls+1                                                      ;8FBE05;
-    PLP                                                                  ;8FBE09;
-    RTS                                                                  ;8FBE0A;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $BE0B: Door ASM: scroll Fh,12h = green ;;;
 DoorASM_Scroll_F_12_Green:
 ; Room $A3AE, door list index 0: Door
-    PHP                                                                  ;8FBE0B;
-    SEP #$20                                                             ;8FBE0C;
-    LDA.B #$02                                                           ;8FBE0E;
-    STA.L Scrolls+$F                                                     ;8FBE10;
-    STA.L Scrolls+$12                                                    ;8FBE14;
-    PLP                                                                  ;8FBE18;
-    RTS                                                                  ;8FBE19;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+$F : STA.L Scrolls+$12
+    PLP
+    RTS
 
 
 ;;; $BE1A: Door ASM: scroll 6 = green ;;;
 DoorASM_Scroll_6_Green_duplicate_again:
 ; Room $A2F7, door list index 1: Door
-    PHP                                                                  ;8FBE1A;
-    SEP #$20                                                             ;8FBE1B;
-    LDA.B #$02                                                           ;8FBE1D;
-    STA.L Scrolls+6                                                      ;8FBE1F;
-    PLP                                                                  ;8FBE23;
-    RTS                                                                  ;8FBE24;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+6
+    PLP
+    RTS
 
 
 ;;; $BE25: Door ASM: scroll 0 = green, 1 = blue ;;;
 DoorASM_Scroll_0_Green_1_Blue:
 ; Room $A107, door list index 0: Door
-    PHP                                                                  ;8FBE25;
-    SEP #$20                                                             ;8FBE26;
-    LDA.B #$02                                                           ;8FBE28;
-    STA.L Scrolls                                                        ;8FBE2A;
-    LDA.B #$01                                                           ;8FBE2E;
-    STA.L Scrolls+1                                                      ;8FBE30;
-    PLP                                                                  ;8FBE34;
-    RTS                                                                  ;8FBE35;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls
+    LDA.B #$01 : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $BE36: Door ASM: scroll 2 = green ;;;
 DoorASM_Scroll_2_Green:
 ; Room $9AD9, door list index 0: Door
-    SEP #$20                                                             ;8FBE36;
-    LDA.B #$02                                                           ;8FBE38;
-    STA.L Scrolls+2                                                      ;8FBE3A;
-    RTS                                                                  ;8FBE3E;
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+2
+    RTS
 
 
 ;;; $BE3F: Library background ;;;
-LibBG_Norfair_9_A_SmallPatternBrownPurple_Bright:                        ;8FBE3F;
+LibBG_Norfair_9_A_SmallPatternBrownPurple_Bright:
 ; Room $A75D, state $A76A: Post ice beam mockball hall
 ; Room $A865, state $A872: Ice beam practice room
 ; Room $A9E5, state $A9F2: Hi-jump room
@@ -8808,7 +8752,7 @@ LibBG_Norfair_9_A_SmallPatternBrownPurple_Bright:                        ;8FBE3F
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_A_SmallPatternBrownPurple_0:                             ;8FBE5A;
+LibBG_Norfair_9_A_SmallPatternBrownPurple_0:
 ; Room $A815, state $A822: Ice beam mockball hall
 ; Room $A890, state $A89D: Ice beam room
 ; Room $A8B9, state $A8C6: Pre ice beam shaft
@@ -8824,28 +8768,28 @@ LibBG_Norfair_9_A_SmallPatternBrownPurple_0:                             ;8FBE5A
     dw $0000
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Norfair_9_A_SmallPatternBrownPurple_1_8FBE75:               ;8FBE75;
+UNUSED_LibBG_Norfair_9_A_SmallPatternBrownPurple_1_8FBE75:
     dw $0004 : dl Background_Norfair_9_A_SmallPatternBrownPurple_1 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-LibBG_Norfair_9_HorizontalPatternBrick:                                  ;8FBE90;
+LibBG_Norfair_9_HorizontalPatternBrick:
 ; Room $B3E1, state $B3EE: Unused room
     dw $0004 : dl Background_Norfair_9_HorizontalPatternBrick : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_VerticalPatternBrick:                                    ;8FBEAB;
+LibBG_Norfair_9_VerticalPatternBrick:
 ; Room $B3A5, state $B3B2: Lower Norfair power bomb floor shaft
     dw $0004 : dl Background_Norfair_9_VerticalPatternBrick : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_A_CavernStalagtites:                                     ;8FBEC6;
+LibBG_Norfair_9_A_CavernStalagtites:
 ; Room $AADE, state $AAEB: Post Crocomire power bombs room
 ; Room $AB3B, state $AB48: Post Crocomire fluctuating acid missiles cave
 ; Room $AC00, state $AC0D: Single lake grapple practice room
@@ -8861,7 +8805,7 @@ LibBG_Norfair_9_A_CavernStalagtites:                                     ;8FBEC6
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_A_CavernVertical:                                        ;8FBEE1;
+LibBG_Norfair_9_A_CavernVertical:
 ; Room $A7DE, state $A7EB: Norfair mainstreet
 ; Room $A8F8, state $A905: Crumble block platform shaft
 ; Room $AB07, state $AB14: Post Crocomire shaft
@@ -8873,14 +8817,14 @@ LibBG_Norfair_9_A_CavernVertical:                                        ;8FBEE1
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_CavernHorizontalRuins:                                   ;8FBEFC;
+LibBG_Norfair_9_CavernHorizontalRuins:
 ; Room $B4AD, state $B4BA: Lower Norfair wall jumping space pirates shaft
     dw $0004 : dl Background_Norfair_9_CavernHorizontalRuins : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_CavernVerticalRuins:                                     ;8FBF17;
+LibBG_Norfair_9_CavernVerticalRuins:
 ; Room $B236, state $B243: Lower Norfair mainstreet
 ; Room $B2DA, state $B2E7: Screw attack practice
 ; Room $B457, state $B464: Lower Norfair breakable pillars hall
@@ -8889,7 +8833,7 @@ LibBG_Norfair_9_CavernVerticalRuins:                                     ;8FBF17
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_CavernRoomPillars:                                       ;8FBF32;
+LibBG_Norfair_9_CavernRoomPillars:
 ; Room $B1E5, state $B1F2: Golden chozo statue lava lake
 ; Room $B32E, state $B340: Ridley
 ; Room $B32E, state $B35A: Ridley
@@ -8902,7 +8846,7 @@ LibBG_Norfair_9_CavernRoomPillars:                                       ;8FBF32
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_RoomStatues:                                             ;8FBF4D;
+LibBG_Norfair_9_RoomStatues:
 ; Room $B37A, state $B387: Pre Ridley hall
 ; Room $B482, state $B48F: Lower Norfair holtz room
 ; Room $B62B, state $B638: Elite pirate hall
@@ -8911,7 +8855,7 @@ LibBG_Norfair_9_RoomStatues:                                             ;8FBF4D
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_PurplePatches:                                           ;8FBF68;
+LibBG_Norfair_9_PurplePatches:
 ; Room $AC5A, state $AC67: Bubble Norfair reserve tank room
 ; Room $AEDF, state $AEEC: Pre "useless cave" shaft
 ; Room $B051, state $B05E: "useless cave"
@@ -8923,7 +8867,7 @@ LibBG_Norfair_9_PurplePatches:                                           ;8FBF68
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_Bubbles:                                                 ;8FBF83;
+LibBG_Norfair_9_Bubbles:
 ; Room $AC83, state $AC90: Bubble Norfair pre reserve tank room
 ; Room $ACB3, state $ACC0: Bubble Norfair mainstreet
     dw $0004 : dl Background_Norfair_9_Bubbles : dw $4000
@@ -8935,286 +8879,241 @@ LibBG_Norfair_9_Bubbles:                                                 ;8FBF83
 ;;; $BF9E: Door ASM: scroll 3..4 = red, 6..8 = blue ;;;
 DoorASM_Scroll_3_4_Red_6_7_8_Blue:
 ; Room $B283, door list index 0: Door
-    PHP                                                                  ;8FBF9E;
-    SEP #$20                                                             ;8FBF9F;
-    LDA.B #$00                                                           ;8FBFA1;
-    STA.L Scrolls+3                                                      ;8FBFA3;
-    STA.L Scrolls+4                                                      ;8FBFA7;
-    LDA.B #$01                                                           ;8FBFAB;
-    STA.L Scrolls+6                                                      ;8FBFAD;
-    STA.L Scrolls+7                                                      ;8FBFB1;
-    STA.L Scrolls+8                                                      ;8FBFB5;
-    PLP                                                                  ;8FBFB9;
-    RTS                                                                  ;8FBFBA;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+3 : STA.L Scrolls+4
+    LDA.B #$01 : STA.L Scrolls+6
+    STA.L Scrolls+7 : STA.L Scrolls+8
+    PLP
+    RTS
 
 
 ;;; $BFBB: Door ASM: scroll 1..3 = blue, 4 = green, 6 = red ;;;
 DoorASM_Scroll_1_2_3_Blue_4_Green_6_Red:
 ; Room $B55A, door list index 1: Door
-    PHP                                                                  ;8FBFBB;
-    SEP #$20                                                             ;8FBFBC;
-    LDA.B #$01                                                           ;8FBFBE;
-    STA.L Scrolls+1                                                      ;8FBFC0;
-    STA.L Scrolls+2                                                      ;8FBFC4;
-    STA.L Scrolls+3                                                      ;8FBFC8;
-    LDA.B #$02                                                           ;8FBFCC;
-    STA.L Scrolls+4                                                      ;8FBFCE;
-    LDA.B #$00                                                           ;8FBFD2;
-    STA.L Scrolls+6                                                      ;8FBFD4;
-    PLP                                                                  ;8FBFD8;
-    RTS                                                                  ;8FBFD9;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+1
+    STA.L Scrolls+2 : STA.L Scrolls+3
+    LDA.B #$02 : STA.L Scrolls+4
+    LDA.B #$00 : STA.L Scrolls+6
+    PLP
+    RTS
 
 
 ;;; $BFDA: Door ASM: scroll 0..1 = blue ;;;
 DoorASM_Scroll_0_1_Blue:
 ; Room $AA82, door list index 0: Door
-    PHP                                                                  ;8FBFDA;
-    SEP #$20                                                             ;8FBFDB;
-    LDA.B #$01                                                           ;8FBFDD;
-    STA.L Scrolls                                                        ;8FBFDF;
-    STA.L Scrolls+1                                                      ;8FBFE3;
-    PLP                                                                  ;8FBFE7;
-    RTS                                                                  ;8FBFE8;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $BFE9: Door ASM: scroll 0 = blue, 1 = red ;;;
 DoorASM_Scroll_0_Blue_1_Red:
 ; Room $ACF0, door list index 0: Door
-    PHP                                                                  ;8FBFE9;
-    SEP #$20                                                             ;8FBFEA;
-    LDA.B #$00                                                           ;8FBFEC;
-    STA.L Scrolls+1                                                      ;8FBFEE;
-    LDA.B #$01                                                           ;8FBFF2;
-    STA.L Scrolls                                                        ;8FBFF4;
-    PLP                                                                  ;8FBFF8;
-    RTS                                                                  ;8FBFF9;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+1
+    LDA.B #$01 : STA.L Scrolls
+    PLP
+    RTS
 
 
 ;;; $BFFA: Door ASM: scroll Ah = green ;;;
 DoorASM_Scroll_A_Green:
 ; Room $A865, door list index 1: Door
-    PHP                                                                  ;8FBFFA;
-    SEP #$20                                                             ;8FBFFB;
-    LDA.B #$02                                                           ;8FBFFD;
-    STA.L Scrolls+$A                                                     ;8FBFFF;
-    PLP                                                                  ;8FC003;
-    RTS                                                                  ;8FC004;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+$A
+    PLP
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C005: Unused. Door ASM: scroll 0 = blue, 2 = red ;;;
 UNUSED_DoorASM_Scroll_0_Blue_2_Red_8FC005:
-    PHP                                                                  ;8FC005;
-    SEP #$20                                                             ;8FC006;
-    LDA.B #$01                                                           ;8FC008;
-    STA.L Scrolls                                                        ;8FC00A;
-    LDA.B #$00                                                           ;8FC00E;
-    STA.L Scrolls+2                                                      ;8FC010;
-    PLP                                                                  ;8FC014;
-    RTS                                                                  ;8FC015;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls
+    LDA.B #$00 : STA.L Scrolls+2
+    PLP
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C016: Door ASM: scroll 0,2 = green ;;;
 DoorASM_Scroll_0_2_Green:
 ; Room $A9E5, door list index 0: Door
-    PHP                                                                  ;8FC016;
-    SEP #$20                                                             ;8FC017;
-    LDA.B #$02                                                           ;8FC019;
-    STA.L Scrolls                                                        ;8FC01B;
-    STA.L Scrolls+2                                                      ;8FC01F;
-    PLP                                                                  ;8FC023;
-    RTS                                                                  ;8FC024;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls : STA.L Scrolls+2
+    PLP
+    RTS
 
 
 ;;; $C025: Door ASM: scroll 6..7 = blue, 8 = red ;;;
 DoorASM_Scroll_6_7_Blue_8_Red:
 ; Room $AE74, door list index 1: Door
-    PHP                                                                  ;8FC025;
-    SEP #$20                                                             ;8FC026;
-    LDA.B #$01                                                           ;8FC028;
-    STA.L Scrolls+6                                                      ;8FC02A;
-    STA.L Scrolls+7                                                      ;8FC02E;
-    LDA.B #$00                                                           ;8FC032;
-    STA.L Scrolls+8                                                      ;8FC034;
-    PLP                                                                  ;8FC038;
-    RTS                                                                  ;8FC039;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+6 : STA.L Scrolls+7
+    LDA.B #$00 : STA.L Scrolls+8
+    PLP
+    RTS
 
 
 ;;; $C03A: Door ASM: scroll 2 = red, 3 = blue ;;;
 DoorASM_Scroll_2_Red_3_Blue:
 ; Room $A890, door list index 0: Door
-    PHP                                                                  ;8FC03A;
-    SEP #$20                                                             ;8FC03B;
-    LDA.B #$00                                                           ;8FC03D;
-    STA.L Scrolls+2                                                      ;8FC03F;
-    LDA.B #$01                                                           ;8FC043;
-    STA.L Scrolls+3                                                      ;8FC045;
-    PLP                                                                  ;8FC049;
-    RTS                                                                  ;8FC04A;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+2
+    LDA.B #$01 : STA.L Scrolls+3
+    PLP
+    RTS
 
 
 ;;; $C04B: Door ASM: scroll 7 = green ;;;
 DoorASM_Scroll_7_Green:
 ; Room $B62B, door list index 1: Door
-    PHP                                                                  ;8FC04B;
-    SEP #$20                                                             ;8FC04C;
-    LDA.B #$02                                                           ;8FC04E;
-    STA.L Scrolls+7                                                      ;8FC050;
-    PLP                                                                  ;8FC054;
-    RTS                                                                  ;8FC055;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+7
+    PLP
+    RTS
 
 
 ;;; $C056: Door ASM: scroll 1 = red, 2 = blue ;;;
 DoorASM_Scroll_1_Red_2_Blue:
 ; Room $B2DA, door list index 1: Door
 ; Room $B457, door list index 0: Door
-    PHP                                                                  ;8FC056;
-    SEP #$20                                                             ;8FC057;
-    LDA.B #$00                                                           ;8FC059;
-    STA.L Scrolls+1                                                      ;8FC05B;
-    LDA.B #$01                                                           ;8FC05F;
-    STA.L Scrolls+2                                                      ;8FC061;
-    PLP                                                                  ;8FC065;
-    RTS                                                                  ;8FC066;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+1
+    LDA.B #$01 : STA.L Scrolls+2
+    PLP
+    RTS
 
 
 ;;; $C067: Door ASM: scroll 0 = blue, 3 = red ;;;
 DoorASM_Scroll_0_Blue_3_Red:
 ; Room $B4E5, door list index 1: Door
-    PHP                                                                  ;8FC067;
-    SEP #$20                                                             ;8FC068;
-    LDA.B #$00                                                           ;8FC06A;
-    STA.L Scrolls+3                                                      ;8FC06C;
-    LDA.B #$01                                                           ;8FC070;
-    STA.L Scrolls                                                        ;8FC072;
-    PLP                                                                  ;8FC076;
-    RTS                                                                  ;8FC077;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+3
+    LDA.B #$01 : STA.L Scrolls
+    PLP
+    RTS
 
 
 ;;; $C078: Door ASM: scroll 1 = blue, 4 = red ;;;
 DoorASM_Scroll_1_Blue_4_Red:
 ; Room $B55A, door list index 0: Door
-    PHP                                                                  ;8FC078;
-    SEP #$20                                                             ;8FC079;
-    LDA.B #$01                                                           ;8FC07B;
-    STA.L Scrolls+1                                                      ;8FC07D;
-    LDA.B #$00                                                           ;8FC081;
-    STA.L Scrolls+4                                                      ;8FC083;
-    PLP                                                                  ;8FC087;
-    RTS                                                                  ;8FC088;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+1
+    LDA.B #$00 : STA.L Scrolls+4
+    PLP
+    RTS
 
 
 ;;; $C089: Door ASM: scroll 0 = blue, 1..3 = red ;;;
 DoorASM_Scroll_0_Blue_1_2_3_Red:
 ; Room $B1E5, door list index 0: Door
-    PHP                                                                  ;8FC089;
-    SEP #$20                                                             ;8FC08A;
-    LDA.B #$01                                                           ;8FC08C;
-    STA.L Scrolls                                                        ;8FC08E;
-    LDA.B #$00                                                           ;8FC092;
-    STA.L Scrolls+1                                                      ;8FC094;
-    STA.L Scrolls+2                                                      ;8FC098;
-    STA.L Scrolls+3                                                      ;8FC09C;
-    PLP                                                                  ;8FC0A0;
-    RTS                                                                  ;8FC0A1;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls
+    LDA.B #$00 : STA.L Scrolls+1
+    STA.L Scrolls+2 : STA.L Scrolls+3
+    PLP
+    RTS
 
 
 ;;; $C0A2: Door ASM: scroll 0 = green ;;;
 DoorASM_Scroll_0_Green_duplicate:
 ; Room $B40A, door list index 1: Door
-    PHP                                                                  ;8FC0A2;
-    SEP #$20                                                             ;8FC0A3;
-    LDA.B #$02                                                           ;8FC0A5;
-    STA.L Scrolls                                                        ;8FC0A7;
-    PLP                                                                  ;8FC0AB;
-    RTS                                                                  ;8FC0AC;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls
+    PLP
+    RTS
 
 
 ;;; $C0AD: Door ASM: scroll 0..1 = blue, 4 = red ;;;
 DoorASM_Scroll_0_1_Blue_4_Red:
 ; Room $B510, door list index 1: Door
-    PHP                                                                  ;8FC0AD;
-    SEP #$20                                                             ;8FC0AE;
-    LDA.B #$01                                                           ;8FC0B0;
-    STA.L Scrolls                                                        ;8FC0B2;
-    STA.L Scrolls+1                                                      ;8FC0B6;
-    LDA.B #$00                                                           ;8FC0BA;
-    STA.L Scrolls+4                                                      ;8FC0BC;
-    PLP                                                                  ;8FC0C0;
-    RTS                                                                  ;8FC0C1;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls : STA.L Scrolls+1
+    LDA.B #$00 : STA.L Scrolls+4
+    PLP
+    RTS
 
 
 ;;; $C0C2: Door ASM: scroll 0 = blue, 3 = red ;;;
 DoorASM_Scroll_0_Blue_3_Red_duplicate:
 ; Room $B6EE, door list index 2: Door
-    PHP                                                                  ;8FC0C2;
-    SEP #$20                                                             ;8FC0C3;
-    LDA.B #$01                                                           ;8FC0C5;
-    STA.L Scrolls                                                        ;8FC0C7;
-    LDA.B #$00                                                           ;8FC0CB;
-    STA.L Scrolls+3                                                      ;8FC0CD;
-    PLP                                                                  ;8FC0D1;
-    RTS                                                                  ;8FC0D2;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls
+    LDA.B #$00 : STA.L Scrolls+3
+    PLP
+    RTS
 
 
 ;;; $C0D3: Door ASM: scroll 0 = blue ;;;
 DoorASM_Scroll_0_Blue_duplicate:
 ; Room $AC5A, door list index 0: Door
-    PHP                                                                  ;8FC0D3;
-    SEP #$20                                                             ;8FC0D4;
-    LDA.B #$01                                                           ;8FC0D6;
-    STA.L Scrolls                                                        ;8FC0D8;
-    PLP                                                                  ;8FC0DC;
-    RTS                                                                  ;8FC0DD;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls
+    PLP
+    RTS
 
 
 ;;; $C0DE: Door ASM: scroll 0 = blue, 1 = red ;;;
 DoorASM_Scroll_0_Blue_1_Red_duplicate:
 ; Room $ACB3, door list index 3: Door
-    PHP                                                                  ;8FC0DE;
-    SEP #$20                                                             ;8FC0DF;
-    LDA.B #$01                                                           ;8FC0E1;
-    STA.L Scrolls                                                        ;8FC0E3;
-    LDA.B #$00                                                           ;8FC0E7;
-    STA.L Scrolls+1                                                      ;8FC0E9;
-    PLP                                                                  ;8FC0ED;
-    RTS                                                                  ;8FC0EE;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls
+    LDA.B #$00 : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $C0EF: Door ASM: scroll 18h = blue ;;;
 DoorASM_Scroll_18_Blue:
 ; Room $A8F8, door list index 0: Door
-    PHP                                                                  ;8FC0EF;
-    SEP #$20                                                             ;8FC0F0;
-    LDA.B #$01                                                           ;8FC0F2;
-    STA.L Scrolls+$18                                                    ;8FC0F4;
-    PLP                                                                  ;8FC0F8;
-    RTS                                                                  ;8FC0F9;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+$18
+    PLP
+    RTS
 
 
 ;;; $C0FA: Door ASM: scroll 2 = blue, 3 = red ;;;
 DoorASM_Scroll_2_Blue_3_Red:
 ; Room $AFFB, door list index 1: Door
-    PHP                                                                  ;8FC0FA;
-    SEP #$20                                                             ;8FC0FB;
-    LDA.B #$00                                                           ;8FC0FD;
-    STA.L Scrolls+3                                                      ;8FC0FF;
-    LDA.B #$01                                                           ;8FC103;
-    STA.L Scrolls+2                                                      ;8FC105;
-    PLP                                                                  ;8FC109;
-    RTS                                                                  ;8FC10A;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+3
+    LDA.B #$01 : STA.L Scrolls+2
+    PLP
+    RTS
 
 
 ;;; $C10B: Door ASM: scroll Eh = red ;;;
 DoorASM_Scroll_E_Red:
 ; Room $B4AD, door list index 0: Door
-    PHP                                                                  ;8FC10B;
-    SEP #$20                                                             ;8FC10C;
-    LDA.B #$00                                                           ;8FC10E;
-    STA.L Scrolls+$E                                                     ;8FC110;
-    PLP                                                                  ;8FC114;
-    RTS                                                                  ;8FC115;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+$E
+    PLP
+    RTS
 
 
 ;;; $C116: Main ASM: scrolling sky land ;;;
@@ -9223,8 +9122,8 @@ MainASM_ScrollingSkyLand:
 ; Room $91F8, state $922D. Landing site, Zebes is awake
 ; Room $91F8, state $9247. Landing site, default
 ; Room $93AA. Landing site power bomb room
-    JSL.L RoomMainASM_ScrollingSkyLand                                   ;8FC116;
-    RTS                                                                  ;8FC11A;
+    JSL RoomMainASM_ScrollingSkyLand
+    RTS
 
 
 ;;; $C11B: Main ASM: scrolling sky ocean ;;;
@@ -9232,14 +9131,15 @@ MainASM_ScrollingSkyOcean:
 ; Room $93FE. Wrecked Ship entrance
 ; Room $94FD. Wrecked Ship back door
 ; Room $968F. Orange zoomer room
-    JSL.L RoomMainASM_ScrollingSkyOcean                                  ;8FC11B;
-    RTS                                                                  ;8FC11F;
+    JSL RoomMainASM_ScrollingSkyOcean
+    RTS
 
 
 ;;; $C120: Main ASM: scrolling sky land, Zebes timebomb set ;;;
 MainASM_ScrollingSkyLand_ZebesTimebombSet:
 ; Room $91F8, state $9261. Landing site, Zebes timebomb set
-    JSL.L RoomMainASM_ScrollingSkyLand                                   ;8FC120; fallthrough to MainASM_SetScreenShaking_GenerateRandomExplosions
+    JSL RoomMainASM_ScrollingSkyLand
+; fallthrough to MainASM_SetScreenShaking_GenerateRandomExplosions
 
 
 ;;; $C124: Main ASM: set screen shaking and generate random explosions ;;;
@@ -9248,113 +9148,67 @@ MainASM_SetScreenShaking_GenerateRandomExplosions:
 ; Room $96BA, state $9705. Old Tourian escape shaft, Zebes timebomb set
 ; Room $9804, state $984F. Bomb Torizo's room, Zebes timebomb set
 ; Room $9879, state $98C4. Pre Bomb Torizo room, Zebes timebomb set
-    JSR.W GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile        ;8FC124;
-    LDA.W EarthquakeTimer                                                ;8FC127;
-    ORA.W #$8000                                                         ;8FC12A;
-    STA.W EarthquakeTimer                                                ;8FC12D;
-    RTS                                                                  ;8FC130;
+    JSR GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile
+    LDA.W EarthquakeTimer : ORA.W #$8000 : STA.W EarthquakeTimer
+    RTS
 
 
 ;;; $C131: Generate random explosion on even frames on random non-blank tile ;;;
 GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
-    LDA.W TimeIsFrozenFlag                                               ;8FC131;
-    BNE .return                                                          ;8FC134;
-    LDA.W NMI_FrameCounter                                               ;8FC136;
-    AND.W #$0001                                                         ;8FC139;
-    BNE .return                                                          ;8FC13C;
-    JSL.L GenerateRandomNumber                                           ;8FC13E;
-    PHA                                                                  ;8FC142;
-    AND.W #$00FF                                                         ;8FC143;
-    CLC                                                                  ;8FC146;
-    ADC.W Layer1XPosition                                                ;8FC147;
-    STA.B DP_Temp12                                                      ;8FC14A;
-    PLA                                                                  ;8FC14C;
-    XBA                                                                  ;8FC14D;
-    AND.W #$00FF                                                         ;8FC14E;
-    CLC                                                                  ;8FC151;
-    ADC.W Layer1YPosition                                                ;8FC152;
-    STA.B DP_Temp14                                                      ;8FC155;
-    LSR                                                                  ;8FC157;
-    LSR                                                                  ;8FC158;
-    LSR                                                                  ;8FC159;
-    LSR                                                                  ;8FC15A;
-    SEP #$20                                                             ;8FC15B;
-    PHA                                                                  ;8FC15D;
-    LDA.W RoomWidthBlocks                                                ;8FC15E;
-    STA.W $4202                                                          ;8FC161;
-    PLA                                                                  ;8FC164;
-    STA.W $4203                                                          ;8FC165;
-    REP #$20                                                             ;8FC168;
-    LDA.B DP_Temp12                                                      ;8FC16A;
-    LSR                                                                  ;8FC16C;
-    LSR                                                                  ;8FC16D;
-    LSR                                                                  ;8FC16E;
-    LSR                                                                  ;8FC16F;
-    CLC                                                                  ;8FC170;
-    ADC.W $4216                                                          ;8FC171;
-    ASL                                                                  ;8FC174;
-    TAX                                                                  ;8FC175;
-    LDA.L LevelData,X                                                    ;8FC176;
-    AND.W #$03FF                                                         ;8FC17A;
-    CMP.W #$00FF                                                         ;8FC17D;
-    BNE GenerateRandomExplosionAt_12_14                                  ;8FC180;
+    LDA.W TimeIsFrozenFlag : BNE .return
+    LDA.W NMI_FrameCounter : AND.W #$0001 : BNE .return
+    JSL GenerateRandomNumber
+    PHA
+    AND.W #$00FF : CLC : ADC.W Layer1XPosition : STA.B DP_Temp12
+    PLA : XBA : AND.W #$00FF
+    CLC : ADC.W Layer1YPosition : STA.B DP_Temp14
+    LSR #4
+    SEP #$20
+    PHA
+    LDA.W RoomWidthBlocks : STA.W $4202
+    PLA : STA.W $4203
+    REP #$20
+    LDA.B DP_Temp12 : LSR #4 : CLC : ADC.W $4216 : ASL : TAX
+    LDA.L LevelData,X : AND.W #$03FF : CMP.W #$00FF : BNE GenerateRandomExplosionAt_12_14
 
   .return:
-    RTS                                                                  ;8FC182;
+    RTS
 
 
 ;;; $C183: Generate random explosion on every fourth frame ;;;
 GenerateRandomExplosionOnEveryFourthFrame:
-    LDA.W TimeIsFrozenFlag                                               ;8FC183;
-    BNE GenerateRandomExplosionAt_12_14_return                           ;8FC186;
-    LDA.W NMI_FrameCounter                                               ;8FC188;
-    AND.W #$0003                                                         ;8FC18B;
-    BNE GenerateRandomExplosionAt_12_14_return                           ;8FC18E;
-    JSL.L GenerateRandomNumber                                           ;8FC190;
-    PHA                                                                  ;8FC194;
-    AND.W #$00FF                                                         ;8FC195;
-    CLC                                                                  ;8FC198;
-    ADC.W Layer1XPosition                                                ;8FC199;
-    STA.B DP_Temp12                                                      ;8FC19C;
-    PLA                                                                  ;8FC19E;
-    XBA                                                                  ;8FC19F;
-    AND.W #$00FF                                                         ;8FC1A0;
-    CLC                                                                  ;8FC1A3;
-    ADC.W Layer1YPosition                                                ;8FC1A4;
-    STA.B DP_Temp14                                                      ;8FC1A7; fallthrough to GenerateRandomExplosionAt_12_14
+    LDA.W TimeIsFrozenFlag : BNE GenerateRandomExplosionAt_12_14_return
+    LDA.W NMI_FrameCounter : AND.W #$0003 : BNE GenerateRandomExplosionAt_12_14_return
+    JSL GenerateRandomNumber
+    PHA
+    AND.W #$00FF : CLC : ADC.W Layer1XPosition : STA.B DP_Temp12
+    PLA : XBA : AND.W #$00FF : CLC : ADC.W Layer1YPosition : STA.B DP_Temp14
+; fallthrough to GenerateRandomExplosionAt_12_14
 
 
 ;;; $C1A9: Generate random explosion at ([$12], [$14]) ;;;
 GenerateRandomExplosionAt_12_14:
 ; Note that if [random number] & Fh >= 8, then X is some garbage value (instead of random) for the purposes of indexing the sprite object IDs array
-    JSL.L GenerateRandomNumber                                           ;8FC1A9;
-    AND.W #$000F                                                         ;8FC1AD;
-    CMP.W #$0008                                                         ;8FC1B0;
-    BCS +                                                                ;8FC1B3;
-    TAX                                                                  ;8FC1B5;
-    LDA.W ExplosionSoundEffects,X                                        ;8FC1B6;
-    AND.W #$00FF                                                         ;8FC1B9;
-    BEQ +                                                                ;8FC1BC;
-    JSL.L QueueSound_Lib2_Max6                                           ;8FC1BE;
+    JSL GenerateRandomNumber
+    AND.W #$000F : CMP.W #$0008 : BCS +
+    TAX
+    LDA.W ExplosionSoundEffects,X : AND.W #$00FF : BEQ +
+    JSL QueueSound_Lib2_Max6
 
-+   TXA                                                                  ;8FC1C2;
-    AND.W #$0007                                                         ;8FC1C3;
-    TAX                                                                  ;8FC1C6;
-    LDA.W ExplosionSpriteObjectIDs,X                                     ;8FC1C7;
-    AND.W #$00FF                                                         ;8FC1CA;
-    STA.B DP_Temp16                                                      ;8FC1CD;
-    STZ.B DP_Temp18                                                      ;8FC1CF;
-    JSL.L Create_Sprite_Object                                           ;8FC1D1;
++   TXA : AND.W #$0007 : TAX
+    LDA.W ExplosionSpriteObjectIDs,X : AND.W #$00FF : STA.B DP_Temp16
+    STZ.B DP_Temp18
+    JSL Create_Sprite_Object
 
   .return:
-    RTS                                                                  ;8FC1D5;
+    RTS
 
 ExplosionSpriteObjectIDs:
 ; 3 = small explosion, 9 = small dust cloud, Ch = smoke, 12h = short big dust cloud, 15h = big dust cloud
-    db $03,$03,$09,$0C,$0C,$12,$12,$15                                   ;8FC1D6;
+    db $03,$03,$09,$0C,$0C,$12,$12,$15
 
 ExplosionSoundEffects:
-    db $24,$00,$00,$25,$00,$00,$00,$00                                   ;8FC1DE;
+    db $24,$00,$00,$25,$00,$00,$00,$00
 
 
 ;;; $C1E6: Main ASM: scroll screen right in Dachora room ;;;
@@ -9362,26 +9216,18 @@ MainASM_ScrollScreenRightInDachoraRoom:
 ; Room $9CB3. Dachora room
 ; The intent of the code is probably to scroll the screen so that it's centred when falling down the shaft;
 ; in practice, the conditions for the scrolling never occur
-    LDA.L Scrolls+$B                                                     ;8FC1E6;
-    AND.W #$00FF                                                         ;8FC1EA;
-    CMP.W #$0002                                                         ;8FC1ED;
-    BNE .return                                                          ;8FC1F0;
-    LDA.W Layer1YPosition                                                ;8FC1F2;
-    CMP.W #$0500                                                         ;8FC1F5;
-    BCS .return                                                          ;8FC1F8;
-    LDA.W Layer1XPosition                                                ;8FC1FA;
-    CMP.W #$0380                                                         ;8FC1FD;
-    BCS .return                                                          ;8FC200;
-    ADC.W #$0003                                                         ;8FC202;
-    STA.W Layer1XPosition                                                ;8FC205;
+    LDA.L Scrolls+$B : AND.W #$00FF : CMP.W #$0002 : BNE .return
+    LDA.W Layer1YPosition : CMP.W #$0500 : BCS .return
+    LDA.W Layer1XPosition : CMP.W #$0380 : BCS .return
+    ADC.W #$0003 : STA.W Layer1XPosition
 
   .return:
-    RTS                                                                  ;8FC208;
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C209: Unused. PLM metadata - Crateria / Brinstar / Norfair ;;;
-UNUSED_8FC209:                                                           ;8FC209;
+UNUSED_8FC209:
 ; See UNUSED_UnknownUnreferenced_8FE881 for the other areas
     dw $0051 ; "Next" item / refill station index (50h is the last used one, see "Item PLMs.asm")
     dw $0061 ; "Next" doorcap index (60h is the last used one, see "Door PLMs.asm")
@@ -9393,26 +9239,26 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C215: PLM populations ;;;
-PLMPopulation_BowlingAlley_State0:                                       ;8FC215;
+PLMPopulation_BowlingAlley_State0:
     %PLMPopEntry(PLMEntries_ScrollPLM, $1F, $2D, RoomPLM_BowlingAlley_0)
     %PLMPopEntry(PLMEntries_upwardsExtension, $41, $26, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $41, $27, $8000)
     %PLMPopEntry(PLMEntries_ScrollPLM, $41, $28, RoomPLM_BowlingAlley_3)
-    dw $0000                                                             ;8FC22D;
+    dw $0000
 
 PLMPopulation_WreckedShipEntrance_State0:
-    dw $0000                                                             ;8FC22F;
+    dw $0000
 
-PLMPopulation_Attic_State0:                                              ;8FC231;
+PLMPopulation_Attic_State0:
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $0080)
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $6E, $06, $0081)
     %PLMPopEntry(PLMEntries_wreckedShipAttic, $08, $08, $8000)
     dw $0000
 
 PLMPopulation_AssemblyLine_State0:
-    dw $0000                                                             ;8FC245;
+    dw $0000
 
-PLMPopulation_WreckedShipMainShaft:                                      ;8FC247;
+PLMPopulation_WreckedShipMainShaft_State0_1:
     %PLMPopEntry(PLMEntries_ScrollPLM, $3E, $57, RoomPLM_WreckedShipMainShaft_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $51, $69, RoomPLM_WreckedShipMainShaft_1)
     %PLMPopEntry(PLMEntries_ScrollPLM, $41, $57, RoomPLM_WreckedShipMainShaft_2)
@@ -9425,17 +9271,17 @@ PLMPopulation_WreckedShipMainShaft:                                      ;8FC247
     dw $0000
 
 PLMPopulation_SpikyDeath_State0:
-    dw $0000                                                             ;8FC27F;
+    dw $0000
 
-PLMPopulation_ElectricDeath_State0:                                      ;8FC281;
+PLMPopulation_ElectricDeath_State0:
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $10, RoomPLM_ElectricDeath_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $08, $10, $8000)
     dw $0000
 
 PLMPopulation_WreckedShipETank_State0:
-    dw $0000                                                             ;8FC28F;
+    dw $0000
 
-PLMPopulation_Basement_State0:                                           ;8FC291;
+PLMPopulation_Basement_State0:
     %PLMPopEntry(PLMEntries_ScrollPLM, $40, $0C, RoomPLM_Basement_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $46, $0C, RoomPLM_Basement_1)
     %PLMPopEntry(PLMEntries_EyeDoorFacingLeft, $4E, $06, $0085)
@@ -9444,30 +9290,30 @@ PLMPopulation_Basement_State0:                                           ;8FC291
     dw $0000
 
 PLMPopulation_WreckedShipMap_State0:
-    dw $0000                                                             ;8FC2B1;
+    dw $0000
 
-PLMPopulation_Phantoon:                                                  ;8FC2B3;
+PLMPopulation_Phantoon_State0_1:
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $0086)
     dw $0000
 
 PLMPopulation_SpongeBath_State0:
-    dw $0000                                                             ;8FC2BB;
+    dw $0000
 
 PLMPopulation_WSWestSuper_State0:
-    dw $0000                                                             ;8FC2BD;
+    dw $0000
 
-PLMPopulation_WSEastSuper_State0:                                        ;8FC2BF;
+PLMPopulation_WSEastSuper_State0:
     %PLMPopEntry(PLMEntries_ScrollPLM, $2F, $07, RoomPLM_WSEastSuper_0)
     dw $0000
 
 PLMPopulation_GravitySuit_State0_WreckedShipSave_State0:
-    dw $0000                                                             ;8FC2C7;
+    dw $0000
 
-PLMPopulation_WreckedShipSave_State1:                                    ;8FC2C9;
+PLMPopulation_WreckedShipSave_State1:
     %PLMPopEntry(PLMEntries_saveStation, $07, $0B, $0000)
     dw $0000
 
-PLMPopulation_BowlingAlley_State1:                                       ;8FC2D1;
+PLMPopulation_BowlingAlley_State1:
     %PLMPopEntry(PLMEntries_ScrollPLM, $1F, $2D, RoomPLM_BowlingAlley_0)
     %PLMPopEntry(PLMEntries_upwardsExtension, $41, $26, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $41, $27, $8000)
@@ -9478,62 +9324,62 @@ PLMPopulation_BowlingAlley_State1:                                       ;8FC2D1
     dw $0000
 
 PLMPopulation_WreckedShipEntrance_State1:
-    dw $0000                                                             ;8FC2FD;
+    dw $0000
 
-PLMPopulation_Attic_State1:                                              ;8FC2FF;
+PLMPopulation_Attic_State1:
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $0C88)
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $6E, $06, $0C89)
     %PLMPopEntry(PLMEntries_greyDoorFacingUp, $46, $0E, $0C8A)
     %PLMPopEntry(PLMEntries_wreckedShipAttic, $08, $08, $8000)
     dw $0000
 
-PLMPopulation_AssemblyLine_State1:                                       ;8FC319;
+PLMPopulation_AssemblyLine_State1:
     %PLMPopEntry(PLMEntries_MissileTank, $2D, $08, $0083)
     dw $0000
 
 PLMPopulation_SpikyDeath_State1:
-    dw $0000                                                             ;8FC321;
+    dw $0000
 
-PLMPopulation_ElectricDeath_State1:                                      ;8FC323;
+PLMPopulation_ElectricDeath_State1:
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $10, RoomPLM_ElectricDeath_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $08, $10, $8000)
     %PLMPopEntry(PLMEntries_redDoorFacingRight, $01, $06, $008B)
     dw $0000
 
-PLMPopulation_WreckedShipETank_State1:                                   ;8FC337;
+PLMPopulation_WreckedShipETank_State1:
     %PLMPopEntry(PLMEntries_EnergyTank, $03, $06, $0084)
     dw $0000
 
-PLMPopulation_Basement_State1:                                           ;8FC33F;
+PLMPopulation_Basement_State1:
     %PLMPopEntry(PLMEntries_ScrollPLM, $40, $0C, RoomPLM_Basement_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $46, $0C, RoomPLM_Basement_1)
     dw $0000
 
-PLMPopulation_WreckedShipMap_State1:                                     ;8FC34D;
+PLMPopulation_WreckedShipMap_State1:
     %PLMPopEntry(PLMEntries_mapStation, $05, $0A, $8000)
     dw $0000
 
 PLMPopulation_SpongeBath_State1:
-    dw $0000                                                             ;8FC355;
+    dw $0000
 
-PLMPopulation_WSWestSuper_State1:                                        ;8FC357;
+PLMPopulation_WSWestSuper_State1:
     %PLMPopEntry(PLMEntries_SuperMissileTank, $02, $07, $0085)
     dw $0000
 
-PLMPopulation_WSEastSuper_State1:                                        ;8FC35F;
+PLMPopulation_WSEastSuper_State1:
     %PLMPopEntry(PLMEntries_ScrollPLM, $2F, $07, RoomPLM_WSEastSuper_0)
     %PLMPopEntry(PLMEntries_SuperMissileTank, $38, $09, $0086)
     dw $0000
 
-PLMPopulation_GravitySuit_State1:                                        ;8FC36D;
+PLMPopulation_GravitySuit_State1:
     %PLMPopEntry(PLMEntries_GravitySuitChozoOrb, $07, $09, $0087)
     dw $0000
 
-PLMPopulation_GlassTunnelSave:                                           ;8FC375;
+PLMPopulation_GlassTunnelSave:
     %PLMPopEntry(PLMEntries_saveStation, $07, $0B, $0000)
     dw $0000
 
-PLMPopulation_GlassTunnel_State0_1:                                      ;8FC37D;
+PLMPopulation_GlassTunnel_State0_1:
     %PLMPopEntry(PLMEntries_ScrollPLM, $03, $14, RoomPLM_GlassTunnel_0_4)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $04, $14, $8000)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $05, $14, $8000)
@@ -9553,9 +9399,9 @@ PLMPopulation_GlassTunnel_State0_1:                                      ;8FC37D
     dw $0000
 
 PLMPopulation_WestTunnel:
-    dw $0000                                                             ;8FC3DF;
+    dw $0000
 
-PLMPopulation_EastTunnel:                                                ;8FC3E1;
+PLMPopulation_EastTunnel:
     %PLMPopEntry(PLMEntries_ScrollPLM, $05, $09, RoomPLM_EastTunnel_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $05, $10, RoomPLM_EastTunnel_1)
     %PLMPopEntry(PLMEntries_ScrollPLM, $05, $16, RoomPLM_EastTunnel_2)
@@ -9570,14 +9416,14 @@ PLMPopulation_EastTunnel:                                                ;8FC3E1
     %PLMPopEntry(PLMEntries_downwardsGateShotblock, $16, $05, $000A)
     dw $0000
 
-PLMPopulation_MainStreet:                                                ;8FC42B;
+PLMPopulation_MainStreet:
     %PLMPopEntry(PLMEntries_ScrollPLM, $25, $29, RoomPLM_MainStreet_0)
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $1E, $76, $008D)
     %PLMPopEntry(PLMEntries_MissileTank, $0E, $35, $0088)
     %PLMPopEntry(PLMEntries_SuperMissileTank, $16, $28, $0089)
     dw $0000
 
-PLMPopulation_FishTank:                                                  ;8FC445;
+PLMPopulation_FishTank:
     %PLMPopEntry(PLMEntries_upwardsExtension, $1F, $26, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $1F, $27, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $1F, $28, $8000)
@@ -9589,31 +9435,31 @@ PLMPopulation_FishTank:                                                  ;8FC445
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $3E, $26, $008E)
     dw $0000
 
-PLMPopulation_MamaTurtle:                                                ;8FC47D;
+PLMPopulation_MamaTurtle:
     %PLMPopEntry(PLMEntries_EnergyTank, $1F, $0A, $008A)
     %PLMPopEntry(PLMEntries_MissileTankShotBlock, $2C, $1D, $008B)
     dw $0000
 
-PLMPopulation_CrabTunnel:                                                ;8FC48B;
+PLMPopulation_CrabTunnel:
     %PLMPopEntry(PLMEntries_downwardsClosedGate, $0E, $07, $8000)
     %PLMPopEntry(PLMEntries_downwardsGateShotblock, $0E, $07, $0008)
     dw $0000
 
 PLMPopulation_MtEverest:
-    dw $0000                                                             ;8FC499;
+    dw $0000
 
-PLMPopulation_RedFish:                                                   ;8FC49B;
+PLMPopulation_RedFish:
     %PLMPopEntry(PLMEntries_ScrollPLM, $20, $06, RoomPLM_RedFish_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $1E, $06, RoomPLM_RedFish_1)
     dw $0000
 
-PLMPopulation_WateringHole:                                              ;8FC4A9;
+PLMPopulation_WateringHole:
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $1F, RoomPLM_WateringHole_0)
     %PLMPopEntry(PLMEntries_SuperMissileTank, $04, $26, $008C)
     %PLMPopEntry(PLMEntries_MissileTank, $0B, $27, $008D)
     dw $0000
 
-PLMPopulation_NWestMaridiaBug:                                           ;8FC4BD;
+PLMPopulation_NWestMaridiaBug:
     %PLMPopEntry(PLMEntries_upwardsExtension, $20, $16, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $20, $17, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $20, $18, $8000)
@@ -9624,13 +9470,13 @@ PLMPopulation_NWestMaridiaBug:                                           ;8FC4BD
     %PLMPopEntry(PLMEntries_ScrollPLM, $0F, $19, RoomPLM_NWestMaridiaBug_3_7)
     dw $0000
 
-PLMPopulation_CrabShaft:                                                 ;8FC4EF;
+PLMPopulation_CrabShaft:
     %PLMPopEntry(PLMEntries_ScrollPLM, $07, $2D, RoomPLM_CrabShaft_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $08, $2D, $8000)
     %PLMPopEntry(PLMEntries_greenDoorFacingLeft, $1E, $36, $008F)
     dw $0000
 
-PLMPopulation_PseudoPlasmaSpark:                                         ;8FC503;
+PLMPopulation_PseudoPlasmaSpark:
     %PLMPopEntry(PLMEntries_upwardsExtension, $1F, $26, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $1F, $27, $8000)
     %PLMPopEntry(PLMEntries_upwardsExtension, $1F, $28, $8000)
@@ -9642,57 +9488,57 @@ PLMPopulation_PseudoPlasmaSpark:                                         ;8FC503
     %PLMPopEntry(PLMEntries_MissileTank, $2C, $28, $008E)
     dw $0000
 
-PLMPopulation_CrabHole:                                                  ;8FC53B;
+PLMPopulation_CrabHole:
     %PLMPopEntry(PLMEntries_ScrollPLM, $08, $0E, RoomPLM_CrabHole_0_1)
     %PLMPopEntry(PLMEntries_ScrollPLM, $08, $11, RoomPLM_CrabHole_0_1)
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $0E, $16, $0090)
     dw $0000
 
 PLMPopulation_WestSandHallTunnel:
-    dw $0000                                                             ;8FC54F;
+    dw $0000
 
 PLMPopulation_PlasmaTutorial:
-    dw $0000                                                             ;8FC551;
+    dw $0000
 
-PLMPopulation_Plasma:                                                    ;8FC553;
+PLMPopulation_Plasma:
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $0C91)
     %PLMPopEntry(PLMEntries_PlasmaBeamChozoOrb, $19, $26, $008F)
     dw $0000
 
 PLMPopulation_ThreadTheNeedle:
-    dw $0000                                                             ;8FC561;
+    dw $0000
 
-PLMPopulation_MaridiaElev:                                               ;8FC563;
+PLMPopulation_MaridiaElev:
     %PLMPopEntry(PLMEntries_elevatorPlatform, $06, $2C, $8000)
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $0E, $46, $0092)
     dw $0000
 
-PLMPopulation_PlasmaSpark:                                               ;8FC571;
+PLMPopulation_PlasmaSpark:
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $2E, $16, $0093)
     %PLMPopEntry(PLMEntries_greenDoorFacingUp, $06, $2D, $0094)
     dw $0000
 
 PLMPopulation_Kassiuz:
-    dw $0000                                                             ;8FC57F;
+    dw $0000
 
-PLMPopulation_MaridiaMap:                                                ;8FC581;
+PLMPopulation_MaridiaMap:
     %PLMPopEntry(PLMEntries_mapStation, $0B, $0A, $8000)
     dw $0000
 
-PLMPopulation_ForgottenHighwaySave:                                      ;8FC589;
+PLMPopulation_ForgottenHighwaySave:
     %PLMPopEntry(PLMEntries_saveStation, $07, $0B, $0001)
     dw $0000
 
 PLMPopulation_Toilet:
-    dw $0000                                                             ;8FC591;
+    dw $0000
 
 PLMPopulation_BugSandHole:
-    dw $0000                                                             ;8FC593;
+    dw $0000
 
 PLMPopulation_WestSandHall:
-    dw $0000                                                             ;8FC595;
+    dw $0000
 
-PLMPopulation_Oasis:                                                     ;8FC597;
+PLMPopulation_Oasis:
     %PLMPopEntry(PLMEntries_ScrollPLM, $03, $14, RoomPLM_Oasis_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $04, $14, $8000)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $05, $14, $8000)
@@ -9707,38 +9553,38 @@ PLMPopulation_Oasis:                                                     ;8FC597
     dw $0000
 
 PLMPopulation_EastSandHall:
-    dw $0000                                                             ;8FC5DB;
+    dw $0000
 
-PLMPopulation_WestSandHole:                                              ;8FC5DD;
+PLMPopulation_WestSandHole:
     %PLMPopEntry(PLMEntries_MissileTank, $06, $04, $0090)
     %PLMPopEntry(PLMEntries_ReserveTankChozoOrb, $0F, $04, $0091)
     dw $0000
 
-PLMPopulation_EastSandHole:                                              ;8FC5EB;
+PLMPopulation_EastSandHole:
     %PLMPopEntry(PLMEntries_MissileTank, $03, $07, $0092)
     %PLMPopEntry(PLMEntries_PowerBombTank, $19, $10, $0093)
     dw $0000
 
 PLMPopulation_WestAqueductQuicksand:
-    dw $0000                                                             ;8FC5F9;
+    dw $0000
 
 PLMPopulation_EastAqueductQuicksand:
-    dw $0000                                                             ;8FC5FB;
+    dw $0000
 
-PLMPopulation_Aqueduct:                                                  ;8FC5FD;
+PLMPopulation_Aqueduct:
     %PLMPopEntry(PLMEntries_redDoorFacingRight, $01, $26, $0096)
     %PLMPopEntry(PLMEntries_MissileTank, $4C, $09, $0094)
     %PLMPopEntry(PLMEntries_SuperMissileTank, $5C, $08, $0095)
     dw $0000
 
-PLMPopulation_Butterfly:                                                 ;8FC611;
+PLMPopulation_Butterfly:
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $0E, $06, $0097)
     dw $0000
 
 PLMPopulation_BotwoonHallway:
-    dw $0000                                                             ;8FC619;
+    dw $0000
 
-PLMPopulation_Pants:                                                     ;8FC61B;
+PLMPopulation_Pants:
     %PLMPopEntry(PLMEntries_ScrollPLM, $06, $32, RoomPLM_Pants_0_4)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $07, $32, $8000)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $08, $32, $8000)
@@ -9765,7 +9611,7 @@ PLMPopulation_Pants:                                                     ;8FC61B
     %PLMPopEntry(PLMEntries_rightwardsExtension, $17, $2B, $8000)
     dw $0000
 
-PLMPopulation_EastPants:                                                 ;8FC6AD;
+PLMPopulation_EastPants:
     %PLMPopEntry(PLMEntries_ScrollPLM, $05, $22, RoomPLM_EastPants_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $06, $22, $8000)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $07, $22, $8000)
@@ -9777,24 +9623,24 @@ PLMPopulation_EastPants:                                                 ;8FC6AD
     %PLMPopEntry(PLMEntries_rightwardsExtension, $07, $1B, $8000)
     dw $0000
 
-PLMPopulation_Springball:                                                ;8FC6E5;
+PLMPopulation_Springball:
     %PLMPopEntry(PLMEntries_SpringBallChozoOrb, $18, $16, $0096)
     dw $0000
 
 PLMPopulation_BelowBotwoonETank:
-    dw $0000                                                             ;8FC6ED;
+    dw $0000
 
-PLMPopulation_Colosseum:                                                 ;8FC6EF;
+PLMPopulation_Colosseum:
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $6E, $06, $0098)
     %PLMPopEntry(PLMEntries_greenDoorFacingLeft, $4E, $26, $0099)
     %PLMPopEntry(PLMEntries_greenDoorFacingLeft, $6E, $16, $009A)
     dw $0000
 
-PLMPopulation_AqueductSave:                                              ;8FC703;
+PLMPopulation_AqueductSave:
     %PLMPopEntry(PLMEntries_saveStation, $05, $0B, $0002)
     dw $0000
 
-PLMPopulation_ThePrecious_State0_1:                                      ;8FC70B;
+PLMPopulation_ThePrecious_State0_1:
     %PLMPopEntry(PLMEntries_ScrollPLM, $04, $0E, RoomPLM_ThePrecious_0)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $05, $0E, $8000)
     %PLMPopEntry(PLMEntries_rightwardsExtension, $06, $0E, $8000)
@@ -9809,28 +9655,28 @@ PLMPopulation_ThePrecious_State0_1:                                      ;8FC70B
     %PLMPopEntry(PLMEntries_MissileTankShotBlock, $1C, $06, $0097)
     dw $0000
 
-PLMPopulation_BotwoonETank:                                              ;8FC755;
+PLMPopulation_BotwoonETank:
     %PLMPopEntry(PLMEntries_EnergyTank, $32, $05, $0098)
     dw $0000
 
-PLMPopulation_DraygonSave:                                               ;8FC75D;
+PLMPopulation_DraygonSave:
     %PLMPopEntry(PLMEntries_saveStation, $07, $0B, $0003)
     dw $0000
 
-PLMPopulation_MaridiaMissileRefill:                                      ;8FC765;
+PLMPopulation_MaridiaMissileRefill:
     %PLMPopEntry(PLMEntries_missileStation, $08, $0A, $0099)
     dw $0000
 
 PLMPopulation_PlasmaBeachQuicksand:
-    dw $0000                                                             ;8FC76D;
+    dw $0000
 
 PLMPopulation_BotwoonQuicksand:
-    dw $0000                                                             ;8FC76F;
+    dw $0000
 
 PLMPopulation_Shaktool_State0_1:
-    dw $0000                                                             ;8FC771;
+    dw $0000
 
-PLMPopulation_HalfieClimb:                                               ;8FC773;
+PLMPopulation_HalfieClimb:
     %PLMPopEntry(PLMEntries_ScrollPLM, $10, $29, RoomPLM_HalfieClimb_0)
     %PLMPopEntry(PLMEntries_ScrollPLM, $0B, $29, RoomPLM_HalfieClimb_1)
     %PLMPopEntry(PLMEntries_upwardsExtension, $0B, $28, $8000)
@@ -9840,25 +9686,25 @@ PLMPopulation_HalfieClimb:                                               ;8FC773
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $16, $009C)
     dw $0000
 
-PLMPopulation_Botwoon_State0_1:                                          ;8FC79F;
+PLMPopulation_Botwoon_State0_1:
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $049D)
     dw $0000
 
-PLMPopulation_SpaceJump:                                                 ;8FC7A7;
+PLMPopulation_SpaceJump:
     %PLMPopEntry(PLMEntries_SpaceJumpChozoOrb, $04, $08, $009A)
     dw $0000
 
-PLMPopulation_MaridiaEnergyRefill:                                       ;8FC7AF;
+PLMPopulation_MaridiaEnergyRefill:
     %PLMPopEntry(PLMEntries_energyStation, $08, $0A, $009B)
     dw $0000
 
 PLMPopulation_WestCactusAlley:
-    dw $0000                                                             ;8FC7B7;
+    dw $0000
 
 PLMPopulation_EastCactusAlley:
-    dw $0000                                                             ;8FC7B9;
+    dw $0000
 
-PLMPopulation_Draygon_State0_1:                                          ;8FC7BB;
+PLMPopulation_Draygon_State0_1:
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $1E, $06, $009E)
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $16, $009F)
     %PLMPopEntry(PLMEntries_DraygonCannonFacingRight, $02, $0B, $8802)
@@ -9867,110 +9713,110 @@ PLMPopulation_Draygon_State0_1:                                          ;8FC7BB
     %PLMPopEntry(PLMEntries_DraygonCannonWithShieldFacingLeft, $1D, $15, $8808)
     dw $0000
 
-PLMPopulation_TourianFirst:                                              ;8FC7E1;
+PLMPopulation_TourianFirst:
     %PLMPopEntry(PLMEntries_elevatorPlatform, $06, $2C, $8000)
     dw $0000
 
-PLMPopulation_Metroids1_State0_1:                                        ;8FC7E9;
+PLMPopulation_Metroids1_State0_1:
     %PLMPopEntry(PLMEntries_SetsMetroidsClearedStatesWhenRequired, $08, $08, $0012)
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $0CA0)
     dw $0000
 
-PLMPopulation_Metroids2_State0_1:                                        ;8FC7F7;
+PLMPopulation_Metroids2_State0_1:
     %PLMPopEntry(PLMEntries_SetsMetroidsClearedStatesWhenRequired, $08, $08, $0014)
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $0E, $16, $0CA1)
     dw $0000
 
-PLMPopulation_Metroids3_State0_1:                                        ;8FC805;
+PLMPopulation_Metroids3_State0_1:
     %PLMPopEntry(PLMEntries_SetsMetroidsClearedStatesWhenRequired, $08, $08, $0016)
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $5E, $06, $0CA2)
     dw $0000
 
-PLMPopulation_Metroids4_State0_1:                                        ;8FC813;
+PLMPopulation_Metroids4_State0_1:
     %PLMPopEntry(PLMEntries_SetsMetroidsClearedStatesWhenRequired, $08, $08, $0018)
     %PLMPopEntry(PLMEntries_greyDoorFacingUp, $06, $1E, $0CA3)
     dw $0000
 
 PLMPopulation_BlueHopper_State0_1:
-    dw $0000                                                             ;8FC821;
+    dw $0000
 
-PLMPopulation_DustTorizo_State0_1:                                       ;8FC823;
+PLMPopulation_DustTorizo_State0_1:
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $1E, $06, $90A4)
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $06, $0CA5)
     dw $0000
 
-PLMPopulation_BigBoy_State0_1:                                           ;8FC831;
+PLMPopulation_BigBoy_State0_1:
     %PLMPopEntry(PLMEntries_greyDoorFacingLeft, $3E, $06, $90A6)
     dw $0000
 
-PLMPopulation_Seaweed:                                                   ;8FC839;
+PLMPopulation_Seaweed:
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $0E, $16, $00A7)
     dw $0000
 
-PLMPopulation_TourianRecharge:                                           ;8FC841;
+PLMPopulation_TourianRecharge:
     %PLMPopEntry(PLMEntries_missileStation, $08, $0A, $009C)
     %PLMPopEntry(PLMEntries_energyStation, $06, $0A, $009D)
     dw $0000
 
-PLMPopulation_MotherBrain_State0_1_2:                                    ;8FC84F;
+PLMPopulation_MotherBrain_State0_1_2:
     %PLMPopEntry(PLMEntries_MotherBrainsGlass, $09, $05, $8000)
     dw $0000
 
-PLMPopulation_TourianEyeDoor:                                            ;8FC857;
+PLMPopulation_TourianEyeDoor:
     %PLMPopEntry(PLMEntries_EyeDoorFacingLeft, $3E, $06, $00A8)
     %PLMPopEntry(PLMEntries_EyeDoorBottomFacingLeft, $3E, $09, $00A8)
     %PLMPopEntry(PLMEntries_EyeDoorEyeFacingLeft, $3E, $07, $00A8)
     dw $0000
 
-PLMPopulation_RinkaShaft:                                                ;8FC86B;
+PLMPopulation_RinkaShaft:
     %PLMPopEntry(PLMEntries_redDoorFacingRight, $01, $26, $00A9)
     dw $0000
 
-PLMPopulation_MotherBrainSave:                                           ;8FC873;
+PLMPopulation_MotherBrainSave:
     %PLMPopEntry(PLMEntries_saveStation, $05, $0B, $0000)
     dw $0000
 
-PLMPopulation_TourianEscape1:                                            ;8FC87B;
+PLMPopulation_TourianEscape1:
     %PLMPopEntry(PLMEntries_SetsMetroidsClearedStatesWhenRequired, $08, $08, $0000)
     %PLMPopEntry(PLMEntries_gateThatClosesInEscapeRoom1, $1F, $06, $8000)
     dw $0000
 
-PLMPopulation_TourianEscape2:                                            ;8FC889;
+PLMPopulation_TourianEscape2:
     %PLMPopEntry(PLMEntries_SetsMetroidsClearedStatesWhenRequired, $08, $08, $0002)
     %PLMPopEntry(PLMEntries_greyDoorFacingDown, $06, $03, $90AA)
     dw $0000
 
-PLMPopulation_TourianEscape3:                                            ;8FC897;
+PLMPopulation_TourianEscape3:
     %PLMPopEntry(PLMEntries_SetsMetroidsClearedStatesWhenRequired, $08, $08, $0004)
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $16, $90AB)
     dw $0000
 
-PLMPopulation_TourianEscape4:                                            ;8FC8A5;
+PLMPopulation_TourianEscape4:
     %PLMPopEntry(PLMEntries_SetsMetroidsClearedStatesWhenRequired, $08, $08, $0006)
     %PLMPopEntry(PLMEntries_greyDoorFacingRight, $01, $36, $90AC)
     dw $0000
 
-PLMPopulation_UpperTourianSave:                                          ;8FC8B3;
+PLMPopulation_UpperTourianSave:
     %PLMPopEntry(PLMEntries_saveStation, $07, $0B, $0001)
     dw $0000
 
 PLMPopulation_CeresElev_State0_1:
-    dw $0000                                                             ;8FC8BB;
+    dw $0000
 
 PLMPopulation_FallingTile_State0_1:
-    dw $0000                                                             ;8FC8BD;
+    dw $0000
 
 PLMPopulation_MagnetStairs_State0_1:
-    dw $0000                                                             ;8FC8BF;
+    dw $0000
 
 PLMPopulation_DeadScientist_State0_1:
-    dw $0000                                                             ;8FC8C1;
+    dw $0000
 
 PLMPopulation_58Escape_State0_1:
-    dw $0000                                                             ;8FC8C3;
+    dw $0000
 
 PLMPopulation_CeresRidley_State0_1:
-    dw $0000                                                             ;8FC8C5;
+    dw $0000
 
 
 ;;; $C8C7: Setup ASM: RTS ;;;
@@ -9983,15 +9829,15 @@ RTS_8FC8C7:
 ; Room $CB8B. Wrecked Ship flooded spikey hall
 ; Room $CBD5. Wrecked Ship -> East Crateria
 ; Room $CC27. Wrecked Ship energy tank chozo room
-    RTS                                                                  ;8FC8C7;
+    RTS
 
 
 ;;; $C8C8: Setup ASM: spawn pre Phantoon room enemy projectile ;;;
 SetupASM_SpawnPrePhantoonRoomEnemyProjectile:
 ; Room $CC6F. Pre Phantoon room
-    LDY.W #EnemyProjectile_PrePhantoonRoom                               ;8FC8C8;
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;8FC8CB;
-    RTS                                                                  ;8FC8CF;
+    LDY.W #EnemyProjectile_PrePhantoonRoom
+    JSL SpawnEnemyProjectileY_ParameterA_RoomGraphics
+    RTS
 
 
 ;;; $C8D0: Setup ASM: RTS ;;;
@@ -10003,7 +9849,7 @@ RTS_8FC8D0:
 ; Room $CDF1. Wrecked Ship hidden super missile hall
 ; Room $CE40. Gravity suit room
 ; Room $CE8A. Wrecked Ship save room, Phantoon dead
-    RTS                                                                  ;8FC8D0;
+    RTS
 
 
 ;;; $C8D1: Setup ASM: RTS ;;;
@@ -10031,7 +9877,7 @@ RTS_8FC8D1:
 ; Room $D340. Sandy Maridia mainstreet
 ; Room $D387. Pre plasma beam shaft
 ; Room $D3B6. Maridia map room
-    RTS                                                                  ;8FC8D1;
+    RTS
 
 
 ;;; $C8D2: Setup ASM: RTS ;;;
@@ -10060,16 +9906,16 @@ RTS_8FC8D2:
 ; Room $D845. Maridia missile station
 ; Room $D86E. Sandy Maridia sand falls room
 ; Room $D898. Sand falls
-    RTS                                                                  ;8FC8D2;
+    RTS
 
 
 ;;; $C8D3: Setup ASM: set up Shaktool's room's PLM ;;;
 SetupASM_SetupShaktoolsRoomPLM:
 ; Room $D8C5, state $D8D7. Shaktool's room, default
-    JSL.L Spawn_Hardcoded_PLM                                            ;8FC8D3;
-    db $00,$00                                                           ;8FC8D7;
-    dw PLMEntries_shaktoolsRoom                                          ;8FC8D9;
-    RTS                                                                  ;8FC8DB;
+    JSL Spawn_Hardcoded_PLM
+    db $00,$00
+    dw PLMEntries_shaktoolsRoom
+    RTS
 
 
 ;;; $C8DC: Setup ASM: RTS ;;;
@@ -10078,53 +9924,42 @@ RTS_8FC8DC:
 ; Room $D913, state $D920. Maridia grapple wall shaft
 ; Room $D95E. Botwoon's room
 ; Room $D9AA. Space jump room
-    RTS                                                                  ;8FC8DC;
+    RTS
 
 
 ;;; $C8DD: Setup ASM: set pausing code for Draygon ;;;
 SetupASM_SetPausingCodeForDraygon:
 ; Room $DA60. Draygon's room
-    LDA.W #PauseHook_Draygon>>8&$FF00                                    ;8FC8DD;
-    STA.W PauseHook_Pause+1                                              ;8FC8E0;
-    LDA.W #PauseHook_Draygon                                             ;8FC8E3;
-    STA.W PauseHook_Pause                                                ;8FC8E6;
-    LDA.W #UnpauseHook_Draygon>>8&$FF00                                  ;8FC8E9;
-    STA.W PauseHook_Unpause+1                                            ;8FC8EC;
-    LDA.W #UnpauseHook_Draygon                                           ;8FC8EF;
-    STA.W PauseHook_Unpause                                              ;8FC8F2;
-    RTS                                                                  ;8FC8F5;
+    LDA.W #PauseHook_Draygon>>8&$FF00 : STA.W PauseHook_Pause+1
+    LDA.W #PauseHook_Draygon : STA.W PauseHook_Pause
+    LDA.W #UnpauseHook_Draygon>>8&$FF00 : STA.W PauseHook_Unpause+1
+    LDA.W #UnpauseHook_Draygon : STA.W PauseHook_Unpause
+    RTS
 
 
 ;;; $C8F6: Pause hook - Draygon ;;;
 PauseHook_Draygon:
 ; Set interrupt handler to main gameplay
-    LDA.W #$0004                                                         ;8FC8F6;
-    STA.B DP_NextIRQCmd                                                  ;8FC8F9;
-    RTL                                                                  ;8FC8FB;
+    LDA.W #$0004 : STA.B DP_NextIRQCmd
+    RTL
 
 
 ;;; $C8FC: Unpause hook - Draygon ;;;
 UnpauseHook_Draygon:
-    LDA.W HDMAObject_ChannelBitflags+2                                   ;8FC8FC;
-    CMP.W #$0008                                                         ;8FC8FF;
-    BNE .return                                                          ;8FC902;
-    LDA.W #$000C                                                         ;8FC904;
-    STA.B DP_NextIRQCmd                                                  ;8FC907;
+    LDA.W HDMAObject_ChannelBitflags+2 : CMP.W #$0008 : BNE .return
+    LDA.W #$000C : STA.B DP_NextIRQCmd
 
   .return:
-    RTL                                                                  ;8FC909;
+    RTL
 
 
 ;;; $C90A: Setup ASM: set collected map ;;;
 SetupASM_SetCollectedMap:
 ; Room $DAAE. Tourian -> Crateria
-    REP #$30                                                             ;8FC90A;
-    LDX.W AreaIndex                                                      ;8FC90C;
-    LDA.L SRAMMirror_MapStations,X                                       ;8FC90F;
-    ORA.W #$0001                                                         ;8FC913;
-    STA.L SRAMMirror_MapStations,X                                       ;8FC916;
-    STA.W CurrentAreaMapCollectedFlag                                    ;8FC91A;
-    RTS                                                                  ;8FC91D;
+    REP #$30
+    LDX.W AreaIndex
+    LDA.L SRAMMirror_MapStations,X : ORA.W #$0001 : STA.L SRAMMirror_MapStations,X : STA.W CurrentAreaMapCollectedFlag
+    RTS
 
 
 ;;; $C91E: Setup ASM: RTS ;;;
@@ -10142,7 +9977,7 @@ RTS_8FC91E:
 ; Room $DDC4. Tourian eye-door room
 ; Room $DDF3. Pre Mother Brain room
 ; Room $DE23. Mother Brain save room
-    RTS                                                                  ;8FC91E;
+    RTS
 
 
 ;;; $C91F: Setup ASM: set Zebes timebomb event and set light horizontal room shaking ;;;
@@ -10150,58 +9985,49 @@ SetupASM_SetZebesTimebombEvent_SetLightHorizontalRoomShaking:
 ; Room $DE4D. Escape room 1
 ; The Zebes timebomb set event was already marked by Mother Brain when she started the time ($A9:B313),
 ; no reason to do it here
-    LDA.W #$000E                                                         ;8FC91F;
-    JSL.L MarkEvent_inA                                                  ;8FC922;
-    LDA.W #$0012                                                         ;8FC926;
-    STA.W EarthquakeType                                                 ;8FC929;
-    LDA.W #$FFFF                                                         ;8FC92C;
-    STA.W EarthquakeTimer                                                ;8FC92F;
-    RTS                                                                  ;8FC932;
+    LDA.W #$000E
+    JSL MarkEvent_inA
+    LDA.W #$0012 : STA.W EarthquakeType
+    LDA.W #$FFFF : STA.W EarthquakeTimer
+    RTS
 
 
 ;;; $C933: Setup ASM: set light horizontal room shaking ;;;
 SetupASM_SetLightHorizontalRoomShaking:
 ; Room $DE7A. Escape room 2
-    LDA.W #$0012                                                         ;8FC933;
-    STA.W EarthquakeType                                                 ;8FC936;
-    STA.W RoomMainASMVar2                                                ;8FC939;
-    STZ.W RoomMainASMVar1                                                ;8FC93C;
-    LDA.W #$FFFF                                                         ;8FC93F;
-    STA.W EarthquakeTimer                                                ;8FC942;
-    RTS                                                                  ;8FC945;
+    LDA.W #$0012 : STA.W EarthquakeType : STA.W RoomMainASMVar2
+    STZ.W RoomMainASMVar1
+    LDA.W #$FFFF : STA.W EarthquakeTimer
+    RTS
 
 
 ;;; $C946: Setup ASM: set medium horizontal room shaking ;;;
 SetupASM_SetMediumHorizontalRoomShaking:
 ; Room $DEA7. Escape room 3
-    LDA.W #$0015                                                         ;8FC946;
-    STA.W EarthquakeType                                                 ;8FC949;
-    LDA.W #$FFFF                                                         ;8FC94C;
-    STA.W EarthquakeTimer                                                ;8FC94F;
-    RTS                                                                  ;8FC952;
+    LDA.W #$0015 : STA.W EarthquakeType
+    LDA.W #$FFFF : STA.W EarthquakeTimer
+    RTS
 
 
 ;;; $C953: Setup ASM: set up escape room 4's PLM and set medium horizontal room shaking ;;;
 SetupASM_SetupEscapeRoom4sPLM_SetMediumHorizontalRoomShaking:
 ; Room $DEDE. Escape room 4
-    JSL.L Spawn_Hardcoded_PLM                                            ;8FC953;
-    db $10,$10                                                           ;8FC957;
-    dw PLMEntries_RaiseAcidInEscapeRoomBeforeOldTourianEscapeShaft       ;8FC959;
-    LDA.W #$0015                                                         ;8FC95B;
-    STA.W EarthquakeType                                                 ;8FC95E;
-    STA.W RoomMainASMVar2                                                ;8FC961;
-    STZ.W RoomMainASMVar1                                                ;8FC964;
-    LDA.W #$FFFF                                                         ;8FC967;
-    STA.W EarthquakeTimer                                                ;8FC96A;
-    RTS                                                                  ;8FC96D;
+    JSL Spawn_Hardcoded_PLM
+    db $10,$10
+    dw PLMEntries_RaiseAcidInEscapeRoomBeforeOldTourianEscapeShaft
+    LDA.W #$0015 : STA.W EarthquakeType : STA.W RoomMainASMVar2
+    STZ.W RoomMainASMVar1
+    LDA.W #$FFFF : STA.W EarthquakeTimer
+    RTS
 
 
 ;;; $C96E: Setup ASM: turn Ceres door to solid blocks and spawn Ceres haze ;;;
 SetupASM_TurnCeresDoorToSolidBlocks_SpawnCeresHaze:
 ; Room $DF45, state $DF71. Ceres elevator, Ceres Ridley dead
-    JSL.L Spawn_Hardcoded_PLM                                            ;8FC96E; fallthrough to SetupASM_SpawnCeresHaze
-    db $0F,$26                                                           ;8FC972;
-    dw PLMEntries_turnCeresElevatorDoorToSolidBlocksDuringEscape         ;8FC974;
+    JSL Spawn_Hardcoded_PLM
+    db $0F,$26
+    dw PLMEntries_turnCeresElevatorDoorToSolidBlocksDuringEscape
+; fallthrough to SetupASM_SpawnCeresHaze
 
 
 ;;; $C976: Setup ASM: Spawn Ceres haze ;;;
@@ -10211,4053 +10037,3239 @@ SetupASM_SpawnCeresHaze:
 ; Room $DFD7. Ceres shaft
 ; Room $E021. Ceres baby Metroid hall
 ; Room $E06B. Pre Ceres Ridley hall
-    JSL.L FXType_2C_CeresHaze                                            ;8FC976;
-    RTS                                                                  ;8FC97A;
+    JSL FXType_2C_CeresHaze
+    RTS
 
 
 ;;; $C97B: Setup ASM: Set BG1/2 tiles base address and spawn Ceres haze ;;;
 SetupASM_SetBG1_2_TilesBaseAddress_SpawnCeresHaze:
 ; Room $E0B5. Ceres Ridley's room
-    PHP                                                                  ;8FC97B;
-    SEP #$20                                                             ;8FC97C;
-    LDA.B #$66                                                           ;8FC97E;
-    STA.B DP_BGTilesAddr                                                 ;8FC980;
-    PLP                                                                  ;8FC982;
-    JSL.L FXType_2C_CeresHaze                                            ;8FC983;
-    LDA.W #$0009                                                         ;8FC987;
-    STA.W CeresMode7HDMATables                                           ;8FC98A;
-    RTS                                                                  ;8FC98D;
+    PHP
+    SEP #$20
+    LDA.B #$66 : STA.B DP_BGTilesAddr
+    PLP
+    JSL FXType_2C_CeresHaze
+    LDA.W #$0009 : STA.W CeresMode7HDMATables
+    RTS
 
 
 ;;; $C98E: Room headers, scroll data, door lists ;;;
-RoomHeader_BowlingAlley:                                                 ;8FC98E;
-    %RoomHeader(\
-    %room(0),
-    %area(3),
-    %positions($0A, $0B),
-    %dimensions(6, 3),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_BowlingAlley))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_BowlingAlley_1))
+RoomHeader_BowlingAlley:
+    db $00,$03,$0A,$0B,$06,$03,$70,$A0,$00
+    dw RoomDoors_BowlingAlley
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_BowlingAlley_1
+    dw Use_StatePointer_inX
 
-RoomState_BowlingAlley_0:                                                ;8FC9A0;
-    %StateHeader(\
-    %levelData(LevelData_BowlingAlley),
-    %tileset(5),
-    %music($30, 3),
-    %FX(FXHeader_BowlingAlley_State0),
-    %enemyPop(EnemyPopulations_BowlingAlley_0),
-    %enemySet(EnemySets_BowlingAlley_0),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_BowlingAlley),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_BowlingAlley_State0),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8C7))
+RoomState_BowlingAlley_0:
+    dl LevelData_BowlingAlley
+    db $05,$30,$03
+    dw FXHeader_BowlingAlley_State0
+    dw EnemyPopulations_BowlingAlley_0
+    dw EnemySets_BowlingAlley_0
+    db $00,$00
+    dw RoomScrolls_BowlingAlley
+    dw $0000
+    dw $0000
+    dw PLMPopulation_BowlingAlley_State0
+    dw $0000
+    dw RTS_8FC8C7
 
-RoomState_BowlingAlley_1:                                                ;8FC9BA;
-    %StateHeader(\
-    %levelData(LevelData_BowlingAlley),
-    %tileset(4),
-    %music($30, 3),
-    %FX(FXHeader_BowlingAlley_State1),
-    %enemyPop(EnemyPopulations_BowlingAlley_1),
-    %enemySet(EnemySets_BowlingAlley_1),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_BowlingAlley),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_BowlingAlley_State1),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8C7))
+RoomState_BowlingAlley_1:
+    dl LevelData_BowlingAlley
+    db $04,$30,$03
+    dw FXHeader_BowlingAlley_State1
+    dw EnemyPopulations_BowlingAlley_1
+    dw EnemySets_BowlingAlley_1
+    db $00,$00
+    dw RoomScrolls_BowlingAlley
+    dw $0000
+    dw $0000
+    dw PLMPopulation_BowlingAlley_State1
+    dw $0000
+    dw RTS_8FC8C7
 
 RoomDoors_BowlingAlley:
-    dw Door_BowlingAlley_0                                               ;8FC9D4;
-    dw Door_BowlingAlley_1                                               ;8FC9D6;
-    dw Door_BowlingAlley_2                                               ;8FC9D8;
+    dw Door_BowlingAlley_0
+    dw Door_BowlingAlley_1
+    dw Door_BowlingAlley_2
 
 RoomScrolls_BowlingAlley:
-    db $00,$00,$01,$01,$01,$02,$01,$01,$01                               ;8FC9DA;
-    dw $0101                                                             ;8FC9E3;
-    dw $0002                                                             ;8FC9E5;
-    db $01                                                               ;8FC9E7;
-    dw $0000                                                             ;8FC9E8;
-    dw $0200                                                             ;8FC9EA;
+    db $00,$00,$01,$01,$01,$02,$01,$01,$01
+    dw $0101
+    dw $0002
+    db $01
+    dw $0000
+    dw $0200
 
 RoomPLM_BowlingAlley_0:
-    db $0E,$01, $0F,$01, $80                                             ;8FC9EC;
+    db $0E,$01, $0F,$01, $80
 
 RoomPLM_BowlingAlley_3:
-    db $04,$00, $05,$02, $0B,$02, $10,$01, $11,$01, $80                  ;8FC9F1;
+    db $04,$00, $05,$02, $0B,$02, $10,$01, $11,$01, $80
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FC9FC:
-    db $05,$01, $80                                                      ;8FC9FC;
+    db $05,$01, $80
 
 UNUSED_RoomPLM_8FC9FF:
-    db $04,$01, $80                                                      ;8FC9FF;
+    db $04,$01, $80
 
 UNUSED_RoomPLM_8FCA02:
-    db $05,$00, $80                                                      ;8FCA02;
+    db $05,$00, $80
 
 UNUSED_RoomPLM_8FCA05:
-    db $04,$00, $80                                                      ;8FCA05;
+    db $04,$00, $80
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-RoomHeader_WreckedShipEntrance:                                          ;8FCA08;
-    %RoomHeader(\
-    %room(1),
-    %area(3),
-    %positions($0C, $0E),
-    %dimensions(4, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WreckedShipEntrance))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_WreckedShipEntrance_1))
+RoomHeader_WreckedShipEntrance:
+    db $01,$03,$0C,$0E,$04,$01,$70,$A0,$00
+    dw RoomDoors_WreckedShipEntrance
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_WreckedShipEntrance_1
+    dw Use_StatePointer_inX
 
-RoomState_WreckedShipEntrance_0:                                         ;8FCA1A;
-    %StateHeader(\
-    %levelData(LevelData_WreckedShipEntrance),
-    %tileset(5),
-    %music($30, 5),
-    %FX(FXHeader_WreckedShipEntrance_State0),
-    %enemyPop(EnemyPopulations_WreckedShipEntrance_0),
-    %enemySet(EnemySets_WreckedShipEntrance_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WreckedShipEntrance_State0),
-    %libraryBG(LibBG_WreckedShip_4_5_EntranceHall),
-    %setupASM(RTS_8FC8C7))
+RoomState_WreckedShipEntrance_0:
+    dl LevelData_WreckedShipEntrance
+    db $05,$30,$05
+    dw FXHeader_WreckedShipEntrance_State0
+    dw EnemyPopulations_WreckedShipEntrance_0
+    dw EnemySets_WreckedShipEntrance_0
+    db $C1,$C1
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WreckedShipEntrance_State0
+    dw LibBG_WreckedShip_4_5_EntranceHall
+    dw RTS_8FC8C7
 
-RoomState_WreckedShipEntrance_1:                                         ;8FCA34;
-    %StateHeader(\
-    %levelData(LevelData_WreckedShipEntrance),
-    %tileset(4),
-    %music($30, 6),
-    %FX(FXHeader_WreckedShipEntrance_State1),
-    %enemyPop(EnemyPopulations_WreckedShipEntrance_1),
-    %enemySet(EnemySets_WreckedShipEntrance_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WreckedShipEntrance_State1),
-    %libraryBG(LibBG_WreckedShip_4_5_EntranceHall),
-    %setupASM(RTS_8FC8C7))
+RoomState_WreckedShipEntrance_1:
+    dl LevelData_WreckedShipEntrance
+    db $04,$30,$06
+    dw FXHeader_WreckedShipEntrance_State1
+    dw EnemyPopulations_WreckedShipEntrance_1
+    dw EnemySets_WreckedShipEntrance_1
+    db $C1,$C1
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WreckedShipEntrance_State1
+    dw LibBG_WreckedShip_4_5_EntranceHall
+    dw RTS_8FC8C7
 
 RoomDoors_WreckedShipEntrance:
-    dw Door_WreckedShipEntrance_0                                        ;8FCA4E;
-    dw Door_WreckedShipEntrance_1                                        ;8FCA50;
+    dw Door_WreckedShipEntrance_0
+    dw Door_WreckedShipEntrance_1
 
-RoomHeader_Attic:                                                        ;8FCA52;
-    %RoomHeader(\
-    %room(2),
-    %area(3),
-    %positions($0C, $0A),
-    %dimensions(7, 1),
-    %scrollers(0, 0),
-    %CRE(0),
-    %doorList(RoomDoors_Attic))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_Attic_1))
+RoomHeader_Attic:
+    db $02,$03,$0C,$0A,$07,$01,$00,$00,$00
+    dw RoomDoors_Attic
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_Attic_1
+    dw Use_StatePointer_inX
 
-RoomState_Attic_0:                                                       ;8FCA64;
-    %StateHeader(\
-    %levelData(LevelData_Attic_State0),
-    %tileset(5),
-    %music($30, 5),
-    %FX(FXHeader_Attic_State0),
-    %enemyPop(EnemyPopulations_Attic_0),
-    %enemySet(EnemySets_Attic_0),
-    %layer2Scrolls($C1, $FF),
-    %scrollPointer(RoomScrolls_Attic),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Attic_State0),
-    %libraryBG(LibBG_WreckedShip_4_5_ExperimentRoom),
-    %setupASM(RTS_8FC8C7))
+RoomState_Attic_0:
+    dl LevelData_Attic_State0
+    db $05,$30,$05
+    dw FXHeader_Attic_State0
+    dw EnemyPopulations_Attic_0
+    dw EnemySets_Attic_0
+    db $C1,$FF
+    dw RoomScrolls_Attic
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Attic_State0
+    dw LibBG_WreckedShip_4_5_ExperimentRoom
+    dw RTS_8FC8C7
 
-RoomState_Attic_1:                                                       ;8FCA7E;
-    %StateHeader(\
-    %levelData(LevelData_Attic_State1),
-    %tileset(4),
-    %music($30, 6),
-    %FX(FXHeader_Attic_State1),
-    %enemyPop(EnemyPopulations_Attic_1),
-    %enemySet(EnemySets_Attic_1),
-    %layer2Scrolls($C1, $FF),
-    %scrollPointer(RoomScrolls_Attic),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Attic_State1),
-    %libraryBG(LibBG_WreckedShip_4_5_ExperimentRoom),
-    %setupASM(RTS_8FC8C7))
+RoomState_Attic_1:
+    dl LevelData_Attic_State1
+    db $04,$30,$06
+    dw FXHeader_Attic_State1
+    dw EnemyPopulations_Attic_1
+    dw EnemySets_Attic_1
+    db $C1,$FF
+    dw RoomScrolls_Attic
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Attic_State1
+    dw LibBG_WreckedShip_4_5_ExperimentRoom
+    dw RTS_8FC8C7
 
 RoomDoors_Attic:
-    dw Door_Attic_0                                                      ;8FCA98;
-    dw Door_Attic_1                                                      ;8FCA9A;
-    dw Door_Attic_2                                                      ;8FCA9C;
+    dw Door_Attic_0
+    dw Door_Attic_1
+    dw Door_Attic_2
 
 RoomScrolls_Attic:
-    db $02,$02,$02,$02,$02,$02,$02                                       ;8FCA9E;
+    db $02,$02,$02,$02,$02,$02,$02
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FCAA5:
-    db $00,$01, $80                                                      ;8FCAA5;
+    db $00,$01, $80
 
 UNUSED_RoomPLM_8FCAA8:
-    db $03,$01, $80                                                      ;8FCAA8;
+    db $03,$01, $80
 
 UNUSED_RoomPLM_8FCAAB:
-    db $03,$02, $80                                                      ;8FCAAB;
+    db $03,$02, $80
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-RoomHeader_AssemblyLine:                                                 ;8FCAAE;
-    %RoomHeader(\
-    %room(3),
-    %area(3),
-    %positions($13, $0A),
-    %dimensions(3, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_AssemblyLine))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_AssemblyLine_1))
+RoomHeader_AssemblyLine:
+    db $03,$03,$13,$0A,$03,$01,$70,$A0,$00
+    dw RoomDoors_AssemblyLine
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_AssemblyLine_1
+    dw Use_StatePointer_inX
 
-RoomState_AssemblyLine_0:                                                ;8FCAC0;
-    %StateHeader(\
-    %levelData(LevelData_AssemblyLine),
-    %tileset(5),
-    %music(0, 0),
-    %FX(FXHeader_AssemblyLine_State0),
-    %enemyPop(EnemyPopulations_AssemblyLine_0),
-    %enemySet(EnemySets_AssemblyLine_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_AssemblyLine_State0),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents_Vertical),
-    %setupASM(RTS_8FC8C7))
+RoomState_AssemblyLine_0:
+    dl LevelData_AssemblyLine
+    db $05,$00,$00
+    dw FXHeader_AssemblyLine_State0
+    dw EnemyPopulations_AssemblyLine_0
+    dw EnemySets_AssemblyLine_0
+    db $C1,$C1
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_AssemblyLine_State0
+    dw LibBG_WreckedShip_4_5_Panels_Vents_Vertical
+    dw RTS_8FC8C7
 
-RoomState_AssemblyLine_1:                                                ;8FCADA;
-    %StateHeader(\
-    %levelData(LevelData_AssemblyLine),
-    %tileset(4),
-    %music(0, 0),
-    %FX(FXHeader_AssemblyLine_State1),
-    %enemyPop(EnemyPopulations_AssemblyLine_1),
-    %enemySet(EnemySets_AssemblyLine_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_AssemblyLine_State1),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents_Vertical),
-    %setupASM(RTS_8FC8C7))
+RoomState_AssemblyLine_1:
+    dl LevelData_AssemblyLine
+    db $04,$00,$00
+    dw FXHeader_AssemblyLine_State1
+    dw EnemyPopulations_AssemblyLine_1
+    dw EnemySets_AssemblyLine_1
+    db $C1,$C1
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_AssemblyLine_State1
+    dw LibBG_WreckedShip_4_5_Panels_Vents_Vertical
+    dw RTS_8FC8C7
 
 RoomDoors_AssemblyLine:
-    dw Door_AssemblyLine_0                                               ;8FCAF4;
+    dw Door_AssemblyLine_0
 
-RoomHeader_WreckedShipMainShaft:                                         ;8FCAF6;
-    %RoomHeader(\
-    %room(4),
-    %area(3),
-    %positions($0C, $0B),
-    %dimensions(6, 8),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WreckedShipMainShaft))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_WreckedShipMainShaft_1))
+RoomHeader_WreckedShipMainShaft:
+    db $04,$03,$0C,$0B,$06,$08,$70,$A0,$00
+    dw RoomDoors_WreckedShipMainShaft
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_WreckedShipMainShaft_1
+    dw Use_StatePointer_inX
 
-RoomState_WreckedShipMainShaft_0:                                        ;8FCB08;
-    %StateHeader(\
-    %levelData(LevelData_WreckedShipMainShaft_State0),
-    %tileset(5),
-    %music($30, 5),
-    %FX(FXHeader_WreckedShipMainShaft_State0),
-    %enemyPop(EnemyPopulations_WreckedShipMainShaft_0),
-    %enemySet(EnemySets_WreckedShipMainShaft_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_WreckedShipMainShaft),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WreckedShipMainShaft),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents_Horizontal),
-    %setupASM(RTS_8FC8C7))
+RoomState_WreckedShipMainShaft_0:
+    dl LevelData_WreckedShipMainShaft_State0
+    db $05,$30,$05
+    dw FXHeader_WreckedShipMainShaft_State0
+    dw EnemyPopulations_WreckedShipMainShaft_0
+    dw EnemySets_WreckedShipMainShaft_0
+    db $C1,$C1
+    dw RoomScrolls_WreckedShipMainShaft
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WreckedShipMainShaft_State0_1
+    dw LibBG_WreckedShip_4_5_Panels_Vents_Horizontal
+    dw RTS_8FC8C7
 
-RoomState_WreckedShipMainShaft_1:                                        ;8FCB22;
-    %StateHeader(\
-    %levelData(LevelData_WreckedShipMainShaft_State1),
-    %tileset(4),
-    %music($30, 6),
-    %FX(FXHeader_WreckedShipMainShaft_State1),
-    %enemyPop(EnemyPopulations_WreckedShipMainShaft_1),
-    %enemySet(EnemySets_WreckedShipMainShaft_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_WreckedShipMainShaft),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WreckedShipMainShaft),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents_Horizontal),
-    %setupASM(RTS_8FC8C7))
+RoomState_WreckedShipMainShaft_1:
+    dl LevelData_WreckedShipMainShaft_State1
+    db $04,$30,$06
+    dw FXHeader_WreckedShipMainShaft_State1
+    dw EnemyPopulations_WreckedShipMainShaft_1
+    dw EnemySets_WreckedShipMainShaft_1
+    db $C1,$C1
+    dw RoomScrolls_WreckedShipMainShaft
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WreckedShipMainShaft_State0_1
+    dw LibBG_WreckedShip_4_5_Panels_Vents_Horizontal
+    dw RTS_8FC8C7
 
 RoomDoors_WreckedShipMainShaft:
-    dw Door_WreckedShipMainShaft_0                                       ;8FCB3C;
-    dw Door_WreckedShipMainShaft_1                                       ;8FCB3E;
-    dw Door_WreckedShipMainShaft_2                                       ;8FCB40;
-    dw Door_WreckedShipMainShaft_3                                       ;8FCB42;
-    dw Door_WreckedShipMainShaft_4                                       ;8FCB44;
-    dw Door_WreckedShipMainShaft_5                                       ;8FCB46;
-    dw Door_WreckedShipMainShaft_6                                       ;8FCB48;
+    dw Door_WreckedShipMainShaft_0
+    dw Door_WreckedShipMainShaft_1
+    dw Door_WreckedShipMainShaft_2
+    dw Door_WreckedShipMainShaft_3
+    dw Door_WreckedShipMainShaft_4
+    dw Door_WreckedShipMainShaft_5
+    dw Door_WreckedShipMainShaft_6
 
 RoomScrolls_WreckedShipMainShaft:
-    db $00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00   ;8FCB4A;
-    db $02,$00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$02,$00,$01,$01   ;8FCB5A;
-    db $01,$00,$02,$00,$00,$00,$00,$00,$01,$00,$00,$00,$00,$00,$00,$00   ;8FCB6A;
+    db $00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00
+    db $02,$00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$02,$00,$01,$01
+    db $01,$00,$02,$00,$00,$00,$00,$00,$01,$00,$00,$00,$00,$00,$00,$00
 
 RoomPLM_WreckedShipMainShaft_0:
-    db $21,$01, $80                                                      ;8FCB7A;
+    db $21,$01, $80
 
 RoomPLM_WreckedShipMainShaft_1:
-    db $29,$01, $80                                                      ;8FCB7D;
+    db $29,$01, $80
 
 RoomPLM_WreckedShipMainShaft_2:
-    db $21,$00, $80                                                      ;8FCB80;
+    db $21,$00, $80
 
 RoomPLM_WreckedShipMainShaft_3:
-    db $29,$00, $80                                                      ;8FCB83;
+    db $29,$00, $80
 
 RoomPLM_WreckedShipMainShaft_4:
-    db $28,$02, $2E,$02, $80                                             ;8FCB86;
+    db $28,$02, $2E,$02, $80
 
-RoomHeader_SpikyDeath:                                                   ;8FCB8B;
-    %RoomHeader(\
-    %room(5),
-    %area(3),
-    %positions($13, $0F),
-    %dimensions(2, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_SpikyDeath))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_SpikyDeath_1))
+RoomHeader_SpikyDeath:
+    db $05,$03,$13,$0F,$02,$01,$70,$A0,$00
+    dw RoomDoors_SpikyDeath
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_SpikyDeath_1
+    dw Use_StatePointer_inX
 
-RoomState_SpikyDeath_0:                                                  ;8FCB9D;
-    %StateHeader(\
-    %levelData(LevelData_SpikyDeath),
-    %tileset(5),
-    %music(0, 0),
-    %FX(FXHeader_SpikyDeath_State0),
-    %enemyPop(EnemyPopulations_SpikyDeath_0),
-    %enemySet(EnemySets_SpikyDeath_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_SpikyDeath_State0),
-    %libraryBG(LibBG_WreckedShip_4_5_Columns_Tubes),
-    %setupASM(RTS_8FC8C7))
+RoomState_SpikyDeath_0:
+    dl LevelData_SpikyDeath
+    db $05,$00,$00
+    dw FXHeader_SpikyDeath_State0
+    dw EnemyPopulations_SpikyDeath_0
+    dw EnemySets_SpikyDeath_0
+    db $C1,$C1
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_SpikyDeath_State0
+    dw LibBG_WreckedShip_4_5_Columns_Tubes
+    dw RTS_8FC8C7
 
-RoomState_SpikyDeath_1:                                                  ;8FCBB7;
-    %StateHeader(\
-    %levelData(LevelData_SpikyDeath),
-    %tileset(4),
-    %music(0, 0),
-    %FX(FXHeader_SpikyDeath_State1),
-    %enemyPop(EnemyPopulations_SpikyDeath_1),
-    %enemySet(EnemySets_SpikyDeath_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_SpikyDeath_State1),
-    %libraryBG(LibBG_WreckedShip_4_5_Columns_Tubes),
-    %setupASM(RTS_8FC8C7))
+RoomState_SpikyDeath_1:
+    dl LevelData_SpikyDeath
+    db $04,$00,$00
+    dw FXHeader_SpikyDeath_State1
+    dw EnemyPopulations_SpikyDeath_1
+    dw EnemySets_SpikyDeath_1
+    db $C1,$C1
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_SpikyDeath_State1
+    dw LibBG_WreckedShip_4_5_Columns_Tubes
+    dw RTS_8FC8C7
 
 RoomDoors_SpikyDeath:
-    dw Door_SpikyDeath_0                                                 ;8FCBD1;
-    dw Door_SpikyDeath_1                                                 ;8FCBD3;
+    dw Door_SpikyDeath_0
+    dw Door_SpikyDeath_1
 
-RoomHeader_ElectricDeath:                                                ;8FCBD5;
-    %RoomHeader(\
-    %room(6),
-    %area(3),
-    %positions($15, $0D),
-    %dimensions(1, 3),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_ElectricDeath))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_ElectricDeath_1))
+RoomHeader_ElectricDeath:
+    db $06,$03,$15,$0D,$01,$03,$70,$A0,$00
+    dw RoomDoors_ElectricDeath
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_ElectricDeath_1
+    dw Use_StatePointer_inX
 
-RoomState_ElectricDeath_0:                                               ;8FCBE7;
-    %StateHeader(\
-    %levelData(LevelData_ElectricDeath),
-    %tileset(5),
-    %music($30, 5),
-    %FX(FXHeader_ElectricDeath_State0),
-    %enemyPop(EnemyPopulations_ElectricDeath_0),
-    %enemySet(EnemySets_ElectricDeath_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_ElectricDeath),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_ElectricDeath_State0),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents_Horizontal),
-    %setupASM(RTS_8FC8C7))
+RoomState_ElectricDeath_0:
+    dl LevelData_ElectricDeath
+    db $05,$30,$05
+    dw FXHeader_ElectricDeath_State0
+    dw EnemyPopulations_ElectricDeath_0
+    dw EnemySets_ElectricDeath_0
+    db $C1,$C1
+    dw RoomScrolls_ElectricDeath
+    dw $0000
+    dw $0000
+    dw PLMPopulation_ElectricDeath_State0
+    dw LibBG_WreckedShip_4_5_Panels_Vents_Horizontal
+    dw RTS_8FC8C7
 
-RoomState_ElectricDeath_1:                                               ;8FCC01;
-    %StateHeader(\
-    %levelData(LevelData_ElectricDeath),
-    %tileset(4),
-    %music($30, 6),
-    %FX(FXHeader_ElectricDeath_State1),
-    %enemyPop(EnemyPopulations_ElectricDeath_1),
-    %enemySet(EnemySets_ElectricDeath_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_ElectricDeath),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_ElectricDeath_State1),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents_Horizontal),
-    %setupASM(RTS_8FC8C7))
+RoomState_ElectricDeath_1:
+    dl LevelData_ElectricDeath
+    db $04,$30,$06
+    dw FXHeader_ElectricDeath_State1
+    dw EnemyPopulations_ElectricDeath_1
+    dw EnemySets_ElectricDeath_1
+    db $C1,$C1
+    dw RoomScrolls_ElectricDeath
+    dw $0000
+    dw $0000
+    dw PLMPopulation_ElectricDeath_State1
+    dw LibBG_WreckedShip_4_5_Panels_Vents_Horizontal
+    dw RTS_8FC8C7
 
 RoomDoors_ElectricDeath:
-    dw Door_ElectricDeath_0                                              ;8FCC1B;
-    dw Door_ElectricDeath_1                                              ;8FCC1D;
-    dw Door_ElectricDeath_2                                              ;8FCC1F;
+    dw Door_ElectricDeath_0
+    dw Door_ElectricDeath_1
+    dw Door_ElectricDeath_2
 
 RoomScrolls_ElectricDeath:
-    db $00,$02,$02                                                       ;8FCC21;
+    db $00,$02,$02
 
 RoomPLM_ElectricDeath_0:
-    db $00,$02, $80                                                      ;8FCC24;
+    db $00,$02, $80
 
-RoomHeader_WreckedShipETank:                                             ;8FCC27;
-    %RoomHeader(\
-    %room(7),
-    %area(3),
-    %positions($12, $0D),
-    %dimensions(3, 2),
-    %scrollers($90, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WreckedShipETank))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_WreckedShipETank_1))
+RoomHeader_WreckedShipETank:
+    db $07,$03,$12,$0D,$03,$02,$90,$A0,$00
+    dw RoomDoors_WreckedShipETank
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_WreckedShipETank_1
+    dw Use_StatePointer_inX
 
-RoomState_WreckedShipETank_0:                                            ;8FCC39;
-    %StateHeader(\
-    %levelData(LevelData_WreckedShipETank),
-    %tileset(5),
-    %music(0, 3),
-    %FX(FXHeader_WreckedShipETank_State0),
-    %enemyPop(EnemyPopulations_WreckedShipETank_0),
-    %enemySet(EnemySets_WreckedShipETank_0),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WreckedShipETank_State0),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8C7))
+RoomState_WreckedShipETank_0:
+    dl LevelData_WreckedShipETank
+    db $05,$00,$03
+    dw FXHeader_WreckedShipETank_State0
+    dw EnemyPopulations_WreckedShipETank_0
+    dw EnemySets_WreckedShipETank_0
+    db $C0,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WreckedShipETank_State0
+    dw $0000
+    dw RTS_8FC8C7
 
-RoomState_WreckedShipETank_1:                                            ;8FCC53;
-    %StateHeader(\
-    %levelData(LevelData_WreckedShipETank),
-    %tileset(4),
-    %music(0, 3),
-    %FX(FXHeader_WreckedShipETank_State1),
-    %enemyPop(EnemyPopulations_WreckedShipETank_1),
-    %enemySet(EnemySets_WreckedShipETank_1),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WreckedShipETank_State1),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8C7))
+RoomState_WreckedShipETank_1:
+    dl LevelData_WreckedShipETank
+    db $04,$00,$03
+    dw FXHeader_WreckedShipETank_State1
+    dw EnemyPopulations_WreckedShipETank_1
+    dw EnemySets_WreckedShipETank_1
+    db $C0,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WreckedShipETank_State1
+    dw $0000
+    dw RTS_8FC8C7
 
 RoomDoors_WreckedShipETank:
-    dw Door_WreckedShipETank_0                                           ;8FCC6D;
+    dw Door_WreckedShipETank_0
 
-RoomHeader_Basement:                                                     ;8FCC6F;
-    %RoomHeader(\
-    %room(8),
-    %area(3),
-    %positions($0E, $13),
-    %dimensions(5, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Basement))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_Basement_1))
+RoomHeader_Basement:
+    db $08,$03,$0E,$13,$05,$01,$70,$A0,$00
+    dw RoomDoors_Basement
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_Basement_1
+    dw Use_StatePointer_inX
 
-RoomState_Basement_0:                                                    ;8FCC81;
-    %StateHeader(\
-    %levelData(LevelData_Basement),
-    %tileset(5),
-    %music($30, 5),
-    %FX(FXHeader_Basement_State0),
-    %enemyPop(EnemyPopulations_Basement_0),
-    %enemySet(EnemySets_Basement_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_Basement),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Basement_State0),
-    %libraryBG(LibBG_WreckedShip_4_5_Columns_Tubes),
-    %setupASM(SetupASM_SpawnPrePhantoonRoomEnemyProjectile))
+RoomState_Basement_0:
+    dl LevelData_Basement
+    db $05,$30,$05
+    dw FXHeader_Basement_State0
+    dw EnemyPopulations_Basement_0
+    dw EnemySets_Basement_0
+    db $C1,$C1
+    dw RoomScrolls_Basement
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Basement_State0
+    dw LibBG_WreckedShip_4_5_Columns_Tubes
+    dw SetupASM_SpawnPrePhantoonRoomEnemyProjectile
 
-RoomState_Basement_1:                                                    ;8FCC9B;
-    %StateHeader(\
-    %levelData(LevelData_Basement),
-    %tileset(4),
-    %music($30, 6),
-    %FX(FXHeader_Basement_State1),
-    %enemyPop(EnemyPopulations_Basement_1),
-    %enemySet(EnemySets_Basement_1),
-    %layer2Scrolls($C1, 1),
-    %scrollPointer(RoomScrolls_Basement),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Basement_State1),
-    %libraryBG(LibBG_WreckedShip_4_5_Columns_Tubes),
-    %setupASM(SetupASM_SpawnPrePhantoonRoomEnemyProjectile))
+RoomState_Basement_1:
+    dl LevelData_Basement
+    db $04,$30,$06
+    dw FXHeader_Basement_State1
+    dw EnemyPopulations_Basement_1
+    dw EnemySets_Basement_1
+    db $C1,$01
+    dw RoomScrolls_Basement
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Basement_State1
+    dw LibBG_WreckedShip_4_5_Columns_Tubes
+    dw SetupASM_SpawnPrePhantoonRoomEnemyProjectile
 
 RoomDoors_Basement:
-    dw Door_Basement_0                                                   ;8FCCB5;
-    dw Door_Basement_1                                                   ;8FCCB7;
-    dw Door_Basement_2                                                   ;8FCCB9;
+    dw Door_Basement_0
+    dw Door_Basement_1
+    dw Door_Basement_2
 
 RoomScrolls_Basement:
-    db $01,$01,$01,$01,$00                                               ;8FCCBB;
+    db $01,$01,$01,$01,$00
 
 RoomPLM_Basement_0:
-    db $03,$01, $04,$01, $80                                             ;8FCCC0;
+    db $03,$01, $04,$01, $80
 
 RoomPLM_Basement_1:
-    db $03,$00, $80                                                      ;8FCCC5;
+    db $03,$00, $80
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RoomPLM_8FCCC8:
-    db $04,$00, $80                                                      ;8FCCC8;
+    db $04,$00, $80
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-RoomHeader_WreckedShipMap:                                               ;8FCCCB;
-    %RoomHeader(\
-    %room(9),
-    %area(3),
-    %positions($0D, $13),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WreckedShipMap))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_WreckedShipMap_1))
+RoomHeader_WreckedShipMap:
+    db $09,$03,$0D,$13,$01,$01,$70,$A0,$00
+    dw RoomDoors_WreckedShipMap
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_WreckedShipMap_1
+    dw Use_StatePointer_inX
 
-RoomState_WreckedShipMap_0:                                              ;8FCCDD;
-    %StateHeader(\
-    %levelData(LevelData_MapStation_RightSideDoor),
-    %tileset($16),
-    %music(0, 0),
-    %FX(FXHeader_WreckedShipMap_State0),
-    %enemyPop(EnemyPopulations_WreckedShipMap_0),
-    %enemySet(EnemySets_WreckedShipMap_0),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WreckedShipMap_State0),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D0))
+RoomState_WreckedShipMap_0:
+    dl LevelData_MapStation_RightSideDoor
+    db $16,$00,$00
+    dw FXHeader_WreckedShipMap_State0
+    dw EnemyPopulations_WreckedShipMap_0
+    dw EnemySets_WreckedShipMap_0
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WreckedShipMap_State0
+    dw $0000
+    dw RTS_8FC8D0
 
-RoomState_WreckedShipMap_1:                                              ;8FCCF7;
-    %StateHeader(\
-    %levelData(LevelData_MapStation_RightSideDoor),
-    %tileset($15),
-    %music(0, 0),
-    %FX(FXHeader_WreckedShipMap_State1),
-    %enemyPop(EnemyPopulations_WreckedShipMap_1),
-    %enemySet(EnemySets_WreckedShipMap_1),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WreckedShipMap_State1),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D0))
+RoomState_WreckedShipMap_1:
+    dl LevelData_MapStation_RightSideDoor
+    db $15,$00,$00
+    dw FXHeader_WreckedShipMap_State1
+    dw EnemyPopulations_WreckedShipMap_1
+    dw EnemySets_WreckedShipMap_1
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WreckedShipMap_State1
+    dw $0000
+    dw RTS_8FC8D0
 
 RoomDoors_WreckedShipMap:
-    dw Door_WreckedShipMap_0                                             ;8FCD11;
+    dw Door_WreckedShipMap_0
 
-RoomHeader_Phantoon:                                                     ;8FCD13;
-    %RoomHeader(\
-    %room($0A),
-    %area(3),
-    %positions($13, $13),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Phantoon))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_Phantoon_1))
+RoomHeader_Phantoon:
+    db $0A,$03,$13,$13,$01,$01,$70,$A0,$00
+    dw RoomDoors_Phantoon
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_Phantoon_1
+    dw Use_StatePointer_inX
 
-RoomState_Phantoon_0:                                                    ;8FCD25;
-    %StateHeader(\
-    %levelData(LevelData_Phantoon),
-    %tileset(5),
-    %music($27, 6),
-    %FX(FXHeader_Phantoon_State0),
-    %enemyPop(EnemyPopulations_Phantoon_0),
-    %enemySet(EnemySets_Phantoon_0),
-    %layer2Scrolls(1, 1),
-    %scrollPointer(RoomScrolls_Phantoon),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Phantoon),
-    %libraryBG(LibBG_Phantoon_State0),
-    %setupASM(RTS_8FC8D0))
+RoomState_Phantoon_0:
+    dl LevelData_Phantoon
+    db $05,$27,$06
+    dw FXHeader_Phantoon_State0
+    dw EnemyPopulations_Phantoon_0
+    dw EnemySets_Phantoon_0
+    db $01,$01
+    dw RoomScrolls_Phantoon
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Phantoon_State0_1
+    dw LibBG_Phantoon_State0
+    dw RTS_8FC8D0
 
-RoomState_Phantoon_1:                                                    ;8FCD3F;
-    %StateHeader(\
-    %levelData(LevelData_Phantoon),
-    %tileset(4),
-    %music(0, 3),
-    %FX(FXHeader_Phantoon_State1),
-    %enemyPop(EnemyPopulations_Phantoon_1),
-    %enemySet(EnemySets_Phantoon_1),
-    %layer2Scrolls(1, 1),
-    %scrollPointer(RoomScrolls_Phantoon),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Phantoon),
-    %libraryBG(LibBG_Phantoon_Draygon_State1),
-    %setupASM(RTS_8FC8D0))
+RoomState_Phantoon_1:
+    dl LevelData_Phantoon
+    db $04,$00,$03
+    dw FXHeader_Phantoon_State1
+    dw EnemyPopulations_Phantoon_1
+    dw EnemySets_Phantoon_1
+    db $01,$01
+    dw RoomScrolls_Phantoon
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Phantoon_State0_1
+    dw LibBG_Phantoon_Draygon_State1
+    dw RTS_8FC8D0
 
 RoomDoors_Phantoon:
-    dw Door_Phantoon_0                                                   ;8FCD59;
+    dw Door_Phantoon_0
 
 RoomScrolls_Phantoon:
-    db $01                                                               ;8FCD5B;
+    db $01
 
-RoomHeader_SpongeBath:                                                   ;8FCD5C;
-    %RoomHeader(\
-    %room($0B),
-    %area(3),
-    %positions($11, $0F),
-    %dimensions(2, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_SpongeBath))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_SpongeBath_1))
+RoomHeader_SpongeBath:
+    db $0B,$03,$11,$0F,$02,$01,$70,$A0,$00
+    dw RoomDoors_SpongeBath
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_SpongeBath_1
+    dw Use_StatePointer_inX
 
-RoomState_SpongeBath_0:                                                  ;8FCD6E;
-    %StateHeader(\
-    %levelData(LevelData_SpongeBath),
-    %tileset(5),
-    %music(0, 0),
-    %FX(FXHeader_SpongeBath_State0),
-    %enemyPop(EnemyPopulations_SpongeBath_0),
-    %enemySet(EnemySets_SpongeBath_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_SpongeBath),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_SpongeBath_State0),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents),
-    %setupASM(RTS_8FC8D0))
+RoomState_SpongeBath_0:
+    dl LevelData_SpongeBath
+    db $05,$00,$00
+    dw FXHeader_SpongeBath_State0
+    dw EnemyPopulations_SpongeBath_0
+    dw EnemySets_SpongeBath_0
+    db $C1,$C1
+    dw RoomScrolls_SpongeBath
+    dw $0000
+    dw $0000
+    dw PLMPopulation_SpongeBath_State0
+    dw LibBG_WreckedShip_4_5_Panels_Vents
+    dw RTS_8FC8D0
 
-RoomState_SpongeBath_1:                                                  ;8FCD88;
-    %StateHeader(\
-    %levelData(LevelData_SpongeBath),
-    %tileset(4),
-    %music(0, 0),
-    %FX(FXHeader_SpongeBath_State1),
-    %enemyPop(EnemyPopulations_SpongeBath_1),
-    %enemySet(EnemySets_SpongeBath_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_SpongeBath),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_SpongeBath_State1),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents),
-    %setupASM(RTS_8FC8D0))
+RoomState_SpongeBath_1:
+    dl LevelData_SpongeBath
+    db $04,$00,$00
+    dw FXHeader_SpongeBath_State1
+    dw EnemyPopulations_SpongeBath_1
+    dw EnemySets_SpongeBath_1
+    db $C1,$C1
+    dw RoomScrolls_SpongeBath
+    dw $0000
+    dw $0000
+    dw PLMPopulation_SpongeBath_State1
+    dw LibBG_WreckedShip_4_5_Panels_Vents
+    dw RTS_8FC8D0
 
 RoomDoors_SpongeBath:
-    dw Door_SpongeBath_0                                                 ;8FCDA2;
-    dw Door_SpongeBath_1                                                 ;8FCDA4;
+    dw Door_SpongeBath_0
+    dw Door_SpongeBath_1
 
 RoomScrolls_SpongeBath:
-    db $01,$01                                                           ;8FCDA6;
+    db $01,$01
 
-RoomHeader_WSWestSuper:                                                  ;8FCDA8;
-    %RoomHeader(\
-    %room($0C),
-    %area(3),
-    %positions($0F, $11),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WSWestSuper))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_WSWestSuper_1))
+RoomHeader_WSWestSuper:
+    db $0C,$03,$0F,$11,$01,$01,$70,$A0,$00
+    dw RoomDoors_WSWestSuper
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_WSWestSuper_1
+    dw Use_StatePointer_inX
 
-RoomState_WSWestSuper_0:                                                 ;8FCDBA;
-    %StateHeader(\
-    %levelData(LevelData_WSWestSuper),
-    %tileset(5),
-    %music(0, 0),
-    %FX(FXHeader_WSWestSuper_State0),
-    %enemyPop(EnemyPopulations_WSWestSuper_0),
-    %enemySet(EnemySets_WSWestSuper_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_WSWestSuper),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WSWestSuper_State0),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents),
-    %setupASM(RTS_8FC8D0))
+RoomState_WSWestSuper_0:
+    dl LevelData_WSWestSuper
+    db $05,$00,$00
+    dw FXHeader_WSWestSuper_State0
+    dw EnemyPopulations_WSWestSuper_0
+    dw EnemySets_WSWestSuper_0
+    db $C1,$C1
+    dw RoomScrolls_WSWestSuper
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WSWestSuper_State0
+    dw LibBG_WreckedShip_4_5_Panels_Vents
+    dw RTS_8FC8D0
 
-RoomState_WSWestSuper_1:                                                 ;8FCDD4;
-    %StateHeader(\
-    %levelData(LevelData_WSWestSuper),
-    %tileset(4),
-    %music(0, 0),
-    %FX(FXHeader_WSWestSuper_State1),
-    %enemyPop(EnemyPopulations_WSWestSuper_1),
-    %enemySet(EnemySets_WSWestSuper_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_WSWestSuper),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WSWestSuper_State1),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents),
-    %setupASM(RTS_8FC8D0))
+RoomState_WSWestSuper_1:
+    dl LevelData_WSWestSuper
+    db $04,$00,$00
+    dw FXHeader_WSWestSuper_State1
+    dw EnemyPopulations_WSWestSuper_1
+    dw EnemySets_WSWestSuper_1
+    db $C1,$C1
+    dw RoomScrolls_WSWestSuper
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WSWestSuper_State1
+    dw LibBG_WreckedShip_4_5_Panels_Vents
+    dw RTS_8FC8D0
 
 RoomDoors_WSWestSuper:
-    dw Door_WSWestSuper_0                                                ;8FCDEE;
+    dw Door_WSWestSuper_0
 
 RoomScrolls_WSWestSuper:
-    db $01                                                               ;8FCDF0;
+    db $01
 
-RoomHeader_WSEastSuper:                                                  ;8FCDF1;
-    %RoomHeader(\
-    %room($0D),
-    %area(3),
-    %positions($12, $11),
-    %dimensions(4, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WSEastSuper))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_WSEastSuper_1))
+RoomHeader_WSEastSuper:
+    db $0D,$03,$12,$11,$04,$01,$70,$A0,$00
+    dw RoomDoors_WSEastSuper
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_WSEastSuper_1
+    dw Use_StatePointer_inX
 
-RoomState_WSEastSuper_0:                                                 ;8FCE03;
-    %StateHeader(\
-    %levelData(LevelData_WSEastSuper_State0),
-    %tileset(5),
-    %music(0, 0),
-    %FX(FXHeader_VariousRooms_State0_839C74),
-    %enemyPop(EnemyPopulations_WSEastSuper_0),
-    %enemySet(EnemySets_WSEastSuper_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_WSEastSuper),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WSEastSuper_State0),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents_Horizontal),
-    %setupASM(RTS_8FC8D0))
+RoomState_WSEastSuper_0:
+    dl LevelData_WSEastSuper_State0
+    db $05,$00,$00
+    dw FXHeader_VariousRooms_State0_839C74
+    dw EnemyPopulations_WSEastSuper_0
+    dw EnemySets_WSEastSuper_0
+    db $C1,$C1
+    dw RoomScrolls_WSEastSuper
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WSEastSuper_State0
+    dw LibBG_WreckedShip_4_5_Panels_Vents_Horizontal
+    dw RTS_8FC8D0
 
-RoomState_WSEastSuper_1:                                                 ;8FCE1D;
-    %StateHeader(\
-    %levelData(LevelData_WSEastSuper_State1),
-    %tileset(4),
-    %music(0, 0),
-    %FX(FXHeader_WSEastSuper_State1),
-    %enemyPop(EnemyPopulations_WSEastSuper_1),
-    %enemySet(EnemySets_WSEastSuper_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_WSEastSuper),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WSEastSuper_State1),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents),
-    %setupASM(RTS_8FC8D0))
+RoomState_WSEastSuper_1:
+    dl LevelData_WSEastSuper_State1
+    db $04,$00,$00
+    dw FXHeader_WSEastSuper_State1
+    dw EnemyPopulations_WSEastSuper_1
+    dw EnemySets_WSEastSuper_1
+    db $C1,$C1
+    dw RoomScrolls_WSEastSuper
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WSEastSuper_State1
+    dw LibBG_WreckedShip_4_5_Panels_Vents
+    dw RTS_8FC8D0
 
 RoomDoors_WSEastSuper:
-    dw Door_WSEastSuper_0                                                ;8FCE37;
+    dw Door_WSEastSuper_0
 
 RoomScrolls_WSEastSuper:
-    db $01,$01,$01,$00                                                   ;8FCE39;
+    db $01,$01,$01,$00
 
 RoomPLM_WSEastSuper_0:
-    db $03,$01, $80                                                      ;8FCE3D;
+    db $03,$01, $80
 
-RoomHeader_GravitySuit:                                                  ;8FCE40;
-    %RoomHeader(\
-    %room($0E),
-    %area(3),
-    %positions($0A, $0D),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_GravitySuit))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_GravitySuit_1))
+RoomHeader_GravitySuit:
+    db $0E,$03,$0A,$0D,$01,$01,$70,$A0,$00
+    dw RoomDoors_GravitySuit
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_GravitySuit_1
+    dw Use_StatePointer_inX
 
-RoomState_GravitySuit_0:                                                 ;8FCE52;
-    %StateHeader(\
-    %levelData(LevelData_GravitySuit),
-    %tileset(5),
-    %music(0, 0),
-    %FX(FXHeader_VariousRooms_State0_839C74),
-    %enemyPop(EnemyPopulations_GravitySuit_0),
-    %enemySet(EnemySets_GravitySuit_0),
-    %layer2Scrolls(1, 1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_GravitySuit_State0_WreckedShipSave_State0),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents),
-    %setupASM(RTS_8FC8D0))
+RoomState_GravitySuit_0:
+    dl LevelData_GravitySuit
+    db $05,$00,$00
+    dw FXHeader_VariousRooms_State0_839C74
+    dw EnemyPopulations_GravitySuit_0
+    dw EnemySets_GravitySuit_0
+    db $01,$01
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_GravitySuit_State0_WreckedShipSave_State0
+    dw LibBG_WreckedShip_4_5_Panels_Vents
+    dw RTS_8FC8D0
 
-RoomState_GravitySuit_1:                                                 ;8FCE6C;
-    %StateHeader(\
-    %levelData(LevelData_GravitySuit),
-    %tileset(4),
-    %music(0, 0),
-    %FX(FXHeader_GravitySuit_State1_WreckedShipSave_State1),
-    %enemyPop(EnemyPopulations_GravitySuit_1),
-    %enemySet(EnemySets_GravitySuit_1),
-    %layer2Scrolls(1, 1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_GravitySuit_State1),
-    %libraryBG(LibBG_WreckedShip_4_5_Panels_Vents),
-    %setupASM(RTS_8FC8D0))
+RoomState_GravitySuit_1:
+    dl LevelData_GravitySuit
+    db $04,$00,$00
+    dw FXHeader_GravitySuit_State1_WreckedShipSave_State1
+    dw EnemyPopulations_GravitySuit_1
+    dw EnemySets_GravitySuit_1
+    db $01,$01
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_GravitySuit_State1
+    dw LibBG_WreckedShip_4_5_Panels_Vents
+    dw RTS_8FC8D0
 
 RoomDoors_GravitySuit:
-    dw Door_GravitySuit_0                                                ;8FCE86;
-    dw Door_GravitySuit_1                                                ;8FCE88;
+    dw Door_GravitySuit_0
+    dw Door_GravitySuit_1
 
-RoomHeader_WreckedShipSave:                                              ;8FCE8A;
-    %RoomHeader(\
-    %room($0F),
-    %area(3),
-    %positions($11, $0E),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WreckedShipSave))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_WreckedShipSave_1))
+RoomHeader_WreckedShipSave:
+    db $0F,$03,$11,$0E,$01,$01,$70,$A0,$00
+    dw RoomDoors_WreckedShipSave
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_WreckedShipSave_1
+    dw Use_StatePointer_inX
 
-RoomState_WreckedShipSave_0:                                             ;8FCE9C;
-    %StateHeader(\
-    %levelData(LevelData_SaveStation_LeftSideDoor),
-    %tileset($16),
-    %music($30, 5),
-    %FX(FXHeader_VariousRooms_State0_839C74),
-    %enemyPop(EnemyPopulations_WreckedShipSave_0),
-    %enemySet(EnemySets_WreckedShipSave_0),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_GravitySuit_State0_WreckedShipSave_State0),
-    %libraryBG(0),
-    %setupASM(0))
+RoomState_WreckedShipSave_0:
+    dl LevelData_SaveStation_LeftSideDoor
+    db $16,$30,$05
+    dw FXHeader_VariousRooms_State0_839C74
+    dw EnemyPopulations_WreckedShipSave_0
+    dw EnemySets_WreckedShipSave_0
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_GravitySuit_State0_WreckedShipSave_State0
+    dw $0000
+    dw $0000
 
-RoomState_WreckedShipSave_1:                                             ;8FCEB6;
-    %StateHeader(\
-    %levelData(LevelData_SaveStation_LeftSideDoor),
-    %tileset($15),
-    %music($30, 6),
-    %FX(FXHeader_GravitySuit_State1_WreckedShipSave_State1),
-    %enemyPop(EnemyPopulations_WreckedShipSave_1),
-    %enemySet(EnemySets_WreckedShipSave_1),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WreckedShipSave_State1),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D0))
+RoomState_WreckedShipSave_1:
+    dl LevelData_SaveStation_LeftSideDoor
+    db $15,$30,$06
+    dw FXHeader_GravitySuit_State1_WreckedShipSave_State1
+    dw EnemyPopulations_WreckedShipSave_1
+    dw EnemySets_WreckedShipSave_1
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WreckedShipSave_State1
+    dw $0000
+    dw RTS_8FC8D0
 
 RoomDoors_WreckedShipSave:
-    dw Door_WreckedShipSave_0                                            ;8FCED0;
+    dw Door_WreckedShipSave_0
 
-RoomHeader_GlassTunnelSave:                                              ;8FCED2;
-    %RoomHeader(\
-    %room(0),
-    %area(4),
-    %positions($0C, $13),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_GlassTunnelSave))
-    %stateChecks(0)
+RoomHeader_GlassTunnelSave:
+    db $00,$04,$0C,$13,$01,$01,$70,$A0,$00
+    dw RoomDoors_GlassTunnelSave
+    dw Use_StatePointer_inX
 
-RoomState_GlassTunnelSave:                                               ;8FCEDF;
-    %StateHeader(\
-    %levelData(LevelData_SaveStation_LeftSideDoor),
-    %tileset($19),
-    %music($12, 5),
-    %FX(FXHeader_GlassTunnelSave),
-    %enemyPop(EnemyPopulations_GlassTunnelSave),
-    %enemySet(EnemySets_GlassTunnelSave),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_GlassTunnelSave),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_GlassTunnelSave:
+    dl LevelData_SaveStation_LeftSideDoor
+    db $19,$12,$05
+    dw FXHeader_GlassTunnelSave
+    dw EnemyPopulations_GlassTunnelSave
+    dw EnemySets_GlassTunnelSave
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_GlassTunnelSave
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_GlassTunnelSave:
-    dw Door_GlassTunnelSave_0                                            ;8FCEF9;
+    dw Door_GlassTunnelSave_0
 
-RoomHeader_GlassTunnel:                                                  ;8FCEFB;
-    %RoomHeader(\
-    %room(1),
-    %area(4),
-    %positions($0B, $11),
-    %dimensions(1, 3),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_GlassTunnel))
-    %stateChecks(1,
-    %stateCheckEventSet($0B, RoomState_GlassTunnel_1))
+RoomHeader_GlassTunnel:
+    db $01,$04,$0B,$11,$01,$03,$70,$A0,$00
+    dw RoomDoors_GlassTunnel
+    dw RoomStateCheck_EventHasBeenSet : db $0B
+    dw RoomState_GlassTunnel_1
+    dw Use_StatePointer_inX
 
-RoomState_GlassTunnel_0:                                                 ;8FCF0D;
-    %StateHeader(\
-    %levelData(LevelData_GlassTunnel_State0),
-    %tileset($0B),
-    %music($12, 5),
-    %FX(FXHeader_GlassTunnel_State0_1),
-    %enemyPop(EnemyPopulations_GlassTunnel),
-    %enemySet(EnemySets_GlassTunnel),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_GlassTunnel),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_GlassTunnel_State0_1),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_GlassTunnel_0:
+    dl LevelData_GlassTunnel_State0
+    db $0B,$12,$05
+    dw FXHeader_GlassTunnel_State0_1
+    dw EnemyPopulations_GlassTunnel
+    dw EnemySets_GlassTunnel
+    db $00,$C0
+    dw RoomScrolls_GlassTunnel
+    dw $0000
+    dw $0000
+    dw PLMPopulation_GlassTunnel_State0_1
+    dw $0000
+    dw RTS_8FC8D1
 
-RoomState_GlassTunnel_1:                                                 ;8FCF27;
-    %StateHeader(\
-    %levelData(LevelData_GlassTunnel_State1),
-    %tileset($0B),
-    %music($12, 5),
-    %FX(FXHeader_GlassTunnel_State0_1),
-    %enemyPop(EnemyPopulations_GlassTunnel),
-    %enemySet(EnemySets_GlassTunnel),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_GlassTunnel),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_GlassTunnel_State0_1),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_GlassTunnel_1:
+    dl LevelData_GlassTunnel_State1
+    db $0B,$12,$05
+    dw FXHeader_GlassTunnel_State0_1
+    dw EnemyPopulations_GlassTunnel
+    dw EnemySets_GlassTunnel
+    db $00,$C0
+    dw RoomScrolls_GlassTunnel
+    dw $0000
+    dw $0000
+    dw PLMPopulation_GlassTunnel_State0_1
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_GlassTunnel:
-    dw Door_GlassTunnel_0                                                ;8FCF41;
-    dw Door_GlassTunnel_1                                                ;8FCF43;
-    dw Door_GlassTunnel_2                                                ;8FCF45;
-    dw Door_GlassTunnel_3                                                ;8FCF47;
+    dw Door_GlassTunnel_0
+    dw Door_GlassTunnel_1
+    dw Door_GlassTunnel_2
+    dw Door_GlassTunnel_3
 
 RoomScrolls_GlassTunnel:
-    db $02,$02,$02                                                       ;8FCF49;
+    db $02,$02,$02
 
 RoomPLM_GlassTunnel_0_4:
-    db $00,$02, $80                                                      ;8FCF4C;
+    db $00,$02, $80
 
 RoomPLM_GlassTunnel_8:
-    db $01,$02, $02,$02, $80                                             ;8FCF4F;
+    db $01,$02, $02,$02, $80
 
-RoomHeader_WestTunnel:                                                   ;8FCF54;
-    %RoomHeader(\
-    %room(2),
-    %area(4),
-    %positions($0A, $12),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WestTunnel))
-    %stateChecks(0)
+RoomHeader_WestTunnel:
+    db $02,$04,$0A,$12,$01,$01,$70,$A0,$00
+    dw RoomDoors_WestTunnel
+    dw Use_StatePointer_inX
 
-RoomState_WestTunnel:                                                    ;8FCF61;
-    %StateHeader(\
-    %levelData(LevelData_WestTunnel),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_WestTunnel),
-    %enemyPop(EnemyPopulations_WestTunnel),
-    %enemySet(EnemySets_WestTunnel),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_WestTunnel),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WestTunnel),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_WestTunnel:
+    dl LevelData_WestTunnel
+    db $0B,$00,$00
+    dw FXHeader_WestTunnel
+    dw EnemyPopulations_WestTunnel
+    dw EnemySets_WestTunnel
+    db $00,$00
+    dw RoomScrolls_WestTunnel
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WestTunnel
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_WestTunnel:
-    dw Door_WestTunnel_0                                                 ;8FCF7B;
-    dw Door_WestTunnel_1                                                 ;8FCF7D;
+    dw Door_WestTunnel_0
+    dw Door_WestTunnel_1
 
 RoomScrolls_WestTunnel:
-    db $01                                                               ;8FCF7F;
+    db $01
 
-RoomHeader_EastTunnel:                                                   ;8FCF80;
-    %RoomHeader(\
-    %room(3),
-    %area(4),
-    %positions($0C, $11),
-    %dimensions(4, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_EastTunnel))
-    %stateChecks(0)
+RoomHeader_EastTunnel:
+    db $03,$04,$0C,$11,$04,$02,$70,$A0,$00
+    dw RoomDoors_EastTunnel
+    dw Use_StatePointer_inX
 
-RoomState_EastTunnel:                                                    ;8FCF8D;
-    %StateHeader(\
-    %levelData(LevelData_EastTunnel),
-    %tileset($0B),
-    %music($12, 5),
-    %FX(FXHeader_EastTunnel),
-    %enemyPop(EnemyPopulations_EastTunnel),
-    %enemySet(EnemySets_EastTunnel),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_EastTunnel),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_EastTunnel),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_EastTunnel:
+    dl LevelData_EastTunnel
+    db $0B,$12,$05
+    dw FXHeader_EastTunnel
+    dw EnemyPopulations_EastTunnel
+    dw EnemySets_EastTunnel
+    db $00,$00
+    dw RoomScrolls_EastTunnel
+    dw $0000
+    dw $0000
+    dw PLMPopulation_EastTunnel
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_EastTunnel:
-    dw Door_EastTunnel_0                                                 ;8FCFA7;
-    dw Door_EastTunnel_1                                                 ;8FCFA9;
-    dw Door_EastTunnel_2                                                 ;8FCFAB;
+    dw Door_EastTunnel_0
+    dw Door_EastTunnel_1
+    dw Door_EastTunnel_2
 
 RoomScrolls_EastTunnel:
-    db $01,$01,$01,$01,$00,$00,$00,$00                                   ;8FCFAD;
+    db $01,$01,$01,$01,$00,$00,$00,$00
 
 RoomPLM_EastTunnel_0:
-    db $00,$01, $01,$00, $04,$00, $80                                    ;8FCFB5;
+    db $00,$01, $01,$00, $04,$00, $80
 
 RoomPLM_EastTunnel_1:
-    db $00,$02, $04,$01, $80                                             ;8FCFBC;
+    db $00,$02, $04,$01, $80
 
 RoomPLM_EastTunnel_2:
-    db $00,$00, $04,$01, $80                                             ;8FCFC1;
+    db $00,$00, $04,$01, $80
 
 RoomPLM_EastTunnel_9:
-    db $01,$01,$80                                                       ;8FCFC6;
+    db $01,$01,$80
 
-RoomHeader_MainStreet:                                                   ;8FCFC9;
-    %RoomHeader(\
-    %room(4),
-    %area(4),
-    %positions($0A, 9),
-    %dimensions(3, 8),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_MainStreet))
-    %stateChecks(0)
+RoomHeader_MainStreet:
+    db $04,$04,$0A,$09,$03,$08,$70,$A0,$00
+    dw RoomDoors_MainStreet
+    dw Use_StatePointer_inX
 
-RoomState_MainStreet:                                                    ;8FCFD6;
-    %StateHeader(\
-    %levelData(LevelData_MainStreet),
-    %tileset($0B),
-    %music($1B, 6),
-    %FX(FXHeader_MainStreet),
-    %enemyPop(EnemyPopulations_MainStreet),
-    %enemySet(EnemySets_MainStreet),
-    %layer2Scrolls($C0, $C0),
-    %scrollPointer(RoomScrolls_MainStreet),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_MainStreet),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_MainStreet:
+    dl LevelData_MainStreet
+    db $0B,$1B,$06
+    dw FXHeader_MainStreet
+    dw EnemyPopulations_MainStreet
+    dw EnemySets_MainStreet
+    db $C0,$C0
+    dw RoomScrolls_MainStreet
+    dw $0000
+    dw $0000
+    dw PLMPopulation_MainStreet
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_MainStreet:
-    dw Door_MainStreet_0                                                 ;8FCFF0;
-    dw Door_MainStreet_1                                                 ;8FCFF2;
-    dw Door_MainStreet_2                                                 ;8FCFF4;
-    dw Door_MainStreet_3                                                 ;8FCFF6;
-    dw Door_MainStreet_4                                                 ;8FCFF8;
+    dw Door_MainStreet_0
+    dw Door_MainStreet_1
+    dw Door_MainStreet_2
+    dw Door_MainStreet_3
+    dw Door_MainStreet_4
 
 RoomScrolls_MainStreet:
-    db $02,$02,$00,$02,$02,$00,$02,$02,$01,$02,$02,$00,$02,$02,$00,$02   ;8FCFFA;
-    db $02,$00,$02,$02,$02,$02,$02,$00                                   ;8FD00A;
+    db $02,$02,$00,$02,$02,$00,$02,$02,$01,$02,$02,$00,$02,$02,$00,$02
+    db $02,$00,$02,$02,$02,$02,$02,$00
 
 RoomPLM_MainStreet_0:
-    db $07,$01, $0A,$00, $80                                             ;8FD012;
+    db $07,$01, $0A,$00, $80
 
-RoomHeader_FishTank:                                                     ;8FD017;
-    %RoomHeader(\
-    %room(5),
-    %area(4),
-    %positions($0D, $0D),
-    %dimensions(4, 3),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_FishTank))
-    %stateChecks(0)
+RoomHeader_FishTank:
+    db $05,$04,$0D,$0D,$04,$03,$70,$A0,$00
+    dw RoomDoors_FishTank
+    dw Use_StatePointer_inX
 
-RoomState_FishTank:                                                      ;8FD024;
-    %StateHeader(\
-    %levelData(LevelData_FishTank),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_FishTank),
-    %enemyPop(EnemyPopulations_FishTank),
-    %enemySet(EnemySets_FishTank),
-    %layer2Scrolls($C0, $C0),
-    %scrollPointer(RoomScrolls_FishTank),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_FishTank),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_FishTank:
+    dl LevelData_FishTank
+    db $0B,$00,$00
+    dw FXHeader_FishTank
+    dw EnemyPopulations_FishTank
+    dw EnemySets_FishTank
+    db $C0,$C0
+    dw RoomScrolls_FishTank
+    dw $0000
+    dw $0000
+    dw PLMPopulation_FishTank
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_FishTank:
-    dw Door_FishTank_0                                                   ;8FD03E;
-    dw Door_FishTank_1                                                   ;8FD040;
-    dw Door_FishTank_2                                                   ;8FD042;
-    dw Door_FishTank_3                                                   ;8FD044;
+    dw Door_FishTank_0
+    dw Door_FishTank_1
+    dw Door_FishTank_2
+    dw Door_FishTank_3
 
 RoomScrolls_FishTank:
-    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$00,$02                   ;8FD046;
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$00,$02
 
 RoomPLM_FishTank_3_7:
-    db $0A,$02, $80                                                      ;8FD052;
+    db $0A,$02, $80
 
-RoomHeader_MamaTurtle:                                                   ;8FD055;
-    %RoomHeader(\
-    %room(6),
-    %area(4),
-    %positions($11, $0C),
-    %dimensions(3, 4),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_MamaTurtle))
-    %stateChecks(0)
+RoomHeader_MamaTurtle:
+    db $06,$04,$11,$0C,$03,$04,$70,$A0,$00
+    dw RoomDoors_MamaTurtle
+    dw Use_StatePointer_inX
 
-RoomState_MamaTurtle:                                                    ;8FD062;
-    %StateHeader(\
-    %levelData(LevelData_MamaTurtle),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_MamaTurtle),
-    %enemyPop(EnemyPopulations_MamaTurtle),
-    %enemySet(EnemySets_MamaTurtle),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_MamaTurtle),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_MamaTurtle),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_MamaTurtle:
+    dl LevelData_MamaTurtle
+    db $0B,$00,$00
+    dw FXHeader_MamaTurtle
+    dw EnemyPopulations_MamaTurtle
+    dw EnemySets_MamaTurtle
+    db $00,$C0
+    dw RoomScrolls_MamaTurtle
+    dw $0000
+    dw $0000
+    dw PLMPopulation_MamaTurtle
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_MamaTurtle:
-    dw Door_MamaTurtle_0                                                 ;8FD07C;
+    dw Door_MamaTurtle_0
 
 RoomScrolls_MamaTurtle:
-    db $00,$02,$02,$00,$02,$02,$00,$02,$02,$02,$02,$02                   ;8FD07E;
+    db $00,$02,$02,$00,$02,$02,$00,$02,$02,$02,$02,$02
 
-RoomHeader_CrabTunnel:                                                   ;8FD08A;
-    %RoomHeader(\
-    %room(7),
-    %area(4),
-    %positions($0C, $10),
-    %dimensions(4, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_CrabTunnel))
-    %stateChecks(0)
+RoomHeader_CrabTunnel:
+    db $07,$04,$0C,$10,$04,$01,$70,$A0,$00
+    dw RoomDoors_CrabTunnel
+    dw Use_StatePointer_inX
 
-RoomState_CrabTunnel:                                                    ;8FD097;
-    %StateHeader(\
-    %levelData(LevelData_CrabTunnel),
-    %tileset($0B),
-    %music($1B, 6),
-    %FX(FXHeader_CrabTunnel),
-    %enemyPop(EnemyPopulations_CrabTunnel),
-    %enemySet(EnemySets_CrabTunnel),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_CrabTunnel),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_CrabTunnel),
-    %libraryBG(LibBG_Maridia_B_BrownWall),
-    %setupASM(RTS_8FC8D1))
+RoomState_CrabTunnel:
+    dl LevelData_CrabTunnel
+    db $0B,$1B,$06
+    dw FXHeader_CrabTunnel
+    dw EnemyPopulations_CrabTunnel
+    dw EnemySets_CrabTunnel
+    db $C1,$C1
+    dw RoomScrolls_CrabTunnel
+    dw $0000
+    dw $0000
+    dw PLMPopulation_CrabTunnel
+    dw LibBG_Maridia_B_BrownWall
+    dw RTS_8FC8D1
 
 RoomDoors_CrabTunnel:
-    dw Door_CrabTunnel_0                                                 ;8FD0B1;
-    dw Door_CrabTunnel_1                                                 ;8FD0B3;
+    dw Door_CrabTunnel_0
+    dw Door_CrabTunnel_1
 
 RoomScrolls_CrabTunnel:
-    db $01,$01,$01,$01                                                   ;8FD0B5;
+    db $01,$01,$01,$01
 
-RoomHeader_MtEverest:                                                    ;8FD0B9;
-    %RoomHeader(\
-    %room(8),
-    %area(4),
-    %positions($0C, 9),
-    %dimensions(6, 4),
-    %scrollers($90, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_MtEverest))
-    %stateChecks(0)
+RoomHeader_MtEverest:
+    db $08,$04,$0C,$09,$06,$04,$90,$A0,$00
+    dw RoomDoors_MtEverest
+    dw Use_StatePointer_inX
 
-RoomState_MtEverest:                                                     ;8FD0C6;
-    %StateHeader(\
-    %levelData(LevelData_MtEverest),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_MtEverest),
-    %enemyPop(EnemyPopulations_MtEverest),
-    %enemySet(EnemySets_MtEverest),
-    %layer2Scrolls($C0, $C0),
-    %scrollPointer(RoomScrolls_MtEverest),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_MtEverest),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_MtEverest:
+    dl LevelData_MtEverest
+    db $0B,$00,$00
+    dw FXHeader_MtEverest
+    dw EnemyPopulations_MtEverest
+    dw EnemySets_MtEverest
+    db $C0,$C0
+    dw RoomScrolls_MtEverest
+    dw $0000
+    dw $0000
+    dw PLMPopulation_MtEverest
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_MtEverest:
-    dw Door_MtEverest_0                                                  ;8FD0E0;
-    dw Door_MtEverest_1                                                  ;8FD0E2;
-    dw Door_MtEverest_2                                                  ;8FD0E4;
-    dw Door_MtEverest_3                                                  ;8FD0E6;
-    dw Door_MtEverest_4                                                  ;8FD0E8;
-    dw Door_MtEverest_5                                                  ;8FD0EA;
+    dw Door_MtEverest_0
+    dw Door_MtEverest_1
+    dw Door_MtEverest_2
+    dw Door_MtEverest_3
+    dw Door_MtEverest_4
+    dw Door_MtEverest_5
 
 RoomScrolls_MtEverest:
-    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$00,$02,$02,$02   ;8FD0EC;
-    db $02,$00,$00,$02,$02,$02,$02,$00                                   ;8FD0FC;
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$00,$02,$02,$02
+    db $02,$00,$00,$02,$02,$02,$02,$00
 
-RoomHeader_RedFish:                                                      ;8FD104;
-    %RoomHeader(\
-    %room(9),
-    %area(4),
-    %positions($0C, 7),
-    %dimensions(3, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_RedFish))
-    %stateChecks(0)
+RoomHeader_RedFish:
+    db $09,$04,$0C,$07,$03,$02,$70,$A0,$00
+    dw RoomDoors_RedFish
+    dw Use_StatePointer_inX
 
-RoomState_RedFish:                                                       ;8FD111;
-    %StateHeader(\
-    %levelData(LevelData_RedFish),
-    %tileset($0B),
-    %music($1B, 6),
-    %FX(FXHeader_RedFish),
-    %enemyPop(EnemyPopulations_RedFish),
-    %enemySet(EnemySets_RedFish),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_RedFish),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_RedFish),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_RedFish:
+    dl LevelData_RedFish
+    db $0B,$1B,$06
+    dw FXHeader_RedFish
+    dw EnemyPopulations_RedFish
+    dw EnemySets_RedFish
+    db $00,$C0
+    dw RoomScrolls_RedFish
+    dw $0000
+    dw $0000
+    dw PLMPopulation_RedFish
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_RedFish:
-    dw Door_RedFish_0                                                    ;8FD12B;
-    dw Door_RedFish_1                                                    ;8FD12D;
+    dw Door_RedFish_0
+    dw Door_RedFish_1
 
 RoomScrolls_RedFish:
-    db $01,$00,$02,$00,$00,$02                                           ;8FD12F;
+    db $01,$00,$02,$00,$00,$02
 
 RoomPLM_RedFish_0:
-    db $02,$02, $80                                                      ;8FD135;
+    db $02,$02, $80
 
 RoomPLM_RedFish_1:
-    db $01,$01, $80                                                      ;8FD138;
+    db $01,$01, $80
 
-RoomHeader_WateringHole:                                                 ;8FD13B;
-    %RoomHeader(\
-    %room($0A),
-    %area(4),
-    %positions($0C, 4),
-    %dimensions(2, 3),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WateringHole))
-    %stateChecks(0)
+RoomHeader_WateringHole:
+    db $0A,$04,$0C,$04,$02,$03,$70,$A0,$00
+    dw RoomDoors_WateringHole
+    dw Use_StatePointer_inX
 
-RoomState_WateringHole:                                                  ;8FD148;
-    %StateHeader(\
-    %levelData(LevelData_WateringHole),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_WateringHole),
-    %enemyPop(EnemyPopulations_WateringHole),
-    %enemySet(EnemySets_WateringHole),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_WateringHole),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WateringHole),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_WateringHole:
+    dl LevelData_WateringHole
+    db $0B,$00,$00
+    dw FXHeader_WateringHole
+    dw EnemyPopulations_WateringHole
+    dw EnemySets_WateringHole
+    db $C0,$00
+    dw RoomScrolls_WateringHole
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WateringHole
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_WateringHole:
-    dw Door_WateringHole_0                                               ;8FD162;
+    dw Door_WateringHole_0
 
 RoomScrolls_WateringHole:
-    db $02,$01,$02,$00,$00,$00                                           ;8FD164;
+    db $02,$01,$02,$00,$00,$00
 
 RoomPLM_WateringHole_0:
-    db $04,$01, $80                                                      ;8FD16A;
+    db $04,$01, $80
 
-RoomHeader_NWestMaridiaBug:                                              ;8FD16D;
-    %RoomHeader(\
-    %room($0B),
-    %area(4),
-    %positions($0E, 4),
-    %dimensions(4, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_NWestMaridiaBug))
-    %stateChecks(0)
+RoomHeader_NWestMaridiaBug:
+    db $0B,$04,$0E,$04,$04,$02,$70,$A0,$00
+    dw RoomDoors_NWestMaridiaBug
+    dw Use_StatePointer_inX
 
-RoomState_NWestMaridiaBug:                                               ;8FD17A;
-    %StateHeader(\
-    %levelData(LevelData_NWestMaridiaBug),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_NWestMaridiaBug),
-    %enemyPop(EnemyPopulations_NWestMaridiaBug),
-    %enemySet(EnemySets_NWestMaridiaBug),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_NWestMaridiaBug),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_NWestMaridiaBug),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_NWestMaridiaBug:
+    dl LevelData_NWestMaridiaBug
+    db $0B,$00,$00
+    dw FXHeader_NWestMaridiaBug
+    dw EnemyPopulations_NWestMaridiaBug
+    dw EnemySets_NWestMaridiaBug
+    db $C0,$00
+    dw RoomScrolls_NWestMaridiaBug
+    dw $0000
+    dw $0000
+    dw PLMPopulation_NWestMaridiaBug
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_NWestMaridiaBug:
-    dw Door_NWestMaridiaBug_0                                            ;8FD194;
-    dw Door_NWestMaridiaBug_1                                            ;8FD196;
+    dw Door_NWestMaridiaBug_0
+    dw Door_NWestMaridiaBug_1
 
 RoomScrolls_NWestMaridiaBug:
-    db $02,$00,$00,$00,$01,$00,$01,$01                                   ;8FD198;
+    db $02,$00,$00,$00,$01,$00,$01,$01
 
 RoomPLM_NWestMaridiaBug_3_7:
-    db $05,$01, $80                                                      ;8FD1A0;
+    db $05,$01, $80
 
-RoomHeader_CrabShaft:                                                    ;8FD1A3;
-    %RoomHeader(\
-    %room($0C),
-    %area(4),
-    %positions($12, 7),
-    %dimensions(2, 4),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_CrabShaft))
-    %stateChecks(0)
+RoomHeader_CrabShaft:
+    db $0C,$04,$12,$07,$02,$04,$70,$A0,$00
+    dw RoomDoors_CrabShaft
+    dw Use_StatePointer_inX
 
-RoomState_CrabShaft:                                                     ;8FD1B0;
-    %StateHeader(\
-    %levelData(LevelData_CrabShaft),
-    %tileset($0B),
-    %music($1B, 6),
-    %FX(FXHeader_CrabShaft),
-    %enemyPop(EnemyPopulations_CrabShaft),
-    %enemySet(EnemySets_CrabShaft),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_CrabShaft),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_CrabShaft),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_CrabShaft:
+    dl LevelData_CrabShaft
+    db $0B,$1B,$06
+    dw FXHeader_CrabShaft
+    dw EnemyPopulations_CrabShaft
+    dw EnemySets_CrabShaft
+    db $00,$C0
+    dw RoomScrolls_CrabShaft
+    dw $0000
+    dw $0000
+    dw PLMPopulation_CrabShaft
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_CrabShaft:
-    dw Door_CrabShaft_0                                                  ;8FD1CA;
-    dw Door_CrabShaft_1                                                  ;8FD1CC;
-    dw Door_CrabShaft_2                                                  ;8FD1CE;
+    dw Door_CrabShaft_0
+    dw Door_CrabShaft_1
+    dw Door_CrabShaft_2
 
 RoomScrolls_CrabShaft:
-    db $02,$00,$02,$00,$01,$00,$00,$01                                   ;8FD1D0;
+    db $02,$00,$02,$00,$01,$00,$00,$01
 
 RoomPLM_CrabShaft_0:
-    db $04,$02, $06,$01, $80                                             ;8FD1D8;
+    db $04,$02, $06,$01, $80
 
-RoomHeader_PseudoPlasmaSpark:                                            ;8FD1DD;
-    %RoomHeader(\
-    %room($0D),
-    %area(4),
-    %positions($12, 4),
-    %dimensions(4, 3),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_PseudoPlasmaSpark))
-    %stateChecks(0)
+RoomHeader_PseudoPlasmaSpark:
+    db $0D,$04,$12,$04,$04,$03,$70,$A0,$00
+    dw RoomDoors_PseudoPlasmaSpark
+    dw Use_StatePointer_inX
 
-RoomState_PseudoPlasmaSpark:                                             ;8FD1EA;
-    %StateHeader(\
-    %levelData(LevelData_PseudoPlasmaSpark),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_PseudoPlasmaSpark),
-    %enemyPop(EnemyPopulations_PseudoPlasmaSpark),
-    %enemySet(EnemySets_PseudoPlasmaSpark),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_PseudoPlasmaSpark),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_PseudoPlasmaSpark),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_PseudoPlasmaSpark:
+    dl LevelData_PseudoPlasmaSpark
+    db $0B,$00,$00
+    dw FXHeader_PseudoPlasmaSpark
+    dw EnemyPopulations_PseudoPlasmaSpark
+    dw EnemySets_PseudoPlasmaSpark
+    db $C0,$00
+    dw RoomScrolls_PseudoPlasmaSpark
+    dw $0000
+    dw $0000
+    dw PLMPopulation_PseudoPlasmaSpark
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_PseudoPlasmaSpark:
-    dw Door_PseudoPlasmaSpark_0                                          ;8FD204;
-    dw Door_PseudoPlasmaSpark_1                                          ;8FD206;
-    dw Door_PseudoPlasmaSpark_2                                          ;8FD208;
+    dw Door_PseudoPlasmaSpark_0
+    dw Door_PseudoPlasmaSpark_1
+    dw Door_PseudoPlasmaSpark_2
 
 RoomScrolls_PseudoPlasmaSpark:
-    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$00,$00                   ;8FD20A;
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$00,$00
 
 RoomPLM_PseudoPlasmaSpark_3:
-    db $0A,$02, $80                                                      ;8FD216;
+    db $0A,$02, $80
 
 RoomPLM_PseudoPlasmaSpark_7:
-    db $0A,$00, $80                                                      ;8FD219;
+    db $0A,$00, $80
 
-RoomHeader_CrabHole:                                                     ;8FD21C;
-    %RoomHeader(\
-    %room($0E),
-    %area(4),
-    %positions($10, $10),
-    %dimensions(1, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_CrabHole))
-    %stateChecks(0)
+RoomHeader_CrabHole:
+    db $0E,$04,$10,$10,$01,$02,$70,$A0,$00
+    dw RoomDoors_CrabHole
+    dw Use_StatePointer_inX
 
-RoomState_CrabHole:                                                      ;8FD229;
-    %StateHeader(\
-    %levelData(LevelData_CrabHole),
-    %tileset($0B),
-    %music($1B, 5),
-    %FX(FXHeader_CrabHole),
-    %enemyPop(EnemyPopulations_CrabHole),
-    %enemySet(EnemySets_CrabHole),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_CrabHole),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_CrabHole),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_CrabHole:
+    dl LevelData_CrabHole
+    db $0B,$1B,$05
+    dw FXHeader_CrabHole
+    dw EnemyPopulations_CrabHole
+    dw EnemySets_CrabHole
+    db $00,$00
+    dw RoomScrolls_CrabHole
+    dw $0000
+    dw $0000
+    dw PLMPopulation_CrabHole
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_CrabHole:
-    dw Door_CrabHole_0                                                   ;8FD243;
-    dw Door_CrabHole_1                                                   ;8FD245;
-    dw Door_CrabHole_2                                                   ;8FD247;
-    dw Door_CrabHole_3                                                   ;8FD249;
+    dw Door_CrabHole_0
+    dw Door_CrabHole_1
+    dw Door_CrabHole_2
+    dw Door_CrabHole_3
 
 RoomScrolls_CrabHole:
-    db $01,$00                                                           ;8FD24B;
+    db $01,$00
 
 RoomPLM_CrabHole_0_1:
-    db $00,$02, $01,$01, $80                                             ;8FD24D;
+    db $00,$02, $01,$01, $80
 
-RoomHeader_WestSandHallTunnel:                                           ;8FD252;
-    %RoomHeader(\
-    %room($0F),
-    %area(4),
-    %positions($11, $10),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WestSandHallTunnel))
-    %stateChecks(0)
+RoomHeader_WestSandHallTunnel:
+    db $0F,$04,$11,$10,$01,$01,$70,$A0,$00
+    dw RoomDoors_WestSandHallTunnel
+    dw Use_StatePointer_inX
 
-RoomState_WestSandHallTunnel:                                            ;8FD25F;
-    %StateHeader(\
-    %levelData(LevelData_WestSandHallTunnel),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_WestSandHallTunnel),
-    %enemyPop(EnemyPopulations_WestSandHallTunnel),
-    %enemySet(EnemySets_WestSandHallTunnel),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_WestSandHallTunnel),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WestSandHallTunnel),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_WestSandHallTunnel:
+    dl LevelData_WestSandHallTunnel
+    db $0B,$00,$00
+    dw FXHeader_WestSandHallTunnel
+    dw EnemyPopulations_WestSandHallTunnel
+    dw EnemySets_WestSandHallTunnel
+    db $C0,$00
+    dw RoomScrolls_WestSandHallTunnel
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WestSandHallTunnel
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_WestSandHallTunnel:
-    dw Door_WestSandHallTunnel_0                                         ;8FD279;
-    dw Door_WestSandHallTunnel_1                                         ;8FD27B;
+    dw Door_WestSandHallTunnel_0
+    dw Door_WestSandHallTunnel_1
 
 RoomScrolls_WestSandHallTunnel:
-    db $01                                                               ;8FD27D;
+    db $01
 
-RoomHeader_PlasmaTutorial:                                               ;8FD27E;
-    %RoomHeader(\
-    %room($10),
-    %area(4),
-    %positions($1A, 0),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_PlasmaTutorial))
-    %stateChecks(0)
+RoomHeader_PlasmaTutorial:
+    db $10,$04,$1A,$00,$01,$01,$70,$A0,$00
+    dw RoomDoors_PlasmaTutorial
+    dw Use_StatePointer_inX
 
-RoomState_PlasmaTutorial:                                                ;8FD28B;
-    %StateHeader(\
-    %levelData(LevelData_PlasmaTutorial),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_PlasmaTutorial),
-    %enemyPop(EnemyPopulations_PlasmaTutorial),
-    %enemySet(EnemySets_PlasmaTutorial),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_PlasmaTutorial),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_PlasmaTutorial),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_PlasmaTutorial:
+    dl LevelData_PlasmaTutorial
+    db $0B,$00,$00
+    dw FXHeader_PlasmaTutorial
+    dw EnemyPopulations_PlasmaTutorial
+    dw EnemySets_PlasmaTutorial
+    db $00,$00
+    dw RoomScrolls_PlasmaTutorial
+    dw $0000
+    dw $0000
+    dw PLMPopulation_PlasmaTutorial
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_PlasmaTutorial:
-    dw Door_PlasmaTutorial_0                                             ;8FD2A5;
-    dw Door_PlasmaTutorial_1                                             ;8FD2A7;
+    dw Door_PlasmaTutorial_0
+    dw Door_PlasmaTutorial_1
 
 RoomScrolls_PlasmaTutorial:
-    db $01                                                               ;8FD2A9;
+    db $01
 
-RoomHeader_Plasma:                                                       ;8FD2AA;
-    %RoomHeader(\
-    %room($11),
-    %area(4),
-    %positions($1B, 0),
-    %dimensions(2, 3),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Plasma))
-    %stateChecks(0)
+RoomHeader_Plasma:
+    db $11,$04,$1B,$00,$02,$03,$70,$A0,$00
+    dw RoomDoors_Plasma
+    dw Use_StatePointer_inX
 
-RoomState_Plasma:                                                        ;8FD2B7;
-    %StateHeader(\
-    %levelData(LevelData_Plasma),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_Plasma),
-    %enemyPop(EnemyPopulations_Plasma),
-    %enemySet(EnemySets_Plasma),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_Plasma),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Plasma),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_Plasma:
+    dl LevelData_Plasma
+    db $0B,$00,$00
+    dw FXHeader_Plasma
+    dw EnemyPopulations_Plasma
+    dw EnemySets_Plasma
+    db $C0,$00
+    dw RoomScrolls_Plasma
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Plasma
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_Plasma:
-    dw Door_Plasma_0                                                     ;8FD2D1;
+    dw Door_Plasma_0
 
 RoomScrolls_Plasma:
-    db $02,$02,$02,$02,$01,$01                                           ;8FD2D3;
+    db $02,$02,$02,$02,$01,$01
 
-RoomHeader_ThreadTheNeedle:                                              ;8FD2D9;
-    %RoomHeader(\
-    %room($12),
-    %area(4),
-    %positions($1B, 5),
-    %dimensions(7, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_ThreadTheNeedle))
-    %stateChecks(0)
+RoomHeader_ThreadTheNeedle:
+    db $12,$04,$1B,$05,$07,$01,$70,$A0,$00
+    dw RoomDoors_ThreadTheNeedle
+    dw Use_StatePointer_inX
 
-RoomState_ThreadTheNeedle:                                               ;8FD2E6;
-    %StateHeader(\
-    %levelData(LevelData_ThreadTheNeedle),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_ThreadTheNeedle),
-    %enemyPop(EnemyPopulations_ThreadTheNeedle),
-    %enemySet(EnemySets_ThreadTheNeedle),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_ThreadTheNeedle),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_ThreadTheNeedle),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_ThreadTheNeedle:
+    dl LevelData_ThreadTheNeedle
+    db $0B,$00,$00
+    dw FXHeader_ThreadTheNeedle
+    dw EnemyPopulations_ThreadTheNeedle
+    dw EnemySets_ThreadTheNeedle
+    db $C0,$00
+    dw RoomScrolls_ThreadTheNeedle
+    dw $0000
+    dw $0000
+    dw PLMPopulation_ThreadTheNeedle
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_ThreadTheNeedle:
-    dw Door_ThreadTheNeedle_0                                            ;8FD300;
-    dw Door_ThreadTheNeedle_1                                            ;8FD302;
+    dw Door_ThreadTheNeedle_0
+    dw Door_ThreadTheNeedle_1
 
 RoomScrolls_ThreadTheNeedle:
-    db $01,$01,$01,$01,$01,$01,$01                                       ;8FD304;
+    db $01,$01,$01,$01,$01,$01,$01
 
-RoomHeader_MaridiaElev:                                                  ;8FD30B;
-    %RoomHeader(\
-    %room($13),
-    %area(4),
-    %positions($22, 0),
-    %dimensions(1, 6),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_MaridiaElev))
-    %stateChecks(0)
+RoomHeader_MaridiaElev:
+    db $13,$04,$22,$00,$01,$06,$70,$A0,$00
+    dw RoomDoors_MaridiaElev
+    dw Use_StatePointer_inX
 
-RoomState_MaridiaElev:                                                   ;8FD318;
-    %StateHeader(\
-    %levelData(LevelData_MaridiaElev),
-    %tileset($0B),
-    %music($1B, 5),
-    %FX(FXHeader_MaridiaElev),
-    %enemyPop(EnemyPopulations_MaridiaElev),
-    %enemySet(EnemySets_MaridiaElev),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_MaridiaElev),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_MaridiaElev),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_MaridiaElev:
+    dl LevelData_MaridiaElev
+    db $0B,$1B,$05
+    dw FXHeader_MaridiaElev
+    dw EnemyPopulations_MaridiaElev
+    dw EnemySets_MaridiaElev
+    db $00,$C0
+    dw RoomScrolls_MaridiaElev
+    dw $0000
+    dw $0000
+    dw PLMPopulation_MaridiaElev
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_MaridiaElev:
-    dw Door_MaridiaElev_0                                                ;8FD332;
-    dw Door_MaridiaElev_1                                                ;8FD334;
-    dw Door_MaridiaElev_2                                                ;8FD336;
-    dw Door_MaridiaElev_3_TourianFirst_2                                 ;8FD338;
+    dw Door_MaridiaElev_0
+    dw Door_MaridiaElev_1
+    dw Door_MaridiaElev_2
+    dw Door_MaridiaElev_3_TourianFirst_2
 
 RoomScrolls_MaridiaElev:
-    db $02,$02,$02,$02,$02,$01                                           ;8FD33A;
+    db $02,$02,$02,$02,$02,$01
 
-RoomHeader_PlasmaSpark:                                                  ;8FD340;
-    %RoomHeader(\
-    %room($14),
-    %area(4),
-    %positions($16, 2),
-    %dimensions(4, 6),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_PlasmaSpark))
-    %stateChecks(0)
+RoomHeader_PlasmaSpark:
+    db $14,$04,$16,$02,$04,$06,$70,$A0,$00
+    dw RoomDoors_PlasmaSpark
+    dw Use_StatePointer_inX
 
-RoomState_PlasmaSpark:                                                   ;8FD34D;
-    %StateHeader(\
-    %levelData(LevelData_PlasmaSpark),
-    %tileset($0B),
-    %music(0, 5),
-    %FX(FXHeader_PlasmaSpark),
-    %enemyPop(EnemyPopulations_PlasmaSpark),
-    %enemySet(EnemySets_PlasmaSpark),
-    %layer2Scrolls($E0, 0),
-    %scrollPointer(RoomScrolls_PlasmaSpark),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_PlasmaSpark),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_PlasmaSpark:
+    dl LevelData_PlasmaSpark
+    db $0B,$00,$05
+    dw FXHeader_PlasmaSpark
+    dw EnemyPopulations_PlasmaSpark
+    dw EnemySets_PlasmaSpark
+    db $E0,$00
+    dw RoomScrolls_PlasmaSpark
+    dw $0000
+    dw $0000
+    dw PLMPopulation_PlasmaSpark
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_PlasmaSpark:
-    dw Door_PlasmaSpark_0                                                ;8FD367;
-    dw Door_PlasmaSpark_1                                                ;8FD369;
-    dw Door_PlasmaSpark_2                                                ;8FD36B;
-    dw Door_PlasmaSpark_3                                                ;8FD36D;
+    dw Door_PlasmaSpark_0
+    dw Door_PlasmaSpark_1
+    dw Door_PlasmaSpark_2
+    dw Door_PlasmaSpark_3
 
 RoomScrolls_PlasmaSpark:
-    db $00,$02,$02,$00,$00,$02,$02,$00,$02,$02,$02,$02,$00,$02,$02,$02   ;8FD36F;
-    db $00,$02,$02,$02,$00,$01,$01,$01                                   ;8FD37F;
+    db $00,$02,$02,$00,$00,$02,$02,$00,$02,$02,$02,$02,$00,$02,$02,$02
+    db $00,$02,$02,$02,$00,$01,$01,$01
 
-RoomHeader_Kassiuz:                                                      ;8FD387;
-    %RoomHeader(\
-    %room($15),
-    %area(4),
-    %positions($19, 0),
-    %dimensions(1, 4),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Kassiuz))
-    %stateChecks(0)
+RoomHeader_Kassiuz:
+    db $15,$04,$19,$00,$01,$04,$70,$A0,$00
+    dw RoomDoors_Kassiuz
+    dw Use_StatePointer_inX
 
-RoomState_Kassiuz:                                                       ;8FD394;
-    %StateHeader(\
-    %levelData(LevelData_Kassiuz),
-    %tileset($0B),
-    %music(0, 5),
-    %FX(FXHeader_Kassiuz),
-    %enemyPop(EnemyPopulations_Kassiuz),
-    %enemySet(EnemySets_Kassiuz),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_Kassiuz),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Kassiuz),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_Kassiuz:
+    dl LevelData_Kassiuz
+    db $0B,$00,$05
+    dw FXHeader_Kassiuz
+    dw EnemyPopulations_Kassiuz
+    dw EnemySets_Kassiuz
+    db $00,$C0
+    dw RoomScrolls_Kassiuz
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Kassiuz
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_Kassiuz:
-    dw Door_Kassiuz_0                                                    ;8FD3AE;
-    dw Door_Kassiuz_1                                                    ;8FD3B0;
+    dw Door_Kassiuz_0
+    dw Door_Kassiuz_1
 
 RoomScrolls_Kassiuz:
-    db $02,$02,$02,$02                                                   ;8FD3B2;
+    db $02,$02,$02,$02
 
-RoomHeader_MaridiaMap:                                                   ;8FD3B6;
-    %RoomHeader(\
-    %room($16),
-    %area(4),
-    %positions($11, $11),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_MaridiaMap))
-    %stateChecks(0)
+RoomHeader_MaridiaMap:
+    db $16,$04,$11,$11,$01,$01,$70,$A0,$00
+    dw RoomDoors_MaridiaMap
+    dw Use_StatePointer_inX
 
-RoomState_MaridiaMap:                                                    ;8FD3C3;
-    %StateHeader(\
-    %levelData(LevelData_MapStation_LeftSideDoor),
-    %tileset($15),
-    %music(0, 0),
-    %FX(FXHeader_MaridiaMap),
-    %enemyPop(EnemyPopulations_MaridiaMap),
-    %enemySet(EnemySets_MaridiaMap),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_MaridiaMap),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D1))
+RoomState_MaridiaMap:
+    dl LevelData_MapStation_LeftSideDoor
+    db $15,$00,$00
+    dw FXHeader_MaridiaMap
+    dw EnemyPopulations_MaridiaMap
+    dw EnemySets_MaridiaMap
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_MaridiaMap
+    dw $0000
+    dw RTS_8FC8D1
 
 RoomDoors_MaridiaMap:
-    dw Door_MaridiaMap_0                                                 ;8FD3DD;
+    dw Door_MaridiaMap_0
 
-RoomHeader_ForgottenHighwaySave:                                         ;8FD3DF;
-    %RoomHeader(\
-    %room($17),
-    %area(4),
-    %positions($23, 4),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_ForgottenHighwaySave))
-    %stateChecks(0)
+RoomHeader_ForgottenHighwaySave:
+    db $17,$04,$23,$04,$01,$01,$70,$A0,$00
+    dw RoomDoors_ForgottenHighwaySave
+    dw Use_StatePointer_inX
 
-RoomState_ForgottenHighwaySave:                                          ;8FD3EC;
-    %StateHeader(\
-    %levelData(LevelData_SaveStation_LeftSideDoor),
-    %tileset($19),
-    %music($1B, 5),
-    %FX(FXHeader_ForgottenHighwaySave),
-    %enemyPop(EnemyPopulations_ForgottenHighwaySave),
-    %enemySet(EnemySets_ForgottenHighwaySave),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_ForgottenHighwaySave),
-    %libraryBG(0),
-    %setupASM(0))
+RoomState_ForgottenHighwaySave:
+    dl LevelData_SaveStation_LeftSideDoor
+    db $19,$1B,$05
+    dw FXHeader_ForgottenHighwaySave
+    dw EnemyPopulations_ForgottenHighwaySave
+    dw EnemySets_ForgottenHighwaySave
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_ForgottenHighwaySave
+    dw $0000
+    dw $0000
 
 RoomDoors_ForgottenHighwaySave:
-    dw Door_ForgottenHighwaySave_0                                       ;8FD406;
+    dw Door_ForgottenHighwaySave_0
 
-RoomHeader_Toilet:                                                       ;8FD408;
-    %RoomHeader(\
-    %room($18),
-    %area(4),
-    %positions($16, 5),
-    %dimensions(1, $0A),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Toilet))
-    %stateChecks(0)
+RoomHeader_Toilet:
+    db $18,$04,$16,$05,$01,$0A,$70,$A0,$00
+    dw RoomDoors_Toilet
+    dw Use_StatePointer_inX
 
-RoomState_Toilet:                                                        ;8FD415;
-    %StateHeader(\
-    %levelData(LevelData_Toilet),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_Toilet),
-    %enemyPop(EnemyPopulations_Toilet),
-    %enemySet(EnemySets_Toilet),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(1),
-    %specialXray(0),
-    %mainASM(MainASM_Elevatube),
-    %PLMPop(PLMPopulation_Toilet),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_Toilet:
+    dl LevelData_Toilet
+    db $0C,$00,$00
+    dw FXHeader_Toilet
+    dw EnemyPopulations_Toilet
+    dw EnemySets_Toilet
+    db $00,$00
+    dw $0001
+    dw $0000
+    dw MainASM_Elevatube
+    dw PLMPopulation_Toilet
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_Toilet:
-    dw Door_Toilet_0                                                     ;8FD42F;
-    dw Door_Toilet_1                                                     ;8FD431;
+    dw Door_Toilet_0
+    dw Door_Toilet_1
 
-RoomHeader_BugSandHole:                                                  ;8FD433;
-    %RoomHeader(\
-    %room($19),
-    %area(4),
-    %positions($1A, 5),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_BugSandHole))
-    %stateChecks(0)
+RoomHeader_BugSandHole:
+    db $19,$04,$1A,$05,$01,$01,$70,$A0,$00
+    dw RoomDoors_BugSandHole
+    dw Use_StatePointer_inX
 
-RoomState_BugSandHole:                                                   ;8FD440;
-    %StateHeader(\
-    %levelData(LevelData_BugSandHole),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_BugSandHole),
-    %enemyPop(EnemyPopulations_BugSandHole),
-    %enemySet(EnemySets_BugSandHole),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_BugSandHole),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_BugSandHole),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_BugSandHole:
+    dl LevelData_BugSandHole
+    db $0C,$00,$00
+    dw FXHeader_BugSandHole
+    dw EnemyPopulations_BugSandHole
+    dw EnemySets_BugSandHole
+    db $00,$00
+    dw RoomScrolls_BugSandHole
+    dw $0000
+    dw $0000
+    dw PLMPopulation_BugSandHole
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_BugSandHole:
-    dw Door_BugSandHole_0                                                ;8FD45A;
-    dw Door_BugSandHole_1                                                ;8FD45C;
-    dw Door_BugSandHole_2                                                ;8FD45E;
+    dw Door_BugSandHole_0
+    dw Door_BugSandHole_1
+    dw Door_BugSandHole_2
 
 RoomScrolls_BugSandHole:
-    db $02                                                               ;8FD460;
+    db $02
 
-RoomHeader_WestSandHall:                                                 ;8FD461;
-    %RoomHeader(\
-    %room($1A),
-    %area(4),
-    %positions($12, $10),
-    %dimensions(4, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WestSandHall))
-    %stateChecks(0)
+RoomHeader_WestSandHall:
+    db $1A,$04,$12,$10,$04,$01,$70,$A0,$00
+    dw RoomDoors_WestSandHall
+    dw Use_StatePointer_inX
 
-RoomState_WestSandHall:                                                  ;8FD46E;
-    %StateHeader(\
-    %levelData(LevelData_WestSandHall),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_WestSandHall),
-    %enemyPop(EnemyPopulations_WestSandHall),
-    %enemySet(EnemySets_WestSandHall),
-    %layer2Scrolls($C1, 1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WestSandHall),
-    %libraryBG(LibBG_Maridia_C_GreenWall),
-    %setupASM(RTS_8FC8D2))
+RoomState_WestSandHall:
+    dl LevelData_WestSandHall
+    db $0C,$00,$00
+    dw FXHeader_WestSandHall
+    dw EnemyPopulations_WestSandHall
+    dw EnemySets_WestSandHall
+    db $C1,$01
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WestSandHall
+    dw LibBG_Maridia_C_GreenWall
+    dw RTS_8FC8D2
 
 RoomDoors_WestSandHall:
-    dw Door_WestSandHall_0                                               ;8FD488;
-    dw Door_WestSandHall_1                                               ;8FD48A;
-    dw UNUSED_Door_WestSandHall_2_83A654                                 ;8FD48C;
+    dw Door_WestSandHall_0
+    dw Door_WestSandHall_1
+    dw UNUSED_Door_WestSandHall_2_83A654
 
-RoomHeader_Oasis:                                                        ;8FD48E;
-    %RoomHeader(\
-    %room($1B),
-    %area(4),
-    %positions($16, $0F),
-    %dimensions(1, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Oasis))
-    %stateChecks(0)
+RoomHeader_Oasis:
+    db $1B,$04,$16,$0F,$01,$02,$70,$A0,$00
+    dw RoomDoors_Oasis
+    dw Use_StatePointer_inX
 
-RoomState_Oasis:                                                         ;8FD49B;
-    %StateHeader(\
-    %levelData(LevelData_Oasis),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_Oasis),
-    %enemyPop(EnemyPopulations_Oasis),
-    %enemySet(EnemySets_Oasis),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_Oasis),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Oasis),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_Oasis:
+    dl LevelData_Oasis
+    db $0C,$00,$00
+    dw FXHeader_Oasis
+    dw EnemyPopulations_Oasis
+    dw EnemySets_Oasis
+    db $00,$C0
+    dw RoomScrolls_Oasis
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Oasis
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_Oasis:
-    dw Door_Oasis_0                                                      ;8FD4B5;
-    dw Door_Oasis_1                                                      ;8FD4B7;
-    dw Door_Oasis_2                                                      ;8FD4B9;
+    dw Door_Oasis_0
+    dw Door_Oasis_1
+    dw Door_Oasis_2
 
 RoomScrolls_Oasis:
-    db $00,$01                                                           ;8FD4BB;
+    db $00,$01
 
 RoomPLM_Oasis_0:
-    db $00,$02, $01,$02, $80                                             ;8FD4BD;
+    db $00,$02, $01,$02, $80
 
-RoomHeader_EastSandHall:                                                 ;8FD4C2;
-    %RoomHeader(\
-    %room($1C),
-    %area(4),
-    %positions($17, $10),
-    %dimensions(3, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_EastSandHall))
-    %stateChecks(0)
+RoomHeader_EastSandHall:
+    db $1C,$04,$17,$10,$03,$01,$70,$A0,$00
+    dw RoomDoors_EastSandHall
+    dw Use_StatePointer_inX
 
-RoomState_EastSandHall:                                                  ;8FD4CF;
-    %StateHeader(\
-    %levelData(LevelData_EastSandHall),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_EastSandHall),
-    %enemyPop(EnemyPopulations_EastSandHall),
-    %enemySet(EnemySets_EastSandHall),
-    %layer2Scrolls($C1, 1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_EastSandHall),
-    %libraryBG(LibBG_Maridia_C_GreenWall),
-    %setupASM(RTS_8FC8D2))
+RoomState_EastSandHall:
+    dl LevelData_EastSandHall
+    db $0C,$00,$00
+    dw FXHeader_EastSandHall
+    dw EnemyPopulations_EastSandHall
+    dw EnemySets_EastSandHall
+    db $C1,$01
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_EastSandHall
+    dw LibBG_Maridia_C_GreenWall
+    dw RTS_8FC8D2
 
 RoomDoors_EastSandHall:
-    dw Door_EastSandHall_0                                               ;8FD4E9;
-    dw Door_EastSandHall_1                                               ;8FD4EB;
-    dw UNUSED_Door_EastSandHall_2_83A69C                                 ;8FD4ED;
+    dw Door_EastSandHall_0
+    dw Door_EastSandHall_1
+    dw UNUSED_Door_EastSandHall_2_83A69C
 
-RoomHeader_WestSandHole:                                                 ;8FD4EF;
-    %RoomHeader(\
-    %room($1D),
-    %area(4),
-    %positions($14, $0E),
-    %dimensions(2, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WestSandHole))
-    %stateChecks(0)
+RoomHeader_WestSandHole:
+    db $1D,$04,$14,$0E,$02,$02,$70,$A0,$00
+    dw RoomDoors_WestSandHole
+    dw Use_StatePointer_inX
 
-RoomState_WestSandHole:                                                  ;8FD4FC;
-    %StateHeader(\
-    %levelData(LevelData_WestSandHole),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_WestSandHole),
-    %enemyPop(EnemyPopulations_WestSandHole),
-    %enemySet(EnemySets_WestSandHole),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_WestSandHole),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WestSandHole),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_WestSandHole:
+    dl LevelData_WestSandHole
+    db $0C,$00,$00
+    dw FXHeader_WestSandHole
+    dw EnemyPopulations_WestSandHole
+    dw EnemySets_WestSandHole
+    db $00,$00
+    dw RoomScrolls_WestSandHole
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WestSandHole
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_WestSandHole:
-    dw Door_WestSandHole_0                                               ;8FD516;
-    dw Door_WestSandHole_1                                               ;8FD518;
+    dw Door_WestSandHole_0
+    dw Door_WestSandHole_1
 
 RoomScrolls_WestSandHole:
-    db $02,$02,$02,$02                                                   ;8FD51A;
+    db $02,$02,$02,$02
 
-RoomHeader_EastSandHole:                                                 ;8FD51E;
-    %RoomHeader(\
-    %room($1E),
-    %area(4),
-    %positions($17, $0E),
-    %dimensions(2, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_EastSandHole))
-    %stateChecks(0)
+RoomHeader_EastSandHole:
+    db $1E,$04,$17,$0E,$02,$02,$70,$A0,$00
+    dw RoomDoors_EastSandHole
+    dw Use_StatePointer_inX
 
-RoomState_EastSandHole:                                                  ;8FD52B;
-    %StateHeader(\
-    %levelData(LevelData_EastSandHole),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_EastSandHole),
-    %enemyPop(EnemyPopulations_EastSandHole),
-    %enemySet(EnemySets_EastSandHole),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_EastSandHole),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_EastSandHole),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_EastSandHole:
+    dl LevelData_EastSandHole
+    db $0C,$00,$00
+    dw FXHeader_EastSandHole
+    dw EnemyPopulations_EastSandHole
+    dw EnemySets_EastSandHole
+    db $00,$00
+    dw RoomScrolls_EastSandHole
+    dw $0000
+    dw $0000
+    dw PLMPopulation_EastSandHole
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_EastSandHole:
-    dw Door_EastSandHole_0                                               ;8FD545;
-    dw Door_EastSandHole_1                                               ;8FD547;
+    dw Door_EastSandHole_0
+    dw Door_EastSandHole_1
 
 RoomScrolls_EastSandHole:
-    db $02,$02,$02,$02                                                   ;8FD549;
+    db $02,$02,$02,$02
 
-RoomHeader_WestAqueductQuicksand:                                        ;8FD54D;
-    %RoomHeader(\
-    %room($1F),
-    %area(4),
-    %positions($15, $0C),
-    %dimensions(1, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WestAqueductQuicksand))
-    %stateChecks(0)
+RoomHeader_WestAqueductQuicksand:
+    db $1F,$04,$15,$0C,$01,$02,$70,$A0,$00
+    dw RoomDoors_WestAqueductQuicksand
+    dw Use_StatePointer_inX
 
-RoomState_WestAqueductQuicksand:                                         ;8FD55A;
-    %StateHeader(\
-    %levelData(LevelData_WestAqueductQuicksand),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_EastAqueductQuicksand_WestAqueductQuicksand),
-    %enemyPop(EnemyPopulations_WestAqueductQuicksand),
-    %enemySet(EnemySets_WestAqueductQuicksand),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_WestAqueductQuicksand),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WestAqueductQuicksand),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_WestAqueductQuicksand:
+    dl LevelData_WestAqueductQuicksand
+    db $0C,$00,$00
+    dw FXHeader_EastAqueductQuicksand_WestAqueductQuicksand
+    dw EnemyPopulations_WestAqueductQuicksand
+    dw EnemySets_WestAqueductQuicksand
+    db $00,$00
+    dw RoomScrolls_WestAqueductQuicksand
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WestAqueductQuicksand
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_WestAqueductQuicksand:
-    dw Door_WestAqueductQuicksand_0                                      ;8FD574;
-    dw Door_WestAqueductQuicksand_1                                      ;8FD576;
+    dw Door_WestAqueductQuicksand_0
+    dw Door_WestAqueductQuicksand_1
 
 RoomScrolls_WestAqueductQuicksand:
-    db $02,$02                                                           ;8FD578;
+    db $02,$02
 
-RoomHeader_EastAqueductQuicksand:                                        ;8FD57A;
-    %RoomHeader(\
-    %room($20),
-    %area(4),
-    %positions($17, $0C),
-    %dimensions(1, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_EastAqueductQuicksand))
-    %stateChecks(0)
+RoomHeader_EastAqueductQuicksand:
+    db $20,$04,$17,$0C,$01,$02,$70,$A0,$00
+    dw RoomDoors_EastAqueductQuicksand
+    dw Use_StatePointer_inX
 
-RoomState_EastAqueductQuicksand:                                         ;8FD587;
-    %StateHeader(\
-    %levelData(LevelData_EastAqueductQuicksand),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_EastAqueductQuicksand_WestAqueductQuicksand),
-    %enemyPop(EnemyPopulations_EastAqueductQuicksand),
-    %enemySet(EnemySets_EastAqueductQuicksand),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_EastAqueductQuicksand),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_EastAqueductQuicksand),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_EastAqueductQuicksand:
+    dl LevelData_EastAqueductQuicksand
+    db $0C,$00,$00
+    dw FXHeader_EastAqueductQuicksand_WestAqueductQuicksand
+    dw EnemyPopulations_EastAqueductQuicksand
+    dw EnemySets_EastAqueductQuicksand
+    db $00,$00
+    dw RoomScrolls_EastAqueductQuicksand
+    dw $0000
+    dw $0000
+    dw PLMPopulation_EastAqueductQuicksand
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_EastAqueductQuicksand:
-    dw Door_EastAqueductQuicksand_0                                      ;8FD5A1;
-    dw Door_EastAqueductQuicksand_1                                      ;8FD5A3;
+    dw Door_EastAqueductQuicksand_0
+    dw Door_EastAqueductQuicksand_1
 
 RoomScrolls_EastAqueductQuicksand:
-    db $02,$02                                                           ;8FD5A5;
+    db $02,$02
 
-RoomHeader_Aqueduct:                                                     ;8FD5A7;
-    %RoomHeader(\
-    %room($21),
-    %area(4),
-    %positions($14, 9),
-    %dimensions(6, 3),
-    %scrollers($90, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Aqueduct))
-    %stateChecks(0)
+RoomHeader_Aqueduct:
+    db $21,$04,$14,$09,$06,$03,$90,$A0,$00
+    dw RoomDoors_Aqueduct
+    dw Use_StatePointer_inX
 
-RoomState_Aqueduct:                                                      ;8FD5B4;
-    %StateHeader(\
-    %levelData(LevelData_Aqueduct),
-    %tileset($0C),
-    %music($1B, 5),
-    %FX(FXHeader_Aqueduct),
-    %enemyPop(EnemyPopulations_Aqueduct),
-    %enemySet(EnemySets_Aqueduct),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_Aqueduct),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Aqueduct),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_Aqueduct:
+    dl LevelData_Aqueduct
+    db $0C,$1B,$05
+    dw FXHeader_Aqueduct
+    dw EnemyPopulations_Aqueduct
+    dw EnemySets_Aqueduct
+    db $C0,$00
+    dw RoomScrolls_Aqueduct
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Aqueduct
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_Aqueduct:
-    dw Door_Aqueduct_0                                                   ;8FD5CE;
-    dw Door_Aqueduct_1                                                   ;8FD5D0;
-    dw Door_Aqueduct_2                                                   ;8FD5D2;
-    dw Door_Aqueduct_3                                                   ;8FD5D4;
-    dw Door_Aqueduct_4                                                   ;8FD5D6;
-    dw Door_Aqueduct_5                                                   ;8FD5D8;
+    dw Door_Aqueduct_0
+    dw Door_Aqueduct_1
+    dw Door_Aqueduct_2
+    dw Door_Aqueduct_3
+    dw Door_Aqueduct_4
+    dw Door_Aqueduct_5
 
 RoomScrolls_Aqueduct:
-    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02   ;8FD5DA;
-    db $02,$02                                                           ;8FD5EA;
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02
+    db $02,$02
 
-RoomHeader_Butterfly:                                                    ;8FD5EC;
-    %RoomHeader(\
-    %room($22),
-    %area(4),
-    %positions($1A, 7),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Butterfly))
-    %stateChecks(0)
+RoomHeader_Butterfly:
+    db $22,$04,$1A,$07,$01,$01,$70,$A0,$00
+    dw RoomDoors_Butterfly
+    dw Use_StatePointer_inX
 
-RoomState_Butterfly:                                                     ;8FD5F9;
-    %StateHeader(\
-    %levelData(LevelData_Butterfly),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_Butterfly),
-    %enemyPop(EnemyPopulations_Butterfly),
-    %enemySet(EnemySets_Butterfly),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Butterfly),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_Butterfly:
+    dl LevelData_Butterfly
+    db $0C,$00,$00
+    dw FXHeader_Butterfly
+    dw EnemyPopulations_Butterfly
+    dw EnemySets_Butterfly
+    db $C0,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Butterfly
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_Butterfly:
-    dw Door_Butterfly_0                                                  ;8FD613;
-    dw Door_Butterfly_1                                                  ;8FD615;
+    dw Door_Butterfly_0
+    dw Door_Butterfly_1
 
-RoomHeader_BotwoonHallway:                                               ;8FD617;
-    %RoomHeader(\
-    %room($23),
-    %area(4),
-    %positions($14, 8),
-    %dimensions(4, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_BotwoonHallway))
-    %stateChecks(0)
+RoomHeader_BotwoonHallway:
+    db $23,$04,$14,$08,$04,$01,$70,$A0,$00
+    dw RoomDoors_BotwoonHallway
+    dw Use_StatePointer_inX
 
-RoomState_BotwoonHallway:                                                ;8FD624;
-    %StateHeader(\
-    %levelData(LevelData_BotwoonHallway),
-    %tileset($0C),
-    %music($1B, 5),
-    %FX(FXHeader_BotwoonHallway),
-    %enemyPop(EnemyPopulations_BotwoonHallway),
-    %enemySet(EnemySets_BotwoonHallway),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_BotwoonHallway),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_BotwoonHallway),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_BotwoonHallway:
+    dl LevelData_BotwoonHallway
+    db $0C,$1B,$05
+    dw FXHeader_BotwoonHallway
+    dw EnemyPopulations_BotwoonHallway
+    dw EnemySets_BotwoonHallway
+    db $C0,$00
+    dw RoomScrolls_BotwoonHallway
+    dw $0000
+    dw $0000
+    dw PLMPopulation_BotwoonHallway
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_BotwoonHallway:
-    dw Door_BotwoonHallway_0                                             ;8FD63E;
-    dw Door_BotwoonHallway_1                                             ;8FD640;
+    dw Door_BotwoonHallway_0
+    dw Door_BotwoonHallway_1
 
 RoomScrolls_BotwoonHallway:
-    db $02,$02,$02,$02                                                   ;8FD642;
+    db $02,$02,$02,$02
 
-RoomHeader_Pants:                                                        ;8FD646;
-    %RoomHeader(\
-    %room($24),
-    %area(4),
-    %positions($1A, $0D),
-    %dimensions(2, 4),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Pants))
-    %stateChecks(0)
+RoomHeader_Pants:
+    db $24,$04,$1A,$0D,$02,$04,$70,$A0,$00
+    dw RoomDoors_Pants
+    dw Use_StatePointer_inX
 
-RoomState_Pants:                                                         ;8FD653;
-    %StateHeader(\
-    %levelData(LevelData_Pants),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_Pants),
-    %enemyPop(EnemyPopulations_Pants),
-    %enemySet(EnemySets_Pants),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_Pants),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Pants),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_Pants:
+    dl LevelData_Pants
+    db $0C,$00,$00
+    dw FXHeader_Pants
+    dw EnemyPopulations_Pants
+    dw EnemySets_Pants
+    db $00,$C0
+    dw RoomScrolls_Pants
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Pants
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_Pants:
-    dw Door_Pants_0                                                      ;8FD66D;
-    dw Door_Pants_1                                                      ;8FD66F;
-    dw Door_Pants_2                                                      ;8FD671;
-    dw Door_Pants_3                                                      ;8FD673;
+    dw Door_Pants_0
+    dw Door_Pants_1
+    dw Door_Pants_2
+    dw Door_Pants_3
 
 RoomScrolls_Pants:
-    db $02,$02,$02,$02,$02,$01,$01,$00                                   ;8FD675;
+    db $02,$02,$02,$02,$02,$01,$01,$00
 
 RoomPLM_Pants_0_4:
-    db $02,$02, $03,$00, $04,$02, $05,$00, $06,$01, $07,$00, $80         ;8FD67D;
+    db $02,$02, $03,$00, $04,$02, $05,$00, $06,$01, $07,$00, $80
 
 RoomPLM_Pants_D:
-    db $02,$00, $03,$02, $04,$00, $05,$01, $06,$00, $80                  ;8FD68A;
+    db $02,$00, $03,$02, $04,$00, $05,$01, $06,$00, $80
 
 RoomPLM_Pants_15:
-    db $05,$02, $07,$01, $80                                             ;8FD695;
+    db $05,$02, $07,$01, $80
 
-RoomHeader_EastPants:                                                    ;8FD69A;
-    %RoomHeader(\
-    %room($25),
-    %area(4),
-    %positions($1B, $0E),
-    %dimensions(1, 3),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_EastPants))
-    %stateChecks(0)
+RoomHeader_EastPants:
+    db $25,$04,$1B,$0E,$01,$03,$70,$A0,$00
+    dw RoomDoors_EastPants
+    dw Use_StatePointer_inX
 
-RoomState_EastPants:                                                     ;8FD6A7;
-    %StateHeader(\
-    %levelData(LevelData_EastPants),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_EastPants),
-    %enemyPop(EnemyPopulations_EastPants),
-    %enemySet(EnemySets_EastPants),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_EastPants),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_EastPants),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_EastPants:
+    dl LevelData_EastPants
+    db $0C,$00,$00
+    dw FXHeader_EastPants
+    dw EnemyPopulations_EastPants
+    dw EnemySets_EastPants
+    db $00,$C0
+    dw RoomScrolls_EastPants
+    dw $0000
+    dw $0000
+    dw PLMPopulation_EastPants
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_EastPants:
-    dw Door_EastPants_0                                                  ;8FD6C1;
-    dw Door_EastPants_1                                                  ;8FD6C3;
+    dw Door_EastPants_0
+    dw Door_EastPants_1
 
 RoomScrolls_EastPants:
-    db $02,$00,$01                                                       ;8FD6C5;
+    db $02,$00,$01
 
 RoomPLM_EastPants_0:
-    db $01,$02, $80                                                      ;8FD6C8;
+    db $01,$02, $80
 
 RoomPLM_EastPants_6:
-    db $01,$02, $02,$01, $80                                             ;8FD6CB;
+    db $01,$02, $02,$01, $80
 
-RoomHeader_Springball:                                                   ;8FD6D0;
-    %RoomHeader(\
-    %room($26),
-    %area(4),
-    %positions($20, $0F),
-    %dimensions(2, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Springball))
-    %stateChecks(0)
+RoomHeader_Springball:
+    db $26,$04,$20,$0F,$02,$02,$70,$A0,$00
+    dw RoomDoors_Springball
+    dw Use_StatePointer_inX
 
-RoomState_Springball:                                                    ;8FD6DD;
-    %StateHeader(\
-    %levelData(LevelData_Springball),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_Springball),
-    %enemyPop(EnemyPopulations_Springball),
-    %enemySet(EnemySets_Springball),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_Springball),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Springball),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_Springball:
+    dl LevelData_Springball
+    db $0C,$00,$00
+    dw FXHeader_Springball
+    dw EnemyPopulations_Springball
+    dw EnemySets_Springball
+    db $C0,$00
+    dw RoomScrolls_Springball
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Springball
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_Springball:
-    dw Door_Springball_0                                                 ;8FD6F7;
+    dw Door_Springball_0
 
 RoomScrolls_Springball:
-    db $02,$00,$01,$01                                                   ;8FD6F9;
+    db $02,$00,$01,$01
 
-RoomHeader_BelowBotwoonETank:                                            ;8FD6FD;
-    %RoomHeader(\
-    %room($27),
-    %area(4),
-    %positions($1A, $0A),
-    %dimensions(4, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_BelowBotwoonETank))
-    %stateChecks(0)
+RoomHeader_BelowBotwoonETank:
+    db $27,$04,$1A,$0A,$04,$01,$70,$A0,$00
+    dw RoomDoors_BelowBotwoonETank
+    dw Use_StatePointer_inX
 
-RoomState_BelowBotwoonETank:                                             ;8FD70A;
-    %StateHeader(\
-    %levelData(LevelData_BelowBotwoonETank),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_BelowBotwoonETank),
-    %enemyPop(EnemyPopulations_BelowBotwoonETank),
-    %enemySet(EnemySets_BelowBotwoonETank),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_BelowBotwoonETank),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_BelowBotwoonETank),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_BelowBotwoonETank:
+    dl LevelData_BelowBotwoonETank
+    db $0C,$00,$00
+    dw FXHeader_BelowBotwoonETank
+    dw EnemyPopulations_BelowBotwoonETank
+    dw EnemySets_BelowBotwoonETank
+    db $00,$00
+    dw RoomScrolls_BelowBotwoonETank
+    dw $0000
+    dw $0000
+    dw PLMPopulation_BelowBotwoonETank
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_BelowBotwoonETank:
-    dw Door_BelowBotwoonETank_0                                          ;8FD724;
+    dw Door_BelowBotwoonETank_0
 
 RoomScrolls_BelowBotwoonETank:
-    db $01,$01,$01,$01                                                   ;8FD726;
+    db $01,$01,$01,$01
 
-RoomHeader_Colosseum:                                                    ;8FD72A;
-    %RoomHeader(\
-    %room($28),
-    %area(4),
-    %positions($22, 6),
-    %dimensions(7, 2),
-    %scrollers($90, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Colosseum))
-    %stateChecks(0)
+RoomHeader_Colosseum:
+    db $28,$04,$22,$06,$07,$02,$90,$A0,$00
+    dw RoomDoors_Colosseum
+    dw Use_StatePointer_inX
 
-RoomState_Colosseum:                                                     ;8FD737;
-    %StateHeader(\
-    %levelData(LevelData_Colosseum),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_Colosseum),
-    %enemyPop(EnemyPopulations_Colosseum),
-    %enemySet(EnemySets_Colosseum),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_Colosseum),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Colosseum),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_Colosseum:
+    dl LevelData_Colosseum
+    db $0C,$00,$00
+    dw FXHeader_Colosseum
+    dw EnemyPopulations_Colosseum
+    dw EnemySets_Colosseum
+    db $00,$00
+    dw RoomScrolls_Colosseum
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Colosseum
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_Colosseum:
-    dw Door_Colosseum_0                                                  ;8FD751;
-    dw Door_Colosseum_1                                                  ;8FD753;
-    dw Door_Colosseum_2                                                  ;8FD755;
+    dw Door_Colosseum_0
+    dw Door_Colosseum_1
+    dw Door_Colosseum_2
 
 RoomScrolls_Colosseum:
-    db $02,$02,$02,$02,$02,$02,$02,$01,$01,$01,$01,$01,$01,$01           ;8FD757;
+    db $02,$02,$02,$02,$02,$02,$02,$01,$01,$01,$01,$01,$01,$01
 
-RoomHeader_AqueductSave:                                                 ;8FD765;
-    %RoomHeader(\
-    %room($29),
-    %area(4),
-    %positions($13, $0B),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_AqueductSave))
-    %stateChecks(0)
+RoomHeader_AqueductSave:
+    db $29,$04,$13,$0B,$01,$01,$70,$A0,$00
+    dw RoomDoors_AqueductSave
+    dw Use_StatePointer_inX
 
-RoomState_AqueductSave:                                                  ;8FD772;
-    %StateHeader(\
-    %levelData(LevelData_SaveStation_RightSideDoor),
-    %tileset($19),
-    %music($1B, 5),
-    %FX(FXHeader_AqueductSave),
-    %enemyPop(EnemyPopulations_AqueductSave),
-    %enemySet(EnemySets_AqueductSave),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_AqueductSave),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_AqueductSave),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_AqueductSave:
+    dl LevelData_SaveStation_RightSideDoor
+    db $19,$1B,$05
+    dw FXHeader_AqueductSave
+    dw EnemyPopulations_AqueductSave
+    dw EnemySets_AqueductSave
+    db $00,$00
+    dw RoomScrolls_AqueductSave
+    dw $0000
+    dw $0000
+    dw PLMPopulation_AqueductSave
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_AqueductSave:
-    dw Door_AqueductSave_0                                               ;8FD78C;
+    dw Door_AqueductSave_0
 
 RoomScrolls_AqueductSave:
-    db $01                                                               ;8FD78E;
+    db $01
 
-RoomHeader_ThePrecious:                                                  ;8FD78F;
-    %RoomHeader(\
-    %room($2A),
-    %area(4),
-    %positions($29, 7),
-    %dimensions(2, 3),
-    %scrollers($90, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_ThePrecious))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_ThePrecious_1))
+RoomHeader_ThePrecious:
+    db $2A,$04,$29,$07,$02,$03,$90,$A0,$00
+    dw RoomDoors_ThePrecious
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_ThePrecious_1
+    dw Use_StatePointer_inX
 
-RoomState_ThePrecious_0:                                                 ;8FD7A1;
-    %StateHeader(\
-    %levelData(LevelData_ThePrecious),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_ThePrecious_State0_1),
-    %enemyPop(EnemyPopulations_ThePrecious),
-    %enemySet(EnemySets_ThePrecious),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_ThePrecious),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_ThePrecious_State0_1),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_ThePrecious_0:
+    dl LevelData_ThePrecious
+    db $0C,$00,$00
+    dw FXHeader_ThePrecious_State0_1
+    dw EnemyPopulations_ThePrecious
+    dw EnemySets_ThePrecious
+    db $00,$C0
+    dw RoomScrolls_ThePrecious
+    dw $0000
+    dw $0000
+    dw PLMPopulation_ThePrecious_State0_1
+    dw $0000
+    dw RTS_8FC8D2
 
-RoomState_ThePrecious_1:                                                 ;8FD7BB;
-    %StateHeader(\
-    %levelData(LevelData_ThePrecious),
-    %tileset($0C),
-    %music($1B, 5),
-    %FX(FXHeader_ThePrecious_State0_1),
-    %enemyPop(EnemyPopulations_ThePrecious),
-    %enemySet(EnemySets_ThePrecious),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_ThePrecious),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_ThePrecious_State0_1),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_ThePrecious_1:
+    dl LevelData_ThePrecious
+    db $0C,$1B,$05
+    dw FXHeader_ThePrecious_State0_1
+    dw EnemyPopulations_ThePrecious
+    dw EnemySets_ThePrecious
+    db $00,$C0
+    dw RoomScrolls_ThePrecious
+    dw $0000
+    dw $0000
+    dw PLMPopulation_ThePrecious_State0_1
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_ThePrecious:
-    dw Door_ThePrecious_0                                                ;8FD7D5;
-    dw Door_ThePrecious_1                                                ;8FD7D7;
+    dw Door_ThePrecious_0
+    dw Door_ThePrecious_1
 
 RoomScrolls_ThePrecious:
-    db $01,$01,$00,$00,$01,$00                                           ;8FD7D9;
+    db $01,$01,$00,$00,$01,$00
 
 RoomPLM_ThePrecious_0:
-    db $00,$02, $02,$02, $80                                             ;8FD7DF;
+    db $00,$02, $02,$02, $80
 
-RoomHeader_BotwoonETank:                                                 ;8FD7E4;
-    %RoomHeader(\
-    %room($2B),
-    %area(4),
-    %positions($1A, 8),
-    %dimensions(7, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_BotwoonETank))
-    %stateChecks(0)
+RoomHeader_BotwoonETank:
+    db $2B,$04,$1A,$08,$07,$01,$70,$A0,$00
+    dw RoomDoors_BotwoonETank
+    dw Use_StatePointer_inX
 
-RoomState_BotwoonETank:                                                  ;8FD7F1;
-    %StateHeader(\
-    %levelData(LevelData_BotwoonETank),
-    %tileset($0C),
-    %music($1B, 5),
-    %FX(FXHeader_BotwoonETank),
-    %enemyPop(EnemyPopulations_BotwoonETank),
-    %enemySet(EnemySets_BotwoonETank),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_BotwoonETank),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_BotwoonETank),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_BotwoonETank:
+    dl LevelData_BotwoonETank
+    db $0C,$1B,$05
+    dw FXHeader_BotwoonETank
+    dw EnemyPopulations_BotwoonETank
+    dw EnemySets_BotwoonETank
+    db $C0,$00
+    dw RoomScrolls_BotwoonETank
+    dw $0000
+    dw $0000
+    dw PLMPopulation_BotwoonETank
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_BotwoonETank:
-    dw Door_BotwoonETank_0                                               ;8FD80B;
-    dw Door_BotwoonETank_1                                               ;8FD80D;
-    dw Door_BotwoonETank_2                                               ;8FD80F;
-    dw Door_BotwoonETank_3                                               ;8FD811;
+    dw Door_BotwoonETank_0
+    dw Door_BotwoonETank_1
+    dw Door_BotwoonETank_2
+    dw Door_BotwoonETank_3
 
 RoomScrolls_BotwoonETank:
-    db $02,$02,$02,$02,$02,$02,$02                                       ;8FD813;
+    db $02,$02,$02,$02,$02,$02,$02
 
-RoomHeader_DraygonSave:                                                  ;8FD81A;
-    %RoomHeader(\
-    %room($2C),
-    %area(4),
-    %positions($29, 6),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_DraygonSave))
-    %stateChecks(0)
+RoomHeader_DraygonSave:
+    db $2C,$04,$29,$06,$01,$01,$70,$A0,$00
+    dw RoomDoors_DraygonSave
+    dw Use_StatePointer_inX
 
-RoomState_DraygonSave:                                                   ;8FD827;
-    %StateHeader(\
-    %levelData(LevelData_SaveStation_BothDoors),
-    %tileset($19),
-    %music($1B, 5),
-    %FX(FXHeader_DraygonSave),
-    %enemyPop(EnemyPopulations_DraygonSave),
-    %enemySet(EnemySets_DraygonSave),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_DraygonSave),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_DraygonSave:
+    dl LevelData_SaveStation_BothDoors
+    db $19,$1B,$05
+    dw FXHeader_DraygonSave
+    dw EnemyPopulations_DraygonSave
+    dw EnemySets_DraygonSave
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_DraygonSave
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_DraygonSave:
-    dw Door_DraygonSave_0                                                ;8FD841;
-    dw Door_DraygonSave_1                                                ;8FD843;
+    dw Door_DraygonSave_0
+    dw Door_DraygonSave_1
 
-RoomHeader_MaridiaMissileRefill:                                         ;8FD845;
-    %RoomHeader(\
-    %room($2D),
-    %area(4),
-    %positions($26, 8),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_MaridiaMissileRefill))
-    %stateChecks(0)
+RoomHeader_MaridiaMissileRefill:
+    db $2D,$04,$26,$08,$01,$01,$70,$A0,$00
+    dw RoomDoors_MaridiaMissileRefill
+    dw Use_StatePointer_inX
 
-RoomState_MaridiaMissileRefill:                                          ;8FD852;
-    %StateHeader(\
-    %levelData(LevelData_MissileRefill_LeftSideDoor),
-    %tileset($17),
-    %music(0, 0),
-    %FX(FXHeader_MaridiaMissileRefill),
-    %enemyPop(EnemyPopulations_MaridiaMissileRefill),
-    %enemySet(EnemySets_MaridiaMissileRefill),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_MaridiaMissileRefill),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_MaridiaMissileRefill:
+    dl LevelData_MissileRefill_LeftSideDoor
+    db $17,$00,$00
+    dw FXHeader_MaridiaMissileRefill
+    dw EnemyPopulations_MaridiaMissileRefill
+    dw EnemySets_MaridiaMissileRefill
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw $0000
+    dw PLMPopulation_MaridiaMissileRefill
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_MaridiaMissileRefill:
-    dw Door_MaridiaMissileRefill_0                                       ;8FD86C;
+    dw Door_MaridiaMissileRefill_0
 
-RoomHeader_PlasmaBeachQuicksand:                                         ;8FD86E;
-    %RoomHeader(\
-    %room($2E),
-    %area(4),
-    %positions($1A, 6),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_PlasmaBeachQuicksand))
-    %stateChecks(0)
+RoomHeader_PlasmaBeachQuicksand:
+    db $2E,$04,$1A,$06,$01,$01,$70,$A0,$00
+    dw RoomDoors_PlasmaBeachQuicksand
+    dw Use_StatePointer_inX
 
-RoomState_PlasmaBeachQuicksand:                                          ;8FD87B;
-    %StateHeader(\
-    %levelData(LevelData_PlasmaBeachQuicksand),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_PlasmaBeachQuicksand_BotwoonQuicksand),
-    %enemyPop(EnemyPopulations_PlasmaBeachQuicksand),
-    %enemySet(EnemySets_PlasmaBeachQuicksand),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_PlasmaBeachQuicksand),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_PlasmaBeachQuicksand),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_PlasmaBeachQuicksand:
+    dl LevelData_PlasmaBeachQuicksand
+    db $0C,$00,$00
+    dw FXHeader_PlasmaBeachQuicksand_BotwoonQuicksand
+    dw EnemyPopulations_PlasmaBeachQuicksand
+    dw EnemySets_PlasmaBeachQuicksand
+    db $00,$00
+    dw RoomScrolls_PlasmaBeachQuicksand
+    dw $0000
+    dw $0000
+    dw PLMPopulation_PlasmaBeachQuicksand
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_PlasmaBeachQuicksand:
-    dw Door_PlasmaBeachQuicksand_0                                       ;8FD895;
+    dw Door_PlasmaBeachQuicksand_0
 
 RoomScrolls_PlasmaBeachQuicksand:
-    db $02                                                               ;8FD897;
+    db $02
 
-RoomHeader_BotwoonQuicksand:                                             ;8FD898;
-    %RoomHeader(\
-    %room($2F),
-    %area(4),
-    %positions($1C, 9),
-    %dimensions(2, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_BotwoonQuicksand))
-    %stateChecks(0)
+RoomHeader_BotwoonQuicksand:
+    db $2F,$04,$1C,$09,$02,$01,$70,$A0,$00
+    dw RoomDoors_BotwoonQuicksand
+    dw Use_StatePointer_inX
 
-RoomState_BotwoonQuicksand:                                              ;8FD8A5;
-    %StateHeader(\
-    %levelData(LevelData_BotwoonQuicksand),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_PlasmaBeachQuicksand_BotwoonQuicksand),
-    %enemyPop(EnemyPopulations_BotwoonQuicksand),
-    %enemySet(EnemySets_BotwoonQuicksand),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_BotwoonQuicksand),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_BotwoonQuicksand),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8D2))
+RoomState_BotwoonQuicksand:
+    dl LevelData_BotwoonQuicksand
+    db $0C,$00,$00
+    dw FXHeader_PlasmaBeachQuicksand_BotwoonQuicksand
+    dw EnemyPopulations_BotwoonQuicksand
+    dw EnemySets_BotwoonQuicksand
+    db $00,$00
+    dw RoomScrolls_BotwoonQuicksand
+    dw $0000
+    dw $0000
+    dw PLMPopulation_BotwoonQuicksand
+    dw $0000
+    dw RTS_8FC8D2
 
 RoomDoors_BotwoonQuicksand:
-    dw Door_BotwoonQuicksand_0                                           ;8FD8BF;
-    dw Door_BotwoonQuicksand_1                                           ;8FD8C1;
+    dw Door_BotwoonQuicksand_0
+    dw Door_BotwoonQuicksand_1
 
 RoomScrolls_BotwoonQuicksand:
-    db $02,$02                                                           ;8FD8C3;
+    db $02,$02
 
-RoomHeader_Shaktool:                                                     ;8FD8C5;
-    %RoomHeader(\
-    %room($30),
-    %area(4),
-    %positions($1C, $0F),
-    %dimensions(4, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Shaktool))
-    %stateChecks(1,
-    %stateCheckEventSet($0D, RoomState_Shaktool_1))
+RoomHeader_Shaktool:
+    db $30,$04,$1C,$0F,$04,$01,$70,$A0,$00
+    dw RoomDoors_Shaktool
+    dw RoomStateCheck_EventHasBeenSet : db $0D
+    dw RoomState_Shaktool_1
+    dw Use_StatePointer_inX
 
-RoomState_Shaktool_0:                                                    ;8FD8D7;
-    %StateHeader(\
-    %levelData(LevelData_Shaktool_State0),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_Shaktool_State0_1),
-    %enemyPop(EnemyPopulations_Shaktool),
-    %enemySet(EnemySets_Shaktool),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_Shaktool),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Shaktool_State0_1),
-    %libraryBG(0),
-    %setupASM(SetupASM_SetupShaktoolsRoomPLM))
+RoomState_Shaktool_0:
+    dl LevelData_Shaktool_State0
+    db $0C,$00,$00
+    dw FXHeader_Shaktool_State0_1
+    dw EnemyPopulations_Shaktool
+    dw EnemySets_Shaktool
+    db $C0,$00
+    dw RoomScrolls_Shaktool
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Shaktool_State0_1
+    dw $0000
+    dw SetupASM_SetupShaktoolsRoomPLM
 
-RoomState_Shaktool_1:                                                    ;8FD8F1;
-    %StateHeader(\
-    %levelData(LevelData_Shaktool_State1),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_Shaktool_State0_1),
-    %enemyPop(EnemyPopulations_Shaktool),
-    %enemySet(EnemySets_Shaktool),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(RoomScrolls_Shaktool),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Shaktool_State0_1),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8DC))
+RoomState_Shaktool_1:
+    dl LevelData_Shaktool_State1
+    db $0C,$00,$00
+    dw FXHeader_Shaktool_State0_1
+    dw EnemyPopulations_Shaktool
+    dw EnemySets_Shaktool
+    db $C0,$00
+    dw RoomScrolls_Shaktool
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Shaktool_State0_1
+    dw $0000
+    dw RTS_8FC8DC
 
 RoomDoors_Shaktool:
-    dw Door_Shaktool_0                                                   ;8FD90B;
-    dw Door_Shaktool_1                                                   ;8FD90D;
+    dw Door_Shaktool_0
+    dw Door_Shaktool_1
 
 RoomScrolls_Shaktool:
-    db $01,$01,$01,$01                                                   ;8FD90F;
+    db $01,$01,$01,$01
 
-RoomHeader_HalfieClimb:                                                  ;8FD913;
-    %RoomHeader(\
-    %room($31),
-    %area(4),
-    %positions($21, 6),
-    %dimensions(5, 3),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_HalfieClimb))
-    %stateChecks(0)
+RoomHeader_HalfieClimb:
+    db $31,$04,$21,$06,$05,$03,$70,$A0,$00
+    dw RoomDoors_HalfieClimb
+    dw Use_StatePointer_inX
 
-RoomState_HalfieClimb:                                                   ;8FD920;
-    %StateHeader(\
-    %levelData(LevelData_HalfieClimb),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_HalfieClimb),
-    %enemyPop(EnemyPopulations_HalfieClimb),
-    %enemySet(EnemySets_HalfieClimb),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_HalfieClimb),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_HalfieClimb),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8DC))
+RoomState_HalfieClimb:
+    dl LevelData_HalfieClimb
+    db $0C,$00,$00
+    dw FXHeader_HalfieClimb
+    dw EnemyPopulations_HalfieClimb
+    dw EnemySets_HalfieClimb
+    db $00,$00
+    dw RoomScrolls_HalfieClimb
+    dw $0000
+    dw $0000
+    dw PLMPopulation_HalfieClimb
+    dw $0000
+    dw RTS_8FC8DC
 
 RoomDoors_HalfieClimb:
-    dw Door_HalfieClimb_0                                                ;8FD93A;
-    dw Door_HalfieClimb_1                                                ;8FD93C;
-    dw Door_HalfieClimb_2                                                ;8FD93E;
-    dw Door_HalfieClimb_3                                                ;8FD940;
+    dw Door_HalfieClimb_0
+    dw Door_HalfieClimb_1
+    dw Door_HalfieClimb_2
+    dw Door_HalfieClimb_3
 
 RoomScrolls_HalfieClimb:
-    db $02,$00,$00,$00,$00,$02,$00,$00,$00,$00,$01,$00,$01,$01,$01       ;8FD942;
+    db $02,$00,$00,$00,$00,$02,$00,$00,$00,$00,$01,$00,$01,$01,$01
 
 RoomPLM_HalfieClimb_0:
-    db $05,$00, $0B,$01, $80                                             ;8FD951;
+    db $05,$00, $0B,$01, $80
 
 RoomPLM_HalfieClimb_1:
-    db $05,$01, $0B,$00, $80                                             ;8FD956;
+    db $05,$01, $0B,$00, $80
 
 RoomPLM_HalfieClimb_5:
-    db $0A,$01, $80                                                      ;8FD95B;
+    db $0A,$01, $80
 
-RoomHeader_Botwoon:                                                      ;8FD95E;
-    %RoomHeader(\
-    %room($32),
-    %area(4),
-    %positions($18, 8),
-    %dimensions(2, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Botwoon))
-    %stateChecks(1,
-    %stateCheckBossDead(2, RoomState_Botwoon_1))
+RoomHeader_Botwoon:
+    db $32,$04,$18,$08,$02,$01,$70,$A0,$00
+    dw RoomDoors_Botwoon
+    dw RoomStateCheck_BossIsDead : db $02
+    dw RoomState_Botwoon_1
+    dw Use_StatePointer_inX
 
-RoomState_Botwoon_0:                                                     ;8FD970;
-    %StateHeader(\
-    %levelData(LevelData_Botwoon),
-    %tileset($0C),
-    %music($2A, 5),
-    %FX(FXHeader_Botwoon_State0_1),
-    %enemyPop(EnemyPopulations_Botwoon),
-    %enemySet(EnemySets_Botwoon),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_Botwoon),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Botwoon_State0_1),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8DC))
+RoomState_Botwoon_0:
+    dl LevelData_Botwoon
+    db $0C,$2A,$05
+    dw FXHeader_Botwoon_State0_1
+    dw EnemyPopulations_Botwoon
+    dw EnemySets_Botwoon
+    db $00,$00
+    dw RoomScrolls_Botwoon
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Botwoon_State0_1
+    dw $0000
+    dw RTS_8FC8DC
 
-RoomState_Botwoon_1:                                                     ;8FD98A;
-    %StateHeader(\
-    %levelData(LevelData_Botwoon),
-    %tileset($0C),
-    %music(0, 3),
-    %FX(FXHeader_Botwoon_State0_1),
-    %enemyPop(EnemyPopulations_Botwoon),
-    %enemySet(EnemySets_Botwoon),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_Botwoon),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Botwoon_State0_1),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8DC))
+RoomState_Botwoon_1:
+    dl LevelData_Botwoon
+    db $0C,$00,$03
+    dw FXHeader_Botwoon_State0_1
+    dw EnemyPopulations_Botwoon
+    dw EnemySets_Botwoon
+    db $00,$00
+    dw RoomScrolls_Botwoon
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Botwoon_State0_1
+    dw $0000
+    dw RTS_8FC8DC
 
 RoomDoors_Botwoon:
-    dw Door_Botwoon_0                                                    ;8FD9A4;
-    dw Door_Botwoon_1                                                    ;8FD9A6;
+    dw Door_Botwoon_0
+    dw Door_Botwoon_1
 
 RoomScrolls_Botwoon:
-    db $01,$00                                                           ;8FD9A8;
+    db $01,$00
 
-RoomHeader_SpaceJump:                                                    ;8FD9AA;
-    %RoomHeader(\
-    %room($33),
-    %area(4),
-    %positions($26, $0A),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_SpaceJump))
-    %stateChecks(0)
+RoomHeader_SpaceJump:
+    db $33,$04,$26,$0A,$01,$01,$70,$A0,$00
+    dw RoomDoors_SpaceJump
+    dw Use_StatePointer_inX
 
-RoomState_SpaceJump:                                                     ;8FD9B7;
-    %StateHeader(\
-    %levelData(LevelData_SpaceJump),
-    %tileset($0C),
-    %music(0, 3),
-    %FX(FXHeader_SpaceJump),
-    %enemyPop(EnemyPopulations_SpaceJump),
-    %enemySet(EnemySets_SpaceJump),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_SpaceJump),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_SpaceJump),
-    %libraryBG(0),
-    %setupASM(RTS_8FC8DC))
+RoomState_SpaceJump:
+    dl LevelData_SpaceJump
+    db $0C,$00,$03
+    dw FXHeader_SpaceJump
+    dw EnemyPopulations_SpaceJump
+    dw EnemySets_SpaceJump
+    db $00,$00
+    dw RoomScrolls_SpaceJump
+    dw $0000
+    dw $0000
+    dw PLMPopulation_SpaceJump
+    dw $0000
+    dw RTS_8FC8DC
 
 RoomDoors_SpaceJump:
-    dw Door_SpaceJump_0                                                  ;8FD9D1;
+    dw Door_SpaceJump_0
 
 RoomScrolls_SpaceJump:
-    db $01                                                               ;8FD9D3;
+    db $01
 
-RoomHeader_MaridiaEnergyRefill:                                          ;8FD9D4;
-    %RoomHeader(\
-    %room($34),
-    %area(4),
-    %positions($2A, 6),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_MaridiaEnergyRefill))
-    %stateChecks(0)
+RoomHeader_MaridiaEnergyRefill:
+    db $34,$04,$2A,$06,$01,$01,$70,$A0,$00
+    dw RoomDoors_MaridiaEnergyRefill
+    dw Use_StatePointer_inX
 
-RoomState_MaridiaEnergyRefill:                                           ;8FD9E1;
-    %StateHeader(\
-    %levelData(LevelData_EnergyRefill_LeftSideDoor),
-    %tileset($17),
-    %music(0, 0),
-    %FX(FXHeader_MaridiaEnergyRefill),
-    %enemyPop(EnemyPopulations_MaridiaEnergyRefill),
-    %enemySet(EnemySets_MaridiaEnergyRefill),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_MaridiaEnergyRefill),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_MaridiaEnergyRefill),
-    %libraryBG(0),
-    %setupASM(0))
+RoomState_MaridiaEnergyRefill:
+    dl LevelData_EnergyRefill_LeftSideDoor
+    db $17,$00,$00
+    dw FXHeader_MaridiaEnergyRefill
+    dw EnemyPopulations_MaridiaEnergyRefill
+    dw EnemySets_MaridiaEnergyRefill
+    db $00,$00
+    dw RoomScrolls_MaridiaEnergyRefill
+    dw $0000
+    dw $0000
+    dw PLMPopulation_MaridiaEnergyRefill
+    dw $0000
+    dw $0000
 
 RoomDoors_MaridiaEnergyRefill:
-    dw Door_MaridiaEnergyRefill_0                                        ;8FD9FB;
+    dw Door_MaridiaEnergyRefill_0
 
 RoomScrolls_MaridiaEnergyRefill:
-    db $01                                                               ;8FD9FD;
+    db $01
 
-RoomHeader_WestCactusAlley:                                              ;8FD9FE;
-    %RoomHeader(\
-    %room($35),
-    %area(4),
-    %positions($1B, 6),
-    %dimensions(1, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_WestCactusAlley))
-    %stateChecks(0)
+RoomHeader_WestCactusAlley:
+    db $35,$04,$1B,$06,$01,$02,$70,$A0,$00
+    dw RoomDoors_WestCactusAlley
+    dw Use_StatePointer_inX
 
-RoomState_WestCactusAlley:                                               ;8FDA0B;
-    %StateHeader(\
-    %levelData(LevelData_WestCactusAlley),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_WestCactusAlley),
-    %enemyPop(EnemyPopulations_WestCactusAlley),
-    %enemySet(EnemySets_WestCactusAlley),
-    %layer2Scrolls(0, $C0),
-    %scrollPointer(RoomScrolls_WestCactusAlley),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_WestCactusAlley),
-    %libraryBG(0),
-    %setupASM(0))
+RoomState_WestCactusAlley:
+    dl LevelData_WestCactusAlley
+    db $0C,$00,$00
+    dw FXHeader_WestCactusAlley
+    dw EnemyPopulations_WestCactusAlley
+    dw EnemySets_WestCactusAlley
+    db $00,$C0
+    dw RoomScrolls_WestCactusAlley
+    dw $0000
+    dw $0000
+    dw PLMPopulation_WestCactusAlley
+    dw $0000
+    dw $0000
 
 RoomDoors_WestCactusAlley:
-    dw Door_WestCactusAlley_0                                            ;8FDA25;
-    dw Door_WestCactusAlley_1                                            ;8FDA27;
+    dw Door_WestCactusAlley_0
+    dw Door_WestCactusAlley_1
 
 RoomScrolls_WestCactusAlley:
-    db $02,$01                                                           ;8FDA29;
+    db $02,$01
 
-RoomHeader_EastCactusAlley:                                              ;8FDA2B;
-    %RoomHeader(\
-    %room($36),
-    %area(4),
-    %positions($1C, 6),
-    %dimensions(5, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_EastCactusAlley))
-    %stateChecks(0)
+RoomHeader_EastCactusAlley:
+    db $36,$04,$1C,$06,$05,$02,$70,$A0,$00
+    dw RoomDoors_EastCactusAlley
+    dw Use_StatePointer_inX
 
-RoomState_EastCactusAlley:                                               ;8FDA38;
-    %StateHeader(\
-    %levelData(LevelData_EastCactusAlley),
-    %tileset($0C),
-    %music(0, 0),
-    %FX(FXHeader_EastCactusAlley),
-    %enemyPop(EnemyPopulations_EastCactusAlley),
-    %enemySet(EnemySets_EastCactusAlley),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_EastCactusAlley),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_EastCactusAlley),
-    %libraryBG(0),
-    %setupASM(0))
+RoomState_EastCactusAlley:
+    dl LevelData_EastCactusAlley
+    db $0C,$00,$00
+    dw FXHeader_EastCactusAlley
+    dw EnemyPopulations_EastCactusAlley
+    dw EnemySets_EastCactusAlley
+    db $00,$00
+    dw RoomScrolls_EastCactusAlley
+    dw $0000
+    dw $0000
+    dw PLMPopulation_EastCactusAlley
+    dw $0000
+    dw $0000
 
 RoomDoors_EastCactusAlley:
-    dw Door_EastCactusAlley_0                                            ;8FDA52;
-    dw Door_EastCactusAlley_1                                            ;8FDA54;
+    dw Door_EastCactusAlley_0
+    dw Door_EastCactusAlley_1
 
 RoomScrolls_EastCactusAlley:
-    db $02,$02,$02,$02,$02,$01,$01,$01,$01,$01                           ;8FDA56;
+    db $02,$02,$02,$02,$02,$01,$01,$01,$01,$01
 
-RoomHeader_Draygon:                                                      ;8FDA60;
-    %RoomHeader(\
-    %room($37),
-    %area(4),
-    %positions($27, 9),
-    %dimensions(2, 2),
-    %scrollers($70, $A0),
-    %CRE(1),
-    %doorList(RoomDoors_Draygon))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_Draygon_1))
+RoomHeader_Draygon:
+    db $37,$04,$27,$09,$02,$02,$70,$A0,$01
+    dw RoomDoors_Draygon
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_Draygon_1
+    dw Use_StatePointer_inX
 
-RoomState_Draygon_0:                                                     ;8FDA72;
-    %StateHeader(\
-    %levelData(LevelData_Draygon),
-    %tileset($1C),
-    %music($24, 5),
-    %FX(FXHeader_Draygon_State0_1),
-    %enemyPop(EnemyPopulations_Draygon_0),
-    %enemySet(EnemySets_Draygon_0),
-    %layer2Scrolls(1, 1),
-    %scrollPointer(RoomScrolls_Draygon),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Draygon_State0_1),
-    %libraryBG(LibBG_Draygon_State0),
-    %setupASM(SetupASM_SetPausingCodeForDraygon))
+RoomState_Draygon_0:
+    dl LevelData_Draygon
+    db $1C,$24,$05
+    dw FXHeader_Draygon_State0_1
+    dw EnemyPopulations_Draygon_0
+    dw EnemySets_Draygon_0
+    db $01,$01
+    dw RoomScrolls_Draygon
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Draygon_State0_1
+    dw LibBG_Draygon_State0
+    dw SetupASM_SetPausingCodeForDraygon
 
-RoomState_Draygon_1:                                                     ;8FDA8C;
-    %StateHeader(\
-    %levelData(LevelData_Draygon),
-    %tileset($1C),
-    %music(0, 3),
-    %FX(FXHeader_Draygon_State0_1),
-    %enemyPop(EnemyPopulations_Draygon_State1_MotherBrain_State2),
-    %enemySet(EnemySets_Draygon_1_MotherBrain_2),
-    %layer2Scrolls(1, 1),
-    %scrollPointer(RoomScrolls_Draygon),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Draygon_State0_1),
-    %libraryBG(LibBG_Phantoon_Draygon_State1),
-    %setupASM(SetupASM_SetPausingCodeForDraygon))
+RoomState_Draygon_1:
+    dl LevelData_Draygon
+    db $1C,$00,$03
+    dw FXHeader_Draygon_State0_1
+    dw EnemyPopulations_Draygon_State1_MotherBrain_State2
+    dw EnemySets_Draygon_1_MotherBrain_2
+    db $01,$01
+    dw RoomScrolls_Draygon
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Draygon_State0_1
+    dw LibBG_Phantoon_Draygon_State1
+    dw SetupASM_SetPausingCodeForDraygon
 
 RoomDoors_Draygon:
-    dw Door_Draygon_0                                                    ;8FDAA6;
-    dw Door_Draygon_1                                                    ;8FDAA8;
+    dw Door_Draygon_0
+    dw Door_Draygon_1
 
 RoomScrolls_Draygon:
-    db $02,$02,$01,$01                                                   ;8FDAAA;
+    db $02,$02,$01,$01
 
-RoomHeader_TourianFirst:                                                 ;8FDAAE;
-    %RoomHeader(\
-    %room(0),
-    %area(5),
-    %positions($14, 9),
-    %dimensions(1, 4),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_TourianFirst))
-    %stateChecks(0)
+RoomHeader_TourianFirst:
+    db $00,$05,$14,$09,$01,$04,$70,$A0,$00
+    dw RoomDoors_TourianFirst
+    dw Use_StatePointer_inX
 
-RoomState_TourianFirst:                                                  ;8FDABB;
-    %StateHeader(\
-    %levelData(LevelData_TourianFirst),
-    %tileset($0D),
-    %music($1E, 5),
-    %FX(FXHeader_TourianFirst),
-    %enemyPop(EnemyPopulations_TourianFirst),
-    %enemySet(EnemySets_TourianFirst),
-    %layer2Scrolls(1, $C1),
-    %scrollPointer(RoomScrolls_TourianFirst),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_TourianFirst),
-    %libraryBG(LibBG_Tourian_D_MechanicalRoom),
-    %setupASM(SetupASM_SetCollectedMap))
+RoomState_TourianFirst:
+    dl LevelData_TourianFirst
+    db $0D,$1E,$05
+    dw FXHeader_TourianFirst
+    dw EnemyPopulations_TourianFirst
+    dw EnemySets_TourianFirst
+    db $01,$C1
+    dw RoomScrolls_TourianFirst
+    dw $0000
+    dw $0000
+    dw PLMPopulation_TourianFirst
+    dw LibBG_Tourian_D_MechanicalRoom
+    dw SetupASM_SetCollectedMap
 
 RoomDoors_TourianFirst:
-    dw Door_TourianFirst_0                                               ;8FDAD5;
-    dw Door_TourianFirst_1                                               ;8FDAD7;
-    dw Door_MaridiaElev_3_TourianFirst_2                                 ;8FDAD9;
-    dw Door_TourianFirst_3                                               ;8FDADB;
+    dw Door_TourianFirst_0
+    dw Door_TourianFirst_1
+    dw Door_MaridiaElev_3_TourianFirst_2
+    dw Door_TourianFirst_3
 
 RoomScrolls_TourianFirst:
-    db $02,$02,$02,$01                                                   ;8FDADD;
+    db $02,$02,$02,$01
 
-RoomHeader_Metroids1:                                                    ;8FDAE1;
-    %RoomHeader(\
-    %room(1),
-    %area(5),
-    %positions($0E, $0C),
-    %dimensions(6, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Metroids1))
-    %stateChecks(1,
-    %stateCheckEventSet($10, RoomState_Metroids1_1))
+RoomHeader_Metroids1:
+    db $01,$05,$0E,$0C,$06,$01,$70,$A0,$00
+    dw RoomDoors_Metroids1
+    dw RoomStateCheck_EventHasBeenSet : db $10
+    dw RoomState_Metroids1_1
+    dw Use_StatePointer_inX
 
-RoomState_Metroids1_0:                                                   ;8FDAF3;
-    %StateHeader(\
-    %levelData(LevelData_Metroids1),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_Metroids1_State0_1),
-    %enemyPop(EnemyPopulations_Metroids1_0),
-    %enemySet(EnemySets_Metroids1_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_Metroids1),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Metroids1_State0_1),
-    %libraryBG(LibBG_Tourian_D_MechanicalRoom_Letterbox),
-    %setupASM(RTS_8FC91E))
+RoomState_Metroids1_0:
+    dl LevelData_Metroids1
+    db $0D,$00,$00
+    dw FXHeader_Metroids1_State0_1
+    dw EnemyPopulations_Metroids1_0
+    dw EnemySets_Metroids1_0
+    db $C1,$C1
+    dw RoomScrolls_Metroids1
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Metroids1_State0_1
+    dw LibBG_Tourian_D_MechanicalRoom_Letterbox
+    dw RTS_8FC91E
 
-RoomState_Metroids1_1:                                                   ;8FDB0D;
-    %StateHeader(\
-    %levelData(LevelData_Metroids1),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_Metroids1_State0_1),
-    %enemyPop(EnemyPopulations_Metroids1_1),
-    %enemySet(EnemySets_Metroids1_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_Metroids1),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Metroids1_State0_1),
-    %libraryBG(LibBG_Tourian_D_MechanicalRoom_Letterbox),
-    %setupASM(RTS_8FC91E))
+RoomState_Metroids1_1:
+    dl LevelData_Metroids1
+    db $0D,$00,$00
+    dw FXHeader_Metroids1_State0_1
+    dw EnemyPopulations_Metroids1_1
+    dw EnemySets_Metroids1_1
+    db $C1,$C1
+    dw RoomScrolls_Metroids1
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Metroids1_State0_1
+    dw LibBG_Tourian_D_MechanicalRoom_Letterbox
+    dw RTS_8FC91E
 
 RoomDoors_Metroids1:
-    dw Door_Metroids1_0                                                  ;8FDB27;
-    dw Door_Metroids1_1                                                  ;8FDB29;
+    dw Door_Metroids1_0
+    dw Door_Metroids1_1
 
 RoomScrolls_Metroids1:
-    db $01,$01,$01,$01,$01,$01                                           ;8FDB2B;
+    db $01,$01,$01,$01,$01,$01
 
-RoomHeader_Metroids2:                                                    ;8FDB31;
-    %RoomHeader(\
-    %room(2),
-    %area(5),
-    %positions($0D, $0C),
-    %dimensions(1, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Metroids2))
-    %stateChecks(1,
-    %stateCheckEventSet($11, RoomState_Metroids2_1))
+RoomHeader_Metroids2:
+    db $02,$05,$0D,$0C,$01,$02,$70,$A0,$00
+    dw RoomDoors_Metroids2
+    dw RoomStateCheck_EventHasBeenSet : db $11
+    dw RoomState_Metroids2_1
+    dw Use_StatePointer_inX
 
-RoomState_Metroids2_0:                                                   ;8FDB43;
-    %StateHeader(\
-    %levelData(LevelData_Metroids2),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_Metroids2_State0_1),
-    %enemyPop(EnemyPopulations_Metroids2_0),
-    %enemySet(EnemySets_Metroids2_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_Metroids2),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Metroids2_State0_1),
-    %libraryBG(LibBG_Tourian_D_MechanicalRoom),
-    %setupASM(RTS_8FC91E))
+RoomState_Metroids2_0:
+    dl LevelData_Metroids2
+    db $0D,$00,$00
+    dw FXHeader_Metroids2_State0_1
+    dw EnemyPopulations_Metroids2_0
+    dw EnemySets_Metroids2_0
+    db $C1,$C1
+    dw RoomScrolls_Metroids2
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Metroids2_State0_1
+    dw LibBG_Tourian_D_MechanicalRoom
+    dw RTS_8FC91E
 
-RoomState_Metroids2_1:                                                   ;8FDB5D;
-    %StateHeader(\
-    %levelData(LevelData_Metroids2),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_Metroids2_State0_1),
-    %enemyPop(EnemyPopulations_Metroids2_1),
-    %enemySet(EnemySets_Metroids2_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_Metroids2),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Metroids2_State0_1),
-    %libraryBG(LibBG_Tourian_D_MechanicalRoom),
-    %setupASM(RTS_8FC91E))
+RoomState_Metroids2_1:
+    dl LevelData_Metroids2
+    db $0D,$00,$00
+    dw FXHeader_Metroids2_State0_1
+    dw EnemyPopulations_Metroids2_1
+    dw EnemySets_Metroids2_1
+    db $C1,$C1
+    dw RoomScrolls_Metroids2
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Metroids2_State0_1
+    dw LibBG_Tourian_D_MechanicalRoom
+    dw RTS_8FC91E
 
 RoomDoors_Metroids2:
-    dw Door_Metroids2_0                                                  ;8FDB77;
-    dw Door_Metroids2_1                                                  ;8FDB79;
+    dw Door_Metroids2_0
+    dw Door_Metroids2_1
 
 RoomScrolls_Metroids2:
-    db $02,$02                                                           ;8FDB7B;
+    db $02,$02
 
-RoomHeader_Metroids3:                                                    ;8FDB7D;
-    %RoomHeader(\
-    %room(3),
-    %area(5),
-    %positions($0E, $0D),
-    %dimensions(6, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Metroids3))
-    %stateChecks(1,
-    %stateCheckEventSet($12, RoomState_Metroids3_1))
+RoomHeader_Metroids3:
+    db $03,$05,$0E,$0D,$06,$01,$70,$A0,$00
+    dw RoomDoors_Metroids3
+    dw RoomStateCheck_EventHasBeenSet : db $12
+    dw RoomState_Metroids3_1
+    dw Use_StatePointer_inX
 
-RoomState_Metroids3_0:                                                   ;8FDB8F;
-    %StateHeader(\
-    %levelData(LevelData_Metroids3),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_Metroids3_State0_1),
-    %enemyPop(EnemyPopulations_Metroids3_0),
-    %enemySet(EnemySets_Metroids3_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_Metroids3),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Metroids3_State0_1),
-    %libraryBG(LibBG_Tourian_D_MechanicalRoom_Letterbox),
-    %setupASM(RTS_8FC91E))
+RoomState_Metroids3_0:
+    dl LevelData_Metroids3
+    db $0D,$00,$00
+    dw FXHeader_Metroids3_State0_1
+    dw EnemyPopulations_Metroids3_0
+    dw EnemySets_Metroids3_0
+    db $C1,$C1
+    dw RoomScrolls_Metroids3
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Metroids3_State0_1
+    dw LibBG_Tourian_D_MechanicalRoom_Letterbox
+    dw RTS_8FC91E
 
-RoomState_Metroids3_1:                                                   ;8FDBA9;
-    %StateHeader(\
-    %levelData(LevelData_Metroids3),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_Metroids3_State0_1),
-    %enemyPop(EnemyPopulations_Metroids3_1),
-    %enemySet(EnemySets_Metroids3_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_Metroids3),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Metroids3_State0_1),
-    %libraryBG(LibBG_Tourian_D_MechanicalRoom_Letterbox),
-    %setupASM(RTS_8FC91E))
+RoomState_Metroids3_1:
+    dl LevelData_Metroids3
+    db $0D,$00,$00
+    dw FXHeader_Metroids3_State0_1
+    dw EnemyPopulations_Metroids3_1
+    dw EnemySets_Metroids3_1
+    db $C1,$C1
+    dw RoomScrolls_Metroids3
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Metroids3_State0_1
+    dw LibBG_Tourian_D_MechanicalRoom_Letterbox
+    dw RTS_8FC91E
 
 RoomDoors_Metroids3:
-    dw Door_Metroids3_0                                                  ;8FDBC3;
-    dw Door_Metroids3_1                                                  ;8FDBC5;
+    dw Door_Metroids3_0
+    dw Door_Metroids3_1
 
 RoomScrolls_Metroids3:
-    db $01,$01,$01,$01,$01,$01                                           ;8FDBC7;
+    db $01,$01,$01,$01,$01,$01
 
-RoomHeader_Metroids4:                                                    ;8FDBCD;
-    %RoomHeader(\
-    %room(4),
-    %area(5),
-    %positions($14, $0D),
-    %dimensions(1, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Metroids4))
-    %stateChecks(1,
-    %stateCheckEventSet($13, RoomState_Metroids4_1))
+RoomHeader_Metroids4:
+    db $04,$05,$14,$0D,$01,$02,$70,$A0,$00
+    dw RoomDoors_Metroids4
+    dw RoomStateCheck_EventHasBeenSet : db $13
+    dw RoomState_Metroids4_1
+    dw Use_StatePointer_inX
 
-RoomState_Metroids4_0:                                                   ;8FDBDF;
-    %StateHeader(\
-    %levelData(LevelData_Metroids4),
-    %tileset($0D),
-    %music($1E, 5),
-    %FX(FXHeader_Metroids4_State0_1),
-    %enemyPop(EnemyPopulations_Metroids4_0),
-    %enemySet(EnemySets_Metroids4_0),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_Metroids4),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Metroids4_State0_1),
-    %libraryBG(LibBG_Tourian_D_MechanicalRoom),
-    %setupASM(RTS_8FC91E))
+RoomState_Metroids4_0:
+    dl LevelData_Metroids4
+    db $0D,$1E,$05
+    dw FXHeader_Metroids4_State0_1
+    dw EnemyPopulations_Metroids4_0
+    dw EnemySets_Metroids4_0
+    db $C1,$C1
+    dw RoomScrolls_Metroids4
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Metroids4_State0_1
+    dw LibBG_Tourian_D_MechanicalRoom
+    dw RTS_8FC91E
 
-RoomState_Metroids4_1:                                                   ;8FDBF9;
-    %StateHeader(\
-    %levelData(LevelData_Metroids4),
-    %tileset($0D),
-    %music($1E, 5),
-    %FX(FXHeader_Metroids4_State0_1),
-    %enemyPop(EnemyPopulations_Metroids4_1),
-    %enemySet(EnemySets_Metroids4_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_Metroids4),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Metroids4_State0_1),
-    %libraryBG(LibBG_Tourian_D_MechanicalRoom),
-    %setupASM(RTS_8FC91E))
+RoomState_Metroids4_1:
+    dl LevelData_Metroids4
+    db $0D,$1E,$05
+    dw FXHeader_Metroids4_State0_1
+    dw EnemyPopulations_Metroids4_1
+    dw EnemySets_Metroids4_1
+    db $C1,$C1
+    dw RoomScrolls_Metroids4
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Metroids4_State0_1
+    dw LibBG_Tourian_D_MechanicalRoom
+    dw RTS_8FC91E
 
 RoomDoors_Metroids4:
-    dw Door_Metroids4_0                                                  ;8FDC13;
-    dw Door_Metroids4_1                                                  ;8FDC15;
+    dw Door_Metroids4_0
+    dw Door_Metroids4_1
 
 RoomScrolls_Metroids4:
-    db $02,$02                                                           ;8FDC17;
+    db $02,$02
 
-RoomHeader_BlueHopper:                                                   ;8FDC19;
-    %RoomHeader(\
-    %room(5),
-    %area(5),
-    %positions($13, $0F),
-    %dimensions(2, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_BlueHopper))
-    %stateChecks(1,
-    %stateCheckEventSet($14, RoomState_BlueHopper_1))
+RoomHeader_BlueHopper:
+    db $05,$05,$13,$0F,$02,$01,$70,$A0,$00
+    dw RoomDoors_BlueHopper
+    dw RoomStateCheck_EventHasBeenSet : db $14
+    dw RoomState_BlueHopper_1
+    dw Use_StatePointer_inX
 
-RoomState_BlueHopper_0:                                                  ;8FDC2B;
-    %StateHeader(\
-    %levelData(LevelData_BlueHopper),
-    %tileset($0D),
-    %music($45, 6),
-    %FX(FXHeader_BlueHopper_State0_1),
-    %enemyPop(EnemyPopulations_BlueHopper),
-    %enemySet(EnemySets_BlueHopper),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_BlueHopper),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_BlueHopper_State0_1),
-    %libraryBG(LibBG_Tourian_D_VerticalStructures),
-    %setupASM(RTS_8FC91E))
+RoomState_BlueHopper_0:
+    dl LevelData_BlueHopper
+    db $0D,$45,$06
+    dw FXHeader_BlueHopper_State0_1
+    dw EnemyPopulations_BlueHopper
+    dw EnemySets_BlueHopper
+    db $C1,$C1
+    dw RoomScrolls_BlueHopper
+    dw $0000
+    dw $0000
+    dw PLMPopulation_BlueHopper_State0_1
+    dw LibBG_Tourian_D_VerticalStructures
+    dw RTS_8FC91E
 
-RoomState_BlueHopper_1:                                                  ;8FDC45;
-    %StateHeader(\
-    %levelData(LevelData_BlueHopper),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_BlueHopper_State0_1),
-    %enemyPop(EnemyPopulations_BlueHopper),
-    %enemySet(EnemySets_BlueHopper),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_BlueHopper),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_BlueHopper_State0_1),
-    %libraryBG(LibBG_Tourian_D_VerticalStructures),
-    %setupASM(RTS_8FC91E))
+RoomState_BlueHopper_1:
+    dl LevelData_BlueHopper
+    db $0D,$00,$00
+    dw FXHeader_BlueHopper_State0_1
+    dw EnemyPopulations_BlueHopper
+    dw EnemySets_BlueHopper
+    db $C1,$C1
+    dw RoomScrolls_BlueHopper
+    dw $0000
+    dw $0000
+    dw PLMPopulation_BlueHopper_State0_1
+    dw LibBG_Tourian_D_VerticalStructures
+    dw RTS_8FC91E
 
 RoomDoors_BlueHopper:
-    dw Door_BlueHopper_0                                                 ;8FDC5F;
-    dw Door_BlueHopper_1                                                 ;8FDC61;
+    dw Door_BlueHopper_0
+    dw Door_BlueHopper_1
 
 RoomScrolls_BlueHopper:
-    db $01,$01                                                           ;8FDC63;
+    db $01,$01
 
-RoomHeader_DustTorizo:                                                   ;8FDC65;
-    %RoomHeader(\
-    %room(6),
-    %area(5),
-    %positions($11, $0F),
-    %dimensions(2, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_DustTorizo))
-    %stateChecks(1,
-    %stateCheckEventSet($14, RoomState_DustTorizo_1))
+RoomHeader_DustTorizo:
+    db $06,$05,$11,$0F,$02,$01,$70,$A0,$00
+    dw RoomDoors_DustTorizo
+    dw RoomStateCheck_EventHasBeenSet : db $14
+    dw RoomState_DustTorizo_1
+    dw Use_StatePointer_inX
 
-RoomState_DustTorizo_0:                                                  ;8FDC77;
-    %StateHeader(\
-    %levelData(LevelData_DustTorizo),
-    %tileset($0D),
-    %music($45, 6),
-    %FX(FXHeader_DustTorizo_State0_1),
-    %enemyPop(EnemyPopulations_DustTorizo),
-    %enemySet(EnemySets_DustTorizo),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_DustTorizo),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_DustTorizo_State0_1),
-    %libraryBG(LibBG_Tourian_D_VerticalStructures),
-    %setupASM(RTS_8FC91E))
+RoomState_DustTorizo_0:
+    dl LevelData_DustTorizo
+    db $0D,$45,$06
+    dw FXHeader_DustTorizo_State0_1
+    dw EnemyPopulations_DustTorizo
+    dw EnemySets_DustTorizo
+    db $C1,$C1
+    dw RoomScrolls_DustTorizo
+    dw $0000
+    dw $0000
+    dw PLMPopulation_DustTorizo_State0_1
+    dw LibBG_Tourian_D_VerticalStructures
+    dw RTS_8FC91E
 
-RoomState_DustTorizo_1:                                                  ;8FDC91;
-    %StateHeader(\
-    %levelData(LevelData_DustTorizo),
-    %tileset($0D),
-    %music($1E, 5),
-    %FX(FXHeader_DustTorizo_State0_1),
-    %enemyPop(EnemyPopulations_DustTorizo),
-    %enemySet(EnemySets_DustTorizo),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_DustTorizo),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_DustTorizo_State0_1),
-    %libraryBG(LibBG_Tourian_D_VerticalStructures),
-    %setupASM(RTS_8FC91E))
+RoomState_DustTorizo_1:
+    dl LevelData_DustTorizo
+    db $0D,$1E,$05
+    dw FXHeader_DustTorizo_State0_1
+    dw EnemyPopulations_DustTorizo
+    dw EnemySets_DustTorizo
+    db $C1,$C1
+    dw RoomScrolls_DustTorizo
+    dw $0000
+    dw $0000
+    dw PLMPopulation_DustTorizo_State0_1
+    dw LibBG_Tourian_D_VerticalStructures
+    dw RTS_8FC91E
 
 RoomDoors_DustTorizo:
-    dw Door_DustTorizo_0                                                 ;8FDCAB;
-    dw Door_DustTorizo_1                                                 ;8FDCAD;
+    dw Door_DustTorizo_0
+    dw Door_DustTorizo_1
 
 RoomScrolls_DustTorizo:
-    db $01,$01                                                           ;8FDCAF;
+    db $01,$01
 
-RoomHeader_BigBoy:                                                       ;8FDCB1;
-    %RoomHeader(\
-    %room(7),
-    %area(5),
-    %positions($0D, $0F),
-    %dimensions(4, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_BigBoy))
-    %stateChecks(1,
-    %stateCheckEventSet($14, RoomState_BigBoy_1))
+RoomHeader_BigBoy:
+    db $07,$05,$0D,$0F,$04,$01,$70,$A0,$00
+    dw RoomDoors_BigBoy
+    dw RoomStateCheck_EventHasBeenSet : db $14
+    dw RoomState_BigBoy_1
+    dw Use_StatePointer_inX
 
-RoomState_BigBoy_0:                                                      ;8FDCC3;
-    %StateHeader(\
-    %levelData(LevelData_BigBoy),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_BigBoy_State0_1),
-    %enemyPop(EnemyPopulations_BigBoy),
-    %enemySet(EnemySets_BigBoy),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_BigBoy),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_BigBoy_State0_1),
-    %libraryBG(LibBG_Tourian_D_VerticalStructures),
-    %setupASM(RTS_8FC91E))
+RoomState_BigBoy_0:
+    dl LevelData_BigBoy
+    db $0D,$00,$00
+    dw FXHeader_BigBoy_State0_1
+    dw EnemyPopulations_BigBoy
+    dw EnemySets_BigBoy
+    db $C1,$C1
+    dw RoomScrolls_BigBoy
+    dw $0000
+    dw $0000
+    dw PLMPopulation_BigBoy_State0_1
+    dw LibBG_Tourian_D_VerticalStructures
+    dw RTS_8FC91E
 
-RoomState_BigBoy_1:                                                      ;8FDCDD;
-    %StateHeader(\
-    %levelData(LevelData_BigBoy),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_BigBoy_State0_1),
-    %enemyPop(EnemyPopulations_BigBoy),
-    %enemySet(EnemySets_BigBoy),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_BigBoy),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_BigBoy_State0_1),
-    %libraryBG(LibBG_Tourian_D_VerticalStructures),
-    %setupASM(RTS_8FC91E))
+RoomState_BigBoy_1:
+    dl LevelData_BigBoy
+    db $0D,$00,$00
+    dw FXHeader_BigBoy_State0_1
+    dw EnemyPopulations_BigBoy
+    dw EnemySets_BigBoy
+    db $C1,$C1
+    dw RoomScrolls_BigBoy
+    dw $0000
+    dw $0000
+    dw PLMPopulation_BigBoy_State0_1
+    dw LibBG_Tourian_D_VerticalStructures
+    dw RTS_8FC91E
 
 RoomDoors_BigBoy:
-    dw Door_BigBoy_0                                                     ;8FDCF7;
-    dw Door_BigBoy_1                                                     ;8FDCF9;
+    dw Door_BigBoy_0
+    dw Door_BigBoy_1
 
 RoomScrolls_BigBoy:
-    db $01,$01,$01,$01                                                   ;8FDCFB;
+    db $01,$01,$01,$01
 
-RoomHeader_Seaweed:                                                      ;8FDCFF;
-    %RoomHeader(\
-    %room(8),
-    %area(5),
-    %positions($0C, $0F),
-    %dimensions(1, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Seaweed))
-    %stateChecks(0)
+RoomHeader_Seaweed:
+    db $08,$05,$0C,$0F,$01,$02,$70,$A0,$00
+    dw RoomDoors_Seaweed
+    dw Use_StatePointer_inX
 
-RoomState_Seaweed:                                                       ;8FDD0C;
-    %StateHeader(\
-    %levelData(LevelData_Seaweed),
-    %tileset($0D),
-    %music($1E, 5),
-    %FX(FXHeader_Seaweed),
-    %enemyPop(EnemyPopulations_Seaweed),
-    %enemySet(EnemySets_Seaweed),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_Seaweed),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_Seaweed),
-    %libraryBG(LibBG_Tourian_D_VerticalStructures),
-    %setupASM(RTS_8FC91E))
+RoomState_Seaweed:
+    dl LevelData_Seaweed
+    db $0D,$1E,$05
+    dw FXHeader_Seaweed
+    dw EnemyPopulations_Seaweed
+    dw EnemySets_Seaweed
+    db $C1,$C1
+    dw RoomScrolls_Seaweed
+    dw $0000
+    dw $0000
+    dw PLMPopulation_Seaweed
+    dw LibBG_Tourian_D_VerticalStructures
+    dw RTS_8FC91E
 
 RoomDoors_Seaweed:
-    dw Door_Seaweed_0                                                    ;8FDD26;
-    dw Door_Seaweed_1                                                    ;8FDD28;
-    dw Door_Seaweed_2                                                    ;8FDD2A;
+    dw Door_Seaweed_0
+    dw Door_Seaweed_1
+    dw Door_Seaweed_2
 
 RoomScrolls_Seaweed:
-    db $02,$02                                                           ;8FDD2C;
+    db $02,$02
 
-RoomHeader_TourianRecharge:                                              ;8FDD2E;
-    %RoomHeader(\
-    %room(9),
-    %area(5),
-    %positions($0B, $10),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_TourianRecharge))
-    %stateChecks(0)
+RoomHeader_TourianRecharge:
+    db $09,$05,$0B,$10,$01,$01,$70,$A0,$00
+    dw RoomDoors_TourianRecharge
+    dw Use_StatePointer_inX
 
-RoomState_TourianRecharge:                                               ;8FDD3B;
-    %StateHeader(\
-    %levelData(LevelData_RefillStation_RightSideDoor),
-    %tileset($18),
-    %music(0, 0),
-    %FX(FXHeader_TourianRecharge),
-    %enemyPop(EnemyPopulations_TourianRecharge),
-    %enemySet(EnemySets_TourianRecharge),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_TourianRecharge),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_TourianRecharge),
-    %libraryBG(0),
-    %setupASM(RTS_8FC91E))
+RoomState_TourianRecharge:
+    dl LevelData_RefillStation_RightSideDoor
+    db $18,$00,$00
+    dw FXHeader_TourianRecharge
+    dw EnemyPopulations_TourianRecharge
+    dw EnemySets_TourianRecharge
+    db $00,$00
+    dw RoomScrolls_TourianRecharge
+    dw $0000
+    dw $0000
+    dw PLMPopulation_TourianRecharge
+    dw $0000
+    dw RTS_8FC91E
 
 RoomDoors_TourianRecharge:
-    dw Door_TourianRecharge_0                                            ;8FDD55;
+    dw Door_TourianRecharge_0
 
 RoomScrolls_TourianRecharge:
-    db $01                                                               ;8FDD57;
+    db $01
 
-RoomHeader_MotherBrain:                                                  ;8FDD58;
-    %RoomHeader(\
-    %room($0A),
-    %area(5),
-    %positions($0D, $12),
-    %dimensions(4, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_MotherBrain))
-    %stateChecks(2,
-    %stateCheckMainBoss(RoomState_MotherBrain_2),
-    %stateCheckEventSet(2, RoomState_MotherBrain_1))
+RoomHeader_MotherBrain:
+    db $0A,$05,$0D,$12,$04,$01,$70,$A0,$00
+    dw RoomDoors_MotherBrain
+    dw RoomStateCheck_MainAreaBossIsDead
+    dw RoomState_MotherBrain_2
+    dw RoomStateCheck_EventHasBeenSet : db $02
+    dw RoomState_MotherBrain_1
+    dw Use_StatePointer_inX
 
-RoomState_MotherBrain_0:                                                 ;8FDD6E;
-    %StateHeader(\
-    %levelData(LevelData_MotherBrain),
-    %tileset($0E),
-    %music(0, 0),
-    %FX(FXHeader_MotherBrain_State0_1),
-    %enemyPop(EnemyPopulations_MotherBrain_0_1),
-    %enemySet(EnemySets_MotherBrain_0_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_MotherBrain),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_MotherBrain_State0_1_2),
-    %libraryBG(LibBG_Tourian_E_PipeRoom_Dark),
-    %setupASM(RTS_8FC91E))
+RoomState_MotherBrain_0:
+    dl LevelData_MotherBrain
+    db $0E,$00,$00
+    dw FXHeader_MotherBrain_State0_1
+    dw EnemyPopulations_MotherBrain_0_1
+    dw EnemySets_MotherBrain_0_1
+    db $C1,$C1
+    dw RoomScrolls_MotherBrain
+    dw $0000
+    dw $0000
+    dw PLMPopulation_MotherBrain_State0_1_2
+    dw LibBG_Tourian_E_PipeRoom_Dark
+    dw RTS_8FC91E
 
-RoomState_MotherBrain_1:                                                 ;8FDD88;
-    %StateHeader(\
-    %levelData(LevelData_MotherBrain),
-    %tileset($0E),
-    %music(0, 0),
-    %FX(FXHeader_MotherBrain_State0_1),
-    %enemyPop(EnemyPopulations_MotherBrain_0_1),
-    %enemySet(EnemySets_MotherBrain_0_1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_MotherBrain),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_MotherBrain_State0_1_2),
-    %libraryBG(LibBG_Tourian_E_PipeRoom_Dark),
-    %setupASM(RTS_8FC91E))
+RoomState_MotherBrain_1:
+    dl LevelData_MotherBrain
+    db $0E,$00,$00
+    dw FXHeader_MotherBrain_State0_1
+    dw EnemyPopulations_MotherBrain_0_1
+    dw EnemySets_MotherBrain_0_1
+    db $C1,$C1
+    dw RoomScrolls_MotherBrain
+    dw $0000
+    dw $0000
+    dw PLMPopulation_MotherBrain_State0_1_2
+    dw LibBG_Tourian_E_PipeRoom_Dark
+    dw RTS_8FC91E
 
-RoomState_MotherBrain_2:                                                 ;8FDDA2;
-    %StateHeader(\
-    %levelData(LevelData_MotherBrain),
-    %tileset($0E),
-    %music(0, 3),
-    %FX(FXHeader_Debug_MotherBrain_State2),
-    %enemyPop(EnemyPopulations_Draygon_State1_MotherBrain_State2),
-    %enemySet(EnemySets_Draygon_1_MotherBrain_2),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_MotherBrain),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_MotherBrain_State0_1_2),
-    %libraryBG(LibBG_Tourian_E_PipeRoom_Dark),
-    %setupASM(RTS_8FC91E))
+RoomState_MotherBrain_2:
+    dl LevelData_MotherBrain
+    db $0E,$00,$03
+    dw FXHeader_Debug_MotherBrain_State2
+    dw EnemyPopulations_Draygon_State1_MotherBrain_State2
+    dw EnemySets_Draygon_1_MotherBrain_2
+    db $C1,$C1
+    dw RoomScrolls_MotherBrain
+    dw $0000
+    dw $0000
+    dw PLMPopulation_MotherBrain_State0_1_2
+    dw LibBG_Tourian_E_PipeRoom_Dark
+    dw RTS_8FC91E
 
 RoomDoors_MotherBrain:
-    dw Door_MotherBrain_0                                                ;8FDDBC;
-    dw Door_MotherBrain_1                                                ;8FDDBE;
+    dw Door_MotherBrain_0
+    dw Door_MotherBrain_1
 
 RoomScrolls_MotherBrain:
-    db $01,$01,$01,$01                                                   ;8FDDC0;
+    db $01,$01,$01,$01
 
-RoomHeader_TourianEyeDoor:                                               ;8FDDC4;
-    %RoomHeader(\
-    %room($0B),
-    %area(5),
-    %positions($0D, $10),
-    %dimensions(4, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_TourianEyeDoor))
-    %stateChecks(0)
+RoomHeader_TourianEyeDoor:
+    db $0B,$05,$0D,$10,$04,$01,$70,$A0,$00
+    dw RoomDoors_TourianEyeDoor
+    dw Use_StatePointer_inX
 
-RoomState_TourianEyeDoor:                                                ;8FDDD1;
-    %StateHeader(\
-    %levelData(LevelData_TourianEyeDoor),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_TourianEyeDoor),
-    %enemyPop(EnemyPopulations_TourianEyeDoor),
-    %enemySet(EnemySets_TourianEyeDoor),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_TourianEyeDoor),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_TourianEyeDoor),
-    %libraryBG(LibBG_Tourian_D_VerticalStructures),
-    %setupASM(RTS_8FC91E))
+RoomState_TourianEyeDoor:
+    dl LevelData_TourianEyeDoor
+    db $0D,$00,$00
+    dw FXHeader_TourianEyeDoor
+    dw EnemyPopulations_TourianEyeDoor
+    dw EnemySets_TourianEyeDoor
+    db $C1,$C1
+    dw RoomScrolls_TourianEyeDoor
+    dw $0000
+    dw $0000
+    dw PLMPopulation_TourianEyeDoor
+    dw LibBG_Tourian_D_VerticalStructures
+    dw RTS_8FC91E
 
 RoomDoors_TourianEyeDoor:
-    dw Door_TourianEyeDoor_0                                             ;8FDDEB;
-    dw Door_TourianEyeDoor_1                                             ;8FDDED;
+    dw Door_TourianEyeDoor_0
+    dw Door_TourianEyeDoor_1
 
 RoomScrolls_TourianEyeDoor:
-    db $01,$01,$01,$01                                                   ;8FDDEF;
+    db $01,$01,$01,$01
 
-RoomHeader_RinkaShaft:                                                   ;8FDDF3;
-    %RoomHeader(\
-    %room($0C),
-    %area(5),
-    %positions($11, $10),
-    %dimensions(1, 3),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_RinkaShaft))
-    %stateChecks(0)
+RoomHeader_RinkaShaft:
+    db $0C,$05,$11,$10,$01,$03,$70,$A0,$00
+    dw RoomDoors_RinkaShaft
+    dw Use_StatePointer_inX
 
-RoomState_RinkaShaft:                                                    ;8FDE00;
-    %StateHeader(\
-    %levelData(LevelData_RinkaShaft),
-    %tileset($0D),
-    %music($1E, 5),
-    %FX(FXHeader_RinkaShaft),
-    %enemyPop(EnemyPopulations_RinkaShaft),
-    %enemySet(EnemySets_RinkaShaft),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_RinkaShaft),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_RinkaShaft),
-    %libraryBG(LibBG_Tourian_D_PipeRoom_VerticalSeparation),
-    %setupASM(RTS_8FC91E))
+RoomState_RinkaShaft:
+    dl LevelData_RinkaShaft
+    db $0D,$1E,$05
+    dw FXHeader_RinkaShaft
+    dw EnemyPopulations_RinkaShaft
+    dw EnemySets_RinkaShaft
+    db $C1,$C1
+    dw RoomScrolls_RinkaShaft
+    dw $0000
+    dw $0000
+    dw PLMPopulation_RinkaShaft
+    dw LibBG_Tourian_D_PipeRoom_VerticalSeparation
+    dw RTS_8FC91E
 
 RoomDoors_RinkaShaft:
-    dw Door_RinkaShaft_0                                                 ;8FDE1A;
-    dw Door_RinkaShaft_1                                                 ;8FDE1C;
-    dw Door_RinkaShaft_2                                                 ;8FDE1E;
+    dw Door_RinkaShaft_0
+    dw Door_RinkaShaft_1
+    dw Door_RinkaShaft_2
 
 RoomScrolls_RinkaShaft:
-    db $02,$02,$02                                                       ;8FDE20;
+    db $02,$02,$02
 
-RoomHeader_MotherBrainSave:                                              ;8FDE23;
-    %RoomHeader(\
-    %room($0D),
-    %area(5),
-    %positions($10, $11),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_MotherBrainSave))
-    %stateChecks(0)
+RoomHeader_MotherBrainSave:
+    db $0D,$05,$10,$11,$01,$01,$70,$A0,$00
+    dw RoomDoors_MotherBrainSave
+    dw Use_StatePointer_inX
 
-RoomState_MotherBrainSave:                                               ;8FDE30;
-    %StateHeader(\
-    %levelData(LevelData_SaveStation_RightSideDoor),
-    %tileset($19),
-    %music($1E, 5),
-    %FX(FXHeader_MotherBrainSave),
-    %enemyPop(EnemyPopulations_MotherBrainSave),
-    %enemySet(EnemySets_MotherBrainSave),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_MotherBrainSave),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_MotherBrainSave),
-    %libraryBG(0),
-    %setupASM(RTS_8FC91E))
+RoomState_MotherBrainSave:
+    dl LevelData_SaveStation_RightSideDoor
+    db $19,$1E,$05
+    dw FXHeader_MotherBrainSave
+    dw EnemyPopulations_MotherBrainSave
+    dw EnemySets_MotherBrainSave
+    db $00,$00
+    dw RoomScrolls_MotherBrainSave
+    dw $0000
+    dw $0000
+    dw PLMPopulation_MotherBrainSave
+    dw $0000
+    dw RTS_8FC91E
 
 RoomDoors_MotherBrainSave:
-    dw Door_MotherBrainSave_0                                            ;8FDE4A;
+    dw Door_MotherBrainSave_0
 
 RoomScrolls_MotherBrainSave:
-    db $01                                                               ;8FDE4C;
+    db $01
 
-RoomHeader_TourianEscape1:                                               ;8FDE4D;
-    %RoomHeader(\
-    %room($0E),
-    %area(5),
-    %positions($0B, $12),
-    %dimensions(2, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_TourianEscape1))
-    %stateChecks(0)
+RoomHeader_TourianEscape1:
+    db $0E,$05,$0B,$12,$02,$01,$70,$A0,$00
+    dw RoomDoors_TourianEscape1
+    dw Use_StatePointer_inX
 
-RoomState_TourianEscape1:                                                ;8FDE5A;
-    %StateHeader(\
-    %levelData(LevelData_TourianEscape1),
-    %tileset($0D),
-    %music($24, 7),
-    %FX(FXHeader_TourianEscape1),
-    %enemyPop(EnemyPopulations_TourianEscape1),
-    %enemySet(EnemySets_TourianEscape1),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_TourianEscape1),
-    %specialXray(0),
-    %mainASM(MainASM_GenerateRandomExplosionOnEveryFourthFrame),
-    %PLMPop(PLMPopulation_TourianEscape1),
-    %libraryBG(LibBG_Tourian_D_PipeRoom_Letterbox),
-    %setupASM(SetupASM_SetZebesTimebombEvent_SetLightHorizontalRoomShaking))
+RoomState_TourianEscape1:
+    dl LevelData_TourianEscape1
+    db $0D,$24,$07
+    dw FXHeader_TourianEscape1
+    dw EnemyPopulations_TourianEscape1
+    dw EnemySets_TourianEscape1
+    db $C1,$C1
+    dw RoomScrolls_TourianEscape1
+    dw $0000
+    dw MainASM_GenerateRandomExplosionOnEveryFourthFrame
+    dw PLMPopulation_TourianEscape1
+    dw LibBG_Tourian_D_PipeRoom_Letterbox
+    dw SetupASM_SetZebesTimebombEvent_SetLightHorizontalRoomShaking
 
 RoomDoors_TourianEscape1:
-    dw Door_TourianEscape1_0                                             ;8FDE74;
-    dw Door_TourianEscape1_1                                             ;8FDE76;
+    dw Door_TourianEscape1_0
+    dw Door_TourianEscape1_1
 
 RoomScrolls_TourianEscape1:
-    db $02,$02                                                           ;8FDE78;
+    db $02,$02
 
-RoomHeader_TourianEscape2:                                               ;8FDE7A;
-    %RoomHeader(\
-    %room($0F),
-    %area(5),
-    %positions($0B, $13),
-    %dimensions(1, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_TourianEscape2))
-    %stateChecks(0)
+RoomHeader_TourianEscape2:
+    db $0F,$05,$0B,$13,$01,$02,$70,$A0,$00
+    dw RoomDoors_TourianEscape2
+    dw Use_StatePointer_inX
 
-RoomState_TourianEscape2:                                                ;8FDE87;
-    %StateHeader(\
-    %levelData(LevelData_TourianEscape2),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_TourianEscape2),
-    %enemyPop(EnemyPopulations_TourianEscape2),
-    %enemySet(EnemySets_TourianEscape2),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_TourianEscape2),
-    %specialXray(0),
-    %mainASM(MainASM_ShakeScreenSwitchingBetweenLightHorizAndMediumDiag),
-    %PLMPop(PLMPopulation_TourianEscape2),
-    %libraryBG(LibBG_Tourian_D_PipeRoom_VerticalSeparation),
-    %setupASM(SetupASM_SetLightHorizontalRoomShaking))
+RoomState_TourianEscape2:
+    dl LevelData_TourianEscape2
+    db $0D,$00,$00
+    dw FXHeader_TourianEscape2
+    dw EnemyPopulations_TourianEscape2
+    dw EnemySets_TourianEscape2
+    db $C1,$C1
+    dw RoomScrolls_TourianEscape2
+    dw $0000
+    dw MainASM_ShakeScreenSwitchingBetweenLightHorizAndMediumDiag
+    dw PLMPopulation_TourianEscape2
+    dw LibBG_Tourian_D_PipeRoom_VerticalSeparation
+    dw SetupASM_SetLightHorizontalRoomShaking
 
 RoomDoors_TourianEscape2:
-    dw Door_TourianEscape2_0                                             ;8FDEA1;
-    dw Door_TourianEscape2_1                                             ;8FDEA3;
+    dw Door_TourianEscape2_0
+    dw Door_TourianEscape2_1
 
 RoomScrolls_TourianEscape2:
-    db $02,$01                                                           ;8FDEA5;
+    db $02,$01
 
-RoomHeader_TourianEscape3:                                               ;8FDEA7;
-    %RoomHeader(\
-    %room($10),
-    %area(5),
-    %positions($0C, $13),
-    %dimensions(6, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_TourianEscape3))
-    %stateChecks(0)
+RoomHeader_TourianEscape3:
+    db $10,$05,$0C,$13,$06,$02,$70,$A0,$00
+    dw RoomDoors_TourianEscape3
+    dw Use_StatePointer_inX
 
-RoomState_TourianEscape3:                                                ;8FDEB4;
-    %StateHeader(\
-    %levelData(LevelData_TourianEscape3),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_TourianEscape3),
-    %enemyPop(EnemyPopulations_TourianEscape3),
-    %enemySet(EnemySets_TourianEscape3),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_TourianEscape3),
-    %specialXray(0),
-    %mainASM(MainASM_GenerateRandomExplosionOnEveryFourthFrame),
-    %PLMPop(PLMPopulation_TourianEscape3),
-    %libraryBG(LibBG_Tourian_D_PipeRoom),
-    %setupASM(SetupASM_SetMediumHorizontalRoomShaking))
+RoomState_TourianEscape3:
+    dl LevelData_TourianEscape3
+    db $0D,$00,$00
+    dw FXHeader_TourianEscape3
+    dw EnemyPopulations_TourianEscape3
+    dw EnemySets_TourianEscape3
+    db $C1,$C1
+    dw RoomScrolls_TourianEscape3
+    dw $0000
+    dw MainASM_GenerateRandomExplosionOnEveryFourthFrame
+    dw PLMPopulation_TourianEscape3
+    dw LibBG_Tourian_D_PipeRoom
+    dw SetupASM_SetMediumHorizontalRoomShaking
 
 RoomDoors_TourianEscape3:
-    dw Door_TourianEscape3_0                                             ;8FDECE;
-    dw Door_TourianEscape3_1                                             ;8FDED0;
+    dw Door_TourianEscape3_0
+    dw Door_TourianEscape3_1
 
 RoomScrolls_TourianEscape3:
-    db $02,$02,$02,$02,$02,$02,$01,$01,$01,$01,$01,$01                   ;8FDED2;
+    db $02,$02,$02,$02,$02,$02,$01,$01,$01,$01,$01,$01
 
-RoomHeader_TourianEscape4:                                               ;8FDEDE;
-    %RoomHeader(\
-    %room($11),
-    %area(5),
-    %positions($12, $10),
-    %dimensions(3, 6),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_TourianEscape4))
-    %stateChecks(0)
+RoomHeader_TourianEscape4:
+    db $11,$05,$12,$10,$03,$06,$70,$A0,$00
+    dw RoomDoors_TourianEscape4
+    dw Use_StatePointer_inX
 
-RoomState_TourianEscape4:                                                ;8FDEEB;
-    %StateHeader(\
-    %levelData(LevelData_TourianEscape4),
-    %tileset($0D),
-    %music(0, 0),
-    %FX(FXHeader_ToruianEscaper4),
-    %enemyPop(EnemyPopulations_TourianEscape4),
-    %enemySet(EnemySets_TourianEscape4),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScrolls_TourianEscape4),
-    %specialXray(0),
-    %mainASM(MainASM_ShakeScreenSwitchingBetweenMediumHorizAndStrongDiag),
-    %PLMPop(PLMPopulation_TourianEscape4),
-    %libraryBG(LibBG_Tourian_D_PipeRoom),
-    %setupASM(SetupASM_SetupEscapeRoom4sPLM_SetMediumHorizontalRoomShaking))
+RoomState_TourianEscape4:
+    dl LevelData_TourianEscape4
+    db $0D,$00,$00
+    dw FXHeader_ToruianEscaper4
+    dw EnemyPopulations_TourianEscape4
+    dw EnemySets_TourianEscape4
+    db $C1,$C1
+    dw RoomScrolls_TourianEscape4
+    dw $0000
+    dw MainASM_ShakeScreenSwitchingBetweenMediumHorizAndStrongDiag
+    dw PLMPopulation_TourianEscape4
+    dw LibBG_Tourian_D_PipeRoom
+    dw SetupASM_SetupEscapeRoom4sPLM_SetMediumHorizontalRoomShaking
 
 RoomDoors_TourianEscape4:
-    dw Door_TourianEscape4_0                                             ;8FDF05;
-    dw Door_TourianEscape4_1                                             ;8FDF07;
+    dw Door_TourianEscape4_0
+    dw Door_TourianEscape4_1
 
 RoomScrolls_TourianEscape4:
-    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$01   ;8FDF09;
-    db $01,$01                                                           ;8FDF19;
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$01
+    db $01,$01
 
-RoomHeader_UpperTourianSave:                                             ;8FDF1B;
-    %RoomHeader(\
-    %room($12),
-    %area(5),
-    %positions($15, $0C),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_UpperTourianSave))
-    %stateChecks(0)
+RoomHeader_UpperTourianSave:
+    db $12,$05,$15,$0C,$01,$01,$70,$A0,$00
+    dw RoomDoors_UpperTourianSave
+    dw Use_StatePointer_inX
 
-RoomState_UpperTourianSave:                                              ;8FDF28;
-    %StateHeader(\
-    %levelData(LevelData_SaveStation_LeftSideDoor),
-    %tileset($19),
-    %music($1E, 5),
-    %FX(FXHeader_UpperTourianSave),
-    %enemyPop(EnemyPopulations_UpperTourianSave),
-    %enemySet(EnemySets_UpperTourianSave),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(RoomScrolls_UpperTourianSave),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(PLMPopulation_UpperTourianSave),
-    %libraryBG(0),
-    %setupASM(0))
+RoomState_UpperTourianSave:
+    dl LevelData_SaveStation_LeftSideDoor
+    db $19,$1E,$05
+    dw FXHeader_UpperTourianSave
+    dw EnemyPopulations_UpperTourianSave
+    dw EnemySets_UpperTourianSave
+    db $00,$00
+    dw RoomScrolls_UpperTourianSave
+    dw $0000
+    dw $0000
+    dw PLMPopulation_UpperTourianSave
+    dw $0000
+    dw $0000
 
 RoomDoors_UpperTourianSave:
-    dw Door_UpperTourianSave_0                                           ;8FDF42;
+    dw Door_UpperTourianSave_0
 
 RoomScrolls_UpperTourianSave:
-    db $01                                                               ;8FDF44;
+    db $01
 
-RoomHeader_CeresElev:                                                    ;8FDF45;
-    %RoomHeader(\
-    %room(0),
-    %area(6),
-    %positions($0C, $0D),
-    %dimensions(1, 3),
-    %scrollers($70, $A0),
-    %CRE(5),
-    %doorList(RoomDoors_CeresElev))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_CeresElev_1))
+RoomHeader_CeresElev:
+    db $00,$06,$0C,$0D,$01,$03,$70,$A0,$05
+    dw RoomDoors_CeresElev
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_CeresElev_1
+    dw Use_StatePointer_inX
 
-RoomState_CeresElev_0:                                                   ;8FDF57;
-    %StateHeader(\
-    %levelData(LevelData_CeresElev),
-    %tileset($11),
-    %music($2D, 6),
-    %FX(FXHeader_CeresElev_State0_1),
-    %enemyPop(EnemyPopulations_CeresElev_0),
-    %enemySet(EnemySets_CeresElev_0),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(MainASM_CeresElevatorShaft),
-    %PLMPop(PLMPopulation_CeresElev_State0_1),
-    %libraryBG(LibBG_CeresElevator_State0_1),
-    %setupASM(SetupASM_SpawnCeresHaze))
+RoomState_CeresElev_0:
+    dl LevelData_CeresElev
+    db $11,$2D,$06
+    dw FXHeader_CeresElev_State0_1
+    dw EnemyPopulations_CeresElev_0
+    dw EnemySets_CeresElev_0
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw MainASM_CeresElevatorShaft
+    dw PLMPopulation_CeresElev_State0_1
+    dw LibBG_CeresElevator_State0_1
+    dw SetupASM_SpawnCeresHaze
 
-RoomState_CeresElev_1:                                                   ;8FDF71;
-    %StateHeader(\
-    %levelData(LevelData_CeresElev),
-    %tileset($12),
-    %music(0, 0),
-    %FX(FXHeader_CeresElev_State0_1),
-    %enemyPop(EnemyPopulations_CeresElev_1),
-    %enemySet(EnemySets_CeresElev_1),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(MainASM_CeresElevatorShaft),
-    %PLMPop(PLMPopulation_CeresElev_State0_1),
-    %libraryBG(LibBG_CeresElevator_State0_1),
-    %setupASM(SetupASM_TurnCeresDoorToSolidBlocks_SpawnCeresHaze))
+RoomState_CeresElev_1:
+    dl LevelData_CeresElev
+    db $12,$00,$00
+    dw FXHeader_CeresElev_State0_1
+    dw EnemyPopulations_CeresElev_1
+    dw EnemySets_CeresElev_1
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw MainASM_CeresElevatorShaft
+    dw PLMPopulation_CeresElev_State0_1
+    dw LibBG_CeresElevator_State0_1
+    dw SetupASM_TurnCeresDoorToSolidBlocks_SpawnCeresHaze
 
 RoomDoors_CeresElev:
-    dw Door_CeresElev_0                                                  ;8FDF8B;
+    dw Door_CeresElev_0
 
-RoomHeader_FallingTile:                                                  ;8FDF8D;
-    %RoomHeader(\
-    %room(1),
-    %area(6),
-    %positions($0D, $0F),
-    %dimensions(2, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_FallingTile))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_FallingTile_1))
+RoomHeader_FallingTile:
+    db $01,$06,$0D,$0F,$02,$01,$70,$A0,$00
+    dw RoomDoors_FallingTile
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_FallingTile_1
+    dw Use_StatePointer_inX
 
-RoomState_FallingTile_0:                                                 ;8FDF9F;
-    %StateHeader(\
-    %levelData(LevelData_FallingTile),
-    %tileset($0F),
-    %music(0, 0),
-    %FX(FXHeader_FallingTile_State0),
-    %enemyPop(EnemyPopulations_FallingTile_0),
-    %enemySet(EnemySets_FallingTile_0),
-    %layer2Scrolls($C1, 1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(MainASM_SpawnCeresPreElevatorHallFallingDebris),
-    %PLMPop(PLMPopulation_FallingTile_State0_1),
-    %libraryBG(LibBG_Tourian_D_E_StatueHall),
-    %setupASM(SetupASM_SpawnCeresHaze))
+RoomState_FallingTile_0:
+    dl LevelData_FallingTile
+    db $0F,$00,$00
+    dw FXHeader_FallingTile_State0
+    dw EnemyPopulations_FallingTile_0
+    dw EnemySets_FallingTile_0
+    db $C1,$01
+    dw $0000
+    dw $0000
+    dw MainASM_SpawnCeresPreElevatorHallFallingDebris
+    dw PLMPopulation_FallingTile_State0_1
+    dw LibBG_Tourian_D_E_StatueHall
+    dw SetupASM_SpawnCeresHaze
 
-RoomState_FallingTile_1:                                                 ;8FDFB9;
-    %StateHeader(\
-    %levelData(LevelData_FallingTile),
-    %tileset($10),
-    %music(0, 0),
-    %FX(FXHeader_FallingTile_State1),
-    %enemyPop(EnemyPopulations_FallingTile_1),
-    %enemySet(EnemySets_FallingTile_1),
-    %layer2Scrolls($C1, 1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(MainASM_SpawnCeresPreElevatorHallFallingDebris),
-    %PLMPop(PLMPopulation_FallingTile_State0_1),
-    %libraryBG(LibBG_Tourian_D_E_StatueHall),
-    %setupASM(SetupASM_SpawnCeresHaze))
+RoomState_FallingTile_1:
+    dl LevelData_FallingTile
+    db $10,$00,$00
+    dw FXHeader_FallingTile_State1
+    dw EnemyPopulations_FallingTile_1
+    dw EnemySets_FallingTile_1
+    db $C1,$01
+    dw $0000
+    dw $0000
+    dw MainASM_SpawnCeresPreElevatorHallFallingDebris
+    dw PLMPopulation_FallingTile_State0_1
+    dw LibBG_Tourian_D_E_StatueHall
+    dw SetupASM_SpawnCeresHaze
 
 RoomDoors_FallingTile:
-    dw Door_FallingTile_0                                                ;8FDFD3;
-    dw Door_FallingTile_1                                                ;8FDFD5;
+    dw Door_FallingTile_0
+    dw Door_FallingTile_1
 
-RoomHeader_MagnetStairs:                                                 ;8FDFD7;
-    %RoomHeader(\
-    %room(2),
-    %area(6),
-    %positions($0F, $0F),
-    %dimensions(1, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_MagnetStairs))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_MagnetStairs_1))
+RoomHeader_MagnetStairs:
+    db $02,$06,$0F,$0F,$01,$02,$70,$A0,$00
+    dw RoomDoors_MagnetStairs
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_MagnetStairs_1
+    dw Use_StatePointer_inX
 
-RoomState_MagnetStairs_0:                                                ;8FDFE9;
-    %StateHeader(\
-    %levelData(LevelData_MagnetStairs),
-    %tileset($0F),
-    %music(0, 0),
-    %FX(FXHeader_MagnetStairs_State0),
-    %enemyPop(EnemyPopulations_MagnetStairs_0),
-    %enemySet(EnemySets_MagnetStairs_0),
-    %layer2Scrolls(1, $41),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(RTS_8FE524),
-    %PLMPop(PLMPopulation_MagnetStairs_State0_1),
-    %libraryBG(LibBG_Tourian_D_E_StatueHall),
-    %setupASM(SetupASM_SpawnCeresHaze))
+RoomState_MagnetStairs_0:
+    dl LevelData_MagnetStairs
+    db $0F,$00,$00
+    dw FXHeader_MagnetStairs_State0
+    dw EnemyPopulations_MagnetStairs_0
+    dw EnemySets_MagnetStairs_0
+    db $01,$41
+    dw $0000
+    dw $0000
+    dw RTS_8FE524
+    dw PLMPopulation_MagnetStairs_State0_1
+    dw LibBG_Tourian_D_E_StatueHall
+    dw SetupASM_SpawnCeresHaze
 
-RoomState_MagnetStairs_1:                                                ;8FE003;
-    %StateHeader(\
-    %levelData(LevelData_MagnetStairs),
-    %tileset($10),
-    %music(0, 0),
-    %FX(FXHeader_MagnetStairs_State1),
-    %enemyPop(EnemyPopulations_MagnetStairs_1),
-    %enemySet(EnemySets_MagnetStairs_1),
-    %layer2Scrolls(1, $C1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(RTS_8FE524),
-    %PLMPop(PLMPopulation_MagnetStairs_State0_1),
-    %libraryBG(LibBG_Tourian_D_E_StatueHall),
-    %setupASM(SetupASM_SpawnCeresHaze))
+RoomState_MagnetStairs_1:
+    dl LevelData_MagnetStairs
+    db $10,$00,$00
+    dw FXHeader_MagnetStairs_State1
+    dw EnemyPopulations_MagnetStairs_1
+    dw EnemySets_MagnetStairs_1
+    db $01,$C1
+    dw $0000
+    dw $0000
+    dw RTS_8FE524
+    dw PLMPopulation_MagnetStairs_State0_1
+    dw LibBG_Tourian_D_E_StatueHall
+    dw SetupASM_SpawnCeresHaze
 
 RoomDoors_MagnetStairs:
-    dw Door_MagnetStairs_0                                               ;8FE01D;
-    dw Door_MagnetStairs_1                                               ;8FE01F;
+    dw Door_MagnetStairs_0
+    dw Door_MagnetStairs_1
 
-RoomHeader_DeadScientist:                                                ;8FE021;
-    %RoomHeader(\
-    %room(3),
-    %area(6),
-    %positions($10, $10),
-    %dimensions(2, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_DeadScientist))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_DeadScientist_1))
+RoomHeader_DeadScientist:
+    db $03,$06,$10,$10,$02,$01,$70,$A0,$00
+    dw RoomDoors_DeadScientist
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_DeadScientist_1
+    dw Use_StatePointer_inX
 
-RoomState_DeadScientist_0:                                               ;8FE033;
-    %StateHeader(\
-    %levelData(LevelData_DeadScientist),
-    %tileset($0F),
-    %music(0, 0),
-    %FX(FXHeader_DeadScientist_State0),
-    %enemyPop(EnemyPopulations_DeadScientist_0),
-    %enemySet(EnemySets_DeadScientist_0),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(RTS_8FE524),
-    %PLMPop(PLMPopulation_DeadScientist_State0_1),
-    %libraryBG(0),
-    %setupASM(SetupASM_SpawnCeresHaze))
+RoomState_DeadScientist_0:
+    dl LevelData_DeadScientist
+    db $0F,$00,$00
+    dw FXHeader_DeadScientist_State0
+    dw EnemyPopulations_DeadScientist_0
+    dw EnemySets_DeadScientist_0
+    db $C0,$00
+    dw $0000
+    dw $0000
+    dw RTS_8FE524
+    dw PLMPopulation_DeadScientist_State0_1
+    dw $0000
+    dw SetupASM_SpawnCeresHaze
 
-RoomState_DeadScientist_1:                                               ;8FE04D;
-    %StateHeader(\
-    %levelData(LevelData_DeadScientist),
-    %tileset($10),
-    %music(0, 0),
-    %FX(FXHeader_DeadScientist_State1),
-    %enemyPop(EnemyPopulations_DeadScientist_1),
-    %enemySet(EnemySets_DeadScientist_1),
-    %layer2Scrolls($C0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(RTS_8FE524),
-    %PLMPop(PLMPopulation_DeadScientist_State0_1),
-    %libraryBG(0),
-    %setupASM(SetupASM_SpawnCeresHaze))
+RoomState_DeadScientist_1:
+    dl LevelData_DeadScientist
+    db $10,$00,$00
+    dw FXHeader_DeadScientist_State1
+    dw EnemyPopulations_DeadScientist_1
+    dw EnemySets_DeadScientist_1
+    db $C0,$00
+    dw $0000
+    dw $0000
+    dw RTS_8FE524
+    dw PLMPopulation_DeadScientist_State0_1
+    dw $0000
+    dw SetupASM_SpawnCeresHaze
 
 RoomDoors_DeadScientist:
-    dw Door_DeadScientist_0                                              ;8FE067;
-    dw Door_DeadScientist_1                                              ;8FE069;
+    dw Door_DeadScientist_0
+    dw Door_DeadScientist_1
 
-RoomHeader_58Escape:                                                     ;8FE06B;
-    %RoomHeader(\
-    %room(4),
-    %area(6),
-    %positions($12, $10),
-    %dimensions(2, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_58Escape))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_58Escape_1))
+RoomHeader_58Escape:
+    db $04,$06,$12,$10,$02,$01,$70,$A0,$00
+    dw RoomDoors_58Escape
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_58Escape_1
+    dw Use_StatePointer_inX
 
-RoomState_58Escape_0:                                                    ;8FE07D;
-    %StateHeader(\
-    %levelData(LevelData_58Escape),
-    %tileset($0F),
-    %music(0, 0),
-    %FX(FXHeader_58Escape_State0),
-    %enemyPop(EnemyPopulations_58Escape_0),
-    %enemySet(EnemySets_58Escape_0),
-    %layer2Scrolls($C1, 1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(RTS_8FE524),
-    %PLMPop(PLMPopulation_58Escape_State0_1),
-    %libraryBG(LibBG_Tourian_D_E_StatueHall),
-    %setupASM(SetupASM_SpawnCeresHaze))
+RoomState_58Escape_0:
+    dl LevelData_58Escape
+    db $0F,$00,$00
+    dw FXHeader_58Escape_State0
+    dw EnemyPopulations_58Escape_0
+    dw EnemySets_58Escape_0
+    db $C1,$01
+    dw $0000
+    dw $0000
+    dw RTS_8FE524
+    dw PLMPopulation_58Escape_State0_1
+    dw LibBG_Tourian_D_E_StatueHall
+    dw SetupASM_SpawnCeresHaze
 
-RoomState_58Escape_1:                                                    ;8FE097;
-    %StateHeader(\
-    %levelData(LevelData_58Escape),
-    %tileset($10),
-    %music(0, 0),
-    %FX(FXHeader_58Escape_State1),
-    %enemyPop(EnemyPopulations_58Escape_1),
-    %enemySet(EnemySets_58Escape_1),
-    %layer2Scrolls($C1, 1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(RTS_8FE524),
-    %PLMPop(PLMPopulation_58Escape_State0_1),
-    %libraryBG(LibBG_Tourian_D_E_StatueHall),
-    %setupASM(SetupASM_SpawnCeresHaze))
+RoomState_58Escape_1:
+    dl LevelData_58Escape
+    db $10,$00,$00
+    dw FXHeader_58Escape_State1
+    dw EnemyPopulations_58Escape_1
+    dw EnemySets_58Escape_1
+    db $C1,$01
+    dw $0000
+    dw $0000
+    dw RTS_8FE524
+    dw PLMPopulation_58Escape_State0_1
+    dw LibBG_Tourian_D_E_StatueHall
+    dw SetupASM_SpawnCeresHaze
 
 RoomDoors_58Escape:
-    dw Door_58Escape_0                                                   ;8FE0B1;
-    dw Door_58Escape_1                                                   ;8FE0B3;
+    dw Door_58Escape_0
+    dw Door_58Escape_1
 
-RoomHeader_CeresRidley:                                                  ;8FE0B5;
-    %RoomHeader(\
-    %room(5),
-    %area(6),
-    %positions($14, $10),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(5),
-    %doorList(RoomDoors_CeresRidley))
-    %stateChecks(1,
-    %stateCheckBossDead(1, RoomState_CeresRidley_1))
+RoomHeader_CeresRidley:
+    db $05,$06,$14,$10,$01,$01,$70,$A0,$05
+    dw RoomDoors_CeresRidley
+    dw RoomStateCheck_BossIsDead : db $01
+    dw RoomState_CeresRidley_1
+    dw Use_StatePointer_inX
 
-RoomState_CeresRidley_0:                                                 ;8FE0C7;
-    %StateHeader(\
-    %levelData(LevelData_CeresRidley),
-    %tileset($13),
-    %music($24, $80),
-    %FX(FXHeader_CeresRidley_State0),
-    %enemyPop(EnemyPopulations_CeresRidley_0),
-    %enemySet(EnemySets_CeresRidley_0),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(MainASM_HandleCeresRidleyGetawayCutscene),
-    %PLMPop(PLMPopulation_CeresRidley_State0_1),
-    %libraryBG(0),
-    %setupASM(SetupASM_SetBG1_2_TilesBaseAddress_SpawnCeresHaze))
+RoomState_CeresRidley_0:
+    dl LevelData_CeresRidley
+    db $13,$24,$80
+    dw FXHeader_CeresRidley_State0
+    dw EnemyPopulations_CeresRidley_0
+    dw EnemySets_CeresRidley_0
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw MainASM_HandleCeresRidleyGetawayCutscene
+    dw PLMPopulation_CeresRidley_State0_1
+    dw $0000
+    dw SetupASM_SetBG1_2_TilesBaseAddress_SpawnCeresHaze
 
-RoomState_CeresRidley_1:                                                 ;8FE0E1;
-    %StateHeader(\
-    %levelData(LevelData_CeresRidley),
-    %tileset($14),
-    %music(0, 0),
-    %FX(FXHeader_CeresRidley_State1),
-    %enemyPop(EnemyPopulations_CeresRidley_1),
-    %enemySet(EnemySets_CeresRidley_1),
-    %layer2Scrolls(0, 0),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(MainASM_HandleCeresRidleyGetawayCutscene),
-    %PLMPop(PLMPopulation_CeresRidley_State0_1),
-    %libraryBG(0),
-    %setupASM(SetupASM_SetBG1_2_TilesBaseAddress_SpawnCeresHaze))
+RoomState_CeresRidley_1:
+    dl LevelData_CeresRidley
+    db $14,$00,$00
+    dw FXHeader_CeresRidley_State1
+    dw EnemyPopulations_CeresRidley_1
+    dw EnemySets_CeresRidley_1
+    db $00,$00
+    dw $0000
+    dw $0000
+    dw MainASM_HandleCeresRidleyGetawayCutscene
+    dw PLMPopulation_CeresRidley_State0_1
+    dw $0000
+    dw SetupASM_SetBG1_2_TilesBaseAddress_SpawnCeresHaze
 
 RoomDoors_CeresRidley:
-    dw Door_CeresRidley                                                  ;8FE0FB;
+    dw Door_CeresRidley
 
 
 ;;; $E0FD: Library background ;;;
-LibBG_Phantoon_State0:                                                   ;8FE0FD;
+LibBG_Phantoon_State0:
 ; Room $CD13, state $CD25: Phantoon
     dw $0002 : dl $7E2000 : dw $4800,$1000
     dw $0000
 
-LibBG_Draygon_State0:                                                    ;8FE108;
+LibBG_Draygon_State0:
 ; Room $DA60, state $DA72: Draygon
     dw $0002 : dl $7E2000 : dw $4800,$1000
     dw $0000
@@ -14268,7 +13280,7 @@ LibBG_Phantoon_Draygon_State1:
     dw $000A
     dw $0000
 
-LibBG_WreckedShip_4_5_EntranceHall:                                      ;8FE117;
+LibBG_WreckedShip_4_5_EntranceHall:
 ; Room $CA08, state $CA1A: Wrecked Ship entrance treadmill
 ; Room $CA08, state $CA34: Wrecked Ship entrance treadmill
 ; Room $E82C, state $E839: Debug room
@@ -14278,14 +13290,14 @@ LibBG_WreckedShip_4_5_EntranceHall:                                      ;8FE117
     dw $0000
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_WreckedShip_4_5_EntranceHall_1_8FE132:                      ;8FE132;
+UNUSED_LibBG_WreckedShip_4_5_EntranceHall_1_8FE132:
     dw $0004 : dl Background_WreckedShip_4_5_EntranceHall_1 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-LibBG_WreckedShip_4_5_Columns_Tubes:                                     ;8FE14D;
+LibBG_WreckedShip_4_5_Columns_Tubes:
 ; Room $CB8B, state $CB9D: Wrecked Ship flooded spikey hall
 ; Room $CB8B, state $CBB7: Wrecked Ship flooded spikey hall
 ; Room $CC6F, state $CC81: Pre Phantoon hall
@@ -14295,7 +13307,7 @@ LibBG_WreckedShip_4_5_Columns_Tubes:                                     ;8FE14D
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_WreckedShip_4_5_ExperimentRoom:                                    ;8FE168;
+LibBG_WreckedShip_4_5_ExperimentRoom:
 ; Room $CA52, state $CA64: Wrecked Ship attic
 ; Room $CA52, state $CA7E: Wrecked Ship attic
     dw $0004 : dl Background_WreckedShip_4_5_ExperimentRoom : dw $4000
@@ -14303,7 +13315,7 @@ LibBG_WreckedShip_4_5_ExperimentRoom:                                    ;8FE168
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_WreckedShip_4_5_Panels_Vents:                                      ;8FE183;
+LibBG_WreckedShip_4_5_Panels_Vents:
 ; Room $CD5C, state $CD6E: Wrecked Ship first flooded room
 ; Room $CD5C, state $CD88: Wrecked Ship first flooded room
 ; Room $CDA8, state $CDBA: Wrecked Ship obvious super missile room
@@ -14316,7 +13328,7 @@ LibBG_WreckedShip_4_5_Panels_Vents:                                      ;8FE183
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_WreckedShip_4_5_Panels_Vents_Horizontal:                           ;8FE19E;
+LibBG_WreckedShip_4_5_Panels_Vents_Horizontal:
 ; Room $CAF6, state $CB08: Wrecked Ship mainstreet
 ; Room $CAF6, state $CB22: Wrecked Ship mainstreet
 ; Room $CBD5, state $CBE7: Wrecked Ship east exit
@@ -14327,7 +13339,7 @@ LibBG_WreckedShip_4_5_Panels_Vents_Horizontal:                           ;8FE19E
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_WreckedShip_4_5_Panels_Vents_Vertical:                             ;8FE1B9;
+LibBG_WreckedShip_4_5_Panels_Vents_Vertical:
 ; Room $CAAE, state $CAC0: Wrecked Ship attic missile tank room
 ; Room $CAAE, state $CADA: Wrecked Ship attic missile tank room
     dw $0004 : dl Background_WreckedShip_4_5_Panels_Vents_Vertical : dw $4000
@@ -14335,7 +13347,7 @@ LibBG_WreckedShip_4_5_Panels_Vents_Vertical:                             ;8FE1B9
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_CeresElevator_State0_1:                                            ;8FE1D4;
+LibBG_CeresElevator_State0_1:
 ; Room $DF45, state $DF57: Ceres elevator shaft
 ; Room $DF45, state $DF71: Ceres elevator shaft
     dw $000A
@@ -14345,96 +13357,86 @@ LibBG_CeresElevator_State0_1:                                            ;8FE1D4
 ;;; $E1D8: Door ASM: start Wrecked Ship treadmill east entrance ;;;
 DoorASM_StartWreckedShipTreadmillEastEntrance:
 ; Room $CAF6, door list index 0: Door
-    LDY.W #AnimatedTilesObjects_FX_wreckedShipTreadmillLeftwards         ;8FE1D8;
-    JSL.L Spawn_AnimatedTilesObject                                      ;8FE1DB;
-    JSL.L Spawn_Hardcoded_PLM                                            ;8FE1DF;
-    db $04,$09                                                           ;8FE1E3;
-    dw PLMEntries_wreckedShipEntranceTreadmillFromEast                   ;8FE1E5;
-    RTS                                                                  ;8FE1E7;
+    LDY.W #AnimatedTilesObjects_FX_wreckedShipTreadmillLeftwards
+    JSL Spawn_AnimatedTilesObject
+    JSL Spawn_Hardcoded_PLM
+    db $04,$09
+    dw PLMEntries_wreckedShipEntranceTreadmillFromEast
+    RTS
 
 
 ;;; $E1E8: Door ASM: scroll 1 = blue ;;;
 DoorASM_Scroll_1_Blue:
 ; Room $CB8B, door list index 0: Door
-    PHP                                                                  ;8FE1E8;
-    SEP #$20                                                             ;8FE1E9;
-    LDA.B #$01                                                           ;8FE1EB;
-    STA.L Scrolls+1                                                      ;8FE1ED;
-    PLP                                                                  ;8FE1F1;
-    RTS                                                                  ;8FE1F2;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $E1F3: Door ASM: scroll 0 = green ;;;
 DoorASM_Scroll_0_Green_duplicate_again:
 ; Room $CC27, door list index 0: Door
-    PHP                                                                  ;8FE1F3;
-    SEP #$20                                                             ;8FE1F4;
-    LDA.B #$02                                                           ;8FE1F6;
-    STA.L Scrolls                                                        ;8FE1F8;
-    PLP                                                                  ;8FE1FC;
-    RTS                                                                  ;8FE1FD;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls
+    PLP
+    RTS
 
 
 ;;; $E1FE: Door ASM: scroll 3 = red, 4 = blue ;;;
 DoorASM_Scroll_3_Red_4_Blue:
 ; Room $CD13, door list index 0: Door
-    PHP                                                                  ;8FE1FE;
-    SEP #$20                                                             ;8FE1FF;
-    LDA.B #$00                                                           ;8FE201;
-    STA.L Scrolls+3                                                      ;8FE203;
-    LDA.B #$01                                                           ;8FE207;
-    STA.L Scrolls+4                                                      ;8FE209;
-    PLP                                                                  ;8FE20D;
-    RTS                                                                  ;8FE20E;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+3
+    LDA.B #$01 : STA.L Scrolls+4
+    PLP
+    RTS
 
 
 ;;; $E20F: Door ASM: scroll 29h = blue ;;;
 DoorASM_Scroll_29_Blue:
 ; Room $CDF1, door list index 0: Door
-    PHP                                                                  ;8FE20F;
-    SEP #$20                                                             ;8FE210;
-    LDA.B #$01                                                           ;8FE212;
-    STA.L Scrolls+$29                                                    ;8FE214;
-    PLP                                                                  ;8FE218;
-    RTS                                                                  ;8FE219;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+$29
+    PLP
+    RTS
 
 
 ;;; $E21A: Door ASM: scroll 28h,2E = green ;;;
 DoorASM_Scroll_28_2E_Green:
 ; Room $CC6F, door list index 0: Door
-    PHP                                                                  ;8FE21A;
-    SEP #$20                                                             ;8FE21B;
-    LDA.B #$02                                                           ;8FE21D;
-    STA.L Scrolls+$28                                                    ;8FE21F;
-    STA.L Scrolls+$2E                                                    ;8FE223;
-    PLP                                                                  ;8FE227;
-    RTS                                                                  ;8FE228;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+$28 : STA.L Scrolls+$2E
+    PLP
+    RTS
 
 
 ;;; $E229: Door ASM: scroll 6..Bh = red ;;;
 DoorASM_Scroll_6_7_8_9_A_B_Red:
 ; Room $CE40, door list index 1: Door
-    PHP                                                                  ;8FE229;
-    SEP #$20                                                             ;8FE22A;
-    LDA.B #$00                                                           ;8FE22C;
-    STA.L Scrolls+6                                                      ;8FE22E;
-    STA.L Scrolls+7                                                      ;8FE232;
-    STA.L Scrolls+8                                                      ;8FE236;
-    STA.L Scrolls+9                                                      ;8FE23A;
-    STA.L Scrolls+$A                                                     ;8FE23E;
-    STA.L Scrolls+$B                                                     ;8FE242;
-    PLP                                                                  ;8FE246;
-    RTS                                                                  ;8FE247;
+    PHP
+    SEP #$20
+    LDA.B #$00
+    STA.L Scrolls+6 : STA.L Scrolls+7
+    STA.L Scrolls+8 : STA.L Scrolls+9
+    STA.L Scrolls+$A : STA.L Scrolls+$B
+    PLP
+    RTS
 
 
 ;;; $E248: Library background ;;;
-LibBG_Maridia_B_BrownWall:                                               ;8FE248;
+LibBG_Maridia_B_BrownWall:
 ; Room $D08A, state $D097: Maridia green gate hall
     dw $0004 : dl Background_Maridia_B_BrownWall : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$1000
     dw $0000
 
-LibBG_Maridia_C_GreenWall:                                               ;8FE25A;
+LibBG_Maridia_C_GreenWall:
 ; Room $D461, state $D46E: Sand falls west
 ; Room $D4C2, state $D4CF: Sand falls east
     dw $0004 : dl Background_Maridia_C_GreenWall : dw $4000
@@ -14445,274 +13447,227 @@ LibBG_Maridia_C_GreenWall:                                               ;8FE25A
 ;;; $E26C: Door ASM: set up elevatube from south ;;;
 DoorASM_SetupElevatubeFromSouth:
 ; Room $D48E, door list index 2: Door
-    LDA.W #$FF00                                                         ;8FE26C;
-    STA.W RoomMainASMVar3                                                ;8FE26F;
-    STZ.W RoomMainASMVar2                                                ;8FE272;
-    LDA.W #$09C0                                                         ;8FE275;
-    STA.W RoomMainASMVar2                                                ;8FE278;
-    LDA.W #$FFE0                                                         ;8FE27B;
-    STA.W RoomMainASMVar4                                                ;8FE27E;
-    LDA.W #$0000                                                         ;8FE281;
-    JSL.L Run_Samus_Command                                              ;8FE284;
-    JSL.L Spawn_Hardcoded_PLM                                            ;8FE288;
-    db $01,$00                                                           ;8FE28C;
-    dw PLMEntries_maridiaElevatube                                       ;8FE28E;
-    RTS                                                                  ;8FE290;
+    LDA.W #$FF00 : STA.W RoomMainASMVar3
+    STZ.W RoomMainASMVar2
+    LDA.W #$09C0 : STA.W RoomMainASMVar2
+    LDA.W #$FFE0 : STA.W RoomMainASMVar4
+    LDA.W #$0000
+    JSL Run_Samus_Command
+    JSL Spawn_Hardcoded_PLM
+    db $01,$00
+    dw PLMEntries_maridiaElevatube
+    RTS
 
 
 ;;; $E291: Door ASM: set up elevatube from north ;;;
 DoorASM_SetupElevatubeFromNorth:
 ; Room $D340, door list index 1: Door
-    LDA.W #$0100                                                         ;8FE291;
-    STA.W RoomMainASMVar3                                                ;8FE294;
-    STZ.W RoomMainASMVar2                                                ;8FE297;
-    LDA.W #$0040                                                         ;8FE29A;
-    STA.W RoomMainASMVar2                                                ;8FE29D;
-    LDA.W #$0020                                                         ;8FE2A0;
-    STA.W RoomMainASMVar4                                                ;8FE2A3;
-    LDA.W #$0000                                                         ;8FE2A6;
-    JSL.L Run_Samus_Command                                              ;8FE2A9;
-    JSL.L Spawn_Hardcoded_PLM                                            ;8FE2AD;
-    db $01,$00                                                           ;8FE2B1;
-    dw PLMEntries_maridiaElevatube                                       ;8FE2B3;
-    RTS                                                                  ;8FE2B5;
+    LDA.W #$0100 : STA.W RoomMainASMVar3
+    STZ.W RoomMainASMVar2
+    LDA.W #$0040 : STA.W RoomMainASMVar2
+    LDA.W #$0020 : STA.W RoomMainASMVar4
+    LDA.W #$0000
+    JSL Run_Samus_Command
+    JSL Spawn_Hardcoded_PLM
+    db $01,$00
+    dw PLMEntries_maridiaElevatube
+    RTS
 
 
 ;;; $E2B6: Main ASM: elevatube ;;;
 MainASM_Elevatube:
 ; Room $D408. Maridia elevatube
-    LDA.W #$0080                                                         ;8FE2B6;
-    STA.W SamusXPosition                                                 ;8FE2B9;
-    STZ.W SamusXSubPosition                                              ;8FE2BC;
-    STZ.B DP_Temp12                                                      ;8FE2BF;
-    STZ.B DP_Temp14                                                      ;8FE2C1;
-    LDA.W RoomMainASMVar3                                                ;8FE2C3;
-    BPL +                                                                ;8FE2C6;
-    DEC.B DP_Temp14                                                      ;8FE2C8;
+    LDA.W #$0080 : STA.W SamusXPosition
+    STZ.W SamusXSubPosition
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W RoomMainASMVar3 : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;8FE2CA;
-    LDA.W RoomMainASMVar1                                                ;8FE2CC;
-    CLC                                                                  ;8FE2CF;
-    ADC.B DP_Temp12                                                      ;8FE2D0;
-    STA.W RoomMainASMVar1                                                ;8FE2D2;
-    LDA.W RoomMainASMVar2                                                ;8FE2D5;
-    ADC.B DP_Temp14                                                      ;8FE2D8;
-    STA.W RoomMainASMVar2                                                ;8FE2DA;
-    LDA.B DP_Temp12                                                      ;8FE2DD;
-    LDX.B DP_Temp14                                                      ;8FE2DF;
-    STX.B DP_Temp12                                                      ;8FE2E1;
-    STA.B DP_Temp14                                                      ;8FE2E3;
-    JSL.L MoveSamusDown_NoSolidEnemyCollision                            ;8FE2E5;
-    LDA.W RoomMainASMVar3                                                ;8FE2E9;
-    CLC                                                                  ;8FE2EC;
-    ADC.W RoomMainASMVar4                                                ;8FE2ED;
-    CLC                                                                  ;8FE2F0;
-    ADC.W #$0E20                                                         ;8FE2F1;
-    CMP.W #$1C41                                                         ;8FE2F4;
-    BCS .return                                                          ;8FE2F7;
-    SEC                                                                  ;8FE2F9;
-    SBC.W #$0E20                                                         ;8FE2FA;
-    STA.W RoomMainASMVar3                                                ;8FE2FD;
++   STA.B DP_Temp13
+    LDA.W RoomMainASMVar1 : CLC : ADC.B DP_Temp12 : STA.W RoomMainASMVar1
+    LDA.W RoomMainASMVar2 : ADC.B DP_Temp14 : STA.W RoomMainASMVar2
+    LDA.B DP_Temp12
+    LDX.B DP_Temp14 : STX.B DP_Temp12
+    STA.B DP_Temp14
+    JSL MoveSamusDown_NoSolidEnemyCollision
+    LDA.W RoomMainASMVar3 : CLC : ADC.W RoomMainASMVar4
+    CLC : ADC.W #$0E20 : CMP.W #$1C41 : BCS .return
+    SEC : SBC.W #$0E20 : STA.W RoomMainASMVar3
 
   .return:
-    RTS                                                                  ;8FE300;
+    RTS
 
 
 ;;; $E301: Door ASM: reset elevatube on north exit ;;;
 DoorASM_ResetElevatubeOnNorthExit:
 ; Room $D408, door list index 1: Door
-    LDA.W #$0001                                                         ;8FE301;
-    JSL.L Run_Samus_Command                                              ;8FE304;
-    RTS                                                                  ;8FE308;
+    LDA.W #$0001
+    JSL Run_Samus_Command
+    RTS
 
 
 ;;; $E309: Door ASM: reset elevatube on south exit ;;;
 DoorASM_ResetElevatubeOnSouthExit:
 ; Room $D408, door list index 0: Door
-    LDA.W #$0202                                                         ;8FE309;
-    STA.L Scrolls                                                        ;8FE30C;
-    LDA.W #$0001                                                         ;8FE310;
-    JSL.L Run_Samus_Command                                              ;8FE313;
-    RTS                                                                  ;8FE317;
+    LDA.W #$0202 : STA.L Scrolls
+    LDA.W #$0001
+    JSL Run_Samus_Command
+    RTS
 
 
 ;;; $E318: Door ASM: scroll Ah = red, Bh = blue ;;;
 DoorASM_Scroll_A_Red_B_Blue:
 ; Room $D845, door list index 0: Door
-    PHP                                                                  ;8FE318;
-    SEP #$20                                                             ;8FE319;
-    LDA.B #$00                                                           ;8FE31B;
-    STA.L Scrolls+$A                                                     ;8FE31D;
-    LDA.B #$01                                                           ;8FE321;
-    STA.L Scrolls+$B                                                     ;8FE323;
-    PLP                                                                  ;8FE327;
-    RTS                                                                  ;8FE328;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+$A
+    LDA.B #$01 : STA.L Scrolls+$B
+    PLP
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E329: Unused. Door ASM: scroll 10h = blue, 11h = red ;;;
 UNUSED_DoorASM_Scroll_4_Green_8FE329:
-    PHP                                                                  ;8FE329;
-    SEP #$20                                                             ;8FE32A;
-    LDA.B #$00                                                           ;8FE32C;
-    STA.L Scrolls+$11                                                    ;8FE32E;
-    LDA.B #$01                                                           ;8FE332;
-    STA.L Scrolls+$10                                                    ;8FE334;
-    PLP                                                                  ;8FE338;
-    RTS                                                                  ;8FE339;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+$11
+    LDA.B #$01 : STA.L Scrolls+$10
+    PLP
+    RTS
 
 
 ;;; $E33A: Unused. Door ASM: scroll 4 = green ;;;
 UNUSED_DoorASM_Scroll_4_Green_8FE33A:
-    PHP                                                                  ;8FE33A;
-    SEP #$20                                                             ;8FE33B;
-    LDA.B #$02                                                           ;8FE33D;
-    STA.L Scrolls+4                                                      ;8FE33F;
-    PLP                                                                  ;8FE343;
-    RTS                                                                  ;8FE344;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls+4
+    PLP
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E345: Door ASM: scroll 0 = red, 4 = blue ;;;
 DoorASM_Scroll_0_Red_4_Blue_duplicate:
 ; Room $CEFB, door list index 2: Door
-    PHP                                                                  ;8FE345;
-    SEP #$20                                                             ;8FE346;
-    LDA.B #$00                                                           ;8FE348;
-    STA.L Scrolls                                                        ;8FE34A;
-    LDA.B #$01                                                           ;8FE34E;
-    STA.L Scrolls+4                                                      ;8FE350;
-    PLP                                                                  ;8FE354;
-    RTS                                                                  ;8FE355;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls
+    LDA.B #$01 : STA.L Scrolls+4
+    PLP
+    RTS
 
 
 ;;; $E356: Door ASM: scroll 0 = red, 1 = blue ;;;
 DoorASM_Scroll_0_Red_1_Blue:
 ; Room $CF80, door list index 2: Door
 ; Room $D3B6, door list index 0: Door
-    PHP                                                                  ;8FE356;
-    SEP #$20                                                             ;8FE357;
-    LDA.B #$00                                                           ;8FE359;
-    STA.L Scrolls                                                        ;8FE35B;
-    LDA.B #$01                                                           ;8FE35F;
-    STA.L Scrolls+1                                                      ;8FE361;
-    PLP                                                                  ;8FE365;
-    RTS                                                                  ;8FE366;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls
+    LDA.B #$01 : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $E367: Door ASM: scroll 9 = red, Ah = blue ;;;
 DoorASM_Scroll_9_Red_A_Blue:
 ; Room $D104, door list index 1: Door
-    PHP                                                                  ;8FE367;
-    SEP #$20                                                             ;8FE368;
-    LDA.B #$00                                                           ;8FE36A;
-    STA.L Scrolls+9                                                      ;8FE36C;
-    LDA.B #$01                                                           ;8FE370;
-    STA.L Scrolls+$A                                                     ;8FE372;
-    PLP                                                                  ;8FE376;
-    RTS                                                                  ;8FE377;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+9
+    LDA.B #$01 : STA.L Scrolls+$A
+    PLP
+    RTS
 
 
 ;;; $E378: Door ASM: scroll 0,2 = red, 1 = blue ;;;
 DoorASM_Scroll_0_2_Red_1_Blue:
 ; Room $CF54, door list index 0: Door
 ; Room $CF80, door list index 0: Door
-    PHP                                                                  ;8FE378;
-    SEP #$20                                                             ;8FE379;
-    LDA.B #$00                                                           ;8FE37B;
-    STA.L Scrolls                                                        ;8FE37D;
-    STA.L Scrolls+2                                                      ;8FE381;
-    LDA.B #$01                                                           ;8FE385;
-    STA.L Scrolls+1                                                      ;8FE387;
-    PLP                                                                  ;8FE38B;
-    RTS                                                                  ;8FE38C;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls : STA.L Scrolls+2
+    LDA.B #$01 : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $E38D: Door ASM: scroll 1 = blue ;;;
 DoorASM_Scroll_1_Blue_duplicate:
 ; Room $D7E4, door list index 0: Door
-    PHP                                                                  ;8FE38D;
-    SEP #$20                                                             ;8FE38E;
-    LDA.B #$01                                                           ;8FE390;
-    STA.L Scrolls+1                                                      ;8FE392;
-    PLP                                                                  ;8FE396;
-    RTS                                                                  ;8FE397;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $E398: Door ASM: scroll 6 = blue ;;;
 DoorASM_Scroll_6_Blue:
 ; Room $D5A7, door list index 0: Door
-    PHP                                                                  ;8FE398;
-    SEP #$20                                                             ;8FE399;
-    LDA.B #$01                                                           ;8FE39B;
-    STA.L Scrolls+6                                                      ;8FE39D;
-    PLP                                                                  ;8FE3A1;
-    RTS                                                                  ;8FE3A2;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+6
+    PLP
+    RTS
 
 
 ;;; $E3A3: Door ASM: scroll 4 = red ;;;
 DoorASM_Scroll_4_Red_duplicate:
 ; Room $D4C2, door list index 1: Door
 ; Room $D69A, door list index 0: Door
-    PHP                                                                  ;8FE3A3;
-    SEP #$20                                                             ;8FE3A4;
-    LDA.B #$00                                                           ;8FE3A6;
-    STA.L Scrolls+4                                                      ;8FE3A8;
-    PLP                                                                  ;8FE3AC;
-    RTS                                                                  ;8FE3AD;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+4
+    PLP
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E3AE: Unused. Door ASM: scroll 1 = red ;;;
 UNUSED_DoorASM_Scroll_1_Red_8FE3AE:
-    PHP                                                                  ;8FE3AE;
-    SEP #$20                                                             ;8FE3AF;
-    LDA.B #$00                                                           ;8FE3B1;
-    STA.L Scrolls+1                                                      ;8FE3B3;
-    PLP                                                                  ;8FE3B7;
-    RTS                                                                  ;8FE3B8;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+1
+    PLP
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E3B9: Door ASM: scroll 4,7 = red ;;;
 DoorASM_Scroll_4_7_Red:
 ; Room $D646, door list index 3: Door
-    PHP                                                                  ;8FE3B9;
-    SEP #$20                                                             ;8FE3BA;
-    LDA.B #$00                                                           ;8FE3BC;
-    STA.L Scrolls+4                                                      ;8FE3BE;
-    STA.L Scrolls+7                                                      ;8FE3C2;
-    PLP                                                                  ;8FE3C6;
-    RTS                                                                  ;8FE3C7;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+4 : STA.L Scrolls+7
+    PLP
+    RTS
 
 
 ;;; $E3C8: Door ASM: scroll 1 = blue, 2 = red ;;;
 DoorASM_Scroll_1_Blue_2_Red_duplicate:
 ; Room $D8C5, door list index 0: Door
-    PHP                                                                  ;8FE3C8;
-    SEP #$20                                                             ;8FE3C9;
-    LDA.B #$00                                                           ;8FE3CB;
-    STA.L Scrolls+2                                                      ;8FE3CD;
-    LDA.B #$01                                                           ;8FE3D1;
-    STA.L Scrolls+1                                                      ;8FE3D3;
-    PLP                                                                  ;8FE3D7;
-    RTS                                                                  ;8FE3D8;
+    PHP
+    SEP #$20
+    LDA.B #$00 : STA.L Scrolls+2
+    LDA.B #$01 : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $E3D9: Door ASM: scroll 0,2 = green ;;;
 DoorASM_Scroll_0_2_Green_duplicate:
 ; Room $DA60, door list index 0: Door
-    PHP                                                                  ;8FE3D9;
-    SEP #$20                                                             ;8FE3DA;
-    LDA.B #$02                                                           ;8FE3DC;
-    STA.L Scrolls                                                        ;8FE3DE;
-    STA.L Scrolls+2                                                      ;8FE3E2;
-    PLP                                                                  ;8FE3E6;
-    RTS                                                                  ;8FE3E7;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls : STA.L Scrolls+2
+    PLP
+    RTS
 
 
 ;;; $E3E8: Library background ;;;
-LibBG_Tourian_D_MechanicalRoom:                                          ;8FE3E8;
+LibBG_Tourian_D_MechanicalRoom:
 ; Room $DAAE, state $DABB: Tourian -> Crateria elevator
 ; Room $DB31, state $DB43: Metroid room 2
 ; Room $DB31, state $DB5D: Metroid room 2
@@ -14723,7 +13678,7 @@ LibBG_Tourian_D_MechanicalRoom:                                          ;8FE3E8
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Tourian_D_MechanicalRoom_Letterbox:                                ;8FE403;
+LibBG_Tourian_D_MechanicalRoom_Letterbox:
 ; Room $DAE1, state $DAF3: Metroid room 1
 ; Room $DAE1, state $DB0D: Metroid room 1
 ; Room $DB7D, state $DB8F: Metroid room 3
@@ -14733,7 +13688,7 @@ LibBG_Tourian_D_MechanicalRoom_Letterbox:                                ;8FE403
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Tourian_D_VerticalStructures:                                      ;8FE41E;
+LibBG_Tourian_D_VerticalStructures:
 ; Room $DC19, state $DC2B: Tourian super-sidehopper room
 ; Room $DC19, state $DC45: Tourian super-sidehopper room
 ; Room $DC65, state $DC77: Drained Torizo room
@@ -14747,14 +13702,14 @@ LibBG_Tourian_D_VerticalStructures:                                      ;8FE41E
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Tourian_D_PipeRoom_Letterbox:                                      ;8FE439;
+LibBG_Tourian_D_PipeRoom_Letterbox:
 ; Room $DE4D, state $DE5A: Escape room 1
     dw $0004 : dl Background_Tourian_D_PipeRoom_Letterbox : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Tourian_D_PipeRoom_VerticalSeparation:                             ;8FE454;
+LibBG_Tourian_D_PipeRoom_VerticalSeparation:
 ; Room $DDF3, state $DE00: Pre Mother Brain shaft
 ; Room $DE7A, state $DE87: Escape room 2
     dw $0004 : dl Background_Tourian_D_PipeRoom_VerticalSeparation : dw $4000
@@ -14762,7 +13717,7 @@ LibBG_Tourian_D_PipeRoom_VerticalSeparation:                             ;8FE454
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Tourian_D_PipeRoom:                                                ;8FE46F;
+LibBG_Tourian_D_PipeRoom:
 ; Room $DEA7, state $DEB4: Escape room 3
 ; Room $DEDE, state $DEEB: Escape room 4
     dw $0004 : dl Background_Tourian_D_PipeRoom : dw $4000
@@ -14770,7 +13725,7 @@ LibBG_Tourian_D_PipeRoom:                                                ;8FE46F
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Tourian_E_PipeRoom_Dark:                                           ;8FE48A;
+LibBG_Tourian_E_PipeRoom_Dark:
 ; Room $DD58, state $DD6E: Mother Brain
 ; Room $DD58, state $DD88: Mother Brain
 ; Room $DD58, state $DDA2: Mother Brain
@@ -14779,7 +13734,7 @@ LibBG_Tourian_E_PipeRoom_Dark:                                           ;8FE48A
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Tourian_D_E_StatueHall:                                            ;8FE4A5;
+LibBG_Tourian_D_E_StatueHall:
 ; Room $DF8D, state $DF9F: Ceres pre elevator hall
 ; Room $DF8D, state $DFB9: Ceres pre elevator hall
 ; Room $DFD7, state $DFE9: Ceres stairs
@@ -14795,71 +13750,56 @@ LibBG_Tourian_D_E_StatueHall:                                            ;8FE4A5
 ;;; $E4C0: Door ASM: scroll 0..1 = green ;;;
 DoorASM_Scroll_0_1_Green_duplicate:
 ; Room $DAAE, door list index 1: Door
-    PHP                                                                  ;8FE4C0;
-    SEP #$20                                                             ;8FE4C1;
-    LDA.B #$02                                                           ;8FE4C3;
-    STA.L Scrolls                                                        ;8FE4C5;
-    STA.L Scrolls+1                                                      ;8FE4C9;
-    PLP                                                                  ;8FE4CD;
-    RTS                                                                  ;8FE4CE;
+    PHP
+    SEP #$20
+    LDA.B #$02 : STA.L Scrolls : STA.L Scrolls+1
+    PLP
+    RTS
 
 
 ;;; $E4CF: Door ASM: scroll 8 = blue, 9 = red ;;;
 DoorASM_Scroll_8_Blue_9_Red:
 ; Room $DEDE, door list index 1: Door
-    PHP                                                                  ;8FE4CF;
-    SEP #$20                                                             ;8FE4D0;
-    LDA.B #$01                                                           ;8FE4D2;
-    STA.L Scrolls+$18                                                    ;8FE4D4;
-    LDA.B #$00                                                           ;8FE4D8;
-    STA.L Scrolls+$19                                                    ;8FE4DA;
-    PLP                                                                  ;8FE4DE;
-    RTS                                                                  ;8FE4DF;
+    PHP
+    SEP #$20
+    LDA.B #$01 : STA.L Scrolls+$18
+    LDA.B #$00 : STA.L Scrolls+$19
+    PLP
+    RTS
 
 
 ;;; $E4E0: Door ASM: to Ceres elevator shaft ;;;
 DoorASM_ToCeresElevatorShaft:
 ; Room $DF8D, door list index 0: Door
-    SEP #$20                                                             ;8FE4E0;
-    LDA.B #$07                                                           ;8FE4E2;
-    STA.B DP_FakeBGModeSize                                              ;8FE4E4;
-    STA.W $2105                                                          ;8FE4E6;
-    REP #$20                                                             ;8FE4E9;
-    LDA.W #$0100                                                         ;8FE4EB;
-    STA.B DP_Mode7TransMatrixA                                           ;8FE4EE;
-    STA.B DP_Mode7TransMatrixD                                           ;8FE4F0;
-    STZ.B DP_Mode7TransMatrixB                                           ;8FE4F2;
-    STZ.B DP_Mode7TransMatrixC                                           ;8FE4F4;
-    LDA.W #$0080                                                         ;8FE4F6;
-    STA.B DP_Mode7TransOriginX                                           ;8FE4F9;
-    LDA.W #$03F0                                                         ;8FE4FB;
-    STA.B DP_Mode7TransOriginY                                           ;8FE4FE;
-    LDA.W #$0001                                                         ;8FE500;
-    STA.W Mode7Flag                                                      ;8FE503;
-    LDA.W #$0022                                                         ;8FE506;
-    STA.W RoomMainASMVar1                                                ;8FE509;
-    LDA.W #$003C                                                         ;8FE50C;
-    STA.W RoomMainASMVar2                                                ;8FE50F;
-    RTS                                                                  ;8FE512;
+    SEP #$20
+    LDA.B #$07 : STA.B DP_FakeBGModeSize : STA.W $2105
+    REP #$20
+    LDA.W #$0100 : STA.B DP_Mode7TransMatrixA : STA.B DP_Mode7TransMatrixD
+    STZ.B DP_Mode7TransMatrixB : STZ.B DP_Mode7TransMatrixC
+    LDA.W #$0080 : STA.B DP_Mode7TransOriginX
+    LDA.W #$03F0 : STA.B DP_Mode7TransOriginY
+    LDA.W #$0001 : STA.W Mode7Flag
+    LDA.W #$0022 : STA.W RoomMainASMVar1
+    LDA.W #$003C : STA.W RoomMainASMVar2
+    RTS
 
 
 ;;; $E513: Door ASM: from Ceres elevator shaft ;;;
 DoorASM_FromCeresElevatorShaft:
 ; Room $DF45, door list index 0: Door
-    SEP #$20                                                             ;8FE513;
-    LDA.B #$09                                                           ;8FE515;
-    STA.B DP_FakeBGModeSize                                              ;8FE517;
-    REP #$20                                                             ;8FE519;
-    STZ.W Mode7Flag                                                      ;8FE51B;
-    RTS                                                                  ;8FE51E;
+    SEP #$20
+    LDA.B #$09 : STA.B DP_FakeBGModeSize
+    REP #$20
+    STZ.W Mode7Flag
+    RTS
 
 
 ;;; $E51F: Main ASM: Ceres elevator shaft ;;;
 MainASM_CeresElevatorShaft:
 ; Handles landing on elevator and setting mode 7 rotation matrix
 ; Room $DF45. Ceres elevator shaft
-    JSL.L RoomMainASM_CeresElevatorShaft                                 ;8FE51F;
-    RTS                                                                  ;8FE523;
+    JSL RoomMainASM_CeresElevatorShaft
+    RTS
 
 
 ;;; $E524: Main ASM: RTS ;;;
@@ -14867,105 +13807,87 @@ RTS_8FE524:
 ; Room $DFD7. Ceres shaft
 ; Room $E021. Ceres baby Metroid hall
 ; Room $E06B. Pre Ceres Ridley hall
-    RTS                                                                  ;8FE524;
+    RTS
 
 
 ;;; $E525: Main ASM: spawn Ceres pre elevator hall falling debris ;;;
 MainASM_SpawnCeresPreElevatorHallFallingDebris:
 ; Room $DF8D. Ceres pre elevator hall
-    LDA.W CeresStatus                                                    ;8FE525;
-    BEQ RTS_8FE524                                                       ;8FE528;
-    DEC.W RoomMainASMVar1                                                ;8FE52A;
-    BPL RTS_8FE524                                                       ;8FE52D;
-    LDA.W #$0008                                                         ;8FE52F;
-    STA.W RoomMainASMVar1                                                ;8FE532;
-    LDY.W #EnemyProjectile_CeresFallingTile_Light                        ;8FE535;
-    LDA.W RandomNumberSeed                                               ;8FE538;
-    ASL                                                                  ;8FE53B;
-    BCC +                                                                ;8FE53C;
-    LDY.W #EnemyProjectile_CeresFallingTile_Dark                         ;8FE53E;
+    LDA.W CeresStatus : BEQ RTS_8FE524
+    DEC.W RoomMainASMVar1 : BPL RTS_8FE524
+    LDA.W #$0008 : STA.W RoomMainASMVar1
+    LDY.W #EnemyProjectile_CeresFallingTile_Light
+    LDA.W RandomNumberSeed : ASL : BCC +
+    LDY.W #EnemyProjectile_CeresFallingTile_Dark
 
-+   LDA.W RandomNumberSeed                                               ;8FE541;
-    AND.W #$000F                                                         ;8FE544;
-    ASL                                                                  ;8FE547;
-    TAX                                                                  ;8FE548;
-    LDA.W .debrisXpos,X                                                  ;8FE549;
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;8FE54C;
-    RTS                                                                  ;8FE550;
++   LDA.W RandomNumberSeed : AND.W #$000F : ASL : TAX
+    LDA.W .debrisXpos,X
+    JSL SpawnEnemyProjectileY_ParameterA_RoomGraphics
+    RTS
 
   .debrisXpos:
-    dw $0050,$0060,$0070,$0080,$0090,$00A0,$00B0,$00C0                   ;8FE551;
-    dw $00D0,$00E0,$00F0,$0110,$0130,$0150,$0170,$0190                   ;8FE561;
+    dw $0050,$0060,$0070,$0080,$0090,$00A0,$00B0,$00C0
+    dw $00D0,$00E0,$00F0,$0110,$0130,$0150,$0170,$0190
 
 
 ;;; $E571: Main ASM: handle Ceres Ridley getaway cutscene ;;;
 MainASM_HandleCeresRidleyGetawayCutscene:
 ; Room $E0B5. Ceres Ridley's room
-    LDA.W CeresStatus                                                    ;8FE571;
-    LSR                                                                  ;8FE574;
-    BCC .return                                                          ;8FE575;
-    JSL.L HandleCeresRidleyGetawayCutscene                               ;8FE577;
+    LDA.W CeresStatus : LSR : BCC .return
+    JSL HandleCeresRidleyGetawayCutscene
 
   .return:
-    RTS                                                                  ;8FE57B;
+    RTS
 
 
 ;;; $E57C: Main ASM: shake screen switching between light horizontal and medium diagonal ;;;
 MainASM_ShakeScreenSwitchingBetweenLightHorizAndMediumDiag:
 ; Room $DE7A. Escape room 2
 ; Horizontal screen shaking with a 1/80h chance of becoming medium diagonal for 2Ah frames
-    LDA.W RoomMainASMVar1                                                ;8FE57C;
-    BEQ .resetQuakeTimer                                                 ;8FE57F;
-    DEC.W RoomMainASMVar1                                                ;8FE581;
-    BNE MainASM_GenerateRandomExplosionOnEveryFourthFrame                ;8FE584;
-    LDA.W #$0012                                                         ;8FE586;
-    BRA +                                                                ;8FE589;
+    LDA.W RoomMainASMVar1 : BEQ .resetQuakeTimer
+    DEC.W RoomMainASMVar1 : BNE MainASM_GenerateRandomExplosionOnEveryFourthFrame
+    LDA.W #$0012
+    BRA +
 
   .resetQuakeTimer:
-    JSL.L GenerateRandomNumber                                           ;8FE58B;
-    CMP.W #$0200                                                         ;8FE58F;
-    BCS MainASM_GenerateRandomExplosionOnEveryFourthFrame                ;8FE592;
-    LDA.W #$002A                                                         ;8FE594;
-    STA.W RoomMainASMVar1                                                ;8FE597;
-    LDA.W #$0017                                                         ;8FE59A;
+    JSL GenerateRandomNumber
+    CMP.W #$0200 : BCS MainASM_GenerateRandomExplosionOnEveryFourthFrame
+    LDA.W #$002A : STA.W RoomMainASMVar1
+    LDA.W #$0017
 
-+   STA.W EarthquakeType                                                 ;8FE59D; fallthrough to MainASM_GenerateRandomExplosionOnEveryFourthFrame
++   STA.W EarthquakeType
+; fallthrough to MainASM_GenerateRandomExplosionOnEveryFourthFrame
 
 
 ;;; $E5A0: Main ASM: generate random explosion on every fourth frame ;;;
 MainASM_GenerateRandomExplosionOnEveryFourthFrame:
 ; Room $DE4D. Escape room 1
 ; Room $DEA7. Escape room 3
-    JSR.W GenerateRandomExplosionOnEveryFourthFrame                      ;8FE5A0;
-    RTS                                                                  ;8FE5A3;
+    JSR GenerateRandomExplosionOnEveryFourthFrame
+    RTS
 
 
 ;;; $E5A4: Main ASM: shake screen switching between medium horizontal and strong diagonal ;;;
 MainASM_ShakeScreenSwitchingBetweenMediumHorizAndStrongDiag:
 ; Room $DEDE. Escape room 4
 ; Horizontal screen shaking with a 3/200h chance of becoming strong diagonal for 2Ah frames
-    LDA.W RoomMainASMVar1                                                ;8FE5A4;
-    BEQ .resetQuakeTimer                                                 ;8FE5A7;
-    DEC.W RoomMainASMVar1                                                ;8FE5A9;
-    BNE .noEarthquakeChange                                              ;8FE5AC;
-    LDA.W #$0015                                                         ;8FE5AE;
-    BRA +                                                                ;8FE5B1;
+    LDA.W RoomMainASMVar1 : BEQ .resetQuakeTimer
+    DEC.W RoomMainASMVar1 : BNE .noEarthquakeChange
+    LDA.W #$0015
+    BRA +
 
   .resetQuakeTimer:
-    JSL.L GenerateRandomNumber                                           ;8FE5B3;
-    CMP.W #$0180                                                         ;8FE5B7;
-    BCS .noEarthquakeChange                                              ;8FE5BA;
-    LDA.W #$002A                                                         ;8FE5BC;
-    STA.W RoomMainASMVar1                                                ;8FE5BF;
-    LDA.W #$001A                                                         ;8FE5C2;
+    JSL GenerateRandomNumber
+    CMP.W #$0180 : BCS .noEarthquakeChange
+    LDA.W #$002A : STA.W RoomMainASMVar1
+    LDA.W #$001A
 
-+   STA.W RoomMainASMVar2                                                ;8FE5C5;
++   STA.W RoomMainASMVar2
 
   .noEarthquakeChange:
-    LDA.W RoomMainASMVar2                                                ;8FE5C8;
-    STA.W EarthquakeType                                                 ;8FE5CB;
-    JSR.W GenerateRandomExplosionOnEveryFourthFrame                      ;8FE5CE;
-    RTS                                                                  ;8FE5D1;
+    LDA.W RoomMainASMVar2 : STA.W EarthquakeType
+    JSR GenerateRandomExplosionOnEveryFourthFrame
+    RTS
 
 
 ;;; $E5D2: Room state checking handler ;;;
@@ -14974,445 +13896,397 @@ Room_State_Checking_Handler:
 ;;     X: Room pointer
 
 ; A matching state condition will return out of *this* routine by popping the return address pushed to the stack by $E5E0
-    TXA                                                                  ;8FE5D2;
-    CLC                                                                  ;8FE5D3;
-    ADC.W #$000B                                                         ;8FE5D4;
-    TAX                                                                  ;8FE5D7;
+    TXA : CLC : ADC.W #$000B : TAX
 
   .loop:
-    LDA.W $0000,X                                                        ;8FE5D8;
-    STA.W EventPointer                                                   ;8FE5DB;
-    INX                                                                  ;8FE5DE;
-    INX                                                                  ;8FE5DF;
-    PEA.W .loop-1                                                        ;8FE5E0;
-    JMP.W (EventPointer)                                                 ;8FE5E3;
+    LDA.W $0000,X : STA.W EventPointer
+    INX #2
+    PEA .loop-1
+    JMP.W (EventPointer)
 
 
 ;;; $E5E6: Use state pointer [X] ;;;
 Use_StatePointer_inX:
 ; Room state check: default
-    STX.W RoomStatePointer                                               ;8FE5E6;
-    PLA                                                                  ;8FE5E9;
-    RTL                                                                  ;8FE5EA;
+    STX.W RoomStatePointer
+    PLA
+    RTL
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E5EB: Unused. Room state check: door ;;;
 UNUSED_RoomStateCheck_Door_8FE5EB:
-    LDA.W $0000,X                                                        ;8FE5EB;
-    CMP.W DoorPointer                                                    ;8FE5EE;
-    BNE +                                                                ;8FE5F1;
-    LDA.W $0002,X                                                        ;8FE5F3;
-    TAX                                                                  ;8FE5F6;
-    JMP.W Use_StatePointer_inX                                           ;8FE5F7;
+    LDA.W $0000,X : CMP.W DoorPointer : BNE +
+    LDA.W $0002,X : TAX
+    JMP Use_StatePointer_inX
 
-+   INX                                                                  ;8FE5FA;
-    INX                                                                  ;8FE5FB;
-    INX                                                                  ;8FE5FC;
-    INX                                                                  ;8FE5FD;
-    RTS                                                                  ;8FE5FE;
++   INX #4
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E5FF: Room state check: main area boss is dead ;;;
 RoomStateCheck_MainAreaBossIsDead:
-    LDA.W #$0001                                                         ;8FE5FF;
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA                   ;8FE602;
-    BCC +                                                                ;8FE606;
-    LDA.W $0000,X                                                        ;8FE608;
-    TAX                                                                  ;8FE60B;
-    JMP.W Use_StatePointer_inX                                           ;8FE60C;
+    LDA.W #$0001
+    JSL CheckIfBossBitsForCurrentAreaMatchAnyBitsInA
+    BCC +
+    LDA.W $0000,X : TAX
+    JMP Use_StatePointer_inX
 
-+   INX                                                                  ;8FE60F;
-    INX                                                                  ;8FE610;
-    RTS                                                                  ;8FE611;
++   INX #2
+    RTS
 
 
 ;;; $E612: Room state check: event has been set ;;;
 RoomStateCheck_EventHasBeenSet:
-    LDA.W $0000,X                                                        ;8FE612;
-    AND.W #$00FF                                                         ;8FE615;
-    JSL.L CheckIfEvent_inA_HasHappened                                   ;8FE618;
-    BCC +                                                                ;8FE61C;
-    LDA.W $0001,X                                                        ;8FE61E;
-    TAX                                                                  ;8FE621;
-    JMP.W Use_StatePointer_inX                                           ;8FE622;
+    LDA.W $0000,X : AND.W #$00FF
+    JSL CheckIfEvent_inA_HasHappened
+    BCC +
+    LDA.W $0001,X : TAX
+    JMP Use_StatePointer_inX
 
-+   INX                                                                  ;8FE625;
-    INX                                                                  ;8FE626;
-    INX                                                                  ;8FE627;
-    RTS                                                                  ;8FE628;
++   INX #3
+    RTS
 
 
 ;;; $E629: Room state check: boss is dead ;;;
 RoomStateCheck_BossIsDead:
-    LDA.W $0000,X                                                        ;8FE629;
-    AND.W #$00FF                                                         ;8FE62C;
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA                   ;8FE62F;
-    BCC +                                                                ;8FE633;
-    LDA.W $0001,X                                                        ;8FE635;
-    TAX                                                                  ;8FE638;
-    JMP.W Use_StatePointer_inX                                           ;8FE639;
+    LDA.W $0000,X : AND.W #$00FF
+    JSL CheckIfBossBitsForCurrentAreaMatchAnyBitsInA
+    BCC +
+    LDA.W $0001,X : TAX
+    JMP Use_StatePointer_inX
 
-+   INX                                                                  ;8FE63C;
-    INX                                                                  ;8FE63D;
-    INX                                                                  ;8FE63E;
-    RTS                                                                  ;8FE63F;
++   INX #3
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E640: Unused. Room state check: morphball ;;;
 UNUSED_RoomStateCheck_Morphball_8FE640:
-    LDA.W CollectedItems                                                 ;8FE640;
-    AND.W #$0004                                                         ;8FE643;
-    BEQ +                                                                ;8FE646;
-    LDA.W $0000,X                                                        ;8FE648;
-    TAX                                                                  ;8FE64B;
-    JMP.W Use_StatePointer_inX                                           ;8FE64C;
+    LDA.W CollectedItems : AND.W #$0004 : BEQ +
+    LDA.W $0000,X : TAX
+    JMP Use_StatePointer_inX
 
-+   INX                                                                  ;8FE64F;
-    INX                                                                  ;8FE650;
-    RTS                                                                  ;8FE651;
++   INX #2
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E652: Room state check: morphball and missiles ;;;
 RoomStateCheck_MorphballAndMissiles:
-    LDA.W CollectedItems                                                 ;8FE652;
-    BIT.W #$0004                                                         ;8FE655;
-    BEQ +                                                                ;8FE658;
-    LDA.W MaxMissiles                                                    ;8FE65A;
-    BEQ +                                                                ;8FE65D;
-    LDA.W $0000,X                                                        ;8FE65F;
-    TAX                                                                  ;8FE662;
-    JMP.W Use_StatePointer_inX                                           ;8FE663;
+    LDA.W CollectedItems : BIT.W #$0004 : BEQ +
+    LDA.W MaxMissiles : BEQ +
+    LDA.W $0000,X : TAX
+    JMP Use_StatePointer_inX
 
-+   INX                                                                  ;8FE666;
-    INX                                                                  ;8FE667;
-    RTS                                                                  ;8FE668;
++   INX #2
+    RTS
 
 
 ;;; $E669: Room state check: power bombs ;;;
 RoomStateCheck_PowerBombs:
-    LDA.W MaxPowerBombs                                                  ;8FE669;
-    BEQ +                                                                ;8FE66C;
-    LDA.W $0000,X                                                        ;8FE66E;
-    TAX                                                                  ;8FE671;
-    JMP.W Use_StatePointer_inX                                           ;8FE672;
+    LDA.W MaxPowerBombs : BEQ +
+    LDA.W $0000,X : TAX
+    JMP Use_StatePointer_inX
 
-+   INX                                                                  ;8FE675;
-    INX                                                                  ;8FE676;
-    RTS                                                                  ;8FE677;
++   INX #2
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E678: Unused. Room state check: speed booster ;;;
 UNUSED_RoomStateCheck_SpeedBooster_8FE678:
-    LDA.W CollectedItems                                                 ;8FE678;
-    AND.W #$2000                                                         ;8FE67B;
-    BEQ +                                                                ;8FE67E;
-    LDA.W $0000,X                                                        ;8FE680;
-    TAX                                                                  ;8FE683;
-    JMP.W Use_StatePointer_inX                                           ;8FE684;
+    LDA.W CollectedItems : AND.W #$2000 : BEQ +
+    LDA.W $0000,X : TAX
+    JMP Use_StatePointer_inX
 
-+   INX                                                                  ;8FE687;
-    INX                                                                  ;8FE688;
-    RTS                                                                  ;8FE689;
++   INX #2
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E68A: Door closing PLMs ;;;
 Door_Closing_PLMs:
 ; Spawned by Spawn_Door_Closing_PLM during door transition
-    dw $0000                                                             ;8FE68A; 0: Non-closing door facing right
-    dw $0000                                                             ;8FE68C; 1: Non-closing door facing left
-    dw $0000                                                             ;8FE68E; 2: Non-closing door facing down
-    dw $0000                                                             ;8FE690; 3: Non-closing door facing up
-    dw PLMEntries_blueDoorClosingFacingRight                             ;8FE692; 4: Blue door closing facing right
-    dw PLMEntries_blueDoorClosingFacingLeft                              ;8FE694; 5: Blue door closing facing left
-    dw PLMEntries_blueDoorClosingFacingDown                              ;8FE696; 6: Blue door closing facing down
-    dw PLMEntries_blueDoorClosingFacingUp                                ;8FE698; 7: Blue door closing facing up
-    dw PLMEntries_gateThatClosesInEscapeRoom1_PLM                        ;8FE69A; 8: Gate that closes during escape in room after Mother Brain
-    dw PLMEntries_gateThatClosesInEscapeRoom1_PLM                        ;8FE69C; 9: Gate that closes during escape in room after Mother Brain
-    dw PLMEntries_gateThatClosesInEscapeRoom1_PLM                        ;8FE69E; Ah: Gate that closes during escape in room after Mother Brain
-    dw PLMEntries_gateThatClosesInEscapeRoom1_PLM                        ;8FE6A0; Bh: Gate that closes during escape in room after Mother Brain
+    dw $0000                                                             ; 0: Non-closing door facing right
+    dw $0000                                                             ; 1: Non-closing door facing left
+    dw $0000                                                             ; 2: Non-closing door facing down
+    dw $0000                                                             ; 3: Non-closing door facing up
+    dw PLMEntries_blueDoorClosingFacingRight                             ; 4: Blue door closing facing right
+    dw PLMEntries_blueDoorClosingFacingLeft                              ; 5: Blue door closing facing left
+    dw PLMEntries_blueDoorClosingFacingDown                              ; 6: Blue door closing facing down
+    dw PLMEntries_blueDoorClosingFacingUp                                ; 7: Blue door closing facing up
+    dw PLMEntries_gateThatClosesInEscapeRoom1_PLM                        ; 8: Gate that closes during escape in room after Mother Brain
+    dw PLMEntries_gateThatClosesInEscapeRoom1_PLM                        ; 9: Gate that closes during escape in room after Mother Brain
+    dw PLMEntries_gateThatClosesInEscapeRoom1_PLM                        ; Ah: Gate that closes during escape in room after Mother Brain
+    dw PLMEntries_gateThatClosesInEscapeRoom1_PLM                        ; Bh: Gate that closes during escape in room after Mother Brain
 
 Tileset_Table_0_UpperCrateria:
 ; 0: Upper Crateria
-    dl TileTables_0_1_UpperCrateria                                      ;8FE6A2; Tile table pointer
-    dl Tiles_0_1_UpperCrateria                                           ;8FE6A5; Tiles pointer
-    dl Palettes_0_UpperCrateria                                          ;8FE6A8; Palette pointer
+    dl TileTables_0_1_UpperCrateria                                      ; Tile table pointer
+    dl Tiles_0_1_UpperCrateria                                           ; Tiles pointer
+    dl Palettes_0_UpperCrateria                                          ; Palette pointer
 
 Tileset_Table_1_RedCrateria:
 ; 1: Red Crateria
-    dl TileTables_0_1_UpperCrateria                                      ;8FE6AB; Tile table pointer
-    dl Tiles_0_1_UpperCrateria                                           ;8FE6AE; Tiles pointer
-    dl Palettes_1_RedCrateria                                            ;8FE6B1; Palette pointer
+    dl TileTables_0_1_UpperCrateria                                      ; Tile table pointer
+    dl Tiles_0_1_UpperCrateria                                           ; Tiles pointer
+    dl Palettes_1_RedCrateria                                            ; Palette pointer
 
 Tileset_Table_2_LowerCrateria:
 ; 2: Lower Crateria
-    dl TileTables_2_3_LowerCrateria                                      ;8FE6B4; Tile table pointer
-    dl Tiles_2_3_LowerCrateria                                           ;8FE6B7; Tiles pointer
-    dl Palettes_2_LowerCrateria                                          ;8FE6BA; Palette pointer
+    dl TileTables_2_3_LowerCrateria                                      ; Tile table pointer
+    dl Tiles_2_3_LowerCrateria                                           ; Tiles pointer
+    dl Palettes_2_LowerCrateria                                          ; Palette pointer
 
 Tileset_Table_3_OldTourian:
 ; 3: Old Tourian
-    dl TileTables_2_3_LowerCrateria                                      ;8FE6BD; Tile table pointer
-    dl Tiles_2_3_LowerCrateria                                           ;8FE6C0; Tiles pointer
-    dl Palettes_3_OldTourian                                             ;8FE6C3; Palette pointer
+    dl TileTables_2_3_LowerCrateria                                      ; Tile table pointer
+    dl Tiles_2_3_LowerCrateria                                           ; Tiles pointer
+    dl Palettes_3_OldTourian                                             ; Palette pointer
 
 Tileset_Table_4_WreckedShip_PowerOn:
 ; 4: Wrecked Ship - power on
-    dl TileTables_4_5_WreckedShip                                        ;8FE6C6; Tile table pointer
-    dl Tiles_4_5_WreckedShip                                             ;8FE6C9; Tiles pointer
-    dl Palettes_4_WreckedShip_PowerOn                                    ;8FE6CC; Palette pointer
+    dl TileTables_4_5_WreckedShip                                        ; Tile table pointer
+    dl Tiles_4_5_WreckedShip                                             ; Tiles pointer
+    dl Palettes_4_WreckedShip_PowerOn                                    ; Palette pointer
 
 Tileset_Table_5_WreckedShip_PowerOff:
 ; 5: Wrecked Ship - power off
-    dl TileTables_4_5_WreckedShip                                        ;8FE6CF; Tile table pointer
-    dl Tiles_4_5_WreckedShip                                             ;8FE6D2; Tiles pointer
-    dl Palettes_5_WreckedShip_PowerOff                                   ;8FE6D5; Palette pointer
+    dl TileTables_4_5_WreckedShip                                        ; Tile table pointer
+    dl Tiles_4_5_WreckedShip                                             ; Tiles pointer
+    dl Palettes_5_WreckedShip_PowerOff                                   ; Palette pointer
 
 Tileset_Table_6_GreenBlueBrinstar:
 ; 6: Green/blue Brinstar
-    dl TileTables_6_GreenBlueBrinstar                                    ;8FE6D8; Tile table pointer
-    dl Tiles_6_GreenBlueBrinstar                                         ;8FE6DB; Tiles pointer
-    dl Palettes_6_GreenBlueBrinstar                                      ;8FE6DE; Palette pointer
+    dl TileTables_6_GreenBlueBrinstar                                    ; Tile table pointer
+    dl Tiles_6_GreenBlueBrinstar                                         ; Tiles pointer
+    dl Palettes_6_GreenBlueBrinstar                                      ; Palette pointer
 
 Tileset_Table_7_RedBrinstar_Kraid:
 ; 7: Red Brinstar / Kraid's lair
-    dl TileTables_7_8_RedBrinstar_Kraid_StatuesHall                      ;8FE6E1; Tile table pointer
-    dl Tiles_7_8_RedBrinstar_Kraid_StatuesHall                           ;8FE6E4; Tiles pointer
-    dl Palettes_7_RedBrinstar_Kraid                                      ;8FE6E7; Palette pointer
+    dl TileTables_7_8_RedBrinstar_Kraid_StatuesHall                      ; Tile table pointer
+    dl Tiles_7_8_RedBrinstar_Kraid_StatuesHall                           ; Tiles pointer
+    dl Palettes_7_RedBrinstar_Kraid                                      ; Palette pointer
 
 Tileset_Table_8_StatuesHall:
 ; 8: Pre Tourian entrance corridor
-    dl TileTables_7_8_RedBrinstar_Kraid_StatuesHall                      ;8FE6EA; Tile table pointer
-    dl Tiles_7_8_RedBrinstar_Kraid_StatuesHall                           ;8FE6ED; Tiles pointer
-    dl Palettes_8_StatuesHall                                            ;8FE6F0; Palette pointer
+    dl TileTables_7_8_RedBrinstar_Kraid_StatuesHall                      ; Tile table pointer
+    dl Tiles_7_8_RedBrinstar_Kraid_StatuesHall                           ; Tiles pointer
+    dl Palettes_8_StatuesHall                                            ; Palette pointer
 
 Tileset_Table_9_HeatedNorfair:
 ; 9: Heated Norfair
-    dl TileTables_9_A_Norfair                                            ;8FE6F3; Tile table pointer
-    dl Tiles_9_A_Norfair                                                 ;8FE6F6; Tiles pointer
-    dl Palettes_9_HeatedNorfair                                          ;8FE6F9; Palette pointer
+    dl TileTables_9_A_Norfair                                            ; Tile table pointer
+    dl Tiles_9_A_Norfair                                                 ; Tiles pointer
+    dl Palettes_9_HeatedNorfair                                          ; Palette pointer
 
 Tileset_Table_A_UnheatedNofair:
 ; Ah: Unheated Norfair
-    dl TileTables_9_A_Norfair                                            ;8FE6FC; Tile table pointer
-    dl Tiles_9_A_Norfair                                                 ;8FE6FF; Tiles pointer
-    dl Palettes_A_UnheatedNorfair                                        ;8FE702; Palette pointer
+    dl TileTables_9_A_Norfair                                            ; Tile table pointer
+    dl Tiles_9_A_Norfair                                                 ; Tiles pointer
+    dl Palettes_A_UnheatedNorfair                                        ; Palette pointer
 
 Tileset_Table_B_SandlessMaridia:
 ; Bh: Sandless Maridia
-    dl TileTables_B_SandlessMaridia                                      ;8FE705; Tile table pointer
-    dl Tiles_B_SandlessMaridia                                           ;8FE708; Tiles pointer
-    dl Palettes_B_SandlessMaridia                                        ;8FE70B; Palette pointer
+    dl TileTables_B_SandlessMaridia                                      ; Tile table pointer
+    dl Tiles_B_SandlessMaridia                                           ; Tiles pointer
+    dl Palettes_B_SandlessMaridia                                        ; Palette pointer
 
 Tileset_Table_C_SandyMaridia:
 ; Ch: Sandy Maridia
-    dl TileTables_C_SandyMaridia                                         ;8FE70E; Tile table pointer
-    dl Tiles_C_SandyMaridia                                              ;8FE711; Tiles pointer
-    dl Palettes_C_SandyMaridia                                           ;8FE714; Palette pointer
+    dl TileTables_C_SandyMaridia                                         ; Tile table pointer
+    dl Tiles_C_SandyMaridia                                              ; Tiles pointer
+    dl Palettes_C_SandyMaridia                                           ; Palette pointer
 
 Tileset_Table_D_Tourian:
 ; Dh: Tourian
-    dl TileTables_D_E_Tourian                                            ;8FE717; Tile table pointer
-    dl Tiles_D_E_Tourian                                                 ;8FE71A; Tiles pointer
-    dl Palettes_D_Tourian                                                ;8FE71D; Palette pointer
+    dl TileTables_D_E_Tourian                                            ; Tile table pointer
+    dl Tiles_D_E_Tourian                                                 ; Tiles pointer
+    dl Palettes_D_Tourian                                                ; Palette pointer
 
 Tileset_Table_E_MotherBrain:
 ; Eh: Mother Brain's room
-    dl TileTables_D_E_Tourian                                            ;8FE720; Tile table pointer
-    dl Tiles_D_E_Tourian                                                 ;8FE723; Tiles pointer
-    dl Palettes_E_MotherBrain                                            ;8FE726; Palette pointer
+    dl TileTables_D_E_Tourian                                            ; Tile table pointer
+    dl Tiles_D_E_Tourian                                                 ; Tiles pointer
+    dl Palettes_E_MotherBrain                                            ; Palette pointer
 
 Tileset_Table_F_BlueCeres:
 ; Fh: Blue Ceres
-    dl TileTables_F_10_11_12_13_14_Ceres                                 ;8FE729; Tile table pointer
-    dl Tiles_F_10_Ceres                                                  ;8FE72C; Tiles pointer
-    dl Palettes_F_11_13_BlueCeres                                        ;8FE72F; Palette pointer
+    dl TileTables_F_10_11_12_13_14_Ceres                                 ; Tile table pointer
+    dl Tiles_F_10_Ceres                                                  ; Tiles pointer
+    dl Palettes_F_11_13_BlueCeres                                        ; Palette pointer
 
 Tileset_Table_10_WhiteCeres:
 ; 10h: White Ceres
-    dl TileTables_F_10_11_12_13_14_Ceres                                 ;8FE732; Tile table pointer
-    dl Tiles_F_10_Ceres                                                  ;8FE735; Tiles pointer
-    dl Palettes_10_12_14_WhiteCeres                                      ;8FE738; Palette pointer
+    dl TileTables_F_10_11_12_13_14_Ceres                                 ; Tile table pointer
+    dl Tiles_F_10_Ceres                                                  ; Tiles pointer
+    dl Palettes_10_12_14_WhiteCeres                                      ; Palette pointer
 
 Tileset_Table_11_BlueCeresElevator:
 ; 11h: Blue Ceres elevator
-    dl TileTables_F_10_11_12_13_14_Ceres                                 ;8FE73B; Tile table pointer
-    dl Tiles_11_12_CeresElevator                                         ;8FE73E; Tiles pointer
-    dl Palettes_F_11_13_BlueCeres                                        ;8FE741; Palette pointer
+    dl TileTables_F_10_11_12_13_14_Ceres                                 ; Tile table pointer
+    dl Tiles_11_12_CeresElevator                                         ; Tiles pointer
+    dl Palettes_F_11_13_BlueCeres                                        ; Palette pointer
 
 Tileset_Table_12_WhiteCeresElevator:
 ; 12h: White Ceres elevator
-    dl TileTables_F_10_11_12_13_14_Ceres                                 ;8FE744; Tile table pointer
-    dl Tiles_11_12_CeresElevator                                         ;8FE747; Tiles pointer
-    dl Palettes_10_12_14_WhiteCeres                                      ;8FE74A; Palette pointer
+    dl TileTables_F_10_11_12_13_14_Ceres                                 ; Tile table pointer
+    dl Tiles_11_12_CeresElevator                                         ; Tiles pointer
+    dl Palettes_10_12_14_WhiteCeres                                      ; Palette pointer
 
 Tileset_Table_13_BlueCeresRidley:
 ; 13h: Blue Ceres Ridley's room
-    dl TileTables_F_10_11_12_13_14_Ceres                                 ;8FE74D; Tile table pointer
-    dl Tiles_13_14_CeresRidley                                           ;8FE750; Tiles pointer
-    dl Palettes_F_11_13_BlueCeres                                        ;8FE753; Palette pointer
+    dl TileTables_F_10_11_12_13_14_Ceres                                 ; Tile table pointer
+    dl Tiles_13_14_CeresRidley                                           ; Tiles pointer
+    dl Palettes_F_11_13_BlueCeres                                        ; Palette pointer
 
 Tileset_Table_14_WhiteCeresRidley:
 ; 14h: White Ceres Ridley's room
-    dl TileTables_F_10_11_12_13_14_Ceres                                 ;8FE756; Tile table pointer
-    dl Tiles_13_14_CeresRidley                                           ;8FE759; Tiles pointer
-    dl Palettes_10_12_14_WhiteCeres                                      ;8FE75C; Palette pointer
+    dl TileTables_F_10_11_12_13_14_Ceres                                 ; Tile table pointer
+    dl Tiles_13_14_CeresRidley                                           ; Tiles pointer
+    dl Palettes_10_12_14_WhiteCeres                                      ; Palette pointer
 
 Tileset_Table_15_Map_Statues:
 ; 15h: Map room / Tourian entrance
-    dl TileTables_15_16_17_18_19_UtilityRoom_Statues                     ;8FE75F; Tile table pointer
-    dl Tiles_15_16_17_18_19_UtilityRoom_Statues                          ;8FE762; Tiles pointer
-    dl Palettes_Map_Statues                                              ;8FE765; Palette pointer
+    dl TileTables_15_16_17_18_19_UtilityRoom_Statues                     ; Tile table pointer
+    dl Tiles_15_16_17_18_19_UtilityRoom_Statues                          ; Tiles pointer
+    dl Palettes_Map_Statues                                              ; Palette pointer
 
 Tileset_Table_16_WreckedShipMap_PowerOff:
 ; 16h: Wrecked Ship map room - power off
-    dl TileTables_15_16_17_18_19_UtilityRoom_Statues                     ;8FE768; Tile table pointer
-    dl Tiles_15_16_17_18_19_UtilityRoom_Statues                          ;8FE76B; Tiles pointer
-    dl Palettes_16_WreckedShipMap_PowerOff                               ;8FE76E; Palette pointer
+    dl TileTables_15_16_17_18_19_UtilityRoom_Statues                     ; Tile table pointer
+    dl Tiles_15_16_17_18_19_UtilityRoom_Statues                          ; Tiles pointer
+    dl Palettes_16_WreckedShipMap_PowerOff                               ; Palette pointer
 
 Tileset_Table_17_BlueRefill:
 ; 17h: Blue refill room
-    dl TileTables_15_16_17_18_19_UtilityRoom_Statues                     ;8FE771; Tile table pointer
-    dl Tiles_15_16_17_18_19_UtilityRoom_Statues                          ;8FE774; Tiles pointer
-    dl Palettes_17_BlueRefill                                            ;8FE777; Palette pointer
+    dl TileTables_15_16_17_18_19_UtilityRoom_Statues                     ; Tile table pointer
+    dl Tiles_15_16_17_18_19_UtilityRoom_Statues                          ; Tiles pointer
+    dl Palettes_17_BlueRefill                                            ; Palette pointer
 
 Tileset_Table_18_YellowRefill:
 ; 18h: Yellow refill room
-    dl TileTables_15_16_17_18_19_UtilityRoom_Statues                     ;8FE77A; Tile table pointer
-    dl Tiles_15_16_17_18_19_UtilityRoom_Statues                          ;8FE77D; Tiles pointer
-    dl Palettes_18_YellowRefill                                          ;8FE780; Palette pointer
+    dl TileTables_15_16_17_18_19_UtilityRoom_Statues                     ; Tile table pointer
+    dl Tiles_15_16_17_18_19_UtilityRoom_Statues                          ; Tiles pointer
+    dl Palettes_18_YellowRefill                                          ; Palette pointer
 
 Tileset_Table_19_SaveStation:
 ; 19h: Save room
-    dl TileTables_15_16_17_18_19_UtilityRoom_Statues                     ;8FE783; Tile table pointer
-    dl Tiles_15_16_17_18_19_UtilityRoom_Statues                          ;8FE786; Tiles pointer
-    dl Palettes_19_SaveStation                                           ;8FE789; Palette pointer
+    dl TileTables_15_16_17_18_19_UtilityRoom_Statues                     ; Tile table pointer
+    dl Tiles_15_16_17_18_19_UtilityRoom_Statues                          ; Tiles pointer
+    dl Palettes_19_SaveStation                                           ; Palette pointer
 
 Tileset_Table_1A_Kraid:
 ; 1Ah: Kraid's room
-    dl TileTables_1A_Kraid                                               ;8FE78C; Tile table pointer
-    dl Tiles_1A_Kraid                                                    ;8FE78F; Tiles pointer
-    dl Palettes_1A_Kraid                                                 ;8FE792; Palette pointer
+    dl TileTables_1A_Kraid                                               ; Tile table pointer
+    dl Tiles_1A_Kraid                                                    ; Tiles pointer
+    dl Palettes_1A_Kraid                                                 ; Palette pointer
 
 Tileset_Table_1B_Crocomire:
 ; 1Bh: Crocomire's room
-    dl TileTables_1B_Crocomire                                           ;8FE795; Tile table pointer
-    dl Tiles_1B_Crocomire                                                ;8FE798; Tiles pointer
-    dl Palettes_1B_Crocomire                                             ;8FE79B; Palette pointer
+    dl TileTables_1B_Crocomire                                           ; Tile table pointer
+    dl Tiles_1B_Crocomire                                                ; Tiles pointer
+    dl Palettes_1B_Crocomire                                             ; Palette pointer
 
 Tileset_Table_1C_Draygon:
 ; 1Ch: Draygon's room
-    dl TileTables_1C_Draygon                                             ;8FE79E; Tile table pointer
-    dl Tiles_1C_Draygon                                                  ;8FE7A1; Tiles pointer
-    dl Palettes_1C_Draygon                                               ;8FE7A4; Palette pointer
+    dl TileTables_1C_Draygon                                             ; Tile table pointer
+    dl Tiles_1C_Draygon                                                  ; Tiles pointer
+    dl Palettes_1C_Draygon                                               ; Palette pointer
 
 
 ;;; $E7A7: Tileset pointers ;;;
 Tileset_Pointers:
-    dw Tileset_Table_0_UpperCrateria                                     ;8FE7A7;
-    dw Tileset_Table_1_RedCrateria                                       ;8FE7A9;
-    dw Tileset_Table_2_LowerCrateria                                     ;8FE7AB;
-    dw Tileset_Table_3_OldTourian                                        ;8FE7AD;
-    dw Tileset_Table_4_WreckedShip_PowerOn                               ;8FE7AF;
-    dw Tileset_Table_5_WreckedShip_PowerOff                              ;8FE7B1;
-    dw Tileset_Table_6_GreenBlueBrinstar                                 ;8FE7B3;
-    dw Tileset_Table_7_RedBrinstar_Kraid                                 ;8FE7B5;
-    dw Tileset_Table_8_StatuesHall                                       ;8FE7B7;
-    dw Tileset_Table_9_HeatedNorfair                                     ;8FE7B9;
-    dw Tileset_Table_A_UnheatedNofair                                    ;8FE7BB;
-    dw Tileset_Table_B_SandlessMaridia                                   ;8FE7BD;
-    dw Tileset_Table_C_SandyMaridia                                      ;8FE7BF;
-    dw Tileset_Table_D_Tourian                                           ;8FE7C1;
-    dw Tileset_Table_E_MotherBrain                                       ;8FE7C3;
-    dw Tileset_Table_F_BlueCeres                                         ;8FE7C5;
-    dw Tileset_Table_10_WhiteCeres                                       ;8FE7C7;
-    dw Tileset_Table_11_BlueCeresElevator                                ;8FE7C9;
-    dw Tileset_Table_12_WhiteCeresElevator                               ;8FE7CB;
-    dw Tileset_Table_13_BlueCeresRidley                                  ;8FE7CD;
-    dw Tileset_Table_14_WhiteCeresRidley                                 ;8FE7CF;
-    dw Tileset_Table_15_Map_Statues                                      ;8FE7D1;
-    dw Tileset_Table_16_WreckedShipMap_PowerOff                          ;8FE7D3;
-    dw Tileset_Table_17_BlueRefill                                       ;8FE7D5;
-    dw Tileset_Table_18_YellowRefill                                     ;8FE7D7;
-    dw Tileset_Table_19_SaveStation                                      ;8FE7D9;
-    dw Tileset_Table_1A_Kraid                                            ;8FE7DB;
-    dw Tileset_Table_1B_Crocomire                                        ;8FE7DD;
-    dw Tileset_Table_1C_Draygon                                          ;8FE7DF;
+    dw Tileset_Table_0_UpperCrateria
+    dw Tileset_Table_1_RedCrateria
+    dw Tileset_Table_2_LowerCrateria
+    dw Tileset_Table_3_OldTourian
+    dw Tileset_Table_4_WreckedShip_PowerOn
+    dw Tileset_Table_5_WreckedShip_PowerOff
+    dw Tileset_Table_6_GreenBlueBrinstar
+    dw Tileset_Table_7_RedBrinstar_Kraid
+    dw Tileset_Table_8_StatuesHall
+    dw Tileset_Table_9_HeatedNorfair
+    dw Tileset_Table_A_UnheatedNofair
+    dw Tileset_Table_B_SandlessMaridia
+    dw Tileset_Table_C_SandyMaridia
+    dw Tileset_Table_D_Tourian
+    dw Tileset_Table_E_MotherBrain
+    dw Tileset_Table_F_BlueCeres
+    dw Tileset_Table_10_WhiteCeres
+    dw Tileset_Table_11_BlueCeresElevator
+    dw Tileset_Table_12_WhiteCeresElevator
+    dw Tileset_Table_13_BlueCeresRidley
+    dw Tileset_Table_14_WhiteCeresRidley
+    dw Tileset_Table_15_Map_Statues
+    dw Tileset_Table_16_WreckedShipMap_PowerOff
+    dw Tileset_Table_17_BlueRefill
+    dw Tileset_Table_18_YellowRefill
+    dw Tileset_Table_19_SaveStation
+    dw Tileset_Table_1A_Kraid
+    dw Tileset_Table_1B_Crocomire
+    dw Tileset_Table_1C_Draygon
 
 
 ;;; $E7E1: Music pointers ;;;
 Music_Pointers:
-    dl SPC_Engine                                                        ;8FE7E1; 0   - SPC engine
-    dl Music_TitleSequence                                               ;8FE7E4; 3   - Title sequence
-    dl Music_EmptyCrateria                                               ;8FE7E7; 6   - Empty Crateria
-    dl Music_LowerCrateria                                               ;8FE7EA; 9   - Lower Crateria
-    dl Music_UpperCrateria                                               ;8FE7ED; Ch  - Upper Crateria
-    dl Music_GreenBrinstar                                               ;8FE7F0; Fh  - Green Brinstar
-    dl Music_RedBrinstar                                                 ;8FE7F3; 12h - Red Brinstar
-    dl Music_UpperNofair                                                 ;8FE7F6; 15h - Upper Norfair
-    dl Music_LowerNorfair                                                ;8FE7F9; 18h - Lower Norfair
-    dl Music_Maridia                                                     ;8FE7FC; 1Bh - Maridia
-    dl Music_Tourian                                                     ;8FE7FF; 1Eh - Tourian
-    dl Music_MotherBrain                                                 ;8FE802; 21h - Mother Brain
-    dl Music_BossFight1                                                  ;8FE805; 24h - Boss fight 1
-    dl Music_BossFight2                                                  ;8FE808; 27h - Boss fight 2
-    dl Music_MiniBossFight                                               ;8FE80B; 2Ah - Miniboss fight
-    dl Music_Ceres                                                       ;8FE80E; 2Dh - Ceres
-    dl Music_WreckedShip                                                 ;8FE811; 30h - Wrecked Ship
-    dl Music_ZebesExplosion                                              ;8FE814; 33h - Zebes boom
-    dl Music_Intro                                                       ;8FE817; 36h - Intro
-    dl Music_Death                                                       ;8FE81A; 39h - Death
-    dl Music_Credits                                                     ;8FE81D; 3Ch - Credits
-    dl Music_TheLastMetroidIsInCaptivity                                 ;8FE820; 3Fh - "The last Metroid is in captivity"
-    dl Music_TheGalaxyIsAtPeace                                          ;8FE823; 42h - "The galaxy is at peace"
-    dl Music_BabyMetroid_BossFight2                                      ;8FE826; 45h - Shitroid (same as boss fight 2)
-    dl Music_SamusTheme_UpperCrateria                                    ;8FE829; 48h - Samus theme (same as upper Crateria)
+    dl SPC_Engine                                                        ; 0   - SPC engine
+    dl Music_TitleSequence                                               ; 3   - Title sequence
+    dl Music_EmptyCrateria                                               ; 6   - Empty Crateria
+    dl Music_LowerCrateria                                               ; 9   - Lower Crateria
+    dl Music_UpperCrateria                                               ; Ch  - Upper Crateria
+    dl Music_GreenBrinstar                                               ; Fh  - Green Brinstar
+    dl Music_RedBrinstar                                                 ; 12h - Red Brinstar
+    dl Music_UpperNofair                                                 ; 15h - Upper Norfair
+    dl Music_LowerNorfair                                                ; 18h - Lower Norfair
+    dl Music_Maridia                                                     ; 1Bh - Maridia
+    dl Music_Tourian                                                     ; 1Eh - Tourian
+    dl Music_MotherBrain                                                 ; 21h - Mother Brain
+    dl Music_BossFight1                                                  ; 24h - Boss fight 1
+    dl Music_BossFight2                                                  ; 27h - Boss fight 2
+    dl Music_MiniBossFight                                               ; 2Ah - Miniboss fight
+    dl Music_Ceres                                                       ; 2Dh - Ceres
+    dl Music_WreckedShip                                                 ; 30h - Wrecked Ship
+    dl Music_ZebesExplosion                                              ; 33h - Zebes boom
+    dl Music_Intro                                                       ; 36h - Intro
+    dl Music_Death                                                       ; 39h - Death
+    dl Music_Credits                                                     ; 3Ch - Credits
+    dl Music_TheLastMetroidIsInCaptivity                                 ; 3Fh - "The last Metroid is in captivity"
+    dl Music_TheGalaxyIsAtPeace                                          ; 42h - "The galaxy is at peace"
+    dl Music_BabyMetroid_BossFight2                                      ; 45h - Shitroid (same as boss fight 2)
+    dl Music_SamusTheme_UpperCrateria                                    ; 48h - Samus theme (same as upper Crateria)
 
 
 ;;; $E82C: Debug room ;;;
 RoomHeader_Debug:
-; Room $E82C: Header                                                     ;8FE82C;
-    %RoomHeader(\
-    %room(0),
-    %area(7),
-    %positions(0, 0),
-    %dimensions(6, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Debug))
-    %stateChecks(0)
+; Room $E82C: Header
+    db $00,$07,$00,$00,$06,$02,$70,$A0,$00
+    dw RoomDoors_Debug
+    dw Use_StatePointer_inX
 
-RoomState_Debug:                                                         ;8FE839;
+RoomState_Debug:
 ; Room $E82C, state $E839: Header
-    %StateHeader(\
-    %levelData(LevelData_DebugRoom),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_Debug_MotherBrain_State2),
-    %enemyPop(EnemyPopulations_Debug),
-    %enemySet(EnemySets_Debug),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(1),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(RoomPLM_Debug),
-    %libraryBG(LibBG_WreckedShip_4_5_EntranceHall),
-    %setupASM(0))
+    dl LevelData_DebugRoom
+    db $0B,$00,$00
+    dw FXHeader_Debug_MotherBrain_State2
+    dw EnemyPopulations_Debug
+    dw EnemySets_Debug
+    dw $C1C1,$0001,$0000,$0000
+    dw RoomPLM_Debug
+    dw LibBG_WreckedShip_4_5_EntranceHall
+    dw $0000
 
 RoomDoors_Debug:
 ; Room $E82C: Door list
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;8FE853;
-    dw UNUSED_Door_Debug_1_83ABCF                                        ;8FE855;
-    dw UNUSED_Door_Debug_2_83ABDA                                        ;8FE857;
-    dw UNUSED_Door_Debug_3_83ABE5                                        ;8FE859;
+    dw UNUSED_Door_Debug_0_83ABC4
+    dw UNUSED_Door_Debug_1_83ABCF
+    dw UNUSED_Door_Debug_2_83ABDA
+    dw UNUSED_Door_Debug_3_83ABE5
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibraryBackground_8FE85B:                                         ;8FE85B;
+UNUSED_LibraryBackground_8FE85B:
 ; Unused library background. Same as the library background LibBG_Crateria_0_Rocks used by rooms:
 ;     Crateria mainstreet
 ;     Landing site power bomb room
@@ -15429,11 +14303,11 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomPLM_Debug:
 ; Room $E82C, state $E839: PLM
-    db $00,$00                                                           ;8FE87F;
+    db $00,$00
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E881: Unused. PLM metadata - Wrecked Ship / Maridia / Tourian (/ Ceres?) ;;;
-UNUSED_UnknownUnreferenced_8FE881:                                       ;8FE881;
+UNUSED_UnknownUnreferenced_8FE881:
 ; See UNUSED_8FC209 for the other areas
     dw $009E ; "Next" item / refill station index (9Dh is the last used one, see "Item PLMs.asm" from bank logs)
     dw $00AD ; "Next" doorcap index (ACh is the last used one, see "Door PLMs.asm" from bank logs)
@@ -15447,129 +14321,84 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $E88F: Execute setup ASM ;;;
 Execute_Room_Setup_ASM:
-    PHP                                                                  ;8FE88F;
-    PHB                                                                  ;8FE890;
-    REP #$30                                                             ;8FE891;
-    LDX.W RoomStatePointer                                               ;8FE893;
-    LDA.W $0018,X                                                        ;8FE896;
-    BEQ .return                                                          ;8FE899;
-    PHK                                                                  ;8FE89B;
-    PLB                                                                  ;8FE89C;
-    JSR.W ($0018,X)                                                      ;8FE89D;
+    PHP : PHB
+    REP #$30
+    LDX.W RoomStatePointer
+    LDA.W $0018,X : BEQ .return
+    PHK : PLB
+    JSR.W ($0018,X)
 
   .return:
-    PLB                                                                  ;8FE8A0;
-    PLP                                                                  ;8FE8A1;
-    RTL                                                                  ;8FE8A2;
+    PLB : PLP
+    RTL
 
 
 ;;; $E8A3: Execute door ASM ;;;
 Execute_Door_ASM:
-    PHP                                                                  ;8FE8A3;
-    PHB                                                                  ;8FE8A4;
-    REP #$30                                                             ;8FE8A5;
-    LDX.W DoorPointer                                                    ;8FE8A7;
-    LDA.L DoorHeaders_doorASM,X                                          ;8FE8AA;
-    BEQ .return                                                          ;8FE8AE;
-    STA.B DP_Temp12                                                      ;8FE8B0;
-    PHK                                                                  ;8FE8B2;
-    PLB                                                                  ;8FE8B3;
-    PEA.W .return-1                                                      ;8FE8B4;
-    JMP.W (DP_Temp12)                                                    ;8FE8B7;
+    PHP : PHB
+    REP #$30
+    LDX.W DoorPointer
+    LDA.L DoorHeaders_doorASM,X : BEQ .return
+    STA.B DP_Temp12
+    PHK : PLB
+    PEA .return-1
+    JMP.W (DP_Temp12)
 
   .return:
-    PLB                                                                  ;8FE8BA;
-    PLP                                                                  ;8FE8BB;
-    RTL                                                                  ;8FE8BC;
+    PLB : PLP
+    RTL
 
 
 ;;; $E8BD: Execute room main ASM ;;;
 Execute_Room_Main_ASM:
-    LDX.W RoomMainASMPointer                                             ;8FE8BD;
-    BEQ .return                                                          ;8FE8C0;
-    PHB                                                                  ;8FE8C2;
-    PHK                                                                  ;8FE8C3;
-    PLB                                                                  ;8FE8C4;
-    LDX.W #$0000                                                         ;8FE8C5;
-    JSR.W (RoomMainASMPointer,X)                                         ;8FE8C8;
-    PLB                                                                  ;8FE8CB;
+    LDX.W RoomMainASMPointer : BEQ .return
+    PHB
+    PHK : PLB
+    LDX.W #$0000
+    JSR.W (RoomMainASMPointer,X)
+    PLB
 
   .return:
-    RTL                                                                  ;8FE8CC;
+    RTL
 
 
 ;;; $E8CD: Main ASM: Crocomire's room shaking ;;;
 MainASM_CrocomiresRoomShaking:
 ; Room $A98D. Crocomire's room
-    LDA.W Enemy.properties                                               ;8FE8CD;
-    BIT.W #$0200                                                         ;8FE8D0;
-    BNE .return                                                          ;8FE8D3;
-    LDA.W Enemy.var0                                                     ;8FE8D5;
-    CMP.W #$0040                                                         ;8FE8D8;
-    BEQ .behindWallRumbling                                              ;8FE8DB;
-    LDA.W Enemy.var1                                                     ;8FE8DD;
-    BIT.W #$0400                                                         ;8FE8E0;
-    BEQ .branch                                                          ;8FE8E3;
-    LDA.W Enemy[1].var3                                                  ;8FE8E5;
-    DEC                                                                  ;8FE8E8;
-    STA.W Enemy[1].var3                                                  ;8FE8E9;
-    CMP.W #$FFF9                                                         ;8FE8EC;
-    BMI +                                                                ;8FE8EF;
-    LDA.W Enemy[1].var3                                                  ;8FE8F1;
-    BRA .scroll                                                          ;8FE8F4;
+    LDA.W Enemy.properties : BIT.W #$0200 : BNE .return
+    LDA.W Enemy.var0 : CMP.W #$0040 : BEQ .behindWallRumbling
+    LDA.W Enemy.var1 : BIT.W #$0400 : BEQ .branch
+    LDA.W Enemy[1].var3 : DEC : STA.W Enemy[1].var3
+    CMP.W #$FFF9 : BMI +
+    LDA.W Enemy[1].var3
+    BRA .scroll
 
-+   LDA.W #$0007                                                         ;8FE8F6;
-    CLC                                                                  ;8FE8F9;
-    ADC.W Enemy[1].var3                                                  ;8FE8FA;
-    ASL                                                                  ;8FE8FD;
-    STA.B DP_Temp12                                                      ;8FE8FE;
-    LDA.W Enemy[1].var3                                                  ;8FE900;
-    SEC                                                                  ;8FE903;
-    SBC.B DP_Temp12                                                      ;8FE904;
++   LDA.W #$0007 : CLC : ADC.W Enemy[1].var3 : ASL : STA.B DP_Temp12
+    LDA.W Enemy[1].var3 : SEC : SBC.B DP_Temp12
 
   .scroll:
-    STA.B DP_Temp12                                                      ;8FE906;
-    CLC                                                                  ;8FE908;
-    ADC.B DP_BG1YScroll                                                  ;8FE909;
-    STA.B DP_BG1YScroll                                                  ;8FE90B;
-    LDA.W #$FFD0                                                         ;8FE90D;
-    CLC                                                                  ;8FE910;
-    ADC.B DP_Temp12                                                      ;8FE911;
-    STA.B DP_BG2YScroll                                                  ;8FE913;
+    STA.B DP_Temp12
+    CLC : ADC.B DP_BG1YScroll : STA.B DP_BG1YScroll
+    LDA.W #$FFD0 : CLC : ADC.B DP_Temp12 : STA.B DP_BG2YScroll
 
   .return:
-    RTS                                                                  ;8FE915;
+    RTS
 
   .branch:
-    LDA.W Enemy.var2                                                     ;8FE916;
-    CMP.W #$0022                                                         ;8FE919;
-    BNE .return                                                          ;8FE91C;
-    LDA.W Enemy.var3                                                     ;8FE91E;
-    BEQ .return                                                          ;8FE921;
-    DEC                                                                  ;8FE923;
-    STA.W Enemy.var3                                                     ;8FE924;
-    BIT.W #$0001                                                         ;8FE927;
-    BNE +                                                                ;8FE92A;
-    LDA.W Layer1XPosition                                                ;8FE92C;
-    CLC                                                                  ;8FE92F;
-    ADC.W #$0004                                                         ;8FE930;
-    STA.W Layer1XPosition                                                ;8FE933;
-    RTS                                                                  ;8FE936;
+    LDA.W Enemy.var2 : CMP.W #$0022 : BNE .return
+    LDA.W Enemy.var3 : BEQ .return
+    DEC : STA.W Enemy.var3
+    BIT.W #$0001 : BNE +
+    LDA.W Layer1XPosition : CLC : ADC.W #$0004 : STA.W Layer1XPosition
+    RTS
 
-+   LDA.W Layer1XPosition                                                ;8FE937;
-    SEC                                                                  ;8FE93A;
-    SBC.W #$0004                                                         ;8FE93B;
-    STA.W Layer1XPosition                                                ;8FE93E;
-    RTS                                                                  ;8FE941;
++   LDA.W Layer1XPosition : SEC : SBC.W #$0004 : STA.W Layer1XPosition
+    RTS
 
   .behindWallRumbling:
-    LDA.W Layer1YPosition                                                ;8FE942;
-    CLC                                                                  ;8FE945;
-    ADC.W BG1YOffset                                                     ;8FE946;
-    CLC                                                                  ;8FE949;
-    ADC.W Enemy[1].var3                                                  ;8FE94A;
-    STA.B DP_BG1YScroll                                                  ;8FE94D;
-    RTS                                                                  ;8FE94F;
+    LDA.W Layer1YPosition : CLC : ADC.W BG1YOffset
+    CLC : ADC.W Enemy[1].var3 : STA.B DP_BG1YScroll
+    RTS
 
 
 ;;; $E950: Main ASM: Ridley's room shaking ;;;
@@ -15577,39 +14406,25 @@ MainASM_RidleysRoomShaking:
 ; Room $B32E. Ridley's room
 ; Scrolls background in circle when Ridley's tail explosion sets Enemy[4].var0 (when? Doesn't seem to ever happen)
 ; It's actually probably a good thing if this never happens, messing with the BG scroll registers can break scrolling
-    LDA.W Enemy[4].var0                                                  ;8FE950;
-    BEQ .return                                                          ;8FE953;
-    DEC                                                                  ;8FE955;
-    STA.W Enemy[4].var0                                                  ;8FE956;
-    ASL                                                                  ;8FE959;
-    TAX                                                                  ;8FE95A;
-    LDA.B DP_BG1XScroll                                                  ;8FE95B;
-    ADC.W .Xspeeds,X                                                     ;8FE95D;
-    STA.B DP_BG1XScroll                                                  ;8FE960;
-    LDA.B DP_BG2XScroll                                                  ;8FE962;
-    CLC                                                                  ;8FE964;
-    ADC.W .Xspeeds,X                                                     ;8FE965;
-    STA.B DP_BG2XScroll                                                  ;8FE968;
-    LDA.B DP_BG1YScroll                                                  ;8FE96A;
-    CLC                                                                  ;8FE96C;
-    ADC.W .Yspeeds,X                                                     ;8FE96D;
-    STA.B DP_BG1YScroll                                                  ;8FE970;
-    LDA.B DP_BG2YScroll                                                  ;8FE972;
-    CLC                                                                  ;8FE974;
-    ADC.W .Yspeeds,X                                                     ;8FE975;
-    STA.B DP_BG2YScroll                                                  ;8FE978;
+    LDA.W Enemy[4].var0 : BEQ .return
+    DEC : STA.W Enemy[4].var0
+    ASL : TAX
+    LDA.B DP_BG1XScroll : ADC.W .Xspeeds,X : STA.B DP_BG1XScroll
+    LDA.B DP_BG2XScroll : CLC : ADC.W .Xspeeds,X : STA.B DP_BG2XScroll
+    LDA.B DP_BG1YScroll : CLC : ADC.W .Yspeeds,X : STA.B DP_BG1YScroll
+    LDA.B DP_BG2YScroll : CLC : ADC.W .Yspeeds,X : STA.B DP_BG2YScroll
 
   .return:
-    RTS                                                                  ;8FE97A;
+    RTS
 
   .Xspeeds:
 ; X scroll speeds
-    dw $0000,$0002,$0002,$0002,$0000,$FFFE,$FFFE,$FFFE                   ;8FE97B;
+    dw $0000,$0002,$0002,$0002,$0000,$FFFE,$FFFE,$FFFE
 
   .Yspeeds:
 ; Y scroll speeds
-    dw $FFFE,$FFFE,$0000,$0002,$0002,$0002,$0000,$FFFE                   ;8FE98B;
+    dw $FFFE,$FFFE,$0000,$0002,$0002,$0002,$0000,$FFFE
 
 
-Freespace_Bank8F_E99B:                                                   ;8FE99B;
+Freespace_Bank8F_E99B:
 ; $1665 bytes

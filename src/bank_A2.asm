@@ -7,335 +7,293 @@ org $A28000
 ;;; $8000: Grapple AI - no interaction. Also unfreezes enemies(!) ;;;
 CommonA2_GrappleAI_NoInteraction:
 ; Used by skultera, Draygon body, fire arc, Phantoon, etecoon, dachora and WS ghost
-    JSL.L GrappleAI_SwitchEnemyAIToMainAI                                ;A28000;
-    RTL                                                                  ;A28004;
+    JSL GrappleAI_SwitchEnemyAIToMainAI
+    RTL
 
 
 ;;; $8005: Grapple AI - Samus latches on ;;;
 CommonA2_GrappleAI_SamusLatchesOn:
 ; Used by gripper and Crocomire
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple                            ;A28005;
-    RTL                                                                  ;A28009;
+    JSL GrappleAI_SamusLatchesOnWithGrapple
+    RTL
 
 
 ;;; $800A: Grapple AI - kill enemy ;;;
 CommonA2_GrappleAI_KillEnemy:
 ; Common
-    JSL.L GrappleAI_EnemyGrappleDeath                                    ;A2800A;
-    RTL                                                                  ;A2800E;
+    JSL GrappleAI_EnemyGrappleDeath
+    RTL
 
 
 ;;; $800F: Grapple AI - cancel grapple beam ;;;
 CommonA2_GrappleAI_CancelGrappleBeam:
 ; Common
-    JSL.L GrappleAI_SwitchToFrozenAI                                     ;A2800F;
-    RTL                                                                  ;A28013;
+    JSL GrappleAI_SwitchToFrozenAI
+    RTL
 
 
 ;;; $8014: Grapple AI - Samus latches on - no invincibility ;;;
 CommonA2_GrappleAI_SamusLatchesOn_NoInvincibility:
 ; Used by powamp
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility            ;A28014;
-    RTL                                                                  ;A28018;
+    JSL GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility
+    RTL
 
 
 ;;; $8019: Unused. Grapple AI - Samus latches on - paralyse enemy ;;;
 UNUSED_CommonA2_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A28019:
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy              ;A28019;
-    RTL                                                                  ;A2801D;
+    JSL GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy
+    RTL
 
 
 ;;; $801E: Grapple AI - hurt Samus ;;;
 CommonA2_GrappleAI_HurtSamus:
 ; Used by WS spark
 ; Hurt reaction happens in $9B:B932
-    JSL.L GrappleAI_SwitchToFrozenAI_duplicate                           ;A2801E;
-    RTL                                                                  ;A28022;
+    JSL GrappleAI_SwitchToFrozenAI_duplicate
+    RTL
 
 
 ;;; $8023: Normal enemy touch AI ;;;
 CommonA2_NormalEnemyTouchAI:
-    JSL.L NormalEnemyTouchAI                                             ;A28023;
-    RTL                                                                  ;A28027;
+    JSL NormalEnemyTouchAI
+    RTL
 
 
 ;;; $8028: Normal touch AI - no death check ;;;
 CommonA2_NormalTouchAI_NoDeathCheck:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A28028;
-    RTL                                                                  ;A2802C;
+    JSL NormalEnemyTouchAI_NoDeathCheck_External
+    RTL
 
 
 ;;; $802D: Normal enemy shot AI ;;;
 CommonA2_NormalEnemyShotAI:
-    JSL.L NormalEnemyShotAI                                              ;A2802D;
-    RTL                                                                  ;A28031;
+    JSL NormalEnemyShotAI
+    RTL
 
 
 ;;; $8032: Normal enemy shot AI - no death check, no enemy shot graphic ;;;
 CommonA2_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A28032;
-    RTL                                                                  ;A28036;
+    JSL NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External
+    RTL
 
 
 ;;; $8037: Normal enemy power bomb AI ;;;
 CommonA2_NormalEnemyPowerBombAI:
-    JSL.L NormalEnemyPowerBombAI                                         ;A28037;
-    RTL                                                                  ;A2803B;
+    JSL NormalEnemyPowerBombAI
+    RTL
 
 
 ;;; $803C: Normal enemy power bomb AI - no death check ;;;
 CommonA2_NormalEnemyPowerBombAI_NoDeathCheck:
 ; Kraid's power bomb AI
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A2803C;
-    RTL                                                                  ;A28040;
+    JSL NormalEnemyPowerBombAI_NoDeathCheck_External
+    RTL
 
 
 ;;; $8041: Normal enemy frozen AI ;;;
 CommonA2_NormalEnemyFrozenAI:
-    JSL.L NormalEnemyFrozenAI                                            ;A28041;
-    RTL                                                                  ;A28045;
+    JSL NormalEnemyFrozenAI
+    RTL
 
 
 ;;; $8046: Creates a dud shot ;;;
 CommonA2_CreateADudShot_JSL:
-    JSL.L CreateADudShot                                                 ;A28046;
-    RTL                                                                  ;A2804A;
+    JSL CreateADudShot
+    RTL
 
 
 ;;; $804B: RTS ;;;
 RTS_A2804B:
-    RTS                                                                  ;A2804B;
+    RTS
 
 
 ;;; $804C: RTL ;;;
 RTL_A2804C:
-    RTL                                                                  ;A2804C;
+    RTL
 
 
 ;;; $804D: Spritemap - nothing ;;;
 Spritemap_CommonA2_Nothing:
-    dw $0000                                                             ;A2804D;
+    dw $0000
 
 
 ;;; $804F: Extended spritemap - nothing ;;;
 ExtendedSpritemap_CommonA2_Nothing:
-    dw $0001                                                             ;A2804F;
+    dw $0001
     dw $0000,$0000
-    dw Spritemap_CommonA2_Nothing                                        ;A28055;
-    dw Hitbox_CommonA2_Nothing                                           ;A28057;
+    dw Spritemap_CommonA2_Nothing
+    dw Hitbox_CommonA2_Nothing
 
 
 ;;; $8059: Hitbox - nothing ;;;
 Hitbox_CommonA2_Nothing:
 ; [n entries] [[left offset] [top offset] [right offset] [bottom offset] [p touch] [p shot]]...
-    dw $0001                                                             ;A28059;
+    dw $0001
     dw $0000,$0000,$0000,$0000
-    dw CommonA2_NormalEnemyTouchAI                                       ;A28063;
-    dw CommonA2_NormalEnemyShotAI                                        ;A28065;
+    dw CommonA2_NormalEnemyTouchAI
+    dw CommonA2_NormalEnemyShotAI
 
 
 ;;; $8067: Instruction list - delete enemy ;;;
 InstList_CommonA2_DeleteEnemy:
-    dw Instruction_CommonA2_DeleteEnemy                                  ;A28067;
+    dw Instruction_CommonA2_DeleteEnemy
 
 
 ;;; $8069: Two NOPs ;;;
 NOPNOP_A28069:
 ; Used as palette by respawning enemy placeholder and Draygon's eye o_O
-    NOP                                                                  ;A28069;
-    NOP                                                                  ;A2806A;
+    NOP #2
+
 
 ;;; $806B: Instruction - Enemy.var5 = [[Y]] ;;;
 Instruction_CommonA2_Enemy0FB2_InY:
 ; Used only by torizos (for enemy movement function) and escape etecoon (for enemy function)
-    LDA.W $0000,Y                                                        ;A2806B;
-    STA.W Enemy.var5,X                                                   ;A2806E;
-    INY                                                                  ;A28071;
-    INY                                                                  ;A28072;
-    RTL                                                                  ;A28073;
+    LDA.W $0000,Y : STA.W Enemy.var5,X
+    INY #2
+    RTL
 
 
 ;;; $8074: Instruction - Enemy.var5 = RTS ;;;
 Instruction_CommonA2_SetEnemy0FB2ToRTS:
-    LDA.W #RTS_A2807B                                                    ;A28074;
-    STA.W Enemy.var5,X                                                   ;A28077;
-    RTL                                                                  ;A2807A;
+    LDA.W #RTS_A2807B : STA.W Enemy.var5,X
+    RTL
 
 
 RTS_A2807B:
-    RTS                                                                  ;A2807B;
+    RTS
 
 
 ;;; $807C: Instruction - delete enemy ;;;
 Instruction_CommonA2_DeleteEnemy:
-    LDA.W Enemy.properties,X                                             ;A2807C;
-    ORA.W #$0200                                                         ;A2807F;
-    STA.W Enemy.properties,X                                             ;A28082;
-    PLA                                                                  ;A28085;
-    PEA.W  ProcessEnemyInstructions_return-1                             ;A28086;
-    RTL                                                                  ;A28089;
+    LDA.W Enemy.properties,X : ORA.W #$0200 : STA.W Enemy.properties,X
+    PLA
+    PEA.W ProcessEnemyInstructions_return-1
+    RTL
 
 
 ;;; $808A: Instruction - call function [[Y]] ;;;
 Instruction_CommonA2_CallFunctionInY:
-    LDA.W $0000,Y                                                        ;A2808A;
-    STA.B DP_Temp12                                                      ;A2808D;
-    PHY                                                                  ;A2808F;
-    PHX                                                                  ;A28090;
-    PEA.W .manualReturn-1                                                ;A28091;
-    JMP.W (DP_Temp12)                                                    ;A28094;
+    LDA.W $0000,Y : STA.B DP_Temp12
+    PHY : PHX
+    PEA .manualReturn-1
+    JMP.W (DP_Temp12)
 
   .manualReturn:
-    PLX                                                                  ;A28097;
-    PLY                                                                  ;A28098;
-    INY                                                                  ;A28099;
-    INY                                                                  ;A2809A;
-    RTL                                                                  ;A2809B;
+    PLX : PLY
+    INY #2
+    RTL
 
 
 ;;; $809C: Instruction - call function [[Y]] with A = [[Y] + 2] ;;;
 Instruction_CommonA2_CallFunctionInY_WithA:
-    LDA.W $0000,Y                                                        ;A2809C;
-    STA.B DP_Temp12                                                      ;A2809F;
-    LDA.W $0002,Y                                                        ;A280A1;
-    PHY                                                                  ;A280A4;
-    PHX                                                                  ;A280A5;
-    PEA.W .manualReturn-1                                                ;A280A6;
-    JMP.W (DP_Temp12)                                                    ;A280A9;
+    LDA.W $0000,Y : STA.B DP_Temp12
+    LDA.W $0002,Y
+    PHY : PHX
+    PEA .manualReturn-1
+    JMP.W (DP_Temp12)
 
   .manualReturn:
-    PLX                                                                  ;A280AC;
-    PLY                                                                  ;A280AD;
-    TYA                                                                  ;A280AE;
-    CLC                                                                  ;A280AF;
-    ADC.W #$0004                                                         ;A280B0;
-    TAY                                                                  ;A280B3;
-    RTL                                                                  ;A280B4;
+    PLX : PLY
+    TYA : CLC : ADC.W #$0004 : TAY
+    RTL
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
 UNUSED_Instruction_CommonA2_CallExternalFunctionInY_A280B5:
-    LDA.W $0000,Y                                                        ;A280B5;
-    STA.B DP_Temp12                                                      ;A280B8;
-    LDA.W $0001,Y                                                        ;A280BA;
-    STA.B DP_Temp13                                                      ;A280BD;
-    PHX                                                                  ;A280BF;
-    PHY                                                                  ;A280C0;
-    JSL.L .externalFunction                                              ;A280C1;
-    PLY                                                                  ;A280C5;
-    PLX                                                                  ;A280C6;
-    INY                                                                  ;A280C7;
-    INY                                                                  ;A280C8;
-    INY                                                                  ;A280C9;
-    RTL                                                                  ;A280CA;
+    LDA.W $0000,Y : STA.B DP_Temp12
+    LDA.W $0001,Y : STA.B DP_Temp13
+    PHX : PHY
+    JSL .externalFunction
+    PLY : PLX
+    INY #3
+    RTL
 
   .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A280CB;
+    JML.W [DP_Temp12]
 
 
 ;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
 UNUSED_Inst_CommonA2_CallExternalFunctionInY_WithA_A280CE:
-    LDA.W $0000,Y                                                        ;A280CE;
-    STA.B DP_Temp12                                                      ;A280D1;
-    LDA.W $0001,Y                                                        ;A280D3;
-    STA.B DP_Temp13                                                      ;A280D6;
-    LDA.W $0003,Y                                                        ;A280D8;
-    PHX                                                                  ;A280DB;
-    PHY                                                                  ;A280DC;
-    JSL.L .externalFunction                                              ;A280DD;
-    PLY                                                                  ;A280E1;
-    PLX                                                                  ;A280E2;
-    TYA                                                                  ;A280E3;
-    CLC                                                                  ;A280E4;
-    ADC.W #$0005                                                         ;A280E5;
-    TAY                                                                  ;A280E8;
-    RTL                                                                  ;A280E9;
+    LDA.W $0000,Y : STA.B DP_Temp12
+    LDA.W $0001,Y : STA.B DP_Temp13
+    LDA.W $0003,Y
+    PHX : PHY
+    JSL .externalFunction
+    PLY : PLX
+    TYA : CLC : ADC.W #$0005 : TAY
+    RTL
 
   .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A280EA;
+    JML.W [DP_Temp12]
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $80ED: Instruction - go to [[Y]] ;;;
 Instruction_CommonA2_GotoY:
-    LDA.W $0000,Y                                                        ;A280ED;
-    TAY                                                                  ;A280F0;
-    RTL                                                                  ;A280F1;
+    LDA.W $0000,Y : TAY
+    RTL
 
 
 ;;; $80F2: Instruction - go to [[Y]] + ±[[Y]] ;;;
 Instruction_CommonA2_GotoY_PlusY:
-    STY.B DP_Temp12                                                      ;A280F2;
-    DEY                                                                  ;A280F4;
-    LDA.W $0000,Y                                                        ;A280F5;
-    XBA                                                                  ;A280F8;
-    BMI .highByte                                                        ;A280F9;
-    AND.W #$00FF                                                         ;A280FB;
-    BRA +                                                                ;A280FE;
+    STY.B DP_Temp12
+    DEY
+    LDA.W $0000,Y : XBA : BMI .highByte
+    AND.W #$00FF
+    BRA +
 
   .highByte:
-    ORA.W #$FF00                                                         ;A28100;
+    ORA.W #$FF00
 
-+   CLC                                                                  ;A28103;
-    ADC.B DP_Temp12                                                      ;A28104;
-    TAY                                                                  ;A28106;
-    RTL                                                                  ;A28107;
++   CLC : ADC.B DP_Temp12 : TAY
+    RTL
 
 
 ;;; $8108: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
 Instruction_CommonA2_DecrementTimer_GotoYIfNonZero:
-    DEC.W Enemy.loopCounter,X                                            ;A28108;
-    BNE Instruction_CommonA2_GotoY                                       ;A2810B;
-    INY                                                                  ;A2810D;
-    INY                                                                  ;A2810E;
-    RTL                                                                  ;A2810F;
+    DEC.W Enemy.loopCounter,X : BNE Instruction_CommonA2_GotoY
+    INY #2
+    RTL
 
 
 ;;; $8110: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
 Instruction_CommonA2_DecrementTimer_GotoYIfNonZero_duplicate:
-    DEC.W Enemy.loopCounter,X                                            ;A28110;
-    BNE Instruction_CommonA2_GotoY                                       ;A28113;
-    INY                                                                  ;A28115;
-    INY                                                                  ;A28116;
-    RTL                                                                  ;A28117;
+    DEC.W Enemy.loopCounter,X : BNE Instruction_CommonA2_GotoY
+    INY #2
+    RTL
 
 
 ;;; $8118: Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
 Instruction_CommonA2_DecrementTimer_GotoY_PlusY_IfNonZero:
-    SEP #$20                                                             ;A28118;
-    DEC.W Enemy.loopCounter,X                                            ;A2811A;
-    REP #$20                                                             ;A2811D;
-    BNE Instruction_CommonA2_GotoY_PlusY                                 ;A2811F;
-    INY                                                                  ;A28121;
-    RTL                                                                  ;A28122;
+    SEP #$20
+    DEC.W Enemy.loopCounter,X
+    REP #$20
+    BNE Instruction_CommonA2_GotoY_PlusY
+    INY
+    RTL
 
 
 ;;; $8123: Instruction - timer = [[Y]] ;;;
 Instruction_CommonA2_TimerInY:
-    LDA.W $0000,Y                                                        ;A28123;
-    STA.W Enemy.loopCounter,X                                            ;A28126;
-    INY                                                                  ;A28129;
-    INY                                                                  ;A2812A;
-    RTL                                                                  ;A2812B;
+    LDA.W $0000,Y : STA.W Enemy.loopCounter,X
+    INY #2
+    RTL
 
 
 ;;; $812C: Instruction - skip next instruction ;;;
 Instruction_CommonA2_SkipNextInstruction:
-    INY                                                                  ;A2812C;
-    INY                                                                  ;A2812D;
-    RTL                                                                  ;A2812E;
+    INY #2
+    RTL
 
 
 ;;; $812F: Instruction - sleep ;;;
 Instruction_CommonA2_Sleep:
-    DEY                                                                  ;A2812F;
-    DEY                                                                  ;A28130;
-    TYA                                                                  ;A28131;
-    STA.W Enemy.instList,X                                               ;A28132;
-    PLA                                                                  ;A28135;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A28136;
-    RTL                                                                  ;A28139;
+    DEY #2
+    TYA : STA.W Enemy.instList,X
+    PLA
+    PEA.W ProcessEnemyInstructions_return-1
+    RTL
 
 
 ;;; $813A: Instruction - wait [[Y]] frames ;;;
@@ -344,55 +302,38 @@ Instruction_CommonA2_WaitYFrames:
 ; Used for running a delay that doesn't update graphics,
 ; useful for e.g. GT eye beam attack ($AA:D10D), implemented by an instruction list that has no graphical instructions,
 ; which allows it to be called from multiple different poses
-    LDA.W $0000,Y                                                        ;A2813A;
-    STA.W Enemy.instTimer,X                                              ;A2813D;
-    INY                                                                  ;A28140;
-    INY                                                                  ;A28141;
-    TYA                                                                  ;A28142;
-    STA.W Enemy.instList,X                                               ;A28143;
-    PLA                                                                  ;A28146;
-    PEA.W ProcessEnemyInstructions_return-1                              ;A28147;
-    RTL                                                                  ;A2814A;
+    LDA.W $0000,Y : STA.W Enemy.instTimer,X
+    INY #2
+    TYA : STA.W Enemy.instList,X
+    PLA
+    PEA.W ProcessEnemyInstructions_return-1
+    RTL
 
 
 ;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
 Instruction_CommonA2_TransferYBytesInYToVRAM:
-    PHX                                                                  ;A2814B;
-    LDX.W VRAMWriteStack                                                 ;A2814C;
-    LDA.W $0000,Y                                                        ;A2814F;
-    STA.B VRAMWrite.size,X                                               ;A28152;
-    LDA.W $0002,Y                                                        ;A28154;
-    STA.B VRAMWrite.src,X                                                ;A28157;
-    LDA.W $0003,Y                                                        ;A28159;
-    STA.B VRAMWrite.src+1,X                                              ;A2815C;
-    LDA.W $0005,Y                                                        ;A2815E;
-    STA.B VRAMWrite.dest,X                                               ;A28161;
-    TXA                                                                  ;A28163;
-    CLC                                                                  ;A28164;
-    ADC.W #$0007                                                         ;A28165;
-    STA.W VRAMWriteStack                                                 ;A28168;
-    TYA                                                                  ;A2816B;
-    CLC                                                                  ;A2816C;
-    ADC.W #$0007                                                         ;A2816D;
-    TAY                                                                  ;A28170;
-    PLX                                                                  ;A28171;
-    RTL                                                                  ;A28172;
+    PHX
+    LDX.W VRAMWriteStack
+    LDA.W $0000,Y : STA.B VRAMWrite.size,X
+    LDA.W $0002,Y : STA.B VRAMWrite.src,X
+    LDA.W $0003,Y : STA.B VRAMWrite.src+1,X
+    LDA.W $0005,Y : STA.B VRAMWrite.dest,X
+    TXA : CLC : ADC.W #$0007 : STA.W VRAMWriteStack
+    TYA : CLC : ADC.W #$0007 : TAY
+    PLX
+    RTL
 
 
 ;;; $8173: Instruction - enable off-screen processing ;;;
 Instruction_CommonA2_EnableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A28173;
-    ORA.W #$0800                                                         ;A28176;
-    STA.W Enemy.properties,X                                             ;A28179;
-    RTL                                                                  ;A2817C;
+    LDA.W Enemy.properties,X : ORA.W #$0800 : STA.W Enemy.properties,X
+    RTL
 
 
 ;;; $817D: Instruction - disable off-screen processing ;;;
 Instruction_CommonA2_DisableOffScreenProcessing:
-    LDA.W Enemy.properties,X                                             ;A2817D;
-    AND.W #$F7FF                                                         ;A28180;
-    STA.W Enemy.properties,X                                             ;A28183;
-    RTL                                                                  ;A28186;
+    LDA.W Enemy.properties,X : AND.W #$F7FF : STA.W Enemy.properties,X
+    RTL
 
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
@@ -403,13 +344,13 @@ CommonA2EnemySpeeds_LinearlyIncreasing:
 ;       |     |     |      ___ Negated subspeed
 ;       |     |     |     |
   .speed:
-    dw $0000                                                             ;A28187;
+    dw $0000
   .subspeed:
-    dw       $0000                                                       ;A28189;
+    dw       $0000
   .negatedSpeed:
-    dw             $0000                                                 ;A2818B;
+    dw             $0000
   .negatedSubspeed:
-    dw                   $0000                                           ;A2818D;
+    dw                   $0000
     dw $0000,$1000,$FFFF,$F000
     dw $0000,$2000,$FFFF,$E000
     dw $0000,$3000,$FFFF,$D000
@@ -486,13 +427,13 @@ CommonA2EnemySpeeds_QuadraticallyIncreasing:
 ;       |     |     |      ___ Negated speed
 ;       |     |     |     |
   .subspeed:
-    dw $0000                                                             ;A2838F;
+    dw $0000
   .speed:
-    dw       $0000                                                       ;A28391;
+    dw       $0000
   .negatedSubspeed:
-    dw             $0000                                                 ;A28393;
+    dw             $0000
   .negatedSpeed:
-    dw                   $0000                                           ;A28395;
+    dw                   $0000
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
     dw $0636,$0000,$F9CA,$FFFF
@@ -591,665 +532,561 @@ CommonA2EnemySpeeds_QuadraticallyIncreasing:
 
 ;;; $8687: Palette - enemy $CEBF (boyon) ;;;
 Palette_Boyon:
-    dw $3800,$4BBE,$06B9,$00EA,$0065,$173A,$0276,$01F2                   ;A28687;
-    dw $014D,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A28697;
+    dw $3800,$4BBE,$06B9,$00EA,$0065,$173A,$0276,$01F2
+    dw $014D,$0000,$0000,$0000,$0000,$0000,$0000,$0000
 
 
 ;;; $86A7: Instruction list - idle ;;;
 InstList_Boyon_Idle_0:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A286A7;
-    dw RTL_A288C5                                                        ;A286A9;
+    dw Instruction_Common_DisableOffScreenProcessing
+    dw RTL_A288C5
 
 InstList_Boyon_Idle_1:
-    dw $000A,Spritemap_Boyon_Idle_0                                      ;A286AB;
-    dw $000A,Spritemap_Boyon_Idle_1                                      ;A286AF;
-    dw $000A,Spritemap_Boyon_Idle_2                                      ;A286B3;
-    dw $000A,Spritemap_Boyon_Idle_1                                      ;A286B7;
-    dw Instruction_Common_GotoY                                          ;A286BB;
-    dw InstList_Boyon_Idle_1                                             ;A286BD;
+    dw $000A,Spritemap_Boyon_Idle_0
+    dw $000A,Spritemap_Boyon_Idle_1
+    dw $000A,Spritemap_Boyon_Idle_2
+    dw $000A,Spritemap_Boyon_Idle_1
+    dw Instruction_Common_GotoY
+    dw InstList_Boyon_Idle_1
 
 
 ;;; $86BF: Instruction list - bouncing ;;;
 InstList_Boyon_Bouncing_0:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A286BF;
-    dw Instruction_Boyon_StartBounce                                     ;A286C1;
+    dw Instruction_Common_EnableOffScreenProcessing
+    dw Instruction_Boyon_StartBounce
 
 InstList_Boyon_Bouncing_1:
-    dw $0005,Spritemap_Boyon_Bouncing_0                                  ;A286C3;
-    dw $0005,Spritemap_Boyon_Bouncing_1                                  ;A286C7;
-    dw $0005,Spritemap_Boyon_Bouncing_2                                  ;A286CB;
-    dw $0005,Spritemap_Boyon_Bouncing_3                                  ;A286CF;
-    dw $0005,Spritemap_Boyon_Bouncing_2                                  ;A286D3;
-    dw $0005,Spritemap_Boyon_Bouncing_1                                  ;A286D7;
-    dw Instruction_Common_GotoY                                          ;A286DB;
-    dw InstList_Boyon_Bouncing_1                                         ;A286DD;
+    dw $0005,Spritemap_Boyon_Bouncing_0
+    dw $0005,Spritemap_Boyon_Bouncing_1
+    dw $0005,Spritemap_Boyon_Bouncing_2
+    dw $0005,Spritemap_Boyon_Bouncing_3
+    dw $0005,Spritemap_Boyon_Bouncing_2
+    dw $0005,Spritemap_Boyon_Bouncing_1
+    dw Instruction_Common_GotoY
+    dw InstList_Boyon_Bouncing_1
 
 
 ;;; $86DF: Boyon data ;;;
 BoyonData:
   .speedMultipliers:
 ; Speed multipliers. Indexed by [enemy parameter 1 low] * 2
-    dw $0001,$0002,$0004,$0008,$000A,$000D,$0010,$0014                   ;A286DF;
+    dw $0001,$0002,$0004,$0008,$000A,$000D,$0010,$0014
 
   .jumpHeights:
 ; Jump heights. Unit 1/100h px. Indexed by [enemy parameter 1 high] * 2
-    dw $3000,$4000,$5000,$6000,$7000,$8000,$9000,$A000                   ;A286EF;
-    dw $B000                                                             ;A286FF;
+    dw $3000,$4000,$5000,$6000,$7000,$8000,$9000,$A000
+    dw $B000
 
   .speedTable:
 ; Speed table. k (k+1) / 2 (sum of 0..k)
-    db $00,$01,$03,$06,$0A,$0F,$15,$1C,$24,$2D,$37,$42,$4E,$5B,$69,$78   ;A28701;
-    db $88,$99,$AB,$BE,$D2,$E7,$FD                                       ;A28711;
+    db $00,$01,$03,$06,$0A,$0F,$15,$1C,$24,$2D,$37,$42,$4E,$5B,$69,$78
+    db $88,$99,$AB,$BE,$D2,$E7,$FD
 
   .bounceFunctionPointers:
 ; Bounce movement functions
-    dw Function_Boyon_Falling                                            ;A28718;
-    dw Function_Boyon_Rising                                             ;A2871A;
+    dw Function_Boyon_Falling
+    dw Function_Boyon_Rising
 
 
 ;;; $871C: Initialisation AI - enemy $CEBF (boyon) ;;;
 InitAI_Boyon:
-    LDX.W EnemyIndex                                                     ;A2871C;
-    LDA.W #Spritemap_Common_Nothing                                      ;A2871F;
-    STA.W Enemy.spritemap,X                                              ;A28722;
-    JSR.W SetBoyonInstList                                               ;A28725;
-    LDA.W #$0001                                                         ;A28728;
-    STA.L Boyon.bounceMovementIndex,X                                    ;A2872B;
-    LDA.W Enemy.init0,X                                                  ;A2872F;
-    AND.W #$00FF                                                         ;A28732;
-    ASL                                                                  ;A28735;
-    TAY                                                                  ;A28736;
-    LDA.W BoyonData_speedMultipliers,Y                                   ;A28737;
-    STA.W Boyon.speedMultiplier,X                                        ;A2873A;
-    LDA.W Enemy.init0+1,X                                                ;A2873D;
-    AND.W #$00FF                                                         ;A28740;
-    ASL                                                                  ;A28743;
-    TAY                                                                  ;A28744;
-    LDA.W BoyonData_jumpHeights,Y                                        ;A28745;
-    STA.W Boyon.jumpHeight,X                                             ;A28748;
-    STZ.W Boyon.distanceAccumulator,X                                    ;A2874B;
-    STZ.W Boyon.speedTableIndex,X                                        ;A2874E;
-    STZ.W Boyon.bouncingIndex,X                                          ;A28751;
-    RTL                                                                  ;A28754;
+    LDX.W EnemyIndex
+    LDA.W #Spritemap_Common_Nothing : STA.W Enemy.spritemap,X
+    JSR SetBoyonInstList
+    LDA.W #$0001 : STA.L Boyon.bounceMovementIndex,X
+    LDA.W Enemy.init0,X : AND.W #$00FF : ASL : TAY
+    LDA.W BoyonData_speedMultipliers,Y : STA.W Boyon.speedMultiplier,X
+    LDA.W Enemy.init0+1,X : AND.W #$00FF : ASL : TAY
+    LDA.W BoyonData_jumpHeights,Y : STA.W Boyon.jumpHeight,X
+    STZ.W Boyon.distanceAccumulator,X : STZ.W Boyon.speedTableIndex,X : STZ.W Boyon.bouncingIndex,X
+    RTL
 
 
 ;;; $8755: Calculate initial bounce speed ;;;
 CalculateInitialBounceSpeed:
-    PHP                                                                  ;A28755;
+    PHP
 
   .loop:
-    LDY.W Boyon.speedTableIndex,X                                        ;A28756;
-    SEP #$20                                                             ;A28759;
-    LDA.W BoyonData_speedTable,Y                                         ;A2875B;
-    CPY.W #$0017                                                         ;A2875E;
-    BMI +                                                                ;A28761;
-    LDA.B #$FF                                                           ;A28763;
+    LDY.W Boyon.speedTableIndex,X
+    SEP #$20
+    LDA.W BoyonData_speedTable,Y
+    CPY.W #$0017 : BMI +
+    LDA.B #$FF
 
-+   STA.W $4202                                                          ;A28765;
-    LDA.W Boyon.speedMultiplier,X                                        ;A28768;
-    STA.W $4203                                                          ;A2876B;
-    NOP                                                                  ;A2876E;
-    NOP                                                                  ;A2876F;
-    NOP                                                                  ;A28770;
-    REP #$20                                                             ;A28771;
-    LDA.W $4216                                                          ;A28773;
-    STA.W Boyon.speed,X                                                  ;A28776;
-    CLC                                                                  ;A28779;
-    ADC.W Boyon.distanceAccumulator,X                                    ;A2877A;
-    STA.W Boyon.distanceAccumulator,X                                    ;A2877D;
-    INC.W Boyon.speedTableIndex,X                                        ;A28780;
-    CMP.W Boyon.jumpHeight,X                                             ;A28783;
-    BMI .loop                                                            ;A28786;
-    LDA.W Boyon.speedTableIndex,X                                        ;A28788;
-    STA.L Boyon.initialBounceSpeedTableIndex,X                           ;A2878B;
-    LDA.W #$0001                                                         ;A2878F;
-    STA.L Boyon.bounceDisableFlag,X                                      ;A28792;
-    STA.L Boyon.idleDisableFlag,X                                        ;A28796;
-    PLP                                                                  ;A2879A;
-    RTS                                                                  ;A2879B;
++   STA.W $4202
+    LDA.W Boyon.speedMultiplier,X : STA.W $4203
+    NOP #3
+    REP #$20
+    LDA.W $4216 : STA.W Boyon.speed,X
+    CLC : ADC.W Boyon.distanceAccumulator,X : STA.W Boyon.distanceAccumulator,X
+    INC.W Boyon.speedTableIndex,X
+    CMP.W Boyon.jumpHeight,X : BMI .loop
+    LDA.W Boyon.speedTableIndex,X : STA.L Boyon.initialBounceSpeedTableIndex,X
+    LDA.W #$0001 : STA.L Boyon.bounceDisableFlag,X : STA.L Boyon.idleDisableFlag,X
+    PLP
+    RTS
 
 
 ;;; $879C: Main AI - enemy $CEBF (boyon) ;;;
 MainAI_Boyon:
-    LDX.W EnemyIndex                                                     ;A2879C;
-    LDA.L Boyon.bounceSpeedCalculatedFlag,X                              ;A2879F;
-    BNE .notJumping                                                      ;A287A3;
-    JSR.W CalculateInitialBounceSpeed                                    ;A287A5;
-    LDA.W #$0001                                                         ;A287A8;
-    STA.L Boyon.bounceSpeedCalculatedFlag,X                              ;A287AB;
-    RTL                                                                  ;A287AF;
+    LDX.W EnemyIndex
+    LDA.L Boyon.bounceSpeedCalculatedFlag,X : BNE .notJumping
+    JSR CalculateInitialBounceSpeed
+    LDA.W #$0001 : STA.L Boyon.bounceSpeedCalculatedFlag,X
+    RTL
 
   .notJumping:
-    LDA.W Boyon.speedMultiplier,X                                        ;A287B0;
-    STA.L Boyon.speedMultiplierMirror,X                                  ;A287B3;
-    JSR.W CheckIfSamusIsInProximity                                      ;A287B7;
-    BNE .SamusInProximity                                                ;A287BA;
-    LDA.L Boyon.bounceDisableFlag,X                                      ;A287BC;
-    BEQ .bouncing                                                        ;A287C0;
-    LDA.L Boyon.idleDisableFlag,X                                        ;A287C2;
-    BNE .return                                                          ;A287C6;
-    LDA.W #$0001                                                         ;A287C8;
-    STA.L Boyon.idleDisableFlag,X                                        ;A287CB;
-    JSR.W SetBoyonInstList                                               ;A287CF;
-    BRA .return                                                          ;A287D2;
+    LDA.W Boyon.speedMultiplier,X : STA.L Boyon.speedMultiplierMirror,X
+    JSR CheckIfSamusIsInProximity
+    BNE .SamusInProximity
+    LDA.L Boyon.bounceDisableFlag,X : BEQ .bouncing
+    LDA.L Boyon.idleDisableFlag,X : BNE .return
+    LDA.W #$0001 : STA.L Boyon.idleDisableFlag,X
+    JSR SetBoyonInstList
+    BRA .return
 
   .SamusInProximity:
-    LDA.W #$0000                                                         ;A287D4;
-    STA.L Boyon.bounceDisableFlag,X                                      ;A287D7;
-    STA.L Boyon.idleDisableFlag,X                                        ;A287DB;
-    LDA.W Boyon.bouncingIndex,X                                          ;A287DF;
-    BNE .bouncing                                                        ;A287E2;
-    LDA.W #$0001                                                         ;A287E4;
-    STA.W Boyon.bouncingIndex,X                                          ;A287E7;
-    JSR.W SetBoyonBouncingInstList                                       ;A287EA;
+    LDA.W #$0000 : STA.L Boyon.bounceDisableFlag,X : STA.L Boyon.idleDisableFlag,X
+    LDA.W Boyon.bouncingIndex,X : BNE .bouncing
+    LDA.W #$0001 : STA.W Boyon.bouncingIndex,X
+    JSR SetBoyonBouncingInstList
 
   .bouncing:
-    LDX.W EnemyIndex                                                     ;A287ED;
-    LDA.L Boyon.speedMultiplierMirror,X                                  ;A287F0;
-    STA.W Boyon.speedMultiplier,X                                        ;A287F4;
-    LDA.L Boyon.bounceMovementIndex,X                                    ;A287F7;
-    ASL                                                                  ;A287FB;
-    TAX                                                                  ;A287FC;
-    JSR.W (BoyonData_bounceFunctionPointers,X)                           ;A287FD;
+    LDX.W EnemyIndex
+    LDA.L Boyon.speedMultiplierMirror,X : STA.W Boyon.speedMultiplier,X
+    LDA.L Boyon.bounceMovementIndex,X : ASL : TAX
+    JSR.W (BoyonData_bounceFunctionPointers,X)
 
   .return:
-    RTL                                                                  ;A28800;
+    RTL
 
 
 ;;; $8801: Boyon bounce movement - falling ;;;
 Function_Boyon_Falling:
-    LDX.W EnemyIndex                                                     ;A28801;
-    INC.W Boyon.speedTableIndex,X                                        ;A28804;
-    LDY.W Boyon.speedTableIndex,X                                        ;A28807;
-    SEP #$20                                                             ;A2880A;
-    LDA.W BoyonData_speedTable,Y                                         ;A2880C;
-    CPY.W #$0017                                                         ;A2880F;
-    BMI .lessThan17                                                      ;A28812;
-    LDA.B #$FF                                                           ;A28814;
+    LDX.W EnemyIndex
+    INC.W Boyon.speedTableIndex,X
+    LDY.W Boyon.speedTableIndex,X
+    SEP #$20
+    LDA.W BoyonData_speedTable,Y
+    CPY.W #$0017 : BMI .lessThan17
+    LDA.B #$FF
 
   .lessThan17:
-    STA.W $4202                                                          ;A28816;
-    LDA.W Boyon.speedMultiplier,X                                        ;A28819;
-    STA.W $4203                                                          ;A2881C;
-    NOP                                                                  ;A2881F;
-    NOP                                                                  ;A28820;
-    NOP                                                                  ;A28821;
-    REP #$20                                                             ;A28822;
-    LDA.W $4216                                                          ;A28824;
-    STA.W Boyon.speed,X                                                  ;A28827;
-    XBA                                                                  ;A2882A;
-    AND.W #$00FF                                                         ;A2882B;
-    CLC                                                                  ;A2882E;
-    ADC.W Enemy.YPosition,X                                              ;A2882F;
-    STA.W Enemy.YPosition,X                                              ;A28832;
-    LDA.W Boyon.speedTableIndex,X                                        ;A28835;
-    CMP.L Boyon.initialBounceSpeedTableIndex,X                           ;A28838;
-    BMI .return                                                          ;A2883C;
-    LDA.W #$0001                                                         ;A2883E;
-    STA.L Boyon.bounceMovementIndex,X                                    ;A28841;
-    LDA.W #$0001                                                         ;A28845;
-    STA.L Boyon.bounceDisableFlag,X                                      ;A28848;
-    STZ.W Boyon.bouncingIndex,X                                          ;A2884C;
+    STA.W $4202
+    LDA.W Boyon.speedMultiplier,X : STA.W $4203
+    NOP #3
+    REP #$20
+    LDA.W $4216 : STA.W Boyon.speed,X
+    XBA : AND.W #$00FF : CLC : ADC.W Enemy.YPosition,X : STA.W Enemy.YPosition,X
+    LDA.W Boyon.speedTableIndex,X : CMP.L Boyon.initialBounceSpeedTableIndex,X : BMI .return
+    LDA.W #$0001 : STA.L Boyon.bounceMovementIndex,X
+    LDA.W #$0001 : STA.L Boyon.bounceDisableFlag,X
+    STZ.W Boyon.bouncingIndex,X
 
   .return:
-    RTS                                                                  ;A2884F;
+    RTS
 
 
 ;;; $8850: Boyon bounce movement - rising ;;;
 Function_Boyon_Rising:
-    LDX.W EnemyIndex                                                     ;A28850;
-    LDY.W Boyon.speedTableIndex,X                                        ;A28853;
-    SEP #$20                                                             ;A28856;
-    LDA.W BoyonData_speedTable,Y                                         ;A28858;
-    CPY.W #$0017                                                         ;A2885B;
-    BMI .lessThan17                                                      ;A2885E;
-    LDA.B #$FF                                                           ;A28860;
+    LDX.W EnemyIndex
+    LDY.W Boyon.speedTableIndex,X
+    SEP #$20
+    LDA.W BoyonData_speedTable,Y
+    CPY.W #$0017 : BMI .lessThan17
+    LDA.B #$FF
 
   .lessThan17:
-    STA.W $4202                                                          ;A28862;
-    LDA.W Boyon.speedMultiplier,X                                        ;A28865;
-    STA.W $4203                                                          ;A28868;
-    NOP                                                                  ;A2886B;
-    NOP                                                                  ;A2886C;
-    NOP                                                                  ;A2886D;
-    REP #$20                                                             ;A2886E;
-    LDA.W $4216                                                          ;A28870;
-    STA.W Boyon.speed,X                                                  ;A28873;
-    XBA                                                                  ;A28876;
-    AND.W #$00FF                                                         ;A28877;
-    EOR.W #$FFFF                                                         ;A2887A;
-    INC                                                                  ;A2887D;
-    CLC                                                                  ;A2887E;
-    ADC.W Enemy.YPosition,X                                              ;A2887F;
-    STA.W Enemy.YPosition,X                                              ;A28882;
-    DEC.W Boyon.speedTableIndex,X                                        ;A28885;
-    BMI .doneJumping                                                     ;A28888;
-    BRA .return                                                          ;A2888A;
+    STA.W $4202
+    LDA.W Boyon.speedMultiplier,X : STA.W $4203
+    NOP #3
+    REP #$20
+    LDA.W $4216 : STA.W Boyon.speed,X
+    XBA : AND.W #$00FF : EOR.W #$FFFF : INC
+    CLC : ADC.W Enemy.YPosition,X : STA.W Enemy.YPosition,X
+    DEC.W Boyon.speedTableIndex,X : BMI .doneJumping
+    BRA .return
 
   .doneJumping:
-    LDA.W #$0000                                                         ;A2888C;
-    STA.L Boyon.bounceMovementIndex,X                                    ;A2888F;
+    LDA.W #$0000 : STA.L Boyon.bounceMovementIndex,X
 
   .return:
-    RTS                                                                  ;A28893;
+    RTS
 
 
 ;;; $8894: Check if Samus is in proximity ;;;
 CheckIfSamusIsInProximity:
 ;; Returns:
 ;;     Zero: Clear if Samus is in proximity, set otherwise
-    LDX.W EnemyIndex                                                     ;A28894;
-    LDA.W Enemy.init1,X                                                  ;A28897;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2889A;
-    RTS                                                                  ;A2889E;
+    LDX.W EnemyIndex
+    LDA.W Enemy.init1,X
+    JSL IsSamusWithinAPixelColumnsOfEnemy
+    RTS
 
 
 ;;; $889F: Set boyon idle instruction list ;;;
 SetBoyonInstList:
-    LDX.W EnemyIndex                                                     ;A2889F;
-    LDA.W #InstList_Boyon_Idle_0                                         ;A288A2;
-    STA.W Enemy.instList,X                                               ;A288A5;
-    LDA.W #$0001                                                         ;A288A8;
-    STA.W Enemy.instTimer,X                                              ;A288AB;
-    STZ.W Enemy.loopCounter,X                                            ;A288AE;
-    RTS                                                                  ;A288B1;
+    LDX.W EnemyIndex
+    LDA.W #InstList_Boyon_Idle_0 : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTS
 
 
 ;;; $88B2: Set boyon bouncing instruction list ;;;
 SetBoyonBouncingInstList:
-    LDX.W EnemyIndex                                                     ;A288B2;
-    LDA.W #InstList_Boyon_Bouncing_0                                     ;A288B5;
-    STA.W Enemy.instList,X                                               ;A288B8;
-    LDA.W #$0001                                                         ;A288BB;
-    STA.W Enemy.instTimer,X                                              ;A288BE;
-    STZ.W Enemy.loopCounter,X                                            ;A288C1;
-    RTS                                                                  ;A288C4;
+    LDX.W EnemyIndex
+    LDA.W #InstList_Boyon_Bouncing_0 : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTS
 
 
 ;;; $88C5: RTL. Instruction - nothing ;;;
 RTL_A288C5:
-    RTL                                                                  ;A288C5;
+    RTL
 
 
 ;;; $88C6: Instruction - start bounce ;;;
 Instruction_Boyon_StartBounce:
-    LDX.W EnemyIndex                                                     ;A288C6;
-    LDA.W #$0000                                                         ;A288C9;
-    STA.L Boyon.bounceDisableFlag,X                                      ;A288CC;
-    LDA.W #$000E                                                         ;A288D0;
-    JSL.L QueueSound_Lib2_Max6                                           ;A288D3;
-    RTL                                                                  ;A288D7;
+    LDX.W EnemyIndex
+    LDA.W #$0000 : STA.L Boyon.bounceDisableFlag,X
+    LDA.W #$000E
+    JSL QueueSound_Lib2_Max6
+    RTL
 
 
 ;;; $88D8: RTL ;;;
 RTL_A288D8:
-    RTL                                                                  ;A288D8;
+    RTL
 
 
 ;;; $88D9: RTL ;;;
 RTL_A288D9:
-    RTL                                                                  ;A288D9;
+    RTL
 
 
 ;;; $88DA: Spritemaps - boyon ;;;
 Spritemap_Boyon_Idle_0:
-    dw $0001                                                             ;A288DA;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Boyon_Idle_1:
-    dw $0001                                                             ;A288E1;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $102)
 
 Spritemap_Boyon_Idle_2:
-    dw $0001                                                             ;A288E8;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $104)
 
 Spritemap_Boyon_Bouncing_0:
-    dw $0001                                                             ;A288EF;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $106)
 
 Spritemap_Boyon_Bouncing_1:
-    dw $0001                                                             ;A288F6;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $108)
 
 Spritemap_Boyon_Bouncing_2:
-    dw $0001                                                             ;A288FD;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_Boyon_Bouncing_3:
-    dw $0001                                                             ;A28904;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $10C)
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Boyon_A2890B:
-    dw $0001                                                             ;A2890B;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $10E)
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8912: Palette - enemy $CEFF (mini-Crocomire) ;;;
 Palette_Stoke:
-    dw $3800,$3DB3,$292E,$1486,$1840,$3D92,$38CA,$1C61                   ;A28912;
-    dw $24A7,$24A7,$2063,$1840,$0800,$0000,$0000,$0000                   ;A28922;
+    dw $3800,$3DB3,$292E,$1486,$1840,$3D92,$38CA,$1C61
+    dw $24A7,$24A7,$2063,$1840,$0800,$0000,$0000,$0000
 
 
 ;;; $8932: Instruction list - moving left ;;;
 InstList_Stoke_MovingLeft_0:
-    dw Instruction_Stoke_SetMovingLeft                                   ;A28932;
+    dw Instruction_Stoke_SetMovingLeft
 
 InstList_Stoke_MovingLeft_1:
-    dw $0008,Spritemap_Stoke_MovingLeft_0                                ;A28934;
-    dw $0010,Spritemap_Stoke_MovingLeft_1                                ;A28938;
-    dw $0008,Spritemap_Stoke_MovingLeft_2                                ;A2893C;
-    dw $0008,Spritemap_Stoke_MovingLeft_3                                ;A28940;
-    dw Instruction_Common_GotoY                                          ;A28944;
-    dw InstList_Stoke_MovingLeft_1                                       ;A28946;
+    dw $0008,Spritemap_Stoke_MovingLeft_0
+    dw $0010,Spritemap_Stoke_MovingLeft_1
+    dw $0008,Spritemap_Stoke_MovingLeft_2
+    dw $0008,Spritemap_Stoke_MovingLeft_3
+    dw Instruction_Common_GotoY
+    dw InstList_Stoke_MovingLeft_1
 
 
 ;;; $8948: Instruction list - attacking left ;;;
 InstList_Stoke_AttackingLeft:
-    dw $0010,Spritemap_Stoke_MovingLeft_2                                ;A28948;
-    dw Instruction_Stoke_SpawnProjectileWithDirectionInY,$0000           ;A2894C;
-    dw $0010,Spritemap_Stoke_AttackingLeft                               ;A28950;
-    dw Instruction_Common_GotoY                                          ;A28954;
-    dw InstList_Stoke_MovingLeft_0                                       ;A28956;
+    dw $0010,Spritemap_Stoke_MovingLeft_2
+    dw Instruction_Stoke_SpawnProjectileWithDirectionInY,$0000
+    dw $0010,Spritemap_Stoke_AttackingLeft
+    dw Instruction_Common_GotoY
+    dw InstList_Stoke_MovingLeft_0
 
 
 ;;; $8958: Instruction list - moving right ;;;
 InstList_Stoke_MovingRight_0:
-    dw Instruction_Stoke_SetMovingRight                                  ;A28958;
+    dw Instruction_Stoke_SetMovingRight
 
 InstList_Stoke_MovingRight_1:
-    dw $0008,Spritemap_Stoke_MovingRight_0                               ;A2895A;
-    dw $0010,Spritemap_Stoke_MovingRight_1                               ;A2895E;
-    dw $0008,Spritemap_Stoke_MovingRight_2                               ;A28962;
-    dw $0008,Spritemap_Stoke_MovingRight_3                               ;A28966;
-    dw Instruction_Common_GotoY                                          ;A2896A;
-    dw InstList_Stoke_MovingRight_1                                      ;A2896C;
+    dw $0008,Spritemap_Stoke_MovingRight_0
+    dw $0010,Spritemap_Stoke_MovingRight_1
+    dw $0008,Spritemap_Stoke_MovingRight_2
+    dw $0008,Spritemap_Stoke_MovingRight_3
+    dw Instruction_Common_GotoY
+    dw InstList_Stoke_MovingRight_1
 
 
 ;;; $896E: Instruction list - attacking right ;;;
 InstList_Stoke_AttackingRight:
-    dw $0010,Spritemap_Stoke_MovingRight_2                               ;A2896E;
-    dw Instruction_Stoke_SpawnProjectileWithDirectionInY,$0001           ;A28972;
-    dw $0010,Spritemap_Stoke_AttackingRight                              ;A28976;
-    dw Instruction_Common_GotoY                                          ;A2897A;
-    dw InstList_Stoke_MovingRight_0                                      ;A2897C;
+    dw $0010,Spritemap_Stoke_MovingRight_2
+    dw Instruction_Stoke_SpawnProjectileWithDirectionInY,$0001
+    dw $0010,Spritemap_Stoke_AttackingRight
+    dw Instruction_Common_GotoY
+    dw InstList_Stoke_MovingRight_0
 
 
 ;;; $897E: Instruction - spawn mini-Crocomire projectile with direction [[Y]] ;;;
 Instruction_Stoke_SpawnProjectileWithDirectionInY:
-    PHY                                                                  ;A2897E;
-    LDA.W $0000,Y                                                        ;A2897F;
-    LDX.W EnemyIndex                                                     ;A28982;
-    LDY.W #UNUSED_EnemyProjectile_Stoke_86DBF2                           ;A28985;
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A28988;
-    PLY                                                                  ;A2898C;
-    INY                                                                  ;A2898D;
-    INY                                                                  ;A2898E;
-    RTL                                                                  ;A2898F;
+    PHY
+    LDA.W $0000,Y
+    LDX.W EnemyIndex
+    LDY.W #UNUSED_EnemyProjectile_Stoke_86DBF2
+    JSL SpawnEnemyProjectileY_ParameterA_XGraphics
+    PLY : INY #2
+    RTL
 
 
 ;;; $8990: Instruction - set moving left ;;;
 Instruction_Stoke_SetMovingLeft:
-    LDX.W EnemyIndex                                                     ;A28990;
-    LDA.W #Function_Stoke_MovingLeft                                     ;A28993;
-    STA.W Stoke.function,X                                               ;A28996;
-    STZ.W Stoke.direction,X                                              ;A28999;
-    RTL                                                                  ;A2899C;
+    LDX.W EnemyIndex
+    LDA.W #Function_Stoke_MovingLeft : STA.W Stoke.function,X
+    STZ.W Stoke.direction,X
+    RTL
 
 
 ;;; $899D: Instruction - set moving right ;;;
 Instruction_Stoke_SetMovingRight:
-    LDX.W EnemyIndex                                                     ;A2899D;
-    LDA.W #Function_Stoke_MovingRight                                    ;A289A0;
-    STA.W Stoke.function,X                                               ;A289A3;
-    LDA.W #$0001                                                         ;A289A6;
-    STA.W Stoke.direction,X                                              ;A289A9;
-    RTL                                                                  ;A289AC;
+    LDX.W EnemyIndex
+    LDA.W #Function_Stoke_MovingRight : STA.W Stoke.function,X
+    LDA.W #$0001 : STA.W Stoke.direction,X
+    RTL
 
 
 ;;; $89AD: Initialisation AI - enemy $CEFF (mini-Crocomire) ;;;
 InitAI_Stoke:
-    LDX.W EnemyIndex                                                     ;A289AD;
-    LDA.W #Spritemap_Common_Nothing                                      ;A289B0;
-    STA.W Enemy.spritemap,X                                              ;A289B3;
-    LDA.W Enemy.init1,X                                                  ;A289B6;
-    ASL                                                                  ;A289B9;
-    ASL                                                                  ;A289BA;
-    ASL                                                                  ;A289BB;
-    TAY                                                                  ;A289BC;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A289BD;
-    STA.W Stoke.rightVelocity,X                                          ;A289C0;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A289C3;
-    STA.W Stoke.rightSubVelocity,X                                       ;A289C6;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A289C9;
-    STA.W Stoke.leftVelocity,X                                           ;A289CC;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A289CF;
-    STA.W Stoke.leftSubVelocity,X                                        ;A289D2;
-    JSR.W SetStokeMovingLeftInstList                                     ;A289D5;
-    LDA.W #Function_Stoke_MovingLeft                                     ;A289D8;
-    STA.W Stoke.function,X                                               ;A289DB;
-    LDA.W Enemy.init0,X                                                  ;A289DE;
-    STA.W Stoke.direction,X                                              ;A289E1;
-    BEQ .return                                                          ;A289E4;
-    JSR.W SetStokeMovingRightInstList                                    ;A289E6;
-    LDA.W #Function_Stoke_MovingRight                                    ;A289E9;
-    STA.W Stoke.function,X                                               ;A289EC;
+    LDX.W EnemyIndex
+    LDA.W #Spritemap_Common_Nothing : STA.W Enemy.spritemap,X
+    LDA.W Enemy.init1,X : ASL #3 : TAY
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W Stoke.rightVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W Stoke.rightSubVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W Stoke.leftVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W Stoke.leftSubVelocity,X
+    JSR SetStokeMovingLeftInstList
+    LDA.W #Function_Stoke_MovingLeft : STA.W Stoke.function,X
+    LDA.W Enemy.init0,X : STA.W Stoke.direction,X : BEQ .return
+    JSR SetStokeMovingRightInstList
+    LDA.W #Function_Stoke_MovingRight : STA.W Stoke.function,X
 
   .return:
-    RTL                                                                  ;A289EF;
+    RTL
 
 
 ;;; $89F0: Main AI - enemy $CEFF (mini-Crocomire) ;;;
 MainAI_Stoke:
-    LDX.W EnemyIndex                                                     ;A289F0;
-    JSR.W (Stoke.function,X)                                             ;A289F3;
-    RTL                                                                  ;A289F6;
+    LDX.W EnemyIndex
+    JSR.W (Stoke.function,X)
+    RTL
 
 
 ;;; $89F7: Set mini-Crocomire moving left instruction list ;;;
 SetStokeMovingLeftInstList:
-    LDX.W EnemyIndex                                                     ;A289F7;
-    LDA.W #$0001                                                         ;A289FA;
-    STA.W Enemy.instTimer,X                                              ;A289FD;
-    STZ.W Enemy.loopCounter,X                                            ;A28A00;
-    LDA.W #InstList_Stoke_MovingLeft_0                                   ;A28A03;
-    STA.W Enemy.instList,X                                               ;A28A06;
-    RTS                                                                  ;A28A09;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W #InstList_Stoke_MovingLeft_0 : STA.W Enemy.instList,X
+    RTS
 
 
 ;;; $8A0A: Set mini-Crocomire attacking left instruction list ;;;
 SetStokeAttackingLeftInstList:
-    LDX.W EnemyIndex                                                     ;A28A0A;
-    LDA.W #$0001                                                         ;A28A0D;
-    STA.W Enemy.instTimer,X                                              ;A28A10;
-    STZ.W Enemy.loopCounter,X                                            ;A28A13;
-    LDA.W #InstList_Stoke_AttackingLeft                                  ;A28A16;
-    STA.W Enemy.instList,X                                               ;A28A19;
-    RTS                                                                  ;A28A1C;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W #InstList_Stoke_AttackingLeft : STA.W Enemy.instList,X
+    RTS
 
 
 ;;; $8A1D: Set mini-Crocomire moving right instruction list ;;;
 SetStokeMovingRightInstList:
-    LDX.W EnemyIndex                                                     ;A28A1D;
-    LDA.W #$0001                                                         ;A28A20;
-    STA.W Enemy.instTimer,X                                              ;A28A23;
-    STZ.W Enemy.loopCounter,X                                            ;A28A26;
-    LDA.W #InstList_Stoke_MovingRight_0                                  ;A28A29;
-    STA.W Enemy.instList,X                                               ;A28A2C;
-    RTS                                                                  ;A28A2F;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W #InstList_Stoke_MovingRight_0 : STA.W Enemy.instList,X
+    RTS
 
 
 ;;; $8A30: Set mini-Crocomire attacking right instruction list ;;;
 SetStokeAttackingRightInstList:
-    LDX.W EnemyIndex                                                     ;A28A30;
-    LDA.W #$0001                                                         ;A28A33;
-    STA.W Enemy.instTimer,X                                              ;A28A36;
-    STZ.W Enemy.loopCounter,X                                            ;A28A39;
-    LDA.W #InstList_Stoke_AttackingRight                                 ;A28A3C;
-    STA.W Enemy.instList,X                                               ;A28A3F;
-    RTS                                                                  ;A28A42;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W #InstList_Stoke_AttackingRight : STA.W Enemy.instList,X
+    RTS
 
 
 ;;; $8A43: Mini-Crocomire function - moving left ;;;
 Function_Stoke_MovingLeft:
-    LDX.W EnemyIndex                                                     ;A28A43;
-    LDA.W Stoke.leftVelocity,X                                           ;A28A46;
-    STA.B DP_Temp14                                                      ;A28A49;
-    LDA.W Stoke.leftSubVelocity,X                                        ;A28A4B;
-    STA.B DP_Temp12                                                      ;A28A4E;
-    JSR.W StokeMovement                                                  ;A28A50;
-    JSR.W DecideWhetherToAttack                                          ;A28A53;
-    BCC .return                                                          ;A28A56;
-    JSR.W SetStokeAttackingLeftInstList                                  ;A28A58;
+    LDX.W EnemyIndex
+    LDA.W Stoke.leftVelocity,X : STA.B DP_Temp14
+    LDA.W Stoke.leftSubVelocity,X : STA.B DP_Temp12
+    JSR StokeMovement
+    JSR DecideWhetherToAttack
+    BCC .return
+    JSR SetStokeAttackingLeftInstList
 
   .return:
-    RTS                                                                  ;A28A5B;
+    RTS
 
 
 ;;; $8A5C: Mini-Crocomire function - moving right ;;;
 Function_Stoke_MovingRight:
-    LDX.W EnemyIndex                                                     ;A28A5C;
-    LDA.W Stoke.rightVelocity,X                                          ;A28A5F;
-    STA.B DP_Temp14                                                      ;A28A62;
-    LDA.W Stoke.rightSubVelocity,X                                       ;A28A64;
-    STA.B DP_Temp12                                                      ;A28A67;
-    JSR.W StokeMovement                                                  ;A28A69;
-    JSR.W DecideWhetherToAttack                                          ;A28A6C;
-    BCC .return                                                          ;A28A6F;
-    JSR.W SetStokeAttackingRightInstList                                 ;A28A71;
+    LDX.W EnemyIndex
+    LDA.W Stoke.rightVelocity,X : STA.B DP_Temp14
+    LDA.W Stoke.rightSubVelocity,X : STA.B DP_Temp12
+    JSR StokeMovement
+    JSR DecideWhetherToAttack
+    BCC .return
+    JSR SetStokeAttackingRightInstList
 
   .return:
-    RTS                                                                  ;A28A74;
+    RTS
 
 
 ;;; $8A75: RTS ;;;
 RTS_A28A75:
-    RTS                                                                  ;A28A75;
+    RTS
 
 
 ;;; $8A76: Mini-Crocomire movement ;;;
 StokeMovement:
 ;; Parameters:
 ;;     $14.$12: X velocity
-    LDX.W EnemyIndex                                                     ;A28A76;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A28A79;
-    BCC .notCollidedWithWall                                             ;A28A7D;
-    JSR.W TurnStokeAround                                                ;A28A7F;
-    BRA .return                                                          ;A28A82;
+    LDX.W EnemyIndex
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCC .notCollidedWithWall
+    JSR TurnStokeAround
+    BRA .return
 
   .notCollidedWithWall:
-    LDA.W #$0002                                                         ;A28A84;
-    STA.B DP_Temp14                                                      ;A28A87;
-    STZ.B DP_Temp12                                                      ;A28A89;
-    JSL.L CheckForVerticalSolidBlockCollision                            ;A28A8B;
-    BCS .return                                                          ;A28A8F;
-    JSR.W TurnStokeAround                                                ;A28A91;
+    LDA.W #$0002 : STA.B DP_Temp14
+    STZ.B DP_Temp12
+    JSL CheckForVerticalSolidBlockCollision
+    BCS .return
+    JSR TurnStokeAround
 
   .return:
-    RTS                                                                  ;A28A94;
+    RTS
 
 
 ;;; $8A95: Turn mini-Crocomire around ;;;
 TurnStokeAround:
-    LDX.W EnemyIndex                                                     ;A28A95;
-    JSR.W SetStokeMovingLeftInstList                                     ;A28A98;
-    LDA.W Stoke.direction,X                                              ;A28A9B;
-    EOR.W #$0001                                                         ;A28A9E;
-    BEQ .return                                                          ;A28AA1;
-    JSR.W SetStokeMovingRightInstList                                    ;A28AA3;
+    LDX.W EnemyIndex
+    JSR SetStokeMovingLeftInstList
+    LDA.W Stoke.direction,X : EOR.W #$0001 : BEQ .return
+    JSR SetStokeMovingRightInstList
 
   .return:
-    RTS                                                                  ;A28AA6;
+    RTS
 
 
 ;;; $8AA7: Decide whether to attack ;;;
 DecideWhetherToAttack:
 ;; Returns:
 ;;     Carry: Set if decided attack, clear otherwise
-    LDX.W EnemyIndex                                                     ;A28AA7;
-    JSL.L GenerateRandomNumber                                           ;A28AAA;
-    LDA.W RandomNumberSeed                                               ;A28AAE;
-    CLC                                                                  ;A28AB1;
-    ADC.W Enemy.frameCounter,X                                           ;A28AB2;
-    AND.W #$00FF                                                         ;A28AB5;
-    CMP.W #$0002                                                         ;A28AB8;
-    BPL .returnNoAttack                                                  ;A28ABB;
-    LDA.W #RTS_A28A75                                                    ;A28ABD;
-    STA.W Stoke.function,X                                               ;A28AC0;
-    SEC                                                                  ;A28AC3;
-    BRA .return                                                          ;A28AC4;
+    LDX.W EnemyIndex
+    JSL GenerateRandomNumber
+    LDA.W RandomNumberSeed : CLC : ADC.W Enemy.frameCounter,X
+    AND.W #$00FF : CMP.W #$0002 : BPL .returnNoAttack
+    LDA.W #RTS_A28A75 : STA.W Stoke.function,X
+    SEC
+    BRA .return
 
   .returnNoAttack:
-    CLC                                                                  ;A28AC6;
+    CLC
 
   .return:
-    RTS                                                                  ;A28AC7;
+    RTS
 
 
 ;;; $8AC8: RTL ;;;
 RTL_A28AC8:
-    RTL                                                                  ;A28AC8;
+    RTL
 
 
 ;;; $8AC9: RTL ;;;
 RTL_A28AC9:
-    RTL                                                                  ;A28AC9;
+    RTL
 
 
 ;;; $8ACA: Spritemaps - mini-Crocomire ;;;
 Spritemap_Stoke_MovingLeft_0:
-    dw $0002                                                             ;A28ACA;
+    dw $0002
     %spritemapEntry(1, $43FE, $F8, 0, 0, 2, 0, $101)
     %spritemapEntry(1, $43F6, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Stoke_MovingLeft_1:
-    dw $0003                                                             ;A28AD6;
+    dw $0003
     %spritemapEntry(0, $1FE, $F0, 0, 0, 2, 0, $10F)
     %spritemapEntry(1, $43FE, $F8, 0, 0, 2, 0, $104)
     %spritemapEntry(1, $43F6, $F8, 0, 0, 2, 0, $103)
 
 Spritemap_Stoke_MovingLeft_2:
-    dw $0002                                                             ;A28AE7;
+    dw $0002
     %spritemapEntry(1, $43F6, $F8, 0, 0, 2, 0, $106)
     %spritemapEntry(1, $43FE, $F8, 0, 0, 2, 0, $101)
 
 Spritemap_Stoke_MovingLeft_3:
-    dw $0002                                                             ;A28AF3;
+    dw $0002
     %spritemapEntry(1, $43FE, $F8, 0, 0, 2, 0, $101)
     %spritemapEntry(1, $43F6, $F8, 0, 0, 2, 0, $108)
 
 Spritemap_Stoke_AttackingLeft:
-    dw $0004                                                             ;A28AFF;
+    dw $0004
     %spritemapEntry(0, $1FE, $F0, 0, 0, 2, 0, $10E)
     %spritemapEntry(0, $1F6, $F0, 0, 0, 2, 0, $10D)
     %spritemapEntry(1, $43FE, $F8, 0, 0, 2, 0, $10B)
     %spritemapEntry(1, $43F6, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_Stoke_MovingRight_0:
-    dw $0002                                                             ;A28B15;
+    dw $0002
     %spritemapEntry(1, $43F2, $F8, 0, 1, 2, 0, $101)
     %spritemapEntry(1, $43FA, $F8, 0, 1, 2, 0, $100)
 
 Spritemap_Stoke_MovingRight_1:
-    dw $0003                                                             ;A28B21;
+    dw $0003
     %spritemapEntry(0, $1FA, $F0, 0, 1, 2, 0, $10F)
     %spritemapEntry(1, $43F2, $F8, 0, 1, 2, 0, $104)
     %spritemapEntry(1, $43FA, $F8, 0, 1, 2, 0, $103)
 
 Spritemap_Stoke_MovingRight_2:
-    dw $0002                                                             ;A28B32;
+    dw $0002
     %spritemapEntry(1, $43FA, $F8, 0, 1, 2, 0, $106)
     %spritemapEntry(1, $43F2, $F8, 0, 1, 2, 0, $101)
 
 Spritemap_Stoke_MovingRight_3:
-    dw $0002                                                             ;A28B3E;
+    dw $0002
     %spritemapEntry(1, $43F2, $F8, 0, 1, 2, 0, $101)
     %spritemapEntry(1, $43FA, $F8, 0, 1, 2, 0, $108)
 
 Spritemap_Stoke_AttackingRight:
-    dw $0004                                                             ;A28B4A;
+    dw $0004
     %spritemapEntry(0, $1FA, $F0, 0, 1, 2, 0, $10E)
     %spritemapEntry(0, $02, $F0, 0, 1, 2, 0, $10D)
     %spritemapEntry(1, $43F2, $F8, 0, 1, 2, 0, $10B)
@@ -1258,1298 +1095,992 @@ Spritemap_Stoke_AttackingRight:
 
 ;;; $8B60: Palette - enemy $CF3F/$CF7F (tatori) ;;;
 Palette_MamaTurtle_BabyTurtle:
-    dw $3800,$4B9C,$3694,$08E7,$0884,$42F7,$2A52,$19AD                   ;A28B60;
-    dw $1129,$7FFF,$033B,$0216,$0113,$7FFF,$03FF,$000D                   ;A28B70;
+    dw $3800,$4B9C,$3694,$08E7,$0884,$42F7,$2A52,$19AD
+    dw $1129,$7FFF,$033B,$0216,$0113,$7FFF,$03FF,$000D
 
 
 ;;; $8B80: Instruction list - mini-tatori - crawling left ;;;
 InstList_BabyTurtle_CrawlingLeft:
-    dw Instruction_BabyTurtle_Crawl                                      ;A28B80;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_0                           ;A28B82;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_1                           ;A28B86;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28B8A;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_2                           ;A28B8C;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_3                           ;A28B90;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28B94;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_0                           ;A28B96;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_1                           ;A28B9A;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28B9E;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_2                           ;A28BA0;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_3                           ;A28BA4;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28BA8;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_0                           ;A28BAA;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_1                           ;A28BAE;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28BB2;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_5                           ;A28BB4;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_6                           ;A28BB8;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28BBC;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_0                           ;A28BBE;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_4                           ;A28BC2;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28BC6;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_5                           ;A28BC8;
-    dw $000A,Spritemap_BabyTurtle_FacingLeft_6                           ;A28BCC;
-    dw Instruction_BabyTurtle_LoopOrTurnAroundIfMovedTooFar              ;A28BD0;
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_0
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_1
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_2
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_3
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_0
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_1
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_2
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_3
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_0
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_1
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_5
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_6
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_0
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_4
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_5
+    dw $000A,Spritemap_BabyTurtle_FacingLeft_6
+    dw Instruction_BabyTurtle_LoopOrTurnAroundIfMovedTooFar
 
 
 ;;; $8BD2: Instruction list - mini-tatori - spinning ;;;
 InstList_BabyTurtle_Spinning:
-    dw $0001,Spritemap_BabyTurtle_FacingLeft_7                           ;A28BD2;
-    dw Instruction_MamaTurtle_PlaySpinningSFX                            ;A28BD6;
-    dw $0004,Spritemap_BabyTurtle_FacingLeft_7                           ;A28BD8;
-    dw $0005,Spritemap_BabyTurtle_FacingLeft_8                           ;A28BDC;
-    dw $0005,Spritemap_BabyTurtle_FacingLeft_9                           ;A28BE0;
-    dw $0005,Spritemap_BabyTurtle_FacingLeft_A                           ;A28BE4;
-    dw Instruction_BabyTurtle_Set_Spinning_Stoppable                     ;A28BE8;
-    dw Instruction_Common_GotoY                                          ;A28BEA;
-    dw InstList_BabyTurtle_Spinning                                      ;A28BEC;
+    dw $0001,Spritemap_BabyTurtle_FacingLeft_7
+    dw Instruction_MamaTurtle_PlaySpinningSFX
+    dw $0004,Spritemap_BabyTurtle_FacingLeft_7
+    dw $0005,Spritemap_BabyTurtle_FacingLeft_8
+    dw $0005,Spritemap_BabyTurtle_FacingLeft_9
+    dw $0005,Spritemap_BabyTurtle_FacingLeft_A
+    dw Instruction_BabyTurtle_Set_Spinning_Stoppable
+    dw Instruction_Common_GotoY
+    dw InstList_BabyTurtle_Spinning
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $8BEE: Unused. Instruction list ;;;
 UNUSED_InstList_A28BEE:
-    dw $0010,Spritemap_MamaTurtle_FacingLeft_3                           ;A28BEE;
-    dw $0010,Spritemap_MamaTurtle_FacingLeft_4                           ;A28BF2;
-    dw $0010,Spritemap_MamaTurtle_FacingLeft_5                           ;A28BF6;
-    dw $0010,Spritemap_MamaTurtle_FacingLeft_6                           ;A28BFA;
-    dw Instruction_Common_GotoY                                          ;A28BFE;
-    dw UNUSED_InstList_A28BEE                                            ;A28C00;
+    dw $0010,Spritemap_MamaTurtle_FacingLeft_3
+    dw $0010,Spritemap_MamaTurtle_FacingLeft_4
+    dw $0010,Spritemap_MamaTurtle_FacingLeft_5
+    dw $0010,Spritemap_MamaTurtle_FacingLeft_6
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_A28BEE
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 InstList_MamaTurtle_Spinning:
 ;;; $8C02: Instruction list - tatori - spinning ;;;
-    dw $0001,Spritemap_MamaTurtle_FacingLeft_0                           ;A28C02;
-    dw Instruction_MamaTurtle_PlaySpinningSFX                            ;A28C06;
-    dw $0004,Spritemap_MamaTurtle_FacingLeft_0                           ;A28C08;
-    dw $0005,Spritemap_MamaTurtle_FacingLeft_8                           ;A28C0C;
-    dw $0005,Spritemap_MamaTurtle_FacingLeft_7                           ;A28C10;
-    dw $0005,Spritemap_MamaTurtle_FacingLeft_8                           ;A28C14;
-    dw Instruction_Common_GotoY                                          ;A28C18;
-    dw InstList_MamaTurtle_Spinning                                      ;A28C1A;
+    dw $0001,Spritemap_MamaTurtle_FacingLeft_0
+    dw Instruction_MamaTurtle_PlaySpinningSFX
+    dw $0004,Spritemap_MamaTurtle_FacingLeft_0
+    dw $0005,Spritemap_MamaTurtle_FacingLeft_8
+    dw $0005,Spritemap_MamaTurtle_FacingLeft_7
+    dw $0005,Spritemap_MamaTurtle_FacingLeft_8
+    dw Instruction_Common_GotoY
+    dw InstList_MamaTurtle_Spinning
 
 
 ;;; $8C1C: Instruction list - tatori - facing left - enter shell ;;;
 InstList_MamaTurtle_FacingLeft_EnterShell:
-    dw $0020,Spritemap_MamaTurtle_FacingLeft_3                           ;A28C1C;
-    dw $0005,Spritemap_MamaTurtle_FacingLeft_2                           ;A28C20;
-    dw $0005,Spritemap_MamaTurtle_FacingLeft_1                           ;A28C24;
-    dw Instruction_MamaTurtle_RiseToHoverRightwards                      ;A28C28;
-    dw $7FFF,Spritemap_MamaTurtle_FacingLeft_0                           ;A28C2A;
-    dw Instruction_Common_Sleep                                          ;A28C2E;
+    dw $0020,Spritemap_MamaTurtle_FacingLeft_3
+    dw $0005,Spritemap_MamaTurtle_FacingLeft_2
+    dw $0005,Spritemap_MamaTurtle_FacingLeft_1
+    dw Instruction_MamaTurtle_RiseToHoverRightwards
+    dw $7FFF,Spritemap_MamaTurtle_FacingLeft_0
+    dw Instruction_Common_Sleep
 
 
 ;;; $8C30: Instruction list - mini-tatori - facing left - hiding ;;;
 InstList_BabyTurtle_FacingLeft_Hiding:
-    dw $0005,Spritemap_BabyTurtle_FacingLeft_4                           ;A28C30;
-    dw $0005,Spritemap_BabyTurtle_FacingLeft_5                           ;A28C34;
-    dw $0040,Spritemap_BabyTurtle_FacingLeft_7                           ;A28C38;
-    dw Instruction_BabyTurtle_LeaveShell                                 ;A28C3C;
-    dw $7FFF,Spritemap_BabyTurtle_FacingLeft_7                           ;A28C3E;
-    dw Instruction_Common_Sleep                                          ;A28C42;
+    dw $0005,Spritemap_BabyTurtle_FacingLeft_4
+    dw $0005,Spritemap_BabyTurtle_FacingLeft_5
+    dw $0040,Spritemap_BabyTurtle_FacingLeft_7
+    dw Instruction_BabyTurtle_LeaveShell
+    dw $7FFF,Spritemap_BabyTurtle_FacingLeft_7
+    dw Instruction_Common_Sleep
 
 
 ;;; $8C44: Instruction list - tatori - asleep ;;;
 InstList_MamaTurtle_Asleep:
-    dw $7FFF,Spritemap_MamaTurtle_FacingLeft_0                           ;A28C44;
-    dw Instruction_Common_Sleep                                          ;A28C48;
+    dw $7FFF,Spritemap_MamaTurtle_FacingLeft_0
+    dw Instruction_Common_Sleep
 
 
 ;;; $8C4A: Instruction list - tatori - facing left - leave shell ;;;
 InstList_MamaTurtle_FacingLeft_LeaveShell:
-    dw $0010,Spritemap_MamaTurtle_FacingLeft_0                           ;A28C4A;
-    dw $0005,Spritemap_MamaTurtle_FacingLeft_1                           ;A28C4E;
-    dw $0005,Spritemap_MamaTurtle_FacingLeft_2                           ;A28C52;
-    dw $0060,Spritemap_MamaTurtle_FacingLeft_3                           ;A28C56;
-    dw Instruction_MamaTurtle_EnterShell                                 ;A28C5A;
-    dw $7FFF,Spritemap_MamaTurtle_FacingLeft_3                           ;A28C5C;
-    dw Instruction_Common_Sleep                                          ;A28C60;
+    dw $0010,Spritemap_MamaTurtle_FacingLeft_0
+    dw $0005,Spritemap_MamaTurtle_FacingLeft_1
+    dw $0005,Spritemap_MamaTurtle_FacingLeft_2
+    dw $0060,Spritemap_MamaTurtle_FacingLeft_3
+    dw Instruction_MamaTurtle_EnterShell
+    dw $7FFF,Spritemap_MamaTurtle_FacingLeft_3
+    dw Instruction_Common_Sleep
 
 
 ;;; $8C62: Instruction list - mini-tatori - facing left - leave shell ;;;
 InstList_BabyTurtle_FacingLeft_LeaveShell:
-    dw $0005,Spritemap_BabyTurtle_FacingLeft_5                           ;A28C62;
-    dw $002F,Spritemap_BabyTurtle_FacingLeft_4                           ;A28C66;
-    dw Instruction_BabyTurtle_LeftShell                                  ;A28C6A;
-    dw $002F,Spritemap_BabyTurtle_FacingLeft_4                           ;A28C6C;
-    dw Instruction_Common_Sleep                                          ;A28C70;
+    dw $0005,Spritemap_BabyTurtle_FacingLeft_5
+    dw $002F,Spritemap_BabyTurtle_FacingLeft_4
+    dw Instruction_BabyTurtle_LeftShell
+    dw $002F,Spritemap_BabyTurtle_FacingLeft_4
+    dw Instruction_Common_Sleep
 
 
 ;;; $8C72: Instruction list - mini-tatori - crawling right ;;;
 InstList_BabyTurtle_CrawlingRight:
-    dw Instruction_BabyTurtle_Crawl                                      ;A28C72;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_B                          ;A28C74;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_C                          ;A28C78;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28C7C;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_D                          ;A28C7E;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_E                          ;A28C82;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28C86;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_B                          ;A28C88;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_C                          ;A28C8C;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28C90;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_D                          ;A28C92;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_E                          ;A28C96;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28C9A;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_B                          ;A28C9C;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_C                          ;A28CA0;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28CA4;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_10                         ;A28CA6;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_11                         ;A28CAA;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28CAE;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_B                          ;A28CB0;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_F                          ;A28CB4;
-    dw Instruction_BabyTurtle_Crawl                                      ;A28CB8;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_10                         ;A28CBA;
-    dw $000A,Spritemap_BabyTurtle_FacingRight_11                         ;A28CBE;
-    dw Instruction_BabyTurtle_LoopOrTurnAroundIfMovedTooFar              ;A28CC2;
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingRight_B
+    dw $000A,Spritemap_BabyTurtle_FacingRight_C
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingRight_D
+    dw $000A,Spritemap_BabyTurtle_FacingRight_E
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingRight_B
+    dw $000A,Spritemap_BabyTurtle_FacingRight_C
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingRight_D
+    dw $000A,Spritemap_BabyTurtle_FacingRight_E
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingRight_B
+    dw $000A,Spritemap_BabyTurtle_FacingRight_C
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingRight_10
+    dw $000A,Spritemap_BabyTurtle_FacingRight_11
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingRight_B
+    dw $000A,Spritemap_BabyTurtle_FacingRight_F
+    dw Instruction_BabyTurtle_Crawl
+    dw $000A,Spritemap_BabyTurtle_FacingRight_10
+    dw $000A,Spritemap_BabyTurtle_FacingRight_11
+    dw Instruction_BabyTurtle_LoopOrTurnAroundIfMovedTooFar
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $8CC4: Unused. Instruction list ;;;
 UNUSED_InstList_A28CC4:
-    dw $0005,Spritemap_BabyTurtle_FacingRight_12                         ;A28CC4;
-    dw $0005,Spritemap_BabyTurtle_FacingRight_13                         ;A28CC8;
-    dw $0005,Spritemap_BabyTurtle_FacingRight_14                         ;A28CCC;
-    dw $0005,Spritemap_BabyTurtle_FacingRight_15                         ;A28CD0;
-    dw Instruction_Common_GotoY                                          ;A28CD4;
-    dw UNUSED_InstList_A28CC4                                            ;A28CD6;
+    dw $0005,Spritemap_BabyTurtle_FacingRight_12
+    dw $0005,Spritemap_BabyTurtle_FacingRight_13
+    dw $0005,Spritemap_BabyTurtle_FacingRight_14
+    dw $0005,Spritemap_BabyTurtle_FacingRight_15
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_A28CC4
 
 
 ;;; $8CD8: Unused. Instruction list ;;;
 UNUSED_InstList_A28CD8:
-    dw $0010,Spritemap_MamaTurtle_FacingRight_C                          ;A28CD8;
-    dw $0010,Spritemap_MamaTurtle_FacingRight_D                          ;A28CDC;
-    dw $0010,Spritemap_MamaTurtle_FacingRight_E                          ;A28CE0;
-    dw $0010,Spritemap_MamaTurtle_FacingRight_F                          ;A28CE4;
-    dw Instruction_Common_GotoY                                          ;A28CE8;
-    dw UNUSED_InstList_A28CD8                                            ;A28CEA;
+    dw $0010,Spritemap_MamaTurtle_FacingRight_C
+    dw $0010,Spritemap_MamaTurtle_FacingRight_D
+    dw $0010,Spritemap_MamaTurtle_FacingRight_E
+    dw $0010,Spritemap_MamaTurtle_FacingRight_F
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_A28CD8
 
 
 ;;; $8CEC: Unused. Instruction list ;;;
 UNUSED_InstList_A28CEC:
-    dw $0005,Spritemap_MamaTurtle_FacingRight_9                          ;A28CEC;
-    dw $0005,Spritemap_MamaTurtle_FacingRight_11                         ;A28CF0;
-    dw $0005,Spritemap_MamaTurtle_FacingRight_10                         ;A28CF4;
-    dw $0005,Spritemap_MamaTurtle_FacingRight_11                         ;A28CF8;
-    dw Instruction_Common_GotoY                                          ;A28CFC;
-    dw UNUSED_InstList_A28CEC                                            ;A28CFE;
+    dw $0005,Spritemap_MamaTurtle_FacingRight_9
+    dw $0005,Spritemap_MamaTurtle_FacingRight_11
+    dw $0005,Spritemap_MamaTurtle_FacingRight_10
+    dw $0005,Spritemap_MamaTurtle_FacingRight_11
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_A28CEC
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8D00: Instruction list - tatori - facing right - enter shell ;;;
 InstList_MamaTurtle_FacingRight_EnterShell:
-    dw $0001,Spritemap_MamaTurtle_FacingRight_C                          ;A28D00;
-    dw $0005,Spritemap_MamaTurtle_FacingRight_B                          ;A28D04;
-    dw $0005,Spritemap_MamaTurtle_FacingRight_A                          ;A28D08;
-    dw Instruction_MamaTurtle_RiseToHoverLeftwards                       ;A28D0C;
-    dw $7FFF,Spritemap_MamaTurtle_FacingRight_9                          ;A28D0E;
-    dw Instruction_Common_Sleep                                          ;A28D12;
+    dw $0001,Spritemap_MamaTurtle_FacingRight_C
+    dw $0005,Spritemap_MamaTurtle_FacingRight_B
+    dw $0005,Spritemap_MamaTurtle_FacingRight_A
+    dw Instruction_MamaTurtle_RiseToHoverLeftwards
+    dw $7FFF,Spritemap_MamaTurtle_FacingRight_9
+    dw Instruction_Common_Sleep
 
 
 ;;; $8D14: Instruction list - mini-tatori - facing right - hiding ;;;
 InstList_BabyTurtle_FacingRight_Hiding:
-    dw $0005,Spritemap_BabyTurtle_FacingRight_F                          ;A28D14;
-    dw $0005,Spritemap_BabyTurtle_FacingRight_10                         ;A28D18;
-    dw $0040,Spritemap_BabyTurtle_FacingRight_12                         ;A28D1C;
-    dw Instruction_BabyTurtle_LeaveShell                                 ;A28D20;
-    dw $7FFF,Spritemap_BabyTurtle_FacingRight_12                         ;A28D22;
-    dw Instruction_Common_Sleep                                          ;A28D26;
+    dw $0005,Spritemap_BabyTurtle_FacingRight_F
+    dw $0005,Spritemap_BabyTurtle_FacingRight_10
+    dw $0040,Spritemap_BabyTurtle_FacingRight_12
+    dw Instruction_BabyTurtle_LeaveShell
+    dw $7FFF,Spritemap_BabyTurtle_FacingRight_12
+    dw Instruction_Common_Sleep
 
 
 ;;; $8D28: Instruction list - tatori - facing right - leave shell ;;;
 InstList_MamaTurtle_FacingRight_LeaveShell:
-    dw $0010,Spritemap_MamaTurtle_FacingRight_9                          ;A28D28;
-    dw $0005,Spritemap_MamaTurtle_FacingRight_A                          ;A28D2C;
-    dw $0005,Spritemap_MamaTurtle_FacingRight_B                          ;A28D30;
-    dw $0060,Spritemap_MamaTurtle_FacingRight_C                          ;A28D34;
-    dw Instruction_MamaTurtle_EnterShell                                 ;A28D38;
-    dw $7FFF,Spritemap_MamaTurtle_FacingRight_C                          ;A28D3A;
-    dw Instruction_Common_Sleep                                          ;A28D3E;
+    dw $0010,Spritemap_MamaTurtle_FacingRight_9
+    dw $0005,Spritemap_MamaTurtle_FacingRight_A
+    dw $0005,Spritemap_MamaTurtle_FacingRight_B
+    dw $0060,Spritemap_MamaTurtle_FacingRight_C
+    dw Instruction_MamaTurtle_EnterShell
+    dw $7FFF,Spritemap_MamaTurtle_FacingRight_C
+    dw Instruction_Common_Sleep
 
 
 ;;; $8D40: Instruction list - mini-tatori - facing right - leave shell ;;;
 InstList_BabyTurtle_FacingRight_LeaveShell:
-    dw $0005,Spritemap_BabyTurtle_FacingLeft_5                           ;A28D40;
-    dw $002F,Spritemap_BabyTurtle_FacingLeft_4                           ;A28D44;
-    dw Instruction_BabyTurtle_LeftShell                                  ;A28D48;
-    dw $002F,Spritemap_BabyTurtle_FacingLeft_4                           ;A28D4A;
-    dw Instruction_Common_Sleep                                          ;A28D4E;
+    dw $0005,Spritemap_BabyTurtle_FacingLeft_5
+    dw $002F,Spritemap_BabyTurtle_FacingLeft_4
+    dw Instruction_BabyTurtle_LeftShell
+    dw $002F,Spritemap_BabyTurtle_FacingLeft_4
+    dw Instruction_Common_Sleep
 
 
 ;;; $8D50: Tatori data ;;;
 BabyTurtleConstants_travelDistance:
-    dw $0030                                                             ;A28D50; Max mini-tatori travel distance
+    dw $0030 ; Max mini-tatori travel distance
 
 MamaTurtleConstants:
   .asleepFlag:
-    dw $0001                                                             ;A28D52; 1. Used as value to set asleep flag to
+    dw $0001 ; 1. Used as value to set asleep flag to
   .unknown:
-    dw $0020                                                             ;A28D54; Unknown. Used as value for a bugged store operation
+    dw $0020 ; Unknown. Used as value for a bugged store operation
   .HoveringXAcceleration_subAcceleration:
-    dw $F000                                                             ;A28D56; Hovering X acceleration
+    dw $F000 ; Hovering X acceleration
   .HoveringXAcceleration_acceleration:
-    dw       $FFFF                                                       ;A28D58; Moving left
-    dw $1000,$0000                                                       ;A28D5A; Moving right
+    dw       $FFFF ; Moving left
+    dw $1000,$0000 ; Moving right
   .maxHoveringXSpeed:
-    dw $0003                                                             ;A28D5E; Max hovering X speed
+    dw $0003 ; Max hovering X speed
   .peakYPosition:
-    dw $01E8                                                             ;A28D60; Peak Y position
+    dw $01E8 ; Peak Y position
   .risingToPeakSpeed:
-    dw $0007                                                             ;A28D62; Rising to peak speed
+    dw $0007 ; Rising to peak speed
   .hoveringAtPeakPosition:
-    dw $001E                                                             ;A28D64; Hovering at peak duration
+    dw $001E ; Hovering at peak duration
   .maxFallingYSpeed:
-    dw $0004                                                             ;A28D66; Max falling Y speed
+    dw $0004 ; Max falling Y speed
 
 BabyTurtleConstants_maxSpinningLeftVelocity:
-    dw $FFFD                                                             ;A28D68; Mini-tatori max spinning left velocity
+    dw $FFFD ; Mini-tatori max spinning left velocity
 
 BabyTurtleConstants_maxSpinningRightVelocity:
-    dw $0003                                                             ;A28D6A; Mini-tatori max spinning right velocity
+    dw $0003 ; Mini-tatori max spinning right velocity
 
 
 ;;; $8D6C: Initialisation AI - enemy $CF3F (tatori) ;;;
 InitAI_MamaTurtle:
-    LDX.W EnemyIndex                                                     ;A28D6C;
-    LDA.W Enemy.properties,X                                             ;A28D6F;
-    ORA.W #$2000                                                         ;A28D72;
-    STA.W Enemy.properties,X                                             ;A28D75;
-    LDA.W #Spritemap_Common_Nothing                                      ;A28D78;
-    STA.W Enemy.spritemap,X                                              ;A28D7B;
-    LDA.W #$0001                                                         ;A28D7E;
-    STA.W Enemy.instTimer,X                                              ;A28D81;
-    STZ.W Enemy.loopCounter,X                                            ;A28D84;
-    STZ.W Enemy.YHitboxRadius,X                                          ;A28D87;
-    LDA.W #InstList_MamaTurtle_Asleep                                    ;A28D8A;
-    STA.W Enemy.instList,X                                               ;A28D8D;
-    LDA.W #Function_MamaTurtle_Initial                                   ;A28D90;
-    STA.W MamaTurtle.function,X                                          ;A28D93;
-    LDA.W MamaTurtleConstants_asleepFlag                                 ;A28D96;
-    STA.W MamaTurtle.asleepFlag,X                                        ;A28D99;
-    RTL                                                                  ;A28D9C;
+    LDX.W EnemyIndex
+    LDA.W Enemy.properties,X : ORA.W #$2000 : STA.W Enemy.properties,X
+    LDA.W #Spritemap_Common_Nothing : STA.W Enemy.spritemap,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X : STZ.W Enemy.YHitboxRadius,X
+    LDA.W #InstList_MamaTurtle_Asleep : STA.W Enemy.instList,X
+    LDA.W #Function_MamaTurtle_Initial : STA.W MamaTurtle.function,X
+    LDA.W MamaTurtleConstants_asleepFlag : STA.W MamaTurtle.asleepFlag,X
+    RTL
 
 
 ;;; $8D9D: Initialisation AI - enemy $CF7F (mini-tatori) ;;;
 InitAI_BabyTurtle:
-    LDX.W EnemyIndex                                                     ;A28D9D;
-    LDA.W Enemy.XPosition,X                                              ;A28DA0;
-    STA.W BabyTurtle.spawnXPosition,X                                    ;A28DA3;
-    LDA.W Enemy.YPosition,X                                              ;A28DA6;
-    SEC                                                                  ;A28DA9;
-    SBC.W Enemy.YHitboxRadius,X                                          ;A28DAA;
-    STA.W BabyTurtle.spawnTopBoundary,X                                  ;A28DAD;
-    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus                 ;A28DB0;
-    STA.W MamaTurtle.function,X                                          ;A28DB3;
-    LDA.W #$0001                                                         ;A28DB6;
-    STA.W Enemy.instTimer,X                                              ;A28DB9;
-    STZ.W Enemy.loopCounter,X                                            ;A28DBC;
-    LDY.W #InstList_BabyTurtle_CrawlingLeft                              ;A28DBF;
-    LDA.W Enemy.init0,X                                                  ;A28DC2;
-    STA.W MamaTurtle.XVelocity,X                                         ;A28DC5;
-    BMI .keepPointer                                                     ;A28DC8;
-    LDY.W #InstList_BabyTurtle_CrawlingRight                             ;A28DCA;
+    LDX.W EnemyIndex
+    LDA.W Enemy.XPosition,X : STA.W BabyTurtle.spawnXPosition,X
+    LDA.W Enemy.YPosition,X : SEC : SBC.W Enemy.YHitboxRadius,X : STA.W BabyTurtle.spawnTopBoundary,X
+    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus : STA.W MamaTurtle.function,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    LDY.W #InstList_BabyTurtle_CrawlingLeft
+    LDA.W Enemy.init0,X : STA.W MamaTurtle.XVelocity,X : BMI .keepPointer
+    LDY.W #InstList_BabyTurtle_CrawlingRight
 
   .keepPointer:
-    TYA                                                                  ;A28DCD;
-    STA.W Enemy.instList,X                                               ;A28DCE;
-    RTL                                                                  ;A28DD1;
+    TYA : STA.W Enemy.instList,X
+    RTL
 
 
 ;;; $8DD2: Main AI - enemy $CF3F (tatori) ;;;
 MainAI_MamaTurtle:
-    LDX.W EnemyIndex                                                     ;A28DD2;
-    JMP.W (MamaTurtle.function,X)                                        ;A28DD5;
+    LDX.W EnemyIndex
+    JMP.W (MamaTurtle.function,X)
 
 
 ;;; $8DD8: Tatori function - initial ;;;
 Function_MamaTurtle_Initial:
-    LDA.W Enemy.palette,X                                                ;A28DD8;
-    STA.W Enemy[1].palette,X                                             ;A28DDB;
-    STA.W Enemy[2].palette,X                                             ;A28DDE;
-    STA.W Enemy[3].palette,X                                             ;A28DE1;
-    STA.W Enemy[4].palette,X                                             ;A28DE4;
-    LDA.W Enemy.GFXOffset,X                                              ;A28DE7;
-    STA.W Enemy[1].GFXOffset,X                                           ;A28DEA;
-    STA.W Enemy[2].GFXOffset,X                                           ;A28DED;
-    STA.W Enemy[3].GFXOffset,X                                           ;A28DF0;
-    STA.W Enemy[4].GFXOffset,X                                           ;A28DF3;
-    TXA                                                                  ;A28DF6;
-    STA.W Enemy[1].var1,X                                                ;A28DF7;
-    STA.W Enemy[2].var1,X                                                ;A28DFA;
-    STA.W Enemy[3].var1,X                                                ;A28DFD;
-    STA.W Enemy[4].var1,X                                                ;A28E00;
-    LDA.W #Function_MamaTurtle_Asleep                                    ;A28E03;
-    STA.W MamaTurtle.function,X                                          ;A28E06; fallthrough to RTL_A28E09
+    LDA.W Enemy.palette,X
+    STA.W Enemy[1].palette,X : STA.W Enemy[2].palette,X
+    STA.W Enemy[3].palette,X : STA.W Enemy[4].palette,X
+    LDA.W Enemy.GFXOffset,X
+    STA.W Enemy[1].GFXOffset,X : STA.W Enemy[2].GFXOffset,X
+    STA.W Enemy[3].GFXOffset,X : STA.W Enemy[4].GFXOffset,X
+    TXA
+    STA.W Enemy[1].var1,X : STA.W Enemy[2].var1,X
+    STA.W Enemy[3].var1,X : STA.W Enemy[4].var1,X
+    LDA.W #Function_MamaTurtle_Asleep : STA.W MamaTurtle.function,X
+; fallthrough to RTL_A28E09
 
 
 RTL_A28E09:
-    RTL                                                                  ;A28E09;
+    RTL
 
 
 ;;; $8E0A: Tatori function - asleep ;;;
 Function_MamaTurtle_Asleep:
-    LDA.W MamaTurtle.asleepFlag,X                                        ;A28E0A;
-    BNE .asleep                                                          ;A28E0D;
-    LDA.W #Function_MamaTurtle_LeaveShell                                ;A28E0F;
-    STA.W MamaTurtle.function,X                                          ;A28E12;
-    LDA.W Enemy.properties,X                                             ;A28E15;
-    AND.W #$FBFF                                                         ;A28E18;
-    STA.W Enemy.properties,X                                             ;A28E1B;
-    RTL                                                                  ;A28E1E;
+    LDA.W MamaTurtle.asleepFlag,X : BNE .asleep
+    LDA.W #Function_MamaTurtle_LeaveShell : STA.W MamaTurtle.function,X
+    LDA.W Enemy.properties,X : AND.W #$FBFF : STA.W Enemy.properties,X
+    RTL
 
   .asleep:
-    STZ.W Enemy.YHitboxRadius,X                                          ;A28E1F;
-    LDA.W Enemy.XPosition,X                                              ;A28E22;
-    SEC                                                                  ;A28E25;
-    SBC.W SamusXPosition                                                 ;A28E26;
-    PHP                                                                  ;A28E29;
-    BPL +                                                                ;A28E2A;
-    EOR.W #$FFFF                                                         ;A28E2C;
-    INC                                                                  ;A28E2F;
+    STZ.W Enemy.YHitboxRadius,X
+    LDA.W Enemy.XPosition,X : SEC : SBC.W SamusXPosition : PHP : BPL +
+    EOR.W #$FFFF : INC
 
-+   CMP.W #$0018                                                         ;A28E30;
-    BPL .returnPLP                                                       ;A28E33;
-    PLP                                                                  ;A28E35;
-    BPL .SamusToTheRight                                                 ;A28E36;
-    CLC                                                                  ;A28E38;
-    ADC.W #$0018                                                         ;A28E39;
++   CMP.W #$0018 : BPL .returnPLP
+    PLP : BPL .SamusToTheRight
+    CLC : ADC.W #$0018
 
   .SamusToTheRight:
-    ASL                                                                  ;A28E3C;
-    TAX                                                                  ;A28E3D;
-    LDA.W SleepingMamaTurtleShellShape,X                                 ;A28E3E;
-    LDX.W EnemyIndex                                                     ;A28E41;
-    EOR.W #$FFFF                                                         ;A28E44;
-    INC                                                                  ;A28E47;
-    STA.W Enemy.YHitboxRadius,X                                          ;A28E48;
-    LDA.W Enemy.properties,X                                             ;A28E4B;
-    ORA.W #$8000                                                         ;A28E4E;
-    STA.W Enemy.properties,X                                             ;A28E51;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A28E54;
-    AND.W #$FFFF                                                         ;A28E58;
-    BEQ .return                                                          ;A28E5B;
-    LDA.W Enemy.YPosition,X                                              ;A28E5D;
-    SEC                                                                  ;A28E60;
-    SBC.W Enemy.YHitboxRadius,X                                          ;A28E61;
-    STA.B DP_Temp12                                                      ;A28E64;
-    LDA.W SamusYPosition                                                 ;A28E66;
-    CLC                                                                  ;A28E69;
-    ADC.W SamusYRadius                                                   ;A28E6A;
-    SEC                                                                  ;A28E6D;
-    SBC.B DP_Temp12                                                      ;A28E6E;
-    BMI .return                                                          ;A28E70;
-    EOR.W #$FFFF                                                         ;A28E72;
-    INC                                                                  ;A28E75;
-    CLC                                                                  ;A28E76;
-    ADC.W ExtraSamusYDisplacement                                        ;A28E77;
-    STA.W ExtraSamusYDisplacement                                        ;A28E7A;
+    ASL : TAX
+    LDA.W SleepingMamaTurtleShellShape,X
+    LDX.W EnemyIndex
+    EOR.W #$FFFF : INC : STA.W Enemy.YHitboxRadius,X
+    LDA.W Enemy.properties,X : ORA.W #$8000 : STA.W Enemy.properties,X
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    AND.W #$FFFF : BEQ .return
+    LDA.W Enemy.YPosition,X : SEC : SBC.W Enemy.YHitboxRadius,X : STA.B DP_Temp12
+    LDA.W SamusYPosition : CLC : ADC.W SamusYRadius
+    SEC : SBC.B DP_Temp12 : BMI .return
+    EOR.W #$FFFF : INC
+    CLC : ADC.W ExtraSamusYDisplacement : STA.W ExtraSamusYDisplacement
 
   .return:
-    RTL                                                                  ;A28E7D;
+    RTL
 
   .returnPLP:
-    PLP                                                                  ;A28E7E;
-    RTL                                                                  ;A28E7F;
+    PLP
+    RTL
 
 
 ;;; $8E80: Sleeping tatori shell shape ;;;
 SleepingMamaTurtleShellShape:
 ; Y pixel offsets from center. Indexed by X distance from center
-    dw $FFF0,$FFF0,$FFF0,$FFF0,$FFF1,$FFF1,$FFF1,$FFF1                   ;A28E80;
-    dw $FFF1,$FFF2,$FFF3,$FFF3,$FFF4,$FFF5,$FFF6,$FFF7                   ;A28E90;
-    dw $FFF8,$FFF9,$FFFA,$FFFB,$FFFC,$FFFC,$0000,$0000                   ;A28EA0;
-    dw $FFF0,$FFF0,$FFF0,$FFF1,$FFF1,$FFF1,$FFF2,$FFF3                   ;A28EB0;
-    dw $FFF4,$FFF5,$FFF6,$FFF7,$FFF8,$FFF9,$FFFA,$FFFB                   ;A28EC0;
-    dw $FFFC,$FFFD,$FFFD,$FFFE,$0000,$0000,$0000,$0000                   ;A28ED0;
+    dw $FFF0,$FFF0,$FFF0,$FFF0,$FFF1,$FFF1,$FFF1,$FFF1
+    dw $FFF1,$FFF2,$FFF3,$FFF3,$FFF4,$FFF5,$FFF6,$FFF7
+    dw $FFF8,$FFF9,$FFFA,$FFFB,$FFFC,$FFFC,$0000,$0000
+    dw $FFF0,$FFF0,$FFF0,$FFF1,$FFF1,$FFF1,$FFF2,$FFF3
+    dw $FFF4,$FFF5,$FFF6,$FFF7,$FFF8,$FFF9,$FFFA,$FFFB
+    dw $FFFC,$FFFD,$FFFD,$FFFE,$0000,$0000,$0000,$0000
 
 
 ;;; $8EE0: Tatori function - leave shell ;;;
 Function_MamaTurtle_LeaveShell:
 ; I don't understand these small position adjustments
-    JSR.W MamaTurtle_vs_Samus_CollisionDetection                         ;A28EE0;
-    LDA.W NMI_8bitFrameCounter                                           ;A28EE3;
-    AND.W #$0001                                                         ;A28EE6;
-    BNE .return                                                          ;A28EE9;
-    PHX                                                                  ;A28EEB;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A28EEC;
-    PLX                                                                  ;A28EF0;
-    AND.W #$FFFF                                                         ;A28EF1;
-    BEQ .notTouchingSamusFromBelow                                       ;A28EF4;
-    LDA.W ExtraSamusXDisplacement                                        ;A28EF6;
-    SEC                                                                  ;A28EF9;
-    SBC.W #$0001                                                         ;A28EFA;
-    STA.W ExtraSamusXDisplacement                                        ;A28EFD;
+    JSR MamaTurtle_vs_Samus_CollisionDetection
+    LDA.W NMI_8bitFrameCounter : AND.W #$0001 : BNE .return
+    PHX
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    PLX
+    AND.W #$FFFF : BEQ .notTouchingSamusFromBelow
+    LDA.W ExtraSamusXDisplacement : SEC : SBC.W #$0001 : STA.W ExtraSamusXDisplacement
 
   .notTouchingSamusFromBelow:
-    DEC.W Enemy.YPosition,X                                              ;A28F00;
-    STZ.B DP_Temp12                                                      ;A28F03;
-    LDA.W #$0010                                                         ;A28F05;
-    STA.W Enemy.YHitboxRadius,X                                          ;A28F08;
-    LDA.W Enemy.YPosition,X                                              ;A28F0B;
-    BIT.W #$0001                                                         ;A28F0E;
-    BNE .odd                                                             ;A28F11;
-    INC.W Enemy.XPosition,X                                              ;A28F13;
-    BRA +                                                                ;A28F16;
+    DEC.W Enemy.YPosition,X
+    STZ.B DP_Temp12
+    LDA.W #$0010 : STA.W Enemy.YHitboxRadius,X
+    LDA.W Enemy.YPosition,X : BIT.W #$0001 : BNE .odd
+    INC.W Enemy.XPosition,X
+    BRA +
 
   .odd:
-    DEC.W Enemy.XPosition,X                                              ;A28F18;
+    DEC.W Enemy.XPosition,X
 
-+   LDA.W #$0001                                                         ;A28F1B;
-    STA.B DP_Temp14                                                      ;A28F1E;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A28F20;
-    BCS .return                                                          ;A28F24;
-    LDA.W #InstList_MamaTurtle_FacingLeft_LeaveShell                     ;A28F26;
-    STA.W Enemy.instList,X                                               ;A28F29;
-    LDA.W #$0001                                                         ;A28F2C;
-    STA.W Enemy.instTimer,X                                              ;A28F2F;
-    LDA.W MamaTurtleConstants_unknown                                    ;A28F32;
-    STA.W $0006,X                                                        ;A28F35;
-    LDA.W #RTL_A28E09                                                    ;A28F38;
-    STA.W MamaTurtle.function,X                                          ;A28F3B;
++   LDA.W #$0001 : STA.B DP_Temp14
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCS .return
+    LDA.W #InstList_MamaTurtle_FacingLeft_LeaveShell : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W MamaTurtleConstants_unknown : STA.W $0006,X
+    LDA.W #RTL_A28E09 : STA.W MamaTurtle.function,X
 
   .return:
-    RTL                                                                  ;A28F3E;
+    RTL
 
 
 ;;; $8F3F: Tatori function - enter shell ;;;
 Function_MamaTurtle_EnterShell:
-    LDY.W #InstList_MamaTurtle_FacingLeft_EnterShell                     ;A28F3F;
-    LDA.W Enemy.XPosition,X                                              ;A28F42;
-    SEC                                                                  ;A28F45;
-    SBC.W SamusXPosition                                                 ;A28F46;
-    BPL .keepLeft                                                        ;A28F49;
-    LDY.W #InstList_MamaTurtle_FacingRight_EnterShell                    ;A28F4B;
+    LDY.W #InstList_MamaTurtle_FacingLeft_EnterShell
+    LDA.W Enemy.XPosition,X : SEC : SBC.W SamusXPosition : BPL .keepLeft
+    LDY.W #InstList_MamaTurtle_FacingRight_EnterShell
 
   .keepLeft:
-    TYA                                                                  ;A28F4E;
-    STA.W Enemy.instList,X                                               ;A28F4F;
-    LDA.W #$0001                                                         ;A28F52;
-    STA.W Enemy.instTimer,X                                              ;A28F55;
-    LDA.W #RTL_A28E09                                                    ;A28F58;
-    STA.W MamaTurtle.function,X                                          ;A28F5B;
-    RTL                                                                  ;A28F5E;
+    TYA : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #RTL_A28E09 : STA.W MamaTurtle.function,X
+    RTL
 
 
 ;;; $8F5F: Handle Samus landing on hovering tatori ;;;
 HandleSamusLandingOnHoveringTatori:
-    PHX                                                                  ;A28F5F;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A28F60;
-    PLX                                                                  ;A28F64;
-    AND.W #$FFFF                                                         ;A28F65;
-    BEQ .return                                                          ;A28F68;
-    LDA.W #Function_MamaTurtle_RisingToPeak                              ;A28F6A;
-    STA.W MamaTurtle.function,X                                          ;A28F6D;
-    LDA.W ExtraSamusXSubDisplacement                                     ;A28F70;
-    SEC                                                                  ;A28F73;
-    SBC.L MamaTurtle.XSubVelocity,X                                      ;A28F74;
-    STA.W ExtraSamusXSubDisplacement                                     ;A28F78;
-    LDA.W ExtraSamusXDisplacement                                        ;A28F7B;
-    SBC.W MamaTurtle.XVelocity,X                                         ;A28F7E;
-    CMP.W #$FFF0                                                         ;A28F81;
-    BPL +                                                                ;A28F84;
-    LDA.W #$FFF0                                                         ;A28F86;
+    PHX
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    PLX
+    AND.W #$FFFF : BEQ .return
+    LDA.W #Function_MamaTurtle_RisingToPeak : STA.W MamaTurtle.function,X
+    LDA.W ExtraSamusXSubDisplacement : SEC : SBC.L MamaTurtle.XSubVelocity,X : STA.W ExtraSamusXSubDisplacement
+    LDA.W ExtraSamusXDisplacement : SBC.W MamaTurtle.XVelocity,X : CMP.W #$FFF0 : BPL +
+    LDA.W #$FFF0
 
-+   STA.W ExtraSamusXDisplacement                                        ;A28F89;
++   STA.W ExtraSamusXDisplacement
 
   .return:
-    RTS                                                                  ;A28F8C;
+    RTS
 
 
 ;;; $8F8D: Tatori function - rise to hover ;;;
 Function_MamaTurtle_RiseToHover:
-    JSR.W MamaTurtle_vs_Samus_CollisionDetection                         ;A28F8D;
-    LDA.W #$FFFF                                                         ;A28F90;
-    STA.B DP_Temp14                                                      ;A28F93;
-    STZ.B DP_Temp12                                                      ;A28F95;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A28F97;
-    BCS .return                                                          ;A28F9B;
-    PHX                                                                  ;A28F9D;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A28F9E;
-    PLX                                                                  ;A28FA2;
-    AND.W #$FFFF                                                         ;A28FA3;
-    BEQ .notTouchingSamusFromBelow                                       ;A28FA6;
-    LDA.W ExtraSamusYDisplacement                                        ;A28FA8;
-    SEC                                                                  ;A28FAB;
-    SBC.W #$0001                                                         ;A28FAC;
-    STA.W ExtraSamusYDisplacement                                        ;A28FAF;
+    JSR MamaTurtle_vs_Samus_CollisionDetection
+    LDA.W #$FFFF : STA.B DP_Temp14
+    STZ.B DP_Temp12
+    JSL MoveEnemyDownBy_14_12
+    BCS .return
+    PHX
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    PLX
+    AND.W #$FFFF : BEQ .notTouchingSamusFromBelow
+    LDA.W ExtraSamusYDisplacement : SEC : SBC.W #$0001 : STA.W ExtraSamusYDisplacement
 
   .notTouchingSamusFromBelow:
-    LDA.L MamaTurtle.functionTimer,X                                     ;A28FB2;
-    DEC                                                                  ;A28FB6;
-    STA.L MamaTurtle.functionTimer,X                                     ;A28FB7;
-    BNE .return                                                          ;A28FBB;
-    LDY.W #$0000                                                         ;A28FBD;
-    LDA.W Enemy.XPosition,X                                              ;A28FC0;
-    SEC                                                                  ;A28FC3;
-    SBC.W SamusXPosition                                                 ;A28FC4;
-    BPL +                                                                ;A28FC7;
-    LDY.W #$0004                                                         ;A28FC9;
+    LDA.L MamaTurtle.functionTimer,X : DEC : STA.L MamaTurtle.functionTimer,X : BNE .return
+    LDY.W #$0000
+    LDA.W Enemy.XPosition,X : SEC : SBC.W SamusXPosition : BPL +
+    LDY.W #$0004
 
-+   LDA.W MamaTurtleConstants_HoveringXAcceleration_subAcceleration,Y    ;A28FCC;
-    STA.L MamaTurtle.XSubAcceleration,X                                  ;A28FCF;
-    LDA.W MamaTurtleConstants_HoveringXAcceleration_acceleration,Y       ;A28FD3;
-    STA.L MamaTurtle.XAcceleration,X                                     ;A28FD6;
-    LDA.W #$0000                                                         ;A28FDA;
-    STA.W MamaTurtle.XVelocity,X                                         ;A28FDD;
-    STA.L MamaTurtle.XSubVelocity,X                                      ;A28FE0;
-    LDA.W #Function_MamaTurtle_Hovering                                  ;A28FE4;
-    STA.W MamaTurtle.function,X                                          ;A28FE7;
++   LDA.W MamaTurtleConstants_HoveringXAcceleration_subAcceleration,Y : STA.L MamaTurtle.XSubAcceleration,X
+    LDA.W MamaTurtleConstants_HoveringXAcceleration_acceleration,Y : STA.L MamaTurtle.XAcceleration,X
+    LDA.W #$0000 : STA.W MamaTurtle.XVelocity,X : STA.L MamaTurtle.XSubVelocity,X
+    LDA.W #Function_MamaTurtle_Hovering : STA.W MamaTurtle.function,X
 
   .return:
-    RTL                                                                  ;A28FEA;
+    RTL
 
 
 ;;; $8FEB: Tatori function - hovering ;;;
 Function_MamaTurtle_Hovering:
 ; Looks like buggy fixed point negations at .hitWall
 ; The dev must have thought that INC affected the carry flag
-    JSR.W MamaTurtle_vs_Samus_CollisionDetection                         ;A28FEB;
-    LDA.W MamaTurtle.XVelocity,X                                         ;A28FEE;
-    STA.B DP_Temp14                                                      ;A28FF1;
-    LDA.L MamaTurtle.XSubVelocity,X                                      ;A28FF3;
-    STA.B DP_Temp12                                                      ;A28FF7;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A28FF9;
-    BCS .hitWall                                                         ;A28FFD;
-    JSR.W HandleSamusLandingOnHoveringTatori                             ;A28FFF;
-    LDA.L MamaTurtle.XSubVelocity,X                                      ;A29002;
-    CLC                                                                  ;A29006;
-    ADC.L MamaTurtle.XSubAcceleration,X                                  ;A29007;
-    STA.L MamaTurtle.XSubVelocity,X                                      ;A2900B;
-    LDA.W MamaTurtle.XVelocity,X                                         ;A2900F;
-    ADC.L MamaTurtle.XAcceleration,X                                     ;A29012;
-    PHA                                                                  ;A29016;
-    BPL +                                                                ;A29017;
-    EOR.W #$FFFF                                                         ;A29019;
-    INC                                                                  ;A2901C;
+    JSR MamaTurtle_vs_Samus_CollisionDetection
+    LDA.W MamaTurtle.XVelocity,X : STA.B DP_Temp14
+    LDA.L MamaTurtle.XSubVelocity,X : STA.B DP_Temp12
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCS .hitWall
+    JSR HandleSamusLandingOnHoveringTatori
+    LDA.L MamaTurtle.XSubVelocity,X : CLC : ADC.L MamaTurtle.XSubAcceleration,X : STA.L MamaTurtle.XSubVelocity,X
+    LDA.W MamaTurtle.XVelocity,X : ADC.L MamaTurtle.XAcceleration,X : PHA : BPL +
+    EOR.W #$FFFF : INC
 
-+   CMP.W MamaTurtleConstants_maxHoveringXSpeed                          ;A2901D;
-    BMI .pullA                                                           ;A29020;
-    PLA                                                                  ;A29022;
-    LDY.W MamaTurtleConstants_maxHoveringXSpeed                          ;A29023;
-    LDA.W MamaTurtle.XVelocity,X                                         ;A29026;
-    BIT.W #$8000                                                         ;A29029;
-    BEQ +                                                                ;A2902C;
-    LDA.W MamaTurtleConstants_maxHoveringXSpeed                          ;A2902E;
-    EOR.W #$FFFF                                                         ;A29031;
-    INC                                                                  ;A29034;
-    TAY                                                                  ;A29035;
++   CMP.W MamaTurtleConstants_maxHoveringXSpeed : BMI .pullA
+    PLA
+    LDY.W MamaTurtleConstants_maxHoveringXSpeed
+    LDA.W MamaTurtle.XVelocity,X : BIT.W #$8000 : BEQ +
+    LDA.W MamaTurtleConstants_maxHoveringXSpeed : EOR.W #$FFFF : INC : TAY
 
-+   PHY                                                                  ;A29036;
++   PHY
 
   .pullA:
-    PLA                                                                  ;A29037;
-    STA.W MamaTurtle.XVelocity,X                                         ;A29038;
-    RTL                                                                  ;A2903B;
+    PLA : STA.W MamaTurtle.XVelocity,X
+    RTL
 
   .hitWall:
-    LDA.L MamaTurtle.XSubVelocity,X                                      ;A2903C;
-    EOR.W #$FFFF                                                         ;A29040;
-    INC                                                                  ;A29043;
-    STA.L MamaTurtle.XSubVelocity,X                                      ;A29044;
-    LDA.W MamaTurtle.XVelocity,X                                         ;A29048;
-    ADC.W #$0000                                                         ;A2904B;
-    EOR.W #$FFFF                                                         ;A2904E;
-    INC                                                                  ;A29051;
-    STA.W MamaTurtle.XVelocity,X                                         ;A29052;
-    LDA.L MamaTurtle.XSubAcceleration,X                                  ;A29055;
-    EOR.W #$FFFF                                                         ;A29059;
-    INC                                                                  ;A2905C;
-    STA.L MamaTurtle.XSubAcceleration,X                                  ;A2905D;
-    LDA.L MamaTurtle.XAcceleration,X                                     ;A29061;
-    ADC.W #$0000                                                         ;A29065;
-    EOR.W #$FFFF                                                         ;A29068;
-    STA.L MamaTurtle.XAcceleration,X                                     ;A2906B;
-    LDA.W #$0000                                                         ;A2906F;
-    STA.W EarthquakeType                                                 ;A29072;
-    LDA.W #$0010                                                         ;A29075;
-    STA.W EarthquakeTimer                                                ;A29078;
-    LDA.W #$001B                                                         ;A2907B;
-    JSL.L QueueSound_Lib2_Max6                                           ;A2907E;
-    RTL                                                                  ;A29082;
+    LDA.L MamaTurtle.XSubVelocity,X : EOR.W #$FFFF : INC : STA.L MamaTurtle.XSubVelocity,X
+    LDA.W MamaTurtle.XVelocity,X : ADC.W #$0000 : EOR.W #$FFFF : INC : STA.W MamaTurtle.XVelocity,X
+    LDA.L MamaTurtle.XSubAcceleration,X : EOR.W #$FFFF : INC : STA.L MamaTurtle.XSubAcceleration,X
+    LDA.L MamaTurtle.XAcceleration,X : ADC.W #$0000 : EOR.W #$FFFF : STA.L MamaTurtle.XAcceleration,X
+    LDA.W #$0000 : STA.W EarthquakeType
+    LDA.W #$0010 : STA.W EarthquakeTimer
+    LDA.W #$001B
+    JSL QueueSound_Lib2_Max6
+    RTL
 
 
 ;;; $9083: Tatori function - rising to peak ;;;
 Function_MamaTurtle_RisingToPeak:
-    JSR.W MamaTurtle_vs_Samus_CollisionDetection                         ;A29083;
-    LDA.W Enemy.YPosition,X                                              ;A29086;
-    CMP.W MamaTurtleConstants_peakYPosition                              ;A29089;
-    BMI +                                                                ;A2908C;
-    PHX                                                                  ;A2908E;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2908F;
-    PLX                                                                  ;A29093;
-    AND.W #$FFFF                                                         ;A29094;
-    BEQ .notTouchingSamus                                                ;A29097;
-    LDA.W Enemy.YPosition,X                                              ;A29099;
-    SEC                                                                  ;A2909C;
-    SBC.W MamaTurtleConstants_risingToPeakSpeed                          ;A2909D;
-    STA.W Enemy.YPosition,X                                              ;A290A0;
-    LDA.W ExtraSamusYDisplacement                                        ;A290A3;
-    SEC                                                                  ;A290A6;
-    SBC.W MamaTurtleConstants_risingToPeakSpeed                          ;A290A7;
-    STA.W ExtraSamusYDisplacement                                        ;A290AA;
-    RTL                                                                  ;A290AD;
+    JSR MamaTurtle_vs_Samus_CollisionDetection
+    LDA.W Enemy.YPosition,X : CMP.W MamaTurtleConstants_peakYPosition : BMI +
+    PHX
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    PLX
+    AND.W #$FFFF : BEQ .notTouchingSamus
+    LDA.W Enemy.YPosition,X : SEC : SBC.W MamaTurtleConstants_risingToPeakSpeed : STA.W Enemy.YPosition,X
+    LDA.W ExtraSamusYDisplacement : SEC : SBC.W MamaTurtleConstants_risingToPeakSpeed : STA.W ExtraSamusYDisplacement
+    RTL
 
-+   LDA.W MamaTurtleConstants_hoveringAtPeakPosition                     ;A290AE;
-    STA.L MamaTurtle.functionTimer,X                                     ;A290B1;
-    LDA.W #Function_MamaTurtle_HoveringAtPeak                            ;A290B5;
++   LDA.W MamaTurtleConstants_hoveringAtPeakPosition : STA.L MamaTurtle.functionTimer,X
+    LDA.W #Function_MamaTurtle_HoveringAtPeak
 
   .merge:
-    STA.W MamaTurtle.function,X                                          ;A290B8;
-    LDA.W #$0000                                                         ;A290BB;
-    STA.L MamaTurtle.YSubVelocity,X                                      ;A290BE;
-    STA.L MamaTurtle.YVelocity,X                                         ;A290C2;
-    RTL                                                                  ;A290C6;
+    STA.W MamaTurtle.function,X
+    LDA.W #$0000 : STA.L MamaTurtle.YSubVelocity,X : STA.L MamaTurtle.YVelocity,X
+    RTL
 
   .notTouchingSamus:
-    LDA.W #Function_MamaTurtle_Falling                                   ;A290C7;
-    BRA .merge                                                           ;A290CA;
+    LDA.W #Function_MamaTurtle_Falling
+    BRA .merge
 
 
 ;;; $90CC: Tatori function - hovering at peak ;;;
 Function_MamaTurtle_HoveringAtPeak:
-    JSR.W MamaTurtle_vs_Samus_CollisionDetection                         ;A290CC;
-    LDA.L MamaTurtle.functionTimer,X                                     ;A290CF;
-    DEC                                                                  ;A290D3;
-    STA.L MamaTurtle.functionTimer,X                                     ;A290D4;
-    BNE .return                                                          ;A290D8;
-    LDA.W #Function_MamaTurtle_Falling                                   ;A290DA;
-    STA.W MamaTurtle.function,X                                          ;A290DD;
+    JSR MamaTurtle_vs_Samus_CollisionDetection
+    LDA.L MamaTurtle.functionTimer,X : DEC : STA.L MamaTurtle.functionTimer,X : BNE .return
+    LDA.W #Function_MamaTurtle_Falling : STA.W MamaTurtle.function,X
 
   .return:
-    RTL                                                                  ;A290E0;
+    RTL
 
 
 ;;; $90E1: Tatori function - falling ;;;
 Function_MamaTurtle_Falling:
-    JSR.W MamaTurtle_vs_Samus_CollisionDetection                         ;A290E1;
-    LDA.L MamaTurtle.YVelocity                                           ;A290E4;
-    CMP.W MamaTurtleConstants_maxFallingYSpeed                           ;A290E8;
-    BPL .maxVelocity                                                     ;A290EB;
-    LDA.L MamaTurtle.YSubVelocity,X                                      ;A290ED;
-    CLC                                                                  ;A290F1;
-    ADC.W #$2000                                                         ;A290F2;
-    STA.L MamaTurtle.YSubVelocity,X                                      ;A290F5;
-    LDA.L MamaTurtle.YVelocity,X                                         ;A290F9;
-    ADC.W #$0000                                                         ;A290FD;
-    STA.L MamaTurtle.YVelocity,X                                         ;A29100;
+    JSR MamaTurtle_vs_Samus_CollisionDetection
+    LDA.L MamaTurtle.YVelocity : CMP.W MamaTurtleConstants_maxFallingYSpeed : BPL .maxVelocity
+    LDA.L MamaTurtle.YSubVelocity,X : CLC : ADC.W #$2000 : STA.L MamaTurtle.YSubVelocity,X
+    LDA.L MamaTurtle.YVelocity,X : ADC.W #$0000 : STA.L MamaTurtle.YVelocity,X
 
   .maxVelocity:
-    STZ.B DP_Temp12                                                      ;A29104;
-    LDA.L MamaTurtle.YVelocity,X                                         ;A29106;
-    STA.B DP_Temp14                                                      ;A2910A;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2910C;
-    BCC .return                                                          ;A29110;
-    LDY.W #InstList_MamaTurtle_FacingLeft_LeaveShell                     ;A29112;
-    LDA.W MamaTurtle.XVelocity,X                                         ;A29115;
-    BMI .keepLeft                                                        ;A29118;
-    LDY.W #InstList_MamaTurtle_FacingRight_LeaveShell                    ;A2911A;
+    STZ.B DP_Temp12
+    LDA.L MamaTurtle.YVelocity,X : STA.B DP_Temp14
+    JSL MoveEnemyDownBy_14_12
+    BCC .return
+    LDY.W #InstList_MamaTurtle_FacingLeft_LeaveShell
+    LDA.W MamaTurtle.XVelocity,X : BMI .keepLeft
+    LDY.W #InstList_MamaTurtle_FacingRight_LeaveShell
 
   .keepLeft:
-    TYA                                                                  ;A2911D;
-    STA.W Enemy.instList,X                                               ;A2911E;
-    LDA.W #$0001                                                         ;A29121;
-    STA.W Enemy.instTimer,X                                              ;A29124;
-    LDA.W #RTL_A28E09                                                    ;A29127;
-    STA.W MamaTurtle.function,X                                          ;A2912A;
+    TYA : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #RTL_A28E09 : STA.W MamaTurtle.function,X
 
   .return:
-    RTL                                                                  ;A2912D;
+    RTL
 
 
 ;;; $912E: Main AI - enemy $CF7F (mini-tatori) ;;;
 MainAI_BabyTurtle:
-    LDX.W EnemyIndex                                                     ;A2912E;
-    LDA.W BabyTurtle.turtleIndex,X                                       ;A29131;
-    TAX                                                                  ;A29134;
-    LDA.W #$0000                                                         ;A29135;
-    STA.L ExtraEnemy7800+$C,X                                            ;A29138;
-    LDX.W EnemyIndex                                                     ;A2913C;
-    JMP.W (BabyTurtle.function,X)                                        ;A2913F;
+    LDX.W EnemyIndex
+    LDA.W BabyTurtle.turtleIndex,X : TAX
+    LDA.W #$0000 : STA.L ExtraEnemy7800+$C,X
+    LDX.W EnemyIndex
+    JMP.W (BabyTurtle.function,X)
 
 
 ;;; $9142: Mini-tatori function - crawling - not carrying Samus ;;;
 Function_BabyTurtle_Crawling_NotCarryingSamus:
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A29142;
-    AND.W #$FFFF                                                         ;A29146;
-    BEQ .return                                                          ;A29149;
-    LDA.W #Function_BabyTurtle_Hiding_CarryingSamus                      ;A2914B;
-    STA.W BabyTurtle.function,X                                          ;A2914E;
-    LDA.W #$0004                                                         ;A29151;
-    STA.L BabyTurtle.notCarryingSamusReactionTimer,X                     ;A29154;
-    LDY.W #InstList_BabyTurtle_FacingLeft_Hiding                         ;A29158;
-    LDA.W BabyTurtle.XVelocity,X                                         ;A2915B;
-    BMI .keepLeft                                                        ;A2915E;
-    LDY.W #InstList_BabyTurtle_FacingRight_Hiding                        ;A29160;
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    AND.W #$FFFF : BEQ .return
+    LDA.W #Function_BabyTurtle_Hiding_CarryingSamus : STA.W BabyTurtle.function,X
+    LDA.W #$0004 : STA.L BabyTurtle.notCarryingSamusReactionTimer,X
+    LDY.W #InstList_BabyTurtle_FacingLeft_Hiding
+    LDA.W BabyTurtle.XVelocity,X : BMI .keepLeft
+    LDY.W #InstList_BabyTurtle_FacingRight_Hiding
 
   .keepLeft:
-    TYA                                                                  ;A29163;
-    STA.W Enemy.instList,X                                               ;A29164;
-    LDA.W #$0001                                                         ;A29167;
-    STA.W Enemy.instTimer,X                                              ;A2916A;
+    TYA : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
 
   .return:
-    RTL                                                                  ;A2916D;
+    RTL
 
 
 ;;; $916E: Mini-tatori function - hiding - carrying Samus ;;;
 Function_BabyTurtle_Hiding_CarryingSamus:
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2916E;
-    AND.W #$FFFF                                                         ;A29172;
-    BEQ .notTouchingSamus                                                ;A29175;
-    LDA.W #$0004                                                         ;A29177;
-    STA.L BabyTurtle.notCarryingSamusReactionTimer,X                     ;A2917A;
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    AND.W #$FFFF : BEQ .notTouchingSamus
+    LDA.W #$0004 : STA.L BabyTurtle.notCarryingSamusReactionTimer,X
 
   .return:
-    RTL                                                                  ;A2917E;
+    RTL
 
   .notTouchingSamus:
-    LDA.L BabyTurtle.notCarryingSamusReactionTimer,X                     ;A2917F;
-    DEC                                                                  ;A29183;
-    STA.L BabyTurtle.notCarryingSamusReactionTimer,X                     ;A29184;
-    BNE .return                                                          ;A29188;
-    LDA.W #Function_BabyTurtle_Hiding_NotCarryingSamus                   ;A2918A;
-    STA.W BabyTurtle.function,X                                          ;A2918D;
-    LDA.W #$003C                                                         ;A29190;
-    STA.L MamaTurtle.functionTimer,X                                     ;A29193;
-    RTL                                                                  ;A29197;
+    LDA.L BabyTurtle.notCarryingSamusReactionTimer,X : DEC : STA.L BabyTurtle.notCarryingSamusReactionTimer,X : BNE .return
+    LDA.W #Function_BabyTurtle_Hiding_NotCarryingSamus : STA.W BabyTurtle.function,X
+    LDA.W #$003C : STA.L MamaTurtle.functionTimer,X
+    RTL
 
 
 ;;; $9198: Mini-tatori function - hiding - not carrying Samus ;;;
 Function_BabyTurtle_Hiding_NotCarryingSamus:
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A29198;
-    AND.W #$FFFF                                                         ;A2919C;
-    BEQ .notTouchingSamus                                                ;A2919F;
-    LDA.W #Function_BabyTurtle_Spinning_Unstoppable                      ;A291A1;
-    STA.W BabyTurtle.function,X                                          ;A291A4;
-    LDA.W #InstList_BabyTurtle_Spinning                                  ;A291A7;
-    STA.W Enemy.instList,X                                               ;A291AA;
-    LDA.W #$0001                                                         ;A291AD;
-    STA.W Enemy.instTimer,X                                              ;A291B0;
-    LDA.W #$0001                                                         ;A291B3;
-    STA.L BabyTurtle.YVelocity,X                                         ;A291B6;
-    LDA.W PoseXDirection                                                 ;A291BA;
-    AND.W #$000F                                                         ;A291BD;
-    LDY.W BabyTurtleConstants_maxSpinningLeftVelocity                    ;A291C0;
-    CMP.W #$0008                                                         ;A291C3;
-    BNE .keepLeft                                                        ;A291C6;
-    LDY.W BabyTurtleConstants_maxSpinningRightVelocity                   ;A291C8;
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    AND.W #$FFFF : BEQ .notTouchingSamus
+    LDA.W #Function_BabyTurtle_Spinning_Unstoppable : STA.W BabyTurtle.function,X
+    LDA.W #InstList_BabyTurtle_Spinning : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #$0001 : STA.L BabyTurtle.YVelocity,X
+    LDA.W PoseXDirection : AND.W #$000F
+    LDY.W BabyTurtleConstants_maxSpinningLeftVelocity
+    CMP.W #$0008 : BNE .keepLeft
+    LDY.W BabyTurtleConstants_maxSpinningRightVelocity
 
   .keepLeft:
-    TYA                                                                  ;A291CB;
-    STA.W BabyTurtle.XVelocity,X                                         ;A291CC;
-    RTL                                                                  ;A291CF;
+    TYA : STA.W BabyTurtle.XVelocity,X
+    RTL
 
   .notTouchingSamus:
-    LDA.L MamaTurtle.functionTimer,X                                     ;A291D0;
-    DEC                                                                  ;A291D4;
-    STA.L MamaTurtle.functionTimer,X                                     ;A291D5;
-    BEQ .timerExpired                                                    ;A291D9;
-    RTL                                                                  ;A291DB;
+    LDA.L MamaTurtle.functionTimer,X : DEC : STA.L MamaTurtle.functionTimer,X : BEQ .timerExpired
+    RTL
 
   .timerExpired:
-    LDY.W #InstList_BabyTurtle_CrawlingLeft                              ;A291DC;
-    LDA.W BabyTurtle.XVelocity,X                                         ;A291DF;
-    BMI ..keepLeft                                                       ;A291E2;
-    LDY.W #InstList_BabyTurtle_CrawlingRight                             ;A291E4;
+    LDY.W #InstList_BabyTurtle_CrawlingLeft
+    LDA.W BabyTurtle.XVelocity,X : BMI ..keepLeft
+    LDY.W #InstList_BabyTurtle_CrawlingRight
 
   ..keepLeft:
-    TYA                                                                  ;A291E7;
-    STA.W Enemy.instList,X                                               ;A291E8;
-    LDA.W #$0001                                                         ;A291EB;
-    STA.W Enemy.instTimer,X                                              ;A291EE;
-    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus                 ;A291F1;
-    STA.W BabyTurtle.function,X                                          ;A291F4;
-    RTL                                                                  ;A291F7;
+    TYA : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus : STA.W BabyTurtle.function,X
+    RTL
 
 
 ;;; $91F8: Mini-tatori function - spinning - unstoppable ;;;
 Function_BabyTurtle_Spinning_Unstoppable:
-    STZ.B DP_Temp12                                                      ;A291F8;
-    LDA.W BabyTurtle.XVelocity,X                                         ;A291FA;
-    STA.B DP_Temp14                                                      ;A291FD;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A291FF;
-    BCS .collidedWithWall                                                ;A29203;
-    STZ.B DP_Temp12                                                      ;A29205;
-    LDA.L BabyTurtle.YVelocity,X                                         ;A29207;
-    STA.B DP_Temp14                                                      ;A2920B;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2920D;
-    RTL                                                                  ;A29211;
+    STZ.B DP_Temp12
+    LDA.W BabyTurtle.XVelocity,X : STA.B DP_Temp14
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCS .collidedWithWall
+    STZ.B DP_Temp12
+    LDA.L BabyTurtle.YVelocity,X : STA.B DP_Temp14
+    JSL MoveEnemyDownBy_14_12
+    RTL
 
   .collidedWithWall:
-    LDA.W BabyTurtle.XVelocity,X                                         ;A29212;
-    EOR.W #$FFFF                                                         ;A29215;
-    INC                                                                  ;A29218;
-    STA.W BabyTurtle.XVelocity,X                                         ;A29219;
-    RTL                                                                  ;A2921C;
+    LDA.W BabyTurtle.XVelocity,X : EOR.W #$FFFF : INC : STA.W BabyTurtle.XVelocity,X
+    RTL
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $921D: Unused ;;;
 UNUSED_A2921D:
 ; Clone of Function_BabyTurtle_Hiding_NotCarryingSamus_timerExpired. Possibly an RTL'd out section of the above function
-    LDY.W #InstList_BabyTurtle_CrawlingLeft                              ;A2921D;
-    LDA.W BabyTurtle.XVelocity,X                                         ;A29220;
-    BMI .keepLeft                                                        ;A29223;
-    LDY.W #InstList_BabyTurtle_CrawlingRight                             ;A29225;
+    LDY.W #InstList_BabyTurtle_CrawlingLeft
+    LDA.W BabyTurtle.XVelocity,X : BMI .keepLeft
+    LDY.W #InstList_BabyTurtle_CrawlingRight
 
   .keepLeft:
-    TYA                                                                  ;A29228;
-    STA.W Enemy.instList,X                                               ;A29229;
-    LDA.W #$0001                                                         ;A2922C;
-    STA.W Enemy.instTimer,X                                              ;A2922F;
-    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus                 ;A29232;
-    STA.W BabyTurtle.function,X                                          ;A29235;
-    RTL                                                                  ;A29238;
+    TYA : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus : STA.W BabyTurtle.function,X
+    RTL
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9239: Mini-tatori function - spinning - stoppable ;;;
 Function_BabyTurtle_Spinning_Stoppable:
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A29239;
-    AND.W #$FFFF                                                         ;A2923D;
-    BEQ Function_BabyTurtle_Spinning_Unstoppable                         ;A29240;
-    LDY.W #InstList_BabyTurtle_CrawlingLeft                              ;A29242;
-    LDA.W BabyTurtle.XVelocity,X                                         ;A29245;
-    BMI .keepLeft                                                        ;A29248;
-    LDY.W #InstList_BabyTurtle_CrawlingRight                             ;A2924A;
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    AND.W #$FFFF : BEQ Function_BabyTurtle_Spinning_Unstoppable
+    LDY.W #InstList_BabyTurtle_CrawlingLeft
+    LDA.W BabyTurtle.XVelocity,X : BMI .keepLeft
+    LDY.W #InstList_BabyTurtle_CrawlingRight
 
   .keepLeft:
-    TYA                                                                  ;A2924D;
-    STA.W Enemy.instList,X                                               ;A2924E;
-    LDA.W #$0001                                                         ;A29251;
-    STA.W Enemy.instTimer,X                                              ;A29254;
-    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus                 ;A29257;
-    STA.W BabyTurtle.function,X                                          ;A2925A;
-    RTL                                                                  ;A2925D;
+    TYA : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus : STA.W BabyTurtle.function,X
+    RTL
 
 
 ;;; $925E: Mini-tatori function - crawling - carrying Samus ;;;
 Function_BabyTurtle_Crawling_CarryingSamus:
-    LDX.W EnemyIndex                                                     ;A2925E;
-    LDA.W Enemy.YHitboxRadius,X                                          ;A29261;
-    PHA                                                                  ;A29264;
-    LDA.W BabyTurtle.turtleIndex,X                                       ;A29265;
-    TAX                                                                  ;A29268;
-    PLA                                                                  ;A29269;
-    STA.L ExtraEnemy7800+$C,X                                            ;A2926A;
-    LDX.W EnemyIndex                                                     ;A2926E;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A29271;
-    AND.W #$FFFF                                                         ;A29275;
-    BNE .return                                                          ;A29278;
-    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus                 ;A2927A;
-    STA.W BabyTurtle.function,X                                          ;A2927D;
+    LDX.W EnemyIndex
+    LDA.W Enemy.YHitboxRadius,X : PHA
+    LDA.W BabyTurtle.turtleIndex,X : TAX
+    PLA : STA.L ExtraEnemy7800+$C,X
+    LDX.W EnemyIndex
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    AND.W #$FFFF : BNE .return
+    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus : STA.W BabyTurtle.function,X
 
   .return:
-    RTL                                                                  ;A29280;
+    RTL
 
 
 ;;; $9281: Enemy touch - enemy $CF3F (tatori) ;;;
 EnemyTouch_MamaTurtle:
 ; The solid enemy hitbox check here is useless, enemy touch reactions aren't called on solid enemies
-    LDX.W EnemyIndex                                                     ;A29281;
-    LDA.W Enemy.properties,X                                             ;A29284;
-    BIT.W #$8000                                                         ;A29287;
-    BNE .return                                                          ;A2928A;
-    JSL.L CommonA2_NormalEnemyTouchAI                                    ;A2928C;
-    LDA.W #Function_MamaTurtle_Falling                                   ;A29290;
-    STA.W MamaTurtle.function,X                                          ;A29293;
-    LDA.W #$0002                                                         ;A29296;
-    STA.L MamaTurtle.YVelocity,X                                         ;A29299;
+    LDX.W EnemyIndex
+    LDA.W Enemy.properties,X : BIT.W #$8000 : BNE .return
+    JSL CommonA2_NormalEnemyTouchAI
+    LDA.W #Function_MamaTurtle_Falling : STA.W MamaTurtle.function,X
+    LDA.W #$0002 : STA.L MamaTurtle.YVelocity,X
 
   .return:
-    RTL                                                                  ;A2929D;
+    RTL
 
 
 ;;; $929E: RTL ;;;
 RTL_A2929E:
-    RTL                                                                  ;A2929E;
+    RTL
 
 
 ;;; $929F: Enemy touch - enemy $CF7F (mini-tatori) ;;;
 EnemyTouch_BabyTurtle:
-    LDX.W EnemyIndex                                                     ;A2929F;
-    LDA.W BabyTurtle.function,X                                          ;A292A2;
-    CMP.W #Function_BabyTurtle_Crawling_CarryingSamus                    ;A292A5;
-    BNE +                                                                ;A292A8;
-    RTL                                                                  ;A292AA;
+    LDX.W EnemyIndex
+    LDA.W BabyTurtle.function,X : CMP.W #Function_BabyTurtle_Crawling_CarryingSamus : BNE +
+    RTL
 
-+   LDA.W BabyTurtle.XVelocity,X                                         ;A292AB;
-    BMI .negative                                                        ;A292AE;
-    LDA.W #InstList_BabyTurtle_CrawlingLeft                              ;A292B0;
-    STA.W Enemy.instList,X                                               ;A292B3;
-    LDA.W #$FFFF                                                         ;A292B6;
-    BRA +                                                                ;A292B9;
++   LDA.W BabyTurtle.XVelocity,X : BMI .negative
+    LDA.W #InstList_BabyTurtle_CrawlingLeft : STA.W Enemy.instList,X
+    LDA.W #$FFFF
+    BRA +
 
   .negative:
-    LDA.W #InstList_BabyTurtle_CrawlingRight                             ;A292BB;
-    STA.W Enemy.instList,X                                               ;A292BE;
-    LDA.W #$0001                                                         ;A292C1;
+    LDA.W #InstList_BabyTurtle_CrawlingRight : STA.W Enemy.instList,X
+    LDA.W #$0001
 
-+   STA.W BabyTurtle.XVelocity,X                                         ;A292C4;
-    LDA.W #$0001                                                         ;A292C7;
-    STA.W Enemy.instTimer,X                                              ;A292CA;
-    LDA.W Enemy.XPosition,X                                              ;A292CD;
-    CMP.W SamusXPosition                                                 ;A292D0;
-    BPL .SamusToTheLeft                                                  ;A292D3;
-    LDA.W SamusXPosition                                                 ;A292D5;
-    SEC                                                                  ;A292D8;
-    SBC.W SamusXRadius                                                   ;A292D9;
-    SBC.W Enemy.XHitboxRadius,X                                          ;A292DC;
-    BRA +                                                                ;A292DF;
++   STA.W BabyTurtle.XVelocity,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W Enemy.XPosition,X : CMP.W SamusXPosition : BPL .SamusToTheLeft
+    LDA.W SamusXPosition : SEC : SBC.W SamusXRadius : SBC.W Enemy.XHitboxRadius,X
+    BRA +
 
   .SamusToTheLeft:
-    LDA.W SamusXPosition                                                 ;A292E1;
-    CLC                                                                  ;A292E4;
-    ADC.W SamusXRadius                                                   ;A292E5;
-    ADC.W Enemy.XHitboxRadius,X                                          ;A292E8;
+    LDA.W SamusXPosition : CLC : ADC.W SamusXRadius : ADC.W Enemy.XHitboxRadius,X
 
-+   STA.W Enemy.XPosition,X                                              ;A292EB;
-    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus                 ;A292EE;
-    STA.W BabyTurtle.function,X                                          ;A292F1;
-    STZ.B DP_Temp12                                                      ;A292F4;
-    LDA.W BabyTurtle.XVelocity,X                                         ;A292F6;
-    STA.B DP_Temp14                                                      ;A292F9;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A292FB; fallthrough to AwakenTurtle
++   STA.W Enemy.XPosition,X
+    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus : STA.W BabyTurtle.function,X
+    STZ.B DP_Temp12
+    LDA.W BabyTurtle.XVelocity,X : STA.B DP_Temp14
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+; fallthrough to AwakenTurtle
 
 
 ;;; $92FF: Awaken tatori ;;;
 AwakenTurtle:
-    LDX.W EnemyIndex                                                     ;A292FF;
-    LDA.W BabyTurtle.turtleIndex,X                                       ;A29302;
-    TAX                                                                  ;A29305;
-    LDA.W MamaTurtle.asleepFlag,X                                        ;A29306;
-    BEQ .return                                                          ;A29309;
-    DEC.W MamaTurtle.asleepFlag,X                                        ;A2930B;
+    LDX.W EnemyIndex
+    LDA.W BabyTurtle.turtleIndex,X : TAX
+    LDA.W MamaTurtle.asleepFlag,X : BEQ .return
+    DEC.W MamaTurtle.asleepFlag,X
 
   .return:
-    RTL                                                                  ;A2930E;
+    RTL
 
 
 ;;; $930F: Enemy shot - enemy $CF7F (mini-tatori) ;;;
 EnemyShot_BabyTurtle:
-    JSL.L NormalEnemyShotAI                                              ;A2930F;
-    BRA AwakenTurtle                                                     ;A29313;
+    JSL NormalEnemyShotAI
+    BRA AwakenTurtle
 
 
 ;;; $9315: Tatori / Samus collision detection ;;;
 MamaTurtle_vs_Samus_CollisionDetection:
-    LDA.W Enemy.XPosition                                                ;A29315;
-    SEC                                                                  ;A29318;
-    SBC.W Enemy.XHitboxRadius                                            ;A29319;
-    SEC                                                                  ;A2931C;
-    SBC.W #$0008                                                         ;A2931D;
-    STA.B DP_Temp12                                                      ;A29320;
-    LDA.W Enemy.XPosition                                                ;A29322;
-    CLC                                                                  ;A29325;
-    ADC.W Enemy.XHitboxRadius                                            ;A29326;
-    CLC                                                                  ;A29329;
-    ADC.W #$0008                                                         ;A2932A;
-    STA.B DP_Temp14                                                      ;A2932D;
-    LDA.W Enemy.YPosition                                                ;A2932F;
-    SEC                                                                  ;A29332;
-    SBC.W Enemy.YHitboxRadius                                            ;A29333;
-    CLC                                                                  ;A29336;
-    ADC.W #$0004                                                         ;A29337;
-    STA.B DP_Temp16                                                      ;A2933A;
-    LDA.W Enemy.YPosition                                                ;A2933C;
-    CLC                                                                  ;A2933F;
-    ADC.W Enemy.YHitboxRadius                                            ;A29340;
-    SEC                                                                  ;A29343;
-    SBC.W #$0004                                                         ;A29344;
-    STA.B DP_Temp18                                                      ;A29347;
-    LDA.W SamusXPosition                                                 ;A29349;
-    SEC                                                                  ;A2934C;
-    SBC.W SamusXRadius                                                   ;A2934D;
-    DEC                                                                  ;A29350;
-    CMP.B DP_Temp14                                                      ;A29351;
-    BPL .return                                                          ;A29353;
-    LDA.W SamusXPosition                                                 ;A29355;
-    CLC                                                                  ;A29358;
-    ADC.W SamusXRadius                                                   ;A29359;
-    CMP.B DP_Temp12                                                      ;A2935C;
-    BMI .return                                                          ;A2935E;
-    LDA.W SamusYPosition                                                 ;A29360;
-    SEC                                                                  ;A29363;
-    SBC.W SamusYRadius                                                   ;A29364;
-    INC                                                                  ;A29367;
-    CMP.B DP_Temp18                                                      ;A29368;
-    BPL .return                                                          ;A2936A;
-    LDA.W SamusYPosition                                                 ;A2936C;
-    CLC                                                                  ;A2936F;
-    ADC.W SamusYRadius                                                   ;A29370;
-    CMP.B DP_Temp16                                                      ;A29373;
-    BMI .return                                                          ;A29375;
-    LDA.W SamusInvincibilityTimer                                        ;A29377;
-    BNE .return                                                          ;A2937A;
-    JSL.L NormalEnemyTouchAI                                             ;A2937C;
+    LDA.W Enemy.XPosition : SEC : SBC.W Enemy.XHitboxRadius
+    SEC : SBC.W #$0008 : STA.B DP_Temp12
+    LDA.W Enemy.XPosition : CLC : ADC.W Enemy.XHitboxRadius
+    CLC : ADC.W #$0008 : STA.B DP_Temp14
+    LDA.W Enemy.YPosition : SEC : SBC.W Enemy.YHitboxRadius
+    CLC : ADC.W #$0004 : STA.B DP_Temp16
+    LDA.W Enemy.YPosition : CLC : ADC.W Enemy.YHitboxRadius
+    SEC : SBC.W #$0004 : STA.B DP_Temp18
+    LDA.W SamusXPosition : SEC : SBC.W SamusXRadius
+    DEC : CMP.B DP_Temp14 : BPL .return
+    LDA.W SamusXPosition : CLC : ADC.W SamusXRadius
+    CMP.B DP_Temp12 : BMI .return
+    LDA.W SamusYPosition : SEC : SBC.W SamusYRadius : INC
+    CMP.B DP_Temp18 : BPL .return
+    LDA.W SamusYPosition : CLC : ADC.W SamusYRadius : CMP.B DP_Temp16 : BMI .return
+    LDA.W SamusInvincibilityTimer : BNE .return
+    JSL NormalEnemyTouchAI
 
   .return:
-    RTS                                                                  ;A29380;
+    RTS
 
 
 ;;; $9381: Instruction - mini-tatori - crawl ;;;
 Instruction_BabyTurtle_Crawl:
-    PHX                                                                  ;A29381;
-    PHY                                                                  ;A29382;
-    LDA.W #$0000                                                         ;A29383;
-    STA.B DP_Temp30                                                      ;A29386;
-    LDX.W EnemyIndex                                                     ;A29388;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2938B;
-    AND.W #$FFFF                                                         ;A2938F;
-    BEQ .notTouchingSamusFromBelow                                       ;A29392;
-    LDA.W BabyTurtle.XVelocity,X                                         ;A29394;
-    CLC                                                                  ;A29397;
-    ADC.W ExtraSamusXDisplacement                                        ;A29398;
-    STA.W ExtraSamusXDisplacement                                        ;A2939B;
-    LDA.W #$0001                                                         ;A2939E;
-    STA.B DP_Temp30                                                      ;A293A1;
+    PHX : PHY
+    LDA.W #$0000 : STA.B DP_Temp30
+    LDX.W EnemyIndex
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    AND.W #$FFFF : BEQ .notTouchingSamusFromBelow
+    LDA.W BabyTurtle.XVelocity,X : CLC : ADC.W ExtraSamusXDisplacement : STA.W ExtraSamusXDisplacement
+    LDA.W #$0001 : STA.B DP_Temp30
 
   .notTouchingSamusFromBelow:
-    LDA.W Enemy.YPosition,X                                              ;A293A3;
-    STA.B DP_Temp32                                                      ;A293A6;
-    LDA.W BabyTurtle.spawnTopBoundary,X                                  ;A293A8;
-    STA.W Enemy.YPosition,X                                              ;A293AB;
-    STZ.B DP_Temp12                                                      ;A293AE;
-    LDA.W BabyTurtle.XVelocity,X                                         ;A293B0;
-    STA.B DP_Temp14                                                      ;A293B3;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A293B5;
-    LDA.W BabyTurtle.turtleIndex,X                                       ;A293B9;
-    TAX                                                                  ;A293BC;
-    LDA.W BabyTurtle.function,X                                          ;A293BD;
-    CMP.W #Function_MamaTurtle_Asleep                                    ;A293C0;
-    BNE .return                                                          ;A293C3;
-    LDX.W EnemyIndex                                                     ;A293C5;
-    PHX                                                                  ;A293C8;
-    LDA.W BabyTurtle.turtleIndex,X                                       ;A293C9;
-    TAX                                                                  ;A293CC;
-    LDA.W Enemy.XPosition,X                                              ;A293CD;
-    PLX                                                                  ;A293D0;
-    SEC                                                                  ;A293D1;
-    SBC.W Enemy.XPosition,X                                              ;A293D2;
-    PHP                                                                  ;A293D5;
-    BPL +                                                                ;A293D6;
-    EOR.W #$FFFF                                                         ;A293D8;
-    INC                                                                  ;A293DB;
+    LDA.W Enemy.YPosition,X : STA.B DP_Temp32
+    LDA.W BabyTurtle.spawnTopBoundary,X : STA.W Enemy.YPosition,X
+    STZ.B DP_Temp12
+    LDA.W BabyTurtle.XVelocity,X : STA.B DP_Temp14
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    LDA.W BabyTurtle.turtleIndex,X : TAX
+    LDA.W BabyTurtle.function,X : CMP.W #Function_MamaTurtle_Asleep : BNE .return
+    LDX.W EnemyIndex
+    PHX
+    LDA.W BabyTurtle.turtleIndex,X : TAX
+    LDA.W Enemy.XPosition,X
+    PLX
+    SEC : SBC.W Enemy.XPosition,X : PHP : BPL +
+    EOR.W #$FFFF : INC
 
-+   CMP.W #$0018                                                         ;A293DC;
-    BPL .notOnMama                                                       ;A293DF;
-    PLP                                                                  ;A293E1;
-    BPL .rightOfMama                                                     ;A293E2;
-    CLC                                                                  ;A293E4;
-    ADC.W #$0018                                                         ;A293E5;
++   CMP.W #$0018 : BPL .notOnMama
+    PLP : BPL .rightOfMama
+    CLC : ADC.W #$0018
 
   .rightOfMama:
-    ASL                                                                  ;A293E8;
-    TAX                                                                  ;A293E9;
-    LDA.W SleepingMamaTurtleShellShape,X                                 ;A293EA;
+    ASL : TAX
+    LDA.W SleepingMamaTurtleShellShape,X
 
   .merge:
-    STA.B DP_Temp14                                                      ;A293ED;
-    STZ.B DP_Temp12                                                      ;A293EF;
-    LDX.W EnemyIndex                                                     ;A293F1;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A293F4;
-    LDA.B DP_Temp30                                                      ;A293F8;
-    BEQ .return                                                          ;A293FA;
-    LDA.W Enemy.YPosition,X                                              ;A293FC;
-    SEC                                                                  ;A293FF;
-    SBC.B DP_Temp32                                                      ;A29400;
-    CLC                                                                  ;A29402;
-    ADC.W ExtraSamusYDisplacement                                        ;A29403;
-    STA.W ExtraSamusYDisplacement                                        ;A29406;
+    STA.B DP_Temp14
+    STZ.B DP_Temp12
+    LDX.W EnemyIndex
+    JSL MoveEnemyDownBy_14_12
+    LDA.B DP_Temp30 : BEQ .return
+    LDA.W Enemy.YPosition,X : SEC : SBC.B DP_Temp32
+    CLC : ADC.W ExtraSamusYDisplacement : STA.W ExtraSamusYDisplacement
 
   .return:
-    PLY                                                                  ;A29409;
-    PLX                                                                  ;A2940A;
-    RTL                                                                  ;A2940B;
+    PLY : PLX
+    RTL
 
   .notOnMama:
-    PLP                                                                  ;A2940C;
-    LDA.W #$0001                                                         ;A2940D;
-    BRA .merge                                                           ;A29410;
+    PLP
+    LDA.W #$0001
+    BRA .merge
 
 
 ;;; $9412: Instruction - mini-tatori - loop or turn around if moved too far ;;;
 Instruction_BabyTurtle_LoopOrTurnAroundIfMovedTooFar:
-    PHX                                                                  ;A29412;
-    LDX.W EnemyIndex                                                     ;A29413;
-    LDA.W BabyTurtle.spawnXPosition,X                                    ;A29416;
-    SEC                                                                  ;A29419;
-    SBC.W Enemy.XPosition,X                                              ;A2941A;
-    PHP                                                                  ;A2941D;
-    BPL +                                                                ;A2941E;
-    EOR.W #$FFFF                                                         ;A29420;
-    INC                                                                  ;A29423;
+    PHX
+    LDX.W EnemyIndex
+    LDA.W BabyTurtle.spawnXPosition,X : SEC : SBC.W Enemy.XPosition,X : PHP : BPL +
+    EOR.W #$FFFF : INC
 
-+   CMP.W BabyTurtleConstants_travelDistance                             ;A29424;
-    BMI .noTurn                                                          ;A29427;
-    PLP                                                                  ;A29429;
-    BMI .rightOfSpawn                                                    ;A2942A;
-    LDA.W #$0001                                                         ;A2942C;
-    BRA +                                                                ;A2942F;
++   CMP.W BabyTurtleConstants_travelDistance : BMI .noTurn
+    PLP : BMI .rightOfSpawn
+    LDA.W #$0001
+    BRA +
 
   .rightOfSpawn:
-    LDA.W #$FFFF                                                         ;A29431;
+    LDA.W #$FFFF
 
-+   STA.W BabyTurtle.XVelocity,X                                         ;A29434;
++   STA.W BabyTurtle.XVelocity,X
 
   .merge:
-    LDY.W #InstList_BabyTurtle_CrawlingRight                             ;A29437;
-    LDA.W BabyTurtle.XVelocity,X                                         ;A2943A;
-    BPL .return                                                          ;A2943D;
-    LDY.W #InstList_BabyTurtle_CrawlingLeft                              ;A2943F;
+    LDY.W #InstList_BabyTurtle_CrawlingRight
+    LDA.W BabyTurtle.XVelocity,X : BPL .return
+    LDY.W #InstList_BabyTurtle_CrawlingLeft
 
   .return:
-    PLX                                                                  ;A29442;
-    RTL                                                                  ;A29443;
+    PLX
+    RTL
 
   .noTurn:
-    PLP                                                                  ;A29444;
-    BRA .merge                                                           ;A29445;
+    PLP
+    BRA .merge
 
 
 ;;; $9447: Instruction - tatori - enter shell ;;;
 Instruction_MamaTurtle_EnterShell:
-    LDX.W EnemyIndex                                                     ;A29447;
-    LDA.W #Function_MamaTurtle_EnterShell                                ;A2944A;
-    STA.W MamaTurtle.function,X                                          ;A2944D;
-    RTL                                                                  ;A29450;
+    LDX.W EnemyIndex
+    LDA.W #Function_MamaTurtle_EnterShell : STA.W MamaTurtle.function,X
+    RTL
 
 
 ;;; $9451: Instruction - tatori - rise to hover rightwards, go to InstList_MamaTurtle_Spinning ;;;
 Instruction_MamaTurtle_RiseToHoverRightwards:
-    LDX.W EnemyIndex                                                     ;A29451;
-    LDA.W #Function_MamaTurtle_RiseToHover                               ;A29454;
-    STA.W MamaTurtle.function,X                                          ;A29457;
-    LDA.W #$FFFF                                                         ;A2945A;
-    STA.W MamaTurtle.XVelocity,X                                         ;A2945D;
-    LDA.W #$0010                                                         ;A29460;
-    STA.L MamaTurtle.functionTimer,X                                     ;A29463;
-    LDY.W #InstList_MamaTurtle_Spinning                                  ;A29467;
-    RTL                                                                  ;A2946A;
+    LDX.W EnemyIndex
+    LDA.W #Function_MamaTurtle_RiseToHover : STA.W MamaTurtle.function,X
+    LDA.W #$FFFF : STA.W MamaTurtle.XVelocity,X
+    LDA.W #$0010 : STA.L MamaTurtle.functionTimer,X
+    LDY.W #InstList_MamaTurtle_Spinning
+    RTL
 
 
 ;;; $946B: Instruction - tatori - rise to hover leftwards, go to InstList_MamaTurtle_Spinning ;;;
 Instruction_MamaTurtle_RiseToHoverLeftwards:
-    LDX.W EnemyIndex                                                     ;A2946B;
-    LDA.W #Function_MamaTurtle_RiseToHover                               ;A2946E;
-    STA.W MamaTurtle.function,X                                          ;A29471;
-    LDA.W #$0001                                                         ;A29474;
-    STA.W MamaTurtle.XVelocity,X                                         ;A29477;
-    LDA.W #$0010                                                         ;A2947A;
-    STA.L MamaTurtle.functionTimer,X                                     ;A2947D;
-    LDY.W #InstList_MamaTurtle_Spinning                                  ;A29481;
-    RTL                                                                  ;A29484;
+    LDX.W EnemyIndex
+    LDA.W #Function_MamaTurtle_RiseToHover : STA.W MamaTurtle.function,X
+    LDA.W #$0001 : STA.W MamaTurtle.XVelocity,X
+    LDA.W #$0010 : STA.L MamaTurtle.functionTimer,X
+    LDY.W #InstList_MamaTurtle_Spinning
+    RTL
 
 
 ;;; $9485: Instruction - mini-tatori - leave shell ;;;
 Instruction_BabyTurtle_LeaveShell:
-    PHY                                                                  ;A29485;
-    LDX.W EnemyIndex                                                     ;A29486;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A29489;
-    AND.W #$FFFF                                                         ;A2948D;
-    BEQ .returnPLY                                                       ;A29490;
-    PLY                                                                  ;A29492;
-    LDY.W #InstList_BabyTurtle_FacingLeft_LeaveShell                     ;A29493;
-    LDA.W BabyTurtle.XVelocity,X                                         ;A29496;
-    BMI .return                                                          ;A29499;
-    LDY.W #InstList_BabyTurtle_FacingRight_LeaveShell                    ;A2949B;
+    PHY
+    LDX.W EnemyIndex
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    AND.W #$FFFF : BEQ .returnPLY
+    PLY
+    LDY.W #InstList_BabyTurtle_FacingLeft_LeaveShell
+    LDA.W BabyTurtle.XVelocity,X : BMI .return
+    LDY.W #InstList_BabyTurtle_FacingRight_LeaveShell
 
   .return:
-    RTL                                                                  ;A2949E;
+    RTL
 
   .returnPLY:
-    PLY                                                                  ;A2949F;
-    RTL                                                                  ;A294A0;
+    PLY
+    RTL
 
 
 ;;; $94A1: Instruction - mini-tatori - left shell ;;;
 Instruction_BabyTurtle_LeftShell:
-    LDX.W EnemyIndex                                                     ;A294A1;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A294A4;
-    AND.W #$FFFF                                                         ;A294A8;
-    BEQ .notTouchingSamusFromBelow                                       ;A294AB;
-    LDA.W #Function_BabyTurtle_Crawling_CarryingSamus                    ;A294AD;
-    STA.W BabyTurtle.function,X                                          ;A294B0;
+    LDX.W EnemyIndex
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    AND.W #$FFFF : BEQ .notTouchingSamusFromBelow
+    LDA.W #Function_BabyTurtle_Crawling_CarryingSamus : STA.W BabyTurtle.function,X
 
   .chooseDirection:
-    LDY.W #InstList_BabyTurtle_CrawlingLeft                              ;A294B3;
-    LDA.W BabyTurtle.XVelocity,X                                         ;A294B6;
-    BMI .return                                                          ;A294B9;
-    LDY.W #InstList_BabyTurtle_CrawlingRight                             ;A294BB;
+    LDY.W #InstList_BabyTurtle_CrawlingLeft
+    LDA.W BabyTurtle.XVelocity,X : BMI .return
+    LDY.W #InstList_BabyTurtle_CrawlingRight
 
   .return:
-    RTL                                                                  ;A294BE;
+    RTL
 
   .notTouchingSamusFromBelow:
-    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus                 ;A294BF;
-    STA.W BabyTurtle.function,X                                          ;A294C2;
-    BRA .chooseDirection                                                 ;A294C5;
+    LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus : STA.W BabyTurtle.function,X
+    BRA .chooseDirection
 
 
 ;;; $94C7: Instruction - mini-tatori - enemy function = spinning - stoppable ;;;
 Instruction_BabyTurtle_Set_Spinning_Stoppable:
-    LDX.W EnemyIndex                                                     ;A294C7;
-    LDA.W #Function_BabyTurtle_Spinning_Stoppable                        ;A294CA;
-    STA.W BabyTurtle.function,X                                          ;A294CD;
-    RTL                                                                  ;A294D0;
+    LDX.W EnemyIndex
+    LDA.W #Function_BabyTurtle_Spinning_Stoppable : STA.W BabyTurtle.function,X
+    RTL
 
 
 ;;; $94D1: Instruction - queue tatori spinning sound effect ;;;
 Instruction_MamaTurtle_PlaySpinningSFX:
-    LDA.W #$003A                                                         ;A294D1;
-    JSL.L QueueSound_Lib2_Max6                                           ;A294D4;
-    RTL                                                                  ;A294D8;
+    LDA.W #$003A
+    JSL QueueSound_Lib2_Max6
+    RTL
 
 
 ;;; $94D9: Spritemaps - tatori ;;;
 Spritemap_BabyTurtle_FacingLeft_0:
-    dw $0001                                                             ;A294D9;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $104)
 
 Spritemap_BabyTurtle_FacingLeft_1:
-    dw $0001                                                             ;A294E0;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $106)
 
 Spritemap_BabyTurtle_FacingLeft_2:
-    dw $0001                                                             ;A294E7;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $108)
 
 Spritemap_BabyTurtle_FacingLeft_3:
-    dw $0001                                                             ;A294EE;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_BabyTurtle_FacingLeft_4:
-    dw $0002                                                             ;A294F5;
+    dw $0002
     %spritemapEntry(0, $1F8, $FF, 0, 0, 2, 0, $14D)
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $106)
 
 Spritemap_BabyTurtle_FacingLeft_5:
-    dw $0002                                                             ;A29501;
+    dw $0002
     %spritemapEntry(0, $1F8, $00, 0, 0, 2, 0, $14E)
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $108)
 
 Spritemap_BabyTurtle_FacingLeft_6:
-    dw $0002                                                             ;A2950D;
+    dw $0002
     %spritemapEntry(0, $1F8, $FF, 0, 0, 2, 0, $14F)
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_BabyTurtle_FacingLeft_7:
-    dw $0001                                                             ;A29519;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $102)
 
 Spritemap_BabyTurtle_FacingLeft_8:
-    dw $0001                                                             ;A29520;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_BabyTurtle_FacingLeft_9:
-    dw $0001                                                             ;A29527;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $102)
 
 Spritemap_BabyTurtle_FacingLeft_A:
-    dw $0001                                                             ;A2952E;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $100)
 
 Spritemap_MamaTurtle_FacingLeft_0:
-    dw $0006                                                             ;A29535;
+    dw $0006
     %spritemapEntry(1, $4208, $00, 0, 0, 2, 0, $12A)
     %spritemapEntry(1, $43F8, $00, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $43E8, $00, 0, 0, 2, 0, $126)
@@ -2558,7 +2089,7 @@ Spritemap_MamaTurtle_FacingLeft_0:
     %spritemapEntry(1, $43E8, $F0, 0, 0, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingLeft_1:
-    dw $000E                                                             ;A29555;
+    dw $000E
     %spritemapEntry(0, $08, $08, 0, 0, 2, 0, $14B)
     %spritemapEntry(0, $00, $08, 0, 0, 2, 0, $14A)
     %spritemapEntry(0, $1F8, $08, 0, 0, 2, 0, $149)
@@ -2575,7 +2106,7 @@ Spritemap_MamaTurtle_FacingLeft_1:
     %spritemapEntry(1, $43E8, $F0, 0, 0, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingLeft_2:
-    dw $000E                                                             ;A2959D;
+    dw $000E
     %spritemapEntry(0, $08, $08, 0, 0, 2, 0, $15B)
     %spritemapEntry(0, $00, $08, 0, 0, 2, 0, $15A)
     %spritemapEntry(0, $1F8, $08, 0, 0, 2, 0, $159)
@@ -2592,7 +2123,7 @@ Spritemap_MamaTurtle_FacingLeft_2:
     %spritemapEntry(1, $43E8, $F0, 0, 0, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingLeft_3:
-    dw $000B                                                             ;A295E5;
+    dw $000B
     %spritemapEntry(1, $4201, $01, 0, 0, 2, 0, $144)
     %spritemapEntry(1, $43F3, $00, 0, 0, 2, 0, $142)
     %spritemapEntry(1, $43E8, $01, 0, 0, 2, 0, $140)
@@ -2606,7 +2137,7 @@ Spritemap_MamaTurtle_FacingLeft_3:
     %spritemapEntry(1, $43E8, $EB, 0, 0, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingLeft_4:
-    dw $000B                                                             ;A2961E;
+    dw $000B
     %spritemapEntry(1, $4201, $00, 0, 0, 2, 0, $142)
     %spritemapEntry(1, $43EF, $01, 0, 0, 2, 0, $140)
     %spritemapEntry(1, $43EA, $00, 0, 0, 2, 0, $142)
@@ -2620,7 +2151,7 @@ Spritemap_MamaTurtle_FacingLeft_4:
     %spritemapEntry(1, $43E8, $EA, 0, 0, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingLeft_5:
-    dw $000B                                                             ;A29657;
+    dw $000B
     %spritemapEntry(1, $43FF, $01, 0, 0, 2, 0, $140)
     %spritemapEntry(1, $43F3, $00, 0, 0, 2, 0, $142)
     %spritemapEntry(1, $43EA, $01, 0, 0, 2, 0, $144)
@@ -2634,7 +2165,7 @@ Spritemap_MamaTurtle_FacingLeft_5:
     %spritemapEntry(1, $43E8, $E9, 0, 0, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingLeft_6:
-    dw $000B                                                             ;A29690;
+    dw $000B
     %spritemapEntry(1, $4201, $00, 0, 0, 2, 0, $142)
     %spritemapEntry(1, $43F3, $01, 0, 0, 2, 0, $144)
     %spritemapEntry(1, $43EA, $00, 0, 0, 2, 0, $142)
@@ -2648,7 +2179,7 @@ Spritemap_MamaTurtle_FacingLeft_6:
     %spritemapEntry(1, $43E8, $EA, 0, 0, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingLeft_7:
-    dw $0006                                                             ;A296C9;
+    dw $0006
     %spritemapEntry(1, $43E8, $00, 0, 1, 2, 0, $12A)
     %spritemapEntry(1, $43F8, $00, 0, 1, 2, 0, $128)
     %spritemapEntry(1, $4208, $00, 0, 1, 2, 0, $126)
@@ -2657,7 +2188,7 @@ Spritemap_MamaTurtle_FacingLeft_7:
     %spritemapEntry(1, $4208, $F0, 0, 1, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingLeft_8:
-    dw $0004                                                             ;A296E9;
+    dw $0004
     %spritemapEntry(1, $4200, $00, 0, 1, 2, 0, $10E)
     %spritemapEntry(1, $4200, $F0, 0, 1, 2, 0, $10C)
     %spritemapEntry(1, $43F0, $00, 0, 0, 2, 0, $10E)
@@ -2665,7 +2196,7 @@ Spritemap_MamaTurtle_FacingLeft_8:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_MamaTurtle_FacingLeft_A296FF:
-    dw $000A                                                             ;A296FF;
+    dw $000A
     %spritemapEntry(0, $00, $08, 0, 1, 2, 0, $15F)
     %spritemapEntry(0, $00, $00, 0, 1, 2, 0, $15E)
     %spritemapEntry(0, $1F8, $08, 0, 0, 2, 0, $15F)
@@ -2679,54 +2210,54 @@ UNUSED_Spritemap_MamaTurtle_FacingLeft_A296FF:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_BabyTurtle_FacingRight_B:
-    dw $0001                                                             ;A29733;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $104)
 
 Spritemap_BabyTurtle_FacingRight_C:
-    dw $0001                                                             ;A2973A;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $106)
 
 Spritemap_BabyTurtle_FacingRight_D:
-    dw $0001                                                             ;A29741;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $108)
 
 Spritemap_BabyTurtle_FacingRight_E:
-    dw $0001                                                             ;A29748;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $10A)
 
 Spritemap_BabyTurtle_FacingRight_F:
-    dw $0002                                                             ;A2974F;
+    dw $0002
     %spritemapEntry(0, $00, $FF, 0, 1, 2, 0, $14D)
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $106)
 
 Spritemap_BabyTurtle_FacingRight_10:
-    dw $0002                                                             ;A2975B;
+    dw $0002
     %spritemapEntry(0, $00, $00, 0, 1, 2, 0, $14E)
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $108)
 
 Spritemap_BabyTurtle_FacingRight_11:
-    dw $0002                                                             ;A29767;
+    dw $0002
     %spritemapEntry(0, $00, $FF, 0, 1, 2, 0, $14F)
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $10A)
 
 Spritemap_BabyTurtle_FacingRight_12:
-    dw $0001                                                             ;A29773;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $102)
 
 Spritemap_BabyTurtle_FacingRight_13:
-    dw $0001                                                             ;A2977A;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $100)
 
 Spritemap_BabyTurtle_FacingRight_14:
-    dw $0001                                                             ;A29781;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $102)
 
 Spritemap_BabyTurtle_FacingRight_15:
-    dw $0001                                                             ;A29788;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_MamaTurtle_FacingRight_9:
-    dw $0006                                                             ;A2978F;
+    dw $0006
     %spritemapEntry(1, $43E8, $00, 0, 1, 2, 0, $12A)
     %spritemapEntry(1, $43F8, $00, 0, 1, 2, 0, $128)
     %spritemapEntry(1, $4208, $00, 0, 1, 2, 0, $126)
@@ -2735,7 +2266,7 @@ Spritemap_MamaTurtle_FacingRight_9:
     %spritemapEntry(1, $4208, $F0, 0, 1, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingRight_A:
-    dw $000E                                                             ;A297AF;
+    dw $000E
     %spritemapEntry(0, $1F0, $08, 0, 1, 2, 0, $14B)
     %spritemapEntry(0, $1F8, $08, 0, 1, 2, 0, $14A)
     %spritemapEntry(0, $00, $08, 0, 1, 2, 0, $149)
@@ -2752,7 +2283,7 @@ Spritemap_MamaTurtle_FacingRight_A:
     %spritemapEntry(1, $4208, $F0, 0, 1, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingRight_B:
-    dw $000E                                                             ;A297F7;
+    dw $000E
     %spritemapEntry(0, $1F0, $08, 0, 1, 2, 0, $15B)
     %spritemapEntry(0, $1F8, $08, 0, 1, 2, 0, $15A)
     %spritemapEntry(0, $00, $08, 0, 1, 2, 0, $159)
@@ -2769,7 +2300,7 @@ Spritemap_MamaTurtle_FacingRight_B:
     %spritemapEntry(1, $4208, $F0, 0, 1, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingRight_C:
-    dw $000B                                                             ;A2983F;
+    dw $000B
     %spritemapEntry(1, $43EF, $01, 0, 1, 2, 0, $144)
     %spritemapEntry(1, $43FD, $00, 0, 1, 2, 0, $142)
     %spritemapEntry(1, $4208, $01, 0, 1, 2, 0, $140)
@@ -2783,7 +2314,7 @@ Spritemap_MamaTurtle_FacingRight_C:
     %spritemapEntry(1, $4208, $EB, 0, 1, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingRight_D:
-    dw $000B                                                             ;A29878;
+    dw $000B
     %spritemapEntry(1, $43EF, $00, 0, 1, 2, 0, $142)
     %spritemapEntry(1, $4201, $01, 0, 1, 2, 0, $140)
     %spritemapEntry(1, $4206, $00, 0, 1, 2, 0, $142)
@@ -2797,7 +2328,7 @@ Spritemap_MamaTurtle_FacingRight_D:
     %spritemapEntry(1, $4208, $EA, 0, 1, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingRight_E:
-    dw $000B                                                             ;A298B1;
+    dw $000B
     %spritemapEntry(1, $43F1, $01, 0, 1, 2, 0, $140)
     %spritemapEntry(1, $43FD, $00, 0, 1, 2, 0, $142)
     %spritemapEntry(1, $4206, $01, 0, 1, 2, 0, $144)
@@ -2811,7 +2342,7 @@ Spritemap_MamaTurtle_FacingRight_E:
     %spritemapEntry(1, $4208, $E9, 0, 1, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingRight_F:
-    dw $000B                                                             ;A298EA;
+    dw $000B
     %spritemapEntry(1, $43EF, $00, 0, 1, 2, 0, $142)
     %spritemapEntry(1, $43FD, $01, 0, 1, 2, 0, $144)
     %spritemapEntry(1, $4206, $00, 0, 1, 2, 0, $142)
@@ -2825,7 +2356,7 @@ Spritemap_MamaTurtle_FacingRight_F:
     %spritemapEntry(1, $4208, $EA, 0, 1, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingRight_10:
-    dw $0006                                                             ;A29923;
+    dw $0006
     %spritemapEntry(1, $4208, $00, 0, 0, 2, 0, $12A)
     %spritemapEntry(1, $43F8, $00, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $43E8, $00, 0, 0, 2, 0, $126)
@@ -2834,7 +2365,7 @@ Spritemap_MamaTurtle_FacingRight_10:
     %spritemapEntry(1, $43E8, $F0, 0, 0, 2, 0, $120)
 
 Spritemap_MamaTurtle_FacingRight_11:
-    dw $0004                                                             ;A29943;
+    dw $0004
     %spritemapEntry(1, $43F0, $00, 0, 0, 2, 0, $10E)
     %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 0, $10C)
     %spritemapEntry(1, $4200, $00, 0, 1, 2, 0, $10E)
@@ -2842,7 +2373,7 @@ Spritemap_MamaTurtle_FacingRight_11:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_MamaTurtle_FacingRight_A29959:
-    dw $000A                                                             ;A29959;
+    dw $000A
     %spritemapEntry(0, $1F8, $08, 0, 0, 2, 0, $15F)
     %spritemapEntry(0, $1F8, $00, 0, 0, 2, 0, $15E)
     %spritemapEntry(0, $00, $08, 0, 1, 2, 0, $15F)
@@ -2858,68 +2389,68 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $998D: Palette - enemy $CFBF (puyo) ;;;
 Palette_Puyo:
-    dw $3800,$4B9C,$2610,$0CC6,$0C63,$42F7,$2A52,$19AD                   ;A2998D;
-    dw $0D29,$5617,$3D72,$1C48,$0C05,$033B,$0216,$0113                   ;A2999D;
+    dw $3800,$4B9C,$2610,$0CC6,$0C63,$42F7,$2A52,$19AD
+    dw $0D29,$5617,$3D72,$1C48,$0C05,$033B,$0216,$0113
 
 
 ;;; $99AD: Instruction list - grounded/dropping - fast ;;;
 InstList_Puyo_GroundedDropping_Fast:
-    dw $0005,Spritemap_Puyo_0                                            ;A299AD;
-    dw $0005,Spritemap_Puyo_1                                            ;A299B1;
-    dw $0005,Spritemap_Puyo_2                                            ;A299B5;
-    dw $0005,Spritemap_Puyo_1                                            ;A299B9;
-    dw Instruction_Common_GotoY                                          ;A299BD;
-    dw InstList_Puyo_GroundedDropping_Fast                               ;A299BF;
+    dw $0005,Spritemap_Puyo_0
+    dw $0005,Spritemap_Puyo_1
+    dw $0005,Spritemap_Puyo_2
+    dw $0005,Spritemap_Puyo_1
+    dw Instruction_Common_GotoY
+    dw InstList_Puyo_GroundedDropping_Fast
 
 
 ;;; $99C1: Instruction list - grounded/dropping - medium ;;;
 InstList_Puyo_GroundedDropping_Medium:
-    dw $0008,Spritemap_Puyo_0                                            ;A299C1;
-    dw $0008,Spritemap_Puyo_1                                            ;A299C5;
-    dw $0008,Spritemap_Puyo_2                                            ;A299C9;
-    dw $0008,Spritemap_Puyo_1                                            ;A299CD;
-    dw Instruction_Common_GotoY                                          ;A299D1;
-    dw InstList_Puyo_GroundedDropping_Medium                             ;A299D3;
+    dw $0008,Spritemap_Puyo_0
+    dw $0008,Spritemap_Puyo_1
+    dw $0008,Spritemap_Puyo_2
+    dw $0008,Spritemap_Puyo_1
+    dw Instruction_Common_GotoY
+    dw InstList_Puyo_GroundedDropping_Medium
 
 
 ;;; $99D5: Instruction list - grounded/dropping - slow ;;;
 InstList_Puyo_GroundedDropping_Slow:
-    dw $000A,Spritemap_Puyo_0                                            ;A299D5;
-    dw $000A,Spritemap_Puyo_1                                            ;A299D9;
-    dw $000A,Spritemap_Puyo_2                                            ;A299DD;
-    dw $000A,Spritemap_Puyo_1                                            ;A299E1;
-    dw Instruction_Common_GotoY                                          ;A299E5;
-    dw InstList_Puyo_GroundedDropping_Slow                               ;A299E7;
+    dw $000A,Spritemap_Puyo_0
+    dw $000A,Spritemap_Puyo_1
+    dw $000A,Spritemap_Puyo_2
+    dw $000A,Spritemap_Puyo_1
+    dw Instruction_Common_GotoY
+    dw InstList_Puyo_GroundedDropping_Slow
 
 
 ;;; $99E9: Instruction list - hopping right frame 0 / hopping left frame 4 ;;;
 InstList_Puyo_HoppingRight_0_HoppingLeft_4:
-    dw $0001,Spritemap_Puyo_7                                            ;A299E9;
-    dw Instruction_Common_Sleep                                          ;A299ED;
+    dw $0001,Spritemap_Puyo_7
+    dw Instruction_Common_Sleep
 
 
 ;;; $99EF: Instruction list - hopping right frame 1 / hopping left frame 3 ;;;
 InstList_Puyo_HoppingRight_1_HoppingLeft_3:
-    dw $0001,Spritemap_Puyo_6                                            ;A299EF;
-    dw Instruction_Common_Sleep                                          ;A299F3;
+    dw $0001,Spritemap_Puyo_6
+    dw Instruction_Common_Sleep
 
 
 ;;; $99F5: Instruction list - hopping frame 2 ;;;
 InstList_Puyo_Hopping_2:
-    dw $0001,Spritemap_Puyo_5                                            ;A299F5;
-    dw Instruction_Common_Sleep                                          ;A299F9;
+    dw $0001,Spritemap_Puyo_5
+    dw Instruction_Common_Sleep
 
 
 ;;; $99FB: Instruction list - hopping right frame 3 / hopping left frame 1 ;;;
 InstList_Puyo_HoppingRight_3_HoppingLeft_1:
-    dw $0001,Spritemap_Puyo_4                                            ;A299FB;
-    dw Instruction_Common_Sleep                                          ;A299FF;
+    dw $0001,Spritemap_Puyo_4
+    dw Instruction_Common_Sleep
 
 
 ;;; $9A01: Instruction list - hopping right frame 4 / hopping left frame 0 ;;;
 InstList_Puyo_HoppingRight_4_HoppingLeft_0:
-    dw $0001,Spritemap_Puyo_3                                            ;A29A01;
-    dw Instruction_Common_Sleep                                          ;A29A05;
+    dw $0001,Spritemap_Puyo_3
+    dw Instruction_Common_Sleep
 
 
 ;;; $9A07: Hop table ;;;
@@ -2930,920 +2461,717 @@ PuyoHopTable:
 ;       |     |     |      ___ 6: Airborne function
 ;       |     |     |     |
   .jumpHeight:
-    dw $0010                                                             ;A29A07; 0: Normal - small hop
+    dw $0010 ; 0: Normal - small hop
   .XSpeed:
-    dw       $0100                                                       ;A29A09;
+    dw       $0100
   .YSpeedTableIndexDelta:
-    dw             $0200                                                 ;A29A0B;
+    dw             $0200
   .airborneFunction:
-    dw Function_Puyo_Airborne_Normal_ShortHop                            ;A29A0D;
-    dw $0020,$0100,$0200                                                 ;A29A0F; 1: Normal - big hop
-    dw Function_Puyo_Airborne_Normal_BigHop                              ;A29A15;
-    dw $0020,$0200,$0300                                                 ;A29A17; 2: Unused. Normal - long hop
-    dw Function_Puyo_Airborne_Normal_LongHop                             ;A29A1D;
-    dw $0080,$0140,$0200                                                 ;A29A1F; 3: Giant hop
-    dw Function_Puyo_Airborne_GiantHop                                   ;A29A25;
-    dw $0000,$0000,$0100                                                 ;A29A27; 4: Dropping
-    dw Function_Puyo_Airborne_Dropping                                   ;A29A2D;
-    dw $0010,$0100,$01C0                                                 ;A29A2F; 5: Dropped - small hop
-    dw Function_Puyo_Airborne_Dropped                                    ;A29A35;
-    dw $0015,$0100,$01C0                                                 ;A29A37; 6: Dropped - big hop
-    dw Function_Puyo_Airborne_Dropped                                    ;A29A3D;
+    dw Function_Puyo_Airborne_Normal_ShortHop
+    dw $0020,$0100,$0200 ; 1: Normal - big hop
+    dw Function_Puyo_Airborne_Normal_BigHop
+    dw $0020,$0200,$0300 ; 2: Unused. Normal - long hop
+    dw Function_Puyo_Airborne_Normal_LongHop
+    dw $0080,$0140,$0200 ; 3: Giant hop
+    dw Function_Puyo_Airborne_GiantHop
+    dw $0000,$0000,$0100 ; 4: Dropping
+    dw Function_Puyo_Airborne_Dropping
+    dw $0010,$0100,$01C0 ; 5: Dropped - small hop
+    dw Function_Puyo_Airborne_Dropped
+    dw $0015,$0100,$01C0 ; 6: Dropped - big hop
+    dw Function_Puyo_Airborne_Dropped
 
 
 ;;; $9A3F: Initialisation AI - enemy $CFBF (puyo) ;;;
 InitAI_Puyo:
-    LDX.W EnemyIndex                                                     ;A29A3F;
-    LDA.W #Spritemap_Common_Nothing                                      ;A29A42;
-    STA.W Enemy.spritemap,X                                              ;A29A45;
-    STZ.W Enemy.var0,X                                                   ;A29A48;
-    LDA.W #InstList_Puyo_GroundedDropping_Fast                           ;A29A4B;
-    JSR.W SetPuyoInstList                                                ;A29A4E;
-    LDA.W #$0000                                                         ;A29A51;
-    STA.L Puyo.hopType,X                                                 ;A29A54;
-    LDA.W #Function_Puyo_Grounded                                        ;A29A58;
-    STA.W Puyo.function,X                                                ;A29A5B;
-    LDA.W Enemy.init0,X                                                  ;A29A5E;
-    STA.W Puyo.hopCooldownTimer,X                                        ;A29A61;
-    LDA.W #$0000                                                         ;A29A64;
-    STA.L Puyo.invertDirectionFlag,X                                     ;A29A67;
-    RTL                                                                  ;A29A6B;
+    LDX.W EnemyIndex
+    LDA.W #Spritemap_Common_Nothing : STA.W Enemy.spritemap,X
+    STZ.W Enemy.var0,X
+    LDA.W #InstList_Puyo_GroundedDropping_Fast
+    JSR SetPuyoInstList
+    LDA.W #$0000 : STA.L Puyo.hopType,X
+    LDA.W #Function_Puyo_Grounded : STA.W Puyo.function,X
+    LDA.W Enemy.init0,X : STA.W Puyo.hopCooldownTimer,X
+    LDA.W #$0000 : STA.L Puyo.invertDirectionFlag,X
+    RTL
 
 
 ;;; $9A6C: Set enemy instruction list ;;;
 SetPuyoInstList:
-    LDX.W EnemyIndex                                                     ;A29A6C;
-    STA.W Enemy.instList,X                                               ;A29A6F;
-    LDA.W #$0001                                                         ;A29A72;
-    STA.W Enemy.instTimer,X                                              ;A29A75;
-    STZ.W Enemy.loopCounter,X                                            ;A29A78;
-    RTS                                                                  ;A29A7B;
+    LDX.W EnemyIndex
+    STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTS
 
 
 ;;; $9A7C: RTS ;;;
 RTS_A29A7C:
-    RTS                                                                  ;A29A7C;
+    RTS
 
 
 ;;; $9A7D: Main AI - enemy $CFBF (puyo) ;;;
 MainAI_Puyo:
-    LDX.W EnemyIndex                                                     ;A29A7D;
-    JSR.W (Puyo.function,X)                                              ;A29A80;
-    RTL                                                                  ;A29A83;
+    LDX.W EnemyIndex
+    JSR.W (Puyo.function,X)
+    RTL
 
 
 ;;; $9A84: Initiate hop ;;;
 InitiateHop:
-    LDA.L Puyo.hopType,X                                                 ;A29A84;
-    CMP.W #$0003                                                         ;A29A88;
-    BPL .hop                                                             ;A29A8B;
-    JSR.W Puyo_CheckIfSamusIsInProximity                                 ;A29A8D;
-    LDA.L Puyo.hopType,X                                                 ;A29A90;
+    LDA.L Puyo.hopType,X : CMP.W #$0003 : BPL .hop
+    JSR Puyo_CheckIfSamusIsInProximity
+    LDA.L Puyo.hopType,X
 
   .hop:
-    JSR.W ChooseHopType                                                  ;A29A94;
-    JSR.W Puyo_CalculateInitialHopSpeed                                  ;A29A97;
-    RTS                                                                  ;A29A9A;
+    JSR ChooseHopType
+    JSR Puyo_CalculateInitialHopSpeed
+    RTS
 
 
 ;;; $9A9B: Check if Samus is in proximity ;;;
 Puyo_CheckIfSamusIsInProximity:
-    LDX.W EnemyIndex                                                     ;A29A9B;
-    LDA.W Enemy.init1,X                                                  ;A29A9E;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A29AA1;
-    STA.L Puyo.hopType,X                                                 ;A29AA5;
-    RTS                                                                  ;A29AA9;
+    LDX.W EnemyIndex
+    LDA.W Enemy.init1,X
+    JSL IsSamusWithinAPixelColumnsOfEnemy
+    STA.L Puyo.hopType,X
+    RTS
 
 
 ;;; $9AAA: Choose hop type ;;;
 ChooseHopType:
-    LDX.W EnemyIndex                                                     ;A29AAA;
-    LDA.W #$0001                                                         ;A29AAD;
-    STA.L Puyo.direction,X                                               ;A29AB0;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A29AB4;
-    BMI .checkInverted                                                   ;A29AB8;
-    LDA.W #$0000                                                         ;A29ABA;
-    STA.L Puyo.direction,X                                               ;A29ABD;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.L Puyo.direction,X
+    JSL Get_SamusX_minus_EnemyX
+    BMI .checkInverted
+    LDA.W #$0000 : STA.L Puyo.direction,X
 
   .checkInverted:
-    LDA.L Puyo.invertDirectionFlag,X                                     ;A29AC1;
-    BEQ .notInverted                                                     ;A29AC5;
-    LDA.L Puyo.invertedDirection,X                                       ;A29AC7;
-    STA.L Puyo.direction,X                                               ;A29ACB;
+    LDA.L Puyo.invertDirectionFlag,X : BEQ .notInverted
+    LDA.L Puyo.invertedDirection,X : STA.L Puyo.direction,X
 
   .notInverted:
-    LDA.W #$0000                                                         ;A29ACF;
-    STA.L Puyo.invertDirectionFlag,X                                     ;A29AD2;
-    JSR.W GetRandomNumber0_7                                             ;A29AD6;
-    LDA.L Puyo.hopType,X                                                 ;A29AD9;
-    CMP.W #$0003                                                         ;A29ADD;
-    BPL .greaterThan2                                                    ;A29AE0;
-    CMP.W #$0000                                                         ;A29AE2;
-    BNE .nonZeroHopType                                                  ;A29AE5;
-    LDA.B DP_Temp1C                                                      ;A29AE7;
-    AND.W #$0001                                                         ;A29AE9;
-    STA.B DP_Temp1C                                                      ;A29AEC;
+    LDA.W #$0000 : STA.L Puyo.invertDirectionFlag,X
+    JSR GetRandomNumber0_7
+    LDA.L Puyo.hopType,X : CMP.W #$0003 : BPL .greaterThan2
+    CMP.W #$0000 : BNE .nonZeroHopType
+    LDA.B DP_Temp1C : AND.W #$0001 : STA.B DP_Temp1C
 
   .nonZeroHopType:
-    LDA.B DP_Temp1C                                                      ;A29AEE;
-    CMP.W #$0002                                                         ;A29AF0;
-    BMI .greaterThan2                                                    ;A29AF3;
-    LDA.W #$0002                                                         ;A29AF5;
+    LDA.B DP_Temp1C : CMP.W #$0002 : BMI .greaterThan2
+    LDA.W #$0002
 
   .greaterThan2:
-    ASL                                                                  ;A29AF8;
-    ASL                                                                  ;A29AF9;
-    ASL                                                                  ;A29AFA;
-    STA.W Puyo.hopTableIndex,X                                           ;A29AFB;
-    TAY                                                                  ;A29AFE;
-    LDA.W PuyoHopTable_airborneFunction,Y                                ;A29AFF;
-    STA.W Puyo.airborneFunction,X                                        ;A29B02;
-    RTS                                                                  ;A29B05;
+    ASL #3 : STA.W Puyo.hopTableIndex,X
+    TAY
+    LDA.W PuyoHopTable_airborneFunction,Y : STA.W Puyo.airborneFunction,X
+    RTS
 
 
 ;;; $9B06: $1C = random number in 0..7 ;;;
 GetRandomNumber0_7:
-    LDX.W EnemyIndex                                                     ;A29B06;
-    JSL.L GenerateRandomNumber                                           ;A29B09;
-    LDA.W RandomNumberSeed                                               ;A29B0D;
-    CLC                                                                  ;A29B10;
-    ADC.W Enemy.frameCounter,X                                           ;A29B11;
-    AND.W #$0007                                                         ;A29B14;
-    STA.B DP_Temp1C                                                      ;A29B17;
-    RTS                                                                  ;A29B19;
+    LDX.W EnemyIndex
+    JSL GenerateRandomNumber
+    LDA.W RandomNumberSeed : CLC : ADC.W Enemy.frameCounter,X : AND.W #$0007 : STA.B DP_Temp1C ; >.< LDA
+    RTS
 
 
 ;;; $9B1A: Calculate initial hop speed ;;;
 Puyo_CalculateInitialHopSpeed:
 ; Calculates how long it will take for enemy to fall [PuyoHopTable_jumpHeight + [enemy hop table index]] pixels
-    LDX.W EnemyIndex                                                     ;A29B1A;
-    LDY.W Puyo.hopTableIndex,X                                           ;A29B1D;
-    STZ.B DP_Temp16                                                      ;A29B20;
-    STZ.B DP_Temp18                                                      ;A29B22;
+    LDX.W EnemyIndex
+    LDY.W Puyo.hopTableIndex,X
+    STZ.B DP_Temp16 : STZ.B DP_Temp18
 
   .loop:
-    LDA.B DP_Temp16                                                      ;A29B24;
-    CLC                                                                  ;A29B26;
-    ADC.W PuyoHopTable_XSpeed,Y                                          ;A29B27;
-    STA.B DP_Temp16                                                      ;A29B2A;
-    AND.W #$FF00                                                         ;A29B2C;
-    XBA                                                                  ;A29B2F;
-    ASL                                                                  ;A29B30;
-    ASL                                                                  ;A29B31;
-    ASL                                                                  ;A29B32;
-    TAY                                                                  ;A29B33;
-    LDA.B DP_Temp18                                                      ;A29B34;
-    CLC                                                                  ;A29B36;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+1,Y                  ;A29B37;
-    STA.B DP_Temp18                                                      ;A29B3A;
-    LDY.W Puyo.hopTableIndex,X                                           ;A29B3C;
-    LDA.W PuyoHopTable_jumpHeight,Y                                      ;A29B3F;
-    XBA                                                                  ;A29B42;
-    CMP.B DP_Temp18                                                      ;A29B43;
-    BPL .loop                                                            ;A29B45;
-    LDA.B DP_Temp16                                                      ;A29B47;
-    STA.W Puyo.YSpeedTableIndex,X                                        ;A29B49;
-    LDA.W #$0000                                                         ;A29B4C;
-    STA.L Puyo.fallingFlag,X                                             ;A29B4F;
-    LDA.B DP_Temp16                                                      ;A29B53;
-    LSR                                                                  ;A29B55;
-    STA.L Puyo.initialYSpeedTableIndex_1_2,X                             ;A29B56;
-    LSR                                                                  ;A29B5A;
-    CLC                                                                  ;A29B5B;
-    ADC.L Puyo.initialYSpeedTableIndex_1_2,X                             ;A29B5C;
-    STA.L Puyo.initialYSpeedTableIndex_3_4,X                             ;A29B60;
-    RTS                                                                  ;A29B64;
+    LDA.B DP_Temp16 : CLC : ADC.W PuyoHopTable_XSpeed,Y : STA.B DP_Temp16
+    AND.W #$FF00 : XBA : ASL #3 : TAY
+    LDA.B DP_Temp18 : CLC : ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+1,Y : STA.B DP_Temp18
+    LDY.W Puyo.hopTableIndex,X
+    LDA.W PuyoHopTable_jumpHeight,Y : XBA : CMP.B DP_Temp18 : BPL .loop
+    LDA.B DP_Temp16 : STA.W Puyo.YSpeedTableIndex,X
+    LDA.W #$0000 : STA.L Puyo.fallingFlag,X
+    LDA.B DP_Temp16 : LSR : STA.L Puyo.initialYSpeedTableIndex_1_2,X
+    LSR : CLC : ADC.L Puyo.initialYSpeedTableIndex_1_2,X : STA.L Puyo.initialYSpeedTableIndex_3_4,X
+    RTS
 
 
 ;;; $9B65: Puyo function - grounded ;;;
 Function_Puyo_Grounded:
-    DEC.W Puyo.hopCooldownTimer,X                                        ;A29B65;
-    BPL .return                                                          ;A29B68;
-    LDA.W #Function_Puyo_Airborne                                        ;A29B6A;
-    STA.W Puyo.function,X                                                ;A29B6D;
-    LDA.W Enemy.init0,X                                                  ;A29B70;
-    STA.W Puyo.hopCooldownTimer,X                                        ;A29B73;
-    LDA.W #$0001                                                         ;A29B76;
-    STA.L Puyo.hoppingAnimationFlag,X                                    ;A29B79;
-    JSR.W InitiateHop                                                    ;A29B7D;
+    DEC.W Puyo.hopCooldownTimer,X : BPL .return
+    LDA.W #Function_Puyo_Airborne : STA.W Puyo.function,X
+    LDA.W Enemy.init0,X : STA.W Puyo.hopCooldownTimer,X
+    LDA.W #$0001 : STA.L Puyo.hoppingAnimationFlag,X
+    JSR InitiateHop
 
   .return:
-    RTS                                                                  ;A29B80;
+    RTS
 
 
 ;;; $9B81: Puyo function - airborne ;;;
 Function_Puyo_Airborne:
-    LDX.W EnemyIndex                                                     ;A29B81;
-    JSR.W (Puyo.airborneFunction,X)                                      ;A29B84;
-    RTS                                                                  ;A29B87;
+    LDX.W EnemyIndex
+    JSR.W (Puyo.airborneFunction,X)
+    RTS
 
 
 ;;; $9B88: Puyo movement ;;;
 PuyoMovement:
-    LDX.W EnemyIndex                                                     ;A29B88;
-    LDA.W Puyo.YSpeedTableIndex,X                                        ;A29B8B;
-    CMP.W #$4000                                                         ;A29B8E;
-    BMI +                                                                ;A29B91;
-    LDA.W #$4000                                                         ;A29B93;
+    LDX.W EnemyIndex
+    LDA.W Puyo.YSpeedTableIndex,X : CMP.W #$4000 : BMI +
+    LDA.W #$4000
 
-+   AND.W #$FF00                                                         ;A29B96;
-    XBA                                                                  ;A29B99;
-    ASL                                                                  ;A29B9A;
-    ASL                                                                  ;A29B9B;
-    ASL                                                                  ;A29B9C;
-    TAY                                                                  ;A29B9D;
-    LDA.L Puyo.fallingFlag,X                                             ;A29B9E;
-    BEQ .notFalling                                                      ;A29BA2;
-    DEY                                                                  ;A29BA4;
-    DEY                                                                  ;A29BA5;
-    DEY                                                                  ;A29BA6;
-    DEY                                                                  ;A29BA7;
++   AND.W #$FF00 : XBA : ASL #3 : TAY
+    LDA.L Puyo.fallingFlag,X : BEQ .notFalling
+    DEY #4
 
   .notFalling:
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y                  ;A29BA8;
-    STA.B DP_Temp12                                                      ;A29BAB;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y                  ;A29BAD;
-    STA.B DP_Temp14                                                      ;A29BB0;
-    CLC                                                                  ;A29BB2;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A29BB3;
-    BCC .noCollision                                                     ;A29BB7;
-    LDA.L Puyo.fallingFlag,X                                             ;A29BB9;
-    BNE .falling                                                         ;A29BBD;
-    LDA.B DP_Temp01                                                      ;A29BBF;
-    STA.L Puyo.invertDirectionFlag,X                                     ;A29BC1;
-    LDA.L Puyo.direction,X                                               ;A29BC5;
-    EOR.W #$0001                                                         ;A29BC9;
-    STA.L Puyo.invertedDirection,X                                       ;A29BCC;
-    LDA.W #$0004                                                         ;A29BD0;
-    STA.L Puyo.hopType,X                                                 ;A29BD3;
-    LDA.W #Function_Puyo_Airborne_Dropping                               ;A29BD7;
-    STA.W Puyo.airborneFunction,X                                        ;A29BDA;
-    LDA.W #$0000                                                         ;A29BDD;
-    STA.L Puyo.hoppingAnimationFlag,X                                    ;A29BE0;
-    BRA .gotoReturn                                                      ;A29BE4;
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y : STA.B DP_Temp12
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y : STA.B DP_Temp14
+    CLC
+    JSL MoveEnemyDownBy_14_12
+    BCC .noCollision
+    LDA.L Puyo.fallingFlag,X : BNE .falling
+    LDA.B DP_Temp01 : STA.L Puyo.invertDirectionFlag,X
+    LDA.L Puyo.direction,X : EOR.W #$0001 : STA.L Puyo.invertedDirection,X
+    LDA.W #$0004 : STA.L Puyo.hopType,X
+    LDA.W #Function_Puyo_Airborne_Dropping : STA.W Puyo.airborneFunction,X
+    LDA.W #$0000 : STA.L Puyo.hoppingAnimationFlag,X
+    BRA .gotoReturn
 
   .falling:
-    LDA.W #Function_Puyo_Grounded                                        ;A29BE6;
-    STA.W Puyo.function,X                                                ;A29BE9;
-    LDA.W #$0000                                                         ;A29BEC;
-    STA.L Puyo.hoppingAnimationFlag,X                                    ;A29BEF;
+    LDA.W #Function_Puyo_Grounded : STA.W Puyo.function,X
+    LDA.W #$0000 : STA.L Puyo.hoppingAnimationFlag,X
 
   .gotoReturn:
-    BRA .return                                                          ;A29BF3; >.<
+    BRA .return ; >.<
 
   .noCollision:
-    LDY.W Puyo.hopTableIndex,X                                           ;A29BF5;
-    LDA.L Puyo.fallingFlag,X                                             ;A29BF8;
-    BNE ..falling                                                        ;A29BFC;
-    JSR.W SetRisingInstList                                              ;A29BFE;
-    LDA.W Puyo.YSpeedTableIndex,X                                        ;A29C01;
-    SEC                                                                  ;A29C04;
-    SBC.W PuyoHopTable_YSpeedTableIndexDelta,Y                           ;A29C05;
-    STA.W Puyo.YSpeedTableIndex,X                                        ;A29C08;
-    BRA +                                                                ;A29C0B;
+    LDY.W Puyo.hopTableIndex,X
+    LDA.L Puyo.fallingFlag,X : BNE ..falling
+    JSR SetRisingInstList
+    LDA.W Puyo.YSpeedTableIndex,X : SEC : SBC.W PuyoHopTable_YSpeedTableIndexDelta,Y : STA.W Puyo.YSpeedTableIndex,X
+    BRA +
 
   ..falling:
-    JSR.W SetFallingInstList                                             ;A29C0D;
-    LDA.W Puyo.YSpeedTableIndex,X                                        ;A29C10;
-    CLC                                                                  ;A29C13;
-    ADC.W PuyoHopTable_YSpeedTableIndexDelta,Y                           ;A29C14;
-    STA.W Puyo.YSpeedTableIndex,X                                        ;A29C17;
+    JSR SetFallingInstList
+    LDA.W Puyo.YSpeedTableIndex,X : CLC : ADC.W PuyoHopTable_YSpeedTableIndexDelta,Y : STA.W Puyo.YSpeedTableIndex,X
 
-+   BPL .positiveIndex                                                   ;A29C1A;
-    LDA.W #$0001                                                         ;A29C1C;
-    STA.L Puyo.fallingFlag,X                                             ;A29C1F;
-    STZ.W Puyo.YSpeedTableIndex,X                                        ;A29C23;
++   BPL .positiveIndex
+    LDA.W #$0001 : STA.L Puyo.fallingFlag,X
+    STZ.W Puyo.YSpeedTableIndex,X
 
   .positiveIndex:
-    LDY.W Puyo.hopTableIndex,X                                           ;A29C26;
-    LDA.W PuyoHopTable_XSpeed,Y                                          ;A29C29;
-    AND.W #$FF00                                                         ;A29C2C;
-    XBA                                                                  ;A29C2F;
-    STA.B DP_Temp14                                                      ;A29C30;
-    STZ.B DP_Temp12                                                      ;A29C32;
-    LDA.L Puyo.direction,X                                               ;A29C34;
-    BEQ .moveRight                                                       ;A29C38;
-    LDA.B DP_Temp14                                                      ;A29C3A;
-    EOR.W #$FFFF                                                         ;A29C3C;
-    INC                                                                  ;A29C3F;
-    STA.B DP_Temp14                                                      ;A29C40;
+    LDY.W Puyo.hopTableIndex,X
+    LDA.W PuyoHopTable_XSpeed,Y : AND.W #$FF00 : XBA : STA.B DP_Temp14
+    STZ.B DP_Temp12
+    LDA.L Puyo.direction,X : BEQ .moveRight
+    LDA.B DP_Temp14 : EOR.W #$FFFF : INC : STA.B DP_Temp14
 
   .moveRight:
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A29C42;
-    BCC .return                                                          ;A29C46;
-    LDA.W #$0001                                                         ;A29C48;
-    STA.L Puyo.invertDirectionFlag,X                                     ;A29C4B;
-    LDA.L Puyo.direction,X                                               ;A29C4F;
-    EOR.W #$0001                                                         ;A29C53;
-    STA.L Puyo.invertedDirection,X                                       ;A29C56;
-    LDA.W #$0000                                                         ;A29C5A;
-    STA.L Puyo.hoppingAnimationFlag,X                                    ;A29C5D;
-    LDA.W #$0004                                                         ;A29C61;
-    STA.L Puyo.hopType,X                                                 ;A29C64;
-    LDA.W #Function_Puyo_Airborne_Dropping                               ;A29C68;
-    STA.W Puyo.airborneFunction,X                                        ;A29C6B;
-    BRA .return                                                          ;A29C6E; >.<
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCC .return
+    LDA.W #$0001 : STA.L Puyo.invertDirectionFlag,X
+    LDA.L Puyo.direction,X : EOR.W #$0001 : STA.L Puyo.invertedDirection,X
+    LDA.W #$0000 : STA.L Puyo.hoppingAnimationFlag,X
+    LDA.W #$0004 : STA.L Puyo.hopType,X
+    LDA.W #Function_Puyo_Airborne_Dropping : STA.W Puyo.airborneFunction,X
+    BRA .return ; >.<
 
   .return:
-    RTS                                                                  ;A29C70;
+    RTS
 
 
 ;;; $9C71: Set rising instruction list ;;;
 SetRisingInstList:
-    LDX.W EnemyIndex                                                     ;A29C71;
-    LDA.L Puyo.direction,X                                               ;A29C74;
-    BNE .left                                                            ;A29C78;
-    LDA.W Puyo.YSpeedTableIndex,X                                        ;A29C7A;
-    CMP.L Puyo.initialYSpeedTableIndex_3_4,X                             ;A29C7D;
-    BPL .rightFrame0                                                     ;A29C81;
-    CMP.L Puyo.initialYSpeedTableIndex_1_2,X                             ;A29C83;
-    BPL .rightFrame1                                                     ;A29C87;
-    BRA .rightFrame2                                                     ;A29C89;
+    LDX.W EnemyIndex
+    LDA.L Puyo.direction,X : BNE .left
+    LDA.W Puyo.YSpeedTableIndex,X : CMP.L Puyo.initialYSpeedTableIndex_3_4,X : BPL .rightFrame0
+    CMP.L Puyo.initialYSpeedTableIndex_1_2,X : BPL .rightFrame1
+    BRA .rightFrame2
 
   .rightFrame0:
-    LDA.W #InstList_Puyo_HoppingRight_0_HoppingLeft_4                    ;A29C8B;
-    BRA .return                                                          ;A29C8E;
+    LDA.W #InstList_Puyo_HoppingRight_0_HoppingLeft_4
+    BRA .return
 
   .rightFrame1:
-    LDA.W #InstList_Puyo_HoppingRight_1_HoppingLeft_3                    ;A29C90;
-    BRA .return                                                          ;A29C93;
+    LDA.W #InstList_Puyo_HoppingRight_1_HoppingLeft_3
+    BRA .return
 
   .rightFrame2:
-    LDA.W #InstList_Puyo_Hopping_2                                       ;A29C95;
-    BRA .return                                                          ;A29C98;
+    LDA.W #InstList_Puyo_Hopping_2
+    BRA .return
 
   .left:
-    LDA.W Puyo.YSpeedTableIndex,X                                        ;A29C9A;
-    CMP.L Puyo.initialYSpeedTableIndex_3_4,X                             ;A29C9D;
-    BPL .leftFrame0                                                      ;A29CA1;
-    CMP.L Puyo.initialYSpeedTableIndex_1_2,X                             ;A29CA3;
-    BPL .leftFrame1                                                      ;A29CA7;
-    BRA .leftFrame2                                                      ;A29CA9;
+    LDA.W Puyo.YSpeedTableIndex,X : CMP.L Puyo.initialYSpeedTableIndex_3_4,X : BPL .leftFrame0
+    CMP.L Puyo.initialYSpeedTableIndex_1_2,X : BPL .leftFrame1
+    BRA .leftFrame2
 
   .leftFrame0:
-    LDA.W #InstList_Puyo_HoppingRight_4_HoppingLeft_0                    ;A29CAB;
-    BRA .return                                                          ;A29CAE;
+    LDA.W #InstList_Puyo_HoppingRight_4_HoppingLeft_0
+    BRA .return
 
   .leftFrame1:
-    LDA.W #InstList_Puyo_HoppingRight_3_HoppingLeft_1                    ;A29CB0;
-    BRA .return                                                          ;A29CB3;
+    LDA.W #InstList_Puyo_HoppingRight_3_HoppingLeft_1
+    BRA .return
 
   .leftFrame2:
-    LDA.W #InstList_Puyo_Hopping_2                                       ;A29CB5;
-    BRA .return                                                          ;A29CB8;
+    LDA.W #InstList_Puyo_Hopping_2
+    BRA .return
 
   .return:
-    JSR.W SetPuyoInstList                                                ;A29CBA;
-    RTS                                                                  ;A29CBD;
+    JSR SetPuyoInstList
+    RTS
 
 
 ;;; $9CBE: Set falling instruction list ;;;
 SetFallingInstList:
-    LDX.W EnemyIndex                                                     ;A29CBE;
-    LDA.L Puyo.direction,X                                               ;A29CC1;
-    BNE .left                                                            ;A29CC5;
-    LDA.W Puyo.YSpeedTableIndex,X                                        ;A29CC7;
-    CMP.L Puyo.initialYSpeedTableIndex_1_2,X                             ;A29CCA;
-    BMI .rightFrame2                                                     ;A29CCE;
-    CMP.L Puyo.initialYSpeedTableIndex_3_4,X                             ;A29CD0;
-    BMI .rightFrame3                                                     ;A29CD4;
-    BRA .rightFrame4                                                     ;A29CD6;
+    LDX.W EnemyIndex
+    LDA.L Puyo.direction,X : BNE .left
+    LDA.W Puyo.YSpeedTableIndex,X : CMP.L Puyo.initialYSpeedTableIndex_1_2,X : BMI .rightFrame2
+    CMP.L Puyo.initialYSpeedTableIndex_3_4,X : BMI .rightFrame3
+    BRA .rightFrame4
 
   .rightFrame2:
-    LDA.W #InstList_Puyo_Hopping_2                                       ;A29CD8;
-    BRA .return                                                          ;A29CDB;
+    LDA.W #InstList_Puyo_Hopping_2
+    BRA .return
 
   .rightFrame3:
-    LDA.W #InstList_Puyo_HoppingRight_3_HoppingLeft_1                    ;A29CDD;
-    BRA .return                                                          ;A29CE0;
+    LDA.W #InstList_Puyo_HoppingRight_3_HoppingLeft_1
+    BRA .return
 
   .rightFrame4:
-    LDA.W #InstList_Puyo_HoppingRight_4_HoppingLeft_0                    ;A29CE2;
-    BRA .return                                                          ;A29CE5;
+    LDA.W #InstList_Puyo_HoppingRight_4_HoppingLeft_0
+    BRA .return
 
   .left:
-    LDA.W Puyo.YSpeedTableIndex,X                                        ;A29CE7;
-    CMP.L Puyo.initialYSpeedTableIndex_1_2,X                             ;A29CEA;
-    BMI .leftFrame2                                                      ;A29CEE;
-    CMP.L Puyo.initialYSpeedTableIndex_3_4,X                             ;A29CF0;
-    BMI .leftFrame3                                                      ;A29CF4;
-    BRA .leftFrame4                                                      ;A29CF6;
+    LDA.W Puyo.YSpeedTableIndex,X : CMP.L Puyo.initialYSpeedTableIndex_1_2,X : BMI .leftFrame2
+    CMP.L Puyo.initialYSpeedTableIndex_3_4,X : BMI .leftFrame3
+    BRA .leftFrame4
 
   .leftFrame2:
-    LDA.W #InstList_Puyo_Hopping_2                                       ;A29CF8;
-    BRA .return                                                          ;A29CFB;
+    LDA.W #InstList_Puyo_Hopping_2
+    BRA .return
 
   .leftFrame3:
-    LDA.W #InstList_Puyo_HoppingRight_1_HoppingLeft_3                    ;A29CFD;
-    BRA .return                                                          ;A29D00;
+    LDA.W #InstList_Puyo_HoppingRight_1_HoppingLeft_3
+    BRA .return
 
   .leftFrame4:
-    LDA.W #InstList_Puyo_HoppingRight_0_HoppingLeft_4                    ;A29D02;
-    BRA .return                                                          ;A29D05;
+    LDA.W #InstList_Puyo_HoppingRight_0_HoppingLeft_4
+    BRA .return
 
   .return:
-    JSR.W SetPuyoInstList                                                ;A29D07;
-    RTS                                                                  ;A29D0A;
+    JSR SetPuyoInstList
+    RTS
 
 
 ;;; $9D0B: Puyo airborne function - normal - short hop ;;;
 Function_Puyo_Airborne_Normal_ShortHop:
-    LDX.W EnemyIndex                                                     ;A29D0B;
-    JSR.W PuyoMovement                                                   ;A29D0E;
-    LDA.L Puyo.invertDirectionFlag,X                                     ;A29D11;
-    BNE .inverted                                                        ;A29D15;
-    LDA.L Puyo.hoppingAnimationFlag,X                                    ;A29D17;
-    BNE .return                                                          ;A29D1B;
+    LDX.W EnemyIndex
+    JSR PuyoMovement
+    LDA.L Puyo.invertDirectionFlag,X : BNE .inverted
+    LDA.L Puyo.hoppingAnimationFlag,X : BNE .return
 
   .inverted:
-    LDA.W #$0000                                                         ;A29D1D;
-    STA.L Puyo.hoppingAnimationFlag,X                                    ;A29D20;
-    LDA.W #InstList_Puyo_GroundedDropping_Slow                           ;A29D24;
-    JSR.W SetPuyoInstList                                                ;A29D27;
+    LDA.W #$0000 : STA.L Puyo.hoppingAnimationFlag,X
+    LDA.W #InstList_Puyo_GroundedDropping_Slow
+    JSR SetPuyoInstList
 
   .return:
-    RTS                                                                  ;A29D2A;
+    RTS
 
 
 ;;; $9D2B: Puyo airborne function - normal - big hop ;;;
 Function_Puyo_Airborne_Normal_BigHop:
-    LDX.W EnemyIndex                                                     ;A29D2B;
-    JSR.W PuyoMovement                                                   ;A29D2E;
-    LDA.L Puyo.invertDirectionFlag,X                                     ;A29D31;
-    BNE .inverted                                                        ;A29D35;
-    LDA.L Puyo.hoppingAnimationFlag,X                                    ;A29D37;
-    BNE .return                                                          ;A29D3B;
+    LDX.W EnemyIndex
+    JSR PuyoMovement
+    LDA.L Puyo.invertDirectionFlag,X : BNE .inverted
+    LDA.L Puyo.hoppingAnimationFlag,X : BNE .return
 
   .inverted:
-    LDA.W #$0000                                                         ;A29D3D;
-    STA.L Puyo.hoppingAnimationFlag,X                                    ;A29D40;
-    LDA.W #InstList_Puyo_GroundedDropping_Medium                         ;A29D44;
-    JSR.W SetPuyoInstList                                                ;A29D47;
+    LDA.W #$0000 : STA.L Puyo.hoppingAnimationFlag,X
+    LDA.W #InstList_Puyo_GroundedDropping_Medium
+    JSR SetPuyoInstList
 
   .return:
-    RTS                                                                  ;A29D4A;
+    RTS
 
 
 ;;; $9D4B: Puyo airborne function - normal - long hop ;;;
 Function_Puyo_Airborne_Normal_LongHop:
-    LDX.W EnemyIndex                                                     ;A29D4B;
-    JSR.W PuyoMovement                                                   ;A29D4E;
-    LDA.L Puyo.invertDirectionFlag,X                                     ;A29D51;
-    BNE .inverted                                                        ;A29D55;
-    LDA.L Puyo.hoppingAnimationFlag,X                                    ;A29D57;
-    BNE .return                                                          ;A29D5B;
+    LDX.W EnemyIndex
+    JSR PuyoMovement
+    LDA.L Puyo.invertDirectionFlag,X : BNE .inverted
+    LDA.L Puyo.hoppingAnimationFlag,X : BNE .return
 
   .inverted:
-    LDA.W #$0000                                                         ;A29D5D;
-    STA.L Puyo.hoppingAnimationFlag,X                                    ;A29D60;
-    LDA.W #InstList_Puyo_GroundedDropping_Fast                           ;A29D64;
-    JSR.W SetPuyoInstList                                                ;A29D67;
+    LDA.W #$0000 : STA.L Puyo.hoppingAnimationFlag,X
+    LDA.W #InstList_Puyo_GroundedDropping_Fast
+    JSR SetPuyoInstList
 
   .return:
-    RTS                                                                  ;A29D6A;
+    RTS
 
 
 ;;; $9D6B: Puyo airborne function - giant hop ;;;
 Function_Puyo_Airborne_GiantHop:
-    LDX.W EnemyIndex                                                     ;A29D6B;
-    JSR.W PuyoMovement                                                   ;A29D6E;
-    LDA.L Puyo.invertDirectionFlag,X                                     ;A29D71;
-    BNE .inverted                                                        ;A29D75;
-    LDA.L Puyo.hoppingAnimationFlag,X                                    ;A29D77;
-    BNE .return                                                          ;A29D7B;
-    LDA.W #$0000                                                         ;A29D7D;
-    STA.L Puyo.hopType,X                                                 ;A29D80;
-    LDA.W #Function_Puyo_Grounded                                        ;A29D84;
-    STA.W Puyo.function,X                                                ;A29D87;
+    LDX.W EnemyIndex
+    JSR PuyoMovement
+    LDA.L Puyo.invertDirectionFlag,X : BNE .inverted
+    LDA.L Puyo.hoppingAnimationFlag,X : BNE .return
+    LDA.W #$0000 : STA.L Puyo.hopType,X
+    LDA.W #Function_Puyo_Grounded : STA.W Puyo.function,X
 
   .inverted:
-    LDA.W #$0000                                                         ;A29D8A;
-    STA.L Puyo.hoppingAnimationFlag,X                                    ;A29D8D;
-    LDA.W #InstList_Puyo_GroundedDropping_Slow                           ;A29D91;
-    JSR.W SetPuyoInstList                                                ;A29D94;
+    LDA.W #$0000 : STA.L Puyo.hoppingAnimationFlag,X
+    LDA.W #InstList_Puyo_GroundedDropping_Slow
+    JSR SetPuyoInstList
 
   .return:
-    RTS                                                                  ;A29D97;
+    RTS
 
 
 ;;; $9D98: Puyo airborne function - dropping ;;;
 Function_Puyo_Airborne_Dropping:
-    LDX.W EnemyIndex                                                     ;A29D98;
-    LDY.W Puyo.hopTableIndex,X                                           ;A29D9B;
-    LDA.W PuyoHopTable_YSpeedTableIndexDelta,Y                           ;A29D9E;
-    AND.W #$FF00                                                         ;A29DA1;
-    XBA                                                                  ;A29DA4;
-    STA.B DP_Temp14                                                      ;A29DA5;
-    LDA.W PuyoHopTable_YSpeedTableIndexDelta,Y                           ;A29DA7;
-    AND.W #$00FF                                                         ;A29DAA;
-    XBA                                                                  ;A29DAD;
-    STA.B DP_Temp12                                                      ;A29DAE;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A29DB0;
-    BCC .return                                                          ;A29DB4;
-    JSR.W GetRandomNumber0_7                                             ;A29DB6;
-    LDA.B DP_Temp1C                                                      ;A29DB9;
-    AND.W #$0001                                                         ;A29DBB;
-    CLC                                                                  ;A29DBE;
-    ADC.W #$0005                                                         ;A29DBF;
-    STA.L Puyo.hopType,X                                                 ;A29DC2;
-    LDA.W #Function_Puyo_Grounded                                        ;A29DC6;
-    STA.W Puyo.function,X                                                ;A29DC9;
+    LDX.W EnemyIndex
+    LDY.W Puyo.hopTableIndex,X
+    LDA.W PuyoHopTable_YSpeedTableIndexDelta,Y : AND.W #$FF00 : XBA : STA.B DP_Temp14
+    LDA.W PuyoHopTable_YSpeedTableIndexDelta,Y : AND.W #$00FF : XBA : STA.B DP_Temp12
+    JSL MoveEnemyDownBy_14_12
+    BCC .return
+    JSR GetRandomNumber0_7
+    LDA.B DP_Temp1C : AND.W #$0001 : CLC : ADC.W #$0005 : STA.L Puyo.hopType,X
+    LDA.W #Function_Puyo_Grounded : STA.W Puyo.function,X
 
   .return:
-    RTS                                                                  ;A29DCC;
+    RTS
 
 
 ;;; $9DCD: Puyo airborne function - dropped ;;;
 Function_Puyo_Airborne_Dropped:
-    LDX.W EnemyIndex                                                     ;A29DCD;
-    JSR.W PuyoMovement                                                   ;A29DD0;
-    LDA.L Puyo.hoppingAnimationFlag,X                                    ;A29DD3;
-    BNE .return                                                          ;A29DD7;
-    LDA.W #$0000                                                         ;A29DD9;
-    STA.L Puyo.hoppingAnimationFlag,X                                    ;A29DDC;
-    LDA.W #$0003                                                         ;A29DE0;
-    STA.L Puyo.hopType,X                                                 ;A29DE3;
-    LDA.W #Function_Puyo_Grounded                                        ;A29DE7;
-    STA.W Puyo.function,X                                                ;A29DEA;
-    LDA.W #InstList_Puyo_GroundedDropping_Slow                           ;A29DED;
-    JSR.W SetPuyoInstList                                                ;A29DF0;
+    LDX.W EnemyIndex
+    JSR PuyoMovement
+    LDA.L Puyo.hoppingAnimationFlag,X : BNE .return
+    LDA.W #$0000 : STA.L Puyo.hoppingAnimationFlag,X
+    LDA.W #$0003 : STA.L Puyo.hopType,X
+    LDA.W #Function_Puyo_Grounded : STA.W Puyo.function,X
+    LDA.W #InstList_Puyo_GroundedDropping_Slow
+    JSR SetPuyoInstList
 
   .return:
-    RTS                                                                  ;A29DF3;
+    RTS
 
 
 ;;; $9DF4: RTL ;;;
 RTL_A29DF4:
-    RTL                                                                  ;A29DF4;
+    RTL
 
 
 ;;; $9DF5: RTL ;;;
 RTL_A29DF5:
-    RTL                                                                  ;A29DF5;
+    RTL
 
 
 ;;; $9DF6: Spritemaps - puyo ;;;
 Spritemap_Puyo_0:
-    dw $0002                                                             ;A29DF6;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 1, 2, 0, $100)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $100)
 
 Spritemap_Puyo_1:
-    dw $0002                                                             ;A29E02;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 1, 2, 0, $101)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $101)
 
 Spritemap_Puyo_2:
-    dw $0002                                                             ;A29E0E;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 1, 2, 0, $102)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $102)
 
 Spritemap_Puyo_3:
-    dw $0002                                                             ;A29E1A;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $108)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $107)
 
 Spritemap_Puyo_4:
-    dw $0003                                                             ;A29E26;
+    dw $0003
     %spritemapEntry(0, $04, $FC, 0, 0, 2, 0, $10B)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $10A)
     %spritemapEntry(0, $1F4, $FC, 0, 0, 2, 0, $109)
 
 Spritemap_Puyo_5:
-    dw $0004                                                             ;A29E37;
+    dw $0004
     %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $10F)
     %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $10E)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $10D)
     %spritemapEntry(0, $1F0, $FC, 0, 0, 2, 0, $10C)
 
 Spritemap_Puyo_6:
-    dw $0003                                                             ;A29E4D;
+    dw $0003
     %spritemapEntry(0, $1F4, $FC, 0, 1, 2, 0, $10B)
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 0, $10A)
     %spritemapEntry(0, $04, $FC, 0, 1, 2, 0, $109)
 
 Spritemap_Puyo_7:
-    dw $0002                                                             ;A29E5E;
+    dw $0002
     %spritemapEntry(0, $1F8, $FC, 0, 1, 2, 0, $108)
     %spritemapEntry(0, $00, $FC, 0, 1, 2, 0, $107)
 
 
 ;;; $9E6A: Palette - enemy $CFFF (cacatac) ;;;
 Palette_Cacatac:
-    dw $3800,$3F57,$2E4D,$00E2,$0060,$3AB0,$220B,$1166                   ;A29E6A;
-    dw $0924,$57FF,$42F7,$2610,$158C,$017F,$0016,$300A                   ;A29E7A;
+    dw $3800,$3F57,$2E4D,$00E2,$0060,$3AB0,$220B,$1166
+    dw $0924,$57FF,$42F7,$2610,$158C,$017F,$0016,$300A
 
 
 ;;; $9E8A: Instruction list - upside up - idling ;;;
 InstList_Cacatac_UpsideUp_Idling:
-    dw Instruction_Cacatac_SetFunction_MovingLeftRight                   ;A29E8A;
-    dw $0008,Spritemap_Cacatac_0                                         ;A29E8C;
-    dw $0008,Spritemap_Cacatac_1                                         ;A29E90;
-    dw $0008,Spritemap_Cacatac_2                                         ;A29E94;
-    dw $0008,Spritemap_Cacatac_3                                         ;A29E98;
-    dw $0008,Spritemap_Cacatac_4                                         ;A29E9C;
-    dw $0008,Spritemap_Cacatac_5                                         ;A29EA0;
-    dw $0008,Spritemap_Cacatac_6                                         ;A29EA4;
-    dw $0008,Spritemap_Cacatac_7                                         ;A29EA8;
-    dw Instruction_Common_GotoY                                          ;A29EAC;
-    dw InstList_Cacatac_UpsideUp_Idling                                  ;A29EAE;
+    dw Instruction_Cacatac_SetFunction_MovingLeftRight
+    dw $0008,Spritemap_Cacatac_0
+    dw $0008,Spritemap_Cacatac_1
+    dw $0008,Spritemap_Cacatac_2
+    dw $0008,Spritemap_Cacatac_3
+    dw $0008,Spritemap_Cacatac_4
+    dw $0008,Spritemap_Cacatac_5
+    dw $0008,Spritemap_Cacatac_6
+    dw $0008,Spritemap_Cacatac_7
+    dw Instruction_Common_GotoY
+    dw InstList_Cacatac_UpsideUp_Idling
 
 
 ;;; $9EB0: Instruction list - upside up - attacking ;;;
 InstList_Cacatac_UpsideUp_Attacking:
-    dw $0015,Spritemap_Cacatac_0                                         ;A29EB0;
-    dw $0005,Spritemap_Cacatac_8                                         ;A29EB4;
-    dw $0015,Spritemap_Cacatac_9                                         ;A29EB8;
-    dw $0005,Spritemap_Cacatac_8                                         ;A29EBC;
-    dw Instruction_Cacatac_PlaySpikesSFX                                 ;A29EC0;
-    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0000    ;A29EC2;
-    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$000C    ;A29EC6;
-    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0002    ;A29ECA;
-    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$000E    ;A29ECE;
-    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0004    ;A29ED2;
-    dw Instruction_Common_GotoY                                          ;A29ED6;
-    dw InstList_Cacatac_UpsideUp_Idling                                  ;A29ED8;
+    dw $0015,Spritemap_Cacatac_0
+    dw $0005,Spritemap_Cacatac_8
+    dw $0015,Spritemap_Cacatac_9
+    dw $0005,Spritemap_Cacatac_8
+    dw Instruction_Cacatac_PlaySpikesSFX
+    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0000
+    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$000C
+    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0002
+    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$000E
+    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0004
+    dw Instruction_Common_GotoY
+    dw InstList_Cacatac_UpsideUp_Idling
 
 
 ;;; $9EDA: Instruction list - upside down - idling ;;;
 InstList_Cacatac_UpsideDown_Idling_0:
-    dw Instruction_Cacatac_SetFunction_MovingLeftRight                   ;A29EDA;
+    dw Instruction_Cacatac_SetFunction_MovingLeftRight
 
 InstList_Cacatac_UpsideDown_Idling_1:
-    dw $0008,Spritemap_Cacatac_A                                         ;A29EDC;
-    dw $0008,Spritemap_Cacatac_B                                         ;A29EE0;
-    dw $0008,Spritemap_Cacatac_C                                         ;A29EE4;
-    dw $0008,Spritemap_Cacatac_D                                         ;A29EE8;
-    dw $0008,Spritemap_Cacatac_E                                         ;A29EEC;
-    dw $0008,Spritemap_Cacatac_F                                         ;A29EF0;
-    dw $0008,Spritemap_Cacatac_10                                        ;A29EF4;
-    dw $0008,Spritemap_Cacatac_11                                        ;A29EF8;
-    dw Instruction_Common_GotoY                                          ;A29EFC;
-    dw InstList_Cacatac_UpsideDown_Idling_1                              ;A29EFE;
+    dw $0008,Spritemap_Cacatac_A
+    dw $0008,Spritemap_Cacatac_B
+    dw $0008,Spritemap_Cacatac_C
+    dw $0008,Spritemap_Cacatac_D
+    dw $0008,Spritemap_Cacatac_E
+    dw $0008,Spritemap_Cacatac_F
+    dw $0008,Spritemap_Cacatac_10
+    dw $0008,Spritemap_Cacatac_11
+    dw Instruction_Common_GotoY
+    dw InstList_Cacatac_UpsideDown_Idling_1
 
 
 ;;; $9F00: Instruction list - upside down - attacking ;;;
 InstList_Cacatac_UpsideDown_Attacking:
-    dw $0015,Spritemap_Cacatac_A                                         ;A29F00;
-    dw $0005,Spritemap_Cacatac_12                                        ;A29F04;
-    dw $0015,Spritemap_Cacatac_13                                        ;A29F08;
-    dw $0005,Spritemap_Cacatac_12                                        ;A29F0C;
-    dw Instruction_Cacatac_PlaySpikesSFX                                 ;A29F10;
-    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0006    ;A29F12;
-    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0010    ;A29F16;
-    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0008    ;A29F1A;
-    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0012    ;A29F1E;
-    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$000A    ;A29F22;
-    dw Instruction_Common_GotoY                                          ;A29F26;
-    dw InstList_Cacatac_UpsideDown_Idling_0                              ;A29F28;
+    dw $0015,Spritemap_Cacatac_A
+    dw $0005,Spritemap_Cacatac_12
+    dw $0015,Spritemap_Cacatac_13
+    dw $0005,Spritemap_Cacatac_12
+    dw Instruction_Cacatac_PlaySpikesSFX
+    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0006
+    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0010
+    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0008
+    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0012
+    dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$000A
+    dw Instruction_Common_GotoY
+    dw InstList_Cacatac_UpsideDown_Idling_0
 
 
 ;;; $9F2A: Instruction - play cacatac spikes effect ;;;
 Instruction_Cacatac_PlaySpikesSFX:
-    PHX                                                                  ;A29F2A;
-    PHY                                                                  ;A29F2B;
-    LDA.W #$0034                                                         ;A29F2C;
-    JSL.L QueueSound_Lib2_Max6                                           ;A29F2F;
-    PLY                                                                  ;A29F33;
-    PLX                                                                  ;A29F34;
-    RTL                                                                  ;A29F35;
+    PHX : PHY
+    LDA.W #$0034
+    JSL QueueSound_Lib2_Max6
+    PLY : PLX
+    RTL
 
 
 ;;; $9F36: Cacatac max travel distances ;;;
 CacatacMaxTravelDistances:
 ; Indexed by enemy parameter 2 low
-    dw $0010,$0040,$0050,$0060,$0070,$0080                               ;A29F36;
+    dw $0010,$0040,$0050,$0060,$0070,$0080
 
 
 ;;; $9F42: Cacatac function pointers ;;;
 CacatacFunctionPointers:
 ; Indexed by enemy parameter 1 low
-    dw Function_Cacatac_MovingLeft                                       ;A29F42;
-    dw Function_Cacatac_MovingRight                                      ;A29F44;
-    dw RTS_A2A01B                                                        ;A29F46;
+    dw Function_Cacatac_MovingLeft
+    dw Function_Cacatac_MovingRight
+    dw RTS_A2A01B
 
 
 ;;; $9F48: Initialisation AI - enemy $CFFF (cacatac) ;;;
 InitAI_Cacatac:
-    LDX.W EnemyIndex                                                     ;A29F48;
-    LDA.W #Spritemap_Common_Nothing                                      ;A29F4B;
-    STA.W Enemy.spritemap,X                                              ;A29F4E;
-    LDA.W Enemy.init0+1,X                                                ;A29F51;
-    AND.W #$00FF                                                         ;A29F54;
-    BEQ .upsideDown                                                      ;A29F57;
-    JSR.W SetCacatacInstList_UpsideUp_Idling                             ;A29F59;
-    BRA +                                                                ;A29F5C;
+    LDX.W EnemyIndex
+    LDA.W #Spritemap_Common_Nothing : STA.W Enemy.spritemap,X
+    LDA.W Enemy.init0+1,X : AND.W #$00FF : BEQ .upsideDown
+    JSR SetCacatacInstList_UpsideUp_Idling
+    BRA +
 
   .upsideDown:
-    JSR.W SetCacatacInstList_UpsideDown_Idling                           ;A29F5E;
+    JSR SetCacatacInstList_UpsideDown_Idling
 
-+   LDA.W Enemy.init0,X                                                  ;A29F61;
-    AND.W #$00FF                                                         ;A29F64;
-    STA.W Cacatac.direction,X                                            ;A29F67;
-    ASL                                                                  ;A29F6A;
-    TAY                                                                  ;A29F6B;
-    LDA.W CacatacFunctionPointers,Y                                      ;A29F6C;
-    STA.W Cacatac.function,X                                             ;A29F6F;
-    LDA.W Enemy.init1,X                                                  ;A29F72;
-    AND.W #$00FF                                                         ;A29F75;
-    ASL                                                                  ;A29F78;
-    TAY                                                                  ;A29F79;
-    LDA.W Enemy.XPosition,X                                              ;A29F7A;
-    CLC                                                                  ;A29F7D;
-    ADC.W CacatacMaxTravelDistances,Y                                    ;A29F7E;
-    STA.L Cacatac.maximumXPosition,X                                     ;A29F81;
-    LDA.W Enemy.XPosition,X                                              ;A29F85;
-    SEC                                                                  ;A29F88;
-    SBC.W CacatacMaxTravelDistances,Y                                    ;A29F89;
-    STA.L Cacatac.minimumXPosition,X                                     ;A29F8C;
-    LDA.W Enemy.init1+1,X                                                ;A29F90;
-    AND.W #$00FF                                                         ;A29F93;
-    ASL                                                                  ;A29F96;
-    ASL                                                                  ;A29F97;
-    ASL                                                                  ;A29F98;
-    TAY                                                                  ;A29F99;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A29F9A;
-    STA.W Cacatac.rightVelocity,X                                        ;A29F9D;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A29FA0;
-    STA.W Cacatac.rightSubVelocity,X                                     ;A29FA3;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A29FA6;
-    STA.W Cacatac.leftVelocity,X                                         ;A29FA9;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A29FAC;
-    STA.W Cacatac.leftSubVelocity,X                                      ;A29FAF;
-    RTL                                                                  ;A29FB2;
++   LDA.W Enemy.init0,X : AND.W #$00FF : STA.W Cacatac.direction,X
+    ASL : TAY
+    LDA.W CacatacFunctionPointers,Y : STA.W Cacatac.function,X
+    LDA.W Enemy.init1,X : AND.W #$00FF : ASL : TAY
+    LDA.W Enemy.XPosition,X : CLC : ADC.W CacatacMaxTravelDistances,Y : STA.L Cacatac.maximumXPosition,X
+    LDA.W Enemy.XPosition,X : SEC : SBC.W CacatacMaxTravelDistances,Y : STA.L Cacatac.minimumXPosition,X
+    LDA.W Enemy.init1+1,X : AND.W #$00FF : ASL #3 : TAY
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W Cacatac.rightVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W Cacatac.rightSubVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W Cacatac.leftVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W Cacatac.leftSubVelocity,X
+    RTL
 
 
 ;;; $9FB3: Main AI - enemy $CFFF (cacatac) ;;;
 MainAI_Cacatac:
-    LDX.W EnemyIndex                                                     ;A29FB3;
-    JSR.W (Cacatac.function,X)                                           ;A29FB6;
-    RTL                                                                  ;A29FB9;
+    LDX.W EnemyIndex
+    JSR.W (Cacatac.function,X)
+    RTL
 
 
 ;;; $9FBA: Cacatac function - moving left ;;;
 Function_Cacatac_MovingLeft:
-    LDX.W EnemyIndex                                                     ;A29FBA;
-    LDA.W Enemy.XSubPosition,X                                           ;A29FBD;
-    CLC                                                                  ;A29FC0;
-    ADC.W Cacatac.leftSubVelocity,X                                      ;A29FC1;
-    BCC +                                                                ;A29FC4;
-    INC.W Enemy.XPosition,X                                              ;A29FC6;
+    LDX.W EnemyIndex
+    LDA.W Enemy.XSubPosition,X : CLC : ADC.W Cacatac.leftSubVelocity,X : BCC +
+    INC.W Enemy.XPosition,X
 
-+   STA.W Enemy.XSubPosition,X                                           ;A29FC9;
-    LDA.W Enemy.XPosition,X                                              ;A29FCC;
-    CLC                                                                  ;A29FCF;
-    ADC.W Cacatac.leftVelocity,X                                         ;A29FD0;
-    STA.W Enemy.XPosition,X                                              ;A29FD3;
-    CMP.L Cacatac.minimumXPosition,X                                     ;A29FD6;
-    BPL .attack                                                          ;A29FDA;
-    LDA.W #Function_Cacatac_MovingRight                                  ;A29FDC;
-    STA.W Cacatac.function,X                                             ;A29FDF;
-    LDA.W #$0001                                                         ;A29FE2;
-    STA.W Cacatac.direction,X                                            ;A29FE5;
++   STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X : CLC : ADC.W Cacatac.leftVelocity,X : STA.W Enemy.XPosition,X
+    CMP.L Cacatac.minimumXPosition,X : BPL .attack
+    LDA.W #Function_Cacatac_MovingRight : STA.W Cacatac.function,X
+    LDA.W #$0001 : STA.W Cacatac.direction,X
 
   .attack:
-    JSR.W MaybeMakeCacatacAttack                                         ;A29FE8;
-    RTS                                                                  ;A29FEB;
+    JSR MaybeMakeCacatacAttack
+    RTS
 
 
 ;;; $9FEC: Cacatac function - moving right ;;;
 Function_Cacatac_MovingRight:
-    LDX.W EnemyIndex                                                     ;A29FEC;
-    LDA.W Enemy.XSubPosition,X                                           ;A29FEF;
-    CLC                                                                  ;A29FF2;
-    ADC.W Cacatac.rightSubVelocity,X                                     ;A29FF3;
-    BCC +                                                                ;A29FF6;
-    INC.W Enemy.XPosition,X                                              ;A29FF8;
+    LDX.W EnemyIndex
+    LDA.W Enemy.XSubPosition,X : CLC : ADC.W Cacatac.rightSubVelocity,X : BCC +
+    INC.W Enemy.XPosition,X
 
-+   STA.W Enemy.XSubPosition,X                                           ;A29FFB;
-    LDA.W Enemy.XPosition,X                                              ;A29FFE;
-    CLC                                                                  ;A2A001;
-    ADC.W Cacatac.rightVelocity,X                                        ;A2A002;
-    STA.W Enemy.XPosition,X                                              ;A2A005;
-    CMP.L Cacatac.maximumXPosition,X                                     ;A2A008;
-    BMI .attack                                                          ;A2A00C;
-    LDA.W #Function_Cacatac_MovingLeft                                   ;A2A00E;
-    STA.W Cacatac.function,X                                             ;A2A011;
-    STZ.W Cacatac.direction,X                                            ;A2A014;
++   STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X : CLC : ADC.W Cacatac.rightVelocity,X : STA.W Enemy.XPosition,X
+    CMP.L Cacatac.maximumXPosition,X : BMI .attack
+    LDA.W #Function_Cacatac_MovingLeft : STA.W Cacatac.function,X
+    STZ.W Cacatac.direction,X
 
   .attack:
-    JSR.W MaybeMakeCacatacAttack                                         ;A2A017;
-    RTS                                                                  ;A2A01A;
+    JSR MaybeMakeCacatacAttack
+    RTS
 
 
 ;;; $A01B: RTS ;;;
 RTS_A2A01B:
-    RTS                                                                  ;A2A01B;
+    RTS
 
 
 ;;; $A01C: Maybe make cacatac attack ;;;
 MaybeMakeCacatacAttack:
-    LDX.W EnemyIndex                                                     ;A2A01C;
-    JSL.L GenerateRandomNumber                                           ;A2A01F;
-    LDA.W RandomNumberSeed                                               ;A2A023;
-    CLC                                                                  ;A2A026;
-    ADC.W Enemy.frameCounter,X                                           ;A2A027;
-    AND.W #$00FF                                                         ;A2A02A;
-    CMP.W #$0003                                                         ;A2A02D;
-    BPL .return                                                          ;A2A030;
-    LDA.W #RTS_A2A01B                                                    ;A2A032;
-    STA.W Cacatac.function,X                                             ;A2A035;
-    LDA.W Enemy.init0+1,X                                                ;A2A038;
-    AND.W #$00FF                                                         ;A2A03B;
-    BEQ .keepUpsideUp                                                    ;A2A03E;
-    JSR.W SetCacatacInstList_UpsideUp_Attacking                          ;A2A040;
-    BRA .return                                                          ;A2A043;
+    LDX.W EnemyIndex
+    JSL GenerateRandomNumber
+    LDA.W RandomNumberSeed : CLC : ADC.W Enemy.frameCounter,X
+    AND.W #$00FF : CMP.W #$0003 : BPL .return
+    LDA.W #RTS_A2A01B : STA.W Cacatac.function,X
+    LDA.W Enemy.init0+1,X : AND.W #$00FF : BEQ .keepUpsideUp
+    JSR SetCacatacInstList_UpsideUp_Attacking
+    BRA .return
 
   .keepUpsideUp:
-    JSR.W SetCacatacInstList_UpsideDown_Attacking                        ;A2A045;
+    JSR SetCacatacInstList_UpsideDown_Attacking
 
   .return:
-    RTS                                                                  ;A2A048;
+    RTS
 
 
 ;;; $A049: Set cacatac instruction list - upside up - idling ;;;
 SetCacatacInstList_UpsideUp_Idling:
-    LDX.W EnemyIndex                                                     ;A2A049;
-    LDA.W #InstList_Cacatac_UpsideUp_Idling                              ;A2A04C;
-    STA.W Enemy.instList,X                                               ;A2A04F;
-    LDA.W #$0001                                                         ;A2A052;
-    STA.W Enemy.instTimer,X                                              ;A2A055;
-    STZ.W Enemy.loopCounter,X                                            ;A2A058;
-    RTS                                                                  ;A2A05B;
+    LDX.W EnemyIndex
+    LDA.W #InstList_Cacatac_UpsideUp_Idling : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTS
 
 
 ;;; $A05C: Set cacatac instruction list - upside up - attacking ;;;
 SetCacatacInstList_UpsideUp_Attacking:
-    LDX.W EnemyIndex                                                     ;A2A05C;
-    LDA.W #InstList_Cacatac_UpsideUp_Attacking                           ;A2A05F;
-    STA.W Enemy.instList,X                                               ;A2A062;
-    LDA.W #$0001                                                         ;A2A065;
-    STA.W Enemy.instTimer,X                                              ;A2A068;
-    STZ.W Enemy.loopCounter,X                                            ;A2A06B;
-    RTS                                                                  ;A2A06E;
+    LDX.W EnemyIndex
+    LDA.W #InstList_Cacatac_UpsideUp_Attacking : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTS
 
 
 ;;; $A06F: Set cacatac instruction list - upside down - idling ;;;
 SetCacatacInstList_UpsideDown_Idling:
-    LDX.W EnemyIndex                                                     ;A2A06F;
-    LDA.W #InstList_Cacatac_UpsideDown_Idling_0                          ;A2A072;
-    STA.W Enemy.instList,X                                               ;A2A075;
-    LDA.W #$0001                                                         ;A2A078;
-    STA.W Enemy.instTimer,X                                              ;A2A07B;
-    STZ.W Enemy.loopCounter,X                                            ;A2A07E;
-    RTS                                                                  ;A2A081;
+    LDX.W EnemyIndex
+    LDA.W #InstList_Cacatac_UpsideDown_Idling_0 : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTS
 
 
 ;;; $A082: Set cacatac instruction list - upside down - attacking ;;;
 SetCacatacInstList_UpsideDown_Attacking:
-    LDX.W EnemyIndex                                                     ;A2A082;
-    LDA.W #InstList_Cacatac_UpsideDown_Attacking                         ;A2A085;
-    STA.W Enemy.instList,X                                               ;A2A088;
-    LDA.W #$0001                                                         ;A2A08B;
-    STA.W Enemy.instTimer,X                                              ;A2A08E;
-    STZ.W Enemy.loopCounter,X                                            ;A2A091;
-    RTS                                                                  ;A2A094;
+    LDX.W EnemyIndex
+    LDA.W #InstList_Cacatac_UpsideDown_Attacking : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTS
 
 
 ;;; $A095: Instruction - function = moving left/right ;;;
 Instruction_Cacatac_SetFunction_MovingLeftRight:
-    LDA.W #Function_Cacatac_MovingLeft                                   ;A2A095;
-    STA.W Cacatac.function,X                                             ;A2A098;
-    LDA.W Cacatac.direction,X                                            ;A2A09B;
-    BEQ .return                                                          ;A2A09E;
-    LDA.W #Function_Cacatac_MovingRight                                  ;A2A0A0;
-    STA.W Cacatac.function,X                                             ;A2A0A3;
+    LDA.W #Function_Cacatac_MovingLeft : STA.W Cacatac.function,X
+    LDA.W Cacatac.direction,X : BEQ .return
+    LDA.W #Function_Cacatac_MovingRight : STA.W Cacatac.function,X
 
   .return:
-    RTL                                                                  ;A2A0A6;
+    RTL
 
 
 ;;; $A0A7: Instruction - spawn cacatac spike enemy projectile with parameter [[Y]] ;;;
 Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY:
-    PHY                                                                  ;A2A0A7;
-    LDA.W $0000,Y                                                        ;A2A0A8;
-    LDX.W EnemyIndex                                                     ;A2A0AB;
-    LDY.W #EnemyProjectile_Cacatac                                       ;A2A0AE;
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A2A0B1;
-    PLY                                                                  ;A2A0B5;
-    INY                                                                  ;A2A0B6;
-    INY                                                                  ;A2A0B7;
-    RTL                                                                  ;A2A0B8;
+    PHY
+    LDA.W $0000,Y
+    LDX.W EnemyIndex
+    LDY.W #EnemyProjectile_Cacatac
+    JSL SpawnEnemyProjectileY_ParameterA_XGraphics
+    PLY
+    INY #2
+    RTL
 
 
 ;;; $A0B9: RTL ;;;
 RTL_A2A0B9:
-    RTL                                                                  ;A2A0B9;
+    RTL
 
 
 ;;; $A0BA: RTL ;;;
 RTL_A2A0BA:
-    RTL                                                                  ;A2A0BA;
+    RTL
 
 
 ;;; $A0BB: Spritemaps - cacatac ;;;
 Spritemap_Cacatac_0:
-    dw $0006                                                             ;A2A0BB;
+    dw $0006
     %spritemapEntry(0, $00, $04, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $04, 0, 1, 2, 0, $10B)
     %spritemapEntry(0, $1F8, $04, 0, 0, 2, 0, $10C)
@@ -3852,7 +3180,7 @@ Spritemap_Cacatac_0:
     %spritemapEntry(1, $43F8, $F7, 0, 0, 2, 0, $100)
 
 Spritemap_Cacatac_1:
-    dw $0006                                                             ;A2A0DB;
+    dw $0006
     %spritemapEntry(0, $1F8, $04, 0, 0, 2, 0, $10C)
     %spritemapEntry(0, $1F4, $05, 0, 0, 2, 0, $10C)
     %spritemapEntry(0, $00, $04, 0, 1, 2, 0, $10C)
@@ -3861,7 +3189,7 @@ Spritemap_Cacatac_1:
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Cacatac_2:
-    dw $0006                                                             ;A2A0FB;
+    dw $0006
     %spritemapEntry(0, $1FA, $05, 0, 0, 2, 0, $10D)
     %spritemapEntry(0, $1F4, $04, 0, 0, 2, 0, $10C)
     %spritemapEntry(0, $00, $04, 0, 1, 2, 0, $10C)
@@ -3870,7 +3198,7 @@ Spritemap_Cacatac_2:
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Cacatac_3:
-    dw $0006                                                             ;A2A11B;
+    dw $0006
     %spritemapEntry(0, $00, $05, 0, 1, 2, 0, $10B)
     %spritemapEntry(0, $1FA, $04, 0, 0, 2, 0, $10D)
     %spritemapEntry(0, $1F4, $04, 0, 0, 2, 0, $10C)
@@ -3879,7 +3207,7 @@ Spritemap_Cacatac_3:
     %spritemapEntry(1, $43F8, $F9, 0, 0, 2, 0, $100)
 
 Spritemap_Cacatac_4:
-    dw $0006                                                             ;A2A13B;
+    dw $0006
     %spritemapEntry(0, $00, $04, 0, 1, 2, 0, $10B)
     %spritemapEntry(0, $04, $05, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $1FA, $04, 0, 0, 2, 0, $10D)
@@ -3888,7 +3216,7 @@ Spritemap_Cacatac_4:
     %spritemapEntry(1, $43F8, $F9, 0, 0, 2, 0, $100)
 
 Spritemap_Cacatac_5:
-    dw $0006                                                             ;A2A15B;
+    dw $0006
     %spritemapEntry(0, $00, $05, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $04, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $1FA, $04, 0, 0, 2, 0, $10D)
@@ -3897,7 +3225,7 @@ Spritemap_Cacatac_5:
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Cacatac_6:
-    dw $0006                                                             ;A2A17B;
+    dw $0006
     %spritemapEntry(0, $00, $04, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $04, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $1F8, $05, 0, 0, 2, 0, $10C)
@@ -3906,7 +3234,7 @@ Spritemap_Cacatac_6:
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Cacatac_7:
-    dw $0006                                                             ;A2A19B;
+    dw $0006
     %spritemapEntry(0, $00, $04, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $04, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $1F8, $04, 0, 0, 2, 0, $10C)
@@ -3915,7 +3243,7 @@ Spritemap_Cacatac_7:
     %spritemapEntry(1, $43F8, $F7, 0, 0, 2, 0, $100)
 
 Spritemap_Cacatac_8:
-    dw $000A                                                             ;A2A1BB;
+    dw $000A
     %spritemapEntry(0, $1FC, $ED, 0, 0, 2, 0, $11C)
     %spritemapEntry(0, $00, $04, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $04, 0, 1, 2, 0, $10B)
@@ -3928,7 +3256,7 @@ Spritemap_Cacatac_8:
     %spritemapEntry(1, $43F4, $F2, 0, 0, 2, 0, $102)
 
 Spritemap_Cacatac_9:
-    dw $000A                                                             ;A2A1EF;
+    dw $000A
     %spritemapEntry(0, $1FC, $E9, 0, 0, 2, 0, $11C)
     %spritemapEntry(0, $00, $04, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $04, 0, 1, 2, 0, $10B)
@@ -3941,7 +3269,7 @@ Spritemap_Cacatac_9:
     %spritemapEntry(1, $43F4, $F0, 0, 0, 2, 0, $105)
 
 Spritemap_Cacatac_A:
-    dw $0006                                                             ;A2A223;
+    dw $0006
     %spritemapEntry(0, $00, $F4, 1, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $F4, 1, 1, 2, 0, $10B)
     %spritemapEntry(0, $1F8, $F4, 1, 0, 2, 0, $10C)
@@ -3950,7 +3278,7 @@ Spritemap_Cacatac_A:
     %spritemapEntry(1, $43F8, $F9, 1, 0, 2, 0, $100)
 
 Spritemap_Cacatac_B:
-    dw $0006                                                             ;A2A243;
+    dw $0006
     %spritemapEntry(0, $1F8, $F4, 1, 0, 2, 0, $10C)
     %spritemapEntry(0, $1F4, $F3, 1, 0, 2, 0, $10C)
     %spritemapEntry(0, $00, $F4, 1, 1, 2, 0, $10C)
@@ -3959,7 +3287,7 @@ Spritemap_Cacatac_B:
     %spritemapEntry(1, $43F8, $F8, 1, 0, 2, 0, $100)
 
 Spritemap_Cacatac_C:
-    dw $0006                                                             ;A2A263;
+    dw $0006
     %spritemapEntry(0, $1FA, $F3, 1, 0, 2, 0, $10D)
     %spritemapEntry(0, $1F4, $F4, 1, 0, 2, 0, $10C)
     %spritemapEntry(0, $00, $F4, 1, 1, 2, 0, $10C)
@@ -3968,7 +3296,7 @@ Spritemap_Cacatac_C:
     %spritemapEntry(1, $43F8, $F8, 1, 0, 2, 0, $100)
 
 Spritemap_Cacatac_D:
-    dw $0006                                                             ;A2A283;
+    dw $0006
     %spritemapEntry(0, $00, $F3, 1, 1, 2, 0, $10B)
     %spritemapEntry(0, $1FA, $F4, 1, 0, 2, 0, $10D)
     %spritemapEntry(0, $1F4, $F4, 1, 0, 2, 0, $10C)
@@ -3977,7 +3305,7 @@ Spritemap_Cacatac_D:
     %spritemapEntry(1, $43F8, $F7, 1, 0, 2, 0, $100)
 
 Spritemap_Cacatac_E:
-    dw $0006                                                             ;A2A2A3;
+    dw $0006
     %spritemapEntry(0, $00, $F4, 1, 1, 2, 0, $10B)
     %spritemapEntry(0, $04, $F3, 1, 1, 2, 0, $10C)
     %spritemapEntry(0, $1FA, $F4, 1, 0, 2, 0, $10D)
@@ -3986,7 +3314,7 @@ Spritemap_Cacatac_E:
     %spritemapEntry(1, $43F8, $F7, 1, 0, 2, 0, $100)
 
 Spritemap_Cacatac_F:
-    dw $0006                                                             ;A2A2C3;
+    dw $0006
     %spritemapEntry(0, $00, $F3, 1, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $F4, 1, 1, 2, 0, $10C)
     %spritemapEntry(0, $1FA, $F4, 1, 0, 2, 0, $10D)
@@ -3995,7 +3323,7 @@ Spritemap_Cacatac_F:
     %spritemapEntry(1, $43F8, $F8, 1, 0, 2, 0, $100)
 
 Spritemap_Cacatac_10:
-    dw $0006                                                             ;A2A2E3;
+    dw $0006
     %spritemapEntry(0, $00, $F4, 1, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $F4, 1, 1, 2, 0, $10C)
     %spritemapEntry(0, $1F8, $F3, 1, 0, 2, 0, $10C)
@@ -4004,7 +3332,7 @@ Spritemap_Cacatac_10:
     %spritemapEntry(1, $43F8, $F8, 1, 0, 2, 0, $100)
 
 Spritemap_Cacatac_11:
-    dw $0006                                                             ;A2A303;
+    dw $0006
     %spritemapEntry(0, $00, $F4, 1, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $F4, 1, 1, 2, 0, $10C)
     %spritemapEntry(0, $1F8, $F4, 1, 0, 2, 0, $10C)
@@ -4013,7 +3341,7 @@ Spritemap_Cacatac_11:
     %spritemapEntry(1, $43F8, $F9, 1, 0, 2, 0, $100)
 
 Spritemap_Cacatac_12:
-    dw $000A                                                             ;A2A323;
+    dw $000A
     %spritemapEntry(0, $1FC, $0B, 1, 0, 2, 0, $11C)
     %spritemapEntry(0, $00, $F4, 1, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $F4, 1, 1, 2, 0, $10B)
@@ -4026,7 +3354,7 @@ Spritemap_Cacatac_12:
     %spritemapEntry(1, $43F4, $FE, 1, 0, 2, 0, $102)
 
 Spritemap_Cacatac_13:
-    dw $000A                                                             ;A2A357;
+    dw $000A
     %spritemapEntry(0, $1FC, $0F, 1, 0, 2, 0, $11C)
     %spritemapEntry(0, $00, $F4, 1, 1, 2, 0, $10C)
     %spritemapEntry(0, $04, $F4, 1, 1, 2, 0, $10B)
@@ -4041,147 +3369,109 @@ Spritemap_Cacatac_13:
 
 ;;; $A38B: Palette - enemy $D03F (owtch) ;;;
 Palette_Owtch:
-    dw $3800,$4B9C,$2610,$0CC6,$0C63,$42F7,$2A52,$19AD                   ;A2A38B;
-    dw $0D29,$5E59,$3D72,$2CEE,$1447,$033B,$0216,$0113                   ;A2A39B;
+    dw $3800,$4B9C,$2610,$0CC6,$0C63,$42F7,$2A52,$19AD
+    dw $0D29,$5E59,$3D72,$2CEE,$1447,$033B,$0216,$0113
 
 
 ;;; $A3AB: Instruction list - moving left ;;;
 InstList_Owtch_MovingLeft_0:
-    dw Instruction_Owtch_0                                               ;A2A3AB;
+    dw Instruction_Owtch_0
 
 InstList_Owtch_MovingLeft_1:
-    dw $0008,Spritemap_Owtch_0                                           ;A2A3AD;
-    dw $0008,Spritemap_Owtch_1                                           ;A2A3B1;
-    dw $0008,Spritemap_Owtch_2                                           ;A2A3B5;
-    dw Instruction_Common_GotoY                                          ;A2A3B9;
-    dw InstList_Owtch_MovingLeft_1                                       ;A2A3BB;
+    dw $0008,Spritemap_Owtch_0
+    dw $0008,Spritemap_Owtch_1
+    dw $0008,Spritemap_Owtch_2
+    dw Instruction_Common_GotoY
+    dw InstList_Owtch_MovingLeft_1
 
 
 ;;; $A3BD: Instruction list - moving right ;;;
 InstList_Owtch_MovingRight_0:
-    dw Instruction_Owtch_1                                               ;A2A3BD;
+    dw Instruction_Owtch_1
 
 InstList_Owtch_MovingRight_1:
-    dw $0008,Spritemap_Owtch_2                                           ;A2A3BF;
-    dw $0008,Spritemap_Owtch_1                                           ;A2A3C3;
-    dw $0008,Spritemap_Owtch_0                                           ;A2A3C7;
-    dw Instruction_Common_GotoY                                          ;A2A3CB;
-    dw InstList_Owtch_MovingRight_1                                      ;A2A3CD;
+    dw $0008,Spritemap_Owtch_2
+    dw $0008,Spritemap_Owtch_1
+    dw $0008,Spritemap_Owtch_0
+    dw Instruction_Common_GotoY
+    dw InstList_Owtch_MovingRight_1
 
 
 ;;; $A3CF: Owtch data ;;;
 OwtchConstants:
   .initAIPointers:
 ; Initialisation AI pointers
-    dw SetOwtchInitialInstListPointer_MovingLeft                         ;A2A3CF;
-    dw SetOwtchInitialInstListPointer_MovingRight                        ;A2A3D1;
+    dw SetOwtchInitialInstListPointer_MovingLeft
+    dw SetOwtchInitialInstListPointer_MovingRight
 
   .functionPointers:
 ; Functions pointers
-    dw Function_Owtch_0_MovingLeft                                       ;A2A3D3;
-    dw Function_Owtch_1_MovingRight                                      ;A2A3D5;
-    dw Function_Owtch_2_Underground                                      ;A2A3D7;
-    dw Function_Owtch_3_Sinking                                          ;A2A3D9;
-    dw Function_Owtch_4_Rising                                           ;A2A3DB;
+    dw Function_Owtch_0_MovingLeft
+    dw Function_Owtch_1_MovingRight
+    dw Function_Owtch_2_Underground
+    dw Function_Owtch_3_Sinking
+    dw Function_Owtch_4_Rising
 
   .XDistanceRanges:
 ; X distance ranges
-    dw $0010,$0020,$0030,$0040,$0050,$0060,$0070,$0080                   ;A2A3DD;
+    dw $0010,$0020,$0030,$0040,$0050,$0060,$0070,$0080
 
   .undergroundTimers:
 ; Underground timers
-    dw $0020,$0040,$0060,$0080,$00A0,$00C0                               ;A2A3ED;
+    dw $0020,$0040,$0060,$0080,$00A0,$00C0
 
 
 ;;; $A3F9: Initialisation AI - enemy $D03F (owtch) ;;;
 InitAI_Owtch:
-    LDX.W EnemyIndex                                                     ;A2A3F9;
-    LDA.W #Spritemap_Common_Nothing                                      ;A2A3FC;
-    STA.W Enemy.spritemap,X                                              ;A2A3FF;
-    LDA.W Enemy.init0,X                                                  ;A2A402;
-    AND.W #$00FF                                                         ;A2A405;
-    STA.W Owtch.direction,X                                              ;A2A408;
-    AND.W #$0001                                                         ;A2A40B;
-    ASL                                                                  ;A2A40E;
-    TAX                                                                  ;A2A40F;
-    JSR.W (OwtchConstants_initAIPointers,X)                              ;A2A410;
-    LDX.W EnemyIndex                                                     ;A2A413;
-    LDA.W Enemy.init1,X                                                  ;A2A416;
-    AND.W #$00FF                                                         ;A2A419;
-    ASL                                                                  ;A2A41C;
-    ASL                                                                  ;A2A41D;
-    ASL                                                                  ;A2A41E;
-    TAY                                                                  ;A2A41F;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A2A420;
-    STA.W Owtch.rightVelocity,X                                          ;A2A423;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A2A426;
-    STA.W Owtch.rightSubVelocity,X                                       ;A2A429;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A2A42C;
-    STA.W Owtch.leftVelocity,X                                           ;A2A42F;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2A432;
-    STA.W Cacatac.leftSubVelocity,X                                      ;A2A435;
-    LDA.W Enemy.init1+1,X                                                ;A2A438;
-    AND.W #$00FF                                                         ;A2A43B;
-    ASL                                                                  ;A2A43E;
-    TAY                                                                  ;A2A43F;
-    LDA.W Enemy.XPosition,X                                              ;A2A440;
-    CLC                                                                  ;A2A443;
-    ADC.W OwtchConstants_XDistanceRanges,Y                               ;A2A444;
-    STA.L Owtch.maximumXPosition,X                                       ;A2A447;
-    LDA.W Enemy.XPosition,X                                              ;A2A44B;
-    SEC                                                                  ;A2A44E;
-    SBC.W OwtchConstants_XDistanceRanges,Y                               ;A2A44F;
-    STA.L Owtch.minimumXPosition,X                                       ;A2A452;
-    LDA.W Enemy.init0+1,X                                                ;A2A456;
-    AND.W #$00FF                                                         ;A2A459;
-    ASL                                                                  ;A2A45C;
-    TAY                                                                  ;A2A45D;
-    LDA.W OwtchConstants_undergroundTimers,Y                             ;A2A45E;
-    STA.L Owtch.undergroundTimer,X                                       ;A2A461;
-    STZ.W Owtch.sinkYOffset,X                                            ;A2A465;
-    LDA.W Owtch.direction,X                                              ;A2A468;
-    CMP.W #$0002                                                         ;A2A46B;
-    BNE .return                                                          ;A2A46E;
-    LDA.W #$0010                                                         ;A2A470;
-    STA.W Owtch.sinkYOffset,X                                            ;A2A473;
-    CLC                                                                  ;A2A476;
-    ADC.W Enemy.YPosition,X                                              ;A2A477;
-    STA.W Enemy.YPosition,X                                              ;A2A47A;
+    LDX.W EnemyIndex
+    LDA.W #Spritemap_Common_Nothing : STA.W Enemy.spritemap,X
+    LDA.W Enemy.init0,X : AND.W #$00FF : STA.W Owtch.direction,X
+    AND.W #$0001 : ASL : TAX
+    JSR.W (OwtchConstants_initAIPointers,X)
+    LDX.W EnemyIndex
+    LDA.W Enemy.init1,X : AND.W #$00FF : ASL #3 : TAY
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W Owtch.rightVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W Owtch.rightSubVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W Owtch.leftVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W Cacatac.leftSubVelocity,X
+    LDA.W Enemy.init1+1,X : AND.W #$00FF : ASL : TAY
+    LDA.W Enemy.XPosition,X : CLC : ADC.W OwtchConstants_XDistanceRanges,Y : STA.L Owtch.maximumXPosition,X
+    LDA.W Enemy.XPosition,X : SEC : SBC.W OwtchConstants_XDistanceRanges,Y : STA.L Owtch.minimumXPosition,X
+    LDA.W Enemy.init0+1,X : AND.W #$00FF : ASL : TAY
+    LDA.W OwtchConstants_undergroundTimers,Y : STA.L Owtch.undergroundTimer,X
+    STZ.W Owtch.sinkYOffset,X
+    LDA.W Owtch.direction,X : CMP.W #$0002 : BNE .return
+    LDA.W #$0010 : STA.W Owtch.sinkYOffset,X
+    CLC : ADC.W Enemy.YPosition,X : STA.W Enemy.YPosition,X
 
   .return:
-    RTL                                                                  ;A2A47D;
+    RTL
 
 
 ;;; $A47E: Main AI - enemy $D03F (owtch) ;;;
 MainAI_Owtch:
-    LDX.W EnemyIndex                                                     ;A2A47E;
-    LDA.W Owtch.direction,X                                              ;A2A481;
-    ASL                                                                  ;A2A484;
-    TAX                                                                  ;A2A485;
-    JSR.W (OwtchConstants_functionPointers,X)                            ;A2A486;
-    RTL                                                                  ;A2A489;
+    LDX.W EnemyIndex
+    LDA.W Owtch.direction,X : ASL : TAX
+    JSR.W (OwtchConstants_functionPointers,X)
+    RTL
 
 
 ;;; $A48A: Set owtch instruction list pointer - moving left ;;;
 SetOwtchInitialInstListPointer_MovingLeft:
-    LDX.W EnemyIndex                                                     ;A2A48A;
-    LDA.W #InstList_Owtch_MovingLeft_0                                   ;A2A48D;
-    STA.W Enemy.instList,X                                               ;A2A490;
-    LDA.W #$0001                                                         ;A2A493;
-    STA.W Enemy.instTimer,X                                              ;A2A496;
-    STZ.W Enemy.loopCounter,X                                            ;A2A499;
-    RTS                                                                  ;A2A49C;
+    LDX.W EnemyIndex
+    LDA.W #InstList_Owtch_MovingLeft_0 : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTS
 
 
 ;;; $A49D: Owtch function index -1 / set owtch instruction list pointer - moving right ;;;
 SetOwtchInitialInstListPointer_MovingRight:
-    LDX.W EnemyIndex                                                     ;A2A49D;
-    LDA.W #InstList_Owtch_MovingRight_0                                  ;A2A4A0;
-    STA.W Enemy.instList,X                                               ;A2A4A3;
-    LDA.W #$0001                                                         ;A2A4A6;
-    STA.W Enemy.instTimer,X                                              ;A2A4A9;
-    STZ.W Enemy.loopCounter,X                                            ;A2A4AC;
-    RTS                                                                  ;A2A4AF;
+    LDX.W EnemyIndex
+    LDA.W #InstList_Owtch_MovingRight_0 : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTS
 
 
 ;;; $A4B0: Owtch function index 0 - moving left ;;;
@@ -4189,426 +3479,312 @@ Function_Owtch_0_MovingLeft:
 ; The decrement at $A4D2 is almost certainly supposed to be an increment
 ; It just about works out though, with SetOwtchInitialInstListPointer_MovingRight being called as a result,
 ; and the instruction list that gets issued immediately sets the function index to 1 as it should be
-    LDX.W EnemyIndex                                                     ;A2A4B0;
-    LDA.W Enemy.XSubPosition,X                                           ;A2A4B3;
-    CLC                                                                  ;A2A4B6;
-    ADC.W Owtch.leftSubVelocity,X                                        ;A2A4B7;
-    BCC +                                                                ;A2A4BA;
-    INC.W Enemy.XPosition,X                                              ;A2A4BC;
+    LDX.W EnemyIndex
+    LDA.W Enemy.XSubPosition,X : CLC : ADC.W Owtch.leftSubVelocity,X : BCC +
+    INC.W Enemy.XPosition,X
 
-+   STA.W Enemy.XSubPosition,X                                           ;A2A4BF;
-    LDA.W Enemy.XPosition,X                                              ;A2A4C2;
-    CLC                                                                  ;A2A4C5;
-    ADC.W Owtch.leftVelocity,X                                           ;A2A4C6;
-    STA.W Enemy.XPosition,X                                              ;A2A4C9;
-    CMP.L Owtch.minimumXPosition,X                                       ;A2A4CC;
-    BPL +                                                                ;A2A4D0;
-    DEC.W Owtch.direction,X                                              ;A2A4D2;
++   STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X : CLC : ADC.W Owtch.leftVelocity,X : STA.W Enemy.XPosition,X
+    CMP.L Owtch.minimumXPosition,X : BPL +
+    DEC.W Owtch.direction,X
 
-+   JSR.W MaybeMakeOwtchSink                                             ;A2A4D5;
-    RTS                                                                  ;A2A4D8;
++   JSR MaybeMakeOwtchSink
+    RTS
 
 
 ;;; $A4D9: Owtch function index 1 - moving right ;;;
 Function_Owtch_1_MovingRight:
-    LDX.W EnemyIndex                                                     ;A2A4D9;
-    LDA.W Enemy.XSubPosition,X                                           ;A2A4DC;
-    CLC                                                                  ;A2A4DF;
-    ADC.W Owtch.rightSubVelocity,X                                       ;A2A4E0;
-    BCC +                                                                ;A2A4E3;
-    INC.W Enemy.XPosition,X                                              ;A2A4E5;
+    LDX.W EnemyIndex
+    LDA.W Enemy.XSubPosition,X : CLC : ADC.W Owtch.rightSubVelocity,X : BCC +
+    INC.W Enemy.XPosition,X
 
-+   STA.W Enemy.XSubPosition,X                                           ;A2A4E8;
-    LDA.W Enemy.XPosition,X                                              ;A2A4EB;
-    CLC                                                                  ;A2A4EE;
-    ADC.W Owtch.rightVelocity,X                                          ;A2A4EF;
-    STA.W Enemy.XPosition,X                                              ;A2A4F2;
-    CMP.L Owtch.maximumXPosition,X                                       ;A2A4F5;
-    BMI +                                                                ;A2A4F9;
-    STZ.W Owtch.direction,X                                              ;A2A4FB;
++   STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X : CLC : ADC.W Owtch.rightVelocity,X : STA.W Enemy.XPosition,X
+    CMP.L Owtch.maximumXPosition,X : BMI +
+    STZ.W Owtch.direction,X
 
-+   JSR.W MaybeMakeOwtchSink                                             ;A2A4FE;
-    RTS                                                                  ;A2A501;
++   JSR MaybeMakeOwtchSink
+    RTS
 
 
 ;;; $A502: Owtch function index 2 - underground ;;;
 Function_Owtch_2_Underground:
-    LDX.W EnemyIndex                                                     ;A2A502;
-    LDA.L Owtch.undergroundTimer,X                                       ;A2A505;
-    DEC                                                                  ;A2A509;
-    STA.L Owtch.undergroundTimer,X                                       ;A2A50A;
-    BNE .return                                                          ;A2A50E;
-    LDA.W #$0004                                                         ;A2A510;
-    STA.W Owtch.direction,X                                              ;A2A513;
+    LDX.W EnemyIndex
+    LDA.L Owtch.undergroundTimer,X : DEC : STA.L Owtch.undergroundTimer,X : BNE .return
+    LDA.W #$0004 : STA.W Owtch.direction,X
 
   .return:
-    RTS                                                                  ;A2A516;
+    RTS
 
 
 ;;; $A517: Owtch function index 3 - sinking ;;;
 Function_Owtch_3_Sinking:
-    LDX.W EnemyIndex                                                     ;A2A517;
-    INC.W Enemy.YPosition,X                                              ;A2A51A;
-    INC.W Owtch.sinkYOffset,X                                            ;A2A51D;
-    LDA.W Owtch.sinkYOffset,X                                            ;A2A520;
-    CMP.W #$0010                                                         ;A2A523;
-    BMI .return                                                          ;A2A526;
-    LDA.W #$0002                                                         ;A2A528;
-    STA.W Owtch.direction,X                                              ;A2A52B;
-    LDA.W Enemy.init0+1,X                                                ;A2A52E;
-    AND.W #$00FF                                                         ;A2A531;
-    ASL                                                                  ;A2A534;
-    TAY                                                                  ;A2A535;
-    LDA.W OwtchConstants_undergroundTimers,Y                             ;A2A536;
-    STA.L Owtch.undergroundTimer,X                                       ;A2A539;
+    LDX.W EnemyIndex
+    INC.W Enemy.YPosition,X
+    INC.W Owtch.sinkYOffset,X
+    LDA.W Owtch.sinkYOffset,X : CMP.W #$0010 : BMI .return
+    LDA.W #$0002 : STA.W Owtch.direction,X
+    LDA.W Enemy.init0+1,X : AND.W #$00FF : ASL : TAY
+    LDA.W OwtchConstants_undergroundTimers,Y : STA.L Owtch.undergroundTimer,X
 
   .return:
-    RTS                                                                  ;A2A53D;
+    RTS
 
 
 ;;; $A53E: Owtch function index 4 - rising ;;;
 Function_Owtch_4_Rising:
-    LDX.W EnemyIndex                                                     ;A2A53E;
-    DEC.W Enemy.YPosition,X                                              ;A2A541;
-    DEC.W Owtch.sinkYOffset,X                                            ;A2A544;
-    BNE .return                                                          ;A2A547;
-    LDA.W RandomNumberSeed+1                                             ;A2A549;
-    AND.W #$0001                                                         ;A2A54C;
-    STA.W Owtch.direction,X                                              ;A2A54F;
+    LDX.W EnemyIndex
+    DEC.W Enemy.YPosition,X
+    DEC.W Owtch.sinkYOffset,X : BNE .return
+    LDA.W RandomNumberSeed+1 : AND.W #$0001 : STA.W Owtch.direction,X
 
   .return:
-    RTS                                                                  ;A2A552;
+    RTS
 
 
 ;;; $A553: Maybe make owtch sink ;;;
 MaybeMakeOwtchSink:
-    JSL.L GenerateRandomNumber                                           ;A2A553;
-    LDA.W RandomNumberSeed                                               ;A2A557;
-    CLC                                                                  ;A2A55A;
-    ADC.W Enemy.frameCounter,X                                           ;A2A55B;
-    AND.W #$00FF                                                         ;A2A55E;
-    CMP.W #$0006                                                         ;A2A561;
-    BPL .return                                                          ;A2A564;
-    LDA.W #$0003                                                         ;A2A566;
-    STA.W Owtch.direction,X                                              ;A2A569;
+    JSL GenerateRandomNumber
+    LDA.W RandomNumberSeed : CLC : ADC.W Enemy.frameCounter,X
+    AND.W #$00FF : CMP.W #$0006 : BPL .return
+    LDA.W #$0003 : STA.W Owtch.direction,X
 
   .return:
-    RTS                                                                  ;A2A56C;
+    RTS
 
 
 ;;; $A56D: Instruction - enemy function index = 0 ;;;
 Instruction_Owtch_0:
-    STZ.W Owtch.direction,X                                              ;A2A56D;
-    RTL                                                                  ;A2A570;
+    STZ.W Owtch.direction,X
+    RTL
 
 
 ;;; $A571: Instruction - enemy function index = 1 ;;;
 Instruction_Owtch_1:
-    LDA.W #$0001                                                         ;A2A571;
-    STA.W Owtch.direction,X                                              ;A2A574;
-    RTL                                                                  ;A2A577;
+    LDA.W #$0001 : STA.W Owtch.direction,X
+    RTL
 
 
 ;;; $A578: RTL ;;;
 RTL_A2A578:
-    RTL                                                                  ;A2A578;
+    RTL
 
 
 ;;; $A579: Enemy shot - enemy $D03F (owtch) ;;;
 EnemyShot_Owtch:
-    LDX.W EnemyIndex                                                     ;A2A579;
-    LDA.W Owtch.direction,X                                              ;A2A57C;
-    CMP.W #$0001                                                         ;A2A57F;
-    BPL .return                                                          ;A2A582;
-    JSL.L CommonA2_NormalEnemyShotAI                                     ;A2A584;
+    LDX.W EnemyIndex
+    LDA.W Owtch.direction,X : CMP.W #$0001 : BPL .return
+    JSL CommonA2_NormalEnemyShotAI
 
   .return:
-    RTL                                                                  ;A2A588;
+    RTL
 
 
 ;;; $A589: Spritemaps - owtch ;;;
 Spritemap_Owtch_0:
-    dw $0001                                                             ;A2A589;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Owtch_1:
-    dw $0001                                                             ;A2A590;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $102)
 
 Spritemap_Owtch_2:
-    dw $0001                                                             ;A2A597;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $104)
 
 
 ;;; $A59E: Palette - enemy $D07F/$D0BF (gunship) ;;;
 Palette_Ship:
-    dw $3800,$0295,$0190,$0403,$0001,$0211,$014D,$00C9                   ;A2A59E;
-    dw $0024,$3BE0,$2680,$1580,$24C6,$1442,$0000,$0000                   ;A2A5AE;
+    dw $3800,$0295,$0190,$0403,$0001,$0211,$014D,$00C9
+    dw $0024,$3BE0,$2680,$1580,$24C6,$1442,$0000,$0000
 
 
 ;;; $A5BE: Instruction list - gunship entrance pad - opening ;;;
 InstList_ShipEntrancePad_Opening_0:
-    dw $0028,Spritemap_Ship_C                                            ;A2A5BE;
-    dw $0008,Spritemap_Ship_B                                            ;A2A5C2;
-    dw $0008,Spritemap_Ship_2                                            ;A2A5C6;
-    dw $0008,Spritemap_Ship_3                                            ;A2A5CA;
-    dw $0018,Spritemap_Ship_4                                            ;A2A5CE;
-    dw $0008,Spritemap_Ship_5                                            ;A2A5D2;
-    dw $0007,Spritemap_Ship_6                                            ;A2A5D6;
-    dw $0006,Spritemap_Ship_7                                            ;A2A5DA;
-    dw $0005,Spritemap_Ship_8                                            ;A2A5DE;
-    dw $0004,Spritemap_Ship_9                                            ;A2A5E2;
+    dw $0028,Spritemap_Ship_C
+    dw $0008,Spritemap_Ship_B
+    dw $0008,Spritemap_Ship_2
+    dw $0008,Spritemap_Ship_3
+    dw $0018,Spritemap_Ship_4
+    dw $0008,Spritemap_Ship_5
+    dw $0007,Spritemap_Ship_6
+    dw $0006,Spritemap_Ship_7
+    dw $0005,Spritemap_Ship_8
+    dw $0004,Spritemap_Ship_9
 
 InstList_ShipEntrancePad_Opening_1:
-    dw $0004,Spritemap_Ship_A                                            ;A2A5E6;
-    dw Instruction_Common_GotoY                                          ;A2A5EA;
-    dw InstList_ShipEntrancePad_Opening_1                                ;A2A5EC;
+    dw $0004,Spritemap_Ship_A
+    dw Instruction_Common_GotoY
+    dw InstList_ShipEntrancePad_Opening_1
 
 
 ;;; $A5EE: Instruction list - gunship entrance pad - closing ;;;
 InstList_ShipEntrancePad_Closing:
-    dw $0004,Spritemap_Ship_9                                            ;A2A5EE;
-    dw $0005,Spritemap_Ship_8                                            ;A2A5F2;
-    dw $0006,Spritemap_Ship_7                                            ;A2A5F6;
-    dw $0007,Spritemap_Ship_6                                            ;A2A5FA;
-    dw $0008,Spritemap_Ship_5                                            ;A2A5FE;
-    dw $0018,Spritemap_Ship_4                                            ;A2A602;
-    dw $0008,Spritemap_Ship_3                                            ;A2A606;
-    dw $0008,Spritemap_Ship_B                                            ;A2A60A;
+    dw $0004,Spritemap_Ship_9
+    dw $0005,Spritemap_Ship_8
+    dw $0006,Spritemap_Ship_7
+    dw $0007,Spritemap_Ship_6
+    dw $0008,Spritemap_Ship_5
+    dw $0018,Spritemap_Ship_4
+    dw $0008,Spritemap_Ship_3
+    dw $0008,Spritemap_Ship_B
 
 
 ;;; $A60E: Instruction list - gunship entrance pad - closed ;;;
 InstList_ShipEntrancePad_Closed:
-    dw $0008,Spritemap_Ship_C                                            ;A2A60E;
-    dw Instruction_Common_GotoY                                          ;A2A612;
-    dw InstList_ShipEntrancePad_Closed                                   ;A2A614;
+    dw $0008,Spritemap_Ship_C
+    dw Instruction_Common_GotoY
+    dw InstList_ShipEntrancePad_Closed
 
 
 ;;; $A616: Instruction list - gunship top ;;;
 InstList_ShipTop:
-    dw $0001,Spritemap_Ship_0                                            ;A2A616;
-    dw Instruction_Common_Sleep                                          ;A2A61A;
+    dw $0001,Spritemap_Ship_0
+    dw Instruction_Common_Sleep
 
 
 ;;; $A61C: Instruction list - gunship bottom ;;;
 InstList_ShipBottom:
-    dw $0001,Spritemap_Ship_1                                            ;A2A61C;
-    dw Instruction_Common_Sleep                                          ;A2A620;
+    dw $0001,Spritemap_Ship_1
+    dw Instruction_Common_Sleep
 
 
 ;;; $A622: Gunship brakes movement data ;;;
 ShipBrakesMovementData:
 ; Y velocities, indexed by enemy ShipTop.brakesTimer in Function_Ship_LandingOnZebes_ApplyBrakes
-    dw $0001,$0001,$0001,$0001,$0001,$0001                               ;A2A622;
-    dw $0000,$0000,$0000,$0000,$0000                                     ;A2A62E;
-    dw $FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF                               ;A2A638;
+    dw $0001,$0001,$0001,$0001,$0001,$0001
+    dw $0000,$0000,$0000,$0000,$0000
+    dw $FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF
 
 
 ;;; $A644: Initialisation AI - enemy $D07F (gunship top) ;;;
 InitAI_ShipTop:
-    LDX.W EnemyIndex                                                     ;A2A644;
-    LDA.W Enemy.properties,X                                             ;A2A647;
-    ORA.W #$2400                                                         ;A2A64A;
-    STA.W Enemy.properties,X                                             ;A2A64D;
-    LDA.W #$0001                                                         ;A2A650;
-    STA.W Enemy.instTimer,X                                              ;A2A653;
-    STZ.W Enemy.loopCounter,X                                            ;A2A656;
-    LDA.W #InstList_ShipTop                                              ;A2A659;
-    STA.W Enemy.instList,X                                               ;A2A65C;
-    LDA.W #$0E00                                                         ;A2A65F;
-    STA.W Enemy.palette,X                                                ;A2A662;
-    LDA.W GameState                                                      ;A2A665;
-    CMP.W #$0028                                                         ;A2A668;
-    BEQ .demoTransition                                                  ;A2A66B;
+    LDX.W EnemyIndex
+    LDA.W Enemy.properties,X : ORA.W #$2400 : STA.W Enemy.properties,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W #InstList_ShipTop : STA.W Enemy.instList,X
+    LDA.W #$0E00 : STA.W Enemy.palette,X
+    LDA.W GameState : CMP.W #$0028 : BEQ .demoTransition
 
   .landingOnZebes:
-    LDA.L SRAMMirror_LoadingGameState                                    ;A2A66D;
-    CMP.W #$0022                                                         ;A2A671;
-    BNE .notLandingOnZebes                                               ;A2A674;
-    LDA.W SamusYPosition                                                 ;A2A676;
-    SEC                                                                  ;A2A679;
-    SBC.W #$0011                                                         ;A2A67A;
-    STA.W Enemy.YPosition,X                                              ;A2A67D;
-    LDA.W #Function_Ship_LandingOnZebes_Descending                       ;A2A680;
-    STA.W ShipTop.function,X                                             ;A2A683;
-    BRA .merge                                                           ;A2A686;
+    LDA.L SRAMMirror_LoadingGameState : CMP.W #$0022 : BNE .notLandingOnZebes
+    LDA.W SamusYPosition : SEC : SBC.W #$0011 : STA.W Enemy.YPosition,X
+    LDA.W #Function_Ship_LandingOnZebes_Descending : STA.W ShipTop.function,X
+    BRA .merge
 
   .notLandingOnZebes:
-    LDA.W Enemy.YPosition,X                                              ;A2A688;
-    SEC                                                                  ;A2A68B;
-    SBC.W #$0019                                                         ;A2A68C;
-    STA.W Enemy.YPosition,X                                              ;A2A68F;
-    STA.W ShipTop.brakesTimer,X                                          ;A2A692;
-    LDA.W #Function_Ship_Idle_HandleLettingSamusEnter                    ;A2A695;
-    STA.W ShipTop.function,X                                             ;A2A698;
-    BRA .merge                                                           ;A2A69B;
+    LDA.W Enemy.YPosition,X : SEC : SBC.W #$0019 : STA.W Enemy.YPosition,X : STA.W ShipTop.brakesTimer,X
+    LDA.W #Function_Ship_Idle_HandleLettingSamusEnter : STA.W ShipTop.function,X
+    BRA .merge
 
   .demoTransition:
-    LDA.W DemoSet                                                        ;A2A69D;
-    BNE .landingOnZebes                                                  ;A2A6A0;
-    LDA.W #$0472                                                         ;A2A6A2;
-    STA.W SamusYPosition                                                 ;A2A6A5;
-    LDA.W Enemy.YPosition,X                                              ;A2A6A8;
-    SEC                                                                  ;A2A6AB;
-    SBC.W #$0019                                                         ;A2A6AC;
-    STA.W Enemy.YPosition,X                                              ;A2A6AF;
-    STA.W ShipTop.brakesTimer,X                                          ;A2A6B2;
-    LDA.W #Function_Ship_SamusExiting_WaitForEntrancePadToOpen           ;A2A6B5;
-    STA.W ShipTop.function,X                                             ;A2A6B8;
-    LDA.W #$0090                                                         ;A2A6BB;
-    STA.W ShipTop.functionTimer                                          ;A2A6BE;
+    LDA.W DemoSet : BNE .landingOnZebes
+    LDA.W #$0472 : STA.W SamusYPosition
+    LDA.W Enemy.YPosition,X : SEC : SBC.W #$0019 : STA.W Enemy.YPosition,X : STA.W ShipTop.brakesTimer,X
+    LDA.W #Function_Ship_SamusExiting_WaitForEntrancePadToOpen : STA.W ShipTop.function,X
+    LDA.W #$0090 : STA.W ShipTop.functionTimer
 
   .merge:
-    LDY.W #PaletteFXObjects_GunshipGlow                                  ;A2A6C1;
-    JSL.L Spawn_PaletteFXObject                                          ;A2A6C4;
-    LDA.W #$0001                                                         ;A2A6C8;
-    STA.W ShipTop.hoverTimer,X                                           ;A2A6CB;
-    STZ.W ShipTop.hoverIndex                                             ;A2A6CE;
-    RTL                                                                  ;A2A6D1;
+    LDY.W #PaletteFXObjects_GunshipGlow
+    JSL Spawn_PaletteFXObject
+    LDA.W #$0001 : STA.W ShipTop.hoverTimer,X
+    STZ.W ShipTop.hoverIndex
+    RTL
 
 
 ;;; $A6D2: Initialisation AI - enemy $D0BF (gunship bottom / entrance pad) ;;;
 InitAI_ShipBottomEntrance:
 ; Enemy parameter 2 = 0: gunship bottom
 ; Enemy parameter 2 != 0: gunship entrance pad
-    LDX.W EnemyIndex                                                     ;A2A6D2;
-    LDA.W Enemy.properties,X                                             ;A2A6D5;
-    ORA.W #$2400                                                         ;A2A6D8;
-    STA.W Enemy.properties,X                                             ;A2A6DB;
-    LDA.W #$0001                                                         ;A2A6DE;
-    STA.W Enemy.instTimer,X                                              ;A2A6E1;
-    STZ.W Enemy.loopCounter,X                                            ;A2A6E4;
-    LDA.W Enemy.init1,X                                                  ;A2A6E7;
-    BEQ .shipBottom                                                      ;A2A6EA;
-    LDA.W #InstList_ShipEntrancePad_Closed                               ;A2A6EC;
-    STA.W Enemy.instList,X                                               ;A2A6EF;
-    BRA +                                                                ;A2A6F2;
+    LDX.W EnemyIndex
+    LDA.W Enemy.properties,X : ORA.W #$2400 : STA.W Enemy.properties,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W Enemy.init1,X : BEQ .shipBottom
+    LDA.W #InstList_ShipEntrancePad_Closed : STA.W Enemy.instList,X
+    BRA +
 
   .shipBottom:
-    LDA.W #InstList_ShipBottom                                           ;A2A6F4;
-    STA.W Enemy.instList,X                                               ;A2A6F7;
+    LDA.W #InstList_ShipBottom : STA.W Enemy.instList,X
 
-+   LDA.W Enemy[-1].GFXOffset,X                                          ;A2A6FA;
-    STA.W Enemy.GFXOffset,X                                              ;A2A6FD;
-    LDA.W #$0E00                                                         ;A2A700;
-    STA.W Enemy.palette,X                                                ;A2A703;
-    LDA.W Enemy.init1,X                                                  ;A2A706;
-    BNE .entrancePad                                                     ;A2A709;
-    LDA.L SRAMMirror_LoadingGameState                                    ;A2A70B;
-    CMP.W #$0022                                                         ;A2A70F;
-    BNE .notLandingOnZebes                                               ;A2A712;
-    LDA.W SamusYPosition                                                 ;A2A714;
-    CLC                                                                  ;A2A717;
-    ADC.W #$0017                                                         ;A2A718;
-    STA.W Enemy.YPosition,X                                              ;A2A71B;
-    BRA .merge                                                           ;A2A71E;
++   LDA.W Enemy[-1].GFXOffset,X : STA.W Enemy.GFXOffset,X
+    LDA.W #$0E00 : STA.W Enemy.palette,X
+    LDA.W Enemy.init1,X : BNE .entrancePad
+    LDA.L SRAMMirror_LoadingGameState : CMP.W #$0022 : BNE .notLandingOnZebes
+    LDA.W SamusYPosition : CLC : ADC.W #$0017 : STA.W Enemy.YPosition,X
+    BRA .merge
 
   .notLandingOnZebes:
-    LDA.W Enemy.YPosition,X                                              ;A2A720;
-    CLC                                                                  ;A2A723;
-    ADC.W #$000F                                                         ;A2A724;
-    STA.W Enemy.YPosition,X                                              ;A2A727;
-    LDA.W #$0047                                                         ;A2A72A;
-    STA.W ShipBottomEntrance.hoverSFXTimer,X                             ;A2A72D;
-    BRA .merge                                                           ;A2A730;
+    LDA.W Enemy.YPosition,X : CLC : ADC.W #$000F : STA.W Enemy.YPosition,X
+    LDA.W #$0047 : STA.W ShipBottomEntrance.hoverSFXTimer,X
+    BRA .merge
 
   .entrancePad:
-    LDA.W Enemy[-2].YPosition,X                                          ;A2A732;
-    DEC                                                                  ;A2A735;
-    STA.W Enemy.YPosition,X                                              ;A2A736;
-    LDA.W GameState                                                      ;A2A739;
-    CMP.W #$0028                                                         ;A2A73C;
-    BNE .merge                                                           ;A2A73F;
-    LDA.W DemoSet                                                        ;A2A741;
-    BNE .merge                                                           ;A2A744;
-    LDA.W #$0001                                                         ;A2A746;
-    STA.W Enemy.instTimer,X                                              ;A2A749;
-    LDA.W #InstList_ShipEntrancePad_Opening_0                            ;A2A74C;
-    STA.W Enemy.instList,X                                               ;A2A74F;
+    LDA.W Enemy[-2].YPosition,X : DEC : STA.W Enemy.YPosition,X
+    LDA.W GameState : CMP.W #$0028 : BNE .merge
+    LDA.W DemoSet : BNE .merge
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #InstList_ShipEntrancePad_Opening_0 : STA.W Enemy.instList,X
 
   .merge:
-    LDA.W #RTL_A2A7D7                                                    ;A2A752;
-    STA.W ShipBottomEntrance.YVelocity,X                                 ;A2A755;
-    RTL                                                                  ;A2A758;
+    LDA.W #RTL_A2A7D7 : STA.W ShipBottomEntrance.YVelocity,X
+    RTL
 
 
 ;;; $A759: Main AI - enemy $D07F (gunship top) ;;;
 MainAI_ShipTop:
-    LDX.W EnemyIndex                                                     ;A2A759;
-    DEC.W Enemy[1].var3,X                                                ;A2A75C;
-    BEQ .SFX                                                             ;A2A75F;
-    BPL .noSFX                                                           ;A2A761;
+    LDX.W EnemyIndex
+    DEC.W Enemy[1].var3,X : BEQ .SFX
+    BPL .noSFX
 
   .SFX:
-    LDA.W #$004D                                                         ;A2A763;
-    JSL.L QueueSound_Lib2_Max6                                           ;A2A766;
-    LDA.W #$0046                                                         ;A2A76A;
-    STA.W Enemy[1].var3,X                                                ;A2A76D;
+    LDA.W #$004D
+    JSL QueueSound_Lib2_Max6
+    LDA.W #$0046 : STA.W Enemy[1].var3,X
 
   .noSFX:
-    LDA.W ShipTop.function,X                                             ;A2A770;
-    CMP.W #Function_Ship_LandingOnZebes_WaitForShipEntranceToOpen        ;A2A773;
-    BMI .function                                                        ;A2A776;
-    CMP.W #Function_Ship_Liftoff_FireUpEngines_SpawnDustClouds           ;A2A778;
-    BPL .function                                                        ;A2A77B;
-    JSR.W ProcessShipHover                                               ;A2A77D;
+    LDA.W ShipTop.function,X : CMP.W #Function_Ship_LandingOnZebes_WaitForShipEntranceToOpen : BMI .function
+    CMP.W #Function_Ship_Liftoff_FireUpEngines_SpawnDustClouds : BPL .function
+    JSR ProcessShipHover
 
   .function:
-    JMP.W (ShipTop.function,X)                                           ;A2A780;
+    JMP.W (ShipTop.function,X)
 
 
 ;;; $A783: RTL ;;;
 RTL_A2A783:
-    RTL                                                                  ;A2A783;
+    RTL
 
 
 ;;; $A784: Process gunship hover ;;;
 ProcessShipHover:
-    DEC.W ShipTop.hoverTimer,X                                           ;A2A784;
-    BEQ .timerExpired                                                    ;A2A787;
-    BPL .return                                                          ;A2A789;
+    DEC.W ShipTop.hoverTimer,X : BEQ .timerExpired
+    BPL .return
 
   .timerExpired:
-    LDA.W ShipTop.hoverIndex,X                                           ;A2A78B;
-    ASL                                                                  ;A2A78E;
-    TAY                                                                  ;A2A78F;
-    LDA.W .timer,Y                                                       ;A2A790;
-    AND.W #$00FF                                                         ;A2A793;
-    STA.W ShipTop.hoverTimer,X                                           ;A2A796;
-    LDA.W .YVelocity,Y                                                   ;A2A799;
-    AND.W #$00FF                                                         ;A2A79C;
-    BIT.W #$0080                                                         ;A2A79F;
-    BEQ +                                                                ;A2A7A2;
-    ORA.W #$FF00                                                         ;A2A7A4;
+    LDA.W ShipTop.hoverIndex,X : ASL : TAY
+    LDA.W .timer,Y : AND.W #$00FF : STA.W ShipTop.hoverTimer,X
+    LDA.W .YVelocity,Y : AND.W #$00FF : BIT.W #$0080 : BEQ +
+    ORA.W #$FF00
 
-+   STA.B DP_Temp12                                                      ;A2A7A7;
-    LDA.W Enemy.YPosition,X                                              ;A2A7A9;
-    CLC                                                                  ;A2A7AC;
-    ADC.B DP_Temp12                                                      ;A2A7AD;
-    STA.W Enemy.YPosition,X                                              ;A2A7AF;
-    LDA.W Enemy[1].YPosition,X                                           ;A2A7B2;
-    CLC                                                                  ;A2A7B5;
-    ADC.B DP_Temp12                                                      ;A2A7B6;
-    STA.W Enemy[1].YPosition,X                                           ;A2A7B8;
-    LDA.W Enemy[2].YPosition,X                                           ;A2A7BB;
-    CLC                                                                  ;A2A7BE;
-    ADC.B DP_Temp12                                                      ;A2A7BF;
-    STA.W Enemy[2].YPosition,X                                           ;A2A7C1;
-    LDA.W ShipTop.hoverIndex,X                                           ;A2A7C4;
-    INC                                                                  ;A2A7C7;
-    AND.W #$0003                                                         ;A2A7C8;
-    STA.W ShipTop.hoverIndex,X                                           ;A2A7CB;
++   STA.B DP_Temp12
+    LDA.W Enemy.YPosition,X : CLC : ADC.B DP_Temp12 : STA.W Enemy.YPosition,X
+    LDA.W Enemy[1].YPosition,X : CLC : ADC.B DP_Temp12 : STA.W Enemy[1].YPosition,X
+    LDA.W Enemy[2].YPosition,X : CLC : ADC.B DP_Temp12 : STA.W Enemy[2].YPosition,X
+    LDA.W ShipTop.hoverIndex,X : INC : AND.W #$0003 : STA.W ShipTop.hoverIndex,X
 
   .return:
-    RTS                                                                  ;A2A7CE;
+    RTS
 
 ;        ______ Timer
 ;       |    __ Y velocity
 ;       |   |
   .timer:
-    db $10                                                               ;A2A7CF;
+    db $10
   .YVelocity:
-    db     $01                                                           ;A2A7D0;
+    db     $01
     db $10,$FF
     db $10,$FF
     db $10,$01
@@ -4616,739 +3792,454 @@ ProcessShipHover:
 
 ;;; $A7D7: RTL ;;;
 RTL_A2A7D7:
-    RTL                                                                  ;A2A7D7;
+    RTL
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $A7D8: Unused. Gunship function - rise to Y position 80h and then descend ;;;
 UNUSED_Function_Ship_RiseToYPosition80_Descend:
 ; Probably a little debug function for testing the landing sequence
-    LDA.W SamusYPosition                                                 ;A2A7D8;
-    SEC                                                                  ;A2A7DB;
-    SBC.W #$0008                                                         ;A2A7DC;
-    STA.W SamusYPosition                                                 ;A2A7DF;
-    LDA.W Enemy[2].YPosition,X                                           ;A2A7E2;
-    SEC                                                                  ;A2A7E5;
-    SBC.W #$0008                                                         ;A2A7E6;
-    STA.W Enemy[2].YPosition,X                                           ;A2A7E9;
-    LDA.W Enemy[1].YPosition,X                                           ;A2A7EC;
-    SEC                                                                  ;A2A7EF;
-    SBC.W #$0008                                                         ;A2A7F0;
-    STA.W Enemy[1].YPosition,X                                           ;A2A7F3;
-    LDA.W Enemy.YPosition,X                                              ;A2A7F6;
-    SEC                                                                  ;A2A7F9;
-    SBC.W #$0008                                                         ;A2A7FA;
-    STA.W Enemy.YPosition,X                                              ;A2A7FD;
-    CMP.W #$0080                                                         ;A2A800;
-    BPL .return                                                          ;A2A803;
-    LDA.W #Function_Ship_LandingOnZebes_Descending                       ;A2A805;
-    STA.W ShipTop.function,X                                             ;A2A808;
+    LDA.W SamusYPosition : SEC : SBC.W #$0008 : STA.W SamusYPosition
+    LDA.W Enemy[2].YPosition,X : SEC : SBC.W #$0008 : STA.W Enemy[2].YPosition,X
+    LDA.W Enemy[1].YPosition,X : SEC : SBC.W #$0008 : STA.W Enemy[1].YPosition,X
+    LDA.W Enemy.YPosition,X : SEC : SBC.W #$0008 : STA.W Enemy.YPosition,X
+    CMP.W #$0080 : BPL .return
+    LDA.W #Function_Ship_LandingOnZebes_Descending : STA.W ShipTop.function,X
 
   .return:
-    RTL                                                                  ;A2A80B;
+    RTL
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $A80C: Gunship function - landing on Zebes - descending ;;;
 Function_Ship_LandingOnZebes_Descending:
-    LDA.W Enemy.YPosition,X                                              ;A2A80C;
-    CMP.W #$0300                                                         ;A2A80F;
-    BPL .slowDown                                                        ;A2A812;
-    LDA.W SamusYSubPosition                                              ;A2A814;
-    CLC                                                                  ;A2A817;
-    ADC.W #$8000                                                         ;A2A818;
-    STA.W SamusYSubPosition                                              ;A2A81B;
-    LDA.W SamusYPosition                                                 ;A2A81E;
-    ADC.W #$0004                                                         ;A2A821;
-    STA.W SamusYPosition                                                 ;A2A824;
-    LDA.W Enemy[2].YSubPosition,X                                        ;A2A827;
-    CLC                                                                  ;A2A82A;
-    ADC.W #$8000                                                         ;A2A82B;
-    STA.W Enemy[2].YSubPosition,X                                        ;A2A82E;
-    LDA.W Enemy[2].YPosition,X                                           ;A2A831;
-    ADC.W #$0004                                                         ;A2A834;
-    STA.W Enemy[2].YPosition,X                                           ;A2A837;
-    LDA.W Enemy[1].YSubPosition,X                                        ;A2A83A;
-    CLC                                                                  ;A2A83D;
-    ADC.W #$8000                                                         ;A2A83E;
-    STA.W Enemy[1].YSubPosition,X                                        ;A2A841;
-    LDA.W Enemy[1].YPosition,X                                           ;A2A844;
-    ADC.W #$0004                                                         ;A2A847;
-    STA.W Enemy[1].YPosition,X                                           ;A2A84A;
-    LDA.W Enemy.YSubPosition,X                                           ;A2A84D;
-    CLC                                                                  ;A2A850;
-    ADC.W #$8000                                                         ;A2A851;
-    STA.W Enemy.YSubPosition,X                                           ;A2A854;
-    LDA.W Enemy.YPosition,X                                              ;A2A857;
-    ADC.W #$0004                                                         ;A2A85A;
-    STA.W Enemy.YPosition,X                                              ;A2A85D;
-    RTL                                                                  ;A2A860;
+    LDA.W Enemy.YPosition,X : CMP.W #$0300 : BPL .slowDown
+    LDA.W SamusYSubPosition : CLC : ADC.W #$8000 : STA.W SamusYSubPosition
+    LDA.W SamusYPosition : ADC.W #$0004 : STA.W SamusYPosition
+    LDA.W Enemy[2].YSubPosition,X : CLC : ADC.W #$8000 : STA.W Enemy[2].YSubPosition,X
+    LDA.W Enemy[2].YPosition,X : ADC.W #$0004 : STA.W Enemy[2].YPosition,X
+    LDA.W Enemy[1].YSubPosition,X : CLC : ADC.W #$8000 : STA.W Enemy[1].YSubPosition,X
+    LDA.W Enemy[1].YPosition,X : ADC.W #$0004 : STA.W Enemy[1].YPosition,X
+    LDA.W Enemy.YSubPosition,X : CLC : ADC.W #$8000 : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : ADC.W #$0004 : STA.W Enemy.YPosition,X
+    RTL
 
   .slowDown:
-    LDA.W SamusYSubPosition                                              ;A2A861;
-    CLC                                                                  ;A2A864;
-    ADC.W #$8000                                                         ;A2A865;
-    STA.W SamusYSubPosition                                              ;A2A868;
-    LDA.W SamusYPosition                                                 ;A2A86B;
-    ADC.W #$0002                                                         ;A2A86E;
-    STA.W SamusYPosition                                                 ;A2A871;
-    LDA.W Enemy[2].YSubPosition,X                                        ;A2A874;
-    CLC                                                                  ;A2A877;
-    ADC.W #$8000                                                         ;A2A878;
-    STA.W Enemy[2].YSubPosition,X                                        ;A2A87B;
-    LDA.W Enemy[2].YPosition,X                                           ;A2A87E;
-    ADC.W #$0002                                                         ;A2A881;
-    STA.W Enemy[2].YPosition,X                                           ;A2A884;
-    LDA.W Enemy[1].YSubPosition,X                                        ;A2A887;
-    CLC                                                                  ;A2A88A;
-    ADC.W #$8000                                                         ;A2A88B;
-    STA.W Enemy[1].YSubPosition,X                                        ;A2A88E;
-    LDA.W Enemy[1].YPosition,X                                           ;A2A891;
-    ADC.W #$0002                                                         ;A2A894;
-    STA.W Enemy[1].YPosition,X                                           ;A2A897;
-    LDA.W Enemy.YSubPosition,X                                           ;A2A89A;
-    CLC                                                                  ;A2A89D;
-    ADC.W #$8000                                                         ;A2A89E;
-    STA.W Enemy.YSubPosition,X                                           ;A2A8A1;
-    LDA.W Enemy.YPosition,X                                              ;A2A8A4;
-    ADC.W #$0002                                                         ;A2A8A7;
-    STA.W Enemy.YPosition,X                                              ;A2A8AA;
-    CMP.W #$045F                                                         ;A2A8AD;
-    BMI .return                                                          ;A2A8B0;
-    LDA.W #$045F                                                         ;A2A8B2;
-    STA.W Enemy.YPosition,X                                              ;A2A8B5;
-    CLC                                                                  ;A2A8B8;
-    ADC.W #$0028                                                         ;A2A8B9;
-    STA.W Enemy[1].YPosition,X                                           ;A2A8BC;
-    LDA.W Enemy.YPosition,X                                              ;A2A8BF;
-    DEC                                                                  ;A2A8C2;
-    STA.W Enemy[2].YPosition,X                                           ;A2A8C3;
-    LDA.W #Function_Ship_LandingOnZebes_ApplyBrakes                      ;A2A8C6;
-    STA.W ShipTop.function,X                                             ;A2A8C9;
-    STZ.W ShipTop.brakesTimer,X                                          ;A2A8CC;
+    LDA.W SamusYSubPosition : CLC : ADC.W #$8000 : STA.W SamusYSubPosition
+    LDA.W SamusYPosition : ADC.W #$0002 : STA.W SamusYPosition
+    LDA.W Enemy[2].YSubPosition,X : CLC : ADC.W #$8000 : STA.W Enemy[2].YSubPosition,X
+    LDA.W Enemy[2].YPosition,X : ADC.W #$0002 : STA.W Enemy[2].YPosition,X
+    LDA.W Enemy[1].YSubPosition,X : CLC : ADC.W #$8000 : STA.W Enemy[1].YSubPosition,X
+    LDA.W Enemy[1].YPosition,X : ADC.W #$0002 : STA.W Enemy[1].YPosition,X
+    LDA.W Enemy.YSubPosition,X : CLC : ADC.W #$8000 : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : ADC.W #$0002 : STA.W Enemy.YPosition,X
+    CMP.W #$045F : BMI .return
+    LDA.W #$045F : STA.W Enemy.YPosition,X
+    CLC : ADC.W #$0028 : STA.W Enemy[1].YPosition,X
+    LDA.W Enemy.YPosition,X : DEC : STA.W Enemy[2].YPosition,X
+    LDA.W #Function_Ship_LandingOnZebes_ApplyBrakes : STA.W ShipTop.function,X
+    STZ.W ShipTop.brakesTimer,X
 
   .return:
-    RTL                                                                  ;A2A8CF;
+    RTL
 
 
 ;;; $A8D0: Gunship function - landing on Zebes - apply brakes ;;;
 Function_Ship_LandingOnZebes_ApplyBrakes:
 ; The increment at $A921 is kinda random,
 ; causes a slight visual discrepancy when entering the ship immediately after landing
-    LDA.W ShipTop.brakesTimer,X                                          ;A2A8D0;
-    ASL                                                                  ;A2A8D3;
-    TAY                                                                  ;A2A8D4;
-    LDA.W SamusYPosition                                                 ;A2A8D5;
-    CLC                                                                  ;A2A8D8;
-    ADC.W ShipBrakesMovementData,Y                                       ;A2A8D9;
-    STA.W SamusYPosition                                                 ;A2A8DC;
-    LDA.W Enemy[2].YPosition,X                                           ;A2A8DF;
-    CLC                                                                  ;A2A8E2;
-    ADC.W ShipBrakesMovementData,Y                                       ;A2A8E3;
-    STA.W Enemy[2].YPosition,X                                           ;A2A8E6;
-    LDA.W Enemy[1].YPosition,X                                           ;A2A8E9;
-    CLC                                                                  ;A2A8EC;
-    ADC.W ShipBrakesMovementData,Y                                       ;A2A8ED;
-    STA.W Enemy[1].YPosition,X                                           ;A2A8F0;
-    LDA.W Enemy.YPosition,X                                              ;A2A8F3;
-    CLC                                                                  ;A2A8F6;
-    ADC.W ShipBrakesMovementData,Y                                       ;A2A8F7;
-    STA.W Enemy.YPosition,X                                              ;A2A8FA;
-    LDA.W ShipTop.brakesTimer,X                                          ;A2A8FD;
-    INC                                                                  ;A2A900;
-    STA.W ShipTop.brakesTimer,X                                          ;A2A901;
-    CMP.W #$0011                                                         ;A2A904;
-    BMI .return                                                          ;A2A907;
-    LDA.W #Function_Ship_LandingOnZebes_WaitForShipEntranceToOpen        ;A2A909;
-    STA.W ShipTop.function,X                                             ;A2A90C;
-    LDA.W Enemy.YPosition,X                                              ;A2A90F;
-    STA.W ShipTop.brakesTimer,X                                          ;A2A912;
-    LDA.W #$0001                                                         ;A2A915;
-    STA.W ShipTop.hoverTimer,X                                           ;A2A918;
-    STZ.W ShipTop.hoverIndex                                             ;A2A91B;
-    LDA.W Enemy.XPosition,X                                              ;A2A91E;
-    INC                                                                  ;A2A921;
-    STA.W SamusXPosition                                                 ;A2A922;
-    STA.W SamusPreviousXPosition                                         ;A2A925;
-    LDA.W #$0001                                                         ;A2A928;
-    STA.W Enemy[2].instTimer,X                                           ;A2A92B;
-    LDA.W #InstList_ShipEntrancePad_Opening_0                            ;A2A92E;
-    STA.W Enemy[2].instList,X                                            ;A2A931;
-    LDA.W #$0090                                                         ;A2A934;
-    STA.W ShipTop.functionTimer                                          ;A2A937;
-    LDA.W #$0014                                                         ;A2A93A;
-    JSL.L QueueSound_Lib3_Max6                                           ;A2A93D;
+    LDA.W ShipTop.brakesTimer,X : ASL : TAY
+    LDA.W SamusYPosition : CLC : ADC.W ShipBrakesMovementData,Y : STA.W SamusYPosition
+    LDA.W Enemy[2].YPosition,X : CLC : ADC.W ShipBrakesMovementData,Y : STA.W Enemy[2].YPosition,X
+    LDA.W Enemy[1].YPosition,X : CLC : ADC.W ShipBrakesMovementData,Y : STA.W Enemy[1].YPosition,X
+    LDA.W Enemy.YPosition,X : CLC : ADC.W ShipBrakesMovementData,Y : STA.W Enemy.YPosition,X
+    LDA.W ShipTop.brakesTimer,X : INC : STA.W ShipTop.brakesTimer,X
+    CMP.W #$0011 : BMI .return
+    LDA.W #Function_Ship_LandingOnZebes_WaitForShipEntranceToOpen : STA.W ShipTop.function,X
+    LDA.W Enemy.YPosition,X : STA.W ShipTop.brakesTimer,X
+    LDA.W #$0001 : STA.W ShipTop.hoverTimer,X
+    STZ.W ShipTop.hoverIndex
+    LDA.W Enemy.XPosition,X : INC : STA.W SamusXPosition : STA.W SamusPreviousXPosition
+    LDA.W #$0001 : STA.W Enemy[2].instTimer,X
+    LDA.W #InstList_ShipEntrancePad_Opening_0 : STA.W Enemy[2].instList,X
+    LDA.W #$0090 : STA.W ShipTop.functionTimer
+    LDA.W #$0014
+    JSL QueueSound_Lib3_Max6
 
   .return:
-    RTL                                                                  ;A2A941;
+    RTL
 
 
 ;;; $A942: Gunship function - landing on Zebes - wait for gunship entrance to open ;;;
 Function_Ship_LandingOnZebes_WaitForShipEntranceToOpen:
-    DEC.W ShipTop.functionTimer                                          ;A2A942;
-    BEQ .timerExpired                                                    ;A2A945;
-    BPL .return                                                          ;A2A947;
+    DEC.W ShipTop.functionTimer : BEQ .timerExpired
+    BPL .return
 
   .timerExpired:
-    LDA.W #Function_Ship_LandingOnZebes_EjectSamus                       ;A2A949;
-    STA.W ShipTop.function,X                                             ;A2A94C;
+    LDA.W #Function_Ship_LandingOnZebes_EjectSamus : STA.W ShipTop.function,X
 
   .return:
-    RTL                                                                  ;A2A94F;
+    RTL
 
 
 ;;; $A950: Gunship function - landing on Zebes - eject Samus ;;;
 Function_Ship_LandingOnZebes_EjectSamus:
-    LDA.W ShipTop.fixedYPosition,X                                       ;A2A950;
-    SEC                                                                  ;A2A953;
-    SBC.W #$001E                                                         ;A2A954;
-    STA.B DP_Temp12                                                      ;A2A957;
-    LDA.W SamusYPosition                                                 ;A2A959;
-    SEC                                                                  ;A2A95C;
-    SBC.W #$0001                                                         ;A2A95D;
-    STA.W SamusYPosition                                                 ;A2A960;
-    CMP.B DP_Temp12                                                      ;A2A963;
-    BPL .return                                                          ;A2A965;
-    LDA.W #Function_Ship_LandOnZebes_WaitForShipEntranceToClose_UnlockSamus ;A2A967;
-    STA.W ShipTop.function,X                                             ;A2A96A;
-    LDA.W #$0001                                                         ;A2A96D;
-    STA.W Enemy[2].instTimer,X                                           ;A2A970;
-    LDA.W #InstList_ShipEntrancePad_Closing                              ;A2A973;
-    STA.W Enemy[2].instList,X                                            ;A2A976;
-    LDA.W #$0090                                                         ;A2A979;
-    STA.W ShipTop.functionTimer                                          ;A2A97C;
-    LDA.W #$0015                                                         ;A2A97F;
-    JSL.L QueueSound_Lib3_Max6                                           ;A2A982;
+    LDA.W ShipTop.fixedYPosition,X : SEC : SBC.W #$001E : STA.B DP_Temp12
+    LDA.W SamusYPosition : SEC : SBC.W #$0001 : STA.W SamusYPosition
+    CMP.B DP_Temp12 : BPL .return
+    LDA.W #Function_Ship_LandOnZebes_WaitForShipEntranceToClose_UnlockSamus : STA.W ShipTop.function,X
+    LDA.W #$0001 : STA.W Enemy[2].instTimer,X
+    LDA.W #InstList_ShipEntrancePad_Closing : STA.W Enemy[2].instList,X
+    LDA.W #$0090 : STA.W ShipTop.functionTimer
+    LDA.W #$0015
+    JSL QueueSound_Lib3_Max6
 
   .return:
-    RTL                                                                  ;A2A986;
+    RTL
 
 
 ;;; $A987: Gunship function - landing on Zebes - wait for gunship entrance to close, then unlock Samus and save ;;;
 Function_Ship_LandOnZebes_WaitForShipEntranceToClose_UnlockSamus:
-    DEC.W ShipTop.functionTimer                                          ;A2A987;
-    BEQ .timerExpired                                                    ;A2A98A;
-    BPL .return                                                          ;A2A98C;
+    DEC.W ShipTop.functionTimer : BEQ .timerExpired
+    BPL .return
 
   .timerExpired:
-    LDA.W #Function_Ship_Idle_HandleLettingSamusEnter                    ;A2A98E;
-    STA.W ShipTop.function,X                                             ;A2A991;
-    LDA.W #SamusCurrentStateHandler_Normal                               ;A2A994;
-    STA.W CurrentStateHandler                                            ;A2A997;
-    LDA.W #SamusNewStateHandler_Normal                                   ;A2A99A;
-    STA.W NewStateHandler                                                ;A2A99D;
-    LDA.W #$0005                                                         ;A2A9A0;
-    STA.L SRAMMirror_LoadingGameState                                    ;A2A9A3;
-    LDA.L SRAMMirror_UsedSaveStationsElevators                           ;A2A9A7;
-    ORA.W #$0001                                                         ;A2A9AB;
-    STA.L SRAMMirror_UsedSaveStationsElevators                           ;A2A9AE;
-    STZ.W LoadStationIndex                                               ;A2A9B2;
-    LDA.W SaveSlotSelected                                               ;A2A9B5;
-    JSL.L SaveToSRAM                                                     ;A2A9B8;
+    LDA.W #Function_Ship_Idle_HandleLettingSamusEnter : STA.W ShipTop.function,X
+    LDA.W #SamusCurrentStateHandler_Normal : STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal : STA.W NewStateHandler
+    LDA.W #$0005 : STA.L SRAMMirror_LoadingGameState
+    LDA.L SRAMMirror_UsedSaveStationsElevators : ORA.W #$0001 : STA.L SRAMMirror_UsedSaveStationsElevators
+    STZ.W LoadStationIndex
+    LDA.W SaveSlotSelected
+    JSL SaveToSRAM
 
   .return:
-    RTL                                                                  ;A2A9BC;
+    RTL
 
 
 ;;; $A9BD: Gunship function - idle - handle letting Samus enter ;;;
 Function_Ship_Idle_HandleLettingSamusEnter:
-    LDA.W GameState                                                      ;A2A9BD;
-    CMP.W #$0008                                                         ;A2A9C0;
-    BNE .return                                                          ;A2A9C3;
-    LDA.W CurrentStateHandler                                            ;A2A9C5;
-    CMP.W #SamusCurrentStateHandler_Normal                               ;A2A9C8;
-    BNE .return                                                          ;A2A9CB;
-    LDA.W Enemy.XPosition,X                                              ;A2A9CD;
-    SEC                                                                  ;A2A9D0;
-    SBC.W #$0008                                                         ;A2A9D1;
-    CMP.W SamusXPosition                                                 ;A2A9D4;
-    BPL .return                                                          ;A2A9D7;
-    LDA.W Enemy.XPosition,X                                              ;A2A9D9;
-    CLC                                                                  ;A2A9DC;
-    ADC.W #$0008                                                         ;A2A9DD;
-    CMP.W SamusXPosition                                                 ;A2A9E0;
-    BMI .return                                                          ;A2A9E3;
-    LDA.W Enemy.YPosition,X                                              ;A2A9E5;
-    SEC                                                                  ;A2A9E8;
-    SBC.W #$0040                                                         ;A2A9E9;
-    CMP.W SamusYPosition                                                 ;A2A9EC;
-    BPL .return                                                          ;A2A9EF;
-    LDA.W Enemy.YPosition,X                                              ;A2A9F1;
-    CMP.W SamusYPosition                                                 ;A2A9F4;
-    BMI .return                                                          ;A2A9F7;
-    LDA.W MovementType                                                   ;A2A9F9;
-    AND.W #$00FF                                                         ;A2A9FC;
-    BNE .return                                                          ;A2A9FF;
-    LDA.B DP_Controller1New                                              ;A2AA01;
-    BIT.W #$0400                                                         ;A2AA03;
-    BNE .enterShip                                                       ;A2AA06;
+    LDA.W GameState : CMP.W #$0008 : BNE .return
+    LDA.W CurrentStateHandler : CMP.W #SamusCurrentStateHandler_Normal : BNE .return
+    LDA.W Enemy.XPosition,X : SEC : SBC.W #$0008 : CMP.W SamusXPosition : BPL .return
+    LDA.W Enemy.XPosition,X : CLC : ADC.W #$0008 : CMP.W SamusXPosition : BMI .return
+    LDA.W Enemy.YPosition,X : SEC : SBC.W #$0040 : CMP.W SamusYPosition : BPL .return
+    LDA.W Enemy.YPosition,X : CMP.W SamusYPosition : BMI .return
+    LDA.W MovementType : AND.W #$00FF : BNE .return
+    LDA.B DP_Controller1New : BIT.W #$0400 : BNE .enterShip
 
   .return:
-    RTL                                                                  ;A2AA08;
+    RTL
 
   .enterShip:
-    LDA.W #Function_Ship_SamusEntering_WaitForEntrancePadToOpen          ;A2AA09;
-    STA.W ShipTop.function,X                                             ;A2AA0C;
-    LDA.W SamusXPosition                                                 ;A2AA0F;
-    CMP.W #$0480                                                         ;A2AA12;
-    BEQ .skipMovingSamus                                                 ;A2AA15;
-    LDA.W Enemy.XPosition,X                                              ;A2AA17;
-    STA.W SamusXPosition                                                 ;A2AA1A;
-    STA.W SamusPreviousXPosition                                         ;A2AA1D;
+    LDA.W #Function_Ship_SamusEntering_WaitForEntrancePadToOpen : STA.W ShipTop.function,X
+    LDA.W SamusXPosition : CMP.W #$0480 : BEQ .skipMovingSamus
+    LDA.W Enemy.XPosition,X : STA.W SamusXPosition : STA.W SamusPreviousXPosition
 
   .skipMovingSamus:
-    JSL.L MakeSamusFaceForward                                           ;A2AA20;
-    LDA.W #$001A                                                         ;A2AA24;
-    JSL.L Run_Samus_Command                                              ;A2AA27;
-    STZ.W ElevatorStatus                                                 ;A2AA2B;
-    LDA.W Enemy.YPosition,X                                              ;A2AA2E;
-    DEC                                                                  ;A2AA31;
-    STA.W Enemy[2].YPosition,X                                           ;A2AA32;
-    LDA.W #$0001                                                         ;A2AA35;
-    STA.W Enemy[2].instTimer,X                                           ;A2AA38;
-    LDA.W #InstList_ShipEntrancePad_Opening_0                            ;A2AA3B;
-    STA.W Enemy[2].instList,X                                            ;A2AA3E;
-    LDA.W #$0090                                                         ;A2AA41;
-    STA.W ShipTop.functionTimer                                          ;A2AA44;
-    LDA.W #$0014                                                         ;A2AA47;
-    JSL.L QueueSound_Lib3_Max6                                           ;A2AA4A;
-    RTL                                                                  ;A2AA4E;
+    JSL MakeSamusFaceForward
+    LDA.W #$001A
+    JSL Run_Samus_Command
+    STZ.W ElevatorStatus
+    LDA.W Enemy.YPosition,X : DEC : STA.W Enemy[2].YPosition,X
+    LDA.W #$0001 : STA.W Enemy[2].instTimer,X
+    LDA.W #InstList_ShipEntrancePad_Opening_0 : STA.W Enemy[2].instList,X
+    LDA.W #$0090 : STA.W ShipTop.functionTimer
+    LDA.W #$0014
+    JSL QueueSound_Lib3_Max6
+    RTL
 
 
 ;;; $AA4F: Gunship function - Samus entering - wait for entrance pad to open ;;;
 Function_Ship_SamusEntering_WaitForEntrancePadToOpen:
-    DEC.W ShipTop.functionTimer                                          ;A2AA4F;
-    BEQ .timerExpired                                                    ;A2AA52;
-    BPL .return                                                          ;A2AA54;
+    DEC.W ShipTop.functionTimer : BEQ .timerExpired
+    BPL .return
 
   .timerExpired:
-    LDA.W #Function_Ship_SamusEntering_LowerSamus                        ;A2AA56;
-    STA.W ShipTop.function,X                                             ;A2AA59;
+    LDA.W #Function_Ship_SamusEntering_LowerSamus : STA.W ShipTop.function,X
 
   .return:
-    RTL                                                                  ;A2AA5C;
+    RTL
 
 
 ;;; $AA5D: Gunship function - Samus entering - lower Samus ;;;
 Function_Ship_SamusEntering_LowerSamus:
-    LDA.W ShipTop.fixedYPosition,X                                       ;A2AA5D;
-    CLC                                                                  ;A2AA60;
-    ADC.W #$0012                                                         ;A2AA61;
-    STA.B DP_Temp12                                                      ;A2AA64;
-    LDA.W SamusYPosition                                                 ;A2AA66;
-    CLC                                                                  ;A2AA69;
-    ADC.W #$0002                                                         ;A2AA6A;
-    STA.W SamusYPosition                                                 ;A2AA6D;
-    CMP.B DP_Temp12                                                      ;A2AA70;
-    BMI .return                                                          ;A2AA72;
-    LDA.W #Function_Ship_SamusEntering_WaitForEntrancePadToClose         ;A2AA74;
-    STA.W ShipTop.function,X                                             ;A2AA77;
-    LDA.W #$0001                                                         ;A2AA7A;
-    STA.W Enemy[2].instTimer,X                                           ;A2AA7D;
-    LDA.W #InstList_ShipEntrancePad_Closing                              ;A2AA80;
-    STA.W Enemy[2].instList,X                                            ;A2AA83;
-    LDA.W #$0090                                                         ;A2AA86;
-    STA.W ShipTop.functionTimer                                          ;A2AA89;
-    LDA.W #$0015                                                         ;A2AA8C;
-    JSL.L QueueSound_Lib3_Max6                                           ;A2AA8F;
+    LDA.W ShipTop.fixedYPosition,X : CLC
+    ADC.W #$0012 : STA.B DP_Temp12
+    LDA.W SamusYPosition : CLC : ADC.W #$0002 : STA.W SamusYPosition
+    CMP.B DP_Temp12 : BMI .return
+    LDA.W #Function_Ship_SamusEntering_WaitForEntrancePadToClose : STA.W ShipTop.function,X
+    LDA.W #$0001 : STA.W Enemy[2].instTimer,X
+    LDA.W #InstList_ShipEntrancePad_Closing : STA.W Enemy[2].instList,X
+    LDA.W #$0090 : STA.W ShipTop.functionTimer
+    LDA.W #$0015
+    JSL QueueSound_Lib3_Max6
 
   .return:
-    RTL                                                                  ;A2AA93;
+    RTL
 
 
 ;;; $AA94: Gunship function - Samus entering - wait for entrance pad to close ;;;
 Function_Ship_SamusEntering_WaitForEntrancePadToClose:
-    DEC.W ShipTop.functionTimer                                          ;A2AA94;
-    BEQ .timerExpired                                                    ;A2AA97;
-    BPL .return                                                          ;A2AA99;
+    DEC.W ShipTop.functionTimer : BEQ .timerExpired
+    BPL .return
 
   .timerExpired:
-    LDA.W #Function_Ship_SamusEntered_LiftoffOrRestoreSamusEnergyAmmo    ;A2AA9B;
-    STA.W ShipTop.function,X                                             ;A2AA9E;
+    LDA.W #Function_Ship_SamusEntered_LiftoffOrRestoreSamusEnergyAmmo : STA.W ShipTop.function,X
 
   .return:
-    RTL                                                                  ;A2AAA1;
+    RTL
 
 
 ;;; $AAA2: Gunship function - Samus entered - go to liftoff or restore Samus health / ammo ;;;
 Function_Ship_SamusEntered_LiftoffOrRestoreSamusEnergyAmmo:
 ; The unconditional branch at $AAEF was most likely added to disable the liftoff debug feature
 ; (although debug mode has to be enabled to allow controller 2 input)
-    LDA.W #$000E                                                         ;A2AAA2;
-    JSL.L CheckIfEvent_inA_HasHappened                                   ;A2AAA5;
-    BCS .liftoff                                                         ;A2AAA9;
-    LDA.W #$0002                                                         ;A2AAAB;
-    JSL.L Restore_A_Energy_ToSamus                                       ;A2AAAE;
-    LDA.W #$0002                                                         ;A2AAB2;
-    JSL.L Restore_A_Missiles_ToSamus                                     ;A2AAB5;
-    LDA.W #$0002                                                         ;A2AAB9;
-    JSL.L Restore_A_SuperMissiles_ToSamus                                ;A2AABC;
-    LDA.W #$0002                                                         ;A2AAC0;
-    JSL.L Restore_A_PowerBombs_ToSamus                                   ;A2AAC3;
-    LDA.W ReserveEnergy                                                  ;A2AAC7;
-    CMP.W MaxReserveEnergy                                               ;A2AACA;
-    BMI .return                                                          ;A2AACD;
-    LDA.W Energy                                                         ;A2AACF;
-    CMP.W MaxEnergy                                                      ;A2AAD2;
-    BMI .return                                                          ;A2AAD5;
-    LDA.W Missiles                                                       ;A2AAD7;
-    CMP.W MaxMissiles                                                    ;A2AADA;
-    BMI .return                                                          ;A2AADD;
-    LDA.W SuperMissiles                                                  ;A2AADF;
-    CMP.W MaxSuperMissiles                                               ;A2AAE2;
-    BMI .return                                                          ;A2AAE5;
-    LDA.W PowerBombs                                                     ;A2AAE7;
-    CMP.W MaxPowerBombs                                                  ;A2AAEA;
-    BMI .return                                                          ;A2AAED;
-    BRA .continue                                                        ;A2AAEF;
+    LDA.W #$000E
+    JSL CheckIfEvent_inA_HasHappened
+    BCS .liftoff
+    LDA.W #$0002
+    JSL Restore_A_Energy_ToSamus
+    LDA.W #$0002
+    JSL Restore_A_Missiles_ToSamus
+    LDA.W #$0002
+    JSL Restore_A_SuperMissiles_ToSamus
+    LDA.W #$0002
+    JSL Restore_A_PowerBombs_ToSamus
+    LDA.W ReserveEnergy : CMP.W MaxReserveEnergy : BMI .return
+    LDA.W Energy : CMP.W MaxEnergy : BMI .return
+    LDA.W Missiles : CMP.W MaxMissiles : BMI .return
+    LDA.W SuperMissiles : CMP.W MaxSuperMissiles : BMI .return
+    LDA.W PowerBombs : CMP.W MaxPowerBombs : BMI .return
+    BRA .continue
 
-    LDA.B DP_Controller2Input                                            ;A2AAF1;
-    BIT.W #$8000                                                         ;A2AAF3;
-    BEQ .continue                                                        ;A2AAF6;
+    LDA.B DP_Controller2Input : BIT.W #$8000 : BEQ .continue
 
   .liftoff:
-    LDA.W #Function_Ship_Liftoff_LoadDustCloudTiles                      ;A2AAF8;
-    STA.W ShipTop.function,X                                             ;A2AAFB;
-    STZ.W Enemy[1].var5,X                                                ;A2AAFE;
-    STZ.W Enemy[1].var4,X                                                ;A2AB01;
-    STZ.W EndingClearTime_HoursTens                                      ;A2AB04;
-    STZ.W EndingClearTime_HoursUnits                                     ;A2AB07;
-    STZ.W EndingClearTime_MinutesTens                                    ;A2AB0A;
-    STZ.W EndingClearTime_MinutesUnits                                   ;A2AB0D;
-    LDA.W #$000A                                                         ;A2AB10;
-    JSL.L Run_Samus_Command                                              ;A2AB13;
-    RTL                                                                  ;A2AB17;
+    LDA.W #Function_Ship_Liftoff_LoadDustCloudTiles : STA.W ShipTop.function,X
+    STZ.W Enemy[1].var5,X : STZ.W Enemy[1].var4,X
+    STZ.W EndingClearTime_HoursTens : STZ.W EndingClearTime_HoursUnits
+    STZ.W EndingClearTime_MinutesTens : STZ.W EndingClearTime_MinutesUnits
+    LDA.W #$000A
+    JSL Run_Samus_Command
+    RTL
 
   .continue:
-    LDA.W #Function_Ship_SamusEntered_HandleSaveConfirmation             ;A2AB18;
-    STA.W ShipTop.function,X                                             ;A2AB1B;
+    LDA.W #Function_Ship_SamusEntered_HandleSaveConfirmation : STA.W ShipTop.function,X
 
   .return:
-    RTL                                                                  ;A2AB1E;
+    RTL
 
 
 ;;; $AB1F: Gunship function - Samus entered - handle save confirmation ;;;
 Function_Ship_SamusEntered_HandleSaveConfirmation:
-    LDA.W #$001C                                                         ;A2AB1F;
-    JSL.L MessageBox_Routine                                             ;A2AB22;
-    CMP.W #$0002                                                         ;A2AB26;
-    BEQ .selectedNo                                                      ;A2AB29;
-    LDA.L SRAMMirror_UsedSaveStationsElevators                           ;A2AB2B;
-    ORA.W #$0001                                                         ;A2AB2F;
-    STA.L SRAMMirror_UsedSaveStationsElevators                           ;A2AB32;
-    STZ.W LoadStationIndex                                               ;A2AB36;
-    LDA.W SaveSlotSelected                                               ;A2AB39;
-    JSL.L SaveToSRAM                                                     ;A2AB3C;
+    LDA.W #$001C
+    JSL MessageBox_Routine
+    CMP.W #$0002 : BEQ .selectedNo
+    LDA.L SRAMMirror_UsedSaveStationsElevators : ORA.W #$0001 : STA.L SRAMMirror_UsedSaveStationsElevators
+    STZ.W LoadStationIndex
+    LDA.W SaveSlotSelected
+    JSL SaveToSRAM
 
   .selectedNo:
-    LDA.W #Function_Ship_SamusExiting_WaitForEntrancePadToOpen           ;A2AB40;
-    STA.W ShipTop.function,X                                             ;A2AB43;
-    LDA.W #$0001                                                         ;A2AB46;
-    STA.W Enemy[2].instTimer,X                                           ;A2AB49;
-    LDA.W #InstList_ShipEntrancePad_Opening_0                            ;A2AB4C;
-    STA.W Enemy[2].instList,X                                            ;A2AB4F;
-    LDA.W #$0090                                                         ;A2AB52;
-    STA.W ShipTop.functionTimer                                          ;A2AB55;
-    LDA.W #$0014                                                         ;A2AB58;
-    JSL.L QueueSound_Lib3_Max6                                           ;A2AB5B;
-    RTL                                                                  ;A2AB5F;
+    LDA.W #Function_Ship_SamusExiting_WaitForEntrancePadToOpen : STA.W ShipTop.function,X
+    LDA.W #$0001 : STA.W Enemy[2].instTimer,X
+    LDA.W #InstList_ShipEntrancePad_Opening_0 : STA.W Enemy[2].instList,X
+    LDA.W #$0090 : STA.W ShipTop.functionTimer
+    LDA.W #$0014
+    JSL QueueSound_Lib3_Max6
+    RTL
 
 
 ;;; $AB60: Gunship function - Samus exiting - wait for entrance pad to open ;;;
 Function_Ship_SamusExiting_WaitForEntrancePadToOpen:
 ; Set by initialisation AI if demo set 0 is playing
-    DEC.W ShipTop.functionTimer                                          ;A2AB60;
-    BEQ .timerExpired                                                    ;A2AB63;
-    BPL .return                                                          ;A2AB65;
+    DEC.W ShipTop.functionTimer : BEQ .timerExpired
+    BPL .return
 
   .timerExpired:
-    LDA.W #Function_Ship_SamusExiting_RaiseSamus                         ;A2AB67;
-    STA.W ShipTop.function,X                                             ;A2AB6A;
+    LDA.W #Function_Ship_SamusExiting_RaiseSamus : STA.W ShipTop.function,X
 
   .return:
-    RTL                                                                  ;A2AB6D;
+    RTL
 
 
 ;;; $AB6E: Gunship function - Samus exiting - raise Samus ;;;
 Function_Ship_SamusExiting_RaiseSamus:
-    LDA.W ShipTop.fixedYPosition,X                                       ;A2AB6E;
-    SEC                                                                  ;A2AB71;
-    SBC.W #$001E                                                         ;A2AB72;
-    STA.B DP_Temp12                                                      ;A2AB75;
-    LDA.W SamusYPosition                                                 ;A2AB77;
-    SEC                                                                  ;A2AB7A;
-    SBC.W #$0002                                                         ;A2AB7B;
-    STA.W SamusYPosition                                                 ;A2AB7E;
-    CMP.B DP_Temp12                                                      ;A2AB81;
-    BPL .return                                                          ;A2AB83;
-    LDA.W #Function_Ship_SamusExiting_WaitForEntrancePadToClose          ;A2AB85;
-    STA.W ShipTop.function,X                                             ;A2AB88;
-    LDA.W #$0001                                                         ;A2AB8B;
-    STA.W Enemy[2].instTimer,X                                           ;A2AB8E;
-    LDA.W #InstList_ShipEntrancePad_Closing                              ;A2AB91;
-    STA.W Enemy[2].instList,X                                            ;A2AB94;
-    LDA.W #$0090                                                         ;A2AB97;
-    STA.W ShipTop.functionTimer                                          ;A2AB9A;
-    LDA.W #$0015                                                         ;A2AB9D;
-    JSL.L QueueSound_Lib3_Max6                                           ;A2ABA0;
+    LDA.W ShipTop.fixedYPosition,X : SEC : SBC.W #$001E : STA.B DP_Temp12
+    LDA.W SamusYPosition : SEC : SBC.W #$0002 : STA.W SamusYPosition
+    CMP.B DP_Temp12 : BPL .return
+    LDA.W #Function_Ship_SamusExiting_WaitForEntrancePadToClose : STA.W ShipTop.function,X
+    LDA.W #$0001 : STA.W Enemy[2].instTimer,X
+    LDA.W #InstList_ShipEntrancePad_Closing : STA.W Enemy[2].instList,X
+    LDA.W #$0090 : STA.W ShipTop.functionTimer
+    LDA.W #$0015
+    JSL QueueSound_Lib3_Max6
 
   .return:
-    RTL                                                                  ;A2ABA4;
+    RTL
 
 
 ;;; $ABA5: Gunship function - Samus exiting - wait for entrance pad to close, then unlock Samus ;;;
 Function_Ship_SamusExiting_WaitForEntrancePadToClose:
-    DEC.W ShipTop.functionTimer                                          ;A2ABA5;
-    BEQ .timerExpired                                                    ;A2ABA8;
-    BPL .return                                                          ;A2ABAA;
+    DEC.W ShipTop.functionTimer : BEQ .timerExpired
+    BPL .return
 
   .timerExpired:
-    LDA.W #Function_Ship_Idle_HandleLettingSamusEnter                    ;A2ABAC;
-    STA.W ShipTop.function,X                                             ;A2ABAF;
-    LDA.W GameState                                                      ;A2ABB2;
-    CMP.W #$0028                                                         ;A2ABB5;
-    BPL .return                                                          ;A2ABB8;
-    LDA.W #SamusCurrentStateHandler_Normal                               ;A2ABBA;
-    STA.W CurrentStateHandler                                            ;A2ABBD;
-    LDA.W #SamusNewStateHandler_Normal                                   ;A2ABC0;
-    STA.W NewStateHandler                                                ;A2ABC3;
+    LDA.W #Function_Ship_Idle_HandleLettingSamusEnter : STA.W ShipTop.function,X
+    LDA.W GameState : CMP.W #$0028 : BPL .return
+    LDA.W #SamusCurrentStateHandler_Normal : STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal : STA.W NewStateHandler
 
   .return:
-    RTL                                                                  ;A2ABC6;
+    RTL
 
 
 ;;; $ABC7: Gunship function - liftoff - load dust cloud tiles ;;;
 Function_Ship_Liftoff_LoadDustCloudTiles:
-    LDY.W EndingClearTime_HoursTens                                      ;A2ABC7;
-    PHX                                                                  ;A2ABCA;
-    LDX.W VRAMWriteStack                                                 ;A2ABCB;
-    LDA.W #$0400                                                         ;A2ABCE;
-    STA.B VRAMWrite.size,X                                               ;A2ABD1;
-    INX                                                                  ;A2ABD3;
-    INX                                                                  ;A2ABD4;
-    LDA.W .src,Y                                                         ;A2ABD5;
-    STA.B VRAMWrite.size,X                                               ;A2ABD8;
-    INX                                                                  ;A2ABDA;
-    INX                                                                  ;A2ABDB;
-    SEP #$20                                                             ;A2ABDC;
-    LDA.B #Tiles_GunshipLiftoffDustClouds>>16                            ;A2ABDE;
-    STA.B VRAMWrite.size,X                                               ;A2ABE0;
-    REP #$20                                                             ;A2ABE2;
-    INX                                                                  ;A2ABE4;
-    LDA.W .dest,Y                                                        ;A2ABE5;
-    STA.B VRAMWrite.size,X                                               ;A2ABE8;
-    INX                                                                  ;A2ABEA;
-    INX                                                                  ;A2ABEB;
-    STX.W VRAMWriteStack                                                 ;A2ABEC;
-    PLX                                                                  ;A2ABEF;
-    LDA.W EndingClearTime_HoursTens                                      ;A2ABF0;
-    INC                                                                  ;A2ABF3;
-    INC                                                                  ;A2ABF4;
-    STA.W EndingClearTime_HoursTens                                      ;A2ABF5;
-    CMP.W #$000A                                                         ;A2ABF8;
-    BMI .return                                                          ;A2ABFB;
-    LDA.W #Function_Ship_Liftoff_FireUpEngines_SpawnDustClouds           ;A2ABFD;
-    STA.W ShipTop.function,X                                             ;A2AC00;
-    STZ.W EndingClearTime_HoursTens                                      ;A2AC03;
+    LDY.W EndingClearTime_HoursTens
+    PHX
+    LDX.W VRAMWriteStack
+    LDA.W #$0400 : STA.B VRAMWrite.size,X
+    INX #2
+    LDA.W .src,Y : STA.B VRAMWrite.size,X
+    INX #2
+    SEP #$20
+    LDA.B #Tiles_GunshipLiftoffDustClouds>>16 : STA.B VRAMWrite.size,X
+    REP #$20
+    INX
+    LDA.W .dest,Y : STA.B VRAMWrite.size,X
+    INX #2 : STX.W VRAMWriteStack
+    PLX
+    LDA.W EndingClearTime_HoursTens : INC #2 : STA.W EndingClearTime_HoursTens
+    CMP.W #$000A : BMI .return
+    LDA.W #Function_Ship_Liftoff_FireUpEngines_SpawnDustClouds : STA.W ShipTop.function,X
+    STZ.W EndingClearTime_HoursTens
 
   .return:
-    RTL                                                                  ;A2AC06;
+    RTL
 
   .src:
 ; Source addresses (bank $94)
-    dw Tiles_GunshipLiftoffDustClouds                                    ;A2AC07;
-    dw Tiles_GunshipLiftoffDustClouds+$400                               ;A2AC09;
-    dw Tiles_GunshipLiftoffDustClouds+$800                               ;A2AC0B;
-    dw Tiles_GunshipLiftoffDustClouds+$C00                               ;A2AC0D;
-    dw Tiles_GunshipLiftoffDustClouds+$1000                              ;A2AC0F;
+    dw Tiles_GunshipLiftoffDustClouds
+    dw Tiles_GunshipLiftoffDustClouds+$400
+    dw Tiles_GunshipLiftoffDustClouds+$800
+    dw Tiles_GunshipLiftoffDustClouds+$C00
+    dw Tiles_GunshipLiftoffDustClouds+$1000
 
   .dest:
 ; Destination VRAM addresses
-    dw $7600,$7800,$7A00,$7C00,$7E00                                     ;A2AC11;
+    dw $7600,$7800,$7A00,$7C00,$7E00
 
 
 ;;; $AC1B: Gunship function - liftoff - fire up engines and spawn dust clouds ;;;
 Function_Ship_Liftoff_FireUpEngines_SpawnDustClouds:
-    LDA.W Enemy[1].var4,X                                                ;A2AC1B;
-    CMP.W #$0040                                                         ;A2AC1E;
-    BPL .rumbleIntensifies                                               ;A2AC21;
-    BIT.W #$0001                                                         ;A2AC23;
-    BEQ +                                                                ;A2AC26;
-    LDA.W SamusYPosition                                                 ;A2AC28;
-    CLC                                                                  ;A2AC2B;
-    ADC.W #$0001                                                         ;A2AC2C;
-    STA.W SamusYPosition                                                 ;A2AC2F;
-    STA.W SamusPreviousYPosition                                         ;A2AC32;
-    BRA .merge                                                           ;A2AC35;
+    LDA.W Enemy[1].var4,X : CMP.W #$0040 : BPL .rumbleIntensifies
+    BIT.W #$0001 : BEQ +
+    LDA.W SamusYPosition : CLC : ADC.W #$0001 : STA.W SamusYPosition : STA.W SamusPreviousYPosition
+    BRA .merge
 
-+   LDA.W SamusYPosition                                                 ;A2AC37;
-    SEC                                                                  ;A2AC3A;
-    SBC.W #$0001                                                         ;A2AC3B;
-    STA.W SamusYPosition                                                 ;A2AC3E;
-    STA.W SamusPreviousYPosition                                         ;A2AC41;
-    BRA .merge                                                           ;A2AC44;
++   LDA.W SamusYPosition : SEC : SBC.W #$0001 : STA.W SamusYPosition : STA.W SamusPreviousYPosition
+    BRA .merge
 
   .rumbleIntensifies:
-    BIT.W #$0001                                                         ;A2AC46;
-    BEQ +                                                                ;A2AC49;
-    LDA.W SamusYPosition                                                 ;A2AC4B;
-    CLC                                                                  ;A2AC4E;
-    ADC.W #$0002                                                         ;A2AC4F;
-    STA.W SamusYPosition                                                 ;A2AC52;
-    STA.W SamusPreviousYPosition                                         ;A2AC55;
-    BRA .merge                                                           ;A2AC58;
+    BIT.W #$0001 : BEQ +
+    LDA.W SamusYPosition : CLC : ADC.W #$0002 : STA.W SamusYPosition : STA.W SamusPreviousYPosition
+    BRA .merge
 
-+   LDA.W SamusYPosition                                                 ;A2AC5A;
-    SEC                                                                  ;A2AC5D;
-    SBC.W #$0002                                                         ;A2AC5E;
-    STA.W SamusYPosition                                                 ;A2AC61;
-    STA.W SamusPreviousYPosition                                         ;A2AC64;
++   LDA.W SamusYPosition : SEC : SBC.W #$0002 : STA.W SamusYPosition : STA.W SamusPreviousYPosition
 
   .merge:
-    LDA.W SamusYPosition                                                 ;A2AC67;
-    SEC                                                                  ;A2AC6A;
-    SBC.W #$0011                                                         ;A2AC6B;
-    STA.W Enemy.YPosition,X                                              ;A2AC6E;
-    DEC                                                                  ;A2AC71;
-    STA.W Enemy[2].YPosition,X                                           ;A2AC72;
-    LDA.W SamusYPosition                                                 ;A2AC75;
-    CLC                                                                  ;A2AC78;
-    ADC.W #$0017                                                         ;A2AC79;
-    STA.W Enemy[1].YPosition,X                                           ;A2AC7C;
-    LDA.W Enemy[1].var4,X                                                ;A2AC7F;
-    INC                                                                  ;A2AC82;
-    STA.W Enemy[1].var4,X                                                ;A2AC83;
-    CMP.W #$0080                                                         ;A2AC86;
-    BMI .spawnDustClouds                                                 ;A2AC89;
-    LDA.W #Function_Ship_Liftoff_SteadyRise                              ;A2AC8B;
-    STA.W ShipTop.function,X                                             ;A2AC8E;
-    STZ.W ShipTop.functionTimer                                          ;A2AC91;
-    RTL                                                                  ;A2AC94;
+    LDA.W SamusYPosition : SEC : SBC.W #$0011 : STA.W Enemy.YPosition,X
+    DEC : STA.W Enemy[2].YPosition,X
+    LDA.W SamusYPosition : CLC : ADC.W #$0017 : STA.W Enemy[1].YPosition,X
+    LDA.W Enemy[1].var4,X : INC : STA.W Enemy[1].var4,X
+    CMP.W #$0080 : BMI .spawnDustClouds
+    LDA.W #Function_Ship_Liftoff_SteadyRise : STA.W ShipTop.function,X
+    STZ.W ShipTop.functionTimer
+    RTL
 
   .spawnDustClouds:
-    CMP.W #$0040                                                         ;A2AC95;
-    BNE .return                                                          ;A2AC98;
-    LDA.W #$0000                                                         ;A2AC9A;
-    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds                      ;A2AC9D;
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A2ACA0;
-    LDA.W #$0002                                                         ;A2ACA4;
-    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds                      ;A2ACA7;
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A2ACAA;
-    LDA.W #$0004                                                         ;A2ACAE;
-    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds                      ;A2ACB1;
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A2ACB4;
-    LDA.W #$0006                                                         ;A2ACB8;
-    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds                      ;A2ACBB;
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A2ACBE;
-    LDA.W #$0008                                                         ;A2ACC2;
-    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds                      ;A2ACC5;
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A2ACC8;
-    LDA.W #$000A                                                         ;A2ACCC;
-    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds                      ;A2ACCF;
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A2ACD2;
+    CMP.W #$0040 : BNE .return
+    LDA.W #$0000
+    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds
+    JSL SpawnEnemyProjectileY_ParameterA_RoomGraphics
+    LDA.W #$0002
+    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds
+    JSL SpawnEnemyProjectileY_ParameterA_RoomGraphics
+    LDA.W #$0004
+    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds
+    JSL SpawnEnemyProjectileY_ParameterA_RoomGraphics
+    LDA.W #$0006
+    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds
+    JSL SpawnEnemyProjectileY_ParameterA_RoomGraphics
+    LDA.W #$0008
+    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds
+    JSL SpawnEnemyProjectileY_ParameterA_RoomGraphics
+    LDA.W #$000A
+    LDY.W #EnemyProjectile_GunShipLiftoffDustClouds
+    JSL SpawnEnemyProjectileY_ParameterA_RoomGraphics
 
   .return:
-    RTL                                                                  ;A2ACD6;
+    RTL
 
 
 ;;; $ACD7: Gunship function - liftoff - steady rise ;;;
 Function_Ship_Liftoff_SteadyRise:
-    LDA.W SamusYPosition                                                 ;A2ACD7;
-    SEC                                                                  ;A2ACDA;
-    SBC.W #$0002                                                         ;A2ACDB;
-    STA.W SamusYPosition                                                 ;A2ACDE;
-    LDA.W SamusYPosition                                                 ;A2ACE1;
-    SEC                                                                  ;A2ACE4;
-    SBC.W #$0011                                                         ;A2ACE5;
-    STA.W Enemy.YPosition,X                                              ;A2ACE8;
-    DEC                                                                  ;A2ACEB;
-    STA.W Enemy[2].YPosition,X                                           ;A2ACEC;
-    LDA.W SamusYPosition                                                 ;A2ACEF;
-    CLC                                                                  ;A2ACF2;
-    ADC.W #$0017                                                         ;A2ACF3;
-    STA.W Enemy[1].YPosition,X                                           ;A2ACF6;
-    LDA.W Enemy.YPosition,X                                              ;A2ACF9;
-    CMP.W #$0380                                                         ;A2ACFC;
-    BPL .return                                                          ;A2ACFF;
-    LDA.W #Function_Ship_Liftoff_Accelerating_SetGameState               ;A2AD01;
-    STA.W ShipTop.function,X                                             ;A2AD04;
-    LDA.W #$0200                                                         ;A2AD07;
-    STA.W Enemy[1].var5,X                                                ;A2AD0A;
+    LDA.W SamusYPosition : SEC : SBC.W #$0002 : STA.W SamusYPosition
+    LDA.W SamusYPosition : SEC : SBC.W #$0011 : STA.W Enemy.YPosition,X
+    DEC : STA.W Enemy[2].YPosition,X
+    LDA.W SamusYPosition : CLC : ADC.W #$0017 : STA.W Enemy[1].YPosition,X
+    LDA.W Enemy.YPosition,X : CMP.W #$0380 : BPL .return
+    LDA.W #Function_Ship_Liftoff_Accelerating_SetGameState : STA.W ShipTop.function,X
+    LDA.W #$0200 : STA.W Enemy[1].var5,X
 
   .return:
-    RTL                                                                  ;A2AD0D;
+    RTL
 
 
 ;;; $AD0E: Gunship function - liftoff - accelerating / set game state ;;;
 Function_Ship_Liftoff_Accelerating_SetGameState:
-    JSL.L Function_Ship_Liftoff_Accelerating                             ;A2AD0E;
-    LDA.W Enemy.YPosition,X                                              ;A2AD12;
-    CMP.W #$0100                                                         ;A2AD15;
-    BPL .return                                                          ;A2AD18;
-    LDA.W #Function_Ship_Liftoff_Accelerating                            ;A2AD1A;
-    STA.W ShipTop.function,X                                             ;A2AD1D;
-    LDA.W #$0026                                                         ;A2AD20;
-    STA.W GameState                                                      ;A2AD23;
-    STZ.W ScreenFadeDelay                                                ;A2AD26;
-    STZ.W ScreenFadeCounter                                              ;A2AD29;
+    JSL Function_Ship_Liftoff_Accelerating
+    LDA.W Enemy.YPosition,X : CMP.W #$0100 : BPL .return
+    LDA.W #Function_Ship_Liftoff_Accelerating : STA.W ShipTop.function,X
+    LDA.W #$0026 : STA.W GameState
+    STZ.W ScreenFadeDelay : STZ.W ScreenFadeCounter
 
   .return:
-    RTL                                                                  ;A2AD2C;
+    RTL
 
 
 ;;; $AD2D: Gunship function - liftoff - accelerating ;;;
 Function_Ship_Liftoff_Accelerating:
-    LDA.W Enemy[1].var5,X                                                ;A2AD2D;
-    CLC                                                                  ;A2AD30;
-    ADC.W #$0040                                                         ;A2AD31;
-    STA.W Enemy[1].var5,X                                                ;A2AD34;
-    AND.W #$FF00                                                         ;A2AD37;
-    CMP.W #$0A00                                                         ;A2AD3A;
-    BMI +                                                                ;A2AD3D;
-    LDA.W #$0900                                                         ;A2AD3F;
-    STA.W Enemy[1].var5,X                                                ;A2AD42;
+    LDA.W Enemy[1].var5,X : CLC : ADC.W #$0040 : STA.W Enemy[1].var5,X
+    AND.W #$FF00 : CMP.W #$0A00 : BMI +
+    LDA.W #$0900 : STA.W Enemy[1].var5,X
 
-+   LDA.W Enemy[1].var5,X                                                ;A2AD45;
-    XBA                                                                  ;A2AD48;
-    PHA                                                                  ;A2AD49;
-    AND.W #$FF00                                                         ;A2AD4A;
-    STA.B DP_Temp14                                                      ;A2AD4D;
-    PLA                                                                  ;A2AD4F;
-    AND.W #$00FF                                                         ;A2AD50;
-    STA.B DP_Temp12                                                      ;A2AD53;
-    LDA.W SamusYSubPosition                                              ;A2AD55;
-    SEC                                                                  ;A2AD58;
-    SBC.B DP_Temp14                                                      ;A2AD59;
-    STA.W SamusYSubPosition                                              ;A2AD5B;
-    LDA.W SamusYPosition                                                 ;A2AD5E;
-    SBC.B DP_Temp12                                                      ;A2AD61;
-    STA.W SamusYPosition                                                 ;A2AD63;
-    LDA.W SamusYPosition                                                 ;A2AD66;
-    SEC                                                                  ;A2AD69;
-    SBC.W #$0011                                                         ;A2AD6A;
-    STA.W Enemy.YPosition,X                                              ;A2AD6D;
-    DEC                                                                  ;A2AD70;
-    STA.W Enemy[2].YPosition,X                                           ;A2AD71;
-    LDA.W SamusYPosition                                                 ;A2AD74;
-    CLC                                                                  ;A2AD77;
-    ADC.W #$0017                                                         ;A2AD78;
-    STA.W Enemy[1].YPosition,X                                           ;A2AD7B;
-    RTL                                                                  ;A2AD7E;
++   LDA.W Enemy[1].var5,X : XBA : PHA
+    AND.W #$FF00 : STA.B DP_Temp14
+    PLA : AND.W #$00FF : STA.B DP_Temp12
+    LDA.W SamusYSubPosition : SEC : SBC.B DP_Temp14 : STA.W SamusYSubPosition
+    LDA.W SamusYPosition : SBC.B DP_Temp12 : STA.W SamusYPosition
+    LDA.W SamusYPosition : SEC : SBC.W #$0011 : STA.W Enemy.YPosition,X
+    DEC : STA.W Enemy[2].YPosition,X
+    LDA.W SamusYPosition : CLC : ADC.W #$0017 : STA.W Enemy[1].YPosition,X
+    RTL
 
 
 ;;; $AD7F: RTL ;;;
 RTL_A2AD7F:
-    RTL                                                                  ;A2AD7F;
+    RTL
 
 
 ;;; $AD80: RTL ;;;
 RTL_A2AD80:
-    RTL                                                                  ;A2AD80;
+    RTL
 
 
 ;;; $AD81: Spritemaps - gunship ;;;
 Spritemap_Ship_0:
-    dw $0012                                                             ;A2AD81;
+    dw $0012
     %spritemapEntry(1, $4201, $FE, 0, 1, 3, 7, $120)
     %spritemapEntry(1, $4211, $FE, 0, 1, 3, 7, $10E)
     %spritemapEntry(1, $4221, $FE, 0, 1, 3, 7, $10C)
@@ -5369,7 +4260,7 @@ Spritemap_Ship_0:
     %spritemapEntry(1, $43C1, $EE, 0, 0, 3, 7, $100)
 
 Spritemap_Ship_1:
-    dw $0022                                                             ;A2ADDD;
+    dw $0022
     %spritemapEntry(1, $4201, $06, 0, 1, 3, 7, $162)
     %spritemapEntry(1, $4211, $06, 0, 1, 3, 7, $160)
     %spritemapEntry(1, $4221, $06, 0, 1, 3, 7, $14E)
@@ -5406,28 +4297,28 @@ Spritemap_Ship_1:
     %spritemapEntry(1, $43A1, $E6, 0, 0, 3, 7, $122)
 
 Spritemap_Ship_2:
-    dw $0004                                                             ;A2AE89;
+    dw $0004
     %spritemapEntry(0, $00, $F6, 0, 1, 3, 7, $165)
     %spritemapEntry(0, $08, $F6, 0, 1, 3, 7, $164)
     %spritemapEntry(0, $1F8, $F6, 0, 0, 3, 7, $165)
     %spritemapEntry(0, $1F0, $F6, 0, 0, 3, 7, $164)
 
 Spritemap_Ship_3:
-    dw $0004                                                             ;A2AE9F;
+    dw $0004
     %spritemapEntry(0, $00, $F4, 0, 1, 3, 7, $165)
     %spritemapEntry(0, $08, $F4, 0, 1, 3, 7, $164)
     %spritemapEntry(0, $1F8, $F4, 0, 0, 3, 7, $165)
     %spritemapEntry(0, $1F0, $F4, 0, 0, 3, 7, $164)
 
 Spritemap_Ship_4:
-    dw $0004                                                             ;A2AEB5;
+    dw $0004
     %spritemapEntry(0, $00, $F2, 0, 1, 3, 7, $165)
     %spritemapEntry(0, $08, $F3, 0, 1, 3, 7, $164)
     %spritemapEntry(0, $1F8, $F2, 0, 0, 3, 7, $165)
     %spritemapEntry(0, $1F0, $F3, 0, 0, 3, 7, $164)
 
 Spritemap_Ship_5:
-    dw $0008                                                             ;A2AECB;
+    dw $0008
     %spritemapEntry(0, $1F6, $F2, 0, 0, 3, 7, $165)
     %spritemapEntry(0, $1EE, $F3, 0, 0, 3, 7, $164)
     %spritemapEntry(0, $02, $F2, 0, 1, 3, 7, $165)
@@ -5438,7 +4329,7 @@ Spritemap_Ship_5:
     %spritemapEntry(0, $1F0, $F5, 0, 0, 3, 7, $166)
 
 Spritemap_Ship_6:
-    dw $0008                                                             ;A2AEF5;
+    dw $0008
     %spritemapEntry(0, $04, $F2, 0, 1, 3, 7, $165)
     %spritemapEntry(0, $0C, $F4, 0, 1, 3, 7, $164)
     %spritemapEntry(0, $1F4, $F2, 0, 0, 3, 7, $165)
@@ -5449,7 +4340,7 @@ Spritemap_Ship_6:
     %spritemapEntry(0, $1F0, $F4, 0, 0, 3, 7, $166)
 
 Spritemap_Ship_7:
-    dw $0008                                                             ;A2AF1F;
+    dw $0008
     %spritemapEntry(0, $06, $F2, 0, 1, 3, 7, $165)
     %spritemapEntry(0, $0E, $F4, 0, 1, 3, 7, $164)
     %spritemapEntry(0, $1F2, $F2, 0, 0, 3, 7, $165)
@@ -5460,7 +4351,7 @@ Spritemap_Ship_7:
     %spritemapEntry(0, $1F0, $F3, 0, 0, 3, 7, $166)
 
 Spritemap_Ship_8:
-    dw $0008                                                             ;A2AF49;
+    dw $0008
     %spritemapEntry(0, $08, $F2, 0, 1, 3, 7, $165)
     %spritemapEntry(0, $10, $F4, 0, 1, 3, 7, $164)
     %spritemapEntry(0, $1F0, $F2, 0, 0, 3, 7, $165)
@@ -5471,7 +4362,7 @@ Spritemap_Ship_8:
     %spritemapEntry(0, $1F0, $F3, 0, 0, 3, 7, $166)
 
 Spritemap_Ship_9:
-    dw $0008                                                             ;A2AF73;
+    dw $0008
     %spritemapEntry(0, $0A, $F3, 0, 1, 3, 7, $165)
     %spritemapEntry(0, $12, $F6, 0, 1, 3, 7, $164)
     %spritemapEntry(0, $1EE, $F3, 0, 0, 3, 7, $165)
@@ -5482,7 +4373,7 @@ Spritemap_Ship_9:
     %spritemapEntry(0, $1F0, $F3, 0, 0, 3, 7, $166)
 
 Spritemap_Ship_A:
-    dw $0008                                                             ;A2AF9D;
+    dw $0008
     %spritemapEntry(0, $0C, $F3, 0, 1, 3, 7, $165)
     %spritemapEntry(0, $14, $F6, 0, 1, 3, 7, $164)
     %spritemapEntry(0, $1EC, $F3, 0, 0, 3, 7, $165)
@@ -5493,14 +4384,14 @@ Spritemap_Ship_A:
     %spritemapEntry(0, $1F0, $F3, 0, 0, 3, 7, $166)
 
 Spritemap_Ship_B:
-    dw $0004                                                             ;A2AFC7;
+    dw $0004
     %spritemapEntry(0, $00, $F7, 0, 1, 3, 7, $165)
     %spritemapEntry(0, $08, $F7, 0, 1, 3, 7, $164)
     %spritemapEntry(0, $1F8, $F7, 0, 0, 3, 7, $165)
     %spritemapEntry(0, $1F0, $F7, 0, 0, 3, 7, $164)
 
 Spritemap_Ship_C:
-    dw $0004                                                             ;A2AFDD;
+    dw $0004
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 7, $165)
     %spritemapEntry(0, $08, $F8, 0, 1, 3, 7, $164)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 7, $165)
@@ -5509,805 +4400,663 @@ Spritemap_Ship_C:
 
 ;;; $AFF3: Palette - enemy $D0FF (mellow) ;;;
 Palette_Mellow:
-    dw $3800,$72FA,$55B0,$2845,$1801,$6210,$496B,$38C6                   ;A2AFF3;
-    dw $2C63,$2FEF,$030D,$0209,$0145,$183F,$1014,$080A                   ;A2B003;
+    dw $3800,$72FA,$55B0,$2845,$1801,$6210,$496B,$38C6
+    dw $2C63,$2FEF,$030D,$0209,$0145,$183F,$1014,$080A
 
 
 ;;; $B013: Instruction list ;;;
 InstList_Mellow_Mella_Menu:
-    dw $0002,Spritemap_Mellow_Mella_Menu_0                               ;A2B013;
-    dw $0002,Spritemap_Mellow_Mella_Menu_1                               ;A2B017;
-    dw $0002,Spritemap_Mellow_Mella_Menu_2                               ;A2B01B;
-    dw $0002,Spritemap_Mellow_Mella_Menu_3                               ;A2B01F;
-    dw Instruction_Common_GotoY                                          ;A2B023;
-    dw InstList_Mellow_Mella_Menu                                        ;A2B025;
+    dw $0002,Spritemap_Mellow_Mella_Menu_0
+    dw $0002,Spritemap_Mellow_Mella_Menu_1
+    dw $0002,Spritemap_Mellow_Mella_Menu_2
+    dw $0002,Spritemap_Mellow_Mella_Menu_3
+    dw Instruction_Common_GotoY
+    dw InstList_Mellow_Mella_Menu
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $B027: Unused. Old movement data? ;;;
 UNUSED_OldMovementData_A2B027:
-    dw $0002,$FFFC,$FFFE,$0004,$0002,$FFFE,$0002,$0004                   ;A2B027;
-    dw $0002,$FFFE,$FFFE,$0002,$FFFC,$FFFE,$0002,$0002                   ;A2B037;
-    dw $FFFE,$FFFE,$0004,$0002,$FFFC,$FFFE,$0002,$FFFE                   ;A2B047;
-    dw $FFFC,$FFFE,$0002,$0002,$FFFE,$0004,$0002,$FFFE                   ;A2B057;
-    dw $FFFE,$0002                                                       ;A2B067;
+    dw $0002,$FFFC,$FFFE,$0004,$0002,$FFFE,$0002,$0004
+    dw $0002,$FFFE,$FFFE,$0002,$FFFC,$FFFE,$0002,$0002
+    dw $FFFE,$FFFE,$0004,$0002,$FFFC,$FFFE,$0002,$FFFE
+    dw $FFFC,$FFFE,$0002,$0002,$FFFE,$0004,$0002,$FFFE
+    dw $FFFE,$0002
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B06B: Initialisation AI - enemy $D0FF/$D13F/$D17F (flies) ;;;
 InitAI_Mellow_Mella_Menu:
-    LDX.W EnemyIndex                                                     ;A2B06B;
-    STZ.W Flies.angle,X                                                  ;A2B06E;
-    LDA.W #Function_Flies_IdleMovement_ClockwiseCircle                   ;A2B071;
-    STA.W Flies.function,X                                               ;A2B074;
-    LDA.W #InstList_Mellow_Mella_Menu                                    ;A2B077;
-    STA.W Enemy.instList,X                                               ;A2B07A;
-    LDA.W #Spritemap_Common_Nothing                                      ;A2B07D;
-    STA.W Enemy.spritemap,X                                              ;A2B080;
-    LDA.W #$0001                                                         ;A2B083;
-    STA.W Enemy.instTimer,X                                              ;A2B086;
-    LDA.W #Spritemap_Common_Nothing                                      ;A2B089;
-    STA.W Enemy.spritemap,X                                              ;A2B08C;
-    RTL                                                                  ;A2B08F;
+    LDX.W EnemyIndex
+    STZ.W Flies.angle,X
+    LDA.W #Function_Flies_IdleMovement_ClockwiseCircle : STA.W Flies.function,X
+    LDA.W #InstList_Mellow_Mella_Menu : STA.W Enemy.instList,X
+    LDA.W #Spritemap_Common_Nothing : STA.W Enemy.spritemap,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #Spritemap_Common_Nothing : STA.W Enemy.spritemap,X
+    RTL
 
 
 ;;; $B090: Move fly according to angle ;;;
 MoveFlyAccordingToAngle:
-    TXY                                                                  ;A2B090;
-    LDX.W Flies.angle,Y                                                  ;A2B091;
-    LDA.L SineCosineTables_8bitSine_SignExtended-1,X                     ;A2B094;
-    AND.W #$FF00                                                         ;A2B098;
-    CLC                                                                  ;A2B09B;
-    ADC.W Enemy.XSubPosition,Y                                           ;A2B09C;
-    STA.W Enemy.XSubPosition,Y                                           ;A2B09F;
-    LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;A2B0A2;
-    XBA                                                                  ;A2B0A6;
-    BPL .lowByteX                                                        ;A2B0A7;
-    ORA.W #$FF00                                                         ;A2B0A9;
-    BRA +                                                                ;A2B0AC;
+    TXY
+    LDX.W Flies.angle,Y
+    LDA.L SineCosineTables_8bitSine_SignExtended-1,X : AND.W #$FF00 : CLC : ADC.W Enemy.XSubPosition,Y : STA.W Enemy.XSubPosition,Y
+    LDA.L SineCosineTables_8bitSine_SignExtended,X : XBA : BPL .lowByteX
+    ORA.W #$FF00
+    BRA +
 
   .lowByteX:
-    AND.W #$00FF                                                         ;A2B0AE;
+    AND.W #$00FF
 
-+   ADC.W Enemy.XPosition,Y                                              ;A2B0B1;
-    STA.W Enemy.XPosition,Y                                              ;A2B0B4;
-    LDA.L SineCosineTables_NegativeCosine_SignExtended-1,X               ;A2B0B7;
-    AND.W #$FF00                                                         ;A2B0BB;
-    CLC                                                                  ;A2B0BE;
-    ADC.W Enemy.YSubPosition,Y                                           ;A2B0BF;
-    STA.W Enemy.YSubPosition,Y                                           ;A2B0C2;
-    LDA.L SineCosineTables_NegativeCosine_SignExtended,X                 ;A2B0C5;
-    XBA                                                                  ;A2B0C9;
-    BPL .lowByteY                                                        ;A2B0CA;
-    ORA.W #$FF00                                                         ;A2B0CC;
-    BRA +                                                                ;A2B0CF;
++   ADC.W Enemy.XPosition,Y : STA.W Enemy.XPosition,Y
+    LDA.L SineCosineTables_NegativeCosine_SignExtended-1,X : AND.W #$FF00
+    CLC : ADC.W Enemy.YSubPosition,Y : STA.W Enemy.YSubPosition,Y
+    LDA.L SineCosineTables_NegativeCosine_SignExtended,X : XBA : BPL .lowByteY
+    ORA.W #$FF00
+    BRA +
 
   .lowByteY:
-    AND.W #$00FF                                                         ;A2B0D1;
+    AND.W #$00FF
 
-+   ADC.W Enemy.YPosition,Y                                              ;A2B0D4;
-    STA.W Enemy.YPosition,Y                                              ;A2B0D7;
-    TYX                                                                  ;A2B0DA;
-    RTS                                                                  ;A2B0DB;
++   ADC.W Enemy.YPosition,Y : STA.W Enemy.YPosition,Y
+    TYX
+    RTS
 
 
 ;;; $B0DC: Move fly according to velocities ;;;
 MoveFlyAccordingToVelocities:
 ;; Returns:
 ;;     A: Enemy Y position
-    LDA.W Enemy.var0+1,X                                                 ;A2B0DC;
-    AND.W #$FF00                                                         ;A2B0DF;
-    CLC                                                                  ;A2B0E2;
-    ADC.W Enemy.XSubPosition,X                                           ;A2B0E3;
-    STA.W Enemy.XSubPosition,X                                           ;A2B0E6;
-    LDA.W Flies.XVelocity,X                                              ;A2B0E9;
-    XBA                                                                  ;A2B0EC;
-    BPL .lowByteX                                                        ;A2B0ED;
-    ORA.W #$FF00                                                         ;A2B0EF;
-    BRA +                                                                ;A2B0F2;
+    LDA.W Enemy.var0+1,X : AND.W #$FF00 : CLC : ADC.W Enemy.XSubPosition,X : STA.W Enemy.XSubPosition,X
+    LDA.W Flies.XVelocity,X : XBA : BPL .lowByteX
+    ORA.W #$FF00
+    BRA +
 
   .lowByteX:
-    AND.W #$00FF                                                         ;A2B0F4;
+    AND.W #$00FF
 
-+   ADC.W Enemy.XPosition,X                                              ;A2B0F7;
-    STA.W Enemy.XPosition,X                                              ;A2B0FA;
-    LDA.W Enemy.var1+1,X                                                 ;A2B0FD;
-    AND.W #$FF00                                                         ;A2B100;
-    CLC                                                                  ;A2B103;
-    ADC.W Enemy.YSubPosition,X                                           ;A2B104;
-    STA.W Enemy.YSubPosition,X                                           ;A2B107;
-    LDA.W Flies.YVelocity,X                                              ;A2B10A;
-    XBA                                                                  ;A2B10D;
-    BPL .lowByteY                                                        ;A2B10E;
-    ORA.W #$FF00                                                         ;A2B110;
-    BRA +                                                                ;A2B113;
++   ADC.W Enemy.XPosition,X : STA.W Enemy.XPosition,X
+    LDA.W Enemy.var1+1,X : AND.W #$FF00 : CLC : ADC.W Enemy.YSubPosition,X : STA.W Enemy.YSubPosition,X
+    LDA.W Flies.YVelocity,X : XBA : BPL .lowByteY
+    ORA.W #$FF00
+    BRA +
 
   .lowByteY:
-    AND.W #$00FF                                                         ;A2B115;
+    AND.W #$00FF
 
-+   ADC.W Enemy.YPosition,X                                              ;A2B118;
-    STA.W Enemy.YPosition,X                                              ;A2B11B;
-    RTS                                                                  ;A2B11E;
++   ADC.W Enemy.YPosition,X : STA.W Enemy.YPosition,X
+    RTS
 
 
 ;;; $B11F: Main AI - enemy $D0FF/$D13F/$D17F (flies) ;;;
 MainAI_Mellow_Mella_Menu:
-    JSL.L GenerateRandomNumber                                           ;A2B11F;
-    LDX.W EnemyIndex                                                     ;A2B123;
-    JMP.W (Flies.function,X)                                             ;A2B126;
+    JSL GenerateRandomNumber
+    LDX.W EnemyIndex
+    JMP.W (Flies.function,X)
 
 
 ;;; $B129: Set fly to attack Samus ;;;
 SetFlyToAttackSamus:
 ; Sets up X/Y velocity to direct fly towards midpoint between Samus and enemy
-    JSL.L CalculateAngleOfSamusFromEnemy                                 ;A2B129;
-    ASL                                                                  ;A2B12D;
-    TXY                                                                  ;A2B12E;
-    TAX                                                                  ;A2B12F;
-    LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;A2B130;
-    ASL                                                                  ;A2B134;
-    STA.W Flies.XVelocity,Y                                              ;A2B135;
-    LDA.L SineCosineTables_NegativeCosine_SignExtended,X                 ;A2B138;
-    ASL                                                                  ;A2B13C;
-    ASL                                                                  ;A2B13D;
-    STA.W Flies.YVelocity,Y                                              ;A2B13E;
-    LDA.W SamusYPosition                                                 ;A2B141;
-    STA.W Flies.targetYPosition,Y                                        ;A2B144;
-    LDA.W #Function_Flies_AttackSamus                                    ;A2B147;
-    STA.W Flies.function,Y                                               ;A2B14A;
-    RTL                                                                  ;A2B14D;
+    JSL CalculateAngleOfSamusFromEnemy
+    ASL
+    TXY
+    TAX
+    LDA.L SineCosineTables_8bitSine_SignExtended,X : ASL : STA.W Flies.XVelocity,Y
+    LDA.L SineCosineTables_NegativeCosine_SignExtended,X : ASL #2 : STA.W Flies.YVelocity,Y
+    LDA.W SamusYPosition : STA.W Flies.targetYPosition,Y
+    LDA.W #Function_Flies_AttackSamus : STA.W Flies.function,Y
+    RTL
 
 
 ;;; $B14E: Fly function - idle movement - clockwise circle ;;;
 Function_Flies_IdleMovement_ClockwiseCircle:
-    LDA.W Flies.retreatTimer,X                                           ;A2B14E;
-    BEQ .retreatTimerExpired                                             ;A2B151;
-    DEC                                                                  ;A2B153;
-    STA.W Flies.retreatTimer,X                                           ;A2B154;
-    BRA .move                                                            ;A2B157;
+    LDA.W Flies.retreatTimer,X : BEQ .retreatTimerExpired
+    DEC : STA.W Flies.retreatTimer,X
+    BRA .move
 
   .retreatTimerExpired:
-    LDA.W #$0070                                                         ;A2B159;
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA                 ;A2B15C;
-    BCC SetFlyToAttackSamus                                              ;A2B160;
+    LDA.W #$0070
+    JSL CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA
+    BCC SetFlyToAttackSamus
 
   .move:
-    JSR.W MoveFlyAccordingToAngle                                        ;A2B162;
-    LDA.W Flies.angle,X                                                  ;A2B165;
-    CLC                                                                  ;A2B168;
-    ADC.W #$0020                                                         ;A2B169;
-    AND.W #$01FF                                                         ;A2B16C;
-    STA.W Flies.angle,X                                                  ;A2B16F;
-    BEQ .antiClockwise                                                   ;A2B172;
-    RTL                                                                  ;A2B174;
+    JSR MoveFlyAccordingToAngle
+    LDA.W Flies.angle,X : CLC : ADC.W #$0020 : AND.W #$01FF : STA.W Flies.angle,X : BEQ .antiClockwise
+    RTL
 
   .antiClockwise:
-    LDA.W #Function_Flies_IdleMovement_AntiClockwiseCircle               ;A2B175;
-    STA.W Flies.function,X                                               ;A2B178;
-    RTL                                                                  ;A2B17B;
+    LDA.W #Function_Flies_IdleMovement_AntiClockwiseCircle : STA.W Flies.function,X
+    RTL
 
 
 ;;; $B17C: Fly function - idle movement - anti-clockwise circle ;;;
 Function_Flies_IdleMovement_AntiClockwiseCircle:
-    LDA.W Flies.retreatTimer,X                                           ;A2B17C;
-    BEQ .retreatTimerExpired                                             ;A2B17F;
-    DEC                                                                  ;A2B181;
-    STA.W Flies.retreatTimer,X                                           ;A2B182;
-    BRA .move                                                            ;A2B185;
+    LDA.W Flies.retreatTimer,X : BEQ .retreatTimerExpired
+    DEC : STA.W Flies.retreatTimer,X
+    BRA .move
 
   .retreatTimerExpired:
-    LDA.W #$0070                                                         ;A2B187;
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA                 ;A2B18A;
-    BCC SetFlyToAttackSamus                                              ;A2B18E;
+    LDA.W #$0070
+    JSL CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA
+    BCC SetFlyToAttackSamus
 
   .move:
-    JSR.W MoveFlyAccordingToAngle                                        ;A2B190;
-    LDA.W Flies.angle,X                                                  ;A2B193;
-    SEC                                                                  ;A2B196;
-    SBC.W #$0020                                                         ;A2B197;
-    AND.W #$01FF                                                         ;A2B19A;
-    STA.W Flies.angle,X                                                  ;A2B19D;
-    BEQ .clockwise                                                       ;A2B1A0;
-    RTL                                                                  ;A2B1A2;
+    JSR MoveFlyAccordingToAngle
+    LDA.W Flies.angle,X : SEC : SBC.W #$0020 : AND.W #$01FF : STA.W Flies.angle,X : BEQ .clockwise
+    RTL
 
   .clockwise:
-    LDA.W #Function_Flies_IdleMovement_ClockwiseCircle                   ;A2B1A3;
-    STA.W Flies.function,X                                               ;A2B1A6;
-    RTL                                                                  ;A2B1A9;
+    LDA.W #Function_Flies_IdleMovement_ClockwiseCircle : STA.W Flies.function,X
+    RTL
 
 
 ;;; $B1AA: Fly function - attack Samus ;;;
 Function_Flies_AttackSamus:
-    JSR.W MoveFlyAccordingToVelocities                                   ;A2B1AA;
-    INC.W Flies.retreatTimer,X                                           ;A2B1AD;
-    BIT.W Flies.YVelocity,X                                              ;A2B1B0;
-    BPL .positiveYVelocity                                               ;A2B1B3;
-    CMP.W Flies.targetYPosition,X                                        ;A2B1B5;
-    BCC .aboveTarget                                                     ;A2B1B8;
-    RTL                                                                  ;A2B1BA;
+    JSR MoveFlyAccordingToVelocities
+    INC.W Flies.retreatTimer,X
+    BIT.W Flies.YVelocity,X : BPL .positiveYVelocity
+    CMP.W Flies.targetYPosition,X : BCC .aboveTarget
+    RTL
 
   .positiveYVelocity:
-    CMP.W Flies.targetYPosition,X                                        ;A2B1BB;
-    BCS .aboveTarget                                                     ;A2B1BE;
-    RTL                                                                  ;A2B1C0;
+    CMP.W Flies.targetYPosition,X : BCS .aboveTarget
+    RTL
 
   .aboveTarget:
-    LDA.W Flies.YVelocity,X                                              ;A2B1C1;
-    EOR.W #$FFFF                                                         ;A2B1C4;
-    INC                                                                  ;A2B1C7;
-    STA.W Flies.YVelocity,X                                              ;A2B1C8;
-    LDA.W #Function_Flies_Retreat                                        ;A2B1CB;
-    STA.W Flies.function,X                                               ;A2B1CE;
-    RTL                                                                  ;A2B1D1;
+    LDA.W Flies.YVelocity,X : EOR.W #$FFFF : INC : STA.W Flies.YVelocity,X
+    LDA.W #Function_Flies_Retreat : STA.W Flies.function,X
+    RTL
 
 
 ;;; $B1D2: Fly function - retreat ;;;
 Function_Flies_Retreat:
-    JSR.W MoveFlyAccordingToVelocities                                   ;A2B1D2;
-    DEC.W Flies.retreatTimer,X                                           ;A2B1D5;
-    BMI .retreatTimerExpired                                             ;A2B1D8;
-    RTL                                                                  ;A2B1DA;
+    JSR MoveFlyAccordingToVelocities
+    DEC.W Flies.retreatTimer,X : BMI .retreatTimerExpired
+    RTL
 
   .retreatTimerExpired:
-    LDA.W #$0018                                                         ;A2B1DB;
-    STA.W Flies.retreatTimer,X                                           ;A2B1DE;
-    LDA.W #Function_Flies_IdleMovement_ClockwiseCircle                   ;A2B1E1;
-    STA.W Flies.function,X                                               ;A2B1E4;
-    RTL                                                                  ;A2B1E7;
+    LDA.W #$0018 : STA.W Flies.retreatTimer,X
+    LDA.W #Function_Flies_IdleMovement_ClockwiseCircle : STA.W Flies.function,X
+    RTL
 
 
 ;;; $B1E8: Spritemaps - flies ;;;
 Spritemap_Mellow_Mella_Menu_0:
-    dw $0001                                                             ;A2B1E8;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Mellow_Mella_Menu_1:
-    dw $0001                                                             ;A2B1EF;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $102)
 
 Spritemap_Mellow_Mella_Menu_2:
-    dw $0001                                                             ;A2B1F6;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $104)
 
 Spritemap_Mellow_Mella_Menu_3:
-    dw $0001                                                             ;A2B1FD;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $106)
 
 
 ;;; $B204: Unused. Fly spritemap pointers ;;;
 UNUSED_FlySpritemapPointers_A2B204:
 ; referenced by enemy header
-    dw Spritemap_Mellow_Mella_Menu_0                                     ;A2B204;
-    dw Spritemap_Mellow_Mella_Menu_1                                     ;A2B206;
-    dw Spritemap_Mellow_Mella_Menu_2                                     ;A2B208;
-    dw Spritemap_Mellow_Mella_Menu_3                                     ;A2B20A;
+    dw Spritemap_Mellow_Mella_Menu_0
+    dw Spritemap_Mellow_Mella_Menu_1
+    dw Spritemap_Mellow_Mella_Menu_2
+    dw Spritemap_Mellow_Mella_Menu_3
 
 
 ;;; $B20C: Palette - enemy $D13F (mella) ;;;
 Palette_Mella:
-    dw $3800,$039F,$01BF,$000F,$0005,$021F,$015B,$00BA                   ;A2B20C;
-    dw $0011,$4F72,$36AD,$1DC8,$0925,$7E1F,$5415,$280A                   ;A2B21C;
+    dw $3800,$039F,$01BF,$000F,$0005,$021F,$015B,$00BA
+    dw $0011,$4F72,$36AD,$1DC8,$0925,$7E1F,$5415,$280A
 
 
 ;;; $B22C: Unused ;;;
 UNUSED_PointerToUnusedData_A2B22C:
-    dw UNUSED_Data_A2B22E                                                ;A2B22C;
+    dw UNUSED_Data_A2B22E
 
 UNUSED_Data_A2B22E:
-    dw $0000,$000E,$0001,$000B,$0002,$000A,$0003,$0009                   ;A2B22E;
-    dw $FFFE                                                             ;A2B23E;
+    dw $0000,$000E,$0001,$000B,$0002,$000A,$0003,$0009
+    dw $FFFE
 
 
 ;;; $B240: Unused. Mella spritemaps ;;;
 UNUSED_Spritemap_Mella_A2B240:
-    dw $0001                                                             ;A2B240;
+    dw $0001
     %spritemapEntry(1, $43F8, $F4, 0, 0, 2, 0, $100)
 
 UNUSED_Spritemap_Mella_A2B247:
-    dw $0001                                                             ;A2B247;
+    dw $0001
     %spritemapEntry(1, $43F8, $F4, 0, 0, 2, 0, $102)
 
 UNUSED_Spritemap_Mella_A2B24E:
-    dw $0001                                                             ;A2B24E;
+    dw $0001
     %spritemapEntry(1, $43F8, $F4, 0, 0, 2, 0, $104)
 
 UNUSED_Spritemap_Mella_A2B255:
-    dw $0001                                                             ;A2B255;
+    dw $0001
     %spritemapEntry(1, $43F8, $F4, 0, 0, 2, 0, $106)
 
 
 ;;; $B25C: Unused. Mella spritemap pointers ;;;
 UNUSED_SpritemapPointers_Mella_A2B25C:
-    dw UNUSED_Spritemap_Mella_A2B240                                     ;A2B25C;
-    dw UNUSED_Spritemap_Mella_A2B247                                     ;A2B25E;
-    dw UNUSED_Spritemap_Mella_A2B24E                                     ;A2B260;
-    dw UNUSED_Spritemap_Mella_A2B255                                     ;A2B262;
+    dw UNUSED_Spritemap_Mella_A2B240
+    dw UNUSED_Spritemap_Mella_A2B247
+    dw UNUSED_Spritemap_Mella_A2B24E
+    dw UNUSED_Spritemap_Mella_A2B255
 
 
 ;;; $B264: Palette - enemy $D17F (memu) ;;;
 Palette_Menu:
-    dw $3800,$72FA,$55B0,$2845,$1801,$6210,$496B,$38C6                   ;A2B264;
-    dw $2C63,$2F5A,$2294,$01AD,$0108,$7FFF,$56B5,$294A                   ;A2B274;
+    dw $3800,$72FA,$55B0,$2845,$1801,$6210,$496B,$38C6
+    dw $2C63,$2F5A,$2294,$01AD,$0108,$7FFF,$56B5,$294A
 
 
 ;;; $B284: Unused ;;;
 UNUSED_DataPointer_A2B284:
-    dw UNUSED_Data_A2B286                                                ;A2B284;
+    dw UNUSED_Data_A2B286
 
 UNUSED_Data_A2B286:
-    dw $0000,$000E,$0001,$000B,$0002,$000A,$0003,$0009                   ;A2B286;
-    dw $FFFE                                                             ;A2B296;
+    dw $0000,$000E,$0001,$000B,$0002,$000A,$0003,$0009
+    dw $FFFE
 
 
 ;;; $B298: Unused. Memu spritemaps ;;;
 UNUSED_Spritemap_Menu_A2B298:
-    dw $0001                                                             ;A2B298;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 UNUSED_Spritemap_Menu_A2B29F:
-    dw $0001                                                             ;A2B29F;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $102)
 
 UNUSED_Spritemap_Menu_A2B2A6:
-    dw $0001                                                             ;A2B2A6;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $104)
 
 UNUSED_Spritemap_Menu_A2B2AD:
-    dw $0001                                                             ;A2B2AD;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $106)
 
 
 ;;; $B2B4: Unused. Memu spritemap pointers ;;;
 UNUSED_SpritemapPointers_Menu_A2B2B4:
-    dw UNUSED_Spritemap_Menu_A2B298                                      ;A2B2B4;
-    dw UNUSED_Spritemap_Menu_A2B29F                                      ;A2B2B6;
-    dw UNUSED_Spritemap_Menu_A2B2A6                                      ;A2B2B8;
-    dw UNUSED_Spritemap_Menu_A2B2AD                                      ;A2B2BA;
+    dw UNUSED_Spritemap_Menu_A2B298
+    dw UNUSED_Spritemap_Menu_A2B29F
+    dw UNUSED_Spritemap_Menu_A2B2A6
+    dw UNUSED_Spritemap_Menu_A2B2AD
 
 
 ;;; $B2BC: Palette - enemy $D1BF (multiviola) ;;;
 Palette_Multiviola:
-    dw $3800,$02FF,$01BF,$000F,$0008,$01BF,$011B,$0015                   ;A2B2BC;
-    dw $0011,$241F,$1C17,$142F,$0C47,$03E0,$02A0,$0140                   ;A2B2CC;
+    dw $3800,$02FF,$01BF,$000F,$0008,$01BF,$011B,$0015
+    dw $0011,$241F,$1C17,$142F,$0C47,$03E0,$02A0,$0140
 
 
 ;;; $B2DC: Instruction list ;;;
 InstList_Multiviola:
-    dw $000A,Spritemap_Multiviola_0                                      ;A2B2DC;
-    dw $000A,Spritemap_Multiviola_1                                      ;A2B2E0;
-    dw $000A,Spritemap_Multiviola_2                                      ;A2B2E4;
-    dw $000A,Spritemap_Multiviola_3                                      ;A2B2E8;
-    dw $000A,Spritemap_Multiviola_4                                      ;A2B2EC;
-    dw $000A,Spritemap_Multiviola_5                                      ;A2B2F0;
-    dw $000A,Spritemap_Multiviola_6                                      ;A2B2F4;
-    dw $000A,Spritemap_Multiviola_7                                      ;A2B2F8;
-    dw $000A,Spritemap_Multiviola_6                                      ;A2B2FC;
-    dw $000A,Spritemap_Multiviola_5                                      ;A2B300;
-    dw $000A,Spritemap_Multiviola_4                                      ;A2B304;
-    dw $000A,Spritemap_Multiviola_3                                      ;A2B308;
-    dw $000A,Spritemap_Multiviola_2                                      ;A2B30C;
-    dw $000A,Spritemap_Multiviola_1                                      ;A2B310;
-    dw Instruction_Common_GotoY                                          ;A2B314;
-    dw InstList_Multiviola                                               ;A2B316;
+    dw $000A,Spritemap_Multiviola_0
+    dw $000A,Spritemap_Multiviola_1
+    dw $000A,Spritemap_Multiviola_2
+    dw $000A,Spritemap_Multiviola_3
+    dw $000A,Spritemap_Multiviola_4
+    dw $000A,Spritemap_Multiviola_5
+    dw $000A,Spritemap_Multiviola_6
+    dw $000A,Spritemap_Multiviola_7
+    dw $000A,Spritemap_Multiviola_6
+    dw $000A,Spritemap_Multiviola_5
+    dw $000A,Spritemap_Multiviola_4
+    dw $000A,Spritemap_Multiviola_3
+    dw $000A,Spritemap_Multiviola_2
+    dw $000A,Spritemap_Multiviola_1
+    dw Instruction_Common_GotoY
+    dw InstList_Multiviola
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $B318: Unused. Instruction list ;;;
 UNUSED_InstList_Multiviola_A2B318:
 ; The spritemaps here have no associated graphics
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E2                          ;A2B318;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B31C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E2                          ;A2B320;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B324;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9                          ;A2B328;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B32C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9                          ;A2B330;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B334;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0                          ;A2B338;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B33C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0                          ;A2B340;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B344;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F7                          ;A2B348;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B34C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F7                          ;A2B350;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B354;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0                          ;A2B358;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B35C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0                          ;A2B360;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B364;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9                          ;A2B368;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B36C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9                          ;A2B370;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B374;
-    dw Instruction_Common_GotoY                                          ;A2B378;
-    dw UNUSED_InstList_Multiviola_A2B318                                 ;A2B37A;
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E2
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E2
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F7
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F7
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9
+    dw $0001,Spritemap_Common_Nothing
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_Multiviola_A2B318
 
 
 ;;; $B37C: Unused. Instruction list ;;;
 UNUSED_InstList_Multiviola_A2B37C:
 ; The spritemaps here have no associated graphics
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4FE                          ;A2B37C;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B380;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4FE                          ;A2B384;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B388;
-    dw $0002,UNUSED_Spritemap_Multiviola_B2B505                          ;A2B38C;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B390;
-    dw $0002,UNUSED_Spritemap_Multiviola_B2B505                          ;A2B394;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B398;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C                          ;A2B39C;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3A0;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C                          ;A2B3A4;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3A8;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B513                          ;A2B3AC;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3B0;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B513                          ;A2B3B4;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3B8;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C                          ;A2B3BC;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3C0;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C                          ;A2B3C4;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3C8;
-    dw $0002,UNUSED_Spritemap_Multiviola_B2B505                          ;A2B3CC;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3D0;
-    dw $0002,UNUSED_Spritemap_Multiviola_B2B505                          ;A2B3D4;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3D8;
-    dw Instruction_Common_GotoY                                          ;A2B3DC;
-    dw UNUSED_InstList_Multiviola_A2B37C                                 ;A2B3DE;
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4FE
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B4FE
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_B2B505
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_B2B505
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B513
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B513
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_B2B505
+    dw $0001,Spritemap_Common_Nothing
+    dw $0002,UNUSED_Spritemap_Multiviola_B2B505
+    dw $0001,Spritemap_Common_Nothing
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_Multiviola_A2B37C
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B3E0: Initialisation AI - enemy $D1BF (multiviola) ;;;
 InitAI_Multiviola:
 ; Everything but the instruction list pointer assignment is done in the main AI, making it completely redundant to do here
-    LDX.W EnemyIndex                                                     ;A2B3E0;
-    LDA.W Enemy.init0,X                                                  ;A2B3E3;
-    STA.B DP_Temp12                                                      ;A2B3E6;
-    LDA.W Enemy.init1,X                                                  ;A2B3E8;
-    AND.W #$00FF                                                         ;A2B3EB;
-    STA.B DP_Temp14                                                      ;A2B3EE;
-    JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name              ;A2B3F0; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
-    LDA.B DP_Temp16                                                      ;A2B3F4;
-    STA.W Multiviola.XVelocity,X                                         ;A2B3F6;
-    LDA.B DP_Temp18                                                      ;A2B3F9;
-    STA.W Multiviola.XSubVelocity,X                                      ;A2B3FB;
-    LDA.B DP_Temp1A                                                      ;A2B3FE;
-    STA.W Multiviola.YVelocity,X                                         ;A2B400;
-    LDA.B DP_Temp1C                                                      ;A2B403;
-    STA.W Multiviola.YSubVelocity,X                                      ;A2B405;
-    LDA.W #InstList_Multiviola                                           ;A2B408;
-    STA.W Enemy.instList,X                                               ;A2B40B;
-    RTL                                                                  ;A2B40E;
+    LDX.W EnemyIndex
+    LDA.W Enemy.init0,X : STA.B DP_Temp12
+    LDA.W Enemy.init1,X : AND.W #$00FF : STA.B DP_Temp14
+    JSL Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name ; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
+    LDA.B DP_Temp16 : STA.W Multiviola.XVelocity,X
+    LDA.B DP_Temp18 : STA.W Multiviola.XSubVelocity,X
+    LDA.B DP_Temp1A : STA.W Multiviola.YVelocity,X
+    LDA.B DP_Temp1C : STA.W Multiviola.YSubVelocity,X
+    LDA.W #InstList_Multiviola : STA.W Enemy.instList,X
+    RTL
 
 
 ;;; $B40F: Main AI - enemy $D1BF (multiviola) ;;;
 MainAI_Multiviola:
 ; Note the two fixed point negation operations at $B443 and $B47D are off by 1.0 when the low word is zero
-    LDX.W EnemyIndex                                                     ;A2B40F;
-    LDA.W Enemy.init0,X                                                  ;A2B412;
-    STA.B DP_Temp12                                                      ;A2B415;
-    LDA.W Enemy.init1,X                                                  ;A2B417;
-    AND.W #$00FF                                                         ;A2B41A;
-    STA.B DP_Temp14                                                      ;A2B41D;
-    JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name              ;A2B41F; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
-    LDA.B DP_Temp16                                                      ;A2B423;
-    STA.W Multiviola.XVelocity,X                                         ;A2B425;
-    LDA.B DP_Temp18                                                      ;A2B428;
-    STA.W Multiviola.XSubVelocity,X                                      ;A2B42A;
-    LDA.B DP_Temp1A                                                      ;A2B42D;
-    STA.W Multiviola.YVelocity,X                                         ;A2B42F;
-    LDA.B DP_Temp1C                                                      ;A2B432;
-    STA.W Multiviola.YSubVelocity,X                                      ;A2B434;
-    LDA.W Enemy.init0,X                                                  ;A2B437;
-    CLC                                                                  ;A2B43A;
-    ADC.W #$0040                                                         ;A2B43B;
-    BIT.W #$0080                                                         ;A2B43E;
-    BNE +                                                                ;A2B441;
-    LDA.W Multiviola.XVelocity,X                                         ;A2B443;
-    EOR.W #$FFFF                                                         ;A2B446;
-    STA.W Multiviola.XVelocity,X                                         ;A2B449;
-    LDA.W Multiviola.XSubVelocity,X                                      ;A2B44C;
-    EOR.W #$FFFF                                                         ;A2B44F;
-    INC                                                                  ;A2B452;
-    STA.W Multiviola.XSubVelocity,X                                      ;A2B453;
+    LDX.W EnemyIndex
+    LDA.W Enemy.init0,X : STA.B DP_Temp12
+    LDA.W Enemy.init1,X : AND.W #$00FF : STA.B DP_Temp14
+    JSL Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name ; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
+    LDA.B DP_Temp16 : STA.W Multiviola.XVelocity,X
+    LDA.B DP_Temp18 : STA.W Multiviola.XSubVelocity,X
+    LDA.B DP_Temp1A : STA.W Multiviola.YVelocity,X
+    LDA.B DP_Temp1C : STA.W Multiviola.YSubVelocity,X
+    LDA.W Enemy.init0,X : CLC : ADC.W #$0040 : BIT.W #$0080 : BNE +
+    LDA.W Multiviola.XVelocity,X : EOR.W #$FFFF : STA.W Multiviola.XVelocity,X
+    LDA.W Multiviola.XSubVelocity,X : EOR.W #$FFFF : INC : STA.W Multiviola.XSubVelocity,X
 
-+   LDA.W Multiviola.XVelocity,X                                         ;A2B456;
-    STA.B DP_Temp14                                                      ;A2B459;
-    LDA.W Multiviola.XSubVelocity,X                                      ;A2B45B;
-    STA.B DP_Temp12                                                      ;A2B45E;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A2B460;
-    BCC .notCollidedWithWall                                             ;A2B464;
-    LDA.W Enemy.init0,X                                                  ;A2B466;
-    EOR.W #$0040                                                         ;A2B469;
-    STA.W Enemy.init0,X                                                  ;A2B46C;
-    BRA .return                                                          ;A2B46F;
++   LDA.W Multiviola.XVelocity,X : STA.B DP_Temp14
+    LDA.W Multiviola.XSubVelocity,X : STA.B DP_Temp12
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCC .notCollidedWithWall
+    LDA.W Enemy.init0,X : EOR.W #$0040 : STA.W Enemy.init0,X
+    BRA .return
 
   .notCollidedWithWall:
-    LDA.W Enemy.init0,X                                                  ;A2B471;
-    CLC                                                                  ;A2B474;
-    ADC.W #$0080                                                         ;A2B475;
-    BIT.W #$0080                                                         ;A2B478;
-    BNE +                                                                ;A2B47B;
-    LDA.W Multiviola.YVelocity,X                                         ;A2B47D;
-    EOR.W #$FFFF                                                         ;A2B480;
-    STA.W Multiviola.YVelocity,X                                         ;A2B483;
-    LDA.W Multiviola.YSubVelocity,X                                      ;A2B486;
-    EOR.W #$FFFF                                                         ;A2B489;
-    INC                                                                  ;A2B48C;
-    STA.W Multiviola.YSubVelocity,X                                      ;A2B48D;
+    LDA.W Enemy.init0,X : CLC : ADC.W #$0080 : BIT.W #$0080 : BNE +
+    LDA.W Multiviola.YVelocity,X : EOR.W #$FFFF : STA.W Multiviola.YVelocity,X
+    LDA.W Multiviola.YSubVelocity,X : EOR.W #$FFFF : INC : STA.W Multiviola.YSubVelocity,X
 
-+   LDA.W Multiviola.YVelocity,X                                         ;A2B490;
-    STA.B DP_Temp14                                                      ;A2B493;
-    LDA.W Multiviola.YSubVelocity,X                                      ;A2B495;
-    STA.B DP_Temp12                                                      ;A2B498;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2B49A;
-    BCC .return                                                          ;A2B49E;
-    LDA.W Enemy.init0,X                                                  ;A2B4A0;
-    EOR.W #$00C0                                                         ;A2B4A3;
-    STA.W Enemy.init0,X                                                  ;A2B4A6;
++   LDA.W Multiviola.YVelocity,X : STA.B DP_Temp14
+    LDA.W Multiviola.YSubVelocity,X : STA.B DP_Temp12
+    JSL MoveEnemyDownBy_14_12
+    BCC .return
+    LDA.W Enemy.init0,X : EOR.W #$00C0 : STA.W Enemy.init0,X
 
   .return:
-    RTL                                                                  ;A2B4A9;
+    RTL
 
 
 ;;; $B4AA: Spritemaps - multiviola ;;;
 ; Used instruction list
 Spritemap_Multiviola_0:
-    dw $0001                                                             ;A2B4AA;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Multiviola_1:
-    dw $0001                                                             ;A2B4B1;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $102)
 
 Spritemap_Multiviola_2:
-    dw $0001                                                             ;A2B4B8;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $104)
 
 Spritemap_Multiviola_3:
-    dw $0001                                                             ;A2B4BF;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $106)
 
 Spritemap_Multiviola_4:
-    dw $0001                                                             ;A2B4C6;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $108)
 
 Spritemap_Multiviola_5:
-    dw $0001                                                             ;A2B4CD;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_Multiviola_6:
-    dw $0001                                                             ;A2B4D4;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10C)
 
 Spritemap_Multiviola_7:
-    dw $0001                                                             ;A2B4DB;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10E)
 
 ; Unused instruction list
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Multiviola_A2B4E2:
-    dw $0001                                                             ;A2B4E2;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $120)
 
 UNUSED_Spritemap_Multiviola_A2B4E9:
-    dw $0001                                                             ;A2B4E9;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $122)
 
 UNUSED_Spritemap_Multiviola_A2B4F0:
-    dw $0001                                                             ;A2B4F0;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $124)
 
 UNUSED_Spritemap_Multiviola_A2B4F7:
-    dw $0001                                                             ;A2B4F7;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $126)
 
 ; Unused instruction list
 UNUSED_Spritemap_Multiviola_A2B4FE:
-    dw $0001                                                             ;A2B4FE;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $128)
 
 UNUSED_Spritemap_Multiviola_B2B505:
-    dw $0001                                                             ;A2B505;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $12A)
 
 UNUSED_Spritemap_Multiviola_A2B50C:
-    dw $0001                                                             ;A2B50C;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $12C)
 
 UNUSED_Spritemap_Multiviola_A2B513:
-    dw $0001                                                             ;A2B513;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $12E)
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B51A: Instruction list - polyp ;;;
 InstList_Polyp:
-    dw $0001,Spritemap_Polyp                                             ;A2B51A;
-    dw Instruction_Common_Sleep                                          ;A2B51E;
+    dw $0001,Spritemap_Polyp
+    dw Instruction_Common_Sleep
 
 
 ;;; $B520: Polyp data ;;;
 PolypData:
   .cooldownTimer:
 ; Cooldown time
-    dw $0010,$0018,$0020,$0028,$0030,$0038,$0040,$0048                   ;A2B520;
+    dw $0010,$0018,$0020,$0028,$0030,$0038,$0040,$0048
 
   .projectileInitialYSpeedTableIndex:
 ; Enemy projectile initial Y speed table index
-    dw $001C,$001D,$001E,$001F,$0020,$0021,$0022,$0023                   ;A2B530;
-    dw $0024,$0025,$0026,$0027,$0028,$0029,$002A,$002B                   ;A2B540;
+    dw $001C,$001D,$001E,$001F,$0020,$0021,$0022,$0023
+    dw $0024,$0025,$0026,$0027,$0028,$0029,$002A,$002B
 
   .projectileXVelocity:
 ; Enemy projectile X velocity
-    dw $0060,$0070,$0080,$0090,$00A0,$00B0,$00C0,$00D0                   ;A2B550;
-    dw $FFA0,$FF90,$FF80,$FF70,$FF60,$FF50,$FF40,$FF30                   ;A2B560;
+    dw $0060,$0070,$0080,$0090,$00A0,$00B0,$00C0,$00D0
+    dw $FFA0,$FF90,$FF80,$FF70,$FF60,$FF50,$FF40,$FF30
 
 
 ;;; $B570: Initialisation AI - enemy $D1FF (polyp) ;;;
 InitAI_Polyp:
-    LDX.W EnemyIndex                                                     ;A2B570;
-    LDA.W #InstList_Polyp                                                ;A2B573;
-    STA.W Enemy.instList,X                                               ;A2B576;
-    LDA.W #$0001                                                         ;A2B579;
-    STA.W Enemy.instTimer,X                                              ;A2B57C;
-    STZ.W Enemy.loopCounter,X                                            ;A2B57F;
-    LDA.W #Function_Polyp_WaitForSamusToGetNear                          ;A2B582;
-    STA.W Polyp.function,X                                               ;A2B585;
-    LDA.W #$0011                                                         ;A2B588;
-    STA.W RandomNumberSeed                                               ;A2B58B;
-    RTL                                                                  ;A2B58E;
+    LDX.W EnemyIndex
+    LDA.W #InstList_Polyp : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W #Function_Polyp_WaitForSamusToGetNear : STA.W Polyp.function,X
+    LDA.W #$0011 : STA.W RandomNumberSeed
+    RTL
 
 
 ;;; $B58F: Main AI - enemy $D1FF (polyp) ;;;
 MainAI_Polyp:
-    LDX.W EnemyIndex                                                     ;A2B58F;
-    JSR.W (Polyp.function,X)                                             ;A2B592;
-    RTL                                                                  ;A2B595;
+    LDX.W EnemyIndex
+    JSR.W (Polyp.function,X)
+    RTL
 
 
 ;;; $B596: Polyp function - wait for Samus to get near ;;;
 Function_Polyp_WaitForSamusToGetNear:
-    LDX.W EnemyIndex                                                     ;A2B596;
-    LDA.W #$0040                                                         ;A2B599;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2B59C;
-    BEQ .return                                                          ;A2B5A0;
-    LDA.W #$0040                                                         ;A2B5A2;
-    JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;A2B5A5;
-    BEQ .return                                                          ;A2B5A9;
-    LDA.W #Function_Polyp_ShootRock                                      ;A2B5AB;
-    STA.W Polyp.function,X                                               ;A2B5AE;
+    LDX.W EnemyIndex
+    LDA.W #$0040
+    JSL IsSamusWithinAPixelColumnsOfEnemy
+    BEQ .return
+    LDA.W #$0040
+    JSL IsSamusWithingAPixelRowsOfEnemy
+    BEQ .return
+    LDA.W #Function_Polyp_ShootRock : STA.W Polyp.function,X
 
   .return:
-    RTS                                                                  ;A2B5B1;
+    RTS
 
 
 ;;; $B5B2: Polyp function - shoot rock ;;;
 Function_Polyp_ShootRock:
-    LDX.W EnemyIndex                                                     ;A2B5B2;
-    JSL.L GenerateRandomNumber                                           ;A2B5B5;
-    AND.W #$001E                                                         ;A2B5B9;
-    TAY                                                                  ;A2B5BC;
-    LDA.W PolypData_projectileXVelocity,Y                                ;A2B5BD;
-    STA.W EnemyProjectile_InitParam1                                     ;A2B5C0;
-    JSL.L GenerateRandomNumber                                           ;A2B5C3;
-    AND.W #$001E                                                         ;A2B5C7;
-    TAY                                                                  ;A2B5CA;
-    LDA.W PolypData_projectileInitialYSpeedTableIndex,Y                  ;A2B5CB;
-    LDY.W #EnemyProjectile_LavaquakeRocks                                ;A2B5CE;
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A2B5D1;
-    LDA.W #Function_Polyp_Cooldown                                       ;A2B5D5;
-    STA.W Polyp.function,X                                               ;A2B5D8;
-    JSL.L GenerateRandomNumber                                           ;A2B5DB;
-    AND.W #$000E                                                         ;A2B5DF;
-    TAY                                                                  ;A2B5E2;
-    LDA.W PolypData_cooldownTimer,Y                                      ;A2B5E3;
-    STA.W Polyp.cooldownTimer,X                                          ;A2B5E6;
-    RTS                                                                  ;A2B5E9;
+    LDX.W EnemyIndex
+    JSL GenerateRandomNumber
+    AND.W #$001E : TAY
+    LDA.W PolypData_projectileXVelocity,Y : STA.W EnemyProjectile_InitParam1
+    JSL GenerateRandomNumber
+    AND.W #$001E : TAY
+    LDA.W PolypData_projectileInitialYSpeedTableIndex,Y
+    LDY.W #EnemyProjectile_LavaquakeRocks
+    JSL SpawnEnemyProjectileY_ParameterA_XGraphics
+    LDA.W #Function_Polyp_Cooldown : STA.W Polyp.function,X
+    JSL GenerateRandomNumber
+    AND.W #$000E : TAY
+    LDA.W PolypData_cooldownTimer,Y : STA.W Polyp.cooldownTimer,X
+    RTS
 
 
 ;;; $B5EA: Polyp function - cooldown ;;;
 Function_Polyp_Cooldown:
-    LDX.W EnemyIndex                                                     ;A2B5EA;
-    DEC.W Polyp.cooldownTimer,X                                          ;A2B5ED;
-    BPL .return                                                          ;A2B5F0;
-    LDA.W #Function_Polyp_WaitForSamusToGetNear                          ;A2B5F2;
-    STA.W Polyp.function,X                                               ;A2B5F5;
+    LDX.W EnemyIndex
+    DEC.W Polyp.cooldownTimer,X : BPL .return
+    LDA.W #Function_Polyp_WaitForSamusToGetNear : STA.W Polyp.function,X
 
   .return:
-    RTS                                                                  ;A2B5F8;
+    RTS
 
 
 ;;; $B5F9: RTL ;;;
 RTL_B5FAF9:
-    RTL                                                                  ;A2B5F9;
+    RTL
 
 
 ;;; $B5FA: RTL ;;;
 RTL_B5FAFA:
-    RTL                                                                  ;A2B5FA;
+    RTL
 
 
 ;;; $B5FB: Spritemap - polyp ;;;
 Spritemap_Polyp:
-    dw $0001                                                             ;A2B5FB;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $10A)
 
 
 ;;; $B602: Initialisation AI - enemy $D23F (rinka) ;;;
 InitAI_Rinka:
-    LDX.W EnemyIndex                                                     ;A2B602;
-    LDA.W Enemy.init0,X                                                  ;A2B605;
-    BEQ .notMBRoom                                                       ;A2B608;
-    JSR.W SpawnMotherBrainsRoomRinka                                     ;A2B60A;
-    LDA.L MotherBrainBody.deleteTurretsRinkasFlag                        ;A2B60D;
-    LDA.W Enemy.properties,X                                             ;A2B611;
-    ORA.W #$2C00                                                         ;A2B614;
-    AND.W #$BFFF                                                         ;A2B617;
-    STA.W Enemy.properties,X                                             ;A2B61A;
-    BRA .propertiesSet                                                   ;A2B61D;
+    LDX.W EnemyIndex
+    LDA.W Enemy.init0,X : BEQ .notMBRoom
+    JSR SpawnMotherBrainsRoomRinka
+    LDA.L MotherBrainBody.deleteTurretsRinkasFlag ; >.<
+    LDA.W Enemy.properties,X : ORA.W #$2C00 : AND.W #$BFFF : STA.W Enemy.properties,X
+    BRA .propertiesSet
 
-; Nothing points here
-    LDA.W Enemy.properties,X                                             ;A2B61F; dead code
-    ORA.W #$2C00                                                         ;A2B622;
-    STA.W Enemy.properties,X                                             ;A2B625;
-    BRA .propertiesSet                                                   ;A2B628;
+; Nothing points here, dead code
+    LDA.W Enemy.properties,X : ORA.W #$2C00 : STA.W Enemy.properties,X
+    BRA .propertiesSet
 
   .notMBRoom:
-    LDA.W Enemy.properties,X                                             ;A2B62A;
-    ORA.W #$6400                                                         ;A2B62D;
-    AND.W #$F7FF                                                         ;A2B630;
-    STA.W Enemy.properties,X                                             ;A2B633;
+    LDA.W Enemy.properties,X : ORA.W #$6400 : AND.W #$F7FF : STA.W Enemy.properties,X
 
   .propertiesSet:
-    LDA.W #$0400                                                         ;A2B636;
-    STA.W Enemy.palette,X                                                ;A2B639;
-    BRA ResetRinka                                                       ;A2B63C;
+    LDA.W #$0400 : STA.W Enemy.palette,X
+    BRA ResetRinka
 
 
 ;;; $B63E: Respawn rinka ;;;
 RespawnRinka:
-    LDA.W Enemy.init0,X                                                  ;A2B63E;
-    BEQ .notMBRoom                                                       ;A2B641;
-    JSR.W SpawnMotherBrainsRoomRinka                                     ;A2B643;
+    LDA.W Enemy.init0,X : BEQ .notMBRoom
+    JSR SpawnMotherBrainsRoomRinka
 
   .notMBRoom:
-    LDA.L EnemySpawnData.XPosition,X                                     ;A2B646;
-    STA.W Enemy.XPosition,X                                              ;A2B64A;
-    LDA.L EnemySpawnData.YPosition,X                                     ;A2B64D;
-    STA.W Enemy.YPosition,X                                              ;A2B651; fallthrough to ResetRinka
+    LDA.L EnemySpawnData.XPosition,X : STA.W Enemy.XPosition,X
+    LDA.L EnemySpawnData.YPosition,X : STA.W Enemy.YPosition,X
+; fallthrough to ResetRinka
 
 
 ;;; $B654: Reset rinka ;;;
 ResetRinka:
-    LDA.W #Function_Rinka_WaitingToFire                                  ;A2B654;
-    STA.W Rinka.function,X                                               ;A2B657;
-    LDA.W #$001A                                                         ;A2B65A;
-    STA.W Rinka.functionTimer,X                                          ;A2B65D;
-    STZ.W Rinka.XVelocity,X                                              ;A2B660;
-    STZ.W Rinka.YVelocity,X                                              ;A2B663;
-    LDA.W Enemy.init0,X                                                  ;A2B666;
-    BNE .MBRoom                                                          ;A2B669;
-    LDA.W #InstList_Rinka_NotMotherBrainsRoom_0                          ;A2B66B;
-    STA.W Enemy.instList,X                                               ;A2B66E;
-    LDA.W #$0001                                                         ;A2B671;
-    STA.W Enemy.instTimer,X                                              ;A2B674;
-    STZ.W Enemy.loopCounter,X                                            ;A2B677;
-    RTL                                                                  ;A2B67A;
+    LDA.W #Function_Rinka_WaitingToFire : STA.W Rinka.function,X
+    LDA.W #$001A : STA.W Rinka.functionTimer,X
+    STZ.W Rinka.XVelocity,X : STZ.W Rinka.YVelocity,X
+    LDA.W Enemy.init0,X : BNE .MBRoom
+    LDA.W #InstList_Rinka_NotMotherBrainsRoom_0 : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTL
 
   .MBRoom:
-    LDA.L MotherBrainBody.deleteTurretsRinkasFlag                        ;A2B67B;
-    BEQ .MBPhase1                                                        ;A2B67F;
-    LDA.W Enemy.properties,X                                             ;A2B681;
-    ORA.W #$0200                                                         ;A2B684;
-    STA.W Enemy.properties,X                                             ;A2B687;
-    RTL                                                                  ;A2B68A;
+    LDA.L MotherBrainBody.deleteTurretsRinkasFlag : BEQ .MBPhase1
+    LDA.W Enemy.properties,X : ORA.W #$0200 : STA.W Enemy.properties,X
+    RTL
 
   .MBPhase1:
-    LDA.W #InstList_Rinka_MotherBrainsRoom_0                             ;A2B68B;
-    STA.W Enemy.instList,X                                               ;A2B68E;
-    LDA.W #$0001                                                         ;A2B691;
-    STA.W Enemy.instTimer,X                                              ;A2B694;
-    STZ.W Enemy.loopCounter,X                                            ;A2B697;
-    RTL                                                                  ;A2B69A;
+    LDA.W #InstList_Rinka_MotherBrainsRoom_0 : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTL
 
 
 ;;; $B69B: Spawn Mother Brain's room rinka ;;;
@@ -6317,109 +5066,75 @@ SpawnMotherBrainsRoomRinka:
 ;     If it's on screen, the spawn point the rinka was previously spawned from
 ;     Otherwise, any on screen spawn point
 ;     Otherwise, any spawn point
-    LDA.L EnemySpawnData.XPosition,X                                     ;A2B69B;
-    STA.B DP_Temp12                                                      ;A2B69F;
-    LDA.L EnemySpawnData.YPosition,X                                     ;A2B6A1;
-    STA.B DP_Temp14                                                      ;A2B6A5;
-    JSL.L CheckIfPositionIsOnScreen                                      ;A2B6A7;
-    BCS +                                                                ;A2B6AB;
-    JSR.W GetAvailabilityIndexOfEnemySpawnPosition                       ;A2B6AD;
-    TAY                                                                  ;A2B6B0;
-    PHX                                                                  ;A2B6B1;
-    TAX                                                                  ;A2B6B2;
-    LDA.L ExtraEnemy8800-2,X                                             ;A2B6B3;
-    LSR                                                                  ;A2B6B7;
-    PLX                                                                  ;A2B6B8;
-    BCS +                                                                ;A2B6B9;
-    TYA                                                                  ;A2B6BB;
-    STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B6BC;
-    PHX                                                                  ;A2B6BF;
-    TAX                                                                  ;A2B6C0;
-    LDA.W #$FFFF                                                         ;A2B6C1;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B6C4;
-    PLX                                                                  ;A2B6C8;
-    RTS                                                                  ;A2B6C9;
+    LDA.L EnemySpawnData.XPosition,X : STA.B DP_Temp12
+    LDA.L EnemySpawnData.YPosition,X : STA.B DP_Temp14
+    JSL CheckIfPositionIsOnScreen
+    BCS +
+    JSR GetAvailabilityIndexOfEnemySpawnPosition
+    TAY
+    PHX
+    TAX
+    LDA.L ExtraEnemy8800-2,X : LSR
+    PLX
+    BCS +
+    TYA : STA.W Rinka.spawnPointAvailabilityTableIndex,X
+    PHX
+    TAX
+    LDA.W #$FFFF : STA.L ExtraEnemy8800-2,X
+    PLX
+    RTS
 
-+   LDY.W #$0000                                                         ;A2B6CA;
++   LDY.W #$0000
 
   .loopOnScreen:
-    LDA.W MotherBrainsRoomRinkaSpawnData_XPosition,Y                     ;A2B6CD;
-    STA.B DP_Temp12                                                      ;A2B6D0;
-    LDA.W MotherBrainsRoomRinkaSpawnData_YPosition,Y                     ;A2B6D2;
-    STA.B DP_Temp14                                                      ;A2B6D5;
-    JSL.L CheckIfPositionIsOnScreen                                      ;A2B6D7;
-    BCS .next                                                            ;A2B6DB;
-    PHX                                                                  ;A2B6DD;
-    LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B6DE;
-    LDA.L ExtraEnemy8800-2,X                                             ;A2B6E1;
-    LSR                                                                  ;A2B6E5;
-    PLX                                                                  ;A2B6E6;
-    BCC .found                                                           ;A2B6E7;
+    LDA.W MotherBrainsRoomRinkaSpawnData_XPosition,Y : STA.B DP_Temp12
+    LDA.W MotherBrainsRoomRinkaSpawnData_YPosition,Y : STA.B DP_Temp14
+    JSL CheckIfPositionIsOnScreen
+    BCS .next
+    PHX
+    LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y
+    LDA.L ExtraEnemy8800-2,X : LSR
+    PLX
+    BCC .found
 
   .next:
-    INY                                                                  ;A2B6E9;
-    INY                                                                  ;A2B6EA;
-    INY                                                                  ;A2B6EB;
-    INY                                                                  ;A2B6EC;
-    INY                                                                  ;A2B6ED;
-    INY                                                                  ;A2B6EE;
-    CPY.W #$0042                                                         ;A2B6EF;
-    BMI .loopOnScreen                                                    ;A2B6F2;
-    JMP.W .notFound                                                      ;A2B6F4;
+    INY #6 : CPY.W #$0042 : BMI .loopOnScreen
+    JMP .notFound
 
-    RTS                                                                  ;A2B6F7; >.<
+    RTS ; >.<
 
   .found:
-    LDA.B DP_Temp12                                                      ;A2B6F8;
-    STA.L EnemySpawnData.XPosition,X                                     ;A2B6FA;
-    STA.W Enemy.XPosition,X                                              ;A2B6FE;
-    LDA.B DP_Temp14                                                      ;A2B701;
-    STA.L EnemySpawnData.YPosition,X                                     ;A2B703;
-    STA.W Enemy.YPosition,X                                              ;A2B707;
-    PHX                                                                  ;A2B70A;
-    LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B70B;
-    LDA.W #$FFFF                                                         ;A2B70E;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B711;
-    TXA                                                                  ;A2B715;
-    PLX                                                                  ;A2B716;
-    STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B717;
-    RTS                                                                  ;A2B71A;
+    LDA.B DP_Temp12 : STA.L EnemySpawnData.XPosition,X : STA.W Enemy.XPosition,X
+    LDA.B DP_Temp14 : STA.L EnemySpawnData.YPosition,X : STA.W Enemy.YPosition,X
+    PHX
+    LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y
+    LDA.W #$FFFF : STA.L ExtraEnemy8800-2,X
+    TXA
+    PLX
+    STA.W Rinka.spawnPointAvailabilityTableIndex,X
+    RTS
 
   .notFound:
-    LDY.W #$0000                                                         ;A2B71B;
+    LDY.W #$0000
 
   .loopAny:
-    PHX                                                                  ;A2B71E;
-    LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B71F;
-    LDA.L ExtraEnemy8800-2,X                                             ;A2B722;
-    PLX                                                                  ;A2B726;
-    LSR                                                                  ;A2B727;
-    BCC .spawn                                                           ;A2B728;
-    INY                                                                  ;A2B72A;
-    INY                                                                  ;A2B72B;
-    INY                                                                  ;A2B72C;
-    INY                                                                  ;A2B72D;
-    INY                                                                  ;A2B72E;
-    INY                                                                  ;A2B72F;
-    CPY.W #$0042                                                         ;A2B730;
-    BMI .loopAny                                                         ;A2B733;
-    RTS                                                                  ;A2B735;
+    PHX
+    LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y
+    LDA.L ExtraEnemy8800-2,X
+    PLX
+    LSR : BCC .spawn
+    INY #6 : CPY.W #$0042 : BMI .loopAny
+    RTS
 
   .spawn:
-    LDA.W MotherBrainsRoomRinkaSpawnData_XPosition,Y                     ;A2B736;
-    STA.L EnemySpawnData.XPosition,X                                     ;A2B739;
-    STA.W Enemy.XPosition,X                                              ;A2B73D;
-    LDA.W MotherBrainsRoomRinkaSpawnData_YPosition,Y                     ;A2B740;
-    STA.L EnemySpawnData.YPosition,X                                     ;A2B743;
-    STA.W Enemy.YPosition,X                                              ;A2B747;
-    LDA.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B74A;
-    STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B74D;
-    PHX                                                                  ;A2B750;
-    TAX                                                                  ;A2B751;
-    LDA.W #$FFFF                                                         ;A2B752;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B755;
-    PLX                                                                  ;A2B759;
-    RTS                                                                  ;A2B75A;
+    LDA.W MotherBrainsRoomRinkaSpawnData_XPosition,Y : STA.L EnemySpawnData.XPosition,X : STA.W Enemy.XPosition,X
+    LDA.W MotherBrainsRoomRinkaSpawnData_YPosition,Y : STA.L EnemySpawnData.YPosition,X : STA.W Enemy.YPosition,X
+    LDA.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y : STA.W Rinka.spawnPointAvailabilityTableIndex,X
+    PHX
+    TAX
+    LDA.W #$FFFF : STA.L ExtraEnemy8800-2,X
+    PLX
+    RTS
 
 
 ;;; $B75B: Mother Brain's room rinka spawn data ;;;
@@ -6429,11 +5144,11 @@ MotherBrainsRoomRinkaSpawnData:
 ;       |     |      ___ Index into spawn point availability table + 2
 ;       |     |     |
   .XPosition:
-    dw $03E7                                                             ;A2B75B;
+    dw $03E7
   .YPosition:
-    dw       $0026                                                       ;A2B75D;
+    dw       $0026
   .spawnPointAvailabilityIndex:
-    dw             $0002                                                 ;A2B75F;
+    dw             $0002
     dw $03E7,$00A6,$0004
     dw $0337,$0036,$0006
     dw $0337,$00A6,$0008
@@ -6448,214 +5163,158 @@ MotherBrainsRoomRinkaSpawnData:
 
 ;;; $B79D: Get availability index of enemy spawn position ;;;
 GetAvailabilityIndexOfEnemySpawnPosition:
-    LDY.W #$0000                                                         ;A2B79D;
+    LDY.W #$0000
 
   .loop:
-    LDA.W MotherBrainsRoomRinkaSpawnData_XPosition,Y                     ;A2B7A0;
-    CMP.L EnemySpawnData.XPosition,X                                     ;A2B7A3;
-    BNE .next                                                            ;A2B7A7;
-    LDA.W MotherBrainsRoomRinkaSpawnData_YPosition,Y                     ;A2B7A9;
-    CMP.L EnemySpawnData.YPosition,X                                     ;A2B7AC;
-    BEQ .found                                                           ;A2B7B0;
+    LDA.W MotherBrainsRoomRinkaSpawnData_XPosition,Y : CMP.L EnemySpawnData.XPosition,X : BNE .next
+    LDA.W MotherBrainsRoomRinkaSpawnData_YPosition,Y : CMP.L EnemySpawnData.YPosition,X : BEQ .found
 
   .next:
-    TYA                                                                  ;A2B7B2;
-    CLC                                                                  ;A2B7B3;
-    ADC.W #$0006                                                         ;A2B7B4;
-    TAY                                                                  ;A2B7B7;
-    CMP.W #$0042                                                         ;A2B7B8;
-    BMI .loop                                                            ;A2B7BB;
-    LDY.W #$0000                                                         ;A2B7BD;
+    TYA : CLC : ADC.W #$0006 : TAY
+    CMP.W #$0042 : BMI .loop
+    LDY.W #$0000
 
   .found:
-    LDA.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B7C0;
-    RTS                                                                  ;A2B7C3;
+    LDA.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y
+    RTS
 
 
 ;;; $B7C4: Main AI - enemy $D23F (rinka) ;;;
 MainAI_Rinka:
-    LDX.W EnemyIndex                                                     ;A2B7C4;
-    LDA.W Enemy.init0,X                                                  ;A2B7C7;
-    BEQ .function                                                        ;A2B7CA;
-    LDA.L MotherBrainBody.deleteTurretsRinkasFlag                        ;A2B7CC;
-    BEQ .function                                                        ;A2B7D0;
-    JSR.W DecrementRinkaCounter                                          ;A2B7D2;
-    JSR.W MarkRinkaSpawnPointAvailable                                   ;A2B7D5;
-    JML.L RinkaDeath                                                     ;A2B7D8;
+    LDX.W EnemyIndex
+    LDA.W Enemy.init0,X : BEQ .function
+    LDA.L MotherBrainBody.deleteTurretsRinkasFlag : BEQ .function
+    JSR DecrementRinkaCounter
+    JSR MarkRinkaSpawnPointAvailable
+    JML RinkaDeath
 
   .function:
-    JMP.W (Rinka.function,X)                                             ;A2B7DC;
+    JMP.W (Rinka.function,X)
 
 
 ;;; $B7DF: Rinka function - fire ;;;
 Function_Rinka_Fire:
-    DEC.W Rinka.functionTimer,X                                          ;A2B7DF;
-    BPL Function_Rinka_Fire_return                                       ;A2B7E2;
-    LDA.W #Function_Rinka_Moving                                         ;A2B7E4;
-    STA.W Rinka.function,X                                               ;A2B7E7;
-    LDA.W Enemy.init0,X                                                  ;A2B7EA;
-    BEQ .notMBRoom                                                       ;A2B7ED;
-    LDA.W Enemy.properties,X                                             ;A2B7EF;
-    AND.W #$FBFF                                                         ;A2B7F2;
-    STA.W Enemy.properties,X                                             ;A2B7F5;
-    BRA +                                                                ;A2B7F8;
+    DEC.W Rinka.functionTimer,X : BPL Function_Rinka_Fire_return
+    LDA.W #Function_Rinka_Moving : STA.W Rinka.function,X
+    LDA.W Enemy.init0,X : BEQ .notMBRoom
+    LDA.W Enemy.properties,X : AND.W #$FBFF : STA.W Enemy.properties,X
+    BRA +
 
   .notMBRoom:
-    LDA.W Enemy.properties,X                                             ;A2B7FA;
-    ORA.W #$0800                                                         ;A2B7FD;
-    AND.W #$FBFF                                                         ;A2B800;
-    STA.W Enemy.properties,X                                             ;A2B803;
+    LDA.W Enemy.properties,X : ORA.W #$0800 : AND.W #$FBFF : STA.W Enemy.properties,X
 
-+   LDA.W SamusXPosition                                                 ;A2B806;
-    SEC                                                                  ;A2B809;
-    SBC.W Enemy.XPosition,X                                              ;A2B80A;
-    STA.B DP_Temp12                                                      ;A2B80D;
-    LDA.W SamusYPosition                                                 ;A2B80F;
-    SEC                                                                  ;A2B812;
-    SBC.W Enemy.YPosition,X                                              ;A2B813;
-    STA.B DP_Temp14                                                      ;A2B816;
-    JSL.L CalculateAngleOf_12_14_Offset                                  ;A2B818;
-    SEC                                                                  ;A2B81C;
-    SBC.W #$0080                                                         ;A2B81D;
-    EOR.W #$FFFF                                                         ;A2B820;
-    INC                                                                  ;A2B823;
-    AND.W #$00FF                                                         ;A2B824;
-    STA.B DP_Temp12                                                      ;A2B827;
-    LDA.W #$0120                                                         ;A2B829;
-    JSL.L CalculateXVelocityFromSpeedAndAngle                            ;A2B82C;
-    LDX.W EnemyIndex                                                     ;A2B830;
-    STA.W Rinka.XVelocity,X                                              ;A2B833;
-    LDA.W #$0120                                                         ;A2B836;
-    JSL.L CalculateYVelocityFromSpeedAndAngle                            ;A2B839;
-    LDX.W EnemyIndex                                                     ;A2B83D;
-    STA.W Rinka.YVelocity,X                                              ;A2B840;
++   LDA.W SamusXPosition : SEC : SBC.W Enemy.XPosition,X : STA.B DP_Temp12
+    LDA.W SamusYPosition : SEC : SBC.W Enemy.YPosition,X : STA.B DP_Temp14
+    JSL CalculateAngleOf_12_14_Offset
+    SEC : SBC.W #$0080 : EOR.W #$FFFF : INC
+    AND.W #$00FF : STA.B DP_Temp12
+    LDA.W #$0120
+    JSL CalculateXVelocityFromSpeedAndAngle
+    LDX.W EnemyIndex
+    STA.W Rinka.XVelocity,X
+    LDA.W #$0120
+    JSL CalculateYVelocityFromSpeedAndAngle
+    LDX.W EnemyIndex
+    STA.W Rinka.YVelocity,X
 
   .return:
-    RTL                                                                  ;A2B843;
+    RTL
 
 
 ;;; $B844: Rinka function - killed ;;;
 Function_Rinka_Killed:
-    DEC.W Rinka.functionTimer,X                                          ;A2B844;
-    BPL Function_Rinka_Fire_return                                       ;A2B847;
-    LDA.W #$000A                                                         ;A2B849;
-    STA.W Enemy.health,X                                                 ;A2B84C;
-    JMP.W RespawnRinka                                                   ;A2B84F;
+    DEC.W Rinka.functionTimer,X : BPL Function_Rinka_Fire_return
+    LDA.W #$000A : STA.W Enemy.health,X
+    JMP RespawnRinka
 
 
 ;;; $B852: Rinka function - waiting to fire ;;;
 Function_Rinka_WaitingToFire:
-    JSL.L CheckIfRinkaIsOnScreen                                         ;A2B852;
-    BCC Function_Rinka_Fire_return                                       ;A2B856;
-    JMP.W DeleteAndRespawnRinka                                          ;A2B858;
+    JSL CheckIfRinkaIsOnScreen
+    BCC Function_Rinka_Fire_return
+    JMP DeleteAndRespawnRinka
 
 
 ;;; $B85B: Rinka function - moving ;;;
 Function_Rinka_Moving:
-    JSL.L MoveEnemyAccordingToVelocity                                   ;A2B85B;
-    JSL.L CheckIfRinkaIsOnScreen                                         ;A2B85F;
-    BCC Function_Rinka_Fire_return                                       ;A2B863; fallthrough to DeleteAndRespawnRinka
+    JSL MoveEnemyAccordingToVelocity
+    JSL CheckIfRinkaIsOnScreen
+    BCC Function_Rinka_Fire_return
+; fallthrough to DeleteAndRespawnRinka
 
 
 ;;; $B865: Delete and respawn rinka ;;;
 DeleteAndRespawnRinka:
-    LDA.W Enemy.init0,X                                                  ;A2B865;
-    BEQ .notMBRoom                                                       ;A2B868;
-    JSR.W MarkRinkaSpawnPointAvailable                                   ;A2B86A;
-    LDA.L MotherBrainBody.deleteTurretsRinkasFlag                        ;A2B86D;
-    BEQ .notMBRoom                                                       ;A2B871;
-    JSR.W DecrementRinkaCounter                                          ;A2B873;
-    JML.L DeleteEnemyAndAnyConnectedEnemies                              ;A2B876;
+    LDA.W Enemy.init0,X : BEQ .notMBRoom
+    JSR MarkRinkaSpawnPointAvailable
+    LDA.L MotherBrainBody.deleteTurretsRinkasFlag : BEQ .notMBRoom
+    JSR DecrementRinkaCounter
+    JML DeleteEnemyAndAnyConnectedEnemies
 
   .notMBRoom:
-    JSR.W DecrementRinkaCounter                                          ;A2B87A;
-    JMP.W RespawnRinka                                                   ;A2B87D;
+    JSR DecrementRinkaCounter
+    JMP RespawnRinka
 
 
 ;;; $B880: Decrement rinka counter ;;;
 DecrementRinkaCounter:
-    LDA.W Enemy.init0,X                                                  ;A2B880;
-    BEQ .return                                                          ;A2B883;
-    LDA.W Enemy.properties,X                                             ;A2B885;
-    AND.W #$0100                                                         ;A2B888;
-    BNE .return                                                          ;A2B88B;
-    LDA.L MotherBrainBody.RinkaCounter                                   ;A2B88D;
-    DEC                                                                  ;A2B891;
-    BPL .storeRinkaCounter                                               ;A2B892;
-    LDA.W #$0000                                                         ;A2B894;
+    LDA.W Enemy.init0,X : BEQ .return
+    LDA.W Enemy.properties,X : AND.W #$0100 : BNE .return
+    LDA.L MotherBrainBody.RinkaCounter : DEC : BPL .storeRinkaCounter
+    LDA.W #$0000
 
   .storeRinkaCounter:
-    STA.L MotherBrainBody.RinkaCounter                                   ;A2B897;
+    STA.L MotherBrainBody.RinkaCounter
 
   .return:
-    RTS                                                                  ;A2B89B;
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $B89C: Unused ;;;
 UNUSED_Rinka_A2B89C:
-    LDA.W NumberOfTimesMainEnemyRoutineExecuted                          ;A2B89C;
-    AND.W #$0003                                                         ;A2B89F;
-    CMP.W Enemy.init0,X                                                  ;A2B8A2;
-    BNE .setAsIntangible                                                 ;A2B8A5;
-    LDA.W Enemy.properties,X                                             ;A2B8A7;
-    AND.W #$FBFF                                                         ;A2B8AA;
-    STA.W Enemy.properties,X                                             ;A2B8AD;
-    RTS                                                                  ;A2B8B0;
+    LDA.W NumberOfTimesMainEnemyRoutineExecuted : AND.W #$0003 : CMP.W Enemy.init0,X : BNE .setAsIntangible
+    LDA.W Enemy.properties,X : AND.W #$FBFF : STA.W Enemy.properties,X
+    RTS
 
   .setAsIntangible:
-    LDA.W Enemy.properties,X                                             ;A2B8B1;
-    ORA.W #$0400                                                         ;A2B8B4;
-    STA.W Enemy.properties,X                                             ;A2B8B7;
-    RTS                                                                  ;A2B8BA;
+    LDA.W Enemy.properties,X : ORA.W #$0400 : STA.W Enemy.properties,X
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B8BB: Mark rinka spawn point available ;;;
 MarkRinkaSpawnPointAvailable:
-    LDA.W Enemy.init0,X                                                  ;A2B8BB;
-    BEQ .return                                                          ;A2B8BE;
-    LDA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B8C0;
-    BEQ .return                                                          ;A2B8C3;
-    PHX                                                                  ;A2B8C5;
-    TAX                                                                  ;A2B8C6;
-    LDA.W #$0000                                                         ;A2B8C7;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B8CA;
-    PLX                                                                  ;A2B8CE;
-    STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B8CF;
+    LDA.W Enemy.init0,X : BEQ .return
+    LDA.W Rinka.spawnPointAvailabilityTableIndex,X : BEQ .return
+    PHX
+    TAX
+    LDA.W #$0000 : STA.L ExtraEnemy8800-2,X
+    PLX
+    STA.W Rinka.spawnPointAvailabilityTableIndex,X
 
   .return:
-    RTS                                                                  ;A2B8D2;
+    RTS
 
 
 ;;; $B8D3: Check if rinka is on screen ;;;
 CheckIfRinkaIsOnScreen:
 ;; Returns:
 ;;     Carry: Clear if rinka is on screen, set otherwise
-    LDA.W Enemy.YPosition,X                                              ;A2B8D3;
-    BMI .returnOffScreen                                                 ;A2B8D6;
-    CLC                                                                  ;A2B8D8;
-    ADC.W #$0010                                                         ;A2B8D9;
-    SEC                                                                  ;A2B8DC;
-    SBC.W Layer1YPosition                                                ;A2B8DD;
-    BMI .returnOffScreen                                                 ;A2B8E0;
-    CMP.W #$0100                                                         ;A2B8E2;
-    BPL .returnOffScreen                                                 ;A2B8E5;
-    LDA.W Enemy.XPosition,X                                              ;A2B8E7;
-    BMI .returnOffScreen                                                 ;A2B8EA;
-    CLC                                                                  ;A2B8EC;
-    ADC.W #$0010                                                         ;A2B8ED;
-    SEC                                                                  ;A2B8F0;
-    SBC.W Layer1XPosition                                                ;A2B8F1;
-    BMI .returnOffScreen                                                 ;A2B8F4;
-    CMP.W #$0120                                                         ;A2B8F6;
-    BPL .returnOffScreen                                                 ;A2B8F9;
-    CLC                                                                  ;A2B8FB;
-    RTL                                                                  ;A2B8FC;
+    LDA.W Enemy.YPosition,X : BMI .returnOffScreen
+    CLC : ADC.W #$0010
+    SEC : SBC.W Layer1YPosition : BMI .returnOffScreen
+    CMP.W #$0100 : BPL .returnOffScreen
+    LDA.W Enemy.XPosition,X : BMI .returnOffScreen
+    CLC : ADC.W #$0010
+    SEC : SBC.W Layer1XPosition : BMI .returnOffScreen
+    CMP.W #$0120 : BPL .returnOffScreen
+    CLC
+    RTL
 
   .returnOffScreen:
-    SEC                                                                  ;A2B8FD;
-    RTL                                                                  ;A2B8FE;
+    SEC
+    RTL
 
 
 ;;; $B8FF: Check if position is on screen ;;;
@@ -6665,638 +5324,544 @@ CheckIfPositionIsOnScreen:
 ;;     $14: Y position
 ;; Returns:
 ;;     Carry: Clear if position is on screen, set otherwise
-    LDA.B DP_Temp14                                                      ;A2B8FF;
-    BMI .returnOffScreen                                                 ;A2B901;
-    CLC                                                                  ;A2B903;
-    ADC.W #$0000                                                         ;A2B904;
-    SEC                                                                  ;A2B907;
-    SBC.W Layer1YPosition                                                ;A2B908;
-    BMI .returnOffScreen                                                 ;A2B90B;
-    CMP.W #$00E0                                                         ;A2B90D;
-    BPL .returnOffScreen                                                 ;A2B910;
-    LDA.B DP_Temp12                                                      ;A2B912;
-    BMI .returnOffScreen                                                 ;A2B914;
-    CLC                                                                  ;A2B916;
-    ADC.W #$0000                                                         ;A2B917;
-    SEC                                                                  ;A2B91A;
-    SBC.W Layer1XPosition                                                ;A2B91B;
-    BMI .returnOffScreen                                                 ;A2B91E;
-    CMP.W #$0100                                                         ;A2B920;
-    BPL .returnOffScreen                                                 ;A2B923;
-    CLC                                                                  ;A2B925;
-    RTL                                                                  ;A2B926;
+    LDA.B DP_Temp14 : BMI .returnOffScreen
+    CLC : ADC.W #$0000
+    SEC : SBC.W Layer1YPosition : BMI .returnOffScreen
+    CMP.W #$00E0 : BPL .returnOffScreen
+    LDA.B DP_Temp12 : BMI .returnOffScreen
+    CLC : ADC.W #$0000
+    SEC : SBC.W Layer1XPosition : BMI .returnOffScreen
+    CMP.W #$0100 : BPL .returnOffScreen
+    CLC
+    RTL
 
   .returnOffScreen:
-    SEC                                                                  ;A2B927;
-    RTL                                                                  ;A2B928;
+    SEC
+    RTL
 
 
 ;;; $B929: Frozen AI - enemy $D23F (rinka) ;;;
 FrozenAI_Rinka:
-    JSL.L CheckIfRinkaIsOnScreen                                         ;A2B929;
-    BCC .onScreen                                                        ;A2B92D;
-    STZ.W Enemy.freezeTimer,X                                            ;A2B92F;
+    JSL CheckIfRinkaIsOnScreen
+    BCC .onScreen
+    STZ.W Enemy.freezeTimer,X
 
   .onScreen:
-    JSL.L NormalEnemyFrozenAI                                            ;A2B932;
-    LDA.L MotherBrainBody.deleteTurretsRinkasFlag                        ;A2B936;
-    BNE .delete                                                          ;A2B93A;
-    RTL                                                                  ;A2B93C;
+    JSL NormalEnemyFrozenAI
+    LDA.L MotherBrainBody.deleteTurretsRinkasFlag : BNE .delete
+    RTL
 
   .delete:
-    JSR.W DecrementRinkaCounter                                          ;A2B93D;
-    JSR.W MarkRinkaSpawnPointAvailable                                   ;A2B940;
-    JML.L RinkaDeath                                                     ;A2B943;
+    JSR DecrementRinkaCounter
+    JSR MarkRinkaSpawnPointAvailable
+    JML RinkaDeath
 
 
 ;;; $B947: Enemy touch - enemy $D23F (rinka) ;;;
 EnemyTouch_Rinka:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A2B947;
-    BRA ContactReaction_Rinka_Common                                     ;A2B94B;
+    JSL NormalEnemyTouchAI_NoDeathCheck_External
+    BRA ContactReaction_Rinka_Common
 
 
 ;;; $B94D: Enemy shot - enemy $D23F (rinka) ;;;
 EnemyShot_Rinka:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A2B94D;
-    BRA ContactReaction_Rinka_Common                                     ;A2B951;
+    JSL NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External
+    BRA ContactReaction_Rinka_Common
 
 
 ;;; $B953: Power bomb reaction - enemy $D23F (rinka) ;;;
 PowerBombReaction_Rinka:
-    LDA.W Enemy.properties,X                                             ;A2B953;
-    AND.W #$0100                                                         ;A2B956;
-    BEQ .notInvisible                                                    ;A2B959;
-    RTL                                                                  ;A2B95B;
+    LDA.W Enemy.properties,X : AND.W #$0100 : BEQ .notInvisible
+    RTL
 
   .notInvisible:
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A2B95C; fallthrough to ContactReaction_Rinka_Common
+    JSL NormalEnemyPowerBombAI_NoDeathCheck_External
+; fallthrough to ContactReaction_Rinka_Common
 
 
 ;;; $B960: Rinka shared contact reaction ;;;
 ContactReaction_Rinka_Common:
-    LDA.W Enemy.health,X                                                 ;A2B960;
-    BEQ .dead                                                            ;A2B963;
-    RTL                                                                  ;A2B965;
+    LDA.W Enemy.health,X : BEQ .dead
+    RTL
 
   .dead:
-    JSR.W DecrementRinkaCounter                                          ;A2B966;
-    JSR.W MarkRinkaSpawnPointAvailable                                   ;A2B969;
-    LDA.W Enemy.init0,X                                                  ;A2B96C;
-    BNE .MBRoom                                                          ;A2B96F;
-    LDA.W #$0000                                                         ;A2B971;
-    JML.L RinkaDeath                                                     ;A2B974;
+    JSR DecrementRinkaCounter
+    JSR MarkRinkaSpawnPointAvailable
+    LDA.W Enemy.init0,X : BNE .MBRoom
+    LDA.W #$0000
+    JML RinkaDeath
 
   .MBRoom:
-    LDA.W Enemy.properties,X                                             ;A2B978;
-    ORA.W #$0500                                                         ;A2B97B;
-    STA.W Enemy.properties,X                                             ;A2B97E;
-    LDA.W Enemy.XPosition,X                                              ;A2B981;
-    STA.B DP_Temp12                                                      ;A2B984;
-    LDA.W Enemy.YPosition,X                                              ;A2B986;
-    STA.B DP_Temp14                                                      ;A2B989;
-    LDY.W #EnemyProjectile_MiscDust                                      ;A2B98B;
-    LDA.W #$0003                                                         ;A2B98E;
-    JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A2B991;
-    LDA.W #Function_Rinka_Killed                                         ;A2B995;
-    STA.W Rinka.function,X                                               ;A2B998;
-    LDA.W #$0001                                                         ;A2B99B;
-    STA.W Rinka.functionTimer,X                                          ;A2B99E;
-    RTL                                                                  ;A2B9A1;
+    LDA.W Enemy.properties,X : ORA.W #$0500 : STA.W Enemy.properties,X
+    LDA.W Enemy.XPosition,X : STA.B DP_Temp12
+    LDA.W Enemy.YPosition,X : STA.B DP_Temp14
+    LDY.W #EnemyProjectile_MiscDust
+    LDA.W #$0003
+    JSL SpawnEnemyProjectileY_ParameterA_RoomGraphics
+    LDA.W #Function_Rinka_Killed : STA.W Rinka.function,X
+    LDA.W #$0001 : STA.W Rinka.functionTimer,X
+    RTL
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $B9A2: Unused. Instruction - go to [[Y]] if [rinka counter] >= 3 ;;;
 UNUSED_Instruction_Rinka_GotoYIfCounterGreaterThan2_A2B9A2:
-    LDA.L MotherBrainBody.RinkaCounter                                   ;A2B9A2;
-    CMP.W #$0003                                                         ;A2B9A6;
-    BPL .gotoY                                                           ;A2B9A9;
-    INY                                                                  ;A2B9AB;
-    INY                                                                  ;A2B9AC;
-    RTL                                                                  ;A2B9AD;
+    LDA.L MotherBrainBody.RinkaCounter : CMP.W #$0003 : BPL .gotoY
+    INY #2
+    RTL
 
   .gotoY:
-    LDA.W $0000,Y                                                        ;A2B9AE;
-    TAY                                                                  ;A2B9B1;
-    RTL                                                                  ;A2B9B2;
+    LDA.W $0000,Y : TAY
+    RTL
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B9B3: Instruction - set enemy as intangible and invisible ;;;
 Instruction_Rinka_SetAsIntangibleAndInvisible:
-    LDA.W Enemy.properties,X                                             ;A2B9B3;
-    ORA.W #$0500                                                         ;A2B9B6;
-    STA.W Enemy.properties,X                                             ;A2B9B9;
-    RTL                                                                  ;A2B9BC;
+    LDA.W Enemy.properties,X : ORA.W #$0500 : STA.W Enemy.properties,X
+    RTL
 
 
 ;;; $B9BD: Instruction - set enemy as intangible, invisible and active off-screen ;;;
 Instruction_Rinka_SetAsIntangibleInvisibleAndActiveOffScreen:
-    LDA.W Enemy.properties,X                                             ;A2B9BD;
-    ORA.W #$0D00                                                         ;A2B9C0;
-    STA.W Enemy.properties,X                                             ;A2B9C3;
-    RTL                                                                  ;A2B9C6;
+    LDA.W Enemy.properties,X : ORA.W #$0D00 : STA.W Enemy.properties,X
+    RTL
 
 
 ;;; $B9C7: Instruction - fire rinka ;;;
 Instruction_Rinka_FireRinka:
-    LDA.W Enemy.properties,X                                             ;A2B9C7;
-    AND.W #$FAFF                                                         ;A2B9CA;
-    STA.W Enemy.properties,X                                             ;A2B9CD;
-    LDA.W #Function_Rinka_Fire                                           ;A2B9D0;
-    STA.W Rinka.function,X                                               ;A2B9D3;
-    LDA.L MotherBrainBody.RinkaCounter                                   ;A2B9D6;
-    INC                                                                  ;A2B9DA;
-    STA.L MotherBrainBody.RinkaCounter                                   ;A2B9DB;
-    RTL                                                                  ;A2B9DF;
+    LDA.W Enemy.properties,X : AND.W #$FAFF : STA.W Enemy.properties,X
+    LDA.W #Function_Rinka_Fire : STA.W Rinka.function,X
+    LDA.L MotherBrainBody.RinkaCounter : INC : STA.L MotherBrainBody.RinkaCounter
+    RTL
 
 
 ;;; $B9E0: Instruction list - not Mother Brain's room ;;;
 InstList_Rinka_NotMotherBrainsRoom_0:
-    dw Instruction_Rinka_SetAsIntangibleAndInvisible                     ;A2B9E0;
-    dw $0040,Spritemap_Rinka_0                                           ;A2B9E2;
-    dw Instruction_Rinka_FireRinka                                       ;A2B9E6;
+    dw Instruction_Rinka_SetAsIntangibleAndInvisible
+    dw $0040,Spritemap_Rinka_0
+    dw Instruction_Rinka_FireRinka
 
 InstList_Rinka_NotMotherBrainsRoom_1:
-    dw $0010,Spritemap_Rinka_0                                           ;A2B9E8;
-    dw $0008,Spritemap_Rinka_1                                           ;A2B9EC;
-    dw $0007,Spritemap_Rinka_2                                           ;A2B9F0;
-    dw $0006,Spritemap_Rinka_3                                           ;A2B9F4;
-    dw $0005,Spritemap_Rinka_4                                           ;A2B9F8;
-    dw $0006,Spritemap_Rinka_3                                           ;A2B9FC;
-    dw $0007,Spritemap_Rinka_2                                           ;A2BA00;
-    dw $0008,Spritemap_Rinka_1                                           ;A2BA04;
-    dw Instruction_Common_GotoY                                          ;A2BA08;
-    dw InstList_Rinka_NotMotherBrainsRoom_1                              ;A2BA0A;
+    dw $0010,Spritemap_Rinka_0
+    dw $0008,Spritemap_Rinka_1
+    dw $0007,Spritemap_Rinka_2
+    dw $0006,Spritemap_Rinka_3
+    dw $0005,Spritemap_Rinka_4
+    dw $0006,Spritemap_Rinka_3
+    dw $0007,Spritemap_Rinka_2
+    dw $0008,Spritemap_Rinka_1
+    dw Instruction_Common_GotoY
+    dw InstList_Rinka_NotMotherBrainsRoom_1
 
 
 ;;; $BA0C: Instruction list - Mother Brain's room ;;;
 InstList_Rinka_MotherBrainsRoom_0:
-    dw Instruction_Rinka_SetAsIntangibleInvisibleAndActiveOffScreen      ;A2BA0C;
-    dw $0040,Spritemap_Rinka_0                                           ;A2BA0E;
-    dw Instruction_Rinka_FireRinka                                       ;A2BA12;
+    dw Instruction_Rinka_SetAsIntangibleInvisibleAndActiveOffScreen
+    dw $0040,Spritemap_Rinka_0
+    dw Instruction_Rinka_FireRinka
 
 InstList_Rinka_MotherBrainsRoom_1:
-    dw $0010,Spritemap_Rinka_0                                           ;A2BA14;
-    dw $0008,Spritemap_Rinka_1                                           ;A2BA18;
-    dw $0007,Spritemap_Rinka_2                                           ;A2BA1C;
-    dw $0006,Spritemap_Rinka_3                                           ;A2BA20;
-    dw $0005,Spritemap_Rinka_4                                           ;A2BA24;
-    dw $0006,Spritemap_Rinka_3                                           ;A2BA28;
-    dw $0007,Spritemap_Rinka_2                                           ;A2BA2C;
-    dw $0008,Spritemap_Rinka_1                                           ;A2BA30;
-    dw Instruction_Common_GotoY                                          ;A2BA34;
-    dw InstList_Rinka_MotherBrainsRoom_1                                 ;A2BA36;
+    dw $0010,Spritemap_Rinka_0
+    dw $0008,Spritemap_Rinka_1
+    dw $0007,Spritemap_Rinka_2
+    dw $0006,Spritemap_Rinka_3
+    dw $0005,Spritemap_Rinka_4
+    dw $0006,Spritemap_Rinka_3
+    dw $0007,Spritemap_Rinka_2
+    dw $0008,Spritemap_Rinka_1
+    dw Instruction_Common_GotoY
+    dw InstList_Rinka_MotherBrainsRoom_1
 
 
 ;;; $BA38: Spritemaps - rinka ;;;
 Spritemap_Rinka_0:
-    dw $0001                                                             ;A2BA38;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $100)
 
 Spritemap_Rinka_1:
-    dw $0001                                                             ;A2BA3F;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $102)
 
 Spritemap_Rinka_2:
-    dw $0001                                                             ;A2BA46;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $104)
 
 Spritemap_Rinka_3:
-    dw $0001                                                             ;A2BA4D;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $106)
 
 Spritemap_Rinka_4:
-    dw $0001                                                             ;A2BA54;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $108)
 
 
 ;;; $BA5B: Palette - enemy $D1FF/$D23F (polyp / rinka) ;;;
 Palette_Polyp_Rinka:
-    dw $3800,$5739,$4273,$2DAD,$14C6,$19DA,$1174,$0D0F                   ;A2BA5B;
-    dw $08AA,$0FDE,$02DF,$019F,$005F,$0037,$6FDF,$0006                   ;A2BA6B;
+    dw $3800,$5739,$4273,$2DAD,$14C6,$19DA,$1174,$0D0F
+    dw $08AA,$0FDE,$02DF,$019F,$005F,$0037,$6FDF,$0006
 
 
 ;;; $BA7B: Palette - enemy $D27F (rio) ;;;
 Palette_Rio:
-    dw $3800,$2FFF,$1AF7,$014A,$0063,$275A,$0EB5,$0210                   ;A2BA7B;
-    dw $01CE,$03E0,$02E0,$0200,$0100,$7F00,$6DE0,$54E0                   ;A2BA8B;
+    dw $3800,$2FFF,$1AF7,$014A,$0063,$275A,$0EB5,$0210
+    dw $01CE,$03E0,$02E0,$0200,$0100,$7F00,$6DE0,$54E0
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $BA9B: Unused. Instruction list ;;;
 UNUSED_InstList_Rio_Idle_A2BB9B:
 ; Clone of InstList_Rio_Idle
-    dw $0004,Spritemap_Rio_0                                             ;A2BA9B;
-    dw $0004,Spritemap_Rio_1                                             ;A2BA9F;
-    dw $0004,Spritemap_Rio_0                                             ;A2BAA3;
-    dw $0004,Spritemap_Rio_1                                             ;A2BAA7;
-    dw $0004,Spritemap_Rio_0                                             ;A2BAAB;
-    dw $0004,Spritemap_Rio_1                                             ;A2BAAF;
-    dw $0004,Spritemap_Rio_0                                             ;A2BAB3;
-    dw $0004,Spritemap_Rio_1                                             ;A2BAB7;
-    dw $0004,Spritemap_Rio_2                                             ;A2BABB;
-    dw $0004,Spritemap_Rio_3                                             ;A2BABF;
-    dw $0004,Spritemap_Rio_2                                             ;A2BAC3;
-    dw $0004,Spritemap_Rio_3                                             ;A2BAC7;
-    dw Instruction_Common_GotoY                                          ;A2BACB;
-    dw UNUSED_InstList_Rio_Idle_A2BB9B                                   ;A2BACD;
+    dw $0004,Spritemap_Rio_0
+    dw $0004,Spritemap_Rio_1
+    dw $0004,Spritemap_Rio_0
+    dw $0004,Spritemap_Rio_1
+    dw $0004,Spritemap_Rio_0
+    dw $0004,Spritemap_Rio_1
+    dw $0004,Spritemap_Rio_0
+    dw $0004,Spritemap_Rio_1
+    dw $0004,Spritemap_Rio_2
+    dw $0004,Spritemap_Rio_3
+    dw $0004,Spritemap_Rio_2
+    dw $0004,Spritemap_Rio_3
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_Rio_Idle_A2BB9B
 
 
 ;;; $BACF: Unused. Instruction list ;;;
 UNUSED_InstList_Rio_Swooping_A2BACF:
 ; Combination of the two swooping instruction lists
-    dw $0003,Spritemap_Rio_2                                             ;A2BACF;
-    dw $0003,Spritemap_Rio_3                                             ;A2BAD3;
-    dw $0003,Spritemap_Rio_4                                             ;A2BAD7;
-    dw $0003,Spritemap_Rio_5                                             ;A2BADB;
-    dw $0003,Spritemap_Rio_6                                             ;A2BADF;
-    dw $0003,Spritemap_Rio_7                                             ;A2BAE3;
-    dw $0003,Spritemap_Rio_6                                             ;A2BAE7;
-    dw $0003,Spritemap_Rio_7                                             ;A2BAEB;
-    dw $0003,Spritemap_Rio_6                                             ;A2BAEF;
-    dw $0003,Spritemap_Rio_7                                             ;A2BAF3;
-    dw $0003,Spritemap_Rio_6                                             ;A2BAF7;
-    dw $0003,Spritemap_Rio_7                                             ;A2BAFB;
-    dw $0003,Spritemap_Rio_6                                             ;A2BAFF;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB03;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB07;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB0B;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB0F;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB13;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB17;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB1B;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB1F;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB23;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB27;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB2B;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB2F;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB33;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB37;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB3B;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB3F;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB43;
-    dw Instruction_Common_GotoY                                          ;A2BB47;
-    dw UNUSED_InstList_Rio_Swooping_A2BACF                               ;A2BB49;
+    dw $0003,Spritemap_Rio_2
+    dw $0003,Spritemap_Rio_3
+    dw $0003,Spritemap_Rio_4
+    dw $0003,Spritemap_Rio_5
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_7
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_Rio_Swooping_A2BACF
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $BB4B: Instruction list - idle ;;;
 InstList_Rio_Idle:
-    dw $0004,Spritemap_Rio_0                                             ;A2BB4B;
-    dw $0004,Spritemap_Rio_1                                             ;A2BB4F;
+    dw $0004,Spritemap_Rio_0
+    dw $0004,Spritemap_Rio_1
 
 
 ;;; $BB53: Instruction list - post-swoop idle ;;;
 InstList_Rio_PostSwoopIdle:
-    dw $0004,Spritemap_Rio_0                                             ;A2BB53;
-    dw $0004,Spritemap_Rio_1                                             ;A2BB57;
-    dw $0004,Spritemap_Rio_0                                             ;A2BB5B;
-    dw $0004,Spritemap_Rio_1                                             ;A2BB5F;
-    dw $0004,Spritemap_Rio_0                                             ;A2BB63;
-    dw $0004,Spritemap_Rio_1                                             ;A2BB67;
-    dw $0004,Spritemap_Rio_2                                             ;A2BB6B;
-    dw $0004,Spritemap_Rio_3                                             ;A2BB6F;
-    dw $0004,Spritemap_Rio_2                                             ;A2BB73;
-    dw $0004,Spritemap_Rio_3                                             ;A2BB77;
-    dw Instruction_Common_GotoY                                          ;A2BB7B;
-    dw InstList_Rio_Idle                                                 ;A2BB7D;
+    dw $0004,Spritemap_Rio_0
+    dw $0004,Spritemap_Rio_1
+    dw $0004,Spritemap_Rio_0
+    dw $0004,Spritemap_Rio_1
+    dw $0004,Spritemap_Rio_0
+    dw $0004,Spritemap_Rio_1
+    dw $0004,Spritemap_Rio_2
+    dw $0004,Spritemap_Rio_3
+    dw $0004,Spritemap_Rio_2
+    dw $0004,Spritemap_Rio_3
+    dw Instruction_Common_GotoY
+    dw InstList_Rio_Idle
 
 
 ;;; $BB7F: Instruction list - swooping - part 1 ;;;
 InstList_Rio_Swooping_Part1:
-    dw $0003,Spritemap_Rio_2                                             ;A2BB7F;
-    dw $0003,Spritemap_Rio_3                                             ;A2BB83;
-    dw $0003,Spritemap_Rio_4                                             ;A2BB87;
-    dw $0003,Spritemap_Rio_5                                             ;A2BB8B;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB8F;
-    dw Instruction_Rio_SetAnimationFinishedFlag                          ;A2BB93;
-    dw Instruction_Common_Sleep                                          ;A2BB95;
+    dw $0003,Spritemap_Rio_2
+    dw $0003,Spritemap_Rio_3
+    dw $0003,Spritemap_Rio_4
+    dw $0003,Spritemap_Rio_5
+    dw $0003,Spritemap_Rio_6
+    dw Instruction_Rio_SetAnimationFinishedFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $BB97: Instruction list - swooping - part 2 ;;;
 InstList_Rio_Swooping_Part2:
-    dw $0003,Spritemap_Rio_7                                             ;A2BB97;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB9B;
-    dw Instruction_Common_GotoY                                          ;A2BB9F;
-    dw InstList_Rio_Swooping_Part2                                       ;A2BBA1;
+    dw $0003,Spritemap_Rio_7
+    dw $0003,Spritemap_Rio_6
+    dw Instruction_Common_GotoY
+    dw InstList_Rio_Swooping_Part2
 
 
 ;;; $BBA3: Instruction list - swoop cooldown ;;;
 InstList_Rio_SwoopCooldown:
-    dw $0003,Spritemap_Rio_6                                             ;A2BBA3;
-    dw $0003,Spritemap_Rio_5                                             ;A2BBA7;
-    dw $0003,Spritemap_Rio_4                                             ;A2BBAB;
-    dw $0003,Spritemap_Rio_3                                             ;A2BBAF;
-    dw $0003,Spritemap_Rio_2                                             ;A2BBB3;
-    dw Instruction_Rio_SetAnimationFinishedFlag                          ;A2BBB7;
-    dw Instruction_Common_Sleep                                          ;A2BBB9;
+    dw $0003,Spritemap_Rio_6
+    dw $0003,Spritemap_Rio_5
+    dw $0003,Spritemap_Rio_4
+    dw $0003,Spritemap_Rio_3
+    dw $0003,Spritemap_Rio_2
+    dw Instruction_Rio_SetAnimationFinishedFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $BBBB: Rio constants ;;;
 RioConstants_YVelocity:
-    dw $0580                                                             ;A2BBBB;
+    dw $0580
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RioConstants_A2BBBD:
-    dw $0600                                                             ;A2BBBD;
+    dw $0600
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 RioConstants_XVelocity:
-    dw $0180                                                             ;A2BBBF;
+    dw $0180
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RioConstants_A2BBC1:
-    dw $0200                                                             ;A2BBC1;
+    dw $0200
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $BBC3: Instruction - set animation finished flag ;;;
 Instruction_Rio_SetAnimationFinishedFlag:
-    LDX.W EnemyIndex                                                     ;A2BBC3;
-    LDA.W #$0001                                                         ;A2BBC6;
-    STA.W Rio.animationFinishedFlag,X                                    ;A2BBC9;
-    RTL                                                                  ;A2BBCC;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.W Rio.animationFinishedFlag,X
+    RTL
 
 
 ;;; $BBCD: Initialisation AI - enemy $D27F (rio) ;;;
 InitAI_Rio:
-    LDX.W EnemyIndex                                                     ;A2BBCD;
-    STZ.W Rio.animationFinishedFlag,X                                    ;A2BBD0;
-    STZ.W Rio.instList,X                                                 ;A2BBD3;
-    LDA.W #InstList_Rio_Idle                                             ;A2BBD6;
-    STA.W Enemy.instList,X                                               ;A2BBD9;
-    LDA.W #Function_Rio_WaitForSamusToGetNear                            ;A2BBDC;
-    STA.W Rio.function,X                                                 ;A2BBDF;
-    RTL                                                                  ;A2BBE2;
+    LDX.W EnemyIndex
+    STZ.W Rio.animationFinishedFlag,X : STZ.W Rio.instList,X
+    LDA.W #InstList_Rio_Idle : STA.W Enemy.instList,X
+    LDA.W #Function_Rio_WaitForSamusToGetNear : STA.W Rio.function,X
+    RTL
 
 
 ;;; $BBE3: Main AI - enemy $D27F (rio) ;;;
 MainAI_Rio:
-    JSL.L GenerateRandomNumber                                           ;A2BBE3;
-    LDX.W EnemyIndex                                                     ;A2BBE7;
-    JMP.W (Rio.function,X)                                               ;A2BBEA;
+    JSL GenerateRandomNumber
+    LDX.W EnemyIndex
+    JMP.W (Rio.function,X)
 
 
 ;;; $BBED: Rio function - wait for Samus to get near ;;;
 Function_Rio_WaitForSamusToGetNear:
-    LDA.W #$00A0                                                         ;A2BBED;
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA                 ;A2BBF0;
-    BCC .SamusNear                                                       ;A2BBF4;
-    RTL                                                                  ;A2BBF6;
+    LDA.W #$00A0
+    JSL CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA
+    BCC .SamusNear
+    RTL
 
   .SamusNear:
-    LDA.W RioConstants_YVelocity                                         ;A2BBF7;
-    STA.W Rio.YVelocity,X                                                ;A2BBFA;
-    LDA.W RioConstants_XVelocity                                         ;A2BBFD;
-    STA.W Rio.XVelocity,X                                                ;A2BC00;
-    LDA.W SamusXPosition                                                 ;A2BC03;
-    CMP.W Enemy.XPosition,X                                              ;A2BC06;
-    BPL +                                                                ;A2BC09;
-    LDA.W Rio.XVelocity,X                                                ;A2BC0B;
-    EOR.W #$FFFF                                                         ;A2BC0E;
-    INC                                                                  ;A2BC11;
-    STA.W Rio.XVelocity,X                                                ;A2BC12;
+    LDA.W RioConstants_YVelocity : STA.W Rio.YVelocity,X
+    LDA.W RioConstants_XVelocity : STA.W Rio.XVelocity,X
+    LDA.W SamusXPosition : CMP.W Enemy.XPosition,X : BPL +
+    LDA.W Rio.XVelocity,X : EOR.W #$FFFF : INC : STA.W Rio.XVelocity,X
 
-+   LDA.W #InstList_Rio_Swooping_Part1                                   ;A2BC15;
-    JSR.W SetRioInstList                                                 ;A2BC18;
-    LDA.W #Function_Rio_Swoop_Descending                                 ;A2BC1B;
-    STA.W Rio.function,X                                                 ;A2BC1E;
-    JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A2BC21;
-    AND.W #$FFFF                                                         ;A2BC25;
-    BNE .return                                                          ;A2BC28;
-    LDA.W #$0065                                                         ;A2BC2A;
-    JSL.L QueueSound_Lib2_Max6                                           ;A2BC2D;
++   LDA.W #InstList_Rio_Swooping_Part1
+    JSR SetRioInstList
+    LDA.W #Function_Rio_Swoop_Descending : STA.W Rio.function,X
+    JSL CheckIfEnemyCenterIsOnScreen
+    AND.W #$FFFF : BNE .return
+    LDA.W #$0065
+    JSL QueueSound_Lib2_Max6
 
   .return:
-    RTL                                                                  ;A2BC31;
+    RTL
 
 
 ;;; $BC32: Rio function - swoop cooldown ;;;
 Function_Rio_SwoopCooldown:
-    LDA.W Rio.animationFinishedFlag,X                                    ;A2BC32;
-    BNE .finishedAnimation                                               ;A2BC35;
-    RTL                                                                  ;A2BC37;
+    LDA.W Rio.animationFinishedFlag,X : BNE .finishedAnimation
+    RTL
 
   .finishedAnimation:
-    STZ.W Rio.animationFinishedFlag,X                                    ;A2BC38;
-    LDA.W #InstList_Rio_PostSwoopIdle                                    ;A2BC3B;
-    JSR.W SetRioInstList                                                 ;A2BC3E;
-    LDA.W #Function_Rio_WaitForSamusToGetNear                            ;A2BC41;
-    STA.W Rio.function,X                                                 ;A2BC44;
-    RTL                                                                  ;A2BC47;
+    STZ.W Rio.animationFinishedFlag,X
+    LDA.W #InstList_Rio_PostSwoopIdle
+    JSR SetRioInstList
+    LDA.W #Function_Rio_WaitForSamusToGetNear : STA.W Rio.function,X
+    RTL
 
 
 ;;; $BC48: Rio function - swoop - descending ;;;
 Function_Rio_Swoop_Descending:
-    STZ.B DP_Temp12                                                      ;A2BC48;
-    STZ.B DP_Temp14                                                      ;A2BC4A;
-    LDA.W Rio.XVelocity,X                                                ;A2BC4C;
-    BPL +                                                                ;A2BC4F;
-    DEC.B DP_Temp14                                                      ;A2BC51;
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Rio.XVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2BC53;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A2BC55;
-    BCS .collidedHorizontally                                            ;A2BC59;
-    STZ.B DP_Temp12                                                      ;A2BC5B;
-    STZ.B DP_Temp14                                                      ;A2BC5D;
-    LDA.W Rio.YVelocity,X                                                ;A2BC5F;
-    BPL +                                                                ;A2BC62;
-    DEC.B DP_Temp14                                                      ;A2BC64;
++   STA.B DP_Temp13
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCS .collidedHorizontally
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Rio.YVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2BC66;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2BC68;
-    BCS .collidedVertically                                              ;A2BC6C;
-    LDA.W Rio.YVelocity,X                                                ;A2BC6E;
-    SEC                                                                  ;A2BC71;
-    SBC.W #$0018                                                         ;A2BC72;
-    STA.W Rio.YVelocity,X                                                ;A2BC75;
-    BMI .homing                                                          ;A2BC78;
-    LDA.W Rio.animationFinishedFlag,X                                    ;A2BC7A;
-    BEQ .return                                                          ;A2BC7D;
-    STZ.W Rio.animationFinishedFlag,X                                    ;A2BC7F;
-    LDA.W #InstList_Rio_Swooping_Part2                                   ;A2BC82;
-    JSR.W SetRioInstList                                                 ;A2BC85;
++   STA.B DP_Temp13
+    JSL MoveEnemyDownBy_14_12
+    BCS .collidedVertically
+    LDA.W Rio.YVelocity,X : SEC : SBC.W #$0018 : STA.W Rio.YVelocity,X : BMI .homing
+    LDA.W Rio.animationFinishedFlag,X : BEQ .return
+    STZ.W Rio.animationFinishedFlag,X
+    LDA.W #InstList_Rio_Swooping_Part2
+    JSR SetRioInstList
 
   .return:
-    RTL                                                                  ;A2BC88;
+    RTL
 
   .homing:
-    LDA.W Rio.XVelocity,X                                                ;A2BC89;
-    STA.W Rio.backupSwoopXVelocity,X                                     ;A2BC8C;
-    STZ.W Rio.XVelocity,X                                                ;A2BC8F;
-    STZ.W Rio.YVelocity,X                                                ;A2BC92;
-    LDA.W #Function_Rio_Homing                                           ;A2BC95;
-    STA.W Rio.function,X                                                 ;A2BC98;
-    RTL                                                                  ;A2BC9B;
+    LDA.W Rio.XVelocity,X : STA.W Rio.backupSwoopXVelocity,X
+    STZ.W Rio.XVelocity,X : STZ.W Rio.YVelocity,X
+    LDA.W #Function_Rio_Homing : STA.W Rio.function,X
+    RTL
 
   .collidedHorizontally:
-    LDA.W Rio.XVelocity,X                                                ;A2BC9C;
-    EOR.W #$FFFF                                                         ;A2BC9F;
-    INC                                                                  ;A2BCA2;
-    STA.W Rio.XVelocity,X                                                ;A2BCA3;
+    LDA.W Rio.XVelocity,X : EOR.W #$FFFF : INC : STA.W Rio.XVelocity,X
 
   .collidedVertically:
-    LDA.W Rio.YVelocity,X                                                ;A2BCA6;
-    EOR.W #$FFFF                                                         ;A2BCA9;
-    INC                                                                  ;A2BCAC;
-    STA.W Rio.YVelocity,X                                                ;A2BCAD;
-    LDA.W #Function_Rio_Swoop_Ascending                                  ;A2BCB0;
-    STA.W Rio.function,X                                                 ;A2BCB3;
-    RTL                                                                  ;A2BCB6;
+    LDA.W Rio.YVelocity,X : EOR.W #$FFFF : INC : STA.W Rio.YVelocity,X
+    LDA.W #Function_Rio_Swoop_Ascending : STA.W Rio.function,X
+    RTL
 
 
 ;;; $BCB7: Rio function - swoop - ascending ;;;
 Function_Rio_Swoop_Ascending:
-    STZ.B DP_Temp12                                                      ;A2BCB7;
-    STZ.B DP_Temp14                                                      ;A2BCB9;
-    LDA.W Rio.XVelocity,X                                                ;A2BCBB;
-    BPL +                                                                ;A2BCBE;
-    DEC.B DP_Temp14                                                      ;A2BCC0;
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Rio.XVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2BCC2;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A2BCC4;
-    BCC .notCollidedWithWall                                             ;A2BCC8;
-    LDA.W Rio.XVelocity,X                                                ;A2BCCA;
-    EOR.W #$FFFF                                                         ;A2BCCD;
-    INC                                                                  ;A2BCD0;
-    STA.W Rio.XVelocity,X                                                ;A2BCD1;
++   STA.B DP_Temp13
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCC .notCollidedWithWall
+    LDA.W Rio.XVelocity,X : EOR.W #$FFFF : INC : STA.W Rio.XVelocity,X
 
   .notCollidedWithWall:
-    STZ.B DP_Temp12                                                      ;A2BCD4;
-    STZ.B DP_Temp14                                                      ;A2BCD6;
-    LDA.W Rio.YVelocity,X                                                ;A2BCD8;
-    BPL +                                                                ;A2BCDB;
-    DEC.B DP_Temp14                                                      ;A2BCDD;
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Rio.YVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2BCDF;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2BCE1;
-    BCS .notCollidedWithBlock                                            ;A2BCE5;
-    LDA.W Rio.YVelocity,X                                                ;A2BCE7;
-    SEC                                                                  ;A2BCEA;
-    SBC.W #$0018                                                         ;A2BCEB;
-    STA.W Rio.YVelocity,X                                                ;A2BCEE;
-    RTL                                                                  ;A2BCF1;
++   STA.B DP_Temp13
+    JSL MoveEnemyDownBy_14_12
+    BCS .notCollidedWithBlock
+    LDA.W Rio.YVelocity,X : SEC : SBC.W #$0018 : STA.W Rio.YVelocity,X
+    RTL
 
   .notCollidedWithBlock:
-    LDA.W #InstList_Rio_SwoopCooldown                                    ;A2BCF2;
-    JSR.W SetRioInstList                                                 ;A2BCF5;
-    LDA.W #Function_Rio_SwoopCooldown                                    ;A2BCF8;
-    STA.W Rio.function,X                                                 ;A2BCFB;
-    RTL                                                                  ;A2BCFE;
+    LDA.W #InstList_Rio_SwoopCooldown
+    JSR SetRioInstList
+    LDA.W #Function_Rio_SwoopCooldown : STA.W Rio.function,X
+    RTL
 
 
 ;;; $BCFF: Rio function - homing ;;;
 Function_Rio_Homing:
-    LDA.W Enemy.YPosition,X                                              ;A2BCFF;
-    SEC                                                                  ;A2BD02;
-    SBC.W SamusYPosition                                                 ;A2BD03;
-    BPL .resumeSwoop                                                     ;A2BD06;
-    JSL.L CalculateAngleOfSamusFromEnemy                                 ;A2BD08;
-    TXY                                                                  ;A2BD0C;
-    ASL                                                                  ;A2BD0D;
-    TAX                                                                  ;A2BD0E;
-    LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;A2BD0F;
-    STA.W Rio.XVelocity,Y                                                ;A2BD13;
-    LDA.L SineCosineTables_NegativeCosine_SignExtended,X                 ;A2BD16;
-    STA.W Rio.YVelocity,Y                                                ;A2BD1A;
-    TYX                                                                  ;A2BD1D;
-    STZ.B DP_Temp12                                                      ;A2BD1E;
-    STZ.B DP_Temp14                                                      ;A2BD20;
-    LDA.W Rio.XVelocity,X                                                ;A2BD22;
-    BPL +                                                                ;A2BD25;
-    DEC.B DP_Temp14                                                      ;A2BD27;
+    LDA.W Enemy.YPosition,X : SEC : SBC.W SamusYPosition : BPL .resumeSwoop
+    JSL CalculateAngleOfSamusFromEnemy
+    TXY
+    ASL : TAX
+    LDA.L SineCosineTables_8bitSine_SignExtended,X : STA.W Rio.XVelocity,Y
+    LDA.L SineCosineTables_NegativeCosine_SignExtended,X : STA.W Rio.YVelocity,Y
+    TYX
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Rio.XVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2BD29;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A2BD2B;
-    STZ.B DP_Temp12                                                      ;A2BD2F;
-    STZ.B DP_Temp14                                                      ;A2BD31;
-    LDA.W Rio.YVelocity,X                                                ;A2BD33;
-    BPL +                                                                ;A2BD36;
-    DEC.B DP_Temp14                                                      ;A2BD38;
++   STA.B DP_Temp13
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Rio.YVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2BD3A;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2BD3C;
-    RTL                                                                  ;A2BD40;
++   STA.B DP_Temp13
+    JSL MoveEnemyDownBy_14_12
+    RTL
 
   .resumeSwoop:
-    LDA.W Rio.backupSwoopXVelocity,X                                     ;A2BD41;
-    STA.W Rio.XVelocity,X                                                ;A2BD44;
-    LDA.W #$FFFF                                                         ;A2BD47;
-    STA.W Rio.YVelocity,X                                                ;A2BD4A;
-    LDA.W #Function_Rio_Swoop_Ascending                                  ;A2BD4D;
-    STA.W Rio.function,X                                                 ;A2BD50;
-    RTL                                                                  ;A2BD53;
+    LDA.W Rio.backupSwoopXVelocity,X : STA.W Rio.XVelocity,X
+    LDA.W #$FFFF : STA.W Rio.YVelocity,X
+    LDA.W #Function_Rio_Swoop_Ascending : STA.W Rio.function,X
+    RTL
 
 
 ;;; $BD54: Set rio instruction list ;;;
 SetRioInstList:
 ;; Parameters:
 ;;     A: Instruction list pointer
-    LDX.W EnemyIndex                                                     ;A2BD54;
-    CMP.W Rio.instList,X                                                 ;A2BD57;
-    BEQ .return                                                          ;A2BD5A;
-    STA.W Rio.instList,X                                                 ;A2BD5C;
-    STA.W Enemy.instList,X                                               ;A2BD5F;
-    LDA.W #$0001                                                         ;A2BD62;
-    STA.W Enemy.instTimer,X                                              ;A2BD65;
-    STZ.W Enemy.loopCounter,X                                            ;A2BD68;
+    LDX.W EnemyIndex
+    CMP.W Rio.instList,X : BEQ .return
+    STA.W Rio.instList,X : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
 
   .return:
-    RTS                                                                  ;A2BD6B;
+    RTS
 
 
 ;;; $BD6C: Spritemaps - rio ;;;
 Spritemap_Rio_0:
-    dw $0004                                                             ;A2BD6C;
+    dw $0004
     %spritemapEntry(1, $1FF, $F0, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1FF, $00, 0, 1, 2, 0, $102)
     %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $102)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 2, 0, $100)
 
 Spritemap_Rio_1:
-    dw $0004                                                             ;A2BD82;
+    dw $0004
     %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $102)
     %spritemapEntry(1, $1FF, $00, 0, 1, 2, 0, $102)
     %spritemapEntry(1, $1FF, $F8, 1, 1, 2, 0, $104)
     %spritemapEntry(1, $1F0, $F8, 1, 0, 2, 0, $104)
 
 Spritemap_Rio_2:
-    dw $0004                                                             ;A2BD98;
+    dw $0004
     %spritemapEntry(1, $1FF, $00, 0, 1, 2, 0, $106)
     %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $106)
     %spritemapEntry(1, $1FF, $F0, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 2, 0, $100)
 
 Spritemap_Rio_3:
-    dw $0004                                                             ;A2BDAE;
+    dw $0004
     %spritemapEntry(1, $1FF, $00, 0, 1, 2, 0, $106)
     %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $106)
     %spritemapEntry(1, $1FF, $F8, 1, 1, 2, 0, $104)
     %spritemapEntry(1, $1F0, $F8, 1, 0, 2, 0, $104)
 
 Spritemap_Rio_4:
-    dw $0004                                                             ;A2BDC4;
+    dw $0004
     %spritemapEntry(1, $1FF, $00, 0, 1, 2, 0, $108)
     %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $108)
     %spritemapEntry(1, $1FF, $F0, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 2, 0, $100)
 
 Spritemap_Rio_5:
-    dw $0004                                                             ;A2BDDA;
+    dw $0004
     %spritemapEntry(1, $1FF, $00, 0, 1, 2, 0, $108)
     %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $108)
     %spritemapEntry(1, $1FF, $F8, 1, 1, 2, 0, $104)
     %spritemapEntry(1, $1F0, $F8, 1, 0, 2, 0, $104)
 
 Spritemap_Rio_6:
-    dw $0004                                                             ;A2BDF0;
+    dw $0004
     %spritemapEntry(1, $1FF, $00, 0, 1, 2, 0, $10A)
     %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $10A)
     %spritemapEntry(1, $1FF, $F0, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 2, 0, $100)
 
 Spritemap_Rio_7:
-    dw $0004                                                             ;A2BE06;
+    dw $0004
     %spritemapEntry(1, $1FF, $00, 0, 1, 2, 0, $10A)
     %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $10A)
     %spritemapEntry(1, $1FF, $F8, 1, 1, 2, 0, $104)
@@ -7305,803 +5870,642 @@ Spritemap_Rio_7:
 
 ;;; $BE1C: Palette - enemy $D2BF (squeept) ;;;
 Palette_Squeept:
-    dw $3800,$021D,$0015,$0008,$0003,$00BD,$0013,$000E                   ;A2BE1C;
-    dw $000B,$7FFF,$039C,$0237,$00D1,$03A0,$02C0,$05E0                   ;A2BE2C;
+    dw $3800,$021D,$0015,$0008,$0003,$00BD,$0013,$000E
+    dw $000B,$7FFF,$039C,$0237,$00D1,$03A0,$02C0,$05E0
 
 
 ;;; $BE3C: Instruction list - rising ;;;
 InstList_Squeept_Rising:
-    dw $0001,Spritemap_Squeept_0                                         ;A2BE3C;
-    dw Instruction_Common_Sleep                                          ;A2BE40;
+    dw $0001,Spritemap_Squeept_0
+    dw Instruction_Common_Sleep
 
 
 ;;; $BE42: Instruction list - flipping / falling ;;;
 InstList_Squeept_Flipping_Falling:
-    dw $0001,Spritemap_Squeept_0                                         ;A2BE42;
-    dw $0005,Spritemap_Squeept_1                                         ;A2BE46;
-    dw $0009,Spritemap_Squeept_2                                         ;A2BE4A;
-    dw $0007,Spritemap_Squeept_3                                         ;A2BE4E;
-    dw $0003,Spritemap_Squeept_4                                         ;A2BE52;
-    dw $000A,Spritemap_Squeept_5                                         ;A2BE56;
-    dw $0001,Spritemap_Squeept_6                                         ;A2BE5A;
-    dw Instruction_Squeept_SetAnimationFinishedFlag                      ;A2BE5E;
-    dw Instruction_Common_Sleep                                          ;A2BE60;
+    dw $0001,Spritemap_Squeept_0
+    dw $0005,Spritemap_Squeept_1
+    dw $0009,Spritemap_Squeept_2
+    dw $0007,Spritemap_Squeept_3
+    dw $0003,Spritemap_Squeept_4
+    dw $000A,Spritemap_Squeept_5
+    dw $0001,Spritemap_Squeept_6
+    dw Instruction_Squeept_SetAnimationFinishedFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $BE62: Instruction list - flame ;;;
 InstList_Squeept_Flame_0:
-    dw $0001,Spritemap_Squeept_7                                         ;A2BE62;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2BE66;
-    dw Instruction_Common_TimerInY,$0001                                 ;A2BE6A;
+    dw $0001,Spritemap_Squeept_7
+    dw $0001,Spritemap_Common_Nothing
+    dw Instruction_Common_TimerInY,$0001
 
 InstList_Squeept_Flame_1:
-    dw $0001,Spritemap_Squeept_9                                         ;A2BE6E;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2BE72;
-    dw $0001,Spritemap_Squeept_8                                         ;A2BE76;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2BE7A;
-    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;A2BE7E;
-    dw InstList_Squeept_Flame_1                                          ;A2BE80;
-    dw Instruction_Common_GotoY                                          ;A2BE82;
-    dw InstList_Squeept_Flame_0                                          ;A2BE84;
+    dw $0001,Spritemap_Squeept_9
+    dw $0001,Spritemap_Common_Nothing
+    dw $0001,Spritemap_Squeept_8
+    dw $0001,Spritemap_Common_Nothing
+    dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate
+    dw InstList_Squeept_Flame_1
+    dw Instruction_Common_GotoY
+    dw InstList_Squeept_Flame_0
 
 
 ;;; $BE86: Squeept initial Y velocities ;;;
 SqueeptInitialYVelocities:
 ; Unit 1/100h px/frame
-    dw $F7FF,$F8FE,$F9BF,$FAFF                                           ;A2BE86;
+    dw $F7FF,$F8FE,$F9BF,$FAFF
 
 
 ;;; $BE8E: Instruction - set animation finished flag ;;;
 Instruction_Squeept_SetAnimationFinishedFlag:
-    LDX.W EnemyIndex                                                     ;A2BE8E;
-    LDA.W #$0001                                                         ;A2BE91;
-    STA.L Squeept.animationFinishedFlag,X                                ;A2BE94;
-    RTL                                                                  ;A2BE98;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.L Squeept.animationFinishedFlag,X
+    RTL
 
 
 ;;; $BE99: Initialisation AI - enemy $D2BF (squeept) ;;;
 InitAI_Squeept:
-    LDX.W EnemyIndex                                                     ;A2BE99;
-    LDA.W #$0000                                                         ;A2BE9C;
-    STA.L Squeept.animationFinishedFlag,X                                ;A2BE9F;
-    STA.L Squeept.instList,X                                             ;A2BEA3;
-    LDA.W Geruta.part,X                                                  ;A2BEA7;
-    BMI .flame                                                           ;A2BEAA;
-    LDA.W Enemy.XPosition,X                                              ;A2BEAC;
-    STA.W Squeept.spawnXPosition,X                                       ;A2BEAF;
-    LDA.W Enemy.YPosition,X                                              ;A2BEB2;
-    STA.W Squeept.spawnYPosition,X                                       ;A2BEB5;
-    LDA.W #InstList_Squeept_Rising                                       ;A2BEB8;
-    STA.W Enemy.instList,X                                               ;A2BEBB;
-    LDA.W #Function_Squeept_Jump                                         ;A2BEBE;
-    STA.W Squeept.function,X                                             ;A2BEC1;
-    RTL                                                                  ;A2BEC4;
+    LDX.W EnemyIndex
+    LDA.W #$0000 : STA.L Squeept.animationFinishedFlag,X : STA.L Squeept.instList,X
+    LDA.W Geruta.part,X : BMI .flame
+    LDA.W Enemy.XPosition,X : STA.W Squeept.spawnXPosition,X
+    LDA.W Enemy.YPosition,X : STA.W Squeept.spawnYPosition,X
+    LDA.W #InstList_Squeept_Rising : STA.W Enemy.instList,X
+    LDA.W #Function_Squeept_Jump : STA.W Squeept.function,X
+    RTL
 
   .flame:
-    LDA.W #InstList_Squeept_Flame_0                                      ;A2BEC5;
-    STA.W Enemy.instList,X                                               ;A2BEC8;
-    LDA.W #Function_Squeept_Flame                                        ;A2BECB;
-    STA.W Squeept.function,X                                             ;A2BECE;
-    RTL                                                                  ;A2BED1;
+    LDA.W #InstList_Squeept_Flame_0 : STA.W Enemy.instList,X
+    LDA.W #Function_Squeept_Flame : STA.W Squeept.function,X
+    RTL
 
 
 ;;; $BED2: Main AI - enemy $D2BF (squeept) ;;;
 MainAI_Squeept:
-    JSL.L GenerateRandomNumber                                           ;A2BED2;
-    LDX.W EnemyIndex                                                     ;A2BED6;
-    JMP.W (Squeept.function,X)                                           ;A2BED9;
+    JSL GenerateRandomNumber
+    LDX.W EnemyIndex
+    JMP.W (Squeept.function,X)
 
 
 ;;; $BEDC: Squeept function - flame ;;;
 Function_Squeept_Flame:
-    LDA.W Enemy[-1].health,X                                             ;A2BEDC;
-    BNE .notDead                                                         ;A2BEDF;
-    LDA.W Enemy.properties,X                                             ;A2BEE1;
-    ORA.W #$0200                                                         ;A2BEE4;
-    STA.W Enemy.properties,X                                             ;A2BEE7;
-    RTL                                                                  ;A2BEEA;
+    LDA.W Enemy[-1].health,X : BNE .notDead
+    LDA.W Enemy.properties,X : ORA.W #$0200 : STA.W Enemy.properties,X
+    RTL
 
   .notDead:
-    LDA.W Enemy[-1].freezeTimer,X                                        ;A2BEEB;
-    STA.W Enemy.freezeTimer,X                                            ;A2BEEE;
-    BEQ .frozen                                                          ;A2BEF1;
-    BRA .invisible                                                       ;A2BEF3;
+    LDA.W Enemy[-1].freezeTimer,X : STA.W Enemy.freezeTimer,X : BEQ .frozen
+    BRA .invisible
 
   .frozen:
-    BIT.W Enemy[-1].var2,X                                               ;A2BEF5;
-    BMI .visible                                                         ;A2BEF8;
+    BIT.W Enemy[-1].var2,X : BMI .visible
 
   .invisible:
-    LDA.W Enemy.properties,X                                             ;A2BEFA;
-    ORA.W #$0100                                                         ;A2BEFD;
-    STA.W Enemy.properties,X                                             ;A2BF00;
-    RTL                                                                  ;A2BF03;
+    LDA.W Enemy.properties,X : ORA.W #$0100 : STA.W Enemy.properties,X
+    RTL
 
   .visible:
-    LDA.W Enemy.properties,X                                             ;A2BF04;
-    AND.W #$FEFF                                                         ;A2BF07;
-    STA.W Enemy.properties,X                                             ;A2BF0A;
-    LDA.W Enemy[-1].YPosition,X                                          ;A2BF0D;
-    STA.W Enemy.YPosition,X                                              ;A2BF10;
-    LDA.W Enemy[-1].YPosition,X                                          ;A2BF13; >_<
-    STA.W Enemy.YPosition,X                                              ;A2BF16;
-    RTL                                                                  ;A2BF19;
+    LDA.W Enemy.properties,X : AND.W #$FEFF : STA.W Enemy.properties,X
+    LDA.W Enemy[-1].YPosition,X : STA.W Enemy.YPosition,X
+    LDA.W Enemy[-1].YPosition,X : STA.W Enemy.YPosition,X ; >_<
+    RTL
 
 
 ;;; $BF1A: Squeept function - jump ;;;
 Function_Squeept_Jump:
-    LDA.W RandomNumberSeed+1                                             ;A2BF1A;
-    AND.W #$0006                                                         ;A2BF1D;
-    TAY                                                                  ;A2BF20;
-    LDA.W SqueeptInitialYVelocities,Y                                    ;A2BF21;
-    STA.W Squeept.YVelocity,X                                            ;A2BF24;
-    LDA.W #Function_Squeept_Rising                                       ;A2BF27;
-    STA.W Squeept.function,X                                             ;A2BF2A;
-    LDA.W Enemy.properties,X                                             ;A2BF2D;
-    ORA.W #$0800                                                         ;A2BF30;
-    STA.W Enemy.properties,X                                             ;A2BF33;
-    LDA.W #$000D                                                         ;A2BF36;
-    JSL.L QueueSound_Lib2_Max6                                           ;A2BF39;
-    RTL                                                                  ;A2BF3D;
+    LDA.W RandomNumberSeed+1 : AND.W #$0006 : TAY
+    LDA.W SqueeptInitialYVelocities,Y : STA.W Squeept.YVelocity,X
+    LDA.W #Function_Squeept_Rising : STA.W Squeept.function,X
+    LDA.W Enemy.properties,X : ORA.W #$0800 : STA.W Enemy.properties,X
+    LDA.W #$000D
+    JSL QueueSound_Lib2_Max6
+    RTL
 
 
 ;;; $BF3E: Squeept function - rising ;;;
 Function_Squeept_Rising:
-    LDA.W Enemy.var1+1,X                                                 ;A2BF3E;
-    AND.W #$FF00                                                         ;A2BF41;
-    CLC                                                                  ;A2BF44;
-    ADC.W Enemy.YSubPosition,X                                           ;A2BF45;
-    STA.W Enemy.YSubPosition,X                                           ;A2BF48;
-    LDA.W Squeept.YVelocity,X                                            ;A2BF4B;
-    XBA                                                                  ;A2BF4E;
-    BPL .lowByte                                                         ;A2BF4F;
-    ORA.W #$FF00                                                         ;A2BF51;
-    BRA +                                                                ;A2BF54;
+    LDA.W Enemy.var1+1,X : AND.W #$FF00 : CLC : ADC.W Enemy.YSubPosition,X : STA.W Enemy.YSubPosition,X
+    LDA.W Squeept.YVelocity,X : XBA : BPL .lowByte
+    ORA.W #$FF00
+    BRA +
 
   .lowByte:
-    AND.W #$00FF                                                         ;A2BF56;
+    AND.W #$00FF
 
-+   ADC.W Enemy.YPosition,X                                              ;A2BF59;
-    STA.W Enemy.YPosition,X                                              ;A2BF5C;
-    LDA.W Squeept.YVelocity,X                                            ;A2BF5F;
-    CLC                                                                  ;A2BF62;
-    ADC.W #$0038                                                         ;A2BF63;
-    STA.W Squeept.YVelocity,X                                            ;A2BF66;
-    CMP.W #$FC00                                                         ;A2BF69;
-    BCS .maxHeight                                                       ;A2BF6C;
-    RTL                                                                  ;A2BF6E;
++   ADC.W Enemy.YPosition,X : STA.W Enemy.YPosition,X
+    LDA.W Squeept.YVelocity,X : CLC : ADC.W #$0038 : STA.W Squeept.YVelocity,X
+    CMP.W #$FC00 : BCS .maxHeight
+    RTL
 
   .maxHeight:
-    LDA.W #InstList_Squeept_Flipping_Falling                             ;A2BF6F;
-    JSR.W SetSqueeptInstList                                             ;A2BF72;
-    LDA.W #Function_Squeept_Flipping                                     ;A2BF75;
-    STA.W Squeept.function,X                                             ;A2BF78;
-    RTL                                                                  ;A2BF7B;
+    LDA.W #InstList_Squeept_Flipping_Falling
+    JSR SetSqueeptInstList
+    LDA.W #Function_Squeept_Flipping : STA.W Squeept.function,X
+    RTL
 
 
 ;;; $BF7C: Squeept function - flipping ;;;
 Function_Squeept_Flipping:
-    LDA.W Enemy.var1+1,X                                                 ;A2BF7C;
-    AND.W #$FF00                                                         ;A2BF7F;
-    CLC                                                                  ;A2BF82;
-    ADC.W Enemy.YSubPosition,X                                           ;A2BF83;
-    STA.W Enemy.YSubPosition,X                                           ;A2BF86;
-    LDA.W Squeept.YVelocity,X                                            ;A2BF89;
-    XBA                                                                  ;A2BF8C;
-    BPL .lowByte                                                         ;A2BF8D;
-    ORA.W #$FF00                                                         ;A2BF8F;
-    BRA +                                                                ;A2BF92;
+    LDA.W Enemy.var1+1,X : AND.W #$FF00 : CLC : ADC.W Enemy.YSubPosition,X : STA.W Enemy.YSubPosition,X
+    LDA.W Squeept.YVelocity,X : XBA : BPL .lowByte
+    ORA.W #$FF00
+    BRA +
 
   .lowByte:
-    AND.W #$00FF                                                         ;A2BF94;
+    AND.W #$00FF
 
-+   ADC.W Enemy.YPosition,X                                              ;A2BF97;
-    STA.W Enemy.YPosition,X                                              ;A2BF9A;
-    LDA.W Squeept.YVelocity,X                                            ;A2BF9D;
-    CLC                                                                  ;A2BFA0;
-    ADC.W #$0038                                                         ;A2BFA1;
-    STA.W Squeept.YVelocity,X                                            ;A2BFA4;
-    LDA.L Squeept.animationFinishedFlag,X                                ;A2BFA7;
-    BNE .animationFinished                                               ;A2BFAB;
-    RTL                                                                  ;A2BFAD;
++   ADC.W Enemy.YPosition,X : STA.W Enemy.YPosition,X
+    LDA.W Squeept.YVelocity,X : CLC : ADC.W #$0038 : STA.W Squeept.YVelocity,X
+    LDA.L Squeept.animationFinishedFlag,X : BNE .animationFinished
+    RTL
 
   .animationFinished:
-    LDA.W #$0000                                                         ;A2BFAE;
-    STA.L Squeept.animationFinishedFlag,X                                ;A2BFB1;
-    LDA.W #Function_Squeept_Falling                                      ;A2BFB5;
-    STA.W Squeept.function,X                                             ;A2BFB8;
-    RTL                                                                  ;A2BFBB;
+    LDA.W #$0000 : STA.L Squeept.animationFinishedFlag,X
+    LDA.W #Function_Squeept_Falling : STA.W Squeept.function,X
+    RTL
 
 
 ;;; $BFBC: Squeept function - falling ;;;
 Function_Squeept_Falling:
-    LDA.W Enemy.var1+1,X                                                 ;A2BFBC;
-    AND.W #$FF00                                                         ;A2BFBF;
-    CLC                                                                  ;A2BFC2;
-    ADC.W Enemy.YSubPosition,X                                           ;A2BFC3;
-    STA.W Enemy.YSubPosition,X                                           ;A2BFC6;
-    LDA.W Squeept.YVelocity,X                                            ;A2BFC9;
-    XBA                                                                  ;A2BFCC;
-    BPL .lowByte                                                         ;A2BFCD;
-    ORA.W #$FF00                                                         ;A2BFCF;
-    BRA +                                                                ;A2BFD2;
+    LDA.W Enemy.var1+1,X : AND.W #$FF00 : CLC : ADC.W Enemy.YSubPosition,X : STA.W Enemy.YSubPosition,X
+    LDA.W Squeept.YVelocity,X : XBA : BPL .lowByte
+    ORA.W #$FF00
+    BRA +
 
   .lowByte:
-    AND.W #$00FF                                                         ;A2BFD4;
+    AND.W #$00FF
 
-+   ADC.W Enemy.YPosition,X                                              ;A2BFD7;
-    STA.W Enemy.YPosition,X                                              ;A2BFDA;
-    AND.W #$00F0                                                         ;A2BFDD;
-    CMP.W #$00F0                                                         ;A2BFE0;
-    BEQ .nextJump                                                        ;A2BFE3;
-    LDA.W Squeept.YVelocity,X                                            ;A2BFE5;
-    CLC                                                                  ;A2BFE8;
-    ADC.W #$0038                                                         ;A2BFE9;
-    STA.W Squeept.YVelocity,X                                            ;A2BFEC;
-    RTL                                                                  ;A2BFEF;
++   ADC.W Enemy.YPosition,X : STA.W Enemy.YPosition,X
+    AND.W #$00F0 : CMP.W #$00F0 : BEQ .nextJump
+    LDA.W Squeept.YVelocity,X : CLC : ADC.W #$0038 : STA.W Squeept.YVelocity,X
+    RTL
 
   .nextJump:
-    LDA.W Squeept.spawnXPosition,X                                       ;A2BFF0;
-    STA.W Enemy.XPosition,X                                              ;A2BFF3;
-    LDA.W Squeept.spawnYPosition,X                                       ;A2BFF6;
-    STA.W Enemy.YPosition,X                                              ;A2BFF9;
-    LDA.W #InstList_Squeept_Rising                                       ;A2BFFC;
-    JSR.W SetSqueeptInstList                                             ;A2BFFF;
-    LDA.W #Function_Squeept_Jump                                         ;A2C002;
-    STA.W Squeept.function,X                                             ;A2C005;
-    LDA.W Enemy.properties,X                                             ;A2C008;
-    AND.W #$F7FF                                                         ;A2C00B;
-    STA.W Enemy.properties,X                                             ;A2C00E;
-    RTL                                                                  ;A2C011;
+    LDA.W Squeept.spawnXPosition,X : STA.W Enemy.XPosition,X
+    LDA.W Squeept.spawnYPosition,X : STA.W Enemy.YPosition,X
+    LDA.W #InstList_Squeept_Rising
+    JSR SetSqueeptInstList
+    LDA.W #Function_Squeept_Jump : STA.W Squeept.function,X
+    LDA.W Enemy.properties,X : AND.W #$F7FF : STA.W Enemy.properties,X
+    RTL
 
 
 ;;; $C012: Set squeept instruction list ;;;
 SetSqueeptInstList:
 ;; Parameters:
 ;;     A: Instruction list pointer
-    LDX.W EnemyIndex                                                     ;A2C012;
-    CMP.L Squeept.instList,X                                             ;A2C015;
-    BEQ .return                                                          ;A2C019;
-    STA.L Squeept.instList,X                                             ;A2C01B;
-    STA.W Enemy.instList,X                                               ;A2C01F;
-    LDA.W #$0001                                                         ;A2C022;
-    STA.W Enemy.instTimer,X                                              ;A2C025;
-    STZ.W Enemy.loopCounter,X                                            ;A2C028;
+    LDX.W EnemyIndex
+    CMP.L Squeept.instList,X : BEQ .return
+    STA.L Squeept.instList,X : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
 
   .return:
-    RTS                                                                  ;A2C02B;
+    RTS
 
 
 ;;; $C02C: Spritemaps - squeept ;;;
 Spritemap_Squeept_0:
-    dw $0004                                                             ;A2C02C;
+    dw $0004
     %spritemapEntry(1, $1FF, $F3, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1FF, $03, 0, 1, 2, 0, $102)
     %spritemapEntry(1, $1F0, $03, 0, 0, 2, 0, $102)
     %spritemapEntry(1, $1F0, $F3, 0, 0, 2, 0, $100)
 
 Spritemap_Squeept_1:
-    dw $0004                                                             ;A2C042;
+    dw $0004
     %spritemapEntry(0, $07, $03, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $1F0, $03, 0, 0, 2, 0, $10C)
     %spritemapEntry(1, $1FF, $F3, 0, 1, 2, 0, $104)
     %spritemapEntry(1, $1F0, $F3, 0, 0, 2, 0, $104)
 
 Spritemap_Squeept_2:
-    dw $0002                                                             ;A2C058;
+    dw $0002
     %spritemapEntry(1, $00, $F4, 0, 1, 2, 0, $106)
     %spritemapEntry(1, $1F0, $F4, 0, 0, 2, 0, $106)
 
 Spritemap_Squeept_3:
-    dw $0002                                                             ;A2C064;
+    dw $0002
     %spritemapEntry(1, $00, $F8, 1, 1, 2, 0, $106)
     %spritemapEntry(1, $1F0, $F8, 1, 0, 2, 0, $106)
 
 Spritemap_Squeept_4:
-    dw $0004                                                             ;A2C070;
+    dw $0004
     %spritemapEntry(0, $07, $EF, 1, 1, 2, 0, $10C)
     %spritemapEntry(0, $1F0, $EF, 1, 0, 2, 0, $10C)
     %spritemapEntry(1, $1FF, $F7, 1, 1, 2, 0, $104)
     %spritemapEntry(1, $1F0, $F7, 1, 0, 2, 0, $104)
 
 Spritemap_Squeept_5:
-    dw $0004                                                             ;A2C086;
+    dw $0004
     %spritemapEntry(1, $1FF, $FC, 1, 1, 2, 0, $100)
     %spritemapEntry(1, $1FF, $EC, 1, 1, 2, 0, $102)
     %spritemapEntry(1, $1F0, $EC, 1, 0, 2, 0, $102)
     %spritemapEntry(1, $1F0, $FC, 1, 0, 2, 0, $100)
 
 Spritemap_Squeept_6:
-    dw $0003                                                             ;A2C09C;
+    dw $0003
     %spritemapEntry(1, $1FF, $FC, 0, 1, 2, 0, $10A)
     %spritemapEntry(1, $1F0, $FC, 0, 0, 2, 0, $10A)
     %spritemapEntry(1, $1F8, $EC, 0, 0, 2, 0, $108)
 
 Spritemap_Squeept_7:
-    dw $0002                                                             ;A2C0AD;
+    dw $0002
     %spritemapEntry(0, $00, $04, 0, 1, 2, 0, $11C)
     %spritemapEntry(0, $1F9, $04, 0, 0, 2, 0, $11C)
 
 Spritemap_Squeept_8:
-    dw $0002                                                             ;A2C0B9;
+    dw $0002
     %spritemapEntry(0, $1FC, $0C, 0, 0, 2, 0, $11D)
     %spritemapEntry(0, $1FC, $04, 0, 0, 2, 0, $10D)
 
 Spritemap_Squeept_9:
-    dw $0002                                                             ;A2C0C5;
+    dw $0002
     %spritemapEntry(0, $1FC, $0C, 0, 0, 2, 0, $11E)
     %spritemapEntry(0, $1FC, $04, 0, 0, 2, 0, $10E)
 
 
 ;;; $C0D1: Palette - enemy $D2FF (geruta) ;;;
 Palette_Geruta:
-    dw $3800,$4E7F,$3975,$0C0A,$0006,$45D8,$2D33,$1C8E                   ;A2C0D1;
-    dw $102B,$5347,$5624,$5962,$5CA0,$1BBD,$0DFD,$009D                   ;A2C0E1;
+    dw $3800,$4E7F,$3975,$0C0A,$0006,$45D8,$2D33,$1C8E
+    dw $102B,$5347,$5624,$5962,$5CA0,$1BBD,$0DFD,$009D
 
 
 ;;; $C0F1: Instruction list - main - idle ;;;
 InstList_Geruta_Main_Idle:
-    dw Instruction_Geruta_SetFlamesYOffset_8_duplicate                   ;A2C0F1;
-    dw $000D,Spritemap_Geruta_1                                          ;A2C0F3;
-    dw $0012,Spritemap_Geruta_0                                          ;A2C0F7;
-    dw $000D,Spritemap_Geruta_1                                          ;A2C0FB;
-    dw $0012,Spritemap_Geruta_2                                          ;A2C0FF;
-    dw Instruction_Common_GotoY                                          ;A2C103;
-    dw InstList_Geruta_Main_Idle                                         ;A2C105;
+    dw Instruction_Geruta_SetFlamesYOffset_8_duplicate
+    dw $000D,Spritemap_Geruta_1
+    dw $0012,Spritemap_Geruta_0
+    dw $000D,Spritemap_Geruta_1
+    dw $0012,Spritemap_Geruta_2
+    dw Instruction_Common_GotoY
+    dw InstList_Geruta_Main_Idle
 
 
 ;;; $C107: Instruction list - main - swoop - start descending ;;;
 InstList_Geruta_Main_Swoop_StartDescending:
-    dw Instruction_Geruta_SetFlamesYOffset_8                             ;A2C107;
-    dw $0001,Spritemap_Geruta_0                                          ;A2C109;
-    dw Instruction_Geruta_SetFlamesYOffset_4                             ;A2C10D;
-    dw $0001,Spritemap_Geruta_A                                          ;A2C10F;
-    dw Instruction_Geruta_SetFlamesYOffset_0                             ;A2C113;
-    dw $0001,Spritemap_Geruta_B                                          ;A2C115;
-    dw Instruction_Geruta_SetFlamesYOffset_negative4                     ;A2C119;
-    dw $0001,Spritemap_Geruta_C                                          ;A2C11B;
-    dw Instruction_Geruta_SetFlamesYOffset_negativeC_duplicate           ;A2C11F;
-    dw $0001,Spritemap_Geruta_D                                          ;A2C121;
-    dw Instruction_Geruta_SetFlamesYOffset_negative10                    ;A2C125;
-    dw $0001,Spritemap_Geruta_E                                          ;A2C127;
-    dw Instruction_Geruta_SetFinishedSwoopStartAnimationFlag             ;A2C12B;
-    dw Instruction_Common_Sleep                                          ;A2C12D;
+    dw Instruction_Geruta_SetFlamesYOffset_8
+    dw $0001,Spritemap_Geruta_0
+    dw Instruction_Geruta_SetFlamesYOffset_4
+    dw $0001,Spritemap_Geruta_A
+    dw Instruction_Geruta_SetFlamesYOffset_0
+    dw $0001,Spritemap_Geruta_B
+    dw Instruction_Geruta_SetFlamesYOffset_negative4
+    dw $0001,Spritemap_Geruta_C
+    dw Instruction_Geruta_SetFlamesYOffset_negativeC_duplicate
+    dw $0001,Spritemap_Geruta_D
+    dw Instruction_Geruta_SetFlamesYOffset_negative10
+    dw $0001,Spritemap_Geruta_E
+    dw Instruction_Geruta_SetFinishedSwoopStartAnimationFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $C12F: Instruction list - main - swoop - descending ;;;
 InstList_Geruta_Main_Swoop_Descending:
-    dw Instruction_Geruta_SetFlamesYOffset_negativeC                     ;A2C12F;
-    dw $0006,Spritemap_Geruta_7                                          ;A2C131;
-    dw $0005,Spritemap_Geruta_8                                          ;A2C135;
-    dw $0008,Spritemap_Geruta_9                                          ;A2C139;
-    dw $0006,Spritemap_Geruta_8                                          ;A2C13D;
-    dw Instruction_Common_GotoY                                          ;A2C141;
-    dw InstList_Geruta_Main_Swoop_Descending                             ;A2C143;
+    dw Instruction_Geruta_SetFlamesYOffset_negativeC
+    dw $0006,Spritemap_Geruta_7
+    dw $0005,Spritemap_Geruta_8
+    dw $0008,Spritemap_Geruta_9
+    dw $0006,Spritemap_Geruta_8
+    dw Instruction_Common_GotoY
+    dw InstList_Geruta_Main_Swoop_Descending
 
 
 ;;; $C145: Instruction list - main - swoop - start ascending ;;;
 InstList_Geruta_Main_Swoop_StartAscending:
-    dw Instruction_Geruta_SetFlamesYOffset_negative10                    ;A2C145;
-    dw $0001,Spritemap_Geruta_E                                          ;A2C147;
-    dw Instruction_Geruta_SetFlamesYOffset_negativeC_duplicate           ;A2C14B;
-    dw $0001,Spritemap_Geruta_D                                          ;A2C14D;
-    dw Instruction_Geruta_SetFlamesYOffset_negative4                     ;A2C151;
-    dw $0001,Spritemap_Geruta_C                                          ;A2C153;
-    dw Instruction_Geruta_SetFlamesYOffset_0                             ;A2C157;
-    dw $0001,Spritemap_Geruta_B                                          ;A2C159;
-    dw Instruction_Geruta_SetFlamesYOffset_4                             ;A2C15D;
-    dw $0001,Spritemap_Geruta_A                                          ;A2C15F;
-    dw Instruction_Geruta_SetFlamesYOffset_8                             ;A2C163;
-    dw $0001,Spritemap_Geruta_0                                          ;A2C165;
-    dw Instruction_Geruta_SetFlamesYOffset_8_duplicate                   ;A2C169;
-    dw $0001,Spritemap_Geruta_1                                          ;A2C16B;
-    dw Instruction_Geruta_SetFlamesYOffset_C                             ;A2C16F;
-    dw $0001,Spritemap_Geruta_2                                          ;A2C171;
-    dw Instruction_Geruta_SetFinishedSwoopStartAnimationFlag             ;A2C175;
-    dw Instruction_Common_Sleep                                          ;A2C177;
+    dw Instruction_Geruta_SetFlamesYOffset_negative10
+    dw $0001,Spritemap_Geruta_E
+    dw Instruction_Geruta_SetFlamesYOffset_negativeC_duplicate
+    dw $0001,Spritemap_Geruta_D
+    dw Instruction_Geruta_SetFlamesYOffset_negative4
+    dw $0001,Spritemap_Geruta_C
+    dw Instruction_Geruta_SetFlamesYOffset_0
+    dw $0001,Spritemap_Geruta_B
+    dw Instruction_Geruta_SetFlamesYOffset_4
+    dw $0001,Spritemap_Geruta_A
+    dw Instruction_Geruta_SetFlamesYOffset_8
+    dw $0001,Spritemap_Geruta_0
+    dw Instruction_Geruta_SetFlamesYOffset_8_duplicate
+    dw $0001,Spritemap_Geruta_1
+    dw Instruction_Geruta_SetFlamesYOffset_C
+    dw $0001,Spritemap_Geruta_2
+    dw Instruction_Geruta_SetFinishedSwoopStartAnimationFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $C179: Instruction list - main - swoop - ascending ;;;
 InstList_Geruta_Main_Swoop_Ascending:
-    dw Instruction_Geruta_SetFlamesYOffset_C_duplicate                   ;A2C179;
-    dw $0006,Spritemap_Geruta_F                                          ;A2C17B;
-    dw $0005,Spritemap_Geruta_10                                         ;A2C17F;
-    dw $0008,Spritemap_Geruta_11                                         ;A2C183;
-    dw $0006,Spritemap_Geruta_10                                         ;A2C187;
-    dw Instruction_Common_GotoY                                          ;A2C18B;
-    dw InstList_Geruta_Main_Swoop_Ascending                              ;A2C18D;
+    dw Instruction_Geruta_SetFlamesYOffset_C_duplicate
+    dw $0006,Spritemap_Geruta_F
+    dw $0005,Spritemap_Geruta_10
+    dw $0008,Spritemap_Geruta_11
+    dw $0006,Spritemap_Geruta_10
+    dw Instruction_Common_GotoY
+    dw InstList_Geruta_Main_Swoop_Ascending
 
 
 ;;; $C18F: Instruction list - flames - ascending ;;;
 InstList_Geruta_Flames_Ascending:
-    dw $0006,Spritemap_Geruta_4                                          ;A2C18F;
-    dw $0005,Spritemap_Geruta_5                                          ;A2C193;
-    dw $0008,Spritemap_Geruta_6                                          ;A2C197;
-    dw $0006,Spritemap_Geruta_5                                          ;A2C19B;
-    dw Instruction_Common_GotoY                                          ;A2C19F;
-    dw InstList_Geruta_Flames_Ascending                                  ;A2C1A1;
+    dw $0006,Spritemap_Geruta_4
+    dw $0005,Spritemap_Geruta_5
+    dw $0008,Spritemap_Geruta_6
+    dw $0006,Spritemap_Geruta_5
+    dw Instruction_Common_GotoY
+    dw InstList_Geruta_Flames_Ascending
 
 
 ;;; $C1A3: Instruction list - flames - descending ;;;
 InstList_Geruta_Flames_Descending:
-    dw $0006,Spritemap_Geruta_12                                         ;A2C1A3;
-    dw $0005,Spritemap_Geruta_13                                         ;A2C1A7;
-    dw $0008,Spritemap_Geruta_14                                         ;A2C1AB;
-    dw $0006,Spritemap_Geruta_13                                         ;A2C1AF;
-    dw Instruction_Common_GotoY                                          ;A2C1B3;
-    dw InstList_Geruta_Flames_Descending                                 ;A2C1B5;
+    dw $0006,Spritemap_Geruta_12
+    dw $0005,Spritemap_Geruta_13
+    dw $0008,Spritemap_Geruta_14
+    dw $0006,Spritemap_Geruta_13
+    dw Instruction_Common_GotoY
+    dw InstList_Geruta_Flames_Descending
 
 
 ;;; $C1B7: Geruta constants ;;;
 UNSUED_GerutaConstants_A2C1B7:
-    dw $0000,$000E,$000C,$000E,$0010                                     ;A2C1B7;
+    dw $0000,$000E,$000C,$000E,$0010
 
 GerutaConstants:
   .swoopYSpeeds:
 ; Swoop Y speeds
-    dw $0700,$05C0                                                       ;A2C1C1;
+    dw $0700,$05C0
 
   .swoopXSpeed:
 ; Swoop X speed
-    dw $0100                                                             ;A2C1C5;
+    dw $0100
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_GerutaConstants_maybeLeftoverSwoopXSpeed_A2C1C7:
 ; Unused. Probably leftover swoop X speed
-    dw $0100                                                             ;A2C1C7;
+    dw $0100
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C1C9: Instruction - set enemy finished swoop start animation flag ;;;
 Instruction_Geruta_SetFinishedSwoopStartAnimationFlag:
-    LDX.W EnemyIndex                                                     ;A2C1C9;
-    LDA.W #$0001                                                         ;A2C1CC;
-    STA.L Geruta.finishedSwoopStartAnimationFlag,X                       ;A2C1CF;
-    RTL                                                                  ;A2C1D3;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.L Geruta.finishedSwoopStartAnimationFlag,X
+    RTL
 
 
 ;;; $C1D4: Instruction - flames Y offset = 8 ;;;
 Instruction_Geruta_SetFlamesYOffset_8:
-    LDX.W EnemyIndex                                                     ;A2C1D4;
-    LDA.W #$0008                                                         ;A2C1D7;
-    STA.L Geruta.flamesYOffset,X                                         ;A2C1DA;
-    RTL                                                                  ;A2C1DE;
+    LDX.W EnemyIndex
+    LDA.W #$0008 : STA.L Geruta.flamesYOffset,X
+    RTL
 
 
 ;;; $C1DF: Instruction - flames Y offset = 8 ;;;
 Instruction_Geruta_SetFlamesYOffset_8_duplicate:
-    LDX.W EnemyIndex                                                     ;A2C1DF;
-    LDA.W #$0008                                                         ;A2C1E2;
-    STA.L Geruta.flamesYOffset,X                                         ;A2C1E5;
-    RTL                                                                  ;A2C1E9;
+    LDX.W EnemyIndex
+    LDA.W #$0008 : STA.L Geruta.flamesYOffset,X
+    RTL
 
 
 ;;; $C1EA: Instruction - flames Y offset = Ch ;;;
 Instruction_Geruta_SetFlamesYOffset_C:
-    LDX.W EnemyIndex                                                     ;A2C1EA;
-    LDA.W #$000C                                                         ;A2C1ED;
-    STA.L Geruta.flamesYOffset,X                                         ;A2C1F0;
-    RTL                                                                  ;A2C1F4;
+    LDX.W EnemyIndex
+    LDA.W #$000C : STA.L Geruta.flamesYOffset,X
+    RTL
 
 
 ;;; $C1F5: Instruction - flames Y offset = -Ch ;;;
 Instruction_Geruta_SetFlamesYOffset_negativeC:
-    LDX.W EnemyIndex                                                     ;A2C1F5;
-    LDA.W #$FFF4                                                         ;A2C1F8;
-    STA.L Geruta.flamesYOffset,X                                         ;A2C1FB;
-    RTL                                                                  ;A2C1FF;
+    LDX.W EnemyIndex
+    LDA.W #$FFF4 : STA.L Geruta.flamesYOffset,X
+    RTL
 
 
 ;;; $C200: Instruction - flames Y offset = 4 ;;;
 Instruction_Geruta_SetFlamesYOffset_4:
-    LDX.W EnemyIndex                                                     ;A2C200;
-    LDA.W #$0004                                                         ;A2C203;
-    STA.L Geruta.flamesYOffset,X                                         ;A2C206;
-    RTL                                                                  ;A2C20A;
+    LDX.W EnemyIndex
+    LDA.W #$0004 : STA.L Geruta.flamesYOffset,X
+    RTL
 
 
 ;;; $C20B: Instruction - flames Y offset = 0 ;;;
 Instruction_Geruta_SetFlamesYOffset_0:
-    LDX.W EnemyIndex                                                     ;A2C20B;
-    LDA.W #$0000                                                         ;A2C20E;
-    STA.L Geruta.flamesYOffset,X                                         ;A2C211;
-    RTL                                                                  ;A2C215;
+    LDX.W EnemyIndex
+    LDA.W #$0000 : STA.L Geruta.flamesYOffset,X
+    RTL
 
 
 ;;; $C216: Instruction - flames Y offset = -4 ;;;
 Instruction_Geruta_SetFlamesYOffset_negative4:
-    LDX.W EnemyIndex                                                     ;A2C216;
-    LDA.W #$FFFC                                                         ;A2C219;
-    STA.L Geruta.flamesYOffset,X                                         ;A2C21C;
-    RTL                                                                  ;A2C220;
+    LDX.W EnemyIndex
+    LDA.W #$FFFC : STA.L Geruta.flamesYOffset,X
+    RTL
 
 
 ;;; $C221: Instruction - flames Y offset = -Ch ;;;
 Instruction_Geruta_SetFlamesYOffset_negativeC_duplicate:
-    LDX.W EnemyIndex                                                     ;A2C221;
-    LDA.W #$FFF4                                                         ;A2C224;
-    STA.L Geruta.flamesYOffset,X                                         ;A2C227;
-    RTL                                                                  ;A2C22B;
+    LDX.W EnemyIndex
+    LDA.W #$FFF4 : STA.L Geruta.flamesYOffset,X
+    RTL
 
 
 ;;; $C22C: Instruction - flames Y offset = -10h ;;;
 Instruction_Geruta_SetFlamesYOffset_negative10:
-    LDX.W EnemyIndex                                                     ;A2C22C;
-    LDA.W #$FFF0                                                         ;A2C22F;
-    STA.L Geruta.flamesYOffset,X                                         ;A2C232;
-    RTL                                                                  ;A2C236;
+    LDX.W EnemyIndex
+    LDA.W #$FFF0 : STA.L Geruta.flamesYOffset,X
+    RTL
 
 
 ;;; $C237: Instruction - flames Y offset = Ch ;;;
 Instruction_Geruta_SetFlamesYOffset_C_duplicate:
-    LDX.W EnemyIndex                                                     ;A2C237;
-    LDA.W #$000C                                                         ;A2C23A;
-    STA.L Geruta.flamesYOffset,X                                         ;A2C23D;
-    RTL                                                                  ;A2C241;
+    LDX.W EnemyIndex
+    LDA.W #$000C : STA.L Geruta.flamesYOffset,X
+    RTL
 
 
 ;;; $C242: Initialisation AI - enemy $D2FF (geruta) ;;;
 InitAI_Geruta:
-    LDX.W EnemyIndex                                                     ;A2C242;
-    LDA.W #$0000                                                         ;A2C245;
-    STA.L Geruta.finishedSwoopStartAnimationFlag,X                       ;A2C248;
-    STA.L Geruta.flamesYOffset,X                                         ;A2C24C;
-    LDA.W Geruta.part,X                                                  ;A2C250;
-    BMI .flames                                                          ;A2C253;
-    LDA.W #InstList_Geruta_Main_Idle                                     ;A2C255;
-    STA.L Geruta.instList,X                                              ;A2C258;
-    STA.W Enemy.instList,X                                               ;A2C25C;
-    LDA.W #Function_Geruta_Idle                                          ;A2C25F;
-    STA.W Geruta.function,X                                              ;A2C262;
-    RTL                                                                  ;A2C265;
+    LDX.W EnemyIndex
+    LDA.W #$0000 : STA.L Geruta.finishedSwoopStartAnimationFlag,X : STA.L Geruta.flamesYOffset,X
+    LDA.W Geruta.part,X : BMI .flames
+    LDA.W #InstList_Geruta_Main_Idle : STA.L Geruta.instList,X : STA.W Enemy.instList,X
+    LDA.W #Function_Geruta_Idle : STA.W Geruta.function,X
+    RTL
 
   .flames:
-    LDA.W #InstList_Geruta_Flames_Ascending                              ;A2C266;
-    STA.L Geruta.instList,X                                              ;A2C269;
-    STA.W Enemy.instList,X                                               ;A2C26D;
-    LDA.W #Function_Geruta_Flames                                        ;A2C270;
-    STA.W Geruta.function,X                                              ;A2C273;
-    RTL                                                                  ;A2C276;
+    LDA.W #InstList_Geruta_Flames_Ascending : STA.L Geruta.instList,X : STA.W Enemy.instList,X
+    LDA.W #Function_Geruta_Flames : STA.W Geruta.function,X
+    RTL
 
 
 ;;; $C277: Main AI - enemy $D2FF (geruta) ;;;
 MainAI_Geruta:
-    JSL.L GenerateRandomNumber                                           ;A2C277;
-    LDX.W EnemyIndex                                                     ;A2C27B;
-    JMP.W (Geruta.function,X)                                            ;A2C27E;
+    JSL GenerateRandomNumber
+    LDX.W EnemyIndex
+    JMP.W (Geruta.function,X)
 
 
 ;;; $C281: Geruta function - flames ;;;
 Function_Geruta_Flames:
-    LDA.W Enemy[-1].health,X                                             ;A2C281;
-    BNE .notDead                                                         ;A2C284;
-    LDA.W Enemy.properties,X                                             ;A2C286;
-    ORA.W #$0200                                                         ;A2C289;
-    STA.W Enemy.properties,X                                             ;A2C28C;
-    RTL                                                                  ;A2C28F;
+    LDA.W Enemy[-1].health,X : BNE .notDead
+    LDA.W Enemy.properties,X : ORA.W #$0200 : STA.W Enemy.properties,X
+    RTL
 
   .notDead:
-    LDA.W Enemy[-1].freezeTimer,X                                        ;A2C290;
-    STA.W Enemy.freezeTimer,X                                            ;A2C293;
-    BEQ .notFrozen                                                       ;A2C296;
-    BRA .frozen                                                          ;A2C298;
+    LDA.W Enemy[-1].freezeTimer,X : STA.W Enemy.freezeTimer,X : BEQ .notFrozen
+    BRA .frozen
 
-    RTL                                                                  ;A2C29A; >_<
+    RTL ; >_<
 
   .notFrozen:
-    LDA.W Enemy.properties,X                                             ;A2C29B;
-    AND.W #$FEFF                                                         ;A2C29E;
-    STA.W Enemy.properties,X                                             ;A2C2A1;
-    LDA.L Geruta.instList-$40,X                                          ;A2C2A4;
-    CMP.W #InstList_Geruta_Main_Idle                                     ;A2C2A8;
-    BNE .swooping                                                        ;A2C2AB;
+    LDA.W Enemy.properties,X : AND.W #$FEFF : STA.W Enemy.properties,X
+    LDA.L Geruta.instList-$40,X : CMP.W #InstList_Geruta_Main_Idle : BNE .swooping
 
   .frozen:
-    LDA.W Enemy.properties,X                                             ;A2C2AD;
-    ORA.W #$0100                                                         ;A2C2B0;
-    STA.W Enemy.properties,X                                             ;A2C2B3;
-    RTL                                                                  ;A2C2B6;
+    LDA.W Enemy.properties,X : ORA.W #$0100 : STA.W Enemy.properties,X
+    RTL
 
   .swooping:
-    LDA.W #InstList_Geruta_Flames_Ascending                              ;A2C2B7;
-    STA.B DP_Temp12                                                      ;A2C2BA;
-    LDA.L Geruta.flamesYOffset-$40,X                                     ;A2C2BC;
-    BPL +                                                                ;A2C2C0;
-    LDA.W #InstList_Geruta_Flames_Descending                             ;A2C2C2;
-    STA.B DP_Temp12                                                      ;A2C2C5;
+    LDA.W #InstList_Geruta_Flames_Ascending : STA.B DP_Temp12
+    LDA.L Geruta.flamesYOffset-$40,X : BPL +
+    LDA.W #InstList_Geruta_Flames_Descending : STA.B DP_Temp12
 
-+   LDA.B DP_Temp12                                                      ;A2C2C7;
-    JSR.W SetGerutaInstList                                              ;A2C2C9;
-    LDA.W Enemy.properties,X                                             ;A2C2CC;
-    AND.W #$FEFF                                                         ;A2C2CF;
-    STA.W Enemy.properties,X                                             ;A2C2D2;
-    LDA.W Enemy[-1].XPosition,X                                          ;A2C2D5;
-    STA.W Enemy.XPosition,X                                              ;A2C2D8;
-    LDA.W Enemy[-1].YPosition,X                                          ;A2C2DB;
-    CLC                                                                  ;A2C2DE;
-    ADC.L Geruta.flamesYOffset-$40,X                                     ;A2C2DF;
-    STA.W Enemy.YPosition,X                                              ;A2C2E3;
-    RTL                                                                  ;A2C2E6;
++   LDA.B DP_Temp12
+    JSR SetGerutaInstList
+    LDA.W Enemy.properties,X : AND.W #$FEFF : STA.W Enemy.properties,X
+    LDA.W Enemy[-1].XPosition,X : STA.W Enemy.XPosition,X
+    LDA.W Enemy[-1].YPosition,X : CLC : ADC.L Geruta.flamesYOffset-$40,X : STA.W Enemy.YPosition,X
+    RTL
 
 
 ;;; $C2E7: Geruta function - idle ;;;
 Function_Geruta_Idle:
-    LDA.W RandomNumberSeed                                               ;A2C2E7;
-    AND.W #$0101                                                         ;A2C2EA;
-    BEQ +                                                                ;A2C2ED;
-    LDA.W #$00C0                                                         ;A2C2EF;
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA                 ;A2C2F2;
-    BCC .swoop                                                           ;A2C2F6;
+    LDA.W RandomNumberSeed : AND.W #$0101 : BEQ +
+    LDA.W #$00C0
+    JSL CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA
+    BCC .swoop
 
-+   LDA.L Geruta.finishedSwoopStartAnimationFlag,X                       ;A2C2F8;
-    BEQ .return                                                          ;A2C2FC;
-    LDA.W #$0000                                                         ;A2C2FE;
-    STA.L Geruta.finishedSwoopStartAnimationFlag,X                       ;A2C301;
-    LDA.W #InstList_Geruta_Main_Idle                                     ;A2C305;
-    JSR.W SetGerutaInstList                                              ;A2C308;
++   LDA.L Geruta.finishedSwoopStartAnimationFlag,X : BEQ .return
+    LDA.W #$0000 : STA.L Geruta.finishedSwoopStartAnimationFlag,X
+    LDA.W #InstList_Geruta_Main_Idle
+    JSR SetGerutaInstList
 
   .return:
-    RTL                                                                  ;A2C30B;
+    RTL
 
   .swoop:
-    LDA.W RandomNumberSeed                                               ;A2C30C;
-    LSR                                                                  ;A2C30F;
-    AND.W #$0002                                                         ;A2C310;
-    TAY                                                                  ;A2C313;
-    LDA.W GerutaConstants_swoopYSpeeds,Y                                 ;A2C314;
-    STA.W Geruta.YVelocity,X                                             ;A2C317;
-    LDA.W GerutaConstants_swoopXSpeed                                    ;A2C31A;
-    STA.W Geruta.XVelocity,X                                             ;A2C31D;
-    LDA.W SamusXPosition                                                 ;A2C320;
-    CMP.W Enemy.XPosition,X                                              ;A2C323;
-    BPL .SamusToTheLeft                                                  ;A2C326;
-    LDA.W Geruta.XVelocity,X                                             ;A2C328;
-    EOR.W #$FFFF                                                         ;A2C32B;
-    INC                                                                  ;A2C32E;
-    STA.W Geruta.XVelocity,X                                             ;A2C32F;
+    LDA.W RandomNumberSeed : LSR : AND.W #$0002 : TAY
+    LDA.W GerutaConstants_swoopYSpeeds,Y : STA.W Geruta.YVelocity,X
+    LDA.W GerutaConstants_swoopXSpeed : STA.W Geruta.XVelocity,X
+    LDA.W SamusXPosition : CMP.W Enemy.XPosition,X : BPL .SamusToTheLeft
+    LDA.W Geruta.XVelocity,X : EOR.W #$FFFF : INC : STA.W Geruta.XVelocity,X
 
   .SamusToTheLeft:
-    LDA.W #InstList_Geruta_Main_Swoop_StartDescending                    ;A2C332;
-    JSR.W SetGerutaInstList                                              ;A2C335;
-    LDA.W #Function_Geruta_StartSwoop                                    ;A2C338;
-    STA.W Geruta.function,X                                              ;A2C33B;
-    RTL                                                                  ;A2C33E;
+    LDA.W #InstList_Geruta_Main_Swoop_StartDescending
+    JSR SetGerutaInstList
+    LDA.W #Function_Geruta_StartSwoop : STA.W Geruta.function,X
+    RTL
 
 
 ;;; $C33F: Geruta function - start swoop ;;;
 Function_Geruta_StartSwoop:
-    LDA.L Geruta.finishedSwoopStartAnimationFlag,X                       ;A2C33F;
-    BNE .finishedStartAnimation                                          ;A2C343;
-    RTL                                                                  ;A2C345;
+    LDA.L Geruta.finishedSwoopStartAnimationFlag,X : BNE .finishedStartAnimation
+    RTL
 
   .finishedStartAnimation:
-    LDA.W #$0000                                                         ;A2C346;
-    STA.L Geruta.finishedSwoopStartAnimationFlag,X                       ;A2C349;
-    LDA.W #InstList_Geruta_Main_Swoop_Descending                         ;A2C34D;
-    JSR.W SetGerutaInstList                                              ;A2C350;
-    LDA.W #Function_Geruta_Swoop_Descending                              ;A2C353;
-    STA.W Geruta.function,X                                              ;A2C356;
-    LDA.W #$0065                                                         ;A2C359;
-    JSL.L QueueSound_Lib2_Max6                                           ;A2C35C;
-    RTL                                                                  ;A2C360;
+    LDA.W #$0000 : STA.L Geruta.finishedSwoopStartAnimationFlag,X
+    LDA.W #InstList_Geruta_Main_Swoop_Descending
+    JSR SetGerutaInstList
+    LDA.W #Function_Geruta_Swoop_Descending : STA.W Geruta.function,X
+    LDA.W #$0065
+    JSL QueueSound_Lib2_Max6
+    RTL
 
 
 ;;; $C361: Geruta function - swoop - descending ;;;
 Function_Geruta_Swoop_Descending:
-    STZ.B DP_Temp12                                                      ;A2C361;
-    STZ.B DP_Temp14                                                      ;A2C363;
-    LDA.W Geruta.XVelocity,X                                             ;A2C365;
-    BPL +                                                                ;A2C368;
-    DEC.B DP_Temp14                                                      ;A2C36A;
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Geruta.XVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2C36C;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A2C36E;
-    BCC .notCollidedWithWall                                             ;A2C372;
-    LDA.W Geruta.XVelocity,X                                             ;A2C374;
-    EOR.W #$FFFF                                                         ;A2C377;
-    INC                                                                  ;A2C37A;
-    STA.W Geruta.XVelocity,X                                             ;A2C37B;
++   STA.B DP_Temp13
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCC .notCollidedWithWall
+    LDA.W Geruta.XVelocity,X : EOR.W #$FFFF : INC : STA.W Geruta.XVelocity,X
 
   .notCollidedWithWall:
-    STZ.B DP_Temp12                                                      ;A2C37E;
-    STZ.B DP_Temp14                                                      ;A2C380;
-    LDA.W Geruta.YVelocity,X                                             ;A2C382;
-    BPL +                                                                ;A2C385;
-    DEC.B DP_Temp14                                                      ;A2C387;
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Geruta.YVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2C389;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2C38B;
-    BCS .collidedWithBlock                                               ;A2C38F;
-    LDA.W Geruta.YVelocity,X                                             ;A2C391;
-    SEC                                                                  ;A2C394;
-    SBC.W #$0020                                                         ;A2C395;
-    STA.W Geruta.YVelocity,X                                             ;A2C398;
-    BMI .collidedWithBlock                                               ;A2C39B;
-    RTL                                                                  ;A2C39D;
++   STA.B DP_Temp13
+    JSL MoveEnemyDownBy_14_12
+    BCS .collidedWithBlock
+    LDA.W Geruta.YVelocity,X : SEC : SBC.W #$0020 : STA.W Geruta.YVelocity,X : BMI .collidedWithBlock
+    RTL
 
   .collidedWithBlock:
-    LDA.W #$FFFF                                                         ;A2C39E;
-    STA.W Geruta.YVelocity,X                                             ;A2C3A1;
-    LDA.W #InstList_Geruta_Main_Swoop_StartAscending                     ;A2C3A4;
-    JSR.W SetGerutaInstList                                              ;A2C3A7;
-    LDA.W #Function_Geruta_Swoop_Ascending                               ;A2C3AA;
-    STA.W Geruta.function,X                                              ;A2C3AD;
-    RTL                                                                  ;A2C3B0;
+    LDA.W #$FFFF : STA.W Geruta.YVelocity,X
+    LDA.W #InstList_Geruta_Main_Swoop_StartAscending
+    JSR SetGerutaInstList
+    LDA.W #Function_Geruta_Swoop_Ascending : STA.W Geruta.function,X
+    RTL
 
 
 ;;; $C3B1: Geruta function - swoop - ascending ;;;
 Function_Geruta_Swoop_Ascending:
-    STZ.B DP_Temp12                                                      ;A2C3B1;
-    STZ.B DP_Temp14                                                      ;A2C3B3;
-    LDA.W Geruta.XVelocity,X                                             ;A2C3B5;
-    BPL +                                                                ;A2C3B8;
-    DEC.B DP_Temp14                                                      ;A2C3BA;
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Geruta.XVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2C3BC;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A2C3BE;
-    BCC .notCollidedWithWall                                             ;A2C3C2;
-    LDA.W Geruta.XVelocity,X                                             ;A2C3C4;
-    EOR.W #$FFFF                                                         ;A2C3C7;
-    INC                                                                  ;A2C3CA;
-    STA.W Geruta.XVelocity,X                                             ;A2C3CB;
++   STA.B DP_Temp13
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCC .notCollidedWithWall
+    LDA.W Geruta.XVelocity,X : EOR.W #$FFFF : INC : STA.W Geruta.XVelocity,X
 
   .notCollidedWithWall:
-    STZ.B DP_Temp12                                                      ;A2C3CE;
-    STZ.B DP_Temp14                                                      ;A2C3D0;
-    LDA.W Geruta.YVelocity,X                                             ;A2C3D2;
-    BPL +                                                                ;A2C3D5;
-    DEC.B DP_Temp14                                                      ;A2C3D7;
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Geruta.YVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2C3D9;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2C3DB;
-    BCS .collidedVertically                                              ;A2C3DF;
-    LDA.W Geruta.YVelocity,X                                             ;A2C3E1;
-    SEC                                                                  ;A2C3E4;
-    SBC.W #$0020                                                         ;A2C3E5;
-    STA.W Geruta.YVelocity,X                                             ;A2C3E8;
-    LDA.L Geruta.finishedSwoopStartAnimationFlag,X                       ;A2C3EB;
-    BEQ .return                                                          ;A2C3EF;
-    LDA.W #$0000                                                         ;A2C3F1;
-    STA.L Geruta.finishedSwoopStartAnimationFlag,X                       ;A2C3F4;
-    LDA.W #InstList_Geruta_Main_Swoop_Ascending                          ;A2C3F8;
-    JSR.W SetGerutaInstList                                              ;A2C3FB;
++   STA.B DP_Temp13
+    JSL MoveEnemyDownBy_14_12
+    BCS .collidedVertically
+    LDA.W Geruta.YVelocity,X : SEC : SBC.W #$0020 : STA.W Geruta.YVelocity,X
+    LDA.L Geruta.finishedSwoopStartAnimationFlag,X : BEQ .return
+    LDA.W #$0000 : STA.L Geruta.finishedSwoopStartAnimationFlag,X
+    LDA.W #InstList_Geruta_Main_Swoop_Ascending
+    JSR SetGerutaInstList
 
   .return:
-    RTL                                                                  ;A2C3FE;
+    RTL
 
   .collidedVertically:
-    LDA.W #Function_Geruta_FinishSwoop                                   ;A2C3FF;
-    STA.W Geruta.function,X                                              ;A2C402;
-    RTL                                                                  ;A2C405;
+    LDA.W #Function_Geruta_FinishSwoop : STA.W Geruta.function,X
+    RTL
 
 
 ;;; $C406: Geruta function - finish swoop ;;;
 Function_Geruta_FinishSwoop:
-    LDA.W #Function_Geruta_Idle                                          ;A2C406;
-    STA.W Geruta.function,X                                              ;A2C409;
-    RTL                                                                  ;A2C40C;
+    LDA.W #Function_Geruta_Idle : STA.W Geruta.function,X
+    RTL
 
 
 ;;; $C40D: Set geruta instruction list ;;;
 SetGerutaInstList:
 ;; Parameters:
 ;;     A: Instruction list pointer
-    LDX.W EnemyIndex                                                     ;A2C40D;
-    CMP.L Geruta.instList,X                                              ;A2C410;
-    BEQ .return                                                          ;A2C414;
-    STA.L Geruta.instList,X                                              ;A2C416;
-    STA.W Enemy.instList,X                                               ;A2C41A;
-    LDA.W #$0001                                                         ;A2C41D;
-    STA.W Enemy.instTimer,X                                              ;A2C420;
-    STZ.W Enemy.loopCounter,X                                            ;A2C423;
+    LDX.W EnemyIndex
+    CMP.L Geruta.instList,X : BEQ .return
+    STA.L Geruta.instList,X : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
 
   .return:
-    RTS                                                                  ;A2C426;
+    RTS
 
 
 ;;; $C427: Geruta spritemaps ;;;
 Spritemap_Geruta_0:
-    dw $0005                                                             ;A2C427;
+    dw $0005
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $1FE, $02, 0, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $02, 0, 0, 2, 0, $10C)
@@ -8109,7 +6513,7 @@ Spritemap_Geruta_0:
     %spritemapEntry(1, $1E9, $F5, 0, 0, 2, 0, $106)
 
 Spritemap_Geruta_1:
-    dw $0005                                                             ;A2C442;
+    dw $0005
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $102)
     %spritemapEntry(1, $1FE, $04, 0, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $04, 0, 0, 2, 0, $10C)
@@ -8117,7 +6521,7 @@ Spritemap_Geruta_1:
     %spritemapEntry(1, $1E9, $F6, 0, 0, 2, 0, $108)
 
 Spritemap_Geruta_2:
-    dw $0005                                                             ;A2C45D;
+    dw $0005
     %spritemapEntry(1, $06, $F7, 0, 1, 2, 0, $10A)
     %spritemapEntry(1, $1E9, $F7, 0, 0, 2, 0, $10A)
     %spritemapEntry(1, $1FE, $06, 0, 1, 2, 0, $10C)
@@ -8125,7 +6529,7 @@ Spritemap_Geruta_2:
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $104)
 
 Spritemap_Geruta_3:
-    dw $0005                                                             ;A2C478;
+    dw $0005
     %spritemapEntry(1, $1FE, $04, 0, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $04, 0, 0, 2, 0, $10C)
     %spritemapEntry(1, $06, $F6, 0, 1, 2, 0, $10A)
@@ -8133,22 +6537,22 @@ Spritemap_Geruta_3:
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $102)
 
 Spritemap_Geruta_4:
-    dw $0002                                                             ;A2C493;
+    dw $0002
     %spritemapEntry(0, $02, $FC, 0, 0, 2, 0, $10E)
     %spritemapEntry(0, $1F6, $FC, 0, 0, 2, 0, $10E)
 
 Spritemap_Geruta_5:
-    dw $0002                                                             ;A2C49F;
+    dw $0002
     %spritemapEntry(0, $02, $FC, 0, 0, 2, 0, $10F)
     %spritemapEntry(0, $1F6, $FC, 0, 0, 2, 0, $10F)
 
 Spritemap_Geruta_6:
-    dw $0002                                                             ;A2C4AB;
+    dw $0002
     %spritemapEntry(0, $02, $FC, 0, 0, 2, 0, $11E)
     %spritemapEntry(0, $1F6, $FC, 0, 0, 2, 0, $11E)
 
 Spritemap_Geruta_7:
-    dw $0005                                                             ;A2C4B7;
+    dw $0005
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $1FE, $EA, 1, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $EA, 1, 0, 2, 0, $10C)
@@ -8156,7 +6560,7 @@ Spritemap_Geruta_7:
     %spritemapEntry(1, $1E9, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_Geruta_8:
-    dw $0005                                                             ;A2C4D2;
+    dw $0005
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $1FE, $EA, 1, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $EA, 1, 0, 2, 0, $10C)
@@ -8164,7 +6568,7 @@ Spritemap_Geruta_8:
     %spritemapEntry(1, $1E9, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_Geruta_9:
-    dw $0005                                                             ;A2C4ED;
+    dw $0005
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $1FE, $EA, 1, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $EA, 1, 0, 2, 0, $10C)
@@ -8172,7 +6576,7 @@ Spritemap_Geruta_9:
     %spritemapEntry(1, $1E9, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_Geruta_A:
-    dw $0005                                                             ;A2C508;
+    dw $0005
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $1FE, $FF, 0, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $FF, 0, 0, 2, 0, $10C)
@@ -8180,13 +6584,13 @@ Spritemap_Geruta_A:
     %spritemapEntry(1, $1E9, $F6, 0, 0, 2, 0, $106)
 
 Spritemap_Geruta_B:
-    dw $0003                                                             ;A2C523;
+    dw $0003
     %spritemapEntry(1, $05, $F7, 0, 1, 2, 0, $10A)
     %spritemapEntry(1, $1EA, $F7, 0, 0, 2, 0, $10A)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $100)
 
 Spritemap_Geruta_C:
-    dw $0005                                                             ;A2C534;
+    dw $0005
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $05, $F8, 0, 1, 2, 0, $10A)
     %spritemapEntry(1, $1FE, $ED, 1, 1, 2, 0, $10C)
@@ -8194,7 +6598,7 @@ Spritemap_Geruta_C:
     %spritemapEntry(1, $1EA, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_Geruta_D:
-    dw $0005                                                             ;A2C54F;
+    dw $0005
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $1FE, $EA, 1, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $EA, 1, 0, 2, 0, $10C)
@@ -8202,7 +6606,7 @@ Spritemap_Geruta_D:
     %spritemapEntry(1, $1EA, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_Geruta_E:
-    dw $0005                                                             ;A2C56A;
+    dw $0005
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $1FE, $E8, 1, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $E8, 1, 0, 2, 0, $10C)
@@ -8210,7 +6614,7 @@ Spritemap_Geruta_E:
     %spritemapEntry(1, $1EA, $F8, 0, 0, 2, 0, $10A)
 
 Spritemap_Geruta_F:
-    dw $0005                                                             ;A2C585;
+    dw $0005
     %spritemapEntry(1, $1FE, $06, 0, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $06, 0, 0, 2, 0, $10C)
     %spritemapEntry(1, $06, $F7, 0, 1, 2, 0, $108)
@@ -8218,7 +6622,7 @@ Spritemap_Geruta_F:
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $104)
 
 Spritemap_Geruta_10:
-    dw $0005                                                             ;A2C5A0;
+    dw $0005
     %spritemapEntry(1, $1FE, $06, 0, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $06, 0, 0, 2, 0, $10C)
     %spritemapEntry(1, $06, $F7, 0, 1, 2, 0, $108)
@@ -8226,7 +6630,7 @@ Spritemap_Geruta_10:
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $104)
 
 Spritemap_Geruta_11:
-    dw $0005                                                             ;A2C5BB;
+    dw $0005
     %spritemapEntry(1, $1FE, $06, 0, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F1, $06, 0, 0, 2, 0, $10C)
     %spritemapEntry(1, $06, $F7, 0, 1, 2, 0, $108)
@@ -8234,1642 +6638,1414 @@ Spritemap_Geruta_11:
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $104)
 
 Spritemap_Geruta_12:
-    dw $0002                                                             ;A2C5D6;
+    dw $0002
     %spritemapEntry(0, $02, $FC, 1, 0, 2, 0, $10E)
     %spritemapEntry(0, $1F6, $FC, 1, 0, 2, 0, $10E)
 
 Spritemap_Geruta_13:
-    dw $0002                                                             ;A2C5E2;
+    dw $0002
     %spritemapEntry(0, $02, $FC, 1, 0, 2, 0, $10F)
     %spritemapEntry(0, $1F6, $FC, 1, 0, 2, 0, $10F)
 
 Spritemap_Geruta_14:
-    dw $0002                                                             ;A2C5EE;
+    dw $0002
     %spritemapEntry(0, $02, $FC, 1, 0, 2, 0, $11E)
     %spritemapEntry(0, $1F6, $FC, 1, 0, 2, 0, $11E)
 
 
 ;;; $C5FA: Palette - enemy $D33F (holtz) ;;;
 Palette_Holtz:
-    dw $3800,$72FA,$55B0,$2845,$1801,$6210,$496B,$38C6                   ;A2C5FA;
-    dw $2C63,$7D7F,$54D5,$384D,$2007,$021F,$1014,$080A                   ;A2C60A;
+    dw $3800,$72FA,$55B0,$2845,$1801,$6210,$496B,$38C6
+    dw $2C63,$7D7F,$54D5,$384D,$2007,$021F,$1014,$080A
 
 
 ;;; $C61A: Instruction list - idle ;;;
 InstList_Holtz_Idle_0:
-    dw Instruction_Holtz_HideFlames                                      ;A2C61A;
+    dw Instruction_Holtz_HideFlames
 
 InstList_Holtz_Idle_1:
-    dw $000B,Spritemap_Holtz_0                                           ;A2C61C;
-    dw $000B,Spritemap_Holtz_1                                           ;A2C620;
-    dw $000B,Spritemap_Holtz_2                                           ;A2C624;
-    dw $000B,Spritemap_Holtz_1                                           ;A2C628;
-    dw Instruction_Common_GotoY                                          ;A2C62C;
-    dw InstList_Holtz_Idle_1                                             ;A2C62E;
+    dw $000B,Spritemap_Holtz_0
+    dw $000B,Spritemap_Holtz_1
+    dw $000B,Spritemap_Holtz_2
+    dw $000B,Spritemap_Holtz_1
+    dw Instruction_Common_GotoY
+    dw InstList_Holtz_Idle_1
 
 
 ;;; $C630: Instruction list - prepare to swoop ;;;
 InstList_Holtz_PrepareToSwoop:
-    dw Instruction_Holtz_HideFlames                                      ;A2C630;
-    dw $0003,Spritemap_Holtz_2                                           ;A2C632;
-    dw $0003,Spritemap_Holtz_3                                           ;A2C636;
-    dw $0003,Spritemap_Holtz_4                                           ;A2C63A;
-    dw $0003,Spritemap_Holtz_5                                           ;A2C63E;
-    dw $0002,Spritemap_Holtz_6                                           ;A2C642;
-    dw $0001,Spritemap_Holtz_7                                           ;A2C646;
-    dw $0002,Spritemap_Holtz_8                                           ;A2C64A;
-    dw $0003,Spritemap_Holtz_9                                           ;A2C64E;
-    dw $0003,Spritemap_Holtz_A                                           ;A2C652;
-    dw Instruction_Holtz_SetAnimationFinishedFlag                        ;A2C656;
-    dw Instruction_Common_Sleep                                          ;A2C658;
+    dw Instruction_Holtz_HideFlames
+    dw $0003,Spritemap_Holtz_2
+    dw $0003,Spritemap_Holtz_3
+    dw $0003,Spritemap_Holtz_4
+    dw $0003,Spritemap_Holtz_5
+    dw $0002,Spritemap_Holtz_6
+    dw $0001,Spritemap_Holtz_7
+    dw $0002,Spritemap_Holtz_8
+    dw $0003,Spritemap_Holtz_9
+    dw $0003,Spritemap_Holtz_A
+    dw Instruction_Holtz_SetAnimationFinishedFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $C65A: Instruction list - swoop - descending ;;;
 InstList_Holtz_Swoop_Descending:
-    dw Instruction_Holtz_HideFlames                                      ;A2C65A;
-    dw $0001,Spritemap_Holtz_A                                           ;A2C65C;
-    dw Instruction_Common_Sleep                                          ;A2C660;
+    dw Instruction_Holtz_HideFlames
+    dw $0001,Spritemap_Holtz_A
+    dw Instruction_Common_Sleep
 
 
 ;;; $C662: Instruction list - swoop - ascending - part 1 ;;;
 InstList_Holtz_Swoop_Ascending_Part1:
-    dw Instruction_Holtz_HideFlames                                      ;A2C662;
-    dw $0003,Spritemap_Holtz_A                                           ;A2C664;
-    dw $0003,Spritemap_Holtz_9                                           ;A2C668;
-    dw $0003,Spritemap_Holtz_B                                           ;A2C66C;
-    dw Instruction_Holtz_SetAnimationFinishedFlag                        ;A2C670;
-    dw Instruction_Common_Sleep                                          ;A2C672;
+    dw Instruction_Holtz_HideFlames
+    dw $0003,Spritemap_Holtz_A
+    dw $0003,Spritemap_Holtz_9
+    dw $0003,Spritemap_Holtz_B
+    dw Instruction_Holtz_SetAnimationFinishedFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $C674: Instruction list - swoop - ascending - part 2 ;;;
 InstList_Holtz_Swoop_Part2_0:
-    dw Instruction_Holtz_ShowFlames                                      ;A2C674;
+    dw Instruction_Holtz_ShowFlames
 
 InstList_Holtz_Swoop_Part2_1:
-    dw $0002,Spritemap_Holtz_E                                           ;A2C676;
-    dw $0002,Spritemap_Holtz_C                                           ;A2C67A;
-    dw $0002,Spritemap_Holtz_D                                           ;A2C67E;
-    dw Instruction_Common_GotoY                                          ;A2C682;
-    dw InstList_Holtz_Swoop_Part2_1                                      ;A2C684;
+    dw $0002,Spritemap_Holtz_E
+    dw $0002,Spritemap_Holtz_C
+    dw $0002,Spritemap_Holtz_D
+    dw Instruction_Common_GotoY
+    dw InstList_Holtz_Swoop_Part2_1
 
 
 ;;; $C686: Instruction list - swoop cooldown ;;;
 InstList_Holtz_SwoopCooldown:
-    dw Instruction_Holtz_ShowFlames                                      ;A2C686;
-    dw $0003,Spritemap_Holtz_B                                           ;A2C688;
-    dw $0003,Spritemap_Holtz_9                                           ;A2C68C;
-    dw $0002,Spritemap_Holtz_8                                           ;A2C690;
-    dw $0001,Spritemap_Holtz_7                                           ;A2C694;
-    dw $0002,Spritemap_Holtz_6                                           ;A2C698;
-    dw $0003,Spritemap_Holtz_5                                           ;A2C69C;
-    dw $0001,Spritemap_Holtz_4                                           ;A2C6A0;
-    dw $0001,Spritemap_Holtz_3                                           ;A2C6A4;
-    dw $0001,Spritemap_Holtz_2                                           ;A2C6A8;
-    dw Instruction_Holtz_SetAnimationFinishedFlag                        ;A2C6AC;
-    dw Instruction_Common_Sleep                                          ;A2C6AE;
+    dw Instruction_Holtz_ShowFlames
+    dw $0003,Spritemap_Holtz_B
+    dw $0003,Spritemap_Holtz_9
+    dw $0002,Spritemap_Holtz_8
+    dw $0001,Spritemap_Holtz_7
+    dw $0002,Spritemap_Holtz_6
+    dw $0003,Spritemap_Holtz_5
+    dw $0001,Spritemap_Holtz_4
+    dw $0001,Spritemap_Holtz_3
+    dw $0001,Spritemap_Holtz_2
+    dw Instruction_Holtz_SetAnimationFinishedFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $C6B0: Instruction list - flames ;;;
 InstList_Holtz_Flames:
-    dw $0006,Spritemap_Holtz_F                                           ;A2C6B0;
-    dw $0004,Spritemap_Holtz_10                                          ;A2C6B4;
-    dw $0003,Spritemap_Holtz_11                                          ;A2C6B8;
-    dw Instruction_Common_GotoY                                          ;A2C6BC;
-    dw InstList_Holtz_Flames                                             ;A2C6BE;
+    dw $0006,Spritemap_Holtz_F
+    dw $0004,Spritemap_Holtz_10
+    dw $0003,Spritemap_Holtz_11
+    dw Instruction_Common_GotoY
+    dw InstList_Holtz_Flames
 
 
 ;;; $C6C0: Holtz constants ;;;
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_HoltzConstants_A2C6C0:
-    dw $0000,$0009,$000A,$000B,$000A                                     ;A2C6C0;
+    dw $0000,$0009,$000A,$000B,$000A
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 HoltzConstants_initialYVelocity:
-    dw $0700                                                             ;A2C6CA;
+    dw $0700
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_HoltzConstants_A2C6CC:
-    dw $0700                                                             ;A2C6CC;
+    dw $0700
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 HoltzConstants_XSpeed:
-    dw $0100                                                             ;A2C6CE;
+    dw $0100
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_HoltzConstants_A2C6D0:
-    dw $0100                                                             ;A2C6D0;
+    dw $0100
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C6D2: Instruction - set animation finished flag ;;;
 Instruction_Holtz_SetAnimationFinishedFlag:
-    LDX.W EnemyIndex                                                     ;A2C6D2;
-    LDA.W #$0001                                                         ;A2C6D5;
-    STA.L Holtz.animationFinishedFlag,X                                  ;A2C6D8;
-    RTL                                                                  ;A2C6DC;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.L Holtz.animationFinishedFlag,X
+    RTL
 
 
 ;;; $C6DD: Instruction - hide flames ;;;
 Instruction_Holtz_HideFlames:
-    LDX.W EnemyIndex                                                     ;A2C6DD;
-    LDA.W #$0000                                                         ;A2C6E0;
-    STA.L Holtz.flamesVisibleFlag,X                                      ;A2C6E3;
-    RTL                                                                  ;A2C6E7;
+    LDX.W EnemyIndex
+    LDA.W #$0000 : STA.L Holtz.flamesVisibleFlag,X
+    RTL
 
 
 ;;; $C6E8: Instruction - show flames ;;;
 Instruction_Holtz_ShowFlames:
-    LDX.W EnemyIndex                                                     ;A2C6E8;
-    LDA.W #$0001                                                         ;A2C6EB;
-    STA.L Holtz.flamesVisibleFlag,X                                      ;A2C6EE;
-    RTL                                                                  ;A2C6F2;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.L Holtz.flamesVisibleFlag,X
+    RTL
 
 
 ;;; $C6F3: Initialisation AI - enemy $D33F (holtz) ;;;
 InitAI_Holtz:
-    LDX.W EnemyIndex                                                     ;A2C6F3;
-    LDA.W #$0000                                                         ;A2C6F6;
-    STA.L Holtz.animationFinishedFlag,X                                  ;A2C6F9;
-    LDA.W Enemy.init0,X                                                  ;A2C6FD;
-    BPL .idle                                                            ;A2C700;
-    LDA.W #Function_Holtz_Flames                                         ;A2C702;
-    STA.W Holtz.function,X                                               ;A2C705;
-    LDA.W #InstList_Holtz_Flames                                         ;A2C708;
-    STA.L Holtz.instList,X                                               ;A2C70B;
-    STA.W Enemy.instList,X                                               ;A2C70F;
-    RTL                                                                  ;A2C712;
+    LDX.W EnemyIndex
+    LDA.W #$0000 : STA.L Holtz.animationFinishedFlag,X
+    LDA.W Enemy.init0,X : BPL .idle
+    LDA.W #Function_Holtz_Flames : STA.W Holtz.function,X
+    LDA.W #InstList_Holtz_Flames : STA.L Holtz.instList,X : STA.W Enemy.instList,X
+    RTL
 
   .idle:
-    LDA.W #Function_Holtz_Idle                                           ;A2C713;
-    STA.W Holtz.function,X                                               ;A2C716;
-    LDA.W #InstList_Holtz_Idle_0                                         ;A2C719;
-    STA.L Holtz.instList,X                                               ;A2C71C;
-    STA.W Enemy.instList,X                                               ;A2C720;
-    RTL                                                                  ;A2C723;
+    LDA.W #Function_Holtz_Idle : STA.W Holtz.function,X
+    LDA.W #InstList_Holtz_Idle_0 : STA.L Holtz.instList,X : STA.W Enemy.instList,X
+    RTL
 
 
 ;;; $C724: Main AI - enemy $D33F (holtz) ;;;
 MainAI_Holtz:
-    JSL.L GenerateRandomNumber                                           ;A2C724;
-    LDX.W EnemyIndex                                                     ;A2C728;
-    JMP.W (Holtz.function,X)                                             ;A2C72B;
+    JSL GenerateRandomNumber
+    LDX.W EnemyIndex
+    JMP.W (Holtz.function,X)
 
 
 ;;; $C72E: Holtz function - flames ;;;
 Function_Holtz_Flames:
-    LDA.W Enemy[-1].health,X                                             ;A2C72E;
-    BNE .notDead                                                         ;A2C731;
-    LDA.W Enemy.properties,X                                             ;A2C733;
-    ORA.W #$0200                                                         ;A2C736;
-    STA.W Enemy.properties,X                                             ;A2C739;
-    RTL                                                                  ;A2C73C;
+    LDA.W Enemy[-1].health,X : BNE .notDead
+    LDA.W Enemy.properties,X : ORA.W #$0200 : STA.W Enemy.properties,X
+    RTL
 
   .notDead:
-    LDA.W Enemy[-1].freezeTimer,X                                        ;A2C73D;
-    STA.W Enemy.freezeTimer,X                                            ;A2C740;
-    BEQ .frozen                                                          ;A2C743;
-    BRA .invisible                                                       ;A2C745;
+    LDA.W Enemy[-1].freezeTimer,X : STA.W Enemy.freezeTimer,X : BEQ .frozen
+    BRA .invisible
 
   .frozen:
-    LDA.L Holtz.flamesVisibleFlag-$40,X                                  ;A2C747;
-    BNE .visible                                                         ;A2C74B;
+    LDA.L Holtz.flamesVisibleFlag-$40,X : BNE .visible
 
   .invisible:
-    LDA.W Enemy.properties,X                                             ;A2C74D;
-    ORA.W #$0100                                                         ;A2C750;
-    STA.W Enemy.properties,X                                             ;A2C753;
-    RTL                                                                  ;A2C756;
+    LDA.W Enemy.properties,X : ORA.W #$0100 : STA.W Enemy.properties,X
+    RTL
 
   .visible:
-    LDA.W Enemy.properties,X                                             ;A2C757;
-    AND.W #$FEFF                                                         ;A2C75A;
-    STA.W Enemy.properties,X                                             ;A2C75D;
-    LDA.W Enemy[-1].XPosition,X                                          ;A2C760;
-    STA.W Enemy.XPosition,X                                              ;A2C763;
-    LDA.W Enemy[-1].YPosition,X                                          ;A2C766;
-    CLC                                                                  ;A2C769;
-    ADC.W #$000C                                                         ;A2C76A;
-    STA.W Enemy.YPosition,X                                              ;A2C76D;
-    RTL                                                                  ;A2C770;
+    LDA.W Enemy.properties,X : AND.W #$FEFF : STA.W Enemy.properties,X
+    LDA.W Enemy[-1].XPosition,X : STA.W Enemy.XPosition,X
+    LDA.W Enemy[-1].YPosition,X : CLC : ADC.W #$000C : STA.W Enemy.YPosition,X
+    RTL
 
 
 ;;; $C771: Holtz function - idle ;;;
 Function_Holtz_Idle:
-    LDA.W RandomNumberSeed                                               ;A2C771;
-    AND.W #$0101                                                         ;A2C774;
-    BEQ .quarterChancestayIdle                                           ;A2C777;
-    LDA.W #$0070                                                         ;A2C779;
-    JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA                 ;A2C77C;
-    BCC .triggered                                                       ;A2C780;
+    LDA.W RandomNumberSeed : AND.W #$0101 : BEQ .quarterChancestayIdle
+    LDA.W #$0070
+    JSL CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA
+    BCC .triggered
 
   .quarterChancestayIdle:
-    LDA.W #$0000                                                         ;A2C782;
-    STA.L Holtz.animationFinishedFlag,X                                  ;A2C785;
-    LDA.W #InstList_Holtz_Idle_0                                         ;A2C789;
-    JSR.W SetHoltzInstList                                               ;A2C78C;
-    RTL                                                                  ;A2C78F;
+    LDA.W #$0000 : STA.L Holtz.animationFinishedFlag,X
+    LDA.W #InstList_Holtz_Idle_0
+    JSR SetHoltzInstList
+    RTL
 
   .triggered:
-    LDA.W HoltzConstants_initialYVelocity                                ;A2C790;
-    STA.W Holtz.YVelocity,X                                              ;A2C793;
-    LDA.W HoltzConstants_XSpeed                                          ;A2C796;
-    STA.W Holtz.XVelocity,X                                              ;A2C799;
-    LDA.W SamusXPosition                                                 ;A2C79C;
-    CMP.W Enemy.XPosition,X                                              ;A2C79F;
-    BPL +                                                                ;A2C7A2;
-    LDA.W Holtz.XVelocity,X                                              ;A2C7A4;
-    EOR.W #$FFFF                                                         ;A2C7A7;
-    INC                                                                  ;A2C7AA;
-    STA.W Holtz.XVelocity,X                                              ;A2C7AB;
+    LDA.W HoltzConstants_initialYVelocity : STA.W Holtz.YVelocity,X
+    LDA.W HoltzConstants_XSpeed : STA.W Holtz.XVelocity,X
+    LDA.W SamusXPosition : CMP.W Enemy.XPosition,X : BPL +
+    LDA.W Holtz.XVelocity,X : EOR.W #$FFFF : INC : STA.W Holtz.XVelocity,X
 
-+   LDA.W #InstList_Holtz_PrepareToSwoop                                 ;A2C7AE;
-    JSR.W SetHoltzInstList                                               ;A2C7B1;
-    LDA.W #Function_Holtz_PrepareToSwoop                                 ;A2C7B4;
-    STA.W Holtz.function,X                                               ;A2C7B7;
-    RTL                                                                  ;A2C7BA;
++   LDA.W #InstList_Holtz_PrepareToSwoop
+    JSR SetHoltzInstList
+    LDA.W #Function_Holtz_PrepareToSwoop : STA.W Holtz.function,X
+    RTL
 
 
 ;;; $C7BB: Holtz function - prepare to swoop ;;;
 Function_Holtz_PrepareToSwoop:
-    LDA.L Holtz.animationFinishedFlag,X                                  ;A2C7BB;
-    BNE .animationFinished                                               ;A2C7BF;
-    RTL                                                                  ;A2C7C1;
+    LDA.L Holtz.animationFinishedFlag,X : BNE .animationFinished
+    RTL
 
   .animationFinished:
-    LDA.W #$0000                                                         ;A2C7C2;
-    STA.L Holtz.animationFinishedFlag,X                                  ;A2C7C5;
-    LDA.W #InstList_Holtz_Swoop_Descending                               ;A2C7C9;
-    JSR.W SetHoltzInstList                                               ;A2C7CC;
-    LDA.W #Function_Holtz_Swoop_Descending                               ;A2C7CF;
-    STA.W Holtz.function,X                                               ;A2C7D2;
-    RTL                                                                  ;A2C7D5;
+    LDA.W #$0000 : STA.L Holtz.animationFinishedFlag,X
+    LDA.W #InstList_Holtz_Swoop_Descending
+    JSR SetHoltzInstList
+    LDA.W #Function_Holtz_Swoop_Descending : STA.W Holtz.function,X
+    RTL
 
 
 ;;; $C7D6: Holtz function - swoop - descending ;;;
 Function_Holtz_Swoop_Descending:
-    STZ.B DP_Temp12                                                      ;A2C7D6;
-    STZ.B DP_Temp14                                                      ;A2C7D8;
-    LDA.W Holtz.XVelocity,X                                              ;A2C7DA;
-    BPL +                                                                ;A2C7DD;
-    DEC.B DP_Temp14                                                      ;A2C7DF;
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Holtz.XVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2C7E1;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A2C7E3;
-    BCC .notCollidedWithWall                                             ;A2C7E7;
-    LDA.W Holtz.XVelocity,X                                              ;A2C7E9;
-    EOR.W #$FFFF                                                         ;A2C7EC;
-    INC                                                                  ;A2C7EF;
-    STA.W Holtz.XVelocity,X                                              ;A2C7F0;
++   STA.B DP_Temp13
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCC .notCollidedWithWall
+    LDA.W Holtz.XVelocity,X : EOR.W #$FFFF : INC : STA.W Holtz.XVelocity,X
 
   .notCollidedWithWall:
-    STZ.B DP_Temp12                                                      ;A2C7F3;
-    STZ.B DP_Temp14                                                      ;A2C7F5;
-    LDA.W Holtz.YVelocity,X                                              ;A2C7F7;
-    BPL +                                                                ;A2C7FA;
-    DEC.B DP_Temp14                                                      ;A2C7FC;
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Holtz.YVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2C7FE;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2C800;
-    BCS .notCollidedWithBlock                                            ;A2C804;
-    LDA.W Holtz.YVelocity,X                                              ;A2C806;
-    SEC                                                                  ;A2C809;
-    SBC.W #$0020                                                         ;A2C80A;
-    STA.W Holtz.YVelocity,X                                              ;A2C80D;
-    BMI .notCollidedWithBlock                                            ;A2C810;
-    RTL                                                                  ;A2C812;
++   STA.B DP_Temp13
+    JSL MoveEnemyDownBy_14_12
+    BCS .notCollidedWithBlock
+    LDA.W Holtz.YVelocity,X : SEC : SBC.W #$0020 : STA.W Holtz.YVelocity,X : BMI .notCollidedWithBlock
+    RTL
 
   .notCollidedWithBlock:
-    LDA.W #$FFFF                                                         ;A2C813;
-    STA.W Holtz.YVelocity,X                                              ;A2C816;
-    LDA.W #InstList_Holtz_Swoop_Ascending_Part1                          ;A2C819;
-    JSR.W SetHoltzInstList                                               ;A2C81C;
-    LDA.W #Function_Holtz_Swoop_Ascending                                ;A2C81F;
-    STA.W Holtz.function,X                                               ;A2C822;
-    LDA.W #$0064                                                         ;A2C825;
-    JSL.L QueueSound_Lib2_Max6                                           ;A2C828;
-    RTL                                                                  ;A2C82C;
+    LDA.W #$FFFF : STA.W Holtz.YVelocity,X
+    LDA.W #InstList_Holtz_Swoop_Ascending_Part1
+    JSR SetHoltzInstList
+    LDA.W #Function_Holtz_Swoop_Ascending : STA.W Holtz.function,X
+    LDA.W #$0064
+    JSL QueueSound_Lib2_Max6
+    RTL
 
 
 ;;; $C82D: Holtz function - swoop - ascending ;;;
 Function_Holtz_Swoop_Ascending:
-    STZ.B DP_Temp12                                                      ;A2C82D;
-    STZ.B DP_Temp14                                                      ;A2C82F;
-    LDA.W Holtz.XVelocity,X                                              ;A2C831;
-    BPL +                                                                ;A2C834;
-    DEC.B DP_Temp14                                                      ;A2C836;
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Holtz.XVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2C838;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A2C83A;
-    BCC .notCollidedWithWall                                             ;A2C83E;
-    LDA.W Holtz.XVelocity,X                                              ;A2C840;
-    EOR.W #$FFFF                                                         ;A2C843;
-    INC                                                                  ;A2C846;
-    STA.W Holtz.XVelocity,X                                              ;A2C847;
++   STA.B DP_Temp13
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCC .notCollidedWithWall
+    LDA.W Holtz.XVelocity,X : EOR.W #$FFFF : INC : STA.W Holtz.XVelocity,X
 
   .notCollidedWithWall:
-    STZ.B DP_Temp12                                                      ;A2C84A;
-    STZ.B DP_Temp14                                                      ;A2C84C;
-    LDA.W Holtz.YVelocity,X                                              ;A2C84E;
-    BPL +                                                                ;A2C851;
-    DEC.B DP_Temp14                                                      ;A2C853;
+    STZ.B DP_Temp12 : STZ.B DP_Temp14
+    LDA.W Holtz.YVelocity,X : BPL +
+    DEC.B DP_Temp14
 
-+   STA.B DP_Temp13                                                      ;A2C855;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2C857;
-    BCS .collidedVertically                                              ;A2C85B;
-    LDA.W Holtz.YVelocity,X                                              ;A2C85D;
-    SEC                                                                  ;A2C860;
-    SBC.W #$0020                                                         ;A2C861;
-    STA.W Holtz.YVelocity,X                                              ;A2C864;
-    LDA.L Holtz.animationFinishedFlag,X                                  ;A2C867;
-    BEQ .return                                                          ;A2C86B;
-    LDA.W #$0000                                                         ;A2C86D;
-    STA.L Holtz.animationFinishedFlag,X                                  ;A2C870;
-    LDA.W #InstList_Holtz_Swoop_Part2_0                                  ;A2C874;
-    JSR.W SetHoltzInstList                                               ;A2C877;
++   STA.B DP_Temp13
+    JSL MoveEnemyDownBy_14_12
+    BCS .collidedVertically
+    LDA.W Holtz.YVelocity,X : SEC : SBC.W #$0020 : STA.W Holtz.YVelocity,X
+    LDA.L Holtz.animationFinishedFlag,X : BEQ .return
+    LDA.W #$0000 : STA.L Holtz.animationFinishedFlag,X
+    LDA.W #InstList_Holtz_Swoop_Part2_0
+    JSR SetHoltzInstList
 
   .return:
-    RTL                                                                  ;A2C87A;
+    RTL
 
   .collidedVertically:
-    LDA.W #InstList_Holtz_SwoopCooldown                                  ;A2C87B;
-    JSR.W SetHoltzInstList                                               ;A2C87E;
-    LDA.W #Function_Holtz_SwoopCooldown                                  ;A2C881;
-    STA.W Holtz.function,X                                               ;A2C884;
-    RTL                                                                  ;A2C887;
+    LDA.W #InstList_Holtz_SwoopCooldown
+    JSR SetHoltzInstList
+    LDA.W #Function_Holtz_SwoopCooldown : STA.W Holtz.function,X
+    RTL
 
 
 ;;; $C888: Holtz function - swoop cooldown ;;;
 Function_Holtz_SwoopCooldown:
-    LDA.L Holtz.animationFinishedFlag,X                                  ;A2C888;
-    BNE .animationFinished                                               ;A2C88C;
-    RTL                                                                  ;A2C88E;
+    LDA.L Holtz.animationFinishedFlag,X : BNE .animationFinished
+    RTL
 
   .animationFinished:
-    LDA.W #$0000                                                         ;A2C88F;
-    STA.L Holtz.animationFinishedFlag,X                                  ;A2C892;
-    LDA.W #InstList_Holtz_SwoopCooldown                                  ;A2C896;
-    JSR.W SetHoltzInstList                                               ;A2C899;
-    LDA.W #Function_Holtz_Idle                                           ;A2C89C;
-    STA.W Holtz.function,X                                               ;A2C89F;
-    RTL                                                                  ;A2C8A2;
+    LDA.W #$0000 : STA.L Holtz.animationFinishedFlag,X
+    LDA.W #InstList_Holtz_SwoopCooldown
+    JSR SetHoltzInstList
+    LDA.W #Function_Holtz_Idle : STA.W Holtz.function,X
+    RTL
 
 
 ;;; $C8A3: Set holtz instruction list ;;;
 SetHoltzInstList:
 ;; Parameters:
 ;;     A: Instruction list pointer
-    LDX.W EnemyIndex                                                     ;A2C8A3;
-    CMP.L Holtz.instList,X                                               ;A2C8A6;
-    BEQ .return                                                          ;A2C8AA;
-    STA.L Holtz.instList,X                                               ;A2C8AC;
-    STA.W Enemy.instList,X                                               ;A2C8B0;
-    LDA.W #$0001                                                         ;A2C8B3;
-    STA.W Enemy.instTimer,X                                              ;A2C8B6;
-    STZ.W Enemy.loopCounter,X                                            ;A2C8B9;
+    LDX.W EnemyIndex
+    CMP.L Holtz.instList,X : BEQ .return
+    STA.L Holtz.instList,X : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
 
   .return:
-    RTS                                                                  ;A2C8BC;
+    RTS
 
 
 ;;; $C8BD: Holtz spritemaps ;;;
 Spritemap_Holtz_0:
-    dw $0004                                                             ;A2C8BD;
+    dw $0004
     %spritemapEntry(1, $1F8, $04, 0, 0, 2, 0, $126)
     %spritemapEntry(1, $08, $F4, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1F8, $F4, 0, 0, 2, 0, $10A)
     %spritemapEntry(1, $1E8, $F4, 0, 0, 2, 0, $100)
 
 Spritemap_Holtz_1:
-    dw $0004                                                             ;A2C8D3;
+    dw $0004
     %spritemapEntry(1, $08, $F5, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1E8, $F5, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $1F8, $F5, 0, 0, 2, 0, $10A)
     %spritemapEntry(1, $1F8, $05, 0, 0, 2, 0, $128)
 
 Spritemap_Holtz_2:
-    dw $0004                                                             ;A2C8E9;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $10A)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $100)
 
 Spritemap_Holtz_3:
-    dw $0004                                                             ;A2C8FF;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $10C)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $100)
 
 Spritemap_Holtz_4:
-    dw $0004                                                             ;A2C915;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $10E)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $100)
 
 Spritemap_Holtz_5:
-    dw $0004                                                             ;A2C92B;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $120)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $100)
 
 Spritemap_Holtz_6:
-    dw $0004                                                             ;A2C941;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $102)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $102)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $120)
 
 Spritemap_Holtz_7:
-    dw $0004                                                             ;A2C957;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $104)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $104)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $120)
 
 Spritemap_Holtz_8:
-    dw $0004                                                             ;A2C96D;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $106)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $106)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $120)
 
 Spritemap_Holtz_9:
-    dw $0004                                                             ;A2C983;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $108)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $108)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $120)
 
 Spritemap_Holtz_A:
-    dw $0004                                                             ;A2C999;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $108)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $108)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $124)
 
 Spritemap_Holtz_B:
-    dw $0004                                                             ;A2C9AF;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $108)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $108)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $122)
 
 Spritemap_Holtz_C:
-    dw $0004                                                             ;A2C9C5;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $108)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $108)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $122)
 
 Spritemap_Holtz_D:
-    dw $0004                                                             ;A2C9DB;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $108)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $108)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $122)
 
 Spritemap_Holtz_E:
-    dw $0004                                                             ;A2C9F1;
+    dw $0004
     %spritemapEntry(1, $1F8, $06, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $08, $F6, 0, 1, 2, 0, $108)
     %spritemapEntry(1, $1E8, $F6, 0, 0, 2, 0, $108)
     %spritemapEntry(1, $1F8, $F6, 0, 0, 2, 0, $122)
 
 Spritemap_Holtz_F:
-    dw $0002                                                             ;A2CA07;
+    dw $0002
     %spritemapEntry(0, $04, $FC, 0, 1, 2, 0, $12A)
     %spritemapEntry(0, $1F4, $FC, 0, 0, 2, 0, $12A)
 
 Spritemap_Holtz_10:
-    dw $0002                                                             ;A2CA13;
+    dw $0002
     %spritemapEntry(0, $04, $FC, 0, 1, 2, 0, $12B)
     %spritemapEntry(0, $1F4, $FC, 0, 0, 2, 0, $12B)
 
 Spritemap_Holtz_11:
-    dw $0002                                                             ;A2CA1F;
+    dw $0002
     %spritemapEntry(0, $04, $FC, 0, 1, 2, 0, $12C)
     %spritemapEntry(0, $1F4, $FC, 0, 0, 2, 0, $12C)
 
 
 ;;; $CA2B: Palette - enemy $D37F (oum) ;;;
 Palette_Oum:
-    dw $3800,$3F57,$2E4D,$00E2,$0060,$3AB0,$220B,$1166                   ;A2CA2B;
-    dw $0924,$21B9,$1533,$0CCE,$0448,$03E0,$02A0,$0140                   ;A2CA3B;
+    dw $3800,$3F57,$2E4D,$00E2,$0060,$3AB0,$220B,$1166
+    dw $0924,$21B9,$1533,$0CCE,$0448,$03E0,$02A0,$0140
 
 
 ;;; $CA4B: Instruction list - facing left - idle ;;;
 InstList_Oum_FacingLeft_Idle:
-    dw $0001,ExtendedSpritemap_Oum_FacingLeft_0                          ;A2CA4B;
-    dw Instruction_Common_Sleep                                          ;A2CA4F;
+    dw $0001,ExtendedSpritemap_Oum_FacingLeft_0
+    dw Instruction_Common_Sleep
 
 
 ;;; $CA51: Instruction list - facing left - attacking ;;;
 InstList_Oum_FacingLeft_Attacking:
-    dw $0010,ExtendedSpritemap_Oum_FacingLeft_0                          ;A2CA51;
-    dw $0010,ExtendedSpritemap_Oum_FacingLeft_1                          ;A2CA55;
-    dw Instruction_Oum_PlaySplashedOutOfWaterSFX                         ;A2CA59;
-    dw $0010,ExtendedSpritemap_Oum_FacingLeft_2                          ;A2CA5B;
-    dw $0002,ExtendedSpritemap_Oum_FacingLeft_3                          ;A2CA5F;
-    dw $0003,ExtendedSpritemap_Oum_FacingLeft_4                          ;A2CA63;
-    dw $0004,ExtendedSpritemap_Oum_FacingLeft_5                          ;A2CA67;
-    dw $0002,ExtendedSpritemap_Oum_FacingLeft_6                          ;A2CA6B;
-    dw $0003,ExtendedSpritemap_Oum_FacingLeft_7                          ;A2CA6F;
-    dw $0001,ExtendedSpritemap_Oum_FacingLeft_6                          ;A2CA73;
-    dw $0003,ExtendedSpritemap_Oum_FacingLeft_5                          ;A2CA77;
-    dw $0002,ExtendedSpritemap_Oum_FacingLeft_4                          ;A2CA7B;
-    dw $0001,ExtendedSpritemap_Oum_FacingLeft_3                          ;A2CA7F;
-    dw $0012,ExtendedSpritemap_Oum_FacingLeft_2                          ;A2CA83;
-    dw Instruction_Oum_SetAnimationFinishedFlag                          ;A2CA87;
-    dw Instruction_Common_Sleep                                          ;A2CA89;
+    dw $0010,ExtendedSpritemap_Oum_FacingLeft_0
+    dw $0010,ExtendedSpritemap_Oum_FacingLeft_1
+    dw Instruction_Oum_PlaySplashedOutOfWaterSFX
+    dw $0010,ExtendedSpritemap_Oum_FacingLeft_2
+    dw $0002,ExtendedSpritemap_Oum_FacingLeft_3
+    dw $0003,ExtendedSpritemap_Oum_FacingLeft_4
+    dw $0004,ExtendedSpritemap_Oum_FacingLeft_5
+    dw $0002,ExtendedSpritemap_Oum_FacingLeft_6
+    dw $0003,ExtendedSpritemap_Oum_FacingLeft_7
+    dw $0001,ExtendedSpritemap_Oum_FacingLeft_6
+    dw $0003,ExtendedSpritemap_Oum_FacingLeft_5
+    dw $0002,ExtendedSpritemap_Oum_FacingLeft_4
+    dw $0001,ExtendedSpritemap_Oum_FacingLeft_3
+    dw $0012,ExtendedSpritemap_Oum_FacingLeft_2
+    dw Instruction_Oum_SetAnimationFinishedFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $CA8B: Instruction list - facing left - rolling forwards ;;;
 InstList_Oum_FacingLeft_RollingForwards:
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_2                          ;A2CA8B;
-    dw Instruction_Oum_SetAttackAllowingRotationFlag                     ;A2CA8F;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_8                          ;A2CA91;
-    dw Instruction_Oum_ResetAttackAllowingRotationFlag                   ;A2CA95;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_9                          ;A2CA97;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_A                          ;A2CA9B;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_B                          ;A2CA9F;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_C                          ;A2CAA3;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_D                          ;A2CAA7;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_E                          ;A2CAAB;
-    dw Instruction_Common_GotoY                                          ;A2CAAF;
-    dw InstList_Oum_FacingLeft_RollingForwards                           ;A2CAB1;
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_2
+    dw Instruction_Oum_SetAttackAllowingRotationFlag
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_8
+    dw Instruction_Oum_ResetAttackAllowingRotationFlag
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_9
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_A
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_B
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_C
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_D
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_E
+    dw Instruction_Common_GotoY
+    dw InstList_Oum_FacingLeft_RollingForwards
 
 
 ;;; $CAB3: Instruction list - facing left - rolling backwards ;;;
 InstList_Oum_FacingLeft_RollingBackwards:
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_E                          ;A2CAB3;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_D                          ;A2CAB7;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_C                          ;A2CABB;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_B                          ;A2CABF;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_A                          ;A2CAC3;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_9                          ;A2CAC7;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_8                          ;A2CACB;
-    dw Instruction_Oum_SetAttackAllowingRotationFlag                     ;A2CACF;
-    dw $0007,ExtendedSpritemap_Oum_FacingLeft_2                          ;A2CAD1;
-    dw Instruction_Oum_ResetAttackAllowingRotationFlag                   ;A2CAD5;
-    dw Instruction_Common_GotoY                                          ;A2CAD7;
-    dw InstList_Oum_FacingLeft_RollingBackwards                          ;A2CAD9;
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_E
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_D
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_C
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_B
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_A
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_9
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_8
+    dw Instruction_Oum_SetAttackAllowingRotationFlag
+    dw $0007,ExtendedSpritemap_Oum_FacingLeft_2
+    dw Instruction_Oum_ResetAttackAllowingRotationFlag
+    dw Instruction_Common_GotoY
+    dw InstList_Oum_FacingLeft_RollingBackwards
 
 
 ;;; $CADB: Instruction list - facing right - idle ;;;
 InstList_Oum_FacingRight_Idle:
-    dw $0001,ExtendedSpritemap_Oum_FacingRight_0                         ;A2CADB;
-    dw Instruction_Common_Sleep                                          ;A2CADF;
+    dw $0001,ExtendedSpritemap_Oum_FacingRight_0
+    dw Instruction_Common_Sleep
 
 
 ;;; $CAE1: Instruction list - facing right - attacking ;;;
 InstList_Oum_FacingRight_Attacking:
-    dw $0010,ExtendedSpritemap_Oum_FacingRight_0                         ;A2CAE1;
-    dw $0010,ExtendedSpritemap_Oum_FacingRight_1                         ;A2CAE5;
-    dw $0010,ExtendedSpritemap_Oum_FacingRight_2                         ;A2CAE9;
-    dw Instruction_Oum_PlaySplashedOutOfWaterSFX                         ;A2CAED;
-    dw $0002,ExtendedSpritemap_Oum_FacingRight_3                         ;A2CAEF;
-    dw $0003,ExtendedSpritemap_Oum_FacingRight_4                         ;A2CAF3;
-    dw $0004,ExtendedSpritemap_Oum_FacingRight_5                         ;A2CAF7;
-    dw $0002,ExtendedSpritemap_Oum_FacingRight_6                         ;A2CAFB;
-    dw $0003,ExtendedSpritemap_Oum_FacingRight_7                         ;A2CAFF;
-    dw $0001,ExtendedSpritemap_Oum_FacingRight_6                         ;A2CB03;
-    dw $0003,ExtendedSpritemap_Oum_FacingRight_5                         ;A2CB07;
-    dw $0002,ExtendedSpritemap_Oum_FacingRight_4                         ;A2CB0B;
-    dw $0001,ExtendedSpritemap_Oum_FacingRight_3                         ;A2CB0F;
-    dw $0012,ExtendedSpritemap_Oum_FacingRight_2                         ;A2CB13;
-    dw Instruction_Oum_SetAnimationFinishedFlag                          ;A2CB17;
-    dw Instruction_Common_Sleep                                          ;A2CB19;
+    dw $0010,ExtendedSpritemap_Oum_FacingRight_0
+    dw $0010,ExtendedSpritemap_Oum_FacingRight_1
+    dw $0010,ExtendedSpritemap_Oum_FacingRight_2
+    dw Instruction_Oum_PlaySplashedOutOfWaterSFX
+    dw $0002,ExtendedSpritemap_Oum_FacingRight_3
+    dw $0003,ExtendedSpritemap_Oum_FacingRight_4
+    dw $0004,ExtendedSpritemap_Oum_FacingRight_5
+    dw $0002,ExtendedSpritemap_Oum_FacingRight_6
+    dw $0003,ExtendedSpritemap_Oum_FacingRight_7
+    dw $0001,ExtendedSpritemap_Oum_FacingRight_6
+    dw $0003,ExtendedSpritemap_Oum_FacingRight_5
+    dw $0002,ExtendedSpritemap_Oum_FacingRight_4
+    dw $0001,ExtendedSpritemap_Oum_FacingRight_3
+    dw $0012,ExtendedSpritemap_Oum_FacingRight_2
+    dw Instruction_Oum_SetAnimationFinishedFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $CB1B: Instruction list - facing right - rolling forwards ;;;
 InstList_Oum_FacingRight_RollingForwards:
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_2                         ;A2CB1B;
-    dw Instruction_Oum_SetAttackAllowingRotationFlag                     ;A2CB1F;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_8                         ;A2CB21;
-    dw Instruction_Oum_ResetAttackAllowingRotationFlag                   ;A2CB25;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_9                         ;A2CB27;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_A                         ;A2CB2B;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_B                         ;A2CB2F;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_C                         ;A2CB33;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_D                         ;A2CB37;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_E                         ;A2CB3B;
-    dw Instruction_Common_GotoY                                          ;A2CB3F;
-    dw InstList_Oum_FacingRight_RollingForwards                          ;A2CB41;
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_2
+    dw Instruction_Oum_SetAttackAllowingRotationFlag
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_8
+    dw Instruction_Oum_ResetAttackAllowingRotationFlag
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_9
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_A
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_B
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_C
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_D
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_E
+    dw Instruction_Common_GotoY
+    dw InstList_Oum_FacingRight_RollingForwards
 
 
 ;;; $CB43: Instruction list - facing right - rolling backwards ;;;
 InstList_Oum_FacingRight_RollingBackwards:
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_E                         ;A2CB43;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_D                         ;A2CB47;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_C                         ;A2CB4B;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_B                         ;A2CB4F;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_A                         ;A2CB53;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_9                         ;A2CB57;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_8                         ;A2CB5B;
-    dw Instruction_Oum_SetAttackAllowingRotationFlag                     ;A2CB5F;
-    dw $0007,ExtendedSpritemap_Oum_FacingRight_2                         ;A2CB61;
-    dw Instruction_Oum_ResetAttackAllowingRotationFlag                   ;A2CB65;
-    dw Instruction_Common_GotoY                                          ;A2CB67;
-    dw InstList_Oum_FacingRight_RollingBackwards                         ;A2CB69;
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_E
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_D
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_C
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_B
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_A
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_9
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_8
+    dw Instruction_Oum_SetAttackAllowingRotationFlag
+    dw $0007,ExtendedSpritemap_Oum_FacingRight_2
+    dw Instruction_Oum_ResetAttackAllowingRotationFlag
+    dw Instruction_Common_GotoY
+    dw InstList_Oum_FacingRight_RollingBackwards
 
 
 ;;; $CB6B: Instruction - queue splashed out of water sound effect ;;;
 Instruction_Oum_PlaySplashedOutOfWaterSFX:
-    PHX                                                                  ;A2CB6B;
-    PHY                                                                  ;A2CB6C;
-    LDA.W #$000E                                                         ;A2CB6D;
-    JSL.L QueueSound_Lib2_Max6                                           ;A2CB70;
-    PLY                                                                  ;A2CB74;
-    PLX                                                                  ;A2CB75;
-    RTL                                                                  ;A2CB76;
+    PHX : PHY
+    LDA.W #$000E
+    JSL QueueSound_Lib2_Max6
+    PLY : PLX
+    RTL
 
 
 ;;; $CB77: Instruction list pointers ;;;
 InstListPointers_Oum:
 ; Indexed by [enemy $7E:7802] * 2
-    dw InstList_Oum_FacingRight_Idle                                     ;A2CB77;
-    dw InstList_Oum_FacingLeft_Idle                                      ;A2CB79;
-    dw InstList_Oum_FacingRight_RollingForwards                          ;A2CB7B;
-    dw InstList_Oum_FacingLeft_RollingForwards                           ;A2CB7D;
-    dw InstList_Oum_FacingRight_Attacking                                ;A2CB7F;
-    dw InstList_Oum_FacingLeft_Attacking                                 ;A2CB81;
-    dw InstList_Oum_FacingRight_RollingBackwards                         ;A2CB83;
-    dw InstList_Oum_FacingLeft_RollingBackwards                          ;A2CB85;
+    dw InstList_Oum_FacingRight_Idle
+    dw InstList_Oum_FacingLeft_Idle
+    dw InstList_Oum_FacingRight_RollingForwards
+    dw InstList_Oum_FacingLeft_RollingForwards
+    dw InstList_Oum_FacingRight_Attacking
+    dw InstList_Oum_FacingLeft_Attacking
+    dw InstList_Oum_FacingRight_RollingBackwards
+    dw InstList_Oum_FacingLeft_RollingBackwards
 
 
 ;;; $CB87: Oum extended spritemaps ;;;
 ExtendedSpritemap_Oum_FacingLeft_0:
-    dw $0001                                                             ;A2CB87;
-    dw $0000,$0000                                                       ;A2CB89;
-    dw Spritemap_Oum_FacingLeft_0                                        ;A2CB8D;
-    dw Hitbox_Oum_FacingLeft_0                                           ;A2CB8F;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_0
+    dw Hitbox_Oum_FacingLeft_0
 
 ExtendedSpritemap_Oum_FacingLeft_1:
-    dw $0001                                                             ;A2CB91;
-    dw $0000,$0000                                                       ;A2CB93;
-    dw Spritemap_Oum_FacingLeft_1                                        ;A2CB97;
-    dw Hitbox_Oum_FacingLeft_1                                           ;A2CB99;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_1
+    dw Hitbox_Oum_FacingLeft_1
 
 ExtendedSpritemap_Oum_FacingLeft_2:
-    dw $0001                                                             ;A2CB9B;
-    dw $0000,$0000                                                       ;A2CB9D;
-    dw Spritemap_Oum_FacingLeft_2                                        ;A2CBA1;
-    dw Hitbox_Oum_FacingLeft_2                                           ;A2CBA3;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_2
+    dw Hitbox_Oum_FacingLeft_2
 
 ExtendedSpritemap_Oum_FacingLeft_3:
-    dw $0001                                                             ;A2CBA5;
-    dw $0000,$0000                                                       ;A2CBA7;
-    dw Spritemap_Oum_3                                                   ;A2CBAB;
-    dw Hitbox_Oum_FacingLeft_3                                           ;A2CBAD;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_3
+    dw Hitbox_Oum_FacingLeft_3
 
 ExtendedSpritemap_Oum_FacingLeft_4:
-    dw $0001                                                             ;A2CBAF;
-    dw $0000,$0000                                                       ;A2CBB1;
-    dw Spritemap_Oum_FacingLeft_4                                        ;A2CBB5;
-    dw Hitbox_Oum_FacingLeft_4                                           ;A2CBB7;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_4
+    dw Hitbox_Oum_FacingLeft_4
 
 ExtendedSpritemap_Oum_FacingLeft_5:
-    dw $0001                                                             ;A2CBB9;
-    dw $0000,$0000                                                       ;A2CBBB;
-    dw Spritemap_Oum_FacingLeft_5                                        ;A2CBBF;
-    dw Hitbox_Oum_FacingLeft_5                                           ;A2CBC1;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_5
+    dw Hitbox_Oum_FacingLeft_5
 
 ExtendedSpritemap_Oum_FacingLeft_6:
-    dw $0001                                                             ;A2CBC3;
-    dw $0000,$0000                                                       ;A2CBC5;
-    dw Spritemap_Oum_FacingLeft_6                                        ;A2CBC9;
-    dw Hitbox_Oum_FacingLeft_6                                           ;A2CBCB;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_6
+    dw Hitbox_Oum_FacingLeft_6
 
 ExtendedSpritemap_Oum_FacingLeft_7:
-    dw $0001                                                             ;A2CBCD;
-    dw $0000,$0000                                                       ;A2CBCF;
-    dw Spritemap_Oum_FacingLeft_7                                        ;A2CBD3;
-    dw Hitbox_Oum_FacingLeft_7                                           ;A2CBD5;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_7
+    dw Hitbox_Oum_FacingLeft_7
 
 ExtendedSpritemap_Oum_FacingLeft_8:
-    dw $0001                                                             ;A2CBD7;
-    dw $0000,$0000                                                       ;A2CBD9;
-    dw Spritemap_Oum_FacingLeft_8                                        ;A2CBDD;
-    dw Hitbox_Oum_FacingLeft_8                                           ;A2CBDF;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_8
+    dw Hitbox_Oum_FacingLeft_8
 
 ExtendedSpritemap_Oum_FacingLeft_9:
-    dw $0001                                                             ;A2CBE1;
-    dw $0000,$0000                                                       ;A2CBE3;
-    dw Spritemap_Oum_FacingLeft_9                                        ;A2CBE7;
-    dw Hitbox_Oum_FacingLeft_9                                           ;A2CBE9;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_9
+    dw Hitbox_Oum_FacingLeft_9
 
 ExtendedSpritemap_Oum_FacingLeft_A:
-    dw $0001                                                             ;A2CBEB;
-    dw $0000,$0000                                                       ;A2CBED;
-    dw Spritemap_Oum_FacingLeft_A                                        ;A2CBF1;
-    dw Hitbox_Oum_FacingLeft_A                                           ;A2CBF3;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_A
+    dw Hitbox_Oum_FacingLeft_A
 
 ExtendedSpritemap_Oum_FacingLeft_B:
-    dw $0001                                                             ;A2CBF5;
-    dw $0000,$0000                                                       ;A2CBF7;
-    dw Spritemap_Oum_FacingLeft_B                                        ;A2CBFB;
-    dw Hitbox_Oum_FacingLeft_B                                           ;A2CBFD;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_B
+    dw Hitbox_Oum_FacingLeft_B
 
 ExtendedSpritemap_Oum_FacingLeft_C:
-    dw $0001                                                             ;A2CBFF;
-    dw $0000,$0000                                                       ;A2CC01;
-    dw Spritemap_Oum_FacingLeft_C                                        ;A2CC05;
-    dw Hitbox_Oum_FacingLeft_C                                           ;A2CC07;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_C
+    dw Hitbox_Oum_FacingLeft_C
 
 ExtendedSpritemap_Oum_FacingLeft_D:
-    dw $0001                                                             ;A2CC09;
-    dw $0000,$0000                                                       ;A2CC0B;
-    dw Spritemap_Oum_FacingLeft_D                                        ;A2CC0F;
-    dw Hitbox_Oum_FacingLeft_D                                           ;A2CC11;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_D
+    dw Hitbox_Oum_FacingLeft_D
 
 ExtendedSpritemap_Oum_FacingLeft_E:
-    dw $0001                                                             ;A2CC13;
-    dw $0000,$0000                                                       ;A2CC15;
-    dw Spritemap_Oum_FacingLeft_E                                        ;A2CC19;
-    dw Hitbox_Oum_FacingLeft_E                                           ;A2CC1B;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingLeft_E
+    dw Hitbox_Oum_FacingLeft_E
 
 ExtendedSpritemap_Oum_FacingRight_0:
-    dw $0001                                                             ;A2CC1D;
-    dw $0000,$0000                                                       ;A2CC1F;
-    dw Spritemap_Oum_FacingRight_0                                       ;A2CC23;
-    dw Hitbox_Oum_FacingRight_0                                          ;A2CC25;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_0
+    dw Hitbox_Oum_FacingRight_0
 
 ExtendedSpritemap_Oum_FacingRight_1:
-    dw $0001                                                             ;A2CC27;
-    dw $0000,$0000                                                       ;A2CC29;
-    dw Spritemap_Oum_FacingRight_1                                       ;A2CC2D;
-    dw Hitbox_Oum_FacingRight_1                                          ;A2CC2F;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_1
+    dw Hitbox_Oum_FacingRight_1
 
 ExtendedSpritemap_Oum_FacingRight_2:
-    dw $0001                                                             ;A2CC31;
-    dw $0000,$0000                                                       ;A2CC33;
-    dw Spritemap_Oum_FacingRight_2                                       ;A2CC37;
-    dw Hitbox_Oum_FacingRight_2                                          ;A2CC39;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_2
+    dw Hitbox_Oum_FacingRight_2
 
 ExtendedSpritemap_Oum_FacingRight_3:
-    dw $0001                                                             ;A2CC3B;
-    dw $0000,$0000                                                       ;A2CC3D;
-    dw Spritemap_Oum_FacingRight_3                                       ;A2CC41;
-    dw Hitbox_Oum_FacingRight_3                                          ;A2CC43;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_3
+    dw Hitbox_Oum_FacingRight_3
 
 ExtendedSpritemap_Oum_FacingRight_4:
-    dw $0001                                                             ;A2CC45;
-    dw $0000,$0000                                                       ;A2CC47;
-    dw Spritemap_Oum_FacingRight_4                                       ;A2CC4B;
-    dw Hitbox_Oum_FacingRight_4                                          ;A2CC4D;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_4
+    dw Hitbox_Oum_FacingRight_4
 
 ExtendedSpritemap_Oum_FacingRight_5:
-    dw $0001                                                             ;A2CC4F;
-    dw $0000,$0000                                                       ;A2CC51;
-    dw Spritemap_Oum_FacingRight_5                                       ;A2CC55;
-    dw Hitbox_Oum_FacingRight_5                                          ;A2CC57;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_5
+    dw Hitbox_Oum_FacingRight_5
 
 ExtendedSpritemap_Oum_FacingRight_6:
-    dw $0001                                                             ;A2CC59;
-    dw $0000,$0000                                                       ;A2CC5B;
-    dw Spritemap_Oum_FacingRight_6                                       ;A2CC5F;
-    dw Hitbox_Oum_FacingRight_6                                          ;A2CC61;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_6
+    dw Hitbox_Oum_FacingRight_6
 
 ExtendedSpritemap_Oum_FacingRight_7:
-    dw $0001                                                             ;A2CC63;
-    dw $0000,$0000                                                       ;A2CC65;
-    dw Spritemap_Oum_FacingRight_7                                       ;A2CC69;
-    dw Hitbox_Oum_FacingRight_7                                          ;A2CC6B;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_7
+    dw Hitbox_Oum_FacingRight_7
 
 ExtendedSpritemap_Oum_FacingRight_8:
-    dw $0001                                                             ;A2CC6D;
-    dw $0000,$0000                                                       ;A2CC6F;
-    dw Spritemap_Oum_FacingRight_8                                       ;A2CC73;
-    dw Hitbox_Oum_FacingRight_8                                          ;A2CC75;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_8
+    dw Hitbox_Oum_FacingRight_8
 
 ExtendedSpritemap_Oum_FacingRight_9:
-    dw $0001                                                             ;A2CC77;
-    dw $0000,$0000                                                       ;A2CC79;
-    dw Spritemap_Oum_FacingRight_9                                       ;A2CC7D;
-    dw Hitbox_Oum_FacingRight_9                                          ;A2CC7F;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_9
+    dw Hitbox_Oum_FacingRight_9
 
 ExtendedSpritemap_Oum_FacingRight_A:
-    dw $0001                                                             ;A2CC81;
-    dw $0000,$0000                                                       ;A2CC83;
-    dw Spritemap_Oum_FacingRight_A                                       ;A2CC87;
-    dw Hitbox_Oum_FacingRight_A                                          ;A2CC89;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_A
+    dw Hitbox_Oum_FacingRight_A
 
 ExtendedSpritemap_Oum_FacingRight_B:
-    dw $0001                                                             ;A2CC8B;
-    dw $0000,$0000                                                       ;A2CC8D;
-    dw Spritemap_Oum_FacingRight_B                                       ;A2CC91;
-    dw Hitbox_Oum_FacingRight_B                                          ;A2CC93;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_B
+    dw Hitbox_Oum_FacingRight_B
 
 ExtendedSpritemap_Oum_FacingRight_C:
-    dw $0001                                                             ;A2CC95;
-    dw $0000,$0000                                                       ;A2CC97;
-    dw Spritemap_Oum_FacingRight_C                                       ;A2CC9B;
-    dw Hitbox_Oum_FacingRight_C                                          ;A2CC9D;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_C
+    dw Hitbox_Oum_FacingRight_C
 
 ExtendedSpritemap_Oum_FacingRight_D:
-    dw $0001                                                             ;A2CC9F;
-    dw $0000,$0000                                                       ;A2CCA1;
-    dw Spritemap_Oum_FacingRight_D                                       ;A2CCA5;
-    dw Hitbox_Oum_FacingRight_D                                          ;A2CCA7;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_D
+    dw Hitbox_Oum_FacingRight_D
 
 ExtendedSpritemap_Oum_FacingRight_E:
-    dw $0001                                                             ;A2CCA9;
-    dw $0000,$0000                                                       ;A2CCAB;
-    dw Spritemap_Oum_FacingRight_E                                       ;A2CCAF;
-    dw Hitbox_Oum_FacingRight_E                                          ;A2CCB1;
+    dw $0001
+    dw $0000,$0000
+    dw Spritemap_Oum_FacingRight_E
+    dw Hitbox_Oum_FacingRight_E
 
 
 ;;; $CCB3: Instruction - set animation finished flag ;;;
 Instruction_Oum_SetAnimationFinishedFlag:
-    LDX.W EnemyIndex                                                     ;A2CCB3;
-    LDA.W #$0001                                                         ;A2CCB6;
-    STA.L Oum.animationFinishedFlag,X                                    ;A2CCB9;
-    RTL                                                                  ;A2CCBD;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.L Oum.animationFinishedFlag,X
+    RTL
 
 
 ;;; $CCBE: Instruction - enemy attack allowing rotation flag = 1 ;;;
 Instruction_Oum_SetAttackAllowingRotationFlag:
-    LDX.W EnemyIndex                                                     ;A2CCBE;
-    LDA.W #$0001                                                         ;A2CCC1;
-    STA.L Oum.attackAllowingRotationFlag,X                               ;A2CCC4;
-    RTL                                                                  ;A2CCC8;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.L Oum.attackAllowingRotationFlag,X
+    RTL
 
 
 ;;; $CCC9: Instruction - enemy attack allowing rotation flag = 0 ;;;
 Instruction_Oum_ResetAttackAllowingRotationFlag:
-    LDX.W EnemyIndex                                                     ;A2CCC9;
-    LDA.W #$0000                                                         ;A2CCCC;
-    STA.L Oum.attackAllowingRotationFlag,X                               ;A2CCCF;
-    RTL                                                                  ;A2CCD3;
+    LDX.W EnemyIndex
+    LDA.W #$0000 : STA.L Oum.attackAllowingRotationFlag,X
+    RTL
 
 
 ;;; $CCD4: Initialisation AI - enemy $D37F (oum) ;;;
 InitAI_Oum:
-    LDX.W EnemyIndex                                                     ;A2CCD4;
-    LDA.W #$0000                                                         ;A2CCD7;
-    STA.W Oum.YSpeedTableIndex,X                                         ;A2CCDA;
-    STA.W Oum.movementDirection,X                                        ;A2CCDD;
-    STA.L Oum.newInstListIndex,X                                         ;A2CCE0;
-    STA.L Oum.instListIndex,X                                            ;A2CCE4;
-    STA.L Oum.animationFinishedFlag,X                                    ;A2CCE8;
-    STA.L Oum.attackAllowingRotationFlag,X                               ;A2CCEC;
-    STA.L ExtraEnemy7800+$14,X                                           ;A2CCF0;
-    LDA.W #$0003                                                         ;A2CCF4;
-    STA.W Oum.bounceCounter,X                                            ;A2CCF7;
-    LDA.W #$0080                                                         ;A2CCFA;
-    STA.W Oum.timeUntilAttackIsAllowed,X                                 ;A2CCFD;
-    LDA.W #InstList_Oum_FacingLeft_Idle                                  ;A2CD00;
-    STA.W Enemy.instList,X                                               ;A2CD03;
-    LDA.W #Function_Oum_Idle                                             ;A2CD06;
-    STA.W Oum.function,X                                                 ;A2CD09;
-    LDA.W #Function_Oum_Falling                                          ;A2CD0C;
-    STA.W Oum.bounceFunction,X                                           ;A2CD0F;
-    RTL                                                                  ;A2CD12;
+    LDX.W EnemyIndex
+    LDA.W #$0000 : STA.W Oum.YSpeedTableIndex,X
+    STA.W Oum.movementDirection,X : STA.L Oum.newInstListIndex,X
+    STA.L Oum.instListIndex,X : STA.L Oum.animationFinishedFlag,X
+    STA.L Oum.attackAllowingRotationFlag,X : STA.L ExtraEnemy7800+$14,X
+    LDA.W #$0003 : STA.W Oum.bounceCounter,X
+    LDA.W #$0080 : STA.W Oum.timeUntilAttackIsAllowed,X
+    LDA.W #InstList_Oum_FacingLeft_Idle : STA.W Enemy.instList,X
+    LDA.W #Function_Oum_Idle : STA.W Oum.function,X
+    LDA.W #Function_Oum_Falling : STA.W Oum.bounceFunction,X
+    RTL
 
 
 ;;; $CD13: Main AI - enemy $D37F (oum) ;;;
 MainAI_Oum:
-    LDX.W EnemyIndex                                                     ;A2CD13;
-    JSR.W CheckIfTouchingSamus_UpdatePreviousPositions                   ;A2CD16;
-    JSR.W (Oum.function,X)                                               ;A2CD19;
-    JSR.W HandlePushingSamus                                             ;A2CD1C;
-    JSR.W StopIfSamusIsPressingTowardsOum                                ;A2CD1F;
-    RTL                                                                  ;A2CD22;
+    LDX.W EnemyIndex
+    JSR CheckIfTouchingSamus_UpdatePreviousPositions
+    JSR.W (Oum.function,X)
+    JSR HandlePushingSamus
+    JSR StopIfSamusIsPressingTowardsOum
+    RTL
 
 
 ;;; $CD23: Check if touching Samus and update previous position ;;;
 CheckIfTouchingSamus_UpdatePreviousPositions:
-    JSR.W CheckIfTouchingSamus                                           ;A2CD23;
-    LDA.W Enemy.XPosition,X                                              ;A2CD26;
-    STA.L Oum.previousXPosition,X                                        ;A2CD29;
-    LDA.W Enemy.YPosition,X                                              ;A2CD2D;
-    STA.L Oum.previousYPosition,X                                        ;A2CD30;
-    RTS                                                                  ;A2CD34;
+    JSR CheckIfTouchingSamus
+    LDA.W Enemy.XPosition,X : STA.L Oum.previousXPosition,X
+    LDA.W Enemy.YPosition,X : STA.L Oum.previousYPosition,X
+    RTS
 
 
 ;;; $CD35: Handle pushing Samus ;;;
 HandlePushingSamus:
-    LDA.W #$0000                                                         ;A2CD35;
-    STA.L Oum.stopFlag,X                                                 ;A2CD38;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2CD3C;
-    BEQ .notTouchingSamusFromBelow                                       ;A2CD40;
-    LDA.W Enemy.YPosition,X                                              ;A2CD42;
-    SEC                                                                  ;A2CD45;
-    SBC.L Oum.previousYPosition,X                                        ;A2CD46;
-    STA.W ExtraSamusYDisplacement                                        ;A2CD4A;
+    LDA.W #$0000 : STA.L Oum.stopFlag,X
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    BEQ .notTouchingSamusFromBelow
+    LDA.W Enemy.YPosition,X : SEC : SBC.L Oum.previousYPosition,X : STA.W ExtraSamusYDisplacement
 
   .notTouchingSamusFromBelow:
-    LDA.L Oum.touchingSamusFlag,X                                        ;A2CD4D;
-    BEQ .return                                                          ;A2CD51;
-    LDA.W Enemy.XPosition,X                                              ;A2CD53;
-    SEC                                                                  ;A2CD56;
-    SBC.L Oum.previousXPosition,X                                        ;A2CD57;
-    STA.B DP_Temp12                                                      ;A2CD5B;
-    BMI .movedLeft                                                       ;A2CD5D;
-    LDA.L Oum.directionToSamus,X                                         ;A2CD5F;
-    BNE .return                                                          ;A2CD63;
-    BRA +                                                                ;A2CD65;
+    LDA.L Oum.touchingSamusFlag,X : BEQ .return
+    LDA.W Enemy.XPosition,X : SEC : SBC.L Oum.previousXPosition,X : STA.B DP_Temp12 : BMI .movedLeft
+    LDA.L Oum.directionToSamus,X : BNE .return
+    BRA +
 
   .movedLeft:
-    LDA.L Oum.directionToSamus,X                                         ;A2CD67;
-    BEQ .return                                                          ;A2CD6B;
+    LDA.L Oum.directionToSamus,X : BEQ .return
 
-+   LDA.W ExtraSamusXDisplacement                                        ;A2CD6D;
-    CLC                                                                  ;A2CD70;
-    ADC.B DP_Temp12                                                      ;A2CD71;
-    STA.W ExtraSamusXDisplacement                                        ;A2CD73;
++   LDA.W ExtraSamusXDisplacement : CLC : ADC.B DP_Temp12 : STA.W ExtraSamusXDisplacement
 
   .return:
-    RTS                                                                  ;A2CD76;
+    RTS
 
 
 ;;; $CD77: Stop if player is pressing towards oum ;;;
 StopIfSamusIsPressingTowardsOum:
-    LDA.L Oum.touchingSamusFlag,X                                        ;A2CD77;
-    BEQ .return                                                          ;A2CD7B;
-    LDA.W Enemy.XPosition,X                                              ;A2CD7D;
-    SEC                                                                  ;A2CD80;
-    SBC.L Oum.previousXPosition,X                                        ;A2CD81;
-    BEQ .stationary                                                      ;A2CD85;
-    BMI .checkPressingRight                                              ;A2CD87;
-    LDA.B DP_Controller1Input                                            ;A2CD89;
-    AND.W #$0200                                                         ;A2CD8B;
-    BEQ .return                                                          ;A2CD8E;
-    LDA.W #$0001                                                         ;A2CD90;
-    STA.L Oum.stopFlag,X                                                 ;A2CD93;
-    LDA.L Oum.previousXPosition,X                                        ;A2CD97;
-    STA.W Enemy.XPosition,X                                              ;A2CD9B;
-    BRA .return                                                          ;A2CD9E;
+    LDA.L Oum.touchingSamusFlag,X : BEQ .return
+    LDA.W Enemy.XPosition,X : SEC : SBC.L Oum.previousXPosition,X : BEQ .stationary
+    BMI .checkPressingRight
+    LDA.B DP_Controller1Input : AND.W #$0200 : BEQ .return
+    LDA.W #$0001 : STA.L Oum.stopFlag,X
+    LDA.L Oum.previousXPosition,X : STA.W Enemy.XPosition,X
+    BRA .return
 
   .checkPressingRight:
-    LDA.B DP_Controller1Input                                            ;A2CDA0;
-    AND.W #$0100                                                         ;A2CDA2;
-    BEQ .return                                                          ;A2CDA5;
-    LDA.W #$0001                                                         ;A2CDA7;
-    STA.L Oum.stopFlag,X                                                 ;A2CDAA;
-    LDA.L Oum.previousXPosition,X                                        ;A2CDAE;
-    STA.W Enemy.XPosition,X                                              ;A2CDB2;
-    BRA .return                                                          ;A2CDB5;
+    LDA.B DP_Controller1Input : AND.W #$0100 : BEQ .return
+    LDA.W #$0001 : STA.L Oum.stopFlag,X
+    LDA.L Oum.previousXPosition,X : STA.W Enemy.XPosition,X
+    BRA .return
 
   .stationary:
-    LDA.L Oum.directionToSamus,X                                         ;A2CDB7;
-    BEQ .SamusIsToTheRight                                               ;A2CDBB;
-    LDA.W Oum.movementDirection,X                                        ;A2CDBD;
-    BEQ .return                                                          ;A2CDC0;
-    LDA.B DP_Controller1Input                                            ;A2CDC2;
-    AND.W #$0100                                                         ;A2CDC4;
-    BEQ .return                                                          ;A2CDC7;
-    BRA +                                                                ;A2CDC9;
+    LDA.L Oum.directionToSamus,X : BEQ .SamusIsToTheRight
+    LDA.W Oum.movementDirection,X : BEQ .return
+    LDA.B DP_Controller1Input : AND.W #$0100 : BEQ .return
+    BRA +
 
   .SamusIsToTheRight:
-    LDA.W Oum.movementDirection,X                                        ;A2CDCB;
-    BNE .return                                                          ;A2CDCE;
-    LDA.B DP_Controller1Input                                            ;A2CDD0;
-    AND.W #$0200                                                         ;A2CDD2;
-    BEQ .return                                                          ;A2CDD5;
-+   LDA.W #$0001                                                         ;A2CDD7;
-    STA.L Oum.stopFlag,X                                                 ;A2CDDA;
-    LDA.L Oum.previousXPosition,X                                        ;A2CDDE;
-    STA.W Enemy.XPosition,X                                              ;A2CDE2;
+    LDA.W Oum.movementDirection,X : BNE .return
+    LDA.B DP_Controller1Input : AND.W #$0200 : BEQ .return
++   LDA.W #$0001 : STA.L Oum.stopFlag,X
+    LDA.L Oum.previousXPosition,X : STA.W Enemy.XPosition,X
 
   .return:
-    RTS                                                                  ;A2CDE5;
+    RTS
 
 
 ;;; $CDE6: Oum function - idle ;;;
 Function_Oum_Idle:
-    LDX.W EnemyIndex                                                     ;A2CDE6;
-    LDA.W Oum.bounceCounter,X                                            ;A2CDE9;
-    BEQ .noBounce                                                        ;A2CDEC;
-    JSR.W (Oum.bounceFunction,X)                                         ;A2CDEE;
-    BRA .return                                                          ;A2CDF1;
+    LDX.W EnemyIndex
+    LDA.W Oum.bounceCounter,X : BEQ .noBounce
+    JSR.W (Oum.bounceFunction,X)
+    BRA .return
 
   .noBounce:
-    LDA.W #$0000                                                         ;A2CDF3;
-    STA.L Oum.newInstListIndex,X                                         ;A2CDF6;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A2CDFA;
-    BPL .SamusToTheLeft                                                  ;A2CDFE;
-    LDA.W #$0001                                                         ;A2CE00;
-    STA.W Oum.movementDirection,X                                        ;A2CE03;
-    STA.L Oum.newInstListIndex,X                                         ;A2CE06;
+    LDA.W #$0000 : STA.L Oum.newInstListIndex,X
+    JSL Get_SamusX_minus_EnemyX
+    BPL .SamusToTheLeft
+    LDA.W #$0001 : STA.W Oum.movementDirection,X : STA.L Oum.newInstListIndex,X
 
   .SamusToTheLeft:
-    JSR.W SetOumInstList                                                 ;A2CE0A;
-    LDA.W #$0018                                                         ;A2CE0D;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2CE10;
-    BEQ .return                                                          ;A2CE14;
-    LDA.L Oum.newInstListIndex,X                                         ;A2CE16;
-    ORA.W #$0002                                                         ;A2CE1A;
-    STA.L Oum.newInstListIndex,X                                         ;A2CE1D;
-    JSR.W SetOumInstList                                                 ;A2CE21;
-    LDA.W #Function_Oum_Rolling                                          ;A2CE24;
-    STA.W Oum.function,X                                                 ;A2CE27;
+    JSR SetOumInstList
+    LDA.W #$0018
+    JSL IsSamusWithinAPixelColumnsOfEnemy
+    BEQ .return
+    LDA.L Oum.newInstListIndex,X : ORA.W #$0002 : STA.L Oum.newInstListIndex,X
+    JSR SetOumInstList
+    LDA.W #Function_Oum_Rolling : STA.W Oum.function,X
 
   .return:
-    RTS                                                                  ;A2CE2A;
+    RTS
 
 
 ;;; $CE2B: Oum function - rolling ;;;
 Function_Oum_Rolling:
-    LDX.W EnemyIndex                                                     ;A2CE2B;
-    LDA.W Oum.bounceCounter,X                                            ;A2CE2E;
-    BEQ .noBounce                                                        ;A2CE31;
-    JSR.W (Oum.bounceFunction,X)                                         ;A2CE33;
-    BRA .collidedWithBlock                                               ;A2CE36;
+    LDX.W EnemyIndex
+    LDA.W Oum.bounceCounter,X : BEQ .noBounce
+    JSR.W (Oum.bounceFunction,X)
+    BRA .collidedWithBlock
 
   .noBounce:
-    STZ.B DP_Temp12                                                      ;A2CE38;
-    LDA.W #$0001                                                         ;A2CE3A;
-    STA.B DP_Temp14                                                      ;A2CE3D;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2CE3F;
-    BCS .collidedWithBlock                                               ;A2CE43;
-    STZ.W Oum.YSpeedTableIndex,X                                         ;A2CE45;
-    LDA.W #Function_Oum_Falling                                          ;A2CE48;
-    STA.W Oum.bounceFunction,X                                           ;A2CE4B;
-    LDA.W #$0003                                                         ;A2CE4E;
-    STA.W Oum.bounceCounter,X                                            ;A2CE51;
+    STZ.B DP_Temp12
+    LDA.W #$0001 : STA.B DP_Temp14
+    JSL MoveEnemyDownBy_14_12
+    BCS .collidedWithBlock
+    STZ.W Oum.YSpeedTableIndex,X
+    LDA.W #Function_Oum_Falling : STA.W Oum.bounceFunction,X
+    LDA.W #$0003 : STA.W Oum.bounceCounter,X
 
   .collidedWithBlock:
-    LDA.L Oum.stopFlag,X                                                 ;A2CE54;
-    BEQ .notStopped                                                      ;A2CE58;
-    JMP.W .return                                                        ;A2CE5A;
+    LDA.L Oum.stopFlag,X : BEQ .notStopped
+    JMP .return
 
   .notStopped:
-    STZ.B DP_Temp24                                                      ;A2CE5D;
-    DEC.W Oum.timeUntilAttackIsAllowed,X                                 ;A2CE5F;
-    BPL .noAttack                                                        ;A2CE62;
-    STZ.W Oum.timeUntilAttackIsAllowed,X                                 ;A2CE64;
-    LDA.W #$0020                                                         ;A2CE67;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2CE6A;
-    BEQ .noAttack                                                        ;A2CE6E;
-    LDA.L Oum.attackAllowingRotationFlag,X                               ;A2CE70;
-    BEQ .noAttack                                                        ;A2CE74;
-    LDA.W Oum.bounceCounter,X                                            ;A2CE76;
-    BNE .noAttack                                                        ;A2CE79;
-    LDA.W #$0000                                                         ;A2CE7B;
-    STA.L Oum.newInstListIndex,X                                         ;A2CE7E;
-    STA.W Oum.movementDirection,X                                        ;A2CE82;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A2CE85;
-    BPL .SamusToTheRight                                                 ;A2CE89;
-    LDA.W #$0001                                                         ;A2CE8B;
-    STA.L Oum.newInstListIndex,X                                         ;A2CE8E;
-    STA.W Oum.movementDirection,X                                        ;A2CE92;
+    STZ.B DP_Temp24
+    DEC.W Oum.timeUntilAttackIsAllowed,X : BPL .noAttack
+    STZ.W Oum.timeUntilAttackIsAllowed,X
+    LDA.W #$0020
+    JSL IsSamusWithinAPixelColumnsOfEnemy
+    BEQ .noAttack
+    LDA.L Oum.attackAllowingRotationFlag,X : BEQ .noAttack
+    LDA.W Oum.bounceCounter,X : BNE .noAttack
+    LDA.W #$0000 : STA.L Oum.newInstListIndex,X : STA.W Oum.movementDirection,X
+    JSL Get_SamusX_minus_EnemyX
+    BPL .SamusToTheRight
+    LDA.W #$0001 : STA.L Oum.newInstListIndex,X : STA.W Oum.movementDirection,X
 
   .SamusToTheRight:
-    LDA.W #$0080                                                         ;A2CE95;
-    STA.W Oum.timeUntilAttackIsAllowed,X                                 ;A2CE98;
-    LDA.L Oum.newInstListIndex,X                                         ;A2CE9B;
-    AND.W #$0001                                                         ;A2CE9F;
-    ORA.W #$0004                                                         ;A2CEA2;
-    STA.L Oum.newInstListIndex,X                                         ;A2CEA5;
-    JSR.W SetOumInstList                                                 ;A2CEA9;
-    LDA.W #Function_Oum_Attacking                                        ;A2CEAC;
-    STA.W Oum.function,X                                                 ;A2CEAF;
-    JMP.W .return                                                        ;A2CEB2;
+    LDA.W #$0080 : STA.W Oum.timeUntilAttackIsAllowed,X
+    LDA.L Oum.newInstListIndex,X : AND.W #$0001 : ORA.W #$0004 : STA.L Oum.newInstListIndex,X
+    JSR SetOumInstList
+    LDA.W #Function_Oum_Attacking : STA.W Oum.function,X
+    JMP .return
 
   .noAttack:
-    LDA.W #$0080                                                         ;A2CEB5;
-    TAY                                                                  ;A2CEB8;
-    LDA.W Oum.movementDirection,X                                        ;A2CEB9;
-    BEQ .notLeft                                                         ;A2CEBC;
-    INY                                                                  ;A2CEBE;
-    INY                                                                  ;A2CEBF;
-    INY                                                                  ;A2CEC0;
-    INY                                                                  ;A2CEC1;
+    LDA.W #$0080 : TAY
+    LDA.W Oum.movementDirection,X : BEQ .notLeft
+    INY #4
 
   .notLeft:
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A2CEC2;
-    STA.B DP_Temp12                                                      ;A2CEC5;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A2CEC7;
-    STA.B DP_Temp14                                                      ;A2CECA;
-    LDA.L Oum.touchingSamusFlag,X                                        ;A2CECC;
-    BEQ .noAdjustForSamus                                                ;A2CED0;
-    LDA.W Oum.movementDirection,X                                        ;A2CED2;
-    CMP.L Oum.directionToSamus,X                                         ;A2CED5;
-    BNE .noAdjustForSamus                                                ;A2CED9;
-    LDA.W Oum.movementDirection,X                                        ;A2CEDB;
-    BEQ .right                                                           ;A2CEDE;
-    LDA.B DP_Temp14                                                      ;A2CEE0;
-    SEC                                                                  ;A2CEE2;
-    SBC.W #$0010                                                         ;A2CEE3;
-    STA.B DP_Temp14                                                      ;A2CEE6;
-    BRA .noAdjustForSamus                                                ;A2CEE8;
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.B DP_Temp12
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.B DP_Temp14
+    LDA.L Oum.touchingSamusFlag,X : BEQ .noAdjustForSamus
+    LDA.W Oum.movementDirection,X : CMP.L Oum.directionToSamus,X : BNE .noAdjustForSamus
+    LDA.W Oum.movementDirection,X : BEQ .right
+    LDA.B DP_Temp14 : SEC : SBC.W #$0010 : STA.B DP_Temp14
+    BRA .noAdjustForSamus
 
   .right:
-    LDA.B DP_Temp14                                                      ;A2CEEA;
-    CLC                                                                  ;A2CEEC;
-    ADC.W #$0010                                                         ;A2CEED;
-    STA.B DP_Temp14                                                      ;A2CEF0;
+    LDA.B DP_Temp14 : CLC : ADC.W #$0010 : STA.B DP_Temp14
 
   .noAdjustForSamus:
-    JSL.L MoveEnemyRightBy_14_12_TreatSlopesAsWalls                      ;A2CEF2;
-    BCC .notCollidedWithWall                                             ;A2CEF6;
-    INC.B DP_Temp24                                                      ;A2CEF8;
+    JSL MoveEnemyRightBy_14_12_TreatSlopesAsWalls
+    BCC .notCollidedWithWall
+    INC.B DP_Temp24
 
   .notCollidedWithWall:
-    LDA.L Oum.touchingSamusFlag,X                                        ;A2CEFA;
-    BEQ .noUnadjustForSamus                                              ;A2CEFE;
-    LDA.W Oum.movementDirection,X                                        ;A2CF00;
-    CMP.L Oum.directionToSamus,X                                         ;A2CF03;
-    BNE .noUnadjustForSamus                                              ;A2CF07;
-    LDA.W Oum.movementDirection,X                                        ;A2CF09;
-    BEQ .movingRight                                                     ;A2CF0C;
-    LDA.W Enemy.XPosition,X                                              ;A2CF0E;
-    CLC                                                                  ;A2CF11;
-    ADC.W #$0010                                                         ;A2CF12;
-    STA.W Enemy.XPosition,X                                              ;A2CF15;
-    BRA .noUnadjustForSamus                                              ;A2CF18;
+    LDA.L Oum.touchingSamusFlag,X : BEQ .noUnadjustForSamus
+    LDA.W Oum.movementDirection,X : CMP.L Oum.directionToSamus,X : BNE .noUnadjustForSamus
+    LDA.W Oum.movementDirection,X : BEQ .movingRight
+    LDA.W Enemy.XPosition,X : CLC : ADC.W #$0010 : STA.W Enemy.XPosition,X
+    BRA .noUnadjustForSamus
 
   .movingRight:
-    LDA.W Enemy.XPosition,X                                              ;A2CF1A;
-    SEC                                                                  ;A2CF1D;
-    SBC.W #$0010                                                         ;A2CF1E;
-    STA.W Enemy.XPosition,X                                              ;A2CF21;
+    LDA.W Enemy.XPosition,X : SEC : SBC.W #$0010 : STA.W Enemy.XPosition,X
 
   .noUnadjustForSamus:
-    LDA.B DP_Temp24                                                      ;A2CF24;
-    BEQ .return                                                          ;A2CF26;
-    LDA.W Oum.movementDirection,X                                        ;A2CF28;
-    EOR.W #$0001                                                         ;A2CF2B;
-    STA.W Oum.movementDirection,X                                        ;A2CF2E;
-    LDA.L Oum.newInstListIndex,X                                         ;A2CF31;
-    EOR.W #$0004                                                         ;A2CF35;
-    STA.L Oum.newInstListIndex,X                                         ;A2CF38;
-    JSR.W SetOumInstList                                                 ;A2CF3C;
+    LDA.B DP_Temp24 : BEQ .return
+    LDA.W Oum.movementDirection,X : EOR.W #$0001 : STA.W Oum.movementDirection,X
+    LDA.L Oum.newInstListIndex,X : EOR.W #$0004 : STA.L Oum.newInstListIndex,X
+    JSR SetOumInstList
 
   .return:
-    RTS                                                                  ;A2CF3F;
+    RTS
 
 
 ;;; $CF40: Oum function - attacking ;;;
 Function_Oum_Attacking:
-    LDX.W EnemyIndex                                                     ;A2CF40;
-    LDA.L Oum.animationFinishedFlag,X                                    ;A2CF43;
-    BEQ .return                                                          ;A2CF47;
-    LDA.W #$0000                                                         ;A2CF49;
-    STA.L Oum.animationFinishedFlag,X                                    ;A2CF4C;
-    LDA.L Oum.newInstListIndex,X                                         ;A2CF50;
-    SEC                                                                  ;A2CF54;
-    SBC.W #$0002                                                         ;A2CF55;
-    STA.L Oum.newInstListIndex,X                                         ;A2CF58;
-    JSR.W SetOumInstList                                                 ;A2CF5C;
-    LDA.W #Function_Oum_Rolling                                          ;A2CF5F;
-    STA.W Oum.function,X                                                 ;A2CF62;
+    LDX.W EnemyIndex
+    LDA.L Oum.animationFinishedFlag,X : BEQ .return
+    LDA.W #$0000 : STA.L Oum.animationFinishedFlag,X
+    LDA.L Oum.newInstListIndex,X : SEC : SBC.W #$0002 : STA.L Oum.newInstListIndex,X
+    JSR SetOumInstList
+    LDA.W #Function_Oum_Rolling : STA.W Oum.function,X
 
   .return:
-    RTS                                                                  ;A2CF65;
+    RTS
 
 
 ;;; $CF66: Oum bounce function - falling ;;;
 Function_Oum_Falling:
-    LDA.W Oum.YSpeedTableIndex,X                                         ;A2CF66;
-    CLC                                                                  ;A2CF69;
-    ADC.W #$0180                                                         ;A2CF6A;
-    CMP.W #$4000                                                         ;A2CF6D;
-    BMI +                                                                ;A2CF70;
-    LDA.W #$4000                                                         ;A2CF72;
+    LDA.W Oum.YSpeedTableIndex,X : CLC : ADC.W #$0180 : CMP.W #$4000 : BMI +
+    LDA.W #$4000
 
-+   STA.W Oum.YSpeedTableIndex,X                                         ;A2CF75;
-    AND.W #$FF00                                                         ;A2CF78;
-    XBA                                                                  ;A2CF7B;
-    ASL                                                                  ;A2CF7C;
-    ASL                                                                  ;A2CF7D;
-    ASL                                                                  ;A2CF7E;
-    TAY                                                                  ;A2CF7F;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A2CF80;
-    STA.B DP_Temp12                                                      ;A2CF83;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A2CF85;
-    STA.B DP_Temp14                                                      ;A2CF88;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2CF8A;
-    BCC .return                                                          ;A2CF8E;
-    DEC.W Oum.bounceCounter,X                                            ;A2CF90;
-    LDA.W Oum.YSpeedTableIndex,X                                         ;A2CF93;
-    SEC                                                                  ;A2CF96;
-    SBC.W #$1000                                                         ;A2CF97;
-    BPL .notNegative                                                     ;A2CF9A;
-    STZ.W Oum.bounceCounter,X                                            ;A2CF9C;
++   STA.W Oum.YSpeedTableIndex,X
+    AND.W #$FF00 : XBA : ASL #3 : TAY
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing,Y : STA.B DP_Temp12
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y : STA.B DP_Temp14
+    JSL MoveEnemyDownBy_14_12
+    BCC .return
+    DEC.W Oum.bounceCounter,X
+    LDA.W Oum.YSpeedTableIndex,X : SEC : SBC.W #$1000 : BPL .notNegative
+    STZ.W Oum.bounceCounter,X
 
   .notNegative:
-    STA.W Oum.YSpeedTableIndex,X                                         ;A2CF9F;
-    LDA.W #Function_Oum_Rising                                           ;A2CFA2;
-    STA.W Oum.bounceFunction,X                                           ;A2CFA5;
+    STA.W Oum.YSpeedTableIndex,X
+    LDA.W #Function_Oum_Rising : STA.W Oum.bounceFunction,X
 
   .return:
-    RTS                                                                  ;A2CFA8;
+    RTS
 
 
 ;;; $CFA9: Oum bounce function - rising ;;;
 Function_Oum_Rising:
-    LDA.W Oum.YSpeedTableIndex,X                                         ;A2CFA9;
-    SEC                                                                  ;A2CFAC;
-    SBC.W #$0180                                                         ;A2CFAD;
-    STA.W Oum.YSpeedTableIndex,X                                         ;A2CFB0;
-    BPL .notNegative                                                     ;A2CFB3;
-    STZ.W Oum.YSpeedTableIndex,X                                         ;A2CFB5;
-    LDA.W #Function_Oum_Falling                                          ;A2CFB8;
-    STA.W Oum.bounceFunction,X                                           ;A2CFBB;
-    BRA .return                                                          ;A2CFBE;
+    LDA.W Oum.YSpeedTableIndex,X : SEC : SBC.W #$0180 : STA.W Oum.YSpeedTableIndex,X : BPL .notNegative
+    STZ.W Oum.YSpeedTableIndex,X
+    LDA.W #Function_Oum_Falling : STA.W Oum.bounceFunction,X
+    BRA .return
 
   .notNegative:
-    AND.W #$FF00                                                         ;A2CFC0;
-    XBA                                                                  ;A2CFC3;
-    ASL                                                                  ;A2CFC4;
-    ASL                                                                  ;A2CFC5;
-    ASL                                                                  ;A2CFC6;
-    TAY                                                                  ;A2CFC7;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y                  ;A2CFC8;
-    STA.B DP_Temp12                                                      ;A2CFCB;
-    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y                  ;A2CFCD;
-    STA.B DP_Temp14                                                      ;A2CFD0;
-    JSL.L MoveEnemyDownBy_14_12                                          ;A2CFD2;
+    AND.W #$FF00 : XBA : ASL #3 : TAY
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y : STA.B DP_Temp12
+    LDA.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y : STA.B DP_Temp14
+    JSL MoveEnemyDownBy_14_12
 
   .return:
-    RTS                                                                  ;A2CFD6;
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $CFD7: Unused ;;;
 UNUSED_PlayKetchupBeamSFX_A2CFD7:
-    LDA.W #$0063                                                         ;A2CFD7;
-    JSL.L QueueSound_Lib2_Max6                                           ;A2CFDA;
-    RTS                                                                  ;A2CFDE;
+    LDA.W #$0063
+    JSL QueueSound_Lib2_Max6
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CFDF: Set oum instruction list ;;;
 SetOumInstList:
-    LDA.L Oum.newInstListIndex,X                                         ;A2CFDF;
-    CMP.L Oum.instListIndex,X                                            ;A2CFE3;
-    BEQ .return                                                          ;A2CFE7;
-    STA.L Oum.instListIndex,X                                            ;A2CFE9;
-    ASL                                                                  ;A2CFED;
-    TAY                                                                  ;A2CFEE;
-    LDA.W InstListPointers_Oum,Y                                         ;A2CFEF;
-    STA.W Enemy.instList,X                                               ;A2CFF2;
-    LDA.W #$0001                                                         ;A2CFF5;
-    STA.W Enemy.instTimer,X                                              ;A2CFF8;
-    STZ.W Enemy.loopCounter,X                                            ;A2CFFB;
+    LDA.L Oum.newInstListIndex,X : CMP.L Oum.instListIndex,X : BEQ .return
+    STA.L Oum.instListIndex,X
+    ASL : TAY
+    LDA.W InstListPointers_Oum,Y : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
 
   .return:
-    RTS                                                                  ;A2CFFE;
+    RTS
 
 
 ;;; $CFFF: Check if touching Samus ;;;
 CheckIfTouchingSamus:
-    LDX.W EnemyIndex                                                     ;A2CFFF;
-    LDA.W #$0000                                                         ;A2D002;
-    STA.L Oum.touchingSamusFlag,X                                        ;A2D005;
-    STA.L Oum.directionToSamus,X                                         ;A2D009;
-    LDA.W #$0020                                                         ;A2D00D;
-    JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;A2D010;
-    BEQ .return                                                          ;A2D014;
-    LDA.W #$0018                                                         ;A2D016;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2D019;
-    BEQ .return                                                          ;A2D01D;
-    LDA.W #$0001                                                         ;A2D01F;
-    STA.L Oum.touchingSamusFlag,X                                        ;A2D022;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A2D026;
-    BPL .return                                                          ;A2D02A;
-    LDA.W #$0001                                                         ;A2D02C;
-    STA.L Oum.directionToSamus,X                                         ;A2D02F;
+    LDX.W EnemyIndex
+    LDA.W #$0000 : STA.L Oum.touchingSamusFlag,X : STA.L Oum.directionToSamus,X
+    LDA.W #$0020
+    JSL IsSamusWithingAPixelRowsOfEnemy
+    BEQ .return
+    LDA.W #$0018
+    JSL IsSamusWithinAPixelColumnsOfEnemy
+    BEQ .return
+    LDA.W #$0001 : STA.L Oum.touchingSamusFlag,X
+    JSL Get_SamusX_minus_EnemyX
+    BPL .return
+    LDA.W #$0001 : STA.L Oum.directionToSamus,X
 
   .return:
-    RTS                                                                  ;A2D033;
+    RTS
 
 
 ;;; $D034: Oum hitboxes ;;;
 Hitbox_Oum_FacingLeft_0:
-    dw $0002                                                             ;A2D034;
-    dw $FFF0,$FFEF,$FFF8,$0010                                           ;A2D036;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D03E;
-    dw EnemyShot_Oum                                                     ;A2D040;
-    dw $FFF8,$FFEF,$000E,$0010                                           ;A2D042;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D04A;
-    dw RTL_A2804C                                                        ;A2D04C;
+    dw $0002
+    dw $FFF0,$FFEF,$FFF8,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
+    dw $FFF8,$FFEF,$000E,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingLeft_1:
-    dw $0001                                                             ;A2D04E;
-    dw $FFF0,$FFEF,$000E,$0010                                           ;A2D050;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D058;
-    dw RTL_A2804C                                                        ;A2D05A;
+    dw $0001
+    dw $FFF0,$FFEF,$000E,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingLeft_2:
-    dw $0002                                                             ;A2D05C;
+    dw $0002
     dw $FFFF,$FFEF,$000E,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D066;
-    dw RTL_A2804C                                                        ;A2D068;
-    dw $FFEF,$FFEF,$0000,$0010                                           ;A2D06A;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D072;
-    dw EnemyShot_Oum                                                     ;A2D074;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $FFEF,$FFEF,$0000,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingLeft_3:
-    dw $0002                                                             ;A2D076;
+    dw $0002
     dw $FFEC,$FFF8,$0000,$0008
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D080;
-    dw EnemyShot_Oum                                                     ;A2D082;
-    dw $0000,$FFEF,$000D,$0010                                           ;A2D084;
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D08C;
-    dw RTL_A2804C                                                        ;A2D08E;
+    dw EnemyTouch_Oum_HurtsSamus
+    dw EnemyShot_Oum
+    dw $0000,$FFEF,$000D,$0010
+    dw EnemyTouch_Oum_HurtsSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingLeft_4:
-    dw $0002                                                             ;A2D090;
+    dw $0002
     dw $FFEA,$FFF8,$0000,$0007
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D09A;
-    dw EnemyShot_Oum                                                     ;A2D09C;
-    dw $0000,$FFEF,$000E,$0010                                           ;A2D09E;
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D0A6;
-    dw RTL_A2804C                                                        ;A2D0A8;
+    dw EnemyTouch_Oum_HurtsSamus
+    dw EnemyShot_Oum
+    dw $0000,$FFEF,$000E,$0010
+    dw EnemyTouch_Oum_HurtsSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingLeft_5:
-    dw $0002                                                             ;A2D0AA;
+    dw $0002
     dw $FFE7,$FFF7,$0000,$0008
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D0B4;
-    dw EnemyShot_Oum                                                     ;A2D0B6;
-    dw $0000,$FFEE,$000E,$0010                                           ;A2D0B8;
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D0C0;
-    dw RTL_A2804C                                                        ;A2D0C2;
+    dw EnemyTouch_Oum_HurtsSamus
+    dw EnemyShot_Oum
+    dw $0000,$FFEE,$000E,$0010
+    dw EnemyTouch_Oum_HurtsSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingLeft_6:
-    dw $0002                                                             ;A2D0C4;
+    dw $0002
     dw $FFE8,$FFF8,$0000,$0009
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D0CE;
-    dw EnemyShot_Oum                                                     ;A2D0D0;
-    dw $0000,$FFEE,$000F,$0010                                           ;A2D0D2;
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D0DA;
-    dw RTL_A2804C                                                        ;A2D0DC;
+    dw EnemyTouch_Oum_HurtsSamus
+    dw EnemyShot_Oum
+    dw $0000,$FFEE,$000F,$0010
+    dw EnemyTouch_Oum_HurtsSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingLeft_7:
-    dw $0002                                                             ;A2D0DE;
+    dw $0002
     dw $FFE5,$FFF8,$0000,$0008
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D0E8;
-    dw EnemyShot_Oum                                                     ;A2D0EA;
-    dw $0000,$FFEE,$000F,$0010                                           ;A2D0EC;
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D0F4;
-    dw RTL_A2804C                                                        ;A2D0F6;
+    dw EnemyTouch_Oum_HurtsSamus
+    dw EnemyShot_Oum
+    dw $0000,$FFEE,$000F,$0010
+    dw EnemyTouch_Oum_HurtsSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingLeft_8:
-    dw $0003                                                             ;A2D0F8;
+    dw $0003
     dw $FFF0,$0000,$0000,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D102;
-    dw EnemyShot_Oum                                                     ;A2D104;
-    dw $FFF0,$FFF0,$0000,$0000                                           ;A2D106;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D10E;
-    dw RTL_A2804C                                                        ;A2D110;
-    dw $0000,$FFF0,$000E,$0010                                           ;A2D112;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D11A;
-    dw RTL_A2804C                                                        ;A2D11C;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
+    dw $FFF0,$FFF0,$0000,$0000
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0000,$FFF0,$000E,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingLeft_9:
-    dw $0002                                                             ;A2D11E;
+    dw $0002
     dw $FFF1,$FFEF,$000F,$0000
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D128;
-    dw RTL_A2804C                                                        ;A2D12A;
-    dw $FFF1,$0000,$000F,$0010                                           ;A2D12C;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D134;
-    dw EnemyShot_Oum                                                     ;A2D136;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $FFF1,$0000,$000F,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingLeft_A:
-    dw $0003                                                             ;A2D138;
+    dw $0003
     dw $FFF1,$FFEF,$0000,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D142;
-    dw RTL_A2804C                                                        ;A2D144;
-    dw $0000,$FFEF,$000F,$0000                                           ;A2D146;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D14E;
-    dw RTL_A2804C                                                        ;A2D150;
-    dw $0000,$0000,$000F,$0010                                           ;A2D152;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D15A;
-    dw EnemyShot_Oum                                                     ;A2D15C;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0000,$FFEF,$000F,$0000
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0000,$0000,$000F,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingLeft_B:
-    dw $0002                                                             ;A2D15E;
+    dw $0002
     dw $FFF0,$FFEF,$0000,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D168;
-    dw RTL_A2804C                                                        ;A2D16A;
-    dw $0000,$FFEF,$000F,$0010                                           ;A2D16C;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D174;
-    dw EnemyShot_Oum                                                     ;A2D176;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0000,$FFEF,$000F,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingLeft_C:
-    dw $0003                                                             ;A2D178;
+    dw $0003
     dw $FFF1,$FFEF,$0000,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D182;
-    dw RTL_A2804C                                                        ;A2D184;
-    dw $0000,$FFEF,$000F,$0000                                           ;A2D186;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D18E;
-    dw EnemyShot_Oum                                                     ;A2D190;
-    dw $0000,$0000,$000F,$0010                                           ;A2D192;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D19A;
-    dw RTL_A2804C                                                        ;A2D19C;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0000,$FFEF,$000F,$0000
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
+    dw $0000,$0000,$000F,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingLeft_D:
-    dw $0002                                                             ;A2D19E;
+    dw $0002
     dw $FFF0,$FFEE,$000F,$0000
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D1A8;
-    dw EnemyShot_Oum                                                     ;A2D1AA;
-    dw $FFF0,$0000,$000F,$0010                                           ;A2D1AC;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D1B4;
-    dw RTL_A2804C                                                        ;A2D1B6;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
+    dw $FFF0,$0000,$000F,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingLeft_E:
-    dw $0003                                                             ;A2D1B8;
+    dw $0003
     dw $FFF0,$0000,$0000,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D1C2;
-    dw RTL_A2804C                                                        ;A2D1C4;
-    dw $FFF0,$FFEF,$0000,$0000                                           ;A2D1C6;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D1CE;
-    dw EnemyShot_Oum                                                     ;A2D1D0;
-    dw $0000,$FFEF,$000E,$0010                                           ;A2D1D2;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D1DA;
-    dw RTL_A2804C                                                        ;A2D1DC;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $FFF0,$FFEF,$0000,$0000
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
+    dw $0000,$FFEF,$000E,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingRight_0:
-    dw $0002                                                             ;A2D1DE;
+    dw $0002
     dw $FFF0,$FFEF,$0008,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D1E8;
-    dw RTL_A2804C                                                        ;A2D1EA;
-    dw $0008,$FFEF,$0010,$0010                                           ;A2D1EC;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D1F4;
-    dw EnemyShot_Oum                                                     ;A2D1F6;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0008,$FFEF,$0010,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingRight_1:
-    dw $0001                                                             ;A2D1F8;
+    dw $0001
     dw $FFF0,$FFEF,$0010,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D202;
-    dw RTL_A2804C                                                        ;A2D204;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingRight_2:
-    dw $0002                                                             ;A2D206;
+    dw $0002
     dw $FFF0,$FFEF,$0000,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D210;
-    dw RTL_A2804C                                                        ;A2D212;
-    dw $0000,$FFEF,$0010,$0010                                           ;A2D214;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D21C;
-    dw EnemyShot_Oum                                                     ;A2D21E;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0000,$FFEF,$0010,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingRight_3:
-    dw $0002                                                             ;A2D220;
+    dw $0002
     dw $FFF0,$FFEF,$0000,$0010
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D22A;
-    dw RTL_A2804C                                                        ;A2D22C;
-    dw $0000,$FFF8,$0014,$0008                                           ;A2D22E;
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D236;
-    dw EnemyShot_Oum                                                     ;A2D238;
+    dw EnemyTouch_Oum_HurtsSamus
+    dw RTL_A2804C
+    dw $0000,$FFF8,$0014,$0008
+    dw EnemyTouch_Oum_HurtsSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingRight_4:
-    dw $0002                                                             ;A2D23A;
+    dw $0002
     dw $FFF0,$FFEF,$FFFF,$0010
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D244;
-    dw RTL_A2804C                                                        ;A2D246;
-    dw $0000,$FFF8,$0016,$0008                                           ;A2D248;
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D250;
-    dw EnemyShot_Oum                                                     ;A2D252;
+    dw EnemyTouch_Oum_HurtsSamus
+    dw RTL_A2804C
+    dw $0000,$FFF8,$0016,$0008
+    dw EnemyTouch_Oum_HurtsSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingRight_5:
-    dw $0002                                                             ;A2D254;
+    dw $0002
     dw $FFF0,$FFEE,$0000,$0010
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D25E;
-    dw RTL_A2804C                                                        ;A2D260;
-    dw $0000,$FFF8,$0018,$0008                                           ;A2D262;
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D26A;
-    dw EnemyShot_Oum                                                     ;A2D26C;
+    dw EnemyTouch_Oum_HurtsSamus
+    dw RTL_A2804C
+    dw $0000,$FFF8,$0018,$0008
+    dw EnemyTouch_Oum_HurtsSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingRight_6:
-    dw $0002                                                             ;A2D26E;
+    dw $0002
     dw $FFF1,$FFEF,$0000,$0010
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D278;
-    dw RTL_A2804C                                                        ;A2D27A;
-    dw $0000,$FFF8,$0018,$0008                                           ;A2D27C;
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D284;
-    dw EnemyShot_Oum                                                     ;A2D286;
+    dw EnemyTouch_Oum_HurtsSamus
+    dw RTL_A2804C
+    dw $0000,$FFF8,$0018,$0008
+    dw EnemyTouch_Oum_HurtsSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingRight_7:
-    dw $0002                                                             ;A2D288;
+    dw $0002
     dw $FFF0,$FFEF,$0000,$0010
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D292;
-    dw RTL_A2804C                                                        ;A2D294;
-    dw $0000,$FFF8,$0019,$0008                                           ;A2D296;
-    dw EnemyTouch_Oum_HurtsSamus                                         ;A2D29E;
-    dw EnemyShot_Oum                                                     ;A2D2A0;
+    dw EnemyTouch_Oum_HurtsSamus
+    dw RTL_A2804C
+    dw $0000,$FFF8,$0019,$0008
+    dw EnemyTouch_Oum_HurtsSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingRight_8:
-    dw $0003                                                             ;A2D2A2;
+    dw $0003
     dw $FFF1,$FFF0,$0000,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D2AC;
-    dw RTL_A2804C                                                        ;A2D2AE;
-    dw $0000,$FFF0,$0010,$0000                                           ;A2D2B0;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D2B8;
-    dw RTL_A2804C                                                        ;A2D2BA;
-    dw $0000,$0000,$0010,$0010                                           ;A2D2BC;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D2C4;
-    dw EnemyShot_Oum                                                     ;A2D2C6;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0000,$FFF0,$0010,$0000
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0000,$0000,$0010,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingRight_9:
-    dw $0002                                                             ;A2D2C8;
+    dw $0002
     dw $FFF1,$FFEF,$000F,$0000
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D2D2;
-    dw RTL_A2804C                                                        ;A2D2D4;
-    dw $FFF1,$0000,$000F,$0010                                           ;A2D2D6;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D2DE;
-    dw EnemyShot_Oum                                                     ;A2D2E0;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $FFF1,$0000,$000F,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
 
 Hitbox_Oum_FacingRight_A:
-    dw $0003                                                             ;A2D2E2;
+    dw $0003
     dw $FFF0,$0000,$0000,$0011
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D2EC;
-    dw EnemyShot_Oum                                                     ;A2D2EE;
-    dw $FFF0,$FFEF,$0000,$0000                                           ;A2D2F0;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D2F8;
-    dw RTL_A2804C                                                        ;A2D2FA;
-    dw $0000,$FFEF,$000E,$0011                                           ;A2D2FC;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D304;
-    dw RTL_A2804C                                                        ;A2D306;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
+    dw $FFF0,$FFEF,$0000,$0000
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0000,$FFEF,$000E,$0011
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingRight_B:
-    dw $0002                                                             ;A2D308;
+    dw $0002
     dw $FFF0,$FFEF,$0000,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D312;
-    dw EnemyShot_Oum                                                     ;A2D314;
-    dw $0000,$FFEF,$000E,$0010                                           ;A2D316;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D31E;
-    dw RTL_A2804C                                                        ;A2D320;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
+    dw $0000,$FFEF,$000E,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingRight_C:
-    dw $0003                                                             ;A2D322;
+    dw $0003
     dw $FFF0,$FFEF,$0000,$0000
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D32C;
-    dw EnemyShot_Oum                                                     ;A2D32E;
-    dw $FFF0,$0000,$0000,$0010                                           ;A2D330;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D338;
-    dw RTL_A2804C                                                        ;A2D33A;
-    dw $0000,$FFEF,$000E,$0010                                           ;A2D33C;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D344;
-    dw RTL_A2804C                                                        ;A2D346;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
+    dw $FFF0,$0000,$0000,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0000,$FFEF,$000E,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingRight_D:
-    dw $0002                                                             ;A2D348;
+    dw $0002
     dw $FFF0,$FFEF,$000F,$0000
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D352;
-    dw EnemyShot_Oum                                                     ;A2D354;
-    dw $FFF0,$0000,$000F,$0010                                           ;A2D356;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D35E;
-    dw RTL_A2804C                                                        ;A2D360;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
+    dw $FFF0,$0000,$000F,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 Hitbox_Oum_FacingRight_E:
-    dw $0003                                                             ;A2D362;
+    dw $0003
     dw $FFF1,$FFEF,$0000,$0010
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D36C;
-    dw RTL_A2804C                                                        ;A2D36E;
-    dw $0000,$FFEF,$0010,$0000                                           ;A2D370;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D378;
-    dw EnemyShot_Oum                                                     ;A2D37A;
-    dw $0000,$0000,$0010,$0010                                           ;A2D37C;
-    dw EnemyTouch_Oum_DoesNotHurtSamus                                   ;A2D384;
-    dw RTL_A2804C                                                        ;A2D386;
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
+    dw $0000,$FFEF,$0010,$0000
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw EnemyShot_Oum
+    dw $0000,$0000,$0010,$0010
+    dw EnemyTouch_Oum_DoesNotHurtSamus
+    dw RTL_A2804C
 
 
 ;;; $D388: Enemy touch - oum - hurts Samus ;;;
 EnemyTouch_Oum_HurtsSamus:
-    JSL.L CommonA2_NormalEnemyTouchAI                                    ;A2D388; fallthrough to EnemyTouch_Oum_DoesNotHurtSamus
+    JSL CommonA2_NormalEnemyTouchAI
+; fallthrough to EnemyTouch_Oum_DoesNotHurtSamus
 
 
 ;;; $D38C: Enemy touch - oum - doesn't hurt Samus ;;;
 EnemyTouch_Oum_DoesNotHurtSamus:
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2D38C;
-    BNE .return                                                          ;A2D390;
-    LDX.W EnemyIndex                                                     ;A2D392;
-    LDA.W SamusXPosition                                                 ;A2D395;
-    SEC                                                                  ;A2D398;
-    SBC.W Enemy.XPosition,X                                              ;A2D399;
-    BMI .rightOfSamus                                                    ;A2D39C;
-    LDA.W ExtraSamusXDisplacement                                        ;A2D39E;
-    CLC                                                                  ;A2D3A1;
-    ADC.W #$0004                                                         ;A2D3A2;
-    STA.W ExtraSamusXDisplacement                                        ;A2D3A5;
-    RTL                                                                  ;A2D3A8;
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    BNE .return
+    LDX.W EnemyIndex
+    LDA.W SamusXPosition : SEC : SBC.W Enemy.XPosition,X : BMI .rightOfSamus
+    LDA.W ExtraSamusXDisplacement : CLC : ADC.W #$0004 : STA.W ExtraSamusXDisplacement
+    RTL
 
   .rightOfSamus:
-    LDA.W ExtraSamusXDisplacement                                        ;A2D3A9;
-    CLC                                                                  ;A2D3AC;
-    ADC.W #$FFFC                                                         ;A2D3AD;
-    STA.W ExtraSamusXDisplacement                                        ;A2D3B0;
+    LDA.W ExtraSamusXDisplacement : CLC : ADC.W #$FFFC : STA.W ExtraSamusXDisplacement
 
   .return:
-    RTL                                                                  ;A2D3B3;
+    RTL
 
 
 ;;; $D3B4: Enemy shot - enemy $D37F (oum) ;;;
 EnemyShot_Oum:
-    JSL.L NormalEnemyShotAI                                              ;A2D3B4;
-    LDA.W #$0057                                                         ;A2D3B8;
-    JSL.L QueueSound_Lib2_Max6                                           ;A2D3BB;
-    RTL                                                                  ;A2D3BF;
+    JSL NormalEnemyShotAI
+    LDA.W #$0057
+    JSL QueueSound_Lib2_Max6
+    RTL
 
 
 ;;; $D3C0: Oum spritemaps ;;;
 Spritemap_Oum_FacingLeft_0:
-    dw $0006                                                             ;A2D3C0;
+    dw $0006
     %spritemapEntry(0, $1F0, $00, 0, 0, 2, 0, $11E)
     %spritemapEntry(0, $1F0, $F8, 0, 0, 2, 0, $10E)
     %spritemapEntry(1, $00, $00, 0, 0, 2, 0, $122)
@@ -9878,7 +8054,7 @@ Spritemap_Oum_FacingLeft_0:
     %spritemapEntry(1, $1F0, $F0, 0, 0, 2, 0, $100)
 
 Spritemap_Oum_FacingLeft_1:
-    dw $0006                                                             ;A2D3E0;
+    dw $0006
     %spritemapEntry(0, $1F0, $00, 0, 0, 2, 0, $11F)
     %spritemapEntry(0, $1F0, $F8, 0, 0, 2, 0, $10F)
     %spritemapEntry(1, $00, $00, 0, 0, 2, 0, $122)
@@ -9887,7 +8063,7 @@ Spritemap_Oum_FacingLeft_1:
     %spritemapEntry(1, $1F0, $F0, 0, 0, 2, 0, $100)
 
 Spritemap_Oum_FacingLeft_2:
-    dw $0007                                                             ;A2D400;
+    dw $0007
     %spritemapEntry(1, $1F0, $F8, 0, 0, 2, 0, $110)
     %spritemapEntry(0, $1F8, $08, 0, 0, 2, 0, $131)
     %spritemapEntry(0, $1F0, $08, 0, 0, 2, 0, $130)
@@ -9897,7 +8073,7 @@ Spritemap_Oum_FacingLeft_2:
     %spritemapEntry(1, $00, $F0, 0, 0, 2, 0, $102)
 
 Spritemap_Oum_3:
-    dw $0009                                                             ;A2D425;
+    dw $0009
     %spritemapEntry(0, $1EA, $FF, 0, 0, 2, 0, $12E)
     %spritemapEntry(0, $1F0, $00, 0, 0, 2, 0, $12F)
     %spritemapEntry(1, $1F0, $F8, 0, 0, 2, 0, $110)
@@ -9909,7 +8085,7 @@ Spritemap_Oum_3:
     %spritemapEntry(1, $00, $F0, 0, 0, 2, 0, $102)
 
 Spritemap_Oum_FacingLeft_4:
-    dw $0009                                                             ;A2D454;
+    dw $0009
     %spritemapEntry(0, $1F8, $08, 0, 0, 2, 0, $131)
     %spritemapEntry(0, $1F0, $08, 0, 0, 2, 0, $130)
     %spritemapEntry(0, $1F8, $F0, 0, 0, 2, 0, $101)
@@ -9921,7 +8097,7 @@ Spritemap_Oum_FacingLeft_4:
     %spritemapEntry(1, $00, $F0, 0, 0, 2, 0, $102)
 
 Spritemap_Oum_FacingLeft_5:
-    dw $000A                                                             ;A2D483;
+    dw $000A
     %spritemapEntry(0, $1F0, $00, 0, 0, 2, 0, $12F)
     %spritemapEntry(0, $1E3, $FE, 0, 0, 2, 0, $13E)
     %spritemapEntry(0, $1E9, $FF, 0, 0, 2, 0, $13F)
@@ -9934,7 +8110,7 @@ Spritemap_Oum_FacingLeft_5:
     %spritemapEntry(1, $00, $F0, 0, 0, 2, 0, $102)
 
 Spritemap_Oum_FacingLeft_6:
-    dw $000A                                                             ;A2D4B7;
+    dw $000A
     %spritemapEntry(0, $1F0, $00, 0, 0, 2, 0, $12F)
     %spritemapEntry(0, $1E2, $00, 0, 0, 2, 0, $13E)
     %spritemapEntry(0, $1E9, $00, 0, 0, 2, 0, $13F)
@@ -9947,7 +8123,7 @@ Spritemap_Oum_FacingLeft_6:
     %spritemapEntry(1, $00, $F0, 0, 0, 2, 0, $102)
 
 Spritemap_Oum_FacingLeft_7:
-    dw $000A                                                             ;A2D4EB;
+    dw $000A
     %spritemapEntry(0, $1F0, $00, 0, 0, 2, 0, $12F)
     %spritemapEntry(0, $1E0, $FF, 0, 0, 2, 0, $13E)
     %spritemapEntry(0, $1E8, $FF, 0, 0, 2, 0, $13F)
@@ -9960,14 +8136,14 @@ Spritemap_Oum_FacingLeft_7:
     %spritemapEntry(1, $00, $F0, 0, 0, 2, 0, $102)
 
 Spritemap_Oum_FacingLeft_8:
-    dw $0004                                                             ;A2D51F;
+    dw $0004
     %spritemapEntry(1, $00, $F0, 0, 0, 2, 0, $104)
     %spritemapEntry(1, $00, $00, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $126)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 2, 0, $106)
 
 Spritemap_Oum_FacingLeft_9:
-    dw $0007                                                             ;A2D535;
+    dw $0007
     %spritemapEntry(0, $08, $08, 0, 0, 2, 0, $11B)
     %spritemapEntry(0, $08, $00, 0, 0, 2, 0, $10B)
     %spritemapEntry(0, $1F0, $08, 0, 0, 2, 0, $118)
@@ -9977,14 +8153,14 @@ Spritemap_Oum_FacingLeft_9:
     %spritemapEntry(1, $00, $F0, 0, 0, 2, 0, $102)
 
 Spritemap_Oum_FacingLeft_A:
-    dw $0004                                                             ;A2D55A;
+    dw $0004
     %spritemapEntry(1, $1F0, $F0, 1, 1, 2, 0, $124)
     %spritemapEntry(1, $00, $F0, 0, 0, 2, 0, $10C)
     %spritemapEntry(1, $00, $00, 0, 0, 2, 0, $12C)
     %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $12A)
 
 Spritemap_Oum_FacingLeft_B:
-    dw $0007                                                             ;A2D570;
+    dw $0007
     %spritemapEntry(0, $08, $F0, 1, 1, 2, 0, $130)
     %spritemapEntry(0, $00, $F0, 1, 1, 2, 0, $131)
     %spritemapEntry(0, $00, $08, 1, 1, 2, 0, $101)
@@ -9994,14 +8170,14 @@ Spritemap_Oum_FacingLeft_B:
     %spritemapEntry(1, $1F0, $00, 1, 1, 2, 0, $102)
 
 Spritemap_Oum_FacingLeft_C:
-    dw $0004                                                             ;A2D595;
+    dw $0004
     %spritemapEntry(1, $1F0, $00, 1, 1, 2, 0, $104)
     %spritemapEntry(1, $1F0, $F0, 1, 1, 2, 0, $128)
     %spritemapEntry(1, $00, $F0, 1, 1, 2, 0, $126)
     %spritemapEntry(1, $00, $00, 1, 1, 2, 0, $106)
 
 Spritemap_Oum_FacingLeft_D:
-    dw $0007                                                             ;A2D5AB;
+    dw $0007
     %spritemapEntry(0, $1F0, $F8, 1, 1, 2, 0, $10B)
     %spritemapEntry(0, $1F0, $F0, 1, 1, 2, 0, $11B)
     %spritemapEntry(0, $08, $F8, 1, 1, 2, 0, $108)
@@ -10011,14 +8187,14 @@ Spritemap_Oum_FacingLeft_D:
     %spritemapEntry(1, $1F0, $00, 1, 1, 2, 0, $102)
 
 Spritemap_Oum_FacingLeft_E:
-    dw $0004                                                             ;A2D5D0;
+    dw $0004
     %spritemapEntry(1, $00, $00, 0, 0, 2, 0, $124)
     %spritemapEntry(1, $1F0, $00, 1, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F0, $F0, 1, 1, 2, 0, $12C)
     %spritemapEntry(1, $00, $F0, 1, 1, 2, 0, $12A)
 
 Spritemap_Oum_FacingRight_0:
-    dw $0006                                                             ;A2D5E6;
+    dw $0006
     %spritemapEntry(0, $08, $00, 0, 1, 2, 0, $11E)
     %spritemapEntry(0, $08, $F8, 0, 1, 2, 0, $10E)
     %spritemapEntry(1, $1F0, $00, 0, 1, 2, 0, $122)
@@ -10027,7 +8203,7 @@ Spritemap_Oum_FacingRight_0:
     %spritemapEntry(1, $00, $F0, 0, 1, 2, 0, $100)
 
 Spritemap_Oum_FacingRight_1:
-    dw $0006                                                             ;A2D606;
+    dw $0006
     %spritemapEntry(0, $08, $00, 0, 1, 2, 0, $11F)
     %spritemapEntry(0, $08, $F8, 0, 1, 2, 0, $10F)
     %spritemapEntry(1, $1F0, $00, 0, 1, 2, 0, $122)
@@ -10036,7 +8212,7 @@ Spritemap_Oum_FacingRight_1:
     %spritemapEntry(1, $00, $F0, 0, 1, 2, 0, $100)
 
 Spritemap_Oum_FacingRight_2:
-    dw $0007                                                             ;A2D626;
+    dw $0007
     %spritemapEntry(1, $00, $F8, 0, 1, 2, 0, $110)
     %spritemapEntry(0, $00, $08, 0, 1, 2, 0, $131)
     %spritemapEntry(0, $08, $08, 0, 1, 2, 0, $130)
@@ -10046,7 +8222,7 @@ Spritemap_Oum_FacingRight_2:
     %spritemapEntry(1, $1F0, $F0, 0, 1, 2, 0, $102)
 
 Spritemap_Oum_FacingRight_3:
-    dw $0009                                                             ;A2D64B;
+    dw $0009
     %spritemapEntry(0, $0E, $FF, 0, 1, 2, 0, $12E)
     %spritemapEntry(0, $08, $00, 0, 1, 2, 0, $12F)
     %spritemapEntry(1, $00, $F8, 0, 1, 2, 0, $110)
@@ -10058,7 +8234,7 @@ Spritemap_Oum_FacingRight_3:
     %spritemapEntry(1, $1F0, $F0, 0, 1, 2, 0, $102)
 
 Spritemap_Oum_FacingRight_4:
-    dw $0009                                                             ;A2D67A;
+    dw $0009
     %spritemapEntry(0, $00, $08, 0, 1, 2, 0, $131)
     %spritemapEntry(0, $08, $08, 0, 1, 2, 0, $130)
     %spritemapEntry(0, $00, $F0, 0, 1, 2, 0, $101)
@@ -10070,7 +8246,7 @@ Spritemap_Oum_FacingRight_4:
     %spritemapEntry(1, $1F0, $F0, 0, 1, 2, 0, $102)
 
 Spritemap_Oum_FacingRight_5:
-    dw $000A                                                             ;A2D6A9;
+    dw $000A
     %spritemapEntry(0, $08, $00, 0, 1, 2, 0, $12F)
     %spritemapEntry(0, $15, $FE, 0, 1, 2, 0, $13E)
     %spritemapEntry(0, $0F, $FF, 0, 1, 2, 0, $13F)
@@ -10083,7 +8259,7 @@ Spritemap_Oum_FacingRight_5:
     %spritemapEntry(1, $1F0, $F0, 0, 1, 2, 0, $102)
 
 Spritemap_Oum_FacingRight_6:
-    dw $000A                                                             ;A2D6DD;
+    dw $000A
     %spritemapEntry(0, $08, $00, 0, 1, 2, 0, $12F)
     %spritemapEntry(0, $16, $00, 0, 1, 2, 0, $13E)
     %spritemapEntry(0, $0F, $00, 0, 1, 2, 0, $13F)
@@ -10096,7 +8272,7 @@ Spritemap_Oum_FacingRight_6:
     %spritemapEntry(1, $1F0, $F0, 0, 1, 2, 0, $102)
 
 Spritemap_Oum_FacingRight_7:
-    dw $000A                                                             ;A2D711;
+    dw $000A
     %spritemapEntry(0, $08, $00, 0, 1, 2, 0, $12F)
     %spritemapEntry(0, $18, $FF, 0, 1, 2, 0, $13E)
     %spritemapEntry(0, $10, $FF, 0, 1, 2, 0, $13F)
@@ -10109,14 +8285,14 @@ Spritemap_Oum_FacingRight_7:
     %spritemapEntry(1, $1F0, $F0, 0, 1, 2, 0, $102)
 
 Spritemap_Oum_FacingRight_8:
-    dw $0004                                                             ;A2D745;
+    dw $0004
     %spritemapEntry(1, $1F0, $F0, 0, 1, 2, 0, $104)
     %spritemapEntry(1, $1F0, $00, 0, 1, 2, 0, $128)
     %spritemapEntry(1, $00, $00, 0, 1, 2, 0, $126)
     %spritemapEntry(1, $00, $F0, 0, 1, 2, 0, $106)
 
 Spritemap_Oum_FacingRight_9:
-    dw $0007                                                             ;A2D75B;
+    dw $0007
     %spritemapEntry(0, $1F0, $08, 0, 1, 2, 0, $11B)
     %spritemapEntry(0, $1F0, $00, 0, 1, 2, 0, $10B)
     %spritemapEntry(0, $08, $08, 0, 1, 2, 0, $118)
@@ -10126,14 +8302,14 @@ Spritemap_Oum_FacingRight_9:
     %spritemapEntry(1, $1F0, $F0, 0, 1, 2, 0, $102)
 
 Spritemap_Oum_FacingRight_A:
-    dw $0004                                                             ;A2D780;
+    dw $0004
     %spritemapEntry(1, $00, $F0, 1, 0, 2, 0, $124)
     %spritemapEntry(1, $1F0, $F0, 0, 1, 2, 0, $10C)
     %spritemapEntry(1, $1F0, $00, 0, 1, 2, 0, $12C)
     %spritemapEntry(1, $00, $00, 0, 1, 2, 0, $12A)
 
 Spritemap_Oum_FacingRight_B:
-    dw $0007                                                             ;A2D796;
+    dw $0007
     %spritemapEntry(0, $1F0, $F0, 1, 0, 2, 0, $130)
     %spritemapEntry(0, $1F8, $F0, 1, 0, 2, 0, $131)
     %spritemapEntry(0, $1F8, $08, 1, 0, 2, 0, $101)
@@ -10143,14 +8319,14 @@ Spritemap_Oum_FacingRight_B:
     %spritemapEntry(1, $00, $00, 1, 0, 2, 0, $102)
 
 Spritemap_Oum_FacingRight_C:
-    dw $0004                                                             ;A2D7BB;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 0, 2, 0, $104)
     %spritemapEntry(1, $00, $F0, 1, 0, 2, 0, $128)
     %spritemapEntry(1, $1F0, $F0, 1, 0, 2, 0, $126)
     %spritemapEntry(1, $1F0, $00, 1, 0, 2, 0, $106)
 
 Spritemap_Oum_FacingRight_D:
-    dw $0007                                                             ;A2D7D1;
+    dw $0007
     %spritemapEntry(0, $08, $F8, 1, 0, 2, 0, $10B)
     %spritemapEntry(0, $08, $F0, 1, 0, 2, 0, $11B)
     %spritemapEntry(0, $1F0, $F8, 1, 0, 2, 0, $108)
@@ -10160,7 +8336,7 @@ Spritemap_Oum_FacingRight_D:
     %spritemapEntry(1, $00, $00, 1, 0, 2, 0, $102)
 
 Spritemap_Oum_FacingRight_E:
-    dw $0004                                                             ;A2D7F6;
+    dw $0004
     %spritemapEntry(1, $1F0, $00, 0, 1, 2, 0, $124)
     %spritemapEntry(1, $00, $00, 1, 0, 2, 0, $10C)
     %spritemapEntry(1, $00, $F0, 1, 0, 2, 0, $12C)
@@ -10169,253 +8345,234 @@ Spritemap_Oum_FacingRight_E:
 
 ;;; $D80C: Palette - enemy $D3BF (choot) ;;;
 Palette_Choot:
-    dw $3800,$4B9C,$2610,$0CC6,$0C63,$42F7,$2A52,$19AD                   ;A2D80C;
-    dw $0D29,$5E59,$3D72,$2CEE,$1447,$033B,$0216,$0113                   ;A2D81C;
+    dw $3800,$4B9C,$2610,$0CC6,$0C63,$42F7,$2A52,$19AD
+    dw $0D29,$5E59,$3D72,$2CEE,$1447,$033B,$0216,$0113
 
 
 ;;; $D82C: Instruction list - idle ;;;
 InstList_Choot_Idle:
-    dw Instruction_Common_DisableOffScreenProcessing                     ;A2D82C;
-    dw $0001,Spritemap_Choot_0                                           ;A2D82E;
-    dw Instruction_Common_Sleep                                          ;A2D832;
+    dw Instruction_Common_DisableOffScreenProcessing
+    dw $0001,Spritemap_Choot_0
+    dw Instruction_Common_Sleep
 
 
 ;;; $D834: Instruction list - jumping ;;;
 InstList_Choot_Jumping:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A2D834;
-    dw $0008,Spritemap_Choot_1                                           ;A2D836;
-    dw $0001,Spritemap_Choot_2                                           ;A2D83A;
-    dw Instruction_Common_Sleep                                          ;A2D83E;
+    dw Instruction_Common_EnableOffScreenProcessing
+    dw $0008,Spritemap_Choot_1
+    dw $0001,Spritemap_Choot_2
+    dw Instruction_Common_Sleep
 
 
 ;;; $D840: Instruction list - falling ;;;
 InstList_Choot_Falling:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A2D840;
-    dw $0008,Spritemap_Choot_1                                           ;A2D842;
-    dw $0001,Spritemap_Choot_3                                           ;A2D846;
-    dw Instruction_Common_Sleep                                          ;A2D84A;
+    dw Instruction_Common_EnableOffScreenProcessing
+    dw $0008,Spritemap_Choot_1
+    dw $0001,Spritemap_Choot_3
+    dw Instruction_Common_Sleep
 
 
 ;;; $D84C: Falling pattern data ;;;
 ; X,Y offsets from a fixed point. Terminated by X = 8000h
 ChootFallingPatternData_0_Normal:
 ; Pattern 0 - normal. X radius 11h, Y distance 1Eh, 73 frames
-    dw $0000,$0000, $0001,$0001, $0002,$0001, $0003,$0002                ;A2D84C;
-    dw $0004,$0002, $0005,$0002, $0006,$0003, $0007,$0003                ;A2D85C;
-    dw $0008,$0003, $0009,$0003, $000A,$0003, $000B,$0003                ;A2D86C;
-    dw $000C,$0003, $000C,$0003, $000D,$0003, $000D,$0003                ;A2D87C;
-    dw $000D,$0003, $000E,$0003, $000E,$0003, $000E,$0003                ;A2D88C;
-    dw $000F,$0003, $000F,$0003, $0010,$0003, $0010,$0003                ;A2D89C;
-    dw $0010,$0003, $0010,$0003, $0011,$0003, $0011,$0003                ;A2D8AC;
-    dw $0010,$0005, $000F,$0006, $000E,$0008, $000C,$0009                ;A2D8BC;
-    dw $000B,$000A, $000A,$000C, $0008,$000D, $0007,$000E                ;A2D8CC;
-    dw $0006,$000E, $0004,$000F, $0003,$0010, $0002,$0010                ;A2D8DC;
-    dw $0001,$0011, $0000,$0011, $FFFF,$0011, $FFFE,$0012                ;A2D8EC;
-    dw $FFFC,$0012, $FFFC,$0012, $FFFB,$0012, $FFFA,$0012                ;A2D8FC;
-    dw $FFF9,$0012, $FFF8,$0012, $FFF7,$0012, $FFF7,$0012                ;A2D90C;
-    dw $FFF7,$0012, $FFF6,$0012, $FFF6,$0012, $FFF5,$0012                ;A2D91C;
-    dw $FFF5,$0012, $FFF4,$0012, $FFF4,$0012, $FFF4,$0012                ;A2D92C;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF4,$0014                ;A2D93C;
-    dw $FFF5,$0016, $FFF6,$0017, $FFF7,$0019, $FFF9,$001A                ;A2D94C;
-    dw $FFFA,$001B, $FFFB,$001C, $FFFD,$001D, $FFFE,$001E                ;A2D95C;
-    dw $FFFF,$001F, $8000,$8000                                          ;A2D96C;
+    dw $0000,$0000, $0001,$0001, $0002,$0001, $0003,$0002
+    dw $0004,$0002, $0005,$0002, $0006,$0003, $0007,$0003
+    dw $0008,$0003, $0009,$0003, $000A,$0003, $000B,$0003
+    dw $000C,$0003, $000C,$0003, $000D,$0003, $000D,$0003
+    dw $000D,$0003, $000E,$0003, $000E,$0003, $000E,$0003
+    dw $000F,$0003, $000F,$0003, $0010,$0003, $0010,$0003
+    dw $0010,$0003, $0010,$0003, $0011,$0003, $0011,$0003
+    dw $0010,$0005, $000F,$0006, $000E,$0008, $000C,$0009
+    dw $000B,$000A, $000A,$000C, $0008,$000D, $0007,$000E
+    dw $0006,$000E, $0004,$000F, $0003,$0010, $0002,$0010
+    dw $0001,$0011, $0000,$0011, $FFFF,$0011, $FFFE,$0012
+    dw $FFFC,$0012, $FFFC,$0012, $FFFB,$0012, $FFFA,$0012
+    dw $FFF9,$0012, $FFF8,$0012, $FFF7,$0012, $FFF7,$0012
+    dw $FFF7,$0012, $FFF6,$0012, $FFF6,$0012, $FFF5,$0012
+    dw $FFF5,$0012, $FFF4,$0012, $FFF4,$0012, $FFF4,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF4,$0014
+    dw $FFF5,$0016, $FFF6,$0017, $FFF7,$0019, $FFF9,$001A
+    dw $FFFA,$001B, $FFFB,$001C, $FFFD,$001D, $FFFE,$001E
+    dw $FFFF,$001F, $8000,$8000
 
 ChootFallingPatternData_0_Normal_YDistance:
-    dw $001E                                                             ;A2D974;
+    dw $001E
 
 ChootFallingPatternData_1_Wide:
 ; Pattern 1 - wide. X radius 20h, Y distance 1Ch, 73 frames
-    dw $0000,$0000, $0003,$0000, $0005,$0001, $0007,$0001                ;A2D976;
-    dw $0009,$0002, $000B,$0002, $000D,$0002, $000E,$0002                ;A2D986;
-    dw $0010,$0003, $0012,$0003, $0013,$0003, $0015,$0003                ;A2D996;
-    dw $0016,$0003, $0017,$0003, $0018,$0003, $0019,$0003                ;A2D9A6;
-    dw $0019,$0003, $001A,$0003, $001B,$0003, $001C,$0003                ;A2D9B6;
-    dw $001D,$0003, $001E,$0003, $001E,$0003, $001F,$0003                ;A2D9C6;
-    dw $001F,$0003, $0020,$0003, $0020,$0003, $0020,$0003                ;A2D9D6;
-    dw $001E,$0004, $001C,$0006, $001A,$0007, $0017,$0008                ;A2D9E6;
-    dw $0015,$000A, $0013,$000B, $0010,$000C, $000E,$000C                ;A2D9F6;
-    dw $000B,$000D, $0009,$000E, $0007,$000E, $0005,$000F                ;A2DA06;
-    dw $0002,$000F, $0000,$0010, $FFFE,$0010, $FFFC,$0010                ;A2DA16;
-    dw $FFFA,$0010, $FFF9,$0011, $FFF7,$0011, $FFF5,$0011                ;A2DA26;
-    dw $FFF4,$0011, $FFF2,$0011, $FFF1,$0011, $FFF0,$0011                ;A2DA36;
-    dw $FFF0,$0011, $FFEF,$0011, $FFEE,$0011, $FFED,$0011                ;A2DA46;
-    dw $FFEC,$0011, $FFEB,$0011, $FFEA,$0011, $FFEA,$0011                ;A2DA56;
-    dw $FFE9,$0011, $FFE8,$0011, $FFE8,$0011, $FFEA,$0013                ;A2DA66;
-    dw $FFEC,$0014, $FFEE,$0016, $FFF0,$0017, $FFF2,$0018                ;A2DA76;
-    dw $FFF5,$0019, $FFF7,$001A, $FFFA,$001B, $FFFC,$001C                ;A2DA86;
-    dw $FFFE,$001D, $8000,$8000                                          ;A2DA96;
+    dw $0000,$0000, $0003,$0000, $0005,$0001, $0007,$0001
+    dw $0009,$0002, $000B,$0002, $000D,$0002, $000E,$0002
+    dw $0010,$0003, $0012,$0003, $0013,$0003, $0015,$0003
+    dw $0016,$0003, $0017,$0003, $0018,$0003, $0019,$0003
+    dw $0019,$0003, $001A,$0003, $001B,$0003, $001C,$0003
+    dw $001D,$0003, $001E,$0003, $001E,$0003, $001F,$0003
+    dw $001F,$0003, $0020,$0003, $0020,$0003, $0020,$0003
+    dw $001E,$0004, $001C,$0006, $001A,$0007, $0017,$0008
+    dw $0015,$000A, $0013,$000B, $0010,$000C, $000E,$000C
+    dw $000B,$000D, $0009,$000E, $0007,$000E, $0005,$000F
+    dw $0002,$000F, $0000,$0010, $FFFE,$0010, $FFFC,$0010
+    dw $FFFA,$0010, $FFF9,$0011, $FFF7,$0011, $FFF5,$0011
+    dw $FFF4,$0011, $FFF2,$0011, $FFF1,$0011, $FFF0,$0011
+    dw $FFF0,$0011, $FFEF,$0011, $FFEE,$0011, $FFED,$0011
+    dw $FFEC,$0011, $FFEB,$0011, $FFEA,$0011, $FFEA,$0011
+    dw $FFE9,$0011, $FFE8,$0011, $FFE8,$0011, $FFEA,$0013
+    dw $FFEC,$0014, $FFEE,$0016, $FFF0,$0017, $FFF2,$0018
+    dw $FFF5,$0019, $FFF7,$001A, $FFFA,$001B, $FFFC,$001C
+    dw $FFFE,$001D, $8000,$8000
 
 ChootFallingPatternData_1_Wide_YDistance:
-    dw $001C                                                             ;A2DA9E;
+    dw $001C
 
 ChootFallingPatternData_2_VeryWide:
 ; Pattern 2 - very wide. X radius 2Dh, Y distance 20h, 73 frames
-    dw $0000,$0000, $0003,$0001, $0006,$0001, $0009,$0002                ;A2DAA0;
-    dw $000C,$0002, $000F,$0003, $0011,$0003, $0014,$0003                ;A2DAB0;
-    dw $0016,$0003, $0018,$0003, $001A,$0003, $001C,$0004                ;A2DAC0;
-    dw $001E,$0004, $0020,$0004, $0022,$0004, $0023,$0004                ;A2DAD0;
-    dw $0024,$0004, $0025,$0004, $0026,$0004, $0028,$0004                ;A2DAE0;
-    dw $0029,$0004, $002A,$0004, $002A,$0004, $002B,$0004                ;A2DAF0;
-    dw $002C,$0003, $002D,$0003, $002D,$0003, $002D,$0003                ;A2DB00;
-    dw $002A,$0005, $0027,$0007, $0024,$0009, $0021,$000A                ;A2DB10;
-    dw $001E,$000B, $001A,$000D, $0017,$000E, $0014,$000F                ;A2DB20;
-    dw $0010,$000F, $000D,$0010, $000A,$0011, $0006,$0011                ;A2DB30;
-    dw $0003,$0012, $0000,$0012, $FFFD,$0013, $FFFB,$0013                ;A2DB40;
-    dw $FFF8,$0013, $FFF6,$0013, $FFF3,$0013, $FFF1,$0014                ;A2DB50;
-    dw $FFEF,$0014, $FFED,$0014, $FFEB,$0014, $FFE9,$0014                ;A2DB60;
-    dw $FFE8,$0014, $FFE7,$0014, $FFE5,$0014, $FFE4,$0014                ;A2DB70;
-    dw $FFE3,$0014, $FFE2,$0014, $FFE1,$0013, $FFE0,$0013                ;A2DB80;
-    dw $FFDF,$0013, $FFDE,$0013, $FFDE,$0013, $FFE1,$0015                ;A2DB90;
-    dw $FFE4,$0017, $FFE7,$0018, $FFEA,$001A, $FFEE,$001B                ;A2DBA0;
-    dw $FFF1,$001C, $FFF4,$001D, $FFF8,$001E, $FFFB,$001F                ;A2DBB0;
-    dw $FFFE,$0020, $8000,$8000                                          ;A2DBC0;
+    dw $0000,$0000, $0003,$0001, $0006,$0001, $0009,$0002
+    dw $000C,$0002, $000F,$0003, $0011,$0003, $0014,$0003
+    dw $0016,$0003, $0018,$0003, $001A,$0003, $001C,$0004
+    dw $001E,$0004, $0020,$0004, $0022,$0004, $0023,$0004
+    dw $0024,$0004, $0025,$0004, $0026,$0004, $0028,$0004
+    dw $0029,$0004, $002A,$0004, $002A,$0004, $002B,$0004
+    dw $002C,$0003, $002D,$0003, $002D,$0003, $002D,$0003
+    dw $002A,$0005, $0027,$0007, $0024,$0009, $0021,$000A
+    dw $001E,$000B, $001A,$000D, $0017,$000E, $0014,$000F
+    dw $0010,$000F, $000D,$0010, $000A,$0011, $0006,$0011
+    dw $0003,$0012, $0000,$0012, $FFFD,$0013, $FFFB,$0013
+    dw $FFF8,$0013, $FFF6,$0013, $FFF3,$0013, $FFF1,$0014
+    dw $FFEF,$0014, $FFED,$0014, $FFEB,$0014, $FFE9,$0014
+    dw $FFE8,$0014, $FFE7,$0014, $FFE5,$0014, $FFE4,$0014
+    dw $FFE3,$0014, $FFE2,$0014, $FFE1,$0013, $FFE0,$0013
+    dw $FFDF,$0013, $FFDE,$0013, $FFDE,$0013, $FFE1,$0015
+    dw $FFE4,$0017, $FFE7,$0018, $FFEA,$001A, $FFEE,$001B
+    dw $FFF1,$001C, $FFF4,$001D, $FFF8,$001E, $FFFB,$001F
+    dw $FFFE,$0020, $8000,$8000
 
 ChootFallingPatternData_2_VeryWide_YDistance:
-    dw $0020                                                             ;A2DBC8;
+    dw $0020
 
 ChootFallingPatternData_3_Slow:
 ; Pattern 3 - slow. X radius 11h, Y distance 1Eh, 93 frames
-    dw $0000,$0000, $0001,$0001, $0002,$0001, $0003,$0002                ;A2DBCA;
-    dw $0004,$0002, $0005,$0002, $0006,$0003, $0007,$0003                ;A2DBDA;
-    dw $0008,$0003, $0009,$0003, $000A,$0003, $000B,$0003                ;A2DBEA;
-    dw $000C,$0003, $000C,$0003, $000D,$0003, $000D,$0003                ;A2DBFA;
-    dw $000D,$0003, $000E,$0003, $000E,$0003, $000E,$0003                ;A2DC0A;
-    dw $000F,$0003, $000F,$0003, $0010,$0003, $0010,$0003                ;A2DC1A;
-    dw $0010,$0003, $0010,$0003, $0011,$0003, $0011,$0003                ;A2DC2A;
-    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003                ;A2DC3A;
-    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003                ;A2DC4A;
-    dw $0011,$0003, $0011,$0003, $0010,$0005, $000F,$0006                ;A2DC5A;
-    dw $000E,$0008, $000C,$0009, $000B,$000A, $000A,$000C                ;A2DC6A;
-    dw $0008,$000D, $0007,$000E, $0006,$000E, $0004,$000F                ;A2DC7A;
-    dw $0003,$0010, $0002,$0010, $0001,$0011, $0000,$0011                ;A2DC8A;
-    dw $FFFF,$0011, $FFFE,$0012, $FFFC,$0012, $FFFC,$0012                ;A2DC9A;
-    dw $FFFB,$0012, $FFFA,$0012, $FFF9,$0012, $FFF8,$0012                ;A2DCAA;
-    dw $FFF7,$0012, $FFF7,$0012, $FFF7,$0012, $FFF6,$0012                ;A2DCBA;
-    dw $FFF6,$0012, $FFF5,$0012, $FFF5,$0012, $FFF4,$0012                ;A2DCCA;
-    dw $FFF4,$0012, $FFF4,$0012, $FFF3,$0012, $FFF3,$0012                ;A2DCDA;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012                ;A2DCEA;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012                ;A2DCFA;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF4,$0014                ;A2DD0A;
-    dw $FFF5,$0016, $FFF6,$0017, $FFF7,$0019, $FFF9,$001A                ;A2DD1A;
-    dw $FFFA,$001B, $FFFB,$001C, $FFFD,$001D, $FFFE,$001E                ;A2DD2A;
-    dw $FFFF,$001F, $8000,$8000                                          ;A2DD3A;
+    dw $0000,$0000, $0001,$0001, $0002,$0001, $0003,$0002
+    dw $0004,$0002, $0005,$0002, $0006,$0003, $0007,$0003
+    dw $0008,$0003, $0009,$0003, $000A,$0003, $000B,$0003
+    dw $000C,$0003, $000C,$0003, $000D,$0003, $000D,$0003
+    dw $000D,$0003, $000E,$0003, $000E,$0003, $000E,$0003
+    dw $000F,$0003, $000F,$0003, $0010,$0003, $0010,$0003
+    dw $0010,$0003, $0010,$0003, $0011,$0003, $0011,$0003
+    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003
+    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003
+    dw $0011,$0003, $0011,$0003, $0010,$0005, $000F,$0006
+    dw $000E,$0008, $000C,$0009, $000B,$000A, $000A,$000C
+    dw $0008,$000D, $0007,$000E, $0006,$000E, $0004,$000F
+    dw $0003,$0010, $0002,$0010, $0001,$0011, $0000,$0011
+    dw $FFFF,$0011, $FFFE,$0012, $FFFC,$0012, $FFFC,$0012
+    dw $FFFB,$0012, $FFFA,$0012, $FFF9,$0012, $FFF8,$0012
+    dw $FFF7,$0012, $FFF7,$0012, $FFF7,$0012, $FFF6,$0012
+    dw $FFF6,$0012, $FFF5,$0012, $FFF5,$0012, $FFF4,$0012
+    dw $FFF4,$0012, $FFF4,$0012, $FFF3,$0012, $FFF3,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF4,$0014
+    dw $FFF5,$0016, $FFF6,$0017, $FFF7,$0019, $FFF9,$001A
+    dw $FFFA,$001B, $FFFB,$001C, $FFFD,$001D, $FFFE,$001E
+    dw $FFFF,$001F, $8000,$8000
 
 ChootFallingPatternData_3_Slow_YDistance:
-    dw $001E                                                             ;A2DD42;
+    dw $001E
 
 ChootFallingPatternData_4_VerySlow:
 ; Pattern 4 - very slow. X radius 11h, Y distance 1Eh, 133 frames
-    dw $0000,$0000, $0001,$0001, $0002,$0001, $0003,$0002                ;A2DD44;
-    dw $0004,$0002, $0005,$0002, $0006,$0003, $0007,$0003                ;A2DD54;
-    dw $0008,$0003, $0009,$0003, $000A,$0003, $000B,$0003                ;A2DD64;
-    dw $000C,$0003, $000C,$0003, $000D,$0003, $000D,$0003                ;A2DD74;
-    dw $000D,$0003, $000E,$0003, $000E,$0003, $000E,$0003                ;A2DD84;
-    dw $000F,$0003, $000F,$0003, $0010,$0003, $0010,$0003                ;A2DD94;
-    dw $0010,$0003, $0010,$0003, $0011,$0003, $0011,$0003                ;A2DDA4;
-    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003                ;A2DDB4;
-    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003                ;A2DDC4;
-    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003                ;A2DDD4;
-    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003                ;A2DDE4;
-    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003                ;A2DDF4;
-    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003                ;A2DE04;
-    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003                ;A2DE14;
-    dw $0011,$0003, $0011,$0003, $0010,$0005, $000F,$0006                ;A2DE24;
-    dw $000E,$0008, $000C,$0009, $000B,$000A, $000A,$000C                ;A2DE34;
-    dw $0008,$000D, $0007,$000E, $0006,$000E, $0004,$000F                ;A2DE44;
-    dw $0003,$0010, $0002,$0010, $0001,$0011, $0000,$0011                ;A2DE54;
-    dw $FFFF,$0011, $FFFE,$0012, $FFFC,$0012, $FFFC,$0012                ;A2DE64;
-    dw $FFFB,$0012, $FFFA,$0012, $FFF9,$0012, $FFF8,$0012                ;A2DE74;
-    dw $FFF7,$0012, $FFF7,$0012, $FFF7,$0012, $FFF6,$0012                ;A2DE84;
-    dw $FFF6,$0012, $FFF5,$0012, $FFF5,$0012, $FFF4,$0012                ;A2DE94;
-    dw $FFF4,$0012, $FFF4,$0012, $FFF3,$0012, $FFF3,$0012                ;A2DEA4;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012                ;A2DEB4;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012                ;A2DEC4;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012                ;A2DED4;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012                ;A2DEE4;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012                ;A2DEF4;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012                ;A2DF04;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012                ;A2DF14;
-    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF4,$0014                ;A2DF24;
-    dw $FFF5,$0016, $FFF6,$0017, $FFF7,$0019, $FFF9,$001A                ;A2DF34;
-    dw $FFFA,$001B, $FFFB,$001C, $FFFD,$001D, $FFFE,$001E                ;A2DF44;
-    dw $FFFF,$001F, $8000,$8000                                          ;A2DF54;
+    dw $0000,$0000, $0001,$0001, $0002,$0001, $0003,$0002
+    dw $0004,$0002, $0005,$0002, $0006,$0003, $0007,$0003
+    dw $0008,$0003, $0009,$0003, $000A,$0003, $000B,$0003
+    dw $000C,$0003, $000C,$0003, $000D,$0003, $000D,$0003
+    dw $000D,$0003, $000E,$0003, $000E,$0003, $000E,$0003
+    dw $000F,$0003, $000F,$0003, $0010,$0003, $0010,$0003
+    dw $0010,$0003, $0010,$0003, $0011,$0003, $0011,$0003
+    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003
+    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003
+    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003
+    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003
+    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003
+    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003
+    dw $0011,$0003, $0011,$0003, $0011,$0003, $0011,$0003
+    dw $0011,$0003, $0011,$0003, $0010,$0005, $000F,$0006
+    dw $000E,$0008, $000C,$0009, $000B,$000A, $000A,$000C
+    dw $0008,$000D, $0007,$000E, $0006,$000E, $0004,$000F
+    dw $0003,$0010, $0002,$0010, $0001,$0011, $0000,$0011
+    dw $FFFF,$0011, $FFFE,$0012, $FFFC,$0012, $FFFC,$0012
+    dw $FFFB,$0012, $FFFA,$0012, $FFF9,$0012, $FFF8,$0012
+    dw $FFF7,$0012, $FFF7,$0012, $FFF7,$0012, $FFF6,$0012
+    dw $FFF6,$0012, $FFF5,$0012, $FFF5,$0012, $FFF4,$0012
+    dw $FFF4,$0012, $FFF4,$0012, $FFF3,$0012, $FFF3,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF3,$0012
+    dw $FFF3,$0012, $FFF3,$0012, $FFF3,$0012, $FFF4,$0014
+    dw $FFF5,$0016, $FFF6,$0017, $FFF7,$0019, $FFF9,$001A
+    dw $FFFA,$001B, $FFFB,$001C, $FFFD,$001D, $FFFE,$001E
+    dw $FFFF,$001F, $8000,$8000
 
 ChootFallingPatternData_4_VerySlow_YDistance:
-    dw $001E                                                             ;A2DF5C;
+    dw $001E
 
 
 ;;; $DF5E: Falling pattern pointers ;;;
 ChootFallingPatternDataPointers:
 ; Last entries are garbage pointers
   .offsets:
-    dw ChootFallingPatternData_0_Normal                                  ;A2DF5E;
-    dw ChootFallingPatternData_1_Wide                                    ;A2DF60;
-    dw ChootFallingPatternData_2_VeryWide                                ;A2DF62;
-    dw ChootFallingPatternData_3_Slow                                    ;A2DF64;
-    dw ChootFallingPatternData_4_VerySlow                                ;A2DF66;
-    dw ChootFallingPatternDataPointers_offsets                           ;A2DF68;
+    dw ChootFallingPatternData_0_Normal
+    dw ChootFallingPatternData_1_Wide
+    dw ChootFallingPatternData_2_VeryWide
+    dw ChootFallingPatternData_3_Slow
+    dw ChootFallingPatternData_4_VerySlow
+    dw ChootFallingPatternDataPointers_offsets
   .YDistance:
-    dw ChootFallingPatternData_0_Normal_YDistance                        ;A2DF6A;
-    dw ChootFallingPatternData_1_Wide_YDistance                          ;A2DF6C;
-    dw ChootFallingPatternData_2_VeryWide_YDistance                      ;A2DF6E;
-    dw ChootFallingPatternData_3_Slow_YDistance                          ;A2DF70;
-    dw ChootFallingPatternData_4_VerySlow_YDistance                      ;A2DF72;
-    dw ChootFallingPatternDataPointers_offsets                           ;A2DF74;
+    dw ChootFallingPatternData_0_Normal_YDistance
+    dw ChootFallingPatternData_1_Wide_YDistance
+    dw ChootFallingPatternData_2_VeryWide_YDistance
+    dw ChootFallingPatternData_3_Slow_YDistance
+    dw ChootFallingPatternData_4_VerySlow_YDistance
+    dw ChootFallingPatternDataPointers_offsets
 
 
 ;;; $DF76: Initialisation AI - enemy $D3BF (choot) ;;;
 InitAI_Choot:
-    LDX.W EnemyIndex                                                     ;A2DF76;
-    LDA.W #InstList_Choot_Idle                                           ;A2DF79;
-    JSR.W SetChootInstList                                               ;A2DF7C;
-    LDA.W #Function_Choot_WaitForSamusToGetNear                          ;A2DF7F;
-    STA.W Choot.function,X                                               ;A2DF82;
-    LDA.W Enemy.XPosition,X                                              ;A2DF85;
-    STA.L Choot.spawnXPosition,X                                         ;A2DF88;
-    LDA.W Enemy.YPosition,X                                              ;A2DF8C;
-    STA.L Choot.spawnYPosition,X                                         ;A2DF8F;
-    LDA.W Enemy.init0+1,X                                                ;A2DF93;
-    AND.W #$00FF                                                         ;A2DF96;
-    ASL                                                                  ;A2DF99;
-    TAY                                                                  ;A2DF9A;
-    LDA.W ChootFallingPatternDataPointers_offsets,Y                      ;A2DF9B;
-    STA.W Choot.fallingPatternPointer,X                                  ;A2DF9E;
-    LDA.W ChootFallingPatternDataPointers_YDistance,Y                    ;A2DFA1;
-    TAY                                                                  ;A2DFA4;
-    LDA.W $0000,Y                                                        ;A2DFA5;
-    STA.W Choot.fallingPatternYDistance,X                                ;A2DFA8;
-    JSR.W CalculateChootJumpHeight                                       ;A2DFAB;
-    JSR.W CalculateChootInitialJumpSpeed                                 ;A2DFAE;
-    LDA.B DP_Temp18                                                      ;A2DFB1; >_<
-    LDA.L Choot.spawnYPosition,X                                         ;A2DFB3;
-    SEC                                                                  ;A2DFB7;
-    SBC.B DP_Temp12                                                      ;A2DFB8;
-    STA.L Choot.initialFallingYPosition,X                                ;A2DFBA;
-    LDA.L Choot.spawnXPosition,X                                         ;A2DFBE;
-    STA.L Choot.initialFallingXPosition,X                                ;A2DFC2;
-    LDA.L Choot.initialYSpeedTableIndex,X                                ;A2DFC6;
-    STA.W Choot.YSpeedTableIndex,X                                       ;A2DFCA;
-    RTL                                                                  ;A2DFCD;
+    LDX.W EnemyIndex
+    LDA.W #InstList_Choot_Idle
+    JSR SetChootInstList
+    LDA.W #Function_Choot_WaitForSamusToGetNear : STA.W Choot.function,X
+    LDA.W Enemy.XPosition,X : STA.L Choot.spawnXPosition,X
+    LDA.W Enemy.YPosition,X : STA.L Choot.spawnYPosition,X
+    LDA.W Enemy.init0+1,X : AND.W #$00FF : ASL : TAY
+    LDA.W ChootFallingPatternDataPointers_offsets,Y : STA.W Choot.fallingPatternPointer,X
+    LDA.W ChootFallingPatternDataPointers_YDistance,Y : TAY
+    LDA.W $0000,Y : STA.W Choot.fallingPatternYDistance,X
+    JSR CalculateChootJumpHeight
+    JSR CalculateChootInitialJumpSpeed
+    LDA.B DP_Temp18 ; >_<
+    LDA.L Choot.spawnYPosition,X : SEC : SBC.B DP_Temp12 : STA.L Choot.initialFallingYPosition,X
+    LDA.L Choot.spawnXPosition,X : STA.L Choot.initialFallingXPosition,X
+    LDA.L Choot.initialYSpeedTableIndex,X : STA.W Choot.YSpeedTableIndex,X
+    RTL
 
 
 ;;; $DFCE: Calculate choot jump height ;;;
 CalculateChootJumpHeight:
 ;; Returns:
 ;;     $12: [enemy parameter 1 low] (number of falling pattern loops) * [enemy falling pattern Y distance]
-    PHP                                                                  ;A2DFCE;
-    SEP #$20                                                             ;A2DFCF;
-    LDA.W Enemy.init0,X                                                  ;A2DFD1;
-    STA.W $4202                                                          ;A2DFD4;
-    LDA.W Choot.fallingPatternYDistance,X                                ;A2DFD7;
-    STA.W $4203                                                          ;A2DFDA;
-    NOP                                                                  ;A2DFDD;
-    NOP                                                                  ;A2DFDE;
-    NOP                                                                  ;A2DFDF;
-    REP #$20                                                             ;A2DFE0;
-    LDA.W $4216                                                          ;A2DFE2;
-    STA.B DP_Temp12                                                      ;A2DFE5;
-    PLP                                                                  ;A2DFE7;
-    RTS                                                                  ;A2DFE8;
+    PHP
+    SEP #$20
+    LDA.W Enemy.init0,X : STA.W $4202
+    LDA.W Choot.fallingPatternYDistance,X : STA.W $4203
+    NOP #3
+    REP #$20
+    LDA.W $4216 : STA.B DP_Temp12
+    PLP
+    RTS
 
 
 ;;; $DFE9: Calculate initial choot jump speed ;;;
@@ -10424,1089 +8581,854 @@ CalculateChootInitialJumpSpeed:
 ;;     $12: Jump height. Unit px
 
 ; Calculates the initial quadratic speed table index required to make a jump
-    STZ.B DP_Temp14                                                      ;A2DFE9;
-    STZ.B DP_Temp16                                                      ;A2DFEB;
-    STZ.B DP_Temp18                                                      ;A2DFED;
+    STZ.B DP_Temp14 : STZ.B DP_Temp16 : STZ.B DP_Temp18
 
   .loop:
-    LDA.B DP_Temp18                                                      ;A2DFEF;
-    CLC                                                                  ;A2DFF1;
-    ADC.W #$0200                                                         ;A2DFF2;
-    STA.B DP_Temp18                                                      ;A2DFF5;
-    AND.W #$FF00                                                         ;A2DFF7;
-    XBA                                                                  ;A2DFFA;
-    ASL                                                                  ;A2DFFB;
-    ASL                                                                  ;A2DFFC;
-    ASL                                                                  ;A2DFFD;
-    TAY                                                                  ;A2DFFE;
-    LDA.B DP_Temp14                                                      ;A2DFFF;
-    CLC                                                                  ;A2E001;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A2E002;
-    BCC +                                                                ;A2E005;
-    INC.B DP_Temp16                                                      ;A2E007;
+    LDA.B DP_Temp18 : CLC : ADC.W #$0200 : STA.B DP_Temp18
+    AND.W #$FF00 : XBA : ASL #3 : TAY
+    LDA.B DP_Temp14 : CLC : ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y : BCC +
+    INC.B DP_Temp16
 
-+   STA.B DP_Temp14                                                      ;A2E009;
-    LDA.B DP_Temp16                                                      ;A2E00B;
-    CLC                                                                  ;A2E00D;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A2E00E;
-    STA.B DP_Temp16                                                      ;A2E011;
-    CMP.B DP_Temp12                                                      ;A2E013;
-    BMI .loop                                                            ;A2E015;
-    LDA.B DP_Temp18                                                      ;A2E017;
-    STA.L Choot.initialYSpeedTableIndex,X                                ;A2E019;
-    RTS                                                                  ;A2E01D;
++   STA.B DP_Temp14
+    LDA.B DP_Temp16 : CLC : ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y : STA.B DP_Temp16
+    CMP.B DP_Temp12 : BMI .loop
+    LDA.B DP_Temp18 : STA.L Choot.initialYSpeedTableIndex,X
+    RTS
 
 
 ;;; $E01E: Set choot instruction list ;;;
 SetChootInstList:
 ;; Parameters:
 ;;     A: Instruction list pointer
-    LDX.W EnemyIndex                                                     ;A2E01E;
-    STA.W Enemy.instList,X                                               ;A2E021;
-    LDA.W #$0001                                                         ;A2E024;
-    STA.W Enemy.instTimer,X                                              ;A2E027;
-    STZ.W Enemy.loopCounter,X                                            ;A2E02A;
-    RTS                                                                  ;A2E02D;
+    LDX.W EnemyIndex
+    STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTS
 
 
 ;;; $E02E: Main AI - enemy $D3BF (choot) ;;;
 MainAI_Choot:
-    LDX.W EnemyIndex                                                     ;A2E02E;
-    JSR.W (Choot.function,X)                                             ;A2E031;
-    RTL                                                                  ;A2E034;
+    LDX.W EnemyIndex
+    JSR.W (Choot.function,X)
+    RTL
 
 
 ;;; $E035: Choot function - wait for Samus to get near ;;;
 Function_Choot_WaitForSamusToGetNear:
-    LDX.W EnemyIndex                                                     ;A2E035;
-    LDA.W #$0050                                                         ;A2E038;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2E03B;
-    BEQ .return                                                          ;A2E03F;
-    LDA.W Enemy.init1,X                                                  ;A2E041;
-    STA.L Choot.jumpDelayTimer,X                                         ;A2E044;
-    LDA.W #Function_Choot_PrepareToJump                                  ;A2E048;
-    STA.W Choot.function,X                                               ;A2E04B;
+    LDX.W EnemyIndex
+    LDA.W #$0050
+    JSL IsSamusWithinAPixelColumnsOfEnemy
+    BEQ .return
+    LDA.W Enemy.init1,X : STA.L Choot.jumpDelayTimer,X
+    LDA.W #Function_Choot_PrepareToJump : STA.W Choot.function,X
 
   .return:
-    RTS                                                                  ;A2E04E;
+    RTS
 
 
 ;;; $E04F: Choot function - prepare to jump ;;;
 Function_Choot_PrepareToJump:
-    LDX.W EnemyIndex                                                     ;A2E04F;
-    LDA.L Choot.jumpDelayTimer,X                                         ;A2E052;
-    DEC                                                                  ;A2E056;
-    STA.L Choot.jumpDelayTimer,X                                         ;A2E057;
-    BPL .return                                                          ;A2E05B;
-    LDA.W #InstList_Choot_Jumping                                        ;A2E05D;
-    JSR.W SetChootInstList                                               ;A2E060;
-    LDA.W #Function_Choot_Jumping                                        ;A2E063;
-    STA.W Choot.function,X                                               ;A2E066;
+    LDX.W EnemyIndex
+    LDA.L Choot.jumpDelayTimer,X : DEC : STA.L Choot.jumpDelayTimer,X : BPL .return
+    LDA.W #InstList_Choot_Jumping
+    JSR SetChootInstList
+    LDA.W #Function_Choot_Jumping : STA.W Choot.function,X
 
   .return:
-    RTS                                                                  ;A2E069;
+    RTS
 
 
 ;;; $E06A: Choot function - jumping ;;;
 Function_Choot_Jumping:
-    LDX.W EnemyIndex                                                     ;A2E06A;
-    LDA.W Choot.YSpeedTableIndex,X                                       ;A2E06D;
-    AND.W #$FF00                                                         ;A2E070;
-    XBA                                                                  ;A2E073;
-    ASL                                                                  ;A2E074;
-    ASL                                                                  ;A2E075;
-    ASL                                                                  ;A2E076;
-    TAY                                                                  ;A2E077;
-    LDA.W Enemy.YSubPosition,X                                           ;A2E078;
-    CLC                                                                  ;A2E07B;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y                  ;A2E07C;
-    BCC +                                                                ;A2E07F;
-    INC.W Enemy.YPosition,X                                              ;A2E081;
+    LDX.W EnemyIndex
+    LDA.W Choot.YSpeedTableIndex,X : AND.W #$FF00 : XBA : ASL #3 : TAY
+    LDA.W Enemy.YSubPosition,X : CLC : ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y : BCC +
+    INC.W Enemy.YPosition,X
 
-+   STA.W Enemy.YSubPosition,X                                           ;A2E084;
-    LDA.W Enemy.YPosition,X                                              ;A2E087;
-    CLC                                                                  ;A2E08A;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y                  ;A2E08B;
-    STA.W Enemy.YPosition,X                                              ;A2E08E;
-    LDA.W Choot.YSpeedTableIndex,X                                       ;A2E091;
-    SEC                                                                  ;A2E094;
-    SBC.W #$0200                                                         ;A2E095;
-    STA.W Choot.YSpeedTableIndex,X                                       ;A2E098;
-    BPL .return                                                          ;A2E09B;
-    LDA.L Choot.initialFallingXPosition,X                                ;A2E09D;
-    STA.W Enemy.XPosition,X                                              ;A2E0A1;
-    STA.L Choot.fallingXOrigin,X                                         ;A2E0A4;
-    LDA.L Choot.initialFallingYPosition,X                                ;A2E0A8;
-    STA.W Enemy.YPosition,X                                              ;A2E0AC;
-    STA.L Choot.fallingYOrigin,X                                         ;A2E0AF;
-    STZ.W Choot.fallingPatternIndex,X                                    ;A2E0B3;
-    LDA.W Enemy.init0,X                                                  ;A2E0B6;
-    AND.W #$00FF                                                         ;A2E0B9;
-    DEC                                                                  ;A2E0BC;
-    STA.W Choot.fallingPatternLoopCounter,X                              ;A2E0BD;
-    LDA.W #InstList_Choot_Falling                                        ;A2E0C0;
-    JSR.W SetChootInstList                                               ;A2E0C3;
-    LDA.W #Function_Choot_Falling                                        ;A2E0C6;
-    STA.W Choot.function,X                                               ;A2E0C9;
++   STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : CLC : ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y : STA.W Enemy.YPosition,X
+    LDA.W Choot.YSpeedTableIndex,X : SEC : SBC.W #$0200 : STA.W Choot.YSpeedTableIndex,X : BPL .return
+    LDA.L Choot.initialFallingXPosition,X : STA.W Enemy.XPosition,X : STA.L Choot.fallingXOrigin,X
+    LDA.L Choot.initialFallingYPosition,X : STA.W Enemy.YPosition,X : STA.L Choot.fallingYOrigin,X
+    STZ.W Choot.fallingPatternIndex,X
+    LDA.W Enemy.init0,X : AND.W #$00FF : DEC : STA.W Choot.fallingPatternLoopCounter,X
+    LDA.W #InstList_Choot_Falling
+    JSR SetChootInstList
+    LDA.W #Function_Choot_Falling : STA.W Choot.function,X
 
   .return:
-    RTS                                                                  ;A2E0CC;
+    RTS
 
 
 ;;; $E0CD: Choot function - falling ;;;
 Function_Choot_Falling:
-    LDX.W EnemyIndex                                                     ;A2E0CD;
-    LDA.W Choot.fallingPatternIndex,X                                    ;A2E0D0;
-    AND.W #$FF00                                                         ;A2E0D3;
-    XBA                                                                  ;A2E0D6;
-    ASL                                                                  ;A2E0D7;
-    ASL                                                                  ;A2E0D8;
-    CLC                                                                  ;A2E0D9;
-    ADC.W Choot.fallingPatternPointer,X                                  ;A2E0DA;
-    TAY                                                                  ;A2E0DD;
-    LDA.W $0000,Y                                                        ;A2E0DE;
-    CMP.W #$8000                                                         ;A2E0E1;
-    BNE +                                                                ;A2E0E4;
-    LDA.L Choot.fallingYOrigin,X                                         ;A2E0E6;
-    CLC                                                                  ;A2E0EA;
-    ADC.W Choot.fallingPatternYDistance,X                                ;A2E0EB;
-    STA.L Choot.fallingYOrigin,X                                         ;A2E0EE;
-    STZ.W Choot.fallingPatternIndex,X                                    ;A2E0F2;
-    DEC.W Choot.fallingPatternLoopCounter,X                              ;A2E0F5;
-    BPL .return                                                          ;A2E0F8;
-    LDA.L Choot.initialYSpeedTableIndex,X                                ;A2E0FA;
-    STA.W Choot.YSpeedTableIndex,X                                       ;A2E0FE;
-    LDA.L Choot.spawnXPosition,X                                         ;A2E101;
-    STA.W Enemy.XPosition,X                                              ;A2E105;
-    STZ.W Enemy.XSubPosition,X                                           ;A2E108;
-    LDA.L Choot.spawnYPosition,X                                         ;A2E10B;
-    STA.W Enemy.YPosition,X                                              ;A2E10F;
-    STZ.W Enemy.YSubPosition,X                                           ;A2E112;
-    LDA.W #InstList_Choot_Idle                                           ;A2E115;
-    JSR.W SetChootInstList                                               ;A2E118;
-    LDA.W #Function_Choot_WaitForSamusToGetNear                          ;A2E11B;
-    STA.W Choot.function,X                                               ;A2E11E;
-    BRA .return                                                          ;A2E121;
+    LDX.W EnemyIndex
+    LDA.W Choot.fallingPatternIndex,X : AND.W #$FF00 : XBA : ASL #2
+    CLC : ADC.W Choot.fallingPatternPointer,X : TAY
+    LDA.W $0000,Y : CMP.W #$8000 : BNE +
+    LDA.L Choot.fallingYOrigin,X : CLC : ADC.W Choot.fallingPatternYDistance,X : STA.L Choot.fallingYOrigin,X
+    STZ.W Choot.fallingPatternIndex,X
+    DEC.W Choot.fallingPatternLoopCounter,X : BPL .return
+    LDA.L Choot.initialYSpeedTableIndex,X : STA.W Choot.YSpeedTableIndex,X
+    LDA.L Choot.spawnXPosition,X : STA.W Enemy.XPosition,X
+    STZ.W Enemy.XSubPosition,X
+    LDA.L Choot.spawnYPosition,X : STA.W Enemy.YPosition,X
+    STZ.W Enemy.YSubPosition,X
+    LDA.W #InstList_Choot_Idle
+    JSR SetChootInstList
+    LDA.W #Function_Choot_WaitForSamusToGetNear : STA.W Choot.function,X
+    BRA .return
 
-+   LDA.L Choot.fallingXOrigin,X                                         ;A2E123;
-    CLC                                                                  ;A2E127;
-    ADC.W $0000,Y                                                        ;A2E128;
-    STA.W Enemy.XPosition,X                                              ;A2E12B;
-    LDA.L Choot.fallingYOrigin,X                                         ;A2E12E;
-    CLC                                                                  ;A2E132;
-    ADC.W $0002,Y                                                        ;A2E133;
-    STA.W Enemy.YPosition,X                                              ;A2E136;
-    LDA.W Choot.fallingPatternIndex,X                                    ;A2E139;
-    CLC                                                                  ;A2E13C;
-    ADC.W #$0100                                                         ;A2E13D;
-    STA.W Choot.fallingPatternIndex,X                                    ;A2E140;
++   LDA.L Choot.fallingXOrigin,X : CLC : ADC.W $0000,Y : STA.W Enemy.XPosition,X
+    LDA.L Choot.fallingYOrigin,X : CLC : ADC.W $0002,Y : STA.W Enemy.YPosition,X
+    LDA.W Choot.fallingPatternIndex,X : CLC : ADC.W #$0100 : STA.W Choot.fallingPatternIndex,X
 
   .return:
-    RTS                                                                  ;A2E143;
+    RTS
 
 
 ;;; $E144: RTL ;;;
 RTL_A2E144:
-    RTL                                                                  ;A2E144;
+    RTL
 
 
 ;;; $E145: RTL ;;;
 RTL_A2E145:
-    RTL                                                                  ;A2E145;
+    RTL
 
 
 ;;; $E146: Choot spritemaps ;;;
 Spritemap_Choot_0:
-    dw $0004                                                             ;A2E146;
+    dw $0004
     %spritemapEntry(0, $1F0, $FC, 0, 1, 2, 0, $107)
     %spritemapEntry(0, $1F8, $FC, 0, 1, 2, 0, $106)
     %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $107)
     %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $106)
 
 Spritemap_Choot_1:
-    dw $0002                                                             ;A2E15C;
+    dw $0002
     %spritemapEntry(1, $43F0, $F8, 0, 1, 2, 0, $102)
     %spritemapEntry(1, $4200, $F8, 0, 0, 2, 0, $102)
 
 Spritemap_Choot_2:
-    dw $0001                                                             ;A2E168;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Choot_3:
-    dw $0002                                                             ;A2E16F;
+    dw $0002
     %spritemapEntry(1, $43F0, $F8, 0, 1, 2, 0, $104)
     %spritemapEntry(1, $4200, $F8, 0, 0, 2, 0, $104)
 
 
 ;;; $E17B: Palette - enemy $D3FF (gripper) ;;;
 Palette_GRipper:
-    dw $3800,$4B9C,$3694,$0929,$0042,$3B18,$2A52,$19AD                   ;A2E17B;
-    dw $116B,$7F5A,$7EC0,$6DE0,$54E0,$001D,$0014,$000A                   ;A2E18B;
+    dw $3800,$4B9C,$3694,$0929,$0042,$3B18,$2A52,$19AD
+    dw $116B,$7F5A,$7EC0,$6DE0,$54E0,$001D,$0014,$000A
 
 
 ;;; $E19B: Instruction list - moving left ;;;
 InstList_GRipper_MovingLeft:
-    dw $0008,Spritemap_GRipper_Ripper2_MovingLeft_0                      ;A2E19B;
-    dw $0007,Spritemap_GRipper_Ripper2_MovingLeft_1                      ;A2E19F;
-    dw $0008,Spritemap_GRipper_Ripper2_MovingLeft_0                      ;A2E1A3;
-    dw $0007,Spritemap_GRipper_Ripper2_MovingLeft_2                      ;A2E1A7;
-    dw Instruction_Common_GotoY                                          ;A2E1AB;
-    dw InstList_GRipper_MovingLeft                                       ;A2E1AD;
+    dw $0008,Spritemap_GRipper_Ripper2_MovingLeft_0
+    dw $0007,Spritemap_GRipper_Ripper2_MovingLeft_1
+    dw $0008,Spritemap_GRipper_Ripper2_MovingLeft_0
+    dw $0007,Spritemap_GRipper_Ripper2_MovingLeft_2
+    dw Instruction_Common_GotoY
+    dw InstList_GRipper_MovingLeft
 
 
 ;;; $E1AF: Instruction list - moving right ;;;
 InstList_GRipper_MovingRight:
-    dw $0008,Spritemap_GRipper_Ripper2_MovingRight_0                     ;A2E1AF;
-    dw $0007,Spritemap_GRipper_Ripper2_MovingRight_1                     ;A2E1B3;
-    dw $0008,Spritemap_GRipper_Ripper2_MovingRight_0                     ;A2E1B7;
-    dw $0007,Spritemap_GRipper_Ripper2_MovingRight_2                     ;A2E1BB;
-    dw Instruction_Common_GotoY                                          ;A2E1BF;
-    dw InstList_GRipper_MovingRight                                      ;A2E1C1;
+    dw $0008,Spritemap_GRipper_Ripper2_MovingRight_0
+    dw $0007,Spritemap_GRipper_Ripper2_MovingRight_1
+    dw $0008,Spritemap_GRipper_Ripper2_MovingRight_0
+    dw $0007,Spritemap_GRipper_Ripper2_MovingRight_2
+    dw Instruction_Common_GotoY
+    dw InstList_GRipper_MovingRight
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E1C3: Unused. Instruction list - frozen - facing left ;;;
 UNUSED_InstList_GRipper_FacingLeft_A2E1C3:
-    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingLeft                 ;A2E1C3;
-    dw Instruction_Common_GotoY                                          ;A2E1C7;
-    dw UNUSED_InstList_GRipper_FacingLeft_A2E1C3                         ;A2E1C9;
+    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingLeft
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_GRipper_FacingLeft_A2E1C3
 
 
 ;;; $E1CB: Unused. Instruction list - frozen - facing right ;;;
 UNUSED_InstList_GRipper_FacingRight_A2E1CB:
-    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingRight                ;A2E1CB;
-    dw Instruction_Common_GotoY                                          ;A2E1CF;
-    dw UNUSED_InstList_GRipper_FacingRight_A2E1CB                        ;A2E1D1;
+    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingRight
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_GRipper_FacingRight_A2E1CB
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E1D3: Initialisation AI - enemy $D3FF (gripper) ;;;
 InitAI_GRipper:
-    LDX.W EnemyIndex                                                     ;A2E1D3;
-    LDA.W Enemy.instList,X                                               ;A2E1D6;
-    AND.W #$00FF                                                         ;A2E1D9;
-    ASL                                                                  ;A2E1DC;
-    ASL                                                                  ;A2E1DD;
-    ASL                                                                  ;A2E1DE;
-    STA.W Ripper.XSpeedTableIndex,X                                      ;A2E1DF;
-    TAY                                                                  ;A2E1E2;
-    LDA.W Enemy.instList,X                                               ;A2E1E3;
-    BIT.W #$FEFF                                                         ;A2E1E6;
-    BEQ .negateSpeed                                                     ;A2E1E9;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A2E1EB;
-    STA.W Ripper.XVelocity,X                                             ;A2E1EE;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A2E1F1;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E1F4;
-    BRA +                                                                ;A2E1F7;
+    LDX.W EnemyIndex
+    LDA.W Enemy.instList,X : AND.W #$00FF : ASL #3 : STA.W Ripper.XSpeedTableIndex,X
+    TAY
+    LDA.W Enemy.instList,X : BIT.W #$FEFF : BEQ .negateSpeed
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W Ripper.XSubVelocity,X
+    BRA +
 
   .negateSpeed:
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A2E1F9;
-    STA.W Ripper.XVelocity,X                                             ;A2E1FC;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2E1FF;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E202;
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W Ripper.XSubVelocity,X
 
-+   LDY.W #InstList_GRipper_MovingLeft                                   ;A2E205;
-    LDA.W Ripper.XVelocity,X                                             ;A2E208;
-    BMI .setMinMaxX                                                      ;A2E20B;
-    LDY.W #InstList_GRipper_MovingRight                                  ;A2E20D;
++   LDY.W #InstList_GRipper_MovingLeft
+    LDA.W Ripper.XVelocity,X : BMI .setMinMaxX
+    LDY.W #InstList_GRipper_MovingRight
 
   .setMinMaxX:
-    TYA                                                                  ;A2E210;
-    STA.W Enemy.instList,X                                               ;A2E211;
-    LDA.W Enemy.init0,X                                                  ;A2E214;
-    STA.W GRipper.minimumXPosition,X                                     ;A2E217;
-    LDA.W Enemy.init1,X                                                  ;A2E21A;
-    STA.W GRipper.maximumXPosition,X                                     ;A2E21D;
-    RTL                                                                  ;A2E220;
+    TYA : STA.W Enemy.instList,X
+    LDA.W Enemy.init0,X : STA.W GRipper.minimumXPosition,X
+    LDA.W Enemy.init1,X : STA.W GRipper.maximumXPosition,X
+    RTL
 
 
 ;;; $E221: Main AI - enemy $D3FF (gripper) ;;;
 MainAI_GRipper:
-    LDX.W EnemyIndex                                                     ;A2E221;
-    LDA.W Ripper.XSubVelocity,X                                          ;A2E224;
-    STA.B DP_Temp12                                                      ;A2E227;
-    LDA.W Ripper.XVelocity,X                                             ;A2E229;
-    STA.B DP_Temp14                                                      ;A2E22C;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A2E22E;
-    BCS .collidedWithWall                                                ;A2E232;
-    JSR.W CheckIfGRipperMovedLeftTooFar                                  ;A2E234;
-    BCS .collidedWithWall                                                ;A2E237;
-    JSR.W CheckIfGRipperMovedRightTooFar                                 ;A2E239;
-    BCS .collidedWithWall                                                ;A2E23C;
-    RTL                                                                  ;A2E23E;
+    LDX.W EnemyIndex
+    LDA.W Ripper.XSubVelocity,X : STA.B DP_Temp12
+    LDA.W Ripper.XVelocity,X : STA.B DP_Temp14
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCS .collidedWithWall
+    JSR CheckIfGRipperMovedLeftTooFar
+    BCS .collidedWithWall
+    JSR CheckIfGRipperMovedRightTooFar
+    BCS .collidedWithWall
+    RTL
 
   .collidedWithWall:
-    LDX.W EnemyIndex                                                     ;A2E23F;
-    LDA.W Ripper.XSpeedTableIndex,X                                      ;A2E242;
-    TAY                                                                  ;A2E245;
-    LDA.W Ripper.XVelocity,X                                             ;A2E246;
-    BPL .movingLeft                                                      ;A2E249;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A2E24B;
-    STA.W Ripper.XVelocity,X                                             ;A2E24E;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A2E251;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E254;
-    LDY.W #InstList_GRipper_MovingRight                                  ;A2E257;
-    BRA .setInstList                                                     ;A2E25A;
+    LDX.W EnemyIndex
+    LDA.W Ripper.XSpeedTableIndex,X : TAY
+    LDA.W Ripper.XVelocity,X : BPL .movingLeft
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W Ripper.XSubVelocity,X
+    LDY.W #InstList_GRipper_MovingRight
+    BRA .setInstList
 
   .movingLeft:
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A2E25C;
-    STA.W Ripper.XVelocity,X                                             ;A2E25F;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2E262;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E265;
-    LDY.W #InstList_GRipper_MovingLeft                                   ;A2E268;
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W Ripper.XSubVelocity,X
+    LDY.W #InstList_GRipper_MovingLeft
 
   .setInstList:
-    TYA                                                                  ;A2E26B;
-    STA.W Enemy.instList,X                                               ;A2E26C;
-    LDA.W #$0001                                                         ;A2E26F;
-    STA.W Enemy.instTimer,X                                              ;A2E272;
-    STZ.W Enemy.loopCounter,X                                            ;A2E275;
-    RTL                                                                  ;A2E278;
+    TYA : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    RTL
 
 
 ;;; $E279: Check if moved left too far ;;;
 CheckIfGRipperMovedLeftTooFar:
-    LDA.W Ripper.XVelocity,X                                             ;A2E279;
-    BPL .notTooFar                                                       ;A2E27C;
-    LDA.W Enemy.XPosition,X                                              ;A2E27E;
-    CMP.W GRipper.minimumXPosition,X                                     ;A2E281;
-    BPL .notTooFar                                                       ;A2E284;
-    SEC                                                                  ;A2E286;
-    RTS                                                                  ;A2E287;
+    LDA.W Ripper.XVelocity,X : BPL .notTooFar
+    LDA.W Enemy.XPosition,X : CMP.W GRipper.minimumXPosition,X : BPL .notTooFar
+    SEC
+    RTS
 
   .notTooFar:
-    CLC                                                                  ;A2E288;
-    RTS                                                                  ;A2E289;
+    CLC
+    RTS
 
 
 ;;; $E28A: Check if moved right too far ;;;
 CheckIfGRipperMovedRightTooFar:
-    LDA.W Ripper.XVelocity,X                                             ;A2E28A;
-    BMI .notTooFar                                                       ;A2E28D;
-    LDA.W Enemy.XPosition,X                                              ;A2E28F;
-    CMP.W GRipper.maximumXPosition,X                                     ;A2E292;
-    BMI .notTooFar                                                       ;A2E295;
-    SEC                                                                  ;A2E297;
-    RTS                                                                  ;A2E298;
+    LDA.W Ripper.XVelocity,X : BMI .notTooFar
+    LDA.W Enemy.XPosition,X : CMP.W GRipper.maximumXPosition,X : BMI .notTooFar
+    SEC
+    RTS
 
   .notTooFar:
-    CLC                                                                  ;A2E299;
-    RTS                                                                  ;A2E29A;
+    CLC
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E29B: Unused. Frozen AI ;;;
 UNUSED_FrozenAI_GRipper_A2E29B:
-    LDX.W EnemyIndex                                                     ;A2E29B;
-    JSL.L CommonA2_NormalEnemyFrozenAI                                   ;A2E29E;
-    RTL                                                                  ;A2E2A2;
+    LDX.W EnemyIndex
+    JSL CommonA2_NormalEnemyFrozenAI
+    RTL
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E2A3: RTL ;;;
 RTL_A2E2A3:
-    RTL                                                                  ;A2E2A3;
+    RTL
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E2A4: Unused. Enemy shot ;;;
 UNUSED_EnemyShot_A2E2A4:
 ; Clone of EnemyShot_GRipper_Ripper2
-    JSL.L NormalEnemyShotAI                                              ;A2E2A4;
-    LDX.W EnemyIndex                                                     ;A2E2A8;
-    LDA.W Enemy.freezeTimer,X                                            ;A2E2AB;
-    BEQ .return                                                          ;A2E2AE;
-    LDY.W #Spritemap_GRipper_Ripper2_Frozen_FacingLeft                   ;A2E2B0;
-    LDA.W Ripper.XVelocity,X                                             ;A2E2B3;
-    BMI +                                                                ;A2E2B6;
-    LDY.W #Spritemap_GRipper_Ripper2_Frozen_FacingRight                  ;A2E2B8;
+    JSL NormalEnemyShotAI
+    LDX.W EnemyIndex
+    LDA.W Enemy.freezeTimer,X : BEQ .return
+    LDY.W #Spritemap_GRipper_Ripper2_Frozen_FacingLeft
+    LDA.W Ripper.XVelocity,X : BMI +
+    LDY.W #Spritemap_GRipper_Ripper2_Frozen_FacingRight
 
-+   TYA                                                                  ;A2E2BB;
-    STA.W Enemy.spritemap,X                                              ;A2E2BC;
++   TYA : STA.W Enemy.spritemap,X
 
   .return:
-    RTL                                                                  ;A2E2BF;
+    RTL
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E2C0: Palette - enemy $D43F (ripper ii) ;;;
 Palette_Ripper2:
-    dw $3800,$021D,$0015,$0008,$0003,$00BD,$0013,$000E                   ;A2E2C0;
-    dw $000B,$17BE,$1A9F,$0C53,$084B,$7EC0,$6DE0,$54E0                   ;A2E2D0;
+    dw $3800,$021D,$0015,$0008,$0003,$00BD,$0013,$000E
+    dw $000B,$17BE,$1A9F,$0C53,$084B,$7EC0,$6DE0,$54E0
 
 
 ;;; $E2E0: Instruction list - moving right ;;;
 InstList_Ripper2_MovingRight:
-    dw $0008,Spritemap_GRipper_Ripper2_MovingLeft_0                      ;A2E2E0;
-    dw $0007,Spritemap_GRipper_Ripper2_MovingLeft_1                      ;A2E2E4;
-    dw $0008,Spritemap_GRipper_Ripper2_MovingLeft_0                      ;A2E2E8;
-    dw $0007,Spritemap_GRipper_Ripper2_MovingLeft_2                      ;A2E2EC;
-    dw Instruction_Common_GotoY                                          ;A2E2F0;
-    dw InstList_Ripper2_MovingRight                                      ;A2E2F2;
+    dw $0008,Spritemap_GRipper_Ripper2_MovingLeft_0
+    dw $0007,Spritemap_GRipper_Ripper2_MovingLeft_1
+    dw $0008,Spritemap_GRipper_Ripper2_MovingLeft_0
+    dw $0007,Spritemap_GRipper_Ripper2_MovingLeft_2
+    dw Instruction_Common_GotoY
+    dw InstList_Ripper2_MovingRight
 
 
 ;;; $E2F4: Instruction list - moving left ;;;
 InstList_Ripper2_MovingLeft:
-    dw $0008,Spritemap_GRipper_Ripper2_MovingRight_0                     ;A2E2F4;
-    dw $0007,Spritemap_GRipper_Ripper2_MovingRight_1                     ;A2E2F8;
-    dw $0008,Spritemap_GRipper_Ripper2_MovingRight_0                     ;A2E2FC;
-    dw $0007,Spritemap_GRipper_Ripper2_MovingRight_2                     ;A2E300;
-    dw Instruction_Common_GotoY                                          ;A2E304;
-    dw InstList_Ripper2_MovingLeft                                       ;A2E306;
+    dw $0008,Spritemap_GRipper_Ripper2_MovingRight_0
+    dw $0007,Spritemap_GRipper_Ripper2_MovingRight_1
+    dw $0008,Spritemap_GRipper_Ripper2_MovingRight_0
+    dw $0007,Spritemap_GRipper_Ripper2_MovingRight_2
+    dw Instruction_Common_GotoY
+    dw InstList_Ripper2_MovingLeft
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E308: Unused. Instruction list - frozen - facing left ;;;
 UNUSED_InstList_Ripper2_FacingLeft_A2E308:
-    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingLeft                 ;A2E308;
-    dw Instruction_Common_GotoY                                          ;A2E30C;
-    dw UNUSED_InstList_Ripper2_FacingLeft_A2E308                         ;A2E30E;
+    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingLeft
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_Ripper2_FacingLeft_A2E308
 
 
 ;;; $E310: Unused. Instruction list - frozen - facing right ;;;
 UNUSED_InstList_Ripper2_FacingRight_A2E310:
-    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingRight                ;A2E310;
-    dw Instruction_Common_GotoY                                          ;A2E314;
-    dw UNUSED_InstList_Ripper2_FacingRight_A2E310                        ;A2E316;
+    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingRight
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_Ripper2_FacingRight_A2E310
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E318: Initialisation AI - enemy $D43F (ripper ii) ;;;
 InitAI_Ripper2:
-    LDX.W EnemyIndex                                                     ;A2E318;
-    LDY.W #InstList_Ripper2_MovingRight                                  ;A2E31B;
-    LDA.W Enemy.init1,X                                                  ;A2E31E;
-    BEQ .keepLeft                                                        ;A2E321;
-    LDY.W #InstList_Ripper2_MovingLeft                                   ;A2E323;
+    LDX.W EnemyIndex
+    LDY.W #InstList_Ripper2_MovingRight
+    LDA.W Enemy.init1,X : BEQ .keepLeft
+    LDY.W #InstList_Ripper2_MovingLeft
 
   .keepLeft:
-    TYA                                                                  ;A2E326;
-    STA.W Enemy.instList,X                                               ;A2E327;
-    LDA.W Enemy.init0,X                                                  ;A2E32A;
-    ASL                                                                  ;A2E32D;
-    ASL                                                                  ;A2E32E;
-    ASL                                                                  ;A2E32F;
-    STA.W Ripper.XSpeedTableIndex,X                                      ;A2E330;
-    TAY                                                                  ;A2E333;
-    LDA.W Enemy.init1,X                                                  ;A2E334;
-    BEQ +                                                                ;A2E337;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A2E339;
-    STA.W Ripper.XVelocity,X                                             ;A2E33C;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A2E33F;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E342;
-    RTL                                                                  ;A2E345;
+    TYA : STA.W Enemy.instList,X
+    LDA.W Enemy.init0,X : ASL #3 : STA.W Ripper.XSpeedTableIndex,X
+    TAY
+    LDA.W Enemy.init1,X : BEQ +
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W Ripper.XSubVelocity,X
+    RTL
 
-+   LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A2E346;
-    STA.W Ripper.XVelocity,X                                             ;A2E349;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2E34C;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E34F;
-    RTL                                                                  ;A2E352;
++   LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y
+    STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y
+    STA.W Ripper.XSubVelocity,X
+    RTL
 
 
 ;;; $E353: Main AI - enemy $D43F (ripper ii) ;;;
 MainAI_Ripper2:
-    LDX.W EnemyIndex                                                     ;A2E353;
-    LDA.W Ripper.XSubVelocity,X                                          ;A2E356;
-    STA.B DP_Temp12                                                      ;A2E359;
-    LDA.W Ripper.XVelocity,X                                             ;A2E35B;
-    STA.B DP_Temp14                                                      ;A2E35E;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A2E360;
-    BCC .return                                                          ;A2E364;
-    LDX.W EnemyIndex                                                     ;A2E366;
-    LDA.W Ripper.XSpeedTableIndex,X                                      ;A2E369;
-    TAY                                                                  ;A2E36C;
-    LDA.W Ripper.XVelocity,X                                             ;A2E36D;
-    BPL .movingLeft                                                      ;A2E370;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A2E372;
-    STA.W Ripper.XVelocity,X                                             ;A2E375;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A2E378;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E37B;
-    LDY.W #InstList_Ripper2_MovingLeft                                   ;A2E37E;
-    BRA +                                                                ;A2E381;
+    LDX.W EnemyIndex
+    LDA.W Ripper.XSubVelocity,X : STA.B DP_Temp12
+    LDA.W Ripper.XVelocity,X : STA.B DP_Temp14
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCC .return
+    LDX.W EnemyIndex
+    LDA.W Ripper.XSpeedTableIndex,X : TAY
+    LDA.W Ripper.XVelocity,X : BPL .movingLeft
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W Ripper.XSubVelocity,X
+    LDY.W #InstList_Ripper2_MovingLeft
+    BRA +
 
   .movingLeft:
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A2E383;
-    STA.W Ripper.XVelocity,X                                             ;A2E386;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2E389;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E38C;
-    LDY.W #InstList_Ripper2_MovingRight                                  ;A2E38F;
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W Ripper.XSubVelocity,X
+    LDY.W #InstList_Ripper2_MovingRight
 
-+   TYA                                                                  ;A2E392;
-    STA.W Enemy.instList,X                                               ;A2E393;
-    LDA.W #$0001                                                         ;A2E396;
-    STA.W Enemy.instTimer,X                                              ;A2E399;
-    STZ.W Enemy.loopCounter,X                                            ;A2E39C;
++   TYA : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
 
   .return:
-    RTL                                                                  ;A2E39F;
+    RTL
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E3A0: Unused. Frozen AI ;;;
 UNUSED_FrozenAI_Ripper2_A2E3A0:
-    LDX.W EnemyIndex                                                     ;A2E3A0;
-    JSL.L CommonA2_NormalEnemyFrozenAI                                   ;A2E3A3;
-    RTL                                                                  ;A2E3A7;
+    LDX.W EnemyIndex
+    JSL CommonA2_NormalEnemyFrozenAI
+    RTL
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E3A8: RTL ;;;
 RTL_A2E3A8:
-    RTL                                                                  ;A2E3A8;
+    RTL
 
 
 ;;; $E3A9: Enemy shot - enemy $D3FF/$D43F (gripper / ripper ii) ;;;
 EnemyShot_GRipper_Ripper2:
-    JSL.L NormalEnemyShotAI                                              ;A2E3A9;
-    LDX.W EnemyIndex                                                     ;A2E3AD;
-    LDA.W Enemy.freezeTimer,X                                            ;A2E3B0;
-    BEQ .return                                                          ;A2E3B3;
-    LDY.W #Spritemap_GRipper_Ripper2_Frozen_FacingLeft                   ;A2E3B5;
-    LDA.W Ripper.XVelocity,X                                             ;A2E3B8;
-    BMI .setSpritemap                                                    ;A2E3BB;
-    LDY.W #Spritemap_GRipper_Ripper2_Frozen_FacingRight                  ;A2E3BD;
+    JSL NormalEnemyShotAI
+    LDX.W EnemyIndex
+    LDA.W Enemy.freezeTimer,X : BEQ .return
+    LDY.W #Spritemap_GRipper_Ripper2_Frozen_FacingLeft
+    LDA.W Ripper.XVelocity,X : BMI .setSpritemap
+    LDY.W #Spritemap_GRipper_Ripper2_Frozen_FacingRight
 
   .setSpritemap:
-    TYA                                                                  ;A2E3C0;
-    STA.W Enemy.spritemap,X                                              ;A2E3C1;
+    TYA : STA.W Enemy.spritemap,X
 
   .return:
-    RTL                                                                  ;A2E3C4;
+    RTL
 
 
 ;;; $E3C5: Gripper / ripper ii spritemaps ;;;
 Spritemap_GRipper_Ripper2_MovingLeft_0:
-    dw $0004                                                             ;A2E3C5;
+    dw $0004
     %spritemapEntry(0, $14, $FF, 0, 0, 2, 0, $119)
     %spritemapEntry(0, $0C, $FF, 0, 0, 2, 0, $118)
     %spritemapEntry(0, $1F4, $FD, 0, 0, 2, 0, $114)
     %spritemapEntry(1, $1FC, $F8, 0, 0, 2, 0, $105)
 
 Spritemap_GRipper_Ripper2_MovingLeft_1:
-    dw $0003                                                             ;A2E3DB;
+    dw $0003
     %spritemapEntry(0, $0C, $FF, 0, 0, 2, 0, $11A)
     %spritemapEntry(0, $1F4, $FD, 0, 0, 2, 0, $107)
     %spritemapEntry(1, $1FC, $F8, 0, 0, 2, 0, $105)
 
 Spritemap_GRipper_Ripper2_MovingLeft_2:
-    dw $0004                                                             ;A2E3EC;
+    dw $0004
     %spritemapEntry(0, $14, $FF, 0, 0, 2, 0, $109)
     %spritemapEntry(0, $0C, $FF, 0, 0, 2, 0, $108)
     %spritemapEntry(0, $1F4, $FD, 0, 0, 2, 0, $117)
     %spritemapEntry(1, $1FC, $F8, 0, 0, 2, 0, $105)
 
 Spritemap_GRipper_Ripper2_MovingRight_0:
-    dw $0004                                                             ;A2E402;
+    dw $0004
     %spritemapEntry(0, $1E4, $FF, 0, 1, 2, 0, $119)
     %spritemapEntry(0, $1EC, $FF, 0, 1, 2, 0, $118)
     %spritemapEntry(0, $04, $FD, 0, 1, 2, 0, $114)
     %spritemapEntry(1, $1F4, $F8, 0, 1, 2, 0, $105)
 
 Spritemap_GRipper_Ripper2_MovingRight_1:
-    dw $0003                                                             ;A2E418;
+    dw $0003
     %spritemapEntry(0, $1EC, $FF, 0, 1, 2, 0, $11A)
     %spritemapEntry(0, $04, $FD, 0, 1, 2, 0, $107)
     %spritemapEntry(1, $1F4, $F8, 0, 1, 2, 0, $105)
 
 Spritemap_GRipper_Ripper2_MovingRight_2:
-    dw $0004                                                             ;A2E429;
+    dw $0004
     %spritemapEntry(0, $1EC, $FF, 0, 1, 2, 0, $108)
     %spritemapEntry(0, $1E4, $FF, 0, 1, 2, 0, $109)
     %spritemapEntry(0, $04, $FD, 0, 1, 2, 0, $117)
     %spritemapEntry(1, $1F4, $F8, 0, 1, 2, 0, $105)
 
 Spritemap_GRipper_Ripper2_Frozen_FacingLeft:
-    dw $0002                                                             ;A2E43F;
+    dw $0002
     %spritemapEntry(0, $1F4, $FD, 0, 0, 2, 0, $114)
     %spritemapEntry(1, $1FC, $F8, 0, 0, 2, 0, $105)
 
 Spritemap_GRipper_Ripper2_Frozen_FacingRight:
-    dw $0002                                                             ;A2E44B;
+    dw $0002
     %spritemapEntry(0, $04, $FD, 0, 1, 2, 0, $114)
     %spritemapEntry(1, $1F4, $F8, 0, 1, 2, 0, $105)
 
 
 ;;; $E457: Palette - enemy $D47F (ripper) ;;;
 Palette_Ripper:
-    dw $3800,$2F1F,$0932,$006A,$0003,$221C,$19B6,$1551                   ;A2E457;
-    dw $10EC,$17BE,$189F,$0C53,$084B,$3BE0,$2680,$1580                   ;A2E467;
+    dw $3800,$2F1F,$0932,$006A,$0003,$221C,$19B6,$1551
+    dw $10EC,$17BE,$189F,$0C53,$084B,$3BE0,$2680,$1580
 
 
 ;;; $E477: Instruction list - moving right ;;;
 InstList_Ripper_MovingRight:
-    dw $0008,Spritemap_Ripper_MovingRight_0                              ;A2E477;
-    dw $0007,Spritemap_Ripper_MovingRight_1                              ;A2E47B;
-    dw $0008,Spritemap_Ripper_MovingRight_0                              ;A2E47F;
-    dw $0007,Spritemap_Ripper_MovingRight_2                              ;A2E483;
-    dw Instruction_Common_GotoY                                          ;A2E487;
-    dw InstList_Ripper_MovingRight                                       ;A2E489;
+    dw $0008,Spritemap_Ripper_MovingRight_0
+    dw $0007,Spritemap_Ripper_MovingRight_1
+    dw $0008,Spritemap_Ripper_MovingRight_0
+    dw $0007,Spritemap_Ripper_MovingRight_2
+    dw Instruction_Common_GotoY
+    dw InstList_Ripper_MovingRight
 
 
 ;;; $E48B: Instruction list - moving left ;;;
 InstList_Ripper_MovingLeft:
-    dw $0008,Spritemap_Ripper_MovingLeft_0                               ;A2E48B;
-    dw $0007,Spritemap_Ripper_MovingLeft_1                               ;A2E48F;
-    dw $0008,Spritemap_Ripper_MovingLeft_0                               ;A2E493;
-    dw $0007,Spritemap_Ripper_MovingLeft_2                               ;A2E497;
-    dw Instruction_Common_GotoY                                          ;A2E49B;
-    dw InstList_Ripper_MovingLeft                                        ;A2E49D;
+    dw $0008,Spritemap_Ripper_MovingLeft_0
+    dw $0007,Spritemap_Ripper_MovingLeft_1
+    dw $0008,Spritemap_Ripper_MovingLeft_0
+    dw $0007,Spritemap_Ripper_MovingLeft_2
+    dw Instruction_Common_GotoY
+    dw InstList_Ripper_MovingLeft
 
 
 ;;; $E49F: Initialisation AI - enemy $D47F (ripper) ;;;
 InitAI_Ripper:
-    LDX.W EnemyIndex                                                     ;A2E49F;
-    LDY.W #InstList_Ripper_MovingRight                                   ;A2E4A2;
-    LDA.W Enemy.init1,X                                                  ;A2E4A5;
-    BNE .keepRight                                                       ;A2E4A8;
-    LDY.W #InstList_Ripper_MovingLeft                                    ;A2E4AA;
+    LDX.W EnemyIndex
+    LDY.W #InstList_Ripper_MovingRight
+    LDA.W Enemy.init1,X : BNE .keepRight
+    LDY.W #InstList_Ripper_MovingLeft
 
   .keepRight:
-    TYA                                                                  ;A2E4AD;
-    STA.W Enemy.instList,X                                               ;A2E4AE;
-    LDA.W Enemy.init0,X                                                  ;A2E4B1;
-    ASL                                                                  ;A2E4B4;
-    ASL                                                                  ;A2E4B5;
-    ASL                                                                  ;A2E4B6;
-    STA.W Ripper.XSpeedTableIndex,X                                      ;A2E4B7;
-    TAY                                                                  ;A2E4BA;
-    LDA.W Enemy.init1,X                                                  ;A2E4BB;
-    BEQ +                                                                ;A2E4BE;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A2E4C0;
-    STA.W Ripper.XVelocity,X                                             ;A2E4C3;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A2E4C6;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E4C9;
-    RTL                                                                  ;A2E4CC;
+    TYA : STA.W Enemy.instList,X
+    LDA.W Enemy.init0,X : ASL #3 : STA.W Ripper.XSpeedTableIndex,X
+    TAY
+    LDA.W Enemy.init1,X : BEQ +
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W Ripper.XSubVelocity,X
+    RTL
 
-+   LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A2E4CD;
-    STA.W Ripper.XVelocity,X                                             ;A2E4D0;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2E4D3;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E4D6;
-    RTL                                                                  ;A2E4D9;
++   LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W Ripper.XSubVelocity,X
+    RTL
 
 
 ;;; $E4DA: Main AI - enemy $D47F (ripper) ;;;
 MainAI_Ripper:
-    LDX.W EnemyIndex                                                     ;A2E4DA;
-    LDA.W Ripper.XSubVelocity,X                                          ;A2E4DD;
-    STA.B DP_Temp12                                                      ;A2E4E0;
-    LDA.W Ripper.XVelocity,X                                             ;A2E4E2;
-    STA.B DP_Temp14                                                      ;A2E4E5;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A2E4E7;
-    BCC .return                                                          ;A2E4EB;
-    LDX.W EnemyIndex                                                     ;A2E4ED;
-    LDA.W Ripper.XSpeedTableIndex,X                                      ;A2E4F0;
-    TAY                                                                  ;A2E4F3;
-    LDA.W Ripper.XVelocity,X                                             ;A2E4F4;
-    BPL .movingLeft                                                      ;A2E4F7;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A2E4F9;
-    STA.W Ripper.XVelocity,X                                             ;A2E4FC;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A2E4FF;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E502;
-    LDY.W #InstList_Ripper_MovingRight                                   ;A2E505;
-    BRA +                                                                ;A2E508;
+    LDX.W EnemyIndex
+    LDA.W Ripper.XSubVelocity,X : STA.B DP_Temp12
+    LDA.W Ripper.XVelocity,X : STA.B DP_Temp14
+    JSL MoveEnemyRightBy_14_12_IgnoreSlopes
+    BCC .return
+    LDX.W EnemyIndex
+    LDA.W Ripper.XSpeedTableIndex,X : TAY
+    LDA.W Ripper.XVelocity,X : BPL .movingLeft
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W Ripper.XSubVelocity,X
+    LDY.W #InstList_Ripper_MovingRight
+    BRA +
 
   .movingLeft:
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A2E50A;
-    STA.W Ripper.XVelocity,X                                             ;A2E50D;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2E510;
-    STA.W Ripper.XSubVelocity,X                                          ;A2E513;
-    LDY.W #InstList_Ripper_MovingLeft                                    ;A2E516;
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W Ripper.XVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W Ripper.XSubVelocity,X
+    LDY.W #InstList_Ripper_MovingLeft
 
-+   TYA                                                                  ;A2E519;
-    STA.W Enemy.instList,X                                               ;A2E51A;
-    LDA.W #$0001                                                         ;A2E51D;
-    STA.W Enemy.instTimer,X                                              ;A2E520;
-    STZ.W Enemy.loopCounter,X                                            ;A2E523;
++   TYA : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
 
   .return:
-    RTL                                                                  ;A2E526;
+    RTL
 
 
 ;;; $E527: Ripper spritemaps ;;;
 Spritemap_Ripper_MovingLeft_0:
-    dw $0002                                                             ;A2E527;
+    dw $0002
     %spritemapEntry(0, $1F4, $FD, 0, 0, 3, 0, $110)
     %spritemapEntry(1, $43FC, $F8, 0, 0, 3, 0, $101)
 
 Spritemap_Ripper_MovingLeft_1:
-    dw $0002                                                             ;A2E533;
+    dw $0002
     %spritemapEntry(0, $1F4, $FD, 0, 0, 3, 0, $113)
     %spritemapEntry(1, $43FC, $F8, 0, 0, 3, 0, $101)
 
 Spritemap_Ripper_MovingLeft_2:
-    dw $0002                                                             ;A2E53F;
+    dw $0002
     %spritemapEntry(0, $1F4, $FD, 0, 0, 3, 0, $103)
     %spritemapEntry(1, $43FC, $F8, 0, 0, 3, 0, $101)
 
 Spritemap_Ripper_MovingRight_0:
-    dw $0002                                                             ;A2E54B;
+    dw $0002
     %spritemapEntry(0, $04, $FD, 0, 1, 3, 0, $110)
     %spritemapEntry(1, $43F4, $F8, 0, 1, 3, 0, $101)
 
 Spritemap_Ripper_MovingRight_1:
-    dw $0002                                                             ;A2E557;
+    dw $0002
     %spritemapEntry(0, $04, $FD, 0, 1, 3, 0, $103)
     %spritemapEntry(1, $43F4, $F8, 0, 1, 3, 0, $101)
 
 Spritemap_Ripper_MovingRight_2:
-    dw $0002                                                             ;A2E563;
+    dw $0002
     %spritemapEntry(0, $04, $FD, 0, 1, 3, 0, $113)
     %spritemapEntry(1, $43F4, $F8, 0, 1, 3, 0, $101)
 
 
 ;;; $E56F: Unused. Ripper spritemap pointers ;;;
 SpritemapPointers_Ripper:
-    dw Spritemap_Ripper_MovingLeft_0                                     ;A2E56F;
-    dw Spritemap_Ripper_MovingLeft_1                                     ;A2E571;
-    dw Spritemap_Ripper_MovingLeft_2                                     ;A2E573;
-    dw Spritemap_Ripper_MovingRight_0                                    ;A2E575;
-    dw Spritemap_Ripper_MovingRight_1                                    ;A2E577;
-    dw Spritemap_Ripper_MovingRight_2                                    ;A2E579;
+    dw Spritemap_Ripper_MovingLeft_0
+    dw Spritemap_Ripper_MovingLeft_1
+    dw Spritemap_Ripper_MovingLeft_2
+    dw Spritemap_Ripper_MovingRight_0
+    dw Spritemap_Ripper_MovingRight_1
+    dw Spritemap_Ripper_MovingRight_2
 
 
 ;;; $E57B: Palette - enemy $D4BF (dragon) ;;;
 Palette_Dragon:
-    dw $3800,$02FF,$01BF,$000F,$0008,$01BF,$011B,$00BA                   ;A2E57B;
-    dw $0011,$5A5C,$41B4,$290D,$1065,$03FF,$0237,$00D1                   ;A2E58B;
+    dw $3800,$02FF,$01BF,$000F,$0008,$01BF,$011B,$00BA
+    dw $0011,$5A5C,$41B4,$290D,$1065,$03FF,$0237,$00D1
 
 
 ;;; $E59B: Instruction list - idle - facing left ;;;
 InstList_Dragon_Idle_FacingLeft:
-    dw $0001,Spritemap_Dragon_0                                          ;A2E59B;
-    dw Instruction_Common_Sleep                                          ;A2E59F;
+    dw $0001,Spritemap_Dragon_0
+    dw Instruction_Common_Sleep
 
 
 ;;; $E5A1: Instruction list - wings - facing left ;;;
 InstList_Dragon_Wings_FacingLeft:
-    dw $0005,Spritemap_Dragon_4                                          ;A2E5A1;
-    dw $0005,Spritemap_Dragon_5                                          ;A2E5A5;
-    dw Instruction_Common_GotoY                                          ;A2E5A9;
-    dw InstList_Dragon_Wings_FacingLeft                                  ;A2E5AB;
+    dw $0005,Spritemap_Dragon_4
+    dw $0005,Spritemap_Dragon_5
+    dw Instruction_Common_GotoY
+    dw InstList_Dragon_Wings_FacingLeft
 
 
 ;;; $E5AD: Instruction list - idle - facing right ;;;
 InstList_Dragon_Idle_FacingRight:
-    dw $0001,Spritemap_Dragon_6                                          ;A2E5AD;
-    dw Instruction_Common_Sleep                                          ;A2E5B1;
+    dw $0001,Spritemap_Dragon_6
+    dw Instruction_Common_Sleep
 
 
 ;;; $E5B3: Instruction list - wings - facing right ;;;
 InstList_Dragon_Wings_FacingRight:
-    dw $0005,Spritemap_Dragon_A                                          ;A2E5B3;
-    dw $0005,Spritemap_Dragon_B                                          ;A2E5B7;
-    dw Instruction_Common_GotoY                                          ;A2E5BB;
-    dw InstList_Dragon_Wings_FacingRight                                 ;A2E5BD;
+    dw $0005,Spritemap_Dragon_A
+    dw $0005,Spritemap_Dragon_B
+    dw Instruction_Common_GotoY
+    dw InstList_Dragon_Wings_FacingRight
 
 
 ;;; $E5BF: Instruction list - attacking - facing left ;;;
 InstList_Dragon_Attacking_FacingLeft:
-    dw $0020,Spritemap_Dragon_1                                          ;A2E5BF;
-    dw $0003,Spritemap_Dragon_2                                          ;A2E5C3;
-    dw $0007,Spritemap_Dragon_3                                          ;A2E5C7;
-    dw $0003,Spritemap_Dragon_2                                          ;A2E5CB;
-    dw $0001,Spritemap_Dragon_1                                          ;A2E5CF;
-    dw Instruction_Dragon_SetAnimationFinishedFlag                       ;A2E5D3;
-    dw Instruction_Common_Sleep                                          ;A2E5D5;
+    dw $0020,Spritemap_Dragon_1
+    dw $0003,Spritemap_Dragon_2
+    dw $0007,Spritemap_Dragon_3
+    dw $0003,Spritemap_Dragon_2
+    dw $0001,Spritemap_Dragon_1
+    dw Instruction_Dragon_SetAnimationFinishedFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $E5D7: Instruction list - attacking - facing right ;;;
 InstList_Dragon_Attacking_FacingRight:
-    dw $0020,Spritemap_Dragon_7                                          ;A2E5D7;
-    dw $0003,Spritemap_Dragon_8                                          ;A2E5DB;
-    dw $0007,Spritemap_Dragon_9                                          ;A2E5DF;
-    dw $0003,Spritemap_Dragon_8                                          ;A2E5E3;
-    dw $0001,Spritemap_Dragon_7                                          ;A2E5E7;
-    dw Instruction_Dragon_SetAnimationFinishedFlag                       ;A2E5EB;
-    dw Instruction_Common_Sleep                                          ;A2E5ED;
+    dw $0020,Spritemap_Dragon_7
+    dw $0003,Spritemap_Dragon_8
+    dw $0007,Spritemap_Dragon_9
+    dw $0003,Spritemap_Dragon_8
+    dw $0001,Spritemap_Dragon_7
+    dw Instruction_Dragon_SetAnimationFinishedFlag
+    dw Instruction_Common_Sleep
 
 
 ;;; $E5EF: Instruction list pointers ;;;
 InstListPointers_Dragon:
-    dw InstList_Dragon_Idle_FacingLeft                                   ;A2E5EF;
-    dw InstList_Dragon_Idle_FacingRight                                  ;A2E5F1;
-    dw InstList_Dragon_Wings_FacingLeft                                  ;A2E5F3;
-    dw InstList_Dragon_Wings_FacingRight                                 ;A2E5F5;
-    dw InstList_Dragon_Attacking_FacingLeft                              ;A2E5F7;
-    dw InstList_Dragon_Attacking_FacingRight                             ;A2E5F9;
+    dw InstList_Dragon_Idle_FacingLeft
+    dw InstList_Dragon_Idle_FacingRight
+    dw InstList_Dragon_Wings_FacingLeft
+    dw InstList_Dragon_Wings_FacingRight
+    dw InstList_Dragon_Attacking_FacingLeft
+    dw InstList_Dragon_Attacking_FacingRight
 
 
 ;;; $E5FB: Instruction - set animation finished flag ;;;
 Instruction_Dragon_SetAnimationFinishedFlag:
-    LDX.W EnemyIndex                                                     ;A2E5FB;
-    LDA.W #$0001                                                         ;A2E5FE;
-    STA.L Dragon.animationFinishedFlag,X                                 ;A2E601;
-    RTL                                                                  ;A2E605;
+    LDX.W EnemyIndex
+    LDA.W #$0001 : STA.L Dragon.animationFinishedFlag,X
+    RTL
 
 
 ;;; $E606: Initialisation AI - enemy $D4BF (dragon) ;;;
 InitAI_Dragon:
-    LDX.W EnemyIndex                                                     ;A2E606;
-    LDA.W #$0000                                                         ;A2E609;
-    STA.L Dragon.animationFinishedFlag,X                                 ;A2E60C;
-    LDA.W Enemy.init0,X                                                  ;A2E610;
-    BEQ .idle                                                            ;A2E613;
-    LDA.W #$0002                                                         ;A2E615;
-    STA.L Dragon.newInstListIndex,X                                      ;A2E618;
-    STA.L Dragon.instListIndex,X                                         ;A2E61C;
-    LDA.W #InstList_Dragon_Wings_FacingLeft                              ;A2E620;
-    STA.W Enemy.instList,X                                               ;A2E623;
-    LDA.W Enemy.properties,X                                             ;A2E626;
-    ORA.W #$0400                                                         ;A2E629;
-    STA.W Enemy.properties,X                                             ;A2E62C;
-    LDA.W #RTL_A2E781                                                    ;A2E62F;
-    STA.W Dragon.function,X                                              ;A2E632;
-    RTL                                                                  ;A2E635;
+    LDX.W EnemyIndex
+    LDA.W #$0000 : STA.L Dragon.animationFinishedFlag,X
+    LDA.W Enemy.init0,X : BEQ .idle
+    LDA.W #$0002 : STA.L Dragon.newInstListIndex,X : STA.L Dragon.instListIndex,X
+    LDA.W #InstList_Dragon_Wings_FacingLeft : STA.W Enemy.instList,X
+    LDA.W Enemy.properties,X : ORA.W #$0400 : STA.W Enemy.properties,X
+    LDA.W #RTL_A2E781 : STA.W Dragon.function,X
+    RTL
 
   .idle:
-    LDA.W #$0000                                                         ;A2E636;
-    STA.L Dragon.newInstListIndex,X                                      ;A2E639;
-    STA.L Dragon.instListIndex,X                                         ;A2E63D;
-    LDA.W #InstList_Dragon_Idle_FacingLeft                               ;A2E641;
-    STA.W Enemy.instList,X                                               ;A2E644;
-    LDA.W #Function_Dragon_WaitToRise                                    ;A2E647;
-    STA.W Dragon.function,X                                              ;A2E64A;
-    RTL                                                                  ;A2E64D;
+    LDA.W #$0000 : STA.L Dragon.newInstListIndex,X : STA.L Dragon.instListIndex,X
+    LDA.W #InstList_Dragon_Idle_FacingLeft : STA.W Enemy.instList,X
+    LDA.W #Function_Dragon_WaitToRise : STA.W Dragon.function,X
+    RTL
 
 
 ;;; $E64E: Main AI - enemy $D4BF (dragon) ;;;
 MainAI_Dragon:
-    LDX.W EnemyIndex                                                     ;A2E64E;
-    JMP.W (Dragon.function,X)                                            ;A2E651;
+    LDX.W EnemyIndex
+    JMP.W (Dragon.function,X)
 
 
 ;;; $E654: Dragon function - wait to rise ;;;
 Function_Dragon_WaitToRise:
 ; The comparison done at $E666..79 is crazy overengineered
-    DEC.W Dragon.functionTimer,X                                         ;A2E654;
-    BMI .timerExpired                                                    ;A2E657;
-    RTL                                                                  ;A2E659;
+    DEC.W Dragon.functionTimer,X : BMI .timerExpired
+    RTL
 
   .timerExpired:
-    LDA.W #$0030                                                         ;A2E65A;
-    STA.W Dragon.functionTimer,X                                         ;A2E65D;
-    LDA.W #Function_Dragon_Rising                                        ;A2E660;
-    STA.W Dragon.function,X                                              ;A2E663;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A2E666;
-    TAY                                                                  ;A2E66A;
-    ROL.W Enemy.var0,X                                                   ;A2E66B;
-    ROL                                                                  ;A2E66E;
-    ROR.W Enemy.var0,X                                                   ;A2E66F;
-    TYA                                                                  ;A2E672;
-    SEP #$20                                                             ;A2E673;
-    BIT.W Enemy.var0+1,X                                                 ;A2E675;
-    BMI .facingLeft                                                      ;A2E678;
-    LDA.L Dragon.newInstListIndex,X                                      ;A2E67A;
-    ORA.B #$01                                                           ;A2E67E;
-    STA.L Dragon.newInstListIndex,X                                      ;A2E680;
-    LDA.L Dragon.newInstListIndex+$40,X                                  ;A2E684;
-    ORA.B #$01                                                           ;A2E688;
-    STA.L Dragon.newInstListIndex+$40,X                                  ;A2E68A;
-    BRA +                                                                ;A2E68E;
+    LDA.W #$0030 : STA.W Dragon.functionTimer,X
+    LDA.W #Function_Dragon_Rising : STA.W Dragon.function,X
+    JSL Get_SamusX_minus_EnemyX
+    TAY
+    ROL.W Enemy.var0,X
+    ROL
+    ROR.W Enemy.var0,X
+    TYA
+    SEP #$20
+    BIT.W Enemy.var0+1,X : BMI .facingLeft
+    LDA.L Dragon.newInstListIndex,X : ORA.B #$01 : STA.L Dragon.newInstListIndex,X
+    LDA.L Dragon.newInstListIndex+$40,X : ORA.B #$01 : STA.L Dragon.newInstListIndex+$40,X
+    BRA +
 
   .facingLeft:
-    LDA.L Dragon.newInstListIndex,X                                      ;A2E690;
-    AND.B #$FE                                                           ;A2E694;
-    STA.L Dragon.newInstListIndex,X                                      ;A2E696;
-    LDA.L Dragon.newInstListIndex+$40,X                                  ;A2E69A;
-    AND.B #$FE                                                           ;A2E69E;
-    STA.L Dragon.newInstListIndex+$40,X                                  ;A2E6A0;
+    LDA.L Dragon.newInstListIndex,X : AND.B #$FE : STA.L Dragon.newInstListIndex,X
+    LDA.L Dragon.newInstListIndex+$40,X : AND.B #$FE : STA.L Dragon.newInstListIndex+$40,X
 
-+   REP #$20                                                             ;A2E6A4;
-    JSR.W SetDragonInstList                                              ;A2E6A6;
-    JSR.W SetDragonWingsInstList                                         ;A2E6A9;
-    RTL                                                                  ;A2E6AC;
++   REP #$20
+    JSR SetDragonInstList
+    JSR SetDragonWingsInstList
+    RTL
 
 
 ;;; $E6AD: Dragon function - rising ;;;
 Function_Dragon_Rising:
-    DEC.W Dragon.functionTimer,X                                         ;A2E6AD;
-    BPL .timerNotExpired                                                 ;A2E6B0;
-    LDA.L Dragon.newInstListIndex,X                                      ;A2E6B2;
-    CLC                                                                  ;A2E6B6;
-    ADC.W #$0004                                                         ;A2E6B7;
-    STA.L Dragon.newInstListIndex,X                                      ;A2E6BA;
-    LDA.W #$0003                                                         ;A2E6BE;
-    STA.W Dragon.functionTimer,X                                         ;A2E6C1;
-    LDA.W #Function_Dragon_Attacking                                     ;A2E6C4;
-    STA.W Dragon.function,X                                              ;A2E6C7;
+    DEC.W Dragon.functionTimer,X : BPL .timerNotExpired
+    LDA.L Dragon.newInstListIndex,X : CLC : ADC.W #$0004 : STA.L Dragon.newInstListIndex,X
+    LDA.W #$0003 : STA.W Dragon.functionTimer,X
+    LDA.W #Function_Dragon_Attacking : STA.W Dragon.function,X
 
   .timerNotExpired:
-    LDA.W Enemy.YSubPosition,X                                           ;A2E6CA;
-    SEC                                                                  ;A2E6CD;
-    SBC.W #$0000                                                         ;A2E6CE;
-    STA.W Enemy.YSubPosition,X                                           ;A2E6D1;
-    LDA.W Enemy.YPosition,X                                              ;A2E6D4;
-    SBC.W #$0001                                                         ;A2E6D7;
-    STA.W Enemy.YPosition,X                                              ;A2E6DA;
-    LDA.W Enemy[1].YSubPosition,X                                        ;A2E6DD;
-    SEC                                                                  ;A2E6E0;
-    SBC.W #$0000                                                         ;A2E6E1;
-    STA.W Enemy[1].YSubPosition,X                                        ;A2E6E4;
-    LDA.W Enemy[1].YPosition,X                                           ;A2E6E7;
-    SBC.W #$0001                                                         ;A2E6EA;
-    STA.W Enemy[1].YPosition,X                                           ;A2E6ED;
-    RTL                                                                  ;A2E6F0;
+    LDA.W Enemy.YSubPosition,X : SEC : SBC.W #$0000 : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : SBC.W #$0001 : STA.W Enemy.YPosition,X
+    LDA.W Enemy[1].YSubPosition,X : SEC : SBC.W #$0000 : STA.W Enemy[1].YSubPosition,X
+    LDA.W Enemy[1].YPosition,X : SBC.W #$0001 : STA.W Enemy[1].YPosition,X
+    RTL
 
 
 ;;; $E6F1: Dragon function - attacking ;;;
 Function_Dragon_Attacking:
-    JSR.W SetDragonInstList                                              ;A2E6F1;
-    LDA.L Dragon.animationFinishedFlag,X                                 ;A2E6F4;
-    BEQ .return                                                          ;A2E6F8;
-    LDA.W #$0000                                                         ;A2E6FA;
-    STA.L Dragon.animationFinishedFlag,X                                 ;A2E6FD;
-    LDA.W #$FFFF                                                         ;A2E701;
-    STA.L Dragon.instListIndex,X                                         ;A2E704;
-    LDY.W #EnemyProjectile_DragonFireball                                ;A2E708;
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A2E70B;
-    LDA.W #$0061                                                         ;A2E70F;
-    JSL.L QueueSound_Lib2_Max6                                           ;A2E712;
-    DEC.W Dragon.attackCounter,X                                         ;A2E716;
-    BNE .return                                                          ;A2E719;
-    LDA.L Dragon.newInstListIndex,X                                      ;A2E71B;
-    SEC                                                                  ;A2E71F;
-    SBC.W #$0004                                                         ;A2E720;
-    STA.L Dragon.newInstListIndex,X                                      ;A2E723;
-    LDA.W #$0060                                                         ;A2E727;
-    STA.W Dragon.functionTimer,X                                         ;A2E72A;
-    LDA.W #Function_Dragon_WaitToSink                                    ;A2E72D;
-    STA.W Dragon.function,X                                              ;A2E730;
+    JSR SetDragonInstList
+    LDA.L Dragon.animationFinishedFlag,X : BEQ .return
+    LDA.W #$0000 : STA.L Dragon.animationFinishedFlag,X
+    LDA.W #$FFFF : STA.L Dragon.instListIndex,X
+    LDY.W #EnemyProjectile_DragonFireball
+    JSL SpawnEnemyProjectileY_ParameterA_XGraphics
+    LDA.W #$0061
+    JSL QueueSound_Lib2_Max6
+    DEC.W Dragon.attackCounter,X : BNE .return
+    LDA.L Dragon.newInstListIndex,X : SEC : SBC.W #$0004 : STA.L Dragon.newInstListIndex,X
+    LDA.W #$0060 : STA.W Dragon.functionTimer,X
+    LDA.W #Function_Dragon_WaitToSink : STA.W Dragon.function,X
 
   .return:
-    RTL                                                                  ;A2E733;
+    RTL
 
 
 ;;; $E734: Dragon function - wait to sink ;;;
 Function_Dragon_WaitToSink:
-    DEC.W Dragon.functionTimer,X                                         ;A2E734;
-    BNE .return                                                          ;A2E737;
-    LDA.W #$0030                                                         ;A2E739;
-    STA.W Dragon.functionTimer,X                                         ;A2E73C;
-    LDA.W #Function_Dragon_Sinking                                       ;A2E73F;
-    STA.W Dragon.function,X                                              ;A2E742;
-    JSR.W SetDragonInstList                                              ;A2E745;
+    DEC.W Dragon.functionTimer,X : BNE .return
+    LDA.W #$0030 : STA.W Dragon.functionTimer,X
+    LDA.W #Function_Dragon_Sinking : STA.W Dragon.function,X
+    JSR SetDragonInstList
 
   .return:
-    RTL                                                                  ;A2E748;
+    RTL
 
 
 ;;; $E749: Dragon function - sinking ;;;
 Function_Dragon_Sinking:
-    DEC.W Dragon.functionTimer,X                                         ;A2E749;
-    BPL .timerNotExpired                                                 ;A2E74C;
-    LDA.W #$0080                                                         ;A2E74E;
-    STA.W Dragon.functionTimer,X                                         ;A2E751;
-    LDA.W #Function_Dragon_WaitToRise                                    ;A2E754;
-    STA.W Dragon.function,X                                              ;A2E757;
+    DEC.W Dragon.functionTimer,X : BPL .timerNotExpired
+    LDA.W #$0080 : STA.W Dragon.functionTimer,X
+    LDA.W #Function_Dragon_WaitToRise : STA.W Dragon.function,X
 
   .timerNotExpired:
-    LDA.W Enemy.YSubPosition,X                                           ;A2E75A;
-    CLC                                                                  ;A2E75D;
-    ADC.W #$0000                                                         ;A2E75E;
-    STA.W Enemy.YSubPosition,X                                           ;A2E761;
-    LDA.W Enemy.YPosition,X                                              ;A2E764;
-    ADC.W #$0001                                                         ;A2E767;
-    STA.W Enemy.YPosition,X                                              ;A2E76A;
-    LDA.W Enemy[1].YSubPosition,X                                        ;A2E76D;
-    CLC                                                                  ;A2E770;
-    ADC.W #$0000                                                         ;A2E771;
-    STA.W Enemy[1].YSubPosition,X                                        ;A2E774;
-    LDA.W Enemy[1].YPosition,X                                           ;A2E777;
-    ADC.W #$0001                                                         ;A2E77A;
-    STA.W Enemy[1].YPosition,X                                           ;A2E77D;
-    RTL                                                                  ;A2E780;
+    LDA.W Enemy.YSubPosition,X : CLC : ADC.W #$0000 : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : ADC.W #$0001 : STA.W Enemy.YPosition,X
+    LDA.W Enemy[1].YSubPosition,X : CLC : ADC.W #$0000 : STA.W Enemy[1].YSubPosition,X
+    LDA.W Enemy[1].YPosition,X : ADC.W #$0001 : STA.W Enemy[1].YPosition,X
+    RTL
 
 
 ;;; $E781: RTL ;;;
 RTL_A2E781:
-    RTL                                                                  ;A2E781;
+    RTL
 
 
 ;;; $E782: Set dragon instruction list ;;;
 SetDragonInstList:
-    LDX.W EnemyIndex                                                     ;A2E782;
-    LDA.L Dragon.newInstListIndex,X                                      ;A2E785;
-    CMP.L Dragon.instListIndex,X                                         ;A2E789;
-    BEQ .return                                                          ;A2E78D;
-    STA.L Dragon.instListIndex,X                                         ;A2E78F;
-    ASL                                                                  ;A2E793;
-    TAY                                                                  ;A2E794;
-    LDA.W InstListPointers_Dragon,Y                                      ;A2E795;
-    STA.W Enemy.instList,X                                               ;A2E798;
-    LDA.W #$0001                                                         ;A2E79B;
-    STA.W Enemy.instTimer,X                                              ;A2E79E;
-    STZ.W Enemy.loopCounter,X                                            ;A2E7A1;
+    LDX.W EnemyIndex
+    LDA.L Dragon.newInstListIndex,X : CMP.L Dragon.instListIndex,X : BEQ .return
+    STA.L Dragon.instListIndex,X
+    ASL : TAY
+    LDA.W InstListPointers_Dragon,Y : STA.W Enemy.instList,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
 
   .return:
-    RTS                                                                  ;A2E7A4;
+    RTS
 
 
 ;;; $E7A5: Set dragon wings instruction list ;;;
 SetDragonWingsInstList:
-    LDX.W EnemyIndex                                                     ;A2E7A5;
-    LDA.L Dragon.newInstListIndex+$40,X                                  ;A2E7A8;
-    CMP.L Dragon.instListIndex+$40,X                                     ;A2E7AC;
-    BEQ .return                                                          ;A2E7B0;
-    STA.L Dragon.instListIndex+$40,X                                     ;A2E7B2;
-    ASL                                                                  ;A2E7B6;
-    TAY                                                                  ;A2E7B7;
-    LDA.W InstListPointers_Dragon,Y                                      ;A2E7B8;
-    STA.W Enemy[1].instList,X                                            ;A2E7BB;
-    LDA.W #$0001                                                         ;A2E7BE;
-    STA.W Enemy[1].instTimer,X                                           ;A2E7C1;
-    STZ.W Enemy[1].loopCounter,X                                         ;A2E7C4;
+    LDX.W EnemyIndex
+    LDA.L Dragon.newInstListIndex+$40,X : CMP.L Dragon.instListIndex+$40,X : BEQ .return
+    STA.L Dragon.instListIndex+$40,X
+    ASL : TAY
+    LDA.W InstListPointers_Dragon,Y : STA.W Enemy[1].instList,X
+    LDA.W #$0001 : STA.W Enemy[1].instTimer,X
+    STZ.W Enemy[1].loopCounter,X
 
   .return:
-    RTS                                                                  ;A2E7C7;
+    RTS
 
 
 ;;; $E7C8: Enemy touch - enemy $D4BF (dragon) ;;;
 EnemyTouch_Dragon:
-    JSL.L CommonA2_NormalEnemyTouchAI                                    ;A2E7C8;
-    BRA ContactReaction_Dragon_Common                                    ;A2E7CC;
+    JSL CommonA2_NormalEnemyTouchAI
+    BRA ContactReaction_Dragon_Common
 
 
 ;;; $E7CE: Enemy shot - enemy $D4BF (dragon) ;;;
 EnemyShot_Dragon:
-    JSL.L CommonA2_NormalEnemyShotAI                                     ;A2E7CE;
-    BRA ContactReaction_Dragon_Common                                    ;A2E7D2;
+    JSL CommonA2_NormalEnemyShotAI
+    BRA ContactReaction_Dragon_Common
 
 
 ;;; $E7D4: Power bomb reaction - enemy $D4BF (dragon) ;;;
 PowerBombReaction_Dragon:
-    JSL.L CommonA2_NormalEnemyPowerBombAI                                ;A2E7D4;
-    BRA ContactReaction_Dragon_Common                                    ;A2E7D8; >.<
+    JSL CommonA2_NormalEnemyPowerBombAI
+    BRA ContactReaction_Dragon_Common ; >.<
 
 
 ;;; $E7DA: Dragon reaction ;;;
 ContactReaction_Dragon_Common:
-    LDX.W EnemyIndex                                                     ;A2E7DA;
-    LDA.W Enemy.health,X                                                 ;A2E7DD;
-    BNE .notDead                                                         ;A2E7E0;
-    LDA.W Enemy[1].properties,X                                          ;A2E7E2;
-    ORA.W #$0200                                                         ;A2E7E5;
-    STA.W Enemy[1].properties,X                                          ;A2E7E8;
-    BRA .return                                                          ;A2E7EB;
+    LDX.W EnemyIndex
+    LDA.W Enemy.health,X : BNE .notDead
+    LDA.W Enemy[1].properties,X : ORA.W #$0200 : STA.W Enemy[1].properties,X
+    BRA .return
 
   .notDead:
-    LDA.W Enemy.shakeTimer,X                                             ;A2E7ED;
-    STA.W Enemy[1].shakeTimer,X                                          ;A2E7F0;
-    LDA.W Enemy.invincibilityTimer,X                                     ;A2E7F3;
-    STA.W Enemy[1].invincibilityTimer,X                                  ;A2E7F6;
-    LDA.W Enemy.flashTimer,X                                             ;A2E7F9;
-    STA.W Enemy[1].flashTimer,X                                          ;A2E7FC;
-    LDA.W Enemy.freezeTimer,X                                            ;A2E7FF;
-    STA.W Enemy[1].freezeTimer,X                                         ;A2E802;
-    LDA.W Enemy.AI,X                                                     ;A2E805;
-    STA.W Enemy[1].AI,X                                                  ;A2E808;
+    LDA.W Enemy.shakeTimer,X : STA.W Enemy[1].shakeTimer,X
+    LDA.W Enemy.invincibilityTimer,X : STA.W Enemy[1].invincibilityTimer,X
+    LDA.W Enemy.flashTimer,X : STA.W Enemy[1].flashTimer,X
+    LDA.W Enemy.freezeTimer,X : STA.W Enemy[1].freezeTimer,X
+    LDA.W Enemy.AI,X : STA.W Enemy[1].AI,X
 
   .return:
-    RTL                                                                  ;A2E80B;
+    RTL
 
 
 ;;; $E80C: Dragon spritemaps ;;;
 Spritemap_Dragon_0:
-    dw $0008                                                             ;A2E80C;
+    dw $0008
     %spritemapEntry(0, $08, $04, 0, 0, 2, 0, $11C)
     %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $10C)
     %spritemapEntry(0, $1F0, $EC, 0, 0, 2, 0, $110)
@@ -11517,7 +9439,7 @@ Spritemap_Dragon_0:
     %spritemapEntry(1, $1F8, $E4, 0, 0, 2, 0, $101)
 
 Spritemap_Dragon_1:
-    dw $0008                                                             ;A2E836;
+    dw $0008
     %spritemapEntry(0, $1F0, $E4, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $1F8, $E4, 0, 0, 2, 0, $103)
     %spritemapEntry(0, $08, $04, 0, 0, 2, 0, $11C)
@@ -11528,7 +9450,7 @@ Spritemap_Dragon_1:
     %spritemapEntry(1, $1F8, $F4, 0, 0, 2, 0, $10A)
 
 Spritemap_Dragon_2:
-    dw $0008                                                             ;A2E860;
+    dw $0008
     %spritemapEntry(0, $1F0, $E5, 0, 0, 2, 0, $105)
     %spritemapEntry(1, $1F8, $E4, 0, 0, 2, 0, $106)
     %spritemapEntry(0, $08, $04, 0, 0, 2, 0, $11C)
@@ -11539,7 +9461,7 @@ Spritemap_Dragon_2:
     %spritemapEntry(1, $1F8, $F4, 0, 0, 2, 0, $10A)
 
 Spritemap_Dragon_3:
-    dw $0008                                                             ;A2E88A;
+    dw $0008
     %spritemapEntry(0, $1F0, $E5, 0, 0, 2, 0, $115)
     %spritemapEntry(1, $1F8, $E4, 0, 0, 2, 0, $108)
     %spritemapEntry(0, $08, $04, 0, 0, 2, 0, $11C)
@@ -11550,15 +9472,15 @@ Spritemap_Dragon_3:
     %spritemapEntry(1, $1F8, $F4, 0, 0, 2, 0, $10A)
 
 Spritemap_Dragon_4:
-    dw $0001                                                             ;A2E8B4;
+    dw $0001
     %spritemapEntry(0, $04, $F4, 0, 0, 2, 0, $120)
 
 Spritemap_Dragon_5:
-    dw $0001                                                             ;A2E8BB;
+    dw $0001
     %spritemapEntry(0, $04, $F4, 0, 0, 2, 0, $121)
 
 Spritemap_Dragon_6:
-    dw $0008                                                             ;A2E8C2;
+    dw $0008
     %spritemapEntry(0, $1F0, $04, 0, 1, 2, 0, $11C)
     %spritemapEntry(0, $1F0, $FC, 0, 1, 2, 0, $10C)
     %spritemapEntry(0, $08, $EC, 0, 1, 2, 0, $110)
@@ -11569,7 +9491,7 @@ Spritemap_Dragon_6:
     %spritemapEntry(1, $1F8, $E4, 0, 1, 2, 0, $101)
 
 Spritemap_Dragon_7:
-    dw $0008                                                             ;A2E8EC;
+    dw $0008
     %spritemapEntry(0, $08, $E4, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1F8, $E4, 0, 1, 2, 0, $103)
     %spritemapEntry(0, $1F0, $04, 0, 1, 2, 0, $11C)
@@ -11580,7 +9502,7 @@ Spritemap_Dragon_7:
     %spritemapEntry(1, $1F8, $F4, 0, 1, 2, 0, $10A)
 
 Spritemap_Dragon_8:
-    dw $0008                                                             ;A2E916;
+    dw $0008
     %spritemapEntry(0, $08, $E5, 0, 1, 2, 0, $105)
     %spritemapEntry(1, $1F8, $E4, 0, 1, 2, 0, $106)
     %spritemapEntry(0, $1F0, $04, 0, 1, 2, 0, $11C)
@@ -11591,7 +9513,7 @@ Spritemap_Dragon_8:
     %spritemapEntry(1, $1F8, $F4, 0, 1, 2, 0, $10A)
 
 Spritemap_Dragon_9:
-    dw $0008                                                             ;A2E940;
+    dw $0008
     %spritemapEntry(0, $08, $E5, 0, 1, 2, 0, $115)
     %spritemapEntry(1, $1F8, $E4, 0, 1, 2, 0, $108)
     %spritemapEntry(0, $1F0, $04, 0, 1, 2, 0, $11C)
@@ -11602,42 +9524,42 @@ Spritemap_Dragon_9:
     %spritemapEntry(1, $1F8, $F4, 0, 1, 2, 0, $10A)
 
 Spritemap_Dragon_A:
-    dw $0001                                                             ;A2E96A;
+    dw $0001
     %spritemapEntry(0, $1F4, $F4, 0, 1, 2, 0, $120)
 
 Spritemap_Dragon_B:
-    dw $0001                                                             ;A2E971;
+    dw $0001
     %spritemapEntry(0, $1F4, $F4, 0, 1, 2, 0, $121)
 
 
 ;;; $E978: Palette - enemy $D4FF/$D53F/$D57F/$D5BF (shutters) ;;;
 Palette_Shutters:
-    dw $3800,$4D1F,$38B6,$246E,$1448,$47FF,$2EFA,$1616                   ;A2E978;
-    dw $0132,$6F39,$5A73,$41AD,$2D08,$1863,$7FFF,$0041                   ;A2E988;
+    dw $3800,$4D1F,$38B6,$246E,$1448,$47FF,$2EFA,$1616
+    dw $0132,$6F39,$5A73,$41AD,$2D08,$1863,$7FFF,$0041
 
 
 ;;; $E998: Instruction list - shutter - growth level 0 ;;;
 InstList_Shutter_GrowthLevel0:
-    dw $0001,Spritemap_Shutters_10px                                     ;A2E998;
-    dw Instruction_Common_Sleep                                          ;A2E99C;
+    dw $0001,Spritemap_Shutters_10px
+    dw Instruction_Common_Sleep
 
 
 ;;; $E99E: Instruction list - shutter - growth level 1 ;;;
 InstList_Shutter_GrowthLevel1:
-    dw $0001,Spritemap_Shutters_20px                                     ;A2E99E;
-    dw Instruction_Common_Sleep                                          ;A2E9A2;
+    dw $0001,Spritemap_Shutters_20px
+    dw Instruction_Common_Sleep
 
 
 ;;; $E9A4: Instruction list - shutter - growth level 2 ;;;
 InstList_Shutter_GrowthLevel2:
-    dw $0001,Spritemap_Shutters_30px                                     ;A2E9A4;
-    dw Instruction_Common_Sleep                                          ;A2E9A8;
+    dw $0001,Spritemap_Shutters_30px
+    dw Instruction_Common_Sleep
 
 
 ;;; $E9AA: Instruction list - shutter - growth level 3 ;;;
 InstList_Shutter_GrowthLevel3:
-    dw $0001,Spritemap_Shutters_40px                                     ;A2E9AA;
-    dw Instruction_Common_Sleep                                          ;A2E9AE;
+    dw $0001,Spritemap_Shutters_40px
+    dw Instruction_Common_Sleep
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -11645,492 +9567,342 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_Shutter_ShrinkingLoop_A2E9B0:
 ; Debug/demo use probably
 ; Goes through all the vertical shutter spritemaps, including 8px offset sizes that are otherwise unused
-    dw $0004,Spritemap_Shutters_40px                                     ;A2E9B0;
-    dw $0004,UNUSED_Spritemap_Shutters_38px_A2ED85                       ;A2E9B4;
-    dw $0004,Spritemap_Shutters_30px                                     ;A2E9B8;
-    dw $0004,UNUSED_Spritemap_Shutters_28px_A2ED63                       ;A2E9BC;
-    dw $0004,Spritemap_Shutters_20px                                     ;A2E9C0;
-    dw $0004,UNUSED_Spritemap_Shutters_18px_A2ED4B                       ;A2E9C4;
-    dw $0004,Spritemap_Shutters_10px                                     ;A2E9C8;
-    dw $0004,UNUSED_Spritemap_Shutters_8px_A2ED38                        ;A2E9CC;
-    dw Instruction_Common_GotoY                                          ;A2E9D0;
-    dw UNUSED_InstList_Shutter_ShrinkingLoop_A2E9B0                      ;A2E9D2;
+    dw $0004,Spritemap_Shutters_40px
+    dw $0004,UNUSED_Spritemap_Shutters_38px_A2ED85
+    dw $0004,Spritemap_Shutters_30px
+    dw $0004,UNUSED_Spritemap_Shutters_28px_A2ED63
+    dw $0004,Spritemap_Shutters_20px
+    dw $0004,UNUSED_Spritemap_Shutters_18px_A2ED4B
+    dw $0004,Spritemap_Shutters_10px
+    dw $0004,UNUSED_Spritemap_Shutters_8px_A2ED38
+    dw Instruction_Common_GotoY
+    dw UNUSED_InstList_Shutter_ShrinkingLoop_A2E9B0
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E9D4: Instruction list - horizontal shutter ;;;
 InstList_ShutterHorizontal:
-    dw $0001,Spritemap_Shutters_Horizontal                               ;A2E9D4;
-    dw Instruction_Common_Sleep                                          ;A2E9D8;
+    dw $0001,Spritemap_Shutters_Horizontal
+    dw Instruction_Common_Sleep
 
 
 ;;; $E9DA: Initialisation AI - enemy $D4FF (growing shutter) ;;;
 InitAI_ShutterGrowing:
-    LDX.W EnemyIndex                                                     ;A2E9DA;
-    LDA.W Enemy.properties2,X                                            ;A2E9DD;
-    ASL                                                                  ;A2E9E0;
-    CLC                                                                  ;A2E9E1;
-    ADC.W Enemy.instList,X                                               ;A2E9E2;
-    ASL                                                                  ;A2E9E5;
-    TAY                                                                  ;A2E9E6;
-    LDA.W .functionPointers,Y                                            ;A2E9E7;
-    STA.W ShutterGrowing.function,X                                      ;A2E9EA;
-    LDA.W Enemy.properties2,X                                            ;A2E9ED;
-    BEQ .movingDown                                                      ;A2E9F0;
-    LDA.W Enemy.YPosition,X                                              ;A2E9F2;
-    STA.W ShutterGrowing.growthLevel0YPosition,X                         ;A2E9F5;
-    SEC                                                                  ;A2E9F8;
-    SBC.W #$0008                                                         ;A2E9F9;
-    STA.W ShutterGrowing.growthLevel1YPosition,X                         ;A2E9FC;
-    SEC                                                                  ;A2E9FF;
-    SBC.W #$0008                                                         ;A2EA00;
-    STA.W ShutterGrowing.growthLevel2YPosition,X                         ;A2EA03;
-    SEC                                                                  ;A2EA06;
-    SBC.W #$0008                                                         ;A2EA07;
-    STA.W ShutterGrowing.growthLevel3YPosition,X                         ;A2EA0A;
-    BRA +                                                                ;A2EA0D;
+    LDX.W EnemyIndex
+    LDA.W Enemy.properties2,X : ASL : CLC : ADC.W Enemy.instList,X
+    ASL : TAY
+    LDA.W .functionPointers,Y : STA.W ShutterGrowing.function,X
+    LDA.W Enemy.properties2,X : BEQ .movingDown
+    LDA.W Enemy.YPosition,X : STA.W ShutterGrowing.growthLevel0YPosition,X
+    SEC : SBC.W #$0008 : STA.W ShutterGrowing.growthLevel1YPosition,X
+    SEC : SBC.W #$0008 : STA.W ShutterGrowing.growthLevel2YPosition,X
+    SEC : SBC.W #$0008 : STA.W ShutterGrowing.growthLevel3YPosition,X
+    BRA +
 
   .movingDown:
-    LDA.W Enemy.YPosition,X                                              ;A2EA0F;
-    STA.W ShutterGrowing.growthLevel0YPosition,X                         ;A2EA12;
-    CLC                                                                  ;A2EA15;
-    ADC.W #$0008                                                         ;A2EA16;
-    STA.W ShutterGrowing.growthLevel1YPosition,X                         ;A2EA19;
-    CLC                                                                  ;A2EA1C;
-    ADC.W #$0008                                                         ;A2EA1D;
-    STA.W ShutterGrowing.growthLevel2YPosition,X                         ;A2EA20;
-    CLC                                                                  ;A2EA23;
-    ADC.W #$0008                                                         ;A2EA24;
-    STA.W ShutterGrowing.growthLevel3YPosition,X                         ;A2EA27;
+    LDA.W Enemy.YPosition,X : STA.W ShutterGrowing.growthLevel0YPosition,X
+    CLC : ADC.W #$0008 : STA.W ShutterGrowing.growthLevel1YPosition,X
+    CLC : ADC.W #$0008 : STA.W ShutterGrowing.growthLevel2YPosition,X
+    CLC : ADC.W #$0008 : STA.W ShutterGrowing.growthLevel3YPosition,X
 
-+   STZ.W Enemy.properties2,X                                            ;A2EA2A;
-    STZ.W ShutterGrowing.growthLevel,X                                   ;A2EA2D;
-    LDA.W #InstList_Shutter_GrowthLevel0                                 ;A2EA30;
-    STA.W Enemy.instList,X                                               ;A2EA33;
-    LDA.W Enemy.init1,X                                                  ;A2EA36;
-    AND.W #$00FF                                                         ;A2EA39;
-    ASL                                                                  ;A2EA3C;
-    ASL                                                                  ;A2EA3D;
-    TAY                                                                  ;A2EA3E;
-    LDA.W .YSpeed,Y                                                      ;A2EA3F;
-    STA.L ShutterGrowing.YSpeed,X                                        ;A2EA42;
-    LDA.W .YSubSpeed,Y                                                   ;A2EA46;
-    STA.L ShutterGrowing.YSubSpeed,X                                     ;A2EA49;
-    RTL                                                                  ;A2EA4D;
++   STZ.W Enemy.properties2,X : STZ.W ShutterGrowing.growthLevel,X
+    LDA.W #InstList_Shutter_GrowthLevel0 : STA.W Enemy.instList,X
+    LDA.W Enemy.init1,X : AND.W #$00FF : ASL #2 : TAY
+    LDA.W .YSpeed,Y : STA.L ShutterGrowing.YSpeed,X
+    LDA.W .YSubSpeed,Y : STA.L ShutterGrowing.YSubSpeed,X
+    RTL
 
   .functionPointers:
-    dw Function_ShutterGrowing_Initial_Downwards_WaitForTimer            ;A2EA4E;
-    dw Func_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear       ;A2EA50;
-    dw Function_ShutterGrowing_Initial_Upwards_WaitForTimer              ;A2EA52;
-    dw Func_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear         ;A2EA54;
+    dw Function_ShutterGrowing_Initial_Downwards_WaitForTimer
+    dw Func_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear
+    dw Function_ShutterGrowing_Initial_Upwards_WaitForTimer
+    dw Func_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear
 
   .YSpeed:
-    dw $0000                                                             ;A2EA56;
+    dw $0000
   .YSubSpeed:
-    dw       $1000, $0000,$2000, $0000,$3000, $0000,$4000                ;A2EA58;
-    dw $0000,$5000, $0000,$6000, $0000,$7000, $0000,$8000                ;A2EA66;
-    dw $0000,$9000, $0000,$A000, $0000,$B000, $0000,$C000                ;A2EA76;
-    dw $0000,$D000, $0000,$E000, $0000,$F000, $0001,$0000                ;A2EA86;
-    dw $0001,$1000, $0001,$2000, $0001,$3000, $0001,$4000                ;A2EA96;
-    dw $0001,$5000, $0001,$6000, $0001,$7000, $0001,$8000                ;A2EAA6;
+    dw       $1000, $0000,$2000, $0000,$3000, $0000,$4000
+    dw $0000,$5000, $0000,$6000, $0000,$7000, $0000,$8000
+    dw $0000,$9000, $0000,$A000, $0000,$B000, $0000,$C000
+    dw $0000,$D000, $0000,$E000, $0000,$F000, $0001,$0000
+    dw $0001,$1000, $0001,$2000, $0001,$3000, $0001,$4000
+    dw $0001,$5000, $0001,$6000, $0001,$7000, $0001,$8000
 
 
 ;;; $EAB6: Main AI - enemy $D4FF (growing shutter) ;;;
 MainAI_ShutterGrowing:
-    LDX.W EnemyIndex                                                     ;A2EAB6;
-    JSR.W (ShutterGrowing.function,X)                                    ;A2EAB9;
-    RTL                                                                  ;A2EABC;
+    LDX.W EnemyIndex
+    JSR.W (ShutterGrowing.function,X)
+    RTL
 
 
 ;;; $EABD: Growing shutter function - initial - upwards - wait for timer ;;;
 Function_ShutterGrowing_Initial_Upwards_WaitForTimer:
-    LDA.W Enemy.init0,X                                                  ;A2EABD;
-    BEQ +                                                                ;A2EAC0;
-    DEC                                                                  ;A2EAC2;
-    STA.W Enemy.init0,X                                                  ;A2EAC3;
-    RTS                                                                  ;A2EAC6;
+    LDA.W Enemy.init0,X : BEQ +
+    DEC : STA.W Enemy.init0,X
+    RTS
 
-+   JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2EAC7;
-    LDA.W #Function_ShutterGrowing_Growing_Upwards                       ;A2EACA;
-    STA.W ShutterGrowing.function,X                                      ;A2EACD;
-    RTS                                                                  ;A2EAD0;
++   JSR PlayGateOpeningClosingSFXIfOnScreen
+    LDA.W #Function_ShutterGrowing_Growing_Upwards : STA.W ShutterGrowing.function,X
+    RTS
 
 
 ;;; $EAD1: Growing shutter function - initial - upwards - wait for Samus to get near ;;;
 Func_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear:
-    LDA.W Enemy.init0,X                                                  ;A2EAD1;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2EAD4;
-    AND.W #$FFFF                                                         ;A2EAD8;
-    BEQ .return                                                          ;A2EADB;
-    JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2EADD;
-    LDA.W #Function_ShutterGrowing_Growing_Upwards                       ;A2EAE0;
-    STA.W ShutterGrowing.function,X                                      ;A2EAE3;
+    LDA.W Enemy.init0,X
+    JSL IsSamusWithinAPixelColumnsOfEnemy
+    AND.W #$FFFF : BEQ .return
+    JSR PlayGateOpeningClosingSFXIfOnScreen
+    LDA.W #Function_ShutterGrowing_Growing_Upwards : STA.W ShutterGrowing.function,X
 
   .return:
-    RTS                                                                  ;A2EAE6;
+    RTS
 
 
 ;;; $EAE7: Growing shutter function - initial - downwards - wait for Samus to get near ;;;
 Func_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear:
-    LDA.W Enemy.init0,X                                                  ;A2EAE7;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2EAEA;
-    AND.W #$FFFF                                                         ;A2EAEE;
-    BEQ .return                                                          ;A2EAF1;
-    JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2EAF3;
-    LDA.W #Function_ShutterGrowing_Growing_Downwards                     ;A2EAF6;
-    STA.W ShutterGrowing.function,X                                      ;A2EAF9;
+    LDA.W Enemy.init0,X
+    JSL IsSamusWithinAPixelColumnsOfEnemy
+    AND.W #$FFFF : BEQ .return
+    JSR PlayGateOpeningClosingSFXIfOnScreen
+    LDA.W #Function_ShutterGrowing_Growing_Downwards : STA.W ShutterGrowing.function,X
 
   .return:
-    RTS                                                                  ;A2EAFC;
+    RTS
 
 
 ;;; $EAFD: Growing shutter function - initial - downwards - wait for timer ;;;
 Function_ShutterGrowing_Initial_Downwards_WaitForTimer:
-    LDA.W Enemy.init0,X                                                  ;A2EAFD;
-    BEQ +                                                                ;A2EB00;
-    DEC                                                                  ;A2EB02;
-    STA.W Enemy.init0,X                                                  ;A2EB03;
-    RTS                                                                  ;A2EB06;
+    LDA.W Enemy.init0,X : BEQ +
+    DEC : STA.W Enemy.init0,X
+    RTS
 
-+   JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2EB07;
-    LDA.W #Function_ShutterGrowing_Growing_Downwards                     ;A2EB0A;
-    STA.W ShutterGrowing.function,X                                      ;A2EB0D;
-    RTS                                                                  ;A2EB10;
++   JSR PlayGateOpeningClosingSFXIfOnScreen
+    LDA.W #Function_ShutterGrowing_Growing_Downwards : STA.W ShutterGrowing.function,X
+    RTS
 
 
 ;;; $EB11: Growing shutter function - growing - downwards ;;;
 Function_ShutterGrowing_Growing_Downwards:
-    LDA.W ShutterGrowing.growthLevel,X                                   ;A2EB11;
-    ASL                                                                  ;A2EB14;
-    TAX                                                                  ;A2EB15;
-    JSR.W (.pointers,X)                                                  ;A2EB16;
-    RTS                                                                  ;A2EB19;
+    LDA.W ShutterGrowing.growthLevel,X : ASL : TAX
+    JSR.W (.pointers,X)
+    RTS
 
   .pointers:
-    dw Function_ShutterGrowing_Growing_Downwards_GrowthLevel0            ;A2EB1A;
-    dw Function_ShutterGrowing_Growing_Downwards_GrowthLevel1            ;A2EB1C;
-    dw Function_ShutterGrowing_Growing_Downwards_GrowthLevel2            ;A2EB1E;
-    dw Function_ShutterGrowing_Growing_Downwards_GrowthLevel3            ;A2EB20;
-    dw RTS_A2EB24                                                        ;A2EB22;
+    dw Function_ShutterGrowing_Growing_Downwards_GrowthLevel0
+    dw Function_ShutterGrowing_Growing_Downwards_GrowthLevel1
+    dw Function_ShutterGrowing_Growing_Downwards_GrowthLevel2
+    dw Function_ShutterGrowing_Growing_Downwards_GrowthLevel3
+    dw RTS_A2EB24
 
 
 ;;; $EB24: RTS ;;;
 RTS_A2EB24:
-    RTS                                                                  ;A2EB24;
+    RTS
 
 
 ;;; $EB25: Growing shutter growing function - downwards - growth level 0 ;;;
 Function_ShutterGrowing_Growing_Downwards_GrowthLevel0:
-    LDX.W EnemyIndex                                                     ;A2EB25;
-    LDA.W Enemy.YSubPosition,X                                           ;A2EB28;
-    CLC                                                                  ;A2EB2B;
-    ADC.L ShutterGrowing.YSubSpeed,X                                     ;A2EB2C;
-    STA.W Enemy.YSubPosition,X                                           ;A2EB30;
-    LDA.W Enemy.YPosition,X                                              ;A2EB33;
-    ADC.L ShutterGrowing.YSpeed,X                                        ;A2EB36;
-    STA.W Enemy.YPosition,X                                              ;A2EB3A;
-    LDA.W ShutterGrowing.growthLevel0YPosition,X                         ;A2EB3D;
-    CLC                                                                  ;A2EB40;
-    ADC.W #$0010                                                         ;A2EB41;
-    CMP.W Enemy.YPosition,X                                              ;A2EB44;
-    BPL .return                                                          ;A2EB47;
-    SEC                                                                  ;A2EB49;
-    SBC.W #$0007                                                         ;A2EB4A;
-    STA.W Enemy.YPosition,X                                              ;A2EB4D;
-    INC.W ShutterGrowing.growthLevel,X                                   ;A2EB50;
-    LDA.W #$0001                                                         ;A2EB53;
-    STA.W Enemy.instTimer,X                                              ;A2EB56;
-    LDA.W #InstList_Shutter_GrowthLevel1                                 ;A2EB59;
-    STA.W Enemy.instList,X                                               ;A2EB5C;
-    LDA.W #$0010                                                         ;A2EB5F;
-    STA.W Enemy.YHitboxRadius,X                                          ;A2EB62;
+    LDX.W EnemyIndex
+    LDA.W Enemy.YSubPosition,X : CLC : ADC.L ShutterGrowing.YSubSpeed,X : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : ADC.L ShutterGrowing.YSpeed,X : STA.W Enemy.YPosition,X
+    LDA.W ShutterGrowing.growthLevel0YPosition,X : CLC : ADC.W #$0010 : CMP.W Enemy.YPosition,X : BPL .return
+    SEC : SBC.W #$0007 : STA.W Enemy.YPosition,X
+    INC.W ShutterGrowing.growthLevel,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #InstList_Shutter_GrowthLevel1 : STA.W Enemy.instList,X
+    LDA.W #$0010 : STA.W Enemy.YHitboxRadius,X
 
   .return:
-    RTS                                                                  ;A2EB65;
+    RTS
 
 
 ;;; $EB66: Growing shutter growing function - downwards - growth level 1 ;;;
 Function_ShutterGrowing_Growing_Downwards_GrowthLevel1:
-    LDX.W EnemyIndex                                                     ;A2EB66;
-    LDA.W Enemy.YSubPosition,X                                           ;A2EB69;
-    CLC                                                                  ;A2EB6C;
-    ADC.L ShutterGrowing.YSubSpeed,X                                     ;A2EB6D;
-    STA.W Enemy.YSubPosition,X                                           ;A2EB71;
-    LDA.W Enemy.YPosition,X                                              ;A2EB74;
-    ADC.L ShutterGrowing.YSpeed,X                                        ;A2EB77;
-    STA.W Enemy.YPosition,X                                              ;A2EB7B;
-    LDA.W ShutterGrowing.growthLevel1YPosition,X                         ;A2EB7E;
-    CLC                                                                  ;A2EB81;
-    ADC.W #$0010                                                         ;A2EB82;
-    CMP.W Enemy.YPosition,X                                              ;A2EB85;
-    BPL .return                                                          ;A2EB88;
-    SEC                                                                  ;A2EB8A;
-    SBC.W #$0007                                                         ;A2EB8B;
-    STA.W Enemy.YPosition,X                                              ;A2EB8E;
-    INC.W ShutterGrowing.growthLevel,X                                   ;A2EB91;
-    LDA.W #$0001                                                         ;A2EB94;
-    STA.W Enemy.instTimer,X                                              ;A2EB97;
-    LDA.W #InstList_Shutter_GrowthLevel2                                 ;A2EB9A;
-    STA.W Enemy.instList,X                                               ;A2EB9D;
-    LDA.W #$0018                                                         ;A2EBA0;
-    STA.W Enemy.YHitboxRadius,X                                          ;A2EBA3;
+    LDX.W EnemyIndex
+    LDA.W Enemy.YSubPosition,X : CLC : ADC.L ShutterGrowing.YSubSpeed,X : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : ADC.L ShutterGrowing.YSpeed,X : STA.W Enemy.YPosition,X
+    LDA.W ShutterGrowing.growthLevel1YPosition,X : CLC : ADC.W #$0010 : CMP.W Enemy.YPosition,X : BPL .return
+    SEC : SBC.W #$0007 : STA.W Enemy.YPosition,X
+    INC.W ShutterGrowing.growthLevel,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #InstList_Shutter_GrowthLevel2 : STA.W Enemy.instList,X
+    LDA.W #$0018 : STA.W Enemy.YHitboxRadius,X
 
   .return:
-    RTS                                                                  ;A2EBA6;
+    RTS
 
 
 ;;; $EBA7: Growing shutter growing function - downwards - growth level 2 ;;;
 Function_ShutterGrowing_Growing_Downwards_GrowthLevel2:
-    LDX.W EnemyIndex                                                     ;A2EBA7;
-    LDA.W Enemy.YSubPosition,X                                           ;A2EBAA;
-    CLC                                                                  ;A2EBAD;
-    ADC.L ShutterGrowing.YSubSpeed,X                                     ;A2EBAE;
-    STA.W Enemy.YSubPosition,X                                           ;A2EBB2;
-    LDA.W Enemy.YPosition,X                                              ;A2EBB5;
-    ADC.L ShutterGrowing.YSpeed,X                                        ;A2EBB8;
-    STA.W Enemy.YPosition,X                                              ;A2EBBC;
-    LDA.W ShutterGrowing.growthLevel2YPosition,X                         ;A2EBBF;
-    CLC                                                                  ;A2EBC2;
-    ADC.W #$0010                                                         ;A2EBC3;
-    CMP.W Enemy.YPosition,X                                              ;A2EBC6;
-    BPL .return                                                          ;A2EBC9;
-    SEC                                                                  ;A2EBCB;
-    SBC.W #$0007                                                         ;A2EBCC;
-    STA.W Enemy.YPosition,X                                              ;A2EBCF;
-    INC.W ShutterGrowing.growthLevel,X                                   ;A2EBD2;
-    LDA.W #$0001                                                         ;A2EBD5;
-    STA.W Enemy.instTimer,X                                              ;A2EBD8;
-    LDA.W #InstList_Shutter_GrowthLevel3                                 ;A2EBDB;
-    STA.W Enemy.instList,X                                               ;A2EBDE;
-    LDA.W #$0020                                                         ;A2EBE1;
-    STA.W Enemy.YHitboxRadius,X                                          ;A2EBE4;
+    LDX.W EnemyIndex
+    LDA.W Enemy.YSubPosition,X : CLC : ADC.L ShutterGrowing.YSubSpeed,X : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : ADC.L ShutterGrowing.YSpeed,X : STA.W Enemy.YPosition,X
+    LDA.W ShutterGrowing.growthLevel2YPosition,X : CLC : ADC.W #$0010 : CMP.W Enemy.YPosition,X : BPL .return
+    SEC : SBC.W #$0007 : STA.W Enemy.YPosition,X
+    INC.W ShutterGrowing.growthLevel,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #InstList_Shutter_GrowthLevel3 : STA.W Enemy.instList,X
+    LDA.W #$0020 : STA.W Enemy.YHitboxRadius,X
 
   .return:
-    RTS                                                                  ;A2EBE7;
+    RTS
 
 
 ;;; $EBE8: Growing shutter growing function - downwards - growth level 3 ;;;
 Function_ShutterGrowing_Growing_Downwards_GrowthLevel3:
-    LDX.W EnemyIndex                                                     ;A2EBE8;
-    LDA.W Enemy.YSubPosition,X                                           ;A2EBEB;
-    CLC                                                                  ;A2EBEE;
-    ADC.L ShutterGrowing.YSubSpeed,X                                     ;A2EBEF;
-    STA.W Enemy.YSubPosition,X                                           ;A2EBF3;
-    LDA.W Enemy.YPosition,X                                              ;A2EBF6;
-    ADC.L ShutterGrowing.YSpeed,X                                        ;A2EBF9;
-    STA.W Enemy.YPosition,X                                              ;A2EBFD;
-    LDA.W ShutterGrowing.growthLevel3YPosition,X                         ;A2EC00;
-    CLC                                                                  ;A2EC03;
-    ADC.W #$0010                                                         ;A2EC04;
-    CMP.W Enemy.YPosition,X                                              ;A2EC07;
-    BPL .return                                                          ;A2EC0A;
-    STA.W Enemy.YPosition,X                                              ;A2EC0C;
-    INC.W ShutterGrowing.growthLevel,X                                   ;A2EC0F;
+    LDX.W EnemyIndex
+    LDA.W Enemy.YSubPosition,X : CLC : ADC.L ShutterGrowing.YSubSpeed,X : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : ADC.L ShutterGrowing.YSpeed,X : STA.W Enemy.YPosition,X
+    LDA.W ShutterGrowing.growthLevel3YPosition,X : CLC : ADC.W #$0010 : CMP.W Enemy.YPosition,X : BPL .return
+    STA.W Enemy.YPosition,X
+    INC.W ShutterGrowing.growthLevel,X
 
   .return:
-    RTS                                                                  ;A2EC12;
+    RTS
 
 
 ;;; $EC13: Growing shutter function - growing - upwards ;;;
 Function_ShutterGrowing_Growing_Upwards:
-    LDA.W Enemy.YPosition,X                                              ;A2EC13;
-    STA.L ShutterGrowing.previousYPosition,X                             ;A2EC16;
-    LDA.W ShutterGrowing.growthLevel,X                                   ;A2EC1A;
-    ASL                                                                  ;A2EC1D;
-    TAX                                                                  ;A2EC1E;
-    JSR.W (.pointers,X)                                                  ;A2EC1F;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2EC22;
-    BEQ .return                                                          ;A2EC26;
-    LDA.W Enemy.YPosition,X                                              ;A2EC28;
-    SEC                                                                  ;A2EC2B;
-    SBC.L ShutterGrowing.previousYPosition,X                             ;A2EC2C;
-    BPL .return                                                          ;A2EC30;
-    CLC                                                                  ;A2EC32;
-    ADC.W ExtraSamusYDisplacement                                        ;A2EC33;
-    STA.W ExtraSamusYDisplacement                                        ;A2EC36;
+    LDA.W Enemy.YPosition,X : STA.L ShutterGrowing.previousYPosition,X
+    LDA.W ShutterGrowing.growthLevel,X : ASL : TAX
+    JSR.W (.pointers,X)
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    BEQ .return
+    LDA.W Enemy.YPosition,X : SEC : SBC.L ShutterGrowing.previousYPosition,X : BPL .return
+    CLC : ADC.W ExtraSamusYDisplacement : STA.W ExtraSamusYDisplacement
 
   .return:
-    RTS                                                                  ;A2EC39;
+    RTS
 
   .pointers:
-    dw Function_ShutterGrowing_Growing_Upwards_GrowthLevel0              ;A2EC3A;
-    dw Function_ShutterGrowing_Growing_Upwards_GrowthLevel1              ;A2EC3C;
-    dw Function_ShutterGrowing_Growing_Upwards_GrowthLevel2              ;A2EC3E;
-    dw Function_ShutterGrowing_Growing_Upwards_GrowthLevel3              ;A2EC40;
-    dw RTS_A2EC44                                                        ;A2EC42;
+    dw Function_ShutterGrowing_Growing_Upwards_GrowthLevel0
+    dw Function_ShutterGrowing_Growing_Upwards_GrowthLevel1
+    dw Function_ShutterGrowing_Growing_Upwards_GrowthLevel2
+    dw Function_ShutterGrowing_Growing_Upwards_GrowthLevel3
+    dw RTS_A2EC44
 
 
 ;;; $EC44: RTS ;;;
 RTS_A2EC44:
-    RTS                                                                  ;A2EC44;
+    RTS
 
 
 ;;; $EC45: Growing shutter growing function - upwards - growth level 0 ;;;
 Function_ShutterGrowing_Growing_Upwards_GrowthLevel0:
-    LDX.W EnemyIndex                                                     ;A2EC45;
-    LDA.W Enemy.YSubPosition,X                                           ;A2EC48;
-    SEC                                                                  ;A2EC4B;
-    SBC.L ShutterGrowing.YSubSpeed,X                                     ;A2EC4C;
-    STA.W Enemy.YSubPosition,X                                           ;A2EC50;
-    LDA.W Enemy.YPosition,X                                              ;A2EC53;
-    SBC.L ShutterGrowing.YSpeed,X                                        ;A2EC56;
-    STA.W Enemy.YPosition,X                                              ;A2EC5A;
-    LDA.W ShutterGrowing.growthLevel0YPosition,X                         ;A2EC5D;
-    SEC                                                                  ;A2EC60;
-    SBC.W #$0010                                                         ;A2EC61;
-    CMP.W Enemy.YPosition,X                                              ;A2EC64;
-    BMI .return                                                          ;A2EC67;
-    CLC                                                                  ;A2EC69;
-    ADC.W #$0007                                                         ;A2EC6A;
-    STA.W Enemy.YPosition,X                                              ;A2EC6D;
-    INC.W ShutterGrowing.growthLevel,X                                   ;A2EC70;
-    LDA.W #$0001                                                         ;A2EC73;
-    STA.W Enemy.instTimer,X                                              ;A2EC76;
-    LDA.W #InstList_Shutter_GrowthLevel1                                 ;A2EC79;
-    STA.W Enemy.instList,X                                               ;A2EC7C;
-    LDA.W #$0010                                                         ;A2EC7F;
-    STA.W Enemy.YHitboxRadius,X                                          ;A2EC82;
+    LDX.W EnemyIndex
+    LDA.W Enemy.YSubPosition,X : SEC : SBC.L ShutterGrowing.YSubSpeed,X : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : SBC.L ShutterGrowing.YSpeed,X : STA.W Enemy.YPosition,X
+    LDA.W ShutterGrowing.growthLevel0YPosition,X : SEC : SBC.W #$0010 : CMP.W Enemy.YPosition,X : BMI .return
+    CLC : ADC.W #$0007 : STA.W Enemy.YPosition,X
+    INC.W ShutterGrowing.growthLevel,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #InstList_Shutter_GrowthLevel1 : STA.W Enemy.instList,X
+    LDA.W #$0010 : STA.W Enemy.YHitboxRadius,X
 
   .return:
-    RTS                                                                  ;A2EC85;
+    RTS
 
 
 ;;; $EC86: Growing shutter growing function - upwards - growth level 1 ;;;
 Function_ShutterGrowing_Growing_Upwards_GrowthLevel1:
-    LDX.W EnemyIndex                                                     ;A2EC86;
-    LDA.W Enemy.YSubPosition,X                                           ;A2EC89;
-    SEC                                                                  ;A2EC8C;
-    SBC.L ShutterGrowing.YSubSpeed,X                                     ;A2EC8D;
-    STA.W Enemy.YSubPosition,X                                           ;A2EC91;
-    LDA.W Enemy.YPosition,X                                              ;A2EC94;
-    SBC.L ShutterGrowing.YSpeed,X                                        ;A2EC97;
-    STA.W Enemy.YPosition,X                                              ;A2EC9B;
-    LDA.W ShutterGrowing.growthLevel1YPosition,X                         ;A2EC9E;
-    SEC                                                                  ;A2ECA1;
-    SBC.W #$0010                                                         ;A2ECA2;
-    CMP.W Enemy.YPosition,X                                              ;A2ECA5;
-    BMI .return                                                          ;A2ECA8;
-    CLC                                                                  ;A2ECAA;
-    ADC.W #$0007                                                         ;A2ECAB;
-    STA.W Enemy.YPosition,X                                              ;A2ECAE;
-    INC.W ShutterGrowing.growthLevel,X                                   ;A2ECB1;
-    LDA.W #$0001                                                         ;A2ECB4;
-    STA.W Enemy.instTimer,X                                              ;A2ECB7;
-    LDA.W #InstList_Shutter_GrowthLevel2                                 ;A2ECBA;
-    STA.W Enemy.instList,X                                               ;A2ECBD;
-    LDA.W #$0018                                                         ;A2ECC0;
-    STA.W Enemy.YHitboxRadius,X                                          ;A2ECC3;
+    LDX.W EnemyIndex
+    LDA.W Enemy.YSubPosition,X : SEC : SBC.L ShutterGrowing.YSubSpeed,X : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : SBC.L ShutterGrowing.YSpeed,X : STA.W Enemy.YPosition,X
+    LDA.W ShutterGrowing.growthLevel1YPosition,X : SEC : SBC.W #$0010 : CMP.W Enemy.YPosition,X : BMI .return
+    CLC : ADC.W #$0007 : STA.W Enemy.YPosition,X
+    INC.W ShutterGrowing.growthLevel,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #InstList_Shutter_GrowthLevel2 : STA.W Enemy.instList,X
+    LDA.W #$0018 : STA.W Enemy.YHitboxRadius,X
 
   .return:
-    RTS                                                                  ;A2ECC6;
+    RTS
 
 
 ;;; $ECC7: Growing shutter growing function - upwards - growth level 2 ;;;
 Function_ShutterGrowing_Growing_Upwards_GrowthLevel2:
-    LDX.W EnemyIndex                                                     ;A2ECC7;
-    LDA.W Enemy.YSubPosition,X                                           ;A2ECCA;
-    SEC                                                                  ;A2ECCD;
-    SBC.L ShutterGrowing.YSubSpeed,X                                     ;A2ECCE;
-    STA.W Enemy.YSubPosition,X                                           ;A2ECD2;
-    LDA.W Enemy.YPosition,X                                              ;A2ECD5;
-    SBC.L ShutterGrowing.YSpeed,X                                        ;A2ECD8;
-    STA.W Enemy.YPosition,X                                              ;A2ECDC;
-    LDA.W ShutterGrowing.growthLevel2YPosition,X                         ;A2ECDF;
-    SEC                                                                  ;A2ECE2;
-    SBC.W #$0010                                                         ;A2ECE3;
-    CMP.W Enemy.YPosition,X                                              ;A2ECE6;
-    BMI .return                                                          ;A2ECE9;
-    CLC                                                                  ;A2ECEB;
-    ADC.W #$0007                                                         ;A2ECEC;
-    STA.W Enemy.YPosition,X                                              ;A2ECEF;
-    INC.W ShutterGrowing.growthLevel,X                                   ;A2ECF2;
-    LDA.W #$0001                                                         ;A2ECF5;
-    STA.W Enemy.instTimer,X                                              ;A2ECF8;
-    LDA.W #InstList_Shutter_GrowthLevel3                                 ;A2ECFB;
-    STA.W Enemy.instList,X                                               ;A2ECFE;
-    LDA.W #$0020                                                         ;A2ED01;
-    STA.W Enemy.YHitboxRadius,X                                          ;A2ED04;
+    LDX.W EnemyIndex
+    LDA.W Enemy.YSubPosition,X : SEC : SBC.L ShutterGrowing.YSubSpeed,X : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : SBC.L ShutterGrowing.YSpeed,X : STA.W Enemy.YPosition,X
+    LDA.W ShutterGrowing.growthLevel2YPosition,X : SEC : SBC.W #$0010 : CMP.W Enemy.YPosition,X : BMI .return
+    CLC : ADC.W #$0007 : STA.W Enemy.YPosition,X
+    INC.W ShutterGrowing.growthLevel,X
+    LDA.W #$0001 : STA.W Enemy.instTimer,X
+    LDA.W #InstList_Shutter_GrowthLevel3 : STA.W Enemy.instList,X
+    LDA.W #$0020 : STA.W Enemy.YHitboxRadius,X
 
   .return:
-    RTS                                                                  ;A2ED07;
+    RTS
 
 
 ;;; $ED08: Growing shutter growing function - upwards - growth level 3 ;;;
 Function_ShutterGrowing_Growing_Upwards_GrowthLevel3:
-    LDX.W EnemyIndex                                                     ;A2ED08;
-    LDA.W Enemy.YSubPosition,X                                           ;A2ED0B;
-    SEC                                                                  ;A2ED0E;
-    SBC.L ShutterGrowing.YSubSpeed,X                                     ;A2ED0F;
-    STA.W Enemy.YSubPosition,X                                           ;A2ED13;
-    LDA.W Enemy.YPosition,X                                              ;A2ED16;
-    SBC.L ShutterGrowing.YSpeed,X                                        ;A2ED19;
-    STA.W Enemy.YPosition,X                                              ;A2ED1D;
-    LDA.W ShutterGrowing.growthLevel3YPosition,X                         ;A2ED20;
-    SEC                                                                  ;A2ED23;
-    SBC.W #$0010                                                         ;A2ED24;
-    CMP.W Enemy.YPosition,X                                              ;A2ED27;
-    BMI .return                                                          ;A2ED2A;
-    STA.W Enemy.YPosition,X                                              ;A2ED2C;
-    INC.W ShutterGrowing.growthLevel,X                                   ;A2ED2F;
+    LDX.W EnemyIndex
+    LDA.W Enemy.YSubPosition,X : SEC : SBC.L ShutterGrowing.YSubSpeed,X : STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : SBC.L ShutterGrowing.YSpeed,X : STA.W Enemy.YPosition,X
+    LDA.W ShutterGrowing.growthLevel3YPosition,X : SEC : SBC.W #$0010 : CMP.W Enemy.YPosition,X : BMI .return
+    STA.W Enemy.YPosition,X
+    INC.W ShutterGrowing.growthLevel,X
 
   .return:
-    RTS                                                                  ;A2ED32;
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $ED33: Unused. A = 5 ;;;
 UNUSED_Load5_A2ED33:
-    LDA.W #$0005                                                         ;A2ED33;
-    RTL                                                                  ;A2ED36;
+    LDA.W #$0005
+    RTL
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $ED37: RTL ;;;
 RTL_A2ED37:
-    RTL                                                                  ;A2ED37;
+    RTL
 
 
 ;;; $ED38: Shutters spritemaps ;;;
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Shutters_8px_A2ED38:
-    dw $0002                                                             ;A2ED38;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $101)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $100)
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Shutters_10px:
-    dw $0001                                                             ;A2ED44;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Shutters_18px_A2ED4B:
-    dw $0002                                                             ;A2ED4B;
+    dw $0002
     %spritemapEntry(1, $43F8, $FC, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $F4, 0, 0, 2, 0, $100)
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Shutters_20px:
-    dw $0002                                                             ;A2ED57;
+    dw $0002
     %spritemapEntry(1, $43F8, $00, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 0, $100)
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Shutters_28px_A2ED63:
-    dw $0003                                                             ;A2ED63;
+    dw $0003
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $04, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $EC, 0, 0, 2, 0, $100)
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Shutters_30px:
-    dw $0003                                                             ;A2ED74;
+    dw $0003
     %spritemapEntry(1, $43F8, $08, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $E8, 0, 0, 2, 0, $100)
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Shutters_38px_A2ED85:
-    dw $0004                                                             ;A2ED85;
+    dw $0004
     %spritemapEntry(1, $43F8, $0C, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $00, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 0, $100)
@@ -12138,14 +9910,14 @@ UNUSED_Spritemap_Shutters_38px_A2ED85:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Shutters_40px:
-    dw $0004                                                             ;A2ED9B;
+    dw $0004
     %spritemapEntry(1, $43F8, $10, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $00, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $E0, 0, 0, 2, 0, $100)
 
 Spritemap_Shutters_Horizontal:
-    dw $0004                                                             ;A2EDB1;
+    dw $0004
     %spritemapEntry(1, $1E0, $F8, 0, 0, 2, 0, $102)
     %spritemapEntry(1, $10, $F8, 0, 0, 2, 0, $102)
     %spritemapEntry(1, $00, $F8, 0, 0, 2, 0, $102)
@@ -12154,892 +9926,624 @@ Spritemap_Shutters_Horizontal:
 
 ;;; $EDC7: Palette - enemy $D5FF (up/down mover platform) ;;;
 Palette_Kamer:
-    dw $3800,$7F5A,$3BE0,$2680,$0920,$4F5A,$36B5,$2610                   ;A2EDC7;
-    dw $1DCE,$5294,$39CE,$2108,$1084,$033B,$0216,$0113                   ;A2EDD7;
+    dw $3800,$7F5A,$3BE0,$2680,$0920,$4F5A,$36B5,$2610
+    dw $1DCE,$5294,$39CE,$2108,$1084,$033B,$0216,$0113
 
 
 ;;; $EDE7: Instruction list - up/down mover platform ;;;
 InstList_Kamer:
-    dw $000A,Spritemap_Kamer_0                                           ;A2EDE7;
-    dw $000A,Spritemap_Kamer_1                                           ;A2EDEB;
-    dw $000A,Spritemap_Kamer_2                                           ;A2EDEF;
-    dw $000A,Spritemap_Kamer_3                                           ;A2EDF3;
-    dw Instruction_Common_GotoY                                          ;A2EDF7;
-    dw InstList_Kamer                                                    ;A2EDF9;
+    dw $000A,Spritemap_Kamer_0
+    dw $000A,Spritemap_Kamer_1
+    dw $000A,Spritemap_Kamer_2
+    dw $000A,Spritemap_Kamer_3
+    dw Instruction_Common_GotoY
+    dw InstList_Kamer
 
 
 ;;; $EDFB: Initial up/down mover function pointers ;;;
 KamerInitialFunctionPointers:
-    dw Function_Shutter_Kamer_WaitForTimer                               ;A2EDFB;
-    dw Function_Shutter_Kamer_WaitForSamusToGetNear                      ;A2EDFD;
-    dw Function_Shutter_Kamer_Activate                                   ;A2EDFF;
-    dw Function_Shutter_Kamer_GetEnemyIndex                              ;A2EE01;
-    dw Function_Shutter_Kamer_GetEnemyIndex                              ;A2EE03;
+    dw Function_Shutter_Kamer_WaitForTimer
+    dw Function_Shutter_Kamer_WaitForSamusToGetNear
+    dw Function_Shutter_Kamer_Activate
+    dw Function_Shutter_Kamer_GetEnemyIndex
+    dw Function_Shutter_Kamer_GetEnemyIndex
 
 
 ;;; $EE05: Initialisation AI - enemy $D5FF (up/down mover platform) ;;;
 InitAI_Kamer:
-    LDX.W EnemyIndex                                                     ;A2EE05;
-    JSR.W Init_Shutter_Kamer_Common                                      ;A2EE08;
-    LDA.W #InstList_Kamer                                                ;A2EE0B;
-    STA.W Enemy.instList,X                                               ;A2EE0E;
-    RTL                                                                  ;A2EE11;
+    LDX.W EnemyIndex
+    JSR Init_Shutter_Kamer_Common
+    LDA.W #InstList_Kamer : STA.W Enemy.instList,X
+    RTL
 
 
 ;;; $EE12: Initialisation AI - enemy $D53F/$D5BF (shootable shutter / destroyable shutter) ;;;
 InitAI_ShutterShootable_ShutterDestroyable:
-    LDX.W EnemyIndex                                                     ;A2EE12;
-    JSR.W Init_Shutter_Kamer_Common                                      ;A2EE15;
-    LDA.W #InstList_Shutter_GrowthLevel3                                 ;A2EE18;
-    STA.W Enemy.instList,X                                               ;A2EE1B;
-    RTL                                                                  ;A2EE1E;
+    LDX.W EnemyIndex
+    JSR Init_Shutter_Kamer_Common
+    LDA.W #InstList_Shutter_GrowthLevel3 : STA.W Enemy.instList,X
+    RTL
 
 
 ;;; $EE1F: Initialise up/down mover ;;;
 Init_Shutter_Kamer_Common:
-    LDA.W Enemy.instList,X                                               ;A2EE1F;
-    AND.W #$00FF                                                         ;A2EE22;
-    STA.L Shutters.YSpeedTableIndex,X                                    ;A2EE25;
-    ASL                                                                  ;A2EE29;
-    ASL                                                                  ;A2EE2A;
-    ASL                                                                  ;A2EE2B;
-    TAY                                                                  ;A2EE2C;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A2EE2D;
-    STA.W Shutters.downVelocity,X                                        ;A2EE30;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A2EE33;
-    STA.W Shutters.downSubVelocity,X                                     ;A2EE36;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A2EE39;
-    STA.W Shutters.upVelocity,X                                          ;A2EE3C;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2EE3F;
-    STA.W Shutters.upSubVelocity,X                                       ;A2EE42;
-    LDA.W Enemy.instList+1,X                                             ;A2EE45;
-    AND.W #$00FF                                                         ;A2EE48;
-    STA.L Shutters.primaryDirection,X                                    ;A2EE4B;
-    STA.L Shutters.reactionDirection,X                                   ;A2EE4F;
-    LDA.W Enemy.properties2,X                                            ;A2EE53;
-    AND.W #$00FF                                                         ;A2EE56;
-    STA.L Shutters.movedUpRestTimerParam,X                               ;A2EE59;
-    ASL                                                                  ;A2EE5D;
-    ASL                                                                  ;A2EE5E;
-    ASL                                                                  ;A2EE5F;
-    ASL                                                                  ;A2EE60;
-    STA.L Shutters.movedUpRestTime,X                                     ;A2EE61;
-    LDA.W Enemy.properties2+1,X                                          ;A2EE65;
-    AND.W #$00FF                                                         ;A2EE68;
-    STA.L Shutters.movedDownRestTimeParam,X                              ;A2EE6B;
-    ASL                                                                  ;A2EE6F;
-    ASL                                                                  ;A2EE70;
-    ASL                                                                  ;A2EE71;
-    ASL                                                                  ;A2EE72;
-    STA.L Shutters.movedDownRestTime,X                                   ;A2EE73;
-    LDA.W Enemy.init0,X                                                  ;A2EE77;
-    AND.W #$00FF                                                         ;A2EE7A;
-    STA.L Shutters.triggerMode,X                                         ;A2EE7D;
-    ASL                                                                  ;A2EE81;
-    STA.L Shutters.initialFunctionIndex,X                                ;A2EE82;
-    LDA.W Enemy.init0+1,X                                                ;A2EE86;
-    AND.W #$00FF                                                         ;A2EE89;
-    STA.L Shutters.YDistance,X                                           ;A2EE8C;
-    LDA.W Enemy.init1,X                                                  ;A2EE90;
-    STA.L Shutters.XProximityWaitTime,X                                  ;A2EE93;
-    STA.W Shutters.functionTimer,X                                       ;A2EE97;
-    LDA.W Enemy.YPosition,X                                              ;A2EE9A;
-    STA.L Shutters.minimumYPosition,X                                    ;A2EE9D;
-    CLC                                                                  ;A2EEA1;
-    ADC.L Shutters.YDistance,X                                           ;A2EEA2;
-    STA.L Shutters.maximumYPosition,X                                    ;A2EEA6;
-    LDA.L Shutters.primaryDirection,X                                    ;A2EEAA;
-    BNE .keep20                                                          ;A2EEAE;
-    LDA.W Enemy.YPosition,X                                              ;A2EEB0;
-    STA.L Shutters.maximumYPosition,X                                    ;A2EEB3;
-    SEC                                                                  ;A2EEB7;
-    SBC.L Shutters.YDistance,X                                           ;A2EEB8;
-    STA.L Shutters.minimumYPosition,X                                    ;A2EEBC;
+    LDA.W Enemy.instList,X : AND.W #$00FF : STA.L Shutters.YSpeedTableIndex,X
+    ASL #3 : TAY
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W Shutters.downVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W Shutters.downSubVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W Shutters.upVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W Shutters.upSubVelocity,X
+    LDA.W Enemy.instList+1,X : AND.W #$00FF : STA.L Shutters.primaryDirection,X : STA.L Shutters.reactionDirection,X
+    LDA.W Enemy.properties2,X : AND.W #$00FF : STA.L Shutters.movedUpRestTimerParam,X
+    ASL #4 : STA.L Shutters.movedUpRestTime,X
+    LDA.W Enemy.properties2+1,X : AND.W #$00FF : STA.L Shutters.movedDownRestTimeParam,X
+    ASL #4 : STA.L Shutters.movedDownRestTime,X
+    LDA.W Enemy.init0,X : AND.W #$00FF : STA.L Shutters.triggerMode,X
+    ASL : STA.L Shutters.initialFunctionIndex,X
+    LDA.W Enemy.init0+1,X : AND.W #$00FF : STA.L Shutters.YDistance,X
+    LDA.W Enemy.init1,X : STA.L Shutters.XProximityWaitTime,X : STA.W Shutters.functionTimer,X
+    LDA.W Enemy.YPosition,X : STA.L Shutters.minimumYPosition,X
+    CLC : ADC.L Shutters.YDistance,X : STA.L Shutters.maximumYPosition,X
+    LDA.L Shutters.primaryDirection,X : BNE .keep20
+    LDA.W Enemy.YPosition,X : STA.L Shutters.maximumYPosition,X
+    SEC : SBC.L Shutters.YDistance,X : STA.L Shutters.minimumYPosition,X
 
   .keep20:
-    LDA.W #Function_Shutter_Kamer_Initial                                ;A2EEC0;
-    STA.W Shutters.function,X                                            ;A2EEC3;
-    LDA.W #$0000                                                         ;A2EEC6;
-    STA.W Enemy.properties2,X                                            ;A2EEC9;
-    STA.L Shutters.movingSamusFlag,X                                     ;A2EECC;
-    RTS                                                                  ;A2EED0;
+    LDA.W #Function_Shutter_Kamer_Initial : STA.W Shutters.function,X
+    LDA.W #$0000 : STA.W Enemy.properties2,X : STA.L Shutters.movingSamusFlag,X
+    RTS
 
 
 ;;; $EED1: Main AI - enemy $D53F/$D5BF/$D5FF (up/down mover) ;;;
 MainAI_ShutterShootable_ShutterDestroyable_Kamer:
-    LDX.W EnemyIndex                                                     ;A2EED1;
-    JSR.W (Shutters.function,X)                                          ;A2EED4;
-    LDA.W Shutters.function,X                                            ;A2EED7;
-    CMP.W #Function_Kamer_MovingUp                                       ;A2EEDA;
-    BNE +                                                                ;A2EEDD;
-    BRA .return                                                          ;A2EEDF;
+    LDX.W EnemyIndex
+    JSR.W (Shutters.function,X)
+    LDA.W Shutters.function,X : CMP.W #Function_Kamer_MovingUp : BNE +
+    BRA .return
 
-+   LDA.W Shutters.function,X                                            ;A2EEE1;
-    CMP.W #Function_Kamer_MovingDown                                     ;A2EEE4;
-    BEQ .return                                                          ;A2EEE7;
-    LDA.W EnemyIndexSamusCollidesLeft                                    ;A2EEE9;
-    AND.W EnemyIndexSamusCollidesRight                                   ;A2EEEC;
-    AND.W EnemyIndexSamusCollidesUp                                      ;A2EEEF;
-    AND.W EnemyIndexSamusCollidesDown                                    ;A2EEF2;
-    CMP.W #$FFFF                                                         ;A2EEF5;
-    BEQ .return                                                          ;A2EEF8;
-    CMP.W EnemyIndex                                                     ;A2EEFA;
-    BNE .return                                                          ;A2EEFD;
-    LDA.W ContactDamageIndex                                             ;A2EEFF;
-    BEQ .return                                                          ;A2EF02;
-    JSL.L PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer    ;A2EF04;
++   LDA.W Shutters.function,X : CMP.W #Function_Kamer_MovingDown : BEQ .return
+    LDA.W EnemyIndexSamusCollidesLeft : AND.W EnemyIndexSamusCollidesRight
+    AND.W EnemyIndexSamusCollidesUp : AND.W EnemyIndexSamusCollidesDown
+    CMP.W #$FFFF : BEQ .return
+    CMP.W EnemyIndex : BNE .return
+    LDA.W ContactDamageIndex : BEQ .return
+    JSL PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer
 
   .return:
-    RTL                                                                  ;A2EF08;
+    RTL
 
 
 ;;; $EF09: Up/down mover function - initial ;;;
 Function_Shutter_Kamer_Initial:
-    LDX.W EnemyIndex                                                     ;A2EF09;
-    LDA.L Shutters.initialFunctionIndex,X                                ;A2EF0C;
-    TAX                                                                  ;A2EF10;
-    JSR.W (KamerInitialFunctionPointers,X)                               ;A2EF11;
-    RTS                                                                  ;A2EF14;
+    LDX.W EnemyIndex
+    LDA.L Shutters.initialFunctionIndex,X : TAX
+    JSR.W (KamerInitialFunctionPointers,X)
+    RTS
 
 
 ;;; $EF15: Initial up/down mover function - wait for timer ;;;
 Function_Shutter_Kamer_WaitForTimer:
-    LDX.W EnemyIndex                                                     ;A2EF15;
-    DEC.W Shutters.functionTimer,X                                       ;A2EF18;
-    BNE .return                                                          ;A2EF1B;
-    LDA.L Shutters.XProximityWaitTime,X                                  ;A2EF1D;
-    STA.W Shutters.functionTimer,X                                       ;A2EF21;
-    JSR.W ActivateKamer                                                  ;A2EF24;
+    LDX.W EnemyIndex
+    DEC.W Shutters.functionTimer,X : BNE .return
+    LDA.L Shutters.XProximityWaitTime,X : STA.W Shutters.functionTimer,X
+    JSR ActivateKamer
 
   .return:
-    RTS                                                                  ;A2EF27;
+    RTS
 
 
 ;;; $EF28: (Initial) up/down mover function - wait for Samus to get near ;;;
 Function_Shutter_Kamer_WaitForSamusToGetNear:
-    LDX.W EnemyIndex                                                     ;A2EF28;
-    LDA.L Shutters.XProximityWaitTime,X                                  ;A2EF2B;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2EF2F;
-    BEQ .return                                                          ;A2EF33;
-    JSR.W ActivateKamer                                                  ;A2EF35;
+    LDX.W EnemyIndex
+    LDA.L Shutters.XProximityWaitTime,X
+    JSL IsSamusWithinAPixelColumnsOfEnemy
+    BEQ .return
+    JSR ActivateKamer
 
   .return:
-    RTS                                                                  ;A2EF38;
+    RTS
 
 
 ;;; $EF39: Initial up/down mover function - activate ;;;
 Function_Shutter_Kamer_Activate:
-    LDX.W EnemyIndex                                                     ;A2EF39;
-    JSR.W ActivateKamer                                                  ;A2EF3C;
-    RTS                                                                  ;A2EF3F;
+    LDX.W EnemyIndex
+    JSR ActivateKamer
+    RTS
 
 
 ;;; $EF40: Initial up/down mover function - nothing ;;;
 Function_Shutter_Kamer_GetEnemyIndex:
-    LDX.W EnemyIndex                                                     ;A2EF40;
-    RTS                                                                  ;A2EF43;
+    LDX.W EnemyIndex
+    RTS
 
 
 ;;; $EF44: Activate up/down mover ;;;
 ActivateKamer:
-    LDA.W #Function_Kamer_MovingUp                                       ;A2EF44;
-    STA.W Shutters.function,X                                            ;A2EF47;
-    LDA.L Shutters.primaryDirection,X                                    ;A2EF4A;
-    BEQ .keepUp                                                          ;A2EF4E;
-    LDA.W #Function_Kamer_MovingDown                                     ;A2EF50;
-    STA.W Shutters.function,X                                            ;A2EF53;
+    LDA.W #Function_Kamer_MovingUp : STA.W Shutters.function,X
+    LDA.L Shutters.primaryDirection,X : BEQ .keepUp
+    LDA.W #Function_Kamer_MovingDown : STA.W Shutters.function,X
 
   .keepUp:
-    JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2EF56;
-    RTS                                                                  ;A2EF59;
+    JSR PlayGateOpeningClosingSFXIfOnScreen
+    RTS
 
 
 ;;; $EF5A: Play gate opening/closing sound effect if on-screen ;;;
 PlayGateOpeningClosingSFXIfOnScreen:
-    JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A2EF5A;
-    BNE .return                                                          ;A2EF5E;
-    LDA.W #$000E                                                         ;A2EF60;
-    JSL.L QueueSound_Lib3_Max6                                           ;A2EF63;
+    JSL CheckIfEnemyCenterIsOnScreen
+    BNE .return
+    LDA.W #$000E
+    JSL QueueSound_Lib3_Max6
 
   .return:
-    RTS                                                                  ;A2EF67;
+    RTS
 
 
 ;;; $EF68: Up/down mover function - moving up ;;;
 Function_Kamer_MovingUp:
-    LDX.W EnemyIndex                                                     ;A2EF68;
-    LDA.W Enemy.YPosition,X                                              ;A2EF6B;
-    STA.L Shutters.previousYPosition,X                                   ;A2EF6E;
-    LDA.W #$0000                                                         ;A2EF72;
-    STA.L Shutters.movingSamusFlag,X                                     ;A2EF75;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2EF79;
-    BEQ .notTouchingSamusFromBelow                                       ;A2EF7D;
-    LDA.W #$0001                                                         ;A2EF7F;
-    STA.L Shutters.movingSamusFlag,X                                     ;A2EF82;
+    LDX.W EnemyIndex
+    LDA.W Enemy.YPosition,X : STA.L Shutters.previousYPosition,X
+    LDA.W #$0000 : STA.L Shutters.movingSamusFlag,X
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    BEQ .notTouchingSamusFromBelow
+    LDA.W #$0001 : STA.L Shutters.movingSamusFlag,X
 
   .notTouchingSamusFromBelow:
-    LDA.W Enemy.YSubPosition,X                                           ;A2EF86;
-    CLC                                                                  ;A2EF89;
-    ADC.W Shutters.upSubVelocity,X                                       ;A2EF8A;
-    BCC +                                                                ;A2EF8D;
-    INC.W Enemy.YPosition,X                                              ;A2EF8F;
+    LDA.W Enemy.YSubPosition,X : CLC : ADC.W Shutters.upSubVelocity,X : BCC +
+    INC.W Enemy.YPosition,X
 
-+   STA.W Enemy.YSubPosition,X                                           ;A2EF92;
-    LDA.W Enemy.YPosition,X                                              ;A2EF95;
-    CLC                                                                  ;A2EF98;
-    ADC.W Shutters.upVelocity,X                                          ;A2EF99;
-    STA.W Enemy.YPosition,X                                              ;A2EF9C;
-    LDA.L Shutters.movingSamusFlag,X                                     ;A2EF9F;
-    BEQ .notMovingSamus                                                  ;A2EFA3;
-    LDA.W Enemy.YPosition,X                                              ;A2EFA5;
-    SEC                                                                  ;A2EFA8;
-    SBC.L Shutters.previousYPosition,X                                   ;A2EFA9;
-    STA.W ExtraSamusYDisplacement                                        ;A2EFAD;
++   STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : CLC : ADC.W Shutters.upVelocity,X : STA.W Enemy.YPosition,X
+    LDA.L Shutters.movingSamusFlag,X : BEQ .notMovingSamus
+    LDA.W Enemy.YPosition,X : SEC : SBC.L Shutters.previousYPosition,X : STA.W ExtraSamusYDisplacement
 
   .notMovingSamus:
-    LDA.L Shutters.minimumYPosition,X                                    ;A2EFB0;
-    CMP.W Enemy.YPosition,X                                              ;A2EFB4;
-    BMI .return                                                          ;A2EFB7;
-    LDA.L Shutters.movedUpRestTime,X                                     ;A2EFB9;
-    CMP.W #Enemy[1].var4                                                 ;A2EFBD;
-    BEQ .setFunction                                                     ;A2EFC0;
-    STA.W Shutters.functionTimer,X                                       ;A2EFC2;
-    LDA.W #Function_Kamer_StoppedMovingUp                                ;A2EFC5;
-    STA.W Shutters.function,X                                            ;A2EFC8;
-    BRA .return                                                          ;A2EFCB;
+    LDA.L Shutters.minimumYPosition,X : CMP.W Enemy.YPosition,X : BMI .return
+    LDA.L Shutters.movedUpRestTime,X : CMP.W #Enemy[1].var4 : BEQ .setFunction
+    STA.W Shutters.functionTimer,X
+    LDA.W #Function_Kamer_StoppedMovingUp : STA.W Shutters.function,X
+    BRA .return
 
   .setFunction:
-    LDA.W #Function_Shutter_Kamer_GetEnemyIndex_duplicate                ;A2EFCD;
-    STA.W Shutters.function,X                                            ;A2EFD0;
+    LDA.W #Function_Shutter_Kamer_GetEnemyIndex_duplicate : STA.W Shutters.function,X
 
   .return:
-    RTS                                                                  ;A2EFD3;
+    RTS
 
 
 ;;; $EFD4: Up/down mover function - moving down ;;;
 Function_Kamer_MovingDown:
-    LDX.W EnemyIndex                                                     ;A2EFD4;
-    LDA.W Enemy.YPosition,X                                              ;A2EFD7;
-    STA.L Shutters.previousYPosition,X                                   ;A2EFDA;
-    LDA.W #$0000                                                         ;A2EFDE;
-    STA.L Shutters.movingSamusFlag,X                                     ;A2EFE1;
-    JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2EFE5;
-    BEQ .notTouchingSamusFromBelow                                       ;A2EFE9;
-    LDA.W #$0001                                                         ;A2EFEB;
-    STA.L Shutters.movingSamusFlag,X                                     ;A2EFEE;
+    LDX.W EnemyIndex
+    LDA.W Enemy.YPosition,X : STA.L Shutters.previousYPosition,X
+    LDA.W #$0000 : STA.L Shutters.movingSamusFlag,X
+    JSL CheckIfEnemyIsTouchingSamusFromBelow
+    BEQ .notTouchingSamusFromBelow
+    LDA.W #$0001 : STA.L Shutters.movingSamusFlag,X
 
   .notTouchingSamusFromBelow:
-    LDA.W Enemy.YSubPosition,X                                           ;A2EFF2;
-    CLC                                                                  ;A2EFF5;
-    ADC.W Shutters.downSubVelocity,X                                     ;A2EFF6;
-    BCC +                                                                ;A2EFF9;
-    INC.W Enemy.YPosition,X                                              ;A2EFFB;
+    LDA.W Enemy.YSubPosition,X : CLC : ADC.W Shutters.downSubVelocity,X : BCC +
+    INC.W Enemy.YPosition,X
 
-+   STA.W Enemy.YSubPosition,X                                           ;A2EFFE;
-    LDA.W Enemy.YPosition,X                                              ;A2F001;
-    CLC                                                                  ;A2F004;
-    ADC.W Shutters.downVelocity,X                                        ;A2F005;
-    STA.W Enemy.YPosition,X                                              ;A2F008;
-    LDA.L Shutters.movingSamusFlag,X                                     ;A2F00B;
-    BEQ .notMovingSamus                                                  ;A2F00F;
-    LDA.W Enemy.YPosition,X                                              ;A2F011;
-    SEC                                                                  ;A2F014;
-    SBC.L Shutters.previousYPosition,X                                   ;A2F015;
-    STA.W ExtraSamusYDisplacement                                        ;A2F019;
++   STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X : CLC : ADC.W Shutters.downVelocity,X : STA.W Enemy.YPosition,X
+    LDA.L Shutters.movingSamusFlag,X : BEQ .notMovingSamus
+    LDA.W Enemy.YPosition,X : SEC : SBC.L Shutters.previousYPosition,X : STA.W ExtraSamusYDisplacement
 
   .notMovingSamus:
-    LDA.W Enemy.YPosition,X                                              ;A2F01C;
-    CMP.L Shutters.maximumYPosition,X                                    ;A2F01F;
-    BMI .return                                                          ;A2F023;
-    LDA.L Shutters.movedDownRestTime,X                                   ;A2F025;
-    CMP.W #Enemy[1].var4                                                 ;A2F029;
-    BEQ .setFunction                                                     ;A2F02C;
-    STA.W Shutters.functionTimer,X                                       ;A2F02E;
-    LDA.W #Function_Kamer_StoppedMovingDown                              ;A2F031;
-    STA.W Shutters.function,X                                            ;A2F034;
-    BRA .return                                                          ;A2F037;
+    LDA.W Enemy.YPosition,X : CMP.L Shutters.maximumYPosition,X : BMI .return
+    LDA.L Shutters.movedDownRestTime,X : CMP.W #Enemy[1].var4 : BEQ .setFunction
+    STA.W Shutters.functionTimer,X
+    LDA.W #Function_Kamer_StoppedMovingDown : STA.W Shutters.function,X
+    BRA .return
 
   .setFunction:
-    LDA.W #Function_Shutter_Kamer_GetEnemyIndex_duplicate                ;A2F039;
-    STA.W Shutters.function,X                                            ;A2F03C;
+    LDA.W #Function_Shutter_Kamer_GetEnemyIndex_duplicate : STA.W Shutters.function,X
 
   .return:
-    RTS                                                                  ;A2F03F;
+    RTS
 
 
 ;;; $F040: Up/down mover function - stopped moving up ;;;
 Function_Kamer_StoppedMovingUp:
-    LDX.W EnemyIndex                                                     ;A2F040;
-    DEC.W Shutters.functionTimer,X                                       ;A2F043;
-    BPL .return                                                          ;A2F046;
-    LDA.W #Function_Kamer_MovingDown                                     ;A2F048;
-    STA.W Shutters.function,X                                            ;A2F04B;
-    LDA.L Shutters.triggerMode,X                                         ;A2F04E;
-    CMP.W #$0001                                                         ;A2F052;
-    BNE .upwards                                                         ;A2F055;
-    LDA.L Shutters.primaryDirection,X                                    ;A2F057;
-    BEQ .upwards                                                         ;A2F05B;
-    LDA.W #Function_Shutter_Kamer_WaitForSamusToGetNear                  ;A2F05D;
-    STA.W Shutters.function,X                                            ;A2F060;
+    LDX.W EnemyIndex
+    DEC.W Shutters.functionTimer,X : BPL .return
+    LDA.W #Function_Kamer_MovingDown : STA.W Shutters.function,X
+    LDA.L Shutters.triggerMode,X : CMP.W #$0001 : BNE .upwards
+    LDA.L Shutters.primaryDirection,X : BEQ .upwards
+    LDA.W #Function_Shutter_Kamer_WaitForSamusToGetNear : STA.W Shutters.function,X
 
   .upwards:
-    LDX.W EnemyIndex                                                     ;A2F063;
-    LDA.W Enemy.ID,X                                                     ;A2F066;
-    CMP.W #EnemyHeaders_Kamer2                                           ;A2F069;
-    BEQ .return                                                          ;A2F06C;
-    JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2F06E;
+    LDX.W EnemyIndex
+    LDA.W Enemy.ID,X : CMP.W #EnemyHeaders_Kamer2 : BEQ .return
+    JSR PlayGateOpeningClosingSFXIfOnScreen
 
   .return:
-    RTS                                                                  ;A2F071;
+    RTS
 
 
 ;;; $F072: Up/down mover function - stopped moving down ;;;
 Function_Kamer_StoppedMovingDown:
-    LDX.W EnemyIndex                                                     ;A2F072;
-    DEC.W Shutters.functionTimer,X                                       ;A2F075;
-    BPL .return                                                          ;A2F078;
-    JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2F07A;
-    LDA.W #Function_Kamer_MovingUp                                       ;A2F07D;
-    STA.W Shutters.function,X                                            ;A2F080;
-    LDA.L Shutters.triggerMode,X                                         ;A2F083;
-    CMP.W #$0001                                                         ;A2F087;
-    BNE .return                                                          ;A2F08A;
-    LDA.L Shutters.primaryDirection,X                                    ;A2F08C;
-    BNE .return                                                          ;A2F090;
-    LDA.W #Function_Shutter_Kamer_WaitForSamusToGetNear                  ;A2F092;
-    STA.W Shutters.function,X                                            ;A2F095;
+    LDX.W EnemyIndex
+    DEC.W Shutters.functionTimer,X : BPL .return
+    JSR PlayGateOpeningClosingSFXIfOnScreen
+    LDA.W #Function_Kamer_MovingUp : STA.W Shutters.function,X
+    LDA.L Shutters.triggerMode,X : CMP.W #$0001 : BNE .return
+    LDA.L Shutters.primaryDirection,X : BNE .return
+    LDA.W #Function_Shutter_Kamer_WaitForSamusToGetNear : STA.W Shutters.function,X
 
   .return:
-    RTS                                                                  ;A2F098;
+    RTS
 
 
 ;;; $F099: Up/down mover function - nothing ;;;
 Function_Shutter_Kamer_GetEnemyIndex_duplicate:
-    LDX.W EnemyIndex                                                     ;A2F099;
-    RTS                                                                  ;A2F09C;
+    LDX.W EnemyIndex
+    RTS
 
 
 ;;; $F09D: Enemy touch - enemy $D53F/$D5BF/$D5FF (up/down mover) ;;;
 EnemyTouch_ShutterShootable_ShutterDestroyable_Kamer:
-    JSL.L PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer    ;A2F09D;
-    RTL                                                                  ;A2F0A1;
+    JSL PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer
+    RTL
 
 
 ;;; $F0A2: Enemy shot - enemy $D53F/$D5FF (shootable shutter / up/down mover platform) ;;;
 EnemyShot_ShutterShootable_Kamer:
-    LDX.W EnemyIndex                                                     ;A2F0A2;
-    JSL.L PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer    ;A2F0A5;
-    RTL                                                                  ;A2F0A9;
+    LDX.W EnemyIndex
+    JSL PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer
+    RTL
 
 
 ;;; $F0AA: Enemy shot - enemy $B5BF (destroyable shutter) ;;;
 EnemyTouch_ShutterDestroyable:
-    LDX.W EnemyIndex                                                     ;A2F0AA;
-    JSL.L NormalEnemyShotAI                                              ;A2F0AD;
-    JSL.L PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer    ;A2F0B1;
-    RTL                                                                  ;A2F0B5;
+    LDX.W EnemyIndex
+    JSL NormalEnemyShotAI
+    JSL PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer
+    RTL
 
 
 ;;; $F0B6: Up/down mover reaction ;;;
 PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer:
 ; Power bomb reaction for enemy $D53F/$D5BF/$D5FF (up/down mover)
-    LDX.W EnemyIndex                                                     ;A2F0B6;
-    LDA.L Shutters.initialFunctionIndex,X                                ;A2F0B9;
-    CMP.W #$0006                                                         ;A2F0BD;
-    BMI .nonShootable                                                    ;A2F0C0;
-    CMP.W #$0008                                                         ;A2F0C2;
-    BEQ .function8                                                       ;A2F0C5;
-    LDA.L Shutters.shotActivatedFlag,X                                   ;A2F0C7;
-    BNE .return                                                          ;A2F0CB;
-    LDA.W #$0001                                                         ;A2F0CD;
-    STA.L Shutters.shotActivatedFlag,X                                   ;A2F0D0;
+    LDX.W EnemyIndex
+    LDA.L Shutters.initialFunctionIndex,X : CMP.W #$0006 : BMI .nonShootable
+    CMP.W #$0008 : BEQ .function8
+    LDA.L Shutters.shotActivatedFlag,X : BNE .return
+    LDA.W #$0001 : STA.L Shutters.shotActivatedFlag,X
 
   .function8:
-    LDA.W Shutters.function,X                                            ;A2F0D4;
-    CMP.W #Function_Kamer_MovingUp                                       ;A2F0D7;
-    BNE .notMovingUp                                                     ;A2F0DA;
-    BRA .return                                                          ;A2F0DC;
+    LDA.W Shutters.function,X : CMP.W #Function_Kamer_MovingUp : BNE .notMovingUp
+    BRA .return
 
   .notMovingUp:
-    LDA.W Shutters.function,X                                            ;A2F0DE;
-    CMP.W #Function_Kamer_MovingDown                                     ;A2F0E1;
-    BEQ .return                                                          ;A2F0E4;
-    LDA.W #Function_Kamer_MovingUp                                       ;A2F0E6;
-    STA.W Shutters.function,X                                            ;A2F0E9;
-    LDA.L Shutters.reactionDirection,X                                   ;A2F0EC;
-    BEQ .upwards                                                         ;A2F0F0;
-    LDA.W #Function_Kamer_MovingDown                                     ;A2F0F2;
-    STA.W Shutters.function,X                                            ;A2F0F5;
+    LDA.W Shutters.function,X : CMP.W #Function_Kamer_MovingDown : BEQ .return
+    LDA.W #Function_Kamer_MovingUp : STA.W Shutters.function,X
+    LDA.L Shutters.reactionDirection,X : BEQ .upwards
+    LDA.W #Function_Kamer_MovingDown : STA.W Shutters.function,X
 
   .upwards:
-    LDA.L Shutters.reactionDirection,X                                   ;A2F0F8;
-    EOR.W #$0001                                                         ;A2F0FC;
-    STA.L Shutters.reactionDirection,X                                   ;A2F0FF;
+    LDA.L Shutters.reactionDirection,X : EOR.W #$0001 : STA.L Shutters.reactionDirection,X
 
   .nonShootable:
-    JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2F103;
+    JSR PlayGateOpeningClosingSFXIfOnScreen
 
   .return:
-    RTL                                                                  ;A2F106;
+    RTL
 
 
 ;;; $F107: Initial horizontal shutter function pointers ;;;
 InitialHorizontalShutterFunctionPointers:
-    dw Function_HorizontalShutter_Initial_WaitForTimer                   ;A2F107;
-    dw Function_HorizontalShutter_Initial_WaitForSamusToGetNear          ;A2F109;
-    dw Function_HorizontalShutter_Initial_Activate                       ;A2F10B;
-    dw Function_HorizontalShutter_Initial_Nothing                        ;A2F10D;
-    dw Function_HorizontalShutter_Initial_Nothing                        ;A2F10F;
+    dw Function_HorizontalShutter_Initial_WaitForTimer
+    dw Function_HorizontalShutter_Initial_WaitForSamusToGetNear
+    dw Function_HorizontalShutter_Initial_Activate
+    dw Function_HorizontalShutter_Initial_Nothing
+    dw Function_HorizontalShutter_Initial_Nothing
 
 
 ;;; $F111: Initialisation AI - enemy $D57F (horizontal shutter) ;;;
 InitAI_ShutterHorizShootable:
-    LDX.W EnemyIndex                                                     ;A2F111;
-    JSR.W InitializeHorizontalShutter                                    ;A2F114;
-    LDA.W #InstList_ShutterHorizontal                                    ;A2F117;
-    STA.W Enemy.instList,X                                               ;A2F11A;
-    RTL                                                                  ;A2F11D;
+    LDX.W EnemyIndex
+    JSR InitializeHorizontalShutter
+    LDA.W #InstList_ShutterHorizontal : STA.W Enemy.instList,X
+    RTL
 
 
 ;;; $F11E: Initialise horizontal shutter ;;;
 InitializeHorizontalShutter:
-    LDA.W Enemy.instList,X                                               ;A2F11E;
-    AND.W #$00FF                                                         ;A2F121;
-    STA.L ShutterHorizShootable.YSpeedTableIndex,X                       ;A2F124;
-    ASL                                                                  ;A2F128;
-    ASL                                                                  ;A2F129;
-    ASL                                                                  ;A2F12A;
-    TAY                                                                  ;A2F12B;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A2F12C;
-    STA.W ShutterHorizShootable.rightVelocity,X                          ;A2F12F;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A2F132;
-    STA.W ShutterHorizShootable.rightSubVelocity,X                       ;A2F135;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A2F138;
-    STA.W ShutterHorizShootable.leftVelocity,X                           ;A2F13B;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A2F13E;
-    STA.W ShutterHorizShootable.leftSubVelocity,X                        ;A2F141;
-    LDA.W Enemy.instList+1,X                                             ;A2F144;
-    AND.W #$00FF                                                         ;A2F147;
-    STA.L ShutterHorizShootable.primaryDirection,X                       ;A2F14A;
-    EOR.W #$0001                                                         ;A2F14E;
-    STA.L ShutterHorizShootable.reactionDirection,X                      ;A2F151;
-    LDA.W Enemy.properties2,X                                            ;A2F155;
-    AND.W #$00FF                                                         ;A2F158;
-    STA.L ShutterHorizShootable.movedLeftRestTimerParam,X                ;A2F15B;
-    ASL                                                                  ;A2F15F;
-    ASL                                                                  ;A2F160;
-    ASL                                                                  ;A2F161;
-    ASL                                                                  ;A2F162;
-    STA.L ShutterHorizShootable.movedLeftRestTime,X                      ;A2F163;
-    LDA.W Enemy.properties2+1,X                                          ;A2F167;
-    AND.W #$00FF                                                         ;A2F16A;
-    STA.L ShutterHorizShootable.movedRightRestTimeParam,X                ;A2F16D;
-    ASL                                                                  ;A2F171;
-    ASL                                                                  ;A2F172;
-    ASL                                                                  ;A2F173;
-    ASL                                                                  ;A2F174;
-    STA.L ShutterHorizShootable.movedRightRestTime,X                     ;A2F175;
-    LDA.W Enemy.init0,X                                                  ;A2F179;
-    AND.W #$00FF                                                         ;A2F17C;
-    STA.L ShutterHorizShootable.triggerMode,X                            ;A2F17F;
-    ASL                                                                  ;A2F183;
-    STA.L ShutterHorizShootable.initialFunctionIndex,X                   ;A2F184;
-    LDA.W Enemy.init0+1,X                                                ;A2F188;
-    AND.W #$00FF                                                         ;A2F18B;
-    STA.L ShutterHorizShootable.YDistance,X                              ;A2F18E;
-    LDA.W Enemy.init1,X                                                  ;A2F192;
-    STA.L ShutterHorizShootable.XProximityWaitTime,X                     ;A2F195;
-    STA.W ShutterHorizShootable.functionTimer,X                          ;A2F199;
-    LDA.W Enemy.XPosition,X                                              ;A2F19C;
-    STA.L ShutterHorizShootable.minimumXPosition,X                       ;A2F19F;
-    CLC                                                                  ;A2F1A3;
-    ADC.L ShutterHorizShootable.YDistance,X                              ;A2F1A4;
-    STA.L ShutterHorizShootable.maximumXPosition,X                       ;A2F1A8;
-    LDA.L ShutterHorizShootable.primaryDirection,X                       ;A2F1AC;
-    BNE .notLeftwards                                                    ;A2F1B0;
-    LDA.W Enemy.XPosition,X                                              ;A2F1B2;
-    STA.L ShutterHorizShootable.maximumXPosition,X                       ;A2F1B5;
-    SEC                                                                  ;A2F1B9;
-    SBC.L ShutterHorizShootable.YDistance,X                              ;A2F1BA;
-    STA.L ShutterHorizShootable.minimumXPosition,X                       ;A2F1BE;
+    LDA.W Enemy.instList,X : AND.W #$00FF : STA.L ShutterHorizShootable.YSpeedTableIndex,X
+    ASL #3 : TAY
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y : STA.W ShutterHorizShootable.rightVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y : STA.W ShutterHorizShootable.rightSubVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y : STA.W ShutterHorizShootable.leftVelocity,X
+    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y : STA.W ShutterHorizShootable.leftSubVelocity,X
+    LDA.W Enemy.instList+1,X : AND.W #$00FF : STA.L ShutterHorizShootable.primaryDirection,X
+    EOR.W #$0001 : STA.L ShutterHorizShootable.reactionDirection,X
+    LDA.W Enemy.properties2,X : AND.W #$00FF : STA.L ShutterHorizShootable.movedLeftRestTimerParam,X
+    ASL #4 : STA.L ShutterHorizShootable.movedLeftRestTime,X
+    LDA.W Enemy.properties2+1,X : AND.W #$00FF : STA.L ShutterHorizShootable.movedRightRestTimeParam,X
+    ASL #4 : STA.L ShutterHorizShootable.movedRightRestTime,X
+    LDA.W Enemy.init0,X : AND.W #$00FF : STA.L ShutterHorizShootable.triggerMode,X
+    ASL : STA.L ShutterHorizShootable.initialFunctionIndex,X
+    LDA.W Enemy.init0+1,X : AND.W #$00FF : STA.L ShutterHorizShootable.YDistance,X
+    LDA.W Enemy.init1,X : STA.L ShutterHorizShootable.XProximityWaitTime,X : STA.W ShutterHorizShootable.functionTimer,X
+    LDA.W Enemy.XPosition,X : STA.L ShutterHorizShootable.minimumXPosition,X
+    CLC : ADC.L ShutterHorizShootable.YDistance,X : STA.L ShutterHorizShootable.maximumXPosition,X
+    LDA.L ShutterHorizShootable.primaryDirection,X : BNE .notLeftwards
+    LDA.W Enemy.XPosition,X : STA.L ShutterHorizShootable.maximumXPosition,X
+    SEC : SBC.L ShutterHorizShootable.YDistance,X : STA.L ShutterHorizShootable.minimumXPosition,X
 
   .notLeftwards:
-    LDA.W #Function_HorizontalShutter_Initial                            ;A2F1C2;
-    STA.W ShutterHorizShootable.function,X                               ;A2F1C5;
-    LDA.W SamusXPosition                                                 ;A2F1C8;
-    STA.L ExtraEnemy7800+$2A,X                                           ;A2F1CB;
-    LDA.W #$0000                                                         ;A2F1CF;
-    STA.W Enemy.properties2,X                                            ;A2F1D2;
-    STA.L Shutters.movingSamusFlag,X                                     ;A2F1D5;
-    STA.L ExtraEnemy7800+$16,X                                           ;A2F1D9;
-    RTS                                                                  ;A2F1DD;
+    LDA.W #Function_HorizontalShutter_Initial : STA.W ShutterHorizShootable.function,X
+    LDA.W SamusXPosition : STA.L ExtraEnemy7800+$2A,X
+    LDA.W #$0000 : STA.W Enemy.properties2,X
+    STA.L Shutters.movingSamusFlag,X : STA.L ExtraEnemy7800+$16,X
+    RTS
 
 
 ;;; $F1DE: Main AI - enemy $D57F (horizontal shutter) ;;;
 MainAI_ShutterHorizShootable:
-    LDX.W EnemyIndex                                                     ;A2F1DE;
-    JSR.W (ShutterHorizShootable.function,X)                             ;A2F1E1;
-    LDA.W ShutterHorizShootable.function,X                               ;A2F1E4;
-    CMP.W #Function_HorizontalShutter_MovingLeft                         ;A2F1E7;
-    BNE .notMovingLeft                                                   ;A2F1EA;
-    BRA +                                                                ;A2F1EC;
+    LDX.W EnemyIndex
+    JSR.W (ShutterHorizShootable.function,X)
+    LDA.W ShutterHorizShootable.function,X : CMP.W #Function_HorizontalShutter_MovingLeft : BNE .notMovingLeft
+    BRA +
 
   .notMovingLeft:
-    LDA.W ShutterHorizShootable.function,X                               ;A2F1EE;
-    CMP.W #Function_HorizontalShutter_MovingRight                        ;A2F1F1;
-    BEQ +                                                                ;A2F1F4;
-    LDA.W EnemyIndexSamusCollidesLeft                                    ;A2F1F6;
-    AND.W EnemyIndexSamusCollidesRight                                   ;A2F1F9;
-    AND.W EnemyIndexSamusCollidesUp                                      ;A2F1FC;
-    AND.W EnemyIndexSamusCollidesDown                                    ;A2F1FF;
-    CMP.W #$FFFF                                                         ;A2F202;
-    BEQ +                                                                ;A2F205;
-    CMP.W EnemyIndex                                                     ;A2F207;
-    BNE +                                                                ;A2F20A;
-    LDA.W ContactDamageIndex                                             ;A2F20C;
-    BEQ +                                                                ;A2F20F;
-    JSL.L PowerBombReaction_CommonReaction_HorizontalShutter             ;A2F211;
+    LDA.W ShutterHorizShootable.function,X : CMP.W #Function_HorizontalShutter_MovingRight : BEQ +
+    LDA.W EnemyIndexSamusCollidesLeft : AND.W EnemyIndexSamusCollidesRight
+    AND.W EnemyIndexSamusCollidesUp : AND.W EnemyIndexSamusCollidesDown
+    CMP.W #$FFFF : BEQ +
+    CMP.W EnemyIndex : BNE +
+    LDA.W ContactDamageIndex : BEQ +
+    JSL PowerBombReaction_CommonReaction_HorizontalShutter
 
-+   LDA.W SamusXPosition                                                 ;A2F215;
-    STA.L ExtraEnemy7800+$2A,X                                           ;A2F218;
-    LDA.W SamusXSubPosition                                              ;A2F21C;
-    STA.L ExtraEnemy7800+$2C,X                                           ;A2F21F;
-    RTL                                                                  ;A2F223;
++   LDA.W SamusXPosition : STA.L ExtraEnemy7800+$2A,X
+    LDA.W SamusXSubPosition : STA.L ExtraEnemy7800+$2C,X
+    RTL
 
 
 ;;; $F224: Horizontal shutter function - initial ;;;
 Function_HorizontalShutter_Initial:
-    LDX.W EnemyIndex                                                     ;A2F224;
-    LDA.L ShutterHorizShootable.initialFunctionIndex,X                   ;A2F227;
-    TAX                                                                  ;A2F22B;
-    JSR.W (InitialHorizontalShutterFunctionPointers,X)                   ;A2F22C;
-    RTS                                                                  ;A2F22F;
+    LDX.W EnemyIndex
+    LDA.L ShutterHorizShootable.initialFunctionIndex,X : TAX
+    JSR.W (InitialHorizontalShutterFunctionPointers,X)
+    RTS
 
 
 ;;; $F230: Initial horizontal shutter function - wait for timer ;;;
 Function_HorizontalShutter_Initial_WaitForTimer:
-    LDX.W EnemyIndex                                                     ;A2F230;
-    DEC.W ShutterHorizShootable.functionTimer,X                          ;A2F233;
-    BNE .return                                                          ;A2F236;
-    LDA.L ShutterHorizShootable.XProximityWaitTime,X                     ;A2F238;
-    STA.W ShutterHorizShootable.functionTimer,X                          ;A2F23C;
-    JSR.W ActivateHorizontalShutter                                      ;A2F23F;
+    LDX.W EnemyIndex
+    DEC.W ShutterHorizShootable.functionTimer,X : BNE .return
+    LDA.L ShutterHorizShootable.XProximityWaitTime,X : STA.W ShutterHorizShootable.functionTimer,X
+    JSR ActivateHorizontalShutter
 
   .return:
-    RTS                                                                  ;A2F242;
+    RTS
 
 
 ;;; $F243: (Initial) horizontal shutter function - wait for Samus to get near ;;;
 Function_HorizontalShutter_Initial_WaitForSamusToGetNear:
-    LDX.W EnemyIndex                                                     ;A2F243;
-    LDA.L ShutterHorizShootable.XProximityWaitTime,X                     ;A2F246;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2F24A;
-    BEQ .return                                                          ;A2F24E;
-    JSR.W ActivateHorizontalShutter                                      ;A2F250;
+    LDX.W EnemyIndex
+    LDA.L ShutterHorizShootable.XProximityWaitTime,X
+    JSL IsSamusWithinAPixelColumnsOfEnemy
+    BEQ .return
+    JSR ActivateHorizontalShutter
 
   .return:
-    RTS                                                                  ;A2F253;
+    RTS
 
 
 ;;; $F254: Initial horizontal shutter function - activate ;;;
 Function_HorizontalShutter_Initial_Activate:
-    LDX.W EnemyIndex                                                     ;A2F254;
-    JSR.W ActivateHorizontalShutter                                      ;A2F257;
-    RTS                                                                  ;A2F25A;
+    LDX.W EnemyIndex
+    JSR ActivateHorizontalShutter
+    RTS
 
 
 ;;; $F25B: Initial horizontal shutter function - nothing ;;;
 Function_HorizontalShutter_Initial_Nothing:
-    LDX.W EnemyIndex                                                     ;A2F25B;
-    RTS                                                                  ;A2F25E;
+    LDX.W EnemyIndex
+    RTS
 
 
 ;;; $F25F: Activate horizontal shutter ;;;
 ActivateHorizontalShutter:
-    LDA.W #Function_HorizontalShutter_MovingLeft                         ;A2F25F;
-    STA.W ShutterHorizShootable.function,X                               ;A2F262;
-    LDA.L ShutterHorizShootable.primaryDirection,X                       ;A2F265;
-    BEQ .return                                                          ;A2F269;
-    LDA.W #Function_HorizontalShutter_MovingRight                        ;A2F26B;
-    STA.W ShutterHorizShootable.function,X                               ;A2F26E;
+    LDA.W #Function_HorizontalShutter_MovingLeft : STA.W ShutterHorizShootable.function,X
+    LDA.L ShutterHorizShootable.primaryDirection,X : BEQ .return
+    LDA.W #Function_HorizontalShutter_MovingRight : STA.W ShutterHorizShootable.function,X
 
   .return:
-    RTS                                                                  ;A2F271;
+    RTS
 
 
 ;;; $F272: Horizontal shutter function - moving left ;;;
 Function_HorizontalShutter_MovingLeft:
-    LDX.W EnemyIndex                                                     ;A2F272;
-    LDA.W Enemy.XPosition,X                                              ;A2F275;
-    STA.L ShutterHorizShootable.previousXPosition,X                      ;A2F278;
-    LDA.W #$0000                                                         ;A2F27C;
-    STA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F27F;
-    JSL.L CheckIfEnemyIsTouchingSamus                                    ;A2F283;
-    BEQ .notTouchingSamus                                                ;A2F287;
-    LDA.W SamusXPosition                                                 ;A2F289;
-    CMP.W Enemy.XPosition,X                                              ;A2F28C;
-    BPL .notTouchingSamus                                                ;A2F28F;
-    LDA.W #$0001                                                         ;A2F291;
-    STA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F294;
+    LDX.W EnemyIndex
+    LDA.W Enemy.XPosition,X : STA.L ShutterHorizShootable.previousXPosition,X
+    LDA.W #$0000 : STA.L ShutterHorizShootable.movingSamusFlag,X
+    JSL CheckIfEnemyIsTouchingSamus
+    BEQ .notTouchingSamus
+    LDA.W SamusXPosition : CMP.W Enemy.XPosition,X : BPL .notTouchingSamus
+    LDA.W #$0001 : STA.L ShutterHorizShootable.movingSamusFlag,X
 
   .notTouchingSamus:
-    CLC                                                                  ;A2F298;
-    LDA.W Enemy.XSubPosition,X                                           ;A2F299;
-    ADC.W ShutterHorizShootable.leftSubVelocity,X                        ;A2F29C;
-    STA.W Enemy.XSubPosition,X                                           ;A2F29F;
-    LDA.W Enemy.XPosition,X                                              ;A2F2A2;
-    ADC.W ShutterHorizShootable.leftVelocity,X                           ;A2F2A5;
-    STA.W Enemy.XPosition,X                                              ;A2F2A8;
-    LDA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F2AB;
-    BEQ .notMovingSamus                                                  ;A2F2AF;
-    LDA.W ShutterHorizShootable.leftSubVelocity,X                        ;A2F2B1;
-    STA.W ExtraSamusXSubDisplacement                                     ;A2F2B4;
-    LDA.W ShutterHorizShootable.leftVelocity,X                           ;A2F2B7;
-    STA.W ExtraSamusXDisplacement                                        ;A2F2BA;
-    JSR.W EjectSamusIfPressingRight                                      ;A2F2BD;
+    CLC
+    LDA.W Enemy.XSubPosition,X : ADC.W ShutterHorizShootable.leftSubVelocity,X : STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X : ADC.W ShutterHorizShootable.leftVelocity,X : STA.W Enemy.XPosition,X
+    LDA.L ShutterHorizShootable.movingSamusFlag,X : BEQ .notMovingSamus
+    LDA.W ShutterHorizShootable.leftSubVelocity,X : STA.W ExtraSamusXSubDisplacement
+    LDA.W ShutterHorizShootable.leftVelocity,X : STA.W ExtraSamusXDisplacement
+    JSR EjectSamusIfPressingRight
 
   .notMovingSamus:
-    LDA.L ShutterHorizShootable.minimumXPosition,X                       ;A2F2C0;
-    CMP.W Enemy.XPosition,X                                              ;A2F2C4;
-    BMI .return                                                          ;A2F2C7;
-    LDA.L ShutterHorizShootable.movedLeftRestTime,X                      ;A2F2C9;
-    CMP.W #Enemy[1].var4                                                 ;A2F2CD;
-    BEQ +                                                                ;A2F2D0;
-    STA.W ShutterHorizShootable.functionTimer,X                          ;A2F2D2;
-    LDA.W #Function_HorizontalShutter_StoppedMovingLeft                  ;A2F2D5;
-    STA.W ShutterHorizShootable.function,X                               ;A2F2D8;
-    BRA .return                                                          ;A2F2DB;
-+   LDA.W #RTS_A2F3D4                                                    ;A2F2DD;
-    STA.W ShutterHorizShootable.function,X                               ;A2F2E0;
+    LDA.L ShutterHorizShootable.minimumXPosition,X : CMP.W Enemy.XPosition,X : BMI .return
+    LDA.L ShutterHorizShootable.movedLeftRestTime,X : CMP.W #Enemy[1].var4 : BEQ +
+    STA.W ShutterHorizShootable.functionTimer,X
+    LDA.W #Function_HorizontalShutter_StoppedMovingLeft : STA.W ShutterHorizShootable.function,X
+    BRA .return
++   LDA.W #RTS_A2F3D4 : STA.W ShutterHorizShootable.function,X
 
   .return:
-    RTS                                                                  ;A2F2E3;
+    RTS
 
 
 ;;; $F2E4: Horizontal shutter function - moving right ;;;
 Function_HorizontalShutter_MovingRight:
-    LDX.W EnemyIndex                                                     ;A2F2E4;
-    LDA.W Enemy.XPosition,X                                              ;A2F2E7;
-    STA.L ShutterHorizShootable.previousXPosition,X                      ;A2F2EA;
-    LDA.W #$0000                                                         ;A2F2EE;
-    STA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F2F1;
-    JSL.L CheckIfEnemyIsTouchingSamus                                    ;A2F2F5;
-    BEQ .notTouchingSamus                                                ;A2F2F9;
-    LDA.W SamusXPosition                                                 ;A2F2FB;
-    CMP.W Enemy.XPosition,X                                              ;A2F2FE;
-    BMI .notTouchingSamus                                                ;A2F301;
-    LDA.W #$0001                                                         ;A2F303;
-    STA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F306;
+    LDX.W EnemyIndex
+    LDA.W Enemy.XPosition,X : STA.L ShutterHorizShootable.previousXPosition,X
+    LDA.W #$0000 : STA.L ShutterHorizShootable.movingSamusFlag,X
+    JSL CheckIfEnemyIsTouchingSamus
+    BEQ .notTouchingSamus
+    LDA.W SamusXPosition : CMP.W Enemy.XPosition,X : BMI .notTouchingSamus
+    LDA.W #$0001 : STA.L ShutterHorizShootable.movingSamusFlag,X
 
   .notTouchingSamus:
-    CLC                                                                  ;A2F30A;
-    LDA.W Enemy.XSubPosition,X                                           ;A2F30B;
-    ADC.W ShutterHorizShootable.rightSubVelocity,X                       ;A2F30E;
-    STA.W Enemy.XSubPosition,X                                           ;A2F311;
-    LDA.W Enemy.XPosition,X                                              ;A2F314;
-    ADC.W ShutterHorizShootable.rightVelocity,X                          ;A2F317;
-    STA.W Enemy.XPosition,X                                              ;A2F31A;
-    LDA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F31D;
-    BEQ .notMovingSamus                                                  ;A2F321;
-    LDA.W ShutterHorizShootable.rightSubVelocity,X                       ;A2F323;
-    STA.W ExtraSamusXSubDisplacement                                     ;A2F326;
-    LDA.W ShutterHorizShootable.rightVelocity,X                          ;A2F329;
-    STA.W ExtraSamusXDisplacement                                        ;A2F32C;
-    JSR.W EjectSamusIfPressingLeft                                       ;A2F32F;
+    CLC
+    LDA.W Enemy.XSubPosition,X : ADC.W ShutterHorizShootable.rightSubVelocity,X : STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X : ADC.W ShutterHorizShootable.rightVelocity,X : STA.W Enemy.XPosition,X
+    LDA.L ShutterHorizShootable.movingSamusFlag,X : BEQ .notMovingSamus
+    LDA.W ShutterHorizShootable.rightSubVelocity,X : STA.W ExtraSamusXSubDisplacement
+    LDA.W ShutterHorizShootable.rightVelocity,X : STA.W ExtraSamusXDisplacement
+    JSR EjectSamusIfPressingLeft
 
   .notMovingSamus:
-    LDA.W Enemy.XPosition,X                                              ;A2F332;
-    CMP.L ShutterHorizShootable.maximumXPosition,X                       ;A2F335;
-    BMI .return                                                          ;A2F339;
-    LDA.L ShutterHorizShootable.movedRightRestTime,X                     ;A2F33B;
-    CMP.W #Enemy[1].var4                                                 ;A2F33F;
-    BEQ +                                                                ;A2F342;
-    STA.W ShutterHorizShootable.functionTimer,X                          ;A2F344;
-    LDA.W #Function_HorizontalShutter_StoppedMovingRight                 ;A2F347;
-    STA.W ShutterHorizShootable.function,X                               ;A2F34A;
-    BRA .return                                                          ;A2F34D;
+    LDA.W Enemy.XPosition,X : CMP.L ShutterHorizShootable.maximumXPosition,X : BMI .return
+    LDA.L ShutterHorizShootable.movedRightRestTime,X : CMP.W #Enemy[1].var4 : BEQ +
+    STA.W ShutterHorizShootable.functionTimer,X
+    LDA.W #Function_HorizontalShutter_StoppedMovingRight : STA.W ShutterHorizShootable.function,X
+    BRA .return
 
-+   LDA.W #RTS_A2F3D4                                                    ;A2F34F;
-    STA.W ShutterHorizShootable.function,X                               ;A2F352;
++   LDA.W #RTS_A2F3D4 : STA.W ShutterHorizShootable.function,X
 
   .return:
-    RTS                                                                  ;A2F355;
+    RTS
 
 
 ;;; $F356: Eject Samus if pressing right ;;;
 EjectSamusIfPressingRight:
-    LDA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F356;
-    BEQ .return                                                          ;A2F35A;
-    LDA.B DP_Controller1Input                                            ;A2F35C;
-    AND.W #$0100                                                         ;A2F35E;
-    BEQ .return                                                          ;A2F361;
-    LDA.W ExtraSamusXDisplacement                                        ;A2F363;
-    CLC                                                                  ;A2F366;
-    ADC.W #$FFFC                                                         ;A2F367;
-    STA.W ExtraSamusXDisplacement                                        ;A2F36A;
-    STZ.W ExtraSamusYSubDisplacement                                     ;A2F36D;
+    LDA.L ShutterHorizShootable.movingSamusFlag,X : BEQ .return
+    LDA.B DP_Controller1Input : AND.W #$0100 : BEQ .return
+    LDA.W ExtraSamusXDisplacement : CLC : ADC.W #$FFFC : STA.W ExtraSamusXDisplacement
+    STZ.W ExtraSamusYSubDisplacement
 
   .return:
-    RTS                                                                  ;A2F370;
+    RTS
 
 
 ;;; $F371: Eject Samus if pressing left ;;;
 EjectSamusIfPressingLeft:
-    LDA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F371;
-    BEQ .return                                                          ;A2F375;
-    LDA.B DP_Controller1Input                                            ;A2F377;
-    AND.W #$0200                                                         ;A2F379;
-    BEQ .return                                                          ;A2F37C;
-    LDA.W ExtraSamusXDisplacement                                        ;A2F37E;
-    CLC                                                                  ;A2F381;
-    ADC.W #$0004                                                         ;A2F382;
-    STA.W ExtraSamusXDisplacement                                        ;A2F385;
-    STZ.W ExtraSamusYSubDisplacement                                     ;A2F388;
+    LDA.L ShutterHorizShootable.movingSamusFlag,X : BEQ .return
+    LDA.B DP_Controller1Input : AND.W #$0200 : BEQ .return
+    LDA.W ExtraSamusXDisplacement : CLC : ADC.W #$0004 : STA.W ExtraSamusXDisplacement
+    STZ.W ExtraSamusYSubDisplacement
 
   .return:
-    RTS                                                                  ;A2F38B;
+    RTS
 
 
 ;;; $F38C: Horizontal shutter function - stopped moving left ;;;
 Function_HorizontalShutter_StoppedMovingLeft:
-    LDX.W EnemyIndex                                                     ;A2F38C;
-    DEC.W ShutterHorizShootable.functionTimer,X                          ;A2F38F;
-    BPL .return                                                          ;A2F392;
-    LDA.W #Function_HorizontalShutter_MovingRight                        ;A2F394;
-    STA.W ShutterHorizShootable.function,X                               ;A2F397;
-    LDA.L ShutterHorizShootable.triggerMode,X                            ;A2F39A;
-    CMP.W #$0001                                                         ;A2F39E;
-    BNE .return                                                          ;A2F3A1;
-    LDA.L ShutterHorizShootable.primaryDirection,X                       ;A2F3A3;
-    BEQ .return                                                          ;A2F3A7;
-    LDA.W #Function_HorizontalShutter_Initial_WaitForSamusToGetNear      ;A2F3A9;
-    STA.W ShutterHorizShootable.function,X                               ;A2F3AC;
+    LDX.W EnemyIndex
+    DEC.W ShutterHorizShootable.functionTimer,X : BPL .return
+    LDA.W #Function_HorizontalShutter_MovingRight : STA.W ShutterHorizShootable.function,X
+    LDA.L ShutterHorizShootable.triggerMode,X : CMP.W #$0001 : BNE .return
+    LDA.L ShutterHorizShootable.primaryDirection,X : BEQ .return
+    LDA.W #Function_HorizontalShutter_Initial_WaitForSamusToGetNear : STA.W ShutterHorizShootable.function,X
 
   .return:
-    RTS                                                                  ;A2F3AF;
+    RTS
 
 
 ;;; $F3B0: Horizontal shutter function - stopped moving right ;;;
 Function_HorizontalShutter_StoppedMovingRight:
-    LDX.W EnemyIndex                                                     ;A2F3B0;
-    DEC.W ShutterHorizShootable.functionTimer,X                          ;A2F3B3;
-    BPL .return                                                          ;A2F3B6;
-    LDA.W #Function_HorizontalShutter_MovingLeft                         ;A2F3B8;
-    STA.W ShutterHorizShootable.function,X                               ;A2F3BB;
-    LDA.L ShutterHorizShootable.triggerMode,X                            ;A2F3BE;
-    CMP.W #$0001                                                         ;A2F3C2;
-    BNE .return                                                          ;A2F3C5;
-    LDA.L ShutterHorizShootable.primaryDirection,X                       ;A2F3C7;
-    BNE .return                                                          ;A2F3CB;
-    LDA.W #Function_HorizontalShutter_Initial_WaitForSamusToGetNear      ;A2F3CD;
-    STA.W ShutterHorizShootable.function,X                               ;A2F3D0;
+    LDX.W EnemyIndex
+    DEC.W ShutterHorizShootable.functionTimer,X : BPL .return
+    LDA.W #Function_HorizontalShutter_MovingLeft : STA.W ShutterHorizShootable.function,X
+    LDA.L ShutterHorizShootable.triggerMode,X : CMP.W #$0001 : BNE .return
+    LDA.L ShutterHorizShootable.primaryDirection,X : BNE .return
+    LDA.W #Function_HorizontalShutter_Initial_WaitForSamusToGetNear : STA.W ShutterHorizShootable.function,X
 
   .return:
-    RTS                                                                  ;A2F3D3;
+    RTS
 
 
 ;;; $F3D4: Horizontal shutter function - nothing ;;;
 RTS_A2F3D4:
-    LDX.W EnemyIndex                                                     ;A2F3D4;
-    RTS                                                                  ;A2F3D7;
+    LDX.W EnemyIndex
+    RTS
 
 
 ;;; $F3D8: Enemy touch - enemy $D57F (horizontal shutter) ;;;
 EnemyTouch_ShutterHorizShootable:
-    LDX.W EnemyIndex                                                     ;A2F3D8;
-    LDA.W ShutterHorizShootable.function,X                               ;A2F3DB;
-    CMP.W #RTS_A2F3D4                                                    ;A2F3DE;
-    BNE .return                                                          ;A2F3E1;
-    LDA.W SamusXPosition                                                 ;A2F3E3;
-    CMP.W Enemy.XPosition,X                                              ;A2F3E6;
-    BPL .checkPressingLeft                                               ;A2F3E9;
-    LDA.B DP_Controller1Input                                            ;A2F3EB;
-    AND.W #$0100                                                         ;A2F3ED;
-    BEQ .return                                                          ;A2F3F0;
-    LDA.W #$FFFC                                                         ;A2F3F2;
-    STA.W ExtraSamusXDisplacement                                        ;A2F3F5;
-    STZ.W ExtraSamusYSubDisplacement                                     ;A2F3F8;
-    BRA .return                                                          ;A2F3FB;
+    LDX.W EnemyIndex
+    LDA.W ShutterHorizShootable.function,X : CMP.W #RTS_A2F3D4 : BNE .return
+    LDA.W SamusXPosition : CMP.W Enemy.XPosition,X : BPL .checkPressingLeft
+    LDA.B DP_Controller1Input : AND.W #$0100 : BEQ .return
+    LDA.W #$FFFC : STA.W ExtraSamusXDisplacement
+    STZ.W ExtraSamusYSubDisplacement
+    BRA .return
 
   .checkPressingLeft:
-    LDA.B DP_Controller1Input                                            ;A2F3FD;
-    AND.W #$0200                                                         ;A2F3FF;
-    BEQ .return                                                          ;A2F402;
-    LDA.W #$0004                                                         ;A2F404;
-    STA.W ExtraSamusXDisplacement                                        ;A2F407;
-    STZ.W ExtraSamusYSubDisplacement                                     ;A2F40A;
+    LDA.B DP_Controller1Input : AND.W #$0200 : BEQ .return
+    LDA.W #$0004 : STA.W ExtraSamusXDisplacement
+    STZ.W ExtraSamusYSubDisplacement
 
   .return:
-    RTL                                                                  ;A2F40D;
+    RTL
 
 
 ;;; $F40E: Enemy shot - enemy $D57F (horizontal shutter) ;;;
 EnemyShot_ShutterHorizShootable:
-    LDX.W EnemyIndex                                                     ;A2F40E;
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A2F411;
-    JSL.L PowerBombReaction_CommonReaction_HorizontalShutter             ;A2F415;
-    RTL                                                                  ;A2F419;
+    LDX.W EnemyIndex
+    JSL NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External
+    JSL PowerBombReaction_CommonReaction_HorizontalShutter
+    RTL
 
 
 ;;; $F41A: Horizontal shutter reaction ;;;
 PowerBombReaction_CommonReaction_HorizontalShutter:
 ; Power bomb reaction for enemy $D57F (horizontal shutter)
-    LDX.W EnemyIndex                                                     ;A2F41A;
-    LDA.L ShutterHorizShootable.initialFunctionIndex,X                   ;A2F41D;
-    CMP.W #$0006                                                         ;A2F421;
-    BMI .return                                                          ;A2F424;
-    CMP.W #$0008                                                         ;A2F426;
-    BEQ .function8                                                       ;A2F429;
-    LDA.L ShutterHorizShootable.shotActivatedFlag,X                      ;A2F42B;
-    BNE .return                                                          ;A2F42F;
-    LDA.W #$0001                                                         ;A2F431;
-    STA.L ShutterHorizShootable.shotActivatedFlag,X                      ;A2F434;
+    LDX.W EnemyIndex
+    LDA.L ShutterHorizShootable.initialFunctionIndex,X : CMP.W #$0006 : BMI .return
+    CMP.W #$0008 : BEQ .function8
+    LDA.L ShutterHorizShootable.shotActivatedFlag,X : BNE .return
+    LDA.W #$0001 : STA.L ShutterHorizShootable.shotActivatedFlag,X
 
   .function8:
-    LDA.W ShutterHorizShootable.function,X                               ;A2F438;
-    CMP.W #Function_HorizontalShutter_MovingLeft                         ;A2F43B;
-    BNE .notMovingLeft                                                   ;A2F43E;
-    BRA .return                                                          ;A2F440;
+    LDA.W ShutterHorizShootable.function,X : CMP.W #Function_HorizontalShutter_MovingLeft : BNE .notMovingLeft
+    BRA .return
 
   .notMovingLeft:
-    LDA.W ShutterHorizShootable.function,X                               ;A2F442;
-    CMP.W #Function_HorizontalShutter_MovingRight                        ;A2F445;
-    BEQ .return                                                          ;A2F448;
-    LDA.L ShutterHorizShootable.reactionDirection,X                      ;A2F44A;
-    EOR.W #$0001                                                         ;A2F44E;
-    STA.L ShutterHorizShootable.reactionDirection,X                      ;A2F451;
-    LDA.W #Function_HorizontalShutter_MovingLeft                         ;A2F455;
-    STA.W ShutterHorizShootable.function,X                               ;A2F458;
-    LDA.L ShutterHorizShootable.reactionDirection,X                      ;A2F45B;
-    BEQ .return                                                          ;A2F45F;
-    LDA.W #Function_HorizontalShutter_MovingRight                        ;A2F461;
-    STA.W ShutterHorizShootable.function,X                               ;A2F464;
+    LDA.W ShutterHorizShootable.function,X : CMP.W #Function_HorizontalShutter_MovingRight : BEQ .return
+    LDA.L ShutterHorizShootable.reactionDirection,X : EOR.W #$0001 : STA.L ShutterHorizShootable.reactionDirection,X
+    LDA.W #Function_HorizontalShutter_MovingLeft : STA.W ShutterHorizShootable.function,X
+    LDA.L ShutterHorizShootable.reactionDirection,X : BEQ .return
+    LDA.W #Function_HorizontalShutter_MovingRight : STA.W ShutterHorizShootable.function,X
 
   .return:
-    RTL                                                                  ;A2F467;
+    RTL
 
 
 ;;; $F468: Spritemaps - up/down mover platform ;;;
 Spritemap_Kamer_0:
-    dw $0002                                                             ;A2F468;
+    dw $0002
     %spritemapEntry(1, $00, $F8, 0, 1, 2, 0, $100)
     %spritemapEntry(1, $1F0, $F8, 0, 0, 2, 0, $100)
 
 Spritemap_Kamer_1:
-    dw $0002                                                             ;A2F474;
+    dw $0002
     %spritemapEntry(1, $00, $F8, 0, 1, 2, 0, $102)
     %spritemapEntry(1, $1F0, $F8, 0, 0, 2, 0, $102)
 
 Spritemap_Kamer_2:
-    dw $0002                                                             ;A2F480;
+    dw $0002
     %spritemapEntry(1, $00, $F8, 0, 1, 2, 0, $104)
     %spritemapEntry(1, $1F0, $F8, 0, 0, 2, 0, $104)
 
 Spritemap_Kamer_3:
-    dw $0002                                                             ;A2F48C;
+    dw $0002
     %spritemapEntry(1, $00, $F8, 0, 1, 2, 0, $106)
     %spritemapEntry(1, $1F0, $F8, 0, 0, 2, 0, $106)
 
 
-Freespace_BankA2_F498:                                                   ;A2F498;
+Freespace_BankA2_F498:
 ; $B68 bytes

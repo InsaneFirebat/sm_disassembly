@@ -59,5 +59,5 @@ UNUSED_Tiles_SpinningTurtleEye_B7FB00:
 incbin "../data/UNUSED_Tiles_SpinningTurtleEye_B7FB00.bin" ; $200 bytes
 
 
-Freespace_BankB7_FD00:                                                   ;B7FD00;
+Freespace_BankB7_FD00:
 ; $300 bytes

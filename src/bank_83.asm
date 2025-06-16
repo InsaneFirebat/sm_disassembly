@@ -18,7 +18,7 @@ org $838000
 ;       |   |   |   |   |   |   |    _ Fh: Palette blend
 ;       |   |   |   |   |   |   |   |
 ;       tt, ff, AA, BB, CC, pp, aa, bb
-FXHeader_LandingSite_State3:                                             ;838000;
+FXHeader_LandingSite_State3:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -32,7 +32,7 @@ FXHeader_LandingSite_State3:                                             ;838000
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Parlor_State2:                                                  ;838010;
+FXHeader_Parlor_State2:
     %FXHeader(\
     %door(0),
     %baseY($04E8),
@@ -46,7 +46,7 @@ FXHeader_Parlor_State2:                                                  ;838010
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Climb_State2:                                                   ;838020;
+FXHeader_Climb_State2:
     %FXHeader(\
     %door(0),
     %baseY($08E8),
@@ -60,7 +60,7 @@ FXHeader_Climb_State2:                                                   ;838020
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_BombTorizo_State2:                                              ;838030;
+FXHeader_BombTorizo_State2:
     %FXHeader(\
     %door(0),
     %baseY($00F0),
@@ -74,7 +74,7 @@ FXHeader_BombTorizo_State2:                                              ;838030
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Flyway_State2:                                                  ;838040;
+FXHeader_Flyway_State2:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -88,7 +88,7 @@ FXHeader_Flyway_State2:                                                  ;838040
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Parlor_State1:                                                  ;838050;
+FXHeader_Parlor_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -102,7 +102,7 @@ FXHeader_Parlor_State1:                                                  ;838050
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Climb_State1:                                                   ;838060;
+FXHeader_Climb_State1:
     %FXHeader(\
     %door(Door_TourianEscape4_1),
     %baseY($0908),
@@ -116,7 +116,7 @@ FXHeader_Climb_State1:                                                   ;838060
     %animTiles(1),
     %paletteBlend(2))
 
-FXHeader_Climb_State1_Part2:                                             ;838070;
+FXHeader_Climb_State1_Part2:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -130,7 +130,7 @@ FXHeader_Climb_State1_Part2:                                             ;838070
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Pit_State1:                                                     ;838080;
+FXHeader_Pit_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -144,7 +144,7 @@ FXHeader_Pit_State1:                                                     ;838080
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_ElevToBlueBrinstar_State1:                                      ;838090;
+FXHeader_ElevToBlueBrinstar_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -158,7 +158,7 @@ FXHeader_ElevToBlueBrinstar_State1:                                      ;838090
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_FinalMissileBombway_State1:                                     ;8380A0;
+FXHeader_FinalMissileBombway_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -172,7 +172,7 @@ FXHeader_FinalMissileBombway_State1:                                     ;8380A0
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_FinalMissile_State1:                                            ;8380B0;
+FXHeader_FinalMissile_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -186,7 +186,7 @@ FXHeader_FinalMissile_State1:                                            ;8380B0
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_LandingSite_State0_1:                                           ;8380C0;
+FXHeader_LandingSite_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -200,7 +200,7 @@ FXHeader_LandingSite_State0_1:                                           ;8380C0
     %animTiles(0),
     %paletteBlend($22))
 
-FXHeader_LandingSite_State2:                                             ;8380D0;
+FXHeader_LandingSite_State2:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -214,7 +214,7 @@ FXHeader_LandingSite_State2:                                             ;8380D0
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_GauntletEntrance_State0_1:                                      ;8380E0;
+FXHeader_GauntletEntrance_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($00C8),
@@ -228,7 +228,7 @@ FXHeader_GauntletEntrance_State0_1:                                      ;8380E0
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Parlor_State0:                                                  ;8380F0;
+FXHeader_Parlor_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -242,7 +242,7 @@ FXHeader_Parlor_State0:                                                  ;8380F0
     %animTiles(0),
     %paletteBlend($62))
 
-FXHeader_CrateriaPowerBombs:                                             ;838100;
+FXHeader_CrateriaPowerBombs:
     %FXHeader(\
     %door(0),
     %baseY($00C0),
@@ -257,9 +257,9 @@ FXHeader_CrateriaPowerBombs:                                             ;838100
     %paletteBlend($48))
 
 FXHeader_CrateriaSave:
-    dw $FFFF                                                             ;838110;
+    dw $FFFF
 
-FXHeader_WestOcean:                                                      ;838112;
+FXHeader_WestOcean:
     %FXHeader(\
     %door(0),
     %baseY($04F0),
@@ -273,7 +273,7 @@ FXHeader_WestOcean:                                                      ;838112
     %animTiles(6),
     %paletteBlend($48))
 
-FXHeader_BowlingAlleyPath:                                               ;838122;
+FXHeader_BowlingAlleyPath:
     %FXHeader(\
     %door(0),
     %baseY($00B0),
@@ -287,7 +287,7 @@ FXHeader_BowlingAlleyPath:                                               ;838122
     %animTiles(0),
     %paletteBlend($48))
 
-FXHeader_CrateriaKihunters:                                              ;838132;
+FXHeader_CrateriaKihunters:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -302,9 +302,9 @@ FXHeader_CrateriaKihunters:                                              ;838132
     %paletteBlend(0))
 
 FXHeader_ForgottenHighwayElev:
-    dw $FFFF                                                             ;838142;
+    dw $FFFF
 
-FXHeader_EastOcean:                                                      ;838144;
+FXHeader_EastOcean:
     %FXHeader(\
     %door(0),
     %baseY($04F0),
@@ -319,9 +319,9 @@ FXHeader_EastOcean:                                                      ;838144
     %paletteBlend($48))
 
 FXHeader_ForgottenHighwayKagos:
-    dw $FFFF                                                             ;838154;
+    dw $FFFF
 
-FXHeader_CrabMaze:                                                       ;838156;
+FXHeader_CrabMaze:
     %FXHeader(\
     %door(0),
     %baseY($01B0),
@@ -336,12 +336,12 @@ FXHeader_CrabMaze:                                                       ;838156
     %paletteBlend($48))
 
 FXHeader_ForgottenHighwayElbow:
-    dw $FFFF                                                             ;838166;
+    dw $FFFF
 
 FXHeader_CrateriaTube:
-    dw $FFFF                                                             ;838168;
+    dw $FFFF
 
-FXHeader_Moat:                                                           ;83816A;
+FXHeader_Moat:
     %FXHeader(\
     %door(0),
     %baseY($00B0),
@@ -356,9 +356,9 @@ FXHeader_Moat:                                                           ;83816A
     %paletteBlend($48))
 
 FXHeader_RedBrinstarElev:
-    dw $FFFF                                                             ;83817A;
+    dw $FFFF
 
-FXHeader_GauntletETank:                                                  ;83817C;
+FXHeader_GauntletETank:
     %FXHeader(\
     %door(0),
     %baseY($00C8),
@@ -373,9 +373,9 @@ FXHeader_GauntletETank:                                                  ;83817C
     %paletteBlend(0))
 
 FXHeader_PreBowling:
-    dw $FFFF                                                             ;83818C;
+    dw $FFFF
 
-FXHeader_Climb_State0:                                                   ;83818E;
+FXHeader_Climb_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -389,7 +389,7 @@ FXHeader_Climb_State0:                                                   ;83818E
     %animTiles(0),
     %paletteBlend($62))
 
-FXHeader_Pit_State0:                                                     ;83819E;
+FXHeader_Pit_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -403,7 +403,7 @@ FXHeader_Pit_State0:                                                     ;83819E
     %animTiles(0),
     %paletteBlend($62))
 
-FXHeader_ElevToBlueBrinstar_State0:                                      ;8381AE;
+FXHeader_ElevToBlueBrinstar_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -418,15 +418,15 @@ FXHeader_ElevToBlueBrinstar_State0:                                      ;8381AE
     %paletteBlend(0))
 
 FXHeader_BombTorizo_State0_1:
-    dw $FFFF                                                             ;8381BE;
+    dw $FFFF
 
 FXHeader_Flyway_State0_1:
-    dw $FFFF                                                             ;8381C0;
+    dw $FFFF
 
 FXHeader_VariousRooms_8381C2:
-    dw $FFFF                                                             ;8381C2;
+    dw $FFFF
 
-FXHeader_CrateriaSuper:                                                  ;8381C4;
+FXHeader_CrateriaSuper:
     %FXHeader(\
     %door(0),
     %baseY($07E0),
@@ -440,7 +440,7 @@ FXHeader_CrateriaSuper:                                                  ;8381C4
     %animTiles(2),
     %paletteBlend($48))
 
-FXHeader_FinalMissileBombway_State0:                                     ;8381D4;
+FXHeader_FinalMissileBombway_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -454,7 +454,7 @@ FXHeader_FinalMissileBombway_State0:                                     ;8381D4
     %animTiles(0),
     %paletteBlend($62))
 
-FXHeader_FinalMissile_State0:                                            ;8381E4;
+FXHeader_FinalMissile_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -468,7 +468,7 @@ FXHeader_FinalMissile_State0:                                            ;8381E4
     %animTiles(0),
     %paletteBlend($62))
 
-FXHeader_VariousRooms_8381F4:                                            ;8381F4;
+FXHeader_VariousRooms_8381F4:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -482,7 +482,7 @@ FXHeader_VariousRooms_8381F4:                                            ;8381F4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_GreenBrinstarMainShaft:                                         ;838204;
+FXHeader_GreenBrinstarMainShaft:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -496,7 +496,7 @@ FXHeader_GreenBrinstarMainShaft:                                         ;838204
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_SporeSpawnSuper:                                                ;838214;
+FXHeader_SporeSpawnSuper:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -511,18 +511,18 @@ FXHeader_SporeSpawnSuper:                                                ;838214
     %paletteBlend(0))
 
 FXHeader_BrinstarPreMap:
-    dw $FFFF                                                             ;838224;
+    dw $FFFF
 
 FXHeader_EarlySupers:
-    dw $FFFF                                                             ;838226;
+    dw $FFFF
 
 FXHeader_BrinstarReserveTank:
-    dw $FFFF                                                             ;838228;
+    dw $FFFF
 
 FXHeader_GreenBrinstarMap:
-    dw $FFFF                                                             ;83822A;
+    dw $FFFF
 
-FXHeader_GreenBrinstarFirefleas:                                         ;83822C;
+FXHeader_GreenBrinstarFirefleas:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -537,9 +537,9 @@ FXHeader_GreenBrinstarFirefleas:                                         ;83822C
     %paletteBlend(0))
 
 FXHeader_GreenBrinstarMissileRefill:
-    dw $FFFF                                                             ;83823C;
+    dw $FFFF
 
-FXHeader_Dachora:                                                        ;83823E;
+FXHeader_Dachora:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -553,7 +553,7 @@ FXHeader_Dachora:                                                        ;83823E
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_BigPink:                                                        ;83824E;
+FXHeader_BigPink:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -567,7 +567,7 @@ FXHeader_BigPink:                                                        ;83824E
     %animTiles(1),
     %paletteBlend(0))
 
-FXHeader_SporeSpawnKihunters:                                            ;83825E;
+FXHeader_SporeSpawnKihunters:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -581,7 +581,7 @@ FXHeader_SporeSpawnKihunters:                                            ;83825E
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_SporeSpawn_State0_1:                                            ;83826E;
+FXHeader_SporeSpawn_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -595,7 +595,7 @@ FXHeader_SporeSpawn_State0_1:                                            ;83826E
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_PinkBrinstarPowerBombs:                                         ;83827E;
+FXHeader_PinkBrinstarPowerBombs:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -610,9 +610,9 @@ FXHeader_PinkBrinstarPowerBombs:                                         ;83827E
     %paletteBlend(0))
 
 FXHeader_GreenHillZone:
-    dw $FFFF                                                             ;83828E;
+    dw $FFFF
 
-FXHeader_MorphBall_State0:                                               ;838290;
+FXHeader_MorphBall_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -626,7 +626,7 @@ FXHeader_MorphBall_State0:                                               ;838290
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_ConstructionZone_State0:                                        ;8382A0;
+FXHeader_ConstructionZone_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -640,7 +640,7 @@ FXHeader_ConstructionZone_State0:                                        ;8382A0
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_BlueBrinstarETank_State0:                                       ;8382B0;
+FXHeader_BlueBrinstarETank_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -654,7 +654,7 @@ FXHeader_BlueBrinstarETank_State0:                                       ;8382B0
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_NoobBridge:                                                     ;8382C0;
+FXHeader_NoobBridge:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -669,9 +669,9 @@ FXHeader_NoobBridge:                                                     ;8382C0
     %paletteBlend(0))
 
 FXHeader_GreenBrinstarBeetoms:
-    dw $FFFF                                                             ;8382D0;
+    dw $FFFF
 
-FXHeader_EtecoonETank:                                                   ;8382D2;
+FXHeader_EtecoonETank:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -685,7 +685,7 @@ FXHeader_EtecoonETank:                                                   ;8382D2
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_EtecoonSuper:                                                   ;8382E2;
+FXHeader_EtecoonSuper:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -700,9 +700,9 @@ FXHeader_EtecoonSuper:                                                   ;8382E2
     %paletteBlend(0))
 
 FXHeader_DachoraEnergyRefill:
-    dw $FFFF                                                             ;8382F2;
+    dw $FFFF
 
-FXHeader_SporeSpawnFarming:                                              ;8382F4;
+FXHeader_SporeSpawnFarming:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -716,7 +716,7 @@ FXHeader_SporeSpawnFarming:                                              ;8382F4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_WaterwayETank:                                                  ;838304;
+FXHeader_WaterwayETank:
     %FXHeader(\
     %door(0),
     %baseY($00A8),
@@ -730,7 +730,7 @@ FXHeader_WaterwayETank:                                                  ;838304
     %animTiles(0),
     %paletteBlend($48))
 
-FXHeader_FirstMissile:                                                   ;838314;
+FXHeader_FirstMissile:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -744,7 +744,7 @@ FXHeader_FirstMissile:                                                   ;838314
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_PinkBrinstarHoppers:                                            ;838324;
+FXHeader_PinkBrinstarHoppers:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -759,12 +759,12 @@ FXHeader_PinkBrinstarHoppers:                                            ;838324
     %paletteBlend(0))
 
 FXHeader_HopperETank:
-    dw $FFFF                                                             ;838334;
+    dw $FFFF
 
 FXHeader_BigPinkSaveRoom:
-    dw $FFFF                                                             ;838336;
+    dw $FFFF
 
-FXHeader_BlueBrinstarBoulders:                                           ;838338;
+FXHeader_BlueBrinstarBoulders:
     %FXHeader(\
     %door(0),
     %baseY($00B0),
@@ -779,15 +779,15 @@ FXHeader_BlueBrinstarBoulders:                                           ;838338
     %paletteBlend($48))
 
 FXHeader_BillyMays:
-    dw $FFFF                                                             ;838348;
+    dw $FFFF
 
 FXHeader_GreenBrinstarSave:
-    dw $FFFF                                                             ;83834A;
+    dw $FFFF
 
 FXHeader_EtecoonSave:
-    dw $FFFF                                                             ;83834C;
+    dw $FFFF
 
-FXHeader_RedTower:                                                       ;83834E;
+FXHeader_RedTower:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -801,7 +801,7 @@ FXHeader_RedTower:                                                       ;83834E
     %animTiles(3),
     %paletteBlend(0))
 
-FXHeader_RedBrinstarFirefleas:                                           ;83835E;
+FXHeader_RedBrinstarFirefleas:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -816,9 +816,9 @@ FXHeader_RedBrinstarFirefleas:                                           ;83835E
     %paletteBlend(0))
 
 FXHeader_XrayScope:
-    dw $FFFF                                                             ;83836E;
+    dw $FFFF
 
-FXHeader_Hellway:                                                        ;838370;
+FXHeader_Hellway:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -832,7 +832,7 @@ FXHeader_Hellway:                                                        ;838370
     %animTiles(4),
     %paletteBlend(0))
 
-FXHeader_Caterpillar:                                                    ;838380;
+FXHeader_Caterpillar:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -846,7 +846,7 @@ FXHeader_Caterpillar:                                                    ;838380
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_BetaPowerBomb:                                                  ;838390;
+FXHeader_BetaPowerBomb:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -860,7 +860,7 @@ FXHeader_BetaPowerBomb:                                                  ;838390
     %animTiles(4),
     %paletteBlend(0))
 
-FXHeader_AlphaPowerBomb:                                                 ;8383A0;
+FXHeader_AlphaPowerBomb:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -874,7 +874,7 @@ FXHeader_AlphaPowerBomb:                                                 ;8383A0
     %animTiles(4),
     %paletteBlend(0))
 
-FXHeader_SkreeBoost:                                                     ;8383B0;
+FXHeader_SkreeBoost:
     %FXHeader(\
     %door(0),
     %baseY($00BE),
@@ -888,7 +888,7 @@ FXHeader_SkreeBoost:                                                     ;8383B0
     %animTiles(0),
     %paletteBlend($48))
 
-FXHeader_BelowSpazer:                                                    ;8383C0;
+FXHeader_BelowSpazer:
     %FXHeader(\
     %door(0),
     %baseY($01BE),
@@ -903,9 +903,9 @@ FXHeader_BelowSpazer:                                                    ;8383C0
     %paletteBlend($48))
 
 FXHeader_Spazer:
-    dw $FFFF                                                             ;8383D0;
+    dw $FFFF
 
-FXHeader_VariousRooms_8383D2:                                            ;8383D2;
+FXHeader_VariousRooms_8383D2:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -919,7 +919,7 @@ FXHeader_VariousRooms_8383D2:                                            ;8383D2
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_MiniKraid_State0_1:                                             ;8383E2;
+FXHeader_MiniKraid_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -934,12 +934,12 @@ FXHeader_MiniKraid_State0_1:                                             ;8383E2
     %paletteBlend(0))
 
 FXHeader_KraidEyeDoor:
-    dw $FFFF                                                             ;8383F2;
+    dw $FFFF
 
 FXHeader_Kraid_State0:
-    dw $FFFF                                                             ;8383F4;
+    dw $FFFF
 
-FXHeader_Kraid_State1:                                                   ;8383F6;
+FXHeader_Kraid_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -954,12 +954,12 @@ FXHeader_Kraid_State1:                                                   ;8383F6
     %paletteBlend($62))
 
 FXHeader_RedTowerRefill:
-    dw $FFFF                                                             ;838406;
+    dw $FFFF
 
 FXHeader_KraidRefill:
-    dw $FFFF                                                             ;838408;
+    dw $FFFF
 
-FXHeader_Statues:                                                        ;83840A;
+FXHeader_Statues:
     %FXHeader(\
     %door(0),
     %baseY($00B0),
@@ -973,7 +973,7 @@ FXHeader_Statues:                                                        ;83840A
     %animTiles(0),
     %paletteBlend($48))
 
-FXHeader_WarehouseEntrance:                                              ;83841A;
+FXHeader_WarehouseEntrance:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -988,15 +988,15 @@ FXHeader_WarehouseEntrance:                                              ;83841A
     %paletteBlend(0))
 
 FXHeader_VariaSuit:
-    dw $FFFF                                                             ;83842A;
+    dw $FFFF
 
 FXHeader_WarehouseSave:
-    dw $FFFF                                                             ;83842C;
+    dw $FFFF
 
 FXHeader_RedBrinstarSave:
-    dw $FFFF                                                             ;83842E;
+    dw $FFFF
 
-FXHeader_IceBeamAcid:                                                    ;838430;
+FXHeader_IceBeamAcid:
     %FXHeader(\
     %door(0),
     %baseY($00B8),
@@ -1010,7 +1010,7 @@ FXHeader_IceBeamAcid:                                                    ;838430
     %animTiles(2),
     %paletteBlend(2))
 
-FXHeader_Cathedral:                                                      ;838440;
+FXHeader_Cathedral:
     %FXHeader(\
     %door(0),
     %baseY($01B1),
@@ -1024,7 +1024,7 @@ FXHeader_Cathedral:                                                      ;838440
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_CathedralEntrance:                                              ;838450;
+FXHeader_CathedralEntrance:
     %FXHeader(\
     %door(0),
     %baseY($01D0),
@@ -1038,7 +1038,7 @@ FXHeader_CathedralEntrance:                                              ;838450
     %animTiles(3),
     %paletteBlend(2))
 
-FXHeader_BusinessCenter:                                                 ;838460;
+FXHeader_BusinessCenter:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1052,7 +1052,7 @@ FXHeader_BusinessCenter:                                                 ;838460
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_IceBeamGate:                                                    ;838470;
+FXHeader_IceBeamGate:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1066,7 +1066,7 @@ FXHeader_IceBeamGate:                                                    ;838470
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_IceBeamTutorial:                                                ;838480;
+FXHeader_IceBeamTutorial:
     %FXHeader(\
     %door(0),
     %baseY($00B2),
@@ -1080,7 +1080,7 @@ FXHeader_IceBeamTutorial:                                                ;838480
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_IceBeam:                                                        ;838490;
+FXHeader_IceBeam:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1094,7 +1094,7 @@ FXHeader_IceBeam:                                                        ;838490
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_IceBeamSnake:                                                   ;8384A0;
+FXHeader_IceBeamSnake:
     %FXHeader(\
     %door(0),
     %baseY($02B8),
@@ -1108,7 +1108,7 @@ FXHeader_IceBeamSnake:                                                   ;8384A0
     %animTiles(3),
     %paletteBlend(2))
 
-FXHeader_CrumbleShaft:                                                   ;8384B0;
+FXHeader_CrumbleShaft:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1122,7 +1122,7 @@ FXHeader_CrumbleShaft:                                                   ;8384B0
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_CrocomireSpeedway:                                              ;8384C0;
+FXHeader_CrocomireSpeedway:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1136,7 +1136,7 @@ FXHeader_CrocomireSpeedway:                                              ;8384C0
     %animTiles(2),
     %paletteBlend(2))
 
-FXHeader_Crocomire_State0_1:                                             ;8384D0;
+FXHeader_Crocomire_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($00C6),
@@ -1150,7 +1150,7 @@ FXHeader_Crocomire_State0_1:                                             ;8384D0
     %animTiles(1),
     %paletteBlend(2))
 
-FXHeader_HiJumpBoots:                                                    ;8384E0;
+FXHeader_HiJumpBoots:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1164,7 +1164,7 @@ FXHeader_HiJumpBoots:                                                    ;8384E0
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_CrocomireEscape:                                                ;8384F0;
+FXHeader_CrocomireEscape:
     %FXHeader(\
     %door(0),
     %baseY($01B8),
@@ -1178,7 +1178,7 @@ FXHeader_CrocomireEscape:                                                ;8384F0
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_HiJumpETank:                                                    ;838500;
+FXHeader_HiJumpETank:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1192,7 +1192,7 @@ FXHeader_HiJumpETank:                                                    ;838500
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_PostCrocFarming:                                                ;838510;
+FXHeader_PostCrocFarming:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1206,7 +1206,7 @@ FXHeader_PostCrocFarming:                                                ;838510
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_PostCrocSave:                                                   ;838520;
+FXHeader_PostCrocSave:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1220,7 +1220,7 @@ FXHeader_PostCrocSave:                                                   ;838520
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_PostCrocPowerBombs:                                             ;838530;
+FXHeader_PostCrocPowerBombs:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1234,7 +1234,7 @@ FXHeader_PostCrocPowerBombs:                                             ;838530
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_PostCrocShaft:                                                  ;838540;
+FXHeader_PostCrocShaft:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1248,7 +1248,7 @@ FXHeader_PostCrocShaft:                                                  ;838540
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_PostCrocMissile:                                                ;838550;
+FXHeader_PostCrocMissile:
     %FXHeader(\
     %door(0),
     %baseY($00C8),
@@ -1262,7 +1262,7 @@ FXHeader_PostCrocMissile:                                                ;838550
     %animTiles(2),
     %paletteBlend(0))
 
-FXHeader_GrappleTutorial3:                                               ;838560;
+FXHeader_GrappleTutorial3:
     %FXHeader(\
     %door(0),
     %baseY($00B8),
@@ -1276,7 +1276,7 @@ FXHeader_GrappleTutorial3:                                               ;838560
     %animTiles(0),
     %paletteBlend($48))
 
-FXHeader_PostCrocJump:                                                   ;838570;
+FXHeader_PostCrocJump:
     %FXHeader(\
     %door(0),
     %baseY($02B4),
@@ -1290,7 +1290,7 @@ FXHeader_PostCrocJump:                                                   ;838570
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_GrappleTutorial2:                                               ;838580;
+FXHeader_GrappleTutorial2:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1304,7 +1304,7 @@ FXHeader_GrappleTutorial2:                                               ;838580
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_GrappleTutorial1:                                               ;838590;
+FXHeader_GrappleTutorial1:
     %FXHeader(\
     %door(0),
     %baseY($00C0),
@@ -1318,7 +1318,7 @@ FXHeader_GrappleTutorial1:                                               ;838590
     %animTiles(0),
     %paletteBlend($48))
 
-FXHeader_GrappleBeam:                                                    ;8385A0;
+FXHeader_GrappleBeam:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1332,7 +1332,7 @@ FXHeader_GrappleBeam:                                                    ;8385A0
     %animTiles(3),
     %paletteBlend(0))
 
-FXHeader_NorfairReserveTank:                                             ;8385B0;
+FXHeader_NorfairReserveTank:
     %FXHeader(\
     %door(0),
     %baseY($00C7),
@@ -1346,7 +1346,7 @@ FXHeader_NorfairReserveTank:                                             ;8385B0
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_GreenBubblesMissiles:                                           ;8385C0;
+FXHeader_GreenBubblesMissiles:
     %FXHeader(\
     %door(0),
     %baseY($00C6),
@@ -1360,7 +1360,7 @@ FXHeader_GreenBubblesMissiles:                                           ;8385C0
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_BubbleMountain:                                                 ;8385D0;
+FXHeader_BubbleMountain:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1374,7 +1374,7 @@ FXHeader_BubbleMountain:                                                 ;8385D0
     %animTiles(2),
     %paletteBlend(2))
 
-FXHeader_SpeedBoosterHall:                                               ;8385E0;
+FXHeader_SpeedBoosterHall:
     %FXHeader(\
     %door(Door_SpeedBooster_0),
     %baseY($01DA),
@@ -1388,7 +1388,7 @@ FXHeader_SpeedBoosterHall:                                               ;8385E0
     %animTiles(2),
     %paletteBlend(2))
 
-FXHeader_SpeedBoosterHall_Part2:                                         ;8385F0;
+FXHeader_SpeedBoosterHall_Part2:
     %FXHeader(\
     %door(0),
     %baseY($01DA),
@@ -1402,7 +1402,7 @@ FXHeader_SpeedBoosterHall_Part2:                                         ;8385F0
     %animTiles(2),
     %paletteBlend(2))
 
-FXHeader_SpeedBooster:                                                   ;838600;
+FXHeader_SpeedBooster:
     %FXHeader(\
     %door(0),
     %baseY($00DA),
@@ -1416,7 +1416,7 @@ FXHeader_SpeedBooster:                                                   ;838600
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_SingleChamber:                                                  ;838610;
+FXHeader_SingleChamber:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1430,7 +1430,7 @@ FXHeader_SingleChamber:                                                  ;838610
     %animTiles(2),
     %paletteBlend(2))
 
-FXHeader_DoubleChamber:                                                  ;838620;
+FXHeader_DoubleChamber:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1444,7 +1444,7 @@ FXHeader_DoubleChamber:                                                  ;838620
     %animTiles(2),
     %paletteBlend(2))
 
-FXHeader_WaveBeam:                                                       ;838630;
+FXHeader_WaveBeam:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1458,7 +1458,7 @@ FXHeader_WaveBeam:                                                       ;838630
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_SpikyPlatformsTunnel:                                           ;838640;
+FXHeader_SpikyPlatformsTunnel:
     %FXHeader(\
     %door(0),
     %baseY($00C0),
@@ -1472,7 +1472,7 @@ FXHeader_SpikyPlatformsTunnel:                                           ;838640
     %animTiles(2),
     %paletteBlend(2))
 
-FXHeader_Volcano:                                                        ;838650;
+FXHeader_Volcano:
     %FXHeader(\
     %door(Door_KronicBoost_1),
     %baseY($02E0),
@@ -1486,7 +1486,7 @@ FXHeader_Volcano:                                                        ;838650
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_Volcano_Part2:                                                  ;838660;
+FXHeader_Volcano_Part2:
     %FXHeader(\
     %door(0),
     %baseY($0268),
@@ -1500,7 +1500,7 @@ FXHeader_Volcano_Part2:                                                  ;838660
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_KronicBoost:                                                    ;838670;
+FXHeader_KronicBoost:
     %FXHeader(\
     %door(0),
     %baseY($02D4),
@@ -1514,7 +1514,7 @@ FXHeader_KronicBoost:                                                    ;838670
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_MagdolliteTunnel:                                               ;838680;
+FXHeader_MagdolliteTunnel:
     %FXHeader(\
     %door(0),
     %baseY($00BE),
@@ -1528,7 +1528,7 @@ FXHeader_MagdolliteTunnel:                                               ;838680
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_PurpleShaft:                                                    ;838690;
+FXHeader_PurpleShaft:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1542,7 +1542,7 @@ FXHeader_PurpleShaft:                                                    ;838690
     %animTiles(3),
     %paletteBlend(2))
 
-FXHeader_LavaDive:                                                       ;8386A0;
+FXHeader_LavaDive:
     %FXHeader(\
     %door(0),
     %baseY($00D0),
@@ -1556,7 +1556,7 @@ FXHeader_LavaDive:                                                       ;8386A0
     %animTiles(3),
     %paletteBlend(2))
 
-FXHeader_LowerNorfairElev:                                               ;8386B0;
+FXHeader_LowerNorfairElev:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1570,7 +1570,7 @@ FXHeader_LowerNorfairElev:                                               ;8386B0
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_UpperNorfairFarming:                                            ;8386C0;
+FXHeader_UpperNorfairFarming:
     %FXHeader(\
     %door(0),
     %baseY($01C0),
@@ -1584,7 +1584,7 @@ FXHeader_UpperNorfairFarming:                                            ;8386C0
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_RisingTide:                                                     ;8386D0;
+FXHeader_RisingTide:
     %FXHeader(\
     %door(Door_Cathedral_1),
     %baseY($0108),
@@ -1598,7 +1598,7 @@ FXHeader_RisingTide:                                                     ;8386D0
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_RisingTide_Part2:                                               ;8386E0;
+FXHeader_RisingTide_Part2:
     %FXHeader(\
     %door(0),
     %baseY($00C8),
@@ -1612,7 +1612,7 @@ FXHeader_RisingTide_Part2:                                               ;8386E0
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_AcidSnakesTunnel:                                               ;8386F0;
+FXHeader_AcidSnakesTunnel:
     %FXHeader(\
     %door(0),
     %baseY($00C5),
@@ -1626,7 +1626,7 @@ FXHeader_AcidSnakesTunnel:                                               ;8386F0
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_SpikyAcidSnakesTunnel:                                          ;838700;
+FXHeader_SpikyAcidSnakesTunnel:
     %FXHeader(\
     %door(0),
     %baseY($00C6),
@@ -1640,7 +1640,7 @@ FXHeader_SpikyAcidSnakesTunnel:                                          ;838700
     %animTiles(2),
     %paletteBlend(2))
 
-FXHeader_UpperNorfairRefill:                                             ;838710;
+FXHeader_UpperNorfairRefill:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1654,7 +1654,7 @@ FXHeader_UpperNorfairRefill:                                             ;838710
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_PurpleFarming:                                                  ;838720;
+FXHeader_PurpleFarming:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1668,7 +1668,7 @@ FXHeader_PurpleFarming:                                                  ;838720
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_BatCave:                                                        ;838730;
+FXHeader_BatCave:
     %FXHeader(\
     %door(0),
     %baseY($01B4),
@@ -1682,7 +1682,7 @@ FXHeader_BatCave:                                                        ;838730
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_NorfairMap:                                                     ;838740;
+FXHeader_NorfairMap:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1696,7 +1696,7 @@ FXHeader_NorfairMap:                                                     ;838740
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_BubbleMountainSave:                                             ;838750;
+FXHeader_BubbleMountainSave:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1711,21 +1711,21 @@ FXHeader_BubbleMountainSave:                                             ;838750
     %paletteBlend(2))
 
 FXHeader_FrogSpeedway:
-    dw $FFFF                                                             ;838760;
+    dw $FFFF
 
 FXHeader_RedPirateShaft:
-    dw $FFFF                                                             ;838762;
+    dw $FFFF
 
 FXHeader_FrogSave:
-    dw $FFFF                                                             ;838764;
+    dw $FFFF
 
 FXHeader_CrocomireSave:
-    dw $FFFF                                                             ;838766;
+    dw $FFFF
 
 FXHeader_LNElevSave:
-    dw $FFFF                                                             ;838768;
+    dw $FFFF
 
-FXHeader_AcidStatue:                                                     ;83876A;
+FXHeader_AcidStatue:
     %FXHeader(\
     %door(Door_GoldenTorizo_0),
     %baseY($02D2),
@@ -1739,7 +1739,7 @@ FXHeader_AcidStatue:                                                     ;83876A
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_AcidStatue_Part2:                                               ;83877A;
+FXHeader_AcidStatue_Part2:
     %FXHeader(\
     %door(0),
     %baseY($00C8),
@@ -1753,7 +1753,7 @@ FXHeader_AcidStatue_Part2:                                               ;83877A
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_MainHall:                                                       ;83878A;
+FXHeader_MainHall:
     %FXHeader(\
     %door(0),
     %baseY($02C1),
@@ -1767,7 +1767,7 @@ FXHeader_MainHall:                                                       ;83878A
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_GoldenTorizo_State0_1:                                          ;83879A;
+FXHeader_GoldenTorizo_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($02C6),
@@ -1781,7 +1781,7 @@ FXHeader_GoldenTorizo_State0_1:                                          ;83879A
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_FastRipper:                                                     ;8387AA;
+FXHeader_FastRipper:
     %FXHeader(\
     %door(0),
     %baseY($00B8),
@@ -1796,9 +1796,9 @@ FXHeader_FastRipper:                                                     ;8387AA
     %paletteBlend(0))
 
 FXHeader_GTEnergyRefill:
-    dw $FFFF                                                             ;8387BA;
+    dw $FFFF
 
-FXHeader_Ridley_State0_1:                                                ;8387BC;
+FXHeader_Ridley_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($0210),
@@ -1812,7 +1812,7 @@ FXHeader_Ridley_State0_1:                                                ;8387BC
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_LNFarming:                                                      ;8387CC;
+FXHeader_LNFarming:
     %FXHeader(\
     %door(0),
     %baseY($00D0),
@@ -1826,7 +1826,7 @@ FXHeader_LNFarming:                                                      ;8387CC
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_FastPillarsSetup:                                               ;8387DC;
+FXHeader_FastPillarsSetup:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1841,7 +1841,7 @@ FXHeader_FastPillarsSetup:                                               ;8387DC
     %paletteBlend(0))
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_FXHeader_8387EC:                                                  ;8387EC;
+UNUSED_FXHeader_8387EC:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1856,7 +1856,7 @@ UNUSED_FXHeader_8387EC:                                                  ;8387EC
     %paletteBlend(0))
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-FXHeader_MickeyMouse:                                                    ;8387FC;
+FXHeader_MickeyMouse:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1870,7 +1870,7 @@ FXHeader_MickeyMouse:                                                    ;8387FC
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Pillar:                                                         ;83880C;
+FXHeader_Pillar:
     %FXHeader(\
     %door(0),
     %baseY($00E8),
@@ -1884,7 +1884,7 @@ FXHeader_Pillar:                                                         ;83880C
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Plowerhouse:                                                    ;83881C;
+FXHeader_Plowerhouse:
     %FXHeader(\
     %door(0),
     %baseY($00CD),
@@ -1898,7 +1898,7 @@ FXHeader_Plowerhouse:                                                    ;83881C
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_WorstRoomInTheGame:                                             ;83882C;
+FXHeader_WorstRoomInTheGame:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1912,7 +1912,7 @@ FXHeader_WorstRoomInTheGame:                                             ;83882C
     %animTiles(2),
     %paletteBlend(0))
 
-FXHeader_Amphitheatre:                                                   ;83883C;
+FXHeader_Amphitheatre:
     %FXHeader(\
     %door(Door_RedKihunterShaft_1),
     %baseY($00D0),
@@ -1926,7 +1926,7 @@ FXHeader_Amphitheatre:                                                   ;83883C
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Amphitheatre_Part2:                                             ;83884C;
+FXHeader_Amphitheatre_Part2:
     %FXHeader(\
     %door(0),
     %baseY($04E8),
@@ -1940,7 +1940,7 @@ FXHeader_Amphitheatre_Part2:                                             ;83884C
     %animTiles(2),
     %paletteBlend(0))
 
-FXHeader_LNSpringballMaze:                                               ;83885C;
+FXHeader_LNSpringballMaze:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1954,7 +1954,7 @@ FXHeader_LNSpringballMaze:                                               ;83885C
     %animTiles(2),
     %paletteBlend(0))
 
-FXHeader_LNEscapePowerBombs:                                             ;83886C;
+FXHeader_LNEscapePowerBombs:
     %FXHeader(\
     %door(0),
     %baseY($00B3),
@@ -1968,7 +1968,7 @@ FXHeader_LNEscapePowerBombs:                                             ;83886C
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_RedKihunterShaft:                                               ;83887C;
+FXHeader_RedKihunterShaft:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -1982,7 +1982,7 @@ FXHeader_RedKihunterShaft:                                               ;83887C
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Wasteland:                                                      ;83888C;
+FXHeader_Wasteland:
     %FXHeader(\
     %door(0),
     %baseY($02C0),
@@ -1996,7 +1996,7 @@ FXHeader_Wasteland:                                                      ;83888C
     %animTiles(3),
     %paletteBlend(0))
 
-FXHeader_MetalPirates:                                                   ;83889C;
+FXHeader_MetalPirates:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -2010,7 +2010,7 @@ FXHeader_MetalPirates:                                                   ;83889C
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_ThreeMusketeers:                                                ;8388AC;
+FXHeader_ThreeMusketeers:
     %FXHeader(\
     %door(0),
     %baseY($02D0),
@@ -2024,7 +2024,7 @@ FXHeader_ThreeMusketeers:                                                ;8388AC
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_RidleyETank:                                                    ;8388BC;
+FXHeader_RidleyETank:
     %FXHeader(\
     %door(0),
     %baseY($00DD),
@@ -2038,7 +2038,7 @@ FXHeader_RidleyETank:                                                    ;8388BC
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_ScrewAttack:                                                    ;8388CC;
+FXHeader_ScrewAttack:
     %FXHeader(\
     %door(0),
     %baseY($02DD),
@@ -2052,7 +2052,7 @@ FXHeader_ScrewAttack:                                                    ;8388CC
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_LNFireflea:                                                     ;8388DC;
+FXHeader_LNFireflea:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -2066,7 +2066,7 @@ FXHeader_LNFireflea:                                                     ;8388DC
     %animTiles(2),
     %paletteBlend(0))
 
-FXHeader_LNSave:                                                         ;8388EC;
+FXHeader_LNSave:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -2095,9 +2095,9 @@ FXHeader_LNSave:                                                         ;8388EC
 ;       |    |  |  |  |  |  |  |    |
 ;       rrrr ee oo xx yy XX YY dddd aaaa
 Door_VariousRooms_Elevator:
-    db $00,$00                                                           ;8388FC;
+    db $00,$00
 
-Door_LandingSite_LandingCutscene:                                        ;8388FE;
+Door_LandingSite_LandingCutscene:
     %DoorHeader(\
     %destination(RoomHeader_LandingSite),
     %elevator(0),
@@ -2107,7 +2107,7 @@ Door_LandingSite_LandingCutscene:                                        ;8388FE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_DemoSet3_0_2_4:                                                     ;83890A;
+Door_DemoSet3_0_2_4:
     %DoorHeader(\
     %destination(RoomHeader_LandingSite),
     %elevator(0),
@@ -2117,7 +2117,7 @@ Door_DemoSet3_0_2_4:                                                     ;83890A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LandingSite_0:                                                      ;838916;
+Door_LandingSite_0:
     %DoorHeader(\
     %destination(RoomHeader_Parlor),
     %elevator(0),
@@ -2127,7 +2127,7 @@ Door_LandingSite_0:                                                      ;838916
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LandingSite_1:                                                      ;838922;
+Door_LandingSite_1:
     %DoorHeader(\
     %destination(RoomHeader_CrateriaTube),
     %elevator(0),
@@ -2137,7 +2137,7 @@ Door_LandingSite_1:                                                      ;838922
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LandingSite_2:                                                      ;83892E;
+Door_LandingSite_2:
     %DoorHeader(\
     %destination(RoomHeader_GauntletEntrance),
     %elevator(0),
@@ -2147,7 +2147,7 @@ Door_LandingSite_2:                                                      ;83892E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LandingSite_3:                                                      ;83893A;
+Door_LandingSite_3:
     %DoorHeader(\
     %destination(RoomHeader_CrateriaPowerBombs),
     %elevator(0),
@@ -2157,7 +2157,7 @@ Door_LandingSite_3:                                                      ;83893A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GauntletEntrance_0:                                                 ;838946;
+Door_GauntletEntrance_0:
     %DoorHeader(\
     %destination(RoomHeader_LandingSite),
     %elevator(0),
@@ -2167,7 +2167,7 @@ Door_GauntletEntrance_0:                                                 ;838946
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_13_Blue))
 
-Door_GauntletEntrance_1:                                                 ;838952;
+Door_GauntletEntrance_1:
     %DoorHeader(\
     %destination(RoomHeader_GauntletETank),
     %elevator(0),
@@ -2177,7 +2177,7 @@ Door_GauntletEntrance_1:                                                 ;838952
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Parlor_0:                                                           ;83895E;
+Door_Parlor_0:
     %DoorHeader(\
     %destination(RoomHeader_Terminator),
     %elevator(0),
@@ -2187,7 +2187,7 @@ Door_Parlor_0:                                                           ;83895E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Parlor_1:                                                           ;83896A;
+Door_Parlor_1:
     %DoorHeader(\
     %destination(RoomHeader_LandingSite),
     %elevator(0),
@@ -2197,7 +2197,7 @@ Door_Parlor_1:                                                           ;83896A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Parlor_2:                                                           ;838976;
+Door_Parlor_2:
     %DoorHeader(\
     %destination(RoomHeader_PreMapFlyway),
     %elevator(0),
@@ -2207,7 +2207,7 @@ Door_Parlor_2:                                                           ;838976
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Parlor_3:                                                           ;838982;
+Door_Parlor_3:
     %DoorHeader(\
     %destination(RoomHeader_Flyway),
     %elevator(0),
@@ -2217,7 +2217,7 @@ Door_Parlor_3:                                                           ;838982
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Parlor_4:                                                           ;83898E;
+Door_Parlor_4:
     %DoorHeader(\
     %destination(RoomHeader_Climb),
     %elevator(0),
@@ -2227,7 +2227,7 @@ Door_Parlor_4:                                                           ;83898E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Parlor_5:                                                           ;83899A;
+Door_Parlor_5:
     %DoorHeader(\
     %destination(RoomHeader_CrateriaSave),
     %elevator(0),
@@ -2237,7 +2237,7 @@ Door_Parlor_5:                                                           ;83899A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Parlor_6:                                                           ;8389A6;
+Door_Parlor_6:
     %DoorHeader(\
     %destination(RoomHeader_FinalMissileBombway),
     %elevator(0),
@@ -2247,7 +2247,7 @@ Door_Parlor_6:                                                           ;8389A6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrateriaPowerBombs_0:                                               ;8389B2;
+Door_CrateriaPowerBombs_0:
     %DoorHeader(\
     %destination(RoomHeader_LandingSite),
     %elevator(0),
@@ -2257,7 +2257,7 @@ Door_CrateriaPowerBombs_0:                                               ;8389B2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrateriaSave_0:                                                     ;8389BE;
+Door_CrateriaSave_0:
     %DoorHeader(\
     %destination(RoomHeader_Parlor),
     %elevator(0),
@@ -2267,7 +2267,7 @@ Door_CrateriaSave_0:                                                     ;8389BE
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_6_Green))
 
-Door_WestOcean_0:                                                        ;8389CA;
+Door_WestOcean_0:
     %DoorHeader(\
     %destination(RoomHeader_Moat),
     %elevator(0),
@@ -2277,7 +2277,7 @@ Door_WestOcean_0:                                                        ;8389CA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestOcean_1:                                                        ;8389D6;
+Door_WestOcean_1:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipEntrance),
     %elevator($50),
@@ -2287,7 +2287,7 @@ Door_WestOcean_1:                                                        ;8389D6
     %spawnDistance($8000),
     %doorASM(DoorASM_StartWreckedShipTreadmillWestEntrance))
 
-Door_WestOcean_2:                                                        ;8389E2;
+Door_WestOcean_2:
     %DoorHeader(\
     %destination(RoomHeader_BowlingAlleyPath),
     %elevator(0),
@@ -2297,7 +2297,7 @@ Door_WestOcean_2:                                                        ;8389E2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestOcean_3:                                                        ;8389EE;
+Door_WestOcean_3:
     %DoorHeader(\
     %destination(RoomHeader_Attic),
     %elevator($40),
@@ -2307,7 +2307,7 @@ Door_WestOcean_3:                                                        ;8389EE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestOcean_4:                                                        ;8389FA;
+Door_WestOcean_4:
     %DoorHeader(\
     %destination(RoomHeader_BowlingAlley),
     %elevator($40),
@@ -2317,7 +2317,7 @@ Door_WestOcean_4:                                                        ;8389FA
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_8_9_A_B_Red))
 
-Door_WestOcean_5:                                                        ;838A06;
+Door_WestOcean_5:
     %DoorHeader(\
     %destination(RoomHeader_GravitySuit),
     %elevator($40),
@@ -2327,7 +2327,7 @@ Door_WestOcean_5:                                                        ;838A06
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BowlingAlleyPath_0:                                                 ;838A12;
+Door_BowlingAlleyPath_0:
     %DoorHeader(\
     %destination(RoomHeader_WestOcean),
     %elevator(0),
@@ -2337,7 +2337,7 @@ Door_BowlingAlleyPath_0:                                                 ;838A12
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BowlingAlleyPath_1:                                                 ;838A1E;
+Door_BowlingAlleyPath_1:
     %DoorHeader(\
     %destination(RoomHeader_PreBowling),
     %elevator(0),
@@ -2347,7 +2347,7 @@ Door_BowlingAlleyPath_1:                                                 ;838A1E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrateriaKihunter_0:                                                 ;838A2A;
+Door_CrateriaKihunter_0:
     %DoorHeader(\
     %destination(RoomHeader_CrateriaTube),
     %elevator(0),
@@ -2357,7 +2357,7 @@ Door_CrateriaKihunter_0:                                                 ;838A2A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrateriaKihunter_1:                                                 ;838A36;
+Door_CrateriaKihunter_1:
     %DoorHeader(\
     %destination(RoomHeader_Moat),
     %elevator(0),
@@ -2367,7 +2367,7 @@ Door_CrateriaKihunter_1:                                                 ;838A36
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrateriaKihunter_2:                                                 ;838A42;
+Door_CrateriaKihunter_2:
     %DoorHeader(\
     %destination(RoomHeader_RedBinstarElev),
     %elevator(0),
@@ -2377,7 +2377,7 @@ Door_CrateriaKihunter_2:                                                 ;838A42
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ForgottenHighwayElev_0:                                             ;838A4E;
+Door_ForgottenHighwayElev_0:
     %DoorHeader(\
     %destination(RoomHeader_ForgottenHighwayElbow),
     %elevator(0),
@@ -2387,7 +2387,7 @@ Door_ForgottenHighwayElev_0:                                             ;838A4E
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_ForgottenHighwayElev_1:                                             ;838A5A;
+Door_ForgottenHighwayElev_1:
     %DoorHeader(\
     %destination(RoomHeader_MaridiaElev),
     %elevator($D0),
@@ -2397,7 +2397,7 @@ Door_ForgottenHighwayElev_1:                                             ;838A5A
     %spawnDistance(0),
     %doorASM(0))
 
-Door_EastOcean_0:                                                        ;838A66;
+Door_EastOcean_0:
     %DoorHeader(\
     %destination(RoomHeader_ElectricDeath),
     %elevator($40),
@@ -2407,7 +2407,7 @@ Door_EastOcean_0:                                                        ;838A66
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EastOcean_1:                                                        ;838A72;
+Door_EastOcean_1:
     %DoorHeader(\
     %destination(RoomHeader_ForgottenHighwayKagos),
     %elevator(0),
@@ -2417,7 +2417,7 @@ Door_EastOcean_1:                                                        ;838A72
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ForgottenHighwayKagos_0:                                            ;838A7E;
+Door_ForgottenHighwayKagos_0:
     %DoorHeader(\
     %destination(RoomHeader_EastOcean),
     %elevator(0),
@@ -2427,7 +2427,7 @@ Door_ForgottenHighwayKagos_0:                                            ;838A7E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ForgottenHighwayKagos_1:                                            ;838A8A;
+Door_ForgottenHighwayKagos_1:
     %DoorHeader(\
     %destination(RoomHeader_CrabMaze),
     %elevator(0),
@@ -2437,7 +2437,7 @@ Door_ForgottenHighwayKagos_1:                                            ;838A8A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrabMaze_0:                                                         ;838A96;
+Door_CrabMaze_0:
     %DoorHeader(\
     %destination(RoomHeader_ForgottenHighwayKagos),
     %elevator(0),
@@ -2447,7 +2447,7 @@ Door_CrabMaze_0:                                                         ;838A96
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_ForgottenHighwayElbow_0:                                            ;838AA2;
+Door_ForgottenHighwayElbow_0:
     %DoorHeader(\
     %destination(RoomHeader_CrabMaze),
     %elevator(0),
@@ -2457,7 +2457,7 @@ Door_ForgottenHighwayElbow_0:                                            ;838AA2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrabMaze_1:                                                         ;838AAE;
+Door_CrabMaze_1:
     %DoorHeader(\
     %destination(RoomHeader_ForgottenHighwayElbow),
     %elevator(0),
@@ -2467,7 +2467,7 @@ Door_CrabMaze_1:                                                         ;838AAE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ForgottenHighwayElbow_1:                                            ;838ABA;
+Door_ForgottenHighwayElbow_1:
     %DoorHeader(\
     %destination(RoomHeader_ForgottenHighwayElev),
     %elevator(0),
@@ -2477,7 +2477,7 @@ Door_ForgottenHighwayElbow_1:                                            ;838ABA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrateriaTube_0:                                                     ;838AC6;
+Door_CrateriaTube_0:
     %DoorHeader(\
     %destination(RoomHeader_LandingSite),
     %elevator(0),
@@ -2487,7 +2487,7 @@ Door_CrateriaTube_0:                                                     ;838AC6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrateriaTube_1:                                                     ;838AD2;
+Door_CrateriaTube_1:
     %DoorHeader(\
     %destination(RoomHeader_CrateriaKihunter),
     %elevator(0),
@@ -2497,7 +2497,7 @@ Door_CrateriaTube_1:                                                     ;838AD2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Moat_0:                                                             ;838ADE;
+Door_Moat_0:
     %DoorHeader(\
     %destination(RoomHeader_CrateriaKihunter),
     %elevator(0),
@@ -2507,7 +2507,7 @@ Door_Moat_0:                                                             ;838ADE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Moat_1:                                                             ;838AEA;
+Door_Moat_1:
     %DoorHeader(\
     %destination(RoomHeader_WestOcean),
     %elevator(0),
@@ -2517,7 +2517,7 @@ Door_Moat_1:                                                             ;838AEA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedBinstarElev_0:                                                   ;838AF6;
+Door_RedBinstarElev_0:
     %DoorHeader(\
     %destination(RoomHeader_CrateriaKihunter),
     %elevator(0),
@@ -2527,7 +2527,7 @@ Door_RedBinstarElev_0:                                                   ;838AF6
     %spawnDistance($01C0),
     %doorASM(DoorASM_Scroll_1_4_Green))
 
-Door_RedBinstarElev_1:                                                   ;838B02;
+Door_RedBinstarElev_1:
     %DoorHeader(\
     %destination(RoomHeader_Caterpillar),
     %elevator($E0),
@@ -2537,7 +2537,7 @@ Door_RedBinstarElev_1:                                                   ;838B02
     %spawnDistance(0),
     %doorASM(DoorASM_Scroll_6_Green_duplicate))
 
-Door_GauntletETank_0:                                                    ;838B0E;
+Door_GauntletETank_0:
     %DoorHeader(\
     %destination(RoomHeader_GauntletEntrance),
     %elevator(0),
@@ -2547,7 +2547,7 @@ Door_GauntletETank_0:                                                    ;838B0E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GauntletETank_1:                                                    ;838B1A;
+Door_GauntletETank_1:
     %DoorHeader(\
     %destination(RoomHeader_GreenPiratesShaft),
     %elevator(0),
@@ -2557,7 +2557,7 @@ Door_GauntletETank_1:                                                    ;838B1A
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_3_Green))
 
-Door_PreBowling_0:                                                       ;838B26;
+Door_PreBowling_0:
     %DoorHeader(\
     %destination(RoomHeader_BowlingAlleyPath),
     %elevator(0),
@@ -2567,7 +2567,7 @@ Door_PreBowling_0:                                                       ;838B26
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PreBowling_1:                                                       ;838B32;
+Door_PreBowling_1:
     %DoorHeader(\
     %destination(RoomHeader_BowlingAlley),
     %elevator($40),
@@ -2577,7 +2577,7 @@ Door_PreBowling_1:                                                       ;838B32
     %spawnDistance($00A0),
     %doorASM(DoorASM_Scroll_2_3_4_5_B_C_D_11_Red))
 
-Door_Climb_0:                                                            ;838B3E;
+Door_Climb_0:
     %DoorHeader(\
     %destination(RoomHeader_Parlor),
     %elevator(0),
@@ -2587,7 +2587,7 @@ Door_Climb_0:                                                            ;838B3E
     %spawnDistance($01C0),
     %doorASM(DoorASM_Scroll_6_Green))
 
-Door_Climb_1:                                                            ;838B4A;
+Door_Climb_1:
     %DoorHeader(\
     %destination(RoomHeader_CrateriaSuper),
     %elevator(0),
@@ -2597,7 +2597,7 @@ Door_Climb_1:                                                            ;838B4A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Climb_2:                                                            ;838B56;
+Door_Climb_2:
     %DoorHeader(\
     %destination(RoomHeader_CrateriaSuper),
     %elevator(0),
@@ -2607,7 +2607,7 @@ Door_Climb_2:                                                            ;838B56
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Climb_3:                                                            ;838B62;
+Door_Climb_3:
     %DoorHeader(\
     %destination(RoomHeader_Pit),
     %elevator(0),
@@ -2617,7 +2617,7 @@ Door_Climb_3:                                                            ;838B62
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Climb_4:                                                            ;838B6E;
+Door_Climb_4:
     %DoorHeader(\
     %destination(RoomHeader_TourianEscape4),
     %elevator(0),
@@ -2627,7 +2627,7 @@ Door_Climb_4:                                                            ;838B6E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Pit_0:                                                              ;838B7A;
+Door_Pit_0:
     %DoorHeader(\
     %destination(RoomHeader_Climb),
     %elevator(0),
@@ -2637,7 +2637,7 @@ Door_Pit_0:                                                              ;838B7A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Pit_1:                                                              ;838B86;
+Door_Pit_1:
     %DoorHeader(\
     %destination(RoomHeader_ElevToBlueBrinstar),
     %elevator(0),
@@ -2647,7 +2647,7 @@ Door_Pit_1:                                                              ;838B86
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ElevToBlueBrinstar_0:                                               ;838B92;
+Door_ElevToBlueBrinstar_0:
     %DoorHeader(\
     %destination(RoomHeader_Pit),
     %elevator(0),
@@ -2657,7 +2657,7 @@ Door_ElevToBlueBrinstar_0:                                               ;838B92
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ElevToBlueBrinstar_1:                                               ;838B9E;
+Door_ElevToBlueBrinstar_1:
     %DoorHeader(\
     %destination(RoomHeader_MorphBall),
     %elevator($F0),
@@ -2667,7 +2667,7 @@ Door_ElevToBlueBrinstar_1:                                               ;838B9E
     %spawnDistance(0),
     %doorASM(0))
 
-Door_BombTorizo_0:                                                       ;838BAA;
+Door_BombTorizo_0:
     %DoorHeader(\
     %destination(RoomHeader_Flyway),
     %elevator(0),
@@ -2677,7 +2677,7 @@ Door_BombTorizo_0:                                                       ;838BAA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Flyway_0:                                                           ;838BB6;
+Door_Flyway_0:
     %DoorHeader(\
     %destination(RoomHeader_Parlor),
     %elevator(0),
@@ -2687,7 +2687,7 @@ Door_Flyway_0:                                                           ;838BB6
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_4_Red_8_Green))
 
-Door_Flyway_1:                                                           ;838BC2;
+Door_Flyway_1:
     %DoorHeader(\
     %destination(RoomHeader_BombTorizo),
     %elevator(0),
@@ -2697,7 +2697,7 @@ Door_Flyway_1:                                                           ;838BC2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PreMapFlyway_0:                                                     ;838BCE;
+Door_PreMapFlyway_0:
     %DoorHeader(\
     %destination(RoomHeader_Parlor),
     %elevator(0),
@@ -2707,7 +2707,7 @@ Door_PreMapFlyway_0:                                                     ;838BCE
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_6_Green))
 
-Door_PreMapFlyway_1:                                                     ;838BDA;
+Door_PreMapFlyway_1:
     %DoorHeader(\
     %destination(RoomHeader_CrateriaMap),
     %elevator(0),
@@ -2717,7 +2717,7 @@ Door_PreMapFlyway_1:                                                     ;838BDA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Terminator_0:                                                       ;838BE6;
+Door_Terminator_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenPiratesShaft),
     %elevator(0),
@@ -2727,7 +2727,7 @@ Door_Terminator_0:                                                       ;838BE6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Terminator_1:                                                       ;838BF2;
+Door_Terminator_1:
     %DoorHeader(\
     %destination(RoomHeader_Parlor),
     %elevator(0),
@@ -2737,7 +2737,7 @@ Door_Terminator_1:                                                       ;838BF2
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Blue))
 
-Door_GreenBrinstarElev_0:                                                ;838BFE;
+Door_GreenBrinstarElev_0:
     %DoorHeader(\
     %destination(RoomHeader_LowerMushrooms),
     %elevator(0),
@@ -2747,7 +2747,7 @@ Door_GreenBrinstarElev_0:                                                ;838BFE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarElev_1:                                                ;838C0A;
+Door_GreenBrinstarElev_1:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMainShaft),
     %elevator($C0),
@@ -2757,7 +2757,7 @@ Door_GreenBrinstarElev_1:                                                ;838C0A
     %spawnDistance(0),
     %doorASM(DoorASM_Scroll_1D_Blue))
 
-Door_LowerMushrooms_0:                                                   ;838C16;
+Door_LowerMushrooms_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenPiratesShaft),
     %elevator(0),
@@ -2767,7 +2767,7 @@ Door_LowerMushrooms_0:                                                   ;838C16
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LowerMushrooms_1:                                                   ;838C22;
+Door_LowerMushrooms_1:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarElev),
     %elevator(0),
@@ -2777,7 +2777,7 @@ Door_LowerMushrooms_1:                                                   ;838C22
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrateriaMap_0:                                                      ;838C2E;
+Door_CrateriaMap_0:
     %DoorHeader(\
     %destination(RoomHeader_PreMapFlyway),
     %elevator(0),
@@ -2787,7 +2787,7 @@ Door_CrateriaMap_0:                                                      ;838C2E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenPiratesShaft_0:                                                ;838C3A;
+Door_GreenPiratesShaft_0:
     %DoorHeader(\
     %destination(RoomHeader_Terminator),
     %elevator(0),
@@ -2797,7 +2797,7 @@ Door_GreenPiratesShaft_0:                                                ;838C3A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenPiratesShaft_1:                                                ;838C46;
+Door_GreenPiratesShaft_1:
     %DoorHeader(\
     %destination(RoomHeader_LowerMushrooms),
     %elevator(0),
@@ -2807,7 +2807,7 @@ Door_GreenPiratesShaft_1:                                                ;838C46
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenPiratesShaft_2:                                                ;838C52;
+Door_GreenPiratesShaft_2:
     %DoorHeader(\
     %destination(RoomHeader_StatuesHallway),
     %elevator(0),
@@ -2817,7 +2817,7 @@ Door_GreenPiratesShaft_2:                                                ;838C52
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenPiratesShaft_3:                                                ;838C5E;
+Door_GreenPiratesShaft_3:
     %DoorHeader(\
     %destination(RoomHeader_GauntletETank),
     %elevator(0),
@@ -2827,7 +2827,7 @@ Door_GreenPiratesShaft_3:                                                ;838C5E
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_4_Blue))
 
-Door_CrateriaSuper_0:                                                    ;838C6A;
+Door_CrateriaSuper_0:
     %DoorHeader(\
     %destination(RoomHeader_Climb),
     %elevator(0),
@@ -2837,7 +2837,7 @@ Door_CrateriaSuper_0:                                                    ;838C6A
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_2_Blue))
 
-Door_CrateriaSuper_1:                                                    ;838C76;
+Door_CrateriaSuper_1:
     %DoorHeader(\
     %destination(RoomHeader_Climb),
     %elevator(0),
@@ -2847,7 +2847,7 @@ Door_CrateriaSuper_1:                                                    ;838C76
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_17_Blue))
 
-Door_FinalMissileBombway_0:                                              ;838C82;
+Door_FinalMissileBombway_0:
     %DoorHeader(\
     %destination(RoomHeader_FinalMissile),
     %elevator(0),
@@ -2857,7 +2857,7 @@ Door_FinalMissileBombway_0:                                              ;838C82
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FinalMissileBombway_1:                                              ;838C8E;
+Door_FinalMissileBombway_1:
     %DoorHeader(\
     %destination(RoomHeader_Parlor),
     %elevator(0),
@@ -2867,7 +2867,7 @@ Door_FinalMissileBombway_1:                                              ;838C8E
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_6_Green))
 
-Door_FinalMissile_0:                                                     ;838C9A;
+Door_FinalMissile_0:
     %DoorHeader(\
     %destination(RoomHeader_FinalMissileBombway),
     %elevator(0),
@@ -2877,7 +2877,7 @@ Door_FinalMissile_0:                                                     ;838C9A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarMainShaft_0:                                           ;838CA6;
+Door_GreenBrinstarMainShaft_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarElev),
     %elevator($D0),
@@ -2887,7 +2887,7 @@ Door_GreenBrinstarMainShaft_0:                                           ;838CA6
     %spawnDistance(0),
     %doorASM(DoorASM_Scroll_2_Green))
 
-Door_GreenBrinstarMainShaft_1:                                           ;838CB2;
+Door_GreenBrinstarMainShaft_1:
     %DoorHeader(\
     %destination(RoomHeader_BrinstarPreMap),
     %elevator(0),
@@ -2897,7 +2897,7 @@ Door_GreenBrinstarMainShaft_1:                                           ;838CB2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarMainShaft_2:                                           ;838CBE;
+Door_GreenBrinstarMainShaft_2:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarBeetoms),
     %elevator(0),
@@ -2907,7 +2907,7 @@ Door_GreenBrinstarMainShaft_2:                                           ;838CBE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarMainShaft_3:                                           ;838CCA;
+Door_GreenBrinstarMainShaft_3:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarFirefleas),
     %elevator(0),
@@ -2917,7 +2917,7 @@ Door_GreenBrinstarMainShaft_3:                                           ;838CCA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarMainShaft_4:                                           ;838CD6;
+Door_GreenBrinstarMainShaft_4:
     %DoorHeader(\
     %destination(RoomHeader_EarlySupers),
     %elevator(0),
@@ -2927,7 +2927,7 @@ Door_GreenBrinstarMainShaft_4:                                           ;838CD6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarMainShaft_5:                                           ;838CE2;
+Door_GreenBrinstarMainShaft_5:
     %DoorHeader(\
     %destination(RoomHeader_Dachora),
     %elevator(0),
@@ -2937,7 +2937,7 @@ Door_GreenBrinstarMainShaft_5:                                           ;838CE2
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_4_Red))
 
-Door_GreenBrinstarMainShaft_6:                                           ;838CEE;
+Door_GreenBrinstarMainShaft_6:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMainShaft),
     %elevator(0),
@@ -2947,7 +2947,7 @@ Door_GreenBrinstarMainShaft_6:                                           ;838CEE
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_1D_Blue))
 
-Door_GreenBrinstarMainShaft_7:                                           ;838CFA;
+Door_GreenBrinstarMainShaft_7:
     %DoorHeader(\
     %destination(RoomHeader_EtecoonETank),
     %elevator(0),
@@ -2957,7 +2957,7 @@ Door_GreenBrinstarMainShaft_7:                                           ;838CFA
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_5_6_Blue))
 
-Door_GreenBrinstarMainShaft_8:                                           ;838D06;
+Door_GreenBrinstarMainShaft_8:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMainShaft),
     %elevator(0),
@@ -2967,7 +2967,7 @@ Door_GreenBrinstarMainShaft_8:                                           ;838D06
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_18_1C_Green))
 
-Door_GreenBrinstarMainShaft_A:                                           ;838D12;
+Door_GreenBrinstarMainShaft_A:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarSave),
     %elevator(0),
@@ -2977,7 +2977,7 @@ Door_GreenBrinstarMainShaft_A:                                           ;838D12
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SporeSpawnSuper_0:                                                  ;838D1E;
+Door_SporeSpawnSuper_0:
     %DoorHeader(\
     %destination(RoomHeader_SporeSpawnFarming),
     %elevator(0),
@@ -2987,7 +2987,7 @@ Door_SporeSpawnSuper_0:                                                  ;838D1E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SporeSpawnSuper_1:                                                  ;838D2A;
+Door_SporeSpawnSuper_1:
     %DoorHeader(\
     %destination(RoomHeader_SporeSpawn),
     %elevator(0),
@@ -2997,7 +2997,7 @@ Door_SporeSpawnSuper_1:                                                  ;838D2A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BrinstarPreMap_0:                                                   ;838D36;
+Door_BrinstarPreMap_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMap),
     %elevator(0),
@@ -3007,7 +3007,7 @@ Door_BrinstarPreMap_0:                                                   ;838D36
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BrinstarPreMap_1:                                                   ;838D42;
+Door_BrinstarPreMap_1:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMainShaft),
     %elevator(0),
@@ -3017,7 +3017,7 @@ Door_BrinstarPreMap_1:                                                   ;838D42
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EarlySupers_0:                                                      ;838D4E;
+Door_EarlySupers_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMainShaft),
     %elevator(0),
@@ -3027,7 +3027,7 @@ Door_EarlySupers_0:                                                      ;838D4E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EarlySupers_1:                                                      ;838D5A;
+Door_EarlySupers_1:
     %DoorHeader(\
     %destination(RoomHeader_BrinstarReserveTank),
     %elevator(0),
@@ -3037,7 +3037,7 @@ Door_EarlySupers_1:                                                      ;838D5A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BrinstarReserveTank_0:                                              ;838D66;
+Door_BrinstarReserveTank_0:
     %DoorHeader(\
     %destination(RoomHeader_EarlySupers),
     %elevator(0),
@@ -3047,7 +3047,7 @@ Door_BrinstarReserveTank_0:                                              ;838D66
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarMap_0:                                                 ;838D72;
+Door_GreenBrinstarMap_0:
     %DoorHeader(\
     %destination(RoomHeader_BrinstarPreMap),
     %elevator(0),
@@ -3057,7 +3057,7 @@ Door_GreenBrinstarMap_0:                                                 ;838D72
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarFirefleas_0:                                           ;838D7E;
+Door_GreenBrinstarFirefleas_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMissileRefill),
     %elevator(0),
@@ -3067,7 +3067,7 @@ Door_GreenBrinstarFirefleas_0:                                           ;838D7E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarFirefleas_1:                                           ;838D8A;
+Door_GreenBrinstarFirefleas_1:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMainShaft),
     %elevator(0),
@@ -3077,7 +3077,7 @@ Door_GreenBrinstarFirefleas_1:                                           ;838D8A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarMissileRefill_0:                                       ;838D96;
+Door_GreenBrinstarMissileRefill_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarFirefleas),
     %elevator(0),
@@ -3087,7 +3087,7 @@ Door_GreenBrinstarMissileRefill_0:                                       ;838D96
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Dachora_0:                                                          ;838DA2;
+Door_Dachora_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMainShaft),
     %elevator(0),
@@ -3097,7 +3097,7 @@ Door_Dachora_0:                                                          ;838DA2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Dachora_1:                                                          ;838DAE;
+Door_Dachora_1:
     %DoorHeader(\
     %destination(RoomHeader_BigPink),
     %elevator(0),
@@ -3107,7 +3107,7 @@ Door_Dachora_1:                                                          ;838DAE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Dachora_2:                                                          ;838DBA;
+Door_Dachora_2:
     %DoorHeader(\
     %destination(RoomHeader_DachoraEnergyRefill),
     %elevator(0),
@@ -3117,7 +3117,7 @@ Door_Dachora_2:                                                          ;838DBA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BigPink_0:                                                          ;838DC6;
+Door_BigPink_0:
     %DoorHeader(\
     %destination(RoomHeader_SporeSpawnKihunters),
     %elevator(0),
@@ -3127,7 +3127,7 @@ Door_BigPink_0:                                                          ;838DC6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BigPink_1:                                                          ;838DD2;
+Door_BigPink_1:
     %DoorHeader(\
     %destination(RoomHeader_Dachora),
     %elevator(0),
@@ -3137,7 +3137,7 @@ Door_BigPink_1:                                                          ;838DD2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BigPink_2:                                                          ;838DDE;
+Door_BigPink_2:
     %DoorHeader(\
     %destination(RoomHeader_PinkBrinstarPowerBombs),
     %elevator(0),
@@ -3147,7 +3147,7 @@ Door_BigPink_2:                                                          ;838DDE
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_2_3_Green))
 
-Door_BigPink_3:                                                          ;838DEA;
+Door_BigPink_3:
     %DoorHeader(\
     %destination(RoomHeader_GreenHillZone),
     %elevator(0),
@@ -3157,7 +3157,7 @@ Door_BigPink_3:                                                          ;838DEA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BigPink_4:                                                          ;838DF6;
+Door_BigPink_4:
     %DoorHeader(\
     %destination(RoomHeader_BigPinkSaveRoom),
     %elevator(0),
@@ -3167,7 +3167,7 @@ Door_BigPink_4:                                                          ;838DF6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BigPink_5:                                                          ;838E02;
+Door_BigPink_5:
     %DoorHeader(\
     %destination(RoomHeader_PinkBrinstarPowerBombs),
     %elevator(0),
@@ -3177,7 +3177,7 @@ Door_BigPink_5:                                                          ;838E02
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BigPink_6:                                                          ;838E0E;
+Door_BigPink_6:
     %DoorHeader(\
     %destination(RoomHeader_WaterwayETank),
     %elevator(0),
@@ -3187,7 +3187,7 @@ Door_BigPink_6:                                                          ;838E0E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BigPink_7:                                                          ;838E1A;
+Door_BigPink_7:
     %DoorHeader(\
     %destination(RoomHeader_PinkBrinstarHoppers),
     %elevator(0),
@@ -3197,7 +3197,7 @@ Door_BigPink_7:                                                          ;838E1A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BigPink_8:                                                          ;838E26;
+Door_BigPink_8:
     %DoorHeader(\
     %destination(RoomHeader_SporeSpawnFarming),
     %elevator(0),
@@ -3207,7 +3207,7 @@ Door_BigPink_8:                                                          ;838E26
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SporeSpawnKihunters_0:                                              ;838E32;
+Door_SporeSpawnKihunters_0:
     %DoorHeader(\
     %destination(RoomHeader_BigPink),
     %elevator(0),
@@ -3217,7 +3217,7 @@ Door_SporeSpawnKihunters_0:                                              ;838E32
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SporeSpawnKihunters_1:                                              ;838E3E;
+Door_SporeSpawnKihunters_1:
     %DoorHeader(\
     %destination(RoomHeader_SporeSpawn),
     %elevator(0),
@@ -3227,7 +3227,7 @@ Door_SporeSpawnKihunters_1:                                              ;838E3E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SporeSpawn_0:                                                       ;838E4A;
+Door_SporeSpawn_0:
     %DoorHeader(\
     %destination(RoomHeader_SporeSpawnSuper),
     %elevator(0),
@@ -3237,7 +3237,7 @@ Door_SporeSpawn_0:                                                       ;838E4A
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_1_Blue_3_Red))
 
-Door_SporeSpawn_1:                                                       ;838E56;
+Door_SporeSpawn_1:
     %DoorHeader(\
     %destination(RoomHeader_SporeSpawnKihunters),
     %elevator(0),
@@ -3247,7 +3247,7 @@ Door_SporeSpawn_1:                                                       ;838E56
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PinkBrinstarPowerBombs_0:                                           ;838E62;
+Door_PinkBrinstarPowerBombs_0:
     %DoorHeader(\
     %destination(RoomHeader_BigPink),
     %elevator(0),
@@ -3257,7 +3257,7 @@ Door_PinkBrinstarPowerBombs_0:                                           ;838E62
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PinkBrinstarPowerBombs_1:                                           ;838E6E;
+Door_PinkBrinstarPowerBombs_1:
     %DoorHeader(\
     %destination(RoomHeader_BigPink),
     %elevator(0),
@@ -3267,7 +3267,7 @@ Door_PinkBrinstarPowerBombs_1:                                           ;838E6E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenHillZone_0:                                                    ;838E7A;
+Door_GreenHillZone_0:
     %DoorHeader(\
     %destination(RoomHeader_BigPink),
     %elevator(0),
@@ -3277,7 +3277,7 @@ Door_GreenHillZone_0:                                                    ;838E7A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenHillZone_1:                                                    ;838E86;
+Door_GreenHillZone_1:
     %DoorHeader(\
     %destination(RoomHeader_MorphBall),
     %elevator(0),
@@ -3287,7 +3287,7 @@ Door_GreenHillZone_1:                                                    ;838E86
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenHillZone_2:                                                    ;838E92;
+Door_GreenHillZone_2:
     %DoorHeader(\
     %destination(RoomHeader_NoobBridge),
     %elevator(0),
@@ -3297,7 +3297,7 @@ Door_GreenHillZone_2:                                                    ;838E92
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MorphBall_0:                                                        ;838E9E;
+Door_MorphBall_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenHillZone),
     %elevator(0),
@@ -3307,7 +3307,7 @@ Door_MorphBall_0:                                                        ;838E9E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MorphBall_1:                                                        ;838EAA;
+Door_MorphBall_1:
     %DoorHeader(\
     %destination(RoomHeader_ConstructionZone),
     %elevator(0),
@@ -3317,7 +3317,7 @@ Door_MorphBall_1:                                                        ;838EAA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MorphBall_2:                                                        ;838EB6;
+Door_MorphBall_2:
     %DoorHeader(\
     %destination(RoomHeader_ElevToBlueBrinstar),
     %elevator($E0),
@@ -3327,7 +3327,7 @@ Door_MorphBall_2:                                                        ;838EB6
     %spawnDistance(0),
     %doorASM(0))
 
-Door_ConstructionZone_0:                                                 ;838EC2;
+Door_ConstructionZone_0:
     %DoorHeader(\
     %destination(RoomHeader_MorphBall),
     %elevator(0),
@@ -3337,7 +3337,7 @@ Door_ConstructionZone_0:                                                 ;838EC2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ConstructionZone_1:                                                 ;838ECE;
+Door_ConstructionZone_1:
     %DoorHeader(\
     %destination(RoomHeader_BlueBrinstarETank),
     %elevator(0),
@@ -3347,7 +3347,7 @@ Door_ConstructionZone_1:                                                 ;838ECE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ConstructionZone_2:                                                 ;838EDA;
+Door_ConstructionZone_2:
     %DoorHeader(\
     %destination(RoomHeader_FirstMissile),
     %elevator(0),
@@ -3357,7 +3357,7 @@ Door_ConstructionZone_2:                                                 ;838EDA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BlueBrinstarETank_0:                                                ;838EE6;
+Door_BlueBrinstarETank_0:
     %DoorHeader(\
     %destination(RoomHeader_ConstructionZone),
     %elevator(0),
@@ -3367,7 +3367,7 @@ Door_BlueBrinstarETank_0:                                                ;838EE6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BlueBrinstarETank_1:                                                ;838EF2;
+Door_BlueBrinstarETank_1:
     %DoorHeader(\
     %destination(RoomHeader_BlueBrinstarBoulders),
     %elevator(0),
@@ -3377,7 +3377,7 @@ Door_BlueBrinstarETank_1:                                                ;838EF2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_NoobBridge_0:                                                       ;838EFE;
+Door_NoobBridge_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenHillZone),
     %elevator(0),
@@ -3387,7 +3387,7 @@ Door_NoobBridge_0:                                                       ;838EFE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_NoobBridge_1:                                                       ;838F0A;
+Door_NoobBridge_1:
     %DoorHeader(\
     %destination(RoomHeader_RedTower),
     %elevator(0),
@@ -3397,7 +3397,7 @@ Door_NoobBridge_1:                                                       ;838F0A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarBeetoms_0:                                             ;838F16;
+Door_GreenBrinstarBeetoms_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMainShaft),
     %elevator(0),
@@ -3407,7 +3407,7 @@ Door_GreenBrinstarBeetoms_0:                                             ;838F16
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_18_1C_Green))
 
-Door_GreenBrinstarBeetoms_1:                                             ;838F22;
+Door_GreenBrinstarBeetoms_1:
     %DoorHeader(\
     %destination(RoomHeader_EtecoonETank),
     %elevator(0),
@@ -3417,7 +3417,7 @@ Door_GreenBrinstarBeetoms_1:                                             ;838F22
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EtecoonETank_0:                                                     ;838F2E;
+Door_EtecoonETank_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarBeetoms),
     %elevator(0),
@@ -3427,7 +3427,7 @@ Door_EtecoonETank_0:                                                     ;838F2E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EtecoonETank_1:                                                     ;838F3A;
+Door_EtecoonETank_1:
     %DoorHeader(\
     %destination(RoomHeader_EtecoonSuper),
     %elevator(0),
@@ -3437,7 +3437,7 @@ Door_EtecoonETank_1:                                                     ;838F3A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EtecoonETank_2:                                                     ;838F46;
+Door_EtecoonETank_2:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMainShaft),
     %elevator(0),
@@ -3447,7 +3447,7 @@ Door_EtecoonETank_2:                                                     ;838F46
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_1D_Blue))
 
-Door_EtecoonETank_3:                                                     ;838F52;
+Door_EtecoonETank_3:
     %DoorHeader(\
     %destination(RoomHeader_EtecoonSave),
     %elevator(0),
@@ -3457,7 +3457,7 @@ Door_EtecoonETank_3:                                                     ;838F52
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EtecoonSuper_0:                                                     ;838F5E;
+Door_EtecoonSuper_0:
     %DoorHeader(\
     %destination(RoomHeader_EtecoonETank),
     %elevator(0),
@@ -3467,7 +3467,7 @@ Door_EtecoonSuper_0:                                                     ;838F5E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_DachoraEnergyRefill_0:                                              ;838F6A;
+Door_DachoraEnergyRefill_0:
     %DoorHeader(\
     %destination(RoomHeader_Dachora),
     %elevator(0),
@@ -3477,7 +3477,7 @@ Door_DachoraEnergyRefill_0:                                              ;838F6A
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_B_Green))
 
-Door_SporeSpawnFarming_0:                                                ;838F76;
+Door_SporeSpawnFarming_0:
     %DoorHeader(\
     %destination(RoomHeader_SporeSpawnSuper),
     %elevator(0),
@@ -3487,7 +3487,7 @@ Door_SporeSpawnFarming_0:                                                ;838F76
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SporeSpawnFarming_1:                                                ;838F82;
+Door_SporeSpawnFarming_1:
     %DoorHeader(\
     %destination(RoomHeader_BigPink),
     %elevator(0),
@@ -3497,7 +3497,7 @@ Door_SporeSpawnFarming_1:                                                ;838F82
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_Scroll_1C_Red_1D_Blue))
 
-Door_WaterwayETank_0:                                                    ;838F8E;
+Door_WaterwayETank_0:
     %DoorHeader(\
     %destination(RoomHeader_BigPink),
     %elevator(0),
@@ -3507,7 +3507,7 @@ Door_WaterwayETank_0:                                                    ;838F8E
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_20_24_25_Green))
 
-Door_WaterwayETank_1:                                                    ;838F9A;
+Door_WaterwayETank_1:
     %DoorHeader(\
     %destination(RoomHeader_KraidRefill),
     %elevator(0),
@@ -3517,7 +3517,7 @@ Door_WaterwayETank_1:                                                    ;838F9A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FirstMissile_0:                                                     ;838FA6;
+Door_FirstMissile_0:
     %DoorHeader(\
     %destination(RoomHeader_ConstructionZone),
     %elevator(0),
@@ -3527,7 +3527,7 @@ Door_FirstMissile_0:                                                     ;838FA6
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Green_1_Blue))
 
-Door_PinkBrinstarHoppers_0:                                              ;838FB2;
+Door_PinkBrinstarHoppers_0:
     %DoorHeader(\
     %destination(RoomHeader_BigPink),
     %elevator(0),
@@ -3537,7 +3537,7 @@ Door_PinkBrinstarHoppers_0:                                              ;838FB2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PinkBrinstarHoppers_1:                                              ;838FBE;
+Door_PinkBrinstarHoppers_1:
     %DoorHeader(\
     %destination(RoomHeader_HopperETank),
     %elevator(0),
@@ -3547,7 +3547,7 @@ Door_PinkBrinstarHoppers_1:                                              ;838FBE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_HopperETank_0:                                                      ;838FCA;
+Door_HopperETank_0:
     %DoorHeader(\
     %destination(RoomHeader_PinkBrinstarHoppers),
     %elevator(0),
@@ -3557,7 +3557,7 @@ Door_HopperETank_0:                                                      ;838FCA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BigPinkSaveRoom_0:                                                  ;838FD6;
+Door_BigPinkSaveRoom_0:
     %DoorHeader(\
     %destination(RoomHeader_BigPink),
     %elevator(0),
@@ -3567,7 +3567,7 @@ Door_BigPinkSaveRoom_0:                                                  ;838FD6
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_1_Green))
 
-Door_BlueBrinstarBoulders_0:                                             ;838FE2;
+Door_BlueBrinstarBoulders_0:
     %DoorHeader(\
     %destination(RoomHeader_BlueBrinstarETank),
     %elevator(0),
@@ -3577,7 +3577,7 @@ Door_BlueBrinstarBoulders_0:                                             ;838FE2
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_2_Blue_duplicate))
 
-Door_BlueBrinstarBoulders_1:                                             ;838FEE;
+Door_BlueBrinstarBoulders_1:
     %DoorHeader(\
     %destination(RoomHeader_BillyMays),
     %elevator(0),
@@ -3587,7 +3587,7 @@ Door_BlueBrinstarBoulders_1:                                             ;838FEE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BillyMays_0:                                                        ;838FFA;
+Door_BillyMays_0:
     %DoorHeader(\
     %destination(RoomHeader_BlueBrinstarBoulders),
     %elevator(0),
@@ -3597,7 +3597,7 @@ Door_BillyMays_0:                                                        ;838FFA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBrinstarSave_0:                                                ;839006;
+Door_GreenBrinstarSave_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenBrinstarMainShaft),
     %elevator(0),
@@ -3607,7 +3607,7 @@ Door_GreenBrinstarSave_0:                                                ;839006
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EtecoonSave_0:                                                      ;839012;
+Door_EtecoonSave_0:
     %DoorHeader(\
     %destination(RoomHeader_EtecoonETank),
     %elevator(0),
@@ -3617,7 +3617,7 @@ Door_EtecoonSave_0:                                                      ;839012
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_5_6_Blue))
 
-Door_RedTower_0:                                                         ;83901E;
+Door_RedTower_0:
     %DoorHeader(\
     %destination(RoomHeader_Hellway),
     %elevator(0),
@@ -3627,7 +3627,7 @@ Door_RedTower_0:                                                         ;83901E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedTower_1:                                                         ;83902A;
+Door_RedTower_1:
     %DoorHeader(\
     %destination(RoomHeader_NoobBridge),
     %elevator(0),
@@ -3637,7 +3637,7 @@ Door_RedTower_1:                                                         ;83902A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedTower_2:                                                         ;839036;
+Door_RedTower_2:
     %DoorHeader(\
     %destination(RoomHeader_RedBrinstarFirefleas),
     %elevator(0),
@@ -3647,7 +3647,7 @@ Door_RedTower_2:                                                         ;839036
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedTower_3:                                                         ;839042;
+Door_RedTower_3:
     %DoorHeader(\
     %destination(RoomHeader_SkreeBoost),
     %elevator(0),
@@ -3657,7 +3657,7 @@ Door_RedTower_3:                                                         ;839042
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedTower_4:                                                         ;83904E;
+Door_RedTower_4:
     %DoorHeader(\
     %destination(RoomHeader_RedTowerRefill),
     %elevator(0),
@@ -3667,7 +3667,7 @@ Door_RedTower_4:                                                         ;83904E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedBrinstarFirefleas_0:                                             ;83905A;
+Door_RedBrinstarFirefleas_0:
     %DoorHeader(\
     %destination(RoomHeader_XrayScope),
     %elevator(0),
@@ -3677,7 +3677,7 @@ Door_RedBrinstarFirefleas_0:                                             ;83905A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedBrinstarFirefleas_1:                                             ;839066;
+Door_RedBrinstarFirefleas_1:
     %DoorHeader(\
     %destination(RoomHeader_RedTower),
     %elevator(0),
@@ -3687,7 +3687,7 @@ Door_RedBrinstarFirefleas_1:                                             ;839066
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_XrayScope_0:                                                        ;839072;
+Door_XrayScope_0:
     %DoorHeader(\
     %destination(RoomHeader_RedBrinstarFirefleas),
     %elevator(0),
@@ -3697,7 +3697,7 @@ Door_XrayScope_0:                                                        ;839072
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Hellway_0:                                                          ;83907E;
+Door_Hellway_0:
     %DoorHeader(\
     %destination(RoomHeader_RedTower),
     %elevator(0),
@@ -3707,7 +3707,7 @@ Door_Hellway_0:                                                          ;83907E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Hellway_1:                                                          ;83908A;
+Door_Hellway_1:
     %DoorHeader(\
     %destination(RoomHeader_Caterpillar),
     %elevator(0),
@@ -3717,7 +3717,7 @@ Door_Hellway_1:                                                          ;83908A
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_6_Green_duplicate_again))
 
-Door_Caterpillar_0:                                                      ;839096;
+Door_Caterpillar_0:
     %DoorHeader(\
     %destination(RoomHeader_AlphaPowerBomb),
     %elevator(0),
@@ -3727,7 +3727,7 @@ Door_Caterpillar_0:                                                      ;839096
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Caterpillar_1:                                                      ;8390A2;
+Door_Caterpillar_1:
     %DoorHeader(\
     %destination(RoomHeader_BetaPowerBomb),
     %elevator(0),
@@ -3737,7 +3737,7 @@ Door_Caterpillar_1:                                                      ;8390A2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Caterpillar_2:                                                      ;8390AE;
+Door_Caterpillar_2:
     %DoorHeader(\
     %destination(RoomHeader_Hellway),
     %elevator(0),
@@ -3747,7 +3747,7 @@ Door_Caterpillar_2:                                                      ;8390AE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Caterpillar_3:                                                      ;8390BA;
+Door_Caterpillar_3:
     %DoorHeader(\
     %destination(RoomHeader_RedBinstarElev),
     %elevator($F0),
@@ -3757,7 +3757,7 @@ Door_Caterpillar_3:                                                      ;8390BA
     %spawnDistance(0),
     %doorASM(0))
 
-Door_Caterpillar_4:                                                      ;8390C6;
+Door_Caterpillar_4:
     %DoorHeader(\
     %destination(RoomHeader_RedFish),
     %elevator($40),
@@ -3767,7 +3767,7 @@ Door_Caterpillar_4:                                                      ;8390C6
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_1_Blue_2_Red))
 
-Door_Caterpillar_6:                                                      ;8390D2;
+Door_Caterpillar_6:
     %DoorHeader(\
     %destination(RoomHeader_RedBrinstarSave),
     %elevator(0),
@@ -3777,7 +3777,7 @@ Door_Caterpillar_6:                                                      ;8390D2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BetaPowerBomb_0:                                                    ;8390DE;
+Door_BetaPowerBomb_0:
     %DoorHeader(\
     %destination(RoomHeader_Caterpillar),
     %elevator(0),
@@ -3787,7 +3787,7 @@ Door_BetaPowerBomb_0:                                                    ;8390DE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_AlphaPowerBomb_0:                                                   ;8390EA;
+Door_AlphaPowerBomb_0:
     %DoorHeader(\
     %destination(RoomHeader_Caterpillar),
     %elevator(0),
@@ -3797,7 +3797,7 @@ Door_AlphaPowerBomb_0:                                                   ;8390EA
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_F_12_Green))
 
-Door_SkreeBoost_0:                                                       ;8390F6;
+Door_SkreeBoost_0:
     %DoorHeader(\
     %destination(RoomHeader_RedTower),
     %elevator(0),
@@ -3807,7 +3807,7 @@ Door_SkreeBoost_0:                                                       ;8390F6
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_6_7_Green))
 
-Door_SkreeBoost_1:                                                       ;839102;
+Door_SkreeBoost_1:
     %DoorHeader(\
     %destination(RoomHeader_BelowSpazer),
     %elevator(0),
@@ -3817,7 +3817,7 @@ Door_SkreeBoost_1:                                                       ;839102
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BelowSpazer_0:                                                      ;83910E;
+Door_BelowSpazer_0:
     %DoorHeader(\
     %destination(RoomHeader_SkreeBoost),
     %elevator(0),
@@ -3827,7 +3827,7 @@ Door_BelowSpazer_0:                                                      ;83910E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BelowSpazer_1:                                                      ;83911A;
+Door_BelowSpazer_1:
     %DoorHeader(\
     %destination(RoomHeader_WestTunnel),
     %elevator($40),
@@ -3837,7 +3837,7 @@ Door_BelowSpazer_1:                                                      ;83911A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BelowSpazer_2:                                                      ;839126;
+Door_BelowSpazer_2:
     %DoorHeader(\
     %destination(RoomHeader_Spazer),
     %elevator(0),
@@ -3847,7 +3847,7 @@ Door_BelowSpazer_2:                                                      ;839126
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Spazer_0:                                                           ;839132;
+Door_Spazer_0:
     %DoorHeader(\
     %destination(RoomHeader_BelowSpazer),
     %elevator(0),
@@ -3857,7 +3857,7 @@ Door_Spazer_0:                                                           ;839132
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_1_Green))
 
-Door_WarehouseZeela_0:                                                   ;83913E;
+Door_WarehouseZeela_0:
     %DoorHeader(\
     %destination(RoomHeader_WarehouseEntrance),
     %elevator(0),
@@ -3867,7 +3867,7 @@ Door_WarehouseZeela_0:                                                   ;83913E
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Red_1_Green))
 
-Door_WarehouseZeela_1:                                                   ;83914A;
+Door_WarehouseZeela_1:
     %DoorHeader(\
     %destination(RoomHeader_WarehouseETank),
     %elevator(0),
@@ -3877,7 +3877,7 @@ Door_WarehouseZeela_1:                                                   ;83914A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WarehouseZeela_2:                                                   ;839156;
+Door_WarehouseZeela_2:
     %DoorHeader(\
     %destination(RoomHeader_WarehouseKihunter),
     %elevator(0),
@@ -3887,7 +3887,7 @@ Door_WarehouseZeela_2:                                                   ;839156
     %spawnDistance($0240),
     %doorASM(0))
 
-Door_WarehouseETank_0:                                                   ;839162;
+Door_WarehouseETank_0:
     %DoorHeader(\
     %destination(RoomHeader_WarehouseZeela),
     %elevator(0),
@@ -3897,7 +3897,7 @@ Door_WarehouseETank_0:                                                   ;839162
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WarehouseKihunter_0:                                                ;83916E;
+Door_WarehouseKihunter_0:
     %DoorHeader(\
     %destination(RoomHeader_WarehouseZeela),
     %elevator(0),
@@ -3907,7 +3907,7 @@ Door_WarehouseKihunter_0:                                                ;83916E
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_WarehouseKihunter_1:                                                ;83917A;
+Door_WarehouseKihunter_1:
     %DoorHeader(\
     %destination(RoomHeader_MiniKraid),
     %elevator(0),
@@ -3917,7 +3917,7 @@ Door_WarehouseKihunter_1:                                                ;83917A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WarehouseKihunter_2:                                                ;839186;
+Door_WarehouseKihunter_2:
     %DoorHeader(\
     %destination(RoomHeader_WarehouseSave),
     %elevator(0),
@@ -3927,7 +3927,7 @@ Door_WarehouseKihunter_2:                                                ;839186
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MiniKraid_0:                                                        ;839192;
+Door_MiniKraid_0:
     %DoorHeader(\
     %destination(RoomHeader_WarehouseKihunter),
     %elevator(0),
@@ -3937,7 +3937,7 @@ Door_MiniKraid_0:                                                        ;839192
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MiniKraid_1:                                                        ;83919E;
+Door_MiniKraid_1:
     %DoorHeader(\
     %destination(RoomHeader_KraidEyeDoor),
     %elevator(0),
@@ -3947,7 +3947,7 @@ Door_MiniKraid_1:                                                        ;83919E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_KraidEyeDoor_0:                                                     ;8391AA;
+Door_KraidEyeDoor_0:
     %DoorHeader(\
     %destination(RoomHeader_MiniKraid),
     %elevator(0),
@@ -3957,7 +3957,7 @@ Door_KraidEyeDoor_0:                                                     ;8391AA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_KraidEyeDoor_1:                                                     ;8391B6;
+Door_KraidEyeDoor_1:
     %DoorHeader(\
     %destination(RoomHeader_Kraid),
     %elevator(0),
@@ -3967,7 +3967,7 @@ Door_KraidEyeDoor_1:                                                     ;8391B6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_KraidEyeDoor_2:                                                     ;8391C2;
+Door_KraidEyeDoor_2:
     %DoorHeader(\
     %destination(RoomHeader_KraidRefill),
     %elevator(0),
@@ -3977,7 +3977,7 @@ Door_KraidEyeDoor_2:                                                     ;8391C2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Kraid_0:                                                            ;8391CE;
+Door_Kraid_0:
     %DoorHeader(\
     %destination(RoomHeader_KraidEyeDoor),
     %elevator(0),
@@ -3987,7 +3987,7 @@ Door_Kraid_0:                                                            ;8391CE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Kraid_1:                                                            ;8391DA;
+Door_Kraid_1:
     %DoorHeader(\
     %destination(RoomHeader_VariaSuit),
     %elevator(0),
@@ -3997,7 +3997,7 @@ Door_Kraid_1:                                                            ;8391DA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_StatuesHallway_0:                                                   ;8391E6;
+Door_StatuesHallway_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenPiratesShaft),
     %elevator(0),
@@ -4007,7 +4007,7 @@ Door_StatuesHallway_0:                                                   ;8391E6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_StatuesHallway_1:                                                   ;8391F2;
+Door_StatuesHallway_1:
     %DoorHeader(\
     %destination(RoomHeader_Statues),
     %elevator(0),
@@ -4017,7 +4017,7 @@ Door_StatuesHallway_1:                                                   ;8391F2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedTowerRefill_0:                                                   ;8391FE;
+Door_RedTowerRefill_0:
     %DoorHeader(\
     %destination(RoomHeader_RedTower),
     %elevator(0),
@@ -4027,7 +4027,7 @@ Door_RedTowerRefill_0:                                                   ;8391FE
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_6_7_Green))
 
-Door_KraidRefill_0:                                                      ;83920A;
+Door_KraidRefill_0:
     %DoorHeader(\
     %destination(RoomHeader_KraidEyeDoor),
     %elevator(0),
@@ -4037,7 +4037,7 @@ Door_KraidRefill_0:                                                      ;83920A
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Green))
 
-Door_Statues_0:                                                          ;839216;
+Door_Statues_0:
     %DoorHeader(\
     %destination(RoomHeader_StatuesHallway),
     %elevator(0),
@@ -4047,7 +4047,7 @@ Door_Statues_0:                                                          ;839216
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Statues_1:                                                          ;839222;
+Door_Statues_1:
     %DoorHeader(\
     %destination(RoomHeader_TourianFirst),
     %elevator($D0),
@@ -4057,7 +4057,7 @@ Door_Statues_1:                                                          ;839222
     %spawnDistance(0),
     %doorASM(0))
 
-Door_WarehouseEntrance_0:                                                ;83922E;
+Door_WarehouseEntrance_0:
     %DoorHeader(\
     %destination(RoomHeader_EastTunnel),
     %elevator($40),
@@ -4067,7 +4067,7 @@ Door_WarehouseEntrance_0:                                                ;83922E
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Red_4_Blue))
 
-Door_WarehouseEntrance_1:                                                ;83923A;
+Door_WarehouseEntrance_1:
     %DoorHeader(\
     %destination(RoomHeader_WarehouseZeela),
     %elevator(0),
@@ -4077,7 +4077,7 @@ Door_WarehouseEntrance_1:                                                ;83923A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WarehouseEntrance_2:                                                ;839246;
+Door_WarehouseEntrance_2:
     %DoorHeader(\
     %destination(RoomHeader_BusinessCenter),
     %elevator($C0),
@@ -4087,7 +4087,7 @@ Door_WarehouseEntrance_2:                                                ;839246
     %spawnDistance(0),
     %doorASM(0))
 
-Door_VariaSuit_0:                                                        ;839252;
+Door_VariaSuit_0:
     %DoorHeader(\
     %destination(RoomHeader_Kraid),
     %elevator(0),
@@ -4097,7 +4097,7 @@ Door_VariaSuit_0:                                                        ;839252
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WarehouseSave_0:                                                    ;83925E;
+Door_WarehouseSave_0:
     %DoorHeader(\
     %destination(RoomHeader_WarehouseKihunter),
     %elevator(0),
@@ -4107,7 +4107,7 @@ Door_WarehouseSave_0:                                                    ;83925E
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_2_3_Blue))
 
-Door_RedBrinstarSave_0:                                                  ;83926A;
+Door_RedBrinstarSave_0:
     %DoorHeader(\
     %destination(RoomHeader_Caterpillar),
     %elevator(0),
@@ -4117,7 +4117,7 @@ Door_RedBrinstarSave_0:                                                  ;83926A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_IceBeamAcid_0:                                                      ;839276;
+Door_IceBeamAcid_0:
     %DoorHeader(\
     %destination(RoomHeader_IceBeamGate),
     %elevator(0),
@@ -4127,7 +4127,7 @@ Door_IceBeamAcid_0:                                                      ;839276
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_IceBeamAcid_1:                                                      ;839282;
+Door_IceBeamAcid_1:
     %DoorHeader(\
     %destination(RoomHeader_IceBeamSnake),
     %elevator(0),
@@ -4137,7 +4137,7 @@ Door_IceBeamAcid_1:                                                      ;839282
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Cathedral_0:                                                        ;83928E;
+Door_Cathedral_0:
     %DoorHeader(\
     %destination(RoomHeader_CathedralEntrance),
     %elevator(0),
@@ -4147,7 +4147,7 @@ Door_Cathedral_0:                                                        ;83928E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Cathedral_1:                                                        ;83929A;
+Door_Cathedral_1:
     %DoorHeader(\
     %destination(RoomHeader_RisingTide),
     %elevator(0),
@@ -4157,7 +4157,7 @@ Door_Cathedral_1:                                                        ;83929A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CathedralEntrance_0:                                                ;8392A6;
+Door_CathedralEntrance_0:
     %DoorHeader(\
     %destination(RoomHeader_BusinessCenter),
     %elevator(0),
@@ -4167,7 +4167,7 @@ Door_CathedralEntrance_0:                                                ;8392A6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CathedralEntrance_1:                                                ;8392B2;
+Door_CathedralEntrance_1:
     %DoorHeader(\
     %destination(RoomHeader_Cathedral),
     %elevator(0),
@@ -4177,7 +4177,7 @@ Door_CathedralEntrance_1:                                                ;8392B2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BusinessCenter_0:                                                   ;8392BE;
+Door_BusinessCenter_0:
     %DoorHeader(\
     %destination(RoomHeader_IceBeamGate),
     %elevator(0),
@@ -4187,7 +4187,7 @@ Door_BusinessCenter_0:                                                   ;8392BE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BusinessCenter_1:                                                   ;8392CA;
+Door_BusinessCenter_1:
     %DoorHeader(\
     %destination(RoomHeader_CathedralEntrance),
     %elevator(0),
@@ -4197,7 +4197,7 @@ Door_BusinessCenter_1:                                                   ;8392CA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BusinessCenter_2:                                                   ;8392D6;
+Door_BusinessCenter_2:
     %DoorHeader(\
     %destination(RoomHeader_HiJumpETank),
     %elevator(0),
@@ -4207,7 +4207,7 @@ Door_BusinessCenter_2:                                                   ;8392D6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BusinessCenter_3:                                                   ;8392E2;
+Door_BusinessCenter_3:
     %DoorHeader(\
     %destination(RoomHeader_CrocomireEscape),
     %elevator(0),
@@ -4217,7 +4217,7 @@ Door_BusinessCenter_3:                                                   ;8392E2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BusinessCenter_4:                                                   ;8392EE;
+Door_BusinessCenter_4:
     %DoorHeader(\
     %destination(RoomHeader_WarehouseEntrance),
     %elevator($D0),
@@ -4227,7 +4227,7 @@ Door_BusinessCenter_4:                                                   ;8392EE
     %spawnDistance(0),
     %doorASM(0))
 
-Door_BusinessCenter_6:                                                   ;8392FA;
+Door_BusinessCenter_6:
     %DoorHeader(\
     %destination(RoomHeader_FrogSave),
     %elevator(0),
@@ -4237,7 +4237,7 @@ Door_BusinessCenter_6:                                                   ;8392FA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BusinessCenter_7:                                                   ;839306;
+Door_BusinessCenter_7:
     %DoorHeader(\
     %destination(RoomHeader_NorfairMap),
     %elevator(0),
@@ -4247,7 +4247,7 @@ Door_BusinessCenter_7:                                                   ;839306
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_IceBeamGate_0:                                                      ;839312;
+Door_IceBeamGate_0:
     %DoorHeader(\
     %destination(RoomHeader_IceBeamTutorial),
     %elevator(0),
@@ -4257,7 +4257,7 @@ Door_IceBeamGate_0:                                                      ;839312
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_IceBeamGate_1:                                                      ;83931E;
+Door_IceBeamGate_1:
     %DoorHeader(\
     %destination(RoomHeader_IceBeamAcid),
     %elevator(0),
@@ -4267,7 +4267,7 @@ Door_IceBeamGate_1:                                                      ;83931E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_IceBeamGate_2:                                                      ;83932A;
+Door_IceBeamGate_2:
     %DoorHeader(\
     %destination(RoomHeader_BusinessCenter),
     %elevator(0),
@@ -4277,7 +4277,7 @@ Door_IceBeamGate_2:                                                      ;83932A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_IceBeamGate_3:                                                      ;839336;
+Door_IceBeamGate_3:
     %DoorHeader(\
     %destination(RoomHeader_CrumbleShaft),
     %elevator(0),
@@ -4287,7 +4287,7 @@ Door_IceBeamGate_3:                                                      ;839336
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_IceBeamTutorial_0:                                                  ;839342;
+Door_IceBeamTutorial_0:
     %DoorHeader(\
     %destination(RoomHeader_IceBeamSnake),
     %elevator(0),
@@ -4297,7 +4297,7 @@ Door_IceBeamTutorial_0:                                                  ;839342
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_IceBeamTutorial_1:                                                  ;83934E;
+Door_IceBeamTutorial_1:
     %DoorHeader(\
     %destination(RoomHeader_IceBeamGate),
     %elevator(0),
@@ -4307,7 +4307,7 @@ Door_IceBeamTutorial_1:                                                  ;83934E
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_A_Green))
 
-Door_IceBeam_0:                                                          ;83935A;
+Door_IceBeam_0:
     %DoorHeader(\
     %destination(RoomHeader_IceBeamSnake),
     %elevator(0),
@@ -4317,7 +4317,7 @@ Door_IceBeam_0:                                                          ;83935A
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_2_Red_3_Blue))
 
-Door_IceBeamSnake_0:                                                     ;839366;
+Door_IceBeamSnake_0:
     %DoorHeader(\
     %destination(RoomHeader_IceBeamAcid),
     %elevator(0),
@@ -4327,7 +4327,7 @@ Door_IceBeamSnake_0:                                                     ;839366
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_IceBeamSnake_1:                                                     ;839372;
+Door_IceBeamSnake_1:
     %DoorHeader(\
     %destination(RoomHeader_IceBeamTutorial),
     %elevator(0),
@@ -4337,7 +4337,7 @@ Door_IceBeamSnake_1:                                                     ;839372
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_IceBeamSnake_2:                                                     ;83937E;
+Door_IceBeamSnake_2:
     %DoorHeader(\
     %destination(RoomHeader_IceBeam),
     %elevator(0),
@@ -4347,7 +4347,7 @@ Door_IceBeamSnake_2:                                                     ;83937E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrumbleShaft_0:                                                     ;83938A;
+Door_CrumbleShaft_0:
     %DoorHeader(\
     %destination(RoomHeader_IceBeamGate),
     %elevator(0),
@@ -4357,7 +4357,7 @@ Door_CrumbleShaft_0:                                                     ;83938A
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_18_Blue))
 
-Door_CrumbleShaft_1:                                                     ;839396;
+Door_CrumbleShaft_1:
     %DoorHeader(\
     %destination(RoomHeader_CrocomireSpeedway),
     %elevator(0),
@@ -4367,7 +4367,7 @@ Door_CrumbleShaft_1:                                                     ;839396
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrocomireSpeedway_0:                                                ;8393A2;
+Door_CrocomireSpeedway_0:
     %DoorHeader(\
     %destination(RoomHeader_CrumbleShaft),
     %elevator(0),
@@ -4377,7 +4377,7 @@ Door_CrocomireSpeedway_0:                                                ;8393A2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrocomireSpeedway_1:                                                ;8393AE;
+Door_CrocomireSpeedway_1:
     %DoorHeader(\
     %destination(RoomHeader_CrocomireEscape),
     %elevator(0),
@@ -4387,7 +4387,7 @@ Door_CrocomireSpeedway_1:                                                ;8393AE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrocomireSpeedway_2:                                                ;8393BA;
+Door_CrocomireSpeedway_2:
     %DoorHeader(\
     %destination(RoomHeader_CrocomireSave),
     %elevator(0),
@@ -4397,7 +4397,7 @@ Door_CrocomireSpeedway_2:                                                ;8393BA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrocomireSpeedway_3:                                                ;8393C6;
+Door_CrocomireSpeedway_3:
     %DoorHeader(\
     %destination(RoomHeader_AcidSnakesTunnel),
     %elevator(0),
@@ -4407,7 +4407,7 @@ Door_CrocomireSpeedway_3:                                                ;8393C6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrocomireSpeedway_4:                                                ;8393D2;
+Door_CrocomireSpeedway_4:
     %DoorHeader(\
     %destination(RoomHeader_Crocomire),
     %elevator(0),
@@ -4417,7 +4417,7 @@ Door_CrocomireSpeedway_4:                                                ;8393D2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Crocomire_0:                                                        ;8393DE;
+Door_Crocomire_0:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocFarming),
     %elevator(0),
@@ -4427,7 +4427,7 @@ Door_Crocomire_0:                                                        ;8393DE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Crocomire_1:                                                        ;8393EA;
+Door_Crocomire_1:
     %DoorHeader(\
     %destination(RoomHeader_CrocomireSpeedway),
     %elevator(0),
@@ -4437,7 +4437,7 @@ Door_Crocomire_1:                                                        ;8393EA
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_HiJumpBoots_0:                                                      ;8393F6;
+Door_HiJumpBoots_0:
     %DoorHeader(\
     %destination(RoomHeader_HiJumpETank),
     %elevator(0),
@@ -4447,7 +4447,7 @@ Door_HiJumpBoots_0:                                                      ;8393F6
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_2_Green))
 
-Door_CrocomireEscape_0:                                                  ;839402;
+Door_CrocomireEscape_0:
     %DoorHeader(\
     %destination(RoomHeader_BusinessCenter),
     %elevator(0),
@@ -4457,7 +4457,7 @@ Door_CrocomireEscape_0:                                                  ;839402
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrocomireEscape_1:                                                  ;83940E;
+Door_CrocomireEscape_1:
     %DoorHeader(\
     %destination(RoomHeader_CrocomireSpeedway),
     %elevator(0),
@@ -4467,7 +4467,7 @@ Door_CrocomireEscape_1:                                                  ;83940E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_HiJumpETank_0:                                                      ;83941A;
+Door_HiJumpETank_0:
     %DoorHeader(\
     %destination(RoomHeader_BusinessCenter),
     %elevator(0),
@@ -4477,7 +4477,7 @@ Door_HiJumpETank_0:                                                      ;83941A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_HiJumpETank_1:                                                      ;839426;
+Door_HiJumpETank_1:
     %DoorHeader(\
     %destination(RoomHeader_HiJumpBoots),
     %elevator(0),
@@ -4487,7 +4487,7 @@ Door_HiJumpETank_1:                                                      ;839426
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PostCrocFarming_0:                                                  ;839432;
+Door_PostCrocFarming_0:
     %DoorHeader(\
     %destination(RoomHeader_Crocomire),
     %elevator(0),
@@ -4497,7 +4497,7 @@ Door_PostCrocFarming_0:                                                  ;839432
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_1_Blue))
 
-Door_PostCrocFarming_1:                                                  ;83943E;
+Door_PostCrocFarming_1:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocPowerBombs),
     %elevator(0),
@@ -4507,7 +4507,7 @@ Door_PostCrocFarming_1:                                                  ;83943E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PostCrocFarming_2:                                                  ;83944A;
+Door_PostCrocFarming_2:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocShaft),
     %elevator(0),
@@ -4517,7 +4517,7 @@ Door_PostCrocFarming_2:                                                  ;83944A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PostCrocFarming_3:                                                  ;839456;
+Door_PostCrocFarming_3:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocSave),
     %elevator(0),
@@ -4527,7 +4527,7 @@ Door_PostCrocFarming_3:                                                  ;839456
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PostCrocSave_0:                                                     ;839462;
+Door_PostCrocSave_0:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocFarming),
     %elevator(0),
@@ -4537,7 +4537,7 @@ Door_PostCrocSave_0:                                                     ;839462
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PostCrocPowerBombs_0:                                               ;83946E;
+Door_PostCrocPowerBombs_0:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocFarming),
     %elevator(0),
@@ -4547,7 +4547,7 @@ Door_PostCrocPowerBombs_0:                                               ;83946E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PostCrocShaft_0:                                                    ;83947A;
+Door_PostCrocShaft_0:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocFarming),
     %elevator(0),
@@ -4557,7 +4557,7 @@ Door_PostCrocShaft_0:                                                    ;83947A
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_PostCrocShaft_1:                                                    ;839486;
+Door_PostCrocShaft_1:
     %DoorHeader(\
     %destination(RoomHeader_GrappleTutorial3),
     %elevator(0),
@@ -4567,7 +4567,7 @@ Door_PostCrocShaft_1:                                                    ;839486
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PostCrocShaft_2:                                                    ;839492;
+Door_PostCrocShaft_2:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocMissile),
     %elevator(0),
@@ -4577,7 +4577,7 @@ Door_PostCrocShaft_2:                                                    ;839492
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PostCrocShaft_3:                                                    ;83949E;
+Door_PostCrocShaft_3:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocJump),
     %elevator(0),
@@ -4587,7 +4587,7 @@ Door_PostCrocShaft_3:                                                    ;83949E
     %spawnDistance($0140),
     %doorASM(0))
 
-Door_PostCrocMissile_0:                                                  ;8394AA;
+Door_PostCrocMissile_0:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocShaft),
     %elevator(0),
@@ -4597,7 +4597,7 @@ Door_PostCrocMissile_0:                                                  ;8394AA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GrappleTutorial3_0:                                                 ;8394B6;
+Door_GrappleTutorial3_0:
     %DoorHeader(\
     %destination(RoomHeader_GrappleTutorial2),
     %elevator(0),
@@ -4607,7 +4607,7 @@ Door_GrappleTutorial3_0:                                                 ;8394B6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GrappleTutorial3_1:                                                 ;8394C2;
+Door_GrappleTutorial3_1:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocShaft),
     %elevator(0),
@@ -4617,7 +4617,7 @@ Door_GrappleTutorial3_1:                                                 ;8394C2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PostCrocJump_0:                                                     ;8394CE;
+Door_PostCrocJump_0:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocShaft),
     %elevator(0),
@@ -4627,7 +4627,7 @@ Door_PostCrocJump_0:                                                     ;8394CE
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_PostCrocJump_1:                                                     ;8394DA;
+Door_PostCrocJump_1:
     %DoorHeader(\
     %destination(RoomHeader_GrappleBeam),
     %elevator(0),
@@ -4637,7 +4637,7 @@ Door_PostCrocJump_1:                                                     ;8394DA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GrappleTutorial2_0:                                                 ;8394E6;
+Door_GrappleTutorial2_0:
     %DoorHeader(\
     %destination(RoomHeader_GrappleTutorial1),
     %elevator(0),
@@ -4647,7 +4647,7 @@ Door_GrappleTutorial2_0:                                                 ;8394E6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GrappleTutorial2_1:                                                 ;8394F2;
+Door_GrappleTutorial2_1:
     %DoorHeader(\
     %destination(RoomHeader_GrappleTutorial3),
     %elevator(0),
@@ -4657,7 +4657,7 @@ Door_GrappleTutorial2_1:                                                 ;8394F2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GrappleTutorial1_0:                                                 ;8394FE;
+Door_GrappleTutorial1_0:
     %DoorHeader(\
     %destination(RoomHeader_GrappleBeam),
     %elevator(0),
@@ -4667,7 +4667,7 @@ Door_GrappleTutorial1_0:                                                 ;8394FE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GrappleTutorial1_1:                                                 ;83950A;
+Door_GrappleTutorial1_1:
     %DoorHeader(\
     %destination(RoomHeader_GrappleTutorial2),
     %elevator(0),
@@ -4677,7 +4677,7 @@ Door_GrappleTutorial1_1:                                                 ;83950A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GrappleBeam_0:                                                      ;839516;
+Door_GrappleBeam_0:
     %DoorHeader(\
     %destination(RoomHeader_PostCrocJump),
     %elevator(0),
@@ -4687,7 +4687,7 @@ Door_GrappleBeam_0:                                                      ;839516
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GrappleBeam_1:                                                      ;839522;
+Door_GrappleBeam_1:
     %DoorHeader(\
     %destination(RoomHeader_GrappleTutorial1),
     %elevator(0),
@@ -4697,7 +4697,7 @@ Door_GrappleBeam_1:                                                      ;839522
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_NorfairReserveTank:                                                 ;83952E;
+Door_NorfairReserveTank:
     %DoorHeader(\
     %destination(RoomHeader_GreenBubblesMissiles),
     %elevator(0),
@@ -4707,7 +4707,7 @@ Door_NorfairReserveTank:                                                 ;83952E
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Blue_duplicate))
 
-Door_GreenBubblesMissiles_0:                                             ;83953A;
+Door_GreenBubblesMissiles_0:
     %DoorHeader(\
     %destination(RoomHeader_BubbleMountain),
     %elevator(0),
@@ -4717,7 +4717,7 @@ Door_GreenBubblesMissiles_0:                                             ;83953A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GreenBubblesMissiles_1:                                             ;839546;
+Door_GreenBubblesMissiles_1:
     %DoorHeader(\
     %destination(RoomHeader_NorfairReserveTank),
     %elevator(0),
@@ -4727,7 +4727,7 @@ Door_GreenBubblesMissiles_1:                                             ;839546
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BubbleMountain_0:                                                   ;839552;
+Door_BubbleMountain_0:
     %DoorHeader(\
     %destination(RoomHeader_GreenBubblesMissiles),
     %elevator(0),
@@ -4737,7 +4737,7 @@ Door_BubbleMountain_0:                                                   ;839552
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BubbleMountain_1:                                                   ;83955E;
+Door_BubbleMountain_1:
     %DoorHeader(\
     %destination(RoomHeader_RisingTide),
     %elevator(0),
@@ -4747,7 +4747,7 @@ Door_BubbleMountain_1:                                                   ;83955E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BubbleMountain_2:                                                   ;83956A;
+Door_BubbleMountain_2:
     %DoorHeader(\
     %destination(RoomHeader_UpperNorfairFarming),
     %elevator(0),
@@ -4757,7 +4757,7 @@ Door_BubbleMountain_2:                                                   ;83956A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BubbleMountain_3:                                                   ;839576;
+Door_BubbleMountain_3:
     %DoorHeader(\
     %destination(RoomHeader_PurpleShaft),
     %elevator(0),
@@ -4767,7 +4767,7 @@ Door_BubbleMountain_3:                                                   ;839576
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Blue_1_Red_duplicate))
 
-Door_BubbleMountain_4:                                                   ;839582;
+Door_BubbleMountain_4:
     %DoorHeader(\
     %destination(RoomHeader_SingleChamber),
     %elevator(0),
@@ -4777,7 +4777,7 @@ Door_BubbleMountain_4:                                                   ;839582
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BubbleMountain_5:                                                   ;83958E;
+Door_BubbleMountain_5:
     %DoorHeader(\
     %destination(RoomHeader_BatCave),
     %elevator(0),
@@ -4787,7 +4787,7 @@ Door_BubbleMountain_5:                                                   ;83958E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BubbleMountain_6:                                                   ;83959A;
+Door_BubbleMountain_6:
     %DoorHeader(\
     %destination(RoomHeader_BubbleMountainSave),
     %elevator(0),
@@ -4797,7 +4797,7 @@ Door_BubbleMountain_6:                                                   ;83959A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SpeedBoosterHall_0:                                                 ;8395A6;
+Door_SpeedBoosterHall_0:
     %DoorHeader(\
     %destination(RoomHeader_BatCave),
     %elevator(0),
@@ -4807,7 +4807,7 @@ Door_SpeedBoosterHall_0:                                                 ;8395A6
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Blue_1_Red))
 
-Door_SpeedBoosterHall_1:                                                 ;8395B2;
+Door_SpeedBoosterHall_1:
     %DoorHeader(\
     %destination(RoomHeader_SpeedBooster),
     %elevator(0),
@@ -4817,7 +4817,7 @@ Door_SpeedBoosterHall_1:                                                 ;8395B2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SpeedBooster_0:                                                     ;8395BE;
+Door_SpeedBooster_0:
     %DoorHeader(\
     %destination(RoomHeader_SpeedBoosterHall),
     %elevator(0),
@@ -4827,7 +4827,7 @@ Door_SpeedBooster_0:                                                     ;8395BE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SingleChamber_0:                                                    ;8395CA;
+Door_SingleChamber_0:
     %DoorHeader(\
     %destination(RoomHeader_BubbleMountain),
     %elevator(0),
@@ -4837,7 +4837,7 @@ Door_SingleChamber_0:                                                    ;8395CA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SingleChamber_1:                                                    ;8395D6;
+Door_SingleChamber_1:
     %DoorHeader(\
     %destination(RoomHeader_DoubleChamber),
     %elevator(0),
@@ -4847,7 +4847,7 @@ Door_SingleChamber_1:                                                    ;8395D6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SingleChamber_2:                                                    ;8395E2;
+Door_SingleChamber_2:
     %DoorHeader(\
     %destination(RoomHeader_DoubleChamber),
     %elevator(0),
@@ -4857,7 +4857,7 @@ Door_SingleChamber_2:                                                    ;8395E2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SingleChamber_3:                                                    ;8395EE;
+Door_SingleChamber_3:
     %DoorHeader(\
     %destination(RoomHeader_SpikyPlatformsTunnel),
     %elevator(0),
@@ -4867,7 +4867,7 @@ Door_SingleChamber_3:                                                    ;8395EE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SingleChamber_4:                                                    ;8395FA;
+Door_SingleChamber_4:
     %DoorHeader(\
     %destination(RoomHeader_ThreeMusketeers),
     %elevator(0),
@@ -4877,7 +4877,7 @@ Door_SingleChamber_4:                                                    ;8395FA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_DoubleChamber_0:                                                    ;839606;
+Door_DoubleChamber_0:
     %DoorHeader(\
     %destination(RoomHeader_SingleChamber),
     %elevator(0),
@@ -4887,7 +4887,7 @@ Door_DoubleChamber_0:                                                    ;839606
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_DoubleChamber_1:                                                    ;839612;
+Door_DoubleChamber_1:
     %DoorHeader(\
     %destination(RoomHeader_SingleChamber),
     %elevator(0),
@@ -4897,7 +4897,7 @@ Door_DoubleChamber_1:                                                    ;839612
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_DoubleChamber_2:                                                    ;83961E;
+Door_DoubleChamber_2:
     %DoorHeader(\
     %destination(RoomHeader_WaveBeam),
     %elevator(0),
@@ -4907,7 +4907,7 @@ Door_DoubleChamber_2:                                                    ;83961E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WaveBeam_0:                                                         ;83962A;
+Door_WaveBeam_0:
     %DoorHeader(\
     %destination(RoomHeader_DoubleChamber),
     %elevator(0),
@@ -4917,7 +4917,7 @@ Door_WaveBeam_0:                                                         ;83962A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SpikyPlatformsTunnel_0:                                             ;839636;
+Door_SpikyPlatformsTunnel_0:
     %DoorHeader(\
     %destination(RoomHeader_SingleChamber),
     %elevator(0),
@@ -4927,7 +4927,7 @@ Door_SpikyPlatformsTunnel_0:                                             ;839636
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SpikyPlatformsTunnel_1:                                             ;839642;
+Door_SpikyPlatformsTunnel_1:
     %DoorHeader(\
     %destination(RoomHeader_Volcano),
     %elevator(0),
@@ -4937,7 +4937,7 @@ Door_SpikyPlatformsTunnel_1:                                             ;839642
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Volcano_0:                                                          ;83964E;
+Door_Volcano_0:
     %DoorHeader(\
     %destination(RoomHeader_SpikyPlatformsTunnel),
     %elevator(0),
@@ -4947,7 +4947,7 @@ Door_Volcano_0:                                                          ;83964E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Volcano_1:                                                          ;83965A;
+Door_Volcano_1:
     %DoorHeader(\
     %destination(RoomHeader_KronicBoost),
     %elevator(0),
@@ -4957,7 +4957,7 @@ Door_Volcano_1:                                                          ;83965A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_KronicBoost_0:                                                      ;839666;
+Door_KronicBoost_0:
     %DoorHeader(\
     %destination(RoomHeader_MagdolliteTunnel),
     %elevator(0),
@@ -4967,7 +4967,7 @@ Door_KronicBoost_0:                                                      ;839666
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_KronicBoost_1:                                                      ;839672;
+Door_KronicBoost_1:
     %DoorHeader(\
     %destination(RoomHeader_Volcano),
     %elevator(0),
@@ -4977,7 +4977,7 @@ Door_KronicBoost_1:                                                      ;839672
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_6_7_Blue_8_Red))
 
-Door_KronicBoost_2:                                                      ;83967E;
+Door_KronicBoost_2:
     %DoorHeader(\
     %destination(RoomHeader_LavaDive),
     %elevator(0),
@@ -4987,7 +4987,7 @@ Door_KronicBoost_2:                                                      ;83967E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_KronicBoost_3:                                                      ;83968A;
+Door_KronicBoost_3:
     %DoorHeader(\
     %destination(RoomHeader_SpikyAcidSnakesTunnel),
     %elevator(0),
@@ -4997,7 +4997,7 @@ Door_KronicBoost_3:                                                      ;83968A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MagdolliteTunnel_0:                                                 ;839696;
+Door_MagdolliteTunnel_0:
     %DoorHeader(\
     %destination(RoomHeader_PurpleShaft),
     %elevator(0),
@@ -5007,7 +5007,7 @@ Door_MagdolliteTunnel_0:                                                 ;839696
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MagdolliteTunnel_1:                                                 ;8396A2;
+Door_MagdolliteTunnel_1:
     %DoorHeader(\
     %destination(RoomHeader_KronicBoost),
     %elevator(0),
@@ -5017,7 +5017,7 @@ Door_MagdolliteTunnel_1:                                                 ;8396A2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PurpleShaft_0:                                                      ;8396AE;
+Door_PurpleShaft_0:
     %DoorHeader(\
     %destination(RoomHeader_BubbleMountain),
     %elevator(0),
@@ -5027,7 +5027,7 @@ Door_PurpleShaft_0:                                                      ;8396AE
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_PurpleShaft_1:                                                      ;8396BA;
+Door_PurpleShaft_1:
     %DoorHeader(\
     %destination(RoomHeader_MagdolliteTunnel),
     %elevator(0),
@@ -5037,7 +5037,7 @@ Door_PurpleShaft_1:                                                      ;8396BA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PurpleShaft_2:                                                      ;8396C6;
+Door_PurpleShaft_2:
     %DoorHeader(\
     %destination(RoomHeader_PurpleFarming),
     %elevator(0),
@@ -5047,7 +5047,7 @@ Door_PurpleShaft_2:                                                      ;8396C6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LavaDive_0:                                                         ;8396D2;
+Door_LavaDive_0:
     %DoorHeader(\
     %destination(RoomHeader_KronicBoost),
     %elevator(0),
@@ -5057,7 +5057,7 @@ Door_LavaDive_0:                                                         ;8396D2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LavaDive_1:                                                         ;8396DE;
+Door_LavaDive_1:
     %DoorHeader(\
     %destination(RoomHeader_LowerNorfairElev),
     %elevator(0),
@@ -5067,7 +5067,7 @@ Door_LavaDive_1:                                                         ;8396DE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LowerNorfairElev_0:                                                 ;8396EA;
+Door_LowerNorfairElev_0:
     %DoorHeader(\
     %destination(RoomHeader_LavaDive),
     %elevator(0),
@@ -5077,7 +5077,7 @@ Door_LowerNorfairElev_0:                                                 ;8396EA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LowerNorfairElev_1:                                                 ;8396F6;
+Door_LowerNorfairElev_1:
     %DoorHeader(\
     %destination(RoomHeader_MainHall),
     %elevator($A0),
@@ -5087,7 +5087,7 @@ Door_LowerNorfairElev_1:                                                 ;8396F6
     %spawnDistance(0),
     %doorASM(0))
 
-Door_LowerNorfairElev_3:                                                 ;839702;
+Door_LowerNorfairElev_3:
     %DoorHeader(\
     %destination(RoomHeader_LNElevSave),
     %elevator(0),
@@ -5097,7 +5097,7 @@ Door_LowerNorfairElev_3:                                                 ;839702
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_UpperNorfairFarming_0:                                              ;83970E;
+Door_UpperNorfairFarming_0:
     %DoorHeader(\
     %destination(RoomHeader_FrogSpeedway),
     %elevator(0),
@@ -5107,7 +5107,7 @@ Door_UpperNorfairFarming_0:                                              ;83970E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_UpperNorfairFarming_1:                                              ;83971A;
+Door_UpperNorfairFarming_1:
     %DoorHeader(\
     %destination(RoomHeader_BubbleMountain),
     %elevator(0),
@@ -5117,7 +5117,7 @@ Door_UpperNorfairFarming_1:                                              ;83971A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_UpperNorfairFarming_2:                                              ;839726;
+Door_UpperNorfairFarming_2:
     %DoorHeader(\
     %destination(RoomHeader_RedPirateShaft),
     %elevator(0),
@@ -5127,7 +5127,7 @@ Door_UpperNorfairFarming_2:                                              ;839726
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RisingTide_0:                                                       ;839732;
+Door_RisingTide_0:
     %DoorHeader(\
     %destination(RoomHeader_Cathedral),
     %elevator(0),
@@ -5137,7 +5137,7 @@ Door_RisingTide_0:                                                       ;839732
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RisingTide_1:                                                       ;83973E;
+Door_RisingTide_1:
     %DoorHeader(\
     %destination(RoomHeader_BubbleMountain),
     %elevator(0),
@@ -5147,7 +5147,7 @@ Door_RisingTide_1:                                                       ;83973E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_AcidSnakesTunnel_0:                                                 ;83974A;
+Door_AcidSnakesTunnel_0:
     %DoorHeader(\
     %destination(RoomHeader_CrocomireSpeedway),
     %elevator(0),
@@ -5157,7 +5157,7 @@ Door_AcidSnakesTunnel_0:                                                 ;83974A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_AcidSnakesTunnel_1:                                                 ;839756;
+Door_AcidSnakesTunnel_1:
     %DoorHeader(\
     %destination(RoomHeader_UpperNorfairRefill),
     %elevator(0),
@@ -5167,7 +5167,7 @@ Door_AcidSnakesTunnel_1:                                                 ;839756
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_AcidSnakesTunnel_2:                                                 ;839762;
+Door_AcidSnakesTunnel_2:
     %DoorHeader(\
     %destination(RoomHeader_RedPirateShaft),
     %elevator(0),
@@ -5177,7 +5177,7 @@ Door_AcidSnakesTunnel_2:                                                 ;839762
     %spawnDistance($0200),
     %doorASM(0))
 
-Door_SpikyAcidSnakesTunnel_0:                                            ;83976E;
+Door_SpikyAcidSnakesTunnel_0:
     %DoorHeader(\
     %destination(RoomHeader_UpperNorfairRefill),
     %elevator(0),
@@ -5187,7 +5187,7 @@ Door_SpikyAcidSnakesTunnel_0:                                            ;83976E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SpikyAcidSnakesTunnel_1:                                            ;83977A;
+Door_SpikyAcidSnakesTunnel_1:
     %DoorHeader(\
     %destination(RoomHeader_KronicBoost),
     %elevator(0),
@@ -5197,7 +5197,7 @@ Door_SpikyAcidSnakesTunnel_1:                                            ;83977A
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_2_Blue_3_Red))
 
-Door_UpperNorfairRefill_0:                                               ;839786;
+Door_UpperNorfairRefill_0:
     %DoorHeader(\
     %destination(RoomHeader_AcidSnakesTunnel),
     %elevator(0),
@@ -5207,7 +5207,7 @@ Door_UpperNorfairRefill_0:                                               ;839786
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_UpperNorfairRefill_1:                                               ;839792;
+Door_UpperNorfairRefill_1:
     %DoorHeader(\
     %destination(RoomHeader_SpikyAcidSnakesTunnel),
     %elevator(0),
@@ -5217,7 +5217,7 @@ Door_UpperNorfairRefill_1:                                               ;839792
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PurpleFarming_0:                                                    ;83979E;
+Door_PurpleFarming_0:
     %DoorHeader(\
     %destination(RoomHeader_PurpleShaft),
     %elevator(0),
@@ -5227,7 +5227,7 @@ Door_PurpleFarming_0:                                                    ;83979E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BatCave_0:                                                          ;8397AA;
+Door_BatCave_0:
     %DoorHeader(\
     %destination(RoomHeader_BubbleMountain),
     %elevator(0),
@@ -5237,7 +5237,7 @@ Door_BatCave_0:                                                          ;8397AA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BatCave_1:                                                          ;8397B6;
+Door_BatCave_1:
     %DoorHeader(\
     %destination(RoomHeader_SpeedBoosterHall),
     %elevator(0),
@@ -5247,7 +5247,7 @@ Door_BatCave_1:                                                          ;8397B6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_NorfairMap_0:                                                       ;8397C2;
+Door_NorfairMap_0:
     %DoorHeader(\
     %destination(RoomHeader_BusinessCenter),
     %elevator(0),
@@ -5257,7 +5257,7 @@ Door_NorfairMap_0:                                                       ;8397C2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BubbleMountainSave_0:                                               ;8397CE;
+Door_BubbleMountainSave_0:
     %DoorHeader(\
     %destination(RoomHeader_BubbleMountain),
     %elevator(0),
@@ -5267,7 +5267,7 @@ Door_BubbleMountainSave_0:                                               ;8397CE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FrogSpeedway_0:                                                     ;8397DA;
+Door_FrogSpeedway_0:
     %DoorHeader(\
     %destination(RoomHeader_FrogSave),
     %elevator(0),
@@ -5277,7 +5277,7 @@ Door_FrogSpeedway_0:                                                     ;8397DA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FrogSpeedway_1:                                                     ;8397E6;
+Door_FrogSpeedway_1:
     %DoorHeader(\
     %destination(RoomHeader_UpperNorfairFarming),
     %elevator(0),
@@ -5287,7 +5287,7 @@ Door_FrogSpeedway_1:                                                     ;8397E6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedPirateShaft_0:                                                   ;8397F2;
+Door_RedPirateShaft_0:
     %DoorHeader(\
     %destination(RoomHeader_UpperNorfairFarming),
     %elevator(0),
@@ -5297,7 +5297,7 @@ Door_RedPirateShaft_0:                                                   ;8397F2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedPirateShaft_1:                                                   ;8397FE;
+Door_RedPirateShaft_1:
     %DoorHeader(\
     %destination(RoomHeader_AcidSnakesTunnel),
     %elevator(0),
@@ -5307,7 +5307,7 @@ Door_RedPirateShaft_1:                                                   ;8397FE
     %spawnDistance($0140),
     %doorASM(0))
 
-Door_FrogSave_0:                                                         ;83980A;
+Door_FrogSave_0:
     %DoorHeader(\
     %destination(RoomHeader_FrogSpeedway),
     %elevator(0),
@@ -5317,7 +5317,7 @@ Door_FrogSave_0:                                                         ;83980A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FrogSave_1:                                                         ;839816;
+Door_FrogSave_1:
     %DoorHeader(\
     %destination(RoomHeader_BusinessCenter),
     %elevator(0),
@@ -5327,7 +5327,7 @@ Door_FrogSave_1:                                                         ;839816
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrocomireSave_0:                                                    ;839822;
+Door_CrocomireSave_0:
     %DoorHeader(\
     %destination(RoomHeader_CrocomireSpeedway),
     %elevator(0),
@@ -5337,7 +5337,7 @@ Door_CrocomireSave_0:                                                    ;839822
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LNElevSave_0:                                                       ;83982E;
+Door_LNElevSave_0:
     %DoorHeader(\
     %destination(RoomHeader_LowerNorfairElev),
     %elevator(0),
@@ -5347,7 +5347,7 @@ Door_LNElevSave_0:                                                       ;83982E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_AcidStatue_0:                                                       ;83983A;
+Door_AcidStatue_0:
     %DoorHeader(\
     %destination(RoomHeader_GoldenTorizo),
     %elevator(0),
@@ -5357,7 +5357,7 @@ Door_AcidStatue_0:                                                       ;83983A
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Blue_1_2_3_Red))
 
-Door_AcidStatue_1:                                                       ;839846;
+Door_AcidStatue_1:
     %DoorHeader(\
     %destination(RoomHeader_MainHall),
     %elevator(0),
@@ -5367,7 +5367,7 @@ Door_AcidStatue_1:                                                       ;839846
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MainHall_0:                                                         ;839852;
+Door_MainHall_0:
     %DoorHeader(\
     %destination(RoomHeader_AcidStatue),
     %elevator(0),
@@ -5377,7 +5377,7 @@ Door_MainHall_0:                                                         ;839852
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MainHall_1:                                                         ;83985E;
+Door_MainHall_1:
     %DoorHeader(\
     %destination(RoomHeader_FastPillarsSetup),
     %elevator(0),
@@ -5387,7 +5387,7 @@ Door_MainHall_1:                                                         ;83985E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MainHall_2:                                                         ;83986A;
+Door_MainHall_2:
     %DoorHeader(\
     %destination(RoomHeader_LowerNorfairElev),
     %elevator($B0),
@@ -5397,7 +5397,7 @@ Door_MainHall_2:                                                         ;83986A
     %spawnDistance(0),
     %doorASM(0))
 
-Door_GoldenTorizo_0:                                                     ;839876;
+Door_GoldenTorizo_0:
     %DoorHeader(\
     %destination(RoomHeader_AcidStatue),
     %elevator(0),
@@ -5407,7 +5407,7 @@ Door_GoldenTorizo_0:                                                     ;839876
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_3_4_Red_6_7_8_Blue))
 
-Door_GoldenTorizo_1:                                                     ;839882;
+Door_GoldenTorizo_1:
     %DoorHeader(\
     %destination(RoomHeader_ScrewAttack),
     %elevator(0),
@@ -5417,7 +5417,7 @@ Door_GoldenTorizo_1:                                                     ;839882
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FastRipper_0:                                                       ;83988E;
+Door_FastRipper_0:
     %DoorHeader(\
     %destination(RoomHeader_ScrewAttack),
     %elevator(0),
@@ -5427,7 +5427,7 @@ Door_FastRipper_0:                                                       ;83988E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FastRipper_1:                                                       ;83989A;
+Door_FastRipper_1:
     %DoorHeader(\
     %destination(RoomHeader_FastPillarsSetup),
     %elevator(0),
@@ -5437,7 +5437,7 @@ Door_FastRipper_1:                                                       ;83989A
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_1_Red_2_Blue))
 
-Door_GTEnergyRefill_0:                                                   ;8398A6;
+Door_GTEnergyRefill_0:
     %DoorHeader(\
     %destination(RoomHeader_ScrewAttack),
     %elevator(0),
@@ -5447,7 +5447,7 @@ Door_GTEnergyRefill_0:                                                   ;8398A6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Ridley_0:                                                           ;8398B2;
+Door_Ridley_0:
     %DoorHeader(\
     %destination(RoomHeader_RidleyETank),
     %elevator(0),
@@ -5457,7 +5457,7 @@ Door_Ridley_0:                                                           ;8398B2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Ridley_1:                                                           ;8398BE;
+Door_Ridley_1:
     %DoorHeader(\
     %destination(RoomHeader_LNFarming),
     %elevator(0),
@@ -5467,7 +5467,7 @@ Door_Ridley_1:                                                           ;8398BE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LNFarming_0:                                                        ;8398CA;
+Door_LNFarming_0:
     %DoorHeader(\
     %destination(RoomHeader_Ridley),
     %elevator(0),
@@ -5477,7 +5477,7 @@ Door_LNFarming_0:                                                        ;8398CA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LNFarming_1:                                                        ;8398D6;
+Door_LNFarming_1:
     %DoorHeader(\
     %destination(RoomHeader_Plowerhouse),
     %elevator(0),
@@ -5487,7 +5487,7 @@ Door_LNFarming_1:                                                        ;8398D6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FastPillarsSetup_0:                                                 ;8398E2;
+Door_FastPillarsSetup_0:
     %DoorHeader(\
     %destination(RoomHeader_MainHall),
     %elevator(0),
@@ -5497,7 +5497,7 @@ Door_FastPillarsSetup_0:                                                 ;8398E2
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FastPillarsSetup_1:                                                 ;8398EE;
+Door_FastPillarsSetup_1:
     %DoorHeader(\
     %destination(RoomHeader_MickeyMouse),
     %elevator(0),
@@ -5507,7 +5507,7 @@ Door_FastPillarsSetup_1:                                                 ;8398EE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FastPillarsSetup_2:                                                 ;8398FA;
+Door_FastPillarsSetup_2:
     %DoorHeader(\
     %destination(RoomHeader_MainHall),
     %elevator(0),
@@ -5517,7 +5517,7 @@ Door_FastPillarsSetup_2:                                                 ;8398FA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FastPillarsSetup_3:                                                 ;839906;
+Door_FastPillarsSetup_3:
     %DoorHeader(\
     %destination(RoomHeader_FastRipper),
     %elevator(0),
@@ -5527,7 +5527,7 @@ Door_FastPillarsSetup_3:                                                 ;839906
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FastPillarsSetup_4:                                                 ;839912;
+Door_FastPillarsSetup_4:
     %DoorHeader(\
     %destination(RoomHeader_Pillar),
     %elevator(0),
@@ -5538,7 +5538,7 @@ Door_FastPillarsSetup_4:                                                 ;839912
     %doorASM(0))
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Door_83991E:                                                      ;83991E;
+UNUSED_Door_83991E:
     %DoorHeader(\
     %destination(RoomHeader_FastPillarsSetup),
     %elevator(0),
@@ -5549,7 +5549,7 @@ UNUSED_Door_83991E:                                                      ;83991E
     %doorASM(0))
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-Door_MickeyMouse_0:                                                      ;83992A;
+Door_MickeyMouse_0:
     %DoorHeader(\
     %destination(RoomHeader_FastPillarsSetup),
     %elevator(0),
@@ -5559,7 +5559,7 @@ Door_MickeyMouse_0:                                                      ;83992A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MickeyMouse_1:                                                      ;839936;
+Door_MickeyMouse_1:
     %DoorHeader(\
     %destination(RoomHeader_WorstRoomInTheGame),
     %elevator(0),
@@ -5569,7 +5569,7 @@ Door_MickeyMouse_1:                                                      ;839936
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Green_duplicate))
 
-Door_Pillar_0:                                                           ;839942;
+Door_Pillar_0:
     %DoorHeader(\
     %destination(RoomHeader_FastPillarsSetup),
     %elevator(0),
@@ -5579,7 +5579,7 @@ Door_Pillar_0:                                                           ;839942
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_1_Red_2_Blue))
 
-Door_Pillar_1:                                                           ;83994E;
+Door_Pillar_1:
     %DoorHeader(\
     %destination(RoomHeader_WorstRoomInTheGame),
     %elevator(0),
@@ -5589,7 +5589,7 @@ Door_Pillar_1:                                                           ;83994E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Plowerhouse_0:                                                      ;83995A;
+Door_Plowerhouse_0:
     %DoorHeader(\
     %destination(RoomHeader_LNFarming),
     %elevator(0),
@@ -5599,7 +5599,7 @@ Door_Plowerhouse_0:                                                      ;83995A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Plowerhouse_1:                                                      ;839966;
+Door_Plowerhouse_1:
     %DoorHeader(\
     %destination(RoomHeader_MetalPirates),
     %elevator(0),
@@ -5609,7 +5609,7 @@ Door_Plowerhouse_1:                                                      ;839966
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WorstRoomInTheGame_0:                                               ;839972;
+Door_WorstRoomInTheGame_0:
     %DoorHeader(\
     %destination(RoomHeader_MickeyMouse),
     %elevator(0),
@@ -5619,7 +5619,7 @@ Door_WorstRoomInTheGame_0:                                               ;839972
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_E_Red))
 
-Door_WorstRoomInTheGame_1:                                               ;83997E;
+Door_WorstRoomInTheGame_1:
     %DoorHeader(\
     %destination(RoomHeader_Amphitheatre),
     %elevator(0),
@@ -5629,7 +5629,7 @@ Door_WorstRoomInTheGame_1:                                               ;83997E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WorstRoomInTheGame_2:                                               ;83998A;
+Door_WorstRoomInTheGame_2:
     %DoorHeader(\
     %destination(RoomHeader_Pillar),
     %elevator(0),
@@ -5639,7 +5639,7 @@ Door_WorstRoomInTheGame_2:                                               ;83998A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Amphitheatre_0:                                                     ;839996;
+Door_Amphitheatre_0:
     %DoorHeader(\
     %destination(RoomHeader_WorstRoomInTheGame),
     %elevator(0),
@@ -5649,7 +5649,7 @@ Door_Amphitheatre_0:                                                     ;839996
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Amphitheatre_1:                                                     ;8399A2;
+Door_Amphitheatre_1:
     %DoorHeader(\
     %destination(RoomHeader_RedKihunterShaft),
     %elevator(0),
@@ -5659,7 +5659,7 @@ Door_Amphitheatre_1:                                                     ;8399A2
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Blue_3_Red))
 
-Door_LNSpringBallMaze_0:                                                 ;8399AE;
+Door_LNSpringBallMaze_0:
     %DoorHeader(\
     %destination(RoomHeader_ThreeMusketeers),
     %elevator(0),
@@ -5669,7 +5669,7 @@ Door_LNSpringBallMaze_0:                                                 ;8399AE
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LNSpringBallMaze_1:                                                 ;8399BA;
+Door_LNSpringBallMaze_1:
     %DoorHeader(\
     %destination(RoomHeader_LNFireflea),
     %elevator(0),
@@ -5679,7 +5679,7 @@ Door_LNSpringBallMaze_1:                                                 ;8399BA
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_1_Blue_4_Red))
 
-Door_LNSpringBallMaze_2:                                                 ;8399C6;
+Door_LNSpringBallMaze_2:
     %DoorHeader(\
     %destination(RoomHeader_LNEscapePowerBombs),
     %elevator(0),
@@ -5689,7 +5689,7 @@ Door_LNSpringBallMaze_2:                                                 ;8399C6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LNEscapePowerBombs_0:                                               ;8399D2;
+Door_LNEscapePowerBombs_0:
     %DoorHeader(\
     %destination(RoomHeader_LNFireflea),
     %elevator(0),
@@ -5699,7 +5699,7 @@ Door_LNEscapePowerBombs_0:                                               ;8399D2
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_1_Blue_4_Red))
 
-Door_LNEscapePowerBombs_1:                                               ;8399DE;
+Door_LNEscapePowerBombs_1:
     %DoorHeader(\
     %destination(RoomHeader_LNSpringBallMaze),
     %elevator(0),
@@ -5709,7 +5709,7 @@ Door_LNEscapePowerBombs_1:                                               ;8399DE
     %spawnDistance($01C0),
     %doorASM(DoorASM_Scroll_1_2_3_Blue_4_Green_6_Red))
 
-Door_RedKihunterShaft_0:                                                 ;8399EA;
+Door_RedKihunterShaft_0:
     %DoorHeader(\
     %destination(RoomHeader_Wasteland),
     %elevator(0),
@@ -5719,7 +5719,7 @@ Door_RedKihunterShaft_0:                                                 ;8399EA
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedKihunterShaft_1:                                                 ;8399F6;
+Door_RedKihunterShaft_1:
     %DoorHeader(\
     %destination(RoomHeader_Amphitheatre),
     %elevator(0),
@@ -5729,7 +5729,7 @@ Door_RedKihunterShaft_1:                                                 ;8399F6
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedKihunterShaft_2:                                                 ;839A02;
+Door_RedKihunterShaft_2:
     %DoorHeader(\
     %destination(RoomHeader_LNFireflea),
     %elevator(0),
@@ -5739,7 +5739,7 @@ Door_RedKihunterShaft_2:                                                 ;839A02
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedKihunterShaft_3:                                                 ;839A0E;
+Door_RedKihunterShaft_3:
     %DoorHeader(\
     %destination(RoomHeader_LNSave),
     %elevator(0),
@@ -5749,7 +5749,7 @@ Door_RedKihunterShaft_3:                                                 ;839A0E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Wasteland_0:                                                        ;839A1A;
+Door_Wasteland_0:
     %DoorHeader(\
     %destination(RoomHeader_MetalPirates),
     %elevator(0),
@@ -5759,7 +5759,7 @@ Door_Wasteland_0:                                                        ;839A1A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Wasteland_1:                                                        ;839A26;
+Door_Wasteland_1:
     %DoorHeader(\
     %destination(RoomHeader_RedKihunterShaft),
     %elevator(0),
@@ -5769,7 +5769,7 @@ Door_Wasteland_1:                                                        ;839A26
     %spawnDistance($0200),
     %doorASM(0))
 
-Door_MetalPirates_0:                                                     ;839A32;
+Door_MetalPirates_0:
     %DoorHeader(\
     %destination(RoomHeader_Plowerhouse),
     %elevator(0),
@@ -5779,7 +5779,7 @@ Door_MetalPirates_0:                                                     ;839A32
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MetalPirates_1:                                                     ;839A3E;
+Door_MetalPirates_1:
     %DoorHeader(\
     %destination(RoomHeader_Wasteland),
     %elevator(0),
@@ -5789,7 +5789,7 @@ Door_MetalPirates_1:                                                     ;839A3E
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_7_Green))
 
-Door_ThreeMusketeers_0:                                                  ;839A4A;
+Door_ThreeMusketeers_0:
     %DoorHeader(\
     %destination(RoomHeader_SingleChamber),
     %elevator(0),
@@ -5799,7 +5799,7 @@ Door_ThreeMusketeers_0:                                                  ;839A4A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ThreeMusketeers_1:                                                  ;839A56;
+Door_ThreeMusketeers_1:
     %DoorHeader(\
     %destination(RoomHeader_LNSpringBallMaze),
     %elevator(0),
@@ -5809,7 +5809,7 @@ Door_ThreeMusketeers_1:                                                  ;839A56
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RidleyETank_0:                                                      ;839A62;
+Door_RidleyETank_0:
     %DoorHeader(\
     %destination(RoomHeader_Ridley),
     %elevator(0),
@@ -5819,7 +5819,7 @@ Door_RidleyETank_0:                                                      ;839A62
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ScrewAttack_0:                                                      ;839A6E;
+Door_ScrewAttack_0:
     %DoorHeader(\
     %destination(RoomHeader_FastRipper),
     %elevator(0),
@@ -5829,7 +5829,7 @@ Door_ScrewAttack_0:                                                      ;839A6E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ScrewAttack_1:                                                      ;839A7A;
+Door_ScrewAttack_1:
     %DoorHeader(\
     %destination(RoomHeader_GTEnergyRefill),
     %elevator(0),
@@ -5839,7 +5839,7 @@ Door_ScrewAttack_1:                                                      ;839A7A
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ScrewAttack_2:                                                      ;839A86;
+Door_ScrewAttack_2:
     %DoorHeader(\
     %destination(RoomHeader_GoldenTorizo),
     %elevator(0),
@@ -5849,7 +5849,7 @@ Door_ScrewAttack_2:                                                      ;839A86
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LNFireflea_0:                                                       ;839A92;
+Door_LNFireflea_0:
     %DoorHeader(\
     %destination(RoomHeader_LNSpringBallMaze),
     %elevator(0),
@@ -5859,7 +5859,7 @@ Door_LNFireflea_0:                                                       ;839A92
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LNFireflea_1:                                                       ;839A9E;
+Door_LNFireflea_1:
     %DoorHeader(\
     %destination(RoomHeader_LNEscapePowerBombs),
     %elevator(0),
@@ -5869,7 +5869,7 @@ Door_LNFireflea_1:                                                       ;839A9E
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_LNFireflea_2:                                                       ;839AAA;
+Door_LNFireflea_2:
     %DoorHeader(\
     %destination(RoomHeader_RedKihunterShaft),
     %elevator(0),
@@ -5879,7 +5879,7 @@ Door_LNFireflea_2:                                                       ;839AAA
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Blue_3_Red_duplicate))
 
-Door_LNSave_0:                                                           ;839AB6;
+Door_LNSave_0:
     %DoorHeader(\
     %destination(RoomHeader_RedKihunterShaft),
     %elevator(0),
@@ -5907,7 +5907,7 @@ Door_LNSave_0:                                                           ;839AB6
 ;       |   |   |   |   |   |   |    _ Fh: Palette blend
 ;       |   |   |   |   |   |   |   |
 ;       tt, ff, AA, BB, CC, pp, aa, bb
-FXHeader_BowlingAlley_State1:                                            ;839AC2;
+FXHeader_BowlingAlley_State1:
     %FXHeader(\
     %door(0),
     %baseY($01B0),
@@ -5921,7 +5921,7 @@ FXHeader_BowlingAlley_State1:                                            ;839AC2
     %animTiles($0B),
     %paletteBlend(0))
 
-FXHeader_WreckedShipEntrance_State1:                                     ;839AD2;
+FXHeader_WreckedShipEntrance_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -5935,7 +5935,7 @@ FXHeader_WreckedShipEntrance_State1:                                     ;839AD2
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Attic_State1:                                                   ;839AE2;
+FXHeader_Attic_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -5949,7 +5949,7 @@ FXHeader_Attic_State1:                                                   ;839AE2
     %animTiles($10),
     %paletteBlend(0))
 
-FXHeader_AssemblyLine_State1:                                            ;839AF2;
+FXHeader_AssemblyLine_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -5963,7 +5963,7 @@ FXHeader_AssemblyLine_State1:                                            ;839AF2
     %animTiles($18),
     %paletteBlend(0))
 
-FXHeader_WreckedShipMainShaft_State1:                                    ;839B02;
+FXHeader_WreckedShipMainShaft_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -5977,7 +5977,7 @@ FXHeader_WreckedShipMainShaft_State1:                                    ;839B02
     %animTiles(6),
     %paletteBlend(0))
 
-FXHeader_SpikyDeath_State1:                                              ;839B12;
+FXHeader_SpikyDeath_State1:
     %FXHeader(\
     %door(0),
     %baseY($00A8),
@@ -5991,7 +5991,7 @@ FXHeader_SpikyDeath_State1:                                              ;839B12
     %animTiles($0A),
     %paletteBlend($48))
 
-FXHeader_ElectricDeath_State1:                                           ;839B22;
+FXHeader_ElectricDeath_State1:
     %FXHeader(\
     %door(0),
     %baseY($02A8),
@@ -6005,7 +6005,7 @@ FXHeader_ElectricDeath_State1:                                           ;839B22
     %animTiles(2),
     %paletteBlend($48))
 
-FXHeader_WreckedShipETank_State1:                                        ;839B32;
+FXHeader_WreckedShipETank_State1:
     %FXHeader(\
     %door(0),
     %baseY($00B0),
@@ -6019,7 +6019,7 @@ FXHeader_WreckedShipETank_State1:                                        ;839B32
     %animTiles(6),
     %paletteBlend($48))
 
-FXHeader_Basement_State1:                                                ;839B42;
+FXHeader_Basement_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6033,7 +6033,7 @@ FXHeader_Basement_State1:                                                ;839B42
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_WreckedShipMap_State1:                                          ;839B52;
+FXHeader_WreckedShipMap_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6048,9 +6048,9 @@ FXHeader_WreckedShipMap_State1:                                          ;839B52
     %paletteBlend(0))
 
 FXHeader_Phantoon_State1:
-    dw $FFFF                                                             ;839B62;
+    dw $FFFF
 
-FXHeader_SpongeBath_State1:                                              ;839B64;
+FXHeader_SpongeBath_State1:
     %FXHeader(\
     %door(0),
     %baseY($00A8),
@@ -6064,7 +6064,7 @@ FXHeader_SpongeBath_State1:                                              ;839B64
     %animTiles(0),
     %paletteBlend($48))
 
-FXHeader_WSWestSuper_State1:                                             ;839B74;
+FXHeader_WSWestSuper_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6078,7 +6078,7 @@ FXHeader_WSWestSuper_State1:                                             ;839B74
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_WSEastSuper_State1:                                             ;839B84;
+FXHeader_WSEastSuper_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6092,7 +6092,7 @@ FXHeader_WSEastSuper_State1:                                             ;839B84
     %animTiles(9),
     %paletteBlend(0))
 
-FXHeader_GravitySuit_State1_WreckedShipSave_State1:                      ;839B94;
+FXHeader_GravitySuit_State1_WreckedShipSave_State1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6106,7 +6106,7 @@ FXHeader_GravitySuit_State1_WreckedShipSave_State1:                      ;839B94
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_BowlingAlley_State0:                                            ;839BA4;
+FXHeader_BowlingAlley_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6120,7 +6120,7 @@ FXHeader_BowlingAlley_State0:                                            ;839BA4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_WreckedShipEntrance_State0:                                     ;839BB4;
+FXHeader_WreckedShipEntrance_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6134,7 +6134,7 @@ FXHeader_WreckedShipEntrance_State0:                                     ;839BB4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Attic_State0:                                                   ;839BC4;
+FXHeader_Attic_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6148,7 +6148,7 @@ FXHeader_Attic_State0:                                                   ;839BC4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_AssemblyLine_State0:                                            ;839BD4;
+FXHeader_AssemblyLine_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6162,7 +6162,7 @@ FXHeader_AssemblyLine_State0:                                            ;839BD4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_WreckedShipMainShaft_State0:                                    ;839BE4;
+FXHeader_WreckedShipMainShaft_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6176,7 +6176,7 @@ FXHeader_WreckedShipMainShaft_State0:                                    ;839BE4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_SpikyDeath_State0:                                              ;839BF4;
+FXHeader_SpikyDeath_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6190,7 +6190,7 @@ FXHeader_SpikyDeath_State0:                                              ;839BF4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_ElectricDeath_State0:                                           ;839C04;
+FXHeader_ElectricDeath_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6204,7 +6204,7 @@ FXHeader_ElectricDeath_State0:                                           ;839C04
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_WreckedShipETank_State0:                                        ;839C14;
+FXHeader_WreckedShipETank_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6218,7 +6218,7 @@ FXHeader_WreckedShipETank_State0:                                        ;839C14
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Basement_State0:                                                ;839C24;
+FXHeader_Basement_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6232,7 +6232,7 @@ FXHeader_Basement_State0:                                                ;839C24
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_WreckedShipMap_State0:                                          ;839C34;
+FXHeader_WreckedShipMap_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6246,7 +6246,7 @@ FXHeader_WreckedShipMap_State0:                                          ;839C34
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Phantoon_State0:                                                ;839C44;
+FXHeader_Phantoon_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6260,7 +6260,7 @@ FXHeader_Phantoon_State0:                                                ;839C44
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_SpongeBath_State0:                                              ;839C54;
+FXHeader_SpongeBath_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6274,7 +6274,7 @@ FXHeader_SpongeBath_State0:                                              ;839C54
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_WSWestSuper_State0:                                             ;839C64;
+FXHeader_WSWestSuper_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6288,7 +6288,7 @@ FXHeader_WSWestSuper_State0:                                             ;839C64
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_VariousRooms_State0_839C74:                                     ;839C74;
+FXHeader_VariousRooms_State0_839C74:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6302,7 +6302,7 @@ FXHeader_VariousRooms_State0_839C74:                                     ;839C74
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_GlassTunnelSave:                                                ;839C84;
+FXHeader_GlassTunnelSave:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6316,7 +6316,7 @@ FXHeader_GlassTunnelSave:                                                ;839C84
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_GlassTunnel_State0_1:                                           ;839C94;
+FXHeader_GlassTunnel_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6330,7 +6330,7 @@ FXHeader_GlassTunnel_State0_1:                                           ;839C94
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_WestTunnel:                                                     ;839CA4;
+FXHeader_WestTunnel:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6344,7 +6344,7 @@ FXHeader_WestTunnel:                                                     ;839CA4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_EastTunnel:                                                     ;839CB4;
+FXHeader_EastTunnel:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6358,7 +6358,7 @@ FXHeader_EastTunnel:                                                     ;839CB4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_MainStreet:                                                     ;839CC4;
+FXHeader_MainStreet:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6372,7 +6372,7 @@ FXHeader_MainStreet:                                                     ;839CC4
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_FishTank:                                                       ;839CD4;
+FXHeader_FishTank:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6386,7 +6386,7 @@ FXHeader_FishTank:                                                       ;839CD4
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_MamaTurtle:                                                     ;839CE4;
+FXHeader_MamaTurtle:
     %FXHeader(\
     %door(0),
     %baseY($02BA),
@@ -6400,7 +6400,7 @@ FXHeader_MamaTurtle:                                                     ;839CE4
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_CrabTunnel:                                                     ;839CF4;
+FXHeader_CrabTunnel:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6414,7 +6414,7 @@ FXHeader_CrabTunnel:                                                     ;839CF4
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_MtEverest:                                                      ;839D04;
+FXHeader_MtEverest:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6428,7 +6428,7 @@ FXHeader_MtEverest:                                                      ;839D04
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_RedFish:                                                        ;839D14;
+FXHeader_RedFish:
     %FXHeader(\
     %door(0),
     %baseY($0180),
@@ -6442,7 +6442,7 @@ FXHeader_RedFish:                                                        ;839D14
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_WateringHole:                                                   ;839D24;
+FXHeader_WateringHole:
     %FXHeader(\
     %door(0),
     %baseY($01B5),
@@ -6456,7 +6456,7 @@ FXHeader_WateringHole:                                                   ;839D24
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_NWestMaridiaBug:                                                ;839D34;
+FXHeader_NWestMaridiaBug:
     %FXHeader(\
     %door(0),
     %baseY($01B5),
@@ -6470,7 +6470,7 @@ FXHeader_NWestMaridiaBug:                                                ;839D34
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_CrabShaft:                                                      ;839D44;
+FXHeader_CrabShaft:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6484,7 +6484,7 @@ FXHeader_CrabShaft:                                                      ;839D44
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_PseudoPlasmaSpark:                                              ;839D54;
+FXHeader_PseudoPlasmaSpark:
     %FXHeader(\
     %door(0),
     %baseY($01B5),
@@ -6498,7 +6498,7 @@ FXHeader_PseudoPlasmaSpark:                                              ;839D54
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_CrabHole:                                                       ;839D64;
+FXHeader_CrabHole:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6512,7 +6512,7 @@ FXHeader_CrabHole:                                                       ;839D64
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_WestSandHallTunnel:                                             ;839D74;
+FXHeader_WestSandHallTunnel:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6526,7 +6526,7 @@ FXHeader_WestSandHallTunnel:                                             ;839D74
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_PlasmaTutorial:                                                 ;839D84;
+FXHeader_PlasmaTutorial:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6540,7 +6540,7 @@ FXHeader_PlasmaTutorial:                                                 ;839D84
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_Plasma:                                                         ;839D94;
+FXHeader_Plasma:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6554,7 +6554,7 @@ FXHeader_Plasma:                                                         ;839D94
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_ThreadTheNeedle:                                                ;839DA4;
+FXHeader_ThreadTheNeedle:
     %FXHeader(\
     %door(0),
     %baseY($00B5),
@@ -6568,7 +6568,7 @@ FXHeader_ThreadTheNeedle:                                                ;839DA4
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_MaridiaElev:                                                    ;839DB4;
+FXHeader_MaridiaElev:
     %FXHeader(\
     %door(0),
     %baseY($05B5),
@@ -6582,7 +6582,7 @@ FXHeader_MaridiaElev:                                                    ;839DB4
     %animTiles(2),
     %paletteBlend($42))
 
-FXHeader_PlasmaSpark:                                                    ;839DC4;
+FXHeader_PlasmaSpark:
     %FXHeader(\
     %door(0),
     %baseY($03B4),
@@ -6596,7 +6596,7 @@ FXHeader_PlasmaSpark:                                                    ;839DC4
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_Kassiuz:                                                        ;839DD4;
+FXHeader_Kassiuz:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6610,7 +6610,7 @@ FXHeader_Kassiuz:                                                        ;839DD4
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_MaridiaMap:                                                     ;839DE4;
+FXHeader_MaridiaMap:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6624,7 +6624,7 @@ FXHeader_MaridiaMap:                                                     ;839DE4
     %animTiles(0),
     %paletteBlend($E2))
 
-FXHeader_ForgottenHighwaySave:                                           ;839DF4;
+FXHeader_ForgottenHighwaySave:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6638,7 +6638,7 @@ FXHeader_ForgottenHighwaySave:                                           ;839DF4
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_Toilet:                                                         ;839E04;
+FXHeader_Toilet:
     %FXHeader(\
     %door(Door_PlasmaSpark_1),
     %baseY($0080),
@@ -6652,7 +6652,7 @@ FXHeader_Toilet:                                                         ;839E04
     %animTiles(0),
     %paletteBlend($E8))
 
-FXHeader_Toilet_Part2:                                                   ;839E14;
+FXHeader_Toilet_Part2:
     %FXHeader(\
     %door(Door_Oasis_2),
     %baseY($0080),
@@ -6666,7 +6666,7 @@ FXHeader_Toilet_Part2:                                                   ;839E14
     %animTiles(0),
     %paletteBlend($E8))
 
-FXHeader_Toilet_Part3:                                                   ;839E24;
+FXHeader_Toilet_Part3:
     %FXHeader(\
     %door(0),
     %baseY($0080),
@@ -6680,7 +6680,7 @@ FXHeader_Toilet_Part3:                                                   ;839E24
     %animTiles(0),
     %paletteBlend($E8))
 
-FXHeader_BugSandHole:                                                    ;839E34;
+FXHeader_BugSandHole:
     %FXHeader(\
     %door(0),
     %baseY($00B5),
@@ -6694,7 +6694,7 @@ FXHeader_BugSandHole:                                                    ;839E34
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_WestSandHall:                                                   ;839E44;
+FXHeader_WestSandHall:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6708,7 +6708,7 @@ FXHeader_WestSandHall:                                                   ;839E44
     %animTiles($0C),
     %paletteBlend($E8))
 
-FXHeader_Oasis:                                                          ;839E54;
+FXHeader_Oasis:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6722,7 +6722,7 @@ FXHeader_Oasis:                                                          ;839E54
     %animTiles(0),
     %paletteBlend($E8))
 
-FXHeader_EastSandHall:                                                   ;839E64;
+FXHeader_EastSandHall:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6736,7 +6736,7 @@ FXHeader_EastSandHall:                                                   ;839E64
     %animTiles($0C),
     %paletteBlend($E8))
 
-FXHeader_WestSandHole:                                                   ;839E74;
+FXHeader_WestSandHole:
     %FXHeader(\
     %door(0),
     %baseY($00D6),
@@ -6750,7 +6750,7 @@ FXHeader_WestSandHole:                                                   ;839E74
     %animTiles($0C),
     %paletteBlend($EE))
 
-FXHeader_EastSandHole:                                                   ;839E84;
+FXHeader_EastSandHole:
     %FXHeader(\
     %door(0),
     %baseY($00D6),
@@ -6764,7 +6764,7 @@ FXHeader_EastSandHole:                                                   ;839E84
     %animTiles($0C),
     %paletteBlend($EE))
 
-FXHeader_EastAqueductQuicksand_WestAqueductQuicksand:                    ;839E94;
+FXHeader_EastAqueductQuicksand_WestAqueductQuicksand:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6778,7 +6778,7 @@ FXHeader_EastAqueductQuicksand_WestAqueductQuicksand:                    ;839E94
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Aqueduct:                                                       ;839EA4;
+FXHeader_Aqueduct:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6792,7 +6792,7 @@ FXHeader_Aqueduct:                                                       ;839EA4
     %animTiles(0),
     %paletteBlend($EE))
 
-FXHeader_Butterfly:                                                      ;839EB4;
+FXHeader_Butterfly:
     %FXHeader(\
     %door(0),
     %baseY($0049),
@@ -6806,7 +6806,7 @@ FXHeader_Butterfly:                                                      ;839EB4
     %animTiles($0C),
     %paletteBlend($42))
 
-FXHeader_BotwoonHallway:                                                 ;839EC4;
+FXHeader_BotwoonHallway:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6820,7 +6820,7 @@ FXHeader_BotwoonHallway:                                                 ;839EC4
     %animTiles(0),
     %paletteBlend($EE))
 
-FXHeader_Pants:                                                          ;839ED4;
+FXHeader_Pants:
     %FXHeader(\
     %door(0),
     %baseY($02B0),
@@ -6834,7 +6834,7 @@ FXHeader_Pants:                                                          ;839ED4
     %animTiles(0),
     %paletteBlend($E8))
 
-FXHeader_EastPants:                                                      ;839EE4;
+FXHeader_EastPants:
     %FXHeader(\
     %door(0),
     %baseY($00B0),
@@ -6848,7 +6848,7 @@ FXHeader_EastPants:                                                      ;839EE4
     %animTiles(0),
     %paletteBlend($E8))
 
-FXHeader_Springball:                                                     ;839EF4;
+FXHeader_Springball:
     %FXHeader(\
     %door(0),
     %baseY($00B0),
@@ -6862,7 +6862,7 @@ FXHeader_Springball:                                                     ;839EF4
     %animTiles(0),
     %paletteBlend($E8))
 
-FXHeader_BelowBotwoonETank:                                              ;839F04;
+FXHeader_BelowBotwoonETank:
     %FXHeader(\
     %door(0),
     %baseY($0048),
@@ -6876,7 +6876,7 @@ FXHeader_BelowBotwoonETank:                                              ;839F04
     %animTiles($0C),
     %paletteBlend($EE))
 
-FXHeader_Colosseum:                                                      ;839F14;
+FXHeader_Colosseum:
     %FXHeader(\
     %door(0),
     %baseY($0117),
@@ -6890,7 +6890,7 @@ FXHeader_Colosseum:                                                      ;839F14
     %animTiles(2),
     %paletteBlend($EE))
 
-FXHeader_AqueductSave:                                                   ;839F24;
+FXHeader_AqueductSave:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6904,7 +6904,7 @@ FXHeader_AqueductSave:                                                   ;839F24
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_ThePrecious_State0_1:                                           ;839F34;
+FXHeader_ThePrecious_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($00BF),
@@ -6918,7 +6918,7 @@ FXHeader_ThePrecious_State0_1:                                           ;839F34
     %animTiles(0),
     %paletteBlend($EE))
 
-FXHeader_BotwoonETank:                                                   ;839F44;
+FXHeader_BotwoonETank:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -6932,7 +6932,7 @@ FXHeader_BotwoonETank:                                                   ;839F44
     %animTiles(0),
     %paletteBlend($EE))
 
-FXHeader_DraygonSave:                                                    ;839F54;
+FXHeader_DraygonSave:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6946,7 +6946,7 @@ FXHeader_DraygonSave:                                                    ;839F54
     %animTiles(0),
     %paletteBlend($EE))
 
-FXHeader_MaridiaMissileRefill:                                           ;839F64;
+FXHeader_MaridiaMissileRefill:
     %FXHeader(\
     %door(0),
     %baseY(0),
@@ -6960,7 +6960,7 @@ FXHeader_MaridiaMissileRefill:                                           ;839F64
     %animTiles(0),
     %paletteBlend($EE))
 
-FXHeader_PlasmaBeachQuicksand_BotwoonQuicksand:                          ;839F74;
+FXHeader_PlasmaBeachQuicksand_BotwoonQuicksand:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -6974,7 +6974,7 @@ FXHeader_PlasmaBeachQuicksand_BotwoonQuicksand:                          ;839F74
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Shaktool_State0_1:                                              ;839F84;
+FXHeader_Shaktool_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($00B0),
@@ -6988,7 +6988,7 @@ FXHeader_Shaktool_State0_1:                                              ;839F84
     %animTiles(0),
     %paletteBlend($E8))
 
-FXHeader_HalfieClimb:                                                    ;839F94;
+FXHeader_HalfieClimb:
     %FXHeader(\
     %door(0),
     %baseY($0135),
@@ -7002,7 +7002,7 @@ FXHeader_HalfieClimb:                                                    ;839F94
     %animTiles(2),
     %paletteBlend($EE))
 
-FXHeader_Botwoon_State0_1:                                               ;839FA4;
+FXHeader_Botwoon_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -7016,7 +7016,7 @@ FXHeader_Botwoon_State0_1:                                               ;839FA4
     %animTiles(0),
     %paletteBlend($EE))
 
-FXHeader_SpaceJump:                                                      ;839FB4;
+FXHeader_SpaceJump:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -7030,7 +7030,7 @@ FXHeader_SpaceJump:                                                      ;839FB4
     %animTiles(0),
     %paletteBlend($EE))
 
-FXHeader_MaridiaEnergyRefill:                                            ;839FC4;
+FXHeader_MaridiaEnergyRefill:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7044,7 +7044,7 @@ FXHeader_MaridiaEnergyRefill:                                            ;839FC4
     %animTiles(0),
     %paletteBlend($EE))
 
-FXHeader_WestCactusAlley:                                                ;839FD4;
+FXHeader_WestCactusAlley:
     %FXHeader(\
     %door(0),
     %baseY($00B9),
@@ -7058,7 +7058,7 @@ FXHeader_WestCactusAlley:                                                ;839FD4
     %animTiles(0),
     %paletteBlend($EE))
 
-FXHeader_EastCactusAlley:                                                ;839FE4;
+FXHeader_EastCactusAlley:
     %FXHeader(\
     %door(0),
     %baseY($0135),
@@ -7072,7 +7072,7 @@ FXHeader_EastCactusAlley:                                                ;839FE4
     %animTiles(2),
     %paletteBlend($EE))
 
-FXHeader_Draygon_State0_1:                                               ;839FF4;
+FXHeader_Draygon_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($0010),
@@ -7086,7 +7086,7 @@ FXHeader_Draygon_State0_1:                                               ;839FF4
     %animTiles(0),
     %paletteBlend($42))
 
-FXHeader_TourianFirst:                                                   ;83A004;
+FXHeader_TourianFirst:
     %FXHeader(\
     %door(0),
     %baseY($03BC),
@@ -7100,7 +7100,7 @@ FXHeader_TourianFirst:                                                   ;83A004
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_Metroids1_State0_1:                                             ;83A014;
+FXHeader_Metroids1_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($00D0),
@@ -7114,7 +7114,7 @@ FXHeader_Metroids1_State0_1:                                             ;83A014
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_Metroids2_State0_1:                                             ;83A024;
+FXHeader_Metroids2_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7128,7 +7128,7 @@ FXHeader_Metroids2_State0_1:                                             ;83A024
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Metroids3_State0_1:                                             ;83A034;
+FXHeader_Metroids3_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($00D0),
@@ -7142,7 +7142,7 @@ FXHeader_Metroids3_State0_1:                                             ;83A034
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_Metroids4_State0_1:                                             ;83A044;
+FXHeader_Metroids4_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7156,7 +7156,7 @@ FXHeader_Metroids4_State0_1:                                             ;83A044
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_BlueHopper_State0_1:                                            ;83A054;
+FXHeader_BlueHopper_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7170,7 +7170,7 @@ FXHeader_BlueHopper_State0_1:                                            ;83A054
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_DustTorizo_State0_1:                                            ;83A064;
+FXHeader_DustTorizo_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7184,7 +7184,7 @@ FXHeader_DustTorizo_State0_1:                                            ;83A064
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_BigBoy_State0_1:                                                ;83A074;
+FXHeader_BigBoy_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7198,7 +7198,7 @@ FXHeader_BigBoy_State0_1:                                                ;83A074
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_Seaweed:                                                        ;83A084;
+FXHeader_Seaweed:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7212,7 +7212,7 @@ FXHeader_Seaweed:                                                        ;83A084
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_TourianRecharge:                                                ;83A094;
+FXHeader_TourianRecharge:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7226,7 +7226,7 @@ FXHeader_TourianRecharge:                                                ;83A094
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_MotherBrain_State0_1:                                           ;83A0A4;
+FXHeader_MotherBrain_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($00E8),
@@ -7240,7 +7240,7 @@ FXHeader_MotherBrain_State0_1:                                           ;83A0A4
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_SetByMotherBrain_0:                                             ;83A0B4;
+FXHeader_SetByMotherBrain_0:
     %FXHeader(\
     %door(0),
     %baseY($00E8),
@@ -7254,7 +7254,7 @@ FXHeader_SetByMotherBrain_0:                                             ;83A0B4
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_SetByMotherBrain_1:                                             ;83A0C4;
+FXHeader_SetByMotherBrain_1:
     %FXHeader(\
     %door(0),
     %baseY($00B8),
@@ -7268,7 +7268,7 @@ FXHeader_SetByMotherBrain_1:                                             ;83A0C4
     %animTiles(0),
     %paletteBlend(2))
 
-FXHeader_TourianEyeDoor:                                                 ;83A0D4;
+FXHeader_TourianEyeDoor:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7282,7 +7282,7 @@ FXHeader_TourianEyeDoor:                                                 ;83A0D4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_RinkaShaft:                                                     ;83A0E4;
+FXHeader_RinkaShaft:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7296,7 +7296,7 @@ FXHeader_RinkaShaft:                                                     ;83A0E4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_MotherBrainSave:                                                ;83A0F4;
+FXHeader_MotherBrainSave:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7310,7 +7310,7 @@ FXHeader_MotherBrainSave:                                                ;83A0F4
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_TourianEscape1:                                                 ;83A104;
+FXHeader_TourianEscape1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7324,7 +7324,7 @@ FXHeader_TourianEscape1:                                                 ;83A104
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_TourianEscape2:                                                 ;83A114;
+FXHeader_TourianEscape2:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7338,7 +7338,7 @@ FXHeader_TourianEscape2:                                                 ;83A114
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_TourianEscape3:                                                 ;83A124;
+FXHeader_TourianEscape3:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7352,7 +7352,7 @@ FXHeader_TourianEscape3:                                                 ;83A124
     %animTiles(0),
     %paletteBlend(0))
 
-FXHeader_ToruianEscaper4:                                                ;83A134;
+FXHeader_ToruianEscaper4:
     %FXHeader(\
     %door(0),
     %baseY($05E0),
@@ -7367,9 +7367,9 @@ FXHeader_ToruianEscaper4:                                                ;83A134
     %paletteBlend(0))
 
 FXHeader_UpperTourianSave:
-    dw $FFFF                                                             ;83A144;
+    dw $FFFF
 
-FXHeader_CeresElev_State0_1:                                             ;83A146;
+FXHeader_CeresElev_State0_1:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7384,18 +7384,18 @@ FXHeader_CeresElev_State0_1:                                             ;83A146
     %paletteBlend(0))
 
 FXHeader_FallingTile_State0:
-    dw $FFFF                                                             ;83A156;
+    dw $FFFF
 
 FXHeader_MagnetStairs_State0:
-    dw $FFFF                                                             ;83A158;
+    dw $FFFF
 
 FXHeader_DeadScientist_State0:
-    dw $FFFF                                                             ;83A15A;
+    dw $FFFF
 
 FXHeader_58Escape_State0:
-    dw $FFFF                                                             ;83A15C;
+    dw $FFFF
 
-FXHeader_CeresRidley_State0:                                             ;83A15E;
+FXHeader_CeresRidley_State0:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7410,7 +7410,7 @@ FXHeader_CeresRidley_State0:                                             ;83A15E
     %paletteBlend(0))
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_FXHeader_83A16E:                                                  ;83A16E;
+UNUSED_FXHeader_83A16E:
     %FXHeader(\
     %door(0),
     %baseY($FFFF),
@@ -7426,22 +7426,22 @@ UNUSED_FXHeader_83A16E:                                                  ;83A16E
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 FXHeader_FallingTile_State1:
-    dw $FFFF                                                             ;83A17E;
+    dw $FFFF
 
 FXHeader_MagnetStairs_State1:
-    dw $FFFF                                                             ;83A180;
+    dw $FFFF
 
 FXHeader_DeadScientist_State1:
-    dw $FFFF                                                             ;83A182;
+    dw $FFFF
 
 FXHeader_58Escape_State1:
-    dw $FFFF                                                             ;83A184;
+    dw $FFFF
 
 FXHeader_CeresRidley_State1:
-    dw $FFFF                                                             ;83A186;
+    dw $FFFF
 
 FXHeader_Debug_MotherBrain_State2:
-    dw $FFFF                                                             ;83A188;
+    dw $FFFF
 
 
 ; Door header format
@@ -7457,9 +7457,9 @@ FXHeader_Debug_MotherBrain_State2:
 ;       |    |  |  |  |  |  |  |    |
 ;       rrrr ee oo xx yy XX YY dddd aaaa
 Door_MaridiaElev_3_TourianFirst_2:
-    dw $0000                                                             ;83A18A;
+    dw $0000
 
-Door_BowlingAlley_0:                                                     ;83A18C;
+Door_BowlingAlley_0:
     %DoorHeader(\
     %destination(RoomHeader_WestOcean),
     %elevator($40),
@@ -7469,7 +7469,7 @@ Door_BowlingAlley_0:                                                     ;83A18C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BowlingAlley_1:                                                     ;83A198;
+Door_BowlingAlley_1:
     %DoorHeader(\
     %destination(RoomHeader_PreBowling),
     %elevator($40),
@@ -7479,7 +7479,7 @@ Door_BowlingAlley_1:                                                     ;83A198
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BowlingAlley_2:                                                     ;83A1A4;
+Door_BowlingAlley_2:
     %DoorHeader(\
     %destination(RoomHeader_GravitySuit),
     %elevator(0),
@@ -7489,7 +7489,7 @@ Door_BowlingAlley_2:                                                     ;83A1A4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WreckedShipEntrance_0:                                              ;83A1B0;
+Door_WreckedShipEntrance_0:
     %DoorHeader(\
     %destination(RoomHeader_WestOcean),
     %elevator($40),
@@ -7499,7 +7499,7 @@ Door_WreckedShipEntrance_0:                                              ;83A1B0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WreckedShipEntrance_1:                                              ;83A1BC;
+Door_WreckedShipEntrance_1:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipMainShaft),
     %elevator(0),
@@ -7509,7 +7509,7 @@ Door_WreckedShipEntrance_1:                                              ;83A1BC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Attic_0:                                                            ;83A1C8;
+Door_Attic_0:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipMainShaft),
     %elevator(0),
@@ -7519,7 +7519,7 @@ Door_Attic_0:                                                            ;83A1C8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Attic_1:                                                            ;83A1D4;
+Door_Attic_1:
     %DoorHeader(\
     %destination(RoomHeader_AssemblyLine),
     %elevator(0),
@@ -7529,7 +7529,7 @@ Door_Attic_1:                                                            ;83A1D4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Attic_2:                                                            ;83A1E0;
+Door_Attic_2:
     %DoorHeader(\
     %destination(RoomHeader_WestOcean),
     %elevator($40),
@@ -7539,7 +7539,7 @@ Door_Attic_2:                                                            ;83A1E0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_AssemblyLine_0:                                                     ;83A1EC;
+Door_AssemblyLine_0:
     %DoorHeader(\
     %destination(RoomHeader_Attic),
     %elevator(0),
@@ -7549,7 +7549,7 @@ Door_AssemblyLine_0:                                                     ;83A1EC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WreckedShipMainShaft_0:                                             ;83A1F8;
+Door_WreckedShipMainShaft_0:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipEntrance),
     %elevator(0),
@@ -7559,7 +7559,7 @@ Door_WreckedShipMainShaft_0:                                             ;83A1F8
     %spawnDistance($8000),
     %doorASM(DoorASM_StartWreckedShipTreadmillEastEntrance))
 
-Door_WreckedShipMainShaft_1:                                             ;83A204;
+Door_WreckedShipMainShaft_1:
     %DoorHeader(\
     %destination(RoomHeader_SpongeBath),
     %elevator(0),
@@ -7569,7 +7569,7 @@ Door_WreckedShipMainShaft_1:                                             ;83A204
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WreckedShipMainShaft_2:                                             ;83A210;
+Door_WreckedShipMainShaft_2:
     %DoorHeader(\
     %destination(RoomHeader_WSWestSuper),
     %elevator(0),
@@ -7579,7 +7579,7 @@ Door_WreckedShipMainShaft_2:                                             ;83A210
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WreckedShipMainShaft_3:                                             ;83A21C;
+Door_WreckedShipMainShaft_3:
     %DoorHeader(\
     %destination(RoomHeader_Basement),
     %elevator(0),
@@ -7589,7 +7589,7 @@ Door_WreckedShipMainShaft_3:                                             ;83A21C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WreckedShipMainShaft_4:                                             ;83A228;
+Door_WreckedShipMainShaft_4:
     %DoorHeader(\
     %destination(RoomHeader_Attic),
     %elevator(0),
@@ -7599,7 +7599,7 @@ Door_WreckedShipMainShaft_4:                                             ;83A228
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_WreckedShipMainShaft_5:                                             ;83A234;
+Door_WreckedShipMainShaft_5:
     %DoorHeader(\
     %destination(RoomHeader_WSEastSuper),
     %elevator(0),
@@ -7609,7 +7609,7 @@ Door_WreckedShipMainShaft_5:                                             ;83A234
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WreckedShipMainShaft_6:                                             ;83A240;
+Door_WreckedShipMainShaft_6:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipSave),
     %elevator(0),
@@ -7619,7 +7619,7 @@ Door_WreckedShipMainShaft_6:                                             ;83A240
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SpikyDeath_0:                                                       ;83A24C;
+Door_SpikyDeath_0:
     %DoorHeader(\
     %destination(RoomHeader_SpongeBath),
     %elevator(0),
@@ -7629,7 +7629,7 @@ Door_SpikyDeath_0:                                                       ;83A24C
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_1_Blue))
 
-Door_SpikyDeath_1:                                                       ;83A258;
+Door_SpikyDeath_1:
     %DoorHeader(\
     %destination(RoomHeader_ElectricDeath),
     %elevator(0),
@@ -7639,7 +7639,7 @@ Door_SpikyDeath_1:                                                       ;83A258
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ElectricDeath_0:                                                    ;83A264;
+Door_ElectricDeath_0:
     %DoorHeader(\
     %destination(RoomHeader_EastOcean),
     %elevator($40),
@@ -7649,7 +7649,7 @@ Door_ElectricDeath_0:                                                    ;83A264
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ElectricDeath_1:                                                    ;83A270;
+Door_ElectricDeath_1:
     %DoorHeader(\
     %destination(RoomHeader_SpikyDeath),
     %elevator(0),
@@ -7659,7 +7659,7 @@ Door_ElectricDeath_1:                                                    ;83A270
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ElectricDeath_2:                                                    ;83A27C;
+Door_ElectricDeath_2:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipETank),
     %elevator(0),
@@ -7669,7 +7669,7 @@ Door_ElectricDeath_2:                                                    ;83A27C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WreckedShipETank_0:                                                 ;83A288;
+Door_WreckedShipETank_0:
     %DoorHeader(\
     %destination(RoomHeader_ElectricDeath),
     %elevator(0),
@@ -7679,7 +7679,7 @@ Door_WreckedShipETank_0:                                                 ;83A288
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Green_duplicate_again))
 
-Door_Basement_0:                                                         ;83A294;
+Door_Basement_0:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipMainShaft),
     %elevator(0),
@@ -7689,7 +7689,7 @@ Door_Basement_0:                                                         ;83A294
     %spawnDistance($01C0),
     %doorASM(DoorASM_Scroll_28_2E_Green))
 
-Door_Basement_1:                                                         ;83A2A0;
+Door_Basement_1:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipMap),
     %elevator(0),
@@ -7699,7 +7699,7 @@ Door_Basement_1:                                                         ;83A2A0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Basement_2:                                                         ;83A2AC;
+Door_Basement_2:
     %DoorHeader(\
     %destination(RoomHeader_Phantoon),
     %elevator(0),
@@ -7709,7 +7709,7 @@ Door_Basement_2:                                                         ;83A2AC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WreckedShipMap_0:                                                   ;83A2B8;
+Door_WreckedShipMap_0:
     %DoorHeader(\
     %destination(RoomHeader_Basement),
     %elevator(0),
@@ -7719,7 +7719,7 @@ Door_WreckedShipMap_0:                                                   ;83A2B8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Phantoon_0:                                                         ;83A2C4;
+Door_Phantoon_0:
     %DoorHeader(\
     %destination(RoomHeader_Basement),
     %elevator(0),
@@ -7729,7 +7729,7 @@ Door_Phantoon_0:                                                         ;83A2C4
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_3_Red_4_Blue))
 
-Door_SpongeBath_0:                                                       ;83A2D0;
+Door_SpongeBath_0:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipMainShaft),
     %elevator(0),
@@ -7739,7 +7739,7 @@ Door_SpongeBath_0:                                                       ;83A2D0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SpongeBath_1:                                                       ;83A2DC;
+Door_SpongeBath_1:
     %DoorHeader(\
     %destination(RoomHeader_SpikyDeath),
     %elevator(0),
@@ -7749,7 +7749,7 @@ Door_SpongeBath_1:                                                       ;83A2DC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WSWestSuper_0:                                                      ;83A2E8;
+Door_WSWestSuper_0:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipMainShaft),
     %elevator(0),
@@ -7759,7 +7759,7 @@ Door_WSWestSuper_0:                                                      ;83A2E8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WSEastSuper_0:                                                      ;83A2F4;
+Door_WSEastSuper_0:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipMainShaft),
     %elevator(0),
@@ -7769,7 +7769,7 @@ Door_WSEastSuper_0:                                                      ;83A2F4
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_29_Blue))
 
-Door_GravitySuit_0:                                                      ;83A300;
+Door_GravitySuit_0:
     %DoorHeader(\
     %destination(RoomHeader_WestOcean),
     %elevator($40),
@@ -7779,7 +7779,7 @@ Door_GravitySuit_0:                                                      ;83A300
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GravitySuit_1:                                                      ;83A30C;
+Door_GravitySuit_1:
     %DoorHeader(\
     %destination(RoomHeader_BowlingAlley),
     %elevator(0),
@@ -7789,7 +7789,7 @@ Door_GravitySuit_1:                                                      ;83A30C
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_6_7_8_9_A_B_Red))
 
-Door_WreckedShipSave_0:                                                  ;83A318;
+Door_WreckedShipSave_0:
     %DoorHeader(\
     %destination(RoomHeader_WreckedShipMainShaft),
     %elevator(0),
@@ -7799,7 +7799,7 @@ Door_WreckedShipSave_0:                                                  ;83A318
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GlassTunnelSave_0:                                                  ;83A324;
+Door_GlassTunnelSave_0:
     %DoorHeader(\
     %destination(RoomHeader_GlassTunnel),
     %elevator(0),
@@ -7809,7 +7809,7 @@ Door_GlassTunnelSave_0:                                                  ;83A324
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GlassTunnel_0:                                                      ;83A330;
+Door_GlassTunnel_0:
     %DoorHeader(\
     %destination(RoomHeader_MainStreet),
     %elevator(0),
@@ -7819,7 +7819,7 @@ Door_GlassTunnel_0:                                                      ;83A330
     %spawnDistance($0200),
     %doorASM(0))
 
-Door_GlassTunnel_1:                                                      ;83A33C;
+Door_GlassTunnel_1:
     %DoorHeader(\
     %destination(RoomHeader_WestTunnel),
     %elevator(0),
@@ -7829,7 +7829,7 @@ Door_GlassTunnel_1:                                                      ;83A33C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_GlassTunnel_2:                                                      ;83A348;
+Door_GlassTunnel_2:
     %DoorHeader(\
     %destination(RoomHeader_EastTunnel),
     %elevator(0),
@@ -7839,7 +7839,7 @@ Door_GlassTunnel_2:                                                      ;83A348
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Red_4_Blue_duplicate))
 
-Door_GlassTunnel_3:                                                      ;83A354;
+Door_GlassTunnel_3:
     %DoorHeader(\
     %destination(RoomHeader_GlassTunnelSave),
     %elevator(0),
@@ -7849,7 +7849,7 @@ Door_GlassTunnel_3:                                                      ;83A354
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestTunnel_0:                                                       ;83A360;
+Door_WestTunnel_0:
     %DoorHeader(\
     %destination(RoomHeader_GlassTunnel),
     %elevator(0),
@@ -7859,7 +7859,7 @@ Door_WestTunnel_0:                                                       ;83A360
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_2_Red_1_Blue))
 
-Door_WestTunnel_1:                                                       ;83A36C;
+Door_WestTunnel_1:
     %DoorHeader(\
     %destination(RoomHeader_BelowSpazer),
     %elevator($40),
@@ -7869,7 +7869,7 @@ Door_WestTunnel_1:                                                       ;83A36C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EastTunnel_0:                                                       ;83A378;
+Door_EastTunnel_0:
     %DoorHeader(\
     %destination(RoomHeader_GlassTunnel),
     %elevator(0),
@@ -7879,7 +7879,7 @@ Door_EastTunnel_0:                                                       ;83A378
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_2_Red_1_Blue))
 
-Door_EastTunnel_1:                                                       ;83A384;
+Door_EastTunnel_1:
     %DoorHeader(\
     %destination(RoomHeader_WarehouseEntrance),
     %elevator($40),
@@ -7889,7 +7889,7 @@ Door_EastTunnel_1:                                                       ;83A384
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EastTunnel_2:                                                       ;83A390;
+Door_EastTunnel_2:
     %DoorHeader(\
     %destination(RoomHeader_CrabHole),
     %elevator(0),
@@ -7899,7 +7899,7 @@ Door_EastTunnel_2:                                                       ;83A390
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Red_1_Blue))
 
-Door_MainStreet_0:                                                       ;83A39C;
+Door_MainStreet_0:
     %DoorHeader(\
     %destination(RoomHeader_GlassTunnel),
     %elevator(0),
@@ -7909,7 +7909,7 @@ Door_MainStreet_0:                                                       ;83A39C
     %spawnDistance($0170),
     %doorASM(0))
 
-Door_MainStreet_1:                                                       ;83A3A8;
+Door_MainStreet_1:
     %DoorHeader(\
     %destination(RoomHeader_CrabTunnel),
     %elevator(0),
@@ -7919,7 +7919,7 @@ Door_MainStreet_1:                                                       ;83A3A8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MainStreet_2:                                                       ;83A3B4;
+Door_MainStreet_2:
     %DoorHeader(\
     %destination(RoomHeader_FishTank),
     %elevator(0),
@@ -7929,7 +7929,7 @@ Door_MainStreet_2:                                                       ;83A3B4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MainStreet_3:                                                       ;83A3C0;
+Door_MainStreet_3:
     %DoorHeader(\
     %destination(RoomHeader_MtEverest),
     %elevator(0),
@@ -7939,7 +7939,7 @@ Door_MainStreet_3:                                                       ;83A3C0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MainStreet_4:                                                       ;83A3CC;
+Door_MainStreet_4:
     %DoorHeader(\
     %destination(RoomHeader_MtEverest),
     %elevator(0),
@@ -7949,7 +7949,7 @@ Door_MainStreet_4:                                                       ;83A3CC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FishTank_0:                                                         ;83A3D8;
+Door_FishTank_0:
     %DoorHeader(\
     %destination(RoomHeader_MainStreet),
     %elevator(0),
@@ -7959,7 +7959,7 @@ Door_FishTank_0:                                                         ;83A3D8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FishTank_1:                                                         ;83A3E4;
+Door_FishTank_1:
     %DoorHeader(\
     %destination(RoomHeader_MamaTurtle),
     %elevator(0),
@@ -7969,7 +7969,7 @@ Door_FishTank_1:                                                         ;83A3E4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_FishTank_2:                                                         ;83A3F0;
+Door_FishTank_2:
     %DoorHeader(\
     %destination(RoomHeader_MtEverest),
     %elevator(0),
@@ -7979,7 +7979,7 @@ Door_FishTank_2:                                                         ;83A3F0
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_FishTank_3:                                                         ;83A3FC;
+Door_FishTank_3:
     %DoorHeader(\
     %destination(RoomHeader_MtEverest),
     %elevator(0),
@@ -7989,7 +7989,7 @@ Door_FishTank_3:                                                         ;83A3FC
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_MamaTurtle_0:                                                       ;83A408;
+Door_MamaTurtle_0:
     %DoorHeader(\
     %destination(RoomHeader_FishTank),
     %elevator(0),
@@ -7999,7 +7999,7 @@ Door_MamaTurtle_0:                                                       ;83A408
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrabTunnel_0:                                                       ;83A414;
+Door_CrabTunnel_0:
     %DoorHeader(\
     %destination(RoomHeader_MainStreet),
     %elevator(0),
@@ -8009,7 +8009,7 @@ Door_CrabTunnel_0:                                                       ;83A414
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrabTunnel_1:                                                       ;83A420;
+Door_CrabTunnel_1:
     %DoorHeader(\
     %destination(RoomHeader_CrabHole),
     %elevator(0),
@@ -8019,7 +8019,7 @@ Door_CrabTunnel_1:                                                       ;83A420
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MtEverest_0:                                                        ;83A42C;
+Door_MtEverest_0:
     %DoorHeader(\
     %destination(RoomHeader_RedFish),
     %elevator(0),
@@ -8029,7 +8029,7 @@ Door_MtEverest_0:                                                        ;83A42C
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_MtEverest_1:                                                        ;83A438;
+Door_MtEverest_1:
     %DoorHeader(\
     %destination(RoomHeader_MainStreet),
     %elevator(0),
@@ -8039,7 +8039,7 @@ Door_MtEverest_1:                                                        ;83A438
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MtEverest_2:                                                        ;83A444;
+Door_MtEverest_2:
     %DoorHeader(\
     %destination(RoomHeader_FishTank),
     %elevator(0),
@@ -8049,7 +8049,7 @@ Door_MtEverest_2:                                                        ;83A444
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MtEverest_3:                                                        ;83A450;
+Door_MtEverest_3:
     %DoorHeader(\
     %destination(RoomHeader_FishTank),
     %elevator(0),
@@ -8059,7 +8059,7 @@ Door_MtEverest_3:                                                        ;83A450
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MtEverest_4:                                                        ;83A45C;
+Door_MtEverest_4:
     %DoorHeader(\
     %destination(RoomHeader_MainStreet),
     %elevator(0),
@@ -8069,7 +8069,7 @@ Door_MtEverest_4:                                                        ;83A45C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MtEverest_5:                                                        ;83A468;
+Door_MtEverest_5:
     %DoorHeader(\
     %destination(RoomHeader_CrabShaft),
     %elevator(0),
@@ -8079,7 +8079,7 @@ Door_MtEverest_5:                                                        ;83A468
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedFish_0:                                                          ;83A474;
+Door_RedFish_0:
     %DoorHeader(\
     %destination(RoomHeader_MtEverest),
     %elevator(0),
@@ -8089,7 +8089,7 @@ Door_RedFish_0:                                                          ;83A474
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RedFish_1:                                                          ;83A480;
+Door_RedFish_1:
     %DoorHeader(\
     %destination(RoomHeader_Caterpillar),
     %elevator($40),
@@ -8099,7 +8099,7 @@ Door_RedFish_1:                                                          ;83A480
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_9_Red_A_Blue))
 
-Door_WateringHole_0:                                                     ;83A48C;
+Door_WateringHole_0:
     %DoorHeader(\
     %destination(RoomHeader_NWestMaridiaBug),
     %elevator(0),
@@ -8109,7 +8109,7 @@ Door_WateringHole_0:                                                     ;83A48C
     %spawnDistance($0140),
     %doorASM(0))
 
-Door_NWestMaridiaBug_0:                                                  ;83A498;
+Door_NWestMaridiaBug_0:
     %DoorHeader(\
     %destination(RoomHeader_WateringHole),
     %elevator(0),
@@ -8119,7 +8119,7 @@ Door_NWestMaridiaBug_0:                                                  ;83A498
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_NWestMaridiaBug_1:                                                  ;83A4A4;
+Door_NWestMaridiaBug_1:
     %DoorHeader(\
     %destination(RoomHeader_PseudoPlasmaSpark),
     %elevator(0),
@@ -8129,7 +8129,7 @@ Door_NWestMaridiaBug_1:                                                  ;83A4A4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrabShaft_0:                                                        ;83A4B0;
+Door_CrabShaft_0:
     %DoorHeader(\
     %destination(RoomHeader_MtEverest),
     %elevator(0),
@@ -8139,7 +8139,7 @@ Door_CrabShaft_0:                                                        ;83A4B0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrabShaft_1:                                                        ;83A4BC;
+Door_CrabShaft_1:
     %DoorHeader(\
     %destination(RoomHeader_PseudoPlasmaSpark),
     %elevator(0),
@@ -8149,7 +8149,7 @@ Door_CrabShaft_1:                                                        ;83A4BC
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_CrabShaft_2:                                                        ;83A4C8;
+Door_CrabShaft_2:
     %DoorHeader(\
     %destination(RoomHeader_Aqueduct),
     %elevator(0),
@@ -8159,7 +8159,7 @@ Door_CrabShaft_2:                                                        ;83A4C8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PseudoPlasmaSpark_0:                                                ;83A4D4;
+Door_PseudoPlasmaSpark_0:
     %DoorHeader(\
     %destination(RoomHeader_NWestMaridiaBug),
     %elevator(0),
@@ -8169,7 +8169,7 @@ Door_PseudoPlasmaSpark_0:                                                ;83A4D4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PseudoPlasmaSpark_1:                                                ;83A4E0;
+Door_PseudoPlasmaSpark_1:
     %DoorHeader(\
     %destination(RoomHeader_CrabShaft),
     %elevator(0),
@@ -8179,7 +8179,7 @@ Door_PseudoPlasmaSpark_1:                                                ;83A4E0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PseudoPlasmaSpark_2:                                                ;83A4EC;
+Door_PseudoPlasmaSpark_2:
     %DoorHeader(\
     %destination(RoomHeader_PlasmaSpark),
     %elevator(0),
@@ -8189,7 +8189,7 @@ Door_PseudoPlasmaSpark_2:                                                ;83A4EC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrabHole_0:                                                         ;83A4F8;
+Door_CrabHole_0:
     %DoorHeader(\
     %destination(RoomHeader_CrabTunnel),
     %elevator(0),
@@ -8199,7 +8199,7 @@ Door_CrabHole_0:                                                         ;83A4F8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrabHole_1:                                                         ;83A504;
+Door_CrabHole_1:
     %DoorHeader(\
     %destination(RoomHeader_WestSandHallTunnel),
     %elevator(0),
@@ -8209,7 +8209,7 @@ Door_CrabHole_1:                                                         ;83A504
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrabHole_2:                                                         ;83A510;
+Door_CrabHole_2:
     %DoorHeader(\
     %destination(RoomHeader_EastTunnel),
     %elevator(0),
@@ -8219,7 +8219,7 @@ Door_CrabHole_2:                                                         ;83A510
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CrabHole_3:                                                         ;83A51C;
+Door_CrabHole_3:
     %DoorHeader(\
     %destination(RoomHeader_MaridiaMap),
     %elevator(0),
@@ -8229,7 +8229,7 @@ Door_CrabHole_3:                                                         ;83A51C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestSandHallTunnel_0:                                               ;83A528;
+Door_WestSandHallTunnel_0:
     %DoorHeader(\
     %destination(RoomHeader_CrabHole),
     %elevator(0),
@@ -8239,7 +8239,7 @@ Door_WestSandHallTunnel_0:                                               ;83A528
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestSandHallTunnel_1:                                               ;83A534;
+Door_WestSandHallTunnel_1:
     %DoorHeader(\
     %destination(RoomHeader_WestSandHall),
     %elevator(0),
@@ -8249,7 +8249,7 @@ Door_WestSandHallTunnel_1:                                               ;83A534
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PlasmaTutorial_0:                                                   ;83A540;
+Door_PlasmaTutorial_0:
     %DoorHeader(\
     %destination(RoomHeader_Kassiuz),
     %elevator(0),
@@ -8259,7 +8259,7 @@ Door_PlasmaTutorial_0:                                                   ;83A540
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PlasmaTutorial_1:                                                   ;83A54C;
+Door_PlasmaTutorial_1:
     %DoorHeader(\
     %destination(RoomHeader_Plasma),
     %elevator(0),
@@ -8269,7 +8269,7 @@ Door_PlasmaTutorial_1:                                                   ;83A54C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Plasma_0:                                                           ;83A558;
+Door_Plasma_0:
     %DoorHeader(\
     %destination(RoomHeader_PlasmaTutorial),
     %elevator(0),
@@ -8279,7 +8279,7 @@ Door_Plasma_0:                                                           ;83A558
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ThreadTheNeedle_0:                                                  ;83A564;
+Door_ThreadTheNeedle_0:
     %DoorHeader(\
     %destination(RoomHeader_BugSandHole),
     %elevator(0),
@@ -8289,7 +8289,7 @@ Door_ThreadTheNeedle_0:                                                  ;83A564
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ThreadTheNeedle_1:                                                  ;83A570;
+Door_ThreadTheNeedle_1:
     %DoorHeader(\
     %destination(RoomHeader_MaridiaElev),
     %elevator(0),
@@ -8299,7 +8299,7 @@ Door_ThreadTheNeedle_1:                                                  ;83A570
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MaridiaElev_0:                                                      ;83A57C;
+Door_MaridiaElev_0:
     %DoorHeader(\
     %destination(RoomHeader_ThreadTheNeedle),
     %elevator(0),
@@ -8309,7 +8309,7 @@ Door_MaridiaElev_0:                                                      ;83A57C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MaridiaElev_1:                                                      ;83A588;
+Door_MaridiaElev_1:
     %DoorHeader(\
     %destination(RoomHeader_ForgottenHighwaySave),
     %elevator(0),
@@ -8319,7 +8319,7 @@ Door_MaridiaElev_1:                                                      ;83A588
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MaridiaElev_2:                                                      ;83A594;
+Door_MaridiaElev_2:
     %DoorHeader(\
     %destination(RoomHeader_ForgottenHighwayElev),
     %elevator($D0),
@@ -8329,7 +8329,7 @@ Door_MaridiaElev_2:                                                      ;83A594
     %spawnDistance(0),
     %doorASM(0))
 
-Door_PlasmaSpark_0:                                                      ;83A5A0;
+Door_PlasmaSpark_0:
     %DoorHeader(\
     %destination(RoomHeader_Butterfly),
     %elevator(0),
@@ -8339,7 +8339,7 @@ Door_PlasmaSpark_0:                                                      ;83A5A0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PlasmaSpark_1:                                                      ;83A5AC;
+Door_PlasmaSpark_1:
     %DoorHeader(\
     %destination(RoomHeader_Toilet),
     %elevator(0),
@@ -8349,7 +8349,7 @@ Door_PlasmaSpark_1:                                                      ;83A5AC
     %spawnDistance($8000),
     %doorASM(DoorASM_SetupElevatubeFromNorth))
 
-Door_PlasmaSpark_2:                                                      ;83A5B8;
+Door_PlasmaSpark_2:
     %DoorHeader(\
     %destination(RoomHeader_Kassiuz),
     %elevator(0),
@@ -8359,7 +8359,7 @@ Door_PlasmaSpark_2:                                                      ;83A5B8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_PlasmaSpark_3:                                                      ;83A5C4;
+Door_PlasmaSpark_3:
     %DoorHeader(\
     %destination(RoomHeader_BugSandHole),
     %elevator(0),
@@ -8369,7 +8369,7 @@ Door_PlasmaSpark_3:                                                      ;83A5C4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Kassiuz_0:                                                          ;83A5D0;
+Door_Kassiuz_0:
     %DoorHeader(\
     %destination(RoomHeader_PlasmaSpark),
     %elevator(0),
@@ -8379,7 +8379,7 @@ Door_Kassiuz_0:                                                          ;83A5D0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Kassiuz_1:                                                          ;83A5DC;
+Door_Kassiuz_1:
     %DoorHeader(\
     %destination(RoomHeader_PlasmaTutorial),
     %elevator(0),
@@ -8389,7 +8389,7 @@ Door_Kassiuz_1:                                                          ;83A5DC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MaridiaMap_0:                                                       ;83A5E8;
+Door_MaridiaMap_0:
     %DoorHeader(\
     %destination(RoomHeader_CrabHole),
     %elevator(0),
@@ -8399,7 +8399,7 @@ Door_MaridiaMap_0:                                                       ;83A5E8
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_Red_1_Blue))
 
-Door_ForgottenHighwaySave_0:                                             ;83A5F4;
+Door_ForgottenHighwaySave_0:
     %DoorHeader(\
     %destination(RoomHeader_MaridiaElev),
     %elevator(0),
@@ -8409,7 +8409,7 @@ Door_ForgottenHighwaySave_0:                                             ;83A5F4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Toilet_0:                                                           ;83A600;
+Door_Toilet_0:
     %DoorHeader(\
     %destination(RoomHeader_Oasis),
     %elevator(0),
@@ -8419,7 +8419,7 @@ Door_Toilet_0:                                                           ;83A600
     %spawnDistance($8000),
     %doorASM(DoorASM_ResetElevatubeOnSouthExit))
 
-Door_Toilet_1:                                                           ;83A60C;
+Door_Toilet_1:
     %DoorHeader(\
     %destination(RoomHeader_PlasmaSpark),
     %elevator(0),
@@ -8429,7 +8429,7 @@ Door_Toilet_1:                                                           ;83A60C
     %spawnDistance($0200),
     %doorASM(DoorASM_ResetElevatubeOnNorthExit))
 
-Door_BugSandHole_0:                                                      ;83A618;
+Door_BugSandHole_0:
     %DoorHeader(\
     %destination(RoomHeader_ThreadTheNeedle),
     %elevator(0),
@@ -8439,7 +8439,7 @@ Door_BugSandHole_0:                                                      ;83A618
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BugSandHole_1:                                                      ;83A624;
+Door_BugSandHole_1:
     %DoorHeader(\
     %destination(RoomHeader_PlasmaBeachQuicksand),
     %elevator(0),
@@ -8449,7 +8449,7 @@ Door_BugSandHole_1:                                                      ;83A624
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BugSandHole_2:                                                      ;83A630;
+Door_BugSandHole_2:
     %DoorHeader(\
     %destination(RoomHeader_PlasmaSpark),
     %elevator(0),
@@ -8459,7 +8459,7 @@ Door_BugSandHole_2:                                                      ;83A630
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestSandHall_0:                                                     ;83A63C;
+Door_WestSandHall_0:
     %DoorHeader(\
     %destination(RoomHeader_WestSandHallTunnel),
     %elevator(0),
@@ -8469,7 +8469,7 @@ Door_WestSandHall_0:                                                     ;83A63C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestSandHall_1:                                                     ;83A648;
+Door_WestSandHall_1:
     %DoorHeader(\
     %destination(RoomHeader_Oasis),
     %elevator(0),
@@ -8479,7 +8479,7 @@ Door_WestSandHall_1:                                                     ;83A648
     %spawnDistance($8000),
     %doorASM(0))
 
-UNUSED_Door_WestSandHall_2_83A654:                                       ;83A654;
+UNUSED_Door_WestSandHall_2_83A654:
     %DoorHeader(\
     %destination(RoomHeader_WestSandHole),
     %elevator(0),
@@ -8489,7 +8489,7 @@ UNUSED_Door_WestSandHall_2_83A654:                                       ;83A654
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Oasis_0:                                                            ;83A660;
+Door_Oasis_0:
     %DoorHeader(\
     %destination(RoomHeader_WestSandHall),
     %elevator(0),
@@ -8499,7 +8499,7 @@ Door_Oasis_0:                                                            ;83A660
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Oasis_1:                                                            ;83A66C;
+Door_Oasis_1:
     %DoorHeader(\
     %destination(RoomHeader_EastSandHall),
     %elevator(0),
@@ -8509,7 +8509,7 @@ Door_Oasis_1:                                                            ;83A66C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Oasis_2:                                                            ;83A678;
+Door_Oasis_2:
     %DoorHeader(\
     %destination(RoomHeader_Toilet),
     %elevator(0),
@@ -8519,7 +8519,7 @@ Door_Oasis_2:                                                            ;83A678
     %spawnDistance($8000),
     %doorASM(DoorASM_SetupElevatubeFromSouth))
 
-Door_EastSandHall_0:                                                     ;83A684;
+Door_EastSandHall_0:
     %DoorHeader(\
     %destination(RoomHeader_Oasis),
     %elevator(0),
@@ -8529,7 +8529,7 @@ Door_EastSandHall_0:                                                     ;83A684
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EastSandHall_1:                                                     ;83A690;
+Door_EastSandHall_1:
     %DoorHeader(\
     %destination(RoomHeader_Pants),
     %elevator(0),
@@ -8539,7 +8539,7 @@ Door_EastSandHall_1:                                                     ;83A690
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_4_Red_duplicate))
 
-UNUSED_Door_EastSandHall_2_83A69C:                                       ;83A69C;
+UNUSED_Door_EastSandHall_2_83A69C:
     %DoorHeader(\
     %destination(RoomHeader_EastSandHole),
     %elevator(0),
@@ -8549,7 +8549,7 @@ UNUSED_Door_EastSandHall_2_83A69C:                                       ;83A69C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestSandHole_0:                                                     ;83A6A8;
+Door_WestSandHole_0:
     %DoorHeader(\
     %destination(RoomHeader_WestAqueductQuicksand),
     %elevator(0),
@@ -8559,7 +8559,7 @@ Door_WestSandHole_0:                                                     ;83A6A8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestSandHole_1:                                                     ;83A6B4;
+Door_WestSandHole_1:
     %DoorHeader(\
     %destination(RoomHeader_WestSandHall),
     %elevator(0),
@@ -8569,7 +8569,7 @@ Door_WestSandHole_1:                                                     ;83A6B4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EastSandHole_0:                                                     ;83A6C0;
+Door_EastSandHole_0:
     %DoorHeader(\
     %destination(RoomHeader_EastAqueductQuicksand),
     %elevator(0),
@@ -8579,7 +8579,7 @@ Door_EastSandHole_0:                                                     ;83A6C0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EastSandHole_1:                                                     ;83A6CC;
+Door_EastSandHole_1:
     %DoorHeader(\
     %destination(RoomHeader_EastSandHall),
     %elevator(0),
@@ -8589,7 +8589,7 @@ Door_EastSandHole_1:                                                     ;83A6CC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestAqueductQuicksand_0:                                            ;83A6D8;
+Door_WestAqueductQuicksand_0:
     %DoorHeader(\
     %destination(RoomHeader_Aqueduct),
     %elevator(0),
@@ -8599,7 +8599,7 @@ Door_WestAqueductQuicksand_0:                                            ;83A6D8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestAqueductQuicksand_1:                                            ;83A6E4;
+Door_WestAqueductQuicksand_1:
     %DoorHeader(\
     %destination(RoomHeader_WestSandHole),
     %elevator(0),
@@ -8609,7 +8609,7 @@ Door_WestAqueductQuicksand_1:                                            ;83A6E4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EastAqueductQuicksand_0:                                            ;83A6F0;
+Door_EastAqueductQuicksand_0:
     %DoorHeader(\
     %destination(RoomHeader_Aqueduct),
     %elevator(0),
@@ -8619,7 +8619,7 @@ Door_EastAqueductQuicksand_0:                                            ;83A6F0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EastAqueductQuicksand_1:                                            ;83A6FC;
+Door_EastAqueductQuicksand_1:
     %DoorHeader(\
     %destination(RoomHeader_EastSandHole),
     %elevator(0),
@@ -8629,7 +8629,7 @@ Door_EastAqueductQuicksand_1:                                            ;83A6FC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Aqueduct_0:                                                         ;83A708;
+Door_Aqueduct_0:
     %DoorHeader(\
     %destination(RoomHeader_CrabShaft),
     %elevator(0),
@@ -8639,7 +8639,7 @@ Door_Aqueduct_0:                                                         ;83A708
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_6_Blue))
 
-Door_Aqueduct_1:                                                         ;83A714;
+Door_Aqueduct_1:
     %DoorHeader(\
     %destination(RoomHeader_WestAqueductQuicksand),
     %elevator(0),
@@ -8649,7 +8649,7 @@ Door_Aqueduct_1:                                                         ;83A714
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Aqueduct_2:                                                         ;83A720;
+Door_Aqueduct_2:
     %DoorHeader(\
     %destination(RoomHeader_EastAqueductQuicksand),
     %elevator(0),
@@ -8659,7 +8659,7 @@ Door_Aqueduct_2:                                                         ;83A720
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Aqueduct_3:                                                         ;83A72C;
+Door_Aqueduct_3:
     %DoorHeader(\
     %destination(RoomHeader_BotwoonHallway),
     %elevator(0),
@@ -8669,7 +8669,7 @@ Door_Aqueduct_3:                                                         ;83A72C
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_Aqueduct_4:                                                         ;83A738;
+Door_Aqueduct_4:
     %DoorHeader(\
     %destination(RoomHeader_BelowBotwoonETank),
     %elevator(0),
@@ -8679,7 +8679,7 @@ Door_Aqueduct_4:                                                         ;83A738
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Aqueduct_5:                                                         ;83A744;
+Door_Aqueduct_5:
     %DoorHeader(\
     %destination(RoomHeader_AqueductSave),
     %elevator(0),
@@ -8689,7 +8689,7 @@ Door_Aqueduct_5:                                                         ;83A744
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Butterfly_0:                                                        ;83A750;
+Door_Butterfly_0:
     %DoorHeader(\
     %destination(RoomHeader_PlasmaSpark),
     %elevator(0),
@@ -8699,7 +8699,7 @@ Door_Butterfly_0:                                                        ;83A750
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Butterfly_1:                                                        ;83A75C;
+Door_Butterfly_1:
     %DoorHeader(\
     %destination(RoomHeader_WestCactusAlley),
     %elevator(0),
@@ -8709,7 +8709,7 @@ Door_Butterfly_1:                                                        ;83A75C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BotwoonHallway_0:                                                   ;83A768;
+Door_BotwoonHallway_0:
     %DoorHeader(\
     %destination(RoomHeader_Aqueduct),
     %elevator(0),
@@ -8719,7 +8719,7 @@ Door_BotwoonHallway_0:                                                   ;83A768
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BotwoonHallway_1:                                                   ;83A774;
+Door_BotwoonHallway_1:
     %DoorHeader(\
     %destination(RoomHeader_Botwoon),
     %elevator(0),
@@ -8729,7 +8729,7 @@ Door_BotwoonHallway_1:                                                   ;83A774
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Pants_0:                                                            ;83A780;
+Door_Pants_0:
     %DoorHeader(\
     %destination(RoomHeader_EastSandHall),
     %elevator(0),
@@ -8739,7 +8739,7 @@ Door_Pants_0:                                                            ;83A780
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Pants_1:                                                            ;83A78C;
+Door_Pants_1:
     %DoorHeader(\
     %destination(RoomHeader_EastPants),
     %elevator(0),
@@ -8749,7 +8749,7 @@ Door_Pants_1:                                                            ;83A78C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Pants_2:                                                            ;83A798;
+Door_Pants_2:
     %DoorHeader(\
     %destination(RoomHeader_Shaktool),
     %elevator(0),
@@ -8759,7 +8759,7 @@ Door_Pants_2:                                                            ;83A798
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Pants_3:                                                            ;83A7A4;
+Door_Pants_3:
     %DoorHeader(\
     %destination(RoomHeader_Pants),
     %elevator(0),
@@ -8769,7 +8769,7 @@ Door_Pants_3:                                                            ;83A7A4
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_4_7_Red))
 
-Door_EastPants_0:                                                        ;83A7B0;
+Door_EastPants_0:
     %DoorHeader(\
     %destination(RoomHeader_Pants),
     %elevator(0),
@@ -8779,7 +8779,7 @@ Door_EastPants_0:                                                        ;83A7B0
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_4_Red_duplicate))
 
-Door_EastPants_1:                                                        ;83A7BC;
+Door_EastPants_1:
     %DoorHeader(\
     %destination(RoomHeader_Shaktool),
     %elevator(0),
@@ -8789,7 +8789,7 @@ Door_EastPants_1:                                                        ;83A7BC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Springball_0:                                                       ;83A7C8;
+Door_Springball_0:
     %DoorHeader(\
     %destination(RoomHeader_Shaktool),
     %elevator(0),
@@ -8799,7 +8799,7 @@ Door_Springball_0:                                                       ;83A7C8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BelowBotwoonETank_0:                                                ;83A7D4;
+Door_BelowBotwoonETank_0:
     %DoorHeader(\
     %destination(RoomHeader_Aqueduct),
     %elevator(0),
@@ -8809,7 +8809,7 @@ Door_BelowBotwoonETank_0:                                                ;83A7D4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Colosseum_0:                                                        ;83A7E0;
+Door_Colosseum_0:
     %DoorHeader(\
     %destination(RoomHeader_HalfieClimb),
     %elevator(0),
@@ -8819,7 +8819,7 @@ Door_Colosseum_0:                                                        ;83A7E0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Colosseum_1:                                                        ;83A7EC;
+Door_Colosseum_1:
     %DoorHeader(\
     %destination(RoomHeader_DraygonSave),
     %elevator(0),
@@ -8829,7 +8829,7 @@ Door_Colosseum_1:                                                        ;83A7EC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Colosseum_2:                                                        ;83A7F8;
+Door_Colosseum_2:
     %DoorHeader(\
     %destination(RoomHeader_ThePrecious),
     %elevator(0),
@@ -8840,7 +8840,7 @@ Door_Colosseum_2:                                                        ;83A7F8
     %doorASM(0))
 
 if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Door_83A804:                                                      ;83A804;
+UNUSED_Door_83A804:
     %DoorHeader(\
     %destination(RoomHeader_HalfieClimb),
     %elevator(0),
@@ -8850,7 +8850,7 @@ UNUSED_Door_83A804:                                                      ;83A804
     %spawnDistance($8000),
     %doorASM(0))
 
-UNUSED_Door_83A810:                                                      ;83A810;
+UNUSED_Door_83A810:
     %DoorHeader(\
     %destination(RoomHeader_MaridiaMissileRefill),
     %elevator(0),
@@ -8861,7 +8861,7 @@ UNUSED_Door_83A810:                                                      ;83A810
     %doorASM(0))
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-Door_ThePrecious_MaridiaLoad11:                                          ;83A81C;
+Door_ThePrecious_MaridiaLoad11:
     %DoorHeader(\
     %destination(RoomHeader_ThePrecious),
     %elevator(0),
@@ -8871,7 +8871,7 @@ Door_ThePrecious_MaridiaLoad11:                                          ;83A81C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_AqueductSave_0:                                                     ;83A828;
+Door_AqueductSave_0:
     %DoorHeader(\
     %destination(RoomHeader_Aqueduct),
     %elevator(0),
@@ -8881,7 +8881,7 @@ Door_AqueductSave_0:                                                     ;83A828
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ThePrecious_0:                                                      ;83A834;
+Door_ThePrecious_0:
     %DoorHeader(\
     %destination(RoomHeader_Colosseum),
     %elevator(0),
@@ -8891,7 +8891,7 @@ Door_ThePrecious_0:                                                      ;83A834
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_ThePrecious_1:                                                      ;83A840;
+Door_ThePrecious_1:
     %DoorHeader(\
     %destination(RoomHeader_Draygon),
     %elevator(0),
@@ -8901,7 +8901,7 @@ Door_ThePrecious_1:                                                      ;83A840
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BotwoonETank_0:                                                     ;83A84C;
+Door_BotwoonETank_0:
     %DoorHeader(\
     %destination(RoomHeader_Botwoon),
     %elevator(0),
@@ -8911,7 +8911,7 @@ Door_BotwoonETank_0:                                                     ;83A84C
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_1_Blue_duplicate))
 
-Door_BotwoonETank_1:                                                     ;83A858;
+Door_BotwoonETank_1:
     %DoorHeader(\
     %destination(RoomHeader_BotwoonQuicksand),
     %elevator(0),
@@ -8921,7 +8921,7 @@ Door_BotwoonETank_1:                                                     ;83A858
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BotwoonETank_2:                                                     ;83A864;
+Door_BotwoonETank_2:
     %DoorHeader(\
     %destination(RoomHeader_BotwoonQuicksand),
     %elevator(0),
@@ -8931,7 +8931,7 @@ Door_BotwoonETank_2:                                                     ;83A864
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BotwoonETank_3:                                                     ;83A870;
+Door_BotwoonETank_3:
     %DoorHeader(\
     %destination(RoomHeader_HalfieClimb),
     %elevator(0),
@@ -8941,7 +8941,7 @@ Door_BotwoonETank_3:                                                     ;83A870
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_DraygonSave_0:                                                      ;83A87C;
+Door_DraygonSave_0:
     %DoorHeader(\
     %destination(RoomHeader_MaridiaEnergyRefill),
     %elevator(0),
@@ -8951,7 +8951,7 @@ Door_DraygonSave_0:                                                      ;83A87C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_DraygonSave_1:                                                      ;83A888;
+Door_DraygonSave_1:
     %DoorHeader(\
     %destination(RoomHeader_Colosseum),
     %elevator(0),
@@ -8961,7 +8961,7 @@ Door_DraygonSave_1:                                                      ;83A888
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MaridiaMissileRefill_0:                                             ;83A894;
+Door_MaridiaMissileRefill_0:
     %DoorHeader(\
     %destination(RoomHeader_HalfieClimb),
     %elevator(0),
@@ -8971,7 +8971,7 @@ Door_MaridiaMissileRefill_0:                                             ;83A894
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_A_Red_B_Blue))
 
-Door_PlasmaBeachQuicksand_0:                                             ;83A8A0;
+Door_PlasmaBeachQuicksand_0:
     %DoorHeader(\
     %destination(RoomHeader_Butterfly),
     %elevator(0),
@@ -8981,7 +8981,7 @@ Door_PlasmaBeachQuicksand_0:                                             ;83A8A0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BotwoonQuicksand_0:                                                 ;83A8AC;
+Door_BotwoonQuicksand_0:
     %DoorHeader(\
     %destination(RoomHeader_BelowBotwoonETank),
     %elevator(0),
@@ -8991,7 +8991,7 @@ Door_BotwoonQuicksand_0:                                                 ;83A8AC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BotwoonQuicksand_1:                                                 ;83A8B8;
+Door_BotwoonQuicksand_1:
     %DoorHeader(\
     %destination(RoomHeader_BelowBotwoonETank),
     %elevator(0),
@@ -9001,7 +9001,7 @@ Door_BotwoonQuicksand_1:                                                 ;83A8B8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Shaktool_0:                                                         ;83A8C4;
+Door_Shaktool_0:
     %DoorHeader(\
     %destination(RoomHeader_EastPants),
     %elevator(0),
@@ -9011,7 +9011,7 @@ Door_Shaktool_0:                                                         ;83A8C4
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_1_Blue_2_Red_duplicate))
 
-Door_Shaktool_1:                                                         ;83A8D0;
+Door_Shaktool_1:
     %DoorHeader(\
     %destination(RoomHeader_Springball),
     %elevator(0),
@@ -9021,7 +9021,7 @@ Door_Shaktool_1:                                                         ;83A8D0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_HalfieClimb_0:                                                      ;83A8DC;
+Door_HalfieClimb_0:
     %DoorHeader(\
     %destination(RoomHeader_BotwoonETank),
     %elevator(0),
@@ -9031,7 +9031,7 @@ Door_HalfieClimb_0:                                                      ;83A8DC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_HalfieClimb_1:                                                      ;83A8E8;
+Door_HalfieClimb_1:
     %DoorHeader(\
     %destination(RoomHeader_Colosseum),
     %elevator(0),
@@ -9041,7 +9041,7 @@ Door_HalfieClimb_1:                                                      ;83A8E8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_HalfieClimb_2:                                                      ;83A8F4;
+Door_HalfieClimb_2:
     %DoorHeader(\
     %destination(RoomHeader_MaridiaMissileRefill),
     %elevator(0),
@@ -9051,7 +9051,7 @@ Door_HalfieClimb_2:                                                      ;83A8F4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_HalfieClimb_3:                                                      ;83A900;
+Door_HalfieClimb_3:
     %DoorHeader(\
     %destination(RoomHeader_EastCactusAlley),
     %elevator(0),
@@ -9061,7 +9061,7 @@ Door_HalfieClimb_3:                                                      ;83A900
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Botwoon_0:                                                          ;83A90C;
+Door_Botwoon_0:
     %DoorHeader(\
     %destination(RoomHeader_BotwoonHallway),
     %elevator(0),
@@ -9071,7 +9071,7 @@ Door_Botwoon_0:                                                          ;83A90C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Botwoon_1:                                                          ;83A918;
+Door_Botwoon_1:
     %DoorHeader(\
     %destination(RoomHeader_BotwoonETank),
     %elevator(0),
@@ -9081,7 +9081,7 @@ Door_Botwoon_1:                                                          ;83A918
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_SpaceJump_0:                                                        ;83A924;
+Door_SpaceJump_0:
     %DoorHeader(\
     %destination(RoomHeader_Draygon),
     %elevator(0),
@@ -9091,7 +9091,7 @@ Door_SpaceJump_0:                                                        ;83A924
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MaridiaEnergyRefill_0:                                              ;83A930;
+Door_MaridiaEnergyRefill_0:
     %DoorHeader(\
     %destination(RoomHeader_DraygonSave),
     %elevator(0),
@@ -9101,7 +9101,7 @@ Door_MaridiaEnergyRefill_0:                                              ;83A930
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestCactusAlley_0:                                                  ;83A93C;
+Door_WestCactusAlley_0:
     %DoorHeader(\
     %destination(RoomHeader_Butterfly),
     %elevator(0),
@@ -9111,7 +9111,7 @@ Door_WestCactusAlley_0:                                                  ;83A93C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_WestCactusAlley_1:                                                  ;83A948;
+Door_WestCactusAlley_1:
     %DoorHeader(\
     %destination(RoomHeader_EastCactusAlley),
     %elevator(0),
@@ -9121,7 +9121,7 @@ Door_WestCactusAlley_1:                                                  ;83A948
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EastCactusAlley_0:                                                  ;83A954;
+Door_EastCactusAlley_0:
     %DoorHeader(\
     %destination(RoomHeader_WestCactusAlley),
     %elevator(0),
@@ -9131,7 +9131,7 @@ Door_EastCactusAlley_0:                                                  ;83A954
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_EastCactusAlley_1:                                                  ;83A960;
+Door_EastCactusAlley_1:
     %DoorHeader(\
     %destination(RoomHeader_HalfieClimb),
     %elevator(0),
@@ -9141,7 +9141,7 @@ Door_EastCactusAlley_1:                                                  ;83A960
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Draygon_0:                                                          ;83A96C;
+Door_Draygon_0:
     %DoorHeader(\
     %destination(RoomHeader_ThePrecious),
     %elevator(0),
@@ -9151,7 +9151,7 @@ Door_Draygon_0:                                                          ;83A96C
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_0_2_Green_duplicate))
 
-Door_Draygon_1:                                                          ;83A978;
+Door_Draygon_1:
     %DoorHeader(\
     %destination(RoomHeader_SpaceJump),
     %elevator(0),
@@ -9161,7 +9161,7 @@ Door_Draygon_1:                                                          ;83A978
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianFirst_0:                                                     ;83A984;
+Door_TourianFirst_0:
     %DoorHeader(\
     %destination(RoomHeader_Metroids1),
     %elevator(0),
@@ -9171,7 +9171,7 @@ Door_TourianFirst_0:                                                     ;83A984
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianFirst_1:                                                     ;83A990;
+Door_TourianFirst_1:
     %DoorHeader(\
     %destination(RoomHeader_Statues),
     %elevator($D0),
@@ -9181,7 +9181,7 @@ Door_TourianFirst_1:                                                     ;83A990
     %spawnDistance(0),
     %doorASM(DoorASM_Scroll_0_1_Green_duplicate))
 
-Door_TourianFirst_3:                                                     ;83A99C;
+Door_TourianFirst_3:
     %DoorHeader(\
     %destination(RoomHeader_UpperTourianSave),
     %elevator(0),
@@ -9191,7 +9191,7 @@ Door_TourianFirst_3:                                                     ;83A99C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Metroids1_0:                                                        ;83A9A8;
+Door_Metroids1_0:
     %DoorHeader(\
     %destination(RoomHeader_TourianFirst),
     %elevator(0),
@@ -9201,7 +9201,7 @@ Door_Metroids1_0:                                                        ;83A9A8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Metroids1_1:                                                        ;83A9B4;
+Door_Metroids1_1:
     %DoorHeader(\
     %destination(RoomHeader_Metroids2),
     %elevator(0),
@@ -9211,7 +9211,7 @@ Door_Metroids1_1:                                                        ;83A9B4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Metroids2_0:                                                        ;83A9C0;
+Door_Metroids2_0:
     %DoorHeader(\
     %destination(RoomHeader_Metroids1),
     %elevator(0),
@@ -9221,7 +9221,7 @@ Door_Metroids2_0:                                                        ;83A9C0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Metroids2_1:                                                        ;83A9CC;
+Door_Metroids2_1:
     %DoorHeader(\
     %destination(RoomHeader_Metroids3),
     %elevator(0),
@@ -9231,7 +9231,7 @@ Door_Metroids2_1:                                                        ;83A9CC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Metroids3_0:                                                        ;83A9D8;
+Door_Metroids3_0:
     %DoorHeader(\
     %destination(RoomHeader_Metroids2),
     %elevator(0),
@@ -9241,7 +9241,7 @@ Door_Metroids3_0:                                                        ;83A9D8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Metroids3_1:                                                        ;83A9E4;
+Door_Metroids3_1:
     %DoorHeader(\
     %destination(RoomHeader_Metroids4),
     %elevator(0),
@@ -9251,7 +9251,7 @@ Door_Metroids3_1:                                                        ;83A9E4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Metroids4_0:                                                        ;83A9F0;
+Door_Metroids4_0:
     %DoorHeader(\
     %destination(RoomHeader_Metroids3),
     %elevator(0),
@@ -9261,7 +9261,7 @@ Door_Metroids4_0:                                                        ;83A9F0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Metroids4_1:                                                        ;83A9FC;
+Door_Metroids4_1:
     %DoorHeader(\
     %destination(RoomHeader_BlueHopper),
     %elevator(0),
@@ -9271,7 +9271,7 @@ Door_Metroids4_1:                                                        ;83A9FC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BlueHopper_0:                                                       ;83AA08;
+Door_BlueHopper_0:
     %DoorHeader(\
     %destination(RoomHeader_Metroids4),
     %elevator(0),
@@ -9281,7 +9281,7 @@ Door_BlueHopper_0:                                                       ;83AA08
     %spawnDistance($01C0),
     %doorASM(0))
 
-Door_BlueHopper_1:                                                       ;83AA14;
+Door_BlueHopper_1:
     %DoorHeader(\
     %destination(RoomHeader_DustTorizo),
     %elevator(0),
@@ -9291,7 +9291,7 @@ Door_BlueHopper_1:                                                       ;83AA14
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_DustTorizo_0:                                                       ;83AA20;
+Door_DustTorizo_0:
     %DoorHeader(\
     %destination(RoomHeader_BlueHopper),
     %elevator(0),
@@ -9301,7 +9301,7 @@ Door_DustTorizo_0:                                                       ;83AA20
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_DustTorizo_1:                                                       ;83AA2C;
+Door_DustTorizo_1:
     %DoorHeader(\
     %destination(RoomHeader_BigBoy),
     %elevator(0),
@@ -9311,7 +9311,7 @@ Door_DustTorizo_1:                                                       ;83AA2C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BigBoy_0:                                                           ;83AA38;
+Door_BigBoy_0:
     %DoorHeader(\
     %destination(RoomHeader_DustTorizo),
     %elevator(0),
@@ -9321,7 +9321,7 @@ Door_BigBoy_0:                                                           ;83AA38
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_BigBoy_1:                                                           ;83AA44;
+Door_BigBoy_1:
     %DoorHeader(\
     %destination(RoomHeader_Seaweed),
     %elevator(0),
@@ -9331,7 +9331,7 @@ Door_BigBoy_1:                                                           ;83AA44
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Seaweed_0:                                                          ;83AA50;
+Door_Seaweed_0:
     %DoorHeader(\
     %destination(RoomHeader_BigBoy),
     %elevator(0),
@@ -9341,7 +9341,7 @@ Door_Seaweed_0:                                                          ;83AA50
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Seaweed_1:                                                          ;83AA5C;
+Door_Seaweed_1:
     %DoorHeader(\
     %destination(RoomHeader_TourianEyeDoor),
     %elevator(0),
@@ -9351,7 +9351,7 @@ Door_Seaweed_1:                                                          ;83AA5C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_Seaweed_2:                                                          ;83AA68;
+Door_Seaweed_2:
     %DoorHeader(\
     %destination(RoomHeader_TourianRecharge),
     %elevator(0),
@@ -9361,7 +9361,7 @@ Door_Seaweed_2:                                                          ;83AA68
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianRecharge_0:                                                  ;83AA74;
+Door_TourianRecharge_0:
     %DoorHeader(\
     %destination(RoomHeader_Seaweed),
     %elevator(0),
@@ -9371,7 +9371,7 @@ Door_TourianRecharge_0:                                                  ;83AA74
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MotherBrain_0:                                                      ;83AA80;
+Door_MotherBrain_0:
     %DoorHeader(\
     %destination(RoomHeader_RinkaShaft),
     %elevator(0),
@@ -9381,7 +9381,7 @@ Door_MotherBrain_0:                                                      ;83AA80
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MotherBrain_1:                                                      ;83AA8C;
+Door_MotherBrain_1:
     %DoorHeader(\
     %destination(RoomHeader_TourianEscape1),
     %elevator(0),
@@ -9391,7 +9391,7 @@ Door_MotherBrain_1:                                                      ;83AA8C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianEyeDoor_0:                                                   ;83AA98;
+Door_TourianEyeDoor_0:
     %DoorHeader(\
     %destination(RoomHeader_Seaweed),
     %elevator(0),
@@ -9401,7 +9401,7 @@ Door_TourianEyeDoor_0:                                                   ;83AA98
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianEyeDoor_1:                                                   ;83AAA4;
+Door_TourianEyeDoor_1:
     %DoorHeader(\
     %destination(RoomHeader_RinkaShaft),
     %elevator(0),
@@ -9411,7 +9411,7 @@ Door_TourianEyeDoor_1:                                                   ;83AAA4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RinkaShaft_0:                                                       ;83AAB0;
+Door_RinkaShaft_0:
     %DoorHeader(\
     %destination(RoomHeader_TourianEyeDoor),
     %elevator(0),
@@ -9421,7 +9421,7 @@ Door_RinkaShaft_0:                                                       ;83AAB0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RinkaShaft_1:                                                       ;83AABC;
+Door_RinkaShaft_1:
     %DoorHeader(\
     %destination(RoomHeader_MotherBrainSave),
     %elevator(0),
@@ -9431,7 +9431,7 @@ Door_RinkaShaft_1:                                                       ;83AABC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_RinkaShaft_2:                                                       ;83AAC8;
+Door_RinkaShaft_2:
     %DoorHeader(\
     %destination(RoomHeader_MotherBrain),
     %elevator(0),
@@ -9441,7 +9441,7 @@ Door_RinkaShaft_2:                                                       ;83AAC8
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MotherBrainSave_0:                                                  ;83AAD4;
+Door_MotherBrainSave_0:
     %DoorHeader(\
     %destination(RoomHeader_RinkaShaft),
     %elevator(0),
@@ -9451,7 +9451,7 @@ Door_MotherBrainSave_0:                                                  ;83AAD4
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianEscape1_0:                                                   ;83AAE0;
+Door_TourianEscape1_0:
     %DoorHeader(\
     %destination(RoomHeader_MotherBrain),
     %elevator(0),
@@ -9461,7 +9461,7 @@ Door_TourianEscape1_0:                                                   ;83AAE0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianEscape1_1:                                                   ;83AAEC;
+Door_TourianEscape1_1:
     %DoorHeader(\
     %destination(RoomHeader_TourianEscape2),
     %elevator(0),
@@ -9471,7 +9471,7 @@ Door_TourianEscape1_1:                                                   ;83AAEC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianEscape2_0:                                                   ;83AAF8;
+Door_TourianEscape2_0:
     %DoorHeader(\
     %destination(RoomHeader_TourianEscape1),
     %elevator(0),
@@ -9481,7 +9481,7 @@ Door_TourianEscape2_0:                                                   ;83AAF8
     %spawnDistance($0200),
     %doorASM(0))
 
-Door_TourianEscape2_1:                                                   ;83AB04;
+Door_TourianEscape2_1:
     %DoorHeader(\
     %destination(RoomHeader_TourianEscape3),
     %elevator(0),
@@ -9491,7 +9491,7 @@ Door_TourianEscape2_1:                                                   ;83AB04
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianEscape3_0:                                                   ;83AB10;
+Door_TourianEscape3_0:
     %DoorHeader(\
     %destination(RoomHeader_TourianEscape2),
     %elevator(0),
@@ -9501,7 +9501,7 @@ Door_TourianEscape3_0:                                                   ;83AB10
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianEscape3_1:                                                   ;83AB1C;
+Door_TourianEscape3_1:
     %DoorHeader(\
     %destination(RoomHeader_TourianEscape4),
     %elevator(0),
@@ -9511,7 +9511,7 @@ Door_TourianEscape3_1:                                                   ;83AB1C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianEscape4_0:                                                   ;83AB28;
+Door_TourianEscape4_0:
     %DoorHeader(\
     %destination(RoomHeader_TourianEscape3),
     %elevator(0),
@@ -9521,7 +9521,7 @@ Door_TourianEscape4_0:                                                   ;83AB28
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_TourianEscape4_1:                                                   ;83AB34;
+Door_TourianEscape4_1:
     %DoorHeader(\
     %destination(RoomHeader_Climb),
     %elevator($40),
@@ -9531,7 +9531,7 @@ Door_TourianEscape4_1:                                                   ;83AB34
     %spawnDistance($8000),
     %doorASM(DoorASM_Scroll_8_Blue_9_Red))
 
-Door_UpperTourianSave_0:                                                 ;83AB40;
+Door_UpperTourianSave_0:
     %DoorHeader(\
     %destination(RoomHeader_TourianFirst),
     %elevator(0),
@@ -9541,7 +9541,7 @@ Door_UpperTourianSave_0:                                                 ;83AB40
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CeresElev_0:                                                        ;83AB4C;
+Door_CeresElev_0:
     %DoorHeader(\
     %destination(RoomHeader_FallingTile),
     %elevator(0),
@@ -9551,7 +9551,7 @@ Door_CeresElev_0:                                                        ;83AB4C
     %spawnDistance($8000),
     %doorASM(DoorASM_FromCeresElevatorShaft))
 
-Door_FallingTile_0:                                                      ;83AB58;
+Door_FallingTile_0:
     %DoorHeader(\
     %destination(RoomHeader_CeresElev),
     %elevator(0),
@@ -9561,7 +9561,7 @@ Door_FallingTile_0:                                                      ;83AB58
     %spawnDistance($8000),
     %doorASM(DoorASM_ToCeresElevatorShaft))
 
-Door_FallingTile_1:                                                      ;83AB64;
+Door_FallingTile_1:
     %DoorHeader(\
     %destination(RoomHeader_MagnetStairs),
     %elevator(0),
@@ -9571,7 +9571,7 @@ Door_FallingTile_1:                                                      ;83AB64
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MagnetStairs_0:                                                     ;83AB70;
+Door_MagnetStairs_0:
     %DoorHeader(\
     %destination(RoomHeader_FallingTile),
     %elevator(0),
@@ -9581,7 +9581,7 @@ Door_MagnetStairs_0:                                                     ;83AB70
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_MagnetStairs_1:                                                     ;83AB7C;
+Door_MagnetStairs_1:
     %DoorHeader(\
     %destination(RoomHeader_DeadScientist),
     %elevator(0),
@@ -9591,7 +9591,7 @@ Door_MagnetStairs_1:                                                     ;83AB7C
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_DeadScientist_0:                                                    ;83AB88;
+Door_DeadScientist_0:
     %DoorHeader(\
     %destination(RoomHeader_MagnetStairs),
     %elevator(0),
@@ -9601,7 +9601,7 @@ Door_DeadScientist_0:                                                    ;83AB88
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_DeadScientist_1:                                                    ;83AB94;
+Door_DeadScientist_1:
     %DoorHeader(\
     %destination(RoomHeader_58Escape),
     %elevator(0),
@@ -9611,7 +9611,7 @@ Door_DeadScientist_1:                                                    ;83AB94
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_58Escape_0:                                                         ;83ABA0;
+Door_58Escape_0:
     %DoorHeader(\
     %destination(RoomHeader_DeadScientist),
     %elevator(0),
@@ -9621,7 +9621,7 @@ Door_58Escape_0:                                                         ;83ABA0
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_58Escape_1:                                                         ;83ABAC;
+Door_58Escape_1:
     %DoorHeader(\
     %destination(RoomHeader_CeresRidley),
     %elevator(0),
@@ -9631,7 +9631,7 @@ Door_58Escape_1:                                                         ;83ABAC
     %spawnDistance($8000),
     %doorASM(0))
 
-Door_CeresRidley:                                                        ;83ABB8;
+Door_CeresRidley:
     %DoorHeader(\
     %destination(RoomHeader_58Escape),
     %elevator(0),
@@ -9644,248 +9644,248 @@ Door_CeresRidley:                                                        ;83ABB8
 ; These four doors appear to be missing the elevator properties byte
 UNUSED_Door_Debug_0_83ABC4:
 ; Debug load station
-    dw RoomHeader_Debug                                                  ;83ABC4;
-    db $05,$00,$00,$01,$00,$00,$01                                       ;83ABC6;
-    dw $0000                                                             ;83ABCD;
+    dw RoomHeader_Debug
+    db $05,$00,$00,$01,$00,$00,$01
+    dw $0000
 
 UNUSED_Door_Debug_1_83ABCF:
-    dw RoomHeader_Debug                                                  ;83ABCF;
-    db $05,$00,$00,$01,$01,$00,$01                                       ;83ABD1;
-    dw $0000                                                             ;83ABD8;
+    dw RoomHeader_Debug
+    db $05,$00,$00,$01,$01,$00,$01
+    dw $0000
 
 UNUSED_Door_Debug_2_83ABDA:
-    dw RoomHeader_Debug                                                  ;83ABDA;
-    db $04,$00,$00,$00,$00,$00,$01                                       ;83ABDC;
-    dw $0000                                                             ;83ABE3;
+    dw RoomHeader_Debug
+    db $04,$00,$00,$00,$00,$00,$01
+    dw $0000
 
 UNUSED_Door_Debug_3_83ABE5:
-    dw RoomHeader_Debug                                                  ;83ABE5;
-    db $04,$00,$00,$00,$01,$00,$01                                       ;83ABE7;
-    dw $0000                                                             ;83ABEE;
+    dw RoomHeader_Debug
+    db $04,$00,$00,$00,$01,$00,$01
+    dw $0000
 
 FXType_Tilemap_Pointers:
 ; This table is too short, it's missing the entries for 28h/2Ah/2Ch (Ceres Ridley/elevator / haze)
 ; This is fine, because those rooms disabled layer 3 anyway, but it does mean garbage is loaded to VRAM from pointers in the following table
 ; In bank $8A
-    dw $0000                                                             ;83ABF0; 0: None
-    dw FX_Layer3_Tilemaps_lava                                           ;83ABF2; 2: Lava
-    dw FX_Layer3_Tilemaps_acid                                           ;83ABF4; 4: Acid
-    dw FX_Layer3_Tilemaps_water                                          ;83ABF6; 6: Water
-    dw FX_Layer3_Tilemaps_spores                                         ;83ABF8; 8: Spores
-    dw FX_Layer3_Tilemaps_rain                                           ;83ABFA; Ah: Rain
-    dw FX_Layer3_Tilemaps_fog                                            ;83ABFC; Ch: Fog
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;83ABFE;
-    dw $0000,$0000,$0000,$0000                                           ;83AC0E;
-    dw FX_Layer3_Tilemaps_water                                          ;83AC16; 26h: Tourian entrance statue
+    dw $0000 ; 0: None
+    dw FX_Layer3_Tilemaps_lava ; 2: Lava
+    dw FX_Layer3_Tilemaps_acid ; 4: Acid
+    dw FX_Layer3_Tilemaps_water ; 6: Water
+    dw FX_Layer3_Tilemaps_spores ; 8: Spores
+    dw FX_Layer3_Tilemaps_rain ; Ah: Rain
+    dw FX_Layer3_Tilemaps_fog ; Ch: Fog
+    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
+    dw $0000,$0000,$0000,$0000
+    dw FX_Layer3_Tilemaps_water ; 26h: Tourian entrance statue
 
 FXType_Function_Pointers:
-    dw RTL_88B278                                                        ;83AC18; ; 0: None
-    dw FXType_2_Lava                                                     ;83AC1A; ; 2: Lava
-    dw FXType_4_Acid                                                     ;83AC1C; ; 4: Acid
-    dw FXType_6_Water                                                    ;83AC1E; ; 6: Water
-    dw FXType_8_Spores                                                   ;83AC20; ; 8: Spores
-    dw FXType_A_Rain                                                     ;83AC22; ; Ah: Rain
-    dw FXType_C_Fog                                                      ;83AC24; ; Ch: Fog
-    dw RTL_88B278                                                        ;83AC26;
-    dw RTL_88B278                                                        ;83AC28;
-    dw RTL_88B278                                                        ;83AC2A;
-    dw RTL_88B278                                                        ;83AC2C;
-    dw RTL_88B278                                                        ;83AC2E;
-    dw RTL_88B278                                                        ;83AC30;
-    dw RTL_88B278                                                        ;83AC32;
-    dw RTL_88B278                                                        ;83AC34;
-    dw RTL_88B278                                                        ;83AC36;
-    dw FXType_20_ScrollingSky_RoomSetupASM_ScrollingSkyLand              ;83AC38; ; 20h: Scrolling sky
-    dw FXType_20_22_ScrollingSky                                         ;83AC3A; ; 22h: Unused
-    dw FXType_24_Fireflea                                                ;83AC3C; ; 24h: Fireflea
-    dw FXType_26_TourianEntranceStatue                                   ;83AC3E; ; 26h: Tourian entrance statue
-    dw FXType_28_CeresRidley                                             ;83AC40; ; 28h: Ceres Ridley
-    dw FXType_2A_CeresElevator                                           ;83AC42; ; 2Ah: Ceres elevator
-    dw FXType_2C_CeresHaze                                               ;83AC44; ; 2Ch: Ceres haze
+    dw RTL_88B278 ; 0: None
+    dw FXType_2_Lava ; 2: Lava
+    dw FXType_4_Acid ; 4: Acid
+    dw FXType_6_Water ; 6: Water
+    dw FXType_8_Spores ; 8: Spores
+    dw FXType_A_Rain ; Ah: Rain
+    dw FXType_C_Fog ; Ch: Fog
+    dw RTL_88B278
+    dw RTL_88B278
+    dw RTL_88B278
+    dw RTL_88B278
+    dw RTL_88B278
+    dw RTL_88B278
+    dw RTL_88B278
+    dw RTL_88B278
+    dw RTL_88B278
+    dw FXType_20_ScrollingSky_RoomSetupASM_ScrollingSkyLand ; 20h: Scrolling sky
+    dw FXType_20_22_ScrollingSky ; 22h: Unused
+    dw FXType_24_Fireflea ; 24h: Fireflea
+    dw FXType_26_TourianEntranceStatue ; 26h: Tourian entrance statue
+    dw FXType_28_CeresRidley ; 28h: Ceres Ridley
+    dw FXType_2A_CeresElevator ; 2Ah: Ceres elevator
+    dw FXType_2C_CeresHaze ; 2Ch: Ceres haze
 
 AreaSpecific_PaletteFXObjectList_Pointers:
 ; Loaded by $89:AB82
 ; Indexed by area index
-    dw Crateria_PaletteFXObjectList                                      ;83AC46;
-    dw Brinstar_PaletteFXObjectList                                      ;83AC48;
-    dw Norfair_PaletteFXObjectList                                       ;83AC4A;
-    dw WreckedShip_PaletteFXObjectList                                   ;83AC4C;
-    dw Maridia_PaletteFXObjectList                                       ;83AC4E;
-    dw Tourian_PaletteFXObjectList                                       ;83AC50;
-    dw Ceres_PaletteFXObjectList                                         ;83AC52;
-    dw Debug_PaletteFXObjectList                                         ;83AC54;
+    dw Crateria_PaletteFXObjectList
+    dw Brinstar_PaletteFXObjectList
+    dw Norfair_PaletteFXObjectList
+    dw WreckedShip_PaletteFXObjectList
+    dw Maridia_PaletteFXObjectList
+    dw Tourian_PaletteFXObjectList
+    dw Ceres_PaletteFXObjectList
+    dw Debug_PaletteFXObjectList
 
 AreaSpecific_AnimatedTilesObjectList_Pointers:
 ; Loaded by $89:AB82
 ; Indexed by area index
-    dw Crateria_AnimatedTilesObjectList                                  ;83AC56;
-    dw Brinstar_AnimatedTilesObjectList                                  ;83AC58;
-    dw Norfair_AnimatedTilesObjectList                                   ;83AC5A;
-    dw WreckedShip_AnimatedTilesObjectList                               ;83AC5C;
-    dw Maridia_AnimatedTilesObjectList                                   ;83AC5E;
-    dw Tourian_AnimatedTilesObjectList                                   ;83AC60;
-    dw Ceres_AnimatedTilesObjectList                                     ;83AC62;
-    dw Debug_AnimatedTilesObjectList                                     ;83AC64;
+    dw Crateria_AnimatedTilesObjectList
+    dw Brinstar_AnimatedTilesObjectList
+    dw Norfair_AnimatedTilesObjectList
+    dw WreckedShip_AnimatedTilesObjectList
+    dw Maridia_AnimatedTilesObjectList
+    dw Tourian_AnimatedTilesObjectList
+    dw Ceres_AnimatedTilesObjectList
+    dw Debug_AnimatedTilesObjectList
 
 Crateria_PaletteFXObjectList:
-    dw PaletteFXObjects_Crateria1_Lightning                              ;83AC66;
-    dw PaletteFXObjects_Crateria2_UpperCrateriaRedFlashing               ;83AC68;
-    dw PaletteFXObjects_Crateria4_YellowLightning                        ;83AC6A;
-    dw PaletteFXObjects_Crateria8_OldTourianRedFlashing                  ;83AC6C;
-    dw PaletteFXObjects_Crateria10_OldTourianBGRailingsFlashYellow       ;83AC6E;
-    dw PaletteFXObjects_Crateria20_OldTourianBGPanelsFlashYellow         ;83AC70;
-    dw PaletteFXObjects_Crateria40_SlightlyModifiesAPixelInCREBlock      ;83AC72;
-    dw PaletteFXObjects_Crateria80_Brinstar4_BeaconFlashing              ;83AC74;
+    dw PaletteFXObjects_Crateria1_Lightning
+    dw PaletteFXObjects_Crateria2_UpperCrateriaRedFlashing
+    dw PaletteFXObjects_Crateria4_YellowLightning
+    dw PaletteFXObjects_Crateria8_OldTourianRedFlashing
+    dw PaletteFXObjects_Crateria10_OldTourianBGRailingsFlashYellow
+    dw PaletteFXObjects_Crateria20_OldTourianBGPanelsFlashYellow
+    dw PaletteFXObjects_Crateria40_SlightlyModifiesAPixelInCREBlock
+    dw PaletteFXObjects_Crateria80_Brinstar4_BeaconFlashing
 
 Crateria_AnimatedTilesObjectList:
-    dw AnimatedTilesObjects_FX_horizontalSpikes                          ;83AC76;
-    dw AnimatedTilesObjects_FX_verticalSpikes                            ;83AC78;
-    dw AnimatedTilesObjects_FX_crateriaLake                              ;83AC7A;
-    dw UNUSED_AnimatedTilesObjects_FX_unusedCrateriaLava_0_878263        ;83AC7C;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AC7E;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AC80;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AC82;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AC84;
+    dw AnimatedTilesObjects_FX_horizontalSpikes
+    dw AnimatedTilesObjects_FX_verticalSpikes
+    dw AnimatedTilesObjects_FX_crateriaLake
+    dw UNUSED_AnimatedTilesObjects_FX_unusedCrateriaLava_0_878263
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
 
 Brinstar_PaletteFXObjectList:
-    dw PaletteFXObjects_Brinstar1_BlueBackgroundSpores                   ;83AC86;
-    dw PaletteFXObjects_Brinstar2_RedBackgroundGlow                      ;83AC88;
-    dw PaletteFXObjects_Crateria80_Brinstar4_BeaconFlashing              ;83AC8A;
-    dw PaletteFXObjects_Brinstar8_SporeSpawnBlueBackgroundSpores         ;83AC8C;
-    dw PaletteFXObjects_Nothing                                          ;83AC8E;
-    dw PaletteFXObjects_Nothing                                          ;83AC90;
-    dw PaletteFXObjects_Nothing                                          ;83AC92;
-    dw PaletteFXObjects_Nothing                                          ;83AC94;
+    dw PaletteFXObjects_Brinstar1_BlueBackgroundSpores
+    dw PaletteFXObjects_Brinstar2_RedBackgroundGlow
+    dw PaletteFXObjects_Crateria80_Brinstar4_BeaconFlashing
+    dw PaletteFXObjects_Brinstar8_SporeSpawnBlueBackgroundSpores
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
 
 Brinstar_AnimatedTilesObjectList:
-    dw AnimatedTilesObjects_FX_horizontalSpikes                          ;83AC96;
-    dw AnimatedTilesObjects_FX_verticalSpikes                            ;83AC98;
-    dw AnimatedTilesObjects_FX_brinstarPlant                             ;83AC9A;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AC9C;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AC9E;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACA0;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACA2;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACA4;
+    dw AnimatedTilesObjects_FX_horizontalSpikes
+    dw AnimatedTilesObjects_FX_verticalSpikes
+    dw AnimatedTilesObjects_FX_brinstarPlant
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
 
 Norfair_PaletteFXObjectList:
-    dw PaletteFXObjects_Norfair1_Tourian1                                ;83ACA6;
-    dw PaletteFXObjects_Norfair2                                         ;83ACA8;
-    dw PaletteFXObjects_Norfair4                                         ;83ACAA;
-    dw PaletteFXObjects_Norfair8                                         ;83ACAC;
-    dw PaletteFXObjects_Norfair10                                        ;83ACAE;
-    dw PaletteFXObjects_Nothing                                          ;83ACB0;
-    dw PaletteFXObjects_Nothing                                          ;83ACB2;
-    dw PaletteFXObjects_Nothing                                          ;83ACB4;
+    dw PaletteFXObjects_Norfair1_Tourian1
+    dw PaletteFXObjects_Norfair2
+    dw PaletteFXObjects_Norfair4
+    dw PaletteFXObjects_Norfair8
+    dw PaletteFXObjects_Norfair10
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
 
 Norfair_AnimatedTilesObjectList:
-    dw AnimatedTilesObjects_FX_horizontalSpikes                          ;83ACB6;
-    dw AnimatedTilesObjects_FX_verticalSpikes                            ;83ACB8;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACBA;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACBC;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACBE;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACC0;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACC2;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACC4;
+    dw AnimatedTilesObjects_FX_horizontalSpikes
+    dw AnimatedTilesObjects_FX_verticalSpikes
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
 
 WreckedShip_PaletteFXObjectList:
-    dw PaletteFXObjects_WreckedShip1_GreenLights                         ;83ACC6;
-    dw PaletteFXObjects_Nothing                                          ;83ACC8;
-    dw PaletteFXObjects_Nothing                                          ;83ACCA;
-    dw PaletteFXObjects_Nothing                                          ;83ACCC;
-    dw PaletteFXObjects_Nothing                                          ;83ACCE;
-    dw PaletteFXObjects_Nothing                                          ;83ACD0;
-    dw PaletteFXObjects_Nothing                                          ;83ACD2;
-    dw PaletteFXObjects_Nothing                                          ;83ACD4;
+    dw PaletteFXObjects_WreckedShip1_GreenLights
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
 
 WreckedShip_AnimatedTilesObjectList:
-    dw AnimatedTilesObjects_FX_horizontalSpikes                          ;83ACD6;
-    dw AnimatedTilesObjects_FX_verticalSpikes                            ;83ACD8;
-    dw AnimatedTilesObjects_FX_wreckedShipTreadmillRightwards            ;83ACDA;
-    dw AnimatedTilesObjects_FX_wreckedShipTreadmillLeftwards             ;83ACDC;
-    dw AnimatedTilesObjects_FX_wreckedShipScreen                         ;83ACDE;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACE0;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACE2;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACE4;
+    dw AnimatedTilesObjects_FX_horizontalSpikes
+    dw AnimatedTilesObjects_FX_verticalSpikes
+    dw AnimatedTilesObjects_FX_wreckedShipTreadmillRightwards
+    dw AnimatedTilesObjects_FX_wreckedShipTreadmillLeftwards
+    dw AnimatedTilesObjects_FX_wreckedShipScreen
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
 
 Maridia_PaletteFXObjectList:
-    dw PaletteFXObjects_Maridia1_SandPits                                ;83ACE6;
-    dw PaletteFXObjects_Maridia2_SandFalls                               ;83ACE8;
-    dw PaletteFXObjects_Maridia4_BackgroundWaterfalls                    ;83ACEA;
-    dw PaletteFXObjects_Nothing                                          ;83ACEC;
-    dw PaletteFXObjects_Nothing                                          ;83ACEE;
-    dw PaletteFXObjects_Nothing                                          ;83ACF0;
-    dw PaletteFXObjects_Nothing                                          ;83ACF2;
-    dw PaletteFXObjects_Nothing                                          ;83ACF4;
+    dw PaletteFXObjects_Maridia1_SandPits
+    dw PaletteFXObjects_Maridia2_SandFalls
+    dw PaletteFXObjects_Maridia4_BackgroundWaterfalls
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
 
 Maridia_AnimatedTilesObjectList:
-    dw AnimatedTilesObjects_FX_horizontalSpikes                          ;83ACF6;
-    dw AnimatedTilesObjects_FX_verticalSpikes                            ;83ACF8;
-    dw AnimatedTilesObjects_FX_maridiaSandCeiling                        ;83ACFA;
-    dw AnimatedTilesObjects_FX_maridiaSandFalling                        ;83ACFC;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83ACFE;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD00;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD02;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD04;
+    dw AnimatedTilesObjects_FX_horizontalSpikes
+    dw AnimatedTilesObjects_FX_verticalSpikes
+    dw AnimatedTilesObjects_FX_maridiaSandCeiling
+    dw AnimatedTilesObjects_FX_maridiaSandFalling
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
 
 Tourian_PaletteFXObjectList:
-    dw PaletteFXObjects_Norfair1_Tourian1                                ;83AD06;
-    dw PaletteFXObjects_Tourian2_GlowingArkanoidBlocksAndRedOrbs         ;83AD08;
-    dw UNUSED_PaletteFXObjects_Tourian4_8DF7A5                           ;83AD0A;
-    dw PaletteFXObjects_Tourian8_ShutterRedFlashing                      ;83AD0C;
-    dw PaletteFXObjects_Tourian10_BackgroundRedFlashing                  ;83AD0E;
-    dw PaletteFXObjects_Tourian20_GeneralLevelRedFlashing                ;83AD10;
-    dw PaletteFXObjects_Tourian40_RedFlashingArkanoidBlocksRedOrbs       ;83AD12;
-    dw PaletteFXObjects_Nothing                                          ;83AD14;
+    dw PaletteFXObjects_Norfair1_Tourian1
+    dw PaletteFXObjects_Tourian2_GlowingArkanoidBlocksAndRedOrbs
+    dw UNUSED_PaletteFXObjects_Tourian4_8DF7A5
+    dw PaletteFXObjects_Tourian8_ShutterRedFlashing
+    dw PaletteFXObjects_Tourian10_BackgroundRedFlashing
+    dw PaletteFXObjects_Tourian20_GeneralLevelRedFlashing
+    dw PaletteFXObjects_Tourian40_RedFlashingArkanoidBlocksRedOrbs
+    dw PaletteFXObjects_Nothing
 
 Tourian_AnimatedTilesObjectList:
-    dw AnimatedTilesObjects_FX_horizontalSpikes                          ;83AD16;
-    dw AnimatedTilesObjects_FX_verticalSpikes                            ;83AD18;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD1A;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD1C;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD1E;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD20;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD22;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD24;
+    dw AnimatedTilesObjects_FX_horizontalSpikes
+    dw AnimatedTilesObjects_FX_verticalSpikes
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
 
 Ceres_PaletteFXObjectList:
-    dw PaletteFXObjects_Nothing                                          ;83AD26;
-    dw PaletteFXObjects_Nothing                                          ;83AD28;
-    dw PaletteFXObjects_Nothing                                          ;83AD2A;
-    dw PaletteFXObjects_Nothing                                          ;83AD2C;
-    dw PaletteFXObjects_Nothing                                          ;83AD2E;
-    dw PaletteFXObjects_Nothing                                          ;83AD30;
-    dw PaletteFXObjects_Nothing                                          ;83AD32;
-    dw PaletteFXObjects_Nothing                                          ;83AD34;
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
 
 Ceres_AnimatedTilesObjectList:
-    dw AnimatedTilesObjects_FX_horizontalSpikes                          ;83AD36;
-    dw AnimatedTilesObjects_FX_verticalSpikes                            ;83AD38;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD3A;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD3C;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD3E;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD40;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD42;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD44;
+    dw AnimatedTilesObjects_FX_horizontalSpikes
+    dw AnimatedTilesObjects_FX_verticalSpikes
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
 
 Debug_PaletteFXObjectList:
-    dw PaletteFXObjects_Nothing                                          ;83AD46;
-    dw PaletteFXObjects_Nothing                                          ;83AD48;
-    dw PaletteFXObjects_Nothing                                          ;83AD4A;
-    dw PaletteFXObjects_Nothing                                          ;83AD4C;
-    dw PaletteFXObjects_Nothing                                          ;83AD4E;
-    dw PaletteFXObjects_Nothing                                          ;83AD50;
-    dw PaletteFXObjects_Nothing                                          ;83AD52;
-    dw PaletteFXObjects_Nothing                                          ;83AD54;
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
+    dw PaletteFXObjects_Nothing
 
 Debug_AnimatedTilesObjectList:
-    dw AnimatedTilesObjects_FX_horizontalSpikes                          ;83AD56;
-    dw AnimatedTilesObjects_FX_verticalSpikes                            ;83AD58;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD5A;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD5C;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD5E;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD60;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD62;
-    dw AnimatedTilesObjects_FX_nothing                                   ;83AD64;
+    dw AnimatedTilesObjects_FX_horizontalSpikes
+    dw AnimatedTilesObjects_FX_verticalSpikes
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
+    dw AnimatedTilesObjects_FX_nothing
 
-Freespace_Bank83_AD66:                                                   ;83AD66;
+Freespace_Bank83_AD66:
 ; $AD66 bytes

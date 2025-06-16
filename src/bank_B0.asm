@@ -95,5 +95,5 @@ Tiles_MotherBrainBody:
 incbin "../data/Tiles_MotherBrainBody.bin" ; $600 bytes
 
 
-Freespace_BankB0_EE00:                                                   ;B0EE00;
+Freespace_BankB0_EE00:
 ; $1200 bytes

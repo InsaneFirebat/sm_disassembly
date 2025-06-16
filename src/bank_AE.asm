@@ -122,5 +122,5 @@ Tiles_Viola:
 incbin "../data/Tiles_Viola.bin" ; $400 bytes
 
 
-Freespace_BankAE_FD20:                                                   ;AEFD20;
+Freespace_BankAE_FD20:
 ; $2E0 bytes

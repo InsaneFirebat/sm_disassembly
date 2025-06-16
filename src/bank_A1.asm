@@ -24,9 +24,9 @@ org $A18000
 EnemyPopulations_Draygon_State1_MotherBrain_State2:
 ; Room $DA60, state $DA8C
 ; Room $DD58, state $DDA2
-    dw $FFFF                                                             ;A18000; No death quota byte (off to a good start)
+    dw $FFFF ; No death quota byte (off to a good start)
 
-EnemyPopulations_EastOcean:                                              ;A18002;
+EnemyPopulations_EastOcean:
 ; Room $94FD, state $950A
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Choot),
@@ -144,7 +144,7 @@ EnemyPopulations_EastOcean:                                              ;A18002
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0000, $2800))
-    dw $FFFF : db $0A                                                    ;A180D2;
+    dw $FFFF : db $0A
 
 EnemyPopulations_CrateriaPowerBombs:
 ; Room $93AA, state $93B7
@@ -174,7 +174,7 @@ EnemyPopulations_CrateriaPowerBombs:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $03                                                    ;A18105;
+    dw $FFFF : db $03
 
 EnemyPopulations_Terminator:
 ; Room $990D, state $991A
@@ -258,7 +258,7 @@ EnemyPopulations_Terminator:
     %properties($2001),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $09                                                    ;A18198;
+    dw $FFFF : db $09
 
 EnemyPopulations_FinalMissileBombway_1:
 ; Room $9A44, state $9A70
@@ -315,7 +315,7 @@ EnemyPopulations_FinalMissileBombway_1:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A181FB;
+    dw $FFFF : db $00
 
 EnemyPopulations_FinalMissileBombway_0:
 ; Room $9A44, state $9A56
@@ -372,7 +372,7 @@ EnemyPopulations_FinalMissileBombway_0:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1825E;
+    dw $FFFF : db $00
 
 EnemyPopulations_Parlor_1:
 ; Room $92FD, state $932E
@@ -519,7 +519,7 @@ EnemyPopulations_Parlor_1:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0010, $0000))
-    dw $FFFF : db $10                                                    ;A18361;
+    dw $FFFF : db $10
 
 EnemyPopulations_Flyway_0_1:
 ; Room $9879, state $9890
@@ -631,7 +631,7 @@ EnemyPopulations_Flyway_0_1:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A18424;
+    dw $FFFF : db $00
 
 EnemyPopulations_Pit_1:
 ; Room $975C, state $9787
@@ -679,7 +679,7 @@ EnemyPopulations_Pit_1:
     %properties($2000),
     %extraProperties($0004),
     %speedParams($8001, $0020))
-    dw $FFFF : db $05                                                    ;A18477;
+    dw $FFFF : db $05
 
 EnemyPopulations_GauntletEntrance:
 ; Room $92B3, state $92C5
@@ -746,7 +746,7 @@ EnemyPopulations_GauntletEntrance:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0070, $0001))
-    dw $FFFF : db $03                                                    ;A184EA;
+    dw $FFFF : db $03
 
 EnemyPopulations_BombTorizo_0_1:
 ; Room $9804, state $981B
@@ -759,7 +759,7 @@ EnemyPopulations_BombTorizo_0_1:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A184FD;
+    dw $FFFF : db $00
 
 EnemyPopulations_GreenPiratesShaft:
 ; Room $99BD, state $99CA
@@ -825,7 +825,7 @@ EnemyPopulations_GreenPiratesShaft:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $07                                                    ;A18570;
+    dw $FFFF : db $07
 
 EnemyPopulations_GreenBrinstarElev:
 ; Room $9938, state $9945
@@ -837,7 +837,7 @@ EnemyPopulations_GreenBrinstarElev:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0000, $0140))
-    dw $FFFF : db $00                                                    ;A18583;
+    dw $FFFF : db $00
 
 EnemyPopulations_FinalMissile_0:
 ; Room $9A90, state $9AA2
@@ -858,20 +858,20 @@ EnemyPopulations_FinalMissile_0:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A185A6;
+    dw $FFFF : db $00
 
 EnemyPopulations_CrateriaMap:
 ; Room $9994, state $99A1
-    dw $FFFF : db $00                                                    ;A185A9;
+    dw $FFFF : db $00
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A185AC:
-    dw $FFFF : db $00                                                    ;A185AC;
+    dw $FFFF : db $00
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_FinalMissile_1:
 ; Room $9A90, state $9ABC
-    dw $FFFF : db $00                                                    ;A185AF;
+    dw $FFFF : db $00
 
 EnemyPopulations_Climb_2:
 ; Room $96BA, state $9705
@@ -892,24 +892,24 @@ EnemyPopulations_Climb_2:
     %properties($2800),
     %extraProperties($0004),
     %speedParams($0000, $0000))
-    dw $FFFF : db $02                                                    ;A185D2;
+    dw $FFFF : db $02
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A185D5:
-    dw $FFFF : db $00                                                    ;A185D5;
+    dw $FFFF : db $00
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_CrateriaSave:
 ; Room $93D5, state $93E2
-    dw $FFFF : db $00                                                    ;A185D8;
+    dw $FFFF : db $00
 
 EnemyPopulations_ForgottenHighwayElbow:
 ; Room $95A8, state $95B5
-    dw $FFFF : db $00                                                    ;A185DB;
+    dw $FFFF : db $00
 
 EnemyPopulations_Moat:
 ; Room $95FF, state $960C
-    dw $FFFF : db $00                                                    ;A185DE;
+    dw $FFFF : db $00
 
 EnemyPopulations_Climb_0:
 ; Room $96BA, state $96D1
@@ -1002,7 +1002,7 @@ EnemyPopulations_Climb_0:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($BC02, $0050))
-    dw $FFFF : db $00                                                    ;A18681;
+    dw $FFFF : db $00
 
 EnemyPopulations_WestOcean:
 ; Room $93FE, state $940B
@@ -1068,11 +1068,11 @@ EnemyPopulations_WestOcean:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0001, $0010))
-    dw $FFFF : db $07                                                    ;A186F4;
+    dw $FFFF : db $07
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A186F7:
-    dw $FFFF : db $00                                                    ;A186F7;
+    dw $FFFF : db $00
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_Parlor_0:
@@ -1256,7 +1256,7 @@ EnemyPopulations_Parlor_0:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($E804, $0020))
-    dw $FFFF : db $00                                                    ;A1883A;
+    dw $FFFF : db $00
 
 EnemyPopulations_LandingSite_0_1_2:
 ; Room $91F8, state $9213
@@ -1288,7 +1288,7 @@ EnemyPopulations_LandingSite_0_1_2:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($0000, $0001))
-    dw $FFFF : db $00                                                    ;A1886D;
+    dw $FFFF : db $00
 
 EnemyPopulations_CrateriaSuper:
 ; Room $99F9, state $9A06
@@ -1327,11 +1327,11 @@ EnemyPopulations_CrateriaSuper:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0103, $0020))
-    dw $FFFF : db $00                                                    ;A188B0;
+    dw $FFFF : db $00
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A188B3:
-    dw $FFFF : db $00                                                    ;A188B3;
+    dw $FFFF : db $00
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_PreBowling:
@@ -1344,7 +1344,7 @@ EnemyPopulations_PreBowling:
     %properties($2001),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $01                                                    ;A188C6;
+    dw $FFFF : db $01
 
 EnemyPopulations_Climb_1:
 ; Room $96BA, state $96EB
@@ -1446,7 +1446,7 @@ EnemyPopulations_Climb_1:
     %properties($2000),
     %extraProperties($0004),
     %speedParams($8000, $00A0))
-    dw $FFFF : db $0B                                                    ;A18979;
+    dw $FFFF : db $0B
 
 EnemyPopulations_BowlingAlleyPath:
 ; Room $9461, state $946E
@@ -1503,7 +1503,7 @@ EnemyPopulations_BowlingAlleyPath:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $06                                                    ;A189DC;
+    dw $FFFF : db $06
 
 EnemyPopulations_RedBinstarElev:
 ; Room $962A, state $9637
@@ -1515,7 +1515,7 @@ EnemyPopulations_RedBinstarElev:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0000, $0140))
-    dw $FFFF : db $00                                                    ;A189EF;
+    dw $FFFF : db $00
 
 EnemyPopulations_GauntletETank:
 ; Room $965B, state $9668
@@ -1536,7 +1536,7 @@ EnemyPopulations_GauntletETank:
     %properties($6900),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $01                                                    ;A18A12;
+    dw $FFFF : db $01
 
 EnemyPopulations_Pit_0:
 ; Room $975C, state $976D
@@ -1629,7 +1629,7 @@ EnemyPopulations_Pit_0:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($EC04, $0050))
-    dw $FFFF : db $00                                                    ;A18AB5;
+    dw $FFFF : db $00
 
 EnemyPopulations_CrabMaze:
 ; Room $957D, state $958A
@@ -1704,11 +1704,11 @@ EnemyPopulations_CrabMaze:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0003, $0000))
-    dw $FFFF : db $08                                                    ;A18B38;
+    dw $FFFF : db $08
 
 EnemyPopulations_CrateriaTube:
 ; Room $95D4, state $95E1
-    dw $FFFF : db $00                                                    ;A18B3B;
+    dw $FFFF : db $00
 
 EnemyPopulations_ForgottenHighwayKagos:
 ; Room $9552, state $955F
@@ -1729,7 +1729,7 @@ EnemyPopulations_ForgottenHighwayKagos:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($000A, $0000))
-    dw $FFFF : db $02                                                    ;A18B5E;
+    dw $FFFF : db $02
 
 EnemyPopulations_ElevToBlueBrinstar:
 ; Room $97B5, state $97C6
@@ -1742,7 +1742,7 @@ EnemyPopulations_ElevToBlueBrinstar:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0000, $0140))
-    dw $FFFF : db $00                                                    ;A18B71;
+    dw $FFFF : db $00
 
 EnemyPopulations_ForgottenHighwayElev:
 ; Room $94CC, state $94D9
@@ -1754,7 +1754,7 @@ EnemyPopulations_ForgottenHighwayElev:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0000, $0140))
-    dw $FFFF : db $00                                                    ;A18B84;
+    dw $FFFF : db $00
 
 EnemyPopulations_PreMapFlyway:
 ; Room $98E2, state $98EF
@@ -1793,7 +1793,7 @@ EnemyPopulations_PreMapFlyway:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $01                                                    ;A18BC7;
+    dw $FFFF : db $01
 
 EnemyPopulations_LowerMushrooms:
 ; Room $9969, state $9976
@@ -1832,7 +1832,7 @@ EnemyPopulations_LowerMushrooms:
     %properties($2001),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $04                                                    ;A18C0A;
+    dw $FFFF : db $04
 
 EnemyPopulations_LandingSite_3:
 ; Room $91F8, state $9261
@@ -2060,7 +2060,7 @@ EnemyPopulations_LandingSite_3:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A18D9D;
+    dw $FFFF : db $00
 
 EnemyPopulations_Parlor_2:
 ; Room $92FD, state $9348
@@ -2234,7 +2234,7 @@ EnemyPopulations_Parlor_2:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A18ED0;
+    dw $FFFF : db $00
 
 EnemyPopulations_BombTorizo_2:
 ; Room $9804, state $984F
@@ -2273,11 +2273,11 @@ EnemyPopulations_BombTorizo_2:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0004, $0000))
-    dw $FFFF : db $04                                                    ;A18F13;
+    dw $FFFF : db $04
 
 EnemyPopulations_Flyway_2:
 ; Room $9879, state $98C4
-    dw $FFFF : db $00                                                    ;A18F16;
+    dw $FFFF : db $00
 
 EnemyPopulations_CrateriaKihunter:
 ; Room $948C, state $9499
@@ -2334,7 +2334,7 @@ EnemyPopulations_CrateriaKihunter:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $04                                                    ;A18F79;
+    dw $FFFF : db $04
 
 EnemyPopulations_BrinstarPreMap:
 ; Room $9B9D, state $9BAA
@@ -2373,15 +2373,15 @@ EnemyPopulations_BrinstarPreMap:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0002))
-    dw $FFFF : db $04                                                    ;A18FBC;
+    dw $FFFF : db $04
 
 EnemyPopulations_GreenBrinstarMap:
 ; Room $9C35, state $9C42
-    dw $FFFF : db $00                                                    ;A18FDF;
+    dw $FFFF : db $00
 
 EnemyPopulations_GreenBrinstarMissileRefill:
 ; Room $9C89, state $9C96
-    dw $FFFF : db $00                                                    ;A18FC2;
+    dw $FFFF : db $00
 
 EnemyPopulations_SporeSpawnKihunters:
 ; Room $9D9C, state $9DA9
@@ -2438,15 +2438,15 @@ EnemyPopulations_SporeSpawnKihunters:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0020, $0000))
-    dw $FFFF : db $03                                                    ;A19025;
+    dw $FFFF : db $03
 
 EnemyPopulations_EtecoonSuper:
 ; Room $A051, state $A05E
-    dw $FFFF : db $00                                                    ;A19028;
+    dw $FFFF : db $00
 
 EnemyPopulations_DachoraEnergyRefill:
 ; Room $A07B, state $A088
-    dw $FFFF : db $00                                                    ;A1902B;
+    dw $FFFF : db $00
 
 EnemyPopulations_SporeSpawnFarming:
 ; Room $A0A4, state $A0B1
@@ -2494,7 +2494,7 @@ EnemyPopulations_SporeSpawnFarming:
     %properties($2001),
     %extraProperties($0000),
     %speedParams($00FF, $0002))
-    dw $FFFF : db $05                                                    ;A1907E;
+    dw $FFFF : db $05
 
 EnemyPopulations_Statues:
 ; Room $A66A, state $A677
@@ -2533,11 +2533,11 @@ EnemyPopulations_Statues:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0004, $0000))
-    dw $FFFF : db $00                                                    ;A190C1;
+    dw $FFFF : db $00
 
 EnemyPopulations_HopperETank:
 ; Room $A15B, state $A168
-    dw $FFFF : db $00                                                    ;A190C4;
+    dw $FFFF : db $00
 
 EnemyPopulations_BetaPowerBomb:
 ; Room $A37C, state $A389
@@ -2585,7 +2585,7 @@ EnemyPopulations_BetaPowerBomb:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($8000, $0000))
-    dw $FFFF : db $03                                                    ;A19117;
+    dw $FFFF : db $03
 
 EnemyPopulations_WaterwayETank:
 ; Room $A0D2, state $A0DF
@@ -2651,7 +2651,7 @@ EnemyPopulations_WaterwayETank:
     %properties($2001),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $07                                                    ;A1918A;
+    dw $FFFF : db $07
 
 EnemyPopulations_ConstructionZone_1:
 ; Room $9F11, state $9F3D
@@ -2717,7 +2717,7 @@ EnemyPopulations_ConstructionZone_1:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $02                                                    ;A191FD;
+    dw $FFFF : db $02
 
 EnemyPopulations_BlueBrinstarETank_1:
 ; Room $9F64, state $9F90
@@ -2810,7 +2810,7 @@ EnemyPopulations_BlueBrinstarETank_1:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $05                                                    ;A192A0;
+    dw $FFFF : db $05
 
 EnemyPopulations_NoobBridge:
 ; Room $9FBA, state $9FC7
@@ -2885,7 +2885,7 @@ EnemyPopulations_NoobBridge:
     %properties($2801),
     %extraProperties($0000),
     %speedParams($0000, $0002))
-    dw $FFFF : db $08                                                    ;A19323;
+    dw $FFFF : db $08
 
 EnemyPopulations_MorphBall_1:
 ; Room $9E9F, state $9ECB
@@ -2960,11 +2960,11 @@ EnemyPopulations_MorphBall_1:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $03                                                    ;A193A6;
+    dw $FFFF : db $03
 
 EnemyPopulations_WarehouseSave:
 ; Room $A70B, state $A718
-    dw $FFFF : db $00                                                    ;A193A9;
+    dw $FFFF : db $00
 
 EnemyPopulations_MorphBall_0:
 ; Room $9E9F, state $9EB1
@@ -3030,7 +3030,7 @@ EnemyPopulations_MorphBall_0:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0040, $0001))
-    dw $FFFF : db $00                                                    ;A1941C;
+    dw $FFFF : db $00
 
 EnemyPopulations_WarehouseZeela:
 ; Room $A471, state $A47E
@@ -3060,7 +3060,7 @@ EnemyPopulations_WarehouseZeela:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0002, $0002))
-    dw $FFFF : db $03                                                    ;A1944F;
+    dw $FFFF : db $03
 
 EnemyPopulations_RedTower:
 ; Room $A253, state $A260
@@ -3162,7 +3162,7 @@ EnemyPopulations_RedTower:
     %properties($6100),
     %extraProperties($0000),
     %speedParams($0001, $0020))
-    dw $FFFF : db $0B                                                    ;A19502;
+    dw $FFFF : db $0B
 
 EnemyPopulations_BlueBrinstarBoulders:
 ; Room $A1AD, state $A1BA
@@ -3192,15 +3192,15 @@ EnemyPopulations_BlueBrinstarBoulders:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0200, $A050))
-    dw $FFFF : db $00                                                    ;A19535;
+    dw $FFFF : db $00
 
 EnemyPopulations_BillyMays:
 ; Room $A1D8, state $A1E5
-    dw $FFFF : db $00                                                    ;A19538;
+    dw $FFFF : db $00
 
 EnemyPopulations_BigPinkSaveRoom:
 ; Room $A184, state $A191
-    dw $FFFF : db $00                                                    ;A1953B;
+    dw $FFFF : db $00
 
 EnemyPopulations_BigPink:
 ; Room $9D19, state $9D26
@@ -3293,11 +3293,11 @@ EnemyPopulations_BigPink:
     %properties($6900),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $0A                                                    ;A195DE;
+    dw $FFFF : db $0A
 
 EnemyPopulations_EtecoonSave:
 ; Room $A22A, state $A237
-    dw $FFFF : db $00                                                    ;A195E1;
+    dw $FFFF : db $00
 
 EnemyPopulations_BelowSpazer:
 ; Room $A408, state $A415
@@ -3327,15 +3327,15 @@ EnemyPopulations_BelowSpazer:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0100, $0200))
-    dw $FFFF : db $01                                                    ;A19614;
+    dw $FFFF : db $01
 
 EnemyPopulations_GreenBrinstarSave:
 ; Room $A201, state $A20E
-    dw $FFFF : db $00                                                    ;A19617;
+    dw $FFFF : db $00
 
 EnemyPopulations_Spazer:
 ; Room $A447, state $A454
-    dw $FFFF : db $00                                                    ;A1961A;
+    dw $FFFF : db $00
 
 EnemyPopulations_PinkBrinstarPowerBombs:
 ; Room $9E11, state $9E1E
@@ -3374,27 +3374,27 @@ EnemyPopulations_PinkBrinstarPowerBombs:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($8000, $0000))
-    dw $FFFF : db $02                                                    ;A1965D;
+    dw $FFFF : db $02
 
 EnemyPopulations_RedTowerRefill:
 ; Room $A618, state $A625
-    dw $FFFF : db $00                                                    ;A19660;
+    dw $FFFF : db $00
 
 EnemyPopulations_KraidRefill:
 ; Room $A641, state $A64E
-    dw $FFFF : db $00                                                    ;A19663;
+    dw $FFFF : db $00
 
 EnemyPopulations_VariaSuit:
 ; Room $A6E2, state $A6EF
-    dw $FFFF : db $00                                                    ;A19666;
+    dw $FFFF : db $00
 
 EnemyPopulations_RedBrinstarSave:
 ; Room $A734, state $A741
-    dw $FFFF : db $00                                                    ;A19669;
+    dw $FFFF : db $00
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A1966C:
-    dw $FFFF : db $00                                                    ;A1966C;
+    dw $FFFF : db $00
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_BlueBrinstarETank_0:
@@ -3461,7 +3461,7 @@ EnemyPopulations_BlueBrinstarETank_0:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A196DF;
+    dw $FFFF : db $00
 
 EnemyPopulations_GreenBrinstarFirefleas:
 ; Room $9C5E, state $9C6B
@@ -3509,7 +3509,7 @@ EnemyPopulations_GreenBrinstarFirefleas:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0408))
-    dw $FFFF : db $05                                                    ;A19732;
+    dw $FFFF : db $05
 
 EnemyPopulations_GreenBrinstarBeetoms:
 ; Room $9FE5, state $9FF2
@@ -3548,7 +3548,7 @@ EnemyPopulations_GreenBrinstarBeetoms:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $04                                                    ;A19775;
+    dw $FFFF : db $04
 
 EnemyPopulations_EtecoonETank:
 ; Room $A011, state $A01E
@@ -3623,7 +3623,7 @@ EnemyPopulations_EtecoonETank:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $08                                                    ;A197F8;
+    dw $FFFF : db $08
 
 EnemyPopulations_PinkBrinstarHoppers:
 ; Room $A130, state $A13D
@@ -3707,7 +3707,7 @@ EnemyPopulations_PinkBrinstarHoppers:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $03                                                    ;A1988B;
+    dw $FFFF : db $03
 
 EnemyPopulations_WarehouseETank:
 ; Room $A4B1, state $A4BE
@@ -3746,7 +3746,7 @@ EnemyPopulations_WarehouseETank:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $04                                                    ;A198CE;
+    dw $FFFF : db $04
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A198D1:
@@ -3758,7 +3758,7 @@ UNUSED_EnemyPopulations_A198D1:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0000, $0140))
-    dw $FFFF : db $00                                                    ;A198E1;
+    dw $FFFF : db $00
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_WarehouseEntrance:
@@ -3771,7 +3771,7 @@ EnemyPopulations_WarehouseEntrance:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0000, $0140))
-    dw $FFFF : db $00                                                    ;A198F4;
+    dw $FFFF : db $00
 
 EnemyPopulations_WarehouseKihunter:
 ; Room $A4DA, state $A4E7
@@ -3846,7 +3846,7 @@ EnemyPopulations_WarehouseKihunter:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0020, $0000))
-    dw $FFFF : db $04                                                    ;A19977;
+    dw $FFFF : db $04
 
 EnemyPopulations_GreenBrinstarMainShaft:
 ; Room $9AD9, state $9AE6
@@ -3948,7 +3948,7 @@ EnemyPopulations_GreenBrinstarMainShaft:
     %properties($0C00),
     %extraProperties($0000),
     %speedParams($0000, $0002))
-    dw $FFFF : db $07                                                    ;A19A2A;
+    dw $FFFF : db $07
 
 EnemyPopulations_SporeSpawnSuper:
 ; Room $9B5B, state $9B68
@@ -3960,7 +3960,7 @@ EnemyPopulations_SporeSpawnSuper:
     %properties($6900),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $01                                                    ;A19A3D;
+    dw $FFFF : db $01
 
 EnemyPopulations_EarlySupers:
 ; Room $9BC8, state $9BD5
@@ -4080,7 +4080,7 @@ EnemyPopulations_EarlySupers:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $0A                                                    ;A19B10;
+    dw $FFFF : db $0A
 
 EnemyPopulations_RedBrinstarFirefleas:
 ; Room $A293, state $A2A0
@@ -4182,7 +4182,7 @@ EnemyPopulations_RedBrinstarFirefleas:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0050, $0001))
-    dw $FFFF : db $08                                                    ;A19BC3;
+    dw $FFFF : db $08
 
 EnemyPopulations_ConstructionZone_0:
 ; Room $9F11, state $9F23
@@ -4320,7 +4320,7 @@ EnemyPopulations_ConstructionZone_0:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A19CB6;
+    dw $FFFF : db $00
 
 EnemyPopulations_GreenHillZone:
 ; Room $9E52, state $9E5F
@@ -4413,7 +4413,7 @@ EnemyPopulations_GreenHillZone:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $0A                                                    ;A19D59;
+    dw $FFFF : db $0A
 
 EnemyPopulations_Dachora:
 ; Room $9CB3, state $9CC0
@@ -4533,7 +4533,7 @@ EnemyPopulations_Dachora:
     %properties($0D00),
     %extraProperties($0000),
     %speedParams($8001, $0000))
-    dw $FFFF : db $08                                                    ;A19E2C;
+    dw $FFFF : db $08
 
 EnemyPopulations_Hellway:
 ; Room $A2F7, state $A304
@@ -4608,11 +4608,11 @@ EnemyPopulations_Hellway:
     %properties($6900),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $08                                                    ;A19EAF;
+    dw $FFFF : db $08
 
 EnemyPopulations_FirstMissile:
 ; Room $A107, state $A114
-    dw $FFFF : db $00                                                    ;A19EB2;
+    dw $FFFF : db $00
 
 EnemyPopulations_Kraid:
 ; Room $A59F, state $A5B1
@@ -4688,11 +4688,11 @@ EnemyPopulations_Kraid:
     %properties($6800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A19F35;
+    dw $FFFF : db $00
 
 EnemyPopulations_BrinstarReserveTank:
 ; Room $9C07, state $9C14
-    dw $FFFF : db $00                                                    ;A19F38;
+    dw $FFFF : db $00
 
 EnemyPopulations_XrayScope:
 ; Room $A2CE, state $A2DB
@@ -4713,11 +4713,11 @@ EnemyPopulations_XrayScope:
     %properties($A800),
     %extraProperties($FFFF),
     %speedParams($4004, $0000))
-    dw $FFFF : db $00                                                    ;A19F5D;
+    dw $FFFF : db $00
 
 EnemyPopulations_StatuesHallway:
 ; Room $A5ED, state $A5FA
-    dw $FFFF : db $00                                                    ;A19F5E;
+    dw $FFFF : db $00
 
 EnemyPopulations_AlphaPowerBomb:
 ; Room $A3AE, state $A3BB
@@ -4756,7 +4756,7 @@ EnemyPopulations_AlphaPowerBomb:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0003, $0020))
-    dw $FFFF : db $00                                                    ;A19FA1;
+    dw $FFFF : db $00
 
 EnemyPopulations_KraidEyeDoor:
 ; Room $A56B, state $A578
@@ -4858,7 +4858,7 @@ EnemyPopulations_KraidEyeDoor:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($C802, $0020))
-    dw $FFFF : db $01                                                    ;A1A054;
+    dw $FFFF : db $01
 
 EnemyPopulations_Caterpillar:
 ; Room $A322, state $A32F
@@ -4915,7 +4915,7 @@ EnemyPopulations_Caterpillar:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0100, $0300))
-    dw $FFFF : db $05                                                    ;A1A0B7;
+    dw $FFFF : db $05
 
 EnemyPopulations_MiniKraid:
 ; Room $A521, state $A533
@@ -4955,7 +4955,7 @@ EnemyPopulations_MiniKraid:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $04                                                    ;A1A0FA;
+    dw $FFFF : db $04
 
 EnemyPopulations_SporeSpawn:
 ; Room $9DC7, state $9DD9
@@ -4968,7 +4968,7 @@ EnemyPopulations_SporeSpawn:
     %properties($2800),
     %extraProperties($0004),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1A10D;
+    dw $FFFF : db $00
 
 EnemyPopulations_SkreeBoost:
 ; Room $A3DD, state $A3EA
@@ -4989,7 +4989,7 @@ EnemyPopulations_SkreeBoost:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $02                                                    ;A1A130;
+    dw $FFFF : db $02
 
 EnemyPopulations_GrappleTutorial3:
 ; Room $AB64, state $AB71
@@ -5082,7 +5082,7 @@ EnemyPopulations_GrappleTutorial3:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $06                                                    ;A1A1D3;
+    dw $FFFF : db $06
 
 EnemyPopulations_PostCrocShaft:
 ; Room $AB07, state $AB14
@@ -5121,7 +5121,7 @@ EnemyPopulations_PostCrocShaft:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0002, $0006))
-    dw $FFFF : db $04                                                    ;A1A216;
+    dw $FFFF : db $04
 
 EnemyPopulations_MetalPirates:
 ; Room $B62B, state $B638
@@ -5142,7 +5142,7 @@ EnemyPopulations_MetalPirates:
     %properties($2800),
     %extraProperties($0004),
     %speedParams($0000, $00C0))
-    dw $FFFF : db $02                                                    ;A1A239;
+    dw $FFFF : db $02
 
 EnemyPopulations_AcidStatue:
 ; Room $B1E5, state $B1F2
@@ -5235,7 +5235,7 @@ EnemyPopulations_AcidStatue:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($8000, $0000))
-    dw $FFFF : db $04                                                    ;A1A2DC;
+    dw $FFFF : db $04
 
 EnemyPopulations_PurpleFarming:
 ; Room $B051, state $B05E
@@ -5283,7 +5283,7 @@ EnemyPopulations_PurpleFarming:
     %properties($6800),
     %extraProperties($0000),
     %speedParams($0000, $3000))
-    dw $FFFF : db $01                                                    ;A1A32F;
+    dw $FFFF : db $01
 
 EnemyPopulations_IceBeamGate:
 ; Room $A815, state $A822
@@ -5394,7 +5394,7 @@ EnemyPopulations_IceBeamGate:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0003, $0004))
-    dw $FFFF : db $04                                                    ;A1A3F2;
+    dw $FFFF : db $04
 
 EnemyPopulations_SpikyAcidSnakesTunnel:
 ; Room $AFFB, state $B008
@@ -5424,7 +5424,7 @@ EnemyPopulations_SpikyAcidSnakesTunnel:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0080, $0001))
-    dw $FFFF : db $00                                                    ;A1A425;
+    dw $FFFF : db $00
 
 EnemyPopulations_RedKihunterShaft:
 ; Room $B585, state $B592
@@ -5481,7 +5481,7 @@ EnemyPopulations_RedKihunterShaft:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0020, $0000))
-    dw $FFFF : db $03                                                    ;A1A488;
+    dw $FFFF : db $03
 
 EnemyPopulations_FastRipper:
 ; Room $B2DA, state $B2E7
@@ -5538,11 +5538,11 @@ EnemyPopulations_FastRipper:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0040, $0000))
-    dw $FFFF : db $06                                                    ;A1A4EB;
+    dw $FFFF : db $06
 
 EnemyPopulations_WaveBeam:
 ; Room $ADDE, state $ADEB
-    dw $FFFF : db $00                                                    ;A1A4EE;
+    dw $FFFF : db $00
 
 EnemyPopulations_FastPillarsSetup:
 ; Room $B3A5, state $B3B2
@@ -5590,7 +5590,7 @@ EnemyPopulations_FastPillarsSetup:
     %properties($2001),
     %extraProperties($0000),
     %speedParams($0001, $0006))
-    dw $FFFF : db $05                                                    ;A1A541;
+    dw $FFFF : db $05
 
 EnemyPopulations_LowerNorfairElev:
 ; Room $AF3F, state $AF4C
@@ -5602,19 +5602,19 @@ EnemyPopulations_LowerNorfairElev:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0000, $0140))
-    dw $FFFF : db $00                                                    ;A1A554;
+    dw $FFFF : db $00
 
 EnemyPopulations_LNSave:
 ; Room $B741, state $B74E
-    dw $FFFF : db $00                                                    ;A1A557;
+    dw $FFFF : db $00
 
 EnemyPopulations_UpperNorfairRefill:
 ; Room $B026, state $B033
-    dw $FFFF : db $00                                                    ;A1A55A;
+    dw $FFFF : db $00
 
 EnemyPopulations_NorfairMap:
 ; Room $B0B4, state $B0C1
-    dw $FFFF : db $00                                                    ;A1A55D;
+    dw $FFFF : db $00
 
 EnemyPopulations_MickeyMouse:
 ; Room $B40A, state $B417
@@ -5725,11 +5725,11 @@ EnemyPopulations_MickeyMouse:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0048, $0005))
-    dw $FFFF : db $05                                                    ;A1A620;
+    dw $FFFF : db $05
 
 EnemyPopulations_GTEnergyRefill:
 ; Room $B305, state $B312
-    dw $FFFF : db $00                                                    ;A1A623;
+    dw $FFFF : db $00
 
 EnemyPopulations_Ridley:
 ; Room $B32E, state $B340
@@ -5742,23 +5742,23 @@ EnemyPopulations_Ridley:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1A636;
+    dw $FFFF : db $00
 
 EnemyPopulations_PostCrocPowerBombs:
 ; Room $AADE, state $AAEB
-    dw $FFFF : db $00                                                    ;A1A639;
+    dw $FFFF : db $00
 
 EnemyPopulations_IceBeam:
 ; Room $A890, state $A89D
-    dw $FFFF : db $00                                                    ;A1A63C;
+    dw $FFFF : db $00
 
 EnemyPopulations_HiJumpBoots:
 ; Room $A9E5, state $A9F2
-    dw $FFFF : db $00                                                    ;A1A63F;
+    dw $FFFF : db $00
 
 EnemyPopulations_PostCrocSave:
 ; Room $AAB5, state $AAC2
-    dw $FFFF : db $00                                                    ;A1A642;
+    dw $FFFF : db $00
 
 EnemyPopulations_FrogSpeedway:
 ; Room $B106, state $B113
@@ -5815,7 +5815,7 @@ EnemyPopulations_FrogSpeedway:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $06                                                    ;A1A6A5;
+    dw $FFFF : db $06
 
 EnemyPopulations_RisingTide:
 ; Room $AFA3, state $AFB0
@@ -5971,7 +5971,7 @@ EnemyPopulations_RisingTide:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($8000, $0000))
-    dw $FFFF : db $0B                                                    ;A1A7B8;
+    dw $FFFF : db $0B
 
 EnemyPopulations_PostCrocFarming:
 ; Room $AA82, state $AA8F
@@ -6037,7 +6037,7 @@ EnemyPopulations_PostCrocFarming:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0000, $2800))
-    dw $FFFF : db $02                                                    ;A1A82B;
+    dw $FFFF : db $02
 
 EnemyPopulations_WorstRoomInTheGame:
 ; Room $B4AD, state $B4BA
@@ -6139,7 +6139,7 @@ EnemyPopulations_WorstRoomInTheGame:
     %properties($2000),
     %extraProperties($0004),
     %speedParams($0000, $0010))
-    dw $FFFF : db $0B                                                    ;A1A8DE;
+    dw $FFFF : db $0B
 
 EnemyPopulations_DoubleChamber:
 ; Room $ADAD, state $ADBA
@@ -6214,11 +6214,11 @@ EnemyPopulations_DoubleChamber:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0298, $0338))
-    dw $FFFF : db $04                                                    ;A1A962;
+    dw $FFFF : db $04
 
 EnemyPopulations_GrappleBeam:
 ; Room $AC2B, state $AC38
-    dw $FFFF : db $00                                                    ;A1A964;
+    dw $FFFF : db $00
 
 EnemyPopulations_RedPirateShaft:
 ; Room $B139, state $B146
@@ -6284,7 +6284,7 @@ EnemyPopulations_RedPirateShaft:
     %properties($2001),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $07                                                    ;A1A9D7;
+    dw $FFFF : db $07
 
 EnemyPopulations_CrocomireSpeedway:
 ; Room $A923, state $A930
@@ -6386,7 +6386,7 @@ EnemyPopulations_CrocomireSpeedway:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0100, $0000))
-    dw $FFFF : db $07                                                    ;A1AA8A;
+    dw $FFFF : db $07
 
 EnemyPopulations_Plowerhouse:
 ; Room $B482, state $B48F
@@ -6524,7 +6524,7 @@ EnemyPopulations_Plowerhouse:
     %properties($6900),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $09                                                    ;A1AB7D;
+    dw $FFFF : db $09
 
 EnemyPopulations_LNFireflea:
 ; Room $B6EE, state $B6FB
@@ -6644,7 +6644,7 @@ EnemyPopulations_LNFireflea:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0002, $0720))
-    dw $FFFF : db $0A                                                    ;A1AC50;
+    dw $FFFF : db $0A
 
 EnemyPopulations_MagdolliteTunnel:
 ; Room $AEB4, state $AEC1
@@ -6746,12 +6746,12 @@ EnemyPopulations_MagdolliteTunnel:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0030, $0002))
-    dw $FFFF : db $03                                                    ;A1AD05;
+    dw $FFFF : db $03
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_8FB3EE_A1AD06:
 ; Room $B3E1, state $B3EE
-    dw $FFFF : db $00                                                    ;A1AD06;
+    dw $FFFF : db $00
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_LavaDive:
@@ -6809,7 +6809,7 @@ EnemyPopulations_LavaDive:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($1001, $8005))
-    dw $FFFF : db $06                                                    ;A1AD69;
+    dw $FFFF : db $06
 
 EnemyPopulations_Pillar:
 ; Room $B457, state $B464
@@ -6830,7 +6830,7 @@ EnemyPopulations_Pillar:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($4010, $2001))
-    dw $FFFF : db $00                                                    ;A1AD8C;
+    dw $FFFF : db $00
 
 EnemyPopulations_CrocomireEscape:
 ; Room $AA0E, state $AA1B
@@ -6941,7 +6941,7 @@ EnemyPopulations_CrocomireEscape:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $06                                                    ;A1AE4F;
+    dw $FFFF : db $06
 
 EnemyPopulations_LNSpringBallMaze:
 ; Room $B510, state $B51D
@@ -6989,23 +6989,23 @@ EnemyPopulations_LNSpringBallMaze:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $05                                                    ;A1AEA2;
+    dw $FFFF : db $05
 
 EnemyPopulations_LNEscapePowerBombs:
 ; Room $B55A, state $B567
-    dw $FFFF : db $00                                                    ;A1AEA5;
+    dw $FFFF : db $00
 
 EnemyPopulations_PurpleShaft:
 ; Room $AEDF, state $AEEC
-    dw $FFFF : db $00                                                    ;A1AEA8;
+    dw $FFFF : db $00
 
 EnemyPopulations_RidleyETank:
 ; Room $B698, state $B6A5
-    dw $FFFF : db $00                                                    ;A1AEAB;
+    dw $FFFF : db $00
 
 EnemyPopulations_ScrewAttack:
 ; Room $B6C1, state $B6CE
-    dw $FFFF : db $00                                                    ;A1AEAE;
+    dw $FFFF : db $00
 
 EnemyPopulations_GreenBubblesMissiles:
 ; Room $AC83, state $AC90
@@ -7044,7 +7044,7 @@ EnemyPopulations_GreenBubblesMissiles:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($8000, $0000))
-    dw $FFFF : db $01                                                    ;A1AEF2;
+    dw $FFFF : db $01
 
 EnemyPopulations_Amphitheatre:
 ; Room $B4E5, state $B4F2
@@ -7128,7 +7128,7 @@ EnemyPopulations_Amphitheatre:
     %properties($2000),
     %extraProperties($0004),
     %speedParams($8000, $0008))
-    dw $FFFF : db $09                                                    ;A1AF84;
+    dw $FFFF : db $09
 
 EnemyPopulations_CathedralEntrance:
 ; Room $A7B3, state $A7C0
@@ -7185,7 +7185,7 @@ EnemyPopulations_CathedralEntrance:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $06                                                    ;A1AFE7;
+    dw $FFFF : db $06
 
 EnemyPopulations_MainHall:
 ; Room $B236, state $B243
@@ -7359,7 +7359,7 @@ EnemyPopulations_MainHall:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $05                                                    ;A1B11A;
+    dw $FFFF : db $05
 
 EnemyPopulations_PostCrocJump:
 ; Room $AB8F, state $AB9C
@@ -7479,15 +7479,15 @@ EnemyPopulations_PostCrocJump:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0000, $2800))
-    dw $FFFF : db $04                                                    ;A1B1ED;
+    dw $FFFF : db $04
 
 EnemyPopulations_FrogSave:
 ; Room $B167, state $B174
-    dw $FFFF : db $00                                                    ;A1B1F0;
+    dw $FFFF : db $00
 
 EnemyPopulations_CrocomireSave:
 ; Room $B192, state $B19F
-    dw $FFFF : db $00                                                    ;A1B1F3;
+    dw $FFFF : db $00
 
 EnemyPopulations_CrumbleShaft:
 ; Room $A8F8, state $A905
@@ -7544,7 +7544,7 @@ EnemyPopulations_CrumbleShaft:
     %properties($2001),
     %extraProperties($0000),
     %speedParams($0001, $0004))
-    dw $FFFF : db $06                                                    ;A1B258;
+    dw $FFFF : db $06
 
 EnemyPopulations_Wasteland:
 ; Room $B5D5, state $B5E2
@@ -7664,7 +7664,7 @@ EnemyPopulations_Wasteland:
     %properties($0100),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $04                                                    ;A1B329;
+    dw $FFFF : db $04
 
 EnemyPopulations_AcidSnakesTunnel:
 ; Room $AFCE, state $AFDB
@@ -7748,21 +7748,21 @@ EnemyPopulations_AcidSnakesTunnel:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $03                                                    ;A1B3BC;
+    dw $FFFF : db $03
 
 EnemyPopulations_GrappleTutorial1:
 ; Room $AC00, state $AC0D
-    dw $FFFF : db $00                                                    ;A1B3BF;
+    dw $FFFF : db $00
 
 EnemyPopulations_BubbleMountainSave:
 ; Room $B0DD, state $B0EA
-    dw $FFFF : db $00                                                    ;A1B3C2;
+    dw $FFFF : db $00
 
 EnemyPopulations_HiJumpETank:
 ; Room $AA41, state $AA4E
-    dw EnemyHeaders_Sova                                                 ;A1B3C5;
-    dw $0177,$00B5,$0002,$2801,$0000,$0004,$0004                         ;A1B3C7;
-    dw $FFFF : db $01                                                    ;A1B3D5;
+    dw EnemyHeaders_Sova
+    dw $0177,$00B5,$0002,$2801,$0000,$0004,$0004
+    dw $FFFF : db $01
 
 EnemyPopulations_BubbleMountain:
 ; Room $ACB3, state $ACC0
@@ -7837,7 +7837,7 @@ EnemyPopulations_BubbleMountain:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0100, $0000))
-    dw $FFFF : db $08                                                    ;A1B458;
+    dw $FFFF : db $08
 
 EnemyPopulations_IceBeamAcid:
 ; Room $A75D, state $A76A
@@ -7867,7 +7867,7 @@ EnemyPopulations_IceBeamAcid:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0000, $1010))
-    dw $FFFF : db $03                                                    ;A1B48B;
+    dw $FFFF : db $03
 
 EnemyPopulations_IceBeamTutorial:
 ; Room $A865, state $A872
@@ -7906,7 +7906,7 @@ EnemyPopulations_IceBeamTutorial:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0018, $0000))
-    dw $FFFF : db $01                                                    ;A1B4CE;
+    dw $FFFF : db $01
 
 EnemyPopulations_PostCrocMissile:
 ; Room $AB3B, state $AB48
@@ -7972,7 +7972,7 @@ EnemyPopulations_PostCrocMissile:
     %properties($6800),
     %extraProperties($0000),
     %speedParams($0000, $3000))
-    dw $FFFF : db $03                                                    ;A1B541;
+    dw $FFFF : db $03
 
 EnemyPopulations_Cathedral:
 ; Room $A788, state $A795
@@ -8065,7 +8065,7 @@ EnemyPopulations_Cathedral:
     %properties($2001),
     %extraProperties($0000),
     %speedParams($0002, $0004))
-    dw $FFFF : db $07                                                    ;A1B5E4;
+    dw $FFFF : db $07
 
 EnemyPopulations_NorfairReserveTank:
 ; Room $AC5A, state $AC67
@@ -8149,7 +8149,7 @@ EnemyPopulations_NorfairReserveTank:
     %properties($2001),
     %extraProperties($0000),
     %speedParams($0006, $0004))
-    dw $FFFF : db $06                                                    ;A1B678;
+    dw $FFFF : db $06
 
 EnemyPopulations_GrappleTutorial2:
 ; Room $ABD2, state $ABDF
@@ -8179,7 +8179,7 @@ EnemyPopulations_GrappleTutorial2:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($2000, $A007))
-    dw $FFFF : db $03                                                    ;A1B6AA;
+    dw $FFFF : db $03
 
 EnemyPopulations_IceBeamSnake:
 ; Room $A8B9, state $A8C6
@@ -8245,7 +8245,7 @@ EnemyPopulations_IceBeamSnake:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($5010, $5007))
-    dw $FFFF : db $07                                                    ;A1B71D;
+    dw $FFFF : db $07
 
 EnemyPopulations_GoldenTorizo:
 ; Room $B283, state $B295
@@ -8258,7 +8258,7 @@ EnemyPopulations_GoldenTorizo:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1B730;
+    dw $FFFF : db $00
 
 EnemyPopulations_SpikyPlatformsTunnel:
 ; Room $AE07, state $AE14
@@ -8288,11 +8288,11 @@ EnemyPopulations_SpikyPlatformsTunnel:
     %properties($A800),
     %extraProperties($0303),
     %speedParams($4002, $0030))
-    dw $FFFF : db $02                                                    ;A1B763;
+    dw $FFFF : db $02
 
 EnemyPopulations_SpeedBooster:
 ; Room $AD1B, state $AD28
-    dw $FFFF : db $00                                                    ;A1B766;
+    dw $FFFF : db $00
 
 EnemyPopulations_LNFarming:
 ; Room $B37A, state $B387
@@ -8394,7 +8394,7 @@ EnemyPopulations_LNFarming:
     %properties($6900),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $0B                                                    ;A1B819;
+    dw $FFFF : db $0B
 
 EnemyPopulations_SingleChamber:
 ; Room $AD5E, state $AD6B
@@ -8460,7 +8460,7 @@ EnemyPopulations_SingleChamber:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $04                                                    ;A1B88C;
+    dw $FFFF : db $04
 
 EnemyPopulations_SpeedBoosterHall:
 ; Room $ACF0, state $ACFD
@@ -8535,7 +8535,7 @@ EnemyPopulations_SpeedBoosterHall:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $05                                                    ;A1B90F;
+    dw $FFFF : db $05
 
 EnemyPopulations_BatCave:
 ; Room $B07A, state $B087
@@ -8610,7 +8610,7 @@ EnemyPopulations_BatCave:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $04                                                    ;A1B992;
+    dw $FFFF : db $04
 
 EnemyPopulations_KronicBoost:
 ; Room $AE74, state $AE81
@@ -8649,7 +8649,7 @@ EnemyPopulations_KronicBoost:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0002, $0006))
-    dw $FFFF : db $04                                                    ;A1B9D5;
+    dw $FFFF : db $04
 
 EnemyPopulations_BusinessCenter:
 ; Room $A7DE, state $A7EB
@@ -8715,7 +8715,7 @@ EnemyPopulations_BusinessCenter:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0001, $0004))
-    dw $FFFF : db $06                                                    ;A1BA48;
+    dw $FFFF : db $06
 
 EnemyPopulations_ThreeMusketeers:
 ; Room $B656, state $B663
@@ -8826,7 +8826,7 @@ EnemyPopulations_ThreeMusketeers:
     %properties($A800),
     %extraProperties($FF00),
     %speedParams($4003, $0000))
-    dw $FFFF : db $03                                                    ;A1BB0B;
+    dw $FFFF : db $03
 
 EnemyPopulations_Crocomire:
 ; Room $A98D, state $A99F
@@ -8848,11 +8848,11 @@ EnemyPopulations_Crocomire:
     %properties($A800),
     %extraProperties($0004),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1BB2E;
+    dw $FFFF : db $00
 
 EnemyPopulations_LNElevSave:
 ; Room $B1BB, state $B1C8
-    dw $FFFF : db $00                                                    ;A1BB31;
+    dw $FFFF : db $00
 
 EnemyPopulations_Volcano:
 ; Room $AE32, state $AE3F
@@ -8945,7 +8945,7 @@ EnemyPopulations_Volcano:
     %properties($2500),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $0A                                                    ;A1BBD4;
+    dw $FFFF : db $0A
 
 EnemyPopulations_UpperNorfairFarming:
 ; Room $AF72, state $AF7F
@@ -9002,7 +9002,7 @@ EnemyPopulations_UpperNorfairFarming:
     %properties($6800),
     %extraProperties($0000),
     %speedParams($0000, $4000))
-    dw $FFFF : db $02                                                    ;A1BC38;
+    dw $FFFF : db $02
 
 EnemyPopulations_SpongeBath_1:
 ; Room $CD5C, state $CD88
@@ -9014,7 +9014,7 @@ EnemyPopulations_SpongeBath_1:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0003, $0003))
-    dw $FFFF : db $01                                                    ;A1BC4A;
+    dw $FFFF : db $01
 
 EnemyPopulations_WreckedShipETank_1:
 ; Room $CC27, state $CC53
@@ -9062,7 +9062,7 @@ EnemyPopulations_WreckedShipETank_1:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0000, $2000))
-    dw $FFFF : db $02                                                    ;A1BC9D;
+    dw $FFFF : db $02
 
 EnemyPopulations_WreckedShipMainShaft_0:
 ; Room $CAF6, state $CB08
@@ -9344,7 +9344,7 @@ EnemyPopulations_WreckedShipMainShaft_0:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $03                                                    ;A1BE90;
+    dw $FFFF : db $03
 
 EnemyPopulations_BowlingAlley_0:
 ; Room $C98E, state $C9A0
@@ -9536,7 +9536,7 @@ EnemyPopulations_BowlingAlley_0:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($C402, $0080))
-    dw $FFFF : db $00                                                    ;A1BFE3;
+    dw $FFFF : db $00
 
 EnemyPopulations_Attic_1:
 ; Room $CA52, state $CA7E
@@ -9728,7 +9728,7 @@ EnemyPopulations_Attic_1:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0002, $0060))
-    dw $FFFF : db $08                                                    ;A1C138;
+    dw $FFFF : db $08
 
 EnemyPopulations_Basement_1:
 ; Room $CC6F, state $CC9B
@@ -9785,31 +9785,31 @@ EnemyPopulations_Basement_1:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0001, $0020))
-    dw $FFFF : db $05                                                    ;A1C19B;
+    dw $FFFF : db $05
 
 EnemyPopulations_WreckedShipMap_1:
 ; Room $CCCB, state $CCF7
-    dw $FFFF : db $00                                                    ;A1C19C;
+    dw $FFFF : db $00
 
 EnemyPopulations_WSWestSuper_0:
 ; Room $CDA8, state $CDBA
-    dw $FFFF : db $00                                                    ;A1C19F;
+    dw $FFFF : db $00
 
 EnemyPopulations_SpikyDeath_0:
 ; Room $CB8B, state $CB9D
-    dw $FFFF : db $00                                                    ;A1C1A2;
+    dw $FFFF : db $00
 
 EnemyPopulations_SpongeBath_0:
 ; Room $CD5C, state $CD6E
-    dw $FFFF : db $00                                                    ;A1C1A5;
+    dw $FFFF : db $00
 
 EnemyPopulations_WreckedShipEntrance_1:
 ; Room $CA08, state $CA34
-    dw $FFFF : db $00                                                    ;A1C1A8;
+    dw $FFFF : db $00
 
 EnemyPopulations_ElectricDeath_0:
 ; Room $CBD5, state $CBE7
-    dw $FFFF : db $00                                                    ;A1C1AB;
+    dw $FFFF : db $00
 
 EnemyPopulations_BowlingAlley_1:
 ; Room $C98E, state $C9BA
@@ -9839,23 +9839,23 @@ EnemyPopulations_BowlingAlley_1:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $02                                                    ;A1C1DE;
+    dw $FFFF : db $02
 
 EnemyPopulations_AssemblyLine_0:
 ; Room $CAAE, state $CAC0
-    dw $FFFF : db $00                                                    ;A1C1E1;
+    dw $FFFF : db $00
 
 EnemyPopulations_Phantoon_1:
 ; Room $CD13, state $CD3F
-    dw $FFFF : db $00                                                    ;A1C1E4;
+    dw $FFFF : db $00
 
 EnemyPopulations_WreckedShipETank_0:
 ; Room $CC27, state $CC39
-    dw $FFFF : db $00                                                    ;A1C1E7;
+    dw $FFFF : db $00
 
 EnemyPopulations_GravitySuit_0:
 ; Room $CE40, state $CE52
-    dw $FFFF : db $00                                                    ;A1C1EA;
+    dw $FFFF : db $00
 
 EnemyPopulations_WreckedShipMap_0:
 ; Room $CCCB, state $CCDD
@@ -9939,11 +9939,11 @@ EnemyPopulations_WreckedShipMap_0:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($8A02, $0050))
-    dw $FFFF : db $01                                                    ;A1C27D;
+    dw $FFFF : db $01
 
 EnemyPopulations_GravitySuit_1:
 ; Room $CE40, state $CE6C
-    dw $FFFF : db $00                                                    ;A1C280;
+    dw $FFFF : db $00
 
 EnemyPopulations_Basement_0:
 ; Room $CC6F, state $CC81
@@ -10144,7 +10144,7 @@ EnemyPopulations_Basement_0:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $02                                                    ;A1C3E3;
+    dw $FFFF : db $02
 
 EnemyPopulations_WreckedShipEntrance_0:
 ; Room $CA08, state $CA1A
@@ -10435,7 +10435,7 @@ EnemyPopulations_WreckedShipEntrance_0:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($F802, $0050))
-    dw $FFFF : db $00                                                    ;A1C5E6;
+    dw $FFFF : db $00
 
 EnemyPopulations_AssemblyLine_1:
 ; Room $CAAE, state $CADA
@@ -10537,11 +10537,11 @@ EnemyPopulations_AssemblyLine_1:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $03                                                    ;A1C699;
+    dw $FFFF : db $03
 
 EnemyPopulations_WreckedShipSave_1:
 ; Room $CE8A, state $CEB6
-    dw $FFFF : db $00                                                    ;A1C69C;
+    dw $FFFF : db $00
 
 EnemyPopulations_WSWestSuper_1:
 ; Room $CDA8, state $CDD4
@@ -10589,7 +10589,7 @@ EnemyPopulations_WSWestSuper_1:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0001, $0018))
-    dw $FFFF : db $00                                                    ;A1C6EF;
+    dw $FFFF : db $00
 
 EnemyPopulations_Attic_0:
 ; Room $CA52, state $CA64
@@ -10853,7 +10853,7 @@ EnemyPopulations_Attic_0:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $0A                                                    ;A1C8C2;
+    dw $FFFF : db $0A
 
 EnemyPopulations_WSEastSuper_0:
 ; Room $CDF1, state $CE03
@@ -11099,7 +11099,7 @@ EnemyPopulations_WSEastSuper_0:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0003, $0000))
-    dw $FFFF : db $07                                                    ;A1CA75;
+    dw $FFFF : db $07
 
 EnemyPopulations_WreckedShipSave_0:
 ; Room $CE8A, state $CE9C
@@ -11210,7 +11210,7 @@ EnemyPopulations_WreckedShipSave_0:
     %properties($2400),
     %extraProperties($0000),
     %speedParams($9002, $0030))
-    dw $FFFF : db $01                                                    ;A1CB38;
+    dw $FFFF : db $01
 
 EnemyPopulations_ElectricDeath_1:
 ; Room $CBD5, state $CC01
@@ -11276,7 +11276,7 @@ EnemyPopulations_ElectricDeath_1:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0002, $00A0))
-    dw $FFFF : db $00                                                    ;A1CBAB;
+    dw $FFFF : db $00
 
 EnemyPopulations_SpikyDeath_1:
 ; Room $CB8B, state $CBB7
@@ -11369,7 +11369,7 @@ EnemyPopulations_SpikyDeath_1:
     %properties($0100),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1CC4E;
+    dw $FFFF : db $00
 
 EnemyPopulations_WSEastSuper_1:
 ; Room $CDF1, state $CE1D
@@ -11444,7 +11444,7 @@ EnemyPopulations_WSEastSuper_1:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0001, $0080))
-    dw $FFFF : db $04                                                    ;A1CCD1;
+    dw $FFFF : db $04
 
 EnemyPopulations_Phantoon_0:
 ; Room $CD13, state $CD25
@@ -11483,7 +11483,7 @@ EnemyPopulations_Phantoon_0:
     %properties($2C00),
     %extraProperties($0004),
     %speedParams($0000, $0003))
-    dw $FFFF : db $00                                                    ;A1CD14;
+    dw $FFFF : db $00
 
 EnemyPopulations_WreckedShipMainShaft_1:
 ; Room $CAF6, state $CB22
@@ -11675,7 +11675,7 @@ EnemyPopulations_WreckedShipMainShaft_1:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0001, $0020))
-    dw $FFFF : db $04                                                    ;A1CE67;
+    dw $FFFF : db $04
 
 EnemyPopulations_MtEverest:
 ; Room $D0B9, state $D0C6
@@ -11786,7 +11786,7 @@ EnemyPopulations_MtEverest:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $09                                                    ;A1CF2A;
+    dw $FFFF : db $09
 
 EnemyPopulations_HalfieClimb:
 ; Room $D913, state $D920
@@ -11843,7 +11843,7 @@ EnemyPopulations_HalfieClimb:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $06                                                    ;A1CF8D;
+    dw $FFFF : db $06
 
 EnemyPopulations_WateringHole:
 ; Room $D13B, state $D148
@@ -11873,7 +11873,7 @@ EnemyPopulations_WateringHole:
     %properties($6900),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $03                                                    ;A1CFC0;
+    dw $FFFF : db $03
 
 EnemyPopulations_CrabShaft:
 ; Room $D1A3, state $D1B0
@@ -11912,7 +11912,7 @@ EnemyPopulations_CrabShaft:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0004, $0000))
-    dw $FFFF : db $04                                                    ;A1D003;
+    dw $FFFF : db $04
 
 EnemyPopulations_MaridiaElev:
 ; Room $D30B, state $D318
@@ -11987,7 +11987,7 @@ EnemyPopulations_MaridiaElev:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0300, $0104))
-    dw $FFFF : db $07                                                    ;A1D086;
+    dw $FFFF : db $07
 
 EnemyPopulations_Colosseum:
 ; Room $D72A, state $D737
@@ -12062,16 +12062,16 @@ EnemyPopulations_Colosseum:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $08                                                    ;A1D109;
+    dw $FFFF : db $08
 
 EnemyPopulations_AqueductSave:
 ; Room $D765, state $D772
-    dw $FFFF : db $00                                                    ;A1D10C;
+    dw $FFFF : db $00
 
 EnemyPopulations_ThePrecious:
 ; Room $D78F, state $D7A1
 ; Room $D78F, state $D7BB
-    dw $FFFF : db $00                                                    ;A1D10F;
+    dw $FFFF : db $00
 
 EnemyPopulations_BotwoonETank:
 ; Room $D7E4, state $D7F1
@@ -12164,15 +12164,15 @@ EnemyPopulations_BotwoonETank:
     %properties($6100),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $0A                                                    ;A1D1B2;
+    dw $FFFF : db $0A
 
 EnemyPopulations_DraygonSave:
 ; Room $D81A, state $D827
-    dw $FFFF : db $00                                                    ;A1D1B5;
+    dw $FFFF : db $00
 
 EnemyPopulations_MaridiaMissileRefill:
 ; Room $D845, state $D852
-    dw $FFFF : db $00                                                    ;A1D1B8;
+    dw $FFFF : db $00
 
 EnemyPopulations_PlasmaBeachQuicksand:
 ; Room $D86E, state $D87B
@@ -12202,7 +12202,7 @@ EnemyPopulations_PlasmaBeachQuicksand:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0005, $0007))
-    dw $FFFF : db $03                                                    ;A1D1EB;
+    dw $FFFF : db $03
 
 EnemyPopulations_BotwoonQuicksand:
 ; Room $D898, state $D8A5
@@ -12286,7 +12286,7 @@ EnemyPopulations_BotwoonQuicksand:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0002, $0007))
-    dw $FFFF : db $09                                                    ;A1D27E;
+    dw $FFFF : db $09
 
 EnemyPopulations_Shaktool:
 ; Room $D8C5, state $D8D7
@@ -12371,7 +12371,7 @@ EnemyPopulations_Shaktool:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $03                                                    ;A1D311;
+    dw $FFFF : db $03
 
 EnemyPopulations_Draygon_0:
 ; Room $DA60, state $DA72
@@ -12410,7 +12410,7 @@ EnemyPopulations_Draygon_0:
     %properties($2C00),
     %extraProperties($0004),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1D354;
+    dw $FFFF : db $00
 
 EnemyPopulations_Aqueduct:
 ; Room $D5A7, state $D5B4
@@ -12458,7 +12458,7 @@ EnemyPopulations_Aqueduct:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $05                                                    ;A1D3A7;
+    dw $FFFF : db $05
 
 EnemyPopulations_RedFish:
 ; Room $D104, state $D111
@@ -12497,7 +12497,7 @@ EnemyPopulations_RedFish:
     %properties($6900),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $04                                                    ;A1D3EA;
+    dw $FFFF : db $04
 
 EnemyPopulations_Plasma:
 ; Room $D2AA, state $D2B7
@@ -12554,11 +12554,11 @@ EnemyPopulations_Plasma:
     %properties($2000),
     %extraProperties($0004),
     %speedParams($8001, $0080))
-    dw $FFFF : db $06                                                    ;A1D44D;
+    dw $FFFF : db $06
 
 EnemyPopulations_SpaceJump:
 ; Room $D9AA, state $D9B7
-    dw $FFFF : db $00                                                    ;A1D450;
+    dw $FFFF : db $00
 
 EnemyPopulations_Pants:
 ; Room $D646, state $D653
@@ -12678,11 +12678,11 @@ EnemyPopulations_Pants:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0008, $0008))
-    dw $FFFF : db $07                                                    ;A1D523;
+    dw $FFFF : db $07
 
 EnemyPopulations_GlassTunnelSave:
 ; Room $CED2, state $CEDF
-    dw $FFFF : db $00                                                    ;A1D526;
+    dw $FFFF : db $00
 
 EnemyPopulations_GlassTunnel:
 ; Room $CEFB, state $CF0D
@@ -12695,11 +12695,11 @@ EnemyPopulations_GlassTunnel:
     %properties($2200),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1D53B;
+    dw $FFFF : db $00
 
 EnemyPopulations_WestTunnel:
 ; Room $CF54, state $CF61
-    dw $FFFF : db $00                                                    ;A1D53C;
+    dw $FFFF : db $00
 
 EnemyPopulations_EastTunnel:
 ; Room $CF80, state $CF8D
@@ -12792,7 +12792,7 @@ EnemyPopulations_EastTunnel:
     %properties($6900),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $03                                                    ;A1D5DF;
+    dw $FFFF : db $03
 
 EnemyPopulations_MamaTurtle:
 ; Room $D055, state $D062
@@ -12840,7 +12840,7 @@ EnemyPopulations_MamaTurtle:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $01                                                    ;A1D632;
+    dw $FFFF : db $01
 
 EnemyPopulations_CrabTunnel:
 ; Room $D08A, state $D097
@@ -12897,7 +12897,7 @@ EnemyPopulations_CrabTunnel:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $06                                                    ;A1D695;
+    dw $FFFF : db $06
 
 EnemyPopulations_NWestMaridiaBug:
 ; Room $D16D, state $D17A
@@ -13008,7 +13008,7 @@ EnemyPopulations_NWestMaridiaBug:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $07                                                    ;A1D758;
+    dw $FFFF : db $07
 
 EnemyPopulations_PseudoPlasmaSpark:
 ; Room $D1DD, state $D1EA
@@ -13092,7 +13092,7 @@ EnemyPopulations_PseudoPlasmaSpark:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0005, $0008))
-    dw $FFFF : db $09                                                    ;A1D7EB;
+    dw $FFFF : db $09
 
 EnemyPopulations_WestSandHallTunnel:
 ; Room $D252, state $D25F
@@ -13104,7 +13104,7 @@ EnemyPopulations_WestSandHallTunnel:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0004, $0000))
-    dw $FFFF : db $01                                                    ;A1D7FE;
+    dw $FFFF : db $01
 
 EnemyPopulations_PlasmaTutorial:
 ; Room $D27E, state $D28B
@@ -13161,7 +13161,7 @@ EnemyPopulations_PlasmaTutorial:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0D00, $0000))
-    dw $FFFF : db $06                                                    ;A1D861;
+    dw $FFFF : db $06
 
 EnemyPopulations_ThreadTheNeedle:
 ; Room $D2D9, state $D2E6
@@ -13299,7 +13299,7 @@ EnemyPopulations_ThreadTheNeedle:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0202, $0000))
-    dw $FFFF : db $0F                                                    ;A1D954;
+    dw $FFFF : db $0F
 
 EnemyPopulations_PlasmaSpark:
 ; Room $D340, state $D34D
@@ -13401,7 +13401,7 @@ EnemyPopulations_PlasmaSpark:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0110, $0210))
-    dw $FFFF : db $0B                                                    ;A1DA07;
+    dw $FFFF : db $0B
 
 EnemyPopulations_Toilet:
 ; Room $D408, state $D415
@@ -13431,7 +13431,7 @@ EnemyPopulations_Toilet:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $03                                                    ;A1DA3A;
+    dw $FFFF : db $03
 
 EnemyPopulations_WestSandHall:
 ; Room $D461, state $D46E
@@ -13515,11 +13515,11 @@ EnemyPopulations_WestSandHall:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $03                                                    ;A1DACD;
+    dw $FFFF : db $03
 
 EnemyPopulations_Oasis:
 ; Room $D48E, state $D49B
-    dw $FFFF : db $00                                                    ;A1DAD0;
+    dw $FFFF : db $00
 
 EnemyPopulations_EastSandHall:
 ; Room $D4C2, state $D4CF
@@ -13603,7 +13603,7 @@ EnemyPopulations_EastSandHall:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $03                                                    ;A1DB63;
+    dw $FFFF : db $03
 
 EnemyPopulations_WestAqueductQuicksand:
 ; Room $D54D, state $D55A
@@ -13669,7 +13669,7 @@ EnemyPopulations_WestAqueductQuicksand:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0007, $0002))
-    dw $FFFF : db $07                                                    ;A1DBD6;
+    dw $FFFF : db $07
 
 EnemyPopulations_EastAqueductQuicksand:
 ; Room $D57A, state $D587
@@ -13726,7 +13726,7 @@ EnemyPopulations_EastAqueductQuicksand:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0007, $0002))
-    dw $FFFF : db $06                                                    ;A1DC39;
+    dw $FFFF : db $06
 
 EnemyPopulations_Butterfly:
 ; Room $D5EC, state $D5F9
@@ -13756,7 +13756,7 @@ EnemyPopulations_Butterfly:
     %properties($6100),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $03                                                    ;A1DC6C;
+    dw $FFFF : db $03
 
 EnemyPopulations_BotwoonHallway:
 ; Room $D617, state $D624
@@ -13822,7 +13822,7 @@ EnemyPopulations_BotwoonHallway:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0020, $0008))
-    dw $FFFF : db $07                                                    ;A1DCDF;
+    dw $FFFF : db $07
 
 EnemyPopulations_EastPants:
 ; Room $D69A, state $D6A7
@@ -13870,11 +13870,11 @@ EnemyPopulations_EastPants:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0008, $0008))
-    dw $FFFF : db $05                                                    ;A1DD32;
+    dw $FFFF : db $05
 
 EnemyPopulations_Springball:
 ; Room $D6D0, state $D6DD
-    dw $FFFF : db $00                                                    ;A1DD35;
+    dw $FFFF : db $00
 
 EnemyPopulations_BelowBotwoonETank:
 ; Room $D6FD, state $D70A
@@ -13931,7 +13931,7 @@ EnemyPopulations_BelowBotwoonETank:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0101, $031C))
-    dw $FFFF : db $06                                                    ;A1DD98;
+    dw $FFFF : db $06
 
 EnemyPopulations_Kassiuz:
 ; Room $D387, state $D394
@@ -13997,19 +13997,19 @@ EnemyPopulations_Kassiuz:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0040, $0008))
-    dw $FFFF : db $07                                                    ;A1DE0B;
+    dw $FFFF : db $07
 
 EnemyPopulations_ForgottenHighwaySave:
 ; Room $D3DF, state $D3EC
-    dw $FFFF : db $00                                                    ;A1DE0E;
+    dw $FFFF : db $00
 
 EnemyPopulations_MaridiaEnergyRefill:
 ; Room $D9D4, state $D9E1
-    dw $FFFF : db $00                                                    ;A1DE11;
+    dw $FFFF : db $00
 
 EnemyPopulations_MaridiaMap:
 ; Room $D3B6, state $D3C3
-    dw $FFFF : db $00                                                    ;A1DE14;
+    dw $FFFF : db $00
 
 EnemyPopulations_CrabHole:
 ; Room $D21C, state $D229
@@ -14048,7 +14048,7 @@ EnemyPopulations_CrabHole:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0002, $0000))
-    dw $FFFF : db $04                                                    ;A1DE57;
+    dw $FFFF : db $04
 
 EnemyPopulations_Botwoon:
 ; Room $D95E, state $D970
@@ -14061,7 +14061,7 @@ EnemyPopulations_Botwoon:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $01                                                    ;A1DE6A;
+    dw $FFFF : db $01
 
 EnemyPopulations_MainStreet:
 ; Room $CFC9, state $CFD6
@@ -14172,7 +14172,7 @@ EnemyPopulations_MainStreet:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $0C                                                    ;A1DF2D;
+    dw $FFFF : db $0C
 
 EnemyPopulations_BugSandHole:
 ; Room $D433, state $D440
@@ -14202,7 +14202,7 @@ EnemyPopulations_BugSandHole:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0040, $0001))
-    dw $FFFF : db $01                                                    ;A1DF60;
+    dw $FFFF : db $01
 
 EnemyPopulations_EastSandHole:
 ; Room $D51E, state $D52B
@@ -14232,7 +14232,7 @@ EnemyPopulations_EastSandHole:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0200, $A204))
-    dw $FFFF : db $00                                                    ;A1DF93;
+    dw $FFFF : db $00
 
 EnemyPopulations_WestSandHole:
 ; Room $D4EF, state $D4FC
@@ -14271,7 +14271,7 @@ EnemyPopulations_WestSandHole:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0200, $5204))
-    dw $FFFF : db $00                                                    ;A1DFD6;
+    dw $FFFF : db $00
 
 EnemyPopulations_WestCactusAlley:
 ; Room $D9FE, state $DA0B
@@ -14310,7 +14310,7 @@ EnemyPopulations_WestCactusAlley:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $04                                                    ;A1E019;
+    dw $FFFF : db $04
 
 EnemyPopulations_EastCactusAlley:
 ; Room $DA2B, state $DA38
@@ -14367,7 +14367,7 @@ EnemyPopulations_EastCactusAlley:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0201))
-    dw $FFFF : db $06                                                    ;A1E07C;
+    dw $FFFF : db $06
 
 EnemyPopulations_FishTank:
 ; Room $D017, state $D024
@@ -14442,7 +14442,7 @@ EnemyPopulations_FishTank:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0010, $0210))
-    dw $FFFF : db $08                                                    ;A1E10F;
+    dw $FFFF : db $08
 
 EnemyPopulations_TourianEscape4:
 ; Room $DEDE, state $DEEB
@@ -14562,11 +14562,11 @@ EnemyPopulations_TourianEscape4:
     %properties($2000),
     %extraProperties($0004),
     %speedParams($0000, $0010))
-    dw $FFFF : db $0D                                                    ;A1E1D2;
+    dw $FFFF : db $0D
 
 EnemyPopulations_MotherBrainSave:
 ; Room $DE23, state $DE30
-    dw $FFFF : db $00                                                    ;A1E1D5;
+    dw $FFFF : db $00
 
 EnemyPopulations_Metroids1_0:
 ; Room $DAE1, state $DAF3
@@ -14641,7 +14641,7 @@ EnemyPopulations_Metroids1_0:
     %properties($6000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $04                                                    ;A1E258;
+    dw $FFFF : db $04
 
 EnemyPopulations_DustTorizo:
 ; Room $DC65, state $DC77
@@ -14654,7 +14654,7 @@ EnemyPopulations_DustTorizo:
     %properties($2800),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1E26B;
+    dw $FFFF : db $00
 
 EnemyPopulations_BigBoy:
 ; Room $DCB1, state $DCC3
@@ -14757,7 +14757,7 @@ EnemyPopulations_BigBoy:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0004, $0000))
-    dw $FFFF : db $00                                                    ;A1E31E;
+    dw $FFFF : db $00
 
 EnemyPopulations_MotherBrain_0_1:
 ; Room $DD58, state $DD6E
@@ -14815,11 +14815,11 @@ EnemyPopulations_MotherBrain_0_1:
     %properties($6000),
     %extraProperties($0000),
     %speedParams($0003, $0000))
-    dw $FFFF : db $00                                                    ;A1E381;
+    dw $FFFF : db $00
 
 EnemyPopulations_TourianEyeDoor:
 ; Room $DDC4, state $DDD1
-    dw $FFFF : db $00                                                    ;A1E384;
+    dw $FFFF : db $00
 
 EnemyPopulations_BlueHopper:
 ; Room $DC19, state $DC2B
@@ -14841,7 +14841,7 @@ EnemyPopulations_BlueHopper:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $02                                                    ;A1E3A7;
+    dw $FFFF : db $02
 
 EnemyPopulations_TourianEscape1:
 ; Room $DE4D, state $DE5A
@@ -14916,7 +14916,7 @@ EnemyPopulations_TourianEscape1:
     %properties($A800),
     %extraProperties($00FF),
     %speedParams($2000, $0020))
-    dw $FFFF : db $00                                                    ;A1E42A;
+    dw $FFFF : db $00
 
 EnemyPopulations_TourianFirst:
 ; Room $DAAE, state $DABB
@@ -14928,7 +14928,7 @@ EnemyPopulations_TourianFirst:
     %properties($2C00),
     %extraProperties($0000),
     %speedParams($0001, $0018))
-    dw $FFFF : db $00                                                    ;A1E43D;
+    dw $FFFF : db $00
 
 EnemyPopulations_Metroids2_0:
 ; Room $DB31, state $DB43
@@ -14985,7 +14985,7 @@ EnemyPopulations_Metroids2_0:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0005))
-    dw $FFFF : db $02                                                    ;A1E4A0;
+    dw $FFFF : db $02
 
 EnemyPopulations_Metroids4_0:
 ; Room $DBCD, state $DBDF
@@ -15051,7 +15051,7 @@ EnemyPopulations_Metroids4_0:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0005))
-    dw $FFFF : db $03                                                    ;A1E513;
+    dw $FFFF : db $03
 
 EnemyPopulations_Metroids1_1:
 ; Room $DAE1, state $DB0D
@@ -15090,7 +15090,7 @@ EnemyPopulations_Metroids1_1:
     %properties($6000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1E556;
+    dw $FFFF : db $00
 
 EnemyPopulations_Metroids2_1:
 ; Room $DB31, state $DB5D
@@ -15129,7 +15129,7 @@ EnemyPopulations_Metroids2_1:
     %properties($6000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1E599;
+    dw $FFFF : db $00
 
 EnemyPopulations_TourianEscape2:
 ; Room $DE7A, state $DE87
@@ -15150,7 +15150,7 @@ EnemyPopulations_TourianEscape2:
     %properties($2000),
     %extraProperties($0004),
     %speedParams($0001, $00A0))
-    dw $FFFF : db $02                                                    ;A1E5BC;
+    dw $FFFF : db $02
 
 EnemyPopulations_Metroids3_1:
 ; Room $DB7D, state $DBA9
@@ -15234,7 +15234,7 @@ EnemyPopulations_Metroids3_1:
     %properties($6000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1E64F;
+    dw $FFFF : db $00
 
 EnemyPopulations_Metroids4_1:
 ; Room $DBCD, state $DBF9
@@ -15273,7 +15273,7 @@ EnemyPopulations_Metroids4_1:
     %properties($6000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1E692;
+    dw $FFFF : db $00
 
 EnemyPopulations_TourianEscape3:
 ; Room $DEA7, state $DEB4
@@ -15339,15 +15339,15 @@ EnemyPopulations_TourianEscape3:
     %properties($2000),
     %extraProperties($0004),
     %speedParams($0000, $0010))
-    dw $FFFF : db $07                                                    ;A1E705;
+    dw $FFFF : db $07
 
 EnemyPopulations_Seaweed:
 ; Room $DCFF, state $DD0C
-    dw $FFFF : db $00                                                    ;A1E708;
+    dw $FFFF : db $00
 
 EnemyPopulations_TourianRecharge:
 ; Room $DD2E, state $DD3B
-    dw $FFFF : db $00                                                    ;A1E70B;
+    dw $FFFF : db $00
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyPopulations_A1E70E:
@@ -15422,12 +15422,12 @@ UNUSED_EnemyPopulations_A1E70E:
     %properties($A000),
     %extraProperties($0000),
     %speedParams($0004, $0000))
-    dw $FFFF : db $00                                                    ;A1E78E;
+    dw $FFFF : db $00
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_UpperTourianSave:
 ; Room $DF1B, state $DF28
-    dw $FFFF : db $00                                                    ;A1E791;
+    dw $FFFF : db $00
 
 EnemyPopulations_Metroids3_0:
 ; Room $DB7D, state $DB8F
@@ -15538,7 +15538,7 @@ EnemyPopulations_Metroids3_0:
     %properties($6000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $03                                                    ;A1E854;
+    dw $FFFF : db $03
 
 EnemyPopulations_RinkaShaft:
 ; Room $DDF3, state $DE00
@@ -15568,7 +15568,7 @@ EnemyPopulations_RinkaShaft:
     %properties($6000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1E887;
+    dw $FFFF : db $00
 
 EnemyPopulations_CeresElev_0:
 ; Room $DF45, state $DF57
@@ -15589,7 +15589,7 @@ EnemyPopulations_CeresElev_0:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $00                                                    ;A1E8AA;
+    dw $FFFF : db $00
 
 EnemyPopulations_FallingTile_0:
 ; Room $DF8D, state $DF9F
@@ -15610,7 +15610,7 @@ EnemyPopulations_FallingTile_0:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $00                                                    ;A1E8CD;
+    dw $FFFF : db $00
 
 EnemyPopulations_MagnetStairs_0:
 ; Room $DFD7, state $DFE9
@@ -15631,7 +15631,7 @@ EnemyPopulations_MagnetStairs_0:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $00                                                    ;A1E8F0;
+    dw $FFFF : db $00
 
 EnemyPopulations_DeadScientist_0:
 ; Room $E021, state $E033
@@ -15652,7 +15652,7 @@ EnemyPopulations_DeadScientist_0:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $00                                                    ;A1E913;
+    dw $FFFF : db $00
 
 EnemyPopulations_58Escape_0:
 ; Room $E06B, state $E07D
@@ -15673,7 +15673,7 @@ EnemyPopulations_58Escape_0:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $00                                                    ;A1E936;
+    dw $FFFF : db $00
 
 EnemyPopulations_CeresRidley_0:
 ; Room $E0B5, state $E0C7
@@ -15694,7 +15694,7 @@ EnemyPopulations_CeresRidley_0:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0003, $0000))
-    dw $FFFF : db $00                                                    ;A1E959;
+    dw $FFFF : db $00
 
 EnemyPopulations_CeresElev_1:
 ; Room $DF45, state $DF71
@@ -15814,7 +15814,7 @@ EnemyPopulations_CeresElev_1:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0005, $0000))
-    dw $FFFF : db $00                                                    ;A1EA2C;
+    dw $FFFF : db $00
 
 EnemyPopulations_FallingTile_1:
 ; Room $DF8D, state $DFB9
@@ -15934,7 +15934,7 @@ EnemyPopulations_FallingTile_1:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $00                                                    ;A1EAFF;
+    dw $FFFF : db $00
 
 EnemyPopulations_MagnetStairs_1:
 ; Room $DFD7, state $E003
@@ -16000,7 +16000,7 @@ EnemyPopulations_MagnetStairs_1:
     %properties($2000),
     %extraProperties($0000),
     %speedParams($0000, $0000))
-    dw $FFFF : db $00                                                    ;A1EB72;
+    dw $FFFF : db $00
 
 EnemyPopulations_DeadScientist_1:
 ; Room $E021, state $E04D
@@ -16021,7 +16021,7 @@ EnemyPopulations_DeadScientist_1:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $00                                                    ;A1EB95;
+    dw $FFFF : db $00
 
 EnemyPopulations_58Escape_1:
 ; Room $E06B, state $E097
@@ -16042,7 +16042,7 @@ EnemyPopulations_58Escape_1:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0001, $0000))
-    dw $FFFF : db $00                                                    ;A1EBB8;
+    dw $FFFF : db $00
 
 EnemyPopulations_CeresRidley_1:
 ; Room $E0B5, state $E0E1
@@ -16054,12 +16054,12 @@ EnemyPopulations_CeresRidley_1:
     %properties($A800),
     %extraProperties($0000),
     %speedParams($0003, $0000))
-    dw $FFFF : db $00                                                    ;A1EBCB;
+    dw $FFFF : db $00
 
 EnemyPopulations_Debug:
 ; Room $E82C, state $E839
-    dw $FFFF : db $00                                                    ;A1EBCE;
+    dw $FFFF : db $00
 
 
-Freespace_BankA1_EBD1:                                                   ;A1EBD1;
+Freespace_BankA1_EBD1:
 ; $142F bytes

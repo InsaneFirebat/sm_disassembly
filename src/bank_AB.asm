@@ -52,5 +52,5 @@ Tiles_MotherBrainExplodedEscapeDoorParticles:
 incbin "../data/Tiles_MotherBrainExplodedEscapeDoorParticles.bin" ; $400 bytes
 
 
-Freespace_BankAB_F800:                                                   ;ABF800;
+Freespace_BankAB_F800:
 ; $800 bytes

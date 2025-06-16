@@ -964,5 +964,5 @@ SamusTiles_Top_Set6_Entry10:
 incbin "../data/SamusTiles_Top_Set6_Entry10.bin" ; $1E0 bytes
 
 
-Freespace_Bank9F_F740:                                                   ;9FF740;
+Freespace_Bank9F_F740:
 ; $8C0 bytes

@@ -82,5 +82,5 @@ Tiles_Owtch:
 incbin "../data/Tiles_Owtch.bin" ; $400 bytes
 
 
-Freespace_BankAC_EE00:                                                   ;ACEE00;
+Freespace_BankAC_EE00:
 ; $1200 bytes

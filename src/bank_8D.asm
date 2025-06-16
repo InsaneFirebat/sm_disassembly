@@ -5,146 +5,146 @@ org $8D8000
 ;;; $8000: Enemy projectile spritemaps ;;;
 EnemyProjSpritemaps:
 EnemyProjSpritemaps_Blank_Default:
-    dw $0000                                                             ;8D8000;
+    dw $0000
     %spritemapEntry(0, $00, $00, 0, 0, 0, 0, $DF)
 
 EnemyProjSpritemaps_EyeDoorProjectile_0:
-    dw $0001                                                             ;8D8007;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 5, $76)
 
 EnemyProjSpritemaps_EyeDoorProjectile_1:
-    dw $0001                                                             ;8D800E;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 5, $78)
 
 EnemyProjSpritemaps_EyeDoorProjectile_2:
-    dw $0001                                                             ;8D8015;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 5, $98)
 
 EnemyProjSpritemaps_EyeDoorProjectile_3:
-    dw $0001                                                             ;8D801C;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 5, $9E)
 
 EnemyProjSpritemaps_SkreeParticle:
-    dw $0001                                                             ;8D8023;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $115)
 
 EnemyProjSpritemaps_CrocomiresProjectile_0:
-    dw $0004                                                             ;8D802A;
+    dw $0004
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 0, $D0)
     %spritemapEntry(0, $00, $00, 1, 1, 3, 0, $D0)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 0, $D0)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 0, $D0)
 
 EnemyProjSpritemaps_CrocomiresProjectile_1:
-    dw $0004                                                             ;8D8040;
+    dw $0004
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 0, $D1)
     %spritemapEntry(0, $00, $00, 1, 1, 3, 0, $D1)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 0, $D1)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 0, $D1)
 
 EnemyProjSpritemaps_CrocomiresProjectile_2:
-    dw $0004                                                             ;8D8056;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 0, $D2)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 0, $D2)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 0, $D2)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 0, $D2)
 
 EnemyProjSpritemaps_CrocomiresProjectile_3:
-    dw $0004                                                             ;8D806C;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 0, $D3)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 0, $D3)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 0, $D3)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 0, $D3)
 
 UNUSED_EnemyProjSpritemaps_OldCrocomiresProjectile_0_8D8082:
-    dw $0004                                                             ;8D8082;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 2, 1, $1C2)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 1, $1C2)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 1, $1C2)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 1, $1C2)
 
 UNUSED_EnemyProjSpritemaps_OldCrocomiresProjectile_1_8D8098:
-    dw $0004                                                             ;8D8098;
+    dw $0004
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 1, $1D2)
     %spritemapEntry(0, $00, $00, 1, 1, 2, 1, $1D2)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 1, $1D2)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 1, $1D2)
 
 UNUSED_EnemyProjSpritemaps_0_8D80AE:
-    dw $0001                                                             ;8D80AE;
+    dw $0001
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 0, $177)
 
 UNUSED_EnemyProjSpritemaps_1_8D80B5:
-    dw $0001                                                             ;8D80B5;
+    dw $0001
     %spritemapEntry(0, $1F8, $F8, 1, 1, 3, 0, $17B)
 
 UNUSED_EnemyProjSpritemaps_2_8D80BC:
-    dw $0001                                                             ;8D80BC;
+    dw $0001
     %spritemapEntry(0, $1F8, $F8, 1, 1, 3, 0, $177)
 
 UNUSED_EnemyProjSpritemaps_3_8D80C3:
-    dw $0001                                                             ;8D80C3;
+    dw $0001
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 0, $17B)
 
 EnemyProjSpritemaps_RidleysFireball_0:
-    dw $0001                                                             ;8D80CA;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $1C8)
 
 EnemyProjSpritemaps_RidleysFireball_1:
-    dw $0001                                                             ;8D80D1;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 1, 1, 3, 0, $1CA)
 
 EnemyProjSpritemaps_RidleysFireball_2:
-    dw $0001                                                             ;8D80D8;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 1, 1, 3, 0, $1C8)
 
 EnemyProjSpritemaps_RidleysFireball_3:
-    dw $0001                                                             ;8D80DF;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $1CA)
 
 EnemyProjSpritemaps_RidleysFireball_MBBombExplosion_0:
-    dw $0001                                                             ;8D80E6;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $5F)
 
 EnemyProjSpritemaps_RidleysFireball_MBBombExplosion_1:
-    dw $0001                                                             ;8D80ED;
+    dw $0001
     %spritemapEntry(1, $43F8, $F7, 0, 0, 3, 5, $76)
 
 EnemyProjSpritemaps_RidleysFireball_MBBombExplosion_2:
-    dw $0001                                                             ;8D80F4;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 0, 3, 5, $78)
 
 EnemyProjSpritemaps_RidleysFireball_MBBombExplosion_3:
-    dw $0001                                                             ;8D80FB;
+    dw $0001
     %spritemapEntry(1, $43F8, $F5, 0, 0, 3, 5, $98)
 
 EnemyProjSpritemaps_RidleysFireball_MBBombExplosion_4:
-    dw $0001                                                             ;8D8102;
+    dw $0001
     %spritemapEntry(1, $43F8, $F4, 0, 0, 3, 5, $9E)
 
 EnemyProjSpritemaps_CrocomiresBridgeCrumbling:
-    dw $0001                                                             ;8D8109;
+    dw $0001
     %spritemapEntry(1, $43FC, $FC, 0, 0, 2, 0, $1CC)
 
 EnemyProjSpritemaps_CrocomiresSpikeWallPieces:
-    dw $0002                                                             ;8D8110;
+    dw $0002
     %spritemapEntry(1, $4208, $F8, 0, 0, 2, 3, $1EE)
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 2, $1CC)
 
 UNUSED_EnemyProjSpritemaps_8D811C:
-    dw $0004                                                             ;8D811C;
+    dw $0004
     %spritemapEntry(0, $00, $00, 0, 0, 2, 0, $1F1)
     %spritemapEntry(0, $1F8, $00, 0, 0, 2, 0, $1F0)
     %spritemapEntry(0, $00, $F8, 0, 0, 2, 0, $1E1)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 0, $1E0)
 
 UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_0_8D8132:
-    dw $0002                                                             ;8D8132;
+    dw $0002
     %spritemapEntry(0, $00, $10, 0, 1, 2, 0, $1E0)
     %spritemapEntry(0, $1F8, $10, 0, 0, 2, 0, $1E0)
 
 UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_1_8D813E:
-    dw $0006                                                             ;8D813E;
+    dw $0006
     %spritemapEntry(0, $04, $08, 0, 1, 2, 0, $1DB)
     %spritemapEntry(0, $04, $00, 0, 1, 2, 0, $1CB)
     %spritemapEntry(0, $1FC, $08, 0, 0, 2, 0, $1DC)
@@ -153,7 +153,7 @@ UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_1_8D813E:
     %spritemapEntry(0, $1F4, $00, 0, 0, 2, 0, $1CB)
 
 UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_2_8D815E:
-    dw $000C                                                             ;8D815E;
+    dw $000C
     %spritemapEntry(0, $00, $F0, 0, 1, 2, 0, $1DF)
     %spritemapEntry(0, $08, $F0, 0, 1, 2, 0, $1CF)
     %spritemapEntry(0, $00, $00, 0, 1, 2, 0, $1DE)
@@ -168,235 +168,235 @@ UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_2_8D815E:
     %spritemapEntry(0, $1F0, $F8, 0, 0, 2, 0, $1CD)
 
 EnemyProjSpritemaps_PhantoonFlames_0:
-    dw $0002                                                             ;8D819C;
+    dw $0002
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $106)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $100)
 
 EnemyProjSpritemaps_PhantoonFlames_1:
-    dw $0002                                                             ;8D81A8;
+    dw $0002
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $108)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $102)
 
 EnemyProjSpritemaps_PhantoonFlames_2:
-    dw $0002                                                             ;8D81B4;
+    dw $0002
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $10A)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $104)
 
 EnemyProjSpritemaps_PhantoonFlames_3:
-    dw $0002                                                             ;8D81C0;
+    dw $0002
     %spritemapEntry(1, $4200, $F8, 0, 0, 3, 7, $10E)
     %spritemapEntry(1, $43F0, $F8, 0, 0, 3, 7, $10C)
 
 EnemyProjSpritemaps_PhantoonFlames_4:
-    dw $0002                                                             ;8D81CC;
+    dw $0002
     %spritemapEntry(1, $43F8, $FE, 0, 0, 3, 7, $128)
     %spritemapEntry(1, $43F8, $EE, 0, 0, 3, 7, $120)
 
 EnemyProjSpritemaps_PhantoonFlames_5:
-    dw $0002                                                             ;8D81D8;
+    dw $0002
     %spritemapEntry(1, $43F8, $FC, 0, 0, 3, 7, $12A)
     %spritemapEntry(1, $43F8, $EC, 0, 0, 3, 7, $122)
 
 EnemyProjSpritemaps_PhantoonFlames_6:
-    dw $0002                                                             ;8D81E4;
+    dw $0002
     %spritemapEntry(1, $43F8, $FA, 0, 0, 3, 7, $12C)
     %spritemapEntry(1, $43F8, $EA, 0, 0, 3, 7, $124)
 
 EnemyProjSpritemaps_PhantoonFlames_7:
-    dw $0002                                                             ;8D81F0;
+    dw $0002
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 7, $12E)
     %spritemapEntry(1, $43F8, $E8, 0, 0, 3, 7, $126)
 
 EnemyProjSpritemaps_PhantoonFlames_8:
-    dw $0002                                                             ;8D81FC;
+    dw $0002
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $100)
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $140)
 
 EnemyProjSpritemaps_PhantoonFlames_9:
-    dw $0002                                                             ;8D8208;
+    dw $0002
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $102)
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $142)
 
 EnemyProjSpritemaps_PhantoonFlames_A:
-    dw $0002                                                             ;8D8214;
+    dw $0002
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $104)
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $144)
 
 EnemyProjSpritemaps_PhantoonStartingFlames_0:
-    dw $0002                                                             ;8D8220;
+    dw $0002
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $146)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $100)
 
 EnemyProjSpritemaps_PhantoonStartingFlames_1:
-    dw $0002                                                             ;8D822C;
+    dw $0002
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $148)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $102)
 
 EnemyProjSpritemaps_PhantoonStartingFlames_2:
-    dw $0002                                                             ;8D8238;
+    dw $0002
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $14A)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $104)
 
 EnemyProjSpritemaps_PhantoonStartingFlames_3:
-    dw $0002                                                             ;8D8244;
+    dw $0002
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $14C)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $100)
 
 EnemyProjSpritemaps_PhantoonStartingFlames_4:
-    dw $0002                                                             ;8D8250;
+    dw $0002
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $14E)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $102)
 
 EnemyProjSpritemaps_PhantoonStartingFlames_5:
-    dw $0002                                                             ;8D825C;
+    dw $0002
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 7, $14A)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 3, 7, $104)
 
 EnemyProjSpritemaps_KraidRocks_KagoBugs:
-    dw $0001                                                             ;8D8268;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 0, $1D0)
 
 EnemyProjSpritemaps_KraidRisingRocks_Right:
-    dw $0001                                                             ;8D826F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $1D2)
 
 EnemyProjSpritemaps_MotherBrainOnionRings_0:
-    dw $0001                                                             ;8D8276;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1AD)
 
 EnemyProjSpritemaps_MotherBrainOnionRings_1:
-    dw $0001                                                             ;8D827D;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1A7)
 
 EnemyProjSpritemaps_MotherBrainOnionRings_2:
-    dw $0004                                                             ;8D8284;
+    dw $0004
     %spritemapEntry(1, $43FB, $FB, 1, 1, 3, 2, $1A9)
     %spritemapEntry(1, $43F5, $FB, 1, 0, 3, 2, $1A9)
     %spritemapEntry(1, $43FB, $F5, 0, 1, 3, 2, $1A9)
     %spritemapEntry(1, $43F5, $F5, 0, 0, 3, 2, $1A9)
 
 EnemyProjSpritemaps_MotherBrainOnionRings_3:
-    dw $0004                                                             ;8D829A;
+    dw $0004
     %spritemapEntry(1, $43FC, $FC, 1, 1, 3, 2, $1A9)
     %spritemapEntry(1, $43F4, $FC, 1, 0, 3, 2, $1A9)
     %spritemapEntry(1, $43FC, $F4, 0, 1, 3, 2, $1A9)
     %spritemapEntry(1, $43F4, $F4, 0, 0, 3, 2, $1A9)
 
 EnemyProjSpritemaps_MotherBrainOnionRings_4:
-    dw $0004                                                             ;8D82B0;
+    dw $0004
     %spritemapEntry(1, $43FF, $FF, 1, 1, 3, 2, $1AB)
     %spritemapEntry(1, $43F1, $FF, 1, 0, 3, 2, $1AB)
     %spritemapEntry(1, $43FF, $F1, 0, 1, 3, 2, $1AB)
     %spritemapEntry(1, $43F1, $F1, 0, 0, 3, 2, $1AB)
 
 EnemyProjSpritemaps_MotherBrainOnionRings_5:
-    dw $0004                                                             ;8D82C6;
+    dw $0004
     %spritemapEntry(1, $4200, $00, 1, 1, 3, 2, $1AB)
     %spritemapEntry(1, $43F0, $00, 1, 0, 3, 2, $1AB)
     %spritemapEntry(1, $4200, $F0, 0, 1, 3, 2, $1AB)
     %spritemapEntry(1, $43F0, $F0, 0, 0, 3, 2, $1AB)
 
 EnemyProjSpritemaps_MotherBrainsBomb_0:
-    dw $0002                                                             ;8D82DC;
+    dw $0002
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1CE)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1AE)
 
 EnemyProjSpritemaps_MotherBrainsBomb_1:
-    dw $0002                                                             ;8D82E8;
+    dw $0002
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1CE)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1AF)
 
 EnemyProjSpritemaps_MotherBrainsBomb_2:
-    dw $0002                                                             ;8D82F4;
+    dw $0002
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1CE)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1BD)
 
 EnemyProjSpritemaps_MotherBrainsBomb_3:
-    dw $0002                                                             ;8D8300;
+    dw $0002
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1CE)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1BE)
 
 EnemyProjSpritemaps_MotherBrainsBomb_4:
-    dw $0002                                                             ;8D830C;
+    dw $0002
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1CE)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1BF)
 
 EnemyProjSpritemaps_MotherBrainsBomb_5:
-    dw $0002                                                             ;8D8318;
+    dw $0002
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1CE)
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 2, $1BF)
 
 EnemyProjSpritemaps_MotherBrainsBomb_6:
-    dw $0002                                                             ;8D8324;
+    dw $0002
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1CE)
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 2, $1BE)
 
 EnemyProjSpritemaps_MotherBrainsBomb_7:
-    dw $0002                                                             ;8D8330;
+    dw $0002
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1CE)
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 2, $1BD)
 
 EnemyProjSpritemaps_MotherBrainsBomb_8:
-    dw $0002                                                             ;8D833C;
+    dw $0002
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1CE)
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 2, $1AF)
 
 UNUSED_EnemyProjSpritemaps_0_8D8348:
-    dw $0001                                                             ;8D8348;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1E0)
 
 UNUSED_EnemyProjSpritemaps_1_8D834F:
-    dw $0001                                                             ;8D834F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1E1)
 
 UNUSED_EnemyProjSpritemaps_2_8D8356:
-    dw $0001                                                             ;8D8356;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1E2)
 
 EnemyProjSpritemaps_MotherBrainsRedBeam_0:
-    dw $0001                                                             ;8D835D;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1E3)
 
 EnemyProjSpritemaps_MotherBrainsRedBeam_1:
-    dw $0001                                                             ;8D8364;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1E4)
 
 EnemyProjSpritemaps_MotherBrainsRedBeam_2:
-    dw $0001                                                             ;8D836B;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1E6)
 
 EnemyProjSpritemaps_MotherBrainsRedBeam_3:
-    dw $0001                                                             ;8D8372;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1E8)
 
 EnemyProjSpritemaps_MotherBrainsRedBeam_4:
-    dw $0001                                                             ;8D8379;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1EA)
 
 EnemyProjSpritemaps_MotherBrainsRedBeam_5:
-    dw $0001                                                             ;8D8380;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1EC)
 
 EnemyProjSpritemaps_MotherBrainsRedBeam_6:
-    dw $0001                                                             ;8D8387;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 2, $1EE)
 
 EnemyProjSpritemaps_MotherBrainsTubeFalling_TopRight:
-    dw $0004                                                             ;8D838E;
+    dw $0004
     %spritemapEntry(1, $43FC, $E8, 1, 0, 2, 7, $15E)
     %spritemapEntry(0, $00, $F8, 0, 0, 2, 7, $151)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 7, $150)
     %spritemapEntry(1, $43F8, $00, 1, 1, 2, 7, $142)
 
 EnemyProjSpritemaps_MotherBrainsTubeFalling_TopLeft:
-    dw $0004                                                             ;8D83A4;
+    dw $0004
     %spritemapEntry(1, $43F4, $E8, 1, 1, 2, 7, $15E)
     %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 7, $151)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 7, $150)
     %spritemapEntry(1, $43F8, $00, 1, 0, 2, 7, $142)
 
 EnemyProjSpritemaps_MotherBrainsTubeFalling_TopMiddleLeft:
-    dw $0007                                                             ;8D83BA;
+    dw $0007
     %spritemapEntry(1, $43FA, $DC, 1, 0, 2, 7, $15E)
     %spritemapEntry(1, $43F8, $1C, 0, 0, 2, 7, $15E)
     %spritemapEntry(1, $43F8, $14, 0, 0, 2, 7, $14E)
@@ -406,7 +406,7 @@ EnemyProjSpritemaps_MotherBrainsTubeFalling_TopMiddleLeft:
     %spritemapEntry(0, $1F8, $EC, 0, 0, 2, 7, $16D)
 
 EnemyProjSpritemaps_MotherBrainsTubeFalling_TopMiddleRight:
-    dw $0007                                                             ;8D83DF;
+    dw $0007
     %spritemapEntry(1, $43F6, $DC, 1, 1, 2, 7, $15E)
     %spritemapEntry(1, $43F8, $1C, 0, 1, 2, 7, $15E)
     %spritemapEntry(1, $43F8, $14, 0, 1, 2, 7, $14E)
@@ -416,91 +416,91 @@ EnemyProjSpritemaps_MotherBrainsTubeFalling_TopMiddleRight:
     %spritemapEntry(0, $00, $EC, 0, 1, 2, 7, $16D)
 
 EnemyProjSpritemaps_AlcoonFireball_0:
-    dw $0001                                                             ;8D8404;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $12C)
 
 EnemyProjSpritemaps_AlcoonFireball_1:
-    dw $0001                                                             ;8D840B;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 2, 0, $12D)
 
 EnemyProjSpritemaps_AlcoonFireball_2:
-    dw $0001                                                             ;8D8412;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 2, 0, $12C)
 
 EnemyProjSpritemaps_AlcoonFireball_3:
-    dw $0001                                                             ;8D8419;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 0, $12D)
 
 EnemyProjSpritemaps_MiniKraidSpit:
-    dw $0001                                                             ;8D8420;
+    dw $0001
     %spritemapEntry(0, $1FD, $FD, 0, 0, 2, 1, $11F)
 
 EnemyProjSpritemaps_MiniKraidSpikes_Left:
-    dw $0001                                                             ;8D8427;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 1, $10F)
 
 EnemyProjSpritemaps_MiniKraidSpikes_Right:
-    dw $0001                                                             ;8D842E;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 1, $10F)
 
 EnemyProjSpritemaps_MetareeParticle:
-    dw $0001                                                             ;8D8435;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $12B)
 
 UNUSED_EnemyProjSpritemaps_0_8D343C:
-    dw $0001                                                             ;8D843C;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 5, $7C)
 
 UNUSED_EnemyProjSpritemaps_1_8D3443:
-    dw $0001                                                             ;8D8443;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 0, 3, 5, $7E)
 
 UNUSED_EnemyProjSpritemaps_2_8D344A:
-    dw $0001                                                             ;8D844A;
+    dw $0001
     %spritemapEntry(1, $43F8, $F4, 0, 0, 3, 5, $9A)
 
 UNUSED_EnemyProjSpritemaps_3_8D3451:
-    dw $0001                                                             ;8D8451;
+    dw $0001
     %spritemapEntry(1, $43F8, $F2, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_KagoBugs_0:
-    dw $0001                                                             ;8D8458;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $128)
 
 EnemyProjSpritemaps_KagoBugs_1:
-    dw $0001                                                             ;8D845F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $129)
 
 EnemyProjSpritemaps_KagoBugs_2:
-    dw $0001                                                             ;8D8466;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $12A)
 
 EnemyProjSpritemaps_CeresElevatorPadLevelDataConcealer:
-    dw $0004                                                             ;8D846D;
+    dw $0004
     %spritemapEntry(0, $08, $FC, 0, 0, 3, 5, $20)
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $20)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $20)
     %spritemapEntry(0, $1F0, $FC, 0, 0, 3, 5, $20)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_0:
-    dw $0001                                                             ;8D8483;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 5, $168)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_1:
-    dw $0003                                                             ;8D848A;
+    dw $0003
     %spritemapEntry(1, $4202, $EE, 0, 0, 3, 5, $168)
     %spritemapEntry(1, $43F2, $E6, 0, 0, 3, 5, $168)
     %spritemapEntry(1, $43FA, $F6, 0, 0, 3, 5, $16A)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_2:
-    dw $0004                                                             ;8D849B;
+    dw $0004
     %spritemapEntry(1, $4204, $E4, 0, 0, 3, 5, $168)
     %spritemapEntry(1, $43F4, $E3, 0, 0, 3, 5, $16A)
     %spritemapEntry(1, $4204, $EB, 0, 0, 3, 5, $16A)
     %spritemapEntry(1, $43FC, $F3, 0, 0, 3, 5, $16C)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_3:
-    dw $0005                                                             ;8D84B1;
+    dw $0005
     %spritemapEntry(1, $43FE, $D6, 0, 0, 3, 5, $168)
     %spritemapEntry(1, $4206, $E2, 0, 0, 3, 5, $16A)
     %spritemapEntry(1, $43F6, $E0, 0, 0, 3, 5, $16C)
@@ -508,7 +508,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_3:
     %spritemapEntry(1, $43FE, $F0, 0, 0, 3, 5, $16E)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_4:
-    dw $0005                                                             ;8D84CC;
+    dw $0005
     %spritemapEntry(1, $4200, $D4, 0, 0, 3, 5, $16A)
     %spritemapEntry(1, $4208, $E0, 0, 0, 3, 5, $16C)
     %spritemapEntry(1, $4208, $E5, 0, 0, 3, 5, $16E)
@@ -516,40 +516,40 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_4:
     %spritemapEntry(1, $4200, $ED, 0, 0, 3, 5, $1E4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_5:
-    dw $0004                                                             ;8D84E7;
+    dw $0004
     %spritemapEntry(1, $4202, $D2, 0, 0, 3, 5, $16C)
     %spritemapEntry(1, $420A, $DE, 0, 0, 3, 5, $16E)
     %spritemapEntry(1, $420A, $E2, 0, 0, 3, 5, $1E4)
     %spritemapEntry(1, $43FA, $DA, 0, 0, 3, 5, $1E4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_6:
-    dw $0002                                                             ;8D84FD;
+    dw $0002
     %spritemapEntry(1, $4204, $D0, 0, 0, 3, 5, $16E)
     %spritemapEntry(1, $420C, $DC, 0, 0, 3, 5, $1E4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_7:
-    dw $0001                                                             ;8D8509;
+    dw $0001
     %spritemapEntry(1, $4206, $CE, 0, 0, 3, 5, $1E4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_8:
-    dw $0001                                                             ;8D8510;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 5, $1C4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_9:
-    dw $0003                                                             ;8D8517;
+    dw $0003
     %spritemapEntry(1, $43FA, $F6, 0, 0, 3, 5, $1C6)
     %spritemapEntry(1, $4202, $EE, 0, 0, 3, 5, $1C4)
     %spritemapEntry(1, $43F2, $E6, 0, 0, 3, 5, $1C4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_A:
-    dw $0004                                                             ;8D8528;
+    dw $0004
     %spritemapEntry(1, $43FC, $F4, 0, 0, 3, 5, $1C8)
     %spritemapEntry(1, $4204, $EC, 0, 0, 3, 5, $1C6)
     %spritemapEntry(1, $43F4, $E4, 0, 0, 3, 5, $1C6)
     %spritemapEntry(1, $4204, $E4, 0, 0, 3, 5, $1C4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_B:
-    dw $0005                                                             ;8D853E;
+    dw $0005
     %spritemapEntry(1, $43FE, $F2, 0, 0, 3, 5, $1CA)
     %spritemapEntry(1, $43F6, $E2, 0, 0, 3, 5, $1C8)
     %spritemapEntry(1, $4206, $E2, 0, 0, 3, 5, $1C6)
@@ -557,7 +557,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_B:
     %spritemapEntry(1, $4206, $EA, 0, 0, 3, 5, $16C)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_C:
-    dw $0005                                                             ;8D8559;
+    dw $0005
     %spritemapEntry(1, $4200, $F0, 0, 0, 3, 5, $1CC)
     %spritemapEntry(1, $4208, $E8, 0, 0, 3, 5, $1CA)
     %spritemapEntry(1, $43F8, $E0, 0, 0, 3, 5, $1CA)
@@ -565,23 +565,23 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_C:
     %spritemapEntry(1, $4200, $D4, 0, 0, 3, 5, $1C6)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_D:
-    dw $0004                                                             ;8D8574;
+    dw $0004
     %spritemapEntry(1, $43FA, $DE, 0, 0, 3, 5, $1CC)
     %spritemapEntry(1, $420A, $E6, 0, 0, 3, 5, $1CC)
     %spritemapEntry(1, $420A, $DE, 0, 0, 3, 5, $1CA)
     %spritemapEntry(1, $4202, $D2, 0, 0, 3, 5, $1C8)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_E:
-    dw $0002                                                             ;8D858A;
+    dw $0002
     %spritemapEntry(1, $420C, $DC, 0, 0, 3, 5, $1CC)
     %spritemapEntry(1, $4204, $D0, 0, 0, 3, 5, $1CA)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_F:
-    dw $0001                                                             ;8D8596;
+    dw $0001
     %spritemapEntry(1, $4206, $CE, 0, 0, 3, 5, $1CC)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_10:
-    dw $0006                                                             ;8D859D;
+    dw $0006
     %spritemapEntry(0, $1FC, $04, 0, 0, 3, 5, $1A1)
     %spritemapEntry(0, $1F4, $04, 0, 0, 3, 5, $1A0)
     %spritemapEntry(0, $04, $04, 0, 0, 3, 5, $1A2)
@@ -590,7 +590,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_10:
     %spritemapEntry(1, $43F4, $F4, 0, 0, 3, 5, $180)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_11:
-    dw $000A                                                             ;8D85BD;
+    dw $000A
     %spritemapEntry(0, $1F0, $F2, 0, 0, 3, 5, $1A1)
     %spritemapEntry(0, $1E8, $F2, 0, 0, 3, 5, $1A0)
     %spritemapEntry(0, $1F8, $F2, 0, 0, 3, 5, $1A2)
@@ -603,7 +603,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_11:
     %spritemapEntry(1, $43F4, $EE, 0, 0, 3, 5, $183)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_12:
-    dw $000E                                                             ;8D85F1;
+    dw $000E
     %spritemapEntry(0, $14, $F8, 0, 0, 3, 5, $1A1)
     %spritemapEntry(0, $0C, $F8, 0, 0, 3, 5, $1A0)
     %spritemapEntry(0, $1C, $F8, 0, 0, 3, 5, $1A2)
@@ -620,7 +620,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_12:
     %spritemapEntry(1, $43F8, $EC, 0, 0, 3, 5, $187)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_13:
-    dw $000C                                                             ;8D8639;
+    dw $000C
     %spritemapEntry(1, $43FC, $EA, 0, 0, 3, 5, $1A9)
     %spritemapEntry(1, $43EC, $EA, 0, 0, 3, 5, $1A7)
     %spritemapEntry(1, $43FC, $DA, 0, 0, 3, 5, $189)
@@ -635,7 +635,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_13:
     %spritemapEntry(1, $43FC, $EA, 0, 0, 3, 5, $18B)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_14:
-    dw $000C                                                             ;8D8677;
+    dw $000C
     %spritemapEntry(1, $4220, $F0, 0, 0, 3, 5, $1A9)
     %spritemapEntry(1, $4210, $F0, 0, 0, 3, 5, $1A7)
     %spritemapEntry(1, $4220, $E0, 0, 0, 3, 5, $189)
@@ -650,7 +650,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_14:
     %spritemapEntry(1, $4200, $E8, 0, 0, 3, 5, $1C0)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_15:
-    dw $0008                                                             ;8D86B5;
+    dw $0008
     %spritemapEntry(1, $4204, $E6, 0, 0, 3, 5, $1E2)
     %spritemapEntry(1, $43F4, $E6, 0, 0, 3, 5, $1E0)
     %spritemapEntry(1, $4204, $D6, 0, 0, 3, 5, $1C2)
@@ -661,31 +661,31 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_15:
     %spritemapEntry(1, $4214, $DE, 0, 0, 3, 5, $18B)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_16:
-    dw $0004                                                             ;8D86DF;
+    dw $0004
     %spritemapEntry(1, $4228, $EC, 0, 0, 3, 5, $1E2)
     %spritemapEntry(1, $4218, $EC, 0, 0, 3, 5, $1E0)
     %spritemapEntry(1, $4228, $DC, 0, 0, 3, 5, $1C2)
     %spritemapEntry(1, $4218, $DC, 0, 0, 3, 5, $1C0)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_17:
-    dw $0001                                                             ;8D86F5;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 3, 5, $168)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_18:
-    dw $0003                                                             ;8D86FC;
+    dw $0003
     %spritemapEntry(1, $43EE, $EE, 0, 1, 3, 5, $168)
     %spritemapEntry(1, $43FE, $E6, 0, 1, 3, 5, $168)
     %spritemapEntry(1, $43F6, $F6, 0, 1, 3, 5, $16A)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_19:
-    dw $0004                                                             ;8D870D;
+    dw $0004
     %spritemapEntry(1, $43EC, $E4, 0, 1, 3, 5, $168)
     %spritemapEntry(1, $43FC, $E3, 0, 1, 3, 5, $16A)
     %spritemapEntry(1, $43EC, $EB, 0, 1, 3, 5, $16A)
     %spritemapEntry(1, $43F4, $F3, 0, 1, 3, 5, $16C)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_1A:
-    dw $0005                                                             ;8D8723;
+    dw $0005
     %spritemapEntry(1, $43F2, $D6, 0, 1, 3, 5, $168)
     %spritemapEntry(1, $43EA, $E2, 0, 1, 3, 5, $16A)
     %spritemapEntry(1, $43FA, $E0, 0, 1, 3, 5, $16C)
@@ -693,7 +693,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_1A:
     %spritemapEntry(1, $43F2, $F0, 0, 1, 3, 5, $16E)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_1B:
-    dw $0005                                                             ;8D873E;
+    dw $0005
     %spritemapEntry(1, $43F0, $D4, 0, 1, 3, 5, $16A)
     %spritemapEntry(1, $43E8, $E0, 0, 1, 3, 5, $16C)
     %spritemapEntry(1, $43E8, $E5, 0, 1, 3, 5, $16E)
@@ -701,40 +701,40 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_1B:
     %spritemapEntry(1, $43F0, $ED, 0, 1, 3, 5, $1E4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_1C:
-    dw $0004                                                             ;8D8759;
+    dw $0004
     %spritemapEntry(1, $43EE, $D2, 0, 1, 3, 5, $16C)
     %spritemapEntry(1, $43E6, $DE, 0, 1, 3, 5, $16E)
     %spritemapEntry(1, $43E6, $E2, 0, 1, 3, 5, $1E4)
     %spritemapEntry(1, $43F6, $DA, 0, 1, 3, 5, $1E4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_1D:
-    dw $0002                                                             ;8D876F;
+    dw $0002
     %spritemapEntry(1, $43EC, $D0, 0, 1, 3, 5, $16E)
     %spritemapEntry(1, $43E4, $DC, 0, 1, 3, 5, $1E4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_1E:
-    dw $0001                                                             ;8D877B;
+    dw $0001
     %spritemapEntry(1, $43EA, $CE, 0, 1, 3, 5, $1E4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_1F:
-    dw $0001                                                             ;8D8782;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 3, 5, $1C4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_20:
-    dw $0003                                                             ;8D8789;
+    dw $0003
     %spritemapEntry(1, $43F6, $F6, 0, 1, 3, 5, $1C6)
     %spritemapEntry(1, $43EE, $EE, 0, 1, 3, 5, $1C4)
     %spritemapEntry(1, $43FE, $E6, 0, 1, 3, 5, $1C4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_21:
-    dw $0004                                                             ;8D879A;
+    dw $0004
     %spritemapEntry(1, $43F4, $F4, 0, 1, 3, 5, $1C8)
     %spritemapEntry(1, $43EC, $EC, 0, 1, 3, 5, $1C6)
     %spritemapEntry(1, $43FC, $E4, 0, 1, 3, 5, $1C6)
     %spritemapEntry(1, $43EC, $E4, 0, 1, 3, 5, $1C4)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_22:
-    dw $0005                                                             ;8D87B0;
+    dw $0005
     %spritemapEntry(1, $43F2, $F2, 0, 1, 3, 5, $1CA)
     %spritemapEntry(1, $43FA, $E2, 0, 1, 3, 5, $1C8)
     %spritemapEntry(1, $43EA, $E2, 0, 1, 3, 5, $1C6)
@@ -742,7 +742,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_22:
     %spritemapEntry(1, $43EA, $EA, 0, 1, 3, 5, $16C)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_23:
-    dw $0005                                                             ;8D87CB;
+    dw $0005
     %spritemapEntry(1, $43F0, $F0, 0, 1, 3, 5, $1CC)
     %spritemapEntry(1, $43E8, $E8, 0, 1, 3, 5, $1CA)
     %spritemapEntry(1, $43F8, $E0, 0, 1, 3, 5, $1CA)
@@ -750,23 +750,23 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_23:
     %spritemapEntry(1, $43F0, $D4, 0, 1, 3, 5, $1C6)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_24:
-    dw $0004                                                             ;8D87E6;
+    dw $0004
     %spritemapEntry(1, $43F6, $DE, 0, 1, 3, 5, $1CC)
     %spritemapEntry(1, $43E6, $E6, 0, 1, 3, 5, $1CC)
     %spritemapEntry(1, $43E6, $DE, 0, 1, 3, 5, $1CA)
     %spritemapEntry(1, $43EE, $D2, 0, 1, 3, 5, $1C8)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_25:
-    dw $0002                                                             ;8D87FC;
+    dw $0002
     %spritemapEntry(1, $43E4, $DC, 0, 1, 3, 5, $1CC)
     %spritemapEntry(1, $43EC, $D0, 0, 1, 3, 5, $1CA)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_26:
-    dw $0001                                                             ;8D8808;
+    dw $0001
     %spritemapEntry(1, $43EA, $CE, 0, 1, 3, 5, $1CC)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_27:
-    dw $0006                                                             ;8D880F;
+    dw $0006
     %spritemapEntry(0, $1FC, $04, 0, 1, 3, 5, $1A1)
     %spritemapEntry(0, $04, $04, 0, 1, 3, 5, $1A0)
     %spritemapEntry(0, $1F4, $04, 0, 1, 3, 5, $1A2)
@@ -775,7 +775,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_27:
     %spritemapEntry(1, $43FC, $F4, 0, 1, 3, 5, $180)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_28:
-    dw $000A                                                             ;8D882F;
+    dw $000A
     %spritemapEntry(0, $08, $F2, 0, 1, 3, 5, $1A1)
     %spritemapEntry(0, $10, $F2, 0, 1, 3, 5, $1A0)
     %spritemapEntry(0, $00, $F2, 0, 1, 3, 5, $1A2)
@@ -788,7 +788,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_28:
     %spritemapEntry(1, $43FC, $EE, 0, 1, 3, 5, $183)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_29:
-    dw $000E                                                             ;8D8863;
+    dw $000E
     %spritemapEntry(0, $1E4, $F8, 0, 1, 3, 5, $1A1)
     %spritemapEntry(0, $1EC, $F8, 0, 1, 3, 5, $1A0)
     %spritemapEntry(0, $1DC, $F8, 0, 1, 3, 5, $1A2)
@@ -805,7 +805,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_29:
     %spritemapEntry(1, $43F8, $EC, 0, 1, 3, 5, $187)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_2A:
-    dw $000C                                                             ;8D88AB;
+    dw $000C
     %spritemapEntry(1, $43F4, $EA, 0, 1, 3, 5, $1A9)
     %spritemapEntry(1, $4204, $EA, 0, 1, 3, 5, $1A7)
     %spritemapEntry(1, $43F4, $DA, 0, 1, 3, 5, $189)
@@ -820,7 +820,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_2A:
     %spritemapEntry(1, $43F4, $EA, 0, 1, 3, 5, $18B)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_2B:
-    dw $000C                                                             ;8D88E9;
+    dw $000C
     %spritemapEntry(1, $43D0, $F0, 0, 1, 3, 5, $1A9)
     %spritemapEntry(1, $43E0, $F0, 0, 1, 3, 5, $1A7)
     %spritemapEntry(1, $43D0, $E0, 0, 1, 3, 5, $189)
@@ -835,7 +835,7 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_2B:
     %spritemapEntry(1, $43F0, $E8, 0, 1, 3, 5, $1C0)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_2C:
-    dw $0008                                                             ;8D8927;
+    dw $0008
     %spritemapEntry(1, $43EC, $E6, 0, 1, 3, 5, $1E2)
     %spritemapEntry(1, $43FC, $E6, 0, 1, 3, 5, $1E0)
     %spritemapEntry(1, $43EC, $D6, 0, 1, 3, 5, $1C2)
@@ -846,416 +846,416 @@ EnemyProjSpritemaps_GunshipLiftoffDustClouds_2C:
     %spritemapEntry(1, $43DC, $DE, 0, 1, 3, 5, $18B)
 
 EnemyProjSpritemaps_GunshipLiftoffDustClouds_2D:
-    dw $0004                                                             ;8D8951;
+    dw $0004
     %spritemapEntry(1, $43C8, $EC, 0, 1, 3, 5, $1E2)
     %spritemapEntry(1, $43D8, $EC, 0, 1, 3, 5, $1E0)
     %spritemapEntry(1, $43C8, $DC, 0, 1, 3, 5, $1C2)
     %spritemapEntry(1, $43D8, $DC, 0, 1, 3, 5, $1C0)
 
 UNUSED_EnemyProjSpritemaps_Draygon_0_8D8967:
-    dw $0001                                                             ;8D8967;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $100)
 
 UNUSED_EnemyProjSpritemaps_Draygon_1_8D896E:
-    dw $0001                                                             ;8D896E;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $101)
 
 UNUSED_EnemyProjSpritemaps_Draygon_2_8D8975:
-    dw $0001                                                             ;8D8975;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $102)
 
 UNUSED_EnemyProjSpritemaps_0_8D897C:
-    dw $0001                                                             ;8D897C;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $103)
 
 UNUSED_EnemyProjSpritemaps_1_8D8983:
-    dw $0001                                                             ;8D8983;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $104)
 
 UNUSED_EnemyProjSpritemaps_2_8D898A:
-    dw $0001                                                             ;8D898A;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $105)
 
 UNUSED_EnemyProjSpritemaps_0_8D8991:
-    dw $0001                                                             ;8D8991;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $106)
 
 UNUSED_EnemyProjSpritemaps_1_8D8998:
-    dw $0001                                                             ;8D8998;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $107)
 
 UNUSED_EnemyProjSpritemaps_2_8D899F:
-    dw $0001                                                             ;8D899F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $108)
 
 UNUSED_EnemyProjSpritemaps_0_8D89A6:
-    dw $0001                                                             ;8D89A6;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $103)
 
 UNUSED_EnemyProjSpritemaps_1_8D89AD:
-    dw $0001                                                             ;8D89AD;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $104)
 
 UNUSED_EnemyProjSpritemaps_2_8D89B4:
-    dw $0001                                                             ;8D89B4;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $105)
 
 UNUSED_EnemyProjSpritemaps_0_8D89BB:
-    dw $0001                                                             ;8D89BB;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $100)
 
 UNUSED_EnemyProjSpritemaps_1_8D89C2:
-    dw $0001                                                             ;8D89C2;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $101)
 
 UNUSED_EnemyProjSpritemaps_2_8D89C9:
-    dw $0001                                                             ;8D89C9;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $102)
 
 UNUSED_EnemyProjSpritemaps_0_8D89D0:
-    dw $0001                                                             ;8D89D0;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $103)
 
 UNUSED_EnemyProjSpritemaps_1_8D89D7:
-    dw $0001                                                             ;8D89D7;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $104)
 
 UNUSED_EnemyProjSpritemaps_2_8D89DE:
-    dw $0001                                                             ;8D89DE;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $105)
 
 UNUSED_EnemyProjSpritemaps_0_8D89E5:
-    dw $0001                                                             ;8D89E5;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $106)
 
 UNUSED_EnemyProjSpritemaps_1_8D89EC:
-    dw $0001                                                             ;8D89EC;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $107)
 
 UNUSED_EnemyProjSpritemaps_2_8D89F3:
-    dw $0001                                                             ;8D89F3;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $108)
 
 UNUSED_EnemyProjSpritemaps_0_8D89FA:
-    dw $0001                                                             ;8D89FA;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $103)
 
 UNUSED_EnemyProjSpritemaps_1_8D8A01:
-    dw $0001                                                             ;8D8A01;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $104)
 
 UNUSED_EnemyProjSpritemaps_2_8D8A08:
-    dw $0001                                                             ;8D8A08;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $105)
 
 UNUSED_EnemyProjSpritemaps_Draygon_8D8A0F:
-    dw $0001                                                             ;8D8A0F;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $164)
 
 EnemyProjSpritemaps_DraygonGoop_0:
-    dw $0001                                                             ;8D8A16;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 1, 0, $16A)
 
 EnemyProjSpritemaps_DraygonGoop_1:
-    dw $0001                                                             ;8D8A1D;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 1, 0, $15E)
 
 EnemyProjSpritemaps_DraygonGoop_2:
-    dw $0001                                                             ;8D8A24;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 1, 0, $15C)
 
 EnemyProjSpritemaps_DraygonGoop_3:
-    dw $0001                                                             ;8D8A2B;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 1, 0, $14A)
 
 UNUSED_EnemyProjSpritemaps_Draygon_0_8D8A32:
-    dw $0001                                                             ;8D8A32;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $17E)
 
 UNUSED_EnemyProjSpritemaps_Draygon_1_8D8A39:
-    dw $0001                                                             ;8D8A39;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $17D)
 
 UNUSED_EnemyProjSpritemaps_Draygon_2_8D8A40:
-    dw $0001                                                             ;8D8A40;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $17C)
 
 UNUSED_EnemyProjSpritemaps_Draygon_3_8D8A47:
-    dw $0001                                                             ;8D8A47;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $18A)
 
 UNUSED_EnemyProjSpritemaps_Draygon_4_8D8A4E:
-    dw $0001                                                             ;8D8A4E;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $17F)
 
 UNUSED_EnemyProjSpritemaps_Draygon_5_8D8A55:
-    dw $0001                                                             ;8D8A55;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $177)
 
 UNUSED_EnemyProjSpritemaps_Draygon_6_8D8A5C:
-    dw $0001                                                             ;8D8A5C;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $176)
 
 UNUSED_EnemyProjSpritemaps_0_8D8A63:
-    dw $0001                                                             ;8D8A63;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $18C)
 
 UNUSED_EnemyProjSpritemaps_1_8D8A6A:
-    dw $0001                                                             ;8D8A6A;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $18E)
 
 EnemyProjSpritemaps_DraygonsWallTurretProjectile_0:
-    dw $0001                                                             ;8D8A71;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $17E)
 
 EnemyProjSpritemaps_DraygonsWallTurretProjectile_1:
-    dw $0001                                                             ;8D8A78;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $17D)
 
 EnemyProjSpritemaps_DraygonsWallTurretProjectile_2:
-    dw $0001                                                             ;8D8A7F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $17C)
 
 EnemyProjSpritemaps_DraygonsWallTurretProjectile_3:
-    dw $0001                                                             ;8D8A86;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $18A)
 
 EnemyProjSpritemaps_DraygonGoop_4:
-    dw $0001                                                             ;8D8A8D;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 1, $18C)
 
 EnemyProjSpritemaps_DraygonGoop_5:
-    dw $0004                                                             ;8D8A94;
+    dw $0004
     %spritemapEntry(0, $02, $02, 0, 0, 3, 1, $19F)
     %spritemapEntry(0, $1F6, $02, 0, 0, 3, 1, $19E)
     %spritemapEntry(0, $02, $F6, 0, 0, 3, 1, $18F)
     %spritemapEntry(0, $1F6, $F6, 0, 0, 3, 1, $18E)
 
 EnemyProjSpritemaps_DraygonsWallTurretProjectile_4:
-    dw $0001                                                             ;8D8AAA;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $1CA)
 
 EnemyProjSpritemaps_DraygonsWallTurretProjectile_5:
-    dw $0001                                                             ;8D8AB1;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $1CC)
 
 EnemyProjSpritemaps_DraygonsWallTurretProjectile_6:
-    dw $0001                                                             ;8D8AB8;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $1CE)
 
 EnemyProjSpritemaps_CeresFallingTile_Light:
-    dw $0001                                                             ;8D8ABF;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $EA)
 
 EnemyProjSpritemaps_CeresFallingTile_Dark:
-    dw $0001                                                             ;8D8AC6;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $EC)
 
 EnemyProjSpritemaps_PirateClaw_0:
-    dw $0003                                                             ;8D8ACD;
+    dw $0003
     %spritemapEntry(0, $04, $FC, 0, 0, 3, 0, $14C)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $14B)
     %spritemapEntry(0, $1F4, $FC, 0, 0, 3, 0, $14A)
 
 EnemyProjSpritemaps_PirateClaw_1:
-    dw $0002                                                             ;8D8ADE;
+    dw $0002
     %spritemapEntry(1, $1FC, $F8, 0, 0, 3, 0, $128)
     %spritemapEntry(1, $1F4, $F8, 0, 0, 3, 0, $127)
 
 EnemyProjSpritemaps_PirateClaw_2:
-    dw $0003                                                             ;8D8AEA;
+    dw $0003
     %spritemapEntry(0, $1FC, $F4, 1, 1, 3, 0, $14D)
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $13D)
     %spritemapEntry(0, $1FC, $04, 1, 1, 3, 0, $12D)
 
 EnemyProjSpritemaps_PirateClaw_3:
-    dw $0002                                                             ;8D8AFB;
+    dw $0002
     %spritemapEntry(1, $1F4, $F8, 1, 1, 3, 0, $12B)
     %spritemapEntry(1, $1FC, $F8, 1, 1, 3, 0, $12A)
 
 EnemyProjSpritemaps_PirateClaw_4:
-    dw $0003                                                             ;8D8B07;
+    dw $0003
     %spritemapEntry(0, $1F4, $FC, 1, 1, 3, 0, $14C)
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $14B)
     %spritemapEntry(0, $04, $FC, 1, 1, 3, 0, $14A)
 
 EnemyProjSpritemaps_PirateClaw_5:
-    dw $0002                                                             ;8D8B18;
+    dw $0002
     %spritemapEntry(1, $1F4, $F8, 1, 1, 3, 0, $128)
     %spritemapEntry(1, $1FC, $F8, 1, 1, 3, 0, $127)
 
 EnemyProjSpritemaps_PirateClaw_6:
-    dw $0003                                                             ;8D8B24;
+    dw $0003
     %spritemapEntry(0, $1FC, $04, 0, 0, 3, 0, $14D)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $13D)
     %spritemapEntry(0, $1FC, $F4, 0, 0, 3, 0, $12D)
 
 EnemyProjSpritemaps_PirateClaw_7:
-    dw $0002                                                             ;8D8B35;
+    dw $0002
     %spritemapEntry(1, $1FC, $F8, 0, 0, 3, 0, $12B)
     %spritemapEntry(1, $1F4, $F8, 0, 0, 3, 0, $12A)
 
 EnemyProjSpritemaps_PirateClaw_8:
-    dw $0003                                                             ;8D8B41;
+    dw $0003
     %spritemapEntry(0, $1F4, $FC, 0, 1, 3, 0, $14C)
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $14B)
     %spritemapEntry(0, $04, $FC, 0, 1, 3, 0, $14A)
 
 EnemyProjSpritemaps_PirateClaw_9:
-    dw $0002                                                             ;8D8B52;
+    dw $0002
     %spritemapEntry(1, $1F4, $F8, 0, 1, 3, 0, $128)
     %spritemapEntry(1, $1FC, $F8, 0, 1, 3, 0, $127)
 
 EnemyProjSpritemaps_PirateClaw_A:
-    dw $0003                                                             ;8D8B5E;
+    dw $0003
     %spritemapEntry(0, $1FC, $F4, 1, 0, 3, 0, $14D)
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $13D)
     %spritemapEntry(0, $1FC, $04, 1, 0, 3, 0, $12D)
 
 EnemyProjSpritemaps_PirateClaw_B:
-    dw $0002                                                             ;8D8B6F;
+    dw $0002
     %spritemapEntry(1, $1FC, $F8, 1, 0, 3, 0, $12B)
     %spritemapEntry(1, $1F4, $F8, 1, 0, 3, 0, $12A)
 
 EnemyProjSpritemaps_PirateClaw_C:
-    dw $0003                                                             ;8D8B7B;
+    dw $0003
     %spritemapEntry(0, $04, $FC, 1, 0, 3, 0, $14C)
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $14B)
     %spritemapEntry(0, $1F4, $FC, 1, 0, 3, 0, $14A)
 
 EnemyProjSpritemaps_PirateClaw_D:
-    dw $0002                                                             ;8D8B8C;
+    dw $0002
     %spritemapEntry(1, $1FC, $F8, 1, 0, 3, 0, $128)
     %spritemapEntry(1, $1F4, $F8, 1, 0, 3, 0, $127)
 
 EnemyProjSpritemaps_PirateClaw_E:
-    dw $0003                                                             ;8D8B98;
+    dw $0003
     %spritemapEntry(0, $1FC, $04, 0, 1, 3, 0, $14D)
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $13D)
     %spritemapEntry(0, $1FC, $F4, 0, 1, 3, 0, $12D)
 
 EnemyProjSpritemaps_PirateClaw_F:
-    dw $0002                                                             ;8D8BA9;
+    dw $0002
     %spritemapEntry(1, $1F4, $F8, 0, 1, 3, 0, $12B)
     %spritemapEntry(1, $1FC, $F8, 0, 1, 3, 0, $12A)
 
 EnemyProjSpritemaps_Pirate_MotherBrain_Laser_0:
-    dw $0001                                                             ;8D8BB5;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_Pirate_MotherBrain_Laser_1:
-    dw $0001                                                             ;8D8BBC;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $6B)
 
 EnemyProjSpritemaps_Pirate_MotherBrain_Laser_2:
-    dw $0002                                                             ;8D8BC3;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_Pirate_MotherBrain_Laser_3:
-    dw $0002                                                             ;8D8BCF;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 5, $6B)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6B)
 
 EnemyProjSpritemaps_Pirate_MotherBrain_Laser_4:
-    dw $0003                                                             ;8D8BDB;
+    dw $0003
     %spritemapEntry(0, $04, $FC, 0, 1, 3, 5, $CD)
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 5, $6F)
     %spritemapEntry(0, $1F4, $FC, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_Pirate_MotherBrain_Laser_5:
-    dw $0003                                                             ;8D8BEC;
+    dw $0003
     %spritemapEntry(0, $04, $FC, 0, 1, 3, 5, $6B)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $1F4, $FC, 0, 0, 3, 5, $6B)
 
 EnemyProjSpritemaps_Pirate_MotherBrain_Laser_6:
-    dw $0004                                                             ;8D8BFD;
+    dw $0004
     %spritemapEntry(0, $08, $FC, 0, 1, 3, 5, $CD)
     %spritemapEntry(0, $1F0, $FC, 0, 0, 3, 5, $CD)
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_Pirate_MotherBrain_Laser_7:
-    dw $0004                                                             ;8D8C13;
+    dw $0004
     %spritemapEntry(0, $08, $FC, 1, 1, 3, 5, $6B)
     %spritemapEntry(0, $00, $FC, 1, 1, 3, 5, $6B)
     %spritemapEntry(0, $1F8, $FC, 1, 0, 3, 5, $6B)
     %spritemapEntry(0, $1F0, $FC, 1, 0, 3, 5, $6B)
 
 EnemyProjSpritemaps_Pirate_MotherBrain_Laser_8:
-    dw $0001                                                             ;8D8C29;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $53)
 
 EnemyProjSpritemaps_Pirate_MotherBrain_Laser_9:
-    dw $0001                                                             ;8D8C30;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $51)
 
 EnemyProjSpritemaps_Pirate_MotherBrain_Laser_A:
-    dw $0004                                                             ;8D8C37;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $60)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $60)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $60)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $60)
 
 UNUSED_EnemyProjSpritemaps_QuestionMark_8D8C4D:
-    dw $0001                                                             ;8D8C4D;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 5, $E0)
 
 UNUSED_EnemyProjSpritemaps_BombTorizoLowHealthDrool_0_8D8C54:
-    dw $0001                                                             ;8D8C54;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $170)
 
 UNUSED_EnemyProjSpritemaps_BombTorizoLowHealthDrool_1_8D8C5B:
-    dw $0001                                                             ;8D8C5B;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $163)
 
 UNUSED_EnemyProjSpritemaps_BombTorizoLowHealthDrool_2_8D8C62:
-    dw $0001                                                             ;8D8C62;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $167)
 
 UNUSED_EnemyProjSpritemaps_BombTorizoLowHealthDrool_3_8D8C69:
-    dw $0001                                                             ;8D8C69;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $16A)
 
 EnemyProjSpritemaps_TorizoChozoOrbs_0:
-    dw $0001                                                             ;8D8C70;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 3, $12C)
 
 EnemyProjSpritemaps_TorizoChozoOrbs_1:
-    dw $0001                                                             ;8D8C77;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 3, $12C)
 
 EnemyProjSpritemaps_TorizoChozoOrbs_GoldenTorizoEyeBeam_0:
-    dw $0001                                                             ;8D8C7E;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 5, $12E)
 
 EnemyProjSpritemaps_TorizoChozoOrbs_GoldenTorizoEyeBeam_1:
-    dw $0002                                                             ;8D8C85;
+    dw $0002
     %spritemapEntry(0, $1F8, $00, 0, 0, 2, 5, $180)
     %spritemapEntry(0, $00, $00, 0, 1, 2, 5, $180)
 
 EnemyProjSpritemaps_TorizoChozoOrbs_GoldenTorizoEyeBeam_2:
-    dw $0004                                                             ;8D8C91;
+    dw $0004
     %spritemapEntry(0, $1F8, $00, 0, 0, 2, 5, $190)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $180)
     %spritemapEntry(0, $00, $00, 0, 1, 2, 5, $190)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $180)
 
 EnemyProjSpritemaps_TorizoChozoOrbs_GoldenTorizoEyeBeam_3:
-    dw $0003                                                             ;8D8CA7;
+    dw $0003
     %spritemapEntry(1, $43F8, $F0, 0, 1, 2, 5, $180)
     %spritemapEntry(0, $1F8, $00, 0, 0, 2, 5, $199)
     %spritemapEntry(0, $00, $00, 0, 1, 2, 5, $199)
 
 EnemyProjSpritemaps_TorizoChozoOrbs_GoldenTorizoEyeBeam_4:
-    dw $0003                                                             ;8D8CB8;
+    dw $0003
     %spritemapEntry(0, $00, $00, 0, 1, 2, 5, $180)
     %spritemapEntry(0, $1F8, $00, 0, 0, 2, 5, $180)
     %spritemapEntry(1, $43F8, $EC, 0, 0, 2, 5, $12E)
 
 EnemyProjSpritemaps_TorizoChozoOrbs_GoldenTorizoEyeBeam_5:
-    dw $0006                                                             ;8D8CC9;
+    dw $0006
     %spritemapEntry(0, $1F8, $00, 1, 1, 2, 5, $152)
     %spritemapEntry(0, $00, $00, 1, 0, 2, 5, $152)
     %spritemapEntry(0, $1F8, $F0, 0, 0, 2, 5, $192)
@@ -1264,14 +1264,14 @@ EnemyProjSpritemaps_TorizoChozoOrbs_GoldenTorizoEyeBeam_5:
     %spritemapEntry(0, $00, $E8, 0, 1, 2, 5, $182)
 
 EnemyProjSpritemaps_TorizoSonicBoom_0:
-    dw $0004                                                             ;8D8CE9;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 0, 2, 5, $15E)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 5, $15D)
     %spritemapEntry(0, $00, $F8, 0, 0, 2, 5, $15E)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $15D)
 
 EnemyProjSpritemaps_TorizoSonicBoom_1:
-    dw $0006                                                             ;8D8CFF;
+    dw $0006
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 5, $1BE)
     %spritemapEntry(0, $00, $08, 1, 0, 2, 5, $1BD)
     %spritemapEntry(0, $1F8, $08, 1, 0, 2, 5, $1BC)
@@ -1280,7 +1280,7 @@ EnemyProjSpritemaps_TorizoSonicBoom_1:
     %spritemapEntry(0, $1F8, $F0, 0, 0, 2, 5, $1BC)
 
 EnemyProjSpritemaps_TorizoSonicBoom_2:
-    dw $0006                                                             ;8D8D1F;
+    dw $0006
     %spritemapEntry(0, $1FC, $00, 1, 0, 2, 5, $1BF)
     %spritemapEntry(0, $1FC, $08, 1, 0, 2, 5, $165)
     %spritemapEntry(0, $1FC, $10, 1, 0, 2, 5, $149)
@@ -1289,14 +1289,14 @@ EnemyProjSpritemaps_TorizoSonicBoom_2:
     %spritemapEntry(0, $1FC, $E8, 0, 0, 2, 5, $149)
 
 EnemyProjSpritemaps_TorizoSonicBoom_3:
-    dw $0004                                                             ;8D8D3F;
+    dw $0004
     %spritemapEntry(0, $1F8, $00, 1, 1, 2, 5, $15E)
     %spritemapEntry(0, $00, $00, 1, 1, 2, 5, $15D)
     %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 5, $15E)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $15D)
 
 EnemyProjSpritemaps_TorizoSonicBoom_4:
-    dw $0006                                                             ;8D8D55;
+    dw $0006
     %spritemapEntry(0, $00, $00, 1, 1, 2, 5, $1BE)
     %spritemapEntry(0, $1F8, $08, 1, 1, 2, 5, $1BD)
     %spritemapEntry(0, $00, $08, 1, 1, 2, 5, $1BC)
@@ -1305,7 +1305,7 @@ EnemyProjSpritemaps_TorizoSonicBoom_4:
     %spritemapEntry(0, $00, $F0, 0, 1, 2, 5, $1BC)
 
 EnemyProjSpritemaps_TorizoSonicBoom_5:
-    dw $0006                                                             ;8D8D75;
+    dw $0006
     %spritemapEntry(0, $1FC, $00, 1, 1, 2, 5, $1BF)
     %spritemapEntry(0, $1FC, $08, 1, 1, 2, 5, $165)
     %spritemapEntry(0, $1FC, $10, 1, 1, 2, 5, $149)
@@ -1314,423 +1314,423 @@ EnemyProjSpritemaps_TorizoSonicBoom_5:
     %spritemapEntry(0, $1FC, $E8, 0, 1, 2, 5, $149)
 
 UNUSED_EnemyProjSpritemaps_8D8D95:
-    dw $0001                                                             ;8D8D95;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $5E)
 
 EnemyProjSpritemaps_Common_0:
-    dw $0001                                                             ;8D8D9C;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $5F)
 
 EnemyProjSpritemaps_Common_1:
-    dw $0004                                                             ;8D8DA3;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 2, 5, $60)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $60)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 5, $60)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $60)
 
 EnemyProjSpritemaps_Common_2:
-    dw $0004                                                             ;8D8DB9;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 2, 5, $61)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $61)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 5, $61)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $61)
 
 EnemyProjSpritemaps_Common_3:
-    dw $0004                                                             ;8D8DCF;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 2, 5, $62)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $62)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 5, $62)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $62)
 
 EnemyProjSpritemaps_Common_4:
-    dw $0004                                                             ;8D8DE5;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 2, 5, $63)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $63)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 5, $63)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $63)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_0:
-    dw $0001                                                             ;8D8DFB;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $E0)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_1:
-    dw $0001                                                             ;8D8E02;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $E2)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_2:
-    dw $0001                                                             ;8D8E09;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $E4)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_3:
-    dw $0001                                                             ;8D8E10;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $E6)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_4:
-    dw $0001                                                             ;8D8E17;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $E8)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_5:
-    dw $0001                                                             ;8D8E1E;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $EA)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_6:
-    dw $0001                                                             ;8D8E25;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $EC)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_7:
-    dw $0001                                                             ;8D8E2C;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $EE)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_8:
-    dw $0001                                                             ;8D8E33;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $E0)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_9:
-    dw $0001                                                             ;8D8E3A;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $E2)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_A:
-    dw $0001                                                             ;8D8E41;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $E4)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_B:
-    dw $0001                                                             ;8D8E48;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $E6)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_C:
-    dw $0001                                                             ;8D8E4F;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $E8)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_D:
-    dw $0001                                                             ;8D8E56;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $EA)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_E:
-    dw $0001                                                             ;8D8E5D;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $EC)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_F:
-    dw $0001                                                             ;8D8E64;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $EE)
 
 EnemyProjSpritemaps_GoldenTorizoSuperMissile_0:
-    dw $0002                                                             ;8D8E6B;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 0, 2, 5, $65)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 5, $64)
 
 EnemyProjSpritemaps_GoldenTorizoSuperMissile_1:
-    dw $0003                                                             ;8D8E77;
+    dw $0003
     %spritemapEntry(0, $03, $FF, 0, 0, 2, 5, $68)
     %spritemapEntry(0, $1FB, $FF, 0, 0, 2, 5, $67)
     %spritemapEntry(0, $1FB, $F7, 0, 0, 2, 5, $66)
 
 EnemyProjSpritemaps_GoldenTorizoSuperMissile_2:
-    dw $0002                                                             ;8D8E88;
+    dw $0002
     %spritemapEntry(0, $1FC, $00, 0, 0, 2, 5, $6A)
     %spritemapEntry(0, $1FC, $F8, 0, 0, 2, 5, $69)
 
 EnemyProjSpritemaps_GoldenTorizoSuperMissile_3:
-    dw $0003                                                             ;8D8E94;
+    dw $0003
     %spritemapEntry(0, $1F5, $FF, 0, 1, 2, 5, $68)
     %spritemapEntry(0, $1FD, $FF, 0, 1, 2, 5, $67)
     %spritemapEntry(0, $1FD, $F7, 0, 1, 2, 5, $66)
 
 EnemyProjSpritemaps_GoldenTorizoSuperMissile_4:
-    dw $0002                                                             ;8D8EA5;
+    dw $0002
     %spritemapEntry(0, $1F8, $FC, 0, 1, 2, 5, $65)
     %spritemapEntry(0, $00, $FC, 0, 1, 2, 5, $64)
 
 EnemyProjSpritemaps_GoldenTorizoSuperMissile_5:
-    dw $0003                                                             ;8D8EB1;
+    dw $0003
     %spritemapEntry(0, $1F5, $F9, 1, 1, 2, 5, $68)
     %spritemapEntry(0, $1FD, $F9, 1, 1, 2, 5, $67)
     %spritemapEntry(0, $1FD, $01, 1, 1, 2, 5, $66)
 
 EnemyProjSpritemaps_GoldenTorizoSuperMissile_6:
-    dw $0002                                                             ;8D8EC2;
+    dw $0002
     %spritemapEntry(0, $1FC, $F8, 1, 0, 2, 5, $6A)
     %spritemapEntry(0, $1FC, $00, 1, 0, 2, 5, $69)
 
 EnemyProjSpritemaps_GoldenTorizoSuperMissile_7:
-    dw $0003                                                             ;8D8ECE;
+    dw $0003
     %spritemapEntry(0, $03, $F9, 1, 0, 2, 5, $68)
     %spritemapEntry(0, $1FB, $F9, 1, 0, 2, 5, $67)
     %spritemapEntry(0, $1FB, $01, 1, 0, 2, 5, $66)
 
 EnemyProjSpritemaps_TorizoLandingDustCloud_Right_0:
-    dw $0001                                                             ;8D8EDF;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $48)
 
 EnemyProjSpritemaps_TorizoLandingDustCloud_Right_1:
-    dw $0001                                                             ;8D8EE6;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $49)
 
 EnemyProjSpritemaps_TorizoLandingDustCloud_Right_2:
-    dw $0001                                                             ;8D8EED;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $4A)
 
 EnemyProjSpritemaps_TorizoLandingDustCloud_Right_3:
-    dw $0001                                                             ;8D8EF4;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $4B)
 
 EnemyProjSpritemaps_TorizoLandingDustCloud_Left_0:
-    dw $0001                                                             ;8D8EFB;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $48)
 
 EnemyProjSpritemaps_TorizoLandingDustCloud_Left_1:
-    dw $0001                                                             ;8D8F02;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $49)
 
 EnemyProjSpritemaps_TorizoLandingDustCloud_Left_2:
-    dw $0001                                                             ;8D8F09;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $4A)
 
 EnemyProjSpritemaps_TorizoLandingDustCloud_Left_3:
-    dw $0001                                                             ;8D8F10;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $4B)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_0:
-    dw $0001                                                             ;8D8F17;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 5, $104)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_1:
-    dw $0001                                                             ;8D8F1E;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 5, $18C)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_2:
-    dw $0001                                                             ;8D8F25;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 5, $1CC)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_3:
-    dw $0001                                                             ;8D8F2C;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 5, $D0)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_4:
-    dw $0001                                                             ;8D8F33;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 0, 2, 1, $D2)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_5:
-    dw $0001                                                             ;8D8F3A;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 0, 2, 1, $D4)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_6:
-    dw $0001                                                             ;8D8F41;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 0, 2, 1, $D6)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_7:
-    dw $0001                                                             ;8D8F48;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 0, 2, 1, $D8)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_8:
-    dw $0001                                                             ;8D8F4F;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 0, 2, 1, $DA)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_9:
-    dw $0001                                                             ;8D8F56;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 0, 2, 1, $DC)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_A:
-    dw $0002                                                             ;8D8F5D;
+    dw $0002
     %spritemapEntry(0, $00, $FE, 0, 0, 2, 1, $EF)
     %spritemapEntry(0, $1F8, $FE, 0, 0, 2, 1, $EE)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_B:
-    dw $0002                                                             ;8D8F69;
+    dw $0002
     %spritemapEntry(0, $00, $FE, 0, 0, 2, 1, $DF)
     %spritemapEntry(0, $1F8, $FE, 0, 0, 2, 1, $DE)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_C:
-    dw $0001                                                             ;8D8F75;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 5, $104)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_D:
-    dw $0001                                                             ;8D8F7C;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 5, $18C)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_E:
-    dw $0001                                                             ;8D8F83;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 5, $1CC)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_F:
-    dw $0001                                                             ;8D8F8A;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 5, $D0)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_10:
-    dw $0001                                                             ;8D8F91;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 1, 2, 1, $D2)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_11:
-    dw $0001                                                             ;8D8F98;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 1, 2, 1, $D4)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_12:
-    dw $0001                                                             ;8D8F9F;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 1, 2, 1, $D6)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_13:
-    dw $0001                                                             ;8D8FA6;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 1, 2, 1, $D8)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_14:
-    dw $0001                                                             ;8D8FAD;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 1, 2, 1, $DA)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_15:
-    dw $0001                                                             ;8D8FB4;
+    dw $0001
     %spritemapEntry(1, $43F8, $F6, 0, 1, 2, 1, $DC)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_16:
-    dw $0002                                                             ;8D8FBB;
+    dw $0002
     %spritemapEntry(0, $00, $FE, 0, 1, 2, 1, $EF)
     %spritemapEntry(0, $1F8, $FE, 0, 1, 2, 1, $EE)
 
 EnemyProjSpritemaps_GoldenTorizoEgg_17:
-    dw $0002                                                             ;8D8FC7;
+    dw $0002
     %spritemapEntry(0, $00, $FE, 0, 1, 2, 1, $DF)
     %spritemapEntry(0, $1F8, $FE, 0, 1, 2, 1, $DE)
 
 EnemyProjSpritemaps_DragonFireball_0:
-    dw $0001                                                             ;8D8FD3;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $122)
 
 EnemyProjSpritemaps_DragonFireball_1:
-    dw $0001                                                             ;8D8FDA;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $123)
 
 EnemyProjSpritemaps_DragonFireball_2:
-    dw $0001                                                             ;8D8FE1;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 2, 0, $122)
 
 EnemyProjSpritemaps_DragonFireball_3:
-    dw $0001                                                             ;8D8FE8;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 2, 0, $123)
 
 EnemyProjSpritemaps_DragonFireball_4:
-    dw $0001                                                             ;8D8FEF;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 0, $122)
 
 EnemyProjSpritemaps_DragonFireball_5:
-    dw $0001                                                             ;8D8FF6;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 0, $123)
 
 EnemyProjSpritemaps_DragonFireball_6:
-    dw $0001                                                             ;8D8FFD;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 2, 0, $122)
 
 EnemyProjSpritemaps_DragonFireball_7:
-    dw $0001                                                             ;8D9004;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 2, 0, $123)
 
 EnemyProjSpritemaps_EyeDoorProjectile_4:
-    dw $0004                                                             ;8D900B;
+    dw $0004
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 6, $63)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 6, $63)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 6, $63)
     %spritemapEntry(0, $00, $00, 1, 1, 2, 6, $63)
 
 EnemyProjSpritemaps_EyeDoorProjectile_5:
-    dw $0004                                                             ;8D9021;
+    dw $0004
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 6, $62)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 6, $62)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 6, $62)
     %spritemapEntry(0, $00, $00, 1, 1, 2, 6, $62)
 
 EnemyProjSpritemaps_EyeDoorProjectile_6:
-    dw $0004                                                             ;8D9037;
+    dw $0004
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 6, $61)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 6, $61)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 6, $61)
     %spritemapEntry(0, $00, $00, 1, 1, 2, 6, $61)
 
 EnemyProjSpritemaps_EyeDoorProjectile_7:
-    dw $0004                                                             ;8D904D;
+    dw $0004
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 6, $60)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 6, $60)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 6, $60)
     %spritemapEntry(0, $00, $00, 1, 1, 2, 6, $60)
 
 EnemyProjSpritemaps_EyeDoorSweat_0:
-    dw $0001                                                             ;8D9063;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $43)
 
 EnemyProjSpritemaps_EyeDoorSweat_1:
-    dw $0001                                                             ;8D906A;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $2C)
 
 EnemyProjSpritemaps_EyeDoorSweat_2:
-    dw $0001                                                             ;8D9071;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $2D)
 
 EnemyProjSpritemaps_EyeDoorSweat_3:
-    dw $0001                                                             ;8D9078;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $2E)
 
 UNUSED_EnemyProjSpritemaps_8D907F:
-    dw $0001                                                             ;8D907F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $2F)
 
 EnemyProjSpritemaps_TourianStatueUnlockParticleWaterSplash_0:
-    dw $0001                                                             ;8D9086;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 7, $2C)
 
 EnemyProjSpritemaps_TourianStatueUnlockParticleWaterSplash_1:
-    dw $0001                                                             ;8D908D;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 7, $2D)
 
 EnemyProjSpritemaps_TourianStatueUnlockParticleWaterSplash_2:
-    dw $0001                                                             ;8D9094;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 7, $2E)
 
 EnemyProjSpritemaps_TourianStatueUnlockParticleWaterSplash_3:
-    dw $0001                                                             ;8D909B;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 7, $2F)
 
 EnemyProjSpritemaps_TourianStatueUnlockingParticleTail_0:
-    dw $0001                                                             ;8D90A2;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 7, $DA)
 
 EnemyProjSpritemaps_TourianStatueUnlockingParticleTail_1:
-    dw $0001                                                             ;8D90A9;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 7, $DB)
 
 EnemyProjSpritemaps_TourianStatueUnlockingParticleTail_2:
-    dw $0001                                                             ;8D90B0;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 7, $DC)
 
 EnemyProjSpritemaps_TourianStatueUnlockingParticleTail_3:
-    dw $0001                                                             ;8D90B7;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 7, $DD)
 
 EnemyProjSpritemaps_TourianStatueEyeGlow_0:
-    dw $0001                                                             ;8D90BE;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 7, $D0)
 
 EnemyProjSpritemaps_TourianStatueEyeGlow_1:
-    dw $0001                                                             ;8D90C5;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 7, $D1)
 
 EnemyProjSpritemaps_TourianStatueEyeGlow_2:
-    dw $0001                                                             ;8D90CC;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 7, $D2)
 
 EnemyProjSpritemaps_TourianStatueEyeGlow_3:
-    dw $0001                                                             ;8D90D3;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 7, $E2)
 
 EnemyProjSpritemaps_TourianStatueEyeGlow_4:
-    dw $0001                                                             ;8D90DA;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 7, $E4)
 
 EnemyProjSpritemaps_TourianStatueEyeGlow_5:
-    dw $0001                                                             ;8D90E1;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 7, $E6)
 
 EnemyProjSpritemaps_TourianStatueEyeGlow_6:
-    dw $0001                                                             ;8D90E8;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 7, $E8)
 
 EnemyProjSpritemaps_TourianStatueEyeGlow_7:
-    dw $0006                                                             ;8D90EF;
+    dw $0006
     %spritemapEntry(0, $03, $04, 1, 1, 3, 7, $EA)
     %spritemapEntry(0, $03, $FC, 0, 1, 3, 7, $FA)
     %spritemapEntry(0, $03, $F4, 0, 1, 3, 7, $EA)
@@ -1739,44 +1739,44 @@ EnemyProjSpritemaps_TourianStatueEyeGlow_7:
     %spritemapEntry(1, $43F4, $F4, 0, 0, 3, 7, $EA)
 
 EnemyProjSpritemaps_TourianStatueEyeGlow_8:
-    dw $0004                                                             ;8D910F;
+    dw $0004
     %spritemapEntry(1, $4200, $00, 0, 1, 3, 7, $EE)
     %spritemapEntry(1, $43F0, $00, 0, 0, 3, 7, $EE)
     %spritemapEntry(1, $4200, $F0, 0, 1, 3, 7, $EC)
     %spritemapEntry(1, $43F0, $F0, 0, 0, 3, 7, $EC)
 
 EnemyProjSpritemaps_TourianStatueUnlockingParticle_0:
-    dw $0001                                                             ;8D9125;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 7, $D3)
 
 EnemyProjSpritemaps_TourianStatueUnlockingParticle_1:
-    dw $0001                                                             ;8D912C;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 7, $D3)
 
 EnemyProjSpritemaps_TourianStatueUnlockingParticle_2:
-    dw $0001                                                             ;8D9133;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 7, $D3)
 
 EnemyProjSpritemaps_TourianStatueUnlockingParticle_3:
-    dw $0001                                                             ;8D913A;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 7, $D3)
 
 EnemyProjSpritemaps_TourianStatuesSoul_0:
-    dw $0004                                                             ;8D9141;
+    dw $0004
     %spritemapEntry(0, $00, $00, 0, 0, 3, 7, $D6)
     %spritemapEntry(0, $1F8, $00, 0, 0, 3, 7, $D5)
     %spritemapEntry(0, $1FC, $08, 0, 0, 3, 7, $D4)
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 7, $E0)
 
 EnemyProjSpritemaps_TourianStatuesSoul_1:
-    dw $0004                                                             ;8D9157;
+    dw $0004
     %spritemapEntry(0, $1FC, $08, 0, 0, 3, 7, $D9)
     %spritemapEntry(0, $00, $00, 0, 0, 3, 7, $D8)
     %spritemapEntry(0, $1F8, $00, 0, 0, 3, 7, $D7)
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 7, $E0)
 
 EnemyProjSpritemaps_TourianStatueBaseDecoration:
-    dw $0007                                                             ;8D916D;
+    dw $0007
     %spritemapEntry(1, $4228, $F8, 0, 0, 1, 7, $19C)
     %spritemapEntry(1, $4218, $F8, 0, 0, 1, 7, $19A)
     %spritemapEntry(1, $4208, $F8, 0, 0, 1, 7, $198)
@@ -1786,7 +1786,7 @@ EnemyProjSpritemaps_TourianStatueBaseDecoration:
     %spritemapEntry(1, $43C8, $F8, 0, 0, 1, 7, $190)
 
 EnemyProjSpritemaps_TourianStatueRidley:
-    dw $0017                                                             ;8D9192;
+    dw $0017
     %spritemapEntry(1, $43E5, $18, 0, 0, 2, 1, $144)
     %spritemapEntry(1, $43E5, $08, 0, 0, 2, 1, $12C)
     %spritemapEntry(1, $43F5, $18, 0, 0, 2, 1, $146)
@@ -1812,7 +1812,7 @@ EnemyProjSpritemaps_TourianStatueRidley:
     %spritemapEntry(1, $43E5, $D8, 0, 0, 2, 1, $100)
 
 EnemyProjSpritemaps_TourianStatuePhantoon:
-    dw $0013                                                             ;8D9207;
+    dw $0013
     %spritemapEntry(0, $08, $1C, 0, 0, 2, 2, $187)
     %spritemapEntry(0, $00, $1C, 0, 0, 2, 2, $186)
     %spritemapEntry(0, $1F8, $1C, 0, 0, 2, 2, $185)
@@ -1834,206 +1834,206 @@ EnemyProjSpritemaps_TourianStatuePhantoon:
     %spritemapEntry(1, $43F0, $DC, 0, 0, 2, 2, $149)
 
 UNUSED_EnemyProjSpritemaps_0_8D9268:
-    dw $0001                                                             ;8D9268;
+    dw $0001
     %spritemapEntry(1, $1F9, $F9, 0, 0, 2, 1, $10E)
 
 UNUSED_EnemyProjSpritemaps_1_8D926F:
-    dw $0001                                                             ;8D926F;
+    dw $0001
     %spritemapEntry(1, $1FD, $F5, 0, 0, 2, 1, $120)
 
 UNUSED_EnemyProjSpritemaps_2_8D9276:
-    dw $0001                                                             ;8D9276;
+    dw $0001
     %spritemapEntry(1, $03, $EE, 0, 0, 2, 1, $104)
 
 UNUSED_EnemyProjSpritemaps_3_8D927D:
-    dw $0001                                                             ;8D927D;
+    dw $0001
     %spritemapEntry(1, $05, $EC, 0, 0, 2, 1, $108)
 
 UNUSED_EnemyProjSpritemaps_4_8D9284:
-    dw $0001                                                             ;8D9284;
+    dw $0001
     %spritemapEntry(1, $05, $EC, 0, 0, 2, 1, $10C)
 
 UNUSED_EnemyProjSpritemaps_5_8D928B:
-    dw $0001                                                             ;8D928B;
+    dw $0001
     %spritemapEntry(1, $05, $EC, 0, 0, 2, 1, $126)
 
 UNUSED_EnemyProjSpritemaps_6_8D9292:
-    dw $0001                                                             ;8D9292;
+    dw $0001
     %spritemapEntry(1, $05, $EC, 0, 0, 2, 1, $12E)
 
 UNUSED_EnemyProjSpritemaps_7_8D9299:
-    dw $0001                                                             ;8D9299;
+    dw $0001
     %spritemapEntry(1, $1F8, $F9, 0, 1, 2, 1, $10E)
 
 UNUSED_EnemyProjSpritemaps_8_8D92A0:
-    dw $0001                                                             ;8D92A0;
+    dw $0001
     %spritemapEntry(1, $1F4, $F5, 0, 1, 2, 1, $120)
 
 UNUSED_EnemyProjSpritemaps_9_8D92A7:
-    dw $0001                                                             ;8D92A7;
+    dw $0001
     %spritemapEntry(1, $1EE, $EE, 0, 1, 2, 1, $104)
 
 UNUSED_EnemyProjSpritemaps_A_8D92AE:
-    dw $0001                                                             ;8D92AE;
+    dw $0001
     %spritemapEntry(1, $1EC, $EC, 0, 1, 2, 1, $108)
 
 UNUSED_EnemyProjSpritemaps_B_8D92B5:
-    dw $0001                                                             ;8D92B5;
+    dw $0001
     %spritemapEntry(1, $1EC, $EC, 0, 1, 2, 1, $10C)
 
 UNUSED_EnemyProjSpritemaps_C_8D92BC:
-    dw $0001                                                             ;8D92BC;
+    dw $0001
     %spritemapEntry(1, $1EC, $EC, 0, 1, 2, 1, $126)
 
 UNUSED_EnemyProjSpritemaps_D_8D92C3:
-    dw $0001                                                             ;8D92C3;
+    dw $0001
     %spritemapEntry(1, $1EB, $EC, 0, 0, 2, 1, $12E)
 
 UNUSED_EnemyProjSpritemaps_E_8D92CA:
-    dw $0002                                                             ;8D92CA;
+    dw $0002
     %spritemapEntry(0, $1F1, $F8, 0, 1, 2, 1, $134)
     %spritemapEntry(0, $08, $F8, 0, 0, 2, 1, $134)
 
 UNUSED_EnemyProjSpritemaps_F_8D92D6:
-    dw $0002                                                             ;8D92D6;
+    dw $0002
     %spritemapEntry(0, $1F1, $F8, 0, 1, 2, 1, $124)
     %spritemapEntry(0, $08, $F8, 0, 0, 2, 1, $124)
 
 UNUSED_EnemyProjSpritemaps_10_8D92E2:
-    dw $0002                                                             ;8D92E2;
+    dw $0002
     %spritemapEntry(1, $1E9, $F0, 0, 1, 2, 1, $128)
     %spritemapEntry(1, $08, $F0, 0, 0, 2, 1, $128)
 
 UNUSED_EnemyProjSpritemaps_11_8D92EE:
-    dw $0002                                                             ;8D92EE;
+    dw $0002
     %spritemapEntry(1, $1E9, $F0, 0, 1, 2, 1, $12C)
     %spritemapEntry(1, $08, $F0, 0, 0, 2, 1, $12C)
 
 UNUSED_EnemyProjSpritemaps_12_8D92FA:
-    dw $0002                                                             ;8D92FA;
+    dw $0002
     %spritemapEntry(1, $1E8, $F0, 0, 1, 2, 1, $12A)
     %spritemapEntry(1, $09, $F0, 0, 0, 2, 1, $12A)
 
 EnemyProjSpritemaps_PuromiBody_0:
-    dw $0001                                                             ;8D9306;
+    dw $0001
     %spritemapEntry(1, $1F9, $F8, 0, 0, 2, 1, $10A)
 
 EnemyProjSpritemaps_PuromiBody_1:
-    dw $0001                                                             ;8D930D;
+    dw $0001
     %spritemapEntry(1, $1F9, $F8, 0, 0, 2, 1, $108)
 
 EnemyProjSpritemaps_PuromiBody_2:
-    dw $0001                                                             ;8D9314;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 1, 1, 2, 1, $10A)
 
 EnemyProjSpritemaps_PuromiBody_3:
-    dw $0001                                                             ;8D931B;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 1, 1, 2, 1, $108)
 
 EnemyProjSpritemaps_PuromiBody_4:
-    dw $0001                                                             ;8D9322;
+    dw $0001
     %spritemapEntry(1, $1F9, $F8, 0, 0, 2, 1, $106)
 
 EnemyProjSpritemaps_PuromiBody_5:
-    dw $0001                                                             ;8D9329;
+    dw $0001
     %spritemapEntry(1, $1F9, $F8, 0, 0, 2, 1, $122)
 
 EnemyProjSpritemaps_PuromiBody_6:
-    dw $0001                                                             ;8D9330;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 1, 1, 2, 1, $106)
 
 EnemyProjSpritemaps_PuromiBody_7:
-    dw $0001                                                             ;8D9337;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 1, 1, 2, 1, $122)
 
 UNUSED_EnemyProjSpritemaps_8D933E:
-    dw $0000                                                             ;8D933E;
+    dw $0000
 
 EnemyProjSpritemaps_LavaquakeRocks:
-    dw $0001                                                             ;8D9340;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $10A)
 
 EnemyProjSpritemaps_ShaktoolsAttack:
-    dw $0001                                                             ;8D9347;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $53)
 
 EnemyProjSpritemaps_ShaktoolsAttack_FrontMiddleCircle:
-    dw $0001                                                             ;8D934E;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $51)
 
 EnemyProjSpritemaps_ShaktoolsAttack_FrontCircle:
-    dw $0004                                                             ;8D9355;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 2, 0, $60)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 0, $60)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 0, $60)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 0, $60)
 
 EnemyProjSpritemaps_MotherBrainsTurrets_Left:
-    dw $0001                                                             ;8D936B;
+    dw $0001
     %spritemapEntry(0, $1EF, $F3, 0, 0, 2, 2, $19A)
 
 EnemyProjSpritemaps_MotherBrainsTurrets_DownLeft:
-    dw $0001                                                             ;8D9372;
+    dw $0001
     %spritemapEntry(0, $1F2, $FD, 0, 0, 2, 2, $18B)
 
 EnemyProjSpritemaps_MotherBrainsTurrets_Down:
-    dw $0001                                                             ;8D9379;
+    dw $0001
     %spritemapEntry(0, $1FC, $FF, 0, 0, 2, 2, $19B)
 
 EnemyProjSpritemaps_MotherBrainsTurrets_DownRight:
-    dw $0001                                                             ;8D9380;
+    dw $0001
     %spritemapEntry(0, $06, $FD, 0, 1, 2, 2, $18B)
 
 EnemyProjSpritemaps_MotherBrainsTurrets_Right:
-    dw $0001                                                             ;8D9387;
+    dw $0001
     %spritemapEntry(0, $09, $F3, 0, 1, 2, 2, $19A)
 
 EnemyProjSpritemaps_MotherBrainsTurrets_UpRight:
-    dw $0001                                                             ;8D938E;
+    dw $0001
     %spritemapEntry(0, $06, $EB, 1, 1, 2, 2, $18B)
 
 EnemyProjSpritemaps_MotherBrainsTurrets_Up:
-    dw $0001                                                             ;8D9395;
+    dw $0001
     %spritemapEntry(0, $1FC, $E7, 1, 0, 2, 2, $19B)
 
 EnemyProjSpritemaps_MotherBrainsTurrets_UpLeft:
-    dw $0001                                                             ;8D939C;
+    dw $0001
     %spritemapEntry(0, $1F2, $EB, 1, 0, 2, 2, $18B)
 
 EnemyProjSpritemaps_MotherBrainsTurretBullets_Left:
-    dw $0001                                                             ;8D93A3;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 2, $1A8)
 
 EnemyProjSpritemaps_MotherBrainsTurretBullets_DownLeft:
-    dw $0001                                                             ;8D93AA;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 2, $1A6)
 
 EnemyProjSpritemaps_MotherBrainsTurretBullets_Down:
-    dw $0001                                                             ;8D93B1;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 2, $1A7)
 
 EnemyProjSpritemaps_MotherBrainsTurretBullets_DownRight:
-    dw $0001                                                             ;8D93B8;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 2, $1A6)
 
 EnemyProjSpritemaps_MotherBrainsTurretBullets_Right:
-    dw $0001                                                             ;8D93BF;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 2, $1A8)
 
 EnemyProjSpritemaps_MotherBrainsTurretBullets_UpRight:
-    dw $0001                                                             ;8D93C6;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 2, 2, $1A6)
 
 EnemyProjSpritemaps_MotherBrainsTurretBullets_Up:
-    dw $0001                                                             ;8D93CD;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 2, 2, $1A7)
 
 EnemyProjSpritemaps_MotherBrainsTurretBullets_UpLeft:
-    dw $0001                                                             ;8D93D4;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 2, 2, $1A6)
 
 EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_0:
-    dw $000B                                                             ;8D93DB;
+    dw $000B
     %spritemapEntry(0, $1FC, $E5, 0, 0, 3, 5, $ED)
     %spritemapEntry(0, $0E, $EF, 0, 0, 3, 5, $FC)
     %spritemapEntry(0, $1EA, $EF, 0, 1, 3, 5, $FC)
@@ -2047,7 +2047,7 @@ EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_0:
     %spritemapEntry(0, $1F5, $ED, 0, 0, 3, 5, $EB)
 
 EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_1:
-    dw $0007                                                             ;8D9414;
+    dw $0007
     %spritemapEntry(0, $1FC, $E1, 0, 0, 3, 5, $EE)
     %spritemapEntry(0, $11, $ED, 0, 0, 3, 5, $FD)
     %spritemapEntry(0, $1E7, $ED, 0, 1, 3, 5, $FD)
@@ -2057,7 +2057,7 @@ EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_1:
     %spritemapEntry(0, $08, $E8, 0, 0, 3, 5, $FC)
 
 EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_2:
-    dw $0007                                                             ;8D9439;
+    dw $0007
     %spritemapEntry(0, $1FC, $DE, 0, 0, 3, 5, $EF)
     %spritemapEntry(0, $18, $E8, 0, 0, 3, 5, $FE)
     %spritemapEntry(0, $1E0, $E8, 0, 1, 3, 5, $FE)
@@ -2067,7 +2067,7 @@ EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_2:
     %spritemapEntry(0, $1EE, $E6, 0, 1, 3, 5, $FD)
 
 EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_3:
-    dw $0007                                                             ;8D945E;
+    dw $0007
     %spritemapEntry(0, $1FC, $DA, 0, 0, 3, 5, $FF)
     %spritemapEntry(0, $1D, $E6, 0, 0, 3, 5, $FF)
     %spritemapEntry(0, $1DC, $E6, 0, 1, 3, 5, $FF)
@@ -2077,7 +2077,7 @@ EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_3:
     %spritemapEntry(0, $1E8, $E0, 0, 1, 3, 5, $FE)
 
 EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_4:
-    dw $000A                                                             ;8D9483;
+    dw $000A
     %spritemapEntry(0, $0A, $F3, 0, 0, 3, 5, $EA)
     %spritemapEntry(0, $1FC, $EC, 0, 0, 3, 5, $EA)
     %spritemapEntry(0, $1FC, $D4, 0, 0, 3, 5, $EC)
@@ -2090,7 +2090,7 @@ EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_4:
     %spritemapEntry(0, $1E4, $DC, 0, 1, 3, 5, $FF)
 
 EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_5:
-    dw $000E                                                             ;8D94B7;
+    dw $000E
     %spritemapEntry(0, $1FC, $EA, 0, 0, 3, 5, $EB)
     %spritemapEntry(0, $22, $E3, 0, 0, 3, 5, $EC)
     %spritemapEntry(0, $0A, $F3, 0, 0, 3, 5, $EB)
@@ -2107,61 +2107,61 @@ EnemyProjSpritemaps_MotherBrainsRainbowBeamCharging_5:
     %spritemapEntry(0, $1D5, $F8, 0, 0, 3, 5, $EC)
 
 EnemyProjSpritemaps_MotherBrainsDrool_0:
-    dw $0001                                                             ;8D94FF;
+    dw $0001
     %spritemapEntry(0, $1FC, $FA, 0, 0, 3, 5, $F0)
 
 EnemyProjSpritemaps_MotherBrainsDrool_1:
-    dw $0001                                                             ;8D9506;
+    dw $0001
     %spritemapEntry(0, $1FC, $FB, 0, 0, 3, 5, $F1)
 
 EnemyProjSpritemaps_MotherBrainsDrool_2:
-    dw $0001                                                             ;8D950D;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $F2)
 
 EnemyProjSpritemaps_MotherBrainsDrool_3:
-    dw $0001                                                             ;8D9514;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $F3)
 
 EnemyProjSpritemaps_MotherBrainsDrool_4:
-    dw $0001                                                             ;8D951B;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $F4)
 
 EnemyProjSpritemaps_MotherBrainsDrool_5:
-    dw $0001                                                             ;8D9522;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $F5)
 
 EnemyProjSpritemaps_MotherBrainsDrool_6:
-    dw $0001                                                             ;8D9529;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $F6)
 
 EnemyProjSpritemaps_MotherBrainsDrool_7:
-    dw $0001                                                             ;8D9530;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $DA)
 
 EnemyProjSpritemaps_MotherBrainsDrool_8:
-    dw $0002                                                             ;8D9537;
+    dw $0002
     %spritemapEntry(0, $1FC, $00, 0, 0, 3, 5, $DC)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $DB)
 
 EnemyProjSpritemaps_MotherBrainsDrool_9:
-    dw $0002                                                             ;8D9543;
+    dw $0002
     %spritemapEntry(0, $1FC, $04, 0, 0, 3, 5, $DC)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $DB)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_0:
-    dw $0002                                                             ;8D954F;
+    dw $0002
     %spritemapEntry(0, $1EE, $F2, 0, 0, 3, 5, $F7)
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 5, $D0)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_1:
-    dw $0004                                                             ;8D955B;
+    dw $0004
     %spritemapEntry(0, $1EC, $EE, 0, 0, 3, 5, $F7)
     %spritemapEntry(0, $1EE, $F1, 0, 0, 3, 5, $F8)
     %spritemapEntry(1, $4200, $00, 0, 1, 3, 5, $D0)
     %spritemapEntry(1, $43F8, $F7, 0, 0, 3, 5, $D2)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_2:
-    dw $0007                                                             ;8D9571;
+    dw $0007
     %spritemapEntry(0, $1E8, $E8, 0, 0, 3, 5, $F9)
     %spritemapEntry(0, $1EE, $EA, 0, 0, 3, 5, $F7)
     %spritemapEntry(0, $1EC, $ED, 0, 0, 3, 5, $F8)
@@ -2171,7 +2171,7 @@ EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_2:
     %spritemapEntry(1, $43F8, $F6, 0, 0, 3, 5, $D4)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_3:
-    dw $0008                                                             ;8D9596;
+    dw $0008
     %spritemapEntry(0, $1E8, $E6, 0, 0, 3, 5, $F7)
     %spritemapEntry(0, $1EE, $E9, 0, 0, 3, 5, $F8)
     %spritemapEntry(0, $1EC, $EC, 0, 0, 3, 5, $F9)
@@ -2182,7 +2182,7 @@ EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_3:
     %spritemapEntry(1, $43F8, $F4, 0, 0, 3, 5, $D6)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_4:
-    dw $0007                                                             ;8D95C0;
+    dw $0007
     %spritemapEntry(0, $1E8, $E5, 0, 0, 3, 5, $F8)
     %spritemapEntry(0, $1EE, $E8, 0, 0, 3, 5, $F9)
     %spritemapEntry(0, $1EC, $EB, 0, 0, 3, 5, $FA)
@@ -2192,7 +2192,7 @@ EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_4:
     %spritemapEntry(1, $43F8, $F1, 0, 0, 3, 5, $D8)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_5:
-    dw $0006                                                             ;8D95E5;
+    dw $0006
     %spritemapEntry(0, $1E8, $E4, 0, 0, 3, 5, $F9)
     %spritemapEntry(0, $1EF, $E7, 0, 0, 3, 5, $FA)
     %spritemapEntry(0, $1EC, $EA, 0, 0, 3, 5, $FB)
@@ -2201,127 +2201,127 @@ EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_5:
     %spritemapEntry(1, $4200, $FB, 0, 0, 3, 5, $D8)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_6:
-    dw $0004                                                             ;8D9605;
+    dw $0004
     %spritemapEntry(0, $1E8, $E3, 0, 0, 3, 5, $FA)
     %spritemapEntry(0, $1F0, $E6, 0, 0, 3, 5, $FB)
     %spritemapEntry(1, $4212, $0A, 0, 0, 3, 5, $D6)
     %spritemapEntry(1, $4208, $FF, 0, 0, 3, 5, $D8)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Big_7:
-    dw $0002                                                             ;8D961B;
+    dw $0002
     %spritemapEntry(0, $1E8, $E3, 0, 0, 3, 5, $FB)
     %spritemapEntry(1, $4212, $07, 0, 0, 3, 5, $D8)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Small_0:
-    dw $0001                                                             ;8D9627;
+    dw $0001
     %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 5, $F7)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Small_1:
-    dw $0002                                                             ;8D962E;
+    dw $0002
     %spritemapEntry(0, $1FA, $F4, 0, 0, 3, 5, $F7)
     %spritemapEntry(0, $1FC, $F7, 0, 0, 3, 5, $F8)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Small_2:
-    dw $0004                                                             ;8D963A;
+    dw $0004
     %spritemapEntry(0, $1F6, $EE, 0, 0, 3, 5, $F9)
     %spritemapEntry(0, $1FC, $F0, 0, 0, 3, 5, $F7)
     %spritemapEntry(0, $1FA, $F3, 0, 0, 3, 5, $F8)
     %spritemapEntry(0, $1FC, $F6, 0, 0, 3, 5, $F9)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Small_3:
-    dw $0004                                                             ;8D9650;
+    dw $0004
     %spritemapEntry(0, $1F6, $EC, 0, 0, 3, 5, $F7)
     %spritemapEntry(0, $1FC, $EF, 0, 0, 3, 5, $F8)
     %spritemapEntry(0, $1FA, $F2, 0, 0, 3, 5, $F9)
     %spritemapEntry(0, $1FC, $F5, 0, 0, 3, 5, $FA)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Small_4:
-    dw $0003                                                             ;8D9666;
+    dw $0003
     %spritemapEntry(0, $1F6, $EB, 0, 0, 3, 5, $F8)
     %spritemapEntry(0, $1FC, $EE, 0, 0, 3, 5, $F9)
     %spritemapEntry(0, $1FA, $F1, 0, 0, 3, 5, $FA)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Small_5:
-    dw $0003                                                             ;8D9677;
+    dw $0003
     %spritemapEntry(0, $1F6, $EA, 0, 0, 3, 5, $F9)
     %spritemapEntry(0, $1FD, $ED, 0, 0, 3, 5, $FA)
     %spritemapEntry(0, $1FA, $F0, 0, 0, 3, 5, $FB)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Small_6:
-    dw $0002                                                             ;8D9688;
+    dw $0002
     %spritemapEntry(0, $1F6, $E9, 0, 0, 3, 5, $FA)
     %spritemapEntry(0, $1FE, $EC, 0, 0, 3, 5, $FB)
 
 EnemyProjSpritemaps_MotherBrainsPurpleBreath_Small_7:
-    dw $0001                                                             ;8D9694;
+    dw $0001
     %spritemapEntry(0, $1F6, $E9, 0, 0, 3, 5, $FB)
 
 EnemyProjSpritemaps_MotherBrainExplodedEscapeDoorParticles_0:
-    dw $0001                                                             ;8D969B;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $102)
 
 EnemyProjSpritemaps_MotherBrainExplodedEscapeDoorParticles_1:
-    dw $0001                                                             ;8D96A2;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 1, $103)
 
 EnemyProjSpritemaps_MotherBrainExplodedEscapeDoorParticles_2:
-    dw $0001                                                             ;8D96A9;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $112)
 
 EnemyProjSpritemaps_MotherBrainExplodedEscapeDoorParticles_3:
-    dw $0001                                                             ;8D96B0;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 1, $105)
 
 EnemyProjSpritemaps_MotherBrainExplodedEscapeDoorParticles_4:
-    dw $0001                                                             ;8D96B7;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $107)
 
 EnemyProjSpritemaps_MotherBrainExplodedEscapeDoorParticles_5:
-    dw $0001                                                             ;8D96BE;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 1, $108)
 
 EnemyProjSpritemaps_MotherBrainExplodedEscapeDoorParticles_6:
-    dw $0001                                                             ;8D96C5;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $117)
 
 EnemyProjSpritemaps_MotherBrainExplodedEscapeDoorParticles_7:
-    dw $0001                                                             ;8D96CC;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 1, $10A)
 
 UNUSED_EnemyProjSpritemaps_0_8D96D3:
-    dw $0001                                                             ;8D96D3;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $10C)
 
 UNUSED_EnemyProjSpritemaps_1_8D96DA:
-    dw $0001                                                             ;8D96DA;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $10D)
 
 UNUSED_EnemyProjSpritemaps_2_8D96E1:
-    dw $0001                                                             ;8D96E1;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $10E)
 
 UNUSED_EnemyProjSpritemaps_3_8D96E8:
-    dw $0001                                                             ;8D96E8;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $10F)
 
 UNUSED_EnemyProjSpritemaps_4_8D96EF:
-    dw $0001                                                             ;8D96EF;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $11C)
 
 UNUSED_EnemyProjSpritemaps_5_8D96F6:
-    dw $0001                                                             ;8D96F6;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $11D)
 
 UNUSED_EnemyProjSpritemaps_6_8D96FD:
-    dw $0001                                                             ;8D96FD;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $11E)
 
 UNUSED_EnemyProjSpritemaps_7_8D9704:
-    dw $0001                                                             ;8D9704;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $11F)
 
 EnemyProjSpritemaps_TimeBombSetJapanSet:
-    dw $000C                                                             ;8D970B;
+    dw $000C
     %spritemapEntry(0, $08, $08, 0, 0, 3, 2, $1C9)
     %spritemapEntry(0, $08, $00, 0, 0, 3, 2, $1C8)
     %spritemapEntry(0, $00, $08, 0, 0, 3, 2, $1C7)
@@ -2336,410 +2336,410 @@ EnemyProjSpritemaps_TimeBombSetJapanSet:
     %spritemapEntry(1, $43E8, $F0, 0, 0, 3, 2, $1A0)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_0:
-    dw $0001                                                             ;8D9749;
+    dw $0001
     %spritemapEntry(0, $1FC, $FD, 0, 0, 3, 0, $121)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_1:
-    dw $0001                                                             ;8D9750;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $122)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_2:
-    dw $0001                                                             ;8D9757;
+    dw $0001
     %spritemapEntry(0, $1FC, $FB, 0, 0, 3, 0, $123)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_3:
-    dw $0001                                                             ;8D975E;
+    dw $0001
     %spritemapEntry(0, $1FC, $FD, 0, 0, 3, 0, $124)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_4:
-    dw $0001                                                             ;8D9765;
+    dw $0001
     %spritemapEntry(0, $1FC, $FE, 1, 0, 3, 0, $121)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_5:
-    dw $0001                                                             ;8D976C;
+    dw $0001
     %spritemapEntry(0, $1FC, $FD, 0, 0, 3, 0, $125)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_6:
-    dw $0001                                                             ;8D9773;
+    dw $0001
     %spritemapEntry(0, $1FC, $FB, 0, 0, 3, 0, $126)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_7:
-    dw $0001                                                             ;8D977A;
+    dw $0001
     %spritemapEntry(0, $1FC, $FD, 0, 0, 3, 0, $127)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_8:
-    dw $0001                                                             ;8D9781;
+    dw $0001
     %spritemapEntry(0, $1FB, $FC, 0, 0, 3, 0, $131)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_9:
-    dw $0001                                                             ;8D9788;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $132)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_A:
-    dw $0001                                                             ;8D978F;
+    dw $0001
     %spritemapEntry(0, $1FE, $FC, 0, 0, 3, 0, $133)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_B:
-    dw $0001                                                             ;8D9796;
+    dw $0001
     %spritemapEntry(0, $1FB, $FC, 0, 0, 3, 0, $134)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_C:
-    dw $0001                                                             ;8D979D;
+    dw $0001
     %spritemapEntry(0, $1FA, $FC, 0, 1, 3, 0, $131)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_D:
-    dw $0001                                                             ;8D97A4;
+    dw $0001
     %spritemapEntry(0, $1FB, $FC, 0, 0, 3, 0, $135)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_E:
-    dw $0001                                                             ;8D97AB;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $136)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_F:
-    dw $0001                                                             ;8D97B2;
+    dw $0001
     %spritemapEntry(0, $1FB, $FC, 0, 0, 3, 0, $137)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_10:
-    dw $0001                                                             ;8D97B9;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $138)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_11:
-    dw $0001                                                             ;8D97C0;
+    dw $0001
     %spritemapEntry(0, $1FC, $FB, 0, 0, 3, 0, $139)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_12:
-    dw $0001                                                             ;8D97C7;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $13A)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_13:
-    dw $0001                                                             ;8D97CE;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $13B)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_14:
-    dw $0001                                                             ;8D97D5;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $138)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_15:
-    dw $0001                                                             ;8D97DC;
+    dw $0001
     %spritemapEntry(0, $1FB, $FD, 0, 0, 3, 0, $13C)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_16:
-    dw $0001                                                             ;8D97E3;
+    dw $0001
     %spritemapEntry(0, $1FD, $FB, 0, 0, 3, 0, $13D)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_17:
-    dw $0001                                                             ;8D97EA;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $13E)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_18:
-    dw $0001                                                             ;8D97F1;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $138)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_19:
-    dw $0001                                                             ;8D97F8;
+    dw $0001
     %spritemapEntry(0, $1FC, $FB, 1, 0, 3, 0, $139)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_1A:
-    dw $0001                                                             ;8D97FF;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $13A)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_1B:
-    dw $0001                                                             ;8D9806;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $13B)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_1C:
-    dw $0001                                                             ;8D980D;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $138)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_1D:
-    dw $0001                                                             ;8D9814;
+    dw $0001
     %spritemapEntry(0, $1FB, $FD, 1, 0, 3, 0, $13C)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_1E:
-    dw $0001                                                             ;8D981B;
+    dw $0001
     %spritemapEntry(0, $1FD, $FB, 1, 0, 3, 0, $13D)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_1F:
-    dw $0001                                                             ;8D9822;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $13E)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_20:
-    dw $0001                                                             ;8D9829;
+    dw $0001
     %spritemapEntry(0, $1FC, $FB, 1, 0, 3, 0, $121)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_21:
-    dw $0001                                                             ;8D9830;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $122)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_22:
-    dw $0001                                                             ;8D9837;
+    dw $0001
     %spritemapEntry(0, $1FC, $FB, 1, 0, 3, 0, $123)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_23:
-    dw $0001                                                             ;8D983E;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $124)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_24:
-    dw $0001                                                             ;8D9845;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $121)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_25:
-    dw $0001                                                             ;8D984C;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $125)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_26:
-    dw $0001                                                             ;8D9853;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $126)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_27:
-    dw $0001                                                             ;8D985A;
+    dw $0001
     %spritemapEntry(0, $1FC, $FB, 1, 0, 3, 0, $127)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_28:
-    dw $0001                                                             ;8D9861;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $131)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_29:
-    dw $0001                                                             ;8D9868;
+    dw $0001
     %spritemapEntry(0, $1FD, $FC, 0, 1, 3, 0, $132)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_2A:
-    dw $0001                                                             ;8D986F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $133)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_2B:
-    dw $0001                                                             ;8D9876;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $134)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_2C:
-    dw $0001                                                             ;8D987D;
+    dw $0001
     %spritemapEntry(0, $1FB, $FC, 0, 0, 3, 0, $131)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_2D:
-    dw $0001                                                             ;8D9884;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $135)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_2E:
-    dw $0001                                                             ;8D988B;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $136)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_2F:
-    dw $0001                                                             ;8D9892;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $137)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_30:
-    dw $0001                                                             ;8D9899;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $138)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_31:
-    dw $0001                                                             ;8D98A0;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $139)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_32:
-    dw $0001                                                             ;8D98A7;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $13A)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_33:
-    dw $0001                                                             ;8D98AE;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $13B)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_34:
-    dw $0001                                                             ;8D98B5;
+    dw $0001
     %spritemapEntry(0, $1FC, $FD, 0, 0, 3, 0, $138)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_35:
-    dw $0001                                                             ;8D98BC;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $13C)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_36:
-    dw $0001                                                             ;8D98C3;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $13D)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_37:
-    dw $0001                                                             ;8D98CA;
+    dw $0001
     %spritemapEntry(0, $1FB, $FD, 1, 1, 3, 0, $13E)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_38:
-    dw $0001                                                             ;8D98D1;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $138)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_39:
-    dw $0001                                                             ;8D98D8;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $139)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_3A:
-    dw $0001                                                             ;8D98DF;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $13A)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_3B:
-    dw $0001                                                             ;8D98E6;
+    dw $0001
     %spritemapEntry(0, $1FD, $FD, 0, 1, 3, 0, $13B)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_3C:
-    dw $0001                                                             ;8D98ED;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $138)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_3D:
-    dw $0001                                                             ;8D98F4;
+    dw $0001
     %spritemapEntry(0, $1FC, $FD, 0, 1, 3, 0, $13C)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_3E:
-    dw $0001                                                             ;8D98FB;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $13D)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Shard_3F:
-    dw $0001                                                             ;8D9902;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $13E)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Sparkle_0:
-    dw $0001                                                             ;8D9909;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $128)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Sparkle_1:
-    dw $0001                                                             ;8D9910;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $129)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Sparkle_2:
-    dw $0001                                                             ;8D9917;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $12A)
 
 EnemyProjSpritemaps_MotherBrainsGlassShattering_Sparkle_3:
-    dw $0001                                                             ;8D991E;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $12B)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Left_0:
-    dw $0001                                                             ;8D9925;
+    dw $0001
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 0, $165)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Left_1:
-    dw $0002                                                             ;8D992C;
+    dw $0002
     %spritemapEntry(0, $1F0, $FC, 0, 0, 3, 0, $174)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 0, $175)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Left_2:
-    dw $0001                                                             ;8D9938;
+    dw $0001
     %spritemapEntry(1, $43F0, $F8, 0, 0, 3, 0, $166)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Left_3:
-    dw $0002                                                             ;8D993F;
+    dw $0002
     %spritemapEntry(1, $43E8, $F8, 0, 0, 3, 0, $14B)
     %spritemapEntry(1, $43F0, $F8, 0, 0, 3, 0, $14C)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Left_4:
-    dw $0002                                                             ;8D994B;
+    dw $0002
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 0, $164)
     %spritemapEntry(1, $43E8, $F8, 0, 0, 3, 0, $12A)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Left_5:
-    dw $0001                                                             ;8D9957;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $12A)
 
 EnemyProjSpritemaps_KihunterAcidSpit_0:
-    dw $0001                                                             ;8D995E;
+    dw $0001
     %spritemapEntry(1, $43F9, $F8, 0, 0, 3, 0, $16C)
 
 EnemyProjSpritemaps_KihunterAcidSpit_1:
-    dw $0003                                                             ;8D9965;
+    dw $0003
     %spritemapEntry(0, $04, $00, 0, 0, 3, 0, $17B)
     %spritemapEntry(0, $1F4, $00, 0, 0, 3, 0, $179)
     %spritemapEntry(0, $1FC, $00, 0, 0, 3, 0, $17A)
 
 EnemyProjSpritemaps_KihunterAcidSpit_2:
-    dw $0004                                                             ;8D9976;
+    dw $0004
     %spritemapEntry(0, $1F2, $00, 0, 0, 3, 0, $16A)
     %spritemapEntry(0, $06, $00, 0, 0, 3, 0, $16B)
     %spritemapEntry(0, $1FE, $00, 0, 0, 3, 0, $16A)
     %spritemapEntry(0, $1FA, $00, 0, 0, 3, 0, $16B)
 
 EnemyProjSpritemaps_KihunterAcidSpit_3:
-    dw $0004                                                             ;8D998C;
+    dw $0004
     %spritemapEntry(0, $1FE, $00, 0, 0, 3, 0, $168)
     %spritemapEntry(0, $06, $00, 0, 0, 3, 0, $169)
     %spritemapEntry(0, $1FA, $00, 0, 0, 3, 0, $169)
     %spritemapEntry(0, $1F2, $00, 0, 0, 3, 0, $168)
 
 EnemyProjSpritemaps_KihunterAcidSpit_4:
-    dw $0002                                                             ;8D99A2;
+    dw $0002
     %spritemapEntry(0, $02, $00, 0, 0, 3, 0, $178)
     %spritemapEntry(0, $1F6, $00, 0, 0, 3, 0, $178)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Right_0:
-    dw $0001                                                             ;8D99AE;
+    dw $0001
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 0, $165)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Right_1:
-    dw $0002                                                             ;8D99B5;
+    dw $0002
     %spritemapEntry(0, $08, $FC, 0, 1, 3, 0, $174)
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 0, $175)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Right_2:
-    dw $0001                                                             ;8D99C1;
+    dw $0001
     %spritemapEntry(1, $4200, $F8, 0, 1, 3, 0, $166)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Right_3:
-    dw $0002                                                             ;8D99C8;
+    dw $0002
     %spritemapEntry(1, $4208, $F8, 0, 1, 3, 0, $14B)
     %spritemapEntry(1, $4200, $F8, 0, 1, 3, 0, $14C)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Right_4:
-    dw $0002                                                             ;8D99D4;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 0, $164)
     %spritemapEntry(1, $4208, $F8, 0, 1, 3, 0, $12A)
 
 EnemyProjSpritemaps_KihunterAcidSpit_Right_5:
-    dw $0001                                                             ;8D99E0;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 1, 3, 0, $12A)
 
 EnemyProjSpritemaps_PowampSpikes_0:
-    dw $0001                                                             ;8D99E7;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $10F)
 
 EnemyProjSpritemaps_PowampSpikes_1:
-    dw $0001                                                             ;8D99EE;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $11B)
 
 EnemyProjSpritemaps_PowampSpikes_2:
-    dw $0001                                                             ;8D99F5;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $11C)
 
 EnemyProjSpritemaps_WorkRobotLaser_0:
-    dw $0001                                                             ;8D99FC;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $53)
 
 EnemyProjSpritemaps_WorkRobotLaser_1:
-    dw $0001                                                             ;8D9A03;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 5, $51)
 
 EnemyProjSpritemaps_WorkRobotLaser_2:
-    dw $0004                                                             ;8D9A0A;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 2, 5, $60)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $60)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 5, $60)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $60)
 
 EnemyProjSpritemaps_WorkRobotLaser_3:
-    dw $0004                                                             ;8D9A20;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 2, 5, $61)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $61)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 5, $61)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $61)
 
 EnemyProjSpritemaps_WorkRobotLaser_4:
-    dw $0004                                                             ;8D9A36;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 2, 5, $62)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $62)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 5, $62)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $62)
 
 EnemyProjSpritemaps_WorkRobotLaser_5:
-    dw $0004                                                             ;8D9A4C;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 2, 5, $63)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $63)
     %spritemapEntry(0, $1F8, $00, 1, 0, 2, 5, $63)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $63)
 
 EnemyProjSpritemaps_NoobTubeCrack_0:
-    dw $0008                                                             ;8D9A62;
+    dw $0008
     %spritemapEntry(0, $00, $00, 0, 1, 3, 1, $14D)
     %spritemapEntry(0, $08, $00, 0, 1, 3, 1, $14C)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 1, $159)
@@ -2750,7 +2750,7 @@ EnemyProjSpritemaps_NoobTubeCrack_0:
     %spritemapEntry(0, $1F1, $F8, 0, 0, 3, 1, $158)
 
 EnemyProjSpritemaps_NoobTubeCrack_1:
-    dw $000E                                                             ;8D9A8C;
+    dw $000E
     %spritemapEntry(0, $1F9, $18, 0, 0, 3, 1, $171)
     %spritemapEntry(0, $1F1, $10, 0, 0, 3, 1, $160)
     %spritemapEntry(0, $1F9, $10, 0, 0, 3, 1, $161)
@@ -2767,7 +2767,7 @@ EnemyProjSpritemaps_NoobTubeCrack_1:
     %spritemapEntry(1, $43F1, $F0, 0, 0, 3, 1, $148)
 
 EnemyProjSpritemaps_NoobTubeCrack_2:
-    dw $001E                                                             ;8D9AD4;
+    dw $001E
     %spritemapEntry(0, $08, $10, 0, 1, 3, 1, $160)
     %spritemapEntry(0, $00, $10, 0, 1, 3, 1, $161)
     %spritemapEntry(0, $20, $F8, 0, 1, 3, 1, $155)
@@ -2800,7 +2800,7 @@ EnemyProjSpritemaps_NoobTubeCrack_2:
     %spritemapEntry(1, $43F1, $F0, 0, 0, 3, 1, $148)
 
 EnemyProjSpritemaps_NoobTubeCrack_3:
-    dw $0027                                                             ;8D9B6C;
+    dw $0027
     %spritemapEntry(0, $1E1, $D8, 0, 0, 3, 1, $116)
     %spritemapEntry(0, $1D1, $F8, 0, 0, 3, 1, $154)
     %spritemapEntry(0, $1D9, $F8, 0, 0, 3, 1, $155)
@@ -2842,7 +2842,7 @@ EnemyProjSpritemaps_NoobTubeCrack_3:
     %spritemapEntry(1, $43F1, $F0, 0, 0, 3, 1, $148)
 
 EnemyProjSpritemaps_NoobTubeCrack_4:
-    dw $0032                                                             ;8D9C31;
+    dw $0032
     %spritemapEntry(1, $43B1, $F0, 0, 0, 3, 1, $140)
     %spritemapEntry(0, $1C1, $E0, 0, 0, 3, 1, $122)
     %spritemapEntry(0, $1C9, $E0, 0, 0, 3, 1, $123)
@@ -2895,7 +2895,7 @@ EnemyProjSpritemaps_NoobTubeCrack_4:
     %spritemapEntry(1, $43F1, $F0, 0, 0, 3, 1, $148)
 
 EnemyProjSpritemaps_NoobTubeCrack_5:
-    dw $0032                                                             ;8D9D2D;
+    dw $0032
     %spritemapEntry(1, $4210, $10, 0, 1, 3, 1, $14E)
     %spritemapEntry(1, $4200, $10, 0, 1, 3, 1, $160)
     %spritemapEntry(1, $4200, $00, 0, 1, 3, 1, $14C)
@@ -2948,7 +2948,7 @@ EnemyProjSpritemaps_NoobTubeCrack_5:
     %spritemapEntry(1, $43B1, $D0, 0, 0, 3, 1, $100)
 
 UNUSED_EnemyProjSpritemaps_8D9E29:
-    dw $000E                                                             ;8D9E29;
+    dw $000E
     %spritemapEntry(1, $4200, $EF, 0, 1, 3, 1, $163)
     %spritemapEntry(1, $4208, $EF, 0, 1, 3, 1, $162)
     %spritemapEntry(1, $4200, $00, 0, 1, 3, 1, $16B)
@@ -2965,7 +2965,7 @@ UNUSED_EnemyProjSpritemaps_8D9E29:
     %spritemapEntry(1, $43D9, $F9, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_6:
-    dw $000E                                                             ;8D9E71;
+    dw $000E
     %spritemapEntry(1, $420C, $E7, 0, 1, 3, 1, $163)
     %spritemapEntry(1, $4214, $E7, 0, 1, 3, 1, $162)
     %spritemapEntry(1, $420C, $08, 0, 1, 3, 1, $16B)
@@ -2982,7 +2982,7 @@ EnemyProjSpritemaps_NoobTubeCrack_6:
     %spritemapEntry(1, $43C9, $F9, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_7:
-    dw $000E                                                             ;8D9EB9;
+    dw $000E
     %spritemapEntry(1, $4218, $DF, 0, 1, 3, 1, $163)
     %spritemapEntry(1, $4220, $DF, 0, 1, 3, 1, $162)
     %spritemapEntry(1, $4218, $10, 0, 1, 3, 1, $16B)
@@ -2999,7 +2999,7 @@ EnemyProjSpritemaps_NoobTubeCrack_7:
     %spritemapEntry(1, $43B9, $F9, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_8:
-    dw $000E                                                             ;8D9F01;
+    dw $000E
     %spritemapEntry(1, $4230, $F9, 0, 1, 3, 1, $168)
     %spritemapEntry(1, $4238, $F9, 0, 1, 3, 1, $167)
     %spritemapEntry(1, $4248, $F9, 0, 1, 3, 1, $165)
@@ -3016,7 +3016,7 @@ EnemyProjSpritemaps_NoobTubeCrack_8:
     %spritemapEntry(1, $43A9, $F9, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_9:
-    dw $000E                                                             ;8D9F49;
+    dw $000E
     %spritemapEntry(1, $4240, $F9, 0, 1, 3, 1, $168)
     %spritemapEntry(1, $4248, $F9, 0, 1, 3, 1, $167)
     %spritemapEntry(1, $4258, $F9, 0, 1, 3, 1, $165)
@@ -3033,7 +3033,7 @@ EnemyProjSpritemaps_NoobTubeCrack_9:
     %spritemapEntry(1, $4399, $F9, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_A:
-    dw $000E                                                             ;8D9F91;
+    dw $000E
     %spritemapEntry(1, $4248, $F9, 0, 1, 3, 1, $168)
     %spritemapEntry(1, $4250, $F9, 0, 1, 3, 1, $167)
     %spritemapEntry(1, $4260, $F9, 0, 1, 3, 1, $165)
@@ -3050,7 +3050,7 @@ EnemyProjSpritemaps_NoobTubeCrack_A:
     %spritemapEntry(1, $4391, $F9, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_B:
-    dw $000E                                                             ;8D9FD9;
+    dw $000E
     %spritemapEntry(1, $424E, $F9, 0, 1, 3, 1, $168)
     %spritemapEntry(1, $4256, $F9, 0, 1, 3, 1, $167)
     %spritemapEntry(1, $4266, $F9, 0, 1, 3, 1, $165)
@@ -3067,7 +3067,7 @@ EnemyProjSpritemaps_NoobTubeCrack_B:
     %spritemapEntry(1, $438B, $F9, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_C:
-    dw $000E                                                             ;8DA021;
+    dw $000E
     %spritemapEntry(1, $4252, $F9, 0, 1, 3, 1, $168)
     %spritemapEntry(1, $425A, $F9, 0, 1, 3, 1, $167)
     %spritemapEntry(1, $426A, $F9, 0, 1, 3, 1, $165)
@@ -3084,7 +3084,7 @@ EnemyProjSpritemaps_NoobTubeCrack_C:
     %spritemapEntry(1, $4387, $F9, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_D:
-    dw $000E                                                             ;8DA069;
+    dw $000E
     %spritemapEntry(1, $4254, $F9, 0, 1, 3, 1, $168)
     %spritemapEntry(1, $425C, $F9, 0, 1, 3, 1, $167)
     %spritemapEntry(1, $426C, $F9, 0, 1, 3, 1, $165)
@@ -3101,7 +3101,7 @@ EnemyProjSpritemaps_NoobTubeCrack_D:
     %spritemapEntry(1, $4385, $F9, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_E:
-    dw $000E                                                             ;8DA0B1;
+    dw $000E
     %spritemapEntry(1, $4256, $FB, 0, 1, 3, 1, $168)
     %spritemapEntry(1, $425E, $FB, 0, 1, 3, 1, $167)
     %spritemapEntry(1, $426E, $FB, 0, 1, 3, 1, $165)
@@ -3118,7 +3118,7 @@ EnemyProjSpritemaps_NoobTubeCrack_E:
     %spritemapEntry(1, $4383, $FA, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_F:
-    dw $000E                                                             ;8DA0F9;
+    dw $000E
     %spritemapEntry(1, $4258, $FD, 0, 1, 3, 1, $168)
     %spritemapEntry(1, $4260, $FD, 0, 1, 3, 1, $167)
     %spritemapEntry(1, $4270, $FD, 0, 1, 3, 1, $165)
@@ -3135,7 +3135,7 @@ EnemyProjSpritemaps_NoobTubeCrack_F:
     %spritemapEntry(1, $4381, $FB, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_10:
-    dw $000E                                                             ;8DA141;
+    dw $000E
     %spritemapEntry(1, $43AC, $30, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A4, $30, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4258, $00, 0, 1, 3, 1, $168)
@@ -3152,7 +3152,7 @@ EnemyProjSpritemaps_NoobTubeCrack_10:
     %spritemapEntry(1, $4381, $FC, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_11:
-    dw $000E                                                             ;8DA189;
+    dw $000E
     %spritemapEntry(1, $43AB, $32, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A3, $32, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4257, $03, 0, 1, 3, 1, $168)
@@ -3169,7 +3169,7 @@ EnemyProjSpritemaps_NoobTubeCrack_11:
     %spritemapEntry(1, $4382, $FD, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_12:
-    dw $000E                                                             ;8DA1D1;
+    dw $000E
     %spritemapEntry(1, $43AA, $34, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A2, $34, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4258, $06, 0, 1, 3, 1, $168)
@@ -3186,7 +3186,7 @@ EnemyProjSpritemaps_NoobTubeCrack_12:
     %spritemapEntry(1, $4381, $FE, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_13:
-    dw $000E                                                             ;8DA219;
+    dw $000E
     %spritemapEntry(1, $43AB, $36, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A3, $36, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4257, $09, 0, 1, 3, 1, $168)
@@ -3203,7 +3203,7 @@ EnemyProjSpritemaps_NoobTubeCrack_13:
     %spritemapEntry(1, $4382, $FF, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_14:
-    dw $000E                                                             ;8DA261;
+    dw $000E
     %spritemapEntry(1, $43AC, $38, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A4, $38, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4258, $0C, 0, 1, 3, 1, $168)
@@ -3220,7 +3220,7 @@ EnemyProjSpritemaps_NoobTubeCrack_14:
     %spritemapEntry(1, $4381, $00, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_15:
-    dw $000E                                                             ;8DA2A9;
+    dw $000E
     %spritemapEntry(1, $43AB, $3A, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A3, $3A, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $439A, $01, 0, 0, 3, 1, $168)
@@ -3237,7 +3237,7 @@ EnemyProjSpritemaps_NoobTubeCrack_15:
     %spritemapEntry(1, $43AE, $DE, 0, 0, 3, 1, $162)
 
 EnemyProjSpritemaps_NoobTubeCrack_16:
-    dw $000E                                                             ;8DA2F1;
+    dw $000E
     %spritemapEntry(1, $43AA, $3C, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A2, $3C, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4399, $02, 0, 0, 3, 1, $168)
@@ -3254,7 +3254,7 @@ EnemyProjSpritemaps_NoobTubeCrack_16:
     %spritemapEntry(1, $43AF, $E0, 0, 0, 3, 1, $162)
 
 EnemyProjSpritemaps_NoobTubeCrack_17:
-    dw $000E                                                             ;8DA339;
+    dw $000E
     %spritemapEntry(1, $43AB, $3E, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A3, $3E, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $439A, $03, 0, 0, 3, 1, $168)
@@ -3271,7 +3271,7 @@ EnemyProjSpritemaps_NoobTubeCrack_17:
     %spritemapEntry(1, $43B0, $E2, 0, 0, 3, 1, $162)
 
 EnemyProjSpritemaps_NoobTubeCrack_18:
-    dw $000E                                                             ;8DA381;
+    dw $000E
     %spritemapEntry(1, $43AC, $40, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A4, $40, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4399, $04, 0, 0, 3, 1, $168)
@@ -3288,7 +3288,7 @@ EnemyProjSpritemaps_NoobTubeCrack_18:
     %spritemapEntry(1, $43AF, $E4, 0, 0, 3, 1, $162)
 
 EnemyProjSpritemaps_NoobTubeCrack_19:
-    dw $000E                                                             ;8DA3C9;
+    dw $000E
     %spritemapEntry(1, $43AB, $42, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A3, $42, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $439A, $05, 0, 0, 3, 1, $168)
@@ -3305,7 +3305,7 @@ EnemyProjSpritemaps_NoobTubeCrack_19:
     %spritemapEntry(1, $43AE, $E6, 0, 0, 3, 1, $162)
 
 EnemyProjSpritemaps_NoobTubeCrack_1A:
-    dw $000E                                                             ;8DA411;
+    dw $000E
     %spritemapEntry(1, $43AA, $44, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A2, $44, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4399, $06, 0, 0, 3, 1, $168)
@@ -3322,7 +3322,7 @@ EnemyProjSpritemaps_NoobTubeCrack_1A:
     %spritemapEntry(1, $43AF, $E8, 0, 0, 3, 1, $162)
 
 EnemyProjSpritemaps_NoobTubeCrack_1B:
-    dw $000E                                                             ;8DA459;
+    dw $000E
     %spritemapEntry(1, $43AB, $46, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A3, $46, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $439A, $07, 0, 0, 3, 1, $168)
@@ -3339,7 +3339,7 @@ EnemyProjSpritemaps_NoobTubeCrack_1B:
     %spritemapEntry(1, $43B0, $EA, 0, 0, 3, 1, $162)
 
 EnemyProjSpritemaps_NoobTubeCrack_1C:
-    dw $000E                                                             ;8DA4A1;
+    dw $000E
     %spritemapEntry(1, $43AC, $48, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A4, $48, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4399, $08, 0, 0, 3, 1, $168)
@@ -3356,7 +3356,7 @@ EnemyProjSpritemaps_NoobTubeCrack_1C:
     %spritemapEntry(1, $43AF, $EC, 0, 0, 3, 1, $162)
 
 EnemyProjSpritemaps_NoobTubeCrack_1D:
-    dw $000E                                                             ;8DA4E9;
+    dw $000E
     %spritemapEntry(1, $43AB, $4A, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A3, $4A, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4257, $27, 0, 1, 3, 1, $168)
@@ -3373,7 +3373,7 @@ EnemyProjSpritemaps_NoobTubeCrack_1D:
     %spritemapEntry(1, $4382, $09, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_1E:
-    dw $000E                                                             ;8DA531;
+    dw $000E
     %spritemapEntry(1, $43AA, $4C, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A2, $4C, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4258, $2A, 0, 1, 3, 1, $168)
@@ -3390,7 +3390,7 @@ EnemyProjSpritemaps_NoobTubeCrack_1E:
     %spritemapEntry(1, $4381, $0A, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_1F:
-    dw $000E                                                             ;8DA579;
+    dw $000E
     %spritemapEntry(1, $43AB, $4E, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A3, $4E, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4257, $2D, 0, 1, 3, 1, $168)
@@ -3407,7 +3407,7 @@ EnemyProjSpritemaps_NoobTubeCrack_1F:
     %spritemapEntry(1, $4382, $0B, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_20:
-    dw $000E                                                             ;8DA5C1;
+    dw $000E
     %spritemapEntry(1, $43AC, $50, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A4, $50, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4258, $30, 0, 1, 3, 1, $168)
@@ -3424,7 +3424,7 @@ EnemyProjSpritemaps_NoobTubeCrack_20:
     %spritemapEntry(1, $4381, $0C, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_21:
-    dw $000E                                                             ;8DA609;
+    dw $000E
     %spritemapEntry(1, $43AB, $52, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A3, $52, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4257, $33, 0, 1, 3, 1, $168)
@@ -3441,7 +3441,7 @@ EnemyProjSpritemaps_NoobTubeCrack_21:
     %spritemapEntry(1, $4382, $0D, 0, 0, 3, 1, $165)
 
 EnemyProjSpritemaps_NoobTubeCrack_22:
-    dw $000E                                                             ;8DA651;
+    dw $000E
     %spritemapEntry(1, $43AA, $54, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A2, $54, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $4399, $0E, 0, 0, 3, 1, $168)
@@ -3458,7 +3458,7 @@ EnemyProjSpritemaps_NoobTubeCrack_22:
     %spritemapEntry(1, $43AF, $F8, 0, 0, 3, 1, $162)
 
 EnemyProjSpritemaps_NoobTubeCrack_23:
-    dw $000E                                                             ;8DA699;
+    dw $000E
     %spritemapEntry(1, $43AB, $54, 0, 0, 3, 1, $16B)
     %spritemapEntry(1, $43A3, $54, 0, 0, 3, 1, $16A)
     %spritemapEntry(1, $439A, $0E, 0, 0, 3, 1, $168)
@@ -3475,115 +3475,115 @@ EnemyProjSpritemaps_NoobTubeCrack_23:
     %spritemapEntry(1, $43B0, $F8, 0, 0, 3, 1, $162)
 
 EnemyProjSpritemaps_NoobTubeShards_0:
-    dw $0002                                                             ;8DA6E1;
+    dw $0002
     %spritemapEntry(1, $43F3, $FA, 1, 1, 3, 1, $1A2)
     %spritemapEntry(1, $4203, $FA, 1, 1, 3, 1, $1A0)
 
 EnemyProjSpritemaps_NoobTubeShards_1:
-    dw $0002                                                             ;8DA6ED;
+    dw $0002
     %spritemapEntry(1, $43FE, $FA, 1, 0, 3, 1, $1A2)
     %spritemapEntry(1, $43EE, $FA, 1, 0, 3, 1, $1A0)
 
 EnemyProjSpritemaps_NoobTubeShards_2:
-    dw $0002                                                             ;8DA6F9;
+    dw $0002
     %spritemapEntry(1, $43FD, $FD, 0, 0, 3, 1, $1A6)
     %spritemapEntry(1, $43F5, $F5, 0, 0, 3, 1, $1A4)
 
 EnemyProjSpritemaps_NoobTubeShards_3:
-    dw $0002                                                             ;8DA705;
+    dw $0002
     %spritemapEntry(1, $43F4, $FD, 0, 1, 3, 1, $1A6)
     %spritemapEntry(1, $43FC, $F5, 0, 1, 3, 1, $1A4)
 
 EnemyProjSpritemaps_NoobTubeShards_4:
-    dw $0001                                                             ;8DA711;
+    dw $0001
     %spritemapEntry(1, $43F7, $F8, 0, 0, 3, 1, $1A8)
 
 EnemyProjSpritemaps_NoobTubeShards_5:
-    dw $0001                                                             ;8DA718;
+    dw $0001
     %spritemapEntry(1, $43FA, $F8, 0, 1, 3, 1, $1A8)
 
 EnemyProjSpritemaps_NoobTubeShards_6:
-    dw $0002                                                             ;8DA71F;
+    dw $0002
     %spritemapEntry(1, $43EC, $F9, 0, 1, 3, 1, $1AC)
     %spritemapEntry(1, $43FC, $F9, 0, 1, 3, 1, $1AA)
 
 EnemyProjSpritemaps_NoobTubeShards_7:
-    dw $0002                                                             ;8DA72B;
+    dw $0002
     %spritemapEntry(1, $4205, $F9, 0, 0, 3, 1, $1AC)
     %spritemapEntry(1, $43F5, $F9, 0, 0, 3, 1, $1AA)
 
 EnemyProjSpritemaps_NoobTubeShards_8:
-    dw $0002                                                             ;8DA737;
+    dw $0002
     %spritemapEntry(1, $43F3, $FB, 0, 1, 3, 1, $1AE)
     %spritemapEntry(1, $4203, $FB, 0, 1, 3, 1, $18E)
 
 EnemyProjSpritemaps_NoobTubeShards_9:
-    dw $0002                                                             ;8DA743;
+    dw $0002
     %spritemapEntry(1, $43FE, $FB, 0, 0, 3, 1, $1AE)
     %spritemapEntry(1, $43EE, $FB, 0, 0, 3, 1, $18E)
 
 EnemyProjSpritemaps_NoobTubeShards_A:
-    dw $0002                                                             ;8DA74F;
+    dw $0002
     %spritemapEntry(1, $43F3, $F6, 1, 1, 3, 1, $1AE)
     %spritemapEntry(1, $4203, $F6, 1, 1, 3, 1, $18E)
 
 EnemyProjSpritemaps_NoobTubeShards_B:
-    dw $0002                                                             ;8DA75B;
+    dw $0002
     %spritemapEntry(1, $43FE, $F6, 1, 0, 3, 1, $1AE)
     %spritemapEntry(1, $43EE, $F6, 1, 0, 3, 1, $18E)
 
 EnemyProjSpritemaps_NoobTubeShards_C:
-    dw $0002                                                             ;8DA767;
+    dw $0002
     %spritemapEntry(1, $4200, $F8, 0, 0, 3, 1, $188)
     %spritemapEntry(1, $43F0, $F8, 0, 0, 3, 1, $186)
 
 EnemyProjSpritemaps_NoobTubeShards_D:
-    dw $0002                                                             ;8DA773;
+    dw $0002
     %spritemapEntry(1, $43F1, $F8, 0, 1, 3, 1, $188)
     %spritemapEntry(1, $4201, $F8, 0, 1, 3, 1, $186)
 
 EnemyProjSpritemaps_NoobTubeShards_E:
-    dw $0002                                                             ;8DA77F;
+    dw $0002
     %spritemapEntry(1, $4201, $F8, 0, 0, 3, 1, $18C)
     %spritemapEntry(1, $43F1, $F8, 0, 0, 3, 1, $18A)
 
 EnemyProjSpritemaps_NoobTubeShards_F:
-    dw $0002                                                             ;8DA78B;
+    dw $0002
     %spritemapEntry(1, $43F0, $F8, 0, 1, 3, 1, $18C)
     %spritemapEntry(1, $4200, $F8, 0, 1, 3, 1, $18A)
 
 EnemyProjSpritemaps_NoobTubeShards_10:
-    dw $0002                                                             ;8DA797;
+    dw $0002
     %spritemapEntry(1, $43F8, $F4, 0, 0, 3, 1, $182)
     %spritemapEntry(1, $43F8, $FC, 0, 0, 3, 1, $184)
 
 EnemyProjSpritemaps_NoobTubeShards_11:
-    dw $0002                                                             ;8DA7A3;
+    dw $0002
     %spritemapEntry(1, $43F4, $F0, 0, 0, 3, 1, $16D)
     %spritemapEntry(1, $43F4, $00, 0, 0, 3, 1, $180)
 
 EnemyProjSpritemaps_NoobTubeShards_12:
-    dw $0002                                                             ;8DA7AF;
+    dw $0002
     %spritemapEntry(1, $43FC, $00, 0, 1, 3, 1, $180)
     %spritemapEntry(1, $43FC, $F0, 0, 1, 3, 1, $16D)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_0:
-    dw $0001                                                             ;8DA7BB;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 5, $7C)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_1:
-    dw $0002                                                             ;8DA7C2;
+    dw $0002
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 5, $7C)
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 5, $7E)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_2:
-    dw $0003                                                             ;8DA7CE;
+    dw $0003
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 5, $7C)
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 5, $7E)
     %spritemapEntry(1, $43F8, $08, 0, 0, 3, 5, $9A)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_3:
-    dw $0004                                                             ;8DA7DF; BUG: should be 5
+    dw $0004 ; BUG: should be 5
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 5, $7C)
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 5, $7E)
     %spritemapEntry(1, $43F8, $08, 0, 0, 3, 5, $9A)
@@ -3593,7 +3593,7 @@ UNUSED_EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_8DA7F5:
     %spritemapEntry(1, $43F8, $C0, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_4:
-    dw $0007                                                             ;8DA7FA;
+    dw $0007
     %spritemapEntry(0, $1FD, $F2, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FF, $F3, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FA, $F4, 0, 0, 3, 5, $43)
@@ -3603,7 +3603,7 @@ EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_4:
     %spritemapEntry(1, $43F8, $08, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_5:
-    dw $0007                                                             ;8DA81F;
+    dw $0007
     %spritemapEntry(0, $1FE, $F2, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $00, $F3, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FB, $F4, 0, 0, 3, 5, $43)
@@ -3613,7 +3613,7 @@ EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_5:
     %spritemapEntry(1, $43F8, $08, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_6:
-    dw $0006                                                             ;8DA844;
+    dw $0006
     %spritemapEntry(0, $1FA, $F4, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FD, $F2, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FA, $F9, 0, 0, 3, 5, $25)
@@ -3622,7 +3622,7 @@ EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_6:
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_7:
-    dw $0006                                                             ;8DA864;
+    dw $0006
     %spritemapEntry(0, $1FC, $EC, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1F8, $F2, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FC, $F5, 0, 0, 3, 5, $25)
@@ -3631,7 +3631,7 @@ EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_7:
     %spritemapEntry(1, $43F8, $00, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_8:
-    dw $0005                                                             ;8DA884;
+    dw $0005
     %spritemapEntry(0, $1FC, $E8, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1F7, $EF, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FB, $F5, 0, 0, 3, 5, $25)
@@ -3639,7 +3639,7 @@ EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_8:
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_9:
-    dw $0005                                                             ;8DA89F;
+    dw $0005
     %spritemapEntry(0, $1FC, $E8, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1F8, $F0, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FD, $F5, 0, 0, 3, 5, $25)
@@ -3647,141 +3647,141 @@ EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_9:
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_A:
-    dw $0004                                                             ;8DA8BA;
+    dw $0004
     %spritemapEntry(0, $1FC, $E8, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1F8, $F0, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FD, $F5, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $02, $ED, 0, 0, 3, 5, $25)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_B:
-    dw $0004                                                             ;8DA8D0;
+    dw $0004
     %spritemapEntry(0, $02, $ED, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FC, $E8, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FD, $F5, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1F8, $F0, 0, 0, 3, 5, $43)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_C:
-    dw $0004                                                             ;8DA8E6;
+    dw $0004
     %spritemapEntry(0, $02, $ED, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FC, $E8, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FD, $F5, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1F8, $F0, 0, 0, 3, 5, $40)
 
 EnemyProjSpritemaps_NoobTubeReleasedAirBubbles_D:
-    dw $0002                                                             ;8DA8FC;
+    dw $0002
     %spritemapEntry(0, $02, $ED, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1FC, $E8, 0, 0, 3, 5, $40)
 
 EnemyProjSpritemaps_CacatacSpikes_0:
-    dw $0001                                                             ;8DA908;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $11B)
 
 EnemyProjSpritemaps_CacatacSpikes_1:
-    dw $0001                                                             ;8DA90F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $10E)
 
 EnemyProjSpritemaps_CacatacSpikes_2:
-    dw $0001                                                             ;8DA916;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $10F)
 
 EnemyProjSpritemaps_CacatacSpikes_3:
-    dw $0001                                                             ;8DA91D;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $10E)
 
 EnemyProjSpritemaps_CacatacSpikes_4:
-    dw $0001                                                             ;8DA924;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 1, 3, 0, $11B)
 
 EnemyProjSpritemaps_CacatacSpikes_5:
-    dw $0001                                                             ;8DA92B;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $11B)
 
 EnemyProjSpritemaps_CacatacSpikes_6:
-    dw $0001                                                             ;8DA932;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $10E)
 
 EnemyProjSpritemaps_CacatacSpikes_7:
-    dw $0001                                                             ;8DA939;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 0, 3, 0, $10F)
 
 EnemyProjSpritemaps_CacatacSpikes_8:
-    dw $0001                                                             ;8DA940;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $10E)
 
 EnemyProjSpritemaps_CacatacSpikes_9:
-    dw $0001                                                             ;8DA947;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $11B)
 
 UNUSED_EnemyProjSpritemaps_StokeProjectile_0_8DA94E:
-    dw $0001                                                             ;8DA94E;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $11E)
 
 UNUSED_EnemyProjSpritemaps_StokeProjectile_1_8DA955:
-    dw $0001                                                             ;8DA955;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $11D)
 
 UNUSED_EnemyProjSpritemaps_0_8DA95C:
-    dw $0001                                                             ;8DA95C;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $126)
 
 UNUSED_EnemyProjSpritemaps_1_8DA963:
-    dw $0001                                                             ;8DA963;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $128)
 
 UNUSED_EnemyProjSpritemaps_2_8DA96A:
-    dw $0001                                                             ;8DA96A;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $10C)
 
 UNUSED_EnemyProjSpritemaps_3_8DA971:
-    dw $0001                                                             ;8DA971;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $10E)
 
 UNUSED_EnemyProjSpritemaps_4_8DA978:
-    dw $0001                                                             ;8DA978;
+    dw $0001
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $12C)
 
 UNUSED_EnemyProjSpritemaps_5_8DA97F:
-    dw $0001                                                             ;8DA97F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $13E)
 
 UNUSED_EnemyProjSpritemaps_6_8DA986:
-    dw $0001                                                             ;8DA986;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $12F)
 
 UNUSED_EnemyProjSpritemaps_7_8DA98D:
-    dw $0001                                                             ;8DA98D;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $12E)
 
 EnemyProjSpritemaps_SporeSpawnsStalk:
-    dw $0001                                                             ;8DA994;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 1, $140)
 
 EnemyProjSpritemaps_SporeSpawners_0:
-    dw $0001                                                             ;8DA99B;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10C)
 
 EnemyProjSpritemaps_SporeSpawners_1:
-    dw $0001                                                             ;8DA9A2;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10E)
 
 EnemyProjSpritemaps_SporeSpawners_2:
-    dw $0001                                                             ;8DA9A9;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $12C)
 
 EnemyProjSpritemaps_Spores_0:
-    dw $0001                                                             ;8DA9B0;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 7, $13E)
 
 EnemyProjSpritemaps_Spores_1:
-    dw $0001                                                             ;8DA9B7;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 7, $12F)
 
 EnemyProjSpritemaps_Spores_2:
-    dw $0001                                                             ;8DA9BE;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 7, $12E)
 
 UNUSED_EnemyProjSpritemaps_0_8DA9C5:
-    dw $0018                                                             ;8DA9C5;
+    dw $0018
     %spritemapEntry(1, $00, $26, 0, 1, 2, 0, $14E)
     %spritemapEntry(1, $10, $26, 0, 1, 2, 0, $14C)
     %spritemapEntry(1, $20, $26, 0, 1, 2, 0, $14A)
@@ -3808,7 +3808,7 @@ UNUSED_EnemyProjSpritemaps_0_8DA9C5:
     %spritemapEntry(1, $1D0, $CA, 0, 0, 2, 0, $100)
 
 UNUSED_EnemyProjSpritemaps_1_8DA93F:
-    dw $0018                                                             ;8DAA3F;
+    dw $0018
     %spritemapEntry(1, $00, $28, 0, 1, 2, 0, $14E)
     %spritemapEntry(1, $10, $28, 0, 1, 2, 0, $14C)
     %spritemapEntry(1, $20, $28, 0, 1, 2, 0, $14A)
@@ -3835,928 +3835,928 @@ UNUSED_EnemyProjSpritemaps_1_8DA93F:
     %spritemapEntry(1, $1D0, $C8, 0, 0, 2, 0, $100)
 
 EnemyProjSpritemaps_Namihe_Fune_Fireball_0:
-    dw $0001                                                             ;8DAAB9;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10A)
 
 EnemyProjSpritemaps_Namihe_Fune_Fireball_1:
-    dw $0001                                                             ;8DAAC0;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10C)
 
 EnemyProjSpritemaps_Namihe_Fune_Fireball_2:
-    dw $0001                                                             ;8DAAC7;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10E)
 
 EnemyProjSpritemaps_Namihe_Fune_Fireball_3:
-    dw $0001                                                             ;8DAACE;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $10A)
 
 EnemyProjSpritemaps_Namihe_Fune_Fireball_4:
-    dw $0001                                                             ;8DAAD5;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $10C)
 
 EnemyProjSpritemaps_Namihe_Fune_Fireball_5:
-    dw $0001                                                             ;8DAADC;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $10E)
 
 UNUSED_EnemyProjSpritemaps_0_8DAAE3:
-    dw $0004                                                             ;8DAAE3;
+    dw $0004
     %spritemapEntry(0, $1F8, $00, 0, 1, 2, 0, $12F)
     %spritemapEntry(0, $00, $00, 0, 1, 2, 0, $12E)
     %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 0, $12D)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 0, $12C)
 
 UNUSED_EnemyProjSpritemaps_1_8DAAF9:
-    dw $0004                                                             ;8DAAF9;
+    dw $0004
     %spritemapEntry(0, $00, $00, 0, 0, 2, 0, $12F)
     %spritemapEntry(0, $1F8, $00, 0, 0, 2, 0, $12E)
     %spritemapEntry(0, $00, $F8, 0, 0, 2, 0, $12D)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 0, $12C)
 
 EnemyProjSpritemaps_MagdolliteFlame_0:
-    dw $0004                                                             ;8DAB0F;
+    dw $0004
     %spritemapEntry(0, $00, $00, 0, 0, 2, 0, $12F)
     %spritemapEntry(0, $1F8, $00, 0, 0, 2, 0, $12E)
     %spritemapEntry(0, $00, $F8, 0, 0, 2, 0, $12D)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 0, $12C)
 
 EnemyProjSpritemaps_MagdolliteFlame_1:
-    dw $0004                                                             ;8DAB25;
+    dw $0004
     %spritemapEntry(0, $1F8, $00, 0, 1, 2, 0, $12F)
     %spritemapEntry(0, $00, $00, 0, 1, 2, 0, $12E)
     %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 0, $12D)
     %spritemapEntry(0, $00, $F8, 0, 1, 2, 0, $12C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_0:
-    dw $0004                                                             ;8DAB3B;
+    dw $0004
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $00, $00, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $1F8, $00, 0, 0, 3, 5, $2B)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $2B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_1:
-    dw $0004                                                             ;8DAB51;
+    dw $0004
     %spritemapEntry(0, $02, $F3, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $01, $FF, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $1F7, $FF, 0, 0, 3, 5, $2B)
     %spritemapEntry(0, $1F6, $F3, 0, 0, 3, 5, $2B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_2:
-    dw $0004                                                             ;8DAB67;
+    dw $0004
     %spritemapEntry(0, $05, $EE, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $03, $FD, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $1F5, $FD, 0, 0, 3, 5, $2B)
     %spritemapEntry(0, $1F3, $EE, 0, 0, 3, 5, $2B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_3:
-    dw $0004                                                             ;8DAB7D;
+    dw $0004
     %spritemapEntry(0, $07, $EC, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $05, $FB, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $1F3, $FB, 0, 0, 3, 5, $2B)
     %spritemapEntry(0, $1F1, $EC, 0, 0, 3, 5, $2B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_4:
-    dw $0004                                                             ;8DAB93;
+    dw $0004
     %spritemapEntry(0, $09, $EA, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $07, $FA, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $1F1, $FA, 0, 0, 3, 5, $2B)
     %spritemapEntry(0, $1EF, $EA, 0, 0, 3, 5, $2B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_5:
-    dw $0004                                                             ;8DABA9;
+    dw $0004
     %spritemapEntry(0, $0A, $EA, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $08, $F9, 0, 1, 3, 5, $2B)
     %spritemapEntry(0, $1F0, $F9, 0, 0, 3, 5, $2B)
     %spritemapEntry(0, $1EE, $EA, 0, 0, 3, 5, $2B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_6:
-    dw $0004                                                             ;8DABBF;
+    dw $0004
     %spritemapEntry(0, $0C, $EB, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $09, $FA, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $1EF, $FA, 0, 0, 3, 5, $2A)
     %spritemapEntry(0, $1EC, $EB, 0, 0, 3, 5, $2A)
 
 EnemyProjSpritemaps_DustCloud_Explosion_7:
-    dw $0004                                                             ;8DABD5;
+    dw $0004
     %spritemapEntry(0, $0E, $EC, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $0A, $FC, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $1EE, $FC, 0, 0, 3, 5, $2A)
     %spritemapEntry(0, $1EA, $EC, 0, 0, 3, 5, $2A)
 
 EnemyProjSpritemaps_DustCloud_Explosion_8:
-    dw $0004                                                             ;8DABEB;
+    dw $0004
     %spritemapEntry(0, $10, $ED, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $0B, $FE, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $1ED, $FE, 0, 0, 3, 5, $29)
     %spritemapEntry(0, $1E8, $ED, 0, 0, 3, 5, $29)
 
 EnemyProjSpritemaps_DustCloud_Explosion_9:
-    dw $0004                                                             ;8DAC01;
+    dw $0004
     %spritemapEntry(0, $12, $EE, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $0C, $00, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $1EC, $00, 0, 0, 3, 5, $29)
     %spritemapEntry(0, $1E6, $EE, 0, 0, 3, 5, $29)
 
 EnemyProjSpritemaps_DustCloud_Explosion_A:
-    dw $0004                                                             ;8DAC17;
+    dw $0004
     %spritemapEntry(0, $13, $F0, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $0D, $02, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1E5, $F0, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1EB, $02, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_DustCloud_Explosion_B:
-    dw $0004                                                             ;8DAC2D;
+    dw $0004
     %spritemapEntry(0, $14, $F2, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $0E, $04, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1E4, $F2, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1EA, $04, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_DustCloud_Explosion_C:
-    dw $0004                                                             ;8DAC43;
+    dw $0004
     %spritemapEntry(0, $15, $F5, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $0F, $07, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1E3, $F5, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E9, $07, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_DustCloud_Explosion_D:
-    dw $0004                                                             ;8DAC59;
+    dw $0004
     %spritemapEntry(0, $16, $F9, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $10, $0B, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1E2, $F9, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E8, $0B, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_DustCloud_Explosion_E:
-    dw $0004                                                             ;8DAC6F;
+    dw $0004
     %spritemapEntry(0, $17, $03, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $11, $11, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1E1, $03, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E7, $11, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_DustCloud_Explosion_F:
-    dw $0004                                                             ;8DAC85;
+    dw $0004
     %spritemapEntry(0, $18, $0A, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $12, $18, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1E0, $0A, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E6, $18, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_Common_BigDustCloud_0:
-    dw $0001                                                             ;8DAC9B;
+    dw $0001
     %spritemapEntry(0, $1F7, $F7, 0, 0, 3, 5, $48)
 
 EnemyProjSpritemaps_Common_BigDustCloud_1:
-    dw $0002                                                             ;8DACA2;
+    dw $0002
     %spritemapEntry(0, $01, $01, 0, 0, 3, 5, $48)
     %spritemapEntry(1, $1F3, $F3, 0, 0, 3, 5, $7C)
 
 EnemyProjSpritemaps_Common_BigDustCloud_2:
-    dw $0003                                                             ;8DACAE;
+    dw $0003
     %spritemapEntry(1, $1FD, $FD, 0, 0, 3, 5, $7C)
     %spritemapEntry(0, $1F7, $01, 0, 0, 3, 5, $48)
     %spritemapEntry(1, $1F3, $F3, 0, 0, 3, 5, $7E)
 
 EnemyProjSpritemaps_Common_BigDustCloud_3:
-    dw $0004                                                             ;8DACBF;
+    dw $0004
     %spritemapEntry(0, $01, $F7, 0, 0, 3, 5, $48)
     %spritemapEntry(1, $1FD, $FD, 0, 0, 3, 5, $7E)
     %spritemapEntry(1, $1F3, $FD, 0, 0, 3, 5, $7C)
     %spritemapEntry(1, $1F3, $F3, 0, 0, 3, 5, $9A)
 
 EnemyProjSpritemaps_DustCloud_Explosion_10:
-    dw $0004                                                             ;8DACD5;
+    dw $0004
     %spritemapEntry(1, $1FD, $F3, 0, 0, 3, 5, $7C)
     %spritemapEntry(1, $1FD, $FD, 0, 0, 3, 5, $9A)
     %spritemapEntry(1, $1F3, $FD, 0, 0, 3, 5, $7E)
     %spritemapEntry(1, $1F3, $F3, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_11:
-    dw $0003                                                             ;8DACEB;
+    dw $0003
     %spritemapEntry(1, $1FD, $F3, 0, 0, 3, 5, $7E)
     %spritemapEntry(1, $1FD, $FD, 0, 0, 3, 5, $9C)
     %spritemapEntry(1, $1F3, $FD, 0, 0, 3, 5, $9A)
 
 EnemyProjSpritemaps_DustCloud_Explosion_12:
-    dw $0002                                                             ;8DACFC;
+    dw $0002
     %spritemapEntry(1, $1FD, $F3, 0, 0, 3, 5, $9A)
     %spritemapEntry(1, $1F3, $FD, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_13:
-    dw $0001                                                             ;8DAD08;
+    dw $0001
     %spritemapEntry(1, $1FD, $F3, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_14:
-    dw $0001                                                             ;8DAD0F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $6B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_15:
-    dw $0001                                                             ;8DAD16;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $6C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_16:
-    dw $0002                                                             ;8DAD1D;
+    dw $0002
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $6B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_17:
-    dw $0002                                                             ;8DAD29;
+    dw $0002
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $6C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_18:
-    dw $0003                                                             ;8DAD35;
+    dw $0003
     %spritemapEntry(0, $1F4, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $04, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $6C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_19:
-    dw $0003                                                             ;8DAD46;
+    dw $0003
     %spritemapEntry(0, $04, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $1F4, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $6B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_1A:
-    dw $0004                                                             ;8DAD57;
+    dw $0004
     %spritemapEntry(0, $08, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $1F0, $FC, 0, 0, 3, 5, $6C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_1B:
-    dw $0004                                                             ;8DAD6D;
+    dw $0004
     %spritemapEntry(0, $08, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $1F0, $FC, 0, 0, 3, 5, $6B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_1C:
-    dw $0001                                                             ;8DAD83;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $25)
 
 EnemyProjSpritemaps_DustCloud_Explosion_1D:
-    dw $0003                                                             ;8DAD8A;
+    dw $0003
     %spritemapEntry(0, $00, $F8, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FA, $F6, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FC, $FB, 0, 0, 3, 5, $25)
 
 EnemyProjSpritemaps_DustCloud_Explosion_1E:
-    dw $0003                                                             ;8DAD9B;
+    dw $0003
     %spritemapEntry(0, $01, $F7, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1F9, $F4, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FB, $FA, 0, 0, 3, 5, $25)
 
 EnemyProjSpritemaps_DustCloud_Explosion_1F:
-    dw $0003                                                             ;8DADAC;
+    dw $0003
     %spritemapEntry(0, $01, $F5, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FA, $F1, 0, 0, 3, 5, $43)
 
 EnemyProjSpritemaps_DustCloud_Explosion_20:
-    dw $0003                                                             ;8DADBD;
+    dw $0003
     %spritemapEntry(0, $01, $F3, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FC, $F5, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FA, $EE, 0, 0, 3, 5, $43)
 
 EnemyProjSpritemaps_DustCloud_Explosion_21:
-    dw $0003                                                             ;8DADCE;
+    dw $0003
     %spritemapEntry(0, $00, $F0, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1FC, $F4, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1FA, $ED, 0, 0, 3, 5, $40)
 
 EnemyProjSpritemaps_DustCloud_Explosion_22:
-    dw $0003                                                             ;8DADDF;
+    dw $0003
     %spritemapEntry(0, $00, $EE, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1FC, $F2, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1FA, $EC, 0, 0, 3, 5, $40)
 
 EnemyProjSpritemaps_DustCloud_Explosion_23:
-    dw $0002                                                             ;8DADF0;
+    dw $0002
     %spritemapEntry(0, $00, $EC, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1FC, $F0, 0, 0, 3, 5, $40)
 
 EnemyProjSpritemaps_DustCloud_Explosion_24:
-    dw $0001                                                             ;8DADFC;
+    dw $0001
     %spritemapEntry(0, $1FC, $EE, 0, 0, 3, 5, $40)
 
 EnemyProjSpritemaps_DustCloud_Explosion_25:
-    dw $0004                                                             ;8DAE03;
+    dw $0004
     %spritemapEntry(0, $08, $E0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $E0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $E0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $E0, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_DustCloud_Explosion_26:
-    dw $0004                                                             ;8DAE19;
+    dw $0004
     %spritemapEntry(0, $08, $E8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $E8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $E8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $E8, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_DustCloud_Explosion_27:
-    dw $0004                                                             ;8DAE2F;
+    dw $0004
     %spritemapEntry(0, $08, $F0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $F0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $F0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $F0, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_DustCloud_Explosion_28:
-    dw $0004                                                             ;8DAE45;
+    dw $0004
     %spritemapEntry(0, $08, $F8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $F8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $F8, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_DustCloud_Explosion_29:
-    dw $0004                                                             ;8DAE5B;
+    dw $0004
     %spritemapEntry(0, $08, $00, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $00, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $00, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $00, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_DustCloud_Explosion_2A:
-    dw $0004                                                             ;8DAE71;
+    dw $0004
     %spritemapEntry(0, $08, $08, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $08, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $08, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $08, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_DustCloud_Explosion_2B:
-    dw $0004                                                             ;8DAE87;
+    dw $0004
     %spritemapEntry(0, $08, $10, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $10, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $10, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $10, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_DustCloud_Explosion_2C:
-    dw $0004                                                             ;8DAE9D;
+    dw $0004
     %spritemapEntry(0, $08, $18, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $18, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $18, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $18, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_DustCloud_Explosion_2D:
-    dw $0002                                                             ;8DAEB3;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $BF)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $BE)
 
 EnemyProjSpritemaps_DustCloud_Explosion_2E:
-    dw $0001                                                             ;8DAEBF;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $BE)
 
 EnemyProjSpritemaps_DustCloud_Explosion_2F:
-    dw $0002                                                             ;8DAEC6;
+    dw $0002
     %spritemapEntry(1, $1F8, $FC, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F4, 0, 0, 3, 5, $BE)
 
 EnemyProjSpritemaps_DustCloud_Explosion_30:
-    dw $0002                                                             ;8DAED2;
+    dw $0002
     %spritemapEntry(1, $1F8, $00, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F0, 0, 0, 3, 5, $BE)
 
 EnemyProjSpritemaps_DustCloud_Explosion_31:
-    dw $0003                                                             ;8DAEDE;
+    dw $0003
     %spritemapEntry(1, $1F8, $04, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $EC, 0, 0, 3, 5, $BE)
 
 EnemyProjSpritemaps_DustCloud_Explosion_32:
-    dw $0003                                                             ;8DAEEF;
+    dw $0003
     %spritemapEntry(1, $1F8, $08, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $E8, 0, 0, 3, 5, $BE)
 
 EnemyProjSpritemaps_DustCloud_Explosion_33:
-    dw $0004                                                             ;8DAF00;
+    dw $0004
     %spritemapEntry(1, $1F8, $0C, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $00, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F0, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $E4, 0, 0, 3, 5, $BE)
 
 EnemyProjSpritemaps_DustCloud_Explosion_34:
-    dw $0004                                                             ;8DAF16;
+    dw $0004
     %spritemapEntry(1, $1F8, $10, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $00, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F0, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $E0, 0, 0, 3, 5, $BE)
 
 EnemyProjSpritemaps_DustCloud_Explosion_35:
-    dw $0001                                                             ;8DAF2C;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $53)
 
 EnemyProjSpritemaps_DustCloud_Explosion_36:
-    dw $0001                                                             ;8DAF33;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $52)
 
 EnemyProjSpritemaps_DustCloud_Explosion_37:
-    dw $0001                                                             ;8DAF3A;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $51)
 
 EnemyProjSpritemaps_DustCloud_Explosion_38:
-    dw $0004                                                             ;8DAF41;
+    dw $0004
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 6, $50)
     %spritemapEntry(0, $00, $00, 1, 1, 3, 6, $50)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 6, $50)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 6, $50)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_0:
-    dw $0003                                                             ;8DAF57;
+    dw $0003
     %spritemapEntry(0, $00, $0C, 0, 0, 3, 5, $5B)
     %spritemapEntry(0, $08, $EC, 0, 0, 3, 5, $5B)
     %spritemapEntry(0, $1F0, $F4, 0, 0, 3, 5, $5B)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_1:
-    dw $0003                                                             ;8DAF68;
+    dw $0003
     %spritemapEntry(0, $1FD, $0A, 0, 0, 3, 5, $5C)
     %spritemapEntry(0, $06, $EE, 0, 0, 3, 5, $5C)
     %spritemapEntry(0, $1F2, $F6, 0, 0, 3, 5, $5C)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_2:
-    dw $0003                                                             ;8DAF79;
+    dw $0003
     %spritemapEntry(0, $1FC, $08, 0, 0, 3, 5, $5C)
     %spritemapEntry(0, $04, $F0, 0, 0, 3, 5, $5C)
     %spritemapEntry(0, $1F4, $F8, 0, 0, 3, 5, $5C)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_3:
-    dw $0003                                                             ;8DAF8A;
+    dw $0003
     %spritemapEntry(0, $02, $F2, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $1FB, $06, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $1F6, $FA, 0, 0, 3, 5, $5D)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_4:
-    dw $0003                                                             ;8DAF9B;
+    dw $0003
     %spritemapEntry(0, $1FB, $04, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $1F8, $FB, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $00, $F4, 0, 0, 3, 5, $5D)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_5:
-    dw $0003                                                             ;8DAFAC;
+    dw $0003
     %spritemapEntry(0, $1FB, $02, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $1FA, $FA, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $00, $F6, 0, 0, 3, 5, $5D)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_6:
-    dw $0003                                                             ;8DAFBD;
+    dw $0003
     %spritemapEntry(0, $00, $EC, 1, 0, 3, 5, $5B)
     %spritemapEntry(0, $08, $0C, 1, 0, 3, 5, $5B)
     %spritemapEntry(0, $1F0, $04, 1, 0, 3, 5, $5B)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_7:
-    dw $0003                                                             ;8DAFCE;
+    dw $0003
     %spritemapEntry(0, $1FE, $EE, 1, 0, 3, 5, $5C)
     %spritemapEntry(0, $06, $0A, 1, 0, 3, 5, $5C)
     %spritemapEntry(0, $1F2, $02, 1, 0, 3, 5, $5C)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_8:
-    dw $0003                                                             ;8DAFDF;
+    dw $0003
     %spritemapEntry(0, $04, $08, 1, 0, 3, 5, $5C)
     %spritemapEntry(0, $1F4, $00, 1, 0, 3, 5, $5C)
     %spritemapEntry(0, $1FD, $F0, 1, 0, 3, 5, $5C)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_9:
-    dw $0003                                                             ;8DAFF0;
+    dw $0003
     %spritemapEntry(0, $02, $06, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $1FC, $F2, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $1F6, $FE, 1, 0, 3, 5, $5D)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_A:
-    dw $0003                                                             ;8DB001;
+    dw $0003
     %spritemapEntry(0, $1FC, $F4, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $1F8, $FC, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $00, $04, 1, 0, 3, 5, $5D)
 
 EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_B:
-    dw $0003                                                             ;8DB012;
+    dw $0003
     %spritemapEntry(0, $1FC, $F6, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $1FA, $FD, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $00, $02, 1, 0, 3, 5, $5D)
 
 EnemyProjSpritemaps_Common_SmallExplosion_0:
-    dw $0001                                                             ;8DB023;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $5F)
 
 EnemyProjSpritemaps_Common_SmallExplosion_1:
-    dw $0004                                                             ;8DB02A;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $8A)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $8A)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $8A)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $8A)
 
 EnemyProjSpritemaps_Common_SmallExplosion_2:
-    dw $0004                                                             ;8DB040;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $90)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $90)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $90)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $90)
 
 EnemyProjSpritemaps_Common_SmallExplosion_3:
-    dw $0004                                                             ;8DB056;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $92)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $92)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $92)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $92)
 
 EnemyProjSpritemaps_Common_SmallExplosion_4:
-    dw $0004                                                             ;8DB06C;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $94)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $94)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $94)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $94)
 
 EnemyProjSpritemaps_Common_SmallExplosion_5:
-    dw $0004                                                             ;8DB082;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $96)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $96)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $96)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $96)
 
 EnemyProjSpritemaps_DustCloud_Explosion_39:
-    dw $0004                                                             ;8DB098;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $8B)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $8B)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $8B)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $8B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_3A:
-    dw $0004                                                             ;8DB0AE;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $7A)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $7A)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $7A)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $7A)
 
 EnemyProjSpritemaps_DustCloud_Explosion_3B:
-    dw $0004                                                             ;8DB0C4;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $70)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $70)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $70)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $70)
 
 EnemyProjSpritemaps_DustCloud_Explosion_3C:
-    dw $0004                                                             ;8DB0DA;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $72)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $72)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $72)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $72)
 
 EnemyProjSpritemaps_DustCloud_Explosion_3D:
-    dw $0004                                                             ;8DB0F0;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $74)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $74)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $74)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $74)
 
 UNUSED_EnemyProjSpritemaps_8DB106:
-    dw $0004                                                             ;8DB106;
+    dw $0004
     %spritemapEntry(0, $1F8, $00, 0, 0, 3, 5, $5E)
     %spritemapEntry(0, $00, $00, 0, 0, 3, 5, $5E)
     %spritemapEntry(0, $00, $F8, 0, 0, 3, 5, $5E)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $5E)
 
 EnemyProjSpritemaps_DustCloud_Explosion_3E:
-    dw $0001                                                             ;8DB11C;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $38)
 
 EnemyProjSpritemaps_DustCloud_Explosion_3F:
-    dw $0001                                                             ;8DB123;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $39)
 
 EnemyProjSpritemaps_DustCloud_Explosion_40:
-    dw $0001                                                             ;8DB12A;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $3A)
 
 EnemyProjSpritemaps_DustCloud_Explosion_41:
-    dw $0001                                                             ;8DB131;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $3B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_42:
-    dw $0001                                                             ;8DB138;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $26)
 
 EnemyProjSpritemaps_DustCloud_Explosion_43:
-    dw $0001                                                             ;8DB13F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $27)
 
 EnemyProjSpritemaps_DustCloud_Explosion_44:
-    dw $0001                                                             ;8DB146;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $7B)
 
 UNUSED_EnemyProjSpritemaps_8DB14D:
-    dw $0001                                                             ;8DB14D;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $5F)
 
 EnemyProjSpritemaps_DustCloud_Explosion_45:
-    dw $0001                                                             ;8DB154;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $53)
 
 EnemyProjSpritemaps_DustCloud_Explosion_46:
-    dw $0001                                                             ;8DB15B;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $51)
 
 EnemyProjSpritemaps_DustCloud_Explosion_47:
-    dw $0004                                                             ;8DB162;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $60)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $60)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $60)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $60)
 
 EnemyProjSpritemaps_DustCloud_Explosion_48:
-    dw $0004                                                             ;8DB178;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $61)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $61)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $61)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $61)
 
 EnemyProjSpritemaps_DustCloud_Explosion_49:
-    dw $0004                                                             ;8DB18E;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $62)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $62)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $62)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $62)
 
 EnemyProjSpritemaps_DustCloud_Explosion_4A:
-    dw $0004                                                             ;8DB1A4;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $63)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $63)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $63)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $63)
 
 EnemyProjSpritemaps_CeresElevatorPad_DustCloud_Explosion_0:
-    dw $0004                                                             ;8DB1BA;
+    dw $0004
     %spritemapEntry(0, $1F2, $FC, 0, 1, 3, 5, $6C)
     %spritemapEntry(0, $06, $FC, 0, 1, 3, 5, $6C)
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 5, $6C)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6C)
 
 EnemyProjSpritemaps_CeresElevatorPad_DustCloud_Explosion_1:
-    dw $0004                                                             ;8DB1D0;
+    dw $0004
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 5, $6E)
     %spritemapEntry(0, $08, $FC, 0, 1, 3, 5, $6D)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6E)
     %spritemapEntry(0, $1F0, $FC, 0, 0, 3, 5, $6D)
 
 UNUSED_EnemyProjSpritemaps_8DB1E6:
-    dw $0004                                                             ;8DB1E6;
+    dw $0004
     %spritemapEntry(0, $1F0, $FE, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $08, $FE, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $FE, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $FE, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_DustCloud_Explosion_4B:
-    dw $0001                                                             ;8DB1FC;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $7C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_4C:
-    dw $0001                                                             ;8DB203;
+    dw $0001
     %spritemapEntry(1, $1F8, $F6, 0, 0, 3, 5, $7E)
 
 EnemyProjSpritemaps_DustCloud_Explosion_4D:
-    dw $0001                                                             ;8DB20A;
+    dw $0001
     %spritemapEntry(1, $1F8, $F4, 0, 0, 3, 5, $9A)
 
 EnemyProjSpritemaps_DustCloud_Explosion_4E:
-    dw $0001                                                             ;8DB211;
+    dw $0001
     %spritemapEntry(1, $1F8, $F2, 0, 0, 3, 5, $9C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_4F:
-    dw $0001                                                             ;8DB218;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $48)
 
 EnemyProjSpritemaps_DustCloud_Explosion_50:
-    dw $0001                                                             ;8DB21F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FA, 0, 0, 3, 5, $49)
 
 EnemyProjSpritemaps_DustCloud_Explosion_51:
-    dw $0001                                                             ;8DB226;
+    dw $0001
     %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 5, $4A)
 
 EnemyProjSpritemaps_DustCloud_Explosion_52:
-    dw $0001                                                             ;8DB22D;
+    dw $0001
     %spritemapEntry(0, $1FC, $F6, 0, 0, 3, 5, $4B)
 
 EnemyProjSpritemaps_DustCloud_Explosion_53:
-    dw $0001                                                             ;8DB234;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $2C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_54:
-    dw $0001                                                             ;8DB23B;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $2D)
 
 EnemyProjSpritemaps_DustCloud_Explosion_55:
-    dw $0001                                                             ;8DB242;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $2E)
 
 EnemyProjSpritemaps_DustCloud_Explosion_56:
-    dw $0001                                                             ;8DB249;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $2F)
 
 EnemyProjSpritemaps_Common_Smoke_0:
-    dw $0001                                                             ;8DB250;
+    dw $0001
     %spritemapEntry(1, $1F8, $F6, 0, 0, 3, 5, $76)
 
 EnemyProjSpritemaps_Common_Smoke_1:
-    dw $0001                                                             ;8DB257;
+    dw $0001
     %spritemapEntry(1, $1F8, $F4, 0, 0, 3, 5, $78)
 
 EnemyProjSpritemaps_Common_Smoke_2:
-    dw $0001                                                             ;8DB25E;
+    dw $0001
     %spritemapEntry(1, $1F8, $F2, 0, 0, 3, 5, $98)
 
 EnemyProjSpritemaps_Common_Smoke_3:
-    dw $0001                                                             ;8DB265;
+    dw $0001
     %spritemapEntry(1, $1F8, $F0, 0, 0, 3, 5, $9E)
 
 UNUSED_EnemyProjSpritemaps_0_8DB26C:
-    dw $0001                                                             ;8DB26C;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $25)
 
 UNUSED_EnemyProjSpritemaps_1_8DB273:
-    dw $0001                                                             ;8DB273;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $43)
 
 EnemyProjSpritemaps_MotherBrainsTurretBullets:
-    dw $0001                                                             ;8DB27A;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $40)
 
 EnemyProjSpritemaps_DustCloud_Explosion_57:
-    dw $0001                                                             ;8DB281;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3E)
 
 EnemyProjSpritemaps_DustCloud_Explosion_58:
-    dw $0001                                                             ;8DB288;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3D)
 
 EnemyProjSpritemaps_DustCloud_Explosion_59:
-    dw $0001                                                             ;8DB28F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $41)
 
 EnemyProjSpritemaps_DustCloud_Explosion_5A:
-    dw $0001                                                             ;8DB296;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $42)
 
 EnemyProjSpritemaps_DustCloud_Explosion_5B:
-    dw $0004                                                             ;8DB29D;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $44)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $44)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $44)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $44)
 
 EnemyProjSpritemaps_DustCloud_Explosion_5C:
-    dw $0004                                                             ;8DB2B3;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $45)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $45)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $45)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $45)
 
 EnemyProjSpritemaps_DustCloud_Explosion_5D:
-    dw $0004                                                             ;8DB2C9;
+    dw $0004
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $46)
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $46)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $46)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $46)
 
 EnemyProjSpritemaps_DustCloud_Explosion_5E:
-    dw $0001                                                             ;8DB2DF;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $42)
 
 EnemyProjSpritemaps_DustCloud_Explosion_5F:
-    dw $0001                                                             ;8DB2E6;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $4C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_60:
-    dw $0001                                                             ;8DB2ED;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $4D)
 
 EnemyProjSpritemaps_DustCloud_Explosion_61:
-    dw $0001                                                             ;8DB2F4;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $4E)
 
 EnemyProjSpritemaps_DustCloud_Explosion_62:
-    dw $0001                                                             ;8DB2FB;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $4F)
 
 UNUSED_EnemyProjSpritemaps_0_8DB302:
-    dw $0002                                                             ;8DB302;
+    dw $0002
     %spritemapEntry(0, $1FF, $FC, 0, 0, 3, 5, $55)
     %spritemapEntry(0, $1F7, $FC, 0, 0, 3, 5, $54)
 
 UNUSED_EnemyProjSpritemaps_1_8DB30E:
-    dw $0003                                                             ;8DB30E;
+    dw $0003
     %spritemapEntry(0, $1FA, $F5, 0, 0, 3, 5, $56)
     %spritemapEntry(0, $02, $FD, 0, 0, 3, 5, $58)
     %spritemapEntry(0, $1FA, $FD, 0, 0, 3, 5, $57)
 
 UNUSED_EnemyProjSpritemaps_2_8DB31F:
-    dw $0002                                                             ;8DB31F;
+    dw $0002
     %spritemapEntry(0, $1FD, $F7, 0, 0, 3, 5, $59)
     %spritemapEntry(0, $1FD, $FF, 0, 0, 3, 5, $5A)
 
 UNUSED_EnemyProjSpritemaps_3_8DB32B:
-    dw $0003                                                             ;8DB32B;
+    dw $0003
     %spritemapEntry(0, $1FE, $F5, 0, 1, 3, 5, $56)
     %spritemapEntry(0, $1F6, $FD, 0, 1, 3, 5, $58)
     %spritemapEntry(0, $1FE, $FD, 0, 1, 3, 5, $57)
 
 UNUSED_EnemyProjSpritemaps_4_8DB33C:
-    dw $0002                                                             ;8DB33C;
+    dw $0002
     %spritemapEntry(0, $1F9, $FC, 0, 1, 3, 5, $55)
     %spritemapEntry(0, $01, $FC, 0, 1, 3, 5, $54)
 
 UNUSED_EnemyProjSpritemaps_5_8DB348:
-    dw $0003                                                             ;8DB348;
+    dw $0003
     %spritemapEntry(0, $1FE, $03, 1, 1, 3, 5, $56)
     %spritemapEntry(0, $1F6, $FB, 1, 1, 3, 5, $58)
     %spritemapEntry(0, $1FE, $FB, 1, 1, 3, 5, $57)
 
 UNUSED_EnemyProjSpritemaps_6_8DB359:
-    dw $0002                                                             ;8DB359;
+    dw $0002
     %spritemapEntry(0, $1FD, $01, 1, 0, 3, 5, $59)
     %spritemapEntry(0, $1FD, $F9, 1, 0, 3, 5, $5A)
 
 UNUSED_EnemyProjSpritemaps_7_8DB365:
-    dw $0003                                                             ;8DB365;
+    dw $0003
     %spritemapEntry(0, $1FA, $03, 1, 0, 3, 5, $56)
     %spritemapEntry(0, $02, $FB, 1, 0, 3, 5, $58)
     %spritemapEntry(0, $1FA, $FB, 1, 0, 3, 5, $57)
 
 UNUSED_EnemyProjSpritemaps_8_8DB376:
-    dw $0002                                                             ;8DB376;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $65)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $64)
 
 UNUSED_EnemyProjSpritemaps_9_8DB382:
-    dw $0003                                                             ;8DB382;
+    dw $0003
     %spritemapEntry(0, $02, $FE, 0, 0, 3, 5, $68)
     %spritemapEntry(0, $1FA, $FE, 0, 0, 3, 5, $67)
     %spritemapEntry(0, $1FA, $F6, 0, 0, 3, 5, $66)
 
 UNUSED_EnemyProjSpritemaps_A_8DB393:
-    dw $0002                                                             ;8DB393;
+    dw $0002
     %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 5, $69)
     %spritemapEntry(0, $1FC, $00, 0, 0, 3, 5, $6A)
 
 UNUSED_EnemyProjSpritemaps_B_8DB39F:
-    dw $0003                                                             ;8DB39F;
+    dw $0003
     %spritemapEntry(0, $1F6, $FE, 0, 1, 3, 5, $68)
     %spritemapEntry(0, $1FE, $FE, 0, 1, 3, 5, $67)
     %spritemapEntry(0, $1FE, $F6, 0, 1, 3, 5, $66)
 
 UNUSED_EnemyProjSpritemaps_C_8DB3B0:
-    dw $0002                                                             ;8DB3B0;
+    dw $0002
     %spritemapEntry(0, $1F8, $FC, 0, 1, 3, 5, $65)
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 5, $64)
 
 UNUSED_EnemyProjSpritemaps_D_8DB3BC:
-    dw $0003                                                             ;8DB3BC;
+    dw $0003
     %spritemapEntry(0, $1F6, $FA, 1, 1, 3, 5, $68)
     %spritemapEntry(0, $1FE, $FA, 1, 1, 3, 5, $67)
     %spritemapEntry(0, $1FE, $02, 1, 1, 3, 5, $66)
 
 UNUSED_EnemyProjSpritemaps_E_8DB3CD:
-    dw $0002                                                             ;8DB3CD;
+    dw $0002
     %spritemapEntry(0, $1FC, $00, 1, 0, 3, 5, $69)
     %spritemapEntry(0, $1FC, $F8, 1, 0, 3, 5, $6A)
 
 UNUSED_EnemyProjSpritemaps_F_8DB3D9:
-    dw $0003                                                             ;8DB3D9;
+    dw $0003
     %spritemapEntry(0, $02, $FA, 1, 0, 3, 5, $68)
     %spritemapEntry(0, $1FA, $FA, 1, 0, 3, 5, $67)
     %spritemapEntry(0, $1FA, $02, 1, 0, 3, 5, $66)
 
 EnemyProjSpritemaps_DustCloud_Explosion_63:
-    dw $0001                                                             ;8DB3EA;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3C)
 
 EnemyProjSpritemaps_DustCloud_Explosion_64:
-    dw $0001                                                             ;8DB3F1;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3D)
 
 EnemyProjSpritemaps_DustCloud_Explosion_65:
-    dw $0001                                                             ;8DB3F8;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3E)
 
 UNUSED_EnemyProjSpritemaps_8DB3FF:
-    dw $0001                                                             ;8DB3FF;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3F)
 
 EnemyProjSpritemaps_Common_BigExplosion_0:
-    dw $0004                                                             ;8DB406;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $8A)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $8A)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $8A)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $8A)
 
 EnemyProjSpritemaps_Common_BigExplosion_1:
-    dw $0004                                                             ;8DB41C;
+    dw $0004
     %spritemapEntry(1, $4200, $00, 1, 1, 3, 5, $90)
     %spritemapEntry(1, $4200, $F0, 0, 1, 3, 5, $90)
     %spritemapEntry(1, $43F0, $00, 1, 0, 3, 5, $90)
     %spritemapEntry(1, $43F0, $F0, 0, 0, 3, 5, $90)
 
 EnemyProjSpritemaps_Common_BigExplosion_2:
-    dw $0004                                                             ;8DB432;
+    dw $0004
     %spritemapEntry(1, $4200, $00, 1, 1, 3, 5, $92)
     %spritemapEntry(1, $43F0, $00, 1, 0, 3, 5, $92)
     %spritemapEntry(1, $4200, $F0, 0, 1, 3, 5, $92)
     %spritemapEntry(1, $43F0, $F0, 0, 0, 3, 5, $92)
 
 EnemyProjSpritemaps_Common_BigExplosion_3:
-    dw $000C                                                             ;8DB448;
+    dw $000C
     %spritemapEntry(0, $10, $00, 1, 1, 3, 5, $C2)
     %spritemapEntry(0, $10, $F8, 0, 1, 3, 5, $C2)
     %spritemapEntry(0, $00, $10, 1, 1, 3, 5, $B2)
@@ -4771,7 +4771,7 @@ EnemyProjSpritemaps_Common_BigExplosion_3:
     %spritemapEntry(1, $43F0, $F0, 0, 0, 3, 5, $B0)
 
 EnemyProjSpritemaps_Common_BigExplosion_4:
-    dw $0008                                                             ;8DB486;
+    dw $0008
     %spritemapEntry(1, $4208, $00, 1, 1, 3, 5, $B5)
     %spritemapEntry(1, $4200, $08, 1, 1, 3, 5, $B3)
     %spritemapEntry(1, $43E8, $00, 1, 0, 3, 5, $B5)
@@ -4782,7 +4782,7 @@ EnemyProjSpritemaps_Common_BigExplosion_4:
     %spritemapEntry(1, $43F0, $E8, 0, 0, 3, 5, $B3)
 
 EnemyProjSpritemaps_Common_BigExplosion_5:
-    dw $000C                                                             ;8DB4B0;
+    dw $000C
     %spritemapEntry(0, $00, $10, 1, 1, 3, 5, $BB)
     %spritemapEntry(0, $1F8, $10, 1, 0, 3, 5, $BB)
     %spritemapEntry(0, $00, $E8, 0, 1, 3, 5, $BB)
@@ -4797,534 +4797,534 @@ EnemyProjSpritemaps_Common_BigExplosion_5:
     %spritemapEntry(1, $43E8, $E8, 0, 0, 3, 5, $B8)
 
 EnemyProjSpritemaps_DownwardsShotGate_0:
-    dw $0001                                                             ;8DB4EE;
+    dw $0001
     %spritemapEntry(1, $4200, $00, 0, 0, 2, 5, $BE)
 
 EnemyProjSpritemaps_DownwardsShotGate_1:
-    dw $0002                                                             ;8DB4F5;
+    dw $0002
     %spritemapEntry(1, $4200, $00, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $F0, 0, 0, 2, 5, $BE)
 
 EnemyProjSpritemaps_DownwardsShotGate_2:
-    dw $0003                                                             ;8DB501;
+    dw $0003
     %spritemapEntry(1, $4200, $00, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $F0, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $E0, 0, 0, 2, 5, $BE)
 
 EnemyProjSpritemaps_DownwardsShotGate_3:
-    dw $0004                                                             ;8DB512;
+    dw $0004
     %spritemapEntry(1, $4200, $00, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $F0, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $E0, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $D0, 0, 0, 2, 5, $BE)
 
 EnemyProjSpritemaps_UpwardsShotGate_0:
-    dw $0001                                                             ;8DB528;
+    dw $0001
     %spritemapEntry(1, $4200, $FF, 0, 0, 2, 5, $BE)
 
 EnemyProjSpritemaps_UpwardsShotGate_1:
-    dw $0002                                                             ;8DB52F;
+    dw $0002
     %spritemapEntry(1, $4200, $0F, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $FF, 0, 0, 2, 5, $BE)
 
 EnemyProjSpritemaps_UpwardsShotGate_2:
-    dw $0003                                                             ;8DB53B;
+    dw $0003
     %spritemapEntry(1, $4200, $1F, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $0F, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $FF, 0, 0, 2, 5, $BE)
 
 EnemyProjSpritemaps_UpwardsShotGate_3:
-    dw $0004                                                             ;8DB54C;
+    dw $0004
     %spritemapEntry(1, $4200, $2F, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $1F, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $0F, 0, 0, 2, 5, $BE)
     %spritemapEntry(1, $4200, $FF, 0, 0, 2, 5, $BE)
 
 EnemyProjSpritemaps_SaveStationElectricity_0:
-    dw $0004                                                             ;8DB562;
+    dw $0004
     %spritemapEntry(0, $08, $E0, 0, 1, 3, 5, $CD)
     %spritemapEntry(0, $00, $E0, 0, 1, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $E0, 0, 0, 3, 5, $CD)
     %spritemapEntry(0, $1F8, $E0, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_SaveStationElectricity_1:
-    dw $0004                                                             ;8DB578;
+    dw $0004
     %spritemapEntry(0, $08, $E8, 0, 1, 3, 5, $CD)
     %spritemapEntry(0, $00, $E8, 0, 1, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $E8, 0, 0, 3, 5, $CD)
     %spritemapEntry(0, $1F8, $E8, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_SaveStationElectricity_2:
-    dw $0004                                                             ;8DB58E;
+    dw $0004
     %spritemapEntry(0, $08, $F0, 0, 1, 3, 5, $CD)
     %spritemapEntry(0, $00, $F0, 0, 1, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $F0, 0, 0, 3, 5, $CD)
     %spritemapEntry(0, $1F8, $F0, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_SaveStationElectricity_3:
-    dw $0004                                                             ;8DB5A4;
+    dw $0004
     %spritemapEntry(0, $08, $F8, 0, 1, 3, 5, $CD)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $F8, 0, 0, 3, 5, $CD)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_SaveStationElectricity_4:
-    dw $0004                                                             ;8DB5BA;
+    dw $0004
     %spritemapEntry(0, $08, $00, 0, 1, 3, 5, $CD)
     %spritemapEntry(0, $00, $00, 0, 1, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $00, 0, 0, 3, 5, $CD)
     %spritemapEntry(0, $1F8, $00, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_SaveStationElectricity_5:
-    dw $0004                                                             ;8DB5D0;
+    dw $0004
     %spritemapEntry(0, $08, $08, 0, 1, 3, 5, $CD)
     %spritemapEntry(0, $00, $08, 0, 1, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $08, 0, 0, 3, 5, $CD)
     %spritemapEntry(0, $1F8, $08, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_SaveStationElectricity_6:
-    dw $0004                                                             ;8DB5E6;
+    dw $0004
     %spritemapEntry(0, $08, $10, 0, 1, 3, 5, $CD)
     %spritemapEntry(0, $00, $10, 0, 1, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $10, 0, 0, 3, 5, $CD)
     %spritemapEntry(0, $1F8, $10, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_SaveStationElectricity_7:
-    dw $0004                                                             ;8DB5FC;
+    dw $0004
     %spritemapEntry(0, $08, $18, 0, 1, 3, 5, $CD)
     %spritemapEntry(0, $00, $18, 0, 1, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $18, 0, 0, 3, 5, $CD)
     %spritemapEntry(0, $1F8, $18, 0, 0, 3, 5, $6F)
 
 EnemyProjSpritemaps_BotwoonsBody_UpFacingLeft_0:
-    dw $0001                                                             ;8DB612;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $128)
 
 EnemyProjSpritemaps_BotwoonsBody_UpFacingLeft_1:
-    dw $0001                                                             ;8DB619;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $12A)
 
 EnemyProjSpritemaps_BotwoonsBody_UpFacingLeft_2:
-    dw $0001                                                             ;8DB620;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $12C)
 
 EnemyProjSpritemaps_BotwoonsBody_UpFacingLeft_3:
-    dw $0001                                                             ;8DB627;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $12E)
 
 EnemyProjSpritemaps_BotwoonsBody_0:
-    dw $0001                                                             ;8DB62E;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $148)
 
 EnemyProjSpritemaps_BotwoonsBody_1:
-    dw $0001                                                             ;8DB635;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $14A)
 
 EnemyProjSpritemaps_BotwoonsBody_2:
-    dw $0001                                                             ;8DB63C;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $14C)
 
 EnemyProjSpritemaps_BotwoonsBody_3:
-    dw $0001                                                             ;8DB643;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $14E)
 
 EnemyProjSpritemaps_BotwoonsBody_4:
-    dw $0001                                                             ;8DB64A;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $140)
 
 EnemyProjSpritemaps_BotwoonsBody_5:
-    dw $0001                                                             ;8DB651;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $142)
 
 EnemyProjSpritemaps_BotwoonsBody_6:
-    dw $0001                                                             ;8DB658;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $144)
 
 EnemyProjSpritemaps_BotwoonsBody_7:
-    dw $0001                                                             ;8DB65F;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $146)
 
 EnemyProjSpritemaps_BotwoonsBody_8:
-    dw $0001                                                             ;8DB666;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $160)
 
 EnemyProjSpritemaps_BotwoonsBody_9:
-    dw $0001                                                             ;8DB66D;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $162)
 
 EnemyProjSpritemaps_BotwoonsBody_A:
-    dw $0001                                                             ;8DB674;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $164)
 
 EnemyProjSpritemaps_BotwoonsBody_B:
-    dw $0001                                                             ;8DB67B;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $166)
 
 UNUSED_EnemyProjSpritemap_BotwoonsBody_DownFacingLeft_8DB682:
-    dw $0001                                                             ;8DB682;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $168)
 
 UNUSED_EnemyProjSpritemap_BotwoonsBody_DownFacingLeft_8DB689:
-    dw $0001                                                             ;8DB689;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $16A)
 
 UNUSED_EnemyProjSpritemap_BotwoonsBody_DownFacingLeft_8DB690:
-    dw $0001                                                             ;8DB690;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $16C)
 
 UNUSED_EnemyProjSpritemap_BotwoonsBody_DownFacingLeft_8DB697:
-    dw $0001                                                             ;8DB697;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $16E)
 
 EnemyProjSpritemaps_BotwoonsBody_C:
-    dw $0001                                                             ;8DB69E;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $168)
 
 EnemyProjSpritemaps_BotwoonsBody_D:
-    dw $0001                                                             ;8DB6A5;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $16A)
 
 EnemyProjSpritemaps_BotwoonsBody_E:
-    dw $0001                                                             ;8DB6AC;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $16C)
 
 EnemyProjSpritemaps_BotwoonsBody_F:
-    dw $0001                                                             ;8DB6B3;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $16E)
 
 EnemyProjSpritemaps_BotwoonsBody_10:
-    dw $0001                                                             ;8DB6BA;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $160)
 
 EnemyProjSpritemaps_BotwoonsBody_11:
-    dw $0001                                                             ;8DB6C1;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $162)
 
 EnemyProjSpritemaps_BotwoonsBody_12:
-    dw $0001                                                             ;8DB6C8;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $164)
 
 EnemyProjSpritemaps_BotwoonsBody_13:
-    dw $0001                                                             ;8DB6CF;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $166)
 
 EnemyProjSpritemaps_BotwoonsBody_14:
-    dw $0001                                                             ;8DB6D6;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $140)
 
 EnemyProjSpritemaps_BotwoonsBody_15:
-    dw $0001                                                             ;8DB6DD;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $142)
 
 EnemyProjSpritemaps_BotwoonsBody_16:
-    dw $0001                                                             ;8DB6E4;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $144)
 
 EnemyProjSpritemaps_BotwoonsBody_17:
-    dw $0001                                                             ;8DB6EB;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $146)
 
 EnemyProjSpritemaps_BotwoonsBody_18:
-    dw $0001                                                             ;8DB6F2;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $148)
 
 EnemyProjSpritemaps_BotwoonsBody_19:
-    dw $0001                                                             ;8DB6F9;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $14A)
 
 EnemyProjSpritemaps_BotwoonsBody_1A:
-    dw $0001                                                             ;8DB700;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $14C)
 
 EnemyProjSpritemaps_BotwoonsBody_1B:
-    dw $0001                                                             ;8DB707;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $14E)
 
 EnemyProjSpritemaps_BotwoonsBody_1C:
-    dw $0001                                                             ;8DB70E;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $128)
 
 EnemyProjSpritemaps_BotwoonsBody_1D:
-    dw $0001                                                             ;8DB715;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $12A)
 
 EnemyProjSpritemaps_BotwoonsBody_1E:
-    dw $0001                                                             ;8DB71C;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $12C)
 
 EnemyProjSpritemaps_BotwoonsBody_1F:
-    dw $0001                                                             ;8DB723;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $12E)
 
 EnemyProjSpritemaps_BotwoonsBody_20:
-    dw $0001                                                             ;8DB72A;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $1A4)
 
 EnemyProjSpritemaps_BotwoonsBody_21:
-    dw $0001                                                             ;8DB731;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $1A2)
 
 EnemyProjSpritemaps_BotwoonsBody_22:
-    dw $0001                                                             ;8DB738;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $1A0)
 
 EnemyProjSpritemaps_BotwoonsBody_23:
-    dw $0001                                                             ;8DB73F;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 1, 0, 2, 0, $1A2)
 
 EnemyProjSpritemaps_BotwoonsBody_24:
-    dw $0001                                                             ;8DB746;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 1, 0, 2, 0, $1A4)
 
 EnemyProjSpritemaps_BotwoonsBody_25:
-    dw $0001                                                             ;8DB74D;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 1, 1, 2, 0, $1A2)
 
 EnemyProjSpritemaps_BotwoonsBody_26:
-    dw $0001                                                             ;8DB754;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $1A0)
 
 EnemyProjSpritemaps_BotwoonsBody_27:
-    dw $0001                                                             ;8DB75B;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $1A2)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_0_8DB762:
-    dw $0001                                                             ;8DB762;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $128)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1_8DB769:
-    dw $0001                                                             ;8DB769;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $12A)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2_8DB770:
-    dw $0001                                                             ;8DB770;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $12C)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_3_8DB777:
-    dw $0001                                                             ;8DB777;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $12E)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_4_8DB77E:
-    dw $0001                                                             ;8DB77E;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $148)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_5_8DB785:
-    dw $0001                                                             ;8DB785;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $14A)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_6_8DB78C:
-    dw $0001                                                             ;8DB78C;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $14C)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_7_8DB793:
-    dw $0001                                                             ;8DB793;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $14E)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_8_8DB79A:
-    dw $0001                                                             ;8DB79A;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $140)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_9_8DB7A1:
-    dw $0001                                                             ;8DB7A1;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $142)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_A_8DB7A8:
-    dw $0001                                                             ;8DB7A8;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $144)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_B_8DB7AF:
-    dw $0001                                                             ;8DB7AF;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $146)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_C_8DB7B6:
-    dw $0001                                                             ;8DB7B6;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $160)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_D_8DB7BD:
-    dw $0001                                                             ;8DB7BD;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $162)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_E_8DB7C4:
-    dw $0001                                                             ;8DB7C4;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $164)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_F_8DB7CB:
-    dw $0001                                                             ;8DB7CB;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $166)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_10_8DB7D2:
-    dw $0001                                                             ;8DB7D2;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $168)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_11_8DB7D9:
-    dw $0001                                                             ;8DB7D9;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $16A)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_12_8DB7E0:
-    dw $0001                                                             ;8DB7E0;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $16C)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_13_8DB7E7:
-    dw $0001                                                             ;8DB7E7;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $16E)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_14_8DB7EE:
-    dw $0001                                                             ;8DB7EE;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $168)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_15_8DB7F5:
-    dw $0001                                                             ;8DB7F5;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $16A)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_16_8DB7FC:
-    dw $0001                                                             ;8DB7FC;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $16C)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_17_8DB803:
-    dw $0001                                                             ;8DB803;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $16E)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_18_8DB80A:
-    dw $0001                                                             ;8DB80A;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $160)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_19_8DB811:
-    dw $0001                                                             ;8DB811;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $162)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1A_8DB818:
-    dw $0001                                                             ;8DB818;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $164)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1B_8DB81F:
-    dw $0001                                                             ;8DB81F;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $166)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1C_8DB826:
-    dw $0001                                                             ;8DB826;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $140)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1D_8DB82D:
-    dw $0001                                                             ;8DB82D;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $142)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1E_8DB834:
-    dw $0001                                                             ;8DB834;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $144)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1F_8DB83B:
-    dw $0001                                                             ;8DB83B;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $146)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_20_8DB842:
-    dw $0001                                                             ;8DB842;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $148)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_21_8DB849:
-    dw $0001                                                             ;8DB849;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $14A)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_22_8DB850:
-    dw $0001                                                             ;8DB850;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $14C)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_23_8DB857:
-    dw $0001                                                             ;8DB857;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $14E)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_24_8DB85E:
-    dw $0001                                                             ;8DB85E;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $128)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_25_8DB865:
-    dw $0001                                                             ;8DB865;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $12A)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_26_8DB86C:
-    dw $0001                                                             ;8DB86C;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $12C)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_27_8DB873:
-    dw $0001                                                             ;8DB873;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $12E)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_28_8DB87A:
-    dw $0001                                                             ;8DB87A;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $1A4)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_29_8DB881:
-    dw $0001                                                             ;8DB881;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $1A2)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2A_8DB888:
-    dw $0001                                                             ;8DB888;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $1A0)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2B_8DB88F:
-    dw $0001                                                             ;8DB88F;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 1, 0, 0, 0, $1A2)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2C_8DB896:
-    dw $0001                                                             ;8DB896;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 1, 0, 0, 0, $1A4)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2D_8DB89D:
-    dw $0001                                                             ;8DB89D;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 1, 1, 0, 0, $1A2)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2E_8DB8A4:
-    dw $0001                                                             ;8DB8A4;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $1A0)
 
 UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2F_8DB8AB:
-    dw $0001                                                             ;8DB8AB;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $1A2)
 
 EnemyProjSpritemaps_BotwoonsBody_28:
-    dw $0000                                                             ;8DB8B2;
+    dw $0000
 
 EnemyProjSpritemaps_BotwoonsSpit_0:
-    dw $0001                                                             ;8DB8B4;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $1A8)
 
 EnemyProjSpritemaps_BotwoonsSpit_1:
-    dw $0001                                                             ;8DB8BB;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $1A9)
 
 EnemyProjSpritemaps_BotwoonsSpit_2:
-    dw $0001                                                             ;8DB8C2;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $1AA)
 
 EnemyProjSpritemaps_BotwoonsSpit_3:
-    dw $0001                                                             ;8DB8C9;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $1AB)
 
 EnemyProjSpritemaps_BotwoonsSpit_4:
-    dw $0001                                                             ;8DB8D0;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 1, $1AC)
 
 EnemyProjSpritemaps_YappingMawsBody_0:
-    dw $0001                                                             ;8DB8D7;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10A)
 
 EnemyProjSpritemaps_YappingMawsBody_1:
-    dw $0001                                                             ;8DB8DE;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 1, 0, 2, 0, $10A)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_0_8DB8E5:
-    dw $0003                                                             ;8DB8E5;
+    dw $0003
     %spritemapEntry(1, $1F0, $00, 0, 0, 3, 5, $76)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $76)
     %spritemapEntry(1, $00, $F8, 0, 0, 3, 5, $76)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_1_8DB8F6:
-    dw $0003                                                             ;8DB8F6;
+    dw $0003
     %spritemapEntry(1, $04, $F8, 0, 1, 3, 5, $78)
     %spritemapEntry(1, $1EC, $04, 1, 1, 3, 5, $78)
     %spritemapEntry(1, $1EC, $EC, 0, 0, 3, 5, $78)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_2_8DB907:
-    dw $0007                                                             ;8DB907;
+    dw $0007
     %spritemapEntry(0, $1EB, $E2, 0, 0, 3, 5, $2B)
     %spritemapEntry(1, $0C, $F8, 0, 1, 3, 5, $98)
     %spritemapEntry(1, $1E8, $08, 1, 0, 3, 5, $98)
@@ -5334,7 +5334,7 @@ UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_2_8DB907:
     %spritemapEntry(0, $1F5, $03, 0, 0, 3, 5, $2B)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_3_8DB92C:
-    dw $0007                                                             ;8DB92C;
+    dw $0007
     %spritemapEntry(0, $1E5, $DC, 0, 0, 3, 5, $2B)
     %spritemapEntry(1, $10, $F8, 0, 1, 3, 5, $9E)
     %spritemapEntry(1, $1E4, $0C, 1, 0, 3, 5, $9E)
@@ -5344,7 +5344,7 @@ UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_3_8DB92C:
     %spritemapEntry(0, $1F1, $FD, 0, 0, 3, 5, $2B)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_4_8DB951:
-    dw $0007                                                             ;8DB951;
+    dw $0007
     %spritemapEntry(0, $1E3, $DA, 0, 0, 3, 5, $2B)
     %spritemapEntry(1, $1E0, $E0, 0, 0, 3, 5, $9A)
     %spritemapEntry(1, $14, $F8, 0, 1, 3, 5, $9A)
@@ -5354,7 +5354,7 @@ UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_4_8DB951:
     %spritemapEntry(0, $1ED, $FA, 0, 0, 3, 5, $2B)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_5_8DB976:
-    dw $0007                                                             ;8DB976;
+    dw $0007
     %spritemapEntry(0, $1E2, $DA, 0, 0, 3, 5, $2B)
     %spritemapEntry(1, $18, $F8, 0, 1, 3, 5, $9C)
     %spritemapEntry(1, $1DC, $14, 1, 0, 3, 5, $9C)
@@ -5364,848 +5364,848 @@ UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_5_8DB976:
     %spritemapEntry(0, $1EA, $F9, 0, 0, 3, 5, $2B)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_6_8DB99B:
-    dw $0004                                                             ;8DB99B;
+    dw $0004
     %spritemapEntry(0, $18, $DB, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $11, $FC, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $1E7, $FC, 0, 0, 3, 5, $2A)
     %spritemapEntry(0, $1E0, $DB, 0, 0, 3, 5, $2A)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_7_8DB9B1:
-    dw $0004                                                             ;8DB9B1;
+    dw $0004
     %spritemapEntry(0, $1A, $DC, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $12, $FC, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $1E6, $FC, 0, 0, 3, 5, $2A)
     %spritemapEntry(0, $1DE, $DC, 0, 0, 3, 5, $2A)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_8_8DB9C7:
-    dw $0004                                                             ;8DB9C7;
+    dw $0004
     %spritemapEntry(0, $1C, $DD, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $13, $FE, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $1E5, $FE, 0, 0, 3, 5, $29)
     %spritemapEntry(0, $1DC, $DD, 0, 0, 3, 5, $29)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_9_8DB9DD:
-    dw $0004                                                             ;8DB9DD;
+    dw $0004
     %spritemapEntry(0, $1E, $DE, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $14, $00, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $1E4, $00, 0, 0, 3, 5, $29)
     %spritemapEntry(0, $1DA, $DE, 0, 0, 3, 5, $29)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_A_8DB9F3:
-    dw $0004                                                             ;8DB9F3;
+    dw $0004
     %spritemapEntry(0, $1F, $E0, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $15, $02, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1D9, $E0, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E3, $02, 0, 0, 3, 5, $28)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_B_8DBA09:
-    dw $0004                                                             ;8DBA09;
+    dw $0004
     %spritemapEntry(0, $20, $E2, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $16, $04, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1D8, $E2, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E2, $04, 0, 0, 3, 5, $28)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_C_8DBA1F:
-    dw $0004                                                             ;8DBA1F;
+    dw $0004
     %spritemapEntry(0, $21, $E9, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $17, $0B, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E1, $0B, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1D7, $E9, 0, 0, 3, 5, $28)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_D_8DBA35:
-    dw $0004                                                             ;8DBA35;
+    dw $0004
     %spritemapEntry(0, $22, $F1, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $18, $13, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E0, $13, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1D6, $F1, 0, 0, 3, 5, $28)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_E_8DBA4B:
-    dw $0004                                                             ;8DBA4B;
+    dw $0004
     %spritemapEntry(0, $23, $FB, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $19, $19, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1DF, $19, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1D5, $FB, 0, 0, 3, 5, $28)
 
 UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_F_8DBA61:
-    dw $0004                                                             ;8DBA61;
+    dw $0004
     %spritemapEntry(0, $1D4, $06, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1DE, $24, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1A, $24, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $24, $06, 0, 0, 3, 5, $28)
 
 UNUSED_EnemyProjSpritemaps_0_8DBA77:
-    dw $0001                                                             ;8DBA77;
+    dw $0001
     %spritemapEntry(0, $1F7, $F7, 0, 0, 3, 5, $48)
 
 UNUSED_EnemyProjSpritemaps_1_8DBA7E:
-    dw $0002                                                             ;8DBA7E;
+    dw $0002
     %spritemapEntry(0, $01, $01, 0, 0, 3, 5, $48)
     %spritemapEntry(1, $1F3, $F3, 0, 0, 3, 5, $7C)
 
 UNUSED_EnemyProjSpritemaps_2_8DBA8A:
-    dw $0003                                                             ;8DBA8A;
+    dw $0003
     %spritemapEntry(1, $1FD, $FD, 0, 0, 3, 5, $7C)
     %spritemapEntry(0, $1F7, $01, 0, 0, 3, 5, $48)
     %spritemapEntry(1, $1F3, $F3, 0, 0, 3, 5, $7E)
 
 UNUSED_EnemyProjSpritemaps_3_8DBA9B:
-    dw $0004                                                             ;8DBA9B;
+    dw $0004
     %spritemapEntry(0, $01, $F7, 0, 0, 3, 5, $48)
     %spritemapEntry(1, $1FD, $FD, 0, 0, 3, 5, $7E)
     %spritemapEntry(1, $1F3, $FD, 0, 0, 3, 5, $7C)
     %spritemapEntry(1, $1F3, $F3, 0, 0, 3, 5, $9A)
 
 UNUSED_EnemyProjSpritemaps_4_8DBAB1:
-    dw $0004                                                             ;8DBAB1;
+    dw $0004
     %spritemapEntry(1, $1FD, $F3, 0, 0, 3, 5, $7C)
     %spritemapEntry(1, $1FD, $FD, 0, 0, 3, 5, $9A)
     %spritemapEntry(1, $1F3, $FD, 0, 0, 3, 5, $7E)
     %spritemapEntry(1, $1F3, $F3, 0, 0, 3, 5, $9C)
 
 UNUSED_EnemyProjSpritemaps_5_8DBAC7:
-    dw $0003                                                             ;8DBAC7;
+    dw $0003
     %spritemapEntry(1, $1FD, $F3, 0, 0, 3, 5, $7E)
     %spritemapEntry(1, $1FD, $FD, 0, 0, 3, 5, $9C)
     %spritemapEntry(1, $1F3, $FD, 0, 0, 3, 5, $9A)
 
 UNUSED_EnemyProjSpritemaps_6_8DBAD8:
-    dw $0002                                                             ;8DBAD8;
+    dw $0002
     %spritemapEntry(1, $1FD, $F3, 0, 0, 3, 5, $9A)
     %spritemapEntry(1, $1F3, $FD, 0, 0, 3, 5, $9C)
 
 UNUSED_EnemyProjSpritemaps_7_8DBAE4:
-    dw $0001                                                             ;8DBAE4;
+    dw $0001
     %spritemapEntry(1, $1FD, $F3, 0, 0, 3, 5, $9C)
 
 UNUSED_EnemyProjSpritemaps_8_8DBAEB:
-    dw $0001                                                             ;8DBAEB;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $6B)
 
 UNUSED_EnemyProjSpritemaps_9_8DBAF2:
-    dw $0001                                                             ;8DBAF2;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $6C)
 
 UNUSED_EnemyProjSpritemaps_A_8DBAF9:
-    dw $0002                                                             ;8DBAF9;
+    dw $0002
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $6B)
 
 UNUSED_EnemyProjSpritemaps_B_8DBB05:
-    dw $0002                                                             ;8DBB05;
+    dw $0002
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $6C)
 
 UNUSED_EnemyProjSpritemaps_C_8DBB11:
-    dw $0003                                                             ;8DBB11;
+    dw $0003
     %spritemapEntry(0, $1F4, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $04, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $6C)
 
 UNUSED_EnemyProjSpritemaps_D_8DBB22:
-    dw $0003                                                             ;8DBB22;
+    dw $0003
     %spritemapEntry(0, $04, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $1F4, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $6B)
 
 UNUSED_EnemyProjSpritemaps_E_8DBB33:
-    dw $0004                                                             ;8DBB33;
+    dw $0004
     %spritemapEntry(0, $08, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6C)
     %spritemapEntry(0, $1F0, $FC, 0, 0, 3, 5, $6C)
 
 UNUSED_EnemyProjSpritemaps_F_8DBB49:
-    dw $0004                                                             ;8DBB49;
+    dw $0004
     %spritemapEntry(0, $08, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6B)
     %spritemapEntry(0, $1F0, $FC, 0, 0, 3, 5, $6B)
 
 UNUSED_EnemyProjSpritemaps_10_8DBB5F:
-    dw $0001                                                             ;8DBB5F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $25)
 
 UNUSED_EnemyProjSpritemaps_11_8DBB66:
-    dw $0003                                                             ;8DBB66;
+    dw $0003
     %spritemapEntry(0, $00, $F8, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FA, $F6, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FC, $FB, 0, 0, 3, 5, $25)
 
 UNUSED_EnemyProjSpritemaps_12_8DBB77:
-    dw $0003                                                             ;8DBB77;
+    dw $0003
     %spritemapEntry(0, $01, $F7, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1F9, $F4, 0, 0, 3, 5, $25)
     %spritemapEntry(0, $1FB, $FA, 0, 0, 3, 5, $25)
 
 UNUSED_EnemyProjSpritemaps_13_8DBB88:
-    dw $0003                                                             ;8DBB88;
+    dw $0003
     %spritemapEntry(0, $01, $F5, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FA, $F1, 0, 0, 3, 5, $43)
 
 UNUSED_EnemyProjSpritemaps_14_8DBB99:
-    dw $0003                                                             ;8DBB99;
+    dw $0003
     %spritemapEntry(0, $01, $F3, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FC, $F5, 0, 0, 3, 5, $43)
     %spritemapEntry(0, $1FA, $EE, 0, 0, 3, 5, $43)
 
 UNUSED_EnemyProjSpritemaps_15_8DBBAA:
-    dw $0003                                                             ;8DBBAA;
+    dw $0003
     %spritemapEntry(0, $00, $F0, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1FC, $F4, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1FA, $ED, 0, 0, 3, 5, $40)
 
 UNUSED_EnemyProjSpritemaps_16_8DBBBB:
-    dw $0003                                                             ;8DBBBB;
+    dw $0003
     %spritemapEntry(0, $00, $EE, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1FC, $F2, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1FA, $EC, 0, 0, 3, 5, $40)
 
 UNUSED_EnemyProjSpritemaps_17_8DBBCC:
-    dw $0002                                                             ;8DBBCC;
+    dw $0002
     %spritemapEntry(0, $00, $EC, 0, 0, 3, 5, $40)
     %spritemapEntry(0, $1FC, $F0, 0, 0, 3, 5, $40)
 
 UNUSED_EnemyProjSpritemaps_18_8DBBD8:
-    dw $0001                                                             ;8DBBD8;
+    dw $0001
     %spritemapEntry(0, $1FC, $EE, 0, 0, 3, 5, $40)
 
 UNUSED_EnemyProjSpritemaps_19_8DBBDF:
-    dw $0004                                                             ;8DBBDF;
+    dw $0004
     %spritemapEntry(0, $08, $E0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $E0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $E0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $E0, 0, 0, 3, 5, $6F)
 
 UNUSED_EnemyProjSpritemaps_1A_8DBBF5:
-    dw $0004                                                             ;8DBBF5;
+    dw $0004
     %spritemapEntry(0, $08, $E8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $E8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $E8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $E8, 0, 0, 3, 5, $6F)
 
 UNUSED_EnemyProjSpritemaps_1B_8DBC0B:
-    dw $0004                                                             ;8DBC0B;
+    dw $0004
     %spritemapEntry(0, $08, $F0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $F0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $F0, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $F0, 0, 0, 3, 5, $6F)
 
 UNUSED_EnemyProjSpritemaps_1C_8DBC21:
-    dw $0004                                                             ;8DBC21;
+    dw $0004
     %spritemapEntry(0, $08, $F8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $F8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $F8, 0, 0, 3, 5, $6F)
 
 UNUSED_EnemyProjSpritemaps_1D_8DBC37:
-    dw $0004                                                             ;8DBC37;
+    dw $0004
     %spritemapEntry(0, $08, $00, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $00, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $00, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $00, 0, 0, 3, 5, $6F)
 
 UNUSED_EnemyProjSpritemaps_1E_8DBC4D:
-    dw $0004                                                             ;8DBC4D;
+    dw $0004
     %spritemapEntry(0, $08, $08, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $08, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $08, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $08, 0, 0, 3, 5, $6F)
 
 UNUSED_EnemyProjSpritemaps_1F_8DBC63:
-    dw $0004                                                             ;8DBC63;
+    dw $0004
     %spritemapEntry(0, $08, $10, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $10, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $10, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $10, 0, 0, 3, 5, $6F)
 
 UNUSED_EnemyProjSpritemaps_20_8DBC79:
-    dw $0004                                                             ;8DBC79;
+    dw $0004
     %spritemapEntry(0, $08, $18, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $18, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $18, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F0, $18, 0, 0, 3, 5, $6F)
 
 UNUSED_EnemyProjSpritemaps_21_8DBC8F:
-    dw $0002                                                             ;8DBC8F;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $BF)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $BE)
 
 UNUSED_EnemyProjSpritemaps_22_8DBC9B:
-    dw $0001                                                             ;8DBC9B;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $BE)
 
 UNUSED_EnemyProjSpritemaps_23_8DBCA2:
-    dw $0002                                                             ;8DBCA2;
+    dw $0002
     %spritemapEntry(1, $1F8, $FC, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F4, 0, 0, 3, 5, $BE)
 
 UNUSED_EnemyProjSpritemaps_24_8DBCAE:
-    dw $0002                                                             ;8DBCAE;
+    dw $0002
     %spritemapEntry(1, $1F8, $00, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F0, 0, 0, 3, 5, $BE)
 
 UNUSED_EnemyProjSpritemaps_25_8DBCBA:
-    dw $0003                                                             ;8DBCBA;
+    dw $0003
     %spritemapEntry(1, $1F8, $04, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $EC, 0, 0, 3, 5, $BE)
 
 UNUSED_EnemyProjSpritemaps_26_8DBCCB:
-    dw $0003                                                             ;8DBCCB;
+    dw $0003
     %spritemapEntry(1, $1F8, $08, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $E8, 0, 0, 3, 5, $BE)
 
 UNUSED_EnemyProjSpritemaps_27_8DBCDC:
-    dw $0004                                                             ;8DBCDC;
+    dw $0004
     %spritemapEntry(1, $1F8, $0C, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $00, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F0, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $E4, 0, 0, 3, 5, $BE)
 
 UNUSED_EnemyProjSpritemaps_28_8DBCF2:
-    dw $0004                                                             ;8DBCF2;
+    dw $0004
     %spritemapEntry(1, $1F8, $10, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $00, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $F0, 0, 0, 3, 5, $BE)
     %spritemapEntry(1, $1F8, $E0, 0, 0, 3, 5, $BE)
 
 UNUSED_EnemyProjSpritemaps_29_8DBD08:
-    dw $0001                                                             ;8DBD08;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $53)
 
 UNUSED_EnemyProjSpritemaps_2A_8DBD0F:
-    dw $0001                                                             ;8DBD0F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $52)
 
 UNUSED_EnemyProjSpritemaps_2B_8DBD16:
-    dw $0001                                                             ;8DBD16;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $51)
 
 UNUSED_EnemyProjSpritemaps_2C_8DBD1D:
-    dw $0004                                                             ;8DBD1D;
+    dw $0004
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 6, $50)
     %spritemapEntry(0, $00, $00, 1, 1, 3, 6, $50)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 6, $50)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 6, $50)
 
 UNUSED_EnemyProjSpritemaps_2D_8DBD33:
-    dw $0003                                                             ;8DBD33;
+    dw $0003
     %spritemapEntry(0, $00, $0C, 0, 0, 3, 5, $5B)
     %spritemapEntry(0, $08, $EC, 0, 0, 3, 5, $5B)
     %spritemapEntry(0, $1F0, $F4, 0, 0, 3, 5, $5B)
 
 UNUSED_EnemyProjSpritemaps_2E_8DBD44:
-    dw $0003                                                             ;8DBD44;
+    dw $0003
     %spritemapEntry(0, $1FD, $0A, 0, 0, 3, 5, $5C)
     %spritemapEntry(0, $06, $EE, 0, 0, 3, 5, $5C)
     %spritemapEntry(0, $1F2, $F6, 0, 0, 3, 5, $5C)
 
 UNUSED_EnemyProjSpritemaps_2F_8DBD55:
-    dw $0003                                                             ;8DBD55;
+    dw $0003
     %spritemapEntry(0, $1FC, $08, 0, 0, 3, 5, $5C)
     %spritemapEntry(0, $04, $F0, 0, 0, 3, 5, $5C)
     %spritemapEntry(0, $1F4, $F8, 0, 0, 3, 5, $5C)
 
 UNUSED_EnemyProjSpritemaps_30_8DBD66:
-    dw $0003                                                             ;8DBD66;
+    dw $0003
     %spritemapEntry(0, $02, $F2, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $1FB, $06, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $1F6, $FA, 0, 0, 3, 5, $5D)
 
 UNUSED_EnemyProjSpritemaps_31_8DBD77:
-    dw $0003                                                             ;8DBD77;
+    dw $0003
     %spritemapEntry(0, $1FB, $04, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $1F8, $FB, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $00, $F4, 0, 0, 3, 5, $5D)
 
 UNUSED_EnemyProjSpritemaps_32_8DBD88:
-    dw $0003                                                             ;8DBD88;
+    dw $0003
     %spritemapEntry(0, $1FB, $02, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $1FA, $FA, 0, 0, 3, 5, $5D)
     %spritemapEntry(0, $00, $F6, 0, 0, 3, 5, $5D)
 
 UNUSED_EnemyProjSpritemaps_33_8DBD99:
-    dw $0003                                                             ;8DBD99;
+    dw $0003
     %spritemapEntry(0, $00, $EC, 1, 0, 3, 5, $5B)
     %spritemapEntry(0, $08, $0C, 1, 0, 3, 5, $5B)
     %spritemapEntry(0, $1F0, $04, 1, 0, 3, 5, $5B)
 
 UNUSED_EnemyProjSpritemaps_34_8DBDAA:
-    dw $0003                                                             ;8DBDAA;
+    dw $0003
     %spritemapEntry(0, $1FE, $EE, 1, 0, 3, 5, $5C)
     %spritemapEntry(0, $06, $0A, 1, 0, 3, 5, $5C)
     %spritemapEntry(0, $1F2, $02, 1, 0, 3, 5, $5C)
 
 UNUSED_EnemyProjSpritemaps_35_8DBDBB:
-    dw $0003                                                             ;8DBDBB;
+    dw $0003
     %spritemapEntry(0, $04, $08, 1, 0, 3, 5, $5C)
     %spritemapEntry(0, $1F4, $00, 1, 0, 3, 5, $5C)
     %spritemapEntry(0, $1FD, $F0, 1, 0, 3, 5, $5C)
 
 UNUSED_EnemyProjSpritemaps_36_8DBDCC:
-    dw $0003                                                             ;8DBDCC;
+    dw $0003
     %spritemapEntry(0, $02, $06, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $1FC, $F2, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $1F6, $FE, 1, 0, 3, 5, $5D)
 
 UNUSED_EnemyProjSpritemaps_37_8DBDDD:
-    dw $0003                                                             ;8DBDDD;
+    dw $0003
     %spritemapEntry(0, $1FC, $F4, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $1F8, $FC, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $00, $04, 1, 0, 3, 5, $5D)
 
 UNUSED_EnemyProjSpritemaps_38_8DBDEE:
-    dw $0003                                                             ;8DBDEE;
+    dw $0003
     %spritemapEntry(0, $1FC, $F6, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $1FA, $FD, 1, 0, 3, 5, $5D)
     %spritemapEntry(0, $00, $02, 1, 0, 3, 5, $5D)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_0:
-    dw $0001                                                             ;8DBDFF;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $5F)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_1:
-    dw $0004                                                             ;8DBE06;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $8A)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $8A)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $8A)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $8A)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_2:
-    dw $0004                                                             ;8DBE1C;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $90)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $90)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $90)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $90)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_3:
-    dw $0004                                                             ;8DBE32;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $92)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $92)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $92)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $92)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_4:
-    dw $0004                                                             ;8DBE48;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $94)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $94)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $94)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $94)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_5:
-    dw $0004                                                             ;8DBE5E;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $96)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $96)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $96)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $96)
 
 UNUSED_EnemyProjSpritemaps_0_8DBE74:
-    dw $0004                                                             ;8DBE74;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $8B)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $8B)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $8B)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $8B)
 
 UNUSED_EnemyProjSpritemaps_1_8DBE8A:
-    dw $0004                                                             ;8DBE8A;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $7A)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $7A)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $7A)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $7A)
 
 UNUSED_EnemyProjSpritemaps_2_8DBEA0:
-    dw $0004                                                             ;8DBEA0;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $70)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $70)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $70)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $70)
 
 UNUSED_EnemyProjSpritemaps_3_8DBEB6:
-    dw $0004                                                             ;8DBEB6;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $72)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $72)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $72)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $72)
 
 UNUSED_EnemyProjSpritemaps_4_8DBECC:
-    dw $0004                                                             ;8DBECC;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $74)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $74)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $74)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $74)
 
 UNUSED_EnemyProjSpritemaps_5_8DBEE2:
-    dw $0004                                                             ;8DBEE2;
+    dw $0004
     %spritemapEntry(0, $1F8, $00, 0, 0, 3, 5, $5E)
     %spritemapEntry(0, $00, $00, 0, 0, 3, 5, $5E)
     %spritemapEntry(0, $00, $F8, 0, 0, 3, 5, $5E)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $5E)
 
 UNUSED_EnemyProjSpritemaps_6_8DBEF8:
-    dw $0001                                                             ;8DBEF8;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $38)
 
 UNUSED_EnemyProjSpritemaps_7_8DBEFF:
-    dw $0001                                                             ;8DBEFF;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $39)
 
 UNUSED_EnemyProjSpritemaps_8_8DBF06:
-    dw $0001                                                             ;8DBF06;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $3A)
 
 UNUSED_EnemyProjSpritemaps_9_8DBF0D:
-    dw $0001                                                             ;8DBF0D;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $3B)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_0:
-    dw $0001                                                             ;8DBF14;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $26)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_1:
-    dw $0001                                                             ;8DBF1B;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $27)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_2:
-    dw $0001                                                             ;8DBF22;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $7B)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_3:
-    dw $0001                                                             ;8DBF29;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $7B)
 
 UNUSED_EnemyProjSpritemaps_0_8DBF30:
-    dw $0001                                                             ;8DBF30;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $5F)
 
 UNUSED_EnemyProjSpritemaps_1_8DBF37:
-    dw $0001                                                             ;8DBF37;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $53)
 
 UNUSED_EnemyProjSpritemaps_2_8DBF3E:
-    dw $0001                                                             ;8DBF3E;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 6, $51)
 
 UNUSED_EnemyProjSpritemaps_3_8DBF45:
-    dw $0004                                                             ;8DBF45;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 6, $60)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 6, $60)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 6, $60)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 6, $60)
 
 UNUSED_EnemyProjSpritemaps_4_8DBF5B:
-    dw $0004                                                             ;8DBF5B;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 6, $61)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 6, $61)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 6, $61)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 6, $61)
 
 UNUSED_EnemyProjSpritemaps_5_8DBF71:
-    dw $0004                                                             ;8DBF71;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 6, $62)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 6, $62)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 6, $62)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 6, $62)
 
 UNUSED_EnemyProjSpritemaps_6_8DBF87:
-    dw $0004                                                             ;8DBF87;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 6, $63)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 6, $63)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 6, $63)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 6, $63)
 
 UNUSED_EnemyProjSpritemaps_7_8DBF9D:
-    dw $0004                                                             ;8DBF9D;
+    dw $0004
     %spritemapEntry(0, $1F2, $FC, 0, 1, 3, 5, $6C)
     %spritemapEntry(0, $06, $FC, 0, 1, 3, 5, $6C)
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 5, $6C)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6C)
 
 UNUSED_EnemyProjSpritemaps_8_8DBFB3:
-    dw $0004                                                             ;8DBFB3;
+    dw $0004
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 5, $6E)
     %spritemapEntry(0, $08, $FC, 0, 1, 3, 5, $6D)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $6E)
     %spritemapEntry(0, $1F0, $FC, 0, 0, 3, 5, $6D)
 
 UNUSED_EnemyProjSpritemaps_9_8DBFC9:
-    dw $0004                                                             ;8DBFC9;
+    dw $0004
     %spritemapEntry(0, $1F0, $FE, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $08, $FE, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $00, $FE, 0, 0, 3, 5, $6F)
     %spritemapEntry(0, $1F8, $FE, 0, 0, 3, 5, $6F)
 
 UNUSED_EnemyProjSpritemaps_A_8DBFDF:
-    dw $0001                                                             ;8DBFDF;
+    dw $0001
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 5, $7C)
 
 UNUSED_EnemyProjSpritemaps_B_8DBFE6:
-    dw $0001                                                             ;8DBFE6;
+    dw $0001
     %spritemapEntry(1, $1F8, $F6, 0, 0, 3, 5, $7E)
 
 UNUSED_EnemyProjSpritemaps_C_8DBFED:
-    dw $0001                                                             ;8DBFED;
+    dw $0001
     %spritemapEntry(1, $1F8, $F4, 0, 0, 3, 5, $9A)
 
 UNUSED_EnemyProjSpritemaps_D_8DBFF4:
-    dw $0001                                                             ;8DBFF4;
+    dw $0001
     %spritemapEntry(1, $1F8, $F2, 0, 0, 3, 5, $9C)
 
 UNUSED_EnemyProjSpritemaps_E_8DBFFB:
-    dw $0001                                                             ;8DBFFB;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $48)
 
 UNUSED_EnemyProjSpritemaps_F_8DC002:
-    dw $0001                                                             ;8DC002;
+    dw $0001
     %spritemapEntry(0, $1FC, $FA, 0, 0, 3, 5, $49)
 
 UNUSED_EnemyProjSpritemaps_10_8DC009:
-    dw $0001                                                             ;8DC009;
+    dw $0001
     %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 5, $4A)
 
 UNUSED_EnemyProjSpritemaps_11_8DC010:
-    dw $0001                                                             ;8DC010;
+    dw $0001
     %spritemapEntry(0, $1FC, $F6, 0, 0, 3, 5, $4B)
 
 UNUSED_EnemyProjSpritemaps_12_8DC017:
-    dw $0001                                                             ;8DC017;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $2C)
 
 UNUSED_EnemyProjSpritemaps_13_8DC01E:
-    dw $0001                                                             ;8DC01E;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $2D)
 
 UNUSED_EnemyProjSpritemaps_14_8DC025:
-    dw $0001                                                             ;8DC025;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $2E)
 
 UNUSED_EnemyProjSpritemaps_15_8DC02C:
-    dw $0001                                                             ;8DC02C;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $2F)
 
 UNUSED_EnemyProjSpritemaps_16_8DC033:
-    dw $0001                                                             ;8DC033;
+    dw $0001
     %spritemapEntry(1, $1F8, $F6, 0, 0, 3, 5, $76)
 
 UNUSED_EnemyProjSpritemaps_17_8DC03A:
-    dw $0001                                                             ;8DC03A;
+    dw $0001
     %spritemapEntry(1, $1F8, $F4, 0, 0, 3, 5, $78)
 
 UNUSED_EnemyProjSpritemaps_18_8DC041:
-    dw $0001                                                             ;8DC041;
+    dw $0001
     %spritemapEntry(1, $1F8, $F2, 0, 0, 3, 5, $98)
 
 UNUSED_EnemyProjSpritemaps_19_8DC048:
-    dw $0001                                                             ;8DC048;
+    dw $0001
     %spritemapEntry(1, $1F8, $F0, 0, 0, 3, 5, $9E)
 
 UNUSED_EnemyProjSpritemaps_1A_8DC04F:
-    dw $0001                                                             ;8DC04F;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $25)
 
 UNUSED_EnemyProjSpritemaps_1B_8DC056:
-    dw $0001                                                             ;8DC056;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $43)
 
 UNUSED_EnemyProjSpritemaps_1C_8DC05D:
-    dw $0001                                                             ;8DC05D;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $40)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_4:
-    dw $0001                                                             ;8DC064;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3E)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_5:
-    dw $0001                                                             ;8DC06B;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3D)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_6:
-    dw $0001                                                             ;8DC072;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $41)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_7:
-    dw $0001                                                             ;8DC079;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $42)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_8:
-    dw $0004                                                             ;8DC080;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $44)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $44)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $44)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $44)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_9:
-    dw $0004                                                             ;8DC096;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $45)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $45)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $45)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $45)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_A:
-    dw $0004                                                             ;8DC0AC;
+    dw $0004
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $46)
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $46)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $46)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $46)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_B:
-    dw $0001                                                             ;8DC0C2;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $42)
 
 UNUSED_EnemyProjSpritemaps_Pickup_Bombs_0_8DC0C9:
-    dw $0001                                                             ;8DC0C9;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $4C)
 
 UNUSED_EnemyProjSpritemaps_Pickup_Bombs_1_8DC0D0:
-    dw $0001                                                             ;8DC0D0;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $4D)
 
 UNUSED_EnemyProjSpritemaps_Pickup_Bombs_2_8DC0D7:
-    dw $0001                                                             ;8DC0D7;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $4E)
 
 UNUSED_EnemyProjSpritemaps_Pickup_Bombs_3_8DC0DE:
-    dw $0001                                                             ;8DC0DE;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $4F)
 
 UNUSED_EnemyProjSpritemaps_0_8DC0E5:
-    dw $0002                                                             ;8DC0E5;
+    dw $0002
     %spritemapEntry(0, $1FF, $FC, 0, 0, 3, 5, $55)
     %spritemapEntry(0, $1F7, $FC, 0, 0, 3, 5, $54)
 
 UNUSED_EnemyProjSpritemaps_1_8DC0F1:
-    dw $0003                                                             ;8DC0F1;
+    dw $0003
     %spritemapEntry(0, $1FA, $F5, 0, 0, 3, 5, $56)
     %spritemapEntry(0, $02, $FD, 0, 0, 3, 5, $58)
     %spritemapEntry(0, $1FA, $FD, 0, 0, 3, 5, $57)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_C:
-    dw $0002                                                             ;8DC102;
+    dw $0002
     %spritemapEntry(0, $1FD, $F7, 0, 0, 3, 5, $59)
     %spritemapEntry(0, $1FD, $FF, 0, 0, 3, 5, $5A)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_D:
-    dw $0002                                                             ;8DC10E;
+    dw $0002
     %spritemapEntry(0, $1FD, $F7, 0, 0, 3, 0, $59)
     %spritemapEntry(0, $1FD, $FF, 0, 0, 3, 0, $5A)
 
 UNUSED_EnemyProjSpritemaps_0_8DC11A:
-    dw $0003                                                             ;8DC11A;
+    dw $0003
     %spritemapEntry(0, $1FE, $F5, 0, 1, 3, 5, $56)
     %spritemapEntry(0, $1F6, $FD, 0, 1, 3, 5, $58)
     %spritemapEntry(0, $1FE, $FD, 0, 1, 3, 5, $57)
 
 UNUSED_EnemyProjSpritemaps_1_8DC12B:
-    dw $0002                                                             ;8DC12B;
+    dw $0002
     %spritemapEntry(0, $1F9, $FC, 0, 1, 3, 5, $55)
     %spritemapEntry(0, $01, $FC, 0, 1, 3, 5, $54)
 
 UNUSED_EnemyProjSpritemaps_2_8DC137:
-    dw $0003                                                             ;8DC137;
+    dw $0003
     %spritemapEntry(0, $1FE, $03, 1, 1, 3, 5, $56)
     %spritemapEntry(0, $1F6, $FB, 1, 1, 3, 5, $58)
     %spritemapEntry(0, $1FE, $FB, 1, 1, 3, 5, $57)
 
 UNUSED_EnemyProjSpritemaps_3_8DC148:
-    dw $0002                                                             ;8DC148;
+    dw $0002
     %spritemapEntry(0, $1FD, $01, 1, 0, 3, 5, $59)
     %spritemapEntry(0, $1FD, $F9, 1, 0, 3, 5, $5A)
 
 UNUSED_EnemyProjSpritemaps_4_8DC154:
-    dw $0003                                                             ;8DC154;
+    dw $0003
     %spritemapEntry(0, $1FA, $03, 1, 0, 3, 5, $56)
     %spritemapEntry(0, $02, $FB, 1, 0, 3, 5, $58)
     %spritemapEntry(0, $1FA, $FB, 1, 0, 3, 5, $57)
 
 UNUSED_EnemyProjSpritemaps_5_8DC165:
-    dw $0002                                                             ;8DC165;
+    dw $0002
     %spritemapEntry(0, $00, $FC, 0, 0, 3, 5, $65)
     %spritemapEntry(0, $1F8, $FC, 0, 0, 3, 5, $64)
 
 UNUSED_EnemyProjSpritemaps_6_8DC171:
-    dw $0003                                                             ;8DC171;
+    dw $0003
     %spritemapEntry(0, $02, $FE, 0, 0, 3, 5, $68)
     %spritemapEntry(0, $1FA, $FE, 0, 0, 3, 5, $67)
     %spritemapEntry(0, $1FA, $F6, 0, 0, 3, 5, $66)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_E:
-    dw $0002                                                             ;8DC182;
+    dw $0002
     %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 5, $69)
     %spritemapEntry(0, $1FC, $00, 0, 0, 3, 5, $6A)
 
 EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_F:
-    dw $0002                                                             ;8DC18E;
+    dw $0002
     %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 0, $69)
     %spritemapEntry(0, $1FC, $00, 0, 0, 3, 0, $6A)
 
 UNUSED_EnemyProjSpritemaps_0_8DC19A:
-    dw $0003                                                             ;8DC19A;
+    dw $0003
     %spritemapEntry(0, $1F6, $FE, 0, 1, 3, 5, $68)
     %spritemapEntry(0, $1FE, $FE, 0, 1, 3, 5, $67)
     %spritemapEntry(0, $1FE, $F6, 0, 1, 3, 5, $66)
 
 UNUSED_EnemyProjSpritemaps_1_8DC1AB:
-    dw $0002                                                             ;8DC1AB;
+    dw $0002
     %spritemapEntry(0, $1F8, $FC, 0, 1, 3, 5, $65)
     %spritemapEntry(0, $00, $FC, 0, 1, 3, 5, $64)
 
 UNUSED_EnemyProjSpritemaps_2_8DC1B7:
-    dw $0003                                                             ;8DC1B7;
+    dw $0003
     %spritemapEntry(0, $1F6, $FA, 1, 1, 3, 5, $68)
     %spritemapEntry(0, $1FE, $FA, 1, 1, 3, 5, $67)
     %spritemapEntry(0, $1FE, $02, 1, 1, 3, 5, $66)
 
 UNUSED_EnemyProjSpritemaps_3_8DC1C8:
-    dw $0002                                                             ;8DC1C8;
+    dw $0002
     %spritemapEntry(0, $1FC, $00, 1, 0, 3, 5, $69)
     %spritemapEntry(0, $1FC, $F8, 1, 0, 3, 5, $6A)
 
 UNUSED_EnemyProjSpritemaps_4_8DC1D4:
-    dw $0003                                                             ;8DC1D4;
+    dw $0003
     %spritemapEntry(0, $02, $FA, 1, 0, 3, 5, $68)
     %spritemapEntry(0, $1FA, $FA, 1, 0, 3, 5, $67)
     %spritemapEntry(0, $1FA, $02, 1, 0, 3, 5, $66)
 
 UNUSED_EnemyProjSpritemaps_5_8DC1E5:
-    dw $0001                                                             ;8DC1E5;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3C)
 
 UNUSED_EnemyProjSpritemaps_6_8DC1EC:
-    dw $0001                                                             ;8DC1EC;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3D)
 
 UNUSED_EnemyProjSpritemaps_7_8DC1F3:
-    dw $0001                                                             ;8DC1F3;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3E)
 
 UNUSED_EnemyProjSpritemaps_8_8DC1FA:
-    dw $0001                                                             ;8DC1FA;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $3F)
 
 UNUSED_EnemyProjSpritemaps_9_8DC201:
-    dw $0004                                                             ;8DC201;
+    dw $0004
     %spritemapEntry(0, $00, $00, 1, 1, 3, 5, $8A)
     %spritemapEntry(0, $1F8, $00, 1, 0, 3, 5, $8A)
     %spritemapEntry(0, $00, $F8, 0, 1, 3, 5, $8A)
     %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 5, $8A)
 
 UNUSED_EnemyProjSpritemaps_A_8DC217:
-    dw $0004                                                             ;8DC217;
+    dw $0004
     %spritemapEntry(1, $4200, $00, 1, 1, 3, 5, $90)
     %spritemapEntry(1, $4200, $F0, 0, 1, 3, 5, $90)
     %spritemapEntry(1, $43F0, $00, 1, 0, 3, 5, $90)
     %spritemapEntry(1, $43F0, $F0, 0, 0, 3, 5, $90)
 
 UNUSED_EnemyProjSpritemaps_B_8DC22D:
-    dw $0004                                                             ;8DC22D;
+    dw $0004
     %spritemapEntry(1, $4200, $00, 1, 1, 3, 5, $92)
     %spritemapEntry(1, $43F0, $00, 1, 0, 3, 5, $92)
     %spritemapEntry(1, $4200, $F0, 0, 1, 3, 5, $92)
     %spritemapEntry(1, $43F0, $F0, 0, 0, 3, 5, $92)
 
 UNUSED_EnemyProjSpritemaps_C_8DC243:
-    dw $000C                                                             ;8DC243;
+    dw $000C
     %spritemapEntry(0, $10, $00, 1, 1, 3, 5, $C2)
     %spritemapEntry(0, $10, $F8, 0, 1, 3, 5, $C2)
     %spritemapEntry(0, $00, $10, 1, 1, 3, 5, $B2)
@@ -6220,7 +6220,7 @@ UNUSED_EnemyProjSpritemaps_C_8DC243:
     %spritemapEntry(1, $43F0, $F0, 0, 0, 3, 5, $B0)
 
 UNUSED_EnemyProjSpritemaps_D_8DC281:
-    dw $0008                                                             ;8DC281;
+    dw $0008
     %spritemapEntry(1, $4208, $00, 1, 1, 3, 5, $B5)
     %spritemapEntry(1, $4200, $08, 1, 1, 3, 5, $B3)
     %spritemapEntry(1, $43E8, $00, 1, 0, 3, 5, $B5)
@@ -6231,7 +6231,7 @@ UNUSED_EnemyProjSpritemaps_D_8DC281:
     %spritemapEntry(1, $43F0, $E8, 0, 0, 3, 5, $B3)
 
 UNUSED_EnemyProjSpritemaps_E_8DC2AB:
-    dw $000C                                                             ;8DC2AB;
+    dw $000C
     %spritemapEntry(0, $00, $10, 1, 1, 3, 5, $BB)
     %spritemapEntry(0, $1F8, $10, 1, 0, 3, 5, $BB)
     %spritemapEntry(0, $00, $E8, 0, 1, 3, 5, $BB)
@@ -6246,14 +6246,14 @@ UNUSED_EnemyProjSpritemaps_E_8DC2AB:
     %spritemapEntry(1, $43E8, $E8, 0, 0, 3, 5, $B8)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_6:
-    dw $0004                                                             ;8DC2E9;
+    dw $0004
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $90)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $90)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $90)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $90)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_7:
-    dw $0008                                                             ;8DC2FF;
+    dw $0008
     %spritemapEntry(1, $1EB, $EB, 0, 0, 3, 5, $76)
     %spritemapEntry(1, $1EB, $05, 1, 0, 3, 5, $76)
     %spritemapEntry(1, $05, $05, 1, 1, 3, 5, $76)
@@ -6264,7 +6264,7 @@ EnemyProjSpritemaps_EnemyDeathExplosion_7:
     %spritemapEntry(1, $1F0, $F0, 0, 0, 3, 5, $92)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_8:
-    dw $0008                                                             ;8DC329;
+    dw $0008
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $94)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $94)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $94)
@@ -6275,7 +6275,7 @@ EnemyProjSpritemaps_EnemyDeathExplosion_8:
     %spritemapEntry(1, $0E, $0E, 1, 1, 3, 5, $78)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_9:
-    dw $0008                                                             ;8DC353;
+    dw $0008
     %spritemapEntry(1, $00, $00, 1, 1, 3, 5, $96)
     %spritemapEntry(1, $00, $F0, 0, 1, 3, 5, $96)
     %spritemapEntry(1, $1F0, $00, 1, 0, 3, 5, $96)
@@ -6286,7 +6286,7 @@ EnemyProjSpritemaps_EnemyDeathExplosion_9:
     %spritemapEntry(1, $14, $14, 1, 1, 3, 5, $98)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_A:
-    dw $0008                                                             ;8DC37D;
+    dw $0008
     %spritemapEntry(0, $1EF, $FA, 0, 0, 3, 5, $2B)
     %spritemapEntry(0, $09, $FA, 0, 0, 3, 5, $2B)
     %spritemapEntry(0, $0C, $EC, 0, 0, 3, 5, $2B)
@@ -6297,7 +6297,7 @@ EnemyProjSpritemaps_EnemyDeathExplosion_A:
     %spritemapEntry(1, $18, $D8, 0, 1, 3, 5, $9E)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_B:
-    dw $0008                                                             ;8DC3A7;
+    dw $0008
     %spritemapEntry(1, $1D6, $D6, 0, 0, 3, 5, $9C)
     %spritemapEntry(1, $1A, $D6, 0, 1, 3, 5, $9C)
     %spritemapEntry(1, $1D6, $1A, 1, 0, 3, 5, $9C)
@@ -6308,123 +6308,118 @@ EnemyProjSpritemaps_EnemyDeathExplosion_B:
     %spritemapEntry(0, $1E6, $E8, 0, 0, 3, 5, $2B)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_C:
-    dw $0004                                                             ;8DC3D1;
+    dw $0004
     %spritemapEntry(0, $17, $E7, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $0D, $FA, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $1EB, $FA, 0, 0, 3, 5, $2A)
     %spritemapEntry(0, $1E1, $E7, 0, 0, 3, 5, $2A)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_D:
-    dw $0004                                                             ;8DC3E7;
+    dw $0004
     %spritemapEntry(0, $1B, $E8, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $0E, $FC, 0, 1, 3, 5, $2A)
     %spritemapEntry(0, $1EA, $FC, 0, 0, 3, 5, $2A)
     %spritemapEntry(0, $1DD, $E8, 0, 0, 3, 5, $2A)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_E:
-    dw $0004                                                             ;8DC3FD;
+    dw $0004
     %spritemapEntry(0, $1E, $E9, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $0F, $FE, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $1E9, $FE, 0, 0, 3, 5, $29)
     %spritemapEntry(0, $1DA, $E9, 0, 0, 3, 5, $29)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_F:
-    dw $0004                                                             ;8DC413;
+    dw $0004
     %spritemapEntry(0, $20, $EA, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $10, $00, 0, 1, 3, 5, $29)
     %spritemapEntry(0, $1E8, $00, 0, 0, 3, 5, $29)
     %spritemapEntry(0, $1D8, $EA, 0, 0, 3, 5, $29)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_10:
-    dw $0004                                                             ;8DC429;
+    dw $0004
     %spritemapEntry(0, $23, $EC, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $11, $02, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1D5, $EC, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E7, $02, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_11:
-    dw $0004                                                             ;8DC43F;
+    dw $0004
     %spritemapEntry(0, $27, $EE, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $12, $04, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1D1, $EE, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E6, $04, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_12:
-    dw $0004                                                             ;8DC455;
+    dw $0004
     %spritemapEntry(0, $29, $F1, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $13, $07, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1CF, $F1, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E5, $07, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_13:
-    dw $0004                                                             ;8DC46B;
+    dw $0004
     %spritemapEntry(0, $2D, $F5, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $14, $0B, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1CB, $F5, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E4, $0B, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_14:
-    dw $0004                                                             ;8DC481;
+    dw $0004
     %spritemapEntry(0, $33, $FF, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $15, $11, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1C5, $FF, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E3, $11, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_EnemyDeathExplosion_15:
-    dw $0004                                                             ;8DC497;
+    dw $0004
     %spritemapEntry(0, $39, $0A, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $18, $22, 0, 1, 3, 5, $28)
     %spritemapEntry(0, $1BF, $0A, 0, 0, 3, 5, $28)
     %spritemapEntry(0, $1E0, $22, 0, 0, 3, 5, $28)
 
 EnemyProjSpritemaps_Sparks_0:
-    dw $0001                                                             ;8DC4AD;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $10B)
 
 EnemyProjSpritemaps_Sparks_1:
-    dw $0001                                                             ;8DC4B4;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $10C)
 
 EnemyProjSpritemaps_Sparks_2:
-    dw $0001                                                             ;8DC4BB;
+    dw $0001
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $10D)
 
 
 ;;; $C4C2: Enable palette FX objects ;;;
 Enable_PaletteFXObjects:
-    PHP                                                                  ;8DC4C2;
-    REP #$20                                                             ;8DC4C3;
-    LDA.W #$8000                                                         ;8DC4C5;
-    TSB.W PaletteFXObject_Enable                                         ;8DC4C8;
-    PLP                                                                  ;8DC4CB;
-    RTL                                                                  ;8DC4CC;
+    PHP
+    REP #$20
+    LDA.W #$8000 : TSB.W PaletteFXObject_Enable
+    PLP
+    RTL
 
 
 ;;; $C4CD: Disable palette FX objects ;;;
 Disable_PaletteFXObjects:
-    PHP                                                                  ;8DC4CD;
-    REP #$20                                                             ;8DC4CE;
-    LDA.W #$8000                                                         ;8DC4D0;
-    TRB.W PaletteFXObject_Enable                                         ;8DC4D3;
-    PLP                                                                  ;8DC4D6;
-    RTL                                                                  ;8DC4D7;
+    PHP
+    REP #$20
+    LDA.W #$8000 : TRB.W PaletteFXObject_Enable
+    PLP
+    RTL
 
 
 ;;; $C4D8: Clear palette FX objects ;;;
 Clear_PaletteFXObjects:
-    PHP                                                                  ;8DC4D8;
-    REP #$30                                                             ;8DC4D9;
-    PHX                                                                  ;8DC4DB;
-    LDX.W #$000E                                                         ;8DC4DC;
+    PHP
+    REP #$30
+    PHX
+    LDX.W #$000E
 
   .loop:
-    STZ.W PaletteFXObject_IDs,X                                          ;8DC4DF;
-    DEX                                                                  ;8DC4E2;
-    DEX                                                                  ;8DC4E3;
-    BPL .loop                                                            ;8DC4E4;
-    PLX                                                                  ;8DC4E6;
-    PLP                                                                  ;8DC4E7;
-    RTL                                                                  ;8DC4E8;
+    STZ.W PaletteFXObject_IDs,X
+    DEX #2 : BPL .loop
+    PLX : PLP
+    RTL
 
 
 ;;; $C4E9: Spawn palette FX object ;;;
@@ -6434,399 +6429,317 @@ Spawn_PaletteFXObject:
 ;; Returns:
 ;;     Y: Palette FX object index if carry clear
 ;;     Carry: Clear if palette FX object spawned, otherwise set
-    PHP                                                                  ;8DC4E9;
-    PHB                                                                  ;8DC4EA;
-    PHX                                                                  ;8DC4EB;
-    PHK                                                                  ;8DC4EC;
-    PLB                                                                  ;8DC4ED;
-    LDX.W #$000E                                                         ;8DC4EE;
+    PHP : PHB : PHX
+    PHK : PLB
+    LDX.W #$000E
 
   .loop:
-    LDA.W PaletteFXObject_IDs,X                                          ;8DC4F1;
-    BEQ .zero                                                            ;8DC4F4;
-    DEX                                                                  ;8DC4F6;
-    DEX                                                                  ;8DC4F7;
-    BPL .loop                                                            ;8DC4F8;
-    PLX                                                                  ;8DC4FA;
-    PLB                                                                  ;8DC4FB;
-    PLP                                                                  ;8DC4FC;
-    SEC                                                                  ;8DC4FD;
-    RTL                                                                  ;8DC4FE;
+    LDA.W PaletteFXObject_IDs,X : BEQ .zero
+    DEX #2 : BPL .loop
+    PLX : PLB : PLP
+    SEC
+    RTL
 
   .zero:
-    TYA                                                                  ;8DC4FF;
-    STA.W PaletteFXObject_IDs,X                                          ;8DC500;
-    STZ.W PaletteFXObject_ColorIndices,X                                 ;8DC503;
-    LDA.W #RTS_8DC526                                                    ;8DC506;
-    STA.W PaletteFXObject_PreInstructions,X                              ;8DC509;
-    LDA.W $0002,Y                                                        ;8DC50C;
-    STA.W PaletteFXObject_InstListPointers,X                             ;8DC50F;
-    LDA.W #$0001                                                         ;8DC512;
-    STA.W PaletteFXObject_InstructionTimers,X                            ;8DC515;
-    STZ.W PaletteFXObject_Timers,X                                       ;8DC518;
-    TXA                                                                  ;8DC51B;
-    TYX                                                                  ;8DC51C;
-    TAY                                                                  ;8DC51D;
-    JSR.W ($0000,X)                                                      ;8DC51E;
-    PLX                                                                  ;8DC521;
-    PLB                                                                  ;8DC522;
-    PLP                                                                  ;8DC523;
-    CLC                                                                  ;8DC524;
-    RTL                                                                  ;8DC525;
+    TYA : STA.W PaletteFXObject_IDs,X
+    STZ.W PaletteFXObject_ColorIndices,X
+    LDA.W #RTS_8DC526 : STA.W PaletteFXObject_PreInstructions,X
+    LDA.W $0002,Y : STA.W PaletteFXObject_InstListPointers,X
+    LDA.W #$0001 : STA.W PaletteFXObject_InstructionTimers,X
+    STZ.W PaletteFXObject_Timers,X
+    TXA : TYX : TAY
+    JSR.W ($0000,X)
+    PLX : PLB : PLP
+    CLC
+    RTL
 
 
 ;;; $C526: RTS ;;;
 RTS_8DC526:
-    RTS                                                                  ;8DC526;
+    RTS
 
 
 ;;; $C527: Palette FX object handler ;;;
 PaletteFXObject_Handler:
-    PHP                                                                  ;8DC527;
-    PHB                                                                  ;8DC528;
-    PHK                                                                  ;8DC529;
-    PLB                                                                  ;8DC52A;
-    REP #$30                                                             ;8DC52B;
-    BIT.W PaletteFXObject_Enable                                         ;8DC52D;
-    BPL .return                                                          ;8DC530;
-    LDX.W #$000E                                                         ;8DC532;
+    PHP : PHB
+    PHK : PLB
+    REP #$30
+    BIT.W PaletteFXObject_Enable : BPL .return
+    LDX.W #$000E
 
   .loop:
-    STX.W PaletteFXObject_Index                                          ;8DC535;
-    LDA.W PaletteFXObject_IDs,X                                          ;8DC538;
-    BEQ .next                                                            ;8DC53B;
-    JSR.W Process_PaleteFXObject                                         ;8DC53D;
-    LDX.W PaletteFXObject_Index                                          ;8DC540;
+    STX.W PaletteFXObject_Index
+    LDA.W PaletteFXObject_IDs,X : BEQ .next
+    JSR Process_PaleteFXObject
+    LDX.W PaletteFXObject_Index
 
   .next:
-    DEX                                                                  ;8DC543;
-    DEX                                                                  ;8DC544;
-    BPL .loop                                                            ;8DC545;
+    DEX #2 : BPL .loop
 
   .return:
-    PLB                                                                  ;8DC547;
-    PLP                                                                  ;8DC548;
-    RTL                                                                  ;8DC549;
+    PLB : PLP
+    RTL
 
 
 ;;; $C54A: Process palette FX object ;;;
 Process_PaleteFXObject:
-    REP #$30                                                             ;8DC54A;
-    JSR.W (PaletteFXObject_PreInstructions,X)                            ;8DC54C;
-    LDX.W PaletteFXObject_Index                                          ;8DC54F;
-    DEC.W PaletteFXObject_InstructionTimers,X                            ;8DC552;
-    BNE Process_PaleteFXObject_return                                    ;8DC555;
-    LDA.W PaletteFXObject_InstListPointers,X                             ;8DC557;
-    TAY                                                                  ;8DC55A;
+    REP #$30
+    JSR.W (PaletteFXObject_PreInstructions,X)
+    LDX.W PaletteFXObject_Index
+    DEC.W PaletteFXObject_InstructionTimers,X : BNE Process_PaleteFXObject_return
+    LDA.W PaletteFXObject_InstListPointers,X : TAY
 
   .loopDetermineColorIndex:
-    LDA.W $0000,Y                                                        ;8DC55B;
-    BPL .timer                                                           ;8DC55E;
-    STA.B DP_Temp12                                                      ;8DC560;
-    INY                                                                  ;8DC562;
-    INY                                                                  ;8DC563;
-    PEA.W .loopDetermineColorIndex-1                                     ;8DC564;
-    JMP.W (DP_Temp12)                                                    ;8DC567;
+    LDA.W $0000,Y : BPL .timer
+    STA.B DP_Temp12
+    INY #2
+    PEA .loopDetermineColorIndex-1
+    JMP.W (DP_Temp12)
 
   .timer:
-    STA.W PaletteFXObject_InstructionTimers,X                            ;8DC56A;
-    LDA.W PaletteFXObject_ColorIndices,X                                 ;8DC56D;
-    TAX                                                                  ;8DC570;
+    STA.W PaletteFXObject_InstructionTimers,X
+    LDA.W PaletteFXObject_ColorIndices,X : TAX
 
   .loopWriteColors:
-    LDA.W $0002,Y                                                        ;8DC571;
-    BPL .storeColor                                                      ;8DC574;
-    STA.B DP_Temp12                                                      ;8DC576;
-    PEA.W .loopWriteColors-1                                             ;8DC578;
-    JMP.W (DP_Temp12)                                                    ;8DC57B;
+    LDA.W $0002,Y : BPL .storeColor
+    STA.B DP_Temp12
+    PEA .loopWriteColors-1
+    JMP.W (DP_Temp12)
 
   .storeColor:
-    STA.L Palettes,X                                                     ;8DC57E;
-    INX                                                                  ;8DC582;
-    INX                                                                  ;8DC583;
-    INY                                                                  ;8DC584;
-    INY                                                                  ;8DC585;
-    JMP.W .loopWriteColors                                               ;8DC586;
+    STA.L Palettes,X
+    INX #2
+    INY #2
+    JMP .loopWriteColors
 
   .done:
 ; Eventually, the ASM processing will jump here (via $C595)
-    LDX.W PaletteFXObject_Index                                          ;8DC589;
-    TYA                                                                  ;8DC58C;
-    CLC                                                                  ;8DC58D;
-    ADC.W #$0004                                                         ;8DC58E;
-    STA.W PaletteFXObject_InstListPointers,X                             ;8DC591;
+    LDX.W PaletteFXObject_Index
+    TYA : CLC : ADC.W #$0004 : STA.W PaletteFXObject_InstListPointers,X
 
   .return:
-    RTS                                                                  ;8DC594;
+    RTS
 
 
 ;;; $C595: Instruction - done ;;;
 Instruction_PaletteFXObject_Done:
-    PLA                                                                  ;8DC595;
-    JMP.W Process_PaleteFXObject_done                                    ;8DC596;
+    PLA
+    JMP Process_PaleteFXObject_done
 
 
 ;;; $C599: Instruction - colour index += 4 ;;;
 Instruction_PaletteFXObject_ColorIndex_Plus4:
-    TXA                                                                  ;8DC599;
-    CLC                                                                  ;8DC59A;
-    ADC.W #$0004                                                         ;8DC59B;
-    TAX                                                                  ;8DC59E;
-    INY                                                                  ;8DC59F;
-    INY                                                                  ;8DC5A0;
-    RTS                                                                  ;8DC5A1;
+    TXA : CLC : ADC.W #$0004 : TAX
+    INY #2
+    RTS
 
 
 ;;; $C5A2: Instruction - colour index += 6 ;;;
 Instruction_PaletteFXObject_ColorIndex_Plus6:
-    TXA                                                                  ;8DC5A2;
-    CLC                                                                  ;8DC5A3;
-    ADC.W #$0006                                                         ;8DC5A4;
-    TAX                                                                  ;8DC5A7;
-    INY                                                                  ;8DC5A8;
-    INY                                                                  ;8DC5A9;
-    RTS                                                                  ;8DC5AA;
+    TXA : CLC : ADC.W #$0006 : TAX
+    INY #2
+    RTS
 
 
 ;;; $C5AB: Instruction - colour index += 8 ;;;
 Instruction_PaletteFXObject_ColorIndex_Plus8:
-    TXA                                                                  ;8DC5AB;
-    CLC                                                                  ;8DC5AC;
-    ADC.W #$0008                                                         ;8DC5AD;
-    TAX                                                                  ;8DC5B0;
-    INY                                                                  ;8DC5B1;
-    INY                                                                  ;8DC5B2;
-    RTS                                                                  ;8DC5B3;
+    TXA : CLC : ADC.W #$0008 : TAX
+    INY #2
+    RTS
 
 
 ;;; $C5B4: Instruction - colour index += 10h ;;;
 Instruction_PaletteFXObject_ColorIndex_Plus10:
-    TXA                                                                  ;8DC5B4;
-    CLC                                                                  ;8DC5B5;
-    ADC.W #$0010                                                         ;8DC5B6;
-    TAX                                                                  ;8DC5B9;
-    INY                                                                  ;8DC5BA;
-    INY                                                                  ;8DC5BB;
-    RTS                                                                  ;8DC5BC;
+    TXA : CLC : ADC.W #$0010 : TAX
+    INY #2
+    RTS
 
 
 ;;; $C5BD: Instruction - colour index += 12h ;;;
 Instruction_PaletteFXObject_ColorIndex_Plus12:
-    TXA                                                                  ;8DC5BD;
-    CLC                                                                  ;8DC5BE;
-    ADC.W #$0012                                                         ;8DC5BF;
-    TAX                                                                  ;8DC5C2;
-    INY                                                                  ;8DC5C3;
-    INY                                                                  ;8DC5C4;
-    RTS                                                                  ;8DC5C5;
+    TXA : CLC : ADC.W #$0012 : TAX
+    INY #2
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C5C6: Unused. Instruction - colour index += 1Eh ;;;
 UNUSED_Instruction_PaletteFXObject_ColorIndex_Plus1E_8DC5C6:
-    TXA                                                                  ;8DC5C6;
-    CLC                                                                  ;8DC5C7;
-    ADC.W #$001E                                                         ;8DC5C8;
-    TAX                                                                  ;8DC5CB;
-    INY                                                                  ;8DC5CC;
-    INY                                                                  ;8DC5CD;
-    RTS                                                                  ;8DC5CE;
+    TXA : CLC : ADC.W #$001E : TAX
+    INY #2
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C5CF: Instruction - delete ;;;
 Instruction_Delete_8DC5CF:
-    STZ.W PaletteFXObject_IDs,X                                          ;8DC5CF;
-    PLA                                                                  ;8DC5D2;
-    RTS                                                                  ;8DC5D3;
+    STZ.W PaletteFXObject_IDs,X
+    PLA
+    RTS
 
 
 ;;; $C5D4: Instruction - pre-instruction = [[Y]] ;;;
 Instruction_PaletteFXObject_PreInstructionInY:
-    LDA.W $0000,Y                                                        ;8DC5D4;
-    STA.W PaletteFXObject_PreInstructions,X                              ;8DC5D7;
-    INY                                                                  ;8DC5DA;
-    INY                                                                  ;8DC5DB;
-    RTS                                                                  ;8DC5DC;
+    LDA.W $0000,Y : STA.W PaletteFXObject_PreInstructions,X
+    INY #2
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C5DD: Unused. Instruction - clear pre-instruction ;;;
 UNUSED_Inst_PaletteFXObject_ClearPreInstruction_8DC5DD:
-    LDA.W #.return                                                       ;8DC5DD;
-    STA.W PaletteFXObject_PreInstructions,X                              ;8DC5E0;
+    LDA.W #.return : STA.W PaletteFXObject_PreInstructions,X
 
   .return:
-    RTS                                                                  ;8DC5E3;
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C5E4: Unused. Instruction - call external function [[Y]] ;;;
 UNUSED_Inst_PaletteFXObject_CallExternalFunctionInY_8DC5E4:
-    LDA.W $0000,Y                                                        ;8DC5E4;
-    STA.B DP_Temp12                                                      ;8DC5E7;
-    LDA.W $0001,Y                                                        ;8DC5E9;
-    STA.B DP_Temp13                                                      ;8DC5EC;
-    PHY                                                                  ;8DC5EE;
-    JSL.L .externalFunction                                              ;8DC5EF;
-    PLY                                                                  ;8DC5F3;
-    LDX.W PaletteFXObject_Index                                          ;8DC5F4;
-    INY                                                                  ;8DC5F7;
-    INY                                                                  ;8DC5F8;
-    INY                                                                  ;8DC5F9;
-    RTS                                                                  ;8DC5FA;
+    LDA.W $0000,Y : STA.B DP_Temp12
+    LDA.W $0001,Y : STA.B DP_Temp13
+    PHY
+    JSL .externalFunction
+    PLY
+    LDX.W PaletteFXObject_Index
+    INY #3
+    RTS
 
   .externalFunction:
-    JML.W [DP_Temp12]                                                    ;8DC5FB;
+    JML.W [DP_Temp12]
 
 
 ;;; $C5FE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
 UNUSED_Inst_PaletteFXObject_CallExternalFuncInYWithA_8DC5FE:
-    LDA.W $0000,Y                                                        ;8DC5FE;
-    STA.B DP_Temp12                                                      ;8DC601;
-    LDA.W $0001,Y                                                        ;8DC603;
-    STA.B DP_Temp13                                                      ;8DC606;
-    LDA.W $0003,Y                                                        ;8DC608;
-    PHY                                                                  ;8DC60B;
-    JSL.L .externalFunction                                              ;8DC60C;
-    PLY                                                                  ;8DC610;
-    LDX.W PaletteFXObject_Index                                          ;8DC611;
-    TYA                                                                  ;8DC614;
-    CLC                                                                  ;8DC615;
-    ADC.W #$0005                                                         ;8DC616;
-    TAY                                                                  ;8DC619;
-    RTS                                                                  ;8DC61A;
+    LDA.W $0000,Y : STA.B DP_Temp12
+    LDA.W $0001,Y : STA.B DP_Temp13
+    LDA.W $0003,Y
+    PHY
+    JSL .externalFunction
+    PLY
+    LDX.W PaletteFXObject_Index
+    TYA : CLC : ADC.W #$0005 : TAY
+    RTS
 
   .externalFunction:
-    JML.W [DP_Temp12]                                                    ;8DC61B;
+    JML.W [DP_Temp12]
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C61E: Instruction - go to [[Y]] ;;;
 Instruction_PaletteFXObject_GotoY:
-    LDA.W $0000,Y                                                        ;8DC61E;
-    TAY                                                                  ;8DC621;
-    RTS                                                                  ;8DC622;
+    LDA.W $0000,Y : TAY
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C623: Unused. Instruction - go to [Y] + ±[[Y]] ;;;
 UNUSED_Instruction_PaletteFXObject_GotoYPlusY_8DC623:
-    STY.B DP_Temp12                                                      ;8DC623;
-    DEY                                                                  ;8DC625;
-    LDA.W $0000,Y                                                        ;8DC626;
-    XBA                                                                  ;8DC629;
-    BMI .highByte                                                        ;8DC62A;
-    AND.W #$00FF                                                         ;8DC62C;
-    BRA +                                                                ;8DC62F;
+    STY.B DP_Temp12
+    DEY
+    LDA.W $0000,Y : XBA : BMI .highByte
+    AND.W #$00FF
+    BRA +
 
   .highByte:
-    ORA.W #$FF00                                                         ;8DC631;
+    ORA.W #$FF00
 
-+   CLC                                                                  ;8DC634;
-    ADC.B DP_Temp12                                                      ;8DC635;
-    TAY                                                                  ;8DC637;
-    RTS                                                                  ;8DC638;
++   CLC : ADC.B DP_Temp12 : TAY
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C639: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
 Instruction_PaletteFXObject_DecrementTimer_GotoYIfNonZero:
-    DEC.W PaletteFXObject_Timers,X                                       ;8DC639;
-    BNE Instruction_PaletteFXObject_GotoY                                ;8DC63C;
-    INY                                                                  ;8DC63E;
-    INY                                                                  ;8DC63F;
-    RTS                                                                  ;8DC640;
+    DEC.W PaletteFXObject_Timers,X : BNE Instruction_PaletteFXObject_GotoY
+    INY #2
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C641: Unused. Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
 UNUSED_Inst_PaletteFXObject_DecTimer_GotoYIfNonZero_8DC641:
-    DEC.W PaletteFXObject_Timers,X                                       ;8DC641;
-    BNE UNUSED_Instruction_PaletteFXObject_GotoYPlusY_8DC623             ;8DC644;
-    INY                                                                  ;8DC646;
-    RTS                                                                  ;8DC647;
+    DEC.W PaletteFXObject_Timers,X : BNE UNUSED_Instruction_PaletteFXObject_GotoYPlusY_8DC623
+    INY
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C648: Instruction - timer = [[Y]] ;;;
 Instruction_PaletteFXObject_TimerInY:
-    SEP #$20                                                             ;8DC648;
-    LDA.W $0000,Y                                                        ;8DC64A;
-    STA.W PaletteFXObject_Timers,X                                       ;8DC64D;
-    REP #$20                                                             ;8DC650;
-    INY                                                                  ;8DC652;
-    RTS                                                                  ;8DC653;
+    SEP #$20
+    LDA.W $0000,Y : STA.W PaletteFXObject_Timers,X
+    REP #$20
+    INY
+    RTS
 
 
 ;;; $C654: Unused. RTS ;;;
 RTS_8DC654:
-    RTS                                                                  ;8DC654;
+    RTS
 
 
 ;;; $C655: Instruction - palette FX object colour index = [[Y]] ;;;
 Instruction_PaletteFXObject_ColorIndexInY:
-    LDA.W $0000,Y                                                        ;8DC655;
-    STA.W PaletteFXObject_ColorIndices,X                                 ;8DC658;
-    INY                                                                  ;8DC65B;
-    INY                                                                  ;8DC65C;
-    RTS                                                                  ;8DC65D;
+    LDA.W $0000,Y : STA.W PaletteFXObject_ColorIndices,X
+    INY #2
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C65E: Unused. Instruction - queue music track [[Y]] ;;;
 UNUSED_Instruction_PaletteFXObject_QueueMusicTrackInY_8DC65E:
-    LDA.W $0000,Y                                                        ;8DC65E;
-    AND.W #$00FF                                                         ;8DC661;
-    JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;8DC664;
-    INY                                                                  ;8DC668;
-    RTS                                                                  ;8DC669;
+    LDA.W $0000,Y : AND.W #$00FF
+    JSL QueueMusicDataOrTrack_8FrameDelay
+    INY
+    RTS
 
 
 ;;; $C66A: Unused. Instruction - queue sound [[Y]], sound library 1, max queued sounds allowed = 6 ;;;
 UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib1_Max6_8DC66A:
-    LDA.W $0000,Y                                                        ;8DC66A;
-    JSL.L QueueSound_Lib1_Max6                                           ;8DC66D;
-    INY                                                                  ;8DC671;
-    RTS                                                                  ;8DC672;
+    LDA.W $0000,Y
+    JSL QueueSound_Lib1_Max6
+    INY
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C673: Instruction - queue sound [[Y]], sound library 2, max queued sounds allowed = 6 ;;;
 UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib2_Max6_8DC673:
-    LDA.W $0000,Y                                                        ;8DC673;
-    JSL.L QueueSound_Lib2_Max6                                           ;8DC676;
-    INY                                                                  ;8DC67A;
-    RTS                                                                  ;8DC67B;
+    LDA.W $0000,Y
+    JSL QueueSound_Lib2_Max6
+    INY
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C67C: Unused. Instruction - queue sound [[Y]], sound library 3, max queued sounds allowed = 6 ;;;
 UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib3_Max6_8DC67C:
-    LDA.W $0000,Y                                                        ;8DC67C;
-    JSL.L QueueSound_Lib3_Max6                                           ;8DC67F;
-    INY                                                                  ;8DC683;
-    RTS                                                                  ;8DC684;
+    LDA.W $0000,Y
+    JSL QueueSound_Lib3_Max6
+    INY
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C685: RTS ;;;
 RTS_8DC685:
-    RTS                                                                  ;8DC685;
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C686: Unused ;;;
 UNUSED_8DC686:
 ; Looks like garbage data
-    dw $1000,$C690,$C595,$C61E,$C686,$0180,$0000,$0000                   ;8DC686;
+    dw $1000,$C690,$C595,$C61E,$C686,$0180,$0000,$0000
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C696: Instruction list - palette FX object $E194 (fade in Super Metroid title logo) ;;;
 InstList_PaletteFXObject_FadeInSuperMetroidTitleLogo:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0142                   ;8DC696;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0142
     dw $0003
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
     dw Instruction_PaletteFXObject_Done
@@ -6856,12 +6769,12 @@ InstList_PaletteFXObject_FadeInSuperMetroidTitleLogo:
 
 ;;; $C7AC: Instruction list - palette FX object $E198 (fade in Nintendo boot logo) ;;;
 InstList_PaletteFXObject_FadeInNintendoBootLogo:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0132                   ;8DC7AC;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0132
 
 
 ;;; $C7B0: Instruction list - common section of $C7AC / $C7F2 ;;;
 InstList_PaletteFXObject_Common_FadeInLogo:
-    dw $0003                                                             ;8DC7B0;
+    dw $0003
     dw $0C63,$0C20
     dw Instruction_PaletteFXObject_Done
     dw $0003
@@ -6890,17 +6803,17 @@ InstList_PaletteFXObject_Common_FadeInLogo:
 
 ;;; $C7F2: Instruction list - palette FX object $E19C (fade in Nintendo copyright) ;;;
 InstList_PaletteFXObject_FadeInNintendoCopyright:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0192                   ;8DC7F2;
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DC7F6;
-    dw InstList_PaletteFXObject_Common_FadeInLogo                        ;8DC7F8;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0192
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_Common_FadeInLogo
 
 
 ;;; $C7FA: Instruction list - palette FX object $E1A0 (title screen baby metroid tube light) ;;;
 InstList_PaletteFXObject_TitleScreenBabyMetroidTubeLight_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0054                   ;8DC7FA;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0054
 
 InstList_PaletteFXObject_TitleScreenBabyMetroidTubeLight_1:
-    dw $000A                                                             ;8DC7FE;
+    dw $000A
     dw $0113,$000F,$175C,$0299
     dw Instruction_PaletteFXObject_Done
     dw $000A
@@ -6930,10 +6843,10 @@ InstList_PaletteFXObject_TitleScreenBabyMetroidTubeLight_1:
 
 ;;; $C862: Instruction list - palette FX object $E1A4 (title screen flickering displays) ;;;
 InstList_PaletteFXObject_TitleScreenFlickeringDisplays_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$005C                   ;8DC862;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$005C
 
 InstList_PaletteFXObject_TitleScreenFlickeringDisplays_1:
-    dw $0001                                                             ;8DC866;
+    dw $0001
     dw $13FF,$0BB1
     dw Instruction_PaletteFXObject_Done
     dw $0001
@@ -6945,10 +6858,10 @@ InstList_PaletteFXObject_TitleScreenFlickeringDisplays_1:
 
 ;;; $C87A: Instruction list - palette FX object $E1A8 (cutscene gunship engine flicker) ;;;
 InstList_PaletteFXObject_CutsceneGunshipEngineFlicker_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00BE                   ;8DC87A;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00BE
 
 InstList_PaletteFXObject_CutsceneGunshipEngineFlicker_1:
-    dw $0001                                                             ;8DC87E;
+    dw $0001
     dw $7FFF
     dw Instruction_PaletteFXObject_Done
     dw $0001
@@ -6960,12 +6873,12 @@ InstList_PaletteFXObject_CutsceneGunshipEngineFlicker_1:
 
 ;;; $C88E: Instruction list - palette FX object $E1AC (cutscene Ceres navigation lights - sprite Ceres) ;;;
 InstList_PaletteFXObject_CutsceneCeresNavigationLight_Sprite:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$01DA                   ;8DC88E;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$01DA
 
 
 ;;; $C892: Instruction list - common section of $C88E / $C906 ;;;
 InstList_PaletteFXObject_Common_CeresNavigationLights:
-    dw $0004                                                             ;8DC892;
+    dw $0004
     dw $001F,$0000
     dw Instruction_PaletteFXObject_Done
     dw $0004
@@ -7013,14 +6926,14 @@ InstList_PaletteFXObject_Common_CeresNavigationLights:
 
 ;;; $C906: Instruction list - palette FX object $E1B8 (cutscene Ceres navigation lights - BG Ceres) ;;;
 InstList_PaletteFXObject_CutsceneCeresNavigationLights_BG:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00DA                   ;8DC906;
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DC90A;
-    dw InstList_PaletteFXObject_Common_CeresNavigationLights             ;8DC90C;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00DA
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_Common_CeresNavigationLights
 
 
 ;;; $C90E: Instruction list - palette FX object $E1B0 (fade in PLANET ZEBES text) ;;;
 InstList_PaletteFXObject_FadeInPlanetZebesText:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0102                   ;8DC90E;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0102
     dw $0003
     dw $0000,$0000,$0000
     dw Instruction_PaletteFXObject_Done
@@ -7050,7 +6963,7 @@ InstList_PaletteFXObject_FadeInPlanetZebesText:
 
 ;;; $C964: Instruction list - palette FX object $E1B4 (fade out PLANET ZEBES text) ;;;
 InstList_PaletteFXObject_FadeOutPlanetZebesText:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0102                   ;8DC964;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0102
     dw $0003
     dw $7FFF,$6318,$294A
     dw Instruction_PaletteFXObject_Done
@@ -7080,10 +6993,10 @@ InstList_PaletteFXObject_FadeOutPlanetZebesText:
 
 ;;; $C9BA: Instruction list - palette FX object $E1BC (old Mother Brain fight background lights) ;;;
 InstList_PaletteFXObject_OldMotherBrainFightBGLights_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0028                   ;8DC9BA;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0028
 
 InstList_PaletteFXObject_OldMotherBrainFightBGLights_1:
-    dw $0006                                                             ;8DC9BE;
+    dw $0006
     dw $7FFF,$6318,$294A
     dw Instruction_PaletteFXObject_Done
     dw $0006
@@ -7131,10 +7044,10 @@ InstList_PaletteFXObject_OldMotherBrainFightBGLights_1:
 
 ;;; $CA4E: Instruction list - palette FX object $E1C0 (gunship glow) ;;;
 InstList_PaletteFXObject_GunshipGlow_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$01FE                   ;8DCA4E;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$01FE
 
 InstList_PaletteFXObject_GunshipGlow_1:
-    dw $0005                                                             ;8DCA52;
+    dw $0005
     dw $0000
     dw Instruction_PaletteFXObject_Done
     dw $0005
@@ -7175,14 +7088,14 @@ InstList_PaletteFXObject_GunshipGlow_1:
     dw Instruction_PaletteFXObject_Done
     dw $0005
     dw $0402
-    dw Instruction_PaletteFXObject_Done                                  ;8DCAA4;
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DCAA6;
-    dw InstList_PaletteFXObject_GunshipGlow_1                            ;8DCAA8;
+    dw Instruction_PaletteFXObject_Done
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_GunshipGlow_1
 
 
 ;;; $CAAA: Instruction list - palette FX object $E1C4 (fade out zoomed out exploding Zebes) ;;;
 InstList_PaletteFXObject_FadeOutZoomedOutExplodingZebes:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$01E0                   ;8DCAAA;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$01E0
     dw $0008
     dw $2003,$0E9A,$05F9,$0596,$0133,$008E,$0009,$0005
     dw Instruction_PaletteFXObject_Done
@@ -7209,7 +7122,7 @@ InstList_PaletteFXObject_FadeOutZoomedOutExplodingZebes:
 
 ;;; $CB3C: Instruction list - palette FX object $E1C8 (wide part of Zebes explosion - foreground) ;;;
 InstList_PaletteFXObject_WidePartOfZebesExplosion_Foreground:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0002                   ;8DCB3C;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0002
     dw $0004
     dw $7C00,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
     dw Instruction_PaletteFXObject_Done
@@ -7263,7 +7176,7 @@ InstList_PaletteFXObject_WidePartOfZebesExplosion_Foreground:
 
 ;;; $CD62: Instruction list - palette FX object $E1CC (Zebes explosion finale) ;;;
 InstList_PaletteFXObject_ZebesExplosionFinale:
-    dw Instruction_PaletteFXObject_ColorIndexInY                         ;8DCD62;
+    dw Instruction_PaletteFXObject_ColorIndexInY
     dw $0002
     dw $0002
     dw $7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF
@@ -7405,19 +7318,19 @@ InstList_PaletteFXObject_ZebesExplosionFinale:
 
 ;;; $D362: Instruction list - palette FX object $E1E8 (wide part of Zebes explosion - background) ;;;
 InstList_PaletteFXObject_WidePartOfZebesExplosion_Background:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0022                   ;8DD362;
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DD366;
-    dw InstList_PaletteFXObject_Common_ZebesExplosion                    ;8DD368;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0022
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_Common_ZebesExplosion
 
 
 ;;; $D36A: Instruction list - palette FX object $E1D0 (white out space during Zebes explosion) ;;;
 InstList_PaletteFXObject_WhiteOutSpaceDuringZebesExplosion:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0000                   ;8DD36A;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0000
 
 
 ;;; $D36E: Instruction list - common section of $D362 / $D36A ;;;
 InstList_PaletteFXObject_Common_ZebesExplosion:
-    dw $000E                                                             ;8DD36E;
+    dw $000E
     dw $0000
     dw Instruction_PaletteFXObject_Done
     dw $000E
@@ -7467,10 +7380,10 @@ InstList_PaletteFXObject_Common_ZebesExplosion:
 
 ;;; $D3CA: Instruction list - palette FX object $E1D4 (Zebes explosion planet afterglow) ;;;
 InstList_PaletteFXObject_ZebesExplosionPlanetAfterGlow_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$01C2                   ;8DD3CA;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$01C2
 
 InstList_PaletteFXObject_ZebesExplosionPlanetAfterGlow_1:
-    dw $0010                                                             ;8DD3CE;
+    dw $0010
     dw $6B9C,$5EBB,$49FA,$3D58,$2CD4,$408F,$288A,$1C47
     dw Instruction_PaletteFXObject_Done
     dw $0010
@@ -7494,10 +7407,10 @@ InstList_PaletteFXObject_ZebesExplosionPlanetAfterGlow_1:
 
 ;;; $D44A: Instruction list - palette FX object $E1D8 (exploding Zebes lava) ;;;
 InstList_PaletteFXObject_ExplodingZebesLava_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0080                   ;8DD44A;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0080
 
 InstList_PaletteFXObject_ExplodingZebesLava_1:
-    dw $0009                                                             ;8DD44E;
+    dw $0009
     dw $0012
     dw Instruction_PaletteFXObject_Done
     dw $0008
@@ -7533,7 +7446,7 @@ InstList_PaletteFXObject_ExplodingZebesLava_1:
 
 ;;; $D48E: Instruction list - palette FX object $E1DC (fade out exploding Zebes crust) ;;;
 InstList_PaletteFXObject_FadeOutExplodingZebesCrust:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0082                   ;8DD48E;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0082
     dw $0014
     dw $0864,$0884,$0CA6,$10C7,$0CC8,$0D07,$0D0A,$0CEC,$0D2C,$112C,$118E,$0D70,$11F4,$1633,$1698
     dw Instruction_PaletteFXObject_Done
@@ -7563,7 +7476,7 @@ InstList_PaletteFXObject_FadeOutExplodingZebesCrust:
 
 ;;; $D5A4: Instruction list - palette FX object $E1E0 (fade out exploding Zebes grey clouds) ;;;
 InstList_PaletteFXObject_FadeOutExplodingZebesGreyClouds:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00A2                   ;8DD5A4;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00A2
     dw $000E
     dw $0842,$0C63,$1084,$14A5,$18C6,$1CE7,$2108,$2529,$2D6B,$318C,$39CE,$4631,$4A52,$5294,$6318
     dw Instruction_PaletteFXObject_Done
@@ -7593,7 +7506,7 @@ InstList_PaletteFXObject_FadeOutExplodingZebesGreyClouds:
 
 ;;; $D6BA: Instruction list - palette FX object $E1E4 (gunship emerging from Zebes explosion) ;;;
 InstList_PaletteFXObject_GunshipEmergingFromZebesExplosion:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00A0                   ;8DD6BA;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00A0
     dw $0018
     dw $0000,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF
     dw Instruction_PaletteFXObject_Done
@@ -7647,10 +7560,10 @@ InstList_PaletteFXObject_GunshipEmergingFromZebesExplosion:
 
 ;;; $D900: Instruction list - palette FX object $E1F0 (hyper beam) ;;;
 InstList_PaletteFXObject_HyperBeam_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$01C2                   ;8DD900;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$01C2
 
 InstList_PaletteFXObject_HyperBeam_1:
-    dw $0002                                                             ;8DD904;
+    dw $0002
     dw $7FFF,$661F,$351F,$001F,$673F,$4E7F,$319F,$18DF
     dw Instruction_PaletteFXObject_Done
     dw $0002
@@ -7687,7 +7600,7 @@ InstList_PaletteFXObject_HyperBeam_1:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $D9D0: Instruction list - palette FX object $E1EC (unused) ;;;
 UNUSED_InstList_PaletteFXObject_8DD9D0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00A0                   ;8DD9D0;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00A0
     dw $0002
     dw $7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF
     dw Instruction_PaletteFXObject_Done
@@ -7727,11 +7640,11 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $DB62: Instruction list - palette FX object $E1F4 (Samus loading - power suit) ;;;
 InstList_PaletteFXObject_SamusLoading_PowerSuit_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0180                   ;8DDB62;
-    dw Instruction_PaletteFXObject_TimerInY : db $24                     ;8DDB66;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0180
+    dw Instruction_PaletteFXObject_TimerInY : db $24
 
 InstList_PaletteFXObject_SamusLoading_PowerSuit_1:
-    dw $0003                                                             ;8DDB69;
+    dw $0003
     dw $3800,$0108,$03BD,$1405,$3BE0,$21A8,$579F,$4AD2,$3A4E,$00BB,$02B5,$016B,$0252,$1104,$0074,$000D
     dw Instruction_PaletteFXObject_Done
     dw $0003
@@ -7742,7 +7655,7 @@ InstList_PaletteFXObject_SamusLoading_PowerSuit_1:
     dw Instruction_PaletteFXObject_TimerInY : db $03
 
 InstList_PaletteFXObject_SamusLoading_PowerSuit_2:
-    dw $0003                                                             ;8DDBB8;
+    dw $0003
     dw $3800,$0108,$03BD,$1405,$3BE0,$21A8,$579F,$4AD2,$3A4E,$00BB,$02B5,$016B,$0252,$1104,$0074,$000D
     dw Instruction_PaletteFXObject_Done
     dw $0003
@@ -7780,11 +7693,11 @@ InstList_PaletteFXObject_SamusLoading_PowerSuit_4:
 
 ;;; $DCC8: Instruction list - palette FX object $E1F8 (Samus loading - varia suit) ;;;
 InstList_PaletteFXObject_SamusLoading_VairaSuit_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0180                   ;8DDCC8;
-    dw Instruction_PaletteFXObject_TimerInY : db $24                     ;8DDCCC;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0180
+    dw Instruction_PaletteFXObject_TimerInY : db $24
 
 InstList_PaletteFXObject_SamusLoading_VairaSuit_1:
-    dw $0003                                                             ;8DDCCF;
+    dw $0003
     dw $0000,$0108,$02FF,$1405,$3BE0,$21A8,$579F,$4AD2,$3A4E,$00BB,$01BE,$008E,$0252,$1104,$0074,$000D
     dw Instruction_PaletteFXObject_Done
     dw $0003
@@ -7833,11 +7746,11 @@ InstList_PaletteFXObject_SamusLoading_VairaSuit_4:
 
 ;;; $DE2E: Instruction list - palette FX object $E1FC (Samus loading - gravity suit) ;;;
 InstList_PaletteFXObject_SamusLoading_GravitySuit_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0180                   ;8DDE2E;
-    dw Instruction_PaletteFXObject_TimerInY : db $24                     ;8DDE32;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0180
+    dw Instruction_PaletteFXObject_TimerInY : db $24
 
 InstList_PaletteFXObject_SamusLoading_GravitySuit_1:
-    dw $0003                                                             ;8DDE35;
+    dw $0003
     dw $3800,$0108,$421F,$1405,$3BE0,$21A8,$579F,$4AD2,$3A4E,$00BB,$5914,$30AA,$0274,$1104,$0074,$000D
     dw Instruction_PaletteFXObject_Done
     dw $0003
@@ -7886,7 +7799,7 @@ InstList_PaletteFXObject_SamusLoading_GravitySuit_4:
 
 ;;; $DF94: Instruction list - palette FX object $E200 (post-credits Super Metroid icon glare) ;;;
 InstList_PaletteFXObject_PostCreditsSuperMetroidIconGlare:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$01E0                   ;8DDF94;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$01E0
     dw $0001
     dw $2DEB,$119F,$10B2,$1088,$127F,$1153,$10AC,$135F,$11D3,$10EC,$7BE4,$79C4,$4C84,$4BFF,$13FF,$28E7
     dw Instruction_PaletteFXObject_Done
@@ -7934,209 +7847,204 @@ InstList_PaletteFXObject_PostCreditsSuperMetroidIconGlare:
 
 ;;; $E192: Instruction list - delete ;;;
 InstList_PaletteFXObject_Delete:
-    dw Instruction_Delete_8DC5CF                                         ;8DE192;
+    dw Instruction_Delete_8DC5CF
 
 
 ;;; $E194: Palette FX objects ;;;
 PaletteFXObjects_FadeInSuperMetroidTitleLogo:
 ; Fade in Super Metroid title logo
-    dw RTS_8DC685                                                        ;8DE194;
-    dw InstList_PaletteFXObject_FadeInSuperMetroidTitleLogo              ;8DE196;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_FadeInSuperMetroidTitleLogo
 
 if !FEATURE_KEEP_UNREFERENCED
 PaletteFXObjects_FadeInNintendoBootLogoForUnusedCode:
 ; Fade in Nintendo boot logo (for unused code)
-    dw RTS_8DC685                                                        ;8DE198;
-    dw InstList_PaletteFXObject_FadeInNintendoBootLogo                   ;8DE19A;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_FadeInNintendoBootLogo
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 PaletteFXObjects_FadeInNintendoCopyright:
 ; Fade in Nintendo copyright
-    dw RTS_8DC685                                                        ;8DE19C;
-    dw InstList_PaletteFXObject_FadeInNintendoCopyright                  ;8DE19E;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_FadeInNintendoCopyright
 
 PaletteFXObjects_TitleScreenBabyMetroidTubeLight:
 ; Title screen baby metroid tube light
-    dw RTS_8DC685                                                        ;8DE1A0;
-    dw InstList_PaletteFXObject_TitleScreenBabyMetroidTubeLight_0        ;8DE1A2;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_TitleScreenBabyMetroidTubeLight_0
 
 PaletteFXObjects_TitleScreenFlickeringDisplays:
 ; Title screen flickering displays
-    dw RTS_8DC685                                                        ;8DE1A4;
-    dw InstList_PaletteFXObject_TitleScreenFlickeringDisplays_0          ;8DE1A6;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_TitleScreenFlickeringDisplays_0
 
 PaletteFXObjects_CutsceneGunshipEngineFlicker:
 ; Cutscene gunship engine flicker
-    dw RTS_8DC685                                                        ;8DE1A8;
-    dw InstList_PaletteFXObject_CutsceneGunshipEngineFlicker_0           ;8DE1AA;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_CutsceneGunshipEngineFlicker_0
 
 PaletteFXObjects_CutsceneCeresNavigationLights_SpriteCeres:
 ; Cutscene Ceres navigation lights - sprite Ceres
-    dw RTS_8DC685                                                        ;8DE1AC;
-    dw InstList_PaletteFXObject_CutsceneCeresNavigationLight_Sprite      ;8DE1AE;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_CutsceneCeresNavigationLight_Sprite
 
 PaletteFXObjects_FadeInPlanetZebesText:
 ; Fade in PLANET ZEBES text
-    dw RTS_8DC685                                                        ;8DE1B0;
-    dw InstList_PaletteFXObject_FadeInPlanetZebesText                    ;8DE1B2;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_FadeInPlanetZebesText
 
 PaletteFXObjects_FadeOutPlanetZebesText:
 ; Fade out PLANET ZEBES text
-    dw RTS_8DC685                                                        ;8DE1B4;
-    dw InstList_PaletteFXObject_FadeOutPlanetZebesText                   ;8DE1B6;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_FadeOutPlanetZebesText
 
 PaletteFXObjects_CutsceneCeresNavigationLights_BGCeres:
 ; Cutscene Ceres navigation lights - BG Ceres
-    dw RTS_8DC685                                                        ;8DE1B8;
-    dw InstList_PaletteFXObject_CutsceneCeresNavigationLights_BG         ;8DE1BA;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_CutsceneCeresNavigationLights_BG
 
 PaletteFXObjects_OldMotherBrainFightBackgroundLights:
 ; Old Mother Brain fight background lights
-    dw Setup_PaletteFXObject_OldMotherBrainFightBackgroundLights         ;8DE1BC;
-    dw InstList_PaletteFXObject_OldMotherBrainFightBGLights_0            ;8DE1BE;
+    dw Setup_PaletteFXObject_OldMotherBrainFightBackgroundLights
+    dw InstList_PaletteFXObject_OldMotherBrainFightBGLights_0
 
 PaletteFXObjects_GunshipGlow:
 ; Gunship glow
-    dw RTS_8DC685                                                        ;8DE1C0;
-    dw InstList_PaletteFXObject_GunshipGlow_0                            ;8DE1C2;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_GunshipGlow_0
 
 PaletteFXObjects_FadeOutZoomedOutExplodingZebes:
 ; Fade out zoomed out exploding Zebes
-    dw RTS_8DC685                                                        ;8DE1C4;
-    dw InstList_PaletteFXObject_FadeOutZoomedOutExplodingZebes           ;8DE1C6;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_FadeOutZoomedOutExplodingZebes
 
 PaletteFXObjects_WidePartOfZebesExplosion_Foreground:
 ; Wide part of Zebes explosion - foreground
-    dw RTS_8DC685                                                        ;8DE1C8;
-    dw InstList_PaletteFXObject_WidePartOfZebesExplosion_Foreground      ;8DE1CA;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_WidePartOfZebesExplosion_Foreground
 
 PaletteFXObjects_ZebesExplosionFinale:
 ; Zebes explosion finale
-    dw RTS_8DC685                                                        ;8DE1CC;
-    dw InstList_PaletteFXObject_ZebesExplosionFinale                     ;8DE1CE;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_ZebesExplosionFinale
 
 PaletteFXObjects_WhiteOutSpaceDuringZebesExplosion:
 ; White out space during Zebes explosion
-    dw RTS_8DC685                                                        ;8DE1D0;
-    dw InstList_PaletteFXObject_WhiteOutSpaceDuringZebesExplosion        ;8DE1D2;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_WhiteOutSpaceDuringZebesExplosion
 
 PaletteFXObjects_ZebesExplosionPlanetAfterglow:
 ; Zebes explosion planet afterglow
-    dw RTS_8DC685                                                        ;8DE1D4;
-    dw InstList_PaletteFXObject_ZebesExplosionPlanetAfterGlow_0          ;8DE1D6;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_ZebesExplosionPlanetAfterGlow_0
 
 PaletteFXObjects_ExplodingZebesLava:
 ; Exploding Zebes lava
-    dw RTS_8DC685                                                        ;8DE1D8;
-    dw InstList_PaletteFXObject_ExplodingZebesLava_0                     ;8DE1DA;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_ExplodingZebesLava_0
 
 PaletteFXObjects_FadeOutExplodingZebesCrust:
 ; Fade out exploding Zebes crust
-    dw RTS_8DC685                                                        ;8DE1DC;
-    dw InstList_PaletteFXObject_FadeOutExplodingZebesCrust               ;8DE1DE;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_FadeOutExplodingZebesCrust
 
 PaletteFXObjects_FadeOutExplodingZebesGreyClouds:
 ; Fade out exploding Zebes grey clouds
-    dw RTS_8DC685                                                        ;8DE1E0;
-    dw InstList_PaletteFXObject_FadeOutExplodingZebesGreyClouds          ;8DE1E2;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_FadeOutExplodingZebesGreyClouds
 
 PaletteFXObjects_GunshipEmergineFromZebesExplosion:
 ; Gunship emerging from Zebes explosion
-    dw RTS_8DC685                                                        ;8DE1E4;
-    dw InstList_PaletteFXObject_GunshipEmergingFromZebesExplosion        ;8DE1E6;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_GunshipEmergingFromZebesExplosion
 
 PaletteFXObjects_WidePartOfZebesExplosion_Background:
 ; Wide part of Zebes explosion - background
-    dw RTS_8DC685                                                        ;8DE1E8;
-    dw InstList_PaletteFXObject_WidePartOfZebesExplosion_Background      ;8DE1EA;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_WidePartOfZebesExplosion_Background
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PaletteFXObjects_8DE1EC:
-    dw RTS_8DC685                                                        ;8DE1EC;
-    dw UNUSED_InstList_PaletteFXObject_8DD9D0                            ;8DE1EE;
+    dw RTS_8DC685
+    dw UNUSED_InstList_PaletteFXObject_8DD9D0
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 PaletteFXObjects_HyperBeam:
 ; Hyper beam
-    dw RTS_8DC685                                                        ;8DE1F0;
-    dw InstList_PaletteFXObject_HyperBeam_0                              ;8DE1F2;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_HyperBeam_0
 
 PaletteFXObjects_SamusLoading_PowerSuit:
 ; Samus loading - power suit
-    dw RTS_8DC685                                                        ;8DE1F4;
-    dw InstList_PaletteFXObject_SamusLoading_PowerSuit_0                 ;8DE1F6;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_SamusLoading_PowerSuit_0
 
 PaletteFXObjects_SamusLoading_VariaSuit:
 ; Samus loading - varia suit
-    dw RTS_8DC685                                                        ;8DE1F8;
-    dw InstList_PaletteFXObject_SamusLoading_VairaSuit_0                 ;8DE1FA;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_SamusLoading_VairaSuit_0
 
 PaletteFXObjects_SamusLoading_GravitySuit:
 ; Samus loading - gravity suit
-    dw RTS_8DC685                                                        ;8DE1FC;
-    dw InstList_PaletteFXObject_SamusLoading_GravitySuit_0               ;8DE1FE;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_SamusLoading_GravitySuit_0
 
 PaletteFXObjects_PostCreditsSuperMetroidIcon:
 ; Post-credits Super Metroid icon
-    dw RTS_8DC685                                                        ;8DE200;
-    dw InstList_PaletteFXObject_PostCreditsSuperMetroidIconGlare         ;8DE202;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_PostCreditsSuperMetroidIconGlare
 
 
 ;;; $E204: Setup - palette FX object $E1BC (old Mother Brain fight background lights) ;;;
 Setup_PaletteFXObject_OldMotherBrainFightBackgroundLights:
-    LDA.W #PreInstruction_PaletteFXObject_DeleteIfIntroPage2IsActive     ;8DE204;
-    STA.W PaletteFXObject_PreInstructions,Y                              ;8DE207;
-    RTS                                                                  ;8DE20A;
+    LDA.W #PreInstruction_PaletteFXObject_DeleteIfIntroPage2IsActive : STA.W PaletteFXObject_PreInstructions,Y
+    RTS
 
 
 ;;; $E20B: Pre-instruction - delete if intro page 2 is active ;;;
 PreInstruction_PaletteFXObject_DeleteIfIntroPage2IsActive:
-    LDA.W CinematicFunction                                              ;8DE20B;
-    CMP.W #CinematicFunction_Intro_Page2                                 ;8DE20E;
-    BNE .return                                                          ;8DE211;
-    LDA.W #InstList_PaletteFXObject_Delete                               ;8DE213;
-    STA.W PaletteFXObject_InstListPointers,X                             ;8DE216;
-    LDA.W #$0001                                                         ;8DE219;
-    STA.W PaletteFXObject_InstructionTimers,X                            ;8DE21C;
+    LDA.W CinematicFunction : CMP.W #CinematicFunction_Intro_Page2 : BNE .return
+    LDA.W #InstList_PaletteFXObject_Delete : STA.W PaletteFXObject_InstListPointers,X
+    LDA.W #$0001 : STA.W PaletteFXObject_InstructionTimers,X
 
   .return:
-    RTS                                                                  ;8DE21F;
+    RTS
 
 
 ;;; $E220: Instruction list - palette FX object $F745 (nothing) ;;;
 InstList_PaletteFXObject_Nothing:
-    dw Instruction_Delete_8DC5CF                                         ;8DE220;
+    dw Instruction_Delete_8DC5CF
 
 
 ;;; $E222: Instruction list - palette FX object $F749 (grey out Tourian entrance statue - Draygon) ;;;
 InstList_PaletteFXObject_GreyOutTourianStatue_Draygon:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00C0                   ;8DE222;
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DE226;
-    dw InstList_PaletteFXObject_Common_GreyOutTourianStatue              ;8DE228;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00C0
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_Common_GreyOutTourianStatue
 
 
 ;;; $E22A: Instruction list - palette FX object $F74D (grey out Tourian entrance statue - Kraid) ;;;
 InstList_PaletteFXObject_GreyOutTourianStatue_Kraid:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00E0                   ;8DE22A;
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DE22E;
-    dw InstList_PaletteFXObject_Common_GreyOutTourianStatue              ;8DE230;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00E0
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_Common_GreyOutTourianStatue
 
 
 ;;; $E232: Instruction list - palette FX object $F751 (grey out Tourian entrance statue - Ridley) ;;;
 InstList_PaletteFXObject_GreyOutTourianStatue_Ridley:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0120                   ;8DE232;
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DE236;
-    dw InstList_PaletteFXObject_Common_GreyOutTourianStatue              ;8DE238;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0120
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_Common_GreyOutTourianStatue
 
 
 ;;; $E23A: Instruction list - palette FX object $F755 (grey out Tourian entrance statue - Phantoon) ;;;
 InstList_PaletteFXObject_GreyOutTourianStatue_Phantoon:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0140                   ;8DE23A;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0140
 
 
 ;;; $E23E: Instruction list - common section of above instruction lists ;;;
 InstList_PaletteFXObject_Common_GreyOutTourianStatue:
-    dw $0008                                                             ;8DE23E;
+    dw $0008
     dw $0000,$57FF,$2BFF,$1F3C,$0278,$01B0,$010B,$0087
     dw Instruction_PaletteFXObject_Done
     dw $0008
@@ -8165,22 +8073,21 @@ InstList_PaletteFXObject_Common_GreyOutTourianStatue:
 
 ;;; $E2E0: Pre-instruction - delete if enemy 0 died ;;;
 PreInstruction_PaletteFXObject_DeleteIfEnemy0Died:
-    LDA.W Enemy.health                                                   ;8DE2E0;
-    BNE .return                                                          ;8DE2E3;
-    STZ.W PaletteFXObject_IDs,X                                          ;8DE2E5;
+    LDA.W Enemy.health : BNE .return
+    STZ.W PaletteFXObject_IDs,X
 
   .return:
-    RTS                                                                  ;8DE2E8;
+    RTS
 
 
 ;;; $E2E9: Instruction list - palette FX object $F759 (Bomb Torizo belly) ;;;
 InstList_PaletteFXObject_BombTorizoBelly_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0132                   ;8DE2E9;
-    dw Instruction_PaletteFXObject_PreInstructionInY                     ;8DE2ED;
-    dw PreInstruction_PaletteFXObject_DeleteIfEnemy0Died                 ;8DE2EF;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0132
+    dw Instruction_PaletteFXObject_PreInstructionInY
+    dw PreInstruction_PaletteFXObject_DeleteIfEnemy0Died
 
 InstList_PaletteFXObject_BombTorizoBelly_1:
-    dw $000A                                                             ;8DE2F1;
+    dw $000A
     dw $6F7F,$51F8,$410E
     dw Instruction_PaletteFXObject_Done
     dw $0008
@@ -8204,12 +8111,12 @@ InstList_PaletteFXObject_BombTorizoBelly_1:
 
 ;;; $E331: Instruction list - palette FX object $F75D (Golden Torizo belly) ;;;
 InstList_PaletteFXObject_GoldenTorizoBelly_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0132                   ;8DE331;
-    dw Instruction_PaletteFXObject_PreInstructionInY                     ;8DE335;
-    dw PreInstruction_PaletteFXObject_DeleteIfEnemy0Died                 ;8DE337;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0132
+    dw Instruction_PaletteFXObject_PreInstructionInY
+    dw PreInstruction_PaletteFXObject_DeleteIfEnemy0Died
 
 InstList_PaletteFXObject_GoldenTorizoBelly_1:
-    dw $000A                                                             ;8DE339;
+    dw $000A
     dw $73E0,$4F20,$2A20
     dw Instruction_PaletteFXObject_Done
     dw $0008
@@ -8234,402 +8141,380 @@ InstList_PaletteFXObject_GoldenTorizoBelly_1:
 ;;; $E379: Pre-instruction - Samus in heat ;;;
 PreInstruction_PaletteFXObject_SamusInHeat:
 ; Contains heat damage check
-    LDA.W EquippedItems                                                  ;8DE379;
-    AND.W #$0021                                                         ;8DE37C;
-    BNE +                                                                ;8DE37F;
-    LDA.W PeriodicSubDamage                                              ;8DE381;
-    CLC                                                                  ;8DE384;
-    ADC.W #$4000                                                         ;8DE385;
-    STA.W PeriodicSubDamage                                              ;8DE388;
-    LDA.W PeriodicDamage                                                 ;8DE38B;
-    ADC.W #$0000                                                         ;8DE38E;
-    STA.W PeriodicDamage                                                 ;8DE391;
-    LDA.W NMI_FrameCounter                                               ;8DE394;
-    BIT.W #$0007                                                         ;8DE397;
-    BNE +                                                                ;8DE39A;
-    LDA.W #$0046                                                         ;8DE39C;
-    CMP.W Energy                                                         ;8DE39F;
-    BCS +                                                                ;8DE3A2;
-    LDA.W #$002D                                                         ;8DE3A4;
-    JSL.L QueueSound_Lib3_Max6                                           ;8DE3A7;
+    LDA.W EquippedItems : AND.W #$0021 : BNE +
+    LDA.W PeriodicSubDamage : CLC : ADC.W #$4000 : STA.W PeriodicSubDamage
+    LDA.W PeriodicDamage : ADC.W #$0000 : STA.W PeriodicDamage
+    LDA.W NMI_FrameCounter : BIT.W #$0007 : BNE +
+    LDA.W #$0046 : CMP.W Energy : BCS +
+    LDA.W #$002D
+    JSL QueueSound_Lib3_Max6
 
-+   LDA.W PaletteFXObject_SamusInHeatIndex                               ;8DE3AB;
-    CMP.W PaletteFXObject_PreviousSamusInHeatIndex                       ;8DE3AE;
-    BEQ .return                                                          ;8DE3B1;
-    STA.W PaletteFXObject_PreviousSamusInHeatIndex                       ;8DE3B3;
-    ASL                                                                  ;8DE3B6;
-    TAY                                                                  ;8DE3B7;
-    LDA.W #$0001                                                         ;8DE3B8;
-    STA.W PaletteFXObject_InstructionTimers,X                            ;8DE3BB;
-    LDA.W EquippedItems                                                  ;8DE3BE;
-    BIT.W #$0020                                                         ;8DE3C1;
-    BEQ .checkVaria                                                      ;8DE3C4;
-    LDA.W #.InstListPointers_gravity                                     ;8DE3C6;
-    BRA .setInstListPointer                                              ;8DE3C9;
++   LDA.W PaletteFXObject_SamusInHeatIndex : CMP.W PaletteFXObject_PreviousSamusInHeatIndex : BEQ .return
+    STA.W PaletteFXObject_PreviousSamusInHeatIndex
+    ASL : TAY
+    LDA.W #$0001 : STA.W PaletteFXObject_InstructionTimers,X
+    LDA.W EquippedItems : BIT.W #$0020 : BEQ .checkVaria
+    LDA.W #.InstListPointers_gravity
+    BRA .setInstListPointer
 
   .checkVaria:
-    BIT.W #$0001                                                         ;8DE3CB;
-    BEQ .powerSuit                                                       ;8DE3CE;
-    LDA.W #.InstListPointers_varia                                       ;8DE3D0;
-    BRA .setInstListPointer                                              ;8DE3D3;
+    BIT.W #$0001 : BEQ .powerSuit
+    LDA.W #.InstListPointers_varia
+    BRA .setInstListPointer
 
   .powerSuit:
-    LDA.W #.InstListPointers_power                                       ;8DE3D5;
+    LDA.W #.InstListPointers_power
 
   .setInstListPointer:
-    STA.B DP_Temp12                                                      ;8DE3D8;
-    LDA.B (DP_Temp12),Y                                                  ;8DE3DA;
-    STA.W PaletteFXObject_InstListPointers,X                             ;8DE3DC;
+    STA.B DP_Temp12
+    LDA.B (DP_Temp12),Y : STA.W PaletteFXObject_InstListPointers,X
 
   .return:
-    RTS                                                                  ;8DE3DF;
+    RTS
 
   .InstListPointers:
   ..gravity:
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_2                ;8DE3E0;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_3                ;8DE3E2;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_4                ;8DE3E4;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_5                ;8DE3E6;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_6                ;8DE3E8;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_7                ;8DE3EA;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_8                ;8DE3EC;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_9                ;8DE3EE;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_A                ;8DE3F0;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_B                ;8DE3F2;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_C                ;8DE3F4;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_D                ;8DE3F6;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_E                ;8DE3F8;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_F                ;8DE3FA;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_10               ;8DE3FC;
-    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_11               ;8DE3FE;
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_2
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_3
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_4
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_5
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_6
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_7
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_8
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_9
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_A
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_B
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_C
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_D
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_E
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_F
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_10
+    dw InstList_PaletteFXObject_SamusInHeat_GravitySuit_11
 
   ..varia:
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_2                  ;8DE400;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_3                  ;8DE402;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_4                  ;8DE404;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_5                  ;8DE406;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_6                  ;8DE408;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_7                  ;8DE40A;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_8                  ;8DE40C;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_9                  ;8DE40E;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_A                  ;8DE410;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_B                  ;8DE412;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_C                  ;8DE414;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_D                  ;8DE416;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_E                  ;8DE418;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_F                  ;8DE41A;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_10                 ;8DE41C;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_11                 ;8DE41E;
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_2
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_3
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_4
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_5
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_6
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_7
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_8
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_9
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_A
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_B
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_C
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_D
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_E
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_F
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_10
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_11
 
   ..power:
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_1                  ;8DE420;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_2                  ;8DE422;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_3                  ;8DE424;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_4                  ;8DE426;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_5                  ;8DE428;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_6                  ;8DE42A;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_7                  ;8DE42C;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_8                  ;8DE42E;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_9                  ;8DE430;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_A                  ;8DE432;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_B                  ;8DE434;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_C                  ;8DE436;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_D                  ;8DE438;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_E                  ;8DE43A;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_F                  ;8DE43C;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_10                 ;8DE43E;
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_1
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_2
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_3
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_4
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_5
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_6
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_7
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_8
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_9
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_A
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_B
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_C
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_D
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_E
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_F
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_10
 
 
 ;;; $E440: Setup - palette FX object $F761 (Norfair 1 / Tourian 1) ;;;
 Setup_PaletteFXObject_Norfair1_Tourian1:
-    LDA.W EquippedItems                                                          ;8DE440;
-    BIT.W #$0020                                                         ;8DE443;
-    BEQ .checkVaria                                                      ;8DE446;
-    LDA.W #InstList_PaletteFXObject_SamusInHeat_GravitySuit_0            ;8DE448;
-    BRA +                                                                ;8DE44B;
+    LDA.W EquippedItems : BIT.W #$0020 : BEQ .checkVaria
+    LDA.W #InstList_PaletteFXObject_SamusInHeat_GravitySuit_0
+    BRA +
 
   .checkVaria:
-    BIT.W #$0001                                                         ;8DE44D;
-    BEQ .powerSuit                                                       ;8DE450;
-    LDA.W #InstList_PaletteFXObject_SamusInHeat_VariaSuit_0              ;8DE452;
-    BRA +                                                                ;8DE455;
+    BIT.W #$0001 : BEQ .powerSuit
+    LDA.W #InstList_PaletteFXObject_SamusInHeat_VariaSuit_0
+    BRA +
 
   .powerSuit:
-    LDA.W #InstList_PaletteFXObject_SamusInHeat_PowerSuit_0              ;8DE457;
+    LDA.W #InstList_PaletteFXObject_SamusInHeat_PowerSuit_0
 
-+   STA.W PaletteFXObject_InstListPointers,Y                             ;8DE45A;
-    RTS                                                                  ;8DE45D;
++   STA.W PaletteFXObject_InstListPointers,Y
+    RTS
 
 
 ;;; $E45E: Instruction list - Samus in heat - power suit ;;;
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_0:
-    dw Instruction_PaletteFXObject_PreInstructionInY                     ;8DE45E;
-    dw PreInstruction_PaletteFXObject_SamusInHeat                        ;8DE460;
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0182                   ;8DE462;
+    dw Instruction_PaletteFXObject_PreInstructionInY
+    dw PreInstruction_PaletteFXObject_SamusInHeat
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0182
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_1:
-    dw $0010                                                             ;8DE466;
+    dw $0010
     dw $0108,$03BD,$1405,$3BE0,$21A8,$579F,$4AD2,$3A4E,$00BB,$02B5,$016B,$0252,$1104,$0074,$000D
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_2:
-    dw $0004                                                             ;8DE488;
+    dw $0004
     dw $0109,$03BD,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$02B6,$016C,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_3:
-    dw $0004                                                             ;8DE4AA;
+    dw $0004
     dw $0109,$03BD,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$02B6,$016C,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_4:
-    dw $0005                                                             ;8DE4CC;
+    dw $0005
     dw $010A,$03BE,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$02B7,$016D,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_5:
-    dw $0006                                                             ;8DE4EE;
+    dw $0006
     dw $010A,$03BE,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$02B7,$016D,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_6:
-    dw $0007                                                             ;8DE510;
+    dw $0007
     dw $010B,$03BE,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$02B8,$016E,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_7:
-    dw $0008                                                             ;8DE532;
+    dw $0008
     dw $010B,$03BE,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$02B8,$016E,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_8:
-    dw $0008                                                             ;8DE554;
+    dw $0008
     dw $010D,$03BE,$140A,$3BE5,$2E0F,$579F,$4AD7,$3A53,$00BD,$02BA,$0170,$0257,$1109,$0079,$0012
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_9:
-    dw $0008                                                             ;8DE576;
+    dw $0008
     dw $010D,$03BE,$140A,$3BE5,$2E0F,$579F,$4AD7,$3A53,$00BD,$02BA,$0170,$0257,$1109,$0079,$0012
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_A:
-    dw $0008                                                             ;8DE598;
+    dw $0008
     dw $010B,$03BE,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$02B8,$016E,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_B:
-    dw $0007                                                             ;8DE5BA;
+    dw $0007
     dw $010B,$03BE,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$02B8,$016E,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_C:
-    dw $0006                                                             ;8DE5DC;
+    dw $0006
     dw $010A,$03BE,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$02B7,$016D,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_D:
-    dw $0005                                                             ;8DE5FE;
+    dw $0005
     dw $010A,$03BE,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$02B7,$016D,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_E:
-    dw $0004                                                             ;8DE620;
+    dw $0004
     dw $0109,$03BD,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$02B6,$016C,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_F:
-    dw $0004                                                             ;8DE642;
+    dw $0004
     dw $0109,$03BD,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$02B6,$016C,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_10:
-    dw $0003                                                             ;8DE664;
+    dw $0003
     dw $0109,$03BD,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$02B6,$016C,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_PowerSuit_11:
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DE686;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_1                  ;8DE688;
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_1
 
 
 ;;; $E68A: Instruction list - Samus in heat - varia suit ;;;
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_0:
-    dw Instruction_PaletteFXObject_PreInstructionInY                     ;8DE68A;
-    dw PreInstruction_PaletteFXObject_SamusInHeat                        ;8DE68C;
+    dw Instruction_PaletteFXObject_PreInstructionInY
+    dw PreInstruction_PaletteFXObject_SamusInHeat
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_1:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0182                   ;8DE68E;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0182
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_2:
-    dw $0010                                                             ;8DE692;
+    dw $0010
     dw $0108,$02FF,$1405,$3BE0,$21A8,$579F,$4AD2,$3A4E,$00BB,$01BE,$008E,$0252,$1104,$0074,$000D
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_3:
-    dw $0004                                                             ;8DE6B4;
+    dw $0004
     dw $0109,$02FF,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$01BE,$008F,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_4:
-    dw $0004                                                             ;8DE6D6;
+    dw $0004
     dw $0109,$02FF,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$01BE,$008F,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_5:
-    dw $0005                                                             ;8DE6F8;
+    dw $0005
     dw $010A,$02FF,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$01BE,$0090,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_6:
-    dw $0006                                                             ;8DE71A;
+    dw $0006
     dw $010A,$02FF,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$01BE,$0090,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_7:
-    dw $0007                                                             ;8DE73C;
+    dw $0007
     dw $010B,$02FF,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$01BE,$0091,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_8:
-    dw $0008                                                             ;8DE75E;
+    dw $0008
     dw $010B,$02FF,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$01BE,$0091,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_9:
-    dw $0008                                                             ;8DE780;
+    dw $0008
     dw $010D,$02FF,$140A,$3BE5,$2E0F,$579F,$4AD7,$3A53,$00BD,$01BF,$0093,$0257,$1109,$0079,$0012
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_A:
-    dw $0008                                                             ;8DE7A2;
+    dw $0008
     dw $010D,$02FF,$140A,$3BE5,$2E0F,$579F,$4AD7,$3A53,$00BD,$01BF,$0093,$0257,$1109,$0079,$0012
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_B:
-    dw $0008                                                             ;8DE7C4;
+    dw $0008
     dw $010B,$02FF,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$01BE,$0091,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_C:
-    dw $0007                                                             ;8DE7E6;
+    dw $0007
     dw $010B,$02FF,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$01BE,$0091,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_D:
-    dw $0006                                                             ;8DE808;
+    dw $0006
     dw $010A,$02FF,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$01BE,$0090,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_E:
-    dw $0005                                                             ;8DE82A;
+    dw $0005
     dw $010A,$02FF,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$01BE,$0090,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_F:
-    dw $0004                                                             ;8DE84C;
+    dw $0004
     dw $0109,$02FF,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$01BE,$008F,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_10:
-    dw $0004                                                             ;8DE86E;
+    dw $0004
     dw $0109,$02FF,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$01BE,$008F,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_11:
-    dw $0010                                                             ;8DE890;
+    dw $0010
     dw $0108,$02FF,$1405,$3BE0,$21A8,$579F,$4AD2,$3A4E,$00BB,$01BE,$008E,$0252,$1104,$0074,$000D
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_VariaSuit_12:
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DE8B2;
-    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_2                  ;8DE8B4;
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_SamusInHeat_VariaSuit_2
 
 
 ;;; $E8B6: Instruction list - Samus in heat - gravity suit ;;;
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_0:
-    dw Instruction_PaletteFXObject_PreInstructionInY                     ;8DE8B6;
-    dw PreInstruction_PaletteFXObject_SamusInHeat                        ;8DE8B8;
+    dw Instruction_PaletteFXObject_PreInstructionInY
+    dw PreInstruction_PaletteFXObject_SamusInHeat
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_1:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0182                   ;8DE8BA;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0182
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_2:
-    dw $0010                                                             ;8DE8BE;
+    dw $0010
     dw $0108,$421F,$1405,$3BE0,$21A8,$579F,$4AD2,$3A4E,$00BB,$5914,$30AA,$0274,$1104,$0074,$000D
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_3:
-    dw $0004                                                             ;8DE8E0;
+    dw $0004
     dw $0109,$421F,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$5915,$30AB,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_4:
-    dw $0004                                                             ;8DE902;
+    dw $0004
     dw $0109,$421F,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$5915,$30AB,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_5:
-    dw $0005                                                             ;8DE924;
+    dw $0005
     dw $010A,$421F,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$5916,$30AC,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_6:
-    dw $0006                                                             ;8DE946;
+    dw $0006
     dw $010A,$421F,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$5916,$30AC,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_7:
-    dw $0007                                                             ;8DE968;
+    dw $0007
     dw $010B,$421F,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$5917,$30AD,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_8:
-    dw $0008                                                             ;8DE98A;
+    dw $0008
     dw $010B,$421F,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$5917,$30AD,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_9:
-    dw $0008                                                             ;8DE9AC;
+    dw $0008
     dw $010D,$421F,$140A,$3BE5,$2E0F,$579F,$4AD7,$3A53,$00BD,$5919,$30AF,$0257,$1109,$0079,$0012
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_A:
-    dw $0008                                                             ;8DE9CE;
+    dw $0008
     dw $010D,$421F,$140A,$3BE5,$2E0F,$579F,$4AD7,$3A53,$00BD,$5919,$30AF,$0257,$1109,$0079,$0012
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_B:
-    dw $0008                                                             ;8DE9F0;
+    dw $0008
     dw $010B,$421F,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$5917,$30AD,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_C:
-    dw $0007                                                             ;8DEA12;
+    dw $0007
     dw $010B,$421F,$1408,$3BE3,$29EE,$579F,$4AD5,$3A51,$00BD,$5917,$30AD,$0255,$1107,$0077,$0010
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_D:
-    dw $0006                                                             ;8DEA34;
+    dw $0006
     dw $010A,$421F,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$5916,$30AC,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_E:
-    dw $0005                                                             ;8DEA56;
+    dw $0005
     dw $010A,$421F,$1407,$3BE2,$25CC,$579F,$4AD4,$3A50,$00BC,$5916,$30AC,$0254,$1106,$0076,$000F
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_F:
-    dw $0004                                                             ;8DEA78;
+    dw $0004
     dw $0109,$421F,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$5915,$30AB,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_10:
-    dw $0004                                                             ;8DEA9A;
+    dw $0004
     dw $0109,$421F,$1406,$3BE1,$25CA,$579F,$4AD3,$3A4F,$00BC,$5915,$30AB,$0253,$1105,$0075,$000E
     dw Instruction_PaletteFXObject_Done
 
 InstList_PaletteFXObject_SamusInHeat_GravitySuit_11:
-    dw $0010                                                             ;8DEABC;
+    dw $0010
     dw $0108,$421F,$1405,$3BE0,$21A8,$579F,$4AD2,$3A4E,$00BB,$5914,$30AA,$0274,$1104,$0074,$000D
     dw Instruction_PaletteFXObject_Done
     dw Instruction_PaletteFXObject_GotoY
@@ -8640,10 +8525,10 @@ InstList_PaletteFXObject_SamusInHeat_GravitySuit_11:
 InstList_PaletteFXObject_WreckedShip1_0:
 ; Green lights (BG1/2 palette 4 colours Ch..Dh)
 ; Used by most Wrecked Ship rooms in powered on state
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0098                   ;8DEAE2;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0098
 
 InstList_PaletteFXObject_WreckedShip1_1:
-    dw $000A                                                             ;8DEAE6;
+    dw $000A
     dw $1EA9,$0BB1
     dw Instruction_PaletteFXObject_Done
     dw $000A
@@ -8674,15 +8559,14 @@ InstList_PaletteFXObject_WreckedShip1_1:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $EB2A: Unused. Pre-instruction - wait until area boss is dead ;;;
 UNUSED_PreInstruction_PaletteFXObject_WaitUntilAreBossIsDead:
-    LDA.W #$0001                                                         ;8DEB2A;
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA                   ;8DEB2D;
-    BCS .return                                                          ;8DEB31;
-    PLA                                                                  ;8DEB33;
-    LDA.W #$0001                                                         ;8DEB34;
-    STA.W PaletteFXObject_InstructionTimers,X                            ;8DEB37;
+    LDA.W #$0001
+    JSL CheckIfBossBitsForCurrentAreaMatchAnyBitsInA
+    BCS .return
+    PLA
+    LDA.W #$0001 : STA.W PaletteFXObject_InstructionTimers,X
 
   .return:
-    RTS                                                                  ;8DEB3A;
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -8690,12 +8574,12 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 InstList_PaletteFXObject_Crateria1_0:
 ; Lightning (BG1/2 palette 5 colours 4..Bh)
 ; Used by landing site prior to acquiring power bombs
-    dw Instruction_PaletteFXObject_PreInstructionInY                     ;8DEB3B;
-    dw PreInst_PaletteFXObject_RestartCrateria1IfSamusIsntLowEnough      ;8DEB3D;
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00A8                   ;8DEB3F;
+    dw Instruction_PaletteFXObject_PreInstructionInY
+    dw PreInst_PaletteFXObject_RestartCrateria1IfSamusIsntLowEnough
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00A8
 
 InstList_PaletteFXObject_Crateria1_1:
-    dw $00F0                                                             ;8DEB43;
+    dw $00F0
     dw $2D6C,$294B,$252A,$2109,$1CE8,$18C7,$14A6,$1085
     dw Instruction_PaletteFXObject_Done
     dw Instruction_PaletteFXObject_TimerInY : db $02
@@ -8750,27 +8634,23 @@ InstList_PaletteFXObject_Crateria1_3:
 
 ;;; $EC59: Pre-instruction - restart Crateria 1 instruction list if Samus isn't low enough ;;;
 PreInst_PaletteFXObject_RestartCrateria1IfSamusIsntLowEnough:
-    LDA.W SamusYPosition                                                 ;8DEC59;
-    CMP.W #$0380                                                         ;8DEC5C;
-    BCS .return                                                          ;8DEC5F;
-    LDA.W #$0001                                                         ;8DEC61;
-    STA.W PaletteFXObject_InstructionTimers,X                            ;8DEC64;
-    LDA.W #InstList_PaletteFXObject_Crateria1_1                          ;8DEC67;
-    STA.W PaletteFXObject_InstListPointers,X                             ;8DEC6A;
+    LDA.W SamusYPosition : CMP.W #$0380 : BCS .return
+    LDA.W #$0001 : STA.W PaletteFXObject_InstructionTimers,X
+    LDA.W #InstList_PaletteFXObject_Crateria1_1 : STA.W PaletteFXObject_InstListPointers,X
 
   .return:
-    RTS                                                                  ;8DEC6D;
+    RTS
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $EC6E: Instruction list - palette FX object $F769 (unused. Dark lightning) ;;;
 UNUSED_InstList_PaletteFXObject_DarkLightning_0_8DEC6E:
-    dw Instruction_PaletteFXObject_PreInstructionInY                     ;8DEC6E;
-    dw UNUSED_PreInst_PalFXObj_RestartDarkLightningIfSamus_8DED84        ;8DEC70;
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0082                   ;8DEC72;
+    dw Instruction_PaletteFXObject_PreInstructionInY
+    dw UNUSED_PreInst_PalFXObj_RestartDarkLightningIfSamus_8DED84
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0082
 
 UNUSED_InstList_PaletteFXObject_DarkLightning_1_8DEC76:
-    dw $00F0                                                             ;8DEC76;
+    dw $00F0
     dw $262B,$1548,$08E5,$1594,$14ED,$10A9,$0C86
     dw Instruction_PaletteFXObject_Done
     dw Instruction_PaletteFXObject_TimerInY : db $02
@@ -8808,7 +8688,7 @@ UNUSED_InstList_PaletteFXObject_DarkLightning_2_8DEC8B:
     dw Instruction_PaletteFXObject_TimerInY : db $01
 
 UNUSED_InstList_PaletteFXObject_DarkLightning_3_8DED34:
-    dw $0001                                                             ;8DED34;
+    dw $0001
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000
     dw Instruction_PaletteFXObject_Done
     dw $0001
@@ -8828,16 +8708,12 @@ UNUSED_InstList_PaletteFXObject_DarkLightning_3_8DED34:
 
 ;;; $ED84: Pre-instruction - restart dark lightning instruction list if Samus isn't low enough ;;;
 UNUSED_PreInst_PalFXObj_RestartDarkLightningIfSamus_8DED84:
-    LDA.W SamusYPosition                                                 ;8DED84;
-    CMP.W #$0380                                                         ;8DED87;
-    BCS .return                                                          ;8DED8A;
-    LDA.W #$0001                                                         ;8DED8C;
-    STA.W PaletteFXObject_InstructionTimers,X                            ;8DED8F;
-    LDA.W #UNUSED_InstList_PaletteFXObject_DarkLightning_1_8DEC76        ;8DED92;
-    STA.W PaletteFXObject_InstListPointers,X                             ;8DED95;
+    LDA.W SamusYPosition : CMP.W #$0380 : BCS .return
+    LDA.W #$0001 : STA.W PaletteFXObject_InstructionTimers,X
+    LDA.W #UNUSED_InstList_PaletteFXObject_DarkLightning_1_8DEC76 : STA.W PaletteFXObject_InstListPointers,X
 
   .return:
-    RTS                                                                  ;8DED98;
+    RTS
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -8845,39 +8721,39 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 InstList_PaletteFXObject_Brinstar1_0:
 ; Blue background spores (BG1/2 palette 7 colours 1..3)
 ; Used by Brinstar rooms with the blue spores background (e.g. Green Brinstar mainstreet, n00b bridge)
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00E2                   ;8DED99;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00E2
 
 InstList_PaletteFXObject_Brinstar1_1:
-    dw $000A,$5D22,$4463,$1840                                           ;8DED9D;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEDA5;
-    dw $000A,$5901,$4042,$1420                                           ;8DEDA7;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEDAF;
-    dw $000A,$54E0,$3C21,$1000                                           ;8DEDB1;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEDB9;
-    dw $000A,$50C0,$3C21,$1000                                           ;8DEDBB;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEDC3;
-    dw $000A,$4CA0,$3800,$0C00                                           ;8DEDC5;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEDCD;
-    dw $000A,$4880,$3800,$0C00                                           ;8DEDCF;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEDD7;
-    dw $000A,$4460,$3400,$0800                                           ;8DEDD9;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEDE1;
-    dw $000A,$4040,$3400,$0800                                           ;8DEDE3;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEDEB;
-    dw $000A,$4460,$3400,$0800                                           ;8DEDED;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEDF5;
-    dw $000A,$4880,$3800,$0C00                                           ;8DEDF7;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEDFF;
-    dw $000A,$4CA0,$3800,$0C00                                           ;8DEE01;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEE09;
-    dw $000A,$50C0,$3C21,$1000                                           ;8DEE0B;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEE13;
-    dw $000A,$54E0,$3C21,$1000                                           ;8DEE15;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEE1D;
-    dw $000A,$5901,$4042,$1420                                           ;8DEE1F;
-    dw Instruction_PaletteFXObject_Done                                  ;8DEE27;
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DEE29;
-    dw InstList_PaletteFXObject_Brinstar1_1                              ;8DEE2B;
+    dw $000A,$5D22,$4463,$1840
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$5901,$4042,$1420
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$54E0,$3C21,$1000
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$50C0,$3C21,$1000
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$4CA0,$3800,$0C00
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$4880,$3800,$0C00
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$4460,$3400,$0800
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$4040,$3400,$0800
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$4460,$3400,$0800
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$4880,$3800,$0C00
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$4CA0,$3800,$0C00
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$50C0,$3C21,$1000
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$54E0,$3C21,$1000
+    dw Instruction_PaletteFXObject_Done
+    dw $000A,$5901,$4042,$1420
+    dw Instruction_PaletteFXObject_Done
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_Brinstar1_1
 
 
 ;;; $EE2D: Instruction list - palette FX object $F779 (Brinstar 8 - Spore Spawn blue background spores) ;;;
@@ -8885,12 +8761,12 @@ InstList_PaletteFXObject_Brinstar8_0:
 ; Spore Spawn blue background spores (BG1/2 palette 7 colours 1..3)
 ; Used by Spore Spawn's room
 ; Clone of Brinstar 1 except pre-instruction is set
-    dw Instruction_PaletteFXObject_PreInstructionInY                     ;8DEE2D;
-    dw PreInstruction_PaletteFXObject_DeleteIfAreaMiniBossIsDead         ;8DEE2F;
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00E2                   ;8DEE31;
+    dw Instruction_PaletteFXObject_PreInstructionInY
+    dw PreInstruction_PaletteFXObject_DeleteIfAreaMiniBossIsDead
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00E2
 
 InstList_PaletteFXObject_Brinstar8_1:
-    dw $000A                                                             ;8DEE35;
+    dw $000A
     dw $5D22,$4463,$1840
     dw Instruction_PaletteFXObject_Done
     dw $000A
@@ -8938,26 +8814,25 @@ InstList_PaletteFXObject_Brinstar8_1:
 
 ;;; $EEC5: Pre-instruction - delete palette FX object if area mini-boss is dead ;;;
 PreInstruction_PaletteFXObject_DeleteIfAreaMiniBossIsDead:
-    PHX                                                                  ;8DEEC5;
-    LDX.W AreaIndex                                                      ;8DEEC6;
-    LDA.L SRAMMirror_Boss,X                                              ;8DEEC9;
-    PLX                                                                  ;8DEECD;
-    AND.W #$0002                                                         ;8DEECE;
-    BEQ .return                                                          ;8DEED1;
-    STZ.W PaletteFXObject_IDs,X                                          ;8DEED3;
+    PHX
+    LDX.W AreaIndex
+    LDA.L SRAMMirror_Boss,X
+    PLX
+    AND.W #$0002 : BEQ .return
+    STZ.W PaletteFXObject_IDs,X
 
   .return:
-    RTS                                                                  ;8DEED6;
+    RTS
 
 
 ;;; $EED7: Instruction list - palette FX object $F77D (Brinstar 2 - red background glow) ;;;
 InstList_PaletteFXObject_Brinstar2_0:
 ; Red background glow (BG1/2 palette 6 colours 4..Bh)
 ; Used by Red Brinstar rooms with red background (mainstreet, damage boost hall, -> Crateria elevator)
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00C8                   ;8DEED7;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00C8
 
 InstList_PaletteFXObject_Brinstar2_1:
-    dw $000A                                                             ;8DEEDB;
+    dw $000A
     dw $4C17,$280F,$2409,$1C07,$1405,$0C03,$0802,$0401
     dw Instruction_PaletteFXObject_Done
     dw $000A
@@ -9007,10 +8882,10 @@ InstList_PaletteFXObject_Brinstar2_1:
 InstList_PaletteFXObject_Crateria80_Brinstar4_0:
 ; Beacon flashing (BG1/2 palette 7 colours 1..3 / Dh)
 ; Used by pre Tourian hall, red Brinstar mainstreet, red Brinstar -> Crateria elevator and the first three rooms of Kraid's lair
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00E2                   ;8DEFF7;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00E2
 
 InstList_PaletteFXObject_Crateria80_Brinstar4_1:
-    dw $000A                                                             ;8DEFFB;
+    dw $000A
     dw $02BF,$017F,$0015
     dw Instruction_PaletteFXObject_ColorIndex_Plus12
     dw $7FFF
@@ -9067,10 +8942,10 @@ InstList_PaletteFXObject_Crateria80_Brinstar4_1:
 
 ;;; $F08E: Instruction list - palette FX object $F785 (Norfair 2) ;;;
 InstList_PaletteFXObject_Norfair2_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$006A                   ;8DF08E;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$006A
 
 InstList_PaletteFXObject_Norfair2_1:
-    dw Instruction_PaletteFXObject_1EED_InY : db $00                     ;8DF092;
+    dw Instruction_PaletteFXObject_1EED_InY : db $00
     dw $0010
     dw $09FD,$093B,$0459
     dw Instruction_PaletteFXObject_ColorIndex_Plus8
@@ -9172,19 +9047,17 @@ InstList_PaletteFXObject_Norfair2_1:
 
 ;;; $F1C6: Instruction - PaletteFXObject_SamusInHeatIndex = [[Y]] ;;;
 Instruction_PaletteFXObject_1EED_InY:
-    LDA.W $0000,Y                                                        ;8DF1C6;
-    AND.W #$00FF                                                         ;8DF1C9;
-    STA.W PaletteFXObject_SamusInHeatIndex                               ;8DF1CC;
-    INY                                                                  ;8DF1CF;
-    RTS                                                                  ;8DF1D0;
+    LDA.W $0000,Y : AND.W #$00FF : STA.W PaletteFXObject_SamusInHeatIndex
+    INY
+    RTS
 
 
 ;;; $F1D1: Instruction list - palette FX object $F789 (Norfair 4) ;;;
 InstList_PaletteFXObject_Norfair4_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0082                   ;8DF1D1;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0082
 
 InstList_PaletteFXObject_Norfair4_1:
-    dw $0010                                                             ;8DF1D5;
+    dw $0010
     dw $09FD,$093B,$0459
     dw Instruction_PaletteFXObject_ColorIndex_Plus10
     dw $4309,$0C77
@@ -9270,10 +9143,10 @@ InstList_PaletteFXObject_Norfair4_1:
 
 ;;; $F2D9: Instruction list - palette FX object $F78D (Norfair 8) ;;;
 InstList_PaletteFXObject_Norfair8_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00A2                   ;8DF2D9;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00A2
 
 InstList_PaletteFXObject_Norfair8_1:
-    dw $0010                                                             ;8DF2DD;
+    dw $0010
     dw $09FD,$093B,$0459
     dw Instruction_PaletteFXObject_ColorIndex_Plus10
     dw $2DB3,$38CF
@@ -9359,10 +9232,10 @@ InstList_PaletteFXObject_Norfair8_1:
 
 ;;; $F3E1: Instruction list - palette FX object $F791 (Norfair 10h) ;;;
 InstList_PaletteFXObject_Norfair10_0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00C2                   ;8DF3E1;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00C2
 
 InstList_PaletteFXObject_Norfair10_1:
-    dw $0010                                                             ;8DF3E5;
+    dw $0010
     dw $09DA,$091A,$087A
     dw Instruction_PaletteFXObject_ColorIndex_Plus10
     dw $08A8,$0C05
@@ -9450,10 +9323,10 @@ InstList_PaletteFXObject_Norfair10_1:
 InstList_PaletteFXObject_Maridia1_0:
 ; Sand pits (BG1/2 palette 2 colours 4..Bh)
 ; Used by rooms with sand pits
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0048                   ;8DF4E9;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0048
 
 InstList_PaletteFXObject_Maridia1_1:
-    dw $000A                                                             ;8DF4ED;
+    dw $000A
     dw $3ED9,$2E57,$2A35,$25F3,$25D2,$1DB0,$196E,$112E
     dw Instruction_PaletteFXObject_Done
     dw $000A
@@ -9469,14 +9342,14 @@ InstList_PaletteFXObject_Maridia1_1:
     dw InstList_PaletteFXObject_Maridia1_1
 
 
-;;; $F541: Instruction list - palette FX object $F799 (Maridia 2 - sand falls) ;;;
+;;; $F541: Instruction list - palette FX object $F799 (Maridia 2) ;;;
 InstList_PaletteFXObject_Maridia2_0:
 ; Sand falls (BG1/2 palette 2 colours 8..Bh)
 ; Used by sand fall rooms, snail room save station and Botwoon's room
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0050                   ;8DF541;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0050
 
 InstList_PaletteFXObject_Maridia2_1:
-    dw $000A                                                             ;8DF545;
+    dw $000A
     dw $25D2,$1DB0,$196E,$112E
     dw Instruction_PaletteFXObject_Done
     dw $000A
@@ -9496,10 +9369,10 @@ InstList_PaletteFXObject_Maridia2_1:
 InstList_PaletteFXObject_Maridia4_0:
 ; Background waterfalls (BG1/2 palette 3 colours 8..Fh)
 ; Used by the spike room and two grapple rooms near Draygon
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0068                   ;8DF579;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0068
 
 InstList_PaletteFXObject_Maridia4_1:
-    dw $0002                                                             ;8DF57D;
+    dw $0002
     dw $0400,$0C22,$1864,$2086,$2CC9,$1C65,$1043,$0821
     dw Instruction_PaletteFXObject_Done
     dw $0002
@@ -9530,36 +9403,35 @@ InstList_PaletteFXObject_Maridia4_1:
 ;;; $F621: Pre-instruction - delete if two more palette FX objects are spawned ;;;
 PreInstruction_PaletteFXObject_DeleteIf2MoreObjectsSpawned:
 ; Huh. Weird...
-    LDA.W PaletteFXObject_Enable,X                                       ;8DF621;
-    BEQ .return                                                          ;8DF624;
-    STZ.W PaletteFXObject_IDs,X                                          ;8DF626;
+    LDA.W PaletteFXObject_Enable,X : BEQ .return
+    STZ.W PaletteFXObject_IDs,X
 
   .return:
-    RTS                                                                  ;8DF629;
+    RTS
 
 
 ;;; $F62A: Instruction list - palette FX object $F7A5 (Tourian 4 - unused clone of Tourian 2) ;;;
 InstList_PaletteFXObject_Tourian4:
 ; Clone of Tourian 2
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00E8                   ;8DF62A;
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DF62E;
-    dw InstList_PaletteFXObject_Common_Tourian2_Tourian4_0               ;8DF630;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00E8
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_Common_Tourian2_Tourian4_0
 
 
 ;;; $F632: Instruction list - palette FX object $F7A1 (Tourian 2 - glowing arkanoid blocks and red orbs) ;;;
 InstList_PaletteFXObject_Tourian2:
 ; Glowing arkanoid blocks and red orbs (BG1/2 palette 7 colours 4 / 8..Eh)
 ; Used by most Tourian rooms
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00E8                   ;8DF632;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00E8
 
 
 ;;; $F636: Instruction list - common section of Tourian 2 / 4 ;;;
 InstList_PaletteFXObject_Common_Tourian2_Tourian4_0:
-    dw Instruction_PaletteFXObject_PreInstructionInY                     ;8DF636;
-    dw PreInstruction_PaletteFXObject_DeleteIf2MoreObjectsSpawned        ;8DF638;
+    dw Instruction_PaletteFXObject_PreInstructionInY
+    dw PreInstruction_PaletteFXObject_DeleteIf2MoreObjectsSpawned
 
 InstList_PaletteFXObject_Common_Tourian2_Tourian4_1:
-    dw $000A                                                             ;8DF63A;
+    dw $000A
     dw $5294
     dw Instruction_PaletteFXObject_ColorIndex_Plus6
     dw $0019,$0012,$5C00,$4000,$1084,$197F,$7FFF
@@ -9620,160 +9492,157 @@ InstList_PaletteFXObject_Common_Tourian2_Tourian4_1:
 
 ;;; $F730: Setup - palette FX object $F779 (Brinstar 8 - Spore Spawn blue background spores) ;;;
 Setup_PaletteFXObject_Brinstar8:
-    PHX                                                                  ;8DF730;
-    LDX.W AreaIndex                                                      ;8DF731;
-    LDA.L SRAMMirror_Boss,X                                              ;8DF734;
-    PLX                                                                  ;8DF738;
-    AND.W #$0002                                                         ;8DF739;
-    BEQ .return                                                          ;8DF73C;
-    LDA.W #$0000                                                         ;8DF73E;
-    STA.W PaletteFXObject_IDs,Y                                          ;8DF741;
+    PHX
+    LDX.W AreaIndex
+    LDA.L SRAMMirror_Boss,X
+    PLX
+    AND.W #$0002 : BEQ .return
+    LDA.W #$0000 : STA.W PaletteFXObject_IDs,Y
 
   .return:
-    RTS                                                                  ;8DF744;
+    RTS
 
 
 ;;; $F745: Palette FX objects - Tourian entrance statue / torizo belly ;;;
 PaletteFXObjects_Nothing:
 ; Nothing
-    dw RTS_8DC685                                                        ;8DF745;
-    dw InstList_PaletteFXObject_Nothing                                  ;8DF747;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Nothing
 
 PaletteFXObjects_GreyOutTourianStatue_Draygon:
 ; Grey out Tourian entrance statue - Draygon
-    dw RTS_8DC685                                                        ;8DF749;
-    dw InstList_PaletteFXObject_GreyOutTourianStatue_Draygon             ;8DF74B;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_GreyOutTourianStatue_Draygon
 
 PaletteFXObjects_GreyOutTourianStatue_Kraid:
 ; Grey out Tourian entrance statue - Kraid
-    dw RTS_8DC685                                                        ;8DF74D;
-    dw InstList_PaletteFXObject_GreyOutTourianStatue_Kraid               ;8DF74F;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_GreyOutTourianStatue_Kraid
 
 PaletteFXObjects_GreyOutTourianStatue_Ridley:
 ; Grey out Tourian entrance statue - Ridley
-    dw RTS_8DC685                                                        ;8DF751;
-    dw InstList_PaletteFXObject_GreyOutTourianStatue_Ridley              ;8DF753;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_GreyOutTourianStatue_Ridley
 
 PaletteFXObjects_GreyOutTourianStatue_Phantoon:
 ; Grey out Tourian entrance statue - Phantoon
-    dw RTS_8DC685                                                        ;8DF755;
-    dw InstList_PaletteFXObject_GreyOutTourianStatue_Phantoon            ;8DF757;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_GreyOutTourianStatue_Phantoon
 
 PaletteFXObjects_BombTorizoBelly:
 ; Bomb Torizo belly
-    dw RTS_8DC685                                                        ;8DF759;
-    dw InstList_PaletteFXObject_BombTorizoBelly_0                        ;8DF75B;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_BombTorizoBelly_0
 
 PaletteFXObjects_GoldenTorizoBelly:
 ; Golden Torizo belly
-    dw RTS_8DC685                                                        ;8DF75D;
-    dw InstList_PaletteFXObject_GoldenTorizoBelly_0                      ;8DF75F;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_GoldenTorizoBelly_0
 
 
 ;;; $F761: Palette FX objects - FX - non escape sequence ;;;
 PaletteFXObjects_Norfair1_Tourian1:
 ; Norfair 1 / Tourian 1
-    dw Setup_PaletteFXObject_Norfair1_Tourian1                           ;8DF761;
-    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_0                  ;8DF763;
+    dw Setup_PaletteFXObject_Norfair1_Tourian1
+    dw InstList_PaletteFXObject_SamusInHeat_PowerSuit_0
 
 PaletteFXObjects_Crateria1_Lightning:
 ; Crateria 1 - lightning
-    dw RTS_8DC685                                                        ;8DF765;
-    dw InstList_PaletteFXObject_Crateria1_0                              ;8DF767;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Crateria1_0
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PaletteFXObjects_DarkLightning_8DF769:
 ; Unused. Dark lightning
-    dw RTS_8DC685                                                        ;8DF769;
-    dw UNUSED_InstList_PaletteFXObject_DarkLightning_0_8DEC6E            ;8DF76B;
+    dw RTS_8DC685
+    dw UNUSED_InstList_PaletteFXObject_DarkLightning_0_8DEC6E
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 PaletteFXObjects_WreckedShip1_GreenLights:
 ; Wrecked Ship 1 - green lights
-    dw RTS_8DC685                                                        ;8DF76D;
-    dw InstList_PaletteFXObject_WreckedShip1_0                           ;8DF76F;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_WreckedShip1_0
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PaletteFXObjects_WreckedShip1_GreenLights_dup_8DF771:
-; Unused clone of Wrecked Ship 1
-    dw RTS_8DC685                                                        ;8DF771;
-    dw InstList_PaletteFXObject_WreckedShip1_0                           ;8DF773;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_WreckedShip1_0
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 PaletteFXObjects_Brinstar1_BlueBackgroundSpores:
 ; Brinstar 1 - blue background spores
-    dw RTS_8DC685                                                        ;8DF775;
-    dw InstList_PaletteFXObject_Brinstar1_0                              ;8DF777;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Brinstar1_0
 
 PaletteFXObjects_Brinstar8_SporeSpawnBlueBackgroundSpores:
 ; Brinstar 8 - Spore Spawn blue background spores
-    dw Setup_PaletteFXObject_Brinstar8                                   ;8DF779;
-    dw InstList_PaletteFXObject_Brinstar8_0                              ;8DF77B;
+    dw Setup_PaletteFXObject_Brinstar8
+    dw InstList_PaletteFXObject_Brinstar8_0
 
 PaletteFXObjects_Brinstar2_RedBackgroundGlow:
 ; Brinstar 2 - red background glow
-    dw RTS_8DC685                                                        ;8DF77D;
-    dw InstList_PaletteFXObject_Brinstar2_0                              ;8DF77F;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Brinstar2_0
 
 PaletteFXObjects_Crateria80_Brinstar4_BeaconFlashing:
 ; Crateria 80h / Brinstar 4 - beacon flashing
-    dw RTS_8DC685                                                        ;8DF781;
-    dw InstList_PaletteFXObject_Crateria80_Brinstar4_0                   ;8DF783;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Crateria80_Brinstar4_0
 
 PaletteFXObjects_Norfair2:
 ; Norfair 2
-    dw RTS_8DC685                                                        ;8DF785;
-    dw InstList_PaletteFXObject_Norfair2_0                               ;8DF787;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Norfair2_0
 
 PaletteFXObjects_Norfair4:
 ; Norfair 4
-    dw RTS_8DC685                                                        ;8DF789;
-    dw InstList_PaletteFXObject_Norfair4_0                               ;8DF78B;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Norfair4_0
 
 PaletteFXObjects_Norfair8:
 ; Norfair 8
-    dw RTS_8DC685                                                        ;8DF78D;
-    dw InstList_PaletteFXObject_Norfair8_0                               ;8DF78F;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Norfair8_0
 
 PaletteFXObjects_Norfair10:
 ; Norfair 10h
-    dw RTS_8DC685                                                        ;8DF791;
-    dw InstList_PaletteFXObject_Norfair10_0                              ;8DF793;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Norfair10_0
 
 PaletteFXObjects_Maridia1_SandPits:
 ; Maridia 1 - sand pits
-    dw RTS_8DC685                                                        ;8DF795;
-    dw InstList_PaletteFXObject_Maridia1_0                               ;8DF797;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Maridia1_0
 
 PaletteFXObjects_Maridia2_SandFalls:
 ; Maridia 2 - sand falls
-    dw RTS_8DC685                                                        ;8DF799;
-    dw InstList_PaletteFXObject_Maridia2_0                               ;8DF79B;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Maridia2_0
 
 PaletteFXObjects_Maridia4_BackgroundWaterfalls:
 ; Maridia 4 - background waterfalls
-    dw RTS_8DC685                                                        ;8DF79D;
-    dw InstList_PaletteFXObject_Maridia4_0                               ;8DF79F;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Maridia4_0
 
 PaletteFXObjects_Tourian2_GlowingArkanoidBlocksAndRedOrbs:
 ; Tourian 2 - glowing arkanoid blocks and red orbs
-    dw RTS_8DC685                                                        ;8DF7A1;
-    dw InstList_PaletteFXObject_Tourian2                                 ;8DF7A3;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Tourian2
 
 UNUSED_PaletteFXObjects_Tourian4_8DF7A5:
 ; Tourian 4 - unused clone of Tourian 2
-    dw RTS_8DC685                                                        ;8DF7A5;
-    dw InstList_PaletteFXObject_Tourian4                                 ;8DF7A7;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Tourian4
 
 
 ;;; $F7A9: Instruction list - palette FX object $FFC9 (Tourian 8 - shutter red flashing) ;;;
 InstList_PaletteFXObject_Tourian8_0:
 ; Shutter red flashing (sprite palette 1 colours 9..Eh)
 ; Used by escape room 1
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0132                   ;8DF7A9;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0132
 
 InstList_PaletteFXObject_Tourian8_1:
-    dw $0002                                                             ;8DF7AD;
+    dw $0002
     dw $5294,$4210,$318C,$2108,$1084,$7FFF
     dw Instruction_PaletteFXObject_Done
     dw $0002
@@ -9822,10 +9691,10 @@ InstList_PaletteFXObject_Tourian8_1:
 ;;; $F891: Instruction list - palette FX object $FFCD (Tourian 10h - background red flashing) ;;;
 InstList_PaletteFXObject_Tourian10_0:
 ; Background red flashing (BG1/2 palette 3 colours 8..Bh)
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0070                   ;8DF891;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0070
 
 InstList_PaletteFXObject_Tourian10_1:
-    dw $0004                                                             ;8DF895;
+    dw $0004
     dw $081A,$0812,$042B,$0423
     dw Instruction_PaletteFXObject_Done
     dw $0004
@@ -9875,21 +9744,21 @@ InstList_PaletteFXObject_Tourian10_1:
 InstList_PaletteFXObject_Tourian20:
 ; General level red flashing (BG1/2 palette 5 colours 4..9 / Eh)
 ; Used by Tourian escape rooms
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00A8                   ;8DF941;
-    dw Instruction_PaletteFXObject_GotoY                                 ;8DF945;
-    dw InstList_PaletteFXObject_Common_Tourian20_Tourian40               ;8DF947;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00A8
+    dw Instruction_PaletteFXObject_GotoY
+    dw InstList_PaletteFXObject_Common_Tourian20_Tourian40
 
 
 ;;; $F949: Instruction list - palette FX object $FFD5 (Tourian 40h - red flashing arkanoid blocks and red orbs) ;;;
 InstList_PaletteFXObject_Tourian40:
 ; Red flashing arkanoid blocks and red orbs (BG1/2 palette 7 colours 4..9 / Eh)
 ; Used by Tourian escape rooms
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00E8                   ;8DF949;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00E8
 
 
 ;;; $F94D: Instruction list - common section of Tourian 20h / 40h ;;;
 InstList_PaletteFXObject_Common_Tourian20_Tourian40:
-    dw $0002                                                             ;8DF94D;
+    dw $0002
     dw $5294,$39CE,$2108,$1084,$0019,$0012
     dw Instruction_PaletteFXObject_ColorIndex_Plus8
     dw $7FFF
@@ -9963,14 +9832,14 @@ InstList_PaletteFXObject_Common_Tourian20_Tourian40:
     dw InstList_PaletteFXObject_Common_Tourian20_Tourian40
 
 
-;;; $FA69: Instruction list - palette FX object $FFD9 (Crateria 8 - old Tourian red flashing) ;;;
+;;; $FA69: Instruction list - palette FX object $FFD9 (Crateria 8) ;;;
 InstList_PaletteFXObject_Crateria8_0:
 ; Old Tourian red flashing (BG1/2 palette 5 colours 1..3 / 8..Bh / Eh)
 ; Used by old Tourian escape shaft during escape
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00A2                   ;8DFA69;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00A2
 
 InstList_PaletteFXObject_Crateria8_1:
-    dw $0003                                                             ;8DFA6D;
+    dw $0003
     dw $5A73,$41AD,$28E7
     dw Instruction_PaletteFXObject_ColorIndex_Plus8
     dw $0019,$0012,$3460,$0C20
@@ -10076,10 +9945,10 @@ InstList_PaletteFXObject_Crateria8_1:
 InstList_PaletteFXObject_Crateria10_0:
 ; Old Tourian background railings flash orange (BG1/2 palette 6 colours 9..Bh)
 ; Used by old Tourian escape shaft during escape
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00D2                   ;8DFBC1;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00D2
 
 InstList_PaletteFXObject_Crateria10_1:
-    dw $0010                                                             ;8DFBC5;
+    dw $0010
     dw $35AD,$1CE7,$0C63
     dw Instruction_PaletteFXObject_Done
     dw $0001
@@ -10131,10 +10000,10 @@ InstList_PaletteFXObject_Crateria10_1:
 ;;; $FC5F: Instruction list - palette FX object $FFE1 (Crateria 20h - old Tourian background panels flash yellow) ;;;
 InstList_PaletteFXObject_Crateria20_0:
 ; Used by old Tourian escape shaft during escape
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00AA                   ;8DFC5F;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00AA
 
 InstList_PaletteFXObject_Crateria20_1:
-    dw $0010                                                             ;8DFC63;
+    dw $0010
     dw $28C8,$2484,$1C61
     dw Instruction_PaletteFXObject_Done
     dw $0001
@@ -10187,10 +10056,10 @@ InstList_PaletteFXObject_Crateria20_1:
 InstList_PaletteFXObject_Crateria2_0:
 ; Upper Crateria red flashing (BG1/2 palette 4 colours 1..7)
 ; Used by landing site and Crateria mainstreet during escape
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0082                   ;8DFCFD;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$0082
 
 InstList_PaletteFXObject_Crateria2_1:
-    dw $0008                                                             ;8DFD01;
+    dw $0008
     dw $1D89,$0D06,$0CA3,$2D0E,$2D09,$28C5,$0C81
     dw Instruction_PaletteFXObject_Done
     dw $0007
@@ -10240,10 +10109,10 @@ InstList_PaletteFXObject_Crateria2_1:
 InstList_PaletteFXObject_Crateria4_0:
 ; Yellow lightning (BG1/2 palette 5 colours 1..Bh)
 ; Used by landing site during escape
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00A2                   ;8DFE01;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00A2
 
 InstList_PaletteFXObject_Crateria4_1:
-    dw $0031                                                             ;8DFE05;
+    dw $0031
     dw $48D5,$38B0,$286A,$2488,$2067,$1846,$1425,$1024,$0C23,$0C03,$0802
     dw Instruction_PaletteFXObject_Done
     dw $0001
@@ -10284,10 +10153,10 @@ InstList_PaletteFXObject_Crateria4_1:
 InstList_PaletteFXObject_Crateria40_0:
 ; Slightly modifies an unnoticeable pixel in a CRE block (BG1/2 palette 5 colours 7..Bh)
 ; Used by Crateria mainstreet during escape
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00AE                   ;8DFF27;
+    dw Instruction_PaletteFXObject_ColorIndexInY,$00AE
 
 InstList_PaletteFXObject_Crateria40_1:
-    dw $0031                                                             ;8DFF2B;
+    dw $0031
     dw $1425,$1024,$0C23,$0C03,$0802
     dw Instruction_PaletteFXObject_Done
     dw $0001
@@ -10327,54 +10196,54 @@ InstList_PaletteFXObject_Crateria40_1:
 ;;; $FFC9: Palette FX objects - escape sequence ;;;
 PaletteFXObjects_Tourian8_ShutterRedFlashing:
 ; Tourian 8 - shutter red flashing
-    dw RTS_8DC685                                                        ;8DFFC9;
-    dw InstList_PaletteFXObject_Tourian8_0                               ;8DFFCB;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Tourian8_0
 
 PaletteFXObjects_Tourian10_BackgroundRedFlashing:
 ; Tourian 10h - background red flashing
-    dw RTS_8DC685                                                        ;8DFFCD;
-    dw InstList_PaletteFXObject_Tourian10_0                              ;8DFFCF;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Tourian10_0
 
 PaletteFXObjects_Tourian20_GeneralLevelRedFlashing:
 ; Tourian 20h - general level red flashing
-    dw RTS_8DC685                                                        ;8DFFD1;
-    dw InstList_PaletteFXObject_Tourian20                                ;8DFFD3;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Tourian20
 
 PaletteFXObjects_Tourian40_RedFlashingArkanoidBlocksRedOrbs:
 ; Tourian 40h - red flashing arkanoid blocks and red orbs
-    dw RTS_8DC685                                                        ;8DFFD5;
-    dw InstList_PaletteFXObject_Tourian40                                ;8DFFD7;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Tourian40
 
 PaletteFXObjects_Crateria8_OldTourianRedFlashing:
 ; Crateria 8 - old Tourian red flashing
-    dw RTS_8DC685                                                        ;8DFFD9;
-    dw InstList_PaletteFXObject_Crateria8_0                              ;8DFFDB;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Crateria8_0
 
 PaletteFXObjects_Crateria10_OldTourianBGRailingsFlashYellow:
 ; Crateria 10h - old Tourian background railings flash orange
-    dw RTS_8DC685                                                        ;8DFFDD;
-    dw InstList_PaletteFXObject_Crateria10_0                             ;8DFFDF;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Crateria10_0
 
 PaletteFXObjects_Crateria20_OldTourianBGPanelsFlashYellow:
 ; Crateria 20h - old Tourian background panels flash yellow
-    dw RTS_8DC685                                                        ;8DFFE1;
-    dw InstList_PaletteFXObject_Crateria20_0                             ;8DFFE3;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Crateria20_0
 
 PaletteFXObjects_Crateria2_UpperCrateriaRedFlashing:
 ; Crateria 2 - upper Crateria red flashing
-    dw RTS_8DC685                                                        ;8DFFE5;
-    dw InstList_PaletteFXObject_Crateria2_0                              ;8DFFE7;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Crateria2_0
 
 PaletteFXObjects_Crateria4_YellowLightning:
 ; Crateria 4 - yellow lightning
-    dw RTS_8DC685                                                        ;8DFFE9;
-    dw InstList_PaletteFXObject_Crateria4_0                              ;8DFFEB;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Crateria4_0
 
 PaletteFXObjects_Crateria40_SlightlyModifiesAPixelInCREBlock:
 ; Crateria 40h - slightly modifies an unnoticeable pixel in a CRE block
-    dw RTS_8DC685                                                        ;8DFFED;
-    dw InstList_PaletteFXObject_Crateria40_0                             ;8DFFEF;
+    dw RTS_8DC685
+    dw InstList_PaletteFXObject_Crateria40_0
 
 
-Freespace_Bank8D_FFF1:                                                   ;8DFFF1;
+Freespace_Bank8D_FFF1:
 ; $F bytes
