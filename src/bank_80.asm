@@ -128,32 +128,32 @@ SendAPUData:
   .uploadDataBlock:
     ; Data = [[Y++]]
     LDA.W $0000,Y
-    JSR IncY_OverflowCheck                                            
+    JSR IncY_OverflowCheck
     XBA
     ; Index = 0
-    LDA.B #$00                                                          
+    LDA.B #$00
     BRA .uploadData
 
   .loopNextData:
     XBA
     ; Data = [[Y++]]
     LDA.W $0000,Y
-    JSR IncY_OverflowCheck                                            
+    JSR IncY_OverflowCheck
     XBA
 
   .wait:
     ; Wait until APU IO 0 echoes
     CMP.L $002140 : BNE .wait
     ; Increment index
-    INC                                                                 
+    INC
 
   .uploadData:
     REP #$20
     ; APU IO 0..1 = [index] [data]
-    STA.L $002140                                                       
+    STA.L $002140
     SEP #$20
     ; If [block size] != 0: go to .loopNextData
-    DEX : BNE .loopNextData                                                    
+    DEX : BNE .loopNextData
 
   .wait2:
     ; Wait until APU IO 0 echoes
@@ -244,7 +244,7 @@ IncY_OverflowCheck_overflow:
     ; Increment $02 (DB)
     INC.B DP_Temp02 : PEI.B (DP_Temp01) : PLB : PLB
     ; Y = 8000h
-    LDY.W #$8000                                                        
+    LDY.W #$8000
     RTS
 
 
@@ -269,8 +269,8 @@ GenerateRandomNumber:
     ; A += ([random number high] * 5 + 1) * 100h
     LDA.W $4216 : SEC : ADC.B $02,S : STA.B $02,S
     REP #$20
-   ; Random number = [A] + 11h
-    PLA : ADC.W #$0011 : STA.W RandomNumberSeed 
+    ; Random number = [A] + 11h
+    PLA : ADC.W #$0011 : STA.W RandomNumberSeed
     RTL
 
 
@@ -488,20 +488,28 @@ Write_supermetroid_ToSRAM:
 ;;; $8261: Determine number of demo sets ;;;
 DetermineNumberOfDemoSets:
     PHX
-    LDA.W #$0003 : STA.W NumberOfDemoSets ; Number of demo sets = 3
+    ; Number of demo sets = 3
+    LDA.W #$0003 : STA.W NumberOfDemoSets
+    ; Load SRAM slot A
     LDA.W #$0000
-    JSL LoadFromSRAM                                                   ; Load SRAM slot A
-    BCC .nonCorrupt                                                      ; If not corrupt, go to .nonCorrupt
+    JSL LoadFromSRAM
+    ; If not corrupt, go to .nonCorrupt
+    BCC .nonCorrupt
+    ; Load SRAM slot B
     LDA.W #$0001
-    JSL LoadFromSRAM                                                   ; Load SRAM slot B
-    BCC .nonCorrupt                                                      ; If not corrupt, go to .nonCorrupt
+    JSL LoadFromSRAM
+    ; If not corrupt, go to .nonCorrupt
+    BCC .nonCorrupt
+    ; Load SRAM slot C
     LDA.W #$0002
-    JSL LoadFromSRAM                                                   ; Load SRAM slot C
-    BCC .nonCorrupt                                                      ; If not corrupt, go to .nonCorrupt
+    JSL LoadFromSRAM
+    ; If not corrupt, go to .nonCorrupt
+    BCC .nonCorrupt
     LDX.W #$000A
 
   .corruptLoop:
-    LDA.L Text_madadameyohn,X : STA.L SRAM_GameCompletionFlag,X ; $70:1FE0..1FEB = 'madadameyohn' (all SRAM is corrupt)
+    ; $70:1FE0..1FEB = 'madadameyohn' (all SRAM is corrupt)
+    LDA.L Text_madadameyohn,X : STA.L SRAM_GameCompletionFlag,X
     DEX #2 : BPL .corruptLoop
     PLX
     RTL
@@ -510,9 +518,11 @@ DetermineNumberOfDemoSets:
     LDX.W #$000A
 
   .nonCorruptLoop:
-    LDA.L SRAM_GameCompletionFlag,X : CMP.L Text_supermetroid,X : BNE .return ; If $70:1FE0..1FEB = 'supermetroid':
+    ; If $70:1FE0..1FEB = 'supermetroid':
+    LDA.L SRAM_GameCompletionFlag,X : CMP.L Text_supermetroid,X : BNE .return
     DEX #2 : BPL .nonCorruptLoop
-    LDA.W #$0004 : STA.W NumberOfDemoSets ; Number of demo sets = 4
+    ; Number of demo sets = 4
+    LDA.W #$0004 : STA.W NumberOfDemoSets
 
   .return:
     PLX
@@ -569,10 +579,12 @@ A_Y_16bit_UnsignedMultiplication:
 ; However, (bc + ad) can overflow 10000h (e.g. C0h * C0h + C0h * C0h = 12000h)
 ; and the carry isn't propagated to the calculation of bd (instruction $832D should be removed).
     PHX
-    STA.W Multiplier16bitA                                               ; Let Multiplier16bitA = a + b * 100h
-    STY.W Multiplier16bitB                                               ; Let Multiplier16bitB = c + d * 100h
-    STZ.W MultiplicationResult
-    STZ.W MultiplicationResult+2                                         ; Result = 0
+    ; Let Multiplier16bitA = a + b * 100h
+    STA.W Multiplier16bitA
+    ; Let Multiplier16bitB = c + d * 100h
+    STY.W Multiplier16bitB
+    ; Result = 0
+    STZ.W MultiplicationResult : STZ.W MultiplicationResult+2
     SEP #$10
     LDY.W Multiplier16bitB : STY.W $4202
     LDY.W Multiplier16bitA : STY.W $4203
@@ -580,14 +592,17 @@ A_Y_16bit_UnsignedMultiplication:
     LDA.W $4216 : STA.W MultiplicationResult
     LDY.W Multiplier16bitA+1 : STY.W $4203
     NOP
-    LDA.W MultiplicationResult+1 : CLC : ADC.W $4216 : STA.W MultiplicationResult+1 ; Result += bc * 100h
+    ; Result += bc * 100h
+    LDA.W MultiplicationResult+1 : CLC : ADC.W $4216 : STA.W MultiplicationResult+1
     LDY.W Multiplier16bitB+1 : STY.W $4202
-    LDY.W Multiplier16bitA : STY.W $4203                                 ; Result += ad * 100h
+    ; Result += ad * 100h
+    LDY.W Multiplier16bitA : STY.W $4203
     NOP
     LDA.W MultiplicationResult+1 : CLC : ADC.W $4216 : STA.W MultiplicationResult+1
     LDY.W Multiplier16bitA+1 : STY.W $4203
     NOP #2
-    LDA.W MultiplicationResult+2 : CLC : ADC.W $4216 : STA.W MultiplicationResult+2 ; Result += bd * 10000h
+    ; Result += bd * 10000h
+    LDA.W MultiplicationResult+2 : CLC : ADC.W $4216 : STA.W MultiplicationResult+2
     REP #$30
     PLX
     RTL
@@ -598,10 +613,12 @@ WaitForNMI:
     PHP : PHB
     PHK : PLB
     SEP #$30
-    LDA.B #$01 : STA.W NMI_Request                                                    ; Set NMI request flag
+    ; Set NMI request flag
+    LDA.B #$01 : STA.W NMI_Request
 
   .wait:
-    LDA.W NMI_Request : BNE .wait                                                            ; Wait until NMI request acknowledged
+    ; Wait until NMI request acknowledged
+    LDA.W NMI_Request : BNE .wait
     PLB : PLP
     RTL
 
@@ -789,22 +806,30 @@ WriteYBytesOfATo_7F0000_X_16bit:
 Boot:
 ; Most SNES games don't randomly wait 3 frames before running initialisation
 ; Best wild guess is that they might have had some kind of dev hardware thingy attached somewhere that boot-up had to wait for
-    SEI                                                                  ; Disable IRQ
-    CLC : XCE                                                                  ; Enable native mode
-    JML .bank80                                                        ; Execute in bank $80 (FastROM)
+    ; Disable IRQ
+    SEI
+    ; Enable native mode
+    CLC : XCE
+    ; Execute in bank $80 (FastROM)
+    JML .bank80
 
   .bank80:
     SEP #$20
-    LDA.B #$01 : STA.W $420D : STA.B $86 ; Enable FastROM
+    ; Enable FastROM
+    LDA.B #$01 : STA.W $420D : STA.B DP_ROMAccessSpeed
     REP #$30
-    LDX.W #$1FFF : TXS                                                                  ; Allocate stack memory
-    LDA.W #$0000 : TCD                                                                  ; Clear direct page
-    PHK : PLB                                                                  ; DB = $80
+    ; Allocate stack memory
+    LDX.W #$1FFF : TXS
+    ; Clear direct page
+    LDA.W #$0000 : TCD
+    ; DB = $80
+    PHK : PLB
     SEP #$30
     LDX.B #$04
 
   .wait3Frames:
-    LDA.W $4212 : BPL .wait3Frames ; Wait the remainder of this frame and 3 more frames (???)
+    ; Wait the remainder of this frame and 3 more frames (???)
+    LDA.W $4212 : BPL .wait3Frames
 
   ..wait:
     LDA.W $4212 : BMI ..wait
@@ -816,10 +841,13 @@ Boot:
     ; Clear $0000..1FFF
     STZ.W $0000,X
     DEX #2 : BPL .loop
-    JSL Initialise_IO_Registers_and_Display_Nintendo_Logo              ; Initialise IO registers and display Nintendo logo
+    ; Initialise IO registers and display Nintendo logo
+    JSL Initialise_IO_Registers_and_Display_Nintendo_Logo
+    ; Upload SPC engine to APU
     JSL UploadToAPU_Hardcoded
-    dl SPC_Engine                                                        ; Upload SPC engine to APU
-    BRA CommonBootSection                                                ; Go to common boot section
+    dl SPC_Engine
+    ; Go to common boot section
+    BRA CommonBootSection
 
 
 ;;; $8462: Soft reset ;;;
@@ -831,12 +859,17 @@ SoftReset:
 ;     $81:94D5: File select menu - index 21h: fade out to title sequence
 
 ; Compared to boot ($841C), doesn't display Nintendo logo or upload SPC engine, but still waits 3 frames (see $841C)
-    SEI                                                                  ; Disable IRQ
-    CLC : XCE                                                                  ; Enable native mode
+    ; Disable IRQ
+    SEI
+    ; Enable native mode
+    CLC : XCE
     REP #$30
-    LDX.W #$1FFF : TXS                                                                  ; Allocate stack memory
-    LDA.W #$0000 : TCD                                                                  ; Clear direct page
-    PHK : PLB                                                                  ; DB = $80
+    ; Allocate stack memory
+    LDX.W #$1FFF : TXS
+    ; Clear direct page
+    LDA.W #$0000 : TCD
+    ; DB = $80
+    PHK : PLB
     SEP #$30
     LDX.B #$04
 
@@ -844,7 +877,8 @@ SoftReset:
     LDA.W $4212 : BPL .wait
 
   .wait3Frames:
-    LDA.W $4212 : BMI .wait3Frames                                                     ; Wait the remainder of this frame and 3 more frames (???)
+    ; Wait the remainder of this frame and 3 more frames (???)
+    LDA.W $4212 : BMI .wait3Frames
     DEX : BNE .wait
 
 
@@ -853,7 +887,8 @@ CommonBootSection:
 ; They wait another (see $841C) 3 frames here at $8523
 ; It might be giving the SPC engine a chance to run its initialisation after sending zero bytes to the APU IO registers
     SEP #$20
-    LDA.B #$8F : STA.W $2100                                                          ; Enable forced blank
+    ; Enable forced blank
+    LDA.B #$8F : STA.W $2100
     REP #$30
     PEA $7E00 : PLB : PLB
     LDX.W #$1FFE
@@ -864,13 +899,15 @@ CommonBootSection:
     DEX #2 : BPL .clearBank7E
     PHK : PLB
     SEP #$30
-    STZ.W $4200
-    STZ.B DP_IRQAutoJoy                                                  ; Disable NMI and auto-joypad read
-    LDA.B #$8F : STA.B DP_Brightness                                                  ; Set forced blank
-    JSR Initialise_CPU_IO_Registers                                    ; Initialise CPU IO registers
-    JSR InitialisePPURegisters                                         ; Initialise PPU registers
-    JSR WriteALoadOf_1C2F                                              ; Write a load of 1C2Fh
+    ; Disable NMI and auto-joypad read
+    STZ.W $4200 : STZ.B DP_IRQAutoJoy
+    ; Set forced blank
+    LDA.B #$8F : STA.B DP_Brightness
+    JSR Initialise_CPU_IO_Registers
+    JSR InitialisePPURegisters
+    JSR WriteALoadOf_1C2F
     SEP #$20
+    ; Clear APU RAM
     STZ.W APU_SoundQueueStartIndexLib1 : STZ.W APU_SoundQueueStartIndexLib2 : STZ.W APU_SoundQueueStartIndexLib3
     STZ.W APU_SoundQueueNextIndexLib1 : STZ.W APU_SoundQueueNextIndexLib2 : STZ.W APU_SoundQueueNextIndexLib3
     STZ.W APU_SoundStateLib1 : STZ.W APU_SoundStateLib2 : STZ.W APU_SoundStateLib3
@@ -879,13 +916,15 @@ CommonBootSection:
     STZ.W APU_SoundQueueLib1 : STZ.W APU_SoundQueueLib2 : STZ.W APU_SoundQueueLib3
     REP #$20
     STZ.W OAMStack : STZ.B DP_OAMAddrPrio
-    JSL ClearHighOAM                                                   ; Clear high OAM
-    JSL Finalise_OAM                                                   ; Finalise OAM
-    STZ.W SamusTiles_TopHalfFlag                                         ; Clear Samus tiles transfer flags
+    JSL ClearHighOAM
+    JSL Finalise_OAM
+    ; Clear Samus tiles transfer flags
+    STZ.W SamusTiles_TopHalfFlag
     STZ.W SamusTiles_TopHalfTilesDef : STZ.W SamusTiles_BottomHalfTilesDef
-    JSL EnableNMI                                                      ; Enable NMI
+    JSL EnableNMI
     REP #$30
-    STZ.W $2140 : STZ.W $2142 ; Clear APU IO registers (harmless 16-bit write bug)
+    ; Clear APU IO registers (harmless 16-bit write bug)
+    STZ.W $2140 : STZ.W $2142
     SEP #$30
     LDX.B #$04
 
@@ -893,23 +932,29 @@ CommonBootSection:
     LDA.W $4212 : BPL .wait
 
   .wait3Frames:
-    LDA.W $4212 : BMI .wait3Frames                                                     ; Wait the remainder of this frame and 3 more frames (???)
+    ; Wait the remainder of this frame and 3 more frames (???)
+    LDA.W $4212 : BMI .wait3Frames
     DEX : BNE .wait
     REP #$30
-    LDA.W #$0061 : STA.W RandomNumberSeed                                               ; Seed random number with 61h
-    LDA.W #$0000 ; Clear music queue
+    ; Seed random number with 61h
+    LDA.W #$0061 : STA.W RandomNumberSeed
+    ; Clear music queue
+    LDA.W #$0000
     STA.W APU_MusicTimer
     STA.W APU_MusicQueueTimers : STA.W APU_MusicQueueTimers+2
-    STA.W APU_MusicQueueTimers+4 : STA.W APU_MusicQueueTimers+6                                         
+    STA.W APU_MusicQueueTimers+4 : STA.W APU_MusicQueueTimers+6
     STA.W APU_MusicQueueTimers+8 : STA.W APU_MusicQueueTimers+10
     STA.W APU_MusicQueueTimers+12 : STA.W APU_MusicQueueTimers+14
-    LDA.L DebugConst_DebugMode : STA.W Debug_Enable                                                   ; Mirror debug byte to RAM
-    JSR NTSC_PAL_SRAM_MappingCheck                                     ; NTSC/PAL and SRAM mapping check
+    ; Mirror debug byte to RAM
+    LDA.L DebugConst_DebugMode : STA.W Debug_Enable
+    JSR NTSC_PAL_SRAM_MappingCheck
     REP #$30
-    JSL DetermineNumberOfDemoSets                                      ; Check for non-corrupt SRAM
-    STZ.W DisableSounds                                                  ; Enable sounds
-    STZ.W APU_SoundHandlerDowntime                                       ; Sound handler downtime = 0
-    JML MainGameLoop                                                   ; Go to main game loop
+    JSL DetermineNumberOfDemoSets
+    ; Enable sounds
+    STZ.W DisableSounds
+    ; Sound handler downtime = 0
+    STZ.W APU_SoundHandlerDowntime
+    JML MainGameLoop
 
 
 ;;; $8572: Unused. BRK ;;;
@@ -926,7 +971,8 @@ Crash_Handler:
 ;     $93:80A0: Initialise (power) bomb
 ;     $93:8163: Initialise shinespark echo or spazer SBA trail projectile
 ;     $93:81A4: Initialise SBA projectile
-    JML Crash_Handler                                                  ; Crash handler, jump to self
+    ; Crash handler, jump to self
+    JML Crash_Handler
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -1005,12 +1051,15 @@ NTSC_PAL_SRAM_MappingCheck:
 ; and that the SRAM regions $70:0000..1FFF and $70:2000..3FFF are mirrors
     PHP
     SEP #$30
-    LDA.L DebugConst_RegionSRAM : BEQ .region                                                          ; If [$80:8000] != 0:
-    JMP .return                                                        ; Return
+    ; If [$80:8000] != 0:
+    LDA.L DebugConst_RegionSRAM : BEQ .region
+    JMP .return
 
   .region:
-    LDA.L ROM_HEADER_country&$00FFFF : CMP.B #$00 : BEQ .japan ; If country code != Japan:
-    LDA.W $213F : BIT.B #$10 : BEQ .failedRegion ; If PPU set to PAL:
+    ; If country code != Japan:
+    LDA.L ROM_HEADER_country&$00FFFF : CMP.B #$00 : BEQ .japan
+    ; If PPU set to PAL:
+    LDA.W $213F : BIT.B #$10 : BEQ .failedRegion
     JMP .SRAMCheck
 
   .japan:
@@ -1018,36 +1067,45 @@ NTSC_PAL_SRAM_MappingCheck:
     LDA.W $213F : BIT.B #$10 : BEQ .SRAMCheck
 
   .failedRegion:
-    LDA.B #$8F : STA.W $2100                                                          ; Enable forced blank
-    STZ.W $4200                                                          ; Disable all interrupts
+    ; Enable forced blank
+    LDA.B #$8F : STA.W $2100
+    ; Disable all interrupts
+    STZ.W $4200
+    ; VRAM $0000..1FFF = [$8E:8000..BFFF] (BG1 tiles)
     LDA.B #$00 : STA.W $2116
     LDA.B #$00 : STA.W $2117
-    LDA.B #$80 : STA.W $2115                                                          ; VRAM $0000..1FFF = [$8E:8000..BFFF] (BG1 tiles)
-    JSL SetupHDMATransfer                                              ; Set up a (H)DMA transfer
+    LDA.B #$80 : STA.W $2115
+    JSL SetupHDMATransfer
     db $01,$01,$18
     dl Tiles_Menu_BG1_BG2
     dw $4000
     LDA.B #$02 : STA.W $420B
+    ; VRAM $4000..47FF = [$80:B437..C436] (BG1 tilemap)
     LDA.B #$00 : STA.W $2116
     LDA.B #$40 : STA.W $2117
-    LDA.B #$80 : STA.W $2115                                                          ; VRAM $4000..47FF = [$80:B437..C436] (BG1 tilemap)
-    JSL SetupHDMATransfer                                              ; Set up a (H)DMA transfer
+    LDA.B #$80 : STA.W $2115
+    JSL SetupHDMATransfer
     db $01,$01,$18
     dl Tilemap_FailedRegionCheck
     dw $1000
     LDA.B #$02 : STA.W $420B
+    ; CGRAM = [$8E:E400..E5FF] (menu palettes)
     STZ.W $2121
-    JSL SetupHDMATransfer                                              ; Set up a (H)DMA transfer
-    db $01,$00,$22                                                       ; CGRAM = [$8E:E400..E5FF] (menu palettes)
+    JSL SetupHDMATransfer
+    db $01,$00,$22
     dl Menu_Palettes
     dw $0200
     LDA.B #$02 : STA.W $420B
-    STZ.W $2131                                                          ; Disable colour math
-    STZ.W $212D                                                          ; Disable subscreen
-    LDA.B #$01 : STA.W $212C                                                          ; Main screen layers = BG1
-    LDA.B #$0F : STA.W $2100                                                          ; Disable forced blank
-    LDA.B #$00 : STA.W $210B                                                          ; BG1 tiles base address = $0000
-    LDA.B #$40 : STA.W $2107                                                          ; BG1 tilemap base address = $4000
+    ; Disable colour math + subscreen
+    STZ.W $2131 : STZ.W $212D
+    ; Main screen layers = BG1
+    LDA.B #$01 : STA.W $212C
+    ; Disable forced blank
+    LDA.B #$0F : STA.W $2100
+    ; BG1 tiles base address = $0000
+    LDA.B #$00 : STA.W $210B
+    ; BG1 tilemap base address = $4000
+    LDA.B #$40 : STA.W $2107
 
   .gotoCrash:
     BRA .gotoCrash
@@ -1057,26 +1115,30 @@ NTSC_PAL_SRAM_MappingCheck:
     LDX.W #$1FFE
 
   .backupSRAM:
-    LDA.L $700000,X : STA.L $7F0000,X                                                      ; $7F:0000..1FFF = [$70:0000..1FFF]
+    ; $7F:0000..1FFF = [$70:0000..1FFF]
+    LDA.L SRAM_Start,X : STA.L BackupSRAM,X
     DEX #2 : BPL .backupSRAM
     LDA.W #$0000
     LDX.W #$1FFE
 
   .clearSRAM:
-    STA.L $700000,X                                                      ; Clear $70:0000..1FFF
+    ; Clear $70:0000..1FFF
+    STA.L SRAM_Start,X
     DEX #2 : BPL .clearSRAM
     LDA.W #$0000
     LDX.W #$1FFE
 
   .writeSRAM:
-    STA.L $702000,X
-    INC                                                                  ; $70:2000..3FFF = 0..FFFh
+    ; $70:2000..3FFF = 0..FFFh
+    STA.L SRAM_Mirror,X
+    INC
     DEX #2 : BPL .writeSRAM
     LDA.W #$0000
     LDX.W #$1FFE
 
   .loop:
-    CMP.L $700000,X : BNE .failedSRAMCheck ; If [$70:0000..1FFF] != 0..FFFh: go to .failedSRAMCheck
+    ; If [$70:0000..1FFF] != 0..FFFh: go to .failedSRAMCheck
+    CMP.L SRAM_Start,X : BNE .failedSRAMCheck
     INC
     DEX #2
 
@@ -1085,125 +1147,168 @@ NTSC_PAL_SRAM_MappingCheck:
     LDX.W #$1FFE
 
   .restoreSRAM:
-    LDA.L $7F0000,X : STA.L $700000,X                                                      ; $70:0000..1FFF = [$7F:0000..1FFF]
+    ; $70:0000..1FFF = [$7F:0000..1FFF]
+    LDA.L BackupSRAM,X : STA.L SRAM_Start,X
     DEX #2 : BPL .restoreSRAM
 
   .return:
     PLP
-    RTS                                                                  ; return
+    RTS
 
   .failedSRAMCheck:
     SEP #$20
-    LDA.B #$8F : STA.W $2100                                                          ; Enable forced blank
-    STZ.W $4200                                                          ; Disable all interrupts
+    ; Enable forced blank
+    LDA.B #$8F : STA.W $2100
+    ; Disable all interrupts
+    STZ.W $4200
+    ; VRAM $0000..1FFF = [$8E:8000..BFFF] (BG1 tiles)
     LDA.B #$00 : STA.W $2116
     LDA.B #$00 : STA.W $2117
-    LDA.B #$80 : STA.W $2115                                                          ; VRAM $0000..1FFF = [$8E:8000..BFFF] (BG1 tiles)
-    JSL SetupHDMATransfer                                              ; Set up a (H)DMA transfer
+    LDA.B #$80 : STA.W $2115
+    JSL SetupHDMATransfer
     db $01,$01,$18
     dl Tiles_Menu_BG1_BG2
     dw $4000
     LDA.B #$02 : STA.W $420B
+    ; VRAM $4000..47FF = [$80:BC37..C436] (BG1 tilemap)
     LDA.B #$00 : STA.W $2116
     LDA.B #$40 : STA.W $2117
-    LDA.B #$80 : STA.W $2115                                                          ; VRAM $4000..47FF = [$80:BC37..C436] (BG1 tilemap)
-    JSL SetupHDMATransfer                                              ; Set up a (H)DMA transfer
+    LDA.B #$80 : STA.W $2115
+    JSL SetupHDMATransfer
     db $01,$01,$18
     dl Tilemap_FailedSRAMMappingCheck
     dw $1000
     LDA.B #$02 : STA.W $420B
+    ; CGRAM = [$8E:E400..E5FF] (menu palettes)
     STZ.W $2121
-    JSL SetupHDMATransfer                                              ; Set up a (H)DMA transfer
-    db $01,$00,$22                                                       ; CGRAM = [$8E:E400..E5FF] (menu palettes)
+    JSL SetupHDMATransfer
+    db $01,$00,$22
     dl Menu_Palettes
     dw $0200
     LDA.B #$02 : STA.W $420B
-    STZ.W $2131                                                          ; Disable colour math
-    STZ.W $212D                                                          ; Disable subscreen
-    LDA.B #$01 : STA.W $212C                                                          ; Main screen layers = BG1
-    LDA.B #$0F : STA.W $2100                                                          ; Disable forced blank
-    LDA.B #$00 : STA.W $210B                                                          ; BG1 tiles base address = $0000
-    LDA.B #$40 : STA.W $2107                                                          ; BG1 tilemap base address = $4000
+    ; Disable colour math + subscreen
+    STZ.W $2131 : STZ.W $212D
+    ; Main screen layers = BG1
+    LDA.B #$01 : STA.W $212C
+    ; Disable forced blank
+    LDA.B #$0F : STA.W $2100
+    ; BG1 tiles base address = $0000
+    LDA.B #$00 : STA.W $210B
+    ; BG1 tilemap base address = $4000
+    LDA.B #$40 : STA.W $2107
 
   .crash:
-    BRA .crash                                                           ; Crash
+    BRA .crash
 
 
 ;;; $875D: Initialise CPU IO registers ;;;
 Initialise_CPU_IO_Registers:
     ; Enable auto-joypad read
     LDA.B #$01 : STA.W $4200 : STA.B DP_IRQAutoJoy
-    STZ.W $4201                                                          ; Joypad programmable IO port = 0
-    STZ.W $4202
-    STZ.W $4203                                                          ; Multiplication operands = 0
-    STZ.W $4204
-    STZ.W $4205                                                          ; Division operands = 0 (causes harmless division by zero)
-    STZ.W $4206
-    STZ.W $4207
-    STZ.W $4208                                                          ; IRQ h-counter target = 0
-    STZ.W $4209
-    STZ.W $420A                                                          ; IRQ v-counter target = 0
-    STZ.W $420B                                                          ; Disable all DMA channels
-    STZ.W $420C
-    STZ.B DP_HDMAEnable                                                  ; Disable all HDMA channels
-    LDA.B #$01 : STA.W $420D : STA.B DP_ROMAccessSpeed ; Enable FastROM
+    ; Joypad programmable IO port = 0
+    STZ.W $4201
+    ; Multiplication operands = 0
+    STZ.W $4202 : STZ.W $4203
+    ; Division operands = 0 (causes harmless division by zero)
+    STZ.W $4204 : STZ.W $4205 : STZ.W $4206
+    ; IRQ h-counter target = 0
+    STZ.W $4207 : STZ.W $4208
+    ; IRQ v-counter target = 0
+    STZ.W $4209 : STZ.W $420A
+    ; Disable all DMA channels
+    STZ.W $420B
+    ; Disable all HDMA channels
+    STZ.W $420C : STZ.B DP_HDMAEnable
+    ; Enable FastROM
+    LDA.B #$01 : STA.W $420D : STA.B DP_ROMAccessSpeed
     RTS
 
 
 ;;; $8792: Initialise PPU registers ;;;
 InitialisePPURegisters:
-; These BG/sprites addresses aren't used, $8B:8000 (set up PPU for title sequence) overwrites them
+; These BG/sprites addresses aren't used, Setup_PPU_TitleSequence overwrites them
     LDA.B #$8F : STA.W $2100 : STA.B DP_Brightness ; Enable forced blank
     ; Sprite tiles base address = $6000, sprite sizes = 8x8 / 16x16
     LDA.B #$03 : STA.W $2101 : STA.B DP_SpriteSizeAddr
-    STZ.W $2102
-    STZ.B DP_OAMAddrPrio
-    LDA.B #$80 : STA.W $2103 : STA.B DP_OAMAddrPrio+1 ; OAM address = $0000, priority sprite index = 0
-    STZ.W $2104 : STZ.W $2104 ; OAM $0000 = 0
-    LDA.B #$09 : STA.W $2105 : STA.B DP_BGModeSize ; BG mode = 1 with BG3 priority, BG tile sizes = 8x8
-    STZ.W $2106
-    STZ.B DP_Mosaic                                                      ; Disable mosaic
-    LDA.B #$40 : STA.W $2107 : STA.B DP_BG1TilemapAddrSize ; BG1 tilemap base address = $4000, size = 32x32
-    LDA.B #$44 : STA.W $2108 : STA.B DP_BG2TilemapAddrSize                                          ; BG2 tilemap base address = $4400, size = 32x32
-    LDA.B #$48 : STA.W $2109 : STA.B DP_BG3TilemapAddrSize                                          ; BG3 tilemap base address = $4800, size = 32x32
-    LDA.B #$48                                                           ; >.<
-    STZ.W $210A : STZ.B DP_BG4TilemapAddrSize                                          ; BG4 tilemap base address = $0000, size = 32x32
-    LDA.B #$00 : STA.W $210B : STA.B DP_BGTilesAddr                                                 ; BG1/2/4 tiles base address = $0000
-    LDA.B #$05 : STA.W $210C : STA.B DP_BGTilesAddr+1                                               ; BG3 tiles base address = $5000
-    STZ.W $210D : STZ.W $210D                                                          ; BG1 X scroll = 0
-    STZ.W $210E : STZ.W $210E                                                          ; BG1 Y scroll = 0
-    STZ.W $210F : STZ.W $210F                                                          ; BG2 X scroll = 0
-    STZ.W $2110 : STZ.W $2110                                                          ; BG2 Y scroll = 0
-    STZ.W $2111 : STZ.W $2111                                                          ; BG3 X scroll = 0
-    STZ.W $2112 : STZ.W $2112                                                          ; BG3 Y scroll = 0
-    STZ.W $2113 : STZ.W $2113                                                          ; BG4 X scroll = 0
-    STZ.W $2114 : STZ.W $2114                                                          ; BG4 Y scroll = 0
-    STZ.W $2115                                                          ; VRAM address increment mode = 8-bit
-    STZ.W $211A : STZ.B DP_Mode7Settings                                               ; Mode 7 settings = 0
-    STZ.W $211B : STZ.W $211C : STZ.W $211D : STZ.W $211E ; Mode 7 transformation matrix = {{0, 0}, {0, 0}}
-    STZ.W $211F : STZ.W $2120                                                          ; Mode 7 transformation origin co-ordinate X/Y = 0
+    ; OAM address = $0000, priority sprite index = 0
+    STZ.W $2102 : STZ.B DP_OAMAddrPrio
+    LDA.B #$80 : STA.W $2103 : STA.B DP_OAMAddrPrio+1
+    ; OAM $0000 = 0
+    STZ.W $2104 : STZ.W $2104
+    ; BG mode = 1 with BG3 priority, BG tile sizes = 8x8
+    LDA.B #$09 : STA.W $2105 : STA.B DP_BGModeSize
+    ; Disable mosaic
+    STZ.W $2106 : STZ.B DP_Mosaic
+    ; BG1 tilemap base address = $4000, size = 32x32
+    LDA.B #$40 : STA.W $2107 : STA.B DP_BG1TilemapAddrSize
+    ; BG2 tilemap base address = $4400, size = 32x32
+    LDA.B #$44 : STA.W $2108 : STA.B DP_BG2TilemapAddrSize
+    ; BG3 tilemap base address = $4800, size = 32x32
+    LDA.B #$48 : STA.W $2109 : STA.B DP_BG3TilemapAddrSize
+    LDA.B #$48 ; >.<
+    ; BG4 tilemap base address = $0000, size = 32x32
+    STZ.W $210A : STZ.B DP_BG4TilemapAddrSize
+    ; BG1/2/4 tiles base address = $0000
+    LDA.B #$00 : STA.W $210B : STA.B DP_BGTilesAddr
+    ; BG3 tiles base address = $5000
+    LDA.B #$05 : STA.W $210C : STA.B DP_BGTilesAddr+1
+    ; BG1 X scroll = 0
+    STZ.W $210D : STZ.W $210D
+    ; BG1 Y scroll = 0
+    STZ.W $210E : STZ.W $210E
+    ; BG2 X scroll = 0
+    STZ.W $210F : STZ.W $210F
+    ; BG2 Y scroll = 0
+    STZ.W $2110 : STZ.W $2110
+    ; BG3 X scroll = 0
+    STZ.W $2111 : STZ.W $2111
+    ; BG3 Y scroll = 0
+    STZ.W $2112 : STZ.W $2112
+    ; BG4 X scroll = 0
+    STZ.W $2113 : STZ.W $2113
+    ; BG4 Y scroll = 0
+    STZ.W $2114 : STZ.W $2114
+    ; VRAM address increment mode = 8-bit
+    STZ.W $2115
+    ; Mode 7 settings = 0
+    STZ.W $211A : STZ.B DP_Mode7Settings
+    ; Mode 7 transformation matrix = {{0, 0}, {0, 0}}
+    STZ.W $211B : STZ.W $211C : STZ.W $211D : STZ.W $211E
+    ; Mode 7 transformation origin co-ordinate X/Y = 0
+    STZ.W $211F : STZ.W $2120
+    ; Disable all window masks
     LDA.B #$00 : STA.W $2123 : STA.B DP_WindowMaskBG12
-    LDA.B #$00 : STA.W $2124 : STA.B DP_WindowMaskBG34 ; Disable all window masks
+    LDA.B #$00 : STA.W $2124 : STA.B DP_WindowMaskBG34
     STZ.W $2125 : STZ.B DP_WindowMaskSprite
-    LDA.B #$00 : STA.W $2126 : STA.B DP_Window1Left ; Window 1 left position = 0
-    LDA.B #$F8 : STA.W $2127 : STA.B DP_Window1Right ; Window 1 right position = F8h
-    STZ.W $2128 : STZ.B DP_Window2Left                                                 ; Window 2 left position = 0
-    STZ.W $2129 : STZ.B DP_Window2Right                                                ; Window 2 right position = 0
+    ; Window 1 left position = 0
+    LDA.B #$00 : STA.W $2126 : STA.B DP_Window1Left
+    ; Window 1 right position = F8h
+    LDA.B #$F8 : STA.W $2127 : STA.B DP_Window1Right
+    ; Window 2 left position = 0
+    STZ.W $2128 : STZ.B DP_Window2Left
+    ; Window 2 right position = 0
+    STZ.W $2129 : STZ.B DP_Window2Right
+    ; Window 1/2 mask logic = OR
     STZ.W $212A : STZ.B DP_Window12BGMaskLogic
-    STZ.W $212B : STZ.B DP_Window12SpriteMaskLogic ; Window 1/2 mask logic = OR
-    LDA.B #$11 : STA.W $212C                                                         
-    STA.B DP_MainScreenLayers ; Main screen layers = BG1/sprites
-    STA.W $212E
-    STA.B DP_WindowAreaMainScreen                                        ; Disable BG1/sprites in window area main screen
-    LDA.B #$02 : STA.W $212D : STA.B DP_SubScreenLayers ; Subscreen layers = BG2
-    STA.W $212F : STA.B DP_WindowAreaSubScreen                                         ; Disable BG2 in window area subscreen
-    LDA.B #$02 : STA.W $2130 : STA.B DP_NextGameplayColorMathA ; Enable colour math subscreen layers
-    LDA.B #$A1 : STA.W $2131 : STA.B DP_NextGameplayColorMathB ; Enable subtractive colour math on BG1/backdrop
+    STZ.W $212B : STZ.B DP_Window12SpriteMaskLogic
+    ; Main screen layers = BG1/sprites
+    LDA.B #$11 : STA.W $212C : STA.B DP_MainScreenLayers
+    ; Disable BG1/sprites in window area main screen
+    STA.W $212E : STA.B DP_WindowAreaMainScreen
+    ; Subscreen layers = BG2
+    LDA.B #$02 : STA.W $212D : STA.B DP_SubScreenLayers
+    ; Disable BG2 in window area subscreen
+    STA.W $212F : STA.B DP_WindowAreaSubScreen
+    ; Enable colour math subscreen layers
+    LDA.B #$02 : STA.W $2130 : STA.B DP_NextGameplayColorMathA
+    ; Enable subtractive colour math on BG1/backdrop
+    LDA.B #$A1 : STA.W $2131 : STA.B DP_NextGameplayColorMathB
     LDA.B #$E0 : STA.W $2132
     LDA.B #$E0 : STA.W $2132
     LDA.B #$80 : STA.W $2132 : STA.B DP_ColorMathSubScreenBackdropColor0
     LDA.B #$40 : STA.W $2132 : STA.B DP_ColorMathSubScreenBackdropColor1
     LDA.B #$20 : STA.W $2132 : STA.B DP_ColorMathSubScreenBackdropColor2
+    ; Use standard NTSC resolution
     LDA.B #$00 : STA.W $2133 : STA.B DP_DisplayResolution
     RTS
 
@@ -1212,12 +1317,14 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $88B4: Unused. Clear high RAM ;;;
 UNUSED_ClearHighRAM_8088B4:
     REP #$30
+    ; Clear $7E:2000..FFFF
     LDA.W #$0000
     LDX.W #$2000
-    LDY.W #$E000                                                         ; Clear $7E:2000..FFFF
+    LDY.W #$E000
     JSL WriteYBytesOfATo_7E0000_X_16bit
+    ; Clear $7F:0000..DFFD
     LDA.W #$0000 : TAX ; >.<
-    LDY.W #$DFFE                                                         ; Clear $7F:0000..DFFD
+    LDY.W #$DFFE
     JSL WriteYBytesOfATo_7F0000_X_16bit
     SEP #$30
     RTS
@@ -1234,12 +1341,15 @@ WriteALoadOf_1C2F:
 ;     $7E:4000..47FF is set to 006Fh by $82:81DD (set up PPU for gameplay)
 ;     $7E:6000..67FF is clobbered by a decompression in $82:E3C0 (door transition function - place Samus, load tiles)
     REP #$30
+    ; $7E:3000..37FF = 1C2Fh
     LDA.W #$1C2F
-    JSL Write_800h_Bytes_Of_A_To_7E3000                                ; $7E:3000..37FF = 1C2Fh
+    JSL Write_800h_Bytes_Of_A_To_7E3000
+    ; $7E:4000..47FF = 1C2Fh
     LDA.W #$1C2F
-    JSL Write_800h_Bytes_Of_A_To_7E4000                                ; $7E:4000..47FF = 1C2Fh
+    JSL Write_800h_Bytes_Of_A_To_7E4000
+    ; $7E:6000..67FF = 1C2Fh
     LDA.W #$1C2F
-    JSL Write_800h_Bytes_Of_A_To_7E6000                                ; $7E:6000..67FF = 1C2Fh
+    JSL Write_800h_Bytes_Of_A_To_7E6000
     SEP #$30
     RTS
 
@@ -1303,21 +1413,26 @@ HandleFadingOut:
 ;     LDA $50 : BMI BRANCH_FINISHED ; If PSR.M = 0
     PHP
     REP #$20
+    ; Decrement screen fade counter
     LDA.W ScreenFadeCounter : DEC : BMI .fadeOut
-    STA.W ScreenFadeCounter                                              ; Decrement screen fade counter
-    BRA .return                                                          ; Return
+    STA.W ScreenFadeCounter
+    BRA .return
 
   .fadeOut:
-    LDA.W ScreenFadeDelay : STA.W ScreenFadeCounter                                              ; Screen fade counter = [screen fade delay]
+    ; Screen fade counter = [screen fade delay]
+    LDA.W ScreenFadeDelay : STA.W ScreenFadeCounter
     SEP #$30
     ; If (brightness) = 0: return
     LDA.B DP_Brightness : AND.B #$0F : BEQ .return
-    DEC : BNE .disableFBlank                                                   ; If (brightness) = 1:
-    LDA.B #$80 : STA.B DP_Brightness                                                  ; Enable forced blank, brightness = 0
-    BRA .return                                                          ; Return
+    ; If (brightness) = 1:
+    DEC : BNE .disableFBlank
+    ; Enable forced blank, brightness = 0
+    LDA.B #$80 : STA.B DP_Brightness
+    BRA .return
 
   .disableFBlank:
-    STA.B DP_Brightness                                                  ; Decrement brightness (disable forced blank)
+    ; Decrement brightness (disable forced blank)
+    STA.B DP_Brightness
 
   .return:
     PLP
@@ -1335,15 +1450,18 @@ HandleFadingIn:
     REP #$20
     ; If [screen fade counter] != 0:
     LDA.W ScreenFadeCounter : DEC : BMI .fadeIn
-    STA.W ScreenFadeCounter                                              ; Decrement screen fade counter
-    BRA .return                                                          ; Return
+    ; Decrement screen fade counter
+    STA.W ScreenFadeCounter
+    BRA .return
 
   .fadeIn:
-    LDA.W ScreenFadeDelay : STA.W ScreenFadeCounter                                              ; Screen fade counter = [screen fade delay]
+    ; Screen fade counter = [screen fade delay]
+    LDA.W ScreenFadeDelay : STA.W ScreenFadeCounter
     SEP #$30
     ; If brightness is not max:
     LDA.B DP_Brightness : INC : AND.B #$0F : BEQ .return
-    STA.B DP_Brightness                                                  ; Increment brightness (disable forced blank)
+    ; Increment brightness (disable forced blank)
+    STA.B DP_Brightness
 
   .return:
     PLP
@@ -1685,7 +1803,7 @@ ExecuteVerticalScrollingDMAs:
     STX.W $4315
     LDY.W BG2Row_wrappedTilemapVRAMUpdateDest : STY.W $2116
     LDA.B #$02 : STA.W $420B
-    SEP #$02 : BEQ .continue ; reset zero flag, then test if zero >.<
+    SEP #$02 : BEQ .continue ; set zero flag, then test if zero >.<
 
   .crash:
     BRA .crash ; dead code
@@ -3318,8 +3436,8 @@ HandleHUDTilemap_PausedAndRunning:
 
   .etankIconOffsets:
 ; Energy tank icon tilemap offsets
-    dw $0042,$0044,$0046,$0048,$004A,$004C,$004E                         ; bottom (first) row
-    dw $0002,$0004,$0006,$0008,$000A,$000C,$000E                         ; top (second) row
+    dw $0042,$0044,$0046,$0048,$004A,$004C,$004E ; bottom (first) row
+    dw $0002,$0004,$0006,$0008,$000A,$000C,$000E ; top (second) row
 
 
 ;;; $9CEA: Toggle HUD item highlight ;;;
@@ -3636,7 +3754,7 @@ DrawTimerSpritemap:
 ;; Parameters:
 ;;     A: X position offset
 ;;     DB:Y: Spritemap pointer
-    STA.B $14
+    STA.B DP_Temp14
     LDA.W TimerXSubPosition : XBA : AND.W #$00FF
     CLC : ADC.B DP_Temp14 : STA.B DP_Temp14
     LDA.W TimerYSubPosition : XBA : AND.W #$00FF : STA.B DP_Temp12
@@ -3804,7 +3922,7 @@ ResumeGameplay:
     PHP : PHB
     PHK : PLB
     REP #$30
-    SEI ; >.< REP #$34
+    SEI
     STZ.W $420B
     JSL DisableNMI
     JSL DisableHVCounterInterrupts
@@ -4041,7 +4159,7 @@ CalculateLayer2YPosition:
     CMP.B #$01 : BEQ .return
     AND.B #$FE : STA.W $4202
     LDA.W Layer1YPosition : STA.W $4203
-    STZ.W $0934
+    STZ.W PositionOfScrollBoundary
     PHA : PLA
     LDA.W $4217 : STA.W PositionOfScrollBoundary
     LDA.W Layer1YPosition+1 : STA.W $4203
@@ -4330,9 +4448,9 @@ HandleScrollZones_ScrollingRight:
     LDA.B #$8F : PHA : PLB
     REP #$30
     LDA.W Layer1XPosition : STA.W ProposedScrolledLayer1XPosition
-    LDA.W $0B0A : CMP.W Layer1XPosition : BPL +
-    LDA.W $0B0A : STA.W Layer1XPosition
-    STZ.W $090F
+    LDA.W IdealLayer1XPosition : CMP.W Layer1XPosition : BPL +
+    LDA.W IdealLayer1XPosition : STA.W Layer1XPosition
+    STZ.W Layer1XSubPosition
 
 +   LDA.W RoomWidthScrolls : DEC : XBA : CMP.W Layer1XPosition : BCS +
     STA.W Layer1XPosition
@@ -4365,9 +4483,9 @@ HandleScrollZones_ScrollingLeft:
     SEP #$20
     LDA.B #$8F : PHA : PLB
     REP #$30
-    LDA.W Layer1XPosition : STA.W ProposedScrolledLayer1XPosition : CMP.W $0B0A : BPL +
-    LDA.W $0B0A : STA.W Layer1XPosition
-    STZ.W $090F
+    LDA.W Layer1XPosition : STA.W ProposedScrolledLayer1XPosition : CMP.W IdealLayer1XPosition : BPL +
+    LDA.W IdealLayer1XPosition : STA.W Layer1XPosition
+    STZ.W Layer1XSubPosition
 
 +   LDA.W Layer1XPosition : BPL +
     STZ.W Layer1XPosition
@@ -4440,7 +4558,7 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W RoomWidthScrolls : STA.W $4203
     REP #$20
     LDA.W Layer1XPosition : CLC : ADC.W #$0080 : XBA
-    AND.W #$00FF : CLC : ADC.W $4216 : STA.B $14
+    AND.W #$00FF : CLC : ADC.W $4216 : STA.B DP_Temp14
     TAX
     LDA.L Scrolls,X : AND.W #$00FF : CMP.W #$0001 : BEQ +
     LDY.W #$001F
@@ -5436,7 +5554,7 @@ Decompression_VariableDestination:
     JMP .loopMain
 
   .slidingDictionary:
-; Command 6 and 7: sliding dictionary copy and inverted sliding dictionary copy
+    ; Command 6 and 7: sliding dictionary copy and inverted sliding dictionary copy
     AND.B #$20 : STA.B DP_DecompDictCopyBit
     PHX
     LDX.B DP_DecompSrc
@@ -5549,7 +5667,7 @@ DecompressionToVRAM:
     JMP .loopMain
 
   .byteFill:
-; Command 1: Byte fill
+    ; Command 1: Byte fill
     PHX
     LDX.B DP_DecompSrc
     LDA.W $0000,X
