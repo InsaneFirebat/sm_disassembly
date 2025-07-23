@@ -1003,13 +1003,11 @@ Get_Values_for_Screen_Shaking:
     STA.B DP_Temp22                                                      ;868456;
     RTS                                                                  ;868458;
 
-
 +   LDA.L .horizontalX,X                                                 ;868459;
     STA.B DP_Temp24                                                      ;86845D;
     LDA.L .horizontalY,X                                                 ;86845F;
     STA.B DP_Temp22                                                      ;868463;
     RTS                                                                  ;868465;
-
 
   .returnZero:
     STZ.B DP_Temp22                                                      ;868466;

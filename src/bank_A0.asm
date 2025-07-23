@@ -636,6 +636,7 @@ CommonEnemySpeeds_QuadraticallyIncreasing:
 ;;; $8687: Handle room shaking ;;;
 Handle_Room_Shaking:
 ; Enemy projectile shaking is handled by $86:8427
+; manual %rumble in here, uses table
     PHB                                                                  ;A08687;
     PEA.W BGShakeDisplacements>>8&$FF00                                  ;A08688;
     PLB                                                                  ;A0868B;
@@ -645,9 +646,12 @@ Handle_Room_Shaking:
     BEQ .return                                                          ;A08692;
     LDA.W TimeIsFrozenFlag                                               ;A08694;
     BNE .return                                                          ;A08697;
+    STA.b RumbleTime
     LDA.W EarthquakeType                                                 ;A08699;
+    TAX
     CMP.W #$0024                                                         ;A0869C;
     BPL .return                                                          ;A0869F;
+    LDA.w EarthquakeRumbleTable,X : AND #$00FF : STA.b RumbleData
     ASL                                                                  ;A086A1;
     ASL                                                                  ;A086A2;
     ASL                                                                  ;A086A3;
@@ -759,6 +763,21 @@ BGShakeDisplacements:
     dw $0000,$0000,$0001,$0000, $0000,$0000,$0000,$0001, $0000,$0000,$0001,$0001 ;\
     dw $0000,$0000,$0002,$0000, $0000,$0000,$0000,$0002, $0000,$0000,$0002,$0002 ;} BG2 only and enemies
     dw $0000,$0000,$0003,$0000, $0000,$0000,$0000,$0003, $0000,$0000,$0003,$0003 ;/
+
+EarthquakeRumbleTable:
+; horizontal, vertical, diagonal
+    db $11, $11, $33 ;\
+    db $22, $22, $44 ;} BG1 only
+    db $33, $33, $55 ;/
+    db $22, $22, $44 ;\
+    db $33, $33, $55 ;} BG1 and BG2
+    db $44, $44, $66 ;/
+    db $44, $44, $66 ;\
+    db $55, $55, $77 ;} BG1 and BG2 and enemies
+    db $66, $66, $88 ;/
+    db $33, $33, $55 ;\
+    db $44, $44, $66 ;} BG2 only and enemies
+    db $55, $55, $77 ;/
 
 
 ;;; $884D: Draw Samus, projectiles, enemies and enemy projectiles ;;;

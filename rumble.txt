@@ -1,4 +1,6 @@
 
+variable - Earthquake handler
+
 $66, 6 - Intro MB fight explosions, big
 $33, 6 - Intro BM fight explosions, small
 $22, $10 - Intro fly to Ceres, flying into camera
