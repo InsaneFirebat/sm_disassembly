@@ -4640,6 +4640,11 @@ ExecuteCeresRidleyGetawayCutscene:
     STA.W EarthquakeType                                                 ;A6AAE0;
     LDA.W #$0040                                                         ;A6AAE3;
     STA.W EarthquakeTimer                                                ;A6AAE6;
+;    %rumble16($88, $40)
+    SEP #$20
+    STA.b RumbleTime
+    LDA #$88 : STA.b RumbleData
+    REP #$20
 
   .dontPushSamus:
     LDA.W CeresRidleyMode7GetawayBackgroundParameters,X                  ;A6AAE9;
@@ -11515,6 +11520,7 @@ RidleyTail_vs_Samus_Interaction:
     STA.W $18A8                                                          ;A6E000;
     LDA.W #$0005                                                         ;A6E003;
     STA.W $18AA                                                          ;A6E006;
+    %rumble16($44, 8)
     LDY.W #$0000                                                         ;A6E009;
     LDA.W SamusXPosition                                                 ;A6E00C;
     SEC                                                                  ;A6E00F;
@@ -14086,6 +14092,7 @@ HandleEarthquakeDuringEscape:
     STA.W EarthquakeTimer                                                ;A6F78E;
     TYA                                                                  ;A6F791;
     STA.W EarthquakeType                                                 ;A6F792;
+    %rumble16($22, 3)
     RTL                                                                  ;A6F795;
 
   .random:
@@ -14095,6 +14102,7 @@ HandleEarthquakeDuringEscape:
     CLC                                                                  ;A6F79D;
     ADC.W #$0006                                                         ;A6F79E;
     STA.W EarthquakeType                                                 ;A6F7A1;
+    %rumble16($44, 5)
 
   .return:
     RTL                                                                  ;A6F7A4;

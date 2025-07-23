@@ -7826,6 +7826,7 @@ InitFunc_CinematicSpriteObject_IntroMotherBrainExplosion_Big:
     STA.W CinematicSpriteObject_InstructionTimers,Y                      ;8BB9AC;
     LDA.W #$0A00                                                         ;8BB9AF;
     STA.W CinematicSpriteObject_PaletteIndices,Y                         ;8BB9B2;
+    %rumble16($66, 6)
     RTS                                                                  ;8BB9B5;
 
   .Xposition:
@@ -7856,6 +7857,7 @@ InitFunc_CineSpriteObject_IntroMotherBrainExplosion_Small:
     STA.W CinematicSpriteObject_InstructionTimers,Y                      ;8BB9F3;
     LDA.W #$0A00                                                         ;8BB9F6;
     STA.W CinematicSpriteObject_PaletteIndices,Y                         ;8BB9F9;
+    %rumble16($33, 6)
     RTS                                                                  ;8BB9FC;
 
   .Xposition:
@@ -8348,6 +8350,7 @@ CinematicFunction_FlyToCeres_FlyingIntoCamera:
     RTS                                                                  ;8BBE08;
 
   .zoomLessThan20:
+    %rumble8($22, $10)
     SEP #$20                                                             ;8BBE09;
     STZ.B DP_ColorMathA                                                  ;8BBE0B;
     LDA.B #$31                                                           ;8BBE0D;
@@ -9046,6 +9049,7 @@ CinematicFunction_CeresGoesBoom_CeresExplosions:
     PLY                                                                  ;8BC3A3;
     PLX                                                                  ;8BC3A4;
     SEP #$20                                                             ;8BC3A5;
+    %rumble8($AA, $50)
     LDA.B #$10                                                           ;8BC3A7;
     STA.B DP_ColorMathA                                                  ;8BC3A9;
     LDA.B #$37                                                           ;8BC3AB;
@@ -9112,6 +9116,7 @@ Instruction_SpawnCeresExplosions1:
     LDA.W #$0004                                                         ;8BC429;
     LDY.W #CinematicSpriteObjectDefinitions_CeresExplosion1              ;8BC42C;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BC42F;
+    %rumble16($44, $50)
     PLY                                                                  ;8BC432;
     RTS                                                                  ;8BC433;
 
@@ -9170,6 +9175,7 @@ PreInst_CeresExplosionSpawner_SpawnExplosion2EveryCFrames:
     LDA.W CeresExplosion2OffsetIndex                                     ;8BC49F;
     LDY.W #CinematicSpriteObjectDefinitions_CeresExplosion2              ;8BC4A2;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BC4A5;
+    %rumble16($44, $50)
     LDA.W #$000C                                                         ;8BC4A8;
     STA.W CinematicFunctionTimer                                         ;8BC4AB;
     LDA.W CeresExplosion2OffsetIndex                                     ;8BC4AE;
@@ -9907,6 +9913,7 @@ CinematicFunction_FlyToZebes_FlyingToZebes_DriftingRight:
     CLC                                                                  ;8BCA27;
     ADC.W #$0004                                                         ;8BCA28;
     STA.W Mode7TransformationZoomLevel                                   ;8BCA2B;
+    %rumble16($44, $20)
     RTS                                                                  ;8BCA2E;
 
   .zoomLessThan480:
