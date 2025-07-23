@@ -2853,97 +2853,20 @@ skip $7DE84E
   .spikeTimerIndex: skip 2 ; $7E780E
 endstruct
 
-struct RidleyCeres $0FAA
+struct Ridley Enemy.var0
+  .function: skip 2 ; $0FA8
   .XSpeed: skip 2 ; $0FAA
   .YSpeed: skip 2 ; $0FAC
-skip $7D9052
-  .liftoffFlag: skip 2 ; $7E2000
-  .tailFlingSyncFlag: skip 2 ; $7E2002
-  .tailFlingTrigger: skip 2 ; $7E2004
-skip 6
-  .unknown200C: skip 2 ; $7E200C
-  .YAcceleration: skip 2 ; $7E200E
-skip 14
-  .tailSwingDelay: skip 2 ; $7E201E
-skip $57E0
-  .counter: skip 0 ; $7E7800
-  .timer: skip 2 ; $7E7800
-  .status: skip 2 ; $7E7802
-  .activeFlag: skip 2 ; $7E7804
-  .BabyMetroidInstList: skip 2 ; $7E7806
-  .unknownCounter7808: skip 2 ; $7E7808
-  .ribsAnimationIndex: skip 2 ; $7E780A
-  .ribsAnimationTimer: skip 2 ; $7E780C
-  .wingFlapAnimationFrame: skip 2 ; $7E780E
-  .unknown7810: skip 2 ; $7E7810
-  .unknown7812: skip 2 ; $7E7812
-skip 2
-  .USwoopSpeed: skip 2 ; $7E7816
-  .paletteIndex: skip 2 ; $7E7818
-  .hitCounter: skip 2 ; $7E781A
-  .maxTailSpeedCounter: skip 2 ; $7E781C
-  .roarSFXFlag: skip 2 ; $7E781E
-  .facingDirection: skip 2 ; $7E7820
-skip 2
-  .speedup: skip 2 ; $7E7824
-skip 2
-  .XDisplacementWhileHoldingSamus: skip 2 ; $7E7828
-  .YDisplacementWhileHoldingSamus: skip 2 ; $7E782A
-skip 2
-  .targetXPositionWhileHOldingSamus: skip 2 ; $7E782E
-  .targetYPositionWhileHOldingSamus: skip 2 ; $7E7830
 skip 4
-  .holdingInClawsFlag: skip 2 ; $7E7836
-  .contactDamage: skip 2 ; $7E7838
-  .index: skip 2 ; $7E783A
-  .grabCooldownTimer: skip 2 ; $7E783C
-skip $7C2
-  .topBoundary: skip 2 ; $7E8000
-  .bottomBoundary: skip 2 ; $7E8002
-  .leftBoundary: skip 2 ; $7E8004
-  .rightBoundary: skip 2 ; $7E8006
-  .relatedToHurtAI: skip 2 ; $7E8008
-skip 2
-  .tailBounceCounter: skip 2 ; $7E800C
-  .deathExplosionTimer: skip 2 ; $7E800E
-  .deathExplosionCounter: skip 2 ; $7E8010
-skip 14
-  .tablePointer: skip 2 ; $7E8020
-skip 2
-  .getawayCompletedFlag: skip 2 ; $7E8024
-  .getawayFlightDataIndex: skip 2 ; $7E8026
-  .getawayXVelocity: skip 2 ; $7E8028
-  .getawayYVelocity: skip 2 ; $7E802A
-  .BabyMetroidAnimationIndex: skip 2 ; $7E802C
-  .wingANimationIndex: skip 2 ; $7E802E
-  .paletteTableIndex: skip 2 ; $7E8030
-  .unused7E8032: skip 2 ; $7E8032
-  .typewriterTileToBeWrittenToTilemap: skip 2 ; $7E8034
-skip 2
-  .typewriterVRAMTilemapAddr: skip 2 ; $7E8038
-  .typewriterInstructionTimer: skip 2 ; $7E803A
-  .typewriterInstructionTimerResetValue: skip 2 ; $7E803C
-  .typewriterStrokeTimer: skip 2 ; $7E803E
-skip $7C0
-  .BabyMetroidFunction: skip 2 ; $7E8800
-skip 2
-  .BabyMetroidXPosition: skip 2 ; $7E8804
-skip 2
-  .BabyMetroidYPosition: skip 2 ; $7E8808
-  .neverRead880A: skip 2 ; $7E880A
-  .BabyMetroidCrySFXFlag: skip 2 ; $7E880C
-endstruct
-
-struct Ridley $0FAA
-  .XSpeed: skip 2 ; $0FAA
-  .YSpeed: skip 2 ; $0FAC
-skip $7D9052
+  .functionTimer: skip 2 ; $0FB2
+org $7E2000
   .tailAIIndex: skip 2 ; $7E2000
   .tailRotationSpeed: skip 2 ; $7E2002
   .tailFlingTrigger: skip 2 ; $7E2004
 skip 4
   .tailHalfRevolutions: skip 2 ; $7E200A
-skip 4
+  .unknown200C: skip 2 ; $7E200C
+  .unknown200E: skip 2 ; $7E200E
   .tailMovementTimer: skip 2 ; $7E2010
   .tailExtensionSpeed: skip 2 ; $7E2012
   .tailAngularSpeed: skip 2 ; $7E2014
@@ -3022,11 +2945,12 @@ skip 4
   .tailTipYPosition: skip 2 ; $7E20A6
   .tailTipXDistanceFromTail6: skip 2 ; $7E20A8
   .tailTipYDistanceFromTail6: skip 2 ; $7E20AA
-skip $5754
+org $7E7800
   .timer: skip 2 ; $7E7800
   .status: skip 2 ; $7E7802
   .activeFlag: skip 2 ; $7E7804
-skip 4
+  .BabyMetroidInstList: skip 2 ; $7E7806
+  .BabyMetroidInstTimer: skip 2 ; $7E7808
   .ribsAnimationIndex: skip 2 ; $7E780A
   .ribsAnimationTimer: skip 2 ; $7E780C
   .wingFlapFrame: skip 2 ; $7E780E
@@ -3035,13 +2959,16 @@ skip 4
   .currentAngleOfMotion: skip 2 ; $7E7814
   .USwoopSpeed: skip 2 ; $7E7816
   .wingTailPalette: skip 2 ; $7E7818
-skip 2
+  .hitCounterCeres: skip 2 ; $7E781A
   .maxTailSpeedCounter: skip 2 ; $7E781C
   .roarSFXFlag: skip 2 ; $7E781E
   .facingDirection: skip 2 ; $7E7820
 skip 2
   .speed: skip 2 ; $7E7824
-skip 8
+skip 2
+  .XDisplacementWhileHoldingSamus: skip 2 ; $7E7828
+  .YDisplacementWhileHoldingSamus: skip 2 ; $7E782A
+skip 2
   .targetXLocationWhenHoldingSamus: skip 2 ; $7E782E
   .targetYLocationWhenHoldingSamus: skip 2 ; $7E7830
   .fireballXComponentOfSpeed: skip 2 ; $7E7832
@@ -3051,7 +2978,7 @@ skip 8
   .YDisplacementTableIndex: skip 2 ; $7E783A
   .grabCooldownTimer: skip 2 ; $7E783C
   .collisionDirection: skip 2 ; $7E783E
-skip $7C0
+org $7E8000
   .topBoundary: skip 2 ; $7E8000
   .bottomBoundary: skip 2 ; $7E8002
   .leftBoundary: skip 2 ; $7E8004
@@ -3061,9 +2988,34 @@ skip $7C0
   .tailBounceCounter: skip 2 ; $7E800C
   .deathExplosionTimer: skip 2 ; $7E800E
   .deathExplosionIndex: skip 2 ; $7E8010
+skip 14
+  .getawayZoomLevel: skip 2 ; $7E8020
+  .unused8022: skip 2 ; $7E8022
+  .getawayCompletedFlag: skip 2 ; $7E8024
+  .getawayFlightDataIndex: skip 2 ; $7E8026
+  .getawayXScroll: skip 2 ; $7E8028
+  .getawayYScroll: skip 2 ; $7E802A
+  .getawayBabyMetroidAnimationIndex: skip 2 ; $7E802C
+  .getawayWingAnimationIndex: skip 2 ; $7E802E
+  .paletteTableIndex: skip 2 ; $7E8030
+  .unused7E8032: skip 2 ; $7E8032
+  .typewriterTileToBeWrittenToTilemap: skip 2 ; $7E8034
+  .typewriterInstructionList: skip 2 ; $7E8036
+  .typewriterVRAMTilemapAddr: skip 2 ; $7E8038
+  .typewriterInstructionTimer: skip 2 ; $7E803A
+  .typewriterInstructionTimerResetValue: skip 2 ; $7E803C
+  .typewriterStrokeTimer: skip 2 ; $7E803E
+org $7E8800
+  .BabyMetroidFunction: skip 2 ; $7E8800
+  .BabyMetroidXSubPosition: skip 2 ; $7E8802
+  .BabyMetroidXPosition: skip 2 ; $7E8804
+  .BabyMetroidYSubPosition: skip 2 ; $7E8806
+  .BabyMetroidYPosition: skip 2 ; $7E8808
+  .neverRead880A: skip 2 ; $7E880A
+  .BabyMetroidCrySFXFlag: skip 2 ; $7E880C
 endstruct
 
-struct RidleyExplosion $0FAA
+struct RidleyExplosion Enemy.var1
   .XVelocity: skip 2 ; $0FAA
   .YVelocity: skip 2 ; $0FAC
 skip 4
@@ -3083,7 +3035,7 @@ skip 2
   .rumblingTimer: skip 2 ; $0FAE
   .CeresDoorRumbleTimer: skip 2 ; $0FB0
   .CeresDoorRumbleIndex: skip 2 ; $0FB2
-endstruct
+endstruct align $40
 
 struct Zebetite $0FA8
   .function: skip 2 ; $0FA8
