@@ -643,9 +643,9 @@ Handle_Room_Shaking:
     PLB                                                                  ;A0868C;
     REP #$30                                                             ;A0868D;
     LDA.W EarthquakeTimer                                                ;A0868F;
-    BEQ .return                                                          ;A08692;
+    BEQ .bridgeReturn                                                    ;A08692;
     LDA.W TimeIsFrozenFlag                                               ;A08694;
-    BNE .return                                                          ;A08697;
+    BNE .bridgeReturn                                                          ;A08697;
     STA.b RumbleTime
     LDA.W EarthquakeType                                                 ;A08699;
     TAX
@@ -684,6 +684,9 @@ Handle_Room_Shaking:
     ADC.B DP_BG2YScroll                                                  ;A086D9;
     STA.B DP_BG2YScroll                                                  ;A086DB;
     BRA .decrementEarthquakeTimer                                        ;A086DD;
+
+  .bridgeReturn
+    BRA .return
 
   .timerExpired:
     LDA.B DP_BG1XScroll                                                  ;A086DF;
