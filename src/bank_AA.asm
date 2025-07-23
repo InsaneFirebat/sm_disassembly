@@ -6284,6 +6284,7 @@ Function_Torizo_Movement_Jumping_Falling:
     STA.W EarthquakeType                                                 ;AAC875;
     LDA.W #$0020                                                         ;AAC878;
     STA.W EarthquakeTimer                                                ;AAC87B;
+    %rumble16($33, $20)
     RTS                                                                  ;AAC87E;
 
 

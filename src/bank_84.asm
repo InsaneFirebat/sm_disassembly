@@ -13268,6 +13268,7 @@ Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY:
     LDA.W $0000,Y                                                        ;84D359;
     LDY.W #EnemyProjectile_BombTorizoStatueBreaking                      ;84D35C;
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;84D35F;
+    %rumble16($11, 10)
     PLY                                                                  ;84D363;
     PLX                                                                  ;84D364;
     INY                                                                  ;84D365;

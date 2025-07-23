@@ -12,3 +12,5 @@ $44, $50 - Ceres goes boom explosions 1
 $44, $50 - Ceres goes boom explosions 2
 $AA, $50 - Ceres goes boom power bomb
 $44, $20 - Gunship flyby to Zebes
+$11, 10 - Bomb Torizo statue crumbling
+$33, $20 - Bomb Torizo jump collision
