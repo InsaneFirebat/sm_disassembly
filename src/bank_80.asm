@@ -3366,6 +3366,7 @@ if !DEBUG
     BNE .debug                                                           ;809493;
 endif
     PLP                                                                  ;809495;
+	JSL	rumblehan_l
     RTL                                                                  ;809496;
 
 if !DEBUG

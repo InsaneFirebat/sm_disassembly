@@ -17,9 +17,9 @@ DP_Temp09: skip 1 ; $09
 DP_Temp0A: skip 1 ; $0A
 DP_Temp0B: skip 1 ; $0B
 DP_Temp0C: skip 2 ; $0C
-DP_Unused0E: skip 1 ; $0E
+rumble_data: skip 1 ; $0E
 DP_Temp0F: skip 2 ; $0F
-DP_Unused11: skip 1 ; $11
+rumble_time: skip 1 ; $11
 DP_Temp12: skip 1 ; $12
 DP_Temp13: skip 1 ; $13
 DP_Temp14: skip 1 ; $14
