@@ -13258,7 +13258,7 @@ PreInstruction_PLM_WakePLMIfSamusHasBombs:
 
 
 ;;; $D357: Instruction - spawn Bomb Torizo statue breaking with argument [[Y]] ;;;
-Instruction_PLM_SpawnBombTorizoStatueBreakingWIthArgY:
+Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY:
 ;; Parameters:
 ;;     Y: Pointer to instruction arguments
 ;; Returns:
@@ -13285,21 +13285,21 @@ InstList_PLM_BombTorizosCrumblingChozo:
     dw Instruction_PLM_TransferBytesToVRAM                               ;84D376;
     dw $0400 : dl Tiles_BombTorizosCrumblingChozo : dw $6E00             ;84D378;
     dw $0060,DrawInst_BombTorizosCrumblingChozo_0                        ;84D37D;
-    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWIthArgY,$0000       ;84D383;
+    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$0000       ;84D383;
     dw $0030,DrawInst_BombTorizosCrumblingChozo_0                        ;84D385;
-    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWIthArgY,$0002       ;84D38B;
+    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$0002       ;84D38B;
     dw $000F,DrawInst_BombTorizosCrumblingChozo_0                        ;84D38D;
-    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWIthArgY,$0004       ;84D393;
+    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$0004       ;84D393;
     dw $000E,DrawInst_BombTorizosCrumblingChozo_0                        ;84D395;
-    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWIthArgY,$0006       ;84D39B;
+    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$0006       ;84D39B;
     dw $000D,DrawInst_BombTorizosCrumblingChozo_0                        ;84D39D;
-    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWIthArgY,$0008       ;84D3A3;
+    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$0008       ;84D3A3;
     dw $000C,DrawInst_BombTorizosCrumblingChozo_0                        ;84D3A5;
-    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWIthArgY,$000A       ;84D3AB;
+    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$000A       ;84D3AB;
     dw $000B,DrawInst_BombTorizosCrumblingChozo_0                        ;84D3AD;
-    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWIthArgY,$000C       ;84D3B3;
+    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$000C       ;84D3B3;
     dw $000A,DrawInst_BombTorizosCrumblingChozo_0                        ;84D3B5;
-    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWIthArgY,$000E       ;84D3BB;
+    dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$000E       ;84D3BB;
     dw $0001,DrawInst_BombTorizosCrumblingChozo_1                        ;84D3BD;
     dw Instruction_PLM_QueueSong1MusicTrack                              ;84D3C3;
     dw Instruction_PLM_Delete                                            ;84D3C5;
