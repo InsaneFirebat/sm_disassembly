@@ -3365,8 +3365,8 @@ if !DEBUG
     LDA.W Debug_Enable                                                   ;809490;
     BNE .debug                                                           ;809493;
 endif
+	JSL	ControllerRumbleHandler
     PLP                                                                  ;809495;
-	JSL	rumblehan_l
     RTL                                                                  ;809496;
 
 if !DEBUG
@@ -9201,6 +9201,60 @@ endif
 
 Freespace_Bank80_CD8E:                                                   ;80CD8E;
 ; $2F32 bytes
+
+
+ControllerRumbleHandler:
+    SEP #$20
+    LDA.b RumbleTime : BEQ .rumbleOff
+    DEC.b RumbleTime
+    BRA .continue
+
+  .rumbleOff
+    STZ.b RumbleData
+
+  .continue
+    ; HACK: apparently this is needed to work on hardware?
+    LDA #$01 : STA $4016
+    NOP #2
+    STZ $4016
+    NOP #2
+    ; Read 16 Controller Bits
+    LDA #$0F
+
+  .readJoy2
+    ; Controller I
+    BIT $4016
+    DEC : BPL .readJoy2
+
+    ; Write 01110010 to the Controller Port
+    LDA #$40
+    %rumbleZeroPort() ; 0
+    %rumbleWritePort() ; 1
+    BIT $4016 ; 1 (just strobing works: the IO port already has 1)
+    BIT $4016 ; 1
+    %rumbleZeroPort() ; 0
+    BIT $4016 ; 0
+    %rumbleWritePort() ; 1
+    %rumbleZeroPort() ; 0
+
+    ; Now we write the rumble intensity: rrrrllll (right and left motors)
+    LDA.b RumbleData : LSR ; -7654321, C <- 0
+    %rumbleWritePort() ; bit7
+    ROL ; 76543210
+    %rumbleWritePort() ; bit6
+    ASL ; 6543210-
+    %rumbleWritePort() ; bit5
+    ASL ; 543210--
+    %rumbleWritePort() ; bit4
+    ASL ; 43210---
+    %rumbleWritePort() ; bit3
+    ASL ; 3210----
+    %rumbleWritePort() ; bit2
+    ASL ; 210-----
+    %rumbleWritePort() ; bit1
+    ASL ; 10------
+    %rumbleWritePort() ; bit0
+	RTL
 
 
 warnpc $80FFC0

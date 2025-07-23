@@ -2,16 +2,6 @@
 org $908000
 
 
-macro RUMBLE(Leftright, Time)
-	php
-	sep #$20
-	lda.b #$<Leftright>				;strength (%xxxxyyyy - xxxx - left motor | yyyy - right motor)
-	sta.b rumble_data
-	lda.b #$<Time>				;length of time
-	sta.b rumble_time
-	plp
-	endmacro
-
 ;;; $8000: Animate Samus ;;;
 AnimateSamus:
 ; Calls code to check FX for liquid physics (which affects the Samus animation frame buffer variable)
@@ -8789,7 +8779,7 @@ Fire_Uncharge_Beam:
     RTS                                                                  ;90B8A9;
 
   .fire:
-	%RUMBLE(22, 8)
+	%rumble16($22, 8)
     LDX.W #$0000                                                         ;90B8AA;
 
   .loop:

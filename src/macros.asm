@@ -613,3 +613,29 @@ endmacro
 macro speedParams(speed1, speed2)
     dw <speed1>, <speed2>
 endmacro
+
+macro rumbleWritePort()
+    STA $4201
+    BIT $4016 ; Strobe
+endmacro
+
+macro rumbleZeroPort()
+    STZ $4201
+    BIT $4016 ; Strobe
+endmacro
+
+macro rumble8(LeftRight, Time)
+    ; strength (%xxxxyyyy - xxxx - left motor | yyyy - right motor)
+    LDA.b #<LeftRight> : STA.b RumbleData
+    ; length of time
+    LDA.b #<Time> : STA.b RumbleTime
+endmacro
+
+macro rumble16(LeftRight, Time)
+    SEP #$20
+    ; strength (%xxxxyyyy - xxxx - left motor | yyyy - right motor)
+    LDA.b #<LeftRight> : STA.b RumbleData
+    ; length of time
+    LDA.b #<Time> : STA.b RumbleTime
+    REP #$20
+endmacro

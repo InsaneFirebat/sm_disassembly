@@ -17,9 +17,9 @@ DP_Temp09: skip 1 ; $09
 DP_Temp0A: skip 1 ; $0A
 DP_Temp0B: skip 1 ; $0B
 DP_Temp0C: skip 2 ; $0C
-rumble_data: skip 1 ; $0E
+DP_Unused0E: skip 1 ; $0E
 DP_Temp0F: skip 2 ; $0F
-rumble_time: skip 1 ; $11
+DP_Unused11: skip 1 ; $11
 DP_Temp12: skip 1 ; $12
 DP_Temp13: skip 1 ; $13
 DP_Temp14: skip 1 ; $14
@@ -137,18 +137,15 @@ DP_BG3XScroll: skip 2 ; $B9
 DP_BG3YScroll: skip 2 ; $BB
 DP_BG4XScroll: skip 2 ; $BD
 DP_BG4YScroll: skip 2 ; $BF
-DP_UnusedC1: skip 15 ; $C1
+;DP_UnusedC1: skip 15 ; $C1
+RumbleData: skip 1 ; $0E
+RumbleTime: skip 1 ; $11
 
 struct VRAMWrite $D0 ; $D0..02CF
   .size: skip 2 ; $D0
   .src: skip 3 ; $D2
   .dest: skip 2 ; $D5
 endstruct
-; delete later
-; D7 D9 DC
-; DE E0 E3
-; E5 E7 EA
-; EC EE F1
 
 struct Mode7Transfer $2D0
   .control: skip 1 ; $02D0
