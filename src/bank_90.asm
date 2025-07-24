@@ -14124,9 +14124,16 @@ KnockbackTransition_Normal_Falling:
 ;;     Carry: Set to start knockback, clear to ignore
 
 ; 6: Falling
+; manual %rumble
     LDA.W HackHandler                                                    ;90DEEA;
     CMP.W #UNUSED_SamusTimerHackHandler_SpecialFalling_90E41B            ;90DEED;
     BNE KnockbackTransition_Normal                                       ;90DEF0;
+    SEP #$20
+    LDA.b #$44 : CMP.b RumbleData : BCC +
+    STA.b RumbleData
++   LDA.w SamusKnockbackTimer : CMP.b RumbleTime : BCC +
+    STA.b RumbleTime
++   REP #$20
     STZ.W SpecialProspectivePoseChangeCommand                            ;90DEF2;
     STZ.W KnockbackDirection                                             ;90DEF5;
     CLC                                                                  ;90DEF8;
@@ -14147,6 +14154,13 @@ KnockbackTransition_Normal:
 ; 10h: Moonwalking
 ; 14h: Wall jumping
 ; 15h: Ran into a wall
+; manual %rumble
+    SEP #$20
+    LDA.b #$44 : CMP.b RumbleData : BCC +
+    STA.b RumbleData
++   LDA.w SamusKnockbackTimer : CMP.b RumbleTime : BCC +
+    STA.b RumbleTime
++   REP #$20
     LDA.W PoseXDirection                                                 ;90DEFA;
     AND.W #$00FF                                                         ;90DEFD;
     CMP.W #$0004                                                         ;90DF00;
@@ -14175,6 +14189,13 @@ KnockbackTransition_Morphed:
 ; 11h: Spring ball - on ground
 ; 12h: Spring ball - in air
 ; 13h: Spring ball - falling
+; manual %rumble
+    SEP #$20
+    LDA.b #$44 : CMP.b RumbleData : BCC +
+    STA.b RumbleData
++   LDA.w SamusKnockbackTimer : CMP.b RumbleTime : BCC +
+    STA.b RumbleTime
++   REP #$20
     LDA.W Pose                                                           ;90DF15;
     STA.W SpecialProspectivePose                                         ;90DF18;
     SEC                                                                  ;90DF1B;
