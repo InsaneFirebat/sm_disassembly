@@ -9199,7 +9199,7 @@ SetDebugElevatorAsUsed:
 endif
 
 
-Freespace_Bank80_CD8E:                                                   ;80CD8E;
+;Freespace_Bank80_CD8E:                                                   ;80CD8E;
 ; $2F32 bytes
 
 
@@ -9228,32 +9228,32 @@ ControllerRumbleHandler:
 
     ; Write 01110010 to the Controller Port
     LDA #$40
-    %rumbleZeroPort() ; 0
+    %rumbleZeroPort()  ; 0
     %rumbleWritePort() ; 1
-    BIT $4016 ; 1 (just strobing works: the IO port already has 1)
-    BIT $4016 ; 1
-    %rumbleZeroPort() ; 0
-    BIT $4016 ; 0
+    BIT $4016          ; 1 (just strobing works: the IO port already has 1)
+    BIT $4016          ; 1
+    %rumbleZeroPort()  ; 0
+    BIT $4016          ; 0
     %rumbleWritePort() ; 1
-    %rumbleZeroPort() ; 0
+    %rumbleZeroPort()  ; 0
 
     ; Now we write the rumble intensity: rrrrllll (right and left motors)
     LDA.b RumbleData : LSR ; -7654321, C <- 0
-    %rumbleWritePort() ; bit7
-    ROL ; 76543210
-    %rumbleWritePort() ; bit6
-    ASL ; 6543210-
-    %rumbleWritePort() ; bit5
-    ASL ; 543210--
-    %rumbleWritePort() ; bit4
-    ASL ; 43210---
-    %rumbleWritePort() ; bit3
-    ASL ; 3210----
-    %rumbleWritePort() ; bit2
-    ASL ; 210-----
-    %rumbleWritePort() ; bit1
-    ASL ; 10------
-    %rumbleWritePort() ; bit0
+    %rumbleWritePort()     ; bit7
+    ROL                    ; 76543210
+    %rumbleWritePort()     ; bit6
+    ASL                    ; 6543210-
+    %rumbleWritePort()     ; bit5
+    ASL                    ; 543210--
+    %rumbleWritePort()     ; bit4
+    ASL                    ; 43210---
+    %rumbleWritePort()     ; bit3
+    ASL                    ; 3210----
+    %rumbleWritePort()     ; bit2
+    ASL                    ; 210-----
+    %rumbleWritePort()     ; bit1
+    ASL                    ; 10------
+    %rumbleWritePort()     ; bit0
 	RTL
 
 

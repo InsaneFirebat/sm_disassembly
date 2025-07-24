@@ -8350,8 +8350,8 @@ CinematicFunction_FlyToCeres_FlyingIntoCamera:
     RTS                                                                  ;8BBE08;
 
   .zoomLessThan20:
-    %rumble8($22, $10)
     SEP #$20                                                             ;8BBE09;
+    %rumble8($22, $10)
     STZ.B DP_ColorMathA                                                  ;8BBE0B;
     LDA.B #$31                                                           ;8BBE0D;
     STA.B DP_ColorMathB                                                  ;8BBE0F;

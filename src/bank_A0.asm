@@ -645,13 +645,16 @@ Handle_Room_Shaking:
     LDA.W EarthquakeTimer                                                ;A0868F;
     BEQ .bridgeReturn                                                    ;A08692;
     LDA.W TimeIsFrozenFlag                                               ;A08694;
-    BNE .bridgeReturn                                                          ;A08697;
+    BNE .bridgeReturn                                                    ;A08697;
+    SEP #$20
     STA.b RumbleTime
     LDA.W EarthquakeType                                                 ;A08699;
     TAX
-    CMP.W #$0024                                                         ;A0869C;
+    CMP.b #$24                                                           ;A0869C; was CMP.W #$0024
     BPL .return                                                          ;A0869F;
-    LDA.w EarthquakeRumbleTable,X : AND #$00FF : STA.b RumbleData
+    LDA.w EarthquakeRumbleTable,X : AND #$FF : STA.b RumbleData
+    REP #$30
+    TXA
     ASL                                                                  ;A086A1;
     ASL                                                                  ;A086A2;
     ASL                                                                  ;A086A3;

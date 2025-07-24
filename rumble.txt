@@ -14,3 +14,6 @@ $AA, $50 - Ceres goes boom power bomb
 $44, $20 - Gunship flyby to Zebes
 $11, 10 - Bomb Torizo statue crumbling
 $33, $20 - Bomb Torizo jump collision
+
+
+; Enemy projectile shaking is handled by $86:8427
