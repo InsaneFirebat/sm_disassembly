@@ -642,10 +642,10 @@ Handle_Room_Shaking:
     PLB                                                                  ;A0868B;
     PLB                                                                  ;A0868C;
     REP #$30                                                             ;A0868D;
+    LDA.W TimeIsFrozenFlag                                               ;A08694; changed order of checks
+    BNE .bridgeReturn                                                    ;A08697;
     LDA.W EarthquakeTimer                                                ;A0868F;
     BEQ .bridgeReturn                                                    ;A08692;
-    LDA.W TimeIsFrozenFlag                                               ;A08694;
-    BNE .bridgeReturn                                                    ;A08697;
     SEP #$20
     STA.b RumbleTime
     LDA.W EarthquakeType                                                 ;A08699;

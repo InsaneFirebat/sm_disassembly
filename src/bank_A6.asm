@@ -14079,6 +14079,7 @@ Function_CeresDoor_HandleEarthquakeDuringEscapeInRidleysRoom:
 HandleEarthquakeDuringEscape:
 ;; Parameters:
 ;;     Y: Earthquake type. Must have 1 pixel displacement
+; manual %rumble
     LDA.W CeresStatus                                                    ;A6F773;
     CMP.W #$0002                                                         ;A6F776;
     BCC .return                                                          ;A6F779;
@@ -14088,21 +14089,23 @@ HandleEarthquakeDuringEscape:
     AND.W #$0FFF                                                         ;A6F783;
     CMP.W #$0080                                                         ;A6F786;
     BCC .random                                                          ;A6F789;
+    TYA                                                                  ;A6F791; changed order of instructions
+    STA.W EarthquakeType                                                 ;A6F792;
+    LDA #$0022 : STA.b RumbleData
     LDA.W #$0002                                                         ;A6F78B;
     STA.W EarthquakeTimer                                                ;A6F78E;
-    TYA                                                                  ;A6F791;
-    STA.W EarthquakeType                                                 ;A6F792;
-    %rumble16($22, 3)
+    STA.b RumbleTime
     RTL                                                                  ;A6F795;
 
   .random:
-    LDA.W #$0004                                                         ;A6F796;
-    STA.W EarthquakeTimer                                                ;A6F799;
-    TYA                                                                  ;A6F79C;
+    TYA                                                                  ;A6F79C; changed order of instructions
     CLC                                                                  ;A6F79D;
     ADC.W #$0006                                                         ;A6F79E;
     STA.W EarthquakeType                                                 ;A6F7A1;
-    %rumble16($44, 5)
+    LDA #$0044 : STA.b RumbleData
+    LDA.W #$0004                                                         ;A6F796;
+    STA.W EarthquakeTimer                                                ;A6F799;
+    STA.b RumbleTime
 
   .return:
     RTL                                                                  ;A6F7A4;
