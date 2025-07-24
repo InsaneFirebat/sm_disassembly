@@ -7857,7 +7857,7 @@ InitFunc_CineSpriteObject_IntroMotherBrainExplosion_Small:
     STA.W CinematicSpriteObject_InstructionTimers,Y                      ;8BB9F3;
     LDA.W #$0A00                                                         ;8BB9F6;
     STA.W CinematicSpriteObject_PaletteIndices,Y                         ;8BB9F9;
-    %rumble16($33, 6)
+;    %rumble16($33, 6) ; redundant
     RTS                                                                  ;8BB9FC;
 
   .Xposition:
@@ -8351,7 +8351,7 @@ CinematicFunction_FlyToCeres_FlyingIntoCamera:
 
   .zoomLessThan20:
     SEP #$20                                                             ;8BBE09;
-    %rumble8($22, $10)
+    %rumble8($44, $35)
     STZ.B DP_ColorMathA                                                  ;8BBE0B;
     LDA.B #$31                                                           ;8BBE0D;
     STA.B DP_ColorMathB                                                  ;8BBE0F;
@@ -9049,7 +9049,7 @@ CinematicFunction_CeresGoesBoom_CeresExplosions:
     PLY                                                                  ;8BC3A3;
     PLX                                                                  ;8BC3A4;
     SEP #$20                                                             ;8BC3A5;
-    %rumble8($AA, $50)
+    %rumble8($AA, $60)
     LDA.B #$10                                                           ;8BC3A7;
     STA.B DP_ColorMathA                                                  ;8BC3A9;
     LDA.B #$37                                                           ;8BC3AB;
@@ -9116,7 +9116,7 @@ Instruction_SpawnCeresExplosions1:
     LDA.W #$0004                                                         ;8BC429;
     LDY.W #CinematicSpriteObjectDefinitions_CeresExplosion1              ;8BC42C;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BC42F;
-    %rumble16($44, $50)
+    %rumble16($44, $60)
     PLY                                                                  ;8BC432;
     RTS                                                                  ;8BC433;
 
@@ -9175,7 +9175,7 @@ PreInst_CeresExplosionSpawner_SpawnExplosion2EveryCFrames:
     LDA.W CeresExplosion2OffsetIndex                                     ;8BC49F;
     LDY.W #CinematicSpriteObjectDefinitions_CeresExplosion2              ;8BC4A2;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BC4A5;
-    %rumble16($44, $50)
+    %rumble16($33, $9C)
     LDA.W #$000C                                                         ;8BC4A8;
     STA.W CinematicFunctionTimer                                         ;8BC4AB;
     LDA.W CeresExplosion2OffsetIndex                                     ;8BC4AE;
@@ -9893,6 +9893,7 @@ InitFunction_CinematicSpriteObject_PlanetZebesJapanText:
 
 ;;; $C9F9: Cinematic function - fly to Zebes - flying to Zebes - drifting right ;;;
 CinematicFunction_FlyToZebes_FlyingToZebes_DriftingRight:
+; manual %rumble
     LDA.W CinematicBG1_YSubPosition                                      ;8BC9F9;
     CLC                                                                  ;8BC9FC;
     ADC.W #$2000                                                         ;8BC9FD;
@@ -9913,10 +9914,17 @@ CinematicFunction_FlyToZebes_FlyingToZebes_DriftingRight:
     CLC                                                                  ;8BCA27;
     ADC.W #$0004                                                         ;8BCA28;
     STA.W Mode7TransformationZoomLevel                                   ;8BCA2B;
-    %rumble16($44, $20)
+    SEP #$20
+    LDA.b RumbleFlag : BNE .return
+    LDA #$44 : STA.b RumbleData
+    LDA #$20 : STA.b RumbleTime : STA.b RumbleFlag
+    REP #$20
+
+  .return
     RTS                                                                  ;8BCA2E;
 
   .zoomLessThan480:
+    STZ.b RumbleFlag
     LDA.W #CinematicFunction_FlyToZebes_FlyingToZebes_TurningLeft        ;8BCA2F;
     STA.W CinematicFunction                                              ;8BCA32;
     RTS                                                                  ;8BCA35;

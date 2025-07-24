@@ -138,8 +138,9 @@ DP_BG3YScroll: skip 2 ; $BB
 DP_BG4XScroll: skip 2 ; $BD
 DP_BG4YScroll: skip 2 ; $BF
 ;DP_UnusedC1: skip 15 ; $C1
-RumbleData: skip 1 ; $0E
-RumbleTime: skip 1 ; $11
+RumbleData: skip 1 ; $C1
+RumbleTime: skip 1 ; $C2
+RumbleFlag: skip 1 ; $C3
 
 struct VRAMWrite $D0 ; $D0..02CF
   .size: skip 2 ; $D0

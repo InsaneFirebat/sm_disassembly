@@ -639,3 +639,23 @@ macro rumble16(LeftRight, Time)
     LDA.b #<Time> : STA.b RumbleTime
     REP #$20
 endmacro
+
+macro rumbleCheck8(LeftRight, Time)
+    LDA.b #<LeftRight> : CMP.b RumbleData : BCS +
+    STA.b RumbleData
++   LDA.b #<Time> : CMP.b RumbleTime : BCS +
+    STA.b RumbleTime
++
+endmacro
+
+macro rumbleCheck16(LeftRight, Time)
+    SEP #$20
+    LDA.b #<LeftRight> : CMP.b RumbleData : BCS +
+    STA.b RumbleData
++   LDA.b #<Time> : CMP.b RumbleTime : BCS +
+    STA.b RumbleTime
++   REP #$20
+endmacro
+
+
+

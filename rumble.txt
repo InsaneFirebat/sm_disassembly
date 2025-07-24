@@ -1,17 +1,18 @@
 
 variable - Earthquake handler
 
+$44, X - Knockback transitions
 $66, 6 - Intro MB fight explosions, big
-$33, 6 - Intro BM fight explosions, small
-$22, $10 - Intro fly to Ceres, flying into camera
+; $33, 6 - Intro BM fight explosions, small
+$44, $20 - Intro fly to Ceres, flying into camera
 $44, 8 - Ridley tail hits Samus
 $88, $40 - Ridley getaway cutscene
 $22, 3 - Ceres escape room shake, small
 $44, 5 - Ceres escape room shake, big
-$44, $50 - Ceres goes boom explosions 1
-$44, $50 - Ceres goes boom explosions 2
-$AA, $50 - Ceres goes boom power bomb
-$44, $20 - Gunship flyby to Zebes
+$44, $60 - Ceres goes boom explosions 1
+$33, $9C - Ceres goes boom explosions 2
+$AA, $60 - Ceres goes boom power bomb
+$44, $35 - Gunship flyby to Zebes, needs new hijack (currently $8BCA68)
 $11, 10 - Bomb Torizo statue crumbling
 $33, $20 - Bomb Torizo jump collision
 
