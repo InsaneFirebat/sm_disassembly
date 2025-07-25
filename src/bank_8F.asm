@@ -15563,6 +15563,7 @@ MainASM_CrocomiresRoomShaking:
     RTS                                                                  ;8FE941;
 
   .behindWallRumbling:
+    %rumble16($44, 3)
     LDA.W Layer1YPosition                                                ;8FE942;
     CLC                                                                  ;8FE945;
     ADC.W BG1YOffset                                                     ;8FE946;

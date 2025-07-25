@@ -1904,6 +1904,7 @@ CollapseCrocomiresBridge:
     LDA.W #$0015                                                         ;A48FB7;
     LDY.W #EnemyProjectile_MiscDust                                      ;A48FBA;
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A48FBD;
+    %rumble16($66, 12)
     RTS                                                                  ;A48FC1;
 
 
@@ -2669,6 +2670,7 @@ MainAI_Crocomire_DeathSequence_36_Hop_6_QueueCry_HDMAObject:
 
 ;;; $950F: Create Crocomire melting HDMA object ;;;
 CreateCrocomireMeltingHDMAObject:
+    %rumble16($77, $70)
     LDA.W Enemy[1].YPosition                                             ;A4950F;
     SEC                                                                  ;A49512;
     SBC.W #$0048                                                         ;A49513;
@@ -3305,6 +3307,7 @@ MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
 ;;; $99E5: Crocomire main AI - death sequence index 44h - breaks down wall ;;;
 MainAI_Crocomire_DeathSequence_44_BreaksDownWall:
 ; Crocomire's X position coming into this function is 1E0h (set by MainAI_Crocomire_DeathSequence_58_FlowingDownTheRiver)
+; manual %rumble
     LDA.W Enemy.XPosition                                                ;A499E5;
     CMP.W #$00E0                                                         ;A499E8;
     BPL .timer                                                           ;A499EB;
@@ -3328,10 +3331,16 @@ MainAI_Crocomire_DeathSequence_44_BreaksDownWall:
     STA.W Enemy.XPosition                                                ;A49A18;
 
   .timer:
-    LDA.W Crocomire.timer102E                                            ;A49A1B;
+    SEP #$20
+    LDA.b RumbleFlag : BNE +
+    LDA #$66 : STA.b RumbleData
+    LDA #$50 : STA.b RumbleTime : STA.b RumbleFlag
+    REP #$20
++   LDA.W Crocomire.timer102E                                            ;A49A1B;
     BEQ .return                                                          ;A49A1E;
     DEC.W Crocomire.timer102E                                            ;A49A20;
     BNE .return                                                          ;A49A23;
+    STZ.b RumbleFlag
     STZ.W Crocomire.YVelocity                                            ;A49A25;
     LDA.W #InstList_CrocomireCorpse_Skeleton_Falling                     ;A49A28;
     STA.W Enemy.instList                                                 ;A49A2B;
@@ -3372,6 +3381,7 @@ MainAI_Crocomire_DeathSequence_46_SkeletonFalls:
     STA.W Enemy.XPosition                                                ;A49A76;
     CMP.W #$0240                                                         ;A49A79;
     BMI .return                                                          ;A49A7C;
+    %rumble16($44, $4B)
     LDA.W #$0025                                                         ;A49A7E;
     JSL.L QueueSound_Lib2_Max6                                           ;A49A81;
     LDA.W Enemy.palette                                                  ;A49A85;

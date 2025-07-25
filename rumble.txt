@@ -29,3 +29,41 @@ $55, $90 - Mini-Kraid death explosions
 $22, $C8 - Suit pickup animation
 $44, 6 - Beetom drains Samus
 $44, 8 - Bomb propels Samus
+$66, 12 - Crocomire bridge crumbling
+$77, $70 - Crocomire melting screams
+$44, 3 - Crocomire rumbling behind wall
+$66, $50 - Crocomire breaks wall
+$44, $4B - Crocomire skeleton lands and crumbles
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
