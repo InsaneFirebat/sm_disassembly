@@ -4341,7 +4341,11 @@ SetSamusYSpeedForKnockback:
 
 ;;; $9A2C: Make Samus bomb jump ;;;
 Make_Samus_BombJump:
+; manual %rumble
     PHP                                                                  ;909A2C;
+    SEP #$20
+    LDA #$44 : STA.b RumbleData
+    LDA #$08 : STA.b RumbleTime
     REP #$30                                                             ;909A2D;
     LDA.W EquippedItems                                                  ;909A2F;
     BIT.W #$0020                                                         ;909A32;

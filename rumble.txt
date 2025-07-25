@@ -28,3 +28,4 @@ $22, 3 - Periodic damage to Samus (lava/acid/heat), lol this needs work, runs ev
 $55, $90 - Mini-Kraid death explosions
 $22, $C8 - Suit pickup animation
 $44, 6 - Beetom drains Samus
+$44, 8 - Bomb propels Samus
