@@ -10527,6 +10527,7 @@ PreInstruction_GravitySuitPickup:
 SuitPickup_Stage0_LightBeamAppears:
 ;; Returns:
 ;;     Carry: Set. Not finished
+    %rumble16($22, $C8)
     LDA.W SuitPickup_LightBeamHeight                                     ;88E092;
     CLC                                                                  ;88E095;
     ADC.W #$0008                                                         ;88E096;

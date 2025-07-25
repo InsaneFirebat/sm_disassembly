@@ -3234,6 +3234,7 @@ Reaction_MiniKraid_Common:
     LDA.W #$0003                                                         ;A69C58;
     JSL.L EnemyDeath                                                     ;A69C5B;
     JSL.L MiniKraidDeathItemDropRoutine                                  ;A69C5F;
+    %rumble16($55, $90)
 
   .return:
     RTL                                                                  ;A69C63;

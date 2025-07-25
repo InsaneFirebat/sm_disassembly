@@ -4097,6 +4097,7 @@ UpdateYappingMawAngularSpeed:
 ;;; $A665: Move Samus with yapping maw pincers ;;;
 MoveSamusWithYappingMawPincers:
     LDX.W EnemyIndex                                                     ;A8A665;
+    %rumble16($44, 2)
     LDA.W #$0003                                                         ;A8A668;
     JSL.L Run_Samus_Command                                              ;A8A66B;
     LDA.W Enemy.XPosition,X                                              ;A8A66F;
@@ -7113,6 +7114,7 @@ EnemyTouch_Beetom:
     LDA.W #$0000                                                         ;A8BEA2;
     STA.W SamusInvincibilityTimer                                        ;A8BEA5;
     STA.W SamusKnockbackTimer                                            ;A8BEA8;
+    %rumble16($44, 6)
 
   .return:
     RTL                                                                  ;A8BEAB;

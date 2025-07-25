@@ -23,6 +23,8 @@ $22, $A0 - Saving sound effect playing
 $22, $A0 - Save station electricity
 $33, 8 - Fire missiles
 $44, 10 - Fire super missile
-
-
-
+$44, 2 - Yapping Maw grabs Samus (every frame)
+$22, 3 - Periodic damage to Samus (lava/acid/heat), lol this needs work, runs every frame
+$55, $90 - Mini-Kraid death explosions
+$22, $C8 - Suit pickup animation
+$44, 6 - Beetom drains Samus

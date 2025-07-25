@@ -16045,7 +16045,9 @@ HandlePeriodicDamageToSamus:
     JML.L Crash_Handler                                                  ;90EA16;
 
   .dontCrash:
-    LDA.W SubUnitEnergy                                                  ;90EA1A;
+    LDA.w PeriodicSubDamage : ORA.w PeriodicDamage : BEQ +
+    %rumble16($22, 3)
++   LDA.W SubUnitEnergy                                                  ;90EA1A;
     SEC                                                                  ;90EA1D;
     SBC.W PeriodicSubDamage                                              ;90EA1E;
     STA.W SubUnitEnergy                                                  ;90EA21;
