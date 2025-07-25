@@ -6621,6 +6621,7 @@ InitAI_EnemyProjectile_TorizoDeathExplosion:
     LDA.W Enemy.YPosition,X                                              ;86A87D;
     STA.W EnemyProjectile_YPositions,Y                                   ;86A880;
     STA.W EnemyProjectile_Var1,Y                                         ;86A883;
+    %rumble16($33, 7)
     RTS                                                                  ;86A886;
 
 
@@ -16091,6 +16092,7 @@ InitAI_EnemyProjectile_SaveStationElectrictiy:
     ASL                                                                  ;86E6CB;
     ASL                                                                  ;86E6CC;
     STA.W EnemyProjectile_YPositions,Y                                   ;86E6CD;
+    %rumble16($22, $A0)
     RTS                                                                  ;86E6D0;
 
 

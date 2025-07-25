@@ -3365,7 +3365,7 @@ if !DEBUG
     LDA.W Debug_Enable                                                   ;809490;
     BNE .debug                                                           ;809493;
 endif
-	JSL	ControllerRumbleHandler
+    JSL ControllerRumbleHandler
     PLP                                                                  ;809495;
     RTL                                                                  ;809496;
 
@@ -9254,7 +9254,7 @@ ControllerRumbleHandler:
     %rumbleWritePort()     ; bit1
     ASL                    ; 10------
     %rumbleWritePort()     ; bit0
-	RTL
+    RTL
 
 
 warnpc $80FFC0

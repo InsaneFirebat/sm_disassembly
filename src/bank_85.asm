@@ -139,6 +139,7 @@ Play_Saving_Sound_Effect:
     REP #$30                                                             ;858119;
     LDA.W #$002E                                                         ;85811B;
     JSL.L QueueSound_Lib1_Max6                                           ;85811E;
+    %rumble16($22, $A0)
     LDA.W #$00A0                                                         ;858122;
 
   .loop:

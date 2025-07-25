@@ -8779,7 +8779,7 @@ Fire_Uncharge_Beam:
     RTS                                                                  ;90B8A9;
 
   .fire:
-	%rumble16($22, 8)
+    %rumble16($22, 8)
     LDX.W #$0000                                                         ;90B8AA;
 
   .loop:
@@ -8909,6 +8909,7 @@ FireChargeBeam:
     RTS                                                                  ;90B9A0;
 
   .fire:
+    %rumble16($33, 10)
     LDX.W #$0000                                                         ;90B9A1;
 
   .loop:
@@ -9673,10 +9674,12 @@ HUDSelectionHandler_Missiles_SuperMissiles:
     CMP.W #$0002                                                         ;90BEBA;
     BEQ .decSuperCount                                                   ;90BEBD;
     DEC.W Missiles                                                       ;90BEBF;
+    %rumble16($33, 8)
     BRA +                                                                ;90BEC2;
 
   .decSuperCount:
     DEC.W SuperMissiles                                                  ;90BEC4;
+    %rumble16($44, 10)
 
 +   LDX.B DP_Temp14                                                      ;90BEC7;
     LDA.W #$0004                                                         ;90BEC9;

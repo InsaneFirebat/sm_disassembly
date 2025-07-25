@@ -7691,7 +7691,7 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
     PHY                                                                  ;A5E9B1;
     PHX                                                                  ;A5E9B2;
     JSL.L GenerateRandomNumber                                           ;A5E9B3;
-    LDA.W RandomNumberSeed                                               ;A5E9B7;
+    LDA.W RandomNumberSeed                                               ;A5E9B7; >.<
     AND.W #$007F                                                         ;A5E9BA;
     SEC                                                                  ;A5E9BD;
     SBC.W #$0040                                                         ;A5E9BE;
@@ -7716,6 +7716,7 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
     JSL.L Create_Sprite_Object                                           ;A5E9E7;
     LDA.W #$0025                                                         ;A5E9EB;
     JSL.L QueueSound_Lib2_Max6                                           ;A5E9EE;
+    %rumble16($33, 9)
     PLX                                                                  ;A5E9F2;
     PLY                                                                  ;A5E9F3;
     RTL                                                                  ;A5E9F4;
