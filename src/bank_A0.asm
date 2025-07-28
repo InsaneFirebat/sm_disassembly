@@ -652,8 +652,7 @@ Handle_Room_Shaking:
     SEP #$20
     CMP.b #$24                                                           ;A0869C; was CMP.W #$0024
     BPL .return                                                          ;A0869F;
-    LDA.w EarthquakeRumbleTable,X : AND #$FF : STA.b RumbleData
-    STZ.b RumbleFlag
+    LDA.w EarthquakeRumbleTable,X : STA.b RumbleData
     REP #$30
     TXA
     ASL                                                                  ;A086A1;
