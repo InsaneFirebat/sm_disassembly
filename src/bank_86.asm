@@ -10890,7 +10890,9 @@ Hurt_Samus:
 Handle_OnionRing_Collision_with_BabyMetroid:
 ;; Parameters:
 ;;     X: Enemy projectile index
-    LDA.L MotherBrainBody.playBabyMetroidCryFlag                         ;86C381;
+    LDA.w Enemy[2].var0 : CMP #Function_BabyMetroidCutscene_IdleUntilRunOutOfHealth : BNE +
+    %rumble16($55, 6)
++   LDA.L MotherBrainBody.playBabyMetroidCryFlag                         ;86C381;
     INC                                                                  ;86C385;
     STA.L MotherBrainBody.playBabyMetroidCryFlag                         ;86C386;
     JSR.W OnionRing_Contact_Explosion                                    ;86C38A;

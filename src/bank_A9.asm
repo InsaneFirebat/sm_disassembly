@@ -5146,6 +5146,7 @@ Function_MBBody_Phase3_DeathSequence_MoveToBackOfRoom:
 
 ;;; $AF12: Mother Brain body function - third phase - death sequence - idle whilst exploding ;;;
 Function_MBBody_Phase3_DeathSequence_IdleWhilstExploding:
+    %rumble16($33, 8)
     JSR.W GenerateSmokyExplosionsAroundMotherBrainBody                   ;A9AF12;
     DEC.W MotherBrainBody.functionTimer                                  ;A9AF15;
     BPL .return                                                          ;A9AF18;
@@ -5274,6 +5275,7 @@ Function_MBBody_Phase3_DeathSequence_FadeOutBody:
 
 ;;; $B013: Mother Brain body function - third phase - death sequence - final few explosions ;;;
 Function_MBBody_Phase3_DeathSequence_FinalFewExplosions:
+    %rumble16($33, 8)
     JSR.W GenerateMixedExplosionsAroundMotherBrainBody                   ;A9B013;
     DEC.W MotherBrainBody.functionTimer                                  ;A9B016;
     BPL Function_MBBody_Phase3_DeathSequence_FadeOutBody_returnLower     ;A9B019;
@@ -6728,6 +6730,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_StartDrainingSamus:
 
 ;;; $BA3C: Mother Brain body function - second phase - firing rainbow beam - draining Samus ;;;
 Function_MBBody_Phase2_FiringRainbowBeam_DrainingSamus:
+    %rumble16($88, 3)
     JSR.W PlayMotherBrainRainbowBeamSFX                                  ;A9BA3C;
     JSR.W HandleMotherBrainBodyRainbowBeamPalette                        ;A9BA3F;
     JSR.W AimMotherBrainRainbowBeam_IncreaseWidth                        ;A9BA42;
@@ -8280,6 +8283,7 @@ HandlePlayingGainingLosingIncrementalEnergySFX:
 
 ;;; $C560: Damage Samus due to Shitroid ;;;
 DamageSamusDueToBabyMetroid:
+    %rumble16($33, 3)
     LDY.W #$FFFC                                                         ;A9C560;
     LDA.W EquippedItems                                                  ;A9C563;
     LSR                                                                  ;A9C566;
@@ -9492,6 +9496,7 @@ HandleBabyMetroidCutsceneDeathExplosions:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A9CDF0;
     LDA.W #$0013                                                         ;A9CDF4;
     JSL.L QueueSound_Lib3_Max3                                           ;A9CDF7;
+    %rumble16($33, 4)
     RTS                                                                  ;A9CDFB;
 
 ; Explosion offset table

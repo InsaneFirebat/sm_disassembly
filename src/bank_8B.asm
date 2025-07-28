@@ -15153,6 +15153,7 @@ PreInst_CineSpriteObj_ExplodingZebes_PurpleGlow_Stars_Lava:
 Instruction_CinematicSpriteObject_StartZebesExplosion:
     PHY                                                                  ;8BF2B7;
     SEP #$20                                                             ;8BF2B8;
+    %rumble8($55, $FF)
     LDA.B #$11                                                           ;8BF2BA;
     STA.B DP_MainScreenLayers                                            ;8BF2BC;
     LDA.B #$02                                                           ;8BF2BE;
@@ -15676,6 +15677,7 @@ Instruction_CinematicSpriteObject_SamusShootsScreen:
     LDA.W #CinematicFunction_PostCredits_SamusShootsScreen               ;8BF60C;
     STA.W CinematicFunction                                              ;8BF60F;
     SEP #$20                                                             ;8BF612;
+    %rumble8($44, $30)
     LDA.B #$11                                                           ;8BF614;
     STA.B DP_MainScreenLayers                                            ;8BF616;
     LDA.B #$10                                                           ;8BF618;

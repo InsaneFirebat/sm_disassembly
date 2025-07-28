@@ -4709,6 +4709,7 @@ NormalEnemyTouchAI:
     LDX.W EnemyIndex                                                     ;A0A47D;
     LDA.W Enemy.health,X                                                 ;A0A480;
     BNE .return                                                          ;A0A483;
+    %rumble16($33, 6)
     LDA.W #$0006                                                         ;A0A485;
     STA.L EnemyTileData+2,X                                              ;A0A488;
     LDA.W #$0001                                                         ;A0A48C;

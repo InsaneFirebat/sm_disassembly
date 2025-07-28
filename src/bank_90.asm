@@ -9434,6 +9434,7 @@ FireHyperBeam:
     STA.W SamusProjectile_FlareFastSparksAnimationFrame0CE0              ;90BD59;
     LDA.W #$8000                                                         ;90BD5C;
     STA.W SamusProjectile_FlareCounter                                   ;90BD5F;
+    %rumble16($33, 10)
 
   .return:
     PLP                                                                  ;90BD62;
