@@ -2120,6 +2120,7 @@ HandleXrayScope_State5_DeactivateBeam_Finish:
 Spawn_PowerBombExplosion:
     LDA.W TimeIsFrozenFlag                                               ;888AA4;
     BNE .pending                                                         ;888AA7;
+    %rumble16($44, $50)
     LDA.W #$0001                                                         ;888AA9;
     JSL.L QueueSound                                                     ;888AAC;
     LDA.W #$8000                                                         ;888AB0;

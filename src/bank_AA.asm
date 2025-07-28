@@ -9428,6 +9428,7 @@ InstList_Chozo_WreckedShip_Activated_2:
 
 ;;; $E57F: Instruction - queue chozo grabs Samus sound effect ;;;
 Instruction_Chozo_PlayChozoGrabsSamusSFX:
+    %rumble16($33, 5)
     LDA.W #$001C                                                         ;AAE57F;
     JSL.L QueueSound_Lib2_Max6                                           ;AAE582;
     RTL                                                                  ;AAE586;

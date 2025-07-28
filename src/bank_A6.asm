@@ -6103,6 +6103,7 @@ AttemptToGrabSamus_SkipSpinCheck:
 
 ;;; $B889:  ;;;
 GrabbingSamus_SetMinimumYSpeed_ResetTailAI:
+    %rumble16($44, 8)
     LDA.W $0FAC                                                          ;A6B889;
     BMI +                                                                ;A6B88C;
     EOR.W #$FFFF                                                         ;A6B88E;

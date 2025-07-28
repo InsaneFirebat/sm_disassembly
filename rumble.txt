@@ -34,12 +34,18 @@ $77, $70 - Crocomire melting screams
 $44, 3 - Crocomire rumbling behind wall
 $66, $50 - Crocomire breaks wall
 $44, $4B - Crocomire skeleton lands and crumbles
-
-
-
-
-
-
+$22, 4 - Shinesparking
+$66, 12 - Shinespark crash
+$44, 12 - Phantoon death explosions
+$44, $50 - Power bomb explosion
+$22, 3 - Speed and spike block crumbling
+$33, 5 - Chozo statue grabs morph ball
+$22, 3 - Bomb block crumbling
+$22, $2E - Maridia tube cracks
+$66, $1E - Maridia tube breaks
+$33, 8 - Botwoon body segment explodes
+$33, 6 - Contact damage kills enemy
+$44, 8 - Ridley grabs Samus
 
 
 

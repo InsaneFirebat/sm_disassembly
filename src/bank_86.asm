@@ -16816,6 +16816,7 @@ Function_EnemyProjectile_BotwoonsBody_Dying_Falling:
     STA.W EnemyProjectile_XVelocity,Y                                    ;86EB5A;
     LDA.W #InstList_EnemyProj_MiscDust_1D_BigExplosion                   ;86EB5D;
     STA.W EnemyProjectile_InstListPointers,Y                             ;86EB60;
+    %rumble16($33, 8)
     LDA.W #$0A00                                                         ;86EB63;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;86EB66;
     LDA.W #$0001                                                         ;86EB69;

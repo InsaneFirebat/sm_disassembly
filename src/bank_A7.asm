@@ -9342,6 +9342,7 @@ Function_Phantoon_DeathSequence_Exploding:
     RTS                                                                  ;A7D992;
 
   .timerExpired:
+    %rumble16($44, 12)
     LDA.W Phantoon.explosionIndex                                        ;A7D993;
     ASL                                                                  ;A7D996;
     ASL                                                                  ;A7D997;

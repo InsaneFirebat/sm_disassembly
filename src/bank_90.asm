@@ -12139,6 +12139,7 @@ SamusMovementHandler_VerticalShinespark:
     LDA.W Energy                                                         ;90D0C6;
     CMP.W #$001E                                                         ;90D0C9;
     BMI .return                                                          ;90D0CC;
+    %rumble16($22, 4)
     DEC.W Energy                                                         ;90D0CE;
     BPL .return                                                          ;90D0D1;
     STZ.W Energy                                                         ;90D0D3; >_<
@@ -12162,6 +12163,7 @@ SamusMovementHandler_DiagonalShinespark:
     LDA.W Energy                                                         ;90D0F5;
     CMP.W #$001E                                                         ;90D0F8;
     BMI .return                                                          ;90D0FB;
+    %rumble16($22, 4)
     DEC.W Energy                                                         ;90D0FD;
     BPL .return                                                          ;90D100;
     STZ.W Energy                                                         ;90D102; >_<
@@ -12184,6 +12186,7 @@ SamusMovementHandler_HorizontalShinespark:
     LDA.W Energy                                                         ;90D121;
     CMP.W #$001E                                                         ;90D124;
     BMI .return                                                          ;90D127;
+    %rumble16($22, 4)
     DEC.W Energy                                                         ;90D129;
     BPL .return                                                          ;90D12C;
     STZ.W Energy                                                         ;90D12E; >_<
@@ -12407,6 +12410,7 @@ EndShinesparkIfCollisionDetectedOrLowEnergy:
     RTS                                                                  ;90D2C8;
 
   .endShinespark:
+    %rumble16($66, 12)
     LDA.W PoseXDirection                                                 ;90D2C9;
     AND.W #$00FF                                                         ;90D2CC;
     CMP.W #$0004                                                         ;90D2CF;

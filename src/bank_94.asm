@@ -2597,6 +2597,7 @@ SamusBlockCollisionReaction_Horizontal_BombBlock:
     BMI .gotoSolidShootableGrapple                                       ;949338;
     ASL                                                                  ;94933A;
     TAX                                                                  ;94933B;
+    %rumble16($22, 3)
     LDA.W SamusBlockCollisionReaction_Bombable_PLMTable,X                ;94933C;
     JSL.L Spawn_PLM_to_CurrentBlockIndex                                 ;94933F;
     BCC .return                                                          ;949343;

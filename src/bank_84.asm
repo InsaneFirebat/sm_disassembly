@@ -1960,6 +1960,7 @@ Instruction_PLM_QueueSound_Y_Lib2_Max6:
 ;;     Y: Pointer to instruction arguments
 ;; Returns:
 ;;     Y: Pointer to next instruction
+    %rumble16($66, $1E)
     LDA.W $0000,Y                                                        ;848C10;
     JSL.L QueueSound_Lib2_Max6                                           ;848C13;
     INY                                                                  ;848C17;
@@ -2108,6 +2109,7 @@ Instruction_PLM_QueueSound_Y_Lib2_Max1:
 ;;     Y: Pointer to instruction arguments
 ;; Returns:
 ;;     Y: Pointer to next instruction
+    %rumble16($22, 3)
     LDA.W $0000,Y                                                        ;848C7C;
     JSL.L QueueSound_Lib2_Max1                                           ;848C7F;
     INY                                                                  ;848C83;
@@ -13549,6 +13551,7 @@ Instruction_PLM_SpawnNoobTubeCrackEnemyProjectile:
     PHY                                                                  ;84D52C;
     LDY.W #EnemyProjectile_NoobTubeCrack                                 ;84D52D;
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;84D530;
+    %rumble16($22, $2E)
     PLY                                                                  ;84D534;
     RTS                                                                  ;84D535;
 
