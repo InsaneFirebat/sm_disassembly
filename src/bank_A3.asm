@@ -2204,11 +2204,18 @@ InitAI_Elevator:
 
 ;;; $952A: Main AI / grapple AI / frozen AI - enemy $D73F (elevator) ;;;
 MainAI_GrappleAI_FrozenAI_Elevator:
+; conditional %rumble
+    ; rumble if Samus facing forward
+    LDA.w Pose : BEQ .rumble
+    CMP #$009B : BEQ .rumble
+
+  .resume
     LDA.W DoorTransitionFlagElevatorsZebetites                           ;A3952A;
     BNE .return                                                          ;A3952D;
     LDA.W ElevatorProperties                                             ;A3952F;
     ORA.W ElevatorStatus                                                 ;A39532;
     BEQ .return                                                          ;A39535;
+    %rumble16($11, 1)
     LDA.W ElevatorStatus                                                 ;A39537;
     ASL                                                                  ;A3953A;
     TAX                                                                  ;A3953B;
@@ -2216,6 +2223,10 @@ MainAI_GrappleAI_FrozenAI_Elevator:
 
   .return:
     RTL                                                                  ;A3953F;
+
+  .rumble
+    %rumble16($11, 1)
+    BRA .resume
 
   .pointers:
     dw ElevatorAI_0_LeavingRoom                                          ;A39540;

@@ -202,11 +202,17 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
 
 ;;; $814E: Initialise bomb explosion ;;;
 Initialize_Bomb_Explosion:
+; conditional %rumble
     PHP                                                                  ;93814E;
     PHB                                                                  ;93814F;
     PHK                                                                  ;938150;
     PLB                                                                  ;938151;
-    REP #$30                                                             ;938152;
+    SEP #$20
+    LDA.b RumbleData : BNE +
+    LDA #$11 : STA.b RumbleData
+    LDA.b RumbleTime : CMP #$04 : BPL +
+    LDA #$04 : STA.b RumbleTime
++   REP #$30                                                             ;938152;
     LDA.W ProjectileDataTable_NonBeam_BombExplosion_pointer              ;938154;
     STA.W SamusProjectile_InstructionPointers,X                          ;938157;
     LDA.W #$0001                                                         ;93815A;

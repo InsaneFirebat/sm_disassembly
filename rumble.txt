@@ -1,10 +1,13 @@
 
 variable - Earthquake handler
 
+$11, $FF - Exiting ship (uses flag, not timer)
 $22, 8 - Fire uncharged beam
+$22, 1 - Charging beam
 $33, 10 - Fire charged beam
 $44, X - Knockback transitions
-$66, 6 - Intro MB fight explosions, big
+$66, 6 - Intro MB fight explosions, big, decreases during fade out
+$22, $96 - Intro metroid hatching
 $44, $20 - Intro fly to Ceres, flying into camera
 $44, 8 - Ridley tail hits Samus
 $88, $40 - Ridley getaway cutscene
@@ -14,11 +17,13 @@ $44, $60 - Ceres goes boom explosions 1
 $33, $9C - Ceres goes boom explosions 2
 $AA, $60 - Ceres goes boom power bomb
 $44, $35 - Gunship flyby to Zebes
+$22, $A0 - Saving at ship
+$22, $A0 - Saving at station
+$11, 1 - Standing on elevator
+$11, 4 - Samus bombs exploding
 $11, 10 - Bomb Torizo statue crumbling
 $33, $20 - Bomb Torizo jump collision
 $33, 7 - Bomb Torizo death explosions
-$22, $A0 - Saving sound effect playing
-$22, $A0 - Save station electricity
 $33, 8 - Fire missiles
 $44, 10 - Fire super missile
 $44, 2 - Yapping Maw grabs Samus (every frame)

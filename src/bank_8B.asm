@@ -5901,6 +5901,7 @@ Instruction_SpawnMetroidEggParticles:
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BA94C;
     LDA.W #$000B                                                         ;8BA94F;
     JSL.L QueueSound_Lib2_Max6                                           ;8BA952;
+    %rumble16($22, 8)
     PLY                                                                  ;8BA956;
     RTS                                                                  ;8BA957;
 
@@ -7592,11 +7593,14 @@ PreInstruction_CinematicSpriteObject_IntroMotherBrain:
 
 ;;; $B80F: Pre-instruction - intro Mother Brain - exploding ;;;
 PreInstruction_IntroMotherBrain_Exploding:
+; manual %rumble
     JSR.W IntroMotherBrain_HurtFlashHandling                             ;8BB80F;
     JSR.W IntroMotherBrain_ScreenShaking                                 ;8BB812;
+    LDA #$FF66 : STA.b RumbleData
     LDA.W CinematicSpriteObject_Timers,X                                 ;8BB815;
     INC                                                                  ;8BB818;
     STA.W CinematicSpriteObject_Timers,X                                 ;8BB819;
+    LDA.W CinematicSpriteObject_Timers,X
     CMP.W #$0080                                                         ;8BB81C;
     BMI .return                                                          ;8BB81F;
     LDA.W #$0001                                                         ;8BB821;
@@ -7610,9 +7614,19 @@ PreInstruction_IntroMotherBrain_Exploding:
 
 ;;; $B82E: Pre-instruction - intro Mother Brain - cross-fading ;;;
 PreInstruction_IntroMotherBrain_CrossFading:
+; manual %rumble
     JSR.W IntroMotherBrain_ScreenShaking                                 ;8BB82E;
+    LDY #$FF66 : STY.b RumbleData
     LDA.W IntroCrossFadeTimer                                            ;8BB831;
+    CMP #$0060 : BPL .return
+    LDY #$FF55 : STY.b RumbleData
+    CMP #$0040 : BPL .return
+    LDY #$FF44 : STY.b RumbleData
+    CMP #$0020 : BPL .return
+    LDY #$FF33 : STY.b RumbleData
+    LDA.W IntroCrossFadeTimer
     BNE .return                                                          ;8BB834;
+    STZ.b RumbleData
     LDA.W #$0001                                                         ;8BB836;
     STA.W CinematicSpriteObject_InstructionTimers,X                      ;8BB839;
     LDA.W #InstList_CinematicSpriteObject_Delete                         ;8BB83C;
@@ -7857,7 +7871,6 @@ InitFunc_CineSpriteObject_IntroMotherBrainExplosion_Small:
     STA.W CinematicSpriteObject_InstructionTimers,Y                      ;8BB9F3;
     LDA.W #$0A00                                                         ;8BB9F6;
     STA.W CinematicSpriteObject_PaletteIndices,Y                         ;8BB9F9;
-;    %rumble16($33, 6) ; redundant
     RTS                                                                  ;8BB9FC;
 
   .Xposition:
@@ -10087,6 +10100,8 @@ InstList_MetroidEggHatching_0:
     dw CinematicSpriteObject_Instruction_TimerInY,$0004                  ;8BCB3F;
 
 InstList_MetroidEggHatching_1:
+    ; start wiggles
+    dw Instruction_RumbleMetroidHatching_Wiggles
     dw $0005,IntroCeresExplosionSpritemaps_MetroidEggHatchingFrame1      ;8BCB43;
     dw $0005,IntroCeresExplosionSpritemaps_MetroidEggHatchingFrame2      ;8BCB47;
     dw $0005,IntroCeresExplosionSpritemaps_MetroidEggHatchingFrame1      ;8BCB4B;
@@ -10104,6 +10119,7 @@ InstList_MetroidEggHatching_1:
     dw $000A,IntroCeresExplosionSpritemaps_MetroidEggHatchedFrame1       ;8BCB75;
 
 InstList_MetroidEggHatching_2:
+    ; cracking
     dw $000A,IntroCeresExplosionSpritemaps_MetroidEggHatchedFrame2       ;8BCB79;
     dw $000A,IntroCeresExplosionSpritemaps_MetroidEggHatchedFrame3       ;8BCB7D;
     dw $000A,IntroCeresExplosionSpritemaps_MetroidEggHatchedFrame4       ;8BCB81;
@@ -10115,9 +10131,14 @@ InstList_MetroidEggHatching_2:
     dw PreInstruction_MetroidEgg_DeleteAfterCrossFade                    ;8BCB95;
 
 InstList_MetroidEggHatching_3:
+    ; hatched
     dw $0050,IntroCeresExplosionSpritemaps_MetroidEggHatchedFrame7       ;8BCB97;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCB9B;
     dw InstList_MetroidEggHatching_3                                     ;8BCB9D;
+
+Instruction_RumbleMetroidHatching_Wiggles:
+    %rumble16($11, $19)
+    RTS
 
 
 ;;; $CB9F: Instruction list - cinematic sprite object $CE61 (baby metroid being delivered) ;;;

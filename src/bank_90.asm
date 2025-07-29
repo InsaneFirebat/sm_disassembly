@@ -8696,6 +8696,7 @@ HandleProjectileTrails:
 
 ;;; $B80D: HUD selection handler - nothing / power bombs ;;;
 HUDSelectionHandler_Nothing_PowerBombs:
+; conditional %rumble
     PHP                                                                  ;90B80D;
     REP #$30                                                             ;90B80E;
     LDA.W SamusProjectile_FlareCounter                                   ;90B810;
@@ -8721,8 +8722,19 @@ HUDSelectionHandler_Nothing_PowerBombs:
 
 +   LDA.B DP_Controller1Input                                            ;90B83C;
     AND.W ShotBinding                                                    ;90B83E;
-    BEQ +                                                                ;90B841;
+    BEQ .notPressingShot                                                 ;90B841;
     LDA.W SamusProjectile_FlareCounter                                   ;90B843;
+    BEQ .skipRumble
+    PHA
+    SEP #$20
+    LDA.b RumbleData : CMP #$22 : BPL +
+    LDA #$22 : STA.b RumbleData
++   LDA.b RumbleTime : BNE +
+    LDA #$01 : STA.b RumbleTime
++   REP #$20
+    PLA
+
+  .skipRumble
     CMP.W #$0078                                                         ;90B846;
     BPL .SBA                                                             ;90B849;
     INC                                                                  ;90B84B;
@@ -8732,7 +8744,8 @@ HUDSelectionHandler_Nothing_PowerBombs:
     JSR.W ClearFlareAnimationState                                       ;90B854;
     JMP.W Fire_Uncharge_Beam                                             ;90B857;
 
-+   LDA.W SamusProjectile_FlareCounter                                   ;90B85A;
+  .notPressingShot
+    LDA.W SamusProjectile_FlareCounter                                   ;90B85A;
     BEQ .return                                                          ;90B85D;
     CMP.W #$003C                                                         ;90B85F;
     BPL .releaseChargedBeam                                              ;90B862;

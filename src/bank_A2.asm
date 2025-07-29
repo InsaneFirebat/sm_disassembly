@@ -5075,6 +5075,12 @@ Function_Ship_SamusExiting_WaitForEntrancePadToOpen:
 
 ;;; $AB6E: Gunship function - Samus exiting - raise Samus ;;;
 Function_Ship_SamusExiting_RaiseSamus:
+; manual %rumble
+    SEP #$20
+    LDA.b RumbleFlag : BNE +
+    LDA #$11 : STA.b RumbleData : STA.b RumbleFlag
+    LDA #$FF : STA.b RumbleTime
++   REP #$20
     LDA.W ShipTop.fixedYPosition,X                                       ;A2AB6E;
     SEC                                                                  ;A2AB71;
     SBC.W #$001E                                                         ;A2AB72;
@@ -5085,6 +5091,7 @@ Function_Ship_SamusExiting_RaiseSamus:
     STA.W SamusYPosition                                                 ;A2AB7E;
     CMP.B DP_Temp12                                                      ;A2AB81;
     BPL .return                                                          ;A2AB83;
+    STZ.b RumbleTime ; also clears RumbleFlag
     LDA.W #Function_Ship_SamusExiting_WaitForEntrancePadToClose          ;A2AB85;
     STA.W ShipTop.function,X                                             ;A2AB88;
     LDA.W #$0001                                                         ;A2AB8B;
