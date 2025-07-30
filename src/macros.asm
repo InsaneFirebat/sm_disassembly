@@ -632,10 +632,5 @@ macro rumble8(LeftRight, Time)
 endmacro
 
 macro rumble16(LeftRight, Time)
-    SEP #$20
-    ; strength (%xxxxyyyy - xxxx - left motor | yyyy - right motor)
-    LDA.b #<LeftRight> : STA.b RumbleData
-    ; length of time
-    LDA.b #<Time> : STA.b RumbleTime
-    REP #$20
+    LDA.w #(<Time><<8)|<LeftRight> : STA.b RumbleData
 endmacro
