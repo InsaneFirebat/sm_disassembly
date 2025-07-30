@@ -63,6 +63,8 @@ MessageBox_Routine:
     PHK                                                                  ;858084;
     PLB                                                                  ;858085;
     STA.W MessageBoxIndex                                                ;858086;
+    LDA.b RumbleData : PHA
+    STZ.b RumbleData
     JSL.L Cancel_Sound_Effects                                           ;858089;
     JSR.W Initialise_PPU_for_MessageBoxes                                ;85808D;
     JSR.W Clear_MessageBox_BG3Tilemap                                    ;858090;
@@ -81,6 +83,7 @@ MessageBox_Routine:
     JSR.W MaybeTriggerPauseScreen_or_ReturnSaveConfirmationSelection     ;8580B7;
 
   .return:
+    PLA : STA.b RumbleData
     PLY                                                                  ;8580BA;
     PLX                                                                  ;8580BB;
     PLB                                                                  ;8580BC;

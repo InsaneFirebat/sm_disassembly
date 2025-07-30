@@ -46,6 +46,12 @@ org $84D359
 org $84D52D
     JSR MaridiaTubeCracks
 
+org $858086
+    JSR NoRumbleInMessageBox1
+
+org $8580BA
+    JMP NoRumbleInMessageBox2
+
 org $858122
     JSR SavingSFX
 
@@ -340,6 +346,21 @@ SavingSFX:
     %rumble16($22, $A0)
     LDA #$00A0
     RTS
+}
+
+NoRumbleInMessageBox1:
+{
+    STA $1C1F
+    LDA.b RumbleData : STA $39
+    STZ.b RumbleData
+    RTS
+}
+
+NoRumbleInMessageBox2:
+{
+    LDA $39 : STA.b RumbleData
+    PLY : PLX : PLB
+    JMP $80BD
 }
 %endfree(85)
 
