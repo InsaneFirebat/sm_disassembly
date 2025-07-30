@@ -1,4 +1,6 @@
 
+; Enemy AI: Kraid, Phantoon, Etecoon, Dachora
+
 org $A78000
 
 

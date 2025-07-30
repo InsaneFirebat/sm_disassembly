@@ -1,4 +1,6 @@
 
+; Enemy AI: Boyon, Stoke, Mama Turtle, Baby Turtle, Puyo, Cacatac, Owtch, Ship, Mellow, Mella, Memu, Multiviola, Polyp, Rinka, Rio, Squeept, Geruta, Holtz, Oum, Choot, Gripper, Ripper II, Dragon, Shutters
+
 org $A28000
 
 

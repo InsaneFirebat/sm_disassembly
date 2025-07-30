@@ -1,4 +1,6 @@
 
+; Enemy AI: Mother Brain, Baby Metroid, Torizo corpse, Sidehopper corpse, Zoomer corpse, Ripper corpse, Skree corpse
+
 org $A98000
 
 

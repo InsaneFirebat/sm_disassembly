@@ -1,4 +1,6 @@
 
+; Enemy AI: Zeb, Zebbo, Gamet, Geega, Botwoon, escape Etecoon, escape Dachora
+
 org $B38000
 
 

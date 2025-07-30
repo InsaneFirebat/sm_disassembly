@@ -1,4 +1,6 @@
 
+; Samus graphics
+
 org $9F8000
 
 

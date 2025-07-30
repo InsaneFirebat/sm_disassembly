@@ -1,4 +1,6 @@
 
+; Cutscene graphics
+
 org $94E000
 
 

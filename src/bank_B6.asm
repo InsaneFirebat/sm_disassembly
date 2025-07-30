@@ -1,4 +1,6 @@
 
+; Pause menu graphics
+
 org $B68000
 
 

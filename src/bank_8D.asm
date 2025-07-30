@@ -1,4 +1,6 @@
 
+; Enemy projectile spritemaps, Palette FX
+
 org $8D8000
 
 

@@ -1,4 +1,6 @@
 
+; Projectile graphics, map graphics
+
 org $9A8000
 
 

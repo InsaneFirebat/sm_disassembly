@@ -43,7 +43,7 @@ incsrc bank_89.asm ; Item graphics, palette blends, FX handler
 incsrc bank_8A.asm ; FX tilemaps, scrolling sky tilemaps
 incsrc bank_8B.asm ; Cinematics/Cutscenes, credits
 incsrc bank_8C.asm ; Cinematic/Cutscene data
-incsrc bank_8D.asm ; Enemy projectile spritemaps, PaletteFX, 
+incsrc bank_8D.asm ; Enemy projectile spritemaps, Palette FX
 incsrc bank_8E.asm ; Menu tiles/palettes
 incsrc bank_8F.asm ; PLM populations, room/state headers, room/door ASM, library backgrounds
 incsrc bank_90.asm ; Samus drawing, movement, projectile handling, minimap

@@ -1,4 +1,6 @@
 
+; Enemy graphics
+
 org $B08000
 
 

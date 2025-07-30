@@ -1,4 +1,6 @@
 
+; Enemy populations
+
 org $A18000
 
 

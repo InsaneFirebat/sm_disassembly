@@ -1,4 +1,6 @@
 
+; Cinematic/Cutscene data
+
 org $8C8000
 
 

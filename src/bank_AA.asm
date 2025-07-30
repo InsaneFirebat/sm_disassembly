@@ -1,4 +1,6 @@
 
+; Enemy AI: Bomb/Golden Torizo, Tourian statue, Shaktool, Maridia tube, Chozo statue
+
 org $AA8000
 
 

@@ -1,4 +1,6 @@
 
+; Enemy AI: Evir, Morph Ball Eye, Fune, Namihe, Coven, Yapping Maw, Kago, Magdollite, Beetom, Powamp, Work Robot, Bull, Alcoon, Atomic, Spark, Face Block, Kihunter
+
 org $A88000
 
 

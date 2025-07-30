@@ -1,4 +1,6 @@
 
+; FX tilemaps, scrolling sky tilemaps
+
 org $8A8000
 
 

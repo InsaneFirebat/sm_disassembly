@@ -1,4 +1,6 @@
 
+; Enemy graphics
+
 org $AE8000
 
 

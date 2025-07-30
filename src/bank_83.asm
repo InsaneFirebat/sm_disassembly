@@ -1,4 +1,6 @@
 
+; Doors, FX headers
+
 org $838000
 
 ; FX format

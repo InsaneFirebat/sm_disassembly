@@ -1,4 +1,6 @@
 
+; Enemy AI: Draygon, Spore Spawn
+
 org $A58000
 
 

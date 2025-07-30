@@ -1,4 +1,6 @@
 
+; Enemy AI: Waver, Metaree, Fireflea, Skultera, Elevator, Sciser, Zero, Tripper, Sbug, Mochtroid, Sidehoppers, Zoa, Viola, Bang, Skree, Yard, Reflec, HZoomer, MZoomer, Zoomer, Zeela, Sova, Metroid
+
 org $A38000
 
 

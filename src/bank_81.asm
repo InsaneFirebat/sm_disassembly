@@ -1,4 +1,6 @@
 
+; SRAM, spritemap handling
+
 org $818000
 
 

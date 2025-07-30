@@ -1,4 +1,6 @@
 
+; Item graphics, palette blends, FX handler
+
 org $898000
 
 

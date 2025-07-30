@@ -1,4 +1,6 @@
 
+; Debug handling, enemy sets/vulnerabilities/drops, sprite objects
+
 org $B48000
 
 

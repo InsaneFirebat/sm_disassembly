@@ -1,4 +1,6 @@
 
+; Enemy AI: Ridley, Boulder, Kzan, Hibashi, Puromi, MiniKraid, Steam, Ceres door, Zebetite
+
 org $A68000
 
 

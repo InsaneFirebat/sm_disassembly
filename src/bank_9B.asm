@@ -1,4 +1,6 @@
 
+; Grapple, Samus graphics
+
 org $9B8000
 
 

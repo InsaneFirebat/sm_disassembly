@@ -1,4 +1,6 @@
 
+; Enemy AI: Space pirates
+
 org $B28000
 
 

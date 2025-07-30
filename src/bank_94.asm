@@ -1,4 +1,6 @@
 
+; Block collision, grapple
+
 org $948000
 
 

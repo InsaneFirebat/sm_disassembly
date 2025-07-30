@@ -1,4 +1,6 @@
 
+; PLM populations, room/state headers, room/door ASM, library backgrounds
+
 org $8F8000
 
 

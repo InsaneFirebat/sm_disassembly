@@ -1,4 +1,6 @@
 
+; Samus spritemaps, animation
+
 org $928000
 
 

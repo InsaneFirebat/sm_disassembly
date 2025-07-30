@@ -1,4 +1,6 @@
 
+; Menu tiles/palettes
+
 org $8E8000
 
 

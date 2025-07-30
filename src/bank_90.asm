@@ -1,4 +1,6 @@
 
+; Samus drawing, movement, projectile handling, minimap
+
 org $908000
 
 
