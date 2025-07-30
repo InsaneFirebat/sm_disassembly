@@ -191,6 +191,12 @@ org $A49A7E
 org $A5E9EB
     JSR SporeSpawnDeathExplosions
 
+org $A68814
+    JSR BoulderBounces
+
+org $A688CB
+    JSR BoulderBreaks
+
 org $A69C58
     JSR MiniKraidDeathExplosions
 
@@ -784,6 +790,20 @@ SporeSpawnDeathExplosions:
 
 
 %startfree(A6)
+BoulderBounces:
+{
+    %rumble16($44, 8)
+    LDA #$2000
+    RTS
+}
+
+BoulderBreaks:
+{
+    %rumble16($22, 8)
+    LDA #$0011
+    RTS
+}
+
 MiniKraidDeathExplosions:
 {
     %rumble16($55, $90)

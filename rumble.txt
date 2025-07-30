@@ -49,6 +49,8 @@ $66, $1E - Maridia tube breaks
 $33, 8 - Botwoon body segment explodes
 $33, 6 - Contact damage kills enemy
 $44, 8 - Ridley grabs Samus
+$44, 8 - Boulder bounces
+$22, 8 - Boulder breaks
 $33, 3 - Drained by baby metroid
 $88, 3 - Rainbow beam
 $55, 6 - Baby metroid hit by onion rings while latched onto Samus

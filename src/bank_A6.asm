@@ -754,6 +754,7 @@ Function_Boulder_Falling:
     BMI .notReachedTarget                                                ;A68805;
     LDA.L Boulder.fallingTargetYPosition,X                               ;A68807;
     STA.W Enemy.YPosition,X                                              ;A6880B;
+    %rumble16($44, 8)
     LDA.W #Function_Boulder_Bounce_Rising                                ;A6880E;
     STA.W Boulder.function,X                                             ;A68811;
     LDA.W #$2000                                                         ;A68814;
@@ -857,6 +858,7 @@ Function_Boulder_Bounce_Falling:
     STA.B DP_Temp12                                                      ;A688C4;
     LDA.W Enemy.YPosition,X                                              ;A688C6;
     STA.B DP_Temp14                                                      ;A688C9;
+    %rumble16($22, 8)
     LDA.W #$0011                                                         ;A688CB;
     LDY.W #EnemyProjectile_MiscDust                                      ;A688CE;
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A688D1;
