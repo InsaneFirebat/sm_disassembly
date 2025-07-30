@@ -1,4 +1,23 @@
 
+incsrc freespace.asm
+
+
+org $0000C1
+RumbleData: skip 1 ; $C1
+RumbleTime: skip 1 ; $C2
+RumbleFlag: skip 1 ; $C3
+
+
+macro rumbleWritePort()
+    STA $4201
+    BIT $4016 ; Strobe
+endmacro
+
+macro rumbleZeroPort()
+    STZ $4201
+    BIT $4016 ; Strobe
+endmacro
+
 macro rumble8(LeftRight, Time)
     ; strength (%xxxxyyyy - xxxx - left motor | yyyy - right motor)
     LDA.b #<LeftRight> : STA.b RumbleData
@@ -50,8 +69,17 @@ org $888AA9
 org $88E092
     JSR SuitPickupAnimation
 
+org $8BA94F
+    JSR MetroidEggHatched
+
+org $8BB812
+    JSR IntroMotherBrainExplosions1
+
+org $8BB82E
+    JMP IntroMotherBrainExplosions2
+
 org $8BB9AF
-    JSR IntroMotherBrainExplosions
+    JSR IntroMotherBrainExplosions3
 
 org $8BBE59
     JSR ShipFliesIntoCamera
@@ -82,6 +110,9 @@ org $8FE942
 
 org $909A2F
     JSR BombJump
+
+org $90B843
+    JSR ChargingBeam
 
 org $90B8AA
     JSR UnchargedShot
@@ -122,6 +153,10 @@ org $90DF15
 org $90EA1A
     JSR PeriodicDamage
 
+org $938152
+    SEP #$20
+    JSR BombExplodes
+
 org $94933C
     JSR BlockCrumblesOnContact
 
@@ -130,6 +165,18 @@ org $A0868F
 
 org $A0A485
     JSR EnemyDiesOnContact
+
+org $A2AB6E
+    JSR ExitingShip1
+
+org $A2AB85
+    JSR ExitingShip2
+
+org $A3952A
+    JSR StandingOnElevator1
+
+org $A39537
+    JSR StandingOnElevator2
 
 org $A48FB7
     JSR CollapseCrocomiresBridge
@@ -175,6 +222,27 @@ org $A8A668
 
 org $A8BEA8
     JSR BeetomGrabsSamus
+
+org $A9AF12
+    JSR MotherBrainDeathExplosions
+
+org $A9B013
+    JSR MotherBrainDeathExplosions
+
+org $A9BA3C
+    JSR RainbowBeam
+
+org $A9C560
+    JSR BabyMetroidDrain
+
+org $A9CDF4
+    JSR BabyMetroidDeathExplosions
+
+org $AAC878
+    JSR TorizoJumpCollision
+
+org $AAE57F
+    JSR ChozoStatueGrabsMorphBall
 
 
 %startfree(80)
@@ -324,7 +392,38 @@ SuitPickupAnimation:
 
 
 %startfree(8B)
-IntroMotherBrainExplosions:
+MetroidEggHatched:
+{
+    %rumble16($22, 8)
+    LDA #$000B
+    RTS
+}
+
+IntroMotherBrainExplosions1:
+{
+    LDA #$FF66 : STA.b RumbleData
+    JMP $B877
+}
+
+IntroMotherBrainExplosions2:
+{
+    JSR $B877
+    LDY #$FF66 : STY.b RumbleData
+    LDA $1A4B : CMP #$0060 : BPL .return
+    LDY #$FF55 : STY.b RumbleData
+    CMP #$0040 : BPL .return
+    LDY #$FF44 : STY.b RumbleData
+    CMP #$0020 : BPL .return
+    LDY #$FF33 : STY.b RumbleData
+    LDA $1A4B : BNE .return
+    STZ.b RumbleData
+    JMP $B836
+
+  .return
+    JMP $B845
+}
+
+IntroMotherBrainExplosions3:
 {
     %rumble16($66, 6)
     LDA #$0A00
@@ -366,6 +465,8 @@ ShipFliesToZebes1:
     LDA #$44 : STA.b RumbleData
     LDA #$20 : STA.b RumbleTime : STA.b RumbleFlag
     REP #$20
+
+  .return
     RTS
 }
 
@@ -410,6 +511,22 @@ BombJump:
     LDA #$08 : STA.b RumbleTime
     REP #$30
     LDA $09A2
+    RTS
+}
+
+ChargingBeam:
+{
+    LDA $0CD0 : BEQ .skipRumble
+    PHA
+    SEP #$20
+    LDA.b RumbleData : CMP #$22 : BPL +
+    LDA #$22 : STA.b RumbleData
++   LDA.b RumbleTime : BNE +
+    LDA #$01 : STA.b RumbleTime
++   REP #$20
+    PLA
+
+  .skipRumble
     RTS
 }
 
@@ -508,6 +625,20 @@ PeriodicDamage:
 %endfree(90)
 
 
+%startfree(93)
+BombExplodes:
+{
+    LDA.b RumbleData : BNE +
+    LDA #$11 : STA.b RumbleData
+    LDA.b RumbleTime : CMP #$04 : BPL +
+    LDA #$04 : STA.b RumbleTime
++   REP #$30
+    LDA $8683
+    RTS
+}
+%endfree(93)
+
+
 %startfree(94)
 BlockCrumblesOnContact:
 {
@@ -561,6 +692,50 @@ EnemyDiesOnContact:
 %endfree(A0)
 
 
+%startfree(A2)
+ExitingShip1:
+{
+    SEP #$20
+    LDA.b RumbleFlag : BNE +
+    LDA #$11 : STA.b RumbleData : STA.b RumbleFlag
+    LDA #$FF : STA.b RumbleTime
++   REP #$20
+    LDA $0FB0,X
+    RTS
+}
+
+ExitingShip2:
+{
+    STZ.b RumbleTime
+    LDA #$ABA5
+    RTS
+}
+%endfree(A2)
+
+
+%startfree(A3)
+StandingOnElevator1:
+{
+    LDA $0A1C : BEQ .rumble
+    CMP #$009B : BEQ .rumble
+    LDA $0795
+    RTS
+
+  .rumble
+    %rumble16($11, 1)
+    LDA $0795
+    RTS
+}
+
+StandingOnElevator2:
+{
+    %rumble16($11, 1)
+    LDA $0E18
+    RTS
+}
+%endfree(A3)
+
+
 %startfree(A4)
 CollapseCrocomiresBridge:
 {
@@ -576,7 +751,7 @@ CrocomireMelting:
     RTS
 }
 
-CrocomireBreaksWall:
+CrocomireBreaksWall1:
 {
     SEP #$20
     LDA.b RumbleFlag : BNE +
@@ -587,7 +762,7 @@ CrocomireBreaksWall:
     RTS
 }
 
-CrocmireBreaksWall2:
+CrocomireBreaksWall2:
 {
     STZ.b RumbleFlag
     STZ $0FB0
@@ -645,7 +820,7 @@ RidleyTailHit:
     RTS
 }
 
-EarthquakeHandler:
+EarthquakeHandler1:
 {
     TYA : STA $183E
     LDA #$0022 : STA.b RumbleData
@@ -689,3 +864,52 @@ BeetomGrabsSamus:
     RTS
 }
 %endfree(A8)
+
+
+%startfree(A9)
+MotherBrainDeathExplosions:
+{
+    %rumble16($33, 8)
+    JMP $B022
+}
+
+RainbowBeam:
+{
+    %rumble16($88, 3)
+    JMP $BB2E
+}
+
+BabyMetroidDrain:
+{
+    %rumble16($33, 3)
+    LDY #$FFFC
+    RTS
+}
+
+BabyMetroidDeathExplosions:
+{
+    %rumble16($33, 4)
+    LDA #$0013
+    RTS
+}
+%endfree(A9)
+
+
+%startfree(AA)
+TorizoJumpCollision:
+{
+    LDA #$0033 : STA.b RumbleData
+    LDA #$0020 : STA.b RumbleTime
+    RTS
+}
+
+ChozoStatueGrabsMorphBall:
+{
+    %rumble16($33, 5)
+    LDA #$001C
+    RTS
+}
+%endfree(AA)
+
+
+%printfreespace()

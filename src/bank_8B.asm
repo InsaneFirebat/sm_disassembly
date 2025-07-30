@@ -7600,7 +7600,6 @@ PreInstruction_IntroMotherBrain_Exploding:
     LDA.W CinematicSpriteObject_Timers,X                                 ;8BB815;
     INC                                                                  ;8BB818;
     STA.W CinematicSpriteObject_Timers,X                                 ;8BB819;
-    LDA.W CinematicSpriteObject_Timers,X
     CMP.W #$0080                                                         ;8BB81C;
     BMI .return                                                          ;8BB81F;
     LDA.W #$0001                                                         ;8BB821;
