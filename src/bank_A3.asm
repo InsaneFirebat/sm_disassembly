@@ -2217,7 +2217,7 @@ MainAI_GrappleAI_FrozenAI_Elevator:
     LDA.W ElevatorProperties                                             ;A3952F;
     ORA.W ElevatorStatus                                                 ;A39532;
     BEQ .return                                                          ;A39535;
-    %rumble16($11, 1)
+    %rumble16($11, 3)
     LDA.W ElevatorStatus                                                 ;A39537;
     ASL                                                                  ;A3953A;
     TAX                                                                  ;A3953B;
@@ -2227,7 +2227,7 @@ MainAI_GrappleAI_FrozenAI_Elevator:
     RTL                                                                  ;A3953F;
 
   .rumble
-    %rumble16($11, 1)
+    %rumble16($11, 3)
     BRA .resume
 
   .pointers:
