@@ -1,5 +1,5 @@
 
-; CRE, backgrounds
+; CRE, backgrounds, palettes, level data
 
 org $B98000
 

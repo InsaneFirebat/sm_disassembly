@@ -83,7 +83,7 @@ incsrc bank_B5.asm ; Area maps
 incsrc bank_B6.asm ; Pause menu graphics
 incsrc bank_B7.asm ; Enemy graphics
 incsrc bank_B8.asm ; Empty (debug demo recorder writes here)
-incsrc bank_B9..CE.asm ; CRE, backgrounds
+incsrc bank_B9..CE.asm ; CRE, backgrounds, palettes, level data
 incsrc bank_CF..DE.asm ; SPC engine
 incsrc bank_DF.asm ; Unused music track
 incsrc labels.asm ; Labels that don't point directly to ROM/RAM
