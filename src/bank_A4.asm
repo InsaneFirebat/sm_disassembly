@@ -400,13 +400,13 @@ Instruction_CommonA4_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA4EnemySpeeds_LinearlyIncreasing:
-.speed                                                                   ;A08187;
+  .speed                                                                 ;A08187;
 skip 2
-.subspeed                                                                ;A08189;
+  .subspeed                                                              ;A08189;
 skip 2
-.negatedSpeed                                                            ;A0818B;
+  .negatedSpeed                                                          ;A0818B;
 skip 2
-.negatedSubspeed                                                         ;A0818D;
+  .negatedSubspeed                                                       ;A0818D;
 skip -6
 
 !i = 0
@@ -4274,28 +4274,28 @@ InstList_Crocomire_WaitForFirstSecondDamage:
 ;;; $BCD8: Instruction list - Crocomire - wait for first/second damage - moving claws ;;;
 InstList_Crocomire_WaitForFirstSecondDamage_MovingClaws:
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_10              ;A4BCD8;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BCDA;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BCDE;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_0              ;A4BCDA;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_1              ;A4BCDE;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_0               ;A4BCE2;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BCE4;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BCE8;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BCEC;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BCE4;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BCE8;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BCEC;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BCF0;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative20      ;A4BCF2;
     dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BCF4;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BCF8;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_1              ;A4BCF8;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative10      ;A4BCFC;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BCFE;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BD02;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BD06;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BCFE;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BD02;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BD06;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BD0A;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_0               ;A4BD0C;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BD0E;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_0              ;A4BD0E;
     dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BD12;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_28              ;A4BD16;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BD18;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BD1C;
-    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BD20;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BD18;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BD1C;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BD20;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BD24;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative10      ;A4BD26;
     dw Instruction_Crocomire_FightAI                                     ;A4BD28;

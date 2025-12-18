@@ -400,13 +400,13 @@ Instruction_CommonA9_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA9EnemySpeeds_LinearlyIncreasing:
-.speed                                                                   ;A08187;
+  .speed                                                                 ;A08187;
 skip 2
-.subspeed                                                                ;A08189;
+  .subspeed                                                              ;A08189;
 skip 2
-.negatedSpeed                                                            ;A0818B;
+  .negatedSpeed                                                          ;A0818B;
 skip 2
-.negatedSubspeed                                                         ;A0818D;
+  .negatedSubspeed                                                       ;A0818D;
 skip -6
 
 !i = 0
@@ -5588,7 +5588,7 @@ endif
 if !PAL != 0
 UnpauseHook_ZebesEscapeTimer:
     LDY.W VRAMWriteStack
-    LDA.W #Tiles_EscapeTimerText_End-Tiles_EscapeTimerText
+    LDA.W #Tiles_EscapeTimerText_end-Tiles_EscapeTimerText
     STA.W VRAMWrite.size,Y
     LDA.W #Tiles_EscapeTimerText>>$10<<8
     STA.W VRAMWrite.src+1,Y

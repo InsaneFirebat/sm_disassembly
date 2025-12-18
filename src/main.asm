@@ -6,7 +6,7 @@ math pri on
 ; Build options
 ; -------------
 
-; Defaults will build vanilla Super Metroid.sfc
+; Defaults will build vanilla NTSC Super Metroid
 
 !FEATURE_KEEP_UNREFERENCED ?= 1
 

@@ -5497,9 +5497,8 @@ if !PAL != 0
     CLC
     ADC.W #$20000*!SPF
     STA.W EnemyProjectile_XSubPositions,X
-    BCC +
+    BCC .halfSpeed
     DEC.W EnemyProjectile_XPositions,X
-+
 endif
 
   .halfSpeed
@@ -5537,9 +5536,8 @@ if !PAL != 0
     CLC
     ADC.W #$20000*!SPF
     STA.W EnemyProjectile_XSubPositions,X
-    BCC +
+    BCC .halfSpeed
     INC.W EnemyProjectile_XPositions,X
-+
 endif
 
   .halfSpeed

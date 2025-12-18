@@ -36,42 +36,47 @@ incbin "../data/Tiles_CorpseMotherBrain.bin" ; $E00 bytes
 
 ;;; $DA00: Tiles - escape timer text ;;;
 Tiles_EscapeTimerText:
-if !PAL == 0
 Tiles_EscapeTimerText_0:
+if !PAL == 0
 incbin "../data/Tiles_EscapeTimerText_0.bin" ; $200 bytes
+else
+incbin "../data/Tiles_EscapeTimerText_0_PAL.bin" ; $1C0 bytes
+endif
 
 Tiles_EscapeTimerText_1:
+if !PAL == 0
 incbin "../data/Tiles_EscapeTimerText_1.bin" ; $200 bytes
+else
+incbin "../data/Tiles_EscapeTimerText_1_PAL.bin" ; $200 bytes
+endif
 
 Tiles_EscapeTimerText_2:
+if !PAL == 0
 incbin "../data/Tiles_EscapeTimerText_2.bin" ; $200 bytes
+else
+incbin "../data/Tiles_EscapeTimerText_2_PAL.bin" ; $200 bytes
+endif
 
 Tiles_EscapeTimerText_3:
+if !PAL == 0
 incbin "../data/Tiles_EscapeTimerText_3.bin" ; $200 bytes
+else
+incbin "../data/Tiles_EscapeTimerText_3_PAL.bin" ; $200 bytes
+endif
 
 Tiles_EscapeTimerText_4:
+if !PAL == 0
 incbin "../data/Tiles_EscapeTimerText_4.bin" ; $100 bytes
 else
-Tiles_EscapeTimerText_0:
-incbin "../data/Tiles_EscapeTimerText_0_PAL.bin" ; $1C0 bytes
-
-Tiles_EscapeTimerText_1:
-incbin "../data/Tiles_EscapeTimerText_1_PAL.bin" ; $200 bytes
-
-Tiles_EscapeTimerText_2:
-incbin "../data/Tiles_EscapeTimerText_2_PAL.bin" ; $200 bytes
-
-Tiles_EscapeTimerText_3:
-incbin "../data/Tiles_EscapeTimerText_3_PAL.bin" ; $200 bytes
-
-Tiles_EscapeTimerText_4:
 incbin "../data/Tiles_EscapeTimerText_4_PAL.bin" ; $200 bytes
+endif
 
+if !PAL != 0
 Tiles_EscapeTimerText_5:
 incbin "../data/Tiles_EscapeTimerText_5_PAL.bin" ; $200 bytes
 endif
 
-Tiles_EscapeTimerText_End:
+Tiles_EscapeTimerText_end:
 
 
 ;;; $E300: Tiles - enemy $F293 (Botwoon) ;;;

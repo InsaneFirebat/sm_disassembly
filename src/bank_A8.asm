@@ -400,13 +400,13 @@ Instruction_CommonA8_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA8EnemySpeeds_LinearlyIncreasing:
-.speed                                                                   ;A08187;
+  .speed                                                                 ;A08187;
 skip 2
-.subspeed                                                                ;A08189;
+  .subspeed                                                              ;A08189;
 skip 2
-.negatedSpeed                                                            ;A0818B;
+  .negatedSpeed                                                          ;A0818B;
 skip 2
-.negatedSubspeed                                                         ;A0818D;
+  .negatedSubspeed                                                       ;A0818D;
 skip -6
 
 !i = 0
@@ -6831,7 +6831,7 @@ Function_Beetom_LungeLeft:
 if !PAL == 0
     LDA.W #$0003                                                         ;A8BC37;
     EOR.W #$FFFF                                                         ;A8BC3A;
-    INC                                                                  ;A8BC3D;
+    INC                                                                  ;A8BC3D; >.<
 else
     LDA.W #$FFFD
 endif

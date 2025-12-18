@@ -399,13 +399,13 @@ Instruction_CommonA2_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA2EnemySpeeds_LinearlyIncreasing:
-.speed                                                                   ;A08187;
+  .speed                                                                 ;A08187;
 skip 2
-.subspeed                                                                ;A08189;
+  .subspeed                                                              ;A08189;
 skip 2
-.negatedSpeed                                                            ;A0818B;
+  .negatedSpeed                                                          ;A0818B;
 skip 2
-.negatedSubspeed                                                         ;A0818D;
+  .negatedSubspeed                                                       ;A0818D;
 skip -6
 
 !i = 0
@@ -676,9 +676,9 @@ BoyonData:
     dw $3000,$4000,$5000,$6000,$7000,$8000,$9000,$A000                   ;A286EF;
     dw $B000                                                             ;A286FF;
 
-  .speedTable: ;A28701;
+  .speedTable:
 ; Speed table. k (k+1) / 2 (sum of 0..k)
-    db $00
+    db $00                                                               ;A28701;
     db $01*!SPF
     db $03*!SPF
     db $06*!SPF

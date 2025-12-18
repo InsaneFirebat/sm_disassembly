@@ -16,16 +16,12 @@ def romRead(n = 1, address = None):
     return ret
 
 def printSpritemap(labels=None):
-    p_spritemap = hex2snes(rom.tell())
     count = romRead(2)
     if count == 0 or count > 128:
         return False
 
     if labels != None:
-        if p_spritemap in labels:
-            print(f"{labels[p_spritemap]}:")
-        else:
-            print(f"Unknown_{p_spritemap:X}")
+        print(f"{labels[hex2snes(rom.tell()-2)]}:")
     print(f"    dw ${count:04X}{" "*61};{hex2snes(rom.tell()-2):06X};")
     for i in range(count):
         part0 = romRead(2)
@@ -55,9 +51,5 @@ addr = int(sys.argv[1], 16)
 
 rom.seek(snes2hex(addr))
 
-while True:
-    printSpritemap(labels)
-    if input():
-        break
-    
+while printSpritemap(labels):
     print("")

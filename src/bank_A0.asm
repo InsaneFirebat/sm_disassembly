@@ -443,13 +443,13 @@ Instruction_Common_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonEnemySpeeds_LinearlyIncreasing:
-.speed                                                                   ;A08187;
+  .speed                                                                 ;A08187;
 skip 2
-.subspeed                                                                ;A08189;
+  .subspeed                                                              ;A08189;
 skip 2
-.negatedSpeed                                                            ;A0818B;
+  .negatedSpeed                                                          ;A0818B;
 skip 2
-.negatedSubspeed                                                         ;A0818D;
+  .negatedSubspeed                                                       ;A0818D;
 skip -6
 
 !i = 0
@@ -10140,13 +10140,13 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $C9BF: Unused. Common enemy projectile speeds - linearly increasing ;;;
 UNUSED_CommonEnemyProjectileSpeeds_LinearlyIncreasing_A0C9BF:
 ; Clone of CommonEnemySpeeds_LinearlyIncreasing
-.speed                                                                   ;A0C9BF;
+  .speed                                                                 ;A0C9BF;
 skip 2
-.subspeed                                                                ;A0C9C1;
+  .subspeed                                                              ;A0C9C1;
 skip 2
-.negatedSpeed                                                            ;A0C9C3;
+  .negatedSpeed                                                          ;A0C9C3;
 skip 2
-.negatedSubspeed                                                         ;A0C9C5;
+  .negatedSubspeed                                                       ;A0C9C5;
 skip -6
 
 !i = 0

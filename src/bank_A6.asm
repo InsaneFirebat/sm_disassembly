@@ -400,13 +400,13 @@ Instruction_CommonA6_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA6EnemySpeeds_LinearlyIncreasing:
-.speed                                                                   ;A08187;
+  .speed                                                                 ;A08187;
 skip 2
-.subspeed                                                                ;A08189;
+  .subspeed                                                              ;A08189;
 skip 2
-.negatedSpeed                                                            ;A0818B;
+  .negatedSpeed                                                          ;A0818B;
 skip 2
-.negatedSubspeed                                                         ;A0818D;
+  .negatedSubspeed                                                       ;A0818D;
 skip -6
 
 !i = 0
@@ -7264,12 +7264,12 @@ PostGetawayFunction_SetupCeresEscapeTimer:
     STA.W $0FB0                                                          ;A6C0E0;
 if !PAL == 0
     LDA.W $09E2                                                          ;A6C0E3;
-    BNE .japanText                                                       ;A6C0E6;
+    BNE .subtitles                                                       ;A6C0E6;
     INC.W $0FB2                                                          ;A6C0E8;
     INC.W $0FB2                                                          ;A6C0EB;
 endif
 
-  .japanText:
+  .subtitles:
     INC.W $0FB2                                                          ;A6C0EE;
     INC.W $0FB2                                                          ;A6C0F1;
 
@@ -7289,9 +7289,8 @@ if !PAL != 0
     JSL.L QueueCeresEscapeSubtitleTilemapTransfers_DefaultLanguage
     BRA PostGetawayFunction_CycleEmergencyTextColors_HandleTyping
 
-+
 endif
-    JSL.L QueueCeresEscapeSubtitleTilemapTransfers_AltLanguage           ;A6C100; fallthrough to PostGetawayFunction_CycleEmergencyTextColors_HandleTyping
++   JSL.L QueueCeresEscapeSubtitleTilemapTransfers_AltLanguage           ;A6C100; fallthrough to PostGetawayFunction_CycleEmergencyTextColors_HandleTyping
 
 
 ;;; $C104:  ;;;
@@ -7605,12 +7604,12 @@ HandleTypewriterText:
 if !PAL != 0
 QueueZebesEscapeSubtitleTilemapTransfers:
     LDA.W AltText  
-    BNE .french
+    BNE .French
 
     LDX.W #TypewriterZebesEscapeSubtitleTilemapTransfer_German
     BRA QueueEscapeSubtitleTilemapTransfers
 
-  .french
+  .French
     LDX.W #TypewriterZebesEscapeSubtitleTilemapTransfer_French
     BRA QueueEscapeSubtitleTilemapTransfers
 
@@ -7637,7 +7636,7 @@ QueueEscapeSubtitleTilemapTransfers:
 if !PAL == 0
     PHK                                                                  ;A6C387;
 else
-    PEA $AD00
+    PEA.w TypewriterCeresEscapeSubtitleTilemapTransfer_German>>8&$FF00
     PLB
 endif
     PLB                                                                  ;A6C388;
@@ -7663,7 +7662,7 @@ endif
     BRA .loop                                                            ;A6C3B1;
 
   .done:
-    STY.W VRAMWriteStack                                                          ;A6C3B3;
+    STY.W VRAMWriteStack                                                 ;A6C3B3;
     PLB                                                                  ;A6C3B6;
     RTL                                                                  ;A6C3B7;
 
@@ -7760,8 +7759,8 @@ TypewriterText_ZebesEscapeTimer:
 
 
 EscapeTimerSpriteTileTransferEntries_Zebes:
-if !PAL != 0
 ; Loaded by Mother Brain
+if !PAL != 0
   .size
     dw $0200
   .src:
@@ -11893,7 +11892,6 @@ Palette_RidleyExplosion_1:
 
 
 ;;; $E1CF: Palettes ;;;
-; Enemy $E1FF (Ceres steam) palette points to Palette_CeresSteam, right in the middle of this section...
 Palette_NorfairRidleyInit:
 ; Norfair Ridley init, sprite palette 2
     dw $3800,$6B5A,$5652,$28E7,$1863,$62B5,$4A10,$396B                   ;A6E1CF;

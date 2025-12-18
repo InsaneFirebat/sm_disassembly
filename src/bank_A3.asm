@@ -400,13 +400,13 @@ Instruction_CommonA3_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA3EnemySpeeds_LinearlyIncreasing:
-.speed                                                                   ;A08187;
+  .speed                                                                 ;A08187;
 skip 2
-.subspeed                                                                ;A08189;
+  .subspeed                                                              ;A08189;
 skip 2
-.negatedSpeed                                                            ;A0818B;
+  .negatedSpeed                                                          ;A0818B;
 skip 2
-.negatedSubspeed                                                         ;A0818D;
+  .negatedSubspeed                                                       ;A0818D;
 skip -6
 
 !i = 0
@@ -4772,7 +4772,7 @@ endif
     JSL.L MoveEnemyDownBy_14_12                                          ;A3A937;
     RTS                                                                  ;A3A93B;
 
-    undef "speed"
+undef "speed"
 
 
 ;;; $A93C: Set mochtroid instruction list ;;;
@@ -11155,7 +11155,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DDAE: Reflection offset function - vertical - up-right / down-right ;;;
-.vertical_UpRight_DownRight:
+  .vertical_UpRight_DownRight:
     LDX.W EnemyIndex                                                     ;A3DDAE;
     LDA.W Enemy.XPosition,X                                              ;A3DDB1;
     SEC                                                                  ;A3DDB4;
@@ -11175,7 +11175,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DDCF: Reflection offset function - vertical - up-left / down-left ;;;
-.vertical_UpLeft_DownLeft:
+  .vertical_UpLeft_DownLeft:
     LDX.W EnemyIndex                                                     ;A3DDCF;
     LDA.W Enemy.XPosition,X                                              ;A3DDD2;
     CLC                                                                  ;A3DDD5;
@@ -11195,7 +11195,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DDF0: Reflection offset function - up-right diagonal - up ;;;
-.upRightDiagonal_Up:
+  .upRightDiagonal_Up:
     LDX.W EnemyIndex                                                     ;A3DDF0;
     LDA.W Enemy.XPosition,X                                              ;A3DDF3;
     STA.W Temp_Unknown0E36                                               ;A3DDF6;
@@ -11213,7 +11213,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DE0D: Reflection offset function - up-right diagonal - right ;;;
-.upRightDiagonal_Right:
+  .upRightDiagonal_Right:
     LDX.W EnemyIndex                                                     ;A3DE0D;
     LDA.W Enemy.YPosition,X                                              ;A3DE10;
     STA.W Temp_Unknown0E36                                               ;A3DE13;
@@ -11231,7 +11231,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DE2A: Reflection offset function - up-right diagonal - down ;;;
-.upRightDiagonal_Down:
+  .upRightDiagonal_Down:
     LDX.W EnemyIndex                                                     ;A3DE2A;
     LDA.W Enemy.XPosition,X                                              ;A3DE2D;
     STA.W Temp_Unknown0E36                                               ;A3DE30;
@@ -11249,7 +11249,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DE47: Reflection offset function - up-right diagonal - left ;;;
-.upRightDiagonal_Left:
+  .upRightDiagonal_Left:
     LDX.W EnemyIndex                                                     ;A3DE47;
     LDA.W Enemy.YPosition,X                                              ;A3DE4A;
     STA.W Temp_Unknown0E36                                               ;A3DE4D;
@@ -11267,7 +11267,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DE64: Reflection offset function - horizontal - up-right / up-left ;;;
-.horizontal_UpRight_UpLeft:
+  .horizontal_UpRight_UpLeft:
     LDX.W EnemyIndex                                                     ;A3DE64;
     LDA.W Enemy.YPosition,X                                              ;A3DE67;
     CLC                                                                  ;A3DE6A;
@@ -11287,7 +11287,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DE85: Reflection offset function - horizontal - down-right / down-left ;;;
-.horizontal_DownRight_DownLeft:
+  .horizontal_DownRight_DownLeft:
     LDX.W EnemyIndex                                                     ;A3DE85;
     LDA.W Enemy.YPosition,X                                              ;A3DE88;
     SEC                                                                  ;A3DE8B;
@@ -11307,7 +11307,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DEA6: Reflection offset function - down-right diagonal - up ;;;
-.downRightDiagonal_Up:
+  .downRightDiagonal_Up:
     LDX.W EnemyIndex                                                     ;A3DEA6;
     LDA.W Enemy.XPosition,X                                              ;A3DEA9;
     STA.W Temp_Unknown0E36                                               ;A3DEAC;
@@ -11325,7 +11325,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DEC3: Reflection offset function - down-right diagonal - right ;;;
-.downRightDiagonal_Right:
+  .downRightDiagonal_Right:
     LDX.W EnemyIndex                                                     ;A3DEC3;
     LDA.W Enemy.YPosition,X                                              ;A3DEC6;
     STA.W Temp_Unknown0E36                                               ;A3DEC9;
@@ -11343,7 +11343,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DEE0: Reflection offset function - down-right diagonal - down ;;;
-.downRightDiagonal_Down:
+  .downRightDiagonal_Down:
     LDX.W EnemyIndex                                                     ;A3DEE0;
     LDA.W Enemy.XPosition,X                                              ;A3DEE3;
     STA.W Temp_Unknown0E36                                               ;A3DEE6;
@@ -11361,7 +11361,7 @@ EnemyShot_Reflec:
 
 
 ;;; $DEFD: Reflection offset function - down-right diagonal - left ;;;
-.downRightDiagonal_Left:
+  .downRightDiagonal_Left:
     LDX.W EnemyIndex                                                     ;A3DEFD;
     LDA.W Enemy.YPosition,X                                              ;A3DF00;
     STA.W Temp_Unknown0E36                                               ;A3DF03;

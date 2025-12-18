@@ -7892,14 +7892,17 @@ QuicksandSurface_InsideReaction:
 ;       |      ___ With gravity suit
 ;       |     |
   .distanceInAir:
-    dw $0200,$0200 ; Distance to move Samus vertically * 100h in air
+    ; Distance to move Samus vertically * 100h in air
+    dw $0200,$0200
   .distanceOnGround:
-    dw $0120,$0100 ; Distance to move Samus vertically * 100h on ground
+    ; Distance to move Samus vertically * 100h on ground
+    dw $0120,$0100
   .maxVelocity:
+    ; Samus max vertical velocity * 100h
 if !PAL == 0
-    dw $0280,$0380 ; Samus max vertical velocity * 100h
+    dw $0280,$0380
 else
-    dw $02A0,$03A0 ; Samus max vertical velocity * 100h
+    dw $02A0,$03A0
 endif
 
 
@@ -11692,10 +11695,10 @@ InstList_PLM_RespawningSpeedBoostBlock:
     dw $0001,DrawInst_Respawn1x1_0                                       ;84C977;
     dw $0001,DrawInst_Respawn1x1_1                                       ;84C97B;
     dw $0001,DrawInst_Respawn1x1_2                                       ;84C97F;
-    dw $0030*!FPS,DrawInst_Respawn1x1_3                                       ;84C983;
-    dw $0004*!FPS,DrawInst_Respawn1x1_2                                       ;84C987;
-    dw $0004*!FPS,DrawInst_Respawn1x1_1                                       ;84C98B;
-    dw $0004*!FPS,DrawInst_Respawn1x1_0                                       ;84C98F;
+    dw $0030*!FPS,DrawInst_Respawn1x1_3                                  ;84C983;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84C987;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84C98B;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84C98F;
     dw Instruction_PLM_DrawPLMBlock                                      ;84C993;
     dw Instruction_PLM_Delete                                            ;84C995;
 
@@ -11706,10 +11709,10 @@ InstList_PLM_RespawningSpeedBlock:
     dw $0001,DrawInst_Respawn1x1_0                                       ;84C99A;
     dw $0001,DrawInst_Respawn1x1_1                                       ;84C99E;
     dw $0001,DrawInst_Respawn1x1_2                                       ;84C9A2;
-    dw $0030*!FPS,DrawInst_Respawn1x1_3                                       ;84C9A6;
-    dw $0004*!FPS,DrawInst_Respawn1x1_2                                       ;84C9AA;
-    dw $0004*!FPS,DrawInst_Respawn1x1_1                                       ;84C9AE;
-    dw $0004*!FPS,DrawInst_Respawn1x1_0                                       ;84C9B2;
+    dw $0030*!FPS,DrawInst_Respawn1x1_3                                  ;84C9A6;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84C9AA;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84C9AE;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84C9B2;
     dw Instruction_PLM_DrawPLMBlock_Clone                                ;84C9B6;
     dw Instruction_PLM_Delete                                            ;84C9B8;
 
@@ -11719,8 +11722,8 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_84C9BA:
 ; Even slower version of InstList_PLM_SpeedBlockSlowerCrumbleAnimation
     dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $06                   ;84C9BA;
-    dw $0004*!FPS,DrawInst_Respawn1x1_0                                       ;84C9BD;
-    dw $0004*!FPS,DrawInst_Respawn1x1_1                                       ;84C9C1;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84C9BD;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84C9C1;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84C9C5;
     dw $0001,DrawInst_Respawn1x1_3                                       ;84C9C9;
     dw Instruction_PLM_Delete                                            ;84C9CD;
@@ -11730,7 +11733,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $C9CF: Instruction list - PLM $D034 (collision reaction, special, BTS Brinstar 83h. Speed block, slower crumble animation) ;;;
 InstList_PLM_SpeedBlockSlowerCrumbleAnimation:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $06                   ;84C9CF;
-    dw $0002*!FPS,DrawInst_Respawn1x1_0                                       ;84C9D2;
+    dw $0002*!FPS,DrawInst_Respawn1x1_0                                  ;84C9D2;
     dw $0002,DrawInst_Respawn1x1_1                                       ;84C9D6;
     dw $0002,DrawInst_Respawn1x1_2                                       ;84C9DA;
     dw $0001,DrawInst_Respawn1x1_3                                       ;84C9DE;

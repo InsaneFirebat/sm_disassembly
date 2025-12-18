@@ -2058,12 +2058,12 @@ LoadIntroSubtitleTilemapTopRow:
     CMP.W #$002F
     BEQ .space
     ORA.W #$2000
-    STA.L CinematicBGTilemap_Subtitles_TopRow,X
+    STA.L CinematicBGTilemap_subtitles_topRow,X
     BRA .next
 
   .space
     LDA.W #$3029
-    STA.L CinematicBGTilemap_Subtitles_TopRow,X
+    STA.L CinematicBGTilemap_subtitles_topRow,X
 
   .next
     INY
@@ -2097,11 +2097,11 @@ LoadIntroSubtitleTilemapBottomRow:
     CMP.W #$002F
     BEQ +
     ORA.W #$2000
-    STA.L CinematicBGTilemap_Subtitles_BottomRow,X
+    STA.L CinematicBGTilemap_subtitles_bottomRow,X
     BRA ++
 
 +   LDA.W #$3029
-    STA.L CinematicBGTilemap_Subtitles_BottomRow,X
+    STA.L CinematicBGTilemap_subtitles_bottomRow,X
 
 ++  INY
     INY
@@ -2125,16 +2125,16 @@ TransferIntroSubtitleTilemapToVRAM:
     REP #$30
     PHX
     LDX.W VRAMWriteStack
-    LDA.W #CinematicBGTilemap_Subtitles_End-CinematicBGTilemap_Subtitles
+    LDA.W #CinematicBGTilemap_subtitles_end-CinematicBGTilemap_subtitles
     STA.B VRAMWrite.size,X
     INX
     INX
-    LDA.W #CinematicBGTilemap_Subtitles
+    LDA.W #CinematicBGTilemap_subtitles
     STA.B VRAMWrite.size,X ; Actually src
     INX
     INX
     SEP #$20
-    LDA.B #CinematicBGTilemap_Subtitles>>16
+    LDA.B #CinematicBGTilemap_subtitles>>16
     STA.B VRAMWrite.size,X ; Actually src+2
     REP #$20
     INX
@@ -3410,7 +3410,7 @@ Clear_CinematicBGObjects_CinematicBGTilemap:
     PHP                                                                  ;8B95CE;
     REP #$30                                                             ;8B95CF;
     PHX                                                                  ;8B95D1;
-    LDX.W #CinematicBGTilemap_End-CinematicBGTilemap-2                   ;8B95D2;
+    LDX.W #CinematicBGTilemap_end-CinematicBGTilemap-2                   ;8B95D2;
 
   .loopTilemap:
     STA.L CinematicBGTilemap,X                                           ;8B95D5;
@@ -5655,7 +5655,7 @@ if !PAL != 0
 
   .loopGermanText
     LDA.L InitialIntroSubtitleTilemap_DefaultLanguage_Subpage1,X
-    STA.L CinematicBGTilemap_InitialSubtitles,X
+    STA.L CinematicBGTilemap_initialSubtitles,X
     DEX
     DEX
     BPL .loopGermanText
@@ -5667,7 +5667,7 @@ endif
 
   .loopAltText:
     LDA.L InitialIntroSubtitleTilemap_AltLanguage,X                      ;8BA580;
-    STA.L CinematicBGTilemap_InitialSubtitles,X                          ;8BA584;
+    STA.L CinematicBGTilemap_initialSubtitles,X                          ;8BA584;
     DEX                                                                  ;8BA588;
     DEX                                                                  ;8BA589;
     BPL .loopAltText                                                     ;8BA58A;
@@ -5715,12 +5715,12 @@ endif
     STA.B VRAMWrite.size,X                                               ;8BA5D9;
     INX                                                                  ;8BA5DB;
     INX                                                                  ;8BA5DC;
-    LDA.W #CinematicBGTilemap_InitialSubtitles                           ;8BA5DD;
+    LDA.W #CinematicBGTilemap_initialSubtitles                           ;8BA5DD;
     STA.B VRAMWrite.size,X                                               ;8BA5E0;
     INX                                                                  ;8BA5E2;
     INX                                                                  ;8BA5E3;
     SEP #$20                                                             ;8BA5E4;
-    LDA.B #CinematicBGTilemap_InitialSubtitles>>16                       ;8BA5E6;
+    LDA.B #CinematicBGTilemap_initialSubtitles>>16                       ;8BA5E6;
     STA.B VRAMWrite.size,X                                               ;8BA5E8;
     REP #$20                                                             ;8BA5EA;
     INX                                                                  ;8BA5EC;
@@ -5775,7 +5775,7 @@ if !PAL != 0
 
   .loop
     LDA.L InitialIntroSubtitleTilemap_DefaultLanguage_Subpage2,X
-    STA.L CinematicBGTilemap_InitialSubtitles,X
+    STA.L CinematicBGTilemap_initialSubtitles,X
     DEX
     DEX
     BPL .loop
@@ -5801,12 +5801,12 @@ if !PAL != 0
     STA.B $D0,X
     INX
     INX
-    LDA.W #CinematicBGTilemap_InitialSubtitles
+    LDA.W #CinematicBGTilemap_initialSubtitles
     STA.B $D0,X
     INX
     INX
     SEP #$20
-    LDA.B #CinematicBGTilemap_InitialSubtitles>>$10
+    LDA.B #CinematicBGTilemap_initialSubtitles>>$10
     STA.B $D0,X
     REP #$20
     INX
@@ -5874,8 +5874,8 @@ else
     STA.W $2115
     JSL.L SetupHDMATransfer
     db $01,$01,$18
-    dl CinematicBGTilemap_Subtitles
-    dw CinematicBGTilemap_Subtitles_End-CinematicBGTilemap_Subtitles
+    dl CinematicBGTilemap_subtitles
+    dw CinematicBGTilemap_subtitles_end-CinematicBGTilemap_subtitles
 endif
     LDA.B #$02                                                           ;8BA691;
     STA.W $420B                                                          ;8BA693;
@@ -5893,8 +5893,8 @@ endif
     LDA.W #$3C29                                                         ;8BA6B7;
 
   .loopTopBottomMargins:
-    STA.L CinematicBGTilemap_TopMargin,X                                 ;8BA6BA;
-    STA.L CinematicBGTilemap_BottomMargin,X                              ;8BA6BE;
+    STA.L CinematicBGTilemap_topMargin,X                                 ;8BA6BA;
+    STA.L CinematicBGTilemap_bottomMargin,X                              ;8BA6BE;
     DEX                                                                  ;8BA6C2;
     DEX                                                                  ;8BA6C3;
     BPL .loopTopBottomMargins                                            ;8BA6C4;
@@ -5903,7 +5903,7 @@ if !PAL == 0
     LDY.W #$0000                                                         ;8BA6C9;
 
   .loopSubtitleTilemap:
-    LDA.W .IntroSubtitleTilemap,Y                                        ;8BA6CC;
+    LDA.W .introSubtitleTilemap,Y                                        ;8BA6CC;
     STA.L CinematicBGTilemap,X                                           ;8BA6CF;
     INY                                                                  ;8BA6D3;
     INY                                                                  ;8BA6D4;
@@ -5913,8 +5913,8 @@ if !PAL == 0
     BMI .loopSubtitleTilemap                                             ;8BA6DA;
 endif
     LDA.W #$1C29                                                         ;8BA6DC;
-    STA.L CinematicBGTilemap_BottomMargin+$1E                            ;8BA6DF;
-    STA.L CinematicBGTilemap_BottomMargin+$20                            ;8BA6E3;
+    STA.L CinematicBGTilemap_bottomMargin+$1E                            ;8BA6DF;
+    STA.L CinematicBGTilemap_bottomMargin+$20                            ;8BA6E3;
 if !PAL != 0
     JSR.W BlankOut_Subtitle_Tiles
 endif
@@ -5943,7 +5943,7 @@ endif
     RTS                                                                  ;8BA72A;
 
 if !PAL == 0
-  .IntroSubtitleTilemap:
+  .introSubtitleTilemap:
     dw $3C29,$3C29,$3C29,$3C29,$3030,$3031,$3032,$3033                   ;8BA72B;
     dw $3034,$3035,$3036,$3037,$3038,$3039,$303A,$303B                   ;8BA73B;
     dw $303C,$303D,$303E,$303F,$3040,$3041,$3042,$3043                   ;8BA74B;
@@ -6042,10 +6042,10 @@ if !PAL == 0
     BMI .loop                                                            ;8BA8BB;
     PLY                                                                  ;8BA8BD;
 else
-    LDX #CinematicBGTilemap_Subtitles_End-CinematicBGTilemap_Subtitles-2
+    LDX #CinematicBGTilemap_subtitles_end-CinematicBGTilemap_subtitles-2
     LDA #$3C29
 
--   STA CinematicBGTilemap_Subtitles,X
+-   STA CinematicBGTilemap_subtitles,X
     DEX
     DEX
     BPL -
@@ -7227,7 +7227,7 @@ CinematicFunction_Intro_CrossFadeToSamusGameplay:
     STA.L CinematicBGTilemap,X                                           ;8BB2B1;
     INX                                                                  ;8BB2B5;
     INX                                                                  ;8BB2B6;
-    CPX.W #CinematicBGTilemap_Subtitles-CinematicBGTilemap               ;8BB2B7;
+    CPX.W #CinematicBGTilemap_subtitles-CinematicBGTilemap               ;8BB2B7;
     BMI .loop                                                            ;8BB2BA;
     JSR.W BlankOut_Subtitle_Tiles                                        ;8BB2BC;
     LDA.W #CinematicFunction_Nothing                                     ;8BB2BF;
@@ -7279,7 +7279,7 @@ CinematicFunction_Intro_CrossFadeToScientistCutscene:
     STA.L CinematicBGTilemap,X                                           ;8BB321;
     INX                                                                  ;8BB325;
     INX                                                                  ;8BB326;
-    CPX.W #CinematicBGTilemap_Subtitles-CinematicBGTilemap               ;8BB327;
+    CPX.W #CinematicBGTilemap_subtitles-CinematicBGTilemap               ;8BB327;
     BMI .loopEnglishText                                                 ;8BB32A;
     JSR.W BlankOut_Subtitle_Tiles                                        ;8BB32C;
     LDA.W #CinematicFunction_Nothing                                     ;8BB32F;
@@ -13014,7 +13014,7 @@ CinematicFunction_PostCredits_IdleSamus1:
 
   .loopTilemapC:
     LDA.L Tilemap_PostCredits_1994Nintendo,X                             ;8BE2B0;
-    STA.L CinematicBGTilemap_RowsCD,X                                    ;8BE2B4;
+    STA.L CinematicBGTilemap_rowsCD,X                                    ;8BE2B4;
     INX                                                                  ;8BE2B8;
     INX                                                                  ;8BE2B9;
     CPX.W #$0080                                                         ;8BE2BA;
@@ -13336,7 +13336,7 @@ CinematicFunction_PostCredits_FadeToWhite:
     LDA.W #regional($007F, $004F)                                        ;8BE4F5;
 
   .loopTilemap:
-    STA.L CinematicBGTilemap_RowsCD,X                                    ;8BE4F8;
+    STA.L CinematicBGTilemap_rowsCD,X                                    ;8BE4F8;
     DEX                                                                  ;8BE4FC;
     DEX                                                                  ;8BE4FD;
     BPL .loopTilemap                                                     ;8BE4FE;
@@ -13707,7 +13707,7 @@ Instruction_DrawItemPercentageSubtitle:
 
   .loop:
     LDA.L Tilemap_PostCredits_ItemPercentageSubtitle_AltLanguage,X       ;8BE772;
-    STA.L CinematicBGTilemap_Rows17_18,X                                 ;8BE776;
+    STA.L CinematicBGTilemap_rows17_18,X                                 ;8BE776;
     DEX                                                                  ;8BE77A;
     DEX                                                                  ;8BE77B;
     BPL .loop                                                            ;8BE77C;
@@ -13724,7 +13724,7 @@ if !PAL != 0
 
   ..loop
     LDA.L Tilemap_PostCredits_ItemPercentageSubtitle_DefaultLanguage,X
-    STA.L CinematicBGTilemap_Rows17_18,X
+    STA.L CinematicBGTilemap_rows17_18,X
     DEX
     DEX
     BPL ..loop
@@ -13745,7 +13745,7 @@ else
 endif
 
   .loop:
-    STA.L CinematicBGTilemap_Rows17_18,X                                 ;8BE787;
+    STA.L CinematicBGTilemap_rows17_18,X                                 ;8BE787;
     DEX                                                                  ;8BE78B;
     DEX                                                                  ;8BE78C;
     BPL .loop                                                            ;8BE78D;

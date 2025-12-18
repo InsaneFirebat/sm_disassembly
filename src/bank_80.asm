@@ -1260,13 +1260,13 @@ NTSC_PAL_SRAM_MappingCheck:
   .region:
     LDA.L ROM_HEADER_country&$00FFFF                                     ;808602;
     CMP.B #$00                                                           ;808606; If country code != Japan:
-    BEQ .japan                                                           ;808608;
+    BEQ .Japan                                                           ;808608;
     LDA.W $213F                                                          ;80860A;
     BIT.B #$10                                                           ;80860D; If PPU set to PAL:
     BEQ .failedRegion                                                    ;80860F;
     JMP.W .SRAMCheck                                                     ;808611;
 
-  .japan:
+  .Japan:
     LDA.W $213F                                                          ;808614;
     BIT.B #$10                                                           ;808617; If PPU set to NTSC: go to .SRAMCheck
     BEQ .SRAMCheck                                                       ;808619;

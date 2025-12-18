@@ -1452,19 +1452,40 @@ def dump_rom(rom_data, output_path, is_pal):
     dump(0xDF_8000, 0x54DF, "UNUSED_Music_DF8000.bin")
 
 
+ROM_CHECKSUMS = {
+    # (CRC32, SHA256)
+    "NTSC": (0xD63ED5F8, "12b77c4bc9c1832cee8881244659065ee1d84c70c3d29e6eaf92e6798cc2ca72"),
+    "PAL": (0xAD2CBF9C, "640ACB63DAE038AD6F0AE65E103416F5A1F84D4A37DDAEEAB5046122DEF774D5"),
+}
+
+def rom_valid(rom_data, variant):
+    if len(rom_data) != 0x300000: # 3MB
+        print("Unexpected size: " + str(len(rom_data)))
+        return False
+
+    expected_crc32, expected_sha256 = ROM_CHECKSUMS[variant]
+    if zlib.crc32(rom_data) != expected_crc32:
+        print("Unexpected CRC32: " + hex(zlib.crc32(rom_data))[2:].upper())
+        return False
+
+    if hashlib.sha256(rom_data).hexdigest() != expected_sha256:
+        print("Unexpected SHA256: " + hashlib.sha256(rom_data).hexdigest())
+        return False
+
+    return True
+
 def main():
-    args = make_argument_parser().parse_args()
-
-    with args.rom_file as inf:
-        rom_data = inf.read()
-
-    if not args.pal and not rom_valid(rom_data):
-        print("Invalid ROM. Ensure it's unheadered and the NTSC version:\n"
+    # ...
+    variant = "NTSC" if not args.pal else "PAL"
+    if not rom_valid(rom_data, variant):
+        expected_crc32, expected_sha256 = ROM_CHECKSUMS[variant]
+        print(f"Invalid ROM. Ensure it's unheadered and the {variant} version:\n"
               "Expected size: 3145728 (3 MB)\n"
-              f"Expected CRC32: {SM_NTSC_CRC32:X}\n"
-              "Expected SHA256:", SM_NTSC_SHA256,
+              f"Expected CRC32: {expected_crc32:X}\n"
+              "Expected SHA256:", expected_sha256,
               file=sys.stderr)
-        sys.exit(1)
+        sys.exit(1) 
+    # ...
 
     if not args.check:
         dump_rom(rom_data, args.output, args.pal)

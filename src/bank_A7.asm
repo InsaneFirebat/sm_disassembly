@@ -400,13 +400,13 @@ Instruction_CommonA7_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA7EnemySpeeds_LinearlyIncreasing:
-.speed                                                                   ;A08187;
+  .speed                                                                 ;A08187;
 skip 2
-.subspeed                                                                ;A08189;
+  .subspeed                                                              ;A08189;
 skip 2
-.negatedSpeed                                                            ;A0818B;
+  .negatedSpeed                                                          ;A0818B;
 skip 2
-.negatedSubspeed                                                         ;A0818D;
+  .negatedSubspeed                                                       ;A0818D;
 skip -6
 
 !i = 0
@@ -4840,7 +4840,7 @@ else
     CLC
     ADC.W Enemy.XSubPosition
     STA.W Enemy.XSubPosition
-    LDA.W $A932
+    LDA.W KraidBackwardsFastSpeed
 endif
     ADC.W Enemy.XPosition                                                ;A7B67A;
     STA.W Enemy.XPosition                                                ;A7B67D;

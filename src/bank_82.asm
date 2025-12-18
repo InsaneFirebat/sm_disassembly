@@ -13417,27 +13417,26 @@ endif
 GameOptionsMenu_OptionsMenu_ToggleLanguageText:
     STZ.W MenuOptionIndex                                                ;82EDDA;
     LDA.W AltText                                                        ;82EDDD;
-    BEQ .japaneseText                                                    ;82EDE0;
+    BEQ .subtitles                                                       ;82EDE0;
     STZ.W AltText                                                        ;82EDE2;
     BRA Set_Language_Text_Option_Highlight                               ;82EDE5;
 
-  .japaneseText:
+  .subtitles:
     LDA.W #$0001                                                         ;82EDE7;
     STA.W AltText                                                        ;82EDEA; fallthrough to Set_Language_Text_Option_Highlight
 
 
 ;;; $EDED: Set language text option highlight ;;;
 Set_Language_Text_Option_Highlight:
-    ; Palette 0 is used for active language, palette 2 for inactive language
-    ; Language 0 text:
-    ;     NTSC: 'ENGLISH TEXT'
-    ;     PAL:  'GERMAN TEXT         '
-    ; Language 1 text:
-    ;     NTSC: 'JAPANESE TEXT (日本語字幕スーパー)'
-    ;     PAL:  'FRENCH TEXT                 '
-
+; Palette 0 is used for active language, palette 2 for inactive language
+; Language 0 text:
+;     NTSC: 'ENGLISH TEXT'
+;     PAL:  'GERMAN TEXT         '
+; Language 1 text:
+;     NTSC: 'JAPANESE TEXT (日本語字幕スーパー)'
+;     PAL:  'FRENCH TEXT                 '
     LDA.W AltText                                                        ;82EDED;
-    BNE .japaneseText                                                    ;82EDF0;
+    BNE .subtitles                                                       ;82EDF0;
     LDX.W #$0288                                                         ;82EDF2;
     LDY.W #regional($0018, $0028)                                        ;82EDF5;
     LDA.W #$0000                                                         ;82EDF8;
@@ -13456,7 +13455,7 @@ Set_Language_Text_Option_Highlight:
     JSR.W Set_GameOptionsMenu_TilePalettes                               ;82EE1F;
     BRA .return                                                          ;82EE22;
 
-  .japaneseText:
+  .subtitles:
     LDX.W #$0288                                                         ;82EE24;
     LDY.W #regional($0018, $0028)                                        ;82EE27;
     LDA.W #$0400                                                         ;82EE2A;
@@ -13620,27 +13619,27 @@ GameOptionsMenu_5_DissolveOutScreen:
 if !PAL == 0
     ; PAL does not translate controller settings
     LDA.W AltText                                                        ;82EF4D;
-    BNE .japaneseControllerSettings                                      ;82EF50;
+    BNE .altTextControllerSettings                                       ;82EF50;
 endif
     LDX.W #$07FE                                                         ;82EF52;
 
-  .englishCtrlLoop:
+  .ctrlLoop:
     LDA.L GameOptionsTilemap_EnglishControllerSettings,X                 ;82EF55;
     STA.L GameOptionsMenuTilemap,X                                       ;82EF59;
     DEX                                                                  ;82EF5D;
     DEX                                                                  ;82EF5E;
-    BPL .englishCtrlLoop                                                 ;82EF5F;
+    BPL .ctrlLoop                                                        ;82EF5F;
     BRA .continueControllerSettingsSettings                              ;82EF61;
 
-  .japaneseControllerSettings:
+  .altTextControllerSettings:
     LDX.W #$07FE                                                         ;82EF63;
 
-  .japaneseCtrlLoop:
+  .altTextCtrlLoop:
     LDA.L GameOptionsTilemap_JapanControllerSettings,X                   ;82EF66;
     STA.L GameOptionsMenuTilemap,X                                       ;82EF6A;
     DEX                                                                  ;82EF6E;
     DEX                                                                  ;82EF6F;
-    BPL .japaneseCtrlLoop                                                ;82EF70;
+    BPL .altTextCtrlLoop                                                 ;82EF70;
 
   .continueControllerSettingsSettings:
     LDY.W #GameOptionsMenu_Objects_CONTROLLER_SETTING_MODE_Border        ;82EF72;
@@ -13656,27 +13655,27 @@ endif
 if !PAL == 0
     ; PAL does not translate special settings
     LDA.W AltText                                                        ;82EF81;
-    BNE .japaneseSettings                                                ;82EF84;
+    BNE .altTextSettings                                                 ;82EF84;
 endif
     LDX.W #$07FE                                                         ;82EF86;
 
-  .englishSettingsLoop:
+  .settingsLoop:
     LDA.L GameOptionsTilemap_EnglishSpecialSettings,X                    ;82EF89;
     STA.L GameOptionsMenuTilemap,X                                       ;82EF8D;
     DEX                                                                  ;82EF91;
     DEX                                                                  ;82EF92;
-    BPL .englishSettingsLoop                                             ;82EF93;
+    BPL .settingsLoop                                                    ;82EF93;
     BRA .continueSpecial                                                 ;82EF95;
 
-  .japaneseSettings:
+  .altTextSettings:
     LDX.W #$07FE                                                         ;82EF97;
 
-  .japaneseSettingsLoop:
+  .altTextSettingsLoop:
     LDA.L GameOptionsTilemap_JapanSpecialSettings,X                      ;82EF9A;
     STA.L GameOptionsMenuTilemap,X                                       ;82EF9E;
     DEX                                                                  ;82EFA2;
     DEX                                                                  ;82EFA3;
-    BPL .japaneseSettingsLoop                                            ;82EFA4;
+    BPL .altTextSettingsLoop                                             ;82EFA4;
 
   .continueSpecial:
     STZ.W MenuOptionIndex                                                ;82EFA6;

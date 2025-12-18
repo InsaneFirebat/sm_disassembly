@@ -1542,19 +1542,19 @@ EnemyBG2Tilemap: ; $7E2000..2FFF
 
 org $7E3000
 CinematicBGTilemap: ; $7E3000..37FF
-.InitialSubtitles: ; $7E3000..FF
-.TopMargin: skip $100 ; $7E3000..FF
-.EnglishTextRegion: skip $200 ; $7E3100..35FF
-.RowsCD: skip $2C0 ; $7E3300..??
-.Rows17_18: skip $40 ; $7E35C0..??
-.Subtitles: ; $7E3600..FF
-..TopRow: ; $7E3600..7F
+  .initialSubtitles: ; $7E3000..FF
+  .topMargin: skip $100 ; $7E3000..FF
+  .EnglishTextRegion: skip $200 ; $7E3100..35FF
+  .rowsCD: skip $2C0 ; $7E3300..??
+  .rows17_18: skip $40 ; $7E35C0..??
+  .subtitles: ; $7E3600..FF
+  ..topRow: ; $7E3600..7F
 skip $80
-..BottomRow: ; $7E3680..FF
+  ..bottomRow: ; $7E3680..FF
 skip $80
-..End
-.BottomMargin: skip $100 ; $7E3700..FF
-.End
+  ..end
+  .bottomMargin: skip $100 ; $7E3700..FF
+  .end
 
 org $7E3000
 GameOptionsMenuTilemap: ; $7E3000..37FF
@@ -2088,7 +2088,7 @@ skip $900
 else
 skip $D00
 endif
-.end:
+  .end:
 
 org $7F9000
 TitleBabyMetroidTiles: ; $7F9000..93FF
@@ -2099,25 +2099,25 @@ if !PAL == 0
 IntroFont2Tiles: ; $7FA000..B1FF
 else
 IntroSubtitleTilemaps: ; $7FA000..BFFF
-.German_Page1_Subpage1:        skip $100 ; 7EA000..A0FF
-.German_Page1_Subpage2:        skip $140 ; 7EA100..A1FF
-.German_Page2_Subpage1:        skip $100 ; 7EA240..A33F
-.German_Page2_Subpage2:        skip $140 ; 7EA340..A43F
-.German_Page3_Subpage1:        skip $100 ; 7EA480..A57F
-.German_Page3_Subpage2:        skip $100 ; 7EA580..A5FF
-.German_Page4_Subpage1:        skip $100 ; 7EA680..A77F
-.German_Page4_Subpage2:        skip $80  ; 7EA780..A7FF
-.French_Page1:                 skip $240 ; 7EA800..A8FF
-.French_Page2:                 skip $240 ; 7EAA40..AB3F
-.French_Page3:                 skip $200 ; 7EAC80..AD7F
-.French_Page4_Subpage1:        skip $100 ; 7EAE80..AF7F
-.French_Page4_Subpage2_top:    skip $140 ; 7EAF80..AFFF
-.German_Page5_Subpage1:        skip $100 ; 7EB0C0..B1BF
-.German_Page5_Subpage2:        skip $140 ; 7EB1C0..B2BF
-.German_Page6:                 skip $500 ; 7EB300..B3FF
-.French_Page4_Subpage2_bottom: skip $C0  ; 7EB800..B87F
-.French_Page5:                 skip $240 ; 7EB8C0..B9BF
-.French_Page6:                 skip $100 ; 7EBB00..BBFF
+  .German_Page1_Subpage1:        skip $100 ; 7EA000..A0FF
+  .German_Page1_Subpage2:        skip $140 ; 7EA100..A1FF
+  .German_Page2_Subpage1:        skip $100 ; 7EA240..A33F
+  .German_Page2_Subpage2:        skip $140 ; 7EA340..A43F
+  .German_Page3_Subpage1:        skip $100 ; 7EA480..A57F
+  .German_Page3_Subpage2:        skip $100 ; 7EA580..A5FF
+  .German_Page4_Subpage1:        skip $100 ; 7EA680..A77F
+  .German_Page4_Subpage2:        skip $80  ; 7EA780..A7FF
+  .French_Page1:                 skip $240 ; 7EA800..A8FF
+  .French_Page2:                 skip $240 ; 7EAA40..AB3F
+  .French_Page3:                 skip $200 ; 7EAC80..AD7F
+  .French_Page4_Subpage1:        skip $100 ; 7EAE80..AF7F
+  .French_Page4_Subpage2_top:    skip $140 ; 7EAF80..AFFF
+  .German_Page5_Subpage1:        skip $100 ; 7EB0C0..B1BF
+  .German_Page5_Subpage2:        skip $140 ; 7EB1C0..B2BF
+  .German_Page6:                 skip $500 ; 7EB300..B3FF
+  .French_Page4_Subpage2_bottom: skip $C0  ; 7EB800..B87F
+  .French_Page5:                 skip $240 ; 7EB8C0..B9BF
+  .French_Page6:                 skip $100 ; 7EBB00..BBFF
 endif
 
 org $7FB800
